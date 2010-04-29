@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="349.127" y="149.574" z="38.1659"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="6">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="293.891" z="235.914"/>
+			<Orientation y="3.13672"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="310.113" z="235.945"/>
+			<Orientation y="3.13672"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="304.234" z="197.848"/>
+			<Orientation y="3.13672"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="332.805" z="253.457"/>
+			<Orientation y="3.82031"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="351.934" z="195.062"/>
+			<Orientation y="4.69922"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="367.801" z="211.574"/>
+			<Orientation y="3.14453"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="338.383" z="211.004"/>
+			<Orientation y="3.14453"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="352.984" z="227.121"/>
+			<Orientation y="1.5625"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="306.805" z="308.824"/>
+			<Orientation y="-0.0273438"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="328.879" z="308.824"/>
+			<Orientation y="-0.0273438"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="296.16" z="297.316"/>
+			<Orientation y="1.51953"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="342.578" z="298.086"/>
+			<Orientation y="1.51953"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="363.242" z="297.316"/>
+			<Orientation y="1.51953"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="275.598" z="296.172"/>
+			<Orientation y="1.51953"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="267.59" z="311.305"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="268.316" z="332.051"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="269.438" z="353.195"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="270.547" z="374.977"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="370.652" z="314.473"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="370.984" z="338.418"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="371.293" z="361.965"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="371.711" z="384.176"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="298.059" z="323.594"/>
+			<Orientation y="4.76172"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="299.797" z="350.086"/>
+			<Orientation y="4.76172"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="321.934" z="350.086"/>
+			<Orientation y="4.76172"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="342.129" z="350.363"/>
+			<Orientation y="4.76172"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="349.965" z="334.523"/>
+			<Orientation y="6.25"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="283.051" z="350.93"/>
+			<Orientation y="7.88672"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="341.742" z="375.301"/>
+			<Orientation y="7.88672"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="367.738" z="399.191"/>
+			<Orientation y="7.88672"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="344.695" z="399.918"/>
+			<Orientation y="7.88672"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="326.352" z="400.281"/>
+			<Orientation y="7.88672"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="312.637" z="384.512"/>
+			<Orientation y="9.37109"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="293.746" z="366.816"/>
+			<Orientation y="9.37109"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="300.215" z="398.465"/>
+			<Orientation y="10.9805"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="272.031" z="398.828"/>
+			<Orientation y="12.6562"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="276.609" z="419.758"/>
+			<Orientation y="13.1914"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="290.602" z="437.578"/>
+			<Orientation y="0.941406"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="310.125" z="446.977"/>
+			<Orientation y="-1.80469"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="334.07" z="446.539"/>
+			<Orientation y="14.2773"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="354.656" z="446.09"/>
+			<Orientation y="13.9805"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="375.738" z="446.992"/>
+			<Orientation y="13.9805"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="315.699" z="436.812"/>
+			<Orientation y="15.668"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="337.391" z="408.84"/>
+			<Orientation y="15.668"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="361.289" z="436.812"/>
+			<Orientation y="15.668"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>units/hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="310.734" z="269.285"/>
+			<Orientation y="13.3633"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>units/hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="300.445" z="267.047"/>
+			<Orientation y="13.3633"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>units/hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="290.004" z="267.047"/>
+			<Orientation y="13.3633"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>units/hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="281.777" z="268"/>
+			<Orientation y="13.3633"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>units/hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="349.156" z="207.789"/>
+			<Orientation y="13.3633"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>units/hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="385.699" z="421.672"/>
+			<Orientation y="13.3633"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="397.5" z="447.691"/>
+			<Orientation y="14.3086"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="410.008" z="433.277"/>
+			<Orientation y="15.7773"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="407.613" z="414.148"/>
+			<Orientation y="15.7773"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="398.441" z="398.055"/>
+			<Orientation y="16.8008"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>structures/celt_corral</Template>
+			<Player>1</Player>
+			<Position x="381.301" z="396.773"/>
+			<Orientation y="17.3516"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="356.75" z="215.902"/>
+			<Orientation y="3.73828"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="323.984" z="232.781"/>
+			<Orientation y="2.23438"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>units/hele_infantry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="293.941" z="235.59"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>units/hele_infantry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="338.055" z="210.789"/>
+			<Orientation y="3.16406"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>structures/celt_temple</Template>
+			<Player>2</Player>
+			<Position x="402.766" z="251.594"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="390.965" z="252.871"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="392.242" z="262.113"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="396.023" z="268.004"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="399.91" z="271.18"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="403.887" z="272.137"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="410.883" z="265.461"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="413.297" z="260.395"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="414.941" z="253.188"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="414.363" z="245.191"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="411.258" z="240.418"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="407.438" z="238.125"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="402.996" z="236.023"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="398.781" z="236.805"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="394.957" z="240.418"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="391.453" z="244.617"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="407.746" z="268.559"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>structures/celt_temple</Template>
+			<Player>2</Player>
+			<Position x="424.23" z="255.586"/>
+			<Orientation y="3.13672"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>structures/celt_temple</Template>
+			<Player>2</Player>
+			<Position x="463.375" z="256.234"/>
+			<Orientation y="2.67188"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="452.105" z="255.02"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="452.066" z="263.559"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="457.859" z="242.508"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="462.465" z="239.992"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="467.781" z="240.926"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="472.812" z="244.129"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="475.324" z="250.266"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="476.832" z="259.676"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="476.641" z="266.324"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="474.312" z="271.676"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="470.457" z="276.883"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="465.211" z="277.863"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="460.586" z="277.863"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="455.816" z="274.953"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="453.121" z="270.531"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="453.836" z="247.133"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="427.352" z="301.84"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="450.855" z="303.613"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>gaia/flora_tree_oak_large</Template>
+			<Player>1</Player>
+			<Position x="404.113" z="300.098"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>1</Player>
+			<Position x="470.902" z="305.414"/>
+			<Orientation y="3.79688"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+	<Triggers/>
+</Scenario>
