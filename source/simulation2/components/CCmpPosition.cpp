@@ -73,8 +73,6 @@ public:
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
 	float m_InterpolatedRotY; // not serialized
 
-	bool m_Dirty; // true if position/rotation has changed since last TurnStart
-
 	static std::string GetSchema()
 	{
 		return
@@ -120,8 +118,6 @@ public:
 
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
 		m_InterpolatedRotY = 0;
-
-		m_Dirty = false;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -144,7 +140,6 @@ public:
 		serialize.NumberFixed_Unbounded("rot y", m_RotY);
 		serialize.NumberFixed_Unbounded("rot z", m_RotZ);
 		serialize.NumberFixed_Unbounded("altitude", m_YOffset);
-		serialize.Bool("dirty", m_Dirty);
 
 		if (serialize.IsDebug())
 		{
@@ -176,7 +171,6 @@ public:
 		deserialize.NumberFixed_Unbounded(m_RotY);
 		deserialize.NumberFixed_Unbounded(m_RotZ);
 		deserialize.NumberFixed_Unbounded(m_YOffset);
-		deserialize.Bool(m_Dirty);
 		// TODO: should there be range checks on all these values?
 
 		m_InterpolatedRotY = m_RotY.ToFloat();
@@ -191,7 +185,7 @@ public:
 	{
 		m_InWorld = false;
 
-		m_Dirty = true;
+		AdvertisePositionChanges();
 	}
 
 	virtual void MoveTo(entity_pos_t x, entity_pos_t z)
@@ -206,7 +200,7 @@ public:
 			m_LastZ = m_Z;
 		}
 
-		m_Dirty = true;
+		AdvertisePositionChanges();
 	}
 
 	virtual void JumpTo(entity_pos_t x, entity_pos_t z)
@@ -215,14 +209,14 @@ public:
 		m_LastZ = m_Z = z;
 		m_InWorld = true;
 
-		m_Dirty = true;
+		AdvertisePositionChanges();
 	}
 
 	virtual void SetHeightOffset(entity_pos_t dy)
 	{
 		m_YOffset = dy;
 
-		m_Dirty = true;
+		AdvertisePositionChanges();
 	}
 
 	virtual entity_pos_t GetHeightOffset()
@@ -256,7 +250,7 @@ public:
 	{
 		m_RotY = y;
 
-		m_Dirty = true;
+		AdvertisePositionChanges();
 	}
 
 	virtual void SetYRotation(entity_angle_t y)
@@ -264,7 +258,7 @@ public:
 		m_RotY = y;
 		m_InterpolatedRotY = m_RotY.ToFloat();
 
-		m_Dirty = true;
+		AdvertisePositionChanges();
 	}
 
 	virtual void SetXZRotation(entity_angle_t x, entity_angle_t z)
@@ -272,7 +266,7 @@ public:
 		m_RotX = x;
 		m_RotZ = z;
 
-		m_Dirty = true;
+		AdvertisePositionChanges();
 	}
 
 	virtual CFixedVector3D GetRotation()
@@ -366,23 +360,24 @@ public:
 		{
 			m_LastX = m_X;
 			m_LastZ = m_Z;
-			if (m_Dirty)
-			{
-				if (m_InWorld)
-				{
-					CMessagePositionChanged msg(true, m_X, m_Z, m_RotY);
-					context.GetComponentManager().PostMessage(GetEntityId(), msg);
-				}
-				else
-				{
-					CMessagePositionChanged msg(false, entity_pos_t(), entity_pos_t(), entity_angle_t());
-					context.GetComponentManager().PostMessage(GetEntityId(), msg);
-				}
-				m_Dirty = false;
-			}
 
 			break;
 		}
+		}
+	}
+
+private:
+	void AdvertisePositionChanges()
+	{
+		if (m_InWorld)
+		{
+			CMessagePositionChanged msg(true, m_X, m_Z, m_RotY);
+			m_Context->GetComponentManager().PostMessage(GetEntityId(), msg);
+		}
+		else
+		{
+			CMessagePositionChanged msg(false, entity_pos_t(), entity_pos_t(), entity_angle_t());
+			m_Context->GetComponentManager().PostMessage(GetEntityId(), msg);
 		}
 	}
 };

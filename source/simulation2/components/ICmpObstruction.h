@@ -20,7 +20,7 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpObstructionManager.h"
 
 /**
  * Flags an entity as obstructing movement for other units,
@@ -29,6 +29,11 @@
 class ICmpObstruction : public IComponent
 {
 public:
+
+	virtual ICmpObstructionManager::tag_t GetObstruction() = 0;
+
+	virtual entity_pos_t GetUnitRadius() = 0;
+
 	/**
 	 * Test whether this entity's footprint is colliding with any other's.
 	 * @return true if there is a collision

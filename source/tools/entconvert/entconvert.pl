@@ -253,14 +253,26 @@ sub convert {
             $out .= qq{$i$i<Height>$data->{Traits}[0]{Footprint}[0]{Height}[0]</Height>\n};
         }
         $out .= qq{$i</Footprint>\n};
+
+        if ($name =~ /^template_(structure|gaia)_/ and $name !~ /^template_structure_resource_field$/) {
+            my ($w, $d);
+            if ($data->{Traits}[0]{Footprint}[0]{Radius}) {
+                $w = $d = sprintf '%.1f', 2*$data->{Traits}[0]{Footprint}[0]{Radius}[0];
+            }
+            if ($data->{Traits}[0]{Footprint}[0]{Width}) {
+                $w = $data->{Traits}[0]{Footprint}[0]{Width}[0];
+                $d = $data->{Traits}[0]{Footprint}[0]{Depth}[0];
+            }
+            $out .= qq{$i<Obstruction>\n};
+            $out .= qq{$i$i<Static width="$w" depth="$d"/>\n};
+            $out .= qq{$i</Obstruction>\n};
+        }
     }
 
-    if ($name =~ /^template_(structure|gaia)$/) {
-        $out .= qq{$i<Obstruction/>\n};
-    }
-
-    if ($name =~ /^template_structure_resource_field$/) {
-        $out .= qq{$i<Obstruction disable=""/>\n};
+    if ($name eq 'template_unit') {
+        $out .= qq{$i<Obstruction>\n};
+        $out .= qq{$i$i<Unit radius="1.0"/>\n};
+        $out .= qq{$i</Obstruction>\n};
     }
 
     if ($data->{Actions}[0]{Create}[0]{List}[0]{StructCiv} or $data->{Actions}[0]{Create}[0]{List}[0]{StructMil}) {

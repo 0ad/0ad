@@ -42,7 +42,7 @@
 		</object>
 
 		<!-- Dev/cheat commands -->
-		<object size="100%-170 32 100%-16 96" type="image" sprite="devCommandsBackground">
+		<object size="100%-170 32 100%-16 112" type="image" sprite="devCommandsBackground">
 			<object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
 			<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="wheatCrossBox"/>
 
@@ -57,6 +57,11 @@
 			<object size="0 48 100%-18 64" type="text" style="devCommandsText">Obstruction overlay</object>
 			<object size="100%-16 48 100% 64" type="checkbox" style="wheatCrossBox">
 				<action on="Press">Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);</action>
+			</object>
+
+			<object size="0 64 100%-18 80" type="text" style="devCommandsText">Unit motion overlay</object>
+			<object size="100%-16 64 100% 80" type="checkbox" style="wheatCrossBox">
+				<action on="Press">g_Selection.SetMotionDebugOverlay(this.checked);</action>
 			</object>
 		</object>
 

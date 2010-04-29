@@ -34,9 +34,41 @@
 class ICmpUnitMotion : public IComponent
 {
 public:
-	virtual void MoveToPoint(entity_pos_t x, entity_pos_t z, entity_pos_t minRadius, entity_pos_t maxRadius) = 0;
+	/**
+	 * Attempt to walk to a given point, or as close as possible.
+	 * If the unit cannot move anywhere at all, or if there is some other error, then
+	 * returns false.
+	 * Otherwise, sends a MotionChanged message and returns true; it will send another
+	 * MotionChanged message (with speed 0) once it has reached the target or otherwise
+	 * given up trying to reach it.
+	 */
+	virtual bool MoveToPoint(entity_pos_t x, entity_pos_t z) = 0;
 
+	/**
+	 * Determine whether the target is within the given range, using the same measurement
+	 * as MoveToAttackRange.
+	 */
+	virtual bool IsInAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+
+	/**
+	 * Attempt to walk into range of a given target, or as close as possible.
+	 * If the unit is already in range, or cannot move anywhere at all, or if there is
+	 * some other error, then returns false.
+	 * Otherwise, sends a MotionChanged message and returns true; it will send another
+	 * MotionChanged message (with speed 0) once it has reached the target range (such that
+	 * IsInAttackRange should return true) or otherwise given up trying to reach it.
+	 */
+	virtual bool MoveToAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+
+	/**
+	 * Get the default speed that this unit will have when walking.
+	 */
 	virtual CFixed_23_8 GetSpeed() = 0;
+
+	/**
+	 * Toggle the rendering of debug info.
+	 */
+	virtual void SetDebugOverlay(bool enabled) = 0;
 
 	DECLARE_INTERFACE_TYPE(UnitMotion)
 };

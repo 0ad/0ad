@@ -20,6 +20,7 @@
 #include "simulation2/system/Component.h"
 #include "ICmpFootprint.h"
 
+#include "ICmpObstruction.h"
 #include "ICmpObstructionManager.h"
 #include "ICmpPosition.h"
 #include "simulation2/MessageTypes.h"
@@ -122,6 +123,11 @@ public:
 
 	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned)
 	{
+		// Try to find a free space around the building's footprint.
+		// (Note that we use the footprint, not the obstruction shape - this might be a bit dodgy
+		// because the footprint might be inside the obstruction, but it hopefully gives us a nicer
+		// shape.)
+
 		CFixedVector3D error(CFixed_23_8::FromInt(-1), CFixed_23_8::FromInt(-1), CFixed_23_8::FromInt(-1));
 
 		CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
@@ -132,28 +138,15 @@ public:
 		if (cmpObstructionManager.null())
 			return error;
 
-		// Always approximate the spawned entity as a circle, so we're orientation-independent
-		CFixed_23_8 spawnedRadius;
+		entity_pos_t spawnedRadius;
 
-		CmpPtr<ICmpFootprint> cmpSpawnedFootprint(*m_Context, spawned);
-		if (!cmpSpawnedFootprint.null())
-		{
-			EShape shape;
-			CFixed_23_8 size0, size1, height;
-			cmpSpawnedFootprint->GetShape(shape, size0, size1, height);
-			if (shape == CIRCLE)
-				spawnedRadius = size0;
-			else
-				spawnedRadius = std::max(size0, size1); // safe overapproximation of the correct sqrt((size0/2)^2 + (size1/2)^2)
-		}
-		else
-		{
-			// No footprint - weird but let's just pretend it's a point
-			spawnedRadius = CFixed_23_8::FromInt(0);
-		}
+		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(*m_Context, spawned);
+		if (!cmpSpawnedObstruction.null())
+			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
+		// else zero
 
 		// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-		CFixed_23_8 clearance = spawnedRadius + CFixed_23_8::FromInt(2);
+		CFixed_23_8 clearance = spawnedRadius + entity_pos_t::FromInt(2);
 
 		CFixedVector3D initialPos = cmpPosition->GetPosition();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
@@ -166,7 +159,7 @@ public:
 			const ssize_t numPoints = 31;
 			for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
 			{
-				entity_angle_t angle = initialAngle + (entity_angle_t::Pi()*2).Multiply(entity_angle_t::FromInt(i)/numPoints);
+				entity_angle_t angle = initialAngle + (entity_angle_t::Pi()*2).Multiply(entity_angle_t::FromInt(i)/(int)numPoints);
 
 				CFixed_23_8 s, c;
 				sincos_approx(angle, s, c);
@@ -174,7 +167,7 @@ public:
 				CFixedVector3D pos (initialPos.X + s.Multiply(radius), CFixed_23_8::Zero(), initialPos.Z + c.Multiply(radius));
 
 				SkipTagObstructionFilter filter(spawned); // ignore collisions with the spawned entity
-				if (cmpObstructionManager->TestCircle(filter, pos.X, pos.Z, spawnedRadius))
+				if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, spawnedRadius))
 					return pos; // this position is okay, so return it
 			}
 		}
@@ -217,14 +210,14 @@ public:
 				CFixedVector2D center;
 				center.X = initialPos.X + (-dir.Y).Multiply(sy/2 + clearance);
 				center.Y = initialPos.Z + dir.X.Multiply(sy/2 + clearance);
-				dir = dir.Multiply((sx + clearance*2) / (numPoints-1));
+				dir = dir.Multiply((sx + clearance*2) / (int)(numPoints-1));
 
 				for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
 				{
 					CFixedVector2D pos (center + dir*i);
 
 					SkipTagObstructionFilter filter(spawned); // ignore collisions with the spawned entity
-					if (cmpObstructionManager->TestCircle(filter, pos.X, pos.Y, spawnedRadius))
+					if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, spawnedRadius))
 						return CFixedVector3D(pos.X, CFixed_23_8::Zero(), pos.Y); // this position is okay, so return it
 				}
 			}

@@ -26,6 +26,27 @@
 static const size_t RENDER_CIRCLE_POINTS = 16;
 static const float RENDER_HEIGHT_DELTA = 0.25f; // distance above terrain
 
+void SimRender::ConstructLineOnGround(const CSimContext& context, std::vector<float> xz, SOverlayLine& overlay)
+{
+	overlay.m_Coords.clear();
+
+	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);
+	if (cmpTerrain.null())
+		return;
+
+	overlay.m_Coords.reserve(xz.size()/2 * 3);
+
+	for (size_t i = 0; i < xz.size(); i += 2)
+	{
+		float px = xz[i];
+		float pz = xz[i+1];
+		float py = cmpTerrain->GetGroundLevel(px, pz) + RENDER_HEIGHT_DELTA;
+		overlay.m_Coords.push_back(px);
+		overlay.m_Coords.push_back(py);
+		overlay.m_Coords.push_back(pz);
+	}
+}
+
 void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius, SOverlayLine& overlay)
 {
 	overlay.m_Coords.clear();

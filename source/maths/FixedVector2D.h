@@ -39,6 +39,12 @@ public:
 		return (X == v.X && Y == v.Y);
 	}
 
+	/// Vector inequality
+	bool operator!=(const CFixedVector2D& v) const
+	{
+		return (X != v.X || Y != v.Y);
+	}
+
 	/// Vector addition
 	CFixedVector2D operator+(const CFixedVector2D& v) const
 	{
@@ -102,6 +108,11 @@ public:
 		return r;
 	}
 
+	bool IsZero() const
+	{
+		return (X.IsZero() && Y.IsZero());
+	}
+
 	/**
 	 * Normalize the vector so that length is close to 1.
 	 * If length is 0, does nothing.
@@ -110,11 +121,33 @@ public:
 	 */
 	void Normalize()
 	{
-		fixed l = Length();
-		if (!l.IsZero())
+		if (!IsZero())
 		{
+			fixed l = Length();
 			X = X / l;
 			Y = Y / l;
+		}
+	}
+
+	/**
+	 * Normalize the vector so that length is close to n.
+	 * If length is 0, does nothing.
+	 */
+	void Normalize(fixed n)
+	{
+		if (n.IsZero())
+		{
+			X = Y = fixed::FromInt(0);
+			return;
+		}
+
+		fixed l = Length();
+		// TODO: work out whether this is giving decent precision
+		fixed d = l / n;
+		if (!d.IsZero())
+		{
+			X = X / d;
+			Y = Y / d;
 		}
 	}
 
@@ -129,6 +162,11 @@ public:
 		fixed ret;
 		ret.SetInternalValue((i32)(sum >> fixed::fract_bits));
 		return ret;
+	}
+
+	CFixedVector2D Perpendicular()
+	{
+		return CFixedVector2D(Y, -X);
 	}
 };
 

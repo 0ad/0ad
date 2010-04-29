@@ -229,6 +229,16 @@ GuiInterface.prototype.SetObstructionDebugOverlay = function(player, enabled)
 	cmpObstructionManager.SetDebugOverlay(enabled);
 };
 
+GuiInterface.prototype.SetMotionDebugOverlay = function(player, data)
+{
+	for each (var ent in data.entities)
+	{
+		var cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
+		if (cmpUnitMotion)
+			cmpUnitMotion.SetDebugOverlay(data.enabled);
+	}
+};
+
 // List the GuiInterface functions that can be safely called by GUI scripts.
 // (GUI scripts are non-deterministic and untrusted, so these functions must be
 // appropriately careful. They are called with a first argument "player", which is
@@ -241,7 +251,8 @@ var exposedFunctions = {
 	"SetSelectionHighlight": 1,
 	"SetBuildingPlacementPreview": 1,
 	"SetPathfinderDebugOverlay": 1,
-	"SetObstructionDebugOverlay": 1
+	"SetObstructionDebugOverlay": 1,
+	"SetMotionDebugOverlay": 1,
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

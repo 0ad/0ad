@@ -30,6 +30,11 @@ namespace SimRender
 {
 
 /**
+ * Updates @p overlay so that it represents the given line (a list of x, z coordinate pairs), flattened on the terrain.
+ */
+void ConstructLineOnGround(const CSimContext& context, std::vector<float> xz, SOverlayLine& overlay);
+
+/**
  * Updates @p overlay so that it represents the given circle, flattened on the terrain.
  */
 void ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius, SOverlayLine& overlay);

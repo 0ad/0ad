@@ -22,6 +22,7 @@
 #include "precompiled.h"
 
 #include "lib/res/graphics/ogl_tex.h"
+#include "lib/sysdep/cpu.h"
 
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
@@ -150,9 +151,9 @@ void CTerrain::CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) cons
 		height = m_Heightmap[j*m_MapSize + i];
 	else
 		height = 0;
-	pos.X = CFixed_23_8::FromInt(i)*CELL_SIZE;
-	pos.Y = CFixed_23_8::FromInt(height)/HEIGHT_UNITS_PER_METRE;
-	pos.Z = CFixed_23_8::FromInt(j)*CELL_SIZE;
+	pos.X = CFixed_23_8::FromInt(i)*(int)CELL_SIZE;
+	pos.Y = CFixed_23_8::FromInt(height)/(int)HEIGHT_UNITS_PER_METRE;
+	pos.Z = CFixed_23_8::FromInt(j)*(int)CELL_SIZE;
 }
 
 
@@ -343,13 +344,13 @@ float CTerrain::GetExactGroundLevel(float x, float z) const
 CFixed_23_8 CTerrain::GetExactGroundLevelFixed(CFixed_23_8 x, CFixed_23_8 z) const
 {
 	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
-	const ssize_t xi = clamp((ssize_t)(x/CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
-	const ssize_t zi = clamp((ssize_t)(z/CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+	const ssize_t xi = clamp((ssize_t)(x / (int)CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)(z / (int)CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
 
 	const CFixed_23_8 one = CFixed_23_8::FromInt(1);
 
-	const CFixed_23_8 xf = clamp((x/CELL_SIZE)-CFixed_23_8::FromInt(xi), CFixed_23_8::FromInt(0), one);
-	const CFixed_23_8 zf = clamp((z/CELL_SIZE)-CFixed_23_8::FromInt(zi), CFixed_23_8::FromInt(0), one);
+	const CFixed_23_8 xf = clamp((x / (int)CELL_SIZE) - CFixed_23_8::FromInt(xi), CFixed_23_8::FromInt(0), one);
+	const CFixed_23_8 zf = clamp((z / (int)CELL_SIZE) - CFixed_23_8::FromInt(zi), CFixed_23_8::FromInt(0), one);
 
 	u16 h00 = m_Heightmap[zi*m_MapSize + xi];
 	u16 h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
@@ -357,7 +358,7 @@ CFixed_23_8 CTerrain::GetExactGroundLevelFixed(CFixed_23_8 x, CFixed_23_8 z) con
 	u16 h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
 	// Linearly interpolate
 	return ((one - zf).Multiply((one - xf) * h00 + xf * h10)
-	              + zf.Multiply((one - xf) * h01 + xf * h11)) / HEIGHT_UNITS_PER_METRE;
+	              + zf.Multiply((one - xf) * h01 + xf * h11)) / (int)HEIGHT_UNITS_PER_METRE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

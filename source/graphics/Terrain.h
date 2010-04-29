@@ -25,7 +25,6 @@
 #include "maths/Vector3D.h"
 #include "maths/Fixed.h"
 #include "graphics/SColor.h"
-#include "lib/sysdep/cpu.h"
 
 class HEntity;
 class CEntity;

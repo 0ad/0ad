@@ -22,6 +22,9 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(UnitMotion)
-DEFINE_INTERFACE_METHOD_4("MoveToPoint", void, ICmpUnitMotion, MoveToPoint, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_2("MoveToPoint", bool, ICmpUnitMotion, MoveToPoint, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_3("IsInAttackRange", bool, ICmpUnitMotion, IsInAttackRange, entity_id_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_3("MoveToAttackRange", bool, ICmpUnitMotion, MoveToAttackRange, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("GetSpeed", CFixed_23_8, ICmpUnitMotion, GetSpeed)
+DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpUnitMotion, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(UnitMotion)

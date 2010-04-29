@@ -70,12 +70,15 @@ UnitAI.prototype.Walk = function(x, z)
 	if (!cmpMotion)
 		return;
 
-	this.SelectAnimation("walk", false, cmpMotion.GetSpeed());
-	PlaySound("walk", this.entity);
-
-	cmpMotion.MoveToPoint(x, z, 0, 0);
-
-	this.state = STATE_WALKING;
+	if (cmpMotion.MoveToPoint(x, z))
+	{
+		this.state = STATE_WALKING;
+		PlaySound("walk", this.entity);
+	}
+	else
+	{
+		this.state = STATE_IDLE;
+	}
 };
 
 UnitAI.prototype.Attack = function(target)
@@ -92,8 +95,14 @@ UnitAI.prototype.Attack = function(target)
 
 	// Remember the target, and start moving towards it
 	this.attackTarget = target;
-	this.MoveToTarget(target, cmpAttack.GetRange());
 	this.state = STATE_ATTACKING;
+	if (!this.MoveToTarget(target, cmpAttack.GetRange()))
+	{
+		// We're in range already, do the attack
+		// (TODO: this could also happen if we couldn't move anywhere)
+		this.StartAttack();
+	}
+	// else we've started moving and the attack will start in OnMotionChanged
 };
 
 UnitAI.prototype.Repair = function(target)
@@ -110,8 +119,14 @@ UnitAI.prototype.Repair = function(target)
 
 	// Remember the target, and start moving towards it
 	this.repairTarget = target;
-	this.MoveToTarget(target, cmpBuilder.GetRange());
 	this.state = STATE_REPAIRING;
+	if (!this.MoveToTarget(target, cmpBuilder.GetRange()))
+	{
+		// We're in range already, do the repairing
+		// (TODO: this could also happen if we couldn't move anywhere)
+		this.StartRepair();
+	}
+	// else we've started moving and the repair will start in OnMotionChanged
 };
 
 UnitAI.prototype.Gather = function(target)
@@ -128,8 +143,14 @@ UnitAI.prototype.Gather = function(target)
 
 	// Remember the target, and start moving towards it
 	this.gatherTarget = target;
-	this.MoveToTarget(target, cmpResourceGatherer.GetRange());
 	this.state = STATE_GATHERING;
+	if (!this.MoveToTarget(target, cmpResourceGatherer.GetRange()))
+	{
+		// We're in range already, do the gathering
+		// (TODO: this could also happen if we couldn't move anywhere)
+		this.StartGather();
+	}
+	// else we've started moving and the gather will start in OnMotionChanged
 };
 
 //// Message handlers ////
@@ -161,97 +182,79 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 			// We were attacking, and have stopped moving
 			// => check if we can still reach the target now
 
-			if (!this.MoveIntoAttackRange())
+			if (this.MoveIntoRange(IID_Attack, this.attackTarget))
 				return;
 
-			// In range, so perform the attack,
-			// after the prepare time but not before the previous attack's recharge
-
-			var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-
-			var timers = cmpAttack.GetTimers();
-			var time = Math.max(timers.prepare, this.attackRechargeTime - cmpTimer.GetTime());
-			this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", time, {});
-
-			// Start the attack animation and sound, but synced to the timers
-			this.SelectAnimation("melee", false, 1.0, "attack");
-			this.SetAnimationSync(time, timers.repeat);
-			// TODO: this drifts since the sim is quantised to sim turns and these timers aren't
-			// TODO: we should probably only bother syncing projectile attacks, not melee
+			// In range, so perform the attack
+			this.StartAttack();
 		}
 		else if (this.state == STATE_REPAIRING)
 		{
 			// We were repairing, and have stopped moving
 			// => check if we can still reach the target now
 
-			if (!this.MoveIntoRepairRange())
+			if (this.MoveIntoRange(IID_Builder, this.repairTarget))
 				return;
 
 			// In range, so perform the repairing
-
-			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-			this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000, {});
-
-			// Start the repair/build animation and sound
-			this.SelectAnimation("build", false, 1.0, "build");
+			this.StartRepair();
 		}
 		else if (this.state == STATE_GATHERING)
 		{
 			// We were gathering, and have stopped moving
 			// => check if we can still reach the target now
 
-			if (!this.MoveIntoGatherRange())
+			if (this.MoveIntoRange(IID_ResourceGatherer, this.gatherTarget))
 				return;
 
 			// In range, so perform the gathering
-
-			var cmpResourceSupply = Engine.QueryInterface(this.gatherTarget, IID_ResourceSupply);
-			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-
-			// Get the animation/sound type name
-			var type = cmpResourceSupply.GetType();
-			var typename = "gather_" + (type.specific || type.generic);
-
-			this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, {"typename": typename});
-
-			// Start the gather animation and sound
-			this.SelectAnimation(typename, false, 1.0, typename);
+			this.StartGather();
 		}
 	}
 };
 
 //// Private functions ////
 
-function hypot2(x, y)
+UnitAI.prototype.StartAttack = function()
 {
-	return x*x + y*y;
-}
+	// Perform the attack after the prepare time but not before the previous attack's recharge
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
-UnitAI.prototype.CheckRange = function(target, range)
+	var timers = cmpAttack.GetTimers();
+	var time = Math.max(timers.prepare, this.attackRechargeTime - cmpTimer.GetTime());
+	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", time, {});
+
+	// Start the attack animation and sound, but synced to the timers
+	this.SelectAnimation("melee", false, 1.0, "attack");
+	this.SetAnimationSync(time, timers.repeat);
+	// TODO: this drifts since the sim is quantised to sim turns and these timers aren't
+	// TODO: we should probably only bother syncing projectile attacks, not melee
+};
+
+UnitAI.prototype.StartRepair = function()
 {
-	// Target must be in the world
-	var cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
-	if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
-		return { "error": "not-in-world" };
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000, {});
 
-	// We must be in the world
-	var cmpPositionSelf = Engine.QueryInterface(this.entity, IID_Position);
-	if (!cmpPositionSelf || !cmpPositionSelf.IsInWorld())
-		return { "error": "not-in-world" };
+	// Start the repair/build animation and sound
+	this.SelectAnimation("build", false, 1.0, "build");
+};
 
-	// Target must be within range
-	var posTarget = cmpPositionTarget.GetPosition();
-	var posSelf = cmpPositionSelf.GetPosition();
-	var dist2 = hypot2(posTarget.x - posSelf.x, posTarget.z - posSelf.z);
-	// TODO: ought to be distance to closest point in footprint, not to center
-	// The +4 is a hack to give a ~1 tile tolerance, because the pathfinder doesn't
-	// always get quite close enough to the target
-	if (dist2 > (range.max+4)*(range.max+4))
-		return { "error": "out-of-range" };
+UnitAI.prototype.StartGather = function()
+{
+	var cmpResourceSupply = Engine.QueryInterface(this.gatherTarget, IID_ResourceSupply);
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
-	return {};
-}
+	// Get the animation/sound type name
+	var type = cmpResourceSupply.GetType();
+	var typename = "gather_" + (type.specific || type.generic);
+
+	this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, {"typename": typename});
+
+	// Start the gather animation and sound
+	this.SelectAnimation(typename, false, 1.0, typename);
+};
 
 UnitAI.prototype.CancelTimers = function()
 {
@@ -278,88 +281,29 @@ UnitAI.prototype.CancelTimers = function()
 };
 
 /**
- * Tries to move into range of the attack target.
- * Returns true if it's already in range.
+ * Tries to move into range of the target.
+ * Returns true if the unit has started walking or on pathing failure, false if already in range.
  */
-UnitAI.prototype.MoveIntoAttackRange = function()
+UnitAI.prototype.MoveIntoRange = function(iid, target)
 {
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	var range = cmpAttack.GetRange();
+	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	var range = cmpRanged.GetRange();
 
-	var rangeStatus = this.CheckRange(this.attackTarget, range);
-	if (rangeStatus.error)
-	{
-		if (rangeStatus.error == "out-of-range")
-		{
-			// Out of range => need to move closer
-			// (The target has probably moved while we were chasing it)
-			this.MoveToTarget(this.attackTarget, range);
-			return false;
-		}
-
-		// Otherwise it's impossible to reach the target, so give up
-		// and switch back to idle
-		this.state = STATE_IDLE;
-		this.SelectAnimation("idle");
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (cmpMotion.IsInAttackRange(target, range.min, range.max))
 		return false;
-	}
-	
+
+	// Out of range => need to move closer
+	// (The target has probably moved while we were chasing it)
+	if (this.MoveToTarget(target, range))
+		return true;
+
+	// If it's impossible to reach the target, give up
+	// and switch back to idle
+	this.state = STATE_IDLE;
+	this.SelectAnimation("idle");
 	return true;
 };
-
-UnitAI.prototype.MoveIntoRepairRange = function()
-{
-	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-	var range = cmpBuilder.GetRange();
-
-	var rangeStatus = this.CheckRange(this.repairTarget, range);
-	if (rangeStatus.error)
-	{
-		if (rangeStatus.error == "out-of-range")
-		{
-			// Out of range => need to move closer
-			// (The target has probably moved while we were chasing it)
-			this.MoveToTarget(this.repairTarget, range);
-			return false;
-		}
-
-		// Otherwise it's impossible to reach the target, so give up
-		// and switch back to idle
-		this.state = STATE_IDLE;
-		this.SelectAnimation("idle");
-		return false;
-	}
-	
-	return true;
-};
-
-UnitAI.prototype.MoveIntoGatherRange = function()
-{
-	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-	var range = cmpResourceGatherer.GetRange();
-
-	var rangeStatus = this.CheckRange(this.gatherTarget, range);
-	if (rangeStatus.error)
-	{
-		if (rangeStatus.error == "out-of-range")
-		{
-			// Out of range => need to move closer
-			// (The target has probably moved while we were chasing it)
-			this.MoveToTarget(this.gatherTarget, range);
-			return false;
-		}
-
-		// Otherwise it's impossible to reach the target, so give up
-		// and switch back to idle
-		this.state = STATE_IDLE;
-		this.SelectAnimation("idle");
-		return false;
-	}
-	
-	return true;
-};
-
-// TODO: refactor all this repetitive code
 
 UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
 {
@@ -387,16 +331,15 @@ UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)
 	cmpVisual.SetAnimationSync(actiontime, repeattime);
 };
 
+/**
+ * Tries to move to the specified range of the target.
+ * This might synchronously trigger a MotionChanged message.
+ * Returns true if the unit has started walking, false on error or if already in range.
+ */
 UnitAI.prototype.MoveToTarget = function(target, range)
 {
-	var cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
-	if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
-		return;
-
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-
-	var pos = cmpPositionTarget.GetPosition();
-	cmpMotion.MoveToPoint(pos.x, pos.z, range.min, range.max);
+	return cmpMotion.MoveToAttackRange(target, range.min, range.max);
 };
 
 UnitAI.prototype.AttackTimeout = function(data)
@@ -406,7 +349,7 @@ UnitAI.prototype.AttackTimeout = function(data)
 		return;
 
 	// Check if we can still reach the target
-	if (!this.MoveIntoAttackRange())
+	if (this.MoveIntoRange(IID_Attack, this.attackTarget))
 		return;
 
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
@@ -430,7 +373,7 @@ UnitAI.prototype.RepairTimeout = function(data)
 		return;
 
 	// Check if we can still reach the target
-	if (!this.MoveIntoRepairRange())
+	if (this.MoveIntoRange(IID_Builder, this.repairTarget))
 		return;
 
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
@@ -459,7 +402,7 @@ UnitAI.prototype.GatherTimeout = function(data)
 		return;
 
 	// Check if we can still reach the target
-	if (!this.MoveIntoGatherRange())
+	if (this.MoveIntoRange(IID_ResourceGatherer, this.gatherTarget))
 		return;
 
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);

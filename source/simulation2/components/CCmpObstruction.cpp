@@ -20,8 +20,8 @@
 #include "simulation2/system/Component.h"
 #include "ICmpObstruction.h"
 
-#include "ICmpFootprint.h"
 #include "ICmpObstructionManager.h"
+#include "ICmpPosition.h"
 
 #include "simulation2/MessageTypes.h"
 
@@ -35,6 +35,7 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
+		componentManager.SubscribeToMessageType(MT_MotionChanged);
 		componentManager.SubscribeToMessageType(MT_Destroy);
 	}
 
@@ -42,8 +43,19 @@ public:
 
 	const CSimContext* m_Context;
 
+	// Template state:
+
+	enum {
+		STATIC,
+		UNIT
+	} m_Type;
+	entity_pos_t m_Size0; // radius or width
+	entity_pos_t m_Size1; // radius or depth
 	bool m_Active; // whether the obstruction is obstructing or just an inactive placeholder
 
+	// Dynamic state:
+
+	bool m_Moving;
 	ICmpObstructionManager::tag_t m_Tag;
 
 	static std::string GetSchema()
@@ -51,6 +63,21 @@ public:
 		return
 			"<a:example/>"
 			"<a:help>Causes this entity's footprint to obstruct the motion of other units.</a:help>"
+			"<choice>"
+				"<element name='Static'>"
+					"<attribute name='width'>"
+						"<ref name='positiveDecimal'/>"
+					"</attribute>"
+					"<attribute name='depth'>"
+						"<ref name='positiveDecimal'/>"
+					"</attribute>"
+				"</element>"
+				"<element name='Unit'>"
+					"<attribute name='radius'>"
+						"<ref name='positiveDecimal'/>"
+					"</attribute>"
+				"</element>"
+			"</choice>"
 			"<optional>"
 				"<element name='Inactive' a:help='If this element is present, this entity will be ignored in collision tests by other units but can still perform its own collision tests'>"
 					"<empty/>"
@@ -62,12 +89,25 @@ public:
 	{
 		m_Context = &context;
 
+		if (paramNode.GetChild("Unit").IsOk())
+		{
+			m_Type = UNIT;
+			m_Size0 = m_Size1 = paramNode.GetChild("Unit").GetChild("@radius").ToFixed();
+		}
+		else
+		{
+			m_Type = STATIC;
+			m_Size0 = paramNode.GetChild("Static").GetChild("@width").ToFixed();
+			m_Size1 = paramNode.GetChild("Static").GetChild("@depth").ToFixed();
+		}
+
 		if (paramNode.GetChild("Inactive").IsOk())
 			m_Active = false;
 		else
 			m_Active = true;
 
 		m_Tag = 0;
+		m_Moving = false;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -111,24 +151,29 @@ public:
 			else if (data.inWorld && !m_Tag)
 			{
 				// Need to create a new pathfinder shape:
-
-				CmpPtr<ICmpFootprint> cmpFootprint(context, GetEntityId());
-				if (cmpFootprint.null())
-					break;
-
-				ICmpFootprint::EShape shape;
-				entity_pos_t size0, size1, height;
-				cmpFootprint->GetShape(shape, size0, size1, height);
-
-				if (shape == ICmpFootprint::SQUARE)
-					m_Tag = cmpObstructionManager->AddSquare(data.x, data.z, data.a, size0, size1);
+				if (m_Type == STATIC)
+					m_Tag = cmpObstructionManager->AddStaticShape(data.x, data.z, data.a, m_Size0, m_Size1);
 				else
-					m_Tag = cmpObstructionManager->AddCircle(data.x, data.z, size0);
+					m_Tag = cmpObstructionManager->AddUnitShape(data.x, data.z, m_Size0, m_Moving);
 			}
 			else if (!data.inWorld && m_Tag)
 			{
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = 0;
+			}
+			break;
+		}
+		case MT_MotionChanged:
+		{
+			const CMessageMotionChanged& data = static_cast<const CMessageMotionChanged&> (msg);
+			m_Moving = !data.speed.IsZero();
+
+			if (m_Tag && m_Type == UNIT)
+			{
+				CmpPtr<ICmpObstructionManager> cmpObstructionManager(context, SYSTEM_ENTITY);
+				if (cmpObstructionManager.null())
+					break;
+				cmpObstructionManager->SetUnitMovingFlag(m_Tag, m_Moving);
 			}
 			break;
 		}
@@ -148,19 +193,24 @@ public:
 		}
 	}
 
+	virtual ICmpObstructionManager::tag_t GetObstruction()
+	{
+		return m_Tag;
+	}
+
+	virtual entity_pos_t GetUnitRadius()
+	{
+		if (m_Type == UNIT)
+			return m_Size0;
+		else
+			return entity_pos_t::Zero();
+	}
+
 	virtual bool CheckCollisions()
 	{
-		CmpPtr<ICmpFootprint> cmpFootprint(*m_Context, GetEntityId());
-		if (cmpFootprint.null())
-			return false;
-
 		CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
 		if (cmpPosition.null())
 			return false;
-
-		ICmpFootprint::EShape shape;
-		entity_pos_t size0, size1, height;
-		cmpFootprint->GetShape(shape, size0, size1, height);
 
 		CFixedVector3D pos = cmpPosition->GetPosition();
 
@@ -168,11 +218,10 @@ public:
 
 		SkipTagObstructionFilter filter(m_Tag); // ignore collisions with self
 
-		if (shape == ICmpFootprint::SQUARE)
-			return !cmpObstructionManager->TestSquare(filter, pos.X, pos.Z, cmpPosition->GetRotation().Y, size0, size1);
+		if (m_Type == STATIC)
+			return cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Z, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
 		else
-			return !cmpObstructionManager->TestCircle(filter, pos.X, pos.Z, size0);
-
+			return cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, m_Size0);
 	}
 };
 

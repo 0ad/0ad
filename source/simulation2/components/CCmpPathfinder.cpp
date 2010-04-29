@@ -24,12 +24,23 @@
 
 #include "ICmpObstructionManager.h"
 
+#include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
 #include "maths/FixedVector2D.h"
 #include "maths/MathUtil.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
+#include "renderer/Scene.h"
 #include "renderer/TerrainOverlay.h"
+#include "simulation2/helpers/Render.h"
+#include "simulation2/helpers/Geometry.h"
+
+/*
+ * Note this file contains two separate pathfinding implementations, the 'normal' tile-based
+ * one and the precise vertex-based 'short' pathfinder.
+ * They share a priority queue implementation but have independent A* implementations
+ * (with slightly different characteristics).
+ */
 
 #ifdef NDEBUG
 #define PATHFIND_DEBUG 0
@@ -41,6 +52,8 @@
 
 class CCmpPathfinder;
 struct PathfindTile;
+
+typedef CFixed_23_8 fixed;
 
 /**
  * Terrain overlay for pathfinder debugging.
@@ -67,8 +80,9 @@ public:
 class CCmpPathfinder : public ICmpPathfinder
 {
 public:
-	static void ClassInit(CComponentManager& UNUSED(componentManager))
+	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Pathfinder)
@@ -83,6 +97,8 @@ public:
 	u32 m_DebugSteps;
 	Path* m_DebugPath;
 	PathfinderOverlay* m_DebugOverlay;
+
+	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
 
 	static std::string GetSchema()
 	{
@@ -123,9 +139,22 @@ public:
 		// TODO
 	}
 
-	virtual bool CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost);
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	{
+		switch (msg.GetType())
+		{
+		case MT_RenderSubmit:
+		{
+			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
+			RenderSubmit(context, msgData.collector);
+			break;
+		}
+		}
+	}
 
 	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& ret);
+
+	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, Path& ret);
 
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal)
 	{
@@ -157,17 +186,17 @@ public:
 	 */
 	void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j)
 	{
-		i = clamp((x / CELL_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
-		j = clamp((z / CELL_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
+		i = clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
+		j = clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
 	}
 
 	/**
 	 * Returns the position of the center of the given tile
 	 */
-	void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
+	static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 	{
-		x = entity_pos_t::FromInt(i*CELL_SIZE + CELL_SIZE/2);
-		z = entity_pos_t::FromInt(j*CELL_SIZE + CELL_SIZE/2);
+		x = entity_pos_t::FromInt(i*(int)CELL_SIZE + CELL_SIZE/2);
+		z = entity_pos_t::FromInt(j*(int)CELL_SIZE + CELL_SIZE/2);
 	}
 
 	/**
@@ -191,27 +220,14 @@ public:
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
 		cmpObstructionManager->Rasterise(*m_Grid);
 	}
+
+	void RenderSubmit(const CSimContext& context, SceneCollector& collector);
 };
 
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
 
 const u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
-
-bool CCmpPathfinder::CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost)
-{
-	// Test whether there's a straight path
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
-	NullObstructionFilter filter;
-	if (!cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
-		return false;
-
-	// Calculate the exact movement cost
-	// (TODO: this needs to care about terrain costs etc)
-	cost = (CFixedVector2D(x1 - x0, z1 - z0).Length() * g_CostPerTile).ToInt_RoundToZero();
-
-	return true;
-}
 
 /**
  * Tile data for A* computation
@@ -271,15 +287,10 @@ void PathfinderOverlay::ProcessTile(ssize_t i, ssize_t j)
  * to the implementation shouldn't affect that interface much.
  */
 
-struct QueueItem
-{
-	u16 i, j;
-	u32 rank; // g+h (estimated total cost of path through here)
-};
-
+template <typename Item>
 struct QueueItemPriority
 {
-	bool operator()(const QueueItem& a, const QueueItem& b)
+	bool operator()(const Item& a, const Item& b)
 	{
 		if (a.rank > b.rank) // higher costs are lower priority
 			return true;
@@ -287,13 +298,9 @@ struct QueueItemPriority
 			return false;
 		// Need to tie-break to get a consistent ordering
 		// TODO: Should probably tie-break on g or h or something, but don't bother for now
-		if (a.i < b.i)
+		if (a.id < b.id)
 			return true;
-		if (a.i > b.i)
-			return false;
-		if (a.j < b.j)
-			return true;
-		if (a.j > b.j)
+		if (b.id < a.id)
 			return false;
 #if PATHFIND_DEBUG
 		debug_warn(L"duplicate tiles in queue");
@@ -307,48 +314,55 @@ struct QueueItemPriority
  * This is quite dreadfully slow in MSVC's debug STL implementation,
  * so we shouldn't use it unless we reimplement the heap functions more efficiently.
  */
+template <typename ID, typename R>
 class PriorityQueueHeap
 {
 public:
-	void push(const QueueItem& item)
+	struct Item
+	{
+		ID id;
+		R rank; // f = g+h (estimated total cost of path through here)
+	};
+
+	void push(const Item& item)
 	{
 		m_Heap.push_back(item);
-		push_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority());
+		push_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item>());
 	}
 
-	QueueItem* find(u16 i, u16 j)
+	Item* find(ID id)
 	{
 		for (size_t n = 0; n < m_Heap.size(); ++n)
 		{
-			if (m_Heap[n].i == i && m_Heap[n].j == j)
+			if (m_Heap[n].id == id)
 				return &m_Heap[n];
 		}
 		return NULL;
 	}
 
-	void promote(u16 i, u16 j, u32 newrank)
+	void promote(ID id, u32 newrank)
 	{
 		for (size_t n = 0; n < m_Heap.size(); ++n)
 		{
-			if (m_Heap[n].i == i && m_Heap[n].j == j)
+			if (m_Heap[n].id == id)
 			{
 #if PATHFIND_DEBUG
 				debug_assert(m_Heap[n].rank > newrank);
 #endif
 				m_Heap[n].rank = newrank;
-				push_heap(m_Heap.begin(), m_Heap.begin()+n+1, QueueItemPriority());
+				push_heap(m_Heap.begin(), m_Heap.begin()+n+1, QueueItemPriority<Item>());
 				return;
 			}
 		}
 	}
 
-	QueueItem pop()
+	Item pop()
 	{
 #if PATHFIND_DEBUG
 		debug_assert(m_Heap.size());
 #endif
-		QueueItem r = m_Heap.front();
-		pop_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority());
+		Item r = m_Heap.front();
+		pop_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item>());
 		m_Heap.pop_back();
 		return r;
 	}
@@ -363,7 +377,7 @@ public:
 		return m_Heap.size();
 	}
 
-	std::vector<QueueItem> m_Heap;
+	std::vector<Item> m_Heap;
 };
 
 /**
@@ -373,41 +387,48 @@ public:
  * It seems fractionally slower than a binary heap in optimised builds, but is
  * much simpler and less susceptible to MSVC's painfully slow debug STL.
  */
+template <typename ID, typename R>
 class PriorityQueueList
 {
 public:
-	void push(const QueueItem& item)
+	struct Item
+	{
+		ID id;
+		R rank; // f = g+h (estimated total cost of path through here)
+	};
+
+	void push(const Item& item)
 	{
 		m_List.push_back(item);
 	}
 
-	QueueItem* find(u16 i, u16 j)
+	Item* find(ID id)
 	{
 		for (size_t n = 0; n < m_List.size(); ++n)
 		{
-			if (m_List[n].i == i && m_List[n].j == j)
+			if (m_List[n].id == id)
 				return &m_List[n];
 		}
 		return NULL;
 	}
 
-	void promote(u16 i, u16 j, u32 newrank)
+	void promote(ID id, R newrank)
 	{
-		find(i, j)->rank = newrank;
+		find(id)->rank = newrank;
 	}
 
-	QueueItem pop()
+	Item pop()
 	{
 #if PATHFIND_DEBUG
 		debug_assert(m_List.size());
 #endif
 		// Loop backwards looking for the best (it's most likely to be one
 		// we've recently pushed, so going backwards saves a bit of copying)
-		QueueItem best = m_List.back();
+		Item best = m_List.back();
 		size_t bestidx = m_List.size()-1;
 		for (ssize_t i = (ssize_t)bestidx-1; i >= 0; --i)
 		{
-			if (QueueItemPriority()(best, m_List[i]))
+			if (QueueItemPriority<Item>()(best, m_List[i]))
 			{
 				bestidx = i;
 				best = m_List[i];
@@ -429,17 +450,17 @@ public:
 		return m_List.size();
 	}
 
-	std::vector<QueueItem> m_List;
+	std::vector<Item> m_List;
 };
 
-typedef PriorityQueueList PriorityQueue;
+typedef PriorityQueueList<std::pair<u16, u16>, u32> PriorityQueue;
 
 
 #define USE_DIAGONAL_MOVEMENT
 
 // Calculate heuristic cost from tile i,j to destination
 // (This ought to be an underestimate for correctness)
-static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal, bool aimingInwards)
+static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal)
 {
 #ifdef USE_DIAGONAL_MOVEMENT
 	CFixedVector2D pos (CFixed_23_8::FromInt(i), CFixed_23_8::FromInt(j));
@@ -448,12 +469,9 @@ static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal, boo
 	// TODO: the heuristic could match the costs better - it's not really Euclidean movement
 
 	CFixed_23_8 rdist = dist - CFixed_23_8::FromInt(rGoal);
-	if (!aimingInwards)
-		rdist = -rdist;
+	rdist = rdist.Absolute();
 
-	if (rdist < CFixed_23_8::FromInt(0))
-		return 0;
-	return (rdist * g_CostPerTile).ToInt_RoundToZero();
+	return (rdist * (int)g_CostPerTile).ToInt_RoundToZero();
 
 #else
 	return (abs((int)i - (int)iGoal) + abs((int)j - (int)jGoal)) * g_CostPerTile;
@@ -497,7 +515,6 @@ struct PathfinderState
 
 	u16 iGoal, jGoal; // goal tile
 	u16 rGoal; // radius of goal (around tile center)
-	bool aimingInwards; // whether we're moving towards the goal or away
 
 	PriorityQueue open;
 	// (there's no explicit closed list; it's encoded in PathfindTile::status)
@@ -538,7 +555,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 	// If this is a new tile, compute the heuristic distance
 	if (n.status == PathfindTile::STATUS_UNEXPLORED)
 	{
-		n.h = CalculateHeuristic(i, j, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards);
+		n.h = CalculateHeuristic(i, j, state.iGoal, state.jGoal, state.rGoal);
 		// Remember the best tile we've seen so far, in case we never actually reach the target
 		if (n.h < state.hBest)
 		{
@@ -564,7 +581,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 			n.pi = pi;
 			n.pj = pj;
 			n.step = state.steps;
-			state.open.promote(i, j, g + n.h);
+			state.open.promote(std::make_pair(i, j), g + n.h);
 #if PATHFIND_STATS
 			state.numImproveOpen++;
 #endif
@@ -588,27 +605,46 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 	n.pi = pi;
 	n.pj = pj;
 	n.step = state.steps;
-	QueueItem t = { i, j, g + n.h };
+	PriorityQueue::Item t = { std::make_pair(i, j), g + n.h };
 	state.open.push(t);
 #if PATHFIND_STATS
 	state.numAddToOpen++;
 #endif
 }
 
-static bool AtGoal(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal, bool aimingInwards)
+static fixed DistanceToGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal)
 {
-	// If we're aiming towards a point, stop when we get there
-	if (aimingInwards && rGoal == 0)
-		return (i == iGoal && j == jGoal);
+	switch (goal.type)
+	{
+	case CCmpPathfinder::Goal::POINT:
+		return (pos - CFixedVector2D(goal.x, goal.z)).Length();
 
-	// Otherwise compute the distance and compare to desired radius
-	i32 dist2 = ((i32)i-iGoal)*((i32)i-iGoal) + ((i32)j-jGoal)*((i32)j-jGoal);
-	if (aimingInwards && (dist2 <= rGoal*rGoal))
-		return true;
-	if (!aimingInwards && (dist2 >= rGoal*rGoal))
-		return true;
+	case CCmpPathfinder::Goal::CIRCLE:
+		return ((pos - CFixedVector2D(goal.x, goal.z)).Length() - goal.hw).Absolute();
 
-	return false;
+	case CCmpPathfinder::Goal::SQUARE:
+	{
+		CFixedVector2D halfSize(goal.hw, goal.hh);
+		CFixedVector2D d(pos.X - goal.x, pos.Y - goal.z);
+		return Geometry::DistanceToSquare(d, goal.u, goal.v, halfSize);
+	}
+
+	default:
+		debug_warn(L"invalid type");
+		return fixed::Zero();
+	}
+}
+
+static bool AtGoal(u16 i, u16 j, const ICmpPathfinder::Goal& goal)
+{
+	// Allow tiles slightly more than sqrt(2) from the actual goal,
+	// i.e. adjacent diagonally to the target tile
+	fixed tolerance = entity_pos_t::FromInt(CELL_SIZE*3/2);
+
+	entity_pos_t x, z;
+	CCmpPathfinder::TileCenter(i, j, x, z);
+	fixed dist = DistanceToGoal(CFixedVector2D(x, z), goal);
+	return (dist < tolerance);
 }
 
 void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& path)
@@ -624,32 +660,21 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	NearestTile(x0, z0, i0, j0);
 	NearestTile(goal.x, goal.z, state.iGoal, state.jGoal);
 
-	// If we start closer than min radius, aim for the min radius
-	// If we start further than max radius, aim for the max radius
-	// Otherwise we're there already
-	CFixed_23_8 initialDist = (CFixedVector2D(x0, z0) - CFixedVector2D(goal.x, goal.z)).Length();
-	if (initialDist < goal.minRadius)
-	{
-		state.aimingInwards = false;
-		state.rGoal = (goal.minRadius / CELL_SIZE).ToInt_RoundToZero(); // TODO: what rounding mode is appropriate?
-	}
-	else if (initialDist > goal.maxRadius)
-	{
-		state.aimingInwards = true;
-		state.rGoal = (goal.maxRadius / CELL_SIZE).ToInt_RoundToZero(); // TODO: what rounding mode is appropriate?
-	}
-	else
-	{
-		return;
-	}
-
 	// If we're already at the goal tile, then move directly to the exact goal coordinates
-	if (AtGoal(i0, j0, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards))
+	if (AtGoal(i0, j0, goal))
 	{
-		Waypoint w = { goal.x, goal.z, 0 };
+		Waypoint w = { goal.x, goal.z };
 		path.m_Waypoints.push_back(w);
 		return;
 	}
+
+	// If the target is a circle, we want to aim for the edge of it (so e.g. if we're inside
+	// a large circle then the heuristics will aim us directly outwards);
+	// otherwise just aim at the center point. (We'll never try moving outwards to a square shape.)
+	if (goal.type == Goal::CIRCLE)
+		state.rGoal = (goal.hw / (int)CELL_SIZE).ToInt_RoundToZero();
+	else
+		state.rGoal = 0;
 
 	state.steps = 0;
 
@@ -658,9 +683,9 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 	state.iBest = i0;
 	state.jBest = j0;
-	state.hBest = CalculateHeuristic(i0, j0, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards);
+	state.hBest = CalculateHeuristic(i0, j0, state.iGoal, state.jGoal, state.rGoal);
 
-	QueueItem start = { i0, j0, 0 };
+	PriorityQueue::Item start = { std::make_pair(i0, j0), 0 };
 	state.open.push(start);
 	state.tiles->get(i0, j0).status = PathfindTile::STATUS_OPEN;
 	state.tiles->get(i0, j0).pi = i0;
@@ -685,27 +710,29 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 #endif
 
 		// Move best tile from open to closed
-		QueueItem curr = state.open.pop();
-		state.tiles->get(curr.i, curr.j).status = PathfindTile::STATUS_CLOSED;
+		PriorityQueue::Item curr = state.open.pop();
+		u16 i = curr.id.first;
+		u16 j = curr.id.second;
+		state.tiles->get(i, j).status = PathfindTile::STATUS_CLOSED;
 
 		// If we've reached the destination, stop
-		if (AtGoal(curr.i, curr.j, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards))
+		if (AtGoal(i, j, goal))
 		{
-			state.iBest = curr.i;
-			state.jBest = curr.j;
+			state.iBest = i;
+			state.jBest = j;
 			state.hBest = 0;
 			break;
 		}
 
-		u32 g = state.tiles->get(curr.i, curr.j).cost;
-		if (curr.i > 0)
-			ProcessNeighbour(curr.i, curr.j, curr.i-1, curr.j, g, state);
-		if (curr.i < m_MapSize-1)
-			ProcessNeighbour(curr.i, curr.j, curr.i+1, curr.j, g, state);
-		if (curr.j > 0)
-			ProcessNeighbour(curr.i, curr.j, curr.i, curr.j-1, g, state);
-		if (curr.j < m_MapSize-1)
-			ProcessNeighbour(curr.i, curr.j, curr.i, curr.j+1, g, state);
+		u32 g = state.tiles->get(i, j).cost;
+		if (i > 0)
+			ProcessNeighbour(i, j, i-1, j, g, state);
+		if (i < m_MapSize-1)
+			ProcessNeighbour(i, j, i+1, j, g, state);
+		if (j > 0)
+			ProcessNeighbour(i, j, i, j-1, g, state);
+		if (j < m_MapSize-1)
+			ProcessNeighbour(i, j, i, j+1, g, state);
 	}
 
 	// Reconstruct the path (in reverse)
@@ -713,18 +740,9 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	while (ip != i0 || jp != j0)
 	{
 		PathfindTile& n = state.tiles->get(ip, jp);
-		// Pick the exact point if it's the goal tile, else the tile's centre
 		entity_pos_t x, z;
-		if (ip == state.iGoal && jp == state.jGoal)
-		{
-			x = goal.x;
-			z = goal.z;
-		}
-		else
-		{
-			TileCenter(ip, jp, x, z);
-		}
-		Waypoint w = { x, z, n.cost };
+		TileCenter(ip, jp, x, z);
+		Waypoint w = { x, z };
 		path.m_Waypoints.push_back(w);
 
 		// Follow the predecessor link
@@ -740,4 +758,360 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 #if PATHFIND_STATS
 	printf("PATHFINDER: steps=%d avgo=%d proc=%d impc=%d impo=%d addo=%d\n", state.steps, state.sumOpenSize/state.steps, state.numProcessed, state.numImproveClosed, state.numImproveOpen, state.numAddToOpen);
 #endif
+}
+
+
+//////////////////////////////////////////////////////////
+
+struct Vertex
+{
+	CFixedVector2D p;
+	fixed g, h;
+	u16 pred;
+	enum
+	{
+		UNEXPLORED,
+		OPEN,
+		CLOSED,
+	} status;
+};
+
+struct Edge
+{
+	CFixedVector2D p0, p1;
+};
+
+/**
+ * Check whether a ray from 'a' to 'b' crosses any of the edges.
+ * (Edges are one-sided so it's only considered a cross if going from front to back.)
+ */
+static bool CheckVisibility(CFixedVector2D a, CFixedVector2D b, const std::vector<Edge>& edges)
+{
+	CFixedVector2D abn = (b - a).Perpendicular();
+
+	for (size_t i = 0; i < edges.size(); ++i)
+	{
+		CFixedVector2D d = (edges[i].p1 - edges[i].p0).Perpendicular();
+
+		// If 'a' is behind the edge, we can't cross
+		fixed q = (a - edges[i].p0).Dot(d);
+		if (q < fixed::Zero())
+			continue;
+
+		// If 'b' is in front of the edge, we can't cross
+		fixed r = (b - edges[i].p0).Dot(d);
+		if (r > fixed::Zero())
+			continue;
+
+		// The ray is crossing the infinitely-extended edge from in front to behind.
+		// If the edge's points are the same side of the infinitely-extended ray
+		// then the finite lines can't intersect, otherwise they're crossing
+		fixed s = (edges[i].p0 - a).Dot(abn);
+		fixed t = (edges[i].p1 - a).Dot(abn);
+		if ((s <= fixed::Zero() && t >= fixed::Zero()) || (s >= fixed::Zero() && t <= fixed::Zero()))
+			return false;
+	}
+
+	return true;
+}
+
+static CFixedVector2D NearestPointOnGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal)
+{
+	CFixedVector2D g(goal.x, goal.z);
+
+	switch (goal.type)
+	{
+	case CCmpPathfinder::Goal::POINT:
+	{
+		return g;
+	}
+
+	case CCmpPathfinder::Goal::CIRCLE:
+	{
+		CFixedVector2D d = pos - g;
+		if (d.IsZero())
+			d = CFixedVector2D(fixed::FromInt(1), fixed::Zero()); // some arbitrary direction
+		d.Normalize(goal.hw);
+		return g + d;
+	}
+
+	case CCmpPathfinder::Goal::SQUARE:
+	{
+		CFixedVector2D halfSize(goal.hw, goal.hh);
+		CFixedVector2D d = pos - g;
+		return g + Geometry::NearestPointOnSquare(d, goal.u, goal.v, halfSize);
+	}
+
+	default:
+		debug_warn(L"invalid type");
+		return CFixedVector2D();
+	}
+}
+
+typedef PriorityQueueList<u16, fixed> ShortPathPriorityQueue;
+
+void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, Path& path)
+{
+	PROFILE("ComputeShortPath");
+
+	m_DebugOverlayShortPathLines.clear();
+
+	if (m_DebugOverlay)
+	{
+		// Render the goal shape
+		m_DebugOverlayShortPathLines.push_back(SOverlayLine());
+		m_DebugOverlayShortPathLines.back().m_Color = CColor(1, 0, 0, 1);
+		switch (goal.type)
+		{
+		case CCmpPathfinder::Goal::POINT:
+		{
+			SimRender::ConstructCircleOnGround(*m_Context, goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back());
+			break;
+		}
+		case CCmpPathfinder::Goal::CIRCLE:
+		{
+			SimRender::ConstructCircleOnGround(*m_Context, goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back());
+			break;
+		}
+		case CCmpPathfinder::Goal::SQUARE:
+		{
+			float a = atan2(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
+			SimRender::ConstructSquareOnGround(*m_Context, goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back());
+			break;
+		}
+		}
+	}
+
+	// List of collision edges - paths must never cross these.
+	// (Edges are one-sided so intersections are fine in one direction, but not the other direction.)
+	std::vector<Edge> edges;
+
+	// Create impassable edges at the max-range boundary, so we can't escape the region
+	// where we're meant to be searching
+	fixed rangeXMin = x0 - range;
+	fixed rangeXMax = x0 + range;
+	fixed rangeZMin = z0 - range;
+	fixed rangeZMax = z0 + range;
+	{
+		// (The edges are the opposite direction to usual, so it's an inside-out square)
+		Edge e0 = { CFixedVector2D(rangeXMin, rangeZMin), CFixedVector2D(rangeXMin, rangeZMax) };
+		Edge e1 = { CFixedVector2D(rangeXMin, rangeZMax), CFixedVector2D(rangeXMax, rangeZMax) };
+		Edge e2 = { CFixedVector2D(rangeXMax, rangeZMax), CFixedVector2D(rangeXMax, rangeZMin) };
+		Edge e3 = { CFixedVector2D(rangeXMax, rangeZMin), CFixedVector2D(rangeXMin, rangeZMin) };
+		edges.push_back(e0);
+		edges.push_back(e1);
+		edges.push_back(e2);
+		edges.push_back(e3);
+	}
+
+
+	CFixedVector2D goalVec(goal.x, goal.z);
+
+	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
+	// the graph defined by these vertexes
+	std::vector<Vertex> vertexes;
+
+	// Add the start point to the graph
+	Vertex start = { CFixedVector2D(x0, z0), fixed::Zero(), (CFixedVector2D(x0, z0) - goalVec).Length(), 0, Vertex::OPEN };
+	vertexes.push_back(start);
+	const size_t START_VERTEX_ID = 0;
+
+	// Add the goal vertex to the graph.
+	// Since the goal isn't always a point, this a special magic virtual vertex which moves around - whenever
+	// we look at it from another vertex, it is moved to be the closest point on the goal shape to that vertex.
+	Vertex end = { CFixedVector2D(goal.x, goal.z), fixed::Zero(), fixed::Zero(), 0, Vertex::UNEXPLORED };
+	vertexes.push_back(end);
+	const size_t GOAL_VERTEX_ID = 1;
+
+
+	// Find all the obstruction squares that might affect us
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+	std::vector<ICmpObstructionManager::ObstructionSquare> squares;
+	cmpObstructionManager->GetObstructionsInRange(filter, rangeXMin - r, rangeZMin - r, rangeXMax + r, rangeZMax + r, squares);
+
+	// Resize arrays to reduce reallocations
+	vertexes.reserve(vertexes.size() + squares.size()*4);
+	edges.reserve(edges.size() + squares.size()*4);
+
+	// Convert each obstruction square into collision edges and search graph vertexes
+	for (size_t i = 0; i < squares.size(); ++i)
+	{
+		CFixedVector2D center(squares[i].x, squares[i].z);
+		CFixedVector2D u = squares[i].u;
+		CFixedVector2D v = squares[i].v;
+
+		// Expand the vertexes by the moving unit's collision radius, to find the
+		// closest we can get to it
+
+		entity_pos_t delta = entity_pos_t::FromInt(1)/4;
+			// add a small delta so that the vertexes of an edge don't get interpreted
+			// as crossing the edge (given minor numerical inaccuracies)
+		CFixedVector2D hd0(squares[i].hw + r + delta, squares[i].hh + r + delta);
+		CFixedVector2D hd1(squares[i].hw + r + delta, -(squares[i].hh + r + delta));
+
+		Vertex vert;
+		vert.status = Vertex::UNEXPLORED;
+		vert.p.X = center.X - hd0.Dot(u); vert.p.Y = center.Y + hd0.Dot(v); vertexes.push_back(vert);
+		vert.p.X = center.X - hd1.Dot(u); vert.p.Y = center.Y + hd1.Dot(v); vertexes.push_back(vert);
+		vert.p.X = center.X + hd0.Dot(u); vert.p.Y = center.Y - hd0.Dot(v); vertexes.push_back(vert);
+		vert.p.X = center.X + hd1.Dot(u); vert.p.Y = center.Y - hd1.Dot(v); vertexes.push_back(vert);
+
+		// Add the four edges
+
+		CFixedVector2D h0(squares[i].hw + r, squares[i].hh + r);
+		CFixedVector2D h1(squares[i].hw + r, -(squares[i].hh + r));
+
+		CFixedVector2D ev0(center.X - h0.Dot(u), center.Y + h0.Dot(v));
+		CFixedVector2D ev1(center.X - h1.Dot(u), center.Y + h1.Dot(v));
+		CFixedVector2D ev2(center.X + h0.Dot(u), center.Y - h0.Dot(v));
+		CFixedVector2D ev3(center.X + h1.Dot(u), center.Y - h1.Dot(v));
+		Edge e0 = { ev0, ev1 };
+		Edge e1 = { ev1, ev2 };
+		Edge e2 = { ev2, ev3 };
+		Edge e3 = { ev3, ev0 };
+		edges.push_back(e0);
+		edges.push_back(e1);
+		edges.push_back(e2);
+		edges.push_back(e3);
+
+		// TODO: should clip out vertexes and edges that are outside the range,
+		// to reduce the search space
+	}
+
+	debug_assert(vertexes.size() < 65536); // we store array indexes as u16
+
+	if (m_DebugOverlay)
+	{
+		// Render the obstruction edges
+		for (size_t i = 0; i < edges.size(); ++i)
+		{
+			m_DebugOverlayShortPathLines.push_back(SOverlayLine());
+			m_DebugOverlayShortPathLines.back().m_Color = CColor(0, 1, 1, 1);
+			std::vector<float> xz;
+			xz.push_back(edges[i].p0.X.ToFloat());
+			xz.push_back(edges[i].p0.Y.ToFloat());
+			xz.push_back(edges[i].p1.X.ToFloat());
+			xz.push_back(edges[i].p1.Y.ToFloat());
+			SimRender::ConstructLineOnGround(*m_Context, xz, m_DebugOverlayShortPathLines.back());
+		}
+	}
+
+	// Do an A* search over the vertex/visibility graph:
+
+	// Since we are just measuring Euclidean distance the heuristic is admissible,
+	// so we never have to re-examine a node once it's been moved to the closed set.
+
+	// To save time in common cases, we don't precompute a graph of valid edges between vertexes;
+	// we do it lazily instead. When the search algorithm reaches a vertex, we examine every other
+	// vertex and see if we can reach it without hitting any collision edges, and ignore the ones
+	// we can't reach. Since the algorithm can only reach a vertex once (and then it'll be marked
+	// as closed), we won't be doing any redundant visibility computations.
+
+	PROFILE_START("A*");
+
+	ShortPathPriorityQueue open;
+	ShortPathPriorityQueue::Item qiStart = { START_VERTEX_ID, start.h };
+	open.push(qiStart);
+
+	u16 idBest = START_VERTEX_ID;
+	fixed hBest = start.h;
+
+	while (!open.empty())
+	{
+		// Move best tile from open to closed
+		ShortPathPriorityQueue::Item curr = open.pop();
+		vertexes[curr.id].status = Vertex::CLOSED;
+
+		// If we've reached the destination, stop
+		if (curr.id == GOAL_VERTEX_ID)
+		{
+			idBest = curr.id;
+			break;
+		}
+
+		for (size_t n = 0; n < vertexes.size(); ++n)
+		{
+			if (vertexes[n].status == Vertex::CLOSED)
+				continue;
+
+			// If this is the magical goal vertex, move it to near the current vertex
+			CFixedVector2D npos;
+			if (n == GOAL_VERTEX_ID)
+				npos = NearestPointOnGoal(vertexes[curr.id].p, goal);
+			else
+				npos = vertexes[n].p;
+
+			bool visible = CheckVisibility(vertexes[curr.id].p, npos, edges);
+
+			/*
+			// Render the edges that we examine
+			m_DebugOverlayShortPathLines.push_back(SOverlayLine());
+			m_DebugOverlayShortPathLines.back().m_Color = visible ? CColor(0, 1, 0, 1) : CColor(0, 0, 0, 1);
+			std::vector<float> xz;
+			xz.push_back(vertexes[curr.id].p.X.ToFloat());
+			xz.push_back(vertexes[curr.id].p.Y.ToFloat());
+			xz.push_back(npos.X.ToFloat());
+			xz.push_back(npos.Y.ToFloat());
+			SimRender::ConstructLineOnGround(*m_Context, xz, m_DebugOverlayShortPathLines.back());
+			//*/
+
+			if (visible)
+			{
+				fixed g = vertexes[curr.id].g + (vertexes[curr.id].p - npos).Length();
+
+				// If this is a new tile, compute the heuristic distance
+				if (vertexes[n].status == Vertex::UNEXPLORED)
+				{
+					// Add it to the open list:
+					vertexes[n].status = Vertex::OPEN;
+					vertexes[n].g = g;
+					vertexes[n].h = DistanceToGoal(npos, goal);
+					vertexes[n].pred = curr.id;
+					if (n == GOAL_VERTEX_ID)
+						vertexes[n].p = npos; // remember the new best goal position
+					ShortPathPriorityQueue::Item t = { n, g + vertexes[n].h };
+					open.push(t);
+
+					// Remember the heuristically best vertex we've seen so far, in case we never actually reach the target
+					if (vertexes[n].h < hBest)
+					{
+						idBest = n;
+						hBest = vertexes[n].h;
+					}
+				}
+				else // must be OPEN
+				{
+					// If we've already seen this tile, and the new path to this tile does not have a
+					// better cost, then stop now
+					if (g >= vertexes[n].g)
+						continue;
+
+					// Otherwise, we have a better path, so replace the old one with the new cost/parent
+					vertexes[n].g = g;
+					vertexes[n].pred = curr.id;
+					if (n == GOAL_VERTEX_ID)
+						vertexes[n].p = npos; // remember the new best goal position
+					open.promote((u16)n, g + vertexes[n].h);
+					continue;
+				}
+			}
+		}
+	}
+
+	// Reconstruct the path (in reverse)
+	for (u16 id = idBest; id != START_VERTEX_ID; id = vertexes[id].pred)
+	{
+		Waypoint w = { vertexes[id].p.X, vertexes[id].p.Y };
+		path.m_Waypoints.push_back(w);
+	}
+
+	PROFILE_END("A*");
+}
+
+//////////////////////////////////////////////////////////
+
+void CCmpPathfinder::RenderSubmit(const CSimContext& context, SceneCollector& collector)
+{
+	for (size_t i = 0; i < m_DebugOverlayShortPathLines.size(); ++i)
+		collector.Submit(&m_DebugOverlayShortPathLines[i]);
 }

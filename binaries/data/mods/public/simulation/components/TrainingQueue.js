@@ -187,6 +187,8 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 	// with items that take fractions of a second)
 	var time = g_ProgressInterval;
 
+	time *= 10; // XXX: this is a hack to make testing easier
+
 	while (time > 0 && this.queue.length)
 	{
 		var item = this.queue[0];

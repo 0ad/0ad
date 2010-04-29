@@ -100,7 +100,7 @@ INTERFACE(Terrain)
 COMPONENT(Terrain)
 
 INTERFACE(UnitMotion)
-COMPONENT(UnitMotion)
+COMPONENT(UnitMotion) // must be after Obstruction
 
 INTERFACE(Visual)
 COMPONENT(VisualActor)

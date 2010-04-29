@@ -106,7 +106,7 @@ public:
 			entity_pos_t z0 = entity_pos_t::FromInt(rand() % 512);
 			entity_pos_t x1 = entity_pos_t::FromInt(rand() % 512);
 			entity_pos_t z1 = entity_pos_t::FromInt(rand() % 512);
-			ICmpPathfinder::Goal goal = { x1, z1, entity_pos_t::FromInt(0), entity_pos_t::FromInt(0) };
+			ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, x1, z1 };
 
 			ICmpPathfinder::Path path;
 			cmp->ComputePath(x0, z0, goal, path);

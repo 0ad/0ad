@@ -166,13 +166,13 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		}
 		
 		if (col == 2)
-			sprintf_s(buf, sizeof(buf), "%.3f", unlogged * 1000.0f);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", unlogged * 1000.0f);
 		else if (col == 3)
-			sprintf_s(buf, sizeof(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
+			sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
 		else if (col == 4)
-			sprintf_s(buf, sizeof(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
+			sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
 		else if (col == 5)
-			sprintf_s(buf, sizeof(buf), "%ld", unlogged_mallocs);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%ld", unlogged_mallocs);
 		
 		return CStr(buf);
 	}
@@ -187,7 +187,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 #ifdef PROFILE_AMORTIZE
 		sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", child->GetFrameCalls());
 #else
-		sprintf_s(buf, sizeof(buf), "%d", child->GetFrameCalls());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%d", child->GetFrameCalls());
 #endif
 		break;
 	case 2:

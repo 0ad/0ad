@@ -120,6 +120,12 @@ public:
 	/// Subtract a CFixed. Might overflow.
 	CFixed operator-(CFixed n) const { return CFixed(value - n.value); }
 
+	/// Add a CFixed. Might overflow.
+	CFixed& operator+=(CFixed n) { value += n.value; return *this; }
+
+	/// Subtract a CFixed. Might overflow.
+	CFixed& operator-=(CFixed n) { value -= n.value; return *this; }
+
 	/// Negate a CFixed.
 	CFixed operator-() const { return CFixed(-value); }
 
@@ -155,6 +161,11 @@ public:
 		u32 s = isqrt64(value);
 		return CFixed((u64)s << (fract_bits / 2));
 	}
+
+private:
+	// Prevent dangerous accidental implicit conversions of floats to ints in certain operations
+	CFixed operator*(float n) const;
+	CFixed operator/(float n) const;
 };
 
 /**

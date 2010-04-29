@@ -23,13 +23,20 @@
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Position.h"
 
+#include "maths/FixedVector2D.h"
+
 class IObstructionTestFilter;
 
 /**
  * Obstruction manager: provides efficient spatial queries over objects in the world.
  *
- * The class exposes the abstraction of "shapes", which represent circles or squares
- * with certain properties.
+ * The class deals with two types of shape:
+ * "static" shapes, typically representing buildings, which are rectangles with a given
+ * width and height and angle;
+ * and "unit" shapes, representing units that can move around the world, which have a
+ * radius and no rotation. (Units sometimes act as axis-aligned squares, sometimes
+ * as approximately circles, due to the algorithm used by the short pathfinder.)
+ *
  * Other classes (particularly ICmpObstruction) register shapes with this interface
  * and keep them updated.
  *
@@ -38,8 +45,11 @@ class IObstructionTestFilter;
  * The functions accept an IObstructionTestFilter argument, which can restrict the
  * set of shapes that are counted as collisions.
  *
+ * Units can be marked as either moving or stationary, which simply determines whether
+ * certain filters include or exclude them.
+ *
  * The @c Rasterise function approximates the current set of shapes onto a 2D grid,
- * primarily for pathfinding.
+ * for use with tile-based pathfinding.
  */
 class ICmpObstructionManager : public IComponent
 {
@@ -50,16 +60,7 @@ public:
 	typedef u32 tag_t;
 
 	/**
-	 * Register a circle.
-	 * @param x X coordinate of center, in world space
-	 * @param z Z coordinate of center, in world space
-	 * @param r radius
-	 * @return a valid tag for manipulating the shape
-	 */
-	virtual tag_t AddCircle(entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
-
-	/**
-	 * Register a square.
+	 * Register a static shape.
 	 * @param x X coordinate of center, in world space
 	 * @param z Z coordinate of center, in world space
 	 * @param a angle of rotation (clockwise from +Z direction)
@@ -67,16 +68,33 @@ public:
 	 * @param h height (size along Z axis)
 	 * @return a valid tag for manipulating the shape
 	 */
-	virtual tag_t AddSquare(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) = 0;
+	virtual tag_t AddStaticShape(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) = 0;
+
+	/**
+	 * Register a unit shape.
+	 * @param x X coordinate of center, in world space
+	 * @param z Z coordinate of center, in world space
+	 * @param r radius (half the unit's width/height)
+	 * @param moving whether the unit is currently moving through the world or is stationary
+	 * @return a valid tag for manipulating the shape
+	 */
+	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_angle_t r, bool moving) = 0;
 
 	/**
 	 * Adjust the position and angle of an existing shape.
 	 * @param tag tag of shape (must be valid)
 	 * @param x X coordinate of center, in world space
 	 * @param z Z coordinate of center, in world space
-	 * @param a angle of rotation (clockwise from +Z direction); ignored for circles
+	 * @param a angle of rotation (clockwise from +Z direction); ignored for unit shapes
 	 */
 	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a) = 0;
+
+	/**
+	 * Set whether a unit shape is moving or stationary.
+	 * @param tag tag of shape (must be valid and a unit shape)
+	 * @param moving whether the unit is currently moving through the world or is stationary
+	 */
+	virtual void SetUnitMovingFlag(tag_t tag, bool moving) = 0;
 
 	/**
 	 * Remove an existing shape. The tag will be made invalid and must not be used after this.
@@ -86,37 +104,39 @@ public:
 
 	/**
 	 * Collision test a flat-ended thick line against the current set of shapes.
+	 * The line caps extend by @p r beyond the end points.
+	 * Only intersections going from outside to inside a shape are counted.
 	 * @param filter filter to restrict the shapes that are counted
 	 * @param x0 X coordinate of line's first point
 	 * @param z0 Z coordinate of line's first point
 	 * @param x1 X coordinate of line's second point
 	 * @param z1 Z coordinate of line's second point
 	 * @param r radius (half width) of line
-	 * @return false if there is a collision
+	 * @return true if there is a collision
 	 */
 	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r) = 0;
 
 	/**
-	 * Collision test a circle against the current set of shapes.
-	 * @param filter filter to restrict the shapes that are counted
-	 * @param x X coordinate of center
-	 * @param z Z coordinate of center
-	 * @param r radius of circle
-	 * @return false if there is a collision
-	 */
-	virtual bool TestCircle(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
-
-	/**
-	 * Collision test a square against the current set of shapes.
+	 * Collision test a static square shape against the current set of shapes.
 	 * @param filter filter to restrict the shapes that are counted
 	 * @param x X coordinate of center
 	 * @param z Z coordinate of center
 	 * @param a angle of rotation (clockwise from +Z direction)
 	 * @param w width (size along X axis)
 	 * @param h height (size along Z axis)
-	 * @return false if there is a collision
+	 * @return true if there is a collision
 	 */
-	virtual bool TestSquare(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h) = 0;
+	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h) = 0;
+
+	/**
+	 * Collision test a unit shape against the current set of shapes.
+	 * @param filter filter to restrict the shapes that are counted
+	 * @param x X coordinate of center
+	 * @param z Z coordinate of center
+	 * @param r radius (half the unit's width/height)
+	 * @return true if there is a collision
+	 */
+	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
 
 	/**
 	 * Convert the current set of shapes onto a grid.
@@ -127,6 +147,41 @@ public:
 	 * @return true if any changes were made to the grid, false if it was already up-to-date
 	 */
 	virtual bool Rasterise(Grid<u8>& grid) = 0;
+
+	/**
+	 * Standard representation for all types of shapes, for use with geometry processing code.
+	 */
+	struct ObstructionSquare
+	{
+		entity_pos_t x, z; // position of center
+		CFixedVector2D u, v; // 'horizontal' and 'vertical' orthogonal unit vectors, representing orientation
+		entity_pos_t hw, hh; // half width, half height of square
+	};
+
+	/**
+	 * Find all the obstructions that are inside (or partially inside) the given range.
+	 * @param filter filter to restrict the shapes that are counted
+	 * @param x0 X coordinate of left edge of range
+	 * @param z0 Z coordinate of bottom edge of range
+	 * @param x1 X coordinate of right edge of range
+	 * @param z1 Z coordinate of top edge of range
+	 * @param squares output list of obstructions
+	 */
+	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) = 0;
+
+	/**
+	 * Find a single obstruction that blocks a unit at the given point with the given radius.
+	 * Static obstructions (buildings) are more important than unit obstructions, and
+	 * obstructions that cover the given point are more important than those that only cover
+	 * the point expanded by the radius.
+	 */
+	virtual bool FindMostImportantObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square) = 0;
+
+	/**
+	 * Get the obstruction square representing the given shape.
+	 * @param tag tag of shape (must be valid)
+	 */
+	virtual ObstructionSquare GetObstruction(tag_t tag) = 0;
 
 	/**
 	 * Toggle the rendering of debug info.
@@ -149,7 +204,7 @@ public:
 	 * This is called for all shapes that would collide, and also for some that wouldn't.
 	 * @param tag tag of shape being tested
 	 */
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag) const = 0;
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool moving) const = 0;
 };
 
 /**
@@ -158,7 +213,16 @@ public:
 class NullObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag)) const { return true; }
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool UNUSED(moving)) const { return true; }
+};
+
+/**
+ * Obstruction test filter that accepts all non-moving shapes.
+ */
+class StationaryObstructionFilter : public IObstructionTestFilter
+{
+public:
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool moving) const { return !moving; }
 };
 
 /**
@@ -169,7 +233,7 @@ class SkipTagObstructionFilter : public IObstructionTestFilter
 	ICmpObstructionManager::tag_t m_Tag;
 public:
 	SkipTagObstructionFilter(ICmpObstructionManager::tag_t tag) : m_Tag(tag) {}
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag) const { return tag != m_Tag; }
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool UNUSED(moving)) const { return tag != m_Tag; }
 };
 
 #endif // INCLUDED_ICMPOBSTRUCTIONMANAGER

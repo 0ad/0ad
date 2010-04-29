@@ -22,36 +22,43 @@
 
 #include "simulation2/helpers/Position.h"
 
+#include "maths/FixedVector2D.h"
+
 #include <vector>
 
+class IObstructionTestFilter;
+
 /**
- * Pathfinder algorithm.
+ * Pathfinder algorithms.
  *
- * The pathfinder itself does not depend on other components. Instead, it contains an abstract
- * view of the game world, based a series of collision shapes (circles and squares), which is
- * updated by calls from other components (typically CCmpObstruction).
+ * There are two different modes: a tile-based pathfinder that works over long distances and
+ * accounts for terrain costs but ignore units, and a 'short' vertex-based pathfinder that
+ * provides precise paths and avoids other units.
  *
- * Internally it quantises the shapes onto a grid and computes paths over the grid, but the interface
- * does not expose that detail.
+ * Both use the same concept of a Goal: either a point, circle or square.
+ * (If the starting point is inside the goal shape then the path will move outwards
+ * to reach the shape's outline.)
+ *
+ * The output is a list of waypoints.
  */
 class ICmpPathfinder : public IComponent
 {
 public:
 	struct Goal
 	{
-		entity_pos_t x, z;
-		entity_pos_t minRadius, maxRadius;
+		enum {
+			POINT,
+			CIRCLE,
+			SQUARE
+		} type;
+		entity_pos_t x, z; // position of center
+		CFixedVector2D u, v; // if SQUARE, then orthogonal unit axes
+		entity_pos_t hw, hh; // if SQUARE, then half width & height; if CIRCLE, then hw is radius
 	};
 
-	/**
-	 * Returned paths are currently represented as a series of waypoints.
-	 * These happen to correspond to the centers of horizontally/vertically adjacent tiles
-	 * along the path, but it's probably best not to rely on that.
-	 */
 	struct Waypoint
 	{
 		entity_pos_t x, z;
-		u32 cost; // currently a meaningless number
 	};
 
 	/**
@@ -64,23 +71,24 @@ public:
 	};
 
 	/**
-	 * Determine whether a unit (of radius r) can move between the given points in a straight line,
-	 * without hitting any obstacles.
-	 * This is based on the exact list of obtruction shapes, not the grid approximation.
-	 * This should be used as a shortcut to avoid using the pathfinding algorithm in simple cases,
-	 * and for more refined movement along the found paths.
-	 */
-	virtual bool CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost) = 0;
-
-	/**
-	 * Compute a path between the given points, and return the set of waypoints.
+	 * Compute a tile-based path from the given point to the goal, and return the set of waypoints.
+	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
+	 * along the path.
 	 */
 	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& ret) = 0;
 
 	/**
-	 * Compute a path between the given points, and draw the latest such path as a terrain overlay.
+	 * If the debug overlay is enabled, render the path that will computed by ComputePath.
 	 */
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal) = 0;
+
+	/**
+	 * Compute a precise path from the given point to the goal, and return the set of waypoints.
+	 * The path is based on the full set of obstructions that pass the filter, such that
+	 * a unit of radius 'r' will be able to follow the path with no collisions.
+	 * The path is restricted to a box of radius 'range' from the starting point.
+	 */
+	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, Path& ret) = 0;
 
 	/**
 	 * Toggle the storage and rendering of debug info.

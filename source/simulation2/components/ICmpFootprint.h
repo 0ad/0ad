@@ -21,7 +21,8 @@
 #include "simulation2/system/Interface.h"
 
 #include "simulation2/helpers/Position.h"
-#include "maths/FixedVector3D.h"
+
+class CFixedVector3D;
 
 /**
  * Footprints - an approximation of the entity's shape, used for collision detection and for

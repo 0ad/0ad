@@ -7,10 +7,16 @@ function _setHighlight(ents, colour)
 	Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "colour":colour });
 }
 
+function _setMotionOverlay(ents, enabled)
+{
+	Engine.GuiInterfaceCall("SetMotionDebugOverlay", { "entities":ents, "enabled":enabled });
+}
+
 function EntitySelection()
 {
 	this.selected = {}; // { id: 1, id: 1, ... } for each selected entity ID 'id'
 	this.highlighted = {}; // { id: 1, ... } for mouseover-highlighted entity IDs
+	this.motionDebugOverlay = false;
 }
 
 EntitySelection.prototype.toggle = function(ent)
@@ -18,11 +24,13 @@ EntitySelection.prototype.toggle = function(ent)
 	if (this.selected[ent])
 	{
 		_setHighlight([ent], g_InactiveSelectionColour);
+		_setMotionOverlay([ent], false);
 		delete this.selected[ent];
 	}
 	else
 	{
 		_setHighlight([ent], g_ActiveSelectionColour);
+		_setMotionOverlay([ent], this.motionDebugOverlay);
 		this.selected[ent] = 1;
 	}
 };
@@ -39,11 +47,13 @@ EntitySelection.prototype.addList = function(ents)
 		}
 	}
 	_setHighlight(added, g_ActiveSelectionColour);
+	_setMotionOverlay(added, this.motionDebugOverlay);
 };
 
 EntitySelection.prototype.reset = function()
 {
 	_setHighlight(this.toList(), g_InactiveSelectionColour);
+	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
 };
 
@@ -82,7 +92,10 @@ EntitySelection.prototype.setHighlightList = function(ents)
 		this.highlighted[ent] = 1;
 };
 
+EntitySelection.prototype.SetMotionDebugOverlay = function(enabled)
+{
+	this.motionDebugOverlay = enabled;
+	_setMotionOverlay(this.toList(), enabled);
+};
 
 var g_Selection = new EntitySelection();
-
-

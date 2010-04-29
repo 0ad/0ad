@@ -59,7 +59,7 @@ public:
 	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z)
 	{
 		CFixedVector3D normal;
-		m_Terrain->CalcNormalFixed((x / CELL_SIZE).ToInt_RoundToZero(), (z / CELL_SIZE).ToInt_RoundToZero(), normal);
+		m_Terrain->CalcNormalFixed((x / (int)CELL_SIZE).ToInt_RoundToZero(), (z / (int)CELL_SIZE).ToInt_RoundToZero(), normal);
 		return normal;
 	}
 
