@@ -254,7 +254,7 @@ sub convert {
         }
         $out .= qq{$i</Footprint>\n};
 
-        if ($name =~ /^template_(structure|gaia)_/ and $name !~ /^template_structure_resource_field$/) {
+        if ($name =~ /^(template_(structure|gaia)_|structures\/)/ and $name !~ /^template_structure_resource_field$/) {
             my ($w, $d);
             if ($data->{Traits}[0]{Footprint}[0]{Radius}) {
                 $w = $d = sprintf '%.1f', 2*$data->{Traits}[0]{Footprint}[0]{Radius}[0];
