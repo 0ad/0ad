@@ -58,7 +58,7 @@ LibError Open(const fs::wpath& pathname, wchar_t mode, int& fd)
 #endif
 	fd = wopen(pathname.string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
-		WARN_RETURN(ERR::FILE_ACCESS);
+		return LibError_from_errno();
 
 	stats_open();
 	return INFO::OK;

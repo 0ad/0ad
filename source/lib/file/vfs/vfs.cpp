@@ -130,7 +130,11 @@ public:
 		if(!isCacheHit)
 		{
 			VfsDirectory* directory; VfsFile* file;
-			CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
+			// per 2010-05-01 meeting, this shouldn't raise 'scary error
+			// dialogs', which often fail to display the culprit pathname
+			// (debug_DumpStack doesn't correctly analyze fs::[w]path).
+			// instead, callers should log the error, including pathname.
+			RETURN_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 
 			size = file->Size();
 			// safely handle zero-length files

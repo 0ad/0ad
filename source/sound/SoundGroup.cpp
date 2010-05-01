@@ -115,6 +115,13 @@ void CSoundGroup::UploadPropertiesAndPlay(Handle hSound, const CVector3D& positi
 }
 
 
+static void HandleError(const std::wstring& message, const VfsPath& pathname, LibError err)
+{
+	if(err == ERR::AGAIN)
+		return;	// open failed because sound is disabled (don't log this)
+	LOG(CLogger::Error, LOG_CATEGORY, L"%ws: pathname=%ws, error=%ld", message.c_str(), pathname.string().c_str(), err);
+}
+
 void CSoundGroup::PlayNext(const CVector3D& position)
 {
 	if(m_Intensity >= m_IntensityThreshold)
@@ -122,10 +129,14 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		if(!is_playing(m_hReplacement))
 		{
 			// load up replacement file
-			m_hReplacement = snd_open(m_filepath/m_intensity_file);
-			if(m_hReplacement < 0)	// one cause: sound is disabled
+			const VfsPath pathname(m_filepath/m_intensity_file);
+			m_hReplacement = snd_open(pathname);
+			if(m_hReplacement < 0)
+			{
+				HandleError(L"PlayNext: snd_open for replacement file failed", pathname, (LibError)m_hReplacement);
 				return;
-			
+			}
+
 			UploadPropertiesAndPlay(m_hReplacement, position);
 		}
 	}
@@ -139,9 +150,12 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		if(TestFlag(eRandOrder))
 			m_index = (size_t)rand(0, (size_t)filenames.size());
 		// (note: previously snd_group[m_index] was used in place of hs)
-		Handle hs = snd_open(m_filepath/filenames[m_index]);
-		if(hs < 0)	// one cause: sound is disabled
+		const VfsPath pathname(m_filepath/filenames[m_index]);
+		Handle hs = snd_open(pathname);
+		{
+			HandleError(L"PlayNext: snd_open failed", pathname, (LibError)m_hReplacement);
 			return;
+		}
 
 		UploadPropertiesAndPlay(hs, position);
 	}
