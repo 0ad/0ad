@@ -119,7 +119,7 @@ static void HandleError(const std::wstring& message, const VfsPath& pathname, Li
 {
 	if(err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOG(CLogger::Error, LOG_CATEGORY, L"%ws: pathname=%ws, error=%ld", message.c_str(), pathname.string().c_str(), err);
+	LOG(CLogger::Error, LOG_CATEGORY, L"%ls: pathname=%ls, error=%ld", message.c_str(), pathname.string().c_str(), err);
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position)

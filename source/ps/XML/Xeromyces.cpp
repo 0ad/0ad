@@ -207,7 +207,7 @@ PSRETURN CXeromyces::LoadString(const char* xml)
 {
 	debug_assert(g_XeromycesStarted);
 
-	xmlDocPtr doc = xmlReadMemory(xml, strlen(xml), "", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
+	xmlDocPtr doc = xmlReadMemory(xml, (int)strlen(xml), "", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to parse XML string");
