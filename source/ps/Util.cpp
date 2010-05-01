@@ -41,6 +41,8 @@
 #include "maths/MathUtil.h"
 #include "graphics/GameView.h"
 
+extern CStrW g_CursorName;
+
 static std::string SplitExts(const char *exts)
 {
 	std::string str = exts;
@@ -318,6 +320,10 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 	glDrawBuffer(GL_FRONT);
 	glReadBuffer(GL_FRONT);
 
+	// Hide the cursor
+	CStrW oldCursor = g_CursorName;
+	g_CursorName = L"";
+
 	// Render each tile
 	for (int tile_y = 0; tile_y < tiles; ++tile_y)
 	{
@@ -340,6 +346,9 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 			}
 		}
 	}
+
+	// Restore the old cursor
+	g_CursorName = oldCursor;
 
 	// Restore the buffer settings
 	glDrawBuffer(oldDrawBuffer);
