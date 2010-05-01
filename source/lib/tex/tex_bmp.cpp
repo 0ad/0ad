@@ -42,15 +42,15 @@ struct BmpHeader
 
 	// BITMAPINFOHEADER
 	u32 biSize;
-	long biWidth;
-	long biHeight;
+	i32 biWidth;
+	i32 biHeight;
 	u16 biPlanes;
 	u16 biBitCount;
 	u32 biCompression;
 	u32 biSizeImage;
 	// the following are unused and zeroed when writing:
-	long biXPelsPerMeter;
-	long biYPelsPerMeter;
+	i32 biXPelsPerMeter;
+	i32 biYPelsPerMeter;
 	u32 biClrUsed;
 	u32 biClrImportant;
 };
