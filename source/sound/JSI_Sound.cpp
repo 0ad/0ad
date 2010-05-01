@@ -121,7 +121,8 @@ bool JSI_Sound::Fade(JSContext* cx, uintN argc, jsval* argv)
 	// called from the dtor. solution is to neuter our Handle by
 	// setting it to 0 (ok since it'll be freed). this does mean that
 	// no further operations can be carried out during that final fade.
-	m_Handle = 0;
+	if (final_gain == 0.0f)
+		m_Handle = 0;
 
 	return true;
 }
