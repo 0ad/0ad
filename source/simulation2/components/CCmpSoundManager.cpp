@@ -35,8 +35,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(SoundManager)
 
-	const CSimContext* m_Context;
-
 	std::map<std::wstring, CSoundGroup*> m_SoundGroups;
 
 	static std::string GetSchema()
@@ -44,9 +42,8 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
-		m_Context = &context;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -116,7 +113,7 @@ public:
 		CVector3D sourcePos(0, 0, 0);
 		if (source != INVALID_ENTITY)
 		{
-			CmpPtr<ICmpPosition> cmpPosition(*m_Context, source);
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
 			if (!cmpPosition.null() && cmpPosition->IsInWorld())
 				sourcePos = CVector3D(cmpPosition->GetPosition());
 		}

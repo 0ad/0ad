@@ -50,9 +50,8 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
-		m_Context = &context;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -101,8 +100,6 @@ public:
 	}
 
 private:
-	const CSimContext* m_Context;
-
 	struct Projectile
 	{
 		CUnit* unit;
@@ -129,10 +126,10 @@ REGISTER_COMPONENT_TYPE(ProjectileManager)
 
 void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, CFixed_23_8 speed, CFixed_23_8 gravity)
 {
-	if (!m_Context->HasUnitManager())
+	if (!GetSimContext().HasUnitManager())
 		return; // do nothing if graphics are disabled
 
-	CmpPtr<ICmpVisual> sourceVisual(*m_Context, source);
+	CmpPtr<ICmpVisual> sourceVisual(GetSimContext(), source);
 	if (sourceVisual.null())
 		return;
 
@@ -146,14 +143,14 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	std::set<CStr> selections;
 
 	Projectile projectile;
-	projectile.unit = m_Context->GetUnitManager().CreateUnit(name, NULL, selections);
+	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, NULL, selections);
 	if (!projectile.unit)
 	{
 		// The error will have already been logged
 		return;
 	}
 
-	CmpPtr<ICmpPosition> sourcePos(*m_Context, source);
+	CmpPtr<ICmpPosition> sourcePos(GetSimContext(), source);
 	if (sourcePos.null())
 		return;
 
@@ -168,7 +165,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	}
 	else
 	{
-		CmpPtr<ICmpPosition> targetPos(*m_Context, targetEnt);
+		CmpPtr<ICmpPosition> targetPos(GetSimContext(), targetEnt);
 		if (targetPos.null())
 			return;
 

@@ -217,3 +217,8 @@ template<> jsval ScriptInterface::ToJSVal<std::vector<u32> >(JSContext* cx, cons
 {
 	return ToJSVal_vector(cx, val);
 }
+
+template<> jsval ScriptInterface::ToJSVal<std::vector<std::wstring> >(JSContext* cx, const std::vector<std::wstring>& val)
+{
+	return ToJSVal_vector(cx, val);
+}

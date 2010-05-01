@@ -53,8 +53,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(UnitMotion)
 
-	const CSimContext* m_Context;
-
 	bool m_DebugOverlayEnabled;
 	std::vector<SOverlayLine> m_DebugOverlayLines;
 	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
@@ -95,7 +93,6 @@ public:
 
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
-		m_Context = &context;
 		m_HasTarget = false;
 
 		m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
@@ -150,14 +147,14 @@ public:
 				context.GetComponentManager().PostMessage(GetEntityId(), msg);
 			}
 
-			Move(context, dt);
+			Move(dt);
 
 			break;
 		}
 		case MT_RenderSubmit:
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(context, msgData.collector);
+			RenderSubmit(msgData.collector);
 			break;
 		}
 		}
@@ -173,8 +170,8 @@ public:
 		m_DebugOverlayEnabled = enabled;
 		if (enabled)
 		{
-			RenderPath(*m_Context, m_Path, m_DebugOverlayLines, OVERLAY_COLOUR_PATH);
-			RenderPath(*m_Context, m_ShortPath, m_DebugOverlayShortPathLines, OVERLAY_COLOUR_SHORT_PATH);
+			RenderPath(m_Path, m_DebugOverlayLines, OVERLAY_COLOUR_PATH);
+			RenderPath(m_ShortPath, m_DebugOverlayShortPathLines, OVERLAY_COLOUR_SHORT_PATH);
 		}
 	}
 
@@ -194,7 +191,7 @@ private:
 	/**
 	 * Do the per-turn movement and other updates
 	 */
-	void Move(const CSimContext& context, CFixed_23_8 dt);
+	void Move(CFixed_23_8 dt);
 
 	void StopAndFaceGoal(CFixedVector2D pos);
 
@@ -206,7 +203,7 @@ private:
 	/**
 	 * Change between idle/walking states; automatically sends MotionChanged messages when appropriate
 	 */
-	void SwitchState(const CSimContext& context, int state);
+	void SwitchState(int state);
 
 	bool ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t hw, entity_pos_t hh, entity_pos_t circleRadius);
 
@@ -239,16 +236,16 @@ private:
 	/**
 	 * Convert a path into a renderable list of lines
 	 */
-	void RenderPath(const CSimContext& context, const ICmpPathfinder::Path& path, std::vector<SOverlayLine>& lines, CColor color);
+	void RenderPath(const ICmpPathfinder::Path& path, std::vector<SOverlayLine>& lines, CColor color);
 
-	void RenderSubmit(const CSimContext& context, SceneCollector& collector);
+	void RenderSubmit(SceneCollector& collector);
 };
 
 REGISTER_COMPONENT_TYPE(UnitMotion)
 
 bool CCmpUnitMotion::CheckMovement(CFixedVector2D pos, CFixedVector2D target)
 {
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpObstructionManager.null())
 		return false;
 
@@ -279,14 +276,14 @@ bool CCmpUnitMotion::CheckMovement(CFixedVector2D pos, CFixedVector2D target)
 	return true;
 }
 
-void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
+void CCmpUnitMotion::Move(CFixed_23_8 dt)
 {
 	PROFILE("Move");
 
 	if (!m_HasTarget)
 		return;
 
-	CmpPtr<ICmpPosition> cmpPosition(context, GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (cmpPosition.null())
 		return;
 
@@ -348,7 +345,7 @@ void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
 
 void CCmpUnitMotion::StopAndFaceGoal(CFixedVector2D pos)
 {
-	SwitchState(*m_Context, IDLE);
+	SwitchState(IDLE);
 	FaceTowardsPoint(pos, m_FinalGoal.x, m_FinalGoal.z);
 
 	// TODO: if the goal was a square building, we ought to point towards the
@@ -363,14 +360,14 @@ void CCmpUnitMotion::FaceTowardsPoint(CFixedVector2D pos, entity_pos_t x, entity
 	{
 		entity_angle_t angle = atan2_approx(offset.X, offset.Y);
 
-		CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null())
 			return;
 		cmpPosition->TurnTo(angle);
 	}
 }
 
-void CCmpUnitMotion::SwitchState(const CSimContext& context, int state)
+void CCmpUnitMotion::SwitchState(int state)
 {
 	debug_assert(state == IDLE || state == WALKING);
 
@@ -387,7 +384,7 @@ void CCmpUnitMotion::SwitchState(const CSimContext& context, int state)
 	if (state == WALKING)
 	{
 		CMessageMotionChanged msg(m_Speed);
-		context.GetComponentManager().PostMessage(GetEntityId(), msg);
+		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
 	if (m_State == IDLE && state == WALKING)
@@ -418,7 +415,7 @@ bool CCmpUnitMotion::MoveToPoint(entity_pos_t x, entity_pos_t z)
 {
 	PROFILE("MoveToPoint");
 
-	CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (cmpPosition.null() || !cmpPosition->IsInWorld())
 		return false;
 
@@ -430,7 +427,7 @@ bool CCmpUnitMotion::MoveToPoint(entity_pos_t x, entity_pos_t z)
 
 	ICmpPathfinder::Goal goal;
 
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpObstructionManager.null())
 		return false;
 
@@ -462,7 +459,7 @@ bool CCmpUnitMotion::MoveToPoint(entity_pos_t x, entity_pos_t z)
 	if (!RegeneratePath(pos, false))
 		return false;
 
-	SwitchState(*m_Context, WALKING);
+	SwitchState(WALKING);
 	return true;
 }
 
@@ -485,7 +482,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 {
 	PROFILE("MoveToAttackRange");
 
-	CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (cmpPosition.null() || !cmpPosition->IsInWorld())
 		return false;
 
@@ -497,13 +494,13 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 
 	ICmpPathfinder::Goal goal;
 
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpObstructionManager.null())
 		return false;
 
 	ICmpObstructionManager::tag_t tag = 0;
 
-	CmpPtr<ICmpObstruction> cmpObstruction(*m_Context, target);
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
 	if (!cmpObstruction.null())
 		tag = cmpObstruction->GetObstruction();
 
@@ -611,7 +608,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 	{
 		// The target didn't have an obstruction or obstruction shape, so treat it as a point instead
 
-		CmpPtr<ICmpPosition> cmpTargetPosition(*m_Context, target);
+		CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), target);
 		if (cmpTargetPosition.null() || !cmpTargetPosition->IsInWorld())
 			return false;
 
@@ -647,7 +644,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 	if (!RegeneratePath(pos, false))
 		return false;
 
-	SwitchState(*m_Context, WALKING);
+	SwitchState(WALKING);
 	return true;
 }
 
@@ -656,20 +653,20 @@ bool CCmpUnitMotion::IsInAttackRange(entity_id_t target, entity_pos_t minRange, 
 	// This function closely mirrors MoveToAttackRange - it needs to return true
 	// after that Move has completed
 
-	CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (cmpPosition.null() || !cmpPosition->IsInWorld())
 		return false;
 
 	CFixedVector3D pos3 = cmpPosition->GetPosition();
 	CFixedVector2D pos (pos3.X, pos3.Z);
 
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpObstructionManager.null())
 		return false;
 
 	ICmpObstructionManager::tag_t tag = 0;
 
-	CmpPtr<ICmpObstruction> cmpObstruction(*m_Context, target);
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
 	if (!cmpObstruction.null())
 		tag = cmpObstruction->GetObstruction();
 
@@ -707,7 +704,7 @@ bool CCmpUnitMotion::IsInAttackRange(entity_id_t target, entity_pos_t minRange, 
 	}
 	else
 	{
-		CmpPtr<ICmpPosition> cmpTargetPosition(*m_Context, target);
+		CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), target);
 		if (cmpTargetPosition.null() || !cmpTargetPosition->IsInWorld())
 			return false;
 
@@ -724,7 +721,7 @@ bool CCmpUnitMotion::IsInAttackRange(entity_id_t target, entity_pos_t minRange, 
 
 bool CCmpUnitMotion::RegeneratePath(CFixedVector2D pos, bool avoidMovingUnits)
 {
-	CmpPtr<ICmpPathfinder> cmpPathfinder (*m_Context, SYSTEM_ENTITY);
+	CmpPtr<ICmpPathfinder> cmpPathfinder (GetSimContext(), SYSTEM_ENTITY);
 	if (cmpPathfinder.null())
 		return false;
 
@@ -736,7 +733,7 @@ bool CCmpUnitMotion::RegeneratePath(CFixedVector2D pos, bool avoidMovingUnits)
 	cmpPathfinder->ComputePath(pos.X, pos.Y, m_FinalGoal, m_Path);
 
 	if (m_DebugOverlayEnabled)
-		RenderPath(*m_Context, m_Path, m_DebugOverlayLines, OVERLAY_COLOUR_PATH);
+		RenderPath(m_Path, m_DebugOverlayLines, OVERLAY_COLOUR_PATH);
 
 	// If there's no waypoints then we've stopped already, otherwise move to the first one
 	if (m_Path.m_Waypoints.empty())
@@ -805,7 +802,7 @@ bool CCmpUnitMotion::PickNextWaypoint(const CFixedVector2D& pos, bool avoidMovin
 		goal.z = targetZ;
 	}
 
-	CmpPtr<ICmpPathfinder> cmpPathfinder (*m_Context, SYSTEM_ENTITY);
+	CmpPtr<ICmpPathfinder> cmpPathfinder (GetSimContext(), SYSTEM_ENTITY);
 	if (cmpPathfinder.null())
 		return false;
 
@@ -821,7 +818,7 @@ bool CCmpUnitMotion::PickNextWaypoint(const CFixedVector2D& pos, bool avoidMovin
 	cmpPathfinder->ComputeShortPath(*filter, pos.X, pos.Y, m_Radius, SHORT_PATH_SEARCH_RANGE, goal, m_ShortPath);
 
 	if (m_DebugOverlayEnabled)
-		RenderPath(*m_Context, m_ShortPath, m_DebugOverlayShortPathLines, OVERLAY_COLOUR_SHORT_PATH);
+		RenderPath(m_ShortPath, m_DebugOverlayShortPathLines, OVERLAY_COLOUR_SHORT_PATH);
 
 	return true;
 }
@@ -847,7 +844,7 @@ bool CCmpUnitMotion::PickNextShortWaypoint(const CFixedVector2D& pos, bool avoid
 	return true;
 }
 
-void CCmpUnitMotion::RenderPath(const CSimContext& context, const ICmpPathfinder::Path& path, std::vector<SOverlayLine>& lines, CColor color)
+void CCmpUnitMotion::RenderPath(const ICmpPathfinder::Path& path, std::vector<SOverlayLine>& lines, CColor color)
 {
 	lines.clear();
 	std::vector<float> waypointCoords;
@@ -859,15 +856,15 @@ void CCmpUnitMotion::RenderPath(const CSimContext& context, const ICmpPathfinder
 		waypointCoords.push_back(z);
 		lines.push_back(SOverlayLine());
 		lines.back().m_Color = color;
-		SimRender::ConstructSquareOnGround(context, x, z, 1.0f, 1.0f, 0.0f, lines.back());
+		SimRender::ConstructSquareOnGround(GetSimContext(), x, z, 1.0f, 1.0f, 0.0f, lines.back());
 	}
 	lines.push_back(SOverlayLine());
 	lines.back().m_Color = color;
-	SimRender::ConstructLineOnGround(context, waypointCoords, lines.back());
+	SimRender::ConstructLineOnGround(GetSimContext(), waypointCoords, lines.back());
 
 }
 
-void CCmpUnitMotion::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector)
+void CCmpUnitMotion::RenderSubmit(SceneCollector& collector)
 {
 	if (!m_DebugOverlayEnabled)
 		return;

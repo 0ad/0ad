@@ -19,6 +19,8 @@
 
 #include "SimContext.h"
 
+#include "ComponentManager.h"
+
 CSimContext::CSimContext() :
 	m_ComponentManager(NULL), m_UnitManager(NULL), m_Terrain(NULL)
 {
@@ -55,4 +57,9 @@ void CSimContext::SetComponentManager(CComponentManager* man)
 {
 	debug_assert(!m_ComponentManager);
 	m_ComponentManager = man;
+}
+
+ScriptInterface& CSimContext::GetScriptInterface() const
+{
+	return GetComponentManager().GetScriptInterface();
 }

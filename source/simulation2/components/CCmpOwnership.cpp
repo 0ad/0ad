@@ -35,8 +35,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Ownership)
 
-	const CSimContext* m_Context; // never NULL (after Init/Deserialize)
-
 	int32_t m_Owner;
 
 	static std::string GetSchema()
@@ -47,10 +45,8 @@ public:
 			"<empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
-		m_Context = &context;
-
 		m_Owner = -1;
 	}
 
@@ -63,10 +59,8 @@ public:
 		serialize.NumberI32_Unbounded("owner", m_Owner);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		m_Context = &context;
-
 		deserialize.NumberI32_Unbounded(m_Owner);
 	}
 
@@ -97,7 +91,7 @@ public:
 		m_Owner = playerID;
 
 		CMessageOwnershipChanged msg(GetEntityId(), old, playerID);
-		m_Context->GetComponentManager().PostMessage(GetEntityId(), msg);
+		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 };
 

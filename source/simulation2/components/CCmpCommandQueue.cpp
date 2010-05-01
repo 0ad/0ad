@@ -31,8 +31,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(CommandQueue)
 
-	const CSimContext* m_Context; // never NULL (after Init/Deserialize)
-
 	struct Command
 	{
 		int player;
@@ -46,9 +44,8 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
-		m_Context = &context;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -67,9 +64,7 @@ public:
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		m_Context = &context;
-
-		JSContext* cx = m_Context->GetComponentManager().GetScriptInterface().GetContext();
+		JSContext* cx = context.GetScriptInterface().GetContext();
 
 		u32 numCmds;
 		deserialize.NumberU32_Unbounded(numCmds);
@@ -86,7 +81,7 @@ public:
 
 	virtual void PushClientCommand(int player, CScriptVal cmd)
 	{
-		JSContext* cx = m_Context->GetComponentManager().GetScriptInterface().GetContext();
+		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 
 		Command c = { player, CScriptValRooted(cx, cmd) };
 		m_CmdQueue.push_back(c);
@@ -94,7 +89,7 @@ public:
 
 	virtual void ProcessCommands()
 	{
-		ScriptInterface& scriptInterface = m_Context->GetComponentManager().GetScriptInterface();
+		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 
 		for (size_t i = 0; i < m_CmdQueue.size(); ++i)
 		{

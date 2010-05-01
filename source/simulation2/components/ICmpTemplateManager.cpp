@@ -24,4 +24,5 @@
 BEGIN_INTERFACE_WRAPPER(TemplateManager)
 DEFINE_INTERFACE_METHOD_1("GetTemplate", const CParamNode*, ICmpTemplateManager, GetTemplate, std::wstring)
 DEFINE_INTERFACE_METHOD_1("GetCurrentTemplateName", std::wstring, ICmpTemplateManager, GetCurrentTemplateName, entity_id_t)
+DEFINE_INTERFACE_METHOD_0("FindAllTemplates", std::vector<std::wstring>, ICmpTemplateManager, FindAllTemplates)
 END_INTERFACE_WRAPPER(TemplateManager)

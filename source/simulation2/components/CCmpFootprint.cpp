@@ -35,8 +35,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Footprint)
 
-	const CSimContext* m_Context;
-
 	EShape m_Shape;
 	CFixed_23_8 m_Size0; // width/radius
 	CFixed_23_8 m_Size1; // height/radius
@@ -75,10 +73,8 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
 	{
-		m_Context = &context;
-
 		if (paramNode.GetChild("Square").IsOk())
 		{
 			m_Shape = SQUARE;
@@ -130,17 +126,17 @@ public:
 
 		CFixedVector3D error(CFixed_23_8::FromInt(-1), CFixed_23_8::FromInt(-1), CFixed_23_8::FromInt(-1));
 
-		CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null() || !cmpPosition->IsInWorld())
 			return error;
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 		if (cmpObstructionManager.null())
 			return error;
 
 		entity_pos_t spawnedRadius;
 
-		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(*m_Context, spawned);
+		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
 		if (!cmpSpawnedObstruction.null())
 			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
 		// else zero

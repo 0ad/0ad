@@ -50,8 +50,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Position)
 
-	const CSimContext* m_Context; // never NULL (after Init/Deserialize)
-
 	// Template state:
 
 	enum
@@ -97,10 +95,8 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
 	{
-		m_Context = &context;
-
 		std::wstring anchor = paramNode.GetChild("Anchor").ToString();
 		if (anchor == L"pitch")
 			m_AnchorType = PITCH;
@@ -233,7 +229,7 @@ public:
 		}
 
 		entity_pos_t ground;
-		CmpPtr<ICmpTerrain> cmpTerrain(*m_Context, SYSTEM_ENTITY);
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpTerrain.null())
 		{
 			ground = cmpTerrain->GetGroundLevel(m_X, m_Z);
@@ -302,7 +298,7 @@ public:
 		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
 		float ground = 0;
-		CmpPtr<ICmpTerrain> cmpTerrain(*m_Context, SYSTEM_ENTITY);
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpTerrain.null())
 		{
 			ground = cmpTerrain->GetGroundLevel(x, z);
@@ -334,7 +330,7 @@ public:
 		return mXZ;
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
@@ -372,12 +368,12 @@ private:
 		if (m_InWorld)
 		{
 			CMessagePositionChanged msg(true, m_X, m_Z, m_RotY);
-			m_Context->GetComponentManager().PostMessage(GetEntityId(), msg);
+			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 		}
 		else
 		{
 			CMessagePositionChanged msg(false, entity_pos_t(), entity_pos_t(), entity_angle_t());
-			m_Context->GetComponentManager().PostMessage(GetEntityId(), msg);
+			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 		}
 	}
 };

@@ -41,8 +41,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Obstruction)
 
-	const CSimContext* m_Context;
-
 	// Template state:
 
 	enum {
@@ -85,10 +83,8 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
 	{
-		m_Context = &context;
-
 		if (paramNode.GetChild("Unit").IsOk())
 		{
 			m_Type = UNIT;
@@ -208,13 +204,13 @@ public:
 
 	virtual bool CheckCollisions()
 	{
-		CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null())
 			return false;
 
 		CFixedVector3D pos = cmpPosition->GetPosition();
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 
 		SkipTagObstructionFilter filter(m_Tag); // ignore collisions with self
 

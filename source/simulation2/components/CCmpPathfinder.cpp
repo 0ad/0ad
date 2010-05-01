@@ -87,8 +87,6 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Pathfinder)
 
-	const CSimContext* m_Context;
-
 	u16 m_MapSize; // tiles per side
 	Grid<u8>* m_Grid; // terrain/passability information
 
@@ -105,10 +103,8 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
-		m_Context = &context;
-
 		m_MapSize = 0;
 		m_Grid = NULL;
 
@@ -210,14 +206,14 @@ public:
 		if (!m_Grid)
 		{
 			// TOOD: these bits should come from ICmpTerrain
-			ssize_t size = m_Context->GetTerrain().GetTilesPerSide();
+			ssize_t size = GetSimContext().GetTerrain().GetTilesPerSide();
 
 			debug_assert(size >= 1 && size <= 0xffff); // must fit in 16 bits
 			m_MapSize = size;
 			m_Grid = new Grid<u8>(m_MapSize, m_MapSize);
 		}
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 		cmpObstructionManager->Rasterise(*m_Grid);
 	}
 
@@ -865,18 +861,18 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 		{
 		case CCmpPathfinder::Goal::POINT:
 		{
-			SimRender::ConstructCircleOnGround(*m_Context, goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back());
 			break;
 		}
 		case CCmpPathfinder::Goal::CIRCLE:
 		{
-			SimRender::ConstructCircleOnGround(*m_Context, goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back());
 			break;
 		}
 		case CCmpPathfinder::Goal::SQUARE:
 		{
 			float a = atan2(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
-			SimRender::ConstructSquareOnGround(*m_Context, goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructSquareOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back());
 			break;
 		}
 		}
@@ -925,7 +921,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 
 
 	// Find all the obstruction squares that might affect us
-	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	std::vector<ICmpObstructionManager::ObstructionSquare> squares;
 	cmpObstructionManager->GetObstructionsInRange(filter, rangeXMin - r, rangeZMin - r, rangeXMax + r, rangeZMax + r, squares);
 
@@ -992,7 +988,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 			xz.push_back(edges[i].p0.Y.ToFloat());
 			xz.push_back(edges[i].p1.X.ToFloat());
 			xz.push_back(edges[i].p1.Y.ToFloat());
-			SimRender::ConstructLineOnGround(*m_Context, xz, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back());
 		}
 	}
 
@@ -1052,7 +1048,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 			xz.push_back(vertexes[curr.id].p.Y.ToFloat());
 			xz.push_back(npos.X.ToFloat());
 			xz.push_back(npos.Y.ToFloat());
-			SimRender::ConstructLineOnGround(*m_Context, xz, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back());
 			//*/
 
 			if (visible)
@@ -1110,7 +1106,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 
 //////////////////////////////////////////////////////////
 
-void CCmpPathfinder::RenderSubmit(const CSimContext& context, SceneCollector& collector)
+void CCmpPathfinder::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector)
 {
 	for (size_t i = 0; i < m_DebugOverlayShortPathLines.size(); ++i)
 		collector.Submit(&m_DebugOverlayShortPathLines[i]);

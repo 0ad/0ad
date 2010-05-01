@@ -241,7 +241,7 @@ created before anything else and therefore may be used, and that the components 
 processed in the order determined by TypeList.h.
 
 The same @c context object will be used in all these calls.
-(The component could safely store it in a <code>CSimContext* m_Context</code> member if necessary.)
+The context can also be accessed with IComponent::GetSimContext.
 
 In a typical component:
 

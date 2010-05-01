@@ -520,6 +520,7 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 	debug_assert(component);
 
 	component->SetEntityId(ent);
+	component->SetSimContext(m_SimContext);
 
 	// Store a reference to the new component
 	emap1.insert(std::make_pair(ent, component));

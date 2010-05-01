@@ -21,8 +21,50 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
+#include "simulation2/system/SimContext.h"
 #include "maths/FixedVector3D.h"
+
+CScriptVal ICmpFootprint::GetShape_wrapper()
+{
+	EShape shape;
+	entity_pos_t size0, size1, height;
+	GetShape(shape, size0, size1, height);
+
+	JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
+
+	ScriptInterface::LocalRootScope scope(cx);
+	if (!scope.OK())
+		return JSVAL_VOID;
+
+	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	if (!obj)
+		return JSVAL_VOID;
+
+	if (shape == CIRCLE)
+	{
+		jsval ptype = ScriptInterface::ToJSVal<std::string>(cx, "circle");
+		jsval pradius = ScriptInterface::ToJSVal(cx, size0);
+		jsval pheight = ScriptInterface::ToJSVal(cx, height);
+		JS_SetProperty(cx, obj, "type", &ptype);
+		JS_SetProperty(cx, obj, "radius", &pradius);
+		JS_SetProperty(cx, obj, "height", &pheight);
+	}
+	else
+	{
+		jsval ptype = ScriptInterface::ToJSVal<std::string>(cx, "square");
+		jsval pwidth = ScriptInterface::ToJSVal(cx, size0);
+		jsval pdepth = ScriptInterface::ToJSVal(cx, size1);
+		jsval pheight = ScriptInterface::ToJSVal(cx, height);
+		JS_SetProperty(cx, obj, "type", &ptype);
+		JS_SetProperty(cx, obj, "width", &pwidth);
+		JS_SetProperty(cx, obj, "depth", &pdepth);
+		JS_SetProperty(cx, obj, "height", &pheight);
+	}
+
+	return OBJECT_TO_JSVAL(obj);
+}
 
 BEGIN_INTERFACE_WRAPPER(Footprint)
 DEFINE_INTERFACE_METHOD_1("PickSpawnPoint", CFixedVector3D, ICmpFootprint, PickSpawnPoint, entity_id_t)
+DEFINE_INTERFACE_METHOD_0("GetShape", CScriptVal, ICmpFootprint, GetShape_wrapper)
 END_INTERFACE_WRAPPER(Footprint)

@@ -50,6 +50,13 @@ public:
 	virtual void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height) = 0;
 
 	/**
+	 * GetShape wrapper for script calls.
+	 * Returns { "type": "circle", "radius": 5.0, "height": 1.0 }
+	 * or { "type": "square", "width": 5.0, "depth": 5.0, "height": 1.0 }
+	 */
+	CScriptVal GetShape_wrapper();
+
+	/**
 	 * Pick a sensible position to place a newly-spawned entity near this footprint,
 	 * such that it won't be in an invalid (obstructed) location regardless of the spawned unit's
 	 * orientation.

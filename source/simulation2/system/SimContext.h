@@ -21,6 +21,7 @@
 class CComponentManager;
 class CUnitManager;
 class CTerrain;
+class ScriptInterface;
 
 /**
  * Contains pointers to various 'global' objects that are needed by the simulation code,
@@ -39,6 +40,8 @@ public:
 	CUnitManager& GetUnitManager() const;
 
 	CTerrain& GetTerrain() const;
+
+	ScriptInterface& GetScriptInterface() const;
 
 private:
 	CComponentManager* m_ComponentManager;

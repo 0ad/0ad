@@ -45,6 +45,9 @@ public:
 	entity_id_t GetEntityId() const { return m_EntityId; }
 	void SetEntityId(entity_id_t ent) { m_EntityId = ent; }
 
+	const CSimContext& GetSimContext() const { return *m_SimContext; }
+	void SetSimContext(const CSimContext& context) { m_SimContext = &context; }
+
 	static u8 GetSerializationVersion() { return 0; }
 	virtual void Serialize(ISerializer& serialize) = 0;
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize) = 0;
@@ -54,6 +57,7 @@ public:
 
 private:
 	entity_id_t m_EntityId;
+	const CSimContext* m_SimContext;
 };
 
 #endif // INCLUDED_ICOMPONENT
