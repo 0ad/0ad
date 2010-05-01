@@ -25,6 +25,7 @@
 #include "ps/Game.h"
 #include "graphics/GameView.h"
 #include "graphics/CinemaTrack.h"
+#include "simulation2/Simulation2.h"
 
 namespace AtlasMessage {
 
@@ -234,6 +235,9 @@ MapTriggerGroup AtlasToGroup(const sTriggerGroup& group)
 
 std::vector<sTriggerGroup> GetCurrentTriggers()
 {
+	if (g_UseSimulation2)
+		return std::vector<sTriggerGroup>();
+
 	const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
 	std::vector<sTriggerGroup> atlasGroups;
 
@@ -244,6 +248,9 @@ std::vector<sTriggerGroup> GetCurrentTriggers()
 
 void SetCurrentTriggers(const std::vector<sTriggerGroup>& groups)
 {
+	if (g_UseSimulation2)
+		return;
+
 	std::list<MapTriggerGroup> engineGroups;
 	for ( std::vector<sTriggerGroup>::const_iterator it = groups.begin(); it != groups.end(); ++it )
 		engineGroups.push_back( AtlasToGroup(*it) );
@@ -252,6 +259,9 @@ void SetCurrentTriggers(const std::vector<sTriggerGroup>& groups)
 
 QUERYHANDLER(GetTriggerData)
 {
+	if (g_UseSimulation2)
+		return;
+
 	const std::list<CTriggerCondition>& conditions = g_TriggerManager.GetAllConditions();
 	const std::list<CTriggerEffect>& effects = g_TriggerManager.GetAllEffects();
 	std::vector<sTriggerSpec> atlasConditions;
@@ -269,6 +279,9 @@ QUERYHANDLER(GetTriggerData)
 
 QUERYHANDLER(GetTriggerChoices)
 {
+	if (g_UseSimulation2)
+		return;
+
 	CStrW selectedName(*msg->name);
 	std::vector<std::wstring> choices = g_TriggerManager.GetTriggerChoices(selectedName);
 	std::vector<std::wstring> translations = g_TriggerManager.GetTriggerTranslations(selectedName);

@@ -203,9 +203,12 @@ CGameView::CGameView(CGame *pGame):
 
 CGameView::~CGameView()
 {
-	g_Selection.ClearSelection();
-	g_Mouseover.Clear();
-	g_BuildingPlacer.Deactivate();
+	if (!g_UseSimulation2)
+	{
+		g_Selection.ClearSelection();
+		g_Mouseover.Clear();
+		g_BuildingPlacer.Deactivate();
+	}
 	UnloadResources();
 
 	delete m;

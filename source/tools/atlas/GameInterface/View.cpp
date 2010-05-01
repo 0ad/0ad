@@ -178,9 +178,10 @@ void ViewGame::Update(float frameLength)
 	if (m_SpeedMultiplier == 0.f)
 	{
 		// Update unit interpolation
-		g_Game->GetSimulation()->Interpolate(0.0);
 		if (g_UseSimulation2)
 			g_Game->GetSimulation2()->Interpolate(0.0);
+		else
+			g_Game->GetSimulation()->Interpolate(0.0);
 	}
 	else
 	{
@@ -202,13 +203,18 @@ void ViewGame::Update(float frameLength)
 
 		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update
-		g_Game->GetSimulation()->Interpolate(actualFrameLength);
 		if (g_UseSimulation2)
+		{
 			g_Game->GetSimulation2()->Interpolate(actualFrameLength);
+		}
+		else
+		{
+			g_Game->GetSimulation()->Interpolate(actualFrameLength);
 
-		// If we still couldn't keep up, just drop the sim rate instead of building
-		// up a (potentially very large) backlog of required updates
-		g_Game->GetSimulation()->DiscardMissedUpdates();
+			// If we still couldn't keep up, just drop the sim rate instead of building
+			// up a (potentially very large) backlog of required updates
+			g_Game->GetSimulation()->DiscardMissedUpdates();
+		}
 	}
 
 	// Cinematic motion should be independent of simulation update, so we can

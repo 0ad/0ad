@@ -108,12 +108,14 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_ENTER:
 		{
-			g_Selection.m_mouseOverMM = true;
+			if (!g_UseSimulation2)
+				g_Selection.m_mouseOverMM = true;
 			break;
 		}
 	case GUIM_MOUSE_LEAVE:
 		{
-			g_Selection.m_mouseOverMM = false;
+			if (!g_UseSimulation2)
+				g_Selection.m_mouseOverMM = false;
 			m_Clicking = false;
 			break;
 		}
@@ -584,26 +586,33 @@ void CMiniMap::RebuildLOSTexture()
 {
 	PROFILE_START("rebuild minimap: los");
 
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-	CPlayer* player = g_Game->GetLocalPlayer();
-
 	ssize_t x = 0;
 	ssize_t y = 0;
 	ssize_t w = m_MapSize - 1;
 	ssize_t h = m_MapSize - 1;
 
-	for(ssize_t j = 0; j < h; j++)
+	if (g_UseSimulation2)
 	{
-		u8 *dataPtr = m_LOSData + ((y + j) * (m_MapSize - 1)) + x;
-		for(ssize_t i = 0; i < w; i++)
+		memset(m_LOSData, 0, w*h);
+	}
+	else
+	{
+		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+		CPlayer* player = g_Game->GetLocalPlayer();
+
+		for(ssize_t j = 0; j < h; j++)
 		{
-			ELOSStatus status = losMgr->GetStatus(i, j, player);
-			if(status == LOS_UNEXPLORED)
-				*dataPtr++ = 0xff;
-			else if(status == LOS_EXPLORED)
-				*dataPtr++ = (u8) (0xff * 0.3f);
-			else
-				*dataPtr++ = 0;
+			u8 *dataPtr = m_LOSData + ((y + j) * (m_MapSize - 1)) + x;
+			for(ssize_t i = 0; i < w; i++)
+			{
+				ELOSStatus status = losMgr->GetStatus(i, j, player);
+				if(status == LOS_UNEXPLORED)
+					*dataPtr++ = 0xff;
+				else if(status == LOS_EXPLORED)
+					*dataPtr++ = (u8) (0xff * 0.3f);
+				else
+					*dataPtr++ = 0;
+			}
 		}
 	}
 

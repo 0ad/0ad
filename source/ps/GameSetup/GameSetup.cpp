@@ -63,6 +63,7 @@
 
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/Scheduler.h"
 
 #include "simulation2/Simulation2.h"
@@ -237,7 +238,11 @@ void Render()
 
 	ogl_WarnIfError();
 
-	if (g_Game && g_Game->IsGameStarted())
+	if (g_Game && g_Game->IsGameStarted() && g_UseSimulation2)
+	{
+		g_Game->GetView()->Render();
+	}
+	else if (g_Game && g_Game->IsGameStarted() && !g_UseSimulation2)
 	{
 		g_Game->GetView()->Render();
 
@@ -259,7 +264,7 @@ void Render()
 		g_Mouseover.RenderSelectionOutlines();
 		g_Selection.RenderSelectionOutlines();
 		PROFILE_END( "render entity outlines" );
-		
+
 		PROFILE_START( "render entity auras" );
 		g_Mouseover.RenderAuras();
 		g_Selection.RenderAuras();
@@ -383,7 +388,7 @@ void Render()
 
 	ogl_WarnIfError();
 
-	if (g_Game && g_Game->IsGameStarted())
+	if (g_Game && g_Game->IsGameStarted() && !g_UseSimulation2)
 	{
 		PROFILE( "render selection overlays" );
 		g_Mouseover.RenderOverlays();
@@ -393,7 +398,7 @@ void Render()
 	ogl_WarnIfError();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	CStrW cursorName = g_BuildingPlacer.m_active ? L"action-build" : g_CursorName;
+	CStrW cursorName = (!g_UseSimulation2 && g_BuildingPlacer.m_active) ? L"action-build" : g_CursorName;
 	if (cursorName.empty())
 		cursor_draw(NULL, g_mouse_x, g_mouse_y);
 	else
@@ -744,16 +749,24 @@ void Shutdown(int flags)
 
 	if (! (flags & INIT_NO_SIM))
 	{
-		TIMER_BEGIN(L"shutdown mouse stuff");
-		delete &g_Mouseover;
-		delete &g_Selection;
-		delete &g_BuildingPlacer;
-		TIMER_END(L"shutdown mouse stuff");
+		if (g_UseSimulation2)
+		{
+			delete &g_GameAttributes;
+			delete &g_EntityTemplateCollection;
+		}
+		else
+		{
+			TIMER_BEGIN(L"shutdown mouse stuff");
+			delete &g_Mouseover;
+			delete &g_Selection;
+			delete &g_BuildingPlacer;
+			TIMER_END(L"shutdown mouse stuff");
 
-		TIMER_BEGIN(L"shutdown game scripting stuff");
-		delete &g_GameAttributes;
-		SimulationShutdown();
-		TIMER_END(L"shutdown game scripting stuff");
+			TIMER_BEGIN(L"shutdown game scripting stuff");
+			delete &g_GameAttributes;
+			SimulationShutdown();
+			TIMER_END(L"shutdown game scripting stuff");
+		}
 	}
 
 	// destroy actor related stuff
@@ -1001,14 +1014,22 @@ void Init(const CmdLineArgs& args, int flags)
 	if (! (flags & INIT_NO_SIM))
 	{
 		// This needs to be done after the renderer has loaded all its actors...
-		SimulationInit();
-			
+		if (g_UseSimulation2)
 		{
-			TIMER(L"Init_miscgamesection");
-			new CSelectedEntities;
-			new CMouseoverEntities;
-			new CBuildingPlacer;
+			new CEntityTemplateCollection; // this is just needed for loading old maps
 			new CGameAttributes;
+		}
+		else
+		{
+			SimulationInit();
+
+			{
+				TIMER(L"Init_miscgamesection");
+				new CSelectedEntities;
+				new CMouseoverEntities;
+				new CBuildingPlacer;
+				new CGameAttributes;
+			}
 		}
 
 		// Register a few Game/Network JS globals

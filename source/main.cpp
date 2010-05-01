@@ -284,12 +284,15 @@ static void Frame()
 			g_Game->GetView()->Update(float(TimeSinceLastFrame));
 		}
 
-		PROFILE_START( "selection and interaction ui" );
-		// TODO Where does GameView end and other things begin?
-		g_Mouseover.Update( TimeSinceLastFrame );
-		g_Selection.Update();
-		g_BuildingPlacer.Update( TimeSinceLastFrame );
-		PROFILE_END( "selection and interaction ui" );
+		if (!g_UseSimulation2)
+		{
+			PROFILE_START( "selection and interaction ui" );
+			// TODO Where does GameView end and other things begin?
+			g_Mouseover.Update( TimeSinceLastFrame );
+			g_Selection.Update();
+			g_BuildingPlacer.Update( TimeSinceLastFrame );
+			PROFILE_END( "selection and interaction ui" );
+		}
 
 		PROFILE_START( "sound update" );
 		CCamera* camera = g_Game->GetView()->GetCamera();

@@ -89,7 +89,7 @@ public:
 	 */
 	void InitGame(const CScriptVal& data);
 
-	void Update(float frameTime);
+	bool Update(float frameTime);
 	void Interpolate(float frameTime);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 

@@ -34,6 +34,10 @@ function init()
 
 function reallyStartGame()
 {
+	// Stop the music
+	if (curr_music)
+		curr_music.fade(-1, 0.0, 5.0); // fade to 0 over 5 seconds
+
 	// This is a reserved function name that is executed by the engine when it is ready
 	// to start the game (ie loading progress has reached 100%).
 

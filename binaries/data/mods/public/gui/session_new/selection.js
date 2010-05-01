@@ -4,19 +4,25 @@ var g_InactiveSelectionColour  = { r:1, g:1, b:1, a:0 };
 
 function _setHighlight(ents, colour)
 {
-	Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "colour":colour });
+	if (ents.length)
+		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "colour":colour });
 }
 
 function _setMotionOverlay(ents, enabled)
 {
-	Engine.GuiInterfaceCall("SetMotionDebugOverlay", { "entities":ents, "enabled":enabled });
+	if (ents.length)
+		Engine.GuiInterfaceCall("SetMotionDebugOverlay", { "entities":ents, "enabled":enabled });
 }
 
 function EntitySelection()
 {
+	// Private properties:
 	this.selected = {}; // { id: 1, id: 1, ... } for each selected entity ID 'id'
 	this.highlighted = {}; // { id: 1, ... } for mouseover-highlighted entity IDs
 	this.motionDebugOverlay = false;
+
+	// Public properties:
+	this.dirty = false; // set whenever the selection has changed
 }
 
 EntitySelection.prototype.toggle = function(ent)
@@ -33,6 +39,7 @@ EntitySelection.prototype.toggle = function(ent)
 		_setMotionOverlay([ent], this.motionDebugOverlay);
 		this.selected[ent] = 1;
 	}
+	this.dirty = true;
 };
 
 EntitySelection.prototype.addList = function(ents)
@@ -48,6 +55,7 @@ EntitySelection.prototype.addList = function(ents)
 	}
 	_setHighlight(added, g_ActiveSelectionColour);
 	_setMotionOverlay(added, this.motionDebugOverlay);
+	this.dirty = true;
 };
 
 EntitySelection.prototype.reset = function()
@@ -55,6 +63,7 @@ EntitySelection.prototype.reset = function()
 	_setHighlight(this.toList(), g_InactiveSelectionColour);
 	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
+	this.dirty = true;
 };
 
 EntitySelection.prototype.toList = function()

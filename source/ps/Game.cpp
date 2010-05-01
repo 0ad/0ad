@@ -70,7 +70,7 @@ CGame *g_Game=NULL;
  **/
 CGame::CGame():
 	m_World(new CWorld(this)),
-	m_Simulation(new CSimulation(this)),
+	m_Simulation(g_UseSimulation2 ? NULL : new CSimulation(this)),
 	m_Simulation2(g_UseSimulation2 ? new CSimulation2(&m_World->GetUnitManager(), m_World->GetTerrain()) : NULL),
 	m_GameView(new CGameView(this)),
 	m_pLocalPlayer(NULL),
@@ -132,7 +132,8 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 	// some point to be stored in the world object?
 	m_GameView->RegisterInit(pAttribs);
 	m_World->RegisterInit(pAttribs);
-	m_Simulation->RegisterInit(pAttribs);
+	if (!g_UseSimulation2)
+		m_Simulation->RegisterInit(pAttribs);
 	LDR_EndRegistering();
 	return 0;
 }
@@ -240,9 +241,14 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	
 	bool ok = true;
 	if (g_UseSimulation2)
-		m_Simulation2->Update(deltaTime);
+	{
+		if (m_Simulation2->Update(deltaTime))
+			g_GUI->SendEventToAll("SimulationUpdate");
+	}
 	else
+	{
 		ok = m_Simulation->Update(deltaTime);
+	}
 
 	if (doInterpolate)
 	{
@@ -252,8 +258,6 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 			m_Simulation->Interpolate(deltaTime);
 	}
 	
-	g_GUI->SendEventToAll("SimulationUpdate");
-
 	// TODO Detect game over and bring up the summary screen or something
 	// ^ Quick game over hack is implemented, no summary screen however
 	/*if (m_World->GetEntityManager().GetDeath())

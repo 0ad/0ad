@@ -454,28 +454,31 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			}
 		}
 		
-		const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
-		std::list<MapTriggerGroup> rootChildren;
-		std::list<MapTriggerGroup>::const_iterator root = std::find( groups.begin(), groups.end(), L"Triggers" );
+		if (!g_UseSimulation2)
+		{
+			const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
+			std::list<MapTriggerGroup> rootChildren;
+			std::list<MapTriggerGroup>::const_iterator root = std::find( groups.begin(), groups.end(), L"Triggers" );
 
-		if ( root == groups.end() )
-		{
-			XML_Element("Triggers");
-		}
-		else
-		{
-			std::for_each(rootChildren.begin(), rootChildren.end(), CopyIfRootChild(rootChildren));
-		
-			XML_Element("Triggers");
-			for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin(); 
-														it != rootChildren.end(); ++it )
+			if ( root == groups.end() )
 			{
-				WriteTriggerGroup(xml_file_, *it, groups);
+				XML_Element("Triggers");
 			}
-			for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
-														it != root->triggers.end(); ++it )
+			else
 			{
-				WriteTrigger(xml_file_, *it);
+				std::for_each(rootChildren.begin(), rootChildren.end(), CopyIfRootChild(rootChildren));
+
+				XML_Element("Triggers");
+				for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin();
+															it != rootChildren.end(); ++it )
+				{
+					WriteTriggerGroup(xml_file_, *it, groups);
+				}
+				for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
+															it != root->triggers.end(); ++it )
+				{
+					WriteTrigger(xml_file_, *it);
+				}
 			}
 		}
 	}

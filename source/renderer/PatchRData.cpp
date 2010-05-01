@@ -34,6 +34,7 @@
 #include "simulation/LOSManager.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "simulation2/Simulation2.h"
 
 const ssize_t BlendOffsets[8][2] = {
 	{  0, -1 },
@@ -434,7 +435,7 @@ void CPatchRData::Update()
 	ssize_t vsize=PATCH_SIZE+1;
 	SColor4ub baseColour = terrain->GetBaseColour();
 
-	if (g_Game)
+	if (g_Game && !g_UseSimulation2)
 	{
 		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 

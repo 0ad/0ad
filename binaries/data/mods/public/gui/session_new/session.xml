@@ -6,12 +6,9 @@
 	<script file="gui/session_new/session.js"/>
 	<script file="gui/session_new/selection.js"/>
 	<script file="gui/session_new/input.js"/>
+	<script file="gui/session_new/music.js"/>
 
 	<object name="sn" hotkey="session.gui.toggle">
-		<action on="Load">
-			initSession();
-		</action>
-
 		<action on="Tick">
 			onTick();
 		</action>
@@ -32,10 +29,6 @@
 			hotkey="leave"
 		>
 			<action on="Press"><![CDATA[
-				function leaveGame() {
-					endGame();
-					Engine.SwitchGuiPage("page_pregame.xml");
-				}
 				messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0,
 					["Yes", "No!"], [leaveGame, null]);
 			]]></action>

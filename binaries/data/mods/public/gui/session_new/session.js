@@ -5,12 +5,25 @@ var g_DevSettings = {
 
 function init(initData, hotloadData)
 {
+
 	if (hotloadData)
 	{
 		g_Selection.selected = hotloadData.selection;
 	}
+	else
+	{
+		// Starting for the first time:
+		startMusic();
+	}
 
 	onSimulationUpdate();
+}
+
+function leaveGame()
+{
+	stopMusic();
+	endGame();
+	Engine.SwitchGuiPage("page_pregame.xml");
 }
 
 // Return some data that we'll use when hotloading this file after changes
@@ -26,10 +39,16 @@ function onTick()
 	// player checks (once it has some player checks)
 
 	updateCursor();
+
+	// If the selection changed, we need to regenerate the sim display
+	if (g_Selection.dirty)
+		onSimulationUpdate();
 }
 
 function onSimulationUpdate()
 {
+	g_Selection.dirty = false;
+
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 
 	// If we're called during init when the game is first loading, there will be

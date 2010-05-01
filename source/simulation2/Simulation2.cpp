@@ -86,7 +86,7 @@ public:
 	bool LoadScripts(const VfsPath& path);
 	LibError ReloadChangedFile(const VfsPath& path);
 
-	void Update(float frameTime);
+	bool Update(float frameTime);
 	void Interpolate(float frameTime);
 
 	CSimContext m_SimContext;
@@ -141,7 +141,7 @@ LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 	return INFO::OK;
 }
 
-void CSimulation2Impl::Update(float frameTime)
+bool CSimulation2Impl::Update(float frameTime)
 {
 	// TODO: Use CTurnManager
 	m_DeltaTime += frameTime;
@@ -168,7 +168,10 @@ void CSimulation2Impl::Update(float frameTime)
 		m_ComponentManager.FlushDestroyedComponents();
 
 		++m_TurnNumber;
+
+		return true;
 	}
+	return false;
 }
 
 void CSimulation2Impl::Interpolate(float frameTime)
@@ -255,9 +258,9 @@ void CSimulation2::InitGame(const CScriptVal& data)
 	GetScriptInterface().CallFunction(GetScriptInterface().GetGlobalObject(), "InitGame", data, ret);
 }
 
-void CSimulation2::Update(float frameTime)
+bool CSimulation2::Update(float frameTime)
 {
-	m->Update(frameTime);
+	return m->Update(frameTime);
 }
 
 void CSimulation2::Interpolate(float frameTime)

@@ -37,6 +37,7 @@
 #include "ps/World.h"
 
 #include "simulation/LOSManager.h"
+#include "simulation2/Simulation2.h"
 
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
@@ -602,18 +603,21 @@ void TerrainRenderer::RenderWater()
 						-100.0f, WaterMgr->m_WaterMaxAlpha);
 
 					float losMod = 1.0f;
-					for(size_t k=0; k<4; k++)
+					if (!g_UseSimulation2)
 					{
-						ssize_t tx = ix - DX[k];
-						ssize_t tz = iz - DZ[k];
-
-						if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+						for(size_t k=0; k<4; k++)
 						{
-							ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-							if(s == LOS_EXPLORED && losMod > 0.7f)
-								losMod = 0.7f;
-							else if(s==LOS_UNEXPLORED && losMod > 0.0f)
-								losMod = 0.0f;
+							ssize_t tx = ix - DX[k];
+							ssize_t tz = iz - DZ[k];
+
+							if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
+							{
+								ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
+								if(s == LOS_EXPLORED && losMod > 0.7f)
+									losMod = 0.7f;
+								else if(s==LOS_UNEXPLORED && losMod > 0.0f)
+									losMod = 0.0f;
+							}
 						}
 					}
 

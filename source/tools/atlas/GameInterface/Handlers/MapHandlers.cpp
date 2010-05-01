@@ -92,8 +92,11 @@ namespace
 		ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 
-		// Make sure entities get rendered in the correct location
-		g_Game->GetSimulation()->Interpolate(0.0);
+		if (!g_UseSimulation2)
+		{
+			// Make sure entities get rendered in the correct location
+			g_Game->GetSimulation()->Interpolate(0.0);
+		}
 	}
 }
 
