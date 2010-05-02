@@ -5,7 +5,6 @@ var g_DevSettings = {
 
 function init(initData, hotloadData)
 {
-
 	if (hotloadData)
 	{
 		g_Selection.selected = hotloadData.selection;

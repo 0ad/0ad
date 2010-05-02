@@ -100,7 +100,7 @@ public:
 #endif
 
 		srand(1234);
-		for (size_t j = 0; j < 256; ++j)
+		for (size_t j = 0; j < 2560; ++j)
 		{
 			entity_pos_t x0 = entity_pos_t::FromInt(rand() % 512);
 			entity_pos_t z0 = entity_pos_t::FromInt(rand() % 512);

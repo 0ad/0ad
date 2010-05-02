@@ -226,21 +226,56 @@ REGISTER_COMPONENT_TYPE(Pathfinder)
 const u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
 
 /**
- * Tile data for A* computation
+ * Tile data for A* computation.
+ * (We store an array of one of these per terrain tile, so it ought to be optimised for size)
  */
 struct PathfindTile
 {
+public:
 	enum {
 		STATUS_UNEXPLORED = 0,
 		STATUS_OPEN = 1,
 		STATUS_CLOSED = 2
 	};
-	u8 status; // (TODO: this only needs 2 bits)
-	u16 pi, pj; // predecessor on best path (TODO: this only needs 2 bits)
-	u32 cost; // g (cost to this tile)
-	u32 h; // h (TODO: is it really better for performance to store this instead of recomputing?)
 
-	u32 step; // step at which this tile was last processed (TODO: this should only be present for debugging)
+	bool IsUnexplored() { return status == STATUS_UNEXPLORED; }
+	bool IsOpen() { return status == STATUS_OPEN; }
+	bool IsClosed() { return status == STATUS_CLOSED; }
+	void SetStatusOpen() { status = STATUS_OPEN; }
+	void SetStatusClosed() { status = STATUS_CLOSED; }
+
+	// Get pi,pj coords of predecessor to this tile on best path, given i,j coords of this tile
+	u16 GetPredI(u16 i) { return i+dpi; }
+	u16 GetPredJ(u16 j) { return j+dpj; }
+	// Set the pi,pj coords of predecessor, given i,j coords of this tile
+	void SetPred(u16 pi_, u16 pj_, u16 i, u16 j)
+	{
+		dpi = pi_-i;
+		dpj = pj_-j;
+#if PATHFIND_DEBUG
+		// predecessor must be adjacent
+		debug_assert(pi_-i == -1 || pi_-i == 0 || pi_-i == 1);
+		debug_assert(pj_-j == -1 || pj_-j == 0 || pj_-j == 1);
+#endif
+	}
+
+private:
+	u8 status; // this only needs 2 bits
+	i8 dpi, dpj; // these only really need 2 bits in total
+public:
+	u32 cost; // g (cost to this tile)
+	u32 h; // h (heuristic cost to goal) (TODO: is it really better for performance to store this instead of recomputing?)
+
+#if PATHFIND_DEBUG
+	u32 GetStep() { return step; }
+	void SetStep(u32 s) { step = s; }
+private:
+	u32 step; // step at which this tile was last processed (for debug rendering)
+#else
+	u32 GetStep() { return 0; }
+	void SetStep(u32) { }
+#endif
+
 };
 
 void PathfinderOverlay::EndRender()
@@ -266,11 +301,11 @@ void PathfinderOverlay::ProcessTile(ssize_t i, ssize_t j)
 	{
 		PathfindTile& n = m_Pathfinder.m_DebugGrid->get(i, j);
 
-		float c = clamp(n.step / (float)m_Pathfinder.m_DebugSteps, 0.f, 1.f);
+		float c = clamp(n.GetStep() / (float)m_Pathfinder.m_DebugSteps, 0.f, 1.f);
 
-		if (n.status == PathfindTile::STATUS_OPEN)
+		if (n.IsOpen())
 			RenderTile(CColor(1, 1, c, 0.6f), false);
-		else if (n.status == PathfindTile::STATUS_CLOSED)
+		else if (n.IsClosed())
 			RenderTile(CColor(0, 1, c, 0.6f), false);
 	}
 }
@@ -490,13 +525,15 @@ static u32 CalculateCostDelta(u16 pi, u16 pj, u16 i, u16 j, Grid<PathfindTile>* 
 	// At least this makes paths look a bit nicer for now...
 
 	PathfindTile& p = tempGrid->get(pi, pj);
-	if (p.pi != i && p.pj != j)
+	u16 ppi = p.GetPredI(pi);
+	u16 ppj = p.GetPredJ(pj);
+	if (ppi != i && ppj != j)
 		dg = (dg << 16) / 92682; // dg*sqrt(2)/2
 	else
 	{
-		PathfindTile& pp = tempGrid->get(p.pi, p.pj);
-		int di = abs(i - pp.pi);
-		int dj = abs(j - pp.pj);
+		PathfindTile& pp = tempGrid->get(ppi, ppj);
+		int di = abs(i - pp.GetPredI(ppi));
+		int dj = abs(j - pp.GetPredJ(ppj));
 		if ((di == 1 && dj == 2) || (di == 2 && dj == 1))
 			dg = (dg << 16) / 79742; // dg*(sqrt(5)-sqrt(2))
 	}
@@ -513,7 +550,7 @@ struct PathfinderState
 	u16 rGoal; // radius of goal (around tile center)
 
 	PriorityQueue open;
-	// (there's no explicit closed list; it's encoded in PathfindTile::status)
+	// (there's no explicit closed list; it's encoded in PathfindTile)
 
 	Grid<PathfindTile>* tiles;
 	Grid<u8>* terrain;
@@ -549,7 +586,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 	PathfindTile& n = state.tiles->get(i, j);
 
 	// If this is a new tile, compute the heuristic distance
-	if (n.status == PathfindTile::STATUS_UNEXPLORED)
+	if (n.IsUnexplored())
 	{
 		n.h = CalculateHeuristic(i, j, state.iGoal, state.jGoal, state.rGoal);
 		// Remember the best tile we've seen so far, in case we never actually reach the target
@@ -570,13 +607,12 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 		// Otherwise, we have a better path.
 
 		// If we've already added this tile to the open list:
-		if (n.status == PathfindTile::STATUS_OPEN)
+		if (n.IsOpen())
 		{
 			// This is a better path, so replace the old one with the new cost/parent
 			n.cost = g;
-			n.pi = pi;
-			n.pj = pj;
-			n.step = state.steps;
+			n.SetPred(pi, pj, i, j);
+			n.SetStep(state.steps);
 			state.open.promote(std::make_pair(i, j), g + n.h);
 #if PATHFIND_STATS
 			state.numImproveOpen++;
@@ -585,7 +621,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 		}
 
 		// If we've already found the 'best' path to this tile:
-		if (n.status == PathfindTile::STATUS_CLOSED)
+		if (n.IsClosed())
 		{
 			// This is a better path (possible when we use inadmissible heuristics), so reopen it
 #if PATHFIND_STATS
@@ -596,11 +632,10 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 	}
 
 	// Add it to the open list:
-	n.status = PathfindTile::STATUS_OPEN;
+	n.SetStatusOpen();
 	n.cost = g;
-	n.pi = pi;
-	n.pj = pj;
-	n.step = state.steps;
+	n.SetPred(pi, pj, i, j);
+	n.SetStep(state.steps);
 	PriorityQueue::Item t = { std::make_pair(i, j), g + n.h };
 	state.open.push(t);
 #if PATHFIND_STATS
@@ -683,9 +718,8 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 	PriorityQueue::Item start = { std::make_pair(i0, j0), 0 };
 	state.open.push(start);
-	state.tiles->get(i0, j0).status = PathfindTile::STATUS_OPEN;
-	state.tiles->get(i0, j0).pi = i0;
-	state.tiles->get(i0, j0).pj = j0;
+	state.tiles->get(i0, j0).SetStatusOpen();
+	state.tiles->get(i0, j0).SetPred(i0, j0, i0, j0);
 	state.tiles->get(i0, j0).cost = 0;
 
 	while (1)
@@ -694,7 +728,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 		// Hack to avoid spending ages computing giant paths, particularly when
 		// the destination is unreachable
-		if (state.steps > 5000)
+		if (state.steps > 10000)
 			break;
 
 		// If we ran out of tiles to examine, give up
@@ -709,7 +743,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 		PriorityQueue::Item curr = state.open.pop();
 		u16 i = curr.id.first;
 		u16 j = curr.id.second;
-		state.tiles->get(i, j).status = PathfindTile::STATUS_CLOSED;
+		state.tiles->get(i, j).SetStatusClosed();
 
 		// If we've reached the destination, stop
 		if (AtGoal(i, j, goal))
@@ -742,8 +776,8 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 		path.m_Waypoints.push_back(w);
 
 		// Follow the predecessor link
-		ip = n.pi;
-		jp = n.pj;
+		ip = n.GetPredI(ip);
+		jp = n.GetPredJ(jp);
 	}
 
 	// Save this grid for debug display
@@ -761,15 +795,17 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 struct Vertex
 {
-	CFixedVector2D p;
-	fixed g, h;
-	u16 pred;
 	enum
 	{
 		UNEXPLORED,
 		OPEN,
 		CLOSED,
-	} status;
+	};
+
+	CFixedVector2D p;
+	fixed g, h;
+	u16 pred;
+	u8 status;
 };
 
 struct Edge
