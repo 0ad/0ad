@@ -21,6 +21,68 @@
 #include "lib/types.h"
 #include "maths/Sqrt.h"
 
+#ifndef NDEBUG
+#define USE_FIXED_OVERFLOW_CHECKS
+#endif // NDEBUG
+
+//define overflow macros
+#ifndef USE_FIXED_OVERFLOW_CHECKS
+
+#define CheckSignedSubtractionOverflow(type, left, right, overflowWarning, underflowWarning)
+#define CheckSignedAdditionOverflow(type, left, right, overflowWarning, underflowWarning)
+#define CheckCastOverflow(var, targetType, overflowWarning, underflowWarning)
+#define CheckU32CastOverflow(var, targetType, overflowWarning)
+#define CheckUnsignedAdditionOverflow(result, operand, overflowWarning)
+#define CheckUnsignedSubtractionOverflow(result, operand, overflowWarning)
+#define CheckNegationOverflow(var, type, overflowWarning)
+#define CheckMultiplicationOverflow(type, left, right, overflowWarning, underflowWarning)
+#define CheckDivisionOverflow(type, left, right, overflowWarning)
+
+#else // USE_FIXED_OVERFLOW_CHECKS
+
+#define CheckSignedSubtractionOverflow(type, left, right, overflowWarning, underflowWarning) \
+	if(left > 0 && right < 0 && left > std::numeric_limits<type>::max() + right) \
+		debug_warn(overflowWarning); \
+	else if(left < 0 && right > 0 && left < std::numeric_limits<type>::min() + right) \
+		debug_warn(underflowWarning);
+
+#define CheckSignedAdditionOverflow(type, left, right, overflowWarning, underflowWarning) \
+	if(left > 0 && right > 0 && std::numeric_limits<type>::max() - left < right) \
+		debug_warn(overflowWarning); \
+	else if(left < 0 && right < 0 && std::numeric_limits<type>::min() - left > right) \
+		debug_warn(underflowWarning);
+
+#define CheckCastOverflow(var, targetType, overflowWarning, underflowWarning) \
+	if(var > std::numeric_limits<targetType>::max()) \
+		debug_warn(overflowWarning); \
+	else if(var < std::numeric_limits<targetType>::min()) \
+		debug_warn(underflowWarning);
+
+#define CheckU32CastOverflow(var, targetType, overflowWarning) \
+	if(var > (u32)std::numeric_limits<targetType>::max()) \
+		debug_warn(overflowWarning);
+
+#define CheckUnsignedAdditionOverflow(result, operand, overflowWarning) \
+	if(result < operand) \
+		debug_warn(overflowWarning);
+
+#define CheckUnsignedSubtractionOverflow(result, left, overflowWarning) \
+	if(result > left) \
+		debug_warn(overflowWarning);
+
+#define CheckNegationOverflow(var, type, overflowWarning) \
+	if(value == std::numeric_limits<type>::min()) \
+		debug_warn(overflowWarning);
+
+#define CheckMultiplicationOverflow(type, left, right, overflowWarning, underflowWarning) \
+	i64 res##left = (i64)left * (i64)right; \
+	CheckCastOverflow(res##left, type, overflowWarning, underflowWarning)
+
+#define CheckDivisionOverflow(type, left, right, overflowWarning) \
+	if(right == -1) { CheckNegationOverflow(left, type, overflowWarning) }
+
+#endif // USE_FIXED_OVERFLOW_CHECKS
+
 template <typename T>
 inline T round_away_from_zero(float value)
 {
@@ -115,32 +177,55 @@ public:
 	// Basic arithmetic:
 
 	/// Add a CFixed. Might overflow.
-	CFixed operator+(CFixed n) const { return CFixed(value + n.value); }
+	CFixed operator+(CFixed n) const
+	{
+		CheckSignedAdditionOverflow(T, value, n.value, L"Overflow in CFixed::operator+(CFixed n)", L"Underflow in CFixed::operator+(CFixed n)")
+		return CFixed(value + n.value);
+	}
 
 	/// Subtract a CFixed. Might overflow.
-	CFixed operator-(CFixed n) const { return CFixed(value - n.value); }
+	CFixed operator-(CFixed n) const
+	{
+		CheckSignedSubtractionOverflow(T, value, n.value, L"Overflow in CFixed::operator-(CFixed n)", L"Underflow in CFixed::operator-(CFixed n)")
+		return CFixed(value - n.value);
+	}
 
 	/// Add a CFixed. Might overflow.
-	CFixed& operator+=(CFixed n) { value += n.value; return *this; }
+	CFixed& operator+=(CFixed n) { *this = *this + n; return *this; }
 
 	/// Subtract a CFixed. Might overflow.
-	CFixed& operator-=(CFixed n) { value -= n.value; return *this; }
+	CFixed& operator-=(CFixed n) { *this = *this - n; return *this; }
 
 	/// Negate a CFixed.
-	CFixed operator-() const { return CFixed(-value); }
+	CFixed operator-() const
+	{
+		CheckNegationOverflow(value, T, L"Overflow in CFixed::operator-()")
+		return CFixed(-value);
+	}
 
 	/// Divide by a CFixed. Must not have n.IsZero(). Might overflow.
 	CFixed operator/(CFixed n) const
 	{
 		i64 t = (i64)value << fract_bits;
-		return CFixed((T)(t / (i64)n.value));
+		i64 result = t / (i64)n.value;
+
+		CheckCastOverflow(result, T, L"Overflow in CFixed::operator/(CFixed n)", L"Underflow in CFixed::operator/(CFixed n)")
+		return CFixed((T)result);
 	}
 
 	/// Multiply by an integer. Might overflow.
-	CFixed operator*(int n) const { return CFixed(value * n); }
+	CFixed operator*(int n) const
+	{
+		CheckMultiplicationOverflow(T, value, n, L"Overflow in CFixed::operator*(int n)", L"Underflow in CFixed::operator*(int n)")
+		return CFixed(value * n);
+	}
 
 	/// Divide by an integer. Must not have n == 0. Cannot overflow.
-	CFixed operator/(int n) const { return CFixed(value / n); }
+	CFixed operator/(int n) const
+	{
+		CheckDivisionOverflow(T, value, n, L"Overflow in CFixed::operator/(int n)")
+		return CFixed(value / n);
+	}
 
 	CFixed Absolute() const { return CFixed(abs(value)); }
 
@@ -151,7 +236,10 @@ public:
 	CFixed Multiply(CFixed n) const
 	{
 		i64 t = (i64)value * (i64)n.value;
-		return CFixed((T)(t >> fract_bits));
+		t >>= fract_bits;
+
+		CheckCastOverflow(t, T, L"Overflow in CFixed::Multiply(CFixed n)", L"Underflow in CFixed::Multiply(CFixed n)")
+		return CFixed((T)t);
 	}
 
 	CFixed Sqrt() const

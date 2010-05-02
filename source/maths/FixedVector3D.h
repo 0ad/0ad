@@ -82,8 +82,18 @@ public:
 		i64 x = (i64)X.GetInternalValue();
 		i64 y = (i64)Y.GetInternalValue();
 		i64 z = (i64)Z.GetInternalValue();
-		u64 d2 = (u64)(x * x + y * y + z * z);
+		u64 xx = (u64)(x * x);
+		u64 yy = (u64)(y * y);
+		u64 zz = (u64)(z * z);
+		u64 t = xx + yy;
+		CheckUnsignedAdditionOverflow(t, xx, L"Overflow in CFixedVector3D::Length() part 1")
+
+		u64 d2 = t + zz;
+		CheckUnsignedAdditionOverflow(d2, t, L"Overflow in CFixedVector3D::Length() part 2")
+
 		u32 d = isqrt64(d2);
+
+		CheckU32CastOverflow(d, i32, L"Overflow in CFixedVector3D::Length() part 3")
 		fixed r;
 		r.SetInternalValue((i32)d);
 		return r;
@@ -134,13 +144,31 @@ public:
 	 */
 	CFixedVector3D Cross(const CFixedVector3D& v)
 	{
-		i64 x = ((i64)Y.GetInternalValue() * (i64)v.Z.GetInternalValue()) - ((i64)Z.GetInternalValue() * (i64)v.Y.GetInternalValue());
-		i64 y = ((i64)Z.GetInternalValue() * (i64)v.X.GetInternalValue()) - ((i64)X.GetInternalValue() * (i64)v.Z.GetInternalValue());
-		i64 z = ((i64)X.GetInternalValue() * (i64)v.Y.GetInternalValue()) - ((i64)Y.GetInternalValue() * (i64)v.X.GetInternalValue());
+		i64 y_vz = (i64)Y.GetInternalValue() * (i64)v.Z.GetInternalValue();
+		i64 z_vy = (i64)Z.GetInternalValue() * (i64)v.Y.GetInternalValue();
+		CheckSignedSubtractionOverflow(i64, y_vz, z_vy, L"Overflow in CFixedVector3D::Cross() part 1", L"Underflow in CFixedVector3D::Cross() part 1")
+		i64 x = y_vz - z_vy;
+		x >>= fixed::fract_bits;
+
+		i64 z_vx = (i64)Z.GetInternalValue() * (i64)v.X.GetInternalValue();
+		i64 x_vz = (i64)X.GetInternalValue() * (i64)v.Z.GetInternalValue();
+		CheckSignedSubtractionOverflow(i64, z_vx, x_vz, L"Overflow in CFixedVector3D::Cross() part 2", L"Underflow in CFixedVector3D::Cross() part 2")
+		i64 y = z_vx - x_vz;
+		y >>= fixed::fract_bits;
+
+		i64 x_vy = (i64)X.GetInternalValue() * (i64)v.Y.GetInternalValue();
+		i64 y_vx = (i64)Y.GetInternalValue() * (i64)v.X.GetInternalValue();
+		CheckSignedSubtractionOverflow(i64, x_vy, y_vx, L"Overflow in CFixedVector3D::Cross() part 3", L"Underflow in CFixedVector3D::Cross() part 3")
+		i64 z = x_vy - y_vx;
+		z >>= fixed::fract_bits;
+
+		CheckCastOverflow(x, i32, L"Overflow in CFixedVector3D::Cross() part 4", L"Underflow in CFixedVector3D::Cross() part 4")
+		CheckCastOverflow(y, i32, L"Overflow in CFixedVector3D::Cross() part 5", L"Underflow in CFixedVector3D::Cross() part 5")
+		CheckCastOverflow(z, i32, L"Overflow in CFixedVector3D::Cross() part 6", L"Underflow in CFixedVector3D::Cross() part 6")
 		CFixedVector3D ret;
-		ret.X.SetInternalValue((i32)(x >> fixed::fract_bits));
-		ret.Y.SetInternalValue((i32)(y >> fixed::fract_bits));
-		ret.Z.SetInternalValue((i32)(z >> fixed::fract_bits));
+		ret.X.SetInternalValue((i32)x);
+		ret.Y.SetInternalValue((i32)y);
+		ret.Z.SetInternalValue((i32)z);
 		return ret;
 	}
 
@@ -152,9 +180,16 @@ public:
 		i64 x = (i64)X.GetInternalValue() * (i64)v.X.GetInternalValue();
 		i64 y = (i64)Y.GetInternalValue() * (i64)v.Y.GetInternalValue();
 		i64 z = (i64)Z.GetInternalValue() * (i64)v.Z.GetInternalValue();
-		i64 sum = x + y + z;
+		CheckSignedAdditionOverflow(i64, x, y, L"Overflow in CFixedVector3D::Dot() part 1", L"Underflow in CFixedVector3D::Dot() part 1")
+		i64 t = x + y;
+
+		CheckSignedAdditionOverflow(i64, t, z, L"Overflow in CFixedVector3D::Dot() part 2", L"Underflow in CFixedVector3D::Dot() part 2")
+		i64 sum = t + z;
+		sum >>= fixed::fract_bits;
+		CheckCastOverflow(sum, i32, L"Overflow in CFixedVector3D::Dot() part 3", L"Underflow in CFixedVector3D::Dot() part 3")
+
 		fixed ret;
-		ret.SetInternalValue((i32)(sum >> fixed::fract_bits));
+		ret.SetInternalValue((i32)sum);
 		return ret;
 	}
 };

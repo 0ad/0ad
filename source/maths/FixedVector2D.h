@@ -101,8 +101,14 @@ public:
 		// Do intermediate calculations with 64-bit ints to avoid overflows
 		i64 x = (i64)X.GetInternalValue();
 		i64 y = (i64)Y.GetInternalValue();
-		u64 d2 = (u64)(x * x + y * y);
+		u64 xx = (u64)(x * x);
+		u64 yy = (u64)(y * y);
+		u64 d2 = xx + yy;
+		CheckUnsignedAdditionOverflow(d2, xx, L"Overflow in CFixedVector2D::Length() part 1")
+
 		u32 d = isqrt64(d2);
+
+		CheckU32CastOverflow(d, i32, L"Overflow in CFixedVector2D::Length() part 2")
 		fixed r;
 		r.SetInternalValue((i32)d);
 		return r;
@@ -158,9 +164,13 @@ public:
 	{
 		i64 x = (i64)X.GetInternalValue() * (i64)v.X.GetInternalValue();
 		i64 y = (i64)Y.GetInternalValue() * (i64)v.Y.GetInternalValue();
+		CheckSignedAdditionOverflow(i64, x, y, L"Overflow in CFixedVector2D::Dot() part 1", L"Underflow in CFixedVector2D::Dot() part 1")
 		i64 sum = x + y;
+		sum >>= fixed::fract_bits;
+
+		CheckCastOverflow(sum, i32, L"Overflow in CFixedVector2D::Dot() part 2", L"Underflow in CFixedVector2D::Dot() part 2")
 		fixed ret;
-		ret.SetInternalValue((i32)(sum >> fixed::fract_bits));
+		ret.SetInternalValue((i32)sum);
 		return ret;
 	}
 
