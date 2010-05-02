@@ -21,6 +21,9 @@
 #include "lib/types.h"
 #include "maths/Sqrt.h"
 
+class CStr8;
+class CStrW;
+
 #ifndef NDEBUG
 #define USE_FIXED_OVERFLOW_CHECKS
 #endif // NDEBUG
@@ -90,12 +93,9 @@ inline T round_away_from_zero(float value)
 }
 
 /**
- * A simple fixed-point number class, with no fancy features
- * like overflow checking or anything. (It has very few basic
- * features too, and needs to be substantially improved before
- * it'll be of much use.)
+ * A simple fixed-point number class.
  *
- * Use CFixed_23_8 rather than using this class directly.
+ * Use 'fixed' rather than using this class directly.
  */
 template<typename T, T max_t, int total_bits, int int_bits, int fract_bits_, int fract_pow2>
 class CFixed
@@ -122,6 +122,7 @@ public:
 	{
 		return CFixed(n << fract_bits);
 	}
+
 	static CFixed FromFloat(float n)
 	{
 		if (!isfinite(n))
@@ -129,6 +130,7 @@ public:
 		float scaled = n * fract_pow2;
 		return CFixed(round_away_from_zero<T>(scaled));
 	}
+
 	static CFixed FromDouble(double n)
 	{
 		if (!isfinite(n))
@@ -137,14 +139,19 @@ public:
 		return CFixed(round_away_from_zero<T>(scaled));
 	}
 
+	static CFixed FromString(const CStr8& s);
+	static CFixed FromString(const CStrW& s);
+
 	float ToFloat() const
 	{
 		return value / (float)fract_pow2;
 	}
+
 	double ToDouble() const
 	{
 		return value / (double)fract_pow2;
 	}
+
 	int ToInt_RoundToZero() const
 	{
 		if (value > 0)
@@ -220,7 +227,7 @@ public:
 		return CFixed(value * n);
 	}
 
-	/// Divide by an integer. Must not have n == 0. Cannot overflow.
+	/// Divide by an integer. Must not have n == 0. Cannot overflow unless n == -1.
 	CFixed operator/(int n) const
 	{
 		CheckDivisionOverflow(T, value, n, L"Overflow in CFixed::operator/(int n)")
@@ -242,6 +249,16 @@ public:
 		return CFixed((T)t);
 	}
 
+	/**
+	 * Compute this*m/d. Must not have d == 0. Won't overflow if the result can be represented as a CFixed.
+	 */
+	CFixed MulDiv(CFixed m, CFixed d) const
+	{
+		i64 t = ((i64)value * (i64)m.value) / (i64)d.value;
+		CheckCastOverflow(t, T, L"Overflow in CFixed::Multiply(CFixed n)", L"Underflow in CFixed::Multiply(CFixed n)")
+		return CFixed((T)t);
+	}
+
 	CFixed Sqrt() const
 	{
 		if (value <= 0)
@@ -257,16 +274,24 @@ private:
 };
 
 /**
- * A fixed-point number class with 1-bit sign, 23-bit integral part, 8-bit fractional part.
+ * A fixed-point number class with 1-bit sign, 15-bit integral part, 16-bit fractional part.
  */
-typedef CFixed<i32, (i32)0x7fffffff, 32, 23, 8, 256> CFixed_23_8;
+typedef CFixed<i32, (i32)0x7fffffff, 32, 15, 16, 65536> CFixed_15_16;
+
+/**
+ * Default fixed-point type used by the engine.
+ */
+typedef CFixed_15_16 fixed;
 
 /**
  * Inaccurate approximation of atan2 over fixed-point numbers.
  * Maximum error is almost 0.08 radians (4.5 degrees).
  */
-CFixed_23_8 atan2_approx(CFixed_23_8 y, CFixed_23_8 x);
+CFixed_15_16 atan2_approx(CFixed_15_16 y, CFixed_15_16 x);
 
-void sincos_approx(CFixed_23_8 a, CFixed_23_8& sin_out, CFixed_23_8& cos_out);
+/**
+ * Compute sin(a) and cos(a).
+ */
+void sincos_approx(CFixed_15_16 a, CFixed_15_16& sin_out, CFixed_15_16& cos_out);
 
 #endif // INCLUDED_FIXED

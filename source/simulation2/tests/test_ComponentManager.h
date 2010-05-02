@@ -155,7 +155,7 @@ public:
 		man.AddComponent(ent4, CID_Test2A, noParam);
 
 		CMessageTurnStart msg1;
-		CMessageUpdate msg2(CFixed_23_8::FromInt(100));
+		CMessageUpdate msg2(fixed::FromInt(100));
 		CMessageInterpolate msg3(0, 0);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
@@ -252,7 +252,7 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent3, IID_Test2))->GetX(), 201000);
 
 		CMessageTurnStart msg1;
-		CMessageUpdate msg2(CFixed_23_8::FromInt(25));
+		CMessageUpdate msg2(fixed::FromInt(25));
 
 		man.BroadcastMessage(msg1);
 

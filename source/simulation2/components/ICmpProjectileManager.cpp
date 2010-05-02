@@ -22,6 +22,6 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(ProjectileManager)
-DEFINE_INTERFACE_METHOD_4("LaunchProjectileAtEntity", void, ICmpProjectileManager, LaunchProjectileAtEntity, entity_id_t, entity_id_t, CFixed_23_8, CFixed_23_8)
-DEFINE_INTERFACE_METHOD_4("LaunchProjectileAtPoint", void, ICmpProjectileManager, LaunchProjectileAtPoint, entity_id_t, CFixedVector3D, CFixed_23_8, CFixed_23_8)
+DEFINE_INTERFACE_METHOD_4("LaunchProjectileAtEntity", void, ICmpProjectileManager, LaunchProjectileAtEntity, entity_id_t, entity_id_t, fixed, fixed)
+DEFINE_INTERFACE_METHOD_4("LaunchProjectileAtPoint", void, ICmpProjectileManager, LaunchProjectileAtPoint, entity_id_t, CFixedVector3D, fixed, fixed)
 END_INTERFACE_WRAPPER(ProjectileManager)

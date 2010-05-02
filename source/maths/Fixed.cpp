@@ -19,32 +19,46 @@
 
 #include "Fixed.h"
 
-// Based on http://www.dspguru.com/dsp/tricks/fixed-point-atan2-with-self-normalization
-CFixed_23_8 atan2_approx(CFixed_23_8 y, CFixed_23_8 x)
+#include "ps/CStr.h"
+
+template<>
+CFixed_15_16 CFixed_15_16::FromString(const CStr8& s)
 {
-	CFixed_23_8 zero;
+	return FromDouble(s.ToDouble()); // TODO: shouldn't use floats here
+}
+
+template<>
+CFixed_15_16 CFixed_15_16::FromString(const CStrW& s)
+{
+	return FromDouble(s.ToDouble()); // TODO: shouldn't use floats here
+}
+
+// Based on http://www.dspguru.com/dsp/tricks/fixed-point-atan2-with-self-normalization
+CFixed_15_16 atan2_approx(CFixed_15_16 y, CFixed_15_16 x)
+{
+	CFixed_15_16 zero;
 
 	// Special case to avoid division-by-zero
 	if (x.IsZero() && y.IsZero())
 		return zero;
 
-	CFixed_23_8 c1;
-	c1.SetInternalValue(201); // pi/4 << 8
+	CFixed_15_16 c1;
+	c1.SetInternalValue(51472); // pi/4 << 16
 
-	CFixed_23_8 c2;
-	c2.SetInternalValue(603); // 3*pi/4 << 8
+	CFixed_15_16 c2;
+	c2.SetInternalValue(154415); // 3*pi/4 << 16
 
-	CFixed_23_8 abs_y = y.Absolute();
+	CFixed_15_16 abs_y = y.Absolute();
 
-	CFixed_23_8 angle;
+	CFixed_15_16 angle;
 	if (x >= zero)
 	{
-		CFixed_23_8 r = (x - abs_y) / (x + abs_y);
+		CFixed_15_16 r = (x - abs_y) / (x + abs_y);
 		angle = c1 - c1.Multiply(r);
 	}
 	else
 	{
-		CFixed_23_8 r = (x + abs_y) / (abs_y - x);
+		CFixed_15_16 r = (x + abs_y) / (abs_y - x);
 		angle = c2 - c1.Multiply(r);
 	}
 
@@ -55,17 +69,15 @@ CFixed_23_8 atan2_approx(CFixed_23_8 y, CFixed_23_8 x)
 }
 
 template<>
-CFixed_23_8 CFixed_23_8::Pi()
+CFixed_15_16 CFixed_15_16::Pi()
 {
-	return CFixed_23_8(804); // = pi * 256
+	return CFixed_15_16(205887); // = pi << 16
 }
 
-void sincos_approx(CFixed_23_8 a, CFixed_23_8& sin_out, CFixed_23_8& cos_out)
+void sincos_approx(CFixed_15_16 a, CFixed_15_16& sin_out, CFixed_15_16& cos_out)
 {
 	// XXX: mustn't use floating-point here - need a fixed-point emulation
 
-	// TODO: it's stupid doing sin/cos with 8-bit precision - we ought to have a CFixed_16_16 instead
-
-	sin_out = CFixed_23_8::FromDouble(sin(a.ToDouble()));
-	cos_out = CFixed_23_8::FromDouble(cos(a.ToDouble()));
+	sin_out = CFixed_15_16::FromDouble(sin(a.ToDouble()));
+	cos_out = CFixed_15_16::FromDouble(cos(a.ToDouble()));
 }

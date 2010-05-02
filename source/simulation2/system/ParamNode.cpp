@@ -19,6 +19,7 @@
 
 #include "ParamNode.h"
 
+#include "ps/CStr.h"
 #include "ps/XML/Xeromyces.h"
 
 #include <sstream>
@@ -135,14 +136,9 @@ int CParamNode::ToInt() const
 	return ret;
 }
 
-CFixed_23_8 CParamNode::ToFixed() const
+fixed CParamNode::ToFixed() const
 {
-	double ret = 0.0;
-	std::wstringstream strm;
-	strm << m_Value;
-	strm >> ret;
-	return CFixed_23_8::FromDouble(ret);
-	// TODO: this shouldn't use floating point types
+	return fixed::FromString(CStrW(m_Value));
 }
 
 bool CParamNode::ToBool() const

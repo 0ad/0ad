@@ -80,7 +80,7 @@ void CBinarySerializer::PutNumber(const char* name, double value)
 	Put(name, (const u8*)&value, sizeof(double));
 }
 
-void CBinarySerializer::PutNumber(const char* name, CFixed_23_8 value)
+void CBinarySerializer::PutNumber(const char* name, fixed value)
 {
 	PutNumber(name, value.GetInternalValue());
 }

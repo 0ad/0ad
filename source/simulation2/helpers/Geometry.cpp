@@ -27,10 +27,10 @@ using namespace Geometry;
 
 bool Geometry::PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
 {
-	CFixed_23_8 du = point.Dot(u);
+	fixed du = point.Dot(u);
 	if (-halfSize.X <= du && du <= halfSize.X)
 	{
-		CFixed_23_8 dv = point.Dot(v);
+		fixed dv = point.Dot(v);
 		if (-halfSize.Y <= dv && dv <= halfSize.Y)
 			return true;
 	}
@@ -45,7 +45,7 @@ CFixedVector2D Geometry::GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, 
 	);
 }
 
-Geometry::fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
+fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
 {
 	/*
 	 * Relative to its own coordinate system, we have a square like:

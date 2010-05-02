@@ -171,17 +171,17 @@ template<> jsval ScriptInterface::ToJSVal<CColor>(JSContext* cx, CColor const& v
 	return OBJECT_TO_JSVAL(obj);
 }
 
-template<> bool ScriptInterface::FromJSVal<CFixed_23_8>(JSContext* cx, jsval v, CFixed_23_8& out)
+template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, jsval v, fixed& out)
 {
 	jsdouble ret;
 	if (!JS_ValueToNumber(cx, v, &ret))
 		return false;
-	out = CFixed_23_8::FromDouble(ret);
+	out = fixed::FromDouble(ret);
 	// TODO: ought to check that this conversion is consistent and portable
 	return true;
 }
 
-template<> jsval ScriptInterface::ToJSVal<CFixed_23_8>(JSContext* cx, const CFixed_23_8& val)
+template<> jsval ScriptInterface::ToJSVal<fixed>(JSContext* cx, const fixed& val)
 {
 	jsval rval = JSVAL_VOID;
 	JS_NewNumberValue(cx, val.ToDouble(), &rval); // ignore return value

@@ -59,7 +59,7 @@ public:
 
 	// Template state:
 
-	CFixed_23_8 m_Speed; // in units per second
+	fixed m_Speed; // in units per second
 	entity_pos_t m_Radius;
 
 	// Dynamic state:
@@ -138,12 +138,12 @@ public:
 		{
 		case MT_Update:
 		{
-			CFixed_23_8 dt = static_cast<const CMessageUpdate&> (msg).turnLength;
+			fixed dt = static_cast<const CMessageUpdate&> (msg).turnLength;
 
 			if (m_State == STOPPING)
 			{
 				m_State = IDLE;
-				CMessageMotionChanged msg(CFixed_23_8::FromInt(0));
+				CMessageMotionChanged msg(fixed::Zero());
 				context.GetComponentManager().PostMessage(GetEntityId(), msg);
 			}
 
@@ -160,7 +160,7 @@ public:
 		}
 	}
 
-	virtual CFixed_23_8 GetSpeed()
+	virtual fixed GetSpeed()
 	{
 		return m_Speed;
 	}
@@ -191,7 +191,7 @@ private:
 	/**
 	 * Do the per-turn movement and other updates
 	 */
-	void Move(CFixed_23_8 dt);
+	void Move(fixed dt);
 
 	void StopAndFaceGoal(CFixedVector2D pos);
 
@@ -276,7 +276,7 @@ bool CCmpUnitMotion::CheckMovement(CFixedVector2D pos, CFixedVector2D target)
 	return true;
 }
 
-void CCmpUnitMotion::Move(CFixed_23_8 dt)
+void CCmpUnitMotion::Move(fixed dt)
 {
 	PROFILE("Move");
 
@@ -292,7 +292,7 @@ void CCmpUnitMotion::Move(CFixed_23_8 dt)
 
 	// We want to move (at most) m_Speed*dt units from pos towards the next waypoint
 
-	while (dt > CFixed_23_8::FromInt(0))
+	while (dt > fixed::Zero())
 	{
 		CFixedVector2D target(m_ShortTargetX, m_ShortTargetZ);
 		CFixedVector2D offset = target - pos;
@@ -302,10 +302,10 @@ void CCmpUnitMotion::Move(CFixed_23_8 dt)
 		cmpPosition->TurnTo(angle);
 
 		// Work out how far we can travel in dt
-		CFixed_23_8 maxdist = m_Speed.Multiply(dt);
+		fixed maxdist = m_Speed.Multiply(dt);
 
 		// If the target is close, we can move there directly
-		CFixed_23_8 offsetLength = offset.Length();
+		fixed offsetLength = offset.Length();
 		if (offsetLength <= maxdist)
 		{
 			if (!CheckMovement(pos, target))

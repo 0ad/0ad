@@ -148,7 +148,7 @@ bool CSimulation2Impl::Update(float frameTime)
 	if (m_DeltaTime >= 0.0)
 	{
 		double turnLength = TURN_LENGTH / 1000.0;
-		CFixed_23_8 turnLengthFixed = CFixed_23_8::FromInt(TURN_LENGTH) / 1000;
+		fixed turnLengthFixed = fixed::FromInt(TURN_LENGTH) / 1000;
 		m_DeltaTime -= turnLength;
 
 		CMessageTurnStart msgTurnStart;

@@ -38,7 +38,7 @@ public:
 	 * @param speed horizontal speed in m/s
 	 * @param gravity gravitational acceleration in m/s^2 (determines the height of the ballistic curve)
 	 */
-	virtual void LaunchProjectileAtEntity(entity_id_t source, entity_id_t target, CFixed_23_8 speed, CFixed_23_8 gravity) = 0;
+	virtual void LaunchProjectileAtEntity(entity_id_t source, entity_id_t target, fixed speed, fixed gravity) = 0;
 
 	/**
 	 * Launch a projectile from entity @p source to point @p target.
@@ -47,7 +47,7 @@ public:
 	 * @param speed horizontal speed in m/s
 	 * @param gravity gravitational acceleration in m/s^2 (determines the height of the ballistic curve)
 	 */
-	virtual void LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, CFixed_23_8 speed, CFixed_23_8 gravity) = 0;
+	virtual void LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity) = 0;
 
 	DECLARE_INTERFACE_TYPE(ProjectileManager)
 };

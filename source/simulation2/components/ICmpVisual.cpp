@@ -24,5 +24,5 @@
 BEGIN_INTERFACE_WRAPPER(Visual)
 DEFINE_INTERFACE_METHOD_4("SelectAnimation", void, ICmpVisual, SelectAnimation, std::string, bool, float, std::wstring)
 DEFINE_INTERFACE_METHOD_2("SetAnimationSync", void, ICmpVisual, SetAnimationSync, float, float)
-DEFINE_INTERFACE_METHOD_4("SetShadingColour", void, ICmpVisual, SetShadingColour, CFixed_23_8, CFixed_23_8, CFixed_23_8, CFixed_23_8)
+DEFINE_INTERFACE_METHOD_4("SetShadingColour", void, ICmpVisual, SetShadingColour, fixed, fixed, fixed, fixed)
 END_INTERFACE_WRAPPER(Visual)

@@ -138,7 +138,7 @@ public:
 
 	virtual tag_t AddStaticShape(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h)
 	{
-		CFixed_23_8 s, c;
+		fixed s, c;
 		sincos_approx(a, s, c);
 		CFixedVector2D u(c, -s);
 		CFixedVector2D v(s, c);
@@ -162,7 +162,7 @@ public:
 		}
 		else
 		{
-			CFixed_23_8 s, c;
+			fixed s, c;
 			sincos_approx(a, s, c);
 			CFixedVector2D u(c, -s);
 			CFixedVector2D v(s, c);
@@ -304,7 +304,7 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 {
 	PROFILE("TestStaticShape");
 
-	CFixed_23_8 s, c;
+	fixed s, c;
 	sincos_approx(a, s, c);
 	CFixedVector2D u(c, -s);
 	CFixedVector2D v(s, c);

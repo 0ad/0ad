@@ -61,9 +61,9 @@ public:
 	virtual bool MoveToAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
-	 * Get the default speed that this unit will have when walking.
+	 * Get the default speed that this unit will have when walking, in metres per second.
 	 */
-	virtual CFixed_23_8 GetSpeed() = 0;
+	virtual fixed GetSpeed() = 0;
 
 	/**
 	 * Toggle the rendering of debug info.

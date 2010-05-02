@@ -40,7 +40,7 @@ class CFixedVector3D;
 const ssize_t CELL_SIZE = 4;
 
 /// number of u16 height units per metre
-const ssize_t HEIGHT_UNITS_PER_METRE = 731; // == int(256.0f/0.35f)
+const ssize_t HEIGHT_UNITS_PER_METRE = 732; // == approx int(256.0f/0.35f)
 
 /// metres per u16 height unit
 const float HEIGHT_SCALE = 1.f / HEIGHT_UNITS_PER_METRE;
@@ -80,7 +80,7 @@ public:
 
 	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
-	CFixed_23_8 GetExactGroundLevelFixed(CFixed_23_8 x, CFixed_23_8 z) const;
+	fixed GetExactGroundLevelFixed(fixed x, fixed z) const;
 	float GetExactGroundLevel(const CVector2D& v) const;
 
 	float GetSlope(float x, float z) const ;

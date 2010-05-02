@@ -921,7 +921,7 @@ BEGIN_COMMAND(RotateObject)
 			if (cmpPos.null())
 				return;
 
-			cmpPos->SetYRotation(CFixed_23_8::FromFloat(angle));
+			cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
 		}
 		else
 		{

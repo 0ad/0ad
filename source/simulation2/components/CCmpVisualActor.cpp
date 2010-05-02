@@ -230,7 +230,7 @@ public:
 		m_Unit->SetAnimationSync(actiontime, repeattime);
 	}
 
-	virtual void SetShadingColour(CFixed_23_8 r, CFixed_23_8 g, CFixed_23_8 b, CFixed_23_8 a)
+	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a)
 	{
 		if (!m_Unit)
 			return;

@@ -113,10 +113,10 @@ public:
 		convert_to<const char*>("test", "\"test\"");
 		convert_to<const char*>(s1.c_str(), "\"t\"");
 
-		roundtrip<CFixed_23_8>(CFixed_23_8::FromInt(0), "0");
-		roundtrip<CFixed_23_8>(CFixed_23_8::FromInt(123), "123");
-		roundtrip<CFixed_23_8>(CFixed_23_8::FromInt(-123), "-123");
-		roundtrip<CFixed_23_8>(CFixed_23_8::FromDouble(123.25), "123.25");
+		roundtrip<fixed>(fixed::FromInt(0), "0");
+		roundtrip<fixed>(fixed::FromInt(123), "123");
+		roundtrip<fixed>(fixed::FromInt(-123), "-123");
+		roundtrip<fixed>(fixed::FromDouble(123.25), "123.25");
 	}
 
 	void test_integers()

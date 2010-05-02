@@ -71,7 +71,7 @@ void ISerializer::NumberDouble_Unbounded(const char* name, double value)
 	PutNumber(name, value);
 }
 
-void ISerializer::NumberFixed_Unbounded(const char* name, CFixed_23_8 value)
+void ISerializer::NumberFixed_Unbounded(const char* name, fixed value)
 {
 	PutNumber(name, value);
 }

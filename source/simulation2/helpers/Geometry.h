@@ -30,8 +30,6 @@ class CFixedVector2D;
 namespace Geometry
 {
 
-typedef CFixed_23_8 fixed;
-
 bool PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
 
 CFixedVector2D GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);

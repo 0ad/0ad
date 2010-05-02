@@ -33,12 +33,11 @@
 /**
  * Positions and distances (measured in metres)
  */
-typedef CFixed_23_8 entity_pos_t;
+typedef CFixed_15_16 entity_pos_t;
 
 /**
  * Rotations (measured in radians)
  */
-typedef CFixed_23_8 entity_angle_t;
-// TODO: use a type with more precision
+typedef CFixed_15_16 entity_angle_t;
 
 #endif // INCLUDED_POSITION

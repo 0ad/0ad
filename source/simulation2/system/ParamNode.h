@@ -151,7 +151,7 @@ public:
 	/**
 	 * Parses the content of this node as a fixed-point number
 	 */
-	CFixed_23_8 ToFixed() const;
+	fixed ToFixed() const;
 
 	/**
 	 * Parses the content of this node as a boolean ("true" == true, anything else == false)

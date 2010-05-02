@@ -23,9 +23,6 @@
 
 class CFixedVector3D
 {
-private:
-	typedef CFixed_23_8 fixed;
-
 public:
 	fixed X, Y, Z;
 
@@ -37,6 +34,12 @@ public:
 	bool operator==(const CFixedVector3D& v) const
 	{
 		return (X == v.X && Y == v.Y && Z == v.Z);
+	}
+
+	/// Vector inequality
+	bool operator!=(const CFixedVector3D& v) const
+	{
+		return (X != v.X || Y != v.Y || Z != v.Z);
 	}
 
 	/// Vector addition
@@ -102,8 +105,6 @@ public:
 	/**
 	 * Normalize the vector so that length is close to 1.
 	 * If length is 0, does nothing.
-	 * WARNING: The fixed-point numbers only have 8-bit fractional parts, so
-	 * a normalized vector will be very imprecise.
 	 */
 	void Normalize()
 	{
@@ -122,20 +123,12 @@ public:
 	 */
 	void Normalize(fixed n)
 	{
-		if (n.IsZero())
-		{
-			X = Y = Z = fixed::FromInt(0);
-			return;
-		}
-
 		fixed l = Length();
-		// TODO: work out whether this is giving decent precision
-		fixed d = l / n;
-		if (!d.IsZero())
+		if (!l.IsZero())
 		{
-			X = X / d;
-			Y = Y / d;
-			Z = Z / d;
+			X = X.MulDiv(n, l);
+			Y = Y.MulDiv(n, l);
+			Z = Z.MulDiv(n, l);
 		}
 	}
 

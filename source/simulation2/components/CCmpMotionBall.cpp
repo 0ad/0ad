@@ -72,17 +72,17 @@ public:
 		{
 		case MT_Update:
 		{
-			CFixed_23_8 dt = static_cast<const CMessageUpdate&> (msg).turnLength;
+			fixed dt = static_cast<const CMessageUpdate&> (msg).turnLength;
 			Move(context, dt);
 			break;
 		}
 		}
 	}
 
-	void Move(const CSimContext& context, CFixed_23_8 dt);
+	void Move(const CSimContext& context, fixed dt);
 };
 
-void CCmpMotionBall::Move(const CSimContext& context, CFixed_23_8 dt)
+void CCmpMotionBall::Move(const CSimContext& context, fixed dt)
 {
 	CmpPtr<ICmpPosition> cmpPosition(context, GetEntityId());
 	if (cmpPosition.null())

@@ -848,20 +848,18 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
 				Position = CFixedVector3D(
-					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_x)).ToFloat()),
-					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_y)).ToFloat()),
-					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_z)).ToFloat()));
-				// TODO: shouldn't use floats here
+					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
 				Orientation = CFixedVector3D(
-					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_x)).ToFloat()),
-					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_y)).ToFloat()),
-					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_z)).ToFloat()));
-				// TODO: shouldn't use floats here
+					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
 				// TODO: what happens if some attributes are missing?
 			}
 			else
@@ -1008,7 +1006,7 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 						entity_pos_t x = entity_pos_t::FromFloat(Position.X);
 						entity_pos_t z = entity_pos_t::FromFloat(Position.Z);
 						cmpPos->JumpTo(x, z);
-						cmpPos->SetYRotation(CFixed_23_8::FromFloat(Orientation));
+						cmpPos->SetYRotation(entity_angle_t::FromFloat(Orientation));
 					}
 
 					CmpPtr<ICmpOwnership> cmpOwner(*m_MapReader.pSimulation2, ent);
@@ -1099,7 +1097,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 					entity_pos_t x = entity_pos_t::FromFloat(Position.X); // TODO: these should all be parsed as fixeds probably
 					entity_pos_t z = entity_pos_t::FromFloat(Position.Z);
 					cmpPos->JumpTo(x, z);
-					cmpPos->SetYRotation(CFixed_23_8::FromFloat(Orientation));
+					cmpPos->SetYRotation(entity_angle_t::FromFloat(Orientation));
 				}
 			}
 		}

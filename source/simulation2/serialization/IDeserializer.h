@@ -45,7 +45,7 @@ public:
 	virtual void NumberU32_Unbounded(uint32_t& out);
 	virtual void NumberFloat_Unbounded(float& out);
 	virtual void NumberDouble_Unbounded(double& out);
-	virtual void NumberFixed_Unbounded(CFixed_23_8& out);
+	virtual void NumberFixed_Unbounded(fixed& out);
 	virtual void Bool(bool& out);
 	virtual void StringASCII(std::string& out, uint32_t minlength, uint32_t maxlength);
 	virtual void String(std::wstring& out, uint32_t minlength, uint32_t maxlength);

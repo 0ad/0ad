@@ -172,7 +172,7 @@ std::vector<entity_id_t> PickFriendlyEntitiesInRect(void* UNUSED(cbdata), int x0
 CFixedVector3D GetTerrainAtPoint(void* UNUSED(cbdata), int x, int y)
 {
 	CVector3D pos = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y, false);
-	return CFixedVector3D(CFixed_23_8::FromFloat(pos.X), CFixed_23_8::FromFloat(pos.Y), CFixed_23_8::FromFloat(pos.Z));
+	return CFixedVector3D(fixed::FromFloat(pos.X), fixed::FromFloat(pos.Y), fixed::FromFloat(pos.Z));
 }
 
 std::wstring SetCursor(void* UNUSED(cbdata), std::wstring name)

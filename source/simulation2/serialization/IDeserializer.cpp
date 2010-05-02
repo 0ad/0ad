@@ -83,7 +83,7 @@ void IDeserializer::NumberDouble_Unbounded(double& out)
 	Get((u8*)&out, sizeof(double));
 }
 
-void IDeserializer::NumberFixed_Unbounded(CFixed_23_8& out)
+void IDeserializer::NumberFixed_Unbounded(fixed& out)
 {
 	int32_t n;
 	NumberI32_Unbounded(n);

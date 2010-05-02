@@ -89,12 +89,12 @@ public:
 		}
 	}
 
-	virtual void LaunchProjectileAtEntity(entity_id_t source, entity_id_t target, CFixed_23_8 speed, CFixed_23_8 gravity)
+	virtual void LaunchProjectileAtEntity(entity_id_t source, entity_id_t target, fixed speed, fixed gravity)
 	{
 		LaunchProjectile(source, CFixedVector3D(), target, speed, gravity);
 	}
 
-	virtual void LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, CFixed_23_8 speed, CFixed_23_8 gravity)
+	virtual void LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity)
 	{
 		LaunchProjectile(source, target, INVALID_ENTITY, speed, gravity);
 	}
@@ -113,7 +113,7 @@ private:
 
 	std::vector<Projectile> m_Projectiles;
 
-	void LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, CFixed_23_8 speed, CFixed_23_8 gravity);
+	void LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, fixed speed, fixed gravity);
 
 	void AdvanceProjectile(const CSimContext& context, Projectile& projectile, float dt, float frameOffset);
 
@@ -124,7 +124,7 @@ private:
 
 REGISTER_COMPONENT_TYPE(ProjectileManager)
 
-void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, CFixed_23_8 speed, CFixed_23_8 gravity)
+void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, fixed speed, fixed gravity)
 {
 	if (!GetSimContext().HasUnitManager())
 		return; // do nothing if graphics are disabled

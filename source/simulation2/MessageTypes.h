@@ -49,12 +49,12 @@ class CMessageUpdate : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(Update)
 
-	CMessageUpdate(CFixed_23_8 turnLength) :
+	CMessageUpdate(fixed turnLength) :
 		turnLength(turnLength)
 	{
 	}
 
-	CFixed_23_8 turnLength;
+	fixed turnLength;
 };
 
 class CMessageInterpolate : public CMessage
@@ -151,12 +151,12 @@ class CMessageMotionChanged : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(MotionChanged)
 
-	CMessageMotionChanged(CFixed_23_8 speed) :
+	CMessageMotionChanged(fixed speed) :
 		speed(speed)
 	{
 	}
 
-	CFixed_23_8 speed; // metres per second, or 0 if not moving
+	fixed speed; // metres per second, or 0 if not moving
 };
 
 #endif // INCLUDED_MESSAGETYPES

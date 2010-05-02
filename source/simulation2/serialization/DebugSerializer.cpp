@@ -102,7 +102,7 @@ void CDebugSerializer::PutNumber(const char* name, double value)
 	m_Stream << INDENT << name << ": " << canonfloat(value) << "\n";
 }
 
-void CDebugSerializer::PutNumber(const char* name, CFixed_23_8 value)
+void CDebugSerializer::PutNumber(const char* name, fixed value)
 {
 	m_Stream << INDENT << name << ": " << canonfloat(value.ToDouble()) << "\n";
 }

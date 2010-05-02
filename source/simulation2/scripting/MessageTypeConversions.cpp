@@ -74,7 +74,7 @@ jsval CMessageUpdate::ToJSVal(ScriptInterface& scriptInterface) const
 CMessage* CMessageUpdate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
 	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(CFixed_23_8, turnLength);
+	GET_MSG_PROPERTY(fixed, turnLength);
 	return new CMessageUpdate(turnLength);
 }
 
@@ -168,7 +168,7 @@ jsval CMessageMotionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
 	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(CFixed_23_8, speed);
+	GET_MSG_PROPERTY(fixed, speed);
 	return new CMessageMotionChanged(speed);
 }
 

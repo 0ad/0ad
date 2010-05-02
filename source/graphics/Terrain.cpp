@@ -151,9 +151,9 @@ void CTerrain::CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) cons
 		height = m_Heightmap[j*m_MapSize + i];
 	else
 		height = 0;
-	pos.X = CFixed_23_8::FromInt(i)*(int)CELL_SIZE;
-	pos.Y = CFixed_23_8::FromInt(height)/(int)HEIGHT_UNITS_PER_METRE;
-	pos.Z = CFixed_23_8::FromInt(j)*(int)CELL_SIZE;
+	pos.X = fixed::FromInt(i) * (int)CELL_SIZE;
+	pos.Y = fixed::FromInt(height) / (int)HEIGHT_UNITS_PER_METRE;
+	pos.Z = fixed::FromInt(j) * (int)CELL_SIZE;
 }
 
 
@@ -341,24 +341,30 @@ float CTerrain::GetExactGroundLevel(float x, float z) const
 		   + zf  * ((1 - xf) * h01 + xf * h11)));
 }
 
-CFixed_23_8 CTerrain::GetExactGroundLevelFixed(CFixed_23_8 x, CFixed_23_8 z) const
+fixed CTerrain::GetExactGroundLevelFixed(fixed x, fixed z) const
 {
 	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
 	const ssize_t xi = clamp((ssize_t)(x / (int)CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
 	const ssize_t zi = clamp((ssize_t)(z / (int)CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
 
-	const CFixed_23_8 one = CFixed_23_8::FromInt(1);
+	const fixed one = fixed::FromInt(1);
 
-	const CFixed_23_8 xf = clamp((x / (int)CELL_SIZE) - CFixed_23_8::FromInt(xi), CFixed_23_8::FromInt(0), one);
-	const CFixed_23_8 zf = clamp((z / (int)CELL_SIZE) - CFixed_23_8::FromInt(zi), CFixed_23_8::FromInt(0), one);
+	const fixed xf = clamp((x / (int)CELL_SIZE) - fixed::FromInt(xi), fixed::Zero(), one);
+	const fixed zf = clamp((z / (int)CELL_SIZE) - fixed::FromInt(zi), fixed::Zero(), one);
 
 	u16 h00 = m_Heightmap[zi*m_MapSize + xi];
 	u16 h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
 	u16 h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
 	u16 h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
+
+	// Intermediate scaling of xf, so we don't overflow in the multiplications below
+	// (h00 <= 65535, xf <= 1, max fixed is < 32768; divide by 2 here so xf1*h00 <= 32767.5)
+	const fixed xf0 = xf / 2;
+	const fixed xf1 = (one - xf) / 2;
+
 	// Linearly interpolate
-	return ((one - zf).Multiply((one - xf) * h00 + xf * h10)
-	              + zf.Multiply((one - xf) * h01 + xf * h11)) / (int)HEIGHT_UNITS_PER_METRE;
+	return ((one - zf).Multiply(xf1 * h00 + xf0 * h10)
+	              + zf.Multiply(xf1 * h01 + xf0 * h11)) / (int)(HEIGHT_UNITS_PER_METRE / 2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

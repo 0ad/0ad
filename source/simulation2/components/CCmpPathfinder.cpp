@@ -53,8 +53,6 @@
 class CCmpPathfinder;
 struct PathfindTile;
 
-typedef CFixed_23_8 fixed;
-
 /**
  * Terrain overlay for pathfinder debugging.
  * Renders a representation of the most recent pathfinding operation.
@@ -494,12 +492,12 @@ typedef PriorityQueueList<std::pair<u16, u16>, u32> PriorityQueue;
 static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal)
 {
 #ifdef USE_DIAGONAL_MOVEMENT
-	CFixedVector2D pos (CFixed_23_8::FromInt(i), CFixed_23_8::FromInt(j));
-	CFixedVector2D goal (CFixed_23_8::FromInt(iGoal), CFixed_23_8::FromInt(jGoal));
-	CFixed_23_8 dist = (pos - goal).Length();
+	CFixedVector2D pos (fixed::FromInt(i), fixed::FromInt(j));
+	CFixedVector2D goal (fixed::FromInt(iGoal), fixed::FromInt(jGoal));
+	fixed dist = (pos - goal).Length();
 	// TODO: the heuristic could match the costs better - it's not really Euclidean movement
 
-	CFixed_23_8 rdist = dist - CFixed_23_8::FromInt(rGoal);
+	fixed rdist = dist - fixed::FromInt(rGoal);
 	rdist = rdist.Absolute();
 
 	return (rdist * (int)g_CostPerTile).ToInt_RoundToZero();

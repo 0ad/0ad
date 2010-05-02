@@ -44,7 +44,7 @@ public:
 		serialize.NumberU32_Unbounded("u32", (unsigned)-123);
 		serialize.NumberFloat_Unbounded("float", 1e+30f);
 		serialize.NumberDouble_Unbounded("double", 1e+300);
-		serialize.NumberFixed_Unbounded("fixed", CFixed_23_8::FromFloat(1234.5f));
+		serialize.NumberFixed_Unbounded("fixed", fixed::FromFloat(1234.5f));
 
 		serialize.Bool("t", true);
 		serialize.Bool("f", false);
@@ -93,11 +93,11 @@ public:
 		serialize.NumberDouble_Unbounded("x", 1e-10);
 		serialize.NumberDouble_Unbounded("x", 1e100);
 		serialize.NumberDouble_Unbounded("x", 1e-100);
-		serialize.NumberFixed_Unbounded("x", CFixed_23_8::FromDouble(1e6));
+		serialize.NumberFixed_Unbounded("x", fixed::FromDouble(1e4));
 		TS_ASSERT_STR_EQUALS(stream.str(),
 				"x: 10000\nx: 0.0001\nx: 100000\nx: 1e-05\nx: 1e+06\nx: 1e-06\nx: 1e+10\nx: 1e-10\n"
 				"x: 10000\nx: 0.0001\nx: 100000\nx: 1e-05\nx: 1e+06\nx: 1e-06\nx: 1e+10\nx: 1e-10\nx: 1e+100\nx: 1e-100\n"
-				"x: 1e+06\n"
+				"x: 10000\n"
 		);
 	}
 
@@ -169,7 +169,7 @@ public:
 		uint32_t u32v;
 		float flt;
 		double dbl;
-		CFixed_23_8 fixed;
+		fixed fxd;
 		bool bl;
 		std::string str;
 		std::wstring wstr;
@@ -185,8 +185,8 @@ public:
 		TS_ASSERT_EQUALS(flt, 1e+30f);
 		deserialize.NumberDouble_Unbounded(dbl);
 		TS_ASSERT_EQUALS(dbl, 1e+300);
-		deserialize.NumberFixed_Unbounded(fixed);
-		TS_ASSERT_EQUALS(fixed.ToDouble(), 1234.5);
+		deserialize.NumberFixed_Unbounded(fxd);
+		TS_ASSERT_EQUALS(fxd.ToDouble(), 1234.5);
 
 		deserialize.Bool(bl);
 		TS_ASSERT_EQUALS(bl, true);

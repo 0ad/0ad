@@ -32,7 +32,7 @@ public:
 
 	static CFixedVector3D fixedvec(int x, int y, int z)
 	{
-		return CFixedVector3D(CFixed_23_8::FromInt(x), CFixed_23_8::FromInt(y), CFixed_23_8::FromInt(z));
+		return CFixedVector3D(fixed::FromInt(x), fixed::FromInt(y), fixed::FromInt(z));
 	}
 
 	void test_basic()

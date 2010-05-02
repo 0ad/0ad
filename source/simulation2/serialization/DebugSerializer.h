@@ -46,7 +46,7 @@ protected:
 	virtual void PutNumber(const char* name, uint32_t value);
 	virtual void PutNumber(const char* name, float value);
 	virtual void PutNumber(const char* name, double value);
-	virtual void PutNumber(const char* name, CFixed_23_8 value);
+	virtual void PutNumber(const char* name, fixed value);
 	virtual void PutBool(const char* name, bool value);
 	virtual void PutString(const char* name, const std::string& value);
 	virtual void PutScriptVal(const char* name, jsval value);

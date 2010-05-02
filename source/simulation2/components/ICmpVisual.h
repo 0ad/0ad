@@ -82,7 +82,7 @@ public:
 	 * @param b blue component, expected range [0, 1]
 	 * @param a alpha component, expected range [0, 1]
 	 */
-	virtual void SetShadingColour(CFixed_23_8 r, CFixed_23_8 g, CFixed_23_8 b, CFixed_23_8 a) = 0;
+	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a) = 0;
 
 	DECLARE_INTERFACE_TYPE(Visual)
 };

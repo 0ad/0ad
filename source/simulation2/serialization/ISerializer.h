@@ -149,7 +149,7 @@ public:
 	void NumberU32_Unbounded(const char* name, uint32_t value); ///< @copydoc NumberU8_Unbounded
 	void NumberFloat_Unbounded(const char* name, float value); ///< @copydoc NumberU8_Unbounded
 	void NumberDouble_Unbounded(const char* name, double value); ///< @copydoc NumberU8_Unbounded
-	void NumberFixed_Unbounded(const char* name, CFixed_23_8 value); ///< @copydoc NumberU8_Unbounded
+	void NumberFixed_Unbounded(const char* name, fixed value); ///< @copydoc NumberU8_Unbounded
 
 	/**
 	 * Serialize a boolean.
@@ -205,7 +205,7 @@ protected:
 	virtual void PutNumber(const char* name, uint32_t value) = 0;
 	virtual void PutNumber(const char* name, float value) = 0;
 	virtual void PutNumber(const char* name, double value) = 0;
-	virtual void PutNumber(const char* name, CFixed_23_8 value) = 0;
+	virtual void PutNumber(const char* name, fixed value) = 0;
 	virtual void PutBool(const char* name, bool value) = 0;
 	virtual void PutString(const char* name, const std::string& value) = 0;
 	virtual void PutScriptVal(const char* name, jsval value) = 0;

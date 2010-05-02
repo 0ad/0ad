@@ -164,12 +164,12 @@ public:
 
 	virtual CFixedVector3D CalcNormal(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z))
 	{
-		return CFixedVector3D(CFixed_23_8::FromInt(0), CFixed_23_8::FromInt(1), CFixed_23_8::FromInt(0));
+		return CFixedVector3D(fixed::FromInt(0), fixed::FromInt(1), fixed::FromInt(0));
 	}
 
 	virtual entity_pos_t GetGroundLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z))
 	{
-		return CFixed_23_8::FromInt(50);
+		return entity_pos_t::FromInt(50);
 	}
 
 	virtual float GetGroundLevel(float UNUSED(x), float UNUSED(z))

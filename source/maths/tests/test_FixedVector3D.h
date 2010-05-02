@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,9 +24,13 @@
 	TS_ASSERT_EQUALS(v.Y.ToDouble(), y); \
 	TS_ASSERT_EQUALS(v.Z.ToDouble(), z);
 
+#define TS_ASSERT_VEC_DELTA(v, x, y, z, delta) \
+	TS_ASSERT_DELTA(v.X.ToDouble(), x, delta); \
+	TS_ASSERT_DELTA(v.Y.ToDouble(), y, delta); \
+	TS_ASSERT_DELTA(v.Z.ToDouble(), z, delta);
+
 class TestFixedVector3D : public CxxTest::TestSuite
 {
-	typedef CFixed_23_8 fixed;
 public:
 	void test_basic()
 	{
@@ -68,31 +72,68 @@ public:
 	{
 		CFixedVector3D v0 (fixed::FromInt(0), fixed::FromInt(0), fixed::FromInt(0));
 		v0.Normalize();
-		TS_ASSERT_EQUALS(v0.X.ToDouble(), 0.0);
-		TS_ASSERT_EQUALS(v0.Y.ToDouble(), 0.0);
-		TS_ASSERT_EQUALS(v0.Z.ToDouble(), 0.0);
+		TS_ASSERT_VEC_EQUALS(v0, 0.0, 0.0, 0.0);
 
 		CFixedVector3D v1 (fixed::FromInt(3), fixed::FromInt(4), fixed::FromInt(12));
 		v1.Normalize();
-		TS_ASSERT_DELTA(v1.X.ToDouble(), 3.0/13.0, 0.01);
-		TS_ASSERT_DELTA(v1.Y.ToDouble(), 4.0/13.0, 0.01);
-		TS_ASSERT_DELTA(v1.Z.ToDouble(), 12.0/13.0, 0.01);
+		TS_ASSERT_VEC_DELTA(v1, 3.0/13.0, 4.0/13.0, 12.0/13.0, 0.01);
 
 		fixed max;
 		max.SetInternalValue((i32)0x7fffffff);
 		CFixedVector3D v2 (max, fixed::FromInt(0), fixed::FromInt(0));
 		v2.Normalize();
-		TS_ASSERT_EQUALS(v2.X.ToDouble(), 1.0);
-		TS_ASSERT_EQUALS(v2.Y.ToDouble(), 0.0);
-		TS_ASSERT_EQUALS(v2.Z.ToDouble(), 0.0);
+		TS_ASSERT_VEC_EQUALS(v2, 1.0, 0.0, 0.0);
 
 		fixed large;
 		large.SetInternalValue((i32)((double)0x7fffffff/sqrt(3.0))+1); // largest value that shouldn't cause overflow
 		CFixedVector3D v3 (large, large, large);
 		v3.Normalize();
-		TS_ASSERT_DELTA(v3.X.ToDouble(), 1.0/sqrt(3.0), 0.01);
-		TS_ASSERT_DELTA(v3.Y.ToDouble(), 1.0/sqrt(3.0), 0.01);
-		TS_ASSERT_DELTA(v3.Z.ToDouble(), 1.0/sqrt(3.0), 0.01);
+		TS_ASSERT_VEC_DELTA(v3, 1.0/sqrt(3.0), 1.0/sqrt(3.0), 1.0/sqrt(3.0), 0.01);
+	}
+
+	void test_NormalizeTo()
+	{
+		{
+			CFixedVector3D v (fixed::FromInt(0), fixed::FromInt(0), fixed::FromInt(0));
+			v.Normalize(fixed::FromInt(1));
+			TS_ASSERT_VEC_EQUALS(v, 0.0, 0.0, 0.0);
+		}
+
+		{
+			CFixedVector3D v (fixed::FromInt(3), fixed::FromInt(4), fixed::FromInt(12));
+			v.Normalize(fixed::FromInt(0));
+			TS_ASSERT_VEC_EQUALS(v, 0.0, 0.0, 0.0);
+		}
+
+		{
+			CFixedVector3D v (fixed::FromInt(3), fixed::FromInt(4), fixed::FromInt(12));
+			v.Normalize(fixed::FromInt(1));
+			TS_ASSERT_VEC_DELTA(v, 3.0/13.0, 4.0/13.0, 12.0/13.0, 0.01);
+		}
+
+		{
+			CFixedVector3D v (fixed::FromInt(3000), fixed::FromInt(4000), fixed::FromInt(12000));
+			v.Normalize(fixed::FromInt(1));
+			TS_ASSERT_VEC_DELTA(v, 3.0/13.0, 4.0/13.0, 12.0/13.0, 0.01);
+		}
+
+		{
+			CFixedVector3D v (fixed::FromInt(3), fixed::FromInt(4), fixed::FromInt(12));
+			v.Normalize(fixed::FromInt(100));
+			TS_ASSERT_VEC_DELTA(v, 300.0/13.0, 400.0/13.0, 1200.0/13.0, 0.01);
+		}
+
+		{
+			CFixedVector3D v (fixed::FromInt(3), fixed::FromInt(4), fixed::FromInt(12));
+			v.Normalize(fixed::FromInt(1)/100);
+			TS_ASSERT_VEC_DELTA(v, 3.0/1300.0, 4.0/1300.0, 12.0/1300.0, 0.0001);
+		}
+
+		{
+			CFixedVector3D v (fixed::FromInt(3), fixed::FromInt(4), fixed::FromInt(12));
+			v.Normalize(fixed::FromInt(1)/10000);
+			TS_ASSERT_VEC_DELTA(v, 3.0/130000.0, 4.0/130000.0, 12.0/130000.0, 0.0001);
+		}
 	}
 
 	void test_Cross()
@@ -100,9 +141,7 @@ public:
 		CFixedVector3D v1 (fixed::FromInt(5), fixed::FromInt(6), fixed::FromInt(7));
 		CFixedVector3D v2 (fixed::FromInt(8), fixed::FromInt(9), fixed::FromInt(-10));
 		CFixedVector3D v3 = v1.Cross(v2);
-		TS_ASSERT_EQUALS(v3.X.ToDouble(), 6*-10 - 7*9);
-		TS_ASSERT_EQUALS(v3.Y.ToDouble(), 7*8 - 5*-10);
-		TS_ASSERT_EQUALS(v3.Z.ToDouble(), 5*9 - 8*6);
+		TS_ASSERT_VEC_EQUALS(v3, 6*-10 - 7*9, 7*8 - 5*-10, 5*9 - 8*6);
 	}
 
 	void test_Dot()
