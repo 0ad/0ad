@@ -250,15 +250,7 @@ bool CCmpUnitMotion::CheckMovement(CFixedVector2D pos, CFixedVector2D target)
 		return false;
 
 	NullObstructionFilter filter;
-
-	entity_pos_t delta = entity_pos_t::FromInt(1) / 8;
-		// add a small delta so that we don't get so close that the pathfinder thinks
-		// we've actually crossed the edge (given minor numerical inaccuracies)
-	// TODO: keep this in sync with CCmpPathfinder::ComputeShortPath delta
-	// (this value needs to be smaller)
-	// TODO: work out what this value should actually be, rather than just guessing
-
-	if (cmpObstructionManager->TestLine(filter, pos.X, pos.Y, target.X, target.Y, m_Radius + delta))
+	if (cmpObstructionManager->TestLine(filter, pos.X, pos.Y, target.X, target.Y, m_Radius))
 	{
 		// Oops, hit something
 		// TODO: we ought to wait for obstructions to move away instead of immediately throwing away the whole path
@@ -269,6 +261,13 @@ bool CCmpUnitMotion::CheckMovement(CFixedVector2D pos, CFixedVector2D target)
 			StopAndFaceGoal(pos);
 			return false;
 		}
+		// NOTE: it's theoretically possible that we will generate a waypoint we can reach without
+		// colliding with anything, but multiplying the movement vector by the timestep will result
+		// in a line that does collide (given numerical inaccuracies), so we'll get stuck in a loop
+		// of generating a new path and colliding whenever we try to follow it, and the unit will
+		// move nowhere.
+		// Hopefully this isn't common.
+
 		// Wait for the next Update before we try moving again
 		return false;
 	}
