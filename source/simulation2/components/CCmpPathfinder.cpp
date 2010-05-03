@@ -220,8 +220,8 @@ public:
 
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
-
-const u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
+// Base cost to move between adjacent tiles
+const u32 g_CostPerTile = 256;
 
 /**
  * Tile data for A* computation.
@@ -500,7 +500,14 @@ static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal)
 	fixed rdist = dist - fixed::FromInt(rGoal);
 	rdist = rdist.Absolute();
 
-	return (rdist * (int)g_CostPerTile).ToInt_RoundToZero();
+	// To avoid overflows on large distances we have to convert to int before multiplying
+	// by the full tile cost, which means we lose some accuracy over short distances,
+	// so do a partial multiplication here.
+	// (This will overflow if sqrt(2)*tilesPerSide*premul >= 32768, so
+	// premul=32 means max tilesPerSide=724)
+	const int premul = 32;
+	cassert(g_CostPerTile % premul == 0);
+	return (rdist * premul).ToInt_RoundToZero() * (g_CostPerTile / premul);
 
 #else
 	return (abs((int)i - (int)iGoal) + abs((int)j - (int)jGoal)) * g_CostPerTile;
