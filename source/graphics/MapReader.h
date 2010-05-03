@@ -94,6 +94,8 @@ private:
 	CSimulation2* pSimulation2;
 	CEntityManager* pEntityMan;
 	VfsPath filename_xml;
+	bool only_xml;
+	u32 file_format_version;
 
 	// UnpackTerrain generator state
 	size_t cur_terrain_tex;

@@ -100,9 +100,9 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 				g_Renderer.GetSkyManager(), &g_LightEnv, m_pGame->GetView()->GetCamera(), m_pGame->GetView()->GetCinema(),
 				pTriggerManager, m_pGame->GetSimulation2(), m_EntityManager);
 				// fails immediately, or registers for delay loading
-		} catch (PSERROR_File&) {
+		} catch (PSERROR_File& err) {
 			delete reader;
-			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load map %ls", mapfilename.string().c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
 			throw PSERROR_Game_World_MapLoadFailed();
 		}
 	}

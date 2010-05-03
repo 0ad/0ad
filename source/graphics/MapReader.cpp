@@ -53,7 +53,7 @@
 #define LOG_CATEGORY L"graphics"
 
 CMapReader::CMapReader()
-	: xml_reader(0)
+	: xml_reader(0), m_PatchesPerSide(0)
 {
 	cur_terrain_tex = 0;	// important - resets generator state
 }
@@ -77,13 +77,29 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	pSimulation2 = pSimulation2_;
 	pEntityMan = pEntityMan_;
 
-	// [25ms]
-	unpacker.Read(pathname, "PSMP");
+	filename_xml = fs::change_extension(pathname, L".xml");
 
-	// check version
-	if (unpacker.GetVersion() < FILE_READ_VERSION) {
-		throw PSERROR_File_InvalidVersion();
+	// In some cases (particularly tests) we don't want to bother storing a large
+	// mostly-empty .pmp file, so we let the XML file specify basic terrain instead.
+	// If there's an .xml file and no .pmp, then we're probably in this XML-only mode
+	only_xml = false;
+	if (!FileExists(pathname) && FileExists(filename_xml))
+	{
+		only_xml = true;
 	}
+
+	file_format_version = CMapIO::FILE_VERSION; // default if there's no .pmp
+
+	if (!only_xml)
+	{
+		// [25ms]
+		unpacker.Read(pathname, "PSMP");
+		file_format_version = unpacker.GetVersion();
+	}
+
+	// check oldest supported version
+	if (file_format_version < FILE_READ_VERSION)
+		throw PSERROR_File_InvalidVersion();
 
 	// delete all existing entities
 	if (pSimulation2)
@@ -99,11 +115,11 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	}
 
 	// unpack the data
-	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1200);
+	if (!only_xml)
+		RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1200);
 
-	if (unpacker.GetVersion() >= 3) {
+	if (file_format_version >= 3) {
 		// read the corresponding XML file
-		filename_xml = fs::change_extension(pathname, L".xml");
 		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 5800);
 	}
 
@@ -185,33 +201,43 @@ int CMapReader::UnpackTerrain()
 // ApplyData: take all the input data, and rebuild the scene from it
 int CMapReader::ApplyData()
 {
-	// initialise the terrain
-	pTerrain->Initialize(m_PatchesPerSide, &m_Heightmap[0]);
+	if (m_PatchesPerSide == 0)
+	{
+		debug_warn(L"Map has no terrain data");
+		return -1;
+		// we'll probably crash when trying to use this map later
+	}
+
+	if (!only_xml)
+	{
+		// initialise the terrain
+		pTerrain->Initialize(m_PatchesPerSide, &m_Heightmap[0]);
+
+		// setup the textures on the minipatches
+		STileDesc* tileptr = &m_Tiles[0];
+		for (ssize_t j=0; j<m_PatchesPerSide; j++) {
+			for (ssize_t i=0; i<m_PatchesPerSide; i++) {
+				for (ssize_t m=0; m<PATCH_SIZE; m++) {
+					for (ssize_t k=0; k<PATCH_SIZE; k++) {
+						CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
+
+						mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];
+						mp.Tex1Priority = tileptr->m_Priority;
 	
-	// setup the textures on the minipatches
-	STileDesc* tileptr = &m_Tiles[0];
-	for (ssize_t j=0; j<m_PatchesPerSide; j++) {
-		for (ssize_t i=0; i<m_PatchesPerSide; i++) {
-			for (ssize_t m=0; m<PATCH_SIZE; m++) {
-				for (ssize_t k=0; k<PATCH_SIZE; k++) {
-					CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
-
-					mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];
-					mp.Tex1Priority = tileptr->m_Priority;
-
-					tileptr++;
+						tileptr++;
+					}
 				}
 			}
 		}
 	}
 
-	if (! g_UseSimulation2)
+	if (!g_UseSimulation2)
 	{
 		// Make units start out conforming correctly
 		pEntityMan->ConformAll();
 	}
 
-	if (unpacker.GetVersion() >= 4)
+	if (file_format_version >= 4)
 	{
 		// copy over the lighting parameters
 		if (pLightEnv)
@@ -265,6 +291,7 @@ private:
 
 	void Init(const VfsPath& xml_filename);
 
+	void ReadTerrain(XMBElement parent);
 	void ReadEnvironment(XMBElement parent);
 	void ReadCamera(XMBElement parent);
 	void ReadCinema(XMBElement parent);
@@ -344,6 +371,67 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	}
 }
 
+
+void CXMLReader::ReadTerrain(XMBElement parent)
+{
+#define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
+	AT(patches);
+	AT(texture);
+	AT(priority);
+	AT(height);
+#undef AT
+
+	ssize_t patches = 9;
+	CStr texture = "grass1_spring";
+	int priority = 0;
+	u16 height = 16384;
+
+	XERO_ITER_ATTR(parent, attr)
+	{
+		if (attr.Name == at_patches)
+			patches = CStr(attr.Value).ToInt();
+		else if (attr.Name == at_texture)
+			texture = CStr(attr.Value);
+		else if (attr.Name == at_priority)
+			priority = CStr(attr.Value).ToInt();
+		else if (attr.Name == at_height)
+			height = (u16)CStr(attr.Value).ToInt();
+	}
+
+	m_MapReader.m_PatchesPerSide = patches;
+
+	// Load the texture
+	Handle handle = 0;
+	CTextureEntry* texentry = g_TexMan.FindTexture(texture);
+	if (texentry)
+		handle = texentry->GetHandle();
+
+	m_MapReader.pTerrain->Initialize(patches, NULL);
+
+	// Fill the heightmap
+	u16* heightmap = m_MapReader.pTerrain->GetHeightMap();
+	ssize_t verticesPerSide = m_MapReader.pTerrain->GetVerticesPerSide();
+	for (ssize_t i = 0; i < SQR(verticesPerSide); ++i)
+		heightmap[i] = height;
+
+	// Fill the texture map
+	for (ssize_t pz = 0; pz < patches; ++pz)
+	{
+		for (ssize_t px = 0; px < patches; ++px)
+		{
+			CPatch* patch = m_MapReader.pTerrain->GetPatch(px, pz);	// can't fail
+
+			for (ssize_t z = 0; z < PATCH_SIZE; ++z)
+			{
+				for (ssize_t x = 0; x < PATCH_SIZE; ++x)
+				{
+					patch->m_MiniPatches[z][x].Tex1 = handle;
+					patch->m_MiniPatches[z][x].Tex1Priority = priority;
+				}
+			}
+		}
+	}
+}
 
 void CXMLReader::ReadEnvironment(XMBElement parent)
 {
@@ -1138,7 +1226,11 @@ int CXMLReader::ProgressiveRead()
 	{
 		XMBElement node = nodes.Item(node_idx);
 		CStr name = xmb_file.GetElementString(node.GetNodeName());
-		if (name == "Environment")
+		if (name == "Terrain")
+		{
+			ReadTerrain(node);
+		}
+		else if (name == "Environment")
 		{
 			ReadEnvironment(node);
 		}
@@ -1146,13 +1238,13 @@ int CXMLReader::ProgressiveRead()
 		{
 			ReadCamera(node);
 		}
-		else if (m_MapReader.unpacker.GetVersion() <= 4 && name == "Entities")
+		else if (m_MapReader.file_format_version <= 4 && name == "Entities")
 		{
 			ret = ReadOldEntities(node, end_time);
 			if (ret != 0)	// error or timed out
 				return ret;
 		}
-		else if (m_MapReader.unpacker.GetVersion() <= 4 && name == "Nonentities")
+		else if (m_MapReader.file_format_version <= 4 && name == "Nonentities")
 		{
 			ret = ReadNonEntities(node, end_time);
 			if (ret != 0)	// error or timed out

@@ -558,7 +558,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 						mapPath = "maps/scenarios/"
 	
 						// Get a list of map names.
-						mapArray = buildDirEntList (mapPath, "*.pmp", false);
+						mapArray = buildDirEntList (mapPath, "*.xml", false);
 
 						// Alphabetically sort the list, ignoring case.
 						mapArray.sort(function (x, y) {
