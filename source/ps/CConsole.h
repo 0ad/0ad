@@ -35,8 +35,6 @@
 #define CONSOLE_BUFFER_SIZE 1024 // for text being typed into the console
 #define CONSOLE_MESSAGE_SIZE 1024 // for messages being printed into the console
 
-struct JSObject;
-
 typedef void(*fptr)(void);
 
 class CConsole
@@ -130,8 +128,6 @@ private:
 
 	void LoadHistory();
 	void SaveHistory();
-	
-	JSObject* m_ScriptObject; // to run scripts in, so they can define variables that are retained between commands
 };
 
 extern CConsole* g_Console;

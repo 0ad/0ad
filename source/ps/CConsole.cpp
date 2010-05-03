@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,6 @@
 #include "ps/Pyrogenesis.h"
 #include "scripting/ScriptingHost.h"
 #include "scripting/ScriptableComplex.inl"
-#include "simulation/Entity.h"
 
 #define LOG_CATEGORY L"Console"
 
@@ -58,8 +57,6 @@ CConsole::CConsole()
 	m_iMsgHistPos = 1;
 	m_charsPerPage=0;
 	
-	m_ScriptObject = NULL; // scripting host isn't initialised yet - we'll set this later
-
 	InsertMessage(L"[ 0 A.D. Console v0.12 ]   type \"\\info\" for help");
 	InsertMessage(L"");
 
@@ -87,9 +84,6 @@ CConsole::~CConsole()
 	m_deqMsgHistory.clear();
 	m_deqBufHistory.clear();
 	delete[] m_szBuffer;
-
-	if (m_ScriptObject)
-		JS_RemoveRoot(g_ScriptingHost.GetContext(), &m_ScriptObject);
 }
 
 
@@ -221,6 +215,8 @@ void CConsole::Render()
 	const float MaxY = m_fHeight;
 	const float DeltaY = (1.0f - m_fVisibleFrac) * MaxY;
 
+	glPushMatrix();
+
 	glTranslatef(m_fX, m_fY + DeltaY, 0.0f); //Move to window position
 
 	glEnable(GL_BLEND);
@@ -231,6 +227,8 @@ void CConsole::Render()
 	DrawBuffer();
 
 	glDisable(GL_BLEND);
+
+	glPopMatrix();
 }
 
 
@@ -239,36 +237,33 @@ void CConsole::DrawWindow(void)
 	// TODO:  Add texturing
 	glDisable(GL_TEXTURE_2D);
 
-	glPushMatrix();
+	// Draw Background
+	// Set the color to a translucent blue
+	glColor4f(0.0f, 0.0f, 0.5f, 0.6f);
+	glBegin(GL_QUADS);
+		glVertex2f(0.0f,		0.0f);
+		glVertex2f(m_fWidth-1.0f,	0.0f);
+		glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
+		glVertex2f(0.0f,		m_fHeight-1.0f);
+	glEnd();
 
-		// Draw Background
-		// Set the color to a translucent blue
-		glColor4f(0.0f, 0.0f, 0.5f, 0.6f);
-		glBegin(GL_QUADS);
-			glVertex2f(0.0f,		0.0f);
-			glVertex2f(m_fWidth-1.0f,	0.0f);
-			glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
-			glVertex2f(0.0f,		m_fHeight-1.0f);
+	// Draw Border
+	// Set the color to a translucent yellow
+	glColor4f(0.5f, 0.5f, 0.0f, 0.6f);
+	glBegin(GL_LINE_LOOP);
+		glVertex2f(0.0f,		0.0f);
+		glVertex2f(m_fWidth-1.0f,	0.0f);
+		glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
+		glVertex2f(0.0f,		m_fHeight-1.0f);
+	glEnd();
+
+	if (m_fHeight > m_iFontHeight + 4)
+	{
+		glBegin(GL_LINES);
+			glVertex2f(0.0f,		(GLfloat)(m_iFontHeight + 4));
+			glVertex2f(m_fWidth,	(GLfloat)(m_iFontHeight + 4));
 		glEnd();
-
-		// Draw Border
-		// Set the color to a translucent yellow
-		glColor4f(0.5f, 0.5f, 0.0f, 0.6f);
-		glBegin(GL_LINE_LOOP);
-			glVertex2f(0.0f,		0.0f);
-			glVertex2f(m_fWidth-1.0f,	0.0f);
-			glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
-			glVertex2f(0.0f,		m_fHeight-1.0f);
-		glEnd();
-
-		if (m_fHeight > m_iFontHeight + 4)
-		{
-			glBegin(GL_LINES);
-				glVertex2f(0.0f,		(GLfloat)(m_iFontHeight + 4));
-				glVertex2f(m_fWidth,	(GLfloat)(m_iFontHeight + 4));
-			glEnd();
-		}
-	glPopMatrix();
+	}
 
 	glEnable(GL_TEXTURE_2D);
 }
@@ -680,23 +675,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	{
 		// Process it as JavaScript
 
-		// Run the script inside the first selected entity, if there is one.
-		// (Actually do it by using a separate object with the entity as its parent, so the script
-		// can read the entities variables but will define new variables in a private scope)
-		// (NOTE: this doesn't actually work, because the entities don't really have properties
-		// since they aren't sufficiently like real JS objects, which makes them get ignored in
-		// this situation. But this code is here so that it will work when the entities get fixed.)
-		if (! m_ScriptObject)
-		{
-			m_ScriptObject = JS_NewObject(g_ScriptingHost.GetContext(), NULL, NULL, NULL);
-			JS_AddRoot(g_ScriptingHost.GetContext(), &m_ScriptObject); // gets unrooted in ~CConsole
-		}
-		if (! g_Selection.m_selected.empty())
-		{
-			JS_SetParent(g_ScriptingHost.GetContext(), m_ScriptObject, g_Selection.m_selected[0]->GetScript());
-		}
-
-		jsval rval = g_ScriptingHost.ExecuteScript( szLine+1, L"Console", m_ScriptObject );
+		jsval rval = g_ScriptingHost.ExecuteScript( szLine+1, L"Console" );
 		if (szLine[0] == '?' && rval)
 		{
 			try {
@@ -705,8 +684,6 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 				InsertMessage( L"%hs", "<error converting return value to string>" );
 			}
 		}
-		
-		JS_SetParent(g_ScriptingHost.GetContext(), m_ScriptObject, JS_GetGlobalObject(g_ScriptingHost.GetContext())); // so the previous parent can get garbage-collected
 	}
 	else
 	{
