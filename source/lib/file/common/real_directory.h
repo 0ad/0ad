@@ -28,6 +28,7 @@
 
 class RealDirectory : public IFileLoader
 {
+	NONCOPYABLE(RealDirectory);
 public:
 	RealDirectory(const fs::wpath& path, size_t priority, size_t flags);
 
@@ -56,9 +57,6 @@ public:
 	void Watch();
 
 private:
-	RealDirectory(const RealDirectory& rhs);	// noncopyable due to const members
-	RealDirectory& operator=(const RealDirectory& rhs);
-
 	// note: paths are relative to the root directory, so storing the
 	// entire path instead of just the portion relative to the mount point
 	// is not all too wasteful.

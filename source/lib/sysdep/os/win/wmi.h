@@ -27,6 +27,8 @@
 #ifndef INCLUDED_WMI
 #define INCLUDED_WMI
 
+#include <map>
+
 // note: we expose the VARIANT value as returned by WMI. this allows other
 // modules to use the values they want directly, rather than forcing
 // everything to be converted to/parsed from strings. it does drag in

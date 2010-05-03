@@ -29,6 +29,8 @@
 
 #include <stdarg.h>
 
+#include "lib/lib_errors.h"
+
 namespace ERR
 {
 	const LibError STRING_NOT_TERMINATED = -100600;

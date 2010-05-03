@@ -48,6 +48,7 @@
 # pragma warning(disable:4201)	// nameless struct (Matrix3D)
 # pragma warning(disable:4244)	// conversion from uintN to uint8
 // .. permanently disabled W4
+# pragma warning(disable:4103)	// alignment changed after including header (boost has #pragma pack/pop in separate headers)
 # pragma warning(disable:4127)	// conditional expression is constant; rationale: see STMT in lib.h.
 # pragma warning(disable:4996)	// function is deprecated
 # pragma warning(disable:4786)	// identifier truncated to 255 chars
@@ -69,33 +70,26 @@
 # endif
 #endif
 
+#if ICC_VERSION
+#include <mathimf.h>	// (must come before <cmath> or <math.h> (replaces them))
+double __cdecl abs(double x);	// not declared by mathimf
+long double __cdecl abs(long double x);	// required for Eigen
+#endif
+
 
 //
 // headers made available everywhere for convenience
 //
 
-// (must come before any system headers because it fixes off_t)
-#include "lib/posix/posix_types.h"
-
+#include "lib/posix/posix_types.h"	// (must come before any system headers because it fixes off_t)
 #include "lib/code_annotation.h"
-
-// (must come before any use of <math.h> due to incompatibility with ICC's mathimf.h)
-#if ICC_VERSION
-#include <mathimf.h>
-#endif
-
 #include "lib/sysdep/arch.h"
-
+#include "lib/sysdep/stl.h"
 #include "lib/lib_api.h"
 #include "lib/types.h"
-
-#if !MINIMAL_PCH
-#include "lib/sysdep/stl.h"
 #include "lib/lib.h"
-#include "lib/lib_errors.h"
 #include "lib/secure_crt.h"
 #include "lib/debug.h"
-#endif // !MINIMAL_PCH
 
 // Boost
 // .. if this package isn't going to be statically linked, we're better off
@@ -105,10 +99,9 @@
 # define BOOST_ALL_DYN_LINK
 #endif
 
-// work around Boost bug (missing #pragma pack(pop)?)
-#pragma pack(push, lib_precompiled)
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:
+#include "lib/external_libraries/boost_filesystem.h"
 #include <boost/shared_ptr.hpp>
 using boost::shared_ptr;
 #if !MINIMAL_PCH
@@ -121,12 +114,9 @@ using boost::mem_fn;
 using boost::function;
 #include <boost/bind.hpp>
 using boost::bind;
-#include "lib/external_libraries/boost_filesystem.h"
 #endif // !MINIMAL_PCH
-#pragma pack(pop, lib_precompiled)
 
-// (this must come after boost and common lib headers)
-#include "lib/posix/posix.h"
+#include "lib/posix/posix.h"	// (must come after boost and common lib headers)
 
 
 //
@@ -170,8 +160,13 @@ using boost::bind;
 #endif // !MINIMAL_PCH
 
 #if MINIMAL_PCH < 2
-// all C++98 STL headers
+// common C++98 STL headers
 #include <algorithm>
+#include <vector>
+#endif
+
+#if MINIMAL_PCH < 3
+// all other C++98 STL headers
 #include <deque>
 #include <functional>
 #include <iterator>
@@ -183,7 +178,6 @@ using boost::bind;
 #include <set>
 #include <stack>
 #include <utility>
-#include <vector>
 #endif
 
 #if !MINIMAL_PCH

@@ -37,6 +37,7 @@
 # include "lib/sysdep/os/win/wposix/wposix_types.h"
 #else
 
+#include <math.h>
 #include <wchar.h>
 #include <sys/types.h>
 #include <stddef.h>

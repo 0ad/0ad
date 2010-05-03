@@ -152,8 +152,9 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		// (note: previously snd_group[m_index] was used in place of hs)
 		const VfsPath pathname(m_filepath/filenames[m_index]);
 		Handle hs = snd_open(pathname);
+		if(hs < 0)
 		{
-			HandleError(L"PlayNext: snd_open failed", pathname, (LibError)m_hReplacement);
+			HandleError(L"PlayNext: snd_open failed", pathname, (LibError)hs);
 			return;
 		}
 

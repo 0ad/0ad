@@ -105,7 +105,7 @@ public:
 	}
 
 	// allocate uninitialized storage
-	pointer allocate(size_type numElements, const void* hint = 0)
+	pointer allocate(size_type numElements)
 	{
 		const size_type alignment = x86_x64_L1CacheLineSize();
 		const size_type elementSize = round_up(sizeof(T), alignment);
@@ -115,7 +115,7 @@ public:
 	}
 
 	// deallocate storage of elements that have been destroyed
-	void deallocate(pointer p, size_type num)
+	void deallocate(pointer p, size_type UNUSED(num))
 	{
 		rtl_FreeAligned((void*)p);
 	}

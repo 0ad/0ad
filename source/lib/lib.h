@@ -60,7 +60,6 @@ scope
 #ifndef INCLUDED_LIB
 #define INCLUDED_LIB
 
-#include <stddef.h>
 #include <math.h>	// fabsf
 #include <limits>	// numeric_limits
 #include <stdexcept>	// out_of_range

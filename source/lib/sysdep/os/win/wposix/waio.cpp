@@ -27,6 +27,8 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/waio.h"
 
+#include <map>
+
 #include "lib/sysdep/os/win/wposix/crt_posix.h"      // correct definitions of _open() etc.
 
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
