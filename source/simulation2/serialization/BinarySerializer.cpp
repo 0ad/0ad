@@ -27,7 +27,7 @@
 #include "ps/utf16string.h"
 
 #include "scriptinterface/ScriptInterface.h"
-#include "js/jsapi.h"
+#include "scriptinterface/AutoRooters.h"
 
 CBinarySerializer::CBinarySerializer(ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface)
@@ -104,47 +104,6 @@ void CBinarySerializer::PutScriptVal(const char* UNUSED(name), jsval value)
 
 ////////////////////////////////////////////////////////////////
 
-// Exception-safety and GC-safety wrapper for JSIdArray
-class IdArrayWrapper
-{
-	JSContext* m_cx;
-	JSIdArray* m_ida;
-public:
-	IdArrayWrapper(JSContext* cx, JSIdArray* ida) :
-		m_cx(cx), m_ida(ida)
-	{
-		for (jsint i = 0; i < m_ida->length; ++i)
-			if (!JS_AddRoot(m_cx, &m_ida->vector[i]))
-				throw PSERROR_Serialize_ScriptError("JS_AddRoot failed");
-	}
-	~IdArrayWrapper()
-	{
-		for (jsint i = 0; i < m_ida->length; ++i)
-			if (!JS_RemoveRoot(m_cx, &m_ida->vector[i]))
-				throw PSERROR_Serialize_ScriptError("JS_RemoveRoot failed");
-		JS_DestroyIdArray(m_cx, m_ida);
-	}
-};
-
-class RootWrapper
-{
-	JSContext* m_cx;
-	void* m_obj;
-public:
-	// obj must be a JSObject** or JSString** or jsval* etc
-	RootWrapper(JSContext* cx, void* obj) :
-		m_cx(cx), m_obj(obj)
-	{
-		if (!JS_AddRoot(m_cx, m_obj))
-			throw PSERROR_Serialize_ScriptError("JS_AddRoot failed");
-	}
-	~RootWrapper()
-	{
-		if (!JS_RemoveRoot(m_cx, m_obj))
-			throw PSERROR_Serialize_ScriptError("JS_RemoveRoot failed");
-	}
-};
-
 void CBinarySerializer::HandleScriptVal(jsval val)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
@@ -216,40 +175,26 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 		for (jsint i = 0; i < ida->length; ++i)
 		{
 			jsval idval, propval;
-			uintN attrs;
-			JSBool found;
 
-			// Find the attribute name
-			// (TODO: just use JS_GetPropertyById if we ever upgrade to Spidermonkey 1.8.1)
-
-			if (!JS_IdToValue(cx, ida->vector[i], &idval))
-			{
-				LOGERROR(L"JS_IdToValue failed");
-				throw PSERROR_Serialize_ScriptError();
-			}
-
-			JSString* idstr = JS_ValueToString(cx, idval);
-			if (!idstr)
-			{
-				LOGERROR(L"JS_ValueToString failed");
-				throw PSERROR_Serialize_ScriptError();
-			}
-			RootWrapper idstrWrapper(cx, &idstr);
-
-			if (!JS_GetUCPropertyAttributes(cx, obj, JS_GetStringChars(idstr), JS_GetStringLength(idstr), &attrs, &found))
-				throw PSERROR_Serialize_ScriptError("JS_GetUCPropertyAttributes failed");
-			if (!found)
-				throw PSERROR_Serialize_ScriptError("JS_GetUCPropertyAttributes didn't find enumerated property");
-
-			if (attrs & JSPROP_GETTER)
+			// Forbid getters, because they will be weird and not serialise properly
+			JSPropertyDescriptor descr;
+			if (!JS_GetPropertyDescriptorById(cx, obj, ida->vector[i], JSRESOLVE_QUALIFIED, &descr))
+				throw PSERROR_Serialize_ScriptError("JS_GetPropertyDescriptorById failed");
+			if (descr.attrs & JSPROP_GETTER)
 				throw PSERROR_Serialize_ScriptError("Cannot serialize property getters");
 
+			// Get the property name as a string
+			if (!JS_IdToValue(cx, ida->vector[i], &idval))
+				throw PSERROR_Serialize_ScriptError("JS_IdToValue failed");
+			JSString* idstr = JS_ValueToString(cx, idval);
+			if (!idstr)
+				throw PSERROR_Serialize_ScriptError("JS_ValueToString failed");
+			CScriptValRooted idstrRoot(cx, STRING_TO_JSVAL(idstr));
+
 			ScriptString("prop name", idstr);
-			if (!JS_GetUCProperty(cx, obj, JS_GetStringChars(idstr), JS_GetStringLength(idstr), &propval))
-			{
-				LOGERROR(L"JS_GetUCProperty failed");
-				throw PSERROR_Serialize_ScriptError();
-			}
+
+			if (!JS_GetPropertyById(cx, obj, ida->vector[i], &propval))
+				throw PSERROR_Serialize_ScriptError("JS_GetPropertyById failed");
 
 			HandleScriptVal(propval);
 		}

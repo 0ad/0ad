@@ -25,6 +25,7 @@
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
+#include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
 CGUIManager* g_GUI = NULL;

@@ -73,26 +73,6 @@ void CStdDeserializer::FreeScriptBackrefs()
 
 ////////////////////////////////////////////////////////////////
 
-class RootWrapper
-{
-	JSContext* m_cx;
-	void* m_obj;
-public:
-	// obj must be a JSObject** or JSString** or jsval* etc
-	RootWrapper(JSContext* cx, void* obj) :
-		m_cx(cx), m_obj(obj)
-	{
-		if (!JS_AddRoot(m_cx, m_obj))
-			throw PSERROR_Deserialize_ScriptError("JS_AddRoot failed");
-	}
-	~RootWrapper()
-	{
-		if (!JS_RemoveRoot(m_cx, m_obj))
-			throw PSERROR_Deserialize_ScriptError("JS_RemoveRoot failed");
-	}
-};
-
-
 jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
@@ -120,7 +100,7 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError();
-		RootWrapper objWrapper(cx, &obj);
+		CScriptValRooted objRoot(cx, OBJECT_TO_JSVAL(obj));
 
 		AddScriptBackref(obj);
 
@@ -133,7 +113,7 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 			StringUTF16(propname);
 
 			jsval propval = ReadScriptVal(NULL);
-			RootWrapper propvalWrapper(cx, &propval);
+			CScriptValRooted propvalRoot(cx, propval);
 
 			if (!JS_SetUCProperty(cx, obj, (const jschar*)propname.data(), propname.length(), &propval))
 				throw PSERROR_Deserialize_ScriptError();

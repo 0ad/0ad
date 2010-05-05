@@ -24,8 +24,6 @@
 
 #include <vector>
 #include "Singleton.h"
-#include "scripting/ScriptableObject.h"
-
 
 #define PROFILE_AMORTIZE
 #define PROFILE_AMORTIZE_FRAMES 50
@@ -33,7 +31,10 @@
 class CProfileManager;
 class CProfileNodeTable;
 
-class CProfileNode : public CJSObject<CProfileNode, true>
+class CStr8;
+class CStrW;
+
+class CProfileNode
 {
 	friend class CProfileManager;
 	friend class CProfileNodeTable;
@@ -112,11 +113,6 @@ public:
 	void Call();
 	// Leaves the node. Returns true if the node has actually been left
 	bool Return();
-
-// Javascript stuff...
-
-	static void ScriptingInit();
-	jsval JS_GetName(JSContext*) { return( ToJSVal( CStrW( name ) ) ); }
 };
 
 class CProfileManager : public Singleton<CProfileManager>

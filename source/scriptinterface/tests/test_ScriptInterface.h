@@ -56,4 +56,51 @@ public:
 		TS_ASSERT(!script.LoadScript(L"test.js", L"with(1){}"));
 		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
 	}
+
+	void test_clone_basic()
+	{
+		ScriptInterface script1("Test");
+		ScriptInterface script2("Test");
+
+		CScriptVal obj1;
+		TS_ASSERT(script1.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", obj1));
+
+		CScriptVal obj2 = script2.CloneValueFromOtherContext(script1, obj1.get());
+
+		std::string source;
+		TS_ASSERT(script2.CallFunction(obj2.get(), "toSource", source));
+		TS_ASSERT_STR_EQUALS(source, "({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})");
+	}
+
+	void test_clone_getters()
+	{
+		// The tests should be run with JS_SetGCZeal so this can try to find GC bugs
+
+		ScriptInterface script1("Test");
+		ScriptInterface script2("Test");
+
+		CScriptVal obj1;
+		TS_ASSERT(script1.Eval("var s = '?'; var v = ({get x() { return 123 }, 'y': {'w':{get z() { delete v.y; delete v.n; v = null; s += s; return 4 }}}, 'n': 100}); v", obj1));
+
+		CScriptVal obj2 = script2.CloneValueFromOtherContext(script1, obj1.get());
+
+		std::string source;
+		TS_ASSERT(script2.CallFunction(obj2.get(), "toSource", source));
+		TS_ASSERT_STR_EQUALS(source, "({x:123, y:{w:{z:4}}, n:(void 0)})");
+	}
+
+	void test_clone_cyclic()
+	{
+		ScriptInterface script1("Test");
+		ScriptInterface script2("Test");
+
+		CScriptVal obj1;
+		TS_ASSERT(script1.Eval("var x = []; x[0] = x; ({'a': x, 'b': x})", obj1));
+
+		CScriptVal obj2 = script2.CloneValueFromOtherContext(script1, obj1.get());
+
+		std::string source;
+		TS_ASSERT(script2.CallFunction(obj2.get(), "toSource", source));
+		TS_ASSERT_STR_EQUALS(source, "({a:#1=[#1#], b:#1#})");
+	}
 };

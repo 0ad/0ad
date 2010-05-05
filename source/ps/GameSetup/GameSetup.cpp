@@ -444,7 +444,6 @@ static void RegisterJavascriptInterfaces()
 
 	// ps
 	JSI_Console::init();
-	CProfileNode::ScriptingInit();
 	CGameAttributes::ScriptingInit();
 	CPlayerSlot::ScriptingInit();
 	CPlayer::ScriptingInit();

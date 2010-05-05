@@ -68,49 +68,6 @@ bool IsNewSimulation(void* UNUSED(cbdata))
 	return g_UseSimulation2;
 }
 
-// TODO: this should probably be moved into ScriptInterface in case anyone else wants to use it
-static jsval CloneValueBetweenContexts(JSContext* cxFrom, JSContext* cxTo, jsval val)
-{
-	if (JSVAL_IS_INT(val) || JSVAL_IS_BOOLEAN(val) || JSVAL_IS_NULL(val) || JSVAL_IS_VOID(val))
-		return val;
-
-	if (JSVAL_IS_DOUBLE(val))
-	{
-		jsval rval;
-		if (JS_NewNumberValue(cxTo, *JSVAL_TO_DOUBLE(val), &rval))
-			return rval;
-		else
-			return JSVAL_VOID;
-	}
-
-	if (JSVAL_IS_STRING(val))
-	{
-		JSString* str = JS_NewUCStringCopyN(cxTo, JS_GetStringChars(JSVAL_TO_STRING(val)), JS_GetStringLength(JSVAL_TO_STRING(val)));
-		if (str == NULL)
-			return JSVAL_VOID;
-		return STRING_TO_JSVAL(str);
-	}
-
-	if (JSVAL_IS_OBJECT(val))
-	{
-		jsval source;
-		if (!JS_CallFunctionName(cxFrom, JSVAL_TO_OBJECT(val), "toSource", 0, NULL, &source))
-			return JSVAL_VOID;
-		if (!JSVAL_IS_STRING(source))
-			return JSVAL_VOID;
-		JS_AddRoot(cxFrom, &source);
-		jsval rval;
-		JSBool ok = JS_EvaluateUCScript(cxTo, JS_GetGlobalObject(cxTo),
-				JS_GetStringChars(JSVAL_TO_STRING(source)), JS_GetStringLength(JSVAL_TO_STRING(source)),
-				"(CloneValueBetweenContexts)", 0, &rval);
-		JS_RemoveRoot(cxFrom, &source);
-		return ok ? rval : JSVAL_VOID;
-	}
-
-	LOGERROR(L"CloneValueBetweenContexts: value is of unexpected type");
-	return JSVAL_VOID;
-}
-
 CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
@@ -128,10 +85,8 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 	if (g_Game && g_Game->GetLocalPlayer())
 		player = g_Game->GetLocalPlayer()->GetPlayerID();
 
-	JSContext* cxGui = guiManager->GetScriptInterface().GetContext();
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	CScriptVal ret = gui->ScriptCall(player, name, CloneValueBetweenContexts(cxGui, cxSim, data.get()));
-	return CloneValueBetweenContexts(cxSim, cxGui, ret.get());
+	CScriptVal ret = gui->ScriptCall(player, name, sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), data.get()));
+	return guiManager->GetScriptInterface().CloneValueFromOtherContext(sim->GetScriptInterface(), ret.get());
 }
 
 void PostNetworkCommand(void* cbdata, CScriptVal cmd)
@@ -151,7 +106,7 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 	if (g_Game && g_Game->GetLocalPlayer())
 		player = g_Game->GetLocalPlayer()->GetPlayerID();
 
-	jsval cmd2 = CloneValueBetweenContexts(guiManager->GetScriptInterface().GetContext(), sim->GetScriptInterface().GetContext(), cmd.get());
+	jsval cmd2 = sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), cmd.get());
 
 	queue->PushClientCommand(player, cmd2);
 	// TODO: This shouldn't call Push, it should send the message to the network layer

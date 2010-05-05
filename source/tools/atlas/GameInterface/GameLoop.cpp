@@ -36,6 +36,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/GameSetup/Paths.h"
+#include "scripting/ScriptingHost.h"
 
 using namespace AtlasMessage;
 

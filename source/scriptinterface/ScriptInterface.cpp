@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,14 +18,14 @@
 #include "precompiled.h"
 
 #include "ScriptInterface.h"
+#include "AutoRooters.h"
 
 #include "lib/debug.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 #include "ps/utf16string.h"
 
 #include <cassert>
-
-#include "js/jsapi.h"
 
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
@@ -34,6 +34,16 @@
 
 const int RUNTIME_SIZE = 4 * 1024 * 1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
+
+#ifdef NDEBUG
+#define ENABLE_SCRIPT_PROFILING 0
+#else
+#define ENABLE_SCRIPT_PROFILING 1
+#endif
+
+#ifdef ENABLE_SCRIPT_PROFILING
+#include "js/jsdbgapi.h"
+#endif
 
 ////////////////////////////////////////////////////////////////
 
@@ -102,6 +112,34 @@ JSBool print(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsva
 
 } // anonymous namespace
 
+#if ENABLE_SCRIPT_PROFILING
+static void* jshook_script(JSContext* UNUSED(cx), JSStackFrame* UNUSED(fp), JSBool before, JSBool* UNUSED(ok), void* closure)
+{
+	if (before)
+		g_Profiler.StartScript("script invocation");
+	else
+		g_Profiler.Stop();
+
+	return closure;
+}
+
+static void* jshook_function(JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure)
+{
+	JSFunction* fn = JS_GetFrameFunction(cx, fp);
+	if (before)
+	{
+		if (fn)
+			g_Profiler.StartScript(JS_GetFunctionName(fn));
+		else
+			g_Profiler.StartScript("function invocation");
+	}
+	else
+		g_Profiler.Stop();
+
+	return closure;
+}
+#endif
+
 ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContext* cx)
 {
 	JSBool ok;
@@ -117,10 +155,17 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 		m_rt = JS_NewRuntime(RUNTIME_SIZE);
 		debug_assert(m_rt); // TODO: error handling
 
+#if ENABLE_SCRIPT_PROFILING
+		// Register our script and function handlers - note: docs say they don't like
+		// nulls passed as closures, nor should they return nulls.
+		JS_SetExecuteHook(m_rt, jshook_script, this);
+		JS_SetCallHook(m_rt, jshook_function, this);
+#endif
+
 		m_cx = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
 		debug_assert(m_cx);
 
-		// For GC debugging with SpiderMonkey 1.8+:
+		// For GC debugging:
 		// JS_SetGCZeal(m_cx, 2);
 
 		JS_SetContextPrivate(m_cx, NULL);
@@ -192,7 +237,7 @@ void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
 	m->Register(name, fptr, (uintN)nargs);
 }
 
-JSContext* ScriptInterface::GetContext()
+JSContext* ScriptInterface::GetContext() const
 {
 	return m->m_cx;
 }
@@ -497,4 +542,124 @@ void* ScriptInterface::GetPrivate(JSContext* cx, JSObject* obj)
 {
 	// TODO: use JS_GetInstancePrivate
 	return JS_GetPrivate(cx, obj);
+}
+
+
+class ValueCloner
+{
+public:
+	ValueCloner(JSContext* cxFrom, JSContext* cxTo) : cxFrom(cxFrom), cxTo(cxTo)
+	{
+	}
+
+	// Return the cloned object (or an already-computed object if we've cloned val before)
+	jsval GetOrClone(jsval val)
+	{
+		if (!JSVAL_IS_GCTHING(val) || JSVAL_IS_NULL(val))
+			return val;
+
+		std::map<jsval, jsval>::iterator it = m_Mapping.find(val);
+		if (it != m_Mapping.end())
+			return it->second;
+
+		m_ValuesOld.push_back(CScriptValRooted(cxFrom, val)); // root it so our mapping doesn't get invalidated
+
+		return Clone(val);
+	}
+
+private:
+
+#define CLONE_REQUIRE(expr, msg) if (!(expr)) { debug_warn(L"Internal error in CloneValueFromOtherContext: " msg); return JSVAL_VOID; }
+
+	// Clone a new value (and root it and add it to the mapping)
+	jsval Clone(jsval val)
+	{
+		if (JSVAL_IS_DOUBLE(val))
+		{
+			jsval rval;
+			CLONE_REQUIRE(JS_NewNumberValue(cxTo, *JSVAL_TO_DOUBLE(val), &rval), L"JS_NewNumberValue");
+			m_Mapping[val] = rval;
+			m_ValuesNew.push_back(CScriptValRooted(cxTo, rval));
+			return rval;
+		}
+
+		if (JSVAL_IS_STRING(val))
+		{
+			JSString* str = JS_NewUCStringCopyN(cxTo, JS_GetStringChars(JSVAL_TO_STRING(val)), JS_GetStringLength(JSVAL_TO_STRING(val)));
+			CLONE_REQUIRE(str, L"JS_NewUCStringCopyN");
+			jsval rval = STRING_TO_JSVAL(str);
+			m_Mapping[val] = rval;
+			m_ValuesNew.push_back(CScriptValRooted(cxTo, rval));
+			return rval;
+		}
+
+		debug_assert(JSVAL_IS_OBJECT(val));
+
+		JSObject* newObj;
+		if (JS_IsArrayObject(cxFrom, JSVAL_TO_OBJECT(val)))
+		{
+			jsuint length;
+			CLONE_REQUIRE(JS_GetArrayLength(cxFrom, JSVAL_TO_OBJECT(val), &length), L"JS_GetArrayLength");
+			newObj = JS_NewArrayObject(cxTo, length, NULL);
+			CLONE_REQUIRE(newObj, L"JS_NewArrayObject");
+		}
+		else
+		{
+			newObj = JS_NewObject(cxTo, NULL, NULL, NULL);
+			CLONE_REQUIRE(newObj, L"JS_NewObject");
+		}
+
+		m_Mapping[val] = OBJECT_TO_JSVAL(newObj);
+		m_ValuesNew.push_back(CScriptValRooted(cxTo, OBJECT_TO_JSVAL(newObj)));
+
+		JSIdArray* ida = JS_Enumerate(cxFrom, JSVAL_TO_OBJECT(val));
+		CLONE_REQUIRE(ida, L"JS_Enumerate");
+
+		IdArrayWrapper idaWrapper(cxFrom, ida);
+
+		for (jsint i = 0; i < ida->length; ++i)
+		{
+			jsid id = ida->vector[i];
+			jsval idval, propval;
+			CLONE_REQUIRE(JS_IdToValue(cxFrom, id, &idval), L"JS_IdToValue");
+			CLONE_REQUIRE(JS_GetPropertyById(cxFrom, JSVAL_TO_OBJECT(val), id, &propval), L"JS_GetPropertyById");
+			jsval newPropval = GetOrClone(propval);
+
+			if (JSVAL_IS_INT(idval))
+			{
+				// int jsids are portable across runtimes
+				CLONE_REQUIRE(JS_SetPropertyById(cxTo, newObj, id, &newPropval), L"JS_SetPropertyById");
+			}
+			else if (JSVAL_IS_STRING(idval))
+			{
+				// string jsids are runtime-specific, so we need to copy the string content
+				JSString* idstr = JS_ValueToString(cxFrom, idval);
+				CLONE_REQUIRE(idstr, L"JS_ValueToString (id)");
+				CLONE_REQUIRE(JS_SetUCProperty(cxTo, newObj, JS_GetStringChars(idstr), JS_GetStringLength(idstr), &newPropval), L"JS_SetUCProperty");
+			}
+			else
+			{
+				// this apparently could be an XML object; ignore it
+			}
+		}
+
+		return OBJECT_TO_JSVAL(newObj);
+	}
+
+	JSContext* cxFrom;
+	JSContext* cxTo;
+	std::map<jsval, jsval> m_Mapping;
+	std::deque<CScriptValRooted> m_ValuesOld;
+	std::deque<CScriptValRooted> m_ValuesNew;
+};
+
+jsval ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& otherContext, jsval val)
+{
+	PROFILE("CloneValueFromOtherContext");
+
+	JSContext* cxTo = GetContext();
+	JSContext* cxFrom = otherContext.GetContext();
+
+	ValueCloner cloner(cxFrom, cxTo);
+	return cloner.GetOrClone(val);
 }

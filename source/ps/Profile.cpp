@@ -581,18 +581,6 @@ bool CProfileNode::Return()
 	return( recursion == 0 );
 }
 
-void CProfileNode::ScriptingInit()
-{
-	AddProperty( L"name", (IJSObject::GetFn)&CProfileNode::JS_GetName );
-	/*
-	AddReadOnlyClassProperty( L"callsTotal", &CProfileNode::calls_total );
-	AddReadOnlyClassProperty( L"callsPerFrame", &CProfileNode::calls_frame_last );
-	AddReadOnlyClassProperty( L"timeTotal", &CProfileNode::time_total );
-	AddReadOnlyClassProperty( L"timePerFrame", &CProfileNode::time_frame_last );
-	*/
-	CJSObject<CProfileNode, true>::ScriptingInit( "ProfilerNode" );
-}
-
 CProfileManager::CProfileManager()
 {
 	root = new CProfileNode( "root", NULL );

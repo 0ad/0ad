@@ -60,7 +60,7 @@ public:
 	void SetCallbackData(void* cbdata);
 	static void* GetCallbackData(JSContext* cx);
 
-	JSContext* GetContext();
+	JSContext* GetContext() const;
 
 	/**
 	 * Call a constructor function, roughly equivalent to JS "new ctor".
@@ -154,6 +154,14 @@ public:
 	 * @return true on successful compilation and execution; false otherwise
 	 */
 	bool LoadScript(const std::wstring& filename, const std::wstring& code);
+
+	/**
+	 * Construct a new value (usable in this ScriptInterface's context) by cloning
+	 * a value from a different context.
+	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
+	 * types and cyclic references should be fine.
+	 */
+	jsval CloneValueFromOtherContext(const ScriptInterface& otherContext, jsval val);
 
 	/**
 	 * Convert a jsval to a C++ type. (This might trigger GC.)

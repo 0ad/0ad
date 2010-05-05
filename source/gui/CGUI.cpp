@@ -57,6 +57,7 @@ CGUI
 #include "ps/Profile.h"
 
 #include "scripting/ScriptingHost.h"
+#include "scripting/JSConversions.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Filesystem.h"
