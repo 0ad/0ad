@@ -548,7 +548,7 @@ void* ScriptInterface::GetPrivate(JSContext* cx, JSObject* obj)
 void ScriptInterface::DumpHeap()
 {
 #ifdef DEBUG
-	JS_DumpHeap(m->m_cx, stderr, NULL, 0, NULL, -1, NULL);
+	JS_DumpHeap(m->m_cx, stderr, NULL, 0, NULL, (size_t)-1, NULL);
 #endif
 	fprintf(stderr, "# Bytes allocated: %d\n", JS_GetGCParameter(m->m_rt, JSGC_BYTES));
 	JS_GC(m->m_cx);
