@@ -20,6 +20,7 @@
 
 #include "maths/Fixed.h"
 #include "ps/Errors.h"
+#include "scriptinterface/ScriptVal.h"
 
 #include <map>
 #include <set>
@@ -179,12 +180,27 @@ public:
 	 */
 	static std::wstring EscapeXMLString(const std::wstring& str);
 
+	/**
+	 * Stores the given script representation of this node, for use in cached conversions.
+	 * This must only be called once.
+	 * The node should not be modified (e.g. by LoadXML) after setting this.
+	 * The lifetime of the script context associated with the value must be longer
+	 * than the lifetime of this node.
+	 */
+	void SetScriptVal(CScriptValRooted val) const;
+
+	/**
+	 * Returns the value saved by SetScriptVal, or the default (JSVAL_VOID) if none was set.
+	 */
+	CScriptValRooted GetScriptVal() const;
+
 private:
 	void ApplyLayer(const XMBFile& xmb, const XMBElement& element);
 
 	std::wstring m_Value;
 	ChildrenMap m_Childs;
 	bool m_IsOk;
+	mutable CScriptValRooted m_ScriptVal;
 };
 
 #endif // INCLUDED_PARAMNODE

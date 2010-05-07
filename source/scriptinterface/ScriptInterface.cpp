@@ -156,10 +156,11 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 		debug_assert(m_rt); // TODO: error handling
 
 #if ENABLE_SCRIPT_PROFILING
-		// Register our script and function handlers - note: docs say they don't like
-		// nulls passed as closures, nor should they return nulls.
-		JS_SetExecuteHook(m_rt, jshook_script, this);
-		JS_SetCallHook(m_rt, jshook_function, this);
+		if (CProfileManager::IsInitialised())
+		{
+			JS_SetExecuteHook(m_rt, jshook_script, this);
+			JS_SetCallHook(m_rt, jshook_function, this);
+		}
 #endif
 
 		m_cx = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
@@ -542,6 +543,16 @@ void* ScriptInterface::GetPrivate(JSContext* cx, JSObject* obj)
 {
 	// TODO: use JS_GetInstancePrivate
 	return JS_GetPrivate(cx, obj);
+}
+
+void ScriptInterface::DumpHeap()
+{
+#ifdef DEBUG
+	JS_DumpHeap(m->m_cx, stderr, NULL, 0, NULL, -1, NULL);
+#endif
+	fprintf(stderr, "# Bytes allocated: %d\n", JS_GetGCParameter(m->m_rt, JSGC_BYTES));
+	JS_GC(m->m_cx);
+	fprintf(stderr, "# Bytes allocated after GC: %d\n", JS_GetGCParameter(m->m_rt, JSGC_BYTES));
 }
 
 

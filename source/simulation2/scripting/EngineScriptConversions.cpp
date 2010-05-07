@@ -60,11 +60,8 @@ template<> jsval ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, IComponent
 	return OBJECT_TO_JSVAL(obj);
 }
 
-template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode const& val)
+static jsval ConvertCParamNode(JSContext* cx, CParamNode const& val)
 {
-	// TODO: this really needs to be cached, so that entities with the same template
-	// share the same this.template value (for efficiency)
-
 	const std::map<std::string, CParamNode>& children = val.GetChildren();
 	if (children.empty())
 	{
@@ -74,7 +71,7 @@ template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode 
 
 		// Just a string
 		utf16string text(val.ToString().begin(), val.ToString().end());
-		JSString* str = JS_NewUCStringCopyN(cx, text.data(), text.length());
+		JSString* str = JS_InternUCStringN(cx, text.data(), text.length());
 		if (str)
 			return STRING_TO_JSVAL(str);
 		// TODO: report error
@@ -93,7 +90,7 @@ template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode 
 
 	for (std::map<std::string, CParamNode>::const_iterator it = children.begin(); it != children.end(); ++it)
 	{
-		jsval childVal = ScriptInterface::ToJSVal(cx, it->second);
+		jsval childVal = ConvertCParamNode(cx, it->second);
 		if (!JS_SetProperty(cx, obj, it->first.c_str(), &childVal))
 			return JSVAL_VOID; // TODO: report error
 	}
@@ -101,7 +98,11 @@ template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode 
 	// If the node has a string too, add that as an extra property
 	if (!val.ToString().empty())
 	{
-		jsval childVal = ScriptInterface::ToJSVal(cx, val.ToString());
+		utf16string text(val.ToString().begin(), val.ToString().end());
+		JSString* str = JS_InternUCStringN(cx, text.data(), text.length());
+		if (!str)
+			return JSVAL_VOID; // TODO: report error
+		jsval childVal = STRING_TO_JSVAL(str);
 		if (!JS_SetProperty(cx, obj, "_string", &childVal))
 			return JSVAL_VOID; // TODO: report error
 	}
@@ -113,6 +114,17 @@ template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode 
 	// global object too (via the parent chain))
 
 	return OBJECT_TO_JSVAL(obj);
+}
+
+template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode const& val)
+{
+	// If there's a cached value, then return it
+	if (!JSVAL_IS_VOID(val.GetScriptVal().get()))
+		return val.GetScriptVal().get();
+
+	jsval rval = ConvertCParamNode(cx, val);
+	val.SetScriptVal(CScriptValRooted(cx, rval));
+	return rval;
 }
 
 template<> jsval ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, const CParamNode* const& val)

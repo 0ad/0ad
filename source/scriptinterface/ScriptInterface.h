@@ -177,6 +177,11 @@ public:
 	bool AddRoot(void* ptr, const char* name);
 	bool RemoveRoot(void* ptr);
 
+	/**
+	 * Dump some memory heap debugging information to stderr.
+	 */
+	void DumpHeap();
+
 	// Helper class for automatically rooting values
 	class LocalRootScope
 	{

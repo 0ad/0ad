@@ -167,6 +167,9 @@ bool CSimulation2Impl::Update(float frameTime)
 		// Clean up any entities destroyed during the simulation update
 		m_ComponentManager.FlushDestroyedComponents();
 
+//		if (m_TurnNumber == 0)
+//			m_ComponentManager.GetScriptInterface().DumpHeap();
+
 		++m_TurnNumber;
 
 		return true;

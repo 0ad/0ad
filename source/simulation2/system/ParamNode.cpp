@@ -22,6 +22,8 @@
 #include "ps/CStr.h"
 #include "ps/XML/Xeromyces.h"
 
+#include "js/jsapi.h"
+
 #include <sstream>
 
 static CParamNode g_NullNode(false);
@@ -219,4 +221,15 @@ void CParamNode::ToXML(std::wostream& strm) const
 
 		strm << L"</" << name << ">";
 	}
+}
+
+void CParamNode::SetScriptVal(CScriptValRooted val) const
+{
+	debug_assert(JSVAL_IS_VOID(m_ScriptVal.get()));
+	m_ScriptVal = val;
+}
+
+CScriptValRooted CParamNode::GetScriptVal() const
+{
+	return m_ScriptVal;
 }
