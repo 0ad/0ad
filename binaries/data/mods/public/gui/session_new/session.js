@@ -134,6 +134,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
 
 		var template = Engine.GuiInterfaceCall("GetTemplateData", entType);
+		if (!template)
+			continue; // ignore attempts to use invalid templates (an error should have been reported already)
 
 		var name;
 		if (template.name.specific && template.name.generic)
