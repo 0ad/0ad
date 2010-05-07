@@ -25,7 +25,7 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public"));
+		g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST); // ignore directory-not-found errors
 		CXeromyces::Startup();
 	}
 
@@ -53,6 +53,12 @@ public:
 
 	void test_scripts()
 	{
+		if (!FileExists(L"simulation/components/tests/"))
+		{
+			debug_printf(L"WARNING: Skipping component scripts tests (can't find binaries/data/mods/public/simulation/components/tests)\n");
+			return;
+		}
+
 		VfsPaths paths;
 		TS_ASSERT_OK(fs_util::GetPathnames(g_VFS, L"simulation/components/tests/", L"test_*.js", paths));
 		for (size_t i = 0; i < paths.size(); ++i)

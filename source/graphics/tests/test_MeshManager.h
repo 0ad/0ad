@@ -59,7 +59,7 @@ class TestMeshManager : public CxxTest::TestSuite
 		g_VFS = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/L"tests/collada"));
+		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/L"tests/collada", VFS_MOUNT_MUST_EXIST));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the

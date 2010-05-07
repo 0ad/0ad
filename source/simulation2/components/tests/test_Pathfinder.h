@@ -39,7 +39,7 @@ public:
 		CXeromyces::Startup();
 
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir()/L"cache"));
 
 		// Set up loads of stuff that's needed in order to load a map

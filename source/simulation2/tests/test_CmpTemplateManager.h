@@ -48,7 +48,7 @@ public:
 
 	void test_LoadTemplate()
 	{
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
 
 		CSimContext context;
 		CComponentManager man(context);
@@ -93,7 +93,7 @@ public:
 
 	void test_LoadTemplate_errors()
 	{
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
 
 		CSimContext context;
 		CComponentManager man(context);
@@ -126,7 +126,7 @@ public:
 
 	void test_LoadTemplate_multiple()
 	{
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
 
 		CSimContext context;
 		CComponentManager man(context);
@@ -166,7 +166,7 @@ public:
 
 	void test_load_all_DISABLED() // disabled since it's a bit slow
 	{
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
 
 		CTerrain dummy;
 		CSimulation2 sim(NULL, &dummy);

@@ -38,7 +38,7 @@ public:
 	{
 		PIVFS vfs = CreateVfs(20*MiB);
 
-		TS_ASSERT_OK(vfs->Mount(L"", DataDir()/L"mods/_test.xero"));
+		TS_ASSERT_OK(vfs->Mount(L"", DataDir()/L"mods/_test.xero", VFS_MOUNT_MUST_EXIST));
 
 		VfsPath xmbPath;
 
