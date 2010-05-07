@@ -53,9 +53,9 @@ public:
 
 	void test_scripts()
 	{
-		if (!FileExists(L"simulation/components/tests/"))
+		if (!FileExists(L"simulation/components/tests/setup.js"))
 		{
-			debug_printf(L"WARNING: Skipping component scripts tests (can't find binaries/data/mods/public/simulation/components/tests)\n");
+			debug_printf(L"WARNING: Skipping component scripts tests (can't find binaries/data/mods/public/simulation/components/tests/setup.js)\n");
 			return;
 		}
 

@@ -525,7 +525,6 @@ static void InitVfs(const CmdLineArgs& args)
 	g_VFS->Mount(L"config/", readonlyConfig);
 	if(readonlyConfig != paths.Config())
 		g_VFS->Mount(L"config/", paths.Config());
-	g_VFS->Mount(L"profiles/", paths.Config()/L"profiles/");	// deprecated (overlaps the above mount), but profiles/ are still used by JS
 	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
