@@ -446,19 +446,19 @@ public:
 
 	iterator begin()
 	{
-		return iterator(data, (size_ < n)? 0 : head);
+		return iterator(data, head);
 	}
 	const_iterator begin() const
 	{
-		return const_iterator(data, (size_ < n)? 0 : head);
+		return const_iterator(data, head);
 	}
 	iterator end()
 	{
-		return iterator(data, (size_ < n)? size_ : head+n);
+		return iterator(data, head+size_);
 	}
 	const_iterator end() const
 	{
-		return const_iterator(data, (size_ < n)? size_ : head+n);
+		return const_iterator(data, head+size_);
 	}
 };
 
