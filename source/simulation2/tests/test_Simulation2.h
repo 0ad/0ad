@@ -43,6 +43,7 @@ public:
 	{
 		g_VFS = CreateVfs(20 * MiB);
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/L"_testcache"));
 		CXeromyces::Startup();
 	}
 
@@ -50,6 +51,7 @@ public:
 	{
 		CXeromyces::Terminate();
 		g_VFS.reset();
+		DeleteDirectory(DataDir()/L"_testcache");
 	}
 
 	void test_AddEntity()

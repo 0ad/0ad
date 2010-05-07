@@ -69,9 +69,9 @@ class TestMeshManager : public CxxTest::TestSuite
 
 	void deinitVfs()
 	{
+		g_VFS.reset();
 		DeleteDirectory(MOD_PATH);
 		DeleteDirectory(CACHE_PATH);
-		g_VFS.reset();
 	}
 
 	void copyFile(const VfsPath& src, const VfsPath& dst)

@@ -37,6 +37,8 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/L"_testcache"));
 		CXeromyces::Startup();
 	}
 
@@ -44,12 +46,11 @@ public:
 	{
 		CXeromyces::Terminate();
 		g_VFS.reset();
+		DeleteDirectory(DataDir()/L"_testcache");
 	}
 
 	void test_LoadTemplate()
 	{
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
-
 		CSimContext context;
 		CComponentManager man(context);
 		man.LoadComponentTypes();
@@ -93,8 +94,6 @@ public:
 
 	void test_LoadTemplate_errors()
 	{
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
-
 		CSimContext context;
 		CComponentManager man(context);
 		man.LoadComponentTypes();
@@ -126,8 +125,6 @@ public:
 
 	void test_LoadTemplate_multiple()
 	{
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
-
 		CSimContext context;
 		CComponentManager man(context);
 		man.LoadComponentTypes();
@@ -163,11 +160,29 @@ public:
 		TS_ASSERT(tempMan->LoadTemplate(ent2, L"inherit-broken", -1) == NULL);
 		TS_ASSERT(tempMan->LoadTemplate(ent2, L"inherit-broken", -1) == NULL);
 	}
+};
 
-	void test_load_all_DISABLED() // disabled since it's a bit slow
+class TestCmpTemplateManager_2 : public CxxTest::TestSuite
+{
+public:
+	void setUp()
 	{
+		g_VFS = CreateVfs(20 * MiB);
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/L"_testcache"));
+		CXeromyces::Startup();
+	}
 
+	void tearDown()
+	{
+		CXeromyces::Terminate();
+		g_VFS.reset();
+		DeleteDirectory(DataDir()/L"_testcache");
+	}
+
+	// This just attempts loading every public entity, to check there's no validation errors
+	void test_load_all_DISABLED() // disabled since it's a bit slow and noisy
+	{
 		CTerrain dummy;
 		CSimulation2 sim(NULL, &dummy);
 		sim.LoadDefaultScripts();
