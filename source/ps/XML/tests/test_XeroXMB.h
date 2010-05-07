@@ -44,6 +44,11 @@ private:
 		return xmb;
 	}
 
+	void tearDown()
+	{
+		m_Buffer.reset();
+	}
+
 public:
 	void test_basic()
 	{

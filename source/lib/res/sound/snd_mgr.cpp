@@ -554,8 +554,8 @@ static void al_src_init()
  */
 static void al_src_shutdown()
 {
-	debug_assert(std::count(al_srcs_free, al_srcs_free+al_src_allocated, 0) == 0);
-	debug_assert(std::count(al_srcs_used, al_srcs_used+al_src_allocated, 0) == (ptrdiff_t)al_src_allocated);
+	debug_assert(std::count(al_srcs_free, al_srcs_free+al_src_allocated, (uintptr_t)0) == 0);
+	debug_assert(std::count(al_srcs_used, al_srcs_used+al_src_allocated, (uintptr_t)0) == (ptrdiff_t)al_src_allocated);
 
 	AL_CHECK;
 

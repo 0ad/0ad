@@ -44,7 +44,7 @@ public:
 				for (int y = 0; y < 4; ++y)
 				{
 					const float expected = (x==y)? 1.0f : 0.0f;
-					TS_ASSERT_DELTA(m(x,y), expected, 0.0001f);
+					TS_ASSERT_DELTA(m(x,y), expected, 0.0002f);
 				}
 			}
 		}

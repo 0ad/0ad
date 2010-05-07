@@ -148,7 +148,7 @@ template<> struct hash<const void*>
 	{
 		union {
 			const void* ptr;
-			u8 bytes[sizeof(void*)];
+			unsigned char bytes[sizeof(void*)];
 		} val;
 		size_t h = 5381;
 
