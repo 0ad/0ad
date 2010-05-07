@@ -104,4 +104,12 @@ public:
 	{
 		do_fpclassify<double>();
 	}
+
+	void test_wcsdup()
+	{
+		const wchar_t* a = L"test";
+		wchar_t* t = wcsdup(a);
+		TS_ASSERT_WSTR_EQUALS(t, a);
+		free(t);
+	}
 };

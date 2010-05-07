@@ -149,11 +149,6 @@ extern_lib_defs = {
 				tinsert(package.config["Release"].links, "libxml2")
 			else
 				pkgconfig("libxml-2.0")
-				-- libxml2 needs _REENTRANT or __MT__ for thread support;
-				-- OS X doesn't get either set by default, so do it manually
-				if OS == "macosx" then
-					tinsert(package.defines, "_REENTRANT")
-				end
 			end
 		end,
 	},

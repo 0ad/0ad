@@ -248,6 +248,7 @@ public:
 		return true;
 	}
 
+#if wxUSE_DEBUGREPORT
 	virtual void OnFatalException()
 	{
 		wxDebugReport report;
@@ -262,6 +263,7 @@ public:
 			OpenDirectory(dir);
 		}
 	}
+#endif // wxUSE_DEBUGREPORT
 
 /* Disabled (and should be removed if it turns out to be unnecessary)
 - see MessagePasserImpl.cpp for information

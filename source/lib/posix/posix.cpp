@@ -102,7 +102,7 @@ wchar_t* wcsdup(const wchar_t* str)
 	wchar_t* dst = (wchar_t*)malloc((num_chars+1)*sizeof(wchar_t));	// note: wcsdup is required to use malloc
 	if(!dst)
 		return 0;
-	wcscpy_s(dst, num_chars, str);
+	wcscpy_s(dst, num_chars+1, str);
 	return dst;
 }
 #endif
