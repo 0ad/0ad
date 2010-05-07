@@ -22,8 +22,11 @@ echo L\"${SVNREV}-release\" > export-win32/build/svn_revision/svn_revision.txt
 
 # Collect the relevant files
 ln -Tsf export-unix ${PREFIX}
-tar cf $PREFIX-unix-build-temp.tar ${PREFIX}/{source,build,libraries/{cxxtest,fcollada,spidermonkey-tip,valgrind},binaries/system/readme.txt,*.txt}
-tar cf $PREFIX-unix-data-temp.tar ${PREFIX}/binaries/data
+tar cf $PREFIX-unix-build-temp.tar \
+	--exclude='*.bat' --exclude='*.dll' --exclude='*.exe' \
+	--exclude='libraries/fcollada/lib/*' --exclude='libraries/spidermonkey-tip/lib/*' --exclude='libraries/spidermonkey-tip/include-win32' \
+	${PREFIX}/{source,build,libraries/{cxxtest,fcollada,spidermonkey-tip,valgrind},binaries/system/readme.txt,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
+tar cf $PREFIX-unix-data-temp.tar ${PREFIX}/binaries/data/{config,mods/public,tools}
 # TODO: ought to include generated docs in here, perhaps?
 
 # Anonymise the tarballs a bit
