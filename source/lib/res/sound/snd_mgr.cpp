@@ -1692,19 +1692,26 @@ static LibError vsrc_reclaim(VSrc* vs)
 
 	// clear the source's buffer queue (necessary because buffers cannot
 	// be deleted at shutdown while still attached to a source).
-	// note: OpenAL 1.1 says all buffers become "processed" when the
-	// source is stopped (so vsrc_deque_finished_bufs ought to have the
-	// desired effect), but that isn't the case on some Linux
-	// implementations (OpenALsoft and PulseAudio with on-board NVidia). 
-	// wiping out the entire queue by attaching the null buffer is safer,
-	// but still doesn't cause versions of OpenALsoft older than 2009-08-11
-	// to correctly reset AL_BUFFERS_PROCESSED. in "Re: [Openal-devel]
-	// Questionable "invalid value" from alSourceUnqueueBuffers", the
-	// developer recommended working around this bug by rewinding the
-	// source instead of merely issuing alSourceStop.
-	// reference: http://trac.wildfiregames.com/ticket/297
-	alSourceRewindv(1, &vs->al_src);	// stops the source
+	AL_CHECK;
+	vs->loop = false;
+	vsrc_latch(vs);	// jw: from Heron's patch
+	// OpenAL 1.1 says stopping the source causes all buffers to
+	// become "processed":
+	alSourceStop(vs->al_src);
+	// .. so this should de-queue them all.
+	vsrc_deque_finished_bufs(vs);
+	// unfortunately that isn't the case on some Linux implementations
+	// (OpenALsoft and PulseAudio with on-board NVidia).
+	// wiping out the queue by attaching the null buffer is safer and
+	// avoids an error in alDeleteBuffers during shutdown on OS X:
 	alSourcei(vs->al_src, AL_BUFFER, AL_NONE);
+	// even that isn't enough for versions of OpenALsoft older than
+	// 2009-08-11, which don't reset AL_BUFFERS_PROCESSED as they should.
+	// in "Re: [Openal-devel] Questionable "invalid value" from
+	// alSourceUnqueueBuffers", the developer recommended working around
+	// this bug by additionally rewinding the source.
+	// reference: http://trac.wildfiregames.com/ticket/297
+	alSourceRewind(vs->al_src);
 	AL_CHECK;
 
 	al_src_free(vs->al_src);
