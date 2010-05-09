@@ -182,7 +182,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			// (need nested functions to get the closure right)
 
 		icon.sprite = "snPortraitSheetHele"; // TODO
-		icon.cell_id = template.icon_cell;
+		if (typeof template.icon_cell == "undefined")
+			icon.cell_id = 0;
+		else
+			icon.cell_id = template.icon_cell;
 		++i;
 	}
 	var numButtons = i;
