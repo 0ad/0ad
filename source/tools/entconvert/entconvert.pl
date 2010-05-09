@@ -3,12 +3,17 @@ use warnings;
 
 use File::Find;
 use XML::Simple;
+use XML::LibXML;
 use Data::Dumper;
 
 my $vfsroot = '../../../binaries/data/mods';
 
 my (%dot_actor, %dot_inherit);
 my %xml = ('template_entity_full.xml' => 1, 'template_entity_quasi.xml' => 1);
+
+my $tro = `trang oldformat.rnc oldformat.rng 2>&1`;
+die $tro if $tro;
+my $rngschema = XML::LibXML::RelaxNG->new(location => 'oldformat.rng');
 
 convert_all("$vfsroot/public");
 convert_all("$vfsroot/internal") if -e "$vfsroot/internal";
@@ -33,6 +38,17 @@ sub convert_all {
         $name =~ s/\.xml$//;
 
         next if $name =~ /^(template_foundation|foundation_)/;
+        next if $name =~ /^(template_corpse)$/;
+
+        my $doc = XML::LibXML->new->parse_file("$dir/$xml");
+        eval {
+            $rngschema->validate($doc);
+        };
+        if ($@) {
+            warn $@;
+            open my $f, "$dir/$xml";
+            print <$f>;
+        }
 
         my %opt = (KeyAttr => []);
 
@@ -239,9 +255,9 @@ sub convert {
 
     if ($data->{Traits}[0]{Footprint}) {
         my $r = '';
-        $r = ' replace=""' if
-            ($data->{Traits}[0]{Footprint}[0]{Width} and $data->{Parent} =~ /^template_(unit|unit_mechanical|unit_mechanical_siege|unit_mechanical_siege_onager|unit_(super|hero)_ranged)$/) or
-            ($data->{Traits}[0]{Footprint}[0]{Radius} and $data->{Parent} =~ /^template_structure_(special|military_fortress)$/);
+        $r = ' replace=""' if $data->{Parent} and
+            (($data->{Traits}[0]{Footprint}[0]{Width} and $data->{Parent} =~ /^template_(unit|unit_mechanical|unit_mechanical_siege|unit_mechanical_siege_onager|unit_(super|hero)_ranged)$/) or
+            ($data->{Traits}[0]{Footprint}[0]{Radius} and $data->{Parent} =~ /^template_structure_(special|military_fortress)$/));
         $out .= qq{$i<Footprint$r>\n};
         if ($data->{Traits}[0]{Footprint}[0]{Radius}) {
             $out .= qq{$i$i<Circle radius="$data->{Traits}[0]{Footprint}[0]{Radius}[0]"/>\n};
@@ -328,16 +344,18 @@ digraph g
   node [fontname=ArialN fontsize=8];
   node [shape=rectangle];
 EOF
-for (sort grep { not $dot_actor{$_} } keys %dot_actor) {
-    print $dot qq{"$_";\n};
-}
-print $dot qq{node [style=filled fillcolor=lightgray]\n};
-for (sort grep { $dot_actor{$_} } keys %dot_actor) {
-    print $dot qq{"$_";\n};
-}
-print $dot qq{node [style=solid shape=ellipse]\n};
-for (sort grep { $dot_actor{$_} } keys %dot_actor) {
-    print $dot qq{"$dot_actor{$_}[0]" -> "$_";\n};
+if (0) {
+    for (sort grep { not $dot_actor{$_} } keys %dot_actor) {
+        print $dot qq{"$_";\n};
+    }
+    print $dot qq{node [style=filled fillcolor=lightgray]\n};
+    for (sort grep { $dot_actor{$_} } keys %dot_actor) {
+        print $dot qq{"$_";\n};
+    }
+    print $dot qq{node [style=solid shape=ellipse]\n};
+    for (sort grep { $dot_actor{$_} } keys %dot_actor) {
+        print $dot qq{"$dot_actor{$_}[0]" -> "$_";\n}; #"
+    }
 }
 for my $p (sort keys %dot_inherit) {
     for my $c (sort keys %{$dot_inherit{$p}}) {

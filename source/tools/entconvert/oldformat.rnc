@@ -1,0 +1,255 @@
+element Entity {
+    attribute Parent { text }?,
+    element Traits {
+        attribute Extant { "true" }? & # ignore
+        attribute extant { "" }? & # ignore
+        element Corpse { text }? & # ignore
+        element Id {
+            element Internal_Only { empty }? & # ignore
+            element Generic { text }? & # ok
+            element Specific { text }? & # ok
+            element Icon { text }? & # ok
+            element Icon_Cell { xsd:integer }? & # ok
+            element Classes { text }? & # TODO
+            element Rollover { text }? & # TODO
+            element Tooltip { text }? & # TODO
+            element History { text }? & # TODO
+            element Civ { text }? & # ok
+            element Civ_Code { text }? # ignore
+        }? &
+        element IsTerritoryCentre { "true" }? & # TODO
+        element Audio {
+            element Path { text } # ignore
+        }? &
+        element Population {
+            element Rem { xsd:integer }?, # ok
+            element Add { xsd:integer }? # ok
+        }? &
+        element Creation {
+            element Foundation { text }? & # ok
+            element Time { xsd:decimal }? & # ok
+            element Resource {
+                element Wood { xsd:integer }? & # ok
+                element Metal { xsd:integer }? & # ok
+                element Food { xsd:integer }? & # ok
+                element Stone { xsd:integer }? # ok
+            }? &
+            element Socket { "Settlement" }? & # TODO
+            element BuildingLimitCategory { text }? & # TODO
+            element TerritoryRestriction { "All" | "Allied" }? # TODO
+        }? &
+        element Anchor {
+            element Type { "Ground" | "Water" }?, # TODO
+            element ConformX { xsd:decimal }?, # TODO
+            element ConformZ { xsd:decimal }? # TODO
+        }? &
+        element Footprint {
+            element Radius { xsd:decimal }?, # ok
+            element Width { xsd:decimal }?, # ok
+            element Depth { xsd:decimal }?, # ok
+            element Height { xsd:decimal } # ok
+        }? &
+        element Garrison {
+            element Max { xsd:integer } # TODO
+        }? &
+        element Health {
+            element Max { xsd:integer }?, # ok
+            element RegenRate { xsd:decimal }?, # ok
+            element BarHeight { xsd:decimal }?, # TODO
+            element Bar_Size { xsd:integer }?, # TODO
+            element Repairable { empty }?, # TODO
+            element Healable { empty }? # TODO
+        }? &
+        element Armour {
+            element Hack { xsd:decimal }?, # ok
+            element Pierce { xsd:decimal }?, # ok
+            element Crush { xsd:decimal }? # ok
+        }? &
+        element Stamina {
+            element Max { xsd:decimal }?, # TODO
+            element BarHeight { xsd:decimal }?, # TODO
+            element Bar_Size { xsd:integer }? # TODO
+        }? &
+        element Rank {
+            element Height { xsd:decimal } # TODO
+        }? &
+        element Ai {
+            element Behaviour { "Aggressive" | "Violent" | "Skittish" | "Passive" | "Defensive" } # TODO
+        }? &
+        element MiniMap {
+            element Type { text }, # ok
+            element Red { xsd:integer }?, # ok
+            element Green { xsd:integer }?, # ok
+            element Blue { xsd:integer }? # ok
+        }? &
+        element Vision {
+            element Los { xsd:decimal }?, # TODO
+            element Permanent { xsd:boolean }? # TODO
+        }? &
+        element Supply {
+            element Max { xsd:integer }, # ok
+            element Type { text }, # ok
+            element SubType { text }? # ok
+        }? &
+        element Loot {
+            element Xp { xsd:integer }?, # TODO
+            element Food { xsd:decimal }?, # TODO
+            element Wood { xsd:decimal }?, # TODO
+            element Stone { xsd:integer }?, # TODO
+            element Metal { xsd:integer }? # TODO
+        }? &
+        element Auras { # TODO
+            element (Dropsite | Infidelity | Allure | Trample | Heal | Fear | Courage) {
+                element Radius { xsd:decimal }? &
+                element Bonus { xsd:integer }? &
+                element Rate { xsd:integer }? &
+                element Time { xsd:integer }? &
+                element Speed { xsd:integer }? &
+                element Duration { xsd:integer }? &
+                element Crush { xsd:decimal }? &
+                element Hack { xsd:decimal }? &
+                element Pierce { xsd:decimal }? &
+                element Types {
+                    element Food { empty }?,
+                    element Wood { empty }?,
+                    element Stone { empty }?,
+                    element Metal { empty }?
+                }? &
+                element r { xsd:decimal }? &
+                element g { xsd:decimal }? &
+                element b { xsd:decimal }? &
+                element a { xsd:decimal }?
+            }+
+        }? &
+        element Display { # TODO
+            element Bars {
+                element Enabled { xsd:boolean },
+                element Offset { xsd:decimal },
+                element Width { xsd:decimal },
+                element Height { xsd:decimal }
+            }
+        }? &
+        element Promotion { # TODO
+            element Entity { text }?,
+            element Req { xsd:integer }?
+        }? &
+        element Formation { # TODO
+            element Category { "Melee" },
+            element Curr { "Loose" },
+            element List {
+                element * { empty }+
+            }
+        }?
+    }?,
+    element Actions {
+        element Attack {
+            element Hack { xsd:decimal }?, # TODO
+            element Pierce { xsd:decimal }?, # TODO
+            element Crush { xsd:decimal }?, # TODO
+            element Ranged {
+                (element Hack { xsd:decimal }? & # ok
+                element Pierce { xsd:decimal }? & # ok
+                element Crush { xsd:decimal }?), # ok
+                element MinRange { xsd:decimal }?, # ok
+                element Range { xsd:decimal }?, # ok
+                element Speed { xsd:integer }?, # ok
+                element ProjectileSpeed { xsd:decimal }? # ok
+            }?,
+            element Melee {
+                element Hack { xsd:decimal }?, # ok
+                element Pierce { xsd:decimal }?, # ok
+                element Crush { xsd:decimal }?, # ok
+                element Range { xsd:decimal }?, # ok
+                element RangeMin { xsd:decimal }?, # ok
+                element Speed { xsd:integer }? # ok
+            }?,
+            element Charge { # TODO
+                element Hack { xsd:decimal }?,
+                element Pierce { xsd:decimal }?,
+                element Crush { xsd:decimal }?,
+                element Range { xsd:decimal }?,
+                element RangeMin { xsd:decimal }?,
+                element Speed { xsd:integer }?
+            }?
+        }? &
+        element Create {
+            element List {
+                element StructCiv {
+                    element * { empty }+ # ok
+                }?,
+                element StructMil {
+                    element * { empty }+ # ok
+                }?,
+                element Train {
+                    element * { empty }+ # ok
+                }?,
+                element Research {
+                    element * { empty }* # TODO
+                }?
+            }?,
+            element Speed { xsd:integer }?, # TODO
+            element Rally { empty }? # TODO
+        }? &
+        element Explore { empty }? & # TODO
+        element Patrol { empty }? & # TODO
+        element Escort {
+            element Distance { xsd:decimal } # TODO
+        }? &
+        element Barter {
+            element List {
+                element Food { empty }, # TODO
+                element Wood { empty }, # TODO
+                element Stone { empty }, # TODO
+                element Metal { empty } # TODO
+            }
+        }? &
+        element Move {
+            element Speed { xsd:decimal }, # ok
+            element Speed_Curr { empty }?, # TODO
+            element TurningRadius { xsd:decimal }?, # TODO
+            element Run {
+                element Speed { xsd:decimal } & # TODO
+                element Range { xsd:decimal }? & # TODO
+                element RangeMin { xsd:decimal }? & # TODO
+                element RegenRate { xsd:decimal }? & # TODO
+                element DecayRate { xsd:decimal }? # TODO
+            }?,
+            element PassThroughAllies { "true" }? # TODO
+        }? &
+        element Gather {
+            element Resource {
+                element Food {
+                    element Fruit { xsd:decimal }?, # ok
+                    element Grain { xsd:decimal }?, # ok
+                    element Meat { xsd:decimal }, # ok
+                    element Fish { xsd:decimal }? # ok
+                } &
+                element Wood { xsd:decimal }? & # ok
+                element Metal { xsd:decimal }? & # ok
+                element Stone { xsd:decimal }? # ok
+            }?,
+            element AffectedByAllure { "true" }?, # TODO
+            element Range { xsd:decimal }?, # TODO
+            element Speed { xsd:integer } # ok
+        }? &
+        element Repair {
+            element Rate { xsd:decimal }, # TODO
+            element Speed { xsd:integer } # TODO
+        }? &
+        element Build {
+            element Rate { xsd:decimal }, # TODO
+            element Speed { xsd:integer } # TODO
+        }? &
+        element Loot {
+            element Resources { empty }?, # TODO
+            element Xp { empty }? # TODO
+        }? &
+        element TownBell { empty }? # TODO
+    }?,
+    element Actor { text }?, # ok
+    element SoundGroups {
+        element (Walk|Run|Melee|Death|Build|Gather_Fruit|Gather_Grain|Gather_Wood|Gather_Stone|Gather_Metal) { text }+ # ok
+    }?,
+    element Script { attribute File { text } }?, # TODO
+    element Event { attribute On { text }, attribute Function { text } }* # TODO
+}

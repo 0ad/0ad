@@ -2,8 +2,6 @@
 
 <Entity	Parent="template_unit_mechanical_siege">
 
-	<Actor>units/hellenes/siege_spear.xml</Actor>
-
 	<Traits>
 	
 		<Id>
@@ -38,4 +36,6 @@
 			</Run>
 		</Move>
 	</Actions>
+	<Actor>units/hellenes/siege_spear.xml</Actor>
+
 </Entity>
