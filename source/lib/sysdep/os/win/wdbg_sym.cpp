@@ -695,7 +695,10 @@ static LibError dump_string(const u8* p, size_t el_size)
 
 	wchar_t buf[512];
 	if(el_size == sizeof(wchar_t))
-		wcscpy_s(buf, ARRAY_SIZE(buf), (const wchar_t*)p);
+	{
+		wcsncpy(buf, (const wchar_t*)p, ARRAY_SIZE(buf)); // can't use wcscpy_s because p might be too long
+		wcscpy_s(buf+ARRAY_SIZE(buf)-4, 4, L"..."); // ensure null-termination
+	}
 	// convert to wchar_t
 	else
 	{

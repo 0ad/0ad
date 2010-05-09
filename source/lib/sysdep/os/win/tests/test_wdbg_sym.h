@@ -95,6 +95,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 
 		int ints[] = { 1,2,3,4,5 };	UNUSED2(ints);
 		wchar_t chars[] = { 'w','c','h','a','r','s',0 }; UNUSED2(chars);
+		wchar_t many_wchars[1024]; memset(many_wchars, 'a', sizeof(many_wchars));
 
 		debug_printf(L"\n(dumping stack frames may result in access violations..)\n");
 

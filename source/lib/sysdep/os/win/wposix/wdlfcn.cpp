@@ -57,7 +57,6 @@ void* dlopen(const char* so_name, int flags)
 
 	fs::path pathname = fs::change_extension(so_name, ".dll");
 	HMODULE hModule = LoadLibraryA(pathname.string().c_str());
-	debug_assert(hModule);
 	return void_from_HMODULE(hModule);
 }
 
