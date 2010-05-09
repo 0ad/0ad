@@ -9,14 +9,14 @@
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>0</RandGain>
-	<GainUpper>1</GainUpper>
+	<GainUpper>.5</GainUpper>
 	<GainLower>0</GainLower>
-	<RandPitch>1</RandPitch>
+	<RandPitch>0</RandPitch>
 	<PitchUpper>1.0</PitchUpper>
-	<PitchLower>0.8</PitchLower>
+	<PitchLower>1.0</PitchLower>
 	<Threshold>10</Threshold>
 	<Decay>3</Decay>
-	<Replacement>hstep_dirt_MN_11.ogg</Replacement>
+	<Replacement>hstep_dirt_MN_13.ogg</Replacement>
 	<Path>audio/actor/human/movement/</Path>
 	<Sound>hstep_dirt_MN_11.ogg</Sound>
 </SoundGroup>
