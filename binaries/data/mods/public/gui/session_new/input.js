@@ -269,9 +269,17 @@ function handleInputBeforeGui(ev)
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
 				if (tryPlaceBuilding())
-					inputState = INPUT_NORMAL;
+				{
+					// If shift is down, let the player continue placing another of the same building
+					if (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT])
+						inputState = INPUT_BUILDING_PLACEMENT;
+					else
+						inputState = INPUT_NORMAL;
+				}
 				else
+				{
 					inputState = INPUT_BUILDING_PLACEMENT;
+				}
 				return true;
 			}
 			break;
