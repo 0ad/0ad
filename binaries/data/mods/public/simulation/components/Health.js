@@ -116,7 +116,7 @@ Health.prototype.CreateCorpse = function()
 
 	// Make it fall over
 	var cmpCorpseVisual = Engine.QueryInterface(corpse, IID_Visual);
-	cmpCorpseVisual.SelectAnimation("death", true);
+	cmpCorpseVisual.SelectAnimation("death", true, 1.0, "");
 };
 
 

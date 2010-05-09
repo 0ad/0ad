@@ -139,6 +139,10 @@ public:
 
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 
+			// If there's no new owner (e.g. the unit is dying) then don't try updating the colour
+			if (msgData.to == -1)
+				break;
+
 			// Find the new player's colour
 			CmpPtr<ICmpPlayerManager> cmpPlayerManager(context, SYSTEM_ENTITY);
 			if (cmpPlayerManager.null())

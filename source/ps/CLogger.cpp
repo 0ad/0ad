@@ -145,6 +145,8 @@ void CLogger::WriteError(const wchar_t* message)
 void CLogger::WriteWarning(const wchar_t* message)
 {
 	++m_NumberOfWarnings;
+	if (m_UseDebugPrintf)
+		debug_printf(L"WARNING: %ls\n", message);
 
 	if (g_Console) g_Console->InsertMessage(L"WARNING: %ls", message);
 	*m_InterestingLog << L"<p class=\"warning\">WARNING: "<< message << L"</p>\n";

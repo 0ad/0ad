@@ -311,13 +311,21 @@ UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
 	if (!cmpVisual)
 		return;
 
-	var soundgroup = "";
+	var soundgroup;
 	if (sound)
 	{
 		var cmpSound = Engine.QueryInterface(this.entity, IID_Sound);
 		if (cmpSound)
 			soundgroup = cmpSound.GetSoundGroup(sound);
 	}
+
+	// Set default values if unspecified
+	if (typeof once == "undefined")
+		once = false;
+	if (typeof speed == "undefined")
+		speed = 1.0;
+	if (typeof soundgroup == "undefined")
+		soundgroup = "";
 
 	cmpVisual.SelectAnimation(name, once, speed, soundgroup);
 };

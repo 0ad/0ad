@@ -17,8 +17,10 @@ function _setMotionOverlay(ents, enabled)
 function EntitySelection()
 {
 	// Private properties:
-	this.selected = {}; // { id: 1, id: 1, ... } for each selected entity ID 'id'
-	this.highlighted = {}; // { id: 1, ... } for mouseover-highlighted entity IDs
+	this.selected = {}; // { id:id, id:id, ... } for each selected entity ID 'id'
+	this.highlighted = {}; // { id:id, ... } for mouseover-highlighted entity IDs
+		// (in these, the key is a string and the value is an int; we want to use the
+		// int form wherever possible since it's more efficient to send to the simulation code)
 	this.motionDebugOverlay = false;
 
 	// Public properties:
@@ -37,7 +39,7 @@ EntitySelection.prototype.toggle = function(ent)
 	{
 		_setHighlight([ent], g_ActiveSelectionColour);
 		_setMotionOverlay([ent], this.motionDebugOverlay);
-		this.selected[ent] = 1;
+		this.selected[ent] = ent;
 	}
 	this.dirty = true;
 };
@@ -50,7 +52,7 @@ EntitySelection.prototype.addList = function(ents)
 		if (!this.selected[ent])
 		{
 			added.push(ent);
-			this.selected[ent] = 1;
+			this.selected[ent] = ent;
 		}
 	}
 	_setHighlight(added, g_ActiveSelectionColour);
@@ -69,8 +71,8 @@ EntitySelection.prototype.reset = function()
 EntitySelection.prototype.toList = function()
 {
 	var ents = [];
-	for (var ent in this.selected)
-		ents.push(+ent); // convert from string to number and push
+	for each (var ent in this.selected)
+		ents.push(ent);
 	return ents;
 };
 
@@ -80,7 +82,7 @@ EntitySelection.prototype.setHighlightList = function(ents)
 	var added = [];
 
 	// Remove highlighting for the old units (excluding ones that are actively selected too)
-	for (var ent in this.highlighted)
+	for each (var ent in this.highlighted)
 		if (!this.selected[ent])
 			removed.push(ent);
 	
@@ -98,7 +100,7 @@ EntitySelection.prototype.setHighlightList = function(ents)
 	// Store the new list
 	this.highlighted = {};
 	for each (var ent in ents)
-		this.highlighted[ent] = 1;
+		this.highlighted[ent] = ent;
 };
 
 EntitySelection.prototype.SetMotionDebugOverlay = function(enabled)

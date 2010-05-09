@@ -20,14 +20,19 @@
 #include "ScriptInterface.h"
 
 #include "ps/utf16string.h"
+#include "ps/CLogger.h"
 
 #include "js/jsapi.h"
 
-#define FAIL(msg) do { JS_ReportError(cx, msg); return false; } while (false)
+#define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
+
+// Implicit type conversions often hide bugs, so warn about them
+#define WARN_IF_NOT(c) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s", #c); })
 
 template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, jsval v, bool& out)
 {
 	JSBool ret;
+	WARN_IF_NOT(JSVAL_IS_BOOLEAN(v));
 	if (!JS_ValueToBoolean(cx, v, &ret))
 		return false;
 	out = (ret ? true : false);
@@ -37,6 +42,7 @@ template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, jsval v, bool& o
 template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, jsval v, float& out)
 {
 	jsdouble ret;
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v));
 	if (!JS_ValueToNumber(cx, v, &ret))
 		return false;
 	out = ret;
@@ -46,6 +52,7 @@ template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, jsval v, float&
 template<> bool ScriptInterface::FromJSVal<i32>(JSContext* cx, jsval v, i32& out)
 {
 	int32 ret;
+	WARN_IF_NOT(JSVAL_IS_INT(v));
 	if (!JS_ValueToECMAInt32(cx, v, &ret))
 		return false;
 	out = ret;
@@ -55,6 +62,7 @@ template<> bool ScriptInterface::FromJSVal<i32>(JSContext* cx, jsval v, i32& out
 template<> bool ScriptInterface::FromJSVal<u32>(JSContext* cx, jsval v, u32& out)
 {
 	uint32 ret;
+	WARN_IF_NOT(JSVAL_IS_INT(v));
 	if (!JS_ValueToECMAUint32(cx, v, &ret))
 		return false;
 	out = ret;
@@ -76,6 +84,7 @@ template<> bool ScriptInterface::FromJSVal<CScriptValRooted>(JSContext* cx, jsva
 
 template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v, std::wstring& out)
 {
+	WARN_IF_NOT(JSVAL_IS_STRING(v));
 	JSString* ret = JS_ValueToString(cx, v);
 	if (!ret)
 		FAIL("Argument must be convertible to a string");
@@ -86,6 +95,7 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v,
 
 template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, std::string& out)
 {
+	WARN_IF_NOT(JSVAL_IS_STRING(v));
 	JSString* ret = JS_ValueToString(cx, v);
 	if (!ret)
 		FAIL("Argument must be convertible to a string");
