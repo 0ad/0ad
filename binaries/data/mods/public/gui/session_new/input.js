@@ -89,14 +89,15 @@ function determineAction(x, y)
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
 
-	// Different owner -> attack
-	if (entState.attack && targetState.player != entState.player)
-		return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
-
 	// Resource -> gather
 	var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
 	if (resource)
 		return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
+
+	// Different owner -> attack
+	// (TODO: this should only happen if the target is really targetable, not e.g. a tree that this unit can't gather)
+	if (entState.attack && targetState.player != entState.player)
+		return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
 
 	// If a builder, then: Foundation -> build
 	if (entState.buildEntities && targetState.foundation)
