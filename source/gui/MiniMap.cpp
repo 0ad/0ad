@@ -179,8 +179,12 @@ void CMiniMap::SetCameraPos()
 	}
 	m_Camera->UpdateFrustum();
 }
+
 void CMiniMap::FireWorldClickEvent(int button, int clicks)
 {
+	if (g_UseSimulation2)
+		return; // TODO: we ought to pass this through to the GUI system
+
 	//debug_printf(L"FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
 	
 	CPos MousePos = GetMousePos();
