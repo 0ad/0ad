@@ -21,6 +21,7 @@
 
 #include "maths/Fixed.h"
 #include "maths/MathUtil.h"
+#include "ps/CLogger.h"
 
 #include "js/jsapi.h"
 
@@ -82,16 +83,20 @@ public:
 		roundtrip<i32>(-123, "-123");
 		roundtrip<i32>(1073741822, "1073741822"); // JSVAL_INT_MAX-1
 		roundtrip<i32>(1073741823, "1073741823"); // JSVAL_INT_MAX
-		roundtrip<i32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
 		roundtrip<i32>(-1073741823, "-1073741823"); // JSVAL_INT_MIN+1
 		roundtrip<i32>(-1073741824, "-1073741824"); // JSVAL_INT_MIN
-		roundtrip<i32>(-1073741825, "-1073741825"); // JSVAL_INT_MIN-1
 
 		roundtrip<u32>(0, "0");
 		roundtrip<u32>(123, "123");
 		roundtrip<u32>(1073741822, "1073741822"); // JSVAL_INT_MAX-1
 		roundtrip<u32>(1073741823, "1073741823"); // JSVAL_INT_MAX
-		roundtrip<u32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
+
+		{
+			TestLogger log; // swallow warnings about values not being stored as INT jsvals
+			roundtrip<i32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
+			roundtrip<i32>(-1073741825, "-1073741825"); // JSVAL_INT_MIN-1
+			roundtrip<u32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
+		}
 
 		std::string s1 = "test";
 		s1[1] = '\0';
