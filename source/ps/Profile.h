@@ -23,6 +23,7 @@
 #define INCLUDED_PROFILE
 
 #include <vector>
+#include <map>
 #include "Singleton.h"
 
 #define PROFILE_AMORTIZE

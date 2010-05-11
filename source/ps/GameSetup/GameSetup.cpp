@@ -105,6 +105,8 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 
+#include <iostream>
+
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);
 ERROR_TYPE(System, VmodeFailed);

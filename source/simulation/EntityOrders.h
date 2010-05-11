@@ -54,6 +54,7 @@
 
 #include "EntityHandles.h"
 #include "ps/Vector2D.h"
+#include "ps/CStr.h"
 
 #include <deque>
 
