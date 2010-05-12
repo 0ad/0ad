@@ -41,7 +41,7 @@ const int STACK_CHUNK_SIZE = 8192;
 #define ENABLE_SCRIPT_PROFILING 1
 #endif
 
-#ifdef ENABLE_SCRIPT_PROFILING
+#if ENABLE_SCRIPT_PROFILING
 #include "js/jsdbgapi.h"
 #endif
 
