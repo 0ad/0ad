@@ -40,6 +40,7 @@ CLOSManager::CLOSManager() : m_LOSSetting(LOS_SETTING_NORMAL), m_FogOfWar(true)
 #else
 	m_VisibilityMatrix = 0;
 #endif
+	m_TilesPerSide = m_TilesPerSide_1 = 0;
 }
 
 CLOSManager::~CLOSManager() 
