@@ -519,9 +519,12 @@ static const char* listCppTargets(const char* name)
 				strcpy(input_dir, path_translate(path_getdir(name) , NULL));
 				strcat(input_dir, "/");
 
-				opts = "";
-				if (!os_is("windows") && !os_is("macosx"))
-					opts = "-dDONT_USE_UNDERLINE=1 -dOS_LINUX=1 ";
+				if (os_is("windows"))
+					opts = "";
+				else if (os_is("macosx"))
+					opts = "-dOS_UNIX=1 ";
+				else
+					opts = "-dDONT_USE_UNDERLINE=1 -dOS_UNIX=1 ";
 				
 				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); 
 				strcat(g_buffer, " -i"); strcat(g_buffer,input_dir ); 
