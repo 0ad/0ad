@@ -370,7 +370,7 @@ int wmain(int argc, wchar_t* argv[])
 
 	for(int i = 0; i < argc; i++)
 		free(utf8_argv[i]);
-	delete utf8_argv;
+	delete[] utf8_argv;
 	return ret;
 }
 
