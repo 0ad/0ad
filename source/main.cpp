@@ -423,5 +423,5 @@ int main(int argc, char* argv[])
 
 	RunGameOrAtlas(argc, const_cast<const char**>(argv));
 
-	exit(EXIT_SUCCESS);
+	return EXIT_SUCCESS;
 }

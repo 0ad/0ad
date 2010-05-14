@@ -351,14 +351,35 @@ C++ classes. this way is more reliable/documented, but has several drawbacks:
 
 #ifdef LIB_STATIC_LINK
 
-EXTERN_C int mainCRTStartup();
+#include "lib/utf8.h"
+
+EXTERN_C int wmainCRTStartup();
+EXTERN_C int main(int argc, char* argv[]);
+
+// required because main's argv is in a non-UTF8 encoding
+int wmain(int argc, wchar_t* argv[])
+{
+	char** utf8_argv = new char*[argc];
+	for(int i = 0; i < argc; i++)
+	{
+		std::string utf8 = utf8_from_wstring(argv[i]);
+		utf8_argv[i] = strdup(utf8.c_str());
+	}
+
+	const int ret = main(argc, utf8_argv);
+
+	for(int i = 0; i < argc; i++)
+		free(utf8_argv[i]);
+	delete utf8_argv;
+	return ret;
+}
 
 static int CallStartupWithinTryBlock()
 {
 	int ret;
 	__try
 	{
-		ret = mainCRTStartup();
+		ret = wmainCRTStartup();
 	}
 	__except(wseh_ExceptionFilter(GetExceptionInformation()))
 	{
