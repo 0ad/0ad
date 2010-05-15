@@ -3,19 +3,20 @@
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Bodu</SpecificName>
+    <History>Celtic women enjoyed many freedoms, especially compared to their Greek and Roman counterparts. Although they did not fight in battle as some believe Gallic women were quite large and very strong compared to most men. They were able to own property and were capable of gaining considerable wealth. Some noblewomen took over power when their husbands died, such as Boudicca of the Iceni. In addition, family trees were drawn up along female lines, men claiming their ancestry through female ancestors.</History>
   </Identity>
   <Health>
     <Max>75</Max>
     <RegenRate>0.5</RegenRate>
   </Health>
   <Attack>
-    <Hack>10.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>4.0</MaxRange>
-    <MinRange>0.0</MinRange>
-    <PrepareTime>600</PrepareTime>
-    <RepeatTime>1000</RepeatTime>
+    <Melee>
+      <Hack>10.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
   </Attack>
   <VisualActor>
     <Actor>units/celts/female_citizen.xml</Actor>

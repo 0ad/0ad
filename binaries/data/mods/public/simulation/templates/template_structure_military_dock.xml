@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>Dock</GenericName>
     <IconCell>57</IconCell>
+    <Tooltip>Manufacture naval vessels here. Also allows for sea trade. Must be built on the shoreline only.</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Category>Dock</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>50</BuildTime>
@@ -29,4 +34,10 @@
   <Obstruction>
     <Static width="18.0" depth="18.0"/>
   </Obstruction>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>5</Max>
+  </GarrisonHolder>
 </Entity>

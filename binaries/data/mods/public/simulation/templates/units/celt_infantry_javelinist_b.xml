@@ -3,7 +3,11 @@
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Baguada</SpecificName>
+    <History>Gesatae were young men who devoted themselves to war, often serving as mercenaries for other tribes. They were the last Celts to fight stark naked to show their courage, often carrying only a shield with several javelins and a regular Celtic spear. More often than not they were covered in geometric designs painted in woad, a blue dye.</History>
   </Identity>
+  <Promotion>
+    <Entity>celt_infantry_javelinist_a</Entity>
+  </Promotion>
   <Cost>
     <BuildTime>15</BuildTime>
     <Resources>
@@ -12,6 +16,9 @@
   </Cost>
   <UnitMotion>
     <WalkSpeed>9.0</WalkSpeed>
+    <Run>
+      <Speed>17.8</Speed>
+    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>units/celts/infantry_javelinist_b.xml</Actor>

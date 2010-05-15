@@ -14,10 +14,19 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.0</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>20.0</Hack>
-    <Pierce>24.0</Pierce>
+    <Melee>
+      <Hack>20.0</Hack>
+      <Pierce>24.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>40.0</Hack>
+      <Pierce>48.0</Pierce>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>temp/mace_su1_argyraspis.xml</Actor>

@@ -4,13 +4,15 @@
     <GenericName>Ranged Cavalry</GenericName>
   </Identity>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>16.0</MaxRange>
-    <MinRange>10.0</MinRange>
-    <ProjectileSpeed>25.0</ProjectileSpeed>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>10.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>16.0</MaxRange>
+      <MinRange>10.0</MinRange>
+      <ProjectileSpeed>25.0</ProjectileSpeed>
+      <PrepareTime>900</PrepareTime>
+      <RepeatTime>1500</RepeatTime>
+    </Ranged>
   </Attack>
 </Entity>

@@ -10,8 +10,13 @@
     <Max>120</Max>
     <RegenRate>0.4</RegenRate>
   </Health>
+  <Stamina>
+    <Max>840</Max>
+  </Stamina>
   <Attack>
-    <Pierce>55.0</Pierce>
+    <Ranged>
+      <Pierce>55.0</Pierce>
+    </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_e.xml</Actor>

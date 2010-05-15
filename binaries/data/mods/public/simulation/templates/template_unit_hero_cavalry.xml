@@ -2,6 +2,7 @@
 <Entity parent="template_unit_super_cavalry">
   <Identity>
     <GenericName>Hero</GenericName>
+    <Classes datatype="tokens">Hero Organic Mounted</Classes>
   </Identity>
   <Minimap>
     <Type>hero</Type>
@@ -14,10 +15,20 @@
       <metal>25</metal>
     </Resources>
   </Cost>
+  <Loot>
+    <xp>1000</xp>
+    <food>15</food>
+    <wood>10</wood>
+    <stone>10</stone>
+    <metal>100</metal>
+  </Loot>
   <Health>
     <Max>400</Max>
     <RegenRate>0.5</RegenRate>
   </Health>
+  <Stamina>
+    <Max>1500</Max>
+  </Stamina>
   <Armour>
     <Hack>0.0</Hack>
     <Pierce>0.0</Pierce>
@@ -25,15 +36,30 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>9.0</WalkSpeed>
+    <Run>
+      <Speed>22.5</Speed>
+      <Range>600.0</Range>
+      <RangeMin>16.0</RangeMin>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>1.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>3.6</MaxRange>
-    <PrepareTime>600</PrepareTime>
-    <RepeatTime>1000</RepeatTime>
+    <Melee>
+      <Hack>1.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>3.6</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>3.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>3.6</MaxRange>
+    </Charge>
   </Attack>
+  <Vision>
+    <Range>17</Range>
+  </Vision>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>

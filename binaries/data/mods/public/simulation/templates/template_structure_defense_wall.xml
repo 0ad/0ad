@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Wall</GenericName>
     <IconCell>54</IconCell>
+    <Tooltip>Protects a town, closes off choke points, and defends resource sites.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
   <Cost>
     <Resources>

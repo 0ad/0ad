@@ -4,6 +4,8 @@
     <Civ>hele</Civ>
     <SpecificName>Philip II</SpecificName>
     <IconCell>31</IconCell>
+    <Tooltip>Hero Aura: Increased Attack for Super Units.</Tooltip>
+    <History>The king of Macedonia (359 BC - 336 BC), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia.</History>
   </Identity>
   <Cost>
     <BuildTime>76</BuildTime>
@@ -14,6 +16,9 @@
   <Health>
     <Max>380</Max>
   </Health>
+  <Stamina>
+    <Max>1340</Max>
+  </Stamina>
   <Armour>
     <Hack>14.0</Hack>
     <Pierce>11.0</Pierce>
@@ -21,12 +26,30 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.9</WalkSpeed>
+    <Run>
+      <Speed>17.25</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>32.0</Hack>
-    <Crush>3.0</Crush>
+    <Melee>
+      <Hack>32.0</Hack>
+      <Crush>3.0</Crush>
+    </Melee>
+    <Charge>
+      <Hack>112</Hack>
+      <Crush>9.0</Crush>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/philip_horse.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>16</Range>
+  </Vision>
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Courage>
+  </Auras>
 </Entity>

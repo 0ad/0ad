@@ -4,12 +4,19 @@
     <GenericName>Melee Cavalry</GenericName>
   </Identity>
   <Attack>
-    <Hack>1.0</Hack>
-    <Pierce>1.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>4.0</MaxRange>
-    <MinRange>0.0</MinRange>
-    <PrepareTime>600</PrepareTime>
-    <RepeatTime>1000</RepeatTime>
+    <Melee>
+      <Hack>1.0</Hack>
+      <Pierce>1.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>15.0</Hack>
+      <Pierce>10.0</Pierce>
+      <Crush>15.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
   </Attack>
 </Entity>

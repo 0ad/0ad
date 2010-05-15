@@ -3,7 +3,14 @@
   <Identity>
     <GenericName>Civic Centre</GenericName>
     <IconCell>47</IconCell>
+    <Tooltip>The heart of the player's empire. Trains Citizen-Soldiers and is used to capture territories by being built on settlements.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
+  <BuildRestrictions>
+    <PlacementType>settlement</PlacementType>
+    <Territory>all</Territory>
+    <Category>CivilCentre</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>60</BuildTime>
@@ -32,4 +39,14 @@
   <Obstruction>
     <Static width="32.0" depth="32.0"/>
   </Obstruction>
+  <Vision>
+    <Range>20</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>15</Max>
+  </GarrisonHolder>
+  <ResourceDropsite>
+    <Radius>60</Radius>
+    <Types>food wood stone metal</Types>
+  </ResourceDropsite>
 </Entity>

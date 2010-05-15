@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>Fortress</GenericName>
     <IconCell>61</IconCell>
+    <Tooltip>Trains Heroes and Siege Units. Researches some Special Technologies.</Tooltip>
+    <Classes datatype="tokens">City</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Category>Fortress</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>84</BuildTime>
@@ -30,4 +35,10 @@
   <Obstruction>
     <Static width="24.0" depth="24.0"/>
   </Obstruction>
+  <Vision>
+    <Range>10</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>20</Max>
+  </GarrisonHolder>
 </Entity>

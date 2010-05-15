@@ -29,6 +29,48 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
+		"<element name='Tooltip'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='Rollover'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='History'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='Classes'>" +
+			"<attribute name='datatype'>" +
+				"<value>tokens</value>" +
+			"</attribute>" +
+			"<list>" +
+				"<zeroOrMore>" +
+					"<choice>" +
+						"<value>Foot</value>" +
+						"<value>Mounted</value>" +
+						"<value>Mechanical</value>" +
+						"<value>Organic</value>" +
+						"<value>Civic</value>" +
+						"<value>Economic</value>" +
+						"<value>City</value>" +
+						"<value>Village</value>" +
+						"<value>Town</value>" +
+						"<value a:help='Primary weapon type'>Bow</value>" + // TODO: what are these used for?
+						"<value a:help='Primary weapon type'>Javelin</value>" +
+						"<value a:help='Primary weapon type'>Spear</value>" +
+						"<value a:help='Primary weapon type'>Sword</value>" +
+						"<value>Hero</value>" +
+					"</choice>" +
+				"</zeroOrMore>" +
+			"</list>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
 		"<element name='IconCell'>" +
 			"<data type='nonNegativeInteger'/>" +
 		"</element>" +

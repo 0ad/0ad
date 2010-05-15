@@ -3,15 +3,20 @@
   <Identity>
     <GenericName>Infantry Javelinist</GenericName>
     <IconCell>21</IconCell>
+    <Rollover>These were the skirmishers. These lightly armoured units would advance quickly, throw a hail of javelins and then retreat back to their ranks. Grab another spear and repeat. They would do well against any unit that wasn't wearing proper armour, but more poorly if they fought hand to hand vs a well armoured unit. They didn't always have to throw their spears either. They used these light small spears in hand to hand similar to a quarterstaff. Also note that the development of the pilum was a key transition. The pilum was a weapon with a long steel shaft that would sink into a shield and was nearly impossible to remove. This rendered the shield useless. They also weighted and balanced them to make them accurately hit with a punch.</Rollover>
+    <Tooltip>Bonused vs. Infantry Spearmen and Cavalry Archers.</Tooltip>
+    <Classes datatype="tokens">Javelin</Classes>
   </Identity>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>45.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>32</MaxRange>
-    <MinRange>8.0</MinRange>
-    <ProjectileSpeed>30.0</ProjectileSpeed>
-    <PrepareTime>1200</PrepareTime>
-    <RepeatTime>2000</RepeatTime>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>45.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>32</MaxRange>
+      <MinRange>8.0</MinRange>
+      <ProjectileSpeed>30.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
   </Attack>
 </Entity>

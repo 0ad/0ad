@@ -10,14 +10,14 @@ element Entity {
             element Specific { text }? & # ok
             element Icon { text }? & # ok
             element Icon_Cell { xsd:integer }? & # ok
-            element Classes { text }? & # TODO
-            element Rollover { text }? & # TODO
-            element Tooltip { text }? & # TODO
-            element History { text }? & # TODO
+            element Classes { text }? & # ok
+            element Rollover { text }? & # ok
+            element Tooltip { text }? & # ok
+            element History { text }? & # ok
             element Civ { text }? & # ok
             element Civ_Code { text }? # ignore
         }? &
-        element IsTerritoryCentre { "true" }? & # TODO
+        element IsTerritoryCentre { "true" }? & # ok
         element Audio {
             element Path { text } # ignore
         }? &
@@ -34,14 +34,14 @@ element Entity {
                 element Food { xsd:integer }? & # ok
                 element Stone { xsd:integer }? # ok
             }? &
-            element Socket { "Settlement" }? & # TODO
-            element BuildingLimitCategory { text }? & # TODO
-            element TerritoryRestriction { "All" | "Allied" }? # TODO
+            element Socket { "Settlement" }? & # ok
+            element BuildingLimitCategory { text }? & # ok
+            element TerritoryRestriction { "All" | "Allied" }? # ok
         }? &
         element Anchor {
-            element Type { "Ground" | "Water" }?, # TODO
-            element ConformX { xsd:decimal }?, # TODO
-            element ConformZ { xsd:decimal }? # TODO
+            element Type { "Ground" | "Water" }?, # ok
+            element ConformX { xsd:decimal }?, # ok
+            element ConformZ { xsd:decimal }? # ok
         }? &
         element Footprint {
             element Radius { xsd:decimal }?, # ok
@@ -50,15 +50,15 @@ element Entity {
             element Height { xsd:decimal } # ok
         }? &
         element Garrison {
-            element Max { xsd:integer } # TODO
+            element Max { xsd:integer } # ok
         }? &
         element Health {
             element Max { xsd:integer }?, # ok
             element RegenRate { xsd:decimal }?, # ok
-            element BarHeight { xsd:decimal }?, # TODO
-            element Bar_Size { xsd:integer }?, # TODO
-            element Repairable { empty }?, # TODO
-            element Healable { empty }? # TODO
+            element BarHeight { xsd:decimal }?, # ignore
+            element Bar_Size { xsd:integer }?, # ignore
+            element Repairable { empty }?, # ok
+            element Healable { empty }? # ok
         }? &
         element Armour {
             element Hack { xsd:decimal }?, # ok
@@ -66,15 +66,15 @@ element Entity {
             element Crush { xsd:decimal }? # ok
         }? &
         element Stamina {
-            element Max { xsd:decimal }?, # TODO
-            element BarHeight { xsd:decimal }?, # TODO
-            element Bar_Size { xsd:integer }? # TODO
+            element Max { xsd:decimal }?, # ok
+            element BarHeight { xsd:decimal }?, # ignore
+            element Bar_Size { xsd:integer }? # ignore
         }? &
         element Rank {
-            element Height { xsd:decimal } # TODO
+            element Height { xsd:decimal } # ignore
         }? &
         element Ai {
-            element Behaviour { "Aggressive" | "Violent" | "Skittish" | "Passive" | "Defensive" } # TODO
+            element Behaviour { "Aggressive" | "Violent" | "Skittish" | "Passive" | "Defensive" } # ok
         }? &
         element MiniMap {
             element Type { text }, # ok
@@ -83,8 +83,8 @@ element Entity {
             element Blue { xsd:integer }? # ok
         }? &
         element Vision {
-            element Los { xsd:decimal }?, # TODO
-            element Permanent { xsd:boolean }? # TODO
+            element Los { xsd:decimal }?, # ok
+            element Permanent { xsd:boolean }? # ok
         }? &
         element Supply {
             element Max { xsd:integer }, # ok
@@ -92,23 +92,15 @@ element Entity {
             element SubType { text }? # ok
         }? &
         element Loot {
-            element Xp { xsd:integer }?, # TODO
-            element Food { xsd:decimal }?, # TODO
-            element Wood { xsd:decimal }?, # TODO
-            element Stone { xsd:integer }?, # TODO
-            element Metal { xsd:integer }? # TODO
+            element Xp { xsd:integer }?, # ok
+            element Food { xsd:decimal }?, # ok
+            element Wood { xsd:decimal }?, # ok
+            element Stone { xsd:integer }?, # ok
+            element Metal { xsd:integer }? # ok
         }? &
-        element Auras { # TODO
-            element (Dropsite | Infidelity | Allure | Trample | Heal | Fear | Courage) {
+        element Auras { # ok
+            element Dropsite {
                 element Radius { xsd:decimal }? &
-                element Bonus { xsd:integer }? &
-                element Rate { xsd:integer }? &
-                element Time { xsd:integer }? &
-                element Speed { xsd:integer }? &
-                element Duration { xsd:integer }? &
-                element Crush { xsd:decimal }? &
-                element Hack { xsd:decimal }? &
-                element Pierce { xsd:decimal }? &
                 element Types {
                     element Food { empty }?,
                     element Wood { empty }?,
@@ -119,9 +111,32 @@ element Entity {
                 element g { xsd:decimal }? &
                 element b { xsd:decimal }? &
                 element a { xsd:decimal }?
-            }+
+            }? &
+            element Trample {
+                element Radius { xsd:decimal }? &
+                element Speed { xsd:integer }? &
+                element Duration { xsd:integer }? &
+                element Crush { xsd:decimal }? &
+                element Hack { xsd:decimal }? &
+                element Pierce { xsd:decimal }? &
+                element r { xsd:decimal }? &
+                element g { xsd:decimal }? &
+                element b { xsd:decimal }? &
+                element a { xsd:decimal }?
+            }? &
+            element (Infidelity | Allure | Heal | Fear | Courage) {
+                element Radius { xsd:decimal }? &
+                element Bonus { xsd:integer }? &
+                element Rate { xsd:integer }? &
+                element Time { xsd:integer }? &
+                element Speed { xsd:integer }? &
+                element r { xsd:decimal }? &
+                element g { xsd:decimal }? &
+                element b { xsd:decimal }? &
+                element a { xsd:decimal }?
+            }*
         }? &
-        element Display { # TODO
+        element Display { # ok
             element Bars {
                 element Enabled { xsd:boolean },
                 element Offset { xsd:decimal },
@@ -129,11 +144,11 @@ element Entity {
                 element Height { xsd:decimal }
             }
         }? &
-        element Promotion { # TODO
-            element Entity { text }?,
-            element Req { xsd:integer }?
+        element Promotion {
+            element Entity { text }?, # ok
+            element Req { xsd:integer }? # ok
         }? &
-        element Formation { # TODO
+        element Formation { # ignore
             element Category { "Melee" },
             element Curr { "Loose" },
             element List {
@@ -143,9 +158,9 @@ element Entity {
     }?,
     element Actions {
         element Attack {
-            element Hack { xsd:decimal }?, # TODO
-            element Pierce { xsd:decimal }?, # TODO
-            element Crush { xsd:decimal }?, # TODO
+            element Hack { xsd:decimal }?, # ignore
+            element Pierce { xsd:decimal }?, # ignore
+            element Crush { xsd:decimal }?, # ignore
             element Ranged {
                 (element Hack { xsd:decimal }? & # ok
                 element Pierce { xsd:decimal }? & # ok
@@ -163,13 +178,13 @@ element Entity {
                 element RangeMin { xsd:decimal }?, # ok
                 element Speed { xsd:integer }? # ok
             }?,
-            element Charge { # TODO
-                element Hack { xsd:decimal }?,
-                element Pierce { xsd:decimal }?,
-                element Crush { xsd:decimal }?,
-                element Range { xsd:decimal }?,
-                element RangeMin { xsd:decimal }?,
-                element Speed { xsd:integer }?
+            element Charge {
+                element Hack { xsd:decimal }?, # ok
+                element Pierce { xsd:decimal }?, # ok
+                element Crush { xsd:decimal }?, # ok
+                element Range { xsd:decimal }?, # ok
+                element RangeMin { xsd:decimal }?, # ok
+                element Speed { xsd:integer }? # ok
             }?
         }? &
         element Create {
@@ -184,37 +199,37 @@ element Entity {
                     element * { empty }+ # ok
                 }?,
                 element Research {
-                    element * { empty }* # TODO
+                    element * { empty }* # ignore
                 }?
             }?,
-            element Speed { xsd:integer }?, # TODO
-            element Rally { empty }? # TODO
+            element Speed { xsd:integer }?, # ignore
+            element Rally { empty }? # ignore
         }? &
-        element Explore { empty }? & # TODO
-        element Patrol { empty }? & # TODO
+        element Explore { empty }? & # ignore
+        element Patrol { empty }? & # ignore
         element Escort {
-            element Distance { xsd:decimal } # TODO
+            element Distance { xsd:decimal } # ignore
         }? &
-        element Barter {
+        element Barter { # ignore
             element List {
-                element Food { empty }, # TODO
-                element Wood { empty }, # TODO
-                element Stone { empty }, # TODO
-                element Metal { empty } # TODO
+                element Food { empty },
+                element Wood { empty },
+                element Stone { empty },
+                element Metal { empty }
             }
         }? &
         element Move {
             element Speed { xsd:decimal }, # ok
-            element Speed_Curr { empty }?, # TODO
-            element TurningRadius { xsd:decimal }?, # TODO
+            element Speed_Curr { empty }?, # ignore
+            element TurningRadius { xsd:decimal }?, # ignore
             element Run {
-                element Speed { xsd:decimal } & # TODO
-                element Range { xsd:decimal }? & # TODO
-                element RangeMin { xsd:decimal }? & # TODO
-                element RegenRate { xsd:decimal }? & # TODO
-                element DecayRate { xsd:decimal }? # TODO
+                element Speed { xsd:decimal } & # ok
+                element Range { xsd:decimal }? & # ok
+                element RangeMin { xsd:decimal }? & # ok
+                element RegenRate { xsd:decimal }? & # ok
+                element DecayRate { xsd:decimal }? # ok
             }?,
-            element PassThroughAllies { "true" }? # TODO
+            element PassThroughAllies { "true" }? # ignore
         }? &
         element Gather {
             element Resource {
@@ -228,28 +243,28 @@ element Entity {
                 element Metal { xsd:decimal }? & # ok
                 element Stone { xsd:decimal }? # ok
             }?,
-            element AffectedByAllure { "true" }?, # TODO
-            element Range { xsd:decimal }?, # TODO
+            element AffectedByAllure { "true" }?, # ignore
+            element Range { xsd:decimal }?, # ignore
             element Speed { xsd:integer } # ok
         }? &
         element Repair {
-            element Rate { xsd:decimal }, # TODO
-            element Speed { xsd:integer } # TODO
+            element Rate { xsd:decimal }, # ignore
+            element Speed { xsd:integer } # ignore
         }? &
         element Build {
-            element Rate { xsd:decimal }, # TODO
-            element Speed { xsd:integer } # TODO
+            element Rate { xsd:decimal }, # ignore
+            element Speed { xsd:integer } # ignore
         }? &
         element Loot {
-            element Resources { empty }?, # TODO
-            element Xp { empty }? # TODO
+            element Resources { empty }?, # ok
+            element Xp { empty }? # ok
         }? &
-        element TownBell { empty }? # TODO
+        element TownBell { empty }? # ignore
     }?,
     element Actor { text }?, # ok
     element SoundGroups {
         element (Walk|Run|Melee|Death|Build|Gather_Fruit|Gather_Grain|Gather_Wood|Gather_Stone|Gather_Metal) { text }+ # ok
     }?,
-    element Script { attribute File { text } }?, # TODO
-    element Event { attribute On { text }, attribute Function { text } }* # TODO
+    element Script { attribute File { text } }?, # ignore
+    element Event { attribute On { text }, attribute Function { text } }* # ignore
 }

@@ -2,5 +2,13 @@
 <Entity parent="template_unit">
   <Identity>
     <GenericName>Mechanical</GenericName>
+    <Classes datatype="tokens">Mechanical</Classes>
   </Identity>
+  <Loot>
+    <wood>20</wood>
+  </Loot>
+  <Health>
+    <Healable>false</Healable>
+    <Repairable>true</Repairable>
+  </Health>
 </Entity>

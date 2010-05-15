@@ -4,6 +4,8 @@
     <Civ>hele</Civ>
     <SpecificName>Leonidas</SpecificName>
     <IconCell>21</IconCell>
+    <Tooltip>Hero Aura: Increased Spartiate and Hoplite Attack.</Tooltip>
+    <History>The king of Sparta, who fought and died at the battle of Thermopylae in 480 BC. He successfully blocked the way of the huge Persian army through the narrow passage with his 7000 men, until Xerxes was made aware of a secret unobstructed path. Finding the enemy at his rear, Leonidas sent home most of his troops, choosing to stay behind with 300 hand-picked hoplites and win time for the others to withdraw.</History>
   </Identity>
   <Cost>
     <Resources>
@@ -11,6 +13,9 @@
       <metal>150</metal>
     </Resources>
   </Cost>
+  <Stamina>
+    <Max>990</Max>
+  </Stamina>
   <Armour>
     <Hack>16.0</Hack>
     <Pierce>14.0</Pierce>
@@ -18,13 +23,32 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.0</WalkSpeed>
+    <Run>
+      <Speed>12.5</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>20.0</Hack>
-    <Pierce>20.0</Pierce>
-    <Crush>0.0</Crush>
+    <Melee>
+      <Hack>20.0</Hack>
+      <Pierce>20.0</Pierce>
+      <Crush>0.0</Crush>
+    </Melee>
+    <Charge>
+      <Hack>60.0</Hack>
+      <Pierce>60.0</Pierce>
+      <Crush>0.0</Crush>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/leonidas.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>8</Range>
+  </Vision>
+  <Auras>
+    <Fear>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Fear>
+  </Auras>
 </Entity>

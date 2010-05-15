@@ -3,6 +3,9 @@
   <Identity>
     <GenericName>Cavalry Javelinist</GenericName>
     <IconCell>6</IconCell>
+    <Rollover>The javelins thrown from a horse's back were probably 3 at most. The idea was to quickly advance with 3 in hand, then throw them all. After you had done that it was time to switch to your secondary weapon which was usually a spear or a sword. However, in the game - these units will only have ranged attack.</Rollover>
+    <Tooltip>Bonused vs. Infantry Archer and Cavalry Swordsman.</Tooltip>
+    <Classes datatype="tokens">Javelin</Classes>
   </Identity>
   <Cost>
     <BuildTime>15</BuildTime>
@@ -21,15 +24,20 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>23.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>30.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>40</MaxRange>
-    <MinRange>16.0</MinRange>
-    <ProjectileSpeed>30.0</ProjectileSpeed>
-    <PrepareTime>1200</PrepareTime>
-    <RepeatTime>2000</RepeatTime>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>30.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>40</MaxRange>
+      <MinRange>16.0</MinRange>
+      <ProjectileSpeed>30.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
   </Attack>
 </Entity>

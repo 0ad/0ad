@@ -7,7 +7,9 @@
   <Minimap>
     <Type>unit</Type>
   </Minimap>
-  <UnitAI/>
+  <UnitAI>
+    <NaturalBehaviour>passive</NaturalBehaviour>
+  </UnitAI>
   <Cost>
     <Population>1</Population>
     <Resources>
@@ -20,6 +22,7 @@
   <Health>
     <DeathType>corpse</DeathType>
     <Max>100</Max>
+    <Healable>true</Healable>
   </Health>
   <Armour>
     <Hack>0.0</Hack>
@@ -28,7 +31,17 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+      <Range>50.0</Range>
+      <RangeMin>0.0</RangeMin>
+      <RegenTime>0.1</RegenTime>
+      <DecayTime>0.2</DecayTime>
+    </Run>
   </UnitMotion>
+  <StatusBars>
+    <HeightOffset>5.0</HeightOffset>
+  </StatusBars>
   <Footprint>
     <Circle radius="0.5"/>
     <Height>2.5</Height>
@@ -36,4 +49,8 @@
   <Obstruction>
     <Unit radius="1.0"/>
   </Obstruction>
+  <Vision>
+    <Range>6</Range>
+    <RetainInFog>false</RetainInFog>
+  </Vision>
 </Entity>

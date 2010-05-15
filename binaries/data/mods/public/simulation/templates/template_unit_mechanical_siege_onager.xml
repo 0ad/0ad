@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Siege Onager</GenericName>
     <IconCell>35</IconCell>
+    <Tooltip>Bonused vs. Structures and Massed Infantry.
+			</Tooltip>
   </Identity>
   <Cost>
     <Resources>
@@ -20,15 +22,23 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>4.75</WalkSpeed>
+    <Run>
+      <Speed>4.9</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>35.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>40.0</Crush>
-    <MaxRange>72</MaxRange>
-    <MinRange>0.0</MinRange>
-    <ProjectileSpeed>20.0</ProjectileSpeed>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Ranged>
+      <Hack>35.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>40.0</Crush>
+      <MaxRange>72</MaxRange>
+      <MinRange>0.0</MinRange>
+      <ProjectileSpeed>20.0</ProjectileSpeed>
+      <PrepareTime>900</PrepareTime>
+      <RepeatTime>1500</RepeatTime>
+    </Ranged>
   </Attack>
+  <Vision>
+    <Range>20</Range>
+  </Vision>
 </Entity>

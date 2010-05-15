@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Temple</GenericName>
     <IconCell>58</IconCell>
+    <Tooltip>Trains physicians, researches medical technologies, and provides slow healing to nearby allied organic units. Garrison units inside for even quicker healing.</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
   </Identity>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
@@ -29,9 +31,21 @@
   <Obstruction>
     <Static width="12.0" depth="12.0"/>
   </Obstruction>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
   <TrainingQueue>
     <Entities>
       units/{civ}_support_healer
     </Entities>
   </TrainingQueue>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
+  <Auras>
+    <Heal>
+      <Radius>40</Radius>
+      <Speed>1000</Speed>
+    </Heal>
+  </Auras>
 </Entity>

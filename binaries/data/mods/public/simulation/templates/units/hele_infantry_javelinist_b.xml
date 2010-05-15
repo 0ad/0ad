@@ -4,7 +4,11 @@
     <Civ>hele</Civ>
     <SpecificName>Thracian Peltast</SpecificName>
     <IconCell>6</IconCell>
+    <History>Peltasts were javelinists originating in Thrace but their form of combat was widely copied by the Hellenes, Macedonians, and Persians. Equipped with a small oval or crescent shield, a peltast would charge at enemy formations whilst hurling his javelins then fall back to avoid close combat. They wore no armor and were at a significant disadvantage against heavy infantry and cavalry, relying on their speed and skill for survival. Thracians sold their services to Hellene cities as mercenaries and added a much needed ranged and skirmishing ability to Hellenic armies.</History>
   </Identity>
+  <Promotion>
+    <Entity>hele_infantry_javelinist_a</Entity>
+  </Promotion>
   <Cost>
     <Resources>
       <food>0</food>
@@ -12,6 +16,9 @@
       <metal>75</metal>
     </Resources>
   </Cost>
+  <Stamina>
+    <Max>590</Max>
+  </Stamina>
   <Armour>
     <Hack>2.0</Hack>
     <Pierce>2.0</Pierce>
@@ -19,9 +26,14 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.7</WalkSpeed>
+    <Run>
+      <Speed>16.75</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <MaxRange>36.0</MaxRange>
+    <Ranged>
+      <MaxRange>36.0</MaxRange>
+    </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_b.xml</Actor>

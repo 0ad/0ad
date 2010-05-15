@@ -2,4 +2,7 @@
 <Entity parent="template_unit_fauna_hunt">
   <Identity>
   </Identity>
+  <UnitAI>
+    <NaturalBehaviour>aggressive</NaturalBehaviour>
+  </UnitAI>
 </Entity>

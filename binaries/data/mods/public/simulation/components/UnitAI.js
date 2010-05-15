@@ -37,7 +37,15 @@ function UnitAI() {}
 UnitAI.prototype.Schema =
 	"<a:help>Controls the unit's movement, attacks, etc, in response to commands from the player.</a:help>" +
 	"<a:example/>" +
-	"<empty/>";
+	"<element name='NaturalBehaviour' a:help='Behaviour of the unit in the absence of player commands (intended for animals)'>" + // TODO: implement this
+		"<choice>" +
+			"<value a:help='Will actively attack any unit it encounters, even if not threatened'>violent</value>" +
+			"<value a:help='Will attack nearby units if it feels threatened (if they linger within LOS for too long)'>aggressive</value>" +
+			"<value a:help='Will attack nearby units if attacked'>defensive</value>" +
+			"<value a:help='Will never attack units'>passive</value>" +
+			"<value a:help='Will never attack units. Will typically attempt to flee for short distances when units approach'>skittish</value>" +
+		"</choice>" +
+	"</element>";
 
 UnitAI.prototype.Init = function()
 {
@@ -48,6 +56,8 @@ UnitAI.prototype.Init = function()
 	this.attackRechargeTime = 0;
 	// Timer for AttackTimeout
 	this.attackTimer = undefined;
+	// Current attack type
+	this.attackType = undefined;
 	// Current target entity ID
 	this.attackTarget = undefined;
 
@@ -90,13 +100,18 @@ UnitAI.prototype.Attack = function(target)
 
 	// TODO: verify that this is a valid target
 
+	var type = cmpAttack.GetBestAttack();
+	if (!type)
+		return;
+
 	// Stop any previous action timers
 	this.CancelTimers();
 
 	// Remember the target, and start moving towards it
+	this.attackType = type;
 	this.attackTarget = target;
 	this.state = STATE_ATTACKING;
-	if (!this.MoveToTarget(target, cmpAttack.GetRange()))
+	if (!this.MoveToTarget(target, cmpAttack.GetRange(type)))
 	{
 		// We're in range already, do the attack
 		// (TODO: this could also happen if we couldn't move anywhere)
@@ -182,7 +197,7 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 			// We were attacking, and have stopped moving
 			// => check if we can still reach the target now
 
-			if (this.MoveIntoRange(IID_Attack, this.attackTarget))
+			if (this.MoveIntoRange(IID_Attack, this.attackTarget, this.attackType))
 				return;
 
 			// In range, so perform the attack
@@ -221,7 +236,7 @@ UnitAI.prototype.StartAttack = function()
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
-	var timers = cmpAttack.GetTimers();
+	var timers = cmpAttack.GetTimers(this.attackType);
 	var time = Math.max(timers.prepare, this.attackRechargeTime - cmpTimer.GetTime());
 	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", time, {});
 
@@ -284,10 +299,10 @@ UnitAI.prototype.CancelTimers = function()
  * Tries to move into range of the target.
  * Returns true if the unit has started walking or on pathing failure, false if already in range.
  */
-UnitAI.prototype.MoveIntoRange = function(iid, target)
+UnitAI.prototype.MoveIntoRange = function(iid, target, type)
 {
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
-	var range = cmpRanged.GetRange();
+	var range = cmpRanged.GetRange(type);
 
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (cmpMotion.IsInAttackRange(target, range.min, range.max))
@@ -357,19 +372,19 @@ UnitAI.prototype.AttackTimeout = function(data)
 		return;
 
 	// Check if we can still reach the target
-	if (this.MoveIntoRange(IID_Attack, this.attackTarget))
+	if (this.MoveIntoRange(IID_Attack, this.attackTarget, this.attackType))
 		return;
 
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 
 	// Hit the target
-	cmpAttack.PerformAttack(this.attackTarget);
+	cmpAttack.PerformAttack(this.attackType, this.attackTarget);
 
 	// Set a timer to hit the target again
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
-	var timers = cmpAttack.GetTimers();
+	var timers = cmpAttack.GetTimers(this.attackType);
 	this.attackRechargeTime = cmpTimer.GetTime() + timers.recharge;
 	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", timers.repeat, data);
 };

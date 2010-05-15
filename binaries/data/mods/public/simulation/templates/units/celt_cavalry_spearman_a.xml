@@ -3,9 +3,20 @@
   <Identity>
     <IconCell>16</IconCell>
   </Identity>
+  <Promotion>
+    <Entity>celt_cavalry_spearman_e</Entity>
+  </Promotion>
+  <Loot>
+    <food>14</food>
+    <wood>4</wood>
+    <metal>2</metal>
+  </Loot>
   <Health>
     <Max>163</Max>
   </Health>
+  <Stamina>
+    <Max>825</Max>
+  </Stamina>
   <Armour>
     <Hack>3.2</Hack>
     <Pierce>10.2</Pierce>
@@ -13,14 +24,27 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.05</WalkSpeed>
+    <Run>
+      <Speed>28.9</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>16.0</Hack>
-    <Pierce>6.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>3.6</MaxRange>
+    <Melee>
+      <Hack>16.0</Hack>
+      <Pierce>6.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>3.6</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>46.0</Hack>
+      <Pierce>16.0</Pierce>
+      <MaxRange>3.6</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_spearman_a.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>16</Range>
+  </Vision>
 </Entity>

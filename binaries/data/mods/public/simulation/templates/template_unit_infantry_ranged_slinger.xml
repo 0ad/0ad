@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Infantry Slinger</GenericName>
     <IconCell>12</IconCell>
+    <Rollover>They were amazing shots with their slings. They used choice rocks, and often specifically created 'shot' made from lead. They could pierce armour at close distances. They were lightly armoured because they needed the mobility in their arm regions. However, in the game we are making a gameplay consideration to have slingers act as 'mini-organic-onagers' that may cause damage to structures.</Rollover>
+    <Tooltip>General Bonus vs. Infantry.</Tooltip>
   </Identity>
   <Cost>
     <BuildTime>8</BuildTime>
@@ -14,6 +16,9 @@
   <Health>
     <Max>70</Max>
   </Health>
+  <Stamina>
+    <Max>550</Max>
+  </Stamina>
   <Armour>
     <Hack>1.0</Hack>
     <Pierce>2.0</Pierce>
@@ -21,15 +26,20 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.5</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>20.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>28.0</MaxRange>
-    <MinRange>16.0</MinRange>
-    <ProjectileSpeed>50.0</ProjectileSpeed>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>20.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>28.0</MaxRange>
+      <MinRange>16.0</MinRange>
+      <ProjectileSpeed>50.0</ProjectileSpeed>
+      <PrepareTime>900</PrepareTime>
+      <RepeatTime>1500</RepeatTime>
+    </Ranged>
   </Attack>
 </Entity>

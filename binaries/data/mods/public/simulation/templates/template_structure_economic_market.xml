@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>Market</GenericName>
     <IconCell>60</IconCell>
+    <Tooltip>Creates Trade units and allows resources to be Bartered.</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Category>Market</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>30</BuildTime>
     <Resources>
@@ -28,9 +33,15 @@
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
+  <Vision>
+    <Range>7</Range>
+  </Vision>
   <TrainingQueue>
     <Entities>
       units/{civ}_support_trader
     </Entities>
   </TrainingQueue>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
 </Entity>

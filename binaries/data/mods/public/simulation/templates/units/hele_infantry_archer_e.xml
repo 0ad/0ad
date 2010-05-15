@@ -10,6 +10,9 @@
     <Max>105</Max>
     <RegenRate>0.4</RegenRate>
   </Health>
+  <Stamina>
+    <Max>690</Max>
+  </Stamina>
   <Armour>
     <Hack>4.0</Hack>
     <Pierce>2.0</Pierce>
@@ -17,11 +20,19 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.7</WalkSpeed>
+    <Run>
+      <Speed>16.75</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Pierce>45.0</Pierce>
+    <Ranged>
+      <Pierce>45.0</Pierce>
+    </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_e.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>12</Range>
+  </Vision>
 </Entity>

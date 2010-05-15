@@ -3,6 +3,7 @@
   <Identity>
     <GenericName>Super Infantry</GenericName>
     <IconCell>43</IconCell>
+    <Classes datatype="tokens">Organic Foot</Classes>
   </Identity>
   <Cost>
     <BuildTime>30</BuildTime>
@@ -16,6 +17,9 @@
   <Health>
     <Max>150</Max>
   </Health>
+  <Stamina>
+    <Max>800</Max>
+  </Stamina>
   <Armour>
     <Hack>0.0</Hack>
     <Pierce>0.0</Pierce>
@@ -23,20 +27,35 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>17.5</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>5.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>4.0</MaxRange>
-    <MinRange>0.0</MinRange>
-    <PrepareTime>600</PrepareTime>
-    <RepeatTime>1000</RepeatTime>
+    <Melee>
+      <Hack>5.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>60.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
   </Attack>
   <Footprint>
     <Circle radius="0.5"/>
     <Height>2.5</Height>
   </Footprint>
+  <Vision>
+    <Range>12</Range>
+  </Vision>
   <Sound>
     <SoundGroups>
       <walk>actor/human/movement/walk.xml</walk>

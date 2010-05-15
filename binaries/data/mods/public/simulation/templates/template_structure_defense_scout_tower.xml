@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>Outpost</GenericName>
     <IconCell>53</IconCell>
+    <Tooltip>Provides reconnaissance and defense against attackers when garrisoned.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Category>ScoutTower</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>24</BuildTime>
     <Resources>
@@ -29,4 +34,10 @@
   <Obstruction>
     <Static width="6.0" depth="6.0"/>
   </Obstruction>
+  <Vision>
+    <Range>12</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>5</Max>
+  </GarrisonHolder>
 </Entity>

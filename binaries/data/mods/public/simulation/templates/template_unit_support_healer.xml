@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Healer</GenericName>
     <IconCell>33</IconCell>
+    <Tooltip>Heals units within his Aura.</Tooltip>
+    <Classes datatype="tokens">Foot</Classes>
   </Identity>
   <Cost>
     <Resources>
@@ -21,4 +23,13 @@
   <UnitMotion>
     <WalkSpeed>6.0</WalkSpeed>
   </UnitMotion>
+  <Vision>
+    <Range>12</Range>
+  </Vision>
+  <Auras>
+    <Heal>
+      <Radius>20</Radius>
+      <Speed>2000</Speed>
+    </Heal>
+  </Auras>
 </Entity>

@@ -4,13 +4,20 @@
     <Civ>hele</Civ>
     <SpecificName>Hoplite</SpecificName>
     <IconCell>3</IconCell>
+    <History>Hoplites were the very symbol of Hellenistic prestige and citizenship, armed with a spear and a large round, bronze-coated shield known as an aspis. Armor was heavy, with bronze helmets and a cuirass of either bronze or linen, in addition to greaves. Hoplites fought in a tight formation called a phalanx, guarding each other with their shields while they attacked the enemy with their 2.5 meter spear or short iron sword.</History>
   </Identity>
+  <Promotion>
+    <Entity>hele_infantry_spearman_a</Entity>
+  </Promotion>
   <Cost>
     <Resources>
       <wood>75</wood>
       <metal>5</metal>
     </Resources>
   </Cost>
+  <Stamina>
+    <Max>540</Max>
+  </Stamina>
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>8.0</Pierce>
@@ -18,11 +25,20 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.1</WalkSpeed>
+    <Run>
+      <Speed>15.25</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>5.0</Hack>
-    <Pierce>15.0</Pierce>
-    <MaxRange>4.8</MaxRange>
+    <Melee>
+      <Hack>5.0</Hack>
+      <Pierce>15.0</Pierce>
+      <MaxRange>4.8</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>10.0</Hack>
+      <Pierce>30.0</Pierce>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_b.xml</Actor>

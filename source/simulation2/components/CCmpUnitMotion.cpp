@@ -88,8 +88,23 @@ public:
 			"</a:example>"
 			"<element name='WalkSpeed' a:help='Basic movement speed (in metres per second)'>"
 				"<ref name='positiveDecimal'/>"
-			"</element>";
+			"</element>"
+			"<optional>"
+				"<element name='Run'>"
+					"<interleave>"
+						"<element name='Speed'><ref name='positiveDecimal'/></element>"
+						"<element name='Range'><ref name='positiveDecimal'/></element>"
+						"<element name='RangeMin'><ref name='nonNegativeDecimal'/></element>"
+						"<element name='RegenTime'><ref name='positiveDecimal'/></element>"
+						"<element name='DecayTime'><ref name='positiveDecimal'/></element>"
+					"</interleave>"
+				"</element>"
+			"</optional>";
 	}
+
+	/*
+	 * TODO: the running/charging thing needs to be designed and implemented
+	 */
 
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{

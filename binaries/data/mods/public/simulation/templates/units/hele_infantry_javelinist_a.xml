@@ -3,6 +3,9 @@
   <Identity>
     <IconCell>7</IconCell>
   </Identity>
+  <Promotion>
+    <Entity>hele_infantry_javelinist_e</Entity>
+  </Promotion>
   <ResourceGatherer>
     <BaseSpeed>1.5</BaseSpeed>
   </ResourceGatherer>
@@ -10,6 +13,9 @@
     <Max>110</Max>
     <RegenRate>0.3</RegenRate>
   </Health>
+  <Stamina>
+    <Max>740</Max>
+  </Stamina>
   <Armour>
     <Hack>3.0</Hack>
     <Pierce>2.0</Pierce>
@@ -17,11 +23,19 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.2</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Pierce>50.0</Pierce>
+    <Ranged>
+      <Pierce>50.0</Pierce>
+    </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_a.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>13</Range>
+  </Vision>
 </Entity>

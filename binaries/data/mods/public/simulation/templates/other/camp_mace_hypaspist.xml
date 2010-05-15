@@ -4,7 +4,12 @@
     <Civ>hele</Civ>
     <SpecificName>Hypaspistai</SpecificName>
     <IconCell>12</IconCell>
+    <History>The Hypaspistai, or "shield bearers", were the flower of the Macedonian infantry. They were the most battle hardened veterans  within the army and followed Philip II and Alexander the Great into over a dozen full scale engagements. These heavily armed and opulently armoured units acted as an intermediary between the phalanx and the cavalry arm, many times charging headlong with Alexander into a breech in the enemy lines. Sometimes they fought as slow pikemen, like the Pezhetairoi with 6 meter "sarissas", and other times they fought as Hoplites with large aspides and 2.5 meter-long spears, or "dorata". In later times they became known as the Argyraspidai, or "Silver Shields" when Alexander bestowed upon them armor and shields plated in pure silver, and played a decisive role in the early Diadochoi Wars of Alexander's "Successors."</History>
   </Identity>
+  <Promotion>
+    <Entity>camp_mace_hypaspist_argyraspidai</Entity>
+    <Req>500</Req>
+  </Promotion>
   <Cost>
     <Resources>
       <wood>75</wood>
@@ -21,13 +26,23 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.5</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>18.0</Hack>
-    <Pierce>22.0</Pierce>
-    <Crush>0.0</Crush>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Melee>
+      <Hack>18.0</Hack>
+      <Pierce>22.0</Pierce>
+      <Crush>0.0</Crush>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>36.0</Hack>
+      <Pierce>40.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>3.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>temp/mace_su1_hypaspist.xml</Actor>

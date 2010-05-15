@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Tower</GenericName>
     <IconCell>55</IconCell>
+    <Tooltip>Towers can be garrisoned to defend a city wall against attackers.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
   <Cost>
     <Resources>
@@ -27,4 +29,7 @@
   <Obstruction>
     <Static width="6.0" depth="6.0"/>
   </Obstruction>
+  <GarrisonHolder>
+    <Max>4</Max>
+  </GarrisonHolder>
 </Entity>

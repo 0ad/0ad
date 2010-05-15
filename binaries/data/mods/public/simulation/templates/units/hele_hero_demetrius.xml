@@ -4,6 +4,8 @@
     <Civ>hele</Civ>
     <SpecificName>Demetrius</SpecificName>
     <IconCell>29</IconCell>
+    <Tooltip>Hero Aura: Increased Range and Attack for Siege Engines.</Tooltip>
+    <History>One of the Diadochi, king of Macedonia (294 BC - 288 BC), Demetrius was renowned as one of the bravest and most able successors of Alexander. As the son of Antigonus I Monophtalmus, he fought and won many important battles early on and was proclaimed king, along with his father, in 306 BC. Losing his Asian possessions after the battle of Ipsus, he later won the Macedonian throne. Fearing lest they should be overpowered by Demetrius, the other Diadochi united against him and defeated him.</History>
   </Identity>
   <Cost>
     <BuildTime>55</BuildTime>
@@ -15,6 +17,9 @@
   <Health>
     <Max>275</Max>
   </Health>
+  <Stamina>
+    <Max>920</Max>
+  </Stamina>
   <Armour>
     <Hack>13.0</Hack>
     <Pierce>10.0</Pierce>
@@ -22,14 +27,32 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>4.7</WalkSpeed>
+    <Run>
+      <Speed>11.75</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>20.0</Hack>
-    <Pierce>24.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>7.0</MaxRange>
+    <Melee>
+      <Hack>20.0</Hack>
+      <Pierce>24.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>7.0</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>40.5</Hack>
+      <Pierce>48.0</Pierce>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/demetrius.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>9</Range>
+  </Vision>
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Courage>
+  </Auras>
 </Entity>

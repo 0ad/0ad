@@ -3,6 +3,9 @@
   <Identity>
     <GenericName>Female Citizen</GenericName>
     <IconCell>32</IconCell>
+    <Rollover>Women in the ancient world took on a variety of roles - from leadership (Celts) to servant (Greeks). Women are hard workers, the economic backbone of any civilisation. In history, it was typical when all the males (capable of fighting) were killed for the females, children, and elderly to be sold as slaves.</Rollover>
+    <Tooltip>Economic support unit that gathers resources, builds structures, and inspires nearby males to work faster.</Tooltip>
+    <Classes datatype="tokens">Foot</Classes>
   </Identity>
   <Cost>
     <BuildTime>15</BuildTime>
@@ -26,6 +29,9 @@
     <Max>75</Max>
     <RegenRate>0.3</RegenRate>
   </Health>
+  <Stamina>
+    <Max>500</Max>
+  </Stamina>
   <Armour>
     <Hack>1.0</Hack>
     <Pierce>1.0</Pierce>
@@ -33,7 +39,15 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>8.0</Speed>
+      <Range>150.0</Range>
+      <RangeMin>0.0</RangeMin>
+    </Run>
   </UnitMotion>
+  <Vision>
+    <Range>10</Range>
+  </Vision>
   <Builder>
     <Rate>1.0</Rate>
     <Entities>
@@ -47,6 +61,15 @@
       structures/{civ}_temple
     </Entities>
   </Builder>
+  <Auras>
+    <Allure>
+      <Radius>25</Radius>
+    </Allure>
+    <Infidelity>
+      <Radius>10</Radius>
+      <Time>10</Time>
+    </Infidelity>
+  </Auras>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>

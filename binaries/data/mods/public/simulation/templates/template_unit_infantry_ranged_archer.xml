@@ -3,15 +3,20 @@
   <Identity>
     <GenericName>Infantry Archer</GenericName>
     <IconCell>9</IconCell>
+    <Rollover>They tended to be lightly armoured. They usually only participated in the first stage of a battle, sending a volley of arrows raining down the enemy. Of course they would have to stop shooting once the melee units closed in. This means their job was largely over once the 'true battle' was underway. They spent hours training with a bow, but if you were hit by an arrow it was more likely an act of random chance than being specifically targeted by an archer.</Rollover>
+    <Tooltip>Bonused vs. Infantry Swordsmen and Cavalry Spearmen.</Tooltip>
+    <Classes datatype="tokens">Bow</Classes>
   </Identity>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>44.0</MaxRange>
-    <MinRange>20.0</MinRange>
-    <ProjectileSpeed>40.0</ProjectileSpeed>
-    <PrepareTime>1200</PrepareTime>
-    <RepeatTime>2000</RepeatTime>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>40.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>44.0</MaxRange>
+      <MinRange>20.0</MinRange>
+      <ProjectileSpeed>40.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
   </Attack>
 </Entity>

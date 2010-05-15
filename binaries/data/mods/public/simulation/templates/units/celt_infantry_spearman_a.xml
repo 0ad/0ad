@@ -3,9 +3,15 @@
   <Identity>
     <IconCell>4</IconCell>
   </Identity>
+  <Promotion>
+    <Entity>celt_infantry_spearman_e</Entity>
+  </Promotion>
   <Health>
     <Max>93</Max>
   </Health>
+  <Stamina>
+    <Max>325</Max>
+  </Stamina>
   <Armour>
     <Hack>5.2</Hack>
     <Pierce>3.2</Pierce>
@@ -13,12 +19,24 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.2</WalkSpeed>
+    <Run>
+      <Speed>14.9</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>16.0</Hack>
-    <Pierce>6.0</Pierce>
+    <Melee>
+      <Hack>16.0</Hack>
+      <Pierce>6.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>33.0</Hack>
+      <Pierce>13.0</Pierce>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/infantry_spearman_a.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>14</Range>
+  </Vision>
 </Entity>

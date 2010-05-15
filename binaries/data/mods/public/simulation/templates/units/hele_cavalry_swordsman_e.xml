@@ -17,13 +17,26 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.5</WalkSpeed>
+    <Run>
+      <Speed>18.75</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>19.0</Hack>
-    <Crush>7.0</Crush>
-    <MaxRange>2.0</MaxRange>
+    <Melee>
+      <Hack>19.0</Hack>
+      <Crush>7.0</Crush>
+      <MaxRange>2.0</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>57.0</Hack>
+      <Crush>21.0</Crush>
+      <MaxRange>4.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_e.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>13</Range>
+  </Vision>
 </Entity>

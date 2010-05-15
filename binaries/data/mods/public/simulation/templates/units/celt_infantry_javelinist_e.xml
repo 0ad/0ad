@@ -3,9 +3,18 @@
   <Identity>
     <IconCell>23</IconCell>
   </Identity>
+  <Loot>
+    <food>1</food>
+    <wood>13</wood>
+    <stone>1</stone>
+    <metal>3</metal>
+  </Loot>
   <Health>
     <Max>85</Max>
   </Health>
+  <Stamina>
+    <Max>550</Max>
+  </Stamina>
   <Armour>
     <Hack>1.4</Hack>
     <Pierce>5.4</Pierce>
@@ -13,18 +22,26 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>9.3</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>49.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>34</MaxRange>
-    <MinRange>16.0</MinRange>
-    <ProjectileSpeed>34.0</ProjectileSpeed>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>49.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>34</MaxRange>
+      <MinRange>16.0</MinRange>
+      <ProjectileSpeed>34.0</ProjectileSpeed>
+      <PrepareTime>900</PrepareTime>
+      <RepeatTime>1500</RepeatTime>
+    </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/celts/infantry_javelinist_e.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>14</Range>
+  </Vision>
 </Entity>

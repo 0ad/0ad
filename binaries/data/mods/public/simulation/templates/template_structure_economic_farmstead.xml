@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>Farmstead</GenericName>
     <IconCell>49</IconCell>
+    <Tooltip>Gather food within this building's aura.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Category>Farmstead</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>18</BuildTime>
     <Resources>
@@ -28,4 +33,14 @@
   <Obstruction>
     <Static width="12.0" depth="12.0"/>
   </Obstruction>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>5</Max>
+  </GarrisonHolder>
+  <ResourceDropsite>
+    <Radius>56</Radius>
+    <Types>food</Types>
+  </ResourceDropsite>
 </Entity>

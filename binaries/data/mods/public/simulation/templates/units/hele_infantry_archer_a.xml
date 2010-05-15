@@ -3,6 +3,9 @@
   <Identity>
     <IconCell>10</IconCell>
   </Identity>
+  <Promotion>
+    <Entity>hele_infantry_archer_e</Entity>
+  </Promotion>
   <ResourceGatherer>
     <BaseSpeed>1.5</BaseSpeed>
   </ResourceGatherer>
@@ -10,15 +13,23 @@
     <Max>95</Max>
     <RegenRate>0.3</RegenRate>
   </Health>
+  <Stamina>
+    <Max>700</Max>
+  </Stamina>
   <Armour>
     <Hack>3.0</Hack>
     <Pierce>1.0</Pierce>
     <Crush>3.0</Crush>
   </Armour>
   <Attack>
-    <Pierce>40.0</Pierce>
+    <Ranged>
+      <Pierce>40.0</Pierce>
+    </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_a.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>13</Range>
+  </Vision>
 </Entity>

@@ -3,10 +3,25 @@
   <Identity>
     <GenericName>Ship</GenericName>
   </Identity>
+  <Position>
+    <Floating>true</Floating>
+  </Position>
   <Health>
   </Health>
+  <Attack>
+    <Charge>
+      <Hack>0.0</Hack>
+      <Pierce>10.0</Pierce>
+      <Crush>10.0</Crush>
+      <MaxRange>2.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
   <Footprint replace="">
     <Square width="6.0" depth="30.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Vision>
+    <Range>10</Range>
+  </Vision>
 </Entity>

@@ -4,7 +4,11 @@
     <Civ>hele</Civ>
     <SpecificName>Hyppikon</SpecificName>
     <IconCell>18</IconCell>
+    <History>Cavalry were made up of the upper class since they were the only ones who could afford the breeding and caring for horses. Initially they were missile troops who avoided close combat, throwing javelins and spears at enemy troops. Later on thanks to developments by the Macedonians they began to close with enemy troops to use their swords. As with all ancient horsemen the hyppikon did not have stirrups or a saddle.</History>
   </Identity>
+  <Promotion>
+    <Entity>hele_cavalry_swordsman_a</Entity>
+  </Promotion>
   <Cost>
     <BuildTime>28</BuildTime>
     <Resources>
@@ -22,13 +26,26 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>8.4</WalkSpeed>
+    <Run>
+      <Speed>21</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>17.0</Hack>
-    <Crush>3.0</Crush>
-    <MaxRange>2.4</MaxRange>
+    <Melee>
+      <Hack>17.0</Hack>
+      <Crush>3.0</Crush>
+      <MaxRange>2.4</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>51.0</Hack>
+      <Crush>9.0</Crush>
+      <MaxRange>3.4</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_b.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>16</Range>
+  </Vision>
 </Entity>

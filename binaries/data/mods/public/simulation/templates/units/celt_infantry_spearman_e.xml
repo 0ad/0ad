@@ -6,6 +6,9 @@
   <Health>
     <Max>95</Max>
   </Health>
+  <Stamina>
+    <Max>350</Max>
+  </Stamina>
   <Armour>
     <Hack>5.4</Hack>
     <Pierce>3.4</Pierce>
@@ -13,12 +16,24 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.3</WalkSpeed>
+    <Run>
+      <Speed>15.1</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>17.0</Hack>
-    <Pierce>7.0</Pierce>
+    <Melee>
+      <Hack>17.0</Hack>
+      <Pierce>7.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>34.0</Hack>
+      <Pierce>14.0</Pierce>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/infantry_spearman_e.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
 </Entity>

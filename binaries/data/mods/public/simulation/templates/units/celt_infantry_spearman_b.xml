@@ -3,7 +3,11 @@
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Gaesata</SpecificName>
+    <History>The spear was the main weapon of the Celts, arming the bulk of their forces. The average Celt would only have to take up his long spear and body shield to be ready for battle. While armor was rare the rabid fighting spirit of the Celts more than made up for in vigor what was lost in protection.</History>
   </Identity>
+  <Promotion>
+    <Entity>celt_infantry_spearman_a</Entity>
+  </Promotion>
   <Cost>
     <BuildTime>15</BuildTime>
     <Resources>
@@ -13,6 +17,9 @@
   <Health>
     <Max>90</Max>
   </Health>
+  <Stamina>
+    <Max>300</Max>
+  </Stamina>
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>3.0</Pierce>
@@ -20,10 +27,22 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>14.8</Speed>
+    </Run>
   </UnitMotion>
+  <Attack>
+    <Charge>
+      <Hack>32.0</Hack>
+      <Pierce>12.0</Pierce>
+    </Charge>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/infantry_spearman_b.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>13</Range>
+  </Vision>
   <Builder>
     <Entities>
       structures/celt_fortress_b

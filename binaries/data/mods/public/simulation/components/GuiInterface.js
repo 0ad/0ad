@@ -62,7 +62,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
 	if (cmpAttack)
 	{
-		ret.attack = cmpAttack.GetAttackStrengths();
+		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show?
+		ret.attack = cmpAttack.GetAttackStrengths(type);
 	}
 
 	var cmpArmour = Engine.QueryInterface(ent, IID_DamageReceiver);

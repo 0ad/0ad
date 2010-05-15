@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>Mill</GenericName>
     <IconCell>52</IconCell>
+    <Tooltip>Gather Wood, Stone, and Metal within its aura. Researches economic improvements.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Territory>all</Territory>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>16</BuildTime>
     <Resources>
@@ -28,4 +33,14 @@
   <Obstruction>
     <Static width="12.0" depth="12.0"/>
   </Obstruction>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>5</Max>
+  </GarrisonHolder>
+  <ResourceDropsite>
+    <Radius>56</Radius>
+    <Types>wood stone metal</Types>
+  </ResourceDropsite>
 </Entity>

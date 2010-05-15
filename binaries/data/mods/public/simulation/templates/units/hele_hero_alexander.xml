@@ -4,6 +4,8 @@
     <Civ>hele</Civ>
     <SpecificName>Alexander</SpecificName>
     <IconCell>30</IconCell>
+    <Tooltip>Hero Aura: Increased Cavalry and Super Cavalry Attack and Speed. "Herocide" attack bonus vs. enemy Heroes.</Tooltip>
+    <History>The most powerful hero of them all - son of Philip II, king of Macedonia (336 BC - 323 BC). After conquering the rest of the Thracians and quelling the unrest of the Greeks, Alexander embarked on a world-conquest march. Defeating the Persian forces at Granicus (334 BC), Issus (333 BC) and Gaugamela (331 BC), he became master of the Persian Empire. Entering India, he defeated king Porus at Hydaspes (326 BC), but his weary troops made him halt. Died in Babylon at the age of 33 while planning a campaign against Arabia.</History>
   </Identity>
   <Cost>
     <BuildTime>80</BuildTime>
@@ -15,6 +17,9 @@
   <Health>
     <Max>400</Max>
   </Health>
+  <Stamina>
+    <Max>1385</Max>
+  </Stamina>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>7.0</Pierce>
@@ -22,11 +27,28 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.4</WalkSpeed>
+    <Run>
+      <Speed>18.5</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>45.0</Hack>
+    <Melee>
+      <Hack>45.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>157.5</Hack>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/alexander.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>16</Range>
+  </Vision>
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>15</Bonus>
+    </Courage>
+  </Auras>
 </Entity>

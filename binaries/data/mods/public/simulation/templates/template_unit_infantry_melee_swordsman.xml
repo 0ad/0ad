@@ -3,6 +3,9 @@
   <Identity>
     <GenericName>Infantry Swordsman</GenericName>
     <IconCell>0</IconCell>
+    <Rollover>Weapon is basically a developed sickle. Probably from the club, to the axe, to the sickle to the sword. It was the Romans who used them to combat the long range of the sarissa. Their spears were so long they had to use two hands to wield them. In a formation they were almost impossible to maneouvre. If flanked, they were easily cut down by a sword as demonstrated by the Romans at the battle of Cynoscephalae. Generally swordsmen were well armoured, had shields, and tended to be nobles. A good sword was an expensive weapon.</Rollover>
+    <Tooltip>Bonused vs. Infantry Spearman and Infantry Javelinist.</Tooltip>
+    <Classes datatype="tokens">Sword</Classes>
   </Identity>
   <Cost>
     <BuildTime>10</BuildTime>
@@ -14,6 +17,9 @@
   <Health>
     <Max>90</Max>
   </Health>
+  <Stamina>
+    <Max>400</Max>
+  </Stamina>
   <Armour>
     <Hack>6.0</Hack>
     <Pierce>3.0</Pierce>
@@ -21,9 +27,20 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.5</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>17.0</Hack>
-    <Pierce>0.0</Pierce>
+    <Melee>
+      <Hack>17.0</Hack>
+      <Pierce>0.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>34.0</Hack>
+    </Charge>
   </Attack>
+  <Vision>
+    <Range>12</Range>
+  </Vision>
 </Entity>

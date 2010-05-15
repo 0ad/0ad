@@ -4,6 +4,8 @@
     <Civ>celt</Civ>
     <SpecificName>Cynvelin</SpecificName>
     <IconCell>46</IconCell>
+    <Tooltip>Hero Aura: Has a large and powerful Healing Aura, only useful when idle.</Tooltip>
+    <History>Cynvelin was a powerful ruler centered in the territory around modern day London. Ruling the Catuvellauni from Camulodunum, he was a warrior king who conquered a neighboring tribe and was referred to by the Romans as the King of the Britons. Eventually Cynvelin retired to become the arch-druid of Siluria, but was taken to Rome with his son upon Caratacoss capture. According to legend, the Apostle Paul baptized Cynvelin into Christianity before he died in Italy.</History>
   </Identity>
   <Cost>
     <Population>2</Population>
@@ -16,6 +18,9 @@
   <Health>
     <Max>250</Max>
   </Health>
+  <Stamina>
+    <Max>1000</Max>
+  </Stamina>
   <Armour>
     <Hack>6.0</Hack>
     <Pierce>14.0</Pierce>
@@ -23,13 +28,23 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>9.0</WalkSpeed>
+    <Run>
+      <Speed>22.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>40.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Melee>
+      <Hack>40.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>120.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/cynvelin_horse.xml</Actor>
@@ -38,4 +53,13 @@
     <Circle radius="1.4"/>
     <Height>2.5</Height>
   </Footprint>
+  <Vision>
+    <Range>17</Range>
+  </Vision>
+  <Auras>
+    <Heal>
+      <Radius>25</Radius>
+      <Speed>1000</Speed>
+    </Heal>
+  </Auras>
 </Entity>

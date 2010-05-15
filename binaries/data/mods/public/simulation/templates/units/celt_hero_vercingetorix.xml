@@ -4,6 +4,8 @@
     <Civ>celt</Civ>
     <SpecificName>Vercingetorix</SpecificName>
     <IconCell>31</IconCell>
+    <Tooltip>Hero Aura: Increased attack for all units within his aura.</Tooltip>
+    <History>The most famous of all Celts, Vercingetorix lead the rebelling Gallic tribes against the might of Rome and Julius Caesars veteran army in 54 BC. Although successful in defeating several Roman forces, Vercingetorix was unable to defeat Caesar, who eventually surrounded the Celtic leaders in the town of Alesia along with 100,000 men. When a relief army arrived to lift the epic siege, the Romans were out numbered 7 to 1 but still defeated the Celts. Vercingetorix surrendered and was executed.</History>
   </Identity>
   <Cost>
     <BuildTime>50</BuildTime>
@@ -15,6 +17,9 @@
   <Health>
     <Max>300</Max>
   </Health>
+  <Stamina>
+    <Max>2000</Max>
+  </Stamina>
   <Armour>
     <Hack>6.0</Hack>
     <Pierce>13.0</Pierce>
@@ -22,11 +27,26 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>9.0</WalkSpeed>
+    <Run>
+      <Speed>22.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>50.0</Hack>
+    <Melee>
+      <Hack>50.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>150.0</Hack>
+      <MaxRange>5.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/vercingetorix_horse.xml</Actor>
   </VisualActor>
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Courage>
+  </Auras>
 </Entity>

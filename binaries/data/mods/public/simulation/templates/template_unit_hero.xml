@@ -2,6 +2,7 @@
 <Entity parent="template_unit">
   <Identity>
     <GenericName>Hero</GenericName>
+    <Classes datatype="tokens">Hero Organic</Classes>
   </Identity>
   <Minimap>
     <Type>hero</Type>
@@ -13,6 +14,13 @@
       <metal>250</metal>
     </Resources>
   </Cost>
+  <Loot>
+    <xp>1000</xp>
+    <food>10</food>
+    <wood>10</wood>
+    <stone>10</stone>
+    <metal>100</metal>
+  </Loot>
   <Health>
     <Max>300</Max>
     <RegenRate>0.5</RegenRate>
@@ -24,16 +32,29 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>16.5</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>40.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>5.0</MaxRange>
-    <MinRange>0.0</MinRange>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Melee>
+      <Hack>40.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>120.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
   </Attack>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>

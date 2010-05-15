@@ -4,6 +4,8 @@
     <Civ>hele</Civ>
     <SpecificName>Pezhetairoi</SpecificName>
     <IconCell>13</IconCell>
+    <Tooltip>Bonused vs. Cavalry and Infantry. Weak vs. Ranged Units. Uses the Syntagma Formation.</Tooltip>
+    <History>'Foot Companions', these were the elite troops from the Macedonian phalanx, whom carried their Sarissas with both hands, the white shields being attached to their armour. The Sarissa and the new tactics they used were developed by Philip II under Theban influence. If properly protected by cavalry on both sides, the Pezhetairoi were virtually invincible to any kind of enemy unit. They were always deployed in deep formations of 16+.</History>
   </Identity>
   <Cost>
     <BuildTime>29</BuildTime>
@@ -15,6 +17,9 @@
   <Health>
     <Max>145</Max>
   </Health>
+  <Stamina>
+    <Max>580</Max>
+  </Stamina>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>7.0</Pierce>
@@ -22,13 +27,26 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.2</WalkSpeed>
+    <Run>
+      <Speed>13.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>15.0</Hack>
-    <Pierce>25.0</Pierce>
-    <MaxRange>7.0</MaxRange>
+    <Melee>
+      <Hack>15.0</Hack>
+      <Pierce>25.0</Pierce>
+      <MaxRange>7.0</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>30.5</Hack>
+      <Pierce>50.0</Pierce>
+      <MaxRange>7.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/super_unit_3.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>10</Range>
+  </Vision>
 </Entity>

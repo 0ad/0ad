@@ -4,6 +4,8 @@
     <Civ>celt</Civ>
     <SpecificName>Brennus</SpecificName>
     <IconCell>29</IconCell>
+    <Tooltip>Hero Aura: +5 Metal loot for every enemey unit killed.</Tooltip>
+    <History>Brennus is the name which the Roman historians give to the famous leader of the Gauls who took Rome in the time of Camillus. According to Geoffrey, the brothers invaded Gaul and sacked Rome in 390 B.C., "proving" that Britons had conquered Rome, the greatest civilization in the world, long before Rome conquered the Britons. We know from many ancient sources which predate Geoffrey that Rome was indeed sacked in 390 B.C., and that the raid was led by a man named Brennus, but he and his invading horde were Gallic, not British. In this episode several features of Geoffrey's editing method can be seen: he modified the historical Brennus, created the brother Belinus, borrowed the Gallic invasion, but omitted the parts where the Gauls seemed weak or foolish. His technique is both additive and subtractive. Like the tale of Trojan origin, the story of the sack of Rome is not pure fabrication; it is a creative rearrangement of the available facts, with details added as necessary. By virtue of their historical association, Beli and Bran are often muddled with the earlier brothers Belinus and Brennus (the sons of Porrex) who contended for power in northern Britain in around 390 BC, and were regarded as gods in old Celtic tradition.</History>
   </Identity>
   <Cost>
     <BuildTime>45</BuildTime>
@@ -16,6 +18,9 @@
   <Health>
     <Max>220</Max>
   </Health>
+  <Stamina>
+    <Max>700</Max>
+  </Stamina>
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>8.0</Pierce>
@@ -23,15 +28,31 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>10.0</WalkSpeed>
+    <Run>
+      <Speed>20.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>20.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>25.0</Crush>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Melee>
+      <Hack>20.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>25.0</Crush>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>60.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>50.0</Crush>
+      <MaxRange>5.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/brennus.xml</Actor>
   </VisualActor>
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Courage>
+  </Auras>
 </Entity>

@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>House</GenericName>
     <IconCell>48</IconCell>
+    <Tooltip>Adds +5 to population limit. Trains Female Citizens.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Category>House</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>16</BuildTime>
@@ -29,6 +34,9 @@
   <Obstruction>
     <Static width="9.0" depth="9.0"/>
   </Obstruction>
+  <Vision>
+    <Range>7</Range>
+  </Vision>
   <TrainingQueue>
     <Entities>
       units/{civ}_support_female_citizen

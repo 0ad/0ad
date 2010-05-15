@@ -21,14 +21,18 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>3.0</WalkSpeed>
+    <Run>
+      <Speed>3.2</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>200.0</Crush>
-    <MaxRange>5.0</MaxRange>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Melee>
+      <Hack>0.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>200.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/mechanical_siege_ram.xml</Actor>

@@ -3,7 +3,12 @@
   <Identity>
     <GenericName>Barracks</GenericName>
     <IconCell>59</IconCell>
+    <Tooltip>Trains citizen-soldiers. Research military technology.</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
   </Identity>
+  <BuildRestrictions>
+    <Category>Barracks</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>40</BuildTime>
@@ -30,4 +35,10 @@
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
+  <Vision>
+    <Range>10</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
 </Entity>

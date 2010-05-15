@@ -3,78 +3,114 @@ function Attack() {}
 Attack.prototype.Schema =
 	"<a:help>Controls the attack abilities and strengths of the unit.</a:help>" +
 	"<a:example>" +
-		"<Hack>10.0</Hack>" +
-		"<Pierce>0.0</Pierce>" +
-		"<Crush>5.0</Crush>" +
-		"<MaxRange>10.0</MaxRange>" +
-		"<MinRange>0.0</MinRange>" +
-		"<PrepareTime>800</PrepareTime>" +
-		"<RepeatTime>1600</RepeatTime>" +
-		"<ProjectileSpeed>50.0</ProjectileSpeed>" +
+		"<Melee>" +
+			"<Hack>10.0</Hack>" +
+			"<Pierce>0.0</Pierce>" +
+			"<Crush>5.0</Crush>" +
+			"<MaxRange>4.0</MaxRange>" +
+			"<RepeatTime>1000</RepeatTime>" +
+		"</Melee>" +
+		"<Ranged>" +
+			"<Hack>0.0</Hack>" +
+			"<Pierce>10.0</Pierce>" +
+			"<Crush>0.0</Crush>" +
+			"<MaxRange>44.0</MaxRange>" +
+			"<MinRange>20.0</MinRange>" +
+			"<PrepareTime>800</PrepareTime>" +
+			"<RepeatTime>1600</RepeatTime>" +
+			"<ProjectileSpeed>50.0</ProjectileSpeed>" +
+		"</Ranged>" +
+		"<Charge>" +
+			"<Hack>10.0</Hack>" +
+			"<Pierce>0.0</Pierce>" +
+			"<Crush>50.0</Crush>" +
+			"<MaxRange>24.0</MaxRange>" +
+			"<MinRange>20.0</MinRange>" +
+		"</Charge>" +
 	"</a:example>" +
-	"<element name='Hack' a:help='Hack damage strength'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='Pierce' a:help='Pierce damage strength'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='Crush' a:help='Crush damage strength'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='MaxRange' a:help='Maximum attack range (in metres)'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='MinRange' a:help='Minimum attack range (in metres)'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
 	"<optional>" +
-		"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
-			"<data type='nonNegativeInteger'/>" +
+		"<element name='Melee'>" +
+			"<interleave>" +
+				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
+					"<data type='positiveInteger'/>" +
+				"</element>" +
+			"</interleave>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" +
-			"<data type='positiveInteger'/>" +
+		"<element name='Ranged'>" +
+			"<interleave>" +
+				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
+					"<data type='nonNegativeInteger'/>" +
+				"</element>" +
+				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" +
+					"<data type='positiveInteger'/>" +
+				"</element>" +
+				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second). If unspecified, then it is a melee attack instead'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+			"</interleave>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second). If unspecified, then it is a melee attack instead'>" +
-			"<ref name='nonNegativeDecimal'/>" +
+		"<element name='Charge'>" +
+			"<interleave>" +
+				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
+				"<element name='MinRange'><ref name='nonNegativeDecimal'/></element>" +
+			"</interleave>" +
 		"</element>" +
 	"</optional>";
 
-Attack.prototype.Init = function()
+/**
+ * Return the type of the best attack.
+ * TODO: this should probably depend on range, target, etc,
+ * so we can automatically switch between ranged and melee
+ */
+Attack.prototype.GetBestAttack = function()
 {
+	if (this.template.Ranged)
+		return "Ranged";
+	else if (this.template.Melee)
+		return "Melee";
+	else if (this.template.Charge)
+		return "Charge";
+	else
+		return undefined;
 };
 
-/*
- * TODO: to handle secondary attacks in the future, what we might do is
- * add a 'mode' parameter to most of these functions, to indicate which
- * attack mode we're trying to use, and some other function that allows
- * UnitAI to pick the best attack mode (based on range, damage, etc)
- */
-
-Attack.prototype.GetTimers = function()
+Attack.prototype.GetTimers = function(type)
 {
-	var prepare = +(this.template.PrepareTime || 0);
-	var repeat = +(this.template.RepeatTime || 1000);
+	var prepare = +(this.template[type].PrepareTime || 0);
+	var repeat = +(this.template[type].RepeatTime || 1000);
 	return { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
 };
 
-Attack.prototype.GetAttackStrengths = function()
+Attack.prototype.GetAttackStrengths = function(type)
 {
 	// Convert attack values to numbers, default 0 if unspecified
 	return {
-		hack: +(this.template.Hack || 0),
-		pierce: +(this.template.Pierce || 0),
-		crush: +(this.template.Crush || 0)
+		hack: +(this.template[type].Hack || 0),
+		pierce: +(this.template[type].Pierce || 0),
+		crush: +(this.template[type].Crush || 0)
 	};
 };
 
-Attack.prototype.GetRange = function()
+Attack.prototype.GetRange = function(type)
 {
-	var max = +this.template.MaxRange;
-	var min = +this.template.MinRange;
+	var max = +this.template[type].MaxRange;
+	var min = +(this.template[type].MinRange || 0);
 	return { "max": max, "min": min };
 }
 
@@ -83,10 +119,10 @@ Attack.prototype.GetRange = function()
  * and should only be called after GetTimers().repeat msec has passed since the last
  * call to PerformAttack.
  */
-Attack.prototype.PerformAttack = function(target)
+Attack.prototype.PerformAttack = function(type, target)
 {
 	// If this is a ranged attack, then launch a projectile
-	if (this.template.ProjectileSpeed)
+	if (type == "Ranged")
 	{
 		// To implement (in)accuracy, for arrows and javelins, we want to do the following:
 		//  * Compute an accuracy rating, based on the entity's characteristics and the distance to the target
@@ -107,7 +143,7 @@ Attack.prototype.PerformAttack = function(target)
 		//    hurt anybody near their landing point
 
 		// Get some data about the entity
-		var horizSpeed = +this.template.ProjectileSpeed;
+		var horizSpeed = +this.template[type].ProjectileSpeed;
 		var gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
 		var accuracy = 6; // TODO: get from entity template
 
@@ -149,7 +185,7 @@ Attack.prototype.PerformAttack = function(target)
 			var realHorizDistance = Math.sqrt(Math.pow(realTargetPosition.x - selfPosition.x, 2) + Math.pow(realTargetPosition.z - selfPosition.z, 2));
 			var timeToTarget = realHorizDistance / horizSpeed;
 			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-			cmpTimer.SetTimeout(this.entity, IID_Attack, "CauseDamage", timeToTarget*1000, target);
+			cmpTimer.SetTimeout(this.entity, IID_Attack, "CauseDamage", timeToTarget*1000, {"type": type, "target": target});
 		}
 
 		// Launch the graphical projectile
@@ -162,17 +198,18 @@ Attack.prototype.PerformAttack = function(target)
 	else
 	{
 		// Melee attack - hurt the target immediately
-		this.CauseDamage(target);
+		this.CauseDamage({"type": type, "target": target});
 	}
+	// TODO: charge attacks (need to design how they work)
 };
 
 
 // Inflict damage on the target
-Attack.prototype.CauseDamage = function(target)
+Attack.prototype.CauseDamage = function(data)
 {
-	var strengths = this.GetAttackStrengths();
+	var strengths = this.GetAttackStrengths(data.type);
 
-	var cmpDamageReceiver = Engine.QueryInterface(target, IID_DamageReceiver);
+	var cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	if (!cmpDamageReceiver)
 		return;
 	cmpDamageReceiver.TakeDamage(strengths.hack, strengths.pierce, strengths.crush);

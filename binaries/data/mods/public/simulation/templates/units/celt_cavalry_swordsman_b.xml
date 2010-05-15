@@ -3,7 +3,11 @@
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Epos</SpecificName>
+    <History>Like a sword, a horse was a sign of nobility and as a result the Celtic cavalry was often better equipped than the infantry. Armor and helmets were common, while weapons consisted of a large bladed spear and a long slashing sword for close combat. Shields could be round, hexagonal, or oval, but the most common was a regular oval body shield with the top and bottom shorn off. Unlike other horseman, the Celts were not afraid to leap off their mount to fight on foot then climb into the saddle again when possible.</History>
   </Identity>
+  <Promotion>
+    <Entity>celt_cavalry_swordsman_a</Entity>
+  </Promotion>
   <Cost>
     <BuildTime>15</BuildTime>
   </Cost>
@@ -14,11 +18,20 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>14.0</WalkSpeed>
+    <Run>
+      <Speed>25.5</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>18.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
+    <Melee>
+      <Hack>18.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+    </Melee>
+    <Charge>
+      <Hack>54.0</Hack>
+      <Pierce>0.0</Pierce>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_swordsman_b.xml</Actor>

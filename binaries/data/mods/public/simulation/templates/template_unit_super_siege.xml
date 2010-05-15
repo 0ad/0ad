@@ -3,7 +3,11 @@
   <Identity>
     <GenericName>Super Siege</GenericName>
     <IconCell>44</IconCell>
+    <Classes datatype="tokens">Mechanical</Classes>
   </Identity>
+  <Position>
+    <Anchor>pitch-roll</Anchor>
+  </Position>
   <Cost>
     <Resources>
       <wood>500</wood>
@@ -15,4 +19,6 @@
     <Pierce>600.0</Pierce>
     <Crush>200.0</Crush>
   </Armour>
+  <Attack>
+  </Attack>
 </Entity>

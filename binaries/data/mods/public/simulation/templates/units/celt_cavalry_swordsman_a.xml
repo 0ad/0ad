@@ -3,9 +3,20 @@
   <Identity>
     <IconCell>19</IconCell>
   </Identity>
+  <Promotion>
+    <Entity>celt_cavalry_swordsman_e</Entity>
+  </Promotion>
+  <Loot>
+    <food>14</food>
+    <wood>4</wood>
+    <metal>2</metal>
+  </Loot>
   <Health>
     <Max>163</Max>
   </Health>
+  <Stamina>
+    <Max>825</Max>
+  </Stamina>
   <Armour>
     <Hack>3.2</Hack>
     <Pierce>10.2</Pierce>
@@ -13,11 +24,22 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>10.2</WalkSpeed>
+    <Run>
+      <Speed>19.9</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>19.0</Hack>
+    <Melee>
+      <Hack>19.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>53.0</Hack>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_swordsman_a.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>16</Range>
+  </Vision>
 </Entity>

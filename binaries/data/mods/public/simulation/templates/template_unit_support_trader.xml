@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Trader</GenericName>
     <IconCell>34</IconCell>
+    <Rollover>Trade was a very important part of ancient civilisation - effective trading and control of trade routes equaled wealth. Trade took place by many forms from foot to caravans to merchant ships. One of the most notorious examples of the power of trade was the Silk Road.</Rollover>
+    <Tooltip>Trades resources between allied Markets.</Tooltip>
   </Identity>
   <Cost>
     <Resources>
@@ -21,4 +23,7 @@
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
   </UnitMotion>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
 </Entity>

@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Corral</GenericName>
     <IconCell>51</IconCell>
+    <Tooltip>Herd domestic animals here and they will provide Food for your civilisation.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
   </Identity>
   <Cost>
     <BuildTime>10</BuildTime>
@@ -32,4 +34,10 @@
   <Obstruction>
     <Static width="9.5" depth="19.75"/>
   </Obstruction>
+  <Vision>
+    <Range>7</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
 </Entity>

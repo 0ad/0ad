@@ -2,7 +2,11 @@
 <Entity parent="template_unit">
   <Identity>
     <GenericName>Infantry</GenericName>
+    <Classes datatype="tokens">Foot Organic</Classes>
   </Identity>
+  <Promotion>
+    <Req>600</Req>
+  </Promotion>
   <Cost>
     <BuildTime>20</BuildTime>
     <Resources>
@@ -12,6 +16,14 @@
       <metal>0</metal>
     </Resources>
   </Cost>
+  <Loot>
+    <xp>100</xp>
+    <food>1</food>
+    <wood>1</wood>
+    <stone>1</stone>
+    <metal>1</metal>
+  </Loot>
+  <Looter/>
   <ResourceGatherer>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
@@ -28,6 +40,9 @@
     <Max>100</Max>
     <RegenRate>0.2</RegenRate>
   </Health>
+  <Stamina>
+    <Max>600</Max>
+  </Stamina>
   <Armour>
     <Hack>1.0</Hack>
     <Pierce>1.0</Pierce>
@@ -35,7 +50,13 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>17.5</Speed>
+    </Run>
   </UnitMotion>
+  <Vision>
+    <Range>12</Range>
+  </Vision>
   <Builder>
     <Rate>1.0</Rate>
     <Entities>
@@ -59,7 +80,7 @@
   <Sound>
     <SoundGroups>
       <walk>actor/human/movement/walk.xml</walk>
-      <run>actor/human/movement/walk.xml</run>
+      <run>actor/human/movement/run.xml</run>
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/human/death/death.xml</death>
       <build>resource/construction/con_wood.xml</build>

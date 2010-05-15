@@ -3,6 +3,7 @@
   <Identity>
     <GenericName>Siege Ram</GenericName>
     <IconCell>36</IconCell>
+    <Tooltip>Bonused vs. Wall Gates.</Tooltip>
   </Identity>
   <Cost>
     <Resources>
@@ -20,14 +21,27 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>3.0</WalkSpeed>
+    <Run>
+      <Speed>8.1</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>65.0</Crush>
-    <MaxRange>5.0</MaxRange>
-    <MinRange>0.0</MinRange>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Melee>
+      <Hack>0.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>65.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>0.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>130.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
   </Attack>
+  <Vision>
+    <Range>12</Range>
+  </Vision>
 </Entity>

@@ -4,6 +4,8 @@
     <Civ>celt</Civ>
     <SpecificName>Brythonic Delamokludda</SpecificName>
     <IconCell>40</IconCell>
+    <Tooltip>Bonus vs. All Spear Units (infantry and cavalry).</Tooltip>
+    <History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
   </Identity>
   <Cost>
     <BuildTime>35</BuildTime>
@@ -22,16 +24,27 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>16.5</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>35.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>5.0</MaxRange>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Melee>
+      <Hack>35.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>85.0</Hack>
+      <MaxRange>3.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/super_unit_3.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>10</Range>
+  </Vision>
 </Entity>

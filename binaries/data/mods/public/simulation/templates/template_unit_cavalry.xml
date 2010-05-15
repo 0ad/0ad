@@ -2,7 +2,14 @@
 <Entity parent="template_unit">
   <Identity>
     <GenericName>Cavalry</GenericName>
+    <Classes datatype="tokens">Mounted Organic</Classes>
   </Identity>
+  <Promotion>
+    <Req>900</Req>
+  </Promotion>
+  <Position>
+    <Anchor>pitch</Anchor>
+  </Position>
   <Cost>
     <Population>2</Population>
     <BuildTime>30</BuildTime>
@@ -10,6 +17,13 @@
       <food>100</food>
     </Resources>
   </Cost>
+  <Loot>
+    <xp>200</xp>
+    <food>10</food>
+    <wood>4</wood>
+    <stone>1</stone>
+    <metal>1</metal>
+  </Loot>
   <ResourceGatherer>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
@@ -20,6 +34,9 @@
     <Max>150</Max>
     <RegenRate>0.2</RegenRate>
   </Health>
+  <Stamina>
+    <Max>1000</Max>
+  </Stamina>
   <Armour>
     <Hack>0.0</Hack>
     <Pierce>0.0</Pierce>
@@ -27,13 +44,23 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>21.25</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
   </UnitMotion>
   <Footprint>
     <Circle radius="1.2"/>
     <Height>7.5</Height>
   </Footprint>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
   <Sound>
     <SoundGroups>
+      <walk>actor/mounted/movement/walk.xml</walk>
+      <run>actor/mounted/movement/walk.xml</run>
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/fauna/death/death_horse.xml</death>
     </SoundGroups>

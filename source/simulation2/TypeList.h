@@ -96,6 +96,9 @@ COMPONENT(Selectable)
 INTERFACE(SoundManager)
 COMPONENT(SoundManager)
 
+INTERFACE(StatusBars)
+COMPONENT(StatusBars)
+
 INTERFACE(Terrain)
 COMPONENT(Terrain)
 

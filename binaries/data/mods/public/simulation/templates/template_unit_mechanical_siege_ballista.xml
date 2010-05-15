@@ -3,6 +3,8 @@
   <Identity>
     <GenericName>Siege Ballista</GenericName>
     <IconCell>37</IconCell>
+    <Tooltip>Bonused vs. Infantry and Cavalry units.
+			</Tooltip>
   </Identity>
   <Cost>
     <Resources>
@@ -20,15 +22,23 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.75</WalkSpeed>
+    <Run>
+      <Speed>5.9</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>0.0</Hack>
-    <Pierce>35.0</Pierce>
-    <Crush>30.0</Crush>
-    <MaxRange>54</MaxRange>
-    <MinRange>0.0</MinRange>
-    <ProjectileSpeed>30.0</ProjectileSpeed>
-    <PrepareTime>900</PrepareTime>
-    <RepeatTime>1500</RepeatTime>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>35.0</Pierce>
+      <Crush>30.0</Crush>
+      <MaxRange>54</MaxRange>
+      <MinRange>0.0</MinRange>
+      <ProjectileSpeed>30.0</ProjectileSpeed>
+      <PrepareTime>900</PrepareTime>
+      <RepeatTime>1500</RepeatTime>
+    </Ranged>
   </Attack>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
 </Entity>

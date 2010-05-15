@@ -4,6 +4,10 @@
     <GenericName>Structure</GenericName>
     <IconSheet>PortraitSheet</IconSheet>
   </Identity>
+  <BuildRestrictions>
+    <PlacementType>standard</PlacementType>
+    <Territory>allied</Territory>
+  </BuildRestrictions>
   <Minimap>
     <Type>structure</Type>
   </Minimap>
@@ -18,10 +22,18 @@
   </Cost>
   <Health>
     <DeathType>vanish</DeathType>
+    <Repairable>true</Repairable>
   </Health>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>42.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
+  <StatusBars>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <Vision>
+    <Range>9</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
 </Entity>

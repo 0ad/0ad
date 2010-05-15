@@ -3,6 +3,7 @@
   <Identity>
     <GenericName>Super Cavalry</GenericName>
     <IconCell>43</IconCell>
+    <Classes datatype="tokens">Organic Mounted</Classes>
   </Identity>
   <Cost>
     <Population>2</Population>
@@ -16,6 +17,9 @@
   <Health>
     <Max>200</Max>
   </Health>
+  <Stamina>
+    <Max>1200</Max>
+  </Stamina>
   <Armour>
     <Hack>7.0</Hack>
     <Pierce>8.0</Pierce>
@@ -23,20 +27,35 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
+    <Run>
+      <Speed>23.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>35.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>0.0</Crush>
-    <MaxRange>4.8</MaxRange>
-    <MinRange>0.0</MinRange>
-    <PrepareTime>600</PrepareTime>
-    <RepeatTime>1000</RepeatTime>
+    <Melee>
+      <Hack>35.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.8</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>105.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.8</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
   </Attack>
   <Footprint>
     <Circle radius="1.2"/>
     <Height>5.0</Height>
   </Footprint>
+  <Vision>
+    <Range>15</Range>
+  </Vision>
   <Sound>
     <SoundGroups>
       <death>actor/fauna/death/death_horse.xml</death>

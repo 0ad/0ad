@@ -25,7 +25,17 @@ Health.prototype.Schema =
 			"<value a:help='Disappear instantly'>vanish</value>" +
 			"<value a:help='Turn into a corpse'>corpse</value>" +
 		"</choice>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<element name='Healable' a:help='Indicates that the entity can be healed by healer units'>" +
+			"<data type='boolean'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='Repairable' a:help='Indicates that the entity can be repaired by builder units'>" +
+			"<data type='boolean'/>" +
+		"</element>" +
+	"</optional>";
 
 Health.prototype.Init = function()
 {

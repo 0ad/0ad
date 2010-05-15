@@ -10,6 +10,9 @@
     <Max>120</Max>
     <RegenRate>0.4</RegenRate>
   </Health>
+  <Stamina>
+    <Max>670</Max>
+  </Stamina>
   <Armour>
     <Hack>13.0</Hack>
     <Pierce>16.0</Pierce>
@@ -17,10 +20,19 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.4</WalkSpeed>
+    <Run>
+      <Speed>13.5</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Hack>7.0</Hack>
-    <Pierce>17.0</Pierce>
+    <Melee>
+      <Hack>7.0</Hack>
+      <Pierce>17.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>14.0</Hack>
+      <Pierce>34.0</Pierce>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_e.xml</Actor>

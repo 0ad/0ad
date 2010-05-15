@@ -4,7 +4,11 @@
     <Civ>hele</Civ>
     <SpecificName>Toxotes</SpecificName>
     <IconCell>9</IconCell>
+    <History>Archers were used in Hellenistic armies to support the phalanx by splitting up enemy formations. The best Greek archers were from Crete, but mercenaries from Scythia and Asia Minor were sometimes employed. Hellenistic archers wore their quivers on their backs and the more successful ones were able to procure armor.</History>
   </Identity>
+  <Promotion>
+    <Entity>hele_infantry_archer_a</Entity>
+  </Promotion>
   <Cost>
     <BuildTime>17</BuildTime>
     <Resources>
@@ -22,11 +26,16 @@
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.8</WalkSpeed>
+    <Run>
+      <Speed>17.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
-    <Pierce>35.0</Pierce>
-    <MaxRange>36.0</MaxRange>
-    <MinRange>12.0</MinRange>
+    <Ranged>
+      <Pierce>35.0</Pierce>
+      <MaxRange>36.0</MaxRange>
+      <MinRange>12.0</MinRange>
+    </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_b.xml</Actor>
