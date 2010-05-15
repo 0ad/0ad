@@ -85,7 +85,8 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 	if (g_Game && g_Game->GetLocalPlayer())
 		player = g_Game->GetLocalPlayer()->GetPlayerID();
 
-	CScriptVal ret = gui->ScriptCall(player, name, sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), data.get()));
+	CScriptValRooted arg (sim->GetScriptInterface().GetContext(), sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), data.get()));
+	CScriptVal ret (gui->ScriptCall(player, name, arg.get()));
 	return guiManager->GetScriptInterface().CloneValueFromOtherContext(sim->GetScriptInterface(), ret.get());
 }
 

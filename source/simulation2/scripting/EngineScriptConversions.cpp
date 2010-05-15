@@ -80,13 +80,10 @@ static jsval ConvertCParamNode(JSContext* cx, CParamNode const& val)
 
 	// Got child nodes - convert this node into a hash-table-style object:
 
-	ScriptInterface::LocalRootScope scope(cx);
-	if (!scope.OK())
-		return JSVAL_VOID; // TODO: report error
-
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (!obj)
 		return JSVAL_VOID; // TODO: report error
+	CScriptValRooted objRoot(cx, OBJECT_TO_JSVAL(obj));
 
 	for (std::map<std::string, CParamNode>::const_iterator it = children.begin(); it != children.end(); ++it)
 	{
