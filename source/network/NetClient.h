@@ -30,7 +30,7 @@
 #include "NetSession.h"
 #include "NetTurnManager.h"
 #include "ps/CStr.h"
-#include "simulation/ScriptObject.h"
+#include "scripting/ScriptObject.h"
 #include "scripting/ScriptableObject.h"
 #include "ps/scripting/JSMap.h"
 

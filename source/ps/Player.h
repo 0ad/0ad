@@ -111,11 +111,8 @@ public:
 	inline void SetActive(bool active)
 	{	m_Active = active; }
 
-	void GetControlledEntities(std::vector<HEntity>& controlled_entities);
-
 	// JS Interface Functions
 	CStrW JSI_ToString( JSContext* context, uintN argc, jsval* argv );
-	jsval JSI_GetControlledEntities( JSContext* context );
 	void JSI_SetColour(JSContext *context, uintN argc, jsval *argv);
 	jsval_t JSI_GetColour(JSContext *context, uintN argc, jsval *argv);
 	void JSI_SetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);

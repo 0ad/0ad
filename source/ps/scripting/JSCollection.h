@@ -21,7 +21,7 @@
 // object.
 
 #include "scripting/ScriptingHost.h"
-#include "simulation/ScriptObject.h"
+#include "scripting/ScriptObject.h"
 #include "scripting/JSConversions.h"
 
 #ifndef INCLUDED_JSCOLLECTION

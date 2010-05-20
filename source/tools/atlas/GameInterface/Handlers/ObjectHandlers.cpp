@@ -40,11 +40,6 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/EntityTemplate.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityManager.h"
-#include "simulation/TerritoryManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
@@ -66,10 +61,7 @@ namespace
 		if (! unit)
 			return false;
 
-		if (unit->GetEntity())
-			return (unit->GetEntity()->m_base->m_anchorType != L"Ground");
-		else
-			return unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
+		return unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
 	}
 
 	CUnitManager& GetUnitManager()
@@ -82,60 +74,26 @@ QUERYHANDLER(GetObjectsList)
 {
 	std::vector<sObjectsListItem> objects;
 
-	if (g_UseSimulation2)
+	CmpPtr<ICmpTemplateManager> cmp(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (!cmp.null())
 	{
-		CmpPtr<ICmpTemplateManager> cmp(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmp.null())
-		{
-			std::vector<std::wstring> names = cmp->FindAllTemplates();
+		std::vector<std::wstring> names = cmp->FindAllTemplates();
 
-			for (std::vector<std::wstring>::iterator it = names.begin(); it != names.end(); ++it)
-			{
-				sObjectsListItem e;
-				e.id = *it;
-				if (it->substr(0, 6) == L"actor|")
-				{
-					e.name = it->substr(6);
-					e.type = 1;
-				}
-				else
-				{
-					e.name = *it;
-					e.type = 0;
-				}
-				objects.push_back(e);
-			}
-		}
-	}
-	else
-	{
-		if (CEntityTemplateCollection::IsInitialised())
+		for (std::vector<std::wstring>::iterator it = names.begin(); it != names.end(); ++it)
 		{
-			std::vector<CStrW> names;
-			g_EntityTemplateCollection.GetEntityTemplateNames(names);
-			for (std::vector<CStrW>::iterator it = names.begin(); it != names.end(); ++it)
+			sObjectsListItem e;
+			e.id = *it;
+			if (it->substr(0, 6) == L"actor|")
 			{
-				//CEntityTemplate* baseent = g_EntityTemplateCollection.GetTemplate(*it);
-				sObjectsListItem e;
-				e.id = L"(e) " + *it;
-				e.name = *it; //baseent->m_Tag
-				e.type = 0;
-				objects.push_back(e);
-			}
-		}
-
-		{
-			std::vector<CStr> names;
-			//CObjectManager::GetPropObjectNames(names);
-			CObjectManager::GetAllObjectNames(names);
-			for (std::vector<CStr>::iterator it = names.begin(); it != names.end(); ++it)
-			{
-				sObjectsListItem e;
-				e.id = L"(n) " + CStrW(*it);
-				e.name = CStrW(*it).AfterFirst(/*L"props/"*/ L"actors/");
+				e.name = it->substr(6);
 				e.type = 1;
-				objects.push_back(e);
 			}
+			else
+			{
+				e.name = *it;
+				e.type = 0;
+			}
+			objects.push_back(e);
 		}
 	}
 
@@ -153,9 +111,9 @@ void AtlasRenderSelection()
 		CUnit* unit = GetUnitManager().FindByID(g_Selection[i]);
 		if (unit)
 		{
-			if (unit->GetEntity())
+			if (false)
 			{
-				unit->GetEntity()->RenderSelectionOutline();
+				// TODO: should render footprint shape, if there is one
 			}
 			else
 			{
@@ -332,9 +290,6 @@ private:
 		unit->SetPlayerID(player);
 
 		unit->SetActorSelections(selections);
-
-		if (m_PlayerOld != m_PlayerNew)
-			g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 	}
 };
 END_COMMAND(SetObjectSettings);
@@ -395,144 +350,52 @@ static bool ParseObjectName(const CStrW& obj, bool& isEntity, CStrW& name)
 
 MESSAGEHANDLER(ObjectPreview)
 {
-	if (g_UseSimulation2)
-	{
-		// If the selection has changed...
-		if (*msg->id != g_PreviewUnitName)
-		{
-			// Delete old entity
-			if (g_PreviewEntityID != INVALID_ENTITY)
-				g_Game->GetSimulation2()->DestroyEntity(g_PreviewEntityID);
-
-			// Create the new entity
-			if ((*msg->id).empty())
-				g_PreviewEntityID = INVALID_ENTITY;
-			else
-				g_PreviewEntityID = g_Game->GetSimulation2()->AddLocalEntity(L"preview|" + *msg->id);
-
-			g_PreviewUnitName = *msg->id;
-		}
-
-		if (g_PreviewEntityID != INVALID_ENTITY)
-		{
-			// Update the unit's position and orientation:
-
-			CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), g_PreviewEntityID);
-			if (!cmpPos.null())
-			{
-				CVector3D pos = GetUnitPos(msg->pos, false);
-				cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
-
-				float angle;
-				if (msg->usetarget)
-				{
-					// Aim from pos towards msg->target
-					CVector3D target = msg->target->GetWorldSpace(pos.Y);
-					angle = atan2(target.X-pos.X, target.Z-pos.Z);
-				}
-				else
-				{
-					angle = msg->angle;
-				}
-
-				cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
-			}
-
-			// TODO: handle random variations somehow
-
-			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), g_PreviewEntityID);
-			if (!cmpOwner.null())
-				cmpOwner->SetOwner(msg->settings->player);
-		}
-
-		return;
-	}
-
-	// Old simulation system:
-
-	CUnit* previewUnit = GetUnitManager().FindByID(g_PreviewUnitID);
-
-	// Don't recreate the unit unless it's changed
+	// If the selection has changed...
 	if (*msg->id != g_PreviewUnitName)
 	{
-		// Delete old unit
-		if (previewUnit)
-		{
-			GetUnitManager().DeleteUnit(previewUnit);
-			previewUnit = NULL;
-		}
+		// Delete old entity
+		if (g_PreviewEntityID != INVALID_ENTITY)
+			g_Game->GetSimulation2()->DestroyEntity(g_PreviewEntityID);
 
-		g_PreviewUnitID = invalidUnitId;
-
-		bool isEntity;
-		CStrW name;
-		if (ParseObjectName(*msg->id, isEntity, name))
-		{
-			std::set<CStr> selections; // TODO: get selections from user
-
-			// Create new unit
-			if (isEntity)
-			{
-				CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(name);
-				if (base) // (ignore errors)
-				{
-					previewUnit = GetUnitManager().CreateUnit(base->m_actorName, NULL, selections);
-					if (previewUnit)
-					{
-						g_PreviewUnitID = GetUnitManager().GetNewID();
-						previewUnit->SetID(g_PreviewUnitID);
-					}
-					g_PreviewUnitFloating = (base->m_anchorType != L"Ground");
-					// TODO: variations
-				}
-			}
-			else
-			{
-				previewUnit = GetUnitManager().CreateUnit(CStr(name), NULL, selections);
-				if (previewUnit)
-				{
-					g_PreviewUnitID = GetUnitManager().GetNewID();
-					previewUnit->SetID(g_PreviewUnitID);
-				}
-				g_PreviewUnitFloating = IsFloating(previewUnit);
-			}
-		}
+		// Create the new entity
+		if ((*msg->id).empty())
+			g_PreviewEntityID = INVALID_ENTITY;
+		else
+			g_PreviewEntityID = g_Game->GetSimulation2()->AddLocalEntity(L"preview|" + *msg->id);
 
 		g_PreviewUnitName = *msg->id;
 	}
 
-	if (previewUnit)
+	if (g_PreviewEntityID != INVALID_ENTITY)
 	{
 		// Update the unit's position and orientation:
 
-		CVector3D pos = GetUnitPos(msg->pos, g_PreviewUnitFloating);
-
-		float s, c;
-
-		if (msg->usetarget)
+		CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), g_PreviewEntityID);
+		if (!cmpPos.null())
 		{
-			// Aim from pos towards msg->target
-			CVector3D target = msg->target->GetWorldSpace(pos.Y);
-			CVector2D dir(target.X-pos.X, target.Z-pos.Z);
-			dir = dir.Normalize();
-			s = dir.x;
-			c = dir.y;
-		}
-		else
-		{
-			s = sin(msg->angle);
-			c = cos(msg->angle);
+			CVector3D pos = GetUnitPos(msg->pos, false);
+			cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+
+			float angle;
+			if (msg->usetarget)
+			{
+				// Aim from pos towards msg->target
+				CVector3D target = msg->target->GetWorldSpace(pos.Y);
+				angle = atan2(target.X-pos.X, target.Z-pos.Z);
+			}
+			else
+			{
+				angle = msg->angle;
+			}
+
+			cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
 		}
 
-		CMatrix3D m;
-		m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = pos.X;
-		m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = pos.Y;
-		m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = pos.Z;
-		m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
-		previewUnit->GetModel().SetTransform(m);
+		// TODO: handle random variations somehow
 
-		// Update the unit's player colour:
-		previewUnit->SetPlayerID(msg->settings->player);
+		CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), g_PreviewEntityID);
+		if (!cmpOwner.null())
+			cmpOwner->SetOwner(msg->settings->player);
 	}
 }
 
@@ -564,138 +427,35 @@ BEGIN_COMMAND(CreateObject)
 		// TODO: variations too
 		m_Player = msg->settings->player;
 
-		if (!g_UseSimulation2)
-		{
-			// Get a new ID, for future reference to this unit
-			m_ID = GetUnitManager().GetNewID();
-		}
-
 		Redo();
 	}
 
 	void Redo()
 	{
-		if (g_UseSimulation2)
-		{
-			m_EntityID = g_Game->GetSimulation2()->AddEntity(*msg->id);
-			if (m_EntityID == INVALID_ENTITY)
-				return;
-
-			CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), m_EntityID);
-			if (!cmpPos.null())
-			{
-				cmpPos->JumpTo(entity_pos_t::FromFloat(m_Pos.X), entity_pos_t::FromFloat(m_Pos.Z));
-				cmpPos->SetYRotation(entity_angle_t::FromFloat(m_Angle));
-			}
-
-			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), m_EntityID);
-			if (!cmpOwner.null())
-				cmpOwner->SetOwner(m_Player);
-
-			// TODO: handle random variations somehow
-
+		m_EntityID = g_Game->GetSimulation2()->AddEntity(*msg->id);
+		if (m_EntityID == INVALID_ENTITY)
 			return;
-		}
 
-		// Old simulation system:
-
-		bool isEntity;
-		CStrW name;
-		if (ParseObjectName(*msg->id, isEntity, name))
+		CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), m_EntityID);
+		if (!cmpPos.null())
 		{
-			std::set<CStr> selections;
-
-			if (isEntity)
-			{
-				CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(name);
-				if (! base)
-					LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load entity template '%ls'", name.c_str());
-				else
-				{
-					HEntity ent = g_EntityManager.Create(base, m_Pos, m_Angle, selections);
-
-					if (! ent)
-					{
-						LOG(CLogger::Error, LOG_CATEGORY, L"Failed to create entity of type '%ls'", name.c_str());
-					}
-					else if (! ent->m_actor)
-					{
-						// We don't want to allow entities with no actors, because
-						// they'll be be invisible and will confuse scenario designers
-						LOG(CLogger::Error, LOG_CATEGORY, L"Failed to create entity of type '%ls'", name.c_str());
-						ent->Kill();
-					}
-					else
-					{
-						ent->m_actor->SetPlayerID(m_Player);
-						ent->m_actor->SetID(m_ID);
-
-						if (ent->m_base->m_isTerritoryCentre)
-							g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
-
-						ent->Initialize();
-					}
-				}
-			}
-			else
-			{
-				CUnit* unit = GetUnitManager().CreateUnit(CStr(name), NULL, selections);
-				if (! unit)
-				{
-					LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load nonentity actor '%ls'", name.c_str());
-				}
-				else
-				{
-					unit->SetID(m_ID);
-
-					float s = sin(m_Angle);
-					float c = cos(m_Angle);
-
-					CMatrix3D m;
-					m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = m_Pos.X;
-					m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = m_Pos.Y;
-					m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = m_Pos.Z;
-					m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
-					unit->GetModel().SetTransform(m);
-
-					unit->SetPlayerID(m_Player);
-				}
-			}
+			cmpPos->JumpTo(entity_pos_t::FromFloat(m_Pos.X), entity_pos_t::FromFloat(m_Pos.Z));
+			cmpPos->SetYRotation(entity_angle_t::FromFloat(m_Angle));
 		}
+
+		CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), m_EntityID);
+		if (!cmpOwner.null())
+			cmpOwner->SetOwner(m_Player);
+
+		// TODO: handle random variations somehow
 	}
 
 	void Undo()
 	{
-		if (g_UseSimulation2)
+		if (m_EntityID != INVALID_ENTITY)
 		{
-			if (m_EntityID != INVALID_ENTITY)
-			{
-				g_Game->GetSimulation2()->DestroyEntity(m_EntityID);
-				m_EntityID = INVALID_ENTITY;
-			}
-
-			return;
-		}
-
-		// Old simulation system:
-
-		CUnit* unit = GetUnitManager().FindByID(m_ID);
-		if (unit)
-		{
-			if (unit->GetEntity())
-			{
-				bool wasTerritoryCentre = unit->GetEntity()->m_base->m_isTerritoryCentre;
-
-				unit->GetEntity()->Kill();
-
-				if (wasTerritoryCentre)
-					g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
-			}
-			else
-			{
-				GetUnitManager().RemoveUnit(unit);
-				delete unit;
-			}
+			g_Game->GetSimulation2()->DestroyEntity(m_EntityID);
+			m_EntityID = INVALID_ENTITY;
 		}
 	}
 };
@@ -749,35 +509,15 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		if (g_UseSimulation2)
-		{
-			m_PosNew = GetUnitPos(msg->pos, false); // TODO: set 'floating' properly
+		m_PosNew = GetUnitPos(msg->pos, false); // TODO: set 'floating' properly
 
-			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
-			if (cmpPos.null())
-				m_PosOld = m_PosNew; // error
-			else
-			{
-				CFixedVector3D pos = cmpPos->GetPosition();
-				m_PosOld = CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat());
-			}
-		}
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		if (cmpPos.null())
+			m_PosOld = m_PosNew; // error
 		else
 		{
-			CUnit* unit = GetUnitManager().FindByID(msg->id);
-			if (! unit) return;
-
-			m_PosNew = GetUnitPos(msg->pos, IsFloating(unit));
-
-			if (unit->GetEntity())
-			{
-				m_PosOld = unit->GetEntity()->m_position;
-			}
-			else
-			{
-				CMatrix3D m = unit->GetModel().GetTransform();
-				m_PosOld = m.GetTranslation();
-			}
+			CFixedVector3D pos = cmpPos->GetPosition();
+			m_PosOld = CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat());
 		}
 
 		SetPos(m_PosNew);
@@ -785,34 +525,11 @@ BEGIN_COMMAND(MoveObject)
 
 	void SetPos(CVector3D& pos)
 	{
-		if (g_UseSimulation2)
-		{
-			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
-			if (cmpPos.null())
-				return;
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		if (cmpPos.null())
+			return;
 
-			cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
-		}
-		else
-		{
-			CUnit* unit = GetUnitManager().FindByID(msg->id);
-			if (! unit) return;
-
-			if (unit->GetEntity())
-			{
-				unit->GetEntity()->m_position = pos;
-				unit->GetEntity()->Teleport();
-
-				if (unit->GetEntity()->m_base->m_isTerritoryCentre)
-					g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
-			}
-			else
-			{
-				CMatrix3D m = unit->GetModel().GetTransform();
-				m.Translate(pos - m.GetTranslation());
-				unit->GetModel().SetTransform(m);
-			}
-		}
+		cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
 	}
 
 	void Redo()
@@ -838,116 +555,46 @@ END_COMMAND(MoveObject)
 BEGIN_COMMAND(RotateObject)
 {
 	float m_AngleOld, m_AngleNew;
-	CMatrix3D m_TransformOld, m_TransformNew;
 
 	void Do()
 	{
-		if (g_UseSimulation2)
-		{
-			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
-			if (cmpPos.null())
-				return;
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		if (cmpPos.null())
+			return;
 
-			m_AngleOld = cmpPos->GetRotation().Y.ToFloat();
-			if (msg->usetarget)
-			{
-				CMatrix3D transform = cmpPos->GetInterpolatedTransform(0.f);
-				CVector3D pos = transform.GetTranslation();
-				CVector3D target = msg->target->GetWorldSpace(pos.Y);
-				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
-				m_AngleNew = atan2(dir.x, dir.y);
-			}
-			else
-			{
-				m_AngleNew = msg->angle;
-			}
+		m_AngleOld = cmpPos->GetRotation().Y.ToFloat();
+		if (msg->usetarget)
+		{
+			CMatrix3D transform = cmpPos->GetInterpolatedTransform(0.f);
+			CVector3D pos = transform.GetTranslation();
+			CVector3D target = msg->target->GetWorldSpace(pos.Y);
+			m_AngleNew = atan2(target.X-pos.X, target.Z-pos.Z);
 		}
 		else
 		{
-			CUnit* unit = GetUnitManager().FindByID(msg->id);
-			if (! unit) return;
-
-			if (unit->GetEntity())
-			{
-				m_AngleOld = unit->GetEntity()->m_orientation.Y;
-				if (msg->usetarget)
-				{
-					CVector3D& pos = unit->GetEntity()->m_position;
-					CVector3D target = msg->target->GetWorldSpace(pos.Y);
-					CVector2D dir(target.X-pos.X, target.Z-pos.Z);
-					m_AngleNew = atan2(dir.x, dir.y);
-				}
-				else
-				{
-					m_AngleNew = msg->angle;
-				}
-			}
-			else
-			{
-				m_TransformOld = unit->GetModel().GetTransform();
-
-				CVector3D pos = unit->GetModel().GetTransform().GetTranslation();
-
-				float s, c;
-				if (msg->usetarget)
-				{
-					CVector3D target = msg->target->GetWorldSpace(pos.Y);
-					CVector2D dir(target.X-pos.X, target.Z-pos.Z);
-					dir = dir.Normalize();
-					s = dir.x;
-					c = dir.y;
-				}
-				else
-				{
-					s = sinf(msg->angle);
-					c = cosf(msg->angle);
-				}
-				CMatrix3D& m = m_TransformNew;
-				m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = pos.X;
-				m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = pos.Y;
-				m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = pos.Z;
-				m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
-			}
+			m_AngleNew = msg->angle;
 		}
 
-		SetAngle(m_AngleNew, m_TransformNew);
+		SetAngle(m_AngleNew);
 	}
 
-	void SetAngle(float angle, CMatrix3D& transform)
+	void SetAngle(float angle)
 	{
-		if (g_UseSimulation2)
-		{
-			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
-			if (cmpPos.null())
-				return;
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		if (cmpPos.null())
+			return;
 
-			cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
-		}
-		else
-		{
-			CUnit* unit = GetUnitManager().FindByID(msg->id);
-			if (! unit) return;
-
-			if (unit->GetEntity())
-			{
-				unit->GetEntity()->m_orientation.Y = angle;
-				unit->GetEntity()->Reorient();
-			}
-			else
-			{
-				unit->GetModel().SetTransform(transform);
-			}
-		}
+		cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
 	}
 
 	void Redo()
 	{
-		SetAngle(m_AngleNew, m_TransformNew);
+		SetAngle(m_AngleNew);
 	}
 
 	void Undo()
 	{
-		SetAngle(m_AngleOld, m_TransformOld);
+		SetAngle(m_AngleOld);
 	}
 
 	void MergeIntoPrevious(cRotateObject* prev)
@@ -955,7 +602,6 @@ BEGIN_COMMAND(RotateObject)
 		// TODO: do something valid if prev unit != this unit
 		debug_assert(prev->msg->id == msg->id);
 		prev->m_AngleNew = m_AngleNew;
-		prev->m_TransformNew = m_TransformNew;
 	}
 };
 END_COMMAND(RotateObject)
@@ -963,11 +609,6 @@ END_COMMAND(RotateObject)
 
 BEGIN_COMMAND(DeleteObject)
 {
-	// Old simulation: These two values are never both non-NULL
-	std::auto_ptr<SimState::Entity> m_FrozenEntity;
-	std::auto_ptr<SimState::Nonentity> m_FrozenNonentity;
-
-	// New simulation:
 	// Saved copy of the important aspects of a unit, to allow undo
 	entity_id_t m_EntityID;
 	std::wstring m_TemplateName;
@@ -977,7 +618,7 @@ BEGIN_COMMAND(DeleteObject)
 	// TODO: random selections
 
 	cDeleteObject()
-	: m_FrozenEntity(NULL), m_FrozenNonentity(NULL), m_EntityID(INVALID_ENTITY), m_Owner(-1)
+	: m_EntityID(INVALID_ENTITY), m_Owner(-1)
 	{
 	}
 
@@ -988,90 +629,46 @@ BEGIN_COMMAND(DeleteObject)
 
 	void Redo()
 	{
-		if (g_UseSimulation2)
+		CSimulation2& sim = *g_Game->GetSimulation2();
+		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
+		debug_assert(!cmpTemplateManager.null());
+
+		m_EntityID = msg->id;
+		m_TemplateName = cmpTemplateManager->GetCurrentTemplateName(m_EntityID);
+
+		CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
+		if (!cmpOwner.null())
+			m_Owner = cmpOwner->GetOwner();
+
+		CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
+		if (!cmpPosition.null())
 		{
-			CSimulation2& sim = *g_Game->GetSimulation2();
-			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
-			debug_assert(!cmpTemplateManager.null());
-
-			m_EntityID = msg->id;
-			m_TemplateName = cmpTemplateManager->GetCurrentTemplateName(m_EntityID);
-
-			CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
-			if (!cmpOwner.null())
-				m_Owner = cmpOwner->GetOwner();
-
-			CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
-			if (!cmpPosition.null())
-			{
-				m_Pos = cmpPosition->GetPosition();
-				m_Rot = cmpPosition->GetRotation();
-			}
-
-			g_Game->GetSimulation2()->DestroyEntity(m_EntityID);
-
-			return;
+			m_Pos = cmpPosition->GetPosition();
+			m_Rot = cmpPosition->GetRotation();
 		}
 
-		CUnit* unit = GetUnitManager().FindByID(msg->id);
-		if (! unit) return;
-
-		if (unit->GetEntity())
-		{
-			bool wasTerritoryCentre = unit->GetEntity()->m_base->m_isTerritoryCentre;
-
-			m_FrozenEntity.reset(new SimState::Entity( SimState::Entity::Freeze(unit) ));
-			unit->GetEntity()->Kill();
-
-			if (wasTerritoryCentre)
-				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
-		}
-		else
-		{
-			m_FrozenNonentity.reset(new SimState::Nonentity( SimState::Nonentity::Freeze(unit) ));
-			GetUnitManager().RemoveUnit(unit);
-		}
+		g_Game->GetSimulation2()->DestroyEntity(m_EntityID);
 	}
 
 	void Undo()
 	{
-		if (g_UseSimulation2)
+		CSimulation2& sim = *g_Game->GetSimulation2();
+		entity_id_t ent = sim.AddEntity(m_TemplateName, m_EntityID);
+		if (ent == INVALID_ENTITY)
+			LOGERROR(L"Failed to load entity template '%ls'", m_TemplateName.c_str());
+		else
 		{
-			CSimulation2& sim = *g_Game->GetSimulation2();
-			entity_id_t ent = sim.AddEntity(m_TemplateName, m_EntityID);
-			if (ent == INVALID_ENTITY)
-				LOGERROR(L"Failed to load entity template '%ls'", m_TemplateName.c_str());
-			else
+			CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
+			if (!cmpPosition.null())
 			{
-				CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
-				if (!cmpPosition.null())
-				{
-					cmpPosition->JumpTo(m_Pos.X, m_Pos.Z);
-					cmpPosition->SetXZRotation(m_Rot.X, m_Rot.Z);
-					cmpPosition->SetYRotation(m_Rot.Y);
-				}
-
-				CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
-				if (!cmpOwner.null())
-					cmpOwner->SetOwner(m_Owner);
+				cmpPosition->JumpTo(m_Pos.X, m_Pos.Z);
+				cmpPosition->SetXZRotation(m_Rot.X, m_Rot.Z);
+				cmpPosition->SetYRotation(m_Rot.Y);
 			}
 
-			return;
-		}
-
-		if (m_FrozenEntity.get())
-		{
-			CEntity* entity = m_FrozenEntity->Thaw();
-			
-			if (entity && entity->m_base->m_isTerritoryCentre)
-				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
-
-			m_FrozenEntity.reset();
-		}
-		else if (m_FrozenNonentity.get())
-		{
-			m_FrozenNonentity->Thaw();
-			m_FrozenNonentity.reset();
+			CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
+			if (!cmpOwner.null())
+				cmpOwner->SetOwner(m_Owner);
 		}
 	}
 };

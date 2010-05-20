@@ -41,16 +41,10 @@
 #include "ps/XML/XMLWriter.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
-#include "simulation/EntityTemplate.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/TriggerManager.h"
-#include "simulation/Entity.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTemplateManager.h"
-
-#define CURRENT_FILE_VERSION (g_UseSimulation2 ? FILE_VERSION : 4)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CMapWriter constructor: nothing to do at the minute
@@ -65,7 +59,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
 						 CSimulation2* pSimulation2)
 {
-	CFilePacker packer(CURRENT_FILE_VERSION, "PSMP");
+	CFilePacker packer(FILE_VERSION, "PSMP");
 
 	// build necessary data
 	PackMap(packer, pTerrain);
@@ -188,7 +182,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 	{
 		XML_Element("Scenario");
-		XML_Attribute("version", (int)CURRENT_FILE_VERSION);
+		XML_Attribute("version", (int)FILE_VERSION);
 
 		if (pSimulation2 && !pSimulation2->GetStartupScript().empty())
 		{
@@ -285,9 +279,6 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			}
 		}
 
-		const std::vector<CUnit*>& units = pUnitMan->GetUnits();
-
-		if (g_UseSimulation2)
 		{
 			XML_Element("Entities");
 
@@ -332,75 +323,6 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("y", rot.Y.ToDouble());
 						// TODO: X, Z maybe
 					}
-				}
-			}
-		}
-
-		if (!g_UseSimulation2)
-		{
-			XML_Element("Entities");
-
-			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit)
-			{
-
-				CEntity* entity = (*unit)->GetEntity();
-
-				// Ignore objects that aren't entities
-				if (! entity)
-					continue;
-
-				XML_Element("Entity");
-				XML_Attribute("uid", (unsigned) (*unit)->GetID());
-				XML_Setting("Template", entity->m_base->m_Tag);
-
-				XML_Setting("Player", (unsigned) entity->GetPlayer()->GetPlayerID());
-
-				{
-					CVector3D position = entity->m_position;
-
-					XML_Element("Position");
-					XML_Attribute("x", position.X);
-					XML_Attribute("y", position.Y);
-					XML_Attribute("z", position.Z);
-				}
-
-				{
-					float angle = entity->m_orientation.Y;
-
-					XML_Element("Orientation");
-					XML_Attribute("angle", angle);
-				}
-			}
-		}
-		if (!g_UseSimulation2)
-		{
-			XML_Element("Nonentities");
-
-			for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit) {
-
-				// Ignore objects that are entities
-				if ((*unit)->GetEntity())
-					continue;
-
-				XML_Element("Nonentity");
-
-				XML_Setting("Actor", (*unit)->GetObject().m_Base->m_Name);
-
-				{
-					CVector3D position = (*unit)->GetModel().GetTransform().GetTranslation();
-
-					XML_Element("Position");
-					XML_Attribute("x", position.X);
-					XML_Attribute("y", position.Y);
-					XML_Attribute("z", position.Z);
-				}
-
-				{
-					CVector3D orient = (*unit)->GetModel().GetTransform().GetIn();
-					float angle = atan2(-orient.X, -orient.Z);
-
-					XML_Element("Orientation");
-					XML_Attribute("angle", angle);
 				}
 			}
 		}
@@ -453,39 +375,12 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				}
 			}
 		}
-		
-		if (!g_UseSimulation2)
-		{
-			const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
-			std::list<MapTriggerGroup> rootChildren;
-			std::list<MapTriggerGroup>::const_iterator root = std::find( groups.begin(), groups.end(), L"Triggers" );
-
-			if ( root == groups.end() )
-			{
-				XML_Element("Triggers");
-			}
-			else
-			{
-				std::for_each(rootChildren.begin(), rootChildren.end(), CopyIfRootChild(rootChildren));
-
-				XML_Element("Triggers");
-				for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin();
-															it != rootChildren.end(); ++it )
-				{
-					WriteTriggerGroup(xml_file_, *it, groups);
-				}
-				for ( std::list<MapTrigger>::const_iterator it = root->triggers.begin();
-															it != root->triggers.end(); ++it )
-				{
-					WriteTrigger(xml_file_, *it);
-				}
-			}
-		}
 	}
 	if (! XML_StoreVFS(filename))
 		debug_assert(0);	// failed to write map XML file
 }
 
+/*
 void CMapWriter::WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group, const std::list<MapTriggerGroup>& groupList)
 {
 	XML_Element("Group");
@@ -593,6 +488,7 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 		}
 	}	//Effects' scope	
 }
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RewriteAllMaps

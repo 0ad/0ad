@@ -27,8 +27,6 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 
-#include "simulation/Entity.h"
-
 #include "TerrainProperties.h"
 #include "TextureEntry.h"
 #include "TextureManager.h"
@@ -107,26 +105,26 @@ bool CTerrain::IsOnMap(const CVector2D& v) const
 	return IsOnMap(v.x, v.y);
 }
 
-bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
-{
-	CMiniPatch *pTile = GetTile(loc.x, loc.y);
-	if(!pTile)
-	{
-		LOGWARNING(L"IsPassable: invalid coordinates %.1f %.1f\n", loc.x, loc.y);
-		return false;
-	}
-	if(!pTile->Tex1)
-		return false;		// Invalid terrain type in the scenario file
-	CTextureEntry *pTexEntry = g_TexMan.FindTexture(pTile->Tex1);
-	CTerrainPropertiesPtr pProperties = pTexEntry->GetProperties();
-	if(!pProperties)
-	{
-		VfsPath texturePath = pTexEntry->GetTexturePath();
-		LOGWARNING(L"IsPassable: no properties loaded for %ls\n", texturePath.string().c_str());
-		return false;
-	}
-	return pProperties->IsPassable(entity);
-}
+//bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
+//{
+//	CMiniPatch *pTile = GetTile(loc.x, loc.y);
+//	if(!pTile)
+//	{
+//		LOGWARNING(L"IsPassable: invalid coordinates %.1f %.1f\n", loc.x, loc.y);
+//		return false;
+//	}
+//	if(!pTile->Tex1)
+//		return false;		// Invalid terrain type in the scenario file
+//	CTextureEntry *pTexEntry = g_TexMan.FindTexture(pTile->Tex1);
+//	CTerrainPropertiesPtr pProperties = pTexEntry->GetProperties();
+//	if(!pProperties)
+//	{
+//		VfsPath texturePath = pTexEntry->GetTexturePath();
+//		LOGWARNING(L"IsPassable: no properties loaded for %ls\n", texturePath.string().c_str());
+//		return false;
+//	}
+//	return pProperties->IsPassable(entity);
+//}
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcPosition: calculate the world space position of the vertex at (i,j)
@@ -299,27 +297,6 @@ float CTerrain::GetSlope(float x, float z) const
 	// Difference of highest point from lowest point
 	return std::max(std::max(h00, h01), std::max(h10, h11)) -
 	       std::min(std::min(h00, h01), std::min(h10, h11));
-}
-
-CVector2D CTerrain::GetSlopeAngleFace( CEntity* entity ) const
-{
-	CVector2D ret;
-
-	const float D = 0.1f;		// Amount to look forward to calculate the slope
-	float x = entity->m_position.X;
-	float z = entity->m_position.Z;
-
-	// Get forward slope and use it as the x angle
-	CVector2D d = entity->m_ahead.Normalize() * D;
-	float dy = GetExactGroundLevel(x+d.x, z+d.y) - GetExactGroundLevel(x-d.x, z-d.y);
-	ret.x = atan2(dy, 2*D);
-
-	// Get sideways slope and use it as the y angle
-	CVector2D d2(-d.y, d.x);
-	float dy2 = GetExactGroundLevel(x+d2.x, z+d2.y) - GetExactGroundLevel(x-d2.x, z-d2.y);
-	ret.y = atan2(dy2, 2*D);
-
-	return ret;
 }
 
 float CTerrain::GetExactGroundLevel(float x, float z) const

@@ -38,7 +38,6 @@
 #include "simulation/EntityManager.h"
 #include "simulation/EntityTemplateCollection.h"
 #include "simulation/LOSManager.h"
-#include "simulation/Projectile.h"
 #include "simulation/Scheduler.h"
 #include "simulation/Simulation.h"
 #include "simulation/TerritoryManager.h"
@@ -68,8 +67,8 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 	g_ScriptingHost.RunScript( L"scripts/game_startup.js" );
 
 	// [2006-06-26 3647ms]
-	g_EntityManager.m_screenshotMode = pAttribs->m_ScreenshotMode;
-	g_EntityManager.InitializeAll();
+//	g_EntityManager.m_screenshotMode = pAttribs->m_ScreenshotMode;
+//	g_EntityManager.InitializeAll();
 
 	// [2006-06-26: 61ms]
 	m_pWorld->GetLOSManager()->Initialize((ELOSSetting)pAttribs->m_LOSSetting, pAttribs->m_FogOfWar);
@@ -111,8 +110,7 @@ void CSimulation::Interpolate(double frameTime, double offset)
 	for (size_t i = 0; i < units.size(); ++i)
 		units[i]->UpdateModel((float)frameTime);
 
-	g_EntityManager.InterpolateAll(offset);
-	m_pWorld->GetProjectileManager().InterpolateAll(offset);
+//	g_EntityManager.InterpolateAll(offset);
 }
 
 void CSimulation::Simulate()

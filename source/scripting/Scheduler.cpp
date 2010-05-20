@@ -17,22 +17,9 @@
 
 #include "precompiled.h"
 #include "Scheduler.h"
-#include "Entity.h"
 
 int simulationTime;
 int frameCount;
-
-/*
-void CScheduler::PushTime( int delay, const HEntity& destination, const CMessage* message )
-{
-	timeMessage.push( SDispatchObjectMessage( destination, simulationTime + delay, message ) );
-}
-
-void CScheduler::PushFrame( int delay, const HEntity& destination, const CMessage* message )
-{
-	frameMessage.push( SDispatchObjectMessage( destination, frameCount + delay, message ) );
-}
-*/
 
 CScheduler::CScheduler()
 {

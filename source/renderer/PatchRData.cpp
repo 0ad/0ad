@@ -435,7 +435,7 @@ void CPatchRData::Update()
 	ssize_t vsize=PATCH_SIZE+1;
 	SColor4ub baseColour = terrain->GetBaseColour();
 
-	if (g_Game && !g_UseSimulation2)
+	if (g_Game && false) // XXX: need to implement this for new sim system
 	{
 		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 

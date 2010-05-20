@@ -162,9 +162,7 @@ ViewGame::~ViewGame()
 
 CSimulation2* ViewGame::GetSimulation2()
 {
-	if (g_UseSimulation2)
-		return g_Game->GetSimulation2();
-	return NULL;
+	return g_Game->GetSimulation2();
 }
 
 void ViewGame::Update(float frameLength)
@@ -172,16 +170,12 @@ void ViewGame::Update(float frameLength)
 	float actualFrameLength = frameLength * m_SpeedMultiplier;
 
 	// Clean up any entities destroyed during UI message processing
-	if (g_UseSimulation2)
-		g_Game->GetSimulation2()->FlushDestroyedEntities();
+	g_Game->GetSimulation2()->FlushDestroyedEntities();
 
 	if (m_SpeedMultiplier == 0.f)
 	{
 		// Update unit interpolation
-		if (g_UseSimulation2)
-			g_Game->Interpolate(0.0);
-		else
-			g_Game->GetSimulation()->Interpolate(0.0);
+		g_Game->Interpolate(0.0);
 	}
 	else
 	{
@@ -203,18 +197,7 @@ void ViewGame::Update(float frameLength)
 
 		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update
-		if (g_UseSimulation2)
-		{
-			g_Game->Interpolate(actualFrameLength);
-		}
-		else
-		{
-			g_Game->GetSimulation()->Interpolate(actualFrameLength);
-
-			// If we still couldn't keep up, just drop the sim rate instead of building
-			// up a (potentially very large) backlog of required updates
-			g_Game->GetSimulation()->DiscardMissedUpdates();
-		}
+		g_Game->Interpolate(actualFrameLength);
 	}
 
 	// Cinematic motion should be independent of simulation update, so we can
@@ -262,10 +245,10 @@ void ViewGame::SetSpeedMultiplier(float speed)
 	m_SpeedMultiplier = speed;
 }
 
-void ViewGame::SaveState(const std::wstring& label, bool onlyEntities)
+void ViewGame::SaveState(const std::wstring& label)
 {
 	delete m_SavedStates[label]; // in case it already exists
-	m_SavedStates[label] = SimState::Freeze(onlyEntities);
+	m_SavedStates[label] = SimState::Freeze();
 }
 
 void ViewGame::RestoreState(const std::wstring& label)
@@ -279,9 +262,6 @@ void ViewGame::RestoreState(const std::wstring& label)
 
 std::wstring ViewGame::DumpState(bool binary)
 {
-	if (! g_UseSimulation2)
-		return L"The game isn't using the new simulation system";
-
 	std::stringstream stream;
 	if (binary)
 	{

@@ -24,7 +24,6 @@
 #include "FormationManager.h"
 #include "Simulation.h"
 #include "ps/Game.h"
-#include "ps/Interact.h"
 #include "network/NetMessage.h"
 
 CEntityFormation::CEntityFormation( CFormation*& base, size_t index )
@@ -204,8 +203,10 @@ void CEntityFormation::SelectAllUnits() const
 {
 	for ( size_t i=0; i<m_base->m_numSlots; ++i )
 	{
+/*
 		if ( m_entities[i] && !g_Selection.IsSelected(m_entities[i]->me) )
 			g_Selection.AddSelection( m_entities[i]->me );
+*/
 	}
 }
 

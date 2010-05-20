@@ -39,13 +39,13 @@
 #include "ps/Game.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
-#include "ps/Interact.h"
 #include "ps/Loader.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/StringConvert.h"
 #include "ps/Util.h"
+#include "ps/World.h"
 #include "ps/i18n.h"
 
 #include "graphics/CinemaTrack.h"
@@ -61,30 +61,21 @@
 
 #include "maths/MathUtil.h"
 
-#include "simulation/Entity.h"
-#include "simulation/EntityManager.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/Scheduler.h"
-
 #include "simulation2/Simulation2.h"
 
 #include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
 #include "scripting/ScriptGlue.h"
 #include "scripting/DOMEvent.h"
-#include "scripting/GameEvents.h"
 #include "scripting/ScriptableComplex.h"
+#include "scripting/Scheduler.h"
 
 #include "maths/scripting/JSInterface_Vector3D.h"
 
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
 
-#include "ps/scripting/JSInterface_Selection.h"
 #include "ps/scripting/JSInterface_Console.h"
-#include "ps/scripting/JSCollection.h"
-
-#include "simulation/scripting/SimulationScriptInit.h"
 
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
@@ -240,87 +231,9 @@ void Render()
 
 	ogl_WarnIfError();
 
-	if (g_Game && g_Game->IsGameStarted() && g_UseSimulation2)
+	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Game->GetView()->Render();
-	}
-	else if (g_Game && g_Game->IsGameStarted() && !g_UseSimulation2)
-	{
-		g_Game->GetView()->Render();
-
-		glPushAttrib( GL_ENABLE_BIT );
-		glDisable( GL_LIGHTING );
-		glDisable( GL_TEXTURE_2D );
-		glDisable( GL_DEPTH_TEST );
-
-		if( g_EntGraph )
-		{
-			PROFILE( "render entity overlays" );
-			glColor3f( 1.0f, 0.0f, 1.0f );
-			g_EntityManager.RenderAll(); // <-- collision outlines, pathing routes
-		}
-
-		glEnable( GL_DEPTH_TEST );
-
-		PROFILE_START( "render entity outlines" );
-		g_Mouseover.RenderSelectionOutlines();
-		g_Selection.RenderSelectionOutlines();
-		PROFILE_END( "render entity outlines" );
-
-		PROFILE_START( "render entity auras" );
-		g_Mouseover.RenderAuras();
-		g_Selection.RenderAuras();
-		PROFILE_END( "render entity auras" );
-
-		glDisable(GL_DEPTH_TEST);
-
-		PROFILE_START( "render entity bars" );
-		pglActiveTextureARB(GL_TEXTURE1_ARB);
-		glDisable(GL_TEXTURE_2D);
-		pglActiveTextureARB(GL_TEXTURE0_ARB);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-		glMatrixMode(GL_TEXTURE);
-		glLoadIdentity();
-		/*glMatrixMode(GL_PROJECTION);
-		glPushMatrix();
-		glLoadIdentity();
-		glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.0f, 1000.f);
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix();
-		glLoadIdentity();*/
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		g_Mouseover.RenderBars();
-		g_Selection.RenderBars();
-		
-		glDisable(GL_BLEND);
-		/*glPopMatrix();
-		glMatrixMode(GL_PROJECTION);
-		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);*/
-		PROFILE_END( "render entity bars" );
-
-		glPopAttrib();
-		glMatrixMode(GL_MODELVIEW);
-
-		// Depth test is now enabled
-		PROFILE_START( "render rally points" );
-		g_Selection.RenderRallyPoints();
-		g_Mouseover.RenderRallyPoints();
-		PROFILE_END( "render rally points" );
-		
-		PROFILE_START( "render cinematic splines" );
-		//Sets/resets renderering properties itself
-		g_Game->GetView()->GetCinema()->DrawSpline();
-		PROFILE_END( "render cinematic splines" );
 	}
 
 	ogl_WarnIfError();
@@ -390,17 +303,8 @@ void Render()
 
 	ogl_WarnIfError();
 
-	if (g_Game && g_Game->IsGameStarted() && !g_UseSimulation2)
-	{
-		PROFILE( "render selection overlays" );
-		g_Mouseover.RenderOverlays();
-		g_Selection.RenderOverlays();
-	}
-
-	ogl_WarnIfError();
-
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	CStrW cursorName = (!g_UseSimulation2 && g_BuildingPlacer.m_active) ? L"action-build" : g_CursorName;
+	CStrW cursorName = g_CursorName;
 	if (cursorName.empty())
 		cursor_draw(NULL, g_mouse_x, g_mouse_y);
 	else
@@ -439,10 +343,6 @@ static void RegisterJavascriptInterfaces()
 	// scripting
 	SColour::ScriptingInit();
 	CScriptEvent::ScriptingInit();
-	// call CJSComplexPropertyAccessor's ScriptingInit. doesn't really
-	// matter which <T> we use, but we know CJSPropertyAccessor<T> is
-	// already being compiled for T = CEntity.
-	ScriptableComplex_InitComplexPropertyAccessor<CEntity>();
 
 	// ps
 	JSI_Console::init();
@@ -456,9 +356,6 @@ static void RegisterJavascriptInterfaces()
 	CNetServer::ScriptingInit();
 	CNetSession::ScriptingInit();
 	CServerPlayer::ScriptingInit();
-
-	// simulation
-	SimulationScriptInit();
 
 	// GUI
 	CGUI::ScriptingInit();
@@ -487,8 +384,6 @@ static void InitScripting()
 	REG_JS_CONSTANT(SDL_BUTTON_WHEELUP);
 	REG_JS_CONSTANT(SDL_BUTTON_WHEELDOWN);
 #undef REG_JS_CONSTANT
-
-	new CGameEvents;
 }
 
 
@@ -622,8 +517,6 @@ static void InitInput()
 	//  processed.
 	in_add_handler(game_view_handler);
 
-	in_add_handler(InteractInputHandler);
-
 	in_add_handler(conInputHandler);
 
 	in_add_handler(CProfileViewer::InputThunk);
@@ -729,28 +622,9 @@ void Shutdown(int flags)
 	delete &g_Scheduler;
 	TIMER_END(L"shutdown Scheduler");
 
-	delete &g_JSGameEvents;
-
 	if (! (flags & INIT_NO_SIM))
 	{
-		if (g_UseSimulation2)
-		{
-			delete &g_GameAttributes;
-			delete &g_EntityTemplateCollection;
-		}
-		else
-		{
-			TIMER_BEGIN(L"shutdown mouse stuff");
-			delete &g_Mouseover;
-			delete &g_Selection;
-			delete &g_BuildingPlacer;
-			TIMER_END(L"shutdown mouse stuff");
-
-			TIMER_BEGIN(L"shutdown game scripting stuff");
-			delete &g_GameAttributes;
-			SimulationShutdown();
-			TIMER_END(L"shutdown game scripting stuff");
-		}
+		delete &g_GameAttributes;
 	}
 
 	// destroy actor related stuff
@@ -991,24 +865,7 @@ void Init(const CmdLineArgs& args, int flags)
 
 	if (! (flags & INIT_NO_SIM))
 	{
-		// This needs to be done after the renderer has loaded all its actors...
-		if (g_UseSimulation2)
-		{
-			new CEntityTemplateCollection; // this is just needed for loading old maps
-			new CGameAttributes;
-		}
-		else
-		{
-			SimulationInit();
-
-			{
-				TIMER(L"Init_miscgamesection");
-				new CSelectedEntities;
-				new CMouseoverEntities;
-				new CBuildingPlacer;
-				new CGameAttributes;
-			}
-		}
+		new CGameAttributes;
 
 		// Register a few Game/Network JS globals
 		g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
@@ -1152,7 +1009,7 @@ static bool Autostart(const CmdLineArgs& args)
 		ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 
-		InitPs(true, g_UseSimulation2 ? L"page_session_new.xml" : L"page_session.xml");
+		InitPs(true, L"page_session_new.xml");
 	}
 
 	return true;

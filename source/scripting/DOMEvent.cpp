@@ -19,7 +19,7 @@
 #include "DOMEvent.h"
 #include "lib/timer.h"
 #include "ps/Profile.h"
-#include "simulation/ScriptObject.h"
+#include "ScriptObject.h"
 
 IEventTarget::~IEventTarget()
 {

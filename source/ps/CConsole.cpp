@@ -34,7 +34,6 @@
 #include "ps/Filesystem.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
-#include "ps/Interact.h"
 #include "ps/Pyrogenesis.h"
 #include "scripting/ScriptingHost.h"
 #include "scripting/ScriptableComplex.inl"

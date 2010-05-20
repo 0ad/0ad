@@ -40,13 +40,6 @@
 #include "ps/LoaderThunks.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/EntityManager.h"
-#include "simulation/EntityManager.h"
-#include "simulation/LOSManager.h"
-#include "simulation/TerritoryManager.h"
-#include "simulation/TriggerManager.h"
-#include "simulation/Projectile.h"
 #include "simulation2/Simulation2.h"
 
 #define LOG_CATEGORY L"world"
@@ -68,10 +61,8 @@ CWorld::CWorld(CGame *pGame):
 	m_pGame(pGame),
 	m_Terrain(new CTerrain()),
 	m_UnitManager(new CUnitManager()),
-	m_EntityManager(new CEntityManager()),
-	m_ProjectileManager(new CProjectileManager()),
-	m_LOSManager(new CLOSManager()),
-	m_TerritoryManager(new CTerritoryManager())
+	m_LOSManager(NULL),
+	m_TerritoryManager(NULL)
 {
 }
 
@@ -82,9 +73,6 @@ CWorld::CWorld(CGame *pGame):
  **/
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
-	// TODO: Find a better way of handling these global things
-	ONCE(RegMemFun(CEntityTemplateCollection::GetSingletonPtr(), &CEntityTemplateCollection::LoadTemplates, L"LoadTemplates", 15));
-
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.length())
 	{
@@ -94,11 +82,9 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 		try {
 			reader = new CMapReader;
 			CTriggerManager* pTriggerManager = NULL;
-			if (!g_UseSimulation2)
-				pTriggerManager = &g_TriggerManager;
 			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager, g_Renderer.GetWaterManager(),
 				g_Renderer.GetSkyManager(), &g_LightEnv, m_pGame->GetView()->GetCamera(), m_pGame->GetView()->GetCinema(),
-				pTriggerManager, m_pGame->GetSimulation2(), m_EntityManager);
+				pTriggerManager, m_pGame->GetSimulation2(), NULL);
 				// fails immediately, or registers for delay loading
 		} catch (PSERROR_File& err) {
 			delete reader;
@@ -127,11 +113,7 @@ void CWorld::RegisterInit(CGameAttributes *pAttribs)
 CWorld::~CWorld()
 {
 	delete m_Terrain;
-	delete m_EntityManager;
 	delete m_UnitManager; // must come after deleting EntityManager
-	delete m_ProjectileManager;
-	delete m_LOSManager;
-	delete m_TerritoryManager;
 }
 
 
@@ -145,6 +127,6 @@ void CWorld::RewriteMap()
 	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager,
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
 		&g_LightEnv, m_pGame->GetView()->GetCamera(), 
-		m_pGame->GetView()->GetCinema(), &g_TriggerManager,
-		m_pGame->GetSimulation2(), m_EntityManager);
+		m_pGame->GetView()->GetCinema(), NULL,
+		m_pGame->GetSimulation2(), NULL);
 }

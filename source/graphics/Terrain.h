@@ -22,15 +22,13 @@
 #ifndef INCLUDED_TERRAIN
 #define INCLUDED_TERRAIN
 
+#include "ps/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "maths/Fixed.h"
 #include "graphics/SColor.h"
 
-class HEntity;
-class CEntity;
 class CPatch;
 class CMiniPatch;
-class CVector2D;
 class CFixedVector3D;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -76,7 +74,7 @@ public:
 
 	bool IsOnMap(const CVector2D& v) const;
 
-	bool IsPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
+//	bool IsPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
 
 	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
@@ -84,8 +82,6 @@ public:
 	float GetExactGroundLevel(const CVector2D& v) const;
 
 	float GetSlope(float x, float z) const ;
-	//Find the slope of in X and Z axes depending on the way the entity is facing
-	CVector2D GetSlopeAngleFace(CEntity* entity) const;	
 	// resize this terrain such that each side has given number of patches
 	void Resize(ssize_t size);
 

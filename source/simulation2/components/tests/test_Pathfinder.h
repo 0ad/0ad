@@ -26,7 +26,6 @@
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "scripting/ScriptingHost.h"
-#include "simulation/EntityTemplateCollection.h"
 #include "simulation2/Simulation2.h"
 
 class TestCmpPathfinder : public CxxTest::TestSuite
@@ -34,8 +33,6 @@ class TestCmpPathfinder : public CxxTest::TestSuite
 public:
 	void setUp()
 	{
-		g_UseSimulation2 = true;
-
 		CXeromyces::Startup();
 
 		g_VFS = CreateVfs(20 * MiB);
@@ -47,13 +44,10 @@ public:
 		new CProfileViewer();
 		new CProfileManager();
 		new ScriptingHost();
-		new CEntityTemplateCollection();
-		g_EntityTemplateCollection.LoadTemplates();
 	}
 
 	void tearDown()
 	{
-		delete &g_EntityTemplateCollection;
 		delete &g_ScriptingHost;
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
@@ -62,8 +56,6 @@ public:
 		g_VFS.reset();
 
 		CXeromyces::Terminate();
-
-		g_UseSimulation2 = false;
 	}
 
 	// disabled by default; run tests with the "-test TestCmpPathfinder" flag to enable

@@ -66,7 +66,7 @@ QUERYHANDLER(CinemaRecord)
 
 	int num_frames = msg->framerate * msg->duration;
 
-	View::GetView_Game()->SaveState(L"cinema_record", true);
+	View::GetView_Game()->SaveState(L"cinema_record");
 
 	// Set it to update the simulation at normal speed
 	View::GetView_Game()->SetSpeedMultiplier(1.f);
@@ -123,7 +123,7 @@ QUERYHANDLER(Ping)
 
 MESSAGEHANDLER(SimStateSave)
 {
-	View::GetView_Game()->SaveState(*msg->label, msg->onlyentities);
+	View::GetView_Game()->SaveState(*msg->label);
 }
 
 MESSAGEHANDLER(SimStateRestore)

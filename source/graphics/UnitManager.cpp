@@ -30,8 +30,6 @@
 #include "ObjectEntry.h"
 #include "ps/Game.h"
 #include "ps/World.h"
-#include "simulation/Entity.h"
-#include "simulation/LOSManager.h"
 
 #include <algorithm>
 
@@ -93,8 +91,6 @@ void CUnitManager::DeleteAll()
 // unit; return the closest unit, or null if everything missed
 CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, bool entitiesOnly) const
 {
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
 	// closest object found so far
 	CUnit* hit = 0;
 	// distance to closest object found so far
@@ -106,14 +102,7 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, boo
 		CUnit* unit = m_Units[i];
 		float tmin, tmax;
 		
-		CEntity* ent = unit->GetEntity();
-		if( entitiesOnly && !ent )
-			continue;
-		if( ent && !ent->m_visible )
-			continue;
-		
-		if (unit->GetModel().GetBounds().RayIntersect(origin, dir, tmin, tmax)
-			&& losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
+		if (unit->GetModel().GetBounds().RayIntersect(origin, dir, tmin, tmax))
 		{
 			// Point of closest approach
 			CVector3D obj;

@@ -21,9 +21,9 @@
 
 #include "ps/Game.h"
 #include "ps/Player.h"
+#include "ps/World.h"
 #include "graphics/Terrain.h"
 #include "Entity.h"
-#include "EntityManager.h"
 #include "EntityTemplate.h"
 #include "graphics/Unit.h"
 #include "maths/Bound.h"
@@ -136,7 +136,7 @@ void CLOSManager::Update()
 
 	// Set visibility for each entity
 	std::vector<CEntity*> extant;
-	g_EntityManager.GetExtant(extant);
+//	g_EntityManager.GetExtant(extant);
 	for(size_t i=0; i<extant.size(); i++) 
 	{
 		CEntity* e = extant[i];

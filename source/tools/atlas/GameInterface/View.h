@@ -81,7 +81,7 @@ public:
 	virtual bool WantsHighFramerate();
 
 	void SetSpeedMultiplier(float speed);
-	void SaveState(const std::wstring& label, bool onlyEntities);
+	void SaveState(const std::wstring& label);
 	void RestoreState(const std::wstring& label);
 	std::wstring DumpState(bool binary);
 

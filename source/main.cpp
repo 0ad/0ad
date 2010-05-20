@@ -53,14 +53,13 @@ that of Atlas depending on commandline parameters.
 #include "ps/Game.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
-#include "ps/Interact.h"
 #include "ps/XML/Xeromyces.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "network/NetSession.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
-#include "simulation/Scheduler.h"
+#include "scripting/Scheduler.h"
 #include "simulation2/Simulation2.h"
 #include "sound/CMusicPlayer.h"
 #include "gui/GUIManager.h"
@@ -284,16 +283,6 @@ static void Frame()
 		PROFILE_START( "camera update" );
 		g_Game->GetView()->Update(float(TimeSinceLastFrame));
 		PROFILE_END( "camera update" );
-
-		if (!g_UseSimulation2)
-		{
-			PROFILE_START( "selection and interaction ui" );
-			// TODO Where does GameView end and other things begin?
-			g_Mouseover.Update( TimeSinceLastFrame );
-			g_Selection.Update();
-			g_BuildingPlacer.Update( TimeSinceLastFrame );
-			PROFILE_END( "selection and interaction ui" );
-		}
 
 		PROFILE_START( "sound update" );
 		CCamera* camera = g_Game->GetView()->GetCamera();

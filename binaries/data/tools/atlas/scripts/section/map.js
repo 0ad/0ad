@@ -6,7 +6,7 @@ function setupSimTest(window)
 	function play(newSpeed)
 	{
 		if (state == 'inactive')
-			Atlas.Message.SimStateSave('default', true);
+			Atlas.Message.SimStateSave('default');
 		Atlas.Message.SimPlay(newSpeed);
 		state = 'playing';
 		speed = newSpeed;

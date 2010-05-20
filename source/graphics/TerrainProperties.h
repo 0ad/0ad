@@ -35,7 +35,6 @@ class CTerrainGroup;
 class XMBElement;
 class CXeromyces;
 class CTerrainProperties;
-class HEntity;
 
 typedef shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
 
@@ -101,9 +100,7 @@ public:
 	// The color value is in BGRA format
 	u32 GetBaseColor();
 	
-	double GetSpeedFactor(HEntity entity);
-	bool IsPassable(HEntity entity);
-	const STerrainPassability &GetPassability(HEntity entity);
+//	const STerrainPassability &GetPassability(HEntity entity);
 
 	const GroupVector &GetGroups() const
 	{ return m_Groups; }

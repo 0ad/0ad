@@ -36,8 +36,6 @@
 
 #include <iomanip>
 
-bool g_UseSimulation2 = true;
-
 class CSimulation2Impl
 {
 public:

@@ -20,8 +20,6 @@
 #include <vector>
 #include <string>
 
-#include "simulation/Entity.h"
-
 #include "TerrainProperties.h"
 #include "TextureManager.h"
 #include "ps/Overlay.h"
@@ -261,23 +259,13 @@ u32 CTerrainProperties::GetBaseColor()
 		return 0xFFFFFFFF;
 }
 
-const STerrainPassability &CTerrainProperties::GetPassability(HEntity entity)
-{
-	std::vector<STerrainPassability>::iterator it=m_Passabilities.begin();
-	for (;it != m_Passabilities.end();++it)
-	{
-		if (entity->m_classes.IsMember(it->m_Type))
-			return *it;
-	}
-	return m_DefaultPassability;
-}
-
-bool CTerrainProperties::IsPassable(HEntity entity)
-{
-	return GetPassability(entity).m_Passable;
-}
-
-double CTerrainProperties::GetSpeedFactor(HEntity entity)
-{
-	return GetPassability(entity).m_SpeedFactor;
-}
+//const STerrainPassability &CTerrainProperties::GetPassability(HEntity entity)
+//{
+//	std::vector<STerrainPassability>::iterator it=m_Passabilities.begin();
+//	for (;it != m_Passabilities.end();++it)
+//	{
+//		if (entity->m_classes.IsMember(it->m_Type))
+//			return *it;
+//	}
+//	return m_DefaultPassability;
+//}

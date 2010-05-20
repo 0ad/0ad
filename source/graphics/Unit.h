@@ -62,7 +62,7 @@ public:
 	// get unit's model data
 	CModel& GetModel() const { return *m_Model; }
 	// get actor's entity; can be NULL
-	CEntity* GetEntity() const { return m_Entity; }
+	CEntity* GetEntity() const { return NULL; }
 
 	// Put here as it conveniently references both the model and the ObjectEntry
 	void ShowAmmunition();
@@ -111,8 +111,6 @@ private:
 	CObjectEntry* m_Object;
 	// object model representation; never NULL
 	CModel* m_Model;
-	// the entity that this actor represents, if any
-	CEntity* m_Entity;
 	// player id of this unit (only read for graphical effects), or ~0 if unspecified
 	size_t m_PlayerID;
 

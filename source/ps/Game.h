@@ -28,10 +28,8 @@
 #include <vector>
 
 class CWorld;
-class CSimulation;
 class CSimulation2;
 class CGameView;
-class CSimulation;
 class CPlayer;
 class CGameAttributes;
 class CNetTurnManager;
@@ -55,10 +53,6 @@ class CGame
 	 * pointer to the CWorld object representing the game world.
 	 **/
 	CWorld *m_World;
-	/**
-	 * pointer to the CSimulation object operating on the game world.
-	 **/
-	CSimulation *m_Simulation;
 	/**
 	 * pointer to the CSimulation2 object operating on the game world.
 	 **/
@@ -189,13 +183,6 @@ public:
 	 **/
 	inline CGameView *GetView()
 	{	return m_GameView; }
-	/**
-	 * Get the pointer to the simulation object.
-	 *
-	 * @return CSimulation * the value of m_Simulation.
-	 **/
-	inline CSimulation *GetSimulation()
-	{	return m_Simulation; }
 	/**
 	 * Get the pointer to the simulation2 object.
 	 *

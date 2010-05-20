@@ -30,7 +30,6 @@
 #include "ProductionQueue.h"
 #include "maths/MathUtil.h"
 #include "Collision.h"
-#include "PathfindEngine.h"
 #include "LOSManager.h"
 #include "graphics/Terrain.h"
 #include "Stance.h"
@@ -478,7 +477,7 @@ bool CEntity::ProcessContactAction( CEntityOrder* current,
 		// The pathfinder will push its result back into this unit's queue and
 		// add back the current order at the end with the transition type.
 		current->m_type = transition;
-		g_Pathfinder.RequestContactPath( me, current, action->m_MaxRange );
+//		g_Pathfinder.RequestContactPath( me, current, action->m_MaxRange );
 
 		return true;
 	}
@@ -579,11 +578,11 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 			ChooseMovementSpeed( action->m_MinRange );
 			
 			// The pathfinder will push its result in front of the current order
-			if( !g_Pathfinder.RequestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
-			{
-				m_actor->SetAnimationState( "idle", false, 1.f, 0.f, false, L"" );	// Nothing we can do.. maybe we'll find a better target
-				PopOrder();
-			}
+//			if( !g_Pathfinder.RequestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
+//			{
+//				m_actor->SetAnimationState( "idle", false, 1.f, 0.f, false, L"" );	// Nothing we can do.. maybe we'll find a better target
+//				PopOrder();
+//			}
 
 			return false;
 		}
@@ -694,7 +693,7 @@ bool CEntity::ProcessGoto( CEntityOrder* current, int UNUSED(timestep_millis) )
 
 	// The pathfinder will push its result back into this unit's queue.
 
-	g_Pathfinder.RequestPath( me, path_to, source );
+//	g_Pathfinder.RequestPath( me, path_to, source );
 
 	return( true );
 }
@@ -729,7 +728,7 @@ bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, int UNUSED(timestep_mi
 	else
 #endif // USE_DCDT
 	{
-		g_Pathfinder.RequestLowLevelPath( me, path_to, contact, pathfinder_radius, source );
+//		g_Pathfinder.RequestLowLevelPath( me, path_to, contact, pathfinder_radius, source );
 	}
 	
 

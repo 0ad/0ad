@@ -42,19 +42,16 @@
 #include "ps/Game.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
-#include "ps/Interact.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "scripting/ScriptableObject.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityOrders.h"
 #include "simulation/LOSManager.h"
-#include "simulation/Projectile.h"
 #include "simulation2/Simulation2.h"
 
 float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
@@ -164,18 +161,12 @@ public:
 	CVector3D CameraDelta;
 	CVector3D CameraPivot;
 
-	CEntity* UnitView;
-	CModel* UnitViewProp;
-	CEntity* UnitAttach;
+//	CEntity* UnitAttach;
 	//float m_CameraZoom;
 	std::vector<CVector3D> CameraTargets;
 
 	// Accumulate zooming changes across frames for smoothness
 	float ZoomDelta;
-
-	// JS Interface
-	bool JSI_StartCustomSelection(JSContext *cx, uintN argc, jsval *argv);
-	bool JSI_EndCustomSelection(JSContext *cx, uintN argc, jsval *argv);
 
 	static void ScriptingInit();
 };
@@ -196,19 +187,10 @@ CGameView::CGameView(CGame *pGame):
 	m->ViewCamera.m_Orientation.Translate (100, 150, -100);
 	m->CullCamera = m->ViewCamera;
 	g_Renderer.SetSceneCamera(m->ViewCamera, m->CullCamera);
-
-	m->UnitView=NULL;
-	m->UnitAttach=NULL;
 }
 
 CGameView::~CGameView()
 {
-	if (!g_UseSimulation2)
-	{
-		g_Selection.ClearSelection();
-		g_Mouseover.Clear();
-		g_BuildingPlacer.Deactivate();
-	}
 	UnloadResources();
 
 	delete m;
@@ -239,26 +221,16 @@ CCinemaManager* CGameView::GetCinema()
 	return &m->TrackManager;
 };
 
+/*
 void CGameView::AttachToUnit(CEntity* target)
 {
 	m->UnitAttach = target;
 }
-
-bool CGameView::IsAttached()
-{
-	return (m->UnitAttach != NULL);
-}
-
-bool CGameView::IsUnitView()
-{
-	return (m->UnitView != NULL);
-}
+*/
 
 
 void CGameViewImpl::ScriptingInit()
 {
-	AddMethod<bool, &CGameViewImpl::JSI_StartCustomSelection>("startCustomSelection", 0);
-	AddMethod<bool, &CGameViewImpl::JSI_EndCustomSelection>("endCustomSelection", 0);
 	AddProperty(L"culling", &CGameViewImpl::Culling);
 	AddProperty(L"lockCullCamera", &CGameViewImpl::LockCullCamera);
 
@@ -392,79 +364,9 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	}
 	PROFILE_END( "submit terrain" );
 
-	if (g_UseSimulation2)
-	{
-		PROFILE_START( "submit sim components" );
-		m->Game->GetSimulation2()->RenderSubmit(*c, frustum, m->Culling);
-		PROFILE_END( "submit sim components" );
-		return;
-	}
-
-	// Old simulation:
-
-	PROFILE_START( "submit models" );
-
-	CWorld* world = m->Game->GetWorld();
-	CUnitManager& unitMan = world->GetUnitManager();
-	CProjectileManager& pProjectileMan = world->GetProjectileManager();
-	CLOSManager* losMgr = world->GetLOSManager();
-
-	const std::vector<CUnit*>& units = unitMan.GetUnits();
-	for (size_t i=0;i<units.size();++i)
-	{
-		ogl_WarnIfError();
-
-		CEntity* ent = units[i]->GetEntity();
-		if( ent && !ent->m_visible )
-			continue;
-
-		int status = losMgr->GetUnitStatus(units[i], g_Game->GetLocalPlayer());
-		CModel& model = units[i]->GetModel();
-
-		model.ValidatePosition();
-		
-		if (status != UNIT_HIDDEN &&
-			(!m->Culling || frustum.IsBoxVisible(CVector3D(0,0,0), model.GetBounds())))
-		{
-			if(units[i] != g_BuildingPlacer.m_actor)
-			{
-				CColor color;
-				if(status == UNIT_VISIBLE)
-				{
-					color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
-				}
-				else	// status == UNIT_REMEMBERED
-				{
-					color = CColor(0.7f, 0.7f, 0.7f, 1.0f);
-				}
-				model.SetShadingColor(color);
-			}
-
-			PROFILE( "submit models" );
-			c->SubmitRecursive(&model);
-		}
-	}
-
-	const std::list<CProjectile*>& projectiles = pProjectileMan.GetProjectiles();
-	std::list<CProjectile*>::const_iterator it = projectiles.begin();
-	for (; it != projectiles.end(); ++it)
-	{
-		CModel* model = (*it)->GetModel();
-
-		model->ValidatePosition();
-
-		const CBound& bound = model->GetBounds();
-		CVector3D centre;
-		bound.GetCentre(centre);
-
-		if ((!m->Culling || frustum.IsBoxVisible(CVector3D(0,0,0), bound))
-			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) & LOS_VISIBLE)
-		{
-			PROFILE( "submit projectiles" );
-			c->SubmitRecursive((*it)->GetModel());
-		}
-	}
-	PROFILE_END( "submit models" );
+	PROFILE_START( "submit sim components" );
+	m->Game->GetSimulation2()->RenderSubmit(*c, frustum, m->Culling);
+	PROFILE_END( "submit sim components" );
 }
 
 
@@ -578,14 +480,7 @@ void CGameView::Update(float DeltaTime)
 	// in a CCmpWaterManager or some such thing (once such a thing exists)
 	g_Renderer.GetWaterManager()->m_WaterTexTimer += DeltaTime;
 
-	if (m->UnitView)
-	{
-		m->ViewCamera.m_Orientation.SetYRotation(m->UnitView->m_orientation.Y);
-		m->ViewCamera.m_Orientation.Translate(m->UnitViewProp->GetTransform().GetTranslation());
-		m->ViewCamera.UpdateFrustum();
-		return;
-	}
-
+/*
 	if (m->UnitAttach)
 	{
 		CVector3D ToMove = m->UnitAttach->m_position - m->ViewCamera.GetFocus();
@@ -594,6 +489,7 @@ void CGameView::Update(float DeltaTime)
 		m->ViewCamera.UpdateFrustum();
 		return;
 	}
+*/
 
 	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
 	{
@@ -818,19 +714,6 @@ void CGameView::Update(float DeltaTime)
 	m->ViewCamera.UpdateFrustum ();
 }
 
-void CGameView::ToUnitView(CEntity* target, CModel* prop)
-{
-	if( !target )
-	{
-		//prevent previous zooming
-		m->ZoomDelta = 0.0f;
-		ResetCamera();
-		SetCameraTarget( m->UnitView->m_position );
-	}
-	m->UnitView = target;
-	m->UnitViewProp = prop;
-
-}
 void CGameView::PushCameraTarget( const CVector3D& target )
 {
 	// Save the current position
@@ -962,18 +845,4 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 	}
 
 	return IN_PASS;
-}
-
-bool CGameViewImpl::JSI_StartCustomSelection(
-	JSContext* UNUSED(context), uintN UNUSED(argc), jsval* UNUSED(argv))
-{
-	StartCustomSelection();
-	return true;
-}
-
-bool CGameViewImpl::JSI_EndCustomSelection(
-	JSContext* UNUSED(context), uintN UNUSED(argc), jsval* UNUSED(argv))
-{
-	ResetInteraction();
-	return true;
 }

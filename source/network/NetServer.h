@@ -35,7 +35,7 @@
 #include "ps/scripting/JSMap.h"
 #include "ps/Player.h"
 #include "ps/Game.h"
-#include "simulation/ScriptObject.h"
+#include "scripting/ScriptObject.h"
 
 #include <map>
 #include <vector>

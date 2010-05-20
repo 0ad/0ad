@@ -72,9 +72,9 @@ private:
 	void WriteXML(const VfsPath& pathname, CUnitManager* pUnitMan, WaterManager* pWaterMan, 
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
 								CCinemaManager* pCinema, CSimulation2* pSimulation2);
-	void WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group, 
-											const std::list<MapTriggerGroup>& groupList);
-	void WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigger);
+//	void WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group,
+//											const std::list<MapTriggerGroup>& groupList);
+//	void WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigger);
 };
 
 #endif

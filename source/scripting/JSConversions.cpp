@@ -18,29 +18,14 @@
 #include "precompiled.h"
 
 #include "JSConversions.h"
-#include "simulation/Entity.h"
 #include "graphics/ObjectManager.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Parser.h"
 #include "ps/Player.h"
-#include "simulation/EntityTemplate.h"
 #include "lib/sysdep/sysdep.h"	// isfinite
 #include <math.h>
 #include <cfloat>
 #include "scripting/ScriptableComplex.inl"
-
-// HEntity
-
-template<> HEntity* ToNative<HEntity>( JSContext* cx, JSObject* obj )
-{
-	CEntity* e = ToNative<CEntity>( cx, obj );
-	return( e ? &( e->me ) : NULL );
-}
-
-template<> JSObject* ToScript<HEntity>( HEntity* Native )
-{
-	return( ToScript<CEntity>( &( **Native ) ) );
-}
 
 // CPlayer*
 template<> bool ToPrimitive<CPlayer*>( JSContext* cx, jsval v, CPlayer*& Storage )
@@ -55,22 +40,6 @@ template<> bool ToPrimitive<CPlayer*>( JSContext* cx, jsval v, CPlayer*& Storage
 template<> JSObject* ToScript<CPlayer*>( CPlayer** Native )
 {
 	return( ToScript<CPlayer>( *Native ) );
-}
-
-// CEntityTemplate*
-
-template<> bool ToPrimitive<CEntityTemplate*>( JSContext* cx, jsval v, CEntityTemplate*& Storage )
-{
-	if( !JSVAL_IS_OBJECT( v ) || ( v == JSVAL_NULL ) ) return( false );
-	CEntityTemplate* Data = (CEntityTemplate*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( v ), &CEntityTemplate::JSI_class, NULL );
-	if( !Data ) return( false );
-	Storage = Data;
-	return( true );
-}
-
-template<> JSObject* ToScript<CEntityTemplate*>( CEntityTemplate** Native )
-{
-	return( ToScript<CEntityTemplate>( *Native ) );
 }
 
 // CVector3D

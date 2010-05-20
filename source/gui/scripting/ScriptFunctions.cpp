@@ -65,14 +65,14 @@ void PopGuiPage(void* UNUSED(cbdata))
 
 bool IsNewSimulation(void* UNUSED(cbdata))
 {
-	return g_UseSimulation2;
+	return true; // XXX: delete this function
 }
 
 CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	if (!g_UseSimulation2 || !g_Game)
+	if (!g_Game)
 		return JSVAL_VOID;
 	CSimulation2* sim = g_Game->GetSimulation2();
 	debug_assert(sim);
@@ -94,7 +94,7 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	if (!g_UseSimulation2 || !g_Game)
+	if (!g_Game)
 		return;
 	CSimulation2* sim = g_Game->GetSimulation2();
 	debug_assert(sim);

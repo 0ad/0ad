@@ -603,7 +603,7 @@ void TerrainRenderer::RenderWater()
 						-100.0f, WaterMgr->m_WaterMaxAlpha);
 
 					float losMod = 1.0f;
-					if (!g_UseSimulation2)
+					if (false) // XXX: need to implement this for new sim system
 					{
 						for(size_t k=0; k<4; k++)
 						{

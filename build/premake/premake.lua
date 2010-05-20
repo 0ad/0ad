@@ -432,8 +432,6 @@ function setup_all_libs ()
 		"ps/Network",
 		"ps/GameSetup",
 		"ps/XML",
-		"simulation",
-		"simulation/scripting",
 		"sound",
 		"scripting",
 		"maths",

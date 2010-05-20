@@ -32,7 +32,6 @@ class CObjectManager;
 class CCamera;
 class CCinemaManager;
 class CVector3D;
-class CEntity;
 
 struct JSObject;
 
@@ -94,13 +93,8 @@ public:
 	void SetCameraTarget( const CVector3D& target );
 	void PopCameraTarget();
 
-	//First person camera attachment (through the eyes of the unit)
-	void ToUnitView(CEntity* target, CModel* prop);
 	//Keep view the same but follow the unit
-	void AttachToUnit(CEntity* target);
-
-	bool IsAttached();
-	bool IsUnitView();
+//	void AttachToUnit(CEntity* target); // TODO: reimplement this for new sim system
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();

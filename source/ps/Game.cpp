@@ -36,9 +36,6 @@
 #include "ps/Loader.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityManager.h"
-#include "simulation/Simulation.h"
 #include "simulation2/Simulation2.h"
 
 #include "gui/GUIManager.h"
@@ -70,8 +67,7 @@ CGame *g_Game=NULL;
  **/
 CGame::CGame():
 	m_World(new CWorld(this)),
-	m_Simulation(g_UseSimulation2 ? NULL : new CSimulation(this)),
-	m_Simulation2(g_UseSimulation2 ? new CSimulation2(&m_World->GetUnitManager(), m_World->GetTerrain()) : NULL),
+	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), m_World->GetTerrain())),
 	m_GameView(new CGameView(this)),
 	m_pLocalPlayer(NULL),
 	m_GameStarted(false),
@@ -82,16 +78,13 @@ CGame::CGame():
 	// been initialised, so do it here rather than via the initialisers above.
 	m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
 
-	if (g_UseSimulation2)
-	{
-		m_TurnManager = new CNetLocalTurnManager(*m_Simulation2); // this will get replaced if we're a net server/client
+	m_TurnManager = new CNetLocalTurnManager(*m_Simulation2); // this will get replaced if we're a net server/client
 
-		m_Simulation2->LoadDefaultScripts();
-		m_Simulation2->ResetState();
+	m_Simulation2->LoadDefaultScripts();
+	m_Simulation2->ResetState();
 
-		CScriptVal initData; // TODO: ought to get this from the GUI, somehow
-		m_Simulation2->InitGame(initData);
-	}
+	CScriptVal initData; // TODO: ought to get this from the GUI, somehow
+	m_Simulation2->InitGame(initData);
 }
 
 #if MSC_VERSION
@@ -110,7 +103,6 @@ CGame::~CGame()
 	delete m_TurnManager;
 	delete m_GameView;
 	delete m_Simulation2;
-	delete m_Simulation;
 	delete m_World;
 }
 
@@ -141,8 +133,6 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 	// some point to be stored in the world object?
 	m_GameView->RegisterInit(pAttribs);
 	m_World->RegisterInit(pAttribs);
-	if (!g_UseSimulation2)
-		m_Simulation->RegisterInit(pAttribs);
 	LDR_EndRegistering();
 	return 0;
 }
@@ -249,38 +239,17 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	bool ok = true;
 	if (deltaTime)
 	{
-		if (g_UseSimulation2)
-		{
-			PROFILE("update");
-			if (m_TurnManager->Update(deltaTime))
-				g_GUI->SendEventToAll("SimulationUpdate");
-		}
-		else
-		{
-			ok = m_Simulation->Update(deltaTime);
-		}
+		PROFILE("update");
+		if (m_TurnManager->Update(deltaTime))
+			g_GUI->SendEventToAll("SimulationUpdate");
 	}
 
 	if (doInterpolate)
 	{
 		PROFILE("interpolate");
-		if (g_UseSimulation2)
-			m_TurnManager->Interpolate(deltaTime);
-		else
-			m_Simulation->Interpolate(deltaTime);
+		m_TurnManager->Interpolate(deltaTime);
 	}
 	
-	// TODO Detect game over and bring up the summary screen or something
-	// ^ Quick game over hack is implemented, no summary screen however
-	/*if (m_World->GetEntityManager().GetDeath())
-	{
-		UpdateGameStatus();
-		if (GameStatus != 0)
-			EndGame();
-	}
-	//reset death event flag
-	m_World->GetEntityManager().SetDeath(false);*/
-
 	return ok;
 }
 

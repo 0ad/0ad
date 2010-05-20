@@ -40,8 +40,6 @@
 #include "ps/Player.h"
 #include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
-#include "simulation/LOSManager.h"
-#include "simulation/TerritoryManager.h"
 #include "graphics/Camera.h"
 #include "graphics/Texture.h"
 #include "graphics/LightEnv.h"
@@ -1261,7 +1259,7 @@ void CRenderer::RenderSubmissions()
 
 	if (g_Game && m_RenderTerritories)
 	{
-		g_Game->GetWorld()->GetTerritoryManager()->RenderTerritories();
+//		g_Game->GetWorld()->GetTerritoryManager()->RenderTerritories(); // TODO: implement in new sim system
 		ogl_WarnIfError();
 	}
 

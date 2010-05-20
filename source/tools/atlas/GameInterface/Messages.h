@@ -62,7 +62,6 @@ MESSAGE(JavaScript,
 
 MESSAGE(SimStateSave,
 		((std::wstring, label)) // named slot to store saved data
-		((bool, onlyentities)) // if true, ignore nonentities
 		);
 
 MESSAGE(SimStateRestore,

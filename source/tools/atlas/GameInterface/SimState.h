@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,55 +18,15 @@
 #ifndef SIMSTATE_INCLUDED
 #define SIMSTATE_INCLUDED
 
-#include <set>
-#include <vector>
 #include <sstream>
-
-#include "ps/CStr.h"
-#include "maths/Vector3D.h"
-
-class CUnit;
-class CEntity;
 
 class SimState
 {
 public:
-	class Entity
-	{
-	public:
-		static Entity Freeze(CUnit* unit);
-		CEntity* Thaw();
-	private:
-		CStrW templateName;
-		size_t unitID;
-		std::set<CStr> selections;
-		size_t playerID;
-		CVector3D position;
-		float angle;
-	};
-
-	class Nonentity
-	{
-	public:
-		static Nonentity Freeze(CUnit* unit);
-		CUnit* Thaw();
-	private:
-		CStrW actorName;
-		size_t unitID;
-		std::set<CStr> selections;
-		CVector3D position;
-		float angle;
-	};
-	
-	static SimState* Freeze(bool onlyEntities);
+	static SimState* Freeze();
 	void Thaw();
 
 private:
-	// For old simulation:
-	bool onlyEntities;
-	std::vector<Entity> entities;
-	std::vector<Nonentity> nonentities;
-	// For simulation2:
 	std::stringstream stream;
 };
 

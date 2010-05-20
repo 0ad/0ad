@@ -19,8 +19,6 @@
 
 #include "Player.h"
 #include "network/NetMessage.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityManager.h"
 #include "ps/scripting/JSCollection.h"
 #include "simulation/LOSManager.h"
 
@@ -32,7 +30,7 @@ CPlayer::CPlayer(size_t playerID):
 	m_UpdateCB(0),
 	m_Active(false)
 {
-	m_LOSToken = LOS_GetTokenFor(playerID);
+//	m_LOSToken = LOS_GetTokenFor(playerID);
 	
 	// Initialize diplomacy: we need to be neutral to Gaia and enemy to everyone else;
 	// however, if we are Gaia, we'll just be neutral to everyone; finally, everyone
@@ -97,7 +95,6 @@ void CPlayer::ScriptingInit()
 
 	// AddClassProperty( L"name", &CPlayer::m_Name );
 	// AddClassProperty( L"colour", &CPlayer::m_Colour );
-	AddProperty( L"controlled", &CPlayer::JSI_GetControlledEntities );
 
 	CJSObject<CPlayer>::ScriptingInit( "Player" );
 }
@@ -122,27 +119,9 @@ bool CPlayer::ValidateCommand(CNetMessage* UNUSED(pMsg))
 	return true;
 }
 
-static bool ControllerPredicate( CEntity* entity, void* userdata )
-{
-	return( entity->GetPlayer() == userdata );
-}
-
-void CPlayer::GetControlledEntities(std::vector<HEntity>& controlled_entities)
-{
-	g_EntityManager.GetMatchingAsHandles( controlled_entities, ControllerPredicate, this );
-}
-
 CStrW CPlayer::JSI_ToString( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return L"[object Player: " + m_Name + L"]";
-}
-
-jsval CPlayer::JSI_GetControlledEntities(JSContext* UNUSED(cx))
-{
-	std::vector<HEntity> controlledSet;
-	GetControlledEntities(controlledSet);
-	jsval vp = OBJECT_TO_JSVAL( EntityCollection::Create( controlledSet ) );
-	return( vp );
 }
 
 void CPlayer::JSI_SetColour( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* argv )

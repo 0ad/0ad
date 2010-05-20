@@ -26,7 +26,6 @@
 #include "maths/MathUtil.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Game.h"
-#include "ps/Interact.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
@@ -299,12 +298,12 @@ void CEntity::Kill(bool keepActor)
 	removeObstacle();
 	
 
-	g_Selection.RemoveAll( me );
+//	g_Selection.RemoveAll( me );
 
-	g_EntityManager.m_refd[me.m_handle] = false; // refd must be made false when DESTROYED is set
-	g_EntityManager.SetDeath(true); // remember that a unit died this frame
-
-	g_EntityManager.RemoveUnitCount(this);	//Decrease population
+//	g_EntityManager.m_refd[me.m_handle] = false; // refd must be made false when DESTROYED is set
+//	g_EntityManager.SetDeath(true); // remember that a unit died this frame
+//
+//	g_EntityManager.RemoveUnitCount(this);	//Decrease population
 
 	// If we have a death animation and want to keep the actor, play that animation
 	if( keepActor && m_actor && 
@@ -647,40 +646,7 @@ void CEntity::UpdateOrders( int timestep )
 
 void CEntity::UpdateCollisionPatch()
 {
-	std::vector<CEntity*>* newPatch = g_EntityManager.GetCollisionPatch( this );
-	if( newPatch != m_collisionPatch )
-	{
-		if( m_collisionPatch )
-		{
-			// remove ourselves from old patch
-			std::vector<CEntity*>& old = *m_collisionPatch;
-			if( old.size() == 1 )
-			{
-				// we were the only ones there, just pop us
-				old.pop_back();
-			}
-			else
-			{
-				// find our location and put in the last guy in the patch, then pop back
-				for( size_t i=0; i < old.size(); i++ )
-				{
-					if( old[i] == this )
-					{
-						old[i] = old.back();
-						old.pop_back();
-						break;
-					}
-				}
-			}
-		}
 
-		if( newPatch )
-		{
-			// add ourselves to new patch
-			newPatch->push_back( this );
-			m_collisionPatch = newPatch;
-		}
-	}
 }
 
 #if AURA_TEST
@@ -803,29 +769,6 @@ void UpdateAuras_Normal( SAura& aura, CEntity* e )
 
 bool CEntity::Initialize()
 {
-	// Apply our player's active techs to ourselves (we do this here since m_player isn't yet set in the constructor)
-	const std::vector<CTechnology*>& techs = m_player->GetActiveTechs();
-	for( size_t i=0; i<techs.size(); i++ )
-	{
-		techs[i]->Apply( this );
-	}
-
-	// Dispatch the initialize script event
-    CEventInitialize evt;
-    if( !DispatchEvent( &evt ) ) 
-	{
-		//debug_printf(L"start construction failed, killing self\n");
-		Kill();
-		return false;
-	}
-
-	if( g_EntityManager.m_screenshotMode )
-	{
-		// Stay in Hold stance no matter what the init script wanted us to be
-		m_stanceName = "hold";
-		StanceChanged();
-	}
-
 	return true;
 }
 
@@ -1009,6 +952,7 @@ void CEntity::StanceChanged()
 
 void CEntity::CheckSelection()
 {
+/*
 	if( m_selected )
 	{
 		if( !g_Selection.IsSelected( me ) )
@@ -1019,13 +963,16 @@ void CEntity::CheckSelection()
 		if( g_Selection.IsSelected( me ) )
 			g_Selection.RemoveSelection( me );
 	}
+*/
 }
 
 void CEntity::CheckGroup()
 {
+/*
 	g_Selection.ChangeGroup( me, -1 ); // Ungroup
 	if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
 		g_Selection.ChangeGroup( me, m_grouped );
+*/
 }
 
 void CEntity::Interpolate( float relativeoffset )

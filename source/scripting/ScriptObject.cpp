@@ -18,7 +18,9 @@
 #include "precompiled.h"
 
 #include "ScriptObject.h"
-#include "Entity.h"
+#include "ScriptingHost.h"
+#include "JSConversions.h"
+#include "DOMEvent.h"
 
 CScriptObject::CScriptObject()
 {

@@ -91,12 +91,6 @@ namespace
 		LDR_NonprogressiveLoad();
 		ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
-
-		if (!g_UseSimulation2)
-		{
-			// Make sure entities get rendered in the correct location
-			g_Game->GetSimulation()->Interpolate(0.0);
-		}
 	}
 }
 
@@ -121,8 +115,7 @@ MESSAGEHANDLER(GenerateMap)
 
 	delete[] heightmap;
 
-	if (g_UseSimulation2)
-		AddDefaultPlayers();
+	AddDefaultPlayers();
 
 	// Start the game, load data files - this must be done before initialising
 	// the terrain texture below, since the terrains must be loaded before being

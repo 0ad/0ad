@@ -21,7 +21,6 @@
 #include "../CommandProc.h"
 #include "../Shareable.h"
 
-#include "simulation/TriggerManager.h"
 #include "ps/Game.h"
 #include "graphics/GameView.h"
 #include "graphics/CinemaTrack.h"
@@ -29,6 +28,7 @@
 
 namespace AtlasMessage {
 
+/*
 sTriggerSpec TriggerSpecToAtlas(const CTriggerSpec& spec)
 {
 	sTriggerSpec atlasSpec;
@@ -235,8 +235,7 @@ MapTriggerGroup AtlasToGroup(const sTriggerGroup& group)
 
 std::vector<sTriggerGroup> GetCurrentTriggers()
 {
-	if (g_UseSimulation2)
-		return std::vector<sTriggerGroup>();
+	return std::vector<sTriggerGroup>();
 
 	const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
 	std::vector<sTriggerGroup> atlasGroups;
@@ -248,20 +247,17 @@ std::vector<sTriggerGroup> GetCurrentTriggers()
 
 void SetCurrentTriggers(const std::vector<sTriggerGroup>& groups)
 {
-	if (g_UseSimulation2)
-		return;
-
 	std::list<MapTriggerGroup> engineGroups;
 	for ( std::vector<sTriggerGroup>::const_iterator it = groups.begin(); it != groups.end(); ++it )
 		engineGroups.push_back( AtlasToGroup(*it) );
 	g_TriggerManager.SetAllGroups(engineGroups);
 }
+*/
 
 QUERYHANDLER(GetTriggerData)
 {
-	if (g_UseSimulation2)
-		return;
-
+	UNUSED2(msg);
+/*
 	const std::list<CTriggerCondition>& conditions = g_TriggerManager.GetAllConditions();
 	const std::list<CTriggerEffect>& effects = g_TriggerManager.GetAllEffects();
 	std::vector<sTriggerSpec> atlasConditions;
@@ -275,13 +271,13 @@ QUERYHANDLER(GetTriggerData)
 	msg->conditions = atlasConditions;
 	msg->effects = atlasEffects;
 	msg->groups = GetCurrentTriggers();
+*/
 }
 
 QUERYHANDLER(GetTriggerChoices)
 {
-	if (g_UseSimulation2)
-		return;
-
+	UNUSED2(msg);
+/*
 	CStrW selectedName(*msg->name);
 	std::vector<std::wstring> choices = g_TriggerManager.GetTriggerChoices(selectedName);
 	std::vector<std::wstring> translations = g_TriggerManager.GetTriggerTranslations(selectedName);
@@ -334,6 +330,7 @@ QUERYHANDLER(GetTriggerChoices)
 	}
 	msg->choices = choices;
 	msg->translations = translations;
+*/
 }
 
 QUERYHANDLER(GetWorldPosition)
@@ -347,21 +344,21 @@ QUERYHANDLER(GetWorldPosition)
 }
 BEGIN_COMMAND(SetAllTriggers)
 {
-	std::vector<sTriggerGroup> m_oldGroups, m_newGroups;
+//	std::vector<sTriggerGroup> m_oldGroups, m_newGroups;
 
 	void Do()
 	{
-		m_oldGroups = GetCurrentTriggers();
-		m_newGroups = *msg->groups;
-		Redo();
+//		m_oldGroups = GetCurrentTriggers();
+//		m_newGroups = *msg->groups;
+//		Redo();
 	}
 	void Redo()
 	{
-		SetCurrentTriggers(m_newGroups);
+//		SetCurrentTriggers(m_newGroups);
 	}
 	void Undo()
 	{
-		SetCurrentTriggers(m_oldGroups);
+//		SetCurrentTriggers(m_oldGroups);
 	}
 };
 END_COMMAND(SetAllTriggers)

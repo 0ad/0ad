@@ -27,8 +27,8 @@
 #include "maths/MathUtil.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Game.h"
-#include "ps/Interact.h"
 #include "ps/Profile.h"
+#include "ps/Player.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "scripting/ScriptableComplex.inl"
@@ -37,13 +37,11 @@
 #include "Collision.h"
 #include "Entity.h"
 #include "EntityFormation.h"
-#include "EntityManager.h"
 #include "EntityTemplate.h"
 #include "EntityTemplateCollection.h"
 #include "EventHandlers.h"
 #include "Formation.h"
 #include "FormationManager.h"
-#include "PathfindEngine.h"
 #include "ProductionQueue.h"
 #include "TechnologyCollection.h"
 #include "TerritoryManager.h"
@@ -391,8 +389,10 @@ void CEntity::RenderBars()
 
 	float backgroundW = w+2*borderSize;
 	float backgroundH = hasStamina ? 2*h+2*borderSize : h+2*borderSize;
+/*
 	ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_barBorder] );
 	DrawRect( centre, up, right, -backgroundW/2, -backgroundH/2, backgroundW/2, backgroundH/2 );
+*/
 	ogl_tex_bind( 0 );
 
 	float off = hasStamina ? h/2 : 0;
@@ -407,6 +407,7 @@ void CEntity::RenderBars()
 
 	// Draw the rank icon
 
+/*
 	CSelectedEntities::MapFilenameToHandle::iterator it = g_Selection.m_unitUITextures.find( m_rankName );
 	if( it != g_Selection.m_unitUITextures.end() )
 	{
@@ -415,6 +416,7 @@ void CEntity::RenderBars()
 		DrawRect( centre, up, right, w/2+borderSize, -size/2, w/2+borderSize+size, size/2 );
 		ogl_tex_bind( 0 );
 	}
+*/
 }
 
 void CEntity::RenderBarBorders()
@@ -422,6 +424,7 @@ void CEntity::RenderBarBorders()
 	if( !m_visible )
 		return;
 
+/*
 	if ( m_base->m_staminaBarHeight >= 0 && 
 		g_Selection.m_unitUITextures.find(m_base->m_healthBorderName) != g_Selection.m_unitUITextures.end() )
 	{
@@ -464,6 +467,7 @@ void CEntity::RenderBarBorders()
 
 		glEnd();
 	}
+*/
 }
 
 void CEntity::RenderHealthBar()
@@ -544,8 +548,10 @@ void CEntity::RenderRank()
 	if( m_base->m_rankHeight < 0 )
 		return;  // negative height means don't display rank
 	//Check for valid texture
+/*
 	if( g_Selection.m_unitUITextures.find( m_rankName ) == g_Selection.m_unitUITextures.end() )
 		return;
+*/
 
 	CCamera *camera = g_Game->GetView()->GetCamera();
 
@@ -562,7 +568,7 @@ void CEntity::RenderRank()
 	float y1 = g_yres - (sy - size);	//top
 	float y2 = g_yres - (sy + size);	//bottom
 
-	ogl_tex_bind(g_Selection.m_unitUITextures[m_rankName]);
+//	ogl_tex_bind(g_Selection.m_unitUITextures[m_rankName]);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
@@ -582,11 +588,13 @@ void CEntity::RenderRallyPoint()
 	if( !m_visible )
 		return;
 
+/*
 	if ( !entf_get(ENTF_HAS_RALLY_POINT) ||
 		 g_Selection.m_unitUITextures.find(m_base->m_rallyName) == g_Selection.m_unitUITextures.end() )
 	{
 		return;
 	}
+*/
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
@@ -599,7 +607,7 @@ void CEntity::RenderRallyPoint()
 
 	CSprite sprite;
 	CTexture tex;
-	tex.SetHandle( g_Selection.m_unitUITextures[m_base->m_rallyName] );
+//	tex.SetHandle( g_Selection.m_unitUITextures[m_base->m_rallyName] );
 	sprite.SetTexture(&tex);
 	// Place the sprite slightly above ground/water level.
 	float terrainHeight = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(m_rallyPoint);

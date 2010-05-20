@@ -18,7 +18,6 @@
 #include "precompiled.h"
 #include "Technology.h"
 #include "TechnologyCollection.h"
-#include "EntityManager.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "scripting/ScriptingHost.h"
@@ -336,7 +335,7 @@ bool CTechnology::HasReqEntities()
 	// Check whether we have ALL the required entities.
 
 	std::vector<HEntity> entities;
-	m_player->GetControlledEntities(entities);
+//	m_player->GetControlledEntities(entities);
 	for ( std::vector<CStr>::iterator it=m_ReqEntities.begin(); it != m_ReqEntities.end(); it++ )
 	{
 		// For each required class, check that we have it
@@ -466,7 +465,7 @@ bool CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval
 
 	// Apply effects to all entities
 	std::vector<HEntity> entities;
-	m_player->GetControlledEntities(entities);
+//	m_player->GetControlledEntities(entities);
 	for ( size_t i=0; i<entities.size(); ++i )
 	{
 		Apply( entities[i] );

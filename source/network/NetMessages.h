@@ -30,7 +30,6 @@
 #include "ps/CStr.h"
 #include "scripting/JSSerialization.h"
 #include "scriptinterface/ScriptVal.h"
-#include "simulation/EntityHandles.h"
 
 // DEFINES
 #define PS_PROTOCOL_MAGIC				0x5073013f		// 'P', 's', 0x01, '?'

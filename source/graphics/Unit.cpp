@@ -28,12 +28,10 @@
 
 #include "ps/Game.h"
 #include "ps/Player.h"
-#include "simulation/Entity.h"
-
 
 CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
-: m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
+: m_Object(object), m_Model(object->m_Model->Clone()),
   m_ID(invalidUnitId), m_ActorSelections(actorSelections), m_PlayerID(invalidPlayerId),
   m_ObjectManager(objectManager)
 {
@@ -181,9 +179,6 @@ void CUnit::SetPlayerID(size_t id)
 {
 	m_PlayerID = id;
 	m_Model->SetPlayerID(m_PlayerID);
-
-	if (m_Entity)
-		m_Entity->SetPlayer(g_Game->GetPlayer(id));
 }
 
 void CUnit::SetEntitySelection(const CStr& selection)

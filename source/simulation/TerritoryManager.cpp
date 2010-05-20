@@ -82,7 +82,7 @@ void CTerritoryManager::Recalculate()
 	// First, find all the units that are territory centres
 	std::vector<CEntity*> centres;
 	std::vector<CEntity*> entities;
-	g_EntityManager.GetExtant(entities);
+//	g_EntityManager.GetExtant(entities);
 	for( size_t i=0; i<entities.size(); i++ )
 	{
 		if( !entities[i]->entf_get(ENTF_DESTROYED) && entities[i]->m_base->m_isTerritoryCentre ) 

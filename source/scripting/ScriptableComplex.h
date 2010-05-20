@@ -35,7 +35,7 @@ which #includes ScriptableComplex.h.
 #define INCLUDED_SCRIPTABLECOMPLEX
 
 #include "scripting/ScriptingHost.h"
-#include "simulation/ScriptObject.h"
+#include "scripting/ScriptObject.h"
 #include "JSConversions.h"
 
 #include "lib/sysdep/stl.h"

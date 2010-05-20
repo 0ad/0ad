@@ -64,14 +64,6 @@ class CWorld
 	 **/
 	CUnitManager *m_UnitManager;
 	/**
-	 * pointer to the CEntityManager that holds all the entities in the world. 
-	 **/
-	CEntityManager *m_EntityManager;
-	/**
-	 * pointer to the CProjectileManager that holds all the projectiles in the world. 
-	 **/
-	CProjectileManager *m_ProjectileManager;
-	/**
 	 * pointer to the CLOSManager that holds the visibility matrix for the world. 
 	 **/
 	CLOSManager *m_LOSManager;
@@ -108,20 +100,6 @@ public:
 	 **/
 	inline CUnitManager &GetUnitManager()
 	{	return *m_UnitManager; }
-	/**
-	 * Get a reference to the entity manager object.
-	 *
-	 * @return CWorld CEntityManager & dereferenced m_EntityManager.
-	 **/
-	inline CEntityManager &GetEntityManager()
-	{	return *m_EntityManager; }
-	/**
-	 * Get a reference to the projectile manager object.
-	 *
-	 * @return CProjectileManager & dereferenced m_ProjectileManager.
-	 **/
-	inline CProjectileManager &GetProjectileManager()
-	{	return *m_ProjectileManager; }
 	/**
 	 * Get the pointer to the LOS manager object.
 	 *

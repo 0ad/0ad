@@ -35,17 +35,11 @@
 #include "lib/sysdep/cpu.h"
 #include "network/NetMessage.h"
 #include "ps/Game.h"
-#include "ps/Interact.h"
 #include "ps/Player.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
-#include "scripting/GameEvents.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityTemplate.h"
-#include "simulation/LOSManager.h"
-#include "simulation/TerritoryManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
 
@@ -108,14 +102,12 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_ENTER:
 		{
-			if (!g_UseSimulation2)
-				g_Selection.m_mouseOverMM = true;
+//			g_Selection.m_mouseOverMM = true;
 			break;
 		}
 	case GUIM_MOUSE_LEAVE:
 		{
-			if (!g_UseSimulation2)
-				g_Selection.m_mouseOverMM = false;
+//			g_Selection.m_mouseOverMM = false;
 			m_Clicking = false;
 			break;
 		}
@@ -182,11 +174,11 @@ void CMiniMap::SetCameraPos()
 
 void CMiniMap::FireWorldClickEvent(int button, int clicks)
 {
-	if (g_UseSimulation2)
-		return; // TODO: we ought to pass this through to the GUI system
+	// TODO: we ought to pass this through to the GUI system
 
 	//debug_printf(L"FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
 	
+/*
 	CPos MousePos = GetMousePos();
 	CVector2D Destination;
 	//X and Z according to proportion of mouse position and minimap
@@ -194,21 +186,10 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 		( (MousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth() );
 	Destination.y = CELL_SIZE * m_MapSize * ( (m_CachedActualSize.bottom - MousePos.y) /
 		m_CachedActualSize.GetHeight() );
+*/
 
 	UNUSED2(button);
 	UNUSED2(clicks);
-/*
-	g_JSGameEvents.FireWorldClick(
-		button,
-		clicks,
-		NMT_GOTO,
-		-1,
-		NMT_RUN,
-		-1, 
-		NULL,
-		(int)Destination.x,
-		(int)Destination.y);
-*/
 }
 
 // render view rect : John M. Mena
@@ -304,9 +285,9 @@ void CMiniMap::Draw()
 	{
 		last_time = cur_time;
 
-		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-		if(losMgr->m_LOSSetting != LOS_SETTING_ALL_VISIBLE)
-			RebuildLOSTexture();
+//		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+//		if(losMgr->m_LOSSetting != LOS_SETTING_ALL_VISIBLE)
+//			RebuildLOSTexture();
 	}
 
 	const float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
@@ -330,6 +311,7 @@ void CMiniMap::Draw()
 	glVertex3f(x, y2, z);
 	glEnd();
 
+	/* // TODO: reimplement with new sim system
 	// Shade territories by player
 	CTerritoryManager* territoryMgr = g_Game->GetWorld()->GetTerritoryManager();
 	std::vector<CTerritory*>& territories = territoryMgr->GetTerritories();
@@ -380,6 +362,7 @@ void CMiniMap::Draw()
 	glLineWidth(1.0f);
 	glDisable(GL_LINE_SMOOTH);
 	glDisable(GL_BLEND);
+	*/
 
 	// Draw the LOS quad in black, using alpha values from the LOS texture
 	g_Renderer.BindTexture(0, m_LOSTexture);
@@ -417,67 +400,21 @@ void CMiniMap::Draw()
 	// (~70msec/frame on a GF4 rendering a thousand points)
 	glPointSize(3.f);
 
-	if (g_UseSimulation2)
+	float sx = m_scaleX / CELL_SIZE;
+	float sy = m_scaleY / CELL_SIZE;
+
+	CSimulation2* sim = g_Game->GetSimulation2();
+	const CSimulation2::InterfaceList& ents = sim->GetEntitiesWithInterface(IID_Minimap);
+	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
-		float sx = m_scaleX / CELL_SIZE;
-		float sy = m_scaleY / CELL_SIZE;
-
-		CSimulation2* sim = g_Game->GetSimulation2();
-		const CSimulation2::InterfaceList& ents = sim->GetEntitiesWithInterface(IID_Minimap);
-		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
+		MinimapUnitVertex v;
+		ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
+		if (cmpMinimap->GetRenderData(v.r, v.g, v.b, v.x, v.y))
 		{
-			MinimapUnitVertex v;
-			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
-			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, v.x, v.y))
-			{
-				v.a = 255;
-				v.x = x + v.x*sx;
-				v.y = y - v.y*sy;
-				vertexArray.push_back(v);
-			}
-		}
-	}
-	else
-	{
-		// Draw unit points
-		const std::vector<CUnit *> &units = m_UnitManager->GetUnits();
-		std::vector<CUnit *>::const_iterator iter = units.begin();
-		CUnit *unit = 0;
-		CVector2D pos;
-		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
-		for(; iter != units.end(); ++iter)
-		{
-			unit = (CUnit *)(*iter);
-			if(unit && unit->GetEntity() && losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
-			{
-				CEntity* entity = unit->GetEntity();
-				CStrW& type = entity->m_base->m_minimapType;
-
-				MinimapUnitVertex v;
-
-				if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
-					// Use the player colour
-					const SPlayerColour& colour = entity->GetPlayer()->GetColour();
-					v.r = cpu_i32FromFloat(colour.r*255.f);
-					v.g = cpu_i32FromFloat(colour.g*255.f);
-					v.b = cpu_i32FromFloat(colour.b*255.f);
-					v.a = 255;
-				}
-				else {
-					CEntityTemplate* base = entity->m_base;
-					v.r = base->m_minimapR;
-					v.g = base->m_minimapG;
-					v.b = base->m_minimapB;
-					v.a = 255;
-				}
-
-				pos = GetMapSpaceCoords(entity->m_position);
-
-				v.x = x + pos.x;
-				v.y = y - pos.y;
-				vertexArray.push_back(v);
-			}
+			v.a = 255;
+			v.x = x + v.x*sx;
+			v.y = y - v.y*sy;
+			vertexArray.push_back(v);
 		}
 	}
 
@@ -599,12 +536,10 @@ void CMiniMap::RebuildLOSTexture()
 	ssize_t w = m_MapSize - 1;
 	ssize_t h = m_MapSize - 1;
 
-	if (g_UseSimulation2)
-	{
-		memset(m_LOSData, 0, w*h);
-	}
-	else
-	{
+	memset(m_LOSData, 0, w*h);
+
+	// TODO: ought to do something like:
+/*
 		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 		CPlayer* player = g_Game->GetLocalPlayer();
 
@@ -622,7 +557,7 @@ void CMiniMap::RebuildLOSTexture()
 					*dataPtr++ = 0;
 			}
 		}
-	}
+*/
 
 	// Upload the texture
 	g_Renderer.BindTexture(0, m_LOSTexture);

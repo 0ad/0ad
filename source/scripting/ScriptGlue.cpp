@@ -25,7 +25,7 @@
 
 #include "ScriptGlue.h"
 #include "JSConversions.h"
-#include "GameEvents.h"
+#include "Scheduler.h"
 
 #include "ScriptableComplex.inl"
 
@@ -49,29 +49,16 @@
 #include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Hotkey.h"
-#include "ps/Interact.h"
 #include "ps/ProfileViewer.h"
+#include "ps/World.h"
 #include "ps/i18n.h"
 #include "ps/scripting/JSCollection.h"
 #include "ps/scripting/JSInterface_Console.h"
-#include "ps/scripting/JSInterface_Selection.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "simulation/Entity.h"
-#include "simulation/EntityFormation.h"
-#include "simulation/EntityHandles.h"
-#include "simulation/EntityManager.h"
-#include "simulation/EntityTemplate.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/FormationManager.h"
-#include "simulation/LOSManager.h"
-#include "simulation/Scheduler.h"
-#include "simulation/Simulation.h"
-#include "simulation/TechnologyCollection.h"
-#include "simulation/TriggerManager.h"
 
 #define LOG_CATEGORY L"script"
 extern bool g_TerrainModified;
@@ -119,209 +106,6 @@ JSBool WriteLog(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 
 	*rval = JSVAL_TRUE;
 	return JS_TRUE;
-}
-
-
-//-----------------------------------------------------------------------------
-// Entity
-//-----------------------------------------------------------------------------
-
-// Retrieve the entity currently occupying the specified handle.
-// params: handle [int]
-// returns: entity
-JSBool GetEntityByUnitID( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-	*rval = JSVAL_NULL;
-
-	int uid;
-	try
-	{
-		uid = ToPrimitive<int>( argv[0] );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		JS_ReportError( cx, "Invalid parameter" );
-		return( JS_TRUE );
-	}
-
-	CUnit* unit = g_Game->GetWorld()->GetUnitManager().FindByID( uid );
-	if( !unit || !unit->GetEntity() )
-	{
-		*rval = JSVAL_NULL;
-		return( JS_TRUE );
-	}
-
-	*rval = OBJECT_TO_JSVAL( unit->GetEntity()->GetScript() );
-	return( JS_TRUE );
-}
-
-
-// Look up an EntityTemplate by name.
-// params: template name [wstring]
-// returns: entity template object
-JSBool GetEntityTemplate( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAM_RANGE(1, 2);
-	*rval = JSVAL_NULL;
-
-	CStrW templateName;
-	CPlayer* player = 0;
-
-	try
-	{
-		templateName = g_ScriptingHost.ValueToUCString( argv[0] );
-		if( argc == 2 )
-		{
-			player = ToNative<CPlayer>( argv[1] );
-		}
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		JS_ReportError( cx, "Invalid template identifier" );
-		return( JS_TRUE );
-	}
-
-	CEntityTemplate* v = g_EntityTemplateCollection.GetTemplate( templateName, player );
-	if( !v )
-	{
-		JS_ReportError( cx, "No such template: %s", CStr(templateName).c_str() );
-		return( JS_TRUE );
-	}
-
-	*rval = OBJECT_TO_JSVAL( v->GetScript() );
-	return( JS_TRUE );
-}
-
-JSBool GetPlayerUnitCount( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(2);
-	const size_t playerNum = ToPrimitive<size_t>( argv[0] );
-	const CStrW unitName = ToPrimitive<CStrW>( argv[1] );
-
-	const int unitCount = g_EntityManager.GetPlayerUnitCount(playerNum, unitName);
-	*rval = ToJSVal( unitCount );
-	return JS_TRUE;
-}
-
-// Get the state of a given hotkey (from the hotkeys file)
-JSBool isOrderQueued( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	*rval = ToJSVal(hotkeys[HOTKEY_ORDER_QUEUE]);
-	return JS_TRUE;
-}
-
-
-//-----------------------------------------------------------------------------
-// formations
-//-----------------------------------------------------------------------------
-
-JSBool CreateEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(2);
-	
-	CEntityList entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-	CStrW name = ToPrimitive<CStrW>( argv[1] );
-	g_FormationManager.CreateFormation( entities, name );
-	*rval = JSVAL_VOID;
-	return JS_TRUE;
-
-}
-
-JSBool RemoveFromFormation( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-	
-	CEntityList entities;
-	if (JS_InstanceOf(cx, JSVAL_TO_OBJECT(argv[0]), &CEntity::JSI_class, NULL))
-		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
-	else
-		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-
-	*rval = g_FormationManager.RemoveUnitList(entities) ? JS_TRUE : JS_FALSE;
-	return JS_TRUE;
-}
-
-JSBool LockEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-
-	CEntity* entity = ToNative<CEntity>( argv[0] );
-	entity->GetFormation()->SetLock( ToPrimitive<bool>( argv[1] ) );
-	*rval = JSVAL_VOID;
-	return JS_TRUE;
-}
-
-JSBool IsFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-
-	CEntity* entity = ToNative<CEntity>( argv[0] );
-	*rval = entity->GetFormation()->IsLocked() ? JS_TRUE : JS_FALSE;
-	return JS_TRUE;
-}
-
-
-//-----------------------------------------------------------------------------
-// Techs
-//-----------------------------------------------------------------------------
-
-JSBool GetTechnology( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(2);
-	
-	CStrW name;
-	CPlayer* player;
-	
-	try
-	{
-		name = g_ScriptingHost.ValueToUCString( argv[0] );
-		player = ToNative<CPlayer>( argv[1] );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		JS_ReportError( cx, "Invalid parameters for GetTechnology (expected name and player)" );
-		return( JS_TRUE );
-	}
-
-	*rval = JSVAL_NULL;
-
-	CTechnology* tech = g_TechnologyCollection.GetTechnology( name, player );	
-	if ( tech )
-		*rval = ToJSVal( tech );
-	else
-		g_Console->InsertMessage( L"Warning: Invalid tech template name \"%ls\" passed for GetTechnology()", name.c_str() );
-
-	return JS_TRUE;
-}
-
-//-----------------------------------------------------------------------------
-// Events
-//-----------------------------------------------------------------------------
-
-// Register a global handler for the specified DOM event.
-// params: event type name [wstring], handler [fragment or function]
-// returns: whether it was actually newly registered [bool]
-JSBool AddGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(2);
-
-	*rval = BOOLEAN_TO_JSVAL( g_JSGameEvents.AddHandlerJS( cx, argc, argv ) );
-	return( JS_TRUE );
-}
-
-
-// Remove a previously registered global handler for the specified DOM event.
-// params: event type name [wstring], handler [fragment or function]
-// returns: whether it was successfully removed [bool]
-JSBool RemoveGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(2);
-
-	*rval = BOOLEAN_TO_JSVAL( g_JSGameEvents.RemoveHandlerJS( cx, argc, argv ) );
-	return( JS_TRUE );
 }
 
 
@@ -497,25 +281,6 @@ JSBool SetSimRate(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval
 	JSU_REQUIRE_PARAMS(1);
 
 	g_Game->SetSimRate( ToPrimitive<float>(argv[0]) );
-	return JS_TRUE;
-}
-
-//Generate a random float in [0, 1) using the simulation's random generator
-JSBool SimRand(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	*rval = ToJSVal( g_Game->GetSimulation()->RandFloat() );
-	return JS_TRUE;
-}
-
-//Generate a random float int between 0 and the given number - 1 using the simulation's RNG
-JSBool SimRandInt(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
-{
-	JSU_REQUIRE_PARAMS(1);
-	JSU_ASSERT(JSVAL_IS_INT(argv[0]), "SimRandInt(): first parameter must be an int");
-
-	*rval = ToJSVal( g_Game->GetSimulation()->RandInt(ToPrimitive<int>(argv[0])) );
 	return JS_TRUE;
 }
 
@@ -975,30 +740,6 @@ JSBool SaveProfileData( JSContext* cx, JSObject* UNUSED(globalObject), uintN arg
 	return( JS_TRUE );
 }
 
-// Activates the building placement cursor for placing a building. The currently selected units
-// are then ordered to construct the building if it is placed.
-// params: templateName - the name of the entity to place.
-// returns: true if cursor was activated, false if cursor was already active.
-JSBool StartPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	CStrW name;
-	if(argc == 0) {
-		name = L"hele_ho";			// save some typing during testing
-	}
-	else {
-		if(!ToPrimitive<CStrW>( g_ScriptingHost.GetContext(), argv[0], name ))
-		{
-			JS_ReportError( cx, "Invalid template name argument" );
-			*rval = JSVAL_NULL;
-			return( JS_FALSE );
-		}
-	}
-
-	*rval = g_BuildingPlacer.Activate(name) ? JS_TRUE : JS_FALSE;
-
-	return( JS_TRUE );
-}
-
 // Toggles drawing the sky
 JSBool ToggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
 {
@@ -1197,47 +938,6 @@ JSBool SetPaused( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsv
 	return  JS_TRUE;
 }
 
-// Get game time
-JSBool GetGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	if( !g_Game )
-	{
-		JS_ReportError( cx, "Game is not started" );
-		return JS_FALSE;
-	}
-
-	*rval = ToJSVal(g_Game->GetSimulation()->GetTime());
-	return JS_TRUE;
-}
-
-JSBool RegisterTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS_CPP(1);
-	CTrigger* trigger = ToNative<CTrigger>( argv[0] );
-	debug_assert( trigger );
-
-	g_TriggerManager.AddTrigger( trigger );
-	*rval = JSVAL_NULL;
-	return JS_TRUE;
-}
-
-JSBool GetTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS_CPP(1);
-	CStrW name = ToPrimitive<CStrW>( argv[0] );
-	
-	if ( g_TriggerManager.m_TriggerMap.find(name) != g_TriggerManager.m_TriggerMap.end() )
-		*rval = ToJSVal( g_TriggerManager.m_TriggerMap[name] );
-	else
-	{
-		debug_printf(L"Invalid trigger name %ls", name.c_str());
-		*rval = JSVAL_NULL;
-	}
-	return JS_TRUE;
-}
-
 // Reveal map
 JSBool RevealMap( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
 {
@@ -1299,24 +999,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 	// Console
 	JS_FUNC("writeConsole", JSI_Console::writeConsole, 1)	// external
 
-	// Entity
-	JS_FUNC("getEntityByUnitID", GetEntityByUnitID, 1)
-	JS_FUNC("GetPlayerUnitCount", GetPlayerUnitCount, 1)
-	JS_FUNC("getEntityTemplate", GetEntityTemplate, 1)
-	JS_FUNC("startPlacing", StartPlacing, 1)
-
-	// Formation
-	JS_FUNC("createEntityFormation", CreateEntityFormation, 2)
-	JS_FUNC("removeFromFormation", RemoveFromFormation, 1)
-	JS_FUNC("lockEntityFormation", LockEntityFormation, 1)
-	JS_FUNC("isFormationLocked", IsFormationLocked, 1)
-
-	// Trigger
-	JS_FUNC("registerTrigger", RegisterTrigger, 1)
-	
-	// Tech
-	JS_FUNC("getTechnology", GetTechnology, 2)
-
 	// Camera
 	JS_FUNC("setCameraTarget", SetCameraTarget, 1)
 
@@ -1334,23 +1016,12 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("setWaterFullDepth", SetWaterFullDepth, 0)
 	JS_FUNC("setWaterAlphaOffset", SetWaterAlphaOffset, 0)
 
-	// Territory rendering
-	JS_FUNC("toggleTerritoryRendering", ToggleTerritoryRendering, 0)
-
-	// Events
-	JS_FUNC("addGlobalHandler", AddGlobalHandler, 2)
-	JS_FUNC("removeGlobalHandler", RemoveGlobalHandler, 2)
-
 	// Timer
 	JS_FUNC("setTimeout", SetTimeout, 2)
 	JS_FUNC("setInterval", SetInterval, 2)
 	JS_FUNC("cancelInterval", CancelInterval, 0)
 	JS_FUNC("cancelTimer", CancelTimer, 0)
 	JS_FUNC("setSimRate", SetSimRate, 1)
-
-	// Random number generator
-	JS_FUNC("simRand", SimRand, 0)
-	JS_FUNC("simRandInt", SimRandInt, 1)
 
 	// Profiling
 	JS_FUNC("startXTimer", StartJsTimer, 1)
@@ -1387,14 +1058,12 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("exit", ExitProgram, 0)
 	JS_FUNC("isPaused", IsPaused, 0)
 	JS_FUNC("setPaused", SetPaused, 1)
-	JS_FUNC("getGameTime", GetGameTime, 0)
 	JS_FUNC("vmem", WriteVideoMemToConsole, 0)
 	JS_FUNC("_rewriteMaps", _RewriteMaps, 0)
 	JS_FUNC("_lodBias", _LodBias, 0)
 	JS_FUNC("setCursor", SetCursor, 1)
 	JS_FUNC("getCursorName", GetCursorName, 0)
 	JS_FUNC("getFPS", GetFps, 0)
-	JS_FUNC("isOrderQueued", isOrderQueued, 1)
 	JS_FUNC("isGameRunning", isGameRunning, 0)
 
 	// Miscellany
@@ -1412,16 +1081,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 //-----------------------------------------------------------------------------
 // property accessors
 //-----------------------------------------------------------------------------
-
-JSBool GetEntitySet( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(argv), jsval* vp )
-{
-	std::vector<HEntity> extant;
-	g_EntityManager.GetExtantAsHandles(extant);
-	*vp = OBJECT_TO_JSVAL(EntityCollection::Create(extant));
-
-	return JS_TRUE;
-}
-
 
 JSBool GetPlayerSet( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
 {
@@ -1493,12 +1152,9 @@ enum ScriptGlobalTinyIDs
 
 JSPropertySpec ScriptGlobalTable[] =
 {
-	{ "selection"  , GLOBAL_SELECTION,   JSPROP_PERMANENT, JSI_Selection::getSelection, JSI_Selection::SetSelection },
-	{ "groups"     , GLOBAL_GROUPSARRAY, JSPROP_PERMANENT, JSI_Selection::getGroups, JSI_Selection::setGroups },
 	{ "camera"     , GLOBAL_CAMERA,      JSPROP_PERMANENT, JSI_Camera::getCamera, JSI_Camera::setCamera },
 	{ "console"    , GLOBAL_CONSOLE,     JSPROP_PERMANENT|JSPROP_READONLY, JSI_Console::getConsole, 0 },
 	{ "lightenv"   , GLOBAL_LIGHTENV,    JSPROP_PERMANENT, JSI_LightEnv::getLightEnv, JSI_LightEnv::setLightEnv },
-	{ "entities"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetEntitySet, 0 },
 	{ "players"    , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetPlayerSet, 0 },
 	{ "localPlayer", 0,                  JSPROP_PERMANENT, GetLocalPlayer, SetLocalPlayer },
 	{ "gaiaPlayer" , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetGaiaPlayer, 0 },

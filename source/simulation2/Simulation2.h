@@ -37,9 +37,6 @@ class CMessage;
 class SceneCollector;
 class CFrustum;
 
-// Hopefully-temporary flag for transition to new simulation system
-extern bool g_UseSimulation2;
-
 /**
  * Public API for simulation system.
  * Most code should interact with the simulation only through this API.

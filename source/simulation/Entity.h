@@ -517,8 +517,6 @@ public:
 	int GetAttackAction( HEntity target );
 };
 
-typedef CJSCollection<HEntity, &CEntity::JSI_class> EntityCollection;
-
 // General entity globals
 
 
