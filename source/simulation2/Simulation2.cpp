@@ -36,6 +36,11 @@
 
 #include <iomanip>
 
+#if MSC_VERSION
+#include <process.h>
+#define getpid _getpid // use the non-deprecated function name
+#endif
+
 class CSimulation2Impl
 {
 public:

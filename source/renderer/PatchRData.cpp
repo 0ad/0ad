@@ -31,7 +31,6 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "maths/MathUtil.h"
-#include "simulation/LOSManager.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "simulation2/Simulation2.h"
@@ -435,7 +434,8 @@ void CPatchRData::Update()
 	ssize_t vsize=PATCH_SIZE+1;
 	SColor4ub baseColour = terrain->GetBaseColour();
 
-	if (g_Game && false) // XXX: need to implement this for new sim system
+	/*
+	if (g_Game) // XXX: need to implement this for new sim system
 	{
 		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 
@@ -470,6 +470,7 @@ void CPatchRData::Update()
 		}
 	}
 	else
+	*/
 	{
 		for (ssize_t j = 0; j < vsize; ++j)
 		{

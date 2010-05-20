@@ -328,26 +328,6 @@ static CVector3D GetUnitPos(const Position& pos, bool floating)
 	return vec;
 }
 
-static bool ParseObjectName(const CStrW& obj, bool& isEntity, CStrW& name)
-{
-	if (obj.substr(0, 4) == L"(e) ")
-	{
-		isEntity = true;
-		name = obj.substr(4);
-		return true;
-	}
-	else if (obj.substr(0, 4) == L"(n) ")
-	{
-		isEntity = false;
-		name = obj.substr(4);
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 MESSAGEHANDLER(ObjectPreview)
 {
 	// If the selection has changed...

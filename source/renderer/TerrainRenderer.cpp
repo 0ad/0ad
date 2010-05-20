@@ -36,7 +36,6 @@
 #include "ps/Pyrogenesis.h"	// MICROLOG
 #include "ps/World.h"
 
-#include "simulation/LOSManager.h"
 #include "simulation2/Simulation2.h"
 
 #include "renderer/PatchRData.h"
@@ -444,7 +443,7 @@ void TerrainRenderer::RenderWater()
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	int mapSize = terrain->GetVerticesPerSide();
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+//	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -603,6 +602,7 @@ void TerrainRenderer::RenderWater()
 						-100.0f, WaterMgr->m_WaterMaxAlpha);
 
 					float losMod = 1.0f;
+					/*
 					if (false) // XXX: need to implement this for new sim system
 					{
 						for(size_t k=0; k<4; k++)
@@ -620,6 +620,7 @@ void TerrainRenderer::RenderWater()
 							}
 						}
 					}
+					*/
 
 					if(fancy)
 					{
