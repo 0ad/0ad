@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 // INCLUDES
 #include "ps/CStr.h"
 #include "scripting/JSSerialization.h"
+#include "scriptinterface/ScriptVal.h"
 #include "simulation/EntityHandles.h"
 
 // DEFINES
@@ -79,6 +80,7 @@ enum NetMessageType
 	NMT_NOTIFY_REQUEST,
 	NMT_FORMATION_GOTO,
 	NMT_FORMATION_CONTACT_ACTION,
+	NMT_SIMULATION_COMMAND,
 	NMT_COMMAND_LAST,
 	NMT_LAST				// Last message in the list
 };
@@ -190,6 +192,7 @@ START_NMT_CLASS_(GameStart, NMT_GAME_START)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(EndCommandBatch, NMT_END_COMMAND_BATCH)
+	NMT_FIELD_INT(m_Turn, u32, 4)
 	NMT_FIELD_INT(m_TurnLength, u32, 2)
 END_NMT_CLASS()
 

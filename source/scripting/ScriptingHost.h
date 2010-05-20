@@ -109,8 +109,6 @@ public:
 
 	jsval ExecuteScript(const CStrW& script, const CStrW& calledFrom = L"Console", JSObject* contextObject = NULL );
 
-	void RegisterFunction(const std::string & functionName, JSNative function, int numArgs);
-
 	void DefineConstant(const std::string & name, int value);
 
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uintN nargs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);

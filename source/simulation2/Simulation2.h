@@ -20,6 +20,8 @@
 
 #include "simulation2/system/CmpPtr.h"
 #include "simulation2/system/Components.h"
+#include "simulation2/helpers/SimulationCommand.h"
+#include "scriptinterface/ScriptVal.h"
 
 #include "lib/file/vfs/vfs_path.h"
 
@@ -32,7 +34,6 @@ class CTerrain;
 class IComponent;
 class ScriptInterface;
 class CMessage;
-class CScriptVal;
 class SceneCollector;
 class CFrustum;
 
@@ -41,6 +42,7 @@ extern bool g_UseSimulation2;
 
 /**
  * Public API for simulation system.
+ * Most code should interact with the simulation only through this API.
  */
 class CSimulation2
 {
@@ -49,6 +51,8 @@ public:
 	// module, but for now we'll have it passed in externally instead
 	CSimulation2(CUnitManager*, CTerrain*);
 	~CSimulation2();
+
+	void EnableOOSLog();
 
 	/**
 	 * Load all scripts in the specified directory (non-recursively),
@@ -89,8 +93,9 @@ public:
 	 */
 	void InitGame(const CScriptVal& data);
 
-	bool Update(float frameTime);
-	void Interpolate(float frameTime);
+	bool Update(int turnLength);
+	bool Update(int turnLength, const std::vector<SimulationCommand>& commands);
+	void Interpolate(float frameLength, float frameOffset);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
 	/**

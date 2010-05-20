@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 
 // INCLUDES
 #include "NetSession.h"
+#include "NetTurnManager.h"
 #include "ps/CStr.h"
 #include "simulation/TurnManager.h"
 #include "simulation/ScriptObject.h"
@@ -88,9 +89,10 @@ private:
 */
 
 class CNetClient: public CNetHost,
-				  public CJSObject<CNetClient>,
-				  protected CTurnManager
+				  public CJSObject<CNetClient>
 {
+	NONCOPYABLE(CNetClient);
+
 public:
 
 	CNetClient( CGame* pGame, CGameAttributes* pGameAttributes );
@@ -139,22 +141,20 @@ public:
 	static void ScriptingInit( void );
 	int StartGame( void );
 
+	CNetTurnManager* GetTurnManager() { debug_assert(m_ClientTurnManager); return m_ClientTurnManager; }
+
 protected:
 
 	virtual bool SetupSession			( CNetSession* pSession );
 	virtual bool HandleConnect			( CNetSession* pSession );
 	virtual bool HandleDisconnect		( CNetSession *pSession );
 
-	virtual void NewTurn				( void );
-	virtual bool NewTurnReady			( void ) { return m_TurnPending; }
-	virtual void QueueLocalCommand		( CNetMessage* pMessage );
-			void QueueIncomingMessage	( CNetMessage* pMessage );
+	void QueueIncomingMessage			( CNetMessage* pMessage );
+
+	virtual void OnConnectComplete		( void );
+	virtual void OnStartGame			( void );
 
 private:
-
-	// Not implemented
-	CNetClient( const CNetClient& );
-	CNetClient& operator=( const CNetClient& );
 
 	static bool OnError			( void* pContext, CFsmEvent* pEvent );
 	static bool OnPlayerJoin	( void* pContext, CFsmEvent* pEvent );
@@ -163,13 +163,16 @@ private:
 	static bool OnPreGame		( void* pContext, CFsmEvent* pEvent );
 	static bool OnInGame		( void* pContext, CFsmEvent* pEvent );
 	static bool OnChat			( void* pContext, CFsmEvent* pEvent );
-	static bool	OnStartGame		( void* pContext, CFsmEvent* pEvent );
+	static bool	OnStartGame_	( void* pContext, CFsmEvent* pEvent );
 
 	
 	bool SetupConnection( JSContext *cx, uintN argc, jsval *argv );
 
 	//CNetSession*	m_Session;		// Server session
 	PlayerMap		m_Players;		// List of online players
+
+	CTurnManager*	m_TurnManager;
+	CNetClientTurnManager* m_ClientTurnManager;
 };
 
 extern CNetClient *g_NetClient;

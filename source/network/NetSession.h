@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@
 
 // INCLUDES
 #include "Network.h"
-#include "ps/Singleton.h"
 #include "ps/GameAttributes.h"
 #include "ps/Player.h"
 #include "fsm.h"
@@ -61,11 +60,11 @@ typedef std::vector< PeerSession >	PeerSessionList;
 
 /*
 	CLASS			: CNetHost
-	DESCRIPTION		: CNetHost is a wrapper around ENet host conecept
+	DESCRIPTION		: CNetHost is a wrapper around ENet host concept
 	NOTES			:
 */
 
-class CNetHost : public Singleton< CNetHost >
+class CNetHost
 {
 public:
 
@@ -198,7 +197,7 @@ private:
 					  which represents a peer from a network connection. A 
 					  network session is spawned by CNetServer each time a 
 					  client connects and destroyed when it disconnects. When a
-					  new message is received fom a client, its representing
+					  new message is received from a client, its representing
 					  session object's message handler is called for processing
 					  that message.
 					  CNetSession is also a state machine. All client requests
@@ -212,6 +211,8 @@ class CNetSession : public CFsm,
 					public CJSObject< CNetSession >,
 					public IMessagePipeEnd
 {
+	NONCOPYABLE(CNetSession);
+
 	friend class CNetHost;
 
 public:
@@ -288,11 +289,6 @@ private:
 
 	// Only the hosts can create sessions
 	CNetSession( CNetHost* pHost, ENetPeer* pPeer );
-
-	// Not implemented
-	CNetSession( void );
-	CNetSession( const CNetSession& );
-	CNetSession& operator=( const CNetSession& );
 
 	CNetHost*		  m_Host;			 // The associated local host
 	ENetPeer*		  m_Peer;			 // Represents the peer host

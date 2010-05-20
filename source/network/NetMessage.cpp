@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,9 @@
 #include "Network.h"
 #include "NetMessage.h"
 
+#include "ps/Game.h"
+#include "simulation2/Simulation2.h"
+
 #undef ALLNETMSGS_DONT_CREATE_NMTS
 #define ALLNETMSGS_IMPLEMENT
 #include "NetMessages.h"
@@ -40,10 +43,6 @@
 
 // DEFINES
 #define LOG_CATEGORY L"net"
-
-// Please don't modify the deserializer map outside the ONCE-block in DeserializeMessage
-//typedef std::map< NetMessageType, NetMessageDeserializer > MessageDeserializerMap;
-//MessageDeserializerMap g_DeserializerMap;
 
 //-----------------------------------------------------------------------------
 // Name: CNetMessage()
@@ -110,7 +109,7 @@ const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
 	m_Type = *( ( NetMessageType* )pStart );
 	uint size = *( ( uint* )( pStart + sizeof( NetMessageType ) ) );
 
-	assert( pStart + size == pEnd );
+	debug_assert( pStart + size == pEnd );
 
 	return pStart + sizeof( NetMessageType ) + sizeof( size );
 }
@@ -1052,6 +1051,10 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 
 	case NMT_FORMATION_CONTACT_ACTION:
 		pNewMessage = new CFormationContactActionMessage;
+		break;
+
+	case NMT_SIMULATION_COMMAND:
+		pNewMessage = new CSimulationMessage(g_Game->GetSimulation2()->GetScriptInterface());
 		break;
 
 	default:

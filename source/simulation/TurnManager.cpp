@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,15 +84,15 @@ void CTurnManager::SendBatch(uintptr_t batch)
 	MsgVector::iterator it=messages.begin();
 	while (it != messages.end())
 	{
-		SendMessage(it->m_pMessage, it->m_ClientMask);
+		SendMessageMasked(it->m_pMessage, it->m_ClientMask);
 		++it;
 	}
 	CEndCommandBatchMessage *pMsg=new CEndCommandBatchMessage();
 	pMsg->m_TurnLength=m_Batches[batch].m_TurnLength;
-	SendMessage(pMsg, (size_t)-1);
+	SendMessageMasked(pMsg, (size_t)-1);
 }
 
-void CTurnManager::SendMessage(CNetMessage *pMsg, size_t clientMask)
+void CTurnManager::SendMessageMasked(CNetMessage *pMsg, size_t clientMask)
 {
 	for (size_t i=0;i<m_Clients.size();i++)
 	{

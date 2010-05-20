@@ -166,15 +166,6 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 	return rval;
 }
 
-// unused
-void ScriptingHost::RegisterFunction(const std::string & functionName, JSNative function, int numArgs)
-{
-	JSFunction * func = JS_DefineFunction(m_Context, m_GlobalObject, functionName.c_str(), function, numArgs, 0);
-
-	if (func == NULL)
-		throw PSERROR_Scripting_RegisterFunctionFailed();
-}
-
 void ScriptingHost::DefineConstant(const std::string & name, int value)
 {
 	// First remove this constant if it already exists

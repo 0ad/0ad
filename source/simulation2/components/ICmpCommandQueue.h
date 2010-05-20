@@ -20,35 +20,38 @@
 
 #include "simulation2/system/Interface.h"
 
+#include "simulation2/helpers/SimulationCommand.h"
+
 /**
  * Command queue, for sending orders to entities.
  * Each command is associated with a player ID (who triggered the command, in some sense)
  * and an arbitrary script value.
- * Commands can be added to the queue at any time, and will all be executed at the start
- * of the next turn.
  *
- * Typically commands will be sent by the GUI to the networking system, which will eventually
- * add them to this queue; the player ID identifies the client who initiated the action, and
- * the command processing code ought to check the player has permission to perform that command
- * (e.g. make sure they only move their own units). The networking system will add a few turns of
- * latency before the commands reach the queue.
+ * Commands can be added to the local queue at any time, and will all be executed at the start
+ * of the next turn. (This will typically be used by AI scripts.)
  *
- * Alternatively, commands may be added directly to the queue by AI scripts, to emulate a player,
- * in which case the ID identifies the AI player and the network is not involved.
+ * Alternatively, commands can be sent to the networking system, and they will be executed
+ * at the start of some later turn by all players simultaneously. (This will typically be
+ * used for user inputs.)
  */
 class ICmpCommandQueue : public IComponent
 {
 public:
 	/**
-	 * Pushes a new command onto the queue. @p cmd does not need to be rooted.
+	 * Pushes a new command onto the local queue. @p cmd does not need to be rooted.
 	 */
-	virtual void PushClientCommand(int player, CScriptVal cmd) = 0;
+	virtual void PushLocalCommand(int player, CScriptVal cmd) = 0;
 
 	/**
-	 * Calls the ProcessCommand(player, cmd) global script function for each command in the queue,
-	 * in order of adding to the queue, and empties the queue.
+	 * Send a command associated with the current player to the networking system.
 	 */
-	virtual void ProcessCommands() = 0;
+	virtual void PostNetworkCommand(CScriptVal cmd) = 0;
+
+	/**
+	 * Calls the ProcessCommand(player, cmd) global script function for each command in the
+	 * local queue and in @p commands, and empties the local queue.
+	 */
+	virtual void FlushTurn(const std::vector<SimulationCommand>& commands) = 0;
 
 	DECLARE_INTERFACE_TYPE(CommandQueue)
 };

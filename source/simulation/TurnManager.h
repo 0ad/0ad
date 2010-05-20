@@ -83,7 +83,7 @@ private:
 
 	CGameRecord *m_pRecord;
 
-protected:	
+public:
 	// Rotate the three batches: {0, 1, 2} => {1, 2, 0}
 	void RotateBatches();
 
@@ -97,7 +97,7 @@ protected:
 	// void UpdateTimingData(size_t client, int fps, int currentLatency);
 	void SetTurnLength(uintptr_t batch, int turnLength);
 
-	void SendMessage(CNetMessage *pMsg, uintptr_t clientMask);
+	void SendMessageMasked(CNetMessage *pMsg, uintptr_t clientMask);
 
 	// Add the message to the specified batch. The message is assumed to be
 	// validated before passed here, and will be blindly trusted.

@@ -103,16 +103,9 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 	if (queue.null())
 		return;
 
-	int player = -1;
-	if (g_Game && g_Game->GetLocalPlayer())
-		player = g_Game->GetLocalPlayer()->GetPlayerID();
-
 	jsval cmd2 = sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), cmd.get());
 
-	queue->PushClientCommand(player, cmd2);
-	// TODO: This shouldn't call Push, it should send the message to the network layer
-	// (which should propagate it across the network and eventually call Push on the
-	// appropriate turn)
+	queue->PostNetworkCommand(cmd2);
 }
 
 std::vector<entity_id_t> PickEntitiesAtPoint(void* UNUSED(cbdata), int x, int y)

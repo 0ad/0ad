@@ -34,6 +34,7 @@ class CGameView;
 class CSimulation;
 class CPlayer;
 class CGameAttributes;
+class CNetTurnManager;
 
 /**
  * Default player limit (not counting the Gaia player)
@@ -97,6 +98,8 @@ class CGame
 		EOG_LOSE,		/// Game is over, local player loses		
 		EOG_WIN			/// Game is over, local player wins
 	} GameStatus;
+
+	CNetTurnManager* m_TurnManager;
 	
 public:
 	CGame();
@@ -120,6 +123,8 @@ public:
 		Perform all per-frame updates
 	*/
 	bool Update(double deltaTime, bool doInterpolate = true);
+
+	void Interpolate(float frameLength);
 
 	void UpdateGameStatus();
 	void EndGame();
@@ -216,6 +221,17 @@ public:
 	 **/
 	inline float GetSimRate() const
 	{	return m_SimRate;  }
+
+	/**
+	 * Replace the current turn manager.
+	 * This class will take ownership of the pointer.
+	 */
+	void SetTurnManager(CNetTurnManager* turnManager);
+
+	CNetTurnManager* GetTurnManager() const
+	{
+		return m_TurnManager;
+	}
 
 private:
 	PSRETURN RegisterInit(CGameAttributes* pAttribs);

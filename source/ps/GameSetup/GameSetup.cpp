@@ -550,66 +550,62 @@ static void InitVfs(const CmdLineArgs& args)
 }
 
 
-static void InitPs(bool setup_gui)
+static void InitPs(bool setup_gui, const CStrW& gui_page)
 {
-	if (setup_gui)
-	{
-		// The things here aren't strictly GUI, but they're unnecessary when in Atlas
-		// because the game doesn't draw any text or handle keys or anything
-
-		{
-			// console
-			TIMER(L"ps_console");
-
-			g_Console->UpdateScreenSize(g_xres, g_yres);
-
-			// Calculate and store the line spacing
-			CFont font(L"console");
-			g_Console->m_iFontHeight = font.GetLineSpacing();
-			g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
-			g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
-			// Offset by an arbitrary amount, to make it fit more nicely
-			g_Console->m_iFontOffset = 9;
-		}
-
-		// language and hotkeys
-		{
-			TIMER(L"ps_lang_hotkeys");
-
-			std::string lang = "english";
-			CFG_GET_SYS_VAL("language", String, lang);
-			I18n::LoadLanguage(lang.c_str());
-
-			LoadHotkeys();
-		}
-
-		// GUI uses VFS, so this must come after VFS init.
-		if (g_AutostartMap.empty())
-			g_GUI->SwitchPage(L"page_pregame.xml", JSVAL_VOID);
-		else
-			g_GUI->SwitchPage(L"page_session_new.xml", JSVAL_VOID);
-
-		// Warn nicely about missing S3TC support
-		if (!ogl_tex_has_s3tc())
-		{
-			g_GUI->DisplayMessageBox(600, 350, L"Warning",
-				L"Performance warning:\n\n"
-				L"Your graphics drivers do not support S3TC compressed textures. This will significantly reduce performance and increase memory usage.\n\n"
-#if !(OS_WIN || OS_MACOSX)
-				L"See http://dri.freedesktop.org/wiki/S3TC for details. "
-				L"Installing the libtxc_dxtn library will fix these problems. "
-				L"Alternatively, running 'driconf' and setting force_s3tc_enable will fix the performance but may cause rendering bugs."
-#else
-				L"Please try updating your graphics drivers to ensure you have full hardware acceleration."
-#endif
-			);
-		}
-	}
-	else
+	if (!setup_gui)
 	{
 		// We do actually need *some* kind of GUI loaded, so use the
 		// (currently empty) Atlas one
 		g_GUI->SwitchPage(L"page_atlas.xml", JSVAL_VOID);
+		return;
+	}
+
+	// The things here aren't strictly GUI, but they're unnecessary when in Atlas
+	// because the game doesn't draw any text or handle keys or anything
+
+	{
+		// console
+		TIMER(L"ps_console");
+
+		g_Console->UpdateScreenSize(g_xres, g_yres);
+
+		// Calculate and store the line spacing
+		CFont font(L"console");
+		g_Console->m_iFontHeight = font.GetLineSpacing();
+		g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
+		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
+		// Offset by an arbitrary amount, to make it fit more nicely
+		g_Console->m_iFontOffset = 9;
+	}
+
+	// language and hotkeys
+	{
+		TIMER(L"ps_lang_hotkeys");
+
+		std::string lang = "english";
+		CFG_GET_SYS_VAL("language", String, lang);
+		I18n::LoadLanguage(lang.c_str());
+
+		LoadHotkeys();
+	}
+
+	// GUI uses VFS, so this must come after VFS init.
+	g_GUI->SwitchPage(gui_page, JSVAL_VOID);
+
+	// Warn nicely about missing S3TC support
+	if (!ogl_tex_has_s3tc())
+	{
+		g_GUI->DisplayMessageBox(600, 350, L"Warning",
+			L"Performance warning:\n\n"
+			L"Your graphics drivers do not support S3TC compressed textures. This will significantly reduce performance and increase memory usage.\n\n"
+#if !(OS_WIN || OS_MACOSX)
+			L"See http://dri.freedesktop.org/wiki/S3TC for details. "
+			L"Installing the libtxc_dxtn library will fix these problems. "
+			L"Alternatively, running 'driconf' and setting force_s3tc_enable will fix the performance but may cause rendering bugs."
+#else
+			L"Please try updating your graphics drivers to ensure you have full hardware acceleration."
+#endif
+		);
 	}
 }
 
@@ -643,8 +639,7 @@ static void ShutdownPs()
 {
 	SAFE_DELETE(g_GUI);
 
-	delete g_Console;
-	g_Console = 0;
+	SAFE_DELETE(g_Console);
 
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(0, g_mouse_x, g_mouse_y);
@@ -716,19 +711,9 @@ static void InitSDL()
 
 void EndGame()
 {
-	if (g_NetServer)
-	{
-		delete g_NetServer;
-		g_NetServer=NULL;
-	}
-	else if (g_NetClient)
-	{
-		delete g_NetClient;
-		g_NetClient=NULL;
-	}
-
-	delete g_Game;
-	g_Game=NULL;
+	SAFE_DELETE(g_NetServer);
+	SAFE_DELETE(g_NetClient);
+	SAFE_DELETE(g_Game);
 }
 
 
@@ -850,6 +835,8 @@ void EarlyInit()
 	// Initialise the low-quality rand function
 	srand(time(NULL));	// NOTE: this rand should *not* be used for simulation!
 }
+
+static bool Autostart(const CmdLineArgs& args);
 
 void Init(const CmdLineArgs& args, int flags)
 {
@@ -1005,9 +992,6 @@ void Init(const CmdLineArgs& args, int flags)
 		pwglSwapIntervalEXT(g_VSync? 1 : 0);
 #endif
 
-	MICROLOG(L"init ps");
-	InitPs(setup_gui);
-
 	ogl_WarnIfError();
 	InitRenderer();
 
@@ -1040,31 +1024,142 @@ void Init(const CmdLineArgs& args, int flags)
 
 	ogl_WarnIfError();
 
-	if (! g_AutostartMap.empty())
+	if (!Autostart(args))
 	{
-		// Code copied mostly from atlas/GameInterface/Handlers/Map.cpp -
-		// maybe should be refactored to avoid duplication
-		g_GameAttributes.m_MapFile = g_AutostartMap+".pmp";
+		InitPs(setup_gui, L"page_pregame.xml");
+	}
+}
 
-		// Make the whole world visible
-		g_GameAttributes.m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
-		g_GameAttributes.m_FogOfWar = false;
+void RenderGui(bool RenderingState)
+{
+	g_DoRenderGui = RenderingState;
+}
 
+
+// Network autostart:
+
+class AutostartNetServer : public CNetServer
+{
+public:
+	AutostartNetServer(CGame *pGame, CGameAttributes *pGameAttributes, int maxPlayers) :
+		CNetServer(pGame, pGameAttributes), m_NumPlayers(1), m_MaxPlayers(maxPlayers)
+	{
+	}
+protected:
+	virtual void OnPlayerJoin(CNetSession* pSession)
+	{
+		for (size_t slot = 0; slot < g_GameAttributes.GetSlotCount(); ++slot)
+		{
+			if (g_GameAttributes.GetSlot(slot)->GetAssignment() == SLOT_OPEN)
+			{
+				g_GameAttributes.GetSlot(slot)->AssignToSession(pSession);
+				break;
+			}
+		}
+
+		m_NumPlayers++;
+
+		debug_printf(L"# player joined (got %d, need %d)\n", (int)m_NumPlayers, (int)m_MaxPlayers);
+
+		if (m_NumPlayers >= m_MaxPlayers)
+		{
+			g_GUI->SwitchPage(L"page_loading.xml", JSVAL_VOID);
+			int ret = StartGame();
+			debug_assert(ret == 0);
+		}
+	}
+
+	virtual void OnPlayerLeave(CNetSession* UNUSED(pSession))
+	{
+		debug_warn(L"client left?!");
+		m_NumPlayers--;
+	}
+
+private:
+	size_t m_NumPlayers;
+	size_t m_MaxPlayers;
+};
+
+class AutostartNetClient : public CNetClient
+{
+public:
+	AutostartNetClient(CGame *pGame, CGameAttributes *pGameAttributes) :
+		CNetClient(pGame, pGameAttributes)
+	{
+	}
+protected:
+	virtual void OnConnectComplete()
+	{
+		debug_printf(L"# connect complete\n");
+	}
+
+	virtual void OnStartGame()
+	{
+		g_GUI->SwitchPage(L"page_loading.xml", JSVAL_VOID);
+		int ret = StartGame();
+		debug_assert(ret == 0);
+	}
+};
+
+static bool Autostart(const CmdLineArgs& args)
+{
+	/*
+	 * Handle various command-line options, for quick testing of various features:
+	 *  -autostart=mapname   -- single-player
+	 *  -autostart=mapname -autostart-playername=Player -autostart-host -autostart-players=2        -- multiplayer host, wait for 2 players
+	 *  -autostart=mapname -autostart-playername=Player -autostart-client -autostart-ip=127.0.0.1   -- multiplayer client, connect to 127.0.0.1
+	 */
+
+	CStr autostartMap = args.Get("autostart");
+	if (autostartMap.empty())
+		return false;
+
+	g_Game = new CGame();
+
+	g_GameAttributes.m_MapFile = autostartMap + ".pmp";
+
+	// Make the whole world visible
+	g_GameAttributes.m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
+	g_GameAttributes.m_FogOfWar = false;
+
+	if (args.Has("autostart-host"))
+	{
+		InitPs(true, L"page_loading.xml");
+
+		size_t maxPlayers = 2;
+		if (args.Has("autostart-players"))
+			maxPlayers = args.Get("autostart-players").ToUInt();
+
+		g_NetServer = new AutostartNetServer(g_Game, &g_GameAttributes, maxPlayers);
+		// TODO: player name, etc
+		bool ok = g_NetServer->Start(NULL, 0, NULL);
+		debug_assert(ok);
+	}
+	else if (args.Has("autostart-client"))
+	{
+		InitPs(true, L"page_loading.xml");
+
+		bool ok;
+		g_NetClient = new AutostartNetClient(g_Game, &g_GameAttributes);
+		// TODO: player name, etc
+		ok = g_NetClient->Create();
+		debug_assert(ok);
+		ok = g_NetClient->Connect(args.Get("autostart-ip"), DEFAULT_HOST_PORT);
+		debug_assert(ok);
+	}
+	else
+	{
 		for (int i = 1; i < 8; ++i)
 			g_GameAttributes.GetSlot(i)->AssignLocal();
-
-		g_Game = new CGame();
 
 		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
 		debug_assert(ret == PSRETURN_OK);
 		LDR_NonprogressiveLoad();
 		ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
+
+		InitPs(true, g_UseSimulation2 ? L"page_session_new.xml" : L"page_session.xml");
 	}
 
-}
-
-void RenderGui(bool RenderingState)
-{
-	g_DoRenderGui = RenderingState;
+	return true;
 }

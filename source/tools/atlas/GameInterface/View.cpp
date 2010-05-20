@@ -179,7 +179,7 @@ void ViewGame::Update(float frameLength)
 	{
 		// Update unit interpolation
 		if (g_UseSimulation2)
-			g_Game->GetSimulation2()->Interpolate(0.0);
+			g_Game->Interpolate(0.0);
 		else
 			g_Game->GetSimulation()->Interpolate(0.0);
 	}
@@ -205,7 +205,7 @@ void ViewGame::Update(float frameLength)
 		// not in every call to g_Game->Update
 		if (g_UseSimulation2)
 		{
-			g_Game->GetSimulation2()->Interpolate(actualFrameLength);
+			g_Game->Interpolate(actualFrameLength);
 		}
 		else
 		{

@@ -27,9 +27,14 @@
 #include "simulation2/components/ICmpCommandQueue.h"
 
 #include "lib/file/file_system_util.h"
+#include "lib/utf8.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
+#include "ps/Pyrogenesis.h"
+
+#include <iomanip>
 
 bool g_UseSimulation2 = true;
 
@@ -37,11 +42,13 @@ class CSimulation2Impl
 {
 public:
 	CSimulation2Impl(CUnitManager* unitManager, CTerrain* terrain) :
-		m_SimContext(), m_ComponentManager(m_SimContext)
+		m_SimContext(), m_ComponentManager(m_SimContext), m_EnableOOSLog(false)
 	{
 		m_SimContext.m_UnitManager = unitManager;
 		m_SimContext.m_Terrain = terrain;
 		m_ComponentManager.LoadComponentTypes();
+
+//		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
 
 		// (can't call ResetState here since the scripts haven't been loaded yet)
 	}
@@ -86,8 +93,10 @@ public:
 	bool LoadScripts(const VfsPath& path);
 	LibError ReloadChangedFile(const VfsPath& path);
 
-	bool Update(float frameTime);
-	void Interpolate(float frameTime);
+	bool Update(int turnLength, const std::vector<SimulationCommand>& commands);
+	void Interpolate(float frameLength, float frameOffset);
+
+	void DumpState();
 
 	CSimContext m_SimContext;
 	CComponentManager m_ComponentManager;
@@ -99,7 +108,7 @@ public:
 
 	uint32_t m_TurnNumber;
 
-	static const int TURN_LENGTH = 300; // TODO: Use CTurnManager
+	bool m_EnableOOSLog;
 };
 
 bool CSimulation2Impl::LoadScripts(const VfsPath& path)
@@ -141,49 +150,63 @@ LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 	return INFO::OK;
 }
 
-bool CSimulation2Impl::Update(float frameTime)
+bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationCommand>& commands)
 {
-	// TODO: Use CTurnManager
-	m_DeltaTime += frameTime;
-	if (m_DeltaTime >= 0.0)
-	{
-		double turnLength = TURN_LENGTH / 1000.0;
-		fixed turnLengthFixed = fixed::FromInt(TURN_LENGTH) / 1000;
-		m_DeltaTime -= turnLength;
+	fixed turnLengthFixed = fixed::FromInt(turnLength) / 1000;
 
-		CMessageTurnStart msgTurnStart;
-		m_ComponentManager.BroadcastMessage(msgTurnStart);
+	CMessageTurnStart msgTurnStart;
+	m_ComponentManager.BroadcastMessage(msgTurnStart);
 
-		if (m_TurnNumber == 0 && !m_StartupScript.empty())
-			m_ComponentManager.GetScriptInterface().LoadScript(L"map startup script", m_StartupScript);
+	if (m_TurnNumber == 0 && !m_StartupScript.empty())
+		m_ComponentManager.GetScriptInterface().LoadScript(L"map startup script", m_StartupScript);
 
-		CmpPtr<ICmpCommandQueue> cmpCommandQueue(m_SimContext, SYSTEM_ENTITY);
-		if (!cmpCommandQueue.null())
-			cmpCommandQueue->ProcessCommands();
+	CmpPtr<ICmpCommandQueue> cmpCommandQueue(m_SimContext, SYSTEM_ENTITY);
+	if (!cmpCommandQueue.null())
+		cmpCommandQueue->FlushTurn(commands);
 
-		CMessageUpdate msgUpdate(turnLengthFixed);
-		m_ComponentManager.BroadcastMessage(msgUpdate);
+	CMessageUpdate msgUpdate(turnLengthFixed);
+	m_ComponentManager.BroadcastMessage(msgUpdate);
 
-		// Clean up any entities destroyed during the simulation update
-		m_ComponentManager.FlushDestroyedComponents();
+	// Clean up any entities destroyed during the simulation update
+	m_ComponentManager.FlushDestroyedComponents();
 
-//		if (m_TurnNumber == 0)
-//			m_ComponentManager.GetScriptInterface().DumpHeap();
+//	if (m_TurnNumber == 0)
+//		m_ComponentManager.GetScriptInterface().DumpHeap();
 
-		++m_TurnNumber;
+	if (m_EnableOOSLog)
+		DumpState();
 
-		return true;
-	}
-	return false;
+	++m_TurnNumber;
+
+	return true; // TODO: don't bother with bool return
 }
 
-void CSimulation2Impl::Interpolate(float frameTime)
+void CSimulation2Impl::Interpolate(float frameLength, float frameOffset)
 {
-	// TODO: Use CTurnManager
-	double turnLength = TURN_LENGTH / 1000.0;
-	float offset = clamp(m_DeltaTime / turnLength + 1.0, 0.0, 1.0);
-	CMessageInterpolate msg(frameTime, offset);
+	CMessageInterpolate msg(frameLength, frameOffset);
 	m_ComponentManager.BroadcastMessage(msg);
+}
+
+void CSimulation2Impl::DumpState()
+{
+	PROFILE("DumpState");
+
+	std::wstringstream name;
+	name << L"sim_log/" << getpid() << L"/" << std::setw(5) << std::setfill(L'0') << m_TurnNumber << L".txt";
+	fs::wpath path (psLogDir()/name.str());
+	CreateDirectories(path.branch_path(), 0700);
+	std::ofstream file (path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+
+	file << "State hash: " << std::hex;
+	std::string hashRaw;
+	m_ComponentManager.ComputeStateHash(hashRaw);
+	for (size_t i = 0; i < hashRaw.size(); ++i)
+		file << std::setfill('0') << std::setw(2) << (int)(unsigned char)hashRaw[i];
+	file << std::dec << "\n";
+
+	file << "\n";
+
+	m_ComponentManager.DumpDebugState(file);
 }
 
 ////////////////////////////////////////////////////////////////
@@ -199,6 +222,11 @@ CSimulation2::~CSimulation2()
 }
 
 // Forward all method calls to the appropriate CSimulation2Impl/CComponentManager methods:
+
+void CSimulation2::EnableOOSLog()
+{
+	m->m_EnableOOSLog = true;
+}
 
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName)
 {
@@ -261,14 +289,20 @@ void CSimulation2::InitGame(const CScriptVal& data)
 	GetScriptInterface().CallFunction(GetScriptInterface().GetGlobalObject(), "InitGame", data, ret);
 }
 
-bool CSimulation2::Update(float frameTime)
+bool CSimulation2::Update(int turnLength)
 {
-	return m->Update(frameTime);
+	std::vector<SimulationCommand> commands;
+	return m->Update(turnLength, commands);
 }
 
-void CSimulation2::Interpolate(float frameTime)
+bool CSimulation2::Update(int turnLength, const std::vector<SimulationCommand>& commands)
 {
-	m->Interpolate(frameTime);
+	return m->Update(turnLength, commands);
+}
+
+void CSimulation2::Interpolate(float frameLength, float frameOffset)
+{
+	m->Interpolate(frameLength, frameOffset);
 }
 
 void CSimulation2::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)

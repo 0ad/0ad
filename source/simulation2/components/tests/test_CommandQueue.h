@@ -36,6 +36,8 @@ public:
 	{
 		ComponentTestHelper test;
 
+		std::vector<SimulationCommand> empty;
+
 		ICmpCommandQueue* cmp = test.Add<ICmpCommandQueue>(CID_CommandQueue, "");
 
 		TS_ASSERT(test.GetScriptInterface().Eval("var cmds = []; function ProcessCommand(player, cmd) { cmds.push([player, cmd]); }"));
@@ -43,24 +45,24 @@ public:
 		CScriptVal cmd;
 
 		TS_ASSERT(test.GetScriptInterface().Eval("([1,2,3])", cmd));
-		cmp->PushClientCommand(1, cmd);
+		cmp->PushLocalCommand(1, cmd);
 
 		TS_ASSERT(test.GetScriptInterface().Eval("({x:4})", cmd));
-		cmp->PushClientCommand(-1, cmd);
+		cmp->PushLocalCommand(-1, cmd);
 
 		test.Roundtrip();
 
 		// Process the first two commands
-		cmp->ProcessCommands();
+		cmp->FlushTurn(empty);
 
 		TS_ASSERT(test.GetScriptInterface().Eval("({y:5})", cmd));
-		cmp->PushClientCommand(10, cmd);
+		cmp->PushLocalCommand(10, cmd);
 
 		// Process the next command
-		cmp->ProcessCommands();
+		cmp->FlushTurn(empty);
 
 		// Process no commands
-		cmp->ProcessCommands();
+		cmp->FlushTurn(empty);
 
 		test.Roundtrip();
 

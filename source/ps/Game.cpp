@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,6 +84,8 @@ CGame::CGame():
 
 	if (g_UseSimulation2)
 	{
+		m_TurnManager = new CNetLocalTurnManager(*m_Simulation2); // this will get replaced if we're a net server/client
+
 		m_Simulation2->LoadDefaultScripts();
 		m_Simulation2->ResetState();
 
@@ -105,12 +107,19 @@ CGame::~CGame()
 	// Again, the in-game call tree is going to be different to the main menu one.
 	g_Profiler.StructuralReset();
 
+	delete m_TurnManager;
 	delete m_GameView;
 	delete m_Simulation2;
 	delete m_Simulation;
 	delete m_World;
 }
 
+void CGame::SetTurnManager(CNetTurnManager* turnManager)
+{
+	if (m_TurnManager)
+		delete m_TurnManager;
+	m_TurnManager = turnManager;
+}
 
 
 /**
@@ -145,12 +154,13 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 PSRETURN CGame::ReallyStartGame()
 {
 	// Call the reallyStartGame GUI function, but only if it exists
-	jsval fval, rval;
-	JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), "reallyStartGame", &fval);
-	debug_assert(ok);
-	if (ok && !JSVAL_IS_VOID(fval))
+	if (g_GUI->HasPages())
 	{
-		ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
+		jsval fval, rval;
+		JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), "reallyStartGame", &fval);
+		debug_assert(ok);
+		if (ok && !JSVAL_IS_VOID(fval))
+			ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
 	}
 
 	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
@@ -161,9 +171,6 @@ PSRETURN CGame::ReallyStartGame()
 
 	// Mark terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
 	g_GameRestarted = true;
-
-
-	g_GUI->SendEventToAll("sessionstart");
 
 	return 0;
 }
@@ -240,20 +247,25 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	deltaTime *= m_SimRate;
 	
 	bool ok = true;
-	if (g_UseSimulation2)
+	if (deltaTime)
 	{
-		if (m_Simulation2->Update(deltaTime))
-			g_GUI->SendEventToAll("SimulationUpdate");
-	}
-	else
-	{
-		ok = m_Simulation->Update(deltaTime);
+		if (g_UseSimulation2)
+		{
+			PROFILE("update");
+			if (m_TurnManager->Update(deltaTime))
+				g_GUI->SendEventToAll("SimulationUpdate");
+		}
+		else
+		{
+			ok = m_Simulation->Update(deltaTime);
+		}
 	}
 
 	if (doInterpolate)
 	{
+		PROFILE("interpolate");
 		if (g_UseSimulation2)
-			m_Simulation2->Interpolate(deltaTime);
+			m_TurnManager->Interpolate(deltaTime);
 		else
 			m_Simulation->Interpolate(deltaTime);
 	}
@@ -271,6 +283,12 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 
 	return ok;
 }
+
+void CGame::Interpolate(float frameLength)
+{
+	m_TurnManager->Interpolate(frameLength);
+}
+
 
 /**
  * Test player statistics and update game status as required.

@@ -185,6 +185,12 @@ public:
 	void ScriptVal(const char* name, CScriptVal value);
 
 	/**
+	 * Serialize a CScriptValRooted.
+	 * The value must not contain any unserializable values (like functions).
+	 */
+	void ScriptVal(const char* name, CScriptValRooted value);
+
+	/**
 	 * Serialize a stream of bytes.
 	 * It is the caller's responsibility to deal with portability (padding, endianness, etc);
 	 * the typed serialize methods should usually be used instead of this.

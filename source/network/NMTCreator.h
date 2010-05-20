@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -218,14 +218,6 @@ u8 *_nm::Serialize(u8 *buffer) const \
 #define START_NMT_CLASS(_nm, _tp) \
 	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
 #define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-CNetMessage *Deserialize##_nm(const u8 *buffer, size_t length) \
-{ \
-	_nm *ret=new _nm(); \
-	if (ret->Deserialize(buffer, buffer+length)) \
-		return ret; \
-	else \
-	{ delete ret; return NULL; } \
-} \
 const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 { \
 	pos=_base::Deserialize(pos, end); \
@@ -262,46 +254,7 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 #undef NMT_CREATOR_PASS_DESERIALIZE
 
 /*************************************************************************/
-// Pass 5, Deserializer Registration
-
-#define NMT_CREATOR_PASS_REGISTRATION
-
-//#define START_NMTS() SNetMessageDeserializerRegistration g_DeserializerRegistrations[] = {
-//#define END_NMTS() { NMT_INVALID, NULL } };
-#define START_NMTS()
-#define END_NMTS()
-
-#define START_NMT_CLASS(_nm, _tp) \
-	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
-
-/*
-#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-	{ _tp, Deserialize##_nm },
-*/
-
-#define START_NMT_CLASS_DERIVED(_base, _nm, _tp)
-
-#define NMT_START_ARRAY(_nm)
-
-#define NMT_END_ARRAY()
-
-#define NMT_FIELD_INT(_nm, _hosttp, _netsz)
-
-#define NMT_FIELD(_tp, _nm)
-
-#define END_NMT_CLASS()
-
-#include "NMTCreator.h"
-
-#undef NMT_CREATOR_PASS_REGISTRATION
-
-/*************************************************************************/
-// Pass 6, String Representation
-
-#define _T(s) s
-// PT: I'm not sure whether this is correct - it appears that this code
-// relied on CStr.h leaving _T defined in ASCII mode, so I'm not sure
-// why the macro is actually used at all...
+// Pass 5, String Representation
 
 #define START_NMTS()
 #define END_NMTS()
@@ -309,8 +262,8 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 #define START_NMT_CLASS(_nm, _tp) \
 CStr _nm::ToString() const \
 { \
-	CStr ret=#_nm _T(" { "); \
-	return ret + ToStringRaw() + _T(" }"); \
+	CStr ret=#_nm " { "; \
+	return ret + ToStringRaw() + " }"; \
 } \
 CStr _nm::ToStringRaw() const \
 { \
@@ -321,39 +274,39 @@ CStr _nm::ToStringRaw() const \
 #define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
 CStr _nm::ToString() const \
 { \
-	CStr ret=#_nm _T(" { "); \
-	return ret + ToStringRaw() + _T(" }"); \
+	CStr ret=#_nm " { "; \
+	return ret + ToStringRaw() + " }"; \
 } \
 CStr _nm::ToStringRaw() const \
 { \
-	CStr ret=_base::ToStringRaw() + _T(", "); \
+	CStr ret=_base::ToStringRaw() + ", "; \
 	const _nm *thiz=this;\
 	UNUSED2(thiz);	// preempt any "unused" warning
 
 #define NMT_START_ARRAY(_nm) \
-	ret+=#_nm _T(": { "); \
+	ret+=#_nm ": { "; \
 	std::vector < ARRAY_STRUCT_PREFIX(_nm) >::const_iterator it=_nm.begin(); \
 	while (it != _nm.end()) \
 	{ \
-		ret+=_T(" { "); \
+		ret+=" { "; \
 		const ARRAY_STRUCT_PREFIX(_nm) *thiz=&*it;\
 		UNUSED2(thiz);	// preempt any "unused" warning
 
 #define NMT_END_ARRAY() \
 		++it; \
-		ret=ret.substr(0, ret.length()-2)+_T(" }, "); \
+		ret=ret.substr(0, ret.length()-2)+" }, "; \
 	} \
-	ret=ret.substr(0, ret.length()-2)+_T(" }, ");
+	ret=ret.substr(0, ret.length()-2)+" }, ";
 
 #define NMT_FIELD_INT(_nm, _hosttp, _netsz) \
-	ret += #_nm _T(": "); \
+	ret += #_nm ": "; \
 	ret += NetMessageStringConvert(thiz->_nm); \
-	ret += _T(", ");
+	ret += ", ";
 
 #define NMT_FIELD(_tp, _nm) \
-	ret += #_nm _T(": "); \
+	ret += #_nm ": "; \
 	ret += NetMessageStringConvert(thiz->_nm); \
-	ret += _T(", ");
+	ret += ", ";
 
 #define END_NMT_CLASS() \
 	return ret.substr(0, ret.length()-2); \

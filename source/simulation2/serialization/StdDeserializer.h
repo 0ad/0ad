@@ -31,6 +31,7 @@ public:
 
 	virtual void ScriptVal(jsval& out);
 	virtual void ScriptVal(CScriptVal& out);
+	virtual void ScriptVal(CScriptValRooted& out);
 	virtual void ScriptObjectAppend(jsval& obj);
 	virtual void ScriptString(JSString*& out);
 

@@ -116,6 +116,11 @@ void ISerializer::ScriptVal(const char* name, CScriptVal value)
 	PutScriptVal(name, value.get());
 }
 
+void ISerializer::ScriptVal(const char* name, CScriptValRooted value)
+{
+	PutScriptVal(name, value.get());
+}
+
 void ISerializer::RawBytes(const char* name, const u8* data, size_t len)
 {
 	Put(name, data, len);

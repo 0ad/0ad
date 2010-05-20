@@ -122,9 +122,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 	// TODO: all these options (and the ones processed elsewhere) should
 	// be documented somewhere for users.
 
-	if (args.Has("autostart"))
-		 g_AutostartMap = args.Get("autostart");
-
 	if (args.Has("buildarchive"))
 	{
 		// note: VFS init is sure to have been completed by now

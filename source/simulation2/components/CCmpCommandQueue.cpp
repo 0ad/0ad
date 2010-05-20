@@ -21,6 +21,8 @@
 #include "ICmpCommandQueue.h"
 
 #include "ps/CLogger.h"
+#include "ps/Game.h"
+#include "network/NetTurnManager.h"
 
 class CCmpCommandQueue : public ICmpCommandQueue
 {
@@ -31,13 +33,7 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(CommandQueue)
 
-	struct Command
-	{
-		int player;
-		CScriptValRooted data;
-	};
-
-	std::vector<Command> m_CmdQueue;
+	std::vector<SimulationCommand> m_LocalQueue;
 
 	static std::string GetSchema()
 	{
@@ -54,11 +50,11 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-		serialize.NumberU32_Unbounded("num commands", (u32)m_CmdQueue.size());
-		for (size_t i = 0; i < m_CmdQueue.size(); ++i)
+		serialize.NumberU32_Unbounded("num commands", (u32)m_LocalQueue.size());
+		for (size_t i = 0; i < m_LocalQueue.size(); ++i)
 		{
-			serialize.NumberI32_Unbounded("player", m_CmdQueue[i].player);
-			serialize.ScriptVal("data", m_CmdQueue[i].data.get());
+			serialize.NumberI32_Unbounded("player", m_LocalQueue[i].player);
+			serialize.ScriptVal("data", m_LocalQueue[i].data.get());
 		}
 	}
 
@@ -74,31 +70,47 @@ public:
 			jsval data;
 			deserialize.NumberI32_Unbounded(player);
 			deserialize.ScriptVal(data);
-			Command c = { player, CScriptValRooted(cx, data) };
-			m_CmdQueue.push_back(c);
+			SimulationCommand c = { player, CScriptValRooted(cx, data) };
+			m_LocalQueue.push_back(c);
 		}
 	}
 
-	virtual void PushClientCommand(int player, CScriptVal cmd)
+	virtual void PushLocalCommand(int player, CScriptVal cmd)
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 
-		Command c = { player, CScriptValRooted(cx, cmd) };
-		m_CmdQueue.push_back(c);
+		SimulationCommand c = { player, CScriptValRooted(cx, cmd) };
+		m_LocalQueue.push_back(c);
 	}
 
-	virtual void ProcessCommands()
+	virtual void PostNetworkCommand(CScriptVal cmd)
+	{
+		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
+
+		// TODO: would be nicer to not use globals
+		g_Game->GetTurnManager()->PostCommand(CScriptValRooted(cx, cmd));
+	}
+
+	virtual void FlushTurn(const std::vector<SimulationCommand>& commands)
 	{
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 
-		for (size_t i = 0; i < m_CmdQueue.size(); ++i)
+		std::vector<SimulationCommand> localCommands;
+		m_LocalQueue.swap(localCommands);
+
+		for (size_t i = 0; i < localCommands.size(); ++i)
 		{
-			bool ok = scriptInterface.CallFunctionVoid(scriptInterface.GetGlobalObject(), "ProcessCommand", m_CmdQueue[i].player, m_CmdQueue[i].data);
+			bool ok = scriptInterface.CallFunctionVoid(scriptInterface.GetGlobalObject(), "ProcessCommand", localCommands[i].player, localCommands[i].data);
 			if (!ok)
 				LOGERROR(L"Failed to call ProcessCommand() global script function");
 		}
 
-		m_CmdQueue.clear();
+		for (size_t i = 0; i < commands.size(); ++i)
+		{
+			bool ok = scriptInterface.CallFunctionVoid(scriptInterface.GetGlobalObject(), "ProcessCommand", commands[i].player, commands[i].data);
+			if (!ok)
+				LOGERROR(L"Failed to call ProcessCommand() global script function");
+		}
 	}
 };
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 // INCLUDES
 #include "Network.h"
 #include "NetSession.h"
+#include "NetTurnManager.h"
 #include "simulation/TurnManager.h"
 #include "scripting/ScriptableObject.h"
 #include "ps/GameAttributes.h"
@@ -45,7 +46,6 @@
 #define CLIENT_MIN_SESSIONID		100
 #define MAX_CLIENTS					8
 #define MAX_OBSERVERS				5
-#define DEFAULT_SERVER_SESSION_ID	1
 #define	DEFAULT_SERVER_NAME			L"Noname Server"
 #define DEFAULT_PLAYER_NAME			L"Noname Player"
 #define DEFAULT_WELCOME_MESSAGE		L"Noname Server Welcome Message"
@@ -98,9 +98,9 @@ typedef std::vector< CNetSession* >			SessionList;
 */
 
 class CNetServer : 	public CNetHost,
-					public CJSObject<CNetServer>,
-					public CTurnManager
+					public CJSObject<CNetServer>
 {
+	NONCOPYABLE(CNetServer);
 public:
 
 	CNetServer( CGame* pGame, CGameAttributes* pGameAttributes );
@@ -154,6 +154,8 @@ public:
 	 */
 	CNetSession* GetSessionByID( uint sessionID );
 
+	CNetTurnManager* GetTurnManager() { debug_assert(m_ServerTurnManager); return m_ServerTurnManager; }
+
 protected:
 
 	virtual bool SetupSession			( CNetSession* pSession );
@@ -161,10 +163,6 @@ protected:
 	virtual bool HandleDisconnect		( CNetSession *pSession );
 
 private:
-
-	// Not implemented
-	CNetServer( const CNetServer& );
-	CNetServer& operator=( const CNetServer& );
 
 	//void ClientConnect		( ENetPeer* pPeer );
 	//void ClientDisconnect	( ENetPeer* pPeer );
@@ -251,7 +249,6 @@ private:
 	//CScriptObject	m_ScriptConnect;	// Script client connect dispatch
 	//CScriptObject	m_ScriptDisconnect;	// Script client disconnect dispatch
 	//CScriptObject	m_ScriptChat;		// Script client chat dispatch
-	CPlayer*		m_Player;			// Server player
 
 
 public:
@@ -288,8 +285,8 @@ protected:
 	
 	// Call the JS callback for incoming events
 	void OnPlayerChat	( const CStrW& from, const CStrW& message );
-	void OnPlayerJoin	( CNetSession* pSession );
-	void OnPlayerLeave	( CNetSession* pSession );
+	virtual void OnPlayerJoin	( CNetSession* pSession );
+	virtual void OnPlayerLeave	( CNetSession* pSession );
 	void SetupPlayer	( CNetSession* pSession );
 
 	//static bool OnPlayerJoin	( void* pContext, CFsmEvent* pEvent );
@@ -303,11 +300,6 @@ protected:
 	// OVERRIDES FROM CServerSocket
 	//virtual void OnAccept( const CSocketAddress& address );
 
-	// OVERRIDES FROM CTurnManager
-	virtual void NewTurn( void );
-	virtual bool NewTurnReady( void );
-	virtual void QueueLocalCommand( CNetMessage* pMessage );
-
 	// Will only be called from the Network Thread, by the OnAccept handler
 	//virtual CNetServerSession* CreateSession( CSocketInternal* pSocketInternal);
 
@@ -318,13 +310,16 @@ protected:
 	//	false otherwise
 	virtual bool AllowObserver( CNetSession* pSession );
 
+public:
+	CMutex					m_Mutex;			// Synchronization object for batches
+	CGame*					m_Game;				// Pointer to actual game
+
 private:
 
 	CGameAttributes*		m_GameAttributes;	// Stores game attributes
 	//int					m_LastSessionID;	// Stores the last session ID
 	//SessionMap			m_Sessions;			// Managed sessions
 	CJSMap< IDSessionMap >	m_JsSessions;
-	CMutex					m_Mutex;			// Synchronization object for batches
 
 	/*
 		All sessions that have observer status (observer as in watcher - simple
@@ -334,7 +329,6 @@ private:
 	*/
 	SessionList				m_Observers;
 	uint					m_MaxObservers;		// Maximum number of observers
-	CGame*					m_Game;				// Pointer to actual game
 	NetServerState			m_State;			// Holds server state	
 	CStrW					m_Name;				// Server name
 	CStrW					m_WelcomeMessage;	// Nice welcome message
@@ -353,10 +347,11 @@ private:
 	static void AttributeUpdate			( const CStrW& name, const CStrW& newValue, void* pData);
 	static void PlayerAttributeUpdate	( const CStrW& name, const CStrW& value, CPlayer* pPlayer, void* pData );
 	static void PlayerSlotAssignment	( void* pData, CPlayerSlot* pPlayerSlot );
+
+	CTurnManager*	m_TurnManager;
+	CNetServerTurnManager* m_ServerTurnManager;
 };
 
 extern CNetServer *g_NetServer;
 
 #endif // NETSERVER_H
-
-

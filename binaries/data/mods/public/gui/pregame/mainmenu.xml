@@ -143,7 +143,6 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			sprite_over="pgMultiPlayerOver"
 			sprite_disabled="pgMultiPlayerDisabled"
 			tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game."
-			enabled="false"
 		>
 			<action on="Press"><![CDATA[
 				// Open Multiplayer connection window.

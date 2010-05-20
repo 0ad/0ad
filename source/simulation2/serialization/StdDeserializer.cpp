@@ -185,6 +185,11 @@ void CStdDeserializer::ScriptVal(CScriptVal& out)
 	out = ReadScriptVal(NULL);
 }
 
+void CStdDeserializer::ScriptVal(CScriptValRooted& out)
+{
+	out = CScriptValRooted(m_ScriptInterface.GetContext(), ReadScriptVal(NULL));
+}
+
 void CStdDeserializer::ScriptObjectAppend(jsval& obj)
 {
 	if (!JSVAL_IS_OBJECT(obj))

@@ -305,8 +305,8 @@ void ActorViewer::Render()
 
 void ActorViewer::Update(float dt)
 {
-	m.Simulation2.Update(dt);
-	m.Simulation2.Interpolate(dt);
+	m.Simulation2.Update((int)(dt*1000));
+	m.Simulation2.Interpolate(dt, 0);
 
 	if (m.WalkEnabled && m.CurrentSpeed)
 	{

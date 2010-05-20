@@ -15,14 +15,18 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_SIMULATIONCOMMAND
+#define INCLUDED_SIMULATIONCOMMAND
 
-#include "ICmpCommandQueue.h"
+#include "scriptinterface/ScriptVal.h"
 
-#include "simulation2/system/InterfaceScripted.h"
+/**
+ * Simulation command, typically received over the network in multiplayer games.
+ */
+struct SimulationCommand
+{
+	int player;
+	CScriptValRooted data;
+};
 
-BEGIN_INTERFACE_WRAPPER(CommandQueue)
-DEFINE_INTERFACE_METHOD_2("PushLocalCommand", void, ICmpCommandQueue, PushLocalCommand, int, CScriptVal)
-DEFINE_INTERFACE_METHOD_1("PostNetworkCommand", void, ICmpCommandQueue, PostNetworkCommand, CScriptVal)
-// Excluded: FlushTurn (doesn't make sense for scripts to call it)
-END_INTERFACE_WRAPPER(CommandQueue)
+#endif // INCLUDED_SIMULATIONCOMMAND

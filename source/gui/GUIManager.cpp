@@ -76,6 +76,11 @@ CGUIManager::~CGUIManager()
 {
 }
 
+bool CGUIManager::HasPages()
+{
+	return !m_PageStack.empty();
+}
+
 void CGUIManager::SwitchPage(const CStrW& pageName, CScriptVal initData)
 {
 	m_PageStack.clear();

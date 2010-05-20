@@ -257,10 +257,15 @@ static void Frame()
 	PROFILE_START("input");
 	MICROLOG(L"input");
 	PumpEvents();
-	//g_SessionManager.Poll();
-	if ( CNetHost::IsInitialised() )
-		CNetHost::GetSingleton().Poll();
 	PROFILE_END("input");
+	//g_SessionManager.Poll();
+
+	PROFILE_START("network poll");
+	if (g_NetServer)
+		g_NetServer->Poll();
+	if (g_NetClient)
+		g_NetClient->Poll();
+	PROFILE_END("network poll");
 
 	ogl_WarnIfError();
 

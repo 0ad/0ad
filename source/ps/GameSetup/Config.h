@@ -63,9 +63,6 @@ extern bool g_VSync;
 
 extern bool g_Quickstart;
 
-// If non-empty, specified map will be automatically loaded
-extern CStr g_AutostartMap;
-
 extern CStrW g_CursorName;
 
 class CmdLineArgs;

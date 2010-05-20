@@ -37,5 +37,6 @@
 
 class ScriptInterface;
 class CScriptVal;
+class CScriptValRooted;
 
 #endif // INCLUDED_SCRIPTTYPES

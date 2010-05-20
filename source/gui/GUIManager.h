@@ -49,16 +49,27 @@ public:
 
 	ScriptInterface& GetScriptInterface() { return m_ScriptInterface; }
 
-	// Load a new GUI page and make it active. All current pages will be destroyed.
+	/**
+	 * Returns whether there are any current pages.
+	 */
+	bool HasPages();
+
+	/**
+	 * Load a new GUI page and make it active. All current pages will be destroyed.
+	 */
 	void SwitchPage(const CStrW& name, CScriptVal initData);
 
-	// Load a new GUI page and make it active. All current pages will be retained,
-	// and will still be drawn and receive tick events, but will not receive
-	// user inputs.
+	/**
+	 * Load a new GUI page and make it active. All current pages will be retained,
+	 * and will still be drawn and receive tick events, but will not receive
+	 * user inputs.
+	 */
 	void PushPage(const CStrW& name, CScriptVal initData);
 
-	// Unload the currently active GUI page, and make the previous page active.
-	// (There must be at least two pages when you call this.)
+	/**
+	 * Unload the currently active GUI page, and make the previous page active.
+	 * (There must be at least two pages when you call this.)
+	 */
 	void PopPage();
 
 	/**

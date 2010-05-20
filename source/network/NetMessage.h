@@ -47,6 +47,8 @@
 
 class CNetMessage : public ISerializable
 {
+	NONCOPYABLE(CNetMessage);
+
 	friend class CNetSession;
 
 public:
@@ -119,7 +121,7 @@ public:
 
 	/**
 	 * Retrieves the size in bytes of the serialized message. Before calling
-	 * Serialize,the memory size for the buffer where to serialize the message
+	 * Serialize, the memory size for the buffer where to serialize the message
 	 * object can be found by calling this method.
 	 *
 	 * @return							The size of serialized message
@@ -132,18 +134,10 @@ public:
 	 * @return							The message as a string
 	 */
 	virtual CStr ToString( void ) const;
-	// virtual CStr GetString( void ) const;
-	// operator CStr() const { return GetString(); }
 
 private:
-
-	// Not implemented
-	CNetMessage( const CNetMessage& );
-	CNetMessage& operator=( const CNetMessage& );
-
 	bool			m_Dirty;			// Message has been modified
 	NetMessageType	m_Type;				// Message type
-	//u16				m_SerializeSize;	// Serialized message size in bytes
 
 public:
 
@@ -212,6 +206,28 @@ private:
 	~CNetMessageFactory( void );
 	CNetMessageFactory( const CNetMessageFactory& );
 	CNetMessageFactory& operator=( const CNetMessageFactory& );
+};
+
+/**
+ * Special message type for simulation commands.
+ * These commands are exposed as arbitrary JS objects, associated with a specific player.
+ */
+class CSimulationMessage : public CNetMessage
+{
+public:
+	CSimulationMessage(ScriptInterface& scriptInterface);
+	CSimulationMessage(ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, jsval data);
+	virtual u8* Serialize(u8* pBuffer) const;
+	virtual const u8* Deserialize(const u8* pStart, const u8* pEnd);
+	virtual size_t GetSerializedLength() const;
+	virtual CStr ToString() const;
+
+	u32 m_Client;
+	i32 m_Player;
+	u32 m_Turn;
+	CScriptValRooted m_Data;
+private:
+	ScriptInterface& m_ScriptInterface;
 };
 
 // This time, the classes are created

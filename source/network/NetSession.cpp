@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -139,7 +139,7 @@ bool CNetHost::Connect( const CStr& host, uint port )
 	ENetAddress		addr;
 	PeerSession		item;
 
-	assert( m_Host );
+	debug_assert( m_Host );
 
 	// Bind to specified host
 	addr.port = port;
@@ -196,8 +196,8 @@ bool CNetHost::Disconnect( CNetSession* pSession )
 	// Validate parameters
 	if ( !pSession ) return false;
    
-	assert( m_Host );
-	assert( pSession->m_Peer );
+	debug_assert( m_Host );
+	debug_assert( pSession->m_Peer );
 
 	// Disconnect peer
     enet_peer_disconnect( pSession->m_Peer, 0 );
@@ -233,7 +233,7 @@ bool CNetHost::Disconnect( CNetSession* pSession )
 //-----------------------------------------------------------------------------
 /*bool CNetHost::Run( void )
 {
-	assert( m_Host );
+	debug_assert( m_Host );
 
 	// Host created?
 	if ( !m_Host ) return false;
@@ -354,7 +354,7 @@ bool CNetHost::Poll( void )
 	PeerSession					item;
 	PeerSessionList::iterator	it;
 
-	assert( m_Host );
+	debug_assert( m_Host );
 
 	// Poll host for events
 	while ( enet_host_service( m_Host, &event, 0 ) > 0 )
@@ -416,20 +416,24 @@ bool CNetHost::Poll( void )
 				// Is this our session?
 				if ( it->pPeer == event.peer )
 				{
+					bool ok = false;
+
 					// Create message from raw data
 					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
-					if ( !pNewMessage ) return false;
+					if ( pNewMessage )
+					{
+						NET_LOG4( "Message %s of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
 
-					NET_LOG4( "Message %s of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
+						ok = HandleMessageReceive( pNewMessage, it->pSession );
 
-					// Successfully handled?
-					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) {
-						enet_packet_destroy( event.packet );
-						return false;
+						delete pNewMessage;
 					}
 
 					// Done using the packet
 					enet_packet_destroy( event.packet );
+
+					if (! ok)
+						return false;
 				}
 			}
 
@@ -443,8 +447,6 @@ bool CNetHost::Poll( void )
 //-----------------------------------------------------------------------------
 // Name: Broadcast()
 // Desc: Broadcast the specified message to connected clients
-// Note: Reference counting for a sending message requires multithreading 
-//		 locking mechanisms so a clone of the message is made and sent out
 //-----------------------------------------------------------------------------
 void CNetHost::Broadcast( const CNetMessage* pMessage )
 {
@@ -501,8 +503,8 @@ bool CNetHost::SendMessage(
 	// Validate parameters
 	if ( !pMessage || !pSession ) return false;
 
-	assert( pSession->m_Peer );
-	assert( m_Host );
+	debug_assert( pSession->m_Peer );
+	debug_assert( m_Host );
 
 	size_t size = pMessage->GetSerializedLength();
 
@@ -544,7 +546,7 @@ CNetMessage* CNetHost::ReceiveMessage( const CNetSession* pSession )
 	// Validate parameters
 	if ( !pSession ) return NULL;
 
-	assert( pSession->m_Peer );
+	debug_assert( pSession->m_Peer );
 
 	// Let ENet receive a message from peer
 	ENetPacket* pPacket = enet_peer_receive( pSession->m_Peer, ENET_DEFAULT_CHANNEL );
@@ -705,7 +707,7 @@ void CNetSession::Push( CNetMessage* pMessage )
 	// Validate parameters
 	if ( !pMessage ) return;
 
-	assert( m_Host );
+	debug_assert( m_Host );
 
 	m_Host->SendMessage( this, pMessage );
 }
@@ -716,7 +718,7 @@ void CNetSession::Push( CNetMessage* pMessage )
 //-----------------------------------------------------------------------------
 CNetMessage* CNetSession::TryPop( void )
 {
-	assert( m_Host );
+	debug_assert( m_Host );
 
 	return m_Host->ReceiveMessage( this );
 }
@@ -839,8 +841,8 @@ bool CNetServerSession::BaseHandler(
 									CNetMessage* pMessage,
 									CNetSession* pSession )
 {
-	assert( pMessage );
-	assert( pSession );
+	debug_assert( pMessage );
+	debug_assert( pSession );
 
 	// Validate parameters
 	if ( !pMessage || !pSession ) return false;
@@ -882,9 +884,9 @@ bool CNetServerSession::HandshakeHandler(
 										 CNetMessage* pMessage,
 										 CNetSession* pSession )
 {
-	assert( pMessage );
-	assert( pSession );
-	assert( m_Server );
+	debug_assert( pMessage );
+	debug_assert( pSession );
+	debug_assert( m_Server );
 
 	// Validate parameters
 	if ( !pMessage || !pSession ) return false;
