@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -138,45 +138,6 @@ public:
 private:
 	bool			m_Dirty;			// Message has been modified
 	NetMessageType	m_Type;				// Message type
-
-public:
-
-	/**
-	 * Register a selection of message types as JS constants.
-	 * The constant's names will be the same as those of the enums
-	 */
-	static void ScriptingInit( void );
-	
-	/*static CCommandMessage* CommandFromJSArgs(
-											  const CEntityList &entities,
-											  JSContext* cx,
-											  uintN argc,
-											  jsval* argv,
-											  bool isQueued );*/
-
-	static CNetMessage* CommandFromJSArgs(
-											  const CEntityList &entities,
-											  JSContext* cx,
-											  uintN argc,
-											  jsval* argv,
-											  bool isQueued );
-
-	static CNetMessage* CreatePositionMessage(
-											  const CEntityList& entities,
-											  const int type,
-											  CVector2D pos );
-
-	static CNetMessage* CreateEntityIntMessage(
-											   const CEntityList& entities,
-											   const int type,
-											   HEntity& target,
-											   int action );
-
-	static CNetMessage* CreateProduceMessage( 
-											 const CEntityList& entities,
-											 const int type,
-											 int proType,
-											 const CStrW& name );
 };
 
 /*
@@ -196,8 +157,6 @@ public:
 	 * @return							The new message created
 	 */
 	static CNetMessage* CreateMessage( const void* pData, size_t dataSize );
-
-protected:
 
 private:
 

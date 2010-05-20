@@ -30,7 +30,6 @@
 #include "Network.h"
 #include "NetSession.h"
 #include "NetTurnManager.h"
-#include "simulation/TurnManager.h"
 #include "scripting/ScriptableObject.h"
 #include "ps/GameAttributes.h"
 #include "ps/scripting/JSMap.h"
@@ -107,7 +106,6 @@ public:
 	virtual ~CNetServer( void );
 
 	bool Start		( JSContext *pContext, uintN argc, jsval *argv );
-//	void Shutdown	( void );
 
 	/**
 	 * Returns true indicating the host acts as a server
@@ -133,19 +131,6 @@ public:
 	CNetSession* RemoveSession( CNetSession* pSession );
 
 	/**
-	 * Removes all the sessions managed by the network server
-	 *
-	 */
-	//void RemoveAllSessions( void );
-
-	/**
-	 * Returns the number of session the server manages
-	 *
-	 * @return					The number of sessions
-	 */
-	//uint GetSessionCount( void ) const;
-
-	/**
 	 * Returns the session object for the specified ID
 	 *
 	 * @param sessionID			The session ID
@@ -154,8 +139,6 @@ public:
 	 */
 	CNetSession* GetSessionByID( uint sessionID );
 
-	CNetTurnManager* GetTurnManager() { debug_assert(m_ServerTurnManager); return m_ServerTurnManager; }
-
 protected:
 
 	virtual bool SetupSession			( CNetSession* pSession );
@@ -163,26 +146,6 @@ protected:
 	virtual bool HandleDisconnect		( CNetSession *pSession );
 
 private:
-
-	//void ClientConnect		( ENetPeer* pPeer );
-	//void ClientDisconnect	( ENetPeer* pPeer );
-	//void ClientReceive		( ENetPeer* pPeer, ENetPacket* pPacket );
-
-	/**
-	 * Returns the session associated with the specified ENet peer
-	 *
-	 * @param pPeer				ENet peer
-	 * @return					The session object if found or NULL
-	 */
-	//CNetSession* GetSessionByPeer( const ENetPeer* pPeer );
-
-	/**
-	 * Setup client game by sending the apropiate network messages. It also
-	 * inform the client about the other connected clients as well as player
-	 * slot assignment and attributes.
-	 *
-	 */
-	//void SetupNewSession( CNetSession* pSession );
 
 	/**
 	 * Loads the player properties into the specified message
@@ -232,7 +195,6 @@ private:
 	 * @param pProperty			Pointer to game property
 	 * @param pData				Context pointer passed on iteration startup
 	 */
-	// IterateCB GameSetupMessageCallbak;
 	static void GameSetupMessageCallback( 
 										 const CStrW& name,
 										 ISynchedJSProperty *pProperty,
@@ -246,20 +208,9 @@ private:
 	uint GetFreeSessionID( void ) const;
 
 	IDSessionMap	m_IDSessions;		// List of connected ID and session pairs
-	//CScriptObject	m_ScriptConnect;	// Script client connect dispatch
-	//CScriptObject	m_ScriptDisconnect;	// Script client disconnect dispatch
-	//CScriptObject	m_ScriptChat;		// Script client chat dispatch
-
 
 public:
 
-	/**
-	 *
-	 *
-	 * @param addr				Address where to bind
-	 * @return					PS_OK if bind successfully, error code otherwise
-	 */
-	//PS_RESULT Bind( const CSocketAddress& addr );
 	void			SetPlayerPassword	( const CStr& password );
 	CStrW			GetPlayerName		( void ) const	{ return m_PlayerName; }
 	NetServerState	GetState			( void ) const	{ return m_State; }
@@ -271,18 +222,6 @@ protected:
 	// Assign a session ID to the session. Do this just before calling AddSession
 	void AssignSessionID( CNetSession* pSession );
 
-	// Add the session. This will be called after the session passes the
-	// handshake and authentication stages. AssignSessionID should've been called
-	// on the session prior to calling this method.
-	//void AddSession( CNetServerSession* pSession );
-
-	// Remove the session from the server
-	//void RemoveSession( CNetServerSession* pSession );
-
-	// Queue a command coming in from the wire. The command has been validated
-	// by the caller.
-	void QueueIncomingCommand( CNetMessage* pMessage );
-	
 	// Call the JS callback for incoming events
 	void OnPlayerChat	( const CStrW& from, const CStrW& message );
 	virtual void OnPlayerJoin	( CNetSession* pSession );
@@ -297,12 +236,6 @@ protected:
 	static bool OnInGame		( void* pContext, CFsmEvent* pEvent );
 	static bool OnChat			( void* pContext, CFsmEvent* pEvent );
 	
-	// OVERRIDES FROM CServerSocket
-	//virtual void OnAccept( const CSocketAddress& address );
-
-	// Will only be called from the Network Thread, by the OnAccept handler
-	//virtual CNetServerSession* CreateSession( CSocketInternal* pSocketInternal);
-
 	// Ask the server if the session is allowed to start observing.
 	//
 	// Returns:
@@ -311,14 +244,11 @@ protected:
 	virtual bool AllowObserver( CNetSession* pSession );
 
 public:
-	CMutex					m_Mutex;			// Synchronization object for batches
 	CGame*					m_Game;				// Pointer to actual game
 
 private:
 
 	CGameAttributes*		m_GameAttributes;	// Stores game attributes
-	//int					m_LastSessionID;	// Stores the last session ID
-	//SessionMap			m_Sessions;			// Managed sessions
 	CJSMap< IDSessionMap >	m_JsSessions;
 
 	/*
@@ -332,7 +262,6 @@ private:
 	NetServerState			m_State;			// Holds server state	
 	CStrW					m_Name;				// Server name
 	CStrW					m_WelcomeMessage;	// Nice welcome message
-	//CPlayer*				m_Player;			// Pointer to 'server' player
 	CStrW					m_PlayerName;		// Player name
 	CStrW					m_PlayerPassword;	// Player password
 	int						m_Port;				// The listening port
@@ -340,15 +269,10 @@ private:
 	CScriptObject			m_OnClientConnect;
 	CScriptObject			m_OnClientDisconnect;
 
-//	static CGameAttributes::UpdateCallback	AttributeUpdate;
-//	static CPlayer::UpdateCallback			PlayerAttributeUpdate;
-//	static PlayerSlotAssignmentCB			PlayerSlotAssignmentCallback;
-
 	static void AttributeUpdate			( const CStrW& name, const CStrW& newValue, void* pData);
 	static void PlayerAttributeUpdate	( const CStrW& name, const CStrW& value, CPlayer* pPlayer, void* pData );
 	static void PlayerSlotAssignment	( void* pData, CPlayerSlot* pPlayerSlot );
 
-	CTurnManager*	m_TurnManager;
 	CNetServerTurnManager* m_ServerTurnManager;
 };
 

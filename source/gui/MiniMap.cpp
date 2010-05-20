@@ -195,6 +195,9 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 	Destination.y = CELL_SIZE * m_MapSize * ( (m_CachedActualSize.bottom - MousePos.y) /
 		m_CachedActualSize.GetHeight() );
 
+	UNUSED2(button);
+	UNUSED2(clicks);
+/*
 	g_JSGameEvents.FireWorldClick(
 		button,
 		clicks,
@@ -205,6 +208,7 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 		NULL,
 		(int)Destination.x,
 		(int)Destination.y);
+*/
 }
 
 // render view rect : John M. Mena

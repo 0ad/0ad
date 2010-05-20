@@ -29,7 +29,6 @@
 // INCLUDES
 #include "Network.h"
 #include "ps/GameAttributes.h"
-#include "ps/Player.h"
 #include "fsm.h"
 #include <enet/enet.h>
 
@@ -66,6 +65,8 @@ typedef std::vector< PeerSession >	PeerSessionList;
 
 class CNetHost
 {
+	NONCOPYABLE(CNetHost);
+
 public:
 
 	CNetHost( void );
@@ -82,13 +83,6 @@ public:
 	 */
 	virtual bool IsServer( void ) const { return false; }
 
-	/**
-	 * Indicates whether the host is currently a client
-	 *
-	 * @return					Boolean indicating whether the host is a client
-	 */
-	virtual bool IsClient( void ) const { return false; }
-	
 	/**
 	 * Returns the number of sessions for the host
 	 *
@@ -153,14 +147,6 @@ public:
 
 protected:
 
-	/**
-	 * Attempts to resize the internal buffer to the size indicated by the
-	 * passed parameter.
-	 *
-	 * @param size						The new size for the buffer
-	 */
-	void ResizeBuffer( size_t size );
-
 	// Allow application to handle new client connect
 	virtual bool SetupSession			( CNetSession* pSession );
 	virtual bool HandleConnect			( CNetSession* pSession );
@@ -168,27 +154,11 @@ protected:
 	virtual bool HandleMessageReceive	( 
 										 CNetMessage* pMessage,
 										 CNetSession* pSession );
-
-	/**
-	 * Worker thread function
-	 *
-	 * @pData					Argument specified on thread creation
-	 * @return					NULL
-	 */
-	//static void* WorkerFunc( void* pData );
-
 private:
 
-	// Not implemented
-	CNetHost( const CNetHost& );
-	CNetHost& operator=( const CNetHost& );
-
-	u8*				m_Buffer;		// Serialize out messages buffer
-	size_t		    m_BufferSize;	// Output buffer size
+	std::vector<u8>	m_Buffer;		// Serialize out messages buffer
 	ENetHost*		m_Host;			// Represents this host
 	PeerSessionList	m_PeerSessions;	// Session list of connected peers
-	//pthread_t		m_WorkerID;		// Worker thread
-	//sem_t*		m_StopWorker;	// Worker thread stop semaphore
 };
 
 /*
@@ -208,8 +178,7 @@ private:
 */
 
 class CNetSession : public CFsm,
-					public CJSObject< CNetSession >,
-					public IMessagePipeEnd
+					public CJSObject< CNetSession >
 {
 	NONCOPYABLE(CNetSession);
 
@@ -247,43 +216,9 @@ public:
 	 */
 	void SetID( uint ID );
 
-	/**
-	 * Allows both client and server to set a callback handler
-	 *
-	 * @param pCallbackHandler			Callback handler
-	 */
-	//void SetCallbackHandler( ISessionCallback* pCallbackHandler );
-
-	/**
-	 * Disconnects the client from remote host
-	 *
-	 */
-	void Reset( void );
-
-	void SetPlayer( CPlayer* pPlayer );
-	CPlayer* GetPlayer( void ) { return m_Player; }
 	void SetPlayerSlot( CPlayerSlot* pPlayerSlot );
 	CPlayerSlot* GetPlayerSlot( void ) { return m_PlayerSlot; }
-	void StartGame( void );
-	virtual void Push( CNetMessage* pMessage );
-	virtual CNetMessage* TryPop( void );
-	bool IsReadyForTurn( void ) const { return m_ReadyForTurn; }
-	void SetReadyForTurn( bool newValue ) {	m_ReadyForTurn = newValue; }
-	bool JSI_Close( JSContext *cx, uintN argc, jsval *argv );
 	static void ScriptingInit( void );
-
-	//bool HandleMessage( CNetMessage* pMessage );
-
-protected:
-
-	/**
-	 * Process the message passed as parameter
-	 *
-	 * @param message					The message to process
-	 * @return							true if the message was handler
-	 *									successufully, false otherwise
-	 */
-	//bool ProcessMessage( const CNetMessage& message );
 
 private:
 
@@ -294,61 +229,8 @@ private:
 	ENetPeer*		  m_Peer;			 // Represents the peer host
 	uint			  m_ID;				 // Session ID
 	CStrW			  m_Name;			 // Session name
-	CPlayer*		  m_Player;
 	CPlayerSlot*	  m_PlayerSlot;
-	bool			  m_ReadyForTurn;	// Next turn ready flag
 };
-
-/*
-	CLASS			: CNetServerSession
-	DESCRIPTION		:
-	NOTES			:
-*/
-
-/*class CNetServerSession : public CNetSession, 
-						  public CJSObject< CNetServerSession >
-{
-public:
-
-	bool			IsObserver		( void ) const	{ return m_IsObserver; }
-	CPlayer*		GetPlayer		( void ) const	{ return m_Player; }
-	CPlayerSlot*	GetPlayerSlot	( void ) const	{ return m_PlayerSlot; }
-	void			StartGame		( void );
-	void			SetPlayer		( CPlayer* pPlayer );
-	void			SetPlayerSlot	( CPlayerSlot* pPlayerSlot );
-
-protected:
-
-	CNetServerSession( 
-					   CNetServer* pServer,
-					   NetMessageHandler* pHandler = m_HandshakeHandler );
-	CNetServerSession(
-					   CNetServer* pServer,
-					   CSocketInternal* pSocketInternal,
-					   NetMessageHandler* pHandler = m_HandshakeHandler );
-	virtual ~CNetServerSession( void );
-
-private:
-
-	static void		ScriptingInit	( void );
-	bool			JSI_Close		( 
-									  JSContext* pContext,
-									  uintN argc,
-									  jsval* argv );
-
-	CNetServer*		m_Server;
-	CPlayer*		m_Player;
-	CPlayerSlot*	m_PlayerSlot;
-	bool			m_IsObserver;
-
-	static bool HandshakeHandler( CNetMessage* pMessage, CNetSession* pSession );
-	static bool ObserverHandler	( CNetMessage* pMessage, CNetSession* pSession );
-	static bool BaseHandler		( CNetMessage* pMessage, CNetSession* pSession );
-	static bool AuthHandler		( CNetMessage* pMessage, CNetSession* pSession );
-	static bool PreGameHandler	( CNetMessage* pMessage, CNetSession* pSession );
-	static bool InGameHandler	( CNetMessage* pMessage, CNetSession* pSession );
-	static bool ChatHandler		( CNetMessage* pMessage, CNetSession* pSession );
-};*/
 
 #endif	// NETSESSION_H
 

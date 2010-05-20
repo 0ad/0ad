@@ -452,7 +452,6 @@ static void RegisterJavascriptInterfaces()
 	PlayerCollection::Init( "PlayerCollection" );
 
 	// network
-	CNetMessage::ScriptingInit();
 	CNetClient::ScriptingInit();
 	CNetServer::ScriptingInit();
 	CNetSession::ScriptingInit();
@@ -777,11 +776,6 @@ void Shutdown(int flags)
 	TIMER_BEGIN(L"shutdown ConfigDB");
 	delete &g_ConfigDB;
 	TIMER_END(L"shutdown ConfigDB");
-
-	// Shut down the network loop
-	TIMER_BEGIN(L"shutdown CSocketBase");
-	CSocketBase::Shutdown();
-	TIMER_END(L"shutdown CSocketBase");
 
 	TIMER_BEGIN(L"shutdown CNetLogManager");
 	CNetLogManager::Shutdown();

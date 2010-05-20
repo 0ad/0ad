@@ -38,17 +38,6 @@
 // DECLARATIONS
 CNetServer*	g_NetServer = NULL;
 
-class CServerTurnManager : public CTurnManager
-{
-public:
-	CServerTurnManager(CNetServer& server) : m_Server(server) { }
-	virtual void QueueLocalCommand(CNetMessage* pMessage);
-	virtual void NewTurn();
-	virtual bool NewTurnReady();
-private:
-	CNetServer& m_Server;
-};
-
 //-----------------------------------------------------------------------------
 // Name: CNetServer()
 // Desc: Constructor
@@ -56,13 +45,11 @@ private:
 CNetServer::CNetServer( CGame *pGame, CGameAttributes *pGameAttributes )
 : m_JsSessions( &m_IDSessions )
 {
-	m_TurnManager = new CServerTurnManager(*this);
 	m_ServerTurnManager = NULL;
 
 	m_Game				= pGame;
 	m_GameAttributes	= pGameAttributes;
 	m_MaxObservers		= MAX_OBSERVERS;
-	//m_LastSessionID		= 1;
 	m_Port				= DEFAULT_HOST_PORT;
 	m_Name				= DEFAULT_SERVER_NAME;
 	m_PlayerName		= DEFAULT_PLAYER_NAME;
@@ -72,16 +59,6 @@ CNetServer::CNetServer( CGame *pGame, CGameAttributes *pGameAttributes )
 	m_GameAttributes->SetUpdateCallback( AttributeUpdate, this );
 	m_GameAttributes->SetPlayerUpdateCallback( PlayerAttributeUpdate, this );
 	m_GameAttributes->SetPlayerSlotAssignmentCallback( PlayerSlotAssignment, this );
-
-	if (!g_UseSimulation2)
-		m_Game->GetSimulation()->SetTurnManager(m_TurnManager);
-
-	// Set an incredibly long turn length for debugging
-	// (e.g. less command batch spam that way)
-	for ( uint i = 0; i < 3; i++ )
-	{
-		m_TurnManager->SetTurnLength( i, CTurnManager::DEFAULT_TURN_LENGTH );
-	}
 
 	g_ScriptingHost.SetGlobal( "g_NetServer", OBJECT_TO_JSVAL( GetScript() ) );
 }
@@ -117,8 +94,6 @@ void CNetServer::ScriptingInit( void )
 	AddProperty( L"onClientDisconnect", &CNetServer::m_OnClientDisconnect );
 
 	CJSObject< CNetServer >::ScriptingInit( "NetServer" );
-
-	//CGameAttributes::ScriptingInit();
 }
 
 //-----------------------------------------------------------------------------
@@ -167,18 +142,6 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NSS_PREGAME, ( uint )NMT_CHAT, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ERROR, NSS_INGAME, (void*)&OnError, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_CHAT, NSS_INGAME, (void*)&OnChat, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PATROL, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ADD_WAYPOINT, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_CONTACT_ACTION, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PRODUCE, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PLACE_OBJECT, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_RUN, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SET_RALLY_POINT, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SET_STANCE, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_CONTACT_ACTION, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SIMULATION_COMMAND, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NSS_INGAME, (void*)&OnInGame, pContext );
 
@@ -345,15 +308,7 @@ void CNetServer::OnPlayerLeave( CNetSession* pSession )
 	// Validate parameters
 	if ( !pSession ) return;
 
-	CPlayer*			pPlayer		= NULL;
-	CPlayerSlot*		pPlayerSlot	= NULL;
-	CPlayerLeaveMessage playerLeave;
-
-	// Validate parameters
-	if ( !pSession ) return;
-
-	pPlayer		= pSession->GetPlayer();
-	pPlayerSlot = pSession->GetPlayerSlot();
+	CPlayerSlot* pPlayerSlot = pSession->GetPlayerSlot();
 
 	switch ( m_State )
 	{
@@ -371,7 +326,6 @@ void CNetServer::OnPlayerLeave( CNetSession* pSession )
 		// TODO Set everything up for re-connect and resume
 		if ( pPlayerSlot )
 		{
-			m_TurnManager->SetClientPipe( pPlayerSlot->GetSlotID(), NULL );
 			pPlayerSlot->AssignClosed();
 		}
 		break;
@@ -383,8 +337,8 @@ void CNetServer::OnPlayerLeave( CNetSession* pSession )
 	}
 	
 	// Inform other clients about client disconnection
+	CPlayerLeaveMessage playerLeave;
 	playerLeave.m_SessionID = pSession->GetID();
-	
 	Broadcast( &playerLeave );
 
 	// Script object defined?
@@ -416,18 +370,7 @@ bool CNetServer::OnError( void* pContext, CFsmEvent* pEvent )
 	CErrorMessage* pMessage = ( CErrorMessage* )pEvent->GetParamRef();
 	if ( pMessage )
 	{
-		if ( pMessage->m_State == SS_UNCONNECTED )
-		{
-			//if ( pSession->GetID() != -1)
-			//	pServer->RemoveSession( pSession );
-
-			//delete pSession;
-		}
-		else
-		{
-			// Weird stuff...
-			LOG( CLogger::Warning, LOG_CATEGORY, L"NMT_ERROR: %hs", pMessage->ToString().c_str() );
-		}
+		LOG( CLogger::Warning, LOG_CATEGORY, L"NMT_ERROR: %hs", pMessage->ToString().c_str() );
 	}
 
 	return true;
@@ -459,8 +402,7 @@ bool CNetServer::OnHandshake( void* pContext, CFsmEvent* pEvent )
 			CCloseRequestMessage closeRequest;
 			pServer->SendMessage( pSession, &closeRequest );
 
-			CErrorMessage error( PS_OK, SS_UNCONNECTED );
-			pSession->Update( ( uint )NMT_ERROR, &error );
+			// TODO: probably need to abort and disconnect the session somehow
 		}
 		else
 		{
@@ -572,24 +514,10 @@ bool CNetServer::OnInGame( void* pContext, CFsmEvent* pEvent )
 			return true;
 		}
 
-		if ( pMessage->GetType() >= NMT_COMMAND_FIRST && pMessage->GetType() < NMT_COMMAND_LAST )
-		{
-			//pSession->m_pPlayer->ValidateCommand(pMsg);
-			pServer->QueueIncomingCommand( pMessage );
-			
-			return true;
-		}
-
 		if ( pMessage->GetType() == NMT_END_COMMAND_BATCH )
 		{
-			if (g_UseSimulation2)
-			{
-				CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (pMessage);
-				pServer->m_ServerTurnManager->NotifyFinishedClientCommands(pSession->GetID(), endMessage->m_Turn);
-			}
-
-			// TODO Update client timing information and recalculate turn length
-			pSession->SetReadyForTurn( true );
+			CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (pMessage);
+			pServer->m_ServerTurnManager->NotifyFinishedClientCommands(pSession->GetID(), endMessage->m_Turn);
 		}
 	}
 
@@ -643,107 +571,6 @@ CNetSession* CNetServer::GetSessionByID( uint sessionID )
 }
 
 //-----------------------------------------------------------------------------
-// Name: AddSession()
-// Desc: Adds a new session to the list of managed sessions
-//-----------------------------------------------------------------------------
-/*void CNetServer::AddSession( CNetSession* pSession )
-{
-	// Validate parameter
-	if ( !pSession ) return;
-
-	// Setup new session
-	//SetupNewSession();
-
-	// Broadcase a new message informing about the newly connected client
-	CPlayerJoinMessage playerJoin;
-	playerJoin.m_Clients.resize( 1 );
-	playerJoin.m_Clients[ 0 ].m_SessionID	= pSession->GetID();
-	playerJoin.m_Clients[ 0 ].m_Name		= pSession->GetName();
-
-	Broadcast( playerJoin );
-
-	// Store new session
-	m_IDSessions[ pSession->GetID() ] = pSession;
-}*/
-
-//-----------------------------------------------------------------------------
-// Name: RemoveSession()
-// Desc: Removes the specified session from the list of sessions
-//-----------------------------------------------------------------------------
-/*CNetSession* CNetServer::RemoveSession( CNetSession* pSession )
-{
-	CPlayer*			pPlayer		= NULL;
-	CPlayerSlot*		pPlayerSlot	= NULL;
-	CPlayerLeaveMessage playerLeave;
-	uint				sessionID;
-
-	// Validate parameters
-	if ( !pSession ) return;
-
-	pPlayer		= pSession->GetPlayer();
-	pPlayerSlot = pSession->GetPlayerSlot();
-	sessionID	= pSession->GetID();
-
-	switch ( m_State )
-	{
-	case SERVER_STATE_PREGAME:
-				
-		// Delete player's slot and sync client disconnection
-		if ( pPlayerSlot ) pPlayerSlot->AssignClosed();
-
-		break;
-
-	case SERVER_STATE_INGAME:
-
-		// Revert player entities to Gaia control and 
-		// wait for client reconnection
-		// TODO Reassign entities to Gaia control
-		// TODO Set everything up for re-connect and resume
-		if ( pPlayerSlot )
-		{
-			SetClientPipe( pPlayerSlot->GetSlotID(), NULL );
-			pPlayerSlot->AssignClosed();
-		}
-
-		break;
-
-	case SERVER_STATE_POSTGAME:
-
-		// Synchronize disconnection
-
-		break;
-	}
-	
-	// Inform other clients about client disconnection
-	playerLeave.m_SessionID = sessionID;
-	
-	Broadcast( playerLeave );
-
-	// Free session slot from the list for later reuse
-	m_IDSessions[ sessionID ] = NULL;
-
-	// TODO Handle observers
-}*/
-
-//-----------------------------------------------------------------------------
-// Name: RemoveAllSessions()
-// Desc: Removes all sessions from the list
-//-----------------------------------------------------------------------------
-/*void CNetServer::RemoveAllSessions( void )
-{
-	SessionList::iterator it = m_Sessions.begin();
-	for ( ; it != m_Sessions.end(); it++ )
-	{
-		CNetSession* pCurrSession = it->second;
-		if ( !pCurrSession ) continue;
-
-		RemoveSession( pCurrSession );
-	}
-
-	m_Sessions.clear();
-}*/
-
-//-----------------------------------------------------------------------------
 // Name: SetPlayerPassword()
 // Desc: Sets player new password
 //-----------------------------------------------------------------------------
@@ -765,13 +592,8 @@ int CNetServer::StartGame( void )
 
 	if ( m_Game->StartGame( m_GameAttributes ) != PSRETURN_OK ) return -1;
 
-	if (g_UseSimulation2)
-	{
-		m_ServerTurnManager = new CNetServerTurnManager(*m_Game->GetSimulation2(), *this, m_Game->GetLocalPlayer()->GetPlayerID(), SERVER_SESSIONID);
-		m_Game->SetTurnManager(m_ServerTurnManager);
-	}
-
-	m_TurnManager->Initialize( m_GameAttributes->GetSlotCount() );
+	m_ServerTurnManager = new CNetServerTurnManager(*m_Game->GetSimulation2(), *this, m_Game->GetLocalPlayer()->GetPlayerID(), SERVER_SESSIONID);
+	m_Game->SetTurnManager(m_ServerTurnManager);
 
 	for ( i = 0; i < m_GameAttributes->GetSlotCount(); i++ )
 	{
@@ -780,27 +602,14 @@ int CNetServer::StartGame( void )
 
 		if ( pCurrSlot->GetAssignment() == SLOT_SESSION )
 		{
-			m_TurnManager->SetClientPipe( i, pCurrSlot->GetSession() );
-			if (g_UseSimulation2)
-				m_ServerTurnManager->InitialiseClient(pCurrSlot->GetSessionID());
+			m_ServerTurnManager->InitialiseClient(pCurrSlot->GetSessionID());
 		}
 	}
 
 	m_State = SERVER_STATE_INGAME;
 
-	for ( i = 0; i < GetSessionCount(); i++ )
-	{
-		CNetSession* pCurrSession = GetSession( i );
-		if ( !pCurrSession ) continue;
-
-		pCurrSession->StartGame();
-	}
-		
 	CGameStartMessage gameStart;
 	Broadcast( &gameStart );
-
-	// This is the signal for everyone to start their simulations.
-	//SendBatch( 1 );
 
 	return 0;
 }
@@ -892,23 +701,6 @@ uint CNetServer::GetFreeSessionID( void ) const
 	// No need to be conservative with session IDs; just use a global counter.
 	static uint lastSessionID = CLIENT_MIN_SESSIONID;
 	return lastSessionID++;
-
-	/*
-	// Loop through the list of sessions and return the first
-	// ID for which the associated session is NULL. If no such
-	// free slot is found, return a new session ID which is higher
-	// than the last session ID from the list.
-	IDSessionMap::const_iterator it = m_IDSessions.begin();
-	for ( ; it != m_IDSessions.end(); it++ )
-	{
-		CNetSession* pCurrSession = it->second;
-		if ( !pCurrSession ) return it->first;
-
-		sessionID++;
-	}
-
-	return sessionID;
-	*/
 }
 
 //-----------------------------------------------------------------------------
@@ -994,78 +786,6 @@ void CNetServer::PlayerSlotAssignment(
 bool CNetServer::AllowObserver( CNetSession* UNUSED( pSession ) )
 {
 	return m_Observers.size() < m_MaxObservers;
-}
-
-//-----------------------------------------------------------------------------
-// Name: NewTurnReady()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CServerTurnManager::NewTurnReady()
-{
-	// Check whether all sessions are ready for the next turn
-	for ( uint i = 0; i < m_Server.GetSessionCount(); i++ )
-	{
-		CNetSession* pCurrSession = m_Server.GetSession( i );
-		if ( !pCurrSession ) continue;
-
-		if ( !pCurrSession->IsReadyForTurn() )
-			return false;
-	}
-
-	return true;
-}
-
-//-----------------------------------------------------------------------------
-// Name: NewTurn()
-// Desc:
-//-----------------------------------------------------------------------------
-void CServerTurnManager::NewTurn()
-{
-	CScopeLock lock(m_Server.m_Mutex);
-	
-	// Reset session ready for next turn flag
-	for ( uint i = 0; i < m_Server.GetSessionCount(); i++ )
-	{
-		CNetSession* pCurrSession = m_Server.GetSession( i );
-		if ( !pCurrSession ) continue;
-
-		pCurrSession->SetReadyForTurn( false );
-	}
-	
-	RecordBatch( 2 );
-	RotateBatches();
-	ClearBatch( 2 );
-	IterateBatch( 1, CSimulation::GetMessageMask, m_Server.m_Game->GetSimulation() );
-	SendBatch( 1 );
-	//IterateBatch( 1, SendToObservers, this );
-}
-
-//-----------------------------------------------------------------------------
-// Name: QueueLocalCommand()
-// Desc:
-//-----------------------------------------------------------------------------
-void CServerTurnManager::QueueLocalCommand( CNetMessage *pMessage )
-{
-	// Validate parameters
-	if ( !pMessage ) return;
-
-	//LOG( NORMAL, LOG_CATEGORY, L"CServerTurnManager::QueueLocalCommand(): %hs.", pMessage->ToString().c_str() );
-
-	QueueMessage( 2, pMessage );
-}
-
-//-----------------------------------------------------------------------------
-// Name: QueueIncomingCommand()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetServer::QueueIncomingCommand( CNetMessage* pMessage )
-{
-	// Validate parameters
-	if ( !pMessage ) return;
-
-	//LOG( NORMAL, LOG_CATEGORY, L"CNetServer::QueueIncomingCommand(): %hs.", pMessage->ToString().c_str() );
-
-	m_TurnManager->QueueMessage( 2, pMessage );
 }
 
 //-----------------------------------------------------------------------------

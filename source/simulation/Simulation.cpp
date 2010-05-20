@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,6 @@
 #include "simulation/Scheduler.h"
 #include "simulation/Simulation.h"
 #include "simulation/TerritoryManager.h"
-#include "simulation/TurnManager.h"
 #include "simulation/TriggerManager.h"
 
 #define LOG_CATEGORY L"simulation"
@@ -50,7 +49,6 @@
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
-	m_pTurnManager((g_SinglePlayerTurnManager=new CSinglePlayerTurnManager())),
 	m_DeltaTime(0),
 	m_Time(0)
 {
@@ -58,15 +56,11 @@ CSimulation::CSimulation(CGame *pGame):
 
 CSimulation::~CSimulation()
 {
-delete g_SinglePlayerTurnManager;
-	g_SinglePlayerTurnManager=NULL;
 }
 
 int CSimulation::Initialize(CGameAttributes* pAttribs)
 {
 	m_Random.seed(0);		// TODO: Store a random seed in CGameAttributes and synchronize it accross the network
-
-	m_pTurnManager->Initialize(m_pGame->GetNumPlayers());
 
 	// Call the game startup script 
 	// TODO: Maybe don't do this if we're in Atlas
@@ -93,42 +87,9 @@ void CSimulation::RegisterInit(CGameAttributes *pAttribs)
 
 
 
-bool CSimulation::Update(double frameTime)
+bool CSimulation::Update(double UNUSED(frameTime))
 {
 	bool ok = true;
-
-	m_DeltaTime += frameTime;
-	
-	if (m_DeltaTime >= 0.0)
-	{
-		// A new simulation frame is required.
-		if (m_pTurnManager->NewTurnReady())
-		{
-			PROFILE( "simulation turn" );
-			Simulate();
-			double turnLength = m_pTurnManager->GetTurnLength() / 1000.0;
-			m_DeltaTime -= turnLength;
-			if (m_DeltaTime >= 0.0)
-			{
-				// The desired sim frame rate can't be achieved - we're being called
-				// with average(frameTime) > turnLength.
-				// Let the caller know we can't go fast enough - they should try
-			// cutting down on Interpolate and rendering, and call us a few times
-				// with frameTime == 0 to give us a chance to catch up.
-				ok = false;
-				debug_printf(L"WARNING: missing a simulation turn due to low FPS\n");
-			}
-		}
-		else
-		{
-			// The network is lagging behind the simulation rate. 
-			// Set delta time back to zero so we don't jump into the middle
-			// of the next simulation frame when we get the next turn.
-			// This creates "lag" on the client rather than just jumpiness.
-			m_DeltaTime = 0;
-		}
-	}
-
 	return ok;
 }
 
@@ -138,18 +99,8 @@ void CSimulation::DiscardMissedUpdates()
 		m_DeltaTime = 0.0;
 }
 
-void CSimulation::Interpolate(double frameTime)
+void CSimulation::Interpolate(double UNUSED(frameTime))
 {
-	double turnLength = m_pTurnManager->GetTurnLength()/1000.0;
-
-	// 'offset' should be how far we are between the previous and next
-	// simulation frames.
-	// m_DeltaTime/turnLength will usually be between -1 and 0, indicating
-	// the time until the next frame, so we can use that easily.
-	// If the simulation is going too slowly and hasn't been giving a chance
-	// to catch up before Interpolate is called, then m_DeltaTime > 0, so we'll
-	// just clamp it to offset=1, which is alright.
-	Interpolate(frameTime, clamp(m_DeltaTime / turnLength + 1.0, 0.0, 1.0));
 }
 
 void CSimulation::Interpolate(double frameTime, double offset)
@@ -166,40 +117,6 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 void CSimulation::Simulate()
 {
-	int time = m_pTurnManager->GetTurnLength();
-	
-	m_Time += time / 1000.0f;
-#if defined(DEBUG_SYNCHRONIZATION)
-	debug_printf(L"Simulation turn: %.3lf\n", m_Time);
-#endif
-
-	PROFILE_START( "scheduler tick" );
-	g_Scheduler.Update(time);
-	PROFILE_END( "scheduler tick" );
-	PROFILE_START( "entity updates" );
-	g_EntityManager.UpdateAll(time);
-	PROFILE_END( "entity updates" );
-
-	PROFILE_START( "projectile updates" );
-	m_pWorld->GetProjectileManager().UpdateAll(time);
-	PROFILE_END( "projectile updates" );
-
-	PROFILE_START( "los update" );
-	m_pWorld->GetLOSManager()->Update();
-	PROFILE_END( "los update" );
-
-	PROFILE_START("trigger update");
-	g_TriggerManager.Update(time);
-	PROFILE_END("trigger udpate");
-
-	PROFILE_START( "turn manager update" );
-	m_pTurnManager->NewTurn();
-	m_pTurnManager->IterateBatch(0, TranslateMessage, this);
-	PROFILE_END( "turn manager update" );
-	
-#if defined(DEBUG_SYNCHRONIZATION)
-	debug_printf(L"End turn\n", m_Time);
-#endif
 }
 
 // Location randomizer, for group orders...
@@ -299,159 +216,6 @@ void QueueOrder(const CEntityOrder& order, const std::vector<HEntity> &entities,
 
 size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void* UNUSED(userdata))
 {
-	CEntityOrder order;
-	bool isQueued = true;
-	
-#define ENTITY_POSITION(_msg, _order) \
-	do { \
-		_msg *msg=(_msg *)pMsg; \
-		isQueued = msg->m_IsQueued != 0; \
-		order.m_type=CEntityOrder::_order; \
-		order.m_target_location.x=(float)msg->m_TargetX; \
-		order.m_target_location.y=(float)msg->m_TargetY; \
-		RandomizeLocations(order, msg->m_Entities, isQueued); \
-	} while(0)
-#define ENTITY_POSITION_FORM(_msg, _order) \
-	do { \
-		_msg *msg=(_msg *)pMsg; \
-		isQueued = msg->m_IsQueued != 0; \
-		order.m_type=CEntityOrder::_order; \
-		order.m_target_location.x=(float)msg->m_TargetX; \
-		order.m_target_location.y=(float)msg->m_TargetY; \
-		FormationLocations(order, msg->m_Entities, isQueued); \
-	} while(0)
-#define ENTITY_ENTITY_INT(_msg, _order) \
-	do { \
-		_msg *msg=(_msg *)pMsg; \
-		isQueued = msg->m_IsQueued != 0; \
-		order.m_type=CEntityOrder::_order; \
-		order.m_target_entity=msg->m_Target; \
-		order.m_action=msg->m_Action; \
-		QueueOrder(order, msg->m_Entities, isQueued); \
-	} while(0)
-#define ENTITY_ENTITY_INT_BOOL(_msg, _order) \
-	do { \
-		_msg *msg=(_msg *)pMsg; \
-		isQueued = msg->m_IsQueued != 0; \
-		order.m_type=CEntityOrder::_order; \
-		order.m_target_entity=msg->m_Target; \
-		order.m_action=msg->m_Action; \
-		order.m_run=msg->m_Run != 0; \
-		QueueOrder(order, msg->m_Entities, isQueued); \
-	} while(0)
-#define ENTITY_INT_STRING(_msg, _order) \
-	do { \
-		_msg *msg=(_msg *)pMsg; \
-		isQueued = msg->m_IsQueued != 0; \
-		order.m_type=CEntityOrder::_order; \
-		order.m_name=msg->m_Name; \
-		order.m_produce_type=msg->m_Type; \
-		QueueOrder(order, msg->m_Entities, isQueued); \
-	} while(0)
-#define ENTITY_STRING(_msg, _order) \
-	do { \
-		_msg *msg=(_msg *)pMsg; \
-		isQueued = msg->m_IsQueued != 0; \
-		order.m_type=CEntityOrder::_order; \
-		order.m_name=msg->m_Stance; \
-		QueueOrder(order, msg->m_Entities, isQueued); \
-	} while(0)
-	
-	switch (pMsg->GetType())
-	{
-		case NMT_ADD_WAYPOINT:
-		{
-			CAddWaypointMessage *msg=(CAddWaypointMessage *)pMsg;
-			isQueued = msg->m_IsQueued != 0;
-			order.m_type=CEntityOrder::ORDER_LAST;
-			order.m_target_location.x=(float)msg->m_TargetX;
-			order.m_target_location.y=(float)msg->m_TargetY;
-			for(CEntityIt it = msg->m_Entities.begin(); it != msg->m_Entities.end(); ++it)
-			{
-				HEntity& hentity = *it;
-
-				const CEntityOrders& order_queue = hentity->m_orderQueue;
-				for(CEntityOrderCRIt ord_it = order_queue.rbegin(); ord_it != order_queue.rend(); ++ord_it)
-				{
-					if (ord_it->m_type == CEntityOrder::ORDER_PATH_END_MARKER)
-					{
-						order.m_type = CEntityOrder::ORDER_GOTO;
-						hentity->PushOrder(order);
-						break;
-					}
-					if (ord_it->m_type == CEntityOrder::ORDER_PATROL)
-					{
-						order.m_type = ord_it->m_type;
-						hentity->PushOrder(order);
-						break;
-					}
-				}
-				if (order.m_type == CEntityOrder::ORDER_LAST)
-				{
-					LOG(CLogger::Error, LOG_CATEGORY, L"Got an AddWaypoint message for an entity that isn't moving.");
-				}
-			}
-			break;
-		}
-		case NMT_GOTO:
-			ENTITY_POSITION(CGotoMessage, ORDER_GOTO);
-			break;
-		case NMT_RUN:
-			ENTITY_POSITION(CRunMessage, ORDER_RUN);
-			break;
-		case NMT_PATROL:
-			ENTITY_POSITION(CPatrolMessage, ORDER_PATROL);
-			break;
-		case NMT_SET_RALLY_POINT:
-			ENTITY_POSITION(CSetRallyPointMessage, ORDER_SET_RALLY_POINT);
-			break;
-		case NMT_SET_STANCE:
-			ENTITY_STRING(CSetStanceMessage, ORDER_SET_STANCE);
-			break;
-		case NMT_FORMATION_GOTO:
-			ENTITY_POSITION_FORM(CFormationGotoMessage, ORDER_GOTO);
-			break;
-		//TODO: make formation move to within range of target and then attack normally
-		case NMT_CONTACT_ACTION:
-			ENTITY_ENTITY_INT_BOOL(CContactActionMessage, ORDER_CONTACT_ACTION);
-			break;
-		case NMT_FORMATION_CONTACT_ACTION:
-			ENTITY_ENTITY_INT(CFormationContactActionMessage, ORDER_CONTACT_ACTION);
-			break;
-		case NMT_NOTIFY_REQUEST:
-			ENTITY_ENTITY_INT(CNotifyRequestMessage, ORDER_NOTIFY_REQUEST);
-			break;
-		case NMT_PRODUCE:
-			ENTITY_INT_STRING(CProduceMessage, ORDER_PRODUCE);
-			break;
-		case NMT_PLACE_OBJECT:
-			{
-				CPlaceObjectMessage *msg = (CPlaceObjectMessage *) pMsg;
-				isQueued = msg->m_IsQueued != 0;
-				
-				// Figure out the player
-				CPlayer* player = 0;
-				if(msg->m_Entities.size() > 0) 
-					player = msg->m_Entities[0]->GetPlayer();
-				else
-					player = g_Game->GetLocalPlayer();
-
-				// Create the object
-				CVector3D pos(msg->m_X/1000.0f, msg->m_Y/1000.0f, msg->m_Z/1000.0f);
-				HEntity newObj = g_EntityManager.CreateFoundation( msg->m_Template, player, pos, msg->m_Angle/1000.0f );
-				newObj->m_actor->SetPlayerID(player->GetPlayerID());
-				if( newObj->Initialize() )
-				{
-					// Order all the selected units to work on the new object using the given action
-					order.m_type = CEntityOrder::ORDER_START_CONSTRUCTION;
-					order.m_new_obj = newObj;
-					QueueOrder(order, msg->m_Entities, isQueued);
-				}
-			}
-			break;
-		
-	}
-
 	return clientMask;
 }
 
@@ -466,7 +230,6 @@ size_t CSimulation::GetMessageMask(CNetMessage* UNUSED(pMsg), size_t UNUSED(oldM
 
 void CSimulation::QueueLocalCommand(CNetMessage *pMsg)
 {
-	m_pTurnManager->QueueLocalCommand(pMsg);
 }
 
 

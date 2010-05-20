@@ -25,9 +25,7 @@
 
 // INCLUDES
 #include "precompiled.h"
-//#include "SessionManager.h"
 #include "NetSession.h"
-//#include "NetServer.h"
 #include "NetLog.h"
 
 // DECLARATIONS
@@ -39,11 +37,6 @@
 CNetHost::CNetHost( void )
 {
 	m_Host		 = NULL;
-	m_Buffer	 = NULL;
-	m_BufferSize = 0;
-
-//	m_WorkerID	 = 0;
-//	m_StopWorker = NULL;
 }
 
 //-----------------------------------------------------------------------------
@@ -54,16 +47,8 @@ CNetHost::~CNetHost( void )
 {
 	// Release host
 	if ( m_Host ) enet_host_destroy( m_Host );
-	if ( m_Buffer )	delete [] m_Buffer;
-
-	// Release running semaphore
-//	if ( m_StopWorker ) sem_close( m_StopWorker );
 
 	m_Host		 = NULL;
-	m_Buffer	 = NULL;
-	m_BufferSize = 0;
-//	m_WorkerID	 = 0;
-//	m_StopWorker = NULL;
 }
 
 //-----------------------------------------------------------------------------
@@ -107,10 +92,6 @@ void CNetHost::Shutdown( void )
 	// Destroy server
 	if ( m_Host ) enet_host_destroy( m_Host );
 
-	// Stop worker thread
-//	sem_post( m_StopWorker );
-//	if ( m_WorkerID ) pthread_join( m_WorkerID, NULL );
-
 	// Disconnect and release each peer
 	PeerSessionList::iterator it = m_PeerSessions.begin();
 	for ( ; it != m_PeerSessions.end(); it++ )
@@ -125,7 +106,6 @@ void CNetHost::Shutdown( void )
 	m_PeerSessions.clear();
 
 	m_Host		= NULL;
-//	m_WorkerID  = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -226,122 +206,6 @@ bool CNetHost::Disconnect( CNetSession* pSession )
 
 	return true;
 }
-
-//-----------------------------------------------------------------------------
-// Name: Run()
-// Desc:
-//-----------------------------------------------------------------------------
-/*bool CNetHost::Run( void )
-{
-	debug_assert( m_Host );
-
-	// Host created?
-	if ( !m_Host ) return false;
-
-	// Already running?
-	if ( m_WorkerID != 0 ) return true;
-
-	// Create run semaphore
-	m_StopWorker = sem_open( "//WFG_HostWorkerRun", O_CREAT | O_EXCL, 0700, 0 );
-	if ( !m_StopWorker ) return false;
-
-	// Create worker thread
-	if ( pthread_create( &m_WorkerID, 0, &WorkerFunc, this ) < 0 ) return false;
-
-	return true;
-}
-
-//-----------------------------------------------------------------------------
-// Name: WorkerFunc()
-// Desc: Worker thread function
-//-----------------------------------------------------------------------------
-void* CNetHost::WorkerFunc( void* pData )
-{
-	ENetEvent					event;
-	CNetSession*				pSession = NULL;
-	PeerSession					item;
-	PeerSessionList::iterator	it;
-
-	// Validate parameters
-	if ( !pData ) return NULL;
-
-	CNetHost* pHost = ( CNetHost* )pData;
-
-	// Poll host for events
-	while ( true )
-	{
-		// Decide whether to stop or not
-		if ( !sem_timedwait( pHost->m_StopWorker, NULL ) ) break;
-
-		int retval = enet_host_service( pHost->m_Host, &event, 100 );
-
-		// Any event?
-		if ( !retval ) continue;
-
-		// Any error?
-		if ( !retval ) break;
-
-		// Handle occured event
-		switch( event.type )
-		{
-		case ENET_EVENT_TYPE_CONNECT:
-
-			// A new client has connected, handle it
-			pSession = new CNetSession( pHost, event.peer );
-			if ( !pSession ) return NULL;
-
-			// Successfully handled?
-			if ( !pHost->HandleConnect( pSession ) ) return NULL;
-
-			// Add new item to internal list
-			item.pPeer	  = event.peer;
-			item.pSession = pSession;
-			pHost->m_PeerSessions.push_back( item );
-
-			break;
-
-		case ENET_EVENT_TYPE_DISCONNECT:
-
-			// Client has disconnected, handle it
-			it = pHost->m_PeerSessions.begin();;
-			for ( ; it != pHost->m_PeerSessions.end(); it++ )
-			{
-				// Is this our session?
-				if ( it->pPeer == event.peer )
-				{
-					// Successfully handled?
-					if ( !pHost->HandleDisconnect( it->pSession ) ) return NULL;
-
-					pHost->m_PeerSessions.erase( it );
-				}
-			}
-
-			break;
-
-		case ENET_EVENT_TYPE_RECEIVE:
-
-			// A new data packet was received from client, handle message
-			it = pHost->m_PeerSessions.begin();
-			for ( ; it != pHost->m_PeerSessions.end(); it++ )
-			{
-				// Is this our session?
-				if ( it->pPeer == event.peer )
-				{
-					// Create message from raw data
-					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
-					if ( !pNewMessage ) return NULL;
-
-					// Successfully handled?
-					if ( !pHost->HandleMessageReceive( pNewMessage, it->pSession ) ) return NULL;
-				}
-			}
-
-			break;
-		}
-	}
-
-	return NULL;
-}*/
 
 //-----------------------------------------------------------------------------
 // Name: ProcessEvents()
@@ -464,35 +328,6 @@ void CNetHost::Broadcast( const CNetMessage* pMessage )
 }
 
 //-----------------------------------------------------------------------------
-// Name: ResizeBuffer()
-// Desc: Resizes the internal buffer
-//-----------------------------------------------------------------------------
-void CNetHost::ResizeBuffer( size_t size )
-{
-	// Already enough space?
-	if ( size <= m_BufferSize ) return;
-
-	// Allocate enough space for the new buffer
-	u8* pBuffer = new u8[ ALIGN_BLOCK( m_BufferSize + size ) ];
-	if ( !pBuffer ) return;
-
-	// Any old data?
-	if ( m_Buffer )
-	{
-		// Copy old data
-		memcpy( pBuffer, m_Buffer, m_BufferSize );
-
-		delete [] m_Buffer;
-	}
-
-	// Store new buffer
-	m_Buffer = pBuffer;
-
-	// Store new buffer size
-	m_BufferSize = ALIGN_BLOCK( m_BufferSize + size );
-}
-
-//-----------------------------------------------------------------------------
 // Name: SendMessage()
 // Desc: Sends the specified message to peer
 //-----------------------------------------------------------------------------
@@ -507,15 +342,16 @@ bool CNetHost::SendMessage(
 	debug_assert( m_Host );
 
 	size_t size = pMessage->GetSerializedLength();
+	debug_assert( size );
 
 	// Adjust buffer for message
-	ResizeBuffer( size );
+	m_Buffer.resize( size );
 
 	// Save message to internal buffer
-	pMessage->Serialize( m_Buffer );
+	pMessage->Serialize( &m_Buffer[0] );
 	
 	// Create a reliable packet
-	ENetPacket* pPacket = enet_packet_create( m_Buffer, size, ENET_PACKET_FLAG_RELIABLE );
+	ENetPacket* pPacket = enet_packet_create( &m_Buffer[0], size, ENET_PACKET_FLAG_RELIABLE );
 	if ( !pPacket ) return false;
 
 	// Let ENet send the message to peer
@@ -529,7 +365,7 @@ bool CNetHost::SendMessage(
 	else
 	{
 		NET_LOG4( "Message %s of size %lu was sent to %p",
-			pMessage->ToString().c_str(), (unsigned long)pMessage->GetSerializedLength(), pSession->m_Peer->data );
+			pMessage->ToString().c_str(), (unsigned long)size, pSession->m_Peer->data );
 	}
 
 	enet_host_flush( m_Host );
@@ -625,17 +461,10 @@ CNetSession* CNetHost::GetSession( uint index )
 //-----------------------------------------------------------------------------
 CNetSession::CNetSession( CNetHost* pHost, ENetPeer* pPeer )
 {
-	//ONCE( ScriptingInit(); );
-
 	m_Host				= pHost;
 	m_Peer				= pPeer;
 	m_ID				= INVALID_SESSION;
-	m_Player			= NULL;
 	m_PlayerSlot		= NULL;
-	m_ReadyForTurn		= false;
-
-	// Register the network session
-	//g_SessionManager.Register( this );
 }
 
 //-----------------------------------------------------------------------------
@@ -649,9 +478,6 @@ CNetSession::~CNetSession( void )
 
 	//m_Host				= NULL;
 	m_Peer				= NULL;
-
-	// Unregister the network session
-	//g_SessionManager.Unregister( this );
 }
 
 //-----------------------------------------------------------------------------
@@ -673,54 +499,12 @@ void CNetSession::SetID( uint ID )
 }
 
 //-----------------------------------------------------------------------------
-// Name: SetPlayer()
-// Desc: Set the player for this session
-//-----------------------------------------------------------------------------
-void CNetSession::SetPlayer( CPlayer* pPlayer )
-{
-	m_Player = pPlayer;
-}
-
-//-----------------------------------------------------------------------------
 // Name: SetPlayerSlot()
 // Desc: Set the player slot for this session
 //-----------------------------------------------------------------------------
 void CNetSession::SetPlayerSlot( CPlayerSlot* pPlayerSlot )
 {
 	m_PlayerSlot = pPlayerSlot;
-}
-
-//-----------------------------------------------------------------------------
-// Name: StartGame()
-// Desc: Called by server after informing all clients about starting the game
-//-----------------------------------------------------------------------------
-void CNetSession::StartGame( void )
-{
-}
-
-//-----------------------------------------------------------------------------
-// Name: Push()
-// Desc: Sends a message through ENet
-//-----------------------------------------------------------------------------
-void CNetSession::Push( CNetMessage* pMessage )
-{
-	// Validate parameters
-	if ( !pMessage ) return;
-
-	debug_assert( m_Host );
-
-	m_Host->SendMessage( this, pMessage );
-}
-
-//-----------------------------------------------------------------------------
-// Name: TryPop()
-// Desc: Receives a message through ENet
-//-----------------------------------------------------------------------------
-CNetMessage* CNetSession::TryPop( void )
-{
-	debug_assert( m_Host );
-
-	return m_Host->ReceiveMessage( this );
 }
 
 //-----------------------------------------------------------------------------
@@ -731,194 +515,6 @@ void CNetSession::ScriptingInit( void )
 {
 	AddProperty( L"id", &CNetSession::m_ID );
 	AddProperty( L"name", &CNetSession::m_Name );
-	AddMethod<bool, &CNetSession::JSI_Close>( "close", 0 );
 
 	CJSObject<CNetSession>::ScriptingInit( "NetSession" );
 }
-
-//-----------------------------------------------------------------------------
-// Name: JSI_Close()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetSession::JSI_Close( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
-{
-	return false;
-}
-
-//-----------------------------------------------------------------------------
-// Name: HandleMessage()
-// Desc: 
-//-----------------------------------------------------------------------------
-//bool CNetSession::HandleMessage( CNetMessage* pMessage )
-//{
-//	return true;
-//}
-
-/*
-//-----------------------------------------------------------------------------
-// Name: CNetServerSession()
-// Desc: Constructor
-//-----------------------------------------------------------------------------
-CNetServerSession::CNetSession(
-							    CNetServer* pServer,
-							    NetMessageHandler* pHandler )
-: CNetSession( pHandler )
-{
-	m_Server		= pServer;
-	m_Player		= NULL;
-	m_PlayerSlot	= NULL;
-	m_IsObserver	= false;
-
-	//ONCE( ScriptingInit() );
-}
-
-//-----------------------------------------------------------------------------
-// Name: CNetServerSession()
-// Desc: Constructor
-//-----------------------------------------------------------------------------
-CNetServerSession::CNetSession(
-							    CNetServer* pServer,
-								CSocketInternal* pSocketInternal,
-								NetMessageHandler* pHandler )
-: CNetSession( pSocketInternal, pHandler )
-{
-	m_Server		= pServer;
-	m_Player		= NULL;
-	m_PlayerSlot	= NULL;
-	m_IsObserver	= false;
-
-	//ONCE( ScriptingInit() );
-}
-
-//-----------------------------------------------------------------------------
-// Name: ~CNetServerSession()
-// Desc: Destructor
-//-----------------------------------------------------------------------------
-CNetServerSession::~CNetServerSession( void )
-{
-}
-
-//-----------------------------------------------------------------------------
-// Name: StartGame()
-// Desc: Called by server after informing all clients about starting the game
-//-----------------------------------------------------------------------------
-void CNetServerSession::StartGame( void )
-{
-}
-
-//-----------------------------------------------------------------------------
-// Name: SetPlayer()
-// Desc: Set the player for this session
-//-----------------------------------------------------------------------------
-void CNetServerSession::SetPlayer( CPlayer* pPlayer )
-{
-	m_Player = pPlayer;
-}
-
-//-----------------------------------------------------------------------------
-// Name: SetPlayerSlot()
-// Desc: Set the player slot for this session
-//-----------------------------------------------------------------------------
-void CNetServerSession::SetPlayerSlot( CPlayerSlot* pPlayerSlot )
-{
-	m_PlayerSlot = pPlayerSlot;
-}
-
-//-----------------------------------------------------------------------------
-// Name: SetID()
-// Desc: Set new session ID
-//-----------------------------------------------------------------------------
-void CNetServerSession::SetID( uint ID )
-{
-	m_ID = ID;
-}
-
-//-----------------------------------------------------------------------------
-// Name: BaseHandler()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetServerSession::BaseHandler( 
-									CNetMessage* pMessage,
-									CNetSession* pSession )
-{
-	debug_assert( pMessage );
-	debug_assert( pSession );
-
-	// Validate parameters
-	if ( !pMessage || !pSession ) return false;
-
-	CNetServerSession* pSrvSession = dynamic_cast< CNetSession* >( pSession );
-	if ( pSrvSession ) return false;
-
-	// Handler NMT_ERROR message only
-	if ( pMessage->GetType() != NMT_ERROR ) return false;
-
-	CNetErrorMessage* pErrMessage = dynamic_cast< CNetErrorMessage* >( pMessage );
-	if ( !pErrMessage ) return false;
-
-	if ( pErrMessage->GetState() == SERVER_STATE_DISCONNECTED )
-	{
-		if ( pSrvSession->m_ID != -1 )
-		{
-			pSrvSession->m_Server->RemoveSession( pSrvSession );
-		}
-
-		delete pSrvSession;
-	}
-	else
-	{
-		// Not disconnected? Weired...
-		LOG( WARNING, LOG_CATEGORY, L"CNetServerSession::BaseHandler() NMT_ERROR: %hs", pErrMessage->ToString().c_str() );
-	}
-
-	delete pMessage;
-
-	return true;
-}
-
-//-----------------------------------------------------------------------------
-// Name: HandshakeHandler()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetServerSession::HandshakeHandler(
-										 CNetMessage* pMessage,
-										 CNetSession* pSession )
-{
-	debug_assert( pMessage );
-	debug_assert( pSession );
-	debug_assert( m_Server );
-
-	// Validate parameters
-	if ( !pMessage || !pSession ) return false;
-
-	CNetServerSession* pSrvSession = dynamic_cast< CNetServerSession* >( pSession );
-	if ( !pSrvSession ) return false;
-
-	LOG( NORMAL, LOG_CATEGORY, L"CNetServerSession::HandshakeHandler() %hs", pMessage->ToString().c_str() );
-
-	// Call base handler if other message thant NMT_ClientHandshake
-	if ( pMessage->GetType() != NMT_ClientHandshake ) BaseHandler( pMessage, pSession );
-
-	CClientHandshake* pHandshakeMessage = dynamic_cast< CClientHandshake* >( pMessage );
-	if ( !pHandshakeMessage ) return false;
-
-	if ( pHandshakeMessage->m_ProtocolVersion != PS_PROTOCOL_VERSION )
-	{
-		pSrvSession->Push( new CCloseRequestMessage() );
-		BaseHandler( new CNetErrorMessage( PS_OK, SERVER_STATE_DISCONNECTED ), pSrvSession );
-	}
-
-	//??? (else)
-	CServerHandshakeResponse* pNewMessage = new CServerHandshakeResponse();
-	pNewMessage->m_UseProtocolVersion	= PS_PROTOCOL_VERSION;
-	pNewMessage->m_Flags				= 0;
-	pNewMessage->m_Message				= pSrvSession->m_Server->m_WelcomeMessage;
-	
-	pSrvSession->Push( pNewMessage );
-
-	pSrvSession->m_MessageHandler = AuthHandler;
-
-	delete pMessage;
-
-	return true;
-}*/

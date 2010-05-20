@@ -30,7 +30,6 @@
 #include "NetSession.h"
 #include "NetTurnManager.h"
 #include "ps/CStr.h"
-#include "simulation/TurnManager.h"
 #include "simulation/ScriptObject.h"
 #include "scripting/ScriptableObject.h"
 #include "ps/scripting/JSMap.h"
@@ -53,16 +52,12 @@ class CGame;
 class CGameAttributes;
 class CServerPlayer;
 
-//typedef std::map< uint, CStr > PlayerMap;
 typedef std::map< uint, CServerPlayer* > PlayerMap;
 
-/*
-	CLASS			: CServerPlayer
-	DESCRIPTION		:
-	NOTES			:
-*/
 class CServerPlayer : public CJSObject< CServerPlayer >
 {
+	NONCOPYABLE(CServerPlayer);
+
 public:
 
 	CServerPlayer( uint sessionID, const CStr& nickname );
@@ -71,22 +66,12 @@ public:
 	static void ScriptingInit( void );
 	uint GetSessionID( void ) const { return m_SessionID; }
 	const CStr GetNickname( void ) const { return m_Nickname; }
-protected:
 
 private:
-
-	CServerPlayer( const CServerPlayer& );
-	CServerPlayer& operator=( const CServerPlayer& );
 
 	uint	m_SessionID;				// Player session ID
 	CStr	m_Nickname;					// Player nickname
 };
-
-/*
-	CLASS			: CNetClient
-	DESCRIPTION		:
-	NOTES			:
-*/
 
 class CNetClient: public CNetHost,
 				  public CJSObject<CNetClient>
@@ -102,13 +87,6 @@ public:
 	void OnPlayer		( uint ID, const CStr& name );
 	void OnPlayerLeave	( uint ID );
 
-	/**
-	 * Returns true indicating the host acts as a client
-	 *
-	 * @return					Always true
-	 */
-	virtual bool IsClient( void ) const { return true; }
-
 	// Get a pointer to our player
 	CPlayer* GetLocalPlayer();
 
@@ -116,19 +94,10 @@ public:
 
 	CStr	m_Nickname;
 	CStr	m_Password;
-	//int		m_SessionID;
 
 	CPlayerSlot *m_pLocalPlayerSlot;
 	CGame *m_pGame;
 	CGameAttributes *m_pGameAttributes;
-
-	// Are we currently in a locally-yet-unsimulated turn?
-	// This is set to true when we receive a command batch and cleared in NewTurn().
-	// The server also ensures that it does not send a new turn until we ack one.
-	bool m_TurnPending;
-
-	// Mutex for accessing batches
-	CMutex m_Mutex;
 
 	// JS event scripts
 	CScriptObject m_OnStartGame;
@@ -141,15 +110,11 @@ public:
 	static void ScriptingInit( void );
 	int StartGame( void );
 
-	CNetTurnManager* GetTurnManager() { debug_assert(m_ClientTurnManager); return m_ClientTurnManager; }
-
 protected:
 
 	virtual bool SetupSession			( CNetSession* pSession );
 	virtual bool HandleConnect			( CNetSession* pSession );
 	virtual bool HandleDisconnect		( CNetSession *pSession );
-
-	void QueueIncomingMessage			( CNetMessage* pMessage );
 
 	virtual void OnConnectComplete		( void );
 	virtual void OnStartGame			( void );
@@ -168,10 +133,8 @@ private:
 	
 	bool SetupConnection( JSContext *cx, uintN argc, jsval *argv );
 
-	//CNetSession*	m_Session;		// Server session
 	PlayerMap		m_Players;		// List of online players
 
-	CTurnManager*	m_TurnManager;
 	CNetClientTurnManager* m_ClientTurnManager;
 };
 

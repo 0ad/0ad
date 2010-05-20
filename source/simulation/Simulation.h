@@ -23,14 +23,12 @@
 class CGame;
 class CGameAttributes;
 class CWorld;
-class CTurnManager;
 class CNetMessage;
 
 class CSimulation
 {
 	CGame *m_pGame;
 	CWorld *m_pWorld;
-	CTurnManager *m_pTurnManager;
 	
 	// Current game time; store as double for precision
 	double m_Time;
@@ -51,11 +49,6 @@ public:
 	CSimulation(CGame *pGame);
 	~CSimulation();
 	
-	inline void SetTurnManager(CTurnManager *pTurnManager)
-	{	m_pTurnManager=pTurnManager; }
-	inline CTurnManager *GetTurnManager()
-	{	return m_pTurnManager; }
-
 	void RegisterInit(CGameAttributes *pGameAttributes);
 	int Initialize(CGameAttributes *pGameAttributes);
 

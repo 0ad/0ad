@@ -843,6 +843,7 @@ jsval_t CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval
 jsval_t CEntity::SetRallyPointAtCursor( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	// Queue an order over the network to set a rally point
+/*
 	CSetRallyPointMessage* msg = new CSetRallyPointMessage;
 	msg->m_Entities = CEntityList(me);
 	msg->m_IsQueued = true;
@@ -850,6 +851,7 @@ jsval_t CEntity::SetRallyPointAtCursor( JSContext* UNUSED(cx), uintN UNUSED(argc
 	msg->m_TargetX = (int) point.X;
 	msg->m_TargetY = (int) point.Z;
 	g_Game->GetSimulation()->QueueLocalCommand(msg);
+*/
 	return JS_TRUE;
 }
 

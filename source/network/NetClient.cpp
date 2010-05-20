@@ -47,17 +47,6 @@
 
 CNetClient *g_NetClient = NULL;
 
-class CClientTurnManager : public CTurnManager
-{
-public:
-	CClientTurnManager(CNetClient& client) : m_Client(client) { }
-	virtual void QueueLocalCommand(CNetMessage* pMessage);
-	virtual void NewTurn();
-	virtual bool NewTurnReady() { return m_Client.m_TurnPending; }
-private:
-	CNetClient& m_Client;
-};
-
 //-----------------------------------------------------------------------------
 // Name: CServerPlayer()
 // Desc: Constructor
@@ -95,19 +84,12 @@ void CServerPlayer::ScriptingInit( void )
 CNetClient::CNetClient( CGame* pGame, CGameAttributes* pGameAttribs )
 : m_JsPlayers( &m_Players )
 {
-	m_TurnManager = new CClientTurnManager(*this);
 	m_ClientTurnManager = NULL;
 
 	m_pLocalPlayerSlot = NULL;
 	m_pGame = pGame;
 	m_pGameAttributes = pGameAttribs;
-	m_TurnPending = false;
 
-	//ONCE( ScriptingInit(); );
-
-	if (!g_UseSimulation2)
-		m_pGame->GetSimulation()->SetTurnManager(m_TurnManager);
-	
 	g_ScriptingHost.SetGlobal("g_NetClient", OBJECT_TO_JSVAL(GetScript()));
 }
 
@@ -147,14 +129,11 @@ void CNetClient::ScriptingInit()
 
 	AddProperty(L"password", &CNetClient::m_Password);
 	AddProperty<CStr>(L"playerName", &CNetClient::m_Nickname);
-	//AddProperty(L"sessionId", &CNetClient::m_SessionID);
 	
 	AddProperty(L"sessions", &CNetClient::m_JsPlayers);
 	
 	CJSMap< PlayerMap >::ScriptingInit("NetClient_SessionMap");
 	CJSObject<CNetClient>::ScriptingInit("NetClient");
-	//CGameAttributes::ScriptingInit();
-	//CServerPlayer::ScriptingInit();
 }
 
 //-----------------------------------------------------------------------------
@@ -211,18 +190,6 @@ bool CNetClient::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_GAME_START, NCS_INGAME, (void*)&OnStartGame_, pContext );
 
 	pSession->AddTransition( NCS_INGAME, ( uint )NMT_CHAT, NCS_INGAME, (void*)&OnChat, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_GOTO, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PATROL, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_ADD_WAYPOINT, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_CONTACT_ACTION, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PRODUCE, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PLACE_OBJECT, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_RUN, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SET_RALLY_POINT, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SET_STANCE, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_FORMATION_GOTO, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_FORMATION_CONTACT_ACTION, NCS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SIMULATION_COMMAND, NCS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NCS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NCS_INGAME, (void*)&OnInGame, pContext );
 
@@ -425,15 +392,6 @@ bool CNetClient::OnPreGame( void* pContext, CFsmEvent* pEvent )
 
 	switch ( pEvent->GetType() )
 	{
-	
-	//CHAIN(BaseHandler);
-	//CHAIN(ChatHandler);
-	
-//	case NMT_GAME_START:
-
-//		pClient->StartGame();
-//		break;
-
 	case NMT_PLAYER_LEAVE:
 		{
 			CPlayerLeaveMessage* pMessage = ( CPlayerLeaveMessage* )pEvent->GetParamRef();
@@ -531,38 +489,13 @@ bool CNetClient::OnInGame( void *pContext, CFsmEvent* pEvent )
 			return true;
 		}
 
-		if ( pMessage->GetType() >= NMT_COMMAND_FIRST && pMessage->GetType() < NMT_COMMAND_LAST )
-		{
-			pClient->QueueIncomingMessage( pMessage );
-
-			return true;
-		}
-
 		if ( pMessage->GetType() == NMT_END_COMMAND_BATCH )
 		{
 			CEndCommandBatchMessage* pMessage = ( CEndCommandBatchMessage* )pEvent->GetParamRef();
 			if ( !pMessage ) return false;
 
-			if (g_UseSimulation2)
-			{
-				CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (pMessage);
-				pClient->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn);
-			}
-
-			pClient->m_TurnManager->SetTurnLength( 1, pMessage->m_TurnLength );
-
-			pClient->m_TurnPending = true;
-		
-			// FIXME When the command batch has ended, we should start accepting
-			// commands for the next turn. This will be accomplished by calling
-			// NewTurn. *BUT* we shouldn't prematurely proceed game simulation
-			// since this will produce jerky playback (everything expects a sim
-			// turn to have a certain duration).
-
-			// We should make sure that any commands received after this message
-			// are queued in the next batch (#2 instead of #1). If we're already
-			// putting everything new in batch 2 - we should fast-forward a bit to
-			// catch up with the server.
+			CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (pMessage);
+			pClient->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn);
 		}
 	}
 
@@ -622,11 +555,8 @@ bool CNetClient::OnStartGame_( void* pContext, CFsmEvent* pEvent )
 	CNetClient* pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
 	CNetSession* pSession = ( ( FsmActionCtx* )pContext )->pSession;
 
-	if (g_UseSimulation2)
-	{
-		pClient->m_ClientTurnManager = new CNetClientTurnManager(*pClient->m_pGame->GetSimulation2(), *pClient, pClient->GetLocalPlayer()->GetPlayerID(), pSession->GetID());
-		pClient->m_pGame->SetTurnManager(pClient->m_ClientTurnManager);
-	}
+	pClient->m_ClientTurnManager = new CNetClientTurnManager(*pClient->m_pGame->GetSimulation2(), *pClient, pClient->GetLocalPlayer()->GetPlayerID(), pSession->GetID());
+	pClient->m_pGame->SetTurnManager(pClient->m_ClientTurnManager);
 
 	pClient->OnStartGame();
 
@@ -689,16 +619,6 @@ int CNetClient::StartGame( void )
 
 	if ( m_pGame->StartGame( m_pGameAttributes ) != PSRETURN_OK ) return -1;
 
-	if (!g_UseSimulation2)
-	{
-		// Send an end-of-batch message for turn 0 to signal that we're ready.
-		CEndCommandBatchMessage endBatch;
-		endBatch.m_TurnLength = 1000 / g_frequencyFilter->StableFrequency();
-
-		CNetSession* pSession = GetSession( 0 );
-		SendMessage( pSession, &endBatch );
-	}
-
 	return 0;
 }
 
@@ -709,48 +629,4 @@ int CNetClient::StartGame( void )
 CPlayer* CNetClient::GetLocalPlayer()
 {
 	return m_pLocalPlayerSlot->GetPlayer();
-}
-
-//-----------------------------------------------------------------------------
-// Name: NewTurn()
-// Desc:
-//-----------------------------------------------------------------------------
-void CClientTurnManager::NewTurn()
-{
-	CScopeLock lock(m_Client.m_Mutex);
-	
-	RotateBatches();
-	ClearBatch(2);
-	m_Client.m_TurnPending = false;
-
-	//debug_printf(L"In NewTurn - sending ack\n");
-	CEndCommandBatchMessage* pMsg = new CEndCommandBatchMessage;
-	pMsg->m_TurnLength=1000/g_frequencyFilter->StableFrequency();	// JW: it'd probably be nicer to get the FPS as a parameter
-
-	CNetSession* pSession = m_Client.GetSession( 0 );
-	m_Client.SendMessage( pSession, pMsg );
-}
-
-//-----------------------------------------------------------------------------
-// Name: QueueLocalCommand()
-// Desc:
-//-----------------------------------------------------------------------------
-void CClientTurnManager::QueueLocalCommand( CNetMessage* pMessage )
-{
-	if ( !pMessage ) return;
-
-	// Don't save these locally, since they'll be bounced by the server anyway
-	CNetSession* pSession = m_Client.GetSession( 0 );
-	m_Client.SendMessage( pSession, pMessage );
-}
-
-//-----------------------------------------------------------------------------
-// Name: QueueIncomingMessage()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetClient::QueueIncomingMessage( CNetMessage* pMessage )
-{
-	CScopeLock lock( m_Mutex );
-
-	m_TurnManager->QueueMessage( 2, pMessage );
 }

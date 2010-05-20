@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
 #define INCLUDED_NETWORK_STRINGCONVERTERS
 
 #include "ps/CStr.h"
-#include "simulation/EntityHandles.h"
 
 template <typename _T>
 CStr NetMessageStringConvert(const _T &arg);
@@ -29,12 +28,6 @@ template <typename _T>
 inline CStr NetMessageStringConvert(const _T &arg)
 {
 	return CStr(arg);
-}
-
-template <>
-inline CStr NetMessageStringConvert(const HEntity &arg)
-{
-	return arg.operator CStr8();
 }
 
 #endif

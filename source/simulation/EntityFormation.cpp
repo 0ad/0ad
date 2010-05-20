@@ -181,8 +181,10 @@ void CEntityFormation::UpdateFormation()
 		}
 	}
 	CEntityList entities = GetEntityList();
+/*
 	CNetMessage* msg = CNetMessage::CreatePositionMessage( entities, NMT_FORMATION_GOTO, m_position );
 	g_Game->GetSimulation()->QueueLocalCommand(msg);
+*/
 
 }
 

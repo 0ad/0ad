@@ -57,7 +57,6 @@ that of Atlas depending on commandline parameters.
 #include "ps/XML/Xeromyces.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
-//#include "network/SessionManager.h"
 #include "network/NetSession.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
@@ -258,7 +257,6 @@ static void Frame()
 	MICROLOG(L"input");
 	PumpEvents();
 	PROFILE_END("input");
-	//g_SessionManager.Poll();
 
 	PROFILE_START("network poll");
 	if (g_NetServer)
@@ -388,11 +386,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// any thread uses it. So initialise it here before we
 	// might run Atlas.
 	CXeromyces::Startup();
-
-	// allow switching to old simulation system, before any
-	// other init code makes use of it
-	if (args.Has("sim1"))
-		g_UseSimulation2 = false;
 
 	// run Atlas (if requested via args)
 	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);

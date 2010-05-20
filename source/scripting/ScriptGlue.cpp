@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -203,111 +203,6 @@ JSBool GetPlayerUnitCount( JSContext* cx, JSObject*, uintN argc, jsval* argv, js
 	*rval = ToJSVal( unitCount );
 	return JS_TRUE;
 }
-
-
-//Used to create net messages for formations--msgList.front() is the original message. see IssueCommand
-void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* msg, CEntityList& formation )
-{
-	CNetMessage* retMsg;
-	const int type = msg->GetType();
-
-	if ( type == NMT_GOTO )
-	{
-		//formationEnt->GetFormation()->BaseToMovement();
-		CGotoMessage* tmp = static_cast<CGotoMessage*>(msg);
-		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FORMATION_GOTO, 
-						CVector2D(tmp->m_TargetX, tmp->m_TargetY) );
-	}
-	else if( type == NMT_RUN )
-	{
-		CGotoMessage* tmp = static_cast<CGotoMessage*>(msg);
-		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FORMATION_GOTO, 
-						CVector2D(tmp->m_TargetX, tmp->m_TargetY) );
-	}
-	else if ( type == NMT_CONTACT_ACTION )
-	{
-		CContactActionMessage* tmp = static_cast<CContactActionMessage*>(msg);
-		retMsg = CNetMessage::CreateEntityIntMessage(formation, NMT_FORMATION_CONTACT_ACTION, 
-					tmp->m_Target, tmp->m_Action);
-	}
-	else
-		return;
-	
-	msgList.push_back(retMsg); 
-}
-
-// Issue a command (network message) to an entity or collection.
-// params: either an entity- or entity collection object, message ID [int],
-//   any further params needed by CNetMessage::CommandFromJSArgs
-// returns: command in serialized form [string]
-JSBool IssueCommand( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	// at least one for target object, one for isQueued, and then 1 or more for the CommandFromJSArgs
-	JSU_REQUIRE_MIN_PARAMS(3);
-
-	JSU_ASSERT(JSVAL_IS_OBJECT(argv[0]), "Argument 0 must be an entity collection.");
-	*rval = JSVAL_NULL;
-	
-	CEntityList entities, msgEntities;
-
-	if (JS_InstanceOf(cx, JSVAL_TO_OBJECT(argv[0]), &CEntity::JSI_class, NULL))
-		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
-	else
-		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-
-	typedef std::map<size_t, CEntityList> EntityStore;
-	EntityStore entityStore;
-
-	bool isQueued = ToPrimitive<bool>(argv[1]);
-
-	//Destroy old notifiers if we're explicitly being reassigned
-	for ( size_t i=0; i < entities.size(); i++)
-	{
-		if ( entities[i]->entf_get(ENTF_DESTROY_NOTIFIERS))
-			entities[i]->DestroyAllNotifiers();
-	}
-
-	std::vector<CNetMessage*> messages;
-	
-	//Generate messages for formations
-	for (size_t i=0; i < entities.size(); i++ )
-	{
-		if ( entities[i]->m_formation >= 0)
-		{
-			CEntityFormation* formation = entities[i]->GetFormation();
-			bool duplicate = formation->IsDuplication();
-			
-			if ( formation->IsLocked() && !duplicate)
-			{
-				formation->SelectAllUnits();
-				entityStore[entities[i]->m_formation] = formation->GetEntityList();
-				formation->SetDuplication(true);
-			}
-		}
-		else
-			msgEntities.push_back( entities[i] );
-	}
-	CNetMessage* msg = CNetMessage::CommandFromJSArgs(msgEntities, cx, argc-2, argv+2, isQueued);
-	if (!msg)
-	{
-		delete msg;
-		return JS_TRUE;
-	}
-	messages.push_back(msg);
-	
-	for ( EntityStore::iterator it=entityStore.begin(); it!=entityStore.end(); it++)
-		CreateFormationMessage(messages, msg, it->second);
-	
-	for ( std::vector<CNetMessage*>::iterator it=messages.begin(); it != messages.end(); it++ )
-	{
-		g_Console->InsertMessage(L"IssueCommand: %hs", (*it)->ToString().c_str());
-		*rval = g_ScriptingHost.UCStringToValue((*it)->ToString());
-		g_Game->GetSimulation()->QueueLocalCommand(*it);
-	}
-
-	return JS_TRUE;
-}
-
 
 // Get the state of a given hotkey (from the hotkeys file)
 JSBool isOrderQueued( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
@@ -1408,7 +1303,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("getEntityByUnitID", GetEntityByUnitID, 1)
 	JS_FUNC("GetPlayerUnitCount", GetPlayerUnitCount, 1)
 	JS_FUNC("getEntityTemplate", GetEntityTemplate, 1)
-	JS_FUNC("issueCommand", IssueCommand, 2)
 	JS_FUNC("startPlacing", StartPlacing, 1)
 
 	// Formation

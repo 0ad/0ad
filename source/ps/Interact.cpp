@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -522,138 +522,6 @@ CVector3D CSelectedEntities::GetGroupPosition( i8 groupid )
 
 void CSelectedEntities::Update()
 {
-	static std::vector<HEntity> lastSelection;
-
-	// Drop out immediately if we're in some special interaction mode
-	if (customSelectionMode)
-		return;
-
-	if( !( m_selected == lastSelection ) )
-	{
-		g_JSGameEvents.FireSelectionChanged( m_selectionChanged );
-		lastSelection = m_selected;
-	}
-
-	if( m_selectionChanged || g_Mouseover.m_targetChanged )
-	{
-		// Can't order anything off the map
-		if( !g_Game->GetWorld()->GetTerrain()->IsOnMap( g_Mouseover.m_worldposition ) )
-		{
-			m_defaultCommand = -1;
-			m_secondaryCommand = -1;
-			return;
-		}
-
-		// Quick count to see which is the modal default order.
-
-		const int numCommands=NMT_COMMAND_LAST - NMT_COMMAND_FIRST;
-		int defaultPoll[numCommands];
-		std::map<CStrW, int, CStrW_hash_compare> defaultCursor[numCommands];
-		std::map<int, int> defaultAction[numCommands];
-
-		int secondaryPoll[numCommands];
-		std::map<CStrW, int, CStrW_hash_compare> secondaryCursor[numCommands];
-		std::map<int, int> secondaryAction[numCommands];
-
-		int t, vote, secvote;
-		for( t = 0; t < numCommands; t++ )
-		{
-			defaultPoll[t] = 0;
-			secondaryPoll[t] = 0;
-		}
-
-		std::vector<HEntity>::iterator it;
-		for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		{
-			CEventTargetChanged evt( g_Mouseover.m_target );
-			(*it)->DispatchEvent( &evt );
-			vote = evt.m_defaultOrder - NMT_COMMAND_FIRST;
-			secvote = evt.m_secondaryOrder - NMT_COMMAND_FIRST;
-
-			if( ( vote >= 0 ) && ( vote < numCommands ) )
-			{
-				defaultPoll[vote]++;
-				defaultCursor[vote][evt.m_defaultCursor]++;
-				defaultAction[vote][evt.m_defaultAction]++;
-			}
-			if( ( secvote >= 0 ) && ( secvote < numCommands ) )
-			{
-				secondaryPoll[secvote]++;
-				secondaryCursor[secvote][evt.m_secondaryCursor]++;
-				secondaryAction[secvote][evt.m_secondaryAction]++;
-			}
-		}
-
-		// Don't count GOTO as a majority action unless everything else has 0 votes.
-		defaultPoll[NMT_GOTO - NMT_COMMAND_FIRST] = 0;
-
-		vote = -1;
-		secvote = -1;
-		for( t = 0; t < numCommands; t++ )
-		{
-			if( ( vote == -1 ) || ( defaultPoll[t] > defaultPoll[vote] ) )
-				vote = t;
-			if( ( secvote == -1 ) || ( secondaryPoll[t] > secondaryPoll[secvote] ) )
-				secvote = t;
-		}
-
-		std::map<CStrW, int, CStrW_hash_compare>::iterator itv;
-		std::map<int, int>::iterator iti;
-		m_defaultCommand = vote + NMT_COMMAND_FIRST;
-		m_secondaryCommand = secvote + NMT_COMMAND_FIRST;
-
-		// Now find the most appropriate cursor
-		t = 0;
-		for( itv = defaultCursor[vote].begin(); itv != defaultCursor[vote].end(); itv++ )
-		{
-			if( itv->second > t )
-			{
-				t = itv->second;
-				g_CursorName = itv->first;
-			}
-		}
-
-		/*
-		TODO:  provide secondary cursor name?
-
-		t = 0;
-		for( itv = secondaryCursor[secvote].begin(); itv != secondaryCursor[secvote].end(); itv++ )
-		{
-			if( itv->second > t )
-			{
-				t = itv->second;
-				g_CursorName = itv->first;
-			}
-		}*/
-
-		// Find the most appropriate action parameter too
-		t = 0;
-		for( iti = defaultAction[vote].begin(); iti != defaultAction[vote].end(); iti++ )
-		{
-			if( iti->second > t )
-			{
-				t = iti->second;
-				m_defaultAction = iti->first;
-			}
-		}
-
-		t = 0;
-		for( iti = secondaryAction[secvote].begin(); iti != secondaryAction[secvote].end(); iti++ )
-		{
-			if( iti->second > t )
-			{
-				t = iti->second;
-				m_secondaryAction = iti->first;
-			}
-		}
-
-		m_selectionChanged = false;
-		g_Mouseover.m_targetChanged = false;
-	}
-
-	if( ( m_group_highlight != -1 ) && GetGroupCount( m_group_highlight ) )
-		g_Game->GetView()->SetCameraTarget( GetGroupPosition( m_group_highlight ) );
-
 }
 
 void CMouseoverEntities::Update( float timestep )
@@ -1434,6 +1302,7 @@ void CBuildingPlacer::MouseReleased()
 
 	if( m_valid )
 	{
+/*
 		// issue a place object command across the network
 		CPlaceObjectMessage *msg = new CPlaceObjectMessage();
 		msg->m_IsQueued = hotkeys[HOTKEY_ORDER_QUEUE];
@@ -1444,6 +1313,7 @@ void CBuildingPlacer::MouseReleased()
 		msg->m_Z = (u32) (clickPos.Z * 1000);
 		msg->m_Angle = (u32) (m_angle * 1000);
 		g_Game->GetSimulation()->QueueLocalCommand(msg);
+*/
 	}
 
 	if( hotkeys[HOTKEY_ORDER_QUEUE] )
