@@ -7,8 +7,6 @@ addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
 
-use_dcdt = false -- disable it since it's a non-Free library
-
 dofile("functions.lua")
 dofile("extern_libs.lua")
 
@@ -238,9 +236,6 @@ function package_set_build_flags()
 		package.defines = {
 			-- "CONFIG_USE_MMGR",
 		}
-		if use_dcdt then
-			tinsert(package.defines, "USE_DCDT")
-		end
 	end
 end
 
@@ -437,9 +432,6 @@ function setup_all_libs ()
 		"maths",
 		"maths/scripting",
 	}
-	if use_dcdt then
-		tinsert(source_dirs, "dcdt/se")
-	end
 	extern_libs = {
 		"spidermonkey",
 		"sdl",	-- key definitions
