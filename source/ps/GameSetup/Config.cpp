@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,8 +41,6 @@ bool g_NoGLFramebufferObject = false;
 
 bool g_Shadows = false;
 bool g_FancyWater = false;
-
-bool g_FixedFrameTiming = false;
 
 float g_LodBias = 0.0f;
 float g_Gamma = 1.0f;
@@ -150,9 +148,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 
 	if (args.Has("entgraph"))
 		g_EntGraph = true;
-
-	if (args.Has("fixedframe"))
-		g_FixedFrameTiming = true;
 
 	if (args.Has("g"))
 	{

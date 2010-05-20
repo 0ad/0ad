@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -278,11 +278,9 @@ static void Frame()
 		g_Game->Update(TimeSinceLastFrame);
 		PROFILE_END( "simulation update" );
 
-		if (!g_FixedFrameTiming)
-		{
-			PROFILE( "camera update" );
-			g_Game->GetView()->Update(float(TimeSinceLastFrame));
-		}
+		PROFILE_START( "camera update" );
+		g_Game->GetView()->Update(float(TimeSinceLastFrame));
+		PROFILE_END( "camera update" );
 
 		if (!g_UseSimulation2)
 		{
@@ -338,9 +336,6 @@ static void Frame()
 	PROFILE_END("render");
 
 	g_Profiler.Frame();
-
-	if(g_FixedFrameTiming && frameCount==100)
-		kill_mainloop();
 
 	g_TerrainModified = false;
 	g_GameRestarted = false;

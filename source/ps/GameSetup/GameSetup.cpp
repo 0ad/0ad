@@ -1040,22 +1040,6 @@ void Init(const CmdLineArgs& args, int flags)
 
 	ogl_WarnIfError();
 
-	if (g_FixedFrameTiming) {
-		CCamera &camera = *g_Game->GetView()->GetCamera();
-#if 0		// TOPDOWN
-		camera.SetProjection(1.0f,10000.0f,DEGTORAD(90));
-		camera.m_Orientation.SetIdentity();
-		camera.m_Orientation.RotateX(DEGTORAD(90));
-		camera.m_Orientation.Translate(CELL_SIZE*250*0.5, 250, CELL_SIZE*250*0.5);
-#else		// std view
-		camera.SetProjection(1.0f,10000.0f,DEGTORAD(20));
-		camera.m_Orientation.SetXRotation(DEGTORAD(30));
-		camera.m_Orientation.RotateY(DEGTORAD(-45));
-		camera.m_Orientation.Translate(350, 350, -275);
-#endif
-		camera.UpdateFrustum();
-	}
-
 	if (! g_AutostartMap.empty())
 	{
 		// Code copied mostly from atlas/GameInterface/Handlers/Map.cpp -

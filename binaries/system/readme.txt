@@ -4,7 +4,6 @@ COMMAND LINE OPTIONS:
 -buildarchive	?
 -conf:KEY=VALUE	set a config value (overrides the contents of system.cfg)
 -entgraph		?
--fixedframe		enable fixed frame timing; ?
 -g=F			set the gamma correction to 'F' (default 1.0)
 -listfiles		?
 -profile=NAME	?

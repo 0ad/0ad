@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,8 +48,6 @@ extern bool g_NoGLFramebufferObject;
 extern bool g_Shadows;
 // flag to switch on reflective/refractive water
 extern bool g_FancyWater;
-// flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
-extern bool g_FixedFrameTiming;
 
 extern float g_LodBias;
 extern float g_Gamma;

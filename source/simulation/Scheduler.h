@@ -109,10 +109,6 @@ public:
 	static void ScriptingInit();
 };
 
-// made visible to main.cpp's Frame() so that it can abort after 100 frames
-// if g_FixedFrameTiming == true (allows measuring performance).
-extern int frameCount;
-
 extern const int ORDER_DELAY;
 
 #endif
