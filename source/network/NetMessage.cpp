@@ -82,14 +82,11 @@ u8* CNetMessage::Serialize( u8* pBuffer ) const
 	// Validate parameters
 	if ( !pBuffer ) return NULL;
 
-//	Serialize_int_1( pBuffer, m_Type );
-//	Serialize_int_2( pBuffer, m_SerializeSize );
+	size_t size = GetSerializedLength();
+	Serialize_int_1( pBuffer, m_Type );
+	Serialize_int_2( pBuffer, size );
 
-	// Serialize message type and its size
-	*( ( NetMessageType* )pBuffer ) = m_Type;
-	*( ( size_t* )( pBuffer + sizeof( NetMessageType ) ) ) = GetSerializedLength();
-
-	return pBuffer + sizeof( NetMessageType ) + sizeof( uint );
+	return pBuffer;
 }
 
 //-----------------------------------------------------------------------------
@@ -101,17 +98,19 @@ const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
 	// Validate parameters
 	if ( !pStart || !pEnd )	return NULL;
 
-	// Deserialize message type and its size
+	debug_assert( pStart + 3 <= pEnd );
 
-//	Deserialize_int_1( pStart, m_Type );
-//	Deserialize_int_2( pStart, m_SerializeSize );
+	const u8* pBuffer = pStart;
 
-	m_Type = *( ( NetMessageType* )pStart );
-	uint size = *( ( uint* )( pStart + sizeof( NetMessageType ) ) );
+	int type;
+	size_t size;
+	Deserialize_int_1( pBuffer, type );
+	Deserialize_int_2( pBuffer, size );
+	m_Type = (NetMessageType)type;
 
 	debug_assert( pStart + size == pEnd );
 
-	return pStart + sizeof( NetMessageType ) + sizeof( size );
+	return pBuffer;
 }
 
 //-----------------------------------------------------------------------------
@@ -160,7 +159,7 @@ const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
 size_t CNetMessage::GetSerializedLength( void ) const
 {
 	// By default, return header size
-	return ( sizeof( m_Type ) + sizeof( uint ) );
+	return 3;
 }
 
 //-----------------------------------------------------------------------------
