@@ -40,7 +40,8 @@ function setupSession ()
 	// Select session peace track.
 	curr_session_playlist_1 = newRandomSound("music", "peace");
 	// Fade out main theme and fade in session theme.
-	crossFade(curr_music, curr_session_playlist_1, 1)
+	if (typeof curr_music != "undefined" && curr_music)
+		crossFade(curr_music, curr_session_playlist_1, 1)
 
 	// Create the resouce counters
 	createResourceCounters();
