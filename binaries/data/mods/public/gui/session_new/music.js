@@ -8,7 +8,10 @@ var g_CurrentMusic = null;
 
 function startMusic()
 {
-	var gain = 0.5;
+	var ambient1 = new Sound("audio/ambient/dayscape/day_temperate_gen_03.ogg");
+    ambient1.loop();
+    ambient1.setGain(0.8);
+    var gain = 0.3;
 	g_CurrentMusic = new Sound("audio/music/germanic_peace_1.ogg");
 	if (g_CurrentMusic)
 	{
