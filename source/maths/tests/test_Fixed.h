@@ -116,6 +116,7 @@ public:
 	void test_Sqrt()
 	{
 		TS_ASSERT_EQUALS(fixed::FromDouble(1.0).Sqrt().ToDouble(), 1.0);
+		TS_ASSERT_DELTA(fixed::FromDouble(2.0).Sqrt().ToDouble(), sqrt(2.0), 1.0/65536.0);
 		TS_ASSERT_EQUALS(fixed::FromDouble(32400.0).Sqrt().ToDouble(), 180.0);
 		TS_ASSERT_EQUALS(fixed::FromDouble(0.0625).Sqrt().ToDouble(), 0.25);
 		TS_ASSERT_EQUALS(fixed::FromDouble(-1.0).Sqrt().ToDouble(), 0.0);

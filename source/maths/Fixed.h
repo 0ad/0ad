@@ -263,8 +263,8 @@ public:
 	{
 		if (value <= 0)
 			return CFixed(0);
-		u32 s = isqrt64(value);
-		return CFixed((u64)s << (fract_bits / 2));
+		u32 s = isqrt64((u64)value << fract_bits);
+		return CFixed(s);
 	}
 
 private:
