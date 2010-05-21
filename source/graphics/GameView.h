@@ -41,7 +41,7 @@ class CGameView : private Scene
 {
 	NONCOPYABLE(CGameView);
 public:
-	static const float defaultFOV, defaultNear, defaultFar;
+	static const float defaultFOV, defaultCullFOV, defaultNear, defaultFar;
 
 private:
 	CGameViewImpl* m;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -67,6 +67,7 @@ static i8 currentBookmark = -1;
 const float CGameView::defaultFOV = DEGTORAD(20.f);
 const float CGameView::defaultNear = 4.f;
 const float CGameView::defaultFar = 4096.f;
+const float CGameView::defaultCullFOV = CGameView::defaultFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum
 
 class CGameViewImpl : public CJSObject<CGameViewImpl>
 {
@@ -280,10 +281,14 @@ void CGameView::Render()
 		// Set up cull camera
 		m->CullCamera = m->ViewCamera;
 
-		// This can be uncommented to try getting a bigger frustum.. 
-		// but then it makes shadow maps too low-detail.
-		//m_CullCamera.SetProjection(1.0f, 10000.0f, DEGTORAD(30));
-		//m_CullCamera.UpdateFrustum();
+		// One way to fix shadows popping in at the edge of the screen is to widen the culling frustum so that
+		// objects aren't culled as early. The downside is that objects will get rendered even though they appear
+		// off screen, which is somewhat inefficient. A better solution would be to decouple shadow map rendering
+		// from model rendering; as it is now, a shadow map is only rendered if its associated model is to be
+		// rendered.
+		// (See http://trac.wildfiregames.com/ticket/504)
+		m->CullCamera.SetProjection(defaultNear, defaultFar, defaultCullFOV);
+		m->CullCamera.UpdateFrustum();
 	}
 	g_Renderer.SetSceneCamera(m->ViewCamera, m->CullCamera);
 
