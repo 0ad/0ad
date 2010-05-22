@@ -191,7 +191,7 @@ bool CNetClient::SetupSession( CNetSession* pSession )
 
 	pSession->AddTransition( NCS_INGAME, ( uint )NMT_CHAT, NCS_INGAME, (void*)&OnChat, pContext );
 	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SIMULATION_COMMAND, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SYNC_ERROR, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SYNC_ERROR, NCS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NCS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NCS_INGAME, (void*)&OnInGame, pContext );
 
 	// Set first state
