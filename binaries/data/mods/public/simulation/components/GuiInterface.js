@@ -3,9 +3,13 @@ function GuiInterface() {}
 GuiInterface.prototype.Schema =
 	"<a:component type='system'/><empty/>";
 
+GuiInterface.prototype.Serialize = function()
+{
+	return {};
+};
+
 GuiInterface.prototype.Init = function()
 {
-	// TODO: need to not serialise this value
 	this.placementEntity = undefined; // = undefined or [templateName, entityID]
 };
 

@@ -635,7 +635,7 @@ public:
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
 
-		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3;
+		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3, ent4 = 4;
 		CParamNode noParam;
 
 		CParamNode testParam;
@@ -644,6 +644,7 @@ public:
 		man.AddComponent(ent1, man.LookupCID("TestScript1_values"), testParam);
 		man.AddComponent(ent2, man.LookupCID("TestScript1_entity"), testParam);
 		man.AddComponent(ent3, man.LookupCID("TestScript1_nontree"), testParam);
+		man.AddComponent(ent4, man.LookupCID("TestScript1_custom"), testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 1234);
 		{
@@ -668,6 +669,10 @@ public:
 				"- id: 3\n"
 				"  TestScript1_nontree:\n"
 				"    object: ({x:#2=[#1=[2], #1#, #2#, {y:#1#}]})\n"
+				"\n"
+				"- id: 4\n"
+				"  TestScript1_custom:\n"
+				"    object: ({c:1})\n"
 				"\n"
 		);
 

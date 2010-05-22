@@ -209,8 +209,10 @@ void CSimulation2Impl::DumpState()
 
 	file << "\n";
 
-//	m_ComponentManager.DumpDebugState(file);
-	m_ComponentManager.SerializeState(file);
+	m_ComponentManager.DumpDebugState(file);
+
+	std::ofstream binfile (change_extension(path, L".dat").external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
+	m_ComponentManager.SerializeState(binfile);
 }
 
 ////////////////////////////////////////////////////////////////

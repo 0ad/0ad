@@ -60,17 +60,25 @@ void CComponentTypeScript::HandleMessage(const CSimContext& UNUSED(context), con
 
 void CComponentTypeScript::Serialize(ISerializer& serialize)
 {
-	serialize.ScriptVal("object", m_Instance);
-
-	// TODO: it should be possible for scripts to provide their own (de)serialization
-	// functions, for efficiency. (e.g. "function Serialize() { return a JS object containing
-	// just the important state for this component }")
-	// Or alternatively perhaps just have a way to mark certain fields as transient,
-	// and a post-deserialize callback to reinitialise them.
+	// Support a custom "Serialize" function, which returns a new object that will be
+	// serialized instead of the component itself
+	if (m_ScriptInterface.HasProperty(m_Instance, "Serialize"))
+	{
+		CScriptValRooted val;
+		if (!m_ScriptInterface.CallFunction(m_Instance, "Serialize", val))
+			LOGERROR(L"Script Serialize call failed");
+		serialize.ScriptVal("object", val);
+	}
+	else
+	{
+		serialize.ScriptVal("object", m_Instance);
+	}
 }
 
 void CComponentTypeScript::Deserialize(const CSimContext& UNUSED(context), const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent)
 {
+	// TODO: maybe we want to allow a script Deserialize() function, to mirror the Serialize() above
+
 	// Use ScriptObjectAppend so we don't lose the carefully-constructed
 	// prototype/parent of this object
 	deserialize.ScriptObjectAppend(m_Instance);

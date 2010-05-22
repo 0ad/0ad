@@ -59,11 +59,20 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-		// TODO: refactor the common bits of this? also need nicer debug output
-		serialize.NumberU32_Unbounded("num entities", (u32)m_LatestTemplates.size());
-		std::map<entity_id_t, std::wstring>::const_iterator it = m_LatestTemplates.begin();
-		for (; it != m_LatestTemplates.end(); ++it)
+		size_t count = 0;
+
+		for (std::map<entity_id_t, std::wstring>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
 		{
+			if (ENTITY_IS_LOCAL(it->first))
+				continue;
+			++count;
+		}
+		serialize.NumberU32_Unbounded("num entities", (u32)count);
+
+		for (std::map<entity_id_t, std::wstring>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
+		{
+			if (ENTITY_IS_LOCAL(it->first))
+				continue;
 			serialize.NumberU32_Unbounded("id", it->first);
 			serialize.String("template", it->second, 0, 256);
 		}

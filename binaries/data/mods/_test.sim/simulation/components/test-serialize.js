@@ -48,6 +48,20 @@ Engine.RegisterComponentType(IID_Test1, "TestScript1_nontree", TestScript1_nontr
 
 // -------- //
 
+function TestScript1_custom() {}
+
+TestScript1_custom.prototype.Init = function() {
+	this.y = 2;
+};
+
+TestScript1_custom.prototype.Serialize = function() {
+	return {c:1};
+};
+
+Engine.RegisterComponentType(IID_Test1, "TestScript1_custom", TestScript1_custom);
+
+// -------- //
+
 function TestScript1_getter() {}
 
 TestScript1_getter.prototype.Init = function() {
