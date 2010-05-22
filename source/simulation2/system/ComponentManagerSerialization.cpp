@@ -30,9 +30,27 @@
 
 #include "ps/CLogger.h"
 
+std::string SerializeRNG(const boost::rand48& rng)
+{
+	std::stringstream s;
+	s << rng;
+	return s.str();
+}
+
+void DeserializeRNG(const std::string& str, boost::rand48& rng)
+{
+	std::stringstream s;
+	s << str;
+	s >> rng;
+}
+
 bool CComponentManager::DumpDebugState(std::ostream& stream)
 {
 	CDebugSerializer serializer(m_ScriptInterface, stream);
+
+	serializer.StringASCII("rng", SerializeRNG(m_RNG), 0, 32);
+
+	serializer.TextLine("entities:");
 
 	// We want the output to be grouped by entity ID, so invert the CComponentManager data structures
 	std::map<entity_id_t, std::map<ComponentTypeId, IComponent*> > components;
@@ -77,7 +95,12 @@ bool CComponentManager::DumpDebugState(std::ostream& stream)
 
 bool CComponentManager::ComputeStateHash(std::string& outHash)
 {
+	// Hash serialization: this includes the minimal data necessary to detect
+	// differences in the state, and ignores things like counts and names
+
 	CHashSerializer serializer(m_ScriptInterface);
+
+	serializer.StringASCII("rng", SerializeRNG(m_RNG), 0, 32);
 
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator cit = m_ComponentsByTypeId.begin();
 	for (; cit != m_ComponentsByTypeId.end(); ++cit)
@@ -136,6 +159,7 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 	// and it's (hopefully) easier to just expect callers to flush the queue before serializing
 	debug_assert(m_DestructionQueue.empty());
 
+	serializer.StringASCII("rng", SerializeRNG(m_RNG), 0, 32);
 	serializer.NumberU32_Unbounded("next entity id", m_NextEntityId);
 
 	uint32_t numComponentTypes = 0;
@@ -203,6 +227,10 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 	CStdDeserializer deserializer(m_ScriptInterface, stream);
 
 	ResetState();
+
+	std::string rng;
+	deserializer.StringASCII(rng, 0, 32);
+	DeserializeRNG(rng, m_RNG);
 
 	deserializer.NumberU32_Unbounded(m_NextEntityId); // TODO: use sensible bounds
 

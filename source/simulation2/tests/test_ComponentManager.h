@@ -567,6 +567,8 @@ public:
 		std::stringstream debugStream;
 		TS_ASSERT(man.DumpDebugState(debugStream));
 		TS_ASSERT_STR_EQUALS(debugStream.str(),
+				"rng: \"78606\"\n"
+				"entities:\n"
 				"- id: 1\n"
 				"  Test1A:\n"
 				"    x: 11000\n"
@@ -587,13 +589,14 @@ public:
 		std::string hash;
 		TS_ASSERT(man.ComputeStateHash(hash));
 		TS_ASSERT_EQUALS(hash.length(), (size_t)16);
-		TS_ASSERT_SAME_DATA(hash.data(), "\xea\xd8\xe6\x94\xc0\x6b\x2a\xa1\xcc\x6d\x5d\xab\x48\x45\x75\xed", 16);
-		// echo -en "\x01\0\0\0\x01\0\0\0\xf8\x2a\0\0\x02\0\0\0\xd2\x04\0\0\x04\0\0\0\x01\0\0\0\x08\x52\0\0" | openssl md5 | perl -pe 's/(..)/\\x$1/g'
-		//           ^^Test1A^^ ^^^ent1^^ ^^^11000^^^ ^^^ent2^^ ^^^1234^^^ ^^Test2A^^ ^^ent1^^ ^^^21000^^^
+		TS_ASSERT_SAME_DATA(hash.data(), "\x1c\x45\x2b\x20\x1f\x0c\x00\x93\x60\x78\xe2\x63\xb1\x47\x08\x19", 16);
+		// echo -en "\x05\x00\x00\x0078606\x01\0\0\0\x01\0\0\0\xf8\x2a\0\0\x02\0\0\0\xd2\x04\0\0\x04\0\0\0\x01\0\0\0\x08\x52\0\0" | openssl md5 | perl -pe 's/(..)/\\x$1/g'
+		//           ^^^^^^^^ rng ^^^^^^^^ ^^Test1A^^ ^^^ent1^^ ^^^11000^^^ ^^^ent2^^ ^^^1234^^^ ^^Test2A^^ ^^ent1^^ ^^^21000^^^
 
 		std::stringstream stateStream;
 		TS_ASSERT(man.SerializeState(stateStream));
-		TS_ASSERT_STREAM(stateStream, 60,
+		TS_ASSERT_STREAM(stateStream, 69,
+				"\x05\x00\x00\x00\x37\x38\x36\x30\x36" // RNG
 				"\x02\x00\x00\x00" // next entity ID
 				"\x02\x00\x00\x00" // num component types
 				"\x06\x00\x00\x00Test1A"
@@ -652,6 +655,8 @@ public:
 		std::stringstream debugStream;
 		TS_ASSERT(man.DumpDebugState(debugStream));
 		TS_ASSERT_STR_EQUALS(debugStream.str(),
+				"rng: \"78606\"\n"
+				"entities:\n"
 				"- id: 1\n"
 				"  TestScript1_values:\n"
 				"    object: ({x:1234, str:\"this is a string\", things:{a:1, b:\"2\", c:[3, \"4\", [5, []]]}})\n"
