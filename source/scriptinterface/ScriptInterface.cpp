@@ -31,7 +31,6 @@
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <boost/random/linear_congruential.hpp>
 #include <boost/random/uniform_real.hpp>
-#include <boost/random/variate_generator.hpp>
 
 #include "valgrind.h"
 
@@ -125,8 +124,7 @@ JSBool Math_random(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 
 	// TODO: is the double generation sufficiently deterministic for us?
 	boost::uniform_real<double> dist;
-	boost::variate_generator<boost::rand48&, boost::uniform_real<> > gen(*rng, dist);
-	double r = gen();
+	double r = dist(*rng);
 
 	jsval rv;
 	if (!JS_NewNumberValue(cx, r, &rv))

@@ -117,11 +117,11 @@ public:
 
 		boost::rand48 rng;
 		script.ReplaceNondeterministicFunctions(rng);
-		rng.seed(0);
+		rng.seed((u64)0);
 		TS_ASSERT(script.Eval("Math.random()", d1));
 		TS_ASSERT(script.Eval("Math.random()", d2));
 		TS_ASSERT_DIFFERS(d1, d2);
-		rng.seed(0);
+		rng.seed((u64)0);
 		TS_ASSERT(script.Eval("Math.random()", d2));
 		TS_ASSERT_EQUALS(d1, d2);
 	}
