@@ -143,6 +143,7 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ERROR, NSS_INGAME, (void*)&OnError, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_CHAT, NSS_INGAME, (void*)&OnChat, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SIMULATION_COMMAND, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SYNC_CHECK, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NSS_INGAME, (void*)&OnInGame, pContext );
 
 	// Set first state
@@ -511,10 +512,13 @@ bool CNetServer::OnInGame( void* pContext, CFsmEvent* pEvent )
 		{
 			CSimulationMessage* simMessage = static_cast<CSimulationMessage*> (pMessage);
 			pServer->m_ServerTurnManager->OnSimulationMessage(simMessage);
-			return true;
 		}
-
-		if ( pMessage->GetType() == NMT_END_COMMAND_BATCH )
+		else if (pMessage->GetType() == NMT_SYNC_CHECK)
+		{
+			CSyncCheckMessage* syncMessage = static_cast<CSyncCheckMessage*> (pMessage);
+			pServer->m_ServerTurnManager->NotifyFinishedClientUpdate(pSession->GetID(), syncMessage->m_Turn, syncMessage->m_Hash);
+		}
+		else if ( pMessage->GetType() == NMT_END_COMMAND_BATCH )
 		{
 			CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (pMessage);
 			pServer->m_ServerTurnManager->NotifyFinishedClientCommands(pSession->GetID(), endMessage->m_Turn);

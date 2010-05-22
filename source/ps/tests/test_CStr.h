@@ -74,4 +74,29 @@ public:
 			TS_ASSERT_SAME_DATA(str_utf8to16.data(), str_utf16.data(), str_utf16.length()*sizeof(wchar_t));
 		}
 	}
+
+	template <typename T>
+	void roundtrip(const T& str)
+	{
+		size_t len = str.GetSerializedLength();
+		u8* buf = new u8[len+1];
+		buf[len] = '!';
+		TS_ASSERT_EQUALS(str.Serialize(buf) - (buf+len), 0);
+		TS_ASSERT_EQUALS(buf[len], '!');
+
+		T str2;
+		TS_ASSERT_EQUALS(str2.Deserialize(buf, buf+len) - (buf+len), 0);
+		TS_ASSERT_EQUALS(str2.length(), str.length());
+		TS_ASSERT_EQUALS(str2, str);
+	}
+
+	void test_serialize_8()
+	{
+		CStr8 str1("hello");
+		roundtrip(str1);
+
+		CStr8 str2 = str1;
+		str2[3] = '\0';
+		roundtrip(str2);
+	}
 };

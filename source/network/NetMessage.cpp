@@ -208,7 +208,15 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 	case NMT_END_COMMAND_BATCH:
 		pNewMessage = new CEndCommandBatchMessage;
 		break;
-	
+
+	case NMT_SYNC_CHECK:
+		pNewMessage = new CSyncCheckMessage;
+		break;
+
+	case NMT_SYNC_ERROR:
+		pNewMessage = new CSyncErrorMessage;
+		break;
+
 	case NMT_CHAT:
 		pNewMessage = new CChatMessage;
 		break;

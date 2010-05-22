@@ -76,6 +76,11 @@ public:
 	virtual void OnSimulationMessage(CSimulationMessage* msg) = 0;
 
 	/**
+	 * Called when there has been an out-of-sync error.
+	 */
+	virtual void OnSyncError(u32 turn, const std::string& expectedHash);
+
+	/**
 	 * Called by simulation code, to add a new command to be distributed to all clients and executed soon.
 	 */
 	virtual void PostCommand(CScriptValRooted data) = 0;
@@ -97,6 +102,11 @@ protected:
 	 */
 	virtual void NotifyFinishedOwnCommands(u32 turn) = 0;
 
+	/**
+	 * Called when this client has finished a simulation update, with the current state hash.
+	 */
+	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash) = 0;
+
 	CSimulation2& m_Simulation2;
 
 	/// The turn that we have most recently executed
@@ -113,6 +123,8 @@ protected:
 
 	/// Time remaining until we ought to execute the next turn
 	float m_DeltaTime;
+
+	bool m_HasSyncError;
 };
 
 class CNetClientTurnManager : public CNetTurnManager
@@ -129,6 +141,8 @@ public:
 
 protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn);
+
+	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
 
 	CNetClient& m_NetClient;
 };
@@ -147,13 +161,24 @@ public:
 
 	void NotifyFinishedClientCommands(int client, u32 turn);
 
+	void NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash);
+
 	void InitialiseClient(int client);
 
 protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn);
 
-	// Client ID -> ready turn number (the latest turn for which all commands have been received)
+	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
+
+	// Client ID -> ready turn number (the latest turn for which all commands have been received from that client)
 	std::map<int, u32> m_ClientsReady;
+
+	// Client ID -> last known simulated turn number (for which we have the state hash)
+	// (the client has reached the start of this turn, not done the update for it yet)
+	std::map<int, u32> m_ClientsSimulated;
+
+	// Map of turn -> {Client ID -> state hash}; old indexes <= min(m_ClientsSimulated) are deleted
+	std::map<u32, std::map<int, std::string> > m_ClientStateHashes;
 
 	CNetServer& m_NetServer;
 };
@@ -172,6 +197,8 @@ public:
 
 protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn);
+
+	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
 };
 
 #endif // INCLUDED_NETTURNMANAGER
