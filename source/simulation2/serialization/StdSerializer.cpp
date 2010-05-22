@@ -20,13 +20,22 @@
 #include "StdSerializer.h"
 
 #include <ostream>
+#include <cstring>
 
 CStdSerializer::CStdSerializer(ScriptInterface& scriptInterface, std::ostream& stream) :
 	CBinarySerializer(scriptInterface), m_Stream(stream)
 {
 }
 
-void CStdSerializer::Put(const char* UNUSED(name), const u8* data, size_t len)
+void CStdSerializer::Put(const char* name, const u8* data, size_t len)
 {
+#if 0 // annotate the stream to help debugging if you're reading the output in a hex editor
+	m_Stream.put('[');
+	m_Stream.write(name, strlen(name));
+	m_Stream.put(']');
+#else
+	UNUSED2(name);
+#endif
+
 	m_Stream.write((const char*)data, len);
 }

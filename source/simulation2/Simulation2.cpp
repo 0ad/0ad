@@ -209,7 +209,8 @@ void CSimulation2Impl::DumpState()
 
 	file << "\n";
 
-	m_ComponentManager.DumpDebugState(file);
+//	m_ComponentManager.DumpDebugState(file);
+	m_ComponentManager.SerializeState(file);
 }
 
 ////////////////////////////////////////////////////////////////
