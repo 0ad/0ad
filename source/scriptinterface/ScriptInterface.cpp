@@ -29,6 +29,9 @@
 
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
+#include <boost/random/linear_congruential.hpp>
+#include <boost/random/uniform_real.hpp>
+#include <boost/random/variate_generator.hpp>
 
 #include "valgrind.h"
 
@@ -107,6 +110,28 @@ JSBool print(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsva
 		printf("%s", str.c_str());
 	}
 	fflush(stdout);
+	return JS_TRUE;
+}
+
+// Math override functions:
+
+JSBool Math_random(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+{
+	// Grab the RNG that was hidden in our slot
+	jsval rngp;
+	if (!JS_GetReservedSlot(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)), 0, &rngp))
+		return JS_FALSE;
+	boost::rand48* rng = static_cast<boost::rand48*>(JSVAL_TO_PRIVATE(rngp));
+
+	// TODO: is the double generation sufficiently deterministic for us?
+	boost::uniform_real<double> dist;
+	boost::variate_generator<boost::rand48&, boost::uniform_real<> > gen(*rng, dist);
+	double r = gen();
+
+	jsval rv;
+	if (!JS_NewNumberValue(cx, r, &rv))
+		return JS_FALSE;
+	JS_SET_RVAL(cx, vp, rv);
 	return JS_TRUE;
 }
 
@@ -231,6 +256,26 @@ void ScriptInterface::SetCallbackData(void* cbdata)
 void* ScriptInterface::GetCallbackData(JSContext* cx)
 {
 	return JS_GetContextPrivate(cx);
+}
+
+void ScriptInterface::ReplaceNondeterministicFunctions(boost::rand48& rng)
+{
+	jsval math;
+	if (!JS_GetProperty(m->m_cx, m->m_glob, "Math", &math) || !JSVAL_IS_OBJECT(math))
+	{
+		LOGERROR(L"ReplaceNondeterministicFunctions: failed to get Math");
+		return;
+	}
+
+	JSFunction* random = JS_DefineFunction(m->m_cx, JSVAL_TO_OBJECT(math), "random", (JSNative)Math_random, 0,
+			JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	if (!random)
+	{
+		LOGERROR(L"ReplaceNondeterministicFunctions: failed to replace Math.random");
+		return;
+	}
+	// Store the RNG in a slot which is sort-of-guaranteed to be unused by the JS engine
+	JS_SetReservedSlot(m->m_cx, JS_GetFunctionObject(random), 0, PRIVATE_TO_JSVAL(&rng));
 }
 
 void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)

@@ -21,6 +21,8 @@
 
 #include "ps/CLogger.h"
 
+#include <boost/random/linear_congruential.hpp>
+
 class TestScriptInterface : public CxxTest::TestSuite
 {
 public:
@@ -102,5 +104,25 @@ public:
 		std::string source;
 		TS_ASSERT(script2.CallFunction(obj2.get(), "toSource", source));
 		TS_ASSERT_STR_EQUALS(source, "({a:#1=[#1#], b:#1#})");
+	}
+
+	void test_random()
+	{
+		ScriptInterface script("Test");
+
+		double d1, d2;
+		TS_ASSERT(script.Eval("Math.random()", d1));
+		TS_ASSERT(script.Eval("Math.random()", d2));
+		TS_ASSERT_DIFFERS(d1, d2);
+
+		boost::rand48 rng;
+		script.ReplaceNondeterministicFunctions(rng);
+		rng.seed(0);
+		TS_ASSERT(script.Eval("Math.random()", d1));
+		TS_ASSERT(script.Eval("Math.random()", d2));
+		TS_ASSERT_DIFFERS(d1, d2);
+		rng.seed(0);
+		TS_ASSERT(script.Eval("Math.random()", d2));
+		TS_ASSERT_EQUALS(d1, d2);
 	}
 };

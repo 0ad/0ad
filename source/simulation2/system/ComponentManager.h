@@ -22,6 +22,8 @@
 #include "Components.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <boost/random/linear_congruential.hpp>
+
 #include <map>
 
 class IComponent;
@@ -249,6 +251,8 @@ private:
 	ComponentTypeId m_NextScriptComponentTypeId;
 	entity_id_t m_NextEntityId;
 	entity_id_t m_NextLocalEntityId;
+
+	boost::rand48 m_RNG;
 
 	friend class TestComponentManager;
 };

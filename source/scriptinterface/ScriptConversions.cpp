@@ -49,6 +49,16 @@ template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, jsval v, float&
 	return true;
 }
 
+template<> bool ScriptInterface::FromJSVal<double>(JSContext* cx, jsval v, double& out)
+{
+	jsdouble ret;
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v));
+	if (!JS_ValueToNumber(cx, v, &ret))
+		return false;
+	out = ret;
+	return true;
+}
+
 template<> bool ScriptInterface::FromJSVal<i32>(JSContext* cx, jsval v, i32& out)
 {
 	int32 ret;
@@ -140,6 +150,13 @@ template<> jsval ScriptInterface::ToJSVal<bool>(JSContext* UNUSED(cx), const boo
 }
 
 template<> jsval ScriptInterface::ToJSVal<float>(JSContext* cx, const float& val)
+{
+	jsval rval = JSVAL_VOID;
+	JS_NewNumberValue(cx, val, &rval); // ignore return value
+	return rval;
+}
+
+template<> jsval ScriptInterface::ToJSVal<double>(JSContext* cx, const double& val)
 {
 	jsval rval = JSVAL_VOID;
 	JS_NewNumberValue(cx, val, &rval); // ignore return value

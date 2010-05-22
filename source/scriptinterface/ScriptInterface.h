@@ -29,6 +29,8 @@
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
 
+namespace boost { class rand48; }
+
 // Set the maximum number of function arguments that can be handled
 // (This should be as small as possible (for compiler efficiency),
 // but as large as necessary for all wrapped functions)
@@ -61,6 +63,8 @@ public:
 	static void* GetCallbackData(JSContext* cx);
 
 	JSContext* GetContext() const;
+
+	void ReplaceNondeterministicFunctions(boost::rand48& rng);
 
 	/**
 	 * Call a constructor function, roughly equivalent to JS "new ctor".
