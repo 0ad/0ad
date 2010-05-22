@@ -95,6 +95,19 @@ public:
 		TS_ASSERT_EQUALS(fixed::FromFloat(-eps * 0.4375).ToDouble(), 0.0);
 	}
 
+	void test_FromString()
+	{
+		TS_ASSERT_EQUALS(fixed::FromString("").ToDouble(), 0.0);
+		TS_ASSERT_EQUALS(fixed::FromString("123").ToDouble(), 123.0);
+		TS_ASSERT_EQUALS(fixed::FromString("-123").ToDouble(), -123.0);
+		TS_ASSERT_EQUALS(fixed::FromString("123.5").ToDouble(), 123.5);
+		TS_ASSERT_EQUALS(fixed::FromString("-123.5").ToDouble(), -123.5);
+		TS_ASSERT_EQUALS(fixed::FromString(".5").ToDouble(), 0.5);
+		TS_ASSERT_EQUALS(fixed::FromString("5.").ToDouble(), 5.0);
+		TS_ASSERT_EQUALS(fixed::FromString("254.391").GetInternalValue(), 16671767);
+		// TODO: could test more large/small numbers, errors, etc
+	}
+
 	void test_RoundToZero()
 	{
 		TS_ASSERT_EQUALS(fixed::FromFloat(10.f).ToInt_RoundToZero(), 10);

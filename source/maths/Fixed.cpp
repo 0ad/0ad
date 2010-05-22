@@ -24,13 +24,73 @@
 template<>
 CFixed_15_16 CFixed_15_16::FromString(const CStr8& s)
 {
-	return FromDouble(s.ToDouble()); // TODO: shouldn't use floats here
+	// Parse a superset of the xsd:decimal syntax: [-+]?\d*(\.\d*)?
+
+	// TODO: this could be made more precise
+
+	if (s.empty())
+		return CFixed_15_16::Zero();
+
+	bool neg = false;
+	CFixed_15_16 r;
+	const char* c = &s[0];
+
+	if (*c == '+')
+	{
+		++c;
+	}
+	else if (*c == '-')
+	{
+		++c;
+		neg = true;
+	}
+
+	// Integer part
+	while (true)
+	{
+		if (*c == '.')
+		{
+			++c;
+			// Fractional part
+			u32 div = 10;
+			while (true)
+			{
+				if (*c >= '0' && *c <= '9')
+				{
+					r += CFixed_15_16::FromInt(*c - '0') / (int)div;
+					++c;
+					div *= 10;
+					if (div > 65536)
+						break; // any further digits will be too small to have any effect
+				}
+				else
+				{
+					// invalid character or end of string
+					break;
+				}
+			}
+			break;
+		}
+		else if (*c >= '0' && *c <= '9')
+		{
+			r = r * 10; // TODO: handle overflow gracefully, maybe
+			r += CFixed_15_16::FromInt(*c - '0');
+			++c;
+		}
+		else
+		{
+			// invalid character or end of string
+			break;
+		}
+	}
+
+	return (neg ? -r : r);
 }
 
 template<>
 CFixed_15_16 CFixed_15_16::FromString(const CStrW& s)
 {
-	return FromDouble(s.ToDouble()); // TODO: shouldn't use floats here
+	return FromString(CStr8(s));
 }
 
 // Based on http://www.dspguru.com/dsp/tricks/fixed-point-atan2-with-self-normalization
