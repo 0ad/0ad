@@ -110,7 +110,7 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 		for (uint32_t i = 0; i < numProps; ++i)
 		{
 			utf16string propname;
-			StringUTF16(propname);
+			ReadStringUTF16(propname);
 
 			jsval propval = ReadScriptVal(NULL);
 			CScriptValRooted propvalRoot(cx, propval);
@@ -162,17 +162,26 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 	}
 }
 
+void CStdDeserializer::ReadStringUTF16(utf16string& str)
+{
+	uint32_t len;
+	NumberU32_Unbounded(len);
+	str.resize(len); // TODO: should check len*2 <= bytes remaining in stream, before resizing
+	Get((u8*)str.data(), len*2);
+}
+
 void CStdDeserializer::ScriptString(JSString*& out)
 {
 	utf16string str;
-	StringUTF16(str);
+	ReadStringUTF16(str);
+
+#if BYTE_ORDER != LITTLE_ENDIAN
+#error TODO: probably need to convert JS strings from little-endian
+#endif
 
 	out = JS_NewUCStringCopyN(m_ScriptInterface.GetContext(), (const jschar*)str.data(), str.length());
 	if (!out)
-	{
-		LOGERROR(L"JS_NewUCStringCopyN failed");
-		throw PSERROR_Deserialize_ScriptError();
-	}
+		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
 }
 
 void CStdDeserializer::ScriptVal(jsval& out)

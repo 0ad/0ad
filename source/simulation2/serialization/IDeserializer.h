@@ -49,7 +49,6 @@ public:
 	virtual void Bool(bool& out);
 	virtual void StringASCII(std::string& out, uint32_t minlength, uint32_t maxlength);
 	virtual void String(std::wstring& out, uint32_t minlength, uint32_t maxlength);
-	virtual void StringUTF16(utf16string& out);
 
 	/// Deserialize a jsval, replacing 'out'
 	virtual void ScriptVal(jsval& out) = 0;

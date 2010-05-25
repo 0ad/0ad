@@ -267,30 +267,30 @@ public:
 
 			serialize.ScriptVal("script", obj);
 
-			TS_ASSERT_STREAM(stream, 100,
+			TS_ASSERT_STREAM(stream, 115,
 					"\x03" // SCRIPT_TYPE_OBJECT
 					"\x02\0\0\0" // num props
-					"\x01\0\0\0" "x" // "x"
+					"\x01\0\0\0" "x\0" // "x"
 					"\x05" // SCRIPT_TYPE_INT
 					"\x7b\0\0\0" // 123
-					"\x01\0\0\0" "y" // "y"
+					"\x01\0\0\0" "y\0" // "y"
 					"\x02" // SCRIPT_TYPE_ARRAY
 					"\x08\0\0\0" // num props
-					"\x01\0\0\0" "0" // "0"
+					"\x01\0\0\0" "0\0" // "0"
 					"\x05" "\x01\0\0\0" // SCRIPT_TYPE_INT 1
-					"\x01\0\0\0" "1" // "1"
+					"\x01\0\0\0" "1\0" // "1"
 					"\x06" "\0\0\0\0\0\0\xf8\x3f" // SCRIPT_TYPE_DOUBLE 1.5
-					"\x01\0\0\0" "2" // "2"
-					"\x04" "\x01\0\0\0" "2" // SCRIPT_TYPE_STRING "2"
-					"\x01\0\0\0" "3" // "3"
-					"\x04" "\x04\0\0\0" "test" // SCRIPT_TYPE_STRING "test"
-					"\x01\0\0\0" "4" // "4"
+					"\x01\0\0\0" "2\0" // "2"
+					"\x04" "\x01\0\0\0" "2\0" // SCRIPT_TYPE_STRING "2"
+					"\x01\0\0\0" "3\0" // "3"
+					"\x04" "\x04\0\0\0" "t\0e\0s\0t\0" // SCRIPT_TYPE_STRING "test"
+					"\x01\0\0\0" "4\0" // "4"
 					"\x00" // SCRIPT_TYPE_VOID
-					"\x01\0\0\0" "5" // "5"
+					"\x01\0\0\0" "5\0" // "5"
 					"\x01" // SCRIPT_TYPE_NULL
-					"\x01\0\0\0" "6" // "6"
+					"\x01\0\0\0" "6\0" // "6"
 					"\x07" "\x01" // SCRIPT_TYPE_BOOLEAN true
-					"\x01\0\0\0" "7" // "7"
+					"\x01\0\0\0" "7\0" // "7"
 					"\x07" "\x00" // SCRIPT_TYPE_BOOLEAN false
 			);
 
@@ -347,10 +347,12 @@ public:
 			"y:\"\\uE000\\uFFFD\""
 			"})");
 
-		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 1", "(\"\\ud7ff\\ud800\")", "..."), PSERROR_Serialize_InvalidCharInString);
-		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 2", "(\"\\udfff\")", "..."), PSERROR_Serialize_InvalidCharInString);
-		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 3", "(\"\\uffff\")", "..."), PSERROR_Serialize_InvalidCharInString);
-		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 4", "(\"\\ud800\\udc00\")" /* U+10000 */, "..."), PSERROR_Serialize_InvalidCharInString);
+		// Disabled since we no longer do the UTF-8 conversion that rejects invalid characters
+//		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 1", "(\"\\ud7ff\\ud800\")", "..."), PSERROR_Serialize_InvalidCharInString);
+//		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 2", "(\"\\udfff\")", "..."), PSERROR_Serialize_InvalidCharInString);
+//		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 3", "(\"\\uffff\")", "..."), PSERROR_Serialize_InvalidCharInString);
+//		TS_ASSERT_THROWS(helper_script_roundtrip("invalid chars 4", "(\"\\ud800\\udc00\")" /* U+10000 */, "..."), PSERROR_Serialize_InvalidCharInString);
+		helper_script_roundtrip("unicode", "\"\\ud800\\uffff\"", "(new String(\"\\uD800\\uFFFF\"))");
 	}
 
 	void TODO_test_script_objects()
@@ -369,13 +371,13 @@ public:
 	{
 		const char stream[] = "\x02" // SCRIPT_TYPE_ARRAY
 					"\x04\0\0\0" // num props
-					"\x01\0\0\0" "0" // "0"
+					"\x01\0\0\0" "0\0" // "0"
 					"\x05" "\x00\0\0\xC0" // SCRIPT_TYPE_INT -1073741824 (JS_INT_MIN)
-					"\x01\0\0\0" "1" // "1"
+					"\x01\0\0\0" "1\0" // "1"
 					"\x06" "\0\0\x40\0\0\0\xD0\xC1" // SCRIPT_TYPE_DOUBLE -1073741825 (JS_INT_MIN-1)
-					"\x01\0\0\0" "2" // "2"
+					"\x01\0\0\0" "2\0" // "2"
 					"\x05" "\xFF\xFF\xFF\x3F" // SCRIPT_TYPE_INT 1073741823
-					"\x01\0\0\0" "3" // "3"
+					"\x01\0\0\0" "3\0" // "3"
 					"\x06" "\0\0\0\0\0\0\xD0\x41" // SCRIPT_TYPE_DOUBLE 1073741824
 		;
 

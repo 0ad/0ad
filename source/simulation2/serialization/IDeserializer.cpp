@@ -126,22 +126,6 @@ void IDeserializer::String(std::wstring& out, uint32_t minlength, uint32_t maxle
 		throw PSERROR_Deserialize_OutOfBounds();
 }
 
-void IDeserializer::StringUTF16(utf16string& out)
-{
-	std::string str;
-	uint32_t len;
-	NumberU32_Unbounded(len);
-	str.resize(len); // TODO: should check len <= bytes remaining in stream
-	Get((u8*)str.data(), len);
-
-	// TODO: Maybe we should have a utf16string_from_utf8
-	LibError err;
-	std::wstring strw = wstring_from_utf8(str, &err);
-	if (err != INFO::OK)
-		throw PSERROR_Deserialize_InvalidCharInString();
-	out = utf16string(strw.begin(), strw.end());
-}
-
 void IDeserializer::RawBytes(u8* data, size_t len)
 {
 	Get(data, len);

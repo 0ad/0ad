@@ -40,6 +40,7 @@ protected:
 
 private:
 	jsval ReadScriptVal(JSObject* appendParent);
+	void ReadStringUTF16(utf16string& str);
 
 	virtual void AddScriptBackref(JSObject* obj);
 	virtual JSObject* GetScriptBackref(u32 tag);

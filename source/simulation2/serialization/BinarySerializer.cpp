@@ -254,16 +254,13 @@ void CBinarySerializer::ScriptString(const char* name, JSString* string)
 	jschar* chars = JS_GetStringChars(string);
 	size_t length = JS_GetStringLength(string);
 
-	// Use UTF-8, for storage efficiency
-	// TODO: Maybe we should have a utf8_from_utf16string
+#if BYTE_ORDER != LITTLE_ENDIAN
+#error TODO: probably need to convert JS strings to little-endian
+#endif
 
-	utf16string str16(chars, chars + length);
-	std::wstring strw(str16.begin(), str16.end());
-	LibError err;
-	std::string str8 = utf8_from_wstring(strw, &err);
-	if (err != INFO::OK)
-		throw PSERROR_Serialize_InvalidCharInString();
-	PutString(name, str8);
+	// Serialize strings directly as UTF-16, to avoid expensive encoding conversions
+	NumberU32_Unbounded("string length", (uint32_t)length);
+	RawBytes(name, (const u8*)chars, length*2);
 }
 
 u32 CBinarySerializer::GetScriptBackrefTag(JSObject* obj)
