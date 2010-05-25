@@ -27,6 +27,9 @@ CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, jsv
 {
 	debug_assert(instance);
 	m_ScriptInterface.AddRoot(&m_Instance, "CComponentTypeScript.m_Instance");
+
+	// Cache the property detection for efficiency
+	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance, "Serialize");
 }
 
 CComponentTypeScript::~CComponentTypeScript()
@@ -62,7 +65,7 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 {
 	// Support a custom "Serialize" function, which returns a new object that will be
 	// serialized instead of the component itself
-	if (m_ScriptInterface.HasProperty(m_Instance, "Serialize"))
+	if (m_HasCustomSerialize)
 	{
 		CScriptValRooted val;
 		if (!m_ScriptInterface.CallFunction(m_Instance, "Serialize", val))

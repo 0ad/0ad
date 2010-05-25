@@ -76,6 +76,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 private:
 	ScriptInterface& m_ScriptInterface;
 	jsval m_Instance;
+	bool m_HasCustomSerialize;
 
 	NONCOPYABLE(CComponentTypeScript);
 };
