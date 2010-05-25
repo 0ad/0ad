@@ -104,15 +104,21 @@ class UTF8Codec
 public:
 	static void Encode(UTF32 u, UTF8*& dstPos)
 	{
-		const size_t size = Size(u);
-		static const UTF8 firstByteMarks[1+3] = { 0, 0x00, 0xC0, 0xE0 };
-		for(size_t i = 1; i < size; i++)
+		switch (Size(u))
 		{
-			dstPos[size-i] = UTF8((u|0x80u) & 0xBFu);
-			u >>= 6;
+		case 1:
+			*dstPos++ = UTF8(u);
+			break;
+		case 2:
+			*dstPos++ = UTF8((u >> 6) | 0xC0);
+			*dstPos++ = UTF8((u | 0x80u) & 0xBFu);
+			break;
+		case 3:
+			*dstPos++ = UTF8((u >> 12) | 0xE0);
+			*dstPos++ = UTF8(((u >> 6) | 0x80u) & 0xBFu);
+			*dstPos++ = UTF8((u | 0x80u) & 0xBFu);
+			break;
 		}
-		dstPos[0] = UTF8(u | firstByteMarks[size]);
-		dstPos += size;
 	}
 
 	// @return decoded scalar, or replacementCharacter on error

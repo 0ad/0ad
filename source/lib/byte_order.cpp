@@ -60,61 +60,6 @@ u64 swap64(const u64 x)
 
 //-----------------------------------------------------------------------------
 
-u16 to_le16(u16 x)
-{
-#if BYTE_ORDER == BIG_ENDIAN
-	return swap16(x);
-#else
-	return x;
-#endif
-}
-
-u32 to_le32(u32 x)
-{
-#if BYTE_ORDER == BIG_ENDIAN
-	return swap32(x);
-#else
-	return x;
-#endif
-}
-
-u64 to_le64(u64 x)
-{
-#if BYTE_ORDER == BIG_ENDIAN
-	return swap64(x);
-#else
-	return x;
-#endif
-}
-
-
-u16 to_be16(u16 x)
-{
-#if BYTE_ORDER == BIG_ENDIAN
-	return x;
-#else
-	return swap16(x);
-#endif
-}
-
-u32 to_be32(u32 x)
-{
-#if BYTE_ORDER == BIG_ENDIAN
-	return x;
-#else
-	return swap32(x);
-#endif
-}
-
-u64 to_be64(u64 x)
-{
-#if BYTE_ORDER == BIG_ENDIAN
-	return x;
-#else
-	return swap64(x);
-#endif
-}
-
 
 u16 read_le16(const void* p)
 {

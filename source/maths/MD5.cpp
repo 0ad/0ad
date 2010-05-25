@@ -39,24 +39,13 @@ void MD5::InitState()
 	memset(m_Buf, 0xcc, sizeof(m_Buf));
 }
 
-void MD5::Update(const u8* data, size_t len)
+void MD5::UpdateRest(const u8* data, size_t len)
 {
 	const size_t CHUNK_SIZE = sizeof(m_Buf);
-	debug_assert(m_BufLen < CHUNK_SIZE);
-
-	m_InputLen += len;
-
-	// If we have enough space in m_Buf and won't flush, simply append the input 
-	if (m_BufLen + len < CHUNK_SIZE)
-	{
-		memcpy(m_Buf + m_BufLen, data, len);
-		m_BufLen += len;
-		return;
-	}
 
 	// Add as much data as possible to the buffer
 	size_t n = CHUNK_SIZE - m_BufLen;
-	debug_assert(len >= n);
+//	debug_assert(len >= n);
 	memcpy(m_Buf + m_BufLen, data, n);
 	data += n;
 	len -= n;
@@ -103,11 +92,8 @@ void MD5::Final(u8* digest)
 	InitState();
 }
 
-template <class T> inline T rotlFixed(T x, unsigned int y)
-{
-	debug_assert(y < sizeof(T)*8);
-	return T((x<<y) | (x>>(sizeof(T)*8-y)));
-}
+// Use macro rather than inline function for significantly better debug-mode performance
+#define rotlFixed(x, y) (((x) << (y)) | ((x) >> (32 - (y))))
 // TODO: Crypto++ has an overload using _lrotl on MSVC - is that worthwhile?
 
 void MD5::Transform(const u32* in)
@@ -118,11 +104,12 @@ void MD5::Transform(const u32* in)
 #define F4(x, y, z) (y ^ (x | ~z))
 
 #define MD5STEP(f, w, x, y, z, data, s) \
-	w = rotlFixed(w + f(x, y, z) + data, s) + x
+	t = w + f(x, y, z) + data; w = rotlFixed(t, s) + x
 
 	u32* digest = m_Digest;
 
 	u32 a, b, c, d;
+	u32 t;
 
 	a = digest[0];
 	b = digest[1];

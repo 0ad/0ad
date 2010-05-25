@@ -72,15 +72,25 @@
 #endif
 
 
-/// convert a little-endian number to/from native byte order.
-LIB_API u16 to_le16(u16 x);
-LIB_API u32 to_le32(u32 x);	/// see to_le16
-LIB_API u64 to_le64(u64 x);	/// see to_le16
-
-/// convert a big-endian number to/from native byte order.
-LIB_API u16 to_be16(u16 x);
-LIB_API u32 to_be32(u32 x);	/// see to_be16
-LIB_API u64 to_be64(u64 x);	/// see to_be16
+#if BYTE_ORDER == BIG_ENDIAN
+// convert a little-endian number to/from native byte order.
+# define to_le16(x) swap16(x)
+# define to_le32(x) swap32(x)
+# define to_le64(x) swap64(x)
+// convert a big-endian number to/from native byte order.
+# define to_be16(x) (x)
+# define to_be32(x) (x)
+# define to_be64(x) (x)
+#else // LITTLE_ENDIAN
+// convert a little-endian number to/from native byte order.
+# define to_le16(x) (x)
+# define to_le32(x) (x)
+# define to_le64(x) (x)
+// convert a big-endian number to/from native byte order.
+# define to_be16(x) swap16(x)
+# define to_be32(x) swap32(x)
+# define to_be64(x) swap64(x)
+#endif
 
 /// read a little-endian number from memory into native byte order.
 LIB_API u16 read_le16(const void* p);
