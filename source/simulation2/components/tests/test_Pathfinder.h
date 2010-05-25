@@ -21,11 +21,7 @@
 
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
-#include "graphics/TextureManager.h"
 #include "ps/Loader.h"
-#include "ps/Profile.h"
-#include "ps/ProfileViewer.h"
-#include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
 
 class TestCmpPathfinder : public CxxTest::TestSuite
@@ -38,21 +34,10 @@ public:
 		g_VFS = CreateVfs(20 * MiB);
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir()/L"cache"));
-
-		// Set up loads of stuff that's needed in order to load a map
-		new CTextureManager();
-		new CProfileViewer();
-		new CProfileManager();
-		new ScriptingHost();
 	}
 
 	void tearDown()
 	{
-		delete &g_ScriptingHost;
-		delete &g_Profiler;
-		delete &g_ProfileViewer;
-		delete &g_TexMan;
-
 		g_VFS.reset();
 
 		CXeromyces::Terminate();

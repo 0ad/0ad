@@ -597,6 +597,8 @@ used_extern_libs = {
 	"cxxtest",
 	"comsuppw",
 	"enet",
+
+	"valgrind",
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.

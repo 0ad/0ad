@@ -167,13 +167,13 @@ int CMapReader::UnpackTerrain()
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
-		Handle handle;
-		CTextureEntry* texentry = g_TexMan.FindTexture(texturename);
-		// mismatch between texture datasets?
-		if (!texentry)
-			handle = 0;
-		else
-			handle = texentry->GetHandle();
+		Handle handle = 0;
+		if (CTextureManager::IsInitialised())
+		{
+			CTextureEntry* texentry = g_TexMan.FindTexture(texturename);
+			if (texentry)
+				handle = texentry->GetHandle();
+		}
 		m_TerrainTextures.push_back(handle);
 
 		cur_terrain_tex++;

@@ -26,8 +26,8 @@
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 
-// access to sole CTextureManager  object
-#define g_TexMan CTextureManager ::GetSingleton()
+// access to sole CTextureManager object
+#define g_TexMan CTextureManager::GetSingleton()
 
 class XMBElement;
 class CXeromyces;

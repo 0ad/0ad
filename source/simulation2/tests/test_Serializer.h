@@ -23,7 +23,16 @@
 #include "simulation2/serialization/StdDeserializer.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include "graphics/MapReader.h"
+#include "graphics/Terrain.h"
+#include "lib/timer.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "ps/Loader.h"
+#include "ps/XML/Xeromyces.h"
+#include "simulation2/Simulation2.h"
+
+#include "callgrind.h"
 
 #include <iostream>
 
@@ -400,7 +409,7 @@ public:
 class TestSerializerPerf : public CxxTest::TestSuite
 {
 public:
-	void DISABLED_test_script_props()
+	void test_script_props_DISABLED()
 	{
 		const char* input = "var x = {}; for (var i=0;i<256;++i) x[i]=Math.pow(i, 2); x";
 
@@ -430,4 +439,58 @@ public:
 			}
 		}
 	}
+
+	void test_hash_DISABLED()
+	{
+		CXeromyces::Startup();
+
+		g_VFS = CreateVfs(20 * MiB);
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir()/L"cache"));
+
+		CTerrain terrain;
+
+		CSimulation2 sim2(NULL, &terrain);
+		sim2.LoadDefaultScripts();
+		sim2.ResetState();
+
+		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
+
+		LDR_BeginRegistering();
+		mapReader->LoadMap(L"maps/scenarios/Latium.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &sim2, NULL);
+		LDR_EndRegistering();
+		TS_ASSERT_OK(LDR_NonprogressiveLoad());
+
+		sim2.Update(0);
+
+		{
+			std::stringstream str;
+			std::string hash;
+			sim2.SerializeState(str);
+			sim2.ComputeStateHash(hash);
+			printf("\n");
+			printf("# size = %d\n", (int)str.str().length());
+			printf("# hash = ");
+			for (size_t i = 0; i < hash.size(); ++i)
+				printf("%02x", (u8)hash[i]);
+			printf("\n");
+		}
+
+		double t = timer_Time();
+		CALLGRIND_START_INSTRUMENTATION
+		size_t reps = 128;
+		for (size_t i = 0; i < reps; ++i)
+		{
+			std::string hash;
+			sim2.ComputeStateHash(hash);
+		}
+		CALLGRIND_STOP_INSTRUMENTATION
+		t = timer_Time() - t;
+		printf("# time = %f (%f/%d)\n", t/reps, t, (int)reps);
+
+		// Shut down the world
+		g_VFS.reset();
+		CXeromyces::Terminate();
+	}
+
 };
