@@ -88,6 +88,8 @@ public:
 		TS_ASSERT_EQUALS(str2.Deserialize(buf, buf+len) - (buf+len), 0);
 		TS_ASSERT_EQUALS(str2.length(), str.length());
 		TS_ASSERT_EQUALS(str2, str);
+
+		delete[] buf;
 	}
 
 	void test_serialize_8()

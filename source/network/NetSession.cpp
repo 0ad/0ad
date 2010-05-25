@@ -27,6 +27,7 @@
 #include "precompiled.h"
 #include "NetSession.h"
 #include "NetLog.h"
+#include "simulation2/Simulation2.h"
 
 // DECLARATIONS
 
@@ -283,7 +284,7 @@ bool CNetHost::Poll( void )
 					bool ok = false;
 
 					// Create message from raw data
-					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
+					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength, g_Game->GetSimulation2()->GetScriptInterface() );
 					if ( pNewMessage )
 					{
 						NET_LOG4( "Message %s of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
@@ -389,7 +390,7 @@ CNetMessage* CNetHost::ReceiveMessage( const CNetSession* pSession )
 	if ( !pPacket ) return NULL;
 
 	// Create new message
-	return CNetMessageFactory::CreateMessage( pPacket->data, pPacket->dataLength );
+	return CNetMessageFactory::CreateMessage( pPacket->data, pPacket->dataLength, g_Game->GetSimulation2()->GetScriptInterface() );
 }
 
 //-----------------------------------------------------------------------------

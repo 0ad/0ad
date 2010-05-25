@@ -154,9 +154,10 @@ public:
 	 *
 	 * @param pData						Data buffer
 	 * @param dataSize					Size of data buffer
+	 * @param scriptInterface			Script instance to use when constructing scripted messages
 	 * @return							The new message created
 	 */
-	static CNetMessage* CreateMessage( const void* pData, size_t dataSize );
+	static CNetMessage* CreateMessage( const void* pData, size_t dataSize, ScriptInterface& scriptInterface );
 
 private:
 

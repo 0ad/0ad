@@ -144,7 +144,8 @@ CStr CNetMessage::ToString( void ) const
 // Desc: Creates the appropriate message based on the given data
 //-----------------------------------------------------------------------------
 CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
-											   size_t dataSize )
+											   size_t dataSize,
+											   ScriptInterface& scriptInterface)
 {
 	CNetMessage*	pNewMessage = NULL;
 	CNetMessage		header;
@@ -222,7 +223,7 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		break;
 
 	case NMT_SIMULATION_COMMAND:
-		pNewMessage = new CSimulationMessage(g_Game->GetSimulation2()->GetScriptInterface());
+		pNewMessage = new CSimulationMessage(scriptInterface);
 		break;
 
 	default:

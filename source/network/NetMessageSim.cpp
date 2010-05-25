@@ -60,6 +60,11 @@ public:
 class CLengthBinarySerializerImpl
 {
 public:
+	CLengthBinarySerializerImpl() :
+		m_Length(0)
+	{
+	}
+
 	void Put(const char* UNUSED(name), const u8* UNUSED(data), size_t len)
 	{
 		m_Length += len;
