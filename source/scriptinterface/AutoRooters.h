@@ -15,7 +15,12 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_AUTOROOTERS
+#define INCLUDED_AUTOROOTERS
+
 #include "js/jsapi.h"
+
+class ScriptInterface;
 
 // Exception-safety and GC-safety wrapper for JSIdArray
 // (TODO: it'd be nicer to use the existing js::AutoIdArray but currently that
@@ -41,3 +46,27 @@ public:
 	}
 };
 
+/**
+ * Helper for rooting large groups of script values.
+ * Construct this object, push values into it, and they will all be rooted until this
+ * object is destroyed.
+ * Many of these objects can be used at once, but their lifetimes must be correctly nested.
+ */
+class AutoGCRooter
+{
+public:
+	AutoGCRooter(ScriptInterface& scriptInterface);
+	~AutoGCRooter();
+
+	void Push(JSObject* obj) { m_Objects.push_back(obj); }
+
+	void Trace(JSTracer* trc);
+private:
+	ScriptInterface& m_ScriptInterface;
+	AutoGCRooter* m_Previous;
+
+	std::vector<JSObject*> m_Objects;
+	// TODO: add vectors of other value types
+};
+
+#endif // INCLUDED_AUTOROOTERS

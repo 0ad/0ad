@@ -707,7 +707,8 @@ public:
 		man.AddComponent(ent1, man.LookupCID("TestScript1_getter"), noParam);
 
 		std::stringstream stateStream;
-		TS_ASSERT_THROWS_PSERROR(man.SerializeState(stateStream), PSERROR_Serialize_ScriptError, "Cannot serialize property getters");
+		TS_ASSERT(man.SerializeState(stateStream));
+		// (The script will die if the getter is executed)
 	}
 
 	void test_script_serialization_template()

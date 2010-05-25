@@ -29,6 +29,8 @@
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
 
+class AutoGCRooter;
+
 namespace boost { class rand48; }
 
 // Set the maximum number of function arguments that can be handled
@@ -37,7 +39,6 @@ namespace boost { class rand48; }
 #define SCRIPT_INTERFACE_MAX_ARGS 6
 
 struct ScriptInterface_impl;
-class ScriptClass;
 class ScriptInterface
 {
 public:
@@ -180,6 +181,8 @@ public:
 
 	bool AddRoot(void* ptr, const char* name);
 	bool RemoveRoot(void* ptr);
+
+	AutoGCRooter* ReplaceAutoGCRooter(AutoGCRooter* rooter);
 
 	/**
 	 * Dump some memory heap debugging information to stderr.

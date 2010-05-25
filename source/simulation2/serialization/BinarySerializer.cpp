@@ -29,15 +29,12 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/AutoRooters.h"
 
+#include "js/jsobj.h"
+
 CBinarySerializer::CBinarySerializer(ScriptInterface& scriptInterface) :
-	m_ScriptInterface(scriptInterface)
+	m_ScriptInterface(scriptInterface), m_ScriptBackrefsNext(1), m_Rooter(scriptInterface)
 {
 
-}
-
-CBinarySerializer::~CBinarySerializer()
-{
-	FreeScriptBackrefs();
 }
 
 /*
@@ -159,45 +156,60 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 		}
 
 		// Find all properties (ordered by insertion time)
-		JSIdArray* ida = JS_Enumerate(cx, obj);
-		if (!ida)
-		{
-			LOGERROR(L"JS_Enumerate failed");
-			throw PSERROR_Serialize_ScriptError();
-		}
-		// For safety, root all the property IDs
-		// (This should be unnecessary if we're certain that properties could never
-		// get deleted during deserialization)
-		IdArrayWrapper idaWrapper(cx, ida);
 
-		NumberU32_Unbounded("num props", (uint32_t)ida->length);
+		// JS_Enumerate is a bit slow (lots of memory allocation), so do the enumeration manually
+		// (based on the code from JS_Enumerate, using the probably less stable JSObject API):
 
-		for (jsint i = 0; i < ida->length; ++i)
+		// (Note that we don't do any rooting, because we assume nothing is going to trigger GC.
+		// I'm not absolute certain that's necessarily a valid assumption.)
+
+		jsval iter_state, num_properties;
+		if (!obj->enumerate(cx, JSENUMERATE_INIT, &iter_state, &num_properties))
+			throw PSERROR_Serialize_ScriptError("enumerate INIT failed");
+		debug_assert(JSVAL_TO_INT(num_properties) >= 0);
+		size_t n = (size_t)JSVAL_TO_INT(num_properties);
+
+		// Note: num_properties might be 0 if the object doesn't know in advance how many to enumerate;
+		// we can't distinguish that from really having 0 properties without performing the actual iteration,
+		// so just assume the object always returns the correct count
+
+		NumberU32_Unbounded("num props", (uint32_t)n);
+
+		jsid id;
+
+		for (size_t i = 0; i < n; ++i)
 		{
+			if (!obj->enumerate(cx, JSENUMERATE_NEXT, &iter_state, &id))
+				throw PSERROR_Serialize_ScriptError("enumerate NEXT failed");
+
+			if (JSVAL_IS_NULL(iter_state))
+				throw PSERROR_Serialize_ScriptError("enumerate NEXT gave unexpected null");
+
 			jsval idval, propval;
 
-			// Forbid getters, because they will be weird and not serialise properly
-			JSPropertyDescriptor descr;
-			if (!JS_GetPropertyDescriptorById(cx, obj, ida->vector[i], JSRESOLVE_QUALIFIED, &descr))
-				throw PSERROR_Serialize_ScriptError("JS_GetPropertyDescriptorById failed");
-			if (descr.attrs & JSPROP_GETTER)
-				throw PSERROR_Serialize_ScriptError("Cannot serialize property getters");
-
 			// Get the property name as a string
-			if (!JS_IdToValue(cx, ida->vector[i], &idval))
+			if (!JS_IdToValue(cx, id, &idval))
 				throw PSERROR_Serialize_ScriptError("JS_IdToValue failed");
 			JSString* idstr = JS_ValueToString(cx, idval);
 			if (!idstr)
 				throw PSERROR_Serialize_ScriptError("JS_ValueToString failed");
-			CScriptValRooted idstrRoot(cx, STRING_TO_JSVAL(idstr));
 
 			ScriptString("prop name", idstr);
 
-			if (!JS_GetPropertyById(cx, obj, ida->vector[i], &propval))
-				throw PSERROR_Serialize_ScriptError("JS_GetPropertyById failed");
+			// Use LookupProperty instead of GetProperty to avoid the danger of getters
+			// (they might delete values and trigger GC)
+			if (!JS_LookupPropertyById(cx, obj, id, &propval))
+				throw PSERROR_Serialize_ScriptError("JS_LookupPropertyById failed");
 
 			HandleScriptVal(propval);
 		}
+
+		// Check we really reached the end of the iteration
+		if (!obj->enumerate(cx, JSENUMERATE_NEXT, &iter_state, &id))
+			throw PSERROR_Serialize_ScriptError("enumerate NEXT failed");
+		if (!JSVAL_IS_NULL(iter_state))
+			throw PSERROR_Serialize_ScriptError("enumerate NEXT didn't give unexpected null");
+
 		break;
 	}
 	case JSTYPE_FUNCTION:
@@ -273,7 +285,7 @@ u32 CBinarySerializer::GetScriptBackrefTag(JSObject* obj)
 	// The tags are stored in a map. Maybe it'd be more efficient to store it inline in the object
 	// somehow? but this works okay for now
 
-	std::pair<std::map<JSObject*, u32>::iterator, bool> it = m_ScriptBackrefs.insert(std::make_pair(obj, (u32)m_ScriptBackrefs.size()+1));
+	std::pair<backrefs_t::iterator, bool> it = m_ScriptBackrefs.insert(std::make_pair(obj, m_ScriptBackrefsNext));
 
 	// If it was already there, return the tag
 	if (!it.second)
@@ -281,19 +293,8 @@ u32 CBinarySerializer::GetScriptBackrefTag(JSObject* obj)
 
 	// If it was newly inserted, we need to make sure it gets rooted
 	// for the duration that it's in m_ScriptBackrefs
-	if (!JS_AddRoot(m_ScriptInterface.GetContext(), (void*)&it.first->first))
-		throw PSERROR_Serialize_ScriptError("JS_AddRoot failed");
+	m_Rooter.Push(it.first->first);
+	m_ScriptBackrefsNext++;
 	// Return a non-tag number so callers know they need to serialize the object
 	return 0;
-}
-
-void CBinarySerializer::FreeScriptBackrefs()
-{
-	std::map<JSObject*, u32>::iterator it = m_ScriptBackrefs.begin();
-	for (; it != m_ScriptBackrefs.end(); ++it)
-	{
-		if (!JS_RemoveRoot(m_ScriptInterface.GetContext(), (void*)&it->first))
-			throw PSERROR_Serialize_ScriptError("JS_RemoveRoot failed");
-	}
-	m_ScriptBackrefs.clear();
 }

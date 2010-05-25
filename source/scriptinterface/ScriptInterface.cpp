@@ -59,6 +59,8 @@ struct ScriptInterface_impl
 	JSContext* m_cx;
 	JSObject* m_glob; // global scope object
 	JSObject* m_nativeScope; // native function scope object
+
+	AutoGCRooter* m_rooter;
 };
 
 namespace
@@ -163,7 +165,16 @@ static void* jshook_function(JSContext* cx, JSStackFrame* fp, JSBool before, JSB
 }
 #endif
 
-ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContext* cx)
+void jshook_trace(JSTracer* trc, void* data)
+{
+	ScriptInterface_impl* m = static_cast<ScriptInterface_impl*>(data);
+
+	if (m->m_rooter)
+		m->m_rooter->Trace(trc);
+}
+
+ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContext* cx) :
+	m_rooter(NULL)
 {
 	JSBool ok;
 
@@ -200,6 +211,8 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 				| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
 				| JSOPTION_VAROBJFIX // "recommended" (fixes variable scoping)
 		);
+
+		JS_SetExtraGCRoots(m_rt, jshook_trace, this);
 
 		// Threadsafe SpiderMonkey requires that we have a request before doing anything much
 		JS_BeginRequest(m_cx);
@@ -294,6 +307,14 @@ bool ScriptInterface::AddRoot(void* ptr, const char* name)
 bool ScriptInterface::RemoveRoot(void* ptr)
 {
 	return JS_RemoveRoot(m->m_cx, ptr) ? true : false;
+}
+
+AutoGCRooter* ScriptInterface::ReplaceAutoGCRooter(AutoGCRooter* rooter)
+{
+	debug_assert(m->m_rt); // this class must own the runtime, else the rooter won't work
+	AutoGCRooter* ret = m->m_rooter;
+	m->m_rooter = rooter;
+	return ret;
 }
 
 ScriptInterface::LocalRootScope::LocalRootScope(JSContext* cx) :

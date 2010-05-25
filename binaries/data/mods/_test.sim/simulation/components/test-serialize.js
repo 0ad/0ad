@@ -66,7 +66,7 @@ function TestScript1_getter() {}
 
 TestScript1_getter.prototype.Init = function() {
 	this.x = 100;
-	this.__defineGetter__('x', function () { return 200; });
+	this.__defineGetter__('x', function () { print("FAIL\n"); die(); return 200; });
 };
 
 Engine.RegisterComponentType(IID_Test1, "TestScript1_getter", TestScript1_getter);

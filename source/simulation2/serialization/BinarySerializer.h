@@ -20,6 +20,8 @@
 
 #include "ISerializer.h"
 
+#include "scriptinterface/AutoRooters.h"
+
 #include <map>
 
 /**
@@ -31,7 +33,6 @@ class CBinarySerializer : public ISerializer
 	NONCOPYABLE(CBinarySerializer);
 public:
 	CBinarySerializer(ScriptInterface& scriptInterface);
-	virtual ~CBinarySerializer();
 
 protected:
 	virtual void PutNumber(const char* name, uint8_t value);
@@ -48,10 +49,16 @@ private:
 	// PutScriptVal implementation details:
 	void ScriptString(const char* name, JSString* string);
 	void HandleScriptVal(jsval val);
-	u32 GetScriptBackrefTag(JSObject* obj);
-	void FreeScriptBackrefs();
-	std::map<JSObject*, u32> m_ScriptBackrefs;
+
 	ScriptInterface& m_ScriptInterface;
+
+	typedef std::map<JSObject*, u32> backrefs_t;
+
+	backrefs_t m_ScriptBackrefs;
+	u32 m_ScriptBackrefsNext;
+	u32 GetScriptBackrefTag(JSObject* obj);
+
+	AutoGCRooter m_Rooter;
 };
 
 #endif // INCLUDED_BINARYSERIALIZER
