@@ -247,6 +247,10 @@ public:
 	{
 	}
 
+	pool_allocator& operator=(const pool_allocator&) throw ()
+	{
+	}
+
 	pointer address(reference r)
 	{
 		return &r;
@@ -270,6 +274,7 @@ public:
 	void destroy(const pointer ptr)
 	{
 		ptr->~T();
+		UNUSED2(ptr); // silence MSVC warnings
 	}
 
 	pointer allocate(size_type n)

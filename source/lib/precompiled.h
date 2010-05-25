@@ -54,6 +54,7 @@
 # pragma warning(disable:4786)	// identifier truncated to 255 chars
 # pragma warning(disable:4351)	// yes, default init of array entries is desired
 # pragma warning(disable:4355)	// 'this' used in base member initializer list
+# pragma warning(disable:4718)	// recursive call has no side effects, deleting
 // .. disabled only for the precompiled headers
 # pragma warning(disable:4702)	// unreachable code (frequent in STL)
 // .. VS2005 code analysis (very frequent ones)
