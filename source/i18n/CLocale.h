@@ -72,17 +72,7 @@ namespace I18n
 
 		bool LookupProperty(const LookupType* data, const Str& property, Str& result);
 
-		// Disable the "'this' used in base member initializer list" warning: only the
-		// pointer (and not the data it points to) is accessed by ScriptObject's
-		// constructor, so it shouldn't cause any problems.
-#if MSC_VERSION
-# pragma warning (disable: 4355)
-#endif
 		CLocale(JSContext* context, JSObject* scope) : CacheAge(0), Script(this, context, scope) {}
-#if MSC_VERSION
-# pragma warning (default: 4355)
-#endif
-
 		~CLocale();
 
 		void AddToCache(StringBuffer*, Str&);

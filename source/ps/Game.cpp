@@ -50,17 +50,6 @@ extern bool g_GameRestarted;
  **/
 CGame *g_Game=NULL;
 
-// Disable "warning C4355: 'this' : used in base member initializer list".
-//   "The base-class constructors and class member constructors are called before
-//   this constructor. In effect, you've passed a pointer to an unconstructed
-//   object to another constructor. If those other constructors access any
-//   members or call member functions on this, the result will be undefined."
-// In this case, the pointers are simply stored for later use, so there
-// should be no problem.
-#if MSC_VERSION
-# pragma warning (disable: 4355)
-#endif
-
 /**
  * Constructor
  *
@@ -86,10 +75,6 @@ CGame::CGame():
 	CScriptVal initData; // TODO: ought to get this from the GUI, somehow
 	m_Simulation2->InitGame(initData);
 }
-
-#if MSC_VERSION
-# pragma warning (default: 4355)
-#endif
 
 /**
  * Destructor

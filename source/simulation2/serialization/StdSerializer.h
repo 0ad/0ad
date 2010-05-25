@@ -22,6 +22,7 @@
 
 class CStdSerializerImpl
 {
+	NONCOPYABLE(CStdSerializerImpl);
 public:
 	CStdSerializerImpl(std::ostream& stream);
 
