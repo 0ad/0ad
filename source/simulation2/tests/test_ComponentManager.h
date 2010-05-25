@@ -725,7 +725,7 @@ public:
 		TS_ASSERT(man.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam));
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager));
 
-		const CParamNode* testParam = tempMan->LoadTemplate(ent2, L"template-serialize", -1);
+		const CParamNode* testParam = tempMan->LoadTemplate(ent2, "template-serialize", -1);
 
 		man.AddComponent(ent2, man.LookupCID("TestScript1_consts"), testParam->GetChild("TestScript1_consts"));
 

@@ -259,6 +259,19 @@ template <> void XMLWriter_File::ElementAttribute<CStr>(const char* name, const 
 {
 	ElementAttribute(name, value.c_str(), newelement);
 }
+template <> void XMLWriter_File::ElementAttribute<std::string>(const char* name, const std::string& value, bool newelement)
+{
+	ElementAttribute(name, value.c_str(), newelement);
+}
+// Encode Unicode strings as UTF-8
+template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const CStrW& value, bool newelement)
+{
+	ElementAttribute(name, value.ToUTF8(), newelement);
+}
+template <> void XMLWriter_File::ElementAttribute<std::wstring>(const char* name, const std::wstring& value, bool newelement)
+{
+	ElementAttribute(name, utf8_from_wstring(value).c_str(), newelement);
+}
 
 // Use CStr's conversion for most types:
 #define TYPE2(ID_T, ARG_T) \
@@ -272,13 +285,3 @@ TYPE(int)
 TYPE(unsigned int)
 TYPE(float)
 TYPE(double)
-
-// Encode Unicode strings as UTF-8
-template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const CStrW& value, bool newelement)
-{
-	ElementAttribute(name, value.ToUTF8(), newelement);
-}
-template <> void XMLWriter_File::ElementAttribute<std::wstring>(const char* name, const std::wstring& value, bool newelement)
-{
-	ElementAttribute(name, utf8_from_wstring(value).c_str(), newelement);
-}

@@ -61,7 +61,7 @@ public:
 	{
 		size_t count = 0;
 
-		for (std::map<entity_id_t, std::wstring>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
+		for (std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
 		{
 			if (ENTITY_IS_LOCAL(it->first))
 				continue;
@@ -69,13 +69,14 @@ public:
 		}
 		serialize.NumberU32_Unbounded("num entities", (u32)count);
 
-		for (std::map<entity_id_t, std::wstring>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
+		for (std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
 		{
 			if (ENTITY_IS_LOCAL(it->first))
 				continue;
 			serialize.NumberU32_Unbounded("id", it->first);
-			serialize.String("template", it->second, 0, 256);
+			serialize.StringASCII("template", it->second, 0, 256);
 		}
+		// TODO: maybe we should do some kind of interning thing instead of printing so many strings?
 
 		// TODO: will need to serialize techs too, because we need to be giving out
 		// template data before other components (like the tech components) have been deserialized
@@ -90,9 +91,9 @@ public:
 		for (u32 i = 0; i < numEntities; ++i)
 		{
 			entity_id_t ent;
-			std::wstring templateName;
+			std::string templateName;
 			deserialize.NumberU32_Unbounded(ent);
-			deserialize.String(templateName, 0, 256);
+			deserialize.StringASCII(templateName, 0, 256);
 			m_LatestTemplates[ent] = templateName;
 		}
 	}
@@ -113,13 +114,13 @@ public:
 		}
 	}
 
-	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID);
+	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName, int playerID);
 
-	virtual const CParamNode* GetTemplate(std::wstring templateName);
+	virtual const CParamNode* GetTemplate(std::string templateName);
 
 	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent);
 
-	virtual std::wstring GetCurrentTemplateName(entity_id_t ent);
+	virtual std::string GetCurrentTemplateName(entity_id_t ent);
 
 	virtual std::vector<std::wstring> FindAllTemplates();
 
@@ -131,26 +132,26 @@ private:
 	// loaded non-broken template data. This includes files that will fail schema validation.
 	// (Failed loads won't remove existing entries under the same name, so we behave more nicely
 	// when hotloading broken files)
-	std::map<std::wstring, CParamNode> m_TemplateFileData;
+	std::map<std::string, CParamNode> m_TemplateFileData;
 
 	// Map from template name to schema validation status.
 	// (Some files, e.g. inherited parent templates, may not be valid themselves but we still need to load
 	// them and use them; we only reject invalid templates that were requested directly by GetTemplate/etc)
-	std::map<std::wstring, bool> m_TemplateSchemaValidity;
+	std::map<std::string, bool> m_TemplateSchemaValidity;
 
 	// Remember the template used by each entity, so we can return them
 	// again for deserialization.
 	// TODO: should store player ID etc.
-	std::map<entity_id_t, std::wstring> m_LatestTemplates;
+	std::map<entity_id_t, std::string> m_LatestTemplates;
 
 	// (Re)loads the given template, regardless of whether it exists already,
 	// and saves into m_TemplateFileData. Also loads any parents that are not yet
 	// loaded. Returns false on error.
 	// @param templateName XML filename to load (not a |-separated string)
-	bool LoadTemplateFile(const std::wstring& templateName, int depth);
+	bool LoadTemplateFile(const std::string& templateName, int depth);
 
 	// Constructs a standard static-decorative-object template for the given actor
-	void ConstructTemplateActor(const std::wstring& actorName, CParamNode& out);
+	void ConstructTemplateActor(const std::string& actorName, CParamNode& out);
 
 	// Copy the non-interactive components of an entity template (position, actor, etc) into
 	// a new entity template
@@ -163,7 +164,7 @@ private:
 
 REGISTER_COMPONENT_TYPE(TemplateManager)
 
-const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::wstring& templateName, int UNUSED(playerID))
+const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::string& templateName, int UNUSED(playerID))
 {
 	m_LatestTemplates[ent] = templateName;
 
@@ -176,18 +177,18 @@ const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::
 	return templateRoot;
 }
 
-const CParamNode* CCmpTemplateManager::GetTemplate(std::wstring templateName)
+const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 {
 	// Load the template if necessary
 	if (!LoadTemplateFile(templateName, 0))
 	{
-		LOGERROR(L"Failed to load entity template '%ls'", templateName.c_str());
+		LOGERROR(L"Failed to load entity template '%hs'", templateName.c_str());
 		return NULL;
 	}
 
 	// Compute validity, if it's not computed before
 	if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
-		m_TemplateSchemaValidity[templateName] = m_Validator.Validate(templateName, m_TemplateFileData[templateName].ToXML());
+		m_TemplateSchemaValidity[templateName] = m_Validator.Validate(CStrW(templateName), m_TemplateFileData[templateName].ToXML());
 	// Refuse to return invalid templates
 	if (!m_TemplateSchemaValidity[templateName])
 		return NULL;
@@ -195,7 +196,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::wstring templateName)
 	const CParamNode& templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
 	if (!templateRoot.IsOk())
 	{
-		LOGERROR(L"Invalid root element in entity template '%ls'", templateName.c_str());
+		LOGERROR(L"Invalid root element in entity template '%hs'", templateName.c_str());
 		return NULL;
 	}
 	// TODO: the template ought to be validated with some schema, so we don't
@@ -206,21 +207,21 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::wstring templateName)
 
 const CParamNode* CCmpTemplateManager::LoadLatestTemplate(entity_id_t ent)
 {
-	std::map<entity_id_t, std::wstring>::const_iterator it = m_LatestTemplates.find(ent);
+	std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.find(ent);
 	if (it == m_LatestTemplates.end())
 		return NULL;
 	return LoadTemplate(ent, it->second, -1);
 }
 
-std::wstring CCmpTemplateManager::GetCurrentTemplateName(entity_id_t ent)
+std::string CCmpTemplateManager::GetCurrentTemplateName(entity_id_t ent)
 {
-	std::map<entity_id_t, std::wstring>::const_iterator it = m_LatestTemplates.find(ent);
+	std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.find(ent);
 	if (it == m_LatestTemplates.end())
-		return L"";
+		return "";
 	return it->second;
 }
 
-bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int depth)
+bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int depth)
 {
 	// If this file was already loaded, we don't need to do anything
 	if (m_TemplateFileData.find(templateName) != m_TemplateFileData.end())
@@ -229,25 +230,25 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 	// Handle infinite loops more gracefully than running out of stack space and crashing
 	if (depth > 100)
 	{
-		LOGERROR(L"Probable infinite inheritance loop in entity template '%ls'", templateName.c_str());
+		LOGERROR(L"Probable infinite inheritance loop in entity template '%hs'", templateName.c_str());
 		return false;
 	}
 
 	// Handle special case "actor|foo"
-	if (templateName.find(L"actor|") == 0)
+	if (templateName.find("actor|") == 0)
 	{
 		ConstructTemplateActor(templateName.substr(6), m_TemplateFileData[templateName]);
 		return true;
 	}
 
 	// Handle special case "preview|foo"
-	if (templateName.find(L"preview|") == 0)
+	if (templateName.find("preview|") == 0)
 	{
 		// Load the base entity template, if it wasn't already loaded
-		std::wstring baseName = templateName.substr(8);
+		std::string baseName = templateName.substr(8);
 		if (!LoadTemplateFile(baseName, depth+1))
 		{
-			LOGERROR(L"Failed to load entity template '%ls'", baseName.c_str());
+			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
 			return false;
 		}
 		// Copy a subset to the requested template
@@ -256,13 +257,13 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 	}
 
 	// Handle special case "foundation|foo"
-	if (templateName.find(L"foundation|") == 0)
+	if (templateName.find("foundation|") == 0)
 	{
 		// Load the base entity template, if it wasn't already loaded
-		std::wstring baseName = templateName.substr(11);
+		std::string baseName = templateName.substr(11);
 		if (!LoadTemplateFile(baseName, depth+1))
 		{
-			LOGERROR(L"Failed to load entity template '%ls'", baseName.c_str());
+			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
 			return false;
 		}
 		// Copy a subset to the requested template
@@ -272,7 +273,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 
 	// Normal case: templateName is an XML file:
 
-	VfsPath path = VfsPath(TEMPLATE_ROOT) / (templateName + L".xml");
+	VfsPath path = VfsPath(TEMPLATE_ROOT) / (std::wstring)CStrW(templateName + ".xml");
 	CXeromyces xero;
 	PSRETURN ok = xero.Load(path);
 	if (ok != PSRETURN_OK)
@@ -282,19 +283,19 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 	utf16string parentStr = xero.GetRoot().GetAttributes().GetNamedItem(attr_parent);
 	if (!parentStr.empty())
 	{
-		std::wstring parentName(parentStr.begin(), parentStr.end());
+		std::string parentName(parentStr.begin(), parentStr.end());
 
 		// To prevent needless complexity in template design, we don't allow |-separated strings as parents
 		if (parentName.find('|') != parentName.npos)
 		{
-			LOGERROR(L"Invalid parent '%ls' in entity template '%ls'", parentName.c_str(), templateName.c_str());
+			LOGERROR(L"Invalid parent '%hs' in entity template '%hs'", parentName.c_str(), templateName.c_str());
 			return false;
 		}
 
 		// Ensure the parent is loaded
 		if (!LoadTemplateFile(parentName, depth+1))
 		{
-			LOGERROR(L"Failed to load parent '%ls' of entity template '%ls'", parentName.c_str(), templateName.c_str());
+			LOGERROR(L"Failed to load parent '%hs' of entity template '%hs'", parentName.c_str(), templateName.c_str());
 			return false;
 		}
 
@@ -310,9 +311,9 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 	return true;
 }
 
-void CCmpTemplateManager::ConstructTemplateActor(const std::wstring& actorName, CParamNode& out)
+void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, CParamNode& out)
 {
-	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(actorName));
+	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(CStrW(actorName)));
 	std::string xml = "<?xml version='1.0' encoding='utf-8'?>"
 		"<Entity>"
 		"<Position>"

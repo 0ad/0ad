@@ -559,7 +559,7 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 
 	// TODO: should assert that ent doesn't exist
 
-	const CParamNode* tmpl = tempMan->LoadTemplate(ent, templateName, -1);
+	const CParamNode* tmpl = tempMan->LoadTemplate(ent, CStr8(templateName), -1);
 	if (!tmpl)
 		return INVALID_ENTITY; // LoadTemplate will have reported the error
 

@@ -25,6 +25,10 @@
 /**
  * Template manager: Handles the loading of entity template files for the initialisation
  * and deserialization of entity components.
+ *
+ * Template names are intentionally restricted to ASCII strings for storage/serialization
+ * efficiency (we have a lot of strings so this is significant);
+ * they correspond to filenames so they shouldn't contain non-ASCII anyway.
  */
 class ICmpTemplateManager : public IComponent
 {
@@ -49,7 +53,7 @@ public:
 	 *
 	 * @return NULL on error
 	 */
-	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID) = 0;
+	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName, int playerID) = 0;
 
 	/**
 	 * Loads the template XML file identified by 'templateName' (including inheritance
@@ -57,7 +61,7 @@ public:
 	 *
 	 * @return NULL on error
 	 */
-	virtual const CParamNode* GetTemplate(std::wstring templateName) = 0;
+	virtual const CParamNode* GetTemplate(std::string templateName) = 0;
 
 	/**
 	 * Returns the template most recently specified for the entity 'ent'.
@@ -70,7 +74,7 @@ public:
 	/**
 	 * Returns the name of the template most recently specified for the entity 'ent'.
 	 */
-	virtual std::wstring GetCurrentTemplateName(entity_id_t ent) = 0;
+	virtual std::string GetCurrentTemplateName(entity_id_t ent) = 0;
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.
