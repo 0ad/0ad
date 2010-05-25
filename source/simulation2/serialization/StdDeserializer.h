@@ -20,6 +20,8 @@
 
 #include "IDeserializer.h"
 
+#include "ps/utf16string.h"
+
 #include <map>
 
 class CStdDeserializer : public IDeserializer

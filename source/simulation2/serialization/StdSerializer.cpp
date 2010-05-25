@@ -19,9 +19,6 @@
 
 #include "StdSerializer.h"
 
-#include <ostream>
-#include <cstring>
-
 CStdSerializerImpl::CStdSerializerImpl(std::ostream& stream) :
 	m_Stream(stream)
 {

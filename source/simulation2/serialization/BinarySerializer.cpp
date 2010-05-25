@@ -24,7 +24,6 @@
 #include "ps/CLogger.h"
 
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/AutoRooters.h"
 
 // Shut up some warnings triggered by jsobj.h
 #if MSC_VERSION
@@ -40,7 +39,8 @@
 #endif
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
-	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefsNext(1), m_Rooter(m_ScriptInterface)
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_Rooter(m_ScriptInterface),
+	m_ScriptBackrefsPool(1*MiB), m_ScriptBackrefs(backrefs_t::key_compare(), ScriptBackrefsAlloc(m_ScriptBackrefsPool)), m_ScriptBackrefsNext(1)
 {
 }
 

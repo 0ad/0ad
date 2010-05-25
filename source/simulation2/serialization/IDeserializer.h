@@ -20,7 +20,6 @@
 
 #include "maths/Fixed.h"
 #include "ps/Errors.h"
-#include "ps/utf16string.h"
 #include "scriptinterface/ScriptTypes.h"
 
 ERROR_GROUP(Deserialize);

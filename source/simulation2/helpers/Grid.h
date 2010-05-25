@@ -18,6 +18,8 @@
 #ifndef INCLUDED_GRID
 #define INCLUDED_GRID
 
+#include <cstring>
+
 #ifdef NDEBUG
 #define GRID_BOUNDS_DEBUG 0
 #else

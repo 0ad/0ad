@@ -23,6 +23,7 @@
 #include "scriptinterface/AutoRooters.h"
 
 #include "lib/byte_order.h"
+#include "lib/allocators/pool.h"
 
 #include <map>
 
@@ -41,8 +42,11 @@ private:
 	ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
 
-	typedef std::map<JSObject*, u32> backrefs_t;
+	// Pooling helps since we do a lot of short-lived allocations
+	typedef pool_allocator<std::pair<JSObject*, u32> > ScriptBackrefsAlloc;
+	typedef std::map<JSObject*, u32, std::less<JSObject*>, ScriptBackrefsAlloc> backrefs_t;
 
+	RawPoolAllocator m_ScriptBackrefsPool;
 	backrefs_t m_ScriptBackrefs;
 	u32 m_ScriptBackrefsNext;
 	u32 GetScriptBackrefTag(JSObject* obj);

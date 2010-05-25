@@ -172,6 +172,134 @@ private:
 	Pool m_pool;
 };
 
-#endif
+/**
+ * C++ wrapper on top of pool_alloc for variable-sized allocations.
+ * Memory is returned uninitialised.
+ */
+class RawPoolAllocator
+{
+public:
+	/**
+	 * @param maxSize maximum size of pool in bytes
+	 */
+	explicit RawPoolAllocator(size_t maxSize)
+	{
+		(void)pool_create(&m_pool, maxSize, 0);
+	}
+
+	~RawPoolAllocator()
+	{
+		(void)pool_destroy(&m_pool);
+	}
+
+	/**
+	 * @param count number of elements of type T to allocate space for
+	 */
+	template<typename T>
+	T* AllocateMemory(size_t count)
+	{
+		T* t = (T*)pool_alloc(&m_pool, count*sizeof(T));
+		if(!t)
+			throw std::bad_alloc();
+		return t;
+	}
+
+private:
+	Pool m_pool;
+};
+
+/**
+ * STL-compatible allocator based on a RawPoolAllocator.
+ * (Allocated memory is never freed, until the RawPoolAllocator is destroyed.)
+ */
+template<typename T>
+class pool_allocator
+{
+private:
+	// No default constructor
+	pool_allocator() throw ();
+
+public:
+	RawPoolAllocator& p;
+
+	typedef T value_type;
+	typedef T* pointer;
+	typedef const T* const_pointer;
+	typedef T& reference;
+	typedef const T& const_reference;
+	typedef std::size_t size_type;
+	typedef std::ptrdiff_t difference_type;
+
+	template<class U>
+	struct rebind
+	{
+		typedef pool_allocator<U> other;
+	};
+
+	explicit pool_allocator(RawPoolAllocator& pool) throw () :
+		p(pool)
+	{
+	}
+
+	template<typename U>
+	pool_allocator(const pool_allocator<U>& alloc) throw () :
+		p(alloc.p)
+	{
+	}
+
+	pointer address(reference r)
+	{
+		return &r;
+	}
+
+	const_pointer address(const_reference s)
+	{
+		return &s;
+	}
+
+	size_type max_size() const throw ()
+	{
+		return std::numeric_limits<std::size_t>::max() / sizeof(T);
+	}
+
+	void construct(const pointer ptr, const value_type& t)
+	{
+		new (ptr) T(t);
+	}
+
+	void destroy(const pointer ptr)
+	{
+		ptr->~T();
+	}
+
+	pointer allocate(size_type n)
+	{
+		return p.AllocateMemory<value_type> (n);
+	}
+
+	pointer allocate(size_type n, const void* const)
+	{
+		return allocate(n);
+	}
+
+	void deallocate(const pointer UNUSED(ptr), const size_type UNUSED(n))
+	{
+		// ignore deallocations
+	}
+};
+
+template<class T1, class T2>
+bool operator==(const pool_allocator<T1>&, const pool_allocator<T2>&) throw ()
+{
+	return true;
+}
+
+template<class T1, class T2>
+bool operator!=(const pool_allocator<T1>&, const pool_allocator<T2>&) throw ()
+{
+	return false;
+}
+
+#endif	// __cplusplus
 
 #endif	// #ifndef INCLUDED_POOL

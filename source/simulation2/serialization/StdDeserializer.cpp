@@ -22,6 +22,7 @@
 #include "SerializedScriptTypes.h"
 
 #include "scriptinterface/ScriptInterface.h"
+
 #include "js/jsapi.h"
 
 CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istream& stream) :
