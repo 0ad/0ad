@@ -52,20 +52,27 @@ CFixed_15_16 CFixed_15_16::FromString(const CStr8& s)
 		{
 			++c;
 			// Fractional part
-			u32 div = 10;
+			u32 frac = 0;
+			u32 div = 1;
 			while (true)
 			{
 				if (*c >= '0' && *c <= '9')
 				{
-					r += CFixed_15_16::FromInt(*c - '0') / (int)div;
-					++c;
+					frac *= 10;
+					frac += (*c - '0');
 					div *= 10;
-					if (div > 65536)
-						break; // any further digits will be too small to have any effect
+					++c;
+					if (div >= 100000)
+					{
+						// any further digits will be too small to have any effect
+						r += CFixed_15_16(((u64)frac << 16) / div);
+						break;
+					}
 				}
 				else
 				{
 					// invalid character or end of string
+					r += CFixed_15_16(((u64)frac << 16) / div);
 					break;
 				}
 			}
