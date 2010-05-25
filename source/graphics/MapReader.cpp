@@ -1001,8 +1001,8 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 
 		CStrW TemplateName;
 		int PlayerID = 0;
-		CVector3D Position;
-		float Orientation = 0.f;
+		CFixedVector3D Position;
+		fixed Orientation;
 
 		XERO_ITER_EL(entity, setting)
 		{
@@ -1022,16 +1022,16 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 			else if (element_name == el_position)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
-				Position = CVector3D(
-					CStr(attrs.GetNamedItem(at_x)).ToFloat(),
-					CStr(attrs.GetNamedItem(at_y)).ToFloat(),
-					CStr(attrs.GetNamedItem(at_z)).ToFloat());
+				Position = CFixedVector3D(
+					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
-				Orientation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
+				Orientation = fixed::FromString(CStr(attrs.GetNamedItem(at_angle)));
 			}
 			else
 				debug_warn(L"Invalid map XML data");
@@ -1065,10 +1065,8 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 			CmpPtr<ICmpPosition> cmpPos(*m_MapReader.pSimulation2, ent);
 			if (!cmpPos.null())
 			{
-				entity_pos_t x = entity_pos_t::FromFloat(Position.X);
-				entity_pos_t z = entity_pos_t::FromFloat(Position.Z);
-				cmpPos->JumpTo(x, z);
-				cmpPos->SetYRotation(entity_angle_t::FromFloat(Orientation));
+				cmpPos->JumpTo(Position.X, Position.Z);
+				cmpPos->SetYRotation(Orientation);
 			}
 
 			CmpPtr<ICmpOwnership> cmpOwner(*m_MapReader.pSimulation2, ent);
@@ -1096,8 +1094,8 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 		debug_assert(nonentity.GetNodeName() == el_nonentity);
 
 		CStrW ActorName;
-		CVector3D Position;
-		float Orientation = 0.f;
+		CFixedVector3D Position;
+		fixed Orientation;
 
 		XERO_ITER_EL(nonentity, setting)
 		{
@@ -1112,16 +1110,16 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 			else if (element_name == el_position)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
-				Position = CVector3D(
-					CStr(attrs.GetNamedItem(at_x)).ToFloat(),
-					CStr(attrs.GetNamedItem(at_y)).ToFloat(),
-					CStr(attrs.GetNamedItem(at_z)).ToFloat());
+				Position = CFixedVector3D(
+					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
+					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
-				Orientation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
+				Orientation = fixed::FromString(CStr(attrs.GetNamedItem(at_angle)));
 			}
 			else
 				debug_warn(L"Invalid map XML data");
@@ -1135,10 +1133,8 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 			CmpPtr<ICmpPosition> cmpPos(*m_MapReader.pSimulation2, ent);
 			if (!cmpPos.null())
 			{
-				entity_pos_t x = entity_pos_t::FromFloat(Position.X); // TODO: these should all be parsed as fixeds probably
-				entity_pos_t z = entity_pos_t::FromFloat(Position.Z);
-				cmpPos->JumpTo(x, z);
-				cmpPos->SetYRotation(entity_angle_t::FromFloat(Orientation));
+				cmpPos->JumpTo(Position.X, Position.Z);
+				cmpPos->SetYRotation(Orientation);
 			}
 		}
 

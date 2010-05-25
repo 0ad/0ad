@@ -468,12 +468,12 @@ public:
 			std::string hash;
 			sim2.SerializeState(str);
 			sim2.ComputeStateHash(hash);
-			printf("\n");
-			printf("# size = %d\n", (int)str.str().length());
-			printf("# hash = ");
+			debug_printf(L"\n");
+			debug_printf(L"# size = %d\n", (int)str.str().length());
+			debug_printf(L"# hash = ");
 			for (size_t i = 0; i < hash.size(); ++i)
-				printf("%02x", (u8)hash[i]);
-			printf("\n");
+				debug_printf(L"%02x", (u8)hash[i]);
+			debug_printf(L"\n");
 		}
 
 		double t = timer_Time();
@@ -486,7 +486,7 @@ public:
 		}
 		CALLGRIND_STOP_INSTRUMENTATION
 		t = timer_Time() - t;
-		printf("# time = %f (%f/%d)\n", t/reps, t, (int)reps);
+		debug_printf(L"# time = %f (%f/%d)\n", t/reps, t, (int)reps);
 
 		// Shut down the world
 		g_VFS.reset();
