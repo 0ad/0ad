@@ -50,8 +50,7 @@ protected:
 	virtual void PutBool(const char* name, bool value);
 	virtual void PutString(const char* name, const std::string& value);
 	virtual void PutScriptVal(const char* name, jsval value);
-
-	virtual void Put(const char* name, const u8* data, size_t len);
+	virtual void PutRaw(const char* name, const u8* data, size_t len);
 
 private:
 	ScriptInterface& m_ScriptInterface;

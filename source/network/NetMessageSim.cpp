@@ -23,14 +23,11 @@
 #include "simulation2/serialization/BinarySerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
 
-/**
- * Serializer instance that writes directly to a buffer (which must be long enough).
- */
-class CBufferBinarySerializer : public CBinarySerializer
+class CBufferBinarySerializerImpl
 {
 public:
-	CBufferBinarySerializer(ScriptInterface& scriptInterface, u8* buffer) :
-		CBinarySerializer(scriptInterface), m_Buffer(buffer)
+	CBufferBinarySerializerImpl(u8* buffer) :
+		m_Buffer(buffer)
 	{
 	}
 
@@ -44,22 +41,48 @@ public:
 };
 
 /**
- * Serializer instance that simply counts how many bytes would be written.
+ * Serializer instance that writes directly to a buffer (which must be long enough).
  */
-class CLengthBinarySerializer : public CBinarySerializer
+class CBufferBinarySerializer : public CBinarySerializer<CBufferBinarySerializerImpl>
 {
 public:
-	CLengthBinarySerializer(ScriptInterface& scriptInterface) :
-		CBinarySerializer(scriptInterface), m_Length(0)
+	CBufferBinarySerializer(ScriptInterface& scriptInterface, u8* buffer) :
+		CBinarySerializer<CBufferBinarySerializerImpl>(scriptInterface, buffer)
 	{
 	}
 
+	u8* GetBuffer()
+	{
+		return m_Impl.m_Buffer;
+	}
+};
+
+class CLengthBinarySerializerImpl
+{
+public:
 	void Put(const char* UNUSED(name), const u8* UNUSED(data), size_t len)
 	{
 		m_Length += len;
 	}
 
 	size_t m_Length;
+};
+
+/**
+ * Serializer instance that simply counts how many bytes would be written.
+ */
+class CLengthBinarySerializer : public CBinarySerializer<CLengthBinarySerializerImpl>
+{
+public:
+	CLengthBinarySerializer(ScriptInterface& scriptInterface) :
+		CBinarySerializer<CLengthBinarySerializerImpl>(scriptInterface)
+	{
+	}
+
+	size_t GetLength()
+	{
+		return m_Impl.m_Length;
+	}
 };
 
 CSimulationMessage::CSimulationMessage(ScriptInterface& scriptInterface) :
@@ -84,7 +107,7 @@ u8* CSimulationMessage::Serialize(u8* pBuffer) const
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
 	serializer.ScriptVal("command", m_Data);
-	return serializer.m_Buffer;
+	return serializer.GetBuffer();
 }
 
 const u8* CSimulationMessage::Deserialize(const u8* pStart, const u8* pEnd)
@@ -112,7 +135,7 @@ size_t CSimulationMessage::GetSerializedLength() const
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
 	serializer.ScriptVal("command", m_Data);
-	return CNetMessage::GetSerializedLength() + serializer.m_Length;
+	return CNetMessage::GetSerializedLength() + serializer.GetLength();
 }
 
 CStr CSimulationMessage::ToString() const

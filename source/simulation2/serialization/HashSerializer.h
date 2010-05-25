@@ -22,22 +22,33 @@
 
 #include "maths/MD5.h"
 
-class CHashSerializer : public CBinarySerializer
+class CHashSerializerImpl
 {
 	// We don't care about cryptographic strength, just about detection of
 	// unintended changes and about performance, so MD5 is an adequate choice
 	typedef MD5 HashFunc;
+
 public:
-	CHashSerializer(ScriptInterface& scriptInterface);
 	size_t GetHashLength();
 	const u8* ComputeHash();
 
-protected:
-	virtual void Put(const char* name, const u8* data, size_t len);
+	void Put(const char* UNUSED(name), const u8* data, size_t len)
+	{
+		m_Hash.Update(data, len);
+	}
 
 private:
 	HashFunc m_Hash;
 	u8 m_HashData[HashFunc::DIGESTSIZE];
+};
+
+class CHashSerializer : public CBinarySerializer<CHashSerializerImpl>
+{
+public:
+	CHashSerializer(ScriptInterface& scriptInterface);
+
+	size_t GetHashLength();
+	const u8* ComputeHash();
 };
 
 #endif // INCLUDED_HASHSERIALIZER

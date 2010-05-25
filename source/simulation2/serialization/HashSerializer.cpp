@@ -20,22 +20,27 @@
 #include "HashSerializer.h"
 
 CHashSerializer::CHashSerializer(ScriptInterface& scriptInterface) :
-	CBinarySerializer(scriptInterface)
+	CBinarySerializer<CHashSerializerImpl>(scriptInterface)
 {
 }
 
 size_t CHashSerializer::GetHashLength()
 {
-	return HashFunc::DIGESTSIZE;
+	return m_Impl.GetHashLength();
 }
 
 const u8* CHashSerializer::ComputeHash()
 {
-	m_Hash.Final(m_HashData);
-	return m_HashData;
+	return m_Impl.ComputeHash();
 }
 
-void CHashSerializer::Put(const char* UNUSED(name), const u8* data, size_t len)
+size_t CHashSerializerImpl::GetHashLength()
 {
-	m_Hash.Update(data, len);
+	return HashFunc::DIGESTSIZE;
+}
+
+const u8* CHashSerializerImpl::ComputeHash()
+{
+	m_Hash.Final(m_HashData);
+	return m_HashData;
 }

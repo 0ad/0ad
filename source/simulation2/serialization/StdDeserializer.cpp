@@ -21,9 +21,6 @@
 
 #include "SerializedScriptTypes.h"
 
-#include "ps/CLogger.h"
-#include "ps/CStr.h"
-
 #include "scriptinterface/ScriptInterface.h"
 #include "js/jsapi.h"
 

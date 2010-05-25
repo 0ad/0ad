@@ -20,16 +20,31 @@
 
 #include "BinarySerializer.h"
 
-class CStdSerializer : public CBinarySerializer
+class CStdSerializerImpl
 {
 public:
-	CStdSerializer(ScriptInterface& scriptInterface, std::ostream& stream);
+	CStdSerializerImpl(std::ostream& stream);
 
-protected:
-	virtual void Put(const char* name, const u8* data, size_t len);
+	void Put(const char* name, const u8* data, size_t len)
+	{
+#if 0 // annotate the stream to help debugging if you're reading the output in a hex editor
+		m_Stream.put('[');
+		m_Stream.write(name, strlen(name));
+		m_Stream.put(']');
+#else
+		UNUSED2(name);
+#endif
+		m_Stream.write((const char*)data, len);
+	}
 
 private:
 	std::ostream& m_Stream;
+};
+
+class CStdSerializer : public CBinarySerializer<CStdSerializerImpl>
+{
+public:
+	CStdSerializer(ScriptInterface& scriptInterface, std::ostream& stream);
 };
 
 #endif // INCLUDED_STDSERIALIZER

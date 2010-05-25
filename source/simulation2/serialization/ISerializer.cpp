@@ -46,41 +46,6 @@ void ISerializer::NumberU32(const char* name, uint32_t value, uint32_t lower, ui
 	PutNumber(name, value);
 }
 
-void ISerializer::NumberU8_Unbounded(const char* name, uint8_t value)
-{
-	PutNumber(name, value);
-}
-
-void ISerializer::NumberI32_Unbounded(const char* name, int32_t value)
-{
-	PutNumber(name, value);
-}
-
-void ISerializer::NumberU32_Unbounded(const char* name, uint32_t value)
-{
-	PutNumber(name, value);
-}
-
-void ISerializer::NumberFloat_Unbounded(const char* name, float value)
-{
-	PutNumber(name, value);
-}
-
-void ISerializer::NumberDouble_Unbounded(const char* name, double value)
-{
-	PutNumber(name, value);
-}
-
-void ISerializer::NumberFixed_Unbounded(const char* name, fixed value)
-{
-	PutNumber(name, value);
-}
-
-void ISerializer::Bool(const char* name, bool value)
-{
-	PutBool(name, value);
-}
-
 void ISerializer::StringASCII(const char* name, const std::string& value, uint32_t minlength, uint32_t maxlength)
 {
 	if (!(minlength <= value.length() && value.length() <= maxlength))
@@ -123,7 +88,7 @@ void ISerializer::ScriptVal(const char* name, CScriptValRooted value)
 
 void ISerializer::RawBytes(const char* name, const u8* data, size_t len)
 {
-	Put(name, data, len);
+	PutRaw(name, data, len);
 }
 
 bool ISerializer::IsDebug() const

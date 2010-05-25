@@ -144,17 +144,44 @@ public:
 	 * @param name informative name for debug output
 	 * @param value value to serialize
 	 */
-	void NumberU8_Unbounded(const char* name, uint8_t value);
-	void NumberI32_Unbounded(const char* name, int32_t value); ///< @copydoc NumberU8_Unbounded
-	void NumberU32_Unbounded(const char* name, uint32_t value); ///< @copydoc NumberU8_Unbounded
-	void NumberFloat_Unbounded(const char* name, float value); ///< @copydoc NumberU8_Unbounded
-	void NumberDouble_Unbounded(const char* name, double value); ///< @copydoc NumberU8_Unbounded
-	void NumberFixed_Unbounded(const char* name, fixed value); ///< @copydoc NumberU8_Unbounded
+	void NumberU8_Unbounded(const char* name, uint8_t value)
+	{
+		// (These functions are defined inline for efficiency)
+		PutNumber(name, value);
+	}
+
+	void NumberI32_Unbounded(const char* name, int32_t value) ///< @copydoc NumberU8_Unbounded
+	{
+		PutNumber(name, value);
+	}
+
+	void NumberU32_Unbounded(const char* name, uint32_t value) ///< @copydoc NumberU8_Unbounded
+	{
+		PutNumber(name, value);
+	}
+
+	void NumberFloat_Unbounded(const char* name, float value) ///< @copydoc NumberU8_Unbounded
+	{
+		PutNumber(name, value);
+	}
+
+	void NumberDouble_Unbounded(const char* name, double value) ///< @copydoc NumberU8_Unbounded
+	{
+		PutNumber(name, value);
+	}
+
+	void NumberFixed_Unbounded(const char* name, fixed value) ///< @copydoc NumberU8_Unbounded
+	{
+		PutNumber(name, value);
+	}
 
 	/**
 	 * Serialize a boolean.
 	 */
-	void Bool(const char* name, bool value);
+	void Bool(const char* name, bool value)
+	{
+		PutBool(name, value);
+	}
 
 	/**
 	 * Serialize an ASCII string.
@@ -215,8 +242,7 @@ protected:
 	virtual void PutBool(const char* name, bool value) = 0;
 	virtual void PutString(const char* name, const std::string& value) = 0;
 	virtual void PutScriptVal(const char* name, jsval value) = 0;
-
-	virtual void Put(const char* name, const u8* data, size_t len) = 0;
+	virtual void PutRaw(const char* name, const u8* data, size_t len) = 0;
 };
 
 #endif // INCLUDED_ISERIALIZER

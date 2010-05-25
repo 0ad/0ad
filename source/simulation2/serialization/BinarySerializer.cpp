@@ -21,10 +21,7 @@
 
 #include "SerializedScriptTypes.h"
 
-#include "lib/byte_order.h"
-#include "lib/utf8.h"
 #include "ps/CLogger.h"
-#include "ps/utf16string.h"
 
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/AutoRooters.h"
@@ -42,77 +39,12 @@
 # pragma warning(pop)
 #endif
 
-CBinarySerializer::CBinarySerializer(ScriptInterface& scriptInterface) :
-	m_ScriptInterface(scriptInterface), m_ScriptBackrefsNext(1), m_Rooter(scriptInterface)
+CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefsNext(1), m_Rooter(m_ScriptInterface)
 {
-
 }
 
-/*
-
-The Put* implementations here are designed for subclasses
-that want an efficient, portable, deserializable representation.
-(Subclasses with different requirements should override these methods.)
-
-Numbers are converted to little-endian byte strings, for portability
-and efficiency.
-
-Data is not aligned, for storage efficiency.
-
-*/
-
-void CBinarySerializer::PutNumber(const char* name, uint8_t value)
-{
-	Put(name, (const u8*)&value, sizeof(uint8_t));
-}
-
-void CBinarySerializer::PutNumber(const char* name, int32_t value)
-{
-	int32_t v = (i32)to_le32((u32)value);
-	Put(name, (const u8*)&v, sizeof(int32_t));
-}
-
-void CBinarySerializer::PutNumber(const char* name, uint32_t value)
-{
-	uint32_t v = to_le32(value);
-	Put(name, (const u8*)&v, sizeof(uint32_t));
-}
-
-void CBinarySerializer::PutNumber(const char* name, float value)
-{
-	Put(name, (const u8*)&value, sizeof(float));
-}
-
-void CBinarySerializer::PutNumber(const char* name, double value)
-{
-	Put(name, (const u8*)&value, sizeof(double));
-}
-
-void CBinarySerializer::PutNumber(const char* name, fixed value)
-{
-	PutNumber(name, value.GetInternalValue());
-}
-
-void CBinarySerializer::PutBool(const char* name, bool value)
-{
-	NumberU8(name, value ? 1 : 0, 0, 1);
-}
-
-void CBinarySerializer::PutString(const char* name, const std::string& value)
-{
-	// TODO: should intern strings, particularly to save space with script property names
-	PutNumber("string length", (uint32_t)value.length());
-	Put(name, (u8*)value.data(), value.length());
-}
-
-void CBinarySerializer::PutScriptVal(const char* UNUSED(name), jsval value)
-{
-	HandleScriptVal(value);
-}
-
-////////////////////////////////////////////////////////////////
-
-void CBinarySerializer::HandleScriptVal(jsval val)
+void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 
@@ -120,19 +52,19 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 	{
 	case JSTYPE_VOID:
 	{
-		NumberU8_Unbounded("type", SCRIPT_TYPE_VOID);
+		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_VOID);
 		break;
 	}
 	case JSTYPE_NULL: // This type is never actually returned (it's a JS2 feature)
 	{
-		NumberU8_Unbounded("type", SCRIPT_TYPE_NULL);
+		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_NULL);
 		break;
 	}
 	case JSTYPE_OBJECT:
 	{
 		if (JSVAL_IS_NULL(val))
 		{
-			NumberU8_Unbounded("type", SCRIPT_TYPE_NULL);
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_NULL);
 			break;
 		}
 
@@ -142,19 +74,19 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 		u32 tag = GetScriptBackrefTag(obj);
 		if (tag)
 		{
-			NumberU8_Unbounded("type", SCRIPT_TYPE_BACKREF);
-			NumberU32_Unbounded("tag", tag);
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_BACKREF);
+			m_Serializer.NumberU32_Unbounded("tag", tag);
 			break;
 		}
 
 		if (JS_IsArrayObject(cx, obj))
 		{
-			NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY);
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY);
 			// TODO: probably should have a more efficient storage format
 		}
 		else
 		{
-			NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
 
 			//			if (JS_GetClass(cx, obj))
 			//			{
@@ -184,7 +116,7 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 		// we can't distinguish that from really having 0 properties without performing the actual iteration,
 		// so just assume the object always returns the correct count
 
-		NumberU32_Unbounded("num props", (uint32_t)n);
+		m_Serializer.NumberU32_Unbounded("num props", (uint32_t)n);
 
 		jsid id;
 
@@ -230,7 +162,7 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 	}
 	case JSTYPE_STRING:
 	{
-		NumberU8_Unbounded("type", SCRIPT_TYPE_STRING);
+		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_STRING);
 		ScriptString("string", JSVAL_TO_STRING(val));
 		break;
 	}
@@ -239,24 +171,24 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 		// For efficiency, handle ints and doubles separately.
 		if (JSVAL_IS_INT(val))
 		{
-			NumberU8_Unbounded("type", SCRIPT_TYPE_INT);
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_INT);
 			// jsvals are limited to JSVAL_INT_BITS == 31 bits, even on 64-bit platforms
-			NumberI32("value", (int32_t)JSVAL_TO_INT(val), JSVAL_INT_MIN, JSVAL_INT_MAX);
+			m_Serializer.NumberI32("value", (int32_t)JSVAL_TO_INT(val), JSVAL_INT_MIN, JSVAL_INT_MAX);
 		}
 		else
 		{
 			debug_assert(JSVAL_IS_DOUBLE(val));
-			NumberU8_Unbounded("type", SCRIPT_TYPE_DOUBLE);
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_DOUBLE);
 			jsdouble* dbl = JSVAL_TO_DOUBLE(val);
-			NumberDouble_Unbounded("value", *dbl);
+			m_Serializer.NumberDouble_Unbounded("value", *dbl);
 		}
 		break;
 	}
 	case JSTYPE_BOOLEAN:
 	{
-		NumberU8_Unbounded("type", SCRIPT_TYPE_BOOLEAN);
+		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_BOOLEAN);
 		JSBool b = JSVAL_TO_BOOLEAN(val);
-		NumberU8_Unbounded("value", b ? 1 : 0);
+		m_Serializer.NumberU8_Unbounded("value", b ? 1 : 0);
 		break;
 	}
 	case JSTYPE_XML:
@@ -272,7 +204,7 @@ void CBinarySerializer::HandleScriptVal(jsval val)
 	}
 }
 
-void CBinarySerializer::ScriptString(const char* name, JSString* string)
+void CBinarySerializerScriptImpl::ScriptString(const char* name, JSString* string)
 {
 	jschar* chars = JS_GetStringChars(string);
 	size_t length = JS_GetStringLength(string);
@@ -282,11 +214,11 @@ void CBinarySerializer::ScriptString(const char* name, JSString* string)
 #endif
 
 	// Serialize strings directly as UTF-16, to avoid expensive encoding conversions
-	NumberU32_Unbounded("string length", (uint32_t)length);
-	RawBytes(name, (const u8*)chars, length*2);
+	m_Serializer.NumberU32_Unbounded("string length", (uint32_t)length);
+	m_Serializer.RawBytes(name, (const u8*)chars, length*2);
 }
 
-u32 CBinarySerializer::GetScriptBackrefTag(JSObject* obj)
+u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JSObject* obj)
 {
 	// To support non-tree structures (e.g. "var x = []; var y = [x, x];"), we need a way
 	// to indicate multiple references to one object(/array). So every time we serialize a

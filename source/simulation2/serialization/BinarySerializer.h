@@ -22,35 +22,24 @@
 
 #include "scriptinterface/AutoRooters.h"
 
+#include "lib/byte_order.h"
+
 #include <map>
 
 /**
- * Serialize to a binary stream. Subclasses should just need to implement
- * the Put() method.
+ * PutScriptVal implementation details.
+ * (Split out from the main class because it's too big to be inlined.)
  */
-class CBinarySerializer : public ISerializer
+class CBinarySerializerScriptImpl
 {
-	NONCOPYABLE(CBinarySerializer);
 public:
-	CBinarySerializer(ScriptInterface& scriptInterface);
+	CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer);
 
-protected:
-	virtual void PutNumber(const char* name, uint8_t value);
-	virtual void PutNumber(const char* name, int32_t value);
-	virtual void PutNumber(const char* name, uint32_t value);
-	virtual void PutNumber(const char* name, float value);
-	virtual void PutNumber(const char* name, double value);
-	virtual void PutNumber(const char* name, fixed value);
-	virtual void PutBool(const char* name, bool value);
-	virtual void PutString(const char* name, const std::string& value);
-	virtual void PutScriptVal(const char* name, jsval value);
-
-private:
-	// PutScriptVal implementation details:
 	void ScriptString(const char* name, JSString* string);
 	void HandleScriptVal(jsval val);
-
+private:
 	ScriptInterface& m_ScriptInterface;
+	ISerializer& m_Serializer;
 
 	typedef std::map<JSObject*, u32> backrefs_t;
 
@@ -59,6 +48,101 @@ private:
 	u32 GetScriptBackrefTag(JSObject* obj);
 
 	AutoGCRooter m_Rooter;
+};
+
+/**
+ * Serialize to a binary stream. T must just implement the Put() method.
+ * (We use this templated approach to allow compiler inlining.)
+ */
+template <typename T>
+class CBinarySerializer : public ISerializer
+{
+	NONCOPYABLE(CBinarySerializer);
+public:
+	CBinarySerializer(ScriptInterface& scriptInterface) :
+		m_ScriptImpl(new CBinarySerializerScriptImpl(scriptInterface, *this))
+	{
+	}
+
+	template <typename A>
+	CBinarySerializer(ScriptInterface& scriptInterface, A& a) :
+		m_ScriptImpl(new CBinarySerializerScriptImpl(scriptInterface, *this)),
+		m_Impl(a)
+	{
+	}
+
+protected:
+	/*
+	The Put* implementations here are designed for subclasses
+	that want an efficient, portable, deserializable representation.
+	(Subclasses with different requirements should override these methods.)
+
+	Numbers are converted to little-endian byte strings, for portability
+	and efficiency.
+
+	Data is not aligned, for storage efficiency.
+	*/
+
+	virtual void PutNumber(const char* name, uint8_t value)
+	{
+		m_Impl.Put(name, (const u8*)&value, sizeof(uint8_t));
+	}
+
+	virtual void PutNumber(const char* name, int32_t value)
+	{
+		int32_t v = (i32)to_le32((u32)value);
+		m_Impl.Put(name, (const u8*)&v, sizeof(int32_t));
+	}
+
+	virtual void PutNumber(const char* name, uint32_t value)
+	{
+		uint32_t v = to_le32(value);
+		m_Impl.Put(name, (const u8*)&v, sizeof(uint32_t));
+	}
+
+	virtual void PutNumber(const char* name, float value)
+	{
+		m_Impl.Put(name, (const u8*)&value, sizeof(float));
+	}
+
+	virtual void PutNumber(const char* name, double value)
+	{
+		m_Impl.Put(name, (const u8*)&value, sizeof(double));
+	}
+
+	virtual void PutNumber(const char* name, fixed value)
+	{
+		int32_t v = (i32)to_le32((u32)value.GetInternalValue());
+		m_Impl.Put(name, (const u8*)&v, sizeof(int32_t));
+	}
+
+	virtual void PutBool(const char* name, bool value)
+	{
+		NumberU8(name, value ? 1 : 0, 0, 1);
+	}
+
+	virtual void PutString(const char* name, const std::string& value)
+	{
+		// TODO: maybe should intern strings, particularly to save space with script property names
+		PutNumber("string length", (uint32_t)value.length());
+		m_Impl.Put(name, (u8*)value.data(), value.length());
+	}
+
+	virtual void PutScriptVal(const char* UNUSED(name), jsval value)
+	{
+		m_ScriptImpl->HandleScriptVal(value);
+	}
+
+	virtual void PutRaw(const char* name, const u8* data, size_t len)
+	{
+		m_Impl.Put(name, data, len);
+	}
+
+protected:
+	T m_Impl;
+
+private:
+	std::auto_ptr<CBinarySerializerScriptImpl> m_ScriptImpl;
 };
 
 #endif // INCLUDED_BINARYSERIALIZER
