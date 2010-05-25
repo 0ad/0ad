@@ -18,9 +18,9 @@
 #ifndef INCLUDED_AUTOROOTERS
 #define INCLUDED_AUTOROOTERS
 
-#include "js/jsapi.h"
+#include "scriptinterface/ScriptTypes.h"
 
-class ScriptInterface;
+#include "js/jsapi.h"
 
 // Exception-safety and GC-safety wrapper for JSIdArray
 // (TODO: it'd be nicer to use the existing js::AutoIdArray but currently that
@@ -54,6 +54,7 @@ public:
  */
 class AutoGCRooter
 {
+	NONCOPYABLE(AutoGCRooter);
 public:
 	AutoGCRooter(ScriptInterface& scriptInterface);
 	~AutoGCRooter();

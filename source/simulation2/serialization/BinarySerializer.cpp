@@ -29,7 +29,18 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/AutoRooters.h"
 
+// Shut up some warnings triggered by jsobj.h
+#if MSC_VERSION
+# pragma warning(push)
+# pragma warning(disable:4512)	// assignment operator could not be generated
+# pragma warning(disable:4800)	// forcing value to bool 'true' or 'false' (performance warning)
+#endif
+
 #include "js/jsobj.h"
+
+#if MSC_VERSION
+# pragma warning(pop)
+#endif
 
 CBinarySerializer::CBinarySerializer(ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface), m_ScriptBackrefsNext(1), m_Rooter(scriptInterface)
