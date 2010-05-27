@@ -125,7 +125,6 @@ MESSAGEHANDLER(GenerateMap)
 	// Cover terrain with default texture
 	// TODO: split into fCoverWithTexture
 	CTextureEntry* texentry = g_TexMan.FindTexture("grass1_spring"); // TODO: make default customisable
-	Handle tex = texentry ? texentry->GetHandle() : 0;
 
 	int patchesPerSide = terrain->GetPatchesPerSide();
 	for (int pz = 0; pz < patchesPerSide; ++pz)
@@ -138,8 +137,8 @@ MESSAGEHANDLER(GenerateMap)
 			{
 				for (ssize_t x = 0; x < PATCH_SIZE; ++x)
 				{
-					patch->m_MiniPatches[z][x].Tex1 = tex;
-					patch->m_MiniPatches[z][x].Tex1Priority = 0;
+					patch->m_MiniPatches[z][x].Tex = texentry;
+					patch->m_MiniPatches[z][x].Priority = 0;
 				}
 			}
 		}

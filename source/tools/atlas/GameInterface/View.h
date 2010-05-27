@@ -45,6 +45,7 @@ public:
 
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
+	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
 	// These always return a valid (not NULL) object
 	static View* GetView(int /*eRenderView*/ view);
@@ -80,6 +81,8 @@ public:
 	virtual CSimulation2* GetSimulation2();
 	virtual bool WantsHighFramerate();
 
+	virtual void SetParam(const std::wstring& name, const std::wstring& value);
+
 	void SetSpeedMultiplier(float speed);
 	void SaveState(const std::wstring& label);
 	void RestoreState(const std::wstring& label);
@@ -88,6 +91,7 @@ public:
 private:
 	float m_SpeedMultiplier;
 	std::map<std::wstring, SimState*> m_SavedStates;
+	std::string m_DisplayPassability;
 };
 
 class ActorViewer;

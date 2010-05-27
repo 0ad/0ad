@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,15 +49,6 @@ void CPatch::Initialize(CTerrain* parent,ssize_t x,ssize_t z)
 	m_Parent=parent;
 	m_X=x;
 	m_Z=z;
-
-	// set parent of each patch	
-	for (ssize_t j=0;j<PATCH_SIZE;j++)
-	{
-		for (ssize_t i=0;i<PATCH_SIZE;i++)
-		{
-			m_MiniPatches[j][i].m_Parent=this;
-		}
-	}
 
 	InvalidateBounds();
 }

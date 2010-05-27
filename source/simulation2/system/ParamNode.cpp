@@ -129,6 +129,11 @@ const std::wstring& CParamNode::ToString() const
 	return m_Value;
 }
 
+const std::string CParamNode::ToASCIIString() const
+{
+	return CStr8(m_Value);
+}
+
 int CParamNode::ToInt() const
 {
 	int ret = 0;

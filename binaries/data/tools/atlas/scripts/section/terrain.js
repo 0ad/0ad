@@ -210,6 +210,25 @@ function init(window, bottomWindow)
 		brush.send();
 	};
 	
+
+
+	var visualiseSizer = new wxStaticBoxSizer(new wxStaticBox(window, -1, 'Visualise'), wxOrientation.VERTICAL);
+	window.sizer.add(visualiseSizer);
+	var visualiseSettingsSizer = new wxFlexGridSizer(2);
+	visualiseSizer.add(visualiseSettingsSizer);
+
+	visualiseSettingsSizer.add(new wxStaticText(window, -1, 'Passability'), 0, wxAlignment.RIGHT);
+	var passabilityClasses = Atlas.Message.GetTerrainPassabilityClasses().classnames;
+	var passabilitySelector = new wxChoice(window, -1, wxDefaultPosition, wxDefaultSize,
+		["(none)"].concat(passabilityClasses)
+	);
+	visualiseSettingsSizer.add(passabilitySelector);
+	passabilitySelector.onChoice = function (evt) {
+		if (evt.selection == 0)
+			Atlas.Message.SetViewParamS(Atlas.RenderView.GAME, "passability", "");
+		else
+			Atlas.Message.SetViewParamS(Atlas.RenderView.GAME, "passability", evt.string);
+	};
 	
 	
 	var terrainGroups = Atlas.Message.GetTerrainGroups();

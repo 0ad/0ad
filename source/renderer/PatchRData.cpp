@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,7 +73,9 @@ CPatchRData::~CPatchRData()
 static Handle GetTerrainTileTexture(CTerrain* terrain,ssize_t gx,ssize_t gz)
 {
 	CMiniPatch* mp=terrain->GetTile(gx,gz);
-	return mp ? mp->Tex1 : 0;
+	if (!mp)
+		return 0;
+	return mp->GetHandle();
 }
 
 const float uvFactor = 0.125f / sqrt(2.f);
@@ -106,20 +108,20 @@ void CPatchRData::BuildBlends()
 	// for each tile in patch ..
 	for (ssize_t j=0;j<PATCH_SIZE;j++) {
 		for (ssize_t i=0;i<PATCH_SIZE;i++) {
-			ssize_t gx,gz;
 			CMiniPatch* mp=&m_Patch->m_MiniPatches[j][i];
-			mp->GetTileIndex(gx,gz);
+			ssize_t gx = m_Patch->m_X * PATCH_SIZE + i;
+			ssize_t gz = m_Patch->m_Z * PATCH_SIZE + j;
 
 			// build list of textures of higher priority than current tile that are used by neighbouring tiles
 			std::vector<STex> neighbourTextures;
 			for (int m=-1;m<=1;m++) {
 				for (int k=-1;k<=1;k++) {
 					CMiniPatch* nmp=terrain->GetTile(gx+k,gz+m);
-					if (nmp && nmp->Tex1 != mp->Tex1) {
-						if (nmp->Tex1Priority>mp->Tex1Priority || (nmp->Tex1Priority==mp->Tex1Priority && nmp->Tex1>mp->Tex1)) {
+					if (nmp && nmp->GetTextureEntry() != mp->GetTextureEntry()) {
+						if (nmp->GetPriority() > mp->GetPriority() || (nmp->GetPriority() == mp->GetPriority() && nmp->GetTextureEntry() > mp->GetTextureEntry())) {
 							STex tex;
-							tex.m_Handle=nmp->Tex1;
-							tex.m_Priority=nmp->Tex1Priority;
+							tex.m_Handle=nmp->GetHandle();
+							tex.m_Priority=nmp->GetPriority();
 							if (std::find(neighbourTextures.begin(),neighbourTextures.end(),tex)==neighbourTextures.end()) {
 								neighbourTextures.push_back(tex);
 							}
@@ -308,7 +310,7 @@ void CPatchRData::BuildIndices()
 	Handle texgrid[PATCH_SIZE][PATCH_SIZE];
 	for (ssize_t j=0;j<PATCH_SIZE;j++) {
 		for (ssize_t i=0;i<PATCH_SIZE;i++) {
-			Handle h=m_Patch->m_MiniPatches[j][i].Tex1;
+			Handle h=m_Patch->m_MiniPatches[j][i].GetHandle();
 			texgrid[j][i]=h;
 			if (std::find(textures.begin(),textures.end(),h)==textures.end()) {
 				textures.push_back(h);

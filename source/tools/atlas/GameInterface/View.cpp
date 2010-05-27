@@ -36,6 +36,8 @@
 #include "renderer/Renderer.h"
 #include "simulation/Simulation.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpPathfinder.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
 
@@ -48,6 +50,10 @@ void View::SetParam(const std::wstring& UNUSED(name), bool UNUSED(value))
 }
 
 void View::SetParam(const std::wstring& UNUSED(name), const AtlasMessage::Colour& UNUSED(value))
+{
+}
+
+void View::SetParam(const std::wstring& UNUSED(name), const std::wstring& UNUSED(value))
 {
 }
 
@@ -209,8 +215,45 @@ void ViewGame::Render()
 	camera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
 	camera.UpdateFrustum();
 
+	// Update the pathfinder display if necessary
+	if (!m_DisplayPassability.empty())
+	{
+		CmpPtr<ICmpObstructionManager> cmpObstructionMan(*GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpObstructionMan.null())
+		{
+			cmpObstructionMan->SetDebugOverlay(true);
+		}
+
+		CmpPtr<ICmpPathfinder> cmpPathfinder(*GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpPathfinder.null())
+		{
+			cmpPathfinder->SetDebugOverlay(true);
+			// Kind of a hack to make it update the terrain grid
+			ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, fixed::Zero(), fixed::Zero() };
+			u8 passClass = cmpPathfinder->GetPassabilityClass(m_DisplayPassability);
+			u8 costClass = cmpPathfinder->GetCostClass("default");
+			cmpPathfinder->SetDebugPath(fixed::Zero(), fixed::Zero(), goal, passClass, costClass);
+		}
+	}
+
 	::Render();
 	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
+}
+
+void ViewGame::SetParam(const std::wstring& name, const std::wstring& value)
+{
+	if (name == L"passability")
+	{
+		m_DisplayPassability = CStr(value);
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionMan(*GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpObstructionMan.null())
+			cmpObstructionMan->SetDebugOverlay(!value.empty());
+
+		CmpPtr<ICmpPathfinder> cmpPathfinder(*GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpPathfinder.null())
+			cmpPathfinder->SetDebugOverlay(!value.empty());
+	}
 }
 
 CCamera& ViewGame::GetCamera()

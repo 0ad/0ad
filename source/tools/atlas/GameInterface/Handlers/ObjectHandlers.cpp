@@ -278,9 +278,7 @@ END_COMMAND(SetObjectSettings);
 //////////////////////////////////////////////////////////////////////////
 
 static CStrW g_PreviewUnitName;
-static entity_id_t g_PreviewEntityID = INVALID_ENTITY; // used if g_UseSimulation2
-static size_t g_PreviewUnitID = invalidUnitId; // old simulation
-static bool g_PreviewUnitFloating;
+static entity_id_t g_PreviewEntityID = INVALID_ENTITY;
 
 static CVector3D GetUnitPos(const Position& pos, bool floating)
 {

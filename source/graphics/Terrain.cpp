@@ -95,36 +95,14 @@ bool CTerrain::Initialize(ssize_t patchesPerSide,const u16* data)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-float CTerrain::GetExactGroundLevel(const CVector2D& v) const
+CStr8 CTerrain::GetMovementClass(ssize_t i, ssize_t j) const
 {
-	return GetExactGroundLevel(v.x, v.y);
-}
+	CMiniPatch* tile = GetTile(i, j);
+	if (tile && tile->GetTextureEntry())
+		return tile->GetTextureEntry()->GetProperties()->GetMovementClass();
 
-bool CTerrain::IsOnMap(const CVector2D& v) const
-{
-	return IsOnMap(v.x, v.y);
+	return "default";
 }
-
-//bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
-//{
-//	CMiniPatch *pTile = GetTile(loc.x, loc.y);
-//	if(!pTile)
-//	{
-//		LOGWARNING(L"IsPassable: invalid coordinates %.1f %.1f\n", loc.x, loc.y);
-//		return false;
-//	}
-//	if(!pTile->Tex1)
-//		return false;		// Invalid terrain type in the scenario file
-//	CTextureEntry *pTexEntry = g_TexMan.FindTexture(pTile->Tex1);
-//	CTerrainPropertiesPtr pProperties = pTexEntry->GetProperties();
-//	if(!pProperties)
-//	{
-//		VfsPath texturePath = pTexEntry->GetTexturePath();
-//		LOGWARNING(L"IsPassable: no properties loaded for %ls\n", texturePath.string().c_str());
-//		return false;
-//	}
-//	return pProperties->IsPassable(entity);
-//}
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcPosition: calculate the world space position of the vertex at (i,j)
@@ -283,20 +261,31 @@ float CTerrain::GetVertexGroundLevel(ssize_t i, ssize_t j) const
 	return HEIGHT_SCALE * m_Heightmap[j*m_MapSize + i];
 }
 
-float CTerrain::GetSlope(float x, float z) const
+fixed CTerrain::GetVertexGroundLevelFixed(ssize_t i, ssize_t j) const
 {
-	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
-	const ssize_t xi = clamp((ssize_t)floor(x/CELL_SIZE), (ssize_t)0, m_MapSize-2);
-	const ssize_t zi = clamp((ssize_t)floor(z/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+	i = clamp(i, (ssize_t)0, m_MapSize-1);
+	j = clamp(j, (ssize_t)0, m_MapSize-1);
+	// Convert to fixed metres (being careful to avoid intermediate overflows)
+	return fixed::FromInt(m_Heightmap[j*m_MapSize + i] / 2) / (int)(HEIGHT_UNITS_PER_METRE / 2);
+}
 
-	float h00 = m_Heightmap[zi*m_MapSize + xi];
-	float h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
-	float h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
-	float h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
+fixed CTerrain::GetSlopeFixed(ssize_t i, ssize_t j) const
+{
+	// Clamp to size-2 so we can use the tiles (i,j)-(i+1,j+1)
+	i = clamp(i, (ssize_t)0, m_MapSize-2);
+	j = clamp(j, (ssize_t)0, m_MapSize-2);
+
+	u16 h00 = m_Heightmap[j*m_MapSize + i];
+	u16 h01 = m_Heightmap[(j+1)*m_MapSize + i];
+	u16 h10 = m_Heightmap[j*m_MapSize + (i+1)];
+	u16 h11 = m_Heightmap[(j+1)*m_MapSize + (i+1)];
 	
 	// Difference of highest point from lowest point
-	return std::max(std::max(h00, h01), std::max(h10, h11)) -
-	       std::min(std::min(h00, h01), std::min(h10, h11));
+	u16 delta = std::max(std::max(h00, h01), std::max(h10, h11)) -
+	            std::min(std::min(h00, h01), std::min(h10, h11));
+
+	// Compute fractional slope (being careful to avoid intermediate overflows)
+	return fixed::FromInt(delta / CELL_SIZE) / (int)HEIGHT_UNITS_PER_METRE;
 }
 
 float CTerrain::GetExactGroundLevel(float x, float z) const
@@ -413,8 +402,7 @@ void CTerrain::Resize(ssize_t size)
 					CMiniPatch& src=m_Patches[j*m_MapSizePatches+m_MapSizePatches-1].m_MiniPatches[m][15];
 					for (ssize_t k=0;k<PATCH_SIZE;k++) {
 						CMiniPatch& dst=newPatches[j*size+m_MapSizePatches+n].m_MiniPatches[m][k];
-						dst.Tex1=src.Tex1;
-						dst.Tex1Priority=src.Tex1Priority;
+						dst = src;
 					}
 				}
 			}
@@ -431,8 +419,7 @@ void CTerrain::Resize(ssize_t size)
 					for (ssize_t k=0;k<PATCH_SIZE;k++) {
 						CMiniPatch& src=srcpatch->m_MiniPatches[15][k];
 						CMiniPatch& dst=dstpatch->m_MiniPatches[m][k];
-						dst.Tex1=src.Tex1;
-						dst.Tex1Priority=src.Tex1Priority;
+						dst = src;
 					}
 				}
 				srcpatch++;

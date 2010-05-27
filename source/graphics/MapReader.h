@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ class CCinemaManager;
 class CTriggerManager;
 class CSimulation2;
 class CEntityManager;
+class CTextureEntry;
 
 class CXMLReader;
 
@@ -73,7 +74,7 @@ private:
 	// heightmap for map
 	std::vector<u16> m_Heightmap;
 	// list of terrain textures used by map
-	std::vector<Handle> m_TerrainTextures;
+	std::vector<CTextureEntry*> m_TerrainTextures;
 	// tile descriptions for each tile
 	std::vector<STileDesc> m_Tiles;
 	// lightenv stored in file

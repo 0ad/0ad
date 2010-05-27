@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -103,7 +103,6 @@ public:
 	void UnloadTerrainTextures();
 	
 	CTextureEntry* FindTexture(const CStr& tag);
-	CTextureEntry* FindTexture(Handle handle);
 	
 	// Create a texture object for a new terrain texture at path, using the
 	// property sheet props.

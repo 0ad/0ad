@@ -17,10 +17,16 @@
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
+  <UnitMotion>
+    <PassabilityClass>ship</PassabilityClass>
+  </UnitMotion>
   <Footprint replace="">
     <Square width="6.0" depth="30.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="8.0"/>
+  </Obstruction>
   <Vision>
     <Range>10</Range>
   </Vision>

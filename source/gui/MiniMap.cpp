@@ -509,9 +509,9 @@ void CMiniMap::RebuildTerrainTexture()
 				u32 color = 0xFFFFFFFF;
 
 				CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
-				if(mp && mp->Tex1)
+				if(mp)
 				{
-					CTextureEntry *tex = g_TexMan.FindTexture(mp->Tex1);
+					CTextureEntry *tex = mp->GetTextureEntry();
 					if(tex)
 						color = tex->GetBaseColor();
 				}

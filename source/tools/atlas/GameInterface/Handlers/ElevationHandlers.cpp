@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@
 #include "ps/World.h"
 #include "maths/MathUtil.h"
 #include "graphics/RenderableObject.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpTerrain.h"
 
 #include "../Brushes.h"
 #include "../DeltaArray.h"
@@ -98,10 +100,19 @@ protected:
 BEGIN_COMMAND(AlterElevation)
 {
 	TerrainArray m_TerrainDelta;
+	ssize_t m_i0, m_j0, m_i1, m_j1;
 
 	cAlterElevation()
 	{
 		m_TerrainDelta.Init();
+	}
+
+	void MakeDirty()
+	{
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 
 	void Do()
@@ -126,6 +137,7 @@ BEGIN_COMMAND(AlterElevation)
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
 		for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+		{
 			for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				// TODO: proper variable raise amount (store floats in terrain delta array?)
@@ -133,25 +145,34 @@ BEGIN_COMMAND(AlterElevation)
 				if (b)
 					m_TerrainDelta.RaiseVertex(x0+dx, y0+dy, (int)(amount*b));
 			}
+		}
 
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_VERTICES);
+		m_i0 = x0;
+		m_j0 = y0;
+		m_i1 = x0 + g_CurrentBrush.m_W;
+		m_j1 = y0 + g_CurrentBrush.m_H;
+		MakeDirty();
 	}
 
 	void Undo()
 	{
 		m_TerrainDelta.Undo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
+		MakeDirty();
 	}
 
 	void Redo()
 	{
 		m_TerrainDelta.Redo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
+		MakeDirty();
 	}
 
 	void MergeIntoPrevious(cAlterElevation* prev)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
+		prev->m_i0 = std::min(prev->m_i0, m_i0);
+		prev->m_j0 = std::min(prev->m_j0, m_j0);
+		prev->m_i1 = std::max(prev->m_i1, m_i1);
+		prev->m_j1 = std::max(prev->m_j1, m_j1);
 	}
 };
 END_COMMAND(AlterElevation)
@@ -161,10 +182,19 @@ END_COMMAND(AlterElevation)
 BEGIN_COMMAND(FlattenElevation)
 {
 	TerrainArray m_TerrainDelta;
+	ssize_t m_i0, m_j0, m_i1, m_j1;
 
 	cFlattenElevation()
 	{
 		m_TerrainDelta.Init();
+	}
+
+	void MakeDirty()
+	{
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 
 	void Do()
@@ -190,24 +220,32 @@ BEGIN_COMMAND(FlattenElevation)
 					m_TerrainDelta.MoveVertexTowards(x0+dx, y0+dy, height, 1 + (int)(b*amount));
 			}
 
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_VERTICES);
+		m_i0 = x0;
+		m_j0 = y0;
+		m_i1 = x0 + g_CurrentBrush.m_W;
+		m_j1 = y0 + g_CurrentBrush.m_H;
+		MakeDirty();
 	}
 
 	void Undo()
 	{
 		m_TerrainDelta.Undo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
+		MakeDirty();
 	}
 
 	void Redo()
 	{
 		m_TerrainDelta.Redo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
+		MakeDirty();
 	}
 
 	void MergeIntoPrevious(cFlattenElevation* prev)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
+		prev->m_i0 = std::min(prev->m_i0, m_i0);
+		prev->m_j0 = std::min(prev->m_j0, m_j0);
+		prev->m_i1 = std::max(prev->m_i1, m_i1);
+		prev->m_j1 = std::max(prev->m_j1, m_j1);
 	}
 };
 END_COMMAND(FlattenElevation)

@@ -86,7 +86,7 @@ public:
 			ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, x1, z1 };
 
 			ICmpPathfinder::Path path;
-			cmp->ComputePath(x0, z0, goal, path);
+			cmp->ComputePath(x0, z0, goal, cmp->GetPassabilityClass("default"), cmp->GetCostClass("default"), path);
 		}
 	}
 };

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,6 +52,11 @@ MESSAGE(SetViewParamC,
 		((int, view)) // eRenderView
 		((std::wstring, name))
 		((Colour, value))
+		);
+MESSAGE(SetViewParamS,
+		((int, view)) // eRenderView
+		((std::wstring, name))
+		((std::wstring, value))
 		);
 
 MESSAGE(JavaScript,
@@ -179,6 +184,10 @@ QUERY(GetTerrainGroupPreviews,
 	  ((std::vector<sTerrainGroupPreview>, previews))
 	  );
 
+QUERY(GetTerrainPassabilityClasses,
+	  , // no inputs
+	  ((std::vector<std::wstring>, classnames))
+	  );
 
 //////////////////////////////////////////////////////////////////////////
 

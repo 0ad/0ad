@@ -71,16 +71,33 @@ public:
 	};
 
 	/**
+	 * Get the list of all known passability class names.
+	 */
+	virtual std::vector<std::string> GetPassabilityClasses() = 0;
+
+	/**
+	 * Get the tag for a given passability class name.
+	 * Logs an error and returns something acceptable if the name is unrecognised.
+	 */
+	virtual u8 GetPassabilityClass(const std::string& name) = 0;
+
+	/**
+	 * Get the tag for a given movement cost class name.
+	 * Logs an error and returns something acceptable if the name is unrecognised.
+	 */
+	virtual u8 GetCostClass(const std::string& name) = 0;
+
+	/**
 	 * Compute a tile-based path from the given point to the goal, and return the set of waypoints.
 	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
 	 * along the path.
 	 */
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& ret) = 0;
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& ret) = 0;
 
 	/**
 	 * If the debug overlay is enabled, render the path that will computed by ComputePath.
 	 */
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal) = 0;
+	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass) = 0;
 
 	/**
 	 * Compute a precise path from the given point to the goal, and return the set of waypoints.
@@ -88,7 +105,13 @@ public:
 	 * a unit of radius 'r' will be able to follow the path with no collisions.
 	 * The path is restricted to a box of radius 'range' from the starting point.
 	 */
-	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, Path& ret) = 0;
+	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& ret) = 0;
+
+	/**
+	 * Find the speed factor (typically around 1.0) for a unit of the given cost class
+	 * at the given position.
+	 */
+	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass) = 0;
 
 	/**
 	 * Toggle the storage and rendering of debug info.

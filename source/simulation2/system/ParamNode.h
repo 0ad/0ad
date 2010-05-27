@@ -145,6 +145,11 @@ public:
 	const std::wstring& ToString() const;
 
 	/**
+	 * Returns the content of this node as an 8-bit string
+	 */
+	const std::string ToASCIIString() const;
+
+	/**
 	 * Parses the content of this node as an integer
 	 */
 	int ToInt() const;

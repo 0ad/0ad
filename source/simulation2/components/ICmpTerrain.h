@@ -28,8 +28,17 @@ class ICmpTerrain : public IComponent
 {
 public:
 	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) = 0;
+
 	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) = 0;
+
 	virtual float GetExactGroundLevel(float x, float z) = 0;
+
+	/**
+	 * Indicate that the terrain within the given region (inclusive lower bound,
+	 * exclusive upper bound) has been changed. CMessageTerrainChanged will be
+	 * sent to any components that care about terrain changes.
+	 */
+	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) = 0;
 
 	DECLARE_INTERFACE_TYPE(Terrain)
 };

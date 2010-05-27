@@ -61,6 +61,8 @@ public:
 
 	fixed m_Speed; // in units per second
 	entity_pos_t m_Radius;
+	u8 m_PassClass;
+	u8 m_CostClass;
 
 	// Dynamic state:
 
@@ -85,6 +87,8 @@ public:
 			"<a:help>Provides the unit with the ability to move around the world by itself.</a:help>"
 			"<a:example>"
 				"<WalkSpeed>7.0</WalkSpeed>"
+				"<PassabilityClass>default</PassabilityClass>"
+				"<CostClass>infantry</CostClass>"
 			"</a:example>"
 			"<element name='WalkSpeed' a:help='Basic movement speed (in metres per second)'>"
 				"<ref name='positiveDecimal'/>"
@@ -99,7 +103,13 @@ public:
 						"<element name='DecayTime'><ref name='positiveDecimal'/></element>"
 					"</interleave>"
 				"</element>"
-			"</optional>";
+			"</optional>"
+			"<element name='PassabilityClass' a:help='Identifies the terrain passability class (values are defined in special/pathfinder.xml)'>"
+				"<text/>"
+			"</element>"
+			"<element name='CostClass' a:help='Identifies the movement speed/cost class (values are defined in special/pathfinder.xml)'>"
+				"<text/>"
+			"</element>";
 	}
 
 	/*
@@ -115,6 +125,13 @@ public:
 		CmpPtr<ICmpObstruction> cmpObstruction(context, GetEntityId());
 		if (!cmpObstruction.null())
 			m_Radius = cmpObstruction->GetUnitRadius();
+
+		CmpPtr<ICmpPathfinder> cmpPathfinder(context, SYSTEM_ENTITY);
+		if (!cmpPathfinder.null())
+		{
+			m_PassClass = cmpPathfinder->GetPassabilityClass(paramNode.GetChild("PassabilityClass").ToASCIIString());
+			m_CostClass = cmpPathfinder->GetCostClass(paramNode.GetChild("CostClass").ToASCIIString());
+		}
 
 		m_State = IDLE;
 
@@ -287,6 +304,10 @@ bool CCmpUnitMotion::CheckMovement(CFixedVector2D pos, CFixedVector2D target)
 		return false;
 	}
 
+	// NOTE: we ignore terrain here - we assume the pathfinder won't give us a path that crosses impassable
+	// terrain (which is a valid assumption) and that the terrain will never change (which is not).
+	// Probably not worth fixing since it'll happen very rarely.
+
 	return true;
 }
 
@@ -295,6 +316,10 @@ void CCmpUnitMotion::Move(fixed dt)
 	PROFILE("Move");
 
 	if (!m_HasTarget)
+		return;
+
+	CmpPtr<ICmpPathfinder> cmpPathfinder (GetSimContext(), SYSTEM_ENTITY);
+	if (cmpPathfinder.null())
 		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
@@ -315,8 +340,13 @@ void CCmpUnitMotion::Move(fixed dt)
 		entity_angle_t angle = atan2_approx(offset.X, offset.Y);
 		cmpPosition->TurnTo(angle);
 
+		// Find the speed factor of the underlying terrain
+		// (We only care about the tile we start on - it doesn't matter if we're moving
+		// partially onto a much slower/faster tile)
+		fixed terrainSpeed = cmpPathfinder->GetMovementSpeed(pos.X, pos.Y, m_CostClass);
+
 		// Work out how far we can travel in dt
-		fixed maxdist = m_Speed.Multiply(dt);
+		fixed maxdist = m_Speed.Multiply(terrainSpeed).Multiply(dt);
 
 		// If the target is close, we can move there directly
 		fixed offsetLength = offset.Length();
@@ -743,8 +773,8 @@ bool CCmpUnitMotion::RegeneratePath(CFixedVector2D pos, bool avoidMovingUnits)
 	m_ShortPath.m_Waypoints.clear();
 
 	// TODO: if it's close then just do a short path, not a long path
-	cmpPathfinder->SetDebugPath(pos.X, pos.Y, m_FinalGoal);
-	cmpPathfinder->ComputePath(pos.X, pos.Y, m_FinalGoal, m_Path);
+	cmpPathfinder->SetDebugPath(pos.X, pos.Y, m_FinalGoal, m_PassClass, m_CostClass);
+	cmpPathfinder->ComputePath(pos.X, pos.Y, m_FinalGoal, m_PassClass, m_CostClass, m_Path);
 
 	if (m_DebugOverlayEnabled)
 		RenderPath(m_Path, m_DebugOverlayLines, OVERLAY_COLOUR_PATH);
@@ -829,7 +859,7 @@ bool CCmpUnitMotion::PickNextWaypoint(const CFixedVector2D& pos, bool avoidMovin
 	else
 		filter = &filterStationary;
 
-	cmpPathfinder->ComputeShortPath(*filter, pos.X, pos.Y, m_Radius, SHORT_PATH_SEARCH_RANGE, goal, m_ShortPath);
+	cmpPathfinder->ComputeShortPath(*filter, pos.X, pos.Y, m_Radius, SHORT_PATH_SEARCH_RANGE, goal, m_PassClass, m_ShortPath);
 
 	if (m_DebugOverlayEnabled)
 		RenderPath(m_ShortPath, m_DebugOverlayShortPathLines, OVERLAY_COLOUR_SHORT_PATH);

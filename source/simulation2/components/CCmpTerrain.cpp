@@ -20,6 +20,8 @@
 #include "simulation2/system/Component.h"
 #include "ICmpTerrain.h"
 
+#include "simulation2/MessageTypes.h"
+
 #include "graphics/Terrain.h"
 
 class CCmpTerrain : public ICmpTerrain
@@ -71,6 +73,12 @@ public:
 	virtual float GetExactGroundLevel(float x, float z)
 	{
 		return m_Terrain->GetExactGroundLevel(x, z);
+	}
+
+	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
+	{
+		CMessageTerrainChanged msg(i0, j0, i1, j1);
+		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 };
 

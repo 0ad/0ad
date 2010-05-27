@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -132,6 +132,12 @@ MESSAGEHANDLER(SetViewParamC)
 {
 	View* view = View::GetView(msg->view);
 	view->SetParam(*msg->name, msg->value);
+}
+
+MESSAGEHANDLER(SetViewParamS)
+{
+	View* view = View::GetView(msg->view);
+	view->SetParam(*msg->name, *msg->value);
 }
 
 MESSAGEHANDLER(SetActorViewer)

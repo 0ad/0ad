@@ -172,6 +172,18 @@ CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, jsv
 	return new CMessageMotionChanged(speed);
 }
 
+////////////////////////////////
+
+jsval CMessageTerrainChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	return JSVAL_VOID;
+}
+
+CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return NULL;
+}
+
 ////////////////////////////////////////////////////////////////
 
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, jsval val)

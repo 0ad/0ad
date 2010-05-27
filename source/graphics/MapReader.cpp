@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -168,14 +168,10 @@ int CMapReader::UnpackTerrain()
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
-		Handle handle = 0;
+		CTextureEntry* texentry = NULL;
 		if (CTextureManager::IsInitialised())
-		{
-			CTextureEntry* texentry = g_TexMan.FindTexture(texturename);
-			if (texentry)
-				handle = texentry->GetHandle();
-		}
-		m_TerrainTextures.push_back(handle);
+			texentry = g_TexMan.FindTexture(texturename);
+		m_TerrainTextures.push_back(texentry);
 
 		cur_terrain_tex++;
 		LDR_CHECK_TIMEOUT(cur_terrain_tex, num_terrain_tex);
@@ -215,8 +211,8 @@ int CMapReader::ApplyData()
 					for (ssize_t k=0; k<PATCH_SIZE; k++) {
 						CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
 
-						mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];
-						mp.Tex1Priority = tileptr->m_Priority;
+						mp.Tex = m_TerrainTextures[tileptr->m_Tex1Index];
+						mp.Priority = tileptr->m_Priority;
 	
 						tileptr++;
 					}
@@ -386,10 +382,7 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 	m_MapReader.m_PatchesPerSide = patches;
 
 	// Load the texture
-	Handle handle = 0;
 	CTextureEntry* texentry = g_TexMan.FindTexture(texture);
-	if (texentry)
-		handle = texentry->GetHandle();
 
 	m_MapReader.pTerrain->Initialize(patches, NULL);
 
@@ -410,8 +403,8 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 			{
 				for (ssize_t x = 0; x < PATCH_SIZE; ++x)
 				{
-					patch->m_MiniPatches[z][x].Tex1 = handle;
-					patch->m_MiniPatches[z][x].Tex1Priority = priority;
+					patch->m_MiniPatches[z][x].Tex = texentry;
+					patch->m_MiniPatches[z][x].Priority = priority;
 				}
 			}
 		}

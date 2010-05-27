@@ -33,6 +33,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/XML/Xeromyces.h"
 
 #include <iomanip>
 
@@ -56,6 +57,20 @@ public:
 		// (can't call ResetState here since the scripts haven't been loaded yet)
 	}
 
+	CParamNode LoadXML(const std::wstring& name)
+	{
+		CParamNode ret;
+
+		VfsPath path = VfsPath(L"simulation/templates/") / name;
+		CXeromyces xero;
+		PSRETURN ok = xero.Load(path);
+		if (ok != PSRETURN_OK)
+			return ret; // (Xeromyces already logged an error)
+
+		CParamNode::LoadXML(ret, xero);
+		return ret;
+	}
+
 	void ResetState(bool skipScriptedComponents)
 	{
 		m_ComponentManager.ResetState();
@@ -71,7 +86,7 @@ public:
 
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ObstructionManager, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
+		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, LoadXML(L"special/pathfinder.xml").GetChild("Pathfinder"));
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_SoundManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,11 +76,6 @@ CTextureEntry* CTextureManager::FindTexture(const CStr& tag_)
 
 	LOG(CLogger::Warning, LOG_CATEGORY, L"TextureManager: Couldn't find terrain %hs", tag.c_str());
 	return 0;
-}
-
-CTextureEntry* CTextureManager::FindTexture(Handle handle)
-{
-	return CTextureEntry::GetByHandle(handle);
 }
 
 CTerrainPropertiesPtr CTextureManager::GetPropertiesFromFile(const CTerrainPropertiesPtr& props, const VfsPath& pathname)

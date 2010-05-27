@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,9 +29,13 @@
 #include "ps/World.h"
 #include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPathfinder.h"
+#include "simulation2/components/ICmpTerrain.h"
 
 #include "../Brushes.h"
 #include "../DeltaArray.h"
+#include "../View.h"
 
 namespace AtlasMessage {
 
@@ -115,14 +119,28 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 	msg->previews = previews;
 }
 
+QUERYHANDLER(GetTerrainPassabilityClasses)
+{
+	CmpPtr<ICmpPathfinder> cmpPathfinder(*View::GetView_Game()->GetSimulation2(), SYSTEM_ENTITY);
+	if (!cmpPathfinder.null())
+	{
+		std::vector<std::string> names = cmpPathfinder->GetPassabilityClasses();
+
+		std::vector<std::wstring> classnames;
+		for (std::vector<std::string>::iterator it = names.begin(); it != names.end(); ++it)
+			classnames.push_back(CStrW(*it));
+		msg->classnames = classnames;
+	}
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 BEGIN_COMMAND(PaintTerrain)
 {
 	struct TerrainTile
 	{
-		TerrainTile(Handle t, ssize_t p) : tex(t), priority(p) {}
-		Handle tex;
+		TerrainTile(CTextureEntry* t, ssize_t p) : tex(t), priority(p) {}
+		CTextureEntry* tex;
 		ssize_t priority;
 	};
 	class TerrainArray : public DeltaArray2D<TerrainTile>
@@ -134,7 +152,7 @@ BEGIN_COMMAND(PaintTerrain)
 			m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 		}
 
-		void PaintTile(ssize_t x, ssize_t y, Handle tex, ssize_t priority)
+		void PaintTile(ssize_t x, ssize_t y, CTextureEntry* tex, ssize_t priority)
 		{
 			// Ignore out-of-bounds tiles
 			if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
@@ -147,7 +165,7 @@ BEGIN_COMMAND(PaintTerrain)
 			ssize_t greatest = 0;
 			ssize_t scale = (priority == ePaintTerrainPriority::HIGH ? +1 : -1);
 			CMiniPatch* tile;
-#define TILE(dx, dy) tile = m_Terrain->GetTile(x dx, y dy); if (tile && tile->Tex1Priority*scale > greatest) greatest = tile->Tex1Priority*scale;
+#define TILE(dx, dy) tile = m_Terrain->GetTile(x dx, y dy); if (tile && tile->GetPriority()*scale > greatest) greatest = tile->GetPriority()*scale;
 			TILE(-1, -1) TILE(+0, -1) TILE(+1, -1)
 			TILE(-1, +0)              TILE(+1, +0)
 			TILE(-1, +1) TILE(+0, +1) TILE(+1, +1)
@@ -160,14 +178,14 @@ BEGIN_COMMAND(PaintTerrain)
 		{
 			CMiniPatch* mp = m_Terrain->GetTile(x, y);
 			debug_assert(mp);
-			return TerrainTile(mp->Tex1, mp->Tex1Priority);
+			return TerrainTile(mp->Tex, mp->Priority);
 		}
 		void setNew(ssize_t x, ssize_t y, const TerrainTile& val)
 		{
 			CMiniPatch* mp = m_Terrain->GetTile(x, y);
 			debug_assert(mp);
-			mp->Tex1 = val.tex;
-			mp->Tex1Priority = val.priority;
+			mp->Tex = val.tex;
+			mp->Priority = val.priority;
 		}
 
 		CTerrain* m_Terrain;
@@ -175,15 +193,23 @@ BEGIN_COMMAND(PaintTerrain)
 	};
 
 	TerrainArray m_TerrainDelta;
+	ssize_t m_i0, m_j0, m_i1, m_j1;
 
 	cPaintTerrain()
 	{
 		m_TerrainDelta.Init();
 	}
 
+	void MakeDirty()
+	{
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
+	}
+
 	void Do()
 	{
-
 		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
 
 		ssize_t x0, y0;
@@ -195,35 +221,42 @@ BEGIN_COMMAND(PaintTerrain)
 			debug_warn(L"Can't find texentry"); // TODO: nicer error handling
 			return;
 		}
-		Handle texture = texentry->GetHandle();
 
 		for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
 		{
 			for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				if (g_CurrentBrush.Get(dx, dy) > 0.5f) // TODO: proper solid brushes
-					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texture, msg->priority);
+					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texentry, msg->priority);
 			}
 		}
 
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_INDICES);
+		m_i0 = x0;
+		m_j0 = y0;
+		m_i1 = x0 + g_CurrentBrush.m_W;
+		m_j1 = y0 + g_CurrentBrush.m_H;
+		MakeDirty();
 	}
 
 	void Undo()
 	{
 		m_TerrainDelta.Undo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_INDICES);
+		MakeDirty();
 	}
 
 	void Redo()
 	{
 		m_TerrainDelta.Redo();
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_INDICES);
+		MakeDirty();
 	}
 
 	void MergeIntoPrevious(cPaintTerrain* prev)
 	{
 		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
+		prev->m_i0 = std::min(prev->m_i0, m_i0);
+		prev->m_j0 = std::min(prev->m_j0, m_j0);
+		prev->m_i1 = std::max(prev->m_i1, m_i1);
+		prev->m_j1 = std::max(prev->m_j1, m_j1);
 	}
 };
 END_COMMAND(PaintTerrain)

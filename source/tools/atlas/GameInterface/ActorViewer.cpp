@@ -101,8 +101,8 @@ ActorViewer::ActorViewer()
 			for (ssize_t j = 0; j < PATCH_SIZE; ++j)
 			{
 				CMiniPatch& mp = patch->m_MiniPatches[i][j];
-				mp.Tex1 = tex->GetHandle();
-				mp.Tex1Priority = 0;
+				mp.Tex = tex;
+				mp.Priority = 0;
 			}
 		}
 	}

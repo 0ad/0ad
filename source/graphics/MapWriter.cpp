@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,11 +75,11 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // GetHandleIndex: return the index of the given handle in the given list; or 0xFFFF if
 // handle isn't in list
-static u16 GetHandleIndex(const Handle handle, const std::vector<Handle>& handles)
+static u16 GetEntryIndex(const CTextureEntry* entry, const std::vector<CTextureEntry*>& entries)
 {
-	const size_t limit = std::min(handles.size(), size_t(0xFFFEu));	// paranoia
+	const size_t limit = std::min(entries.size(), size_t(0xFFFEu));	// paranoia
 	for (size_t i=0;i<limit;i++) {
-		if (handles[i]==handle) {
+		if (entries[i]==entry) {
 			return (u16)i;
 		}
 	}
@@ -95,7 +95,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 									 std::vector<STileDesc>& tiles)
 {
 	// the list of all handles in use
-	std::vector<Handle> handles;
+	std::vector<CTextureEntry*> entries;
 	
 	// resize tile array to required size
 	tiles.resize(SQR(pTerrain->GetVerticesPerSide()-1));
@@ -108,15 +108,15 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 			for (ssize_t m=0;m<PATCH_SIZE;m++) {
 				for (ssize_t k=0;k<PATCH_SIZE;k++) {
 					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
-					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
+					u16 index=u16(GetEntryIndex(mp.GetTextureEntry(),entries));
 					if (index==0xFFFF) {
-						index=(u16)handles.size();
-						handles.push_back(mp.Tex1);
+						index=(u16)entries.size();
+						entries.push_back(mp.GetTextureEntry());
 					}
 
 					tileptr->m_Tex1Index=index;
 					tileptr->m_Tex2Index=0xFFFF;
-					tileptr->m_Priority=mp.Tex1Priority;
+					tileptr->m_Priority=mp.GetPriority();
 					tileptr++;
 				}
 			}
@@ -124,9 +124,9 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 	}
 
 	// now find the texture names for each handle
-	for (size_t i=0;i<handles.size();i++) {
+	for (size_t i=0;i<entries.size();i++) {
 		CStr texturename;
-		CTextureEntry* texentry=g_TexMan.FindTexture(handles[i]);
+		CTextureEntry* texentry=entries[i];
 		if (!texentry) {
 			// uh-oh, this shouldn't happen; set texturename to empty string
 			texturename="";

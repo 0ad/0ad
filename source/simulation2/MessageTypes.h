@@ -159,4 +159,20 @@ public:
 	fixed speed; // metres per second, or 0 if not moving
 };
 
+/**
+ * Sent when terrain (texture or elevation) has been changed.
+ */
+class CMessageTerrainChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(TerrainChanged)
+
+	CMessageTerrainChanged(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) :
+		i0(i0), j0(j0), i1(i1), j1(j1)
+	{
+	}
+
+	ssize_t i0, j0, i1, j1; // inclusive lower bound, exclusive upper bound, in tiles
+};
+
 #endif // INCLUDED_MESSAGETYPES

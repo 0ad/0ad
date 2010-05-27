@@ -38,6 +38,7 @@ MESSAGE(Destroy)
 MESSAGE(OwnershipChanged)
 MESSAGE(PositionChanged)
 MESSAGE(MotionChanged)
+MESSAGE(TerrainChanged)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized

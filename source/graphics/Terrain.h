@@ -30,6 +30,7 @@
 class CPatch;
 class CMiniPatch;
 class CFixedVector3D;
+class CStr8;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Terrain Constants:
@@ -72,16 +73,15 @@ public:
 		     && (z >= 0.0f) && (z < (float)((m_MapSize-1) * CELL_SIZE)));
 	}
 
-	bool IsOnMap(const CVector2D& v) const;
-
-//	bool IsPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
+	CStr8 GetMovementClass(ssize_t i, ssize_t j) const;
 
 	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;
+	fixed GetVertexGroundLevelFixed(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
 	fixed GetExactGroundLevelFixed(fixed x, fixed z) const;
-	float GetExactGroundLevel(const CVector2D& v) const;
 
-	float GetSlope(float x, float z) const ;
+	// get the approximate slope (0 = horizontal, 0.5 = 30 degrees, 1.0 = 45 degrees, etc)
+	fixed GetSlopeFixed(ssize_t i, ssize_t j) const;
 	// resize this terrain such that each side has given number of patches
 	void Resize(ssize_t size);
 

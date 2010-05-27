@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,6 @@ private:
 	
 	VfsPath m_TexturePath;
 	
-	void* m_Bitmap; // UI bitmap object (user data for ScEd)
 	Handle m_Handle; // handle to GL texture data
 	
 	// BGRA color of topmost mipmap level, for coloring minimap, or a color
@@ -56,9 +55,6 @@ private:
 	
 	// All terrain type groups we're a member of
 	GroupVector m_Groups;
-
-	// A map of all loaded textures and their texture handles for GetByHandle.
-	static std::map<Handle, CTextureEntry *> m_LoadedTextures;	
 
 	// load texture from file
 	void LoadTexture();
@@ -79,9 +75,6 @@ public:
 	
 	VfsPath GetTexturePath() const
 	{ return m_TexturePath; }
-	
-	void* GetBitmap() const { return m_Bitmap; }
-	void SetBitmap(void* bmp) { m_Bitmap=bmp; }
 
 	// Get texture handle, load texture if not loaded.
 	Handle GetHandle() { 
@@ -102,10 +95,6 @@ public:
 	
 	// returns whether this texture-entry has loaded any data yet
 	bool IsLoaded() { return (m_Handle!=-1); }
-	
-	// The texture entry class maintains a map of loaded textures and their
-	// handles.
-	static CTextureEntry *GetByHandle(Handle handle);
 };
 
 #endif 

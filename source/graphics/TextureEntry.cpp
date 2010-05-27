@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,13 +32,10 @@
 
 #define LOG_CATEGORY L"graphics"
 
-std::map<Handle, CTextureEntry *> CTextureEntry::m_LoadedTextures;
-
 /////////////////////////////////////////////////////////////////////////////////////
 // CTextureEntry constructor
 CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
 	m_pProperties(props),
-	m_Bitmap(NULL),
 	m_Handle(-1),
 	m_BaseColor(0),
 	m_BaseColorValid(false),
@@ -58,10 +55,6 @@ CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
 // CTextureEntry destructor
 CTextureEntry::~CTextureEntry()
 {
-	std::map<Handle,CTextureEntry *>::iterator it=m_LoadedTextures.find(m_Handle);
-	if (it != m_LoadedTextures.end())
-		m_LoadedTextures.erase(it);
-	
 	if (m_Handle > 0)
 		(void)ogl_tex_free(m_Handle);
 
@@ -76,7 +69,6 @@ void CTextureEntry::LoadTexture()
 	CTexture texture(m_TexturePath);
 	if (g_Renderer.LoadTexture(&texture,GL_REPEAT)) {
 		m_Handle=texture.GetHandle();
-		m_LoadedTextures[m_Handle] = this;
 	} else {
 		m_Handle=0;
 	}
@@ -121,14 +113,4 @@ void CTextureEntry::BuildBaseColor()
 	delete[] buf;
 
 	m_BaseColorValid=true;
-}
-
-
-CTextureEntry *CTextureEntry::GetByHandle(Handle handle)
-{
-	std::map<Handle, CTextureEntry *>::iterator it=m_LoadedTextures.find(handle);
-	if (it != m_LoadedTextures.end())
-		return it->second;
-	else
-		return NULL;
 }

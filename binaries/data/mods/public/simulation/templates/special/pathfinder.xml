@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pathfinder>
+  <PassabilityClasses>
+    <default>
+      <MaxWaterDepth>2</MaxWaterDepth>
+      <MaxTerrainSlope>1.0</MaxTerrainSlope>
+    </default>
+    <ship>
+      <MinWaterDepth>1</MinWaterDepth>
+    </ship>
+  </PassabilityClasses>
+  
+  <!--
+    Warning: Movement costs are a subtle tradeoff between
+    pathfinding accuracy and computation cost. Be extremely
+    careful if you change them.
+    (Speeds are safer to change, but ought to be kept roughly
+    in sync with costs.)
+  -->
+  <MovementClasses>
+    <default Speed="1.0" Cost="1.08"/>
+    <city Speed="1.0" Cost="1.0">
+      <UnitClasses>
+        <infantry Speed="1.4" Cost="0.6"/>
+      </UnitClasses>
+    </city>
+  </MovementClasses>
+</Pathfinder>

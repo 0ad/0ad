@@ -28,12 +28,15 @@
 #include "graphics/Terrain.h"
 #include "maths/FixedVector2D.h"
 #include "maths/MathUtil.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Geometry.h"
+#include "simulation2/components/ICmpWaterManager.h"
 
 /*
  * Note this file contains two separate pathfinding implementations, the 'normal' tile-based
@@ -72,6 +75,82 @@ public:
 	virtual void ProcessTile(ssize_t i, ssize_t j);
 };
 
+/*
+ * For efficient pathfinding we want to try hard to minimise the per-tile search cost,
+ * so we precompute the tile passability flags and movement costs for the various different
+ * types of unit.
+ * We also want to minimise memory usage (there can easily be 100K tiles so we don't want
+ * to store many bytes for each).
+ *
+ * To handle passability efficiently, we have a small number of passability classes
+ * (e.g. "infantry", "ship"). Each unit belongs to a single passability class, and
+ * uses that for all its pathfinding.
+ * Passability is determined by water depth, terrain slope, forestness, buildingness.
+ * We need at least one bit per class per tile to represent passability.
+ *
+ * We use a separate bit to indicate building obstructions (instead of folding it into
+ * the class passabilities) so that it can be ignored when doing the accurate short paths.
+ *
+ * To handle movement costs, we have an arbitrary number of unit cost classes (e.g. "infantry", "camel"),
+ * and a small number of terrain cost classes (e.g. "grass", "steep grass", "road", "sand"),
+ * and a cost mapping table between the classes (e.g. camels are fast on sand).
+ * We need log2(|terrain cost classes|) bits per tile to represent costs.
+ *
+ * We could have one passability bitmap per class, and another array for cost classes,
+ * but instead (for no particular reason) we'll pack them all into a single u8 array.
+ * Space is a bit tight so maybe this should be changed to a u16 in the future.
+ *
+ * We handle dynamic updates currently by recomputing the entire array, which is stupid;
+ * it should only bother updating the region that has changed.
+ */
+
+class PathfinderPassability
+{
+public:
+	PathfinderPassability(u8 mask, const CParamNode& node) :
+		m_Mask(mask)
+	{
+		if (node.GetChild("MinWaterDepth").IsOk())
+			m_MinDepth = node.GetChild("MinWaterDepth").ToFixed();
+		else
+			m_MinDepth = std::numeric_limits<fixed>::min();
+
+		if (node.GetChild("MaxWaterDepth").IsOk())
+			m_MaxDepth = node.GetChild("MaxWaterDepth").ToFixed();
+		else
+			m_MaxDepth = std::numeric_limits<fixed>::max();
+
+		if (node.GetChild("MaxTerrainSlope").IsOk())
+			m_MaxSlope = node.GetChild("MaxTerrainSlope").ToFixed();
+		else
+			m_MaxSlope = std::numeric_limits<fixed>::max();
+	}
+
+	bool IsPassable(fixed waterdepth, fixed steepness)
+	{
+		return ((m_MinDepth <= waterdepth && waterdepth <= m_MaxDepth) && (steepness < m_MaxSlope));
+	}
+
+	u8 m_Mask;
+private:
+	fixed m_MinDepth;
+	fixed m_MaxDepth;
+	fixed m_MaxSlope;
+};
+
+typedef u8 TerrainTile; // 1 bit for obstructions, PASS_CLASS_BITS for terrain passability, COST_CLASS_BITS for movement costs
+const int PASS_CLASS_BITS = 4;
+const int COST_CLASS_BITS = 8 - (PASS_CLASS_BITS + 1);
+#define IS_TERRAIN_PASSABLE(item, classmask) (((item) & (classmask)) == 0)
+#define IS_PASSABLE(item, classmask) (((item) & ((classmask) | 1)) == 0)
+#define GET_COST_CLASS(item) ((item) >> (PASS_CLASS_BITS + 1))
+#define COST_CLASS_TAG(id) ((id) << (PASS_CLASS_BITS + 1))
+
+// Default cost to move a single tile is a fairly arbitrary number, which should be big
+// enough to be precise when multiplied/divided and small enough to never overflow when
+// summing the cost of a whole path.
+const int DEFAULT_MOVE_COST = 256;
+
 /**
  * Implementation of ICmpPathfinder
  */
@@ -81,18 +160,30 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
+		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Pathfinder)
 
+	std::map<std::string, u8> m_PassClassMasks;
+	std::vector<PathfinderPassability> m_PassClasses;
+
+	std::map<std::string, u8> m_TerrainCostClassTags;
+	std::map<std::string, u8> m_UnitCostClassTags;
+	std::vector<std::vector<u32> > m_MoveCosts; // costs[unitClass][terrainClass]
+	std::vector<std::vector<fixed> > m_MoveSpeeds; // speeds[unitClass][terrainClass]
+
 	u16 m_MapSize; // tiles per side
-	Grid<u8>* m_Grid; // terrain/passability information
+	Grid<TerrainTile>* m_Grid; // terrain/passability information
+	Grid<u8>* m_ObstructionGrid; // cached obstruction information (TODO: we shouldn't bother storing this, it's redundant with LSBs of m_Grid)
+	bool m_TerrainDirty; // indicates if m_Grid has been updated since terrain changed
 
 	// Debugging - output from last pathfind operation:
 	Grid<PathfindTile>* m_DebugGrid;
 	u32 m_DebugSteps;
 	Path* m_DebugPath;
 	PathfinderOverlay* m_DebugOverlay;
+	u8 m_DebugPassClass;
 
 	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
 
@@ -101,19 +192,87 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
 	{
 		m_MapSize = 0;
 		m_Grid = NULL;
+		m_ObstructionGrid = NULL;
+		m_TerrainDirty = true;
 
 		m_DebugOverlay = NULL;
 		m_DebugGrid = NULL;
 		m_DebugPath = NULL;
+
+		const CParamNode::ChildrenMap& passClasses = paramNode.GetChild("PassabilityClasses").GetChildren();
+		for (CParamNode::ChildrenMap::const_iterator it = passClasses.begin(); it != passClasses.end(); ++it)
+		{
+			std::string name = it->first;
+			debug_assert((int)m_PassClasses.size() <= PASS_CLASS_BITS);
+			u8 mask = (1 << (m_PassClasses.size() + 1));
+			m_PassClasses.push_back(PathfinderPassability(mask, it->second));
+			m_PassClassMasks[name] = mask;
+		}
+
+
+		const CParamNode::ChildrenMap& moveClasses = paramNode.GetChild("MovementClasses").GetChildren();
+
+		// First find the set of unit classes used by any terrain classes,
+		// and assign unique tags to terrain classes
+		std::set<std::string> unitClassNames;
+		unitClassNames.insert("default"); // must always have costs for default
+
+		{
+			size_t i = 0;
+			for (CParamNode::ChildrenMap::const_iterator it = moveClasses.begin(); it != moveClasses.end(); ++it)
+			{
+				std::string terrainClassName = it->first;
+				m_TerrainCostClassTags[terrainClassName] = COST_CLASS_TAG(i);
+				++i;
+
+				const CParamNode::ChildrenMap& unitClasses = it->second.GetChild("UnitClasses").GetChildren();
+				for (CParamNode::ChildrenMap::const_iterator uit = unitClasses.begin(); uit != unitClasses.end(); ++uit)
+					unitClassNames.insert(uit->first);
+			}
+		}
+
+		// For each terrain class, set the costs for every unit class,
+		// and assign unique tags to unit classes
+		{
+			size_t i = 0;
+			for (std::set<std::string>::const_iterator nit = unitClassNames.begin(); nit != unitClassNames.end(); ++nit)
+			{
+				m_UnitCostClassTags[*nit] = i;
+				++i;
+
+				std::vector<u32> costs;
+				std::vector<fixed> speeds;
+
+				for (CParamNode::ChildrenMap::const_iterator it = moveClasses.begin(); it != moveClasses.end(); ++it)
+				{
+					// Default to the general costs for this terrain class
+					fixed cost = it->second.GetChild("@Cost").ToFixed();
+					fixed speed = it->second.GetChild("@Speed").ToFixed();
+					// Check for specific cost overrides for this unit class
+					const CParamNode& unitClass = it->second.GetChild("UnitClasses").GetChild(nit->c_str());
+					if (unitClass.IsOk())
+					{
+						cost = unitClass.GetChild("@Cost").ToFixed();
+						speed = unitClass.GetChild("@Speed").ToFixed();
+					}
+					costs.push_back((cost * DEFAULT_MOVE_COST).ToInt_RoundToZero());
+					speeds.push_back(speed);
+				}
+
+				m_MoveCosts.push_back(costs);
+				m_MoveSpeeds.push_back(speeds);
+			}
+		}
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
 	{
 		delete m_Grid;
+		delete m_ObstructionGrid;
 		delete m_DebugOverlay;
 		delete m_DebugGrid;
 		delete m_DebugPath;
@@ -143,14 +302,50 @@ public:
 			RenderSubmit(context, msgData.collector);
 			break;
 		}
+		case MT_TerrainChanged:
+		{
+			// TODO: we ought to only bother updating the dirtied region
+			m_TerrainDirty = true;
+			break;
+		}
 		}
 	}
 
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& ret);
+	virtual u8 GetPassabilityClass(const std::string& name)
+	{
+		if (m_PassClassMasks.find(name) == m_PassClassMasks.end())
+		{
+			LOGERROR(L"Invalid passability class name '%hs'", name.c_str());
+			return 0;
+		}
 
-	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, Path& ret);
+		return m_PassClassMasks[name];
+	}
 
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal)
+	virtual std::vector<std::string> GetPassabilityClasses()
+	{
+		std::vector<std::string> classes;
+		for (std::map<std::string, u8>::iterator it = m_PassClassMasks.begin(); it != m_PassClassMasks.end(); ++it)
+			classes.push_back(it->first);
+		return classes;
+	}
+
+	virtual u8 GetCostClass(const std::string& name)
+	{
+		if (m_UnitCostClassTags.find(name) == m_UnitCostClassTags.end())
+		{
+			LOGERROR(L"Invalid unit cost class name '%hs'", name.c_str());
+			return m_UnitCostClassTags["default"];
+		}
+
+		return m_UnitCostClassTags[name];
+	}
+
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& ret);
+
+	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& ret);
+
+	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass)
 	{
 		if (!m_DebugOverlay)
 			return;
@@ -159,7 +354,8 @@ public:
 		m_DebugGrid = NULL;
 		delete m_DebugPath;
 		m_DebugPath = new Path();
-		ComputePath(x0, z0, goal, *m_DebugPath);
+		ComputePath(x0, z0, goal, passClass, costClass, *m_DebugPath);
+		m_DebugPassClass = passClass;
 	}
 
 	virtual void SetDebugOverlay(bool enabled)
@@ -173,6 +369,14 @@ public:
 			delete m_DebugOverlay;
 			m_DebugOverlay = NULL;
 		}
+	}
+
+	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass)
+	{
+		u16 i, j;
+		NearestTile(x0, z0, i, j);
+		TerrainTile tileTag = m_Grid->get(i, j);
+		return m_MoveSpeeds.at(costClass).at(GET_COST_CLASS(tileTag));
 	}
 
 	/**
@@ -208,11 +412,60 @@ public:
 
 			debug_assert(size >= 1 && size <= 0xffff); // must fit in 16 bits
 			m_MapSize = size;
-			m_Grid = new Grid<u8>(m_MapSize, m_MapSize);
+			m_Grid = new Grid<TerrainTile>(m_MapSize, m_MapSize);
+			m_ObstructionGrid = new Grid<u8>(m_MapSize, m_MapSize);
 		}
 
+		CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
+
+		CTerrain& terrain = GetSimContext().GetTerrain();
+
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-		cmpObstructionManager->Rasterise(*m_Grid);
+		if (cmpObstructionManager->Rasterise(*m_ObstructionGrid) || m_TerrainDirty)
+		{
+			// Obstructions or terrain changed - we need to recompute passability
+			// TODO: only bother recomputing the region that has actually changed
+
+			for (size_t j = 0; j < m_MapSize; ++j)
+			{
+				for (size_t i = 0; i < m_MapSize; ++i)
+				{
+					fixed x, z;
+					TileCenter(i, j, x, z);
+
+					TerrainTile t = 0;
+
+					bool obstruct = (m_ObstructionGrid->get(i, j) != 0);
+
+					fixed height = terrain.GetVertexGroundLevelFixed(i, j); // TODO: should use tile centre
+
+					fixed water;
+					if (!cmpWaterMan.null())
+						water = cmpWaterMan->GetWaterLevel(x, z);
+
+					fixed depth = water - height;
+
+					fixed slope = terrain.GetSlopeFixed(i, j);
+
+					if (obstruct)
+						t |= 1;
+
+					for (size_t n = 0; n < m_PassClasses.size(); ++n)
+					{
+						if (!m_PassClasses[n].IsPassable(depth, slope))
+							t |= (m_PassClasses[n].m_Mask & ~1);
+					}
+
+					std::string moveClass = terrain.GetMovementClass(i, j);
+					if (m_TerrainCostClassTags.find(moveClass) != m_TerrainCostClassTags.end())
+						t |= m_TerrainCostClassTags[moveClass];
+
+					m_Grid->set(i, j, t);
+				}
+			}
+
+			m_TerrainDirty = false;
+		}
 	}
 
 	void RenderSubmit(const CSimContext& context, SceneCollector& collector);
@@ -292,7 +545,7 @@ void PathfinderOverlay::EndRender()
 
 void PathfinderOverlay::ProcessTile(ssize_t i, ssize_t j)
 {
-	if (m_Pathfinder.m_Grid && m_Pathfinder.m_Grid->get(i, j))
+	if (m_Pathfinder.m_Grid && !IS_PASSABLE(m_Pathfinder.m_Grid->get(i, j), m_Pathfinder.m_DebugPassClass))
 		RenderTile(CColor(1, 0, 0, 0.6f), false);
 
 	if (m_Pathfinder.m_DebugGrid)
@@ -515,9 +768,9 @@ static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal)
 }
 
 // Calculate movement cost from predecessor tile pi,pj to tile i,j
-static u32 CalculateCostDelta(u16 pi, u16 pj, u16 i, u16 j, Grid<PathfindTile>* tempGrid)
+static u32 CalculateCostDelta(u16 pi, u16 pj, u16 i, u16 j, Grid<PathfindTile>* tempGrid, u32 tileCost)
 {
-	u32 dg = g_CostPerTile;
+	u32 dg = tileCost;
 
 #ifdef USE_DIAGONAL_MOVEMENT
 	// XXX: Probably a terrible hack:
@@ -554,11 +807,14 @@ struct PathfinderState
 	u16 iGoal, jGoal; // goal tile
 	u16 rGoal; // radius of goal (around tile center)
 
+	u8 passClass;
+	std::vector<u32> moveCosts;
+
 	PriorityQueue open;
 	// (there's no explicit closed list; it's encoded in PathfindTile)
 
 	Grid<PathfindTile>* tiles;
-	Grid<u8>* terrain;
+	Grid<TerrainTile>* terrain;
 
 	u32 hBest; // heuristic of closest discovered tile to goal
 	u16 iBest, jBest; // closest tile
@@ -581,10 +837,11 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 #endif
 
 	// Reject impassable tiles
-	if (state.terrain->get(i, j))
+	TerrainTile tileTag = state.terrain->get(i, j);
+	if (!IS_PASSABLE(tileTag, state.passClass))
 		return;
 
-	u32 dg = CalculateCostDelta(pi, pj, i, j, state.tiles);
+	u32 dg = CalculateCostDelta(pi, pj, i, j, state.tiles, state.moveCosts.at(GET_COST_CLASS(tileTag)));
 
 	u32 g = pg + dg; // cost to this tile = cost to predecessor + delta from predecessor
 
@@ -683,7 +940,7 @@ static bool AtGoal(u16 i, u16 j, const ICmpPathfinder::Goal& goal)
 	return (dist < tolerance);
 }
 
-void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& path)
+void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& path)
 {
 	UpdateGrid();
 
@@ -711,6 +968,9 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 		state.rGoal = (goal.hw / (int)CELL_SIZE).ToInt_RoundToZero();
 	else
 		state.rGoal = 0;
+
+	state.passClass = passClass;
+	state.moveCosts = m_MoveCosts.at(costClass);
 
 	state.steps = 0;
 
@@ -818,6 +1078,11 @@ struct Edge
 	CFixedVector2D p0, p1;
 };
 
+// When computing vertexes to insert into the search graph,
+// add a small delta so that the vertexes of an edge don't get interpreted
+// as crossing the edge (given minor numerical inaccuracies)
+static const entity_pos_t EDGE_EXPAND_DELTA = entity_pos_t::FromInt(1)/4;
+
 /**
  * Check whether a ray from 'a' to 'b' crosses any of the edges.
  * (Edges are one-sided so it's only considered a cross if going from front to back.)
@@ -887,8 +1152,115 @@ static CFixedVector2D NearestPointOnGoal(CFixedVector2D pos, const CCmpPathfinde
 
 typedef PriorityQueueList<u16, fixed> ShortPathPriorityQueue;
 
-void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, Path& path)
+struct TileEdge
 {
+	u16 i, j;
+	enum { TOP, BOTTOM, LEFT, RIGHT } dir;
+};
+
+static void AddTerrainEdges(std::vector<Edge>& edges, std::vector<Vertex>& vertexes, u16 i0, u16 j0, u16 i1, u16 j1, fixed r, u8 passClass, const Grid<TerrainTile>& terrain)
+{
+	PROFILE("AddTerrainEdges");
+
+	std::vector<TileEdge> tileEdges;
+
+	// Find all edges between tiles of differently passability statuses
+	for (u16 j = j0; j <= j1; ++j)
+	{
+		for (u16 i = i0; i <= i1; ++i)
+		{
+			if (!IS_TERRAIN_PASSABLE(terrain.get(i, j), passClass))
+			{
+				if (j > 0 && IS_TERRAIN_PASSABLE(terrain.get(i, j-1), passClass))
+				{
+					TileEdge e = { i, j, TileEdge::BOTTOM };
+					tileEdges.push_back(e);
+				}
+
+				if (j < terrain.m_H-1 && IS_TERRAIN_PASSABLE(terrain.get(i, j+1), passClass))
+				{
+					TileEdge e = { i, j, TileEdge::TOP };
+					tileEdges.push_back(e);
+				}
+
+				if (i > 0 && IS_TERRAIN_PASSABLE(terrain.get(i-1, j), passClass))
+				{
+					TileEdge e = { i, j, TileEdge::LEFT };
+					tileEdges.push_back(e);
+				}
+
+				if (i < terrain.m_W-1 && IS_TERRAIN_PASSABLE(terrain.get(i+1, j), passClass))
+				{
+					TileEdge e = { i, j, TileEdge::RIGHT };
+					tileEdges.push_back(e);
+				}
+			}
+		}
+	}
+
+	// TODO: maybe we should precompute these terrain edges since they'll rarely change?
+
+	// TODO: for efficiency (minimising the A* search space), we should coalesce adjoining edges
+
+	// Add all the tile edges to the search edge/vertex lists
+	for (size_t n = 0; n < tileEdges.size(); ++n)
+	{
+		u16 i = tileEdges[n].i;
+		u16 j = tileEdges[n].j;
+		CFixedVector2D v0, v1;
+		Vertex vert;
+		vert.status = Vertex::UNEXPLORED;
+
+		switch (tileEdges[n].dir)
+		{
+		case TileEdge::BOTTOM:
+		{
+			v0 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt(j * CELL_SIZE) - r);
+			v1 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt(j * CELL_SIZE) - r);
+			Edge e = { v0, v1 };
+			edges.push_back(e);
+			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			break;
+		}
+		case TileEdge::TOP:
+		{
+			v0 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt((j+1) * CELL_SIZE) + r);
+			v1 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt((j+1) * CELL_SIZE) + r);
+			Edge e = { v0, v1 };
+			edges.push_back(e);
+			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			break;
+		}
+		case TileEdge::LEFT:
+		{
+			v0 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt((j+1) * CELL_SIZE) + r);
+			v1 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt(j * CELL_SIZE) - r);
+			Edge e = { v0, v1 };
+			edges.push_back(e);
+			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			break;
+		}
+		case TileEdge::RIGHT:
+		{
+			v0 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt(j * CELL_SIZE) - r);
+			v1 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt((j+1) * CELL_SIZE) + r);
+			Edge e = { v0, v1 };
+			edges.push_back(e);
+			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vertexes.push_back(vert);
+			break;
+		}
+		}
+	}
+}
+
+void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& path)
+{
+	UpdateGrid(); // TODO: only need to bother updating if the terrain changed
+
 	PROFILE("ComputeShortPath");
 
 	m_DebugOverlayShortPathLines.clear();
@@ -941,7 +1313,6 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 		edges.push_back(e3);
 	}
 
-
 	CFixedVector2D goalVec(goal.x, goal.z);
 
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
@@ -960,6 +1331,13 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 	vertexes.push_back(end);
 	const size_t GOAL_VERTEX_ID = 1;
 
+	// Add terrain obstructions
+	{
+		u16 i0, j0, i1, j1;
+		NearestTile(rangeXMin, rangeZMin, i0, j0);
+		NearestTile(rangeXMax, rangeZMax, i1, j1);
+		AddTerrainEdges(edges, vertexes, i0, j0, i1, j1, r, passClass, *m_Grid);
+	}
 
 	// Find all the obstruction squares that might affect us
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
@@ -980,11 +1358,8 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 		// Expand the vertexes by the moving unit's collision radius, to find the
 		// closest we can get to it
 
-		entity_pos_t delta = entity_pos_t::FromInt(1)/4;
-			// add a small delta so that the vertexes of an edge don't get interpreted
-			// as crossing the edge (given minor numerical inaccuracies)
-		CFixedVector2D hd0(squares[i].hw + r + delta, squares[i].hh + r + delta);
-		CFixedVector2D hd1(squares[i].hw + r + delta, -(squares[i].hh + r + delta));
+		CFixedVector2D hd0(squares[i].hw + r + EDGE_EXPAND_DELTA, squares[i].hh + r + EDGE_EXPAND_DELTA);
+		CFixedVector2D hd1(squares[i].hw + r + EDGE_EXPAND_DELTA, -(squares[i].hh + r + EDGE_EXPAND_DELTA));
 
 		Vertex vert;
 		vert.status = Vertex::UNEXPLORED;

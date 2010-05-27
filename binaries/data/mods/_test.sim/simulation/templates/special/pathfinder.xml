@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pathfinder>
+  <PassabilityClasses>
+    <default>
+      <MaxWaterDepth>2</MaxWaterDepth>
+      <MaxTerrainSlope>1.0</MaxTerrainSlope>
+    </default>
+    <ship>
+      <MinWaterDepth>1</MinWaterDepth>
+    </ship>
+  </PassabilityClasses>
+  <MovementClasses>
+    <default Speed="1.0" Cost="1.08"/>
+  </MovementClasses>
+</Pathfinder>

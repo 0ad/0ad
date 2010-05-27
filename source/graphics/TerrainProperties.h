@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 /*
 ///////////////////////////////////////////////
 	CTerrainProperties
-	
+
 	Basically represents a set of terrain attributes loaded from XML. These
 	objects are organized in an inheritance tree, determined at load time.
 
@@ -38,23 +38,11 @@ class CTerrainProperties;
 
 typedef shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
 
-struct STerrainPassability
-{
-	explicit STerrainPassability(bool passable=true):
-		m_Type(), m_Passable(passable), m_SpeedFactor(passable?1.0:0.0)
-	{}
-	
-	CStr m_Type;
-	bool m_Passable;
-	double m_SpeedFactor;
-	// TODO Effects
-};
-
 class CTerrainProperties
 {
 public:
 	typedef std::vector<CTerrainGroup *> GroupVector;
-	
+
 private:
 	CTerrainPropertiesPtr m_pParent;
 
@@ -65,16 +53,12 @@ private:
 	// produce be equivalent to the source file
 	u32 m_BaseColor;
 	bool m_HasBaseColor;
-	
-	STerrainPassability m_DefaultPassability;
-	
+
+	CStr m_MovementClass;
+
 	// All terrain type groups we're a member of
 	GroupVector m_Groups;
-	
-	// Passability definitions
-	std::vector<STerrainPassability> m_Passabilities;
 
-	void ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const VfsPath& pathname);
 	void LoadXml(XMBElement node, CXeromyces *pFile, const VfsPath& pathname);
 
 public:
@@ -84,13 +68,15 @@ public:
 	// failure
 	// The parent pointer may be NULL, for the "root" terrainproperties object.
 	static CTerrainPropertiesPtr FromXML(const CTerrainPropertiesPtr& parent, const VfsPath& pathname);
-	
+
 	// Save the object to an XML file. Implement when needed! ;-)
 	// bool WriteXML(const CStr& path);
-	
+
 	inline CTerrainPropertiesPtr GetParent() const
-	{	return m_pParent; }
-	
+	{
+		return m_pParent;
+	}
+
 	// Return true if this property object or any of its parents has a basecolor
 	// override (mmap attribute in the XML file)
 	bool HasBaseColor();
@@ -99,11 +85,16 @@ public:
 	// Use HasBaseColor() to see if the value is valid.
 	// The color value is in BGRA format
 	u32 GetBaseColor();
-	
-//	const STerrainPassability &GetPassability(HEntity entity);
+
+	CStr GetMovementClass() const
+	{
+		return m_MovementClass;
+	}
 
 	const GroupVector &GetGroups() const
-	{ return m_Groups; }
+	{
+		return m_Groups;
+	}
 };
 
 #endif

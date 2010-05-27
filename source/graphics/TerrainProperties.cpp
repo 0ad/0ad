@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,13 +29,12 @@
 #include "ps/XML/Xeromyces.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY L"graphics"
-
 
 CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_pParent(parent),
 	m_BaseColor(0),
-	m_HasBaseColor(false)
+	m_HasBaseColor(false),
+	m_MovementClass("default")
 {
 	if (m_pParent)
 		m_Groups = m_pParent->m_Groups;	
@@ -53,30 +52,23 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 	// Check that we've got the right kind of xml document
 	if (rootName != "Terrains")
 	{
-		LOG(CLogger::Error,
-			LOG_CATEGORY,
-			L"TextureManager: Loading %ls: Root node is not terrains (found \"%hs\")",
+		LOGERROR(
+			L"TerrainProperties: Loading %ls: Root node is not terrains (found \"%hs\")",
 			pathname.string().c_str(),
 			rootName.c_str());
 		return CTerrainPropertiesPtr();
 	}
 	
 	#define ELMT(x) int el_##x = XeroFile.GetElementID(#x)
-	#define ATTR(x) int at_##x = XeroFile.GetAttributeID(#x)
 	ELMT(terrain);
 	#undef ELMT
-	#undef ATTR
 	
 	// Ignore all non-terrain nodes, loading the first terrain node and
 	// returning it.
 	// Really, we only expect there to be one child and it to be of the right
 	// type, though.
-	XMBElementList children = root.GetChildNodes();
-	for (int i=0; i<children.Count; ++i)
+	XERO_ITER_EL(root, child)
 	{
-		//debug_printf(L"Object %d\n", i);
-		XMBElement child = children.Item(i);
-
 		if (child.GetNodeName() == el_terrain)
 		{
 			CTerrainPropertiesPtr ret (new CTerrainProperties(parent));
@@ -85,7 +77,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 		}
 		else
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, 
+			LOGWARNING(
 				L"TerrainProperties: Loading %ls: Unexpected node %hs\n",
 				pathname.string().c_str(),
 				XeroFile.GetElementString(child.GetNodeName()).c_str());
@@ -100,35 +92,15 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 {
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
-	ELMT(doodad);
-	ELMT(passable);
-	ELMT(impassable);
-	ELMT(event);
 	// Terrain Attribs
 	ATTR(mmap);
 	ATTR(groups);
-	ATTR(properties);
-	// Doodad Attribs
-	ATTR(name);
-	ATTR(max);
-	// Event attribs
-	ATTR(on);
+	ATTR(movementclass);
 	#undef ELMT
 	#undef ATTR
 
-	// stomp on "unused" warnings
-	UNUSED2(attr_name);
-	UNUSED2(attr_on);
-	UNUSED2(attr_max);
-	UNUSED2(elmt_event);
-	UNUSED2(elmt_passable);
-	UNUSED2(elmt_doodad);
-
-	XMBAttributeList attribs = node.GetAttributes();
-	for (int i=0;i<attribs.Count;i++)
+	XERO_ITER_ATTR(node, attr)
 	{
-		XMBAttribute attr = attribs.Item(i);
-
 		if (attr.Name == attr_groups)
 		{
 			// Parse a comma-separated list of groups, add the new entry to
@@ -163,83 +135,10 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 			baseColor[3] = (u8)(col.a*255);
 			m_HasBaseColor = true;
 		}
-		else if (attr.Name == attr_properties)
+		else if (attr.Name == attr_movementclass)
 		{
-			// TODO Parse a list of properties and store them somewhere
+			m_MovementClass = CStr(attr.Value);
 		}
-	}
-	
-	XMBElementList children = node.GetChildNodes();
-	for (int i=0; i<children.Count; ++i)
-	{
-		XMBElement child = children.Item(i);
-
-		if (child.GetNodeName() == elmt_passable)
-		{
-			ReadPassability(true, child, pFile, pathname);
-		}
-		else if (child.GetNodeName() == elmt_impassable)
-		{
-			ReadPassability(false, child, pFile, pathname);
-		}
-		// TODO Parse information about doodads and events and store it
-	}
-}
-
-void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const VfsPath& UNUSED(pathname))
-{
-	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)		
-	// Passable Attribs
-	ATTR(type);
-	ATTR(speed);
-	ATTR(effect);
-	ATTR(prints);
-	#undef ATTR
-
-	STerrainPassability pass(passable);
-	// Set default speed
-	pass.m_SpeedFactor = 100;
-
-	bool hasType = false;
-	XMBAttributeList attribs = node.GetAttributes();
-	for (int i=0;i<attribs.Count;i++)
-	{
-		XMBAttribute attr = attribs.Item(i);
-		
-		if (attr.Name == attr_type)
-		{
-			// FIXME Should handle lists of types as well!
-			pass.m_Type = attr.Value;
-			hasType = true;
-		}
-		else if (attr.Name == attr_speed)
-		{
-			CStr val=attr.Value;
-			CStr trimmedVal=val.Trim(PS_TRIM_BOTH);
-			pass.m_SpeedFactor = trimmedVal.ToDouble();
-			if (trimmedVal[trimmedVal.size()-1] == '%')
-			{
-				pass.m_SpeedFactor /= 100.0;
-			}
-			// FIXME speed=0 could/should be made to set the terrain impassable
-		}
-		else if (attr.Name == attr_effect)
-		{
-			// TODO Parse and store list of effects
-		}
-		else if (attr.Name == attr_prints)
-		{
-			// TODO Parse and store footprint effect
-		}
-	}
-	
-	if (!hasType)
-	{
-		m_DefaultPassability = pass;
-	}
-	else
-	{	
-		m_Passabilities.push_back(pass);
 	}
 }
 
@@ -258,14 +157,3 @@ u32 CTerrainProperties::GetBaseColor()
 		// White, full opacity.. but this value shouldn't ever be used
 		return 0xFFFFFFFF;
 }
-
-//const STerrainPassability &CTerrainProperties::GetPassability(HEntity entity)
-//{
-//	std::vector<STerrainPassability>::iterator it=m_Passabilities.begin();
-//	for (;it != m_Passabilities.end();++it)
-//	{
-//		if (entity->m_classes.IsMember(it->m_Type))
-//			return *it;
-//	}
-//	return m_DefaultPassability;
-//}

@@ -59,7 +59,7 @@ public:
 		m_Data[j*m_W + i] = value;
 	}
 
-	T& get(size_t i, size_t j)
+	T& get(size_t i, size_t j) const
 	{
 #if GRID_BOUNDS_DEBUG
 		debug_assert(i < m_W && j < m_H);
