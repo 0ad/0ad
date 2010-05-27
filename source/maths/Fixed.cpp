@@ -26,8 +26,6 @@ CFixed_15_16 CFixed_15_16::FromString(const CStr8& s)
 {
 	// Parse a superset of the xsd:decimal syntax: [-+]?\d*(\.\d*)?
 
-	// TODO: this could be made more precise
-
 	if (s.empty())
 		return CFixed_15_16::Zero();
 
@@ -45,44 +43,36 @@ CFixed_15_16 CFixed_15_16::FromString(const CStr8& s)
 		neg = true;
 	}
 
-	// Integer part
 	while (true)
 	{
-		if (*c == '.')
-		{
-			++c;
-			// Fractional part
-			u32 frac = 0;
-			u32 div = 1;
-			while (true)
-			{
-				if (*c >= '0' && *c <= '9')
-				{
-					frac *= 10;
-					frac += (*c - '0');
-					div *= 10;
-					++c;
-					if (div >= 100000)
-					{
-						// any further digits will be too small to have any effect
-						r += CFixed_15_16(((u64)frac << 16) / div);
-						break;
-					}
-				}
-				else
-				{
-					// invalid character or end of string
-					r += CFixed_15_16(((u64)frac << 16) / div);
-					break;
-				}
-			}
-			break;
-		}
-		else if (*c >= '0' && *c <= '9')
+		// Integer part:
+		if (*c >= '0' && *c <= '9')
 		{
 			r = r * 10; // TODO: handle overflow gracefully, maybe
 			r += CFixed_15_16::FromInt(*c - '0');
 			++c;
+		}
+		else if (*c == '.')
+		{
+			++c;
+			u32 frac = 0;
+			u32 div = 1;
+			// Fractional part
+			while (*c >= '0' && *c <= '9')
+			{
+				frac *= 10;
+				frac += (*c - '0');
+				div *= 10;
+				++c;
+				if (div >= 100000)
+				{
+					// any further digits will be too small to have any major effect
+					break;
+				}
+			}
+			// too many digits or invalid character or end of string - add the fractional part and stop
+			r += CFixed_15_16(((u64)frac << 16) / div);
+			break;
 		}
 		else
 		{
