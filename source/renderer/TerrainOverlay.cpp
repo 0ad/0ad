@@ -114,11 +114,6 @@ void TerrainOverlay::RenderOverlays()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
-
-
-	//Kai: invoking the auxiliary function to draw out entity edges
-	//RenderEntityEdges();
-	
 }
 
 //////////////////////////////////////////////////////////////////////////

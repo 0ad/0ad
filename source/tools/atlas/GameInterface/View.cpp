@@ -138,11 +138,6 @@ void ViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& v
 
 //////////////////////////////////////////////////////////////////////////
 
-namespace AtlasMessage
-{
-	extern void AtlasRenderSelection();
-}
-
 template<typename T, typename S>
 static void delete_pair_2nd(std::pair<T,S> v)
 {
@@ -215,7 +210,6 @@ void ViewGame::Render()
 	camera.UpdateFrustum();
 
 	::Render();
-	AtlasMessage::AtlasRenderSelection();
 	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
 }
 

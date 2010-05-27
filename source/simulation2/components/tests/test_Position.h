@@ -17,6 +17,8 @@
 
 #include "simulation2/system/ComponentTest.h"
 
+#include "simulation2/components/ICmpPosition.h"
+
 class TestCmpPosition : public CxxTest::TestSuite
 {
 public:

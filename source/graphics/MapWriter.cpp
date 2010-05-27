@@ -45,6 +45,7 @@
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/components/ICmpWaterManager.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CMapWriter constructor: nothing to do at the minute
@@ -232,7 +233,9 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("g", pWaterMan->m_WaterColor.g);
 						XML_Attribute("b", pWaterMan->m_WaterColor.b);
 					}
-					XML_Setting("Height", pWaterMan->m_WaterHeight);
+					CmpPtr<ICmpWaterManager> cmpWaterMan(*pSimulation2, SYSTEM_ENTITY);
+					debug_assert(!cmpWaterMan.null());
+					XML_Setting("Height", cmpWaterMan->GetExactWaterLevel(0, 0));
 					XML_Setting("Shininess", pWaterMan->m_Shininess);
 					XML_Setting("Waviness", pWaterMan->m_Waviness);
 					XML_Setting("Murkiness", pWaterMan->m_Murkiness);

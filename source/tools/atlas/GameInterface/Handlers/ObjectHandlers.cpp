@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,6 +43,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 
 #define LOG_CATEGORY L"editor"
@@ -61,7 +62,10 @@ namespace
 		if (! unit)
 			return false;
 
-		return unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), unit->GetID());
+		if (cmpPosition.null())
+			return false;
+		return cmpPosition->IsFloating();
 	}
 
 	CUnitManager& GetUnitManager()
@@ -103,47 +107,24 @@ QUERYHANDLER(GetObjectsList)
 
 
 static std::vector<ObjectID> g_Selection;
-void AtlasRenderSelection()
-{
-	glDisable(GL_DEPTH_TEST);
-	for (size_t i = 0; i < g_Selection.size(); ++i)
-	{
-		CUnit* unit = GetUnitManager().FindByID(g_Selection[i]);
-		if (unit)
-		{
-			if (false)
-			{
-				// TODO: should render footprint shape, if there is one
-			}
-			else
-			{
-				const CBound& bound = unit->GetModel().GetBounds();
-				// Expand bounds by 10% around the centre
-				CVector3D centre;
-				bound.GetCentre(centre);
-				CVector3D a = (bound[0] - centre) * 1.1f + centre;
-				CVector3D b = (bound[1] - centre) * 1.1f + centre;
-
-				float h = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(centre.X, centre.Z);
-				if (IsFloating(unit))
-					h = std::max(h, g_Renderer.GetWaterManager()->m_WaterHeight);
-
-				glColor3f(0.8f, 0.8f, 0.8f);
-				glBegin(GL_LINE_LOOP);
-					glVertex3f(a.X, h, a.Z);
-					glVertex3f(a.X, h, b.Z);
-					glVertex3f(b.X, h, b.Z);
-					glVertex3f(b.X, h, a.Z);
-				glEnd();
-			}
-		}
-	}
-	glEnable(GL_DEPTH_TEST);
-}
 
 MESSAGEHANDLER(SetSelectionPreview)
 {
+	for (size_t i = 0; i < g_Selection.size(); ++i)
+	{
+		CmpPtr<ICmpSelectable> cmpSelectable(*g_Game->GetSimulation2(), g_Selection[i]);
+		if (!cmpSelectable.null())
+			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 0));
+	}
+
 	g_Selection = *msg->ids;
+
+	for (size_t i = 0; i < g_Selection.size(); ++i)
+	{
+		CmpPtr<ICmpSelectable> cmpSelectable(*g_Game->GetSimulation2(), g_Selection[i]);
+		if (!cmpSelectable.null())
+			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 1));
+	}
 }
 
 QUERYHANDLER(GetObjectSettings)
@@ -353,7 +334,7 @@ MESSAGEHANDLER(ObjectPreview)
 		CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), g_PreviewEntityID);
 		if (!cmpPos.null())
 		{
-			CVector3D pos = GetUnitPos(msg->pos, false);
+			CVector3D pos = GetUnitPos(msg->pos, cmpPos->IsFloating());
 			cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
 
 			float angle;
@@ -391,7 +372,7 @@ BEGIN_COMMAND(CreateObject)
 	{
 		// Calculate the position/orientation to create this unit with
 		
-		m_Pos = GetUnitPos(msg->pos, false); // TODO: set 'floating' properly
+		m_Pos = GetUnitPos(msg->pos, true); // don't really care about floating
 
 		if (msg->usetarget)
 		{
@@ -489,13 +470,16 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		m_PosNew = GetUnitPos(msg->pos, false); // TODO: set 'floating' properly
-
 		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
 		if (cmpPos.null())
-			m_PosOld = m_PosNew; // error
+		{
+			// error
+			m_PosOld = m_PosNew = CVector3D(0, 0, 0);
+		}
 		else
 		{
+			m_PosNew = GetUnitPos(msg->pos, cmpPos->IsFloating());
+
 			CFixedVector3D pos = cmpPos->GetPosition();
 			m_PosOld = CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat());
 		}

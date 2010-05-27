@@ -142,10 +142,6 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_PROFILE_TOGGLE, "profile.toggle", SDLK_F11, 0 },
 	{ HOTKEY_PROFILE_SAVE, "profile.save", 0, 0 },
 	{ HOTKEY_PLAYMUSIC, "playmusic", SDLK_p, 0 },
-	{ HOTKEY_WATER_TOGGLE, "water.toggle", SDLK_q, 0 },
-	{ HOTKEY_WATER_RAISE, "water.raise", SDLK_a, 0 },
-	{ HOTKEY_WATER_LOWER, "water.lower", SDLK_z, 0 },
-	{ HOTKEY_TERRITORY_RENDERING_TOGGLE, "territory.rendering.toggle", SDLK_t, 0 },
 	{ HOTKEY_PAUSE, "pause", SDLK_PAUSE, 0 },
 	{ HOTKEY_SPEED_INCREASE, "speed.increase", 0, 0 },
 	{ HOTKEY_SPEED_DECREASE, "speed.decrease", 0, 0 }

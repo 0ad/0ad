@@ -1267,6 +1267,12 @@ void CRenderer::RenderSubmissions()
 	TerrainOverlay::RenderOverlays();
 	ogl_WarnIfError();
 
+	// render other debug-related overlays before water (so they can be displayed when underwater)
+	PROFILE_START("render overlays");
+	m->overlayRenderer.RenderOverlays();
+	PROFILE_END("render overlays");
+	ogl_WarnIfError();
+
 	MICROLOG(L"render models");
 	RenderModels();
 	ogl_WarnIfError();
@@ -1300,11 +1306,6 @@ void CRenderer::RenderSubmissions()
 	// Clean up texture blend mode so particles and other things render OK 
 	// (really this should be cleaned up by whoever set it)
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-	PROFILE_START("render overlays");
-	m->overlayRenderer.RenderOverlays();
-	PROFILE_END("render overlays");
-	ogl_WarnIfError();
 
 	// Particle Engine Rendering.
 	MICROLOG(L"render particles");

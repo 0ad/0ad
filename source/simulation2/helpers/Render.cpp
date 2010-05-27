@@ -21,18 +21,31 @@
 
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/components/ICmpWaterManager.h"
 #include "graphics/Overlay.h"
 
 static const size_t RENDER_CIRCLE_POINTS = 16;
 static const float RENDER_HEIGHT_DELTA = 0.25f; // distance above terrain
 
-void SimRender::ConstructLineOnGround(const CSimContext& context, std::vector<float> xz, SOverlayLine& overlay)
+void SimRender::ConstructLineOnGround(const CSimContext& context, std::vector<float> xz,
+		SOverlayLine& overlay, bool floating)
 {
 	overlay.m_Coords.clear();
 
 	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);
 	if (cmpTerrain.null())
 		return;
+
+	if (xz.size() < 2)
+		return;
+
+	float water = 0.f;
+	if (floating)
+	{
+		CmpPtr<ICmpWaterManager> cmpWaterMan(context, SYSTEM_ENTITY);
+		if (!cmpWaterMan.null())
+			water = cmpWaterMan->GetExactWaterLevel(xz[0], xz[1]);
+	}
 
 	overlay.m_Coords.reserve(xz.size()/2 * 3);
 
@@ -40,20 +53,29 @@ void SimRender::ConstructLineOnGround(const CSimContext& context, std::vector<fl
 	{
 		float px = xz[i];
 		float pz = xz[i+1];
-		float py = cmpTerrain->GetGroundLevel(px, pz) + RENDER_HEIGHT_DELTA;
+		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + RENDER_HEIGHT_DELTA;
 		overlay.m_Coords.push_back(px);
 		overlay.m_Coords.push_back(py);
 		overlay.m_Coords.push_back(pz);
 	}
 }
 
-void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius, SOverlayLine& overlay)
+void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius,
+		SOverlayLine& overlay, bool floating)
 {
 	overlay.m_Coords.clear();
 
 	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);
 	if (cmpTerrain.null())
 		return;
+
+	float water = 0.f;
+	if (floating)
+	{
+		CmpPtr<ICmpWaterManager> cmpWaterMan(context, SYSTEM_ENTITY);
+		if (!cmpWaterMan.null())
+			water = cmpWaterMan->GetExactWaterLevel(x, z);
+	}
 
 	overlay.m_Coords.reserve((RENDER_CIRCLE_POINTS + 1) * 3);
 
@@ -62,20 +84,29 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 		float a = i * 2 * (float)M_PI / RENDER_CIRCLE_POINTS;
 		float px = x + radius * sin(a);
 		float pz = z + radius * cos(a);
-		float py = cmpTerrain->GetGroundLevel(px, pz) + RENDER_HEIGHT_DELTA;
+		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + RENDER_HEIGHT_DELTA;
 		overlay.m_Coords.push_back(px);
 		overlay.m_Coords.push_back(py);
 		overlay.m_Coords.push_back(pz);
 	}
 }
 
-void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, float z, float w, float h, float a, SOverlayLine& overlay)
+void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, float z, float w, float h, float a,
+		SOverlayLine& overlay, bool floating)
 {
 	overlay.m_Coords.clear();
 
 	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);
 	if (cmpTerrain.null())
 		return;
+
+	float water = 0.f;
+	if (floating)
+	{
+		CmpPtr<ICmpWaterManager> cmpWaterMan(context, SYSTEM_ENTITY);
+		if (!cmpWaterMan.null())
+			water = cmpWaterMan->GetExactWaterLevel(x, z);
+	}
 
 	// TODO: might be nicer to split this into little pieces so it copes better with uneven terrain
 
@@ -95,7 +126,7 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 	{
 		float px = coords[i].first;
 		float pz = coords[i].second;
-		float py = cmpTerrain->GetGroundLevel(px, pz) + RENDER_HEIGHT_DELTA;
+		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + RENDER_HEIGHT_DELTA;
 		overlay.m_Coords.push_back(px);
 		overlay.m_Coords.push_back(py);
 		overlay.m_Coords.push_back(pz);

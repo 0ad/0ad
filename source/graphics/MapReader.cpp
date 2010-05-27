@@ -44,6 +44,7 @@
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpWaterManager.h"
 
 #define LOG_CATEGORY L"graphics"
 
@@ -502,6 +503,12 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					{
 						// TODO: implement this, when WaterManager supports it
 					}
+					else if (element_name == el_height)
+					{
+						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
+						debug_assert(!cmpWaterMan.null());
+						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(CStr(waterelement.GetText())));
+					}
 
 #define READ_COLOUR(el, out) \
 					else if (element_name == el) \
@@ -521,7 +528,6 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					} \
 
 					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
-					READ_FLOAT(el_height, m_MapReader.pWaterMan->m_WaterHeight)
 					READ_FLOAT(el_shininess, m_MapReader.pWaterMan->m_Shininess)
 					READ_FLOAT(el_waviness, m_MapReader.pWaterMan->m_Waviness)
 					READ_FLOAT(el_murkiness, m_MapReader.pWaterMan->m_Murkiness)

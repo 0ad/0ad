@@ -120,7 +120,7 @@ std::vector<entity_id_t> PickFriendlyEntitiesInRect(void* UNUSED(cbdata), int x0
 
 CFixedVector3D GetTerrainAtPoint(void* UNUSED(cbdata), int x, int y)
 {
-	CVector3D pos = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y, false);
+	CVector3D pos = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y, true);
 	return CFixedVector3D(fixed::FromFloat(pos.X), fixed::FromFloat(pos.Y), fixed::FromFloat(pos.Z));
 }
 

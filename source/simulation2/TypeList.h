@@ -107,3 +107,6 @@ COMPONENT(UnitMotion) // must be after Obstruction
 
 INTERFACE(Visual)
 COMPONENT(VisualActor)
+
+INTERFACE(WaterManager)
+COMPONENT(WaterManager)

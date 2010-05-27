@@ -902,18 +902,18 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 		{
 		case CCmpPathfinder::Goal::POINT:
 		{
-			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), 0.2f, m_DebugOverlayShortPathLines.back(), true);
 			break;
 		}
 		case CCmpPathfinder::Goal::CIRCLE:
 		{
-			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructCircleOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat(), m_DebugOverlayShortPathLines.back(), true);
 			break;
 		}
 		case CCmpPathfinder::Goal::SQUARE:
 		{
 			float a = atan2(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
-			SimRender::ConstructSquareOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructSquareOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back(), true);
 			break;
 		}
 		}
@@ -1029,7 +1029,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 			xz.push_back(edges[i].p0.Y.ToFloat());
 			xz.push_back(edges[i].p1.X.ToFloat());
 			xz.push_back(edges[i].p1.Y.ToFloat());
-			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), true);
 		}
 	}
 

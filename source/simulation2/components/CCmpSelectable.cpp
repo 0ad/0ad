@@ -132,7 +132,7 @@ public:
 		if (cmpFootprint.null())
 		{
 			// Default (this probably shouldn't happen) - just render an arbitrary-sized circle
-			SimRender::ConstructCircleOnGround(context, x, z, 2.f, m_Overlay);
+			SimRender::ConstructCircleOnGround(context, x, z, 2.f, m_Overlay, cmpPosition->IsFloating());
 		}
 		else
 		{
@@ -141,9 +141,9 @@ public:
 			cmpFootprint->GetShape(shape, size0, size1, height);
 
 			if (shape == ICmpFootprint::SQUARE)
-				SimRender::ConstructSquareOnGround(context, x, z, size0.ToFloat(), size1.ToFloat(), rotY, m_Overlay);
+				SimRender::ConstructSquareOnGround(context, x, z, size0.ToFloat(), size1.ToFloat(), rotY, m_Overlay, cmpPosition->IsFloating());
 			else
-				SimRender::ConstructCircleOnGround(context, x, z, size0.ToFloat(), m_Overlay);
+				SimRender::ConstructCircleOnGround(context, x, z, size0.ToFloat(), m_Overlay, cmpPosition->IsFloating());
 		}
 	}
 

@@ -84,6 +84,11 @@ public:
 	virtual entity_pos_t GetHeightOffset() = 0;
 
 	/**
+	 * Returns whether the entity floats on water.
+	 */
+	virtual bool IsFloating() = 0;
+
+	/**
 	 * Returns the current x,y,z position (no interpolation).
 	 * Depends on the current terrain heightmap.
 	 * Must not be called unless IsInWorld is true.

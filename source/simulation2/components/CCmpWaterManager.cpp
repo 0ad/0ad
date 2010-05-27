@@ -18,29 +18,31 @@
 #include "precompiled.h"
 
 #include "simulation2/system/Component.h"
-#include "ICmpTerrain.h"
+#include "ICmpWaterManager.h"
 
-#include "graphics/Terrain.h"
+#include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 
-class CCmpTerrain : public ICmpTerrain
+class CCmpWaterManager : public ICmpWaterManager
 {
 public:
-	static void ClassInit(CComponentManager& UNUSED(componentManager))
+	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 	}
 
-	DEFAULT_COMPONENT_ALLOCATOR(Terrain)
+	DEFAULT_COMPONENT_ALLOCATOR(WaterManager)
 
-	CTerrain* m_Terrain; // not null
+	entity_pos_t m_WaterHeight;
 
 	static std::string GetSchema()
 	{
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
-		m_Terrain = &context.GetTerrain();
+		SetWaterLevel(entity_pos_t::FromInt(5));
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -56,22 +58,34 @@ public:
 		Init(context, paramNode);
 	}
 
-	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z)
+	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
 	{
-		CFixedVector3D normal;
-		m_Terrain->CalcNormalFixed((x / (int)CELL_SIZE).ToInt_RoundToZero(), (z / (int)CELL_SIZE).ToInt_RoundToZero(), normal);
-		return normal;
+		switch (msg.GetType())
+		{
+		case MT_RenderSubmit:
+		{
+			// Don't actually do rendering here, but tell the renderer how to draw water
+			if (CRenderer::IsInitialised())
+				g_Renderer.GetWaterManager()->m_WaterHeight = m_WaterHeight.ToFloat();
+			break;
+		}
+		}
 	}
 
-	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z)
+	virtual void SetWaterLevel(entity_pos_t h)
 	{
-		return m_Terrain->GetExactGroundLevelFixed(x, z);
+		m_WaterHeight = h;
 	}
 
-	virtual float GetExactGroundLevel(float x, float z)
+	virtual entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z))
 	{
-		return m_Terrain->GetExactGroundLevel(x, z);
+		return m_WaterHeight;
+	}
+
+	virtual float GetExactWaterLevel(float UNUSED(x), float UNUSED(z))
+	{
+		return m_WaterHeight.ToFloat();
 	}
 };
 
-REGISTER_COMPONENT_TYPE(Terrain)
+REGISTER_COMPONENT_TYPE(WaterManager)

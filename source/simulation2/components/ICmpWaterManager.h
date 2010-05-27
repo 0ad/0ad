@@ -15,23 +15,32 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPTERRAIN
-#define INCLUDED_ICMPTERRAIN
+#ifndef INCLUDED_ICMPWATERMANAGER
+#define INCLUDED_ICMPWATERMANAGER
 
 #include "simulation2/system/Interface.h"
 
 #include "simulation2/helpers/Position.h"
 
-#include "maths/FixedVector3D.h"
-
-class ICmpTerrain : public IComponent
+class ICmpWaterManager : public IComponent
 {
 public:
-	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) = 0;
-	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) = 0;
-	virtual float GetExactGroundLevel(float x, float z) = 0;
+	/**
+	 * Set the height of the water level, as a constant value across the whole map.
+	 */
+	virtual void SetWaterLevel(entity_pos_t h) = 0;
 
-	DECLARE_INTERFACE_TYPE(Terrain)
+	/**
+	 * Get the current water level at the given point.
+	 */
+	virtual entity_pos_t GetWaterLevel(entity_pos_t x, entity_pos_t z) = 0;
+
+	/**
+	 * Get the current water level at the given point.
+	 */
+	virtual float GetExactWaterLevel(float x, float z) = 0;
+
+	DECLARE_INTERFACE_TYPE(WaterManager)
 };
 
-#endif // INCLUDED_ICMPTERRAIN
+#endif // INCLUDED_ICMPWATERMANAGER

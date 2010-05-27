@@ -860,6 +860,11 @@ bool CCmpUnitMotion::PickNextShortWaypoint(const CFixedVector2D& pos, bool avoid
 
 void CCmpUnitMotion::RenderPath(const ICmpPathfinder::Path& path, std::vector<SOverlayLine>& lines, CColor color)
 {
+	bool floating = false;
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	if (!cmpPosition.null())
+		floating = cmpPosition->IsFloating();
+
 	lines.clear();
 	std::vector<float> waypointCoords;
 	for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
@@ -870,11 +875,11 @@ void CCmpUnitMotion::RenderPath(const ICmpPathfinder::Path& path, std::vector<SO
 		waypointCoords.push_back(z);
 		lines.push_back(SOverlayLine());
 		lines.back().m_Color = color;
-		SimRender::ConstructSquareOnGround(GetSimContext(), x, z, 1.0f, 1.0f, 0.0f, lines.back());
+		SimRender::ConstructSquareOnGround(GetSimContext(), x, z, 1.0f, 1.0f, 0.0f, lines.back(), floating);
 	}
 	lines.push_back(SOverlayLine());
 	lines.back().m_Color = color;
-	SimRender::ConstructLineOnGround(GetSimContext(), waypointCoords, lines.back());
+	SimRender::ConstructLineOnGround(GetSimContext(), waypointCoords, lines.back(), floating);
 
 }
 

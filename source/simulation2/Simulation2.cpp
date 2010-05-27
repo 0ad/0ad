@@ -75,6 +75,7 @@ public:
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_SoundManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
+		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_WaterManager, noParam);
 
 		// Add scripted system components:
 		if (!skipScriptedComponents)

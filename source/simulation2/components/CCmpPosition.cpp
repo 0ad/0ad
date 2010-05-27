@@ -23,6 +23,7 @@
 #include "simulation2/MessageTypes.h"
 
 #include "ICmpTerrain.h"
+#include "ICmpWaterManager.h"
 
 #include "graphics/Terrain.h"
 #include "lib/rand.h"
@@ -220,6 +221,11 @@ public:
 		return m_YOffset;
 	}
 
+	virtual bool IsFloating()
+	{
+		return m_Floating;
+	}
+
 	virtual CFixedVector3D GetPosition()
 	{
 		if (!m_InWorld)
@@ -228,18 +234,22 @@ public:
 			return CFixedVector3D();
 		}
 
-		entity_pos_t ground;
+		entity_pos_t baseY;
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpTerrain.null())
+			baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
+
+		if (m_Floating)
 		{
-			ground = cmpTerrain->GetGroundLevel(m_X, m_Z);
-			// TODO: do something with m_Floating
+			CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpWaterMan.null())
+				baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_X, m_Z));
 		}
 
 		// NOTE: most callers don't actually care about Y; if this is a performance
 		// issue then we could add a new method that simply returns X/Z
 
-		return CFixedVector3D(m_X, ground + m_YOffset, m_Z);
+		return CFixedVector3D(m_X, baseY + m_YOffset, m_Z);
 	}
 
 	virtual void TurnTo(entity_angle_t y)
@@ -297,15 +307,19 @@ public:
 		float x, z, rotY;
 		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
-		float ground = 0;
+		float baseY = 0;
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpTerrain.null())
+			baseY = cmpTerrain->GetExactGroundLevel(x, z);
+
+		if (m_Floating)
 		{
-			ground = cmpTerrain->GetGroundLevel(x, z);
-			// TODO: do something with m_Floating
+			CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpWaterMan.null())
+				baseY = std::max(baseY, cmpWaterMan->GetExactWaterLevel(x, z));
 		}
 
-		float y = ground + m_YOffset.ToFloat();
+		float y = baseY + m_YOffset.ToFloat();
 
 		// TODO: do something with m_AnchorType
 

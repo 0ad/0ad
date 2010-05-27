@@ -22,5 +22,6 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Terrain)
+DEFINE_INTERFACE_METHOD_2("GetGroundLevel", entity_pos_t, ICmpTerrain, GetGroundLevel, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("CalcNormal", CFixedVector3D, ICmpTerrain, CalcNormal, entity_pos_t, entity_pos_t)
 END_INTERFACE_WRAPPER(Terrain)

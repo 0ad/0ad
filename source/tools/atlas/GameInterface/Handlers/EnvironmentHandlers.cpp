@@ -24,19 +24,26 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
+#include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpWaterManager.h"
 
 namespace AtlasMessage {
 
 sEnvironmentSettings GetSettings()
 {
 	sEnvironmentSettings s;
-	
+
+	CmpPtr<ICmpWaterManager> cmpWaterMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	debug_assert(!cmpWaterMan.null());
+
+	s.waterheight = cmpWaterMan->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
+
 	WaterManager* wm = g_Renderer.GetWaterManager();
-	s.waterheight = wm->m_WaterHeight / (65536.f * HEIGHT_SCALE);
 	s.watershininess = wm->m_Shininess;
 	s.waterwaviness = wm->m_Waviness;
 	s.watermurkiness = wm->m_Murkiness;
@@ -76,8 +83,12 @@ sEnvironmentSettings GetSettings()
 
 void SetSettings(const sEnvironmentSettings& s)
 {
+	CmpPtr<ICmpWaterManager> cmpWaterMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	debug_assert(!cmpWaterMan.null());
+
+	cmpWaterMan->SetWaterLevel(entity_pos_t::FromFloat(s.waterheight * (65536.f * HEIGHT_SCALE)));
+
 	WaterManager* wm = g_Renderer.GetWaterManager();
-	wm->m_WaterHeight = s.waterheight * (65536.f * HEIGHT_SCALE);
 	wm->m_Shininess = s.watershininess;
 	wm->m_Waviness = s.waterwaviness;
 	wm->m_Murkiness = s.watermurkiness;

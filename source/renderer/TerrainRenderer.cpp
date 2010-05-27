@@ -369,11 +369,11 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	pglActiveTextureARB(GL_TEXTURE0);
 	glDepthMask(1);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_BLEND);
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	
 }
 
 

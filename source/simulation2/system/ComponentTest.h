@@ -172,7 +172,7 @@ public:
 		return entity_pos_t::FromInt(50);
 	}
 
-	virtual float GetGroundLevel(float UNUSED(x), float UNUSED(z))
+	virtual float GetExactGroundLevel(float UNUSED(x), float UNUSED(z))
 	{
 		return 50.f;
 	}

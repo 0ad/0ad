@@ -28,6 +28,7 @@ DEFINE_INTERFACE_METHOD_2("MoveTo", void, ICmpPosition, MoveTo, entity_pos_t, en
 DEFINE_INTERFACE_METHOD_2("JumpTo", void, ICmpPosition, JumpTo, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_1("SetHeightOffset", void, ICmpPosition, SetHeightOffset, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("GetHeightOffset", entity_pos_t, ICmpPosition, GetHeightOffset)
+DEFINE_INTERFACE_METHOD_0("IsFloating", bool, ICmpPosition, IsFloating)
 DEFINE_INTERFACE_METHOD_0("GetPosition", CFixedVector3D, ICmpPosition, GetPosition)
 DEFINE_INTERFACE_METHOD_1("SetYRotation", void, ICmpPosition, SetYRotation, entity_angle_t)
 DEFINE_INTERFACE_METHOD_2("SetXZRotation", void, ICmpPosition, SetXZRotation, entity_angle_t, entity_angle_t)

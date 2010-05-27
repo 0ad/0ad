@@ -57,7 +57,6 @@
 #include "ps/scripting/JSInterface_VFS.h"
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
-#include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #define LOG_CATEGORY L"script"
@@ -749,155 +748,6 @@ JSBool ToggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsv
 	return( JS_TRUE );
 }
 
-// Toggles drawing territory outlines
-JSBool ToggleTerritoryRendering( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-	g_Renderer.m_RenderTerritories = !g_Renderer.m_RenderTerritories;
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-
-//-----------------------------------------------------------------------------
-// water
-
-// Toggles drawing the water plane
-JSBool ToggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-	g_Renderer.GetWaterManager()->m_RenderWater = !g_Renderer.GetWaterManager()->m_RenderWater;
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-// Sets the water plane height
-JSBool SetWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS( 1 );
-	float newHeight;
-	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], newHeight ))
-	{
-		JS_ReportError( cx, "Invalid water height argument" );
-		*rval = JSVAL_VOID;
-		return( JS_FALSE );
-	}
-	g_Renderer.GetWaterManager()->m_WaterHeight = newHeight;
-	g_TerrainModified = true;
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-// Gets the water plane height
-JSBool GetWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-	*rval = ToJSVal(g_Renderer.GetWaterManager()->m_WaterHeight);
-	return( JS_TRUE );
-}
-
-// Sets the water color
-JSBool SetWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS( 3 );
-	float r,g,b;
-	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], r )
-		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[1], g )
-		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[2], b ))
-	{
-		JS_ReportError( cx, "Invalid arguments" );
-		*rval = JSVAL_VOID;
-		return( JS_FALSE );
-	}
-	g_Renderer.GetWaterManager()->m_WaterColor = CColor(r, g, b, 1.0f);
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-// Sets the water tint (used to tint reflections in fancy water)
-JSBool SetWaterTint( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS( 3 );
-	float r,g,b;
-	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], r )
-		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[1], g )
-		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[2], b ))
-	{
-		JS_ReportError( cx, "Invalid arguments" );
-		*rval = JSVAL_VOID;
-		return( JS_FALSE );
-	}
-	g_Renderer.GetWaterManager()->m_WaterTint = CColor(r, g, b, 1.0f);
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-// Sets the water tint (used to tint reflections in fancy water)
-JSBool SetReflectionTint( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS( 3 );
-	float r,g,b;
-	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], r )
-		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[1], g )
-		|| !ToPrimitive( g_ScriptingHost.GetContext(), argv[2], b ))
-	{
-		JS_ReportError( cx, "Invalid arguments" );
-		*rval = JSVAL_VOID;
-		return( JS_FALSE );
-	}
-	g_Renderer.GetWaterManager()->m_ReflectionTint = CColor(r, g, b, 1.0f);
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-// Sets the max water alpha (achieved when it is at WaterFullDepth or deeper)
-JSBool SetWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS( 1 );
-	float val;
-	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
-	{
-		JS_ReportError( cx, "Invalid argument" );
-		*rval = JSVAL_VOID;
-		return( JS_FALSE );
-	}
-	g_Renderer.GetWaterManager()->m_WaterMaxAlpha = val;
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-// Sets the water full depth (when it is colored WaterMaxAlpha)
-JSBool SetWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS( 1 );
-	float val;
-	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
-	{
-		JS_ReportError( cx, "Invalid argument" );
-		*rval = JSVAL_VOID;
-		return( JS_FALSE );
-	}
-	g_Renderer.GetWaterManager()->m_WaterFullDepth = val;
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
-// Sets the water alpha offset (added to tweak water alpha near the shore)
-JSBool SetWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS( 1 );
-	float val;
-	if(!ToPrimitive( g_ScriptingHost.GetContext(), argv[0], val ))
-	{
-		JS_ReportError( cx, "Invalid argument" );
-		*rval = JSVAL_VOID;
-		return( JS_FALSE );
-	}
-	g_Renderer.GetWaterManager()->m_WaterAlphaOffset = val;
-	*rval = JSVAL_VOID;
-	return( JS_TRUE );
-}
-
 //-----------------------------------------------------------------------------
 
 // Is the game paused?
@@ -1004,17 +854,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	// Sky
 	JS_FUNC("toggleSky", ToggleSky, 0)
-
-	// Water
-	JS_FUNC("toggleWater", ToggleWater, 0)
-	JS_FUNC("setWaterHeight", SetWaterHeight, 1)
-	JS_FUNC("getWaterHeight", GetWaterHeight, 0)
-	JS_FUNC("setWaterColor", SetWaterColor, 3)
-	JS_FUNC("setWaterTint", SetWaterTint, 3)
-	JS_FUNC("setReflectionTint", SetReflectionTint, 3)
-	JS_FUNC("setWaterMaxAlpha", SetWaterMaxAlpha, 0)
-	JS_FUNC("setWaterFullDepth", SetWaterFullDepth, 0)
-	JS_FUNC("setWaterAlphaOffset", SetWaterAlphaOffset, 0)
 
 	// Timer
 	JS_FUNC("setTimeout", SetTimeout, 2)

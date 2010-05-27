@@ -513,7 +513,7 @@ void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneColle
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
 			m_DebugOverlayLines.back().m_Color = (it->second.moving ? movingColour : defaultColour);
-			SimRender::ConstructSquareOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat()*2, it->second.r.ToFloat()*2, 0, m_DebugOverlayLines.back());
+			SimRender::ConstructSquareOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat()*2, it->second.r.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
 		}
 
 		for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
@@ -521,7 +521,7 @@ void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneColle
 			m_DebugOverlayLines.push_back(SOverlayLine());
 			m_DebugOverlayLines.back().m_Color = defaultColour;
 			float a = atan2(it->second.v.X.ToFloat(), it->second.v.Y.ToFloat());
-			SimRender::ConstructSquareOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.hw.ToFloat()*2, it->second.hh.ToFloat()*2, a, m_DebugOverlayLines.back());
+			SimRender::ConstructSquareOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.hw.ToFloat()*2, it->second.hh.ToFloat()*2, a, m_DebugOverlayLines.back(), true);
 		}
 
 		m_DebugOverlayDirty = false;
