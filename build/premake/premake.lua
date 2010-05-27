@@ -405,6 +405,7 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"boost",
+		"opengl",
 		"spidermonkey",
 	}
 	setup_static_lib_package("simulation2", source_dirs, extern_libs, {})

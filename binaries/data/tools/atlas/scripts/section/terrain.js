@@ -222,6 +222,7 @@ function init(window, bottomWindow)
 	var passabilitySelector = new wxChoice(window, -1, wxDefaultPosition, wxDefaultSize,
 		["(none)"].concat(passabilityClasses)
 	);
+	passabilitySelector.selection = 0;
 	visualiseSettingsSizer.add(passabilitySelector);
 	passabilitySelector.onChoice = function (evt) {
 		if (evt.selection == 0)
