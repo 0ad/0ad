@@ -58,12 +58,6 @@ void OverlayRenderer::PrepareForRendering()
 
 void OverlayRenderer::RenderOverlays()
 {
-	// Unbind any vertex buffer object, if our card supports VBO's
-	if (g_Renderer.GetCapabilities().m_VBO)
-	{
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-	}
-
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 

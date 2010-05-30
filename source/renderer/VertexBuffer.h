@@ -69,6 +69,9 @@ public:
 	// to glVertexPointer ( + etc) calls
 	u8* Bind();
 
+	// unbind any currently-bound buffer, so glVertexPointer etc calls will not attempt to use it
+	static void Unbind();
+
 	// clear lists of all batches 
 	void ClearBatchIndices();
 

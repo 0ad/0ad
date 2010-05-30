@@ -35,7 +35,7 @@
  * Load a font.
  *
  * @param pathname path and basename of the font definition file
- * (.fnt) and its texture (.tga)
+ * (.fnt) and its texture (.png)
  **/
 extern Handle unifont_load(const VfsPath& pathname, size_t flags = 0);
 

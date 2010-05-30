@@ -23,16 +23,16 @@
 			ghost="true"
 			hidden="true"
 			hotkey="fps.toggle"
-			font="verdana16"
-			textcolor="100 100 0"
-			size="18 18 200 35"
+			font="mono-stroke-10"
+			textcolor="white"
+			size="5 5 200 35"
 			z="199"
 		>
 			<action on="Load"><![CDATA[
 				setInterval (updateFPS, 1, 200);
 			]]></action>
 			<action on="Press"><![CDATA[
-				guiToggle (this.name);
+				this.hidden = !this.hidden;
 			]]></action>
 		</object>
 
@@ -48,7 +48,7 @@
 			z="200"
 		>
 			<action on="Press"><![CDATA[
-				guiToggle ("glbWaterMark");
+				this.hidden = !this.hidden;
 			]]></action>
 
 			<object	name="glbWaterMarkProductLogo"

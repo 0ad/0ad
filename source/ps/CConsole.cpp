@@ -79,7 +79,6 @@ CConsole::CConsole()
 
 CConsole::~CConsole()
 {
-	m_mapFuncList.clear();
 	m_deqMsgHistory.clear();
 	m_deqBufHistory.clear();
 	delete[] m_szBuffer;
@@ -160,21 +159,6 @@ void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, size_t iSize)
 		szMessage[i] = '\0';
 		if (szMessage[i - 1] != cChar) break;
 	}
-}
-
-
-void CConsole::RegisterFunc(fptr F, const wchar_t* szName)
-{
-	// need to allocate a copy - szName may be a const string literal
-	// (we'll change it - stripping out spaces and converting to lowercase).
-	wchar_t copy[CONSOLE_BUFFER_SIZE];
-	copy[CONSOLE_BUFFER_SIZE-1] = '\0';
-	wcsncpy(copy, szName, CONSOLE_BUFFER_SIZE-1);
-
-	Trim(copy);
-	ToLower(copy);
-
-	m_mapFuncList.insert(std::pair<std::wstring, fptr>(copy, F));
 }
 
 
@@ -623,8 +607,6 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 
 	wchar_t szCommand[CONSOLE_BUFFER_SIZE] = { 0 };
 
-	std::map<std::wstring, fptr>::iterator Iter;
-
 	if (szLine[0] == '\\')
 	{
 		if (swscanf(szLine, L"\\%ls", szCommand) != 1)
@@ -648,10 +630,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 			InsertMessage(L"");
 			InsertMessage(L"[Commands]");
 
-			if (!m_mapFuncList.size()) InsertMessage(L"   (none registered)");
-
-			for (Iter = m_mapFuncList.begin(); Iter != m_mapFuncList.end(); Iter++)
-				InsertMessage(L"   \\%ls", Iter->first.c_str());
+			InsertMessage(L"   (none registered)");
 
 			InsertMessage(L"");
 		}
@@ -663,11 +642,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 		}
 		else
 		{
-			Iter = m_mapFuncList.find(szCommand);
-			if (Iter == m_mapFuncList.end())
-				InsertMessage(L"unknown command <%ls>", szCommand);
-			else
-				Iter->second();
+			InsertMessage(L"unknown command <%ls>", szCommand);
 		}
 	}
 	else if (szLine[0] == ':' || szLine[0] == '?')

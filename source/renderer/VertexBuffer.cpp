@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,12 +70,14 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 		// waste of time to call glGetError so frequently.)
 		// glGetError(); // clear the error state
 
-		pglGenBuffersARB(1,&m_Handle);
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
+		pglGenBuffersARB(1, &m_Handle);
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, m_Handle);
 		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 
-		pglBufferDataARB(GL_ARRAY_BUFFER_ARB,size,0,m_Dynamic ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
+		pglBufferDataARB(GL_ARRAY_BUFFER_ARB, size, 0, m_Dynamic ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
 		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
+
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	} else {
 		m_SysMem=new u8[size];
@@ -216,12 +218,13 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 	if (g_Renderer.m_Caps.m_VBO) {
 		debug_assert(m_Handle);
 		// glGetError(); // clear the error state
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
-		pglBufferSubDataARB(GL_ARRAY_BUFFER_ARB,chunk->m_Index*m_VertexSize,chunk->m_Count*m_VertexSize,data);
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, m_Handle);
+		pglBufferSubDataARB(GL_ARRAY_BUFFER_ARB, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 	} else {
 		debug_assert(m_SysMem);
-		cpu_memcpy(m_SysMem+chunk->m_Index*m_VertexSize,data,chunk->m_Count*m_VertexSize);
+		cpu_memcpy(m_SysMem + chunk->m_Index * m_VertexSize, data, chunk->m_Count * m_VertexSize);
 	}
 }
 
@@ -239,4 +242,11 @@ u8* CVertexBuffer::Bind()
 		base=(u8*) m_SysMem;
 	}
 	return base;
+}
+
+void CVertexBuffer::Unbind()
+{
+	if (g_Renderer.m_Caps.m_VBO) {
+		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+	}
 }

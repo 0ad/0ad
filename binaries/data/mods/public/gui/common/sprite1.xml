@@ -274,15 +274,15 @@
 	<sprite name="wheatWindowTitle">
 		<image	texture="global/titlebar/left_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
-			size="0%+0 0%-10 5%+64 0%+22" 
+			size="0%+0 0% 64 0%+32" 
 		/>
                 <image 	texture="global/titlebar/middle_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
-			size="5%+64 0%-10 95%-64 0%+22" 
+			size="64 0% 100%-64 0%+32" 
 		/>
                 <image 	texture="global/titlebar/right_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
-			size="95%-64 0%-10 100%+0 0%+22" 
+			size="100%-64 0% 100%+0 0%+32" 
 		/>
 	</sprite>
 

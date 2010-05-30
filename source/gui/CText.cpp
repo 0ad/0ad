@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ CText::CText()
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_int,					"cell_id");
+	AddSetting(GUIST_bool,					"clip");
 	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar_style");
@@ -47,6 +48,7 @@ CText::CText()
 
 	//GUI<bool>::SetSetting(this, "ghost", true);
 	GUI<bool>::SetSetting(this, "scrollbar", false);
+	GUI<bool>::SetSetting(this, "clip", true);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical * bar = new CGUIScrollBarVertical();
@@ -196,27 +198,36 @@ void CText::Draw()
 	{
 		CGUISpriteInstance *sprite;
 		int cell_id;
+		bool clip;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
 		GUI<int>::GetSetting(this, "cell_id", cell_id);
+		GUI<bool>::GetSetting(this, "clip", clip);
 
 		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
-
-		// Clipping area (we'll have to substract the scrollbar)
-		CRect cliparea = m_CachedActualSize;
 
 		float scroll=0.f;
 		if (scrollbar)
 		{
 			scroll = GetScrollBar(0).GetPos();
+		}
 
-			// substract scrollbar from cliparea
-			if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
-				cliparea.right <= GetScrollBar(0).GetOuterRect().right)
-				cliparea.right = GetScrollBar(0).GetOuterRect().left;
+		// Clipping area (we'll have to subtract the scrollbar)
+		CRect cliparea;
+		if (clip)
+		{
+			cliparea = m_CachedActualSize;
 
-			if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
-				cliparea.left < GetScrollBar(0).GetOuterRect().right)
-				cliparea.left = GetScrollBar(0).GetOuterRect().right;
+			if (scrollbar)
+			{
+				// subtract scrollbar from cliparea
+				if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
+					cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+					cliparea.right = GetScrollBar(0).GetOuterRect().left;
+
+				if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
+					cliparea.left < GetScrollBar(0).GetOuterRect().right)
+					cliparea.left = GetScrollBar(0).GetOuterRect().right;
+			}
 		}
 
 		CColor color;
@@ -224,8 +235,8 @@ void CText::Draw()
 
 		// Draw text
 		if (scrollbar)
-			IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, m_CachedActualSize);
+			IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);
 		else
-			IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f, m_CachedActualSize);
+			IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f, cliparea);
 	}
 }

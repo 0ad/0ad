@@ -283,9 +283,6 @@ void ActorViewer::Render()
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glEnable(GL_TEXTURE_2D);
 
-	CFont font(L"console");
-	font.Bind();
-
 	g_ProfileViewer.RenderProfile();
 
 	glPopAttrib();

@@ -89,7 +89,6 @@ protected:
 	 * Placement of text. Ignored when scrollbars are active.
 	 */
 	CPos m_TextPos;
-
 };
 
 #endif

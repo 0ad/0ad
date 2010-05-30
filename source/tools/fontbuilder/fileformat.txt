@@ -11,6 +11,7 @@ The .fnt file is something like:
 
   101
   512 256
+  a
   3
   16
   12
@@ -23,11 +24,13 @@ detection if people leave old ones hanging around.
 
 Second line = size of texture (width/height).
 
-Third line = number of glyphs in the font.
+Third line = texture format: "a" or "rgba".
 
-Fourth line = line spacing (pixels between each baseline)
+Fourth line = number of glyphs in the font.
 
-Fifth line = text 'height' (height of the "I" glyph, possibly manually
+Fifth line = line spacing (pixels between each baseline)
+
+Sixth line = text 'height' (height of the "I" glyph, possibly manually
                             adjusted so that vertical centering works)
 
 Each subsequent line is

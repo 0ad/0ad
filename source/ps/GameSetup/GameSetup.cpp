@@ -287,7 +287,7 @@ void Render()
 		glLoadIdentity();
 
 		MICROLOG(L"render console");
-		CFont font(L"console");
+		CFont font(CONSOLE_FONT);
 		font.Bind();
 		g_Console->Render();
 	}
@@ -464,12 +464,12 @@ static void InitPs(bool setup_gui, const CStrW& gui_page)
 		g_Console->UpdateScreenSize(g_xres, g_yres);
 
 		// Calculate and store the line spacing
-		CFont font(L"console");
+		CFont font(CONSOLE_FONT);
 		g_Console->m_iFontHeight = font.GetLineSpacing();
 		g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
 		g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
 		// Offset by an arbitrary amount, to make it fit more nicely
-		g_Console->m_iFontOffset = 9;
+		g_Console->m_iFontOffset = 7;
 	}
 
 	// language and hotkeys

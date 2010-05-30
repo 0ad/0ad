@@ -28,7 +28,7 @@
 #include <map>
 #include <string>
 
-const wchar_t* DefaultFont = L"verdana16";
+const wchar_t* DefaultFont = L"sans-10";
 
 CFont::CFont(const wchar_t* name)
 {

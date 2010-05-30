@@ -114,7 +114,6 @@ void CGUIManager::DisplayMessageBox(int width, int height, const CStrW& title, c
 	m_ScriptInterface.SetProperty(data.get(), "width", width, false);
 	m_ScriptInterface.SetProperty(data.get(), "height", height, false);
 	m_ScriptInterface.SetProperty(data.get(), "mode", 2, false);
-	m_ScriptInterface.SetProperty(data.get(), "font", std::string("verdana16"), false);
 	m_ScriptInterface.SetProperty(data.get(), "title", std::wstring(title), false);
 	m_ScriptInterface.SetProperty(data.get(), "message", std::wstring(message), false);
 
@@ -183,6 +182,7 @@ LibError CGUIManager::ReloadChangedFiles(const VfsPath& path)
 		{
 			LOGMESSAGE(L"GUI file '%ls' changed - reloading page '%ls'", path.string().c_str(), it->name.c_str());
 			LoadPage(*it);
+			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}
 	}
 

@@ -231,6 +231,8 @@ void InstancingModelRenderer::EndPass(int streamflags)
 
 	pglUseProgramObjectARB(0);
 	glDisableClientState(GL_VERTEX_ARRAY);
+
+	CVertexBuffer::Unbind();
 }
 
 

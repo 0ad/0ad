@@ -16,7 +16,7 @@
 		size="0 0 100% 100%"
 		z="0"
 
-		font="verdana12"
+		font="serif-14"
 		buffer_zone="5"
 		multiline="false"
 	/>
@@ -42,8 +42,8 @@
 	/>
 
 	<style 	name="wheatWindowTitleBar"
-		size="50%-150 0%-25 50%+150 0%-9"
-		font="prospero18"
+		size="50%-150 0%-35 50%+150 0%-3"
+		font="serif-bold-18"
 		sprite="wheatWindowTitle"
 		text_align="center"
 		text_valign="center"
@@ -98,7 +98,7 @@
 		sprite_disabled="wheatButtonDisabled"
 		sprite_over="wheatButtonOver"
 		sprite_pressed="wheatButtonOver"
-		font="prospero18"
+		font="serif-14"
 		text_align="center"
 		text_valign="center"
 	/>
@@ -121,7 +121,7 @@
 	/>
 
 	<style 	name="wheatCrossBox"
-		font="verdana12"
+		font="serif-14"
 		sprite="wheatCheckBoxOpen"
 		sprite2="wheatCheckBoxCross"
 		square_side="16"
@@ -129,32 +129,32 @@
 	/>
 
 	<style 	name="wheatArrowLeft"
-		font="verdana12"
+		font="serif-14"
 		sprite="wheatCheckBoxOpen"
 		textcolor="black"
 	/>
 
 	<style 	name="wheatArrowRight"
-		font="verdana12"
+		font="serif-14"
 		sprite="wheatCheckBoxOpen"
 		textcolor="black"
 	/>
 
 	<style 	name="wheatArrowUp"
-		font="verdana12"
+		font="serif-14"
 		sprite="wheatCheckBoxOpen"
 		textcolor="black"
 	/>
 
 	<style 	name="wheatArrowDn"
-		font="verdana12"
+		font="serif-14"
 		sprite="wheatCheckBoxOpen"
 		textcolor="black"
 	/>
 
 	<style 	name="wheatList"
 		buffer_zone="5"
-		font="verdana12"
+		font="serif-14"
 		scrollbar="true"
 		scrollbar_style="wheatScrollBar"
 		sprite="wheatIndentFillLight"
@@ -187,7 +187,7 @@
 
 	<style 	name="wheatDropDown"
 		dropdown_buffer="1"
-		font="verdana12"
+		font="serif-13"
 		textcolor="black"
 		text_align="center"
 		text_valign="center"
@@ -223,7 +223,7 @@
 
 		<style 	name="wheatTextHeadMaxBlack"
 			ghost="true"
-			font="giovanni22bold"
+			font="serif-bold-18"
 			text_align="center"
 			textcolor="black"
 		/>
@@ -237,33 +237,7 @@
 
 		<style 	name="wheatTextHeadBlack"
 			ghost="true"
-			font="tahoma16"
-			textcolor="black"
-		/>
-
-		<style 	name="wheatTextHeadWhite"
-			ghost="true"
-			font="tahoma16"
-			textcolor="white"
-		/>
-
-		<style 	name="wheatTextHeadBlackRt"
-			ghost="true"
-			font="tahoma16"
-			text_align="right"
-			textcolor="black"
-		/>
-
-		<!--
-		=============================================================
-		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUBHEADING
-		- Standard text. Subheading.
-		=============================================================
-		-->
-
-		<style 	name="wheatTextHeadSubBlack"
-			ghost="true"
-			font="tahoma14"
+			font="serif-16"
 			textcolor="black"
 		/>
 
@@ -276,90 +250,7 @@
 
 		<style 	name="wheatTextLabelBlack"
 			ghost="true"
-			font="verdana12"
-			textcolor="black"
-		/>
-
-		<style 	name="wheatTextLabelWhite"
-			ghost="true"
-			font="verdana12"
-			textcolor="white"
-		/>
-
-		<!--
-		=============================================================
-		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUB LABEL
-		- Standard text. Plain smaller label.
-		=============================================================
-		-->
-
-		<style 	name="wheatTextSubLabelBlack"
-			ghost="true"
-			font="verdana11"
-			textcolor="black"
-		/>
-
-		<!--
-		=============================================================
-		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FOOTNOTE MAX
-		- Standard text. Large footnote.
-		=============================================================
-		-->
-
-		<style 	name="wheatTextFootMaxBlack"
-			ghost="true"
-			font="verdana10"
-			textcolor="black"
-		/>
-
-		<!--
-		=============================================================
-		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FOOTNOTE
-		- Standard text. Normal footnote.
-		=============================================================
-		-->
-
-		<style 	name="wheatTextFootBlack"
-			ghost="true"
-			font="verdana9"
-			textcolor="black"
-		/>
-
-		<!--
-		=============================================================
-		- STYLE - GLOBAL - WHEAT SKIN - TEXT - SUBFOOTNOTE
-		- Standard text. Small subfootnote.
-		=============================================================
-		-->
-
-		<style 	name="wheatTextFootSubBlack"
-			ghost="true"
-			font="verdana8"
-			textcolor="black"
-		/>
-
-		<!--
-		=============================================================
-		- STYLE - GLOBAL - WHEAT SKIN - TEXT - FANCY - TITLEBAR
-		- Large and ornate. eg Window titlebar.
-		=============================================================
-		-->
-
-		<style 	name="fancyTextTitleGold"
-			ghost="true"
-			font="prospero18"
-			textcolor="gold"
-		/>
-
-		<style 	name="fancyTextTitleWhite"
-			ghost="true"
-			font="prospero18"
-			textcolor="white"
-		/>
-
-		<style 	name="fancyTextTitleBlack"
-			ghost="true"
-			font="prospero18"
+			font="serif-14"
 			textcolor="black"
 		/>
 
@@ -372,13 +263,13 @@
 
 		<style 	name="fancyTextHeadGold"
 			ghost="true"
-			font="prospero16"
+			font="serif-16"
 			textcolor="gold"
 		/>
 
 		<style 	name="fancyTextHeadWhite"
 			ghost="true"
-			font="prospero16"
+			font="serif-14"
 			textcolor="white"
 		/>
 
@@ -397,7 +288,7 @@
 	/>
 
 	<style	name="wheatBorderBlackNote"
-		font="verdana9"
+		font="serif-12"
 		sprite="bkBorderBlack"
 		sprite_selectarea="bkFillGray"
 		textcolor="black"

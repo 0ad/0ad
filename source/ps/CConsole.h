@@ -35,7 +35,7 @@
 #define CONSOLE_BUFFER_SIZE 1024 // for text being typed into the console
 #define CONSOLE_MESSAGE_SIZE 1024 // for messages being printed into the console
 
-typedef void(*fptr)(void);
+#define CONSOLE_FONT L"mono-10"
 
 class CConsole
 {
@@ -67,8 +67,6 @@ public:
 	const wchar_t* GetBuffer();
 	void FlushBuffer();
 
-	void RegisterFunc(fptr F, const wchar_t* szName);
-
 	bool IsActive() { return m_bVisible; }
 
 	int m_iFontHeight;
@@ -88,7 +86,6 @@ private:
 	float m_fVisibleFrac;
 	
 	CStrW m_helpText;
-	std::map<std::wstring, fptr> m_mapFuncList;
 
 	std::deque<std::wstring> m_deqMsgHistory;
 	std::deque<std::wstring> m_deqBufHistory;

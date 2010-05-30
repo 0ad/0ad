@@ -74,7 +74,7 @@
 			size="0 50 50% 100%"
 			ghost="true"
 			textcolor="yellow"
-			font="console"
+			font="mono-stroke-10"
 		/>
 
 		<!-- Player resource bar -->
@@ -143,21 +143,21 @@
 
 			<!-- Details text -->
 			<object size="136 6 100% 100%">
-				<object size="0 0 100% 20" name="selectionDetailsSpecific" type="text" font="prospero18b"/>
-				<object size="0 20 100% 40" name="selectionDetailsGeneric" type="text" font="prospero16"/>
-				<object size="0 40 100% 60" name="selectionDetailsPlayer" type="text" font="prospero16" textcolor="blue"/>
+				<object size="0 0 100% 30" name="selectionDetailsSpecific" type="text" font="serif-bold-18"/>
+				<object size="0 20 100% 40" name="selectionDetailsGeneric" type="text" font="serif-14"/>
+				<object size="0 40 100% 60" name="selectionDetailsPlayer" type="text" font="serif-14" textcolor="blue"/>
 			</object>
 
 			<!-- Attack stats -->
 			<object size="146 72 100% 130" type="image" tooltip="Attack strengths" tooltip_style="snToolTip">
 				<object size="-4 -8 48 48" type="image" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
-				<object size="40 0 100% 100%" type="text" ghost="true" name="selectionDetailsAttack" font="tahoma12"/>
+				<object size="40 0 100% 100%" type="text" ghost="true" name="selectionDetailsAttack" font="serif-bold-12"/>
 			</object>
 
 			<!-- Armour stats -->
 			<object size="146 130 100% 188" type="image" tooltip="Armour strengths" tooltip_style="snToolTip">
 				<object size="-4 -4 48 48" type="image" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
-				<object size="40 0 100% 100%" type="text" ghost="true" name="selectionDetailsArmour" font="tahoma12"/>
+				<object size="40 0 100% 100%" type="text" ghost="true" name="selectionDetailsArmour" font="serif-bold-12"/>
 			</object>
 
 		</object>

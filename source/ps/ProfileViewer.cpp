@@ -29,6 +29,7 @@
 
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "lib/utf8.h"
@@ -166,6 +167,10 @@ void CProfileViewer::RenderProfile()
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
 	size_t numrows = table->GetNumberRows();
 
+	CFont font(L"mono-stroke-10");
+	font.Bind();
+	int lineSpacing = font.GetLineSpacing();
+
 	// Render background
 	GLint estimate_height;
 	GLint estimate_width;
@@ -177,7 +182,7 @@ void CProfileViewer::RenderProfile()
 	estimate_height = 3 + (GLint)numrows;
 	if (m->path.size() > 1)
 		estimate_height += 2;
-	estimate_height = 20*estimate_height;
+	estimate_height = lineSpacing*estimate_height;
 
 	glDisable(GL_TEXTURE_2D);
 	glColor4ub(0,0,0,128);
@@ -191,14 +196,14 @@ void CProfileViewer::RenderProfile()
 
 	// Print table and column titles
 	glPushMatrix();
-	glTranslatef(2.0f, g_yres - 20.0f, 0.0f );
+	glTranslatef(2.0f, g_yres - lineSpacing, 0.0f );
 	glScalef(1.0f, -1.0f, 1.0f);
 	glColor3ub(255, 255, 255);
 
 	glPushMatrix();
 	glwprintf(L"%hs", table->GetTitle().c_str());
 	glPopMatrix();
-	glTranslatef( 20.0f, 20.0f, 0.0f );
+	glTranslatef( 20.0f, lineSpacing, 0.0f );
 
 	glPushMatrix();
 	for(size_t col = 0; col < columns.size(); ++col)
@@ -209,7 +214,7 @@ void CProfileViewer::RenderProfile()
 		glTranslatef(columns[col].width, 0, 0);
 	}
 	glPopMatrix();
-	glTranslatef( 0.0f, 20.0f, 0.0f );
+	glTranslatef( 0.0f, lineSpacing, 0.0f );
 
 	// Print rows
 	int currentExpandId = 1;
@@ -241,13 +246,13 @@ void CProfileViewer::RenderProfile()
 		}
 
 		glPopMatrix();
-		glTranslatef( 0.0f, 20.0f, 0.0f );
+		glTranslatef( 0.0f, lineSpacing, 0.0f );
 	}
 	glColor3ub(255, 255, 255);
 
 	if (m->path.size() > 1)
 	{
-		glTranslatef( 0.0f, 20.0f, 0.0f );
+		glTranslatef( 0.0f, lineSpacing, 0.0f );
 		glPushMatrix();
 		glPushMatrix();
 		glTranslatef( -15.0f, 0.0f, 0.0f );

@@ -154,25 +154,28 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		}
 		else
 		{
-			tooltip = "[font=trebuchet14b]" + name + "[/font]";
+			tooltip = "[font=\"serif-bold-16\"]" + name + "[/font]";
 
 			if (template.cost)
 			{
+				var font1 = "[font=\"serif-bold-13\"]";
 				var costs = [];
-				if (template.cost.food) costs.push("[font=tahoma10b]Food:[/font] " + template.cost.food);
-				if (template.cost.wood) costs.push("[font=tahoma10b]Wood:[/font] " + template.cost.wood);
-				if (template.cost.metal) costs.push("[font=tahoma10b]Metal:[/font] " + template.cost.metal);
-				if (template.cost.stone) costs.push("[font=tahoma10b]Stone:[/font] " + template.cost.stone);
+				if (template.cost.food) costs.push(font1 + "Food:[/font] " + template.cost.food);
+				if (template.cost.wood) costs.push(font1 + "Wood:[/font] " + template.cost.wood);
+				if (template.cost.metal) costs.push(font1 + "Metal:[/font] " + template.cost.metal);
+				if (template.cost.stone) costs.push(font1 + "Stone:[/font] " + template.cost.stone);
 				if (costs.length)
 					tooltip += "\n" + costs.join(", ");
 			}
 
 			if (guiName == "Training")
 			{
+				var font1 = "[font=\"serif-13\"]";
+				var font2 = "[font=\"serif-bold-13\"]";
 				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
-				tooltip += "\n[font=tahoma11]";
-				if (batchSize) tooltip += "Training [font=tahoma12]" + batchSize + "[font=tahoma11] units; ";
-				tooltip += "Shift-click to train [font=tahoma12]" + (batchSize+batchIncrement) + "[font=tahoma11] units[/font]";
+				tooltip += "\n" + font1;
+				if (batchSize) tooltip += "Training " + font2 + batchSize + font1 + " units; ";
+				tooltip += "Shift-click to train " + font2 + (batchSize+batchIncrement) + font1 + " units[/font]";
 			}
 		}
 

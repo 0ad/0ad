@@ -527,6 +527,8 @@ void CPatchRData::RenderBase(bool losColor)
 		g_Renderer.m_Stats.m_DrawCalls++;
 		g_Renderer.m_Stats.m_TerrainTris+=splat.m_IndexCount/2;
 	}
+
+	CVertexBuffer::Unbind();
 }
 
 void CPatchRData::RenderStreams(int streamflags, bool losColor)
@@ -556,6 +558,8 @@ void CPatchRData::RenderStreams(int streamflags, bool losColor)
 	// bump stats
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_TerrainTris+=m_Indices.size()/2;
+
+	CVertexBuffer::Unbind();
 }
 
 
@@ -596,6 +600,8 @@ void CPatchRData::RenderBlends()
 		g_Renderer.m_Stats.m_BlendSplats++;
 		g_Renderer.m_Stats.m_TerrainTris+=splat.m_IndexCount/2;
 	}
+
+	CVertexBuffer::Unbind();
 }
 
 void CPatchRData::RenderOutline()

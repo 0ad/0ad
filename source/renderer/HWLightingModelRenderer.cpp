@@ -281,6 +281,8 @@ void HWLightingModelRenderer::EndPass(int streamflags)
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);
+
+	CVertexBuffer::Unbind();
 }
 
 
