@@ -635,6 +635,9 @@ function setup_main_exe ()
 
 		tinsert(package.buildflags, "no-rtti")
 
+		-- this seems to be required when using vcbuild but not the IDE (?!)
+		tinsert(package.links, "ws2_32")
+
 		package.linkoptions = {
 			-- wraps main thread in a __try block(see wseh.cpp). replace with mainCRTStartup if that's undesired.
 			"/ENTRY:wseh_EntryPoint",
@@ -1049,6 +1052,9 @@ function setup_tests()
 	if OS == "windows" then
 		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/os/win/error_dialog.rc")
+
+		-- this seems to be required when using vcbuild but not the IDE (?!)
+		tinsert(package.links, "ws2_32")
 
 		-- see wstartup.h
 		tinsert(package.linkoptions, "/INCLUDE:_wstartup_InitAndRegisterShutdown")

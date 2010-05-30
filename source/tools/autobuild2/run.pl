@@ -21,6 +21,10 @@ use Amazon::S3;
 use LWP::Simple();
 use DateTime;
 
+# Fix clock drift, else S3 will be unhappy
+system("net time /setsntp:time.windows.com");
+system("w32tm /resync /rediscover");
+
 my %config = (load_conf("c:\\0ad\\autobuild\\aws.conf"), load_conf("d:\\0ad\\autobuild\\run.conf"));
 my $timestamp = DateTime->now->iso8601;
 
