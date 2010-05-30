@@ -161,7 +161,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					{
 						CSize displacement;
 						// Parse the value
-						if (!GUI<CSize>::ParseString(itTextChunk->m_Tags[0].m_TagAdditionalValue, displacement))
+						if (!GUI<CSize>::ParseString(CStrW(itTextChunk->m_Tags[0].m_TagAdditionalValue), displacement))
 							LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing 'displace' value for tag [ICON]");
 						else
 							SpriteCall.m_Area += displacement;
@@ -207,7 +207,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					TextCall.m_UseCustomColor = true;
 					
 					// Try parsing the color std::string
-					if (!GUI<CColor>::ParseString(it2->m_TagValue, TextCall.m_Color))
+					if (!GUI<CColor>::ParseString(CStrW(it2->m_TagValue), TextCall.m_Color))
 					{
 						if (pObject)
 							LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing the value of a [color]-tag in GUI text when reading object \"%hs\".", pObject->GetPresentableName().c_str());

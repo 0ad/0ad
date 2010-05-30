@@ -32,12 +32,12 @@ extern int g_yres;
 
 
 template <>
-bool __ParseString<bool>(const CStr& Value, bool &Output)
+bool __ParseString<bool>(const CStrW& Value, bool &Output)
 {
-	if (Value == "true")
+	if (Value == L"true")
 		Output = true;
 	else
-	if (Value == "false")
+	if (Value == L"false")
 		Output = false;
 	else 
 		return false;
@@ -46,26 +46,26 @@ bool __ParseString<bool>(const CStr& Value, bool &Output)
 }
 
 template <>
-bool __ParseString<int>(const CStr& Value, int &Output)
+bool __ParseString<int>(const CStrW& Value, int &Output)
 {
 	Output = Value.ToInt();
 	return true;
 }
 
 template <>
-bool __ParseString<float>(const CStr& Value, float &Output)
+bool __ParseString<float>(const CStrW& Value, float &Output)
 {
 	Output = Value.ToFloat();
 	return true;
 }
 
 template <>
-bool __ParseString<CRect>(const CStr& Value, CRect &Output)
+bool __ParseString<CRect>(const CStrW& Value, CRect &Output)
 {
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_$value_$value_$value_$value_"));
 
-	std::string str = Value;
+	std::string str = CStr(Value);
 
 	CParserLine line;
 	line.ParseString(parser, str);
@@ -90,13 +90,13 @@ bool __ParseString<CRect>(const CStr& Value, CRect &Output)
 }
 
 template <>
-bool __ParseString<CClientArea>(const CStr& Value, CClientArea &Output)
+bool __ParseString<CClientArea>(const CStrW& Value, CClientArea &Output)
 {
 	return Output.SetClientArea(Value);
 }
 
 template <>
-bool GUI<int>::ParseColor(const CStr& Value, CColor &Output, float DefaultAlpha)
+bool GUI<int>::ParseColor(const CStrW& Value, CColor &Output, float DefaultAlpha)
 {
 	// First, check our database in g_GUI for pre-defined colors
 	//  If we find anything, we'll ignore DefaultAlpha
@@ -109,7 +109,7 @@ bool GUI<int>::ParseColor(const CStr& Value, CColor &Output, float DefaultAlpha)
 
 
 template <>
-bool __ParseString<CColor>(const CStr& Value, CColor &Output)
+bool __ParseString<CColor>(const CStrW& Value, CColor &Output)
 {
 	// First, check our database in g_GUI for pre-defined colors
 	// If it fails, it won't do anything with Output
@@ -120,12 +120,12 @@ bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 }
 
 template <>
-bool __ParseString<CSize>(const CStr& Value, CSize &Output)
+bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
 {
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_$value_$value_"));
 
-	std::string str = Value;
+	std::string str = CStr(Value);
 
 	CParserLine line;
 	line.ParseString(parser, str);
@@ -158,12 +158,12 @@ bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 }
 
 template <>
-bool __ParseString<CPos>(const CStr& Value, CPos &Output)
+bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
 {
 	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_"));
 
 	CParserLine line;
-	line.ParseString(parser, Value);
+	line.ParseString(parser, CStr(Value));
 	if (!line.m_ParseOK)
 		return false;
 
@@ -180,15 +180,15 @@ bool __ParseString<CPos>(const CStr& Value, CPos &Output)
 }
 
 template <>
-bool __ParseString<EAlign>(const CStr& Value, EAlign &Output)
+bool __ParseString<EAlign>(const CStrW& Value, EAlign &Output)
 {
-	if (Value == "left")
+	if (Value == L"left")
 		Output = EAlign_Left;
 	else
-	if (Value == "center")
+	if (Value == L"center")
 		Output = EAlign_Center;
 	else
-	if (Value == "right")
+	if (Value == L"right")
 		Output = EAlign_Right;
 	else
 		return false;
@@ -197,15 +197,15 @@ bool __ParseString<EAlign>(const CStr& Value, EAlign &Output)
 }
 
 template <>
-bool __ParseString<EVAlign>(const CStr& Value, EVAlign &Output)
+bool __ParseString<EVAlign>(const CStrW& Value, EVAlign &Output)
 {
-	if (Value == "top")
+	if (Value == L"top")
 		Output = EVAlign_Top;
 	else
-	if (Value == "center")
+	if (Value == L"center")
 		Output = EVAlign_Center;
 	else
-	if (Value == "bottom")
+	if (Value == L"bottom")
 		Output = EVAlign_Bottom;
 	else
 		return false;
@@ -214,17 +214,16 @@ bool __ParseString<EVAlign>(const CStr& Value, EVAlign &Output)
 }
 
 template <>
-bool __ParseString<CGUIString>(const CStr& Value, CGUIString &Output)
+bool __ParseString<CGUIString>(const CStrW& Value, CGUIString &Output)
 {
-	// Translate the Value and retrieve the localised string in
-	//  Unicode.
+	// TODO: i18n: Might want to translate the Value perhaps
 
-	Output.SetValue(I18n::translate((CStrW)Value));
+	Output.SetValue(Value);
 	return true;
 }
 
 template <>
-bool __ParseString<CStr>(const CStr& Value, CStr&Output)
+bool __ParseString<CStr>(const CStrW& Value, CStr& Output)
 {
 	// Do very little.
 	Output = Value;
@@ -232,24 +231,23 @@ bool __ParseString<CStr>(const CStr& Value, CStr&Output)
 }
 
 template <>
-bool __ParseString<CStrW>(const CStr& Value, CStrW& Output)
+bool __ParseString<CStrW>(const CStrW& Value, CStrW& Output)
 {
-	// Translate the Value and retrieve the localised string in
-	//  Unicode.
+	// TODO: i18n: Might want to translate the Value perhaps
 
-	Output = I18n::translate((CStrW)Value);
+	Output = Value;
 	return true;
 }
 
 template <>
-bool __ParseString<CGUISpriteInstance>(const CStr& Value, CGUISpriteInstance &Output)
+bool __ParseString<CGUISpriteInstance>(const CStrW& Value, CGUISpriteInstance &Output)
 {
 	Output = Value;
 	return true;
 }
 
 template <>
-bool __ParseString<CGUIList>(const CStr& UNUSED(Value), CGUIList& UNUSED(Output))
+bool __ParseString<CGUIList>(const CStrW& UNUSED(Value), CGUIList& UNUSED(Output))
 {
 	return false;
 }

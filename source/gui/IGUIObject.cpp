@@ -254,7 +254,7 @@ bool IGUIObject::SettingExists(const CStr& Setting) const
 		GUI<type>::SetSetting(this, Setting, _Value, SkipMessage);	\
 	}
 
-PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage)
+PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage)
 {
 	if (!SettingExists(Setting))
 	{

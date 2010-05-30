@@ -1237,7 +1237,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			ManuallySetZ = true;
 
 		// Try setting the value
-		if (object->SetSetting(pFile->GetAttributeString(attr.Name), CStr(attr.Value), true) != PSRETURN_OK)
+		if (object->SetSetting(pFile->GetAttributeString(attr.Name), CStrW(attr.Value), true) != PSRETURN_OK)
 		{
 			LOGERROR(L"GUI: (object: %hs) Can't set \"%hs\" to \"%ls\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), CStrW(attr.Value).c_str());
 

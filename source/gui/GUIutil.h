@@ -52,7 +52,7 @@ class CClientArea;
 class CGUIString;
 
 template <typename T>
-bool __ParseString(const CStr& Value, T &tOutput);
+bool __ParseString(const CStrW& Value, T &tOutput);
 
 // Load Identity matrix and
 //  adapt (origio) to being in top left corner and down
@@ -231,12 +231,12 @@ public:
 	 *
 	 * @see __ParseString()
 	 */
-	static bool ParseString(const CStr& Value, T &tOutput)
+	static bool ParseString(const CStrW& Value, T &tOutput)
 	{
 		return __ParseString<T>(Value, tOutput);
 	}
 
-	static bool ParseColor(const CStr& Value, CColor &tOutput, float DefaultAlpha);
+	static bool ParseColor(const CStrW& Value, CColor &tOutput, float DefaultAlpha);
 
 private:
 

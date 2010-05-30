@@ -272,7 +272,7 @@ public:
 	 *
 	 * @return PSERROR (PSRETURN_OK if successful)
 	 */
-	PSRETURN SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage=false);
+	PSRETURN SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage=false);
 
 	/**
 	 * Retrieves the type of a named setting.

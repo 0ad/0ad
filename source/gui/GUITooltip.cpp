@@ -193,7 +193,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 		}
 
 		// Clear the caption
-		usedobj->SetSetting("caption", "");
+		usedobj->SetSetting("caption", L"");
 		usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
 
 

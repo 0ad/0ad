@@ -427,7 +427,10 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		{
 			if (JSVAL_IS_STRING(*vp))
 			{
-				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
+				std::wstring value;
+				StringConvert::jsstring_to_wstring(JS_ValueToString(cx, *vp), value);
+
+				if (e->SetSetting(propName, value) != PSRETURN_OK)
 				{
 					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
 					return JS_FALSE;
@@ -464,7 +467,10 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		{
 			if (JSVAL_IS_STRING(*vp))
 			{
-				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
+				std::wstring value;
+				StringConvert::jsstring_to_wstring(JS_ValueToString(cx, *vp), value);
+
+				if (e->SetSetting(propName, value) != PSRETURN_OK)
 				{
 					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
 					return JS_FALSE;
