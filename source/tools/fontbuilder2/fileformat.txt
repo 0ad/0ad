@@ -1,11 +1,13 @@
 Fonts consist of
   fontname.fnt
-  fontname.tga
+  fontname.png
 and you load fonts by just specifying the "path/fontname" part.
 
-The .tga is an 8-bit greyscale image, used for alpha-blending the text.
+The .png is an 8-bit greyscale image, used for alpha-blending the text.
 (DXTC allows 0.5 bytes/pixel at best, which isn't much better than
-TGA's 1 byte/pixel, and DXTC's lossiness is almost noticeable.)
+PNG's 1 byte/pixel, and DXTC's lossiness is almost noticeable,
+so we stick with lossless formats.)
+Or it's a 32-bit RGBA image, to allow more complex text styles.
 
 The .fnt file is something like:
 
@@ -18,7 +20,7 @@ The .fnt file is something like:
   32 0 0 10 10 12
   33 10 0 6 10 7
   3300 16 0 6 10 7
-  
+
 First line = version number of file, for slightly better error
 detection if people leave old ones hanging around.
 
@@ -41,5 +43,3 @@ Each subsequent line is
 x, y, width, height are in pixels on the texture.
 x/y offset are the position of the texture relative to the glyph's origin.
 advance is the number of pixels to move along for the next character.
-
-Currently no support for kerning.
