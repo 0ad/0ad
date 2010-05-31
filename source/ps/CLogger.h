@@ -73,12 +73,18 @@ public:
 	void LogMessage(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
 	void LogWarning(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
 	void LogError(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
+
+	// Render recent log messages onto the screen
+	void Render();
 	
 private:
 	void Init();
 
 	// -- This function has not been removed because the build would break.
 	void LogUsingMethod(ELogMethod method, const wchar_t* message);
+
+	// Delete old timed-out entries from the list of text to render
+	void CleanupRenderQueue();
 
 	// the output streams
 	std::wostream* m_MainLog;
@@ -97,6 +103,15 @@ private:
 	// Used to remember LogOnce messages
 	std::set<std::wstring> m_LoggedOnce;
 
+	// Used for Render()
+	struct RenderedMessage
+	{
+		ELogMethod method;
+		double time;
+		std::wstring message;
+	};
+	std::deque<RenderedMessage> m_RenderMessages;
+	double m_RenderLastEraseTime;
 };
 
 /**

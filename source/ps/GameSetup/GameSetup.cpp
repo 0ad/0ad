@@ -238,38 +238,35 @@ void Render()
 
 	ogl_WarnIfError();
 
-	PROFILE_START( "render fonts" );
-	MICROLOG(L"render fonts");
-	// overlay mode
+	// set up overlay mode
 	glPushAttrib(GL_ENABLE_BIT);
 	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_CULL_FACE);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
+
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
 	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
 
-
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
 
-	PROFILE_END( "render fonts" );
-
 	ogl_WarnIfError();
 
 	// Temp GUI message GeeTODO
-	MICROLOG(L"render GUI");
-	PROFILE_START( "render gui" );
+	PROFILE_START("render gui");
 	if(g_DoRenderGui) g_GUI->Draw();
-	PROFILE_END( "render gui" );
+	PROFILE_END("render gui");
 
 	ogl_WarnIfError();
 
 	// Particle Engine Updating
 	CParticleEngine::GetInstance()->UpdateEmitters();
+
+	ogl_WarnIfError();
 
 	// Text:
 
@@ -280,26 +277,25 @@ void Render()
 	glEnable(GL_TEXTURE_2D);
 	// -- GL
 
-	ogl_WarnIfError();
+	glLoadIdentity();
 
-	{
-		PROFILE( "render console" );
-		glLoadIdentity();
-
-		MICROLOG(L"render console");
-		CFont font(CONSOLE_FONT);
-		font.Bind();
-		g_Console->Render();
-	}
+	PROFILE_START("render console");
+	g_Console->Render();
+	PROFILE_END("render console");
 
 	ogl_WarnIfError();
 
+	PROFILE_START("render logger");
+	g_Logger->Render();
+	PROFILE_END("render logger");
+
+	ogl_WarnIfError();
 
 	// Profile information
 
-	PROFILE_START( "render profiling" );
+	PROFILE_START("render profiling");
 	g_ProfileViewer.RenderProfile();
-	PROFILE_END( "render profiling" );
+	PROFILE_END("render profiling");
 
 	ogl_WarnIfError();
 

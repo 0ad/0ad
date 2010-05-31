@@ -205,6 +205,13 @@ Handle unifont_load(const VfsPath& pathname, size_t flags)
 
 LibError unifont_unload(Handle& h)
 {
+	H_DEREF(h, UniFont, f);
+
+	// unbind ourself, so people will get errors if
+	// they draw more text without binding a new font
+	if (BoundGlyphs == f->glyphs)
+		BoundGlyphs = NULL;
+
 	return h_free(h, H_UniFont);
 }
 

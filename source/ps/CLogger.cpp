@@ -20,12 +20,22 @@
 #include "CLogger.h"
 #include "CConsole.h"
 #include "ConfigDB.h"
+#include "lib/ogl.h"
 #include "lib/path_util.h"
+#include "lib/timer.h"
 #include "lib/utf8.h"
+#include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/sysdep.h"
+#include "ps/Font.h"
 
 #include <ctime>
 #include <ostream>
+
+static const double RENDER_TIMEOUT = 5.0; // seconds before messages are deleted
+static const double RENDER_TIMEOUT_RATE = 10.0; // number of timed-out messages deleted per second
+static const size_t RENDER_LIMIT = 20; // maximum messages on screen at once
+
+extern int g_xres, g_yres;
 
 // Set up a default logger that throws everything away, because that's
 // better than crashing. (This is particularly useful for unit tests which
@@ -73,6 +83,10 @@ CLogger::CLogger(std::wostream* mainLog, std::wostream* interestingLog, bool tak
 	m_InterestingLog = interestingLog;
 	m_OwnsStreams = takeOwnership;
 	m_UseDebugPrintf = useDebugPrintf;
+
+	m_RenderLastEraseTime = -1.0;
+	// this is called too early to allow us to call timer_Time(),
+	// so we'll fill in the initial value later
 
 	Init();
 }
@@ -126,6 +140,9 @@ void CLogger::WriteMessage(const wchar_t* message)
 	*m_MainLog << L"<p>" << message << L"</p>\n";
 	m_MainLog->flush();
 	
+	// Don't do this since it results in too much noise:
+//	RenderedMessage r = { Normal, timer_Time(), message };
+//	m_RenderMessages.push_back(r);
 }
 
 void CLogger::WriteError(const wchar_t* message)
@@ -140,6 +157,9 @@ void CLogger::WriteError(const wchar_t* message)
 
 	*m_MainLog << L"<p class=\"error\">ERROR: "<< message << L"</p>\n";
 	m_MainLog->flush();
+
+	RenderedMessage r = { Error, timer_Time(), message };
+	m_RenderMessages.push_back(r);
 }
 
 void CLogger::WriteWarning(const wchar_t* message)
@@ -154,6 +174,9 @@ void CLogger::WriteWarning(const wchar_t* message)
 
 	*m_MainLog << L"<p class=\"warning\">WARNING: "<< message << L"</p>\n";
 	m_MainLog->flush();
+
+	RenderedMessage r = { Warning, timer_Time(), message };
+	m_RenderMessages.push_back(r);
 }
 
 // Sends the message to the appropriate piece of code
@@ -260,6 +283,81 @@ void CLogger::LogError(const wchar_t* fmt, ...)
 	WriteError(buffer);
 }
 
+void CLogger::Render()
+{
+	CleanupRenderQueue();
+
+	CFont font(L"mono-stroke-10");
+	int lineSpacing = font.GetLineSpacing();
+	font.Bind();
+
+	glPushMatrix();
+
+	glScalef(1.0f, -1.0f, 1.0f);
+	glTranslatef(4.0f, 4.0f + (float)lineSpacing - g_yres, 0.0f);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	for (std::deque<RenderedMessage>::iterator it = m_RenderMessages.begin(); it != m_RenderMessages.end(); ++it)
+	{
+		const wchar_t* type;
+		if (it->method == Normal)
+		{
+			type = L"info";
+			glColor3f(0.0f, 0.8f, 0.0f);
+		}
+		else if (it->method == Warning)
+		{
+			type = L"warning";
+			glColor3f(1.0f, 1.0f, 0.0f);
+		}
+		else
+		{
+			type = L"error";
+			glColor3f(1.0f, 0.0f, 0.0f);
+		}
+		glPushMatrix();
+
+		glwprintf(L"[%8.3f] %ls: ", it->time, type);
+		// Display the actual message in white so it's more readable
+		glColor3f(1.0f, 1.0f, 1.0f);
+		glwprintf(L"%ls", it->message.c_str());
+
+		glPopMatrix();
+		glTranslatef(0.f, (float)lineSpacing, 0.f);
+	}
+
+	glDisable(GL_BLEND);
+
+	glPopMatrix();
+}
+
+void CLogger::CleanupRenderQueue()
+{
+	if (m_RenderMessages.empty())
+		return;
+
+	double now = timer_Time();
+
+	// Initialise the timer on the first call (since we can't do it in the ctor)
+	if (m_RenderLastEraseTime == -1.0)
+		m_RenderLastEraseTime = now;
+
+	// Delete old messages, approximately at the given rate limit (and at most one per frame)
+	if (now - m_RenderLastEraseTime > 1.0/RENDER_TIMEOUT_RATE)
+	{
+		if (m_RenderMessages[0].time + RENDER_TIMEOUT < now)
+		{
+			m_RenderMessages.pop_front();
+			m_RenderLastEraseTime = now;
+		}
+	}
+
+	// If there's still too many then delete the oldest
+	if (m_RenderMessages.size() > RENDER_LIMIT)
+		m_RenderMessages.erase(m_RenderMessages.begin(), m_RenderMessages.end() - RENDER_LIMIT);
+}
 
 TestLogger::TestLogger()
 {

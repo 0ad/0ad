@@ -32,6 +32,7 @@
 #include "network/NetServer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Font.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Pyrogenesis.h"
@@ -193,6 +194,9 @@ void CConsole::Update(const float DeltaTime)
 void CConsole::Render()
 {
 	if (! (m_bVisible || m_bToggle) ) return;
+
+	CFont font(CONSOLE_FONT);
+	font.Bind();
 
 	// animation: slide in from top of screen
 	const float MaxY = m_fHeight;

@@ -101,16 +101,37 @@ void ErrorReporter(JSContext* UNUSED(cx), const char* message, JSErrorReport* re
 
 // Functions in the global namespace:
 
-JSBool print(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* UNUSED(rval))
+JSBool print(JSContext* cx, uintN argc, jsval* vp)
 {
 	for (uintN i = 0; i < argc; ++i)
 	{
 		std::string str;
-		if (!ScriptInterface::FromJSVal(cx, argv[i], str))
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[i], str))
 			return JS_FALSE;
 		printf("%s", str.c_str());
 	}
 	fflush(stdout);
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
+}
+
+JSBool warn(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+{
+	std::wstring str;
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+		return JS_FALSE;
+	LOGWARNING(L"%ls", str.c_str());
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
+}
+
+JSBool error(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+{
+	std::wstring str;
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+		return JS_FALSE;
+	LOGERROR(L"%ls", str.c_str());
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
 }
 
@@ -227,7 +248,9 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
 
-	JS_DefineFunction(m_cx, m_glob, "print", ::print, 0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "print", (JSNative)::print, 0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_glob, "warn",  (JSNative)::warn,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_glob, "error", (JSNative)::error, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()
