@@ -24,8 +24,6 @@
 #include "Filesystem.h"
 #include "scripting/ScriptingHost.h"
 
-#define LOG_CATEGORY L"config"
-
 typedef std::map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
 CStrW CConfigDB::m_ConfigFile[CFG_LAST];
@@ -278,16 +276,16 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		// Handle missing files quietly
 		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) < 0)
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].c_str());
+			LOGMESSAGE(L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].c_str());
 			return false;
 		}
 		else
 		{
-			LOG(CLogger::Normal, LOG_CATEGORY, L"Loading config file \"%ls\"", m_ConfigFile[ns].c_str());
+			LOGMESSAGE(L"Loading config file \"%ls\"", m_ConfigFile[ns].c_str());
 			LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 			if (ret != INFO::OK)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"vfs_load for \"%ls\" failed: return was %ld", m_ConfigFile[ns].c_str(), ret);
+				LOGERROR(L"CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %ld", m_ConfigFile[ns].c_str(), ret);
 				return false;
 			}
 		}
@@ -332,7 +330,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 				CConfigValue argument;
 				argument.m_String = value;
 				newMap[name].push_back( argument );
-				LOG(CLogger::Normal,  LOG_CATEGORY, L"Loaded config string \"%hs\" = \"%hs\"", name.c_str(), value.c_str());
+				LOGMESSAGE(L"Loaded config string \"%hs\" = \"%hs\"", name.c_str(), value.c_str());
 			}
 		}
 	}
@@ -365,7 +363,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path)
 	LibError ret = g_VFS->CreateFile(path, buf, len);
 	if(ret < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.c_str(), (int)ret);
+		LOGERROR(L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.c_str(), (int)ret);
 		return false;
 	}
 
