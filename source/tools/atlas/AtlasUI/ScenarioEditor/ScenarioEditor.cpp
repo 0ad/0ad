@@ -82,12 +82,12 @@ private:
 		int dir;
 		switch (evt.GetKeyCode())
 		{
-		case WXK_LEFT:  dir = eScrollConstantDir::LEFT; break;
-		case WXK_RIGHT: dir = eScrollConstantDir::RIGHT; break;
-		case WXK_UP:    dir = eScrollConstantDir::FORWARDS; break;
-		case WXK_DOWN:  dir = eScrollConstantDir::BACKWARDS; break;
-		case ']':       dir = eScrollConstantDir::CLOCKWISE; break;
-		case '[':       dir = eScrollConstantDir::ANTICLOCKWISE; break;
+		case 'A': case WXK_LEFT:  dir = eScrollConstantDir::LEFT; break;
+		case 'D': case WXK_RIGHT: dir = eScrollConstantDir::RIGHT; break;
+		case 'W': case WXK_UP:    dir = eScrollConstantDir::FORWARDS; break;
+		case 'S': case WXK_DOWN:  dir = eScrollConstantDir::BACKWARDS; break;
+		case 'E': case ']':       dir = eScrollConstantDir::CLOCKWISE; break;
+		case 'Q': case '[':       dir = eScrollConstantDir::ANTICLOCKWISE; break;
 		case WXK_SHIFT: case WXK_CONTROL: dir = -1; break;
 		default: return false;
 		}
@@ -180,6 +180,20 @@ private:
 		}
 	}
 
+	void OnKillFocus(wxFocusEvent& evt)
+	{
+		// Stop any scrolling, since otherwise we'll carry on forever if
+		// we lose focus and the KeyUp events go to a different window
+		POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::LEFT, 0.0f));
+		POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::RIGHT, 0.0f));
+		POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::FORWARDS, 0.0f));
+		POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::BACKWARDS, 0.0f));
+		POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::CLOCKWISE, 0.0f));
+		POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::ANTICLOCKWISE, 0.0f));
+
+		evt.Skip();
+	}
+
 	virtual void HandleMouseEvent(wxMouseEvent& evt)
 	{
 
@@ -263,6 +277,7 @@ BEGIN_EVENT_TABLE(GameCanvas, Canvas)
 	EVT_KEY_DOWN(GameCanvas::OnKeyDown)
 	EVT_KEY_UP(GameCanvas::OnKeyUp)
 	EVT_CHAR(GameCanvas::OnChar)
+	EVT_KILL_FOCUS(GameCanvas::OnKillFocus)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
