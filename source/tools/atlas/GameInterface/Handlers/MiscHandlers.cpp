@@ -181,7 +181,6 @@ MESSAGEHANDLER(GuiKeyEvent)
 {
 	SDL_Event_ ev = { { 0 } };
 	ev.ev.type = msg->pressed ? SDL_KEYDOWN : SDL_KEYUP;
-	ev.ev.key.state = msg->pressed ? SDL_PRESSED : SDL_RELEASED;
 	ev.ev.key.keysym.sym = (SDLKey)(int)msg->sdlkey;
 	ev.ev.key.keysym.unicode = msg->unichar;
 	in_dispatch_event(&ev);
@@ -195,13 +194,11 @@ MESSAGEHANDLER(GuiCharEvent)
 
 	SDL_Event_ ev = { { 0 } };
 	ev.ev.type = SDL_KEYDOWN;
-	ev.ev.key.state = SDL_PRESSED;
 	ev.ev.key.keysym.sym = (SDLKey)(int)msg->sdlkey;
 	ev.ev.key.keysym.unicode = msg->unichar;
 	in_dispatch_event(&ev);
 
 	ev.ev.type = SDL_KEYUP;
-	ev.ev.key.state = SDL_RELEASED;
 	in_dispatch_event(&ev);
 }
 
