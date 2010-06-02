@@ -28,6 +28,7 @@
 
 #include "InputProcessor.h"
 
+#include "gui/GUIManager.h"
 #include "lib/app_hooks.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/timer.h"
@@ -227,6 +228,14 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		// Do per-frame processing:
 
 		ReloadChangedFiles();
+
+		// Pump SDL events (e.g. hotkeys)
+		SDL_Event_ ev;
+		while (SDL_PollEvent(&ev.ev))
+			in_dispatch_event(&ev);
+
+		if (g_GUI)
+			g_GUI->TickObjects();
 
 		state.view->Update(state.frameLength);
 

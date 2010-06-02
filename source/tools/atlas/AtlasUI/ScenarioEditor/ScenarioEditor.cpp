@@ -39,6 +39,8 @@
 
 #include "AtlasScript/ScriptInterface.h"
 
+#include "Misc/KeyMap.h"
+
 #include "Tools/Common/Tools.h"
 #include "Tools/Common/Brushes.h"
 #include "Tools/Common/MiscState.h"
@@ -100,13 +102,13 @@ private:
 			if (wxGetKeyState(WXK_DOWN))       POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::BACKWARDS, speed));
 			if (wxGetKeyState((wxKeyCode)']')) POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::CLOCKWISE, speed));
 			if (wxGetKeyState((wxKeyCode)'[')) POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::ANTICLOCKWISE, speed));
+			return false;
 		}
 		else
 		{
 			POST_MESSAGE(ScrollConstant, (eRenderView::GAME, dir, enable ? speed : 0.0f));
+			return true;
 		}
-
-		return true;
 	}
 
 	void OnKeyDown(wxKeyEvent& evt)
@@ -121,6 +123,10 @@ private:
 		if (KeyScroll(evt, true))
 			return;
 
+		// Slight hack: Only pass 'special' keys; normal keys will generate a translated Char event instead
+		if (evt.GetKeyCode() >= 256)
+			POST_MESSAGE(GuiKeyEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey(), true));
+
 		evt.Skip();
 	}
 
@@ -131,6 +137,10 @@ private:
 
 		if (KeyScroll(evt, false))
 			return;
+
+		// Slight hack: Only pass 'special' keys; normal keys will generate a translated Char event instead
+		if (evt.GetKeyCode() >= 256)
+			POST_MESSAGE(GuiKeyEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey(), false));
 
 		evt.Skip();
 	}
@@ -159,13 +169,15 @@ private:
 
 		if (dir)
 		{
-			float speed = 16.f;
-			if (wxGetKeyState(WXK_SHIFT))
-				speed *= 4.f;
+			float speed = 16.f * ScenarioEditor::GetSpeedModifier();
 			POST_MESSAGE(SmoothZoom, (eRenderView::GAME, speed*dir));
 		}
 		else
+		{
+			POST_MESSAGE(GuiCharEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey()));
+
 			evt.Skip();
+		}
 	}
 
 	virtual void HandleMouseEvent(wxMouseEvent& evt)
@@ -230,6 +242,13 @@ private:
 				}
 			}
 		}
+
+		if (evt.ButtonDown())
+			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), true, evt.GetPosition()));
+		else if (evt.ButtonUp())
+			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), false, evt.GetPosition()));
+		else if (evt.GetEventType() == wxEVT_MOTION)
+			POST_MESSAGE(GuiMouseMotionEvent, (evt.GetPosition()));
 	}
 
 	enum { NONE, SCROLL, ROTATEAROUND };
@@ -345,7 +364,16 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	SetOpenFilename(_T(""));
 
-	SetIcon(wxIcon(_T("ICON_ScenarioEditor")));
+#if defined(__WXMSW__)
+	SetIcon(wxIcon(_T("ICON_ScenarioEditor"))); // load from atlas.rc
+#else
+	{
+		const wxString relativePath (_T("tools/atlas/icons/ScenarioEditor.ico"));
+		wxFileName filename (relativePath, wxPATH_UNIX);
+		filename.MakeAbsolute(Datafile::GetDataDirectory());
+		SetIcon(wxIcon(filename.GetFullPath()));
+	}
+#endif
 
 	wxToolTip::Enable(true);
 

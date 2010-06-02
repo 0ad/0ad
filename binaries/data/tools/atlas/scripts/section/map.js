@@ -6,7 +6,10 @@ function setupSimTest(window)
 	function play(newSpeed)
 	{
 		if (state == 'inactive')
+		{
 			Atlas.Message.SimStateSave('default');
+			Atlas.Message.GuiSwitchPage('page_session_new.xml');
+		}
 		Atlas.Message.SimPlay(newSpeed);
 		state = 'playing';
 		speed = newSpeed;
@@ -15,8 +18,12 @@ function setupSimTest(window)
 
 	function reset()
 	{
+		if (state == 'playing')
+		{
+			Atlas.Message.SimStateRestore('default');
+			Atlas.Message.GuiSwitchPage('page_atlas.xml');
+		}
 		Atlas.Message.SimPlay(0);
-		Atlas.Message.SimStateRestore('default');
 		state = 'inactive';
 		speed = 0;
 		updateEnableStatus();

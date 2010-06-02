@@ -338,11 +338,6 @@ static void MainControllerInit()
 {
 	// add additional input handlers only needed by this controller:
 
-	// gui_handler needs to be registered after (i.e. called before!) the
-	// hotkey handler so that input boxes can be typed in without
-	// setting off hotkeys.
-	in_add_handler(gui_handler);
-
 	// must be registered after gui_handler. Should mayhap even be last.
 	in_add_handler(MainInputHandler);
 }

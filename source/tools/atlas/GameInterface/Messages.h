@@ -65,6 +65,33 @@ MESSAGE(JavaScript,
 
 //////////////////////////////////////////////////////////////////////////
 
+MESSAGE(GuiSwitchPage,
+		((std::wstring, page))
+		);
+
+MESSAGE(GuiMouseButtonEvent,
+		((int, button))
+		((bool, pressed))
+		((Position, pos))
+		);
+
+MESSAGE(GuiMouseMotionEvent,
+		((Position, pos))
+		);
+
+MESSAGE(GuiKeyEvent,
+		((int, sdlkey)) // SDLKey code
+		((int, unichar)) // Unicode character
+		((bool, pressed))
+		);
+
+MESSAGE(GuiCharEvent,
+		((int, sdlkey))
+		((int, unichar))
+		);
+
+//////////////////////////////////////////////////////////////////////////
+
 MESSAGE(SimStateSave,
 		((std::wstring, label)) // named slot to store saved data
 		);

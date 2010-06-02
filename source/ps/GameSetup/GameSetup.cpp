@@ -442,17 +442,6 @@ static void InitVfs(const CmdLineArgs& args)
 
 static void InitPs(bool setup_gui, const CStrW& gui_page)
 {
-	if (!setup_gui)
-	{
-		// We do actually need *some* kind of GUI loaded, so use the
-		// (currently empty) Atlas one
-		g_GUI->SwitchPage(L"page_atlas.xml", JSVAL_VOID);
-		return;
-	}
-
-	// The things here aren't strictly GUI, but they're unnecessary when in Atlas
-	// because the game doesn't draw any text or handle keys or anything
-
 	{
 		// console
 		TIMER(L"ps_console");
@@ -477,6 +466,14 @@ static void InitPs(bool setup_gui, const CStrW& gui_page)
 		I18n::LoadLanguage(lang.c_str());
 
 		LoadHotkeys();
+	}
+
+	if (!setup_gui)
+	{
+		// We do actually need *some* kind of GUI loaded, so use the
+		// (currently empty) Atlas one
+		g_GUI->SwitchPage(L"page_atlas.xml", JSVAL_VOID);
+		return;
 	}
 
 	// GUI uses VFS, so this must come after VFS init.
@@ -520,6 +517,11 @@ static void InitInput()
 	in_add_handler(HotkeyInputHandler);
 
 	in_add_handler(GlobalsInputHandler);
+
+	// gui_handler needs to be registered after (i.e. called before!) the
+	// hotkey handler so that input boxes can be typed in without
+	// setting off hotkeys.
+	in_add_handler(gui_handler);
 }
 
 

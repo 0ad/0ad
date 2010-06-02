@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,17 +20,19 @@
 #include "MessageHandler.h"
 #include "../MessagePasserImpl.h"
 
-#include "ps/GameSetup/Config.h"
-#include "ps/Util.h"
-
-#include "ps/Game.h"
-#include "graphics/GameView.h"
-#include "graphics/CinemaTrack.h"
-#include "lib/sysdep/cpu.h"
-#include "renderer/Renderer.h"
-#include "ps/GameSetup/GameSetup.h"
 #include "../GameLoop.h"
 #include "../View.h"
+#include "graphics/CinemaTrack.h"
+#include "graphics/GameView.h"
+#include "gui/GUIManager.h"
+#include "lib/external_libraries/sdl.h"
+#include "lib/sysdep/cpu.h"
+#include "maths/MathUtil.h"
+#include "ps/Game.h"
+#include "ps/Util.h"
+#include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/GameSetup.h"
+#include "renderer/Renderer.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
 
@@ -146,5 +148,61 @@ MESSAGEHANDLER(JavaScript)
 	g_ScriptingHost.ExecuteScript(*msg->command, L"Atlas");
 }
 
+MESSAGEHANDLER(GuiSwitchPage)
+{
+	g_GUI->SwitchPage(*msg->page, CScriptVal());
+}
+
+MESSAGEHANDLER(GuiMouseButtonEvent)
+{
+	SDL_Event_ ev = { { 0 } };
+	ev.ev.type = msg->pressed ? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
+	ev.ev.button.button = msg->button;
+	ev.ev.button.state = msg->pressed ? SDL_PRESSED : SDL_RELEASED;
+	float x, y;
+	msg->pos->GetScreenSpace(x, y);
+	ev.ev.button.x = (u16)clamp((int)x, 0, g_xres);
+	ev.ev.button.y = (u16)clamp((int)y, 0, g_yres);
+	in_dispatch_event(&ev);
+}
+
+MESSAGEHANDLER(GuiMouseMotionEvent)
+{
+	SDL_Event_ ev = { { 0 } };
+	ev.ev.type = SDL_MOUSEMOTION;
+	float x, y;
+	msg->pos->GetScreenSpace(x, y);
+	ev.ev.motion.x = (u16)clamp((int)x, 0, g_xres);
+	ev.ev.motion.y = (u16)clamp((int)y, 0, g_yres);
+	in_dispatch_event(&ev);
+}
+
+MESSAGEHANDLER(GuiKeyEvent)
+{
+	SDL_Event_ ev = { { 0 } };
+	ev.ev.type = msg->pressed ? SDL_KEYDOWN : SDL_KEYUP;
+	ev.ev.key.state = msg->pressed ? SDL_PRESSED : SDL_RELEASED;
+	ev.ev.key.keysym.sym = (SDLKey)(int)msg->sdlkey;
+	ev.ev.key.keysym.unicode = msg->unichar;
+	in_dispatch_event(&ev);
+}
+
+MESSAGEHANDLER(GuiCharEvent)
+{
+	// wxWidgets has special Char events but SDL doesn't, so convert it to
+	// a keydown+keyup sequence. (We do the conversion here instead of on
+	// the wx side to avoid nondeterministic behaviour caused by async messaging.)
+
+	SDL_Event_ ev = { { 0 } };
+	ev.ev.type = SDL_KEYDOWN;
+	ev.ev.key.state = SDL_PRESSED;
+	ev.ev.key.keysym.sym = (SDLKey)(int)msg->sdlkey;
+	ev.ev.key.keysym.unicode = msg->unichar;
+	in_dispatch_event(&ev);
+
+	ev.ev.type = SDL_KEYUP;
+	ev.ev.key.state = SDL_RELEASED;
+	in_dispatch_event(&ev);
+}
 
 }
