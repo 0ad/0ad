@@ -159,6 +159,10 @@ bool CVideoMode::ResizeWindow(int w, int h)
 	if (m_IsFullscreen)
 		return true;
 
+	// Ignore if the size hasn't changed
+	if (w == m_WindowedW && h == m_WindowedH)
+		return true;
+
 	int bpp = GetBestBPP();
 
 	if (!SetVideoMode(w, h, bpp, false))

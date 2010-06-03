@@ -830,14 +830,15 @@ function setup_atlas_packages()
 		"Misc"
 	},{	-- extern_libs
 		"boost",
+		"comsuppw",
 		"devil",
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
 		"libxml2",
+		"sdl",	-- key definitions
 		"spidermonkey",
 		"wxwidgets",
-		"comsuppw",
-		"zlib",
 		"x11",
+		"zlib",
 	},{	-- extra_params
 		pch = (not has_broken_pch),
 		extra_links = atlas_extra_links,

@@ -203,10 +203,11 @@ static inline void video_enter_game_mode()
 	ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 }
 
-static inline void video_leave_game_mode()
+static inline void video_leave_game_mode(bool hide = true)
 {
 	ChangeDisplaySettings(0, 0);
-	ShowWindow(g_hWnd, SW_MINIMIZE);
+	if(hide)
+		ShowWindow(g_hWnd, SW_MINIMIZE);
 }
 
 
@@ -218,6 +219,27 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 	return 0;
 }
 
+static void compute_window_style_and_size(bool fullscreen, DWORD* windowStyle, int* w, int* h)
+{
+	*windowStyle = fullscreen? WS_POPUP : WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX;
+	*windowStyle |= WS_VISIBLE;
+	*windowStyle |= WS_CLIPCHILDREN|WS_CLIPSIBLINGS;	// MSDN SetPixelFormat says this is required
+
+	// support resizing of windows
+	if(!fullscreen)
+		*windowStyle |= WS_SIZEBOX|WS_MAXIMIZEBOX;
+
+	// Calculate the size of the outer window, so that the client area has
+	// the desired dimensions.
+	RECT r;
+	r.left = r.top = 0;
+	r.right = *w; r.bottom = *h;
+	if (AdjustWindowRectEx(&r, *windowStyle, FALSE, 0))
+	{
+		*w = r.right - r.left;
+		*h = r.bottom - r.top;
+	}
+}
 
 static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -244,20 +266,8 @@ static HWND wsdl_CreateWindow(int w, int h)
 		return 0;
 	}
 
-	DWORD windowStyle = fullscreen? WS_POPUP : WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX;
-	windowStyle |= WS_VISIBLE;
-	windowStyle |= WS_CLIPCHILDREN|WS_CLIPSIBLINGS;	// MSDN SetPixelFormat says this is required
-
-	// Calculate the size of the outer window, so that the client area has
-	// the desired dimensions.
-	RECT r;
-	r.left = r.top = 0;
-	r.right = w; r.bottom = h;
-	if (AdjustWindowRectEx(&r, windowStyle, FALSE, 0))
-	{
-		w = r.right - r.left;
-		h = r.bottom - r.top;
-	}
+	DWORD windowStyle;
+	compute_window_style_and_size(fullscreen, &windowStyle, &w, &h);
 
 	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
 	return CreateWindowExW(WS_EX_APPWINDOW, (LPCWSTR)(uintptr_t)class_atom, L"wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
@@ -330,20 +340,51 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	}
 	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
 
-	g_hWnd = wsdl_CreateWindow(w, h);
-	if(!wutil_IsValidHandle(g_hWnd))
-		return 0;
+	if(g_hWnd == (HWND)INVALID_HANDLE_VALUE)
+	{
+		g_hWnd = wsdl_CreateWindow(w, h);
+		if(!wutil_IsValidHandle(g_hWnd))
+			return 0;
 
-	g_hDC = GetDC(g_hWnd);
+		g_hDC = GetDC(g_hWnd);
 
-	SetPixelFormat(g_hDC, bpp);
+		SetPixelFormat(g_hDC, bpp);
 
-	hGLRC = wglCreateContext(g_hDC);
-	if(!hGLRC)
-		return 0;
+		hGLRC = wglCreateContext(g_hDC);
+		if(!hGLRC)
+			return 0;
 
-	if(!wglMakeCurrent(g_hDC, hGLRC))
-		return 0;
+		if(!wglMakeCurrent(g_hDC, hGLRC))
+			return 0;
+	}
+	else
+	{
+		// update the existing window
+
+		DWORD oldWindowStyle = GetWindowLongW(g_hWnd, GWL_STYLE);
+
+		DWORD windowStyle;
+		compute_window_style_and_size(fullscreen, &windowStyle, &w, &h);
+
+		UINT flags = SWP_FRAMECHANGED|SWP_NOZORDER|SWP_NOACTIVATE;
+
+		if(!fullscreen)
+		{
+			// preserve the top-left corner if windowed
+			flags |= SWP_NOMOVE;
+
+			// preserve maximisedness, else we'll mess up when the user attempts to maximise the window
+			windowStyle |= (oldWindowStyle & WS_MAXIMIZE);
+		}
+
+		WARN_IF_FALSE(SetWindowLongW(g_hWnd, GWL_STYLE, windowStyle));
+		WARN_IF_FALSE(SetWindowPos(g_hWnd, 0, 0, 0, w, h, flags));
+
+		if(fullscreen)
+			video_enter_game_mode();
+		else
+			video_leave_game_mode(false);
+	}
 
 	return 1;
 }
@@ -957,6 +998,30 @@ int SDL_ShowCursor(int toggle)
 
 
 //----------------------------------------------------------------------------
+// resizing
+
+static void queue_resize_event(int w, int h)
+{
+	SDL_Event ev;
+	ev.type = SDL_VIDEORESIZE;
+	ev.resize.w = w;
+	ev.resize.h = h;
+	queue_event(ev);
+}
+
+static LRESULT OnPosChanged(HWND hWnd, PWINDOWPOS pos)
+{
+	RECT client_rect;
+	WARN_IF_FALSE(GetClientRect(hWnd, &client_rect));
+
+	queue_resize_event(client_rect.right, client_rect.bottom);
+	// top, left are documented to always be 0
+
+	return 0;
+}
+
+
+//----------------------------------------------------------------------------
 
 static LRESULT OnDestroy(HWND hWnd)
 {
@@ -1040,6 +1105,9 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	case WM_MBUTTONDOWN:
 	case WM_MBUTTONUP:
 		return OnMouseButton(hWnd, uMsg, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (UINT)wParam);
+
+	case WM_WINDOWPOSCHANGED:
+		return OnPosChanged(hWnd, (PWINDOWPOS)lParam);
 
 	default:
 		// can't call DefWindowProc here: some messages

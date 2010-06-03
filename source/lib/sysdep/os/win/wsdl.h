@@ -62,6 +62,7 @@ extern int SDL_GL_SetAttribute(SDL_GLattr attr, int value);
 // SDL_SetVideoMode() flags
 #define SDL_OPENGL 0
 #define SDL_FULLSCREEN 1
+#define SDL_RESIZABLE 2
 
 extern int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags);
 
@@ -214,6 +215,14 @@ SDL_ActiveEvent;
 typedef struct
 {
 	Uint8 type;
+	int w;
+	int h;
+}
+SDL_ResizeEvent;
+
+typedef struct
+{
+	Uint8 type;
 	int code;
 	void* data1;
 }
@@ -228,6 +237,7 @@ enum SDL_Event_type
 	SDL_MOUSEBUTTONUP,
 	SDL_ACTIVEEVENT,
 	SDL_QUIT,
+	SDL_VIDEORESIZE,
 	SDL_USEREVENT
 };
 
@@ -238,6 +248,7 @@ typedef union
 	SDL_MouseMotionEvent motion;
 	SDL_MouseButtonEvent button;
 	SDL_ActiveEvent active;
+	SDL_ResizeEvent resize;
 	SDL_UserEvent user;
 }
 SDL_Event;

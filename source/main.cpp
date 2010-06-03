@@ -72,6 +72,13 @@ extern bool g_GameRestarted;
 
 void kill_mainloop();
 
+// to avoid redundant and/or recursive resizing, we save the new
+// size after VIDEORESIZE messages and only update the video mode
+// once per frame.
+// these values are the latest resize message, and reset to 0 once we've
+// updated the video mode
+static int g_ResizedW;
+static int g_ResizedH;
 
 // main app message handler
 static InReaction MainInputHandler(const SDL_Event_* ev)
@@ -83,7 +90,8 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		break;
 
 	case SDL_VIDEORESIZE:
-		g_VideoMode.ResizeWindow(ev->ev.resize.w, ev->ev.resize.h);
+		g_ResizedW = ev->ev.resize.w;
+		g_ResizedH = ev->ev.resize.h;
 		break;
 
 	case SDL_HOTKEYDOWN:
@@ -265,6 +273,13 @@ static void Frame()
 	MICROLOG(L"input");
 	PumpEvents();
 	PROFILE_END("input");
+
+	// respond to pumped resize events
+	if (g_ResizedW || g_ResizedH)
+	{
+		g_VideoMode.ResizeWindow(g_ResizedW, g_ResizedH);
+		g_ResizedW = g_ResizedH = 0;
+	}
 
 	PROFILE_START("network poll");
 	if (g_NetServer)
