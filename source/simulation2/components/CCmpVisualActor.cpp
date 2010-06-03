@@ -47,6 +47,7 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(VisualActor)
 
+	std::wstring m_ActorName;
 	CUnit* m_Unit;
 
 	// Current animation state
@@ -54,6 +55,9 @@ public:
 	bool m_AnimOnce;
 	float m_AnimSpeed;
 	std::wstring m_SoundGroup;
+	float m_AnimDesync;
+
+	float m_AnimSyncRepeatTime; // 0.0 if not synced
 
 	CCmpVisualActor() :
 		m_Unit(NULL)
@@ -93,23 +97,22 @@ public:
 
 		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
 		// but for now we'll just use the foundation actor and ignore the normal one
-		std::wstring name;
 		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
-			name = paramNode.GetChild("FoundationActor").ToString();
+			m_ActorName = paramNode.GetChild("FoundationActor").ToString();
 		else
-			name = paramNode.GetChild("Actor").ToString();
+			m_ActorName = paramNode.GetChild("Actor").ToString();
 
 		std::set<CStr> selections;
-		m_Unit = context.GetUnitManager().CreateUnit(name, NULL, selections);
+		m_Unit = context.GetUnitManager().CreateUnit(m_ActorName, NULL, selections);
 		if (!m_Unit)
 		{
 			// The error will have already been logged
 			return;
 		}
 
-		SelectAnimation("idle", false, 0.f, L"");
+		m_Unit->SetID(GetEntityId());
 
-		m_Unit->SetID(GetEntityId()); // TODO: is it safe to be using entity IDs for unit IDs?
+		SelectAnimation("idle", false, 0.f, L"");
 	}
 
 	virtual void Deinit(const CSimContext& context)
@@ -127,10 +130,7 @@ public:
 
 		if (serialize.IsDebug())
 		{
-			if (m_Unit == NULL)
-				serialize.StringASCII("actor", "[none]", 0, 256);
-			else
-				serialize.String("actor", m_Unit->GetObject().m_Base->m_Name, 0, 256);
+			serialize.String("actor", m_ActorName, 0, 256);
 		}
 
 		// TODO: store random variation. This ought to be synchronised across saved games
@@ -170,7 +170,7 @@ public:
 		{
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 			if (m_Unit)
-				m_Unit->SetPlayerID(msgData.to);
+				m_Unit->GetModel().SetPlayerID(msgData.to);
 			break;
 		}
 		}
@@ -190,11 +190,11 @@ public:
 		return m_Unit->GetModel().GetTransform().GetTranslation();
 	}
 
-	virtual std::wstring GetActor()
+	virtual std::wstring GetActorShortName()
 	{
 		if (!m_Unit)
 			return L"";
-		return m_Unit->GetObject().m_Base->m_Name;
+		return m_Unit->GetObject().m_Base->m_ShortName;
 	}
 
 	virtual std::wstring GetProjectileActor()
@@ -212,14 +212,14 @@ public:
 		if (!isfinite(speed) || speed < 0) // JS 'undefined' converts to NaN, which causes Bad Things
 			speed = 1.f;
 
-		float desync = 0.05f; // TODO: make this an argument
-
 		m_AnimName = name;
 		m_AnimOnce = once;
 		m_AnimSpeed = speed;
 		m_SoundGroup = soundgroup;
+		m_AnimDesync = 0.05f; // TODO: make this an argument
+		m_AnimSyncRepeatTime = 0.0f;
 
-		m_Unit->SetAnimationState(name, once, speed, desync, false, soundgroup.c_str());
+		m_Unit->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
 	}
 
 	virtual void SetAnimationSync(float actiontime, float repeattime)
@@ -227,7 +227,9 @@ public:
 		if (!m_Unit)
 			return;
 
-		m_Unit->SetAnimationSync(actiontime, repeattime);
+		m_AnimSyncRepeatTime = repeattime;
+
+		m_Unit->SetAnimationSync(actiontime, m_AnimSyncRepeatTime);
 	}
 
 	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a)
@@ -236,6 +238,41 @@ public:
 			return;
 
 		m_Unit->GetModel().SetShadingColor(CColor(r.ToFloat(), g.ToFloat(), b.ToFloat(), a.ToFloat()));
+	}
+
+	virtual void Hotload(const std::wstring& name)
+	{
+		if (!m_Unit)
+			return;
+
+		if (name != m_ActorName)
+			return;
+
+		std::set<CStr> selections;
+		CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, NULL, selections);
+
+		if (!newUnit)
+			return;
+
+		// Save some data from the old unit
+		CColor shading = m_Unit->GetModel().GetShadingColor();
+		size_t playerID = m_Unit->GetModel().GetPlayerID();
+
+		// Replace with the new unit
+		GetSimContext().GetUnitManager().DeleteUnit(m_Unit);
+		m_Unit = newUnit;
+
+		m_Unit->SetID(GetEntityId());
+
+		m_Unit->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
+
+		// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
+		if (m_AnimSyncRepeatTime != 0.0f)
+			m_Unit->SetAnimationSync(0.0f, m_AnimSyncRepeatTime);
+
+		m_Unit->GetModel().SetShadingColor(shading);
+
+		m_Unit->GetModel().SetPlayerID(playerID);
 	}
 
 private:

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,18 +39,11 @@ CObjectBase::CObjectBase(CObjectManager& objectManager)
 	m_Properties.m_FloatOnWater = false;
 }
 
-bool CObjectBase::Load(const std::wstring& filename)
+bool CObjectBase::Load(const VfsPath& pathname)
 {
-	m_VariantGroups.clear();
-
-	VfsPath pathname(VfsPath(L"art/actors/")/filename);
-
 	CXeromyces XeroFile;
 	if (XeroFile.Load(pathname) != PSRETURN_OK)
 		return false;
-
-	m_Name = filename;
-	m_ShortName = fs::basename(pathname);
 
 	// Define all the elements used in the XML file
 	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
@@ -86,6 +79,12 @@ bool CObjectBase::Load(const std::wstring& filename)
 		LOG(CLogger::Error, LOG_CATEGORY, L"Invalid actor format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
+
+
+	m_VariantGroups.clear();
+
+	m_Pathname = pathname;
+	m_ShortName = fs::basename(pathname);
 
 
 	// Set up the vector<vector<T>> m_Variants to contain the right number
@@ -206,7 +205,7 @@ bool CObjectBase::Load(const std::wstring& filename)
 
 			if (currentGroup->size() == 0)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"Actor group has zero variants ('%ls')", filename.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, L"Actor group has zero variants ('%ls')", pathname.string().c_str());
 			}
 
 			++currentGroup;
@@ -226,6 +225,11 @@ bool CObjectBase::Load(const std::wstring& filename)
 	}
 
 	return true;
+}
+
+bool CObjectBase::Reload()
+{
+	return Load(m_Pathname);
 }
 
 std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStr> >& selections)

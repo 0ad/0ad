@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,10 +22,11 @@
 #include "graphics/ObjectBase.h"
 #include "graphics/ObjectEntry.h"
 #include "ps/CLogger.h"
+#include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/Filesystem.h"
-
-#define LOG_CATEGORY L"graphics"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpVisual.h"
 
 template<typename T, typename S>
 static void delete_pair_2nd(std::pair<T,S> v)
@@ -51,14 +52,22 @@ bool CObjectManager::ObjectKey::operator< (const CObjectManager::ObjectKey& a) c
 		return ActorVariation < a.ActorVariation;
 }
 
-CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& skeletonAnimManager)
-: m_MeshManager(meshManager), m_SkeletonAnimManager(skeletonAnimManager)
+static LibError ReloadChangedFileCB(void* param, const VfsPath& path)
 {
+	return static_cast<CObjectManager*>(param)->ReloadChangedFile(path);
+}
+
+CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& skeletonAnimManager, CSimulation2& simulation)
+: m_MeshManager(meshManager), m_SkeletonAnimManager(skeletonAnimManager), m_Simulation(simulation)
+{
+	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
 CObjectManager::~CObjectManager()
 {
 	UnloadObjects();
+
+	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
 
@@ -76,7 +85,9 @@ CObjectBase* CObjectManager::FindObjectBase(const wchar_t* objectname)
 
 	CObjectBase* obj = new CObjectBase(*this);
 
-	if (obj->Load(objectname))
+	VfsPath pathname(VfsPath(L"art/actors/")/objectname);
+
+	if (obj->Load(pathname))
 	{
 		m_ObjectBases[objectname] = obj;
 		return obj;
@@ -84,7 +95,7 @@ CObjectBase* CObjectManager::FindObjectBase(const wchar_t* objectname)
 	else
 		delete obj;
 
-	LOG(CLogger::Error, LOG_CATEGORY, L"CObjectManager::FindObjectBase(): Cannot find object '%ls'", objectname);
+	LOGERROR(L"CObjectManager::FindObjectBase(): Cannot find object '%ls'", objectname);
 
 	return 0;
 }
@@ -107,12 +118,12 @@ CObjectEntry* CObjectManager::FindObjectVariation(const wchar_t* objname, const 
 
 CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections)
 {
-	PROFILE( "object variation loading" );
+	PROFILE("object variation loading");
 
 	// Look to see whether this particular variation has already been loaded
 
 	std::vector<u8> choices = base->CalculateVariationKey(selections);
-	ObjectKey key (base->m_Name, choices);
+	ObjectKey key (base->m_Pathname.string(), choices);
 
 	std::map<ObjectKey, CObjectEntry*>::iterator it = m_Objects.find(key);
 	if (it != m_Objects.end())
@@ -165,22 +176,23 @@ void CObjectManager::UnloadObjects()
 	m_ObjectBases.clear();
 }
 
-
-
-static LibError GetObjectName_ThunkCb(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), uintptr_t cbData)
+LibError CObjectManager::ReloadChangedFile(const VfsPath& path)
 {
-	std::vector<CStr>* names = (std::vector<CStr>*)cbData;
-	CStr name(pathname.string());
-	names->push_back(name.AfterFirst("actors/"));
-	return INFO::CB_CONTINUE;
-}
+	for (std::map<CStrW, CObjectBase*>::iterator it = m_ObjectBases.begin(); it != m_ObjectBases.end(); ++it)
+	{
+		if (it->second->m_Pathname == path)
+		{
+			it->second->Reload();
 
-void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
-{
-	(void)fs_util::ForEachFile(g_VFS, L"art/actors/", GetObjectName_ThunkCb, (uintptr_t)&names, L"*.xml", fs_util::DIR_RECURSIVE);
-}
+			// Slightly ugly hack: The graphics system doesn't preserve enough information to regenerate the
+			// object with all correct variations, and we don't want to waste space storing it just for the
+			// rare occurrence of hotloading, so we'll tell the component (which does preserve the information)
+			// to do the reloading itself
+			const std::map<entity_id_t, IComponent*>& cmps = m_Simulation.GetEntitiesWithInterface(IID_Visual);
+			for (std::map<entity_id_t, IComponent*>::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
+				static_cast<ICmpVisual*>(eit->second)->Hotload(it->first);
+		}
+	}
 
-void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
-{
-	(void)fs_util::ForEachFile(g_VFS, L"art/actors/props/", GetObjectName_ThunkCb, (uintptr_t)&names, L"*.xml", fs_util::DIR_RECURSIVE);
+	return INFO::OK;
 }

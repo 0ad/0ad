@@ -103,10 +103,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 
 	// delete all remaining non-entity units
 	if (pUnitMan)
-	{
 		pUnitMan->DeleteAll();
-		pUnitMan->SetNextID(0);
-	}
 
 	// unpack the data
 	if (!only_xml)
@@ -967,26 +964,6 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 {
 	XMBElementList entities = parent.GetChildNodes();
-
-	// If this is the first time in ReadOldEntities, find the next free ID number
-	// in case we need to allocate new ones in the future
-	if (entity_idx == 0)
-	{
-		int maxUnitID = -1;
-
-		XERO_ITER_EL(parent, entity)
-		{
-			debug_assert(entity.GetNodeName() == el_entity);
-
-			XMBAttributeList attrs = entity.GetAttributes();
-			utf16string uid = attrs.GetNamedItem(at_uid);
-			int unitId = uid.empty() ? -1 : CStr(uid).ToInt();
-			maxUnitID = std::max(maxUnitID, unitId);
-		}
-
-		if (m_MapReader.pUnitMan)
-			m_MapReader.pUnitMan->SetNextID(maxUnitID + 1);
-	}
 
 	while (entity_idx < entities.Count)
 	{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,22 +20,29 @@
 
 #include "gui/GUIManager.h"
 #include "ps/CLogger.h"
-#include "ps/Game.h"
-#include "simulation2/Simulation2.h"
 
 #include "lib/res/h_mgr.h"	// h_reload
 #include "lib/sysdep/dir_watch.h"
 
-#define LOG_CATEGORY L"file"
-
 
 PIVFS g_VFS;
+
+static std::vector<std::pair<FileReloadFunc, void*> > g_ReloadFuncs;
 
 bool FileExists(const VfsPath& pathname)
 {
 	return g_VFS->GetFileInfo(pathname, 0) == INFO::OK;
 }
 
+void RegisterFileReloadFunc(FileReloadFunc func, void* obj)
+{
+	g_ReloadFuncs.push_back(std::make_pair(func, obj));
+}
+
+void UnregisterFileReloadFunc(FileReloadFunc func, void* obj)
+{
+	g_ReloadFuncs.erase(std::remove(g_ReloadFuncs.begin(), g_ReloadFuncs.end(), std::make_pair(func, obj)));
+}
 
 // try to skip unnecessary work by ignoring uninteresting notifications.
 static bool CanIgnore(const DirWatchNotification& notification)
@@ -69,9 +76,14 @@ LibError ReloadChangedFiles()
 			VfsPath pathname;
 			RETURN_ERR(g_VFS->GetVirtualPath(notifications[i].Pathname(), pathname));
 			RETURN_ERR(g_VFS->Invalidate(pathname));
+
+			// Tell each hotloadable system about this file change:
+
 			RETURN_ERR(g_GUI->ReloadChangedFiles(pathname));
-			if (g_Game && g_Game->GetSimulation2())
-				RETURN_ERR(g_Game->GetSimulation2()->ReloadChangedFile(pathname));
+
+			for (size_t j = 0; j < g_ReloadFuncs.size(); ++j)
+				g_ReloadFuncs[j].first(g_ReloadFuncs[j].second, pathname);
+
 			RETURN_ERR(h_reload(pathname));
 		}
 	}
@@ -99,7 +111,7 @@ PSRETURN CVFSFile::Load(const VfsPath& filename)
 	LibError ret = g_VFS->LoadFile(filename, m_Buffer, m_BufferSize);
 	if (ret != INFO::OK)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CVFSFile: file %ls couldn't be opened (vfs_load: %ld)", filename.string().c_str(), ret);
+		LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %ld)", filename.string().c_str(), ret);
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 

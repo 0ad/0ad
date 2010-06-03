@@ -42,7 +42,7 @@
 CModel::CModel(CSkeletonAnimManager& skeletonAnimManager)
 	: m_Parent(NULL), m_Flags(0), m_Anim(NULL), m_AnimTime(0), 
 	m_BoneMatrices(NULL), m_InverseBindBoneMatrices(NULL),
-	m_PositionValid(false), m_ShadingColor(1,1,1,1),
+	m_PositionValid(false), m_ShadingColor(1,1,1,1), m_PlayerID((size_t)-1),
 	m_SkeletonAnimManager(skeletonAnimManager)
 {
 }
@@ -238,6 +238,8 @@ void CModel::Update(float time)
 {
 	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
 	{
+		time *= m_Anim->m_Speed;
+
 		float oldAnimTime = m_AnimTime;
 
 		// update animation time, but don't calculate bone matrices - do that (lazily) when
@@ -288,7 +290,10 @@ bool CModel::NeedsNewAnim(float time) const
 
 	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
 	{
+		time *= m_Anim->m_Speed;
+
 		float duration = m_Anim->m_AnimDef->GetDuration();
+
 		if (m_AnimTime + time > duration)
 			return true;
 	}
@@ -300,6 +305,8 @@ void CModel::CheckActionTriggers(float time, bool& action, bool& action2) const
 {
 	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
 	{
+		time *= m_Anim->m_Speed;
+
 		if (m_AnimTime <= m_Anim->m_ActionPos && m_AnimTime + time > m_Anim->m_ActionPos)
 			action = true;
 
@@ -498,17 +505,22 @@ void CModel::SetTransform(const CMatrix3D& transform)
 void CModel::SetMaterial(const CMaterial &material)
 {
 	m_Material = material;
-	if(m_Material.GetTexture().Trim(PS_TRIM_BOTH).length() > 0)
-	{
-		// [TODO: uh, shouldn't this be doing something?]
-	}
 }
 
 void CModel::SetPlayerID(size_t id)
 {
-	m_Material.SetPlayerColor(id);
+	m_PlayerID = id;
+
+	if (id != (size_t)-1)
+		m_Material.SetPlayerColor(id);
+
 	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
 		it->m_Model->SetPlayerID(id);
+}
+
+size_t CModel::GetPlayerID()
+{
+	return m_PlayerID;
 }
 
 void CModel::SetPlayerColor(const CColor& colour)

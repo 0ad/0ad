@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,19 +60,11 @@ public:
 	// return the closest unit, or null if everything missed
 	CUnit* PickUnit(const CVector3D& origin, const CVector3D& dir, bool entitiesOnly) const;
 
-	CUnit* FindByID(size_t id) const;
-
-	size_t GetNewID() { return m_NextID++; }
-
-	void SetNextID(size_t n) { m_NextID = n; }
-
 	void SetObjectManager(CObjectManager& objectManager) { m_ObjectManager = &objectManager; }
 
 private:
 	// list of all known units
 	std::vector<CUnit*> m_Units;
-	// next ID number to be assigned to a unit created in the editor
-	size_t m_NextID;
 	// graphical object manager; may be NULL if not set up
 	CObjectManager* m_ObjectManager;
 };

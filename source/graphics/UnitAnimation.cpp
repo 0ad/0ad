@@ -75,6 +75,10 @@ void CUnitAnimation::SetAnimationSync(float actionTime, float repeatTime)
 	// Set the speed so it loops once in repeatTime
 	float speed = duration / repeatTime;
 
+	// Compensate for the animation's scale factor
+	if (model.m_Anim->m_Speed)
+		speed /= model.m_Anim->m_Speed;
+
 	// Need to offset so that start+actionTime*speed = ActionPos
 	float start = model.m_Anim->m_ActionPos - actionTime*speed;
 	// Wrap it so that it's within the animation

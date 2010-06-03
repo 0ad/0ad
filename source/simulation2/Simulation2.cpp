@@ -52,9 +52,16 @@ public:
 		m_SimContext.m_Terrain = terrain;
 		m_ComponentManager.LoadComponentTypes();
 
+		RegisterFileReloadFunc(ReloadChangedFileCB, this);
+
 //		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
 
 		// (can't call ResetState here since the scripts haven't been loaded yet)
+	}
+
+	~CSimulation2Impl()
+	{
+		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
 
 	CParamNode LoadXML(const std::wstring& name)
@@ -111,6 +118,11 @@ public:
 
 	bool LoadScripts(const VfsPath& path);
 	LibError ReloadChangedFile(const VfsPath& path);
+
+	static LibError ReloadChangedFileCB(void* param, const VfsPath& path)
+	{
+		return static_cast<CSimulation2Impl*>(param)->ReloadChangedFile(path);
+	}
 
 	bool Update(int turnLength, const std::vector<SimulationCommand>& commands);
 	void Interpolate(float frameLength, float frameOffset);

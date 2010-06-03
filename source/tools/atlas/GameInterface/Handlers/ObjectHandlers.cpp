@@ -131,32 +131,21 @@ QUERYHANDLER(GetObjectSettings)
 {
 	View* view = View::GetView(msg->view);
 	CSimulation2* simulation = view->GetSimulation2();
-	if (simulation)
-	{
-		sObjectSettings settings;
-		settings.player = 0;
-
-		CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
-		if (!cmpOwner.null())
-		{
-			int32_t player = cmpOwner->GetOwner();
-			if (player != -1)
-				settings.player = player;
-		}
-
-		// TODO: selections
-
-		msg->settings = settings;
-
-		return;
-	}
-
-	CUnit* unit = view->GetUnit(msg->id);
-	if (! unit) return;
 
 	sObjectSettings settings;
-	settings.player = unit->GetPlayerID();
+	settings.player = 0;
 
+	CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
+	if (!cmpOwner.null())
+	{
+		int32_t player = cmpOwner->GetOwner();
+		if (player != -1)
+			settings.player = player;
+	}
+
+	// TODO: selections
+
+/*
 	// Get the unit's possible variants and selected variants
 	std::vector<std::vector<CStr> > groups = unit->GetObject().m_Base->GetVariantGroups();
 	const std::set<CStr>& selections = unit->GetActorSelections();
@@ -194,6 +183,8 @@ QUERYHANDLER(GetObjectSettings)
 
 	settings.variantgroups = variantgroups;
 	settings.selections = std::vector<std::wstring> (selections_set.begin(), selections_set.end()); // convert set->vector
+*/
+
 	msg->settings = settings;
 }
 
@@ -208,26 +199,18 @@ BEGIN_COMMAND(SetObjectSettings)
 
 		View* view = View::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();
-		if (simulation)
-		{
-			CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
-			m_PlayerOld = 0;
-			if (!cmpOwner.null())
-			{
-				int32_t player = cmpOwner->GetOwner();
-				if (player != -1)
-					m_PlayerOld = player;
-			}
 
-			// TODO: selections
-		}
-		else
+		CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
+		m_PlayerOld = 0;
+		if (!cmpOwner.null())
 		{
-			CUnit* unit = view->GetUnit(msg->id);
-			if (! unit) return;
-			m_PlayerOld = unit->GetPlayerID();
-			m_SelectionsOld = unit->GetActorSelections();
+			int32_t player = cmpOwner->GetOwner();
+			if (player != -1)
+				m_PlayerOld = player;
 		}
+
+		// TODO: selections
+//		m_SelectionsOld = unit->GetActorSelections();
 
 		m_PlayerNew = (size_t)settings.player;
 
@@ -255,22 +238,13 @@ private:
 	{
 		View* view = View::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();
-		if (simulation)
-		{
-			CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
-			if (!cmpOwner.null())
-				cmpOwner->SetOwner(player);
-			// TODO: selections
 
-			return;
-		}
+		CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
+		if (!cmpOwner.null())
+			cmpOwner->SetOwner(player);
 
-		CUnit* unit = view->GetUnit(msg->id);
-		if (! unit) return;
-
-		unit->SetPlayerID(player);
-
-		unit->SetActorSelections(selections);
+		// TODO: selections
+//		unit->SetActorSelections(selections);
 	}
 };
 END_COMMAND(SetObjectSettings);

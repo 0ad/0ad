@@ -84,9 +84,10 @@ public:
 	void SetTexture(const CTexture& tex) { m_Texture=tex; }
 	// set the model's material
 	void SetMaterial(const CMaterial &material);
-	// set the model's player ID, recursively through props. CUnit::SetPlayerID
-	// should normally be used instead.
+	// set the model's player ID, recursively through props
 	void SetPlayerID(size_t id);
+	// get the model's player ID, recursively through props; initial default is (size_t)-1
+	size_t GetPlayerID();
 	// set the model's player colour
 	void SetPlayerColor(const CColor& colour);
 	// set the models mod color
@@ -226,6 +227,8 @@ private:
 
 	// modulating color
 	CColor m_ShadingColor;
+
+	size_t m_PlayerID;
 
 	// manager object which can load animations for us
 	CSkeletonAnimManager& m_SkeletonAnimManager;

@@ -136,7 +136,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	std::wstring name = sourceVisual->GetProjectileActor();
 	if (name.empty())
 	{
-		LOGERROR(L"Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", sourceVisual->GetActor().c_str());
+		LOGERROR(L"Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", sourceVisual->GetActorShortName().c_str());
 		return;
 	}
 

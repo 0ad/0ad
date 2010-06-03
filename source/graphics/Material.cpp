@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,16 +34,6 @@ static SMaterialColor IdentityEmissive(0.0f, 0.0f, 0.0f, 1.0f);
 
 static SMaterialColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
 
-bool SMaterialColor::operator==(const SMaterialColor& color)
-{
-	return (
-		r == color.r &&
-		g == color.g &&
-		b == color.b &&
-		a == color.a
-		);
-}
-
 CMaterial::CMaterial()
 	: m_Diffuse(IdentityDiffuse),
 	m_Ambient(IdentityAmbient),
@@ -54,30 +44,6 @@ CMaterial::CMaterial()
 	m_PlayerID(PLAYER_ID_NONE),
 	m_TextureColor(BrokenColor)
 {
-	ComputeHash();
-}
-
-CMaterial::CMaterial(const CMaterial& material)
-{
-	(*this) = material;
-}
-
-CMaterial::~CMaterial()
-{
-}
-
-void CMaterial::operator=(const CMaterial& material)
-{
-	m_Diffuse = material.m_Diffuse;
-	m_Ambient = material.m_Ambient;
-	m_Specular = material.m_Specular;
-	m_Emissive = material.m_Emissive;
-
-	m_SpecularPower = material.m_SpecularPower;
-	m_Alpha = material.m_Alpha;
-	m_PlayerID = material.m_PlayerID;
-	m_TextureColor = material.m_TextureColor;
-	ComputeHash();
 }
 
 bool CMaterial::operator==(const CMaterial& material)
@@ -163,70 +129,47 @@ void CMaterial::SetPlayerColor(const CColor& colour)
 	m_TextureColor = SMaterialColor(colour.r, colour.g, colour.b, colour.a);
 }
 
-
 void CMaterial::SetTexture(const CStr& texture)
 {
     m_Texture = texture;
-    ComputeHash();
 }
 
 void CMaterial::SetVertexProgram(const CStr& prog)
 {
     m_VertexProgram = prog;
-    ComputeHash();
 }
 
 void CMaterial::SetFragmentProgram(const CStr& prog)
 {
     m_FragmentProgram = prog;
-    ComputeHash();
 }
 
 void CMaterial::SetDiffuse(const SMaterialColor& color)
 {
 	m_Diffuse = color;
-    ComputeHash();
 }
 
 void CMaterial::SetAmbient(const SMaterialColor& color)
 {
 	m_Ambient = color;
-    ComputeHash();
 }
 
 void CMaterial::SetSpecular(const SMaterialColor& color)
 {
 	m_Specular = color;
-    ComputeHash();
 }
 
 void CMaterial::SetEmissive(const SMaterialColor& color)
 {
 	m_Emissive = color;
-    ComputeHash();
 }
 
 void CMaterial::SetSpecularPower(float power)
 {
     m_SpecularPower = power;
-    ComputeHash();
 }
 
 void CMaterial::SetUsesAlpha(bool flag)
 {
     m_Alpha = flag;
-    ComputeHash();
-}
-
-void CMaterial::ComputeHash()
-{
-    m_Hash = 
-        m_Diffuse.Sum() +
-        m_Ambient.Sum() +
-        m_Specular.Sum() +
-        m_Emissive.Sum() +
-        m_SpecularPower +
-        (float)m_Texture.GetHashCode() +
-        (float)m_VertexProgram.GetHashCode() +
-        (float)m_FragmentProgram.GetHashCode();
 }

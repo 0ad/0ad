@@ -261,11 +261,6 @@ CCamera& ViewGame::GetCamera()
 	return *g_Game->GetView()->GetCamera();
 }
 
-CUnit* ViewGame::GetUnit(AtlasMessage::ObjectID id)
-{
-	return g_Game->GetWorld()->GetUnitManager().FindByID(id);
-}
-
 bool ViewGame::WantsHighFramerate()
 {
 	if (g_Game->GetView()->GetCinema()->IsPlaying())

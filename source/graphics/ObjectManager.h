@@ -21,7 +21,9 @@
 #include <vector>
 #include <map>
 #include <set>
+
 #include "ps/CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 
 class CEntityTemplate;
 class CMatrix3D;
@@ -29,6 +31,7 @@ class CMeshManager;
 class CObjectBase;
 class CObjectEntry;
 class CSkeletonAnimManager;
+class CSimulation2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
@@ -36,21 +39,23 @@ class CObjectManager
 {
 	NONCOPYABLE(CObjectManager);
 public:
+	// Unique identifier of an actor variation
 	struct ObjectKey
 	{
-		ObjectKey(const CStr& name, const std::vector<u8>& var)
+		ObjectKey(const CStrW& name, const std::vector<u8>& var)
 			: ActorName(name), ActorVariation(var) {}
 
-		CStr ActorName;
-		std::vector<u8> ActorVariation;
-
 		bool operator< (const CObjectManager::ObjectKey& a) const;
+
+	private:
+		CStrW ActorName;
+		std::vector<u8> ActorVariation;
 	};
 
 public:
 
 	// constructor, destructor
-	CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& skeletonAnimManager);
+	CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& skeletonAnimManager, CSimulation2& simulation);
 	~CObjectManager();
 
 	// Provide access to the manager classes for meshes and animations - they're
@@ -69,13 +74,16 @@ public:
 	CObjectEntry* FindObjectVariation(const wchar_t* objname, const std::vector<std::set<CStr> >& selections);
 	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections);
 
-	// Get all names, quite slowly. (Intended only for Atlas.)
-	static void GetAllObjectNames(std::vector<CStr>& names);
-	static void GetPropObjectNames(std::vector<CStr>& names);
+	/**
+	 * Reload any scripts that were loaded from the given filename.
+	 * (This is used to implement hotloading.)
+	 */
+	LibError ReloadChangedFile(const VfsPath& path);
 
 private:
 	CMeshManager& m_MeshManager;
 	CSkeletonAnimManager& m_SkeletonAnimManager;
+	CSimulation2& m_Simulation;
 
 	std::map<ObjectKey, CObjectEntry*> m_Objects;
 	std::map<CStrW, CObjectBase*> m_ObjectBases;

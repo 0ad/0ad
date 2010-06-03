@@ -40,7 +40,6 @@ public:
 	virtual CCamera& GetCamera() = 0;
 	virtual CSimulation2* GetSimulation2() { return NULL; }
 	virtual entity_id_t GetEntityId(AtlasMessage::ObjectID obj) { return (entity_id_t)obj; }
-	virtual CUnit* GetUnit(AtlasMessage::ObjectID UNUSED(id)) { return NULL; }
 	virtual bool WantsHighFramerate() { return false; }
 
 	virtual void SetParam(const std::wstring& name, bool value);
@@ -77,7 +76,6 @@ public:
 	virtual void Update(float frameLength);
 	virtual void Render();
 	virtual CCamera& GetCamera();
-	virtual CUnit* GetUnit(AtlasMessage::ObjectID id);
 	virtual CSimulation2* GetSimulation2();
 	virtual bool WantsHighFramerate();
 

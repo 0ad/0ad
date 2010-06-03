@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,8 +74,8 @@ public:
 		VfsPath texture;
 		VfsPath model;
 		CStr color;
-		std::multimap<CStr, CObjectBase::Prop> props;
-		std::multimap<CStr, CObjectBase::Anim> anims;
+		std::multimap<CStr, Prop> props;
+		std::multimap<CStr, Anim> anims;
 	};
 
 	CObjectBase(CObjectManager& objectManager);
@@ -97,10 +97,20 @@ public:
 	// variant names.
 	std::vector<std::vector<CStr> > GetVariantGroups() const;
 
-	bool Load(const std::wstring& filename);
+	/**
+	 * Initialise this object by loading from the given file.
+	 * Returns false on error.
+	 */
+	bool Load(const VfsPath& pathname);
 
-	// object name
-	CStrW m_Name;
+	/**
+	 * Reload this object from the file that it was previously loaded from.
+	 * Returns false on error.
+	 */
+	bool Reload();
+
+	// filename that this was loaded from
+	VfsPath m_Pathname;
 
 	// short human-readable name
 	CStrW m_ShortName;

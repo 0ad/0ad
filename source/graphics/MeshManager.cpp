@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,8 +25,6 @@
 #include "ps/FileIo.h" // to get access to its CError
 #include "ps/Profile.h"
 
-#define LOG_CATEGORY L"mesh"
-
 // TODO: should this cache models while they're not actively in the game?
 // (Currently they'll probably be deleted when the reference count drops to 0,
 // even if it's quite possible that they'll get reloaded very soon.)
@@ -49,13 +47,13 @@ CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 	if (iter != m_MeshMap.end() && !iter->second.expired())
 		return CModelDefPtr(iter->second);
 
-	PROFILE( "load mesh" );
+	PROFILE("load mesh");
 
 	VfsPath pmdFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PMD);
 
 	if (pmdFilename.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Could not load mesh '%ls'", pathname.string().c_str());
+		LOGERROR(L"Could not load mesh '%ls'", pathname.string().c_str());
 		return CModelDefPtr();
 	}
 
@@ -67,7 +65,7 @@ CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 	}
 	catch (PSERROR_File&)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Could not load mesh '%ls'", pathname.string().c_str());
+		LOGERROR(L"Could not load mesh '%ls'", pathname.string().c_str());
 		return CModelDefPtr();
 	}
 }

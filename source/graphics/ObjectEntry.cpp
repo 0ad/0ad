@@ -175,7 +175,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			m_AmmunitionModel = oe->m_Model;
 			m_AmmunitionPoint = modeldef->FindPropPoint(ppn);
 			if (! m_AmmunitionPoint)
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_Name.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
 		}
 		else
 		{
@@ -187,7 +187,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 				propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
 			}
 			else
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", prop.m_PropPointName.c_str(), m_ModelName.string().c_str(), m_Base->m_Name.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", prop.m_PropPointName.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
 		}
 	}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,26 +38,14 @@ public:
 		b = _b;
 		a = _a;
 	}
-	SMaterialColor(const SMaterialColor& color)
+	bool operator==(const SMaterialColor& color)
 	{
-		r = color.r;
-		g = color.g;
-		b = color.b;
-		a = color.a;
-	}
-
-	void operator=(const SMaterialColor& color)
-	{
-		r = color.r;
-		g = color.g;
-		b = color.b;
-		a = color.a;
-	}
-	bool operator==(const SMaterialColor& color);
-
-	float Sum()
-	{
-		return (r + g + b + a);
+		return (
+			r == color.r &&
+			g == color.g &&
+			b == color.b &&
+			a == color.a
+			);
 	}
 };
 
@@ -65,12 +53,9 @@ class CMaterial
 {
 public:
 	CMaterial();
-	CMaterial(const CMaterial& material);
-	virtual ~CMaterial();
 
 	void Bind();
 	void Unbind();
-	float GetHash() { return m_Hash; }
 
 	const CStr& GetTexture() { return m_Texture; }
 	const CStr& GetVertexProgram() { return m_VertexProgram; }
@@ -105,13 +90,8 @@ public:
 	void SetSpecularPower(float power);
 	void SetUsesAlpha(bool flag);
 
-	void operator=(const CMaterial& material);
 	bool operator==(const CMaterial& material);
 protected:
-	void ComputeHash();
-
-	float m_Hash;
-
 	// Various reflective color properties
 	SMaterialColor m_Diffuse;
 	SMaterialColor m_Ambient;

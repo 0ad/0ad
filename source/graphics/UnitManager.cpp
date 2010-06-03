@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // CUnitManager constructor
 CUnitManager::CUnitManager()
-: m_NextID(0)
 {
 }
 
@@ -134,19 +133,4 @@ CUnit* CUnitManager::CreateUnit(const CStrW& actorName, CEntity* entity, const s
 	if (unit)
 		AddUnit(unit);
 	return unit;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// FindByID
-// TODO: this is hopelessly inefficient
-CUnit* CUnitManager::FindByID(size_t id) const
-{
-	if (id == invalidUnitId)
-		return NULL;
-
-	for (size_t i = 0; i < m_Units.size(); ++i)
-		if (m_Units[i]->GetID() == id)
-			return m_Units[i];
-
-	return NULL;
 }

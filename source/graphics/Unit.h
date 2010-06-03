@@ -90,12 +90,6 @@ public:
 	// matching 'name'.
 	bool IsPlayingAnimation(const CStr& name);
 
-	// Set player ID of this unit (and the attached entity and actor)
-	void SetPlayerID(size_t id);
-
-	// Get player ID of this unit
-	size_t GetPlayerID() { return m_PlayerID; }
-
 	// Most units have a hopefully-unique ID number, so they can be referred to
 	// persistently despite saving/loading maps. Default for new units is -1; should
 	// usually be set to CUnitManager::GetNewID() after creation.
@@ -111,8 +105,6 @@ private:
 	CObjectEntry* m_Object;
 	// object model representation; never NULL
 	CModel* m_Model;
-	// player id of this unit (only read for graphical effects), or ~0 if unspecified
-	size_t m_PlayerID;
 
 	CUnitAnimation* m_Animation;
 

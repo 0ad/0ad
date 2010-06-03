@@ -76,7 +76,7 @@ public:
 	CGameViewImpl(CGame* game)
 		: Game(game),
 		ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
-		ObjectManager(MeshManager, SkeletonAnimManager),
+		ObjectManager(MeshManager, SkeletonAnimManager, *game->GetSimulation2()),
 		ViewCamera(),
 		CullCamera(),
 		LockCullCamera(false),

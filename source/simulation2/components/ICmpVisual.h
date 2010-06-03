@@ -42,10 +42,10 @@ public:
 	virtual CVector3D GetPosition() = 0;
 
 	/**
-	 * Return the filename of the actor that's being displayed, or the empty string on error.
+	 * Return the short name of the actor that's being displayed, or the empty string on error.
 	 * (Not safe for use in simulation code.)
 	 */
-	virtual std::wstring GetActor() = 0;
+	virtual std::wstring GetActorShortName() = 0;
 
 	/**
 	 * Return the filename of the actor to be used for projectiles from this unit, or the empty string if none.
@@ -83,6 +83,13 @@ public:
 	 * @param a alpha component, expected range [0, 1]
 	 */
 	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a) = 0;
+
+	/**
+	 * Called when an actor file has been modified and reloaded dynamically.
+	 * If this component uses the named actor file, it should regenerate its actor
+	 * to pick up the new definitions.
+	 */
+	virtual void Hotload(const std::wstring& name) = 0;
 
 	DECLARE_INTERFACE_TYPE(Visual)
 };

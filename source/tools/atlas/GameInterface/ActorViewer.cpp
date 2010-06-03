@@ -47,7 +47,7 @@ struct ActorViewerImpl : public Scene
 public:
 	ActorViewerImpl()
 		: Entity(INVALID_ENTITY), Terrain(), ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
-		ObjectManager(MeshManager, SkeletonAnimManager), UnitManager(), Simulation2(&UnitManager, &Terrain)
+		UnitManager(), Simulation2(&UnitManager, &Terrain), ObjectManager(MeshManager, SkeletonAnimManager, Simulation2)
 	{
 		UnitManager.SetObjectManager(ObjectManager);
 	}

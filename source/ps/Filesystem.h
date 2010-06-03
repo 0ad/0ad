@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,22 @@
 extern PIVFS g_VFS;
 
 extern bool FileExists(const VfsPath& pathname);
+
+/**
+ * callback function type for file change notifications
+ */
+typedef LibError (*FileReloadFunc)(void* param, const VfsPath& path);
+
+/**
+ * register a callback function to be called by ReloadChangedFiles
+ */
+void RegisterFileReloadFunc(FileReloadFunc func, void* obj);
+
+/**
+ * delete a callback function registered with RegisterFileReloadFunc
+ * (removes any with the same func and obj)
+ */
+void UnregisterFileReloadFunc(FileReloadFunc func, void* obj);
 
 /**
  * poll for directory change notifications and reload all affected files.

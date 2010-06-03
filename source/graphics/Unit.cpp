@@ -32,7 +32,7 @@
 CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()),
-  m_ID(invalidUnitId), m_ActorSelections(actorSelections), m_PlayerID(invalidPlayerId),
+  m_ID(invalidUnitId), m_ActorSelections(actorSelections),
   m_ObjectManager(objectManager)
 {
 	m_Animation = new CUnitAnimation(*this);
@@ -174,13 +174,6 @@ void CUnit::UpdateModel(float frameTime)
 	m_Animation->Update(frameTime*1000.0f);
 }
 
-
-void CUnit::SetPlayerID(size_t id)
-{
-	m_PlayerID = id;
-	m_Model->SetPlayerID(m_PlayerID);
-}
-
 void CUnit::SetEntitySelection(const CStr& selection)
 {
 	CStr selection_lc = selection.LowerCase();
@@ -218,8 +211,7 @@ void CUnit::ReloadObject()
 
 		// Copy the old instance-specific settings from the old model to the new instance
 		newModel->SetTransform(m_Model->GetTransform());
-		if (m_PlayerID != invalidPlayerId)
-			newModel->SetPlayerID(m_PlayerID);
+		newModel->SetPlayerID(m_Model->GetPlayerID());
 		newModel->CopyAnimationFrom(m_Model);
 
 		delete m_Model;
