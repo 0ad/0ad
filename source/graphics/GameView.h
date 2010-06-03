@@ -32,6 +32,7 @@ class CObjectManager;
 class CCamera;
 class CCinemaManager;
 class CVector3D;
+struct SViewPort;
 
 struct JSObject;
 
@@ -63,6 +64,8 @@ private:
 public:
 	CGameView(CGame *pGame);
 	~CGameView();
+
+	void SetViewport(const SViewPort& vp);
 
 	void RegisterInit(CGameAttributes *pAttribs);
 	int Initialize(CGameAttributes *pGameAttributes);

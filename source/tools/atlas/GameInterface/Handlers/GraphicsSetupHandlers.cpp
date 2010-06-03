@@ -30,6 +30,7 @@
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"
 #include "ps/Game.h"
+#include "ps/VideoMode.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
@@ -169,19 +170,7 @@ MESSAGEHANDLER(SetCanvas)
 
 MESSAGEHANDLER(ResizeScreen)
 {
-	g_xres = msg->width;
-	g_yres = msg->height;
-	if (g_xres <= 2) g_xres = 2; // avoid GL errors caused by invalid sizes
-	if (g_yres <= 2) g_yres = 2;
-
-	SViewPort vp = { 0, 0, g_xres, g_yres };
-
-	g_Renderer.SetViewport(vp);
-	g_Renderer.Resize(g_xres, g_yres);
-
-	g_GUI->UpdateResolution();
-
-	g_Console->UpdateScreenSize(g_xres, g_yres);
+	CVideoMode::UpdateRenderer(msg->width, msg->height);
 }
 
 //////////////////////////////////////////////////////////////////////////

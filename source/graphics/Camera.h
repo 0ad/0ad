@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,7 +57,7 @@ class CCamera
 		void UpdateFrustum ();
 		const CFrustum& GetFrustum () { return m_ViewFrustum; }
 
-		void SetViewPort (SViewPort *viewport);
+		void SetViewPort (const SViewPort& viewport);
 		const SViewPort& GetViewPort () const { return m_ViewPort; }
 
 		// getters

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -127,12 +127,12 @@ void CCamera::UpdateFrustum ()
 	m_ViewFrustum.m_aPlanes[5].m_Dist	= MatFinal._44+MatFinal._34;
 }
 
-void CCamera::SetViewPort (SViewPort *viewport)
+void CCamera::SetViewPort (const SViewPort& viewport)
 {
-	m_ViewPort.m_X = viewport->m_X;
-	m_ViewPort.m_Y = viewport->m_Y;
-	m_ViewPort.m_Width = viewport->m_Width;
-	m_ViewPort.m_Height = viewport->m_Height;
+	m_ViewPort.m_X = viewport.m_X;
+	m_ViewPort.m_Y = viewport.m_Y;
+	m_ViewPort.m_Width = viewport.m_Width;
+	m_ViewPort.m_Height = viewport.m_Height;
 }
 
 

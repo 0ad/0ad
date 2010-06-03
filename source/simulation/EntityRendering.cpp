@@ -48,8 +48,6 @@
 
 #include <algorithm>
 
-extern int g_xres, g_yres;
-
 void CEntity::Render()
 {
 	if( !m_visible ) return;

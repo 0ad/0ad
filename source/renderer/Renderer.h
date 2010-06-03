@@ -162,7 +162,7 @@ public:
 	~CRenderer();
 
 	// open up the renderer: performs any necessary initialisation
-	bool Open(int width,int height,int depth);
+	bool Open(int width,int height);
 
 	// resize renderer view
 	void Resize(int width,int height);
@@ -375,9 +375,7 @@ protected:
 	// view width
 	int m_Width;
 	// view height
-	int	m_Height;
-	// view depth (bpp)
-	int	m_Depth;
+	int m_Height;
 	// frame counter
 	int m_FrameCounter;
 	// current terrain rendering mode

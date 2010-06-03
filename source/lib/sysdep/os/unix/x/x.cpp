@@ -76,7 +76,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 	*/
 	
 	if(xres)
-		*xres = XDisplayWidth (disp, screen);
+		*xres = XDisplayWidth(disp, screen);
 	if(yres)
 		*yres = XDisplayHeight(disp, screen);
 	if(bpp)

@@ -53,6 +53,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Game.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
+#include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -81,6 +82,10 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		kill_mainloop();
 		break;
 
+	case SDL_VIDEORESIZE:
+		g_VideoMode.ResizeWindow(ev->ev.resize.w, ev->ev.resize.h);
+		break;
+
 	case SDL_HOTKEYDOWN:
 		switch(ev->ev.user.code)
 		{
@@ -94,6 +99,10 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 
 		case HOTKEY_BIGSCREENSHOT:
 			WriteBigScreenshot(L".bmp", 10);
+			return IN_HANDLED;
+
+		case HOTKEY_TOGGLEFULLSCREEN:
+			g_VideoMode.ToggleFullscreen();
 			return IN_HANDLED;
 
 		default:

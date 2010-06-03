@@ -180,9 +180,9 @@ CGameView::CGameView(CGame *pGame):
 	vp.m_Y=0;
 	vp.m_Width=g_xres;
 	vp.m_Height=g_yres;
-	m->ViewCamera.SetViewPort(&vp);
+	m->ViewCamera.SetViewPort(vp);
 
-	m->ViewCamera.SetProjection (defaultNear, defaultFar, defaultFOV);
+	m->ViewCamera.SetProjection(defaultNear, defaultFar, defaultFOV);
 	m->ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
 	m->ViewCamera.m_Orientation.RotateY(DEGTORAD(0));
 	m->ViewCamera.m_Orientation.Translate (100, 150, -100);
@@ -195,6 +195,12 @@ CGameView::~CGameView()
 	UnloadResources();
 
 	delete m;
+}
+
+void CGameView::SetViewport(const SViewPort& vp)
+{
+	m->ViewCamera.SetViewPort(vp);
+	m->ViewCamera.SetProjection(defaultNear, defaultFar, defaultFOV);
 }
 
 CObjectManager& CGameView::GetObjectManager() const

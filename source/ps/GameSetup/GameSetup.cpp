@@ -45,6 +45,7 @@
 #include "ps/ProfileViewer.h"
 #include "ps/StringConvert.h"
 #include "ps/Util.h"
+#include "ps/VideoMode.h"
 #include "ps/World.h"
 #include "ps/i18n.h"
 
@@ -106,37 +107,6 @@ ERROR_TYPE(System, RequiredExtensionsMissing);
 #define LOG_CATEGORY L"gamesetup"
 
 bool g_DoRenderGui = true;
-
-static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
-{
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-	Uint32 flags = SDL_OPENGL;
-	if(fullscreen)
-		flags |= SDL_FULLSCREEN;
-	if(!SDL_SetVideoMode(w, h, bpp, flags))
-		return -1;
-
-	// Work around a bug in the proprietary Linux ATI driver (at least versions 8.16.20 and 8.14.13).
-	// The driver appears to register its own atexit hook on context creation.
-	// If this atexit hook is called before SDL_Quit destroys the OpenGL context,
-	// some kind of double-free problem causes a crash and lockup in the driver.
-	// Calling SDL_Quit twice appears to be harmless, though, and avoids the problem
-	// by destroying the context *before* the driver's atexit hook is called.
-	// (Note that atexit hooks are guaranteed to be called in reverse order of their registration.)
-	atexit(SDL_Quit);
-	// End work around.
-
-	glViewport(0, 0, w, h);
-
-	ogl_Init();	// required after each mode change
-
-	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
-		LOGWARNING(L"SDL_SetGamma failed");
-
-	return 0;
-}
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
@@ -567,7 +537,7 @@ static void InitRenderer()
 	new CMaterialManager;
 
 	MICROLOG(L"init renderer");
-	g_Renderer.Open(g_xres,g_yres,g_bpp);
+	g_Renderer.Open(g_xres,g_yres);
 
 	// Setup lighting environment. Since the Renderer accesses the
 	// lighting environment through a pointer, this has to be done before
@@ -760,10 +730,6 @@ void Init(const CmdLineArgs& args, int flags)
 	if(setup_vmode)
 		InitSDL();
 
-	// preferred video mode = current desktop settings
-	// (command line params may override these)
-	gfx_get_video_mode(&g_xres, &g_yres, &g_bpp, &g_freq);
-
 	new CProfileViewer;
 	new CProfileManager;	// before any script code
 
@@ -773,25 +739,10 @@ void Init(const CmdLineArgs& args, int flags)
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
 
-	// setup_gui must be set after CONFIG_Init, so command-line parameters can disable it
-	const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
-
-	// GUI is notified in SetVideoMode, so this must come before that.
-	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());
-
-	// default to windowed, so users don't get stuck if e.g. half the
-	// filesystem is missing and the config files aren't loaded
-	bool windowed = true;
-	CFG_GET_SYS_VAL("windowed", Bool, windowed);
-
-	if(setup_vmode)
+	if (setup_vmode)
 	{
-		MICROLOG(L"SetVideoMode");
-		if(SetVideoMode(g_xres, g_yres, 32, !windowed) < 0)
-		{
-			LOG(CLogger::Error, LOG_CATEGORY, L"Could not set %dx%d graphics mode: %hs", g_xres, g_yres, SDL_GetError());
-			throw PSERROR_System_VmodeFailed();
-		}
+		if (!g_VideoMode.InitSDL())
+			throw PSERROR_System_VmodeFailed(); // abort startup
 
 		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 	}
@@ -821,6 +772,8 @@ void Init(const CmdLineArgs& args, int flags)
 		// must be called before first snd_open.
 		snd_disable(true);
 	}
+
+	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());
 
 	// (must come after SetVideoMode, since it calls ogl_Init)
 	const char* missing = ogl_HaveExtensions(0,
@@ -875,6 +828,7 @@ void Init(const CmdLineArgs& args, int flags)
 
 	if (!Autostart(args))
 	{
+		const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 		InitPs(setup_gui, L"page_pregame.xml");
 	}
 }

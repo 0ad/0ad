@@ -72,6 +72,7 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_SCREENSHOT, "screenshot", SDLK_PRINT, 0 },
 	{ HOTKEY_BIGSCREENSHOT, "bigscreenshot", 0, 0 },
 	{ HOTKEY_WIREFRAME, "wireframe", SDLK_w, 0 },
+	{ HOTKEY_TOGGLEFULLSCREEN, "togglefullscreen", 0, 0 },
 	{ HOTKEY_CAMERA_RESET, "camera.reset", 0, 0 },
 	{ HOTKEY_CAMERA_RESET_ORIGIN, "camera.reset.origin", SDLK_h, 0 },
 	{ HOTKEY_CAMERA_ZOOM_IN, "camera.zoom.in", SDLK_PLUS, SDLK_KP_PLUS },

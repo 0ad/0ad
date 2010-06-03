@@ -17,7 +17,6 @@
 
 #include "precompiled.h"
 
-#include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CConsole.h"
 #include "ps/GameSetup/CmdLineArgs.h"
@@ -25,8 +24,6 @@
 #include "lib/utf8.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "Config.h"
-
-#define LOG_CATEGORY L"config"
 
 
 // (these variables are documented in the header.)
@@ -49,8 +46,6 @@ bool g_EntGraph = false;
 CStr g_RenderPath = "default";
 
 int g_xres, g_yres;
-int g_bpp;
-int g_freq;
 bool g_VSync = false;
 
 bool g_Quickstart = false;
@@ -93,8 +88,6 @@ static void LoadGlobals()
 
 	LoadProfile( g_ActiveProfile );
 
-	CFG_GET_USER_VAL("xres", Int, g_xres);
-	CFG_GET_USER_VAL("yres", Int, g_yres);
 	CFG_GET_USER_VAL("vsync", Bool, g_VSync);
 
 	CFG_GET_USER_VAL("nos3tc", Bool, g_NoGLS3TC);
@@ -111,9 +104,6 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
 	if(gain > 0.0f)
 		WARN_ERR(snd_set_master_gain(gain));
-
-	LOG(CLogger::Normal,  LOG_CATEGORY, L"g_x/yres is %dx%d", g_xres, g_yres);
-	LOG(CLogger::Normal,  LOG_CATEGORY, L"Active profile is %hs", g_ActiveProfile.c_str());
 }
 
 

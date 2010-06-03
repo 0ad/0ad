@@ -57,8 +57,6 @@ extern bool g_EntGraph;
 extern CStr g_RenderPath;
 
 extern int g_xres, g_yres;
-extern int g_bpp;
-extern int g_freq;
 extern bool g_VSync;
 
 extern bool g_Quickstart;

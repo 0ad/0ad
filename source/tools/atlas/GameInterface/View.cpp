@@ -78,7 +78,7 @@ void ViewActor::Render()
 {
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
-	camera.SetViewPort(&vp);
+	camera.SetViewPort(vp);
 	camera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
 	camera.UpdateFrustum();
 
@@ -211,7 +211,7 @@ void ViewGame::Render()
 {
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
-	camera.SetViewPort(&vp);
+	camera.SetViewPort(vp);
 	camera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
 	camera.UpdateFrustum();
 

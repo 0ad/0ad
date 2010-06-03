@@ -22,17 +22,10 @@
 // GUI integration
 //
 
-extern void GUI_Init();
-
-extern void GUI_Shutdown();
-
-extern void GUI_ShowMainMenu();
-
 // display progress / description in loading screen
 extern void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task);
 
 extern void Render();
-extern void RenderActor();
 
 /**
  * initialize global modules that are be needed before Init.
@@ -56,7 +49,10 @@ enum InitFlags
 	INIT_NO_SIM = 4
 };
 
-void RenderGui(bool RenderingState);
+/**
+ * enable/disable rendering of the GUI (intended mainly for screenshots)
+ */
+extern void RenderGui(bool RenderingState);
 
 class CmdLineArgs;
 extern void Init(const CmdLineArgs& args, int flags);

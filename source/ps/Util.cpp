@@ -37,6 +37,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Game.h"
 #include "ps/Filesystem.h"
+#include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 #include "maths/MathUtil.h"
 #include "graphics/GameView.h"
@@ -117,7 +118,7 @@ void WriteSystemInfo()
 	// graphics
 	fprintf(f, "Graphics Card  : %ls\n", gfx_card);
 	fprintf(f, "OpenGL Drivers : %s; %ls\n", glGetString(GL_VERSION), gfx_drv_ver);
-	fprintf(f, "Video Mode     : %dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
+	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
 
 	// sound
 	fprintf(f, "Sound Card     : %ls\n", snd_card);
@@ -306,7 +307,7 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 	{
 		g_Renderer.Resize(tile_w, tile_h);
 		SViewPort vp = { 0, 0, tile_w, tile_h };
-		g_Game->GetView()->GetCamera()->SetViewPort(&vp); 
+		g_Game->GetView()->GetCamera()->SetViewPort(vp);
 		g_Game->GetView()->GetCamera()->SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
 	}
 
@@ -358,7 +359,7 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 	{
 		g_Renderer.Resize(g_xres, g_yres);
 		SViewPort vp = { 0, 0, g_xres, g_yres };
-		g_Game->GetView()->GetCamera()->SetViewPort(&vp);
+		g_Game->GetView()->GetCamera()->SetViewPort(vp);
 		g_Game->GetView()->GetCamera()->SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
 
 		g_Game->GetView()->GetCamera()->SetProjectionTile(1, 0, 0);

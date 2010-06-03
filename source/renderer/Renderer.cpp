@@ -351,7 +351,6 @@ CRenderer::CRenderer()
 
 	m_Width=0;
 	m_Height=0;
-	m_Depth=0;
 	m_FrameCounter=0;
 	m_TerrainRenderMode=SOLID;
 	m_ModelRenderMode=SOLID;
@@ -470,7 +469,7 @@ void CRenderer::EnumCaps()
 }
 
 
-bool CRenderer::Open(int width, int height, int depth)
+bool CRenderer::Open(int width, int height)
 {
 	m->IsOpen = true;
 
@@ -540,7 +539,6 @@ bool CRenderer::Open(int width, int height, int depth)
 	// Dimensions
 	m_Width = width;
 	m_Height = height;
-	m_Depth = depth;
 
 	// set packing parameters
 	glPixelStorei(GL_PACK_ALIGNMENT,1);
@@ -1075,7 +1073,7 @@ void CRenderer::RenderReflections()
 	vp.m_Width = wm.m_ReflectionTextureSize;
 	vp.m_X = 0;
 	vp.m_Y = 0;
-	m_ViewCamera.SetViewPort(&vp);
+	m_ViewCamera.SetViewPort(vp);
 	m_ViewCamera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV*1.05f); // Slightly higher than view FOV
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
@@ -1147,7 +1145,7 @@ void CRenderer::RenderRefractions()
 	vp.m_Width = wm.m_RefractionTextureSize;
 	vp.m_X = 0;
 	vp.m_Y = 0;
-	m_ViewCamera.SetViewPort(&vp);
+	m_ViewCamera.SetViewPort(vp);
 	m_ViewCamera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV*1.05f); // Slightly higher than view FOV
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
