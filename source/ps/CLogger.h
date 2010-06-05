@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,6 +82,8 @@ private:
 
 	// -- This function has not been removed because the build would break.
 	void LogUsingMethod(ELogMethod method, const wchar_t* message);
+
+	void PushRenderMessage(ELogMethod method, const wchar_t* message);
 
 	// Delete old timed-out entries from the list of text to render
 	void CleanupRenderQueue();

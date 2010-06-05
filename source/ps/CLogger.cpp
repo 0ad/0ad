@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 #include <ctime>
 #include <ostream>
 
-static const double RENDER_TIMEOUT = 5.0; // seconds before messages are deleted
+static const double RENDER_TIMEOUT = 10.0; // seconds before messages are deleted
 static const double RENDER_TIMEOUT_RATE = 10.0; // number of timed-out messages deleted per second
 static const size_t RENDER_LIMIT = 20; // maximum messages on screen at once
 
@@ -141,8 +141,7 @@ void CLogger::WriteMessage(const wchar_t* message)
 	m_MainLog->flush();
 	
 	// Don't do this since it results in too much noise:
-//	RenderedMessage r = { Normal, timer_Time(), message };
-//	m_RenderMessages.push_back(r);
+//	PushRenderMessage(Normal, message);
 }
 
 void CLogger::WriteError(const wchar_t* message)
@@ -158,8 +157,7 @@ void CLogger::WriteError(const wchar_t* message)
 	*m_MainLog << L"<p class=\"error\">ERROR: "<< message << L"</p>\n";
 	m_MainLog->flush();
 
-	RenderedMessage r = { Error, timer_Time(), message };
-	m_RenderMessages.push_back(r);
+	PushRenderMessage(Error, message);
 }
 
 void CLogger::WriteWarning(const wchar_t* message)
@@ -175,8 +173,7 @@ void CLogger::WriteWarning(const wchar_t* message)
 	*m_MainLog << L"<p class=\"warning\">WARNING: "<< message << L"</p>\n";
 	m_MainLog->flush();
 
-	RenderedMessage r = { Warning, timer_Time(), message };
-	m_RenderMessages.push_back(r);
+	PushRenderMessage(Warning, message);
 }
 
 // Sends the message to the appropriate piece of code
@@ -332,6 +329,31 @@ void CLogger::Render()
 
 	glPopMatrix();
 }
+
+void CLogger::PushRenderMessage(ELogMethod method, const wchar_t* message)
+{
+	double now = timer_Time();
+
+	// Add each message line separately
+	const wchar_t* pos = message;
+	const wchar_t* eol;
+	while ((eol = wcschr(pos, L'\n')) != NULL)
+	{
+		if (eol != pos)
+		{
+			RenderedMessage r = { method, now, std::wstring(pos, eol) };
+			m_RenderMessages.push_back(r);
+		}
+		pos = eol + 1;
+	}
+	// Add the last line, if we didn't end on a \n
+	if (*pos != L'\0')
+	{
+		RenderedMessage r = { method, now, std::wstring(pos) };
+		m_RenderMessages.push_back(r);
+	}
+}
+
 
 void CLogger::CleanupRenderQueue()
 {
