@@ -103,7 +103,7 @@ public:
 			m_ActorName = paramNode.GetChild("Actor").ToString();
 
 		std::set<CStr> selections;
-		m_Unit = context.GetUnitManager().CreateUnit(m_ActorName, NULL, selections);
+		m_Unit = context.GetUnitManager().CreateUnit(m_ActorName, selections);
 		if (!m_Unit)
 		{
 			// The error will have already been logged
@@ -204,6 +204,16 @@ public:
 		return m_Unit->GetObject().m_ProjectileModelName;
 	}
 
+	virtual CVector3D GetProjectileLaunchPoint()
+	{
+		if (!m_Unit)
+			return CVector3D();
+		CModel* ammo = m_Unit->GetModel().FindFirstAmmoProp();
+		if (!ammo)
+			return CVector3D();
+		return ammo->GetTransform().GetTranslation();
+	}
+
 	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup)
 	{
 		if (!m_Unit)
@@ -249,7 +259,7 @@ public:
 			return;
 
 		std::set<CStr> selections;
-		CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, NULL, selections);
+		CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, selections);
 
 		if (!newUnit)
 			return;

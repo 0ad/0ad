@@ -25,7 +25,6 @@
 class CModel;
 class CObjectEntry;
 class CObjectManager;
-class CEntity;
 class CSkeletonAnim;
 class CUnitAnimation;
 
@@ -44,15 +43,14 @@ class CUnit
 	NONCOPYABLE(CUnit);
 private:
 	// Private constructor. Needs complete list of selections for the variation.
-	CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
+	CUnit(CObjectEntry* object, CObjectManager& objectManager,
 		const std::set<CStr>& actorSelections);
 
 public:
-	// Attempt to create a unit with the given actor, attached to an entity
-	// (or NULL), with a set of suggested selections (with the rest being randomised).
+	// Attempt to create a unit with the given actor, with a set of
+	// suggested selections (with the rest being randomised).
 	// Returns NULL on failure.
- 	static CUnit* Create(const CStrW& actorName, CEntity* entity,
-		const std::set<CStr>& selections, CObjectManager& objectManager);
+ 	static CUnit* Create(const CStrW& actorName, const std::set<CStr>& selections, CObjectManager& objectManager);
 
 	// destructor
 	~CUnit();
@@ -61,12 +59,6 @@ public:
 	const CObjectEntry& GetObject() const { return *m_Object; }
 	// get unit's model data
 	CModel& GetModel() const { return *m_Model; }
-	// get actor's entity; can be NULL
-	CEntity* GetEntity() const { return NULL; }
-
-	// Put here as it conveniently references both the model and the ObjectEntry
-	void ShowAmmunition();
-	void HideAmmunition();
 
 	/// See CUnitAnimation::SetAnimationState
 	void SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& soundgroup);
@@ -80,15 +72,9 @@ public:
 	 */
 	void UpdateModel(float frameTime);
 
-	bool HasAnimation(const CStr& name);
-
 	// Sets the entity-selection, and updates the unit to use the new
 	// actor variation.
 	void SetEntitySelection(const CStr& selection);
-
-	// Returns whether the currently active animation is one of the ones
-	// matching 'name'.
-	bool IsPlayingAnimation(const CStr& name);
 
 	// Most units have a hopefully-unique ID number, so they can be referred to
 	// persistently despite saving/loading maps. Default for new units is -1; should
@@ -119,15 +105,6 @@ private:
 
 	// object manager which looks after this unit's objectentry
 	CObjectManager& m_ObjectManager;
-
-	// Sets the animation a random one matching 'name'. If none is found,
-	// sets to idle instead. Applies recursively to props.
-	// SetEntitySelection(name) should typically be used before this.
-	bool SetRandomAnimation(const CStr& name, bool once = false);
-
-	// Returns a random animation matching 'name'. If none is found,
-	// returns idle instead.
-	CSkeletonAnim* GetRandomAnimation(const CStr& name);
 
 	void ReloadObject();
 

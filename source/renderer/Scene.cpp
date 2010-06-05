@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
+/*
  * File        : Scene.cpp
  * Project     : graphics
  * Description : This file contains default implementations and utilities
@@ -23,15 +23,13 @@
  *             : classes.
  *
  * @note This file would fit just as well into the graphics/ subdirectory.
- **/
+ */
 
 #include "precompiled.h"
 
 #include "graphics/Model.h"
 
 #include "renderer/Scene.h"
-
-
 
 ///////////////////////////////////////////////////////////
 // Default implementation traverses the model recursively and uses
@@ -41,9 +39,9 @@ void SceneCollector::SubmitRecursive(CModel* model)
 	SubmitNonRecursive(model);
 
 	const std::vector<CModel::Prop>& props = model->GetProps();
-	for (size_t i=0;i<props.size();i++) {
-		SubmitRecursive(props[i].m_Model);
+	for (size_t i = 0; i < props.size(); i++)
+	{
+		if (!props[i].m_Hidden)
+			SubmitRecursive(props[i].m_Model);
 	}
 }
-
-

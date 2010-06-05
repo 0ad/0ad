@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,12 +57,12 @@ public:
 
 	CStrW m_ProjectileModelName;
 
-	CModel* m_AmmunitionModel;
-	SPropPoint* m_AmmunitionPoint;
-
 	// Returns a randomly-chosen animation matching the given name.
 	// If none is found, returns NULL.
-	CSkeletonAnim* GetRandomAnimation(const CStr& animationName);
+	CSkeletonAnim* GetRandomAnimation(const CStr& animationName) const;
+
+	// Returns all the animations matching the given name.
+	std::vector<CSkeletonAnim*> GetAnimations(const CStr& animationName) const;
 
 	// corresponding model
 	CModel* m_Model;

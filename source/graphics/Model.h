@@ -29,6 +29,7 @@
 #include "RenderableObject.h"
 #include "Material.h"
 #include "ps/Overlay.h"
+
 struct SPropPoint;
 class CObjectEntry;
 class CSkeletonAnim;
@@ -45,17 +46,16 @@ class CModel : public CRenderableObject
 {
 	NONCOPYABLE(CModel);
 
-	friend class CUnitAnimation;
-		// HACK - we should probably move the rest of this class's animation state
-		// into the animation class, then it wouldn't need friend access
-
 public:
-	struct Prop {
-		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0) {}
+	struct Prop
+	{
+		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
 
 		SPropPoint* m_Point;
 		CModel* m_Model;
 		CObjectEntry* m_ObjectEntry;
+
+		bool m_Hidden; // temporarily removed from rendering
 	};
 
 public:
@@ -68,14 +68,8 @@ public:
 	bool InitModel(const CModelDefPtr& modeldef);
 	// calculate the world space bounds of this model
 	void CalcBounds();
-	// update this model's state; 'time' is the time since the last update, in MS
-	void Update(float time);
-	// returns true if Update(time) will require a new animation (due to the
-	// current one ending)
-	bool NeedsNewAnim(float time) const;
-	// sets the bool& arguments if the given time update will cross the trigger points for those actions;
-	// otherwise leaves the arguments unchanged
-	void CheckActionTriggers(float time, bool& action, bool& action2) const;
+	// update this model's state; 'time' is the absolute time since the start of the animation, in MS
+	void UpdateTo(float time);
 
 	// get the model's geometry data
 	CModelDefPtr GetModelDef() { return m_pModelDef; }
@@ -100,7 +94,7 @@ public:
 	CColor GetShadingColor() { return m_ShadingColor; }
 
 	// set the given animation as the current animation on this model
-	bool SetAnimation(CSkeletonAnim* anim, bool once = false, CSkeletonAnim* next = NULL);
+	bool SetAnimation(CSkeletonAnim* anim, bool once = false);
 
 	// get the currently playing animation, if any
 	CSkeletonAnim* GetAnimation() const { return m_Anim; }
@@ -162,10 +156,32 @@ public:
 	 */
 	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const char* name, float speed, float actionpos, float actionpos2);
 
-	// add a prop to the model on the given point
+	/**
+	 * Add a prop to the model on the given point.
+	 */
 	void AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);
-	// remove any props from the given point
-	void RemoveProp(SPropPoint* point);
+
+	/**
+	 * Add a prop to the model on the given point, and treat it as the ammo prop.
+	 * The prop will be hidden by default.
+	 */
+	void AddAmmoProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);
+
+	/**
+	 * Show the ammo prop (if any), and hide any other props on that prop point.
+	 */
+	void ShowAmmoProp();
+
+	/**
+	 * Hide the ammo prop (if any), and show any other props on that prop point.
+	 */
+	void HideAmmoProp();
+
+	/**
+	 * Find the first prop used for ammo, by this model or its own props.
+	 */
+	CModel* FindFirstAmmoProp();
+
 	// return prop list
 	std::vector<Prop>& GetProps() { return m_Props; }
 	const std::vector<Prop>& GetProps() const { return m_Props; }
@@ -209,8 +225,6 @@ private:
 	CBound m_ObjectBounds;
 	// animation currently playing on this model, if any
 	CSkeletonAnim* m_Anim;
-	// animation to switch back to when the current one finishes
-	CSkeletonAnim* m_NextAnim;
 	// time (in MS) into the current animation
 	float m_AnimTime;
 	// current state of all bones on this model; null if associated modeldef isn't skeletal
@@ -219,6 +233,16 @@ private:
 	CMatrix3D* m_InverseBindBoneMatrices;
 	// list of current props on model
 	std::vector<Prop> m_Props;
+
+	/**
+	 * The prop point to which the ammo prop is attached, or NULL if none
+	 */
+	SPropPoint* m_AmmoPropPoint;
+
+	/**
+	 * If m_AmmoPropPoint is not NULL, then the index in m_Props of the ammo prop
+	 */
+	size_t m_AmmoLoadedProp;
 
 	/**
 	 * true if both transform and and bone matrices are valid.

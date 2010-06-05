@@ -59,7 +59,8 @@ public:
 
 	// Template state:
 
-	fixed m_Speed; // in units per second
+	fixed m_Speed; // in metres per second
+	fixed m_RunSpeed;
 	entity_pos_t m_Radius;
 	u8 m_PassClass;
 	u8 m_CostClass;
@@ -121,6 +122,15 @@ public:
 		m_HasTarget = false;
 
 		m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
+
+		if (paramNode.GetChild("Run").IsOk())
+		{
+			m_RunSpeed = paramNode.GetChild("Run").GetChild("Speed").ToFixed();
+		}
+		else
+		{
+			m_RunSpeed = m_Speed;
+		}
 
 		CmpPtr<ICmpObstruction> cmpObstruction(context, GetEntityId());
 		if (!cmpObstruction.null())
@@ -195,6 +205,11 @@ public:
 	virtual fixed GetSpeed()
 	{
 		return m_Speed;
+	}
+
+	virtual fixed GetRunSpeed()
+	{
+		return m_RunSpeed;
 	}
 
 	virtual void SetDebugOverlay(bool enabled)

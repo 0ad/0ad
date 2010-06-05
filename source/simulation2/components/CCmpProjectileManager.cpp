@@ -143,19 +143,25 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	std::set<CStr> selections;
 
 	Projectile projectile;
-	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, NULL, selections);
+	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, selections);
 	if (!projectile.unit)
 	{
 		// The error will have already been logged
 		return;
 	}
 
-	CmpPtr<ICmpPosition> sourcePos(GetSimContext(), source);
-	if (sourcePos.null())
-		return;
+	CVector3D sourceVec(sourceVisual->GetProjectileLaunchPoint());
+	if (!sourceVec)
+	{
+		// If there's no explicit launch point, take a guess based on the entity position
 
-	CVector3D sourceVec(sourcePos->GetPosition());
-	sourceVec.Y += 3.f; // TODO: ought to exactly match the appropriate prop point
+		CmpPtr<ICmpPosition> sourcePos(GetSimContext(), source);
+		if (sourcePos.null())
+			return;
+
+		CVector3D sourceVec(sourcePos->GetPosition());
+		sourceVec.Y += 3.f;
+	}
 
 	CVector3D targetVec;
 

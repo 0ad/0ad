@@ -27,7 +27,6 @@
 
 class CUnit;
 class CVector3D;
-class CEntity;
 class CObjectManager;
 class CStr8;
 class CStrW;
@@ -51,7 +50,7 @@ public:
 	void DeleteAll();
 
 	// creates a new unit and adds it to the world
-	CUnit* CreateUnit(const CStrW& actorName, CEntity* entity, const std::set<CStr8>& selections);
+	CUnit* CreateUnit(const CStrW& actorName, const std::set<CStr8>& selections);
 
 	// return the units
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }

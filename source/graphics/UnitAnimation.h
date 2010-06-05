@@ -21,6 +21,9 @@
 #include "ps/CStr.h"
 
 class CUnit;
+class CModel;
+class CSkeletonAnim;
+class CObjectEntry;
 
 /**
  * Deals with synchronisation issues between raw animation data (CModel, CSkeletonAnim)
@@ -69,12 +72,33 @@ public:
 	 */
 	void Update(float time);
 
+	/**
+	 * Regenerate internal animation state from the models in the current unit.
+	 * This should be called whenever the unit is changed externally, to keep this in sync.
+	 */
+	void ReloadUnit();
+
 private:
+	struct SModelAnimState
+	{
+		CModel* model;
+		std::vector<CSkeletonAnim*> anims;
+		size_t animIdx;
+		float time;
+		bool pastLoadPos;
+		bool pastActionPos;
+	};
+
+	std::vector<SModelAnimState> m_AnimStates;
+
+	void AddModel(CModel* model, const CObjectEntry* object);
+
 	CUnit& m_Unit;
 	CStr m_State;
 	bool m_Looping;
 	float m_OriginalSpeed;
 	float m_Speed;
+	float m_SyncRepeatTime;
 	float m_Desync;
 	CStrW m_ActionSound;
 };

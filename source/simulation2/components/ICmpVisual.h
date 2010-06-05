@@ -54,6 +54,13 @@ public:
 	virtual std::wstring GetProjectileActor() = 0;
 
 	/**
+	 * Return the exact position where a projectile should be launched from (based on the actor's
+	 * ammo prop points).
+	 * Returns (0,0,0) if no point can be found.
+	 */
+	virtual CVector3D GetProjectileLaunchPoint() = 0;
+
+	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will
 	 * pick one at random (not network-synchronised).
 	 * If @p soundgroup is specified, then the sound will be played at each 'event' point in the

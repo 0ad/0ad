@@ -37,8 +37,10 @@
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/components/ICmpVisual.h"
 
 struct ActorViewerImpl : public Scene
@@ -178,19 +180,36 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 	{
 		CStr anim = CStr(animation).LowerCase();
 
+		// Emulate the typical simulation animation behaviour
 		float speed;
-		// TODO: this is just copied from template_unit.xml and isn't the
-		// same for all units. We ought to get it from the entity definition
-		// (if there is one)
+		float repeattime = 0.f;
 		if (anim == "walk")
 		{
-			speed = 7.f;
+			CmpPtr<ICmpUnitMotion> cmpUnitMotion(m.Simulation2, m.Entity);
+			if (!cmpUnitMotion.null())
+				speed = cmpUnitMotion->GetSpeed().ToFloat();
+			else
+				speed = 7.f; // typical unit speed
+
 			m.CurrentSpeed = speed;
 		}
 		else if (anim == "run")
 		{
-			speed = 12.f;
+			CmpPtr<ICmpUnitMotion> cmpUnitMotion(m.Simulation2, m.Entity);
+			if (!cmpUnitMotion.null())
+				speed = cmpUnitMotion->GetRunSpeed().ToFloat();
+			else
+				speed = 12.f; // typical unit speed
+
 			m.CurrentSpeed = speed;
+		}
+		else if (anim == "melee")
+		{
+			speed = 1.f; // speed will be ignored if we have a repeattime
+			m.CurrentSpeed = 0.f;
+
+			CStr code = "var cmp = Engine.QueryInterface("+CStr(m.Entity)+", IID_Attack); if (cmp) cmp.GetTimers(cmp.GetBestAttack()).repeat; else 0;";
+			m.Simulation2.GetScriptInterface().Eval(code.c_str(), repeattime);
 		}
 		else
 		{
@@ -199,12 +218,28 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			m.CurrentSpeed = 0.f;
 		}
 
+		CStr sound;
+		if (anim == "melee")
+			sound = "attack";
+		else if (anim == "build")
+			sound = "build";
+		else if (anim.Find("gather_") == 0)
+			sound = anim;
+
+		std::wstring soundgroup;
+		if (!sound.empty())
+		{
+			CStr code = "var cmp = Engine.QueryInterface("+CStr(m.Entity)+", IID_Sound); if (cmp) cmp.GetSoundGroup('"+sound+"'); else '';";
+			m.Simulation2.GetScriptInterface().Eval(code.c_str(), soundgroup);
+		}
+
 		CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
 		if (!cmpVisual.null())
 		{
 			// TODO: SetEntitySelection(anim)
-			// TODO: maybe we could play soundgroups from entities in here, to help test timings?
-			cmpVisual->SelectAnimation(anim, false, speed, L"");
+			cmpVisual->SelectAnimation(anim, false, speed, soundgroup);
+			if (repeattime)
+				cmpVisual->SetAnimationSync(0.f, repeattime);
 		}
 	}
 

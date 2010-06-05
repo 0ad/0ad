@@ -40,7 +40,8 @@ public:
 	// (treated as 0 if m_AnimDef == NULL)
 	float m_Speed;
 	// Times during the animation at which the interesting bits happen,
-	// as msec times in the range [0, AnimDef->GetDuration].
+	// as msec times in the range [0, AnimDef->GetDuration],
+	// or special value -1 if unspecified.
 	// ActionPos is used for melee hits, projectile launches, etc.
 	// ActionPos2 is used for loading projectile ammunition.
 	float m_ActionPos;

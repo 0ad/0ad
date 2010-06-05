@@ -49,6 +49,7 @@ int g_xres, g_yres;
 bool g_VSync = false;
 
 bool g_Quickstart = false;
+bool g_DisableAudio = false;
 
 // flag to switch on drawing terrain overlays
 bool g_ShowPathfindingOverlay = false;
@@ -150,7 +151,13 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 		g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = args.Get("profile");
 
 	if (args.Has("quickstart"))
+	{
 		g_Quickstart = true;
+		g_DisableAudio = true; // do this for backward-compatibility with user expectations
+	}
+
+	if (args.Has("nosound"))
+		g_DisableAudio = true;
 
 	if (args.Has("shadows"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String = "true";
@@ -163,12 +170,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 
 	if (args.Has("vsync"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
-
-	if (args.Has("showOverlay"))
-		g_ShowPathfindingOverlay = true;
-
-	if (args.Has("triPathfind"))
-		g_TriPathfind = true;
 }
 
 

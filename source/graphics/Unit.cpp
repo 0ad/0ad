@@ -29,7 +29,7 @@
 #include "ps/Game.h"
 #include "ps/Player.h"
 
-CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
+CUnit::CUnit(CObjectEntry* object, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()),
   m_ID(invalidUnitId), m_ActorSelections(actorSelections),
@@ -44,8 +44,7 @@ CUnit::~CUnit()
 	delete m_Model;
 }
 
-CUnit* CUnit::Create(const CStrW& actorName, CEntity* entity,
-					 const std::set<CStr>& selections, CObjectManager& objectManager)
+CUnit* CUnit::Create(const CStrW& actorName, const std::set<CStr>& selections, CObjectManager& objectManager)
 {
 	CObjectBase* base = objectManager.FindObjectBase(actorName);
 
@@ -62,101 +61,7 @@ CUnit* CUnit::Create(const CStrW& actorName, CEntity* entity,
 	if (! obj)
 		return NULL;
 
-	return new CUnit(obj, entity, objectManager, actorSelections);
-}
-
-void CUnit::ShowAmmunition()
-{
-	if (!m_Object->m_AmmunitionModel || !m_Object->m_AmmunitionPoint)
-		return;
-	// Remove any previous ammunition prop, in case there's still one left on there
-	m_Model->RemoveProp(m_Object->m_AmmunitionPoint);
-	// Then add the new prop
-	m_Model->AddProp(m_Object->m_AmmunitionPoint, m_Object->m_AmmunitionModel->Clone(), m_Object);
-}
-
-void CUnit::HideAmmunition()
-{
-	if (!m_Object->m_AmmunitionModel || !m_Object->m_AmmunitionPoint)
-		return;
-
-	// Remove the ammunition prop
-	m_Model->RemoveProp(m_Object->m_AmmunitionPoint);
-	// Restore the original props that were on the ammo attachpoint, by copying them from
-	// the base model
-	std::vector<CModel::Prop>& props = m_Object->m_Model->GetProps();
-	std::vector<CModel::Prop>::iterator it;
-	for (it = props.begin(); it != props.end(); ++it)
-	{
-		if (it->m_Point == m_Object->m_AmmunitionPoint)
-		{
-			m_Model->AddProp(m_Object->m_AmmunitionPoint, it->m_Model->Clone(), m_Object);
-		}
-	}
-}
-
-
-static CSkeletonAnim* GetRandomAnimation(const CStr& name, CObjectEntry* object)
-{
-	CSkeletonAnim* anim = object->GetRandomAnimation(name);
-
-	// Fall back to 'idle', if no matching animation is found
-	if (anim == NULL && name != "idle")
-		anim = object->GetRandomAnimation("idle");
-
-	// Every object should have an idle animation (even if it's a dummy static one)
-	debug_assert(anim != NULL);
-
-	return anim;
-}
-
-static bool SetRandomAnimation(const CStr& name, bool once,
-							   CModel* model, CObjectEntry* object)
-{
-	CSkeletonAnim* anim = GetRandomAnimation(name, object);
-	if (anim)
-	{
-		model->SetAnimation(anim, once);
-
-		// Recursively apply the animation name to props
-		const std::vector<CModel::Prop>& props = model->GetProps();
-		for (std::vector<CModel::Prop>::const_iterator it = props.begin(); it != props.end(); ++it)
-		{
-			bool ok = SetRandomAnimation(name, once, it->m_Model, it->m_ObjectEntry);
-			if (! ok)
-				return false;
-		}
-
-		return true;
-	}
-	else
-	{
-		// This shouldn't happen, since GetRandomAnimation tries to always
-		// return something valid
-		return false;
-	}
-}
-
-
-
-bool CUnit::SetRandomAnimation(const CStr& name, bool once)
-{
-	return ::SetRandomAnimation(name, once, m_Model, m_Object);
-}
-
-CSkeletonAnim* CUnit::GetRandomAnimation(const CStr& name)
-{
-	return ::GetRandomAnimation(name, m_Object);
-}
-
-bool CUnit::HasAnimation(const CStr& name)
-{
-	return (m_Object->GetRandomAnimation(name) != NULL);
-}
-
-bool CUnit::IsPlayingAnimation(const CStr& name)
-{
-	return (m_Model->GetAnimation() && m_Model->GetAnimation()->m_Name == name);
+	return new CUnit(obj, objectManager, actorSelections);
 }
 
 void CUnit::SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& soundgroup)
@@ -217,5 +122,7 @@ void CUnit::ReloadObject()
 		delete m_Model;
 		m_Model = newModel;
 		m_Object = newObject;
+
+		m_Animation->ReloadUnit(); // TODO: maybe this should try to preserve animation state?
 	}
 }

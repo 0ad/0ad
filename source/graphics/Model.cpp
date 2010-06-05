@@ -35,13 +35,13 @@
 #include "ps/Profile.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY L"graphics"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel(CSkeletonAnimManager& skeletonAnimManager)
 	: m_Parent(NULL), m_Flags(0), m_Anim(NULL), m_AnimTime(0), 
 	m_BoneMatrices(NULL), m_InverseBindBoneMatrices(NULL),
+	m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0),
 	m_PositionValid(false), m_ShadingColor(1,1,1,1), m_PlayerID((size_t)-1),
 	m_SkeletonAnimManager(skeletonAnimManager)
 {
@@ -223,8 +223,16 @@ CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const char* name,
 	anim->m_Name = name;
 	anim->m_AnimDef = def;
 	anim->m_Speed = speed;
-	anim->m_ActionPos = actionpos * anim->m_AnimDef->GetDuration();
-	anim->m_ActionPos2 = actionpos2 * anim->m_AnimDef->GetDuration();
+
+	if (actionpos == -1.f)
+		anim->m_ActionPos = -1.f;
+	else
+		anim->m_ActionPos = actionpos * anim->m_AnimDef->GetDuration();
+
+	if (actionpos2 == -1.f)
+		anim->m_ActionPos2 = -1.f;
+	else
+		anim->m_ActionPos2 = actionpos2 * anim->m_AnimDef->GetDuration();
 
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
@@ -233,86 +241,20 @@ CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const char* name,
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Update: update this model by the given time, in msec
-void CModel::Update(float time)
+// Update: update this model to the given time, in msec
+void CModel::UpdateTo(float time)
 {
-	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
-	{
-		time *= m_Anim->m_Speed;
+	// update animation time, but don't calculate bone matrices - do that (lazily) when
+	// something requests them; that saves some calculation work for offscreen models,
+	// and also assures the world space, inverted bone matrices (required for normal
+	// skinning) are up to date with respect to m_Transform
+	m_AnimTime = time;
 
-		float oldAnimTime = m_AnimTime;
+	// mark vertices as dirty
+	SetDirty(RENDERDATA_UPDATE_VERTICES);
 
-		// update animation time, but don't calculate bone matrices - do that (lazily) when
-		// something requests them; that saves some calculation work for offscreen models,
-		// and also assures the world space, inverted bone matrices (required for normal
-		// skinning) are up to date with respect to m_Transform 
-		m_AnimTime += time;
-		
-		float duration = m_Anim->m_AnimDef->GetDuration();
-		if (m_AnimTime > duration)
-		{
-			if (m_Flags & MODELFLAG_NOLOOPANIMATION)
-			{
-				if (m_NextAnim)
-					SetAnimation(m_NextAnim);
-				else
-				{
-					// Changing to no animation - probably becoming a corpse.
-					// Make sure the last displayed frame is the final frame
-					// of the animation.
-					float nearlyEnd = duration - 1.f; // 1 msec
-					if (fabs(oldAnimTime - nearlyEnd) < 1.f)
-						SetAnimation(NULL);
-					else
-						m_AnimTime = nearlyEnd;
-				}
-			}
-			else
-				m_AnimTime = fmod(m_AnimTime, duration);
-		}
-		
-		// mark vertices as dirty
-		SetDirty(RENDERDATA_UPDATE_VERTICES);
-		
-		// mark matrices as dirty
-		InvalidatePosition();
-	}
-
-	// update props
-	for (size_t i = 0; i < m_Props.size(); ++i)
-		m_Props[i].m_Model->Update(time);
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool CModel::NeedsNewAnim(float time) const
-{
-	// TODO: fix UnitAnimation so it correctly loops animated props
-
-	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
-	{
-		time *= m_Anim->m_Speed;
-
-		float duration = m_Anim->m_AnimDef->GetDuration();
-
-		if (m_AnimTime + time > duration)
-			return true;
-	}
-
-	return false;
-}
-
-void CModel::CheckActionTriggers(float time, bool& action, bool& action2) const
-{
-	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
-	{
-		time *= m_Anim->m_Speed;
-
-		if (m_AnimTime <= m_Anim->m_ActionPos && m_AnimTime + time > m_Anim->m_ActionPos)
-			action = true;
-
-		if (m_AnimTime <= m_Anim->m_ActionPos2 && m_AnimTime + time > m_Anim->m_ActionPos2)
-			action2 = true;
-	}
+	// mark matrices as dirty
+	InvalidatePosition();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -382,34 +324,35 @@ void CModel::ValidatePosition()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetAnimation: set the given animation as the current animation on this model;
 // return false on error, else true
-bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, CSkeletonAnim* next)
+bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 {
-	m_Anim=NULL; // in case something fails
+	m_Anim = NULL; // in case something fails
 
-	if (anim) {
+	if (anim)
+	{
 		m_Flags &= ~MODELFLAG_NOLOOPANIMATION;
 
 		if (once)
-		{
 			m_Flags |= MODELFLAG_NOLOOPANIMATION;
-			m_NextAnim = next;
-		}
 
-		if (!m_BoneMatrices && anim->m_AnimDef) {
+		if (!m_BoneMatrices && anim->m_AnimDef)
+		{
 			// not boned, can't animate
 			return false;
 		}
 
-		if (m_BoneMatrices && !anim->m_AnimDef) {
+		if (m_BoneMatrices && !anim->m_AnimDef)
+		{
 			// boned, but animation isn't valid
 			// (e.g. the default (static) idle animation on an animated unit)
 			return false;
 		}
 
-		if (anim->m_AnimDef && anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones()) {
+		if (anim->m_AnimDef && anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones())
+		{
 			// mismatch between model's skeleton and animation's skeleton
-			LOG(CLogger::Error, LOG_CATEGORY, L"Mismatch between model's skeleton and animation's skeleton (%lu model bones != %lu animation keys)",
-										(unsigned long)m_pModelDef->GetNumBones(), (unsigned long)anim->m_AnimDef->GetNumKeys());
+			LOGERROR(L"Mismatch between model's skeleton and animation's skeleton (%lu model bones != %lu animation keys)",
+					(unsigned long)m_pModelDef->GetNumBones(), (unsigned long)anim->m_AnimDef->GetNumKeys());
 			return false;
 		}
 
@@ -431,7 +374,6 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, CSkeletonAnim* next)
 void CModel::CopyAnimationFrom(CModel* source)
 {
 	m_Anim = source->m_Anim;
-	m_NextAnim = source->m_NextAnim;
 	m_AnimTime = source->m_AnimTime;
 
 	m_Flags &= ~MODELFLAG_CASTSHADOWS;
@@ -457,16 +399,49 @@ void CModel::AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry
 	m_Props.push_back(prop);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// RemoveProp: remove any props from the given point
-void CModel::RemoveProp(SPropPoint* point)
+void CModel::AddAmmoProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry)
 {
-	for (size_t i = 0; i < m_Props.size(); i++) {
-		if (m_Props[i].m_Point == point) {
-			delete m_Props[i].m_Model;
-			// (when a prop is removed it will automatically remove its prop point)
-		}
+	AddProp(point, model, objectentry);
+	m_AmmoPropPoint = point;
+	m_AmmoLoadedProp = m_Props.size() - 1;
+	m_Props[m_AmmoLoadedProp].m_Hidden = true;
+}
+
+void CModel::ShowAmmoProp()
+{
+	if (m_AmmoPropPoint == NULL)
+		return;
+
+	// Show the ammo prop, hide all others on the same prop point
+	for (size_t i = 0; i < m_Props.size(); ++i)
+		if (m_Props[i].m_Point == m_AmmoPropPoint)
+			m_Props[i].m_Hidden = (i != m_AmmoLoadedProp);
+}
+
+void CModel::HideAmmoProp()
+{
+	if (m_AmmoPropPoint == NULL)
+		return;
+
+	// Hide the ammo prop, show all others on the same prop point
+	for (size_t i = 0; i < m_Props.size(); ++i)
+		if (m_Props[i].m_Point == m_AmmoPropPoint)
+			m_Props[i].m_Hidden = (i == m_AmmoLoadedProp);
+}
+
+CModel* CModel::FindFirstAmmoProp()
+{
+	if (m_AmmoPropPoint)
+		return m_Props[m_AmmoLoadedProp].m_Model;
+
+	for (size_t i = 0; i < m_Props.size(); ++i)
+	{
+		CModel* model = m_Props[i].m_Model->FindFirstAmmoProp();
+		if (model)
+			return model;
 	}
+
+	return NULL;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -482,10 +457,16 @@ CModel* CModel::Clone() const
 	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetFlags(m_Flags);
-	for (size_t i=0;i<m_Props.size();i++) {
+
+	for (size_t i = 0; i < m_Props.size(); i++)
+	{
 		// eek!  TODO, RC - need to investigate shallow clone here
-		clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
+		if (m_AmmoPropPoint && i == m_AmmoLoadedProp)
+			clone->AddAmmoProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
+		else
+			clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
 	}
+
 	return clone;
 }
 
@@ -531,8 +512,6 @@ void CModel::SetPlayerColor(const CColor& colour)
 void CModel::SetShadingColor(const CColor& colour)
 {
 	m_ShadingColor = colour;
-	for( std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it )
-	{
+	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
 		it->m_Model->SetShadingColor(colour);
-	}
 }

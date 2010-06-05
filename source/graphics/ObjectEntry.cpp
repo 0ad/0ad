@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,11 +37,8 @@
 
 #include <sstream>
 
-#define LOG_CATEGORY L"graphics"
-
-CObjectEntry::CObjectEntry(CObjectBase* base)
-: m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f),
-  m_AmmunitionModel(NULL), m_AmmunitionPoint(NULL), m_Model(NULL)
+CObjectEntry::CObjectEntry(CObjectBase* base) :
+	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL)
 {
 }
 
@@ -72,7 +69,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		str << variation.color;
 		int r, g, b;
 		if (! (str >> r >> g >> b)) // Any trailing data is ignored
-			LOG(CLogger::Error, LOG_CATEGORY, L"Invalid RGB colour '%hs'", variation.color.c_str());
+			LOGERROR(L"Actor '%ls' has invalid RGB colour '%hs'", m_Base->m_ShortName.c_str(), variation.color.c_str());
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
@@ -93,7 +90,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));
 	if (!modeldef)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CObjectEntry::BuildModel(): Model %ls failed to load", m_ModelName.string().c_str());
+		LOGERROR(L"CObjectEntry::BuildVariation(): Model %ls failed to load", m_ModelName.string().c_str());
 		return false;
 	}
 
@@ -144,8 +141,8 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	else
 	{
 		// start up idling
-		if (! m_Model->SetAnimation(GetRandomAnimation("idle")))
-			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to set idle animation in model \"%ls\"", m_ModelName.string().c_str());
+		if (!m_Model->SetAnimation(GetRandomAnimation("idle")))
+			LOGERROR(L"Failed to set idle animation in model \"%ls\"", m_ModelName.string().c_str());
 	}
 
 	// build props - TODO, RC - need to fix up bounds here
@@ -164,31 +161,37 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName.string().c_str(), selections);
 		if (!oe)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to build prop model \"%ls\" on actor \"%ls\"", prop.m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
+			LOGERROR(L"Failed to build prop model \"%ls\" on actor \"%ls\"", prop.m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
 			continue;
 		}
 
-		// Also pluck out the other special attachpoint 'loaded-<proppoint>'
-		if (prop.m_PropPointName.length() > 7 && prop.m_PropPointName.Left(7) == "loaded-")
+		// If we don't have a projectile but this prop does (e.g. it's our rider), then
+		// use that as our projectile too
+		if (m_ProjectileModelName.empty() && !oe->m_ProjectileModelName.empty())
+			m_ProjectileModelName = oe->m_ProjectileModelName;
+
+		CStr ppn = prop.m_PropPointName;
+		bool isAmmo = false;
+
+		// Handle the special attachpoint 'loaded-<proppoint>'
+		if (ppn.Find("loaded-") == 0)
 		{
-			CStr ppn = prop.m_PropPointName.substr(7);
-			m_AmmunitionModel = oe->m_Model;
-			m_AmmunitionPoint = modeldef->FindPropPoint(ppn);
-			if (! m_AmmunitionPoint)
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
+			ppn = prop.m_PropPointName.substr(7);
+			isAmmo = true;
+		}
+
+		SPropPoint* proppoint = modeldef->FindPropPoint(ppn.c_str());
+		if (proppoint)
+		{
+			CModel* propmodel = oe->m_Model->Clone();
+			if (isAmmo)
+				m_Model->AddAmmoProp(proppoint, propmodel, oe);
+			else
+				m_Model->AddProp(proppoint, propmodel, oe);
+			propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
 		}
 		else
-		{
-			SPropPoint* proppoint = modeldef->FindPropPoint(prop.m_PropPointName.c_str());
-			if (proppoint)
-			{
-				CModel* propmodel = oe->m_Model->Clone();
-				m_Model->AddProp(proppoint, propmodel, oe);
-				propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
-			}
-			else
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", prop.m_PropPointName.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
-		}
+			LOGERROR(L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
 	}
 
 	// setup flags
@@ -235,21 +238,26 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	return true;
 }
 
-CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName)
+CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName) const
 {
-	SkeletonAnimMap::iterator lower = m_Animations.lower_bound(animationName);
-	SkeletonAnimMap::iterator upper = m_Animations.upper_bound(animationName);
+	SkeletonAnimMap::const_iterator lower = m_Animations.lower_bound(animationName);
+	SkeletonAnimMap::const_iterator upper = m_Animations.upper_bound(animationName);
 	size_t count = std::distance(lower, upper);
 	if (count == 0)
-	{
-//		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to find animation '%hs' for actor '%ls'", animationName.c_str(), m_ModelName.c_str());
 		return NULL;
-	}
-	else
-	{
-		// TODO: Do we care about network synchronisation of random animations?
-		size_t id = rand(0, count);
-		std::advance(lower, id);
-		return lower->second;
-	}
+
+	size_t id = rand(0, count);
+	std::advance(lower, id);
+	return lower->second;
+}
+
+std::vector<CSkeletonAnim*> CObjectEntry::GetAnimations(const CStr& animationName) const
+{
+	std::vector<CSkeletonAnim*> anims;
+
+	SkeletonAnimMap::const_iterator lower = m_Animations.lower_bound(animationName);
+	SkeletonAnimMap::const_iterator upper = m_Animations.upper_bound(animationName);
+	for (SkeletonAnimMap::const_iterator it = lower; it != upper; ++it)
+		anims.push_back(it->second);
+	return anims;
 }

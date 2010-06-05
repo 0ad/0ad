@@ -66,6 +66,11 @@ public:
 	virtual fixed GetSpeed() = 0;
 
 	/**
+	 * Get the default speed that this unit will have when running, in metres per second.
+	 */
+	virtual fixed GetRunSpeed() = 0;
+
+	/**
 	 * Toggle the rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;

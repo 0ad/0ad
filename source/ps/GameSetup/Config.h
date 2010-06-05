@@ -60,14 +60,11 @@ extern int g_xres, g_yres;
 extern bool g_VSync;
 
 extern bool g_Quickstart;
+extern bool g_DisableAudio;
 
 extern CStrW g_CursorName;
 
 class CmdLineArgs;
 extern void CONFIG_Init(const CmdLineArgs& args);
-
-extern bool g_ShowPathfindingOverlay;
-
-extern bool g_TriPathfind;
 
 #endif // INCLUDED_PS_GAMESETUP_CONFIG

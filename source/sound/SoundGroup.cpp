@@ -35,6 +35,7 @@
 
 #define LOG_CATEGORY L"audio"
 
+static const bool DISABLE_INTENSITY = true; // disable for now since it's broken
 
 void CSoundGroup::SetGain(float gain)
 {
@@ -124,7 +125,7 @@ static void HandleError(const std::wstring& message, const VfsPath& pathname, Li
 
 void CSoundGroup::PlayNext(const CVector3D& position)
 {
-	if(m_Intensity >= m_IntensityThreshold)
+	if(m_Intensity >= m_IntensityThreshold && !DISABLE_INTENSITY)
 	{
 		if(!is_playing(m_hReplacement))
 		{

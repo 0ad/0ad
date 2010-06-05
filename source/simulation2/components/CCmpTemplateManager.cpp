@@ -389,7 +389,13 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	permittedComponentTypes.insert("VisualActor");
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Obstruction");
-	// (This could be initialised once and reused, but it's not worth the effort)
+
+	// Need these for the Actor Viewer:
+	permittedComponentTypes.insert("Attack");
+	permittedComponentTypes.insert("UnitMotion");
+	permittedComponentTypes.insert("Sound");
+
+	// (This set could be initialised once and reused, but it's not worth the effort)
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);

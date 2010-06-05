@@ -20,6 +20,7 @@
 #include "UnitAnimation.h"
 
 #include "graphics/Model.h"
+#include "graphics/ObjectEntry.h"
 #include "graphics/SkeletonAnim.h"
 #include "graphics/SkeletonAnimDef.h"
 #include "graphics/Unit.h"
@@ -40,8 +41,43 @@ static float DesyncSpeed(float speed, float desync)
 }
 
 CUnitAnimation::CUnitAnimation(CUnit& unit)
-: m_Unit(unit), m_State("idle"), m_Looping(true), m_Speed(1.f), m_OriginalSpeed(1.f), m_Desync(0.f)
+: m_Unit(unit), m_State("idle"), m_Looping(true), m_Speed(1.f), m_SyncRepeatTime(0.f), m_OriginalSpeed(1.f), m_Desync(0.f)
 {
+	ReloadUnit();
+}
+
+void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
+{
+	SModelAnimState state;
+
+	state.anims = object->GetAnimations(m_State);
+
+	if (state.anims.empty())
+		state.anims = object->GetAnimations("idle");
+	debug_assert(!state.anims.empty()); // there must always be an idle animation
+
+	state.model = model;
+	state.animIdx = rand(0, state.anims.size());
+	state.time = 0.f;
+	state.pastLoadPos = false;
+	state.pastActionPos = false;
+
+	m_AnimStates.push_back(state);
+
+	model->SetAnimation(state.anims[state.animIdx], !m_Looping);
+
+	// Recursively add all props
+	const std::vector<CModel::Prop>& props = model->GetProps();
+	for (std::vector<CModel::Prop>::const_iterator it = props.begin(); it != props.end(); ++it)
+	{
+		AddModel(it->m_Model, it->m_ObjectEntry);
+	}
+}
+
+void CUnitAnimation::ReloadUnit()
+{
+	m_AnimStates.clear();
+	AddModel(&m_Unit.GetModel(), &m_Unit.GetObject());
 }
 
 void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& actionSound)
@@ -56,96 +92,135 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 	m_ActionSound = actionSound;
 
 	m_Speed = DesyncSpeed(m_OriginalSpeed, m_Desync);
+	m_SyncRepeatTime = 0.f;
 
 	if (! keepSelection)
 		m_Unit.SetEntitySelection(name);
 
-	m_Unit.SetRandomAnimation(m_State, !m_Looping);
+	ReloadUnit();
 }
 
 void CUnitAnimation::SetAnimationSync(float actionTime, float repeatTime)
 {
-	CModel& model = m_Unit.GetModel();
+	m_SyncRepeatTime = repeatTime;
 
-	if (!model.m_Anim || !model.m_Anim->m_AnimDef)
-		return;
+	// Update all the synced prop models to each coincide with actionTime
+	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
+	{
+		CSkeletonAnimDef* animDef = it->anims[it->animIdx]->m_AnimDef;
+		if (animDef == NULL)
+			continue; // ignore static animations
 
-	float duration = model.m_Anim->m_AnimDef->GetDuration();
+		float duration = animDef->GetDuration();
 
-	// Set the speed so it loops once in repeatTime
-	float speed = duration / repeatTime;
+		float actionPos = it->anims[it->animIdx]->m_ActionPos;
+		bool hasActionPos = (actionPos != -1.f);
 
-	// Compensate for the animation's scale factor
-	if (model.m_Anim->m_Speed)
-		speed /= model.m_Anim->m_Speed;
+		if (!hasActionPos)
+			continue;
 
-	// Need to offset so that start+actionTime*speed = ActionPos
-	float start = model.m_Anim->m_ActionPos - actionTime*speed;
-	// Wrap it so that it's within the animation
-	start = fmodf(start, duration);
-	if (start < 0)
-		start += duration;
+		float speed = duration / repeatTime;
 
-	// Make the animation run at the computed timings
-	model.m_AnimTime = start;
-	m_Speed = m_OriginalSpeed = speed;
-	m_Desync = 0.f;
+		// Need to offset so that start+actionTime*speed = actionPos
+		float start = actionPos - actionTime*speed;
+		// Wrap it so that it's within the animation
+		start = fmodf(start, duration);
+		if (start < 0)
+			start += duration;
+
+		it->time = start;
+	}
 }
 
 void CUnitAnimation::Update(float time)
 {
-	CModel& model = m_Unit.GetModel();
-
-	// Convert from real time to scaled animation time
-	float advance = time*m_Speed;
-
-	// Check if the current animation will trigger the action events
-	bool action = false;
-	bool action2 = false;
-	model.CheckActionTriggers(advance, action, action2);
-
-	// Choose a new random animation if we're going to loop
-	if (m_Looping && model.NeedsNewAnim(time))
+	// Advance all of the prop models independently
+	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
 	{
-		// Re-desynchronise the animation, to keep the irregular drifting between separate units
-		m_Speed = DesyncSpeed(m_OriginalSpeed, m_Desync);
-		advance = time*m_Speed;
-		// TODO: should subtract time remaining in previous animation from advance, to be a bit more precise
+		CSkeletonAnimDef* animDef = it->anims[it->animIdx]->m_AnimDef;
+		if (animDef == NULL)
+			continue; // ignore static animations
 
-		m_Unit.SetRandomAnimation(m_State, false);
-		// TODO: this really ought to interpolate smoothly into the new animation,
-		// instead of just cutting off the end of the previous one and jumping
-		// straight into the new.
+		float duration = animDef->GetDuration();
 
-		// Check if the start of the new animation will trigger the action events
-		// (This is additive with the previous CheckActionTriggers)
-		model.CheckActionTriggers(advance, action, action2);
-	}
+		float actionPos = it->anims[it->animIdx]->m_ActionPos;
+		float loadPos = it->anims[it->animIdx]->m_ActionPos2;
+		bool hasActionPos = (actionPos != -1.f);
+		bool hasLoadPos = (loadPos != -1.f);
 
-	// TODO: props should get a new random animation once they loop, independent
-	// of the object they're propped onto, if we ever bother with animated props
+		// Find the current animation speed
+		float speed;
+		if (m_SyncRepeatTime && hasActionPos)
+			speed = duration / m_SyncRepeatTime;
+		else
+			speed = m_Speed * it->anims[it->animIdx]->m_Speed;
 
-	// If we're going to advance past the action point in this update, then perform the action
-	if (action)
-	{
-		m_Unit.HideAmmunition();
+		// Convert from real time to scaled animation time
+		float advance = time * speed;
 
-		if (!m_ActionSound.empty())
+		// If we're going to advance past the load point in this update, then load the ammo
+		if (hasLoadPos && !it->pastLoadPos && it->time + advance >= loadPos)
 		{
-			CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-			if (!cmpSoundManager.null())
-				cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Unit.GetID());
+			it->model->ShowAmmoProp();
+			it->pastLoadPos = true;
+		}
+
+		// If we're going to advance past the action point in this update, then perform the action
+		if (hasActionPos && !it->pastActionPos && it->time + advance >= actionPos)
+		{
+			if (hasLoadPos)
+				it->model->HideAmmoProp();
+
+			if (!m_ActionSound.empty())
+			{
+				CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+				if (!cmpSoundManager.null())
+					cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Unit.GetID());
+			}
+
+			it->pastActionPos = true;
+		}
+
+		if (it->time + advance < duration)
+		{
+			// If we're still within the current animation, then simply update it
+			it->time += advance;
+			it->model->UpdateTo(it->time);
+		}
+		else if (m_Looping)
+		{
+			// If we've finished the current animation and want to loop...
+
+			// Wrap the timer around
+			it->time = fmod(it->time + advance, duration);
+
+			// If there's a choice of multiple animations, pick a new random one
+			if (it->anims.size() > 1)
+			{
+				size_t newAnimIdx = rand(0, it->anims.size());
+				if (newAnimIdx != it->animIdx)
+				{
+					it->animIdx = newAnimIdx;
+					it->model->SetAnimation(it->anims[it->animIdx], !m_Looping);
+				}
+			}
+
+			it->pastActionPos = false;
+			it->pastLoadPos = false;
+
+			it->model->UpdateTo(it->time);
+		}
+		else
+		{
+			// If we've finished the current animation and don't want to loop...
+
+			// Update to very nearly the end of the last frame (but not quite the end else we'll wrap around when skinning)
+			float nearlyEnd = duration - 1.f;
+			if (fabs(it->time - nearlyEnd) > 1.f)
+			{
+				it->time = nearlyEnd;
+				it->model->UpdateTo(it->time);
+			}
 		}
 	}
-
-	// Ditto for the second action point
-	if (action2)
-	{
-		m_Unit.ShowAmmunition();
-	}
-
-	// TODO: some animations (e.g. wood chopping) have two action points that should trigger sounds,
-	// so we ought to support that somehow
-
-	model.Update(advance);
 }

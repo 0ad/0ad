@@ -765,7 +765,8 @@ void Init(const CmdLineArgs& args, int flags)
 		// note: no longer vfs_display here. it's dog-slow due to unbuffered
 		// file output and very rarely needed.
 	}
-	else
+
+	if(g_DisableAudio)
 	{
 		// speed up startup by disabling all sound
 		// (OpenAL init will be skipped).

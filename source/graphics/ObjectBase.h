@@ -35,7 +35,7 @@ public:
 
 	struct Anim {
 		// constructor
-		Anim() : m_Speed(1), m_ActionPos(0.5), m_ActionPos2(0.0) {}
+		Anim() : m_Speed(1.f), m_ActionPos(-1.f), m_ActionPos2(-1.f) {}
 
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
@@ -43,8 +43,8 @@ public:
 		VfsPath m_FileName;
 		// animation speed, as specified in XML actor file
 		float m_Speed;
-		// fraction of the way through the animation that the interesting bit(s)
-		// happens 
+		// fraction [0.0, 1.0] of the way through the animation that the interesting bit(s)
+		// happens, or -1.0 if unspecified
 		float m_ActionPos;
 		float m_ActionPos2;
 	};
