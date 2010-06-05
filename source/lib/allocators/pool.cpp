@@ -70,15 +70,11 @@ void* pool_alloc(Pool* p, size_t size)
 	// otherwise the pool el_size setting.
 	const size_t el_size = p->el_size? p->el_size : mem_RoundUpToAlignment(size);
 
-	void* el;
 	// note: this can never happen in pools with variable-sized elements
 	// because they disallow pool_free.
-	if (p->freelist)
-	{
-		el = mem_freelist_Detach(p->freelist);
-		if(el)
-			goto have_el;
-	}
+	void* el = mem_freelist_Detach(p->freelist);
+	if(el)
+		goto have_el;
 
 	// alloc a new entry
 	{

@@ -42,11 +42,39 @@ LIB_API LibError mem_Decommit(u8* p, size_t size);
 LIB_API LibError mem_Protect(u8* p, size_t size, int prot);
 
 
-// note: element memory is used to store a pointer to the next free element.
+// "freelist" is a pointer to the first unused element (0 if there are none);
+// its memory holds a pointer to the next free one in list.
+//
 // rationale for the function-based interface: a class encapsulating the
 // freelist pointer would force each header to include mem_util.h;
 // instead, implementations need only declare a void* pointer.
-LIB_API void mem_freelist_AddToFront(void*& freelist, void* el);
-LIB_API void* mem_freelist_Detach(void*& freelist);
+//
+// these functions are inlined because allocation is sometimes time-critical.
+
+// @param el must not be a nullptr (otherwise, the previous freelist entries
+// would be lost)
+static inline void mem_freelist_AddToFront(void*& freelist, void* el)
+{
+#ifndef NDEBUG
+	debug_assert(el != 0);
+#endif
+
+	void* prev_el = freelist;
+	freelist = el;
+	memcpy(el, prev_el, sizeof(void*));
+}
+
+// @return 0 if the freelist is empty (i.e. a nullptr),
+// else a pointer that was previously passed to mem_freelist_AddToFront.
+static inline void* mem_freelist_Detach(void*& freelist)
+{
+	void* el = freelist;
+	// nothing in list
+	if(!el)
+		return 0;
+	memcpy(&freelist, el, sizeof(void*));
+	freelist = *(void**)el;
+	return el;
+}
 
 #endif	// #ifndef INCLUDED_MEM_UTIL

@@ -133,10 +133,8 @@ LIB_API void pool_free(Pool* p, void* el);
 LIB_API void pool_free_all(Pool* p);
 
 
-#ifdef __cplusplus
-
 /**
- * C++ wrapper on top of pool_alloc that's slightly easier to use.
+ * C++ wrapper on top of pool_alloc for fixed-size allocations (determined by sizeof(T))
  *
  * T must be POD (Plain Old Data) because it is memset to 0!
  **/
@@ -184,7 +182,8 @@ public:
 	 */
 	explicit RawPoolAllocator(size_t maxSize)
 	{
-		(void)pool_create(&m_pool, maxSize, 0);
+		const size_t el_size = 0;	// sizes will be passed to each pool_alloc
+		(void)pool_create(&m_pool, maxSize, el_size);
 	}
 
 	~RawPoolAllocator()
@@ -304,7 +303,5 @@ bool operator!=(const pool_allocator<T1>&, const pool_allocator<T2>&) throw ()
 {
 	return false;
 }
-
-#endif	// __cplusplus
 
 #endif	// #ifndef INCLUDED_POOL

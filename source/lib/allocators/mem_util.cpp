@@ -108,29 +108,3 @@ LibError mem_Protect(u8* p, size_t size, int prot)
 	int ret = mprotect(p, size, prot);
 	return LibError_from_posix(ret);
 }
-
-
-//-----------------------------------------------------------------------------
-
-// "freelist" is a pointer to the first unused element (0 if there are none);
-// its memory holds a pointer to the next free one in list.
-
-void mem_freelist_AddToFront(void*& freelist, void* el)
-{
-	debug_assert(el != 0);
-
-	void* prev_el = freelist;
-	freelist = el;
-	*(void**)el = prev_el;
-}
-
-
-void* mem_freelist_Detach(void*& freelist)
-{
-	void* el = freelist;
-	// nothing in list
-	if(!el)
-		return 0;
-	freelist = *(void**)el;
-	return el;
-}

@@ -170,6 +170,83 @@ int SDL_SetGamma(float r, float g, float b)
 
 
 //----------------------------------------------------------------------------
+// window
+//----------------------------------------------------------------------------
+
+static DWORD wnd_ChooseWindowStyle(bool fullscreen, HWND previousWindow = (HWND)INVALID_HANDLE_VALUE)
+{
+	DWORD windowStyle = fullscreen? WS_POPUP : WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX;
+	windowStyle |= WS_VISIBLE;
+	windowStyle |= WS_CLIPCHILDREN|WS_CLIPSIBLINGS;	// MSDN SetPixelFormat says this is required
+
+	if(!fullscreen)	// windowed
+	{
+		// support resizing
+		windowStyle |= WS_SIZEBOX|WS_MAXIMIZEBOX;
+
+		// remember the previous maximized state
+		// (else subsequent attempts to maximize will fail)
+		if(wutil_IsValidHandle(previousWindow))
+		{
+			const DWORD previousWindowState = GetWindowLongW(previousWindow, GWL_STYLE);
+			windowStyle |= (previousWindowState & WS_MAXIMIZE);
+		}
+	}
+
+	return windowStyle;
+}
+
+
+// @param w,h value-return (in: desired, out: actual pixel count)
+static void wnd_UpdateWindowDimensions(DWORD windowStyle, int& w, int& h)
+{
+	// Calculate the size of the outer window, so that the client area has
+	// the desired dimensions.
+	RECT r;
+	r.left = r.top = 0;
+	r.right = w; r.bottom = h;
+	if (AdjustWindowRectEx(&r, windowStyle, FALSE, 0))
+	{
+		w = r.right - r.left;
+		h = r.bottom - r.top;
+	}
+}
+
+
+static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+static HWND wnd_CreateWindow(int w, int h)
+{
+	// (create new window every time (instead of once at startup), because
+	// pixel format isn't supposed to be changed more than once)
+
+	// app instance.
+	// returned by GetModuleHandle and used in keyboard hook and window creation. 
+	const HINSTANCE hInst = GetModuleHandle(0);
+
+	// register window class
+	WNDCLASSW wc;
+	memset(&wc, 0, sizeof(wc));
+	wc.style = 0;
+	wc.lpfnWndProc = wndproc;
+	wc.lpszClassName = L"WSDL";
+	wc.hInstance = hInst;
+	ATOM class_atom = RegisterClassW(&wc);
+	if(!class_atom)
+	{
+		debug_assert(0);	// SDL_SetVideoMode: RegisterClass failed
+		return 0;
+	}
+
+	const DWORD windowStyle = wnd_ChooseWindowStyle(fullscreen);
+	wnd_UpdateWindowDimensions(windowStyle, w, h);
+
+	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
+	return CreateWindowExW(WS_EX_APPWINDOW, (LPCWSTR)(uintptr_t)class_atom, L"wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
+}
+
+
+//----------------------------------------------------------------------------
 // video
 //----------------------------------------------------------------------------
 
@@ -179,7 +256,7 @@ static HGLRC hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
 
 // check if resolution needs to be changed
-static bool video_need_change(int w, int h, int cur_w, int cur_h, bool fullscreen)
+static bool video_NeedsChange(int w, int h, int cur_w, int cur_h, bool fullscreen)
 {
 	// invalid: keep current settings
 	if(w <= 0 || h <= 0)
@@ -197,20 +274,6 @@ static bool video_need_change(int w, int h, int cur_w, int cur_h, bool fullscree
 }
 
 
-static inline void video_enter_game_mode()
-{
-	ShowWindow(g_hWnd, SW_RESTORE);
-	ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
-}
-
-static inline void video_leave_game_mode(bool hide = true)
-{
-	ChangeDisplaySettings(0, 0);
-	if(hide)
-		ShowWindow(g_hWnd, SW_MINIMIZE);
-}
-
-
 int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 {
 	if(attr == SDL_GL_DEPTH_SIZE)
@@ -219,62 +282,8 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 	return 0;
 }
 
-static void compute_window_style_and_size(bool fullscreen, DWORD* windowStyle, int* w, int* h)
-{
-	*windowStyle = fullscreen? WS_POPUP : WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX;
-	*windowStyle |= WS_VISIBLE;
-	*windowStyle |= WS_CLIPCHILDREN|WS_CLIPSIBLINGS;	// MSDN SetPixelFormat says this is required
 
-	// support resizing of windows
-	if(!fullscreen)
-		*windowStyle |= WS_SIZEBOX|WS_MAXIMIZEBOX;
-
-	// Calculate the size of the outer window, so that the client area has
-	// the desired dimensions.
-	RECT r;
-	r.left = r.top = 0;
-	r.right = *w; r.bottom = *h;
-	if (AdjustWindowRectEx(&r, *windowStyle, FALSE, 0))
-	{
-		*w = r.right - r.left;
-		*h = r.bottom - r.top;
-	}
-}
-
-static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
-static HWND wsdl_CreateWindow(int w, int h)
-{
-	// (create new window every time (instead of once at startup), because
-	// pixel format isn't supposed to be changed more than once)
-
-	// app instance.
-	// returned by GetModuleHandle and used in kbd hook and window creation. 
-	const HINSTANCE hInst = GetModuleHandle(0);
-
-	// register window class
-	WNDCLASSW wc;
-	memset(&wc, 0, sizeof(wc));
-	wc.style = 0;
-	wc.lpfnWndProc = wndproc;
-	wc.lpszClassName = L"WSDL";
-	wc.hInstance = hInst;
-	ATOM class_atom = RegisterClassW(&wc);
-	if(!class_atom)
-	{
-		debug_assert(0);	// SDL_SetVideoMode: RegisterClass failed
-		return 0;
-	}
-
-	DWORD windowStyle;
-	compute_window_style_and_size(fullscreen, &windowStyle, &w, &h);
-
-	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
-	return CreateWindowExW(WS_EX_APPWINDOW, (LPCWSTR)(uintptr_t)class_atom, L"wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
-}
-
-
-static void SetPixelFormat(HDC g_hDC, int bpp)
+static void video_SetPixelFormat(HDC g_hDC, int bpp)
 {
 	const DWORD dwFlags = PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER;
 	BYTE cColourBits = (BYTE)bpp;
@@ -314,7 +323,7 @@ static void SetPixelFormat(HDC g_hDC, int bpp)
 }
 
 
-// set video mode wxh:bpp if necessary.
+// set video mode width x height : bpp (or leave unchanged if already adequate).
 // w = h = bpp = 0 => no change.
 int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 {
@@ -332,7 +341,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	dm.dmBitsPerPel = bpp;
 	dm.dmFields = DM_BITSPERPEL;
 
-	if(video_need_change(w,h, cur_w,cur_h, fullscreen))
+	if(video_NeedsChange(w,h, cur_w,cur_h, fullscreen))
 	{
 		dm.dmPelsWidth  = (DWORD)w;
 		dm.dmPelsHeight = (DWORD)h;
@@ -342,13 +351,13 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 
 	if(g_hWnd == (HWND)INVALID_HANDLE_VALUE)
 	{
-		g_hWnd = wsdl_CreateWindow(w, h);
+		g_hWnd = wnd_CreateWindow(w, h);
 		if(!wutil_IsValidHandle(g_hWnd))
 			return 0;
 
 		g_hDC = GetDC(g_hWnd);
 
-		SetPixelFormat(g_hDC, bpp);
+		video_SetPixelFormat(g_hDC, bpp);
 
 		hGLRC = wglCreateContext(g_hDC);
 		if(!hGLRC)
@@ -357,40 +366,35 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 		if(!wglMakeCurrent(g_hDC, hGLRC))
 			return 0;
 	}
-	else
+	else	// update the existing window
 	{
-		// update the existing window
-
-		DWORD oldWindowStyle = GetWindowLongW(g_hWnd, GWL_STYLE);
-
-		DWORD windowStyle;
-		compute_window_style_and_size(fullscreen, &windowStyle, &w, &h);
+		const DWORD windowStyle = wnd_ChooseWindowStyle(fullscreen, g_hWnd);
+		wnd_UpdateWindowDimensions(windowStyle, w, h);
 
 		UINT flags = SWP_FRAMECHANGED|SWP_NOZORDER|SWP_NOACTIVATE;
-
-		if(!fullscreen)
-		{
-			// preserve the top-left corner if windowed
+		if(!fullscreen)	// windowed: preserve the top-left corner
 			flags |= SWP_NOMOVE;
-
-			// preserve maximisedness, else we'll mess up when the user attempts to maximise the window
-			windowStyle |= (oldWindowStyle & WS_MAXIMIZE);
-		}
 
 		WARN_IF_FALSE(SetWindowLongW(g_hWnd, GWL_STYLE, windowStyle));
 		WARN_IF_FALSE(SetWindowPos(g_hWnd, 0, 0, 0, w, h, flags));
 
 		if(fullscreen)
-			video_enter_game_mode();
+		{
+			ShowWindow(g_hWnd, SW_RESTORE);
+			ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+		}
 		else
-			video_leave_game_mode(false);
+		{
+			ChangeDisplaySettings(0, 0);
+			// don't ShowWindow with SW_MINIMIZE (we just want to update)
+		}
 	}
 
 	return 1;
 }
 
 
-static void video_shutdown()
+static void video_Shutdown()
 {
 	if(fullscreen)
 	{
@@ -398,7 +402,7 @@ static void video_shutdown()
 		debug_assert(status == DISP_CHANGE_SUCCESSFUL);
 	}
 
-	if(hGLRC != INVALID_HANDLE_VALUE)
+	if(wutil_IsValidHandle(hGLRC))
 	{
 		WARN_IF_FALSE(wglMakeCurrent(0, 0));
 		WARN_IF_FALSE(wglDeleteContext(hGLRC));
@@ -443,116 +447,24 @@ SDL_Surface* SDL_GetVideoSurface()
 // note: we only use winit to redirect stdout; this queue won't be used
 // before _cinit.
 typedef std::queue<SDL_Event> Queue;
-static Queue queue;
+static Queue g_queue;
 
-static void queue_event(const SDL_Event& ev)
+static void QueueEvent(const SDL_Event& ev)
 {
 	debug_assert(!is_quitting);
 
-	queue.push(ev);
+	g_queue.push(ev);
 }
 
-static bool dequeue_event(SDL_Event* ev)
+static bool DequeueEvent(SDL_Event& ev)
 {
 	debug_assert(!is_quitting);
 
-	if(queue.empty())
+	if(g_queue.empty())
 		return false;
-	*ev = queue.front();
-	queue.pop();
+	ev = g_queue.front();
+	g_queue.pop();
 	return true;
-}
-
-
-//----------------------------------------------------------------------------
-// app activation
-
-enum SdlActivationType { LOSE = 0, GAIN = 1 };
-
-static inline void queue_active_event(SdlActivationType type, size_t changed_app_state)
-{
-	// SDL says this event is not generated when the window is created,
-	// but skipping the first event may confuse things.
-
-	SDL_Event ev;
-	ev.type = SDL_ACTIVEEVENT;
-	ev.active.state = (u8)changed_app_state;
-	ev.active.gain  = (u8)((type == GAIN)? 1 : 0);
-	queue_event(ev);
-}
-
-
-// SDL_APP* bitflags indicating whether we are active.
-// note: responsibility for yielding lies with SDL apps -
-// they control the main loop.
-static Uint8 app_state;
-
-static void active_change_state(SdlActivationType type, Uint8 changed_app_state)
-{
-	Uint8 old_app_state = app_state;
-
-	if(type == GAIN)
-		app_state = Uint8(app_state | changed_app_state);
-	else
-		app_state = Uint8(app_state & ~changed_app_state);
-
-	// generate an event - but only if the given state flags actually changed.
-	if((old_app_state & changed_app_state) != (app_state & changed_app_state))
-		queue_active_event(type, changed_app_state);
-}
-
-static void reset_all_keys();
-
-static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL fMinimized)
-{
-	SdlActivationType type;
-	Uint8 changed_app_state;
-
-	// went active and not minimized
-	if(state != WA_INACTIVE && !fMinimized)
-	{
-		type = GAIN;
-		changed_app_state = SDL_APPINPUTFOCUS|SDL_APPACTIVE;
-
-		// grab keyboard focus (we previously had DefWindowProc do this).
-		SetFocus(hWnd);
-
-		gammaRamp.Latch();
-		if(fullscreen)
-			video_enter_game_mode();
-	}
-	// deactivated (Alt+Tab out) or minimized
-	else
-	{
-		type = LOSE;
-		changed_app_state = SDL_APPINPUTFOCUS;
-		if(fMinimized)
-			changed_app_state |= SDL_APPACTIVE;
-
-
-		reset_all_keys();
-
-		gammaRamp.RestoreOriginal();
-		if(fullscreen)
-			video_leave_game_mode();
-	}
-
-	active_change_state(type, changed_app_state);
-	return 0;
-}
-
-
-Uint8 SDL_GetAppState()
-{
-	return app_state;
-}
-
-
-static void queue_quit_event()
-{
-	SDL_Event ev;
-	ev.type = SDL_QUIT;
-	queue_event(ev);
 }
 
 
@@ -560,129 +472,128 @@ static void queue_quit_event()
 // keyboard
 
 // note: keysym.unicode is only returned for SDL_KEYDOWN, and is otherwise 0.
-static void queue_key_event(Uint8 type, SDLKey sdlk, WCHAR unicode_char)
+static void QueueKeyEvent(Uint8 type, SDLKey sdlk, WCHAR unicode_char)
 {
 	SDL_Event ev;
 	ev.type = type;
-	ev.key.keysym.sym     = sdlk;
+	ev.key.keysym.sym = sdlk;
 	ev.key.keysym.unicode = (Uint16)unicode_char;
-	queue_event(ev);
+	QueueEvent(ev);
 }
 
 
 static Uint8 keys[SDLK_LAST];
 
-// winuser.h promises VK_0..9 and VK_A..Z etc. match ASCII value.
-#define VK_0 '0'
-#define VK_A 'A'
+static SDLKey g_SDLKeyForVK[256]; // g_SDLKeyForVK[vk] == SDLK
 
-static void init_vkmap(SDLKey (&VK_keymap)[256])
+static void key_Init()
 {
-	int i;
-
 	// Map the VK keysyms
-	for ( i=0; i<sizeof(VK_keymap)/sizeof(VK_keymap[0]); ++i )
-		VK_keymap[i] = SDLK_UNKNOWN;
+	for(int i = 0; i < ARRAY_SIZE(g_SDLKeyForVK); i++)
+		g_SDLKeyForVK[i] = SDLK_UNKNOWN;
 
-	VK_keymap[VK_BACK] = SDLK_BACKSPACE;
-	VK_keymap[VK_TAB] = SDLK_TAB;
-	VK_keymap[VK_CLEAR] = SDLK_CLEAR;
-	VK_keymap[VK_RETURN] = SDLK_RETURN;
-	VK_keymap[VK_PAUSE] = SDLK_PAUSE;
-	VK_keymap[VK_ESCAPE] = SDLK_ESCAPE;
-	VK_keymap[VK_SPACE] = SDLK_SPACE;
-	VK_keymap[VK_OEM_7] = SDLK_QUOTE;
-	VK_keymap[VK_OEM_COMMA] = SDLK_COMMA;
-	VK_keymap[VK_OEM_MINUS] = SDLK_MINUS;
-	VK_keymap[VK_OEM_PERIOD] = SDLK_PERIOD;
-	VK_keymap[VK_OEM_2] = SDLK_SLASH;
-	for(i = 0; i < 10; i++)
-		VK_keymap[VK_0+i] = (SDLKey)(SDLK_0+i);
-	VK_keymap[VK_OEM_1] = SDLK_SEMICOLON;
-	VK_keymap[VK_OEM_PLUS] = SDLK_EQUALS;
-	VK_keymap[VK_OEM_4] = SDLK_LEFTBRACKET;
-	VK_keymap[VK_OEM_5] = SDLK_BACKSLASH;
-	VK_keymap[VK_OEM_6] = SDLK_RIGHTBRACKET;
-	VK_keymap[VK_OEM_3] = SDLK_BACKQUOTE;
-	VK_keymap[VK_OEM_8] = SDLK_BACKQUOTE;
+	g_SDLKeyForVK[VK_BACK] = SDLK_BACKSPACE;
+	g_SDLKeyForVK[VK_TAB] = SDLK_TAB;
+	g_SDLKeyForVK[VK_CLEAR] = SDLK_CLEAR;
+	g_SDLKeyForVK[VK_RETURN] = SDLK_RETURN;
+	g_SDLKeyForVK[VK_PAUSE] = SDLK_PAUSE;
+	g_SDLKeyForVK[VK_ESCAPE] = SDLK_ESCAPE;
+	g_SDLKeyForVK[VK_SPACE] = SDLK_SPACE;
+	g_SDLKeyForVK[VK_OEM_7] = SDLK_QUOTE;
+	g_SDLKeyForVK[VK_OEM_COMMA] = SDLK_COMMA;
+	g_SDLKeyForVK[VK_OEM_MINUS] = SDLK_MINUS;
+	g_SDLKeyForVK[VK_OEM_PERIOD] = SDLK_PERIOD;
+	g_SDLKeyForVK[VK_OEM_2] = SDLK_SLASH;
+	g_SDLKeyForVK[VK_OEM_1] = SDLK_SEMICOLON;
+	g_SDLKeyForVK[VK_OEM_PLUS] = SDLK_EQUALS;
+	g_SDLKeyForVK[VK_OEM_4] = SDLK_LEFTBRACKET;
+	g_SDLKeyForVK[VK_OEM_5] = SDLK_BACKSLASH;
+	g_SDLKeyForVK[VK_OEM_6] = SDLK_RIGHTBRACKET;
+	g_SDLKeyForVK[VK_OEM_3] = SDLK_BACKQUOTE;
+	g_SDLKeyForVK[VK_OEM_8] = SDLK_BACKQUOTE;
 
-	for(i = 0; i < 26; i++)
-		VK_keymap[VK_A+i] = (SDLKey)(SDLK_a+i);
+	// winuser.h guarantees A..Z and 0..9 match their ASCII values:
+	const int VK_0 = '0';
+	for(int i = 0; i < 10; i++)
+		g_SDLKeyForVK[VK_0+i] = (SDLKey)(SDLK_0+i);
+	const int VK_A = 'A';
+	for(int i = 0; i < 26; i++)
+		g_SDLKeyForVK[VK_A+i] = (SDLKey)(SDLK_a+i);
 
-	VK_keymap[VK_DELETE] = SDLK_DELETE;
+	g_SDLKeyForVK[VK_DELETE] = SDLK_DELETE;
 
-	for(i = 0; i < 10; i++)
-		VK_keymap[VK_NUMPAD0+i] = (SDLKey)(SDLK_KP0+i);
+	for(int i = 0; i < 10; i++)
+		g_SDLKeyForVK[VK_NUMPAD0+i] = (SDLKey)(SDLK_KP0+i);
 
-	VK_keymap[VK_DECIMAL] = SDLK_KP_PERIOD;
-	VK_keymap[VK_DIVIDE] = SDLK_KP_DIVIDE;
-	VK_keymap[VK_MULTIPLY] = SDLK_KP_MULTIPLY;
-	VK_keymap[VK_SUBTRACT] = SDLK_KP_MINUS;
-	VK_keymap[VK_ADD] = SDLK_KP_PLUS;
+	g_SDLKeyForVK[VK_DECIMAL] = SDLK_KP_PERIOD;
+	g_SDLKeyForVK[VK_DIVIDE] = SDLK_KP_DIVIDE;
+	g_SDLKeyForVK[VK_MULTIPLY] = SDLK_KP_MULTIPLY;
+	g_SDLKeyForVK[VK_SUBTRACT] = SDLK_KP_MINUS;
+	g_SDLKeyForVK[VK_ADD] = SDLK_KP_PLUS;
 
-	VK_keymap[VK_UP] = SDLK_UP;
-	VK_keymap[VK_DOWN] = SDLK_DOWN;
-	VK_keymap[VK_RIGHT] = SDLK_RIGHT;
-	VK_keymap[VK_LEFT] = SDLK_LEFT;
-	VK_keymap[VK_INSERT] = SDLK_INSERT;
-	VK_keymap[VK_HOME] = SDLK_HOME;
-	VK_keymap[VK_END] = SDLK_END;
-	VK_keymap[VK_PRIOR] = SDLK_PAGEUP;
-	VK_keymap[VK_NEXT] = SDLK_PAGEDOWN;
+	g_SDLKeyForVK[VK_UP] = SDLK_UP;
+	g_SDLKeyForVK[VK_DOWN] = SDLK_DOWN;
+	g_SDLKeyForVK[VK_RIGHT] = SDLK_RIGHT;
+	g_SDLKeyForVK[VK_LEFT] = SDLK_LEFT;
+	g_SDLKeyForVK[VK_INSERT] = SDLK_INSERT;
+	g_SDLKeyForVK[VK_HOME] = SDLK_HOME;
+	g_SDLKeyForVK[VK_END] = SDLK_END;
+	g_SDLKeyForVK[VK_PRIOR] = SDLK_PAGEUP;
+	g_SDLKeyForVK[VK_NEXT] = SDLK_PAGEDOWN;
 
-	for(i = 0; i < 12; i++)
-		VK_keymap[VK_F1+i] = (SDLKey)(SDLK_F1+i);
+	for(int i = 0; i < 12; i++)
+		g_SDLKeyForVK[VK_F1+i] = (SDLKey)(SDLK_F1+i);
 
-	VK_keymap[VK_NUMLOCK] = SDLK_NUMLOCK;
-	VK_keymap[VK_CAPITAL] = SDLK_CAPSLOCK;
-	VK_keymap[VK_SCROLL] = SDLK_SCROLLOCK;
-	VK_keymap[VK_RSHIFT] = SDLK_RSHIFT;
-	VK_keymap[VK_LSHIFT] = SDLK_LSHIFT;
-	VK_keymap[VK_SHIFT] = SDLK_LSHIFT; // XXX: Not quite
-	VK_keymap[VK_RCONTROL] = SDLK_RCTRL;
-	VK_keymap[VK_LCONTROL] = SDLK_LCTRL;
-	VK_keymap[VK_CONTROL] = SDLK_LCTRL; // XXX: Not quite
-	VK_keymap[VK_RMENU] = SDLK_RALT;
-	VK_keymap[VK_LMENU] = SDLK_LALT;
-	VK_keymap[VK_MENU] = SDLK_LALT; // XXX: Not quite
-	VK_keymap[VK_RWIN] = SDLK_RSUPER;
-	VK_keymap[VK_LWIN] = SDLK_LSUPER;
+	g_SDLKeyForVK[VK_NUMLOCK] = SDLK_NUMLOCK;
+	g_SDLKeyForVK[VK_CAPITAL] = SDLK_CAPSLOCK;
+	g_SDLKeyForVK[VK_SCROLL] = SDLK_SCROLLOCK;
+	g_SDLKeyForVK[VK_RSHIFT] = SDLK_RSHIFT;
+	g_SDLKeyForVK[VK_LSHIFT] = SDLK_LSHIFT;
+	g_SDLKeyForVK[VK_SHIFT] = SDLK_LSHIFT; // XXX: Not quite
+	g_SDLKeyForVK[VK_RCONTROL] = SDLK_RCTRL;
+	g_SDLKeyForVK[VK_LCONTROL] = SDLK_LCTRL;
+	g_SDLKeyForVK[VK_CONTROL] = SDLK_LCTRL; // XXX: Not quite
+	g_SDLKeyForVK[VK_RMENU] = SDLK_RALT;
+	g_SDLKeyForVK[VK_LMENU] = SDLK_LALT;
+	g_SDLKeyForVK[VK_MENU] = SDLK_LALT; // XXX: Not quite
+	g_SDLKeyForVK[VK_RWIN] = SDLK_RSUPER;
+	g_SDLKeyForVK[VK_LWIN] = SDLK_LSUPER;
 
-	VK_keymap[VK_HELP] = SDLK_HELP;
+	g_SDLKeyForVK[VK_HELP] = SDLK_HELP;
 #ifdef VK_PRINT
-	VK_keymap[VK_PRINT] = SDLK_PRINT;
+	g_SDLKeyForVK[VK_PRINT] = SDLK_PRINT;
 #endif
-	VK_keymap[VK_SNAPSHOT] = SDLK_PRINT;
-	VK_keymap[VK_CANCEL] = SDLK_BREAK;
-	VK_keymap[VK_APPS] = SDLK_MENU;
+	g_SDLKeyForVK[VK_SNAPSHOT] = SDLK_PRINT;
+	g_SDLKeyForVK[VK_CANCEL] = SDLK_BREAK;
+	g_SDLKeyForVK[VK_APPS] = SDLK_MENU;
 }
 
-inline SDLKey vkmap(int vk)
-{
-	static SDLKey VK_SDLKMap[256]; // VK_SDLKMap[vk] == SDLK
-	ONCE( init_vkmap(VK_SDLKMap); );
 
+static inline SDLKey SDLKeyFromVK(int vk)
+{
 	if(!(0 <= vk && vk < 256))
 	{
 		debug_assert(0);	// invalid vk
 		return SDLK_UNKNOWN;
 	}
-	return VK_SDLKMap[vk];
+	return g_SDLKeyForVK[vk];
 }
 
 
-static void reset_all_keys()
+static void key_ResetAll()
 {
 	SDL_Event spoofed_up_event;
 	spoofed_up_event.type = SDL_KEYUP;
 	spoofed_up_event.key.keysym.unicode = 0;
 
 	for(int i = 0; i < ARRAY_SIZE(keys); i++)
+	{
 		if(keys[i])
 		{
 			spoofed_up_event.key.keysym.sym = (SDLKey)i;
-			queue_event(spoofed_up_event);
+			QueueEvent(spoofed_up_event);
 		}
+	}
 }
 
 
@@ -691,12 +602,12 @@ static LRESULT OnKey(HWND UNUSED(hWnd), UINT vk, BOOL fDown, int UNUSED(cRepeat)
 	// TODO Mappings for left/right modifier keys
 	// TODO Modifier statekeeping
 
-	const SDLKey sdlk = vkmap(vk);
+	const SDLKey sdlk = SDLKeyFromVK(vk);
 	if(sdlk != SDLK_UNKNOWN)
 		keys[sdlk] = (Uint8)fDown;
 
 	if(!fDown)
-		queue_key_event(SDL_KEYUP, sdlk, 0);
+		QueueKeyEvent(SDL_KEYUP, sdlk, 0);
 	else
 	{
 		// note: flags is HIWORD(lParam) from WM_KEYDOWN, which includes
@@ -711,7 +622,7 @@ static LRESULT OnKey(HWND UNUSED(hWnd), UINT vk, BOOL fDown, int UNUSED(cRepeat)
 		if(output_count > 0)
 		{
 			for(int i = 0; i < output_count; i++)
-				queue_key_event(SDL_KEYDOWN, sdlk, wchars[i]);
+				QueueKeyEvent(SDL_KEYDOWN, sdlk, wchars[i]);
 		}
 		// dead-char; do nothing
 		else if(output_count == -1)
@@ -719,7 +630,7 @@ static LRESULT OnKey(HWND UNUSED(hWnd), UINT vk, BOOL fDown, int UNUSED(cRepeat)
 		}
 		// translation failed; just generate a regular (non-unicode) event
 		else if(output_count == 0)
-			queue_key_event(SDL_KEYDOWN, sdlk, 0);
+			QueueKeyEvent(SDL_KEYDOWN, sdlk, 0);
 		else
 			UNREACHABLE;
 	}
@@ -744,6 +655,102 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 
 
 //----------------------------------------------------------------------------
+// app activation
+
+enum SdlActivationType { LOSE = 0, GAIN = 1 };
+
+static inline void QueueActiveEvent(SdlActivationType type, size_t changed_app_state)
+{
+	// SDL says this event is not generated when the window is created,
+	// but skipping the first event may confuse things.
+
+	SDL_Event ev;
+	ev.type = SDL_ACTIVEEVENT;
+	ev.active.state = (u8)changed_app_state;
+	ev.active.gain  = (u8)((type == GAIN)? 1 : 0);
+	QueueEvent(ev);
+}
+
+
+// SDL_APP* bitflags indicating whether we are active.
+// note: responsibility for yielding lies with SDL apps -
+// they control the main loop.
+static Uint8 app_state;
+
+static void active_ChangeState(SdlActivationType type, Uint8 changed_app_state)
+{
+	Uint8 old_app_state = app_state;
+
+	if(type == GAIN)
+		app_state = Uint8(app_state | changed_app_state);
+	else
+		app_state = Uint8(app_state & ~changed_app_state);
+
+	// generate an event - but only if the given state flags actually changed.
+	if((old_app_state & changed_app_state) != (app_state & changed_app_state))
+		QueueActiveEvent(type, changed_app_state);
+}
+
+
+static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL fMinimized)
+{
+	SdlActivationType type;
+	Uint8 changed_app_state;
+
+	// went active and not minimized
+	if(state != WA_INACTIVE && !fMinimized)
+	{
+		type = GAIN;
+		changed_app_state = SDL_APPINPUTFOCUS|SDL_APPACTIVE;
+
+		// grab keyboard focus (we previously had DefWindowProc do this).
+		SetFocus(hWnd);
+
+		gammaRamp.Latch();
+		if(fullscreen)
+		{
+			ShowWindow(g_hWnd, SW_RESTORE);
+			ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+		}
+	}
+	// deactivated (Alt+Tab out) or minimized
+	else
+	{
+		type = LOSE;
+		changed_app_state = SDL_APPINPUTFOCUS;
+		if(fMinimized)
+			changed_app_state |= SDL_APPACTIVE;
+
+		key_ResetAll();
+
+		gammaRamp.RestoreOriginal();
+		if(fullscreen)
+		{
+			ChangeDisplaySettings(0, 0);
+			ShowWindow(g_hWnd, SW_MINIMIZE);
+		}
+	}
+
+	active_ChangeState(type, changed_app_state);
+	return 0;
+}
+
+
+Uint8 SDL_GetAppState()
+{
+	return app_state;
+}
+
+
+static void QueueQuitEvent()
+{
+	SDL_Event ev;
+	ev.type = SDL_QUIT;
+	QueueEvent(ev);
+}
+
+
+//----------------------------------------------------------------------------
 // mouse
 
 // background: there are several types of coordinates.
@@ -754,19 +761,19 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 //   can also be negative (e.g. in the window's NC area).
 //   these are prefixed with client_*.
 // - "idealized" coords are what the app sees. these range from 0 to
-//   windowDimensions-1. they are returned by GetCoords and have no prefix.
+//   windowDimensions-1. they are returned by mouse_GetCoords and have no prefix.
 
-static void queue_mouse_event(int x, int y)
+static void QueueMouseEvent(int x, int y)
 {
 	SDL_Event ev;
 	ev.type = SDL_MOUSEMOTION;
 	debug_assert(unsigned(x|y) <= USHRT_MAX);
 	ev.motion.x = (Uint16)x;
 	ev.motion.y = (Uint16)y;
-	queue_event(ev);
+	QueueEvent(ev);
 }
 
-static void queue_button_event(int button, int state, int x, int y)
+static void QueueButtonEvent(int button, int state, int x, int y)
 {
 	SDL_Event ev;
 	ev.type = Uint8((state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP);
@@ -775,7 +782,7 @@ static void queue_button_event(int button, int state, int x, int y)
 	debug_assert(unsigned(x|y) <= USHRT_MAX);
 	ev.button.x = (Uint16)x;
 	ev.button.y = (Uint16)y;
-	queue_event(ev);
+	QueueEvent(ev);
 }
 
 
@@ -785,8 +792,8 @@ static int mouse_x, mouse_y;
 // x, y are client pixel coordinates.
 // notes:
 // - does not actually move the OS cursor;
-// - called from mouse_update and SDL_WarpMouse.
-static void mouse_moved(int x, int y)
+// - called from mouse_Update and SDL_WarpMouse.
+static void mouse_UpdatePosition(int x, int y)
 {
 	// nothing to do if it hasn't changed since last time
 	if(mouse_x == x && mouse_y == y)
@@ -794,10 +801,10 @@ static void mouse_moved(int x, int y)
 
 	mouse_x = x;
 	mouse_y = y;
-	queue_mouse_event(x, y);
+	QueueMouseEvent(x, y);
 }
 
-static POINT ScreenFromClient(int client_x, int client_y)
+static POINT mouse_ScreenFromClient(int client_x, int client_y)
 {
 	POINT screen_pt;
 	screen_pt.x = (LONG)client_x;
@@ -807,7 +814,7 @@ static POINT ScreenFromClient(int client_x, int client_y)
 }
 
 // get idealized client coordinates or return false if outside our window.
-static bool GetCoords(int screen_x, int screen_y, int& x, int& y)
+static bool mouse_GetCoords(int screen_x, int screen_y, int& x, int& y)
 {
 	debug_assert(wutil_IsValidHandle(g_hWnd));
 
@@ -844,7 +851,7 @@ static bool GetCoords(int screen_x, int screen_y, int& x, int& y)
 }
 
 
-static void mouse_update()
+static void mouse_Update()
 {
 	// window not created yet or already shut down. no sense reporting
 	// mouse position, and bail now to avoid ScreenToClient failing.
@@ -860,15 +867,16 @@ static void mouse_update()
 	if(!GetCursorPos(&screen_pt))
 		return;
 	int x, y;
-	if(GetCoords(screen_pt.x, screen_pt.y, x, y))
+	if(mouse_GetCoords(screen_pt.x, screen_pt.y, x, y))
 	{
-		active_change_state(GAIN, SDL_APPMOUSEFOCUS);
-		mouse_moved(x, y);
+		active_ChangeState(GAIN, SDL_APPMOUSEFOCUS);
+		mouse_UpdatePosition(x, y);
 	}
 	// moved outside of window
 	else
-		active_change_state(LOSE, SDL_APPMOUSEFOCUS);
+		active_ChangeState(LOSE, SDL_APPMOUSEFOCUS);
 }
+
 
 static unsigned mouse_buttons;
 
@@ -931,10 +939,10 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int cli
 	else
 		mouse_buttons &= ~SDL_BUTTON(button);
 
-	const POINT screen_pt = ScreenFromClient(client_x, client_y);
+	const POINT screen_pt = mouse_ScreenFromClient(client_x, client_y);
 	int x, y;
-	if(GetCoords(screen_pt.x, screen_pt.y, x, y))
-		queue_button_event(button, state, x, y);
+	if(mouse_GetCoords(screen_pt.x, screen_pt.y, x, y))
+		QueueButtonEvent(button, state, x, y);
 	return 0;
 }
 
@@ -943,12 +951,12 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int cli
 static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int screen_x, int screen_y, int zDelta, UINT UNUSED(fwKeys))
 {
 	int x, y;
-	if(GetCoords(screen_x, screen_y, x, y))
+	if(mouse_GetCoords(screen_x, screen_y, x, y))
 	{
 		int button = (zDelta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
 		// SDL says this sends a down message followed by up.
-		queue_button_event(button, SDL_PRESSED,  x, y);
-		queue_button_event(button, SDL_RELEASED, x, y);
+		QueueButtonEvent(button, SDL_PRESSED,  x, y);
+		QueueButtonEvent(button, SDL_RELEASED, x, y);
 	}
 
 	return 0;	// handled
@@ -970,10 +978,10 @@ inline void SDL_WarpMouse(int x, int y)
 	// SDL interface provides for int, but the values should be
 	// idealized client coords (>= 0)
 	debug_assert(x >= 0 && y >= 0);
-	mouse_moved(x, y);
+	mouse_UpdatePosition(x, y);
 
 	const int client_x = x, client_y = y;
-	const POINT screen_pt = ScreenFromClient(client_x, client_y);
+	const POINT screen_pt = mouse_ScreenFromClient(client_x, client_y);
 	WARN_IF_FALSE(SetCursorPos(screen_pt.x, screen_pt.y));
 }
 
@@ -995,26 +1003,24 @@ int SDL_ShowCursor(int toggle)
 }
 
 
-
-
 //----------------------------------------------------------------------------
 // resizing
 
-static void queue_resize_event(int w, int h)
+static void QueueResizeEvent(int w, int h)
 {
 	SDL_Event ev;
 	ev.type = SDL_VIDEORESIZE;
 	ev.resize.w = w;
 	ev.resize.h = h;
-	queue_event(ev);
+	QueueEvent(ev);
 }
 
-static LRESULT OnPosChanged(HWND hWnd, PWINDOWPOS pos)
+static LRESULT OnPosChanged(HWND hWnd, PWINDOWPOS UNUSED(pos))
 {
 	RECT client_rect;
 	WARN_IF_FALSE(GetClientRect(hWnd, &client_rect));
 
-	queue_resize_event(client_rect.right, client_rect.bottom);
+	QueueResizeEvent(client_rect.right, client_rect.bottom);
 	// top, left are documented to always be 0
 
 	return 0;
@@ -1029,7 +1035,7 @@ static LRESULT OnDestroy(HWND hWnd)
 	WARN_IF_FALSE(ReleaseDC(g_hWnd, g_hDC));
 	g_hDC = (HDC)INVALID_HANDLE_VALUE;
 	g_hWnd = (HWND)INVALID_HANDLE_VALUE;
-	queue_quit_event();
+	QueueQuitEvent();
 	PostQuitMessage(0);
 
 #ifdef _DEBUG
@@ -1085,7 +1091,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 		// Alt+F4 or system menu doubleclick/exit
 		case SC_CLOSE:
-			queue_quit_event();
+			QueueQuitEvent();
 			break;
 		}
 		break;
@@ -1127,7 +1133,7 @@ void SDL_PumpEvents()
 	// instead, they should check active state and call SDL_Delay etc.
 	// if our window is minimized.
 
-	mouse_update();	// polled
+	mouse_Update();	// polled
 
 	MSG msg;
 	while(PeekMessageW(&msg, 0, 0, 0, PM_REMOVE))
@@ -1142,7 +1148,7 @@ int SDL_PollEvent(SDL_Event* ev)
 {
 	SDL_PumpEvents();
 
-	if(dequeue_event(ev))
+	if(DequeueEvent(*ev))
 		return 1;
 
 	return 0;
@@ -1151,7 +1157,7 @@ int SDL_PollEvent(SDL_Event* ev)
 
 int SDL_PushEvent(SDL_Event* ev)
 {
-	queue_event(*ev);
+	QueueEvent(*ev);
 	return 0;
 }
 
@@ -1211,7 +1217,7 @@ static SDL_sem* sem_from_HANDLE(HANDLE h)
 
 SDL_sem* SDL_CreateSemaphore(int cnt)
 {
-	HANDLE h = CreateSemaphore(0, cnt, 0x7fffffff, 0);
+	HANDLE h = CreateSemaphore(0, cnt, std::numeric_limits<LONG>::max(), 0);
 	return sem_from_HANDLE(h);
 }
 
@@ -1300,6 +1306,8 @@ int SDL_Init(Uint32 UNUSED(flags))
 	if(!ModuleShouldInitialize(&initState))
 		return 0;
 
+	key_Init();
+
 	return 0;
 }
 
@@ -1310,13 +1318,13 @@ void SDL_Quit()
 
 	is_quitting = true;
 
-	if(g_hDC != INVALID_HANDLE_VALUE)
+	if(wutil_IsValidHandle(g_hDC))
 		gammaRamp.RestoreOriginal();
 
-	if(g_hWnd != INVALID_HANDLE_VALUE)
+	if(wutil_IsValidHandle(g_hWnd))
 		WARN_IF_FALSE(DestroyWindow(g_hWnd));
 
-	video_shutdown();
+	video_Shutdown();
 }
 
  
@@ -1324,7 +1332,7 @@ static void RedirectStdout()
 {
 	// this process is apparently attached to a console, and users might be
 	// surprised to find that we redirected the output to a file, so don't.
-	if(GetStdHandle(STD_OUTPUT_HANDLE) != INVALID_HANDLE_VALUE)
+	if(wutil_IsValidHandle(GetStdHandle(STD_OUTPUT_HANDLE)))
 		return;
 
 	// notes:
