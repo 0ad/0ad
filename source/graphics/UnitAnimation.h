@@ -58,13 +58,19 @@ public:
 	void SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& actionSound);
 
 	/**
-	 * Adjust the timing of the current animation, so that Update(actionTime) will advance it
-	 * to the 'action' point defined in the actor, and so that Update(repeatTime) will do a
+	 * Adjust the speed of the current animation, so that Update(repeatTime) will do a
 	 * complete animation loop.
-	 * @param actionTime time between now and when the action should occur, in msec
 	 * @param repeatTime time for complete loop of animation, in msec
 	 */
-	void SetAnimationSync(float actionTime, float repeatTime);
+	void SetAnimationSyncRepeat(float repeatTime);
+
+	/**
+	 * Adjust the offset of the current animation, so that Update(actionTime) will advance it
+	 * to the 'action' point defined in the actor.
+	 * This must be called after SetAnimationSyncRepeat sets the speed.
+	 * @param actionTime time between now and when the action should occur, in msec
+	 */
+	void SetAnimationSyncOffset(float actionTime);
 
 	/**
 	 * Advance the animation state.

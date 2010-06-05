@@ -100,10 +100,13 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 	ReloadUnit();
 }
 
-void CUnitAnimation::SetAnimationSync(float actionTime, float repeatTime)
+void CUnitAnimation::SetAnimationSyncRepeat(float repeatTime)
 {
 	m_SyncRepeatTime = repeatTime;
+}
 
+void CUnitAnimation::SetAnimationSyncOffset(float actionTime)
+{
 	// Update all the synced prop models to each coincide with actionTime
 	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
 	{
@@ -119,7 +122,7 @@ void CUnitAnimation::SetAnimationSync(float actionTime, float repeatTime)
 		if (!hasActionPos)
 			continue;
 
-		float speed = duration / repeatTime;
+		float speed = duration / m_SyncRepeatTime;
 
 		// Need to offset so that start+actionTime*speed = actionPos
 		float start = actionPos - actionTime*speed;

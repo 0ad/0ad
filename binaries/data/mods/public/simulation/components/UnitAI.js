@@ -351,7 +351,8 @@ UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)
 	if (!cmpVisual)
 		return;
 
-	cmpVisual.SetAnimationSync(actiontime, repeattime);
+	cmpVisual.SetAnimationSyncRepeat(repeattime);
+	cmpVisual.SetAnimationSyncOffset(actiontime);
 };
 
 /**
@@ -365,7 +366,7 @@ UnitAI.prototype.MoveToTarget = function(target, range)
 	return cmpMotion.MoveToAttackRange(target, range.min, range.max);
 };
 
-UnitAI.prototype.AttackTimeout = function(data)
+UnitAI.prototype.AttackTimeout = function(data, lateness)
 {
 	// If we stopped attacking before this timeout, then don't do any processing here
 	if (this.state != STATE_ATTACKING)
@@ -386,10 +387,10 @@ UnitAI.prototype.AttackTimeout = function(data)
 
 	var timers = cmpAttack.GetTimers(this.attackType);
 	this.attackRechargeTime = cmpTimer.GetTime() + timers.recharge;
-	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", timers.repeat, data);
+	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", timers.repeat - lateness, data);
 };
 
-UnitAI.prototype.RepairTimeout = function(data)
+UnitAI.prototype.RepairTimeout = function(data, lateness)
 {
 	// If we stopped repairing before this timeout, then don't do any processing here
 	if (this.state != STATE_REPAIRING)
@@ -415,10 +416,10 @@ UnitAI.prototype.RepairTimeout = function(data)
 	// Set a timer to gather again
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000, data);
+	this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000 - lateness, data);
 };
 
-UnitAI.prototype.GatherTimeout = function(data)
+UnitAI.prototype.GatherTimeout = function(data, lateness)
 {
 	// If we stopped gathering before this timeout, then don't do any processing here
 	if (this.state != STATE_GATHERING)
@@ -444,7 +445,7 @@ UnitAI.prototype.GatherTimeout = function(data)
 	// Set a timer to gather again
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, data);
+	this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000 - lateness, data);
 };
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);

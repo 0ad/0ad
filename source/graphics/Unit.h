@@ -60,11 +60,7 @@ public:
 	// get unit's model data
 	CModel& GetModel() const { return *m_Model; }
 
-	/// See CUnitAnimation::SetAnimationState
-	void SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& soundgroup);
-
-	/// See CUnitAnimation::SetAnimationSync
-	void SetAnimationSync(float actionTime, float repeatTime);
+	CUnitAnimation& GetAnimation() { return *m_Animation; }
 
 	/**
 	 * Update the model's animation.

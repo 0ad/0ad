@@ -34,7 +34,8 @@ Timer.prototype.OnUpdate = function(msg)
 		var t = this.timers[id];
 		var cmp = Engine.QueryInterface(t[0], t[1]);
 		try {
-			cmp[t[2]](t[4]);
+			var lateness = this.time - t[3];
+			cmp[t[2]](t[4], lateness);
 		} catch (e) {
 			var stack = e.stack.trimRight().replace(/^/mg, '  '); // indent the stack trace
 			print("Error in timer on entity "+t[0]+", IID "+t[1]+", function "+t[2]+": "+e+"\n"+stack+"\n");
@@ -45,8 +46,9 @@ Timer.prototype.OnUpdate = function(msg)
 }
 
 /**
- * Create a new timer, which will call the 'funcname' method with argument 'data'
+ * Create a new timer, which will call the 'funcname' method with arguments (data, lateness)
  * on the 'iid' component of the 'ent' entity, after at least 'time' milliseconds.
+ * 'lateness' is how late the timer is executed after the specified time (in milliseconds).
  * Returns a non-zero id that can be passed to CancelTimer.
  */
 Timer.prototype.SetTimeout = function(ent, iid, funcname, time, data)

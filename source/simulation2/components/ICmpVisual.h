@@ -73,12 +73,16 @@ public:
 	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup) = 0;
 
 	/**
-	 * Adjust the timing (offset and speed) of the current animation, so it can match
-	 * simulation events.
-	 * @param actiontime time between now and when the 'action' event should occur, in msec
+	 * Adjust the speed of the current animation, so it can match simulation events.
 	 * @param repeattime time for complete loop of animation, in msec
 	 */
-	virtual void SetAnimationSync(float actiontime, float repeattime) = 0;
+	virtual void SetAnimationSyncRepeat(float repeattime) = 0;
+
+	/**
+	 * Adjust the offset of the current animation, so it can match simulation events.
+	 * @param actiontime time between now and when the 'action' event should occur, in msec
+	 */
+	virtual void SetAnimationSyncOffset(float actiontime) = 0;
 
 	/**
 	 * Set the shading colour that will be modulated with the model's textures.

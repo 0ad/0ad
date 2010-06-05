@@ -28,6 +28,7 @@
 #include "graphics/ObjectBase.h"
 #include "graphics/ObjectEntry.h"
 #include "graphics/Unit.h"
+#include "graphics/UnitAnimation.h"
 #include "graphics/UnitManager.h"
 #include "lib/utf8.h"
 #include "maths/Matrix3D.h"
@@ -229,17 +230,25 @@ public:
 		m_AnimDesync = 0.05f; // TODO: make this an argument
 		m_AnimSyncRepeatTime = 0.0f;
 
-		m_Unit->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
+		m_Unit->GetAnimation().SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
 	}
 
-	virtual void SetAnimationSync(float actiontime, float repeattime)
+	virtual void SetAnimationSyncRepeat(float repeattime)
 	{
 		if (!m_Unit)
 			return;
 
 		m_AnimSyncRepeatTime = repeattime;
 
-		m_Unit->SetAnimationSync(actiontime, m_AnimSyncRepeatTime);
+		m_Unit->GetAnimation().SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
+	}
+
+	virtual void SetAnimationSyncOffset(float actiontime)
+	{
+		if (!m_Unit)
+			return;
+
+		m_Unit->GetAnimation().SetAnimationSyncOffset(actiontime);
 	}
 
 	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a)
@@ -274,11 +283,11 @@ public:
 
 		m_Unit->SetID(GetEntityId());
 
-		m_Unit->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
+		m_Unit->GetAnimation().SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
 
 		// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
 		if (m_AnimSyncRepeatTime != 0.0f)
-			m_Unit->SetAnimationSync(0.0f, m_AnimSyncRepeatTime);
+			m_Unit->GetAnimation().SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
 
 		m_Unit->GetModel().SetShadingColor(shading);
 

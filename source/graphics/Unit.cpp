@@ -64,16 +64,6 @@ CUnit* CUnit::Create(const CStrW& actorName, const std::set<CStr>& selections, C
 	return new CUnit(obj, objectManager, actorSelections);
 }
 
-void CUnit::SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& soundgroup)
-{
-	m_Animation->SetAnimationState(name, once, speed, desync, keepSelection, soundgroup);
-}
-
-void CUnit::SetAnimationSync(float actionTime, float repeatTime)
-{
-	m_Animation->SetAnimationSync(actionTime, repeatTime);
-}
-
 void CUnit::UpdateModel(float frameTime)
 {
 	m_Animation->Update(frameTime*1000.0f);
