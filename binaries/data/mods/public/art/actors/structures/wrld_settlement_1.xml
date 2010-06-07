@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="settlement1">
       <mesh>structural/settlement_1.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+      </props>
       <texture>structural/wrld_settlements.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
