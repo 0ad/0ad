@@ -16,7 +16,7 @@ var INPUT_BATCHTRAINING = 6;
 
 var inputState = INPUT_NORMAL;
 
-var defaultPlacementAngle = Math.PI;
+var defaultPlacementAngle = Math.PI*3/4;
 var placementAngle;
 var placementPosition;
 var placementEntity;
