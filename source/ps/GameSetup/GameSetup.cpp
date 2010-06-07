@@ -69,7 +69,6 @@
 #include "scripting/ScriptGlue.h"
 #include "scripting/DOMEvent.h"
 #include "scripting/ScriptableComplex.h"
-#include "scripting/Scheduler.h"
 
 #include "maths/scripting/JSInterface_Vector3D.h"
 
@@ -338,9 +337,6 @@ static void InitScripting()
 	// [7ms]
 	new ScriptingHost;
 	
-	// It would be nice for onLoad code to be able to access the setTimeout() calls.
-	new CScheduler;
-
 	RegisterJavascriptInterfaces();
 
 #define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
@@ -585,10 +581,6 @@ void Shutdown(int flags)
 		EndGame();
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
-
-	TIMER_BEGIN(L"shutdown Scheduler");
-	delete &g_Scheduler;
-	TIMER_END(L"shutdown Scheduler");
 
 	if (! (flags & INIT_NO_SIM))
 	{

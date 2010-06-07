@@ -54,6 +54,8 @@ ScriptingHost::ScriptingHost()
 	if(!m_Context)
 		throw PSERROR_Scripting_SetupFailed();
 
+	// JS_SetGCZeal(m_Context, 2);
+
 	JS_SetErrorReporter(m_Context, ScriptingHost::ErrorReporter);
 
 	JS_BeginRequest(m_Context);

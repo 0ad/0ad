@@ -28,8 +28,8 @@
 			size="5 5 200 35"
 			z="199"
 		>
-			<action on="Load"><![CDATA[
-				setInterval (updateFPS, 1, 200);
+			<action on="Tick"><![CDATA[
+				updateFPS();
 			]]></action>
 			<action on="Press"><![CDATA[
 				this.hidden = !this.hidden;

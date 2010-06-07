@@ -25,7 +25,6 @@
 
 #include "ScriptGlue.h"
 #include "JSConversions.h"
-#include "Scheduler.h"
 
 #include "ScriptableComplex.inl"
 
@@ -112,169 +111,8 @@ JSBool WriteLog(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 // Timer
 //-----------------------------------------------------------------------------
 
-// Request a callback be executed after the specified delay.
-// params: callback [fragment or function], delay in milliseconds [int]
-// returns:
-// notes:
-// - Scripts and functions registered this way are called on the first
-//   simulation frame after the specified period has elapsed. If this causes
-//   multiple segments of code to be executed in the same frame,
-//   relative timing is maintained. Delays of 0 milliseconds cause code to be
-//   executed on the following simulation frame. If more than one script or
-//   function is scheduled to execute in the same millisecond, the order of
-//   execution is undefined. Code is scheduled in simulation time, and is
-//   therefore suspended while the game is paused or frozen. Granularity of
-//   timing is also limited to 1/(Simulation frame rate); currently 100ms.
-//   The called function or script executes in the same scope as the
-//   code that called SetTimeout (amongst other things, the
-//   'this' reference is usually maintained)
-JSBool SetTimeout( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAM_RANGE(2, 3);
-
-	int delay;
-	try
-	{
-		delay = ToPrimitive<int>( argv[1] );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		JS_ReportError( cx, "Invalid timer parameters" );
-		return( JS_TRUE );
-	}
-
-	JSObject* scope;
-	if( argc == 3 )
-	{
-		if( !JSVAL_IS_OBJECT( argv[2] ) )
-		{
-			JS_ReportError( cx, "Invalid timer parameters" );
-			return( JS_TRUE );
-		}
-		scope = JSVAL_TO_OBJECT( argv[2] );
-	}
-	else
-	{
-		scope = JS_GetScopeChain( cx );
-	}
-
-	switch( JS_TypeOfValue( cx, argv[0] ) )
-	{
-	case JSTYPE_STRING:
-	{
-		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
-		int id = g_Scheduler.PushTime( delay, fragment, scope );
-		*rval = INT_TO_JSVAL( id );
-		return( JS_TRUE );
-	}
-	case JSTYPE_FUNCTION:
-	{
-		JSFunction* fn = JS_ValueToFunction( cx, argv[0] );
-		int id = g_Scheduler.PushTime( delay, fn, scope );
-		*rval = INT_TO_JSVAL( id );
-		return( JS_TRUE );
-	}
-	default:
-		JS_ReportError( cx, "Invalid timer script" );
-		return( JS_TRUE );
-	}
-}
-
-// Request a callback be executed periodically.
-// params: callback [fragment or function], initial delay in ms [int], period in ms [int]
-//   OR callback [fragment or function], period in ms [int] (initial delay = period)
-// returns:
-// notes:
-// - SetTimeout's notes apply here as well.
-JSBool SetInterval( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAM_RANGE(2, 3);
-
-	int first, interval;
-	try
-	{
-		first = ToPrimitive<int>( argv[1] );
-		if( argc == 3 )
-		{
-			// toDo, first, interval
-			interval = ToPrimitive<int>( argv[2] );
-		}
-		else
-		{
-			// toDo, interval (first = interval)
-			interval = first;
-		}
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		JS_ReportError( cx, "Invalid timer parameters" );
-		return( JS_TRUE );
-	}
-
-	switch( JS_TypeOfValue( cx, argv[0] ) )
-	{
-	case JSTYPE_STRING:
-	{
-		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
-		int id = g_Scheduler.PushInterval( first, interval, fragment, JS_GetScopeChain( cx ) );
-		*rval = INT_TO_JSVAL( id );
-		return( JS_TRUE );
-	}
-	case JSTYPE_FUNCTION:
-	{
-		JSFunction* fn = JS_ValueToFunction( cx, argv[0] );
-		int id = g_Scheduler.PushInterval( first, interval, fn, JS_GetScopeChain( cx ) );
-		*rval = INT_TO_JSVAL( id );
-		return( JS_TRUE );
-	}
-	default:
-		JS_ReportError( cx, "Invalid timer script" );
-		return( JS_TRUE );
-	}
-}
-
-// Cause all periodic functions registered via SetInterval to
-//   no longer be called.
-// params:
-// returns:
-// notes:
-// - Execution continues until the end of the triggered function or
-//   script fragment, but is not triggered again.
-JSBool CancelInterval( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	g_Scheduler.m_abortInterval = true;
-	return( JS_TRUE );
-}
-
-// Cause the scheduled task (timeout or interval) with the given ID to
-//   no longer be called.
-// params:
-// returns:
-// notes:
-// - Execution continues until the end of the triggered function or
-//   script fragment, but is not triggered again.
-JSBool CancelTimer( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-
-	try
-	{
-		int id = ToPrimitive<int>( argv[0] );
-		g_Scheduler.CancelTask( id );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		JS_ReportError( cx, "Invalid ID parameter" );
-		return( JS_TRUE );
-	}
-
-	return( JS_TRUE );
-}
-
-//Set the simulation rate scalar-time becomes time * SimRate.
-//Params: rate [float] : sets SimRate
+// Set the simulation rate scalar-time becomes time * SimRate.
+// Params: rate [float] : sets SimRate
 JSBool SetSimRate(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_PARAMS(1);
@@ -856,10 +694,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("toggleSky", ToggleSky, 0)
 
 	// Timer
-	JS_FUNC("setTimeout", SetTimeout, 2)
-	JS_FUNC("setInterval", SetInterval, 2)
-	JS_FUNC("cancelInterval", CancelInterval, 0)
-	JS_FUNC("cancelTimer", CancelTimer, 0)
 	JS_FUNC("setSimRate", SetSimRate, 1)
 
 	// Profiling

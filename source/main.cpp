@@ -60,7 +60,6 @@ that of Atlas depending on commandline parameters.
 #include "network/NetSession.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
-#include "scripting/Scheduler.h"
 #include "simulation2/Simulation2.h"
 #include "sound/CMusicPlayer.h"
 #include "gui/GUIManager.h"
@@ -324,10 +323,6 @@ static void Frame()
 	}
 	else
 	{
-		// CSimulation would do this with the proper turn length if we were in
-		// a game. This is basically just to keep script timers running.
-		int ms_elapsed = (int)(TimeSinceLastFrame*1000);
-		g_Scheduler.Update(ms_elapsed);
 		if(snd_update(0, 0, 0) < 0)
 			debug_printf(L"snd_update (pos=0 version) failed\n");
 	}
