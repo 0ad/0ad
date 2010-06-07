@@ -25,20 +25,22 @@
 
 // INCLUDES
 #include "precompiled.h"
+
 #include "NetClient.h"
+
 #include "NetJsEvents.h"
 #include "Network.h"
 #include "NetServer.h"
+
 #include "scripting/DOMEvent.h"
 #include "scripting/JSConversions.h"
 #include "scripting/ScriptableObject.h"
-#include "ps/CStr.h"
-#include "ps/CLogger.h"
 #include "ps/CConsole.h"
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Game.h"
 #include "ps/Globals.h"
 #include "ps/GameAttributes.h"
-#include "simulation/Simulation.h"
 #include "simulation2/Simulation2.h"
 
 // DECLARATIONS
@@ -81,8 +83,8 @@ void CServerPlayer::ScriptingInit( void )
 // Name: CNetClient()
 // Desc: Constructor
 //-----------------------------------------------------------------------------
-CNetClient::CNetClient( CGame* pGame, CGameAttributes* pGameAttribs )
-: m_JsPlayers( &m_Players )
+CNetClient::CNetClient( ScriptInterface& scriptInterface, CGame* pGame, CGameAttributes* pGameAttribs )
+: CNetHost( scriptInterface ), m_JsPlayers( &m_Players )
 {
 	m_ClientTurnManager = NULL;
 
@@ -167,8 +169,7 @@ bool CNetClient::SetupSession( CNetSession* pSession )
 	// Validate parameters
 	if ( !pSession ) return false;
 
-	FsmActionCtx* pContext = new FsmActionCtx; // XXX: this gets leaked
-	if ( !pContext ) return false;
+	FsmActionCtx* pContext = pSession->GetFsmActionCtx();
 
 	pContext->pHost		= this;
 	pContext->pSession	= pSession;
@@ -291,7 +292,7 @@ void CNetClient::OnConnectComplete( )
 {
 	if ( m_OnConnectComplete.Defined() )
 	{
-		CConnectCompleteEvent connectComplete( ( CStrW )PS_OK, true );
+		CConnectCompleteEvent connectComplete( "OK", true );
 		m_OnConnectComplete.DispatchEvent( GetScript(), &connectComplete );
 	}
 }

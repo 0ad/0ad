@@ -24,14 +24,14 @@
 class CErrorMessage : public CNetMessage
 {
 public:
-	PS_RESULT m_Error;
+	const char* m_Error;
 
-	inline CErrorMessage() :
-		CNetMessage(NMT_ERROR)
+	CErrorMessage() :
+		CNetMessage(NMT_ERROR), m_Error(NULL)
 	{
 	}
 
-	inline CErrorMessage(PS_RESULT error) :
+	CErrorMessage(const char* error) :
 		CNetMessage(NMT_ERROR), m_Error(error)
 	{
 	}
@@ -41,7 +41,7 @@ public:
 
 struct CCloseRequestMessage : public CNetMessage
 {
-	inline CCloseRequestMessage() :
+	CCloseRequestMessage() :
 		CNetMessage(NMT_CLOSE_REQUEST)
 	{
 	}
@@ -51,7 +51,7 @@ struct CCloseRequestMessage : public CNetMessage
 
 struct CConnectCompleteMessage : public CNetMessage
 {
-	inline CConnectCompleteMessage() :
+	CConnectCompleteMessage() :
 		CNetMessage(NMT_CONNECT_COMPLETE)
 	{
 	}

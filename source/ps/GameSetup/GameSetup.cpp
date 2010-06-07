@@ -37,6 +37,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Font.h"
 #include "ps/Game.h"
+#include "ps/GameAttributes.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Loader.h"
@@ -85,7 +86,6 @@
 
 #include "sound/JSI_Sound.h"
 
-#include "network/NetLog.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
 
@@ -584,7 +584,7 @@ void Shutdown(int flags)
 
 	if (! (flags & INIT_NO_SIM))
 	{
-		delete &g_GameAttributes;
+		SAFE_DELETE(g_GameAttributes);
 	}
 
 	// destroy actor related stuff
@@ -610,10 +610,6 @@ void Shutdown(int flags)
 	TIMER_BEGIN(L"shutdown ConfigDB");
 	delete &g_ConfigDB;
 	TIMER_END(L"shutdown ConfigDB");
-
-	TIMER_BEGIN(L"shutdown CNetLogManager");
-	CNetLogManager::Shutdown();
-	TIMER_END(L"shutdown CNetLogManager");
 
 	// Really shut down the i18n system. Any future calls
 	// to translate() will crash.
@@ -809,10 +805,10 @@ void Init(const CmdLineArgs& args, int flags)
 
 	if (! (flags & INIT_NO_SIM))
 	{
-		new CGameAttributes;
+		g_GameAttributes = new CGameAttributes;
 
 		// Register a few Game/Network JS globals
-		g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
+		g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes->GetScript()));
 	}
 
 	InitInput();
@@ -838,17 +834,17 @@ class AutostartNetServer : public CNetServer
 {
 public:
 	AutostartNetServer(CGame *pGame, CGameAttributes *pGameAttributes, int maxPlayers) :
-		CNetServer(pGame, pGameAttributes), m_NumPlayers(1), m_MaxPlayers(maxPlayers)
+		CNetServer(pGame->GetSimulation2()->GetScriptInterface(), pGame, pGameAttributes), m_NumPlayers(1), m_MaxPlayers(maxPlayers)
 	{
 	}
 protected:
 	virtual void OnPlayerJoin(CNetSession* pSession)
 	{
-		for (size_t slot = 0; slot < g_GameAttributes.GetSlotCount(); ++slot)
+		for (size_t slot = 0; slot < m_GameAttributes->GetSlotCount(); ++slot)
 		{
-			if (g_GameAttributes.GetSlot(slot)->GetAssignment() == SLOT_OPEN)
+			if (m_GameAttributes->GetSlot(slot)->GetAssignment() == SLOT_OPEN)
 			{
-				g_GameAttributes.GetSlot(slot)->AssignToSession(pSession);
+				m_GameAttributes->GetSlot(slot)->AssignToSession(pSession);
 				break;
 			}
 		}
@@ -880,7 +876,7 @@ class AutostartNetClient : public CNetClient
 {
 public:
 	AutostartNetClient(CGame *pGame, CGameAttributes *pGameAttributes) :
-		CNetClient(pGame, pGameAttributes)
+		CNetClient(pGame->GetSimulation2()->GetScriptInterface(), pGame, pGameAttributes)
 	{
 	}
 protected:
@@ -912,11 +908,11 @@ static bool Autostart(const CmdLineArgs& args)
 
 	g_Game = new CGame();
 
-	g_GameAttributes.m_MapFile = autostartMap + ".pmp";
+	g_GameAttributes->m_MapFile = autostartMap + ".pmp";
 
 	// Make the whole world visible
-	g_GameAttributes.m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
-	g_GameAttributes.m_FogOfWar = false;
+	g_GameAttributes->m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
+	g_GameAttributes->m_FogOfWar = false;
 
 	if (args.Has("autostart-host"))
 	{
@@ -926,7 +922,7 @@ static bool Autostart(const CmdLineArgs& args)
 		if (args.Has("autostart-players"))
 			maxPlayers = args.Get("autostart-players").ToUInt();
 
-		g_NetServer = new AutostartNetServer(g_Game, &g_GameAttributes, maxPlayers);
+		g_NetServer = new AutostartNetServer(g_Game, g_GameAttributes, maxPlayers);
 		// TODO: player name, etc
 		bool ok = g_NetServer->Start(NULL, 0, NULL);
 		debug_assert(ok);
@@ -936,7 +932,7 @@ static bool Autostart(const CmdLineArgs& args)
 		InitPs(true, L"page_loading.xml");
 
 		bool ok;
-		g_NetClient = new AutostartNetClient(g_Game, &g_GameAttributes);
+		g_NetClient = new AutostartNetClient(g_Game, g_GameAttributes);
 		// TODO: player name, etc
 		ok = g_NetClient->Create();
 		debug_assert(ok);
@@ -946,9 +942,9 @@ static bool Autostart(const CmdLineArgs& args)
 	else
 	{
 		for (int i = 1; i < 8; ++i)
-			g_GameAttributes.GetSlot(i)->AssignLocal();
+			g_GameAttributes->GetSlot(i)->AssignLocal();
 
-		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
+		PSRETURN ret = g_Game->StartGame(g_GameAttributes);
 		debug_assert(ret == PSRETURN_OK);
 		LDR_NonprogressiveLoad();
 		ret = g_Game->ReallyStartGame();

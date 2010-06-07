@@ -50,19 +50,19 @@ namespace
 
 		// Set attributes for the game:
 
-		g_GameAttributes.m_MapFile = map;
+		g_GameAttributes->m_MapFile = map;
 		// Make all players locally controlled
 		for (int i = 1; i < 8; ++i) 
-			g_GameAttributes.GetSlot(i)->AssignLocal();
+			g_GameAttributes->GetSlot(i)->AssignLocal();
 
 		// Make the whole world visible
-		g_GameAttributes.m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
-		g_GameAttributes.m_FogOfWar = false;
+		g_GameAttributes->m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
+		g_GameAttributes->m_FogOfWar = false;
 
 		// Don't use screenshot mode, because we want working AI for the
 		// simulation-testing. Outside that simulation-testing, we avoid having
 		// the units move into attack mode by never calling CEntity::update.
-		g_GameAttributes.m_ScreenshotMode = false;
+		g_GameAttributes->m_ScreenshotMode = false;
 
 		// Initialise the game:
 		g_Game = new CGame();
@@ -86,7 +86,7 @@ namespace
 
 	void StartGame()
 	{
-		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
+		PSRETURN ret = g_Game->StartGame(g_GameAttributes);
 		debug_assert(ret == PSRETURN_OK);
 		LDR_NonprogressiveLoad();
 		ret = g_Game->ReallyStartGame();

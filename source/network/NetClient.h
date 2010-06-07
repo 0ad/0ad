@@ -28,6 +28,7 @@
 
 // INCLUDES
 #include "NetSession.h"
+#include "NetHost.h"
 #include "NetTurnManager.h"
 #include "ps/CStr.h"
 #include "scripting/ScriptObject.h"
@@ -80,7 +81,7 @@ class CNetClient: public CNetHost,
 
 public:
 
-	CNetClient( CGame* pGame, CGameAttributes* pGameAttributes );
+	CNetClient( ScriptInterface& scriptInterface, CGame* pGame, CGameAttributes* pGameAttributes );
 	~CNetClient( void );
 
 	bool CreateSession	( void );

@@ -26,10 +26,6 @@
 #include "lib/path_util.h"
 #include "lib/svn_revision.h"
 
-DEFINE_ERROR(PS_OK, "OK");
-DEFINE_ERROR(PS_FAIL, "Fail");
-
-
 static const wchar_t* translate_no_mem = L"(no mem)";
 
 // overrides ah_translate. registered in GameSetup.cpp

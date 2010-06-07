@@ -32,9 +32,9 @@ extern CLogger* g_Logger;
 // Should become LOG_MESSAGE but this can only be changed once the LOG function is removed
 // from all of the files. LOG_INFO, LOG_WARNING and LOG_ERROR are currently existing macros.
 
-#define LOGMESSAGE (g_Logger->LogMessage) 
-#define LOGWARNING (g_Logger->LogWarning)
-#define LOGERROR (g_Logger->LogError)
+#define LOGMESSAGE g_Logger->LogMessage
+#define LOGWARNING g_Logger->LogWarning
+#define LOGERROR g_Logger->LogError
 
 class CLogger
 {

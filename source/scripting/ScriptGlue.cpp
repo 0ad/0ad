@@ -45,6 +45,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
+#include "ps/GameAttributes.h"
 #include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Hotkey.h"
@@ -57,6 +58,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "simulation2/Simulation2.h"
 
 #define LOG_CATEGORY L"script"
 extern bool g_TerrainModified;
@@ -202,7 +204,7 @@ JSBool CreateServer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rv
 	if( !g_Game )
 		g_Game = new CGame();
 	if( !g_NetServer )
-		g_NetServer = new CNetServer(g_Game, &g_GameAttributes);
+		g_NetServer = new CNetServer(g_Game->GetSimulation2()->GetScriptInterface(), g_Game, g_GameAttributes);
 
 	*rval = OBJECT_TO_JSVAL(g_NetServer->GetScript());
 	return( JS_TRUE );
@@ -219,7 +221,7 @@ JSBool CreateClient(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rv
 	if( !g_Game )
 		g_Game = new CGame();
 	if( !g_NetClient )
-		g_NetClient = new CNetClient(g_Game, &g_GameAttributes);
+		g_NetClient = new CNetClient(g_Game->GetSimulation2()->GetScriptInterface(), g_Game, g_GameAttributes);
 
 	*rval = OBJECT_TO_JSVAL(g_NetClient->GetScript());
 	return( JS_TRUE );
@@ -255,7 +257,7 @@ JSBool StartGame(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 	else if (!g_Game)
 	{
 		g_Game = new CGame();
-		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
+		PSRETURN ret = g_Game->StartGame(g_GameAttributes);
 		if (ret != PSRETURN_OK)
 		{
 			// Failed to start the game - destroy it, and return false
@@ -291,7 +293,7 @@ JSBool GetGameMode(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rva
 {
 	JSU_REQUIRE_NO_PARAMS();
 
-	*rval = ToJSVal( g_GameAttributes.GetGameMode() );
+	*rval = ToJSVal( g_GameAttributes->GetGameMode() );
 	return JS_TRUE;
 }
 

@@ -56,13 +56,14 @@ typedef std::vector< CallbackFunction >			CallbackList;
 /*
 	CLASS			: CFsmEvent
 	DESCRIPTION		: CFsmEvent class represents a signal in the state machine
-					  that a change has occured.
+					  that a change has occurred.
 	NOTES			: The CFsmEvent objects are under the control of CFsm so
 					  they are created and deleted via CFsm.
 */
 
 class CFsmEvent
 {
+	NONCOPYABLE(CFsmEvent);
 public:
 
 	CFsmEvent( unsigned int type );
@@ -72,14 +73,7 @@ public:
 	void*			GetParamRef	( void ) { return m_Param; }
 	void			SetParamRef	( void* pParam );
 
-protected:
-
 private:
-
-	// Not implemented
-	CFsmEvent( const CFsmEvent& );
-	CFsmEvent& operator=( const CFsmEvent& );
-
 	unsigned int	m_Type;				// Event type
 	void*			m_Param;			// Event paramater
 };
@@ -94,6 +88,7 @@ private:
 
 class CFsmTransition
 {
+	NONCOPYABLE(CFsmTransition);
 public:
 
 	CFsmTransition( unsigned int state );
@@ -115,14 +110,7 @@ public:
 	bool				 ApplyConditions	( void ) const;
 	bool				 RunActions			( void ) const;
 
-protected:
-
 private:
-
-	// Not implemented
-	CFsmTransition( const CFsmTransition& );
-	CFsmTransition& operator=( const CFsmTransition& );
-
 	unsigned int	m_CurrState;		// Current state
 	unsigned int	m_NextState;		// Next state
 	CFsmEvent*		m_Event;			// Transition event
@@ -144,6 +132,7 @@ private:
 
 class CFsm
 {
+	NONCOPYABLE(CFsm);
 public:
 
 	CFsm( void );
@@ -188,14 +177,7 @@ public:
 	bool			IsValidEvent		( unsigned int eventType ) const;
 	virtual bool	IsDone				( void ) const;
 
-protected:
-
 private:
-
-	// Not implemented
-	CFsm( const CFsm& );
-	CFsm& operator=( const CFsm& );
-
 	void			SetCurrState		( unsigned int state );
 	bool			IsFirstTime			( void ) const;
 

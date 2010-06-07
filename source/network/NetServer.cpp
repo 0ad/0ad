@@ -25,12 +25,15 @@
 
 // INCLUDES
 #include "precompiled.h"
-#include "ps/CLogger.h"
-#include "ps/CConsole.h"
-#include "simulation/Simulation.h"
+
+#include "NetServer.h"
+
 #include "NetJsEvents.h"
 #include "NetSession.h"
-#include "NetServer.h"
+
+#include "ps/CConsole.h"
+#include "ps/CLogger.h"
+#include "ps/GameAttributes.h"
 #include "simulation2/Simulation2.h"
 
 #define LOG_CATEGORY L"net"
@@ -42,8 +45,8 @@ CNetServer*	g_NetServer = NULL;
 // Name: CNetServer()
 // Desc: Constructor
 //-----------------------------------------------------------------------------
-CNetServer::CNetServer( CGame *pGame, CGameAttributes *pGameAttributes )
-: m_JsSessions( &m_IDSessions )
+CNetServer::CNetServer( ScriptInterface& scriptInterface, CGame *pGame, CGameAttributes *pGameAttributes )
+: CNetHost( scriptInterface ), m_JsSessions( &m_IDSessions )
 {
 	m_ServerTurnManager = NULL;
 
@@ -125,8 +128,7 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	// Validate parameters
 	if ( !pSession ) return false;
 
-	FsmActionCtx* pContext = new FsmActionCtx;
-	if ( !pContext ) return false;
+	FsmActionCtx* pContext = pSession->GetFsmActionCtx();
 
 	pContext->pHost		= this;
 	pContext->pSession	= pSession;
@@ -721,7 +723,7 @@ void CNetServer::AttributeUpdate(
 
 	CNetServer* pServer = ( CNetServer* )pData;
 	
-	g_Console->InsertMessage( L"AttributeUpdate: %ls = \"%ls\"", name.c_str(), newValue.c_str() );
+	LOGMESSAGE( L"AttributeUpdate: %ls = \"%ls\"", name.c_str(), newValue.c_str() );
 
 	CGameSetupMessage gameSetup;
 	gameSetup.m_Values.resize( 1 );
@@ -745,7 +747,7 @@ void CNetServer::PlayerAttributeUpdate(
 
 	CNetServer* pServer = ( CNetServer* )pData;
 
-	g_Console->InsertMessage( L"PlayerAttributeUpdate(%ld): %ls = \"%ls\"", pPlayer->GetPlayerID(), name.c_str(), newValue.c_str() );
+	LOGMESSAGE( L"PlayerAttributeUpdate(%ld): %ls = \"%ls\"", pPlayer->GetPlayerID(), name.c_str(), newValue.c_str() );
 
 	CPlayerConfigMessage* pNewMessage = new CPlayerConfigMessage;
 	if ( !pNewMessage ) return;
@@ -778,7 +780,7 @@ void CNetServer::PlayerSlotAssignment(
 	
 	pServer->BuildPlayerSlotAssignmentMessage( &assignPlayerSlot, pPlayerSlot );
 
-	g_Console->InsertMessage( L"Player Slot Assignment: %hs\n", assignPlayerSlot.ToString().c_str() );
+	LOGMESSAGE( L"Player Slot Assignment: %hs\n", assignPlayerSlot.ToString().c_str() );
 	
 	pServer->Broadcast( &assignPlayerSlot );
 }

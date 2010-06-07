@@ -334,6 +334,9 @@ void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* pmessage, J
 void* ScriptingHost::jshook_script( JSContext* UNUSED(cx), JSStackFrame* UNUSED(fp),
 	JSBool before, JSBool* UNUSED(ok), void* closure )
 {
+	if (!CProfileManager::IsInitialised())
+		return closure;
+
 	if( before )
 	{
 		g_Profiler.StartScript( "script invocation" );
@@ -346,6 +349,9 @@ void* ScriptingHost::jshook_script( JSContext* UNUSED(cx), JSStackFrame* UNUSED(
 
 void* ScriptingHost::jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure )
 {
+	if (!CProfileManager::IsInitialised())
+		return closure;
+
 	JSFunction* fn = JS_GetFrameFunction( cx, fp );
 	if( before )
 	{

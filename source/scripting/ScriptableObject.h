@@ -256,6 +256,7 @@ public:
 		PropertyTable::iterator it;
 		for( it = m_NativeProperties.begin(); it != m_NativeProperties.end(); it++ )
 			delete( it->second );
+		m_NativeProperties.clear();
 	}
 
 	// JS Property access

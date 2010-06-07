@@ -27,6 +27,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "simulation/LOSManager.h"
 
+CGameAttributes *g_GameAttributes;
 
 CPlayerSlot::CPlayerSlot(size_t slotID, CPlayer *pPlayer):
 	m_SlotID(slotID),

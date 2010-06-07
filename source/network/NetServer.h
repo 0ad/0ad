@@ -28,10 +28,10 @@
 
 // INCLUDES
 #include "Network.h"
+#include "NetHost.h"
 #include "NetSession.h"
 #include "NetTurnManager.h"
 #include "scripting/ScriptableObject.h"
-#include "ps/GameAttributes.h"
 #include "ps/scripting/JSMap.h"
 #include "ps/Player.h"
 #include "ps/Game.h"
@@ -49,6 +49,8 @@
 #define DEFAULT_PLAYER_NAME			L"Noname Player"
 #define DEFAULT_WELCOME_MESSAGE		L"Noname Server Welcome Message"
 #define DEFAULT_HOST_PORT			0x5073
+
+class CGameAttributes;
 
 enum NetServerState
 {
@@ -102,7 +104,7 @@ class CNetServer : 	public CNetHost,
 	NONCOPYABLE(CNetServer);
 public:
 
-	CNetServer( CGame* pGame, CGameAttributes* pGameAttributes );
+	CNetServer( ScriptInterface& scriptInterface, CGame* pGame, CGameAttributes* pGameAttributes );
 	virtual ~CNetServer( void );
 
 	bool Start		( JSContext *pContext, uintN argc, jsval *argv );
@@ -246,9 +248,10 @@ protected:
 public:
 	CGame*					m_Game;				// Pointer to actual game
 
-private:
-
+protected:
 	CGameAttributes*		m_GameAttributes;	// Stores game attributes
+
+private:
 	CJSMap< IDSessionMap >	m_JsSessions;
 
 	/*

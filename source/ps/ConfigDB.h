@@ -50,7 +50,6 @@
 #ifndef INCLUDED_CONFIGDB
 #define INCLUDED_CONFIGDB
 
-#include "Pyrogenesis.h"
 #include "Parser.h"
 #include "CStr.h"
 #include "Singleton.h"

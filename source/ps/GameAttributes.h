@@ -133,8 +133,7 @@ namespace PlayerSlotArray_JS
 }
 
 class CGameAttributes:
-	public CSynchedJSObject<CGameAttributes>,
-	public Singleton<CGameAttributes>
+	public CSynchedJSObject<CGameAttributes>
 {
 public:
 	typedef void (UpdateCallback)(const CStrW& name, const CStrW& newValue, void *data);
@@ -210,6 +209,7 @@ public:
 
 	static void ScriptingInit();
 };
-#define g_GameAttributes CGameAttributes::GetSingleton()
+
+extern CGameAttributes *g_GameAttributes;
 
 #endif
