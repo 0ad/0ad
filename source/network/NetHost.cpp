@@ -68,7 +68,7 @@ bool CNetHost::Create()
 // Name: Create()
 // Desc: Creates a server host
 //-----------------------------------------------------------------------------
-bool CNetHost::Create(uint port, uint maxPeers)
+bool CNetHost::Create(u16 port, size_t maxPeers)
 {
 	ENetAddress addr;
 
@@ -116,7 +116,7 @@ void CNetHost::Shutdown()
 // Desc: Connects to the specified remote host
 // Note: Only clients use this method for connection to server
 //-----------------------------------------------------------------------------
-bool CNetHost::Connect(const CStr& host, uint port)
+bool CNetHost::Connect(const CStr& host, u16 port)
 {
 	debug_assert(m_Host);
 
@@ -176,7 +176,7 @@ bool CNetHost::Connect(const CStr& host, uint port)
 // Desc: Connects to the specified remote host
 // Note: Only clients use this method for connection to server
 //-----------------------------------------------------------------------------
-bool CNetHost::ConnectAsync(const CStr& host, uint port)
+bool CNetHost::ConnectAsync(const CStr& host, u16 port)
 {
 	debug_assert(m_Host);
 
@@ -448,16 +448,16 @@ bool CNetHost::HandleMessageReceive(CNetMessage* pMessage, CNetSession* pSession
 // Name: GetSessionCount()
 // Desc: Returns the number of sessions the host manages
 //-----------------------------------------------------------------------------
-uint CNetHost::GetSessionCount() const
+size_t CNetHost::GetSessionCount() const
 {
-	return (uint)m_PeerSessions.size();
+	return m_PeerSessions.size();
 }
 
 //-----------------------------------------------------------------------------
 // Name: GetSession()
 // Desc: Rteurns the session for the index
 //-----------------------------------------------------------------------------
-CNetSession* CNetHost::GetSession(uint index)
+CNetSession* CNetHost::GetSession(size_t index)
 {
 	// Validate parameter
 	if (index >= GetSessionCount())

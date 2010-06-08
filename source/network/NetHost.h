@@ -52,7 +52,7 @@ public:
 	virtual ~CNetHost();
 
 	bool Create();
-	bool Create(uint port, uint maxPeers);
+	bool Create(u16 port, size_t maxPeers);
 	void Shutdown();
 
 	/**
@@ -67,7 +67,7 @@ public:
 	 *
 	 * @return					The number of sessions
 	 */
-	uint GetSessionCount() const;
+	size_t GetSessionCount() const;
 
 	/**
 	 * Returns the session object for the specified index
@@ -75,7 +75,7 @@ public:
 	 * @param index				Index for session
 	 * @return					Session object for index or	NULL if not found
 	 */
-	CNetSession* GetSession(uint index);
+	CNetSession* GetSession(size_t index);
 
 	/**
 	 * Connects to foreign host synchronously
@@ -84,7 +84,7 @@ public:
 	 * @param port						Port on which the foreign host listens
 	 * @return							true on success, false on failure
 	 */
-	bool Connect(const CStr& host, uint port);
+	bool Connect(const CStr& host, u16 port);
 
 	/**
 	 * Connects to foreign host asynchronously (i.e. without waiting for the connection
@@ -94,7 +94,7 @@ public:
 	 * @param port						Port on which the foreign host listens
 	 * @return							true on success, false on failure
 	 */
-	bool ConnectAsync(const CStr& host, uint port);
+	bool ConnectAsync(const CStr& host, u16 port);
 
 	/**
 	 * Disconnects session from host
