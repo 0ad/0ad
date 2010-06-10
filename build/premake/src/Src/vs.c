@@ -810,14 +810,19 @@ void vs_list_files(const char* path, int stage)
 					char *targetname = strdup(path_swapextension(path, ".h", ".cpp"));
 					char *testoptions = strdup(prj_get_cxxtest_options());
 					
+					// use relative file path instead of $(InputPath) to bypass cxxtestgen command line argument parsing weirdness
+					const char *sourcename = path;
+
 					tag_open("Tool");
 					tag_attr("Name=\"VCCustomBuildTool\"");
 					tag_attr("Description=\"Generating %s\"", targetname);
-					tag_attr("CommandLine=\"%s%s --part %s -o &quot;%s&quot; &quot;$(InputPath)&quot;\"",
+					tag_attr("CommandLine=\"%s%s --part %s -o &quot;%s&quot; &quot;%s&quot;\"",
 						endsWith(prj_get_cxxtestpath(), ".pl")?"perl ":"",
 						path_translate(prj_get_cxxtestpath(), "windows"),
 						testoptions,
-						targetname);
+						targetname,
+						sourcename
+					);
 					tag_attr("Outputs=\"%s\"", targetname);
 					tag_close("Tool", 0);
 
