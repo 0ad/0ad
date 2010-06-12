@@ -46,6 +46,7 @@ uintptr_t os_cpu_ProcessorMask()
 		DWORD_PTR processAffinity, systemAffinity;
 		const BOOL ok = GetProcessAffinityMask(hProcess, &processAffinity, &systemAffinity);
 		debug_assert(ok);
+		debug_assert(processAffinity != 0);
 		processorMask = processAffinity;
 	}
 
@@ -65,6 +66,7 @@ size_t os_cpu_NumProcessors()
 		SYSTEM_INFO si;
 		GetSystemInfo(&si);	// guaranteed to succeed
 		debug_assert(numProcessors <= (size_t)si.dwNumberOfProcessors);
+		debug_assert(numProcessors >= 1);
 	}
 
 	return numProcessors;

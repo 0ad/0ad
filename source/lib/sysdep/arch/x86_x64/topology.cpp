@@ -148,22 +148,28 @@ static const u8* ApicIds()
 
 	if(apicIds == uninitialized)
 	{
-		apicIds = 0;	// return zero from now on unless the below succeeds
+		apicIds = 0;	// return zero from now on unless everything below succeeds
 
-		// requires xAPIC (see x86_x64_ApicId for details)
-		if(x86_x64_Generation() >= 8)
+		// store each processor's APIC ID in turn
+		static u8 apicIdStorage[os_cpu_MaxProcessors];
+		struct StoreApicId
 		{
-			// store each processor's APIC ID in turn
-			static u8 apicIdStorage[os_cpu_MaxProcessors];
-			struct StoreApicId
+			static void Callback(size_t processor, uintptr_t UNUSED(cbData))
 			{
-				static void Callback(size_t processor, uintptr_t UNUSED(cbData))
-				{
-					apicIdStorage[processor] = x86_x64_ApicId();
-				}
-			};
-			if(os_cpu_CallByEachCPU(StoreApicId::Callback, (uintptr_t)&apicIds) == INFO::OK)
-				apicIds = apicIdStorage;	// success, return valid array from now on
+				apicIdStorage[processor] = x86_x64_ApicId();
+			}
+		};
+		if(os_cpu_CallByEachCPU(StoreApicId::Callback, (uintptr_t)&apicIds) == INFO::OK)
+		{
+			const size_t numProcessors = os_cpu_NumProcessors();
+			u8* end = std::unique(apicIdStorage, apicIdStorage+numProcessors);
+			if(end == apicIdStorage+1)	// exactly one unique value
+				debug_assert(apicIdStorage[0]);	// all 0 (no APIC supported)
+			else
+			{
+				debug_assert(end == apicIdStorage+numProcessors);	// all unique
+				apicIds = apicIdStorage;	// return valid array from now on
+			}
 		}
 	}
 

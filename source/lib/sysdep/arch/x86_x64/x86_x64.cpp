@@ -175,22 +175,28 @@ x86_x64_Vendors x86_x64_Vendor()
 }
 
 
-static void DetectSignature(size_t* model, size_t* family)
+static void DetectSignature(size_t& model, size_t& family)
 {
 	x86_x64_CpuidRegs regs;
 	regs.eax = 1;
 	regs.ecx = 0;
 	if(!x86_x64_cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-	*model  = bits(regs.eax, 4, 7);
-	*family = bits(regs.eax, 8, 11);
+	model  = bits(regs.eax, 4, 7);
+	family = bits(regs.eax, 8, 11);
+	const size_t extendedModel = bits(regs.eax, 16, 19);
+	const size_t extendedFamily = bits(regs.eax, 20, 27);
+	if(family == 0xF)
+		family += extendedFamily;
+	if(family == 0xF || (x86_x64_Vendor() == X86_X64_VENDOR_INTEL && family == 6))
+		model += extendedModel << 4;
 }
 
 
 static size_t DetectGeneration()
 {
 	size_t model, family;
-	DetectSignature(&model, &family);
+	DetectSignature(model, family);
 
 	switch(x86_x64_Vendor())
 	{
@@ -218,7 +224,7 @@ static size_t DetectGeneration()
 			return 5;	// Pentium
 
 		case 6:
-			if(model <= 0xD)
+			if(model < 0xF)
 				return 6;	// Pentium Pro/II/III/M
 			else
 				return 8;	// Core2Duo
@@ -227,6 +233,8 @@ static size_t DetectGeneration()
 			if(model <= 6)
 				return 7;	// Pentium 4/D
 		}
+		if(family >= 0x10)
+			return 9;
 		break;
 	}
 
@@ -779,7 +787,7 @@ static void DetectIdentifierString(char* identifierString, size_t maxChars)
 	if(!have_brand_string || strncmp(identifierString, "Unknow", 6) == 0)
 	{
 		size_t model, family;
-		DetectSignature(&model, &family);
+		DetectSignature(model, family);
 
 		switch(x86_x64_Vendor())
 		{
@@ -849,8 +857,7 @@ u8 x86_x64_ApicId()
 	regs.eax = 1;
 	regs.ecx = 0;
 	// note: CPUID function 1 should be available everywhere, but only
-	// processors with an xAPIC (8th generation or above, e.g. P4/Athlon XP)
-	// will return a nonzero value.
+	// processors with an xAPIC (e.g. P4/Athlon XP) will return a nonzero value.
 	if(!x86_x64_cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 	const u8 apicId = (u8)bits(regs.ebx, 24, 31);
