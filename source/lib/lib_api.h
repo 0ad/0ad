@@ -34,9 +34,9 @@
 #  else
 #   define LIB_API __declspec(dllimport)
 #   ifdef NDEBUG
-#    pragma comment(lib, "lib.lib")
+#    pragma comment(lib, "lowlevel.lib")
 #   else
-#    pragma comment(lib, "lib_d.lib")
+#    pragma comment(lib, "lowlevel_d.lib")
 #   endif
 #  endif
 # elif GCC_VERSION

@@ -87,6 +87,9 @@ static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out
 
 void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list)
 {
+	if(pathname.empty())
+		return;	// avoid error in ReadVersionString
+
 	// pathname may not have an extension (e.g. driver names from the
 	// registry). note that always appending ".dll" would be incorrect
 	// since some have ".sys" extension.

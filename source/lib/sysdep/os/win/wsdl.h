@@ -27,8 +27,11 @@
 #ifndef INCLUDED_WSDL
 #define INCLUDED_WSDL
 
+#include "lib/lib_api.h"
 #include "lib/byte_order.h"
 #include "SDL/SDL_keysym.h"
+
+extern "C" {
 
 typedef u8  Uint8;
 typedef u16 Uint16;
@@ -41,9 +44,9 @@ typedef u32 Uint32;
 #define SDL_INIT_TIMER 0
 #define SDL_INIT_NOPARACHUTE 0
 
-extern int SDL_Init(Uint32 flags);
+LIB_API int SDL_Init(Uint32 flags);
 
-extern void SDL_Quit();
+LIB_API void SDL_Quit();
 
 
 //
@@ -57,14 +60,14 @@ typedef enum
 }
 SDL_GLattr;
 
-extern int SDL_GL_SetAttribute(SDL_GLattr attr, int value);
+LIB_API int SDL_GL_SetAttribute(SDL_GLattr attr, int value);
 
 // SDL_SetVideoMode() flags
 #define SDL_OPENGL 0
 #define SDL_FULLSCREEN 1
 #define SDL_RESIZABLE 2
 
-extern int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags);
+LIB_API int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags);
 
 typedef struct
 {
@@ -72,7 +75,7 @@ typedef struct
 }
 SDL_Surface;
 
-extern SDL_Surface* SDL_GetVideoSurface();
+LIB_API SDL_Surface* SDL_GetVideoSurface();
 
 typedef struct
 {
@@ -80,11 +83,11 @@ typedef struct
 }
 SDL_VideoInfo;
 
-extern SDL_VideoInfo* SDL_GetVideoInfo();
+LIB_API SDL_VideoInfo* SDL_GetVideoInfo();
 
-extern void* SDL_GL_GetProcAddress(const char*);
+LIB_API void* SDL_GL_GetProcAddress(const char*);
 
-extern void SDL_GL_SwapBuffers();
+LIB_API void SDL_GL_SwapBuffers();
 
 
 //
@@ -94,19 +97,19 @@ extern void SDL_GL_SwapBuffers();
 typedef void SDL_sem;
 typedef void SDL_Thread;
 
-extern u32 SDL_GetTicks();
-extern void SDL_Delay(u32 ms);
+LIB_API u32 SDL_GetTicks();
+LIB_API void SDL_Delay(u32 ms);
 
-extern SDL_sem* SDL_CreateSemaphore(int cnt);
-extern void SDL_DestroySemaphore(SDL_sem*);
-extern int SDL_SemPost(SDL_sem*);
-extern int SDL_SemWait(SDL_sem* sem);
+LIB_API SDL_sem* SDL_CreateSemaphore(int cnt);
+LIB_API void SDL_DestroySemaphore(SDL_sem*);
+LIB_API int SDL_SemPost(SDL_sem*);
+LIB_API int SDL_SemWait(SDL_sem* sem);
 
-extern SDL_Thread* SDL_CreateThread(int (*)(void*), void*);
-extern int SDL_KillThread(SDL_Thread*);
+LIB_API SDL_Thread* SDL_CreateThread(int (*)(void*), void*);
+LIB_API int SDL_KillThread(SDL_Thread*);
 
 
-extern void SDL_WarpMouse(int, int);
+LIB_API void SDL_WarpMouse(int, int);
 
 enum ShowCursorToggle
 {
@@ -114,10 +117,10 @@ enum ShowCursorToggle
 	SDL_ENABLE  = 1,
 	SDL_QUERY   = 2
 };
-extern int SDL_ShowCursor(int toggle);
+LIB_API int SDL_ShowCursor(int toggle);
 
 
-extern int SDL_SetGamma(float r, float g, float b);
+LIB_API int SDL_SetGamma(float r, float g, float b);
 
 
 //
@@ -254,10 +257,10 @@ typedef union
 SDL_Event;
 
 
-extern int SDL_EnableUNICODE(int enable);
-extern int SDL_WaitEvent(SDL_Event*);
-extern int SDL_PollEvent(SDL_Event* ev);
-extern int SDL_PushEvent(SDL_Event* ev);
+LIB_API int SDL_EnableUNICODE(int enable);
+LIB_API int SDL_WaitEvent(SDL_Event*);
+LIB_API int SDL_PollEvent(SDL_Event* ev);
+LIB_API int SDL_PushEvent(SDL_Event* ev);
 
 
 //
@@ -275,11 +278,13 @@ extern int SDL_PushEvent(SDL_Event* ev);
 #define SDL_EnableKeyRepeat(delay, interval)
 
 
-extern void SDL_WM_SetCaption(const char *title, const char *icon);
+LIB_API void SDL_WM_SetCaption(const char *title, const char *icon);
 
-extern Uint8* SDL_GetKeyState(int* num_keys);
-extern Uint8 SDL_GetMouseState(int* x, int* y);
+LIB_API Uint8* SDL_GetKeyState(int* num_keys);
+LIB_API Uint8 SDL_GetMouseState(int* x, int* y);
 
-extern Uint8 SDL_GetAppState();
+LIB_API Uint8 SDL_GetAppState();
+
+}	// extern "C"
 
 #endif	// #ifndef INCLUDED_WSDL

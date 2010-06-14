@@ -312,30 +312,30 @@ LibError io_Scan(const PFile& file, off_t ofs, off_t size, IoCallback cb, uintpt
 }
 
 
-LibError io_Read(const PFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data)
+LibError io_Read(const PFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data, IoCallback cb, uintptr_t cbData)
 {
 	IoSplitter splitter(ofs, alignedBuf, size);
-	RETURN_ERR(splitter.Run(file));
+	RETURN_ERR(splitter.Run(file, cb, cbData));
 	data = alignedBuf + ofs - splitter.AlignedOfs();
 	return INFO::OK;
 }
 
 
-LibError io_WriteAligned(const PFile& file, off_t alignedOfs, const u8* alignedData, off_t size)
+LibError io_WriteAligned(const PFile& file, off_t alignedOfs, const u8* alignedData, off_t size, IoCallback cb, uintptr_t cbData)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedData));
 
 	IoSplitter splitter(alignedOfs, const_cast<u8*>(alignedData), size);
-	return splitter.Run(file);
+	return splitter.Run(file, cb, cbData);
 }
 
 
-LibError io_ReadAligned(const PFile& file, off_t alignedOfs, u8* alignedBuf, off_t size)
+LibError io_ReadAligned(const PFile& file, off_t alignedOfs, u8* alignedBuf, off_t size, IoCallback cb, uintptr_t cbData)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedBuf));
 
 	IoSplitter splitter(alignedOfs, alignedBuf, size);
-	return splitter.Run(file);
+	return splitter.Run(file, cb, cbData);
 }

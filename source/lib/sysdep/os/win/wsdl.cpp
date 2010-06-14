@@ -51,9 +51,10 @@
 
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 
+extern "C" {
+
 WINIT_REGISTER_LATE_INIT(wsdl_Init);
 WINIT_REGISTER_EARLY_SHUTDOWN(wsdl_Shutdown);
-
 
 // in fullscreen mode, i.e. not windowed.
 // video mode will be restored when app is deactivated.
@@ -371,12 +372,12 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 		const DWORD windowStyle = wnd_ChooseWindowStyle(fullscreen, g_hWnd);
 		wnd_UpdateWindowDimensions(windowStyle, w, h);
 
-		UINT flags = SWP_FRAMECHANGED|SWP_NOZORDER|SWP_NOACTIVATE;
+		UINT swp_flags = SWP_FRAMECHANGED|SWP_NOZORDER|SWP_NOACTIVATE;
 		if(!fullscreen)	// windowed: preserve the top-left corner
-			flags |= SWP_NOMOVE;
+			swp_flags |= SWP_NOMOVE;
 
 		WARN_IF_FALSE(SetWindowLongW(g_hWnd, GWL_STYLE, windowStyle));
-		WARN_IF_FALSE(SetWindowPos(g_hWnd, 0, 0, 0, w, h, flags));
+		WARN_IF_FALSE(SetWindowPos(g_hWnd, 0, 0, 0, w, h, swp_flags));
 
 		if(fullscreen)
 		{
@@ -973,7 +974,7 @@ Uint8 SDL_GetMouseState(int* x, int* y)
 }
 
 
-inline void SDL_WarpMouse(int x, int y)
+void SDL_WarpMouse(int x, int y)
 {
 	// SDL interface provides for int, but the values should be
 	// idealized client coords (>= 0)
@@ -1221,7 +1222,7 @@ SDL_sem* SDL_CreateSemaphore(int cnt)
 	return sem_from_HANDLE(h);
 }
 
-inline void SDL_DestroySemaphore(SDL_sem* sem)
+void SDL_DestroySemaphore(SDL_sem* sem)
 {
 	HANDLE h = HANDLE_from_sem(sem);
 	CloseHandle(h);
@@ -1276,19 +1277,19 @@ void SDL_WM_SetCaption(const char* title, const char* icon)
 }
 
 
-inline u32 SDL_GetTicks()
+u32 SDL_GetTicks()
 {
 	return GetTickCount();
 }
 
 
-inline void SDL_Delay(Uint32 ms)
+void SDL_Delay(Uint32 ms)
 {
 	Sleep(ms);
 }
 
 
-inline void* SDL_GL_GetProcAddress(const char* name)
+void* SDL_GL_GetProcAddress(const char* name)
 {
 	return wglGetProcAddress(name);
 }
@@ -1327,7 +1328,7 @@ void SDL_Quit()
 	video_Shutdown();
 }
 
- 
+
 static void RedirectStdout()
 {
 	// this process is apparently attached to a console, and users might be
@@ -1361,7 +1362,7 @@ static void RedirectStdout()
  	setvbuf(stdout, 0, _IONBF, 0);
  #endif
 }
- 
+
 static LibError wsdl_Init()
 {
 	// note: SDL does this in its WinMain hook. doing so in SDL_Init would be
@@ -1379,5 +1380,7 @@ static LibError wsdl_Shutdown()
 
 	return INFO::OK;
 }
+
+}	// extern "C"
 
 #endif	// #if CONFIG2_WSDL
