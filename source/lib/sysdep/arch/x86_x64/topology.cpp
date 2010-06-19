@@ -137,6 +137,21 @@ static size_t LogicalPerCache()
 // core, package and shared cache. if they are available, we can determine
 // the exact topology; otherwise we have to guess.
 
+// side effect: `removes' (via std::unique) duplicate IDs.
+static bool AreApicIdsUnique(u8* apicIds, size_t numProcessors)
+{
+	u8* const end = std::unique(apicIds, apicIds+numProcessors);
+	const size_t numIds = end-apicIds;
+	if(numIds == numProcessors)	// all unique
+		return true;
+
+	// the only legitimate cause of duplication is when no xAPIC is
+	// present (i.e. all are 0)
+	debug_assert(numIds == 1);
+	debug_assert(apicIds[0] == 0);
+	return false;
+}
+
 /**
  * @return an array of the processors' unique APIC IDs or zero if
  * no xAPIC is present or process affinity is limited.
@@ -161,15 +176,8 @@ static const u8* ApicIds()
 		};
 		if(os_cpu_CallByEachCPU(StoreApicId::Callback, (uintptr_t)&apicIds) == INFO::OK)
 		{
-			const size_t numProcessors = os_cpu_NumProcessors();
-			u8* end = std::unique(apicIdStorage, apicIdStorage+numProcessors);
-			if(end == apicIdStorage+1)	// exactly one unique value
-				debug_assert(apicIdStorage[0]);	// all 0 (no APIC supported)
-			else
-			{
-				debug_assert(end == apicIdStorage+numProcessors);	// all unique
+			if(AreApicIdsUnique(apicIdStorage, os_cpu_NumProcessors()))
 				apicIds = apicIdStorage;	// return valid array from now on
-			}
 		}
 	}
 
