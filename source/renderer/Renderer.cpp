@@ -340,7 +340,7 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
-// CRenderer destructor
+// CRenderer constructor
 CRenderer::CRenderer()
 {
 	m = new CRendererInternals;
@@ -365,11 +365,11 @@ CRenderer::CRenderer()
 
 	m_VertexShader = 0;
 
-	m_Options.m_NoVBO=false;
+	m_Options.m_NoVBO = false;
 	m_Options.m_NoFramebufferObject = false;
-	m_Options.m_Shadows=true;
 	m_Options.m_RenderPath = RP_DEFAULT;
 	m_Options.m_FancyWater = false;
+	m_Options.m_Shadows = false;
 
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
@@ -379,6 +379,7 @@ CRenderer::CRenderer()
 	}
 	m_hCompositeAlphaMap = 0;
 
+	AddLocalProperty(L"shadows", &m_Options.m_Shadows, false);
 	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
 	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
 	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);
