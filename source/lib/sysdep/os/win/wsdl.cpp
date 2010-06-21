@@ -64,6 +64,12 @@ static bool fullscreen;
 // if set, ignore further Windows messages for clean shutdown.
 static bool is_quitting;
 
+// when a SDL_VIDEORESIZE event is received, SDL wants the application
+// to call SDL_SetVideoMode, which would trigger another SDL_VIDEORESIZE.
+// we prevent this by skipping a subsequent resize event for every
+// call to SDL_SetVideoMode.
+static bool skipResize;
+
 static HWND g_hWnd = (HWND)INVALID_HANDLE_VALUE;
 static HDC g_hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
 
@@ -326,7 +332,7 @@ static void video_SetPixelFormat(HDC g_hDC, int bpp)
 
 // set video mode width x height : bpp (or leave unchanged if already adequate).
 // w = h = bpp = 0 => no change.
-int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
+int SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 {
 	WinScopedPreserveLastError s;	// OpenGL and GDI
 
@@ -349,6 +355,8 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 		dm.dmFields |= DM_PELSWIDTH|DM_PELSHEIGHT;
 	}
 	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
+
+	skipResize = true;
 
 	if(g_hWnd == (HWND)INVALID_HANDLE_VALUE)
 	{
@@ -1005,26 +1013,40 @@ int SDL_ShowCursor(int toggle)
 
 
 //----------------------------------------------------------------------------
-// resizing
+// video resizing/expose
 
-static void QueueResizeEvent(int w, int h)
+// note: this is called continuously during resizing. since SDL doesn't
+// discard any SDL_VIDEORESIZE events, the application must deal with
+// the flood (and only call SDL_SetVideoMode once a frame or similar).
+// note: SDL uses WM_WINDOWPOSCHANGING, which requires calling
+// GetClientRect and suffers from false alarms.
+static void OnSize(HWND hWnd, UINT UNUSED(state), int clientWidth, int clientHeight)
 {
+	// if we don't prevent SDL_SetVideoMode from triggering SDL_VIDEORESIZE,
+	// the app's once-per-frame throttle still results in infinite recursion.
+	if(skipResize)
+	{
+		skipResize = false;
+		return;
+	}
+
 	SDL_Event ev;
 	ev.type = SDL_VIDEORESIZE;
-	ev.resize.w = w;
-	ev.resize.h = h;
+	ev.resize.w = clientWidth;
+	ev.resize.h = clientHeight;
 	QueueEvent(ev);
 }
 
-static LRESULT OnPosChanged(HWND hWnd, PWINDOWPOS UNUSED(pos))
+
+static BOOL OnEraseBkgnd(HWND UNUSED(hWnd), HDC UNUSED(hDC))
 {
-	RECT client_rect;
-	WARN_IF_FALSE(GetClientRect(hWnd, &client_rect));
+	SDL_Event ev;
+	ev.type = SDL_VIDEOEXPOSE;
+	QueueEvent(ev);
 
-	QueueResizeEvent(client_rect.right, client_rect.bottom);
-	// top, left are documented to always be 0
-
-	return 0;
+	// indicate we erased the background; PAINTSTRUCT.fErase will
+	// later be FALSE.
+	return TRUE;
 }
 
 
@@ -1064,10 +1086,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		EndPaint(hWnd, &ps);
 		return 0;
 
-	case WM_ERASEBKGND:
-		// this indicates we allegedly erased the background;
-		// PAINTSTRUCT.fErase is then FALSE.
-		return 1;
+	HANDLE_MSG(hWnd, WM_ERASEBKGND, OnEraseBkgnd);
 
 	// prevent selecting menu in fullscreen mode
 	case WM_NCHITTEST:
@@ -1104,6 +1123,8 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 	HANDLE_MSG(hWnd, WM_MOUSEWHEEL, OnMouseWheel);
 
+	HANDLE_MSG(hWnd, WM_SIZE, OnSize);
+
 	// (can't use message crackers: they do not provide for passing uMsg)
 	case WM_LBUTTONDOWN:
 	case WM_LBUTTONUP:
@@ -1112,9 +1133,6 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	case WM_MBUTTONDOWN:
 	case WM_MBUTTONUP:
 		return OnMouseButton(hWnd, uMsg, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (UINT)wParam);
-
-	case WM_WINDOWPOSCHANGED:
-		return OnPosChanged(hWnd, (PWINDOWPOS)lParam);
 
 	default:
 		// can't call DefWindowProc here: some messages

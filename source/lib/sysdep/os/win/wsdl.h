@@ -67,7 +67,7 @@ LIB_API int SDL_GL_SetAttribute(SDL_GLattr attr, int value);
 #define SDL_FULLSCREEN 1
 #define SDL_RESIZABLE 2
 
-LIB_API int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags);
+LIB_API int SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags);
 
 typedef struct
 {
@@ -137,11 +137,9 @@ LIB_API int SDL_SetGamma(float r, float g, float b);
 #define SDL_Swap64 swap64
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // events
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 typedef struct
 {
@@ -169,6 +167,12 @@ typedef struct
 	Uint8 type;
 }
 SDL_QuitEvent;
+
+typedef struct
+{
+	Uint8 type;
+}
+SDL_ExposeEvent;
 
 enum SDL_MouseButtonEvent_button
 {
@@ -240,6 +244,7 @@ enum SDL_Event_type
 	SDL_MOUSEBUTTONUP,
 	SDL_ACTIVEEVENT,
 	SDL_QUIT,
+	SDL_VIDEOEXPOSE,
 	SDL_VIDEORESIZE,
 	SDL_USEREVENT
 };
@@ -247,15 +252,16 @@ enum SDL_Event_type
 typedef union
 {
 	Uint8 type;
+	SDL_ActiveEvent active;
 	SDL_KeyboardEvent key;
 	SDL_MouseMotionEvent motion;
 	SDL_MouseButtonEvent button;
-	SDL_ActiveEvent active;
 	SDL_ResizeEvent resize;
+	SDL_ExposeEvent expose;
+	SDL_QuitEvent quit;
 	SDL_UserEvent user;
 }
 SDL_Event;
-
 
 LIB_API int SDL_EnableUNICODE(int enable);
 LIB_API int SDL_WaitEvent(SDL_Event*);
