@@ -136,7 +136,7 @@ extern_lib_defs = {
 		unix_names = { "jpeg" },
 	},
 	libpng = {
-		win_names  = { "libpng13" },
+		win_names  = { "libpng14" },
 		unix_names = { "png" },
 	},
 	libxml2 = {

@@ -35,9 +35,9 @@
 // automatically link against the required library
 #if MSC_VERSION
 # ifdef NDEBUG
-#  pragma comment(lib, "libpng13.lib")
+#  pragma comment(lib, "libpng14.lib")
 # else
-#  pragma comment(lib, "libpng13d.lib")
+#  pragma comment(lib, "libpng14d.lib")
 # endif	// NDEBUG
 #endif	// MSC_VERSION
 

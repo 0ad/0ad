@@ -185,14 +185,16 @@ bool ogl_HaveVersion(const char* desired_version)
 		return false;
 	}
 
-	int major, minor;
+	// guaranteed to be of the form major.minor[.release].
 	const char* version = (const char*)glGetString(GL_VERSION);
+	int major, minor;
 	if(!version || sscanf_s(version, "%d.%d", &major, &minor) != 2)
 	{
 		debug_assert(0);	// GL_VERSION invalid
 		return false;
 	}
 
+	// note: don't just compare characters - major and minor may be >= 10.
 	return (major > desired_major) ||
 	       (major == desired_major && minor >= desired_minor);
 }
