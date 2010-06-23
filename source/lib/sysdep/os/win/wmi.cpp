@@ -49,7 +49,7 @@ static LibError Init()
 
 	HRESULT hr;
 
-	hr = CoInitializeEx(0, COINIT_MULTITHREADED);
+	hr = CoInitialize(0);
 	if(FAILED(hr))
 		WARN_RETURN(ERR::_1);
 

@@ -149,6 +149,10 @@ extern bool wutil_HasCommandLineArgument(const wchar_t* arg);
 // directories
 //
 
+// used by wutil_ExecutablePath, but provided in case other code
+// needs to know this before our wutil_Init runs.
+extern fs::wpath wutil_DetectExecutablePath();
+
 extern const fs::wpath& wutil_SystemPath();
 extern const fs::wpath& wutil_ExecutablePath();
 extern const fs::wpath& wutil_AppdataPath();

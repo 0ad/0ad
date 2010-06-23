@@ -109,7 +109,9 @@ LIB_API LibError sys_get_executable_name(fs::wpath& pathname);
 /**
  * have the user choose a directory via OS dialog.
  *
- * @param path (unchanged unless INFO::OK is returned).
+ * @param path's input value determines the starting directory for
+ * faster browsing. if INFO::OK is returned, it receives
+ * chosen directory path.
  **/
 extern LibError sys_pick_directory(fs::wpath& path);
 

@@ -94,12 +94,12 @@ static LibError sym_init()
 	const BOOL fInvadeProcess = TRUE;
 	// .. use default *symbol* search path. we don't use this to locate
 	//    our PDB file because its absolute path is stored inside the EXE.
-	PWSTR UserSearchPath = 0;
-	BOOL ok = pSymInitializeW(hProcess, UserSearchPath, fInvadeProcess);
+	const PWSTR UserSearchPath = 0;
+	const BOOL ok = pSymInitializeW(hProcess, UserSearchPath, fInvadeProcess);
 	WARN_IF_FALSE(ok);
 
 	mod_base = (uintptr_t)pSymGetModuleBase64(hProcess, (u64)&sym_init);
-	IMAGE_NT_HEADERS* header = pImageNtHeader((void*)(uintptr_t)mod_base);
+	IMAGE_NT_HEADERS* const header = pImageNtHeader((void*)(uintptr_t)mod_base);
 	machine = header->FileHeader.Machine;
 
 	return INFO::OK;

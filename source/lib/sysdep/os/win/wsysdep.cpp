@@ -350,14 +350,14 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 }
 
 
-// callback for shell directory picker: used to set
-// starting directory to the current directory (for user convenience).
-static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam), LPARAM ldata)
+// callback for shell directory picker: used to set starting directory
+// (for user convenience).
+static int CALLBACK BrowseCallback(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam), LPARAM lpData)
 {
 	if(msg == BFFM_INITIALIZED)
 	{
-		const wchar_t* initialPath = (const wchar_t*)ldata;
-		SendMessage(hWnd, BFFM_SETSELECTIONA, 1, (LPARAM)initialPath);
+		const WPARAM wParam = TRUE;	// lpData is a Unicode string, not PIDL.
+		LRESULT ret = SendMessage(hWnd, BFFM_SETSELECTIONW, wParam, lpData);
 		return 1;
 	}
 
@@ -366,18 +366,28 @@ static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam)
 
 LibError sys_pick_directory(fs::wpath& path)
 {
-	// bring up dialog; set starting directory to current working dir.
-	fs::wpath initialPath = fs::current_path<fs::wpath>();
-	BROWSEINFOA bi;
+	// (must not use multi-threaded apartment due to BIF_NEWDIALOGSTYLE)
+	const HRESULT hr = CoInitialize(0);
+	debug_assert(hr == S_OK || hr == S_FALSE);	// S_FALSE == already initialized
+
+	// the above BFFM_SETSELECTIONW can't deal with '/' separators,
+	// which is what string() returns.
+	const std::wstring initialPath = path.external_directory_string();
+
+	// note: bi.pszDisplayName isn't the full path, so it isn't of any use.
+	BROWSEINFOW bi;
 	memset(&bi, 0, sizeof(bi));
-	bi.ulFlags = BIF_RETURNONLYFSDIRS;
-	bi.lpfn = (BFFCALLBACK)browse_cb;
-	bi.lParam = (LPARAM)initialPath.string().c_str();
-	LPITEMIDLIST pidl = SHBrowseForFolderA(&bi);
+	bi.ulFlags = BIF_RETURNONLYFSDIRS|BIF_NEWDIALOGSTYLE|BIF_NONEWFOLDERBUTTON;
+	// for setting starting directory:
+	bi.lpfn = (BFFCALLBACK)BrowseCallback;
+	bi.lParam = (LPARAM)initialPath.c_str();
+	const LPITEMIDLIST pidl = SHBrowseForFolderW(&bi);
+	if(!pidl)	// user canceled
+		return INFO::SKIPPED;
 
 	// translate ITEMIDLIST to string
 	wchar_t pathBuf[MAX_PATH];
-	BOOL ok = SHGetPathFromIDListW(pidl, pathBuf);
+	const BOOL ok = SHGetPathFromIDListW(pidl, pathBuf);
 
 	// free the ITEMIDLIST
 	IMalloc* p_malloc;
@@ -385,6 +395,11 @@ LibError sys_pick_directory(fs::wpath& path)
 	p_malloc->Free(pidl);
 	p_malloc->Release();
 
-	path = pathBuf;
-	return LibError_from_win32(ok);
+	if(ok == TRUE)
+	{
+		path = pathBuf;
+		return INFO::OK;
+	}
+
+	return LibError_from_GLE();
 }

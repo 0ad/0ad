@@ -238,6 +238,15 @@ bool wutil_HasCommandLineArgument(const wchar_t* arg)
 //-----------------------------------------------------------------------------
 // directories
 
+fs::wpath wutil_DetectExecutablePath()
+{
+	wchar_t buf[MAX_PATH+1] = {0};
+	const DWORD len = GetModuleFileNameW(GetModuleHandle(0), buf, MAX_PATH);
+	debug_assert(len != 0);
+	const fs::wpath modulePathname(buf);
+	return modulePathname.branch_path();
+}
+
 // (NB: wutil_Init is called before static ctors => use placement new)
 static fs::wpath* systemPath;
 static fs::wpath* executablePath;
@@ -262,22 +271,17 @@ const fs::wpath& wutil_AppdataPath()
 static void GetDirectories()
 {
 	WinScopedPreserveLastError s;
-	wchar_t path[MAX_PATH+1];
+	wchar_t path[MAX_PATH+1] = {0};
 
 	// system directory
 	{
-		const UINT charsWritten = GetSystemDirectoryW(path, ARRAY_SIZE(path));
+		const UINT charsWritten = GetSystemDirectoryW(path, MAX_PATH);
 		debug_assert(charsWritten != 0);
 		systemPath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(path);
 	}
 
 	// executable's directory
-	{
-		const DWORD len = GetModuleFileNameW(GetModuleHandle(0), path, ARRAY_SIZE(path));
-		debug_assert(len != 0);
-		executablePath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(path);
-		*executablePath = executablePath->branch_path();
-	}
+	executablePath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(wutil_DetectExecutablePath());
 
 	// application data
 	{

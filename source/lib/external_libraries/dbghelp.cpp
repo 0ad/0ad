@@ -24,6 +24,7 @@
 
 #if OS_WIN
 
+#include "lib/sysdep/os/win/wutil.h"
 #include "lib/external_libraries/dbghelp.h"
 
 // define extension function pointers
@@ -36,11 +37,20 @@ extern "C"
 
 void dbghelp_ImportFunctions()
 {
-	HMODULE hDbghelp = LoadLibraryW(L"dbghelp.dll");
+	// for reasons unknown, LoadLibrary first checks the Dropbox shell
+	// extension's directory (instead of "The directory from which the
+	// application loaded.") and then the system directory, whose
+	// dbghelp.dll is too old. we therefore specify the full path
+	// to our executable directory, which contains a newer dbghelp.dll.
+	const fs::wpath pathname = wutil_DetectExecutablePath()/L"dbghelp.dll";
+	HMODULE hDbghelp = LoadLibraryW(pathname.string().c_str());
 	debug_assert(hDbghelp);
 #define FUNC(ret, name, params) p##name = (ret (__stdcall*) params)GetProcAddress(hDbghelp, #name);
 #include "lib/external_libraries/dbghelp_funcs.h"
 #undef FUNC
+
+	// if this function is missing, the DLL is too old.
+	debug_assert(pSymInitializeW);
 }
 
 #endif // OS_WIN
