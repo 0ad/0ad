@@ -14,18 +14,67 @@ function _setMotionOverlay(ents, enabled)
 		Engine.GuiInterfaceCall("SetMotionDebugOverlay", { "entities":ents, "enabled":enabled });
 }
 
+//-------------------------------- -------------------------------- -------------------------------- 
+// EntityGroups class for ordering / managing entities by their templates
+//-------------------------------- -------------------------------- -------------------------------- 
+function EntityGroups()
+{
+	this.primary = 0;
+	this.groupNumbers = {};
+	this.firstOfType = {}; // array for holding index to first appearance of a specific unit type in g_Selection 
+	this.groupTypeCount = {}; // format { name:count, name:count, ... } - maps units to the currently selected quantity of that type
+	this.groupTemplates = [];
+}
+
+EntityGroups.prototype.reset = function()
+{
+	getGUIObjectByName("unitSelectionHighlight[" + g_Selection.groups.primary + "]").hidden = true;
+	this.primary = 0;
+	this.groupNumbers = {};
+	this.firstOfType = {};
+	this.groupTypeCount = {};
+	this.groupTemplates = [];
+};
+
+//-------------------------------- -------------------------------- -------------------------------- 
+// EntitySelection class for managing the entity selection list and the primary selection
+//-------------------------------- -------------------------------- -------------------------------- 
 function EntitySelection()
 {
 	// Private properties:
+	//--------------------------------
+	this.primary = 0; // The active selection in the unit details panel
 	this.selected = {}; // { id:id, id:id, ... } for each selected entity ID 'id'
-	this.highlighted = {}; // { id:id, ... } for mouseover-highlighted entity IDs
-		// (in these, the key is a string and the value is an int; we want to use the
-		// int form wherever possible since it's more efficient to send to the simulation code)
+
+	// { id:id, ... } for mouseover-highlighted entity IDs in these, the key is a string and the value is an int; 
+	//	we want to use the int form wherever possible since it's more efficient to send to the simulation code)
+	this.highlighted = {}; 
+
 	this.motionDebugOverlay = false;
 
 	// Public properties:
+	//--------------------------------
+	this.groups = new EntityGroups();  // the selection entity groups must be reset whenever the selection changes
 	this.dirty = false; // set whenever the selection has changed
 }
+
+EntitySelection.prototype.getPrimary = function()
+{
+	return this.primary;
+};
+
+EntitySelection.prototype.setPrimary = function(index)
+{
+	if (g_Selection.toList().length > index)
+		this.primary = index;
+	else
+		console.write("\"index\" is larger than g_Selection.toList().length: Cannot set Primary Selection.");
+};
+
+EntitySelection.prototype.resetPrimary = function() 
+{
+	this.primary = 0; // the primary selection must be reset whenever the selection changes
+};
 
 EntitySelection.prototype.toggle = function(ent)
 {
@@ -65,6 +114,8 @@ EntitySelection.prototype.reset = function()
 	_setHighlight(this.toList(), g_InactiveSelectionColour);
 	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
+	this.resetPrimary();
+	this.groups.reset();
 	this.dirty = true;
 };
 

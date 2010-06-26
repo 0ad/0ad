@@ -14,7 +14,14 @@
 		text_align="center"
 		text_valign="center"
 	/>
-
+	
+	<style name="frilly"
+		sprite="frilly"
+		buffer_zone="4"
+		text_align="center"
+		text_valign="center"
+	/>
+	
 	<style name="resourceIcon"
 		sprite="snIconSheetResource"								
 		ghost="true"
@@ -55,11 +62,44 @@
 		text_align="center"
 		text_valign="center"
 	/>
-
+	
+	<style name="groupIconsText"
+		font="mono-stroke-10"
+		textcolor="255 255 255"
+		text_align="left"
+		text_valign="bottom"
+	/>
+	
 	<style name="devCommandsText"
 		font="sans-10"
 		textcolor="255 255 255"
 		text_align="right"
+	/>
+	
+	<style name="settingsText"
+		font="serif-16"
+		textcolor="0 0 0"
+		text_align="right"
+		text_valign="center"
+	/>
+
+	<style name="rightAlignedText"
+		textcolor="255 255 255"
+		text_align="right"
+		text_valign="top"
+	/>
+	
+	<style name="centeredText"
+		textcolor="0 0 0"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="largeBoldCenteredText"
+		font="serif-bold-18"
+		textcolor="0 0 0"
+		text_align="center"
+		text_valign="center"
 	/>
 
 </styles>

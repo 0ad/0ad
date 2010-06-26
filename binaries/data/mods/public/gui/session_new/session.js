@@ -9,10 +9,14 @@ function init(initData, hotloadData)
 	{
 		g_Selection.selected = hotloadData.selection;
 	}
-	else
+	else 
 	{
 		// Starting for the first time:
 		startMusic();
+		
+		// Preset the Settings Dialog's options based on user's current settings
+		getGUIObjectByName("shadowsCheckbox").checked = renderer.shadows;
+		getGUIObjectByName("fancyWaterCheckbox").checked = renderer.fancyWater;
 	}
 
 	onSimulationUpdate();
@@ -47,18 +51,14 @@ function onTick()
 function onSimulationUpdate()
 {
 	g_Selection.dirty = false;
-
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 
-	// If we're called during init when the game is first loading, there will be
-	// no simulation yet, so do nothing
+	// If we're called during init when the game is first loading, there will be no simulation yet, so do nothing
 	if (!simState)
 		return;
 
 	updateDebug(simState);
-
 	updatePlayerDisplay(simState);
-
 	updateUnitDisplay();
 }
 
@@ -77,11 +77,11 @@ function updateDebug(simState)
 	}
 
 	var text = uneval(simState);
-
+	
 	var selection = g_Selection.toList();
 	if (selection.length)
 	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
+		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[g_Selection.getPrimary()]);
 		if (entState)
 		{
 			var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
@@ -95,7 +95,7 @@ function updateDebug(simState)
 function updatePlayerDisplay(simState)
 {
 	var playerState = simState.players[Engine.GetPlayerID()];
-
+	
 	getGUIObjectByName("resourceFood").caption = playerState.resourceCounts.food;
 	getGUIObjectByName("resourceWood").caption = playerState.resourceCounts.wood;
 	getGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;
@@ -103,166 +103,425 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 }
 
-function damageTypesToText(dmg)
+
+//-------------------------------- -------------------------------- -------------------------------- 
+// Utility functions
+//-------------------------------- -------------------------------- -------------------------------- 
+
+function damageTypesToTextStacked(dmg)
 {
 	if (!dmg)
 		return "(None)";
 	return dmg.hack + " Hack\n" + dmg.pierce + " Pierce\n" + dmg.crush + " Crush";
 }
 
+function damageTypesToText(dmg)
+{
+	if (!dmg)
+		return "[font=\"serif-12\"](None)[/font]";
+	
+	var hackLabel = "[font=\"serif-12\"] Hack, [/font]";
+	var pierceLabel = "[font=\"serif-12\"] Pierce, [/font]";
+	var crushLabel = "[font=\"serif-12\"] Crush[/font]";
+	var hackDamage = dmg.hack;
+	var pierceDamage = dmg.pierce;
+	var crushDamage = dmg.crush;
+	
+	return  hackDamage + hackLabel + pierceDamage + pierceLabel + crushDamage + crushLabel;
+}
+
+function isUnitElite(templateName)
+{
+	var eliteStatus = false;
+	var firstWord = templateName.substring(0, templateName.search("/"));
+	var endsWith = templateName.substring(templateName.length-2, templateName.length);
+
+	if (firstWord == "units" && endsWith == "_e")
+		eliteStatus = true;
+
+	return eliteStatus;
+}
+
+function getFullName(template)
+{
+		var name;
+		
+		if ((template.name.specific && template.name.generic) && (template.name.specific != template.name.generic))
+			name = template.name.specific + " (" + template.name.generic + ")";
+		else
+			name = template.name.specific || template.name.generic || "???";
+		
+		return "[font=\"serif-bold-16\"]" + name + "[/font]";
+}
+
+function createIconTooltip(entState, template)
+{
+	var tooltip = "";
+	tooltip = getFullName(template);
+	
+	var hitpointsLabel = "[font=\"serif-bold-13\"]Hitpoints: [/font]";
+	tooltip += "\n" + hitpointsLabel + entState.hitpoints + "/" + entState.maxHitpoints;
+	
+	var attackLabel = "[font=\"serif-bold-13\"]Attack: [/font]";
+	var armourLabel = "[font=\"serif-bold-13\"]Armour: [/font]";
+	tooltip += "\n" + attackLabel + damageTypesToText(entState.attack) + "\n" + armourLabel + damageTypesToText(entState.armour);
+	
+	return tooltip;
+}
+
+//-------------------------------- -------------------------------- -------------------------------- 
+//  Menu Functions
+//-------------------------------- -------------------------------- -------------------------------- 
+
+function toggleDeveloperOverlay()
+{
+	if (getGUIObjectByName("devCommands").hidden)
+		getGUIObjectByName("devCommands").hidden = false; // show overlay
+	else
+		getGUIObjectByName("devCommands").hidden = true; // hide overlay
+}
+
+function toggleSettingsWindow()
+{
+	if (getGUIObjectByName("settingsWindow").hidden)
+	{
+		getGUIObjectByName("settingsWindow").hidden = false; // show settings
+		setPaused(true);
+	}
+	else
+	{
+		getGUIObjectByName("settingsWindow").hidden = true; // hide settings
+		setPaused(false);
+	}
+
+	getGUIObjectByName("menu").hidden = true; // Hide menu
+}
+
+function togglePause()
+{
+	if (getGUIObjectByName("pauseOverlay").hidden)
+	{
+		getGUIObjectByName("pauseOverlay").hidden = false; // pause game
+		setPaused(true);
+	}
+	else
+	{
+		getGUIObjectByName("pauseOverlay").hidden = true; // unpause game
+		setPaused(false);
+	}
+
+	getGUIObjectByName("menu").hidden = true; // Hide menu
+}
+
+function toggleMenu()
+{
+	if (getGUIObjectByName("menu").hidden)
+		getGUIObjectByName("menu").hidden = false; // View menu
+	else
+		getGUIObjectByName("menu").hidden = true; // Hide menu
+}
+
+//-------------------------------- -------------------------------- -------------------------------- 
+//  View / Hide Details Panel and Commands Panel information
+//-------------------------------- -------------------------------- -------------------------------- 
+
+// Hides Details Panel's Information
+function hideSelectionDetails(booleanValue)
+{
+	getGUIObjectByName("selectionDetailsIcon").hidden = booleanValue;
+	getGUIObjectByName("selectionDetailsHealth").hidden = booleanValue;
+	getGUIObjectByName("selectionDetailsStamina").hidden = booleanValue;
+	getGUIObjectByName("selectionDetailsMainText").hidden = booleanValue;
+	getGUIObjectByName("selectionDetailsAttack").hidden = booleanValue;
+	getGUIObjectByName("selectionDetailsArmour").hidden = booleanValue;
+	getGUIObjectByName("unitSelectionPanel").hidden = booleanValue;
+	getGUIObjectByName("selectionProductLogo").hidden = !booleanValue; // gets opposite of booleanValue
+}
+
+// Hides Commands Panel's Information
+function hideCommands(booleanValue)
+{
+	getGUIObjectByName("unitConstructionPanel").hidden = booleanValue;
+	getGUIObjectByName("unitStancePanel").hidden = booleanValue;
+	getGUIObjectByName("unitFormationPanel").hidden = booleanValue;
+	getGUIObjectByName("unitResearchPanel").hidden = booleanValue;
+	getGUIObjectByName("unitTrainingPanel").hidden = booleanValue;
+	getGUIObjectByName("unitQueuePanel").hidden = booleanValue;
+}
+
+//-------------------------------- -------------------------------- -------------------------------- 
+//  Details Panel layout
+//-------------------------------- -------------------------------- -------------------------------- 
+
+// Multiple Selection Layout
+function selectionLayoutMultiple()
+{
+		getGUIObjectByName("selectionDetailsMainText").size = "110 100%-74 100%-20 100%-20";
+		getGUIObjectByName("selectionDetailsSpecific").size = "0 0 100% 24";
+		getGUIObjectByName("selectionDetailsPlayer").size = "0 30 100% 50";
+
+		getGUIObjectByName("selectionDetailsIcon").size = "16 100%-94 88 100%-22";
+		getGUIObjectByName("selectionDetailsHealth").size = "16 100%-20 88 100%-14";
+		getGUIObjectByName("selectionDetailsStamina").size = "16 100%-12 88 100%-6";
+			
+		getGUIObjectByName("selectionDetailsAttack").hidden = true;
+		getGUIObjectByName("selectionDetailsArmour").hidden = true;	
+			
+		getGUIObjectByName("selectionDetailsMainText").sprite = "goldPanel";
+		getGUIObjectByName("selectionDetailsSpecific").sprite = "";
+}
+
+// Single Selection Layout
+function selectionLayoutSingle()
+{
+		getGUIObjectByName("selectionDetailsMainText").size = "10 0 100%-10 56";
+		getGUIObjectByName("selectionDetailsSpecific").size = "0 0 100% 30";
+		getGUIObjectByName("selectionDetailsPlayer").size = "0 30 100% 56";
+
+		getGUIObjectByName("selectionDetailsIcon").size = "16 100%-118 112 100%-22";
+		getGUIObjectByName("selectionDetailsHealth").size = "16 100%-20 112 100%-14";
+		getGUIObjectByName("selectionDetailsStamina").size = "16 100%-12 112 100%-6";
+
+		getGUIObjectByName("selectionDetailsAttack").hidden = false;
+		getGUIObjectByName("selectionDetailsArmour").hidden = false;
+
+		getGUIObjectByName("selectionDetailsMainText").sprite = "";
+		getGUIObjectByName("selectionDetailsSpecific").sprite = "wheatWindowTitle";
+}
+
 // The number of currently visible buttons (used to optimise showing/hiding)
 var g_unitPanelButtons = { "Construction": 0, "Training": 0, "Queue": 0 };
 
-// The unitSomethingPanel objects, which are displayed in a stack at the bottom of the screen,
-// ordered with *lowest* first
-var g_unitPanels = ["Stance", "Formation", "Construction", "Research", "Training", "Queue"];
+// Unit panels are panels with row(s) of buttons
+var g_unitPanels = ["Stance", "Formation", "Construction", "Research", "Training", "Queue", "Selection"];
 
-// Helper function for updateUnitDisplay
+//-------------------------------- -------------------------------- -------------------------------- 
+// Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
+//-------------------------------- -------------------------------- -------------------------------- 
 function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
 	var i = 0;
+	
+	// End loop early if more than 18 selection buttons or more than 16 other types of buttons
+	var MAX_NUM_BUTTONS = ((guiName == "Selection")?  17 : 15 ); 
+
 	for each (var item in items)
 	{
+		if (i > MAX_NUM_BUTTONS)
+			break;
+
+		// Get templates
 		var entType;
 		if (guiName == "Queue")
 			entType = item.template;
 		else
 			entType = item;
-
-		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
-
+			
 		var template = Engine.GuiInterfaceCall("GetTemplateData", entType);
 		if (!template)
 			continue; // ignore attempts to use invalid templates (an error should have been reported already)
 
+		// Name
 		var name;
-		if (template.name.specific && template.name.generic)
-			name = template.name.specific + " (" + template.name.generic + ")";
-		else
+		if (guiName == "Selection")
 			name = template.name.specific || template.name.generic || "???";
+		else
+			name = getFullName(template);
 
-		var tooltip;
-		if (guiName == "Queue")
+		// Tooltip
+		var tooltip = (isUnitElite(entType)?  "Elite " + name : name ); // "Elite " is not formatted in bold, so may need custom versions of this later
+		
+		if (guiName == "Selection")
+		{
+			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = 
+				(g_Selection.groups.groupTypeCount[item] > 1 ? g_Selection.groups.groupTypeCount[item] : "");
+
+			tooltip += (g_Selection.groups.groupTypeCount[item] > 1 ? " (" + g_Selection.groups.groupTypeCount[item] + ")" : "")
+		}
+		else if (guiName == "Queue")
 		{
 			var progress = Math.round(item.progress*100) + "%";
-			tooltip = name + " - " + progress;
-
+			tooltip += " - " + progress;
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
 			getGUIObjectByName("unit"+guiName+"Progress["+i+"]").caption = (item.progress ? progress : "");
 		}
-		else
+		else if (guiName == "Construction" || guiName == "Training")
 		{
-			tooltip = "[font=\"serif-bold-16\"]" + name + "[/font]";
-
 			if (template.cost)
 			{
-				var font1 = "[font=\"serif-bold-13\"]";
 				var costs = [];
-				if (template.cost.food) costs.push(font1 + "Food:[/font] " + template.cost.food);
-				if (template.cost.wood) costs.push(font1 + "Wood:[/font] " + template.cost.wood);
-				if (template.cost.metal) costs.push(font1 + "Metal:[/font] " + template.cost.metal);
-				if (template.cost.stone) costs.push(font1 + "Stone:[/font] " + template.cost.stone);
+				if (template.cost.food) costs.push("[font=\"serif-bold-13\"]Food:[/font] " + template.cost.food);
+				if (template.cost.wood) costs.push("[font=\"serif-bold-13\"]Wood:[/font] " + template.cost.wood);
+				if (template.cost.metal) costs.push("[font=\"serif-bold-13\"]Metal:[/font] " + template.cost.metal);
+				if (template.cost.stone) costs.push("[font=\"serif-bold-13\"]Stone:[/font] " + template.cost.stone);
 				if (costs.length)
 					tooltip += "\n" + costs.join(", ");
 			}
-
+		
 			if (guiName == "Training")
 			{
-				var font1 = "[font=\"serif-13\"]";
-				var font2 = "[font=\"serif-bold-13\"]";
 				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
-				tooltip += "\n" + font1;
-				if (batchSize) tooltip += "Training " + font2 + batchSize + font1 + " units; ";
-				tooltip += "Shift-click to train " + font2 + (batchSize+batchIncrement) + font1 + " units[/font]";
-			}
+				tooltip += "\n[font=\"serif-13\"]";
+				if (batchSize) tooltip += "Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; ";
+					tooltip += "Shift-click to train [font=\"serif-bold-13\"]"+ (batchSize+batchIncrement) + "[font=\"serif-13\"] units[/font]";
+			}	
 		}
 
+		// Button
+		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
 		button.hidden = false;
 		button.tooltip = tooltip;
-		button.onpress = (function(e) { return function() { callback(e) } })(item);
-			// (need nested functions to get the closure right)
+
+		if (callback != null)
+			button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
 
 		icon.sprite = "snPortraitSheetHele"; // TODO
 		if (typeof template.icon_cell == "undefined")
 			icon.cell_id = 0;
 		else
 			icon.cell_id = template.icon_cell;
+			
 		++i;
 	}
+	
+	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
+	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var numButtons = i;
-	// Position the visible buttons
-	// (TODO: if there's lots, maybe they should be squeezed together to fit)
+	var j = 0;
+	
 	for (i = 0; i < numButtons; ++i)
 	{
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		var size = button.size;
-		size.left = 40*i;
-		size.right = 40*i + size.bottom;
+
+		if (guiName == "Selection") // Smaller Icons
+		{
+			if (i > 8) // Make first row
+			{
+				size.left = 30*j;
+				size.right = 30*j + buttonSideLength;
+				size.top = 30;
+				size.bottom = 30 + buttonSideLength;
+				j++;
+			}
+			else // Make second row
+			{
+				size.left = 30*i;
+				size.right = 30*i + size.bottom;
+			}
+		}
+		else // Larger Icons
+		{
+			size.left = 40*i;
+			size.right = 40*i + size.bottom;
+		}
+
 		button.size = size;
 	}
-
+	
 	// Hide any buttons we're no longer using
 	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
 		getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
 	g_unitPanelButtons[guiName] = numButtons;
 }
 
+//-------------------------------- -------------------------------- -------------------------------- 
+// Updates middle Selection Details Panel - runs in the main session loop
+//-------------------------------- -------------------------------- -------------------------------- 
 function updateUnitDisplay()
 {
 	var detailsPanel = getGUIObjectByName("selectionDetails");
 	var commandsPanel = getGUIObjectByName("unitCommands");
-
 	var selection = g_Selection.toList();
+
 	if (selection.length == 0)
 	{
-		detailsPanel.hidden = true;
-		commandsPanel.hidden = true;
+		hideSelectionDetails(true);
+		hideCommands(true);
 		return;
 	}
+	
+	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[g_Selection.getPrimary()]);
 
-	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
-
-	// If the unit has no data (e.g. it was killed), don't try displaying any
-	// data for it. (TODO: it should probably be removed from the selection too;
-	// also need to handle multi-unit selections)
+	/* If the unit has no data (e.g. it was killed), don't try displaying any
+	 data for it. (TODO: it should probably be removed from the selection too;
+	 also need to handle multi-unit selections) */
 	if (!entState)
 	{
-		detailsPanel.hidden = true;
-		commandsPanel.hidden = true;
+		hideSelectionDetails(true);
+		hideCommands(true);
 		return;
 	}
 
+	hideSelectionDetails(false);
+	hideCommands(false);
+	
 	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
+	var iconTooltip = "";
 
-	detailsPanel.hidden = false;
-	commandsPanel.hidden = false;
-
-	getGUIObjectByName("selectionDetailsIcon").sprite = "snPortraitSheetHele";
-	getGUIObjectByName("selectionDetailsIcon").cell_id = template.icon_cell;
-
-	var healthSize = getGUIObjectByName("selectionDetailsHealthBar").size;
-	healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
-	getGUIObjectByName("selectionDetailsHealthBar").size = healthSize;
-	getGUIObjectByName("selectionDetailsHealth").tooltip = "Hitpoints " + entState.hitpoints + " / " + entState.maxHitpoints;
-
-	getGUIObjectByName("selectionDetailsSpecific").caption = template.name.specific;
-	if (template.name.generic == template.name.specific)
+	// Hitpoints
+	if (entState.hitpoints != undefined)
 	{
-		getGUIObjectByName("selectionDetailsGeneric").hidden = true;
+		var healthSize = getGUIObjectByName("selectionDetailsHealthBar").size;
+		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
+		getGUIObjectByName("selectionDetailsHealthBar").size = healthSize;
+		getGUIObjectByName("selectionDetailsHealth").tooltip = "Hitpoints " + entState.hitpoints + " / " + entState.maxHitpoints;
+		getGUIObjectByName("selectionDetailsHealth").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("selectionDetailsGeneric").hidden = false;
-		getGUIObjectByName("selectionDetailsGeneric").caption = template.name.generic;
+		getGUIObjectByName("selectionDetailsHealth").hidden = true;
+		getGUIObjectByName("selectionDetailsHealth").tooltip = "";
+	}
+	
+	// Stamina
+//	if (entState.stamina != undefined)
+		getGUIObjectByName("selectionDetailsStamina").hidden = false;
+//	else
+//		getGUIObjectByName("selectionDetailsStamina").hidden = true;
+	
+	// Is unit Elite?
+	var eliteStatus = isUnitElite(entState.template);
+	
+	// Specific Name
+	getGUIObjectByName("selectionDetailsSpecific").caption = (eliteStatus?  "Elite " + template.name.specific : template.name.specific );
+	
+	// Generic Name
+	if (template.name.generic == template.name.specific)
+	{
+		getGUIObjectByName("selectionDetailsGeneric").hidden = true;
+		getGUIObjectByName("selectionDetailsSpecific").tooltip = "";
+		//iconTooltip += template.name.specific;
+	}
+	else
+	{
+		getGUIObjectByName("selectionDetailsSpecific").tooltip = template.name.generic;
+		//iconTooltip += template.name.specific + " (" + template.name.generic + ")";
 	}
 
+	// Player Name
 	getGUIObjectByName("selectionDetailsPlayer").caption = "Player " + entState.player; // TODO: get player name
 
-	getGUIObjectByName("selectionDetailsAttack").caption = damageTypesToText(entState.attack);
-	getGUIObjectByName("selectionDetailsArmour").caption = damageTypesToText(entState.armour);
+	// Icon
+	iconTooltip += (eliteStatus? "[font=\"serif-bold-16\"]Elite [/font]" : "");
+	iconTooltip += createIconTooltip(entState, template);
+	getGUIObjectByName("selectionDetailsIconImage").tooltip = iconTooltip;
+	getGUIObjectByName("selectionDetailsIconImage").sprite = "snPortraitSheetHele";
+	getGUIObjectByName("selectionDetailsIconImage").cell_id = template.icon_cell;
 
+	// Attack and Armour Stats
+	getGUIObjectByName("selectionDetailsAttackStats").caption = damageTypesToTextStacked(entState.attack);
+	getGUIObjectByName("selectionDetailsArmourStats").caption = damageTypesToTextStacked(entState.armour);
+
+	// Different selection details are shown based on whether multiple units or a single unit is selected
+	if (selection.length > 1)
+		selectionLayoutMultiple();
+	else
+		selectionLayoutSingle();
+
+	// Panels that are active
 	var usedPanels = {};
 
 	// If the selection is friendly units, add the command panels
@@ -290,22 +549,26 @@ function updateUnitDisplay()
 		if (entState.training && entState.training.queue.length)
 			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
+
+		if (selection.length > 1)
+			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.groupTemplates,
+				function (entType) { changePrimarySelectionGroup(entType); } );
 	}
 
-	// Lay out all the used panels in a stack at the bottom of the screen
+	// Hides / unhides Unit Panels (panels should be grouped by type, not by order, but we will leave that for another time)
 	var offset = 0;
 	for each (var panelName in g_unitPanels)
 	{
-		var panel = getGUIObjectByName("unit"+panelName+"Panel");
+		var panel = getGUIObjectByName("unit" + panelName + "Panel");
 		if (usedPanels[panelName])
 		{
-			var size = panel.size;
-			var h = size.bottom - size.top;
-			size.bottom = offset;
-			size.top = offset - h;
-			panel.size = size;
+//			var size = panel.size;
+//			var h = size.bottom - size.top;
+//			size.bottom = offset;
+//			size.top = offset - h;
+//			panel.size = size;
 			panel.hidden = false;
-			offset -= (h + 12);
+//			offset -= (h + 6); // changed 12 point spacing to 6 point:   offset -= (h + 12);
 		}
 		else
 		{

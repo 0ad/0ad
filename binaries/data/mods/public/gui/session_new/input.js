@@ -227,9 +227,43 @@ function handleInputBeforeGui(ev)
 				bandbox.hidden = true;
 
 				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
+
+				// Remove non-unit entities from the bandboxed selection (Probably should make buildings work somehow)
+				for (var i = ents.length-1; i >= 0; i--)
+				{
+					var template = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;
+					var firstWord = template.substring(0, template.search("/"));
+					if (firstWord != "units")
+						ents.splice(i, 1);
+				}
+				
+				// Set selection list
 				g_Selection.setHighlightList([]);
 				g_Selection.reset();
 				g_Selection.addList(ents);
+					
+				// Make selection groups
+				var j = 0;
+				for (var i = 0; i < ents.length; i++)
+				{
+					var template = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;		
+	
+					if (!g_Selection.groups.groupTypeCount[template])
+					{
+						g_Selection.groups.groupTypeCount[template] = 1;
+						g_Selection.groups.firstOfType[template] = i;
+						g_Selection.groups.groupTemplates.push(template);
+						g_Selection.groups.groupNumbers[template] = j;
+						j++;
+					}
+					else if (g_Selection.groups.groupTypeCount[template])
+					{
+						g_Selection.groups.groupTypeCount[template] += 1;
+					}
+				}
+
+				// turn on unit highlight for first unit in selection
+				getGUIObjectByName("unitSelectionHighlight[0]").hidden = false;
 				
 				inputState = INPUT_NORMAL;
 				return true;
@@ -237,7 +271,6 @@ function handleInputBeforeGui(ev)
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel selection
-
 				var bandbox = getGUIObjectByName("bandbox");
 				bandbox.hidden = true;
 
@@ -563,6 +596,18 @@ function getTrainingQueueBatchStatus(entity, trainEntType)
 // Called by GUI when user clicks production queue item
 function removeFromTrainingQueue(entity, id)
 {
-	Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
+	console.write("removeFromTrainingQueue(entity = " + entity + ", id = " + id +")");
+	//Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
 }
 
+function changePrimarySelectionGroup(entType)
+{
+	getGUIObjectByName("unitSelectionHighlight[" + g_Selection.groups.primary + "]").hidden = true;
+	
+	// set primary group
+	g_Selection.groups.primary = g_Selection.groups.groupNumbers[entType];
+	getGUIObjectByName("unitSelectionHighlight[" + g_Selection.groups.primary + "]").hidden = false;
+	
+	// set primary selection
+	g_Selection.setPrimary(g_Selection.groups.firstOfType[entType]);
+}
