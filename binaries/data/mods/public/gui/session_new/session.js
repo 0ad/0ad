@@ -13,10 +13,6 @@ function init(initData, hotloadData)
 	{
 		// Starting for the first time:
 		startMusic();
-		
-		// Preset the Settings Dialog's options based on user's current settings
-		getGUIObjectByName("shadowsCheckbox").checked = renderer.shadows;
-		getGUIObjectByName("fancyWaterCheckbox").checked = renderer.fancyWater;
 	}
 
 	onSimulationUpdate();
@@ -256,13 +252,13 @@ function hideCommands(booleanValue)
 // Multiple Selection Layout
 function selectionLayoutMultiple()
 {
-		getGUIObjectByName("selectionDetailsMainText").size = "110 100%-74 100%-20 100%-20";
+		getGUIObjectByName("selectionDetailsMainText").size = "74 100%-70 100%-6 100%-10";
 		getGUIObjectByName("selectionDetailsSpecific").size = "0 0 100% 24";
 		getGUIObjectByName("selectionDetailsPlayer").size = "0 30 100% 50";
 
-		getGUIObjectByName("selectionDetailsIcon").size = "16 100%-94 88 100%-22";
-		getGUIObjectByName("selectionDetailsHealth").size = "16 100%-20 88 100%-14";
-		getGUIObjectByName("selectionDetailsStamina").size = "16 100%-12 88 100%-6";
+		getGUIObjectByName("selectionDetailsIcon").size = "2 100%-74 58 100%-18";
+		getGUIObjectByName("selectionDetailsHealth").size = "2 100%-16 58 100%-12";
+		getGUIObjectByName("selectionDetailsStamina").size = "2 100%-10 58 100%-6";
 			
 		getGUIObjectByName("selectionDetailsAttack").hidden = true;
 		getGUIObjectByName("selectionDetailsArmour").hidden = true;	
@@ -274,14 +270,16 @@ function selectionLayoutMultiple()
 // Single Selection Layout
 function selectionLayoutSingle()
 {
-		getGUIObjectByName("selectionDetailsMainText").size = "10 0 100%-10 56";
+		getGUIObjectByName("selectionDetailsMainText").size = "-8 -10 100%+8 56";
 		getGUIObjectByName("selectionDetailsSpecific").size = "0 0 100% 30";
 		getGUIObjectByName("selectionDetailsPlayer").size = "0 30 100% 56";
 
-		getGUIObjectByName("selectionDetailsIcon").size = "16 100%-118 112 100%-22";
-		getGUIObjectByName("selectionDetailsHealth").size = "16 100%-20 112 100%-14";
-		getGUIObjectByName("selectionDetailsStamina").size = "16 100%-12 112 100%-6";
+		getGUIObjectByName("selectionDetailsIcon").size = "2 100%-104 82 100%-22";
+		getGUIObjectByName("selectionDetailsHealth").size = "2 100%-20 82 100%-14";
+		getGUIObjectByName("selectionDetailsStamina").size = "2 100%-12 82 100%-6";
 
+		getGUIObjectByName("selectionDetailsAttack").size = "88 72 100% 100%";
+		getGUIObjectByName("selectionDetailsArmour").size = "186 72 100% 100%";
 		getGUIObjectByName("selectionDetailsAttack").hidden = false;
 		getGUIObjectByName("selectionDetailsArmour").hidden = false;
 
@@ -414,8 +412,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		}
 		else // Larger Icons
 		{
-			size.left = 40*i;
-			size.right = 40*i + size.bottom;
+			size.left = 45*i;
+			size.right = 45*i + size.bottom;
 		}
 
 		button.size = size;
@@ -434,29 +432,25 @@ function updateUnitDisplay()
 {
 	var detailsPanel = getGUIObjectByName("selectionDetails");
 	var commandsPanel = getGUIObjectByName("unitCommands");
+	
 	var selection = g_Selection.toList();
-
 	if (selection.length == 0)
 	{
-		hideSelectionDetails(true);
-		hideCommands(true);
+		detailsPanel.hidden = true;
+		commandsPanel.hidden = true;
 		return;
 	}
-	
-	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[g_Selection.getPrimary()]);
 
 	/* If the unit has no data (e.g. it was killed), don't try displaying any
 	 data for it. (TODO: it should probably be removed from the selection too;
 	 also need to handle multi-unit selections) */
+	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[g_Selection.getPrimary()]);
 	if (!entState)
 	{
-		hideSelectionDetails(true);
-		hideCommands(true);
+		detailsPanel.hidden = true;
+		commandsPanel.hidden = true;
 		return;
 	}
-
-	hideSelectionDetails(false);
-	hideCommands(false);
 	
 	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
 	var iconTooltip = "";
@@ -521,6 +515,9 @@ function updateUnitDisplay()
 	else
 		selectionLayoutSingle();
 
+	// Show Panels
+	detailsPanel.hidden = false;	
+		
 	// Panels that are active
 	var usedPanels = {};
 
@@ -553,6 +550,12 @@ function updateUnitDisplay()
 		if (selection.length > 1)
 			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.groupTemplates,
 				function (entType) { changePrimarySelectionGroup(entType); } );
+				
+		commandsPanel.hidden = false;
+	}
+	else
+	{
+		commandsPanel.hidden = true;
 	}
 
 	// Hides / unhides Unit Panels (panels should be grouped by type, not by order, but we will leave that for another time)

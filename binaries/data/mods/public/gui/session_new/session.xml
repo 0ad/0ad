@@ -130,15 +130,17 @@
 			>
 				<object size="0 10 100%-80 35" type="text" style="settingsText" ghost="true">Enable Shadows</object>
 				<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="wheatCrossBox" checked="true">
+					<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.shadows = this.checked;</action>
 				</object>	
 				
 				<object size="0 35 100%-80 60" type="text" style="settingsText" ghost="true">Enable Water Reflections</object>
 				<object name="fancyWaterCheckbox" size="100%-56 40 100%-30 65"  type="checkbox" style="wheatCrossBox" checked="true">
+					<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.fancyWater = this.checked;</action>
 				</object>
 				
-				<object size="0 60 100%-80 85" type="text" style="settingsText" ghost="true">Toggle Music</object>
+				<object size="0 60 100%-80 85" type="text" style="settingsText" ghost="true">Enable Music</object>
 				<object size="100%-56 65 100%-30 90" type="checkbox" style="wheatCrossBox" checked="true">
 					<action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
 				</object>
@@ -221,87 +223,91 @@
 		<!-- ================================  ================================ -->
 		<object
 			name="mapAndResourcePanel"
-				style="goldPanel"
-				size="0 100%-188 280 100%"
+				style="wheatWindow"
+				size="0 100%-144 264 100%"
 				type="image"
-			z="30"
+				z="30"
 		>
 			<!-- Minimap -->
-			<object	name="minimap">
+			<object name="minimap">
 				<object
 					size="24 100%-164 164 100%-24"
 					type="image"
 					style="wheatWindow"
+					z="20"
 				/>
 
 				<object name="minimapDisplay"
 					type="minimap"
-					size="6 6 182 182"
+					size="6 100%-182 182 100%-6"
 				/>
 			</object>
 
 			<!-- Player resource bar -->
 			<object
-				size="192 100%-120 280 100%"
+				size="192 28 270 100%"
 			>
 				<!-- Food -->
-				<object size="0 0 100% 100%" type="image" style="resourceCounter" tooltip="Food">
-					<object size="0 0 28 28" type="image" style="resourceIcon" cell_id="0"/>
-					<object size="24 4 100% 32" type="text" style="resourceText" name="resourceFood"/>
+				<object size="0 0 100% 22" type="image" style="resourceCounter" tooltip="Food">
+					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="0"/>
+					<object size="24 0 100% 24" type="text" style="resourceText" name="resourceFood"/>
 				</object>
 
 				<!-- Wood -->
-				<object size="0 18% 100% 100%" type="image" style="resourceCounter" tooltip="Wood">
-					<object size="0 0 28 28" type="image" style="resourceIcon" cell_id="1"/>
-					<object size="24 4 100% 32" type="text" style="resourceText" name="resourceWood"/>
+				<object size="0 22 100% 44" type="image" style="resourceCounter" tooltip="Wood">
+					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="1"/>
+					<object size="24 0 100% 24" type="text" style="resourceText" name="resourceWood"/>
 				</object>
 
 				<!-- Stone -->
-				<object size="0 36% 100% 100%" type="image" style="resourceCounter" tooltip="Stone">
-					<object size="0 0 28 28" type="image" style="resourceIcon" cell_id="2"/>
-					<object size="24 4 100% 32" type="text" style="resourceText" name="resourceStone"/>
+				<object size="0 44 100% 66" type="image" style="resourceCounter" tooltip="Stone">
+					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="2"/>
+					<object size="24 0 100% 24" type="text" style="resourceText" name="resourceStone"/>
 				</object>
 
 				<!-- Metal -->
-				<object size="0 54% 100% 100%" type="image" style="resourceCounter" tooltip="Metal">
-					<object size="0 0 28 28" type="image" style="resourceIcon" cell_id="3"/>
-					<object size="24 4 100% 32" type="text" style="resourceText" name="resourceMetal"/>
+				<object size="0 66 100% 88" type="image" style="resourceCounter" tooltip="Metal">
+					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="3"/>
+					<object size="24 0 100% 24" type="text" style="resourceText" name="resourceMetal"/>
 				</object>
 
 				<!-- Population -->
-				<object size="0 72% 100% 100%" type="image" style="resourceCounter" tooltip="Population (current / maximum)">
-					<object size="0 0 28 28" type="image" style="resourceIcon" cell_id="4"/>
-					<object size="24 4 100% 32" type="text" style="resourceText" name="resourcePop"/>
+				<object size="0 88 100% 110" type="image" style="resourceCounter" tooltip="Population (current / maximum)">
+					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="4"/>
+					<object size="24 0 100% 24" type="text" style="resourceText" name="resourcePop"/>
 				</object>
 			</object>
-		</object>	
+		</object>
 
 		<!-- ================================  ================================ -->
 		<!-- Bottom-middle selected-units and unit details panel -->
 		<!-- ================================  ================================ -->
 		<object name="selectionDetails"
 			type="image"
-			style="goldPanel"
-			size="280 100%-178 600 100%"
+			style="wheatWindow"
+			size="300 100%-144 574 100%"
+			hidden="true"
 			z="20"
 		>
-			<!-- OAD logo background-->
+		
+<!-- OAD logo background
 			<object name="selectionProductLogo"
-				size="75 50 100%-75 100%-50"
+				size="65 45 100%-65 100%-55"
 				type="image"
 				style="frilly"
-				hidden="false"
+				hidden="true"
 			>
 				<object name="selectionProductLogoImage"
 					type="image"
-					size="-4 -7 100%+24 100%+13"
+					size="-4 -16 100%+24 100%+22"
 					sprite="watermarkProduct"
 				/>
 			</object>
+-->
 
 			<!-- Unit Selection Area -->
 			<object name="unitSelectionPanel"
-				size="20 6 100%-20 74"
+				size="-2 -4 278 64"
 				type="image"
 				style="goldPanel"
 			>	 
@@ -342,15 +348,15 @@
 			</object>
 
 			<!-- Attack stats -->
-			<object hidden="true" size="120 58 100% 108" type="image" name="selectionDetailsAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
+			<object hidden="true" size="116 72 100% 100%" type="image" name="selectionDetailsAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
 				<object  size="-4 -8 36 36" type="image" name="selectionDetailsAttackImage" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
-				<object  size="40 0 100% 100%" type="text" name="selectionDetailsAttackStats" ghost="true" font="serif-bold-12"/>
+				<object  size="30 0 100% 100%" type="text" name="selectionDetailsAttackStats" ghost="true" font="serif-bold-12"/>
 			</object>
 
 			<!-- Armour stats -->
-			<object hidden="true" size="120 122 100% 172" type="image" name="selectionDetailsArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
+			<object hidden="true" size="216 72 100% 100%" type="image" name="selectionDetailsArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
 				<object  size="-4 -4 36 36" type="image" name="selectionDetailsArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
-				<object  size="40 0 100% 100%" type="text" name="selectionDetailsArmourStats" ghost="true" font="serif-bold-12"/>
+				<object  size="30 0 100% 100%" type="text" name="selectionDetailsArmourStats" ghost="true" font="serif-bold-12"/>
 			</object>
 		</object>
 
@@ -359,19 +365,27 @@
 		<!-- ================================  ================================ -->
 		<object name="unitCommands"
 			type="image"
-			style="goldPanel"
-			size="600 100%-168 100% 100%"
+			style="wheatWindow"
+			size="610 100%-144 100% 100%"
+			hidden="true"
+			z="0"
 		>
+			<object name="bronzeSquares"
+				type="image"
+				sprite="bronzeSquare"
+				size="50 0 100% 100%"
+			/>
+		
 			<object name="unitConstructionPanel"
-				size="4 0 100% 33%"
+				size="-6 0 100% 33%"
 			>
-				<object size="0 -2 64 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
+				<object size="-2 -6 54 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="0" tooltip="Construction"/>
 
-				<object size="64 10 100% 47">
+				<object size="56 0 100% 37">
 					<repeat count="16">
-						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 37 37">
-							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
+						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 43 43">
+							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 40 40"/>
 						</object>
 					</repeat>
 				</object>
@@ -411,15 +425,15 @@
 			</object>
 
 			<object name="unitTrainingPanel"
-				size="4 0 100% 33%"
+				size="-6 0 100% 33%"
 			>
-				<object size="0 -2 64 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
+				<object size="-2 -6 54 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="2" tooltip="Training"/>
 
-				<object size="64 10 100% 47">
+				<object size="56 0 100% 37">
 					<repeat count="16">
-						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 37 37">
-							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
+						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 43 43">
+							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 40 40"/>
 						</object>
 					</repeat>
 				</object>
@@ -427,16 +441,16 @@
 
 			<object name="unitQueuePanel"
 				style="goldPanelFrilly"
-				size="4 -62 100% 100%-174"
+				size="-10 -76 100% 100%-172"
 				type="image"
 			>
-				<object size="0 -2 64 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
+				<object size="2 -3 58 53" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="3" tooltip="Production queue"/>
 
-				<object size="64 10 100% 47">
+				<object size="60 3 100% 37">
 					<repeat count="16">
-						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 37 37">
-							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 35 35"/>
+						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 43 43">
+							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 40 40"/>
 							<object name="unitQueueCount[n]" ghost="true" style="iconButtonCount" type="text"/>
 							<object name="unitQueueProgress[n]" ghost="true" style="iconButtonProgress" type="text"/>
 						</object>
