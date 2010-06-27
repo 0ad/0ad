@@ -469,13 +469,7 @@ function updateUnitDisplay()
 		getGUIObjectByName("selectionDetailsHealth").hidden = true;
 		getGUIObjectByName("selectionDetailsHealth").tooltip = "";
 	}
-	
-	// Stamina
-//	if (entState.stamina != undefined)
-		getGUIObjectByName("selectionDetailsStamina").hidden = false;
-//	else
-//		getGUIObjectByName("selectionDetailsStamina").hidden = true;
-	
+
 	// Is unit Elite?
 	var eliteStatus = isUnitElite(entState.template);
 	
@@ -550,11 +544,18 @@ function updateUnitDisplay()
 		if (selection.length > 1)
 			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.groupTemplates,
 				function (entType) { changePrimarySelectionGroup(entType); } );
+
+		// Stamina
+		//	if (entState.stamina != undefined)
+		getGUIObjectByName("selectionDetailsStamina").hidden = false;
+		//	else
+		//		getGUIObjectByName("selectionDetailsStamina").hidden = true;
 				
 		commandsPanel.hidden = false;
 	}
 	else
 	{
+		getGUIObjectByName("selectionDetailsStamina").hidden = true;
 		commandsPanel.hidden = true;
 	}
 
