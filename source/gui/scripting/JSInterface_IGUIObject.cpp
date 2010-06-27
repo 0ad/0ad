@@ -297,7 +297,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// Use onWhatever to set event handlers
 	if (propName.Left(2) == "on")
 	{
-		if (!JSVAL_IS_OBJECT(*vp) || !JS_ValueToFunction(cx, *vp))
+		if (!JSVAL_IS_OBJECT(*vp) || !JS_ObjectIsFunction(cx, JSVAL_TO_OBJECT(*vp)))
 		{
 			JS_ReportError(cx, "on- event-handlers must be functions");
 			return JS_FALSE;
