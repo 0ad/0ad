@@ -402,6 +402,13 @@ public:
 		TS_ASSERT_THROWS(serialize.ScriptVal("script", obj), PSERROR_Serialize_InvalidScriptValue);
 	}
 
+	void test_script_splice()
+	{
+		helper_script_roundtrip("splice 1", "var a=[10,20]; a.splice(0, 1); a", "[20]");
+		helper_script_roundtrip("splice 1", "var a=[10,20]; a.splice(0, 2); a", "[]");
+		helper_script_roundtrip("splice 1", "var a=[10,20]; a.splice(0, 0, 5); a", "[5, 10, 20]");
+	}
+
 	// TODO: test deserializing invalid streams
 
 	// TODO: test non-tree script structures

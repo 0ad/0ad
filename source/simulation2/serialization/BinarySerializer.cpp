@@ -102,6 +102,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 
 		// JS_Enumerate is a bit slow (lots of memory allocation), so do the enumeration manually
 		// (based on the code from JS_Enumerate, using the probably less stable JSObject API):
+		//
+		// Correction: Actually array_enumerate returns an incorrect num_properties so we can't
+		// trust it and have to iterate over all ids before we know how many there are, so
+		// actually this probably isn't any faster than JS_Enumerate. Also it's less compatible
+		// with future JSAPI updates. This probably wasn't a great idea.
 
 		// (Note that we don't do any rooting, because we assume nothing is going to trigger GC.
 		// I'm not absolute certain that's necessarily a valid assumption.)
@@ -109,24 +114,29 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 		jsval iter_state, num_properties;
 		if (!obj->enumerate(cx, JSENUMERATE_INIT, &iter_state, &num_properties))
 			throw PSERROR_Serialize_ScriptError("enumerate INIT failed");
+		debug_assert(JSVAL_IS_INT(num_properties));
 		debug_assert(JSVAL_TO_INT(num_properties) >= 0);
-		size_t n = (size_t)JSVAL_TO_INT(num_properties);
 
-		// Note: num_properties might be 0 if the object doesn't know in advance how many to enumerate;
-		// we can't distinguish that from really having 0 properties without performing the actual iteration,
-		// so just assume the object always returns the correct count
+		std::vector<jsid> ids;
+		ids.reserve(JSVAL_TO_INT(num_properties));
 
-		m_Serializer.NumberU32_Unbounded("num props", (uint32_t)n);
-
-		jsid id;
-
-		for (size_t i = 0; i < n; ++i)
+		while (true)
 		{
+			jsval id;
 			if (!obj->enumerate(cx, JSENUMERATE_NEXT, &iter_state, &id))
 				throw PSERROR_Serialize_ScriptError("enumerate NEXT failed");
 
 			if (JSVAL_IS_NULL(iter_state))
-				throw PSERROR_Serialize_ScriptError("enumerate NEXT gave unexpected null");
+				break;
+
+			ids.push_back(id);
+		}
+
+		m_Serializer.NumberU32_Unbounded("num props", (uint32_t)ids.size());
+
+		for (size_t i = 0; i < ids.size(); ++i)
+		{
+			jsval id = ids[i];
 
 			jsval idval, propval;
 
@@ -146,12 +156,6 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 
 			HandleScriptVal(propval);
 		}
-
-		// Check we really reached the end of the iteration
-		if (!obj->enumerate(cx, JSENUMERATE_NEXT, &iter_state, &id))
-			throw PSERROR_Serialize_ScriptError("enumerate NEXT failed");
-		if (!JSVAL_IS_NULL(iter_state))
-			throw PSERROR_Serialize_ScriptError("enumerate NEXT didn't give unexpected null");
 
 		break;
 	}
