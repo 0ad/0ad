@@ -3,6 +3,9 @@ const SDL_BUTTON_MIDDLE = 2;
 const SDL_BUTTON_RIGHT = 3;
 const SDLK_RSHIFT = 303;
 const SDLK_LSHIFT = 304;
+
+const MAX_SELECTION_SIZE = 24;
+
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
 
@@ -236,12 +239,16 @@ function handleInputBeforeGui(ev)
 					if (firstWord != "units")
 						ents.splice(i, 1);
 				}
-				
+
+				// Remove units if selection is too large
+				if (ents.length > MAX_SELECTION_SIZE)
+					ents = ents.slice(0, MAX_SELECTION_SIZE);
+
 				// Set selection list
 				g_Selection.setHighlightList([]);
 				g_Selection.reset();
 				g_Selection.addList(ents);
-					
+
 				// Make selection groups
 				var j = 0;
 				for (var i = 0; i < ents.length; i++)

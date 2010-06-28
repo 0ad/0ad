@@ -383,34 +383,27 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
+	var buttonSpacer = ((guiName == "Selection")? 35 : 45);
 	var numButtons = i;
-	var j = 0;
+	var j = 0; // index for second row of buttons
 	
 	for (i = 0; i < numButtons; ++i)
 	{
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		var size = button.size;
 
-		if (guiName == "Selection") // Smaller Icons
+		if (i > 7) // Make second row
 		{
-			if (i > 7) // Make first row
-			{
-				size.left = 35*j;
-				size.right = 35*j + buttonSideLength;
-				size.top = 35;
-				size.bottom = 35 + buttonSideLength;
-				j++;
-			}
-			else // Make second row
-			{
-				size.left = 35*i;
-				size.right = 35*i + size.bottom;
-			}
+			size.left = buttonSpacer*j;
+			size.right = buttonSpacer*j + buttonSideLength;
+			size.top = buttonSpacer;
+			size.bottom = buttonSpacer + buttonSideLength;
+			j++;
 		}
-		else // Larger Icons
+		else // Make first row
 		{
-			size.left = 45*i;
-			size.right = 45*i + size.bottom;
+			size.left = buttonSpacer*i;
+			size.right = buttonSpacer*i + size.bottom;
 		}
 
 		button.size = size;
@@ -419,6 +412,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Hide any buttons we're no longer using
 	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
 		getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+
 	g_unitPanelButtons[guiName] = numButtons;
 }
 
