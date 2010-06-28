@@ -252,13 +252,13 @@ function hideCommands(booleanValue)
 // Multiple Selection Layout
 function selectionLayoutMultiple()
 {
-		getGUIObjectByName("selectionDetailsMainText").size = "74 100%-70 100%-6 100%-10";
+		getGUIObjectByName("selectionDetailsMainText").size = "70 100%-70 100%-2 100%-10";
 		getGUIObjectByName("selectionDetailsSpecific").size = "0 0 100% 24";
 		getGUIObjectByName("selectionDetailsPlayer").size = "0 30 100% 50";
 
-		getGUIObjectByName("selectionDetailsIcon").size = "2 100%-74 58 100%-18";
-		getGUIObjectByName("selectionDetailsHealth").size = "2 100%-16 58 100%-12";
-		getGUIObjectByName("selectionDetailsStamina").size = "2 100%-10 58 100%-6";
+		getGUIObjectByName("selectionDetailsIcon").size = "0 100%-74 56 100%-18";
+		getGUIObjectByName("selectionDetailsHealth").size = "0 100%-16 56 100%-12";
+		getGUIObjectByName("selectionDetailsStamina").size = "0 100%-10 56 100%-6";
 			
 		getGUIObjectByName("selectionDetailsAttack").hidden = true;
 		getGUIObjectByName("selectionDetailsArmour").hidden = true;	
@@ -300,13 +300,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
 	var i = 0;
-	
-	// End loop early if more than 18 selection buttons or more than 16 other types of buttons
-	var MAX_NUM_BUTTONS = ((guiName == "Selection")?  17 : 15 ); 
 
 	for each (var item in items)
 	{
-		if (i > MAX_NUM_BUTTONS)
+		if (i > 15) // End loop early if more than 16 buttons
 			break;
 
 		// Get templates
@@ -396,18 +393,18 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 		if (guiName == "Selection") // Smaller Icons
 		{
-			if (i > 8) // Make first row
+			if (i > 7) // Make first row
 			{
-				size.left = 30*j;
-				size.right = 30*j + buttonSideLength;
-				size.top = 30;
-				size.bottom = 30 + buttonSideLength;
+				size.left = 35*j;
+				size.right = 35*j + buttonSideLength;
+				size.top = 35;
+				size.bottom = 35 + buttonSideLength;
 				j++;
 			}
 			else // Make second row
 			{
-				size.left = 30*i;
-				size.right = 30*i + size.bottom;
+				size.left = 35*i;
+				size.right = 35*i + size.bottom;
 			}
 		}
 		else // Larger Icons

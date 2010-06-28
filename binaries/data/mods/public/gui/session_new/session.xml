@@ -307,14 +307,12 @@
 			<!-- Unit Selection Area -->
 			<object name="unitSelectionPanel"
 				size="-2 -4 278 64"
-				type="image"
-				style="goldPanel"
 			>	 
-				<object size="6 6 100% 47">
+				<object size="1 1 100% 47">
 					<repeat count="18">
-						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 27 27" z="20">
-							<object name="unitSelectionHighlight[n]" hidden="true" ghost="true" type="image" sprite="primaryGroupHighlight" size="-1 -1 28 28"/>
-							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 25 25"/>
+						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" z="20">
+							<object name="unitSelectionHighlight[n]" hidden="true" ghost="true" type="image" sprite="primaryGroupHighlight" size="-1 -1 33 33"/>
+							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 30 30"/>
 							<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text"/>
 						</object>
 					</repeat>
@@ -365,14 +363,14 @@
 		<object name="unitCommands"
 			type="image"
 			style="wheatWindow"
-			size="610 100%-144 100% 100%"
+			size="610 100%-144 1024 100%"
 			hidden="true"
 			z="0"
 		>
 			<object name="bronzeSquares"
 				type="image"
 				sprite="bronzeSquare"
-				size="50 0 100% 100%"
+				size="50 0 100%-5 100%"
 			/>
 		
 			<object name="unitConstructionPanel"
