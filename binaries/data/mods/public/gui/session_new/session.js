@@ -252,13 +252,13 @@ function hideCommands(booleanValue)
 // Multiple Selection Layout
 function selectionLayoutMultiple()
 {
-		getGUIObjectByName("selectionDetailsMainText").size = "70 100%-70 100%-2 100%-10";
-		getGUIObjectByName("selectionDetailsSpecific").size = "0 0 100% 24";
-		getGUIObjectByName("selectionDetailsPlayer").size = "0 30 100% 50";
+		getGUIObjectByName("selectionDetailsMainText").size = "80 100%-70 100%-14 100%-10";
+		getGUIObjectByName("selectionDetailsSpecific").size = "0 6 100% 30";
+		getGUIObjectByName("selectionDetailsPlayer").size = "0 34 100% 100%-8";
 
-		getGUIObjectByName("selectionDetailsIcon").size = "0 100%-74 56 100%-18";
-		getGUIObjectByName("selectionDetailsHealth").size = "0 100%-16 56 100%-12";
-		getGUIObjectByName("selectionDetailsStamina").size = "0 100%-10 56 100%-6";
+		getGUIObjectByName("selectionDetailsIcon").size = "10 100%-74 66 100%-18";
+		getGUIObjectByName("selectionDetailsHealth").size = "10 100%-16 66 100%-12";
+		getGUIObjectByName("selectionDetailsStamina").size = "10 100%-10 66 100%-6";
 			
 		getGUIObjectByName("selectionDetailsAttack").hidden = true;
 		getGUIObjectByName("selectionDetailsArmour").hidden = true;	
@@ -270,16 +270,16 @@ function selectionLayoutMultiple()
 // Single Selection Layout
 function selectionLayoutSingle()
 {
-		getGUIObjectByName("selectionDetailsMainText").size = "-8 -10 100%+8 56";
+		getGUIObjectByName("selectionDetailsMainText").size = "6 0 100%-6 60";
 		getGUIObjectByName("selectionDetailsSpecific").size = "0 0 100% 30";
 		getGUIObjectByName("selectionDetailsPlayer").size = "0 30 100% 56";
 
-		getGUIObjectByName("selectionDetailsIcon").size = "2 100%-104 82 100%-22";
-		getGUIObjectByName("selectionDetailsHealth").size = "2 100%-20 82 100%-14";
-		getGUIObjectByName("selectionDetailsStamina").size = "2 100%-12 82 100%-6";
+		getGUIObjectByName("selectionDetailsIcon").size = "10 100%-104 90 100%-22";
+		getGUIObjectByName("selectionDetailsHealth").size = "10 100%-20 90 100%-14";
+		getGUIObjectByName("selectionDetailsStamina").size = "10 100%-12 90 100%-6";
 
-		getGUIObjectByName("selectionDetailsAttack").size = "88 72 100% 100%";
-		getGUIObjectByName("selectionDetailsArmour").size = "186 72 100% 100%";
+		getGUIObjectByName("selectionDetailsAttack").size = "104 72 100% 100%";
+		getGUIObjectByName("selectionDetailsArmour").size = "204 72 100% 100%";
 		getGUIObjectByName("selectionDetailsAttack").hidden = false;
 		getGUIObjectByName("selectionDetailsArmour").hidden = false;
 
@@ -380,10 +380,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			
 		++i;
 	}
-	
+
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
-	var buttonSpacer = ((guiName == "Selection")? 35 : 45);
+	var buttonSpacer = ((guiName == "Selection")? 37 : 45);
 	var numButtons = i;
 	var j = 0; // index for second row of buttons
 	
@@ -394,6 +394,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 		if (i > 7) // Make second row
 		{
+			if (guiName == "Queue")
+				getGUIObjectByName("unit"+guiName+"Panel").size = "0 -104 100% 100%-166"
+				
 			size.left = buttonSpacer*j;
 			size.right = buttonSpacer*j + buttonSideLength;
 			size.top = buttonSpacer;
@@ -402,6 +405,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		}
 		else // Make first row
 		{
+			if ((guiName == "Queue"))
+				getGUIObjectByName("unit"+guiName+"Panel").size = "0 -60 100% 100%-166"
+		
 			size.left = buttonSpacer*i;
 			size.right = buttonSpacer*i + size.bottom;
 		}
