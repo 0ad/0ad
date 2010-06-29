@@ -189,6 +189,47 @@
 	==========================================
 	-->
 
+	<sprite name="thinWheatWindowSand">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<image 	texture="global/border/corner_bronze.dds"
+			real_texture_placement="0 0 15 15"
+			size="0%-10 0%-10 0 0" 
+		/>
+		<image 	texture="global/border/top_marble.dds"
+			texture_size="0 0 128 32"
+			size="0 0%-10 100% 22" 
+		/>
+		<image 	texture="global/border/corner_bronze.dds"
+			real_texture_placement="0 0 15 15"
+			size="100% 0%-10 100%+10 0" 
+		/>
+		<image	texture="global/border/right_marble.dds"
+			texture_size="0 0 32 128"
+			size="100%-22 0 100%+10 100%" 
+		/>
+        <image	texture="global/border/corner_bronze.dds"
+			real_texture_placement="0 0 15 15"
+			size="100% 100% 100%+10 100%+10" 
+		/>
+        <image	texture="global/border/bottom_marble.dds"
+			texture_size="0 0 128 32"
+			size="0 100%-22 100% 100%+10" 
+		/>
+		<image 	texture="global/border/corner_bronze.dds"
+			real_texture_placement="0 0 15 15"
+			size="0%-10 100% 0 100%+10" 
+		/>
+		<image 	texture="global/border/left_marble.dds"
+			texture_size="0 0 32 128"
+			size="0%-10 0 0%+22 100%" 
+		/>
+		<!-- middle -->
+		<image	texture="global/tile/sandstone.dds"
+			texture_size="0 0 128 128"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
+	
 	<sprite name="wheatWindowSand">
 		<!-- middle -->
 		<image	texture="global/tile/sandstone.dds"
