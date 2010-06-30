@@ -349,6 +349,14 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 	return INFO::OK;
 }
 
+std::wstring sys_get_user_name()
+{
+	wchar_t usernameBuf[256];
+	DWORD size = ARRAY_SIZE(usernameBuf);
+	if(!GetUserNameW(usernameBuf, &size))
+		return L"";
+	return usernameBuf;
+}
 
 // callback for shell directory picker: used to set starting directory
 // (for user convenience).

@@ -188,3 +188,19 @@ size_t sys_max_sector_size()
 		cached_sector_size = sysconf(_SC_PAGE_SIZE);
 	return cached_sector_size;
 }
+
+std::wstring sys_get_user_name()
+{
+	// Prefer LOGNAME, fall back on getlogin
+
+	const char* logname = getenv("LOGNAME");
+	if (logname && strcmp(logname, "") != 0)
+		return std::wstring(logname, logname + strlen(logname));
+	// TODO: maybe we should do locale conversion?
+
+	char buf[256];
+	if (getlogin_r(buf, ARRAY_SIZE(buf)) == 0)
+		return std::wstring(buf, buf + strlen(buf));
+
+	return L"";
+}

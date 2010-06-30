@@ -107,6 +107,13 @@ LibError sys_get_module_filename(void* addr, fs::wpath& pathname);
 LIB_API LibError sys_get_executable_name(fs::wpath& pathname);
 
 /**
+ * get the current user's login name.
+ *
+ * @return login name, or empty string on error
+ */
+extern std::wstring sys_get_user_name();
+
+/**
  * have the user choose a directory via OS dialog.
  *
  * @param path's input value determines the starting directory for
