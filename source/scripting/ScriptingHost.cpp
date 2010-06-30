@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 
 #include "ScriptingHost.h"
 #include "ScriptGlue.h"
+#include "lib/utf8.h"
 #include "ps/Profile.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -57,6 +58,8 @@ ScriptingHost::ScriptingHost()
 	// JS_SetGCZeal(m_Context, 2);
 
 	JS_SetErrorReporter(m_Context, ScriptingHost::ErrorReporter);
+
+	JS_SetVersion(m_Context, JSVERSION_LATEST);
 
 	JS_BeginRequest(m_Context);
 
@@ -135,13 +138,21 @@ void ScriptingHost::RunMemScript(const char* script, size_t size, const char* fi
 // globalObject defaults to 0 (in which case we use our m_GlobalObject).
 void ScriptingHost::RunScript(const VfsPath& pathname, JSObject* globalObject)
 {
+	if(!globalObject)
+		globalObject = m_GlobalObject;
+
 	shared_ptr<u8> buf; size_t size;
 	if(g_VFS->LoadFile(pathname, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
 		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
-	const char* script = (const char*)buf.get();
-	CStr pathname_c(pathname.string());
-	RunMemScript(script, size, pathname_c.c_str(), 1, globalObject);
+	std::wstring scriptw = wstring_from_utf8(std::string(buf.get(), buf.get() + size));
+	utf16string script(scriptw.begin(), scriptw.end());
+
+	jsval rval;
+	JSBool ok = JS_EvaluateUCScript(m_Context, globalObject, script.c_str(), (uintN)script.size(), CStr(pathname.string()).c_str(), 1, &rval);
+
+	if (ok == JS_FALSE)
+		throw PSERROR_Scripting_LoadFile_EvalErrors();
 }
 
 jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * params, int numParams)

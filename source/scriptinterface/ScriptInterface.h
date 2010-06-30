@@ -92,6 +92,12 @@ public:
 	bool CallFunctionVoid(jsval val, const char* name, const T0& a0, const T1& a1);
 
 	/**
+	 * Call the named property on the given object, with void return type and 3 arguments
+	 */
+	template<typename T0, typename T1, typename T2>
+	bool CallFunctionVoid(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2);
+
+	/**
 	 * Call the named property on the given object, with return type R and 0 arguments
 	 */
 	template<typename R>
@@ -144,6 +150,8 @@ public:
 	bool Eval(const char* code);
 
 	template<typename T, typename CHAR> bool Eval(const CHAR* code, T& out);
+
+	std::wstring ToString(jsval obj);
 
 	/**
 	 * Report the given error message through the JS error reporting mechanism,
@@ -272,6 +280,18 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 	std::vector<jsval> argv;
 	argv.push_back(ToJSVal(GetContext(), a0));
 	argv.push_back(ToJSVal(GetContext(), a1));
+	return CallFunction_(val, name, argv, jsRet);
+}
+
+template<typename T0, typename T1, typename T2>
+bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2)
+{
+	LOCAL_ROOT_SCOPE;
+	jsval jsRet;
+	std::vector<jsval> argv;
+	argv.push_back(ToJSVal(GetContext(), a0));
+	argv.push_back(ToJSVal(GetContext(), a1));
+	argv.push_back(ToJSVal(GetContext(), a2));
 	return CallFunction_(val, name, argv, jsRet);
 }
 

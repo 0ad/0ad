@@ -233,6 +233,8 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 				| JSOPTION_VAROBJFIX // "recommended" (fixes variable scoping)
 		);
 
+		JS_SetVersion(m_cx, JSVERSION_LATEST);
+
 		JS_SetExtraGCRoots(m_rt, jshook_trace, this);
 
 		// Threadsafe SpiderMonkey requires that we have a request before doing anything much
@@ -599,6 +601,15 @@ bool ScriptInterface::Eval_(const wchar_t* code, jsval& rval)
 
 	JSBool ok = JS_EvaluateUCScript(m->m_cx, m->m_glob, (const jschar*)codeUtf16.c_str(), (uintN)codeUtf16.length(), "(eval)", 1, &rval);
 	return ok ? true : false;
+}
+
+std::wstring ScriptInterface::ToString(jsval obj)
+{
+	if (JSVAL_IS_VOID(obj))
+		return L"(void 0)";
+	std::wstring source = L"(error)";
+	CallFunction(obj, "toSource", source);
+	return source;
 }
 
 void ScriptInterface::ReportError(const char* msg)
