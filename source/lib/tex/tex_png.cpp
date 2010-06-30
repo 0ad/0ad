@@ -52,7 +52,7 @@
 // pass data from PNG file in memory to libpng
 static void io_read(png_struct* png_ptr, u8* data, png_size_t length)
 {
-	DynArray* da = (DynArray*)png_ptr->io_ptr;
+	DynArray* da = (DynArray*)png_get_io_ptr(png_ptr);
 	if(da_read(da, data, length) != 0)
 		png_error(png_ptr, "io_read failed");
 }
@@ -61,7 +61,7 @@ static void io_read(png_struct* png_ptr, u8* data, png_size_t length)
 // write libpng output to PNG file
 static void io_write(png_struct* png_ptr, u8* data, png_size_t length)
 {
-	DynArray* da = (DynArray*)png_ptr->io_ptr;
+	DynArray* da = (DynArray*)png_get_io_ptr(png_ptr);
 	if(da_append(da, data, length) != 0)
 		png_error(png_ptr, "io_write failed");
 }
