@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,9 +59,9 @@ CDropDown::~CDropDown()
 
 void CDropDown::SetupText()
 {
-	CList::SetupText();
-
 	SetupListRect();
+
+	CList::SetupText();
 }
 
 void CDropDown::HandleMessage(const SGUIMessage &Message)
@@ -71,36 +71,23 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:
-		bool scrollbar;
-		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-
-		// Update scroll-bar
-		// TODO Gee: (2004-09-01) Is this really updated each time it should?
-		if (scrollbar && 
-		    (Message.value == CStr("dropdown_size")/* || 
-			 Message.value == CStr("")*/))
-		{
-			CRect rect = GetListRect();
-			GetScrollBar(0).SetX( rect.right );
-			GetScrollBar(0).SetY( rect.top );
-			GetScrollBar(0).SetZ( GetBufferedZ() );
-			GetScrollBar(0).SetLength( rect.bottom - rect.top );
-		}
-
+	{
 		// Update cached list rect
-		if (Message.value == CStr("size") ||
-			Message.value == CStr("absolute") ||
-			Message.value == CStr("dropdown_size") ||
-			Message.value == CStr("dropdown_buffer") ||
-			Message.value == CStr("scrollbar_style") ||
-			Message.value == CStr("button_width"))
+		if (Message.value == "size" ||
+			Message.value == "absolute" ||
+			Message.value == "dropdown_size" ||
+			Message.value == "dropdown_buffer" ||
+			Message.value == "scrollbar_style" ||
+			Message.value == "button_width")
 		{
 			SetupListRect();
 		}		
 
 		break;
+	}
 
-	case GUIM_MOUSE_MOTION:{
+	case GUIM_MOUSE_MOTION:
+	{
 		if (m_Open)
 		{
 			CPos mouse = GetMousePos();
@@ -141,22 +128,30 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 			}
 		}
 
-		}break;
+		break;
+	}
 
-	case GUIM_MOUSE_LEAVE:{
+	case GUIM_MOUSE_LEAVE:
+	{
 		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
 
-		}break;
+		break;
+	}
 
-		// We can't inherent this routine from CList, because we need to include
-		//  a mouse click to open the dropdown, also the coordinates are changed.
+	// We can't inherent this routine from CList, because we need to include
+	// a mouse click to open the dropdown, also the coordinates are changed.
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		if (!enabled)
+			break;
+
 		if (!m_Open)
 		{
 			m_Open = true;
 			GetScrollBar(0).SetPos(0.f);
-			GetScrollBar(0).SetZ( GetBufferedZ() );
+			GetScrollBar(0).SetZ(GetBufferedZ());
 			GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
 			return; // overshadow
 		}
@@ -168,7 +163,7 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 			if (m_CachedActualSize.PointInside(mouse))
 			{
 				m_Open = false;
-				GetScrollBar(0).SetZ( GetBufferedZ() );
+				GetScrollBar(0).SetZ(GetBufferedZ());
 				return; // overshadow
 			}
 
@@ -177,13 +172,14 @@ void CDropDown::HandleMessage(const SGUIMessage &Message)
 				mouse.y >= GetListRect().top)
 			{
 				m_Open = false;
-				GetScrollBar(0).SetZ( GetBufferedZ() );
+				GetScrollBar(0).SetZ(GetBufferedZ());
 			}
 		}
-	}	break;
+		break;
+	}
 
 	case GUIM_LOST_FOCUS:
-		m_Open=false;
+		m_Open = false;
 		break;
 
 	case GUIM_LOAD:

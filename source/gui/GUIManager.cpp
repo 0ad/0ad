@@ -252,7 +252,10 @@ void CGUIManager::SendEventToAll(const CStr& eventName)
 
 void CGUIManager::TickObjects()
 {
-	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
+	// Save an immutable copy so iterators aren't invalidated by tick handlers
+	PageStackType pageStack = m_PageStack;
+
+	for (PageStackType::iterator it = pageStack.begin(); it != pageStack.end(); ++it)
 		it->gui->TickObjects();
 }
 

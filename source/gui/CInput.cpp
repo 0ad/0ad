@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -456,9 +456,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				}
 				break;
 		}
+
+		return IN_HANDLED;
 	}
 
-	return IN_HANDLED;
+	return IN_PASS;
 }
 
 void CInput::HandleMessage(const SGUIMessage &Message)
@@ -766,7 +768,7 @@ void CInput::Draw()
 
 		// If we have a selecting box (i.e. when you have selected letters, not just when
 		//  the pointer is between two letters) we need to process all letters once
-		//  before we do it the second time and render allt he text. We can't do it
+		//  before we do it the second time and render all the text. We can't do it
 		//  in the same loop because text will have been drawn, so it will disappear when
 		//  drawn behind the text that has already been drawn. Confusing, well it's necessary
 		//  (I think).
@@ -851,9 +853,9 @@ void CInput::Draw()
 						if (multiline)
 						{
 							rect = CRect(m_CachedActualSize.left+box_x+buffer_zone, 
-									   m_CachedActualSize.top+buffered_y, 
+									   m_CachedActualSize.top+buffered_y+(h-ls)/2,
 									   m_CachedActualSize.left+x_pointer+buffer_zone, 
-									   m_CachedActualSize.top+buffered_y+ls);
+									   m_CachedActualSize.top+buffered_y+(h+ls)/2);
 
 							if (rect.bottom < m_CachedActualSize.top)
 								continue;
@@ -867,9 +869,9 @@ void CInput::Draw()
 						else // if one-line
 						{
 							rect = CRect(m_CachedActualSize.left+box_x+buffer_zone-m_HorizontalScroll, 
-									   m_CachedActualSize.top+buffered_y, 
+									   m_CachedActualSize.top+buffered_y+(h-ls)/2,
 									   m_CachedActualSize.left+x_pointer+buffer_zone-m_HorizontalScroll, 
-									   m_CachedActualSize.top+buffered_y+ls);
+									   m_CachedActualSize.top+buffered_y+(h+ls)/2);
 
 							if (rect.left < m_CachedActualSize.left)
 								rect.left = m_CachedActualSize.left;

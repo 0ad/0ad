@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -409,6 +409,11 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		}
 
 		Call.m_Vertices = ObjectSize;
+		// Round the vertex coordinates to integers, to avoid ugly filtering artifacts
+		Call.m_Vertices.left = (int)(Call.m_Vertices.left + 0.5f);
+		Call.m_Vertices.right = (int)(Call.m_Vertices.right + 0.5f);
+		Call.m_Vertices.top = (int)(Call.m_Vertices.top + 0.5f);
+		Call.m_Vertices.bottom = (int)(Call.m_Vertices.bottom + 0.5f);
 
 		if (! cit->m_TextureName.empty())
 		{
@@ -609,10 +614,10 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 			{
 				glColor4fv(cit->m_BorderColor.FloatArray());
 				glBegin(GL_LINE_LOOP);
-					glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.top,	cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.top,	cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.left + 0.5f, cit->m_Vertices.top + 0.5f, cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.right - 0.5f, cit->m_Vertices.top + 0.5f, cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.right - 0.5f, cit->m_Vertices.bottom - 0.5f, cit->m_DeltaZ);
+					glVertex3f(cit->m_Vertices.left + 0.5f, cit->m_Vertices.bottom - 0.5f, cit->m_DeltaZ);
 				glEnd();
 			}
 		}

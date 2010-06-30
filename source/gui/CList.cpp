@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,8 +47,8 @@ CList::CList()
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CColor,				"textcolor_selected");
 	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
-	//AddSetting(GUIST_CStr,					"tooltip");
-	//AddSetting(GUIST_CStr,					"tooltip_style");
+	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStr,					"tooltip_style");
 	AddSetting(GUIST_CGUIList,				"list");
 
 	GUI<bool>::SetSetting(this, "scrollbar", false);
@@ -74,8 +74,6 @@ void CList::SetupText()
 
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-
-	//LOG(CLogger::Error, LOG_CATEGORY, L"SetupText() %hs", GetPresentableName().c_str());
 
 	//debug_assert(m_GeneratedTexts.size()>=1);
 
@@ -137,6 +135,12 @@ void CList::SetupText()
 	{
 		GetScrollBar(0).SetScrollRange( m_ItemsYPositions.back() );
 		GetScrollBar(0).SetScrollSpace( GetListRect().GetHeight() );
+
+		CRect rect = GetListRect();
+		GetScrollBar(0).SetX( rect.right );
+		GetScrollBar(0).SetY( rect.top );
+		GetScrollBar(0).SetZ( GetBufferedZ() );
+		GetScrollBar(0).SetLength( rect.bottom - rect.top );
 	}
 }
 
@@ -150,20 +154,6 @@ void CList::HandleMessage(const SGUIMessage &Message)
 	case GUIM_SETTINGS_UPDATED:
 		bool scrollbar;
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-
-		// Update scroll-bar
-		// TODO Gee: (2004-09-01) Is this really updated each time it should?
-		if (scrollbar && 
-		    (Message.value == CStr("size") || 
-			 Message.value == CStr("z") ||
-			 Message.value == CStr("absolute")))
-		{
-			CRect rect = GetListRect();
-			GetScrollBar(0).SetX( rect.right );
-			GetScrollBar(0).SetY( rect.top );
-			GetScrollBar(0).SetZ( GetBufferedZ() );
-			GetScrollBar(0).SetLength( rect.bottom - rect.top );
-		}
 
 		if (Message.value == "list")
 		{
@@ -179,13 +169,13 @@ void CList::HandleMessage(const SGUIMessage &Message)
 			ScriptEvent("selectionchange"); 
 		}
 
-		if (Message.value == CStr("scrollbar"))
+		if (Message.value == "scrollbar")
 		{
 			SetupText();
 		}
 
 		// Update scrollbar
-		if (Message.value == CStr("scrollbar_style"))
+		if (Message.value == "scrollbar_style")
 		{
 			CStr scrollbar_style;
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
@@ -199,6 +189,11 @@ void CList::HandleMessage(const SGUIMessage &Message)
 
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
+		bool enabled;
+		GUI<bool>::GetSetting(this, "enabled", enabled);
+		if (!enabled)
+			break;
+
 		bool scrollbar;
 		CGUIList *pList;
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
@@ -248,12 +243,6 @@ void CList::HandleMessage(const SGUIMessage &Message)
 
 	case GUIM_LOAD:
 		{
-		CRect rect = GetListRect();
-		GetScrollBar(0).SetX( rect.right );
-		GetScrollBar(0).SetY( rect.top );
-		GetScrollBar(0).SetZ( GetBufferedZ() );
-		GetScrollBar(0).SetLength( rect.bottom - rect.top );
-
 		CStr scrollbar_style;
 		GUI<CStr>::GetSetting(this, "scrollbar_style", scrollbar_style);
 		GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
@@ -302,7 +291,7 @@ InReaction CList::ManuallyHandleEvent(const SDL_Event_* ev)
 		break;
 
 	default: // Do nothing
-		break;
+		return IN_PASS;
 	}
 
 	return IN_HANDLED;

@@ -149,7 +149,7 @@ void IGUIObject::AddToPointersMap(map_pObjects &ObjectMap)
 	}
 	if (ObjectMap.count(m_Name) > 0)
 	{
-		throw PSERROR_GUI_NameAmbiguity();
+		throw PSERROR_GUI_NameAmbiguity(m_Name.c_str());
 	}
 	else
 	{
@@ -449,9 +449,11 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject,
 		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName, 0);
-	debug_assert(func); // TODO: Handle errors
-	if (func)
-		SetScriptHandler(Action, JS_GetFunctionObject(func));
+
+	if (!func)
+		return; // JS will report an error message
+
+	SetScriptHandler(Action, JS_GetFunctionObject(func));
 }
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
