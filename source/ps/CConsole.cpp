@@ -719,23 +719,10 @@ void CConsole::SaveHistory()
 
 void CConsole::SendChatMessage(const wchar_t *pText)
 {
-	CNetHost *pHost = NULL;
-
-	if ( pHost )
+	if (g_NetClient)
 	{
-		CChatMessage chat;
-		chat.m_Recipient = CHAT_RECIPIENT_ALL;
-		chat.m_Message	 = pText;
-		
-		if ( pHost->IsServer() )
-		{
-			CNetServer* pServer = ( CNetServer* )pHost;
-
-			chat.m_Sender = 0;
-			ReceivedChatMessage( pServer->GetPlayerName(), chat.m_Message.c_str() );
-		}
-
-		pHost->Broadcast( &chat );
+		// TODO
+//		g_NetClient3->SendChatMessage(pText);
 	}
 }
 

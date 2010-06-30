@@ -244,7 +244,7 @@ void CGameViewImpl::ScriptingInit()
 	CJSObject<CGameViewImpl>::ScriptingInit("GameView");
 }
 
-int CGameView::Initialize(CGameAttributes* UNUSED(pAttribs))
+int CGameView::Initialize()
 {
 	CFG_GET_SYS_VAL( "view.scroll.speed", Float, m->ViewScrollSpeed );
 	CFG_GET_SYS_VAL( "view.rotate.speed", Float, m->ViewRotateSensitivity );
@@ -267,10 +267,10 @@ int CGameView::Initialize(CGameAttributes* UNUSED(pAttribs))
 
 
 
-void CGameView::RegisterInit(CGameAttributes *pAttribs)
+void CGameView::RegisterInit()
 {
 	// CGameView init
-	RegMemFun1(this, &CGameView::Initialize, pAttribs, L"CGameView init", 1);
+	RegMemFun(this, &CGameView::Initialize, L"CGameView init", 1);
 
 	// previously done by CGameView::InitResources
 	RegMemFun(g_TexMan.GetSingletonPtr(), &CTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);

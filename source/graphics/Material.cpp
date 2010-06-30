@@ -17,9 +17,9 @@
 
 #include "precompiled.h"
 
-#include "lib/ogl.h"
 #include "Material.h"
-#include "ps/Player.h"
+
+#include "lib/ogl.h"
 #include "ps/Game.h"
 #include "ps/Overlay.h" // for CColor
 
@@ -106,12 +106,8 @@ SMaterialColor CMaterial::GetPlayerColor()
 
 	if (m_PlayerID <= PLAYER_ID_LAST_VALID)
 	{
-		CPlayer* player = g_Game->GetPlayer(m_PlayerID);
-		if (player)
-		{
-			const SPlayerColour& c (player->GetColour());
-			return SMaterialColor(c.r, c.g, c.b, c.a);
-		}
+		CColor c(g_Game->GetPlayerColour(m_PlayerID));
+		return SMaterialColor(c.r, c.g, c.b, c.a);
 	}
 
 	// Oops, something failed.

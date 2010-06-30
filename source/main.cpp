@@ -41,25 +41,27 @@ that of Atlas depending on commandline parameters.
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/sound/snd_mgr.h"
 
+#include "ps/CConsole.h"
+#include "ps/Filesystem.h"
+#include "ps/Game.h"
+#include "ps/Globals.h"
+#include "ps/Hotkey.h"
+#include "ps/Loader.h"
+#include "ps/Profile.h"
+#include "ps/Pyrogenesis.h"
+#include "ps/Util.h"
+#include "ps/VideoMode.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
-#include "ps/Loader.h"
-#include "ps/Filesystem.h"
-#include "ps/CConsole.h"
-#include "ps/Profile.h"
-#include "ps/Util.h"
-#include "ps/Game.h"
-#include "ps/Hotkey.h"
-#include "ps/Globals.h"
-#include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "network/NetSession.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
+#include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
 #include "sound/CMusicPlayer.h"
 #include "gui/GUIManager.h"
@@ -228,7 +230,7 @@ static void Frame()
 	// If we are not running a multiplayer game, disable updates when the game is
 	// minimized or out of focus and relinquish the CPU a bit, in order to make 
 	// debugging easier.
-	if( !g_NetClient && !g_NetServer && !g_app_has_focus )
+	if( !g_NetClient && !g_app_has_focus )
 	{
 		need_update = false;
 		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored

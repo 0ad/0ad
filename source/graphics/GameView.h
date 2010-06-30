@@ -27,7 +27,6 @@ extern float g_YMinOffset;
 #include "lib/input.h" // InReaction - can't forward-declare enum
 
 class CGame;
-class CGameAttributes;
 class CObjectManager;
 class CCamera;
 class CCinemaManager;
@@ -67,8 +66,8 @@ public:
 
 	void SetViewport(const SViewPort& vp);
 
-	void RegisterInit(CGameAttributes *pAttribs);
-	int Initialize(CGameAttributes *pGameAttributes);
+	void RegisterInit();
+	int Initialize();
 
 	CObjectManager& GetObjectManager() const;
 

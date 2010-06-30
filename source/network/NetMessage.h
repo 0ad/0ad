@@ -15,22 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- *-----------------------------------------------------------------------------
- *	FILE			: NetMessage.h
- *	PROJECT			: 0 A.D.
- *	DESCRIPTION		: Defines the basic interface for network messages
- *-----------------------------------------------------------------------------
- */
- 
 #ifndef NETMESSAGE_H
 #define NETMESSAGE_H
 
-// INCLUDES
 #include "Serialization.h"
-#include "ps/Vector2D.h"
-
-#include <map>
 
 // We need the enum from NetMessages.h, but we can't create any classes in
 // NetMessages.h, since they in turn require CNetMessage to be defined
@@ -38,13 +26,9 @@
 #include "NetMessages.h"
 #undef ALLNETMSGS_DONT_CREATE_NMTS
 
-/*
-	CLASS			: CNetMessage
-	DESCRIPTION		: CNetMessage is the base class for all network messages
-					  exchanged within the game.
-	NOTES			:
+/**
+ * The base class for all network messages exchanged within the game.
  */
-
 class CNetMessage : public ISerializable
 {
 	NONCOPYABLE(CNetMessage);
@@ -58,26 +42,10 @@ public:
 	virtual ~CNetMessage( void );
 
 	/**
-	 * Retrieves the message header. If changes are made on header,SetDirty 
-	 * must be called on the header's message
-	 *
-	 * @return							Message header
+	 * Retrieves the message type.
+	 * @return						Message type
 	 */
-	//const CNetMessageHeader& GetHeader( void ) const { return m_Header; }
 	NetMessageType GetType( void ) const { return m_Type; }
-
-	/**
-	 * Returns whether the message has changed since its last use
-	 *
-	 * @return							true if it changed or false otherwise
-	 */
-	bool GetDirty( void ) const	{ return m_Dirty; }
-
-	/**
-	 * Specify the message has changed since its last use
-	 *
-	 */
-	void SetDirty( void ) { m_Dirty = true; }
 
 	/**
 	 * Serialize the message into the specified buffer parameter. The size 
@@ -103,23 +71,6 @@ public:
 	virtual const u8* Deserialize( const u8* pStart, const u8* pEnd );
 
 	/**
-	 * Deserializes the specified message from the specified buffer using 
-	 * registered deserializers.
-	 *
-	 * @param messageType				Message type
-	 * @param pBuffer					Buffer from which to deserialize
-	 * @param bufferSize				The size in bytes of the buffer
-	 * @return							A pointer to a newly created
-	 *									CNetMessage, or NULL if the message was
-	 *									not correctly deserialized.
-	 */
-	static CNetMessage* Deserialize( 
-									NetMessageType type,
-									const u8* pBuffer,
-									uint bufferSize );
-	//static CNetMessage* Deserialize(ENetMessageType type, u8 *buffer, uint length);
-
-	/**
 	 * Retrieves the size in bytes of the serialized message. Before calling
 	 * Serialize, the memory size for the buffer where to serialize the message
 	 * object can be found by calling this method.
@@ -136,7 +87,6 @@ public:
 	virtual CStr ToString( void ) const;
 
 private:
-	bool			m_Dirty;			// Message has been modified
 	NetMessageType	m_Type;				// Message type
 };
 
@@ -159,13 +109,13 @@ public:
 	 */
 	static CNetMessage* CreateMessage( const void* pData, size_t dataSize, ScriptInterface& scriptInterface );
 
-private:
-
-	// Not implemented
-	CNetMessageFactory( void );
-	~CNetMessageFactory( void );
-	CNetMessageFactory( const CNetMessageFactory& );
-	CNetMessageFactory& operator=( const CNetMessageFactory& );
+	/**
+	 * Clone a message object into a new scripting context.
+	 * @param message message to clone (can come from any script context)
+	 * @param scriptInterface script context to use for the new message
+	 * @return new message, or NULL on failure
+	 */
+	static CNetMessage* CloneMessage( const CNetMessage* message, ScriptInterface& scriptInterface );
 };
 
 /**
@@ -185,6 +135,24 @@ public:
 	u32 m_Client;
 	i32 m_Player;
 	u32 m_Turn;
+	CScriptValRooted m_Data;
+private:
+	ScriptInterface& m_ScriptInterface;
+};
+
+/**
+ * Special message type for updated to game startup settings.
+ */
+class CGameSetupMessage : public CNetMessage
+{
+public:
+	CGameSetupMessage(ScriptInterface& scriptInterface);
+	CGameSetupMessage(ScriptInterface& scriptInterface, jsval data);
+	virtual u8* Serialize(u8* pBuffer) const;
+	virtual const u8* Deserialize(const u8* pStart, const u8* pEnd);
+	virtual size_t GetSerializedLength() const;
+	virtual CStr ToString() const;
+
 	CScriptValRooted m_Data;
 private:
 	ScriptInterface& m_ScriptInterface;

@@ -19,11 +19,14 @@
 
 #include "NetTurnManager.h"
 
-#include "NetServer.h"
-#include "NetClient.h"
+#include "network/NetServer.h"
+#include "network/NetClient.h"
+#include "network/NetMessage.h"
+
 #include "gui/GUIManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Profile.h"
+#include "ps/Pyrogenesis.h"
 #include "simulation2/Simulation2.h"
 
 static const int TURN_LENGTH = 200; // TODO: this should be a variable controlled by the server depending on latency
@@ -41,9 +44,9 @@ static std::string Hexify(const std::string& s)
 	return str.str();
 }
 
-CNetTurnManager::CNetTurnManager(CSimulation2& simulation, int playerId, int clientId) :
+CNetTurnManager::CNetTurnManager(CSimulation2& simulation, int clientId) :
 	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_DeltaTime(0),
-	m_PlayerId(playerId), m_ClientId(clientId), m_HasSyncError(false)
+	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false)
 {
 	// When we are on turn n, we schedule new commands for n+2.
 	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).
@@ -52,6 +55,11 @@ CNetTurnManager::CNetTurnManager(CSimulation2& simulation, int playerId, int cli
 	// So they can be sending us commands scheduled for n+1, n+2, n+3.
 	// So we need a 3-element buffer:
 	m_QueuedCommands.resize(COMMAND_DELAY + 1);
+}
+
+void CNetTurnManager::SetPlayerID(int playerId)
+{
+	m_PlayerId = playerId;
 }
 
 bool CNetTurnManager::Update(float frameLength)
@@ -186,8 +194,7 @@ void CNetClientTurnManager::PostCommand(CScriptValRooted data)
 
 	// Transmit command to server
 	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data.get());
-	CNetSession* session = m_NetClient.GetSession(0);
-	m_NetClient.SendMessage(session, &msg);
+	m_NetClient.SendMessage(&msg);
 
 	// Add to our local queue
 	//AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + COMMAND_DELAY);
@@ -204,8 +211,7 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 	CEndCommandBatchMessage msg;
 	msg.m_TurnLength = TURN_LENGTH;
 	msg.m_Turn = turn;
-	CNetSession* session = m_NetClient.GetSession(0);
-	m_NetClient.SendMessage(session, &msg);
+	m_NetClient.SendMessage(&msg);
 }
 
 void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn, const std::string& hash)
@@ -218,8 +224,7 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn, const std::string& ha
 	CSyncCheckMessage msg;
 	msg.m_Turn = turn;
 	msg.m_Hash = hash;
-	CNetSession* session = m_NetClient.GetSession(0);
-	m_NetClient.SendMessage(session, &msg);
+	m_NetClient.SendMessage(&msg);
 }
 
 void CNetClientTurnManager::OnSimulationMessage(CSimulationMessage* msg)
@@ -230,36 +235,33 @@ void CNetClientTurnManager::OnSimulationMessage(CSimulationMessage* msg)
 
 
 
-void CNetServerTurnManager::PostCommand(CScriptValRooted data)
+void CNetLocalTurnManager::PostCommand(CScriptValRooted data)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"PostCommand()\n");
-#endif
-
-	// Transmit command to all clients
-	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data.get());
-	m_NetServer.Broadcast(&msg);
-
-	// Add to our local queue
-	AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + COMMAND_DELAY);
+	// Add directly to the next turn, ignoring COMMAND_DELAY,
+	// because we don't need to compensate for network latency
+	AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + 1);
 }
 
-void CNetServerTurnManager::NotifyFinishedOwnCommands(u32 turn)
+void CNetLocalTurnManager::NotifyFinishedOwnCommands(u32 turn)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"NotifyFinishedOwnCommands(%d)\n", turn);
-#endif
-
-	NotifyFinishedClientCommands(m_ClientId, turn);
+	FinishedAllCommands(turn);
 }
 
-void CNetServerTurnManager::NotifyFinishedUpdate(u32 turn, const std::string& hash)
+void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn), const std::string& UNUSED(hash))
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"NotifyFinishedUpdate(%d, %s)\n", turn, Hexify(hash).c_str());
-#endif
+}
 
-	NotifyFinishedClientUpdate(m_ClientId, turn, hash);
+void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))
+{
+	debug_warn(L"This should never be called");
+}
+
+
+
+
+CNetServerTurnManager::CNetServerTurnManager(CNetServer& server) :
+	m_NetServer(server), m_ReadyTurn(1)
+{
 }
 
 void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
@@ -291,8 +293,7 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
 	msg.m_Turn = turn;
 	m_NetServer.Broadcast(&msg);
 
-	// Move ourselves to the next turn
-	FinishedAllCommands(m_ReadyTurn + 1);
+	m_ReadyTurn = turn;
 }
 
 void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash)
@@ -318,7 +319,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 			break;
 
 		// Assume the host is correct (maybe we should choose the most common instead to help debugging)
-		std::string expected = it->second[m_ClientId];
+		std::string expected = it->second.begin()->second;
 
 		for (std::map<int, std::string>::iterator cit = it->second.begin(); cit != it->second.end(); ++cit)
 		{
@@ -334,9 +335,6 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 				msg.m_Turn = it->first;
 				msg.m_HashExpected = expected;
 				m_NetServer.Broadcast(&msg);
-
-				// Process it ourselves
-				OnSyncError(it->first, expected);
 
 				break;
 			}
@@ -354,38 +352,4 @@ void CNetServerTurnManager::InitialiseClient(int client)
 	m_ClientsSimulated[client] = 0;
 
 	// TODO: do we need some kind of UninitialiseClient in case they leave?
-}
-
-void CNetServerTurnManager::OnSimulationMessage(CSimulationMessage* msg)
-{
-	// Send it back to all clients immediately
-	m_NetServer.Broadcast(msg);
-
-	// TODO: we should do some validation of ownership (clients can't send commands on behalf of opposing players)
-
-	// TODO: we shouldn't send the message back to the client that first sent it
-
-	// Process it ourselves
-	AddCommand(msg->m_Client, msg->m_Player, msg->m_Data, msg->m_Turn);
-}
-
-void CNetLocalTurnManager::PostCommand(CScriptValRooted data)
-{
-	// Add directly to the next turn, ignoring COMMAND_DELAY,
-	// because we don't need to compensate for network latency
-	AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + 1);
-}
-
-void CNetLocalTurnManager::NotifyFinishedOwnCommands(u32 turn)
-{
-	FinishedAllCommands(turn);
-}
-
-void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn), const std::string& UNUSED(hash))
-{
-}
-
-void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))
-{
-	debug_warn(L"This should never be called");
 }

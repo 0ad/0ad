@@ -32,10 +32,10 @@ class CSimulation2;
  * Each player performs the simulation for turn N.
  * User input is translated into commands scheduled for execution in turn N+2 which are
  * distributed to all other clients.
- * After a while, a player want to perform the simulation for turn N+1,
+ * After a while, a player wants to perform the simulation for turn N+1,
  * which first requires that it has all the other clients' commands for turn N+1.
- * In that case, it does the simulation and tells all the other clients it has finished
- * sending commands for turn N+2, and it starts sending commands for turn N+3.
+ * In that case, it does the simulation and tells all the other clients (via the server)
+ * it has finished sending commands for turn N+2, and it starts sending commands for turn N+3.
  *
  * Commands are redistributed immediately by the server.
  * To ensure a consistent execution of commands, they are each associated with a
@@ -43,18 +43,23 @@ class CSimulation2;
  */
 
 /**
- * Common network turn system (used by clients, servers, and offline games).
+ * Common network turn system (used by clients and offline games).
  */
 class CNetTurnManager
 {
 	NONCOPYABLE(CNetTurnManager);
 public:
 	/**
-	 * Construct for a given player ID, and a given network session ID.
+	 * Construct for a given network session ID.
 	 */
-	CNetTurnManager(CSimulation2& simulation, int playerId, int clientId);
+	CNetTurnManager(CSimulation2& simulation, int clientId);
 
 	virtual ~CNetTurnManager() { }
+
+	/**
+	 * Set the current user's player ID, which will be added into command messages.
+	 */
+	void SetPlayerID(int playerId);
 
 	/**
 	 * Advance the simulation by a certain time. If this brings us past the current
@@ -127,11 +132,14 @@ protected:
 	bool m_HasSyncError;
 };
 
+/**
+ * Implementation of CNetTurnManager for network clients.
+ */
 class CNetClientTurnManager : public CNetTurnManager
 {
 public:
-	CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int playerId, int clientId) :
-		CNetTurnManager(simulation, playerId, clientId), m_NetClient(client)
+	CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId) :
+		CNetTurnManager(simulation, clientId), m_NetClient(client)
 	{
 	}
 
@@ -147,17 +155,37 @@ protected:
 	CNetClient& m_NetClient;
 };
 
-class CNetServerTurnManager : public CNetTurnManager
+/**
+ * Implementation of CNetTurnManager for offline games.
+ */
+class CNetLocalTurnManager : public CNetTurnManager
 {
 public:
-	CNetServerTurnManager(CSimulation2& simulation, CNetServer& server, int playerId, int clientId) :
-		CNetTurnManager(simulation, playerId, clientId), m_NetServer(server)
+	CNetLocalTurnManager(CSimulation2& simulation) :
+		CNetTurnManager(simulation, 0)
 	{
 	}
 
 	virtual void OnSimulationMessage(CSimulationMessage* msg);
 
 	virtual void PostCommand(CScriptValRooted data);
+
+protected:
+	virtual void NotifyFinishedOwnCommands(u32 turn);
+
+	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
+};
+
+
+/**
+ * The server-side counterpart to CNetClientTurnManager.
+ * Records the turn state of each client, and sends turn advancement messages
+ * when all clients are ready.
+ */
+class CNetServerTurnManager
+{
+public:
+	CNetServerTurnManager(CNetServer& server);
 
 	void NotifyFinishedClientCommands(int client, u32 turn);
 
@@ -166,9 +194,8 @@ public:
 	void InitialiseClient(int client);
 
 protected:
-	virtual void NotifyFinishedOwnCommands(u32 turn);
-
-	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
+	/// The latest turn for which we have received all commands from all clients
+	u32 m_ReadyTurn;
 
 	// Client ID -> ready turn number (the latest turn for which all commands have been received from that client)
 	std::map<int, u32> m_ClientsReady;
@@ -181,24 +208,6 @@ protected:
 	std::map<u32, std::map<int, std::string> > m_ClientStateHashes;
 
 	CNetServer& m_NetServer;
-};
-
-class CNetLocalTurnManager : public CNetTurnManager
-{
-public:
-	CNetLocalTurnManager(CSimulation2& simulation) :
-		CNetTurnManager(simulation, 1, 0)
-	{
-	}
-
-	virtual void OnSimulationMessage(CSimulationMessage* msg);
-
-	virtual void PostCommand(CScriptValRooted data);
-
-protected:
-	virtual void NotifyFinishedOwnCommands(u32 turn);
-
-	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
 };
 
 #endif // INCLUDED_NETTURNMANAGER

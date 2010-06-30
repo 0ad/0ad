@@ -35,8 +35,8 @@
 
 #include "maths/MathUtil.h"
 #include "maths/NUSpline.h"
+#include "ps/Game.h"
 #include "ps/Loader.h"
-#include "ps/Player.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/XMLWriter.h"
 #include "renderer/SkyManager.h"

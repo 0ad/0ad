@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -13,14 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- *-----------------------------------------------------------------------------
- *	FILE			: fsm.cpp
- *	PROJECT			: 0 A.D.
- *	DESCRIPTION		: Finite state machine class implementation
- *-----------------------------------------------------------------------------
  */
 
 // INCLUDES
@@ -306,7 +298,7 @@ CFsmTransition* CFsm::AddTransition(
 
 //-----------------------------------------------------------------------------
 // Name: AddTransition()
-// Desc: Adds a new transistion to the state machine
+// Desc: Adds a new transition to the state machine
 //-----------------------------------------------------------------------------
 CFsmTransition* CFsm::AddTransition( 
 									unsigned int state,

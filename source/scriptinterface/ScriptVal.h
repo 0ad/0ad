@@ -47,6 +47,8 @@ public:
 
 	jsval get() const;
 
+	bool undefined() const;
+
 private:
 	boost::shared_ptr<jsval> m_Val;
 };

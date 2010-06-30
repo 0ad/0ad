@@ -15,19 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- *-----------------------------------------------------------------------------
- *	FILE			: NetMessage.cpp
- *	PROJECT			: 0 A.D.
- *	DESCRIPTION		:
- *-----------------------------------------------------------------------------
- */
-
-// INCLUDES
 #include "precompiled.h"
-#include "ps/CLogger.h"
-#include "Network.h"
 #include "NetMessage.h"
+
+#include "ps/CLogger.h"
 
 #include "ps/Game.h"
 #include "simulation2/Simulation2.h"
@@ -36,9 +27,6 @@
 #define ALLNETMSGS_IMPLEMENT
 #include "NetMessages.h"
 
-// DEFINES
-#define LOG_CATEGORY L"net"
-
 //-----------------------------------------------------------------------------
 // Name: CNetMessage()
 // Desc: Constructor
@@ -46,7 +34,6 @@
 CNetMessage::CNetMessage( void )
 {
 	m_Type	= NMT_INVALID;
-	m_Dirty	= false;
 }
 
 //-----------------------------------------------------------------------------
@@ -56,7 +43,6 @@ CNetMessage::CNetMessage( void )
 CNetMessage::CNetMessage( NetMessageType type )
 {
 	m_Type  = type;
-	m_Dirty	= false;
 }
 
 //-----------------------------------------------------------------------------
@@ -65,7 +51,6 @@ CNetMessage::CNetMessage( NetMessageType type )
 //-----------------------------------------------------------------------------
 CNetMessage::~CNetMessage( void )
 {
-	m_Dirty	= false;
 }
 
 //-----------------------------------------------------------------------------
@@ -159,19 +144,15 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 	switch ( header.GetType() )
 	{
 	case NMT_GAME_SETUP:
-		pNewMessage = new CGameSetupMessage;
+		pNewMessage = new CGameSetupMessage(scriptInterface);
 		break;
 
-	case NMT_ASSIGN_PLAYER_SLOT:
-		pNewMessage = new CAssignPlayerSlotMessage;
+	case NMT_PLAYER_ASSIGNMENT:
+		pNewMessage = new CPlayerAssignmentMessage;
 		break;
 
-	case NMT_PLAYER_CONFIG:
-		pNewMessage = new CPlayerConfigMessage;
-		break;
-
-	case NMT_PLAYER_JOIN:
-		pNewMessage = new CPlayerJoinMessage;
+	case NMT_LOADED_GAME:
+		pNewMessage = new CLoadedGameMessage;
 		break;
 
 	case NMT_SERVER_HANDSHAKE:
@@ -180,14 +161,6 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 
 	case NMT_SERVER_HANDSHAKE_RESPONSE:
 		pNewMessage = new CSrvHandshakeResponseMessage;
-		break;
-
-	case NMT_CONNECT_COMPLETE:
-		pNewMessage = new CConnectCompleteMessage;
-		break;
-
-	case NMT_ERROR:
-		pNewMessage = new CErrorMessage;
 		break;
 
 	case NMT_CLIENT_HANDSHAKE:
@@ -227,7 +200,7 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		break;
 
 	default:
-		LOG(CLogger::Error, LOG_CATEGORY, L"CNetMessageFactory::CreateMessage(): Unknown message received" );
+		LOGERROR(L"CNetMessageFactory::CreateMessage(): Unknown message type '%d' received", header.GetType());
 		break;
 	}
 
@@ -235,4 +208,19 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		pNewMessage->Deserialize( ( const u8* )pData, ( const u8* )pData + dataSize );
 
 	return pNewMessage;
+}
+
+CNetMessage* CNetMessageFactory::CloneMessage( const CNetMessage* message, ScriptInterface& scriptInterface )
+{
+	// TODO: maybe this could be implemented more efficiently,
+	// particularly for script messages where serialisation is
+	// relatively expensive
+
+	size_t len = message->GetSerializedLength();
+	u8* buffer = new u8[len];
+	u8* newbuf = message->Serialize(buffer);
+	if (!newbuf)
+		return NULL;
+	debug_assert(newbuf == buffer+len);
+	return CreateMessage(buffer, len, scriptInterface);
 }

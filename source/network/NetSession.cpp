@@ -17,65 +17,228 @@
 
 #include "precompiled.h"
 #include "NetSession.h"
+#include "NetClient.h"
+#include "NetServer.h"
+#include "NetMessage.h"
+#include "ps/CLogger.h"
+#include "scriptinterface/ScriptInterface.h"
 
-static const uint INVALID_SESSION = 0;
+#include <enet/enet.h>
 
-//-----------------------------------------------------------------------------
-// Name: CNetSession()
-// Desc: Constructor
-//-----------------------------------------------------------------------------
-CNetSession::CNetSession(CNetHost* pHost, ENetPeer* pPeer)
+static const int CHANNEL_COUNT = 1;
+
+
+CNetClientSession::CNetClientSession(CNetClient& client) :
+	m_Client(client)
 {
-	m_Host = pHost;
-	m_Peer = pPeer;
-	m_ID = INVALID_SESSION;
-	m_PlayerSlot = NULL;
 }
 
-//-----------------------------------------------------------------------------
-// Name: ~CNetSession()
-// Desc: Destructor
-//-----------------------------------------------------------------------------
-CNetSession::~CNetSession()
+CNetClientSession::~CNetClientSession()
 {
-	m_Peer = NULL;
 }
 
-//-----------------------------------------------------------------------------
-// Name: SetName()
-// Desc: Set a new name for the session
-//-----------------------------------------------------------------------------
-void CNetSession::SetName(const CStr& name)
+
+
+CNetClientSessionRemote::CNetClientSessionRemote(CNetClient& client) :
+	CNetClientSession(client), m_Host(NULL), m_Server(NULL)
 {
-	m_Name = name;
 }
 
-//-----------------------------------------------------------------------------
-// Name: SetID()
-// Desc: Set new ID for this session
-//-----------------------------------------------------------------------------
-void CNetSession::SetID(uint ID)
+CNetClientSessionRemote::~CNetClientSessionRemote()
 {
-	m_ID = ID;
+
 }
 
-//-----------------------------------------------------------------------------
-// Name: SetPlayerSlot()
-// Desc: Set the player slot for this session
-//-----------------------------------------------------------------------------
-void CNetSession::SetPlayerSlot(CPlayerSlot* pPlayerSlot)
+bool CNetClientSessionRemote::Connect(u16 port, const CStr& server)
 {
-	m_PlayerSlot = pPlayerSlot;
+	debug_assert(!m_Host);
+	debug_assert(!m_Server);
+
+	// Create ENet host
+	ENetHost* host = enet_host_create(NULL, 1, 0, 0);
+	if (!host)
+		return false;
+
+	// Bind to specified host
+	ENetAddress addr;
+	addr.port = port;
+	if (enet_address_set_host(&addr, server.c_str()) < 0)
+		return false;
+
+	// Initiate connection to server
+	ENetPeer* peer = enet_host_connect(host, &addr, CHANNEL_COUNT);
+	if (!peer)
+		return false;
+
+	m_Host = host;
+	m_Server = peer;
+
+	return true;
 }
 
-//-----------------------------------------------------------------------------
-// Name: ScriptingInit()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetSession::ScriptingInit()
+void CNetClientSessionRemote::Disconnect()
 {
-	AddProperty(L"id", &CNetSession::m_ID);
-	AddProperty(L"name", &CNetSession::m_Name);
+	debug_assert(m_Host && m_Server);
 
-	CJSObject<CNetSession>::ScriptingInit("NetSession");
+	// TODO: ought to do reliable async disconnects, probably
+	enet_peer_disconnect_now(m_Server, 0);
+	enet_host_destroy(m_Host);
+
+	m_Host = NULL;
+	m_Server = NULL;
+}
+
+void CNetClientSessionRemote::Poll()
+{
+	debug_assert(m_Host && m_Server);
+
+	ENetEvent event;
+	while (enet_host_service(m_Host, &event, 0) > 0)
+	{
+		switch (event.type)
+		{
+		case ENET_EVENT_TYPE_CONNECT:
+		{
+			debug_assert(event.peer == m_Server);
+
+			// Report the server address
+			char hostname[256] = "(error)";
+			enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
+			LOGMESSAGE(L"Net client: Connected to %hs:%u", hostname, event.peer->address.port);
+
+			GetClient().HandleConnect();
+
+			break;
+		}
+
+		case ENET_EVENT_TYPE_DISCONNECT:
+		{
+			debug_assert(event.peer == m_Server);
+
+			GetClient().HandleDisconnect();
+
+			break;
+		}
+
+		case ENET_EVENT_TYPE_RECEIVE:
+		{
+			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, GetClient().GetScriptInterface());
+			if (msg)
+			{
+				LOGMESSAGE(L"Net client: Received message %hs of size %lu from server", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength());
+
+				bool ok = GetClient().HandleMessage(msg);
+				debug_assert(ok); // TODO
+
+				delete msg;
+			}
+
+			enet_packet_destroy(event.packet);
+
+			break;
+		}
+		}
+	}
+
+}
+
+bool CNetClientSessionRemote::SendMessage(const CNetMessage* message)
+{
+	debug_assert(m_Host && m_Server);
+
+	return CNetHost::SendMessage(message, m_Server, "server");
+}
+
+
+
+CNetClientSessionLocal::CNetClientSessionLocal(CNetClient& client, CNetServer& server) :
+	CNetClientSession(client), m_Server(server), m_ServerSession(NULL)
+{
+	server.AddLocalClientSession(*this);
+	client.HandleConnect();
+}
+
+void CNetClientSessionLocal::Poll()
+{
+	for (size_t i = 0; i < m_LocalMessageQueue.size(); ++i)
+	{
+		CNetMessage* msg = m_LocalMessageQueue[i];
+
+		LOGMESSAGE(L"Net client: Received local message %hs of size %lu from server", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength());
+
+		bool ok = GetClient().HandleMessage(msg);
+		debug_assert(ok); // TODO
+
+		delete msg;
+	}
+	m_LocalMessageQueue.clear();
+}
+
+void CNetClientSessionLocal::Disconnect()
+{
+	// TODO
+}
+
+bool CNetClientSessionLocal::SendMessage(const CNetMessage* message)
+{
+	LOGMESSAGE(L"Net client: Sending local message %hs to server", message->ToString().c_str());
+	m_Server.SendLocalMessage(*this, message);
+	return true;
+}
+
+void CNetClientSessionLocal::AddLocalMessage(const CNetMessage* message)
+{
+	// Clone into the client's script context
+	CNetMessage* clonedMessage = CNetMessageFactory::CloneMessage(message, GetClient().GetScriptInterface());
+	if (!clonedMessage)
+		return;
+	m_LocalMessageQueue.push_back(clonedMessage);
+}
+
+
+
+CNetServerSession::CNetServerSession(CNetServer& server) :
+	m_Server(server)
+{
+}
+
+CNetServerSession::~CNetServerSession()
+{
+}
+
+
+
+CNetServerSessionRemote::CNetServerSessionRemote(CNetServer& server, ENetPeer* peer) :
+	CNetServerSession(server), m_Peer(peer)
+{
+
+}
+
+void CNetServerSessionRemote::Disconnect()
+{
+	// TODO
+}
+
+bool CNetServerSessionRemote::SendMessage(const CNetMessage* message)
+{
+	return GetServer().SendMessage(m_Peer, message);
+}
+
+
+
+CNetServerSessionLocal::CNetServerSessionLocal(CNetServer& server, CNetClientSessionLocal& clientSession) :
+	CNetServerSession(server), m_ClientSession(clientSession)
+{
+}
+
+void CNetServerSessionLocal::Disconnect()
+{
+	// TODO
+}
+
+bool CNetServerSessionLocal::SendMessage(const CNetMessage* message)
+{
+	LOGMESSAGE(L"Net server: Sending local message %hs to %p", message->ToString().c_str(), &m_ClientSession);
+	m_ClientSession.AddLocalMessage(message);
+	return true;
 }

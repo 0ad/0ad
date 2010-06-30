@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -13,14 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- *-----------------------------------------------------------------------------
- *	FILE			: fsm.h
- *	PROJECT			: 0 A.D.
- *	DESCRIPTION		: Finite state machine class definitions
- *-----------------------------------------------------------------------------
  */
 
 #ifndef FSM_H
@@ -53,14 +45,11 @@ typedef std::map< unsigned int, CFsmEvent* >	EventMap;
 typedef std::vector< CFsmTransition* >			TransitionList;
 typedef std::vector< CallbackFunction >			CallbackList;
 
-/*
-	CLASS			: CFsmEvent
-	DESCRIPTION		: CFsmEvent class represents a signal in the state machine
-					  that a change has occurred.
-	NOTES			: The CFsmEvent objects are under the control of CFsm so
-					  they are created and deleted via CFsm.
-*/
-
+/**
+ * Represents a signal in the state machine that a change has occurred.
+ * The CFsmEvent objects are under the control of CFsm so
+ * they are created and deleted via CFsm.
+ */
 class CFsmEvent
 {
 	NONCOPYABLE(CFsmEvent);
@@ -79,13 +68,9 @@ private:
 };
 
 
-/*
-	CLASS			: CFsmTransition
-	DESCRIPTION		: The CFsmTransition class is an association of event, condition,
-					  action and next state.
-	NOTES			:
-*/
-
+/**
+ * An association of event, condition, action and next state.
+ */
 class CFsmTransition
 {
 	NONCOPYABLE(CFsmTransition);
@@ -118,18 +103,17 @@ private:
 	CallbackList	m_Conditions;		// List of conditions for transition
 };
 
-/*
-	CLASS			: CFsm
-	DESCRIPTION		: CFsm manages states, events, actions and transitions
-					  between states. It provides an interface for advertising
-					  events and track the current state. The implementation is
-					  a Mealy state machine, so the system respond to events
-					  and execute some action.
-	NOTES			: A Mealy state machine has behaviour associated with state
-					  transitions; Mealy machines are event driven where an 
-					  event triggers a state transition
-*/
-
+/**
+ * Manages states, events, actions and transitions
+ * between states. It provides an interface for advertising
+ * events and track the current state. The implementation is
+ * a Mealy state machine, so the system respond to events
+ * and execute some action.
+ *
+ * A Mealy state machine has behaviour associated with state
+ * transitions; Mealy machines are event driven where an
+ * event triggers a state transition
+ */
 class CFsm
 {
 	NONCOPYABLE(CFsm);
@@ -141,13 +125,11 @@ public:
 	/**
 	 * Constructs the state machine. This method must be overriden so that
 	 * connections are constructed for the particular state machine implemented
-	 *
 	 */
 	virtual void Setup( void );
 
 	/**
 	 * Clear event, action and condition lists and reset state machine
-	 *
 	 */
 	void Shutdown( void );
 
@@ -177,8 +159,9 @@ public:
 	bool			IsValidEvent		( unsigned int eventType ) const;
 	virtual bool	IsDone				( void ) const;
 
-private:
+protected:
 	void			SetCurrState		( unsigned int state );
+private:
 	bool			IsFirstTime			( void ) const;
 
 	bool			m_Done;				// FSM work is done

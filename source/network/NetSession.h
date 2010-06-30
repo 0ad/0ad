@@ -18,90 +18,171 @@
 #ifndef NETSESSION_H
 #define NETSESSION_H
 
-#include "fsm.h"
-#include "scripting/ScriptableObject.h"
+#include "network/fsm.h"
+#include "network/NetHost.h"
+#include "ps/CStr.h"
+#include "scriptinterface/ScriptVal.h"
 
-class CPlayerSlot;
-class CNetHost;
-class CNetSession;
-typedef struct _ENetPeer ENetPeer;
+class CNetClient;
+class CNetServer;
 
-struct FsmActionCtx
+class CNetServerSessionLocal; // forward declaration, needed because of circular references
+
+/**
+ * @file
+ * Network client/server sessions.
+ *
+ * Each session has two classes: CNetClientSession runs on the client,
+ * and CNetServerSession runs on the server.
+ * A client runs one session at once; a server typically runs many.
+ *
+ * There are two variants of each session: Remote (the normal ENet-based
+ * network session) and Local (a shortcut when the client and server are
+ * running inside the same process and don't need the network to communicate).
+ */
+
+/**
+ * The client end of a network session.
+ * Provides an abstraction of the network interface, allowing communication with the server.
+ */
+class CNetClientSession
 {
-	CNetHost* pHost;
-	CNetSession* pSession;
+	NONCOPYABLE(CNetClientSession);
+
+public:
+	CNetClientSession(CNetClient& client);
+	virtual ~CNetClientSession();
+
+	virtual void Poll() = 0;
+	virtual void Disconnect() = 0;
+	virtual bool SendMessage(const CNetMessage* message) = 0;
+
+	CNetClient& GetClient() { return m_Client; }
+
+private:
+	CNetClient& m_Client;
 };
 
 /**
- * CNetSession is a wrapper class around the ENet peer concept
- * which represents a peer from a network connection. A
- * network session is spawned by CNetServer each time a
- * client connects and destroyed when it disconnects. When a
- * new message is received from a client, its representing
- * session object's message handler is called for processing
- * that message.
- * CNetSession is also a state machine. All client requests
- * are delegated to the current state. The current
- * CNetSessionState object's methods will change the current
- * state as appropriate.
+ * ENet-based implementation of CNetClientSession.
  */
-
-class CNetSession : public CFsm,
-					public CJSObject<CNetSession>
+class CNetClientSessionRemote : public CNetClientSession
 {
-	NONCOPYABLE(CNetSession);
-
-	friend class CNetHost;
+	NONCOPYABLE(CNetClientSessionRemote);
 
 public:
+	CNetClientSessionRemote(CNetClient& client);
+	~CNetClientSessionRemote();
 
-	virtual ~CNetSession();
+	bool Connect(u16 port, const CStr& server);
 
-	/**
-	 * Retrieves the name of the session
-	 *
-	 * @return							Session name
-	 */
-	const CStrW& GetName() const { return m_Name; }
+	virtual void Poll();
+	virtual void Disconnect();
+	virtual bool SendMessage(const CNetMessage* message);
 
-	/**
-	 * Set the new name for the session
-	 *
-	 * @param name						The session new name
-	 */
-	void SetName(const CStr& name);
-
-	/**
-	 * Retrieves the ID of the session
-	 *
-	 * @return							Session ID
-	 */
-	uint GetID() const { return m_ID; }
-
-	/**
-	 * Set the ID for this session
-	 *
-	 * @param							New session ID
-	 */
-	void SetID(uint ID);
-
-	FsmActionCtx* GetFsmActionCtx() { return &m_FsmActionCtx; }
-
-	void SetPlayerSlot(CPlayerSlot* pPlayerSlot);
-	CPlayerSlot* GetPlayerSlot() { return m_PlayerSlot; }
-	static void ScriptingInit();
+	ENetPacket* CreatePacket(const CNetMessage* message);
 
 private:
+	ENetHost* m_Host;
+	ENetPeer* m_Server;
+};
 
-	// Only the hosts can create sessions
-	CNetSession(CNetHost* pHost, ENetPeer* pPeer);
+/**
+ * Local implementation of CNetClientSession, for use with servers
+ * running in the same process.
+ */
+class CNetClientSessionLocal : public CNetClientSession
+{
+	NONCOPYABLE(CNetClientSessionLocal);
 
-	CNetHost*		  m_Host;			 // The associated local host
-	ENetPeer*		  m_Peer;			 // Represents the peer host
-	uint			  m_ID;				 // Session ID
-	CStrW			  m_Name;			 // Session name
-	CPlayerSlot*	  m_PlayerSlot;
-	FsmActionCtx	  m_FsmActionCtx;
+public:
+	CNetClientSessionLocal(CNetClient& client, CNetServer& server);
+
+	void SetServerSession(CNetServerSessionLocal* session) { m_ServerSession = session; }
+	CNetServerSessionLocal* GetServerSession() { return m_ServerSession; }
+
+	virtual void Poll();
+	virtual void Disconnect();
+	virtual bool SendMessage(const CNetMessage* message);
+
+	void AddLocalMessage(const CNetMessage* message);
+
+private:
+	CNetServer& m_Server;
+	CNetServerSessionLocal* m_ServerSession;
+
+	std::vector<CNetMessage*> m_LocalMessageQueue;
+};
+
+
+/**
+ * The server's end of a network session.
+ * Represents an abstraction of the state of the client, storing all the per-client data
+ * needed by the server.
+ */
+class CNetServerSession : public CFsm
+{
+	NONCOPYABLE(CNetServerSession);
+
+public:
+	CNetServerSession(CNetServer& server);
+	virtual ~CNetServerSession();
+
+	CNetServer& GetServer() { return m_Server; }
+
+	const CStr& GetGUID() const { return m_GUID; }
+	void SetGUID(const CStr& guid) { m_GUID = guid; }
+
+	const CStrW& GetUserName() const { return m_UserName; }
+	void SetUserName(const CStrW& name) { m_UserName = name; }
+
+	u32 GetHostID() const { return m_HostID; }
+	void SetHostID(u32 id) { m_HostID = id; }
+
+	virtual void Disconnect() = 0;
+	virtual bool SendMessage(const CNetMessage* message) = 0;
+
+private:
+	CNetServer& m_Server;
+
+	CStr m_GUID;
+	CStrW m_UserName;
+	u32 m_HostID;
+};
+
+/**
+ * ENet-based implementation of CNetServerSession.
+ */
+class CNetServerSessionRemote : public CNetServerSession
+{
+	NONCOPYABLE(CNetServerSessionRemote);
+
+public:
+	CNetServerSessionRemote(CNetServer& server, ENetPeer* peer);
+
+	virtual void Disconnect();
+	virtual bool SendMessage(const CNetMessage* message);
+
+private:
+	ENetPeer* m_Peer;
+};
+
+/**
+ * Local implementation of CNetServerSession, for use with clients
+ * running in the same process.
+ */
+class CNetServerSessionLocal : public CNetServerSession
+{
+	NONCOPYABLE(CNetServerSessionLocal);
+
+public:
+	CNetServerSessionLocal(CNetServer& server, CNetClientSessionLocal& clientSession);
+
+	virtual void Disconnect();
+	virtual bool SendMessage(const CNetMessage* message);
+
+private:
+	CNetClientSessionLocal& m_ClientSession;
 };
 
 #endif	// NETSESSION_H

@@ -135,6 +135,13 @@
 		textcolor="black"
 	/>
 
+	<style  name="wheatInput"
+		sprite="wheatIndentFillVeryLight"
+		sprite_selectarea="bkFillDarkBlue"
+		textcolor="black"
+		textcolor_selected="white"
+	/>
+
 	<style 	name="wheatArrowLeft"
 		font="serif-14"
 		sprite="wheatCheckBoxOpen"
@@ -207,8 +214,8 @@
 		sprite2_pressed="wheatArrowDnOver"
 
 		buffer_zone="10"
-		dropdown_size="100"
-		sprite_list="textureGranite"
+		dropdown_size="200"
+		sprite_list="bkGraniteBorderBlack"
 		sprite_selectarea="bkGrayBorderBlack"
 		textcolor_selected="white"
 

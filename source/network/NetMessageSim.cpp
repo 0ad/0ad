@@ -19,6 +19,7 @@
 
 #include "NetMessage.h"
 
+#include "lib/utf8.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/serialization/BinarySerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
@@ -145,12 +146,58 @@ size_t CSimulationMessage::GetSerializedLength() const
 
 CStr CSimulationMessage::ToString() const
 {
-	std::string source;
-
-	if (!m_ScriptInterface.CallFunction(m_Data.get(), "toSource", source))
-		source = "ERROR";
+	std::string source = utf8_from_wstring(m_ScriptInterface.ToString(m_Data.get()));
 
 	std::stringstream stream;
 	stream << "CSimulationMessage { m_Client: " << m_Client << ", m_Player: " << m_Player << ", m_Turn: " << m_Turn << ", m_Data: " << source << " }";
+	return stream.str();
+}
+
+
+CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface) :
+	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface)
+{
+}
+
+CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface, jsval data) :
+	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface),
+	m_Data(scriptInterface.GetContext(), data)
+{
+}
+
+u8* CGameSetupMessage::Serialize(u8* pBuffer) const
+{
+	// TODO: ought to handle serialization exceptions
+
+	u8* pos = CNetMessage::Serialize(pBuffer);
+	CBufferBinarySerializer serializer(m_ScriptInterface, pos);
+	serializer.ScriptVal("command", m_Data);
+	return serializer.GetBuffer();
+}
+
+const u8* CGameSetupMessage::Deserialize(const u8* pStart, const u8* pEnd)
+{
+	// TODO: ought to handle serialization exceptions
+
+	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
+	std::istringstream stream(std::string(pos, pEnd));
+	CStdDeserializer deserializer(m_ScriptInterface, stream);
+	deserializer.ScriptVal(m_Data);
+	return pEnd;
+}
+
+size_t CGameSetupMessage::GetSerializedLength() const
+{
+	CLengthBinarySerializer serializer(m_ScriptInterface);
+	serializer.ScriptVal("command", m_Data);
+	return CNetMessage::GetSerializedLength() + serializer.GetLength();
+}
+
+CStr CGameSetupMessage::ToString() const
+{
+	std::string source = utf8_from_wstring(m_ScriptInterface.ToString(m_Data.get()));
+
+	std::stringstream stream;
+	stream << "CGameSetupMessage { m_Data: " << source << " }";
 	return stream.str();
 }

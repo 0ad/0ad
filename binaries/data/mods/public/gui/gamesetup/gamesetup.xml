@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script file="gui/gamesetup/gamesetup.js"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" sprite="bkTranslucent"/>
+
+	<object type="image" style="wheatWindow" size="50%-400 50%-300 50%+400 50%+300">
+
+		<action on="Tick">
+			onTick();
+		</action>
+
+		<object style="wheatWindowTitleBar" type="text">Match setup</object>
+
+		<object type="button" style="wheatExit" tooltip_style="snToolTip">
+			<action on="Press"><![CDATA[
+				Engine.PopGuiPage();
+			]]></action>
+		</object>
+
+		<object size="0 0 250 100%">
+
+			<object name="mapSelection"
+					style="wheatList"
+					type="list"
+					size="0 0 100% 100%-200"
+					tooltip_style="onscreenToolTip"
+					tooltip="Select a map to play on.">
+				<action on="Load">initMapNameList(this);</action>
+				<action on="SelectionChange">selectMap(this.list[this.selected]);</action>
+			</object>
+
+			<object type="image" style="indentedPanel" size="0 100%-190 100% 100%">
+				<object name="mapInfoName" type="text" size="0 0 100% 30" font="serif-bold-18">[Map name]</object>
+				<object name="mapInfoDescription" type="text" size="0 24 100% 100%" font="serif-13">[Description]</object>
+			</object>
+
+		</object>
+
+		<object size="260 0 100% 100%-200" type="image" sprite="wheatIndentFillLight">
+			<repeat count="8">
+				<object name="playerBox[n]" size="0 0 100% 30">
+					<object name="playerName[n]" type="text" text_align="right" size="0 6 150 100%">[Player name]</object>
+					<object name="playerAssignment[n]" type="dropdown" style="wheatDropDown" size="150 2 300 100%"/>
+				</object>
+			</repeat>
+		</object>
+
+		<object name="onscreenToolTip"
+			type="text"
+			font="serif-14"
+			textcolor="white"
+			sprite="bkTranslucent"
+			hidden="true"
+			size="100%-300 100%-190 100% 100%-45"
+		>[Tooltip text]</object>
+
+		<object
+			type="button"
+			style="wheatButton"
+			font="serif-16"
+			size="100%-140 100%-40 100%+3 100%+3"
+			tooltip_style="onscreenToolTip"
+			tooltip="Click this button to start a new game with the current settings."
+		>Start game!
+			<action on="Press">launchGame();</action>
+		</object>
+
+	</object>
+
+</objects>

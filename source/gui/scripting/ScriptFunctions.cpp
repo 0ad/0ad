@@ -22,17 +22,22 @@
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
+#include "lib/sysdep/sysdep.h"
 #include "maths/FixedVector3D.h"
+#include "network/NetClient.h"
+#include "network/NetServer.h"
+#include "network/NetTurnManager.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Overlay.h"
-#include "ps/Player.h"
 #include "ps/GameSetup/Config.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/helpers/Selection.h"
+
+#include "js/jsapi.h"
 
 /*
  * This file defines a set of functions that are available to GUI scripts, to allow
@@ -82,8 +87,8 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 		return JSVAL_VOID;
 
 	int player = -1;
-	if (g_Game && g_Game->GetLocalPlayer())
-		player = g_Game->GetLocalPlayer()->GetPlayerID();
+	if (g_Game)
+		player = g_Game->GetPlayerID();
 
 	CScriptValRooted arg (sim->GetScriptInterface().GetContext(), sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), data.get()));
 	CScriptVal ret (gui->ScriptCall(player, name, arg.get()));
@@ -133,9 +138,105 @@ std::wstring SetCursor(void* UNUSED(cbdata), std::wstring name)
 
 int GetPlayerID(void* UNUSED(cbdata))
 {
-	if (g_Game && g_Game->GetLocalPlayer())
-		return g_Game->GetLocalPlayer()->GetPlayerID();
+	if (g_Game)
+		return g_Game->GetPlayerID();
 	return -1;
+}
+
+std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
+{
+	// TODO: this should come from a config file or something
+	std::wstring name = sys_get_user_name();
+	if (name.empty())
+		name = L"anonymous";
+	return name;
+}
+
+void StartNetworkGame(void* UNUSED(cbdata))
+{
+	debug_assert(g_NetServer);
+	g_NetServer->StartGame();
+}
+
+void StartGame(void* cbdata, CScriptVal attribs, int playerID)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	debug_assert(!g_NetServer);
+	debug_assert(!g_NetClient);
+
+	debug_assert(!g_Game);
+	g_Game = new CGame();
+
+	// Convert from GUI script context to sim script context
+	CSimulation2* sim = g_Game->GetSimulation2();
+	CScriptValRooted gameAttribs (sim->GetScriptInterface().GetContext(),
+			sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), attribs.get()));
+
+	g_Game->SetPlayerID(playerID);
+	g_Game->StartGame(gameAttribs);
+}
+
+void SetNetworkGameAttributes(void* cbdata, CScriptVal attribs)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	debug_assert(g_NetServer);
+
+	// Convert from GUI script context to net server script context
+	CScriptValRooted gameAttribs (g_NetServer->GetScriptInterface().GetContext(),
+			g_NetServer->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), attribs.get()));
+
+	g_NetServer->UpdateGameAttributes(gameAttribs);
+}
+
+void StartNetworkHost(void* UNUSED(cbdata), std::wstring playerName)
+{
+	debug_assert(!g_NetClient);
+	debug_assert(!g_NetServer);
+	debug_assert(!g_Game);
+
+	g_NetServer = new CNetServer();
+	bool ok = g_NetServer->SetupConnection();
+	debug_assert(ok); // TODO: need better error handling
+
+	g_Game = new CGame();
+	g_NetClient = new CNetClient(g_Game);
+	g_NetClient->SetUserName(playerName);
+	g_NetClient->SetupLocalConnection(*g_NetServer);
+}
+
+void StartNetworkJoin(void* UNUSED(cbdata), std::wstring playerName, std::string serverAddress)
+{
+	debug_assert(!g_NetClient);
+	debug_assert(!g_NetServer);
+	debug_assert(!g_Game);
+
+	g_Game = new CGame();
+	g_NetClient = new CNetClient(g_Game);
+	g_NetClient->SetUserName(playerName);
+	g_NetClient->SetupConnection(serverAddress);
+}
+
+// TODO: we need some way to disconnect the server/client
+
+CScriptVal PollNetworkClient(void* cbdata)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	debug_assert(g_NetClient);
+
+	CScriptValRooted poll = g_NetClient->GuiPoll();
+
+	// Convert from net client context to GUI script context
+	return guiManager->GetScriptInterface().CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), poll.get());
+}
+
+void AssignNetworkPlayer(void* UNUSED(cbdata), int playerID, std::string guid)
+{
+	debug_assert(g_NetServer);
+
+	g_NetServer->AssignPlayer(playerID, guid);
 }
 
 } // namespace
@@ -158,7 +259,17 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickFriendlyEntitiesInRect>("PickFriendlyEntitiesInRect");
 	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtPoint>("GetTerrainAtPoint");
 
+	// Network / game setup functions
+	scriptInterface.RegisterFunction<void, &StartNetworkGame>("StartNetworkGame");
+	scriptInterface.RegisterFunction<void, CScriptVal, int, &StartGame>("StartGame");
+	scriptInterface.RegisterFunction<void, std::wstring, &StartNetworkHost>("StartNetworkHost");
+	scriptInterface.RegisterFunction<void, std::wstring, std::string, &StartNetworkJoin>("StartNetworkJoin");
+	scriptInterface.RegisterFunction<CScriptVal, &PollNetworkClient>("PollNetworkClient");
+	scriptInterface.RegisterFunction<void, CScriptVal, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
+	scriptInterface.RegisterFunction<void, int, std::string, &AssignNetworkPlayer>("AssignNetworkPlayer");
+
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
+	scriptInterface.RegisterFunction<std::wstring, &GetDefaultPlayerName>("GetDefaultPlayerName");
 }

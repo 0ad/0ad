@@ -26,7 +26,6 @@ class CStrW;
 class CScriptObject;
 class CObjectEntry;
 class CVector3D;
-class CPlayer;
 
 // -----
 //
@@ -111,10 +110,6 @@ template<> jsval ToJSVal<CVector3D>( const CVector3D& Native );
 // CObjectEntry
 template<> bool ToPrimitive<CObjectEntry>( JSContext* cx, jsval v, CObjectEntry*& Storage );
 template<> jsval ToJSVal<CObjectEntry>( CObjectEntry*& Native );
-
-// CPlayer*
-template<> bool ToPrimitive<CPlayer*>( JSContext* cx, jsval v, CPlayer*& Storage );
-template<> JSObject* ToScript<CPlayer*>( CPlayer** Native );
 
 // CScriptObject
 template<> bool ToPrimitive<CScriptObject>( JSContext* cx, jsval v, CScriptObject& Storage );

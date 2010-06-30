@@ -31,6 +31,24 @@ function getHotloadData()
 	return { selection: g_Selection.selected };
 }
 
+function changeNetStatus(status)
+{
+	var obj = getGUIObjectByName("netStatus");
+	switch (status)
+	{
+	case "normal":
+		obj.caption = "";
+		obj.hidden = true;
+		break;
+	case "waiting_for_connect":
+		obj.caption = "Waiting for other players to connect";
+		obj.hidden = false;
+		break;
+	default:
+		error("Unexpected net status "+status);
+	}
+}
+
 function onTick()
 {
 	g_DevSettings.controlAll = getGUIObjectByName("devControlAll").checked;
@@ -92,6 +110,9 @@ function updatePlayerDisplay(simState)
 {
 	var playerState = simState.players[Engine.GetPlayerID()];
 	
+	if (!playerState)
+		return;
+
 	getGUIObjectByName("resourceFood").caption = playerState.resourceCounts.food;
 	getGUIObjectByName("resourceWood").caption = playerState.resourceCounts.wood;
 	getGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;

@@ -15,623 +15,380 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- *-----------------------------------------------------------------------------
- *	FILE			: NetClient.cpp
- *	PROJECT			: 0 A.D.
- *	DESCRIPTION		: Network client class implementation file
- *-----------------------------------------------------------------------------
- */
-
-// INCLUDES
 #include "precompiled.h"
 
 #include "NetClient.h"
 
-#include "NetJsEvents.h"
-#include "Network.h"
-#include "NetServer.h"
+#include "NetMessage.h"
+#include "NetSession.h"
+#include "NetTurnManager.h"
 
-#include "scripting/DOMEvent.h"
-#include "scripting/JSConversions.h"
-#include "scripting/ScriptableObject.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
-#include "ps/Globals.h"
-#include "ps/GameAttributes.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
-// DECLARATIONS
-
-#define LOG_CATEGORY L"net"
+#include <boost/nondet_random.hpp>
+#include <boost/random.hpp>
 
 CNetClient *g_NetClient = NULL;
 
-//-----------------------------------------------------------------------------
-// Name: CServerPlayer()
-// Desc: Constructor
-//-----------------------------------------------------------------------------
-CServerPlayer::CServerPlayer( uint sessionID, const CStr& nickname )
+CNetClient::CNetClient(CGame* game) :
+	m_Session(NULL),
+	m_UserName(L"anonymous"),
+	m_GUID(GenerateGUID()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game)
 {
-	m_SessionID	= sessionID;
-	m_Nickname	= nickname;
-}
+	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
-//-----------------------------------------------------------------------------
-// Name: ~CServerPlayer()
-// Desc: Destructor
-//-----------------------------------------------------------------------------
-CServerPlayer::~CServerPlayer( void )
-{
-}
+	void* context = this;
 
-//-----------------------------------------------------------------------------
-// Name: ScriptingInit()
-// Desc:
-//-----------------------------------------------------------------------------
-void CServerPlayer::ScriptingInit( void )
-{
-	AddProperty(L"id", &CServerPlayer::m_SessionID, true);
-	AddProperty(L"name", &CServerPlayer::m_Nickname, true);
+	// Set up transitions for session
+	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, (void*)&OnConnect, context);
 
-	CJSObject<CServerPlayer>::ScriptingInit( "NetClient_ServerSession" );
-}
+	AddTransition(NCS_CONNECT, (uint)NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, (void*)&OnHandshake, context);
 
-//-----------------------------------------------------------------------------
-// Name: CNetClient()
-// Desc: Constructor
-//-----------------------------------------------------------------------------
-CNetClient::CNetClient( ScriptInterface& scriptInterface, CGame* pGame, CGameAttributes* pGameAttribs )
-: CNetHost( scriptInterface ), m_JsPlayers( &m_Players )
-{
-	m_ClientTurnManager = NULL;
+	AddTransition(NCS_HANDSHAKE, (uint)NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, (void*)&OnHandshakeResponse, context);
 
-	m_pLocalPlayerSlot = NULL;
-	m_pGame = pGame;
-	m_pGameAttributes = pGameAttribs;
+	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_INITIAL_GAMESETUP, (void*)&OnAuthenticate, context);
 
-	g_ScriptingHost.SetGlobal("g_NetClient", OBJECT_TO_JSVAL(GetScript()));
-}
+	AddTransition(NCS_INITIAL_GAMESETUP, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 
-//-----------------------------------------------------------------------------
-// Name: ~CNetClient()
-// Desc: Destructor
-//-----------------------------------------------------------------------------
-CNetClient::~CNetClient()
-{
-	// Release resources
-	PlayerMap::iterator it = m_Players.begin();
-	for ( ; it != m_Players.end(); it++ )
-	{
-		CServerPlayer *pCurrPlayer = it->second;
-		if ( pCurrPlayer ) delete pCurrPlayer;
-	}
+	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, (void*)&OnPlayerAssignment, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, (void*)&OnGameStart, context);
 
-	m_Players.clear();
+	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, (void*)&OnGameSetup, context);
+	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, (void*)&OnPlayerAssignment, context);
+	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
 
-	g_ScriptingHost.SetGlobal("g_NetClient", JSVAL_NULL);
-}
+	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
+	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
+	AddTransition(NCS_INGAME, (uint)NMT_SIMULATION_COMMAND, NCS_INGAME, (void*)&OnInGame, context);
+	AddTransition(NCS_INGAME, (uint)NMT_SYNC_ERROR, NCS_INGAME, (void*)&OnInGame, context);
+	AddTransition(NCS_INGAME, (uint)NMT_END_COMMAND_BATCH, NCS_INGAME, (void*)&OnInGame, context);
 
-//-----------------------------------------------------------------------------
-// Name: ScriptingInit()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetClient::ScriptingInit()
-{
-	AddMethod<bool, &CNetClient::SetupConnection>("beginConnect", 1);
-
-	AddProperty(L"onStartGame", &CNetClient::m_OnStartGame);
-	AddProperty(L"onChat", &CNetClient::m_OnChat);
-	AddProperty(L"onConnectComplete", &CNetClient::m_OnConnectComplete);
-	AddProperty(L"onDisconnect", &CNetClient::m_OnDisconnect);
-	AddProperty(L"onClientConnect", &CNetClient::m_OnPlayerJoin);
-	AddProperty(L"onClientDisconnect", &CNetClient::m_OnPlayerLeave);
-
-	AddProperty(L"password", &CNetClient::m_Password);
-	AddProperty<CStr>(L"playerName", &CNetClient::m_Nickname);
-	
-	AddProperty(L"sessions", &CNetClient::m_JsPlayers);
-	
-	CJSMap< PlayerMap >::ScriptingInit("NetClient_SessionMap");
-	CJSObject<CNetClient>::ScriptingInit("NetClient");
-}
-
-//-----------------------------------------------------------------------------
-// Name: Run()
-// Desc: Connect to server and start main loop
-//-----------------------------------------------------------------------------
-bool CNetClient::SetupConnection( JSContext* UNUSED(pContext), uintN argc, jsval* argv )
-{
-	uint port = DEFAULT_HOST_PORT;
-
-	// Validate parameters
-	if ( argc == 0 ) return false;
-
-	// Build host information
-	CStr host = g_ScriptingHost.ValueToString( argv[0] );
-	if ( argc == 2 ) port = ToPrimitive< uint >( argv[ 1 ] );
-
-	// Create client host
-	if ( !Create() ) return false;
-
-	// Connect to server
-	return Connect( host, port );
-}
-
-//-----------------------------------------------------------------------------
-// Name: SetupSession()
-// Desc: Setup client session upon creation
-//-----------------------------------------------------------------------------
-bool CNetClient::SetupSession( CNetSession* pSession )
-{
-	// Validate parameters
-	if ( !pSession ) return false;
-
-	FsmActionCtx* pContext = pSession->GetFsmActionCtx();
-
-	pContext->pHost		= this;
-	pContext->pSession	= pSession;
-
-	// Setup transitions for session
-	pSession->AddTransition( NCS_CONNECT, ( uint )NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, (void*)&OnHandshake, pContext );
-
-	pSession->AddTransition( NCS_HANDSHAKE, ( uint )NMT_ERROR, NCS_CONNECT, (void*)&OnError, pContext );
-	pSession->AddTransition( NCS_HANDSHAKE, ( uint )NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, (void*)&OnHandshake, pContext );
-
-	pSession->AddTransition( NCS_AUTHENTICATE, ( uint )NMT_ERROR, NCS_CONNECT, (void*)&OnError, pContext );
-	pSession->AddTransition( NCS_AUTHENTICATE, ( uint )NMT_AUTHENTICATE_RESULT, NCS_PREGAME, (void*)&OnAuthenticate, pContext );
-
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_ERROR, NCS_CONNECT, (void*)&OnError, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnPreGame, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_ASSIGN_PLAYER_SLOT, NCS_PREGAME, (void*)&OnPreGame, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_PLAYER_CONFIG, NCS_PREGAME, (void*)&OnPreGame, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_PLAYER_JOIN, NCS_PREGAME, (void*)&OnPlayerJoin, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_GAME_START, NCS_INGAME, (void*)&OnStartGame_, pContext );
-
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_CHAT, NCS_INGAME, (void*)&OnChat, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SIMULATION_COMMAND, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_SYNC_ERROR, NCS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NCS_INGAME, (void*)&OnInGame, pContext );
+	// TODO: add chat
 
 	// Set first state
-	pSession->SetFirstState( NCS_CONNECT );
-
-	return true;
+	SetFirstState(NCS_UNCONNECTED);
 }
 
-//-----------------------------------------------------------------------------
-// Name: HandleConnect()
-// Desc: Called when the client successfully connected to server
-//-----------------------------------------------------------------------------
-bool CNetClient::HandleConnect( CNetSession* pSession )
+CNetClient::~CNetClient()
 {
-	// Validate parameters
-	if ( !pSession ) return false;
-
-	return true;
+	delete m_Session;
 }
 
-//-----------------------------------------------------------------------------
-// Name: HandleDisconnect()
-// Desc: Called when the client disconnected from the server
-//-----------------------------------------------------------------------------
-bool CNetClient::HandleDisconnect( CNetSession *pSession )
+void CNetClient::SetUserName(const CStrW& username)
 {
-	// Validate parameters
-	if ( !pSession ) return false;
+	debug_assert(!m_Session); // must be called before we start the connection
 
-	return true;
+	m_UserName = username;
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnError()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnError( void* pContext, CFsmEvent* pEvent )
+bool CNetClient::SetupConnection(const CStr& server)
 {
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
+	CNetClientSessionRemote* session = new CNetClientSessionRemote(*this);
+	bool ok = session->Connect(PS_DEFAULT_PORT, server);
+	SetAndOwnSession(session);
+	return ok;
+}
 
-	// Error event?
-	if ( pEvent->GetType() != (uint)NMT_ERROR ) return true;
+void CNetClient::SetupLocalConnection(CNetServer& server)
+{
+	CNetClientSessionLocal* session = new CNetClientSessionLocal(*this, server);
+	SetAndOwnSession(session);
+}
 
-	CNetClient*	pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
-	debug_assert( pClient );
+void CNetClient::SetAndOwnSession(CNetClientSession* session)
+{
+	delete m_Session;
+	m_Session = session;
+}
 
-	CErrorMessage* pMessage = ( CErrorMessage* )pEvent->GetParamRef();
-	if ( pMessage )
+void CNetClient::Poll()
+{
+	if (m_Session)
+		m_Session->Poll();
+}
+
+CScriptValRooted CNetClient::GuiPoll()
+{
+	if (m_GuiMessageQueue.empty())
+		return CScriptValRooted();
+
+	CScriptValRooted r = m_GuiMessageQueue.front();
+	m_GuiMessageQueue.pop_front();
+	return r;
+}
+
+void CNetClient::PushGuiMessage(const CScriptValRooted& message)
+{
+	debug_assert(!message.undefined());
+
+	m_GuiMessageQueue.push_back(message);
+}
+
+std::wstring CNetClient::TestReadGuiMessages()
+{
+	std::wstring r;
+	while (true)
 	{
-		LOG( CLogger::Error, LOG_CATEGORY, L"CNetClient::OnError(): Error description %hs", pMessage->m_Error );
+		CScriptValRooted msg = GuiPoll();
+		if (msg.undefined())
+			break;
+		r += GetScriptInterface().ToString(msg.get()) + L"\n";
+	}
+	return r;
+}
 
-		if ( pClient->m_OnConnectComplete.Defined() )
-		{
-			CConnectCompleteEvent connectComplete( ( CStrW )pMessage->m_Error, false );
-			pClient->m_OnConnectComplete.DispatchEvent( pClient->GetScript(), &connectComplete );
-		}
+ScriptInterface& CNetClient::GetScriptInterface()
+{
+	return m_Game->GetSimulation2()->GetScriptInterface();
+}
+
+void CNetClient::PostPlayerAssignmentsToScript()
+{
+	CScriptValRooted msg;
+	GetScriptInterface().Eval("({'type':'players', 'hosts':{}})", msg);
+
+	CScriptValRooted hosts;
+	GetScriptInterface().GetProperty(msg.get(), "hosts", hosts);
+
+	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+	{
+		CScriptValRooted host;
+		GetScriptInterface().Eval("({})", host);
+		GetScriptInterface().SetProperty(host.get(), "name", std::wstring(it->second.m_Name), false);
+		GetScriptInterface().SetProperty(host.get(), "player", it->second.m_PlayerID, false);
+		GetScriptInterface().SetProperty(hosts.get(), it->first, host, false);
 	}
 
-	return true;
+	PushGuiMessage(msg);
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnPlayer()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnPlayerJoin( void* pContext, CFsmEvent* pEvent )
+bool CNetClient::SendMessage(const CNetMessage* message)
 {
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
-
-	// Connect event?
-	if ( pEvent->GetType() != NMT_PLAYER_JOIN ) return true;
-
-	CNetClient* pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
-	debug_assert( pClient );
-
-	CPlayerJoinMessage* pMessage = ( CPlayerJoinMessage* )pEvent->GetParamRef();
-	if ( pMessage )
-	{
-		for ( uint i = 0; i < pMessage->m_Clients.size(); i++ )
-		{
-			pClient->OnPlayer( pMessage->m_Clients[ i ].m_SessionID, pMessage->m_Clients[ i ].m_Name );
-		}
-
-		pClient->OnConnectComplete();
-	}
-
-	return true;
+	return m_Session->SendMessage(message);
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnConnectComplete()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetClient::OnConnectComplete( )
+void CNetClient::HandleConnect()
 {
-	if ( m_OnConnectComplete.Defined() )
-	{
-		CConnectCompleteEvent connectComplete( "OK", true );
-		m_OnConnectComplete.DispatchEvent( GetScript(), &connectComplete );
-	}
+	Update((uint)NMT_CONNECT_COMPLETE, NULL);
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnHandshake()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnHandshake( void* pContext, CFsmEvent* pEvent )
+void CNetClient::HandleDisconnect()
 {
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
+	// TODO: should do something
+}
 
-	CNetClient*  pClient	= ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
-	CNetSession* pSession	= ( ( FsmActionCtx* )pContext )->pSession;
+bool CNetClient::HandleMessage(CNetMessage* message)
+{
+	// Update FSM
+	bool ok = Update(message->GetType(), message);
+	if (!ok)
+		LOGERROR(L"Net client: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)GetCurrState());
+	return ok;
+}
 
-	debug_assert( pClient );
-	debug_assert( pSession );
+void CNetClient::LoadFinished()
+{
+	m_Game->ChangeNetStatus(CGame::NET_WAITING_FOR_CONNECT);
 
-	switch ( pEvent->GetType() )
-	{
-	//case NMT_ERROR:
-		
-	//	CNetClient::OnError( pContext, pEvent );
-	//	break;
+	CLoadedGameMessage loaded;
+	SendMessage(&loaded);
+}
 
-	case NMT_SERVER_HANDSHAKE:
-		{
-			CCliHandshakeMessage handshake;
-			handshake.m_MagicResponse	= PS_PROTOCOL_MAGIC_RESPONSE;
-			handshake.m_ProtocolVersion	= PS_PROTOCOL_VERSION;
-			handshake.m_SoftwareVersion = PS_PROTOCOL_VERSION;
-			pClient->SendMessage( pSession, &handshake );
-		}
-		break;
+bool CNetClient::OnConnect(void* context, CFsmEvent* event)
+{
+	debug_assert(event->GetType() == (uint)NMT_CONNECT_COMPLETE);
 
-	case NMT_SERVER_HANDSHAKE_RESPONSE:
-		{
-			CAuthenticateMessage authenticate;
-			authenticate.m_Name		= pClient->m_Nickname;
-			authenticate.m_Password = pClient->m_Password;
-			pClient->SendMessage( pSession, &authenticate );
-		}
-		break;
-	}
+	CNetClient* client = (CNetClient*)context;
+
+	CScriptValRooted msg;
+	client->GetScriptInterface().Eval("({'type':'netstatus','status':'connected'})", msg);
+	client->PushGuiMessage(msg);
 
 	return true;
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnAuthenticate()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
+bool CNetClient::OnHandshake(void* context, CFsmEvent* event)
 {
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
-	
-	CNetClient*	 pClient	= ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
-	UNUSED2(pClient);
-	CNetSession* pSession	= ( ( FsmActionCtx* )pContext )->pSession;
+	debug_assert(event->GetType() == (uint)NMT_SERVER_HANDSHAKE);
 
-	debug_assert( pClient );
-	debug_assert( pSession );
+	CNetClient* client = (CNetClient*)context;
 
-	if ( pEvent->GetType() == (uint)NMT_ERROR )
-	{
-		// return CNetClient::OnError( pContext, pEvent );
-	}
-	else if ( pEvent->GetType() == NMT_AUTHENTICATE_RESULT )
-	{
-		CAuthenticateResultMessage* pMessage =( CAuthenticateResultMessage* )pEvent->GetParamRef();
-		if ( !pMessage ) return true;
-
-		LOG(CLogger::Error, LOG_CATEGORY, L"CNetClient::OnAuthenticate(): Authentication result: %ls", pMessage->m_Message.c_str() );
-
-		pSession->SetID( pMessage->m_SessionID );
-
-		LOG(CLogger::Error, LOG_CATEGORY, L"CNetClient::OnAuthenticate(): My session ID is %d", pMessage->m_SessionID);
-	}
+	CCliHandshakeMessage handshake;
+	handshake.m_MagicResponse = PS_PROTOCOL_MAGIC_RESPONSE;
+	handshake.m_ProtocolVersion = PS_PROTOCOL_VERSION;
+	handshake.m_SoftwareVersion = PS_PROTOCOL_VERSION;
+	client->SendMessage(&handshake);
 
 	return true;
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnPreGame()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnPreGame( void* pContext, CFsmEvent* pEvent )
+bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 {
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
+	debug_assert(event->GetType() == (uint)NMT_SERVER_HANDSHAKE_RESPONSE);
 
-	CNetClient*		pClient  = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
-	CNetSession*	pSession = ( CNetSession* )( ( FsmActionCtx* )pContext )->pSession;
+	CNetClient* client = (CNetClient*)context;
 
-	debug_assert( pClient );
-	debug_assert( pSession );
-
-	switch ( pEvent->GetType() )
-	{
-	case NMT_PLAYER_LEAVE:
-		{
-			CPlayerLeaveMessage* pMessage = ( CPlayerLeaveMessage* )pEvent->GetParamRef();
-			if ( !pMessage ) return false;
-
-			pClient->OnPlayerLeave( pMessage->m_SessionID );
-		}
-		break;
-
-	case NMT_GAME_SETUP:
-		{
-			CGameSetupMessage* pMessage = ( CGameSetupMessage* )pEvent->GetParamRef();
-
-			for ( uint i = 0; i < pMessage->m_Values.size(); i++ )
-			{
-				pClient->m_pGameAttributes->SetValue( pMessage->m_Values[ i ].m_Name, pMessage->m_Values[ i ].m_Value );
-			}
-		}
-		break;
-
-	case NMT_ASSIGN_PLAYER_SLOT:
-		{
-			CAssignPlayerSlotMessage* pMessage = ( CAssignPlayerSlotMessage* )pEvent->GetParamRef();
-
-			// FIXME Validate slot id to prevent us from going boom
-			CPlayerSlot* pSlot = pClient->m_pGameAttributes->GetSlot( pMessage->m_SlotID );
-			if ( pSlot == pClient->m_pLocalPlayerSlot ) {
-				pClient->m_pLocalPlayerSlot = NULL;
-			}
-
-			switch ( pMessage->m_Assignment )
-			{
-				case ASSIGN_SESSION:
-					{
-						// TODO: Check where is the best place to assign client's session ID
-						if ( pSession->GetID() == pMessage->m_SessionID )
-						{
-							pClient->m_pLocalPlayerSlot = pSlot;
-						}
-						pSlot->AssignToSessionID( pMessage->m_SessionID );
-					}
-					break;
-
-				case ASSIGN_CLOSED:
-					pSlot->AssignClosed();
-					break;
-
-				case ASSIGN_OPEN:
-					pSlot->AssignOpen();
-					break;
-
-				default:
-					LOG( CLogger::Warning, LOG_CATEGORY, L"Invalid slot assignment %hs", pMessage->ToString().c_str() );
-					break;
-			}
-		}
-		break;
-
-	case NMT_PLAYER_CONFIG:
-		{
-			CPlayerConfigMessage* pMessage = ( CPlayerConfigMessage* )pEvent->GetParamRef();
-
-			// FIXME Check player ID
-			CPlayer* pPlayer = pClient->m_pGameAttributes->GetPlayer( pMessage->m_PlayerID );
-
-			for ( uint i = 0; i < pMessage->m_Values.size(); i++ )
-			{
-				pPlayer->SetValue( pMessage->m_Values[i].m_Name, pMessage->m_Values[i].m_Value );
-			}	
-		}
-		break;
-	}
+	CAuthenticateMessage authenticate;
+	authenticate.m_GUID = client->m_GUID;
+	authenticate.m_Name = client->m_UserName;
+	authenticate.m_Password = L""; // TODO
+	client->SendMessage(&authenticate);
 
 	return true;
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnInGame()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnInGame( void *pContext, CFsmEvent* pEvent )
+bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 {
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
+	debug_assert(event->GetType() == (uint)NMT_AUTHENTICATE_RESULT);
 
-	CNetClient* pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
+	CNetClient* client = (CNetClient*)context;
 
-	CNetMessage* pMessage = ( CNetMessage* )pEvent->GetParamRef();
-	if ( pMessage )
+	CAuthenticateResultMessage* message = (CAuthenticateResultMessage*)event->GetParamRef();
+
+	LOGMESSAGE(L"Net: Authentication result: host=%d, %ls", message->m_HostID, message->m_Message.c_str() );
+
+	client->m_HostID = message->m_HostID;
+
+	CScriptValRooted msg;
+	client->GetScriptInterface().Eval("({'type':'netstatus','status':'authenticated'})", msg);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
+bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
+{
+	debug_assert(event->GetType() == (uint)NMT_GAME_SETUP);
+
+	CNetClient* client = (CNetClient*)context;
+
+	CGameSetupMessage* message = (CGameSetupMessage*)event->GetParamRef();
+
+	client->m_GameAttributes = message->m_Data;
+
+	CScriptValRooted msg;
+	client->GetScriptInterface().Eval("({'type':'gamesetup'})", msg);
+	client->GetScriptInterface().SetProperty(msg.get(), "data", message->m_Data, false);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
+bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
+{
+	debug_assert(event->GetType() == (uint)NMT_PLAYER_ASSIGNMENT);
+
+	CNetClient* client = (CNetClient*)context;
+
+	CPlayerAssignmentMessage* message = (CPlayerAssignmentMessage*)event->GetParamRef();
+
+	// Unpack the message
+	client->m_PlayerAssignments.clear();
+	for (size_t i = 0; i < message->m_Hosts.size(); ++i)
 	{
-		if (pMessage->GetType() == NMT_SIMULATION_COMMAND)
-		{
-			CSimulationMessage* simMessage = static_cast<CSimulationMessage*> (pMessage);
-			pClient->m_ClientTurnManager->OnSimulationMessage(simMessage);
-		}
-		else if (pMessage->GetType() == NMT_SYNC_ERROR)
-		{
-			CSyncErrorMessage* syncMessage = static_cast<CSyncErrorMessage*> (pMessage);
-			pClient->m_ClientTurnManager->OnSyncError(syncMessage->m_Turn, syncMessage->m_HashExpected);
-		}
-		else if ( pMessage->GetType() == NMT_END_COMMAND_BATCH )
-		{
-			CEndCommandBatchMessage* pMessage = ( CEndCommandBatchMessage* )pEvent->GetParamRef();
-			if ( !pMessage ) return false;
+		PlayerAssignment assignment;
+		assignment.m_Name = message->m_Hosts[i].m_Name;
+		assignment.m_PlayerID = message->m_Hosts[i].m_PlayerID;
+		client->m_PlayerAssignments[message->m_Hosts[i].m_GUID] = assignment;
+	}
 
-			CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (pMessage);
-			pClient->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn);
+	client->PostPlayerAssignmentsToScript();
+
+	return true;
+}
+
+bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
+{
+	debug_assert(event->GetType() == (uint)NMT_GAME_START);
+
+	CNetClient* client = (CNetClient*)context;
+
+	// Find the player assigned to our GUID
+	int player = -1;
+	if (client->m_PlayerAssignments.find(client->m_GUID) != client->m_PlayerAssignments.end())
+		player = client->m_PlayerAssignments[client->m_GUID].m_PlayerID;
+
+	client->m_ClientTurnManager = new CNetClientTurnManager(*client->m_Game->GetSimulation2(), *client, client->m_HostID);
+
+	client->m_Game->SetPlayerID(player);
+	client->m_Game->StartGame(client->m_GameAttributes);
+
+	CScriptValRooted msg;
+	client->GetScriptInterface().Eval("({'type':'start'})", msg);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
+bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
+{
+	debug_assert(event->GetType() == (uint)NMT_LOADED_GAME);
+
+	CNetClient* client = (CNetClient*)context;
+
+	// All players have loaded the game - start running the turn manager
+	// so that the game begins
+	client->m_Game->SetTurnManager(client->m_ClientTurnManager);
+	client->m_Game->ChangeNetStatus(CGame::NET_NORMAL);
+
+	return true;
+}
+
+bool CNetClient::OnInGame(void *context, CFsmEvent* event)
+{
+	// TODO: should split each of these cases into a separate method
+
+	CNetClient* client = (CNetClient*)context;
+
+	CNetMessage* message = (CNetMessage*)event->GetParamRef();
+	if (message)
+	{
+		if (message->GetType() == NMT_SIMULATION_COMMAND)
+		{
+			CSimulationMessage* simMessage = static_cast<CSimulationMessage*> (message);
+			client->m_ClientTurnManager->OnSimulationMessage(simMessage);
+		}
+		else if (message->GetType() == NMT_SYNC_ERROR)
+		{
+			CSyncErrorMessage* syncMessage = static_cast<CSyncErrorMessage*> (message);
+			client->m_ClientTurnManager->OnSyncError(syncMessage->m_Turn, syncMessage->m_HashExpected);
+		}
+		else if (message->GetType() == NMT_END_COMMAND_BATCH)
+		{
+			CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (message);
+			client->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn);
 		}
 	}
 
 	return true;
 }
 
-//-----------------------------------------------------------------------------
-// Name: OnChat()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnChat( void* pContext, CFsmEvent* pEvent )
+CStr CNetClient::GenerateGUID()
 {
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
+	// TODO: Ideally this will be guaranteed unique (and verified
+	// cryptographically) since we'll rely on it to identify hosts
+	// and associate them with player controls (e.g. to support
+	// leaving/rejoining in-progress games), and we don't want
+	// a host to masquerade as someone else.
+	// For now, just try to pick a very random number.
 
-	CNetClient* pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
+	boost::random_device rng;
+	boost::uniform_int<u32> dist(0, std::numeric_limits<u32>::max());
+	boost::variate_generator<boost::random_device&, boost::uniform_int<u32> > gen(rng, dist);
 
-	if ( pEvent->GetType() == NMT_CHAT )
+	CStr guid;
+	for (size_t i = 0; i < 2; ++i)
 	{
-		CChatMessage* pMessage = ( CChatMessage* )pEvent->GetParamRef();
-		if ( !pMessage ) return false;
-
-		g_Console->ReceivedChatMessage( pMessage->m_Sender, pMessage->m_Message );
-			
-		if ( pClient->m_OnChat.Defined() )
-		{
-			CChatEvent evt( pMessage->m_Sender, pMessage->m_Message );
-			pClient->m_OnChat.DispatchEvent( pClient->GetScript(), &evt );
-		}
+		char buf[32];
+		sprintf_s(buf, ARRAY_SIZE(buf), "%08X", gen());
+		guid += buf;
 	}
 
-	return true;
-}
-
-//-----------------------------------------------------------------------------
-// Name: OnStartGame()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetClient::OnStartGame( void )
-{
-	if ( m_OnStartGame.Defined() )
-	{
-		CStartGameEvent event;
-		m_OnStartGame.DispatchEvent( GetScript(), &event );
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name: OnStartGame_()
-// Desc:
-//-----------------------------------------------------------------------------
-bool CNetClient::OnStartGame_( void* pContext, CFsmEvent* pEvent )
-{
-	// Validate parameters
-	if ( !pEvent || !pContext ) return false;
-
-	CNetClient* pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
-	CNetSession* pSession = ( ( FsmActionCtx* )pContext )->pSession;
-
-	pClient->m_ClientTurnManager = new CNetClientTurnManager(*pClient->m_pGame->GetSimulation2(), *pClient, pClient->GetLocalPlayer()->GetPlayerID(), pSession->GetID());
-	pClient->m_pGame->SetTurnManager(pClient->m_ClientTurnManager);
-
-	pClient->OnStartGame();
-
-	return true;
-}
-
-//-----------------------------------------------------------------------------
-// Name: OnPlayerJoin()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetClient::OnPlayer( uint ID, const CStr& name )
-{
-	CServerPlayer* pNewPlayer = new CServerPlayer( ID, name );
-	if ( !pNewPlayer ) return;
-
-	// Store new player
-	m_Players[ ID ] = pNewPlayer;
-
-	// Call JS Callback
-	if ( m_OnPlayerJoin.Defined() )
-	{
-		CClientConnectEvent event( ID, name );
-		m_OnPlayerJoin.DispatchEvent( GetScript(), &event );
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name: OnPlayerLeave()
-// Desc:
-//-----------------------------------------------------------------------------
-void CNetClient::OnPlayerLeave( uint ID )
-{
-	// Lookup player
-	PlayerMap::iterator it = m_Players.find( ID );
-	if ( it == m_Players.end() )
-	{
-		LOG( CLogger::Warning, LOG_CATEGORY, L"CNetClient::OnPlayerLeav(): No such player %d.", ID );
-		return;
-	}
-
-	// Call JS Callback
-	if ( m_OnPlayerLeave.Defined() && it->second )
-	{
-		CClientDisconnectEvent event( it->second->GetSessionID(), it->second->GetNickname() );
-		m_OnPlayerLeave.DispatchEvent( GetScript(), &event );
-	}
-
-	// Remove player from internal map
-	m_Players.erase( it );
-}
-
-//-----------------------------------------------------------------------------
-// Name: StartGame()
-// Desc:
-//-----------------------------------------------------------------------------
-int CNetClient::StartGame( void )
-{
-	assert ( m_pGame );
-	assert ( m_pGameAttributes );
-
-	if ( m_pGame->StartGame( m_pGameAttributes ) != PSRETURN_OK ) return -1;
-
-	return 0;
-}
-
-//-----------------------------------------------------------------------------
-// Name: GetLocalPlayer()
-// Desc:
-//-----------------------------------------------------------------------------
-CPlayer* CNetClient::GetLocalPlayer()
-{
-	return m_pLocalPlayerSlot->GetPlayer();
+	return guid;
 }

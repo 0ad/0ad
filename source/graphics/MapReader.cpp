@@ -269,9 +269,12 @@ private:
 	// # entities+nonentities processed and total (for progress calc)
 	int completed_jobs, total_jobs;
 
+	// maximum used entity ID, so we can safely allocate new ones
+	entity_id_t max_uid;
 
 	void Init(const VfsPath& xml_filename);
 
+	void ReadPlayers();
 	void ReadTerrain(XMBElement parent);
 	void ReadEnvironment(XMBElement parent);
 	void ReadCamera(XMBElement parent);
@@ -325,26 +328,73 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 
 	// Find the maximum entity ID, so we can safely allocate new IDs without conflicts
 
-	int max_uid = SYSTEM_ENTITY;
+	max_uid = SYSTEM_ENTITY;
 
 	XMBElement ents = nodes.GetFirstNamedItem(xmb_file.GetElementID("Entities"));
 	XERO_ITER_EL(ents, ent)
 	{
 		utf16string uid = ent.GetAttributes().GetNamedItem(at_uid);
-		max_uid = std::max(max_uid, CStr(uid).ToInt());
+		max_uid = std::max(max_uid, (entity_id_t)CStr(uid).ToInt());
 	}
 
 	// Initialise player data
+	ReadPlayers();
+}
 
+
+void CXMLReader::ReadPlayers()
+{
 	CmpPtr<ICmpPlayerManager> cmpPlayerMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
 	debug_assert(!cmpPlayerMan.null());
 
-	// TODO: this should be loaded from the XML instead
-	size_t numPlayers = 4;
+	// TODO: we ought to read at least some of this data from the map file.
+	// For now, just always use the defaults.
+
+	std::map<int, CStrW> playerDefaultNames;
+	std::map<int, CStrW> playerDefaultCivs;
+	std::map<int, SColor3ub> playerDefaultColours;
+
+	CXeromyces playerDefaultFile;
+	if (playerDefaultFile.Load(L"simulation/data/players.xml") != PSRETURN_OK)
+		throw PSERROR_File_ReadFailed();
+
+#define AT(x) int at_##x = playerDefaultFile.GetAttributeID(#x)
+	AT(id);
+	AT(name);
+	AT(civ);
+	AT(r); AT(g); AT(b);
+#undef AT
+
+	XERO_ITER_EL(playerDefaultFile.GetRoot(), player)
+	{
+		XMBAttributeList attrs = player.GetAttributes();
+		int id = CStr(attrs.GetNamedItem(at_id)).ToInt();
+
+		playerDefaultNames[id] = attrs.GetNamedItem(at_name);
+		playerDefaultCivs[id] = attrs.GetNamedItem(at_civ);
+
+		SColor3ub colour;
+		colour.R = (u8)CStr(attrs.GetNamedItem(at_r)).ToInt();
+		colour.G = (u8)CStr(attrs.GetNamedItem(at_g)).ToInt();
+		colour.B = (u8)CStr(attrs.GetNamedItem(at_b)).ToInt();
+		playerDefaultColours[id] = colour;
+	}
+
+	size_t numPlayers = 9; // including Gaia
+
 	for (size_t i = 0; i < numPlayers; ++i)
 	{
 		int uid = ++max_uid;
 		entity_id_t ent = m_MapReader.pSimulation2->AddEntity(L"special/player", uid);
+		CmpPtr<ICmpPlayer> cmpPlayer(*m_MapReader.pSimulation2, ent);
+		debug_assert(!cmpPlayer.null());
+
+		cmpPlayer->SetName(playerDefaultNames[i]);
+		cmpPlayer->SetCiv(playerDefaultCivs[i]);
+
+		SColor3ub colour = playerDefaultColours[i];
+		cmpPlayer->SetColour(colour.R, colour.G, colour.B);
+
 		cmpPlayerMan->AddPlayer(ent);
 	}
 }
@@ -1012,10 +1062,6 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 			else
 				debug_warn(L"Invalid map XML data");
 		}
-
-		CPlayer* player = NULL;
-		if (g_Game)
-			player = g_Game->GetPlayer(PlayerID);
 
 		// The old version uses a flat entity naming system, so we need
 		// to translate it into the hierarchical filename

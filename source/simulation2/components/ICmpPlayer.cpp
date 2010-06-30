@@ -37,6 +37,16 @@ public:
 		m_Script.CallVoid("SetName", name);
 	}
 
+	virtual void SetCiv(const std::wstring& civcode)
+	{
+		m_Script.CallVoid("SetCiv", civcode);
+	}
+
+	virtual void SetColour(u8 r, u8 g, u8 b)
+	{
+		m_Script.CallVoid("SetColour", (u32)r, (u32)g, (u32)b);
+	}
+
 	virtual CColor GetColour()
 	{
 		return m_Script.Call<CColor>("GetColour");

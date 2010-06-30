@@ -31,7 +31,8 @@ class ICmpPlayer : public IComponent
 {
 public:
 	virtual void SetName(const std::wstring& name) = 0;
-	// TODO: some more data
+	virtual void SetCiv(const std::wstring& civcode) = 0;
+	virtual void SetColour(u8 r, u8 g, u8 b) = 0;
 
 	virtual CColor GetColour() = 0;
 

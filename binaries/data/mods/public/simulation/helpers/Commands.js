@@ -7,6 +7,10 @@ function ProcessCommand(player, cmd)
 
 	switch (cmd.type)
 	{
+	case "debug-print":
+		print(cmd.message);
+		break;
+
 	case "walk":
 		for each (var ent in cmd.entities)
 		{
@@ -120,7 +124,7 @@ function ProcessCommand(player, cmd)
 		break;
 
 	default:
-		print("Ignoring unrecognised command type '" + cmd.type + "'\n");
+		error("Ignoring unrecognised command type '" + cmd.type + "'");
 	}
 }
 

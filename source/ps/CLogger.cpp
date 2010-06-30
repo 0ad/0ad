@@ -136,6 +136,8 @@ CLogger::~CLogger ()
 void CLogger::WriteMessage(const wchar_t* message)
 {
 	++m_NumberOfMessages;
+//	if (m_UseDebugPrintf)
+//		debug_printf(L"MESSAGE: %ls\n", message);
 
 	*m_MainLog << L"<p>" << message << L"</p>\n";
 	m_MainLog->flush();
@@ -354,7 +356,6 @@ void CLogger::PushRenderMessage(ELogMethod method, const wchar_t* message)
 	}
 }
 
-
 void CLogger::CleanupRenderQueue()
 {
 	if (m_RenderMessages.empty())
@@ -396,4 +397,16 @@ TestLogger::~TestLogger()
 std::wstring TestLogger::GetOutput()
 {
 	return m_Stream.str();
+}
+
+TestStdoutLogger::TestStdoutLogger()
+{
+	m_OldLogger = g_Logger;
+	g_Logger = new CLogger(&std::wcout, &blackHoleStream, false, false);
+}
+
+TestStdoutLogger::~TestStdoutLogger()
+{
+	delete g_Logger;
+	g_Logger = m_OldLogger;
 }

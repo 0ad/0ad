@@ -34,13 +34,13 @@ ERROR_SUBGROUP(Game, World);
 ERROR_TYPE(Game_World, MapLoadFailed);
 
 class CGame;
-class CGameAttributes;
 class CUnitManager;
 class CEntityManager;
 class CProjectileManager;
 class CLOSManager;
 class CTerritoryManager;
 class CTerrain;
+class CStrW;
 
 /**
  * CWorld is a general data class containing whatever is needed to accurately represent the world.
@@ -76,11 +76,11 @@ public:
 	CWorld(CGame *pGame);
 	~CWorld();
 
-	void RegisterInit(CGameAttributes *pGameAttributes);
+	void RegisterInit(const CStrW& mapFile);
 	/*
 	Initialize the World - load the map and all objects
 	*/
-	void Initialize(CGameAttributes *pGameAttributes);
+	void Initialize(const CStrW& mapFile);
 
 	// provided for JS _rewritemaps function
 	void RewriteMap();

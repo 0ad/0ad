@@ -18,130 +18,45 @@
 #ifndef NETHOST_H
 #define NETHOST_H
 
-#include "fsm.h"
-
 #include "ps/CStr.h"
 
-#include <vector>
+/**
+ * @file
+ * Various declarations shared by networking code.
+ */
 
 typedef struct _ENetPeer ENetPeer;
+typedef struct _ENetPacket ENetPacket;
 typedef struct _ENetHost ENetHost;
-class CNetSession;
-class CNetHost;
 class CNetMessage;
-class ScriptInterface;
 
-struct PeerSession
+struct PlayerAssignment
 {
-	ENetPeer* pPeer;
-	CNetSession* pSession;
+	CStrW m_Name; // player name
+	i32 m_PlayerID; // the player that the given host controls, or -1 if none (observer)
 };
 
-typedef std::vector<PeerSession> PeerSessionList;
+typedef std::map<CStr, PlayerAssignment> PlayerAssignmentMap; // map from GUID -> assignment
 
-/**
- * Wrapper around ENet host concept
- */
 class CNetHost
 {
-	NONCOPYABLE(CNetHost);
-
 public:
-
-	CNetHost(ScriptInterface& scriptInterface);
-	virtual ~CNetHost();
-
-	bool Create();
-	bool Create(u16 port, size_t maxPeers);
-	void Shutdown();
+	static const int DEFAULT_CHANNEL = 0;
 
 	/**
-	 * Indicates whether the host is currently a server
-	 *
-	 * @return					Boolean indicating whether the host is a server
+	 * Transmit a message to the given peer.
+	 * @param message message to send
+	 * @param peer peer to send to
+	 * @param peerName name of peer for debug logs
+	 * @return true on success, false on failure
 	 */
-	virtual bool IsServer() const { return false; }
+	static bool SendMessage(const CNetMessage* message, ENetPeer* peer, const char* peerName);
 
 	/**
-	 * Returns the number of sessions for the host
-	 *
-	 * @return					The number of sessions
+	 * Construct an ENet packet by serialising the given message.
+	 * @return NULL on failure
 	 */
-	size_t GetSessionCount() const;
-
-	/**
-	 * Returns the session object for the specified index
-	 *
-	 * @param index				Index for session
-	 * @return					Session object for index or	NULL if not found
-	 */
-	CNetSession* GetSession(size_t index);
-
-	/**
-	 * Connects to foreign host synchronously
-	 *
-	 * @param host						Foreign host name
-	 * @param port						Port on which the foreign host listens
-	 * @return							true on success, false on failure
-	 */
-	bool Connect(const CStr& host, u16 port);
-
-	/**
-	 * Connects to foreign host asynchronously (i.e. without waiting for the connection
-	 * to succeed or to time out)
-	 *
-	 * @param host						Foreign host name
-	 * @param port						Port on which the foreign host listens
-	 * @return							true on success, false on failure
-	 */
-	bool ConnectAsync(const CStr& host, u16 port);
-
-	/**
-	 * Disconnects session from host
-	 *
-	 * @param pSession					Session representing peer
-	 * @return							true on success, false otherwise
-	 */
-	bool Disconnect(CNetSession* pSession);
-
-	/**
-	 * Listens for incoming connections and dispatches host events
-	 */
-	void Poll();
-
-	/**
-	 * Broadcast the specified message to connected clients
-	 *
-	 * @param pMessage			Message to broadcast
-	 */
-	void Broadcast(const CNetMessage* pMessage);
-
-	/**
-	 * Send the specified message to client
-	 *
-	 * @param pMessage					The message to send
-	 */
-	bool SendMessage(const CNetSession* pSession, const CNetMessage* pMessage);
-
-protected:
-
-	// Allow application to handle new client connect
-	virtual bool SetupSession(CNetSession* pSession) = 0;
-	virtual bool HandleConnect(CNetSession* pSession) = 0;
-	virtual bool HandleDisconnect(CNetSession* pSession) = 0;
-
-private:
-	/**
-	 * Receive a message from client if available
-	 */
-	CNetMessage* ReceiveMessage(const CNetSession* pSession);
-
-	bool HandleMessageReceive(CNetMessage* pMessage, CNetSession* pSession);
-
-	ScriptInterface& m_ScriptInterface;
-
-	ENetHost* m_Host; // Represents this host
-	PeerSessionList m_PeerSessions; // Session list of connected peers
+	static ENetPacket* CreatePacket(const CNetMessage* message);
 };
 
 #endif	// NETHOST_H

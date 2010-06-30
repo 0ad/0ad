@@ -21,26 +21,10 @@
 #include "graphics/ObjectManager.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Parser.h"
-#include "ps/Player.h"
 #include "lib/sysdep/sysdep.h"	// isfinite
 #include <math.h>
 #include <cfloat>
 #include "scripting/ScriptableComplex.inl"
-
-// CPlayer*
-template<> bool ToPrimitive<CPlayer*>( JSContext* cx, jsval v, CPlayer*& Storage )
-{
-	if( !JSVAL_IS_OBJECT( v ) || ( v == JSVAL_NULL ) ) return( false );
-	CPlayer* Data = (CPlayer*)JS_GetInstancePrivate( cx, JSVAL_TO_OBJECT( v ), &CPlayer::JSI_class, NULL );
-	if( !Data ) return( false );
-	Storage = Data;
-	return( true );
-}
-
-template<> JSObject* ToScript<CPlayer*>( CPlayer** Native )
-{
-	return( ToScript<CPlayer>( *Native ) );
-}
 
 // CVector3D
 

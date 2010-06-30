@@ -15,53 +15,35 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- *-----------------------------------------------------------------------------
- *	FILE			: NetServer.h
- *	PROJECT			: 0 A.D.
- *	DESCRIPTION		: Network server class interface file
- *-----------------------------------------------------------------------------
- */
-
 #ifndef NETSERVER_H
 #define NETSERVER_H
 
-// INCLUDES
-#include "Network.h"
 #include "NetHost.h"
-#include "NetSession.h"
-#include "NetTurnManager.h"
-#include "scripting/ScriptableObject.h"
-#include "ps/scripting/JSMap.h"
-#include "ps/Player.h"
-#include "ps/Game.h"
-#include "scripting/ScriptObject.h"
 
-#include <map>
+#include "scriptinterface/ScriptVal.h"
+
 #include <vector>
 
-// DECLARATIONS
-#define SERVER_SESSIONID			1
-#define CLIENT_MIN_SESSIONID		100
-#define MAX_CLIENTS					8
-#define MAX_OBSERVERS				5
-#define	DEFAULT_SERVER_NAME			L"Noname Server"
-#define DEFAULT_PLAYER_NAME			L"Noname Player"
-#define DEFAULT_WELCOME_MESSAGE		L"Noname Server Welcome Message"
-#define DEFAULT_HOST_PORT			0x5073
-
-class CGameAttributes;
+class CNetClientSessionLocal;
+class CNetServerSession;
+class CNetServerTurnManager;
+class CFsmEvent;
+class ScriptInterface;
+class CPlayerAssignmentMessage;
 
 enum NetServerState
 {
 	// We haven't opened the port yet, we're just setting some stuff up.
 	// This is probably equivalent to the first "Start Network Game" screen
-	SERVER_STATE_PREBIND,
+	SERVER_STATE_UNCONNECTED,
 
 	// The server is open and accepting connections. This is the screen where
 	// rules are set up by the operator and where players join and select civs
 	// and stuff.
 	SERVER_STATE_PREGAME,
+
+	// All the hosts are connected and are loading the game
+	SERVER_STATE_LOADING,
 
 	// The one with all the killing ;-)
 	SERVER_STATE_INGAME,
@@ -71,214 +53,157 @@ enum NetServerState
 	SERVER_STATE_POSTGAME
 };
 
+/**
+ * Server session representation of client state
+ */
 enum
 {
-	NSS_HANDSHAKE		= 1300,
-	NSS_AUTHENTICATE	= 1400,
-	NSS_PREGAME			= 1500,
-	NSS_INGAME			= 1600
+	NSS_HANDSHAKE,
+	NSS_AUTHENTICATE,
+	NSS_PREGAME,
+	NSS_INGAME
 };
 
-enum
-{
-	NMT_APP_PLAYER_LEAVE	= NMT_LAST + 100,
-	NMT_APP_PREGAME			= NMT_LAST + 200,
-	NMT_APP_OBSERVER		= NMT_LAST + 300
-};
-
-typedef std::map< uint, CNetSession* >		IDSessionMap;
-typedef std::vector< CNetSession* >			SessionList;
-
-/*
-	CLASS			: CNetServer
-	DESCRIPTION		: CNetServer implements a network server for the game.
-					  It receives data and connection requests from clients.
-					  Under the hood, it uses ENet library to manage connected
-					  peers and bandwidth among these.
-	NOTES			:
-*/
-
-class CNetServer : 	public CNetHost,
-					public CJSObject<CNetServer>
+/**
+ * Network server.
+ * Handles all the coordination between players.
+ * One person runs this object, and every player (including the host) connects their CNetClient to it.
+ *
+ * TODO: ideally the ENet server would run in a separate thread so it can receive
+ * and forward messages with minimal latency. But that's not supported now.
+ *
+ * TODO: we need to be much more careful at handling client states, to cope with
+ * e.g. people being in the middle of connecting or authenticating when we start the game.
+ */
+class CNetServer
 {
 	NONCOPYABLE(CNetServer);
 public:
-
-	CNetServer( ScriptInterface& scriptInterface, CGame* pGame, CGameAttributes* pGameAttributes );
-	virtual ~CNetServer( void );
-
-	bool Start		( JSContext *pContext, uintN argc, jsval *argv );
+	CNetServer();
+	virtual ~CNetServer();
 
 	/**
-	 * Returns true indicating the host acts as a server
-	 *
-	 * @return					Always true
+	 * Get the current server's connection/game state.
 	 */
-	virtual bool IsServer( void ) const { return true; }
+	NetServerState GetState() const { return m_State; }
 
 	/**
-	 * Adds a new session to the list of sessions
-	 *
-	 * @param pSession			New session to add
+	 * Begin listening for network connections.
+	 * @return true on success, false on error (e.g. port already in use)
 	 */
-	void AddSession( CNetSession* pSession );
+	bool SetupConnection();
 
 	/**
-	 * Removes the specified session from the list of sessions. If the session
-	 * isn't found it returns NULL otherwise it returns the session object found.
-	 *
-	 * @param pSession			Session to remove
-	 * @return					The session object if found, NULL otherwise
+	 * Poll the connections for messages from clients and process them, and send
+	 * any queued messages.
+	 * This must be called frequently (i.e. once per frame).
 	 */
-	CNetSession* RemoveSession( CNetSession* pSession );
+	virtual void Poll();
 
 	/**
-	 * Returns the session object for the specified ID
-	 *
-	 * @param sessionID			The session ID
-	 * @return					A pointer to session for the specified ID or
-	 *							NULL if not found
+	 * Send a message to the given network peer.
 	 */
-	CNetSession* GetSessionByID( uint sessionID );
+	bool SendMessage(ENetPeer* peer, const CNetMessage* message);
+
+	/**
+	 * Send a message to the given local client.
+	 */
+	void SendLocalMessage(CNetClientSessionLocal& clientSession, const CNetMessage* message);
+
+	/**
+	 * Send a message to all clients who have completed the full connection process
+	 * (i.e. are in the pre-game or in-game states).
+	 */
+	bool Broadcast(const CNetMessage* message);
+
+	/**
+	 * Register a local client with this server (equivalent to a remote client connecting
+	 * over the network).
+	 */
+	void AddLocalClientSession(CNetClientSessionLocal& clientSession);
+
+	/**
+	 * Call from the GUI to update the player assignments.
+	 * The given GUID will be (re)assigned to the given player ID.
+	 * Any player currently using that ID will be unassigned.
+	 * The changes will be propagated to all clients.
+	 */
+	void AssignPlayer(int playerID, const CStr& guid);
+
+	/**
+	 * Call from the GUI to notify all clients that they should start loading the game.
+	 */
+	void StartGame();
+
+	/**
+	 * Call from the GUI to update the game setup attributes.
+	 * This must be called at least once before starting the game.
+	 * The changes will be propagated to all clients.
+	 * @param attrs game attributes, in the script context of GetScriptInterface()
+	 */
+	void UpdateGameAttributes(const CScriptValRooted& attrs);
+
+	/**
+	 * Get the script context used for game attributes.
+	 */
+	ScriptInterface& GetScriptInterface();
 
 protected:
-
-	virtual bool SetupSession			( CNetSession* pSession );
-	virtual bool HandleConnect			( CNetSession* pSession );
-	virtual bool HandleDisconnect		( CNetSession *pSession );
+	/// Callback for autostart; called when a player has finished connecting
+	virtual void OnAddPlayer() { }
+	/// Callback for autostart; called when a player has left the game
+	virtual void OnRemovePlayer() { }
 
 private:
+	void AddPlayer(const CStr& guid, const CStrW& name);
+	void RemovePlayer(const CStr& guid);
+	void SendPlayerAssignments();
+	PlayerAssignmentMap m_PlayerAssignments;
+
+	CScriptValRooted m_GameAttributes;
+
+	void SetupSession(CNetServerSession* session);
+	bool HandleConnect(CNetServerSession* session);
+	bool HandleDisconnect(CNetServerSession* session);
+	void OnUserJoin(CNetServerSession* session);
+
+	static bool OnClientHandshake(void* context, CFsmEvent* event);
+	static bool OnAuthenticate(void* context, CFsmEvent* event);
+	static bool OnInGame(void* context, CFsmEvent* event);
+	static bool OnChat(void* context, CFsmEvent* event);
+	static bool OnLoadedGame(void* context, CFsmEvent* event);
+
+	void CheckGameLoadStatus(CNetServerSession* changedSession);
+
+	void ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& message);
+
+	bool HandleMessageReceive(const CNetMessage* message, CNetServerSession* session);
 
 	/**
-	 * Loads the player properties into the specified message
-	 *
-	 * @param pMessage			Message where to load player properties
-	 * @param pPlayer			Player for which we load the properties
+	 * Internal script context for (de)serializing script messages.
+	 * (TODO: we shouldn't bother deserializing (except for debug printing of messages),
+	 * we should just forward messages blindly and efficiently.)
 	 */
-	void BuildPlayerConfigMessage( 
-								 CPlayerConfigMessage* pMessage,
-								 CPlayer* pPlayer );
+	ScriptInterface* m_ScriptInterface;
 
-	/**
-	 * Callback function used by the BuildPlayerSetupMessage to iterate over
-	 * the player properties. It will be called for each property of the player
-	 *
-	 * @param name				Property name
-	 * @param pProperty			Pointer to player property
-	 * @param pData				Context pointer passed on iteration startup
-	 */
-	static void PlayerConfigMessageCallback( 
-											const CStrW& name,
-											ISynchedJSProperty* pProperty,
-											void* pData );
+	ENetHost* m_Host;
+	std::vector<ENetPeer*> m_Peers;
+	std::vector<CNetServerSession*> m_Sessions;
 
-	/**
-	 * Loads game properties into the specified message
-	 *
-	 * @param pMessage			Message where to load game properties
-	 */
-	void BuildGameSetupMessage( CGameSetupMessage* pMessage );
-	
-	/**
-	 * Loads player slot properties into the specified message
-	 *
-	 * @param pMessage			Message where to load player properties
-	 * @param pPlayerSlot		Player slot properties
-	 */
-	void BuildPlayerSlotAssignmentMessage( 
-										  CAssignPlayerSlotMessage* pMessage,
-										  CPlayerSlot* pPlayerSlot );
+	std::vector<std::pair<CNetServerSession*, CNetMessage*> > m_LocalMessageQueue;
 
-	/**
-	 * Callback function used by the BuildGameSetupMessage to iterate over the
-	 * game properties. It will be called for each property of the game
-	 *
-	 * @param name				Property name
-	 * @param pProperty			Pointer to game property
-	 * @param pData				Context pointer passed on iteration startup
-	 */
-	static void GameSetupMessageCallback( 
-										 const CStrW& name,
-										 ISynchedJSProperty *pProperty,
-										 void *pData );
+	NetServerState m_State;
 
-	/**
-	 * Retrieves a free session ID from the recycled sessions list
-	 *
-	 * @return					Free session ID
-	 */
-	uint GetFreeSessionID( void ) const;
+	CStrW m_ServerName;
+	CStrW m_WelcomeMessage;
+	int m_Port;
 
-	IDSessionMap	m_IDSessions;		// List of connected ID and session pairs
-
-public:
-
-	void			SetPlayerPassword	( const CStr& password );
-	CStrW			GetPlayerName		( void ) const	{ return m_PlayerName; }
-	NetServerState	GetState			( void ) const	{ return m_State; }
-	int				StartGame			( void );
-	static void		ScriptingInit		( void );
-
-protected:
-
-	// Assign a session ID to the session. Do this just before calling AddSession
-	void AssignSessionID( CNetSession* pSession );
-
-	// Call the JS callback for incoming events
-	void OnPlayerChat	( const CStrW& from, const CStrW& message );
-	virtual void OnPlayerJoin	( CNetSession* pSession );
-	virtual void OnPlayerLeave	( CNetSession* pSession );
-	void SetupPlayer	( CNetSession* pSession );
-
-	//static bool OnPlayerJoin	( void* pContext, CFsmEvent* pEvent );
-	static bool OnError			( void* pContext, CFsmEvent* pEvent );
-	static bool OnHandshake		( void* pContext, CFsmEvent* pEvent );
-	static bool OnAuthenticate	( void* pContext, CFsmEvent* pEvent );
-	static bool OnPreGame		( void* pContext, CFsmEvent* pEvent );
-	static bool OnInGame		( void* pContext, CFsmEvent* pEvent );
-	static bool OnChat			( void* pContext, CFsmEvent* pEvent );
-	
-	// Ask the server if the session is allowed to start observing.
-	//
-	// Returns:
-	//	true if the session should be made an observer
-	//	false otherwise
-	virtual bool AllowObserver( CNetSession* pSession );
-
-public:
-	CGame*					m_Game;				// Pointer to actual game
-
-protected:
-	CGameAttributes*		m_GameAttributes;	// Stores game attributes
-
-private:
-	CJSMap< IDSessionMap >	m_JsSessions;
-
-	/*
-		All sessions that have observer status (observer as in watcher - simple
-		chatters don't have an entry here, only in m_Sessions).
-		Sessions are added here after they have successfully requested observer
-		status.
-	*/
-	SessionList				m_Observers;
-	uint					m_MaxObservers;		// Maximum number of observers
-	NetServerState			m_State;			// Holds server state	
-	CStrW					m_Name;				// Server name
-	CStrW					m_WelcomeMessage;	// Nice welcome message
-	CStrW					m_PlayerName;		// Player name
-	CStrW					m_PlayerPassword;	// Player password
-	int						m_Port;				// The listening port
-	CScriptObject			m_OnChat;
-	CScriptObject			m_OnClientConnect;
-	CScriptObject			m_OnClientDisconnect;
-
-	static void AttributeUpdate			( const CStrW& name, const CStrW& newValue, void* pData);
-	static void PlayerAttributeUpdate	( const CStrW& name, const CStrW& value, CPlayer* pPlayer, void* pData );
-	static void PlayerSlotAssignment	( void* pData, CPlayerSlot* pPlayerSlot );
+	u32 m_NextHostID;
 
 	CNetServerTurnManager* m_ServerTurnManager;
 };
 
+/// Global network server for the standard game
 extern CNetServer *g_NetServer;
 
 #endif // NETSERVER_H

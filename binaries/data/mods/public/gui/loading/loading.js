@@ -1,8 +1,11 @@
-function init()
+function init(data)
 {
+	var mapName = "map";
+	if (data && data.attribs)
+		mapName = data.attribs.map;
+
 	// Set to "hourglass" cursor.
 	setCursor("cursor-wait");
-	console.write ("Loading " + g_GameAttributes.mapFile + " (" + g_GameAttributes.numPlayers + " players) ...");
 
 	// Choose random concept art for loading screen background (should depend on the selected civ later when this is specified).
 	var sprite = "";
@@ -19,10 +22,10 @@ function init()
 
 	// janwas: main loop now sets progress / description, but that won't
 	// happen until the first timeslice completes, so set initial values.
-	getGUIObjectByName ("ldTitleBar").caption = "Loading Scenario ...";
+	getGUIObjectByName ("ldTitleBar").caption = "Loading Scenario";
 	getGUIObjectByName ("ldProgressBarText").caption = "";
 	getGUIObjectByName ("ldProgressBar").caption = 0;
-	getGUIObjectByName ("ldText").caption = "LOADING " + g_GameAttributes.mapFile + " ...\nPlease wait ...";
+	getGUIObjectByName ("ldText").caption = "Loading " + mapName + "\nPlease wait...";
 
 	// Pick a random tip of the day (each line is a separate tip).
 	var tipArray  = readFileLines("gui/text/tips.txt");
@@ -39,13 +42,10 @@ function reallyStartGame()
 		curr_music.fade(-1, 0.0, 5.0); // fade to 0 over 5 seconds
 
 	// This is a reserved function name that is executed by the engine when it is ready
-	// to start the game (ie loading progress has reached 100%).
+	// to start the game (i.e. loading progress has reached 100%).
 
 	// Switch GUI from loading screen to game session.
-	if (Engine.IsNewSimulation())
-		Engine.SwitchGuiPage("page_session_new.xml");
-	else
-		Engine.SwitchGuiPage("page_session.xml");
+	Engine.SwitchGuiPage("page_session_new.xml");
 	
 	// Restore default cursor.
 	setCursor ("arrow-default");

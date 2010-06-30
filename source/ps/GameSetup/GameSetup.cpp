@@ -37,7 +37,6 @@
 #include "ps/Filesystem.h"
 #include "ps/Font.h"
 #include "ps/Game.h"
-#include "ps/GameAttributes.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Loader.h"
@@ -70,6 +69,8 @@
 #include "scripting/ScriptGlue.h"
 #include "scripting/DOMEvent.h"
 #include "scripting/ScriptableComplex.h"
+
+#include "scriptinterface/ScriptInterface.h"
 
 #include "maths/scripting/JSInterface_Vector3D.h"
 
@@ -306,21 +307,10 @@ static void RegisterJavascriptInterfaces()
 	JSI_Sound::ScriptingInit();
 
 	// scripting
-	SColour::ScriptingInit();
 	CScriptEvent::ScriptingInit();
 
 	// ps
 	JSI_Console::init();
-	CGameAttributes::ScriptingInit();
-	CPlayerSlot::ScriptingInit();
-	CPlayer::ScriptingInit();
-	PlayerCollection::Init( "PlayerCollection" );
-
-	// network
-	CNetClient::ScriptingInit();
-	CNetServer::ScriptingInit();
-	CNetSession::ScriptingInit();
-	CServerPlayer::ScriptingInit();
 
 	// GUI
 	CGUI::ScriptingInit();
@@ -482,12 +472,13 @@ static void InitInput()
 
 	in_add_handler(HotkeyInputHandler);
 
-	in_add_handler(GlobalsInputHandler);
-
 	// gui_handler needs to be registered after (i.e. called before!) the
 	// hotkey handler so that input boxes can be typed in without
 	// setting off hotkeys.
 	in_add_handler(gui_handler);
+
+	// must be registered after (called before) the GUI which relies on these globals
+	in_add_handler(GlobalsInputHandler);
 }
 
 
@@ -573,7 +564,7 @@ void EndGame()
 }
 
 
-void Shutdown(int flags)
+void Shutdown(int UNUSED(flags))
 {
 	MICROLOG(L"Shutdown");
 
@@ -581,11 +572,6 @@ void Shutdown(int flags)
 		EndGame();
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
-
-	if (! (flags & INIT_NO_SIM))
-	{
-		SAFE_DELETE(g_GameAttributes);
-	}
 
 	// destroy actor related stuff
 	TIMER_BEGIN(L"shutdown actor stuff");
@@ -803,14 +789,6 @@ void Init(const CmdLineArgs& args, int flags)
 	ogl_WarnIfError();
 	InitRenderer();
 
-	if (! (flags & INIT_NO_SIM))
-	{
-		g_GameAttributes = new CGameAttributes;
-
-		// Register a few Game/Network JS globals
-		g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes->GetScript()));
-	}
-
 	InitInput();
 
 	ogl_WarnIfError();
@@ -833,64 +811,47 @@ void RenderGui(bool RenderingState)
 class AutostartNetServer : public CNetServer
 {
 public:
-	AutostartNetServer(CGame *pGame, CGameAttributes *pGameAttributes, int maxPlayers) :
-		CNetServer(pGame->GetSimulation2()->GetScriptInterface(), pGame, pGameAttributes), m_NumPlayers(1), m_MaxPlayers(maxPlayers)
+	AutostartNetServer(const CStr& map, int maxPlayers) :
+		CNetServer(), m_NeedsStart(false), m_NumPlayers(0), m_MaxPlayers(maxPlayers)
 	{
+		CScriptValRooted attrs;
+		GetScriptInterface().Eval("({})", attrs);
+		GetScriptInterface().SetProperty(attrs.get(), "map", std::string(map), false);
+		UpdateGameAttributes(attrs);
 	}
-protected:
-	virtual void OnPlayerJoin(CNetSession* pSession)
-	{
-		for (size_t slot = 0; slot < m_GameAttributes->GetSlotCount(); ++slot)
-		{
-			if (m_GameAttributes->GetSlot(slot)->GetAssignment() == SLOT_OPEN)
-			{
-				m_GameAttributes->GetSlot(slot)->AssignToSession(pSession);
-				break;
-			}
-		}
 
+protected:
+	virtual void OnAddPlayer()
+	{
 		m_NumPlayers++;
 
 		debug_printf(L"# player joined (got %d, need %d)\n", (int)m_NumPlayers, (int)m_MaxPlayers);
 
 		if (m_NumPlayers >= m_MaxPlayers)
-		{
-			g_GUI->SwitchPage(L"page_loading.xml", JSVAL_VOID);
-			int ret = StartGame();
-			debug_assert(ret == 0);
-		}
+			m_NeedsStart = true; // delay until next Poll, so the new player has been fully processed
 	}
 
-	virtual void OnPlayerLeave(CNetSession* UNUSED(pSession))
+	virtual void OnRemovePlayer()
 	{
 		debug_warn(L"client left?!");
 		m_NumPlayers--;
 	}
 
+	virtual void Poll()
+	{
+		if (m_NeedsStart)
+		{
+			StartGame();
+			m_NeedsStart = false;
+		}
+
+		CNetServer::Poll();
+	}
+
 private:
+	bool m_NeedsStart;
 	size_t m_NumPlayers;
 	size_t m_MaxPlayers;
-};
-
-class AutostartNetClient : public CNetClient
-{
-public:
-	AutostartNetClient(CGame *pGame, CGameAttributes *pGameAttributes) :
-		CNetClient(pGame->GetSimulation2()->GetScriptInterface(), pGame, pGameAttributes)
-	{
-	}
-protected:
-	virtual void OnConnectComplete()
-	{
-		debug_printf(L"# connect complete\n");
-	}
-
-	virtual void OnStartGame()
-	{
-		g_GUI->SwitchPage(L"page_loading.xml", JSVAL_VOID);
-		int ret = StartGame();
-		debug_assert(ret == 0);
-	}
 };
 
 static bool Autostart(const CmdLineArgs& args)
@@ -908,12 +869,6 @@ static bool Autostart(const CmdLineArgs& args)
 
 	g_Game = new CGame();
 
-	g_GameAttributes->m_MapFile = autostartMap + ".pmp";
-
-	// Make the whole world visible
-	g_GameAttributes->m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
-	g_GameAttributes->m_FogOfWar = false;
-
 	if (args.Has("autostart-host"))
 	{
 		InitPs(true, L"page_loading.xml");
@@ -922,32 +877,33 @@ static bool Autostart(const CmdLineArgs& args)
 		if (args.Has("autostart-players"))
 			maxPlayers = args.Get("autostart-players").ToUInt();
 
-		g_NetServer = new AutostartNetServer(g_Game, g_GameAttributes, maxPlayers);
-		// TODO: player name, etc
-		bool ok = g_NetServer->Start(NULL, 0, NULL);
+		g_NetServer = new AutostartNetServer(autostartMap, maxPlayers);
+		bool ok = g_NetServer->SetupConnection();
 		debug_assert(ok);
+
+		g_NetClient = new CNetClient(g_Game);
+		// TODO: player name, etc
+		g_NetClient->SetupLocalConnection(*g_NetServer);
 	}
 	else if (args.Has("autostart-client"))
 	{
 		InitPs(true, L"page_loading.xml");
 
-		bool ok;
-		g_NetClient = new AutostartNetClient(g_Game, g_GameAttributes);
+		g_NetClient = new CNetClient(g_Game);
 		// TODO: player name, etc
-		ok = g_NetClient->Create();
-		debug_assert(ok);
-		ok = g_NetClient->Connect(args.Get("autostart-ip"), DEFAULT_HOST_PORT);
+		bool ok = g_NetClient->SetupConnection(args.Get("autostart-ip"));
 		debug_assert(ok);
 	}
 	else
 	{
-		for (int i = 1; i < 8; ++i)
-			g_GameAttributes->GetSlot(i)->AssignLocal();
+		CScriptValRooted attrs;
+		g_Game->GetSimulation2()->GetScriptInterface().Eval("({})", attrs);
+		g_Game->GetSimulation2()->GetScriptInterface().SetProperty(attrs.get(), "map", std::string(autostartMap), false);
 
-		PSRETURN ret = g_Game->StartGame(g_GameAttributes);
-		debug_assert(ret == PSRETURN_OK);
+		g_Game->SetPlayerID(1);
+		g_Game->StartGame(attrs);
 		LDR_NonprogressiveLoad();
-		ret = g_Game->ReallyStartGame();
+		PSRETURN ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 
 		InitPs(true, L"page_session_new.xml");

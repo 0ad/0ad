@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,10 +27,10 @@
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
 #include "ps/Game.h"
-#include "ps/GameAttributes.h"
 #include "ps/Loader.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Simulation.h"
 #include "simulation2/Simulation2.h"
@@ -40,7 +40,7 @@
 
 namespace
 {
-	void InitGame(const CStrW& map)
+	void InitGame()
 	{
 		if (g_Game)
 		{
@@ -48,48 +48,23 @@ namespace
 			g_Game = NULL;
 		}
 
-		// Set attributes for the game:
-
-		g_GameAttributes->m_MapFile = map;
-		// Make all players locally controlled
-		for (int i = 1; i < 8; ++i) 
-			g_GameAttributes->GetSlot(i)->AssignLocal();
-
-		// Make the whole world visible
-		g_GameAttributes->m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
-		g_GameAttributes->m_FogOfWar = false;
-
-		// Don't use screenshot mode, because we want working AI for the
-		// simulation-testing. Outside that simulation-testing, we avoid having
-		// the units move into attack mode by never calling CEntity::update.
-		g_GameAttributes->m_ScreenshotMode = false;
-
-		// Initialise the game:
 		g_Game = new CGame();
+
+		// Default to player 1 for playtesting
+		g_Game->SetPlayerID(1);
 	}
 
-	void AddDefaultPlayers()
+	void StartGame(const CStrW& map)
 	{
-		CmpPtr<ICmpPlayerManager> cmpPlayerMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		debug_assert(!cmpPlayerMan.null());
+		CStrW mapBase = map.BeforeLast(L".pmp"); // strip the file extension, if any
 
-		// TODO: pick a sensible number, give them names and colours etc
-		size_t numPlayers = 4;
-		for (size_t i = 0; i < numPlayers; ++i)
-		{
-			entity_id_t ent = g_Game->GetSimulation2()->AddEntity(L"special/player");
-			cmpPlayerMan->AddPlayer(ent);
-		}
-		// Also TODO: Maybe it'd be sensible to load this from a map XML file via CMapReader,
-		// rather than duplicating the creation code here?
-	}
+		CScriptValRooted attrs;
+		g_Game->GetSimulation2()->GetScriptInterface().Eval("({})", attrs);
+		g_Game->GetSimulation2()->GetScriptInterface().SetProperty(attrs.get(), "map", std::wstring(mapBase), false);
 
-	void StartGame()
-	{
-		PSRETURN ret = g_Game->StartGame(g_GameAttributes);
-		debug_assert(ret == PSRETURN_OK);
+		g_Game->StartGame(attrs);
 		LDR_NonprogressiveLoad();
-		ret = g_Game->ReallyStartGame();
+		PSRETURN ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 	}
 }
@@ -98,58 +73,20 @@ namespace AtlasMessage {
 
 MESSAGEHANDLER(GenerateMap)
 {
-	InitGame(L"");
+	InitGame();
 
-	// Convert size in patches to number of vertices
-	int vertices = msg->size * PATCH_SIZE + 1;
+	// Load the empty default map
+	StartGame(L"_default");
 
-	// Generate flat heightmap
-	u16* heightmap = new u16[vertices*vertices];
-	for (int z = 0; z < vertices; ++z)
-		for (int x = 0; x < vertices; ++x)
-			heightmap[x + z*vertices] = 16384;
-
-	// Initialise terrain using the heightmap
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	terrain->Initialize(msg->size, heightmap);
-
-	delete[] heightmap;
-
-	AddDefaultPlayers();
-
-	// Start the game, load data files - this must be done before initialising
-	// the terrain texture below, since the terrains must be loaded before being
-	// used.
-	StartGame();
-
-	// Cover terrain with default texture
-	// TODO: split into fCoverWithTexture
-	CTextureEntry* texentry = g_TexMan.FindTexture("grass1_spring"); // TODO: make default customisable
-
-	int patchesPerSide = terrain->GetPatchesPerSide();
-	for (int pz = 0; pz < patchesPerSide; ++pz)
-	{
-		for (int px = 0; px < patchesPerSide; ++px)
-		{
-			CPatch* patch = terrain->GetPatch(px, pz);	// can't fail
-
-			for (ssize_t z = 0; z < PATCH_SIZE; ++z)
-			{
-				for (ssize_t x = 0; x < PATCH_SIZE; ++x)
-				{
-					patch->m_MiniPatches[z][x].Tex = texentry;
-					patch->m_MiniPatches[z][x].Priority = 0;
-				}
-			}
-		}
-	}
-
+	// TODO: use msg->size somehow
+	// (e.g. load the map then resize the terrain to match it)
+	UNUSED2(msg);
 }
 
 MESSAGEHANDLER(LoadMap)
 {
-	InitGame(*msg->filename);
-	StartGame();
+	InitGame();
+	StartGame(*msg->filename);
 }
 
 MESSAGEHANDLER(SaveMap)

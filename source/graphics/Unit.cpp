@@ -26,9 +26,6 @@
 #include "SkeletonAnimDef.h"
 #include "UnitAnimation.h"
 
-#include "ps/Game.h"
-#include "ps/Player.h"
-
 CUnit::CUnit(CObjectEntry* object, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()),

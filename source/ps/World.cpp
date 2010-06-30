@@ -35,7 +35,6 @@
 #include "ps/CStr.h"
 #include "ps/Errors.h"
 #include "ps/Game.h"
-#include "ps/GameAttributes.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
 #include "ps/World.h"
@@ -68,25 +67,30 @@ CWorld::CWorld(CGame *pGame):
 
 /**
  * Sets up the game world and loads required world resources.
- *
- * @param CGameAttributes * pGameAttributes pointer to the game attribute values.
  **/
-void CWorld::Initialize(CGameAttributes *pAttribs)
+void CWorld::Initialize(const CStrW& mapFile)
 {
 	// Load the map, if one was specified
-	if (pAttribs->m_MapFile.length())
+	if (mapFile.length())
 	{
-		VfsPath mapfilename(VfsPath(L"maps/scenarios/")/(std::wstring)pAttribs->m_MapFile);
+		VfsPath mapfilename(VfsPath(L"maps/scenarios/")/(std::wstring)mapFile);
 		CMapReader* reader = 0;
 
-		try {
+		try
+		{
 			reader = new CMapReader;
 			CTriggerManager* pTriggerManager = NULL;
-			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager, g_Renderer.GetWaterManager(),
-				g_Renderer.GetSkyManager(), &g_LightEnv, m_pGame->GetView()->GetCamera(), m_pGame->GetView()->GetCinema(),
+			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager,
+				CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
+				CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
+				&g_LightEnv,
+				m_pGame->GetView() ? m_pGame->GetView()->GetCamera() : NULL,
+				m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
 				pTriggerManager, m_pGame->GetSimulation2(), NULL);
 				// fails immediately, or registers for delay loading
-		} catch (PSERROR_File& err) {
+		}
+		catch (PSERROR_File& err)
+		{
 			delete reader;
 			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
 			throw PSERROR_Game_World_MapLoadFailed();
@@ -97,12 +101,10 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 
 /**
  * Initializes the game world with the attributes provided.
- *
- * @param CGameAttributes * pGameAttributes pointer to the game attribute values.
  **/
-void CWorld::RegisterInit(CGameAttributes *pAttribs)
+void CWorld::RegisterInit(const CStrW& mapFile)
 {
-	Initialize(pAttribs);
+	Initialize(mapFile);
 }
 
 

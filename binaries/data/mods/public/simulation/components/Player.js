@@ -6,8 +6,9 @@ Player.prototype.Schema =
 Player.prototype.Init = function()
 {
 	this.playerID = undefined;
-	this.playerName = "Unknown";
-	this.civ = "celt";
+	this.name = "Unknown";
+	this.civ = "gaia";
+	this.colour = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
 	this.popCount = 0;
 	this.popLimit = 50;
 	this.resourceCount = {
@@ -18,19 +19,31 @@ Player.prototype.Init = function()
 	};
 };
 
-Player.prototype.GetColour = function()
-{
-	// TODO: need proper colour support
-	if (this.playerID == 1)
-		return { "r": 0.0, "g": 0.0, "b": 1.0, "a": 1.0 };
-	else
-		return { "r": 1.0, "g": 0.0, "b": 0.0, "a": 1.0 };
-};
-
 Player.prototype.SetPlayerID = function(id)
 {
 	this.playerID = id;
 };
+
+Player.prototype.SetName = function(name)
+{
+	this.name = name;
+};
+
+Player.prototype.SetCiv = function(civcode)
+{
+	this.civ = civcode;
+};
+
+Player.prototype.SetColour = function(r, g, b)
+{
+	this.colour = { "r": r/255.0, "g": g/255.0, "b": b/255.0, "a": 1.0 };
+};
+
+Player.prototype.GetColour = function()
+{
+	return this.colour;
+};
+
 
 Player.prototype.GetPopulationCount = function()
 {

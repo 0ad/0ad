@@ -132,4 +132,17 @@ private:
 	std::wstringstream m_Stream;
 };
 
+/**
+ * Helper class for unit tests - redirects all log output to stdout.
+ */
+class TestStdoutLogger
+{
+	NONCOPYABLE(TestStdoutLogger);
+public:
+	TestStdoutLogger();
+	~TestStdoutLogger();
+private:
+	CLogger* m_OldLogger;
+};
+
 #endif

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,15 +30,9 @@
 class CWorld;
 class CSimulation2;
 class CGameView;
-class CPlayer;
-class CGameAttributes;
 class CNetTurnManager;
-
-/**
- * Default player limit (not counting the Gaia player)
- * This may be overridden by system.cfg ("max_players")
- **/
-#define PS_MAX_PLAYERS 8
+class CScriptValRooted;
+struct CColor;
 
 /**
  * The container that holds the rules, resources and attributes of the game.
@@ -62,18 +56,6 @@ class CGame
 	 **/
 	CGameView *m_GameView;
 	/**
-	 * pointer to the local CPlayer object operating on the game world.
-	 **/
-	CPlayer *m_pLocalPlayer;
-	/**
-	 * STL vectors of pointers to all CPlayer objects(including gaia) operating on the game world.
-	 **/
-	std::vector<CPlayer *> m_Players;
-	/**
-	 * number of players operating on the game world(not including gaia).
-	 **/
-	size_t m_NumPlayers;
-	/**
 	 * the game has been initialized and ready for use if true.
 	 **/
 	bool m_GameStarted;
@@ -81,6 +63,9 @@ class CGame
 	 * scale multiplier for simulation rate.
 	 **/
 	float m_SimRate;
+
+	int m_PlayerID;
+
 	/**
 	 * enumerated values for game status.
 	 **/
@@ -94,9 +79,15 @@ class CGame
 	} GameStatus;
 
 	CNetTurnManager* m_TurnManager;
-	
+
 public:
-	CGame();
+	enum ENetStatus
+	{
+		NET_WAITING_FOR_CONNECT, /// we have loaded the game; waiting for other players to finish loading
+		NET_NORMAL /// running the game
+	};
+
+	CGame(bool disableGraphics = false);
 	~CGame();
 
 	/**
@@ -104,14 +95,13 @@ public:
 	 **/
 	bool m_Paused;
 
-	/*
-		Initialize all local state and members for playing a game described by
-		the attribute class, and start the game.
-
-		Return: 0 on OK - a PSRETURN code otherwise
-	*/
-	PSRETURN StartGame(CGameAttributes *pGameAttributes);
+	void StartGame(const CScriptValRooted& attribs);
 	PSRETURN ReallyStartGame();
+
+	/**
+	 * Notify the game of changes in the network connection status.
+	 */
+	void ChangeNetStatus(ENetStatus status);
 
 	/*
 		Perform all per-frame updates
@@ -123,41 +113,10 @@ public:
 	void UpdateGameStatus();
 	void EndGame();
 
-	/**
-	 * Get pointer to the local player object.
-	 *
-	 * @return CPlayer * the value of m_pLocalPlayer.
-	 **/
-	inline CPlayer *GetLocalPlayer()
-	{	return m_pLocalPlayer; }
-	/**
-	 * Change the pointer to the local player object.
-	 *
-	 * @param CPlayer * pLocalPlayer pointer to a valid player object.
-	 **/
-	inline void SetLocalPlayer(CPlayer *pLocalPlayer)
-	{	m_pLocalPlayer=pLocalPlayer; }
-	
-	// PT: No longer inline, because it does too much error checking. When
-	// everything stops trying to access players before they're loaded, feel
-	// free to put the inline version back.
-	CPlayer *GetPlayer(size_t idx);
+	int GetPlayerID();
+	void SetPlayerID(int playerID);
 
-	/**
-	 * Get a reference to the m_Players vector.
-	 *
-	 * @return std::vector<CPlayer*> * reference to m_Players.
-	 **/
-	inline std::vector<CPlayer*>* GetPlayers()
-	{	return( &m_Players ); }
-
-	/**
-	 * Get m_NumPlayers.
-	 *
-	 * @return the number of players (not including gaia)
-	 **/
-	inline size_t GetNumPlayers() const
-	{	return m_NumPlayers; }
+	CColor GetPlayerColour(int player) const;
 
 	/**
 	 * Get m_GameStarted.
@@ -207,7 +166,7 @@ public:
 	 * @return float value of m_SimRate.
 	 **/
 	inline float GetSimRate() const
-	{	return m_SimRate;  }
+	{	return m_SimRate; }
 
 	/**
 	 * Replace the current turn manager.
@@ -216,12 +175,10 @@ public:
 	void SetTurnManager(CNetTurnManager* turnManager);
 
 	CNetTurnManager* GetTurnManager() const
-	{
-		return m_TurnManager;
-	}
+	{	return m_TurnManager; }
 
 private:
-	PSRETURN RegisterInit(CGameAttributes* pAttribs);
+	void RegisterInit(const CScriptValRooted& attribs);
 };
 
 extern CGame *g_Game;

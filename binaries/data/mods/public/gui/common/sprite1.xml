@@ -47,7 +47,7 @@
         </sprite>
 
 	<sprite name="bkBorderBlack">
-		<image 	backcolor="black"
+		<image backcolor="black"
 			size="-1 -1 100%+1 0" 
 		/>
 		<image 	backcolor="black"
@@ -62,21 +62,19 @@
         </sprite>
 
 	<sprite name="bkFillBlack">
-		<image 	backcolor="black"
-			size="0 0 100% 100%" 
-		/>
+		<image backcolor="black"/>
 	</sprite>
 
 	<sprite name="bkFillWhite">
-		<image 	backcolor="white"
-			size="0 0 100% 100%" 
-		/>
+		<image backcolor="white"/>
 	</sprite>
 
 	<sprite name="bkFillGray">
-		<image 	backcolor="gray"
-			size="0 0 100% 100%" 
-		/>
+		<image backcolor="gray"/>
+	</sprite>
+	
+	<sprite name="bkFillDarkBlue">
+		<image backcolor="63 127 210 255"/>
 	</sprite>
 	
 	<!--
@@ -145,13 +143,14 @@
 		/>
 	</sprite>
 
-        <sprite name="bkGraniteBorderBlack">
-                <image 	texture="global/tile/granite.dds"
-			size="0 0 100% 100%"
+	<sprite name="bkGraniteBorderBlack">
+		<image texture="global/tile/granite.dds"/>
+		<image
+			backcolor="transparent"
 			border="true"
 			bordercolor="black"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="textureSand">
 		<image	texture="global/tile/sandstone.dds"
@@ -477,6 +476,24 @@
 		/>
 		<!-- middle -->
 		<image 	backcolor="100 100 100 85"
+			size="1 1 100%-1 100%-1"
+		/>
+	</sprite>
+
+	<sprite name="wheatIndentFillVeryLight">
+		<image	backcolor="109 122 146"
+			size="0 0 100%-1 1" 
+		/>
+		<image 	backcolor="220 223 228"
+			size="100%-1 0 100% 100%" 
+		/>
+		<image 	backcolor="220 223 228"
+			size="0 100%-1 100% 100%" 
+		/>
+		<image 	backcolor="109 122 146"
+			size="0 0 1 100%-1" 
+		/>
+		<image 	backcolor="255 255 255 160"
 			size="1 1 100%-1 100%-1"
 		/>
 	</sprite>

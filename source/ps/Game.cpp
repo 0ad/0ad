@@ -29,19 +29,22 @@
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
 #include "network/NetClient.h"
+#include "network/NetServer.h"
+#include "network/NetTurnManager.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
-#include "ps/GameAttributes.h"
 #include "ps/Loader.h"
+#include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
+#include "scripting/ScriptingHost.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpPlayerManager.h"
 
 #include "gui/GUIManager.h"
-
-class CNetServer;
-extern CNetServer *g_NetServer;
 
 extern bool g_GameRestarted;
 
@@ -54,18 +57,19 @@ CGame *g_Game=NULL;
  * Constructor
  *
  **/
-CGame::CGame():
+CGame::CGame(bool disableGraphics):
 	m_World(new CWorld(this)),
 	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), m_World->GetTerrain())),
-	m_GameView(new CGameView(this)),
-	m_pLocalPlayer(NULL),
+	m_GameView(disableGraphics ? NULL : new CGameView(this)),
 	m_GameStarted(false),
 	m_Paused(false),
-	m_SimRate(1.0f)
+	m_SimRate(1.0f),
+	m_PlayerID(-1)
 {
 	// Need to set the CObjectManager references after various objects have
 	// been initialised, so do it here rather than via the initialisers above.
-	m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
+	if (m_GameView)
+		m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
 
 	m_TurnManager = new CNetLocalTurnManager(*m_Simulation2); // this will get replaced if we're a net server/client
 
@@ -83,7 +87,8 @@ CGame::CGame():
 CGame::~CGame()
 {
 	// Again, the in-game call tree is going to be different to the main menu one.
-	g_Profiler.StructuralReset();
+	if (CProfileManager::IsInitialised())
+		g_Profiler.StructuralReset();
 
 	delete m_TurnManager;
 	delete m_GameView;
@@ -95,7 +100,11 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
 {
 	if (m_TurnManager)
 		delete m_TurnManager;
+
 	m_TurnManager = turnManager;
+
+	if (m_TurnManager)
+		m_TurnManager->SetPlayerID(m_PlayerID);
 }
 
 
@@ -103,24 +112,26 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
  * Initializes the game with the set of attributes provided.
  * Makes calls to initialize the game view, world, and simulation objects.
  * Calls are made to facilitate progress reporting of the initialization.
- *
- * @param CGameAttributes * pAttribs pointer to the game attribute values
- * @return PSRETURN 0
  **/
-PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
+void CGame::RegisterInit(const CScriptValRooted& attribs)
 {
+	std::wstring mapFile;
+	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "map", mapFile);
+	mapFile += L".pmp";
+
 	LDR_BeginRegistering();
 
 	// RC, 040804 - GameView needs to be initialized before World, otherwise GameView initialization
 	// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default
-	// values.  At the minute, it's just lighting settings, but could be extended to store camera position.  
-	// Storing lighting settings in the game view seems a little odd, but it's no big deal; maybe move it at 
+	// values.  At the minute, it's just lighting settings, but could be extended to store camera position.
+	// Storing lighting settings in the game view seems a little odd, but it's no big deal; maybe move it at
 	// some point to be stored in the world object?
-	m_GameView->RegisterInit(pAttribs);
-	m_World->RegisterInit(pAttribs);
+	if (m_GameView)
+		m_GameView->RegisterInit();
+	m_World->RegisterInit(mapFile);
 	LDR_EndRegistering();
-	return 0;
 }
+
 /**
  * Game initialization has been completed. Set game started flag and start the session.
  *
@@ -129,7 +140,7 @@ PSRETURN CGame::RegisterInit(CGameAttributes* pAttribs)
 PSRETURN CGame::ReallyStartGame()
 {
 	// Call the reallyStartGame GUI function, but only if it exists
-	if (g_GUI->HasPages())
+	if (g_GUI && g_GUI->HasPages())
 	{
 		jsval fval, rval;
 		JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), "reallyStartGame", &fval);
@@ -138,11 +149,15 @@ PSRETURN CGame::ReallyStartGame()
 			ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
 	}
 
+	if (g_NetClient)
+		g_NetClient->LoadFinished();
+
 	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
 	m_GameStarted=true;
 
 	// The call tree we've built for pregame probably isn't useful in-game.
-	g_Profiler.StructuralReset();
+	if (CProfileManager::IsInitialised())
+		g_Profiler.StructuralReset();
 
 	// Mark terrain as modified so the minimap can repaint (is there a cleaner way of handling this?)
 	g_GameRestarted = true;
@@ -150,56 +165,37 @@ PSRETURN CGame::ReallyStartGame()
 	return 0;
 }
 
-/**
- * Prepare to start the game.
- * Set up the players list then call RegisterInit that initializes the game and is used to report progress.
- *
- * @param CGameAttributes * pGameAttributes game attributes for initialization.
- * @return PSRETURN 0 if successful,
- *					error information if not.
- **/
-PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
+void CGame::ChangeNetStatus(ENetStatus status)
 {
-	try
+	if (g_GUI && g_GUI->HasPages())
 	{
-		// JW: this loop is taken from ScEd and fixes lack of player color.
-		// TODO: determine proper number of players.
-		// SB: Only do this for non-network games
-		if (!g_NetClient && !g_NetServer)
+		const char* statusStr = "?";
+		switch (status)
 		{
-			for (int i=1; i<8; ++i) 
-				pAttribs->GetSlot(i)->AssignLocal();
+		case NET_WAITING_FOR_CONNECT: statusStr = "waiting_for_connect"; break;
+		case NET_NORMAL: statusStr = "normal"; break;
 		}
 
-		pAttribs->FinalizeSlots();
-		m_NumPlayers=pAttribs->GetSlotCount();
-
-		// Player 0 = Gaia - allocate one extra
-		m_Players.resize(m_NumPlayers + 1);
-
-		for (size_t i=0;i <= m_NumPlayers;i++)
-			m_Players[i]=pAttribs->GetPlayer(i);
-		
-		if (g_NetClient)
-		{
-			// TODO
-			m_pLocalPlayer = g_NetClient->GetLocalPlayer();
-			debug_assert(m_pLocalPlayer && "Darn it! We weren't assigned to a slot!");
-		}
-		else
-		{
-			m_pLocalPlayer=m_Players[1];
-		}
-
-		RegisterInit(pAttribs);
+		g_GUI->GetScriptInterface().CallFunctionVoid(OBJECT_TO_JSVAL(g_GUI->GetScriptObject()), "changeNetStatus", statusStr);
 	}
-	catch (PSERROR_Game& e)
-	{
-		return e.getCode();
-	}
-	return 0;
 }
 
+int CGame::GetPlayerID()
+{
+	return m_PlayerID;
+}
+
+void CGame::SetPlayerID(int playerID)
+{
+	m_PlayerID = playerID;
+	if (m_TurnManager)
+		m_TurnManager->SetPlayerID(m_PlayerID);
+}
+
+void CGame::StartGame(const CScriptValRooted& attribs)
+{
+	RegisterInit(attribs);
+}
 
 // TODO: doInterpolate is optional because Atlas interpolates explicitly,
 // so that it has more control over the update rate. The game might want to
@@ -217,6 +213,9 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 bool CGame::Update(double deltaTime, bool doInterpolate)
 {
 	if (m_Paused)
+		return true;
+
+	if (!m_TurnManager)
 		return true;
 
 	deltaTime *= m_SimRate;
@@ -240,6 +239,9 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 
 void CGame::Interpolate(float frameLength)
 {
+	if (!m_TurnManager)
+		return;
+
 	m_TurnManager->Interpolate(frameLength);
 }
 
@@ -312,32 +314,15 @@ void CGame::EndGame()
 		break;
 	}
 }
-/**
- * Get the player object from the players list at the provided index.
- *
- * @param idx sequential position in the list.
- * @return CPlayer * pointer to player requested.
- **/
-CPlayer *CGame::GetPlayer(size_t idx)
-{
-	if (idx > m_NumPlayers)
-	{
-//		debug_warn(L"Invalid player ID");
-//		LOG(CLogger::Error, "", "Invalid player ID %d (outside 0..%d)", idx, m_NumPlayers);
-		return m_Players[0];
-	}
-	// Be a bit more paranoid - maybe m_Players hasn't been set large enough
-	else if (idx >= m_Players.size())
-	{
-		debug_warn(L"Invalid player ID");
-		LOG(CLogger::Error, L"", L"Invalid player ID %lu (not <=%lu - internal error?)", (unsigned long)idx, (unsigned long)m_Players.size());
 
-		if (m_Players.size() != 0)
-			return m_Players[0];
-		else
-			return NULL; // the caller will probably crash because of this,
-			             // but at least we've reported the error
-	}
-	else
-		return m_Players[idx];
+static CColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
+CColor CGame::GetPlayerColour(int player) const
+{
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*m_Simulation2, SYSTEM_ENTITY);
+	if (cmpPlayerManager.null())
+		return BrokenColor;
+	CmpPtr<ICmpPlayer> cmpPlayer(*m_Simulation2, cmpPlayerManager->GetPlayerByID(player));
+	if (cmpPlayer.null())
+		return BrokenColor;
+	return cmpPlayer->GetColour();
 }

@@ -39,25 +39,23 @@
 #include "lib/svn_revision.h"
 #include "lib/frequency_filter.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
-#include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
-#include "ps/GameAttributes.h"
 #include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Hotkey.h"
 #include "ps/ProfileViewer.h"
 #include "ps/World.h"
 #include "ps/i18n.h"
-#include "ps/scripting/JSCollection.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "simulation/LOSManager.h"
 #include "simulation2/Simulation2.h"
 
 #define LOG_CATEGORY L"script"
@@ -194,90 +192,6 @@ JSBool StopJsTimer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rva
 // Game Setup
 //-----------------------------------------------------------------------------
 
-// Create a new network server object.
-// params:
-// returns: net server object
-JSBool CreateServer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	if( !g_Game )
-		g_Game = new CGame();
-	if( !g_NetServer )
-		g_NetServer = new CNetServer(g_Game->GetSimulation2()->GetScriptInterface(), g_Game, g_GameAttributes);
-
-	*rval = OBJECT_TO_JSVAL(g_NetServer->GetScript());
-	return( JS_TRUE );
-}
-
-
-// Create a new network client object.
-// params:
-// returns: net client object
-JSBool CreateClient(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	if( !g_Game )
-		g_Game = new CGame();
-	if( !g_NetClient )
-		g_NetClient = new CNetClient(g_Game->GetSimulation2()->GetScriptInterface(), g_Game, g_GameAttributes);
-
-	*rval = OBJECT_TO_JSVAL(g_NetClient->GetScript());
-	return( JS_TRUE );
-}
-
-
-// Begin the process of starting a game.
-// params:
-// returns: success [bool]
-// notes:
-// - Performs necessary initialization while calling back into the
-//   main loop, so the game remains responsive to display+user input.
-// - When complete, the engine calls the reallyStartGame JS function.
-// TODO: Replace StartGame with Create(Game|Server|Client)/game.start() -
-//   after merging CGame and CGameAttributes
-JSBool StartGame(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	*rval = BOOLEAN_TO_JSVAL(JS_TRUE);
-
-	// Hosted MP Game
-	if (g_NetServer) 
-	{
-		*rval = BOOLEAN_TO_JSVAL(g_NetServer->StartGame() == 0);
-	}
-	// Joined MP Game
-	else if (g_NetClient)
-	{
-		*rval = BOOLEAN_TO_JSVAL(g_NetClient->StartGame() == 0);
-	}
-	// Start an SP Game Session
-	else if (!g_Game)
-	{
-		g_Game = new CGame();
-		PSRETURN ret = g_Game->StartGame(g_GameAttributes);
-		if (ret != PSRETURN_OK)
-		{
-			// Failed to start the game - destroy it, and return false
-
-			delete g_Game;
-			g_Game = NULL;
-
-			*rval = BOOLEAN_TO_JSVAL(JS_FALSE);
-			return( JS_TRUE );
-		}
-	}
-	else
-	{
-		*rval = BOOLEAN_TO_JSVAL(JS_FALSE);
-	}
-
-	return( JS_TRUE );
-}
-
-
 // Immediately ends the current game (if any).
 // params:
 // returns:
@@ -286,14 +200,6 @@ JSBool EndGame(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 	JSU_REQUIRE_NO_PARAMS();
 
 	EndGame();
-	return JS_TRUE;
-}
-
-JSBool GetGameMode(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	*rval = ToJSVal( g_GameAttributes->GetGameMode() );
 	return JS_TRUE;
 }
 
@@ -391,7 +297,10 @@ JSBool ForceGarbageCollection(JSContext* cx, JSObject* UNUSED(obj), uintN argc, 
 JSBool GetFps( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
-	*rval = INT_TO_JSVAL(g_frequencyFilter->StableFrequency());
+	int freq = 0;
+	if (g_frequencyFilter)
+		freq = g_frequencyFilter->StableFrequency();
+	*rval = INT_TO_JSVAL(freq);
 	return JS_TRUE;
 }
 
@@ -703,11 +612,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("stopXTimer", StopJsTimer, 1)
 
 	// Game Setup
-	JS_FUNC("startGame", StartGame, 0)
 	JS_FUNC("endGame", EndGame, 0)
-	JS_FUNC("getGameMode", GetGameMode, 0)
-	JS_FUNC("createClient", CreateClient, 0)
-	JS_FUNC("createServer", CreateServer, 0)
 
 	// VFS (external)
 	JS_FUNC("buildDirEntList", JSI_VFS::BuildDirEntList, 1)
@@ -757,45 +662,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 // property accessors
 //-----------------------------------------------------------------------------
 
-JSBool GetPlayerSet( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
-{
-	std::vector<CPlayer*>* players = g_Game->GetPlayers();
-
-	*vp = OBJECT_TO_JSVAL( PlayerCollection::Create( *players ) );
-
-	return( JS_TRUE );
-}
-
-
-JSBool GetLocalPlayer( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
-{
-	*vp = OBJECT_TO_JSVAL( g_Game->GetLocalPlayer()->GetScript() );
-	return( JS_TRUE );
-}
-
-
-JSBool GetGaiaPlayer( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
-{
-	*vp = OBJECT_TO_JSVAL( g_Game->GetPlayer( 0 )->GetScript() );
-	return( JS_TRUE );
-}
-
-
-JSBool SetLocalPlayer( JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
-{
-	CPlayer* newLocalPlayer = ToNative<CPlayer>( *vp );
-
-	if( !newLocalPlayer )
-	{
-		JS_ReportError( cx, "Not a valid Player." );
-		return( JS_TRUE );
-	}
-
-	g_Game->SetLocalPlayer( newLocalPlayer );
-	return( JS_TRUE );
-}
-
-
 JSBool GetGameView( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
 {
 	if (g_Game)
@@ -830,9 +696,6 @@ JSPropertySpec ScriptGlobalTable[] =
 	{ "camera"     , GLOBAL_CAMERA,      JSPROP_PERMANENT, JSI_Camera::getCamera, JSI_Camera::setCamera },
 	{ "console"    , GLOBAL_CONSOLE,     JSPROP_PERMANENT|JSPROP_READONLY, JSI_Console::getConsole, 0 },
 	{ "lightenv"   , GLOBAL_LIGHTENV,    JSPROP_PERMANENT, JSI_LightEnv::getLightEnv, JSI_LightEnv::setLightEnv },
-	{ "players"    , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetPlayerSet, 0 },
-	{ "localPlayer", 0,                  JSPROP_PERMANENT, GetLocalPlayer, SetLocalPlayer },
-	{ "gaiaPlayer" , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetGaiaPlayer, 0 },
 	{ "gameView"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetGameView, 0 },
 	{ "renderer"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetRenderer, 0 },
 

@@ -20,67 +20,14 @@
 #include "lib/external_libraries/sdl.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
-#include "ps/ConfigDB.h"
+#include "network/NetTurnManager.h"
+#include "ps/CLogger.h"
+#include "ps/Game.h"
 #include "ps/Filesystem.h"
-#include "ps/GameAttributes.h"
+#include "ps/Loader.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
-
-class TestNetServer : public CNetServer
-{
-public:
-	TestNetServer(ScriptInterface& scriptInterface, CGameAttributes& gameAttributes) :
-		CNetServer(scriptInterface, NULL, &gameAttributes), m_HasConnection(false)
-	{
-	}
-
-	bool m_HasConnection;
-
-protected:
-	virtual void OnPlayerJoin(CNetSession* pSession)
-	{
-		debug_printf(L"# player joined\n");
-
-		for (size_t slot = 0; slot < m_GameAttributes->GetSlotCount(); ++slot)
-		{
-			if (m_GameAttributes->GetSlot(slot)->GetAssignment() == SLOT_OPEN)
-			{
-				debug_printf(L"# assigning slot %d\n", slot);
-				m_GameAttributes->GetSlot(slot)->AssignToSession(pSession);
-				m_HasConnection = true;
-				break;
-			}
-		}
-	}
-
-	virtual void OnPlayerLeave(CNetSession* UNUSED(pSession))
-	{
-		debug_printf(L"# player left\n");
-	}
-};
-
-class TestNetClient : public CNetClient
-{
-public:
-	TestNetClient(ScriptInterface& scriptInterface, CGameAttributes& gameAttributes) :
-		CNetClient(scriptInterface, NULL, &gameAttributes), m_HasConnection(false)
-	{
-	}
-
-	bool m_HasConnection;
-
-protected:
-	virtual void OnConnectComplete()
-	{
-		debug_printf(L"# connect complete\n");
-		m_HasConnection = true;
-	}
-
-	virtual void OnStartGame()
-	{
-		debug_printf(L"# start game\n");
-	}
-};
+#include "simulation2/Simulation2.h"
 
 class TestNetComms : public CxxTest::TestSuite
 {
@@ -91,41 +38,38 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/L"_testcache"));
 		CXeromyces::Startup();
-
-		new ScriptingHost;
-		CGameAttributes::ScriptingInit();
-		CNetServer::ScriptingInit();
-		CNetClient::ScriptingInit();
-
-		new CConfigDB;
 	}
 
 	void tearDown()
 	{
-		delete &g_ConfigDB;
-
-		CGameAttributes::ScriptingShutdown();
-		CNetServer::ScriptingShutdown();
-		CNetClient::ScriptingShutdown();
-		delete &g_ScriptingHost;
-
 		CXeromyces::Terminate();
 		g_VFS.reset();
 		DeleteDirectory(DataDir()/L"_testcache");
 	}
 
-	void connect(TestNetServer& server, TestNetClient& client)
+	bool clients_are_all(const std::vector<CNetClient*>& clients, uint state)
 	{
-		TS_ASSERT(server.Start(NULL, 0, NULL));
-		TS_ASSERT(client.Create());
-		TS_ASSERT(client.ConnectAsync("127.0.0.1", DEFAULT_HOST_PORT));
+		for (size_t j = 0; j < clients.size(); ++j)
+			if (clients[j]->GetCurrState() != state)
+				return false;
+		return true;
+	}
+
+	void connect(CNetServer& server, const std::vector<CNetClient*>& clients)
+	{
+		TS_ASSERT(server.SetupConnection());
+		clients[0]->SetupLocalConnection(server);
+		for (size_t j = 1; j < clients.size(); ++j)
+			TS_ASSERT(clients[j]->SetupConnection("127.0.0.1"));
+
 		for (size_t i = 0; ; ++i)
 		{
-			debug_printf(L".");
+//			debug_printf(L".");
 			server.Poll();
-			client.Poll();
+			for (size_t j = 0; j < clients.size(); ++j)
+				clients[j]->Poll();
 
-			if (server.m_HasConnection && client.m_HasConnection)
+			if (server.GetState() == SERVER_STATE_PREGAME && clients_are_all(clients, NCS_PREGAME))
 				break;
 
 			if (i > 20)
@@ -138,28 +82,102 @@ public:
 		}
 	}
 
-	void test_basic_DISABLED()
+	void disconnect(CNetServer& server, const std::vector<CNetClient*>& clients)
 	{
-		ScriptInterface scriptInterface("Engine");
+		for (size_t i = 0; ; ++i)
+		{
+//			debug_printf(L".");
+			server.Poll();
+			for (size_t j = 0; j < clients.size(); ++j)
+				clients[j]->Poll();
 
-		CGameAttributes gameAttributesServer;
-		CGameAttributes gameAttributesClient;
-		TestNetServer server(scriptInterface, gameAttributesServer);
-		TestNetClient client(scriptInterface, gameAttributesClient);
-		connect(server, client);
-		client.CNetHost::Shutdown();
-		server.CNetHost::Shutdown();
+			if (server.GetState() == SERVER_STATE_UNCONNECTED && clients_are_all(clients, NCS_UNCONNECTED))
+				break;
+
+			if (i > 20)
+			{
+				TS_FAIL("disconnection timeout");
+				break;
+			}
+
+			SDL_Delay(100);
+		}
 	}
 
-	void TODO_test_destructor()
+	void wait(CNetServer& server, const std::vector<CNetClient*>& clients, size_t msecs)
 	{
-		ScriptInterface scriptInterface("Engine");
+		for (size_t i = 0; i < msecs/10; ++i)
+		{
+			server.Poll();
+			for (size_t j = 0; j < clients.size(); ++j)
+				clients[j]->Poll();
 
-		CGameAttributes gameAttributesServer;
-		CGameAttributes gameAttributesClient;
-		TestNetServer server(scriptInterface, gameAttributesServer);
-		TestNetClient client(scriptInterface, gameAttributesClient);
-		connect(server, client);
-		// run in Valgrind; this shouldn't leak
+			SDL_Delay(10);
+		}
+	}
+
+	void test_basic_DISABLED()
+	{
+		// This doesn't actually test much, it just runs a very quick multiplayer game
+		// and prints a load of debug output so you can see if anything funny's going on
+
+		TestStdoutLogger logger;
+
+		std::vector<CNetClient*> clients;
+
+		CGame client1Game(true);
+		CGame client2Game(true);
+		CGame client3Game(true);
+
+		CNetServer server;
+
+		CScriptValRooted attrs;
+		server.GetScriptInterface().Eval("({map:'Latium',thing:'example'})", attrs);
+		server.UpdateGameAttributes(attrs);
+
+		CNetClient client1(&client1Game);
+		CNetClient client2(&client2Game);
+		CNetClient client3(&client3Game);
+
+		clients.push_back(&client1);
+		clients.push_back(&client2);
+		clients.push_back(&client3);
+
+		connect(server, clients);
+		debug_printf(L"%ls", client1.TestReadGuiMessages().c_str());
+
+		server.StartGame();
+		server.Poll();
+		SDL_Delay(100);
+		for (size_t j = 0; j < clients.size(); ++j)
+		{
+			clients[j]->Poll();
+			TS_ASSERT_OK(LDR_NonprogressiveLoad());
+			clients[j]->LoadFinished();
+		}
+
+		wait(server, clients, 100);
+
+		{
+			CScriptValRooted cmd;
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command]\\n'})", cmd);
+			client1Game.GetTurnManager()->PostCommand(cmd);
+		}
+
+		{
+			CScriptValRooted cmd;
+			client2.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client2 test sim command]\\n'})", cmd);
+			client2Game.GetTurnManager()->PostCommand(cmd);
+		}
+
+		wait(server, clients, 100);
+		client1Game.GetTurnManager()->Update(1.0f);
+		client2Game.GetTurnManager()->Update(1.0f);
+		client3Game.GetTurnManager()->Update(1.0f);
+		wait(server, clients, 100);
+		client1Game.GetTurnManager()->Update(1.0f);
+		client2Game.GetTurnManager()->Update(1.0f);
+		client3Game.GetTurnManager()->Update(1.0f);
+		wait(server, clients, 100);
 	}
 };

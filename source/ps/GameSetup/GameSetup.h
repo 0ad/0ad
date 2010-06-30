@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,11 +42,7 @@ enum InitFlags
 
 	// skip initializing the in-game GUI.
 	// needed by map editor because it uses its own GUI.
-	INIT_NO_GUI = 2,
-
-	// skip initializing the simulation.
-	// used by actor viewer because it doesn't need the simulation code.
-	INIT_NO_SIM = 4
+	INIT_NO_GUI = 2
 };
 
 /**

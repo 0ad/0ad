@@ -35,7 +35,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // CUnitManager constructor
-CUnitManager::CUnitManager()
+CUnitManager::CUnitManager() :
+	m_ObjectManager(NULL)
 {
 }
 
