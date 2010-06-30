@@ -23,15 +23,13 @@
 #include "NetSession.h"
 #include "NetTurnManager.h"
 
+#include "lib/sysdep/sysdep.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
-
-#include <boost/nondet_random.hpp>
-#include <boost/random.hpp>
 
 CNetClient *g_NetClient = NULL;
 
@@ -378,15 +376,13 @@ CStr CNetClient::GenerateGUID()
 	// a host to masquerade as someone else.
 	// For now, just try to pick a very random number.
 
-	boost::random_device rng;
-	boost::uniform_int<u32> dist(0, std::numeric_limits<u32>::max());
-	boost::variate_generator<boost::random_device&, boost::uniform_int<u32> > gen(rng, dist);
-
 	CStr guid;
 	for (size_t i = 0; i < 2; ++i)
 	{
+		u32 r = 0;
+		sys_generate_random_bytes((u8*)&r, sizeof(r));
 		char buf[32];
-		sprintf_s(buf, ARRAY_SIZE(buf), "%08X", gen());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%08X", r);
 		guid += buf;
 	}
 

@@ -147,6 +147,14 @@ extern LibError sys_pick_directory(fs::wpath& path);
 extern size_t sys_max_sector_size();
 
 /**
+ * generate high-quality random bytes.
+ *
+ * this should only be used with small numbers of bytes, to avoid
+ * hogging the system's entropy.
+ **/
+extern LibError sys_generate_random_bytes(u8* buf, size_t count);
+
+/**
  * directory separation character
  **/
 #if OS_WIN

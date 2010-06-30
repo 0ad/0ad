@@ -184,6 +184,7 @@ protected:
  */
 class CNetServerTurnManager
 {
+	NONCOPYABLE(CNetServerTurnManager);
 public:
 	CNetServerTurnManager(CNetServer& server);
 

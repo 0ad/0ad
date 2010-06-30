@@ -1020,7 +1020,7 @@ int SDL_ShowCursor(int toggle)
 // the flood (and only call SDL_SetVideoMode once a frame or similar).
 // note: SDL uses WM_WINDOWPOSCHANGING, which requires calling
 // GetClientRect and suffers from false alarms.
-static void OnSize(HWND hWnd, UINT UNUSED(state), int clientWidth, int clientHeight)
+static void OnSize(HWND UNUSED(hWnd), UINT UNUSED(state), int clientWidth, int clientHeight)
 {
 	// if we don't prevent SDL_SetVideoMode from triggering SDL_VIDEORESIZE,
 	// the app's once-per-frame throttle still results in infinite recursion.

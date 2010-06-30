@@ -29,6 +29,7 @@
 
 #include "lib/sysdep/os/win/win.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
+#include <Wincrypt.h>
 
 #include "lib/sysdep/clipboard.h"
 #include "lib/sysdep/os/win/error_dialog.h"
@@ -410,4 +411,20 @@ LibError sys_pick_directory(fs::wpath& path)
 	}
 
 	return LibError_from_GLE();
+}
+
+LibError sys_generate_random_bytes(u8* buf, size_t count)
+{
+	HCRYPTPROV hCryptProv;
+
+	if(!CryptAcquireContext(&hCryptProv, NULL, NULL, PROV_RSA_FULL, 0))
+		WARN_RETURN(ERR::FAIL);
+
+	if(!CryptGenRandom(hCryptProv, count, buf))
+		WARN_RETURN(ERR::FAIL);
+
+	if (!CryptReleaseContext(hCryptProv, 0))
+		WARN_RETURN(ERR::FAIL);
+
+	return INFO::OK;
 }

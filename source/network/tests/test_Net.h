@@ -29,6 +29,8 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
+#include <enet/enet.h>
+
 class TestNetComms : public CxxTest::TestSuite
 {
 public:
@@ -38,10 +40,14 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/L"_testcache"));
 		CXeromyces::Startup();
+
+		enet_initialize();
 	}
 
 	void tearDown()
 	{
+		enet_deinitialize();
+
 		CXeromyces::Terminate();
 		g_VFS.reset();
 		DeleteDirectory(DataDir()/L"_testcache");

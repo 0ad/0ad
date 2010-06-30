@@ -204,3 +204,23 @@ std::wstring sys_get_user_name()
 
 	return L"";
 }
+
+LibError sys_generate_random_bytes(u8* buf, size_t count)
+{
+	FILE* f = fopen("/dev/urandom", "rb");
+	if (!f)
+		WARN_RETURN(ERR::FAIL);
+	
+	while (count)
+	{
+		size_t numread = fread(buf, 1, count, f);
+		if (numread == 0)
+			WARN_RETURN(ERR::FAIL);
+		buf += numread;
+		count -= numread;
+	}
+
+	fclose(f);
+
+	return INFO::OK;
+}

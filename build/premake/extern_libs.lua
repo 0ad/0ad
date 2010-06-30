@@ -71,8 +71,8 @@ end
 -- * defines: a table of symbols to define
 extern_lib_defs = {
 	boost = {
-		unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt", "boost_random-mt" },
-		osx_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt", "boost_random-mt" }
+		unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
+		osx_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" }
 	},
 	cryptopp = {
 		win_names  = { "cryptopp" },

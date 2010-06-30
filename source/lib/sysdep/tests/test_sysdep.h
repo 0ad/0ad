@@ -86,6 +86,14 @@ public:
 		TS_ASSERT_EQUALS(fmaxf(0.001f, 0.00001f), 0.001f);
 	}
 
+	void test_random()
+	{
+		u64 a = 0, b = 0;
+		TS_ASSERT_OK(sys_generate_random_bytes((u8*)&a, sizeof(a)));
+		TS_ASSERT_OK(sys_generate_random_bytes((u8*)&b, sizeof(b)));
+		TS_ASSERT_DIFFERS(a, b);
+	}
+
 	void test_sys_get_executable_name()
 	{
 		fs::wpath path;
