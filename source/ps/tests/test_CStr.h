@@ -89,6 +89,11 @@ public:
 		TS_ASSERT_EQUALS(str2.length(), str.length());
 		TS_ASSERT_EQUALS(str2, str);
 
+		T str3;
+		TS_ASSERT_EQUALS(str3.Deserialize(buf, buf+len+256) - (buf+len), 0);
+		TS_ASSERT_EQUALS(str3.length(), str.length());
+		TS_ASSERT_EQUALS(str3, str);
+
 		delete[] buf;
 	}
 

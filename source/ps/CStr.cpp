@@ -505,21 +505,26 @@ size_t CStr::GetSerializedLength() const
 u8* CStr8::Serialize(u8* buffer) const
 {
 	size_t len = length();
+	Serialize_int_4(buffer, (u32)len);
 	size_t i = 0;
 	for (i = 0; i < len; i++)
 		buffer[i] = (*this)[i];
-	return buffer+len;
+	return buffer + len;
 }
 
 const u8* CStr8::Deserialize(const u8* buffer, const u8* bufferend)
 {
-	*this = std::string(buffer, bufferend);
-	return bufferend;
+	u32 len;
+	Deserialize_int_4(buffer, len);
+	if (buffer + len > bufferend)
+		return NULL;
+	*this = std::string(buffer, buffer + len);
+	return buffer + len;
 }
 
 size_t CStr::GetSerializedLength() const
 {
-	return length();
+	return length() + 4;
 }
 
 #endif // _UNICODE
