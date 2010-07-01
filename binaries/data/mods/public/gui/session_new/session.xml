@@ -245,8 +245,6 @@
 			<!-- Player resource bar -->
 			<object
 				size="188 100%-130 100% 100%-2"
-				type="image"
-				sprite="bronzeResourceRectangles"
 			>
 				<!-- Food -->
 				<object size="0 0 100% 26" type="image" style="resourceCounter" tooltip="Food" >
@@ -356,6 +354,12 @@
 			<object hidden="true" size="216 72 100% 100%" type="image" name="selectionDetailsArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
 				<object  size="-4 -4 36 36" type="image" name="selectionDetailsArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
 				<object  size="30 0 100% 100%" type="text" name="selectionDetailsArmourStats" ghost="true" font="serif-bold-12"/>
+			</object>
+			
+			<!-- Resource Quantity -->
+			<object hidden="true" size="152 80 100% 100" type="image" name="selectionDetailsResources" tooltip="Resources" tooltip_style="snToolTip">
+				<object size="0 0 28 24" name="selectionDetailsResourceIcon" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="28 0 100% 100%" name="selectionDetailsResourceStats" ghost="true" type="text" font="serif-bold-14"/>
 			</object>
 		</object>
 
