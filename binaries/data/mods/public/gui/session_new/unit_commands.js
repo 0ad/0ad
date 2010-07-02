@@ -169,10 +169,10 @@ function updateUnitCommands(playerState, entState, commandsPanel, selection)
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		// Stamina
-		//	if (entState.stamina != undefined)
-				getGUIObjectByName("selectionDetailsStamina").hidden = false;
-		//	else
-		//		getGUIObjectByName("selectionDetailsStamina").hidden = true;
+		if (entState.stamina != undefined)
+			getGUIObjectByName("selectionDetailsStamina").hidden = false;
+		else
+			getGUIObjectByName("selectionDetailsStamina").hidden = true;
 				
 		commandsPanel.hidden = false;
 	}

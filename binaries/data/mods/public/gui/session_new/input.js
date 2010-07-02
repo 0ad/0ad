@@ -235,7 +235,7 @@ function handleInputBeforeGui(ev)
 				for (var i = ents.length-1; i >= 0; i--)
 				{
 					var template = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;
-					var firstWord = template.substring(0, template.search("/"));
+					var firstWord = getTemplateFirstWord(template);
 					if (firstWord != "units")
 						ents.splice(i, 1);
 				}

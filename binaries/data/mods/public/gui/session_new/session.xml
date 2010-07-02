@@ -297,7 +297,7 @@
 
 			<!-- Big unit icon -->
 			<object size="16 100%-94 88 100%-22" name="selectionDetailsIcon" >
-				<object type="image" style="selectionDetailsIconOutline"/>
+				<object type="image" name="selectionDetailsIconOutline" style="selectionDetailsIconOutline"/>
 				<object type="image" name="selectionDetailsIconImage" tooltip_style="snToolTip"/>
 			</object>
 
@@ -317,7 +317,7 @@
 			<object size="10 0 100%-10 56" name="selectionDetailsMainText" type="image" sprite="wheatWindowTitle">
 				<object size="0 5 100% 30" name="selectionDetailsSpecific" type="text" style="largeBoldCenteredText" tooltip_style="snToolTip"/>
 				<object hidden="true" size="0 20 100% 40" name="selectionDetailsGeneric" type="text" font="serif-14"/>
-				<object size="0 30 100% 50" name="selectionDetailsPlayer" type="text" style="centeredText" font="serif-14" tooltip_style="snToolTip" textcolor="blue"/>
+				<object size="0 30 100% 50" name="selectionDetailsPlayer" type="text" style="centeredText" font="serif-bold-14" tooltip_style="snToolTip"/>
 			</object>
 
 			<!-- Attack stats -->

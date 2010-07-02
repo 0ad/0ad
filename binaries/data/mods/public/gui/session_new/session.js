@@ -1,3 +1,18 @@
+const GAIA = "Gaia"
+const CART = "Cart";
+const CELT = "Celt";
+const HELE = "Hele";
+const IBER = "Iber";
+const PERS = "Pers";
+const ROME = "Rome";
+
+const CARTHAGINIANS = "Carthaginians";
+const ROMANS = "Romans";
+const HELLENES = "Hellenes";
+const CELTS = "Celts";
+const PERSIANS = "Persians";
+const IBERIANS = "Iberians";
+
 // Cache dev-mode settings that are frequently or widely used
 var g_DevSettings = {
 	controlAll: false
@@ -154,6 +169,11 @@ function toTitleCase(string)
 	return string;
 }
 
+function getTemplateFirstWord(templateName)
+{
+	return templateName.substring(0, templateName.search("/"))
+}
+
 function damageTypesToTextStacked(dmg)
 {
 	if (!dmg)
@@ -184,7 +204,7 @@ function damageTypesToText(dmg)
 function isUnitElite(templateName)
 {
 	var eliteStatus = false;
-	var firstWord = templateName.substring(0, templateName.search("/"));
+	var firstWord = getTemplateFirstWord(templateName);
 	var endsWith = templateName.substring(templateName.length-2, templateName.length);
 
 	if (firstWord == "units" && endsWith == "_e")
@@ -208,17 +228,13 @@ function getFullName(template)
 function getPortraitSheetName(playerState, entState)
 {
 	var portraitSheetName = "snPortraitSheet";
-	var civName = toTitleCase(playerState.civ);
+	var firstWord = getTemplateFirstWord(entState.template);
 
-	if (civName != "Gaia")
-	{
-		portraitSheetName += civName;
-	}
-	else // Find appropriate Gaia icon sheet
+	if (firstWord == "gaia") // Find appropriate Gaia icon sheet
 	{
 		var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
 		var gaiaType  = template.name.generic;
-			
+		
 		if ((gaiaType == "Rock") || (gaiaType == "Mineral"))
 			portraitSheetName += "RockGaia";
 		else if ((gaiaType == "Tree") || (gaiaType == "Bush"))
@@ -228,7 +244,32 @@ function getPortraitSheetName(playerState, entState)
 		else
 			portraitSheetName += "SpecialGaia";
 	}
+	else // Find appropriate Civ icon sheet
+	{
+		var civName = toTitleCase(playerState.civ);
+		portraitSheetName += civName;
+	}
 
 	return portraitSheetName;
 }
 
+function getFormalCivName(civ)
+{
+	switch (civ)
+	{
+	case CART:
+		return "Carthaginians";
+	case CELT:
+		return "Celts";
+	case HELE:
+		return "Hellenes";
+	case IBER:
+		return "Iberians";
+	case PERS:
+		return "Persians";
+	case ROME:
+		return "Romans";
+	default:
+		return "Gaia";
+	}
+}

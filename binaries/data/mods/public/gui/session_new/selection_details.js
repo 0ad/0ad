@@ -43,6 +43,8 @@ function selectionLayoutSingle()
 function displayGeneralInfo(playerState, entState, template)
 {
 	var civName = toTitleCase(playerState.civ);
+	var color = playerState.color;
+	var playerColor = color["r"]*255 + " " + color["g"]*255 + " " + color["b"]*255 + " " + color["a"]*255;
 	var iconTooltip = "";
 	
 	// Is unit Elite?
@@ -60,16 +62,9 @@ function displayGeneralInfo(playerState, entState, template)
 		getGUIObjectByName("selectionDetailsSpecific").tooltip = "";
 
 	// Player Name
-	getGUIObjectByName("selectionDetailsPlayer").caption = playerState.name; //"Player " + entState.player;  // TODO: get player name
-	getGUIObjectByName("selectionDetailsPlayer").tooltip = civName;
-	
-	// NEED TO FIND OUT HOW COLORS WORK - THIS WILL ARTIFICIALLY COLOR THEM "CORRECTLY"
-	if (entState.player == 1)
-		getGUIObjectByName("selectionDetailsPlayer").textcolor = "blue"; //playerState.colour;
-	else if (entState.player == 2)
-		getGUIObjectByName("selectionDetailsPlayer").textcolor = "red";
-	else
-		getGUIObjectByName("selectionDetailsPlayer").textcolor = "darkgray";
+	getGUIObjectByName("selectionDetailsPlayer").caption = playerState.name;
+	getGUIObjectByName("selectionDetailsPlayer").tooltip = getFormalCivName(civName);
+	getGUIObjectByName("selectionDetailsPlayer").textcolor = playerColor;
 
 	// Hitpoints
 	if (entState.hitpoints != undefined)
@@ -103,12 +98,11 @@ function displayGeneralInfo(playerState, entState, template)
 	getGUIObjectByName("selectionDetailsResources").hidden = true;
 
 	// Is this a Gaia unit?
-	var firstWord = entState.template.substring(0, entState.template.search("/"));
+	var firstWord = getTemplateFirstWord(entState.template);
 	if (firstWord == "gaia")
 	{
-		getGUIObjectByName("selectionDetailsPlayer").tooltip = "";
-		getGUIObjectByName("selectionDetailsAttack").hidden = true;
-		getGUIObjectByName("selectionDetailsArmour").hidden = true;
+		if (civName == GAIA)
+			getGUIObjectByName("selectionDetailsPlayer").tooltip = ""; // Don't need civ tooltip for Gaia Player - redundant
 
 		// Resource stats
 		if (entState.resourceSupply)
@@ -119,8 +113,12 @@ function displayGeneralInfo(playerState, entState, template)
 			getGUIObjectByName("selectionDetailsResourceStats").caption =  resources;
 			getGUIObjectByName("selectionDetailsResourceIcon").cell_id = resourceIconCellIds[resourceType];
 			getGUIObjectByName("selectionDetailsResources").hidden = false;
-		
+			
 			iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
+			
+			// Don't show attack and armour stats on unit with resources - not enough space
+			getGUIObjectByName("selectionDetailsAttack").hidden = true;
+			getGUIObjectByName("selectionDetailsArmour").hidden = true;
 		}
 	}
 
@@ -128,6 +126,8 @@ function displayGeneralInfo(playerState, entState, template)
 	getGUIObjectByName("selectionDetailsIconImage").sprite = getPortraitSheetName(playerState, entState);
 	getGUIObjectByName("selectionDetailsIconImage").cell_id = template.icon_cell;
 	getGUIObjectByName("selectionDetailsIconImage").tooltip = iconTooltip;
+	
+	//getGUIObjectByName("selectionDetailsIconOutline"); // Need to change color of icon outline with the playerColor
 }
 
 // Updates middle entity Selection Details Panel
@@ -160,7 +160,7 @@ function updateSelectionDetails(simState)
 		return;
 
 	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
-
+	
 	// Different selection details are shown based on whether multiple units or a single unit is selected
 	if (selection.length > 1)
 		selectionLayoutMultiple();
