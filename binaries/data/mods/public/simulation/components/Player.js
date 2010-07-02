@@ -29,9 +29,19 @@ Player.prototype.SetName = function(name)
 	this.name = name;
 };
 
+Player.prototype.GetName = function()
+{
+	return this.name;
+};
+
 Player.prototype.SetCiv = function(civcode)
 {
 	this.civ = civcode;
+};
+
+Player.prototype.GetCiv = function()
+{
+	return this.civ;
 };
 
 Player.prototype.SetColour = function(r, g, b)
@@ -43,7 +53,6 @@ Player.prototype.GetColour = function()
 {
 	return this.colour;
 };
-
 
 Player.prototype.GetPopulationCount = function()
 {
