@@ -98,11 +98,6 @@ public:
 	void StartGame(const CScriptValRooted& attribs);
 	PSRETURN ReallyStartGame();
 
-	/**
-	 * Notify the game of changes in the network connection status.
-	 */
-	void ChangeNetStatus(ENetStatus status);
-
 	/*
 		Perform all per-frame updates
 	*/

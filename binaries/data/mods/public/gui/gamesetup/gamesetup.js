@@ -11,14 +11,15 @@ var g_IsController;
 // (and therefore shouldn't send further messages to the network)
 var g_IsInGuiUpdate;
 
-// Default single-player player assignments
-var g_PlayerAssignments = { "local": { "name": "You", "player": 1 } };
+var g_PlayerAssignments = {};
 
 // Default game setup attributes
 var g_GameAttributes = { "map": "Latium" };
 
 // Number of players for currently selected map
 var g_MaxPlayers = 8;
+
+var g_ChatMessages = [];
 
 function init(attribs)
 {
@@ -49,20 +50,30 @@ function init(attribs)
 			getGUIObjectByName("playerAssignment["+i+"]").enabled = false;
 	}
 
+	// Set up offline-only bits:
+	if (!g_IsNetworked)
+	{
+		getGUIObjectByName("chatPanel").hidden = true;
+
+		g_PlayerAssignments = { "local": { "name": "You", "player": 1 } };
+	}
+
 	updatePlayerList();
+}
+
+function cancelSetup()
+{
+	Engine.DisconnectNetworkGame();
 }
 
 function onTick()
 {
-	if (g_IsNetworked)
+	while (true)
 	{
-		while (true)
-		{
-			var message = Engine.PollNetworkClient();
-			if (!message)
-				break;
-			handleNetMessage(message);
-		}
+		var message = Engine.PollNetworkClient();
+		if (!message)
+			break;
+		handleNetMessage(message);
 	}
 }
 
@@ -72,6 +83,20 @@ function handleNetMessage(message)
 
 	switch (message.type)
 	{
+	case "netstatus":
+		switch (message.status)
+		{
+		case "disconnected":
+			Engine.DisconnectNetworkGame();
+			Engine.PopGuiPage();
+			messageBox(400, 200, "Connection to the server has been lost.", "Disconnected", 2);
+			break;
+		default:
+			error("Unrecognised netstatus type "+message.status);
+			break;
+		}
+		break;
+
 	case "gamesetup":
 		if (message.data) // (the host gets undefined data on first connect, so skip that)
 			g_GameAttributes = message.data;
@@ -80,12 +105,24 @@ function handleNetMessage(message)
 		break;
 
 	case "players":
+		// Find and report all joinings/leavings
+		for (var host in message.hosts)
+			if (! g_PlayerAssignments[host])
+				addChatMessage({ "type": "connect", "username": message.hosts[host].name });
+		for (var host in g_PlayerAssignments)
+			if (! message.hosts[host])
+				addChatMessage({ "type": "disconnect", "username": g_PlayerAssignments[host].name });
+		// Update the player list
 		g_PlayerAssignments = message.hosts;
 		updatePlayerList();
 		break;
 
 	case "start":
 		Engine.PushGuiPage("page_loading.xml", { "attribs": g_GameAttributes });
+		break;
+
+	case "chat":
+		addChatMessage({ "type": "message", "username": message.username, "text": message.text });
 		break;
 
 	default:
@@ -256,4 +293,45 @@ function updatePlayerList()
 	}
 
 	g_IsInGuiUpdate = false;
+}
+
+function submitChatInput()
+{
+	var input = getGUIObjectByName("chatInput");
+	var text = input.caption;
+	if (text.length)
+	{
+		Engine.SendNetworkChat(text);
+		input.caption = "";
+	}
+}
+
+function addChatMessage(msg)
+{
+	// TODO: we ought to escape all values before displaying them,
+	// to prevent people inserting colours and newlines etc
+
+	var formatted;
+	switch (msg.type)
+	{
+	case "connect":
+		formatted = '[font="serif-bold-13"][color="255 0 0"]' + msg.username + '[/color][/font] [color="64 64 64"]has joined[/color]';
+		break;
+
+	case "disconnect":
+		formatted = '[font="serif-bold-13"][color="255 0 0"]' + msg.username + '[/color][/font] [color="64 64 64"]has left[/color]';
+		break;
+
+	case "message":
+		formatted = '[font="serif-bold-13"]<[color="255 0 0"]' + msg.username + '[/color]>[/font] ' + msg.text;
+		break;
+
+	default:
+		error("Invalid chat message '" + uneval(msg) + "'");
+		return;
+	}
+
+	g_ChatMessages.push(formatted);
+
+	getGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }

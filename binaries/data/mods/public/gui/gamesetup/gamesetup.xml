@@ -2,6 +2,7 @@
 
 <objects>
 
+	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/gamesetup/gamesetup.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
@@ -17,9 +18,12 @@
 
 		<object type="button" style="wheatExit" tooltip_style="snToolTip">
 			<action on="Press"><![CDATA[
+				cancelSetup();
 				Engine.PopGuiPage();
 			]]></action>
 		</object>
+
+		<!-- Map selection -->
 
 		<object size="0 0 250 100%">
 
@@ -40,6 +44,8 @@
 
 		</object>
 
+		<!-- Player assignments -->
+
 		<object size="260 0 100% 100%-200" type="image" sprite="wheatIndentFillLight">
 			<repeat count="8">
 				<object name="playerBox[n]" size="0 0 100% 30">
@@ -49,13 +55,32 @@
 			</repeat>
 		</object>
 
+		<!-- Chat window -->
+
+		<object name="chatPanel" size="260 100%-190 100% 100%-45" type="image" sprite="wheatIndentFillLight">
+
+			<object name="chatText" size="3 1 100%-1 100%-25" type="text" style="chatPanel"/>
+
+			<object name="chatInput" size="2 100%-23 100%-66 100%-3" type="input" style="wheatInput">
+				<action on="Press">submitChatInput();</action>
+			</object>
+
+			<object size="100%-65 100%-25 100%-1 100%" type="button" style="wheatButton">
+				Send
+				<action on="Press">submitChatInput();</action>
+			</object>
+
+		</object>
+
+		<!-- Other things -->
+
 		<object name="onscreenToolTip"
 			type="text"
 			font="serif-14"
 			textcolor="white"
 			sprite="bkTranslucent"
 			hidden="true"
-			size="100%-300 100%-190 100% 100%-45"
+			size="260 100%-40 100%-150 100%"
 		>[Tooltip text]</object>
 
 		<object

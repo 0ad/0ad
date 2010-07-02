@@ -165,21 +165,6 @@ PSRETURN CGame::ReallyStartGame()
 	return 0;
 }
 
-void CGame::ChangeNetStatus(ENetStatus status)
-{
-	if (g_GUI && g_GUI->HasPages())
-	{
-		const char* statusStr = "?";
-		switch (status)
-		{
-		case NET_WAITING_FOR_CONNECT: statusStr = "waiting_for_connect"; break;
-		case NET_NORMAL: statusStr = "normal"; break;
-		}
-
-		g_GUI->GetScriptInterface().CallFunctionVoid(OBJECT_TO_JSVAL(g_GUI->GetScriptObject()), "changeNetStatus", statusStr);
-	}
-}
-
 int CGame::GetPlayerID()
 {
 	return m_PlayerID;

@@ -58,6 +58,7 @@ enum NetServerState
  */
 enum
 {
+	NSS_UNCONNECTED,
 	NSS_HANDSHAKE,
 	NSS_AUTHENTICATE,
 	NSS_PREGAME,
@@ -144,6 +145,16 @@ public:
 	void UpdateGameAttributes(const CScriptValRooted& attrs);
 
 	/**
+	 * Make a player name 'nicer' by limiting the length and removing forbidden characters etc.
+	 */
+	static CStrW SanitisePlayerName(const CStrW& original);
+
+	/**
+	 * Make a player name unique, if it matches any existing session's name.
+	 */
+	CStrW DeduplicatePlayerName(const CStrW& original);
+
+	/**
 	 * Get the script context used for game attributes.
 	 */
 	ScriptInterface& GetScriptInterface();
@@ -165,13 +176,16 @@ private:
 	void SetupSession(CNetServerSession* session);
 	bool HandleConnect(CNetServerSession* session);
 	bool HandleDisconnect(CNetServerSession* session);
+
 	void OnUserJoin(CNetServerSession* session);
+	void OnUserLeave(CNetServerSession* session);
 
 	static bool OnClientHandshake(void* context, CFsmEvent* event);
 	static bool OnAuthenticate(void* context, CFsmEvent* event);
 	static bool OnInGame(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
+	static bool OnDisconnect(void* context, CFsmEvent* event);
 
 	void CheckGameLoadStatus(CNetServerSession* changedSession);
 

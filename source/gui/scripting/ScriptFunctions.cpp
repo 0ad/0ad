@@ -218,13 +218,21 @@ void StartNetworkJoin(void* UNUSED(cbdata), std::wstring playerName, std::string
 	g_NetClient->SetupConnection(serverAddress);
 }
 
-// TODO: we need some way to disconnect the server/client
+void DisconnectNetworkGame(void* UNUSED(cbdata))
+{
+	// TODO: we ought to do async reliable disconnections
+
+	SAFE_DELETE(g_NetServer);
+	SAFE_DELETE(g_NetClient);
+	SAFE_DELETE(g_Game);
+}
 
 CScriptVal PollNetworkClient(void* cbdata)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	debug_assert(g_NetClient);
+	if (!g_NetClient)
+		return CScriptVal();
 
 	CScriptValRooted poll = g_NetClient->GuiPoll();
 
@@ -238,6 +246,14 @@ void AssignNetworkPlayer(void* UNUSED(cbdata), int playerID, std::string guid)
 
 	g_NetServer->AssignPlayer(playerID, guid);
 }
+
+void SendNetworkChat(void* UNUSED(cbdata), std::wstring message)
+{
+	debug_assert(g_NetClient);
+
+	g_NetClient->SendChatMessage(message);
+}
+
 
 } // namespace
 
@@ -264,9 +280,11 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, CScriptVal, int, &StartGame>("StartGame");
 	scriptInterface.RegisterFunction<void, std::wstring, &StartNetworkHost>("StartNetworkHost");
 	scriptInterface.RegisterFunction<void, std::wstring, std::string, &StartNetworkJoin>("StartNetworkJoin");
+	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
 	scriptInterface.RegisterFunction<CScriptVal, &PollNetworkClient>("PollNetworkClient");
 	scriptInterface.RegisterFunction<void, CScriptVal, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
 	scriptInterface.RegisterFunction<void, int, std::string, &AssignNetworkPlayer>("AssignNetworkPlayer");
+	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
 
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");

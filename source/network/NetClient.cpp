@@ -53,14 +53,17 @@ CNetClient::CNetClient(CGame* game) :
 
 	AddTransition(NCS_INITIAL_GAMESETUP, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 
+	AddTransition(NCS_PREGAME, (uint)NMT_CHAT, NCS_PREGAME, (void*)&OnChat, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, (void*)&OnPlayerAssignment, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, (void*)&OnGameStart, context);
 
+	AddTransition(NCS_LOADING, (uint)NMT_CHAT, NCS_LOADING, (void*)&OnChat, context);
 	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, (void*)&OnGameSetup, context);
 	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, (void*)&OnPlayerAssignment, context);
 	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
 
+	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
 	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
 	AddTransition(NCS_INGAME, (uint)NMT_SIMULATION_COMMAND, NCS_INGAME, (void*)&OnInGame, context);
@@ -178,7 +181,16 @@ void CNetClient::HandleConnect()
 
 void CNetClient::HandleDisconnect()
 {
-	// TODO: should do something
+	CScriptValRooted msg;
+	GetScriptInterface().Eval("({'type':'netstatus','status':'disconnected'})", msg);
+	PushGuiMessage(msg);
+}
+
+void CNetClient::SendChatMessage(const std::wstring& text)
+{
+	CChatMessage chat;
+	chat.m_Message = text;
+	SendMessage(&chat);
 }
 
 bool CNetClient::HandleMessage(CNetMessage* message)
@@ -192,7 +204,9 @@ bool CNetClient::HandleMessage(CNetMessage* message)
 
 void CNetClient::LoadFinished()
 {
-	m_Game->ChangeNetStatus(CGame::NET_WAITING_FOR_CONNECT);
+	CScriptValRooted msg;
+	GetScriptInterface().Eval("({'type':'netstatus','status':'waiting_for_players'})", msg);
+	PushGuiMessage(msg);
 
 	CLoadedGameMessage loaded;
 	SendMessage(&loaded);
@@ -260,6 +274,23 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 	return true;
 }
 
+bool CNetClient::OnChat(void* context, CFsmEvent* event)
+{
+	debug_assert(event->GetType() == (uint)NMT_CHAT);
+
+	CNetClient* client = (CNetClient*)context;
+
+	CChatMessage* message = (CChatMessage*)event->GetParamRef();
+
+	CScriptValRooted msg;
+	client->GetScriptInterface().Eval("({'type':'chat'})", msg);
+	client->GetScriptInterface().SetProperty(msg.get(), "username", std::wstring(message->m_Sender), false);
+	client->GetScriptInterface().SetProperty(msg.get(), "text", std::wstring(message->m_Message), false);
+	client->PushGuiMessage(msg);
+
+	return true;
+}
+
 bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
 {
 	debug_assert(event->GetType() == (uint)NMT_GAME_SETUP);
@@ -287,14 +318,16 @@ bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
 	CPlayerAssignmentMessage* message = (CPlayerAssignmentMessage*)event->GetParamRef();
 
 	// Unpack the message
-	client->m_PlayerAssignments.clear();
+	PlayerAssignmentMap newPlayerAssignments;
 	for (size_t i = 0; i < message->m_Hosts.size(); ++i)
 	{
 		PlayerAssignment assignment;
 		assignment.m_Name = message->m_Hosts[i].m_Name;
 		assignment.m_PlayerID = message->m_Hosts[i].m_PlayerID;
-		client->m_PlayerAssignments[message->m_Hosts[i].m_GUID] = assignment;
+		newPlayerAssignments[message->m_Hosts[i].m_GUID] = assignment;
 	}
+
+	client->m_PlayerAssignments.swap(newPlayerAssignments);
 
 	client->PostPlayerAssignmentsToScript();
 
@@ -333,7 +366,10 @@ bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 	// All players have loaded the game - start running the turn manager
 	// so that the game begins
 	client->m_Game->SetTurnManager(client->m_ClientTurnManager);
-	client->m_Game->ChangeNetStatus(CGame::NET_NORMAL);
+
+	CScriptValRooted msg;
+	client->GetScriptInterface().Eval("({'type':'netstatus','status':'active'})", msg);
+	client->PushGuiMessage(msg);
 
 	return true;
 }

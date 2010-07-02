@@ -38,6 +38,7 @@
 enum NetMessageType
 {
 	NMT_CONNECT_COMPLETE = -256,	// Connection is complete
+	NMT_CONNECTION_LOST,
 	NMT_INVALID = 0,		// Invalid message
 	NMT_SERVER_HANDSHAKE,	// Handshake stage
 	NMT_CLIENT_HANDSHAKE,
@@ -106,8 +107,7 @@ START_NMT_CLASS_(AuthenticateResult, NMT_AUTHENTICATE_RESULT)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Chat, NMT_CHAT)
-	NMT_FIELD(CStrW, m_Sender)
-	NMT_FIELD_INT(m_Recipient, u32, 2)
+	NMT_FIELD(CStrW, m_Sender) // ignored when client->server, valid when server->client
 	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 

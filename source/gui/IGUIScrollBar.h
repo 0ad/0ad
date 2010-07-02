@@ -203,6 +203,11 @@ public:
 	virtual void SetPos(const float &f) { m_Pos = f; UpdatePosBoundaries(); }
 
 	/**
+	 * Get the value of Pos that corresponds to the bottom of the scrollable region
+	 */
+	float GetMaxPos() const { return m_ScrollRange - m_ScrollSpace;	}
+
+	/**
 	 * Scroll towards 1.0 one step
 	 */
 	virtual void ScrollPlus() { m_Pos += 30.f; UpdatePosBoundaries(); }
@@ -436,7 +441,7 @@ protected:
 
 	/**
 	 * Position of scroll bar, 0 means scrolled all the way to one side.
-	 * It is meassured in pixels, it is up to the host to make it actually
+	 * It is measured in pixels, it is up to the host to make it actually
 	 * apply in pixels.
 	 */
 	float m_Pos;

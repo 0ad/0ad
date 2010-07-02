@@ -131,9 +131,9 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 						*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
 									pCaption->Right( (long) pCaption->length()-m_iBufferPos );
 
-					UpdateText(m_iBufferPos-1, m_iBufferPos, m_iBufferPos-1);
-					
 					--m_iBufferPos;
+					
+					UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
 				}
 
 				UpdateAutoScroll();
@@ -413,13 +413,17 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			/* END: Message History Lookup */
 
 			case '\r':
-				// 'Return' should do nothing for singe liners
+				// 'Return' should do a Press event for single liners (e.g. submitting forms)
 				//  otherwise a '\n' character will be added.
 				{
 				bool multiline;
 				GUI<bool>::GetSetting(this, "multiline", multiline);
 				if (!multiline)
+				{
+					HandleMessage(GUIM_PRESSED);
+					ScriptEvent("press");
 					break;
+				}
 
 				cooked = '\n'; // Change to '\n' and do default:
 				// NOTE: Fall-through
@@ -630,7 +634,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 	}
 }
 
-void CInput::Draw() 
+void CInput::Draw()
 {
 	float bz = GetBufferedZ();
 
@@ -1032,6 +1036,10 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	GUI<CStrW>::GetSetting(this, "caption", caption);
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 	GUI<bool>::GetSetting(this, "multiline", multiline);
+
+	// Ensure positions are valid after caption changes
+	m_iBufferPos = std::min(m_iBufferPos, (int)caption.size());
+	m_iBufferPos_Tail = std::min(m_iBufferPos_Tail, (int)caption.size());
 
 	if (font_name == CStrW())
 	{

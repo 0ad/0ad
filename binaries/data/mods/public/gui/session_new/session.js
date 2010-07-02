@@ -31,26 +31,49 @@ function getHotloadData()
 	return { selection: g_Selection.selected };
 }
 
-function changeNetStatus(status)
+function handleNetMessage(message)
 {
-	var obj = getGUIObjectByName("netStatus");
-	switch (status)
+	warn("Net message: "+uneval(message));
+
+	switch (message.type)
 	{
-	case "normal":
-		obj.caption = "";
-		obj.hidden = true;
-		break;
-	case "waiting_for_connect":
-		obj.caption = "Waiting for other players to connect";
-		obj.hidden = false;
+	case "netstatus":
+		var obj = getGUIObjectByName("netStatus");
+		switch (message.status)
+		{
+		case "waiting_for_players":
+			obj.caption = "Waiting for other players to connect";
+			obj.hidden = false;
+			break;
+		case "active":
+			obj.caption = "";
+			obj.hidden = true;
+			break;
+		case "disconnected":
+			obj.caption = "Connection to the server has been lost";
+			obj.hidden = false;
+			// TODO: we need to give players some way to exit
+			break;
+		default:
+			error("Unrecognised netstatus type "+message.status);
+			break;
+		}
 		break;
 	default:
-		error("Unexpected net status "+status);
+		error("Unrecognised net message type "+message.type);
 	}
 }
 
 function onTick()
 {
+	while (true)
+	{
+		var message = Engine.PollNetworkClient();
+		if (!message)
+			break;
+		handleNetMessage(message);
+	}
+
 	g_DevSettings.controlAll = getGUIObjectByName("devControlAll").checked;
 	// TODO: at some point this controlAll needs to disable the simulation code's
 	// player checks (once it has some player checks)

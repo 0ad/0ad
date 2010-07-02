@@ -568,8 +568,7 @@ void Shutdown(int UNUSED(flags))
 {
 	MICROLOG(L"Shutdown");
 
-	if (g_Game)
-		EndGame();
+	EndGame();
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 

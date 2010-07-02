@@ -38,6 +38,9 @@ CNetClientSession::~CNetClientSession()
 }
 
 
+// TODO: the whole disconnection process is a tangled mess - need
+// to sort out exactly what happens at what times, and the interactions
+// between ENet and session and client and GUI
 
 CNetClientSessionRemote::CNetClientSessionRemote(CNetClient& client) :
 	CNetClientSession(client), m_Host(NULL), m_Server(NULL)
@@ -46,7 +49,15 @@ CNetClientSessionRemote::CNetClientSessionRemote(CNetClient& client) :
 
 CNetClientSessionRemote::~CNetClientSessionRemote()
 {
+	if (m_Host && m_Server)
+	{
+		// Disconnect without waiting for confirmation
+		enet_peer_disconnect_now(m_Server, 0);
+		enet_host_destroy(m_Host);
 
+		m_Host = NULL;
+		m_Server = NULL;
+	}
 }
 
 bool CNetClientSessionRemote::Connect(u16 port, const CStr& server)
@@ -176,7 +187,7 @@ void CNetClientSessionLocal::Poll()
 
 void CNetClientSessionLocal::Disconnect()
 {
-	// TODO
+	GetClient().HandleDisconnect();
 }
 
 bool CNetClientSessionLocal::SendMessage(const CNetMessage* message)
@@ -216,7 +227,8 @@ CNetServerSessionRemote::CNetServerSessionRemote(CNetServer& server, ENetPeer* p
 
 void CNetServerSessionRemote::Disconnect()
 {
-	// TODO
+	// TODO: ought to do reliable async disconnects, probably
+	enet_peer_disconnect_now(m_Peer, 0);
 }
 
 bool CNetServerSessionRemote::SendMessage(const CNetMessage* message)
@@ -233,7 +245,7 @@ CNetServerSessionLocal::CNetServerSessionLocal(CNetServer& server, CNetClientSes
 
 void CNetServerSessionLocal::Disconnect()
 {
-	// TODO
+	m_ClientSession.Disconnect();
 }
 
 bool CNetServerSessionLocal::SendMessage(const CNetMessage* message)

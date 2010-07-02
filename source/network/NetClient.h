@@ -153,6 +153,8 @@ public:
 	 */
 	void LoadFinished();
 
+	void SendChatMessage(const std::wstring& text);
+
 private:
 	// Net message / FSM transition handlers
 	static bool OnConnect(void* context, CFsmEvent* event);

@@ -59,6 +59,17 @@ CNetServer::CNetServer() :
 
 CNetServer::~CNetServer()
 {
+	for (size_t i = 0; i < m_Sessions.size(); ++i)
+	{
+		m_Sessions[i]->Disconnect();
+		delete m_Sessions[i];
+	}
+
+	if (m_Host)
+	{
+		enet_host_destroy(m_Host);
+	}
+
 	m_GameAttributes = CScriptValRooted(); // clear root before deleting its context
 	delete m_ScriptInterface;
 }
@@ -182,6 +193,8 @@ void CNetServer::Poll()
 			{
 				LOGMESSAGE(L"Net server: %hs disconnected", DebugName(session).c_str());
 
+				session->Update((uint)NMT_CONNECTION_LOST, NULL);
+
 				HandleDisconnect(session);
 
 				delete session;
@@ -251,10 +264,16 @@ void CNetServer::SetupSession(CNetServerSession* session)
 	void* context = session;
 
 	// Set up transitions for session
+	session->AddTransition(NSS_HANDSHAKE, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_HANDSHAKE, (uint)NMT_CLIENT_HANDSHAKE, NSS_AUTHENTICATE, (void*)&OnClientHandshake, context);
+
 	session->AddTransition(NSS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NSS_PREGAME, (void*)&OnAuthenticate, context);
+
+	session->AddTransition(NSS_PREGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CHAT, NSS_PREGAME, (void*)&OnChat, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnLoadedGame, context);
+
+	session->AddTransition(NSS_INGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CHAT, NSS_INGAME, (void*)&OnChat, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_SIMULATION_COMMAND, NSS_INGAME, (void*)&OnInGame, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_SYNC_CHECK, NSS_INGAME, (void*)&OnInGame, context);
@@ -298,6 +317,13 @@ void CNetServer::OnUserJoin(CNetServerSession* session)
 	OnAddPlayer();
 }
 
+void CNetServer::OnUserLeave(CNetServerSession* session)
+{
+	RemovePlayer(session->GetGUID());
+
+	OnRemovePlayer();
+}
+
 void CNetServer::AddPlayer(const CStr& guid, const CStrW& name)
 {
 	// Find the first free player ID
@@ -325,6 +351,8 @@ void CNetServer::AddPlayer(const CStr& guid, const CStrW& name)
 void CNetServer::RemovePlayer(const CStr& guid)
 {
 	m_PlayerAssignments.erase(guid);
+
+	SendPlayerAssignments();
 
 	OnRemovePlayer();
 }
@@ -407,7 +435,9 @@ bool CNetServer::OnAuthenticate(void* context, CFsmEvent* event)
 
 	u32 newHostID = server.m_NextHostID++;
 
-	session->SetUserName(message->m_Name);
+	CStrW username = server.DeduplicatePlayerName(SanitisePlayerName(message->m_Name));
+
+	session->SetUserName(username);
 	session->SetGUID(message->m_GUID);
 	session->SetHostID(newHostID);
 
@@ -463,6 +493,7 @@ bool CNetServer::OnChat(void* context, CFsmEvent* event)
 	CNetServer& server = session->GetServer();
 
 	CChatMessage* message = (CChatMessage*)event->GetParamRef();
+
 	message->m_Sender = session->GetUserName();
 
 	server.Broadcast(message);
@@ -478,6 +509,20 @@ bool CNetServer::OnLoadedGame(void* context, CFsmEvent* event)
 	CNetServer& server = session->GetServer();
 
 	server.CheckGameLoadStatus(session);
+
+	return true;
+}
+
+bool CNetServer::OnDisconnect(void* context, CFsmEvent* event)
+{
+	debug_assert(event->GetType() == (uint)NMT_CONNECTION_LOST);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServer& server = session->GetServer();
+
+	// If the user had authenticated, we need to handle their leaving
+	if (session->GetCurrState() == NSS_PREGAME || session->GetCurrState() == NSS_INGAME)
+		server.OnUserLeave(session);
 
 	return true;
 }
@@ -523,4 +568,50 @@ void CNetServer::UpdateGameAttributes(const CScriptValRooted& attrs)
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
 	gameSetupMessage.m_Data = m_GameAttributes;
 	Broadcast(&gameSetupMessage);
+}
+
+CStrW CNetServer::SanitisePlayerName(const CStrW& original)
+{
+	const size_t MAX_LENGTH = 32;
+
+	CStrW name = original;
+	name.Replace(L"[", L"{"); // remove GUI tags
+	name.Replace(L"]", L"}"); // remove for symmetry
+
+	// Restrict the length
+	if (name.length() > MAX_LENGTH)
+		name = name.Left(MAX_LENGTH);
+
+	// Don't allow surrounding whitespace
+	name.Trim(PS_TRIM_BOTH);
+
+	// Don't allow empty name
+	if (name.empty())
+		name = L"Anonymous";
+
+	return name;
+}
+
+CStrW CNetServer::DeduplicatePlayerName(const CStrW& original)
+{
+	CStrW name = original;
+
+	size_t id = 2;
+	while (true)
+	{
+		bool unique = true;
+		for (size_t i = 0; i < m_Sessions.size(); ++i)
+		{
+			if (m_Sessions[i]->GetUserName() == name)
+			{
+				unique = false;
+				break;
+			}
+		}
+
+		if (unique)
+			return name;
+
+		name = original + L" (" + CStrW(id++) + L")";
+	}
 }
