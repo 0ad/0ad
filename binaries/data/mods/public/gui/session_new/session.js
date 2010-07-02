@@ -73,7 +73,7 @@ function onSimulationUpdate()
 
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
-	updateSelectionDetails();
+	updateSelectionDetails(simState);
 }
 
 function updateDebug(simState)
@@ -109,7 +109,7 @@ function updateDebug(simState)
 function updatePlayerDisplay(simState)
 {
 	var playerState = simState.players[Engine.GetPlayerID()];
-	
+
 	if (!playerState)
 		return;
 
@@ -120,10 +120,16 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 }
 
-
 //-------------------------------- -------------------------------- -------------------------------- 
 // Utility functions
 //-------------------------------- -------------------------------- -------------------------------- 
+
+function toTitleCase(string)
+{
+	if (string.length > 0)
+		string = string.charAt(0).toUpperCase() + string.substring(1, string.length).toLowerCase();
+	return string;
+}
 
 function damageTypesToTextStacked(dmg)
 {
@@ -145,9 +151,9 @@ function damageTypesToText(dmg)
 	var crushDamage = dmg.crush;
 	
 	var dmgArray = [];
-	(hackDamage?  dmgArray.push(hackDamage +  hackLabel) : "");
-	(pierceDamage?  dmgArray.push(pierceDamage +  pierceLabel) : "");
-	(crushDamage?  dmgArray.push(crushDamage  +  crushLabel) : "");
+	if (hackDamage) dmgArray.push(hackDamage + hackLabel);
+	if (pierceDamage) dmgArray.push(pierceDamage + pierceLabel);
+	if (crushDamage) dmgArray.push(crushDamage + crushLabel);
 
 	return dmgArray.join(", ");
 }
@@ -175,3 +181,31 @@ function getFullName(template)
 		
 		return "[font=\"serif-bold-16\"]" + name + "[/font]";
 }
+
+function getPortraitSheetName(playerState, entState)
+{
+	var portraitSheetName = "snPortraitSheet";
+	var civName = toTitleCase(playerState.civ);
+
+	if (civName != "Gaia")
+	{
+		portraitSheetName += civName;
+	}
+	else // Find appropriate Gaia icon sheet
+	{
+		var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
+		var gaiaType  = template.name.generic;
+			
+		if ((gaiaType == "Rock") || (gaiaType == "Mineral"))
+			portraitSheetName += "RockGaia";
+		else if ((gaiaType == "Tree") || (gaiaType == "Bush"))
+			portraitSheetName += "TreeGaia";
+		else if (gaiaType == "Fauna")
+			portraitSheetName += "AnimalGaia";
+		else
+			portraitSheetName += "SpecialGaia";
+	}
+
+	return portraitSheetName;
+}
+

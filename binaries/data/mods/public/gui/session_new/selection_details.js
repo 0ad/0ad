@@ -40,10 +40,11 @@ function selectionLayoutSingle()
 }
 
 // Fills out information that most entities have
-function displayGeneralInfo(entState, template)
+function displayGeneralInfo(playerState, entState, template)
 {
+	var civName = toTitleCase(playerState.civ);
 	var iconTooltip = "";
-
+	
 	// Is unit Elite?
 	var eliteStatus = isUnitElite(entState.template);
 	
@@ -59,7 +60,16 @@ function displayGeneralInfo(entState, template)
 		getGUIObjectByName("selectionDetailsSpecific").tooltip = "";
 
 	// Player Name
-	getGUIObjectByName("selectionDetailsPlayer").caption = "Player " + entState.player; // TODO: get player name
+	getGUIObjectByName("selectionDetailsPlayer").caption = playerState.name; //"Player " + entState.player;  // TODO: get player name
+	getGUIObjectByName("selectionDetailsPlayer").tooltip = civName;
+	
+	// NEED TO FIND OUT HOW COLORS WORK - THIS WILL ARTIFICIALLY COLOR THEM "CORRECTLY"
+	if (entState.player == 1)
+		getGUIObjectByName("selectionDetailsPlayer").textcolor = "blue"; //playerState.colour;
+	else if (entState.player == 2)
+		getGUIObjectByName("selectionDetailsPlayer").textcolor = "red";
+	else
+		getGUIObjectByName("selectionDetailsPlayer").textcolor = "darkgray";
 
 	// Hitpoints
 	if (entState.hitpoints != undefined)
@@ -89,39 +99,39 @@ function displayGeneralInfo(entState, template)
 	if (entState.armour)
 		iconTooltip += "\n" + "[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);	
 
+	// Resources
+	getGUIObjectByName("selectionDetailsResources").hidden = true;
+
 	// Is this a Gaia unit?
 	var firstWord = entState.template.substring(0, entState.template.search("/"));
 	if (firstWord == "gaia")
 	{
+		getGUIObjectByName("selectionDetailsPlayer").tooltip = "";
 		getGUIObjectByName("selectionDetailsAttack").hidden = true;
 		getGUIObjectByName("selectionDetailsArmour").hidden = true;
-	}
 
-	// Resource stats
-	if (entState.resourceSupply)
-	{
-		var resources = entState.resourceSupply.amount + "/" + entState.resourceSupply.max + " ";
-		var resourceType = entState.resourceSupply.type["generic"];
+		// Resource stats
+		if (entState.resourceSupply)
+		{
+			var resources = entState.resourceSupply.amount + "/" + entState.resourceSupply.max + " ";
+			var resourceType = entState.resourceSupply.type["generic"];
 		
-		getGUIObjectByName("selectionDetailsResourceStats").caption =  resources;
-		getGUIObjectByName("selectionDetailsResourceIcon").cell_id = resourceIconCellIds[resourceType];
-		getGUIObjectByName("selectionDetailsResources").hidden = false;
+			getGUIObjectByName("selectionDetailsResourceStats").caption =  resources;
+			getGUIObjectByName("selectionDetailsResourceIcon").cell_id = resourceIconCellIds[resourceType];
+			getGUIObjectByName("selectionDetailsResources").hidden = false;
 		
-		iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
-	}
-	else
-	{
-		getGUIObjectByName("selectionDetailsResources").hidden = true;
+			iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
+		}
 	}
 
 	// Icon
-	getGUIObjectByName("selectionDetailsIconImage").tooltip = iconTooltip;
-	getGUIObjectByName("selectionDetailsIconImage").sprite = "snPortraitSheetHele";
+	getGUIObjectByName("selectionDetailsIconImage").sprite = getPortraitSheetName(playerState, entState);
 	getGUIObjectByName("selectionDetailsIconImage").cell_id = template.icon_cell;
+	getGUIObjectByName("selectionDetailsIconImage").tooltip = iconTooltip;
 }
 
 // Updates middle entity Selection Details Panel
-function updateSelectionDetails()
+function updateSelectionDetails(simState)
 {
 	var detailsPanel = getGUIObjectByName("selectionDetails");
 	var commandsPanel = getGUIObjectByName("unitCommands");
@@ -145,6 +155,10 @@ function updateSelectionDetails()
 		return;
 	}
 
+	var playerState = simState.players[entState.player];
+	if (!playerState)
+		return;
+
 	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
 
 	// Different selection details are shown based on whether multiple units or a single unit is selected
@@ -154,11 +168,11 @@ function updateSelectionDetails()
 		selectionLayoutSingle();
 
 	// Fill out general info and display it
-	displayGeneralInfo(entState, template); // must come after layout functions
+	displayGeneralInfo(playerState, entState, template); // must come after layout functions
 
 	// Show Panels
 	detailsPanel.hidden = false;
 	
 	// Fill out commands panel for specific unit selected (or first unit of primary group)
-	updateUnitCommands(commandsPanel,  selection, entState);
+	updateUnitCommands(playerState, entState, commandsPanel, selection);
 }

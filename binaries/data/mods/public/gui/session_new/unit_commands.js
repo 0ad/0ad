@@ -5,7 +5,7 @@ var g_unitPanelButtons = { "Construction": 0, "Training": 0, "Queue": 0 };
 var g_unitPanels = ["Stance", "Formation", "Construction", "Research", "Training", "Queue", "Selection"];
 
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
-function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
+function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
 	var i = 0;
@@ -81,7 +81,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		if (callback != null)
 			button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
 
-		icon.sprite = "snPortraitSheetHele"; // TODO
+		icon.sprite = getPortraitSheetName(playerState, unitEntState) //"snPortraitSheetHele"; // TODO
+		
 		if (typeof template.icon_cell == "undefined")
 			icon.cell_id = 0;
 		else
@@ -132,7 +133,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 }
 
 //  Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
-function updateUnitCommands(commandsPanel,  selection, entState)
+function updateUnitCommands(playerState, entState, commandsPanel, selection)
 {
 	// Panels that are active
 	var usedPanels = {};
@@ -153,18 +154,18 @@ function updateUnitCommands(commandsPanel,  selection, entState)
 		}
 
 		if (entState.buildEntities && entState.buildEntities.length)
-			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
+			setupUnitPanel("Construction", usedPanels, playerState, entState, entState.buildEntities, startBuildingPlacement);
 
 		if (entState.training && entState.training.entities.length)
-			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
+			setupUnitPanel("Training", usedPanels, playerState, entState, entState.training.entities,
 				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
 
 		if (entState.training && entState.training.queue.length)
-			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
+			setupUnitPanel("Queue", usedPanels, playerState, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
 		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.groupTemplates,
+			setupUnitPanel("Selection", usedPanels, playerState, entState, g_Selection.groups.groupTemplates,
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		// Stamina
