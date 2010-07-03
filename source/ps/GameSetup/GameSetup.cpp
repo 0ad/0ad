@@ -618,6 +618,8 @@ void Shutdown(int UNUSED(flags))
 	TIMER_BEGIN(L"shutdown misc");
 		timer_DisplayClientTotals();
 
+		CNetHost::Deinitialize();
+
 		// should be last, since the above use them
 		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
@@ -699,6 +701,8 @@ void Init(const CmdLineArgs& args, int flags)
 	// messages can be logged to it. (The console's size
 	// and fonts are set later in InitPs())
 	g_Console = new CConsole();
+
+	CNetHost::Initialize();
 
 	if(setup_vmode)
 		InitSDL();

@@ -57,6 +57,17 @@ public:
 	 * @return NULL on failure
 	 */
 	static ENetPacket* CreatePacket(const CNetMessage* message);
+
+	/**
+	 * Initialize ENet.
+	 * This must be called before any other networking code.
+	 */
+	static void Initialize();
+
+	/**
+	 * Deinitialize ENet.
+	 */
+	static void Deinitialize();
 };
 
 #endif	// NETHOST_H

@@ -67,3 +67,14 @@ ENetPacket* CNetHost::CreatePacket(const CNetMessage* message)
 
 	return packet;
 }
+
+void CNetHost::Initialize()
+{
+	int ret = enet_initialize();
+	debug_assert(ret == 0);
+}
+
+void CNetHost::Deinitialize()
+{
+	enet_deinitialize();
+}
