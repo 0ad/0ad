@@ -201,6 +201,53 @@ function damageTypesToText(dmg)
 	return dmgArray.join(", ");
 }
 
+/*
+function isUnitElite(templateName)
+{
+	var eliteStatus = false;
+	var firstWord = getTemplateFirstWord(templateName);
+	var endsWith = templateName.substring(templateName.length-2, templateName.length);
+
+	if (firstWord == "units" && endsWith == "_e")
+		eliteStatus = true;
+
+	return eliteStatus;
+}
+
+
+function getRankTitle(templateName)
+{
+	var firstWord = getTemplateFirstWord(templateName);
+	var endsWith = templateName.substring(templateName.length-2, templateName.length);
+	
+	if (firstWord == "units")
+	{
+		if (endsWith == "_e")
+			return " Elite";
+		else if (endsWith == "_a")
+			return " Advanced";
+	}
+	
+	return "";
+}
+*/
+
+function getRankCellId(templateName)
+{
+	var firstWord = getTemplateFirstWord(templateName);
+	var endsWith = templateName.substring(templateName.length-2, templateName.length);
+	
+	if (firstWord == "units")
+	{
+		if (endsWith == "_e")
+			return 0;
+		else if (endsWith == "_a")
+			return 1;
+	}
+	
+	return -1;
+}
+
 function isUnitElite(templateName)
 {
 	var eliteStatus = false;

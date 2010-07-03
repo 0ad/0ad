@@ -36,7 +36,7 @@ function selectionLayoutSingle()
 		getGUIObjectByName("selectionDetailsArmour").hidden = false;
 
 		getGUIObjectByName("selectionDetailsMainText").sprite = "";
-		getGUIObjectByName("selectionDetailsSpecific").sprite = "wheatWindowTitle";
+		getGUIObjectByName("selectionDetailsSpecific").sprite = "";
 }
 
 // Fills out information that most entities have
@@ -48,10 +48,14 @@ function displayGeneralInfo(playerState, entState, template)
 	var iconTooltip = "";
 	
 	// Is unit Elite?
-	var eliteStatus = isUnitElite(entState.template);
+//	var eliteStatus = isUnitElite(entState.template);
+	
+	// Rank Icon
+	getGUIObjectByName("rankIconImage").sprite = "snIconSheetRank";
+	getGUIObjectByName("rankIconImage").cell_id = getRankCellId(entState.template);
 	
 	// Specific Name
-	var name = (eliteStatus?  "Elite " + template.name.specific : template.name.specific);
+	var name = template.name.specific; // (eliteStatus?  "Elite " + template.name.specific : template.name.specific);
 	getGUIObjectByName("selectionDetailsSpecific").caption = name;
 	iconTooltip += "[font=\"serif-bold-16\"]" + name + "[/font]";
 

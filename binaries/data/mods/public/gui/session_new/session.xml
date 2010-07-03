@@ -315,6 +315,7 @@
 
 			<!-- Details text -->
 			<object size="10 0 100%-10 56" name="selectionDetailsMainText" type="image" sprite="wheatWindowTitle">
+				<object size="0 0 32 32" name="rankIconImage" type="image" cell_id="0" tooltip_style="snToolTip"/>
 				<object size="0 5 100% 30" name="selectionDetailsSpecific" type="text" style="largeBoldCenteredText" tooltip_style="snToolTip"/>
 				<object hidden="true" size="0 20 100% 40" name="selectionDetailsGeneric" type="text" font="serif-14"/>
 				<object size="0 30 100% 50" name="selectionDetailsPlayer" type="text" style="centeredText" font="serif-bold-14" tooltip_style="snToolTip"/>
@@ -349,11 +350,14 @@
 			hidden="true"
 			z="0"
 		>
+		
+<!--		
 			<object name="bronzeSquares"
 				type="image"
 				sprite="bronzeCommandsSquares"
 				size="56 10 414 100%"
 			/>
+-->
 
 			<object name="unitConstructionPanel"
 				size="0 10 100% 33%"

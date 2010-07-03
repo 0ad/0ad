@@ -34,7 +34,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			name = getFullName(template);
 
 		// Tooltip
-		var tooltip = (isUnitElite(entType)?  "Elite " + name : name ); // "Elite " is not formatted in bold, so may need custom versions of this later
+		var tooltip = name; //(isUnitElite(entType)?  "Elite " + name : name );
 		
 		if (guiName == "Selection")
 		{

@@ -28,7 +28,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerData = {
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
-			"colour": cmpPlayer.GetColour(),
+			"color": cmpPlayer.GetColour(),
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"resourceCounts": cmpPlayer.GetResourceCounts()
