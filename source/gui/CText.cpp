@@ -113,6 +113,11 @@ void CText::SetupText()
 		GetScrollBar(0).SetScrollRange(m_GeneratedTexts[0]->m_Size.cy);
 		GetScrollBar(0).SetScrollSpace(m_CachedActualSize.GetHeight());
 
+		GetScrollBar(0).SetX(m_CachedActualSize.right);
+		GetScrollBar(0).SetY(m_CachedActualSize.top);
+		GetScrollBar(0).SetZ(GetBufferedZ());
+		GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
+
 		if (bottom)
 			GetScrollBar(0).SetPos(GetScrollBar(0).GetMaxPos());
 	}
@@ -126,30 +131,13 @@ void CText::HandleMessage(const SGUIMessage &Message)
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:
-		bool scrollbar;
-		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-
-		// Update scroll-bar
-		// TODO Gee: (2004-09-01) Is this really updated each time it should?
-		if (scrollbar && 
-		    (Message.value == CStr("size") || 
-			 Message.value == CStr("z") ||
-			 Message.value == CStr("absolute")))
-		{
-			
-			GetScrollBar(0).SetX( m_CachedActualSize.right );
-			GetScrollBar(0).SetY( m_CachedActualSize.top );
-			GetScrollBar(0).SetZ( GetBufferedZ() );
-			GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
-		}
-
-		if (Message.value == CStr("scrollbar"))
+		if (Message.value == "scrollbar")
 		{
 			SetupText();
 		}
 
 		// Update scrollbar
-		if (Message.value == CStr("scrollbar_style"))
+		if (Message.value == "scrollbar_style")
 		{
 			CStr scrollbar_style;
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
