@@ -13,7 +13,7 @@
     <Actor>structures/celts/fortress_gallic.xml</Actor>
   </VisualActor>
   <TrainingQueue>
-    <Entities>
+    <Entities datatype="tokens">
       units/celt_hero_brennus
       units/celt_hero_britomartus
       units/celt_hero_vercingetorix

@@ -53,6 +53,9 @@ class XMBElement;
  *   <Example3>
  *     <C/>
  *   </Example3>
+ *   <Example4 datatype="tokens">
+ *     one two three
+ *   </Example4>
  * </Entity>
  * @endcode
  * then a second like:
@@ -66,6 +69,10 @@ class XMBElement;
  *   <Example3 replace="">   <!-- replace all the old children of the Example3 element -->
  *     <D>new</D>
  *   </Example3>
+ *   <Example4 datatype="tokens">  <!-- treat as space-separated lists of tokens to merge -->
+ *     four             <!-- add a token to the parent's set -->
+ *     -two             <!-- remove a token from the parent's set -->
+ *   </Example4>
  * </Entity>
  * @endcode
  * is equivalent to loading a single file like:
@@ -78,6 +85,9 @@ class XMBElement;
  *   <Example3>
  *     <D>new</D>
  *   </Example3>
+ *   <Example4>
+ *     one three four
+ *   </Example4>
  * </Entity>
  * @endcode
  *
@@ -90,7 +100,8 @@ class XMBElement;
  *     },
  *     "Example3": {
  *       "D": "new"
- *     }
+ *     },
+ *     "Example4": { "@datatype": "tokens", "_string": "one three four" }
  *   }
  * }
  * @endcode

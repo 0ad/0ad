@@ -1,14 +1,13 @@
+package Entity;
+
 use strict;
 use warnings;
 
 use XML::Parser;
-use XML::LibXML;
 use Data::Dumper;
-use Storable qw(dclone);
 use File::Find;
 
 my $vfsroot = '../../../binaries/data/mods';
-my $rngschema = XML::LibXML::RelaxNG->new(location => '../../../binaries/system/entity.rng');
 
 sub get_file
 {
@@ -64,7 +63,21 @@ sub load_xml
 sub apply_layer
 {
     my ($base, $new) = @_;
-    $base->{' content'} = $new->{' content'};
+    if ($new->{'@datatype'} and $new->{'@datatype'}{' content'} eq 'tokens') {
+        my @old = split /\s+/, ($base->{' content'} || '');
+        my @new = split /\s+/, ($new->{' content'} || '');
+        my @t = @old;
+        for my $n (@new) {
+            if ($n =~ /^-(.*)/) {
+                @t = grep $_ ne $1, @t;
+            } else {
+                push @t, $n if not grep $_ eq $n, @t;
+            }
+        }
+        $base->{' content'} = join ' ', @t;
+    } else {
+        $base->{' content'} = $new->{' content'};
+    }
     for my $k (grep $_ ne ' content', keys %$new) {
         if ($new->{$k}{'@disable'}) {
             delete $base->{$k};
@@ -93,53 +106,14 @@ sub load_inherited
     }
 }
 
-sub escape_xml
-{
-    my ($t) = @_;
-    $t =~ s/&/&amp;/g;
-    $t =~ s/</&lt;/g;
-    $t =~ s/>/&gt;/g;
-    $t =~ s/"/&quot;/g;
-    $t =~ s/\t/&#9;/g;
-    $t =~ s/\n/&#10;/g;
-    $t =~ s/\r/&#13;/g;
-    $t;
-}
-
-sub to_xml
-{
-    my ($e) = @_;
-    my $r = $e->{' content'};
-    $r = '' if not defined $r;
-    for my $k (sort grep !/^[\@ ]/, keys %$e) {
-        $r .= "<$k";
-        for my $a (sort grep /^\@/, keys %{$e->{$k}}) {
-            $a =~ /^\@(.*)/;
-            $r .= " $1=\"".escape_xml($e->{$k}{$a}{' content'})."\"";
-        }
-        $r .= ">";
-        $r .= to_xml($e->{$k});
-        $r .= "</$k>";
-    }
-    return $r;
-}
-
-sub validate
-{
-    my ($vfspath) = @_;
-    my $xml = to_xml(load_inherited($vfspath));
-    my $doc = XML::LibXML->new->parse_string($xml);
-    $rngschema->validate($doc);
-}
-
-
-sub check_all
+sub find_entities
 {
     my @files;
     my $find_process = sub {
         return $File::Find::prune = 1 if $_ eq '.svn';
         my $n = $File::Find::name;
         return if /~$/;
+        return if $n =~ /\/special\//;
         return unless -f $_;
         $n =~ s~\Q$vfsroot\E/(public|internal)/simulation/templates/~~;
         $n =~ s/\.xml$//;
@@ -148,22 +122,5 @@ sub check_all
     find({ wanted => $find_process }, "$vfsroot/public/simulation/templates");
     find({ wanted => $find_process }, "$vfsroot/internal/simulation/templates") if -e "$vfsroot/internal";
 
-    my $count = 0;
-    my $failed = 0;
-    for my $f (sort @files) {
-        next if $f =~ /^template_/;
-        print "# $f...\n";
-        ++$count;
-        eval {
-            validate($f);
-        };
-        if ($@) {
-            ++$failed;
-            print $@;
-            eval { print to_xml(load_inherited($f)), "\n"; }
-        }
-    }
-    print "\nTotal: $count; failed: $failed\n";
+    return @files;
 }
-
-check_all();

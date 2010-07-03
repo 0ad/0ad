@@ -5,11 +5,14 @@ function TrainingQueue() {}
 TrainingQueue.prototype.Schema =
 	"<a:help>Allows the building to train new units.</a:help>" +
 	"<a:example>" +
-		"<Entities>" +
+		"<Entities datatype='tokens'>" +
 			"\n    units/{civ}_support_female_citizen\n    units/{civ}_support_trader\n    units/celt_infantry_spearman_b\n  " +
 		"</Entities>" +
 	"</a:example>" +
 	"<element name='Entities' a:help='Space-separated list of entity template names that this building can train. The special string \"{civ}\" will be automatically replaced by the building&apos;s four-character civ code'>" +
+		"<attribute name='datatype'>" +
+			"<value>tokens</value>" +
+		"</attribute>" +
 		"<text/>" +
 	"</element>";
 
@@ -33,7 +36,7 @@ TrainingQueue.prototype.Init = function()
 
 TrainingQueue.prototype.GetEntitiesList = function()
 {
-	var string = this.template.Entities;
+	var string = this.template.Entities._string;
 	
 	// Replace the "{civ}" codes with this entity's civ ID
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);

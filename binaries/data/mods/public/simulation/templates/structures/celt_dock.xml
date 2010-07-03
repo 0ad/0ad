@@ -12,7 +12,7 @@
     <Actor>structures/celts/dock.xml</Actor>
   </VisualActor>
   <TrainingQueue>
-    <Entities>
+    <Entities datatype="tokens">
       units/celt_ship_merchant
       units/celt_ship_trireme
     </Entities>

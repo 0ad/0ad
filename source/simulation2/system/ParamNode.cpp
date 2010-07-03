@@ -25,6 +25,7 @@
 #include "js/jsapi.h"
 
 #include <sstream>
+#include <boost/algorithm/string.hpp>
 
 static CParamNode g_NullNode(false);
 
@@ -55,9 +56,12 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	std::string name = xmb.GetElementString(element.GetNodeName()); // TODO: is GetElementString inefficient?
 	utf16string value = element.GetText();
 
+	bool hasSetValue = false;
+
 	// Look for special attributes
 	int at_disable = xmb.GetAttributeID("disable");
 	int at_replace = xmb.GetAttributeID("replace");
+	int at_datatype = xmb.GetAttributeID("datatype");
 	{
 		XERO_ITER_ATTR(element, attr)
 		{
@@ -71,12 +75,38 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 				m_Childs.erase(name);
 				break;
 			}
+			else if (attr.Name == at_datatype && std::wstring(attr.Value.begin(), attr.Value.end()) == L"tokens")
+			{
+				CParamNode& node = m_Childs[name];
+				std::wstring newValue(value.begin(), value.end());
+				std::vector<std::wstring> oldTokens;
+				std::vector<std::wstring> newTokens;
+				if (!node.m_Value.empty())
+					boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space());
+				if (!newValue.empty())
+					boost::algorithm::split(newTokens, newValue, boost::algorithm::is_space());
+
+				std::vector<std::wstring> tokens = oldTokens;
+				for (size_t i = 0; i < newTokens.size(); ++i)
+				{
+					if (newTokens[i][0] == L'-')
+						tokens.erase(std::find(tokens.begin(), tokens.end(), newTokens[i].substr(1)));
+					else
+						if (std::find(oldTokens.begin(), oldTokens.end(), newTokens[i]) == oldTokens.end())
+							tokens.push_back(newTokens[i]);
+				}
+
+				node.m_Value = boost::algorithm::join(tokens, L" ");
+				hasSetValue = true;
+				break;
+			}
 		}
 	}
 
 	// Add this element as a child node
 	CParamNode& node = m_Childs[name];
-	node.m_Value = std::wstring(value.begin(), value.end());
+	if (!hasSetValue)
+		node.m_Value = std::wstring(value.begin(), value.end());
 
 	// Recurse through the element's children
 	XERO_ITER_EL(element, child)
@@ -94,8 +124,6 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 		std::wstring attrValue(attr.Value.begin(), attr.Value.end());
 		node.m_Childs["@" + attrName].m_Value = attrValue;
 	}
-
-	// TODO: support some kind of 'delete' marker, for use with inheritance
 }
 
 void CParamNode::CopyFilteredChildrenOfChild(const CParamNode& src, const char* name, const std::set<std::string>& permitted)

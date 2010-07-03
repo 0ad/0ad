@@ -12,7 +12,7 @@
     <Actor>structures/celts/barracks.xml</Actor>
   </VisualActor>
   <TrainingQueue>
-    <Entities>
+    <Entities datatype="tokens">
       units/celt_cavalry_javelinist_b
       units/celt_cavalry_spearman_b
       units/celt_cavalry_swordsman_b
