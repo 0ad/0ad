@@ -23,10 +23,10 @@
 #include "ps/CStr.h"
 #include "LightEnv.h"
 #include "ps/FileIo.h"
+#include "simulation2/system/Entity.h"
 
 class CObjectEntry;
 class CTerrain;
-class CUnitManager;
 class WaterManager;
 class SkyManager;
 class CLightEnv;
@@ -34,7 +34,6 @@ class CCamera;
 class CCinemaManager;
 class CTriggerManager;
 class CSimulation2;
-class CEntityManager;
 class CTextureEntry;
 
 class CXMLReader;
@@ -47,9 +46,9 @@ public:
 	// constructor
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-	void LoadMap(const VfsPath& pathname, CTerrain*, CUnitManager*,
+	void LoadMap(const VfsPath& pathname, CTerrain*,
 		WaterManager*, SkyManager*, CLightEnv*, CCamera*,
-		CCinemaManager*, CTriggerManager*, CSimulation2*, CEntityManager*);
+		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
 
 private:
 	// UnpackTerrain: unpack the terrain from the input stream
@@ -85,7 +84,6 @@ private:
 	// state latched by LoadMap and held until DelayedLoadFinished
 	CFileUnpacker unpacker;
 	CTerrain* pTerrain;
-	CUnitManager* pUnitMan;
 	WaterManager* pWaterMan;
 	SkyManager* pSkyMan;
 	CLightEnv* pLightEnv;
@@ -93,10 +91,11 @@ private:
 	CCinemaManager* pCinema;
 	CTriggerManager* pTrigMan;
 	CSimulation2* pSimulation2;
-	CEntityManager* pEntityMan;
+	int m_PlayerID;
 	VfsPath filename_xml;
 	bool only_xml;
 	u32 file_format_version;
+	entity_id_t m_CameraStartupTarget;
 
 	// UnpackTerrain generator state
 	size_t cur_terrain_tex;

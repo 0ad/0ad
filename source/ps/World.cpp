@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,8 +41,6 @@
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 
-#define LOG_CATEGORY L"world"
-
 /**
  * Global light settings.
  * It is not a member of CWorld because it is passed
@@ -66,9 +64,9 @@ CWorld::CWorld(CGame *pGame):
 }
 
 /**
- * Sets up the game world and loads required world resources.
+ * Initializes the game world with the attributes provided.
  **/
-void CWorld::Initialize(const CStrW& mapFile)
+void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 {
 	// Load the map, if one was specified
 	if (mapFile.length())
@@ -80,31 +78,22 @@ void CWorld::Initialize(const CStrW& mapFile)
 		{
 			reader = new CMapReader;
 			CTriggerManager* pTriggerManager = NULL;
-			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager,
+			reader->LoadMap(mapfilename, m_Terrain,
 				CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
 				CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
 				&g_LightEnv,
 				m_pGame->GetView() ? m_pGame->GetView()->GetCamera() : NULL,
 				m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
-				pTriggerManager, m_pGame->GetSimulation2(), NULL);
+				pTriggerManager, m_pGame->GetSimulation2(), playerID);
 				// fails immediately, or registers for delay loading
 		}
 		catch (PSERROR_File& err)
 		{
 			delete reader;
-			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
+			LOGERROR(L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
 			throw PSERROR_Game_World_MapLoadFailed();
 		}
 	}
-}
-
-
-/**
- * Initializes the game world with the attributes provided.
- **/
-void CWorld::RegisterInit(const CStrW& mapFile)
-{
-	Initialize(mapFile);
 }
 
 
@@ -115,7 +104,7 @@ void CWorld::RegisterInit(const CStrW& mapFile)
 CWorld::~CWorld()
 {
 	delete m_Terrain;
-	delete m_UnitManager; // must come after deleting EntityManager
+	delete m_UnitManager;
 }
 
 

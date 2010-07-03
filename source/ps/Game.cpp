@@ -128,7 +128,7 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
 	// some point to be stored in the world object?
 	if (m_GameView)
 		m_GameView->RegisterInit();
-	m_World->RegisterInit(mapFile);
+	m_World->RegisterInit(mapFile, m_PlayerID);
 	LDR_EndRegistering();
 }
 

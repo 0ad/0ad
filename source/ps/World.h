@@ -76,11 +76,10 @@ public:
 	CWorld(CGame *pGame);
 	~CWorld();
 
-	void RegisterInit(const CStrW& mapFile);
 	/*
 	Initialize the World - load the map and all objects
 	*/
-	void Initialize(const CStrW& mapFile);
+	void RegisterInit(const CStrW& mapFile, int playerID);
 
 	// provided for JS _rewritemaps function
 	void RewriteMap();

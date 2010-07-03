@@ -506,7 +506,7 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 	{
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(pathnames[i], pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pTrigMan, pSimulation2, pEntityMan);
+		reader->LoadMap(pathnames[i], pTerrain, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pTrigMan, pSimulation2, -1);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 

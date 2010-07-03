@@ -46,6 +46,8 @@
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
+#include <boost/algorithm/string/predicate.hpp>
+
 #define LOG_CATEGORY L"graphics"
 
 CMapReader::CMapReader()
@@ -57,13 +59,12 @@ CMapReader::CMapReader()
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
-						 CUnitManager *pUnitMan_, WaterManager* pWaterMan_, SkyManager* pSkyMan_,
+						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CCamera *pCamera_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_,
-						 CSimulation2 *pSimulation2_, CEntityManager *pEntityMan_)
+						 CSimulation2 *pSimulation2_, int playerID_)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
-	pUnitMan = pUnitMan_;
 	pLightEnv = pLightEnv_;
 	pCamera = pCamera_;
 	pWaterMan = pWaterMan_;
@@ -71,7 +72,9 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	pCinema = pCinema_;
 	pTrigMan = pTrigMan_;
 	pSimulation2 = pSimulation2_;
-	pEntityMan = pEntityMan_;
+	m_PlayerID = playerID_;
+
+	m_CameraStartupTarget = INVALID_ENTITY;
 
 	filename_xml = fs::change_extension(pathname, L".xml");
 
@@ -100,10 +103,6 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	// delete all existing entities
 	if (pSimulation2)
 		pSimulation2->ResetState();
-
-	// delete all remaining non-entity units
-	if (pUnitMan)
-		pUnitMan->DeleteAll();
 
 	// unpack the data
 	if (!only_xml)
@@ -224,6 +223,26 @@ int CMapReader::ApplyData()
 		if (pLightEnv)
 			*pLightEnv = m_LightEnv;
 	}
+
+	if (m_CameraStartupTarget != INVALID_ENTITY && pCamera)
+	{
+		CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_CameraStartupTarget);
+		if (!cmpPosition.null())
+		{
+			pCamera->m_Orientation.SetIdentity();
+
+			pCamera->m_Orientation.Translate(CVector3D(0.f, 0.f, -200.f)); // move backwards from the target entity
+
+			pCamera->m_Orientation.RotateX(DEGTORAD(30));
+			pCamera->m_Orientation.RotateY(DEGTORAD(0));
+
+			CFixedVector3D pos = cmpPosition->GetPosition();
+			pCamera->m_Orientation.Translate(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
+
+			pCamera->UpdateFrustum();
+		}
+	}
+
 	return 0;
 }
 
@@ -1002,6 +1021,17 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			CmpPtr<ICmpOwnership> cmpOwner(sim, ent);
 			if (!cmpOwner.null())
 				cmpOwner->SetOwner(PlayerID);
+
+			if (m_MapReader.m_CameraStartupTarget == INVALID_ENTITY && !cmpPosition.null())
+			{
+				// HACK: we special-case civil centre files to initialise the camera.
+				// This ought to be based on a more generic mechanism for indicating
+				// per-player camera start locations.
+				if (PlayerID == m_MapReader.m_PlayerID && boost::algorithm::ends_with(TemplateName, L"civil_centre"))
+				{
+					m_MapReader.m_CameraStartupTarget = ent;
+				}
+			}
 		}
 
 		completed_jobs++;
