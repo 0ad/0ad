@@ -26,6 +26,7 @@
 
 #include <sstream>
 #include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/join.hpp>	// this isn't in string.hpp
 
 static CParamNode g_NullNode(false);
 
