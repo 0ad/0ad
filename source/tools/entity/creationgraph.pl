@@ -5,6 +5,8 @@ use Entity;
 
 my @files = Entity::find_entities();
 
+my %files = map +($_ => 1), @files;
+
 open my $g, '>', 'creation.dot' or die $!;
 print $g "digraph G {\n";
 
@@ -17,7 +19,8 @@ for my $f (sort @files) {
         my $ents = $ent->{Entity}{Builder}{Entities}{' content'};
         $ents =~ s/\{civ\}/$ent->{Entity}{Identity}{Civ}{' content'}/eg;
         for my $b (split /\s+/, $ents) {
-            print $g qq{"$f b" -> "$b b" [color=green];\n};
+            warn "Invalid Builder reference: $f -> $b\n" unless $files{$b};
+            print $g qq{"$f" -> "$b" [color=green];\n};
         }
     }
 
@@ -25,7 +28,8 @@ for my $f (sort @files) {
         my $ents = $ent->{Entity}{TrainingQueue}{Entities}{' content'};
         $ents =~ s/\{civ\}/$ent->{Entity}{Identity}{Civ}{' content'}/eg;
         for my $b (split /\s+/, $ents) {
-            print $g qq{"$f t" -> "$b t" [color=blue];\n};
+            warn "Invalid TrainingQueue reference: $f -> $b\n" unless $files{$b};
+            print $g qq{"$f" -> "$b" [color=blue];\n};
         }
     }
 }
