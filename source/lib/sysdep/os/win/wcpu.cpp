@@ -148,11 +148,11 @@ size_t os_cpu_LargePageSize()
 }
 
 
-static void GetMemoryStatus(MEMORYSTATUSEX& mse)
+static void GetMemoryStatusEx(MEMORYSTATUSEX& mse)
 {
 	// note: we no longer bother dynamically importing GlobalMemoryStatusEx -
-	// it's available on Win2k and above. this function safely handles
-	// systems with > 4 GB of memory.
+	// it's available starting with Win2k and avoids overflow/wraparound
+	// on systems with >= 4 GB of memory.
 	mse.dwLength = sizeof(mse);
 	const BOOL ok = GlobalMemoryStatusEx(&mse);
 	WARN_IF_FALSE(ok);
@@ -165,7 +165,7 @@ size_t os_cpu_MemorySize()
 	if(memorySizeMiB == 0)
 	{
 		MEMORYSTATUSEX mse;
-		GetMemoryStatus(mse);
+		GetMemoryStatusEx(mse);
 		DWORDLONG memorySize = mse.ullTotalPhys;
 
 		// Richter, "Programming Applications for Windows": the reported
@@ -184,7 +184,7 @@ size_t os_cpu_MemorySize()
 size_t os_cpu_MemoryAvailable()
 {
 	MEMORYSTATUSEX mse;
-	GetMemoryStatus(mse);
+	GetMemoryStatusEx(mse);
 	const size_t memoryAvailableMiB = size_t(mse.ullAvailPhys / MiB);
 	return memoryAvailableMiB;
 }
