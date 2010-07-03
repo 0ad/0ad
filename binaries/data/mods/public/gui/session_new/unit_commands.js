@@ -4,6 +4,26 @@ var g_unitPanelButtons = { "Construction": 0, "Training": 0, "Queue": 0 };
 // Unit panels are panels with row(s) of buttons
 var g_unitPanels = ["Stance", "Formation", "Construction", "Research", "Training", "Queue", "Selection"];
 
+// Lay out button rows
+function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, startIndex, endIndex)
+{
+	var rowIndex = 0;
+
+	for (i = startIndex; i < endIndex; i++)
+	{
+		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var size = button.size;
+
+		size.left = buttonSpacer*rowIndex;
+		size.right = buttonSpacer*rowIndex + buttonSideLength;
+		size.top = buttonSpacer*rowNumber;
+		size.bottom = buttonSpacer*rowNumber + buttonSideLength;
+		
+		button.size = size;
+		rowIndex++;
+	}
+}
+
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
 function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, callback)
 {
@@ -12,7 +32,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 
 	for each (var item in items)
 	{
-		if (i > 15) // End loop early if more than 16 buttons
+		if (i > 23) // End loop early if there are more than 24 buttons
 			break;
 
 		// Get templates
@@ -93,38 +113,26 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
-	var buttonSpacer = ((guiName == "Selection")? 37 : 45);
 	var numButtons = i;
-	var j = 0; // index for second row of buttons
-	
-	for (i = 0; i < numButtons; ++i)
+	var buttonSpacer = ((guiName == "Selection")? 37 : 45);
+
+	if (numButtons < 9) // Row 0
 	{
-		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		var size = button.size;
-
-		if (i > 7) // Make second row
-		{
-			if (guiName == "Queue")
-				getGUIObjectByName("unit"+guiName+"Panel").size = "0 -104 100% 100%-166"
-				
-			size.left = buttonSpacer*j;
-			size.right = buttonSpacer*j + buttonSideLength;
-			size.top = buttonSpacer;
-			size.bottom = buttonSpacer + buttonSideLength;
-			j++;
-		}
-		else // Make first row
-		{
-			if ((guiName == "Queue"))
-				getGUIObjectByName("unit"+guiName+"Panel").size = "0 -60 100% 100%-166"
-		
-			size.left = buttonSpacer*i;
-			size.right = buttonSpacer*i + size.bottom;
-		}
-
-		button.size = size;
+		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, numButtons);
 	}
-	
+	else if (numButtons < 17) // Row 1
+	{
+		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
+		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, numButtons);
+	}
+	else // Row 2
+	{
+		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
+		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, 16);
+		if (guiName != "Selection")
+			layoutButtonRow(2, guiName, buttonSideLength, buttonSpacer, 16, numButtons);
+	}
+
 	// Hide any buttons we're no longer using
 	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
 		getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
@@ -132,7 +140,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 	g_unitPanelButtons[guiName] = numButtons;
 }
 
-//  Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
+// Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
 function updateUnitCommands(playerState, entState, commandsPanel, selection)
 {
 	// Panels that are active

@@ -285,7 +285,7 @@
 				size="10 4 278 64"
 			>	 
 				<object size="0 0 100% 47">
-					<repeat count="18">
+					<repeat count="24">
 						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 34 34" z="20">
 							<object name="unitSelectionHighlight[n]" hidden="true" ghost="true" type="image" sprite="primaryGroupHighlight" size="-1 -1 35 35"/>
 							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 32 32"/>
@@ -365,8 +365,8 @@
 				<object size="-2 -6 54 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="0" tooltip="Construction"/>
 
-				<object size="56 0 100% 37">
-					<repeat count="16">
+				<object size="55 0 100% 37">
+					<repeat count="24">
 						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 43 43">
 							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 40 40"/>
 						</object>
@@ -413,8 +413,8 @@
 				<object size="-2 -6 54 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="2" tooltip="Training"/>
 
-				<object size="56 0 100% 37">
-					<repeat count="16">
+				<object size="55 0 100% 37">
+					<repeat count="24">
 						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 43 43">
 							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 40 40"/>
 						</object>
@@ -430,8 +430,8 @@
 				<object size="-2 -3 54 53" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="3" tooltip="Production queue"/>
 
-				<object size="56 3 100% 37">
-					<repeat count="16">
+				<object size="55 3 100% 37">
+					<repeat count="24">
 						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 43 43">
 							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 40 40"/>
 							<object name="unitQueueCount[n]" ghost="true" style="iconButtonCount" type="text"/>
