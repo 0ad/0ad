@@ -28,6 +28,8 @@ class CNetServer;
 
 class CNetServerSessionLocal; // forward declaration, needed because of circular references
 
+class CNetStatsTable;
+
 /**
  * @file
  * Network client/server sessions.
@@ -85,6 +87,7 @@ public:
 private:
 	ENetHost* m_Host;
 	ENetPeer* m_Server;
+	CNetStatsTable* m_Stats;
 };
 
 /**

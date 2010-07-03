@@ -30,6 +30,7 @@ class CNetServerTurnManager;
 class CFsmEvent;
 class ScriptInterface;
 class CPlayerAssignmentMessage;
+class CNetStatsTable;
 
 enum NetServerState
 {
@@ -203,6 +204,8 @@ private:
 	ENetHost* m_Host;
 	std::vector<ENetPeer*> m_Peers;
 	std::vector<CNetServerSession*> m_Sessions;
+
+	CNetStatsTable* m_Stats;
 
 	std::vector<std::pair<CNetServerSession*, CNetMessage*> > m_LocalMessageQueue;
 

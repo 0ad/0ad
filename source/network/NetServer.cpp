@@ -22,6 +22,7 @@
 #include "NetClient.h"
 #include "NetMessage.h"
 #include "NetSession.h"
+#include "NetStats.h"
 #include "NetTurnManager.h"
 
 #include "ps/CLogger.h"
@@ -46,7 +47,7 @@ static CStr DebugName(CNetServerSession* session)
 }
 
 CNetServer::CNetServer() :
-	m_ScriptInterface(new ScriptInterface("Engine")), m_NextHostID(1), m_Host(NULL)
+	m_ScriptInterface(new ScriptInterface("Engine")), m_NextHostID(1), m_Host(NULL), m_Stats(NULL)
 {
 	m_State = SERVER_STATE_UNCONNECTED;
 
@@ -59,6 +60,8 @@ CNetServer::CNetServer() :
 
 CNetServer::~CNetServer()
 {
+	delete m_Stats;
+
 	for (size_t i = 0; i < m_Sessions.size(); ++i)
 	{
 		m_Sessions[i]->Disconnect();
@@ -91,6 +94,9 @@ bool CNetServer::SetupConnection()
 		LOGERROR(L"Net server: enet_host_create failed");
 		return false;
 	}
+
+	m_Stats = new CNetStatsTable(m_Host);
+	g_ProfileViewer.AddRootTable(m_Stats);
 
 	m_State = SERVER_STATE_PREGAME;
 

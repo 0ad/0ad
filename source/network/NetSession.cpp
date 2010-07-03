@@ -20,6 +20,7 @@
 #include "NetClient.h"
 #include "NetServer.h"
 #include "NetMessage.h"
+#include "NetStats.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -43,12 +44,14 @@ CNetClientSession::~CNetClientSession()
 // between ENet and session and client and GUI
 
 CNetClientSessionRemote::CNetClientSessionRemote(CNetClient& client) :
-	CNetClientSession(client), m_Host(NULL), m_Server(NULL)
+	CNetClientSession(client), m_Host(NULL), m_Server(NULL), m_Stats(NULL)
 {
 }
 
 CNetClientSessionRemote::~CNetClientSessionRemote()
 {
+	delete m_Stats;
+
 	if (m_Host && m_Server)
 	{
 		// Disconnect without waiting for confirmation
@@ -84,6 +87,9 @@ bool CNetClientSessionRemote::Connect(u16 port, const CStr& server)
 	m_Host = host;
 	m_Server = peer;
 
+	m_Stats = new CNetStatsTable(m_Server);
+	g_ProfileViewer.AddRootTable(m_Stats);
+
 	return true;
 }
 
@@ -97,6 +103,8 @@ void CNetClientSessionRemote::Disconnect()
 
 	m_Host = NULL;
 	m_Server = NULL;
+
+	SAFE_DELETE(m_Stats);
 }
 
 void CNetClientSessionRemote::Poll()
