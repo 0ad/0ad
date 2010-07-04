@@ -98,40 +98,36 @@ function displayGeneralInfo(playerState, entState, template)
 	if (entState.armour)
 		iconTooltip += "\n" + "[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);	
 
-	// Resources
-	getGUIObjectByName("selectionDetailsResources").hidden = true;
-
-	// Is this a Gaia unit?
-	var firstWord = getTemplateFirstWord(entState.template);
-	if (firstWord == "gaia")
+	// Resource stats
+	if (entState.resourceSupply)
 	{
-		if (civName == GAIA)
-			getGUIObjectByName("selectionDetailsPlayer").tooltip = ""; // Don't need civ tooltip for Gaia Player - redundant
-
-		// Resource stats
-		if (entState.resourceSupply)
-		{
-			var resources = entState.resourceSupply.amount + "/" + entState.resourceSupply.max + " ";
-			var resourceType = entState.resourceSupply.type["generic"];
+		var resources = entState.resourceSupply.amount + "/" + entState.resourceSupply.max + " ";
+		var resourceType = entState.resourceSupply.type["generic"];
 		
-			getGUIObjectByName("selectionDetailsResourceStats").caption =  resources;
-			getGUIObjectByName("selectionDetailsResourceIcon").cell_id = resourceIconCellIds[resourceType];
-			getGUIObjectByName("selectionDetailsResources").hidden = false;
+		getGUIObjectByName("selectionDetailsResourceStats").caption =  resources;
+		getGUIObjectByName("selectionDetailsResourceIcon").cell_id = resourceIconCellIds[resourceType];
+		getGUIObjectByName("selectionDetailsResources").hidden = false;
 			
-			iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
+		iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
 			
-			// Don't show attack and armour stats on unit with resources - not enough space
-			getGUIObjectByName("selectionDetailsAttack").hidden = true;
-			getGUIObjectByName("selectionDetailsArmour").hidden = true;
-		}
+		// Don't show attack and armour stats on unit with resources - not enough space
+		getGUIObjectByName("selectionDetailsAttack").hidden = true;
+		getGUIObjectByName("selectionDetailsArmour").hidden = true;
+	}
+	else
+	{
+		getGUIObjectByName("selectionDetailsResources").hidden = true;
 	}
 
 	// Icon
 	getGUIObjectByName("selectionDetailsIconImage").sprite = getPortraitSheetName(playerState, entState);
 	getGUIObjectByName("selectionDetailsIconImage").cell_id = template.icon_cell;
 	getGUIObjectByName("selectionDetailsIconImage").tooltip = iconTooltip;
-	
 	//getGUIObjectByName("selectionDetailsIconOutline"); // Need to change color of icon outline with the playerColor
+
+	// Is this a Gaia unit?
+	if (civName == GAIA)
+		getGUIObjectByName("selectionDetailsPlayer").tooltip = ""; // Don't need civ tooltip for Gaia Player - redundant
 }
 
 // Updates middle entity Selection Details Panel
