@@ -155,7 +155,9 @@ struct HDATA
 	// for statistics
 	size_t num_derefs;
 
-	PIVFS vfs;
+	// storing PIVFS here is not a good idea since this often isn't
+	// `freed' due to caching (and there is no dtor), so
+	// the VFS reference count would never reach zero.
 	VfsPath pathname;
 
 	u8 user[HDATA_USER_SIZE];
@@ -543,7 +545,6 @@ static Handle alloc_new_handle(H_Type type, const PIVFS& vfs, const VfsPath& pat
 	if(flags & RES_DISALLOW_RELOAD)
 		hd->disallow_reload = 1;
 	hd->unique = (flags & RES_UNIQUE) != 0;
-	hd->vfs = vfs;
 	hd->pathname = pathname;
 
 	if(key && !hd->unique)
@@ -696,7 +697,7 @@ VfsPath h_filename(const Handle h)
 
 
 // TODO: what if iterating through all handles is too slow?
-LibError h_reload(const VfsPath& pathname)
+LibError h_reload(const PIVFS& vfs, const VfsPath& pathname)
 {
 	const u32 key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
 
@@ -723,7 +724,7 @@ LibError h_reload(const VfsPath& pathname)
 
 		Handle h = handle(i, hd->tag);
 
-		LibError err = hd->type->reload(hd->user, hd->vfs, hd->pathname, h);
+		LibError err = hd->type->reload(hd->user, vfs, hd->pathname, h);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
 		{

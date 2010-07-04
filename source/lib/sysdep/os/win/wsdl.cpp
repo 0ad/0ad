@@ -1040,6 +1040,32 @@ SDL_GrabMode SDL_WM_GrabInput(SDL_GrabMode mode)
 //----------------------------------------------------------------------------
 // video resizing/expose
 
+static bool ResizeEventEnabled(int clientWidth, int clientHeight)
+{
+	// SDL_SetVideoMode causes this message, and relaying the
+	// resize event to the app requires it to call
+	// SDL_SetVideoMode again, so avoid infinite recursion.
+	if(skipResize)
+	{
+		skipResize = false;
+		return false;
+	}
+
+	// if fullscreen, interaction with other topmost windows causes
+	// minimization and a spurious resize. however, the app only
+	// expects resizing events if !fullscreen.
+	if(fullscreen)
+		return false;
+
+	// this happens during minimization, which results in an
+	// app-active event anyway, and the app might have
+	// trouble with size=0.
+	if(clientWidth == 0 && clientHeight == 0)
+		return false;
+
+	return true;
+}
+
 // note: this is called continuously during resizing. since SDL doesn't
 // discard any SDL_VIDEORESIZE events, the application must deal with
 // the flood (and only call SDL_SetVideoMode once a frame or similar).
@@ -1047,13 +1073,8 @@ SDL_GrabMode SDL_WM_GrabInput(SDL_GrabMode mode)
 // GetClientRect and suffers from false alarms.
 static void OnSize(HWND UNUSED(hWnd), UINT UNUSED(state), int clientWidth, int clientHeight)
 {
-	// if we don't prevent SDL_SetVideoMode from triggering SDL_VIDEORESIZE,
-	// the app's once-per-frame throttle still results in infinite recursion.
-	if(skipResize)
-	{
-		skipResize = false;
+	if(!ResizeEventEnabled(clientWidth, clientHeight))
 		return;
-	}
 
 	SDL_Event ev;
 	ev.type = SDL_VIDEORESIZE;

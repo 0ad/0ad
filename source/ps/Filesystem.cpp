@@ -84,7 +84,7 @@ LibError ReloadChangedFiles()
 			for (size_t j = 0; j < g_ReloadFuncs.size(); ++j)
 				g_ReloadFuncs[j].first(g_ReloadFuncs[j].second, pathname);
 
-			RETURN_ERR(h_reload(pathname));
+			RETURN_ERR(h_reload(g_VFS, pathname));
 		}
 	}
 	return INFO::OK;

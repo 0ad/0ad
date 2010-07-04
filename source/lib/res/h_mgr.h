@@ -413,7 +413,7 @@ extern void* h_user_data(Handle h, H_Type type);
 extern VfsPath h_filename(Handle h);
 
 
-extern LibError h_reload(const VfsPath& pathname);
+extern LibError h_reload(const PIVFS& vfs, const VfsPath& pathname);
 
 // force the resource to be freed immediately, even if cached.
 // tag is not checked - this allows the first Handle returned
