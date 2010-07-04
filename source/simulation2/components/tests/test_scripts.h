@@ -39,7 +39,7 @@ public:
 	{
 		std::wstring name = path.external_file_string();
 		CVFSFile file;
-		TS_ASSERT_EQUALS(file.Load(path), PSRETURN_OK);
+		TS_ASSERT_EQUALS(file.Load(g_VFS, path), PSRETURN_OK);
 		CStr content = file.GetAsString();
 		std::wstring wcontent(content.begin(), content.end());
 		TSM_ASSERT(L"Running script "+name, scriptInterface.LoadScript(name, wcontent));

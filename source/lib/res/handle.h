@@ -27,8 +27,6 @@
 #ifndef INCLUDED_HANDLE
 #define INCLUDED_HANDLE
 
-#include "lib/file/vfs/vfs_path.h"
-
 /**
  * `handle' representing a reference to a resource (sound, texture, etc.)
  *

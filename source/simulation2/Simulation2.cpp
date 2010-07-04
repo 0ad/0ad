@@ -70,7 +70,7 @@ public:
 
 		VfsPath path = VfsPath(L"simulation/templates/") / name;
 		CXeromyces xero;
-		PSRETURN ok = xero.Load(path);
+		PSRETURN ok = xero.Load(g_VFS, path);
 		if (ok != PSRETURN_OK)
 			return ret; // (Xeromyces already logged an error)
 

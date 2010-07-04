@@ -29,6 +29,7 @@
 #define INCLUDED_SND_MGR
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs.h"
 
 /**
 
@@ -180,7 +181,7 @@ extern LibError snd_set_master_gain(float gain);
  * only one instance can be open at a time.
  * @return Handle or LibError
  **/
-extern Handle snd_open(const VfsPath& name, bool stream = false);
+extern Handle snd_open(const PIVFS& vfs, const VfsPath& name, bool stream = false);
 
 /**
  * close the sound instance. if it was playing, it will be stopped.

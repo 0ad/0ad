@@ -272,9 +272,9 @@ void Render()
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	CStrW cursorName = g_CursorName;
 	if (cursorName.empty())
-		cursor_draw(NULL, g_mouse_x, g_mouse_y);
+		cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y);
 	else
-		cursor_draw(cursorName.c_str(), g_mouse_x, g_mouse_y);
+		cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y);
 
 	// restore
 	glMatrixMode(GL_PROJECTION);
@@ -489,7 +489,7 @@ static void ShutdownPs()
 	SAFE_DELETE(g_Console);
 
 	// disable the special Windows cursor, or free textures for OGL cursors
-	cursor_draw(0, g_mouse_x, g_mouse_y);
+	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y);
 
 	// Unload the real language (since it depends on the scripting engine,
 	// which is going to be killed later) and use the English fallback messages

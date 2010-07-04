@@ -28,6 +28,7 @@
 
 #include "maths/MathUtil.h"
 
+#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
 
@@ -111,7 +112,7 @@ int WaterManager::LoadWaterTextures()
 	while (cur_loading_water_tex < num_textures)
 	{
 		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/diffuse%02d.dds", water_type, (int)cur_loading_water_tex+1);
-		Handle ht = ogl_tex_load(pathname);
+		Handle ht = ogl_tex_load(g_VFS, pathname);
 		if (ht <= 0)
 		{
 			LOG(CLogger::Error, LOG_CATEGORY, L"LoadWaterTextures failed on \"%ls\"", pathname);
@@ -127,7 +128,7 @@ int WaterManager::LoadWaterTextures()
 	while (cur_loading_normal_map < num_normal_maps)
 	{
 		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal%02d.dds", water_type, (int)cur_loading_normal_map+1);
-		Handle ht = ogl_tex_load(pathname);
+		Handle ht = ogl_tex_load(g_VFS, pathname);
 		if (ht <= 0)
 		{
 			LOG(CLogger::Error, LOG_CATEGORY, L"LoadWaterTextures failed on \"%ls\"", pathname);

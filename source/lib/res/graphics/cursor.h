@@ -27,18 +27,21 @@
 #ifndef INCLUDED_GRAPHICS_CURSOR
 #define INCLUDED_GRAPHICS_CURSOR
 
+#include "lib/file/vfs/vfs.h"
+
 /**
  * draw the cursor on-screen.
  *
  * @param name base name of cursor or zero to hide the cursor.
- * @param x,y coordinates [pixels] (origin is in the upper left)
+ * @param x,y coordinates [pixels] (origin at lower left)
+ * (the origin is convenient for drawing via OpenGL, but requires the
+ * mouse Y coordinate to be subtracted from the client area height.
+ * making the caller responsible for this avoids a dependency on
+ * the g_yres global variable.)
  *
  * uses a hardware mouse cursor where available, otherwise a
  * portable OpenGL implementation.
  **/
-extern LibError cursor_draw(const wchar_t* name, int x, int y);
-
-// internal use only:
-extern int g_yres;
+extern LibError cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y);
 
 #endif	// #ifndef INCLUDED_GRAPHICS_CURSOR

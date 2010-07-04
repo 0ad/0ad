@@ -102,7 +102,7 @@ public:
 			set_logger(ColladaLog);
 
 			CVFSFile skeletonFile;
-			if (skeletonFile.Load(L"art/skeletons/skeletons.xml") != PSRETURN_OK)
+			if (skeletonFile.Load(g_VFS, L"art/skeletons/skeletons.xml") != PSRETURN_OK)
 			{
 				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to read skeleton definitions");
 				dll.Unload();
@@ -127,7 +127,7 @@ public:
 		CStr daeData;
 		{
 			CVFSFile daeFile;
-			if (daeFile.Load(daeFilename) != PSRETURN_OK)
+			if (daeFile.Load(g_VFS, daeFilename) != PSRETURN_OK)
 				return false;
 			daeData = daeFile.GetAsString();
 		}

@@ -29,6 +29,7 @@
 
 #include "lib/ogl.h"
 
+#include "ps/Filesystem.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "ps/XML/Xeromyces.h"
@@ -36,7 +37,7 @@
 #include "lib/timer.h"
 #include "lib/res/h_mgr.h"
 #include "lib/file/vfs/vfs.h"
-extern PIVFS g_VFS;
+extern PIVFS vfs;
 
 
 #define LOG_CATEGORY L"shaders"
@@ -111,7 +112,7 @@ TIMER_ADD_CLIENT(tc_linkProgram);
 // have absolutely no effect on a program object that contains these shaders
 // when the program object is already linked.
 // So, how can we inform the "parent object" (i.e. the program object) of our change?
-static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Handle UNUSED(h))
+static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const PIVFS& vfs, const VfsPath& pathname, Handle UNUSED(h))
 {
 	LibError err  = ERR::FAIL;
 
@@ -119,7 +120,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 		return INFO::OK;
 
 	shared_ptr<u8> file; size_t file_size;
-	RETURN_ERR(g_VFS->LoadFile(pathname, file, file_size));
+	RETURN_ERR(vfs->LoadFile(pathname, file, file_size));
 
 	ogl_WarnIfError();
 
@@ -226,9 +227,9 @@ static LibError Ogl_Shader_to_string(const Ogl_Shader* shdr, wchar_t* buf)
 // Create, load and compile a shader object of the given type
 // (e.g. GL_VERTEX_SHADER_ARB). The given file will be used as
 // source code for the shader.
-Handle ogl_shader_load(const VfsPath& pathname, GLenum type)
+Handle ogl_shader_load(const PIVFS& vfs, const VfsPath& pathname, GLenum type)
 {
-	return h_alloc(H_Ogl_Shader, pathname, 0, type);
+	return h_alloc(H_Ogl_Shader, vfs, pathname, 0, type);
 }
 
 
@@ -307,7 +308,7 @@ static LibError do_load_shader(
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
-	Handle hshader = ogl_shader_load(CStrW(pathnameShader), shadertype);
+	Handle hshader = ogl_shader_load(g_VFS, CStrW(pathnameShader), shadertype);
 	RETURN_ERR(hshader);
 
 	ogl_shader_attach(p->id, hshader);
@@ -323,7 +324,7 @@ static LibError do_load_shader(
 
 
 // Reload the program object from the source file.
-static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname, Handle h)
+static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPath& pathname, Handle h)
 {
 	if (p->id)
 		return INFO::OK;
@@ -344,7 +345,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname, Hand
 	}
 	
 	CXeromyces XeroFile;
-	if (XeroFile.Load(pathname) != PSRETURN_OK)
+	if (XeroFile.Load(vfs, pathname) != PSRETURN_OK)
 		WARN_RETURN(ERR::CORRUPTED); // more informative error message?
 
 	// Define all the elements and attributes used in the XML file
@@ -449,9 +450,9 @@ static LibError Ogl_Program_to_string(const Ogl_Program* p, wchar_t* buf)
 
 // Load a program object based on the given XML file description.
 // Shader objects are loaded and attached automatically.
-Handle ogl_program_load(const VfsPath& pathname)
+Handle ogl_program_load(const PIVFS& vfs, const VfsPath& pathname)
 {
-	return h_alloc(H_Ogl_Program, pathname, 0);
+	return h_alloc(H_Ogl_Program, vfs, pathname, 0);
 }
 
 // Free all resources associated with the given program handle.

@@ -88,7 +88,7 @@ LibError SkyManager::LoadSkyTexture(size_t index)
 {
 	wchar_t filename[PATH_MAX];
 	swprintf_s(filename, ARRAY_SIZE(filename), L"art/textures/skies/%ls/%ls.dds", m_SkySet.c_str(), s_imageNames[index]);
-	Handle ht = ogl_tex_load(filename);
+	Handle ht = ogl_tex_load(g_VFS, filename);
 	if(ht <= 0)
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"SkyManager::LoadSkyTexture failed on \"%ls\"", filename);

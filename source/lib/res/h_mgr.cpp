@@ -154,7 +154,8 @@ struct HDATA
 
 	// for statistics
 	size_t num_derefs;
-	
+
+	PIVFS vfs;
 	VfsPath pathname;
 
 	u8 user[HDATA_USER_SIZE];
@@ -493,7 +494,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, size_t flags)
 }
 
 
-static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const VfsPath& pathname, va_list* init_args)
+static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const PIVFS& vfs, const VfsPath& pathname, va_list* init_args)
 {
 	LibError err = INFO::OK;
 	H_VTbl* vtbl = type;	// exact same thing but for clarity
@@ -508,7 +509,7 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const Vfs
 		// catch exception to simplify reload funcs - let them use new()
 		try
 		{
-			err = vtbl->reload(hd->user, pathname, h);
+			err = vtbl->reload(hd->user, vfs, pathname, h);
 			if(err == INFO::OK)
 				warn_if_invalid(hd);
 		}
@@ -522,7 +523,7 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const Vfs
 }
 
 
-static Handle alloc_new_handle(H_Type type, const VfsPath& pathname, uintptr_t key, size_t flags, va_list* init_args)
+static Handle alloc_new_handle(H_Type type, const PIVFS& vfs, const VfsPath& pathname, uintptr_t key, size_t flags, va_list* init_args)
 {
 	ssize_t idx;
 	HDATA* hd;
@@ -542,12 +543,13 @@ static Handle alloc_new_handle(H_Type type, const VfsPath& pathname, uintptr_t k
 	if(flags & RES_DISALLOW_RELOAD)
 		hd->disallow_reload = 1;
 	hd->unique = (flags & RES_UNIQUE) != 0;
+	hd->vfs = vfs;
 	hd->pathname = pathname;
 
 	if(key && !hd->unique)
 		key_add(key, h);
 
-	LibError err = call_init_and_reload(h, type, hd, pathname, init_args);
+	LibError err = call_init_and_reload(h, type, hd, vfs, pathname, init_args);
 	if(err < 0)
 		goto fail;
 
@@ -565,7 +567,7 @@ fail:
 
 
 // any further params are passed to type's init routine
-Handle h_alloc(H_Type type, const VfsPath& pathname, size_t flags, ...)
+Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t flags, ...)
 {
 	RETURN_ERR(type_validate(type));
 
@@ -580,7 +582,7 @@ Handle h_alloc(H_Type type, const VfsPath& pathname, size_t flags, ...)
 	// .. need to allocate a new one:
 	va_list args;
 	va_start(args, flags);
-	h = alloc_new_handle(type, pathname, key, flags, &args);
+	h = alloc_new_handle(type, vfs, pathname, key, flags, &args);
 	va_end(args);
 	return h;	// alloc_new_handle already does CHECK_ERR
 }
@@ -721,7 +723,7 @@ LibError h_reload(const VfsPath& pathname)
 
 		Handle h = handle(i, hd->tag);
 
-		LibError err = hd->type->reload(hd->user, hd->pathname, h);
+		LibError err = hd->type->reload(hd->user, hd->vfs, hd->pathname, h);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
 		{

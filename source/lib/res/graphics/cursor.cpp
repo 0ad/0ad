@@ -34,9 +34,7 @@
 #include "lib/ogl.h"
 #include "lib/sysdep/cursor.h"
 #include "ogl_tex.h"
-#include "../h_mgr.h"
-#include "lib/file/vfs/vfs.h"
-extern PIVFS g_VFS;
+#include "lib/res/h_mgr.h"
 
 // On Windows, allow runtime choice between system cursors and OpenGL
 // cursors (Windows = more responsive, OpenGL = more consistent with what
@@ -48,7 +46,7 @@ extern PIVFS g_VFS;
 #endif
 
 
-static LibError load_sys_cursor(const VfsPath& pathname, int hx, int hy, sys_cursor* cursor)
+static LibError load_sys_cursor(const PIVFS& vfs, const VfsPath& pathname, int hx, int hy, sys_cursor* cursor)
 {
 #if !ALLOW_SYS_CURSOR
 	UNUSED2(pathname);
@@ -59,7 +57,7 @@ static LibError load_sys_cursor(const VfsPath& pathname, int hx, int hy, sys_cur
 	return ERR::FAIL;
 #else
 	shared_ptr<u8> file; size_t fileSize;
-	RETURN_ERR(g_VFS->LoadFile(pathname, file, fileSize));
+	RETURN_ERR(vfs->LoadFile(pathname, file, fileSize));
 
 	ScopedTex t;
 	RETURN_ERR(tex_decode(file, fileSize, &t));
@@ -87,9 +85,9 @@ class GLCursor
 	int hotspotx, hotspoty;
 
 public:
-	LibError create(const VfsPath& pathname, int hotspotx_, int hotspoty_)
+	LibError create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_)
 	{
-		ht = ogl_tex_load(pathname);
+		ht = ogl_tex_load(vfs, pathname);
 		RETURN_ERR(ht);
 
 		size_t width, height;
@@ -119,9 +117,6 @@ public:
 		glEnable(GL_BLEND);
 		glDisable(GL_DEPTH_TEST);
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
-		// OpenGL's coordinate system is "upside-down"; correct for that.
-		y = g_yres - y;
 
 		glBegin(GL_QUADS);
 		glTexCoord2i(0, 0); glVertex2i( x-hotspotx,   y+hotspoty   );
@@ -189,7 +184,7 @@ static void Cursor_dtor(Cursor* c)
 	}
 }
 
-static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
+static LibError Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Handle)
 {
 	const VfsPath path(L"art/textures/cursors");
 	const VfsPath pathname(path/name);
@@ -200,7 +195,7 @@ static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
 	{
 		const VfsPath pathnameHotspot = fs::change_extension(pathname, L".txt");
 		shared_ptr<u8> buf; size_t size;
-		RETURN_ERR(g_VFS->LoadFile(pathnameHotspot, buf, size));
+		RETURN_ERR(vfs->LoadFile(pathnameHotspot, buf, size));
 		std::wstringstream s(std::wstring((const wchar_t*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
 	}
@@ -208,10 +203,10 @@ static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
 	const VfsPath pathnameImage = fs::change_extension(pathname, L".dds");
 
 	// try loading as system cursor (2d, hardware accelerated)
-	if(load_sys_cursor(pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
+	if(load_sys_cursor(vfs, pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
 		c->kind = CK_System;
 	// fall back to GLCursor (system cursor code is disabled or failed)
-	else if(c->gl_cursor.create(pathnameImage, hotspotx, hotspoty) == INFO::OK)
+	else if(c->gl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty) == INFO::OK)
 	{
 		c->kind = CK_OpenGL;
 		// (we need to hide the system cursor when using a OpenGL cursor)
@@ -282,9 +277,9 @@ static LibError Cursor_to_string(const Cursor* c, wchar_t* buf)
 // in other words, we continually create/free the cursor resource in
 // cursor_draw and trust h_mgr's caching to absorb it.
 
-static Handle cursor_load(const VfsPath& name)
+static Handle cursor_load(const PIVFS& vfs, const VfsPath& name)
 {
-	return h_alloc(H_Cursor, name, 0);
+	return h_alloc(H_Cursor, vfs, name, 0);
 }
 
 static LibError cursor_free(Handle& h)
@@ -293,7 +288,7 @@ static LibError cursor_free(Handle& h)
 }
 
 
-LibError cursor_draw(const wchar_t* name, int x, int y)
+LibError cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
 {
 	// hide the cursor
 	if(!name)
@@ -302,7 +297,7 @@ LibError cursor_draw(const wchar_t* name, int x, int y)
 		return INFO::OK;
 	}
 
-	Handle hc = cursor_load(name);
+	Handle hc = cursor_load(vfs, name);
 	H_DEREF(hc, Cursor, c);
 
 	switch(c->kind)

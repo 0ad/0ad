@@ -379,7 +379,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			}
 		}
 	}
-	if (! XML_StoreVFS(filename))
+	if (! XML_StoreVFS(g_VFS, filename))
 		debug_assert(0);	// failed to write map XML file
 }
 

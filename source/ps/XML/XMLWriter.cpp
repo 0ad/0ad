@@ -90,14 +90,14 @@ XMLWriter_File::XMLWriter_File()
 	m_Data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 }
 
-bool XMLWriter_File::StoreVFS(const VfsPath& pathname)
+bool XMLWriter_File::StoreVFS(const PIVFS& vfs, const VfsPath& pathname)
 {
 	if (m_LastElement) debug_warn(L"ERROR: Saving XML while an element is still open");
 
 	const size_t size = m_Data.length();
 	shared_ptr<u8> data = io_Allocate(size);
 	cpu_memcpy(data.get(), m_Data.data(), size);
-	LibError ret = g_VFS->CreateFile(pathname, data, size);
+	LibError ret = vfs->CreateFile(pathname, data, size);
 	if (ret < 0)
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"Error saving XML data through VFS: %ld", ret);

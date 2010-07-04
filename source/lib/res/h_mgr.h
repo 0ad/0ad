@@ -252,6 +252,8 @@ we could switch H_DEREF to throwing an exception on error.
 #include "handle.h"
 #endif
 
+#include "lib/file/vfs/vfs.h"
+
 extern void h_mgr_init();
 extern void h_mgr_shutdown();
 
@@ -294,7 +296,7 @@ but- has to handle variable params, a bit ugly
 struct H_VTbl
 {
 	void (*init)(void* user, va_list);
-	LibError (*reload)(void* user, const VfsPath& pathname, Handle);
+	LibError (*reload)(void* user, const PIVFS& vfs, const VfsPath& pathname, Handle);
 	void (*dtor)(void* user);
 	LibError (*validate)(const void* user);
 	LibError (*to_string)(const void* user, wchar_t* buf);
@@ -307,14 +309,14 @@ typedef H_VTbl* H_Type;
 #define H_TYPE_DEFINE(type)\
 	/* forward decls */\
 	static void type##_init(type*, va_list);\
-	static LibError type##_reload(type*, const VfsPath&, Handle);\
+	static LibError type##_reload(type*, const PIVFS&, const VfsPath&, Handle);\
 	static void type##_dtor(type*);\
 	static LibError type##_validate(const type*);\
 	static LibError type##_to_string(const type*, wchar_t* buf);\
 	static H_VTbl V_##type =\
 	{\
 		(void (*)(void*, va_list))type##_init,\
-		(LibError (*)(void*, const VfsPath&, Handle))type##_reload,\
+		(LibError (*)(void*, const PIVFS&, const VfsPath&, Handle))type##_reload,\
 		(void (*)(void*))type##_dtor,\
 		(LibError (*)(const void*))type##_validate,\
 		(LibError (*)(const void*, wchar_t*))type##_to_string,\
@@ -392,7 +394,7 @@ const size_t H_STRING_LEN = 256;
 //// user_size is checked to make sure the user data fits in the handle data space.
 // dtor is associated with type and called when the object is freed.
 // handle data is initialized to 0; optionally, a pointer to it is returned.
-extern Handle h_alloc(H_Type type, const VfsPath& pathname, size_t flags = 0, ...);
+extern Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0, ...);
 extern LibError h_free(Handle& h, H_Type type);
 
 

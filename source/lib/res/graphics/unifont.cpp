@@ -33,9 +33,7 @@
 #include <map>
 
 #include "ogl_tex.h"
-#include "../h_mgr.h"
-#include "lib/file/vfs/vfs.h"
-extern PIVFS g_VFS;
+#include "lib/res/h_mgr.h"
 
 struct GlyphData
 {
@@ -74,7 +72,7 @@ static void UniFont_dtor(UniFont* f)
 
 // basename is e.g. "console"; the files are "fonts/console.fnt" and "fonts/console.png"
 // [10..70ms]
-static LibError UniFont_reload(UniFont* f, const VfsPath& basename, Handle UNUSED(h))
+static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basename, Handle UNUSED(h))
 {
 	// already loaded
 	if(f->ht > 0)
@@ -87,7 +85,7 @@ static LibError UniFont_reload(UniFont* f, const VfsPath& basename, Handle UNUSE
 	// Read font definition file into a stringstream
 	shared_ptr<u8> buf; size_t size;
 	const VfsPath fntName(basename.string() + L".fnt");
-	RETURN_ERR(g_VFS->LoadFile(path/fntName, buf, size));	// [cumulative for 12: 36ms]
+	RETURN_ERR(vfs->LoadFile(path/fntName, buf, size));	// [cumulative for 12: 36ms]
 	std::istringstream FNTStream(std::string((const char*)buf.get(), size));
 
 	int Version;
@@ -152,7 +150,7 @@ static LibError UniFont_reload(UniFont* f, const VfsPath& basename, Handle UNUSE
 	// Load glyph texture
 	// [cumulative for 12: 20ms]
 	const VfsPath imgName(basename.string() + L".png");
-	Handle ht = ogl_tex_load(path/imgName);
+	Handle ht = ogl_tex_load(vfs, path/imgName);
 	RETURN_ERR(ht);
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
 	// override is necessary because the GL format is chosen as LUMINANCE,
@@ -197,9 +195,9 @@ static LibError UniFont_to_string(const UniFont* f, wchar_t* buf)
 }
 
 
-Handle unifont_load(const VfsPath& pathname, size_t flags)
+Handle unifont_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags)
 {
-	return h_alloc(H_UniFont, pathname, flags);
+	return h_alloc(H_UniFont, vfs, pathname, flags);
 }
 
 

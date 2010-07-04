@@ -29,9 +29,12 @@
 
 #include <algorithm>
 
+#include "lib/rand.h"
+
 #include "ps/XML/Xeromyces.h"
 #include "ps/CLogger.h"
-#include "lib/rand.h"
+#include "ps/Filesystem.h"
+
 
 #define LOG_CATEGORY L"audio"
 
@@ -131,7 +134,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		{
 			// load up replacement file
 			const VfsPath pathname(m_filepath/m_intensity_file);
-			m_hReplacement = snd_open(pathname);
+			m_hReplacement = snd_open(g_VFS, pathname);
 			if(m_hReplacement < 0)
 			{
 				HandleError(L"PlayNext: snd_open for replacement file failed", pathname, (LibError)m_hReplacement);
@@ -152,7 +155,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 			m_index = (size_t)rand(0, (size_t)filenames.size());
 		// (note: previously snd_group[m_index] was used in place of hs)
 		const VfsPath pathname(m_filepath/filenames[m_index]);
-		Handle hs = snd_open(pathname);
+		Handle hs = snd_open(g_VFS, pathname);
 		if(hs < 0)
 		{
 			HandleError(L"PlayNext: snd_open failed", pathname, (LibError)hs);
@@ -229,7 +232,7 @@ void CSoundGroup::Update(float TimeSinceLastFrame)
 bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(pathnameXML) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, pathnameXML) != PSRETURN_OK)
 		return false;
 
 	// Define elements used in XML file

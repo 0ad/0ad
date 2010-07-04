@@ -148,6 +148,7 @@ the next function to fail, but real apps should check and report errors.
 #define INCLUDED_OGL_TEX
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs.h"
 #include "lib/ogl.h"
 #include "lib/tex/tex.h"
 
@@ -219,7 +220,7 @@ extern void ogl_tex_set_defaults(int q_flags, GLint filter);
 * @return Handle to texture or negative LibError
 * for a list of supported formats, see tex.h's tex_load.
 */
-extern Handle ogl_tex_load(const VfsPath& pathname, size_t flags = 0);
+extern Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0);
 
 /**
 * Find and return an existing texture object, if it has already been
@@ -248,7 +249,7 @@ extern Handle ogl_tex_find(const VfsPath& pathname);
 * we need only add bookkeeping information and "wrap" it in
 * a resource object (accessed via Handle), hence the name.
 */
-extern Handle ogl_tex_wrap(Tex* t, const VfsPath& pathname, size_t flags = 0);
+extern Handle ogl_tex_wrap(Tex* t, const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0);
 
 /**
 * Release this texture reference. When the count reaches zero, all of

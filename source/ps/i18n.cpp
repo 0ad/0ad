@@ -68,7 +68,7 @@ bool I18n::LoadLanguage(const char* name)
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
 		CVFSFile strings;
-		if (! (strings.Load(pathnames[i]) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
+		if (! (strings.Load(g_VFS, pathnames[i]) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
 		{
 			LOG(CLogger::Error, LOG_CATEGORY, L"Error opening language string file '%ls'", pathnames[i].string().c_str());
 			return false;
@@ -81,7 +81,7 @@ bool I18n::LoadLanguage(const char* name)
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
 		CVFSFile strings;
-		if (! (strings.Load(pathnames[i]) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
+		if (! (strings.Load(g_VFS, pathnames[i]) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
 		{
 			LOG(CLogger::Error, LOG_CATEGORY, L"Error opening language string file '%ls'", pathnames[i].string().c_str());
 			return false;
@@ -96,7 +96,7 @@ bool I18n::LoadLanguage(const char* name)
 		const wchar_t* pathname = pathnames[i].string().c_str();
 		CStr8 pathname8(pathname);
 		CVFSFile strings;
-		if (! (strings.Load(pathname) == PSRETURN_OK
+		if (! (strings.Load(g_VFS, pathname) == PSRETURN_OK
 			&& 
 			locale->LoadFunctions(
 				(const char*)strings.GetBuffer(),

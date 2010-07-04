@@ -16,19 +16,21 @@
  */
 
 #include "precompiled.h"
+#include "TerrainProperties.h"
 
 #include <vector>
 #include <string>
 
-#include "TerrainProperties.h"
-#include "TextureManager.h"
-#include "ps/Overlay.h"
+#include "ps/Filesystem.h"
+#include "ps/CLogger.h"
 
 #include "ps/Parser.h"
 #include "ps/XML/XeroXMB.h"
 #include "ps/XML/Xeromyces.h"
 
-#include "ps/CLogger.h"
+#include "TextureManager.h"
+#include "ps/Overlay.h"
+
 
 CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_pParent(parent),
@@ -43,7 +45,7 @@ CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& parent, const VfsPath& pathname)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(pathname) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
 		return CTerrainPropertiesPtr();
 
 	XMBElement root = XeroFile.GetRoot();

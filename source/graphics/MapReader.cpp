@@ -311,7 +311,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	// must only assign once, so do it here
 	node_idx = entity_idx = nonentity_idx = 0;
 
-	if (xmb_file.Load(xml_filename) != PSRETURN_OK)
+	if (xmb_file.Load(g_VFS, xml_filename) != PSRETURN_OK)
 		throw PSERROR_File_ReadFailed();
 
 	// define the elements and attributes that are frequently used in the XML file,
@@ -374,7 +374,7 @@ void CXMLReader::ReadPlayers()
 	std::map<int, SColor3ub> playerDefaultColours;
 
 	CXeromyces playerDefaultFile;
-	if (playerDefaultFile.Load(L"simulation/data/players.xml") != PSRETURN_OK)
+	if (playerDefaultFile.Load(g_VFS, L"simulation/data/players.xml") != PSRETURN_OK)
 		throw PSERROR_File_ReadFailed();
 
 #define AT(x) int at_##x = playerDefaultFile.GetAttributeID(#x)

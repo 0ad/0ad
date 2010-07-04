@@ -28,6 +28,7 @@
 #define INCLUDED_OGL_SHADER
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs.h"
 
 #include "lib/ogl.h"
 
@@ -56,7 +57,7 @@ extensions are available, or all bets are off.
  * @param pathname location of the file containing the shader's source code.
  * @param type e.g. GL_VERTEX_SHADER_ARB.
  **/
-Handle ogl_shader_load(const VfsPath& pathname, GLenum type);
+Handle ogl_shader_load(const PIVFS& vfs, const VfsPath& pathname, GLenum type);
 
 /**
  * Free all resources associated with the given handle
@@ -81,7 +82,7 @@ Encapsulate program objects into handles.
  *
  * note: Shader objects are loaded and attached automatically.
  **/
-Handle ogl_program_load(const VfsPath& pathname);
+Handle ogl_program_load(const PIVFS& vfs, const VfsPath& pathname);
 
 /**
  * Free all resources associated with the given program handle.

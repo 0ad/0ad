@@ -38,9 +38,7 @@
 #include <cfloat>
 
 #include "lib/path_util.h"
-#include "../h_mgr.h"
-#include "lib/file/vfs/vfs.h"
-extern PIVFS g_VFS;
+#include "lib/res/h_mgr.h"
 
 
 // for DLL-load hack in alc_init
@@ -825,7 +823,7 @@ if(sd->o) ogg_release(sd->o);
 // but that load failed).
 static void hsd_list_add(Handle hsd);
 
-static LibError SndData_reload(SndData* sd, const VfsPath& pathname, Handle hsd)
+static LibError SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pathname, Handle hsd)
 {
 	// currently only supports OGG; WAV is no longer supported. writing our own loader is infeasible
 	// due to a seriously watered down spec with many incompatible variants.
@@ -847,7 +845,7 @@ static LibError SndData_reload(SndData* sd, const VfsPath& pathname, Handle hsd)
 #endif
 
 	shared_ptr<u8> file; size_t file_size;
-	RETURN_ERR(g_VFS->LoadFile(pathname, file, file_size));
+	RETURN_ERR(vfs->LoadFile(pathname, file, file_size));
 
 	ALvoid* al_data = (ALvoid*)file.get();
 	ALsizei al_size = (ALsizei)file_size;
@@ -909,11 +907,11 @@ static LibError SndData_to_string(const SndData* sd, wchar_t* buf)
  * or loaded immediately.
  * @return Handle or LibError on failure
  */
-static Handle snd_data_load(const VfsPath& pathname, bool is_stream)
+static Handle snd_data_load(const PIVFS& vfs, const VfsPath& pathname, bool is_stream)
 {
 	debug_assert(!is_stream);	// no longer supported
 
-	return h_alloc(H_SndData, pathname);
+	return h_alloc(H_SndData, vfs, pathname);
 }
 
 
@@ -1254,7 +1252,7 @@ static void VSrc_dtor(VSrc* vs)
 	(void)snd_data_free(vs->hsd);
 }
 
-static LibError VSrc_reload(VSrc* vs, const VfsPath& pathname, Handle hvs)
+static LibError VSrc_reload(VSrc* vs, const PIVFS& vfs, const VfsPath& pathname, Handle hvs)
 {
 	// cannot wait till play(), need to init here:
 	// must load OpenAL so that snd_data_load can check for OGG extension.
@@ -1272,7 +1270,7 @@ static LibError VSrc_reload(VSrc* vs, const VfsPath& pathname, Handle hvs)
 	if(fs::extension(pathname) == L".txt")
 	{
 		shared_ptr<u8> buf; size_t size;
-		RETURN_ERR(g_VFS->LoadFile(pathname, buf, size));
+		RETURN_ERR(vfs->LoadFile(pathname, buf, size));
 		std::wistringstream def(std::wstring((wchar_t*)buf.get(), (int)size));
 
 		def >> dataPathname;
@@ -1294,7 +1292,7 @@ static LibError VSrc_reload(VSrc* vs, const VfsPath& pathname, Handle hvs)
 	// needed so we can snd_free ourselves when done playing.
 
 	bool is_stream = (vs->flags & VS_IS_STREAM) != 0;
-	vs->hsd = snd_data_load(dataPathname, is_stream);
+	vs->hsd = snd_data_load(vfs, dataPathname, is_stream);
 	RETURN_ERR(vs->hsd);
 
 	return INFO::OK;
@@ -1342,14 +1340,14 @@ static LibError VSrc_to_string(const VSrc* vs, wchar_t* buf)
  * or loaded immediately.
  * @return Handle or LibError on failure
  */
-Handle snd_open(const VfsPath& pathname, bool is_stream)
+Handle snd_open(const PIVFS& vfs, const VfsPath& pathname, bool is_stream)
 {
 	size_t flags = 0;
 	if(is_stream)
 		flags |= VS_IS_STREAM;
 	// note: RES_UNIQUE forces each instance to get a new resource
 	// (which is of course what we want).
-	return h_alloc(H_VSrc, pathname, RES_UNIQUE, flags);
+	return h_alloc(H_VSrc, vfs, pathname, RES_UNIQUE, flags);
 }
 
 

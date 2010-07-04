@@ -20,6 +20,7 @@
 #include "lib/ogl.h"
 #include "lib/res/graphics/ogl_shader.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderPathVertexShader.h"
 
@@ -77,42 +78,42 @@ bool RenderPathVertexShader::Init()
 	if (!g_Renderer.m_Caps.m_VertexShader)
 		return false;
 
-	m_ModelLight = ogl_program_load(L"shaders/model_light.xml");
+	m_ModelLight = ogl_program_load(g_VFS, L"shaders/model_light.xml");
 	if (m_ModelLight < 0)
 	{
 		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/model_light.xml: %i\n", (int)m_ModelLight);
 		return false;
 	}
 
-	m_ModelLightP = ogl_program_load(L"shaders/model_lightp.xml");
+	m_ModelLightP = ogl_program_load(g_VFS, L"shaders/model_lightp.xml");
 	if (m_ModelLightP < 0)
 	{
 		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/model_lightp.xml: %i\n", (int)m_ModelLightP);
 		return false;
 	}
 
-	m_InstancingLight = ogl_program_load(L"shaders/instancing_light.xml");
+	m_InstancingLight = ogl_program_load(g_VFS, L"shaders/instancing_light.xml");
 	if (m_InstancingLight < 0)
 	{
 		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancing_light.xml: %i\n", (int)m_InstancingLight);
 		return false;
 	}
 
-	m_InstancingLightP = ogl_program_load(L"shaders/instancing_lightp.xml");
+	m_InstancingLightP = ogl_program_load(g_VFS, L"shaders/instancing_lightp.xml");
 	if (m_InstancingLightP < 0)
 	{
 		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancing_lightp.xml: %i\n", (int)m_InstancingLightP);
 		return false;
 	}
 
-	m_Instancing = ogl_program_load(L"shaders/instancing.xml");
+	m_Instancing = ogl_program_load(g_VFS, L"shaders/instancing.xml");
 	if (m_Instancing < 0)
 	{
 		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancing.xml: %i\n", (int)m_Instancing);
 		return false;
 	}
 
-	m_InstancingP = ogl_program_load(L"shaders/instancingp.xml");
+	m_InstancingP = ogl_program_load(g_VFS, L"shaders/instancingp.xml");
 	if (m_InstancingP < 0)
 	{
 		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancingp.xml: %i\n", (int)m_InstancingP);

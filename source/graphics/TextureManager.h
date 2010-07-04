@@ -23,6 +23,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 

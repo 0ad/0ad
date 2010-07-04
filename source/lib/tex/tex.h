@@ -105,6 +105,7 @@ library and IO layer. Read and write are zero-copy.
 #define INCLUDED_TEX
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "lib/allocators/dynarray.h"
 
 

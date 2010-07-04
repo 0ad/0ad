@@ -1012,6 +1012,31 @@ int SDL_ShowCursor(int toggle)
 }
 
 
+SDL_GrabMode SDL_WM_GrabInput(SDL_GrabMode mode)
+{
+	static SDL_GrabMode prevMode;
+	if(mode == SDL_GRAB_QUERY)
+		return prevMode;
+	prevMode = mode;
+
+	if(mode == SDL_GRAB_OFF)
+		ClipCursor(0);
+	else
+	{
+		RECT clientRect;
+		WARN_IF_FALSE(GetClientRect(g_hWnd, &clientRect));
+		POINT upperLeft = { clientRect.left, clientRect.top };
+		WARN_IF_FALSE(ClientToScreen(g_hWnd, &upperLeft));
+		POINT lowerRight = { clientRect.right, clientRect.bottom };
+		WARN_IF_FALSE(ClientToScreen(g_hWnd, &lowerRight));
+		const RECT screenRect = { upperLeft.x, upperLeft.y, lowerRight.x, lowerRight.y };
+		WARN_IF_FALSE(ClipCursor(&screenRect));
+	}
+
+	return mode;
+}
+
+
 //----------------------------------------------------------------------------
 // video resizing/expose
 

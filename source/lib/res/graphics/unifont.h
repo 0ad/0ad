@@ -30,6 +30,7 @@
 #include <stdarg.h>	// va_list
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs.h"
 
 /**
  * Load a font.
@@ -37,7 +38,7 @@
  * @param pathname path and basename of the font definition file
  * (.fnt) and its texture (.png)
  **/
-extern Handle unifont_load(const VfsPath& pathname, size_t flags = 0);
+extern Handle unifont_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0);
 
 /**
  * Release a handle to a previously loaded font

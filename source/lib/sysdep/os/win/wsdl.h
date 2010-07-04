@@ -273,8 +273,13 @@ LIB_API int SDL_PushEvent(SDL_Event* ev);
 // misc
 //
 
-#define SDL_GRAB_ON 0
-#define SDL_WM_GrabInput(a)
+enum SDL_GrabMode
+{
+	SDL_GRAB_QUERY,
+	SDL_GRAB_OFF,
+	SDL_GRAB_ON
+};
+LIB_API SDL_GrabMode SDL_WM_GrabInput(SDL_GrabMode mode);
 
 #define SDL_GetError() ""
 

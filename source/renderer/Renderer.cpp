@@ -1466,7 +1466,7 @@ bool CRenderer::LoadTexture(CTexture* texture,int wrapflags)
 		return h==errorhandle ? true : false;
 	}
 
-	h = ogl_tex_load(texture->GetName());
+	h = ogl_tex_load(g_VFS, texture->GetName());
 	if (h <= 0)
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"LoadTexture failed on \"%ls\"", texture->GetName().string().c_str());
@@ -1585,7 +1585,7 @@ int CRenderer::LoadAlphaMaps()
 	{
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
-		textures[i] = ogl_tex_load(path/fnames[i]);
+		textures[i] = ogl_tex_load(g_VFS, path/fnames[i]);
 		RETURN_ERR(textures[i]);
 
 // quick hack: we require plain RGB(A) format, so convert to that.
@@ -1665,7 +1665,7 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 	// upload the composite texture
 	Tex t;
 	(void)tex_wrap(total_w, total_h, 24, 0, data, 0, &t);
-	m_hCompositeAlphaMap = ogl_tex_wrap(&t, key);
+	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
 	int ret = ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);

@@ -45,7 +45,7 @@ class CXeromyces : public XMBFile
 	friend class TestXeroXMB;
 public:
 	// Load from an XML file (with invisible XMB caching).
-	PSRETURN Load(const VfsPath& filename);
+	PSRETURN Load(const PIVFS& vfs, const VfsPath& filename);
 
 	// Load from an in-memory XML string (with no caching)
 	PSRETURN LoadString(const char* xml);
@@ -62,7 +62,7 @@ private:
 	// Find out write location of the XMB file corresponding to xmlFilename
 	static void GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath);
 
-	bool ReadXMBFile(const VfsPath& filename);
+	bool ReadXMBFile(const PIVFS& vfs, const VfsPath& filename);
 
 	static PSRETURN CreateXMB(const xmlDocPtr doc, WriteBuffer& writeBuffer);
 

@@ -24,6 +24,7 @@
 
 #include "ObjectManager.h"
 #include "ps/XML/Xeromyces.h"
+#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "lib/timer.h"
 #include "lib/rand.h"
@@ -42,7 +43,7 @@ CObjectBase::CObjectBase(CObjectManager& objectManager)
 bool CObjectBase::Load(const VfsPath& pathname)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(pathname) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
 		return false;
 
 	// Define all the elements used in the XML file

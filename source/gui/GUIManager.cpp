@@ -22,6 +22,7 @@
 #include "CGUI.h"
 
 #include "lib/timer.h"
+#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
@@ -136,7 +137,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	page.inputs.insert(path);
 
 	CXeromyces xero;
-	if (xero.Load(path) != PSRETURN_OK)
+	if (xero.Load(g_VFS, path) != PSRETURN_OK)
 		// Fail silently (Xeromyces reported the error)
 		return;
 

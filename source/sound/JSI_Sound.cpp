@@ -21,11 +21,12 @@
 
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/h_mgr.h"	// h_filename
+#include "ps/Filesystem.h"
 
 
 JSI_Sound::JSI_Sound(const VfsPath& pathname)
 {
-	m_Handle = snd_open(pathname);
+	m_Handle = snd_open(g_VFS, pathname);
 
 	// special-case to avoid throwing exceptions if quickstart has
 	// disabled sound: set a flag queried by Construct; the object will

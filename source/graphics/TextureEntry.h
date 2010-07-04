@@ -21,6 +21,7 @@
 #include <map>
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 
 #include "TextureManager.h"

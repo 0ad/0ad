@@ -30,6 +30,7 @@
 
 #include "maths/MathUtil.h"
 
+#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
@@ -420,7 +421,7 @@ void TerrainRenderer::RenderWater()
 	// If we're using fancy water, make sure its shader is loaded
 	if(fancy && !m->fancyWaterShader)
 	{
-		Handle h = ogl_program_load(L"shaders/water_high.xml");
+		Handle h = ogl_program_load(g_VFS, L"shaders/water_high.xml");
 		if (h < 0)
 		{
 			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load water shader. Falling back to non-fancy water.\n");

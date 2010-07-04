@@ -22,9 +22,9 @@
 #include "precompiled.h"
 #include "ParticleEmitter.h"
 #include "ParticleEngine.h"
-#include "ps/XML/Xeromyces.h"
-
+#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
+#include "ps/XML/Xeromyces.h"
 #define LOG_CATEGORY L"particleSystem"
 
 //forward declaration
@@ -64,7 +64,7 @@ CEmitter::~CEmitter(void)
 bool CEmitter::LoadXml(const VfsPath& pathname)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(pathname) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
 		// Fail
 		return false;
 

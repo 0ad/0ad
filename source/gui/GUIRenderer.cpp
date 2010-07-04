@@ -24,6 +24,7 @@
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 
+#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"gui"
 
@@ -417,7 +418,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 		if (! cit->m_TextureName.empty())
 		{
-			Handle h = ogl_tex_load(cit->m_TextureName);
+			Handle h = ogl_tex_load(g_VFS, cit->m_TextureName);
 			if (h <= 0)
 			{
 				LOG(CLogger::Error, LOG_CATEGORY, L"Error reading texture '%ls': %ld", cit->m_TextureName.string().c_str(), (long)h);

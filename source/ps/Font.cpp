@@ -16,12 +16,12 @@
  */
 
 #include "precompiled.h"
-
 #include "Font.h"
 
-#include "ps/ConfigDB.h"
 #include "lib/res/graphics/unifont.h"
 
+#include "ps/ConfigDB.h"
+#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"graphics"
 
@@ -43,12 +43,12 @@ CFont::CFont(const wchar_t* name)
 	CConfigValue* fontFilenameVar = g_ConfigDB.GetValue(CFG_USER, fontName);
 	if (fontFilenameVar && fontFilenameVar->GetString(fontFilename))
 	{
-		h = unifont_load(CStrW(fontFilename));
+		h = unifont_load(g_VFS, CStrW(fontFilename));
 	}
 	else
 	{
 		// Not found in the config file -- try it as a simple filename
-		h = unifont_load(name);
+		h = unifont_load(g_VFS, name);
 
 		// Found it
 		if (h > 0)
@@ -56,7 +56,7 @@ CFont::CFont(const wchar_t* name)
 
 		// Not found as a font -- give up and use the default.
 		LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Failed to find font '%ls'", name);
-		h = unifont_load(DefaultFont);
+		h = unifont_load(g_VFS, DefaultFont);
 		// Assume this worked
 	}
 }

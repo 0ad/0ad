@@ -96,7 +96,7 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 	xmbActualPath = VfsPath(L"cache/mods") / modName / L"xmb" / xmbFilename;
 }
 
-PSRETURN CXeromyces::Load(const VfsPath& filename)
+PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 {
 	debug_assert(g_XeromycesStarted);
 
@@ -109,7 +109,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 
 	// Get some data about the .xml file
 	FileInfo fileInfo;
-	if (g_VFS->GetFileInfo(filename, &fileInfo) < 0)
+	if (vfs->GetFileInfo(filename, &fileInfo) < 0)
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to stat XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
@@ -142,12 +142,12 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	VfsPath xmbFilename = change_extension(filename, suffix);
 
 	VfsPath xmbPath;
-	GetXMBPath(g_VFS, filename, xmbFilename, xmbPath);
+	GetXMBPath(vfs, filename, xmbFilename, xmbPath);
 
 	// If the file exists, use it
 	if (FileExists(xmbPath))
 	{
-		if (ReadXMBFile(xmbPath))
+		if (ReadXMBFile(vfs, xmbPath))
 			return PSRETURN_OK;
 		// (no longer return PSRETURN_Xeromyces_XMLOpenFailed here because
 		// failure legitimately happens due to partially-written XMB files.)
@@ -157,7 +157,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	// XMB isn't up to date with the XML, so rebuild it:
 
 	CVFSFile input;
-	if (input.Load(filename))
+	if (input.Load(vfs, filename))
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to open XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
@@ -178,7 +178,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	xmlFreeDoc(doc);
 
 	// Save the file to disk, so it can be loaded quickly next time
-	g_VFS->CreateFile(xmbPath, writeBuffer.Data(), writeBuffer.Size());
+	vfs->CreateFile(xmbPath, writeBuffer.Data(), writeBuffer.Size());
 
 	m_XMBBuffer = writeBuffer.Data(); // add a reference
 
@@ -189,10 +189,10 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	return PSRETURN_OK;
 }
 
-bool CXeromyces::ReadXMBFile(const VfsPath& filename)
+bool CXeromyces::ReadXMBFile(const PIVFS& vfs, const VfsPath& filename)
 {
 	size_t size;
-	if(g_VFS->LoadFile(filename, m_XMBBuffer, size) < 0)
+	if(vfs->LoadFile(filename, m_XMBBuffer, size) < 0)
 		return false;
 	debug_assert(size >= 4); // make sure it's at least got the initial header
 

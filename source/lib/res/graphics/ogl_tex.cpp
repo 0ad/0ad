@@ -36,10 +36,8 @@
 #include "lib/sysdep/gfx.h"
 #include "lib/tex/tex.h"
 
-#include "../h_mgr.h"
-#include "lib/file/vfs/vfs.h"
+#include "lib/res/h_mgr.h"
 #include "lib/fnv_hash.h"
-extern PIVFS g_VFS;
 
 
 //----------------------------------------------------------------------------
@@ -415,7 +413,7 @@ static void OglTex_dtor(OglTex* ot)
 	ot->flags &= ~OT_IS_UPLOADED;
 }
 
-static LibError OglTex_reload(OglTex* ot, const VfsPath& pathname, Handle h)
+static LibError OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathname, Handle h)
 {
 	// we're reusing a freed but still in-memory OglTex object
 	if(ot->flags & OT_IS_UPLOADED)
@@ -426,7 +424,7 @@ static LibError OglTex_reload(OglTex* ot, const VfsPath& pathname, Handle h)
 	if(!(ot->flags & OT_TEX_VALID))
 	{
 		shared_ptr<u8> file; size_t fileSize;
-		if(g_VFS->LoadFile(pathname, file, fileSize) >= 0)
+		if(vfs->LoadFile(pathname, file, fileSize) >= 0)
 		{
 			if(tex_decode(file, fileSize, &ot->t) >= 0)
 				ot->flags |= OT_TEX_VALID;
@@ -497,10 +495,10 @@ static LibError OglTex_to_string(const OglTex* ot, wchar_t* buf)
 
 // load and return a handle to the texture given in <pathname>.
 // for a list of supported formats, see tex.h's tex_load.
-Handle ogl_tex_load(const VfsPath& pathname, size_t flags)
+Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags)
 {
 	Tex* wrapped_tex = 0;	// we're loading from file
-	return h_alloc(H_OglTex, pathname, flags, wrapped_tex);
+	return h_alloc(H_OglTex, vfs, pathname, flags, wrapped_tex);
 }
 
 
@@ -525,7 +523,7 @@ Handle ogl_tex_find(const VfsPath& pathname)
 // note: because we cannot guarantee that callers will pass distinct
 // "filenames", caching is disabled for the created object. this avoids
 // mistakenly reusing previous objects that share the same comment.
-Handle ogl_tex_wrap(Tex* t, const VfsPath& pathname, size_t flags)
+Handle ogl_tex_wrap(Tex* t, const PIVFS& vfs, const VfsPath& pathname, size_t flags)
 {
 	// this object may not be backed by a file ("may", because
 	// someone could do tex_load and then ogl_tex_wrap).
@@ -535,7 +533,7 @@ Handle ogl_tex_wrap(Tex* t, const VfsPath& pathname, size_t flags)
 	// 'descriptive comment' instead of filename, but don't rely on that)
 	// also disable caching as explained above.
 	flags |= RES_DISALLOW_RELOAD|RES_NO_CACHE;
-	return h_alloc(H_OglTex, pathname, flags, t);
+	return h_alloc(H_OglTex, vfs, pathname, flags, t);
 }
 
 

@@ -107,7 +107,7 @@ bool CComponentManager::LoadScript(const std::wstring& filename, bool hotload)
 {
 	m_CurrentlyHotloading = hotload;
 	CVFSFile file;
-	PSRETURN loadOk = file.Load(filename);
+	PSRETURN loadOk = file.Load(g_VFS, filename);
 	debug_assert(loadOk == PSRETURN_OK); // TODO
 	std::wstring content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // TODO: encodings etc
 	bool ok = m_ScriptInterface.LoadScript(filename, content);

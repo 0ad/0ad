@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 #include "lib/ogl.h"
+#include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "MaterialManager.h"
 
@@ -196,7 +197,7 @@ CMaterial& CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	}
 
 	CXeromyces xeroFile;
-	if(xeroFile.Load(pathname) != PSRETURN_OK)
+	if(xeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
 		return NullMaterial;
 
 	#define EL(x) int el_##x = xeroFile.GetElementID(#x)

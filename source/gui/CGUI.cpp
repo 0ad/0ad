@@ -987,7 +987,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, std::set<VfsPath>& Paths)
 	Paths.insert(Filename);
 
 	CXeromyces XeroFile;
-	if (XeroFile.Load(Filename) != PSRETURN_OK)
+	if (XeroFile.Load(g_VFS, Filename) != PSRETURN_OK)
 		// Fail silently
 		return;
 
@@ -1300,7 +1300,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			{
 				Paths.insert(filename);
 				CVFSFile scriptfile;
-				if (scriptfile.Load(filename) != PSRETURN_OK)
+				if (scriptfile.Load(g_VFS, filename) != PSRETURN_OK)
 				{
 					LOGERROR(L"Error opening GUI script action file '%ls'", filename.c_str());
 					throw PSERROR_GUI_JSOpenFailed();

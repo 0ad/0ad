@@ -275,7 +275,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 
 	VfsPath path = VfsPath(TEMPLATE_ROOT) / (std::wstring)CStrW(templateName + ".xml");
 	CXeromyces xero;
-	PSRETURN ok = xero.Load(path);
+	PSRETURN ok = xero.Load(g_VFS, path);
 	if (ok != PSRETURN_OK)
 		return false; // (Xeromyces already logged an error with the full filename)
 
