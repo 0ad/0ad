@@ -249,25 +249,8 @@ function handleInputBeforeGui(ev)
 				g_Selection.reset();
 				g_Selection.addList(ents);
 
-				// Make selection groups
-				var j = 0;
-				for (var i = 0; i < ents.length; i++)
-				{
-					var template = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;		
-	
-					if (!g_Selection.groups.groupTypeCount[template])
-					{
-						g_Selection.groups.groupTypeCount[template] = 1;
-						g_Selection.groups.firstOfType[template] = i;
-						g_Selection.groups.groupTemplates.push(template);
-						g_Selection.groups.groupNumbers[template] = j;
-						j++;
-					}
-					else if (g_Selection.groups.groupTypeCount[template])
-					{
-						g_Selection.groups.groupTypeCount[template] += 1;
-					}
-				}
+				// Create the selection groups
+				g_Selection.createSelectionGroups(ents);
 
 				// turn on unit highlight for first unit in selection
 				getGUIObjectByName("unitSelectionHighlight[0]").hidden = false;

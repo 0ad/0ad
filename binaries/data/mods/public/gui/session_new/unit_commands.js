@@ -59,9 +59,9 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 		if (guiName == "Selection")
 		{
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = 
-				(g_Selection.groups.groupTypeCount[item] > 1 ? g_Selection.groups.groupTypeCount[item] : "");
+				(g_Selection.groups.typeCount[item] > 1 ? g_Selection.groups.typeCount[item] : "");
 
-			tooltip += (g_Selection.groups.groupTypeCount[item] > 1 ? " (" + g_Selection.groups.groupTypeCount[item] + ")" : "")
+			tooltip += (g_Selection.groups.typeCount[item] > 1 ? " (" + g_Selection.groups.typeCount[item] + ")" : "")
 		}
 		else if (guiName == "Queue")
 		{
@@ -173,7 +173,7 @@ function updateUnitCommands(playerState, entState, commandsPanel, selection)
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
 		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, playerState, entState, g_Selection.groups.groupTemplates,
+			setupUnitPanel("Selection", usedPanels, playerState, entState, g_Selection.groups.templates,
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		// Stamina

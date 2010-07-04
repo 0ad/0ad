@@ -22,8 +22,8 @@ function EntityGroups()
 	this.primary = 0;
 	this.groupNumbers = {};
 	this.firstOfType = {}; // array for holding index to first appearance of a specific unit type in g_Selection 
-	this.groupTypeCount = {}; // format { name:count, name:count, ... } - maps units to the currently selected quantity of that type
-	this.groupTemplates = [];
+	this.typeCount = {}; // format { name:count, name:count, ... } - maps units to the currently selected quantity of that type
+	this.templates = [];
 }
 
 EntityGroups.prototype.reset = function()
@@ -32,8 +32,8 @@ EntityGroups.prototype.reset = function()
 	this.primary = 0;
 	this.groupNumbers = {};
 	this.firstOfType = {};
-	this.groupTypeCount = {};
-	this.groupTemplates = [];
+	this.typeCount = {};
+	this.templates = [];
 };
 
 //-------------------------------- -------------------------------- -------------------------------- 
@@ -74,6 +74,60 @@ EntitySelection.prototype.setPrimary = function(index)
 EntitySelection.prototype.resetPrimary = function() 
 {
 	this.primary = 0; // the primary selection must be reset whenever the selection changes
+};
+
+// Make the selection groups for the selection display buttons
+EntitySelection.prototype.createSelectionGroups = function(ents)
+{
+	// Erase old selection first
+	this.groups.reset();
+
+	// Make selection groups
+	var j = 0;
+	for (var i = 0; i < ents.length; i++)
+	{
+		var template = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;		
+
+		if (!this.groups.typeCount[template])
+		{
+			this.groups.typeCount[template] = 1;
+			this.groups.firstOfType[template] = i;
+			this.groups.templates.push(template);
+			this.groups.groupNumbers[template] = j;
+			j++;
+		}
+		else if (this.groups.typeCount[template])
+		{
+			this.groups.typeCount[template] += 1;
+		}
+	}
+};
+
+// Update the selection to take care of changes (like units that have been killed)
+EntitySelection.prototype.updateSelection = function()
+{
+	var numberRemoved = 0;
+	var i = 0;
+	
+	for each (var unit in this.selected)
+	{
+		var entState = Engine.GuiInterfaceCall("GetEntityState", unit);
+		
+		if (!entState)
+		{
+			delete this.selected[unit];
+			numberRemoved++;
+		}
+
+		i++;
+	}
+
+	if (numberRemoved > 0)
+	{
+		this.dirty = true;
+		this.createSelectionGroups(g_Selection.toList());
+		getGUIObjectByName("unitSelectionHighlight[0]").hidden = false;
+	}
 };
 
 EntitySelection.prototype.toggle = function(ent)

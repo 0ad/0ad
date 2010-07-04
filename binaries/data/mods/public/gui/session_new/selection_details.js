@@ -153,11 +153,7 @@ function updateSelectionDetails(simState)
 	 also need to handle multi-unit selections) */
 	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[g_Selection.getPrimary()]);
 	if (!entState)
-	{
-		detailsPanel.hidden = true;
-		commandsPanel.hidden = true;
 		return;
-	}
 
 	var playerState = simState.players[entState.player];
 	if (!playerState)
