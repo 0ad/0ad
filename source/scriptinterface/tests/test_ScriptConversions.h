@@ -47,7 +47,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	}
 
 	template <typename T>
-	void roundtrip(const T& value, const std::string& expected)
+	void roundtrip(const T& value, const char* expected)
 	{
 		ScriptInterface script("Test");
 		JSContext* cx = script.GetContext();
@@ -58,7 +58,8 @@ class TestScriptConversions : public CxxTest::TestSuite
 		std::string source;
 		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalObject(cx)), "uneval", CScriptVal(v1), source));
 
-		TS_ASSERT_STR_EQUALS(source, expected);
+		if (expected)
+			TS_ASSERT_STR_EQUALS(source, expected);
 
 		T v2 = T();
 		TS_ASSERT(ScriptInterface::FromJSVal(script.GetContext(), v1, v2));
@@ -160,4 +161,23 @@ public:
 	}
 
 	// TODO: test vectors
+
+	void test_fixed()
+	{
+		// NOTE: fixed conversions are defined in simulation2/scripting/EngineScriptConversions.cpp
+
+		fixed f;
+
+		f.SetInternalValue(10590283);
+		roundtrip<fixed>(f, "161.5948944091797");
+
+		f.SetInternalValue(-10590283);
+		roundtrip<fixed>(f, "-161.5948944091797");
+
+		f.SetInternalValue(2000000000);
+		roundtrip<fixed>(f, "30517.578125");
+
+		f.SetInternalValue(2000000001);
+		roundtrip<fixed>(f, "30517.57814025879");
+	}
 };

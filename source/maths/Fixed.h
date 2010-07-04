@@ -92,6 +92,12 @@ inline T round_away_from_zero(float value)
 	return (T)(value >= 0 ? value + 0.5f : value - 0.5f);
 }
 
+template <typename T>
+inline T round_away_from_zero(double value)
+{
+	return (T)(value >= 0 ? value + 0.5 : value - 0.5);
+}
+
 /**
  * A simple fixed-point number class.
  *

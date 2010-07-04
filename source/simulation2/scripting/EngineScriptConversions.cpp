@@ -186,7 +186,8 @@ template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, jsval v, fixed&
 	if (!JS_ValueToNumber(cx, v, &ret))
 		return false;
 	out = fixed::FromDouble(ret);
-	// TODO: ought to check that this conversion is consistent and portable
+	// double can precisely represent the full range of fixed, so this is a non-lossy conversion
+
 	return true;
 }
 
@@ -194,7 +195,6 @@ template<> jsval ScriptInterface::ToJSVal<fixed>(JSContext* cx, const fixed& val
 {
 	jsval rval = JSVAL_VOID;
 	JS_NewNumberValue(cx, val.ToDouble(), &rval); // ignore return value
-	// TODO: ought to check that this conversion is consistent and portable
 	return rval;
 }
 
