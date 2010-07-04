@@ -47,9 +47,14 @@ ResourceSupply.prototype.TakeResources = function(rate)
 
 	var old = this.amount;
 	this.amount = Math.max(0, old - rate);
+
+	// (use ceil instead of floor so that we continue returning non-zero values even if 0 < amount < 1)
 	var change = Math.ceil(old) - Math.ceil(this.amount);
-	// (use ceil instead of floor so that we continue returning non-zero values even if
-	// 0 < amount < 1)
+
+	// Remove entities that have been exhausted
+	if (this.amount == 0)
+		Engine.DestroyEntity(this.entity);
+
 	return { "amount": change, "exhausted": (old == 0) };
 };
 
