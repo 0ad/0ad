@@ -128,7 +128,7 @@ bool CNetTurnManager::Update(float frameLength)
 void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 {
 #ifdef NETTURN_LOG
-	NETTURN_LOG(L"OnSyncError(%d, %s)\n", turn, Hexify(expectedHash).c_str());
+	NETTURN_LOG(L"OnSyncError(%d, %hs)\n", turn, Hexify(expectedHash).c_str());
 #endif
 
 	// Only complain the first time
@@ -217,7 +217,7 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn, const std::string& hash)
 {
 #ifdef NETTURN_LOG
-	NETTURN_LOG(L"NotifyFinishedUpdate(%d, %s)\n", turn, Hexify(hash).c_str());
+	NETTURN_LOG(L"NotifyFinishedUpdate(%d, %hs)\n", turn, Hexify(hash).c_str());
 #endif
 
 	// Send message to the server
@@ -324,7 +324,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 		for (std::map<int, std::string>::iterator cit = it->second.begin(); cit != it->second.end(); ++cit)
 		{
 #ifdef NETTURN_LOG
-			NETTURN_LOG(L"sync check %d: %d = %s\n", it->first, cit->first, Hexify(cit->second).c_str());
+			NETTURN_LOG(L"sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str());
 #endif
 			if (cit->second != expected)
 			{

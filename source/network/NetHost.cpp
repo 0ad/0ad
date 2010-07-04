@@ -30,7 +30,7 @@ bool CNetHost::SendMessage(const CNetMessage* message, ENetPeer* peer, const cha
 	if (!packet)
 		return false;
 
-	LOGMESSAGE(L"Net: Sending message %hs of size %lu to %s", message->ToString().c_str(), (unsigned long)packet->dataLength, peerName);
+	LOGMESSAGE(L"Net: Sending message %hs of size %lu to %hs", message->ToString().c_str(), (unsigned long)packet->dataLength, peerName);
 
 	// Let ENet send the message to peer
 	if (enet_peer_send(peer, DEFAULT_CHANNEL, packet) < 0)
