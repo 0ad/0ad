@@ -88,7 +88,8 @@ bool CNetClientSessionRemote::Connect(u16 port, const CStr& server)
 	m_Server = peer;
 
 	m_Stats = new CNetStatsTable(m_Server);
-	g_ProfileViewer.AddRootTable(m_Stats);
+	if (CProfileViewer::IsInitialised())
+		g_ProfileViewer.AddRootTable(m_Stats);
 
 	return true;
 }

@@ -96,7 +96,8 @@ bool CNetServer::SetupConnection()
 	}
 
 	m_Stats = new CNetStatsTable(m_Host);
-	g_ProfileViewer.AddRootTable(m_Stats);
+	if (CProfileViewer::IsInitialised())
+		g_ProfileViewer.AddRootTable(m_Stats);
 
 	m_State = SERVER_STATE_PREGAME;
 
