@@ -234,6 +234,18 @@ public:
 		return CFixed(value / n);
 	}
 
+	/// Mod by a fixed. Must not have n == 0. Result has the same sign as n.
+	CFixed operator%(CFixed n) const
+	{
+		T t = value % n.value;
+		if (n.value > 0 && t < 0)
+			t += n.value;
+		else if (n.value < 0 && t > 0)
+			t += n.value;
+
+		return CFixed(t);
+	}
+
 	CFixed Absolute() const { return CFixed(abs(value)); }
 
 	/**
@@ -307,6 +319,7 @@ CFixed_15_16 atan2_approx(CFixed_15_16 y, CFixed_15_16 x);
 
 /**
  * Compute sin(a) and cos(a).
+ * Maximum error for -2pi < a < 2pi is almost 0.0005.
  */
 void sincos_approx(CFixed_15_16 a, CFixed_15_16& sin_out, CFixed_15_16& cos_out);
 

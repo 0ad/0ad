@@ -134,6 +134,20 @@ public:
 
 	// TODO: test all the arithmetic operators
 
+	void test_Mod()
+	{
+		TS_ASSERT_EQUALS(fixed::FromInt(0) % fixed::FromInt(4), fixed::FromInt(0));
+		TS_ASSERT_EQUALS(fixed::FromInt(0) % fixed::FromInt(-4), fixed::FromInt(0));
+		TS_ASSERT_EQUALS(fixed::FromInt(5) % fixed::FromInt(4), fixed::FromInt(1));
+		TS_ASSERT_EQUALS(fixed::FromInt(5) % fixed::FromInt(-4), fixed::FromInt(-3));
+		TS_ASSERT_EQUALS(fixed::FromInt(-5) % fixed::FromInt(4), fixed::FromInt(3));
+		TS_ASSERT_EQUALS(fixed::FromInt(-5) % fixed::FromInt(-4), fixed::FromInt(-1));
+
+		TS_ASSERT_EQUALS((fixed::FromDouble(5.5) % fixed::FromInt(4)).ToDouble(), 1.5);
+
+		TS_ASSERT_EQUALS((fixed::FromDouble(1.75) % fixed::FromDouble(0.5)).ToDouble(), 0.25);
+	}
+
 	void test_Sqrt()
 	{
 		TS_ASSERT_EQUALS(fixed::FromDouble(1.0).Sqrt().ToDouble(), 1.0);
@@ -187,5 +201,49 @@ public:
 		}
 
 		#undef T
+	}
+
+	void test_SinCos()
+	{
+		fixed s, c;
+
+		sincos_approx(fixed::FromInt(0), s, c);
+		TS_ASSERT_EQUALS(s, fixed::FromInt(0));
+		TS_ASSERT_EQUALS(c, fixed::FromInt(1));
+
+		sincos_approx(fixed::Pi(), s, c);
+		TS_ASSERT_DELTA(s.ToDouble(), 0.0, 0.00005);
+		TS_ASSERT_EQUALS(c, fixed::FromInt(-1));
+
+		sincos_approx(fixed::FromDouble(M_PI*2.0), s, c);
+		TS_ASSERT_DELTA(s.ToDouble(), 0.0, 0.0001);
+		TS_ASSERT_DELTA(c.ToDouble(), 1.0, 0.0001);
+
+		sincos_approx(fixed::FromDouble(M_PI*100.0), s, c);
+		TS_ASSERT_DELTA(s.ToDouble(), 0.0, 0.004);
+		TS_ASSERT_DELTA(c.ToDouble(), 1.0, 0.004);
+
+		sincos_approx(fixed::FromDouble(M_PI*-100.0), s, c);
+		TS_ASSERT_DELTA(s.ToDouble(), 0.0, 0.004);
+		TS_ASSERT_DELTA(c.ToDouble(), 1.0, 0.004);
+
+/*
+		for (double a = 0.0; a < 6.28; a += 0.1)
+		{
+			sincos_approx(fixed::FromDouble(a), s, c);
+			printf("%f: sin = %f / %f; cos = %f / %f\n", a, s.ToDouble(), sin(a), c.ToDouble(), cos(a));
+		}
+*/
+
+		double err = 0.0;
+		for (double a = -6.28; a < 6.28; a += 0.001)
+		{
+			sincos_approx(fixed::FromDouble(a), s, c);
+			err = std::max(err, fabs(sin(a) - s.ToDouble()));
+			err = std::max(err, fabs(cos(a) - c.ToDouble()));
+		}
+//		printf("### Max error %f = %f/2^16\n", err, err*65536.0);
+
+		TS_ASSERT_LESS_THAN(err, 0.00046);
 	}
 };

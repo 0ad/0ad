@@ -133,8 +133,51 @@ CFixed_15_16 CFixed_15_16::Pi()
 
 void sincos_approx(CFixed_15_16 a, CFixed_15_16& sin_out, CFixed_15_16& cos_out)
 {
-	// XXX: mustn't use floating-point here - need a fixed-point emulation
+	// Based on http://www.coranac.com/2009/07/sines/
 
-	sin_out = CFixed_15_16::FromDouble(sin(a.ToDouble()));
-	cos_out = CFixed_15_16::FromDouble(cos(a.ToDouble()));
+	// TODO: this could be made a bit more precise by being careful about scaling
+
+	typedef CFixed_15_16 fixed;
+
+	fixed c2_pi;
+	c2_pi.SetInternalValue(41721); // = 2/pi << 16
+
+	// Map radians onto the range [0, 4)
+	fixed z = a.Multiply(c2_pi) % fixed::FromInt(4);
+
+	// Map z onto the range [-1, +1] for sin, and the same with z+1 to compute cos
+	fixed sz, cz;
+	if (z >= fixed::FromInt(3)) // [3, 4)
+	{
+		sz = z - fixed::FromInt(4);
+		cz = z - fixed::FromInt(3);
+	}
+	else if (z >= fixed::FromInt(2)) // [2, 3)
+	{
+		sz = fixed::FromInt(2) - z;
+		cz = z - fixed::FromInt(3);
+	}
+	else if (z >= fixed::FromInt(1)) // [1, 2)
+	{
+		sz = fixed::FromInt(2) - z;
+		cz = fixed::FromInt(1) - z;
+	}
+	else // [0, 1)
+	{
+		sz = z;
+		cz = fixed::FromInt(1) - z;
+	}
+
+	// Third-order (max absolute error ~0.02)
+
+//	sin_out = (sz / 2).Multiply(fixed::FromInt(3) - sz.Multiply(sz));
+//	cos_out = (cz / 2).Multiply(fixed::FromInt(3) - cz.Multiply(cz));
+
+	// Fifth-order (max absolute error ~0.0005)
+
+	fixed sz2 = sz.Multiply(sz);
+	sin_out = sz.Multiply(fixed::Pi() - sz2.Multiply(fixed::Pi()*2 - fixed::FromInt(5) - sz2.Multiply(fixed::Pi() - fixed::FromInt(3)))) / 2;
+
+	fixed cz2 = cz.Multiply(cz);
+	cos_out = cz.Multiply(fixed::Pi() - cz2.Multiply(fixed::Pi()*2 - fixed::FromInt(5) - cz2.Multiply(fixed::Pi() - fixed::FromInt(3)))) / 2;
 }
