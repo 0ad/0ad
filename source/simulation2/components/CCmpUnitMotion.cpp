@@ -557,7 +557,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 	if (cmpObstructionManager.null())
 		return false;
 
-	ICmpObstructionManager::tag_t tag = 0;
+	ICmpObstructionManager::tag_t tag;
 
 	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
 	if (!cmpObstruction.null())
@@ -590,7 +590,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 
 	const entity_pos_t goalDelta = entity_pos_t::FromInt(CELL_SIZE)/4; // for extending the goal outwards/inwards a little bit
 
-	if (tag)
+	if (tag.valid())
 	{
 		ICmpObstructionManager::ObstructionSquare obstruction = cmpObstructionManager->GetObstruction(tag);
 
@@ -723,7 +723,7 @@ bool CCmpUnitMotion::IsInAttackRange(entity_id_t target, entity_pos_t minRange, 
 	if (cmpObstructionManager.null())
 		return false;
 
-	ICmpObstructionManager::tag_t tag = 0;
+	ICmpObstructionManager::tag_t tag;
 
 	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
 	if (!cmpObstruction.null())
@@ -731,7 +731,7 @@ bool CCmpUnitMotion::IsInAttackRange(entity_id_t target, entity_pos_t minRange, 
 
 	entity_pos_t distance;
 
-	if (tag)
+	if (tag.valid())
 	{
 		ICmpObstructionManager::ObstructionSquare obstruction = cmpObstructionManager->GetObstruction(tag);
 

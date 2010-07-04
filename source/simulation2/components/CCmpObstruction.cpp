@@ -102,7 +102,7 @@ public:
 		else
 			m_Active = true;
 
-		m_Tag = 0;
+		m_Tag = ICmpObstructionManager::tag_t();
 		m_Moving = false;
 	}
 
@@ -133,18 +133,18 @@ public:
 
 			const CMessagePositionChanged& data = static_cast<const CMessagePositionChanged&> (msg);
 
-			if (!data.inWorld && !m_Tag)
+			if (!data.inWorld && !m_Tag.valid())
 				break; // nothing needs to change
 
 			CmpPtr<ICmpObstructionManager> cmpObstructionManager(context, SYSTEM_ENTITY);
 			if (cmpObstructionManager.null())
 				break;
 
-			if (data.inWorld && m_Tag)
+			if (data.inWorld && m_Tag.valid())
 			{
 				cmpObstructionManager->MoveShape(m_Tag, data.x, data.z, data.a);
 			}
-			else if (data.inWorld && !m_Tag)
+			else if (data.inWorld && !m_Tag.valid())
 			{
 				// Need to create a new pathfinder shape:
 				if (m_Type == STATIC)
@@ -152,10 +152,10 @@ public:
 				else
 					m_Tag = cmpObstructionManager->AddUnitShape(data.x, data.z, m_Size0, m_Moving);
 			}
-			else if (!data.inWorld && m_Tag)
+			else if (!data.inWorld && m_Tag.valid())
 			{
 				cmpObstructionManager->RemoveShape(m_Tag);
-				m_Tag = 0;
+				m_Tag = ICmpObstructionManager::tag_t();
 			}
 			break;
 		}
@@ -164,7 +164,7 @@ public:
 			const CMessageMotionChanged& data = static_cast<const CMessageMotionChanged&> (msg);
 			m_Moving = !data.speed.IsZero();
 
-			if (m_Tag && m_Type == UNIT)
+			if (m_Tag.valid() && m_Type == UNIT)
 			{
 				CmpPtr<ICmpObstructionManager> cmpObstructionManager(context, SYSTEM_ENTITY);
 				if (cmpObstructionManager.null())
@@ -175,14 +175,14 @@ public:
 		}
 		case MT_Destroy:
 		{
-			if (m_Tag)
+			if (m_Tag.valid())
 			{
 				CmpPtr<ICmpObstructionManager> cmpObstructionManager(context, SYSTEM_ENTITY);
 				if (cmpObstructionManager.null())
 					break;
 
 				cmpObstructionManager->RemoveShape(m_Tag);
-				m_Tag = 0;
+				m_Tag = ICmpObstructionManager::tag_t();
 			}
 			break;
 		}

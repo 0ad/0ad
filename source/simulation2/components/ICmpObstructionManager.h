@@ -55,9 +55,17 @@ class ICmpObstructionManager : public IComponent
 {
 public:
 	/**
-	 * External identifiers for shapes. Valid tags are guaranteed to be non-zero.
+	 * External identifiers for shapes.
+	 * (This is a struct rather than a raw u32 for type-safety.)
 	 */
-	typedef u32 tag_t;
+	struct tag_t
+	{
+		tag_t() : n(0) {}
+		explicit tag_t(u32 n) : n(n) {}
+		bool valid() { return n != 0; }
+
+		u32 n;
+	};
 
 	/**
 	 * Register a static shape.
@@ -233,7 +241,7 @@ class SkipTagObstructionFilter : public IObstructionTestFilter
 	ICmpObstructionManager::tag_t m_Tag;
 public:
 	SkipTagObstructionFilter(ICmpObstructionManager::tag_t tag) : m_Tag(tag) {}
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool UNUSED(moving)) const { return tag != m_Tag; }
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool UNUSED(moving)) const { return tag.n != m_Tag.n; }
 };
 
 #endif // INCLUDED_ICMPOBSTRUCTIONMANAGER

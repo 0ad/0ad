@@ -170,6 +170,7 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 			// What should we do here?
 			// For now, just move the unit into the middle of the building where it'll probably get stuck
 			pos = cmpPosition.GetPosition();
+			warn("Can't find free space to spawn trained unit");
 		}
 
 		var cmpNewPosition = Engine.QueryInterface(ent, IID_Position);

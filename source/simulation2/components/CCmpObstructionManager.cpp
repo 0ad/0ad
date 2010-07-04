@@ -34,11 +34,12 @@
 // Externally, tags are opaque non-zero positive integers.
 // Internally, they are tagged (by shape) indexes into shape lists.
 // idx must be non-zero.
-#define TAG_IS_UNIT(tag) (((tag) & 1) == 0)
-#define TAG_IS_STATIC(tag) (((tag) & 1) == 1)
-#define UNIT_INDEX_TO_TAG(idx) (((idx) << 1) | 0)
-#define STATIC_INDEX_TO_TAG(idx) (((idx) << 1) | 1)
-#define TAG_TO_INDEX(tag) ((tag) >> 1)
+#define TAG_IS_VALID(tag) ((tag).valid())
+#define TAG_IS_UNIT(tag) (((tag).n & 1) == 0)
+#define TAG_IS_STATIC(tag) (((tag).n & 1) == 1)
+#define UNIT_INDEX_TO_TAG(idx) tag_t(((idx) << 1) | 0)
+#define STATIC_INDEX_TO_TAG(idx) tag_t(((idx) << 1) | 1)
+#define TAG_TO_INDEX(tag) ((tag).n >> 1)
 
 /**
  * Internal representation of axis-aligned sometimes-square sometimes-circle shapes for moving units
@@ -152,7 +153,7 @@ public:
 
 	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a)
 	{
-		debug_assert(tag);
+		debug_assert(TAG_IS_VALID(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{
@@ -179,7 +180,7 @@ public:
 
 	virtual void SetUnitMovingFlag(tag_t tag, bool moving)
 	{
-		debug_assert(tag && TAG_IS_UNIT(tag));
+		debug_assert(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{
@@ -190,7 +191,7 @@ public:
 
 	virtual void RemoveShape(tag_t tag)
 	{
-		debug_assert(tag);
+		debug_assert(TAG_IS_VALID(tag));
 
 		if (TAG_IS_UNIT(tag))
 			m_UnitShapes.erase(TAG_TO_INDEX(tag));
@@ -202,7 +203,7 @@ public:
 
 	virtual ObstructionSquare GetObstruction(tag_t tag)
 	{
-		debug_assert(tag);
+		debug_assert(TAG_IS_VALID(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{

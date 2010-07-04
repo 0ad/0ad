@@ -135,11 +135,15 @@ public:
 			return error;
 
 		entity_pos_t spawnedRadius;
+		ICmpObstructionManager::tag_t spawnedTag;
 
 		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
 		if (!cmpSpawnedObstruction.null())
+		{
 			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
-		// else zero
+			spawnedTag = cmpSpawnedObstruction->GetObstruction();
+		}
+		// else use zero radius
 
 		// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
 		entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2);
@@ -162,7 +166,7 @@ public:
 
 				CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Z + c.Multiply(radius));
 
-				SkipTagObstructionFilter filter(spawned); // ignore collisions with the spawned entity
+				SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
 				if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, spawnedRadius))
 					return pos; // this position is okay, so return it
 			}
@@ -212,7 +216,7 @@ public:
 				{
 					CFixedVector2D pos (center + dir*i);
 
-					SkipTagObstructionFilter filter(spawned); // ignore collisions with the spawned entity
+					SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
 					if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, spawnedRadius))
 						return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
 				}
