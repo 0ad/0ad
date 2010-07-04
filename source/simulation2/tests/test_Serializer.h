@@ -104,8 +104,8 @@ public:
 		serialize.NumberDouble_Unbounded("x", 1e-100);
 		serialize.NumberFixed_Unbounded("x", fixed::FromDouble(1e4));
 		TS_ASSERT_STR_EQUALS(stream.str(),
-				"x: 10000\nx: 0.0001\nx: 100000\nx: 1e-05\nx: 1e+06\nx: 1e-06\nx: 1e+10\nx: 1e-10\n"
-				"x: 10000\nx: 0.0001\nx: 100000\nx: 1e-05\nx: 1e+06\nx: 1e-06\nx: 1e+10\nx: 1e-10\nx: 1e+100\nx: 1e-100\n"
+				"x: 10000\nx: 9.9999997e-05\nx: 100000\nx: 9.9999997e-06\nx: 1000000\nx: 1e-06\nx: 1e+10\nx: 1e-10\n"
+				"x: 10000\nx: 0.0001\nx: 100000\nx: 1.0000000000000001e-05\nx: 1000000\nx: 9.9999999999999995e-07\nx: 10000000000\nx: 1e-10\nx: 1e+100\nx: 1e-100\n"
 				"x: 10000\n"
 		);
 	}
@@ -126,7 +126,7 @@ public:
 				"i32: -123\n"
 				"u32: 4294967173\n"
 				"float: 1e+30\n"
-				"double: 1e+300\n"
+				"double: 1.0000000000000001e+300\n"
 				"fixed: 1234.5\n"
 				"t: true\n"
 				"f: false\n"

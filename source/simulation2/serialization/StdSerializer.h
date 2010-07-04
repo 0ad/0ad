@@ -20,6 +20,8 @@
 
 #include "BinarySerializer.h"
 
+#include <cstring>
+
 class CStdSerializerImpl
 {
 	NONCOPYABLE(CStdSerializerImpl);

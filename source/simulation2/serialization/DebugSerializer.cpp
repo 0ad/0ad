@@ -24,6 +24,7 @@
 #include "lib/secure_crt.h"
 
 #include <sstream>
+#include <iomanip>
 
 /*
  * The output format here is intended to be compatible with YAML,
@@ -36,10 +37,10 @@
 // across platforms, we want to convert to a canonical form.
 // TODO: we just do e+0xx now; ought to handle varying precisions and inf and nan etc too
 template<typename T>
-std::string canonfloat(T value)
+std::string canonfloat(T value, size_t prec)
 {
 	std::stringstream str;
-	str << value;
+	str << std::setprecision(prec) << value;
 	std::string r = str.str();
 	size_t e = r.find('e');
 	if (e == r.npos) // no "e"
@@ -94,17 +95,17 @@ void CDebugSerializer::PutNumber(const char* name, uint32_t value)
 
 void CDebugSerializer::PutNumber(const char* name, float value)
 {
-	m_Stream << INDENT << name << ": " << canonfloat(value) << "\n";
+	m_Stream << INDENT << name << ": " << canonfloat(value, 8) << "\n";
 }
 
 void CDebugSerializer::PutNumber(const char* name, double value)
 {
-	m_Stream << INDENT << name << ": " << canonfloat(value) << "\n";
+	m_Stream << INDENT << name << ": " << canonfloat(value, 17) << "\n";
 }
 
 void CDebugSerializer::PutNumber(const char* name, fixed value)
 {
-	m_Stream << INDENT << name << ": " << canonfloat(value.ToDouble()) << "\n";
+	m_Stream << INDENT << name << ": " << canonfloat(value.ToDouble(), 11) << "\n";
 }
 
 void CDebugSerializer::PutBool(const char* name, bool value)
