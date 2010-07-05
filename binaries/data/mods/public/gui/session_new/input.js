@@ -583,8 +583,7 @@ function getTrainingQueueBatchStatus(entity, trainEntType)
 // Called by GUI when user clicks production queue item
 function removeFromTrainingQueue(entity, id)
 {
-	console.write("removeFromTrainingQueue(entity = " + entity + ", id = " + id +")");
-	//Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
+	Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
 }
 
 function changePrimarySelectionGroup(entType)
