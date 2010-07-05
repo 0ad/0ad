@@ -1,3 +1,8 @@
+const GEOLOGY = "geology";
+const FLORA = "flora";
+const FAUNA = "fauna";
+const SPECIAL = "special";
+
 const GAIA = "Gaia"
 const CART = "Cart";
 const CELT = "Celt";
@@ -201,37 +206,6 @@ function damageTypesToText(dmg)
 	return dmgArray.join(", ");
 }
 
-/*
-function isUnitElite(templateName)
-{
-	var eliteStatus = false;
-	var firstWord = getTemplateFirstWord(templateName);
-	var endsWith = templateName.substring(templateName.length-2, templateName.length);
-
-	if (firstWord == "units" && endsWith == "_e")
-		eliteStatus = true;
-
-	return eliteStatus;
-}
-
-
-function getRankTitle(templateName)
-{
-	var firstWord = getTemplateFirstWord(templateName);
-	var endsWith = templateName.substring(templateName.length-2, templateName.length);
-	
-	if (firstWord == "units")
-	{
-		if (endsWith == "_e")
-			return " Elite";
-		else if (endsWith == "_a")
-			return " Advanced";
-	}
-	
-	return "";
-}
-*/
-
 function getRankCellId(templateName)
 {
 	var firstWord = getTemplateFirstWord(templateName);
@@ -258,22 +232,10 @@ function getRankTitle(cellId)
 	return "";
 }
 
-function isUnitElite(templateName)
-{
-	var eliteStatus = false;
-	var firstWord = getTemplateFirstWord(templateName);
-	var endsWith = templateName.substring(templateName.length-2, templateName.length);
-
-	if (firstWord == "units" && endsWith == "_e")
-		eliteStatus = true;
-
-	return eliteStatus;
-}
-
 function getFullName(template)
 {
 		var name;
-		
+
 		if ((template.name.specific && template.name.generic) && (template.name.specific != template.name.generic))
 			name = template.name.specific + " (" + template.name.generic + ")";
 		else
@@ -282,32 +244,33 @@ function getFullName(template)
 		return "[font=\"serif-bold-16\"]" + name + "[/font]";
 }
 
-function getPortraitSheetName(playerState, entState)
+function getTemplateCategory(templateName)
+{
+	var slashIndex = templateName.search("/");
+
+	if (slashIndex >= 0)
+		return templateName.substring(slashIndex+1, templateName.search("_"));
+	
+	return "unknown category";
+}
+
+function getPortraitSheetName(type)
 {
 	var portraitSheetName = "snPortraitSheet";
-	var firstWord = getTemplateFirstWord(entState.template);
 
-	if (firstWord == "gaia") // Find appropriate Gaia icon sheet
+	switch (type)
 	{
-		var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
-		var gaiaType  = template.name.generic;
-		
-		if ((gaiaType == "Rock") || (gaiaType == "Mineral"))
-			portraitSheetName += "RockGaia";
-		else if ((gaiaType == "Tree") || (gaiaType == "Bush"))
-			portraitSheetName += "TreeGaia";
-		else if (gaiaType == "Fauna")
-			portraitSheetName += "AnimalGaia";
-		else
-			portraitSheetName += "SpecialGaia";
+	case GEOLOGY:
+		return portraitSheetName += "RockGaia";
+	case FLORA:
+		return portraitSheetName += "TreeGaia";
+	case FAUNA:
+		return portraitSheetName += "AnimalGaia";
+	case SPECIAL:
+		return portraitSheetName += "SpecialGaia";
+	default:
+		return portraitSheetName += toTitleCase(type);
 	}
-	else // Find appropriate Civ icon sheet
-	{
-		var civName = toTitleCase(playerState.civ);
-		portraitSheetName += civName;
-	}
-
-	return portraitSheetName;
 }
 
 function getFormalCivName(civ)

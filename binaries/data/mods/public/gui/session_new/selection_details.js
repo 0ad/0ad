@@ -3,14 +3,6 @@ const resourceIconCellIds = {food : 0, wood : 1, stone : 2, metal : 3};
 // Multiple Selection Layout
 function selectionLayoutMultiple()
 {
-
-/*	
-		getGUIObjectByName("sdMainText").size = "80 100%-70 100%-14 100%-32";
-		getGUIObjectByName("sdRankIcon").size = "0 -14 32 18";
-		getGUIObjectByName("sdSpecific").size = "0 -14 100% 16";
-		getGUIObjectByName("sdPlayer").size = "0 16 100% 100%";
-*/
-
 	getGUIObjectByName("sdMainText").size = "80 100%-70 100%-14 100%-10";
 	getGUIObjectByName("sdSpecific").size = "0 6 100% 30";
 	getGUIObjectByName("sdPlayer").size = "0 34 100% 100%-8";		
@@ -55,9 +47,6 @@ function displayGeneralInfo(playerState, entState, template)
 	var color = playerState.color;
 	var playerColor = color["r"]*255 + " " + color["g"]*255 + " " + color["b"]*255 + " " + color["a"]*255;
 	var iconTooltip = "";
-	
-	// Is unit Elite?
-//	var eliteStatus = isUnitElite(entState.template);
 	
 	// Rank Icon
 	var rankId = getRankCellId(entState.template);
@@ -130,7 +119,7 @@ function displayGeneralInfo(playerState, entState, template)
 	}
 
 	// Icon
-	getGUIObjectByName("sdIconImage").sprite = getPortraitSheetName(playerState, entState);
+	getGUIObjectByName("sdIconImage").sprite = getPortraitSheetName(getTemplateCategory(entState.template));
 	getGUIObjectByName("sdIconImage").cell_id = template.icon_cell;
 	getGUIObjectByName("sdIconImage").tooltip = iconTooltip;
 	//getGUIObjectByName("sdIconOutline"); // Need to change color of icon outline with the playerColor

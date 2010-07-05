@@ -7,20 +7,20 @@ var g_unitPanels = ["Stance", "Formation", "Construction", "Research", "Training
 // Lay out button rows
 function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, startIndex, endIndex)
 {
-	var rowIndex = 0;
+	var colNumber = 0;
 
 	for (i = startIndex; i < endIndex; i++)
 	{
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		var size = button.size;
-
-		size.left = buttonSpacer*rowIndex;
-		size.right = buttonSpacer*rowIndex + buttonSideLength;
+		
+		size.left = buttonSpacer*colNumber;
+		size.right = buttonSpacer*colNumber + buttonSideLength;
 		size.top = buttonSpacer*rowNumber;
 		size.bottom = buttonSpacer*rowNumber + buttonSideLength;
 		
 		button.size = size;
-		rowIndex++;
+		colNumber++;
 	}
 }
 
@@ -34,6 +34,8 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 	{
 		if (i > 23) // End loop early if there are more than 24 buttons
 			break;
+		else if (guiName == "Selection" && i > 15) // End loop early if more then 16 selection buttons
+			break
 
 		// Get templates
 		var entType;
@@ -54,7 +56,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			name = getFullName(template);
 
 		// Tooltip
-		var tooltip = name; //(isUnitElite(entType)?  "Elite " + name : name );
+		var tooltip = name;
 		
 		if (guiName == "Selection")
 		{
@@ -101,8 +103,9 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 		if (callback != null)
 			button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
 
-		icon.sprite = getPortraitSheetName(playerState, unitEntState) //"snPortraitSheetHele"; // TODO
-		
+		// Get icon sheet
+		icon.sprite = getPortraitSheetName(getTemplateCategory(item));
+
 		if (typeof template.icon_cell == "undefined")
 			icon.cell_id = 0;
 		else
@@ -121,7 +124,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 		if ((guiName == "Queue")) // or garrison
 			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -60 100% 100%-166";
 	
-		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, numButtons);
+		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
 	}
 	else if (numButtons < 17) // Row 1
 	{
@@ -129,7 +132,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -105 100% 100%-166";
 	
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
-		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, numButtons);
+		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, 16);
 	}
 	else // Row 2
 	{
@@ -139,7 +142,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
 		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, 16);
 		if (guiName != "Selection")
-			layoutButtonRow(2, guiName, buttonSideLength, buttonSpacer, 16, numButtons);
+			layoutButtonRow(2, guiName, buttonSideLength, buttonSpacer, 16, 24);
 	}
 
 	// Hide any buttons we're no longer using
