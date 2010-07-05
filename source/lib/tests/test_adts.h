@@ -92,7 +92,7 @@ public:
 
 			TS_ASSERT_EQUALS(buf.size(), deq.size());
 			RingBuf<int, N>::iterator begin = buf.begin(), end = buf.end();
-			TS_ASSERT(equal(begin, end, deq.begin()));
+			TS_ASSERT(std::equal(begin, end, deq.begin()));
 		}
 	}
 };

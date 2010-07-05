@@ -1465,7 +1465,7 @@ static bool is_null(VSrc* vs)
  */
 static void list_prune_removed()
 {
-	VSrcIt new_end = remove_if(vsrcs.begin(), vsrcs.end(), is_null);
+	VSrcIt new_end = std::remove_if(vsrcs.begin(), vsrcs.end(), is_null);
 	vsrcs.erase(new_end, vsrcs.end());
 }
 
