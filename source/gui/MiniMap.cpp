@@ -390,10 +390,6 @@ void CMiniMap::Draw()
 
 	PROFILE_START("minimap units");
 
-	std::vector<MinimapUnitVertex> vertexArray;
-	// TODO: don't reallocate this after every frame (but don't waste memory
-	// after the number of units decreases substantially)
-
 	// Don't enable GL_POINT_SMOOTH because it's far too slow
 	// (~70msec/frame on a GF4 rendering a thousand points)
 	glPointSize(3.f);
@@ -403,6 +399,10 @@ void CMiniMap::Draw()
 
 	CSimulation2* sim = g_Game->GetSimulation2();
 	const CSimulation2::InterfaceList& ents = sim->GetEntitiesWithInterface(IID_Minimap);
+
+	std::vector<MinimapUnitVertex> vertexArray;
+	vertexArray.reserve(ents.size());
+
 	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
 		MinimapUnitVertex v;
