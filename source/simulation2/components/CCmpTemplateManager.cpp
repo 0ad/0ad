@@ -437,5 +437,9 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 
 	// Initialise health to 1
 	CParamNode::LoadXMLString(out, "<Entity><Health><Initial>1</Initial></Health></Entity>");
+
+	// Don't provide population bonuses yet (but still do take up population cost)
+	if (out.GetChild("Entity").GetChild("Cost").IsOk())
+		CParamNode::LoadXMLString(out, "<Entity><Cost><PopulationBonus disable=''/></Cost></Entity>");
 }
 
