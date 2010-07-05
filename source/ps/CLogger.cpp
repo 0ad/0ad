@@ -31,6 +31,11 @@
 #include <ctime>
 #include <ostream>
 
+// Disable "assignment operator could not be generated" in Boost
+#if MSC_VERSION
+#pragma warning(disable:4512)
+#endif
+
 #include <boost/algorithm/string/replace.hpp>
 
 static const double RENDER_TIMEOUT = 10.0; // seconds before messages are deleted
