@@ -52,7 +52,7 @@ public:
 
 	// Special constructor (mostly for testing) - outputs to provided streams.
 	// Can take ownership of streams and delete them in the destructor.
-	CLogger(std::wostream* mainLog, std::wostream* interestingLog, bool takeOwnership, bool useDebugPrintf);
+	CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf);
 
 	~CLogger();
 
@@ -89,8 +89,8 @@ private:
 	void CleanupRenderQueue();
 
 	// the output streams
-	std::wostream* m_MainLog;
-	std::wostream* m_InterestingLog;
+	std::ostream* m_MainLog;
+	std::ostream* m_InterestingLog;
 	bool m_OwnsStreams;
 
 	// whether errors should be reported via debug_printf (default)
@@ -129,7 +129,7 @@ public:
 	std::wstring GetOutput();
 private:
 	CLogger* m_OldLogger;
-	std::wstringstream m_Stream;
+	std::stringstream m_Stream;
 };
 
 /**

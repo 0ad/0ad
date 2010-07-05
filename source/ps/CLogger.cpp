@@ -31,6 +31,8 @@
 #include <ctime>
 #include <ostream>
 
+#include <boost/algorithm/string/replace.hpp>
+
 static const double RENDER_TIMEOUT = 10.0; // seconds before messages are deleted
 static const double RENDER_TIMEOUT_RATE = 10.0; // number of timed-out messages deleted per second
 static const size_t RENDER_LIMIT = 20; // maximum messages on screen at once
@@ -40,36 +42,35 @@ extern int g_xres, g_yres;
 // Set up a default logger that throws everything away, because that's
 // better than crashing. (This is particularly useful for unit tests which
 // don't care about any log output.)
-struct BlackHoleStreamBuf : public std::wstreambuf
+struct BlackHoleStreamBuf : public std::streambuf
 {
 } blackHoleStreamBuf;
-std::wostream blackHoleStream(&blackHoleStreamBuf);
+std::ostream blackHoleStream(&blackHoleStreamBuf);
 CLogger nullLogger(&blackHoleStream, &blackHoleStream, false, true);
 
 CLogger* g_Logger = &nullLogger;
 
-const wchar_t* html_header0 =
-	L"<!DOCTYPE html>\n"
-	L"<title>Pyrogenesis Log</title>\n"
-	L"<style>\n"
-	L"body { background: #eee; color: black; font-family: sans-serif; }\n"
-	L"p { background: white; margin: 3px 0 3px 0; }\n"
-	L".error { color: red; }\n"
-	L".warning { color: blue; }\n"
-	L"</style>\n"
-	L"<h2>0 A.D. ";
+const char* html_header0 =
+	"<!DOCTYPE html>\n"
+	"<meta charset=\"utf-8\">\n"
+	"<title>Pyrogenesis Log</title>\n"
+	"<style>"
+	"body { background: #eee; color: black; font-family: sans-serif; } "
+	"p { background: white; margin: 3px 0 3px 0; } "
+	".error { color: red; } "
+	".warning { color: blue; }"
+	"</style>\n"
+	"<h2>0 A.D. ";
 
-const wchar_t* html_header1 = L"</h2>\n";
-
-const wchar_t* html_footer = L"";
+const char* html_header1 = "</h2>\n";
 
 CLogger::CLogger()
 {
 	fs::wpath mainlogPath(psLogDir()/L"mainlog.html");
-	m_MainLog = new std::wofstream(utf8_from_wstring(mainlogPath.string()).c_str(), std::ofstream::out | std::ofstream::trunc);
+	m_MainLog = new std::ofstream(utf8_from_wstring(mainlogPath.string()).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	fs::wpath interestinglogPath(psLogDir()/L"interestinglog.html");
-	m_InterestingLog = new std::wofstream(utf8_from_wstring(interestinglogPath.string()).c_str(), std::ofstream::out | std::ofstream::trunc);
+	m_InterestingLog = new std::ofstream(utf8_from_wstring(interestinglogPath.string()).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;
 	m_UseDebugPrintf = true;
@@ -77,7 +78,7 @@ CLogger::CLogger()
 	Init();
 }
 
-CLogger::CLogger(std::wostream* mainLog, std::wostream* interestingLog, bool takeOwnership, bool useDebugPrintf)
+CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf)
 {
 	m_MainLog = mainLog;
 	m_InterestingLog = interestingLog;
@@ -98,33 +99,31 @@ void CLogger::Init()
 	m_NumberOfWarnings = 0;
 	
 	//Write Headers for the HTML documents
-	*m_MainLog << html_header0 << L"Main log" << html_header1;
-	
+	*m_MainLog << html_header0 << "Main log" << html_header1;
+
 	//Write Headers for the HTML documents
-	*m_InterestingLog << html_header0 << L"Main log (warnings and errors only)" << html_header1;
+	*m_InterestingLog << html_header0 << "Main log (warnings and errors only)" << html_header1;
 }
 
 CLogger::~CLogger ()
 {
-	wchar_t buffer[128];
-	swprintf_s(buffer, ARRAY_SIZE(buffer), L" with %d message(s), %d error(s) and %d warning(s).", m_NumberOfMessages,m_NumberOfErrors,m_NumberOfWarnings);
+	char buffer[128];
+	sprintf_s(buffer, ARRAY_SIZE(buffer), " with %d message(s), %d error(s) and %d warning(s).", m_NumberOfMessages,m_NumberOfErrors,m_NumberOfWarnings);
 
 	time_t t = time(NULL);
 	struct tm* now = localtime(&t);
-	wchar_t currentDate[11];
-	swprintf_s(currentDate, ARRAY_SIZE(currentDate), L"%02d %02d %04d", now->tm_mon, now->tm_mday, (1900+now->tm_year));
-	wchar_t currentTime[10];
-	swprintf_s(currentTime, ARRAY_SIZE(currentTime), L"%02d:%02d:%02d", now->tm_hour, now->tm_min, now->tm_sec);
+	char currentDate[17];
+	sprintf_s(currentDate, ARRAY_SIZE(currentDate), "%02d %02d %04d", now->tm_mon, now->tm_mday, (1900+now->tm_year));
+	char currentTime[10];
+	sprintf_s(currentTime, ARRAY_SIZE(currentTime), "%02d:%02d:%02d", now->tm_hour, now->tm_min, now->tm_sec);
 
 	//Write closing text
 
-	*m_MainLog << L"<p>Engine exited successfully on " << currentDate;
-	*m_MainLog << L" at " << currentTime << buffer << L"</p>\n";
-	*m_MainLog << html_footer;
+	*m_MainLog << "<p>Engine exited successfully on " << currentDate;
+	*m_MainLog << " at " << currentTime << buffer << "</p>\n";
 	
-	*m_InterestingLog << L"<p>Engine exited successfully on " << currentDate;
-	*m_InterestingLog << L" at " << currentTime << buffer << L"</p>\n";
-	*m_InterestingLog << html_footer;
+	*m_InterestingLog << "<p>Engine exited successfully on " << currentDate;
+	*m_InterestingLog << " at " << currentTime << buffer << "</p>\n";
 
 	if (m_OwnsStreams)
 	{
@@ -133,13 +132,24 @@ CLogger::~CLogger ()
 	}
 }
 
+static std::string ToHTML(const wchar_t* message)
+{
+	LibError err;
+	std::string cmessage = utf8_from_wstring(message, &err);
+	boost::algorithm::replace_all(cmessage, "&", "&amp;");
+	boost::algorithm::replace_all(cmessage, "<", "&lt;");
+	return cmessage;
+}
+
 void CLogger::WriteMessage(const wchar_t* message)
 {
+	std::string cmessage = ToHTML(message);
+
 	++m_NumberOfMessages;
 //	if (m_UseDebugPrintf)
 //		debug_printf(L"MESSAGE: %ls\n", message);
 
-	*m_MainLog << L"<p>" << message << L"</p>\n";
+	*m_MainLog << "<p>" << cmessage << "</p>\n";
 	m_MainLog->flush();
 	
 	// Don't do this since it results in too much noise:
@@ -148,15 +158,17 @@ void CLogger::WriteMessage(const wchar_t* message)
 
 void CLogger::WriteError(const wchar_t* message)
 {
+	std::string cmessage = ToHTML(message);
+
 	++m_NumberOfErrors;
 	if (m_UseDebugPrintf)
 		debug_printf(L"ERROR: %ls\n", message);
 
 	if (g_Console) g_Console->InsertMessage(L"ERROR: %ls", message);
-	*m_InterestingLog << L"<p class=\"error\">ERROR: "<< message << L"</p>\n";
+	*m_InterestingLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
 	m_InterestingLog->flush();
 
-	*m_MainLog << L"<p class=\"error\">ERROR: "<< message << L"</p>\n";
+	*m_MainLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
 	m_MainLog->flush();
 
 	PushRenderMessage(Error, message);
@@ -164,15 +176,17 @@ void CLogger::WriteError(const wchar_t* message)
 
 void CLogger::WriteWarning(const wchar_t* message)
 {
+	std::string cmessage = ToHTML(message);
+
 	++m_NumberOfWarnings;
 	if (m_UseDebugPrintf)
 		debug_printf(L"WARNING: %ls\n", message);
 
 	if (g_Console) g_Console->InsertMessage(L"WARNING: %ls", message);
-	*m_InterestingLog << L"<p class=\"warning\">WARNING: "<< message << L"</p>\n";
+	*m_InterestingLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";
 	m_InterestingLog->flush();
 
-	*m_MainLog << L"<p class=\"warning\">WARNING: "<< message << L"</p>\n";
+	*m_MainLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";
 	m_MainLog->flush();
 
 	PushRenderMessage(Warning, message);
@@ -396,13 +410,14 @@ TestLogger::~TestLogger()
 
 std::wstring TestLogger::GetOutput()
 {
-	return m_Stream.str();
+	LibError err;
+	return wstring_from_utf8(m_Stream.str(), &err);
 }
 
 TestStdoutLogger::TestStdoutLogger()
 {
 	m_OldLogger = g_Logger;
-	g_Logger = new CLogger(&std::wcout, &blackHoleStream, false, false);
+	g_Logger = new CLogger(&std::cout, &blackHoleStream, false, false);
 }
 
 TestStdoutLogger::~TestStdoutLogger()

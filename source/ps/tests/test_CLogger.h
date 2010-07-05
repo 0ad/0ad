@@ -30,46 +30,46 @@ public:
 		ParseOutput();
 
 		TS_ASSERT_EQUALS((int)lines.size(), 2);
-		TS_ASSERT_EQUALS(lines[0], L"Test 1");
-		TS_ASSERT_EQUALS(lines[1], L"Test 2");
+		TS_ASSERT_EQUALS(lines[0], "Test 1");
+		TS_ASSERT_EQUALS(lines[1], "Test 2");
 	}
 
 	void test_overflow()
 	{
 		const int buflen = 512;
 
-		std::wstring msg0 (buflen-2, '*');
-		std::wstring msg1 (buflen-1, '*');
-		std::wstring msg2 (buflen,   '*');
-		std::wstring msg3 (buflen+1, '*');
+		std::string msg0 (buflen-2, '*');
+		std::string msg1 (buflen-1, '*');
+		std::string msg2 (buflen,   '*');
+		std::string msg3 (buflen+1, '*');
 
-		std::wstring clipped (buflen-4, '*');
-		clipped += L"...";
+		std::string clipped (buflen-4, '*');
+		clipped += "...";
 
-		logger->Log(CLogger::Normal, L"", L"%ls", msg0.c_str());
-		logger->Log(CLogger::Normal, L"", L"%ls", msg1.c_str());
-		logger->Log(CLogger::Normal, L"", L"%ls", msg2.c_str());
-		logger->Log(CLogger::Normal, L"", L"%ls", msg3.c_str());
+		logger->Log(CLogger::Normal, L"", L"%hs", msg0.c_str());
+		logger->Log(CLogger::Normal, L"", L"%hs", msg1.c_str());
+		logger->Log(CLogger::Normal, L"", L"%hs", msg2.c_str());
+		logger->Log(CLogger::Normal, L"", L"%hs", msg3.c_str());
 
-		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg0.c_str());
-		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg1.c_str());
-		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg2.c_str());
-		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg3.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg0.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg1.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg2.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg3.c_str());
 
-		logger->LogMessage(L"%ls", msg0.c_str());
-		logger->LogMessage(L"%ls", msg1.c_str());
-		logger->LogMessage(L"%ls", msg2.c_str());
-		logger->LogMessage(L"%ls", msg3.c_str());
+		logger->LogMessage(L"%hs", msg0.c_str());
+		logger->LogMessage(L"%hs", msg1.c_str());
+		logger->LogMessage(L"%hs", msg2.c_str());
+		logger->LogMessage(L"%hs", msg3.c_str());
 
-		logger->LogWarning(L"%ls", msg0.c_str());
-		logger->LogWarning(L"%ls", msg1.c_str());
-		logger->LogWarning(L"%ls", msg2.c_str());
-		logger->LogWarning(L"%ls", msg3.c_str());
+		logger->LogWarning(L"%hs", msg0.c_str());
+		logger->LogWarning(L"%hs", msg1.c_str());
+		logger->LogWarning(L"%hs", msg2.c_str());
+		logger->LogWarning(L"%hs", msg3.c_str());
 
-		logger->LogError(L"%ls", msg0.c_str());
-		logger->LogError(L"%ls", msg1.c_str());
-		logger->LogError(L"%ls", msg2.c_str());
-		logger->LogError(L"%ls", msg3.c_str());
+		logger->LogError(L"%hs", msg0.c_str());
+		logger->LogError(L"%hs", msg1.c_str());
+		logger->LogError(L"%hs", msg2.c_str());
+		logger->LogError(L"%hs", msg3.c_str());
 
 		ParseOutput();
 
@@ -88,28 +88,48 @@ public:
 		TS_ASSERT_EQUALS(lines[9], clipped);
 		TS_ASSERT_EQUALS(lines[10], clipped);
 
-		TS_ASSERT_EQUALS(lines[11], L"WARNING: "+msg0);
-		TS_ASSERT_EQUALS(lines[12], L"WARNING: "+msg1);
-		TS_ASSERT_EQUALS(lines[13], L"WARNING: "+clipped);
-		TS_ASSERT_EQUALS(lines[14], L"WARNING: "+clipped);
+		TS_ASSERT_EQUALS(lines[11], "WARNING: "+msg0);
+		TS_ASSERT_EQUALS(lines[12], "WARNING: "+msg1);
+		TS_ASSERT_EQUALS(lines[13], "WARNING: "+clipped);
+		TS_ASSERT_EQUALS(lines[14], "WARNING: "+clipped);
 
-		TS_ASSERT_EQUALS(lines[15], L"ERROR: "+msg0);
-		TS_ASSERT_EQUALS(lines[16], L"ERROR: "+msg1);
-		TS_ASSERT_EQUALS(lines[17], L"ERROR: "+clipped);
-		TS_ASSERT_EQUALS(lines[18], L"ERROR: "+clipped);
+		TS_ASSERT_EQUALS(lines[15], "ERROR: "+msg0);
+		TS_ASSERT_EQUALS(lines[16], "ERROR: "+msg1);
+		TS_ASSERT_EQUALS(lines[17], "ERROR: "+clipped);
+		TS_ASSERT_EQUALS(lines[18], "ERROR: "+clipped);
+	}
+
+	void test_unicode()
+	{
+		logger->LogMessage(L"%lc %lc", 226, 295);
+
+		ParseOutput();
+
+		TS_ASSERT_EQUALS((int)lines.size(), 1);
+		TS_ASSERT_EQUALS(lines[0], "\xC3\xA2 \xC4\xA7");
+	}
+
+	void test_html()
+	{
+		logger->LogMessage(L"Test<a&b>c<d&e>");
+
+		ParseOutput();
+
+		TS_ASSERT_EQUALS((int)lines.size(), 1);
+		TS_ASSERT_EQUALS(lines[0], "Test&lt;a&amp;b>c&lt;d&amp;e>");
 	}
 
 	//////////////////////////////////////////////////////////////////////////
 
 	CLogger* logger;
-	std::wstringstream* mainlog;
-	std::wstringstream* interestinglog;
-	std::vector<std::wstring> lines;
+	std::stringstream* mainlog;
+	std::stringstream* interestinglog;
+	std::vector<std::string> lines;
 
 	void setUp()
 	{
-		mainlog = new std::wstringstream();
-		interestinglog = new std::wstringstream();
+		mainlog = new std::stringstream();
+		interestinglog = new std::stringstream();
 
 		logger = new CLogger(mainlog, interestinglog, true, false);
 
@@ -124,9 +144,9 @@ public:
 
 	void ParseOutput()
 	{
-		const std::wstring header_end = L"</h2>\n";
+		const std::string header_end = "</h2>\n";
 
-		std::wstring s = mainlog->str();
+		std::string s = mainlog->str();
 		size_t start = s.find(header_end);
 		TS_ASSERT_DIFFERS(start, s.npos);
 		s = s.substr(start + header_end.length());
