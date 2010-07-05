@@ -115,18 +115,27 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var numButtons = i;
 	var buttonSpacer = ((guiName == "Selection")? 37 : 45);
-
+	
 	if (numButtons < 9) // Row 0
 	{
+		if ((guiName == "Queue")) // or garrison
+			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -60 100% 100%-166";
+	
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, numButtons);
 	}
 	else if (numButtons < 17) // Row 1
 	{
+		if (guiName == "Queue") // or garrison
+			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -105 100% 100%-166";
+	
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
 		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, numButtons);
 	}
 	else // Row 2
 	{
+		if (guiName == "Queue") // or garrison
+			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -150 100% 100%-166";
+			
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
 		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, 16);
 		if (guiName != "Selection")
@@ -178,15 +187,15 @@ function updateUnitCommands(playerState, entState, commandsPanel, selection)
 
 		// Stamina
 		if (entState.stamina != undefined)
-			getGUIObjectByName("selectionDetailsStamina").hidden = false;
+			getGUIObjectByName("sdStamina").hidden = false;
 		else
-			getGUIObjectByName("selectionDetailsStamina").hidden = true;
+			getGUIObjectByName("sdStamina").hidden = true;
 				
 		commandsPanel.hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("selectionDetailsStamina").hidden = true;
+		getGUIObjectByName("sdStamina").hidden = true;
 		commandsPanel.hidden = true;
 	}
 

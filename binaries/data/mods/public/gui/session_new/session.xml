@@ -271,7 +271,7 @@
 		</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Bottom-middle selected-units and unit details panel -->
+		<!-- Bottom-middle selected-units and unit details panel ("Selection Details" is Abbreviated as "sd") -->
 		<!-- ================================  ================================ -->
 		<object name="selectionDetails"
 			type="image"
@@ -296,48 +296,57 @@
 			</object>
 
 			<!-- Big unit icon -->
-			<object size="16 100%-94 88 100%-22" name="selectionDetailsIcon" >
-				<object type="image" name="selectionDetailsIconOutline" style="selectionDetailsIconOutline"/>
-				<object type="image" name="selectionDetailsIconImage" tooltip_style="snToolTip"/>
+			<object size="16 100%-94 88 100%-22" name="sdIcon" >
+				<object type="image" name="sdIconOutline" style="sdIconOutline"/>
+				<object type="image" name="sdIconImage" tooltip_style="snToolTip"/>
 			</object>
 
 			<!-- Health bar -->
-			<object size="16 100%-20 88 100%-14" type="image" name="selectionDetailsHealth" tooltip="Hitpoints" tooltip_style="snToolTip">
-				<object type="image" sprite="selectionDetailsHealthBackground" ghost="true"/>
-				<object type="image" sprite="selectionDetailsHealthForeground" ghost="true" name="selectionDetailsHealthBar"/>
+			<object size="16 100%-20 88 100%-14" type="image" name="sdHealth" tooltip="Hitpoints" tooltip_style="snToolTip">
+				<object type="image" sprite="sdHealthBackground" ghost="true"/>
+				<object type="image" sprite="sdHealthForeground" ghost="true" name="sdHealthBar"/>
 			</object>
 
 			<!-- Stamina bar -->
-			<object size="16 100%-12 88 100%-6" type="image" name="selectionDetailsStamina" tooltip="Stamina" tooltip_style="snToolTip">
-				<object type="image" sprite="selectionDetailsStaminaBackground" ghost="true"/>
-				<object type="image" sprite="selectionDetailsStaminaForeground" ghost="true" name="selectionDetailsStaminaBar"/>
+			<object size="16 100%-12 88 100%-6" type="image" name="sdStamina" tooltip="Stamina" tooltip_style="snToolTip">
+				<object type="image" sprite="sdStaminaBackground" ghost="true"/>
+				<object type="image" sprite="sdStaminaForeground" ghost="true" name="sdStaminaBar"/>
 			</object>
 
 			<!-- Details text -->
-			<object size="10 0 100%-10 56" name="selectionDetailsMainText" type="image" sprite="wheatWindowTitle">
-				<object size="0 0 32 32" name="rankIconImage" type="image" cell_id="0" tooltip_style="snToolTip"/>
-				<object size="0 5 100% 30" name="selectionDetailsSpecific" type="text" style="largeBoldCenteredText" tooltip_style="snToolTip"/>
-				<object hidden="true" size="0 20 100% 40" name="selectionDetailsGeneric" type="text" font="serif-14"/>
-				<object size="0 30 100% 50" name="selectionDetailsPlayer" type="text" style="centeredText" font="serif-bold-14" tooltip_style="snToolTip"/>
+			<object size="10 0 100%-10 56" name="sdMainText" type="image" sprite="wheatWindowTitle">
+				<object size="0 5 100% 30" name="sdSpecific" type="text" style="largeBoldCenteredText" tooltip_style="snToolTip"/>
+				<object hidden="true" size="0 20 100% 40" name="sdGeneric" type="text" font="serif-14"/>
+				<object size="0 30 100% 50" name="sdPlayer" type="text" style="centeredText" font="serif-bold-14" tooltip_style="snToolTip"/>
+				<object size="0 0 32 32" name="sdRankIcon" type="image" cell_id="0" sprite="snIconSheetRank" tooltip_style="snToolTip"/>
 			</object>
 
 			<!-- Attack stats -->
-			<object hidden="true" size="116 72 100% 100%" type="image" name="selectionDetailsAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
-				<object  size="-4 -8 36 36" type="image" name="selectionDetailsAttackImage" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
-				<object  size="30 0 100% 100%" type="text" name="selectionDetailsAttackStats" ghost="true" font="serif-bold-12"/>
+			<object hidden="true" size="116 72 100% 100%" type="image" name="sdAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
+				<object  size="-4 -8 36 36" type="image" name="sdAttackImage" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
+				<object  size="30 0 100% 100%" type="text" name="sdAttackStats" ghost="true" font="serif-bold-12"/>
 			</object>
 
 			<!-- Armour stats -->
-			<object hidden="true" size="216 72 100% 100%" type="image" name="selectionDetailsArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
-				<object  size="-4 -4 36 36" type="image" name="selectionDetailsArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
-				<object  size="30 0 100% 100%" type="text" name="selectionDetailsArmourStats" ghost="true" font="serif-bold-12"/>
+			<object hidden="true" size="216 72 100% 100%" type="image" name="sdArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
+				<object  size="-4 -4 36 36" type="image" name="sdArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
+				<object  size="30 0 100% 100%" type="text" name="sdArmourStats" ghost="true" font="serif-bold-12"/>
 			</object>
 			
 			<!-- Resource Quantity -->
-			<object hidden="true" size="152 80 100% 100" type="image" name="selectionDetailsResources" tooltip="Resources" tooltip_style="snToolTip">
-				<object size="0 0 28 24" name="selectionDetailsResourceIcon" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="28 0 100% 100%" name="selectionDetailsResourceStats" ghost="true" type="text" font="serif-bold-14"/>
+			<object hidden="true" size="152 80 100% 100" type="image" name="sdResources" tooltip="Resources" tooltip_style="snToolTip">
+				<object size="0 0 28 24" name="sdResourceIcon" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="28 0 100% 100%" name="sdResourceStats" ghost="true" type="text" font="serif-bold-14"/>
 			</object>
+			
+<!-- Commands
+			<object size="90 100%-30 100% 100%-10" type="image" name="sdCommands" tooltip="Commands" tooltip_style="snToolTip">
+				<object name="commandsDeleteButton" style="iconButton" type="button" size="100%-48 0 100%-24 24">
+					<object size="0 0 24 24" name="sdCommandsDelete" type="image" style="commandsIcon" cell_id="4"/>
+					<action on="Press">deleteUnit()</action>
+				</object>
+			</object>
+ -->
 		</object>
 
 		<!-- ================================  ================================ -->

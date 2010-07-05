@@ -23,7 +23,7 @@
 	/>
 	
 	<style name="resourceIcon"
-		sprite="snIconSheetResource"								
+		sprite="snIconSheetResource"
 		ghost="true"
 	/>	
 
@@ -37,8 +37,13 @@
 		tooltip_style="snToolTip"
 	/>
 
-	<style name="selectionDetailsIconOutline"
-		sprite="selectionDetailsIconOutline"
+	<style name="commandsIcon"
+		sprite="snIconSheetCommand"								
+		ghost="true"
+	/>	
+
+	<style name="sdIconOutline"
+		sprite="sdIconOutline"
 	/>
 
 	<style name="iconButton"

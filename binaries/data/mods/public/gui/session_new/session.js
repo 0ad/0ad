@@ -111,7 +111,6 @@ function onSimulationUpdate()
 
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
-	updateSelection();
 	updateSelectionDetails(simState);
 }
 
@@ -157,11 +156,6 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;
 	getGUIObjectByName("resourceMetal").caption = playerState.resourceCounts.metal;
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
-}
-
-function updateSelection()
-{
-	g_Selection.updateSelection();
 }
 
 //-------------------------------- -------------------------------- -------------------------------- 
@@ -252,6 +246,16 @@ function getRankCellId(templateName)
 	}
 	
 	return -1;
+}
+
+function getRankTitle(cellId)
+{
+	if (cellId == 0)
+		return "Elite";
+	else if (cellId == 1)
+		return "Advanced";
+
+	return "";
 }
 
 function isUnitElite(templateName)

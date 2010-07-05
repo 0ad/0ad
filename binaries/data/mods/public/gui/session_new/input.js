@@ -251,9 +251,6 @@ function handleInputBeforeGui(ev)
 
 				// Create the selection groups
 				g_Selection.createSelectionGroups(ents);
-
-				// turn on unit highlight for first unit in selection
-				getGUIObjectByName("unitSelectionHighlight[0]").hidden = false;
 				
 				inputState = INPUT_NORMAL;
 				return true;

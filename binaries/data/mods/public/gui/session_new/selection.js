@@ -101,6 +101,8 @@ EntitySelection.prototype.createSelectionGroups = function(ents)
 			this.groups.typeCount[template] += 1;
 		}
 	}
+	
+	getGUIObjectByName("unitSelectionHighlight[0]").hidden = false;
 };
 
 // Update the selection to take care of changes (like units that have been killed)
@@ -126,7 +128,6 @@ EntitySelection.prototype.updateSelection = function()
 	{
 		this.dirty = true;
 		this.createSelectionGroups(g_Selection.toList());
-		getGUIObjectByName("unitSelectionHighlight[0]").hidden = false;
 	}
 };
 
