@@ -43,7 +43,7 @@ private:
 	ISerializer& m_Serializer;
 
 	// Pooling helps since we do a lot of short-lived allocations
-	typedef pool_allocator<std::pair<JSObject*, u32> > ScriptBackrefsAlloc;
+	typedef pool_allocator<std::pair<JSObject* const, u32> > ScriptBackrefsAlloc;
 	typedef std::map<JSObject*, u32, std::less<JSObject*>, ScriptBackrefsAlloc> backrefs_t;
 
 	RawPoolAllocator m_ScriptBackrefsPool;
