@@ -215,7 +215,7 @@ void CLogger::LogUsingMethod(ELogMethod method, const wchar_t* message)
 void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512];
+	wchar_t buffer[512] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -232,7 +232,7 @@ void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wcha
 void CLogger::LogOnce(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512];
+	wchar_t buffer[512] = {0};
 
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -256,7 +256,7 @@ void CLogger::LogOnce(ELogMethod method, const wchar_t* UNUSED(category), const 
 void CLogger::LogMessage(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512];
+	wchar_t buffer[512] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -272,7 +272,7 @@ void CLogger::LogMessage(const wchar_t* fmt, ...)
 void CLogger::LogWarning(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512];
+	wchar_t buffer[512] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -288,7 +288,7 @@ void CLogger::LogWarning(const wchar_t* fmt, ...)
 void CLogger::LogError(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512];
+	wchar_t buffer[512] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
