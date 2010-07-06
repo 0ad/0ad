@@ -104,7 +104,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
 
 		// Get icon sheet
-		icon.sprite = getPortraitSheetName(getTemplateCategory(item));
+		icon.sprite = getPortraitSheetName(getTemplateCategory(entType));
 
 		if (typeof template.icon_cell == "undefined")
 			icon.cell_id = 0;

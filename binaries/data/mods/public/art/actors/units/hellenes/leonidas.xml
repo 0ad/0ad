@@ -50,7 +50,7 @@
     </variant>
     <variant name="walk">
       <animations>
-        <animation file="biped/inf_hoplite_walk.psa" name="walk" speed="20"/>
+        <animation file="biped/inf_hoplite_walk.psa" name="walk" speed="120"/>
       </animations>
       <props>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
