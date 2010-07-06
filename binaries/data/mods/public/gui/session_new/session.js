@@ -53,7 +53,7 @@ function getHotloadData()
 
 function handleNetMessage(message)
 {
-	warn("Net message: "+uneval(message));
+	log("Net message: "+uneval(message));
 
 	switch (message.type)
 	{

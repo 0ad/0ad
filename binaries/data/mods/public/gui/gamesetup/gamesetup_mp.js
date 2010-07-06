@@ -30,7 +30,7 @@ function onTick()
 		if (!message)
 			break;
 
-		warn("Net message: "+uneval(message));
+		log("Net message: "+uneval(message));
 
 		switch (message.type)
 		{

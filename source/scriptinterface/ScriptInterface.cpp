@@ -115,6 +115,16 @@ JSBool print(JSContext* cx, uintN argc, jsval* vp)
 	return JS_TRUE;
 }
 
+JSBool logmsg(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+{
+	std::wstring str;
+	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+		return JS_FALSE;
+	LOGMESSAGE(L"%ls", str.c_str());
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
+}
+
 JSBool warn(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 {
 	std::wstring str;
@@ -250,9 +260,10 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
 
-	JS_DefineFunction(m_cx, m_glob, "print", (JSNative)::print, 0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
-	JS_DefineFunction(m_cx, m_glob, "warn",  (JSNative)::warn,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
-	JS_DefineFunction(m_cx, m_glob, "error", (JSNative)::error, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_glob, "print", (JSNative)::print,  0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_glob, "log",   (JSNative)::logmsg, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_glob, "warn",  (JSNative)::warn,   1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_glob, "error", (JSNative)::error,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()
