@@ -24,7 +24,6 @@
 
 #include <vector>
 
-class CNetClientSessionLocal;
 class CNetServerSession;
 class CNetServerTurnManager;
 class CFsmEvent;
@@ -57,12 +56,26 @@ enum NetServerState
 /**
  * Server session representation of client state
  */
-enum
+enum NetServerSessionState
 {
+	// The client has disconnected or been disconnected
 	NSS_UNCONNECTED,
+
+	// The client has just connected and we're waiting for its handshake message,
+	// to agree on the protocol version
 	NSS_HANDSHAKE,
+
+	// The client has handshook and we're waiting for its authentication message,
+	// to find its name and check its password etc
 	NSS_AUTHENTICATE,
+
+	// The client has fully joined, and is in the pregame setup stage
+	// or is loading the game.
+	// Server must be in SERVER_STATE_PREGAME or SERVER_STATE_LOADING.
 	NSS_PREGAME,
+
+	// The client is running the game.
+	// Server must be in SERVER_STATE_LOADING or SERVER_STATE_INGAME.
 	NSS_INGAME
 };
 
@@ -73,9 +86,6 @@ enum
  *
  * TODO: ideally the ENet server would run in a separate thread so it can receive
  * and forward messages with minimal latency. But that's not supported now.
- *
- * TODO: we need to be much more careful at handling client states, to cope with
- * e.g. people being in the middle of connecting or authenticating when we start the game.
  */
 class CNetServer
 {
@@ -103,26 +113,21 @@ public:
 	virtual void Poll();
 
 	/**
+	 * Flush any queued outgoing network messages.
+	 * This should be called soon after sending a group of messages that may be batched together.
+	 */
+	void Flush();
+
+	/**
 	 * Send a message to the given network peer.
 	 */
 	bool SendMessage(ENetPeer* peer, const CNetMessage* message);
-
-	/**
-	 * Send a message to the given local client.
-	 */
-	void SendLocalMessage(CNetClientSessionLocal& clientSession, const CNetMessage* message);
 
 	/**
 	 * Send a message to all clients who have completed the full connection process
 	 * (i.e. are in the pre-game or in-game states).
 	 */
 	bool Broadcast(const CNetMessage* message);
-
-	/**
-	 * Register a local client with this server (equivalent to a remote client connecting
-	 * over the network).
-	 */
-	void AddLocalClientSession(CNetClientSessionLocal& clientSession);
 
 	/**
 	 * Call from the GUI to update the player assignments.
@@ -176,7 +181,6 @@ private:
 
 	void SetupSession(CNetServerSession* session);
 	bool HandleConnect(CNetServerSession* session);
-	bool HandleDisconnect(CNetServerSession* session);
 
 	void OnUserJoin(CNetServerSession* session);
 	void OnUserLeave(CNetServerSession* session);
@@ -192,7 +196,7 @@ private:
 
 	void ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& message);
 
-	bool HandleMessageReceive(const CNetMessage* message, CNetServerSession* session);
+	void HandleMessageReceive(const CNetMessage* message, CNetServerSession* session);
 
 	/**
 	 * Internal script context for (de)serializing script messages.
@@ -202,18 +206,14 @@ private:
 	ScriptInterface* m_ScriptInterface;
 
 	ENetHost* m_Host;
-	std::vector<ENetPeer*> m_Peers;
 	std::vector<CNetServerSession*> m_Sessions;
 
 	CNetStatsTable* m_Stats;
-
-	std::vector<std::pair<CNetServerSession*, CNetMessage*> > m_LocalMessageQueue;
 
 	NetServerState m_State;
 
 	CStrW m_ServerName;
 	CStrW m_WelcomeMessage;
-	int m_Port;
 
 	u32 m_NextHostID;
 

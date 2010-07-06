@@ -89,8 +89,9 @@ function handleNetMessage(message)
 		case "disconnected":
 			Engine.DisconnectNetworkGame();
 			Engine.PopGuiPage();
-			messageBox(400, 200, "Connection to the server has been lost.", "Disconnected", 2);
+			reportDisconnect(message.reason);
 			break;
+
 		default:
 			error("Unrecognised netstatus type "+message.status);
 			break;
@@ -118,7 +119,7 @@ function handleNetMessage(message)
 		break;
 
 	case "start":
-		Engine.PushGuiPage("page_loading.xml", { "attribs": g_GameAttributes });
+		Engine.SwitchGuiPage("page_loading.xml", { "attribs": g_GameAttributes });
 		break;
 
 	case "chat":

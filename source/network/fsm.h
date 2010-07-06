@@ -150,6 +150,7 @@ public:
 										 unsigned int eventType ) const;
 	CFsmTransition*	GetEventTransition	( unsigned int eventType ) const;
 	void			SetFirstState		( unsigned int firstState );
+	void			SetCurrState		( unsigned int state );
 	unsigned int	GetCurrState		( void ) const		{ return m_CurrState; }
 	const StateSet&	GetStates			( void ) const		{ return m_States; }
 	const EventMap&	GetEvents			( void ) const		{ return m_Events; }
@@ -159,8 +160,6 @@ public:
 	bool			IsValidEvent		( unsigned int eventType ) const;
 	virtual bool	IsDone				( void ) const;
 
-protected:
-	void			SetCurrState		( unsigned int state );
 private:
 	bool			IsFirstTime			( void ) const;
 

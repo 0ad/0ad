@@ -2,6 +2,8 @@
 
 <objects>
 
+	<script file="gui/common/network.js"/>
+	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/gamesetup/gamesetup_mp.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
@@ -17,9 +19,9 @@
 			Multiplayer
 		</object>
 	
-		<object type="button" style="wheatExit">
+		<object type="button" style="wheatExit" tooltip_style="snToolTip">
 			<action on="Press"><![CDATA[
-				Engine.PopGuiPage();
+				cancelSetup();
 			]]></action>
 		</object>
 
@@ -145,7 +147,7 @@
 			<object type="button" size="100%-110 200 100%-10 230" style="wheatButton">
 				Cancel
 				<action on="Press"><![CDATA[
-					error("not implemented yet");
+					cancelSetup();
 				]]></action>
 			</object>
 

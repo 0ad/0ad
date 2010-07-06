@@ -886,7 +886,7 @@ static bool Autostart(const CmdLineArgs& args)
 
 		g_NetClient = new CNetClient(g_Game);
 		// TODO: player name, etc
-		g_NetClient->SetupLocalConnection(*g_NetServer);
+		g_NetClient->SetupConnection("127.0.0.1");
 	}
 	else if (args.Has("autostart-client"))
 	{

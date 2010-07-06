@@ -38,6 +38,18 @@ struct PlayerAssignment
 
 typedef std::map<CStr, PlayerAssignment> PlayerAssignmentMap; // map from GUID -> assignment
 
+/**
+ * Reasons sent by server to clients in disconnection messages.
+ * Must be kept in sync with binaries/data/mods/public/gui/common/network.js
+ */
+enum NetDisconnectReason
+{
+	NDR_UNKNOWN = 0,
+	NDR_UNEXPECTED_SHUTDOWN,
+	NDR_INCORRECT_PROTOCOL_VERSION,
+	NDR_SERVER_ALREADY_IN_GAME
+};
+
 class CNetHost
 {
 public:

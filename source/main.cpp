@@ -330,6 +330,14 @@ static void Frame()
 	}
 	PROFILE_END( "game logic" );
 
+	// Immediately flush any messages produced by simulation code
+	PROFILE_START("network flush");
+	if (g_NetServer)
+		g_NetServer->Flush();
+	if (g_NetClient)
+		g_NetClient->Flush();
+	PROFILE_END("network flush");
+
 	PROFILE_START( "update console" );
 	g_Console->Update(TimeSinceLastFrame);
 	PROFILE_END( "update console" );

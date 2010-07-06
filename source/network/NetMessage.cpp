@@ -218,9 +218,20 @@ CNetMessage* CNetMessageFactory::CloneMessage( const CNetMessage* message, Scrip
 
 	size_t len = message->GetSerializedLength();
 	u8* buffer = new u8[len];
-	u8* newbuf = message->Serialize(buffer);
-	if (!newbuf)
+
+	u8* bufend = message->Serialize(buffer);
+
+	if (!bufend)
+	{
+		delete[] buffer;
 		return NULL;
-	debug_assert(newbuf == buffer+len);
-	return CreateMessage(buffer, len, scriptInterface);
+	}
+
+	debug_assert(bufend == buffer+len);
+
+	CNetMessage* ret = CreateMessage(buffer, len, scriptInterface);
+
+	delete[] buffer;
+
+	return ret;
 }

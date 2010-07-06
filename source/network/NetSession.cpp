@@ -28,34 +28,19 @@
 
 static const int CHANNEL_COUNT = 1;
 
-
 CNetClientSession::CNetClientSession(CNetClient& client) :
-	m_Client(client)
+	m_Client(client), m_Host(NULL), m_Server(NULL), m_Stats(NULL)
 {
 }
 
 CNetClientSession::~CNetClientSession()
 {
-}
-
-
-// TODO: the whole disconnection process is a tangled mess - need
-// to sort out exactly what happens at what times, and the interactions
-// between ENet and session and client and GUI
-
-CNetClientSessionRemote::CNetClientSessionRemote(CNetClient& client) :
-	CNetClientSession(client), m_Host(NULL), m_Server(NULL), m_Stats(NULL)
-{
-}
-
-CNetClientSessionRemote::~CNetClientSessionRemote()
-{
 	delete m_Stats;
 
 	if (m_Host && m_Server)
 	{
-		// Disconnect without waiting for confirmation
-		enet_peer_disconnect_now(m_Server, 0);
+		// Disconnect immediately (we can't wait for acks)
+		enet_peer_disconnect_now(m_Server, NDR_UNEXPECTED_SHUTDOWN);
 		enet_host_destroy(m_Host);
 
 		m_Host = NULL;
@@ -63,7 +48,7 @@ CNetClientSessionRemote::~CNetClientSessionRemote()
 	}
 }
 
-bool CNetClientSessionRemote::Connect(u16 port, const CStr& server)
+bool CNetClientSession::Connect(u16 port, const CStr& server)
 {
 	debug_assert(!m_Host);
 	debug_assert(!m_Server);
@@ -94,12 +79,12 @@ bool CNetClientSessionRemote::Connect(u16 port, const CStr& server)
 	return true;
 }
 
-void CNetClientSessionRemote::Disconnect()
+void CNetClientSession::Disconnect(u32 reason)
 {
 	debug_assert(m_Host && m_Server);
 
 	// TODO: ought to do reliable async disconnects, probably
-	enet_peer_disconnect_now(m_Server, 0);
+	enet_peer_disconnect_now(m_Server, reason);
 	enet_host_destroy(m_Host);
 
 	m_Host = NULL;
@@ -108,7 +93,7 @@ void CNetClientSessionRemote::Disconnect()
 	SAFE_DELETE(m_Stats);
 }
 
-void CNetClientSessionRemote::Poll()
+void CNetClientSession::Poll()
 {
 	debug_assert(m_Host && m_Server);
 
@@ -126,7 +111,7 @@ void CNetClientSessionRemote::Poll()
 			enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
 			LOGMESSAGE(L"Net client: Connected to %hs:%u", hostname, event.peer->address.port);
 
-			GetClient().HandleConnect();
+			m_Client.HandleConnect();
 
 			break;
 		}
@@ -135,20 +120,19 @@ void CNetClientSessionRemote::Poll()
 		{
 			debug_assert(event.peer == m_Server);
 
-			GetClient().HandleDisconnect();
-
-			break;
+			LOGMESSAGE(L"Net client: Disconnected");
+			m_Client.HandleDisconnect(event.data);
+			return;
 		}
 
 		case ENET_EVENT_TYPE_RECEIVE:
 		{
-			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, GetClient().GetScriptInterface());
+			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, m_Client.GetScriptInterface());
 			if (msg)
 			{
 				LOGMESSAGE(L"Net client: Received message %hs of size %lu from server", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength());
 
-				bool ok = GetClient().HandleMessage(msg);
-				debug_assert(ok); // TODO
+				m_Client.HandleMessage(msg);
 
 				delete msg;
 			}
@@ -162,7 +146,14 @@ void CNetClientSessionRemote::Poll()
 
 }
 
-bool CNetClientSessionRemote::SendMessage(const CNetMessage* message)
+void CNetClientSession::Flush()
+{
+	debug_assert(m_Host && m_Server);
+
+	enet_host_flush(m_Host);
+}
+
+bool CNetClientSession::SendMessage(const CNetMessage* message)
 {
 	debug_assert(m_Host && m_Server);
 
@@ -171,95 +162,24 @@ bool CNetClientSessionRemote::SendMessage(const CNetMessage* message)
 
 
 
-CNetClientSessionLocal::CNetClientSessionLocal(CNetClient& client, CNetServer& server) :
-	CNetClientSession(client), m_Server(server), m_ServerSession(NULL)
-{
-	server.AddLocalClientSession(*this);
-	client.HandleConnect();
-}
-
-void CNetClientSessionLocal::Poll()
-{
-	for (size_t i = 0; i < m_LocalMessageQueue.size(); ++i)
-	{
-		CNetMessage* msg = m_LocalMessageQueue[i];
-
-		LOGMESSAGE(L"Net client: Received local message %hs of size %lu from server", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength());
-
-		bool ok = GetClient().HandleMessage(msg);
-		debug_assert(ok); // TODO
-
-		delete msg;
-	}
-	m_LocalMessageQueue.clear();
-}
-
-void CNetClientSessionLocal::Disconnect()
-{
-	GetClient().HandleDisconnect();
-}
-
-bool CNetClientSessionLocal::SendMessage(const CNetMessage* message)
-{
-	LOGMESSAGE(L"Net client: Sending local message %hs to server", message->ToString().c_str());
-	m_Server.SendLocalMessage(*this, message);
-	return true;
-}
-
-void CNetClientSessionLocal::AddLocalMessage(const CNetMessage* message)
-{
-	// Clone into the client's script context
-	CNetMessage* clonedMessage = CNetMessageFactory::CloneMessage(message, GetClient().GetScriptInterface());
-	if (!clonedMessage)
-		return;
-	m_LocalMessageQueue.push_back(clonedMessage);
-}
-
-
-
-CNetServerSession::CNetServerSession(CNetServer& server) :
-	m_Server(server)
+CNetServerSession::CNetServerSession(CNetServer& server, ENetPeer* peer) :
+	m_Server(server), m_Peer(peer)
 {
 }
 
-CNetServerSession::~CNetServerSession()
+void CNetServerSession::Disconnect(u32 reason)
 {
+	Update((uint)NMT_CONNECTION_LOST, NULL);
+
+	enet_peer_disconnect(m_Peer, reason);
 }
 
-
-
-CNetServerSessionRemote::CNetServerSessionRemote(CNetServer& server, ENetPeer* peer) :
-	CNetServerSession(server), m_Peer(peer)
+void CNetServerSession::DisconnectNow(u32 reason)
 {
-
+	enet_peer_disconnect_now(m_Peer, reason);
 }
 
-void CNetServerSessionRemote::Disconnect()
+bool CNetServerSession::SendMessage(const CNetMessage* message)
 {
-	// TODO: ought to do reliable async disconnects, probably
-	enet_peer_disconnect_now(m_Peer, 0);
-}
-
-bool CNetServerSessionRemote::SendMessage(const CNetMessage* message)
-{
-	return GetServer().SendMessage(m_Peer, message);
-}
-
-
-
-CNetServerSessionLocal::CNetServerSessionLocal(CNetServer& server, CNetClientSessionLocal& clientSession) :
-	CNetServerSession(server), m_ClientSession(clientSession)
-{
-}
-
-void CNetServerSessionLocal::Disconnect()
-{
-	m_ClientSession.Disconnect();
-}
-
-bool CNetServerSessionLocal::SendMessage(const CNetMessage* message)
-{
-	LOGMESSAGE(L"Net server: Sending local message %hs to %p", message->ToString().c_str(), &m_ClientSession);
-	m_ClientSession.AddLocalMessage(message);
-	return true;
+	return m_Server.SendMessage(m_Peer, message);
 }

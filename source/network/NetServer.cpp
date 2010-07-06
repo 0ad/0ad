@@ -53,7 +53,6 @@ CNetServer::CNetServer() :
 
 	m_ServerTurnManager = NULL;
 
-	m_Port = PS_DEFAULT_PORT;
 	m_ServerName = DEFAULT_SERVER_NAME;
 	m_WelcomeMessage = DEFAULT_WELCOME_MESSAGE;
 }
@@ -64,7 +63,7 @@ CNetServer::~CNetServer()
 
 	for (size_t i = 0; i < m_Sessions.size(); ++i)
 	{
-		m_Sessions[i]->Disconnect();
+		m_Sessions[i]->DisconnectNow(NDR_UNEXPECTED_SHUTDOWN);
 		delete m_Sessions[i];
 	}
 
@@ -72,6 +71,8 @@ CNetServer::~CNetServer()
 	{
 		enet_host_destroy(m_Host);
 	}
+
+	delete m_ServerTurnManager;
 
 	m_GameAttributes = CScriptValRooted(); // clear root before deleting its context
 	delete m_ScriptInterface;
@@ -85,7 +86,7 @@ bool CNetServer::SetupConnection()
 	// Bind to default host
 	ENetAddress addr;
 	addr.host = ENET_HOST_ANY;
-	addr.port = m_Port;
+	addr.port = PS_DEFAULT_PORT;
 
 	// Create ENet server
 	m_Host = enet_host_create(&addr, MAX_CLIENTS, 0, 0);
@@ -139,20 +140,6 @@ void CNetServer::Poll()
 {
 	debug_assert(m_Host);
 
-	for (size_t i = 0; i < m_LocalMessageQueue.size(); ++i)
-	{
-		CNetMessage* msg = m_LocalMessageQueue[i].second;
-		CNetServerSession* session = m_LocalMessageQueue[i].first;
-
-		LOGMESSAGE(L"Net server: Received local message %hs of size %lu from %hs", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
-
-		bool ok = HandleMessageReceive(msg, session);
-		debug_assert(ok); // TODO
-
-		delete msg;
-	}
-	m_LocalMessageQueue.clear();
-
 	// Poll host for events
 	ENetEvent event;
 	while (enet_host_service(m_Host, &event, 0) > 0)
@@ -161,48 +148,47 @@ void CNetServer::Poll()
 		{
 		case ENET_EVENT_TYPE_CONNECT:
 		{
-			// If this is a new client to our server, save the peer reference
-			if (std::find(m_Peers.begin(), m_Peers.end(), event.peer) == m_Peers.end())
-				m_Peers.push_back(event.peer);
-
 			// Report the client address
 			char hostname[256] = "(error)";
 			enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
 			LOGMESSAGE(L"Net server: Received connection from %hs:%u", hostname, event.peer->address.port);
 
-			// Set up a session object for this peer
-
-			CNetServerSession* session = new CNetServerSessionRemote(*this, event.peer);
-
-			SetupSession(session);
-
-			if (!HandleConnect(session))
+			if (m_State != SERVER_STATE_PREGAME)
 			{
-				delete session;
+				enet_peer_disconnect(event.peer, NDR_SERVER_ALREADY_IN_GAME);
 				break;
 			}
 
+			// Set up a session object for this peer
+
+			CNetServerSession* session = new CNetServerSession(*this, event.peer);
+
+			m_Sessions.push_back(session);
+
+			SetupSession(session);
+
 			debug_assert(event.peer->data == NULL);
 			event.peer->data = session;
+
+			HandleConnect(session);
 
 			break;
 		}
 
 		case ENET_EVENT_TYPE_DISCONNECT:
 		{
-			// Delete from our peer list
-			m_Peers.erase(remove(m_Peers.begin(), m_Peers.end(), event.peer), m_Peers.end());
-
 			// If there is an active session with this peer, then reset and delete it
 
 			CNetServerSession* session = static_cast<CNetServerSession*>(event.peer->data);
 			if (session)
 			{
-				LOGMESSAGE(L"Net server: %hs disconnected", DebugName(session).c_str());
+				LOGMESSAGE(L"Net server: Disconnected %hs", DebugName(session).c_str());
+
+				// Remove the session first, so we won't send player-update messages to it
+				// when updating the FSM
+				m_Sessions.erase(remove(m_Sessions.begin(), m_Sessions.end(), session), m_Sessions.end());
 
 				session->Update((uint)NMT_CONNECTION_LOST, NULL);
-
-				HandleDisconnect(session);
 
 				delete session;
 				event.peer->data = NULL;
@@ -224,8 +210,7 @@ void CNetServer::Poll()
 				{
 					LOGMESSAGE(L"Net server: Received message %hs of size %lu from %hs", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
 
-					bool ok = HandleMessageReceive(msg, session);
-					debug_assert(ok); // TODO
+					HandleMessageReceive(msg, session);
 
 					delete msg;
 				}
@@ -240,30 +225,19 @@ void CNetServer::Poll()
 	}
 }
 
-void CNetServer::AddLocalClientSession(CNetClientSessionLocal& clientSession)
+void CNetServer::Flush()
 {
-	LOGMESSAGE(L"Net server: Received local connection");
-	CNetServerSessionLocal* session = new CNetServerSessionLocal(*this, clientSession);
-	clientSession.SetServerSession(session);
-	SetupSession(session);
-	HandleConnect(session);
+	debug_assert(m_Host);
+
+	enet_host_flush(m_Host);
 }
 
-void CNetServer::SendLocalMessage(CNetClientSessionLocal& clientSession, const CNetMessage* message)
-{
-	CNetMessage* clonedMessage = CNetMessageFactory::CloneMessage(message, GetScriptInterface());
-	if (!clonedMessage)
-		return;
-	m_LocalMessageQueue.push_back(std::make_pair(clientSession.GetServerSession(), clonedMessage));
-}
-
-bool CNetServer::HandleMessageReceive(const CNetMessage* message, CNetServerSession* session)
+void CNetServer::HandleMessageReceive(const CNetMessage* message, CNetServerSession* session)
 {
 	// Update FSM
 	bool ok = session->Update(message->GetType(), (void*)message);
 	if (!ok)
 		LOGERROR(L"Net server: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)session->GetCurrState());
-	return ok;
 }
 
 void CNetServer::SetupSession(CNetServerSession* session)
@@ -271,9 +245,13 @@ void CNetServer::SetupSession(CNetServerSession* session)
 	void* context = session;
 
 	// Set up transitions for session
-	session->AddTransition(NSS_HANDSHAKE, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
+
+	session->AddTransition(NSS_UNCONNECTED, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED);
+
+	session->AddTransition(NSS_HANDSHAKE, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED);
 	session->AddTransition(NSS_HANDSHAKE, (uint)NMT_CLIENT_HANDSHAKE, NSS_AUTHENTICATE, (void*)&OnClientHandshake, context);
 
+	session->AddTransition(NSS_AUTHENTICATE, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED);
 	session->AddTransition(NSS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NSS_PREGAME, (void*)&OnAuthenticate, context);
 
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
@@ -292,21 +270,11 @@ void CNetServer::SetupSession(CNetServerSession* session)
 
 bool CNetServer::HandleConnect(CNetServerSession* session)
 {
-	m_Sessions.push_back(session);
-
-	// Player joined the game, start authentication
 	CSrvHandshakeMessage handshake;
 	handshake.m_Magic = PS_PROTOCOL_MAGIC;
 	handshake.m_ProtocolVersion = PS_PROTOCOL_VERSION;
 	handshake.m_SoftwareVersion = PS_PROTOCOL_VERSION;
 	return session->SendMessage(&handshake);
-}
-
-bool CNetServer::HandleDisconnect(CNetServerSession* session)
-{
-	m_Sessions.erase(remove(m_Sessions.begin(), m_Sessions.end(), session), m_Sessions.end());
-
-	return true;
 }
 
 void CNetServer::OnUserJoin(CNetServerSession* session)
@@ -411,20 +379,24 @@ bool CNetServer::OnClientHandshake(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServer& server = session->GetServer();
 
+	if (server.m_State != SERVER_STATE_PREGAME)
+	{
+		session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
+		return false;
+	}
+
 	CCliHandshakeMessage* message = (CCliHandshakeMessage*)event->GetParamRef();
 	if (message->m_ProtocolVersion != PS_PROTOCOL_VERSION)
 	{
-		// TODO: probably should report some error message (either locally or to the client)
-		session->Disconnect();
+		session->Disconnect(NDR_INCORRECT_PROTOCOL_VERSION);
+		return false;
 	}
-	else
-	{
-		CSrvHandshakeResponseMessage handshakeResponse;
-		handshakeResponse.m_UseProtocolVersion = PS_PROTOCOL_VERSION;
-		handshakeResponse.m_Message = server.m_WelcomeMessage;
-		handshakeResponse.m_Flags = 0;
-		session->SendMessage(&handshakeResponse);
-	}
+
+	CSrvHandshakeResponseMessage handshakeResponse;
+	handshakeResponse.m_UseProtocolVersion = PS_PROTOCOL_VERSION;
+	handshakeResponse.m_Message = server.m_WelcomeMessage;
+	handshakeResponse.m_Flags = 0;
+	session->SendMessage(&handshakeResponse);
 
 	return true;
 }
@@ -435,6 +407,12 @@ bool CNetServer::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServer& server = session->GetServer();
+
+	if (server.m_State != SERVER_STATE_PREGAME)
+	{
+		session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
+		return false;
+	}
 
 	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
 
@@ -527,9 +505,7 @@ bool CNetServer::OnDisconnect(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServer& server = session->GetServer();
 
-	// If the user had authenticated, we need to handle their leaving
-	if (session->GetCurrState() == NSS_PREGAME || session->GetCurrState() == NSS_INGAME)
-		server.OnUserLeave(session);
+	server.OnUserLeave(session);
 
 	return true;
 }
@@ -603,6 +579,7 @@ CStrW CNetServer::DeduplicatePlayerName(const CStrW& original)
 {
 	CStrW name = original;
 
+	// Try names "Foo", "Foo (2)", "Foo (3)", etc
 	size_t id = 2;
 	while (true)
 	{

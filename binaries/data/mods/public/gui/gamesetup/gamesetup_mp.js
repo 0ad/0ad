@@ -5,6 +5,13 @@ function init()
 {
 }
 
+function cancelSetup()
+{
+	if (g_IsConnecting)
+		Engine.DisconnectNetworkGame();
+	Engine.PopGuiPage();	
+}
+
 function startConnectionStatus(type)
 {
 	g_GameType = type;
@@ -33,10 +40,17 @@ function onTick()
 			case "connected":
 				getGUIObjectByName("connectionStatus").caption = "Registering with server...";
 				break;
+
 			case "authenticated":
 				Engine.PopGuiPage();
 				Engine.PushGuiPage("page_gamesetup.xml", { "type": g_GameType });
-				return; // don't process any more messages
+				return; // don't process any more messages - leave them for the game GUI loop
+
+			case "disconnected":
+				cancelSetup();
+				reportDisconnect(message.reason);
+				return;
+
 			default:
 				error("Unrecognised netstatus type "+message.status);
 				break;

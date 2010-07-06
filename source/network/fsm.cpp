@@ -141,7 +141,7 @@ bool CFsmTransition::ApplyConditions( void ) const
 
 //-----------------------------------------------------------------------------
 // Name: RunActions()
-// Desc: Execur actions for the transition
+// Desc: Execute actions for the transition
 // Note: If there are no actions, assume true
 //-----------------------------------------------------------------------------
 bool CFsmTransition::RunActions( void ) const

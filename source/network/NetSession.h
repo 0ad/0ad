@@ -26,8 +26,6 @@
 class CNetClient;
 class CNetServer;
 
-class CNetServerSessionLocal; // forward declaration, needed because of circular references
-
 class CNetStatsTable;
 
 /**
@@ -37,10 +35,6 @@ class CNetStatsTable;
  * Each session has two classes: CNetClientSession runs on the client,
  * and CNetServerSession runs on the server.
  * A client runs one session at once; a server typically runs many.
- *
- * There are two variants of each session: Remote (the normal ENet-based
- * network session) and Local (a shortcut when the client and server are
- * running inside the same process and don't need the network to communicate).
  */
 
 /**
@@ -53,68 +47,36 @@ class CNetClientSession
 
 public:
 	CNetClientSession(CNetClient& client);
-	virtual ~CNetClientSession();
-
-	virtual void Poll() = 0;
-	virtual void Disconnect() = 0;
-	virtual bool SendMessage(const CNetMessage* message) = 0;
-
-	CNetClient& GetClient() { return m_Client; }
-
-private:
-	CNetClient& m_Client;
-};
-
-/**
- * ENet-based implementation of CNetClientSession.
- */
-class CNetClientSessionRemote : public CNetClientSession
-{
-	NONCOPYABLE(CNetClientSessionRemote);
-
-public:
-	CNetClientSessionRemote(CNetClient& client);
-	~CNetClientSessionRemote();
+	~CNetClientSession();
 
 	bool Connect(u16 port, const CStr& server);
 
-	virtual void Poll();
-	virtual void Disconnect();
-	virtual bool SendMessage(const CNetMessage* message);
+	/**
+	 * Process queued incoming messages.
+	 */
+	void Poll();
 
-	ENetPacket* CreatePacket(const CNetMessage* message);
+	/**
+	 * Flush queued outgoing network messages.
+	 */
+	void Flush();
+
+	/**
+	 * Disconnect from the server.
+	 * Sends a disconnection notification to the server.
+	 */
+	void Disconnect(u32 reason);
+
+	/**
+	 * Send a message to the server.
+	 */
+	bool SendMessage(const CNetMessage* message);
 
 private:
+	CNetClient& m_Client;
 	ENetHost* m_Host;
 	ENetPeer* m_Server;
 	CNetStatsTable* m_Stats;
-};
-
-/**
- * Local implementation of CNetClientSession, for use with servers
- * running in the same process.
- */
-class CNetClientSessionLocal : public CNetClientSession
-{
-	NONCOPYABLE(CNetClientSessionLocal);
-
-public:
-	CNetClientSessionLocal(CNetClient& client, CNetServer& server);
-
-	void SetServerSession(CNetServerSessionLocal* session) { m_ServerSession = session; }
-	CNetServerSessionLocal* GetServerSession() { return m_ServerSession; }
-
-	virtual void Poll();
-	virtual void Disconnect();
-	virtual bool SendMessage(const CNetMessage* message);
-
-	void AddLocalMessage(const CNetMessage* message);
-
-private:
-	CNetServer& m_Server;
-	CNetServerSessionLocal* m_ServerSession;
-
-	std::vector<CNetMessage*> m_LocalMessageQueue;
 };
 
 
@@ -128,8 +90,7 @@ class CNetServerSession : public CFsm
 	NONCOPYABLE(CNetServerSession);
 
 public:
-	CNetServerSession(CNetServer& server);
-	virtual ~CNetServerSession();
+	CNetServerSession(CNetServer& server, ENetPeer* peer);
 
 	CNetServer& GetServer() { return m_Server; }
 
@@ -142,50 +103,34 @@ public:
 	u32 GetHostID() const { return m_HostID; }
 	void SetHostID(u32 id) { m_HostID = id; }
 
-	virtual void Disconnect() = 0;
-	virtual bool SendMessage(const CNetMessage* message) = 0;
+	/**
+	 * Sends a disconnection notification to the client,
+	 * and sends a NMT_CONNECTION_LOST message to the session FSM.
+	 * The server will receive a disconnection notification after a while.
+	 * The server will not receive any further messages sent via this session.
+	 */
+	void Disconnect(u32 reason);
+
+	/**
+	 * Sends an unreliable disconnection notification to the client.
+	 * The server will not receive any disconnection notification.
+	 * The server will not receive any further messages sent via this session.
+	 */
+	void DisconnectNow(u32 reason);
+
+	/**
+	 * Send a message to the client.
+	 */
+	bool SendMessage(const CNetMessage* message);
 
 private:
 	CNetServer& m_Server;
 
+	ENetPeer* m_Peer;
+
 	CStr m_GUID;
 	CStrW m_UserName;
 	u32 m_HostID;
-};
-
-/**
- * ENet-based implementation of CNetServerSession.
- */
-class CNetServerSessionRemote : public CNetServerSession
-{
-	NONCOPYABLE(CNetServerSessionRemote);
-
-public:
-	CNetServerSessionRemote(CNetServer& server, ENetPeer* peer);
-
-	virtual void Disconnect();
-	virtual bool SendMessage(const CNetMessage* message);
-
-private:
-	ENetPeer* m_Peer;
-};
-
-/**
- * Local implementation of CNetServerSession, for use with clients
- * running in the same process.
- */
-class CNetServerSessionLocal : public CNetServerSession
-{
-	NONCOPYABLE(CNetServerSessionLocal);
-
-public:
-	CNetServerSessionLocal(CNetServer& server, CNetClientSessionLocal& clientSession);
-
-	virtual void Disconnect();
-	virtual bool SendMessage(const CNetMessage* message);
-
-private:
-	CNetClientSessionLocal& m_ClientSession;
 };
 
 #endif	// NETSESSION_H

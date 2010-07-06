@@ -79,17 +79,17 @@ public:
 	bool SetupConnection(const CStr& server);
 
 	/**
-	 * Set up a connection to the local server on the current machine.
-	 * @param server object to connect to
-	 */
-	void SetupLocalConnection(CNetServer& server);
-
-	/**
 	 * Poll the connection for messages from the server and process them, and send
 	 * any queued messages.
 	 * This must be called frequently (i.e. once per frame).
 	 */
 	void Poll();
+
+	/**
+	 * Flush any queued outgoing network messages.
+	 * This should be called soon after sending a group of messages that may be batched together.
+	 */
+	void Flush();
 
 	/**
 	 * Retrieves the next queued GUI message, and removes it from the queue.
@@ -140,7 +140,7 @@ public:
 	/**
 	 * Call when the network connection has been lost.
 	 */
-	void HandleDisconnect();
+	void HandleDisconnect(u32 reason);
 
 	/**
 	 * Call when a message has been received from the network.

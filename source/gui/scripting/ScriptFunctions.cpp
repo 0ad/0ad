@@ -203,7 +203,7 @@ void StartNetworkHost(void* UNUSED(cbdata), std::wstring playerName)
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
-	g_NetClient->SetupLocalConnection(*g_NetServer);
+	g_NetClient->SetupConnection("127.0.0.1");
 }
 
 void StartNetworkJoin(void* UNUSED(cbdata), std::wstring playerName, std::string serverAddress)

@@ -448,7 +448,9 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 	m_MapReader.m_PatchesPerSide = patches;
 
 	// Load the texture
-	CTextureEntry* texentry = g_TexMan.FindTexture(texture);
+	CTextureEntry* texentry = NULL;
+	if (CTextureManager::IsInitialised())
+		texentry = g_TexMan.FindTexture(texture);
 
 	m_MapReader.pTerrain->Initialize(patches, NULL);
 

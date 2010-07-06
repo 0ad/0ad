@@ -64,8 +64,7 @@ public:
 	void connect(CNetServer& server, const std::vector<CNetClient*>& clients)
 	{
 		TS_ASSERT(server.SetupConnection());
-		clients[0]->SetupLocalConnection(server);
-		for (size_t j = 1; j < clients.size(); ++j)
+		for (size_t j = 0; j < clients.size(); ++j)
 			TS_ASSERT(clients[j]->SetupConnection("127.0.0.1"));
 
 		for (size_t i = 0; ; ++i)
@@ -138,7 +137,7 @@ public:
 		CNetServer server;
 
 		CScriptValRooted attrs;
-		server.GetScriptInterface().Eval("({map:'Latium',thing:'example'})", attrs);
+		server.GetScriptInterface().Eval("({map:'_default',thing:'example'})", attrs);
 		server.UpdateGameAttributes(attrs);
 
 		CNetClient client1(&client1Game);

@@ -70,8 +70,6 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_INGAME, (uint)NMT_SYNC_ERROR, NCS_INGAME, (void*)&OnInGame, context);
 	AddTransition(NCS_INGAME, (uint)NMT_END_COMMAND_BATCH, NCS_INGAME, (void*)&OnInGame, context);
 
-	// TODO: add chat
-
 	// Set first state
 	SetFirstState(NCS_UNCONNECTED);
 }
@@ -90,16 +88,10 @@ void CNetClient::SetUserName(const CStrW& username)
 
 bool CNetClient::SetupConnection(const CStr& server)
 {
-	CNetClientSessionRemote* session = new CNetClientSessionRemote(*this);
+	CNetClientSession* session = new CNetClientSession(*this);
 	bool ok = session->Connect(PS_DEFAULT_PORT, server);
 	SetAndOwnSession(session);
 	return ok;
-}
-
-void CNetClient::SetupLocalConnection(CNetServer& server)
-{
-	CNetClientSessionLocal* session = new CNetClientSessionLocal(*this, server);
-	SetAndOwnSession(session);
 }
 
 void CNetClient::SetAndOwnSession(CNetClientSession* session)
@@ -112,6 +104,12 @@ void CNetClient::Poll()
 {
 	if (m_Session)
 		m_Session->Poll();
+}
+
+void CNetClient::Flush()
+{
+	if (m_Session)
+		m_Session->Flush();
 }
 
 CScriptValRooted CNetClient::GuiPoll()
@@ -171,6 +169,9 @@ void CNetClient::PostPlayerAssignmentsToScript()
 
 bool CNetClient::SendMessage(const CNetMessage* message)
 {
+	if (!m_Session)
+		return false;
+
 	return m_Session->SendMessage(message);
 }
 
@@ -179,11 +180,18 @@ void CNetClient::HandleConnect()
 	Update((uint)NMT_CONNECT_COMPLETE, NULL);
 }
 
-void CNetClient::HandleDisconnect()
+void CNetClient::HandleDisconnect(u32 reason)
 {
 	CScriptValRooted msg;
 	GetScriptInterface().Eval("({'type':'netstatus','status':'disconnected'})", msg);
+	GetScriptInterface().SetProperty(msg.get(), "reason", (int)reason, false);
 	PushGuiMessage(msg);
+
+	SAFE_DELETE(m_Session);
+
+	// Update the state immediately to UNCONNECTED (don't bother with FSM transitions since
+	// we'd need one for every single state, and we don't need to use per-state actions)
+	SetCurrState(NCS_UNCONNECTED);
 }
 
 void CNetClient::SendChatMessage(const std::wstring& text)
