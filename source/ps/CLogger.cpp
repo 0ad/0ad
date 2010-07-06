@@ -90,15 +90,15 @@ CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeO
 	m_OwnsStreams = takeOwnership;
 	m_UseDebugPrintf = useDebugPrintf;
 
-	m_RenderLastEraseTime = -1.0;
-	// this is called too early to allow us to call timer_Time(),
-	// so we'll fill in the initial value later
-
 	Init();
 }
 
 void CLogger::Init()
 {
+	m_RenderLastEraseTime = -1.0;
+	// this is called too early to allow us to call timer_Time(),
+	// so we'll fill in the initial value later
+
 	m_NumberOfMessages = 0;
 	m_NumberOfErrors = 0;
 	m_NumberOfWarnings = 0;
