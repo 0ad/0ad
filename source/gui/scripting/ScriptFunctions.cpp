@@ -190,24 +190,38 @@ void SetNetworkGameAttributes(void* cbdata, CScriptVal attribs)
 	g_NetServer->UpdateGameAttributes(gameAttribs);
 }
 
-void StartNetworkHost(void* UNUSED(cbdata), std::wstring playerName)
+void StartNetworkHost(void* cbdata, std::wstring playerName)
 {
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
 	debug_assert(!g_NetClient);
 	debug_assert(!g_NetServer);
 	debug_assert(!g_Game);
 
 	g_NetServer = new CNetServer();
-	bool ok = g_NetServer->SetupConnection();
-	debug_assert(ok); // TODO: need better error handling
+	if (!g_NetServer->SetupConnection())
+	{
+		guiManager->GetScriptInterface().ReportError("Failed to start server");
+		SAFE_DELETE(g_NetServer);
+		return;
+	}
 
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
-	g_NetClient->SetupConnection("127.0.0.1");
+
+	if (!g_NetClient->SetupConnection("127.0.0.1"))
+	{
+		guiManager->GetScriptInterface().ReportError("Failed to connect to server");
+		SAFE_DELETE(g_NetClient);
+		SAFE_DELETE(g_Game);
+	}
 }
 
-void StartNetworkJoin(void* UNUSED(cbdata), std::wstring playerName, std::string serverAddress)
+void StartNetworkJoin(void* cbdata, std::wstring playerName, std::string serverAddress)
 {
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
 	debug_assert(!g_NetClient);
 	debug_assert(!g_NetServer);
 	debug_assert(!g_Game);
@@ -215,7 +229,12 @@ void StartNetworkJoin(void* UNUSED(cbdata), std::wstring playerName, std::string
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
-	g_NetClient->SetupConnection(serverAddress);
+	if (!g_NetClient->SetupConnection(serverAddress))
+	{
+		guiManager->GetScriptInterface().ReportError("Failed to connect to server");
+		SAFE_DELETE(g_NetClient);
+		SAFE_DELETE(g_Game);
+	}
 }
 
 void DisconnectNetworkGame(void* UNUSED(cbdata))

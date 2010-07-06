@@ -13,7 +13,9 @@ function getDisconnectReason(id)
 
 function reportDisconnect(reason)
 {
+	var reasontext = (typeof reason == 'number' ? getDisconnectReason(reason) : reason);
+
 	messageBox(400, 200,
-		"Lost connection to the server.\n\nReason: " + getDisconnectReason(reason) + ".",
+		"Lost connection to the server.\n\nReason: " + reasontext + ".",
 		"Disconnected", 2);
 }

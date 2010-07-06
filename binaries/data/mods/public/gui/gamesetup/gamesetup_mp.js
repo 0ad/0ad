@@ -71,13 +71,35 @@ function switchSetupPage(oldpage, newpage)
 
 function startHost(playername, servername)
 {
-	Engine.StartNetworkHost(playername);
+	try
+	{
+		Engine.StartNetworkHost(playername);
+	}
+	catch (e)
+	{
+		cancelSetup();
+		messageBox(400, 200,
+			"Cannot host game: " + e.message + ".",
+			"Error", 2);
+	}
+
 	startConnectionStatus("server");
 	// TODO: ought to do something(?) with servername
 }
 
 function startJoin(playername, ip)
 {
-	Engine.StartNetworkJoin(playername, ip);
+	try
+	{
+		Engine.StartNetworkJoin(playername, ip);
+	}
+	catch (e)
+	{
+		cancelSetup();
+		messageBox(400, 200,
+			"Cannot join game: " + e.message + ".",
+			"Error", 2);
+	}
+
 	startConnectionStatus("client");
 }
