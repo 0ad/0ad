@@ -29,6 +29,10 @@
 #include "ps/Pyrogenesis.h"
 #include "simulation2/Simulation2.h"
 
+#include <sstream>
+#include <fstream>
+#include <iomanip>
+
 static const int TURN_LENGTH = 200; // TODO: this should be a variable controlled by the server depending on latency
 
 static const int COMMAND_DELAY = 2;

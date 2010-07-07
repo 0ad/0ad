@@ -29,7 +29,7 @@
 #include "ps/Font.h"
 
 #include <ctime>
-#include <ostream>
+#include <iostream>
 
 // Disable "assignment operator could not be generated" in Boost
 #if MSC_VERSION

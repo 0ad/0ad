@@ -20,6 +20,8 @@
 
 #include "ps/CStr.h"
 
+#include <map>
+
 /**
  * @file
  * Various declarations shared by networking code.

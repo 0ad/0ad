@@ -20,6 +20,8 @@
 
 #include "simulation2/helpers/SimulationCommand.h"
 
+#include <map>
+
 class CNetServer;
 class CNetClient;
 class CSimulationMessage;

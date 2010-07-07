@@ -24,6 +24,8 @@
 #include "simulation2/serialization/BinarySerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
 
+#include <sstream>
+
 class CBufferBinarySerializerImpl
 {
 public:
