@@ -148,7 +148,8 @@ LibError sys_cursor_set(sys_cursor cursor)
 {
 	// Gaah, SDL doesn't have a good API for setting the default cursor
 	// SetCursor(NULL) just /repaints/ the cursor (well, obviously! or...)
-	ONCE(defaultCursor = SDL_GetCursor());
+	if(!defaultCursor)
+		defaultCursor = SDL_GetCursor();
 
 	// restore default cursor.
 	if(!cursor)
@@ -173,6 +174,13 @@ LibError sys_cursor_free(sys_cursor cursor)
 		WARN_ERR(sys_cursor_set(NULL));
 
 	SDL_FreeCursor((SDL_Cursor *)cursor);
+
+	return INFO::OK;
+}
+
+LibError sys_cursor_reset()
+{
+	defaultCursor = NULL;
 
 	return INFO::OK;
 }
@@ -223,4 +231,34 @@ LibError sys_generate_random_bytes(u8* buf, size_t count)
 	fclose(f);
 
 	return INFO::OK;
+}
+
+LibError sys_open_url(const std::string& url)
+{
+	pid_t pid = fork();
+	if (pid < 0)
+	{
+		debug_warn(L"Fork failed");
+		return ERR::FAIL;
+	}
+	else if (pid == 0)
+	{
+		// we are the child
+
+		execlp("xdg-open", "xdg-open", url.c_str(), (const char*)NULL);
+
+		debug_printf(L"Failed to run xdg-open command\n");
+
+		// We can't call exit() because that'll try to free resources which were the parent's,
+		// so just abort here
+		abort();
+	}
+	else
+	{
+		// we are the parent
+
+		// TODO: maybe we should wait for the child and make sure it succeeded
+
+		return INFO::OK;
+	}
 }

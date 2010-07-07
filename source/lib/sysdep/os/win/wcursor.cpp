@@ -118,3 +118,8 @@ LibError sys_cursor_free(sys_cursor cursor)
 	BOOL ok = DestroyIcon(HICON_from_cursor(cursor));
 	return LibError_from_win32(ok);
 }
+
+LibError sys_cursor_reset()
+{
+	return INFO::OK;
+}

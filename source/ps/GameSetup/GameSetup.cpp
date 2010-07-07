@@ -27,6 +27,7 @@
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/cursor.h"
 #include "lib/res/sound/snd_mgr.h"
+#include "lib/sysdep/cursor.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/tex/tex.h"
@@ -96,6 +97,13 @@
 #include "ps/GameSetup/Paths.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
+
+#if !(OS_WIN || OS_MACOSX) // assume all other platforms use X11 for wxWidgets
+#define MUST_INIT_X11 1
+#include <X11/Xlib.h>
+#else
+#define MUST_INIT_X11 0
+#endif
 
 #include <iostream>
 
@@ -555,6 +563,12 @@ static void InitSDL()
 	SDL_EnableUNICODE(1);
 }
 
+static void ShutdownSDL()
+{
+	SDL_QuitSubSystem(SDL_INIT_VIDEO|SDL_INIT_TIMER);
+	sys_cursor_reset();
+}
+
 
 void EndGame()
 {
@@ -572,6 +586,8 @@ void Shutdown(int UNUSED(flags))
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 
+	in_reset_handlers();
+
 	// destroy actor related stuff
 	TIMER_BEGIN(L"shutdown actor stuff");
 	delete &g_MaterialManager;
@@ -587,6 +603,12 @@ void Shutdown(int UNUSED(flags))
 	delete &g_Renderer;
 	g_VBMan.Shutdown();
 	TIMER_END(L"shutdown Renderer");
+
+	tex_codec_unregister_all();
+
+	TIMER_BEGIN(L"shutdown SDL");
+	ShutdownSDL();
+	TIMER_END(L"shutdown SDL");
 
 	TIMER_BEGIN(L"shutdown ScriptingHost");
 	delete &g_ScriptingHost;
@@ -642,6 +664,17 @@ void EarlyInit()
 	cpu_ConfigureFloatingPoint();
 
 	timer_LatchStartTime();
+
+	// Because we do GL calls from a secondary thread, Xlib needs to
+	// be told to support multiple threads safely.
+	// This is needed for Atlas, but we have to call it before any other
+	// Xlib functions (e.g. the ones used when drawing the main menu
+	// before launching Atlas)
+#if MUST_INIT_X11
+	int status = XInitThreads();
+	if (status == 0)
+		debug_printf(L"Error enabling thread-safety via XInitThreads\n");
+#endif
 
 	// Initialise the low-quality rand function
 	srand(time(NULL));	// NOTE: this rand should *not* be used for simulation!

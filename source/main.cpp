@@ -389,6 +389,15 @@ void kill_mainloop()
 }
 
 
+static bool restart_in_atlas = false;
+// called by game code to indicate main() should restart in Atlas mode
+// instead of terminating
+void restart_mainloop_in_atlas()
+{
+	quit = true;
+	restart_in_atlas = true;
+}
+
 // moved into a helper function to ensure args is destroyed before
 // exit(), which may result in a memory leak.
 static void RunGameOrAtlas(int argc, const char* argv[])
@@ -401,7 +410,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	CXeromyces::Startup();
 
 	// run Atlas (if requested via args)
-	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);
+	bool ran_atlas = ATLAS_RunIfOnCmdLine(args, false);
 	// Atlas handles the whole init/shutdown/etc sequence by itself;
 	// when we get here, it has exited and we're done.
 	if(ran_atlas)
@@ -418,6 +427,12 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	Shutdown(0);
 	ScriptingHost::FinalShutdown(); // this can't go in Shutdown() because that could be called multiple times per process, so stick it here instead
 	MainControllerShutdown();
+
+	if (restart_in_atlas)
+	{
+		ATLAS_RunIfOnCmdLine(args, true);
+		return;
+	}
 
 	// Shut down libxml2 (done here to match the Startup call)
 	CXeromyces::Terminate();

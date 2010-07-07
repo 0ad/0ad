@@ -262,6 +262,11 @@ extern void tex_set_global_orientation(int orientation);
 extern void tex_codec_register_all();
 
 /**
+ * remove all codecs that have been registered.
+ **/
+extern void tex_codec_unregister_all();
+
+/**
  * decode an in-memory texture file into texture object.
  *
  * FYI, currently BMP, TGA, JPG, JP2, PNG, DDS are supported - but don't

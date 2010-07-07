@@ -123,6 +123,11 @@ extern std::wstring sys_get_user_name();
 extern LibError sys_pick_directory(fs::wpath& path);
 
 /**
+ * open the user's default web browser to the given URL.
+ **/
+extern LibError sys_open_url(const std::string& url);
+
+/**
  * return the largest sector size [bytes] of any storage medium
  * (HD, optical, etc.) in the system.
  * 

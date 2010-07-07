@@ -58,6 +58,10 @@ static void ATLAS_Run(const CmdLineArgs& args, int flags = 0)
 	}
 }
 
+bool ATLAS_IsAvailable()
+{
+	return atlas_dll.LoadDLL();
+}
 
 // starts the Atlas UI if an "-editor" switch is found on the command line.
 // this is the alternative to starting the main menu and clicking on
@@ -66,9 +70,9 @@ static void ATLAS_Run(const CmdLineArgs& args, int flags = 0)
 // notes:
 // - GUI init still runs, but some GUI setup will be skipped since
 //   ATLAS_IsRunning() will return true.
-bool ATLAS_RunIfOnCmdLine(const CmdLineArgs& args)
+bool ATLAS_RunIfOnCmdLine(const CmdLineArgs& args, bool force)
 {
-	if (args.Has("editor"))
+	if (force || args.Has("editor"))
 	{
 		ATLAS_Run(args, ATLAS_NO_GUI);
 		return true;

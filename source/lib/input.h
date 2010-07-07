@@ -50,6 +50,9 @@ typedef InReaction (*InHandler)(const SDL_Event_*);
 // events are passed to other handlers if handler returns IN_PASS.
 extern void in_add_handler(InHandler handler);
 
+// remove all registered input handlers
+extern void in_reset_handlers();
+
 // send event to each handler (newest first) until one returns true
 extern void in_dispatch_event(const SDL_Event_* event);
 

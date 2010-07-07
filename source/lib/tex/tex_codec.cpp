@@ -53,6 +53,11 @@ int tex_codec_register(TexCodecVTbl* c)
 	return 0;	// (assigned to dummy variable)
 }
 
+// remove all codecs that have been registered.
+void tex_codec_unregister_all()
+{
+	codecs = NULL;
+}
 
 // find codec that recognizes the desired output file extension,
 // or return ERR::TEX_UNKNOWN_FORMAT if unknown.

@@ -47,6 +47,10 @@ void in_add_handler(InHandler handler)
 	handler_stack[handler_stack_top++] = handler;
 }
 
+void in_reset_handlers()
+{
+	handler_stack_top = 0;
+}
 
 // send ev to each handler until one returns IN_HANDLED
 static void dispatch_ev(const SDL_Event_* ev)

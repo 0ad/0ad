@@ -65,4 +65,10 @@ extern LibError sys_cursor_set(sys_cursor cursor);
  **/
 extern LibError sys_cursor_free(sys_cursor cursor);
 
+/**
+ * reset any cached cursor data.
+ * on some systems, this is needed when resetting the SDL video subsystem.
+ **/
+extern LibError sys_cursor_reset();
+
 #endif	 // #ifndef INCLUDED_SYSDEP_CURSOR

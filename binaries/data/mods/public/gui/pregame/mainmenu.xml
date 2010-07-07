@@ -77,7 +77,7 @@
 			type="text"
 			sprite="bkTranslucent"
 			textcolor="255 255 0"
-			size="4 4 230 300"
+			size="4 4 230 200"
 >[font="serif-bold-16"]WARNING[/font]
 This is an under-development unpolished snapshot. Some major components have been rewritten recently, and many gameplay features are still missing.
 
@@ -99,6 +99,33 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			size="69% 6.3802% 97.0703125% 28.125%"
 		>tooltipText
 		</object>		
+
+		<!--
+		==========================================
+		- MAIN MENU - RANDOM BUTTONS
+		==========================================
+		-->
+
+		<object type="button" style="wheatButton" size="8 230 158 270">
+			How to play
+			<action on="Press"><![CDATA[
+				Engine.PushGuiPage("page_manual.xml");
+			]]></action>
+		</object>
+
+		<object type="button" style="wheatButton" size="8 275 158 315">
+			Visit our web site
+			<action on="Press"><![CDATA[
+				Engine.OpenURL("http://wildfiregames.com/0ad/");
+			]]></action>
+		</object>
+
+		<object type="button" style="wheatButton" size="8 320 158 360">
+			Chat on IRC
+			<action on="Press"><![CDATA[
+				Engine.OpenURL("http://webchat.quakenet.org/?channels=0ad");
+			]]></action>
+		</object>
 
 		<!--
 		==========================================
@@ -157,20 +184,19 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 		>
 			<action on="Load"><![CDATA[
 				// Disable the Editor button if the Atlas DLL is not active.
-//				if (ATLAS_IsAvailable() == true)
-//				{
-//					this.enabled = true;
-//					this.tooltip = "Open 'Atlas', 0 A.D.'s Scenario Editor.";
-//				}
-//				else
-//				{
+				if (Engine.AtlasIsAvailable())
+				{
+					this.enabled = true;
+					this.tooltip = "Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument \"-editor\".";
+				}
+				else
+				{
 					this.enabled = false;
-					this.tooltip = "The Scenario Editor is not currently available.";
-//				}
+					this.tooltip = "The Scenario Editor is not available.";
+				}
 			]]></action>
 			<action on="Press"><![CDATA[
-				// Open Atlas Editor.
-//				ATLAS_Run();
+				Engine.RestartInAtlas();
 			]]></action>
 		</object>
 

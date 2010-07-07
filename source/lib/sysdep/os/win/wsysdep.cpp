@@ -413,6 +413,15 @@ LibError sys_pick_directory(fs::wpath& path)
 	return LibError_from_GLE();
 }
 
+LibError sys_open_url(const std::string& url)
+{
+	LONG r = ShellExecuteA(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
+	if (r > 32)
+		return INFO::OK;
+
+	WARN_RETURN(ERR::FAIL);
+}
+
 LibError sys_generate_random_bytes(u8* buf, size_t count)
 {
 	HCRYPTPROV hCryptProv;

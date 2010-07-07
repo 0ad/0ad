@@ -30,6 +30,7 @@
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Overlay.h"
+#include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCommandQueue.h"
@@ -45,6 +46,8 @@
  * Functions are exposed to scripts within the global object 'Engine', so
  * scripts should call "Engine.FunctionName(...)" etc.
  */
+
+extern void restart_mainloop_in_atlas(); // from main.cpp
 
 namespace {
 
@@ -273,6 +276,20 @@ void SendNetworkChat(void* UNUSED(cbdata), std::wstring message)
 	g_NetClient->SendChatMessage(message);
 }
 
+void OpenURL(void* UNUSED(cbdata), std::string url)
+{
+	sys_open_url(url);
+}
+
+void RestartInAtlas(void* UNUSED(cbdata))
+{
+	restart_mainloop_in_atlas();
+}
+
+bool AtlasIsAvailable(void* UNUSED(cbdata))
+{
+	return ATLAS_IsAvailable();
+}
 
 } // namespace
 
@@ -309,4 +326,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 	scriptInterface.RegisterFunction<std::wstring, &GetDefaultPlayerName>("GetDefaultPlayerName");
+	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
+	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
+	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 }
