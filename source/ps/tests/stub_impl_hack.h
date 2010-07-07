@@ -23,6 +23,10 @@ void kill_mainloop()
 {
 }
 
+void restart_mainloop_in_atlas()
+{
+}
+
 // just so that cxxtestgen doesn't complain "No tests defined"
 class TestDummy : public CxxTest::TestSuite 
 {

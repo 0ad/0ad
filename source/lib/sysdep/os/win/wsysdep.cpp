@@ -29,6 +29,7 @@
 
 #include "lib/sysdep/os/win/win.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
+#include <shellapi.h>	// open_url
 #include <Wincrypt.h>
 
 #include "lib/sysdep/clipboard.h"
@@ -415,8 +416,8 @@ LibError sys_pick_directory(fs::wpath& path)
 
 LibError sys_open_url(const std::string& url)
 {
-	LONG r = ShellExecuteA(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
-	if (r > 32)
+	HINSTANCE r = ShellExecuteA(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
+	if ((int)r > 32)
 		return INFO::OK;
 
 	WARN_RETURN(ERR::FAIL);

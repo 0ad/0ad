@@ -417,6 +417,9 @@ static void video_Shutdown()
 		WARN_IF_FALSE(wglDeleteContext(hGLRC));
 		hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 	}
+
+	g_hWnd = (HWND)INVALID_HANDLE_VALUE;
+	g_hDC = (HDC)INVALID_HANDLE_VALUE;
 }
 
 
@@ -460,15 +463,11 @@ static Queue g_queue;
 
 static void QueueEvent(const SDL_Event& ev)
 {
-	debug_assert(!is_quitting);
-
 	g_queue.push(ev);
 }
 
 static bool DequeueEvent(SDL_Event& ev)
 {
-	debug_assert(!is_quitting);
-
 	if(g_queue.empty())
 		return false;
 	ev = g_queue.front();

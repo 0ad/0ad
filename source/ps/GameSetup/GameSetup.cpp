@@ -565,7 +565,7 @@ static void InitSDL()
 
 static void ShutdownSDL()
 {
-	SDL_QuitSubSystem(SDL_INIT_VIDEO|SDL_INIT_TIMER);
+	SDL_Quit();
 	sys_cursor_reset();
 }
 
