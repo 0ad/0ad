@@ -49,6 +49,7 @@
 static LibError load_sys_cursor(const PIVFS& vfs, const VfsPath& pathname, int hx, int hy, sys_cursor* cursor)
 {
 #if !ALLOW_SYS_CURSOR
+	UNUSED2(vfs);
 	UNUSED2(pathname);
 	UNUSED2(hx);
 	UNUSED2(hy);
