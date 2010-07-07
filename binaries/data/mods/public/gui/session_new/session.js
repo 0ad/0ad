@@ -2,6 +2,7 @@ const GEOLOGY = "geology";
 const FLORA = "flora";
 const FAUNA = "fauna";
 const SPECIAL = "special";
+const CAMP = "camp";
 
 const GAIA = "Gaia"
 const CART = "Cart";
@@ -268,6 +269,8 @@ function getPortraitSheetName(type)
 		return portraitSheetName += "AnimalGaia";
 	case SPECIAL:
 		return portraitSheetName += "SpecialGaia";
+	case CAMP:
+		return portraitSheetName += "Hele"; // not sure what sheet should be used with the "camp" category
 	default:
 		return portraitSheetName += toTitleCase(type);
 	}

@@ -104,7 +104,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
 
 		// Get icon sheet
-		icon.sprite = getPortraitSheetName(getTemplateCategory(entType));
+		icon.sprite = getPortraitSheetName(getTemplateCategory(entType)); // unit specific icon sheet
 
 		if (typeof template.icon_cell == "undefined")
 			icon.cell_id = 0;
@@ -118,13 +118,13 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var numButtons = i;
 	var buttonSpacer = ((guiName == "Selection")? 37 : 45);
-	
+
 	if (numButtons < 9) // Row 0
 	{
 		if ((guiName == "Queue")) // or garrison
 			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -60 100% 100%-166";
 	
-		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
+		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, numButtons);
 	}
 	else if (numButtons < 17) // Row 1
 	{
@@ -132,7 +132,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -105 100% 100%-166";
 	
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
-		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, 16);
+		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, numButtons);
 	}
 	else // Row 2
 	{
@@ -142,7 +142,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
 		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, 16);
 		if (guiName != "Selection")
-			layoutButtonRow(2, guiName, buttonSideLength, buttonSpacer, 16, 24);
+			layoutButtonRow(2, guiName, buttonSideLength, buttonSpacer, 16, numButtons);
 	}
 
 	// Hide any buttons we're no longer using
