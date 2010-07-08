@@ -206,4 +206,21 @@ bool IsAligned(T t, uintptr_t multiple)
 	return ((uintptr_t)t % multiple) == 0;
 }
 
+
+template<typename T>
+T MaxPowerOfTwoDivisor(T value)
+{
+	debug_assert(value != T(0));
+
+	for(size_t log2 = 0; log2 < sizeof(T)*CHAR_BIT; log2++)
+	{
+		if(IsBitSet(value, log2))
+			return T(1) << log2;
+	}
+
+	debug_assert(0);	// unreachable (!= 0 => there is a set bit)
+	return 0;
+}
+
+
 #endif	// #ifndef INCLUDED_BITS

@@ -247,7 +247,7 @@ again:
 // initializer returns pthread_mutex_t directly and CRITICAL_SECTIONS
 // shouldn't be copied.
 //
-// note: we use win_alloc instead of new because the (no longer extant)
+// note: we use wutil_Allocate instead of new because the (no longer extant)
 // memory manager used a pthread_mutex.
 
 static CRITICAL_SECTION* CRITICAL_SECTION_from_pthread_mutex_t(pthread_mutex_t* m)
@@ -262,7 +262,7 @@ static CRITICAL_SECTION* CRITICAL_SECTION_from_pthread_mutex_t(pthread_mutex_t* 
 
 pthread_mutex_t pthread_mutex_initializer()
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)win_alloc(sizeof(CRITICAL_SECTION));
+	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)wutil_Allocate(sizeof(CRITICAL_SECTION));
 	InitializeCriticalSection(cs);
 	return (pthread_mutex_t)cs;
 }
@@ -273,7 +273,7 @@ int pthread_mutex_destroy(pthread_mutex_t* m)
 	if(!cs)
 		return -1;
 	DeleteCriticalSection(cs);
-	win_free(cs);
+	wutil_Free(cs);
 	*m = 0;	// cause double-frees to be noticed
 	return 0;
 }
@@ -546,7 +546,7 @@ int sem_msgwait_np(sem_t* sem)
 // - a local variable in pthread_create isn't safe because the
 //   new thread might not start before pthread_create returns.
 // - using one static FuncAndArg protected by critical section doesn't
-//   work. win_lock allows recursive locking, so if creating 2 threads,
+//   work. wutil_Lock allows recursive locking, so if creating 2 threads,
 //   the parent thread may create both without being stopped and thus
 //   stomp on the first thread's func_and_arg.
 // - blocking pthread_create until the trampoline has latched func_and_arg
@@ -572,7 +572,7 @@ static unsigned __stdcall thread_start(void* param)
 	const FuncAndArg* func_and_arg = (const FuncAndArg*)param;
 	void* (*func)(void*) = func_and_arg->func;
 	void* arg            = func_and_arg->arg;
-	win_free(param);
+	wutil_Free(param);
 
 	void* ret = 0;
 	__try
@@ -592,11 +592,11 @@ static unsigned __stdcall thread_start(void* param)
 int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)(void*), void* arg)
 {
 	// notes:
-	// - use win_alloc instead of the normal heap because we /might/
+	// - use wutil_Allocate instead of the normal heap because we /might/
 	//   potentially be called before _cinit.
 	// - placement new is more trouble than it's worth
 	//   (see REDEFINED_NEW), so we don't bother with a ctor.
-	FuncAndArg* func_and_arg = (FuncAndArg*)win_alloc(sizeof(FuncAndArg));
+	FuncAndArg* func_and_arg = (FuncAndArg*)wutil_Allocate(sizeof(FuncAndArg));
 	if(!func_and_arg)
 	{
 		WARN_ERR(ERR::NO_MEM);

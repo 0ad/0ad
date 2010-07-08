@@ -257,7 +257,7 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	// someone is already holding the dbghelp lock - this is bad.
 	// we'll report this problem first and then try to display the
 	// exception info regardless (maybe dbghelp won't blow up).
-	if(win_is_locked(WDBG_SYM_CS) == 1)
+	if(wutil_IsLocked(WDBG_SYM_CS) == 1)
 		DEBUG_DISPLAY_ERROR(L"Exception raised while critical section is held - may deadlock..");
 
 	// a dump file is essential for debugging, so write it before

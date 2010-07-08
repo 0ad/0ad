@@ -27,10 +27,6 @@
 #ifndef INCLUDED_WUTIL
 #define INCLUDED_WUTIL
 
-#if !OS_WIN
-#error "wutil.h: do not include if not compiling for Windows"
-#endif
-
 #include "lib/sysdep/os/win/win.h"
 
 template<typename H>
@@ -40,17 +36,42 @@ bool wutil_IsValidHandle(H h)
 }
 
 
-//
+//-----------------------------------------------------------------------------
+// dynamic linking
+
+// define a function pointer (optionally prepend 'static')
+#define WUTIL_FUNC(varName, ret, params)\
+	ret (WINAPI* varName) params
+
+// rationale:
+// - splitting up WUTIL_FUNC and WUTIL_IMPORT is a bit verbose in
+//   the common case of a local function pointer definition,
+//   but allows one-time initialization of static variables.
+// - differentiating between procName and varName allows searching
+//   for the actual definition of the function pointer in the code.
+// - a cast would require passing in ret/params.
+// - writing a type-punned pointer breaks strict-aliasing rules.
+#define WUTIL_IMPORT(hModule, procName, varName)\
+	STMT(\
+		const FARPROC f = GetProcAddress(hModule, #procName);\
+		memcpy(&varName, &f, sizeof(FARPROC));\
+	)
+
+// note: Kernel32 is guaranteed to be loaded, so we don't
+// need to LoadLibrary and FreeLibrary.
+#define WUTIL_IMPORT_KERNEL32(procName, varName)\
+	WUTIL_IMPORT(GetModuleHandleW(L"kernel32.dll"), procName, varName)
+
+
+//-----------------------------------------------------------------------------
 // safe allocator
-//
 
-extern void* win_alloc(size_t size);
-extern void win_free(void* p);
+extern void* wutil_Allocate(size_t size);
+extern void wutil_Free(void* p);
 
 
-//
+//-----------------------------------------------------------------------------
 // locks
-//
 
 // critical sections used by win-specific code
 enum WinLockId
@@ -64,11 +85,11 @@ enum WinLockId
 	NUM_CS
 };
 
-extern void win_lock(WinLockId id);
-extern void win_unlock(WinLockId id);
+extern void wutil_Lock(WinLockId id);
+extern void wutil_Unlock(WinLockId id);
 
 // used in a desperate attempt to avoid deadlock in wseh.
-extern bool win_is_locked(WinLockId id);
+extern bool wutil_IsLocked(WinLockId id);
 
 class WinScopedLock
 {
@@ -76,12 +97,12 @@ public:
 	WinScopedLock(WinLockId id)
 		: m_id(id)
 	{
-		win_lock(m_id);
+		wutil_Lock(m_id);
 	}
 
 	~WinScopedLock()
 	{
-		win_unlock(m_id);
+		wutil_Unlock(m_id);
 	}
 
 private:
@@ -89,9 +110,8 @@ private:
 };
 
 
-//
+//-----------------------------------------------------------------------------
 // errors
-//
 
 /**
  * some WinAPI functions SetLastError(0) on success, which is bad because
@@ -131,23 +151,23 @@ LibError LibError_from_GLE(bool warn_if_failed = true);
 
 #define WARN_WIN32_ERR (void)LibError_from_GLE(true)
 
-/// if ret is false, returns LibError_from_GLE.
+/**
+ * @return INFO::OK if ret != FALSE, else LibError_from_GLE().
+ **/
 extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
 
 
-//
+//-----------------------------------------------------------------------------
 // command line
-//
 
-extern int wutil_argc;
-extern wchar_t** wutil_argv;
+extern int wutil_argc();
+extern wchar_t** wutil_argv();
 
 extern bool wutil_HasCommandLineArgument(const wchar_t* arg);
 
 
-//
+//-----------------------------------------------------------------------------
 // directories
-//
 
 // used by wutil_ExecutablePath, but provided in case other code
 // needs to know this before our wutil_Init runs.
@@ -158,9 +178,8 @@ extern const fs::wpath& wutil_ExecutablePath();
 extern const fs::wpath& wutil_AppdataPath();
 
 
-//
+//-----------------------------------------------------------------------------
 // version
-//
 
 extern const wchar_t* wutil_WindowsVersionString();
 
@@ -169,6 +188,7 @@ const size_t WUTIL_VERSION_2K    = 0x0500;
 const size_t WUTIL_VERSION_XP    = 0x0501;
 const size_t WUTIL_VERSION_XP64  = 0x0502;
 const size_t WUTIL_VERSION_VISTA = 0x0600;
+const size_t WUTIL_VERSION_7     = 0x0601;
 
 /**
  * @return short textual representation of the appropriate WUTIL_VERSION
@@ -178,9 +198,8 @@ extern const wchar_t* wutil_WindowsFamily();
 extern size_t wutil_WindowsVersion();
 
 
-//
+//-----------------------------------------------------------------------------
 // Wow64
-//
 
 extern bool wutil_IsWow64();
 
@@ -195,12 +214,14 @@ private:
 };
 
 
+//-----------------------------------------------------------------------------
+
 /**
- * module handle of lib code (that of the main EXE if linked statically,
- * otherwise the DLL).
+ * @return module handle of lib code (that of the main EXE if
+ * linked statically, otherwise the DLL).
  * this is necessary for the error dialog.
  **/
-extern HMODULE wutil_LibModuleHandle;
+extern HMODULE wutil_LibModuleHandle();
 
 
 /**

@@ -30,7 +30,8 @@
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
-#include "lib/path_util.h"
+#include "lib/file/file.h"
+#include "lib/file/vfs/vfs.h"
 #include "lib/posix/posix.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/winit.h"
@@ -45,19 +46,17 @@ WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
 //-----------------------------------------------------------------------------
 // safe allocator
 
-//
-// safe allocator that may be used independently of libc malloc
+// may be used independently of libc malloc
 // (in particular, before _cinit and while calling static dtors).
 // used by wpthread critical section code.
-//
 
-void* win_alloc(size_t size)
+void* wutil_Allocate(size_t size)
 {
 	const DWORD flags = HEAP_ZERO_MEMORY;
 	return HeapAlloc(GetProcessHeap(), flags, size);
 }
 
-void win_free(void* p)
+void wutil_Free(void* p)
 {
 	const DWORD flags = 0;
 	HeapFree(GetProcessHeap(), flags, p);
@@ -74,21 +73,21 @@ void win_free(void* p)
 static CRITICAL_SECTION cs[NUM_CS];
 static bool cs_valid;
 
-void win_lock(WinLockId id)
+void wutil_Lock(WinLockId id)
 {
 	if(!cs_valid)
 		return;
 	EnterCriticalSection(&cs[id]);
 }
 
-void win_unlock(WinLockId id)
+void wutil_Unlock(WinLockId id)
 {
 	if(!cs_valid)
 		return;
 	LeaveCriticalSection(&cs[id]);
 }
 
-bool win_is_locked(WinLockId id)
+bool wutil_IsLocked(WinLockId id)
 {
 	if(!cs_valid)
 		return false;
@@ -128,20 +127,40 @@ LibError LibError_from_GLE(bool warn_if_failed)
 	switch(GetLastError())
 	{
 	case ERROR_OUTOFMEMORY:
-		err = ERR::NO_MEM; break;
-
+	case ERROR_NOT_ENOUGH_MEMORY:
+		err = ERR::NO_MEM;
+		break;
+	case ERROR_INVALID_HANDLE:
 	case ERROR_INVALID_PARAMETER:
-		err = ERR::INVALID_PARAM; break;
+	case ERROR_BAD_ARGUMENTS:
+		err = ERR::INVALID_PARAM;
+		break;
 	case ERROR_INSUFFICIENT_BUFFER:
-		err = ERR::BUF_SIZE; break;
-
-/*
+		err = ERR::BUF_SIZE;
+		break;
 	case ERROR_ACCESS_DENIED:
-		err = ERR::FILE_ACCESS; break;
+		err = ERR::FILE_ACCESS;
+		break;
+	case ERROR_NOT_SUPPORTED:
+		err = ERR::NOT_SUPPORTED;
+		break;
+	case ERROR_CALL_NOT_IMPLEMENTED:
+		err = ERR::NOT_IMPLEMENTED;
+		break;
+	case ERROR_PROC_NOT_FOUND:
+		err = ERR::NO_SYS;
+		break;
+	case ERROR_BUSY:
+		err = ERR::AGAIN;
+		break;
 	case ERROR_FILE_NOT_FOUND:
+		err = ERR::VFS_FILE_NOT_FOUND;
+		break;
 	case ERROR_PATH_NOT_FOUND:
-		err = ERR::TNODE_NOT_FOUND; break;
-*/
+		err = ERR::VFS_DIR_NOT_FOUND;
+		break;
+	default:
+		break;	// err already set above
 	}
 
 	if(warn_if_failed)
@@ -150,10 +169,6 @@ LibError LibError_from_GLE(bool warn_if_failed)
 }
 
 
-// return the LibError equivalent of GetLastError(), or ERR::FAIL if
-// there's no equal.
-// you should SetLastError(0) before calling whatever will set ret
-// to make sure we do not return any stale errors.
 LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
 {
 	if(ret != FALSE)
@@ -169,8 +184,8 @@ LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
 // the argv pointers.
 static wchar_t* argvContents;
 
-int wutil_argc = 0;
-wchar_t** wutil_argv = 0;
+int s_argc = 0;
+wchar_t** s_argv = 0;
 
 static void ReadCommandLine()
 {
@@ -198,36 +213,48 @@ static void ReadCommandLine()
 			if(!ignoreSpace)
 			{
 				argvContents[i] = '\0';
-				wutil_argc++;
+				s_argc++;
 			}
 			break;
 		}
 	}
-	wutil_argc++;
+	s_argc++;
 
 	// have argv entries point into the tokenized string
-	wutil_argv = (wchar_t**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, wutil_argc*sizeof(wchar_t*));
+	s_argv = (wchar_t**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, s_argc*sizeof(wchar_t*));
 	wchar_t* nextArg = argvContents;
-	for(int i = 0; i < wutil_argc; i++)
+	for(int i = 0; i < s_argc; i++)
 	{
-		wutil_argv[i] = nextArg;
+		s_argv[i] = nextArg;
 		nextArg += wcslen(nextArg)+1;
 	}
 }
 
 
+int wutil_argc()
+{
+	return s_argc;
+}
+
+wchar_t** wutil_argv()
+{
+	debug_assert(s_argv);
+	return s_argv;
+}
+
+
 static void FreeCommandLine()
 {
-	HeapFree(GetProcessHeap(), 0, wutil_argv);
+	HeapFree(GetProcessHeap(), 0, s_argv);
 	HeapFree(GetProcessHeap(), 0, argvContents);
 }
 
 
 bool wutil_HasCommandLineArgument(const wchar_t* arg)
 {
-	for(int i = 0; i < wutil_argc; i++)
+	for(int i = 0; i < s_argc; i++)
 	{
-		if(!wcscmp(wutil_argv[i], arg))
+		if(!wcscmp(s_argv[i], arg))
 			return true;
 	}
 
@@ -277,11 +304,11 @@ static void GetDirectories()
 	{
 		const UINT charsWritten = GetSystemDirectoryW(path, MAX_PATH);
 		debug_assert(charsWritten != 0);
-		systemPath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(path);
+		systemPath = new(wutil_Allocate(sizeof(fs::wpath))) fs::wpath(path);
 	}
 
 	// executable's directory
-	executablePath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(wutil_DetectExecutablePath());
+	executablePath = new(wutil_Allocate(sizeof(fs::wpath))) fs::wpath(wutil_DetectExecutablePath());
 
 	// application data
 	{
@@ -289,7 +316,7 @@ static void GetDirectories()
 		HANDLE token = 0;
 		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
 		debug_assert(SUCCEEDED(ret));
-		appdataPath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(path);
+		appdataPath = new(wutil_Allocate(sizeof(fs::wpath))) fs::wpath(path);
 	}
 }
 
@@ -297,11 +324,11 @@ static void GetDirectories()
 static void FreeDirectories()
 {
 	systemPath->~basic_path();
-	win_free(systemPath);
+	wutil_Free(systemPath);
 	executablePath->~basic_path();
-	win_free(executablePath);
+	wutil_Free(executablePath);
 	appdataPath->~basic_path();
-	win_free(appdataPath);
+	wutil_Free(appdataPath);
 }
 
 
@@ -311,7 +338,7 @@ static void FreeDirectories()
 // HACK: make sure a reference to user32 is held, even if someone
 // decides to delay-load it. this fixes bug #66, which was the
 // Win32 mouse cursor (set via user32!SetCursor) appearing as a
-// black 32x32(?) rectangle. underlying cause was as follows:
+// black 32x32(?) rectangle. the underlying cause was as follows:
 // powrprof.dll was the first client of user32, causing it to be
 // loaded. after we were finished with powrprof, we freed it, in turn
 // causing user32 to unload. later code would then reload user32,
@@ -341,14 +368,13 @@ static void FreeUser32Dll()
 static void EnableLowFragmentationHeap()
 {
 #if WINVER >= 0x0501
-	const HMODULE hKernel32Dll = GetModuleHandleW(L"kernel32.dll");
-	typedef BOOL (WINAPI* PHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
-	PHeapSetInformation pHeapSetInformation = (PHeapSetInformation)GetProcAddress(hKernel32Dll, "HeapSetInformation");
-	if(!pHeapSetInformation)
-		return;
-
-	ULONG flags = 2;	// enable LFH
-	pHeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
+	WUTIL_FUNC(pHeapSetInformation, BOOL, (HANDLE, HEAP_INFORMATION_CLASS, void*, size_t));
+	WUTIL_IMPORT_KERNEL32(HeapSetInformation, pHeapSetInformation);
+	if(pHeapSetInformation)
+	{
+		ULONG flags = 2;	// enable LFH
+		pHeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
+	}
 #endif	// #if WINVER >= 0x0501
 }
 
@@ -395,6 +421,8 @@ const wchar_t* wutil_WindowsFamily()
 		return L"WinXP64";
 	case WUTIL_VERSION_VISTA:
 		return L"Vista";
+	case WUTIL_VERSION_7:
+		return L"Win7";
 	default:
 		return L"Windows";
 	}
@@ -422,21 +450,17 @@ size_t wutil_WindowsVersion()
 // that's bad, because the actual drivers are not in the subdirectory. to
 // work around this, provide for temporarily disabling redirection.
 
-typedef BOOL (WINAPI *PIsWow64Process)(HANDLE, PBOOL);
-typedef BOOL (WINAPI *PWow64DisableWow64FsRedirection)(PVOID*);
-typedef BOOL (WINAPI *PWow64RevertWow64FsRedirection)(PVOID);
-static PIsWow64Process pIsWow64Process;
-static PWow64DisableWow64FsRedirection pWow64DisableWow64FsRedirection;
-static PWow64RevertWow64FsRedirection pWow64RevertWow64FsRedirection;
+static WUTIL_FUNC(pIsWow64Process, BOOL, (HANDLE, PBOOL));
+static WUTIL_FUNC(pWow64DisableWow64FsRedirection, BOOL, (PVOID*));
+static WUTIL_FUNC(pWow64RevertWow64FsRedirection, BOOL, (PVOID));
 
 static bool isWow64;
 
 static void ImportWow64Functions()
 {
-	const HMODULE hKernel32Dll = GetModuleHandleW(L"kernel32.dll");
-	pIsWow64Process = (PIsWow64Process)GetProcAddress(hKernel32Dll, "IsWow64Process"); 
-	pWow64DisableWow64FsRedirection = (PWow64DisableWow64FsRedirection)GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
-	pWow64RevertWow64FsRedirection = (PWow64RevertWow64FsRedirection)GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
+	WUTIL_IMPORT_KERNEL32(IsWow64Process, pIsWow64Process);
+	WUTIL_IMPORT_KERNEL32(Wow64DisableWow64FsRedirection, pWow64DisableWow64FsRedirection);
+	WUTIL_IMPORT_KERNEL32(Wow64RevertWow64FsRedirection, pWow64RevertWow64FsRedirection);
 }
 
 static void DetectWow64()
@@ -468,7 +492,7 @@ WinScopedDisableWow64Redirection::WinScopedDisableWow64Redirection()
 	// more need to verify the pointers (their existence is implied).
 	if(!wutil_IsWow64())
 		return;
-	BOOL ok = pWow64DisableWow64FsRedirection(&m_wasRedirectionEnabled);
+	const BOOL ok = pWow64DisableWow64FsRedirection(&m_wasRedirectionEnabled);
 	WARN_IF_FALSE(ok);
 }
 
@@ -476,7 +500,7 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 {
 	if(!wutil_IsWow64())
 		return;
-	BOOL ok = pWow64RevertWow64FsRedirection(m_wasRedirectionEnabled);
+	const BOOL ok = pWow64RevertWow64FsRedirection(m_wasRedirectionEnabled);
 	WARN_IF_FALSE(ok);
 }
 
@@ -486,20 +510,29 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 
 #ifndef LIB_STATIC_LINK
 
-HMODULE wutil_LibModuleHandle;
+static HMODULE s_hModule;
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD UNUSED(reason), LPVOID UNUSED(reserved))
 {
 	DisableThreadLibraryCalls(hInstance);
-	wutil_LibModuleHandle = hInstance;
+	s_hModule = hInstance;
 	return TRUE;	// success (ignored unless reason == DLL_PROCESS_ATTACH)
+}
+
+HMODULE wutil_LibModuleHandle()
+{
+	return s_hModule;
 }
 
 #else
 
-HMODULE wutil_LibModuleHandle = GetModuleHandle(0);
+HMODULE wutil_LibModuleHandle()
+{
+	return GetModuleHandle(0);
+}
 
 #endif
+
 
 
 //-----------------------------------------------------------------------------
