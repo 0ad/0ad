@@ -293,12 +293,6 @@ static inline void ShutdownUpdateThread()
 
 static LibError whrt_Init()
 {
-	// note: several counter implementations use acpi.cpp. if a counter is
-	// deemed unsafe, it is shut down, which releases the (possibly only)
-	// reference to the ACPI module. unloading and reloading it after trying
-	// each counter would be a waste of time, so we grab a reference here.
-	(void)acpi_Init();
-
 	InitCounter();
 
 	// latch initial counter value so that timer starts at 0

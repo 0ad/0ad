@@ -111,9 +111,9 @@ static const fs::wpath& GetDirectSoundDriverPath()
 {
 #define DS_OK 0
 	typedef BOOL (CALLBACK* LPDSENUMCALLBACKW)(void*, const wchar_t*, const wchar_t*, void*);
-	typedef HRESULT (WINAPI *PDirectSoundEnumerateW)(LPDSENUMCALLBACKW, void*);
 	HMODULE hDsoundDll = LoadLibraryW(L"dsound.dll");
-	PDirectSoundEnumerateW pDirectSoundEnumerateW = (PDirectSoundEnumerateW)GetProcAddress(hDsoundDll, "DirectSoundEnumerateW");
+	WUTIL_FUNC(pDirectSoundEnumerateW, HRESULT, (LPDSENUMCALLBACKW, void*));
+	WUTIL_IMPORT(hDsoundDll, DirectSoundEnumerateW, pDirectSoundEnumerateW);
 	if(pDirectSoundEnumerateW)
 	{
 		HRESULT ret = pDirectSoundEnumerateW(DirectSoundCallback, (void*)0);

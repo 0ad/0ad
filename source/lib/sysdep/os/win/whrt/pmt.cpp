@@ -68,8 +68,6 @@ public:
 		// mahaf is needed for port I/O.
 		if(!mahaf_Init())
 			return ERR::FAIL;	// NOWARN (no Administrator privileges)
-		if(!acpi_Init())
-			return ERR::FAIL;	// NOWARN (happens on Win2k; see mahaf_IsPhysicalMappingDangerous)
 		// (note: it's called FADT, but the signature is "FACP")
 		const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 		if(!fadt)
@@ -81,7 +79,6 @@ public:
 
 	void Shutdown()
 	{
-		acpi_Shutdown();
 		mahaf_Shutdown();
 	}
 

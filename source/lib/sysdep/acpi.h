@@ -64,9 +64,18 @@ struct AcpiGenericAddress
 
 #pragma pack(pop)
 
-extern bool acpi_Init();
-extern void acpi_Shutdown();
+/**
+ * @param signature e.g. "RSDT"
+ * @return pointer to internal storage (valid until acpi_Shutdown())
+ *
+ * note: the first call may be slow, e.g. if a kernel-mode driver is
+ * loaded. subsequent requests will be faster since tables are cached.
+ **/
+LIB_API const AcpiTable* acpi_GetTable(const char* signature);
 
-extern const AcpiTable* acpi_GetTable(const char* signature);
+/**
+ * invalidates all pointers returned by acpi_GetTable.
+ **/
+LIB_API void acpi_Shutdown();
 
 #endif	// #ifndef INCLUDED_ACPI

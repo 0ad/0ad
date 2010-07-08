@@ -154,8 +154,6 @@ private:
 			return ERR::FAIL;	// NOWARN (happens on Win2k)
 		if(!mahaf_Init())
 			return ERR::FAIL;	// NOWARN (no Administrator privileges)
-		if(!acpi_Init())
-			WARN_RETURN(ERR::FAIL);	// shouldn't fail, since we've checked mahaf_IsPhysicalMappingDangerous
 
 		const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
 		if(!hpet)

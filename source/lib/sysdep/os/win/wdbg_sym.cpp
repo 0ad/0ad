@@ -42,12 +42,8 @@
 # include "lib/sysdep/arch/ia32/ia32_asm.h"
 #endif
 #include "lib/external_libraries/dbghelp.h"
-#include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wdbg.h"
 #include "lib/sysdep/os/win/wutil.h"
-
-
-WINIT_REGISTER_CRITICAL_INIT(wdbg_sym_Init);
 
 
 //----------------------------------------------------------------------------
@@ -64,6 +60,13 @@ static uintptr_t mod_base;
 // for StackWalk64; taken from PE header by wdbg_init.
 static WORD machine;
 
+// note: RtlCaptureStackBackTrace (http://msinilo.pl/blog/?p=40)
+// is likely to be much faster than StackWalk64 (especially relevant
+// for debug_GetCaller), but wasn't known during development and
+// remains undocumented.
+static WUTIL_FUNC(pRtlCaptureContext, VOID, (PCONTEXT));
+
+
 // call on-demand (allows handling exceptions raised before winit.cpp
 // init functions are called); no effect if already initialized.
 static LibError sym_init()
@@ -77,6 +80,7 @@ static LibError sym_init()
 	hProcess = GetCurrentProcess();
 
 	dbghelp_ImportFunctions();
+	WUTIL_IMPORT_KERNEL32(RtlCaptureContext, pRtlCaptureContext);
 
 	// set options
 	// notes:
@@ -299,14 +303,6 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 
 #endif
 
-// note: RtlCaptureStackBackTrace (http://msinilo.pl/blog/?p=40)
-// is likely to be much faster than StackWalk64 (especially relevant
-// for debug_GetCaller), but wasn't known during development and
-// remains undocumented.
-
-typedef VOID (WINAPI *PRtlCaptureContext)(PCONTEXT);
-static PRtlCaptureContext s_RtlCaptureContext;
-
 
 LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT* pcontext, const wchar_t* lastFuncToSkip)
 {
@@ -338,11 +334,11 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTE
 #if ARCH_IA32
 		ia32_asm_GetCurrentContext(&context);
 #else
-		if(!s_RtlCaptureContext)
+		if(!pRtlCaptureContext)
 			return ERR::NOT_SUPPORTED;	// NOWARN
 		memset(&context, 0, sizeof(context));
 		context.ContextFlags = CONTEXT_CONTROL|CONTEXT_INTEGER;
-		s_RtlCaptureContext(&context);
+		pRtlCaptureContext(&context);
 #endif
 	}
 	pcontext = &context;
@@ -1883,15 +1879,4 @@ void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 		DEBUG_DISPLAY_ERROR(L"wdbg_sym_WriteMinidump: unable to generate minidump.");
 
 	CloseHandle(hFile);
-}
-
-
-//-----------------------------------------------------------------------------
-
-static LibError wdbg_sym_Init()
-{
-	HMODULE hKernel32Dll = GetModuleHandleW(L"kernel32.dll");
-	s_RtlCaptureContext = (PRtlCaptureContext)GetProcAddress(hKernel32Dll, "RtlCaptureContext");
-
-	return INFO::OK;
 }

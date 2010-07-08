@@ -25,11 +25,12 @@
  */
 
 #include "precompiled.h"
+#include "lib/sysdep/os/win/wcpu.h"
 #include "lib/sysdep/os_cpu.h"
 
-#include "lib/sysdep/os/win/win.h"
 #include "lib/bits.h"
 #include "lib/module_init.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 #ifdef _OPENMP
 # include <omp.h>
@@ -130,9 +131,8 @@ size_t os_cpu_LargePageSize()
 
 	if(largePageSize == ~(size_t)0)
 	{
-		typedef SIZE_T (WINAPI *PGetLargePageMinimum)();
-		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
-		const PGetLargePageMinimum pGetLargePageMinimum = (PGetLargePageMinimum)GetProcAddress(hKernel32, "GetLargePageMinimum");
+		WUTIL_FUNC(pGetLargePageMinimum, SIZE_T, (void));
+		WUTIL_IMPORT_KERNEL32(GetLargePageMinimum, pGetLargePageMinimum);
 		if(pGetLargePageMinimum)
 		{
 			largePageSize = pGetLargePageMinimum();
@@ -148,11 +148,11 @@ size_t os_cpu_LargePageSize()
 }
 
 
-static void GetMemoryStatusEx(MEMORYSTATUSEX& mse)
+static void GetMemoryStatus(MEMORYSTATUSEX& mse)
 {
 	// note: we no longer bother dynamically importing GlobalMemoryStatusEx -
-	// it's available starting with Win2k and avoids overflow/wraparound
-	// on systems with >= 4 GB of memory.
+	// it's available on Win2k and above. this function safely handles
+	// systems with > 4 GB of memory.
 	mse.dwLength = sizeof(mse);
 	const BOOL ok = GlobalMemoryStatusEx(&mse);
 	WARN_IF_FALSE(ok);
@@ -165,7 +165,7 @@ size_t os_cpu_MemorySize()
 	if(memorySizeMiB == 0)
 	{
 		MEMORYSTATUSEX mse;
-		GetMemoryStatusEx(mse);
+		GetMemoryStatus(mse);
 		DWORDLONG memorySize = mse.ullTotalPhys;
 
 		// Richter, "Programming Applications for Windows": the reported
@@ -184,7 +184,7 @@ size_t os_cpu_MemorySize()
 size_t os_cpu_MemoryAvailable()
 {
 	MEMORYSTATUSEX mse;
-	GetMemoryStatusEx(mse);
+	GetMemoryStatus(mse);
 	const size_t memoryAvailableMiB = size_t(mse.ullAvailPhys / MiB);
 	return memoryAvailableMiB;
 }
@@ -233,21 +233,14 @@ uintptr_t wcpu_ProcessorMaskFromAffinity(DWORD_PTR processAffinity, DWORD_PTR af
 
 static const DWORD invalidProcessorNumber = (DWORD)-1;
 
+
+
 static DWORD CurrentProcessorNumber()
 {
-	typedef DWORD (WINAPI *PGetCurrentProcessorNumber)();
-	static PGetCurrentProcessorNumber pGetCurrentProcessorNumber;
-
-	static bool initialized;
-	if(!initialized)
-	{
-		initialized = true;
-		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
-		// note: NtGetCurrentProcessorNumber and RtlGetCurrentProcessorNumber aren't
-		// implemented on WinXP SP2, so we can't use those either.
-		pGetCurrentProcessorNumber = (PGetCurrentProcessorNumber)GetProcAddress(hKernel32, "GetCurrentProcessorNumber");
-	}
-
+	// note: NtGetCurrentProcessorNumber and RtlGetCurrentProcessorNumber aren't
+	// implemented on WinXP SP2.
+	WUTIL_FUNC(pGetCurrentProcessorNumber, DWORD, (void));
+	WUTIL_IMPORT_KERNEL32(GetCurrentProcessorNumber, pGetCurrentProcessorNumber);
 	if(pGetCurrentProcessorNumber)
 		return pGetCurrentProcessorNumber();
 	else

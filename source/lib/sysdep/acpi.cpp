@@ -23,14 +23,38 @@
 #include "precompiled.h"
 #include "lib/sysdep/acpi.h"
 
-#include "lib/sysdep/os/win/mahaf.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/module_init.h"
+
+#define ENABLE_MAHAF 0
+#if ENABLE_MAHAF
+# include "lib/sysdep/os/win/mahaf.h"
+#else
+# include "lib/sysdep/os/win/wacpi.h"
+#endif
 
 #pragma pack(1)
 
 typedef const volatile u8* PCV_u8;
 typedef const volatile AcpiTable* PCV_AcpiTable;
+
+
+//-----------------------------------------------------------------------------
+// table
+
+static AcpiTable* AllocateTable(size_t size)
+{
+	debug_assert(size >= sizeof(AcpiTable));
+	return (AcpiTable*)malloc(size);
+}
+
+
+template<typename T>
+static void DeallocateTable(const T* table)
+{
+	free((void*)table);
+}
+
 
 // return 8-bit checksum of a buffer (should be 0)
 static u8 ComputeChecksum(PCV_u8 buf, size_t numBytes)
@@ -43,9 +67,49 @@ static u8 ComputeChecksum(PCV_u8 buf, size_t numBytes)
 }
 
 
+static bool ValidateTable(const AcpiTable* table, const char* signature = 0)
+{
+	if(!table)
+		return false;
+
+	// caller knowns the signature; make sure it matches
+	if(signature)
+	{
+		if(memcmp(table->signature, signature, 4) != 0)
+			return false;
+	}
+	// no specific signature is called for; just make sure it's 4 letters
+	else
+	{
+		for(size_t i = 0; i < 4; i++)
+		{
+			if(!isalpha(table->signature[i]))
+				return false;
+		}
+	}
+
+	// must be at least as large as the common header
+	if(table->size < sizeof(AcpiTable))
+		return false;
+
+	// checksum of table must be 0
+	// .. AMIBIOS OEMB table has an incorrect checksum (off-by-one),
+	// so don't complain about any OEM tables (ignored anyway).
+	const bool isOemTable = (memcmp(table->signature, "OEM", 3) == 0);
+	if(!isOemTable)
+	{
+		if(ComputeChecksum((PCV_u8)table, table->size) != 0)
+			return false;
+	}
+
+	return true;
+}
+
+
+#if ENABLE_MAHAF
+
 //-----------------------------------------------------------------------------
 // exception-safe transactional map/use/unmap
-//-----------------------------------------------------------------------------
 
 // note: if the OS happens to unmap our physical memory, the Unsafe*
 // functions may crash. we catch this via SEH; on Unix, we'd need handlers
@@ -57,7 +121,7 @@ static void* FAILED    = (void*)(intptr_t)-1;
 
 typedef void* (*UnsafeFunction)(PCV_u8 mem, size_t numBytes, void* arg);
 
-static inline void* CallWithSafetyBlanket(UnsafeFunction func, PCV_u8 mem, size_t numBytes, void* arg)
+static void* CallWithSafetyBlanket(UnsafeFunction func, PCV_u8 mem, size_t numBytes, void* arg)
 {
 #if MSC_VERSION
 	__try
@@ -86,7 +150,6 @@ static void* TransactPhysicalMemory(uintptr_t physicalAddress, size_t numBytes, 
 
 //-----------------------------------------------------------------------------
 // Root System Descriptor Pointer
-//-----------------------------------------------------------------------------
 
 struct BiosDataArea
 { 
@@ -162,10 +225,9 @@ static bool RetrieveRsdp(RSDP& rsdp)
 
 
 //-----------------------------------------------------------------------------
-// table retrieval
-//-----------------------------------------------------------------------------
+// copy tables from physical memory
 
-static inline void* UnsafeAllocateCopyOfTable(PCV_u8 mem, size_t numBytes, void* arg)
+static void* UnsafeAllocateAndCopyTable(PCV_u8 mem, size_t numBytes, void* arg)
 {
 	debug_assert(numBytes >= sizeof(AcpiTable));
 
@@ -180,7 +242,7 @@ static inline void* UnsafeAllocateCopyOfTable(PCV_u8 mem, size_t numBytes, void*
 		return 0;
 	}
 
-	PCV_u8 copy = (PCV_u8)malloc(tableSize);
+	PCV_u8 copy = (PCV_u8)AllocateTable(tableSize);
 	if(!copy)
 		return FAILED;
 
@@ -188,130 +250,116 @@ static inline void* UnsafeAllocateCopyOfTable(PCV_u8 mem, size_t numBytes, void*
 	return (void*)copy;
 }
 
-// caller is responsible for verifying the table is valid and using
-// DeallocateTable to free it.
-static const AcpiTable* AllocateCopyOfTable(uintptr_t physicalAddress)
+
+static const AcpiTable* AllocateAndCopyTable(uintptr_t physicalAddress)
 {
 	// ACPI table sizes are not known until they've been mapped. since that
 	// is slow, we don't always want to do it twice. the solution is to map
 	// enough for a typical table; if that is too small, realloc and map again.
 	static const size_t initialSize = 4*KiB;
 	size_t actualSize = 0;
-	void* ret = TransactPhysicalMemory(physicalAddress, initialSize, UnsafeAllocateCopyOfTable, &actualSize);
+	void* ret = TransactPhysicalMemory(physicalAddress, initialSize, UnsafeAllocateAndCopyTable, &actualSize);
 	// initialSize was too small; actualSize has been set
 	if(ret == 0)
-		ret = TransactPhysicalMemory(physicalAddress, actualSize, UnsafeAllocateCopyOfTable);
+		ret = TransactPhysicalMemory(physicalAddress, actualSize, UnsafeAllocateAndCopyTable);
 	// *either* of the above calls failed to allocate memory
 	if(ret == FAILED)
 		return 0;
 	return (const AcpiTable*)ret;
 }
 
+#endif	// ENABLE_MAHAF
 
-template<typename T>
-static void DeallocateTable(const T* table)
+
+static void AllocateAndCopyTables(const AcpiTable**& tables, size_t& numTables)
 {
-	free((void*)table);
-}
+#if ENABLE_MAHAF
+	if(mahaf_IsPhysicalMappingDangerous())
+		return;
+	if(!mahaf_Init())
+		return;
 
-
-static bool VerifyTable(const AcpiTable* table, const char* signature = 0)
-{
-	if(!table)
-		return false;
-
-	// caller knowns the signature; make sure it matches
-	if(signature)
-	{
-		if(memcmp(table->signature, signature, 4) != 0)
-			return false;
-	}
-	// no specific signature is called for; just make sure it's 4 letters
-	else
-	{
-		for(size_t i = 0; i < 4; i++)
-		{
-			if(!isalpha(table->signature[i]))
-				return false;
-		}
-	}
-
-	// must be at least as large as the common header
-	if(table->size < sizeof(AcpiTable))
-		return false;
-
-	// checksum of table must be 0
-	// .. AMIBIOS OEMB table has an incorrect checksum (off-by-one),
-	// so don't complain about any OEM tables (ignored anyway).
-	const bool isOemTable = (memcmp(table->signature, "OEM", 3) == 0);
-	if(ComputeChecksum((PCV_u8)table, table->size) != 0 && !isOemTable)
-		return false;
-
-	return true;
-}
-
-
-static const AcpiTable* GetTable(uintptr_t physicalAddress, const char* signature = 0)
-{
-	const AcpiTable* table = AllocateCopyOfTable(physicalAddress);
-	if(VerifyTable(table, signature))
-		return table;
-	else
-	{
-		DeallocateTable(table);
-		return 0;
-	}
-}
-
-
-//-----------------------------------------------------------------------------
-// table storage
-//-----------------------------------------------------------------------------
-
-// Root System Descriptor Table
-struct RSDT
-{
-	AcpiTable header;
-	u32 tables[1];
-};
-
-// avoid std::map et al. because we may be called before _cinit
-static const AcpiTable** tables;
-static size_t numTables;
-
-static bool LatchAllTables()
-{
 	RSDP rsdp;
 	if(!RetrieveRsdp(rsdp))
-		return false;
-	const RSDT* rsdt = (const RSDT*)GetTable(rsdp.rsdtPhysicalAddress, "RSDT");
-	if(!rsdt)
-		return false;
+		return;
 
-	numTables = (rsdt->header.size - sizeof(AcpiTable)) / sizeof(rsdt->tables[0]);
-	debug_assert(numTables > 0);
+	// Root System Descriptor Table
+	struct RSDT
+	{
+		AcpiTable header;
+		u32 tableAddresses[1];
+	};
+	const RSDT* rsdt = (const RSDT*)AllocateAndCopyTable(rsdp.rsdtPhysicalAddress);
+	if(!ValidateTable(&rsdt->header, "RSDT"))
+	{
+		DeallocateTable(rsdt);
+		return;
+	}
+
+	numTables = (rsdt->header.size - sizeof(AcpiTable)) / sizeof(rsdt->tableAddresses[0]);
+	debug_assert(numTables != 0);
+
 	tables = new const AcpiTable*[numTables];
 	for(size_t i = 0; i < numTables; i++)
-		tables[i] = GetTable(rsdt->tables[i]);
+		tables[i] = AllocateAndCopyTable(rsdt->tableAddresses[i]);
 
 	DeallocateTable(rsdt);
-	return true;
+#else
+	const std::vector<u32> tableIDs = wacpi_TableIDs();
+	debug_assert(!tableIDs.empty());
+
+	numTables = tableIDs.size();
+	tables = new const AcpiTable*[numTables];
+
+	for(size_t i = 0; i < numTables; i++)
+	{
+		std::vector<u8> table = wacpi_GetTable(tableIDs[i]);
+		tables[i] = AllocateTable(table.size());
+		memcpy((void*)tables[i], &table[0], table.size());
+	}
+#endif
+
+	// to prevent callers from choking on invalid tables, we
+	// zero out the corresponding tables[] entries.
+	for(size_t i = 0; i < numTables; i++)
+	{
+		if(!ValidateTable(tables[i]))
+		{
+			DeallocateTable(tables[i]);
+			tables[i] = 0;
+		}
+	}
 }
 
 
-static void FreeAllTables()
+//-----------------------------------------------------------------------------
+
+// note: avoid global std::map etc. because we may be called before _cinit
+static const AcpiTable** tables;	// tables == 0 <=> not initialized
+static const AcpiTable* invalidTables;	// tables == &invalidTables => init failed
+static size_t numTables;
+
+void acpi_Shutdown()
 {
 	if(tables)
 	{
 		for(size_t i = 0; i < numTables; i++)
 			DeallocateTable(tables[i]);
-		delete[] tables;
+		SAFE_ARRAY_DELETE(tables);
+		numTables = 0;
 	}
+
+#if ENABLE_MAHAF
+	mahaf_Shutdown();
+#endif
 }
 
 
 const AcpiTable* acpi_GetTable(const char* signature)
 {
+	if(cpu_CAS(&tables, (const AcpiTable**)0, &invalidTables))
+		AllocateAndCopyTables(tables, numTables);
+
 	// (typically only a few tables, linear search is OK)
 	for(size_t i = 0; i < numTables; i++)
 	{
@@ -322,44 +370,5 @@ const AcpiTable* acpi_GetTable(const char* signature)
 			return table;
 	}
 
-	return 0;
+	return 0;	// no matching AND valid table found
 }
-
-
-//-----------------------------------------------------------------------------
-
-#define initState acpiInitState
-static ModuleInitState initState;
-
-bool acpi_Init()
-{
-	if(ModuleIsError(&initState))
-		return false;
-	if(!ModuleShouldInitialize(&initState))
-		return true;
-
-	if(mahaf_IsPhysicalMappingDangerous())
-		goto fail;
-	if(!mahaf_Init())
-		goto fail;
-
-	if(!LatchAllTables())
-		goto fail;
-
-	return true;
-
-fail:
-	ModuleSetError(&initState);
-	return false;
-}
-
-void acpi_Shutdown()
-{
-	if(!ModuleShouldShutdown(&initState))
-		return;
-
-	FreeAllTables();
-
-	mahaf_Shutdown();
-}
-#undef initState

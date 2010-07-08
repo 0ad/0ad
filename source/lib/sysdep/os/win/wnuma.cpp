@@ -43,9 +43,8 @@ WINIT_REGISTER_EARLY_INIT(wnuma_Init);
 
 static size_t NumNodes()
 {
-	typedef BOOL (WINAPI *PGetNumaHighestNodeNumber)(PULONG highestNode);
-	const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
-	const PGetNumaHighestNodeNumber pGetNumaHighestNodeNumber = (PGetNumaHighestNodeNumber)GetProcAddress(hKernel32, "GetNumaHighestNodeNumber");
+	WUTIL_FUNC(pGetNumaHighestNodeNumber, BOOL, (PULONG));
+	WUTIL_IMPORT_KERNEL32(GetNumaHighestNodeNumber, pGetNumaHighestNodeNumber);
 	if(pGetNumaHighestNodeNumber)
 	{
 		ULONG highestNode;
@@ -62,9 +61,8 @@ static size_t NumNodes()
 
 static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask)
 {
-	typedef BOOL (WINAPI *PGetNumaNodeProcessorMask)(UCHAR node, PULONGLONG affinity);
-	const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
-	const PGetNumaNodeProcessorMask pGetNumaNodeProcessorMask = (PGetNumaNodeProcessorMask)GetProcAddress(hKernel32, "GetNumaNodeProcessorMask");
+	WUTIL_FUNC(pGetNumaNodeProcessorMask, BOOL, (UCHAR, PULONGLONG));
+	WUTIL_IMPORT_KERNEL32(GetNumaNodeProcessorMask, pGetNumaNodeProcessorMask);
 	if(pGetNumaNodeProcessorMask)
 	{
 		DWORD_PTR processAffinity, systemAffinity;
@@ -155,14 +153,8 @@ size_t numa_AvailableMemory(size_t node)
 	// note: it is said that GetNumaAvailableMemoryNode sometimes incorrectly
 	// reports zero bytes. the actual cause may however be unexpected
 	// RAM configuration, e.g. not all slots filled.
-	typedef BOOL (WINAPI *PGetNumaAvailableMemoryNode)(UCHAR node, PULONGLONG availableBytes);
-	static PGetNumaAvailableMemoryNode pGetNumaAvailableMemoryNode;
-	if(!pGetNumaAvailableMemoryNode)
-	{
-		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
-		pGetNumaAvailableMemoryNode = (PGetNumaAvailableMemoryNode)GetProcAddress(hKernel32, "GetNumaAvailableMemoryNode");
-	}
-
+	WUTIL_FUNC(pGetNumaAvailableMemoryNode, BOOL, (UCHAR, PULONGLONG));
+	WUTIL_IMPORT_KERNEL32(GetNumaAvailableMemoryNode, pGetNumaAvailableMemoryNode);
 	if(pGetNumaAvailableMemoryNode)
 	{
 		ULONGLONG availableBytes;
@@ -228,15 +220,9 @@ bool numa_IsMemoryInterleaved()
 	static int isInterleaved = -1;
 	if(isInterleaved == -1)
 	{
-		if(acpi_Init())
-		{
-			// the BIOS only generates an SRAT (System Resource Affinity Table)
-			// if node interleaving is disabled.
-			isInterleaved = acpi_GetTable("SRAT") == 0;
-			acpi_Shutdown();
-		}
-		else
-			isInterleaved = 0;	// can't tell
+		// the BIOS only generates an SRAT (System Resource Affinity Table)
+		// if node interleaving is disabled.
+		isInterleaved = acpi_GetTable("SRAT") == 0;
 	}
 
 	return isInterleaved != 0;
@@ -329,15 +315,10 @@ void* numa_Allocate(size_t size, LargePageDisposition largePageDisposition, size
 
 static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 {
-	typedef BOOL (WINAPI *PQueryWorkingSetEx)(HANDLE hProcess, PVOID buffer, DWORD bufferSize);
-	static PQueryWorkingSetEx pQueryWorkingSetEx;
+	WUTIL_FUNC(pQueryWorkingSetEx, BOOL, (HANDLE, PVOID, DWORD));
+	WUTIL_IMPORT_KERNEL32(QueryWorkingSetEx, pQueryWorkingSetEx);
 	if(!pQueryWorkingSetEx)
-	{
-		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
-		pQueryWorkingSetEx = (PQueryWorkingSetEx)GetProcAddress(hKernel32, "QueryWorkingSetEx");
-		if(!pQueryWorkingSetEx)
-			return true;	// can't do anything
-	}
+		return true;	// can't do anything
 
 #if WINVER >= 0x600
 	size_t largePageSize = os_cpu_LargePageSize();
