@@ -116,14 +116,18 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 		<object type="button" style="wheatButton" size="8 275 158 315">
 			Visit our web site
 			<action on="Press"><![CDATA[
-				Engine.OpenURL("http://wildfiregames.com/0ad/");
+				var url = "http://wildfiregames.com/0ad/";
+				Engine.OpenURL(url);
+				messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
 			]]></action>
 		</object>
 
 		<object type="button" style="wheatButton" size="8 320 158 360">
 			Chat on IRC
 			<action on="Press"><![CDATA[
-				Engine.OpenURL("http://webchat.quakenet.org/?channels=0ad");
+				var url = "http://webchat.quakenet.org/?channels=0ad";
+				Engine.OpenURL(url);
+				messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
 			]]></action>
 		</object>
 
