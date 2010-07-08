@@ -92,21 +92,49 @@ function determineAction(x, y)
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
 
-	// Resource -> gather
-	var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+	// Check if the target entity is a resource, foundation, or enemy unit.
+	// Check if any entities in the selection can gather the requested resource, can build the foundation, or can attack the enemy
+	var resource;
+	var canBuild = false;
+	var canAttack = false;
+	
+	for each (entityID in selection)
+	{
+		var entState = Engine.GuiInterfaceCall("GetEntityState", entityID);
+		if (!entState)
+			continue;
+
+		if (targetState.resourceSupply)
+		{	
+				resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+				if (resource)
+					break;
+		}
+		else if (targetState.foundation && entState.buildEntities)
+		{
+				canBuild = true;
+				break;
+		}
+		else if (entState.attack && targetState.player != entState.player)
+		{
+				canAttack = true;
+				break;
+		}
+	}
+
+	// If target is a resource and we have resource gatherers in the selection, then gather
 	if (resource)
 		return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
 
-	// Different owner -> attack
-	// (TODO: this should only happen if the target is really targetable, not e.g. a tree that this unit can't gather)
-	if (entState.attack && targetState.player != entState.player)
+	// If target is a foundation and we have builders in the selection, then build
+	if (canBuild)
+		return {"type": "build", "cursor": "action-build", "target": targets[0]};
+		
+	// If target is an enemy and we have military units in the selection, then attack
+	if (canAttack)
 		return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
 
-	// If a builder, then: Foundation -> build
-	if (entState.buildEntities && targetState.foundation)
-		return {"type": "build", "cursor": "action-build", "target": targets[0]};
-
-	// TODO: need more actions
+	// TODO: need more actions (garrison, etc.)
 
 	// If we don't do anything more specific, just walk
 	return {"type": "move"};
