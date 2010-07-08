@@ -46,6 +46,13 @@
 #include "lib/sysdep/os/win/wutil.h"
 
 
+#if ARCH_IA32 && !CONFIG_OMIT_FP
+# define IA32_STACK_WALK_ENABLED 1
+#else
+# define IA32_STACK_WALK_ENABLED 0
+#endif
+
+
 //----------------------------------------------------------------------------
 // dbghelp
 //----------------------------------------------------------------------------
@@ -57,8 +64,10 @@
 static HANDLE hProcess;
 static uintptr_t mod_base;
 
-// for StackWalk64; taken from PE header by wdbg_init.
+#if !IA32_STACK_WALK_ENABLED
+// for StackWalk64; taken from PE header by sym_init.
 static WORD machine;
+#endif
 
 // note: RtlCaptureStackBackTrace (http://msinilo.pl/blog/?p=40)
 // is likely to be much faster than StackWalk64 (especially relevant
@@ -103,8 +112,11 @@ static LibError sym_init()
 	WARN_IF_FALSE(ok);
 
 	mod_base = (uintptr_t)pSymGetModuleBase64(hProcess, (u64)&sym_init);
+
+#if !IA32_STACK_WALK_ENABLED
 	IMAGE_NT_HEADERS* const header = pImageNtHeader((void*)(uintptr_t)mod_base);
 	machine = header->FileHeader.Machine;
+#endif
 
 	return INFO::OK;
 }
@@ -252,12 +264,6 @@ func2:
 	STARTHERE
 
 	*/
-
-#if ARCH_IA32 && !CONFIG_OMIT_FP
-# define IA32_STACK_WALK_ENABLED 1
-#else
-# define IA32_STACK_WALK_ENABLED 0
-#endif
 
 #if IA32_STACK_WALK_ENABLED
 

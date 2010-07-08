@@ -83,7 +83,7 @@ enum
 	SPECFLAG_SIGNED			= 4,	// +
 	SPECFLAG_SPACEPREFIX	= 8,	// <space>
 	SPECFLAG_ALTERNATE		= 16,	// #
-	SPECFLAG_ZEROPAD		= 32,	// 0
+	SPECFLAG_ZEROPAD		= 32 	// 0
 };
 
 struct FormatChunk
@@ -271,7 +271,7 @@ int sys_vswprintf(TCHAR* buffer, size_t count, const TCHAR* format, va_list argp
 
 				// Read flags (but not if it's a 0 appearing after other digits)
 				if (!number && get_flag(chr))
-					s->flags |= get_flag(chr);
+					s->flags = (char)(s->flags|get_flag(chr));
 
 				// Read decimal numbers (position or width)
 				else if (isdigit(chr))
@@ -338,7 +338,7 @@ int sys_vswprintf(TCHAR* buffer, size_t count, const TCHAR* format, va_list argp
 						readchar(chr);
 					}
 
-					s->type = chr;
+					s->type = (char)chr;
 
 					specs.push_back(s);
 
