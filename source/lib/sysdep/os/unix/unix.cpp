@@ -35,6 +35,11 @@
 #define GNU_SOURCE
 #include <dlfcn.h>
 
+#if OS_MACOSX
+#define URL_OPEN_COMMAND "open"
+#else
+#define URL_OPEN_COMMAND "xdg-open"
+#endif
 
 // these are basic POSIX-compatible backends for the sysdep.h functions.
 // Win32 has better versions which override these.
@@ -245,9 +250,9 @@ LibError sys_open_url(const std::string& url)
 	{
 		// we are the child
 
-		execlp("xdg-open", "xdg-open", url.c_str(), (const char*)NULL);
+		execlp(URL_OPEN_COMMAND, URL_OPEN_COMMAND, url.c_str(), (const char*)NULL);
 
-		debug_printf(L"Failed to run xdg-open command\n");
+		debug_printf(L"Failed to run '" URL_OPEN_COMMAND "' command\n");
 
 		// We can't call exit() because that'll try to free resources which were the parent's,
 		// so just abort here
