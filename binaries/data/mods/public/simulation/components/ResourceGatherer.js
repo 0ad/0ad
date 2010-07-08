@@ -53,14 +53,12 @@ ResourceGatherer.prototype.GetRange = function()
  */
 ResourceGatherer.prototype.PerformGather = function(target)
 {
+	var rate = this.GetTargetGatherRate(target);
+	if (!rate)
+		return { "exhausted": true };
+
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 	var type = cmpResourceSupply.GetType();
-
-	var rate;
-	if (type.specific && this.template.Rates[type.generic+"."+type.specific])
-		rate = this.template.Rates[type.generic+"."+type.specific] * this.template.BaseSpeed;
-	else
-		rate = this.template.Rates[type.generic] * this.template.BaseSpeed;
 
 	var status = cmpResourceSupply.TakeResources(rate);
 
@@ -73,5 +71,26 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	return status;
 };
 
+/**
+ * Compute the amount of resources collected per second from the target.
+ * Returns 0 if resources cannot be collected (e.g. the target doesn't
+ * exist, or is the wrong type).
+ */
+ResourceGatherer.prototype.GetTargetGatherRate = function(target)
+{
+	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	if (!cmpResourceSupply)
+		return 0;
+
+	var type = cmpResourceSupply.GetType();
+
+	var rate;
+	if (type.specific && this.template.Rates[type.generic+"."+type.specific])
+		rate = this.template.Rates[type.generic+"."+type.specific];
+	else
+		rate = this.template.Rates[type.generic];
+
+	return (rate || 0) * this.template.BaseSpeed;
+}
 
 Engine.RegisterComponentType(IID_ResourceGatherer, "ResourceGatherer", ResourceGatherer);

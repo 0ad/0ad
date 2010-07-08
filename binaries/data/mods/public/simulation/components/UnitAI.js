@@ -91,18 +91,37 @@ UnitAI.prototype.Walk = function(x, z)
 	}
 };
 
+UnitAI.prototype.WalkToTarget = function(target)
+{
+	var cmpPosition = Engine.QueryInterface(target, IID_Position);
+	if (!cmpPosition)
+		return;
+
+	if (!cmpPosition.IsInWorld())
+		return;
+
+	var pos = cmpPosition.GetPosition();
+	this.Walk(pos.x, pos.z);
+}
+
 UnitAI.prototype.Attack = function(target)
 {
 	// Verify that we're able to respond to Attack commands
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
+	{
+		this.WalkToTarget(target);
 		return;
+	}
 
 	// TODO: verify that this is a valid target
 
 	var type = cmpAttack.GetBestAttack();
 	if (!type)
+	{
+		this.WalkToTarget(target);
 		return;
+	}
 
 	// Stop any previous action timers
 	this.CancelTimers();
@@ -125,7 +144,10 @@ UnitAI.prototype.Repair = function(target)
 	// Verify that we're able to respond to Repair commands
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 	if (!cmpBuilder)
+	{
+		this.WalkToTarget(target);
 		return;
+	}
 
 	// TODO: verify that this is a valid target
 
@@ -149,7 +171,17 @@ UnitAI.prototype.Gather = function(target)
 	// Verify that we're able to respond to Gather commands
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 	if (!cmpResourceGatherer)
+	{
+		this.WalkToTarget(target);
 		return;
+	}
+
+	// Verify that we can gather from this target
+	if (!cmpResourceGatherer.GetTargetGatherRate(target))
+	{
+		this.WalkToTarget(target);
+		return;
+	}
 
 	// TODO: verify that this is a valid target
 
