@@ -94,48 +94,28 @@ function determineAction(x, y)
 
 	// Check if the target entity is a resource, foundation, or enemy unit.
 	// Check if any entities in the selection can gather the requested resource, can build the foundation, or can attack the enemy
-	var resource;
-	var canBuild = false;
-	var canAttack = false;
-	
-	for each (entityID in selection)
+	for each (var entityID in selection)
 	{
 		var entState = Engine.GuiInterfaceCall("GetEntityState", entityID);
 		if (!entState)
 			continue;
 
-		if (targetState.resourceSupply)
+		if (targetState.resourceSupply) // If the target is a resource and we have the right kind of resource gatherers selected, then gather
 		{	
-				resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
-				if (resource)
-					break;
+			var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+			if (resource)
+				return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
 		}
-		else if (targetState.foundation && entState.buildEntities)
+		else if (targetState.foundation && entState.buildEntities) // If the target is a foundation and we have builders selected, then build (or repair)
 		{
-				canBuild = true;
-				break;
+			return {"type": "build", "cursor": "action-build", "target": targets[0]};
 		}
-		else if (entState.attack && targetState.player != entState.player)
+		else if (entState.attack && targetState.player != entState.player) // If the target is an enemy and we have military units selected, then attack
 		{
-				canAttack = true;
-				break;
+			return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
 		}
 	}
-
-	// If target is a resource and we have resource gatherers in the selection, then gather
-	if (resource)
-		return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
-
-	// If target is a foundation and we have builders in the selection, then build
-	if (canBuild)
-		return {"type": "build", "cursor": "action-build", "target": targets[0]};
-		
-	// If target is an enemy and we have military units in the selection, then attack
-	if (canAttack)
-		return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
-
-	// TODO: need more actions (garrison, etc.)
-
+	
 	// If we don't do anything more specific, just walk
 	return {"type": "move"};
 }

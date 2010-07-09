@@ -121,7 +121,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 
 	if (numButtons < 9) // Row 0
 	{
-		if ((guiName == "Queue")) // or garrison
+		if (guiName == "Queue") // or garrison
 			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -60 100% 100%-166";
 	
 		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, numButtons);
