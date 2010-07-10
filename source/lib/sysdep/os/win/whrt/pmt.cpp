@@ -71,7 +71,7 @@ public:
 		// (note: it's called FADT, but the signature is "FACP")
 		const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 		if(!fadt)
-			WARN_RETURN(ERR::NO_SYS);
+			return ERR::NO_SYS;	// NOWARN (ACPI tables might not be available)
 		m_portAddress = u16_from_larger(fadt->pmTimerPortAddress);
 
 		return INFO::OK;

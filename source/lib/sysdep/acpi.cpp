@@ -313,6 +313,7 @@ static void AllocateAndCopyTables(const AcpiTable**& tables, size_t& numTables)
 	for(size_t i = 0; i < numTables; i++)
 	{
 		std::vector<u8> table = wacpi_GetTable(tableIDs[i]);
+		debug_assert(!table.empty());
 		tables[i] = AllocateTable(table.size());
 		memcpy((void*)tables[i], &table[0], table.size());
 	}
