@@ -367,8 +367,8 @@ static int CALLBACK BrowseCallback(HWND hWnd, unsigned int msg, LPARAM UNUSED(lP
 	if(msg == BFFM_INITIALIZED)
 	{
 		const WPARAM wParam = TRUE;	// lpData is a Unicode string, not PIDL.
-		LRESULT ret = SendMessage(hWnd, BFFM_SETSELECTIONW, wParam, lpData);
-		return 1;
+		// (MSDN: the return values for both of these BFFM_ notifications are ignored)
+		(void)SendMessage(hWnd, BFFM_SETSELECTIONW, wParam, lpData);
 	}
 
 	return 0;
@@ -417,7 +417,7 @@ LibError sys_pick_directory(fs::wpath& path)
 LibError sys_open_url(const std::string& url)
 {
 	HINSTANCE r = ShellExecuteA(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
-	if ((int)r > 32)
+	if ((int)(intptr_t)r > 32)
 		return INFO::OK;
 
 	WARN_RETURN(ERR::FAIL);
@@ -430,7 +430,7 @@ LibError sys_generate_random_bytes(u8* buf, size_t count)
 	if(!CryptAcquireContext(&hCryptProv, NULL, NULL, PROV_RSA_FULL, 0))
 		WARN_RETURN(ERR::FAIL);
 
-	if(!CryptGenRandom(hCryptProv, count, buf))
+	if(!CryptGenRandom(hCryptProv, (DWORD)count, buf))
 		WARN_RETURN(ERR::FAIL);
 
 	if (!CryptReleaseContext(hCryptProv, 0))
