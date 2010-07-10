@@ -100,19 +100,23 @@ function determineAction(x, y)
 		if (!entState)
 			continue;
 
-		if (targetState.resourceSupply) // If the target is a resource and we have the right kind of resource gatherers selected, then gather
-		{	
-			var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
-			if (resource)
-				return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
-		}
-		else if (targetState.foundation && entState.buildEntities) // If the target is a foundation and we have builders selected, then build (or repair)
+		if (targetState.player != entState.player) // If the target is an enemy and we have military units selected, then attack
 		{
-			return {"type": "build", "cursor": "action-build", "target": targets[0]};
+			if (targetState.resourceSupply) // If the target is a resource and we have the right kind of resource gatherers selected, then gather
+			{	
+				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+				if (resource)
+					return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
+			}
+			else if (entState.attack) // If the target is an enemy and we have military units selected, then attack
+			{
+				return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
+			}
 		}
-		else if (entState.attack && targetState.player != entState.player) // If the target is an enemy and we have military units selected, then attack
+		else
 		{
-			return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
+			if (targetState.foundation && entState.buildEntities) // If the target is a foundation and we have builders selected, then build (or repair)
+				return {"type": "build", "cursor": "action-build", "target": targets[0]};
 		}
 	}
 	
