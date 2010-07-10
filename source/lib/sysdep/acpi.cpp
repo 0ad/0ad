@@ -306,7 +306,6 @@ static void AllocateAndCopyTables(const AcpiTable**& tables, size_t& numTables)
 	DeallocateTable(rsdt);
 #else
 	const std::vector<u32> tableIDs = wacpi_TableIDs();
-	debug_assert(!tableIDs.empty());
 
 	numTables = tableIDs.size();
 	tables = new const AcpiTable*[numTables];
