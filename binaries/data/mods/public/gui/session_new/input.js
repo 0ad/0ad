@@ -100,26 +100,29 @@ function determineAction(x, y)
 		if (!entState)
 			continue;
 
-		if (targetState.player != entState.player) // If the target is an enemy and we have military units selected, then attack
-		{
-			if (targetState.resourceSupply) // If the target is a resource and we have the right kind of resource gatherers selected, then gather
-			{	
-				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
-				if (resource)
-					return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
-			}
-			else if (entState.attack) // If the target is an enemy and we have military units selected, then attack
-			{
-				return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
-			}
+		var playerOwned = ((targetState.player == entState.player)? true : false);
+		var enemyOwned = ((targetState.player != entState.player)? true : false);
+		var gaiaOwned = ((targetState.player == 0)? true : false);
+
+		// If the target is a resource and we have the right kind of resource gatherers selected, then gather
+		// If the target is a foundation and we have builders selected, then build (or repair)
+		// If the target is an enemy, then attack
+		if (targetState.resourceSupply && (playerOwned || gaiaOwned)) 
+		{	
+			var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+			if (resource)
+				return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
 		}
-		else
+		else if (targetState.foundation && entState.buildEntities && playerOwned) 
 		{
-			if (targetState.foundation && entState.buildEntities) // If the target is a foundation and we have builders selected, then build (or repair)
-				return {"type": "build", "cursor": "action-build", "target": targets[0]};
+			return {"type": "build", "cursor": "action-build", "target": targets[0]};
+		}
+		else if (entState.attack && enemyOwned)
+		{
+			return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
 		}
 	}
-	
+
 	// If we don't do anything more specific, just walk
 	return {"type": "move"};
 }
