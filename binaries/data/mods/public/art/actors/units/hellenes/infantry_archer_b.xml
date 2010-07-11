@@ -5,7 +5,7 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="100"/>
-        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="Attack" speed="90"/>
+        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="Melee" speed="90"/>
         <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
         <animation event="0.23" file="infantry/general/chop.psa" name="gather_wood" speed="200"/>
@@ -16,10 +16,11 @@
         <animation event="0.43" file="infantry/general/mine.psa" name="gather_metal" speed="200"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="250"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="400"/>
+		<animation file="infantry/general/death/inf_05.psa" name="Death" speed="600"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>

@@ -10,10 +10,13 @@
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="walk" speed="40"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="run" speed="30"/>
         <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" name="melee" speed="75"/>
-        <animation file="infantry/general/death/inf_01.psa" name="death" speed="220"/>
-        <animation file="infantry/general/death/inf_03.psa" name="death" speed="220"/>
-        <animation file="infantry/general/death/inf_06.psa" name="death" speed="220"/>
-        <animation file="infantry/general/death/inf_07.psa" name="death" speed="220"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
+		<animation file="infantry/general/death/inf_05.psa" name="Death" speed="600"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>

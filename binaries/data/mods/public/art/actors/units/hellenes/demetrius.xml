@@ -7,9 +7,14 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
-        <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="120"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="130"/>
         <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="Attack" speed="200"/>
+		<animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
