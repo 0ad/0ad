@@ -1481,7 +1481,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 					vertexes[n].pred = curr.id;
 					if (n == GOAL_VERTEX_ID)
 						vertexes[n].p = npos; // remember the new best goal position
-					ShortPathPriorityQueue::Item t = { n, g + vertexes[n].h };
+					ShortPathPriorityQueue::Item t = { (u16)n, g + vertexes[n].h };
 					open.push(t);
 
 					// Remember the heuristically best vertex we've seen so far, in case we never actually reach the target

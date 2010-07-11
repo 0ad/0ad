@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-template<typename T> T next(T x) { T t = x; return ++t; }
+template<typename T> T next_it(T x) { T t = x; return ++t; }
 
 template<typename T> void delete_fn(T* v) { delete v; }
 
@@ -74,11 +74,11 @@ void CommandProc::Submit(Command* cmd)
 {
 	// If some commands have been undone at the time we insert this new one,
 	// delete and remove them all.
-	std::for_each(next(m_CurrentCommand), m_Commands.end(), delete_fn<Command>);
-	m_Commands.erase(next(m_CurrentCommand), m_Commands.end());
-	assert(next(m_CurrentCommand) == m_Commands.end());
+	std::for_each(next_it(m_CurrentCommand), m_Commands.end(), delete_fn<Command>);
+	m_Commands.erase(next_it(m_CurrentCommand), m_Commands.end());
+	assert(next_it(m_CurrentCommand) == m_Commands.end());
 
-	m_CurrentCommand = m_Commands.insert(next(m_CurrentCommand), cmd);
+	m_CurrentCommand = m_Commands.insert(next_it(m_CurrentCommand), cmd);
 
 	(*m_CurrentCommand)->Do();
 }
@@ -94,7 +94,7 @@ void CommandProc::Undo()
 
 void CommandProc::Redo()
 {
-	if (next(m_CurrentCommand) != m_Commands.end())
+	if (next_it(m_CurrentCommand) != m_Commands.end())
 	{
 		++m_CurrentCommand;
 		(*m_CurrentCommand)->Redo();
@@ -109,7 +109,7 @@ void CommandProc::Merge()
 		return;
 	}
 
-	if (next(m_CurrentCommand) != m_Commands.end())
+	if (next_it(m_CurrentCommand) != m_Commands.end())
 	{
 		debug_warn(L"Merge illogic: not at stack top");
 		return;

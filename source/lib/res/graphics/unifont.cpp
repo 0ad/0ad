@@ -141,7 +141,7 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 		GLfloat w = (GLfloat)Width  / (GLfloat)TextureWidth;
 		GLfloat h = (GLfloat)Height / (GLfloat)TextureHeight;
 
-		GlyphData g = { u, -v, u+w, -v+h, OffsetX, -OffsetY, OffsetX+Width, -OffsetY+Height, Advance };
+		GlyphData g = { u, -v, u+w, -v+h, (i16)OffsetX, (i16)-OffsetY, (i16)(OffsetX+Width), (i16)(-OffsetY+Height), (i16)Advance };
 		(*f->glyphs)[(u16)Codepoint] = g;
 	}
 
