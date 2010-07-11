@@ -43,6 +43,7 @@
 #include <cassert>
 #include <vector>
 #include <limits>
+#include <iterator>
 
 class PSAConvert
 {
@@ -128,7 +129,7 @@ public:
 
 				// Push frameBoneTransforms onto the back of boneTransforms
 				copy(frameBoneTransforms.begin(), frameBoneTransforms.end(),
-					inserter(boneTransforms, boneTransforms.end()));
+					std::inserter(boneTransforms, boneTransforms.end()));
 			}
 
 			// Convert into game's coordinate space
