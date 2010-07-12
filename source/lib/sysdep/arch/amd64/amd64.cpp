@@ -45,9 +45,9 @@ void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
 
 #if MSC_VERSION
 
-bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t newValue)
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
 {
-	const uintptr_t initial = _InterlockedCompareExchange64((volatile __int64*)location, newValue, expected);
+	const intptr_t initial = _InterlockedCompareExchange64((volatile __int64*)location, newValue, expected);
 	return initial == expected;
 }
 
@@ -63,7 +63,7 @@ void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 	amd64_AtomicAdd(location, increment);
 }
 
-bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t newValue)
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
 {
 	return amd64_CAS(location, expected, newValue) ? true : false;
 }

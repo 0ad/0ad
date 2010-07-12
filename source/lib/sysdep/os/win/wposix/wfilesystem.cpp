@@ -173,7 +173,7 @@ struct WDIR
 // thread-safe.
 
 static WDIR global_wdir;
-static uintptr_t global_wdir_is_in_use;
+static intptr_t global_wdir_is_in_use;
 
 // zero-initializes the WDIR (code below relies on this)
 static inline WDIR* wdir_alloc()

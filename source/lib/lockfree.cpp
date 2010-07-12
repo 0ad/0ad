@@ -707,21 +707,13 @@ LibError lfh_erase(LFHash* hash, uintptr_t key)
 
 //-----------------------------------------------------------------------------
 
-static ModuleInitState initState;
-
 void lockfree_Init()
 {
-	if(!ModuleShouldInitialize(&initState))
-		return;
-
 	tls_init();
 }
 
 void lockfree_Shutdown()
 {
-	if(!ModuleShouldShutdown(&initState))
-		return;
-
 	smr_shutdown();
 }
 

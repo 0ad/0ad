@@ -150,7 +150,7 @@ extern void matrix_free(void** matrix);
  * @return allocated memory (typically = <storage>, but falls back to
  * malloc if that's in-use), or 0 (with warning) if out of memory.
  **/
-extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size);
+extern void* single_calloc(void* storage, volatile intptr_t* in_use_flag, size_t size);
 
 /**
  * Free a memory block that had been allocated by single_calloc.
@@ -159,7 +159,7 @@ extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_
  * @param in_use_flag Exact value passed to single_calloc.
  * @param Exact value returned by single_calloc.
  **/
-extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
+extern void single_free(void* storage, volatile intptr_t* in_use_flag, void* p);
 
 #ifdef __cplusplus
 

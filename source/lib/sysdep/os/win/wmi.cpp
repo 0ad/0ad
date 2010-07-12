@@ -44,14 +44,10 @@ static ModuleInitState initState;
 
 static LibError Init()
 {
-	if(!ModuleShouldInitialize(&initState))
-		return INFO::SKIPPED;
-
 	HRESULT hr;
 
 	hr = CoInitialize(0);
-	if(FAILED(hr))
-		WARN_RETURN(ERR::_1);
+	debug_assert(hr == S_OK || hr == S_FALSE);	// S_FALSE => already initialized
 
 	hr = CoInitializeSecurity(0, -1, 0, 0, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, 0, EOAC_NONE, 0);
 	if(FAILED(hr))
@@ -75,22 +71,23 @@ static LibError Init()
 	return INFO::OK;
 }
 
-
-void wmi_Shutdown()
+static void Shutdown()
 {
-	if(!ModuleShouldShutdown(&initState))
-		return;
-
 	pSvc->Release();
 
 	// note: don't shut down COM because other modules may still be using it.
 	//CoUninitialize();
 }
 
+void wmi_Shutdown()
+{
+	ModuleShutdown(&initState, Shutdown);
+}
+
 
 LibError wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
 {
-	RETURN_ERR(Init());
+	RETURN_ERR(ModuleInit(&initState, Init));
 
 	IEnumWbemClassObjectPtr pEnum = 0;
 	wchar_t query[200];

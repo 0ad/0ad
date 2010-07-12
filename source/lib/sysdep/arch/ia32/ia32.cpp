@@ -153,7 +153,7 @@ void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 }
 
 
-bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value)
 {
 	return ia32_asm_CAS(location, expected, new_value);
 }

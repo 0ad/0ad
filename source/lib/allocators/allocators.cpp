@@ -107,7 +107,7 @@ void matrix_free(void** matrix)
 // allocator optimized for single instances
 //-----------------------------------------------------------------------------
 
-void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
+void* single_calloc(void* storage, volatile intptr_t* in_use_flag, size_t size)
 {
 	// sanity check
 	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);
@@ -126,7 +126,7 @@ void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 }
 
 
-void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
+void single_free(void* storage, volatile intptr_t* in_use_flag, void* p)
 {
 	// sanity check
 	debug_assert(*in_use_flag == 0 || *in_use_flag == 1);

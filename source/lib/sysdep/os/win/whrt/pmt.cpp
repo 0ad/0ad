@@ -66,8 +66,7 @@ public:
 	LibError Activate()
 	{
 		// mahaf is needed for port I/O.
-		if(!mahaf_Init())
-			return ERR::FAIL;	// NOWARN (no Administrator privileges)
+		RETURN_ERR(mahaf_Init());	// (fails without Administrator privileges)
 		// (note: it's called FADT, but the signature is "FACP")
 		const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 		if(!fadt)
@@ -79,7 +78,6 @@ public:
 
 	void Shutdown()
 	{
-		mahaf_Shutdown();
 	}
 
 	bool IsSafe() const

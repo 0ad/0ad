@@ -149,7 +149,7 @@ private:
 	VfsSubdirectories m_subdirectories;
 
 	PRealDirectory m_realDirectory;
-	volatile uintptr_t m_shouldPopulate;	// (cpu_CAS can't be used on bool)
+	volatile intptr_t m_shouldPopulate;	// (cpu_CAS can't be used on bool)
 };
 
 

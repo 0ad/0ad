@@ -89,9 +89,6 @@ public:
 			mahaf_UnmapPhysicalMemory((void*)m_hpetRegisters);
 			m_hpetRegisters = 0;
 		}
-
-		acpi_Shutdown();
-		mahaf_Shutdown();
 	}
 
 	bool IsSafe() const
@@ -152,8 +149,7 @@ private:
 	{
 		if(mahaf_IsPhysicalMappingDangerous())
 			return ERR::FAIL;	// NOWARN (happens on Win2k)
-		if(!mahaf_Init())
-			return ERR::FAIL;	// NOWARN (no Administrator privileges)
+		RETURN_ERR(mahaf_Init());	// (fails without Administrator privileges)
 
 		const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
 		if(!hpet)

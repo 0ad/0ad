@@ -42,7 +42,7 @@
 extern bool mahaf_IsPhysicalMappingDangerous();
 
 
-extern bool mahaf_Init();
+extern LibError mahaf_Init();
 extern void mahaf_Shutdown();
 
 extern u8  mahaf_ReadPort8 (u16 port);

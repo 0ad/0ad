@@ -54,9 +54,8 @@ const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT; // ::_1
 // surprising users. speed is irrelevant here. manually writing these stubs
 // is ugly, but delay-load error handling is hairy, so don't use that.
 //
-// the first call of these stubs must trigger wsock_ActualInit in case no
-// other winsock function was called yet. we can't simply rely on
-// ModuleShouldInitialize because taking references prevents shutdown.
+// the first call of these stubs must trigger OnLoad in case no
+// other winsock function was called yet.
 // adding an extra haveInitialized flag would be redundant. instead,
 // enter a clever but safe hack: we call a harmless winsock function that
 // triggers the delay load or does nothing if init has already happened.
@@ -115,15 +114,8 @@ static void ImportOptionalFunctions()
 
 //-----------------------------------------------------------------------------
 
-static ModuleInitState initState;
-
-// called from delay loader the first time a wsock function is called
-// (shortly before the actual wsock function is called).
-static LibError wsock_ActualInit()
+static LibError Init()
 {
-	if(!ModuleShouldInitialize(&initState))
-		return INFO::OK;
-
 	char d[1024];
 	int ret = WSAStartup(0x0002, d);	// want 2.0
 	debug_assert(ret == 0);
@@ -133,22 +125,31 @@ static LibError wsock_ActualInit()
 	return INFO::OK;
 }
 
+static void Shutdown()
+{
+	int ret = WSACleanup();
+	debug_assert(ret >= 0);
+}
+
+static ModuleInitState initState;
+
+// called from delay loader the first time a wsock function is called
+// (shortly before the actual wsock function is called).
+static LibError OnLoad()
+{
+	return ModuleInit(&initState, Init);
+}
+
 static LibError wsock_Init()
 {
-	// trigger wsock_ActualInit when someone first calls a winsock function.
-	static WdllLoadNotify loadNotify = { "ws2_32", wsock_ActualInit };
+	// trigger OnLoad when someone first calls a wsock function.
+	static WdllLoadNotify loadNotify = { "ws2_32", OnLoad };
 	wdll_add_notify(&loadNotify);
 	return INFO::OK;
 }
 
-
 static LibError wsock_Shutdown()
 {
-	if(!ModuleShouldShutdown(&initState))
-		return INFO::OK;
-
-	int ret = WSACleanup();
-	debug_assert(ret >= 0);
-
+	ModuleShutdown(&initState, Shutdown);
 	return INFO::OK;
 }

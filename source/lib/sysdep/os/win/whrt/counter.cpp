@@ -75,7 +75,7 @@ static ICounter* ConstructCounterAt(size_t id, void* address, size_t size)
 }
 
 
-static volatile uintptr_t isCounterAllocated;
+static volatile intptr_t isCounterAllocated;
 
 ICounter* CreateCounter(size_t id)
 {

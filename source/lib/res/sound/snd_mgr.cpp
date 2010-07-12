@@ -472,40 +472,40 @@ static size_t al_src_cap = AL_SRC_MAX;
 
 // note: to catch double-free bugs and ensure all sources are
 // released at exit, we segregate them into free and used lists.
-static uintptr_t al_srcs_used[AL_SRC_MAX];
-static uintptr_t al_srcs_free[AL_SRC_MAX];
+static intptr_t al_srcs_used[AL_SRC_MAX];
+static intptr_t al_srcs_free[AL_SRC_MAX];
 
 // total number of sources allocated by al_src_init
 static size_t al_src_allocated;
 
 
-static void srcs_insert(uintptr_t* srcs, ALuint al_src)
+static void srcs_insert(volatile intptr_t* srcs, ALuint al_src)
 {
 	for(size_t i = 0; i < al_src_allocated; i++)
 	{
-		if(cpu_CAS(&srcs[i], 0, (uintptr_t)al_src))
+		if(cpu_CAS(&srcs[i], 0, (intptr_t)al_src))
 			return;
 	}
 	debug_assert(0);	// list full (can't happen)
 }
 
-static void srcs_remove(uintptr_t* srcs, ALuint al_src)
+static void srcs_remove(volatile intptr_t* srcs, ALuint al_src)
 {
 	for(size_t i = 0; i < al_src_allocated; i++)
 	{
-		if(cpu_CAS(&srcs[i], (uintptr_t)al_src, 0))
+		if(cpu_CAS(&srcs[i], (intptr_t)al_src, 0))
 			return;
 	}
 	debug_assert(0);	// source not found (can't happen)
 }
 
 // @return first nonzero entry (which is then zeroed), or zero if there are none.
-static ALuint srcs_pop(uintptr_t* srcs)
+static ALuint srcs_pop(volatile intptr_t* srcs)
 {
 	for(size_t i = 0; i < al_src_allocated; i++)
 	{
 retry:
-		uintptr_t al_src = srcs[i];
+		intptr_t al_src = srcs[i];
 		cpu_MemoryBarrier();
 		if(!cpu_CAS(&srcs[i], al_src, 0))
 			goto retry;

@@ -78,7 +78,7 @@ LIB_API const char* cpu_IdentifierString();
  * @return false if the target word doesn't match the expected value,
  * otherwise true (also overwriting the contents of location)
  **/
-LIB_API bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t newValue);
+LIB_API bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue);
 
 /**
  * specialization of cpu_CAS for pointer types. this avoids error-prone
@@ -87,7 +87,7 @@ LIB_API bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t
 template<typename T>
 bool cpu_CAS(volatile T* location, T expected, T new_value)
 {
-	return cpu_CAS((volatile uintptr_t*)location, (uintptr_t)expected, (uintptr_t)new_value);
+	return cpu_CAS((volatile intptr_t*)location, (intptr_t)expected, (intptr_t)new_value);
 }
 
 /**

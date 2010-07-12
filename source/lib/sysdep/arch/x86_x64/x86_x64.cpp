@@ -36,6 +36,7 @@
 #include "lib/posix/posix.h"	// pthread
 #include "lib/bits.h"
 #include "lib/timer.h"
+#include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 
@@ -54,6 +55,19 @@
 #endif
 
 
+// some of this module's functions are frequently called but require
+// non-trivial initialization, so caching is helpful. isInitialized
+// flags aren't thread-safe, so we use ModuleInit. calling it from
+// every function is a bit wasteful, but it is convenient to avoid
+// requiring users to pass around a global state object.
+// one big Init() would be prone to deadlock if its subroutines also
+// call a public function (that re-enters ModuleInit), so each
+// function gets its own initState.
+
+
+//-----------------------------------------------------------------------------
+// CPUID
+
 // note: unfortunately the MSC __cpuid intrinsic does not allow passing
 // additional inputs (e.g. ecx = count), so we need to implement this
 // in assembly for both IA-32 and AMD64.
@@ -66,26 +80,33 @@ static void cpuid_impl(x86_x64_CpuidRegs* regs)
 #endif
 }
 
+static u32 cpuid_maxFunction;
+static u32 cpuid_maxExtendedFunction;
+
+static LibError InitCpuid()
+{
+	x86_x64_CpuidRegs regs = { 0 };
+
+	regs.eax = 0;
+	cpuid_impl(&regs);
+	cpuid_maxFunction = regs.eax;
+
+	regs.eax = 0x80000000;
+	cpuid_impl(&regs);
+	cpuid_maxExtendedFunction = regs.eax;
+
+	return INFO::OK;
+}
+
 bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
 {
-	static u32 maxFunction;
-	static u32 maxExtendedFunction;
-	if(!maxFunction)
-	{
-		x86_x64_CpuidRegs regs2;
-		regs2.eax = 0;
-		regs2.ecx = 0; // necessary to avoid valgrind uninitialized-value warnings
-		cpuid_impl(&regs2);
-		maxFunction = regs2.eax;
-		regs2.eax = 0x80000000;
-		cpuid_impl(&regs2);
-		maxExtendedFunction = regs2.eax;
-	}
+	static ModuleInitState initState;
+	ModuleInit(&initState, InitCpuid);
 
 	const u32 function = regs->eax;
-	if(function > maxExtendedFunction)
+	if(function > cpuid_maxExtendedFunction)
 		return false;
-	if(function < 0x80000000 && function > maxFunction)
+	if(function < 0x80000000 && function > cpuid_maxFunction)
 		return false;
 
 	cpuid_impl(regs);
@@ -96,11 +117,14 @@ bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
 //-----------------------------------------------------------------------------
 // capability bits
 
-static void DetectFeatureFlags(u32 caps[4])
+// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
+// keep in sync with enum x86_x64_Cap!
+static u32 caps[4];
+
+static LibError InitCaps()
 {
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
-	regs.ecx = 0; // necessary to avoid valgrind uninitialized-value warnings
 	if(x86_x64_cpuid(&regs))
 	{
 		caps[0] = regs.ecx;
@@ -112,77 +136,77 @@ static void DetectFeatureFlags(u32 caps[4])
 		caps[2] = regs.ecx;
 		caps[3] = regs.edx;
 	}
+
+	return INFO::OK;
 }
 
 bool x86_x64_cap(x86_x64_Cap cap)
 {
-	// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
-	// keep in sync with enum CpuCap!
-	static u32 x86_x64_caps[4];
+	static ModuleInitState initState;
+	ModuleInit(&initState, InitCaps);
 
-	// (since relevant CPUs will surely advertise at least one standard flag,
-	// they are zero iff we haven't been initialized yet)
-	if(!x86_x64_caps[1])
-		DetectFeatureFlags(x86_x64_caps);
-
-	const size_t tbl_idx = cap >> 5;
-	const size_t bit_idx = cap & 0x1f;
-	if(tbl_idx > 3)
+	const size_t index = cap >> 5;
+	const size_t bit = cap & 0x1F;
+	if(index >= ARRAY_SIZE(caps))
 	{
 		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
 		return false;
 	}
-	return (x86_x64_caps[tbl_idx] & Bit<u32>(bit_idx)) != 0;
+	return IsBitSet(caps[index], bit);
 }
 
 
 //-----------------------------------------------------------------------------
 // CPU identification
 
-static x86_x64_Vendors DetectVendor()
+static x86_x64_Vendors vendor;
+
+static LibError InitVendor()
 {
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 0;
-	regs.ecx = 0;
 	if(!x86_x64_cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 
 	// copy regs to string
 	// note: 'strange' ebx,edx,ecx reg order is due to ModR/M encoding order.
-	char vendor_str[13];
-	memcpy(&vendor_str[0], &regs.ebx, 4);
-	memcpy(&vendor_str[4], &regs.edx, 4);
-	memcpy(&vendor_str[8], &regs.ecx, 4);
-	vendor_str[12] = '\0';	// 0-terminate
+	char vendorString[13];
+	memcpy(&vendorString[0], &regs.ebx, 4);
+	memcpy(&vendorString[4], &regs.edx, 4);
+	memcpy(&vendorString[8], &regs.ecx, 4);
+	vendorString[12] = '\0';	// 0-terminate
 
-	if(!strcmp(vendor_str, "AuthenticAMD"))
-		return X86_X64_VENDOR_AMD;
-	else if(!strcmp(vendor_str, "GenuineIntel"))
-		return X86_X64_VENDOR_INTEL;
+	if(!strcmp(vendorString, "AuthenticAMD"))
+		vendor = X86_X64_VENDOR_AMD;
+	else if(!strcmp(vendorString, "GenuineIntel"))
+		vendor = X86_X64_VENDOR_INTEL;
 	else
 	{
 		DEBUG_WARN_ERR(ERR::CPU_UNKNOWN_VENDOR);
-		return X86_X64_VENDOR_UNKNOWN;
+		vendor = X86_X64_VENDOR_UNKNOWN;
 	}
+
+	return INFO::OK;
 }
 
 x86_x64_Vendors x86_x64_Vendor()
 {
-	static x86_x64_Vendors vendor = X86_X64_VENDOR_UNKNOWN;
-	if(vendor == X86_X64_VENDOR_UNKNOWN)
-		vendor = DetectVendor();
+	static ModuleInitState initState;
+	ModuleInit(&initState, InitVendor);
 	return vendor;
 }
 
 
-static void DetectSignature(size_t& model, size_t& family)
+static size_t model;
+static size_t family;
+
+static void InitModelAndFamily()
 {
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
-	regs.ecx = 0;
 	if(!x86_x64_cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-	model  = bits(regs.eax, 4, 7);
+	model = bits(regs.eax, 4, 7);
 	family = bits(regs.eax, 8, 11);
 	const size_t extendedModel = bits(regs.eax, 16, 19);
 	const size_t extendedFamily = bits(regs.eax, 20, 27);
@@ -193,10 +217,11 @@ static void DetectSignature(size_t& model, size_t& family)
 }
 
 
-static size_t DetectGeneration()
+static size_t generation;
+
+static LibError InitGeneration()
 {
-	size_t model, family;
-	DetectSignature(model, family);
+	InitModelAndFamily();
 
 	switch(x86_x64_Vendor())
 	{
@@ -205,15 +230,19 @@ static size_t DetectGeneration()
 		{
 		case 5:
 			if(model < 6)
-				return 5;	// K5
+				generation = 5;	// K5
 			else
-				return 6;	// K6
+				generation = 6;	// K6
+			break;
 
 		case 6:
-			return 7;	// K7 (Athlon)
+			generation = 7;	// K7 (Athlon)
+			break;
 
 		case 0xF:
-			return 8;	// K8 (Opteron)
+		case 0x10:
+			generation = 8;	// K8 (Opteron)
+			break;
 		}
 		break;
 
@@ -221,32 +250,34 @@ static size_t DetectGeneration()
 		switch(family)
 		{
 		case 5:
-			return 5;	// Pentium
+			generation = 5;	// Pentium
+			break;
 
 		case 6:
 			if(model < 0xF)
-				return 6;	// Pentium Pro/II/III/M
+				generation = 6;	// Pentium Pro/II/III/M
 			else
-				return 8;	// Core2Duo
+				generation = 8;	// Core2Duo
+			break;
 
 		case 0xF:
 			if(model <= 6)
-				return 7;	// Pentium 4/D
+				generation = 7;	// Pentium 4/D
+			break;
 		}
 		if(family >= 0x10)
-			return 9;
+			generation = 9;
 		break;
 	}
 
-	debug_assert(0);	// unknown CPU generation
-	return family;
+	debug_assert(generation != 0);
+	return INFO::OK;
 }
 
 size_t x86_x64_Generation()
 {
-	static size_t generation;
-	if(!generation)
-		generation = DetectGeneration();
+	static ModuleInitState initState;
+	ModuleInit(&initState, InitGeneration);
 	return generation;
 }
 
@@ -308,7 +339,7 @@ static x86_x64_CacheParameters L1Parameters(u32 reg, x86_x64_CacheType type)
 }
 
 // applies to L2, L3 and TLB2
-const size_t associativities[16] =
+static const size_t associativities[16] =
 {
 	0, 1, 2, 0, 4, 0, 8, 0,
 	16, 0, 32, 48, 64, 96, 128, x86_x64_fullyAssociative
@@ -397,12 +428,11 @@ static void AddTLB2ParameterPair(u32 reg, size_t pageSize)
 
 // AMD reports maxCpuidIdFunction > 4 but consider functions 2..4 to be
 // "reserved". cache characteristics are returned via ext. functions.
-static void DetectCacheAndTLB()
+static void InitCacheAndTLB()
 {
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 
 	regs.eax = 0x80000005;
-	regs.ecx = 0;
 	if(x86_x64_cpuid(&regs))
 	{
 		AddTLB1Parameters(regs);
@@ -433,7 +463,7 @@ static void DetectCache_CPUID4()
 	// note: ordering is undefined (see Intel AP-485)
 	for(u32 count = 0; ; count++)
 	{
-		x86_x64_CpuidRegs regs;
+		x86_x64_CpuidRegs regs = { 0 };
 		regs.eax = 4;
 		regs.ecx = count;
 		if(!x86_x64_cpuid(&regs))
@@ -622,9 +652,8 @@ static void DetectTLB_CPUID2()
 	// TODO: ensure we are pinned to the same CPU
 
 	// extract descriptors
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 2;
-	regs.ecx = 0;
 	if(!x86_x64_cpuid(&regs))
 		return;
 	size_t iterations = bits(regs.eax, 0, 7);
@@ -649,15 +678,12 @@ static void DetectTLB_CPUID2()
 	}
 }
 
-static void DetectCacheAndTLB()
-{
-	static bool alreadyDone;
-	if(alreadyDone)
-		return;
-	alreadyDone = true;
+static ModuleInitState cacheInitState;
 
+static LibError InitCacheAndTLB()
+{
 	if(x86_x64_Vendor() == X86_X64_VENDOR_AMD)
-		AMD::DetectCacheAndTLB();
+		AMD::InitCacheAndTLB();
 	else
 	{
 		DetectCache_CPUID4();
@@ -678,17 +704,19 @@ static void DetectCacheAndTLB()
 	debug_assert(dcache.levels >= 2);
 	debug_assert(dcache.parameters[0].lineSize != 0);
 	debug_assert(dcache.parameters[1].lineSize != 0);
+
+	return INFO::OK;
 }
 
 const x86_x64_Cache* x86_x64_ICache()
 {
-	DetectCacheAndTLB();
+	ModuleInit(&cacheInitState, InitCacheAndTLB);
 	return &icache;
 }
 
 const x86_x64_Cache* x86_x64_DCache()
 {
-	DetectCacheAndTLB();
+	ModuleInit(&cacheInitState, InitCacheAndTLB);
 	return &dcache;
 }
 
@@ -704,18 +732,20 @@ size_t x86_x64_L2CacheLineSize()
 
 const x86_x64_TLB* x86_x64_ITLB()
 {
-	DetectCacheAndTLB();
+	ModuleInit(&cacheInitState, InitCacheAndTLB);
 	return &itlb;
 }
 
 const x86_x64_TLB* x86_x64_DTLB()
 {
-	DetectCacheAndTLB();
+	ModuleInit(&cacheInitState, InitCacheAndTLB);
 	return &dtlb;
 }
 
 size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb)
 {
+	// note: receiving a TLB pointer means InitCacheAndTLB was called.
+
 	const u64 pageSize = 4*KiB;
 	const u64 largePageSize = 4*MiB;	// TODO: find out if we're using 2MB or 4MB
 	u64 totalSize = 0;	// [bytes]
@@ -738,12 +768,9 @@ size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb)
 /// functor to remove substrings from the CPU identifier string
 class StringStripper
 {
-	char* m_string;
-	size_t m_max_chars;
-
 public:
 	StringStripper(char* string, size_t max_chars)
-	: m_string(string), m_max_chars(max_chars)
+		: m_string(string), m_max_chars(max_chars)
 	{
 	}
 
@@ -761,19 +788,25 @@ public:
 			memmove(substring_pos, substring_pos+substring_length, num_chars);
 		}
 	}
+
+private:
+	char* m_string;
+	size_t m_max_chars;
 };
 
-static void DetectIdentifierString(char* identifierString, size_t maxChars)
+// 3 calls x 4 registers x 4 bytes = 48 + 0-terminator
+static char identifierString[48+1];
+
+static LibError InitIdentifierString()
 {
 	// get brand string (if available)
 	char* pos = identifierString;
-	bool have_brand_string = true;
+	bool gotBrandString = true;
 	for(u32 function = 0x80000002; function <= 0x80000004; function++)
 	{
-		x86_x64_CpuidRegs regs;
+		x86_x64_CpuidRegs regs = { 0 };
 		regs.eax = function;
-		regs.ecx = 0;
-		have_brand_string &= x86_x64_cpuid(&regs);
+		gotBrandString &= x86_x64_cpuid(&regs);
 		memcpy(pos, &regs, 16);
 		pos += 16;
 	}
@@ -784,11 +817,9 @@ static void DetectIdentifierString(char* identifierString, size_t maxChars)
 	// - the brand string is useless, e.g. "Unknown". this happens on
 	//   some older boards whose BIOS reprograms the string for CPUs it
 	//   doesn't recognize.
-	if(!have_brand_string || strncmp(identifierString, "Unknow", 6) == 0)
+	if(!gotBrandString || strncmp(identifierString, "Unknow", 6) == 0)
 	{
-		size_t model, family;
-		DetectSignature(model, family);
-
+		InitModelAndFamily();
 		switch(x86_x64_Vendor())
 		{
 		case X86_X64_VENDOR_AMD:
@@ -796,15 +827,15 @@ static void DetectIdentifierString(char* identifierString, size_t maxChars)
 			if(family == 6)
 			{
 				if(model == 3 || model == 7)
-					strcpy_s(identifierString, maxChars, "AMD Duron");
+					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "AMD Duron");
 				else if(model <= 5)
-					strcpy_s(identifierString, maxChars, "AMD Athlon");
+					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "AMD Athlon");
 				else
 				{
 					if(x86_x64_cap(X86_X64_CAP_AMD_MP))
-						strcpy_s(identifierString, maxChars, "AMD Athlon MP");
+						strcpy_s(identifierString, ARRAY_SIZE(identifierString), "AMD Athlon MP");
 					else
-						strcpy_s(identifierString, maxChars, "AMD Athlon XP");
+						strcpy_s(identifierString, ARRAY_SIZE(identifierString), "AMD Athlon XP");
 				}
 			}
 			break;
@@ -814,13 +845,13 @@ static void DetectIdentifierString(char* identifierString, size_t maxChars)
 			if(family == 6)
 			{
 				if(model == 1)
-					strcpy_s(identifierString, maxChars, "Intel Pentium Pro");
+					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Pentium Pro");
 				else if(model == 3 || model == 5)
-					strcpy_s(identifierString, maxChars, "Intel Pentium II");
+					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Pentium II");
 				else if(model == 6)
-					strcpy_s(identifierString, maxChars, "Intel Celeron");	
+					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Celeron");	
 				else
-					strcpy_s(identifierString, maxChars, "Intel Pentium III");
+					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Pentium III");
 			}
 			break;
 		}
@@ -828,38 +859,41 @@ static void DetectIdentifierString(char* identifierString, size_t maxChars)
 	// identifierString already holds a valid brand string; pretty it up.
 	else
 	{
-		const char* const undesired_strings[] = { "(tm)", "(TM)", "(R)", "CPU ", "          " };
-		std::for_each(undesired_strings, undesired_strings+ARRAY_SIZE(undesired_strings),
+		const char* const undesiredStrings[] = { "(tm)", "(TM)", "(R)", "CPU ", "          " };
+		std::for_each(undesiredStrings, undesiredStrings+ARRAY_SIZE(undesiredStrings),
 			StringStripper(identifierString, strlen(identifierString)+1));
 
 		// note: Intel brand strings include a frequency, but we can't rely
 		// on it because the CPU may be overclocked. we'll leave it in the
 		// string to show measurement accuracy and if SpeedStep is active.
 	}
+
+	return INFO::OK;
 }
 
 const char* cpu_IdentifierString()
 {
-	// 3 calls x 4 registers x 4 bytes = 48
-	static char identifierString[48+1] = {'\0'};
-	if(identifierString[0] == '\0')
-		DetectIdentifierString(identifierString, ARRAY_SIZE(identifierString));
+	static ModuleInitState initState;
+	ModuleInit(&initState, InitIdentifierString);
 	return identifierString;
 }
 
 
 //-----------------------------------------------------------------------------
-// misc stateless functions
+// miscellaneous stateless functions
+
+// these routines do not call ModuleInit (because some of them are
+// time-critical, e.g. cpu_Serialize) and should also avoid the
+// other x86_x64* functions and their global state.
+// in particular, use cpuid_impl instead of x86_x64_cpuid.
 
 u8 x86_x64_ApicId()
 {
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
-	regs.ecx = 0;
-	// note: CPUID function 1 should be available everywhere, but only
-	// processors with an xAPIC (e.g. P4/Athlon XP) will return a nonzero value.
-	if(!x86_x64_cpuid(&regs))
-		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+	// note: CPUID function 1 is always supported, but only processors with
+	// an xAPIC (e.g. P4/Athlon XP) will return a nonzero ID.
+	cpuid_impl(&regs);
 	const u8 apicId = (u8)bits(regs.ebx, 24, 31);
 	return apicId;
 }
@@ -893,10 +927,9 @@ void x86_x64_DebugBreak()
 
 void cpu_Serialize()
 {
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
-	regs.ecx = 0;
-	x86_x64_cpuid(&regs);	// CPUID serializes execution.
+	cpuid_impl(&regs);	// CPUID serializes execution.
 }
 
 
@@ -906,26 +939,27 @@ void cpu_Serialize()
 // set scheduling priority and restore when going out of scope.
 class ScopedSetPriority
 {
-	int m_old_policy;
-	sched_param m_old_param;
-
 public:
-	ScopedSetPriority(int new_priority)
+	ScopedSetPriority(int newPriority)
 	{
 		// get current scheduling policy and priority
-		pthread_getschedparam(pthread_self(), &m_old_policy, &m_old_param);
+		pthread_getschedparam(pthread_self(), &m_oldPolicy, &m_oldParam);
 
 		// set new priority
-		sched_param new_param = {0};
-		new_param.sched_priority = new_priority;
-		pthread_setschedparam(pthread_self(), SCHED_FIFO, &new_param);
+		sched_param newParam = {0};
+		newParam.sched_priority = newPriority;
+		pthread_setschedparam(pthread_self(), SCHED_FIFO, &newParam);
 	}
 
 	~ScopedSetPriority()
 	{
 		// restore previous policy and priority.
-		pthread_setschedparam(pthread_self(), m_old_policy, &m_old_param);
+		pthread_setschedparam(pthread_self(), m_oldPolicy, &m_oldParam);
 	}
+
+private:
+	int m_oldPolicy;
+	sched_param m_oldParam;
 };
 
 // note: this function uses timer.cpp!timer_Time, which is implemented via
@@ -948,19 +982,18 @@ double x86_x64_ClockFrequency()
 	// (background: it's used in x86_x64_rdtsc() to serialize instruction flow;
 	// the first call is documented to be slower on Intel CPUs)
 
-	int num_samples = 16;
+	size_t numSamples = 16;
 	// if clock is low-res, do less samples so it doesn't take too long.
 	// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
 	// ok for using the TSC as a time reference)
 	if(timer_Resolution() >= 1e-3)
-		num_samples = 8;
-	std::vector<double> samples(num_samples);
+		numSamples = 8;
+	std::vector<double> samples(numSamples);
 
-	for(int i = 0; i < num_samples; i++)
+	for(size_t i = 0; i < numSamples; i++)
 	{
 		double dt;
-		i64 dc; // i64 because VC6 can't convert u64 -> double,
-		        // and we don't need all 64 bits.
+		i64 dc;	// (i64 instead of u64 for faster conversion to double)
 
 		// count # of clocks in max{1 tick, 1 ms}:
 		// .. wait for start of tick.
@@ -1000,10 +1033,10 @@ double x86_x64_ClockFrequency()
 	// note: don't just take the lowest value! it could conceivably be
 	// too low, if background processing delays reading c1 (see above).
 	double sum = 0.0;
-	const int lo = num_samples/4, hi = 3*num_samples/4;
+	const int lo = numSamples/4, hi = 3*numSamples/4;
 	for(int i = lo; i < hi; i++)
 		sum += samples[i];
 
-	const double clock_frequency = sum / (hi-lo);
-	return clock_frequency;
+	const double clockFrequency = sum / (hi-lo);
+	return clockFrequency;
 }

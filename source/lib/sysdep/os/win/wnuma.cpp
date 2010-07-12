@@ -41,7 +41,9 @@ WINIT_REGISTER_EARLY_INIT(wnuma_Init);
 // node topology
 //-----------------------------------------------------------------------------
 
-static size_t NumNodes()
+// @return maximum (not actual) number of nodes, because Windows doesn't
+// guarantee node numbers are contiguous.
+static size_t MaxNodes()
 {
 	WUTIL_FUNC(pGetNumaHighestNodeNumber, BOOL, (PULONG));
 	WUTIL_IMPORT_KERNEL32(GetNumaHighestNodeNumber, pGetNumaHighestNodeNumber);
@@ -49,8 +51,8 @@ static size_t NumNodes()
 	{
 		ULONG highestNode;
 		const BOOL ok = pGetNumaHighestNodeNumber(&highestNode);
-		debug_assert(ok);
-		debug_assert(highestNode < os_cpu_NumProcessors());	// #nodes <= #processors
+		WARN_IF_FALSE(ok);
+		debug_assert(highestNode < os_cpu_NumProcessors());	// node index < #processors
 		return highestNode+1;
 	}
 	// NUMA not supported
@@ -59,7 +61,8 @@ static size_t NumNodes()
 }
 
 
-static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask)
+// @param nodesProcessorMask array of processor masks for each node
+static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask, size_t maxNodes)
 {
 	WUTIL_FUNC(pGetNumaNodeProcessorMask, BOOL, (UCHAR, PULONGLONG));
 	WUTIL_IMPORT_KERNEL32(GetNumaNodeProcessorMask, pGetNumaNodeProcessorMask);
@@ -68,15 +71,15 @@ static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask)
 		DWORD_PTR processAffinity, systemAffinity;
 		{
 			const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
-			debug_assert(ok);
+			WARN_IF_FALSE(ok);
 		}
 
-		for(size_t node = 0; node < numa_NumNodes(); node++)
+		for(size_t node = 0; node < maxNodes; node++)
 		{
 			ULONGLONG affinity;
 			{
 				const BOOL ok = pGetNumaNodeProcessorMask((UCHAR)node, &affinity);
-				debug_assert(ok);
+				WARN_IF_FALSE(ok);
 			}
 			const uintptr_t processorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, (DWORD_PTR)affinity);
 			nodesProcessorMask[node] = processorMask;
@@ -92,16 +95,21 @@ static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask)
 // rather than the other way around because wcpu provides the
 // wcpu_ProcessorMaskFromAffinity helper. there is no similar function to
 // convert processor to processorNumber.
-static void FillProcessorsNode(size_t numNodes, const uintptr_t* nodesProcessorMask, size_t* processorsNode)
+static void FillProcessorsNode(const uintptr_t* nodesProcessorMask, size_t maxNodes, size_t* processorsNode, size_t numProcessors)
 {
-	for(size_t node = 0; node < numNodes; node++)
+	for(size_t processor = 0; processor < numProcessors; processor++)
 	{
-		const uintptr_t processorMask = nodesProcessorMask[node];
-		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
+		bool foundNode = false;
+		for(size_t node = 0; node < maxNodes; node++)
 		{
-			if(IsBitSet(processorMask, processor))
+			if(IsBitSet(nodesProcessorMask[node], processor))
+			{
 				processorsNode[processor] = node;
+				foundNode = true;
+				break;
+			}
 		}
+		debug_assert(foundNode);
 	}
 }
 
@@ -111,7 +119,7 @@ static void FillProcessorsNode(size_t numNodes, const uintptr_t* nodesProcessorM
 
 struct NodeTopology	// POD
 {
-	size_t numNodes;
+	size_t maxNodes;
 	size_t processorsNode[os_cpu_MaxProcessors];
 	uintptr_t nodesProcessorMask[os_cpu_MaxProcessors];
 };
@@ -119,14 +127,14 @@ static NodeTopology s_nodeTopology;
 
 static void DetectNodeTopology()
 {
-	s_nodeTopology.numNodes = NumNodes();
-	FillNodesProcessorMask(s_nodeTopology.nodesProcessorMask);
-	FillProcessorsNode(s_nodeTopology.numNodes, s_nodeTopology.nodesProcessorMask, s_nodeTopology.processorsNode);
+	s_nodeTopology.maxNodes = MaxNodes();
+	FillNodesProcessorMask(s_nodeTopology.nodesProcessorMask, s_nodeTopology.maxNodes);
+	FillProcessorsNode(s_nodeTopology.nodesProcessorMask, s_nodeTopology.maxNodes, s_nodeTopology.processorsNode, os_cpu_NumProcessors());
 }
 
 size_t numa_NumNodes()
 {
-	return s_nodeTopology.numNodes;
+	return s_nodeTopology.maxNodes;
 }
 
 size_t numa_NodeFromProcessor(size_t processor)
@@ -137,7 +145,7 @@ size_t numa_NodeFromProcessor(size_t processor)
 
 uintptr_t numa_ProcessorMaskFromNode(size_t node)
 {
-	debug_assert(node < s_nodeTopology.numNodes);
+	debug_assert(node < s_nodeTopology.maxNodes);
 	return s_nodeTopology.nodesProcessorMask[node];
 }
 
@@ -159,7 +167,7 @@ size_t numa_AvailableMemory(size_t node)
 	{
 		ULONGLONG availableBytes;
 		const BOOL ok = pGetNumaAvailableMemoryNode((UCHAR)node, &availableBytes);
-		debug_assert(ok);
+		WARN_IF_FALSE(ok);
 		const size_t availableMiB = size_t(availableBytes / MiB);
 		return availableMiB;
 	}
@@ -169,43 +177,71 @@ size_t numa_AvailableMemory(size_t node)
 }
 
 
+#pragma pack(push, 1)
+
+// ACPI System Locality Information Table
+struct SLIT
+{
+	AcpiTable header;
+	u64 numSystemLocalities;
+	u8 entries[1];		// numSystemLocalities*numSystemLocalities entries
+};
+
+#pragma pack(pop)
+
+static double DetectRelativeDistance()
+{
+	// trust values reported by the BIOS, if available
+	const SLIT* slit = (const SLIT*)acpi_GetTable("SLIT");
+	if(slit)
+	{
+		const size_t n = slit->numSystemLocalities;
+		debug_assert(slit->header.size == sizeof(SLIT)-sizeof(slit->entries)+n*n);
+		// diagonals are specified to be 10
+		for(size_t i = 0; i < n; i++)
+			debug_assert(slit->entries[i*n+i] == 10);
+		// entries = relativeDistance * 10
+		return *std::max_element(slit->entries, slit->entries+n*n) / 10.0;
+	}
+
+	// if non-NUMA, skip the (expensive) measurement below.
+	if(numa_NumNodes() == 1)
+		return 1.0;
+
+	// allocate memory on one node
+	const size_t size = 16*MiB;
+	shared_ptr<u8> buffer((u8*)numa_AllocateOnNode(size, 0), numa_Deleter<u8>());
+
+	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
+
+	// measure min/max fill times required by a processor from each node
+	double minTime = 1e10, maxTime = 0.0;
+	for(size_t node = 0; node < numa_NumNodes(); node++)
+	{
+		const uintptr_t processorMask = numa_ProcessorMaskFromNode(node);
+		os_cpu_SetThreadAffinityMask(processorMask);
+
+		const double startTime = timer_Time();
+		memset(buffer.get(), 0, size);
+		const double elapsedTime = timer_Time() - startTime;
+
+		minTime = std::min(minTime, elapsedTime);
+		maxTime = std::max(maxTime, elapsedTime);
+	}
+
+	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
+
+	return maxTime / minTime;
+}
+
+
 double numa_Factor()
 {
 	WinScopedLock lock(WNUMA_CS);
 	static double factor;
 	if(factor == 0.0)
 	{
-		// if non-NUMA, skip the (expensive) measurements below.
-		if(numa_NumNodes() == 1)
-			factor = 1.0;
-		else
-		{
-			// allocate memory on one node
-			const size_t size = 16*MiB;
-			shared_ptr<u8> buffer((u8*)numa_AllocateOnNode(size, 0), numa_Deleter<u8>());
-
-			const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
-
-			// measure min/max fill times required by a processor from each node
-			double minTime = 1e10, maxTime = 0.0;
-			for(size_t node = 0; node < numa_NumNodes(); node++)
-			{
-				const uintptr_t processorMask = numa_ProcessorMaskFromNode(node);
-				os_cpu_SetThreadAffinityMask(processorMask);
-
-				const double startTime = timer_Time();
-				memset(buffer.get(), 0, size);
-				const double elapsedTime = timer_Time() - startTime;
-
-				minTime = std::min(minTime, elapsedTime);
-				maxTime = std::max(maxTime, elapsedTime);
-			}
-
-			(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
-
-			factor = maxTime / minTime;
-		}
-
+		factor = DetectRelativeDistance();
 		debug_assert(factor >= 1.0);
 		debug_assert(factor <= 3.0);	// (Microsoft guideline for NUMA systems)
 	}
@@ -214,16 +250,25 @@ double numa_Factor()
 }
 
 
+static int DetectMemoryInterleaving()
+{
+	// not NUMA => no interleaving
+	if(numa_NumNodes() == 1)
+		return 0;
+
+	// BIOS only generates SRAT if interleaving is disabled
+	if(acpi_GetTable("SRAT"))
+		return 0;
+
+	return 1;
+}
+
 bool numa_IsMemoryInterleaved()
 {
 	WinScopedLock lock(WNUMA_CS);
 	static int isInterleaved = -1;
 	if(isInterleaved == -1)
-	{
-		// the BIOS only generates an SRAT (System Resource Affinity Table)
-		// if node interleaving is disabled.
-		isInterleaved = acpi_GetTable("SRAT") == 0;
-	}
+		isInterleaved = DetectMemoryInterleaving();
 
 	return isInterleaved != 0;
 }

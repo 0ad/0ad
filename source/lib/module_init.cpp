@@ -27,64 +27,64 @@
 #include "precompiled.h"
 #include "lib/module_init.h"
 
-#include "lib/sysdep/cpu.h"	// cpu_CAS, cpu_AtomicAdd
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 
-// notes:
-// - value must be 0 to allow users to just define uninitialized static
-//   variables (they don't have access to our MODULE_* symbols)
-// - unlike expected in-game operation, the self-tests require repeated
-//   sequences of init/shutdown pairs. we therefore allow this in general
-//   (resetting back to MODULE_UNINITIALIZED after shutdown) because
-//   there's no real disadvantage other than loss of strictness.
-static const ModuleInitState MODULE_UNINITIALIZED = 0u;
-
-// (1..N = reference count)
-
-static const ModuleInitState MODULE_ERROR = ~(uintptr_t)1u;
+// not yet initialized, or already shutdown
+static const ModuleInitState UNINITIALIZED = 0;	// value documented in header
+// running user callback - concurrent ModuleInit callers must spin
+static const ModuleInitState BUSY = INFO::ALREADY_EXISTS;	// never returned
+// init succeeded; allow shutdown
+static const ModuleInitState INITIALIZED = INFO::SKIPPED;
 
 
-bool ModuleShouldInitialize(volatile ModuleInitState* pInitState)
+LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)())
 {
-	// currently uninitialized, so give the green light.
-	if(cpu_CAS(pInitState, MODULE_UNINITIALIZED, 1))
-		return true;
+	for(;;)
+	{
+		if(cpu_CAS(initState, UNINITIALIZED, BUSY))
+		{
+			LibError ret = init();
+			*initState = (ret == INFO::OK)? INITIALIZED : ret;
+			cpu_MemoryBarrier();
+			return ret;
+		}
 
-	// increment reference count - unless already in a final state.
-retry:
-	ModuleInitState latchedInitState = *pInitState;
-	if(latchedInitState == MODULE_ERROR)
-		return false;
-	if(!cpu_CAS(pInitState, latchedInitState, latchedInitState+1))
-		goto retry;
-	return false;
+		const ModuleInitState latchedInitState = *initState;
+		if(latchedInitState == UNINITIALIZED || latchedInitState == BUSY)
+		{
+			_mm_pause();
+			continue;
+		}
+
+		debug_assert(latchedInitState == INITIALIZED || latchedInitState < 0);
+		return (LibError)latchedInitState;
+	}
 }
 
 
-bool ModuleShouldShutdown(volatile ModuleInitState* pInitState)
+LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)())
 {
-	// decrement reference count - unless already in a final state.
-retry:
-	ModuleInitState latchedInitState = *pInitState;
-	if(latchedInitState == MODULE_UNINITIALIZED || latchedInitState == MODULE_ERROR)
-		return false;
-	if(!cpu_CAS(pInitState, latchedInitState, latchedInitState-1))
-		goto retry;
+	for(;;)
+	{
+		if(cpu_CAS(initState, INITIALIZED, BUSY))
+		{
+			shutdown();
+			*initState = UNINITIALIZED;
+			cpu_MemoryBarrier();
+			return INFO::OK;
+		}
 
-	// refcount reached zero => allow shutdown.
-	if(latchedInitState-1 == MODULE_UNINITIALIZED)
-		return true;
+		const ModuleInitState latchedInitState = *initState;
+		if(latchedInitState == INITIALIZED || latchedInitState == BUSY)
+		{
+			_mm_pause();
+			continue;
+		}
 
-	return false;
-}
+		if(latchedInitState == UNINITIALIZED)
+			return INFO::SKIPPED;
 
-
-void ModuleSetError(volatile ModuleInitState* pInitState)
-{
-	*pInitState = MODULE_ERROR;
-}
-
-
-bool ModuleIsError(volatile ModuleInitState* pInitState)
-{
-	return (*pInitState == MODULE_ERROR);
+		debug_assert(latchedInitState < 0);
+		return (LibError)latchedInitState;
+	}
 }

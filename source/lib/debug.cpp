@@ -202,7 +202,7 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 	// initializing local static objects from constants may happen when
 	// this is first called, which isn't thread-safe. (see C++ 6.7.4)
 	cassert(IDLE == 0);
-	static volatile uintptr_t state;
+	static volatile intptr_t state;
 
 	if(!cpu_CAS(&state, IDLE, BUSY))
 		return ERR::REENTERED;	// NOWARN
@@ -500,7 +500,7 @@ enum SkipStatus
 {
 	INVALID, VALID, BUSY
 };
-static uintptr_t skipStatus = INVALID;	// cpu_CAS requires uintptr_t
+static intptr_t skipStatus = INVALID;	// cpu_CAS requires uintptr_t
 static LibError errorToSkip;
 static size_t numSkipped;
 

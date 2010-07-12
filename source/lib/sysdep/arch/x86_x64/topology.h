@@ -37,6 +37,15 @@
 //   the various threading packages (Boost, OpenMP, POSIX, Win32, ..)
 
 
+/**
+ * @return a pointer to array (up to os_cpu_MaxProcessors entries;
+ * os_cpu_NumProcessors() of them are valid) of the processors'
+ * unique APIC IDs or zero if no xAPIC is present or
+ * process affinity is restricted.
+ **/
+LIB_API const u8* ApicIds();
+
+
 //-----------------------------------------------------------------------------
 // cpu
 
@@ -54,8 +63,6 @@ struct CpuTopology;
  * initialize static storage from which topology can be retrieved by
  * means of the following functions.
  * @return const pointer to a shared instance.
- *
- * WARNING: this function must not be reentered before it has returned once.
  **/
 LIB_API const CpuTopology* cpu_topology_Detect();
 

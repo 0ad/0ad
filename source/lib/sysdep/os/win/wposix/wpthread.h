@@ -54,7 +54,7 @@ enum
 //
 
 // one-time init
-typedef uintptr_t pthread_once_t;
+typedef intptr_t pthread_once_t;	// required for cpu_CAS
 #define PTHREAD_ONCE_INIT 0	// static pthread_once_t x = PTHREAD_ONCE_INIT;
 
 LIB_API int pthread_once(pthread_once_t*, void (*init_routine)());

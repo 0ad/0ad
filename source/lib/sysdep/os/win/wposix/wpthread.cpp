@@ -60,7 +60,7 @@ pthread_t pthread_self()
 
 int pthread_once(pthread_once_t* once, void (*init_routine)())
 {
-	if(cpu_CAS(once, 0, 1))
+	if(cpu_CAS((volatile intptr_t*)once, 0, 1))
 		init_routine();
 	return 0;
 }
@@ -137,7 +137,7 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	size_t i;
 	for(i = 0; i < MAX_DTORS; i++)
 	{
-		if(cpu_CAS((volatile uintptr_t*)&dtors[i].dtor, 0, (uintptr_t)dtor))
+		if(cpu_CAS((volatile intptr_t*)&dtors[i].dtor, (intptr_t)0, (intptr_t)dtor))
 			goto have_slot;
 	}
 

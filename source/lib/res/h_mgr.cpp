@@ -805,18 +805,13 @@ int h_get_refcnt(Handle h)
 
 static ModuleInitState initState;
 
-void h_mgr_init()
+static LibError Init()
 {
-	if(!ModuleShouldInitialize(&initState))
-		return;
+	return INFO::OK;
 }
 
-
-void h_mgr_shutdown()
+static void Shutdown()
 {
-	if(!ModuleShouldShutdown(&initState))
-		return;
-
 	debug_printf(L"H_MGR| shutdown. any handle frees after this are leaks!\n");
 
 	// forcibly close all open handles
@@ -852,4 +847,15 @@ void h_mgr_shutdown()
 		free(pages[j]);
 		pages[j] = 0;
 	}
+}
+
+
+void h_mgr_init()
+{
+	ModuleInit(&initState, Init);
+}
+
+void h_mgr_shutdown()
+{
+	ModuleShutdown(&initState, Shutdown);
 }

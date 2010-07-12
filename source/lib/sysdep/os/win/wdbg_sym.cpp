@@ -32,8 +32,8 @@
 #include <set>
 
 #include "lib/byte_order.h"
+#include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"
-
 #include "lib/debug_stl.h"
 #include "lib/app_hooks.h"
 #include "lib/path_util.h"
@@ -65,7 +65,7 @@ static HANDLE hProcess;
 static uintptr_t mod_base;
 
 #if !IA32_STACK_WALK_ENABLED
-// for StackWalk64; taken from PE header by sym_init.
+// for StackWalk64; taken from PE header by InitDbghelp.
 static WORD machine;
 #endif
 
@@ -76,16 +76,8 @@ static WORD machine;
 static WUTIL_FUNC(pRtlCaptureContext, VOID, (PCONTEXT));
 
 
-// call on-demand (allows handling exceptions raised before winit.cpp
-// init functions are called); no effect if already initialized.
-static LibError sym_init()
+static LibError InitDbghelp()
 {
-	// bail if already initialized (there's nothing to do).
-	// don't use pthread_once because we need to return success/error code.
-	static uintptr_t already_initialized = 0;
-	if(!cpu_CAS(&already_initialized, 0, 1))
-		return INFO::OK;
-
 	hProcess = GetCurrentProcess();
 
 	dbghelp_ImportFunctions();
@@ -111,7 +103,7 @@ static LibError sym_init()
 	const BOOL ok = pSymInitializeW(hProcess, UserSearchPath, fInvadeProcess);
 	WARN_IF_FALSE(ok);
 
-	mod_base = (uintptr_t)pSymGetModuleBase64(hProcess, (u64)&sym_init);
+	mod_base = (uintptr_t)pSymGetModuleBase64(hProcess, (u64)&InitDbghelp);
 
 #if !IA32_STACK_WALK_ENABLED
 	IMAGE_NT_HEADERS* const header = pImageNtHeader((void*)(uintptr_t)mod_base);
@@ -119,6 +111,16 @@ static LibError sym_init()
 #endif
 
 	return INFO::OK;
+}
+
+// ensure dbghelp is initialized exactly once.
+// call every time before dbghelp functions are used.
+// (on-demand initialization allows handling exceptions raised before
+// winit.cpp init functions are called)
+static void sym_init()
+{
+	static ModuleInitState initState;
+	ModuleInit(&initState, InitDbghelp);
 }
 
 
@@ -1834,8 +1836,8 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 
 LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* pcontext, const wchar_t* lastFuncToSkip)
 {
-	static uintptr_t already_in_progress;
-	if(!cpu_CAS(&already_in_progress, 0, 1))
+	static intptr_t busy;
+	if(!cpu_CAS(&busy, 0, 1))
 		return ERR::REENTERED;	// NOWARN
 
 	out_init(buf, maxChars);
@@ -1843,7 +1845,8 @@ LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* pcontext, const wc
 
 	LibError ret = wdbg_sym_WalkStack(dump_frame_cb, 0, (const CONTEXT*)pcontext, lastFuncToSkip);
 
-	already_in_progress = 0;
+	busy = 0;
+	cpu_MemoryBarrier();
 
 	return ret;
 }

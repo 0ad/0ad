@@ -232,10 +232,10 @@ public:
 	}
 
 private:
-	static const uintptr_t S_REFCNT = (~0u) >> 1;		// 0x7F..F
-	static const uintptr_t S_EXCLUSIVE = S_REFCNT+1u;	// 0x80..0
+	static const intptr_t S_REFCNT = (~0u) >> 1;		// 0x7F..F
+	static const intptr_t S_EXCLUSIVE = S_REFCNT+1u;	// 0x80..0
 
-	volatile uintptr_t m_status;
+	volatile intptr_t m_status;
 };
 
 #endif	// #ifndef INCLUDED_LOCKFREE

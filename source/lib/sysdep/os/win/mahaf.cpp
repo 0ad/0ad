@@ -295,45 +295,42 @@ static fs::wpath DriverPathname()
 
 //-----------------------------------------------------------------------------
 
-static ModuleInitState initState;
-
-bool mahaf_Init()
+static LibError Init()
 {
-	if(ModuleIsError(&initState))
-		return false;
-	if(!ModuleShouldInitialize(&initState))
-		return true;
-
 	if(wutil_HasCommandLineArgument(L"-wNoMahaf"))
-		goto fail;
+		return ERR::NOT_SUPPORTED;
 
 	{
-	const fs::wpath driverPathname = DriverPathname();
-	StartDriver(driverPathname);
+		const fs::wpath driverPathname = DriverPathname();
+		StartDriver(driverPathname);
 	}
 
 	{
-	const DWORD shareMode = 0;
-	hAken = CreateFileW(L"\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
-	if(hAken == INVALID_HANDLE_VALUE)
-		goto fail;
+		const DWORD shareMode = 0;
+		hAken = CreateFileW(L"\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+		if(hAken == INVALID_HANDLE_VALUE)
+			return ERR::INVALID_HANDLE;
 	}
 
-	return true;
-
-fail:
-	ModuleSetError(&initState);
-	return false;
+	return INFO::OK;
 }
 
-
-void mahaf_Shutdown()
+static void Shutdown()
 {
-	if(!ModuleShouldShutdown(&initState))
-		return;
-
 	CloseHandle(hAken);
 	hAken = INVALID_HANDLE_VALUE;
 
 	UninstallDriver();
+}
+
+static ModuleInitState initState;
+
+LibError mahaf_Init()
+{
+	return ModuleInit(&initState, Init);
+}
+
+void mahaf_Shutdown()
+{
+	ModuleShutdown(&initState, Shutdown);
 }

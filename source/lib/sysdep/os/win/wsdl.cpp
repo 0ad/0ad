@@ -1365,21 +1365,14 @@ void* SDL_GL_GetProcAddress(const char* name)
 // around ATI driver breakage)
 static ModuleInitState initState;
 
-int SDL_Init(Uint32 UNUSED(flags))
+static LibError Init()
 {
-	if(!ModuleShouldInitialize(&initState))
-		return 0;
-
 	key_Init();
-
-	return 0;
+	return INFO::OK;
 }
 
-void SDL_Quit()
+static void Shutdown()
 {
-	if(!ModuleShouldShutdown(&initState))
-		return;
-
 	is_quitting = true;
 
 	if(wutil_IsValidHandle(g_hDC))
@@ -1389,6 +1382,16 @@ void SDL_Quit()
 		WARN_IF_FALSE(DestroyWindow(g_hWnd));
 
 	video_Shutdown();
+}
+
+int SDL_Init(Uint32 UNUSED(flags))
+{
+	return (ModuleInit(&initState, Init) < 0)? -1 : 0;
+}
+
+void SDL_Quit()
+{
+	ModuleShutdown(&initState, Shutdown);
 }
 
 

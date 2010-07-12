@@ -28,45 +28,47 @@
 #define INCLUDED_MODULE_INIT
 
 /**
- * initialization state of a module: class, source file, or whatever.
- *
- * can be declared as a static variable => no initializer needed,
- * since 0 is the correct initial value.
- *
- * DO NOT change the value directly! (that'd break the carefully thought-out
- * lock-free implementation)
+ * initialization state of a module (class, source file, etc.)
+ * must be initialized to zero (e.g. by defining as a static variable).
+ * DO NOT change the value!
  **/
-typedef uintptr_t ModuleInitState;	// uintptr_t required by cpu_CAS
+typedef intptr_t ModuleInitState;	// intptr_t is required by cpu_CAS
 
 /**
- * @return whether initialization should go forward, i.e. initState is
- * currently MODULE_UNINITIALIZED. increments initState afterwards.
+ * calls a user-defined init function if initState is zero.
  *
- * (the reason for this function - and tricky part - is thread-safety)
- **/
-extern bool ModuleShouldInitialize(volatile ModuleInitState* initState);
-
-/**
- * if module reference count is valid, decrement it.
- * @return whether shutdown should go forward, i.e. this is the last
- * shutdown call.
- **/
-extern bool ModuleShouldShutdown(volatile ModuleInitState* initState);
-
-/**
- * indicate the module is unusable, e.g. due to failure during init.
- * all subsequent ModuleShouldInitialize/ModuleShouldShutdown calls
- * for this initState will return false.
- **/
-extern void ModuleSetError(volatile ModuleInitState* initState);
-
-/**
- * @return whether the module is in the failure state, i.e. ModuleSetError
- * was previously called on the same initState.
+ * @return INFO::SKIPPED if already initialized, a LibError if the
+ * previous invocation failed, or the value returned by the callback.
  *
- * this function is provided so that modules can report init failure to
- * the second or later caller.
+ * postcondition: initState is "initialized" if the callback returned
+ * INFO::OK, otherwise its LibError return value (which prevents
+ * shutdown from being called).
+ *
+ * thread-safe: subsequent callers spin until the callback returns
+ * (this prevents using partially-initialized modules)
+ *
+ * note that callbacks typically reference static data and thus do not
+ * require a function argument, but that can later be added if necessary.
  **/
-extern bool ModuleIsError(volatile ModuleInitState* initState);
+LIB_API LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)());
+
+/**
+ * calls a user-defined shutdown function if initState is "initialized".
+ *
+ * @return INFO::OK if shutdown occurred, INFO::SKIPPED if initState was
+ * zero (uninitialized), otherwise the LibError returned by ModuleInit.
+ *
+ * postcondition: initState remains set to the LibError, or has been
+ * reset to zero to allow multiple init/shutdown pairs, e.g. in self-tests.
+ *
+ * note: there is no provision for reference-counting because that
+ * turns out to be problematic (a user might call shutdown immediately
+ * after init; if this is the first use of the module, it will
+ * be shutdown prematurely, which is at least inefficient and
+ * possibly dangerous). instead, shutdown should only be called when
+ * cleanup is necessary (e.g. at exit before leak reporting) and
+ * it is certain that the module is no longer in use.
+ **/
+LIB_API LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)());
 
 #endif	// #ifndef INCLUDED_MODULE_INIT
