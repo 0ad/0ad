@@ -52,7 +52,7 @@ LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)())
 		const ModuleInitState latchedInitState = *initState;
 		if(latchedInitState == UNINITIALIZED || latchedInitState == BUSY)
 		{
-			_mm_pause();
+			cpu_Pause();
 			continue;
 		}
 
@@ -77,7 +77,7 @@ LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)())
 		const ModuleInitState latchedInitState = *initState;
 		if(latchedInitState == INITIALIZED || latchedInitState == BUSY)
 		{
-			_mm_pause();
+			cpu_Pause();
 			continue;
 		}
 

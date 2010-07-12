@@ -101,6 +101,17 @@ LIB_API void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
  **/
 LIB_API void cpu_Serialize();
 
+/**
+ * pause in spin-wait loops, as a performance optimisation.
+ **/
+inline void cpu_Pause()
+{
+#if MSC_VER && (ARCH_IA32 || ARCH_AMD64)
+	_mm_pause();
+#elif GCC_VER && (ARCH_IA32 || ARCH_AMD64)
+	__asm__ __volatile__( "rep; nop" : : : "memory" );
+#endif
+}
 
 //-----------------------------------------------------------------------------
 // misc
