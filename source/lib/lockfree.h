@@ -209,7 +209,7 @@ public:
 	bool AddReference()
 	{
 		const uintptr_t oldRefCnt = ReferenceCount();
-		debug_assert(oldRefCnt < S_REFCNT);
+		debug_assert(oldRefCnt < (uintptr_t)S_REFCNT);
 		// (returns false if S_EXCLUSIVE is set)
 		return cpu_CAS(&m_status, oldRefCnt, oldRefCnt+1);
 	}
