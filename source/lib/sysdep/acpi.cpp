@@ -78,12 +78,14 @@ static bool ValidateTable(const AcpiTable* table, const char* signature = 0)
 		if(memcmp(table->signature, signature, 4) != 0)
 			return false;
 	}
-	// no specific signature is called for; just make sure it's 4 letters
+	// no specific signature is called for, just validate the characters.
 	else
 	{
 		for(size_t i = 0; i < 4; i++)
 		{
-			if(!isalpha(table->signature[i]))
+			const char c = table->signature[i];
+			// "ASF!" and "____" have been encountered
+			if(!isalpha(c) && c != '_' && c != '!')
 				return false;
 		}
 	}
@@ -276,7 +278,7 @@ static void AllocateAndCopyTables(const AcpiTable**& tables, size_t& numTables)
 #if ENABLE_MAHAF
 	if(mahaf_IsPhysicalMappingDangerous())
 		return;
-	if(!mahaf_Init())
+	if(mahaf_Init() != INFO::OK)
 		return;
 
 	RSDP rsdp;
