@@ -241,8 +241,37 @@ const char* ogl_HaveExtensions(int dummy, ...)
 }
 
 
+// to help when running with no hardware acceleration and only OpenGL 1.1
+// (e.g. testing the game in virtual machines), we define dummy versions of
+// some extension functions which our graphics code assume exist.
+// it will render incorrectly but at least it shouldn't crash.
+
+static void GL_CALL_CONV dummy_glDrawRangeElementsEXT(GLenum mode, GLuint, GLuint, GLsizei count, GLenum type, GLvoid* indices)
+{
+	glDrawElements(mode, count, type, indices);
+}
+
+static void GL_CALL_CONV dummy_glActiveTextureARB(int)
+{
+}
+
+static void GL_CALL_CONV dummy_glClientActiveTextureARB(int)
+{
+}
+
+static void GL_CALL_CONV dummy_glMultiTexCoord2fARB(int, float s, float t)
+{
+	glTexCoord2f(s, t);
+}
+
 static void importExtensionFunctions()
 {
+	// load the dummy functions by default
+	pglDrawRangeElementsEXT = &dummy_glDrawRangeElementsEXT;
+	pglActiveTextureARB = &dummy_glActiveTextureARB;
+	pglClientActiveTextureARB = &dummy_glClientActiveTextureARB;
+	pglMultiTexCoord2fARB = &dummy_glMultiTexCoord2fARB;
+
 	// It should be safe to load the ARB function pointers even if the
 	// extension isn't advertised, since we won't actually use them without
 	// checking for the extension.
