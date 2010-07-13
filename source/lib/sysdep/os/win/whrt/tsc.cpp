@@ -124,7 +124,6 @@ public:
 		// however, we won't bother, since such platforms aren't yet widespread
 		// and would surely support the nice and safe HPET, anyway)
 		{
-			WinScopedLock lock(WHRT_CS);
 			const CpuTopology* topology = cpu_topology_Detect();
 			if(cpu_topology_NumPackages(topology) != 1 || cpu_topology_CoresPerPackage(topology) != 1)
 				return false;

@@ -25,139 +25,332 @@
 
 #include "lib/bits.h"	// round_up, PopulationCount
 #include "lib/timer.h"
+#include "lib/module_init.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/acpi.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wcpu.h"
-#include "lib/sysdep/os/win/winit.h"
 #include <Psapi.h>
 
-
-WINIT_REGISTER_EARLY_INIT(wnuma_Init);
+#if ARCH_X86_X64
+#include "lib/sysdep/arch/x86_x64/topology.h"	// ApicIds
+#endif
 
 
 //-----------------------------------------------------------------------------
-// node topology
-//-----------------------------------------------------------------------------
+// nodes
 
-// @return maximum (not actual) number of nodes, because Windows doesn't
-// guarantee node numbers are contiguous.
-static size_t MaxNodes()
+struct Node	// POD
+{
+	// (Windows doesn't guarantee node numbers are contiguous, so
+	// we associate them with contiguous indices in nodes[])
+	UCHAR nodeNumber;
+
+	u32 proximityDomainNumber;
+	uintptr_t processorMask;
+};
+
+static Node nodes[os_cpu_MaxProcessors];
+static size_t numNodes;
+
+static Node* AddNode()
+{
+	debug_assert(numNodes < ARRAY_SIZE(nodes));
+	return &nodes[numNodes++];
+}
+
+static Node* FindNodeWithProcessorMask(uintptr_t processorMask)
+{
+	for(size_t node = 0; node < numNodes; node++)
+	{
+		if(nodes[node].processorMask == processorMask)
+			return &nodes[node];
+	}
+
+	return 0;
+}
+
+static Node* FindNodeWithProcessor(size_t processor)
+{
+	for(size_t node = 0; node < numNodes; node++)
+	{
+		if(IsBitSet(nodes[node].processorMask, processor))
+			return &nodes[node];
+	}
+
+	return 0;
+}
+
+
+// cached results of FindNodeWithProcessor for each processor
+static size_t processorsNode[os_cpu_MaxProcessors];
+
+static void FillProcessorsNode()
+{
+	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
+	{
+		Node* node = FindNodeWithProcessor(processor);
+		if(node)
+			processorsNode[processor] = node-nodes;
+		else
+			debug_assert(0);
+	}
+}
+
+
+//-----------------------------------------------------------------------------
+// Windows topology
+
+static UCHAR HighestNodeNumber()
 {
 	WUTIL_FUNC(pGetNumaHighestNodeNumber, BOOL, (PULONG));
 	WUTIL_IMPORT_KERNEL32(GetNumaHighestNodeNumber, pGetNumaHighestNodeNumber);
-	if(pGetNumaHighestNodeNumber)
-	{
-		ULONG highestNode;
-		const BOOL ok = pGetNumaHighestNodeNumber(&highestNode);
-		WARN_IF_FALSE(ok);
-		debug_assert(highestNode < os_cpu_NumProcessors());	// node index < #processors
-		return highestNode+1;
-	}
-	// NUMA not supported
-	else
-		return 1;
+	if(!pGetNumaHighestNodeNumber)
+		return 0;	// NUMA not supported => only one node
+
+	ULONG highestNodeNumber;
+	const BOOL ok = pGetNumaHighestNodeNumber(&highestNodeNumber);
+	WARN_IF_FALSE(ok);
+	return (UCHAR)highestNodeNumber;
 }
 
-
-// @param nodesProcessorMask array of processor masks for each node
-static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask, size_t maxNodes)
+static void PopulateNodes()
 {
 	WUTIL_FUNC(pGetNumaNodeProcessorMask, BOOL, (UCHAR, PULONGLONG));
 	WUTIL_IMPORT_KERNEL32(GetNumaNodeProcessorMask, pGetNumaNodeProcessorMask);
-	if(pGetNumaNodeProcessorMask)
+	if(!pGetNumaNodeProcessorMask)
+		return;
+
+	DWORD_PTR processAffinity, systemAffinity;
 	{
-		DWORD_PTR processAffinity, systemAffinity;
+		const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
+		WARN_IF_FALSE(ok);
+	}
+	debug_assert(PopulationCount(processAffinity) <= PopulationCount(systemAffinity));
+
+	for(UCHAR nodeNumber = 0; nodeNumber <= HighestNodeNumber(); nodeNumber++)
+	{
+		ULONGLONG affinity;
 		{
-			const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
+			const BOOL ok = pGetNumaNodeProcessorMask(nodeNumber, &affinity);
 			WARN_IF_FALSE(ok);
 		}
+		if(!affinity)
+			continue;	// empty node, skip
 
-		for(size_t node = 0; node < maxNodes; node++)
-		{
-			ULONGLONG affinity;
-			{
-				const BOOL ok = pGetNumaNodeProcessorMask((UCHAR)node, &affinity);
-				WARN_IF_FALSE(ok);
-			}
-			const uintptr_t processorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, (DWORD_PTR)affinity);
-			nodesProcessorMask[node] = processorMask;
-		}
-	}
-	// NUMA not supported - consider node 0 to consist of all system processors
-	else
-		nodesProcessorMask[0] = os_cpu_ProcessorMask();
-}
-
-
-// note: it is easier to implement this in terms of nodesProcessorMask
-// rather than the other way around because wcpu provides the
-// wcpu_ProcessorMaskFromAffinity helper. there is no similar function to
-// convert processor to processorNumber.
-static void FillProcessorsNode(const uintptr_t* nodesProcessorMask, size_t maxNodes, size_t* processorsNode, size_t numProcessors)
-{
-	for(size_t processor = 0; processor < numProcessors; processor++)
-	{
-		bool foundNode = false;
-		for(size_t node = 0; node < maxNodes; node++)
-		{
-			if(IsBitSet(nodesProcessorMask[node], processor))
-			{
-				processorsNode[processor] = node;
-				foundNode = true;
-				break;
-			}
-		}
-		debug_assert(foundNode);
+		Node* node = AddNode();
+		node->nodeNumber = nodeNumber;
+		node->processorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, (DWORD_PTR)affinity);
 	}
 }
 
 
 //-----------------------------------------------------------------------------
-// node topology interface
+// ACPI SRAT topology
 
-struct NodeTopology	// POD
+#if ARCH_X86_X64
+
+#pragma pack(push, 1)
+
+// fields common to Affinity* structures
+struct AffinityHeader
 {
-	size_t maxNodes;
-	size_t processorsNode[os_cpu_MaxProcessors];
-	uintptr_t nodesProcessorMask[os_cpu_MaxProcessors];
+	u8 type;
+	u8 length;	// size [bytes], including this header
 };
-static NodeTopology s_nodeTopology;
 
-static void DetectNodeTopology()
+struct AffinityAPIC
 {
-	s_nodeTopology.maxNodes = MaxNodes();
-	FillNodesProcessorMask(s_nodeTopology.nodesProcessorMask, s_nodeTopology.maxNodes);
-	FillProcessorsNode(s_nodeTopology.nodesProcessorMask, s_nodeTopology.maxNodes, s_nodeTopology.processorsNode, os_cpu_NumProcessors());
+	static const u8 type = 0;
+
+	AffinityHeader header;
+	u8 proximityDomainNumber0;
+	u8 apicId;
+	u32 flags;
+	u8 sapicId;
+	u8 proximityDomainNumber123[3];
+	u32 clockDomain;
+
+	u32 ProximityDomainNumber() const
+	{
+		// (this is the apparent result of backwards compatibility, ugh.)
+		u32 proximityDomainNumber;
+		memcpy(&proximityDomainNumber, &proximityDomainNumber123[0]-1, sizeof(proximityDomainNumber));
+		proximityDomainNumber &= ~0xFF;
+		proximityDomainNumber |= proximityDomainNumber0;
+		return proximityDomainNumber;
+	}
+};
+
+struct AffinityMemory
+{
+	static const u8 type = 1;
+
+	AffinityHeader header;
+	u32 proximityDomainNumber;
+	u16 reserved1;
+	u64 baseAddress;
+	u64 length;
+	u32 reserved2;
+	u32 flags;
+	u64 reserved3;
+};
+
+// AffinityX2APIC omitted, since the APIC ID is sufficient for our purposes
+
+// Static Resource Affinity Table
+struct SRAT
+{
+	AcpiTable header;
+	u32 reserved1;
+	u8 reserved2[8];
+	AffinityHeader affinities[1];
+};
+
+#pragma pack(pop)
+
+template<class Affinity>
+static const Affinity* DynamicCastFromHeader(const AffinityHeader* header)
+{
+	if(header->type != Affinity::type)
+		return 0;
+
+	// sanity check: ensure no padding was inserted
+	debug_assert(header->length == sizeof(Affinity));
+
+	const Affinity* affinity = (const Affinity*)header;
+	if(!IsBitSet(affinity->flags, 0))	// not enabled
+		return 0;
+
+	return affinity;
+}
+
+static void PopulateProcessorMaskFromApicId(u32 apicId, uintptr_t& processorMask)
+{
+	const u8* apicIds = ApicIds();
+	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
+	{
+		if(apicIds[processor] == apicId)
+		{
+			processorMask |= Bit<uintptr_t>(processor);
+			return;
+		}
+	}
+
+	debug_assert(0);	// APIC ID not found
+}
+
+struct ProximityDomain
+{
+	uintptr_t processorMask;
+	// (AffinityMemory's fields are not currently needed)
+};
+
+typedef std::map<u32, ProximityDomain> ProximityDomains;
+
+static ProximityDomains ExtractProximityDomainsFromSRAT(const SRAT* srat)
+{
+	ProximityDomains proximityDomains;
+
+	for(const AffinityHeader* header = srat->affinities;
+		header < (const AffinityHeader*)(uintptr_t(srat)+srat->header.size);
+		header = (const AffinityHeader*)(uintptr_t(header) + header->length))
+	{
+		const AffinityAPIC* affinityAPIC = DynamicCastFromHeader<AffinityAPIC>(header);
+		if(affinityAPIC)
+		{
+			const u32 proximityDomainNumber = affinityAPIC->ProximityDomainNumber();
+			ProximityDomain& proximityDomain = proximityDomains[proximityDomainNumber];
+			PopulateProcessorMaskFromApicId(affinityAPIC->apicId, proximityDomain.processorMask);
+		}
+	}
+
+	return proximityDomains;
+}
+
+static void PopulateNodesFromProximityDomains(const ProximityDomains& proximityDomains)
+{
+	for(ProximityDomains::const_iterator it = proximityDomains.begin(); it != proximityDomains.end(); ++it)
+	{
+		const u32 proximityDomainNumber = it->first;
+		const ProximityDomain& proximityDomain = it->second;
+
+		Node* node = FindNodeWithProcessorMask(proximityDomain.processorMask);
+		if(!node)
+			node = AddNode();
+		node->proximityDomainNumber = proximityDomainNumber;
+		node->processorMask = proximityDomain.processorMask;
+	}
+}
+
+#endif	// #if ARCH_X86_X64
+
+
+//-----------------------------------------------------------------------------
+
+static ModuleInitState initState;
+
+static LibError InitTopology()
+{
+	PopulateNodes();
+
+#if ARCH_X86_X64
+	const SRAT* srat = (const SRAT*)acpi_GetTable("SRAT");
+	if(srat)
+	{
+		const ProximityDomains proximityDomains = ExtractProximityDomainsFromSRAT(srat);
+		PopulateNodesFromProximityDomains(proximityDomains);
+	}
+#endif
+
+	// neither OS nor ACPI information is available
+	if(numNodes == 0)
+	{
+		// add dummy node that contains all system processors
+		Node* node = AddNode();
+		node->nodeNumber = 0;
+		node->proximityDomainNumber = 0;
+		node->processorMask = os_cpu_ProcessorMask();
+	}
+
+	FillProcessorsNode();
+	return INFO::OK;
 }
 
 size_t numa_NumNodes()
 {
-	return s_nodeTopology.maxNodes;
+	(void)ModuleInit(&initState, InitTopology);
+	return numNodes;
 }
 
 size_t numa_NodeFromProcessor(size_t processor)
 {
+	(void)ModuleInit(&initState, InitTopology);
 	debug_assert(processor < os_cpu_NumProcessors());
-	return s_nodeTopology.processorsNode[processor];
+	return processorsNode[processor];
 }
 
 uintptr_t numa_ProcessorMaskFromNode(size_t node)
 {
-	debug_assert(node < s_nodeTopology.maxNodes);
-	return s_nodeTopology.nodesProcessorMask[node];
+	(void)ModuleInit(&initState, InitTopology);
+	debug_assert(node < numNodes);
+	return nodes[node].processorMask;
+}
+
+static UCHAR NodeNumberFromNode(size_t node)
+{
+	(void)ModuleInit(&initState, InitTopology);
+	debug_assert(node < numa_NumNodes());
+	return nodes[node].nodeNumber;
 }
 
 
 //-----------------------------------------------------------------------------
 // memory info
-//-----------------------------------------------------------------------------
 
 size_t numa_AvailableMemory(size_t node)
 {
-	debug_assert(node < numa_NumNodes());
-
 	// note: it is said that GetNumaAvailableMemoryNode sometimes incorrectly
 	// reports zero bytes. the actual cause may however be unexpected
 	// RAM configuration, e.g. not all slots filled.
@@ -165,8 +358,9 @@ size_t numa_AvailableMemory(size_t node)
 	WUTIL_IMPORT_KERNEL32(GetNumaAvailableMemoryNode, pGetNumaAvailableMemoryNode);
 	if(pGetNumaAvailableMemoryNode)
 	{
+		const UCHAR nodeNumber = NodeNumberFromNode(node);
 		ULONGLONG availableBytes;
-		const BOOL ok = pGetNumaAvailableMemoryNode((UCHAR)node, &availableBytes);
+		const BOOL ok = pGetNumaAvailableMemoryNode(nodeNumber, &availableBytes);
 		WARN_IF_FALSE(ok);
 		const size_t availableMiB = size_t(availableBytes / MiB);
 		return availableMiB;
@@ -180,6 +374,7 @@ size_t numa_AvailableMemory(size_t node)
 #pragma pack(push, 1)
 
 // ACPI System Locality Information Table
+// (System Locality == Proximity Domain)
 struct SLIT
 {
 	AcpiTable header;
@@ -189,32 +384,27 @@ struct SLIT
 
 #pragma pack(pop)
 
-static double DetectRelativeDistance()
+static double ReadRelativeDistanceFromSLIT(const SLIT* slit)
 {
-	// trust values reported by the BIOS, if available
-	const SLIT* slit = (const SLIT*)acpi_GetTable("SLIT");
-	if(slit)
-	{
-		const size_t n = slit->numSystemLocalities;
-		debug_assert(slit->header.size == sizeof(SLIT)-sizeof(slit->entries)+n*n);
-		// diagonals are specified to be 10
-		for(size_t i = 0; i < n; i++)
-			debug_assert(slit->entries[i*n+i] == 10);
-		// entries = relativeDistance * 10
-		return *std::max_element(slit->entries, slit->entries+n*n) / 10.0;
-	}
+	const size_t n = slit->numSystemLocalities;
+	debug_assert(slit->header.size == sizeof(SLIT)-sizeof(slit->entries)+n*n);
+	// diagonals are specified to be 10
+	for(size_t i = 0; i < n; i++)
+		debug_assert(slit->entries[i*n+i] == 10);
+	// entries = relativeDistance * 10
+	return *std::max_element(slit->entries, slit->entries+n*n) / 10.0;
+}
 
-	// if non-NUMA, skip the (expensive) measurement below.
-	if(numa_NumNodes() == 1)
-		return 1.0;
-
+// @return ratio between max/min time required to access one node's
+// memory from each processor.
+static double MeasureRelativeDistance()
+{
 	// allocate memory on one node
 	const size_t size = 16*MiB;
 	shared_ptr<u8> buffer((u8*)numa_AllocateOnNode(size, 0), numa_Deleter<u8>());
 
 	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
 
-	// measure min/max fill times required by a processor from each node
 	double minTime = 1e10, maxTime = 0.0;
 	for(size_t node = 0; node < numa_NumNodes(); node++)
 	{
@@ -234,49 +424,69 @@ static double DetectRelativeDistance()
 	return maxTime / minTime;
 }
 
+static double relativeDistance;
+
+static LibError InitRelativeDistance()
+{
+	// early-out for non-NUMA systems (saves some time)
+	if(numa_NumNodes() == 1)
+	{
+		relativeDistance = 1.0;
+		return INFO::OK;
+	}
+
+	// trust values reported by the BIOS, if available
+	const SLIT* slit = (const SLIT*)acpi_GetTable("SLIT");
+	if(slit)
+		relativeDistance = ReadRelativeDistanceFromSLIT(slit);
+	else
+		relativeDistance = MeasureRelativeDistance();
+
+	debug_assert(relativeDistance >= 1.0);
+	debug_assert(relativeDistance <= 3.0);	// (Microsoft guideline for NUMA systems)
+	return INFO::OK;
+}
 
 double numa_Factor()
 {
-	WinScopedLock lock(WNUMA_CS);
-	static double factor;
-	if(factor == 0.0)
-	{
-		factor = DetectRelativeDistance();
-		debug_assert(factor >= 1.0);
-		debug_assert(factor <= 3.0);	// (Microsoft guideline for NUMA systems)
-	}
-
-	return factor;
+	static ModuleInitState initState;
+	(void)ModuleInit(&initState, InitRelativeDistance);
+	return relativeDistance;
 }
 
 
-static int DetectMemoryInterleaving()
+static bool IsMemoryInterleaved()
 {
-	// not NUMA => no interleaving
 	if(numa_NumNodes() == 1)
-		return 0;
+		return false;
 
-	// BIOS only generates SRAT if interleaving is disabled
-	if(acpi_GetTable("SRAT"))
-		return 0;
+	if(!acpi_GetTable("FACP"))	// no ACPI tables available
+		return false;	// indeterminate, assume not interleaved
 
-	return 1;
+	if(acpi_GetTable("SRAT"))	// present iff not interleaved
+		return false;
+
+	return true;
+}
+
+static bool isMemoryInterleaved;
+
+static LibError InitMemoryInterleaved()
+{
+	isMemoryInterleaved = IsMemoryInterleaved();
+	return INFO::OK;
 }
 
 bool numa_IsMemoryInterleaved()
 {
-	WinScopedLock lock(WNUMA_CS);
-	static int isInterleaved = -1;
-	if(isInterleaved == -1)
-		isInterleaved = DetectMemoryInterleaving();
-
-	return isInterleaved != 0;
+	static ModuleInitState initState;
+	(void)ModuleInit(&initState, InitMemoryInterleaved);
+	return isMemoryInterleaved;
 }
 
 
 //-----------------------------------------------------------------------------
 // allocator
-//-----------------------------------------------------------------------------
 
 static bool largePageAllocationTookTooLong = false;
 
@@ -431,7 +641,9 @@ void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePa
 	// the page will be taken from the node whose processor caused the fault.
 	// Windows Vista allocates on the "preferred" node, so affinity should be
 	// set such that this thread is running on <node>.)
+	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(numa_ProcessorMaskFromNode(node));
 	memset(mem, 0, size);
+	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
 
 	VerifyPages(mem, size, pageSize, node);
 
@@ -442,13 +654,4 @@ void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePa
 void numa_Deallocate(void* mem)
 {
 	VirtualFree(mem, 0, MEM_RELEASE);
-}
-
-
-//-----------------------------------------------------------------------------
-
-static LibError wnuma_Init()
-{
-	DetectNodeTopology();
-	return INFO::OK;
 }
