@@ -20,14 +20,14 @@ FUDebug::~FUDebug() {}
 
 #if defined(LINUX) || defined(__APPLE__)
 #if defined(UNICODE)
-#define STRING_OUT(sz) fprintf(stderr, TO_STRING(sz).c_str()); fflush(stderr);
+#define STRING_OUT(sz) fprintf(stderr, "%s", TO_STRING(sz).c_str()); fflush(stderr);
 #else
-#define STRING_OUT(sz) fprintf(stderr, sz); fflush(stderr);
+#define STRING_OUT(sz) fprintf(stderr, "%s", sz); fflush(stderr);
 #endif // UNICODE
 #elif defined(WIN32)
 #define STRING_OUT(sz) OutputDebugString(sz); OutputDebugString(FC("\n"))
 #elif defined(__PPU__)
-#define STRING_OUT(sz) { fm::string szz = FUStringConversion::ToString(sz); printf(szz.c_str()); printf("\n"); }
+#define STRING_OUT(sz) { fm::string szz = FUStringConversion::ToString(sz); printf("%s\n", szz.c_str()); }
 #endif
 
 #ifdef _DEBUG
