@@ -8,7 +8,7 @@ PIC_FLAGS ?= -fpic
 endif
 
 CXX := g++
-CXXFLAGS := -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS)
+CXXFLAGS := -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS) $(CPPFLAGS)
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O1 -DNDEBUG -DRETAIL
 # (-O2 with gcc 4.3 causes linker errors when using this library, for unknown reasons, so stick with -O1)
@@ -243,7 +243,7 @@ output/libFColladaSR.a: $(OBJECTS_RELEASE)
 	@ar -cr $@ $(OBJECTS_RELEASE); ranlib $@
 
 output/FColladaTest: $(OBJECTS_TEST)
-	@$(CXX) -o $@ $(LDFLAGS) $(OBJECTS_TEST) $(LIBS)
+	$(CXX) -o $@ $(LDFLAGS) $(OBJECTS_TEST) $(LIBS)
 
 install: output/libFColladaSD.a output/libFColladaSR.a
 	cp output/libFColladaSD.a ../lib/libFColladaSD.a
@@ -258,15 +258,15 @@ gendep = \
 		rm -f $(dfile)
 output/debug/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -MD -MF $(dfile) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -MD -MF $(dfile) -c $< -o $@
 	$(gendep)
 output/release/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -MD -MF $(dfile) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -MD -MF $(dfile) -c $< -o $@
 	$(gendep)
 output/test/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_TEST) $(INCLUDES_TEST) -MD -MF $(dfile) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(CXXFLAGS_TEST) $(INCLUDES_TEST) -MD -MF $(dfile) -c $< -o $@
 	$(gendep)
 
 clean:
