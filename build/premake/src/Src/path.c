@@ -240,7 +240,7 @@ const char* path_getname(const char* path)
 	path_translateInPlace(forpart, "posix");
 
 	ptr = strrchr(forpart, '/');
-	ptr = (ptr != NULL) ? ++ptr : forpart;
+	ptr = (ptr != NULL) ? ptr+1 : forpart;
 	return ptr;
 }
 

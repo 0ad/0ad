@@ -173,7 +173,7 @@ static void tag_attr_open(const char* name)
 	io_print("=\"");
 }
 
-static tag_attr_close()
+static void tag_attr_close()
 {
 	io_print("\"");
 	attrib++;
