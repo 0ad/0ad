@@ -19,6 +19,7 @@
 
 #include "DllLoader.h"
 
+#include "lib/timer.h"
 #include "lib/posix/posix_dlfcn.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
@@ -30,10 +31,15 @@ void* const HANDLE_UNAVAILABLE = (void*)-1;
 // the library name.
 
 // note: on Linux, lib is prepended to the SO file name;
-// we don't use a path with '/' so the linker will look in DT_RUNPATH
+// if we don't have an explicit libdir then we don't use
+// a path with '/' so the linker will look in DT_RUNPATH
 // (which we set to $ORIGIN) to find it in the executable's directory
 #if OS_UNIX
-static const char* prefix = "lib";
+ #ifdef INSTALLED_LIBDIR
+  static const char* prefix = STRINGIZE(INSTALLED_LIBDIR) "/lib";
+ #else
+  static const char* prefix = "lib";
+ #endif
 #else
 static const char* prefix = "";
 #endif
@@ -72,6 +78,8 @@ bool DllLoader::LoadDLL()
 	// postcondition: m_Handle valid or == HANDLE_UNAVAILABLE.
 	if (m_Handle == 0)
 	{
+		TIMER(L"LoadDLL");
+
 		CStr filename = CStr(prefix) + m_Name + suffix;
 
 		// we don't really care when relocations take place, but one of

@@ -30,7 +30,13 @@
 Paths::Paths(const CmdLineArgs& args)
 {
 	m_root = Root(wstring_from_utf8(args.GetArg0()));
+
+#ifdef INSTALLED_DATADIR
+	m_rdata = WIDEN(STRINGIZE(INSTALLED_DATADIR)) L"/";
+#else
 	m_rdata = m_root/L"data/";
+#endif
+
 	const wchar_t* subdirectoryName = args.Has("writableRoot")? 0 : L"0ad";
 
 	// everything is a subdirectory of the root

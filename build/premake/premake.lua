@@ -6,6 +6,9 @@ addoption("icc", "Use Intel C++ Compiler (Linux only; should use either \"--cc i
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
+addoption("bindir", "Directory for executables (typically '/usr/games/bin'); default is to be relocatable")
+addoption("datadir", "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable")
+addoption("libdir", "Directory for libraries (typically '/usr/games/lib'); default is ./ relative to executable")
 
 dofile("functions.lua")
 dofile("extern_libs.lua")
@@ -206,13 +209,6 @@ function package_set_build_flags()
 			end
 		end
 
-		if OS == "linux" then
-			-- To use our local SpiderMonkey library, it needs to be part of the runtime dynamic linker
-			-- path. So add the executable path with -rpath:
-			-- (TODO: is this a sane way to do it?)
-			tinsert(package.linkoptions, {"-Wl,-rpath='$$ORIGIN'"}) -- use Makefile escaping of '$'
-		end
-
 		tinsert(package.buildoptions, {
 			-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
 			-- Windows - they should be exported explicitly with __attribute__ ((visibility ("default")))
@@ -233,10 +229,28 @@ function package_set_build_flags()
 		if OS == "linux" and options["icc"] then
 			tinsert(package.libpaths, "/usr/i686-pc-linux-gnu/lib") -- needed for ICC to find libbfd
 		end
-		
-		package.defines = {
-			-- "CONFIG_USE_MMGR",
-		}
+
+		if options["bindir"] then
+			tinsert(package.defines, "INSTALLED_BINDIR=" .. options["bindir"])
+		end
+		if options["datadir"] then
+			tinsert(package.defines, "INSTALLED_DATADIR=" .. options["datadir"])
+		end
+		if options["libdir"] then
+			tinsert(package.defines, "INSTALLED_LIBDIR=" .. options["libdir"])
+		end
+
+		if OS == "linux" then
+			-- To use our local SpiderMonkey library, it needs to be part of the
+			-- runtime dynamic linker path. Add it with -rpath to make sure it gets found.
+			if options["libdir"] then
+				tinsert(package.linkoptions, {"-Wl,-rpath=" .. options["libdir"]})
+			else
+				-- Add the executable path:
+				tinsert(package.linkoptions, {"-Wl,-rpath='$$ORIGIN'"}) -- use Makefile escaping of '$'
+			end
+		end
+
 	end
 end
 
