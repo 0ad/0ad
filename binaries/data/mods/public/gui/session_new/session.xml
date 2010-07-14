@@ -159,7 +159,7 @@
 		<object name="menu"
 			size="0 0 114 128"
 			type="image"
-			sprite="devCommandsBackground"
+			sprite="menuBackground"
 			hidden="true"
 		>
 			<!-- Settings button -->
@@ -317,26 +317,26 @@
 			<object size="10 0 100%-10 56" name="sdMainText" type="image" sprite="wheatWindowTitle">
 				<object size="0 5 100% 30" name="sdSpecific" type="text" style="largeBoldCenteredText" tooltip_style="snToolTip"/>
 				<object hidden="true" size="0 20 100% 40" name="sdGeneric" type="text" font="serif-14"/>
-				<object size="0 30 100% 50" name="sdPlayer" type="text" style="centeredText" font="serif-bold-14" tooltip_style="snToolTip"/>
+				<object size="0 30 100% 50" name="sdPlayer" type="text" style="centeredText" font="serif-stroke-14" tooltip_style="snToolTip"/>
 				<object size="0 0 32 32" name="sdRankIcon" type="image" cell_id="0" sprite="snIconSheetRank" tooltip_style="snToolTip"/>
 			</object>
 
 			<!-- Attack stats -->
 			<object hidden="true" size="116 72 100% 100%" type="image" name="sdAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
 				<object  size="-4 -8 36 36" type="image" name="sdAttackImage" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
-				<object  size="30 0 100% 100%" type="text" name="sdAttackStats" ghost="true" font="serif-bold-12"/>
+				<object  size="30 0 100% 100%" type="text" name="sdAttackStats" style="statsText"/>
 			</object>
 
 			<!-- Armour stats -->
 			<object hidden="true" size="216 72 100% 100%" type="image" name="sdArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
 				<object  size="-4 -4 36 36" type="image" name="sdArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
-				<object  size="30 0 100% 100%" type="text" name="sdArmourStats" ghost="true" font="serif-bold-12"/>
+				<object  size="30 0 100% 100%" type="text" name="sdArmourStats" style="statsText"/>
 			</object>
 			
 			<!-- Resource Quantity -->
 			<object hidden="true" size="152 80 100% 100" type="image" name="sdResources" tooltip="Resources" tooltip_style="snToolTip">
 				<object size="0 0 28 24" name="sdResourceIcon" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="28 0 100% 100%" name="sdResourceStats" ghost="true" type="text" font="serif-bold-14"/>
+				<object size="28 0 100% 100%" name="sdResourceStats" type="text" style="resourceText"/>
 			</object>
 			
 <!-- Commands
