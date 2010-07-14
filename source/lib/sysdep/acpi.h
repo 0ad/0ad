@@ -62,6 +62,36 @@ struct AcpiGenericAddress
 	u64 address;
 };
 
+struct FADT	// signature is FACP!
+{
+	AcpiTable header;
+	u8 unused1[40];
+	u32 pmTimerPortAddress;
+	u8 unused2[16];
+	u16 c2Latency;	// [us]
+	u16 c3Latency;	// [us]
+	u8 unused3[5];
+	u8 dutyWidth;
+	u8 unused4[6];
+	u32 flags;
+	// (ACPI4 defines additional fields after this)
+
+	bool IsDutyCycleSupported() const
+	{
+		return dutyWidth != 0;
+	}
+
+	bool IsC2Supported() const
+	{
+		return c2Latency <= 100;	// magic value specified by ACPI
+	}
+
+	bool IsC3Supported() const
+	{
+		return c3Latency <= 1000;	// see above
+	}
+};
+
 #pragma pack(pop)
 
 /**

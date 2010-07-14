@@ -69,19 +69,11 @@ static uintptr_t mod_base;
 static WORD machine;
 #endif
 
-// note: RtlCaptureStackBackTrace (http://msinilo.pl/blog/?p=40)
-// is likely to be much faster than StackWalk64 (especially relevant
-// for debug_GetCaller), but wasn't known during development and
-// remains undocumented.
-static WUTIL_FUNC(pRtlCaptureContext, VOID, (PCONTEXT));
-
-
 static LibError InitDbghelp()
 {
 	hProcess = GetCurrentProcess();
 
 	dbghelp_ImportFunctions();
-	WUTIL_IMPORT_KERNEL32(RtlCaptureContext, pRtlCaptureContext);
 
 	// set options
 	// notes:
@@ -312,6 +304,11 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 #endif
 
 
+// note: RtlCaptureStackBackTrace (http://msinilo.pl/blog/?p=40)
+// is likely to be much faster than StackWalk64 (especially relevant
+// for debug_GetCaller), but wasn't known during development and
+// remains undocumented.
+
 LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT* pcontext, const wchar_t* lastFuncToSkip)
 {
 	// to function properly, StackWalk64 requires a CONTEXT on
@@ -342,8 +339,16 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTE
 #if ARCH_IA32
 		ia32_asm_GetCurrentContext(&context);
 #else
+		// we need to capture the context ASAP, lest more registers be
+		// clobbered. since sym_init is no longer called from winit, the
+		// best we can do is import the function pointer directly.
+		static WUTIL_FUNC(pRtlCaptureContext, VOID, (PCONTEXT));
 		if(!pRtlCaptureContext)
-			return ERR::NOT_SUPPORTED;	// NOWARN
+		{
+			WUTIL_IMPORT_KERNEL32(RtlCaptureContext, pRtlCaptureContext);
+			if(!pRtlCaptureContext)
+				return ERR::NOT_SUPPORTED;	// NOWARN
+		}
 		memset(&context, 0, sizeof(context));
 		context.ContextFlags = CONTEXT_CONTROL|CONTEXT_INTEGER;
 		pRtlCaptureContext(&context);

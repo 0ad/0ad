@@ -34,18 +34,7 @@
 #include "lib/sysdep/os/win/mahaf.h"
 #include "lib/bits.h"
 
-#pragma pack(push,1)
-struct FADT
-{
-	AcpiTable header;
-	u8 unused[40];
-	u32 pmTimerPortAddress;
-	u8 unused2[32];
-	u32 flags;
-};
-#pragma pack(pop)
-
-static const u32 TMR_VAL_EXT = Bit<u32>(8);
+static const u32 TMR_VAL_EXT = Bit<u32>(8);	// FADT flags
 
 //-----------------------------------------------------------------------------
 

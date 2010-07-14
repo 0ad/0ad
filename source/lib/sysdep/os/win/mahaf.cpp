@@ -112,9 +112,8 @@ void mahaf_WritePort32(u16 port, u32 value)
 
 bool mahaf_IsPhysicalMappingDangerous()
 {
-	// WinXP introduced checks that ensure we don't re-map pages with
-	// incompatible attributes. without this, mapping physical pages risks
-	// disaster due to TLB corruption.
+	// pre-XP versions don't prevent re-mapping pages with incompatible
+	// attributes, which may lead to disaster due to TLB corruption.
 	if(wutil_WindowsVersion() < WUTIL_VERSION_XP)
 		return true;
 

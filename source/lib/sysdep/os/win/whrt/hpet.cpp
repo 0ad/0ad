@@ -71,7 +71,7 @@ public:
 			debug_assert(period_fs != 0);	// "a value of 0 in this field is not permitted"
 			debug_assert(period_fs <= 0x05F5E100);	// 100 ns (min freq is 10 MHz)
 			m_frequency = 1e15 / period_fs;
-			debug_printf(L"HPET: rev=%X vendor=%X bits=%d period=%X freq=%g\n", revision, vendorID, m_counterBits, period_fs, m_frequency);
+			debug_printf(L"HPET: rev=%X vendor=%X bits=%d period=%08X freq=%g\n", revision, vendorID, m_counterBits, period_fs, m_frequency);
 		}
 
 		// start the counter (if not already running)

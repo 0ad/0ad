@@ -30,6 +30,7 @@
 #include "lib/sysdep/os/win/whrt/counter.h"
 
 #include "lib/bits.h"
+#include "lib/sysdep/acpi.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
@@ -41,19 +42,52 @@
 
 
 //-----------------------------------------------------------------------------
-// detect throttling
+
+static bool IsUniprocessor()
+{
+	const CpuTopology* topology = cpu_topology_Detect();
+	if(cpu_topology_NumPackages(topology) != 1)
+		return false;
+	if(cpu_topology_CoresPerPackage(topology) != 1)
+		return false;
+	return true;
+}
+
 
 enum AmdPowerNowFlags
 {
 	PN_FREQ_ID_CTRL    = BIT(1),
+	PN_HW_THERMAL_CTRL = BIT(4),
 	PN_SW_THERMAL_CTRL = BIT(5),
 	PN_INVARIANT_TSC   = BIT(8)
 };
 
+static bool IsInvariantTSC()
+{
+#if ARCH_X86_X64
+	x86_x64_CpuidRegs regs = { 0 };
+	switch(x86_x64_Vendor())
+	{
+	case X86_X64_VENDOR_AMD:
+		regs.eax = 0x80000007;
+		if(x86_x64_cpuid(&regs))
+		{
+			// TSC is invariant across P-state, C-state and
+			// stop grant transitions (e.g. STPCLK)
+			if(regs.edx & PN_INVARIANT_TSC)
+				return true;
+		}
+		break;
+	}
+#endif
+
+	return false;
+}
+
 static bool IsThrottlingPossible()
 {
 #if ARCH_X86_X64
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	switch(x86_x64_Vendor())
 	{
 	case X86_X64_VENDOR_INTEL:
@@ -65,13 +99,14 @@ static bool IsThrottlingPossible()
 		regs.eax = 0x80000007;
 		if(x86_x64_cpuid(&regs))
 		{
-			if(regs.edx & (PN_FREQ_ID_CTRL|PN_SW_THERMAL_CTRL))
+			if(regs.edx & (PN_FREQ_ID_CTRL|PN_HW_THERMAL_CTRL|PN_SW_THERMAL_CTRL))
 				return true;
 		}
 		break;
 	}
-	return false;
 #endif
+
+	return false;
 }
 
 
@@ -101,15 +136,16 @@ public:
 
 	bool IsSafe() const
 	{
-		// use of the TSC for timing is subject to a litany of potential problems:
-		// - separate, unsynchronized counters with offset and drift;
-		// - frequency changes (P-state transitions and STPCLK throttling);
-		// - failure to increment in C3 and C4 deep-sleep states.
-		// we will discuss the specifics below.
+		// using the TSC for timing is subject to a litany of
+		// potential problems, discussed below:
 
-		// SMP or multi-core => counters are unsynchronized. this could be
-		// solved by maintaining separate per-core counter states, but that
-		// requires atomic reads of the TSC and the current processor number.
+		if(IsInvariantTSC())
+			return true;
+
+		// SMP or multi-core => counters are unsynchronized. both offset and
+		// drift could be solved by maintaining separate per-core
+		// counter states, but that requires atomic reads of the TSC and
+		// the current processor number.
 		//
 		// (otherwise, we have a subtle race condition: if preempted while
 		// reading the time and rescheduled on a different core, incorrect
@@ -120,12 +156,23 @@ public:
 		//
 		// (note: if the TSC is invariant, drift is no longer a concern.
 		// we could synchronize the TSC MSRs during initialization and avoid
-		// per-core counter state and the abovementioned race condition.
+		// per-core counter state and the race condition mentioned above.
 		// however, we won't bother, since such platforms aren't yet widespread
 		// and would surely support the nice and safe HPET, anyway)
+		if(!IsUniprocessor())
+			return false;
+
+		const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
+		if(fadt)
 		{
-			const CpuTopology* topology = cpu_topology_Detect();
-			if(cpu_topology_NumPackages(topology) != 1 || cpu_topology_CoresPerPackage(topology) != 1)
+			debug_assert(fadt->header.size >= sizeof(FADT));
+
+			// TSC isn't incremented in deep-sleep states => unsafe.
+			if(fadt->IsC3Supported())
+				return false;
+
+			// frequency throttling possible => unsafe.
+			if(fadt->IsDutyCycleSupported())
 				return false;
 		}
 
@@ -136,24 +183,12 @@ public:
 			// note: 8th generation CPUs support C1-clock ramping, which causes
 			// drift on multi-core systems, but those were excluded above.
 
-			x86_x64_CpuidRegs regs;
-			regs.eax = 0x80000007;
-			if(x86_x64_cpuid(&regs))
-			{
-				// TSC is invariant WRT P-state, C-state and STPCLK => safe.
-				if(regs.edx & PN_INVARIANT_TSC)
-					return true;
-			}
-
-			// in addition to P-state transitions, we're also subject to
-			// STPCLK throttling. this happens when the chipset thinks the
-			// system is dangerously overheated; the OS isn't even notified.
-			// it may be rare, but could cause incorrect results => unsafe.
+			// in addition to frequency changes due to P-state transitions,
+			// we're also subject to STPCLK throttling. this happens when
+			// the chipset thinks the system is dangerously overheated; the
+			// OS isn't even notified. this may be rare, but could cause
+			// incorrect results => unsafe.
 			return false;
-
-			// newer systems also support the C3 Deep Sleep state, in which
-			// the TSC isn't incremented. that's not nice, but irrelevant
-			// since STPCLK dooms the TSC on those systems anyway.
 		}
 #endif
 

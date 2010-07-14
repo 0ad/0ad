@@ -34,6 +34,7 @@
 #include "lib/file/vfs/vfs.h"
 #include "lib/posix/posix.h"
 #include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wdbg.h"	// wdbg_assert
 #include "lib/sysdep/os/win/winit.h"
 
 #include <shlobj.h>	// SHGetFolderPath
@@ -395,10 +396,18 @@ static void DetectWindowsVersion()
 		DWORD size = sizeof(windowsVersionString);
 		(void)RegQueryValueExW(hKey, L"CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
 
-		int major = 0, minor = 0;
-		int ret = swscanf_s(windowsVersionString, L"%d.%d", &major, &minor);
-		debug_assert(ret == 2);
-		debug_assert(major <= 0xFF && minor <= 0xFF);
+		unsigned major = 0, minor = 0;
+		// ICC 11.1.082 generates incorrect code for the following:
+		// const int ret = swscanf_s(windowsVersionString, L"%u.%u", &major, &minor);
+		std::wstringstream ss(windowsVersionString);
+		ss >> major;
+		wchar_t dot;
+		ss >> dot;
+		debug_assert(dot == '.');
+		ss >> minor;
+
+		debug_assert(4 <= major && major <= 0xFF);
+		debug_assert(minor <= 0xFF);
 		windowsVersion = (major << 8) | minor;
 
 		RegCloseKey(hKey);
@@ -510,18 +519,20 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 
 #ifndef LIB_STATIC_LINK
 
-static HMODULE s_hModule;
-
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD UNUSED(reason), LPVOID UNUSED(reserved))
 {
 	DisableThreadLibraryCalls(hInstance);
-	s_hModule = hInstance;
 	return TRUE;	// success (ignored unless reason == DLL_PROCESS_ATTACH)
 }
 
 HMODULE wutil_LibModuleHandle()
 {
-	return s_hModule;
+	HMODULE hModule;
+	const DWORD flags = GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT;
+	const BOOL ok = GetModuleHandleEx(flags, (LPCWSTR)&DllMain, &hModule);
+	// (avoid debug_assert etc. because we're called from debug_DisplayError)
+	wdbg_assert(ok);
+	return hModule;
 }
 
 #else

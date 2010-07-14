@@ -428,7 +428,7 @@ static void AddTLB2ParameterPair(u32 reg, size_t pageSize)
 
 // AMD reports maxCpuidIdFunction > 4 but consider functions 2..4 to be
 // "reserved". cache characteristics are returned via ext. functions.
-static void InitCacheAndTLB()
+static void DetectCacheAndTLB()
 {
 	x86_x64_CpuidRegs regs = { 0 };
 
@@ -458,6 +458,9 @@ static void InitCacheAndTLB()
 
 }	// namespace AMD
 
+// note: CPUID 8000_0006 also returns L2 size, associativity, and
+// line size, but I don't see any advantages vs. CPUID 4.
+
 static void DetectCache_CPUID4()
 {
 	// note: ordering is undefined (see Intel AP-485)
@@ -481,7 +484,7 @@ static void DetectCache_CPUID4()
 		params.type          = type;
 		params.level         = level;
 		params.associativity = (size_t)bits(regs.ebx, 22, 31)+1;
-		params.lineSize      = (size_t)bits(regs.ebx, 0, 11)+1;	// (yes, this also uses +1 encoding)
+		params.lineSize      = (size_t)bits(regs.ebx,  0, 11)+1;	// (yes, this also uses +1 encoding)
 		params.sharedBy      = (size_t)bits(regs.eax, 14, 25)+1;
 		{
 			const size_t partitions = (size_t)bits(regs.ebx, 12, 21)+1;
@@ -680,10 +683,10 @@ static void DetectTLB_CPUID2()
 
 static ModuleInitState cacheInitState;
 
-static LibError InitCacheAndTLB()
+static LibError DetectCacheAndTLB()
 {
 	if(x86_x64_Vendor() == X86_X64_VENDOR_AMD)
-		AMD::InitCacheAndTLB();
+		AMD::DetectCacheAndTLB();
 	else
 	{
 		DetectCache_CPUID4();
@@ -710,13 +713,13 @@ static LibError InitCacheAndTLB()
 
 const x86_x64_Cache* x86_x64_ICache()
 {
-	ModuleInit(&cacheInitState, InitCacheAndTLB);
+	ModuleInit(&cacheInitState, DetectCacheAndTLB);
 	return &icache;
 }
 
 const x86_x64_Cache* x86_x64_DCache()
 {
-	ModuleInit(&cacheInitState, InitCacheAndTLB);
+	ModuleInit(&cacheInitState, DetectCacheAndTLB);
 	return &dcache;
 }
 
@@ -732,19 +735,19 @@ size_t x86_x64_L2CacheLineSize()
 
 const x86_x64_TLB* x86_x64_ITLB()
 {
-	ModuleInit(&cacheInitState, InitCacheAndTLB);
+	ModuleInit(&cacheInitState, DetectCacheAndTLB);
 	return &itlb;
 }
 
 const x86_x64_TLB* x86_x64_DTLB()
 {
-	ModuleInit(&cacheInitState, InitCacheAndTLB);
+	ModuleInit(&cacheInitState, DetectCacheAndTLB);
 	return &dtlb;
 }
 
 size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb)
 {
-	// note: receiving a TLB pointer means InitCacheAndTLB was called.
+	// note: receiving a TLB pointer means DetectCacheAndTLB was called.
 
 	const u64 pageSize = 4*KiB;
 	const u64 largePageSize = 4*MiB;	// TODO: find out if we're using 2MB or 4MB

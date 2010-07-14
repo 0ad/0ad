@@ -110,12 +110,13 @@ LIB_API void cpu_Serialize();
  **/
 inline void cpu_Pause()
 {
-#if MSC_VER && (ARCH_IA32 || ARCH_AMD64)
+#if MSC_VERSION && ARCH_X86_X64
 	_mm_pause();
-#elif GCC_VER && (ARCH_IA32 || ARCH_AMD64)
+#elif GCC_VERSION && ARCH_X86_X64
 	__asm__ __volatile__( "rep; nop" : : : "memory" );
 #endif
 }
+
 
 //-----------------------------------------------------------------------------
 // misc

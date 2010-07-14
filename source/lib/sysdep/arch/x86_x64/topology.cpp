@@ -46,7 +46,7 @@ static size_t MaxCoresPerPackage()
 	// assume single-core unless one of the following applies:
 	size_t maxCoresPerPackage = 1;
 
-	x86_x64_CpuidRegs regs;
+	x86_x64_CpuidRegs regs = { 0 };
 	switch(x86_x64_Vendor())
 	{
 	case X86_X64_VENDOR_INTEL:
@@ -58,7 +58,6 @@ static size_t MaxCoresPerPackage()
 
 	case X86_X64_VENDOR_AMD:
 		regs.eax = 0x80000008;
-		regs.ecx = 0;
 		if(x86_x64_cpuid(&regs))
 			maxCoresPerPackage = bits(regs.ecx, 0, 7)+1;
 		break;
@@ -88,9 +87,8 @@ static size_t MaxLogicalPerCore()
 	};
 	if(IsHyperthreadingCapable()())
 	{
-		x86_x64_CpuidRegs regs;
+		x86_x64_CpuidRegs regs = { 0 };
 		regs.eax = 1;
-		regs.ecx = 0;
 		if(!x86_x64_cpuid(&regs))
 			DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 		const size_t logicalPerPackage = bits(regs.ebx, 16, 23);

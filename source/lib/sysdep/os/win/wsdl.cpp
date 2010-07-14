@@ -1426,17 +1426,18 @@ static void RedirectStdout()
 	// that means stdout isn't associated with a lowio handle; _close is
  	// called with fd = -1. oh well, there's nothing we can do.
  	FILE* f = 0;
-	errno_t ret = _wfreopen_s(&f, pathname.string().c_str(), L"wt", stdout);
+	// (return value ignored - it indicates 'file already exists' even
+	// if f is valid)
+	(void)_wfreopen_s(&f, pathname.string().c_str(), L"wt", stdout);
 	// executable directory (probably Program Files) is read-only for
 	// non-Administrators. we can't pick another directory because
-	// ah_log_dir might not be valid until the app's init has run and
-	// the desired subdirectory of wutil_AppdataPath is unknown.
+	// ah_log_dir might not be valid until the app's init has run,
+	// nor should we pollute the (root) wutil_AppdataPath directory.
 	// since stdout usually isn't critical and is seen if launching the
 	// app from a console, just skip the redirection in this case.
 	if(f == 0)
 		return;
-	UNUSED2(ret);	// indicates 'file already exists' even if f is valid
- 
+
 #if CONFIG_PARANOIA
 	// disable buffering, so that no writes are lost even if the program
  	// crashes. only enabled in full debug mode because this is really slow!
