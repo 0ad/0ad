@@ -31,8 +31,6 @@
 #include "lib/byte_order.h"
 #include "SDL/SDL_keysym.h"
 
-extern "C" {
-
 typedef u8  Uint8;
 typedef u16 Uint16;
 typedef u32 Uint32;
@@ -295,7 +293,5 @@ LIB_API Uint8* SDL_GetKeyState(int* num_keys);
 LIB_API Uint8 SDL_GetMouseState(int* x, int* y);
 
 LIB_API Uint8 SDL_GetAppState();
-
-}	// extern "C"
 
 #endif	// #ifndef INCLUDED_WSDL

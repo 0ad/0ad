@@ -51,7 +51,6 @@
 
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 
-extern "C" {
 
 WINIT_REGISTER_LATE_INIT(wsdl_Init);
 WINIT_REGISTER_EARLY_SHUTDOWN(wsdl_Shutdown);
@@ -1395,6 +1394,24 @@ void SDL_Quit()
 }
 
 
+static fs::wpath GetStdoutPathname()
+{
+	// the current directory is unreliable, so use the full path to
+	// the current executable.
+	wchar_t pathnameEXE[MAX_PATH];
+	const DWORD charsWritten = GetModuleFileNameW(0, pathnameEXE, ARRAY_SIZE(pathnameEXE));
+	debug_assert(charsWritten);
+	const fs::wpath path = fs::wpath(pathnameEXE).branch_path();
+
+	// add the EXE name to the filename to allow multiple executables
+	// with their own redirections. (we can't use wutil_ExecutablePath
+	// because it doesn't return the basename)
+	std::wstring name = fs::basename(pathnameEXE);
+	fs::wpath pathname(path/(name+L"_stdout.txt"));
+
+	return pathname;
+}
+
 static void RedirectStdout()
 {
 	// this process is apparently attached to a console, and users might be
@@ -1402,25 +1419,23 @@ static void RedirectStdout()
 	if(wutil_IsValidHandle(GetStdHandle(STD_OUTPUT_HANDLE)))
 		return;
 
-	// notes:
-	// - the current directory may have changed, so use the full path
-	//   to the current executable.
-	// - add the EXE name to the filename to allow multiple executables
-	//   with their own redirections.
-	wchar_t pathnameEXE[MAX_PATH];
-	const DWORD charsWritten = GetModuleFileNameW(0, pathnameEXE, ARRAY_SIZE(pathnameEXE));
-	debug_assert(charsWritten);
-	const fs::wpath path = fs::wpath(pathnameEXE).branch_path();
-	std::wstring name = fs::basename(pathnameEXE);
-	fs::wpath pathname(path/(name+L"_stdout.txt"));
+	const fs::wpath pathname = GetStdoutPathname();
+
  	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
- 	// to avoid the OS opening a console on startup (ugly). that means
- 	// stdout isn't associated with a lowio handle; _close ends up
- 	// getting called with fd = -1. oh well, nothing we can do.
+ 	// to prevent the OS from opening a console on startup (ugly).
+	// that means stdout isn't associated with a lowio handle; _close is
+ 	// called with fd = -1. oh well, there's nothing we can do.
  	FILE* f = 0;
 	errno_t ret = _wfreopen_s(&f, pathname.string().c_str(), L"wt", stdout);
- 	debug_assert(ret == 0);
- 	debug_assert(f);
+	// executable directory (probably Program Files) is read-only for
+	// non-Administrators. we can't pick another directory because
+	// ah_log_dir might not be valid until the app's init has run and
+	// the desired subdirectory of wutil_AppdataPath is unknown.
+	// since stdout usually isn't critical and is seen if launching the
+	// app from a console, just skip the redirection in this case.
+	if(f == 0)
+		return;
+	UNUSED2(ret);	// indicates 'file already exists' even if f is valid
  
 #if CONFIG_PARANOIA
 	// disable buffering, so that no writes are lost even if the program
@@ -1446,7 +1461,5 @@ static LibError wsdl_Shutdown()
 
 	return INFO::OK;
 }
-
-}	// extern "C"
 
 #endif	// #if CONFIG2_WSDL
