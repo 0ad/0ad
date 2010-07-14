@@ -147,9 +147,9 @@ void cpu_ConfigureFloatingPoint()
 }
 
 
-void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 {
-	ia32_asm_AtomicAdd(location, increment);
+	return ia32_asm_AtomicAdd(location, increment);
 }
 
 

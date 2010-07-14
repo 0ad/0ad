@@ -60,13 +60,13 @@ sym(ia32_asm_cpuid):
 ; lock-free support routines
 ;-------------------------------------------------------------------------------
 
-; extern "C" void __cdecl ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+; extern "C" intptr_t __cdecl ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 global sym(ia32_asm_AtomicAdd)
 sym(ia32_asm_AtomicAdd):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; increment
 db		0xf0							; LOCK prefix
-	add		[edx], eax
+	xadd	[edx], eax
 	ret
 
 

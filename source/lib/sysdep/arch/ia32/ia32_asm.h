@@ -34,7 +34,7 @@ extern "C" {
 struct x86_x64_CpuidRegs;
 extern void CALL_CONV ia32_asm_cpuid(x86_x64_CpuidRegs* regs);
 
-extern void CALL_CONV ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+extern intptr_t CALL_CONV ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 extern bool CALL_CONV ia32_asm_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value);
 
 /// control87

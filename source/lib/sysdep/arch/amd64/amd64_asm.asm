@@ -55,8 +55,9 @@ sym(amd64_CAS):
 	movzx		rax, al
 	ret
 
-; extern "C" void amd64_AtomicAdd(intptr_t *location, intptr_t increment);
+; extern "C" intptr_t amd64_AtomicAdd(intptr_t *location, intptr_t increment);
 global sym(amd64_AtomicAdd)
 sym(amd64_AtomicAdd):
-	lock add	[arg0], arg1
+	lock xadd	[arg0], arg1
+	mov			rax, arg1
 	ret

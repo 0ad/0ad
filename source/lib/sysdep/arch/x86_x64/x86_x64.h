@@ -217,7 +217,7 @@ LIB_API const x86_x64_TLB* x86_x64_DTLB();
 /**
  * @return coverage, i.e. total size [MiB] of the given TLB
  **/
-size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb);
+LIB_API size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb);
 
 
 //-----------------------------------------------------------------------------

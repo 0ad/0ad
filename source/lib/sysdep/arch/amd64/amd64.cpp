@@ -51,16 +51,16 @@ bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
 	return initial == expected;
 }
 
-void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 {
-	(void)_InterlockedExchangeAdd64(location, increment);
+	return _InterlockedExchangeAdd64(location, increment);
 }
 
 #elif GCC_VERSION
 
-void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 {
-	amd64_AtomicAdd(location, increment);
+	return amd64_AtomicAdd(location, increment);
 }
 
 bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)

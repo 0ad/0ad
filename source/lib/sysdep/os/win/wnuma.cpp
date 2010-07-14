@@ -26,6 +26,7 @@
 #include "lib/bits.h"	// round_up, PopulationCount
 #include "lib/timer.h"
 #include "lib/module_init.h"
+#include "lib/allocators/allocators.h"	// page_aligned_alloc
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/acpi.h"
 #include "lib/sysdep/os/win/win.h"
@@ -399,9 +400,8 @@ static double ReadRelativeDistanceFromSLIT(const SLIT* slit)
 // memory from each processor.
 static double MeasureRelativeDistance()
 {
-	// allocate memory on one node
 	const size_t size = 16*MiB;
-	shared_ptr<u8> buffer((u8*)numa_AllocateOnNode(size, 0), numa_Deleter<u8>());
+	void* mem = page_aligned_alloc(size);
 
 	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
 
@@ -412,7 +412,7 @@ static double MeasureRelativeDistance()
 		os_cpu_SetThreadAffinityMask(processorMask);
 
 		const double startTime = timer_Time();
-		memset(buffer.get(), 0, size);
+		memset(mem, 0, size);
 		const double elapsedTime = timer_Time() - startTime;
 
 		minTime = std::min(minTime, elapsedTime);
@@ -420,6 +420,8 @@ static double MeasureRelativeDistance()
 	}
 
 	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
+
+	page_aligned_free(mem, size);
 
 	return maxTime / minTime;
 }
@@ -487,171 +489,80 @@ bool numa_IsMemoryInterleaved()
 
 //-----------------------------------------------------------------------------
 // allocator
-
-static bool largePageAllocationTookTooLong = false;
-
-static bool ShouldUseLargePages(LargePageDisposition disposition, size_t allocationSize)
-{
-	// can't, OS does not support large pages
-	if(os_cpu_LargePageSize() == 0)
-		return false;
-
-	// overrides
-	if(disposition == LPD_NEVER)
-		return false;
-	if(disposition == LPD_ALWAYS)
-		return true;
-
-	// default disposition: use a heuristic
-	{
-		// allocation is rather small and would "only" use half of the
-		// TLBs for its pages.
-		if(allocationSize < 64/2 * os_cpu_PageSize())
-			return false;
-
-		// pre-Vista Windows OSes attempt to cope with page fragmentation by
-		// trimming the working set of all processes, thus swapping them out,
-		// and waiting for contiguous regions to appear. this is terribly
-		// slow (multiple seconds), hence the following heuristics:
-		if(wutil_WindowsVersion() < WUTIL_VERSION_VISTA)
-		{
-			// a previous attempt already took too long.
-			if(largePageAllocationTookTooLong)
-				return false;
-
-			// if there's not plenty of free memory, then memory is surely
-			// already fragmented.
-			if(os_cpu_MemoryAvailable() < 2000)	// 2 GB
-				return false;
-		}
-	}
-
-	return true;
-}
-
-
-void* numa_Allocate(size_t size, LargePageDisposition largePageDisposition, size_t* ppageSize)
-{
-	void* mem = 0;
-
-	// try allocating with large pages (reduces TLB misses)
-	if(ShouldUseLargePages(largePageDisposition, size))
-	{
-		const size_t largePageSize = os_cpu_LargePageSize();
-		const size_t paddedSize = round_up(size, largePageSize);	// required by MEM_LARGE_PAGES
-		// note: this call can take SECONDS, which is why several checks are
-		// undertaken before we even try. these aren't authoritative, so we
-		// at least prevent future attempts if it takes too long.
-		const double startTime = timer_Time();
-		mem = VirtualAlloc(0, paddedSize, MEM_RESERVE|MEM_COMMIT|MEM_LARGE_PAGES, PAGE_READWRITE);
-		if(ppageSize)
-			*ppageSize = largePageSize;
-		const double elapsedTime = timer_Time() - startTime;
-		debug_printf(L"TIMER| NUMA large page allocation: %g\n", elapsedTime);
-		if(elapsedTime > 1.0)
-			largePageAllocationTookTooLong = true;
-	}
-
-	// try (again) with regular pages
-	if(!mem)
-	{
-		mem = VirtualAlloc(0, size, MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
-		if(ppageSize)
-			*ppageSize = os_cpu_PageSize();
-	}
-
-	// all attempts failed - we're apparently out of memory.
-	if(!mem)
-		throw std::bad_alloc();
-
-	return mem;
-}
-
-
-static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
-{
-	WUTIL_FUNC(pQueryWorkingSetEx, BOOL, (HANDLE, PVOID, DWORD));
-	WUTIL_IMPORT_KERNEL32(QueryWorkingSetEx, pQueryWorkingSetEx);
-	if(!pQueryWorkingSetEx)
-		return true;	// can't do anything
-
-#if WINVER >= 0x600
-	size_t largePageSize = os_cpu_LargePageSize();
-	debug_assert(largePageSize != 0); // this value is needed for later
-
-	// retrieve attributes of all pages constituting mem
-	const size_t numPages = (size + pageSize-1) / pageSize;
-	PSAPI_WORKING_SET_EX_INFORMATION* wsi = new PSAPI_WORKING_SET_EX_INFORMATION[numPages];
-	for(size_t i = 0; i < numPages; i++)
-		wsi[i].VirtualAddress = (u8*)mem + i*pageSize;
-	pQueryWorkingSetEx(GetCurrentProcess(), wsi, DWORD(sizeof(PSAPI_WORKING_SET_EX_INFORMATION)*numPages));
-
-	// ensure each is valid and allocated on the correct node
-	for(size_t i = 0; i < numPages; i++)
-	{
-		const PSAPI_WORKING_SET_EX_BLOCK& attributes = wsi[i].VirtualAttributes;
-		if(!attributes.Valid)
-			return false;
-		if((attributes.LargePage != 0) != (pageSize == largePageSize))
-		{
-			debug_printf(L"NUMA: is not a large page\n");
-			return false;
-		}
-		if(attributes.Node != node)
-		{
-			debug_printf(L"NUMA: allocated from remote node\n");
-			return false;
-		}
-	}
-
-	delete[] wsi;
-#else
-	UNUSED2(mem);
-	UNUSED2(size);
-	UNUSED2(pageSize);
-	UNUSED2(node);
-#endif
-
-	return true;
-}
-
-
-void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePageDisposition, size_t* ppageSize)
-{
-	debug_assert(node < numa_NumNodes());
-
-	// see if there will be enough memory (non-authoritative, for debug purposes only)
-	{
-		const size_t sizeMiB = size/MiB;
-		const size_t availableMiB = numa_AvailableMemory(node);
-		if(availableMiB < sizeMiB)
-			debug_printf(L"NUMA: warning: node reports insufficient memory (%d vs %d MB)\n", availableMiB, sizeMiB);
-	}
-
-	size_t pageSize;	// (used below even if ppageSize is zero)
-	void* const mem = numa_Allocate(size, largePageDisposition, &pageSize);
-	if(ppageSize)
-		*ppageSize = pageSize;
-
-	// we can't use VirtualAllocExNuma - it's only available in Vista and Server 2008.
-	// workaround: fault in all pages now to ensure they are allocated from the
-	// current node, then verify page attributes.
-	// (note: VirtualAlloc's MEM_COMMIT only maps virtual pages and does not
-	// actually allocate page frames. Windows XP uses a first-touch heuristic -
-	// the page will be taken from the node whose processor caused the fault.
-	// Windows Vista allocates on the "preferred" node, so affinity should be
-	// set such that this thread is running on <node>.)
-	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(numa_ProcessorMaskFromNode(node));
-	memset(mem, 0, size);
-	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
-
-	VerifyPages(mem, size, pageSize, node);
-
-	return mem;
-}
-
-
-void numa_Deallocate(void* mem)
-{
-	VirtualFree(mem, 0, MEM_RELEASE);
-}
+//
+//static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
+//{
+//	WUTIL_FUNC(pQueryWorkingSetEx, BOOL, (HANDLE, PVOID, DWORD));
+//	WUTIL_IMPORT_KERNEL32(QueryWorkingSetEx, pQueryWorkingSetEx);
+//	if(!pQueryWorkingSetEx)
+//		return true;	// can't do anything
+//
+//#if WINVER >= 0x600
+//	size_t largePageSize = os_cpu_LargePageSize();
+//	debug_assert(largePageSize != 0); // this value is needed for later
+//
+//	// retrieve attributes of all pages constituting mem
+//	const size_t numPages = (size + pageSize-1) / pageSize;
+//	PSAPI_WORKING_SET_EX_INFORMATION* wsi = new PSAPI_WORKING_SET_EX_INFORMATION[numPages];
+//	for(size_t i = 0; i < numPages; i++)
+//		wsi[i].VirtualAddress = (u8*)mem + i*pageSize;
+//	pQueryWorkingSetEx(GetCurrentProcess(), wsi, DWORD(sizeof(PSAPI_WORKING_SET_EX_INFORMATION)*numPages));
+//
+//	// ensure each is valid and allocated on the correct node
+//	for(size_t i = 0; i < numPages; i++)
+//	{
+//		const PSAPI_WORKING_SET_EX_BLOCK& attributes = wsi[i].VirtualAttributes;
+//		if(!attributes.Valid)
+//			return false;
+//		if((attributes.LargePage != 0) != (pageSize == largePageSize))
+//		{
+//			debug_printf(L"NUMA: is not a large page\n");
+//			return false;
+//		}
+//		if(attributes.Node != node)
+//		{
+//			debug_printf(L"NUMA: allocated from remote node\n");
+//			return false;
+//		}
+//	}
+//
+//	delete[] wsi;
+//#else
+//	UNUSED2(mem);
+//	UNUSED2(size);
+//	UNUSED2(pageSize);
+//	UNUSED2(node);
+//#endif
+//
+//	return true;
+//}
+//
+//
+//void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePageDisposition, size_t* ppageSize)
+//{
+//	debug_assert(node < numa_NumNodes());
+//
+//	// see if there will be enough memory (non-authoritative, for debug purposes only)
+//	{
+//		const size_t sizeMiB = size/MiB;
+//		const size_t availableMiB = numa_AvailableMemory(node);
+//		if(availableMiB < sizeMiB)
+//			debug_printf(L"NUMA: warning: node reports insufficient memory (%d vs %d MB)\n", availableMiB, sizeMiB);
+//	}
+//
+//	size_t pageSize;	// (used below even if ppageSize is zero)
+//	void* const mem = numa_Allocate(size, largePageDisposition, &pageSize);
+//	if(ppageSize)
+//		*ppageSize = pageSize;
+//
+//	// we can't use VirtualAllocExNuma - it's only available in Vista and Server 2008.
+//	// workaround: fault in all pages now to ensure they are allocated from the
+//	// current node, then verify page attributes.
+//	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(numa_ProcessorMaskFromNode(node));
+//	memset(mem, 0, size);
+//	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
+//
+//	VerifyPages(mem, size, pageSize, node);
+//
+//	return mem;
+//}

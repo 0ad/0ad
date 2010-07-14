@@ -193,7 +193,7 @@ const size_t WUTIL_VERSION_7     = 0x0601;
  **/
 extern const wchar_t* wutil_WindowsFamily();
 
-extern size_t wutil_WindowsVersion();
+LIB_API size_t wutil_WindowsVersion();
 
 
 //-----------------------------------------------------------------------------

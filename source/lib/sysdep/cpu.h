@@ -93,8 +93,12 @@ bool cpu_CAS(volatile T* location, T expected, T new_value)
 /**
  * add a signed value to a variable without the possibility of interference
  * from other threads/CPUs.
+ *
+ * @return the previous value.
  **/
-LIB_API void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+LIB_API intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+
+LIB_API void cpu_TestAtomicAdd();
 
 /**
  * enforce strict instruction ordering in the CPU pipeline.
