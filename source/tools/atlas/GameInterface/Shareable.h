@@ -258,13 +258,13 @@ public:
 		wrapped_type r;
 		r.reserve(size);
 		// (/Wp64 causes a spurious warning here. see https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=253172)
-#if MSC_VERSION
+#ifdef _MSC_VER // (can't use MSC_VERSION here since this file is included by Atlas too)
 #pragma warning(push)
 #pragma warning(disable:4267)
 #endif
 		for (size_t i = 0; i < size; ++i)
 			r.push_back(array[i]._Unwrap());
-#if MSC_VERSION
+#ifdef _MSC_VER
 #pragma warning(pop)
 #endif
 		return r;

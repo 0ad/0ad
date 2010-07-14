@@ -7,6 +7,7 @@ then run start-msvc8.bat and run ./build.sh here.
 This version of SpiderMonkey comes from http://hg.mozilla.org/mozilla-central/
 revision 5108c4c2c043
 plus the patch from https://bugzilla.mozilla.org/show_bug.cgi?id=509857
+plus a -Wundef warning fix in jsproto.tbl
 
 The game must be compiled with precisely this version, and must not use a
 standard system-provided version of the library, since SpiderMonkey does not

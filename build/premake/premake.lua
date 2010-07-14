@@ -173,6 +173,7 @@ function package_set_build_flags()
 				-- "-Wformat=2",		-- (useful sometimes, but a bit noisy, so skip it by default)
 				-- "-Wcast-qual",		-- (useful for checking const-correctness, but a bit noisy, so skip it by default)
 				"-Wnon-virtual-dtor",	-- (sometimes noisy but finds real bugs)
+				"-Wundef",				-- (useful for finding macro name typos)
 
 				-- enable security features (stack checking etc) that shouldn't have
 				-- a significant effect on performance and can catch bugs

@@ -105,7 +105,7 @@ namespace FMath
 		@return 0 if it is a number, something else if is NAN. */
 #ifdef WIN32
 	inline int IsNotANumber(float f) { return _isnan(f); }
-#elif __PPU__
+#elif defined(__PPU__)
 	inline int IsNotANumber(float f) { return !isfinite(f); }
 #else // Linux and Mac
 	inline int IsNotANumber(float f) { return !finite(f); }
