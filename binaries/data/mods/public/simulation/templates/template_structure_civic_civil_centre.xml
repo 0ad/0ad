@@ -49,4 +49,9 @@
     <Radius>60</Radius>
     <Types>food wood stone metal</Types>
   </ResourceDropsite>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/{civ}_support_female_citizen
+    </Entities>
+  </TrainingQueue>
 </Entity>
