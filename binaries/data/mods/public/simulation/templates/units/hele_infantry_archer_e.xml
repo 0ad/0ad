@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_archer_a">
   <Identity>
-    <IconCell>11</IconCell>
+    <IconSheet>snPortraitSheetHele</IconSheet>
+	<IconCell>11</IconCell>
   </Identity>
   <ResourceGatherer>
     <BaseSpeed>2.0</BaseSpeed>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_javelinist_a">
   <Identity>
-    <IconCell>8</IconCell>
+    <IconSheet>snPortraitSheetHele</IconSheet>
+	<IconCell>8</IconCell>
   </Identity>
   <ResourceGatherer>
     <BaseSpeed>2.0</BaseSpeed>

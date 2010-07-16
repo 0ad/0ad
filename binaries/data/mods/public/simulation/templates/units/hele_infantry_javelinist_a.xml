@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_javelinist_b">
   <Identity>
-    <IconCell>7</IconCell>
+    <IconSheet>snPortraitSheetHele</IconSheet>
+	<IconCell>7</IconCell>
   </Identity>
   <Promotion>
     <Entity>hele_infantry_javelinist_e</Entity>

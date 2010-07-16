@@ -255,27 +255,6 @@ function getTemplateCategory(templateName)
 	return "unknown category";
 }
 
-function getPortraitSheetName(type)
-{
-	var portraitSheetName = "snPortraitSheet";
-
-	switch (type)
-	{
-	case GEOLOGY:
-		return portraitSheetName += "RockGaia";
-	case FLORA:
-		return portraitSheetName += "TreeGaia";
-	case FAUNA:
-		return portraitSheetName += "AnimalGaia";
-	case SPECIAL:
-		return portraitSheetName += "SpecialGaia";
-	case CAMP:
-		return portraitSheetName += "Hele"; // not sure what sheet should be used with the "camp" category
-	default:
-		return portraitSheetName += toTitleCase(type);
-	}
-}
-
 function getFormalCivName(civ)
 {
 	switch (civ)

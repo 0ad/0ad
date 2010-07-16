@@ -90,12 +90,12 @@ function displayGeneralInfo(playerState, entState, template)
 	// Attack stats
 	getGUIObjectByName("sdAttackStats").caption = damageTypesToTextStacked(entState.attack);
 	if (entState.attack)
-		iconTooltip += "\n" +  "[font=\"serif-bold-13\"]Attack: [/font]" + damageTypesToText(entState.attack);		
+		iconTooltip += "\n" +  "[font=\"serif-bold-13\"]Attack: [/font]" + damageTypesToText(entState.attack);	
 
 	// Armour stats
 	getGUIObjectByName("sdArmourStats").caption = damageTypesToTextStacked(entState.armour);
 	if (entState.armour)
-		iconTooltip += "\n" + "[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);	
+		iconTooltip += "\n" + "[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);
 
 	// Resource stats
 	if (entState.resourceSupply)
@@ -103,7 +103,7 @@ function displayGeneralInfo(playerState, entState, template)
 		var resources = entState.resourceSupply.amount + "/" + entState.resourceSupply.max + " ";
 		var resourceType = entState.resourceSupply.type["generic"];
 		
-		getGUIObjectByName("sdResourceStats").caption =  resources;
+		getGUIObjectByName("sdResourceStats").caption = resources;
 		getGUIObjectByName("sdResourceIcon").cell_id = resourceIconCellIds[resourceType];
 		getGUIObjectByName("sdResources").hidden = false;
 			
@@ -119,7 +119,7 @@ function displayGeneralInfo(playerState, entState, template)
 	}
 
 	// Icon
-	getGUIObjectByName("sdIconImage").sprite = getPortraitSheetName(getTemplateCategory(entState.template));
+	getGUIObjectByName("sdIconImage").sprite = template.icon_sheet;
 	getGUIObjectByName("sdIconImage").cell_id = template.icon_cell;
 	getGUIObjectByName("sdIconImage").tooltip = iconTooltip;
 	//getGUIObjectByName("sdIconOutline"); // Need to change color of icon outline with the playerColor

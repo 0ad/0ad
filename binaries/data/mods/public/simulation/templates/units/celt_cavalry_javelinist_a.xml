@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/celt_cavalry_javelinist_b">
   <Identity>
-    <IconCell>7</IconCell>
+    <IconSheet>snPortraitSheetCelt</IconSheet>
+	<IconCell>7</IconCell>
   </Identity>
   <Promotion>
     <Entity>celt_cavalry_javelinist_e</Entity>
