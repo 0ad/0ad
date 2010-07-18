@@ -1,4 +1,5 @@
 var g_NewIID = 1000; // some arbitrary not-yet-used number
+var g_NewMTID = 1000; // some arbitrary not-yet-used number
 var g_ComponentTypes = {};
 var g_Components = {};
 
@@ -13,6 +14,11 @@ Engine.RegisterComponentType = function(iid, name, ctor)
 Engine.RegisterInterface = function(name)
 {
 	global["IID_"+name] = g_NewIID++;
+};
+
+Engine.RegisterMessageType = function(name)
+{
+	global["MT_"+name] = g_NewMTID++;
 };
 
 Engine.QueryInterface = function(ent, iid)
