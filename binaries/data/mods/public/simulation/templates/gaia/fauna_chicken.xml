@@ -15,4 +15,17 @@
     <Circle radius="0.5"/>
     <Height>1.5</Height>
   </Footprint>
+  <AnimalAI>
+    <NaturalBehaviour>skittish</NaturalBehaviour>
+  </AnimalAI>
+  <UnitMotion>
+    <WalkSpeed>1</WalkSpeed>
+    <PassabilityClass>default</PassabilityClass>
+    <CostClass>default</CostClass>
+  </UnitMotion>
+  <Sound>
+    <SoundGroups>
+      <panic>actor/fauna/animal/chickens.xml</panic>
+    </SoundGroups>
+  </Sound>
 </Entity>

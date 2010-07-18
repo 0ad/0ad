@@ -29,6 +29,28 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
+/**
+ * Used for script-only message types.
+ */
+class CMessageScripted : public CMessage
+{
+public:
+	virtual int GetType() const { return mtid; }
+	virtual const char* GetScriptHandlerName() const { return handlerName.c_str(); }
+	virtual const char* GetScriptGlobalHandlerName() const { return globalHandlerName.c_str(); }
+	virtual jsval ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const { return msg.get(); }
+
+	CMessageScripted(int mtid, const std::string& name, const CScriptValRooted& msg) :
+		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(msg)
+	{
+	}
+
+	int mtid;
+	std::string handlerName;
+	std::string globalHandlerName;
+	CScriptValRooted msg;
+};
+
 CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFunctions) :
 	m_NextScriptComponentTypeId(CID__LastNative), m_ScriptInterface("Engine"), m_SimContext(context), m_CurrentlyHotloading(false)
 {
@@ -45,6 +67,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 	{
 		m_ScriptInterface.RegisterFunction<void, int, std::string, CScriptVal, CComponentManager::Script_RegisterComponentType> ("RegisterComponentType");
 		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterInterface> ("RegisterInterface");
+		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterMessageType> ("RegisterMessageType");
 		m_ScriptInterface.RegisterFunction<void, std::string, CScriptVal, CComponentManager::Script_RegisterGlobal> ("RegisterGlobal");
 		m_ScriptInterface.RegisterFunction<IComponent*, int, int, CComponentManager::Script_QueryInterface> ("QueryInterface");
 		m_ScriptInterface.RegisterFunction<void, int, int, CScriptVal, CComponentManager::Script_PostMessage> ("PostMessage");
@@ -281,7 +304,27 @@ void CComponentManager::Script_RegisterInterface(void* cbdata, std::string name)
 	// IIDs start at 1, so size+1 is the next unused one
 	size_t id = componentManager->m_InterfaceIdsByName.size() + 1;
 	componentManager->m_InterfaceIdsByName[name] = id;
-	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int )id);
+	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
+}
+
+void CComponentManager::Script_RegisterMessageType(void* cbdata, std::string name)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	std::map<std::string, MessageTypeId>::iterator it = componentManager->m_MessageTypeIdsByName.find(name);
+	if (it != componentManager->m_MessageTypeIdsByName.end())
+	{
+		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
+		// they're probably unintentional and should be reported
+		if (!componentManager->m_CurrentlyHotloading)
+			componentManager->m_ScriptInterface.ReportError("Registering message type with already-registered name"); // TODO: report the actual name
+		return;
+	}
+
+	// MTIDs start at 1, so size+1 is the next unused one
+	size_t id = componentManager->m_MessageTypeIdsByName.size() + 1;
+	componentManager->RegisterMessageType(id, name.c_str());
+	componentManager->m_ScriptInterface.SetGlobal(("MT_" + name).c_str(), (int)id);
 }
 
 void CComponentManager::Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value)
@@ -300,10 +343,27 @@ IComponent* CComponentManager::Script_QueryInterface(void* cbdata, int ent, int 
 	return component;
 }
 
+CMessage* CComponentManager::ConstructMessage(int mtid, CScriptVal data)
+{
+	if (mtid == MT__Invalid || mtid > (int)m_MessageTypeIdsByName.size()) // (IDs start at 1 so use '>' here)
+		LOGERROR(L"PostMessage with invalid message type ID '%d'", mtid);
+
+	if (mtid < MT__LastNative)
+	{
+		return CMessageFromJSVal(mtid, m_ScriptInterface, data.get());
+	}
+	else
+	{
+		return new CMessageScripted(mtid, m_MessageTypeNamesById[mtid],
+				CScriptValRooted(m_ScriptInterface.GetContext(), data));
+	}
+}
+
 void CComponentManager::Script_PostMessage(void* cbdata, int ent, int mtid, CScriptVal data)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
-	CMessage* msg = CMessageFromJSVal(mtid, componentManager->m_ScriptInterface, data.get());
+
+	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
 		return; // error
 
@@ -315,7 +375,8 @@ void CComponentManager::Script_PostMessage(void* cbdata, int ent, int mtid, CScr
 void CComponentManager::Script_BroadcastMessage(void* cbdata, int mtid, CScriptVal data)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
-	CMessage* msg = CMessageFromJSVal(mtid, componentManager->m_ScriptInterface, data.get());
+
+	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
 		return; // error
 
@@ -399,6 +460,7 @@ void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, Comp
 void CComponentManager::RegisterMessageType(MessageTypeId mtid, const char* name)
 {
 	m_MessageTypeIdsByName[name] = mtid;
+	m_MessageTypeNamesById[mtid] = name;
 }
 
 void CComponentManager::SubscribeToMessageType(MessageTypeId mtid)
@@ -586,6 +648,9 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 
 		// TODO: maybe we should delete already-constructed components if one of them fails?
 	}
+
+	CMessageCreate msg(ent);
+	PostMessage(ent, msg);
 
 	return ent;
 }

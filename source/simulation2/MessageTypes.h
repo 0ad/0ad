@@ -25,7 +25,7 @@
 #include "simulation2/helpers/Position.h"
 
 #define DEFAULT_MESSAGE_IMPL(name) \
-	virtual EMessageTypeId GetType() const { return MT_##name; } \
+	virtual int GetType() const { return MT_##name; } \
 	virtual const char* GetScriptHandlerName() const { return "On" #name; } \
 	virtual const char* GetScriptGlobalHandlerName() const { return "OnGlobal" #name; } \
 	virtual jsval ToJSVal(ScriptInterface& scriptInterface) const; \
@@ -84,6 +84,23 @@ public:
 	SceneCollector& collector;
 	const CFrustum& frustum;
 	bool culling;
+};
+
+/**
+ * This is send immediately after a new entity's components have all be created
+ * and initialised.
+ */
+class CMessageCreate : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(Create)
+
+	CMessageCreate(entity_id_t entity) :
+		entity(entity)
+	{
+	}
+
+	entity_id_t entity;
 };
 
 /**

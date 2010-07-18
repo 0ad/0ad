@@ -59,7 +59,7 @@ public:
 
 	// Template state:
 
-	fixed m_Speed; // in metres per second
+	fixed m_WalkSpeed; // in metres per second
 	fixed m_RunSpeed;
 	entity_pos_t m_Radius;
 	u8 m_PassClass;
@@ -67,6 +67,7 @@ public:
 
 	// Dynamic state:
 
+	fixed m_Speed;
 	bool m_HasTarget; // whether we currently have valid paths and targets
 	// These values contain undefined junk if !HasTarget:
 	ICmpPathfinder::Path m_Path;
@@ -121,7 +122,8 @@ public:
 	{
 		m_HasTarget = false;
 
-		m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
+		m_WalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
+		m_Speed = m_WalkSpeed;
 
 		if (paramNode.GetChild("Run").IsOk())
 		{
@@ -129,7 +131,7 @@ public:
 		}
 		else
 		{
-			m_RunSpeed = m_Speed;
+			m_RunSpeed = m_WalkSpeed;
 		}
 
 		CmpPtr<ICmpObstruction> cmpObstruction(context, GetEntityId());
@@ -202,14 +204,19 @@ public:
 		}
 	}
 
-	virtual fixed GetSpeed()
+	virtual fixed GetWalkSpeed()
 	{
-		return m_Speed;
+		return m_WalkSpeed;
 	}
 
 	virtual fixed GetRunSpeed()
 	{
 		return m_RunSpeed;
+	}
+
+	virtual void SetSpeedFactor(fixed factor)
+	{
+		m_Speed = m_WalkSpeed.Multiply(factor);
 	}
 
 	virtual void SetDebugOverlay(bool enabled)
@@ -225,6 +232,12 @@ public:
 	virtual bool MoveToPoint(entity_pos_t x, entity_pos_t z);
 	virtual bool MoveToAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
 	virtual bool IsInAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
+	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange);
+
+	virtual void StopMoving()
+	{
+		SwitchState(IDLE);
+	}
 
 private:
 	/**
@@ -537,6 +550,8 @@ bool CCmpUnitMotion::ShouldTreatTargetAsCircle(entity_pos_t range, entity_pos_t 
 	return (errCircle < errSquare);
 }
 
+static const entity_pos_t g_GoalDelta = entity_pos_t::FromInt(CELL_SIZE)/4; // for extending the goal outwards/inwards a little bit
+
 bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
 {
 	PROFILE("MoveToAttackRange");
@@ -550,8 +565,6 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 
 	// Reset any current movement
 	m_HasTarget = false;
-
-	ICmpPathfinder::Goal goal;
 
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpObstructionManager.null())
@@ -588,13 +601,12 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 	 * (Those units should set minRange to 0 so they'll never be considered *too* close.)
 	 */
 
-	const entity_pos_t goalDelta = entity_pos_t::FromInt(CELL_SIZE)/4; // for extending the goal outwards/inwards a little bit
-
 	if (tag.valid())
 	{
 		ICmpObstructionManager::ObstructionSquare obstruction = cmpObstructionManager->GetObstruction(tag);
 
 		CFixedVector2D halfSize(obstruction.hw, obstruction.hh);
+		ICmpPathfinder::Goal goal;
 		goal.x = obstruction.x;
 		goal.z = obstruction.z;
 
@@ -604,7 +616,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 		{
 			// Too close to the square - need to move away
 
-			entity_pos_t goalDistance = minRange + goalDelta;
+			entity_pos_t goalDistance = minRange + g_GoalDelta;
 
 			goal.type = ICmpPathfinder::Goal::SQUARE;
 			goal.u = obstruction.u;
@@ -642,7 +654,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 					return false;
 				}
 
-				entity_pos_t goalDistance = maxRange - goalDelta;
+				entity_pos_t goalDistance = maxRange - g_GoalDelta;
 
 				goal.type = ICmpPathfinder::Goal::CIRCLE;
 				goal.hw = circleRadius + goalDistance;
@@ -652,7 +664,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 				// The target is large relative to our range, so treat it as a square and
 				// get close enough that the diagonals come within range
 
-				entity_pos_t goalDistance = (maxRange - goalDelta)*2 / 3; // multiply by slightly less than 1/sqrt(2)
+				entity_pos_t goalDistance = (maxRange - g_GoalDelta)*2 / 3; // multiply by slightly less than 1/sqrt(2)
 
 				goal.type = ICmpPathfinder::Goal::SQUARE;
 				goal.u = obstruction.u;
@@ -662,6 +674,13 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 				goal.hh = obstruction.hh + delta;
 			}
 		}
+
+		m_FinalGoal = goal;
+		if (!RegeneratePath(pos, false))
+			return false;
+
+		SwitchState(WALKING);
+		return true;
 	}
 	else
 	{
@@ -673,31 +692,46 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 
 		CFixedVector3D targetPos = cmpTargetPosition->GetPosition();
 
-		entity_pos_t distance = (pos - CFixedVector2D(targetPos.X, targetPos.Z)).Length();
-
-		entity_pos_t goalDistance;
-		if (distance < minRange)
-		{
-			goalDistance = minRange + goalDelta;
-		}
-		else if (distance > maxRange)
-		{
-			goalDistance = maxRange - goalDelta;
-		}
-		else
-		{
-			// We're already in range - no need to move anywhere
-			FaceTowardsPoint(pos, goal.x, goal.z);
-			return false;
-		}
-
-		// TODO: what happens if goalDistance < 0? (i.e. we probably can never get close enough to the target)
-
-		goal.type = ICmpPathfinder::Goal::CIRCLE;
-		goal.x = targetPos.X;
-		goal.z = targetPos.Z;
-		goal.hw = m_Radius + goalDistance;
+		return MoveToPointRange(targetPos.X, targetPos.Z, minRange, maxRange);
 	}
+}
+
+bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+{
+	PROFILE("MoveToPointRange");
+
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	if (cmpPosition.null() || !cmpPosition->IsInWorld())
+		return false;
+
+	CFixedVector3D pos3 = cmpPosition->GetPosition();
+	CFixedVector2D pos (pos3.X, pos3.Z);
+
+	entity_pos_t distance = (pos - CFixedVector2D(x, z)).Length();
+
+	entity_pos_t goalDistance;
+	if (distance < minRange)
+	{
+		goalDistance = minRange + g_GoalDelta;
+	}
+	else if (distance > maxRange)
+	{
+		goalDistance = maxRange - g_GoalDelta;
+	}
+	else
+	{
+		// We're already in range - no need to move anywhere
+		FaceTowardsPoint(pos, x, z);
+		return false;
+	}
+
+	// TODO: what happens if goalDistance < 0? (i.e. we probably can never get close enough to the target)
+
+	ICmpPathfinder::Goal goal;
+	goal.type = ICmpPathfinder::Goal::CIRCLE;
+	goal.x = x;
+	goal.z = z;
+	goal.hw = m_Radius + goalDistance;
 
 	m_FinalGoal = goal;
 	if (!RegeneratePath(pos, false))

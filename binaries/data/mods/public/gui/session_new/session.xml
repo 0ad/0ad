@@ -64,7 +64,12 @@
 		/>
 
 		<!-- Dev/cheat commands -->
-		<object z="200" size="100%-155 50 100%-16 130" type="image" name="devCommands" sprite="devCommandsBackground" hidden="true">
+		<object name="devCommands" size="100%-155 50 100%-16 130" z="200" type="image" sprite="devCommandsBackground"
+				hidden="true" hotkey="session.devcommands.toggle">
+			<action on="Press">
+				this.hidden = !this.hidden;
+			</action>
+
 			<object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
 			<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="wheatCrossBox"/>
 

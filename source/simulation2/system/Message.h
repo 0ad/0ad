@@ -27,7 +27,7 @@ protected:
 	CMessage() { }
 public:
 	virtual ~CMessage() { }
-	virtual EMessageTypeId GetType() const = 0;
+	virtual int GetType() const = 0;
 	virtual const char* GetScriptHandlerName() const = 0;
 	virtual const char* GetScriptGlobalHandlerName() const = 0;
 	virtual jsval ToJSVal(ScriptInterface&) const = 0;

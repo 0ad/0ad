@@ -216,6 +216,7 @@ private:
 	// Implementations of functions exposed to scripts
 	static void Script_RegisterComponentType(void* cbdata, int iid, std::string cname, CScriptVal ctor);
 	static void Script_RegisterInterface(void* cbdata, std::string name);
+	static void Script_RegisterMessageType(void* cbdata, std::string name);
 	static void Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value);
 	static IComponent* Script_QueryInterface(void* cbdata, int ent, int iid);
 	static void Script_PostMessage(void* cbdata, int ent, int mtid, CScriptVal data);
@@ -224,6 +225,7 @@ private:
 	static int Script_AddLocalEntity(void* cbdata, std::string templateName);
 	static void Script_DestroyEntity(void* cbdata, int ent);
 
+	CMessage* ConstructMessage(int mtid, CScriptVal data);
 	void SendGlobalMessage(const CMessage& msg) const;
 
 	ComponentTypeId GetScriptWrapper(InterfaceId iid);
@@ -242,7 +244,9 @@ private:
 	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_GlobalMessageSubscriptions;
 	std::map<std::string, ComponentTypeId> m_ComponentTypeIdsByName;
 	std::map<std::string, MessageTypeId> m_MessageTypeIdsByName;
+	std::map<MessageTypeId, std::string> m_MessageTypeNamesById;
 	std::map<std::string, InterfaceId> m_InterfaceIdsByName;
+
 	// TODO: maintaining both ComponentsBy* is nasty; can we get rid of one,
 	// while keeping QueryInterface and PostMessage sufficiently efficient?
 

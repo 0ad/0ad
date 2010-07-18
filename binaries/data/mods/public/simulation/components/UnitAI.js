@@ -301,6 +301,9 @@ UnitAI.prototype.StartGather = function()
 
 	// Start the gather animation and sound
 	this.SelectAnimation(typename, false, 1.0, typename);
+
+	// Tell the target we're gathering from it
+	Engine.PostMessage(this.gatherTarget, MT_ResourceGather, { "entity": this.gatherTarget, "gatherer": this.entity });
 };
 
 UnitAI.prototype.CancelTimers = function()

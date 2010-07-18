@@ -110,6 +110,22 @@ CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 
 ////////////////////////////////
 
+jsval CMessageCreate::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(entity);
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageCreate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(entity_id_t, entity);
+	return new CMessageCreate(entity);
+}
+
+////////////////////////////////
+
 jsval CMessageDestroy::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();

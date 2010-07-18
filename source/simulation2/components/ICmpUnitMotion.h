@@ -51,7 +51,7 @@ public:
 	virtual bool IsInAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
-	 * Attempt to walk into range of a given target, or as close as possible.
+	 * Attempt to walk into range of a given target entity, or as close as possible.
 	 * If the unit is already in range, or cannot move anywhere at all, or if there is
 	 * some other error, then returns false.
 	 * Otherwise, sends a MotionChanged message and returns true; it will send another
@@ -61,9 +61,24 @@ public:
 	virtual bool MoveToAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
+	 * See MoveToAttackRange, but the target is the given point.
+	 */
+	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+
+	/**
+	 * Stop moving immediately.
+	 */
+	virtual void StopMoving() = 0;
+
+	/**
+	 * Set the current movement speed to be the default multiplied by the given factor.
+	 */
+	virtual void SetSpeedFactor(fixed factor) = 0;
+
+	/**
 	 * Get the default speed that this unit will have when walking, in metres per second.
 	 */
-	virtual fixed GetSpeed() = 0;
+	virtual fixed GetWalkSpeed() = 0;
 
 	/**
 	 * Get the default speed that this unit will have when running, in metres per second.
