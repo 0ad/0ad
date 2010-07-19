@@ -110,9 +110,9 @@ protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn) = 0;
 
 	/**
-	 * Called when this client has finished a simulation update, with the current state hash.
+	 * Called when this client has finished a simulation update.
 	 */
-	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash) = 0;
+	virtual void NotifyFinishedUpdate(u32 turn) = 0;
 
 	CSimulation2& m_Simulation2;
 
@@ -152,7 +152,7 @@ public:
 protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn);
 
-	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
+	virtual void NotifyFinishedUpdate(u32 turn);
 
 	CNetClient& m_NetClient;
 };
@@ -175,7 +175,7 @@ public:
 protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn);
 
-	virtual void NotifyFinishedUpdate(u32 turn, const std::string& hash);
+	virtual void NotifyFinishedUpdate(u32 turn);
 };
 
 

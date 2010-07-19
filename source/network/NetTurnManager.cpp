@@ -100,13 +100,7 @@ bool CNetTurnManager::Update(float frameLength)
 
 		m_Simulation2.Update(TURN_LENGTH, commands);
 
-		{
-			PROFILE("state hash check");
-			std::string hash;
-			bool ok = m_Simulation2.ComputeStateHash(hash);
-			debug_assert(ok);
-			NotifyFinishedUpdate(m_CurrentTurn, hash);
-		}
+		NotifyFinishedUpdate(m_CurrentTurn);
 
 		// Set the time for the next turn update
 		m_DeltaTime -= TURN_LENGTH / 1000.f;
@@ -218,11 +212,18 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 	m_NetClient.SendMessage(&msg);
 }
 
-void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn, const std::string& hash)
+void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 {
 #ifdef NETTURN_LOG
 	NETTURN_LOG(L"NotifyFinishedUpdate(%d, %hs)\n", turn, Hexify(hash).c_str());
 #endif
+
+	std::string hash;
+	{
+		PROFILE("state hash check");
+		bool ok = m_Simulation2.ComputeStateHash(hash);
+		debug_assert(ok);
+	}
 
 	// Send message to the server
 	CSyncCheckMessage msg;
@@ -251,7 +252,7 @@ void CNetLocalTurnManager::NotifyFinishedOwnCommands(u32 turn)
 	FinishedAllCommands(turn);
 }
 
-void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn), const std::string& UNUSED(hash))
+void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn))
 {
 }
 
