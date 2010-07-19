@@ -1,3 +1,6 @@
+// The height of a Queue or Garrison panel
+const UNIT_PANEL_HEIGHT = 63;
+
 // The number of currently visible buttons (used to optimise showing/hiding)
 var g_unitPanelButtons = { "Construction": 0, "Training": 0, "Queue": 0 };
 
@@ -34,7 +37,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 	{
 		if (i > 23) // End loop early if there are more than 24 buttons
 			break;
-		else if (guiName == "Selection" && i > 15) // End loop early if more then 16 selection buttons
+		else if (guiName == "Selection" && i > 14) // End loop early if more then 16 selection buttons
 			break
 
 		// Get templates
@@ -57,13 +60,20 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 
 		// Tooltip
 		var tooltip = name;
-		
+
 		if (guiName == "Selection")
 		{
-			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = 
-				(g_Selection.groups.typeCount[item] > 1 ? g_Selection.groups.typeCount[item] : "");
+			var typeCount = g_Selection.groups.getGroup(item).typeCount;
 
-			tooltip += (g_Selection.groups.typeCount[item] > 1 ? " (" + g_Selection.groups.typeCount[item] + ")" : "")
+			if (typeCount > 1)
+			{
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = typeCount;
+				tooltip += " (" + typeCount + ")";
+			}
+			else
+			{
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = "";
+			}
 		}
 		else if (guiName == "Queue")
 		{
@@ -94,6 +104,15 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			}	
 		}
 
+		// Ignore this button because it is already featured on the big primary icon
+		if (guiName == "Selection")
+		{
+			if (g_GroupSelectionByRank && templatesEqualWithoutRank(g_Selection.getPrimaryTemplateName(), item))
+				continue;	
+			else if (g_Selection.getPrimaryTemplateName() == item)
+				continue;	
+		}
+
 		// Button
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
@@ -115,35 +134,24 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 	}
 
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
-	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var numButtons = i;
-	var buttonSpacer = ((guiName == "Selection")? 37 : 45);
+	var rowLength = ((guiName == "Selection")? 5 : 8);
+	var numRows = ceiling(numButtons / rowLength);
+	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
+	var buttonSpacer = ((guiName == "Selection")? buttonSideLength+1 : buttonSideLength+2);
 
-	if (numButtons < 9) // Row 0
+	// Resize Queue panel if needed
+	if (guiName == "Queue") // or garrison
 	{
-		if (guiName == "Queue") // or garrison
-			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -60 100% 100%-166";
-	
-		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, numButtons);
+		var panel = getGUIObjectByName("unitQueuePanel");
+		var size = panel.size;
+		size.top = (-UNIT_PANEL_HEIGHT - ((numRows-1)*50));
+		panel.size = size;
 	}
-	else if (numButtons < 17) // Row 1
-	{
-		if (guiName == "Queue") // or garrison
-			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -105 100% 100%-166";
-	
-		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
-		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, numButtons);
-	}
-	else // Row 2
-	{
-		if (guiName == "Queue") // or garrison
-			getGUIObjectByName("unit"+guiName+"Panel").size = "0 -150 100% 100%-166";
-			
-		layoutButtonRow(0, guiName, buttonSideLength, buttonSpacer, 0, 8);
-		layoutButtonRow(1, guiName, buttonSideLength, buttonSpacer, 8, 16);
-		if (guiName != "Selection")
-			layoutButtonRow(2, guiName, buttonSideLength, buttonSpacer, 16, numButtons);
-	}
+
+	// Layout buttons
+	for (var i = 0; i < numRows; i++)
+		layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
 
 	// Hide any buttons we're no longer using
 	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
@@ -185,7 +193,7 @@ function updateUnitCommands(playerState, entState, commandsPanel, selection)
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
 		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, playerState, entState, g_Selection.groups.templates,
+			setupUnitPanel("Selection", usedPanels, playerState, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		// Stamina

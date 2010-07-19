@@ -350,6 +350,29 @@
 		/>
         </sprite>
 
+	<sprite name="wheatArrowLeft">
+		<image	texture="global/button/arrowbox_lt.dds"
+			size="0 0 100% 100%" 
+		/>
+        </sprite>
+
+	<sprite name="wheatArrowLeftOver">
+		<image	texture="global/button/arrowbox_lt_over.dds"
+			size="0 0 100% 100%" 
+		/>
+        </sprite>
+
+	<sprite name="wheatArrowRight">
+		<image	texture="global/button/arrowbox_rt.dds"
+			size="0 0 100% 100%" 
+		/>
+        </sprite>
+
+	<sprite name="wheatArrowRightOver">
+		<image	texture="global/button/arrowbox_rt_over.dds"
+			size="0 0 100% 100%" 
+		/>
+        </sprite>
 	<sprite name="wheatArrowUp">
 		<image	texture="global/button/arrowbox_up.dds"
 			size="0 0 100% 100%" 

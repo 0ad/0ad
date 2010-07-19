@@ -144,25 +144,33 @@
 
 	<style 	name="wheatArrowLeft"
 		font="serif-14"
-		sprite="wheatCheckBoxOpen"
+		sprite="wheatArrowLeft"
+		sprite_over="wheatArrowLeftOver"
+		sprite_pressed="wheatArrowLeft"
 		textcolor="black"
 	/>
 
 	<style 	name="wheatArrowRight"
 		font="serif-14"
-		sprite="wheatCheckBoxOpen"
+		sprite="wheatArrowRight"
+		sprite_over="wheatArrowRightOver"
+		sprite_pressed="wheatArrowRight"
 		textcolor="black"
 	/>
 
 	<style 	name="wheatArrowUp"
 		font="serif-14"
-		sprite="wheatCheckBoxOpen"
+		sprite="wheatArrowUp"
+		sprite_over="wheatArrowUpOver"
+		sprite_pressed="wheatArrowUp"
 		textcolor="black"
 	/>
 
 	<style 	name="wheatArrowDn"
 		font="serif-14"
-		sprite="wheatCheckBoxOpen"
+		sprite="wheatArrowDn"
+		sprite_over="wheatArrowDnOver"
+		sprite_pressed="wheatArrowDn"
 		textcolor="black"
 	/>
 

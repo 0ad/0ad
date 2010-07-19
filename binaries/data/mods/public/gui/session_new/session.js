@@ -168,6 +168,17 @@ function updatePlayerDisplay(simState)
 // Utility functions
 //-------------------------------- -------------------------------- -------------------------------- 
 
+function ceiling(number)
+{
+	var integer = parseInt(number);
+	var remainder = number - integer;
+
+	if (remainder != 0)
+		integer++;
+
+	return integer;
+}
+
 function toTitleCase(string)
 {
 	if (string.length > 0)
@@ -245,16 +256,6 @@ function getFullName(template)
 		return "[font=\"serif-bold-16\"]" + name + "[/font]";
 }
 
-function getTemplateCategory(templateName)
-{
-	var slashIndex = templateName.search("/");
-
-	if (slashIndex >= 0)
-		return templateName.substring(slashIndex+1, templateName.search("_"));
-	
-	return "unknown category";
-}
-
 function getFormalCivName(civ)
 {
 	switch (civ)
@@ -275,3 +276,22 @@ function getFormalCivName(civ)
 		return "Gaia";
 	}
 }
+
+/*
+function getTemplateCategory(templateName)
+{
+	var slashIndex = templateName.search("/");
+
+	if (slashIndex >= 0)
+		return templateName.substring(slashIndex+1, templateName.search("_"));
+	
+	return "unknown category";
+}
+*/
+
+
+function templatesEqualWithoutRank(templateName1, templateName2)
+{
+	return ((templateName1.substring(0, templateName1.length-2) == templateName2.substring(0, templateName2.length-2))? true : false);
+}
+

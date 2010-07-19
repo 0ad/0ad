@@ -1,3 +1,11 @@
+// Group Selection by Rank
+var g_GroupSelectionByRank = true; // referenced in EntityGroups.createGroups(ents) AND in setupUnitPanel(...)
+function groupSelectionByRank(booleanValue)
+{
+	g_GroupSelectionByRank = booleanValue;
+	g_Selection.groups.createGroups(g_Selection.toList());
+}
+
 function toggleDeveloperOverlay()
 {
 	if (getGUIObjectByName("devCommands").hidden)
@@ -9,15 +17,9 @@ function toggleDeveloperOverlay()
 function toggleSettingsWindow()
 {
 	if (getGUIObjectByName("settingsWindow").hidden)
-	{
 		getGUIObjectByName("settingsWindow").hidden = false; // show settings
-		setPaused(true);
-	}
 	else
-	{
 		getGUIObjectByName("settingsWindow").hidden = true; // hide settings
-		setPaused(false);
-	}
 
 	getGUIObjectByName("menu").hidden = true; // Hide menu
 }

@@ -81,12 +81,28 @@
 		/>
 	</sprite>
 
-	<sprite name="bronzeCommandsSquares">
-		<!-- (currently this is all a hack - need proper textures) -->
-		<image
-			texture="global/border/corner_bronze.dds"
-			texture_size="0 0 45 45"
-			size="0 0 100% 135"
+	<sprite name="veryThinWheatWindowSand">
+		<!-- Starting with top left corner continuing in a clockwise manner -->
+		<image 	texture="global/border/top_marble.dds"
+			texture_size="0 0 128 16"
+			size="-5 0%-5 100%+5 27" 
+		/>
+		<image	texture="global/border/right_marble.dds"
+			texture_size="0 0 16 128"
+			size="100%-27 0 100%+5 100%" 
+		/>
+        <image	texture="global/border/bottom_marble.dds"
+			texture_size="0 0 128 16"
+			size="-5 100%-27 100%+5 100%+5" 
+		/>
+		<image 	texture="global/border/left_marble.dds"
+			texture_size="0 0 16 128"
+			size="0%-5 0 0%+27 100%" 
+		/>
+		<!-- middle -->
+		<image	texture="global/tile/sandstone.dds"
+			texture_size="0 0 128 128"
+			size="0 0 100% 100%" 
 		/>
 	</sprite>
 

@@ -265,8 +265,8 @@ function handleInputBeforeGui(ev)
 				g_Selection.addList(ents);
 
 				// Create the selection groups
-				g_Selection.createSelectionGroups(ents);
-				
+				g_Selection.groups.createGroups(ents);
+
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -603,12 +603,7 @@ function removeFromTrainingQueue(entity, id)
 
 function changePrimarySelectionGroup(entType)
 {
-	getGUIObjectByName("unitSelectionHighlight[" + g_Selection.groups.primary + "]").hidden = true;
-	
-	// set primary group
-	g_Selection.groups.primary = g_Selection.groups.groupNumbers[entType];
-	getGUIObjectByName("unitSelectionHighlight[" + g_Selection.groups.primary + "]").hidden = false;
-	
-	// set primary selection
-	g_Selection.setPrimary(g_Selection.groups.firstOfType[entType]);
+	g_Selection.groups.setPrimary(g_Selection.groups.getGroupNumber(entType)); // set primary group
+	g_Selection.setPrimary(g_Selection.groups.getGroup(entType).firstOfType); // set primary selection
+	resetCycleIndex();
 }

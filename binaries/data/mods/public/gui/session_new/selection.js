@@ -19,22 +19,149 @@ function _setMotionOverlay(ents, enabled)
 //-------------------------------- -------------------------------- -------------------------------- 
 function EntityGroups()
 {
+	// private properties
 	this.primary = 0;
-	this.groupNumbers = {};
-	this.firstOfType = {}; // array for holding index to first appearance of a specific unit type in g_Selection 
-	this.typeCount = {}; // format { name:count, name:count, ... } - maps units to the currently selected quantity of that type
-	this.templates = [];
+	this.groups = []; // Includes only highest ranked versions of each type
 }
+
+EntityGroups.prototype.Group = function(templateName, typeCount, firstOfType)
+{
+		this.templateName = templateName;
+		this.typeCount = typeCount;
+		this.firstOfType = firstOfType;
+};
 
 EntityGroups.prototype.reset = function()
 {
-	getGUIObjectByName("unitSelectionHighlight[" + g_Selection.groups.primary + "]").hidden = true;
 	this.primary = 0;
-	this.groupNumbers = {};
-	this.firstOfType = {};
-	this.typeCount = {};
-	this.templates = [];
+	this.groups = [];
 };
+
+EntityGroups.prototype.getPrimary = function()
+{
+	return this.primary;
+};
+
+EntityGroups.prototype.setPrimary = function(index)
+{
+	if (this.groups.length > index)
+		this.primary = index;
+	else
+		console.write("Warning: \"index\" is larger than g_Selection.toList().length: Cannot set Primary Selection.");
+};
+
+EntityGroups.prototype.getGroup = function(templateName)
+{
+	// Get the group that corresponds to the template name
+	var group = this.groups[this.getGroupNumber(templateName)];
+	if (group)
+		return group;
+
+	// The templateName didn't match any in the groups...
+	// Check if it's the same unit, but a different rank and return that group
+	
+	if (g_GroupSelectionByRank)
+	{
+		var thatGenericTemplateName = templateName.substring(0, templateName.length-2);
+		var templateNames = this.getTemplateNames();
+
+		for (var i = 0; i < templateNames.length; i++)
+		{
+			var thisGenericTemplateName = templateNames[i].substring(0, templateNames[i].length-2);
+			if (thisGenericTemplateName == thatGenericTemplateName)
+				return this.groups[i];
+		}
+	}
+
+	// There was no match...
+	//console.write("Warning: Could not find either \"" + templateName + "\" or the more generic: \"" + thatGenericTemplateName + "\"");
+};
+
+EntityGroups.prototype.addGroup = function(templateName, typeCount, firstOfType)
+{
+	this.groups.push(new this.Group(templateName, typeCount, firstOfType));
+};
+
+EntityGroups.prototype.removeGroup = function(templateName)
+{
+	var index = this.getGroupNumber(templateName);
+	this.groups.splice(index, 1);
+};
+
+EntityGroups.prototype.getGroupNumber = function(templateName)
+{
+	for (var i = 0; i < this.groups.length; i++)
+		if (this.groups[i].templateName == templateName)
+			return i;
+};
+
+EntityGroups.prototype.getTemplateNames = function()
+{
+	var templateNames = [];
+	
+	for (var i = 0; i < this.groups.length; i++)
+		templateNames.push(this.groups[i].templateName);
+		
+	return templateNames;
+};
+
+// Checks if the new rank code is greater than the old rank code (private helper function for EntityGroups.createGroups)
+EntityGroups.prototype.greaterThanPreviousRank = function(oldRank, newRank)
+{
+	if (oldRank == newRank)
+		return false;
+	else if (oldRank == 'b' || newRank == 'e')
+		return true;
+	else
+		return false;
+};
+
+EntityGroups.prototype.createGroups = function(ents)
+{
+	// Erase old groups first
+	this.reset();
+
+	// Make selection groups
+	for (var i = 0; i < ents.length; i++)
+	{
+		var templateName = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;
+		var group = this.getGroup(templateName);
+
+		// We already have one of these types
+		if (group)
+		{
+			// See if the new one has a higher rank
+			var isRankableUnit = ((templateName.charAt(templateName.length-2) == '_')? true : false);
+
+			if (g_GroupSelectionByRank && isRankableUnit)
+			{
+				var oldRank = group.templateName.charAt(group.templateName.length-1);
+				var newRank = templateName.charAt(templateName.length-1);
+				
+				if (this.greaterThanPreviousRank(oldRank, newRank))
+				{
+					var oldTypeCount = group.typeCount;
+					this.removeGroup(group.templateName);
+					this.addGroup(templateName, oldTypeCount+1, i);
+				}
+				else
+				{
+					group.typeCount += 1;
+				}
+			}
+			else // It was not a rankable unit or its rank was not higher than the one we had
+			{
+				group.typeCount += 1;
+			}
+		}
+		else // Don't have any of this type, so add it in
+		{
+			this.addGroup(templateName, 1, i);
+		}
+	}
+
+	resetCycleIndex();
+}
 
 //-------------------------------- -------------------------------- -------------------------------- 
 // EntitySelection class for managing the entity selection list and the primary selection
@@ -58,6 +185,15 @@ function EntitySelection()
 	this.dirty = false; // set whenever the selection has changed
 }
 
+EntitySelection.prototype.getPrimaryTemplateName = function()
+{
+	var entId = g_Selection.toList()[this.primary];
+	var entState = Engine.GuiInterfaceCall("GetEntityState", entId);
+	
+	if (entState)
+		return entState.template
+};
+
 EntitySelection.prototype.getPrimary = function()
 {
 	return this.primary;
@@ -68,41 +204,12 @@ EntitySelection.prototype.setPrimary = function(index)
 	if (g_Selection.toList().length > index)
 		this.primary = index;
 	else
-		console.write("\"index\" is larger than g_Selection.toList().length: Cannot set Primary Selection.");
+		console.write("Warning: \"index\" is larger than g_Selection.toList().length: Cannot set Primary Selection.");
 };
 
 EntitySelection.prototype.resetPrimary = function() 
 {
 	this.primary = 0; // the primary selection must be reset whenever the selection changes
-};
-
-// Make the selection groups for the selection display buttons
-EntitySelection.prototype.createSelectionGroups = function(ents)
-{
-	// Erase old selection first
-	this.groups.reset();
-
-	// Make selection groups
-	var j = 0;
-	for (var i = 0; i < ents.length; i++)
-	{
-		var template = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;		
-
-		if (!this.groups.typeCount[template])
-		{
-			this.groups.typeCount[template] = 1;
-			this.groups.firstOfType[template] = i;
-			this.groups.templates.push(template);
-			this.groups.groupNumbers[template] = j;
-			j++;
-		}
-		else if (this.groups.typeCount[template])
-		{
-			this.groups.typeCount[template] += 1;
-		}
-	}
-	
-	getGUIObjectByName("unitSelectionHighlight[0]").hidden = false;
 };
 
 // Update the selection to take care of changes (like units that have been killed)
@@ -127,7 +234,8 @@ EntitySelection.prototype.updateSelection = function()
 	if (numberRemoved > 0)
 	{
 		this.dirty = true;
-		this.createSelectionGroups(g_Selection.toList());
+		this.groups.createGroups(this.toList());
+		this.resetPrimary(); // TODO: should probably set this to a unit of the same type as the unit that was removed...
 	}
 };
 

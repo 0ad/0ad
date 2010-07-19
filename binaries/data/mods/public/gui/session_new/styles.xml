@@ -22,11 +22,23 @@
 		text_valign="center"
 	/>
 	
+	<style 	name="sessionPanelStyle"
+		sprite="veryThinWheatWindowSand"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
+	/>
+
 	<style name="statsText"
 		font="serif-bold-12"
 		ghost="true"
 	/>
 	
+	<style name="resourceStatsText"
+		font="serif-bold-14"
+		ghost="true"
+	/>
+
 	<style name="resourceIcon"
 		sprite="snIconSheetResource"
 		ghost="true"
@@ -80,16 +92,29 @@
 		text_valign="bottom"
 	/>
 	
+	<style name="groupIconsCenteredText"
+		font="mono-stroke-10"
+		textcolor="255 255 255"
+		text_align="center"
+		text_valign="center"
+	/>
+	
 	<style name="devCommandsText"
 		font="sans-10"
 		textcolor="255 255 255"
 		text_align="right"
 	/>
-	
+
 	<style name="settingsText"
 		font="serif-16"
 		textcolor="0 0 0"
 		text_align="right"
+		text_valign="center"
+	/>
+
+	<style name="leftAlignedText"
+		textcolor="0 0 0"
+		text_align="left"
 		text_valign="center"
 	/>
 
@@ -98,7 +123,7 @@
 		text_align="right"
 		text_valign="top"
 	/>
-	
+
 	<style name="centeredText"
 		textcolor="0 0 0"
 		text_align="center"
