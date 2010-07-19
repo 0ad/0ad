@@ -47,7 +47,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 	if (soundArray.length == 0)
 	{
 		console.write ("Failed to find sounds matching '*"+soundSubType+"*'");
-		return;
+		return undefined;
 	}
 	// Get a random number within the sound's range.
 	var randomSound = getRandom (0, soundArray.length-1);

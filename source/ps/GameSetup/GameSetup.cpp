@@ -336,14 +336,6 @@ static void InitScripting()
 	new ScriptingHost;
 	
 	RegisterJavascriptInterfaces();
-
-#define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
-	REG_JS_CONSTANT(SDL_BUTTON_LEFT);
-	REG_JS_CONSTANT(SDL_BUTTON_MIDDLE);
-	REG_JS_CONSTANT(SDL_BUTTON_RIGHT);
-	REG_JS_CONSTANT(SDL_BUTTON_WHEELUP);
-	REG_JS_CONSTANT(SDL_BUTTON_WHEELDOWN);
-#undef REG_JS_CONSTANT
 }
 
 

@@ -29,79 +29,24 @@
 
 #define LOG_CATEGORY L"scriptinghost"
 
-namespace
-{
-	const int RUNTIME_MEMORY_ALLOWANCE = 16 * 1024 * 1024;
-	const int STACK_CHUNK_SIZE = 16 * 1024;
-
-	JSClass GlobalClass = 
-	{
-		"global", JSCLASS_GLOBAL_FLAGS,
-		JS_PropertyStub, JS_PropertyStub,
-		JS_PropertyStub, JS_PropertyStub,
-		JS_EnumerateStub, JS_ResolveStub,
-		JS_ConvertStub, JS_FinalizeStub
-	};
-}
-
 ScriptingHost::ScriptingHost()
-	: m_RunTime(NULL), m_Context(NULL), m_GlobalObject(NULL)
 {
-    m_RunTime = JS_NewRuntime(RUNTIME_MEMORY_ALLOWANCE);
-	if(!m_RunTime)
+	m_ScriptInterface = new ScriptInterface("Engine");
+
+    m_Context = m_ScriptInterface->GetContext();
+
+	m_GlobalObject = JS_GetGlobalObject(m_Context);
+
+	if (!JS_DefineFunctions(m_Context, m_GlobalObject, ScriptFunctionTable))
 		throw PSERROR_Scripting_SetupFailed();
 
-    m_Context = JS_NewContext(m_RunTime, STACK_CHUNK_SIZE);
-	if(!m_Context)
+	if (!JS_DefineProperties(m_Context, m_GlobalObject, ScriptGlobalTable))
 		throw PSERROR_Scripting_SetupFailed();
-
-	// JS_SetGCZeal(m_Context, 2);
-
-	JS_SetErrorReporter(m_Context, ScriptingHost::ErrorReporter);
-
-	JS_SetVersion(m_Context, JSVERSION_LATEST);
-
-	JS_BeginRequest(m_Context);
-
-	m_GlobalObject = JS_NewObject(m_Context, &GlobalClass, NULL, NULL);
-	if(!m_GlobalObject)
-		throw PSERROR_Scripting_SetupFailed();
-
-#ifndef NDEBUG
-	// Register our script and function handlers - note: docs say they don't like
-	// nulls passed as closures, nor should they return nulls.
-	JS_SetExecuteHook( m_RunTime, jshook_script, this );
-	JS_SetCallHook( m_RunTime, jshook_function, this );
-#endif
-
-	if (JS_InitStandardClasses(m_Context, m_GlobalObject) == JSVAL_FALSE)
-		throw PSERROR_Scripting_SetupFailed();
-
-	if (JS_DefineFunctions(m_Context, m_GlobalObject, ScriptFunctionTable) == JS_FALSE)
-		throw PSERROR_Scripting_SetupFailed();
-
-	if( JS_DefineProperties( m_Context, m_GlobalObject, ScriptGlobalTable ) == JS_FALSE )
-		throw PSERROR_Scripting_SetupFailed();
-
-	m_ScriptInterface = new ScriptInterface("Engine", m_Context);
 }
 
 ScriptingHost::~ScriptingHost()
 {
 	delete m_ScriptInterface;
-
-	if (m_Context != NULL)
-	{
-		JS_EndRequest(m_Context);
-		JS_DestroyContext(m_Context);
-		m_Context = NULL;
-	}
-
-	if (m_RunTime != NULL)
-	{
-		JS_DestroyRuntime(m_RunTime);
-		m_RunTime = NULL;
-	}
 }
 
 ScriptInterface& ScriptingHost::GetScriptInterface()
@@ -306,77 +251,3 @@ jsval ScriptingHost::UCStringToValue( const CStrW& str )
 {
 	return STRING_TO_JSVAL(JS_NewUCStringCopyZ(m_Context, str.utf16().c_str()));
 }
-
-//----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-// called by SpiderMonkey whenever someone does JS_ReportError.
-// prints that message as well as locus to log, debug output and console.
-void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* pmessage, JSErrorReport* report)
-{
-	const char* file = report->filename? report->filename : "(current document)";
-	int line = report->lineno;
-	const char* message = pmessage? pmessage : "No error message available";
-	// apparently there is no further information in this struct we can use
-	// because linebuf/tokenptr require a buffer to have been allocated.
-	// that doesn't look possible since we are a callback and there is
-	// no mention in the docs about where this would happen (typical).
-
-	// for developer convenience: write to output window so they can
-	// double-click on that line and be taken to the error locus.
-	debug_printf(L"%hs(%d): %hs\n", file, line, message);
-
-	// note: CLogger's LOG already takes care of writing to the console,
-	// so don't do that here.
-
-	LOG(CLogger::Error, LOG_CATEGORY, L"JavaScript Error (%hs, line %d): %hs", file, line, message);
-}
-
-#ifndef NDEBUG
-
-void* ScriptingHost::jshook_script( JSContext* UNUSED(cx), JSStackFrame* UNUSED(fp),
-	JSBool before, JSBool* UNUSED(ok), void* closure )
-{
-	if (!CProfileManager::IsInitialised())
-		return closure;
-
-	if( before )
-	{
-		g_Profiler.StartScript( "script invocation" );
-	}
-	else
-		g_Profiler.Stop();
-
-	return( closure );
-}
-
-void* ScriptingHost::jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure )
-{
-	if (!CProfileManager::IsInitialised())
-		return closure;
-
-	JSFunction* fn = JS_GetFrameFunction( cx, fp );
-	if( before )
-	{
-		if( fn )
-		{
-			g_Profiler.StartScript( JS_GetFunctionName( fn ) );
-		}
-		else
-			g_Profiler.StartScript( "function invocation" );
-	}
-	else
-		g_Profiler.Stop();
-
-	return( closure );
-}
-
-#endif

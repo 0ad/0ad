@@ -166,6 +166,10 @@ void CGUIManager::LoadPage(SGUIPage& page)
 		page.gui->LoadXmlFile(path, page.inputs);
 	}
 
+	// Remember this GUI page, in case the scripts call FindObjectByName
+	shared_ptr<CGUI> oldGUI = m_CurrentGUI;
+	m_CurrentGUI = page.gui;
+
 	page.gui->SendEventToAll("load");
 
 	// Call the init() function
@@ -173,6 +177,8 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	{
 		LOGERROR(L"GUI page '%ls': Failed to call init() function", page.name.c_str());
 	}
+
+	m_CurrentGUI = oldGUI;
 }
 
 LibError CGUIManager::ReloadChangedFiles(const VfsPath& path)
@@ -243,7 +249,12 @@ SGUIIcon CGUIManager::GetIcon(const CStr& str) const
 
 IGUIObject* CGUIManager::FindObjectByName(const CStr& name) const
 {
-	return top()->FindObjectByName(name);
+	// This can be called from scripts run by TickObjects,
+	// and we want to return it the same GUI page as is being ticked
+	if (m_CurrentGUI)
+		return m_CurrentGUI->FindObjectByName(name);
+	else
+		return top()->FindObjectByName(name);
 }
 
 void CGUIManager::SendEventToAll(const CStr& eventName)
@@ -257,7 +268,11 @@ void CGUIManager::TickObjects()
 	PageStackType pageStack = m_PageStack;
 
 	for (PageStackType::iterator it = pageStack.begin(); it != pageStack.end(); ++it)
+	{
+		m_CurrentGUI = it->gui;
 		it->gui->TickObjects();
+	}
+	m_CurrentGUI.reset();
 }
 
 void CGUIManager::Draw()

@@ -445,7 +445,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	// Generate a unique name
 	static int x=0;
 	char buf[64];
-	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d", x++);
+	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, Action.c_str());
 
 	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject,
 		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName, 0);
@@ -484,7 +484,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	jsval guiObject = PRIVATE_TO_JSVAL(this);
 
 	// Make a 'this', allowing access to the IGUIObject
-	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, m_pGUI->m_ScriptObject, 1, &guiObject);
+	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, m_pGUI->m_ScriptObject, NULL, 1, &guiObject);
 	debug_assert(jsGuiObject); // TODO: Handle errors
 	
 	// Prevent it from being garbage-collected before it's passed into the function
@@ -495,7 +495,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	mouseParams[0] = INT_TO_JSVAL(m_pGUI->m_MousePos.x);
 	mouseParams[1] = INT_TO_JSVAL(m_pGUI->m_MousePos.y);
 	mouseParams[2] = INT_TO_JSVAL(m_pGUI->m_MouseButtons);
-	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, NULL, m_pGUI->m_ScriptObject, 3, mouseParams);
+	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, m_pGUI->m_ScriptObject, NULL, 3, mouseParams);
 	debug_assert(mouseObj); // TODO: Handle errors
 
 	// Don't garbage collect the mouse

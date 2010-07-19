@@ -13,12 +13,12 @@ function startMainMenu()
 	guiUnHide ("pg");
 
 	// Play main 0 A.D. theme when the main menu starts.
-	curr_music = newRandomSound("music", "menu");
-	if (curr_music)
-		curr_music.loop();
+	global.curr_music = newRandomSound("music", "menu");
+	if (global.curr_music)
+		global.curr_music.loop();
 	
 	// Set starting volume (I'm using a value of zero here for no sound; feel free to comment out these two lines to use defaults).
-//	curr_music.setGain (0.0);
+//	global.curr_music.setGain (0.0);
 //	g_ConfigDB.system["sound.mastergain"] = 0.0;	
 }
 

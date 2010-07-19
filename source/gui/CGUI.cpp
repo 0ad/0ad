@@ -57,7 +57,6 @@ CGUI
 #include "ps/Profile.h"
 
 #include "scripting/ScriptingHost.h"
-#include "scripting/JSConversions.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Filesystem.h"
@@ -66,45 +65,10 @@ const double SELECT_DBLCLICK_RATE = 0.5;
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"gui"
 
-
-// Class for global JavaScript object
-JSClass GUIClass = {
-	"GUIClass", JSCLASS_HAS_PRIVATE,
-	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
-	JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
-};
-
-static JSBool GetGUIObjectByName(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* argv, jsval* rval)
-{
-	CGUI* gui = (CGUI*)JS_GetInstancePrivate(cx, obj, &GUIClass, argv);
-	if (! gui)
-		return JS_FALSE;
-	try
-	{
-		CStr name = ToPrimitive<CStr>(cx, argv[0]);
-		IGUIObject* guiObj = gui->FindObjectByName(name);
-		if (guiObj)
-			*rval = OBJECT_TO_JSVAL(guiObj->GetJSObject());
-		else
-			*rval = JSVAL_NULL;
-		return JS_TRUE;
-	}
-	catch (PSERROR_Scripting&)
-	{
-		return JS_FALSE;
-	}
-}
-
-JSFunctionSpec GUIClassFunctions[] = {
-	{ "getGUIObjectByName", GetGUIObjectByName, 1, 0, 0 },
-	{ NULL }
-};
-
 void CGUI::ScriptingInit()
 {
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
-	g_ScriptingHost.DefineCustomObjectType(&GUIClass, NULL, 0, NULL, GUIClassFunctions, NULL, NULL);
 }
 
 InReaction CGUI::HandleEvent(const SDL_Event_* ev)
@@ -383,10 +347,9 @@ CGUI::CGUI() : m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 	m_BaseObject->SetGUI(this);
 
 	// Construct the parent object for all GUI JavaScript things
-	m_ScriptObject = JS_NewObject(g_ScriptingHost.getContext(), &GUIClass, NULL, NULL);
+	m_ScriptObject = JS_NewObject(g_ScriptingHost.getContext(), NULL, g_ScriptingHost.GetGlobalObject(), NULL);
 	debug_assert(m_ScriptObject != NULL); // How should it handle errors?
 	JS_AddRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
-	JS_SetPrivate(g_ScriptingHost.getContext(), m_ScriptObject, this);
 }
 
 CGUI::~CGUI()
@@ -398,8 +361,6 @@ CGUI::~CGUI()
 
 	if (m_ScriptObject)
 	{
-		// Make sure it doesn't have dangling references to this CGUI
-		JS_SetPrivate(g_ScriptingHost.getContext(), m_ScriptObject, NULL);
 		// Let it be garbage-collected
 		JS_RemoveRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
 	}

@@ -122,6 +122,8 @@ private:
 	typedef std::vector<SGUIPage> PageStackType;
 	PageStackType m_PageStack;
 
+	shared_ptr<CGUI> m_CurrentGUI; // used to latch state during TickObjects/LoadPage (this is kind of ugly)
+
 	ScriptInterface& m_ScriptInterface;
 };
 

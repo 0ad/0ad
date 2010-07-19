@@ -35,6 +35,8 @@
 #include "graphics/UnitManager.h"
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
+#include "gui/GUIManager.h"
+#include "gui/IGUIObject.h"
 #include "lib/timer.h"
 #include "lib/svn_revision.h"
 #include "lib/frequency_filter.h"
@@ -60,7 +62,6 @@
 
 #define LOG_CATEGORY L"script"
 extern bool g_TerrainModified;
-
 
 // rationale: the function table is now at the end of the source file to
 // avoid the need for forward declarations for every function.
@@ -404,6 +405,23 @@ JSBool SetCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval*
 	return( JS_TRUE );
 }
 
+JSBool GetGUIObjectByName(JSContext* cx, JSObject* UNUSED(obj), uintN UNUSED(argc), jsval* argv, jsval* rval)
+{
+	try
+	{
+		CStr name = ToPrimitive<CStr>(cx, argv[0]);
+		IGUIObject* guiObj = g_GUI->FindObjectByName(name);
+		if (guiObj)
+			*rval = OBJECT_TO_JSVAL(guiObj->GetJSObject());
+		else
+			*rval = JSVAL_NULL;
+		return JS_TRUE;
+	}
+	catch (PSERROR_Scripting&)
+	{
+		return JS_FALSE;
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Miscellany
@@ -645,6 +663,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("getCursorName", GetCursorName, 0)
 	JS_FUNC("getFPS", GetFps, 0)
 	JS_FUNC("isGameRunning", isGameRunning, 0)
+	JS_FUNC("getGUIObjectByName", GetGUIObjectByName, 1)
 
 	// Miscellany
 	JS_FUNC("v3dist", ComputeDistanceBetweenTwoPoints, 2)

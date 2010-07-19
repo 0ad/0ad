@@ -12,7 +12,7 @@ function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, sta
 {
 	var colNumber = 0;
 
-	for (i = startIndex; i < endIndex; i++)
+	for (var i = startIndex; i < endIndex; i++)
 	{
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		var size = button.size;

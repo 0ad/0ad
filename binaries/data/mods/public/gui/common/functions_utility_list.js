@@ -145,7 +145,7 @@ function setCurrItemValue (objectName, string)
 		return -1;	// Return -1 if nothing selected.
 	var list = getGUIObjectByName(objectName).list;
 	// Seek through list.
-	for (ctr = 0; ctr < list.length; ctr++)
+	for (var ctr = 0; ctr < list.length; ctr++)
 	{
 		// If we have found the string in the list,
 		if (list[ctr] == string)

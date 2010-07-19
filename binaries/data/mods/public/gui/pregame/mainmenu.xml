@@ -3,7 +3,7 @@
 <objects>
 
 	<script>
-	function init () { }
+	function init() { }
 	</script>
 
 	<!--
@@ -328,8 +328,8 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			tooltip="Tired of 0 A.D. ? Click here to leave and reenter the real world."
 		>
 			<action on="Press"><![CDATA[
-				btCaptions = ["Yes, let me out!", "Nooooo!"];
-				btCode = [exit, null];
+				var btCaptions = ["Yes, let me out!", "Nooooo!"];
+				var btCode = [exit, null];
 				messageBox (400, 200, "Do you really want to quit [icon=iconProduct] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
 			]]></action>
 		</object>
@@ -434,12 +434,12 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 						// either. Maybe this control isn't finished yet?)
 						if(this.checked)
 						{
-							curr_music.setGain (0.0);
+							global.curr_music.setGain (0.0);
 							g_ConfigDB.system["sound.mastergain"] = 0.0;
 						}
 						if(!this.checked)
 						{
-							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
 					]]></action>	
@@ -485,7 +485,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption > 0.0)
 							guiModifyCaption ("pgOptionsAudioMusicGain", -.1, 1);
 
-						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+						global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 					]]></action>
 				</object>
@@ -499,7 +499,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 						if (getGUIObjectByName ("pgOptionsAudioMusicGain").caption < 1.0)
 							guiModifyCaption ("pgOptionsAudioMusicGain", .1, 1);
 
-						curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+						global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 						g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 					]]></action>
 				</object>
@@ -514,12 +514,12 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 
 						if(this.checked)
 						{
-							curr_music.setGain (0.0);
+							global.curr_music.setGain (0.0);
 							g_ConfigDB.system["sound.mastergain"] = 0.0;
 						}
 						if(!this.checked)
 						{
-							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
 					]]></action>	
@@ -590,12 +590,12 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 
 						if(this.checked)
 						{
-//							curr_music.setGain (0.0);
+//							global.curr_music.setGain (0.0);
 //							g_ConfigDB.system["sound.mastergain"] = 0.0;
 						}
 						if(!this.checked)
 						{
-//							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+//							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 //							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
 					]]></action>	
@@ -666,12 +666,12 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 
 						if(this.checked)
 						{
-//							curr_music.setGain (0.0);
+//							global.curr_music.setGain (0.0);
 //							g_ConfigDB.system["sound.mastergain"] = 0.0;
 						}
 						if(!this.checked)
 						{
-//							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+//							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 //							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
 					]]></action>	
@@ -741,12 +741,12 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 
 						if(this.checked)
 						{
-//							curr_music.setGain (0.0);
+//							global.curr_music.setGain (0.0);
 //							g_ConfigDB.system["sound.mastergain"] = 0.0;
 						}
 						if(!this.checked)
 						{
-//							curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
+//							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 //							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
 					]]></action>	

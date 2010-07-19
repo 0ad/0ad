@@ -65,20 +65,12 @@ private:
 		JSClass *	m_Class;
 	};
 
-	JSRuntime *		m_RunTime;
 	JSContext *		m_Context;
 	JSObject *		m_GlobalObject;
 
 	JSErrorReport	m_ErrorReport;
 
 	std::map < std::string, CustomType >		m_CustomObjectTypes;
-
-#ifndef NDEBUG
-	// A hook to capture script calls
-	static void* jshook_script( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure );
-	// A hook to capture function calls
-	static void* jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure );
-#endif
 
 	// The long-term plan is to migrate from ScriptingHost to the newer shinier ScriptInterface.
 	// For now, just have a ScriptInterface that hooks onto the ScriptingHost's context so they
@@ -126,8 +118,6 @@ public:
 	std::string ValueToString(const jsval value);
 	CStrW ValueToUCString(const jsval value);
 	jsval UCStringToValue(const CStrW& str);
-
-	static void ErrorReporter(JSContext * context, const char * message, JSErrorReport * report);
 };
 
 #define g_ScriptingHost ScriptingHost::GetSingleton()
