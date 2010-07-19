@@ -60,6 +60,7 @@ public:
 	~AutoGCRooter();
 
 	void Push(JSObject* obj) { m_Objects.push_back(obj); }
+	void Push(jsval val) { m_Vals.push_back(val); }
 
 	void Trace(JSTracer* trc);
 private:
@@ -67,6 +68,7 @@ private:
 	AutoGCRooter* m_Previous;
 
 	std::vector<JSObject*> m_Objects;
+	std::vector<jsval> m_Vals;
 	// TODO: add vectors of other value types
 };
 

@@ -426,17 +426,11 @@ jsval ScriptInterface::CallConstructor(jsval ctor)
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name)
 {
 	jsval jsRet;
-	std::vector<jsval> argv;
-	return CallFunction_(val, name, argv, jsRet);
+	return CallFunction_(val, name, 0, NULL, jsRet);
 }
 
-bool ScriptInterface::CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret)
+bool ScriptInterface::CallFunction_(jsval val, const char* name, size_t argc, jsval* argv, jsval& ret)
 {
-	const uintN argc = args.size();
-	jsval* argv = NULL;
-	if (argc)
-		argv = &args[0];
-
 	JSObject* obj;
 	if (!JS_ValueToObject(m->m_cx, val, &obj) || obj == NULL)
 		return false;
@@ -668,7 +662,8 @@ void ScriptInterface::DumpHeap()
 class ValueCloner
 {
 public:
-	ValueCloner(JSContext* cxFrom, JSContext* cxTo) : cxFrom(cxFrom), cxTo(cxTo)
+	ValueCloner(ScriptInterface& from, ScriptInterface& to) :
+		cxFrom(from.GetContext()), cxTo(to.GetContext()), m_RooterFrom(from), m_RooterTo(to)
 	{
 	}
 
@@ -682,7 +677,7 @@ public:
 		if (it != m_Mapping.end())
 			return it->second;
 
-		m_ValuesOld.push_back(CScriptValRooted(cxFrom, val)); // root it so our mapping doesn't get invalidated
+		m_RooterFrom.Push(val); // root it so our mapping doesn't get invalidated
 
 		return Clone(val);
 	}
@@ -699,7 +694,7 @@ private:
 			jsval rval;
 			CLONE_REQUIRE(JS_NewNumberValue(cxTo, *JSVAL_TO_DOUBLE(val), &rval), L"JS_NewNumberValue");
 			m_Mapping[val] = rval;
-			m_ValuesNew.push_back(CScriptValRooted(cxTo, rval));
+			m_RooterTo.Push(rval);
 			return rval;
 		}
 
@@ -709,7 +704,7 @@ private:
 			CLONE_REQUIRE(str, L"JS_NewUCStringCopyN");
 			jsval rval = STRING_TO_JSVAL(str);
 			m_Mapping[val] = rval;
-			m_ValuesNew.push_back(CScriptValRooted(cxTo, rval));
+			m_RooterTo.Push(rval);
 			return rval;
 		}
 
@@ -730,7 +725,7 @@ private:
 		}
 
 		m_Mapping[val] = OBJECT_TO_JSVAL(newObj);
-		m_ValuesNew.push_back(CScriptValRooted(cxTo, OBJECT_TO_JSVAL(newObj)));
+		m_RooterTo.Push(newObj);
 
 		JSIdArray* ida = JS_Enumerate(cxFrom, JSVAL_TO_OBJECT(val));
 		CLONE_REQUIRE(ida, L"JS_Enumerate");
@@ -769,17 +764,14 @@ private:
 	JSContext* cxFrom;
 	JSContext* cxTo;
 	std::map<jsval, jsval> m_Mapping;
-	std::deque<CScriptValRooted> m_ValuesOld;
-	std::deque<CScriptValRooted> m_ValuesNew;
+	AutoGCRooter m_RooterFrom;
+	AutoGCRooter m_RooterTo;
 };
 
-jsval ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& otherContext, jsval val)
+jsval ScriptInterface::CloneValueFromOtherContext(ScriptInterface& otherContext, jsval val)
 {
 	PROFILE("CloneValueFromOtherContext");
 
-	JSContext* cxTo = GetContext();
-	JSContext* cxFrom = otherContext.GetContext();
-
-	ValueCloner cloner(cxFrom, cxTo);
+	ValueCloner cloner(otherContext, *this);
 	return cloner.GetOrClone(val);
 }

@@ -174,7 +174,7 @@ public:
 	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
 	 * types and cyclic references should be fine.
 	 */
-	jsval CloneValueFromOtherContext(const ScriptInterface& otherContext, jsval val);
+	jsval CloneValueFromOtherContext(ScriptInterface& otherContext, jsval val);
 
 	/**
 	 * Convert a jsval to a C++ type. (This might trigger GC.)
@@ -216,7 +216,7 @@ public:
 #define LOCAL_ROOT_SCOPE LocalRootScope scope(GetContext()); if (! scope.OK()) return false
 
 private:
-	bool CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret);
+	bool CallFunction_(jsval val, const char* name, size_t argc, jsval* argv, jsval& ret);
 	bool Eval_(const char* code, jsval& ret);
 	bool Eval_(const wchar_t* code, jsval& ret);
 	bool SetGlobal_(const char* name, jsval value, bool replace);
@@ -255,8 +255,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, R& ret)
 {
 	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
-	std::vector<jsval> argv;
-	bool ok = CallFunction_(val, name, argv, jsRet);
+	bool ok = CallFunction_(val, name, 0, NULL, jsRet);
 	if (!ok)
 		return false;
 	return FromJSVal(GetContext(), jsRet, ret);
@@ -267,9 +266,9 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 {
 	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
-	std::vector<jsval> argv;
-	argv.push_back(ToJSVal(GetContext(), a0));
-	return CallFunction_(val, name, argv, jsRet);
+	jsval argv[1];
+	argv[0] = ToJSVal(GetContext(), a0);
+	return CallFunction_(val, name, 1, argv, jsRet);
 }
 
 template<typename T0, typename T1>
@@ -277,10 +276,10 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 {
 	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
-	std::vector<jsval> argv;
-	argv.push_back(ToJSVal(GetContext(), a0));
-	argv.push_back(ToJSVal(GetContext(), a1));
-	return CallFunction_(val, name, argv, jsRet);
+	jsval argv[2];
+	argv[0] = ToJSVal(GetContext(), a0);
+	argv[1] = ToJSVal(GetContext(), a1);
+	return CallFunction_(val, name, 2, argv, jsRet);
 }
 
 template<typename T0, typename T1, typename T2>
@@ -288,11 +287,11 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 {
 	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
-	std::vector<jsval> argv;
-	argv.push_back(ToJSVal(GetContext(), a0));
-	argv.push_back(ToJSVal(GetContext(), a1));
-	argv.push_back(ToJSVal(GetContext(), a2));
-	return CallFunction_(val, name, argv, jsRet);
+	jsval argv[3];
+	argv[0] = ToJSVal(GetContext(), a0);
+	argv[1] = ToJSVal(GetContext(), a1);
+	argv[2] = ToJSVal(GetContext(), a2);
+	return CallFunction_(val, name, 3, argv, jsRet);
 }
 
 template<typename T0, typename R>
@@ -300,9 +299,9 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, R&
 {
 	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
-	std::vector<jsval> argv;
-	argv.push_back(ToJSVal(GetContext(), a0));
-	bool ok = CallFunction_(val, name, argv, jsRet);
+	jsval argv[1];
+	argv[0] = ToJSVal(GetContext(), a0);
+	bool ok = CallFunction_(val, name, 1, argv, jsRet);
 	if (!ok)
 		return false;
 	return FromJSVal(GetContext(), jsRet, ret);
@@ -313,10 +312,10 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 {
 	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
-	std::vector<jsval> argv;
-	argv.push_back(ToJSVal(GetContext(), a0));
-	argv.push_back(ToJSVal(GetContext(), a1));
-	bool ok = CallFunction_(val, name, argv, jsRet);
+	jsval argv[2];
+	argv[0] = ToJSVal(GetContext(), a0);
+	argv[1] = ToJSVal(GetContext(), a1);
+	bool ok = CallFunction_(val, name, 2, argv, jsRet);
 	if (!ok)
 		return false;
 	return FromJSVal(GetContext(), jsRet, ret);
@@ -327,11 +326,11 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 {
 	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
-	std::vector<jsval> argv;
-	argv.push_back(ToJSVal(GetContext(), a0));
-	argv.push_back(ToJSVal(GetContext(), a1));
-	argv.push_back(ToJSVal(GetContext(), a2));
-	bool ok = CallFunction_(val, name, argv, jsRet);
+	jsval argv[3];
+	argv[0] = ToJSVal(GetContext(), a0);
+	argv[1] = ToJSVal(GetContext(), a1);
+	argv[2] = ToJSVal(GetContext(), a2);
+	bool ok = CallFunction_(val, name, 3, argv, jsRet);
 	if (!ok)
 		return false;
 	return FromJSVal(GetContext(), jsRet, ret);
