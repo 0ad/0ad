@@ -214,9 +214,9 @@ public:
 		return m_RunSpeed;
 	}
 
-	virtual void SetSpeedFactor(fixed factor)
+	virtual void SetSpeed(fixed speed)
 	{
-		m_Speed = m_WalkSpeed.Multiply(factor);
+		m_Speed = speed;
 	}
 
 	virtual void SetDebugOverlay(bool enabled)

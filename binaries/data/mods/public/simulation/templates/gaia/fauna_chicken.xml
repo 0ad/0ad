@@ -16,12 +16,14 @@
     <Height>1.5</Height>
   </Footprint>
   <AnimalAI>
-    <NaturalBehaviour>skittish</NaturalBehaviour>
+    <RoamDistance>4.0</RoamDistance>
+    <FleeDistance>12.0</FleeDistance>
   </AnimalAI>
   <UnitMotion>
-    <WalkSpeed>1</WalkSpeed>
-    <PassabilityClass>default</PassabilityClass>
-    <CostClass>default</CostClass>
+    <WalkSpeed>1.0</WalkSpeed>
+    <Run>
+      <Speed>6.0</Speed>
+    </Run>
   </UnitMotion>
   <Sound>
     <SoundGroups>

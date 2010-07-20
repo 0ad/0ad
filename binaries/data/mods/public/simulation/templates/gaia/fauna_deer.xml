@@ -5,9 +5,9 @@
     <SpecificName>Deer</SpecificName>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
+    <WalkSpeed>2.0</WalkSpeed>
     <Run>
-      <Speed>12.0</Speed>
+      <Speed>10.0</Speed>
       <Range>600.0</Range>
       <RangeMin>5.0</RangeMin>
     </Run>
@@ -15,4 +15,8 @@
   <VisualActor>
     <Actor>fauna/deer.xml</Actor>
   </VisualActor>
+  <AnimalAI>
+    <RoamDistance>8.0</RoamDistance>
+    <FleeDistance>32.0</FleeDistance>
+  </AnimalAI>
 </Entity>

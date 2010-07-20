@@ -10,6 +10,12 @@ AnimalAI.prototype.Schema =
 			"<value a:help='Will never attack units'>passive</value>" +
 			"<value a:help='Will never attack units. Will typically attempt to flee for short distances when units approach'>skittish</value>" +
 		"</choice>" +
+	"</element>" +
+	"<element name='RoamDistance'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='FleeDistance'>" +
+		"<ref name='positiveDecimal'/>" +
 	"</element>";
 
 var AnimalFsmSpec = {
@@ -18,7 +24,7 @@ var AnimalFsmSpec = {
 
 		"ResourceGather": function(msg) {
 			// If someone's carving chunks of meat off us, then run away
-			this.MoveAwayFrom(msg.gatherer, 12);
+			this.MoveAwayFrom(msg.gatherer, +this.template.FleeDistance);
 			this.SetNextState("FLEEING");
 			this.PlaySound("panic");
 		},
@@ -26,8 +32,8 @@ var AnimalFsmSpec = {
 		"ROAMING": {
 			"enter": function() {
 				// Walk in a random direction
-				this.SelectAnimation("walk", false);
-				this.MoveRandomly();
+				this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
 				this.StartTimer(RandomInt(2000, 8000));
 			},
@@ -41,14 +47,14 @@ var AnimalFsmSpec = {
 			},
 
 			"MoveStopped": function() {
-				this.MoveRandomly();
+				this.MoveRandomly(+this.template.RoamDistance);
 			},
 		},
 
 		"FEEDING": {
 			"enter": function() {
 				// Stop and eat for a while
-				this.SelectAnimation("idle");
+				this.SelectAnimation("feeding");
 				this.StopMoving();
 				this.StartTimer(RandomInt(1000, 4000));
 			},
@@ -67,13 +73,14 @@ var AnimalFsmSpec = {
 		"FLEEING": {
 			"enter": function() {
 				// Run quickly
-				this.SelectAnimation("run", false);
-				this.SetMoveSpeedFactor(6.0);
+				var speed = this.GetRunSpeed();
+				this.SelectAnimation("run", false, speed);
+				this.SetMoveSpeed(speed);
 			},
 
 			"leave": function() {
 				// Reset normal speed
-				this.SetMoveSpeedFactor(1.0);
+				this.SetMoveSpeed(this.GetWalkSpeed());
 			},
 
 			"MoveStopped": function() {
@@ -95,7 +102,7 @@ AnimalAI.prototype.Init = function()
 
 AnimalAI.prototype.OnCreate = function()
 {
-	AnimalFsm.Init(this, "SKITTISH.ROAMING");
+	AnimalFsm.Init(this, "SKITTISH.FEEDING");
 };
 
 AnimalAI.prototype.SetNextState = function(state)
@@ -139,6 +146,18 @@ AnimalAI.prototype.TimerHandler = function(data, lateness)
 
 // Functions to be called by the FSM:
 
+AnimalAI.prototype.GetWalkSpeed = function()
+{
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpMotion.GetWalkSpeed();
+};
+
+AnimalAI.prototype.GetRunSpeed = function()
+{
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpMotion.GetRunSpeed();
+};
+
 AnimalAI.prototype.PlaySound = function(name)
 {
 	PlaySound(name, this.entity);
@@ -169,7 +188,7 @@ AnimalAI.prototype.SelectAnimation = function(name, once, speed, sound)
 	cmpVisual.SelectAnimation(name, once, speed, soundgroup);
 };
 
-AnimalAI.prototype.MoveRandomly = function()
+AnimalAI.prototype.MoveRandomly = function(distance)
 {
 	// We want to walk in a random direction, but avoid getting stuck
 	// in obstacles or narrow spaces.
@@ -189,7 +208,6 @@ AnimalAI.prototype.MoveRandomly = function()
 
 	var pos = cmpPosition.GetPosition();
 
-	var distance = 4;
 	var jitter = 0.5;
 
 	// Randomly adjust the range's center a bit, so we tend to prefer
@@ -213,10 +231,10 @@ AnimalAI.prototype.StopMoving = function()
 	cmpMotion.StopMoving();
 };
 
-AnimalAI.prototype.SetMoveSpeedFactor = function(factor)
+AnimalAI.prototype.SetMoveSpeed = function(speed)
 {
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpMotion.SetSpeedFactor(factor);
+	cmpMotion.SetSpeed(speed);
 };
 
 AnimalAI.prototype.StartTimer = function(interval, data)

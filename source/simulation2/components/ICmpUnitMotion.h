@@ -71,9 +71,9 @@ public:
 	virtual void StopMoving() = 0;
 
 	/**
-	 * Set the current movement speed to be the default multiplied by the given factor.
+	 * Set the current movement speed.
 	 */
-	virtual void SetSpeedFactor(fixed factor) = 0;
+	virtual void SetSpeed(fixed speed) = 0;
 
 	/**
 	 * Get the default speed that this unit will have when walking, in metres per second.

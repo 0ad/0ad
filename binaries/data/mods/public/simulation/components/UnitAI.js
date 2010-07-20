@@ -37,15 +37,7 @@ function UnitAI() {}
 UnitAI.prototype.Schema =
 	"<a:help>Controls the unit's movement, attacks, etc, in response to commands from the player.</a:help>" +
 	"<a:example/>" +
-	"<element name='NaturalBehaviour' a:help='Behaviour of the unit in the absence of player commands (intended for animals)'>" + // TODO: implement this
-		"<choice>" +
-			"<value a:help='Will actively attack any unit it encounters, even if not threatened'>violent</value>" +
-			"<value a:help='Will attack nearby units if it feels threatened (if they linger within LOS for too long)'>aggressive</value>" +
-			"<value a:help='Will attack nearby units if attacked'>defensive</value>" +
-			"<value a:help='Will never attack units'>passive</value>" +
-			"<value a:help='Will never attack units. Will typically attempt to flee for short distances when units approach'>skittish</value>" +
-		"</choice>" +
-	"</element>";
+	"<empty/>";
 
 UnitAI.prototype.Init = function()
 {

@@ -16,4 +16,15 @@
     <Circle radius="1.0"/>
     <Height>2.5</Height>
   </Footprint>
+  <UnitMotion>
+    <WalkSpeed>2.0</WalkSpeed>
+    <Run>
+      <Speed>6.0</Speed>
+    </Run>
+  </UnitMotion>
+  <UnitAI disable=""/>
+  <AnimalAI>
+    <RoamDistance>4.0</RoamDistance>
+    <FleeDistance>12.0</FleeDistance>
+  </AnimalAI>
 </Entity>
