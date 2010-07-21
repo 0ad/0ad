@@ -146,7 +146,7 @@ Selection methods: (not all currently implemented)
 
 var dragStart; // used for remembering mouse coordinates at start of drag operations
 
-function tryPlaceBuilding()
+function tryPlaceBuilding(queued)
 {
 	var selection = g_Selection.toList();
 
@@ -173,7 +173,8 @@ function tryPlaceBuilding()
 		"x": placementPosition.x,
 		"z": placementPosition.z,
 		"angle": placementAngle,
-		"entities": selection
+		"entities": selection,
+		"queued": queued
 	});
 
 	return true;
@@ -305,10 +306,11 @@ function handleInputBeforeGui(ev)
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				if (tryPlaceBuilding())
+				// If shift is down, let the player continue placing another of the same building
+				var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+				if (tryPlaceBuilding(queued))
 				{
-					// If shift is down, let the player continue placing another of the same building
-					if (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT])
+					if (queued)
 						inputState = INPUT_BUILDING_PLACEMENT;
 					else
 						inputState = INPUT_NORMAL;
@@ -364,10 +366,19 @@ function handleInputBeforeGui(ev)
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				if (tryPlaceBuilding())
-					inputState = INPUT_NORMAL;
+				// If shift is down, let the player continue placing another of the same building
+				var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+				if (tryPlaceBuilding(queued))
+				{
+					if (queued)
+						inputState = INPUT_BUILDING_PLACEMENT;
+					else
+						inputState = INPUT_NORMAL;
+				}
 				else
+				{
 					inputState = INPUT_BUILDING_PLACEMENT;
+				}
 				return true;
 			}
 			break;
@@ -429,24 +440,28 @@ function handleInputAfterGui(ev)
 
 				var selection = g_Selection.toList();
 
+				// If shift is down, add the order to the unit's order queue instead
+				// of running it immediately
+				var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+
 				switch (action.type)
 				{
 				case "move":
 					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-					Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z});
+					Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
 					return true;
 
 				case "attack":
-					Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target});
+					Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
 					return true;
 
 				case "build": // (same command as repair)
 				case "repair":
-					Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target});
+					Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "queued": queued});
 					return true;
 
 				case "gather":
-					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target});
+					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
 					return true;
 
 				default:
