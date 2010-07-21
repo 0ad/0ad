@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="300.35" y="157.983" z="275.855"/>
-		<Rotation angle="-0.574138"/>
-		<Declination angle="0.996792"/>
+		<Position x="286.537" y="60.9081" z="214.207"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
 		<Entity uid="11">
@@ -44,7 +44,7 @@
 			<Template>structures/hele_civil_centre</Template>
 			<Player>2</Player>
 			<Position x="288.421" z="142.612"/>
-			<Orientation y="-0.042511"/>
+			<Orientation y="-0.0424957"/>
 		</Entity>
 		<Entity uid="14">
 			<Template>structures/hele_civil_centre</Template>
@@ -62,7 +62,7 @@
 			<Template>structures/hele_civil_centre</Template>
 			<Player>6</Player>
 			<Position x="397.012" z="185.76"/>
-			<Orientation y="-0.54216"/>
+			<Orientation y="-0.542145"/>
 		</Entity>
 		<Entity uid="17">
 			<Template>structures/hele_civil_centre</Template>
@@ -554,7 +554,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="261.456" z="383.826"/>
-			<Orientation y="3.05688"/>
+			<Orientation y="3.05687"/>
 		</Entity>
 		<Entity uid="113">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3064,35 +3064,11 @@
 			<Position x="305.494" z="106.098"/>
 			<Orientation y="2.35619"/>
 		</Entity>
-		<Entity uid="538">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="292.37" z="276.231"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="539">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="291.86" z="285.493"/>
-			<Orientation y="-2.4547"/>
-		</Entity>
-		<Entity uid="540">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="299.744" z="286.351"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="541">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="300.595" z="276.824"/>
-			<Orientation y="-2.48763"/>
-		</Entity>
 		<Entity uid="542">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="257.922" z="366.882"/>
-			<Orientation y="0.0881195"/>
+			<Orientation y="0.0881042"/>
 		</Entity>
 		<Entity uid="543">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3134,7 +3110,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="229.155" z="378.129"/>
-			<Orientation y="0.740723"/>
+			<Orientation y="0.740707"/>
 		</Entity>
 		<Entity uid="550">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3164,7 +3140,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="224.546" z="267.286"/>
-			<Orientation y="-0.227097"/>
+			<Orientation y="-0.227081"/>
 		</Entity>
 		<Entity uid="555">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3176,7 +3152,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="185.528" z="274.253"/>
-			<Orientation y="0.985138"/>
+			<Orientation y="0.985123"/>
 		</Entity>
 		<Entity uid="557">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3188,7 +3164,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="203.178" z="247.635"/>
-			<Orientation y="0.455658"/>
+			<Orientation y="0.455643"/>
 		</Entity>
 		<Entity uid="559">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3200,7 +3176,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="244.746" z="266.123"/>
-			<Orientation y="-0.844101"/>
+			<Orientation y="-0.844086"/>
 		</Entity>
 		<Entity uid="561">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3260,7 +3236,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="309.929" z="221.149"/>
-			<Orientation y="0.200699"/>
+			<Orientation y="0.200684"/>
 		</Entity>
 		<Entity uid="571">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3284,7 +3260,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="346.351" z="189.335"/>
-			<Orientation y="0.0575714"/>
+			<Orientation y="0.0575562"/>
 		</Entity>
 		<Entity uid="575">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3368,7 +3344,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="367.465" z="296.884"/>
-			<Orientation y="-2.03831"/>
+			<Orientation y="-2.0383"/>
 		</Entity>
 		<Entity uid="589">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3446,37 +3422,37 @@
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="297.512" z="398.81"/>
-			<Orientation y="2.3562"/>
+			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="611">
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>1</Player>
 			<Position x="300.576" z="399.83"/>
-			<Orientation y="2.3562"/>
+			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="612">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>1</Player>
 			<Position x="291.958" z="399.666"/>
-			<Orientation y="2.3562"/>
+			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="613">
 			<Template>units/hele_infantry_javelinist_b</Template>
 			<Player>1</Player>
 			<Position x="304.326" z="400.335"/>
-			<Orientation y="2.3562"/>
+			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="614">
 			<Template>units/hele_infantry_javelinist_b</Template>
 			<Player>8</Player>
 			<Position x="390.635" z="357.642"/>
-			<Orientation y="2.3562"/>
+			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="615">
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>8</Player>
 			<Position x="387.363" z="360.337"/>
-			<Orientation y="2.3562"/>
+			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="616">
 			<Template>units/hele_support_female_citizen</Template>
@@ -3488,7 +3464,7 @@
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>8</Player>
 			<Position x="381.019" z="363.169"/>
-			<Orientation y="-2.61491"/>
+			<Orientation y="-2.6149"/>
 		</Entity>
 		<Entity uid="618">
 			<Template>units/hele_cavalry_swordsman_b</Template>
@@ -3500,7 +3476,7 @@
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>4</Player>
 			<Position x="411.458" z="270.917"/>
-			<Orientation y="-0.894745"/>
+			<Orientation y="-0.89473"/>
 		</Entity>
 		<Entity uid="620">
 			<Template>units/hele_infantry_javelinist_b</Template>
@@ -3524,25 +3500,25 @@
 			<Template>units/hele_infantry_javelinist_b</Template>
 			<Player>6</Player>
 			<Position x="384.842" z="204.397"/>
-			<Orientation y="-0.910873"/>
+			<Orientation y="-0.910858"/>
 		</Entity>
 		<Entity uid="624">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>6</Player>
 			<Position x="382.481" z="200.374"/>
-			<Orientation y="-0.452667"/>
+			<Orientation y="-0.452652"/>
 		</Entity>
 		<Entity uid="625">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>6</Player>
 			<Position x="389.893" z="206.957"/>
-			<Orientation y="-0.997574"/>
+			<Orientation y="-0.997559"/>
 		</Entity>
 		<Entity uid="626">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>2</Player>
 			<Position x="298.92" z="162.785"/>
-			<Orientation y="-0.469757"/>
+			<Orientation y="-0.469742"/>
 		</Entity>
 		<Entity uid="627">
 			<Template>units/hele_infantry_javelinist_b</Template>
@@ -3554,43 +3530,43 @@
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="287.379" z="162.738"/>
-			<Orientation y="0.302261"/>
+			<Orientation y="0.302246"/>
 		</Entity>
 		<Entity uid="629">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="279.503" z="161.826"/>
-			<Orientation y="0.960892"/>
+			<Orientation y="0.960876"/>
 		</Entity>
 		<Entity uid="630">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>7</Player>
 			<Position x="184.353" z="199.951"/>
-			<Orientation y="0.542343"/>
+			<Orientation y="0.542328"/>
 		</Entity>
 		<Entity uid="631">
 			<Template>units/hele_infantry_javelinist_b</Template>
 			<Player>7</Player>
 			<Position x="189.926" z="195.91"/>
-			<Orientation y="0.855804"/>
+			<Orientation y="0.855789"/>
 		</Entity>
 		<Entity uid="632">
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>7</Player>
 			<Position x="196.384" z="192.564"/>
-			<Orientation y="0.227341"/>
+			<Orientation y="0.227325"/>
 		</Entity>
 		<Entity uid="633">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>7</Player>
 			<Position x="203.051" z="188.99"/>
-			<Orientation y="0.447433"/>
+			<Orientation y="0.447418"/>
 		</Entity>
 		<Entity uid="634">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>3</Player>
 			<Position x="156.196" z="286.288"/>
-			<Orientation y="1.51295"/>
+			<Orientation y="1.51294"/>
 		</Entity>
 		<Entity uid="635">
 			<Template>units/hele_support_female_citizen</Template>
@@ -3602,7 +3578,7 @@
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>3</Player>
 			<Position x="157.346" z="305.102"/>
-			<Orientation y="2.26054"/>
+			<Orientation y="2.26053"/>
 		</Entity>
 		<Entity uid="637">
 			<Template>units/hele_infantry_javelinist_b</Template>
@@ -3614,7 +3590,7 @@
 			<Template>units/hele_infantry_javelinist_b</Template>
 			<Player>5</Player>
 			<Position x="187.565" z="382.962"/>
-			<Orientation y="1.83456"/>
+			<Orientation y="1.83455"/>
 		</Entity>
 		<Entity uid="639">
 			<Template>units/hele_infantry_spearman_b</Template>
@@ -3626,13 +3602,13 @@
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>5</Player>
 			<Position x="197.72" z="391.494"/>
-			<Orientation y="2.28787"/>
+			<Orientation y="2.28786"/>
 		</Entity>
 		<Entity uid="641">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>5</Player>
 			<Position x="205.686" z="396.571"/>
-			<Orientation y="-3.12709"/>
+			<Orientation y="-3.12708"/>
 		</Entity>
 	</Entities>
 	<Paths/>
