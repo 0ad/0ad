@@ -199,7 +199,8 @@ public:
 	/**
 	 * Stores the given script representation of this node, for use in cached conversions.
 	 * This must only be called once.
-	 * The node should not be modified (e.g. by LoadXML) after setting this.
+	 * This will be reset to JSVAL_VOID if *this* node is modified (e.g. by LoadXML),
+	 * but *not* if any child nodes are modified (so don't do that).
 	 * The lifetime of the script context associated with the value must be longer
 	 * than the lifetime of this node.
 	 */
@@ -212,6 +213,8 @@ public:
 
 private:
 	void ApplyLayer(const XMBFile& xmb, const XMBElement& element);
+
+	void ResetScriptVal();
 
 	std::wstring m_Value;
 	ChildrenMap m_Childs;

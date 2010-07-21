@@ -60,6 +60,8 @@ PSRETURN CParamNode::LoadXMLString(CParamNode& ret, const char* xml)
 
 void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 {
+	ResetScriptVal();
+
 	std::string name = xmb.GetElementString(element.GetNodeName()); // TODO: is GetElementString inefficient?
 	utf16string value = element.GetText();
 
@@ -140,6 +142,8 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 
 void CParamNode::CopyFilteredChildrenOfChild(const CParamNode& src, const char* name, const std::set<std::string>& permitted)
 {
+	ResetScriptVal();
+
 	ChildrenMap::iterator dstChild = m_Childs.find(name);
 	ChildrenMap::const_iterator srcChild = src.m_Childs.find(name);
 	if (dstChild == m_Childs.end() || srcChild == src.m_Childs.end())
@@ -277,4 +281,9 @@ void CParamNode::SetScriptVal(CScriptValRooted val) const
 CScriptValRooted CParamNode::GetScriptVal() const
 {
 	return m_ScriptVal;
+}
+
+void CParamNode::ResetScriptVal()
+{
+	m_ScriptVal = CScriptValRooted();
 }

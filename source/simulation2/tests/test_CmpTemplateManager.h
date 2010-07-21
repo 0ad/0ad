@@ -92,6 +92,43 @@ public:
 		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(), L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example2</Actor></VisualActor>");
 	}
 
+	void test_LoadTemplate_scriptcache()
+	{
+		CSimContext context;
+		CComponentManager man(context);
+		man.LoadComponentTypes();
+
+		entity_id_t ent1 = 1, ent2 = 2;
+		CParamNode noParam;
+
+		TS_ASSERT(man.AddComponent(ent1, CID_TemplateManager, noParam));
+
+		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(ent1, IID_TemplateManager));
+		TS_ASSERT(tempMan != NULL);
+		tempMan->DisableValidation();
+
+		CScriptValRooted val;
+		JSContext* cx = man.GetScriptInterface().GetContext();
+
+		// This is testing some bugs in the template JS object caching
+
+		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1", -1);
+		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, inherit1));
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Test1A:{'@a':\"a1\", '@b':\"b1\", '@c':\"c1\", d:\"d1\", e:\"e1\", f:\"f1\"}})");
+
+		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2", -1);
+		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, inherit2));
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({'@parent':\"inherit1\", Test1A:{'@a':\"a2\", '@b':\"b1\", '@c':\"c1\", d:\"d2\", e:\"e1\", f:\"f1\", g:\"g2\"}})");
+
+		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
+		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &actor->GetChild("VisualActor")));
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\"})");
+
+		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1", -1);
+		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &foundation->GetChild("VisualActor")));
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", Foundation:(void 0)})");
+	}
+
 	void test_LoadTemplate_errors()
 	{
 		CSimContext context;

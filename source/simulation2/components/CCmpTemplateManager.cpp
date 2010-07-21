@@ -48,6 +48,8 @@ public:
 
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
+		m_DisableValidation = false;
+
 		m_Validator.LoadGrammar(context.GetComponentManager().GenerateSchema());
 		// TODO: handle errors loading the grammar here?
 		// TODO: support hotloading changes to the grammar
@@ -114,6 +116,11 @@ public:
 		}
 	}
 
+	virtual void DisableValidation()
+	{
+		m_DisableValidation = true;
+	}
+
 	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName, int playerID);
 
 	virtual const CParamNode* GetTemplate(std::string templateName);
@@ -127,6 +134,9 @@ public:
 private:
 	// Entity template XML validator
 	RelaxNGValidator m_Validator;
+
+	// Disable validation, for test cases
+	bool m_DisableValidation;
 
 	// Map from template name (XML filename or special |-separated string) to the most recently
 	// loaded non-broken template data. This includes files that will fail schema validation.
@@ -186,21 +196,23 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 		return NULL;
 	}
 
-	// Compute validity, if it's not computed before
-	if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
-		m_TemplateSchemaValidity[templateName] = m_Validator.Validate(CStrW(templateName), m_TemplateFileData[templateName].ToXML());
-	// Refuse to return invalid templates
-	if (!m_TemplateSchemaValidity[templateName])
-		return NULL;
+	if (!m_DisableValidation)
+	{
+		// Compute validity, if it's not computed before
+		if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
+			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(CStrW(templateName), m_TemplateFileData[templateName].ToXML());
+		// Refuse to return invalid templates
+		if (!m_TemplateSchemaValidity[templateName])
+			return NULL;
+	}
 
 	const CParamNode& templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
 	if (!templateRoot.IsOk())
 	{
+		// The validator should never let this happen
 		LOGERROR(L"Invalid root element in entity template '%hs'", templateName.c_str());
 		return NULL;
 	}
-	// TODO: the template ought to be validated with some schema, so we don't
-	// need to nicely report errors like invalid root elements here
 
 	return &templateRoot;
 }

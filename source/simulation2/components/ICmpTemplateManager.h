@@ -83,6 +83,11 @@ public:
 	 */
 	virtual std::vector<std::wstring> FindAllTemplates() = 0;
 
+	/**
+	 * Permanently disable XML validation (intended solely for test cases).
+	 */
+	virtual void DisableValidation() = 0;
+
 	/*
 	 * TODO:
 	 * When an entity changes template (e.g. upgrades) or player ownership, it
