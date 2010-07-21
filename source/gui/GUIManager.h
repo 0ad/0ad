@@ -77,27 +77,60 @@ public:
 	 */
 	void DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message);
 
-	// Hotload pages when their .xml files have changed
+	/**
+	 * Call when a file has bee modified, to hotload pages if their .xml files changed.
+	 */
 	LibError ReloadChangedFiles(const VfsPath& path);
 
-	// Handle input events
+	/**
+	 * Pass input events to the currently active GUI page.
+	 */
 	InReaction HandleEvent(const SDL_Event_* ev);
 
-	// These functions are all equivalent to the CGUI functions of the same
-	// name, applied to the currently active GUI page:
-
+	/**
+	 * See CGUI::GetPreDefinedColor; applies to the currently active page.
+	 */
 	bool GetPreDefinedColor(const CStr& name, CColor& output);
+
+	/**
+	 * See CGUI::IconExists; applies to the currently active page.
+	 */
 	bool IconExists(const CStr& str) const;
+
+	/**
+	 * See CGUI::GetIcon; applies to the currently active page.
+	 */
 	SGUIIcon GetIcon(const CStr& str) const;
 
+	/**
+	 * See CGUI::FindObjectByName; applies to the currently active page.
+	 */
 	IGUIObject* FindObjectByName(const CStr& name) const;
 
+	/**
+	 * See CGUI::SendEventToAll; applies to the currently active page.
+	 */
 	void SendEventToAll(const CStr& eventName);
-	void TickObjects();
-	void Draw();
-	void UpdateResolution();
 
+	/**
+	 * See CGUI::GetScriptObject; applies to the currently active page.
+	 */
 	JSObject* GetScriptObject();
+
+	/**
+	 * See CGUI::TickObjects; applies to @em all loaded pages.
+	 */
+	void TickObjects();
+
+	/**
+	 * See CGUI::Draw; applies to @em all loaded pages.
+	 */
+	void Draw();
+
+	/**
+	 * See CGUI::UpdateResolution; applies to @em all loaded pages.
+	 */
+	void UpdateResolution();
 
 private:
 	struct SGUIPage

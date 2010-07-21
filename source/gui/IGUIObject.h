@@ -99,8 +99,8 @@ enum EGUISettingType
 
 /**
  * A GUI Setting is anything that can be inputted from XML as
- * <object>-attributes (with exceptions). For instance:
- * <object style="null">
+ * \<object\>-attributes (with exceptions). For instance:
+ * \<object style="null"\>
  *
  * "style" will be a SGUISetting.
  */
@@ -432,8 +432,8 @@ protected:
 	CPos GetMousePos() const;
 
 	/**
-	 * Handle additional children to the <object>-tag. In IGUIObject, this function does
-	 * nothing. In CList and CDropDown, it handles the <item>, used to build the data.
+	 * Handle additional children to the \<object\>-tag. In IGUIObject, this function does
+	 * nothing. In CList and CDropDown, it handles the \<item\>, used to build the data.
 	 *
 	 * Returning false means the object doesn't recognize the child. Should be reported.
 	 * Notice 'false' is default, because an object not using this function, should not
@@ -525,7 +525,7 @@ protected:
 	 *
 	 * A true means the setting has been manually set in the file when
 	 * read. This is important to know because I don't want to force
-	 * the user to include its <styles>-XML-files first, so somehow
+	 * the user to include its \<styles\>-XML-files first, so somehow
 	 * the GUI needs to know which settings were set, and which is meant
 	 * to 
 	 */

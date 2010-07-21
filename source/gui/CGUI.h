@@ -119,7 +119,8 @@ public:
 	void Initialize();
 	
 	/**
-	 * Performs processing that should happen every frame (including the "Tick" event)
+	 * Performs processing that should happen every frame
+	 * (including sending the "Tick" event to scripts)
 	 */
 	void TickObjects();
 
@@ -386,7 +387,7 @@ private:
 	void Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the root element <styles> (the DOMElement).
+	 * Reads in the root element \<styles\> (the DOMElement).
 	 *
 	 * @param Element	The Xeromyces object that represents
 	 *					the styles-tag.
@@ -412,7 +413,7 @@ private:
 	/**
 	 * Notice! Recursive function!
 	 *
-	 * Read in an <object> (the XMBElement) and stores it
+	 * Read in an \<object\> (the XMBElement) and stores it
 	 * as a child in the pParent.
 	 *
 	 * It will also check the object's children and call this function
@@ -434,14 +435,14 @@ private:
 	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, std::set<VfsPath>& Paths);
 
 	/**
-	 * Reads in the element <repeat>, which repeats its child <object>s
+	 * Reads in the element \<repeat\>, which repeats its child \<object\>s
 	 * 'count' times, replacing the string "[n]" in its descendants' names
 	 * with "[0]", "[1]", etc.
 	 */
 	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths);
 
 	/**
-	 * Reads in the element <script> (the XMBElement) and executes
+	 * Reads in the element \<script\> (the XMBElement) and executes
 	 * the script's code.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -453,7 +454,7 @@ private:
 	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths);
 
 	/**
-	 * Reads in the element <sprite> (the XMBElement) and stores the
+	 * Reads in the element \<sprite\> (the XMBElement) and stores the
 	 * result in a new CGUISprite.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -465,7 +466,7 @@ private:
 	void Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the element <image> (the XMBElement) and stores the
+	 * Reads in the element \<image\> (the XMBElement) and stores the
 	 * result within the CGUISprite.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -477,11 +478,21 @@ private:
 	 */
 	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent);
 
-	// TODO: Documentation. (I'm feeling lazy at the moment.)
+	/**
+	 * Reads in the element \<effect\> (the XMBElement) and stores the
+	 * result within the SGUIImageEffects.
+	 *
+	 * @param Element	The Xeromyces object that represents
+	 *					the image-tag.
+	 * @param pFile		The Xeromyces object for the file being read
+	 * @param effects	Effects object to add this effect to.
+	 *
+	 * @see LoadXmlFile()
+	 */
 	void Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects);
 
 	/**
-	 * Reads in the element <style> (the XMBElement) and stores the
+	 * Reads in the element \<style\> (the XMBElement) and stores the
 	 * result in m_Styles.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -493,7 +504,7 @@ private:
 	void Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the element <scrollbar> (the XMBElement) and stores the
+	 * Reads in the element \<scrollbar\> (the XMBElement) and stores the
 	 * result in m_ScrollBarStyles.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -505,7 +516,7 @@ private:
 	void Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the element <icon> (the XMBElement) and stores the
+	 * Reads in the element \<icon\> (the XMBElement) and stores the
 	 * result in m_Icons.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -517,7 +528,7 @@ private:
 	void Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile);
 	
 	/**
-	 * Reads in the element <tooltip> (the XMBElement) and stores the
+	 * Reads in the element \<tooltip\> (the XMBElement) and stores the
 	 * result as an object with the name __tooltip_#.
 	 *
 	 * @param Element	The Xeromyces object that represents
@@ -529,7 +540,7 @@ private:
 	void Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile);
 
 	/**
-	 * Reads in the element <color> (the XMBElement) and stores the
+	 * Reads in the element \<color\> (the XMBElement) and stores the
 	 * result in m_PreDefinedColors
 	 *
 	 * @param Element	The Xeromyces object that represents
