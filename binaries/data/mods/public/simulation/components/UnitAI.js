@@ -1,37 +1,3 @@
-/*
-
-This is currently just a very simplistic state machine that lets units be commanded around
-and then autonomously carry out the orders. It might need to be entirely redesigned.
-
-*/
-
-const STATE_IDLE = 0;
-const STATE_WALKING = 1;
-const STATE_ATTACKING = 2;
-const STATE_REPAIRING = 3;
-const STATE_GATHERING = 4;
-
-/* Attack process:
- *   When starting attack:
- *     Activate attack animation (with appropriate repeat speed and offset)
- *     Set this.attackTimer to run at maximum of:
- *       GetTimers().prepare msec from now
- *       this.attackRechargeTime
- *     Loop:
- *       Wait for the timer
- *       Perform the attack
- *       Set this.attackRechargeTime to now plus GetTimers().recharge
- *       Set this.attackTimer to run after GetTimers().repeat
- *   At any point it's safe to cancel the attack and switch to a different action
- *   (The rechargeTime is to prevent people spamming the attack command and getting
- *   faster-than-normal attacks)
- */
-
-/* Repeat/Gather process is about the same, except with less synchronisation - the action
- * is just performed 1sec after initiated, and then repeated every 1sec.
- * (TODO: it'd be nice to avoid most of the duplication between Attack and Repeat and Gather code)
- */
-
 function UnitAI() {}
 
 UnitAI.prototype.Schema =
@@ -39,312 +5,481 @@ UnitAI.prototype.Schema =
 	"<a:example/>" +
 	"<empty/>";
 
+var UnitFsmSpec = {
+
+	"INDIVIDUAL": {
+
+		"MoveStopped": function() {
+			// ignore spurious movement messages
+			// (these can happen when stopping moving at the same time
+			// as switching states)
+		},
+
+		"ConstructionFinished": function(msg) {
+			// ignore uninteresting construction messages
+		},
+
+		"Attacked": function(msg) {
+			// Default behaviour: attack back at our attacker
+			if (this.CanAttack(msg.data.attacker))
+			{
+				this.PushOrderFront("Attack", { "target": msg.data.attacker });
+			}
+		},
+
+
+		"IDLE": {
+			"enter": function() {
+				this.SelectAnimation("idle");
+			},
+		},
+
+
+		"Order.Walk": function(msg) {
+			var ok;
+			if (this.order.data.target)
+				ok = this.MoveToTarget(this.order.data.target);
+			else
+				ok = this.MoveToPoint(this.order.data.x, this.order.data.z);
+
+			if (ok)
+			{
+				// We've started walking to the given point
+				this.SetNextState("WALKING");
+			}
+			else
+			{
+				// We are already at the target, or can't move at all
+				this.FinishOrder();
+			}
+		},
+
+		"WALKING": {
+			"enter": function() {
+				this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				this.PlaySound("walk");
+			},
+
+			"MoveStopped": function() {
+				this.FinishOrder();
+			},
+		},
+
+
+		"Order.Attack": function(msg) {
+			// Work out how to attack the given target
+			var type = this.GetBestAttack();
+			if (!type)
+			{
+				// Oops, we can't attack at all
+				this.FinishOrder();
+				return;
+			}
+			this.attackType = type;
+
+			// Try to move within attack range
+			if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+			{
+				// We've started walking to the given point
+				this.SetNextState("COMBAT.APPROACHING");
+			}
+			else
+			{
+				// We are already at the target, or can't move at all,
+				// so try attacking it from here.
+				// TODO: need better handling of the can't-reach-target case
+				this.SetNextState("COMBAT.ATTACKING");
+			}
+		},
+
+		"COMBAT": {
+
+			"Attacked": function(msg) {
+				// If we're already in combat mode, ignore anyone else
+				// who's attacking us
+			},
+
+			"APPROACHING": {
+				"enter": function() {
+					this.SelectAnimation("walk", false, this.GetWalkSpeed());
+					this.PlaySound("walk");
+				},
+
+				"MoveStopped": function() {
+					this.SetNextState("ATTACKING");
+				},
+			},
+
+			"ATTACKING": {
+				"enter": function() {
+					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+					this.attackTimers = cmpAttack.GetTimers(this.attackType);
+
+					this.SelectAnimation("melee", false, 1.0, "attack");
+					this.SetAnimationSync(this.attackTimers.prepare, this.attackTimers.repeat);
+					this.StartTimer(this.attackTimers.prepare, this.attackTimers.repeat);
+					// TODO: we should probably only bother syncing projectile attacks, not melee
+
+					// TODO: if .prepare is short, players can cheat by cycling attack/stop/attack
+					// to beat the .repeat time; should enforce a minimum time
+				},
+
+				"leave": function() {
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					// Check we can still reach the target
+					if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+					{
+						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+						cmpAttack.PerformAttack(this.attackType, this.order.data.target);
+					}
+					else
+					{
+						// Try to chase after it
+						if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+						{
+							this.SetNextState("COMBAT.CHASING");
+						}
+						else
+						{
+							// Can't reach it, or it doesn't exist any more - give up
+							this.FinishOrder();
+							
+							// TODO: see if we can switch to a new nearby enemy
+						}
+					}
+				},
+
+				// TODO: respond to target deaths immediately, rather than waiting
+				// until the next Timer event
+			},
+
+			"CHASING": {
+				"enter": function() {
+					this.SelectAnimation("walk", false, this.GetWalkSpeed());
+					this.PlaySound("walk");
+				},
+			
+				"MoveStopped": function() {
+					this.SetNextState("ATTACKING");
+				},
+			},
+		},
+
+
+		"Order.Gather": function(msg) {
+			var cmpResourceSupply = Engine.QueryInterface(this.order.data.target, IID_ResourceSupply);
+			var type = cmpResourceSupply.GetType();
+			this.gatherType = type;
+	
+			// Try to move within range
+			if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
+			{
+				// We've started walking to the given point
+				this.SetNextState("GATHER.APPROACHING");
+			}
+			else
+			{
+				// We are already at the target, or can't move at all,
+				// so try gathering it from here.
+				// TODO: need better handling of the can't-reach-target case
+				this.SetNextState("GATHER.GATHERING");
+			}
+		},
+
+		"GATHER": {
+			"APPROACHING": {
+				"enter": function() {
+					this.SelectAnimation("walk", false, this.GetWalkSpeed());
+					this.PlaySound("walk");
+				},
+			
+				"MoveStopped": function() {
+					this.SetNextState("GATHERING");
+				},
+			},
+
+			"GATHERING": {
+				"enter": function() {
+					var typename = "gather_" + (this.gatherType.specific || this.gatherType.generic);
+					this.SelectAnimation(typename, false, 1.0, typename);
+					this.StartTimer(1000, 1000);
+				},
+
+				"leave": function() {
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					// Check we can still reach the target
+					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					{
+						var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+						var status = cmpResourceGatherer.PerformGather(this.order.data.target);
+					}
+					else
+					{
+						// Try to follow it
+						if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
+						{
+							this.SetNextState("APPROACHING");
+						}
+						else
+						{
+							// Can't reach it, or it doesn't exist any more - give up
+							this.FinishOrder();
+							
+							// TODO: see if we can switch to a new nearby target of the same type
+						}
+					}
+				},
+			},
+		},
+
+
+		"Order.Repair": function(msg) {
+			// Try to move within range
+			if (this.MoveToTargetRange(this.order.data.target, IID_Builder))
+			{
+				// We've started walking to the given point
+				this.SetNextState("REPAIR.APPROACHING");
+			}
+			else
+			{
+				// We are already at the target, or can't move at all,
+				// so try repairing it from here.
+				// TODO: need better handling of the can't-reach-target case
+				this.SetNextState("REPAIR.REPAIRING");
+			}
+		},
+
+		"REPAIR": {
+			"APPROACHING": {
+				"enter": function() {
+					this.SelectAnimation("walk", false, this.GetWalkSpeed());
+					this.PlaySound("walk");
+				},
+			
+				"MoveStopped": function() {
+					this.SetNextState("REPAIRING");
+				},
+			},
+
+			"REPAIRING": {
+				"enter": function() {
+					this.SelectAnimation("build", false, 1.0, "build");
+					this.StartTimer(1000, 1000);
+				},
+
+				"leave": function() {
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					var target = this.order.data.target;
+					// Check we can still reach the target
+					if (!this.CheckTargetRange(target, IID_Builder))
+					{
+						// Can't reach it, or it doesn't exist any more
+						this.FinishOrder();
+						return;
+					}
+					
+					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+					var status = cmpBuilder.PerformBuilding(target);
+					if (!status.finished)
+						return; // continue repairing it
+				},
+			},
+
+			"ConstructionFinished": function(msg) {
+				if (msg.data.entity != this.order.data.target)
+					return; // ignore other buildings
+
+				// We finished building it.
+				// Switch to the next order (if any)
+				if (this.FinishOrder())
+					return;
+
+				// No remaining orders - pick a useful default behaviour
+
+				// If this building was e.g. a farm, we should start gathering from it
+				// if we are capable of doing so
+				if (this.CanGather(msg.data.newentity))
+				{
+					this.PushOrder("Gather", { "target": msg.data.newentity });
+				}
+				else
+				{
+					// TODO: look for a nearby foundation to help with
+				}
+			},
+		},
+	},
+};
+
+var UnitFsm = new FSM(UnitFsmSpec);
+
 UnitAI.prototype.Init = function()
 {
-	this.state = STATE_IDLE;
-
-	// The earliest time at which we'll have 'recovered' from the previous attack, and
-	// can start preparing a new attack
-	this.attackRechargeTime = 0;
-	// Timer for AttackTimeout
-	this.attackTimer = undefined;
-	// Current attack type
-	this.attackType = undefined;
-	// Current target entity ID
-	this.attackTarget = undefined;
-
-	// Timer for RepairTimeout
-	this.repairTimer = undefined;
-	// Current target entity ID
-	this.repairTarget = undefined;
-
-	// Timer for GatherTimeout
-	this.gatherTimer = undefined;
-	// Current target entity ID
-	this.gatherTarget = undefined;
+	this.orderQueue = []; // current order is at the front of the list
+	this.order = undefined; // always == this.orderQueue[0]
 };
 
-//// Interface functions ////
 
-UnitAI.prototype.Walk = function(x, z)
+//// FSM linkage functions ////
+
+UnitAI.prototype.OnCreate = function()
 {
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (!cmpMotion)
-		return;
+	UnitFsm.Init(this, "INDIVIDUAL.IDLE");
+};
 
-	if (cmpMotion.MoveToPoint(x, z))
+UnitAI.prototype.SetNextState = function(state)
+{
+	UnitFsm.SetNextState(this, state);
+};
+
+UnitAI.prototype.DeferMessage = function(msg)
+{
+	UnitFsm.DeferMessage(this, msg);
+};
+
+/**
+ * Call when the current order has been completed (or failed).
+ * Removes the current order from the queue, and processes the
+ * next one (if any). Returns false and defaults to IDLE
+ * if there are no remaining orders.
+ */
+UnitAI.prototype.FinishOrder = function()
+{
+	if (!this.orderQueue.length)
+		error("FinishOrder called when order queue is empty");
+
+	this.orderQueue.shift();
+	this.order = this.orderQueue[0];
+
+	if (this.orderQueue.length)
 	{
-		this.state = STATE_WALKING;
-		PlaySound("walk", this.entity);
+		UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+		return true;
 	}
 	else
 	{
-		this.state = STATE_IDLE;
-	}
-};
-
-UnitAI.prototype.WalkToTarget = function(target)
-{
-	var cmpPosition = Engine.QueryInterface(target, IID_Position);
-	if (!cmpPosition)
-		return;
-
-	if (!cmpPosition.IsInWorld())
-		return;
-
-	var pos = cmpPosition.GetPosition();
-	this.Walk(pos.x, pos.z);
-}
-
-UnitAI.prototype.Attack = function(target)
-{
-	// Verify that we're able to respond to Attack commands
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-	{
-		this.WalkToTarget(target);
-		return;
-	}
-
-	// TODO: verify that this is a valid target
-
-	var type = cmpAttack.GetBestAttack();
-	if (!type)
-	{
-		this.WalkToTarget(target);
-		return;
-	}
-
-	// Stop any previous action timers
-	this.CancelTimers();
-
-	// Remember the target, and start moving towards it
-	this.attackType = type;
-	this.attackTarget = target;
-	this.state = STATE_ATTACKING;
-	if (!this.MoveToTarget(target, cmpAttack.GetRange(type)))
-	{
-		// We're in range already, do the attack
-		// (TODO: this could also happen if we couldn't move anywhere)
-		this.StartAttack();
-	}
-	// else we've started moving and the attack will start in OnMotionChanged
-};
-
-UnitAI.prototype.Repair = function(target)
-{
-	// Verify that we're able to respond to Repair commands
-	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-	if (!cmpBuilder)
-	{
-		this.WalkToTarget(target);
-		return;
-	}
-
-	// TODO: verify that this is a valid target
-
-	// Stop any previous action timers
-	this.CancelTimers();
-
-	// Remember the target, and start moving towards it
-	this.repairTarget = target;
-	this.state = STATE_REPAIRING;
-	if (!this.MoveToTarget(target, cmpBuilder.GetRange()))
-	{
-		// We're in range already, do the repairing
-		// (TODO: this could also happen if we couldn't move anywhere)
-		this.StartRepair();
-	}
-	// else we've started moving and the repair will start in OnMotionChanged
-};
-
-UnitAI.prototype.Gather = function(target)
-{
-	// Verify that we're able to respond to Gather commands
-	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-	if (!cmpResourceGatherer)
-	{
-		this.WalkToTarget(target);
-		return;
-	}
-
-	// Verify that we can gather from this target
-	if (!cmpResourceGatherer.GetTargetGatherRate(target))
-	{
-		this.WalkToTarget(target);
-		return;
-	}
-
-	// TODO: verify that this is a valid target
-
-	// Stop any previous action timers
-	this.CancelTimers();
-
-	// Remember the target, and start moving towards it
-	this.gatherTarget = target;
-	this.state = STATE_GATHERING;
-	if (!this.MoveToTarget(target, cmpResourceGatherer.GetRange()))
-	{
-		// We're in range already, do the gathering
-		// (TODO: this could also happen if we couldn't move anywhere)
-		this.StartGather();
-	}
-	// else we've started moving and the gather will start in OnMotionChanged
-};
-
-//// Message handlers ////
-
-UnitAI.prototype.OnDestroy = function()
-{
-	// Clean up any timers that are now obsolete
-	this.CancelTimers();
-};
-
-UnitAI.prototype.OnMotionChanged = function(msg)
-{
-	if (msg.speed)
-	{
-		// Started moving
-		// => play the appropriate animation
-		this.SelectAnimation("walk", false, msg.speed);
-	}
-	else
-	{
-		if (this.state == STATE_WALKING)
-		{
-			// Stopped walking
-			this.state = STATE_IDLE;
-			this.SelectAnimation("idle");
-		}
-		else if (this.state == STATE_ATTACKING)
-		{
-			// We were attacking, and have stopped moving
-			// => check if we can still reach the target now
-
-			if (this.MoveIntoRange(IID_Attack, this.attackTarget, this.attackType))
-				return;
-
-			// In range, so perform the attack
-			this.StartAttack();
-		}
-		else if (this.state == STATE_REPAIRING)
-		{
-			// We were repairing, and have stopped moving
-			// => check if we can still reach the target now
-
-			if (this.MoveIntoRange(IID_Builder, this.repairTarget))
-				return;
-
-			// In range, so perform the repairing
-			this.StartRepair();
-		}
-		else if (this.state == STATE_GATHERING)
-		{
-			// We were gathering, and have stopped moving
-			// => check if we can still reach the target now
-
-			if (this.MoveIntoRange(IID_ResourceGatherer, this.gatherTarget))
-				return;
-
-			// In range, so perform the gathering
-			this.StartGather();
-		}
-	}
-};
-
-//// Private functions ////
-
-UnitAI.prototype.StartAttack = function()
-{
-	// Perform the attack after the prepare time but not before the previous attack's recharge
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-
-	var timers = cmpAttack.GetTimers(this.attackType);
-	var time = Math.max(timers.prepare, this.attackRechargeTime - cmpTimer.GetTime());
-	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", time, {});
-
-	// Start the attack animation and sound, but synced to the timers
-	this.SelectAnimation("melee", false, 1.0, "attack");
-	this.SetAnimationSync(time, timers.repeat);
-	// TODO: this drifts since the sim is quantised to sim turns and these timers aren't
-	// TODO: we should probably only bother syncing projectile attacks, not melee
-};
-
-UnitAI.prototype.StartRepair = function()
-{
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000, {});
-
-	// Start the repair/build animation and sound
-	this.SelectAnimation("build", false, 1.0, "build");
-};
-
-UnitAI.prototype.StartGather = function()
-{
-	var cmpResourceSupply = Engine.QueryInterface(this.gatherTarget, IID_ResourceSupply);
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-
-	// Get the animation/sound type name
-	var type = cmpResourceSupply.GetType();
-	var typename = "gather_" + (type.specific || type.generic);
-
-	this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, {"typename": typename});
-
-	// Start the gather animation and sound
-	this.SelectAnimation(typename, false, 1.0, typename);
-
-	// Tell the target we're gathering from it
-	Engine.PostMessage(this.gatherTarget, MT_ResourceGather, { "entity": this.gatherTarget, "gatherer": this.entity });
-};
-
-UnitAI.prototype.CancelTimers = function()
-{
-	if (this.attackTimer)
-	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.attackTimer);
-		this.attackTimer = undefined;
-	}
-
-	if (this.repairTimer)
-	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.repairTimer);
-		this.repairTimer = undefined;
-	}
-
-	if (this.gatherTimer)
-	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.gatherTimer);
-		this.gatherTimer = undefined;
+		this.SetNextState("IDLE");
+		return false;
 	}
 };
 
 /**
- * Tries to move into range of the target.
- * Returns true if the unit has started walking or on pathing failure, false if already in range.
+ * Add an order onto the back of the queue,
+ * and execute it if we didn't already have an order.
  */
-UnitAI.prototype.MoveIntoRange = function(iid, target, type)
+UnitAI.prototype.PushOrder = function(type, data)
 {
-	var cmpRanged = Engine.QueryInterface(this.entity, iid);
-	var range = cmpRanged.GetRange(type);
+	var order = { "type": type, "data": data };
+	this.orderQueue.push(order);
 
+	// If we didn't already have an order, then process this new one
+	if (this.orderQueue.length == 1)
+	{
+		this.order = order;
+		UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+	}
+};
+
+/**
+ * Add an order onto the front of the queue,
+ * and execute it immediately.
+ */
+UnitAI.prototype.PushOrderFront = function(type, data)
+{
+	var order = { "type": type, "data": data };
+	this.orderQueue.unshift(order);
+
+	this.order = order;
+	UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+};
+
+UnitAI.prototype.ReplaceOrder = function(type, data)
+{
+	this.orderQueue = [];
+	this.PushOrder(type, data);
+};
+
+UnitAI.prototype.TimerHandler = function(data, lateness)
+{
+	// Reset the timer
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", data.timerRepeat - lateness, data);
+
+	UnitFsm.ProcessMessage(this, {"type": "Timer", "data": data, "lateness": lateness});
+};
+
+UnitAI.prototype.StartTimer = function(offset, repeat)
+{
+	if (this.timer)
+		error("Called StartTimer when there's already an active timer");
+
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, { "timerRepeat": repeat });
+};
+
+UnitAI.prototype.StopTimer = function()
+{
+	if (!this.timer)
+		return;
+
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
+	this.timer = undefined;
+};
+
+//// Message handlers /////
+
+UnitAI.prototype.OnDestroy = function()
+{
+	// Clean up any timers that are now obsolete
+	this.StopTimer();
+};
+
+UnitAI.prototype.OnMotionChanged = function(msg)
+{
+	if (!msg.speed)
+		UnitFsm.ProcessMessage(this, {"type": "MoveStopped"});
+};
+
+UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
+{
+	// TODO: This is a bit inefficient since every unit listens to every
+	// construction message - ideally we could scope it to only the one we're building
+
+	UnitFsm.ProcessMessage(this, {"type": "ConstructionFinished", "data": msg});
+};
+
+UnitAI.prototype.OnAttacked = function(msg)
+{
+	UnitFsm.ProcessMessage(this, {"type": "Attacked", "data": msg});
+};
+
+//// Helper functions to be called by the FSM ////
+
+UnitAI.prototype.GetWalkSpeed = function()
+{
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (cmpMotion.IsInAttackRange(target, range.min, range.max))
-		return false;
+	return cmpMotion.GetWalkSpeed();
+};
 
-	// Out of range => need to move closer
-	// (The target has probably moved while we were chasing it)
-	if (this.MoveToTarget(target, range))
-		return true;
+UnitAI.prototype.GetRunSpeed = function()
+{
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpMotion.GetRunSpeed();
+};
 
-	// If it's impossible to reach the target, give up
-	// and switch back to idle
-	this.state = STATE_IDLE;
-	this.SelectAnimation("idle");
-	return true;
+UnitAI.prototype.PlaySound = function(name)
+{
+	PlaySound(name, this.entity);
 };
 
 UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
@@ -382,97 +517,138 @@ UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)
 	cmpVisual.SetAnimationSyncOffset(actiontime);
 };
 
-/**
- * Tries to move to the specified range of the target.
- * This might synchronously trigger a MotionChanged message.
- * Returns true if the unit has started walking, false on error or if already in range.
- */
-UnitAI.prototype.MoveToTarget = function(target, range)
+UnitAI.prototype.MoveToPoint = function(x, z)
 {
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpMotion.MoveToPoint(x, z);
+};
+
+UnitAI.prototype.MoveToTarget = function(target)
+{
+	var cmpPosition = Engine.QueryInterface(target, IID_Position);
+	if (!cmpPosition)
+		return false;
+
+	if (!cmpPosition.IsInWorld())
+		return false;
+
+	var pos = cmpPosition.GetPosition();
+	return this.MoveToPoint(pos.x, pos.z);
+};
+
+UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
+{
+	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	var range = cmpRanged.GetRange(type);
+
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpMotion.MoveToAttackRange(target, range.min, range.max);
 };
 
-UnitAI.prototype.AttackTimeout = function(data, lateness)
+UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
-	// If we stopped attacking before this timeout, then don't do any processing here
-	if (this.state != STATE_ATTACKING)
-		return;
+	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	var range = cmpRanged.GetRange(type);
 
-	// Check if we can still reach the target
-	if (this.MoveIntoRange(IID_Attack, this.attackTarget, this.attackType))
-		return;
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpMotion.IsInAttackRange(target, range.min, range.max);
+};
 
+UnitAI.prototype.GetBestAttack = function()
+{
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-
-	// Hit the target
-	cmpAttack.PerformAttack(this.attackType, this.attackTarget);
-
-	// Set a timer to hit the target again
-
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-
-	var timers = cmpAttack.GetTimers(this.attackType);
-	this.attackRechargeTime = cmpTimer.GetTime() + timers.recharge;
-	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", timers.repeat - lateness, data);
+	if (!cmpAttack)
+		return undefined;
+	return cmpAttack.GetBestAttack();
 };
 
-UnitAI.prototype.RepairTimeout = function(data, lateness)
+
+//// External interface functions ////
+
+UnitAI.prototype.AddOrder = function(type, data, queued)
 {
-	// If we stopped repairing before this timeout, then don't do any processing here
-	if (this.state != STATE_REPAIRING)
-		return;
+	if (queued)
+		this.PushOrder(type, data);
+	else
+		this.ReplaceOrder(type, data);
+};
 
-	// Check if we can still reach the target
-	if (this.MoveIntoRange(IID_Builder, this.repairTarget))
-		return;
+UnitAI.prototype.Walk = function(x, z, queued)
+{
+	this.AddOrder("Walk", { "x": x, "z": z }, queued);
+};
 
+UnitAI.prototype.WalkToTarget = function(target, queued)
+{
+	this.AddOrder("Walk", { "target": target }, queued);
+};
+
+UnitAI.prototype.Attack = function(target, queued)
+{
+	if (!this.CanAttack(target))
+	{
+		this.WalkToTarget(target, queued);
+		return;
+	}
+
+	this.AddOrder("Attack", { "target": target }, queued);
+};
+
+UnitAI.prototype.Gather = function(target, queued)
+{
+	if (!this.CanGather(target))
+	{
+		this.WalkToTarget(target, queued);
+		return;
+	}
+
+	this.AddOrder("Gather", { "target": target }, queued);
+};
+
+UnitAI.prototype.Repair = function(target, queued)
+{
+	// Verify that we're able to respond to Repair commands
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-
-	// Repair/build the target
-	var status = cmpBuilder.PerformBuilding(this.repairTarget);
-
-	// If the target is fully built and repaired, then stop and go back to idle
-	if (status.finished)
+	if (!cmpBuilder)
 	{
-		this.state = STATE_IDLE;
-		this.SelectAnimation("idle");
+		this.WalkToTarget(target, queued);
 		return;
 	}
 
-	// Set a timer to gather again
+	// TODO: verify that this is a valid target
 
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000 - lateness, data);
+	this.AddOrder("Repair", { "target": target }, queued);
 };
 
-UnitAI.prototype.GatherTimeout = function(data, lateness)
+//// Helper functions ////
+
+UnitAI.prototype.CanAttack = function(target)
 {
-	// If we stopped gathering before this timeout, then don't do any processing here
-	if (this.state != STATE_GATHERING)
-		return;
+	// Verify that we're able to respond to Attack commands
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return false;
 
-	// Check if we can still reach the target
-	if (this.MoveIntoRange(IID_ResourceGatherer, this.gatherTarget))
-		return;
+	// TODO: verify that this is a valid target
 
-	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-
-	// Gather from the target
-	var status = cmpResourceGatherer.PerformGather(this.gatherTarget);
-
-	// If the resource is exhausted, then stop and go back to idle
-	if (status.exhausted)
-	{
-		this.state = STATE_IDLE;
-		this.SelectAnimation("idle");
-		return;
-	}
-
-	// Set a timer to gather again
-
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000 - lateness, data);
+	return true;
 };
+
+UnitAI.prototype.CanGather = function(target)
+{
+	// Verify that we're able to respond to Gather commands
+	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+	if (!cmpResourceGatherer)
+		return false;
+
+	// Verify that we can gather from this target
+	if (!cmpResourceGatherer.GetTargetGatherRate(target))
+		return false;
+
+	// TODO: should verify it's owned by the correct player, etc
+
+	return true;
+};
+
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);

@@ -32,14 +32,19 @@ Timer.prototype.OnUpdate = function(msg)
 	for each (var id in run)
 	{
 		var t = this.timers[id];
+		if (!t)
+			continue; // an earlier timer might have cancelled this one, so skip it
+
 		var cmp = Engine.QueryInterface(t[0], t[1]);
+		if (!cmp)
+			continue; // the entity was probably destroyed
+
 		try {
 			var lateness = this.time - t[3];
 			cmp[t[2]](t[4], lateness);
 		} catch (e) {
 			var stack = e.stack.trimRight().replace(/^/mg, '  '); // indent the stack trace
-			print("Error in timer on entity "+t[0]+", IID "+t[1]+", function "+t[2]+": "+e+"\n"+stack+"\n");
-			// TODO: should report in an error log
+			error("Error in timer on entity "+t[0]+", IID "+t[1]+", function "+t[2]+": "+e+"\n"+stack+"\n");
 		}
 		delete this.timers[id];
 	}

@@ -42,7 +42,7 @@ ResourceGatherer.prototype.GetGatherRates = function()
 
 ResourceGatherer.prototype.GetRange = function()
 {
-	return { "max": 4, "min": 0 };
+	return { "max": 2, "min": 0 };
 	// maybe this should depend on the unit or target or something?
 }
 
@@ -67,7 +67,11 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(cmpOwnership.GetOwner()), IID_Player);
 	cmpPlayer.AddResource(type.generic, status.amount);
-	
+
+	// Tell the target we're gathering from it
+	Engine.PostMessage(target, MT_ResourceGather,
+		{ "entity": target, "gatherer": this.entity });
+
 	return status;
 };
 

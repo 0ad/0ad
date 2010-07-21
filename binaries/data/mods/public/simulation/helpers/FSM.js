@@ -152,7 +152,7 @@ FSM.prototype.SetNextState = function(obj, state)
 
 FSM.prototype.ProcessMessage = function(obj, msg)
 {
-//	print("ProcessMessage(obj, "+uneval(msg)+")\n");
+//	warn("ProcessMessage(obj, "+uneval(msg)+")");
 
 	var func = this.states[obj.fsmStateName][msg.type];
 	if (!func)

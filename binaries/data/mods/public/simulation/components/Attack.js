@@ -213,6 +213,9 @@ Attack.prototype.CauseDamage = function(data)
 	if (!cmpDamageReceiver)
 		return;
 	cmpDamageReceiver.TakeDamage(strengths.hack, strengths.pierce, strengths.crush);
+
+	Engine.PostMessage(data.target, MT_Attacked,
+		{ "attacker": this.entity, "target": data.target });
 };
 
 Engine.RegisterComponentType(IID_Attack, "Attack", Attack);

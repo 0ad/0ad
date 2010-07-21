@@ -58,8 +58,10 @@ Foundation.prototype.OnDestroy = function()
 Foundation.prototype.Build = function(builderEnt, work)
 {
 	// Do nothing if we've already finished building
+	// (The entity will be destroyed soon after completion so
+	// this won't happen much)
 	if (this.buildProgress == 1.0)
-		return true;
+		return;
 
 	// Calculate the amount of progress that will be added (where 1.0 = completion)
 	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
@@ -110,13 +112,10 @@ Foundation.prototype.Build = function(builderEnt, work)
 		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
 		cmpBuildingHealth.SetHitpoints(cmpHealth.GetHitpoints());
 
-		Engine.DestroyEntity(this.entity);
+		Engine.PostMessage(this.entity, MT_ConstructionFinished,
+			{ "entity": this.entity, "newentity": building });
 
-		return true;
-	}
-	else
-	{
-		return false;
+		Engine.DestroyEntity(this.entity);
 	}
 };
 

@@ -16,7 +16,7 @@ function ProcessCommand(player, cmd)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
 			if (ai)
-				ai.Walk(cmd.x, cmd.z);
+				ai.Walk(cmd.x, cmd.z, cmd.queued);
 		}
 		break;
 
@@ -25,7 +25,7 @@ function ProcessCommand(player, cmd)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
 			if (ai)
-				ai.Attack(cmd.target);
+				ai.Attack(cmd.target, cmd.queued);
 		}
 		break;
 
@@ -35,7 +35,7 @@ function ProcessCommand(player, cmd)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
 			if (ai)
-				ai.Repair(cmd.target);
+				ai.Repair(cmd.target, cmd.queued);
 		}
 		break;
 
@@ -44,7 +44,7 @@ function ProcessCommand(player, cmd)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
 			if (ai)
-				ai.Gather(cmd.target);
+				ai.Gather(cmd.target, cmd.queued);
 		}
 		break;
 
@@ -118,7 +118,8 @@ function ProcessCommand(player, cmd)
 		ProcessCommand(player, {
 			"type": "repair",
 			"entities": cmd.entities,
-			"target": ent
+			"target": ent,
+			"queued": cmd.queued
 		});
 
 		break;

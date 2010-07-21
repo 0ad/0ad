@@ -43,6 +43,7 @@ Builder.prototype.GetRange = function()
 /**
  * Build/repair the target entity. This should only be called after a successful range check.
  * It should be called at a rate of once per second.
+ * Returns obj with obj.finished==true if this is a repair and it's fully repaired.
  */
 Builder.prototype.PerformBuilding = function(target)
 {
@@ -52,8 +53,8 @@ Builder.prototype.PerformBuilding = function(target)
 	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
 	if (cmpFoundation)
 	{
-		var finished = cmpFoundation.Build(this.entity, rate);
-		return { "finished": finished };
+		cmpFoundation.Build(this.entity, rate);
+		return { "finished": false };
 	}
 	else
 	{
