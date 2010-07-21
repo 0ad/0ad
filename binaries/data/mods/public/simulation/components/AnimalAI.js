@@ -16,6 +16,18 @@ AnimalAI.prototype.Schema =
 	"</element>" +
 	"<element name='FleeDistance'>" +
 		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='RoamTimeMin'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='RoamTimeMax'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='FeedTimeMin'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='FeedTimeMax'>" +
+		"<ref name='positiveDecimal'/>" +
 	"</element>";
 
 var AnimalFsmSpec = {
@@ -35,7 +47,7 @@ var AnimalFsmSpec = {
 				this.SelectAnimation("walk", false, this.GetWalkSpeed());
 				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
-				this.StartTimer(RandomInt(2000, 8000));
+				this.StartTimer(RandomInt(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
 			},
 
 			"leave": function() {
@@ -56,7 +68,7 @@ var AnimalFsmSpec = {
 				// Stop and eat for a while
 				this.SelectAnimation("feeding");
 				this.StopMoving();
-				this.StartTimer(RandomInt(1000, 4000));
+				this.StartTimer(RandomInt(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
 			},
 			
 			"leave": function() {
@@ -123,9 +135,12 @@ AnimalAI.prototype.PushMessage = function(msg)
 AnimalAI.prototype.OnUpdate = function()
 {
 	var mq = this.messageQueue;
-	this.messageQueue = [];
-	for each (var msg in mq)
-		AnimalFsm.ProcessMessage(this, msg);
+	if (mq.length)
+	{
+		this.messageQueue = [];
+		for each (var msg in mq)
+			AnimalFsm.ProcessMessage(this, msg);
+	}
 };
 
 AnimalAI.prototype.OnMotionChanged = function(msg)

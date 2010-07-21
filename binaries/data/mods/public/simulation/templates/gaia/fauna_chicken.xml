@@ -18,6 +18,10 @@
   <AnimalAI>
     <RoamDistance>4.0</RoamDistance>
     <FleeDistance>12.0</FleeDistance>
+    <RoamTimeMin>2000</RoamTimeMin>
+    <RoamTimeMax>8000</RoamTimeMax>
+    <FeedTimeMin>1000</FeedTimeMin>
+    <FeedTimeMax>4000</FeedTimeMax>
   </AnimalAI>
   <UnitMotion>
     <WalkSpeed>1.0</WalkSpeed>

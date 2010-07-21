@@ -24,7 +24,11 @@
   </UnitMotion>
   <UnitAI disable=""/>
   <AnimalAI>
-    <RoamDistance>4.0</RoamDistance>
-    <FleeDistance>12.0</FleeDistance>
+    <RoamDistance>8.0</RoamDistance>
+    <FleeDistance>32.0</FleeDistance>
+    <RoamTimeMin>2000</RoamTimeMin>
+    <RoamTimeMax>8000</RoamTimeMax>
+    <FeedTimeMin>5000</FeedTimeMin>
+    <FeedTimeMax>30000</FeedTimeMax>
   </AnimalAI>
 </Entity>
