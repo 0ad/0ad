@@ -319,13 +319,13 @@
 			<!-- Cycle through units area -->
 			<object size= "6 120 86 136" name="sdCycleArea" type="image" sprite="menuBackground">
 				<object name="sdIconButtonReverse" style="wheatArrowDn" type="button" size="0 0 16 16">
-					<action on="Press">cycleThroughSelection(false);</action>
+					<action on="Press">reverseCycleThroughSelection();</action>
 				</object>
 
 				<object name="sdSelectionCount" ghost="true" style="groupIconsCenteredText" type="text"/>
 					
 				<object name="sdIconButtonForward" style="wheatArrowUp" type="button" size="100%-16 0 100% 16">
-					<action on="Press">cycleThroughSelection(true);</action>
+					<action on="Press">cycleThroughSelection();</action>
 				</object>
 			</object>
 

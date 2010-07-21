@@ -37,6 +37,11 @@ EntityGroups.prototype.reset = function()
 	this.groups = [];
 };
 
+EntityGroups.prototype.getLength = function()
+{
+	return this.groups.length;
+};
+
 EntityGroups.prototype.getPrimary = function()
 {
 	return this.primary;

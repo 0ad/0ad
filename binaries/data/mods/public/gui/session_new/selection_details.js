@@ -10,7 +10,8 @@ function resetCycleIndex()
 	displayedCycleIndex = 1;
 }
 
-function cycleThroughSelection(forward)
+/*
+function cycleThroughSelection(forward) // uses boolean to determine direction (forward or reverse)
 {
 	var selection = g_Selection.toList();
 	
@@ -62,10 +63,9 @@ function cycleThroughSelection(forward)
 		}
 	}
 }
+*/
 
-
-
-function cycleThroughSelection1()
+function cycleThroughSelection()
 {
 	var selection = g_Selection.toList();
 	
@@ -272,10 +272,18 @@ function updateSelectionDetails(simState)
 		var selectionGroup = g_Selection.groups.getGroup(entState.template);
 		var typeCount = g_Selection.groups.getGroup(entState.template).typeCount;
 		getGUIObjectByName("sdSelectionCount").caption = ((typeCount > 1)? displayedCycleIndex + "/" + typeCount : "");
+
+		// Show cycle area if there is more than one unit of that type
+		if (typeCount > 1)
+			getGUIObjectByName("sdCycleArea").hidden = false;
+		else
+			getGUIObjectByName("sdCycleArea").hidden = true;
 		
-		var visible = !(typeCount > 1);
-		getGUIObjectByName("sdCycleArea").hidden = visible;
-		getGUIObjectByName("sdStatsArea").hidden = true;
+		// Hide stats area if there is more thanone group
+		if (g_Selection.groups.getLength() > 1)
+			getGUIObjectByName("sdStatsArea").hidden = true;
+		else
+			getGUIObjectByName("sdStatsArea").hidden = false;
 	}
 	else
 	{
