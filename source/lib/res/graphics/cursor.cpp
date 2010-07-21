@@ -201,7 +201,7 @@ static LibError Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, 
 		s >> hotspotx >> hotspoty;
 	}
 
-	const VfsPath pathnameImage = fs::change_extension(pathname, L".dds");
+	const VfsPath pathnameImage = fs::change_extension(pathname, L".png");
 
 	// try loading as system cursor (2d, hardware accelerated)
 	if(load_sys_cursor(vfs, pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
