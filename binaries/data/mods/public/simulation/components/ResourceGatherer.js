@@ -6,9 +6,9 @@ ResourceGatherer.prototype.Schema =
 		"<BaseSpeed>1.0</BaseSpeed>" +
 		"<Rates>" +
 			"<food.fish>1</food.fish>" +
-			"<metal>3</metal>" +
-			"<stone>3</stone>" +
-			"<wood>2</wood>" +
+			"<metal.ore>3</metal.ore>" +
+			"<stone.rock>3</stone.rock>" +
+			"<wood.tree>2</wood.tree>" +
 		"</Rates>" +
 	"</a:example>" +
 	"<element name='BaseSpeed' a:help='Base resource-gathering rate (in resource units per second)'>" +
@@ -25,6 +25,10 @@ ResourceGatherer.prototype.Schema =
 			"<optional><element name='food.grain' a:help='Grain gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.meat' a:help='Meat gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.milk' a:help='Milk gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='wood.tree' a:help='Tree gather rate (overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='stone.rock' a:help='Rock gather rate (overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='metal.ore' a:help='Ore gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='metal.treasure' a:help='Treasure gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
 		"</interleave>" +
 	"</element>";
 

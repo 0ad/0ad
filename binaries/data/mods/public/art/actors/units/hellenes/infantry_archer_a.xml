@@ -8,12 +8,12 @@
         <animation event="0.81" file="biped/inf_arch_atk_a.psa" load="0.16" name="Melee" speed="90"/>
         <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
-        <animation event=".23" file="infantry/general/chop.psa" name="gather_wood" speed="200"/>
+        <animation event=".23" file="infantry/general/chop.psa" name="gather_tree" speed="200"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="125"/>
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_stone" speed="250"/>
-        <animation event="0.43" file="infantry/general/mine.psa" name="gather_metal" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="200"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -49,7 +49,7 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
     </variant>
-    <variant name="gather_wood">
+    <variant name="gather_tree">
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
@@ -75,13 +75,13 @@
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
       </props>
     </variant>
-    <variant name="gather_stone">
+    <variant name="gather_rock">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="gather_metal">
+    <variant name="gather_ore">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>

@@ -6,12 +6,12 @@
       <animations>
         <animation file="female/f_idle_01.dae" name="Idle" speed="100"/>
         <animation file="female/f_walk_01.dae" name="Walk" speed="30"/>
-        <animation file="female/f_lumber_01.dae" name="gather_wood" speed="50"/>
+        <animation file="female/f_lumber_01.dae" name="gather_tree" speed="50"/>
         <animation file="female/f_farm_01.dae" name="gather_grain" speed="75"/>
         <animation file="female/f_gather_01.dae" name="gather_fruit" speed="25"/>
         <animation file="female/f_gather_01.dae" name="gather_meat" speed="25"/>
-        <animation file="female/f_mine_01.dae" name="gather_stone" speed="140"/>
-        <animation file="female/f_mine_01.dae" name="gather_metal" speed="140"/>
+        <animation file="female/f_mine_01.dae" name="gather_rock" speed="140"/>
+        <animation file="female/f_mine_01.dae" name="gather_ore" speed="140"/>
         <animation file="female/f_build_01.dae" name="Build" speed="40"/>
         <animation file="female/f_death_01.dae" name="Death" speed="120"/>
       </animations>
@@ -57,7 +57,7 @@
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="gather_wood">
+    <variant name="gather_tree">
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
         <prop actor="" attachpoint="r_hand"/>
@@ -83,13 +83,13 @@
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="gather_stone">
+    <variant name="gather_rock">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="gather_metal">
+    <variant name="gather_ore">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>

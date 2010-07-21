@@ -75,6 +75,7 @@ EntityGroups.prototype.getGroup = function(templateName)
 
 	// There was no match...
 	//console.write("Warning: Could not find either \"" + templateName + "\" or the more generic: \"" + thatGenericTemplateName + "\"");
+	return undefined;
 };
 
 EntityGroups.prototype.addGroup = function(templateName, typeCount, firstOfType)
@@ -93,6 +94,8 @@ EntityGroups.prototype.getGroupNumber = function(templateName)
 	for (var i = 0; i < this.groups.length; i++)
 		if (this.groups[i].templateName == templateName)
 			return i;
+	
+	return -1;
 };
 
 EntityGroups.prototype.getTemplateNames = function()
@@ -192,6 +195,8 @@ EntitySelection.prototype.getPrimaryTemplateName = function()
 	
 	if (entState)
 		return entState.template
+		
+	return undefined;
 };
 
 EntitySelection.prototype.getPrimary = function()

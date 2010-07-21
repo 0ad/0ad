@@ -2,7 +2,7 @@
 const UNIT_PANEL_HEIGHT = 63;
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = { "Construction": 0, "Training": 0, "Queue": 0 };
+var g_unitPanelButtons = { "Construction": 0, "Training": 0, "Queue": 0, "Selection": 0 };
 
 // Unit panels are panels with row(s) of buttons
 var g_unitPanels = ["Stance", "Formation", "Construction", "Research", "Training", "Queue", "Selection"];
