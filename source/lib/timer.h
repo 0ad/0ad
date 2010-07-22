@@ -175,7 +175,7 @@ public:
 
 	void AddDifferenceAtomic(TimerUnit t0, TimerUnit t1)
 	{
-		const u64 delta = t1.m_ticks - t0.m_ticks;
+		const i64 delta = t1.m_ticks - t0.m_ticks;
 #if ARCH_AMD64
 		cpu_AtomicAdd((volatile intptr_t*)&m_ticks, (intptr_t)delta);
 #else
@@ -216,7 +216,7 @@ retry:
 	}
 
 private:
-	u64 m_ticks;
+	i64 m_ticks;
 };
 
 #else
@@ -242,14 +242,14 @@ public:
 	void AddDifferenceAtomic(TimerUnit t0, TimerUnit t1)
 	{
 retry:
-		intptr_t oldRepresentation;
+		i64 oldRepresentation;
 		memcpy(&oldRepresentation, &m_seconds, sizeof(oldRepresentation));
 
 		const double seconds = m_seconds + t1.m_seconds - t0.m_seconds;
-		intptr_t newRepresentation;
+		i64 newRepresentation;
 		memcpy(&newRepresentation, &seconds, sizeof(newRepresentation));
 
-		if(!cpu_CAS64((volatile intptr_t*)&m_seconds, oldRepresentation, newRepresentation))
+		if(!cpu_CAS64((volatile i64*)&m_seconds, oldRepresentation, newRepresentation))
 			goto retry;
 	}
 

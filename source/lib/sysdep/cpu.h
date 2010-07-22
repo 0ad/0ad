@@ -93,7 +93,7 @@ bool cpu_CAS(volatile T* location, T expected, T new_value)
 #if ARCH_AMD64
 # define cpu_CAS64 cpu_CAS
 #else
-LIB_API bool cpu_CAS64(volatile u64* location, u64 expected, u64 newValue);
+LIB_API bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue);
 #endif
 
 

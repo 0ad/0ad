@@ -92,7 +92,7 @@ db		0xf0							; LOCK prefix
 	ret
 
 
-; extern bool CALL_CONV ia32_asm_CAS64(volatile u64* location, u64 expected, u64 new_value);
+; extern bool CALL_CONV ia32_asm_CAS64(volatile i64* location, i64 expected, i64 new_value);
 global sym(ia32_asm_CAS64)
 sym(ia32_asm_CAS64):
 	push	ebx

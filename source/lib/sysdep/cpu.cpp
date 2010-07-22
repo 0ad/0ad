@@ -34,7 +34,7 @@ ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_VENDOR, L"CPU vendor unknown", -1);
 
 static void TestCAS64()
 {
-	volatile u64 var = 1;
+	volatile i64 var = 1;
 	cpu_CAS64(&var, 1ull, 2ull);
 	debug_assert(var == 2ull);
 }
