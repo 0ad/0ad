@@ -23,6 +23,8 @@
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "graphics/Overlay.h"
+#include "graphics/Terrain.h"
+#include "maths/MathUtil.h"
 
 static const size_t RENDER_CIRCLE_POINTS = 16;
 static const float RENDER_HEIGHT_DELTA = 0.25f; // distance above terrain
@@ -91,6 +93,23 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 	}
 }
 
+// This method splits up a straight line into a number of line segments each having a length ~= CELL_SIZE
+static void SplitLine(std::vector<std::pair<float, float> >& coords, float x1, float y1, float x2, float y2)
+{
+	float length = sqrt(SQR(x1 - x2) + SQR(y1 - y2));
+	size_t pieces = ((int)length) / CELL_SIZE;
+	if (pieces > 0)
+	{
+		float xPieceLength = (x1 - x2) / pieces;
+		float yPieceLength = (y1 - y2) / pieces;
+		for (size_t i = 1; i <= (pieces - 1); ++i)
+		{
+			coords.push_back(std::make_pair(x1 - (xPieceLength * i), y1 - (yPieceLength * i)));
+		}
+	}
+	coords.push_back(std::make_pair(x2, y2));
+}
+
 void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, float z, float w, float h, float a,
 		SOverlayLine& overlay, bool floating)
 {
@@ -108,19 +127,22 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 			water = cmpWaterMan->GetExactWaterLevel(x, z);
 	}
 
-	// TODO: might be nicer to split this into little pieces so it copes better with uneven terrain
-
-	overlay.m_Coords.reserve(5 * 3);
-
 	float c = cos(a);
 	float s = sin(a);
 
 	std::vector<std::pair<float, float> > coords;
+
+	// Add the first vertex, since SplitLine will be adding only the second end-point of the each line to
+	// the coordinates list. We don't have to worry about the other lines, since the end-point of one line
+	// will be the starting point of the next
 	coords.push_back(std::make_pair(x - w/2*c + h/2*s, z + w/2*s + h/2*c));
-	coords.push_back(std::make_pair(x - w/2*c - h/2*s, z + w/2*s - h/2*c));
-	coords.push_back(std::make_pair(x + w/2*c - h/2*s, z - w/2*s - h/2*c));
-	coords.push_back(std::make_pair(x + w/2*c + h/2*s, z - w/2*s + h/2*c));
-	coords.push_back(std::make_pair(x - w/2*c + h/2*s, z + w/2*s + h/2*c));
+
+	SplitLine(coords, x - w/2*c + h/2*s, z + w/2*s + h/2*c, x - w/2*c - h/2*s, z + w/2*s - h/2*c);
+	SplitLine(coords, x - w/2*c - h/2*s, z + w/2*s - h/2*c, x + w/2*c - h/2*s, z - w/2*s - h/2*c);
+	SplitLine(coords, x + w/2*c - h/2*s, z - w/2*s - h/2*c, x + w/2*c + h/2*s, z - w/2*s + h/2*c);
+	SplitLine(coords, x + w/2*c + h/2*s, z - w/2*s + h/2*c, x - w/2*c + h/2*s, z + w/2*s + h/2*c);
+
+	overlay.m_Coords.reserve(coords.size() * 3);
 
 	for (size_t i = 0; i < coords.size(); ++i)
 	{
