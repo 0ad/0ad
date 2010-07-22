@@ -27,12 +27,8 @@
 void* const HANDLE_UNAVAILABLE = (void*)-1;
 
 
-// TODO Use path_util instead, get the actual path to the ps_dbg exe and append
-// the library name.
-
 // note: on Linux, lib is prepended to the SO file name;
-// if we don't have an explicit libdir then we don't use
-// a path with '/' so the linker will look in DT_RUNPATH
+// if we don't have an explicit libdir then the linker will look in DT_RUNPATH
 // (which we set to $ORIGIN) to find it in the executable's directory
 #if OS_UNIX
  #ifdef INSTALLED_LIBDIR
@@ -47,9 +43,11 @@ static const char* prefix = "";
 // but for debugging/performance we prefer to use the same version as the app.
 // note: on Windows, the extension is replaced with .dll by dlopen.
 #ifndef NDEBUG
-static const char* suffix = "_dbg.so";
+static const char* primarySuffix = "_dbg.so";
+static const char* secondarySuffix = ".so";
 #else
-static const char* suffix = ".so";
+static const char* primarySuffix = ".so";
+static const char* secondarySuffix = "_dbg.so";
 #endif
 
 // (This class is currently only used by 'Collada' and 'AtlasUI' which follow
@@ -80,23 +78,37 @@ bool DllLoader::LoadDLL()
 	{
 		TIMER(L"LoadDLL");
 
-		CStr filename = CStr(prefix) + m_Name + suffix;
-
 		// we don't really care when relocations take place, but one of
 		// {RTLD_NOW, RTLD_LAZY} must be passed. go with the former because
 		// it is safer and matches the Windows load behavior.
 		const int flags = RTLD_LOCAL|RTLD_NOW;
 
+		CStr filename = CStr(prefix) + m_Name + primarySuffix;
 		m_Handle = dlopen(filename, flags);
+
+		char* primaryError = NULL;
 
 		// open failed (mostly likely SO not found)
 		if (! m_Handle)
 		{
-			const char* error = dlerror();
-			if (error)
-				LOG(CLogger::Error, L"", L"dlopen error: %hs", error);
+			primaryError = dlerror();
+			if (primaryError)
+				primaryError = strdup(primaryError); // don't get overwritten by next dlopen
+
+			// Try to open the other debug/release version
+			filename = CStr(prefix) + m_Name + secondarySuffix;
+			m_Handle = dlopen(filename, flags);
+		}
+
+		// open still failed; report the first error
+		if (! m_Handle)
+		{
+			if (primaryError)
+				LOGERROR(L"dlopen error: %hs", primaryError);
 			m_Handle = HANDLE_UNAVAILABLE;
 		}
+
+		free(primaryError);
 	}
 
 	return (m_Handle != HANDLE_UNAVAILABLE);
