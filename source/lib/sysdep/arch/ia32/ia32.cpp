@@ -158,6 +158,11 @@ bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value)
 	return ia32_asm_CAS(location, expected, new_value);
 }
 
+bool cpu_CAS64(volatile u64* location, u64 expected, u64 new_value)
+{
+	return ia32_asm_CAS64(location, expected, new_value);
+}
+
 
 void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
 {

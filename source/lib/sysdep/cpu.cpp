@@ -31,10 +31,24 @@ ERROR_ASSOCIATE(ERR::CPU_FEATURE_MISSING, L"This CPU doesn't support a required 
 ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_OPCODE, L"Disassembly failed", -1);
 ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_VENDOR, L"CPU vendor unknown", -1);
 
-void cpu_TestAtomicAdd()
+
+static void TestCAS64()
+{
+	volatile u64 var = 1;
+	cpu_CAS64(&var, 1ull, 2ull);
+	debug_assert(var == 2ull);
+}
+
+static void TestAtomicAdd()
 {
 	volatile intptr_t i1 = 1;
 	intptr_t prev = cpu_AtomicAdd(&i1, 1);
 	debug_assert(prev == 1);
 	debug_assert(i1 == 2);
+}
+
+void cpu_Test()
+{
+	TestCAS64();
+	TestAtomicAdd();
 }

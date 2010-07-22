@@ -105,9 +105,9 @@ static size_t MaxLogicalPerCore()
 
 static size_t MaxLogicalPerCache()
 {
-	const x86_x64_Cache* const dcache = x86_x64_DCache();
-	if(dcache->levels >= 2)
-		return dcache->parameters[1].sharedBy;
+	const x86_x64_Caches* const dcaches = x86_x64_DCaches();
+	if(dcaches->numLevels >= 2)
+		return dcaches->levels[1].sharedBy;
 	else
 		return 1;	// default
 }
@@ -204,8 +204,9 @@ static size_t NumUniqueValuesInField(const u8* apicIds, size_t offset, size_t nu
 }
 
 
-static size_t NumPackages(const u8* apicIds)
+size_t cpu_topology_NumPackages()
 {
+	const u8* apicIds = ApicIds();
 	if(apicIds)
 	{
 		const size_t offset = ceil_log2(MaxCoresPerPackage()) + ceil_log2(MaxLogicalPerCore());
@@ -236,8 +237,9 @@ static size_t NumPackages(const u8* apicIds)
 }
 
 
-static size_t CoresPerPackage(const u8* apicIds)
+size_t cpu_topology_CoresPerPackage()
 {
+	const u8* apicIds = ApicIds();
 	if(apicIds)
 	{
 		const size_t offset = ceil_log2(MaxLogicalPerCore());
@@ -251,8 +253,9 @@ static size_t CoresPerPackage(const u8* apicIds)
 }
 
 
-static size_t LogicalPerCore(const u8* apicIds)
+size_t cpu_topology_LogicalPerCore()
 {
+	const u8* apicIds = ApicIds();
 	if(apicIds)
 	{
 		const size_t offset = 0;
@@ -263,49 +266,6 @@ static size_t LogicalPerCore(const u8* apicIds)
 		// guess (must match NumPackages's assumptions)
 		return MaxLogicalPerCore();
 	}
-}
-
-
-//-----------------------------------------------------------------------------
-// CPU topology interface
-
-struct CpuTopology	// POD
-{
-	size_t numPackages;
-	size_t coresPerPackage;
-	size_t logicalPerCore;
-};
-static CpuTopology cpuTopology;
-
-static LibError InitCpuTopology()
-{
-	const u8* apicIds = ApicIds();
-	cpuTopology.numPackages = NumPackages(apicIds);
-	cpuTopology.coresPerPackage = CoresPerPackage(apicIds);
-	cpuTopology.logicalPerCore = LogicalPerCore(apicIds);
-	return INFO::OK;
-}
-
-const CpuTopology* cpu_topology_Detect()
-{
-	static ModuleInitState initState;
-	ModuleInit(&initState, InitCpuTopology);
-	return &cpuTopology;
-}
-
-size_t cpu_topology_NumPackages(const CpuTopology* topology)
-{
-	return topology->numPackages;
-}
-
-size_t cpu_topology_CoresPerPackage(const CpuTopology* topology)
-{
-	return topology->coresPerPackage;
-}
-
-size_t cpu_topology_LogicalPerCore(const CpuTopology* topology)
-{
-	return topology->logicalPerCore;
 }
 
 
@@ -451,6 +411,7 @@ struct CacheTopology	// POD
 	uintptr_t cachesProcessorMask[os_cpu_MaxProcessors];
 };
 static CacheTopology cacheTopology;
+static ModuleInitState cacheInitState;
 
 static LibError InitCacheTopology()
 {
@@ -460,26 +421,22 @@ static LibError InitCacheTopology()
 	return INFO::OK;
 }
 
-const CacheTopology* cache_topology_Detect()
+size_t cache_topology_NumCaches()
 {
-	static ModuleInitState initState;
-	ModuleInit(&initState, InitCacheTopology);
-	return &cacheTopology;
+	ModuleInit(&cacheInitState, InitCacheTopology);
+	return cacheTopology.numCaches;
 }
 
-size_t cache_topology_NumCaches(const CacheTopology* topology)
+size_t cache_topology_CacheFromProcessor(size_t processor)
 {
-	return topology->numCaches;
-}
-
-size_t cache_topology_CacheFromProcessor(const CacheTopology* topology, size_t processor)
-{
+	ModuleInit(&cacheInitState, InitCacheTopology);
 	debug_assert(processor < os_cpu_NumProcessors());
-	return topology->processorsCache[processor];
+	return cacheTopology.processorsCache[processor];
 }
 
-uintptr_t cache_topology_ProcessorMaskFromCache(const CacheTopology* topology, size_t cache)
+uintptr_t cache_topology_ProcessorMaskFromCache(size_t cache)
 {
-	debug_assert(cache < topology->numCaches);
-	return topology->cachesProcessorMask[cache];
+	ModuleInit(&cacheInitState, InitCacheTopology);
+	debug_assert(cache < cacheTopology.numCaches);
+	return cacheTopology.cachesProcessorMask[cache];
 }

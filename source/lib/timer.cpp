@@ -144,7 +144,7 @@ double timer_Resolution()
 //
 // do not use std::list et al. for this! we must be callable at any time,
 // especially before NLSO ctors run or before heap init.
-static size_t num_clients;
+static size_t numClients;
 static TimerClient* clients;
 
 
@@ -157,31 +157,24 @@ TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description)
 	// insert at front of list
 	tc->next = clients;
 	clients = tc;
-	num_clients++;
+	numClients++;
 
 	return tc;
 }
 
 
-void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1)
-{
-	tc->sum.AddDifference(t0, t1);
-	tc->num_calls++;
-}
-
-
 void timer_DisplayClientTotals()
 {
-	debug_printf(L"TIMER TOTALS (%lu clients)\n", (unsigned long)num_clients);
+	debug_printf(L"TIMER TOTALS (%lu clients)\n", (unsigned long)numClients);
 	debug_printf(L"-----------------------------------------------------\n");
 
 	while(clients)
 	{
 		// (make sure list and count are consistent)
-		debug_assert(num_clients != 0);
+		debug_assert(numClients != 0);
 		TimerClient* tc = clients;
 		clients = tc->next;
-		num_clients--;
+		numClients--;
 
 		const std::wstring duration = tc->sum.ToString();
 		debug_printf(L"  %ls: %ls (%lux)\n", tc->description, duration.c_str(), (unsigned long)tc->num_calls);

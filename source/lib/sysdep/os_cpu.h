@@ -115,6 +115,24 @@ LIB_API size_t os_cpu_MemoryAvailable();
  **/
 LIB_API uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask);
 
+class os_cpu_ScopedSetThreadAffinityMask
+{
+public:
+	os_cpu_ScopedSetThreadAffinityMask(uintptr_t processorMask)
+		: m_previousProcessorMask(os_cpu_SetThreadAffinityMask(processorMask))
+	{
+	}
+
+	~os_cpu_ScopedSetThreadAffinityMask()
+	{
+		(void)os_cpu_SetThreadAffinityMask(m_previousProcessorMask);
+	}
+
+private:
+	uintptr_t m_previousProcessorMask;
+};
+
+
 /**
  * called by os_cpu_CallByEachCPU.
  * @param processor ID of processor running the current thread for the

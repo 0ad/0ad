@@ -28,6 +28,7 @@
 #define INCLUDED_TIMER
 
 #include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
+#include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
 #if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 # include "lib/sysdep/os_cpu.h"	// os_cpu_ClockFrequency
@@ -172,6 +173,18 @@ public:
 		m_ticks += t1.m_ticks - t0.m_ticks;
 	}
 
+	void AddDifferenceAtomic(TimerUnit t0, TimerUnit t1)
+	{
+		const u64 delta = t1.m_ticks - t0.m_ticks;
+#if ARCH_AMD64
+		cpu_AtomicAdd((volatile intptr_t*)&m_ticks, (intptr_t)delta);
+#else
+retry:
+		if(!cpu_CAS64(&m_ticks, m_ticks, m_ticks+delta))
+			goto retry;
+#endif
+	}
+
 	void Subtract(TimerUnit t)
 	{
 		m_ticks -= t.m_ticks;
@@ -226,6 +239,20 @@ public:
 		m_seconds += t1.m_seconds - t0.m_seconds;
 	}
 
+	void AddDifferenceAtomic(TimerUnit t0, TimerUnit t1)
+	{
+retry:
+		intptr_t oldRepresentation;
+		memcpy(&oldRepresentation, &m_seconds, sizeof(oldRepresentation));
+
+		const double seconds = m_seconds + t1.m_seconds - t0.m_seconds;
+		intptr_t newRepresentation;
+		memcpy(&newRepresentation, &seconds, sizeof(newRepresentation));
+
+		if(!cpu_CAS64((volatile intptr_t*)&m_seconds, oldRepresentation, newRepresentation))
+			goto retry;
+	}
+
 	void Subtract(TimerUnit t)
 	{
 		m_seconds -= t.m_seconds;
@@ -274,7 +301,7 @@ struct TimerClient
 
 	// how often timer_BillClient was called (helps measure relative
 	// performance of something that is done indeterminately often).
-	size_t num_calls;
+	intptr_t num_calls;
 };
 
 /**
@@ -304,7 +331,21 @@ LIB_API TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description
 /**
  * bill the difference between t0 and t1 to the client's total.
  **/
-LIB_API void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1);
+inline void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1)
+{
+	tc->sum.AddDifference(t0, t1);
+	tc->num_calls++;
+}
+
+/**
+ * thread-safe version of timer_BillClient
+ * (not used by default due to its higher overhead)
+ **/
+inline void timer_BillClientAtomic(TimerClient* tc, TimerUnit t0, TimerUnit t1)
+{
+	tc->sum.AddDifferenceAtomic(t0, t1);
+	cpu_AtomicAdd(&tc->num_calls, +1);
+}
 
 /**
  * display all clients' totals; does not reset them.
@@ -335,6 +376,28 @@ private:
 	TimerClient* m_tc;
 };
 
+class ScopeTimerAccrueAtomic
+{
+	NONCOPYABLE(ScopeTimerAccrueAtomic);
+public:
+	ScopeTimerAccrueAtomic(TimerClient* tc)
+		: m_tc(tc)
+	{
+		m_t0.SetFromTimer();
+	}
+
+	~ScopeTimerAccrueAtomic()
+	{
+		TimerUnit t1;
+		t1.SetFromTimer();
+		timer_BillClientAtomic(m_tc, m_t0, t1);
+	}
+
+private:
+	TimerUnit m_t0;
+	TimerClient* m_tc;
+};
+
 /**
  * Measure the time taken to execute code up until end of the current scope; 
  * bill it to the given TimerClient object. Can safely be nested.
@@ -356,5 +419,6 @@ private:
  * 	timer_DisplayClientTotals();
  **/
 #define TIMER_ACCRUE(client) ScopeTimerAccrue UID__(client)
+#define TIMER_ACCRUE_ATOMIC(client) ScopeTimerAccrueAtomic UID__(client)
 
 #endif	// #ifndef INCLUDED_TIMER

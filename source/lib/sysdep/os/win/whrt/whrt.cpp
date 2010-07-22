@@ -173,6 +173,8 @@ struct TimerState
 	// (this enables calibration, which is currently not implemented,
 	// but leaving open the possibility costs nothing)
 	double time;
+
+	u8 padding[48];
 };
 
 // how do we detect when the old TimerState is no longer in use and can be
@@ -181,10 +183,10 @@ struct TimerState
 // entered critical sections (the latching of TimerState fields) will have
 // been exited before the next update comes around; if not, TimerState.time
 // changes, the critical section notices and re-reads the new values.
-static TimerState timerStates[2];
+static __declspec(align(64)) TimerState timerStates[2];
 // note: exchanging pointers is easier than XORing an index.
-static TimerState* volatile ts  = &timerStates[0];
-static TimerState* volatile ts2 = &timerStates[1];
+static volatile TimerState* volatile ts  = &timerStates[0];
+static volatile TimerState* volatile ts2 = &timerStates[1];
 
 static void UpdateTimerState()
 {
@@ -201,7 +203,7 @@ static void UpdateTimerState()
 	const u64 deltaTicks = CounterDelta(ts->counter, counter);
 	ts2->counter = counter;
 	ts2->time = ts->time + deltaTicks/nominalFrequency;
-	ts = (TimerState*)InterlockedExchangePointer((volatile PVOID*)&ts2, ts);
+	ts = (volatile TimerState*)InterlockedExchangePointer((volatile PVOID*)&ts2, (PVOID)ts);
 }
 
 double whrt_Time()
@@ -209,6 +211,7 @@ double whrt_Time()
 retry:
 	// latch timer state (counter and time must be from the same update)
 	const double time = ts->time;
+	cpu_MemoryBarrier();
 	const u64 counter = ts->counter;
 	// ts changed after reading time. note: don't compare counter because
 	// it _might_ have the same value after two updates.

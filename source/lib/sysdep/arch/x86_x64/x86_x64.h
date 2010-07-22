@@ -134,10 +134,7 @@ enum x86_x64_CacheType
 
 const u8 x86_x64_fullyAssociative = 0xFF;
 
-/**
- * describes a level of one of the caches.
- **/
-struct x86_x64_CacheParameters
+struct x86_x64_Cache
 {
 	/**
 	 * (used to determine if this cache is unified or disabled)
@@ -155,34 +152,29 @@ struct x86_x64_CacheParameters
  * instruction and data caches are returned separately by the corresponding
  * accessor function; unified cache levels are reported by both.
  **/
-struct x86_x64_Cache
+struct x86_x64_Caches
 {
-	/**
-	 * total number of levels, each of which is described by
-	 * an entry in parameters[].
-	 **/
-	size_t levels;
-
-	x86_x64_CacheParameters* parameters;
+	size_t numLevels;
+	x86_x64_Cache* levels;
 };
 
 /**
- * @return pointer to a static x86_x64_Cache describing the instruction cache.
+ * @return pointer to a static x86_x64_Caches describing the instruction caches.
  **/
-LIB_API const x86_x64_Cache* x86_x64_ICache();
+LIB_API const x86_x64_Caches* x86_x64_ICaches();
 
 /**
- * @return pointer to a static x86_x64_Cache describing the data cache.
+ * @return pointer to a static x86_x64_Caches describing the data caches.
  **/
-LIB_API const x86_x64_Cache* x86_x64_DCache();
+LIB_API const x86_x64_Caches* x86_x64_DCaches();
 
 LIB_API size_t x86_x64_L1CacheLineSize();
 LIB_API size_t x86_x64_L2CacheLineSize();
 
 /**
- * describes part of a Translation Lookaside Buffer.
+ * Translation Lookaside Buffer.
  **/
-struct x86_x64_TLBParameters
+struct x86_x64_TLB
 {
 	x86_x64_CacheType type;
 	size_t level;
@@ -192,32 +184,28 @@ struct x86_x64_TLBParameters
 };
 
 /**
- * describes all parts of a Translation Lookaside Buffer
+ * describes all levels of a TLB.
  **/
-struct x86_x64_TLB
+struct x86_x64_TLBs
 {
-	/**
-	 * total number of parts, each of which is described by
-	 * an entry in parameters[]
-	 **/
-	size_t numParameters;
-	x86_x64_TLBParameters* parameters;
+	size_t numLevels;
+	x86_x64_TLB* levels;
 };
 
 /**
- * @return pointer to a static x86_x64_TLB describing the instruction TLB.
+ * @return pointer to a static x86_x64_TLB describing the instruction TLBs.
  **/
-LIB_API const x86_x64_TLB* x86_x64_ITLB();
+LIB_API const x86_x64_TLBs* x86_x64_ITLBs();
 
 /**
  * @return pointer to a static x86_x64_TLB describing the data TLB.
  **/
-LIB_API const x86_x64_TLB* x86_x64_DTLB();
+LIB_API const x86_x64_TLBs* x86_x64_DTLBs();
 
 /**
- * @return coverage, i.e. total size [MiB] of the given TLB
+ * @return coverage, i.e. total size [MiB] of the given TLBs
  **/
-LIB_API size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb);
+LIB_API size_t x86_x64_TLBCoverage(const x86_x64_TLBs* tlb);
 
 
 //-----------------------------------------------------------------------------

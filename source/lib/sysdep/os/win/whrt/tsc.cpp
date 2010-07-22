@@ -45,44 +45,33 @@
 
 static bool IsUniprocessor()
 {
-	const CpuTopology* topology = cpu_topology_Detect();
-	if(cpu_topology_NumPackages(topology) != 1)
+	if(cpu_topology_NumPackages() != 1)
 		return false;
-	if(cpu_topology_CoresPerPackage(topology) != 1)
+	if(cpu_topology_CoresPerPackage() != 1)
 		return false;
 	return true;
 }
 
 
-enum AmdPowerNowFlags
-{
-	PN_FREQ_ID_CTRL    = BIT(1),
-	PN_HW_THERMAL_CTRL = BIT(4),
-	PN_SW_THERMAL_CTRL = BIT(5),
-	PN_INVARIANT_TSC   = BIT(8)
-};
-
 static bool IsInvariantTSC()
 {
 #if ARCH_X86_X64
+	// (we no longer need to check x86_x64_Vendor - Intel and AMD
+	// agreed on the definition of this feature check)
 	x86_x64_CpuidRegs regs = { 0 };
-	switch(x86_x64_Vendor())
+	regs.eax = 0x80000007;
+	if(x86_x64_cpuid(&regs))
 	{
-	case X86_X64_VENDOR_AMD:
-		regs.eax = 0x80000007;
-		if(x86_x64_cpuid(&regs))
-		{
-			// TSC is invariant across P-state, C-state and
-			// stop grant transitions (e.g. STPCLK)
-			if(regs.edx & PN_INVARIANT_TSC)
-				return true;
-		}
-		break;
+		// TSC is invariant across P-state, C-state, turbo, and
+		// stop grant transitions (e.g. STPCLK)
+		if(regs.edx & BIT(8))
+			return true;
 	}
 #endif
 
 	return false;
 }
+
 
 static bool IsThrottlingPossible()
 {
@@ -99,6 +88,12 @@ static bool IsThrottlingPossible()
 		regs.eax = 0x80000007;
 		if(x86_x64_cpuid(&regs))
 		{
+			enum AmdPowerNowFlags
+			{
+				PN_FREQ_ID_CTRL    = BIT(1),
+				PN_HW_THERMAL_CTRL = BIT(4),
+				PN_SW_THERMAL_CTRL = BIT(5)
+			};
 			if(regs.edx & (PN_FREQ_ID_CTRL|PN_HW_THERMAL_CTRL|PN_SW_THERMAL_CTRL))
 				return true;
 		}

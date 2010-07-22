@@ -92,6 +92,25 @@ db		0xf0							; LOCK prefix
 	ret
 
 
+; extern bool CALL_CONV ia32_asm_CAS64(volatile u64* location, u64 expected, u64 new_value);
+global sym(ia32_asm_CAS64)
+sym(ia32_asm_CAS64):
+	push	ebx
+	push	esi
+	mov		esi, [esp+8+4]				; location
+	mov		eax, [esp+8+8]
+	mov		edx, [esp+8+12]				; edx:eax = expected
+	mov		ebx, [esp+8+16]
+	mov		ecx, [esp+8+20]				; ecx:ebx = new_value
+db		0xf0							; LOCK prefix
+	cmpxchg8b	[esi]
+	sete	al
+	movzx	eax, al
+	pop		esi
+	pop		ebx
+	ret
+
+
 ;-------------------------------------------------------------------------------
 ; FPU
 ;-------------------------------------------------------------------------------

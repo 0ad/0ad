@@ -21,21 +21,12 @@
  */
 
 /*
- * detection of CPU and cache topology
+ * detection of CPU and cache topology.
+ * thread-safe, no explicit initialization is required.
  */
 
 #ifndef INCLUDED_TOPOLOGY
 #define INCLUDED_TOPOLOGY
-
-// interface rationale:
-// - explicit initialization avoids the difficulty and overhead of
-//   thread-safe lazy initialization checks.
-// - requiring an opaque struct to be passed in ensures users call the
-//   init function before using the accessors.
-// - delegating responsibility for thread-safety to the caller of the
-//   first *_Detect invocation avoids overhead and keeps us independent of
-//   the various threading packages (Boost, OpenMP, POSIX, Win32, ..)
-
 
 /**
  * @return a pointer to array (up to os_cpu_MaxProcessors entries;
@@ -49,76 +40,54 @@ LIB_API const u8* ApicIds();
 //-----------------------------------------------------------------------------
 // cpu
 
-/**
- * stores CPU topology, i.e. how many packages, cores and SMT units are
- * actually present and enabled. this is useful for detecting SMP systems,
- * predicting performance and dimensioning thread pools.
- *
- * note: OS abstractions usually only mention "processors", which could be
- * any mix of the above.
- **/
-struct CpuTopology;
-
-/**
- * initialize static storage from which topology can be retrieved by
- * means of the following functions.
- * @return const pointer to a shared instance.
- **/
-LIB_API const CpuTopology* cpu_topology_Detect();
+// the CPU topology, i.e. how many packages, cores and SMT units are
+// actually present and enabled, is useful for detecting SMP systems,
+// predicting performance and dimensioning thread pools.
+//
+// note: OS abstractions usually only mention "processors", which could be
+// any mix of the above.
 
 /**
  * @return number of *enabled* CPU packages / sockets.
  **/
-LIB_API size_t cpu_topology_NumPackages(const CpuTopology*);
+LIB_API size_t cpu_topology_NumPackages();
 
 /**
  * @return number of *enabled* CPU cores per package.
  * (2 on dual-core systems)
  **/
-LIB_API size_t cpu_topology_CoresPerPackage(const CpuTopology*);
+LIB_API size_t cpu_topology_CoresPerPackage();
 
 /**
  * @return number of *enabled* hyperthreading units per core.
  * (2 on P4 EE)
  **/
-LIB_API size_t cpu_topology_LogicalPerCore(const CpuTopology*);
+LIB_API size_t cpu_topology_LogicalPerCore();
 
 
 //-----------------------------------------------------------------------------
 // L2 cache
 
-/**
- * stores L2 cache topology, i.e. the mapping between processor and caches.
- * this allows cores sharing a cache to work together on the same dataset,
- * which may reduce contention and increase effective capacity.
- *
- * example: Intel Core2 micro-architectures (e.g. Intel Core2) feature
- * partitioned L2 caches shared by two cores.
- **/
-struct CacheTopology;
+// knowledge of the cache topology, i.e. which processors share which caches,
+// can be used to reduce contention and increase effective capacity by
+// assigning the partner processors to work on the same dataset.
+//
+// example: Intel Core2 micro-architectures feature L2 caches shared by
+// two cores.
 
 /**
- * initialize static storage from which topology can be retrieved by
- * means of the following functions.
- * @return const pointer to a shared instance.
- *
- * WARNING: this function must not be reentered before it has returned once.
+ * @return number of distinct L2 caches.
  **/
-LIB_API const CacheTopology* cache_topology_Detect();
-
-/**
- * @return number of distinct L2 caches
- **/
-LIB_API size_t cache_topology_NumCaches(const CacheTopology*);
+LIB_API size_t cache_topology_NumCaches();
 
 /**
  * @return L2 cache number (zero-based) to which <processor> belongs.
  **/
-LIB_API size_t cache_topology_CacheFromProcessor(const CacheTopology*, size_t processor);
+LIB_API size_t cache_topology_CacheFromProcessor(size_t processor);
 
 /**
  * @return bit-mask of all processors sharing <cache>.
  **/
-LIB_API uintptr_t cache_topology_ProcessorMaskFromCache(const CacheTopology*, size_t cache);
+LIB_API uintptr_t cache_topology_ProcessorMaskFromCache(size_t cache);
 
 #endif	// #ifndef INCLUDED_TOPOLOGY

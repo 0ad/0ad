@@ -90,6 +90,13 @@ bool cpu_CAS(volatile T* location, T expected, T new_value)
 	return cpu_CAS((volatile intptr_t*)location, (intptr_t)expected, (intptr_t)new_value);
 }
 
+#if ARCH_AMD64
+# define cpu_CAS64 cpu_CAS
+#else
+LIB_API bool cpu_CAS64(volatile u64* location, u64 expected, u64 newValue);
+#endif
+
+
 /**
  * add a signed value to a variable without the possibility of interference
  * from other threads/CPUs.
@@ -98,7 +105,7 @@ bool cpu_CAS(volatile T* location, T expected, T new_value)
  **/
 LIB_API intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 
-LIB_API void cpu_TestAtomicAdd();
+LIB_API void cpu_Test();
 
 /**
  * enforce strict instruction ordering in the CPU pipeline.

@@ -99,8 +99,7 @@ void WriteSystemInfo()
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// CPU
-	const CpuTopology* topology = cpu_topology_Detect();
-	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)cpu_topology_NumPackages(topology), (int)cpu_topology_CoresPerPackage(topology), (int)cpu_topology_LogicalPerCore(topology));
+	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)cpu_topology_NumPackages(), (int)cpu_topology_CoresPerPackage(), (int)cpu_topology_LogicalPerCore());
 	const double cpu_freq = os_cpu_ClockFrequency();
 	if(cpu_freq != 0.0f)
 	{

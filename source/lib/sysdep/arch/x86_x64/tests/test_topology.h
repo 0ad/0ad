@@ -29,8 +29,8 @@ class TestTopology : public CxxTest::TestSuite
 public:
 	void test_run()
 	{
-		// Just run the function, ignoring the return value, so
-		// Valgrind can check it's not doing anything very bad
-		cpu_topology_Detect();
+		TS_ASSERT_LESS_THAN_EQUALS(1, cpu_topology_NumPackages());
+		TS_ASSERT_LESS_THAN_EQUALS(1, cpu_topology_CoresPerPackage());
+		TS_ASSERT_LESS_THAN_EQUALS(1, cpu_topology_LogicalPerCore());
 	}
 };

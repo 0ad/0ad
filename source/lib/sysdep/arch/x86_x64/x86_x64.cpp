@@ -285,57 +285,67 @@ size_t x86_x64_Generation()
 //-----------------------------------------------------------------------------
 // cache
 
-static const size_t maxCacheParams = 3;
-static x86_x64_CacheParameters cacheParametersStorage[maxCacheParams*2];
-static x86_x64_Cache dcache = { 0, cacheParametersStorage };
-static x86_x64_Cache icache = { 0, cacheParametersStorage+maxCacheParams };
+static const size_t maxCacheLevels = 3;
+static x86_x64_Cache cacheStorage[maxCacheLevels*2];
+static x86_x64_Caches dcaches = { 0, cacheStorage };
+static x86_x64_Caches icaches = { 0, cacheStorage+maxCacheLevels };
 
-static const size_t maxTLBParams = 15;
-static x86_x64_TLBParameters tlbParametersStorage[maxTLBParams*2];
-static x86_x64_TLB dtlb = { 0, tlbParametersStorage };
-static x86_x64_TLB itlb = { 0, tlbParametersStorage+maxTLBParams };
+static const size_t maxTLBLevels = 15;
+static x86_x64_TLB tlbStorage[maxTLBLevels*2];
+static x86_x64_TLBs dtlbs = { 0, tlbStorage };
+static x86_x64_TLBs itlbs = { 0, tlbStorage+maxTLBLevels };
 
-static void AddTLBParameters(const x86_x64_TLBParameters& params)
+static bool IsData(x86_x64_CacheType type)
 {
-	if(params.type == X86_X64_CACHE_TYPE_INSTRUCTION || params.type == X86_X64_CACHE_TYPE_UNIFIED)
+	return (type == X86_X64_CACHE_TYPE_DATA || type == X86_X64_CACHE_TYPE_UNIFIED);
+}
+
+static bool IsInstruction(x86_x64_CacheType type)
+{
+	return (type == X86_X64_CACHE_TYPE_INSTRUCTION || type == X86_X64_CACHE_TYPE_UNIFIED);
+}
+
+static void AddTLB(const x86_x64_TLB& tlb)
+{
+	if(IsInstruction(tlb.type))
 	{
-		if(itlb.numParameters < maxTLBParams)
-			itlb.parameters[itlb.numParameters++] = params;
+		if(itlbs.numLevels < maxTLBLevels)
+			itlbs.levels[itlbs.numLevels++] = tlb;
 		else
 			debug_assert(0);
 	}
-	if(params.type == X86_X64_CACHE_TYPE_DATA || params.type == X86_X64_CACHE_TYPE_UNIFIED)
+	if(IsData(tlb.type))
 	{
-		if(dtlb.numParameters < maxTLBParams)
-			dtlb.parameters[dtlb.numParameters++] = params;
+		if(dtlbs.numLevels < maxTLBLevels)
+			dtlbs.levels[dtlbs.numLevels++] = tlb;
 		else
 			debug_assert(0);
 	}
 
 	// large page TLBs have N 2M entries or N/2 4M entries; we generate a
 	// second set of parameters for the latter from the former.
-	if(params.pageSize == 2*MiB)
+	if(tlb.pageSize == 2*MiB)
 	{
-		x86_x64_TLBParameters params4M = params;
-		params4M.pageSize = 4*MiB;
-		params4M.entries  = params.entries/2;
-		AddTLBParameters(params4M);
+		x86_x64_TLB tlb4M = tlb;
+		tlb4M.pageSize = 4*MiB;
+		tlb4M.entries  = tlb.entries/2;
+		AddTLB(tlb4M);
 	}
 }
 
 namespace AMD
 {
 
-static x86_x64_CacheParameters L1Parameters(u32 reg, x86_x64_CacheType type)
+static x86_x64_Cache L1Cache(u32 reg, x86_x64_CacheType type)
 {
-	x86_x64_CacheParameters params;
-	params.type          = type;
-	params.level         = 1;
-	params.associativity = bits(reg, 16, 23);
-	params.lineSize      = bits(reg,  0,  7);
-	params.sharedBy      = 1;
-	params.totalSize     = bits(reg, 24, 31)*KiB;
-	return params;
+	x86_x64_Cache cache;
+	cache.type          = type;
+	cache.level         = 1;
+	cache.associativity = bits(reg, 16, 23);
+	cache.lineSize      = bits(reg,  0,  7);
+	cache.sharedBy      = 1;
+	cache.totalSize     = bits(reg, 24, 31)*KiB;
+	return cache;
 }
 
 // applies to L2, L3 and TLB2
@@ -345,85 +355,85 @@ static const size_t associativities[16] =
 	16, 0, 32, 48, 64, 96, 128, x86_x64_fullyAssociative
 };
 
-static x86_x64_CacheParameters L2Parameters(u32 reg, x86_x64_CacheType type)
+static x86_x64_Cache L2Cache(u32 reg, x86_x64_CacheType type)
 {
-	x86_x64_CacheParameters params;
+	x86_x64_Cache cache;
 	const size_t associativityIndex = bits(reg, 12, 15);
 	if(associativityIndex == 0)	// disabled
 	{
-		params.type = X86_X64_CACHE_TYPE_NULL;
-		params.associativity = 0;
+		cache.type = X86_X64_CACHE_TYPE_NULL;
+		cache.associativity = 0;
 	}
 	else
 	{
-		params.type = type;
-		params.associativity = associativities[associativityIndex];
-		debug_assert(params.associativity != 0);	// else: encoding is "reserved"
+		cache.type = type;
+		cache.associativity = associativities[associativityIndex];
+		debug_assert(cache.associativity != 0);	// else: encoding is "reserved"
 	}
-	params.level = 2;
-	params.lineSize  = bits(reg,  0,  7);
-	params.sharedBy  = 1;
-	params.totalSize = bits(reg, 16, 31)*KiB;
-	return params;
+	cache.level = 2;
+	cache.lineSize  = bits(reg,  0,  7);
+	cache.sharedBy  = 1;
+	cache.totalSize = bits(reg, 16, 31)*KiB;
+	return cache;
 }
 
 // (same as L2 except for the totalSize encoding)
-static x86_x64_CacheParameters L3Parameters(u32 reg, x86_x64_CacheType type)
+static x86_x64_Cache L3Cache(u32 reg, x86_x64_CacheType type)
 {
-	x86_x64_CacheParameters params = L2Parameters(reg, type);
-	params.level = 3;
-	params.totalSize = bits(reg, 18, 31)*512*KiB;	// (rounded down)
-	return params;
+	x86_x64_Cache cache = L2Cache(reg, type);
+	cache.level = 3;
+	cache.totalSize = bits(reg, 18, 31)*512*KiB;	// (rounded down)
+	return cache;
 }
 
-static x86_x64_TLBParameters TLB1Parameters(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_CacheType type)
+static x86_x64_TLB TLB1(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_CacheType type)
 {
-	x86_x64_TLBParameters params;
-	params.type          = type;
-	params.level         = 1;
-	params.associativity = bits(reg, bitOffset+8, bitOffset+15);
-	params.pageSize      = pageSize;
-	params.entries       = bits(reg, bitOffset, bitOffset+7);
-	return params;
+	x86_x64_TLB tlb;
+	tlb.type          = type;
+	tlb.level         = 1;
+	tlb.associativity = bits(reg, bitOffset+8, bitOffset+15);
+	tlb.pageSize      = pageSize;
+	tlb.entries       = bits(reg, bitOffset, bitOffset+7);
+	return tlb;
 }
 
-static void AddTLB1Parameters(const x86_x64_CpuidRegs& regs)
+static void AddTLB1(const x86_x64_CpuidRegs& regs)
 {
-	AddTLBParameters(TLB1Parameters(regs.eax,  0, 2*MiB, X86_X64_CACHE_TYPE_INSTRUCTION));
-	AddTLBParameters(TLB1Parameters(regs.eax, 16, 2*MiB, X86_X64_CACHE_TYPE_DATA));
-	AddTLBParameters(TLB1Parameters(regs.ebx,  0, 4*KiB, X86_X64_CACHE_TYPE_INSTRUCTION));
-	AddTLBParameters(TLB1Parameters(regs.ebx, 16, 4*KiB, X86_X64_CACHE_TYPE_DATA));
+	AddTLB(TLB1(regs.eax,  0, 2*MiB, X86_X64_CACHE_TYPE_INSTRUCTION));
+	AddTLB(TLB1(regs.eax, 16, 2*MiB, X86_X64_CACHE_TYPE_DATA));
+	AddTLB(TLB1(regs.ebx,  0, 4*KiB, X86_X64_CACHE_TYPE_INSTRUCTION));
+	AddTLB(TLB1(regs.ebx, 16, 4*KiB, X86_X64_CACHE_TYPE_DATA));
 }
 
-static x86_x64_TLBParameters TLB2Parameters(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_CacheType type)
+static x86_x64_TLB TLB2(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_CacheType type)
 {
-	x86_x64_TLBParameters params;
+	x86_x64_TLB tlb;
 	const size_t associativityIndex = bits(reg, bitOffset+12, bitOffset+15);
 	if(associativityIndex == 0)	// disabled
 	{
-		params.type = X86_X64_CACHE_TYPE_NULL;
-		params.associativity = 0;
+		tlb.type = X86_X64_CACHE_TYPE_NULL;
+		tlb.associativity = 0;
 	}
 	else
 	{
-		params.type = type;
-		params.associativity = associativities[associativityIndex];
+		tlb.type = type;
+		tlb.associativity = associativities[associativityIndex];
 	}
-	params.level    = 2;
-	params.pageSize = pageSize;
-	params.entries  = bits(reg, bitOffset, bitOffset+11);
-	return params;
+	tlb.level    = 2;
+	tlb.pageSize = pageSize;
+	tlb.entries  = bits(reg, bitOffset, bitOffset+11);
+	return tlb;
 }
 
-static void AddTLB2ParameterPair(u32 reg, size_t pageSize)
+static void AddTLB2Pair(u32 reg, size_t pageSize)
 {
 	x86_x64_CacheType type = X86_X64_CACHE_TYPE_UNIFIED;
 	if(bits(reg, 16, 31) != 0)	// not unified
 	{
-		AddTLBParameters(TLB2Parameters(reg, 16, pageSize, X86_X64_CACHE_TYPE_DATA));
+		AddTLB(TLB2(reg, 16, pageSize, X86_X64_CACHE_TYPE_DATA));
 		type = X86_X64_CACHE_TYPE_INSTRUCTION;
 	}
-	AddTLBParameters(TLB2Parameters(reg, 0, pageSize, type));
+	AddTLB(TLB2(reg, 0, pageSize, type));
 }
 
 // AMD reports maxCpuidIdFunction > 4 but consider functions 2..4 to be
@@ -435,24 +445,24 @@ static void DetectCacheAndTLB()
 	regs.eax = 0x80000005;
 	if(x86_x64_cpuid(&regs))
 	{
-		AddTLB1Parameters(regs);
+		AddTLB1(regs);
 
-		dcache.levels = icache.levels = 1;
-		dcache.parameters[0] = L1Parameters(regs.ecx, X86_X64_CACHE_TYPE_DATA);
-		icache.parameters[0] = L1Parameters(regs.edx, X86_X64_CACHE_TYPE_INSTRUCTION);
+		dcaches.numLevels = icaches.numLevels = 1;
+		dcaches.levels[0] = L1Cache(regs.ecx, X86_X64_CACHE_TYPE_DATA);
+		icaches.levels[0] = L1Cache(regs.edx, X86_X64_CACHE_TYPE_INSTRUCTION);
 	}
 
 	regs.eax = 0x80000006;
 	if(x86_x64_cpuid(&regs))
 	{
-		AddTLB2ParameterPair(regs.eax, 2*MiB);
-		AddTLB2ParameterPair(regs.ebx, 4*KiB);
+		AddTLB2Pair(regs.eax, 2*MiB);
+		AddTLB2Pair(regs.ebx, 4*KiB);
 
-		icache.levels = dcache.levels = 2;
-		icache.parameters[1] = dcache.parameters[1] = L2Parameters(regs.ecx, X86_X64_CACHE_TYPE_UNIFIED);
+		icaches.numLevels = dcaches.numLevels = 2;
+		icaches.levels[1] = dcaches.levels[1] = L2Cache(regs.ecx, X86_X64_CACHE_TYPE_UNIFIED);
 
-		icache.levels = dcache.levels = 3;
-		icache.parameters[2] = dcache.parameters[2] = L3Parameters(regs.edx, X86_X64_CACHE_TYPE_UNIFIED);
+		icaches.numLevels = dcaches.numLevels = 3;
+		icaches.levels[2] = dcaches.levels[2] = L3Cache(regs.edx, X86_X64_CACHE_TYPE_UNIFIED);
 	}
 }
 
@@ -480,27 +490,27 @@ static void DetectCache_CPUID4()
 		if(type == X86_X64_CACHE_TYPE_NULL)	// no more remaining
 			break;
 
-		x86_x64_CacheParameters params;
-		params.type          = type;
-		params.level         = level;
-		params.associativity = (size_t)bits(regs.ebx, 22, 31)+1;
-		params.lineSize      = (size_t)bits(regs.ebx,  0, 11)+1;	// (yes, this also uses +1 encoding)
-		params.sharedBy      = (size_t)bits(regs.eax, 14, 25)+1;
+		x86_x64_Cache cache;
+		cache.type          = type;
+		cache.level         = level;
+		cache.associativity = (size_t)bits(regs.ebx, 22, 31)+1;
+		cache.lineSize      = (size_t)bits(regs.ebx,  0, 11)+1;	// (yes, this also uses +1 encoding)
+		cache.sharedBy      = (size_t)bits(regs.eax, 14, 25)+1;
 		{
 			const size_t partitions = (size_t)bits(regs.ebx, 12, 21)+1;
 			const size_t sets = (size_t)bits(regs.ecx, 0, 31)+1;
-			params.totalSize = params.associativity * partitions * params.lineSize * sets;
+			cache.totalSize = cache.associativity * partitions * cache.lineSize * sets;
 		}
 
-		if(type == X86_X64_CACHE_TYPE_INSTRUCTION || type == X86_X64_CACHE_TYPE_UNIFIED)
+		if(IsInstruction(type))
 		{
-			icache.levels = std::max(icache.levels, level);
-			icache.parameters[level-1] = params;
+			icaches.numLevels = std::max(icaches.numLevels, level);
+			icaches.levels[level-1] = cache;
 		}
-		if(type == X86_X64_CACHE_TYPE_DATA || type == X86_X64_CACHE_TYPE_UNIFIED)
+		if(IsData(type))
 		{
-			dcache.levels = std::max(dcache.levels, level);
-			dcache.parameters[level-1] = params;
+			dcaches.numLevels = std::max(dcaches.numLevels, level);
+			dcaches.levels[level-1] = cache;
 		}
 	}
 }
@@ -624,24 +634,24 @@ static void DecodeDescriptor(u8 descriptor)
 		else
 			debug_assert(0);
 
-		x86_x64_TLBParameters params;
-		params.type          = type;
-		params.level         = level;
-		params.associativity = properties.associativity;
-		params.pageSize      = pageSize;
-		params.entries       = properties.entries;
+		x86_x64_TLB tlb;
+		tlb.type          = type;
+		tlb.level         = level;
+		tlb.associativity = properties.associativity;
+		tlb.pageSize      = pageSize;
+		tlb.entries       = properties.entries;
 
-		if(type == X86_X64_CACHE_TYPE_INSTRUCTION || type == X86_X64_CACHE_TYPE_UNIFIED)
+		if(IsInstruction(type))
 		{
-			if(itlb.numParameters < maxTLBParams)
-				itlb.parameters[itlb.numParameters++] = params;
+			if(itlbs.numLevels < maxTLBLevels)
+				itlbs.levels[itlbs.numLevels++] = tlb;
 			else
 				debug_assert(0);
 		}
-		if(type == X86_X64_CACHE_TYPE_DATA || type == X86_X64_CACHE_TYPE_UNIFIED)
+		if(IsData(type))
 		{
-			if(dtlb.numParameters < maxTLBParams)
-				dtlb.parameters[dtlb.numParameters++] = params;
+			if(dtlbs.numLevels < maxTLBLevels)
+				dtlbs.levels[dtlbs.numLevels++] = tlb;
 			else
 				debug_assert(0);
 		}
@@ -694,71 +704,71 @@ static LibError DetectCacheAndTLB()
 	}
 
 	// sanity check: cache type must match that of the data structure
-	for(size_t i = 0; i < dcache.levels; i++)
-		debug_assert(dcache.parameters[i].type != X86_X64_CACHE_TYPE_INSTRUCTION);
-	for(size_t i = 0; i < icache.levels; i++)
-		debug_assert(icache.parameters[i].type != X86_X64_CACHE_TYPE_DATA);
-	for(size_t i = 0; i < dtlb.numParameters; i++)
-		debug_assert(dtlb.parameters[i].type != X86_X64_CACHE_TYPE_INSTRUCTION);
-	for(size_t i = 0; i < itlb.numParameters; i++)
-		debug_assert(itlb.parameters[i].type != X86_X64_CACHE_TYPE_DATA);
+	for(size_t i = 0; i < dcaches.numLevels; i++)
+		debug_assert(dcaches.levels[i].type != X86_X64_CACHE_TYPE_INSTRUCTION);
+	for(size_t i = 0; i < icaches.numLevels; i++)
+		debug_assert(icaches.levels[i].type != X86_X64_CACHE_TYPE_DATA);
+	for(size_t i = 0; i < dtlbs.numLevels; i++)
+		debug_assert(dtlbs.levels[i].type != X86_X64_CACHE_TYPE_INSTRUCTION);
+	for(size_t i = 0; i < itlbs.numLevels; i++)
+		debug_assert(itlbs.levels[i].type != X86_X64_CACHE_TYPE_DATA);
 
 	// ensure x86_x64_L1CacheLineSize and x86_x64_L2CacheLineSize will work
-	debug_assert(dcache.levels >= 2);
-	debug_assert(dcache.parameters[0].lineSize != 0);
-	debug_assert(dcache.parameters[1].lineSize != 0);
+	debug_assert(dcaches.numLevels >= 2);
+	debug_assert(dcaches.levels[0].lineSize != 0);
+	debug_assert(dcaches.levels[1].lineSize != 0);
 
 	return INFO::OK;
 }
 
-const x86_x64_Cache* x86_x64_ICache()
+const x86_x64_Caches* x86_x64_ICaches()
 {
 	ModuleInit(&cacheInitState, DetectCacheAndTLB);
-	return &icache;
+	return &icaches;
 }
 
-const x86_x64_Cache* x86_x64_DCache()
+const x86_x64_Caches* x86_x64_DCaches()
 {
 	ModuleInit(&cacheInitState, DetectCacheAndTLB);
-	return &dcache;
+	return &dcaches;
 }
 
 size_t x86_x64_L1CacheLineSize()
 {
-	return x86_x64_DCache()->parameters[0].lineSize;
+	return x86_x64_DCaches()->levels[0].lineSize;
 }
 
 size_t x86_x64_L2CacheLineSize()
 {
-	return x86_x64_DCache()->parameters[1].lineSize;
+	return x86_x64_DCaches()->levels[1].lineSize;
 }
 
-const x86_x64_TLB* x86_x64_ITLB()
+const x86_x64_TLBs* x86_x64_ITLBs()
 {
 	ModuleInit(&cacheInitState, DetectCacheAndTLB);
-	return &itlb;
+	return &itlbs;
 }
 
-const x86_x64_TLB* x86_x64_DTLB()
+const x86_x64_TLBs* x86_x64_DTLBs()
 {
 	ModuleInit(&cacheInitState, DetectCacheAndTLB);
-	return &dtlb;
+	return &dtlbs;
 }
 
-size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb)
+size_t x86_x64_TLBCoverage(const x86_x64_TLBs* tlbs)
 {
 	// note: receiving a TLB pointer means DetectCacheAndTLB was called.
 
 	const u64 pageSize = 4*KiB;
-	const u64 largePageSize = 4*MiB;	// TODO: find out if we're using 2MB or 4MB
+	const u64 largePageSize = os_cpu_LargePageSize();
 	u64 totalSize = 0;	// [bytes]
-	for(size_t i = 0; i < tlb->numParameters; i++)
+	for(size_t i = 0; i < tlbs->numLevels; i++)
 	{
-		const x86_x64_TLBParameters& params = tlb->parameters[i];
-		if(params.pageSize == pageSize)
-			totalSize += pageSize * params.entries;
-		if(params.pageSize == largePageSize)
-			totalSize += largePageSize * params.entries;
+		const x86_x64_TLB& tlb = tlbs->levels[i];
+		if(tlb.pageSize == pageSize)
+			totalSize += pageSize * tlb.entries;
+		if(tlb.pageSize == largePageSize)
+			totalSize += largePageSize * tlb.entries;
 	}
 
 	return size_t(totalSize / MiB);
@@ -1036,8 +1046,8 @@ double x86_x64_ClockFrequency()
 	// note: don't just take the lowest value! it could conceivably be
 	// too low, if background processing delays reading c1 (see above).
 	double sum = 0.0;
-	const int lo = numSamples/4, hi = 3*numSamples/4;
-	for(int i = lo; i < hi; i++)
+	const size_t lo = numSamples/4, hi = 3*numSamples/4;
+	for(size_t i = lo; i < hi; i++)
 		sum += samples[i];
 
 	const double clockFrequency = sum / (hi-lo);

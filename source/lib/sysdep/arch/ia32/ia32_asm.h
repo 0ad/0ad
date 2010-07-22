@@ -36,6 +36,7 @@ extern void CALL_CONV ia32_asm_cpuid(x86_x64_CpuidRegs* regs);
 
 extern intptr_t CALL_CONV ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 extern bool CALL_CONV ia32_asm_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value);
+extern bool CALL_CONV ia32_asm_CAS64(volatile u64* location, u64 expected, u64 new_value);
 
 /// control87
 // FPU control word
