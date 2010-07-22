@@ -29,8 +29,8 @@ class TestTopology : public CxxTest::TestSuite
 public:
 	void test_run()
 	{
-		TS_ASSERT_LESS_THAN_EQUALS(1, cpu_topology_NumPackages());
-		TS_ASSERT_LESS_THAN_EQUALS(1, cpu_topology_CoresPerPackage());
-		TS_ASSERT_LESS_THAN_EQUALS(1, cpu_topology_LogicalPerCore());
+		TS_ASSERT_LESS_THAN_EQUALS(1u, cpu_topology_NumPackages());
+		TS_ASSERT_LESS_THAN_EQUALS(1u, cpu_topology_CoresPerPackage());
+		TS_ASSERT_LESS_THAN_EQUALS(1u, cpu_topology_LogicalPerCore());
 	}
 };
