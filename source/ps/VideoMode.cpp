@@ -96,9 +96,6 @@ bool CVideoMode::InitSDL()
 	// (command line params may override these)
 	gfx_get_video_mode(&m_PreferredW, &m_PreferredH, &m_PreferredBPP, &m_PreferredFreq);
 
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
 	int w = m_ConfigW;
 	int h = m_ConfigH;
 
@@ -121,8 +118,18 @@ bool CVideoMode::InitSDL()
 
 	int bpp = GetBestBPP();
 
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
 	if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
-		return false;
+	{
+		// Fall back to a smaller depth buffer
+		// (The rendering may be ugly but this helps when running in VMware)
+		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+
+		if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
+			return false;
+	}
 
 	// Work around a bug in the proprietary Linux ATI driver (at least versions 8.16.20 and 8.14.13).
 	// The driver appears to register its own atexit hook on context creation.
