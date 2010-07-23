@@ -101,6 +101,77 @@ var AnimalFsmSpec = {
 			},
 		},
 	},
+
+	"PASSIVE": {
+
+		"ResourceGather": function(msg) {
+			// If someone's carving chunks of meat off us, then run away
+//			this.MoveAwayFrom(msg.gatherer, +this.template.FleeDistance);
+//			this.SetNextState("FLEEING");
+//			this.PlaySound("panic");
+		},
+
+		"ROAMING": {
+			"enter": function() {
+				// Walk in a random direction
+				this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				this.MoveRandomly(+this.template.RoamDistance);
+				// Set a random timer to switch to feeding state
+				this.StartTimer(RandomInt(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
+			},
+
+			"leave": function() {
+				this.StopTimer();
+			},
+
+			"Timer": function(msg) {
+				this.SetNextState("FEEDING");
+			},
+
+			"MoveStopped": function() {
+				this.MoveRandomly(+this.template.RoamDistance);
+			},
+		},
+
+		"FEEDING": {
+			"enter": function() {
+				// Stop and eat for a while
+				this.SelectAnimation("feeding");
+				this.StopMoving();
+				this.StartTimer(RandomInt(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
+			},
+			
+			"leave": function() {
+				this.StopTimer();
+			},
+
+			"MoveStopped": function() { },
+
+			"Timer": function(msg) {
+				this.SetNextState("ROAMING");
+			},
+		},
+
+		"FLEEING": {
+			"enter": function() {
+				// Run quickly
+//				var speed = this.GetRunSpeed();
+//				this.SelectAnimation("run", false, speed);
+//				this.SetMoveSpeed(speed);
+			},
+
+			"leave": function() {
+				// Reset normal speed
+				this.SetMoveSpeed(this.GetWalkSpeed());
+			},
+
+			"MoveStopped": function() {
+				// When we've run far enough, go back to the roaming state
+				this.SetNextState("ROAMING");
+			},
+		},
+	},
+
 };
 
 var AnimalFsm = new FSM(AnimalFsmSpec);
@@ -114,7 +185,10 @@ AnimalAI.prototype.Init = function()
 
 AnimalAI.prototype.OnCreate = function()
 {
-	AnimalFsm.Init(this, "SKITTISH.FEEDING");
+	var startingState = this.template.NaturalBehaviour;
+	startingState = startingState.toUpperCase(startingState) + ".FEEDING";
+
+	AnimalFsm.Init(this, startingState);
 };
 
 AnimalAI.prototype.SetNextState = function(state)
