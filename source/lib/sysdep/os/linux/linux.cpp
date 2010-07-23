@@ -30,6 +30,8 @@
 #include "mocks/dlfcn.h"
 #include "mocks/unistd.h"
 
+#include <cstdio>
+
 LibError sys_get_executable_name(fs::wpath& pathname)
 {
 	const char* path;

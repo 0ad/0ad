@@ -30,6 +30,7 @@
 #include "lib/path_util.h"
 #include "lib/sysdep/sysdep.h"
 
+#include <cstdio>
 
 //-----------------------------------------------------------------------------
 // default implementations
