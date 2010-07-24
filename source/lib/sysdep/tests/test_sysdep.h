@@ -120,7 +120,11 @@ public:
 		char root[PATH_MAX];
 		sprintf_s(root, ARRAY_SIZE(root), "%s/pyrogenesis-test-sysdep-XXXXXX", tmpdir);
 		TS_ASSERT(mkdtemp(root));
-		std::string rootstr(root);
+
+		char rootres[PATH_MAX];
+		TS_ASSERT(realpath(root, rootres));
+
+		std::string rootstr(rootres);
 		std::wstring rootstrw(wstring_from_utf8(rootstr));
 
 		const char* dirs[] = {
