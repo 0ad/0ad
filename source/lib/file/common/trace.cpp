@@ -57,13 +57,26 @@ TraceEntry::TraceEntry(const std::wstring& text)
 	wchar_t pathname[PATH_MAX+1] = L""; // includes space for terminator
 	wchar_t action;
 #if EMULATE_SECURE_CRT
-	#define TRACE_FORMAT L"%f: %lc \"%" STRINGIZE(PATH_MAX) "l[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
-	const int fieldsRead = swscanf(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
+	// The desired code:
+//	#define TRACE_FORMAT L"%f: %lc \"%" STRINGIZE(PATH_MAX) "l[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
+//	const int fieldsRead = swscanf(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
+	// but that hits http://sources.redhat.com/bugzilla/show_bug.cgi?id=5225 and crashes on glibc 2.7
+	// We need to avoid reading any numbers after the %[]
+	#define TRACE_FORMAT_1 L"%f: %lc \"%" STRINGIZE(PATH_MAX) "l[^\"]\" %n"
+	#define TRACE_FORMAT_2 L"%zd\n"
+	int charsRead = 0;
+	int fieldsRead = swscanf(text.c_str(), TRACE_FORMAT_1, &m_timestamp, &action, pathname, &charsRead);
+	debug_assert(fieldsRead == 3);
+	if (fieldsRead == 3) // first part parsed okay
+	{
+		fieldsRead = swscanf(text.c_str() + charsRead, TRACE_FORMAT_2, &m_size);
+		debug_assert(fieldsRead == 1);
+	}
 #else
 	#define TRACE_FORMAT L"%f: %lc \"%l[^\"]\" %d\n"
 	const int fieldsRead = swscanf_s(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, 1, pathname, ARRAY_SIZE(pathname), &m_size);
-#endif
 	debug_assert(fieldsRead == 4);
+#endif
 	debug_assert(action == 'L' || action == 'S');
 	m_action = (EAction)action;
 	m_pathname = pathname;
