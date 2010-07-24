@@ -232,7 +232,8 @@ size_t cpu_topology_NumPackages()
 
 		// assume cores are enabled and count as processors.
 		const size_t numPackagesTimesLogical = os_cpu_NumProcessors() / MaxCoresPerPackage();
-		debug_assert(numPackagesTimesLogical != 0);
+		// note: this might give numPackagesTimesLogical == 0 (e.g. when running in some VMs)
+
 		// assume hyperthreads are enabled.
 		size_t numPackages = numPackagesTimesLogical;
 		// if they are reported as processors, remove them from the count.
