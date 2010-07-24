@@ -120,18 +120,24 @@ static size_t MaxLogicalPerCache()
 // core, package and shared cache. if they are available, we can determine
 // the exact topology; otherwise we have to guess.
 
-// side effect: `removes' (via std::unique) duplicate IDs.
+// if false is returned, the APIC IDs are fishy and shouldn't be used.
+// side effect: sorts IDs and `removes' (via std::unique) duplicates.
 static bool AreApicIdsUnique(u8* apicIds, size_t numIds)
 {
+	std::sort(apicIds, apicIds+numIds);
 	u8* const end = std::unique(apicIds, apicIds+numIds);
 	const size_t numUnique = end-apicIds;
-	if(numUnique == numIds)	// all unique
+	// all unique => IDs are valid.
+	if(numUnique == numIds)
 		return true;
 
-	// the only legitimate cause of duplication is when no xAPIC is
-	// present (i.e. all are 0)
-	debug_assert(numUnique == 1);
-	debug_assert(apicIds[0] == 0);
+	// all zero => the system lacks an xAPIC.
+	if(numUnique == 1 && apicIds[0] == 0)
+		return false;
+
+	// duplicated IDs => something went wrong. for example, VMs might not
+	// expose all physical processors, and OS X still doesn't support
+	// thread affinity masks.
 	return false;
 }
 
