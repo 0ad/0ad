@@ -244,9 +244,9 @@ function init(window, bottomWindow)
 	actorViewer.controls.push(animationBoxBox);
 	var animationBox = new wxStaticBoxSizer(animationBoxBox, wxOrientation.VERTICAL);
 	var animationSelector = new wxChoice(bottomWindow, -1, wxDefaultPosition, wxDefaultSize,
-		[ "build", "death",
-		  "gather_fruit", "gather_grain", "gather_meat", "gather_metal", "gather_stone", "gather_wood",
-		  "idle", "melee", "run", "walk" ] // TODO: this list should come from the actor
+		[ "idle", "walk", "run", "melee", "death", "build", 
+		"gather_fruit", "gather_grain", "gather_meat", 
+		"gather_tree", "gather_rock", "gather_ore", "gather_treasure" ] // TODO: this list should come from the actor
 	);
 	animationSelector.stringSelection = "idle";
 	actorViewer.controls.push(animationSelector);
