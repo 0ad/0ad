@@ -50,14 +50,7 @@ ResourceGatherer.prototype.GetGatherRates = function()
 
 ResourceGatherer.prototype.GetRange = function()
 {
-	//this.template
-	//warn(this.template);
-	
-	
-	return { "max": this.template.MaxDistance, "min": 0 };
-	
-	
-//	return { "max": 2, "min": 0 };
+	return { "max": +this.template.MaxDistance, "min": 0 };
 	// maybe this should depend on the unit or target or something?
 }
 
