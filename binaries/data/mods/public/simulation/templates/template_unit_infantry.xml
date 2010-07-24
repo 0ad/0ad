@@ -25,12 +25,13 @@
   </Loot>
   <Looter/>
   <ResourceGatherer>
+    <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
-      <food.fish>1</food.fish>
+      <food.fish>.8</food.fish>
       <food.fruit>1</food.fruit>
       <food.grain>1</food.grain>
-      <food.meat>1</food.meat>
+      <food.meat>8</food.meat>
       <metal.ore>3</metal.ore>
 	  <metal.treasure>10000</metal.treasure>
       <stone.rock>3</stone.rock>

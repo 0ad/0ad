@@ -10,6 +10,14 @@
       <metal>100</metal>
     </Resources>
   </Cost>
+  <ResourceGatherer>
+    <MaxDistance>12.0</MaxDistance>
+    <BaseSpeed>1.0</BaseSpeed>
+    <Rates>
+      <food.fish>1</food.fish>
+	  <metal.treasure>10000</metal.treasure>
+    </Rates>
+  </ResourceGatherer>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>10.0</Pierce>

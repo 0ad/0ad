@@ -3,6 +3,7 @@ function ResourceGatherer() {}
 ResourceGatherer.prototype.Schema =
 	"<a:help>Lets the unit gather resources from entities that have the ResourceSupply component.</a:help>" +
 	"<a:example>" +
+		"<MaxDistance>2.0</MaxDistance>" +
 		"<BaseSpeed>1.0</BaseSpeed>" +
 		"<Rates>" +
 			"<food.fish>1</food.fish>" +
@@ -11,6 +12,9 @@ ResourceGatherer.prototype.Schema =
 			"<wood.tree>2</wood.tree>" +
 		"</Rates>" +
 	"</a:example>" +
+	"<element name='MaxDistance' a:help='Max resource-gathering distance'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
 	"<element name='BaseSpeed' a:help='Base resource-gathering rate (in resource units per second)'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
@@ -46,7 +50,14 @@ ResourceGatherer.prototype.GetGatherRates = function()
 
 ResourceGatherer.prototype.GetRange = function()
 {
-	return { "max": 2, "min": 0 };
+	//this.template
+	//warn(this.template);
+	
+	
+	return { "max": this.template.MaxDistance, "min": 0 };
+	
+	
+//	return { "max": 2, "min": 0 };
 	// maybe this should depend on the unit or target or something?
 }
 

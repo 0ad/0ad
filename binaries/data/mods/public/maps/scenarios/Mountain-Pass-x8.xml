@@ -23,59 +23,11 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="87.2523" y="112.593" z="318.179"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="316.518" y="265.648" z="-16.5761"/>
+		<Rotation angle="-0.0718495"/>
+		<Declination angle="0.667908"/>
 	</Camera>
 	<Entities>
-		<Entity uid="11">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="85.877" z="497.701"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="12">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="488.305" z="498.502"/>
-			<Orientation y="-2.31702"/>
-		</Entity>
-		<Entity uid="13">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="498.114" z="76.0523"/>
-			<Orientation y="-0.7603"/>
-		</Entity>
-		<Entity uid="14">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="79.0901" z="75.5858"/>
-			<Orientation y="0.76709"/>
-		</Entity>
-		<Entity uid="15">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>5</Player>
-			<Position x="287.164" z="497.492"/>
-			<Orientation y="-2.34482"/>
-		</Entity>
-		<Entity uid="16">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>6</Player>
-			<Position x="500.122" z="293.161"/>
-			<Orientation y="-0.75412"/>
-		</Entity>
-		<Entity uid="17">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>7</Player>
-			<Position x="288.61" z="67.5142"/>
-			<Orientation y="0.80481"/>
-		</Entity>
-		<Entity uid="18">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>8</Player>
-			<Position x="70.6754" z="290.309"/>
-			<Orientation y="2.36835"/>
-		</Entity>
 		<Entity uid="19">
 			<Template>gaia/geology_stone_mediterranean</Template>
 			<Player>0</Player>
@@ -151,49 +103,25 @@
 		<Entity uid="31">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>1</Player>
-			<Position x="104.568" z="481.569"/>
+			<Position x="95.969" z="471.72"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="32">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>2</Player>
-			<Position x="469.59" z="477.395"/>
-			<Orientation y="2.35619"/>
+			<Position x="470.735" z="479.256"/>
+			<Orientation y="-2.42888"/>
 		</Entity>
 		<Entity uid="33">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>3</Player>
-			<Position x="480.551" z="93.5842"/>
-			<Orientation y="2.35619"/>
+			<Position x="480.549" z="94.8974"/>
+			<Orientation y="-0.923462"/>
 		</Entity>
 		<Entity uid="34">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>4</Player>
 			<Position x="103.886" z="101.747"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="35">
-			<Template>units/celt_cavalry_swordsman_b</Template>
-			<Player>5</Player>
-			<Position x="286.7" z="479.041"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="36">
-			<Template>units/celt_cavalry_swordsman_b</Template>
-			<Player>6</Player>
-			<Position x="476.594" z="292.807"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="37">
-			<Template>units/celt_cavalry_swordsman_b</Template>
-			<Player>7</Player>
-			<Position x="287.723" z="92.6445"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="38">
-			<Template>units/celt_cavalry_swordsman_b</Template>
-			<Player>8</Player>
-			<Position x="90.5042" z="287.518"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="39">
@@ -1658,30 +1586,30 @@
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
 			<Position x="135.303" z="550.398"/>
-			<Orientation y="-0.180832"/>
+			<Orientation y="-0.180771"/>
 		</Entity>
 		<Entity uid="393">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="80.2023" z="453.948"/>
+			<Position x="77.6565" z="447.626"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="394">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="77.189" z="453.808"/>
+			<Position x="72.6464" z="448.45"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="395">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="74.9086" z="456.799"/>
+			<Position x="70.7826" z="453.814"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="396">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="79.2923" z="456.623"/>
+			<Position x="76.0412" z="451.565"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="397">
@@ -1759,25 +1687,25 @@
 		<Entity uid="409">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="539.468" z="71.1313"/>
-			<Orientation y="2.35619"/>
+			<Position x="521.423" z="101.312"/>
+			<Orientation y="-2.19257"/>
 		</Entity>
 		<Entity uid="410">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="543.011" z="74.6457"/>
+			<Position x="524.878" z="104.185"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="411">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="538.415" z="75.0541"/>
+			<Position x="523.897" z="98.8002"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="412">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="540.99" z="80.3606"/>
+			<Position x="527.524" z="100.249"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="413">
@@ -1807,25 +1735,25 @@
 		<Entity uid="417">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="534.048" z="487.792"/>
+			<Position x="517.157" z="478.634"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="418">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="538.585" z="489.493"/>
+			<Position x="522.793" z="482.533"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="419">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="535.531" z="490.481"/>
+			<Position x="518.452" z="482.188"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="420">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="535.924" z="486.247"/>
+			<Position x="521.245" z="478.972"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="421">
@@ -1873,37 +1801,37 @@
 		<Entity uid="445">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="74.2175" z="465.512"/>
+			<Position x="81.5508" z="454.927"/>
 			<Orientation y="3.00208"/>
 		</Entity>
 		<Entity uid="447">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="78.3459" z="464.201"/>
+			<Position x="85.2246" z="458.642"/>
 			<Orientation y="-2.39412"/>
 		</Entity>
 		<Entity uid="448">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="529.741" z="498.84"/>
+			<Position x="511.926" z="484.275"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="449">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="524.873" z="493.46"/>
+			<Position x="507.471" z="480.1"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="450">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="529.27" z="83.8645"/>
+			<Position x="524.606" z="89.3071"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="451">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="533.928" z="88.063"/>
+			<Position x="529.118" z="92.0587"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="452">
@@ -1918,59 +1846,11 @@
 			<Position x="50.9522" z="94.3838"/>
 			<Orientation y="2.35619"/>
 		</Entity>
-		<Entity uid="454">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>5</Player>
-			<Position x="253.46" z="511.694"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="455">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>5</Player>
-			<Position x="258.503" z="516.096"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="456">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>6</Player>
-			<Position x="472.967" z="311.285"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="457">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>6</Player>
-			<Position x="476.589" z="316.241"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="458">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>7</Player>
-			<Position x="316.858" z="71.7915"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="459">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>7</Player>
-			<Position x="321.804" z="75.7788"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="460">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>8</Player>
-			<Position x="95.1483" z="271.535"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="461">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>8</Player>
-			<Position x="100.34" z="274.833"/>
-			<Orientation y="2.35619"/>
-		</Entity>
 		<Entity uid="462">
 			<Template>gaia/fauna_walrus</Template>
 			<Player>0</Player>
 			<Position x="558.023" z="201.268"/>
-			<Orientation y="-0.836823"/>
+			<Orientation y="-0.836761"/>
 		</Entity>
 		<Entity uid="464">
 			<Template>gaia/flora_tree_carob</Template>
@@ -2156,7 +2036,7 @@
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
 			<Position x="76.3759" z="337.447"/>
-			<Orientation y="0.977646"/>
+			<Orientation y="0.977585"/>
 		</Entity>
 		<Entity uid="516">
 			<Template>gaia/fauna_deer</Template>
@@ -2276,7 +2156,7 @@
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
 			<Position x="431.977" z="521.37"/>
-			<Orientation y="0.858276"/>
+			<Orientation y="0.858215"/>
 		</Entity>
 		<Entity uid="536">
 			<Template>gaia/fauna_deer</Template>
@@ -2812,58 +2692,10 @@
 			<Position x="358.744" z="228.886"/>
 			<Orientation y="2.35619"/>
 		</Entity>
-		<Entity uid="710">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="303.377" z="296.099"/>
-			<Orientation y="2.12891"/>
-		</Entity>
-		<Entity uid="711">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="297.222" z="299.933"/>
-			<Orientation y="2.7562"/>
-		</Entity>
-		<Entity uid="712">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="302.223" z="288.76"/>
-			<Orientation y="-2.10291"/>
-		</Entity>
-		<Entity uid="713">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="288.911" z="285.61"/>
-			<Orientation y="-1.92972"/>
-		</Entity>
-		<Entity uid="714">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="283.263" z="291.825"/>
-			<Orientation y="2.09319"/>
-		</Entity>
 		<Entity uid="715">
 			<Template>gaia/flora_tree_baobab</Template>
 			<Player>0</Player>
-			<Position x="294.017" z="293.95"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="716">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="288.7" z="306.407"/>
-			<Orientation y="2.35619"/>
-		</Entity>
-		<Entity uid="717">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="285.255" z="299.977"/>
-			<Orientation y="-1.61078"/>
-		</Entity>
-		<Entity uid="718">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="297.083" z="286.323"/>
+			<Position x="273.017" z="318.66"/>
 			<Orientation y="2.35619"/>
 		</Entity>
 		<Entity uid="719">
@@ -3009,6 +2841,66 @@
 			<Player>0</Player>
 			<Position x="20.313" z="348.992"/>
 			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="753">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>5</Player>
+			<Position x="285.876" z="491.227"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="754">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>6</Player>
+			<Position x="491.277" z="304.723"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="755">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>7</Player>
+			<Position x="288.41" z="77.0982"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="756">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>7</Player>
+			<Position x="84.9162" z="288.146"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="757">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="75.5186" z="477.816"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="758">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="490.847" z="490.133"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="759">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="498.242" z="106.99"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="760">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>0</Player>
+			<Position x="80.2921" z="94.505"/>
+			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="761">
+			<Template>gaia/special_treasure_golden_fleece</Template>
+			<Player>0</Player>
+			<Position x="293.349" z="294.803"/>
+			<Orientation y="0.884155"/>
+		</Entity>
+		<Entity uid="762">
+			<Template>structures/celt_temple</Template>
+			<Player>0</Player>
+			<Position x="294.367" z="293.814"/>
+			<Orientation y="2.48549"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna">
+  <Identity>
+    <GenericName>Fish</GenericName>
+  </Identity>
+  <Position>
+	<Altitude>-4.0</Altitude>
+	<Floating>true</Floating>
+  </Position>
+  <UnitMotion disable=""/>
+  <AnimalAI disable=""/>
+  <ResourceSupply>
+    <Amount>500</Amount>
+    <Type>food.fish</Type>
+  </ResourceSupply>
+</Entity>

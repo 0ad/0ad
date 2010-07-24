@@ -186,7 +186,12 @@ AnimalAI.prototype.Init = function()
 AnimalAI.prototype.OnCreate = function()
 {
 	var startingState = this.template.NaturalBehaviour;
-	startingState = startingState.toUpperCase(startingState) + ".FEEDING";
+	startingState = startingState.toUpperCase(startingState);
+
+	if (startingState == "SKITTISH")
+		startingState = startingState + ".FEEDING";
+	else
+		startingState = "PASSIVE.FEEDING";
 
 	AnimalFsm.Init(this, startingState);
 };
