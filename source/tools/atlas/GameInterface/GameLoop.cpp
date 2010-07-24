@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,8 +63,7 @@ namespace AtlasMessage
 }
 
 
-static MessagePasserImpl msgPasser;
-MessagePasser* AtlasMessage::g_MessagePasser = &msgPasser;
+MessagePasser* AtlasMessage::g_MessagePasser = NULL;
 
 
 static InputProcessor g_Input;
@@ -117,6 +116,10 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		debug_warn(L"Failed to initialise DLL");
 		return false;
 	}
+
+	// Construct a message passer for communicating with Atlas
+	MessagePasserImpl msgPasser;
+	AtlasMessage::g_MessagePasser = &msgPasser;
 
 	// Pass our message handler to Atlas
 	Atlas_SetMessagePasser(&msgPasser);
