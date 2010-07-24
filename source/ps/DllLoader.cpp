@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,19 +23,23 @@
 #include "lib/posix/posix_dlfcn.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
+#include "ps/GameSetup/Config.h"
 
 void* const HANDLE_UNAVAILABLE = (void*)-1;
 
-
-// note: on Linux, lib is prepended to the SO file name;
+// directory to search for libraries (optionally set by --libdir at build-time,
+// optionally overridden by -libdir at run-time in the test executable);
 // if we don't have an explicit libdir then the linker will look in DT_RUNPATH
 // (which we set to $ORIGIN) to find it in the executable's directory
+#ifdef INSTALLED_LIBDIR
+static CStr g_Libdir = STRINGIZE(INSTALLED_LIBDIR);
+#else
+static CStr g_Libdir = "";
+#endif
+
+// note: on Linux, lib is prepended to the SO file name
 #if OS_UNIX
- #ifdef INSTALLED_LIBDIR
-  static const char* prefix = STRINGIZE(INSTALLED_LIBDIR) "/lib";
- #else
-  static const char* prefix = "lib";
- #endif
+static const char* prefix = "lib";
 #else
 static const char* prefix = "";
 #endif
@@ -53,6 +57,15 @@ static const char* secondarySuffix = "_dbg.so";
 // (This class is currently only used by 'Collada' and 'AtlasUI' which follow
 // the naming/location convention above - it'll need to be changed if we want
 // to support other DLLs.)
+
+static CStr GenerateFilename(const CStr& name, const CStr& suffix)
+{
+	CStr n;
+	if (!g_Libdir.empty())
+		n = g_Libdir + "/";
+	n += prefix + name + suffix;
+	return n;
+}
 
 DllLoader::DllLoader(const char* name)
 : m_Name(name), m_Handle(0)
@@ -83,7 +96,7 @@ bool DllLoader::LoadDLL()
 		// it is safer and matches the Windows load behavior.
 		const int flags = RTLD_LOCAL|RTLD_NOW;
 
-		CStr filename = CStr(prefix) + m_Name + primarySuffix;
+		CStr filename = GenerateFilename(m_Name, primarySuffix);
 		m_Handle = dlopen(filename, flags);
 
 		char* primaryError = NULL;
@@ -96,7 +109,7 @@ bool DllLoader::LoadDLL()
 				primaryError = strdup(primaryError); // don't get overwritten by next dlopen
 
 			// Try to open the other debug/release version
-			filename = CStr(prefix) + m_Name + secondarySuffix;
+			filename = GenerateFilename(m_Name, secondarySuffix);
 			m_Handle = dlopen(filename, flags);
 		}
 
@@ -136,4 +149,9 @@ void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 
 	if (*fptr == NULL)
 		throw PSERROR_DllLoader_SymbolNotFound();
+}
+
+void DllLoader::OverrideLibdir(const CStr& libdir)
+{
+	g_Libdir = libdir;
 }

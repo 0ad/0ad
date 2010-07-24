@@ -16,6 +16,8 @@
 # define PS_TEST_WRAPPER_BASE GuiListener
 #endif
 
+#include "ps/DllLoader.h"
+
 namespace CxxTest 
 {
     extern const char *g_PsArgv0;
@@ -112,12 +114,15 @@ namespace CxxTest
                     }
                 } else if ( !strcmp( argv[i], "-list" ) ) {
                     g_PsListSuites = true;
+                } else if ( !strcmp( argv[i], "-libdir" ) ) {
+                    DllLoader::OverrideLibdir( argv[++i] );
                 } else {
                     fprintf( stderr, "Unrecognized command line option '%s'\n", argv[i] );
                     fprintf( stderr, "Permitted options:\n" );
                     fprintf( stderr, "  %s -list\n", argv[0] );
                     fprintf( stderr, "  %s -test TestSuiteName\n", argv[0] );
                     fprintf( stderr, "  %s -test TestSuiteName::test_case_name\n", argv[0] );
+                    fprintf( stderr, "  %s -libdir .\n", argv[0] );
                     fprintf( stderr, "\n" );
                 }
             }

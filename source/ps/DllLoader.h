@@ -68,6 +68,11 @@ public:
 	template <typename T>
 	void LoadSymbol(const char* name, T& fptr) const;
 
+	/**
+	 * Override the build-time setting of the directory to search for libraries.
+	 */
+	static void OverrideLibdir(const CStr& libdir);
+
 private:
 	// Typeless version - the public LoadSymbol hides the slightly ugly
 	// casting from users.
