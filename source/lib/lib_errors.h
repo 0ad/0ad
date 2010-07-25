@@ -180,7 +180,8 @@ Notes:
 #ifndef INCLUDED_LIB_ERRORS
 #define INCLUDED_LIB_ERRORS
 
-#include "lib/lib.h"
+#include "lib/code_annotation.h"
+#include "lib/code_generation.h"
 
 // note: this loses compiler type safety (being able to prevent
 // return 1 when a LibError is the return value), but allows splitting

@@ -37,6 +37,7 @@
 //   crashlogs with "last-known activity" reporting.
 
 #include "lib/lib_errors.h"
+#include "lib/code_generation.h"
 
 /**
  * trigger a breakpoint when reached/"called".

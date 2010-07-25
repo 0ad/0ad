@@ -85,13 +85,14 @@ long double __cdecl abs(long double x);	// required for Eigen
 
 #include "lib/posix/posix_types.h"	// (must come before any system headers because it fixes off_t)
 #include "lib/code_annotation.h"
+#include "lib/code_generation.h"
 #include "lib/sysdep/arch.h"
 #include "lib/sysdep/stl.h"
 #include "lib/lib_api.h"
 #include "lib/types.h"
+#include "lib/debug.h"
 #include "lib/lib.h"
 #include "lib/secure_crt.h"
-#include "lib/debug.h"
 
 // Boost
 // .. if this package isn't going to be statically linked, we're better off

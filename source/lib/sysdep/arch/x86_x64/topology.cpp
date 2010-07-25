@@ -33,6 +33,7 @@
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"	// ERR::CPU_FEATURE_MISSING
 #include "lib/sysdep/os_cpu.h"
+#include "lib/sysdep/numa.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
 
@@ -77,8 +78,9 @@ static size_t MaxLogicalPerCore()
 			if(!x86_x64_cap(X86_X64_CAP_HT))
 				return false;
 
-			// AMD N-core systems falsely set the HT bit for compatibility reasons
-			// (don't bother resetting it, might confuse callers)
+			// multi-core AMD systems falsely set the HT bit for reasons of
+			// compatibility. we'll just ignore it, because clearing it might
+			// confuse other callers.
 			if(x86_x64_Vendor() == X86_X64_VENDOR_AMD && x86_x64_cap(X86_X64_CAP_AMD_CMP_LEGACY))
 				return false;
 
@@ -120,8 +122,9 @@ static size_t MaxLogicalPerCache()
 // core, package and shared cache. if they are available, we can determine
 // the exact topology; otherwise we have to guess.
 
-// if false is returned, the APIC IDs are fishy and shouldn't be used.
-// side effect: sorts IDs and `removes' (via std::unique) duplicates.
+// APIC IDs should always be unique; if not (false is returned), then
+// something went wrong and the IDs shouldn't be used.
+// side effect: sorts IDs and `removes' duplicates.
 static bool AreApicIdsUnique(u8* apicIds, size_t numIds)
 {
 	std::sort(apicIds, apicIds+numIds);
@@ -142,22 +145,22 @@ static bool AreApicIdsUnique(u8* apicIds, size_t numIds)
 }
 
 static u8 apicIdStorage[os_cpu_MaxProcessors];
-static const u8* apicIds;
+static const u8* apicIds;	// = apicIdStorage, or 0 if IDs invalid
 
 static LibError InitApicIds()
 {
-	// store each processor's APIC ID in turn
-	struct StoreApicId
+	struct StoreEachProcessorsApicId
 	{
 		static void Callback(size_t processor, uintptr_t UNUSED(cbData))
 		{
 			apicIdStorage[processor] = x86_x64_ApicId();
 		}
 	};
-	if(os_cpu_CallByEachCPU(StoreApicId::Callback, (uintptr_t)&apicIds) == INFO::OK)
+	// (fails if the OS limits our process affinity)
+	if(os_cpu_CallByEachCPU(StoreEachProcessorsApicId::Callback, (uintptr_t)&apicIds) == INFO::OK)
 	{
 		if(AreApicIdsUnique(apicIdStorage, os_cpu_NumProcessors()))
-			apicIds = apicIdStorage;	// return valid array from now on
+			apicIds = apicIdStorage;	// success, ApicIds will return this pointer
 	}
 
 	return INFO::OK;
@@ -202,77 +205,101 @@ static size_t NumUniqueMaskedValues(const u8* apicIds, u8 mask)
  **/
 static size_t NumUniqueValuesInField(const u8* apicIds, size_t offset, size_t numValues)
 {
-	if(numValues == 1)
-		return 1;	// see above
+	if(numValues == 1)	// see parameter description above
+		return 1;
 	const size_t numBits = ceil_log2(numValues);
 	const u8 mask = u8((bit_mask<u8>(numBits) << offset) & 0xFF);
 	return NumUniqueMaskedValues(apicIds, mask);
 }
 
 
-size_t cpu_topology_NumPackages()
+static size_t MinPackages(size_t maxCoresPerPackage, size_t maxLogicalPerCore)
 {
+	const size_t numNodes = numa_NumNodes();
+	const size_t logicalPerNode = PopulationCount(numa_ProcessorMaskFromNode(0));
+	// NB: some cores or logical processors may be disabled.
+	const size_t maxLogicalPerPackage = maxCoresPerPackage*maxLogicalPerCore;
+	const size_t minPackagesPerNode = DivideRoundUp(logicalPerNode, maxLogicalPerPackage);
+	return minPackagesPerNode*numNodes;
+}
+
+
+struct CpuTopology	// POD
+{
+	size_t numPackages;
+	size_t coresPerPackage;
+	size_t logicalPerCore;
+};
+static CpuTopology cpuTopology;
+static ModuleInitState cpuInitState;
+
+static LibError InitCpuTopology()
+{
+	const size_t numProcessors = os_cpu_NumProcessors();
+	const size_t maxCoresPerPackage = MaxCoresPerPackage();
+	const size_t maxLogicalPerCore = MaxLogicalPerCore();
+
 	const u8* apicIds = ApicIds();
 	if(apicIds)
 	{
-		const size_t offset = ceil_log2(MaxCoresPerPackage()) + ceil_log2(MaxLogicalPerCore());
-		return NumUniqueValuesInField(apicIds, offset, 256);
+		const size_t packageOffset = ceil_log2(maxCoresPerPackage) + ceil_log2(maxLogicalPerCore);
+		const size_t coreOffset    = ceil_log2(maxLogicalPerCore);
+		const size_t logicalOffset = 0;
+		cpuTopology.numPackages     = NumUniqueValuesInField(apicIds, packageOffset, 256);
+		cpuTopology.coresPerPackage = NumUniqueValuesInField(apicIds, coreOffset,    maxCoresPerPackage);
+		cpuTopology.logicalPerCore  = NumUniqueValuesInField(apicIds, logicalOffset, maxLogicalPerCore);
 	}
-	else
+	else // the processor lacks an xAPIC, or the IDs are invalid
 	{
-		// note: correct results cannot be guaranteed because unreported
-		// and disable logical units are indistinguishable. the below
-		// assumptions are reasonable because we care most about packages
-		// (i.e. whether the system is truly SMP). in contrast, it is
-		// safe to overestimate the number of cores because that
-		// only determines if memory barriers are needed or not.
-		// note: requiring modern processors featuring an APIC does not
-		// prevent this from being reached (the cause may be lack of
-		// OS support or restricted process affinity).
+		// we can't differentiate between cores and logical processors.
+		// since the former are less likely to be disabled, we seek the
+		// maximum feasible number of cores and minimal number of packages:
+		const size_t minPackages = MinPackages(maxCoresPerPackage, maxLogicalPerCore);
+		const size_t maxPackages = numProcessors;
+		for(size_t numPackages = minPackages; numPackages <= maxPackages; numPackages++)
+		{
+			if(numProcessors % numPackages != 0)
+				continue;
+			const size_t logicalPerPackage = numProcessors / numPackages;
+			const size_t minCoresPerPackage = DivideRoundUp(logicalPerPackage, maxLogicalPerCore);
+			for(size_t coresPerPackage = maxCoresPerPackage; coresPerPackage >= minCoresPerPackage; coresPerPackage--)
+			{
+				if(logicalPerPackage % coresPerPackage != 0)
+					continue;
+				const size_t logicalPerCore = logicalPerPackage / coresPerPackage;
+				if(logicalPerCore <= maxLogicalPerCore)
+				{
+					debug_assert(numProcessors == numPackages*coresPerPackage*logicalPerCore);
+					cpuTopology.numPackages = numPackages;
+					cpuTopology.coresPerPackage = coresPerPackage;
+					cpuTopology.logicalPerCore = logicalPerCore;
+					return INFO::OK;
+				}
+			}
+		}
 
-		// assume cores are enabled and count as processors.
-		const size_t numPackagesTimesLogical = os_cpu_NumProcessors() / MaxCoresPerPackage();
-		// note: this might give numPackagesTimesLogical == 0 (e.g. when running in some VMs)
-
-		// assume hyperthreads are enabled.
-		size_t numPackages = numPackagesTimesLogical;
-		// if they are reported as processors, remove them from the count.
-		if(numPackages > MaxLogicalPerCore())
-			numPackages /= MaxLogicalPerCore();
-		return numPackages;
+		debug_assert(0);	// didn't find a feasible topology
 	}
+
+	return INFO::OK;
 }
 
+size_t cpu_topology_NumPackages()
+{
+	ModuleInit(&cpuInitState, InitCpuTopology);
+	return cpuTopology.numPackages;
+}
 
 size_t cpu_topology_CoresPerPackage()
 {
-	const u8* apicIds = ApicIds();
-	if(apicIds)
-	{
-		const size_t offset = ceil_log2(MaxLogicalPerCore());
-		return NumUniqueValuesInField(apicIds, offset, MaxCoresPerPackage());
-	}
-	else
-	{
-		// guess (must match NumPackages's assumptions)
-		return MaxCoresPerPackage();
-	}
+	ModuleInit(&cpuInitState, InitCpuTopology);
+	return cpuTopology.coresPerPackage;
 }
-
 
 size_t cpu_topology_LogicalPerCore()
 {
-	const u8* apicIds = ApicIds();
-	if(apicIds)
-	{
-		const size_t offset = 0;
-		return NumUniqueValuesInField(apicIds, offset, MaxLogicalPerCore());
-	}
-	else
-	{
-		// guess (must match NumPackages's assumptions)
-		return MaxLogicalPerCore();
-	}
+	ModuleInit(&cpuInitState, InitCpuTopology);
+	return cpuTopology.logicalPerCore;
 }
 
 
