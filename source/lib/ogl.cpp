@@ -266,12 +266,6 @@ static void GL_CALL_CONV dummy_glMultiTexCoord2fARB(int, float s, float t)
 
 static void importExtensionFunctions()
 {
-	// load the dummy functions by default
-	pglDrawRangeElementsEXT = &dummy_glDrawRangeElementsEXT;
-	pglActiveTextureARB = &dummy_glActiveTextureARB;
-	pglClientActiveTextureARB = &dummy_glClientActiveTextureARB;
-	pglMultiTexCoord2fARB = &dummy_glMultiTexCoord2fARB;
-
 	// It should be safe to load the ARB function pointers even if the
 	// extension isn't advertised, since we won't actually use them without
 	// checking for the extension.
@@ -291,6 +285,16 @@ static void importExtensionFunctions()
 #undef FUNC2
 #undef FUNC23
 #undef FUNC
+
+	// fall back to the dummy functions
+	if(!pglDrawRangeElementsEXT)
+		pglDrawRangeElementsEXT = &dummy_glDrawRangeElementsEXT;
+	if(!pglActiveTextureARB)
+		pglActiveTextureARB = &dummy_glActiveTextureARB;
+	if(!pglClientActiveTextureARB)
+		pglClientActiveTextureARB = &dummy_glClientActiveTextureARB;
+	if(!pglMultiTexCoord2fARB)
+		pglMultiTexCoord2fARB = &dummy_glMultiTexCoord2fARB;
 }
 
 
