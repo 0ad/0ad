@@ -59,7 +59,7 @@ class CPlane
 		//calculates the intersection point of a line with this
 		//plane. Returns false if there is no intersection
 		bool FindLineSegIntersection (const CVector3D &start, const CVector3D &end, CVector3D *intsect);
-		bool FindRayIntersection (CVector3D &start, CVector3D &direction, CVector3D *intsect);
+		bool FindRayIntersection (const CVector3D &start, const CVector3D &direction, CVector3D *intsect);
 
 	public:
 		CVector3D m_Norm;	//normal vector of the plane

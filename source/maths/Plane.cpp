@@ -125,13 +125,12 @@ bool CPlane::FindLineSegIntersection (const CVector3D &start, const CVector3D &e
 	return true;
 }
 
-bool CPlane::FindRayIntersection (CVector3D &start, CVector3D &direction, CVector3D *intsect)
+bool CPlane::FindRayIntersection (const CVector3D &start, const CVector3D &direction, CVector3D *intsect)
 {
 	float dot = m_Norm.Dot (direction);
 	if (dot == 0.0f)
 		return false;
 
-	//CVector3D a; // EDIT: John M. Mena - Not sure why this is here
 	*intsect = start - (direction * (DistanceToPlane (start)/dot));
 	return true;
 }

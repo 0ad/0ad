@@ -42,8 +42,8 @@ CHFTracer::CHFTracer(CTerrain *pTerrain):
 // RayTriIntersect: intersect a ray with triangle defined by vertices
 // v0,v1,v2; return true if ray hits triangle at distance less than dist,
 // or false otherwise
-bool CHFTracer::RayTriIntersect(const CVector3D& v0,const CVector3D& v1,const CVector3D& v2,
-								const CVector3D& origin,const CVector3D& dir,float& dist) const
+bool CHFTracer::RayTriIntersect(const CVector3D& v0, const CVector3D& v1, const CVector3D& v2,
+								const CVector3D& origin, const CVector3D& dir, float& dist) const
 {
 	const float EPSILON=0.00001f;
 
@@ -90,7 +90,7 @@ bool CHFTracer::RayTriIntersect(const CVector3D& v0,const CVector3D& v1,const CV
 ///////////////////////////////////////////////////////////////////////////////
 // CellIntersect: test if ray intersects either of the triangles in the given
 // cell - return hit result, and distance to hit, if hit occurred
-bool CHFTracer::CellIntersect(int cx,int cz,CVector3D& origin,CVector3D& dir,float& dist) const
+bool CHFTracer::CellIntersect(int cx, int cz, const CVector3D& origin, const CVector3D& dir, float& dist) const
 {
 	bool res=false;
 
@@ -117,7 +117,7 @@ bool CHFTracer::CellIntersect(int cx,int cz,CVector3D& origin,CVector3D& dir,flo
 // RayIntersect: intersect ray with this heightfield; return true if
 // intersection occurs (and fill in grid coordinates of intersection), or false
 // otherwise
-bool CHFTracer::RayIntersect(CVector3D& origin,CVector3D& dir,int& x,int& z,CVector3D& ipt) const
+bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int& x, int& z, CVector3D& ipt) const
 {
 	// intersect first against bounding box
 	CBound bound;
