@@ -81,7 +81,7 @@ TraceEntry::TraceEntry(const std::wstring& text)
 
 	debug_assert(stream.get() == '\n');
 	debug_assert(stream.good());
-	debug_assert((int)stream.get() == EOF);
+	debug_assert(stream.get() == WEOF);
 }
 
 
