@@ -180,4 +180,8 @@ public:
 	virtual void MakeDirty(ssize_t UNUSED(i0), ssize_t UNUSED(j0), ssize_t UNUSED(i1), ssize_t UNUSED(j1))
 	{
 	}
+
+	virtual void ReloadTerrain()
+	{
+	}
 };
