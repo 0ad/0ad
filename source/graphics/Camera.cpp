@@ -23,12 +23,15 @@
 #include "precompiled.h"
 
 #include "Camera.h"
+
+#include "graphics/HFTracer.h"
+#include "graphics/Terrain.h"
+#include "lib/ogl.h"
+#include "maths/MathUtil.h"
+#include "ps/Game.h"
+#include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
-#include "HFTracer.h"
-#include "ps/Game.h"
-#include "lib/ogl.h"
-#include "ps/World.h"
 
 CCamera::CCamera ()
 {
@@ -238,6 +241,15 @@ CVector3D CCamera::GetWorldCoordinates( int px, int py, bool aboveWater )
 		CVector3D(0.f, g_Renderer.GetWaterManager()->m_WaterHeight, 0.f));	// passes through water plane
 
 	bool gotWater = plane.FindRayIntersection( origin, dir, &waterPoint );
+
+	// Clamp the water intersection to within the map's bounds, so that
+	// we'll always return a valid position on the map
+	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+	if (gotWater)
+	{
+		waterPoint.X = clamp(waterPoint.X, 0.f, (float)((mapSize-1)*CELL_SIZE));
+		waterPoint.Z = clamp(waterPoint.Z, 0.f, (float)((mapSize-1)*CELL_SIZE));
+	}
 
 	if( gotTerrain )
 	{

@@ -435,7 +435,7 @@ public:
 
 					TerrainTile t = 0;
 
-					bool obstruct = (m_ObstructionGrid->get(i, j) != 0);
+					u8 obstruct = m_ObstructionGrid->get(i, j);
 
 					fixed height = terrain.GetVertexGroundLevelFixed(i, j); // TODO: should use tile centre
 
@@ -447,13 +447,22 @@ public:
 
 					fixed slope = terrain.GetSlopeFixed(i, j);
 
-					if (obstruct)
+					if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED)
 						t |= 1;
 
-					for (size_t n = 0; n < m_PassClasses.size(); ++n)
+					if (obstruct & ICmpObstructionManager::TILE_OUTOFBOUNDS)
 					{
-						if (!m_PassClasses[n].IsPassable(depth, slope))
+						// If out of bounds, nobody is allowed to pass
+						for (size_t n = 0; n < m_PassClasses.size(); ++n)
 							t |= (m_PassClasses[n].m_Mask & ~1);
+					}
+					else
+					{
+						for (size_t n = 0; n < m_PassClasses.size(); ++n)
+						{
+							if (!m_PassClasses[n].IsPassable(depth, slope))
+								t |= (m_PassClasses[n].m_Mask & ~1);
+						}
 					}
 
 					std::string moveClass = terrain.GetMovementClass(i, j);

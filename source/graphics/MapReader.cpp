@@ -44,6 +44,7 @@
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
 #include <boost/algorithm/string/predicate.hpp>
@@ -242,6 +243,10 @@ int CMapReader::ApplyData()
 			pCamera->UpdateFrustum();
 		}
 	}
+
+	CmpPtr<ICmpTerrain> cmpTerrain(*pSimulation2, SYSTEM_ENTITY);
+	if (!cmpTerrain.null())
+		cmpTerrain->ReloadTerrain();
 
 	return 0;
 }

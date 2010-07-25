@@ -81,6 +81,11 @@ public:
 	u32 m_UnitShapeNext; // next allocated id
 	u32 m_StaticShapeNext;
 
+	entity_pos_t m_WorldX0;
+	entity_pos_t m_WorldZ0;
+	entity_pos_t m_WorldX1;
+	entity_pos_t m_WorldZ1;
+
 	static std::string GetSchema()
 	{
 		return "<a:component type='system'/><empty/>";
@@ -95,6 +100,8 @@ public:
 		m_StaticShapeNext = 1;
 
 		m_DirtyID = 1; // init to 1 so default-initialised grids are considered dirty
+
+		m_WorldX0 = m_WorldZ0 = m_WorldX1 = m_WorldZ1 = entity_pos_t::Zero();
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -128,12 +135,21 @@ public:
 		}
 	}
 
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
+	{
+		m_WorldX0 = x0;
+		m_WorldZ0 = z0;
+		m_WorldX1 = x1;
+		m_WorldZ1 = z1;
+		MakeDirty();
+	}
+
 	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_pos_t r, bool moving)
 	{
 		UnitShape shape = { x, z, r, moving };
 		size_t id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
-		MakeDirty();
+		MakeDirtyUnits();
 		return UNIT_INDEX_TO_TAG(id);
 	}
 
@@ -160,6 +176,8 @@ public:
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
 			shape.x = x;
 			shape.z = z;
+
+			MakeDirtyUnits();
 		}
 		else
 		{
@@ -173,9 +191,9 @@ public:
 			shape.z = z;
 			shape.u = u;
 			shape.v = v;
-		}
 
-		MakeDirty();
+			MakeDirty();
+		}
 	}
 
 	virtual void SetUnitMovingFlag(tag_t tag, bool moving)
@@ -186,6 +204,7 @@ public:
 		{
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
 			shape.moving = moving;
+			MakeDirtyUnits();
 		}
 	}
 
@@ -194,11 +213,15 @@ public:
 		debug_assert(TAG_IS_VALID(tag));
 
 		if (TAG_IS_UNIT(tag))
+		{
 			m_UnitShapes.erase(TAG_TO_INDEX(tag));
+			MakeDirtyUnits();
+		}
 		else
+		{
 			m_StaticShapes.erase(TAG_TO_INDEX(tag));
-
-		MakeDirty();
+			MakeDirty();
+		}
 	}
 
 	virtual ObstructionSquare GetObstruction(tag_t tag)
@@ -247,11 +270,21 @@ private:
 	size_t m_DirtyID;
 
 	/**
-	 * Mark all previous Rasterise()d grids as dirty
+	 * Mark all previous Rasterise()d grids as dirty, and the debug display.
+	 * Call this when any static shapes or world bounds have changed.
 	 */
 	void MakeDirty()
 	{
 		++m_DirtyID;
+		m_DebugOverlayDirty = true;
+	}
+
+	/**
+	 * Mark the debug display as dirty.
+	 * Call this when any unit shapes (which don't affect Rasterise) have changed.
+	 */
+	void MakeDirtyUnits()
+	{
 		m_DebugOverlayDirty = true;
 	}
 
@@ -263,6 +296,22 @@ private:
 	{
 		return grid.m_DirtyID < m_DirtyID;
 	}
+
+	/**
+	 * Return whether the given point is within the world bounds by at least r
+	 */
+	bool IsInWorld(entity_pos_t x, entity_pos_t z, entity_pos_t r)
+	{
+		return (m_WorldX0+r <= x && x <= m_WorldX1-r && m_WorldZ0+r <= z && z <= m_WorldZ1-r);
+	}
+
+	/**
+	 * Return whether the given point is within the world bounds
+	 */
+	bool IsInWorld(CFixedVector2D p)
+	{
+		return (m_WorldX0 <= p.X && p.X <= m_WorldX1 && m_WorldZ0 <= p.Y && p.Y <= m_WorldZ1);
+	}
 };
 
 REGISTER_COMPONENT_TYPE(ObstructionManager)
@@ -272,6 +321,10 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 	PROFILE("TestLine");
 
 	// TODO: this is all very inefficient, it should use some kind of spatial data structures
+
+	// Check that both end points are within the world (which means the whole line must be)
+	if (!IsInWorld(x0, z0, r) || !IsInWorld(x1, z1, r))
+		return true;
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
@@ -312,6 +365,13 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 	CFixedVector2D center(x, z);
 	CFixedVector2D halfSize(w/2, h/2);
 
+	// Check that all corners are within the world (which means the whole shape must be)
+	if (!IsInWorld(center + u.Multiply(halfSize.X) + v.Multiply(halfSize.Y)) ||
+		!IsInWorld(center + u.Multiply(halfSize.X) - v.Multiply(halfSize.Y)) ||
+		!IsInWorld(center - u.Multiply(halfSize.X) + v.Multiply(halfSize.Y)) ||
+		!IsInWorld(center - u.Multiply(halfSize.X) - v.Multiply(halfSize.Y)))
+		return true;
+
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
 		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving))
@@ -340,6 +400,10 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r)
 {
 	PROFILE("TestUnitShape");
+
+	// Check that the shape is within the world
+	if (!IsInWorld(x, z, r))
+		return true;
 
 	CFixedVector2D center(x, z);
 
@@ -389,6 +453,8 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 	if (!IsDirty(grid))
 		return false;
 
+	PROFILE("Rasterise");
+
 	grid.m_DirtyID = m_DirtyID;
 
 	// TODO: this is all hopelessly inefficient
@@ -420,9 +486,29 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 				entity_pos_t x, z;
 				TileCenter(i, j, x, z);
 				if (Geometry::PointIsInSquare(CFixedVector2D(x, z) - center, it->second.u, it->second.v, halfSize))
-					grid.set(i, j, 1);
+					grid.set(i, j, TILE_OBSTRUCTED);
 			}
 		}
+	}
+
+	// Any tiles outside or very near the edge of the map are impassable
+	{
+		u16 i0, j0, i1, j1;
+		NearestTile(m_WorldX0, m_WorldZ0, i0, j0, grid.m_W, grid.m_H);
+		NearestTile(m_WorldX1, m_WorldZ1, i1, j1, grid.m_W, grid.m_H);
+
+		for (u16 j = 0; j < grid.m_H; ++j)
+			for (u16 i = 0; i <= i0; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+		for (u16 j = 0; j < grid.m_H; ++j)
+			for (u16 i = i1; i < grid.m_W; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+		for (u16 j = 0; j <= j0; ++j)
+			for (u16 i = i0; i <= i1; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+		for (u16 j = j1; j < grid.m_H; ++j)
+			for (u16 i = i0; i <= i1; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
 	}
 
 	return true;
@@ -504,11 +590,19 @@ void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneColle
 
 	CColor defaultColour(0, 0, 1, 1);
 	CColor movingColour(1, 0, 1, 1);
+	CColor boundsColour(1, 1, 0, 1);
 
 	// If the shapes have changed, then regenerate all the overlays
 	if (m_DebugOverlayDirty)
 	{
 		m_DebugOverlayLines.clear();
+
+		m_DebugOverlayLines.push_back(SOverlayLine());
+		m_DebugOverlayLines.back().m_Color = boundsColour;
+		SimRender::ConstructSquareOnGround(context,
+				(m_WorldX0+m_WorldX1).ToFloat()/2.f, (m_WorldZ0+m_WorldZ1).ToFloat()/2.f,
+				(m_WorldX1-m_WorldX0).ToFloat(), (m_WorldZ1-m_WorldZ0).ToFloat(),
+				0, m_DebugOverlayLines.back(), true);
 
 		for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 		{

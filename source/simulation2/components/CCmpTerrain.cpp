@@ -20,6 +20,7 @@
 #include "simulation2/system/Component.h"
 #include "ICmpTerrain.h"
 
+#include "ICmpObstructionManager.h"
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Terrain.h"
@@ -73,6 +74,17 @@ public:
 	virtual float GetExactGroundLevel(float x, float z)
 	{
 		return m_Terrain->GetExactGroundLevel(x, z);
+	}
+
+	virtual void ReloadTerrain()
+	{
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpObstructionManager.null())
+			return;
+
+		cmpObstructionManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
+				entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
+				entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE));
 	}
 
 	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)

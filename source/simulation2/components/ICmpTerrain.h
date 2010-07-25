@@ -34,6 +34,13 @@ public:
 	virtual float GetExactGroundLevel(float x, float z) = 0;
 
 	/**
+	 * Call when the underlying CTerrain has been modified behind our backs.
+	 * (TODO: eventually we should manage the CTerrain in this class so nobody
+	 * can modify it behind our backs).
+	 */
+	virtual void ReloadTerrain() = 0;
+
+	/**
 	 * Indicate that the terrain within the given region (inclusive lower bound,
 	 * exclusive upper bound) has been changed. CMessageTerrainChanged will be
 	 * sent to any components that care about terrain changes.

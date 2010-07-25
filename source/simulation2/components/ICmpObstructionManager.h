@@ -68,6 +68,13 @@ public:
 	};
 
 	/**
+	 * Set the bounds of the world.
+	 * Any point outside the bounds is considered obstructed.
+	 * @param x0,z0,x1,z1 Coordinates of the corners of the world
+	 */
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) = 0;
+
+	/**
 	 * Register a static shape.
 	 * @param x X coordinate of center, in world space
 	 * @param z Z coordinate of center, in world space
@@ -147,8 +154,18 @@ public:
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
 
 	/**
+	 * Bit-flags for Rasterise.
+	 */
+	enum TileObstruction
+	{
+		TILE_OBSTRUCTED = 1,
+		TILE_OUTOFBOUNDS = 2
+	};
+
+	/**
 	 * Convert the current set of shapes onto a grid.
-	 * Tiles that are partially or completely intersected by a shape will be set to 1;
+	 * Tiles that are partially or completely intersected by a shape will have TILE_OBSTRUCTED set;
+	 * tiles that are outside the world bounds will also have TILE_OUTOFBOUNDS;
 	 * others will be set to 0.
 	 * This is very cheap if the grid has been rasterised before and the set of shapes has not changed.
 	 * @param grid the grid to be updated
