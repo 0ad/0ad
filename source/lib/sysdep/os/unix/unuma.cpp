@@ -31,7 +31,7 @@ size_t numa_NumNodes()
 	return 1;
 }
 
-size_t numa_NodeFromProcessor(size_t processor)
+size_t numa_NodeFromProcessor(size_t UNUSED(processor))
 {
 	return 0;
 }
