@@ -1,4 +1,12 @@
-const resourceIconCellIds = {food : 0, wood : 1, stone : 2, metal : 3};
+const RESOURCE_ICON_CELL_IDS = {food : 0, wood : 1, stone : 2, metal : 3};
+
+// Called by unit selection buttons
+function changePrimarySelectionGroup(entType)
+{
+	g_Selection.groups.setPrimary(g_Selection.groups.getGroupNumber(entType)); // set primary group
+	g_Selection.setPrimary(g_Selection.groups.getGroup(entType).firstOfType); // set primary selection
+	resetCycleIndex();
+}
 
 // Cycle through the units in the main icon
 var cycleIndex = 0;
@@ -9,61 +17,6 @@ function resetCycleIndex()
 	cycleIndex = 0;
 	displayedCycleIndex = 1;
 }
-
-/*
-function cycleThroughSelection(forward) // uses boolean to determine direction (forward or reverse)
-{
-	var selection = g_Selection.toList();
-	
-	if (selection.length > 1)
-	{
-		var primaryTemplateName = g_Selection.getPrimaryTemplateName();
-		var primaryIndex = g_Selection.getPrimary();
-		var startIndex = cycleIndex;
-		var endIndex = selection.length-1;
-
-		if (forward)
-			cycleIndex = ((cycleIndex < endIndex)? cycleIndex+1 : 0);
-		else
-			cycleIndex = ((cycleIndex > 0)? cycleIndex-1 : endIndex);
-
-		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-		if (!entState)
-			return;
-
-		while (cycleIndex != startIndex)
-		{
-			var equivalentTemplateNames;
-			if (g_GroupSelectionByRank)
-				equivalentTemplateNames = templatesEqualWithoutRank(primaryTemplateName, entState.template);
-			else
-				equivalentTemplateNames = (primaryTemplateName == entState.template);
-
-			if ((cycleIndex != primaryIndex) && equivalentTemplateNames)
-			{
-				var typeCount = g_Selection.groups.getGroup(entState.template).typeCount;
-				
-				if (forward)
-					displayedCycleIndex = ((displayedCycleIndex < typeCount)? displayedCycleIndex+1 : 1);
-				else
-					displayedCycleIndex = ((displayedCycleIndex > 1)? displayedCycleIndex-1 : typeCount);
-					
-				g_Selection.setPrimary(cycleIndex);
-				break;
-			}
-
-			if (forward)
-				cycleIndex = ((cycleIndex < endIndex)? cycleIndex+1 : 0);
-			else
-				cycleIndex = ((cycleIndex > 0)? cycleIndex-1 : endIndex);
-
-			entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-			if (!entState)
-				return;
-		}
-	}
-}
-*/
 
 function cycleThroughSelection()
 {
@@ -211,7 +164,7 @@ function displayGeneralInfo(playerState, entState, template)
 		var resourceType = entState.resourceSupply.type["generic"];
 		
 		getGUIObjectByName("sdResourceStats").caption = resources;
-		getGUIObjectByName("sdResourceIcon").cell_id = resourceIconCellIds[resourceType];
+		getGUIObjectByName("sdResourceIcon").cell_id = RESOURCE_ICON_CELL_IDS[resourceType];
 		getGUIObjectByName("sdResources").hidden = false;
 			
 		iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
@@ -269,7 +222,7 @@ function updateSelectionDetails(simState)
 	// Different selection details are shown based on whether multiple units or a single unit is selected
 	if (selection.length > 1)
 	{
-		var selectionGroup = g_Selection.groups.getGroup(entState.template);
+		//var selectionGroup = g_Selection.groups.getGroup(entState.template);
 		var typeCount = g_Selection.groups.getGroup(entState.template).typeCount;
 		getGUIObjectByName("sdSelectionCount").caption = ((typeCount > 1)? displayedCycleIndex + "/" + typeCount : "");
 

@@ -616,10 +616,3 @@ function removeFromTrainingQueue(entity, id)
 {
 	Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
 }
-
-function changePrimarySelectionGroup(entType)
-{
-	g_Selection.groups.setPrimary(g_Selection.groups.getGroupNumber(entType)); // set primary group
-	g_Selection.setPrimary(g_Selection.groups.getGroup(entType).firstOfType); // set primary selection
-	resetCycleIndex();
-}
