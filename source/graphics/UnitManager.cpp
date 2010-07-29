@@ -89,7 +89,7 @@ void CUnitManager::DeleteAll()
 ///////////////////////////////////////////////////////////////////////////////
 // PickUnit: iterate through units testing given ray against bounds of each 
 // unit; return the closest unit, or null if everything missed
-CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, bool entitiesOnly) const
+CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) const
 {
 	// closest object found so far
 	CUnit* hit = 0;

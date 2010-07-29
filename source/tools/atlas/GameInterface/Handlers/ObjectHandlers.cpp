@@ -403,7 +403,7 @@ QUERYHANDLER(PickObject)
 	CVector3D rayorigin, raydir;
 	g_Game->GetView()->GetCamera()->BuildCameraRay((int)x, (int)y, rayorigin, raydir);
 
-	CUnit* target = GetUnitManager().PickUnit(rayorigin, raydir, false);
+	CUnit* target = GetUnitManager().PickUnit(rayorigin, raydir);
 
 	if (target)
 		msg->id = target->GetID();

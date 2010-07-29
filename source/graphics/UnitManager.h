@@ -57,7 +57,7 @@ public:
 	
 	// iterate through units testing given ray against bounds of each unit; 
 	// return the closest unit, or null if everything missed
-	CUnit* PickUnit(const CVector3D& origin, const CVector3D& dir, bool entitiesOnly) const;
+	CUnit* PickUnit(const CVector3D& origin, const CVector3D& dir) const;
 
 	void SetObjectManager(CObjectManager& objectManager) { m_ObjectManager = &objectManager; }
 

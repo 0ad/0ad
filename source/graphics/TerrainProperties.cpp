@@ -90,7 +90,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 	return CTerrainPropertiesPtr();
 }
 
-void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPath& pathname)
+void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPath& UNUSED(pathname))
 {
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)

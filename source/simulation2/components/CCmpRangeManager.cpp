@@ -93,6 +93,9 @@ struct EntityDistanceOrdering
 
 	const CSimContext& context;
 	CFixedVector2D source;
+
+private:
+	EntityDistanceOrdering& operator=(const EntityDistanceOrdering&);
 };
 
 /**
@@ -476,7 +479,7 @@ private:
 
 		CColor enabledRingColour(0, 1, 0, 1);
 		CColor disabledRingColour(1, 0, 0, 1);
-		CColor rayColour(1, 1, 0, 0.2);
+		CColor rayColour(1, 1, 0, 0.2f);
 
 		if (m_DebugOverlayDirty)
 		{

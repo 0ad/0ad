@@ -243,7 +243,7 @@ const char* ogl_HaveExtensions(int dummy, ...)
 
 // to help when running with no hardware acceleration and only OpenGL 1.1
 // (e.g. testing the game in virtual machines), we define dummy versions of
-// some extension functions which our graphics code assume exist.
+// some extension functions which our graphics code assumes exist.
 // it will render incorrectly but at least it shouldn't crash.
 
 static void GL_CALL_CONV dummy_glDrawRangeElementsEXT(GLenum mode, GLuint, GLuint, GLsizei count, GLenum type, GLvoid* indices)
