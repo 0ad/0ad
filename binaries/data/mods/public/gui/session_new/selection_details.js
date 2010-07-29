@@ -30,12 +30,13 @@ function cycleThroughSelection()
 		var endIndex = selection.length-1;
 
 		cycleIndex = ((cycleIndex < endIndex)? cycleIndex+1 : 0);
-		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-		if (!entState)
-			return;
 
 		while (cycleIndex != startIndex)
 		{
+			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
+			if (!entState)
+				return;
+		
 			var equivalentTemplateNames;
 			if (g_GroupSelectionByRank)
 				equivalentTemplateNames = templatesEqualWithoutRank(primaryTemplateName, entState.template);
@@ -51,9 +52,6 @@ function cycleThroughSelection()
 			}
 
 			cycleIndex = ((cycleIndex < endIndex)? cycleIndex+1 : 0);
-			entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-			if (!entState)
-				return;
 		}
 	}
 }
@@ -70,12 +68,13 @@ function reverseCycleThroughSelection()
 		var endIndex = selection.length-1;
 
 		cycleIndex = ((cycleIndex > 0)? cycleIndex-1 : endIndex);
-		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-		if (!entState)
-			return;
 
 		while (cycleIndex != startIndex)
 		{
+			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
+			if (!entState)
+				return;
+				
 			var equivalentTemplateNames;
 			if (g_GroupSelectionByRank)
 				equivalentTemplateNames = templatesEqualWithoutRank(primaryTemplateName, entState.template);
@@ -91,9 +90,6 @@ function reverseCycleThroughSelection()
 			}
 
 			cycleIndex = ((cycleIndex > 0)? cycleIndex-1 : endIndex);
-			entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-			if (!entState)
-				return;
 		}
 	}
 }
@@ -222,7 +218,6 @@ function updateSelectionDetails(simState)
 	// Different selection details are shown based on whether multiple units or a single unit is selected
 	if (selection.length > 1)
 	{
-		//var selectionGroup = g_Selection.groups.getGroup(entState.template);
 		var typeCount = g_Selection.groups.getGroup(entState.template).typeCount;
 		getGUIObjectByName("sdSelectionCount").caption = ((typeCount > 1)? displayedCycleIndex + "/" + typeCount : "");
 
