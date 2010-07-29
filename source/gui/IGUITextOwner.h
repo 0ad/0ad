@@ -82,6 +82,7 @@ public:
 	 * Draws the Text.
 	 *
 	 * @param index Index value of text. Mostly this will be 0
+	 * @param color
 	 * @param pos Position
 	 * @param z Z value
 	 * @param clipping Clipping rectangle, don't even add a parameter

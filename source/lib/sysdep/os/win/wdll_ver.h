@@ -28,14 +28,15 @@
 #define INCLUDED_WDLL_VER
 
 /**
- * read DLL version information and append it to a string.
+ * Read DLL version information and append it to a string.
  *
  * @param pathname of DLL (preferably the complete path, so that we don't
- * inadvertently load another one on the library search path.)
- * if no extension is given, .dll will be appended.
+ *		  inadvertently load another one on the library search path.)
+ *		  If no extension is given, .dll will be appended.
+ * @param list
  *
- * the text output includes the module name.
- * on failure, the version is given as "unknown".
+ * The text output includes the module name.
+ * On failure, the version is given as "unknown".
  **/
 extern void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list);
 

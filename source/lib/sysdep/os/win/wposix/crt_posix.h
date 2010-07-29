@@ -26,7 +26,7 @@
  * but must prevent POSIX functions (e.g. open) from being declared -
  * they would conflict with our wrapper function.
  *
- * since the headers only declare POSIX stuff #if !__STDC__, a solution
+ * since the headers only declare POSIX stuff \#if !__STDC__, a solution
  * would be to set this flag temporarily. note that MSDN says that
  * such predefined macros cannot be redefined nor may they change during
  * compilation, but this works and seems to be a fairly common practice.

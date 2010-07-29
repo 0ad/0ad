@@ -162,7 +162,7 @@ size_t CFileUnpacker::UnpackSize()
 }
 
 
-void CFileUnpacker::UnpackString(CStr& result)
+void CFileUnpacker::UnpackString(CStr8& result)
 {
 	const size_t length = UnpackSize();
 

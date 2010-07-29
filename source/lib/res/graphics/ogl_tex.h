@@ -216,6 +216,8 @@ extern void ogl_tex_set_defaults(int q_flags, GLint filter);
 /**
 * Load and return a handle to the texture.
 *
+* @param vfs
+* @param pathname
 * @param flags h_alloc flags.
 * @return Handle to texture or negative LibError
 * for a list of supported formats, see tex.h's tex_load.
@@ -226,7 +228,7 @@ extern Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t fla
 * Find and return an existing texture object, if it has already been
 * loaded and is still in memory.
 *
-* @param fn VFS filename of texture.
+* @param pathname fn VFS filename of texture.
 * @return Handle to texture or negative LibError
 */
 extern Handle ogl_tex_find(const VfsPath& pathname);
@@ -237,9 +239,11 @@ extern Handle ogl_tex_find(const VfsPath& pathname);
 * had been loaded by ogl_tex_load.
 *
 * @param t Texture object.
-* @param fn filename or description of texture. not strictly needed,
+* @param vfs
+* @param pathname filename or description of texture. not strictly needed,
 *        but would allow h_filename to return meaningful info for
 *        purposes of debugging.
+* @param flags
 * @return Handle to texture or negative LibError
 *
 * note: because we cannot guarantee that callers will pass distinct
@@ -272,6 +276,7 @@ extern LibError ogl_tex_free(Handle& ht);
 * Override default filter (see {@link #ogl_tex_set_defaults}) for
 * this texture.
 *
+* @param ht Texture handle
 * @param filter OpenGL minification and magnification filter
 *        (rationale: see {@link OglTexState})
 * @return LibError
@@ -283,6 +288,7 @@ extern LibError ogl_tex_set_filter(Handle ht, GLint filter);
 /**
 * Override default wrap mode (GL_REPEAT) for this texture.
 *
+* @param ht Texture handle
 * @param wrap OpenGL wrap mode (for both S and T coordinates)
 *        (rationale: see {@link OglTexState})
 * @return LibError
@@ -312,26 +318,26 @@ enum OglTexAllow
 * Override the default decision and force/disallow use of the
 * given feature. Typically called from ah_override_gl_upload_caps.
 *
-* @param what feature to influence
-* @param allow disable/enable flag
+* @param what Feature to influence.
+* @param allow Disable/enable flag.
 */
 extern void ogl_tex_override(OglTexOverrides what, OglTexAllow allow);
 
 /**
 * Upload texture to OpenGL.
 *
+* @param ht Texture handle
 * @param fmt_ovr optional override for OpenGL format (e.g. GL_RGB),
 *        which is decided from bpp / Tex flags
 * @param q_flags_ovr optional override for global default
 *        OglTexQualityFlags
 * @param int_fmt_ovr optional override for OpenGL internal format
 *        (e.g. GL_RGB8), which is decided from fmt / q_flags.
-* @return LibError
+* @return LibError.
+*
 * Side Effects:
-* <UL>
-*   <LI>enables texturing on TMU 0 and binds the texture to it;
-*   <LI>frees the texel data! see ogl_tex_get_data.
-* </UL>
+* - enables texturing on TMU 0 and binds the texture to it;
+* - frees the texel data! see ogl_tex_get_data.
 */
 extern LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, int q_flags_ovr = 0, GLint int_fmt_ovr = 0);
 
@@ -404,8 +410,8 @@ extern LibError ogl_tex_bind(Handle ht, size_t unit = 0);
 /**
 * (partially) Transform pixel format of the texture.
 *
-* @param ht Texture handle
-* @param flags the TexFlags that are to be <em>changed</em>
+* @param ht Texture handle.
+* @param flags the TexFlags that are to be @em changed.
 * @return LibError
 * @see tex_transform
 *
@@ -416,8 +422,8 @@ extern LibError ogl_tex_transform(Handle ht, size_t flags);
 /**
 * Transform pixel format of the texture.
 *
-* @param ht Texture handle
-* @param flags desired new TexFlags indicating pixel format.
+* @param ht Texture handle.
+* @param new_flags Flags desired new TexFlags indicating pixel format.
 * @return LibError
 * @see tex_transform
 *
@@ -431,7 +437,7 @@ extern LibError ogl_tex_transform_to(Handle ht, size_t new_flags);
  * Return whether native S3TC texture compression support is available.
  * If not, textures will be decompressed automatically, hurting performance.
  *
- * @return true if native S3TC supported
+ * @return true if native S3TC supported.
  *
  * ogl_tex_upload must be called at least once before this.
  */

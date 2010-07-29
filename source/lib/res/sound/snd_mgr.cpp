@@ -899,12 +899,14 @@ static LibError SndData_to_string(const SndData* sd, wchar_t* buf)
 
 
 /**
- * open and return a handle to a sound file's data.
+ * Open and return a handle to a sound file's data.
  *
+ * @param vfs
+ * @param pathname
  * @param is_stream (default false) indicates whether this file should be
- * streamed in (opening is faster, it won't be kept in memory, but
- * only one instance can be open at a time; makes sense for large music files)
- * or loaded immediately.
+ *		  streamed in (opening is faster, it won't be kept in memory, but
+ *		  only one instance can be open at a time; makes sense for large music files)
+ *		  or loaded immediately.
  * @return Handle or LibError on failure
  */
 static Handle snd_data_load(const PIVFS& vfs, const VfsPath& pathname, bool is_stream)
@@ -913,7 +915,6 @@ static Handle snd_data_load(const PIVFS& vfs, const VfsPath& pathname, bool is_s
 
 	return h_alloc(H_SndData, vfs, pathname);
 }
-
 
 
 /**
@@ -1160,7 +1161,7 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 /**
  * Is the fade operation currently active?
  *
- * @param FadeInfo
+ * @param fi FadeInfo.
  * @return bool
  */
 static bool fade_is_active(FadeInfo& fi)
@@ -1327,9 +1328,10 @@ static LibError VSrc_to_string(const VSrc* vs, wchar_t* buf)
 
 
 /**
- * open and return a handle to a sound instance.
+ * Open and return a handle to a sound instance.
  *
- * @param pathname. if a text file (extension ".txt"),
+ * @param vfs 
+ * @param pathname If a text file (extension ".txt"),
  * it is assumed to be a definition file containing the
  * sound file name and its gain (0.0 .. 1.0).
  * otherwise, it is taken to be the sound file name and
@@ -1482,13 +1484,11 @@ static LibError list_free_all()
 }
 
 
-//-----------------------------------------------------------------------------
-
 /**
  * Send the VSrc properties to OpenAL (when we actually have a source).
  * called by snd_set * and vsrc_grant.
  *
- * @param VSrc*
+ * @param vs VSrc*
  */
 static void vsrc_latch(VSrc* vs)
 {
@@ -1551,7 +1551,7 @@ static void vsrc_latch(VSrc* vs)
 /**
  * Dequeue any of the VSrc's sound buffers that are finished playing.
  *
- * @param VSrc*
+ * @param vs VSrc*
  * @return int number of entries that were removed.
  */
 static int vsrc_deque_finished_bufs(VSrc* vs)
@@ -1585,7 +1585,7 @@ static double snd_update_time;
  * Update the VSrc - perform fade (if active), queue/unqueue buffers.
  * Called once a frame.
  *
- * @param VSrc*
+ * @param vs VSrc*
  * @return LibError
  */
 static LibError vsrc_update(VSrc* vs)
@@ -1645,7 +1645,7 @@ static LibError vsrc_update(VSrc* vs)
  * Try to give the VSrc an AL source so that it can (re)start playing.
  * called by snd_play and voice management.
  *
- * @param VSrc*
+ * @param vs VSrc*
  * @return LibError (ERR::FAIL if no AL source is available)
  */
 static LibError vsrc_grant(VSrc* vs)
@@ -1678,7 +1678,7 @@ static LibError vsrc_grant(VSrc* vs)
  * called when closing the VSrc, or when voice management decides
  * this VSrc must yield to others of higher priority.
  *
- * @param VSrc*
+ * @param vs VSrc*
  * @return LibError
  */
 static LibError vsrc_reclaim(VSrc* vs)
@@ -1762,7 +1762,7 @@ LibError snd_play(Handle hvs, float static_pri)
  *
  * @param hvs Handle to VSrc
  * @param x,y,z coordinates (interpretation: see below)
- * @param relative if true, (x,y,z) is treated as relative to the listener;
+ * @param relative If true, (x,y,z) is treated as relative to the listener;
  * otherwise, it is the position in world coordinates (default).
  * @return LibError
  */
@@ -1848,8 +1848,8 @@ LibError snd_set_pitch(Handle hvs, float pitch)
  * - once looping is again disabled and the sound has reached its end,
  *   the sound instance is freed automatically (as if never looped).
  *
- * @param hvs Handle to VSrc
- * @param bool loop
+ * @param hvs Handle to VSrc.
+ * @param loop Boolean to enable/disable looping on the sound source.
  * @return LibError
  */
 LibError snd_set_loop(Handle hvs, bool loop)
@@ -1865,8 +1865,8 @@ LibError snd_set_loop(Handle hvs, bool loop)
 
 /**
  * Fade the sound source in or out over time.
- * Its gain starts at <initial_gain> immediately and is moved toward
- * <final_gain> over <length> seconds.
+ * Its gain starts at \<initial_gain\> immediately and is moved toward
+ * \<final_gain\> over \<length\> seconds.
  *
  * may be called at any time; fails with invalid handle return if
  * the sound has already been closed (e.g. it never played).
@@ -1927,7 +1927,7 @@ LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
  * @return bool true if playing
 
 **/
-bool is_playing(Handle hvs)
+bool snd_is_playing(Handle hvs)
 {
 	// (can't use H_DEREF due to bool return value)
 	VSrc* vs = H_USER_DATA(hvs, VSrc);
@@ -1954,13 +1954,12 @@ static float magnitude_2(const float v[3])
 	return v[0]*v[0] + v[1]*v[1] + v[2]*v[2];
 }
 
-
 /**
- * determine new priority of the VSrc based on distance to listener and
+ * Determine new priority of the VSrc based on distance to listener and
  * static priority.
- * called via list_foreach.
+ * Called via list_foreach.
  *
- * @param VSrc*
+ * @param vs VSrc*
  */
 static void calc_cur_pri(VSrc* vs)
 {

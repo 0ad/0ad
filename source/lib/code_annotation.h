@@ -124,13 +124,13 @@ switch(x % 2)
 #define UID2__ PASTE3__(LINE_, __LINE__, _2)
 
 /**
- * compile-time debug_assert. causes a compile error if the expression
+ * Compile-time debug_assert. Causes a compile error if the expression
  * evaluates to zero/false.
  *
- * no runtime overhead; may be used anywhere, including file scope.
- * especially useful for testing sizeof types.
+ * No runtime overhead; may be used anywhere, including file scope.
+ * Especially useful for testing sizeof types.
  *
- * @param expression that is expected to evaluate to non-zero at compile-time.
+ * @param expr Expression that is expected to evaluate to non-zero at compile-time.
  **/
 #define cassert(expr) typedef static_assert_<(expr)>::type UID__
 template<bool> struct static_assert_;
@@ -140,16 +140,10 @@ template<> struct static_assert_<true>
 };
 
 /**
- * compile-time debug_assert. causes a compile error if the expression
- * evaluates to zero/false.
+ * @copydoc cassert(expr)
  *
- * no runtime overhead; may be used anywhere, including file scope.
- * especially useful for testing sizeof types.
- *
- * this version has a less helpful error message, but redefinition doesn't
+ * This version has a less helpful error message, but redefinition doesn't
  * trigger warnings.
- *
- * @param expression that is expected to evaluate to non-zero at compile-time.
  **/
 #define cassert2(expr) extern u8 CASSERT_FAILURE[1][(expr)]
 

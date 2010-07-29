@@ -111,7 +111,7 @@ protected:
 	virtual void SelectLastElement();
 
 	/**
-	 * Handle the <item> tag.
+	 * Handle the \<item\> tag.
 	 */
 	virtual bool HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile);
 

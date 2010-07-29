@@ -422,8 +422,10 @@ public:
 
 private:
 	/**
-	 * scan buffer for a Zip file record.
+	 * Scan buffer for a Zip file record.
 	 *
+	 * @param buf
+	 * @param size
 	 * @param start position within buffer
 	 * @param magic signature of record
 	 * @param recordSize size of record (including signature)

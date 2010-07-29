@@ -82,8 +82,7 @@ public:
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderTerrain.
 	 *
-	 * @param shadow a prepared shadow map, in case rendering with shadows is enabled
-	 * @param shadowColor color of shadows
+	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
 	 */
 	void RenderTerrain(ShadowMap* shadow);
 

@@ -28,7 +28,7 @@
 #define INCLUDED_BITS
 
 /**
- * value of bit number <n>.
+ * value of bit number \<n\>.
  *
  * @param n bit index.
  *
@@ -44,12 +44,11 @@ T Bit(size_t n)
 }
 
 /**
- * pretty much the same as Bit<unsigned>.
+ * pretty much the same as Bit\<unsigned\>.
  * this is intended for the initialization of enum values, where a
  * compile-time constant is required.
  **/
 #define BIT(n) (1u << (n))
-
 
 template<typename T>
 bool IsBitSet(T value, size_t index)
@@ -67,7 +66,7 @@ bool IsBitSet(T value, size_t index)
 /**
  * a mask that includes the lowest N bits
  *
- * @param num_bits number of bits in mask
+ * @param numBits Number of bits in mask.
  **/
 template<typename T>
 T bit_mask(size_t numBits)
@@ -162,7 +161,7 @@ size_t ceil_log2(T x)
  * floor(log2(f))
  * fast, uses the FPU normalization hardware.
  *
- * @param f (float) input; MUST be > 0, else results are undefined.
+ * @param x (float) input; MUST be > 0, else results are undefined.
  * @return floor of the base-2 logarithm (i.e. rounded down).
  **/
 extern int floor_log2(const float x);
@@ -179,7 +178,8 @@ T round_up_to_pow2(T x)
 /**
  * round number up/down to the next given multiple.
  *
- * @param multiple: must be a power of two.
+ * @param n Number to round.
+ * @param multiple Must be a power of two.
  **/
 template<typename T>
 T round_up(T n, T multiple)

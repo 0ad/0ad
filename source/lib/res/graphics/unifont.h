@@ -35,8 +35,10 @@
 /**
  * Load a font.
  *
+ * @param vfs
  * @param pathname path and basename of the font definition file
- * (.fnt) and its texture (.png)
+ *		  (.fnt) and its texture (.png)
+ * @param flags
  **/
 extern Handle unifont_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0);
 
@@ -69,16 +71,20 @@ extern LibError unifont_bind(Handle h);
 extern void glwprintf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
 /**
- * varargs version of glwprintf.
+ * Varargs version of glwprintf.
  *
- * @param fmt, args - see vfprintf
+ * @param fmt
+ * @param args
+ * @see vfprintf
  **/
 extern void glvwprintf(const wchar_t* fmt, va_list args) VWPRINTF_ARGS(1);
 
 /**
  * Determine pixel extents of a string.
  *
+ * @param h
  * @param text string in question.
+ * @param width
  * @param height is roughly the pixel height of a capital letter, for use
  * when aligning text in an aesthetically pleasing way.
  *

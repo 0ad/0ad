@@ -59,25 +59,29 @@ enum DirFlags
 /**
  * call back for each file in a directory tree
  *
- * @param cb see DirCallback
+ * @param fs
+ * @param path
+ * @param cb See DirCallback
+ * @param cbData
  * @param pattern that file names must match. '*' and '&' wildcards
- * are allowed. 0 matches everything.
- * @param flags see DirFlags
- * @param LibError
+ *		  are allowed. 0 matches everything.
+ * @param flags @ref DirFlags
+ * @return LibError
  **/
 extern LibError ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const wchar_t* pattern = 0, size_t flags = 0);
 
 
 /**
- * determine the next available pathname with a given format.
- * this is useful when creating new files without overwriting the previous
+ * Determine the next available pathname with a given format.
+ * This is useful when creating new files without overwriting the previous
  * ones (screenshots are a good example).
  *
- * @param pathnameFormat format string for the pathname; must contain one
- * format specifier for an integer.
- * example: "screenshots/screenshot%04d.png"
+ * @param fs
+ * @param pathnameFormat Format string for the pathname; must contain one
+ *		  format specifier for an integer.
+ *		  Example: "screenshots/screenshot%04d.png"
  * @param nextNumber in: the first number to try; out: the next number.
- * if 0, numbers corresponding to existing files are skipped.
+ *		  If 0, numbers corresponding to existing files are skipped.
  * @param nextPathname receives the output.
  **/
 extern void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname);

@@ -95,7 +95,9 @@ static bool IsCppException(const EXCEPTION_RECORD* er)
 }
 
 /**
- * @param er an exception record for which IsCppException returned true.
+ * @param er An exception record for which IsCppException returned true.
+ * @param description
+ * @param maxChars
  **/
 static const wchar_t* GetCppExceptionDescription(const EXCEPTION_RECORD* er,
 	wchar_t* description, size_t maxChars)

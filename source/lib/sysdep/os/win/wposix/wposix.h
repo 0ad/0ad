@@ -39,9 +39,9 @@
  * so we want those functions (e.g. _read) to be declared correctly even
  * if switching compiler/CRT version.
  *
- * how can these conflicting requirements be reconciled? our headers #include
- * "no_crt_posix.h" to #define the CRT headers' include guards and thus
- * prevent them from declaring anything. the implementation files #include
+ * how can these conflicting requirements be reconciled? our headers \#include
+ * "no_crt_posix.h" to \#define the CRT headers' include guards and thus
+ * prevent them from declaring anything. the implementation files \#include
  * "crt_posix.h", which pulls in the CRT headers (even if "no_crt_posix.h"
  * was previously included, e.g. in the PCH). note that the CRT headers
  * would still cause conflicts with the POSIX function declarations,

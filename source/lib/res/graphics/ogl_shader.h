@@ -54,8 +54,9 @@ extensions are available, or all bets are off.
 /**
  * Create, load and compile a shader object.
  *
- * @param pathname location of the file containing the shader's source code.
- * @param type e.g. GL_VERTEX_SHADER_ARB.
+ * @param vfs
+ * @param pathname Location of the file containing the shader's source code.
+ * @param type Type e.g. GL_VERTEX_SHADER_ARB.
  **/
 Handle ogl_shader_load(const PIVFS& vfs, const VfsPath& pathname, GLenum type);
 
@@ -78,6 +79,7 @@ Encapsulate program objects into handles.
 /**
  * Load a program object.
  *
+ * @param vfs
  * @param pathname XML file describing the program.
  *
  * note: Shader objects are loaded and attached automatically.

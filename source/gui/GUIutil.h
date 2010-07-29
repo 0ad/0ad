@@ -140,7 +140,7 @@ public:
 	/**
 	 * Retrieves a setting by settings name and object name
 	 *
-	 * @param GUI GUI Object const ref
+	 * @param GUIinstance GUI Object const ref
 	 * @param Object Object name
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
@@ -165,10 +165,11 @@ public:
 	 * This is just a wrapper so that we can type the object name
 	 *  and not input the actual pointer.
 	 *
-	 * @param GUI GUI Object, reference since we'll be changing values
+	 * @param GUIinstance GUI Object, reference since we'll be changing values
 	 * @param Object Object name
 	 * @param Setting Setting by name
 	 * @param Value Sets value to this, note type T!
+	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
 	 */
 	static PSRETURN SetSetting(
 		CGUI &GUIinstance, const CStr& Object, 

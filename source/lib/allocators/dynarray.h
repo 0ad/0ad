@@ -69,7 +69,7 @@ LIB_API LibError da_alloc(DynArray* da, size_t max_size);
  *
  * use-after-free is impossible because the memory is unmapped.
  *
- * @param DynArray* da; zeroed afterwards.
+ * @param da DynArray* zeroed afterwards.
  * @return LibError
  **/
 LIB_API LibError da_free(DynArray* da);
@@ -86,10 +86,10 @@ LIB_API LibError da_free(DynArray* da);
 LIB_API LibError da_set_size(DynArray* da, size_t new_size);
 
 /**
- * Make sure at least <size> bytes starting at da->pos are committed and
+ * Make sure at least \<size\> bytes starting at da->pos are committed and
  * ready for use.
  *
- * @param DynArray*
+ * @param da DynArray*
  * @param size Minimum amount to guarantee [bytes]
  * @return LibError
  **/

@@ -130,7 +130,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 {
 	if(m_Intensity >= m_IntensityThreshold && !DISABLE_INTENSITY)
 	{
-		if(!is_playing(m_hReplacement))
+		if(!snd_is_playing(m_hReplacement))
 		{
 			// load up replacement file
 			const VfsPath pathname(m_filepath/m_intensity_file);
@@ -203,12 +203,12 @@ void CSoundGroup::ReleaseGroup()
 {
 	for(size_t i = m_index; i<snd_group.size(); i++)
 	{
-		//if(!is_playing(snd_group[i]))	
+		//if(!snd_is_playing(snd_group[i]))
 			snd_free(snd_group[i]);
 	}
 	snd_group.clear();
 	playtimes.clear();
-	//if(is_playing(m_hReplacement))
+	//if(snd_is_playing(m_hReplacement))
 	//	snd_free(m_hReplacement);
 	m_index = 0;
 

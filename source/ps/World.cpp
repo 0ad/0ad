@@ -52,7 +52,7 @@ CLightEnv g_LightEnv;
 /**
  * Constructor.
  *
- * @param CGame * pGame pointer to the container game object.
+ * @param pGame CGame * pGame pointer to the container game object.
  **/
 CWorld::CWorld(CGame *pGame):
 	m_pGame(pGame),

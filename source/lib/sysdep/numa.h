@@ -32,12 +32,14 @@
 LIB_API size_t numa_NumNodes();
 
 /**
- * @return node number (zero-based) to which <processor> belongs.
+ * @param processor
+ * @return node number (zero-based) to which \<processor\> belongs.
  **/
 LIB_API size_t numa_NodeFromProcessor(size_t processor);
 
 /**
- * @return bit-mask of all processors constituting <node>.
+ * @param node
+ * @return bit-mask of all processors constituting \<node\>.
  **/
 LIB_API uintptr_t numa_ProcessorMaskFromNode(size_t node);
 
@@ -47,7 +49,8 @@ LIB_API uintptr_t numa_ProcessorMaskFromNode(size_t node);
 
 
 /**
- * @return bytes of memory available for allocation on <node>.
+ * @param node
+ * @return bytes of memory available for allocation on \<node\>.
  **/
 LIB_API size_t numa_AvailableMemory(size_t node);
 

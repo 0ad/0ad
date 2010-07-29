@@ -148,7 +148,7 @@ public:
 	/**
 	 * Set the simulation scale multiplier.
 	 *
-	 * @param float simRate value to set m_SimRate to.
+	 * @param simRate Float value to set m_SimRate to.
 	 *						Because m_SimRate is also used to
 	 *						scale TimeSinceLastFrame it must be
 	 *						clamped to 0.0f.

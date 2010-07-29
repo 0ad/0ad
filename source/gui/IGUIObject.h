@@ -256,21 +256,15 @@ public:
 	void CheckSettingsValidity();
 
 	/**
-	 * Sets up a map_size_t to include the variables in m_BaseSettings
-	 *
-	 * @param SettingsInfo Pointers that should be filled with base variables
-	 */
-	//void SetupBaseSettingsInfo(map_Settings &SettingsInfo);
-
-	/**
 	 * Set a setting by string, regardless of what type it is.
 	 *
 	 * example a CRect(10,10,20,20) would be "10 10 20 20"
 	 *
 	 * @param Setting Setting by name
 	 * @param Value Value to set to
+	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
 	 *
-	 * @return PSERROR (PSRETURN_OK if successful)
+	 * @return PSRETURN (PSRETURN_OK if successful)
 	 */
 	PSRETURN SetSetting(const CStr& Setting, const CStrW& Value, const bool& SkipMessage=false);
 
@@ -414,19 +408,6 @@ protected:
 	IGUIObject *GetParent() const;
 
 	/**
-	 * Same as reference, but returns a const
-	 */
-//	IGUIObject const *GetParent() const;
-
-	/**
-	 * You input the setting struct you want, and it will return a pointer to
-	 * the struct.
-	 *
-	 * @param SettingsStruct tells us which pointer ot return
-	 */
-	//virtual void *GetStructPointer(const EGUISettingsStruct &SettingsStruct) const;
-
-	/**
 	 * Get Mouse from CGUI.
 	 */
 	CPos GetMousePos() const;
@@ -500,7 +481,7 @@ private:
 	 *
 	 * @return the error result
 	 */
-	PSRETURN LogInvalidSettings(const CStr& Setting) const;
+	PSRETURN LogInvalidSettings(const CStr8& Setting) const;
 
 	// Variables
 

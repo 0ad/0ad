@@ -120,7 +120,7 @@ struct SGUIImage
 
 /**
  * The GUI sprite, is actually several real sprites (images)
- * like a collage. View the section <sprites> in the GUI
+ * like a collage. View the section \<sprites\> in the GUI
  * TDD for more information.
  *
  * Drawing routine is located in CGUI

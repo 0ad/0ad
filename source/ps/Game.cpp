@@ -190,8 +190,8 @@ void CGame::StartGame(const CScriptValRooted& attribs)
  * Periodic heartbeat that controls the process.
  * Simulation update is called and game status update is called.
  *
- * @param double deltaTime elapsed time since last beat in seconds.
- * @param bool doInterpolate perform interpolation if true.
+ * @param deltaTime Double. Elapsed time since last beat in seconds.
+ * @param doInterpolate Bool. Perform interpolation if true.
  * @return bool false if it can't keep up with the desired simulation rate
  *	indicating that you might want to render less frequently.
  **/

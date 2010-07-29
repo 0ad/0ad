@@ -57,8 +57,8 @@ namespace JSI_Vector3D
 		Vector3D_Info( float x, float y, float z );
 		Vector3D_Info( const CVector3D& copy );
 		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner );
-		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void (IPropertyOwner::*_updateFn)() );
-		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void (IPropertyOwner::*_updateFn)(), void (IPropertyOwner::*_freshenFn)() );
+		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void (IPropertyOwner::*_updateFn)(void) );
+		Vector3D_Info( CVector3D* attach, IPropertyOwner* _owner, void (IPropertyOwner::*_updateFn)(void), void (IPropertyOwner::*_freshenFn)(void) );
 		~Vector3D_Info();
 	};
 	extern JSClass JSI_class;

@@ -291,11 +291,10 @@ public:
 	 * @param from From character n,
 	 * @param to to character n.
 	 * @param FirstLine Whether this is the first line of text, to calculate its height correctly
-	 * 
-	 * pObject Only for Error outputting, optional! If NULL
-	 * then no Errors will be reported! Useful when you need
-	 * to make several GenerateTextCall in different phases,
-	 * it avoids duplicates.
+	 * @param pObject Only for Error outputting, optional! If NULL
+	 *		  then no Errors will be reported! Useful when you need
+	 *		  to make several GenerateTextCall in different phases,
+	 *		  it avoids duplicates.
 	 */
 	void GenerateTextCall(SFeedback &Feedback,
 						  const CStr& DefaultFont,

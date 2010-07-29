@@ -24,8 +24,8 @@
  * see rationale in wposix.h.
  * prevent subsequent includes of CRT headers (e.g. <io.h>) from
  * interfering with previous declarations made by wposix headers (e.g. open).
- * this is accomplished by #defining their include guards.
- * note: #include "crt_posix.h" can undo the effects of this header and
+ * this is accomplished by \#defining their include guards.
+ * note: \#include "crt_posix.h" can undo the effects of this header and
  * pull in those headers.
  **/
 

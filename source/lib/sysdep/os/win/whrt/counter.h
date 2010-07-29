@@ -75,7 +75,7 @@ public:
 
 
 /**
- * @return a newly created ICounter of type <id> or 0 iff the ID is invalid.
+ * @return a newly created ICounter of type \<id\> or 0 iff the ID is invalid.
  * @param id integer ID (0..N-1)
  *
  * there can only be one active counter at a time; the previous one must

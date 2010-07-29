@@ -162,8 +162,9 @@ extern int tex_codec_register(TexCodecVTbl* c);
 
 
 /**
- * find codec that recognizes the desired output file extension.
+ * Find codec that recognizes the desired output file extension.
  *
+ * @param extension
  * @param c (out) vtbl of responsible codec
  * @return LibError; ERR::RES_UNKNOWN_FORMAT (without warning, because this is
  * called by tex_is_known_extension) if no codec indicates they can

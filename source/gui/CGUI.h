@@ -155,6 +155,7 @@ public:
 	 * @param DefaultColor Color used if no tag applied.
 	 * @param pos position
 	 * @param z z value.
+	 * @param clipping
 	 */
 	void DrawText(SGUIText &Text, const CColor &DefaultColor, 
 				  const CPos &pos, const float &z, const CRect &clipping);
@@ -242,10 +243,8 @@ public:
 	 *		  can be changed by tags.
 	 * @param Width Width, 0 if no word-wrapping.
 	 * @param BufferZone space between text and edge, and space between text and images.
-	 *
-	 * pObject is *only* if error parsing fails, and we need to be able to output
-	 * which object the error occured in to aid the user. The parameter is completely
-	 * optional.
+	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails, 
+	 *		  and we need to be able to output which object the error occured in to aid the user. 
 	 */
 	SGUIText GenerateText(const CGUIString &Text, const CStr& Font, 
 						  const float &Width, const float &BufferZone,
@@ -370,6 +369,7 @@ private:
 	 * @param Element	The Xeromyces object that represents
 	 *					the objects-tag.
 	 * @param pFile		The Xeromyces object for the file being read
+	 * @param Paths		Collects the set of all XML/JS files that are loaded
 	 *
 	 * @see LoadXmlFile()
 	 */
@@ -448,6 +448,7 @@ private:
 	 * @param Element	The Xeromyces object that represents
 	 *					the script-tag.
 	 * @param pFile		The Xeromyces object for the file being read
+	 * @param Paths		Output set of file paths that this script is loaded from.
 	 *
 	 * @see LoadXmlFile()
 	 */

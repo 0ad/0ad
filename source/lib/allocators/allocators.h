@@ -58,8 +58,8 @@ LIB_API void* page_aligned_alloc(size_t unaligned_size);
 /**
  * free a previously allocated page-aligned region.
  *
- * @param p exact value returned from page_aligned_alloc
- * @param size exact value passed to page_aligned_alloc
+ * @param p Exact value returned from page_aligned_alloc
+ * @param unaligned_size Exact value passed to page_aligned_alloc
  **/
 LIB_API void page_aligned_free(void* p, size_t unaligned_size);
 
@@ -133,7 +133,7 @@ extern void matrix_free(void** matrix);
 //-----------------------------------------------------------------------------
 
 /**
- * Allocate <size> bytes of zeroed memory.
+ * Allocate \<size\> bytes of zeroed memory.
  *
  * intended for applications that frequently alloc/free a single
  * fixed-size object. caller provides static storage and an in-use flag;
@@ -143,11 +143,11 @@ extern void matrix_free(void** matrix);
  *
  * note: thread-safe despite use of shared static data.
  *
- * @param storage Caller-allocated memory of at least <size> bytes
+ * @param storage Caller-allocated memory of at least \<size\> bytes
  * (typically a static array of bytes)
- * @param in_use_flag Pointer to a flag we set when <storage> is in-use.
+ * @param in_use_flag Pointer to a flag we set when \<storage\> is in-use.
  * @param size [bytes] to allocate
- * @return allocated memory (typically = <storage>, but falls back to
+ * @return allocated memory (typically = \<storage\>, but falls back to
  * malloc if that's in-use), or 0 (with warning) if out of memory.
  **/
 extern void* single_calloc(void* storage, volatile intptr_t* in_use_flag, size_t size);
@@ -157,7 +157,7 @@ extern void* single_calloc(void* storage, volatile intptr_t* in_use_flag, size_t
  *
  * @param storage Exact value passed to single_calloc.
  * @param in_use_flag Exact value passed to single_calloc.
- * @param Exact value returned by single_calloc.
+ * @param p Exact value returned by single_calloc.
  **/
 extern void single_free(void* storage, volatile intptr_t* in_use_flag, void* p);
 
@@ -218,7 +218,7 @@ struct StaticStorage
 	void* end;
 };
 
-// define <size> bytes of storage and prepare <name> for use with
+// define \<size\> bytes of storage and prepare \<name\> for use with
 // static_calloc.
 // must be invoked from file or function scope.
 #define STATIC_STORAGE(name, size)\
@@ -271,7 +271,7 @@ CONFIG2_ALLOCATORS_OVERRUN_PROTECTION == 1; this avoids having to remove the
 wrapper code in release builds and re-write when looking for overruns.
 
 example usage:
-OverrunProtector<your_class> your_class_wrapper;
+OverrunProtector\<your_class\> your_class_wrapper;
 ..
 your_class* yc = your_class_wrapper.get();	// unlock, make ready for use
 if(!yc)			// your_class_wrapper's one-time alloc of a your_class-

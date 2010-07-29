@@ -142,14 +142,14 @@ extern const char* snd_dev_next();
 extern LibError snd_dev_set(const char* alc_new_dev_name);
 
 /**
- * set maximum number of voices to play simultaneously;
+ * Set maximum number of voices to play simultaneously;
  * this can be used to reduce mixing cost on low-end systems.
  *
- * @param cap maximum number of voices. ignored if higher than
- * an implementation-defined limit anyway.
+ * @param limit Maximum number of voices. Ignored if higher than
+ *		  an implementation-defined limit anyway.
  * @return LibError
  **/
-extern LibError snd_set_max_voices(size_t cap);
+extern LibError snd_set_max_voices(size_t limit);
 
 /**
  * set amplitude modifier, which is effectively applied to all sounds.
@@ -167,64 +167,65 @@ extern LibError snd_set_master_gain(float gain);
 //
 
 /**
- * open and return a handle to a sound instance.
- * this loads the sound data and makes it ready for other snd_* APIs.
+ * Open and return a handle to a sound instance.
+ * This loads the sound data and makes it ready for other snd_* APIs.
  *
- * @param pathname. if a text file (extension ".txt"), it is
- *   assumed to be a definition file containing the sound file name and
- *   its gain (0.0 .. 1.0).
- * otherwise, it is taken to be the sound file name and
- *   gain is set to the default of 1.0 (no attenuation).
- *
- * @param is_stream (default false) forces the sound to be opened as a
- * stream: opening is faster, it won't be kept in memory, but
- * only one instance can be open at a time.
+ * @param vfs
+ * @param pathname If a text file (extension ".txt"), it is
+ *		  assumed to be a definition file containing the sound file name and
+ *		  its gain (0.0 .. 1.0).
+ *		  Otherwise, it is taken to be the sound file name and
+ *		  gain is set to the default of 1.0 (no attenuation).
+ * @param is_stream (Default false) Set to true to forces the sound to be opened as a
+ *		  stream: opening is faster, it won't be kept in memory, but
+ *		  only one instance can be open at a time.
  * @return Handle or LibError
  **/
-extern Handle snd_open(const PIVFS& vfs, const VfsPath& name, bool stream = false);
+extern Handle snd_open(const PIVFS& vfs, const VfsPath& pathname, bool is_stream = false);
 
 /**
- * close the sound instance. if it was playing, it will be stopped.
+ * Close the sound instance. If it was playing, it will be stopped.
  *
- * rationale: sounds are already closed automatically when done playing;
+ * Rationale: sounds are already closed automatically when done playing;
  * this API is provided for completeness only.
  *
- * @param hs Handle to sound instance. zeroed afterwards.
+ * @param hvs Handle to sound instance. Zeroed afterwards.
  * @return LibError
  **/
-extern LibError snd_free(Handle& hs);
+extern LibError snd_free(Handle& hvs);
 
 /**
- * start playing the sound.
+ * Start playing the sound.
  *
  * Notes:
- * <UL>
- *   <LI> once done playing, the sound is automatically closed (allows
- *        fire-and-forget play code).
- *   <LI> if no hardware voice is available, this sound may not be
- *        played at all, or in the case of looped sounds, start later.
- * </UL>
+ * - once done playing, the sound is automatically closed (allows
+ *   fire-and-forget play code).
+ * - if no hardware voice is available, this sound may not be
+ *   played at all, or in the case of looped sounds, start later.
  *
- * @param priority (min 0 .. max 1, default 0) indicates which sounds are
+ * @param hvs Handle to VSrc.
+ * @param static_pri (min 0 .. max 1, default 0) indicates which sounds are
  * considered more important (i.e. will override others when no hardware
  * voices are available). the static priority is attenuated by
  * distance to the listener; see snd_update.
  *
  * @return LibError
  **/
-extern LibError snd_play(Handle hs, float priority = 0.0f);
+extern LibError snd_play(Handle hvs, float static_pri = 0.0f);
 
 /**
- * change 3d position of the sound source.
+ * Change 3d position of the sound source.
  *
- * may be called at any time; fails with invalid handle return if
+ * May be called at any time; fails with invalid handle return if
  * the sound has already been closed (e.g. it never played).
  *
+ * @param hvs Handle to the sound. 
+ * @param x,y,z 
  * @param relative treat (x,y,z) as relative to the listener;
- * if false (the default), it is the position in world coordinates.
+ * 		  if false (the default), it is the position in world coordinates.
  * @return LibError
  **/
-extern LibError snd_set_pos(Handle hs, float x, float y, float z, bool relative = false);
+extern LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative = false);
 
 /**
  * change gain (amplitude modifier) of the sound source.
@@ -234,7 +235,7 @@ extern LibError snd_set_pos(Handle hs, float x, float y, float z, bool relative 
  * closed (e.g. it never played).
  *
  * @param gain amplitude modifier. must be non-negative;
- * 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
+ * 1 -\> unattenuated, 0.5 -\> -6 dB, 0 -\> silence.
  * @return LibError
  **/
 extern LibError snd_set_gain(Handle hs, float gain);
@@ -252,22 +253,23 @@ extern LibError snd_set_gain(Handle hs, float gain);
 extern LibError snd_set_pitch(Handle hs, float pitch);
 
 /**
- * enable/disable looping on the sound source.
- * used to implement variable-length sounds (e.g. while building).
+ * Enable/disable looping on the sound source.
+ * Used to implement variable-length sounds (e.g. while building).
  *
- * may be called at any time; fails with invalid handle return if
+ * May be called at any time; fails with invalid handle return if
  * the sound has already been closed (e.g. it never played).
  *
  * Notes:
- * <UL>
- *   <LI> looping sounds are not discarded if they cannot be played for
- *        lack of a hardware voice at the moment play was requested.
- *   <LI> once looping is again disabled and the sound has reached its end,
- *        the sound instance is freed automatically (as if never looped).
- * </UL>
+ * - looping sounds are not discarded if they cannot be played for
+ * - lack of a hardware voice at the moment play was requested.
+ * - once looping is again disabled and the sound has reached its end,
+ *   the sound instance is freed automatically (as if never looped).
+ *
+ * @param hvs Handle to the sound.
+ * @param loop Boolean to enable/disable lopping on the sound.
  * @return LibError
  **/
-extern LibError snd_set_loop(Handle hs, bool loop);
+extern LibError snd_set_loop(Handle hvs, bool loop);
 
 /// types of fade in/out operations
 enum FadeType
@@ -281,31 +283,38 @@ enum FadeType
 };
 
 /**
- * fade the sound source in or out over time.
+ * Fade the sound source in or out over time.
  *
- * may be called at any time; fails with invalid handle return if
+ * May be called at any time; fails with invalid handle return if
  * the sound has already been closed (e.g. it never played).
  *
- * gain starts at <initial_gain> (immediately) and is moved toward
- * <final_gain> over <length> seconds.
- * @param type of fade curve: linear, exponential or S-curve.
- * for guidance on which to use, see
+ * Gain starts at \<initial_gain\> (immediately) and is moved toward
+ * \<final_gain\> over \<length\> seconds.
+ * 
+ * @param hvs Handle to the sound.
+ * @param initial_gain
+ * @param final_gain
+ * @param length
+ * @param type Type of fade curve: linear, exponential or S-curve.
+ *
+ * For guidance on which to use, see
  * http://www.transom.org/tools/editing_mixing/200309.stupidfadetricks.html
  * you can also pass FT_ABORT to stop fading (if in progress) and
- * set gain to the current <final_gain> parameter.
- * special cases:
- * - if <initial_gain> < 0 (an otherwise illegal value), the sound's
+ * set gain to the current \<final_gain\> parameter.
+ * Special cases:
+ * - if \<initial_gain\> \< 0 (an otherwise illegal value), the sound's
  *   current gain is used as the start value (useful for fading out).
- * - if <final_gain> is 0, the sound is freed when the fade completes or
+ * - if \<final_gain\> is 0, the sound is freed when the fade completes or
  *   is aborted, thus allowing fire-and-forget fadeouts. no cases are
  *   foreseen where this is undesirable, and it is easier to implement
  *   than an extra set-free-after-fade-flag function.
  *
- * note that this function doesn't busy-wait until the fade is complete;
+ * Note that this function doesn't busy-wait until the fade is complete;
  * any number of fades may be active at a time (allows cross-fading).
- * each snd_update calculates a new gain value for all pending fades.
- * it is safe to start another fade on the same sound source while
+ * Each snd_update calculates a new gain value for all pending fades.
+ * It is safe to start another fade on the same sound source while
  * one is already in progress; the old one will be discarded.
+ *
  * @return LibError
  **/
 extern LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
@@ -330,14 +339,16 @@ extern LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
  *
  * can later be called to reactivate sound; all settings ever changed
  * will be applied and subsequent sound load / play requests will work.
+ *
+ * @param disabled
  * @return LibError
  **/
 extern LibError snd_disable(bool disabled);
 
 /**
- * perform housekeeping (e.g. streaming); call once a frame.
+ * Perform housekeeping (e.g. streaming); call once a frame.
  *
- * all parameters are expressed in world coordinates. they can all be NULL
+ * All parameters are expressed in world coordinates. they can all be NULL
  * to avoid updating the listener data; this is useful when the game world
  * has not been initialized yet.
  * @param pos listener's position
@@ -347,14 +358,13 @@ extern LibError snd_disable(bool disabled);
  **/
 extern LibError snd_update(const float* pos, const float* dir, const float* up);
 
-/** added by GF
+/**
  * find out if a sound is still playing
  *
- * @param hvs - handle to the snd to check
+ * @param hvs Handle to the snd to check.
  * @return bool true if playing
-
-**/
-extern bool is_playing(Handle hvs);
+ **/
+extern bool snd_is_playing(Handle hvs);
 
 
 /**

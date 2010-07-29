@@ -69,7 +69,7 @@ struct Bucket
 /**
  * ready the Bucket object for use.
  *
- * @param Bucket*
+ * @param b Bucket*
  * @param el_size 0 to allow variable-sized allocations (which cannot be
  * freed individually); otherwise, it specifies the number of bytes that
  * will be returned by bucket_alloc (whose size parameter is then ignored).
@@ -78,11 +78,11 @@ struct Bucket
 LIB_API LibError bucket_create(Bucket* b, size_t el_size);
 
 /**
- * free all memory that ensued from <b>.
+ * free all memory that ensued from \<b\>.
  *
  * future alloc and free calls on this Bucket will fail.
  *
- * @param Bucket*
+ * @param b Bucket*
  **/
 LIB_API void bucket_destroy(Bucket* b);
 
@@ -90,7 +90,7 @@ LIB_API void bucket_destroy(Bucket* b);
  * Dole out memory from the Bucket.
  * exhausts the freelist before returning new entries to improve locality.
  *
- * @param Bucket*
+ * @param b Bucket*
  * @param size bytes to allocate; ignored if bucket_create's el_size was not 0.
  * @return allocated memory, or 0 if the Bucket would have to be expanded and
  * there isn't enough memory to do so.
@@ -106,7 +106,7 @@ LIB_API void* bucket_fast_alloc(Bucket* b);
  * rationale: avoids having to pass el_size here and compare with size when
  * allocating; also prevents fragmentation and leaking memory.
  *
- * @param Bucket*
+ * @param b Bucket*
  * @param el entry allocated via bucket_alloc.
  **/
 LIB_API void bucket_free(Bucket* b, void* el);

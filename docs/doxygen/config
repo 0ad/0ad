@@ -3,12 +3,12 @@ PROJECT_NUMBER         = trunk
 
 TAB_SIZE               = 4
 
-INPUT                  = ../../source/simulation2 ../../source/scriptinterface ../../source/network ../../source/gui
+INPUT                  = ../../source
 INCLUDE_PATH           = ../../source
 EXAMPLE_PATH           = ../../source
 RECURSIVE              = YES
 EXCLUDE_PATTERNS       = */.svn* */tests/test_*
-EXCLUDE                = ../../source/dcdt ../../source/tools ../../source/i18n/tests2
+EXCLUDE                = ../../source/tools ../../source/i18n/tests2 ../../source/simulation
 
 JAVADOC_AUTOBRIEF      = YES
 
@@ -23,6 +23,10 @@ GENERATE_LATEX         = NO
 
 MACRO_EXPANSION        = YES
 EXPAND_ONLY_PREDEF     = YES
-PREDEFINED             = "UNUSED(x)=x"
+PREDEFINED             = "UNUSED(x)=x" \
+                         "METHODDEF(x)=static x" \
+                         "GLOBAL(x)=x"                 
 EXPAND_AS_DEFINED     += DEFAULT_COMPONENT_ALLOCATOR DEFAULT_SCRIPT_WRAPPER DEFAULT_INTERFACE_WRAPPER DEFAULT_MESSAGE_IMPL
-EXPAND_AS_DEFINED     += MESSAGE INTERFACE COMPONENT
+EXPAND_AS_DEFINED     += MESSAGE INTERFACE COMPONENT GUISTDTYPE
+ 
+WARN_LOGFILE           = doxygen.log

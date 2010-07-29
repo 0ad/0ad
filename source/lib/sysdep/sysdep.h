@@ -89,7 +89,8 @@ extern LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
 /**
  * determine filename of the module to whom an address belongs.
  *
- * @param path full path to module (unchanged unless INFO::OK is returned).
+ * @param addr
+ * @param pathname Full path to module (unchanged unless INFO::OK is returned).
  * @return LibError
  *
  * note: this is useful for handling exceptions in other modules.
@@ -97,9 +98,9 @@ extern LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
 LibError sys_get_module_filename(void* addr, fs::wpath& pathname);
 
 /**
- * get path to the current executable.
+ * Get path to the current executable.
  *
- * @param path full path to executable (unchanged unless INFO::OK is returned).
+ * @param pathname Full path to executable (unchanged unless INFO::OK is returned).
  * @return LibError
  *
  * this is useful for determining installation directory, e.g. for VFS.
@@ -107,23 +108,23 @@ LibError sys_get_module_filename(void* addr, fs::wpath& pathname);
 LIB_API LibError sys_get_executable_name(fs::wpath& pathname);
 
 /**
- * get the current user's login name.
+ * Get the current user's login name.
  *
  * @return login name, or empty string on error
  */
 extern std::wstring sys_get_user_name();
 
 /**
- * have the user choose a directory via OS dialog.
+ * Have the user choose a directory via OS dialog.
  *
- * @param path's input value determines the starting directory for
- * faster browsing. if INFO::OK is returned, it receives
- * chosen directory path.
+ * @param path Path's input value determines the starting directory for
+ *		  faster browsing. if INFO::OK is returned, it receives
+ *		  chosen directory path.
  **/
 extern LibError sys_pick_directory(fs::wpath& path);
 
 /**
- * open the user's default web browser to the given URL.
+ * Open the user's default web browser to the given URL.
  **/
 extern LibError sys_open_url(const std::string& url);
 

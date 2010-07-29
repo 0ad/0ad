@@ -81,12 +81,12 @@ LIB_API size_t cpu_topology_LogicalPerCore();
 LIB_API size_t cache_topology_NumCaches();
 
 /**
- * @return L2 cache number (zero-based) to which <processor> belongs.
+ * @return L2 cache number (zero-based) to which \<processor\> belongs.
  **/
 LIB_API size_t cache_topology_CacheFromProcessor(size_t processor);
 
 /**
- * @return bit-mask of all processors sharing <cache>.
+ * @return bit-mask of all processors sharing \<cache\>.
  **/
 LIB_API uintptr_t cache_topology_ProcessorMaskFromCache(size_t cache);
 

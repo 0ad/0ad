@@ -150,27 +150,27 @@ public:
 		PutNumber(name, value);
 	}
 
-	void NumberI32_Unbounded(const char* name, int32_t value) ///< @copydoc NumberU8_Unbounded
+	void NumberI32_Unbounded(const char* name, int32_t value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}
 
-	void NumberU32_Unbounded(const char* name, uint32_t value) ///< @copydoc NumberU8_Unbounded
+	void NumberU32_Unbounded(const char* name, uint32_t value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}
 
-	void NumberFloat_Unbounded(const char* name, float value) ///< @copydoc NumberU8_Unbounded
+	void NumberFloat_Unbounded(const char* name, float value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}
 
-	void NumberDouble_Unbounded(const char* name, double value) ///< @copydoc NumberU8_Unbounded
+	void NumberDouble_Unbounded(const char* name, double value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}
 
-	void NumberFixed_Unbounded(const char* name, fixed value) ///< @copydoc NumberU8_Unbounded
+	void NumberFixed_Unbounded(const char* name, fixed value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}

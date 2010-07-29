@@ -69,6 +69,8 @@ struct IVFS
 	 *
 	 * @param mountPoint (will be created if it does not already exist)
 	 * @param path real directory path
+	 * @param flags
+	 * @param priority
 	 * @return LibError.
 	 *
 	 * if files are encountered that already exist in the VFS (sub)directories,
@@ -80,21 +82,22 @@ struct IVFS
 	virtual LibError Mount(const VfsPath& mountPoint, const fs::wpath& path, size_t flags = 0, size_t priority = 0) = 0;
 
 	/**
-	 * retrieve information about a file (similar to POSIX stat)
+	 * Retrieve information about a file (similar to POSIX stat).
 	 *
-	 * @param pfileInfo receives information about the file. passing NULL
-	 * suppresses warnings if the file doesn't exist.
+	 * @param pathname
+	 * @param pfileInfo receives information about the file. Passing NULL
+	 *		  suppresses warnings if the file doesn't exist.
 	 * 
 	 * @return LibError.
 	 **/
 	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
 
 	/**
-	 * retrieve lists of all files and subdirectories in a directory.
+	 * Retrieve lists of all files and subdirectories in a directory.
 	 *
 	 * @return LibError.
 	 *
-	 * rationale:
+	 * Rationale:
 	 * - this interface avoids having to lock the directory while an
 	 *   iterator is extant.
 	 * - we cannot efficiently provide routines for returning files and
@@ -103,8 +106,9 @@ struct IVFS
 	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const = 0;
 
 	/**
-	 * create a file with the given contents.
-	 *
+	 * Create a file with the given contents.
+	 * @param pathname
+	 * @param fileContents
 	 * @param size [bytes] of the contents, will match that of the file.
 	 * @return LibError.
 	 *
@@ -114,13 +118,14 @@ struct IVFS
 	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
 
 	/**
-	 * read an entire file into memory.
+	 * Read an entire file into memory.
 	 *
+	 * @param pathname
 	 * @param fileContents receives a smart pointer to the contents.
-	 *   CAVEAT: this will be taken from the file cache if the VFS was
-	 *   created with cacheSize != 0 and size < cacheSize. there is no
-	 *   provision for Copy-on-Write, which means that such buffers
-	 *   must not be modified (this is enforced via mprotect).
+	 *		  CAVEAT: this will be taken from the file cache if the VFS was
+	 * 		  created with cacheSize != 0 and size < cacheSize. There is no
+	 * 		  provision for Copy-on-Write, which means that such buffers
+	 * 		  must not be modified (this is enforced via mprotect).
 	 * @param size receives the size [bytes] of the file contents.
 	 * @return LibError.
 	 **/

@@ -21,7 +21,6 @@
 #include "ps/CStr.h"
 
 /**** GUISize ****/
-
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
 		JS_PropertyStub, JS_PropertyStub,

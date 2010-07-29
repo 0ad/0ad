@@ -40,12 +40,12 @@ namespace ERR
  * reduce complicated STL symbol names to human-readable form.
  *
  * algorithm: remove/replace undesired substrings in one pass (fast).
- * example: "std::basic_string<char, char_traits<char>,
- * std::allocator<char> >" => "string".
+ * example: "std::basic_string\<char, char_traits\<char\>,
+ * std::allocator\<char\> \>" => "string".
  *
- * @param buffer holding input symbol name; modified in-place.
- * there is no length limit; must be large enough to hold typical STL
- * strings. DBG_SYMBOL_LEN chars is a good measure.
+ * @param name Buffer holding input symbol name; modified in-place.
+ *		  There is no length limit; must be large enough to hold typical STL
+ *		  strings. DBG_SYMBOL_LEN chars is a good measure.
  * @return name for convenience.
  **/
 extern wchar_t* debug_stl_simplify_name(wchar_t* name);

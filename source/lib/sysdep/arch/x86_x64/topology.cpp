@@ -195,11 +195,12 @@ static size_t NumUniqueMaskedValues(const u8* apicIds, u8 mask)
 
 
 /**
- * count the number of values assumed by a certain field within APIC IDs.
+ * Count the number of values assumed by a certain field within APIC IDs.
  *
- * @param offset index of the lowest bit that is part of the field.
- * @param numValues number of values that can be assumed by the field.
- * if equal to one, the field is zero-width.
+ * @param apicIds
+ * @param offset Index of the lowest bit that is part of the field.
+ * @param numValues Number of values that can be assumed by the field.
+ *		  If equal to one, the field is zero-width.
  * @return number of unique values (for convenience of the topology code,
  * this is always at least one)
  **/
@@ -314,7 +315,7 @@ class CacheRelations
 {
 public:
 	/**
-	 * add processor to the processor mask owned by cache identified by <id>
+	 * add processor to the processor mask owned by cache identified by \<id\>
 	 **/
 	void Add(u8 cacheId, size_t processor)
 	{

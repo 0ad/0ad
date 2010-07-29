@@ -43,9 +43,11 @@
 // create/destroy counters
 
 /**
- * @return pointer to a newly constructed ICounter subclass of type <id> at
- * the given address, or 0 iff the ID is invalid.
- * @param size maximum allowable size [bytes] of the subclass instance
+ * @param id
+ * @param address
+ * @param size Maximum allowable size [bytes] of the subclass instance
+ * @return pointer to a newly constructed ICounter subclass of type \<id\> at
+ *		   the given address, or 0 iff the ID is invalid.
  **/
 static ICounter* ConstructCounterAt(size_t id, void* address, size_t size)
 {

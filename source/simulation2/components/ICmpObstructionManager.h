@@ -228,6 +228,7 @@ public:
 	 * Return true if the shape should be counted for collisions.
 	 * This is called for all shapes that would collide, and also for some that wouldn't.
 	 * @param tag tag of shape being tested
+	 * @param moving whether the shape is a moving unit
 	 */
 	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool moving) const = 0;
 };

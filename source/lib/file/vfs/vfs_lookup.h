@@ -49,11 +49,11 @@ enum VfsLookupFlags
  * Resolve a pathname.
  *
  * @param pathname
- * @param vfsStartDirectory
+ * @param startDirectory VfsStartDirectory.
  * @param directory is set to the last directory component that is encountered.
- * @param file is set to 0 if there is no name component, otherwise the
- * corresponding file.
- * @param flags see VfsLookupFlags.
+ * @param pfile File is set to 0 if there is no name component, otherwise the
+ *		  corresponding file.
+ * @param flags @see VfsLookupFlags.
  * @return LibError (INFO::OK if all components in pathname exist).
  *
  * to allow noiseless file-existence queries, this does not raise warnings.

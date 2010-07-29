@@ -44,12 +44,15 @@ struct _EXCEPTION_POINTERS;
 typedef LibError (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t cbData);
 
 /**
- * iterate over a call stack, invoking a callback for each frame encountered.
+ * Iterate over a call stack, invoking a callback for each frame encountered.
  *
- * @param pcontext processor context from which to start (usually taken from
- * an exception record), or 0 to walk the current stack.
+ * @param cb
+ * @param cbData
+ * @param pcontext Processor context from which to start (usually taken from
+ *		  an exception record), or 0 to walk the current stack.
+ * @param lastFuncToSkip
  *
- * note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a
+ * @note It is safe to use debug_assert/debug_warn/CHECK_ERR even during a
  * stack trace (which is triggered by debug_assert et al. in app code) because
  * nested stack traces are ignored and only the error is displayed.
  **/

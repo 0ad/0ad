@@ -70,11 +70,11 @@ LIB_API bool path_is_dir_sep(wchar_t c);
 LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
 
 /**
- * get the name component of a path.
+ * Get the name component of a path.
+ * Skips over all characters up to the last dir separator, if any.
  *
- * skips over all characters up to the last dir separator, if any.
- * @param path input path.
- * @return pointer to name component within <path>.
+ * @param path Input path.
+ * @return pointer to name component within \<path\>.
  **/
 LIB_API const wchar_t* path_name_only(const wchar_t* path);
 

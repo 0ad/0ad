@@ -27,7 +27,7 @@ Overlay.cpp
 #include "Parser.h"
 
 
-bool CColor::ParseString(const CStr& Value, float DefaultAlpha)
+bool CColor::ParseString(const CStr8& Value, float DefaultAlpha)
 {
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[[-$arg(_minus)]$value_]"));

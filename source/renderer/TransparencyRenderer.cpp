@@ -95,7 +95,7 @@ struct PSModel
 	 *
 	 * @return Square of the estimated distance to the nearest triangle.
 	 */
-	float BackToFrontIndexSort(const CMatrix3D& objToCam);
+	float BackToFrontIndexSort(const CMatrix3D& worldToCam);
 
 	/// Back-link to the model
 	CModel* m_Model;

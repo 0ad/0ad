@@ -113,15 +113,15 @@ LIB_API void write_be32(void* p, u32 x);	/// see write_be16
 LIB_API void write_be64(void* p, u64 x);	/// see write_be16
 
 /**
- * zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
- * starting at address <p> (need not be aligned).
+ * zero-extend \<size\> (truncated to 8) bytes of little-endian data to u64,
+ * starting at address \<p\> (need not be aligned).
  **/
 LIB_API u64 movzx_le64(const u8* p, size_t size);
 LIB_API u64 movzx_be64(const u8* p, size_t size);
 
 /**
- * sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
- * starting at address <p> (need not be aligned).
+ * sign-extend \<size\> (truncated to 8) bytes of little-endian data to i64,
+ * starting at address \<p\> (need not be aligned).
  **/
 LIB_API i64 movsx_le64(const u8* p, size_t size);
 LIB_API i64 movsx_be64(const u8* p, size_t size);

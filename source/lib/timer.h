@@ -322,7 +322,7 @@ LIB_API TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description
  * billed to it, along with a description string. These are displayed when
  * timer_DisplayClientTotals is called.
  * Invoke this at file or function scope; a (static) TimerClient pointer of
- * name <id> will be defined, which should be passed to TIMER_ACCRUE.
+ * name \<id\> will be defined, which should be passed to TIMER_ACCRUE.
  **/
 #define TIMER_ADD_CLIENT(id)\
 	static TimerClient UID__;\

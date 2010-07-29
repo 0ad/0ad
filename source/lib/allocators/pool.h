@@ -56,7 +56,7 @@ struct Pool
 };
 
 /**
- * pass as pool_create's <el_size> param to indicate variable-sized allocs
+ * pass as pool_create's \<el_size\> param to indicate variable-sized allocs
  * are required (see below).
  **/
 const size_t POOL_VARIABLE_ALLOCS = ~(size_t)0u;
@@ -64,7 +64,7 @@ const size_t POOL_VARIABLE_ALLOCS = ~(size_t)0u;
 /**
  * Ready Pool for use.
  *
- * @param Pool*
+ * @param p Pool*
  * @param max_size Max size [bytes] of the Pool; this much
  * (rounded up to next page multiple) virtual address space is reserved.
  * no virtual memory is actually committed until calls to pool_alloc.
@@ -84,7 +84,7 @@ LIB_API LibError pool_create(Pool* p, size_t max_size, size_t el_size);
  * impossible because it is marked not-present via MMU.
  * (* no matter if in freelist or unused or "allocated" to user)
  *
- * @param Pool*
+ * @param p Pool*
  * @return LibError.
  **/
 LIB_API LibError pool_destroy(Pool* p);
@@ -94,7 +94,8 @@ LIB_API LibError pool_destroy(Pool* p);
  *
  * this is useful for callers that use several types of allocators.
  *
- * @param Pool*
+ * @param p Pool*
+ * @param el
  * @return bool.
  **/
 LIB_API bool pool_contains(const Pool* p, void* el);
@@ -103,7 +104,7 @@ LIB_API bool pool_contains(const Pool* p, void* el);
  * Dole out memory from the pool.
  * exhausts the freelist before returning new entries to improve locality.
  *
- * @param Pool*
+ * @param p Pool*
  * @param size bytes to allocate; ignored if pool_create's el_size was not 0.
  * @return allocated memory, or 0 if the Pool would have to be expanded and
  * there isn't enough memory to do so.
@@ -117,7 +118,7 @@ LIB_API void* pool_alloc(Pool* p, size_t size);
  * rationale: avoids having to pass el_size here and compare with size when
  * allocating; also prevents fragmentation and leaking memory.
  *
- * @param Pool*
+ * @param p Pool*
  * @param el Element returned by pool_alloc.
  **/
 LIB_API void pool_free(Pool* p, void* el);
@@ -128,7 +129,7 @@ LIB_API void pool_free(Pool* p, void* el);
  * this resets it as if freshly pool_create-d, but doesn't release the
  * underlying reserved virtual memory.
  *
- * @param Pool*
+ * @param p Pool*
  **/
 LIB_API void pool_free_all(Pool* p);
 

@@ -68,14 +68,16 @@ public:
 	/**
 	 * Add a file's contents to the cache.
 	 *
-	 * the cache will be able to satisfy subsequent Retrieve() calls by
+	 * The cache will be able to satisfy subsequent Retrieve() calls by
 	 * returning this data; if CONFIG2_CACHE_READ_ONLY, the buffer is made
-	 * read-only. if need be and no references are currently attached to it,
+	 * read-only. If need be and no references are currently attached to it,
 	 * the memory can also be commandeered by Reserve().
 	 *
+	 * @param data
+	 * @param size
 	 * @param pathname key that will be used to Retrieve file contents.
 	 * @param cost is the expected cost of retrieving the file again and
-	 * influences how/when it is evicted from the cache.
+	 *		  influences how/when it is evicted from the cache.
 	 **/
 	void Add(const VfsPath& pathname, const shared_ptr<u8>& data, size_t size, size_t cost = 1);
 

@@ -177,8 +177,7 @@ public:
 	/**
 	 * Hovering the scroll minus button
 	 *
-	 * @param m_x mouse x
-	 * @param m_y mouse y
+	 * @param mouse current mouse position
 	 * @return True if mouse positions are hovering the button
 	 */
 	virtual bool HoveringButtonMinus(const CPos& UNUSED(mouse)) { return false; }
@@ -186,8 +185,7 @@ public:
 	/**
 	 * Hovering the scroll plus button
 	 *
-	 * @param m_x mouse x
-	 * @param m_y mouse y
+	 * @param mouse current mouse position
 	 * @return True if mouse positions are hovering the button
 	 */
 	virtual bool HoveringButtonPlus(const CPos& UNUSED(mouse)) { return false; }
@@ -200,7 +198,7 @@ public:
 	/**
 	 * Set scroll-position by hand
 	 */
-	virtual void SetPos(const float &f) { m_Pos = f; UpdatePosBoundaries(); }
+	virtual void SetPos(float f) { m_Pos = f; UpdatePosBoundaries(); }
 
 	/**
 	 * Get the value of Pos that corresponds to the bottom of the scrollable region
@@ -249,55 +247,55 @@ public:
 	 * Set Width
 	 * @param width Width
 	 */
-	void SetWidth(const float &width) { m_Width = width; }
+	void SetWidth(float width) { m_Width = width; }
 	
 	/**
 	 * Set X Position
 	 * @param x Position in this axis
 	 */
-	void SetX(const float &x) { m_X = x; }
+	void SetX(float x) { m_X = x; }
 
 	/**
 	 * Set Y Position
 	 * @param y Position in this axis
 	 */
-	void SetY(const float &y) { m_Y = y; }
+	void SetY(float y) { m_Y = y; }
 
 	/**
 	 * Set Z Position
 	 * @param z Position in this axis
 	 */
-	void SetZ(const float &z) { m_Z = z; }
+	void SetZ(float z) { m_Z = z; }
 
 	/**
 	 * Set Length of scroll bar
 	 * @param length Length
 	 */
-	void SetLength(const float &length) { m_Length = length; }
+	void SetLength(float length) { m_Length = length; }
 
 	/**
 	 * Set content length
 	 * @param range Maximum scrollable range
 	 */
-	void SetScrollRange(const float &range) { m_ScrollRange = std::max(range, 1.f); SetupBarSize(); UpdatePosBoundaries(); }
+	void SetScrollRange(float range) { m_ScrollRange = std::max(range, 1.f); SetupBarSize(); UpdatePosBoundaries(); }
 
 	/**
 	 * Set space that is visible in the scrollable control.
 	 * @param space Visible area in the scrollable control.
 	 */
-	void SetScrollSpace(const float &space) { m_ScrollSpace = space; SetupBarSize(); UpdatePosBoundaries(); }
+	void SetScrollSpace(float space) { m_ScrollSpace = space; SetupBarSize(); UpdatePosBoundaries(); }
 
 	/**
 	 * Set bar pressed
-	 * @param pressed True if bar is pressed
+	 * @param b True if bar is pressed
 	 */
-	void SetBarPressed(const bool &b) { m_BarPressed = b; }
+	void SetBarPressed(bool b) { m_BarPressed = b; }
 
 	/**
 	 * Set use edge buttons
 	 * @param b True if edge buttons should be used
 	 */
-	void SetUseEdgeButtons(const bool &b) { m_UseEdgeButtons = b; }
+	void SetUseEdgeButtons(bool b) { m_UseEdgeButtons = b; }
 
 	/**
 	 * Set Scroll bar style string

@@ -66,7 +66,7 @@ private:
 
 /**
  * Standard document loader. Based on FCDocument::LoadFromText, but allows
- * access to <extra> nodes at the document level (i.e. directly in <COLLADA>).
+ * access to \<extra\> nodes at the document level (i.e. directly in \<COLLADA\>).
  */
 class FColladaDocument
 {
@@ -81,7 +81,7 @@ public:
 	/** Returns the FCDocument that was loaded. */
 	FCDocument* GetDocument() const { return document.get(); }
 
-	/** Returns the <extra> data from the <COLLADA> element. */
+	/** Returns the \<extra\> data from the \<COLLADA\> element. */
 	FCDExtra* GetExtra() const { return extra.get(); }
 
 private:

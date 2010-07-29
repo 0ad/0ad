@@ -58,17 +58,21 @@ public:
 	/**
 	 * process (i.e. compress or decompress) data.
 	 *
-	 * @param outSize bytes remaining in the output buffer; shall not be zero.
-	 * @param inConsumed, outProduced how many bytes in the input and
-	 * output buffers were used. either or both of these can be zero if
-	 * the input size is small or there's not enough output space.
+	 * @param in
+	 * @param inSize
+	 * @param out
+	 * @param outSize Bytes remaining in the output buffer; shall not be zero.
+	 * @param inConsumed,outProduced How many bytes in the input and
+	 *		  output buffers were used. either or both of these can be zero if
+	 *		  the input size is small or there's not enough output space.
 	 **/
 	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced) = 0;
 
 	/**
-	 * flush buffers and make sure all output has been produced.
+	 * Flush buffers and make sure all output has been produced.
 	 *
-	 * @param checksum over all input data.
+	 * @param checksum Checksum over all input data.
+	 * @param outProduced
 	 * @return error status for the entire operation.
 	 **/
 	virtual LibError Finish(u32& checksum, size_t& outProduced) = 0;
@@ -77,6 +81,8 @@ public:
 	 * update a checksum to reflect the contents of a buffer.
 	 *
 	 * @param checksum the initial value (must be 0 on first call)
+	 * @param in
+	 * @param inSize
 	 * @return the new checksum. note: after all data has been seen, this is
 	 * identical to the what Finish would return.
 	 **/

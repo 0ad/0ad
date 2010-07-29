@@ -36,7 +36,8 @@ public:
 	 * Performs a (cached) conversion from COLLADA if necessary.
 	 *
 	 * @param pathnameNoExtension path and name, minus extension, of file to load.
-	 * One of either "sourceName.pmd" or "sourceName.dae" should exist.
+	 *		  One of either "sourceName.pmd" or "sourceName.dae" should exist.
+	 * @param type FileType, .pmd or .psa
 	 *
 	 * @return full VFS path (including extension) of file to load; or empty
 	 * string if there was a problem and it could not be loaded.

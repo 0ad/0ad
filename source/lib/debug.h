@@ -66,7 +66,7 @@ extern void debug_break();
  * write a formatted string to the debug channel, subject to filtering
  * (see below). implemented via debug_puts - see performance note there.
  *
- * @param format string and varargs; see printf.
+ * @param fmt Format string and varargs; see printf.
  **/
 LIB_API void debug_printf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
@@ -189,7 +189,7 @@ LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flag
  * depending on "debug level", because changing that entails lengthy
  * compiles and it's too coarse-grained. instead, we require all
  * strings to start with "tag_string|" (exact case and no quotes;
- * the alphanumeric-only <tag_string> identifies output type).
+ * the alphanumeric-only \<tag_string\> identifies output type).
  * they are then subject to filtering: only if the tag has been
  * "added" via debug_filter_add is the appendant string displayed.
  *
@@ -232,7 +232,7 @@ LIB_API bool debug_filter_allows(const wchar_t* text);
  * write to memory buffer (fast)
  * used for "last activity" reporting in the crashlog.
  *
- * @param format string and varags; see printf.
+ * @param fmt Format string and varags; see printf.
  **/
 LIB_API void debug_wprintf_mem(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
@@ -254,7 +254,7 @@ LIB_API LibError debug_WriteCrashlog(const wchar_t* text);
 //-----------------------------------------------------------------------------
 
 /**
- * make sure the expression <expr> evaluates to non-zero. used to validate
+ * make sure the expression \<expr\> evaluates to non-zero. used to validate
  * invariants in the program during development and thus gives a
  * very helpful warning if something isn't going as expected.
  * sprinkle these liberally throughout your code!
@@ -268,7 +268,7 @@ LIB_API LibError debug_WriteCrashlog(const wchar_t* text);
  * - consistency (everything here is prefixed with debug_) and
  * - to avoid inadvertent use of the much less helpful built-in CRT assert.
  *   if we were to override assert, it would be difficult to tell whether
- *   user source has included <assert.h> (possibly indirectly via other
+ *   user source has included \<assert.h\> (possibly indirectly via other
  *   headers) and thereby stomped on our definition.
  **/
 #define debug_assert(expr) \
@@ -338,7 +338,7 @@ STMT(\
  * notifies the user via debug_DisplayError.
  *
  * @param assert_expr the expression that failed; typically passed as
- * #expr in the assert macro.
+ * \#expr in the assert macro.
  * @param suppress see debug_DisplayError.
  * @param file, line source file name and line number of the spot that failed
  * @param func name of the function containing it
@@ -408,7 +408,7 @@ namespace INFO
 
 
 /**
- * maximum number of characters (including trailing \0) written to
+ * Maximum number of characters (including trailing \\0) written to
  * user's buffers by debug_ResolveSymbol.
  **/
 const size_t DBG_SYMBOL_LEN = 1000;
@@ -438,19 +438,19 @@ LIB_API LibError debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, w
  * write a complete stack trace (including values of local variables) into
  * the specified buffer.
  *
- * @param buf target buffer
- * @param max_chars of buffer (should be several thousand)
- * @param context platform-specific representation of execution state
- * (e.g. Win32 CONTEXT). if not NULL, tracing starts there; this is useful
- * for exceptions. otherwise, tracing starts from the current call stack.
- * @param lastFuncToSkip is used for omitting error-reporting functions like
- * debug_OnAssertionFailure from the stack trace. it is either 0 (skip nothing) or
- * a substring of a function's name (this allows platform-independent
- * matching of stdcall-decorated names).
- * rationale: this is safer than specifying a fixed number of frames,
- * which can be incorrect due to inlining.
+ * @param buf Target buffer.
+ * @param maxChars Max chars of buffer (should be several thousand).
+ * @param context Platform-specific representation of execution state
+ *		  (e.g. Win32 CONTEXT). if not NULL, tracing starts there; this is useful
+ *		  for exceptions. Otherwise, tracing starts from the current call stack.
+ * @param lastFuncToSkip Is used for omitting error-reporting functions like
+ *		  debug_OnAssertionFailure from the stack trace. It is either 0 (skip nothing) or
+ *		  a substring of a function's name (this allows platform-independent
+ *		  matching of stdcall-decorated names).
+ *		  Rationale: this is safer than specifying a fixed number of frames,
+ *		  which can be incorrect due to inlining.
  * @return LibError; ERR::REENTERED if reentered via recursion or
- * multithreading (not allowed since static data is used).
+ *		   multithreading (not allowed since static data is used).
  **/
 LIB_API LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* context, const wchar_t* lastFuncToSkip);
 
@@ -524,7 +524,7 @@ struct ErrorMessageMem
 /**
  * free memory from the error message.
  *
- * @param ErrorMessageMem*
+ * @param emm ErrorMessageMem*
  **/
 LIB_API void debug_FreeErrorMessage(ErrorMessageMem* emm);
 

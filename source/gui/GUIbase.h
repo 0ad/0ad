@@ -67,10 +67,9 @@ public:																	\
 //--------------------------------------------------------
 //  Types
 //--------------------------------------------------------
+
 /** 
- * @enum EGUIMessage
- * Message types
- *
+ * Message types.
  * @see SGUIMessage
  */
 enum EGUIMessageType

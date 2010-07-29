@@ -235,28 +235,30 @@ struct Tex
 
 
 /**
- * is the texture object valid and self-consistent?
+ * Is the texture object valid and self-consistent?
+ * 
+ * @param t
  * @return LibError
  **/
 extern LibError tex_validate(const Tex* t);
 
 
 /**
- * set the orientation to which all loaded images will
+ * Set the orientation to which all loaded images will
  * automatically be converted (excepting file formats that don't specify
- * their orientation, i.e. DDS). see "Default Orientation" in docs.
- * @param orientation either TEX_BOTTOM_UP or TEX_TOP_DOWN
+ * their orientation, i.e. DDS). See "Default Orientation" in docs.
+ * @param orientation Either TEX_BOTTOM_UP or TEX_TOP_DOWN.
  **/
 extern void tex_set_global_orientation(int orientation);
 
 
 /**
- * manually register codecs. must be called before first use of a
+ * Manually register codecs. must be called before first use of a
  * codec (e.g. loading a texture).
  *
- * this would normally be taken care of by TEX_CODEC_REGISTER, but
+ * This would normally be taken care of by TEX_CODEC_REGISTER, but
  * no longer works when building as a static library.
- * workaround: hard-code a list of codecs in tex_codec.cpp and
+ * Workaround: hard-code a list of codecs in tex_codec.cpp and
  * call their registration functions.
  **/
 extern void tex_codec_register_all();
@@ -272,9 +274,9 @@ extern void tex_codec_unregister_all();
  * FYI, currently BMP, TGA, JPG, JP2, PNG, DDS are supported - but don't
  * rely on this (not all codecs may be included).
  *
- * @param data input data
- * @param data_size its size [bytes]
- * @param t output texture object.
+ * @param data Input data.
+ * @param data_size Its size [bytes].
+ * @param t Output texture object.
  * @return LibError.
  **/
 extern LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t);
@@ -282,10 +284,10 @@ extern LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
 /**
  * encode a texture into a memory buffer in the desired file format.
  *
- * @param t input texture object
- * @param extension (including '.')
- * @param da output memory array. allocated here; caller must free it
- * when no longer needed. invalid unless function succeeds.
+ * @param t Input texture object.
+ * @param extension (including '.').
+ * @param da Output memory array. Allocated here; caller must free it
+ *		  when no longer needed. Invalid unless function succeeds.
  * @return LibError
  **/
 extern LibError tex_encode(Tex* t, const std::wstring& extension, DynArray* da);
@@ -299,17 +301,18 @@ extern LibError tex_encode(Tex* t, const std::wstring& extension, DynArray* da);
  *   however, we don't want to provide an alternate interface for each API;
  *   these would have to be changed whenever fields are added to Tex.
  *   instead, provide one entry point for specifying images.
- * note: since we do not know how <img> was allocated, the caller must free
+ * note: since we do not know how \<img\> was allocated, the caller must free
  *   it themselves (after calling tex_free, which is required regardless of
  *   alloc type).
  *
  * we need only add bookkeeping information and "wrap" it in
  * our Tex struct, hence the name.
  *
- * @param w, h pixel dimensions
- * @param bpp bits per pixel
- * @param flags TexFlags
- * @param img texture data. note: size is calculated from other params.
+ * @param w,h Pixel dimensions.
+ * @param bpp Bits per pixel.
+ * @param flags TexFlags.
+ * @param data Img texture data. note: size is calculated from other params.
+ * @param ofs
  * @param t output texture object.
  * @return LibError
  **/
@@ -330,17 +333,19 @@ extern void tex_free(Tex* t);
 //
 
 /**
- * change <t>'s pixel format.
+ * Change \<t\>'s pixel format.
  *
+ * @param t Input texture object.
  * @param transforms TexFlags that are to be flipped.
  * @return LibError
  **/
 extern LibError tex_transform(Tex* t, size_t transforms);
 
 /**
- * change <t>'s pixel format (2nd version)
- * (note: this is equivalent to tex_transform(t, t->flags^new_flags).
+ * Change \<t\>'s pixel format (2nd version)
+ * (note: this is equivalent to tex_transform(t, t-\>flags^new_flags).
  *
+ * @param t Input texture object.
  * @param new_flags desired new value of TexFlags.
  * @return LibError
  **/
@@ -400,18 +405,18 @@ typedef void (*MipmapCB)(size_t level, size_t level_w, size_t level_h, const u8*
  * for a series of mipmaps stored from base to highest, call back for
  * each level.
  *
- * @param w, h pixel dimensions
- * @param bpp bits per pixel
- * @param data series of mipmaps
- * @param levels_to_skip number of levels (counting from base) to skip, or
- * TEX_BASE_LEVEL_ONLY to only call back for the base image.
- * rationale: this avoids needing to special case for images with or
- * without mipmaps.
- * @param data_padding minimum pixel dimensions of mipmap levels.
- * this is used in S3TC images, where each level is actually stored in
- * 4x4 blocks. usually 1 to indicate levels are consecutive.
- * @param cb MipmapCB to call
- * @param cbData extra data to pass to cb
+ * @param w,h Pixel dimensions.
+ * @param bpp Bits per pixel.
+ * @param data Series of mipmaps.
+ * @param levels_to_skip Number of levels (counting from base) to skip, or
+ *		  TEX_BASE_LEVEL_ONLY to only call back for the base image.
+ *		  Rationale: this avoids needing to special case for images with or
+ *		  without mipmaps.
+ * @param data_padding Minimum pixel dimensions of mipmap levels.
+ *		  This is used in S3TC images, where each level is actually stored in
+ *		  4x4 blocks. usually 1 to indicate levels are consecutive.
+ * @param cb MipmapCB to call.
+ * @param cbData Extra data to pass to cb.
  **/
 extern void tex_util_foreach_mipmap(size_t w, size_t h, size_t bpp, const u8* data, int levels_to_skip, size_t data_padding, MipmapCB cb, void* RESTRICT cbData);
 
@@ -421,16 +426,16 @@ extern void tex_util_foreach_mipmap(size_t w, size_t h, size_t bpp, const u8* da
 //
 
 /**
- * is the file's extension that of a texture format supported by tex_load?
+ * Is the file's extension that of a texture format supported by tex_load?
  *
- * rationale: tex_load complains if the given file is of an
+ * Rationale: tex_load complains if the given file is of an
  * unsupported type. this API allows users to preempt that warning
  * (by checking the filename themselves), and also provides for e.g.
  * enumerating only images in a file picker.
  * an alternative might be a flag to suppress warning about invalid files,
  * but this is open to misuse.
  *
- * @param pathname only the extension (starting with '.') is used. case-insensitive.
+ * @param pathname Only the extension (starting with '.') is used. case-insensitive.
  * @return bool
  **/
 extern bool tex_is_known_extension(const VfsPath& pathname);
@@ -444,8 +449,8 @@ extern bool tex_is_known_extension(const VfsPath& pathname);
  * extra and pass the pointer as base+hdr_size. this allows writing the
  * header directly into the output buffer and makes for zero-copy IO.
  *
- * @param fn filename; only the extension (that after '.') is used.
- * case-insensitive.
+ * @param filename Filename; only the extension (that after '.') is used.
+ *		  case-insensitive.
  * @return size [bytes] or 0 on error (i.e. no codec found).
  **/
 extern size_t tex_hdr_size(const VfsPath& filename);

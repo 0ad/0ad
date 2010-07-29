@@ -64,11 +64,12 @@ public:
 	/**
 	 * Add a block to the cache.
 	 *
-	 * @param id key that will be used to Retrieve the block.
+	 * @param id Key that will be used to Retrieve the block.
+	 * @param buf
 	 *
-	 * call this when the block's IO has completed; its data will
+	 * Call this when the block's IO has completed; its data will
 	 * satisfy subsequent Retrieve calls for the same id.
-	 * if CONFIG2_CACHE_READ_ONLY, the memory is made read-only.
+	 * If CONFIG2_CACHE_READ_ONLY, the memory is made read-only.
 	 **/
 	void Add(BlockId id, const shared_ptr<u8>& buf);
 

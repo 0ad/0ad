@@ -84,9 +84,11 @@ public:
 	/**
 	 * Initialises the global state with skeleton data loaded from the
 	 * given XML data. Must only be called once.
-	 * (TODO: stop using global state.)
+	 * @todo Stop using global state.
+	 * @param xmlData	 
+	 * @param xmlLength
 	 * @param xmlErrors output - XML parser error messages; will be non-empty
-	 * on failure (and failure will always throw)
+	 *		  on failure (and failure will always throw)
 	 * @throws ColladaException on failure
 	 */
 	static void LoadSkeletonDataFromXml(const char* xmlData, size_t xmlLength, std::string& xmlErrors);
