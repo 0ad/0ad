@@ -87,7 +87,7 @@ public:
 };
 
 /**
- * This is send immediately after a new entity's components have all be created
+ * This is sent immediately after a new entity's components have all been created
  * and initialised.
  */
 class CMessageCreate : public CMessage
@@ -149,11 +149,12 @@ class CMessagePositionChanged : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(PositionChanged)
 
-	CMessagePositionChanged(bool inWorld, entity_pos_t x, entity_pos_t z, entity_angle_t a) :
-		inWorld(inWorld), x(x), z(z), a(a)
+	CMessagePositionChanged(entity_id_t entity, bool inWorld, entity_pos_t x, entity_pos_t z, entity_angle_t a) :
+		entity(entity), inWorld(inWorld), x(x), z(z), a(a)
 	{
 	}
 
+	entity_id_t entity;
 	bool inWorld;
 	entity_pos_t x, z;
 	entity_angle_t a;
@@ -190,6 +191,47 @@ public:
 	}
 
 	ssize_t i0, j0, i1, j1; // inclusive lower bound, exclusive upper bound, in tiles
+};
+
+/**
+ * Sent by CCmpRangeManager at most once per turn, when an active range query
+ * has had matching units enter/leave the range since the last RangeUpdate.
+ */
+class CMessageRangeUpdate : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(RangeUpdate)
+
+	CMessageRangeUpdate(u32 tag, const std::vector<entity_id_t>& added, const std::vector<entity_id_t>& removed) :
+		tag(tag), added(added), removed(removed)
+	{
+	}
+
+	u32 tag;
+	std::vector<entity_id_t> added;
+	std::vector<entity_id_t> removed;
+
+	// CCmpRangeManager wants to store a vector of messages and wants to
+	// swap vectors instead of copying (to save on memory allocations),
+	// so add some constructors for it:
+
+	CMessageRangeUpdate(u32 tag) :
+		tag(tag)
+	{
+	}
+
+	CMessageRangeUpdate(const CMessageRangeUpdate& other) :
+		CMessage(), tag(other.tag), added(other.added), removed(other.removed)
+	{
+	}
+
+	CMessageRangeUpdate& operator=(const CMessageRangeUpdate& other)
+	{
+		tag = other.tag;
+		added = other.added;
+		removed = other.removed;
+		return *this;
+	}
 };
 
 #endif // INCLUDED_MESSAGETYPES

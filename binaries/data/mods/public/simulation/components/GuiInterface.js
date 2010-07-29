@@ -248,6 +248,12 @@ GuiInterface.prototype.SetMotionDebugOverlay = function(player, data)
 	}
 };
 
+GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.SetDebugOverlay(enabled);
+};
+
 // List the GuiInterface functions that can be safely called by GUI scripts.
 // (GUI scripts are non-deterministic and untrusted, so these functions must be
 // appropriately careful. They are called with a first argument "player", which is
@@ -262,6 +268,7 @@ var exposedFunctions = {
 	"SetPathfinderDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
+	"SetRangeDebugOverlay": 1,
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

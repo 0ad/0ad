@@ -246,10 +246,18 @@ public:
 				baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_X, m_Z));
 		}
 
-		// NOTE: most callers don't actually care about Y; if this is a performance
-		// issue then we could add a new method that simply returns X/Z
-
 		return CFixedVector3D(m_X, baseY + m_YOffset, m_Z);
+	}
+
+	virtual CFixedVector2D GetPosition2D()
+	{
+		if (!m_InWorld)
+		{
+			LOGERROR(L"CCmpPosition::GetPosition2D called on entity when IsInWorld is false");
+			return CFixedVector2D();
+		}
+
+		return CFixedVector2D(m_X, m_Z);
 	}
 
 	virtual void TurnTo(entity_angle_t y)
@@ -381,12 +389,12 @@ private:
 	{
 		if (m_InWorld)
 		{
-			CMessagePositionChanged msg(true, m_X, m_Z, m_RotY);
+			CMessagePositionChanged msg(GetEntityId(), true, m_X, m_Z, m_RotY);
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 		}
 		else
 		{
-			CMessagePositionChanged msg(false, entity_pos_t(), entity_pos_t(), entity_angle_t());
+			CMessagePositionChanged msg(GetEntityId(), false, entity_pos_t::Zero(), entity_pos_t::Zero(), entity_angle_t::Zero());
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 		}
 	}

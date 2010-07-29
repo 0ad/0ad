@@ -64,7 +64,7 @@
 		/>
 
 		<!-- Dev/cheat commands -->
-		<object name="devCommands" size="100%-155 50 100%-16 130" z="200" type="image" sprite="devCommandsBackground"
+		<object name="devCommands" size="100%-155 50 100%-16 146" z="200" type="image" sprite="devCommandsBackground"
 				hidden="true" hotkey="session.devcommands.toggle">
 			<action on="Press">
 				this.hidden = !this.hidden;
@@ -89,6 +89,11 @@
 			<object size="0 64 100%-18 80" type="text" style="devCommandsText">Unit motion overlay</object>
 			<object size="100%-16 64 100% 80" type="checkbox" style="wheatCrossBox">
 				<action on="Press">g_Selection.SetMotionDebugOverlay(this.checked);</action>
+			</object>
+
+			<object size="0 80 100%-18 96" type="text" style="devCommandsText">Range overlay</object>
+			<object size="100%-16 80 100% 96" type="checkbox" style="wheatCrossBox">
+				<action on="Press">Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);</action>
 			</object>
 		</object>
 

@@ -19,6 +19,10 @@ var UnitFsmSpec = {
 			// ignore uninteresting construction messages
 		},
 
+		"LosRangeUpdate": function(msg) {
+			// ignore newly-seen units by default
+		},
+
 		"Attacked": function(msg) {
 			// Default behaviour: attack back at our attacker
 			if (this.CanAttack(msg.data.attacker))
@@ -30,10 +34,34 @@ var UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function() {
+				// If we entered the idle state we must have nothing better to do,
+				// so immediately check whether there's anybody nearby to attack.
+				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
+				if (this.losRangeQuery)
+				{
+					var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+					var ents = rangeMan.ResetActiveQuery(this.losRangeQuery);
+					if (this.AttackVisibleEntity(ents))
+						return true;
+				}
+
+				// Nobody to attack - switch to idle
 				this.SelectAnimation("idle");
+				return false;
+			},
+
+			"leave": function() {
+				var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+				rangeMan.DisableActiveQuery(this.losRangeQuery);
+			},
+
+			"LosRangeUpdate": function(msg) {
+				// TODO: implement stances (ignore this message if hold-fire stance)
+
+				// Start attacking one of the newly-seen enemy (if any)
+				this.AttackVisibleEntity(msg.data.added);
 			},
 		},
-
 
 		"Order.Walk": function(msg) {
 			var ok;
@@ -328,13 +356,55 @@ UnitAI.prototype.Init = function()
 	this.order = undefined; // always == this.orderQueue[0]
 };
 
-
-//// FSM linkage functions ////
-
 UnitAI.prototype.OnCreate = function()
 {
 	UnitFsm.Init(this, "INDIVIDUAL.IDLE");
 };
+
+UnitAI.prototype.OnOwnershipChanged = function(msg)
+{
+	this.SetupRangeQuery(msg.to);
+};
+
+UnitAI.prototype.OnDestroy = function()
+{
+	// Clean up any timers that are now obsolete
+	this.StopTimer();
+
+	// Clean up range queries
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (this.losRangeQuery)
+		rangeMan.DestroyActiveQuery(this.losRangeQuery);
+};
+
+// Set up a range query for all enemy units within LOS range
+// which can be attacked.
+// This should be called whenever our ownership changes.
+UnitAI.prototype.SetupRangeQuery = function(owner)
+{
+	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+	if (!cmpVision)
+		return;
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+
+	if (this.losRangeQuery)
+		rangeMan.DestroyActiveQuery(this.losRangeQuery);
+
+	var range = cmpVision.GetRange();
+
+	// Find all enemy players (i.e. exclude Gaia and ourselves)
+	var players = [];
+	for (var i = 1; i < playerMan.GetNumPlayers(); ++i)
+		if (i != owner)
+			players.push(i);
+
+	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range, players, IID_DamageReceiver);
+	rangeMan.EnableActiveQuery(this.losRangeQuery);
+};
+
+//// FSM linkage functions ////
 
 UnitAI.prototype.SetNextState = function(state)
 {
@@ -438,12 +508,6 @@ UnitAI.prototype.StopTimer = function()
 
 //// Message handlers /////
 
-UnitAI.prototype.OnDestroy = function()
-{
-	// Clean up any timers that are now obsolete
-	this.StopTimer();
-};
-
 UnitAI.prototype.OnMotionChanged = function(msg)
 {
 	if (!msg.speed)
@@ -461,6 +525,12 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 UnitAI.prototype.OnAttacked = function(msg)
 {
 	UnitFsm.ProcessMessage(this, {"type": "Attacked", "data": msg});
+};
+
+UnitAI.prototype.OnRangeUpdate = function(msg)
+{
+	if (msg.tag == this.losRangeQuery)
+		UnitFsm.ProcessMessage(this, {"type": "LosRangeUpdate", "data": msg});
 };
 
 //// Helper functions to be called by the FSM ////
@@ -562,6 +632,23 @@ UnitAI.prototype.GetBestAttack = function()
 	return cmpAttack.GetBestAttack();
 };
 
+/**
+ * Try to find one of the given entities which can be attacked,
+ * and start attacking it.
+ * Returns true if it found something to attack.
+ */
+UnitAI.prototype.AttackVisibleEntity = function(ents)
+{
+	for each (var target in ents)
+	{
+		if (this.CanAttack(target))
+		{
+			this.PushOrderFront("Attack", { "target": target });
+			return true;
+		}
+	}
+	return false;
+};
 
 //// External interface functions ////
 

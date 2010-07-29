@@ -111,6 +111,52 @@ public:
 		return r;
 	}
 
+	/**
+	 * Returns -1, 0, +1 depending on whether length is less/equal/greater
+	 * than the argument.
+	 * Avoids sqrting and overflowing.
+	 */
+	int CompareLength(fixed cmp) const
+	{
+		i64 x = (i64)X.GetInternalValue(); // abs(x) <= 2^31
+		i64 y = (i64)Y.GetInternalValue();
+		u64 xx = (u64)(x * x); // xx <= 2^62
+		u64 yy = (u64)(y * y);
+		u64 d2 = xx + yy; // d2 <= 2^63 (no overflow)
+
+		i64 c = (i64)cmp.GetInternalValue();
+		u64 c2 = (u64)(c * c);
+		if (d2 < c2)
+			return -1;
+		else if (d2 > c2)
+			return +1;
+		else
+			return 0;
+	}
+
+	/**
+	 * Returns -1, 0, +1 depending on whether length is less/equal/greater
+	 * than the argument's length.
+	 * Avoids sqrting and overflowing.
+	 */
+	int CompareLength(const CFixedVector2D& other) const
+	{
+		i64 x = (i64)X.GetInternalValue();
+		i64 y = (i64)Y.GetInternalValue();
+		u64 d2 = (u64)(x * x) + (u64)(y * y);
+
+		i64 ox = (i64)other.X.GetInternalValue();
+		i64 oy = (i64)other.Y.GetInternalValue();
+		u64 od2 = (u64)(ox * ox) + (u64)(oy * oy);
+
+		if (d2 < od2)
+			return -1;
+		else if (d2 > od2)
+			return +1;
+		else
+			return 0;
+	}
+
 	bool IsZero() const
 	{
 		return (X.IsZero() && Y.IsZero());

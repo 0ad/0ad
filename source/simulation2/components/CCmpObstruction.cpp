@@ -208,16 +208,16 @@ public:
 		if (cmpPosition.null())
 			return false;
 
-		CFixedVector3D pos = cmpPosition->GetPosition();
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 
 		SkipTagObstructionFilter filter(m_Tag); // ignore collisions with self
 
 		if (m_Type == STATIC)
-			return cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Z, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
+			return cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
 		else
-			return cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, m_Size0);
+			return cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0);
 	}
 };
 

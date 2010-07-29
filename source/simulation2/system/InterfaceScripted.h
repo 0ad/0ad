@@ -73,4 +73,10 @@
 		4, \
 		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
 
+#define DEFINE_INTERFACE_METHOD_5(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5) \
+	{ scriptname, \
+		ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, &class_##classname, classname, &classname::methodname>, \
+		5, \
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
+
 #endif // INCLUDED_INTERFACE_SCRIPTED

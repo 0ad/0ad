@@ -26,7 +26,6 @@
 #include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
 
-static const size_t RENDER_CIRCLE_POINTS = 16;
 static const float RENDER_HEIGHT_DELTA = 0.25f; // distance above terrain
 
 void SimRender::ConstructLineOnGround(const CSimContext& context, std::vector<float> xz,
@@ -79,11 +78,14 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 			water = cmpWaterMan->GetExactWaterLevel(x, z);
 	}
 
-	overlay.m_Coords.reserve((RENDER_CIRCLE_POINTS + 1) * 3);
+	// Adapt the circle resolution to look reasonable for small and largeish radiuses
+	size_t numPoints = clamp((size_t)(radius*4.0f), (size_t)12, (size_t)48);
 
-	for (size_t i = 0; i <= RENDER_CIRCLE_POINTS; ++i) // use '<=' so it's a closed loop
+	overlay.m_Coords.reserve((numPoints + 1) * 3);
+
+	for (size_t i = 0; i <= numPoints; ++i) // use '<=' so it's a closed loop
 	{
-		float a = i * 2 * (float)M_PI / RENDER_CIRCLE_POINTS;
+		float a = i * 2 * (float)M_PI / numPoints;
 		float px = x + radius * sin(a);
 		float pz = z + radius * cos(a);
 		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + RENDER_HEIGHT_DELTA;

@@ -220,6 +220,11 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	if (!toState)
 		error("Tried to change to non-existent state '" + nextState + "'");
 
+	// Find the set of states in the hierarchy tree to leave then enter,
+	// to traverse from the old state to the new one.
+	// If any enter/leave function returns true then abort the process
+	// (this lets them intercept the transition and start a new transition)
+
 	for (var equalPrefix = 0; fromState[equalPrefix] === toState[equalPrefix]; ++equalPrefix)
 	{
 	}
@@ -228,14 +233,22 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	{
 		var leave = this.states[fromState[i]].leave;
 		if (leave)
-			leave.apply(obj);
+		{
+			obj.fsmStateName = fromState[i];
+			if (leave.apply(obj))
+				return;
+		}
 	}
 
 	for (var i = equalPrefix; i < toState.length; ++i)
 	{
 		var enter = this.states[toState[i]].enter;
 		if (enter)
-			enter.apply(obj);
+		{
+			obj.fsmStateName = toState[i];
+			if (enter.apply(obj))
+				return;
+		}
 	}
 
 	obj.fsmStateName = nextStateName;

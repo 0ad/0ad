@@ -148,7 +148,7 @@ public:
 		// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
 		entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2);
 
-		CFixedVector3D initialPos = cmpPosition->GetPosition();
+		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
 
 		if (m_Shape == CIRCLE)
@@ -164,7 +164,7 @@ public:
 				fixed s, c;
 				sincos_approx(angle, s, c);
 
-				CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Z + c.Multiply(radius));
+				CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Y + c.Multiply(radius));
 
 				SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
 				if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, spawnedRadius))
@@ -207,9 +207,7 @@ public:
 					sy = m_Size1;
 					break;
 				}
-				CFixedVector2D center;
-				center.X = initialPos.X + (-dir.Y).Multiply(sy/2 + clearance);
-				center.Y = initialPos.Z + dir.X.Multiply(sy/2 + clearance);
+				CFixedVector2D center = initialPos - dir.Perpendicular().Multiply(sy/2 + clearance);
 				dir = dir.Multiply((sx + clearance*2) / (int)(numPoints-1));
 
 				for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]

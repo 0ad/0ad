@@ -117,30 +117,6 @@ template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, 
 	return true;
 }
 
-/*
-template<typename T> bool ScriptInterface::FromJSVal<std::vector<T> >(JSContext* cx, jsval v, std::vector<T>& out)
-{
-	JSObject* obj;
-	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL || !JS_IsArrayObject(cx, obj))
-		FAIL("Argument must be an array");
-	jsuint length;
-	if (!JS_GetArrayLength(cx, obj, &length))
-		FAIL("Failed to get array length");
-	out.reserve(length);
-	for (jsuint i = 0; i < length; ++i)
-	{
-		jsval el;
-		if (!JS_GetElement(cx, obj, i, &el))
-			FAIL("Failed to read array element");
-		T el2;
-		if (!FromJSVal<T>::Convert(cx, el, el2))
-			return false;
-		out.push_back(el2);
-	}
-	return true;
-}
-*/
-
 ////////////////////////////////////////////////////////////////
 // Primitive types:
 
@@ -235,6 +211,28 @@ template<typename T> static jsval ToJSVal_vector(JSContext* cx, const std::vecto
 	return OBJECT_TO_JSVAL(obj);
 }
 
+template<typename T> static bool FromJSVal_vector(JSContext* cx, jsval v, std::vector<T>& out)
+{
+	JSObject* obj;
+	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL || !JS_IsArrayObject(cx, obj))
+		FAIL("Argument must be an array");
+	jsuint length;
+	if (!JS_GetArrayLength(cx, obj, &length))
+		FAIL("Failed to get array length");
+	out.reserve(length);
+	for (jsuint i = 0; i < length; ++i)
+	{
+		jsval el;
+		if (!JS_GetElement(cx, obj, i, &el))
+			FAIL("Failed to read array element");
+		T el2;
+		if (!ScriptInterface::FromJSVal<T>(cx, el, el2))
+			return false;
+		out.push_back(el2);
+	}
+	return true;
+}
+
 template<> jsval ScriptInterface::ToJSVal<std::vector<int> >(JSContext* cx, const std::vector<int>& val)
 {
 	return ToJSVal_vector(cx, val);
@@ -248,4 +246,9 @@ template<> jsval ScriptInterface::ToJSVal<std::vector<u32> >(JSContext* cx, cons
 template<> jsval ScriptInterface::ToJSVal<std::vector<std::wstring> >(JSContext* cx, const std::vector<std::wstring>& val)
 {
 	return ToJSVal_vector(cx, val);
+}
+
+template<> bool ScriptInterface::FromJSVal<std::vector<int> >(JSContext* cx, jsval v, std::vector<int>& out)
+{
+	return FromJSVal_vector(cx, v, out);
 }

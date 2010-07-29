@@ -14,4 +14,9 @@ Vision.prototype.Schema =
  * TODO: this all needs to be designed and implemented
  */
 
+Vision.prototype.GetRange = function()
+{
+	return +this.template.Range;
+};
+
 Engine.RegisterComponentType(IID_Vision, "Vision", Vision);

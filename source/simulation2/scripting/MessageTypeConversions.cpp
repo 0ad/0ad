@@ -200,6 +200,22 @@ CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterf
 	return NULL;
 }
 
+////////////////////////////////
+
+jsval CMessageRangeUpdate::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(tag);
+	SET_MSG_PROPERTY(added);
+	SET_MSG_PROPERTY(removed);
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return NULL;
+}
+
 ////////////////////////////////////////////////////////////////
 
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, jsval val)

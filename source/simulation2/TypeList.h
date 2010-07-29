@@ -39,6 +39,7 @@ MESSAGE(Destroy)
 MESSAGE(OwnershipChanged)
 MESSAGE(PositionChanged)
 MESSAGE(MotionChanged)
+MESSAGE(RangeUpdate)
 MESSAGE(TerrainChanged)
 
 // TemplateManager must come before all other (non-test) components,
@@ -91,6 +92,9 @@ COMPONENT(Position) // must be before VisualActor
 
 INTERFACE(ProjectileManager)
 COMPONENT(ProjectileManager)
+
+INTERFACE(RangeManager)
+COMPONENT(RangeManager)
 
 INTERFACE(Selectable)
 COMPONENT(Selectable)

@@ -22,6 +22,7 @@
 
 #include "simulation2/helpers/Position.h"
 #include "maths/FixedVector3D.h"
+#include "maths/FixedVector2D.h"
 
 class CMatrix3D;
 
@@ -94,6 +95,12 @@ public:
 	 * Must not be called unless IsInWorld is true.
 	 */
 	virtual CFixedVector3D GetPosition() = 0;
+
+	/**
+	 * Returns the current x,z position (no interpolation).
+	 * Must not be called unless IsInWorld is true.
+	 */
+	virtual CFixedVector2D GetPosition2D() = 0;
 
 	/**
 	 * Rotate smoothly to the given angle around the upwards axis.

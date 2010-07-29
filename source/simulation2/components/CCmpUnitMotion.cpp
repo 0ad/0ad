@@ -354,8 +354,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	if (cmpPosition.null())
 		return;
 
-	CFixedVector3D pos3 = cmpPosition->GetPosition();
-	CFixedVector2D pos (pos3.X, pos3.Z);
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	// We want to move (at most) m_Speed*dt units from pos towards the next waypoint
 
@@ -491,8 +490,7 @@ bool CCmpUnitMotion::MoveToPoint(entity_pos_t x, entity_pos_t z)
 	if (cmpPosition.null() || !cmpPosition->IsInWorld())
 		return false;
 
-	CFixedVector3D pos3 = cmpPosition->GetPosition();
-	CFixedVector2D pos (pos3.X, pos3.Z);
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	// Reset any current movement
 	m_HasTarget = false;
@@ -560,8 +558,7 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 	if (cmpPosition.null() || !cmpPosition->IsInWorld())
 		return false;
 
-	CFixedVector3D pos3 = cmpPosition->GetPosition();
-	CFixedVector2D pos (pos3.X, pos3.Z);
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	// Reset any current movement
 	m_HasTarget = false;
@@ -690,9 +687,9 @@ bool CCmpUnitMotion::MoveToAttackRange(entity_id_t target, entity_pos_t minRange
 		if (cmpTargetPosition.null() || !cmpTargetPosition->IsInWorld())
 			return false;
 
-		CFixedVector3D targetPos = cmpTargetPosition->GetPosition();
+		CFixedVector2D targetPos = cmpTargetPosition->GetPosition2D();
 
-		return MoveToPointRange(targetPos.X, targetPos.Z, minRange, maxRange);
+		return MoveToPointRange(targetPos.X, targetPos.Y, minRange, maxRange);
 	}
 }
 
@@ -704,8 +701,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	if (cmpPosition.null() || !cmpPosition->IsInWorld())
 		return false;
 
-	CFixedVector3D pos3 = cmpPosition->GetPosition();
-	CFixedVector2D pos (pos3.X, pos3.Z);
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	entity_pos_t distance = (pos - CFixedVector2D(x, z)).Length();
 
@@ -750,8 +746,7 @@ bool CCmpUnitMotion::IsInAttackRange(entity_id_t target, entity_pos_t minRange, 
 	if (cmpPosition.null() || !cmpPosition->IsInWorld())
 		return false;
 
-	CFixedVector3D pos3 = cmpPosition->GetPosition();
-	CFixedVector2D pos (pos3.X, pos3.Z);
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpObstructionManager.null())
@@ -801,9 +796,9 @@ bool CCmpUnitMotion::IsInAttackRange(entity_id_t target, entity_pos_t minRange, 
 		if (cmpTargetPosition.null() || !cmpTargetPosition->IsInWorld())
 			return false;
 
-		CFixedVector3D targetPos = cmpTargetPosition->GetPosition();
+		CFixedVector2D targetPos = cmpTargetPosition->GetPosition2D();
 
-		entity_pos_t distance = (pos - CFixedVector2D(targetPos.X, targetPos.Z)).Length();
+		entity_pos_t distance = (pos - targetPos).Length();
 
 		if (minRange <= distance && distance <= maxRange)
 			return true;
