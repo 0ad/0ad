@@ -1,96 +1,30 @@
 const RESOURCE_ICON_CELL_IDS = {food : 0, wood : 1, stone : 2, metal : 3};
 
-// Called by unit selection buttons
-function changePrimarySelectionGroup(entType)
+function layoutSelectionMultiple()
 {
-	g_Selection.groups.setPrimary(g_Selection.groups.getGroupNumber(entType)); // set primary group
-	g_Selection.setPrimary(g_Selection.groups.getGroup(entType).firstOfType); // set primary selection
-	resetCycleIndex();
+	getGUIObjectByName("sdSpecific").hidden = true;
+	getGUIObjectByName("sdIcon").hidden = true;
+	getGUIObjectByName("sdStatsArea").hidden = true;
+	getGUIObjectByName("sdHealth").hidden = true;
+	getGUIObjectByName("sdStamina").hidden = true;
 }
 
-// Cycle through the units in the main icon
-var cycleIndex = 0;
-var displayedCycleIndex = 1;
-
-function resetCycleIndex()
+function layoutSelectionSingle(entState)
 {
-	cycleIndex = 0;
-	displayedCycleIndex = 1;
-}
-
-function cycleThroughSelection()
-{
-	var selection = g_Selection.toList();
+	getGUIObjectByName("sdSpecific").hidden = false;
+	getGUIObjectByName("sdIcon").hidden = false;
+	getGUIObjectByName("sdStatsArea").hidden = false;
 	
-	if (selection.length > 1)
+	if (entState.maxHitpoints != undefined)
+		getGUIObjectByName("sdHealth").hidden = false;
+
+	var player = Engine.GetPlayerID();
+	if (entState.player == player || g_DevSettings.controlAll)
 	{
-		var primaryTemplateName = g_Selection.getPrimaryTemplateName();
-		var primaryIndex = g_Selection.getPrimary();
-		var startIndex = cycleIndex;
-		var endIndex = selection.length-1;
-
-		cycleIndex = ((cycleIndex < endIndex)? cycleIndex+1 : 0);
-
-		while (cycleIndex != startIndex)
-		{
-			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-			if (!entState)
-				return;
-		
-			var equivalentTemplateNames;
-			if (g_GroupSelectionByRank)
-				equivalentTemplateNames = templatesEqualWithoutRank(primaryTemplateName, entState.template);
-			else
-				equivalentTemplateNames = (primaryTemplateName == entState.template);
-
-			if ((cycleIndex != primaryIndex) && equivalentTemplateNames)
-			{
-				var typeCount = g_Selection.groups.getGroup(entState.template).typeCount;
-				displayedCycleIndex = ((displayedCycleIndex < typeCount)? displayedCycleIndex+1 : 1);
-				g_Selection.setPrimary(cycleIndex);
-				break;
-			}
-
-			cycleIndex = ((cycleIndex < endIndex)? cycleIndex+1 : 0);
-		}
-	}
-}
-
-function reverseCycleThroughSelection()
-{
-	var selection = g_Selection.toList();
-	
-	if (selection.length > 1)
-	{
-		var primaryTemplateName = g_Selection.getPrimaryTemplateName();
-		var primaryIndex = g_Selection.getPrimary();
-		var startIndex = cycleIndex;
-		var endIndex = selection.length-1;
-
-		cycleIndex = ((cycleIndex > 0)? cycleIndex-1 : endIndex);
-
-		while (cycleIndex != startIndex)
-		{
-			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[cycleIndex]);
-			if (!entState)
-				return;
-				
-			var equivalentTemplateNames;
-			if (g_GroupSelectionByRank)
-				equivalentTemplateNames = templatesEqualWithoutRank(primaryTemplateName, entState.template);
-			else
-				equivalentTemplateNames = (primaryTemplateName == entState.template);
-
-			if ((cycleIndex != primaryIndex) && equivalentTemplateNames)
-			{
-				var typeCount = g_Selection.groups.getGroup(entState.template).typeCount;
-				displayedCycleIndex = ((displayedCycleIndex > 1)? displayedCycleIndex-1 : typeCount);
-				g_Selection.setPrimary(cycleIndex);
-				break;
-			}
-
-			cycleIndex = ((cycleIndex > 0)? cycleIndex-1 : endIndex);
-		}
+//		if (entState.stamina != undefined)
+			getGUIObjectByName("sdStamina").hidden = false;
+//		else
+//			getGUIObjectByName("sdStamina").hidden = true;
 	}
 }
 
@@ -107,10 +41,10 @@ function displayGeneralInfo(playerState, entState, template)
 	getGUIObjectByName("sdRankIcon").cell_id = rankId;
 
 	var rankText = getRankTitle(rankId);
-	rankText = (rankText? " (" + rankText + ")" : "" );
+	rankText = (rankText? " (" + rankText + ")" : "");
 
 	// Specific Name
-	var name = template.name.specific + rankText; // (eliteStatus?  "Elite " + template.name.specific : template.name.specific);
+	var name = template.name.specific + rankText;
 	getGUIObjectByName("sdSpecific").caption = name;
 	iconTooltip += "[font=\"serif-bold-16\"]" + name + "[/font]";
 
@@ -126,20 +60,19 @@ function displayGeneralInfo(playerState, entState, template)
 	getGUIObjectByName("sdPlayer").textcolor = playerColor;
 
 	// Hitpoints
-	if (entState.hitpoints != undefined)
+	if (entState.maxHitpoints != undefined)
 	{
-		var healthSize = getGUIObjectByName("sdHealthBar").size;
+		var unitHealthBar = getGUIObjectByName("sdHealthBar");
+		var healthSize = unitHealthBar.size;
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
-		getGUIObjectByName("sdHealthBar").size = healthSize;
+		unitHealthBar.size = healthSize;
 		
 		var tooltipHitPoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
 		getGUIObjectByName("sdHealth").tooltip = tooltipHitPoints;
-		getGUIObjectByName("sdHealth").hidden = false;
 		iconTooltip += "\n" + tooltipHitPoints;
 	}
 	else
 	{
-		getGUIObjectByName("sdHealth").hidden = true;
 		getGUIObjectByName("sdHealth").tooltip = "";
 	}
 
@@ -206,7 +139,7 @@ function updateSelectionDetails(simState)
 	/* If the unit has no data (e.g. it was killed), don't try displaying any
 	 data for it. (TODO: it should probably be removed from the selection too;
 	 also need to handle multi-unit selections) */
-	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[g_Selection.getPrimary()]);
+	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
 	if (!entState)
 		return;
 
@@ -217,28 +150,9 @@ function updateSelectionDetails(simState)
 	// Choose the highest ranked version of the primary selection
 	// Different selection details are shown based on whether multiple units or a single unit is selected
 	if (selection.length > 1)
-	{
-		var typeCount = g_Selection.groups.getGroup(entState.template).typeCount;
-		getGUIObjectByName("sdSelectionCount").caption = ((typeCount > 1)? displayedCycleIndex + "/" + typeCount : "");
-
-		// Show cycle area if there is more than one unit of that type
-		if (typeCount > 1)
-			getGUIObjectByName("sdCycleArea").hidden = false;
-		else
-			getGUIObjectByName("sdCycleArea").hidden = true;
-		
-		// Hide stats area if there is more thanone group
-		if (g_Selection.groups.getLength() > 1)
-			getGUIObjectByName("sdStatsArea").hidden = true;
-		else
-			getGUIObjectByName("sdStatsArea").hidden = false;
-	}
+		layoutSelectionMultiple();
 	else
-	{
-		getGUIObjectByName("sdSelectionCount").caption = "";
-		getGUIObjectByName("sdCycleArea").hidden = true;
-		getGUIObjectByName("sdStatsArea").hidden = false;
-	}
+		layoutSelectionSingle(entState);
 
 	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
 

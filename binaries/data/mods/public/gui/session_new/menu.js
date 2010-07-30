@@ -1,11 +1,3 @@
-// Group Selection by Rank
-var g_GroupSelectionByRank = true; // referenced in EntityGroups.createGroups(ents) AND in setupUnitPanel(...)
-function groupSelectionByRank(booleanValue)
-{
-	g_GroupSelectionByRank = booleanValue;
-	g_Selection.groups.createGroups(g_Selection.toList());
-}
-
 function toggleDeveloperOverlay()
 {
 	if (getGUIObjectByName("devCommands").hidden)

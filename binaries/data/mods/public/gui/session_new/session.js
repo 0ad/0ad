@@ -139,7 +139,7 @@ function updateDebug(simState)
 	var selection = g_Selection.toList();
 	if (selection.length)
 	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[g_Selection.getPrimary()]);
+		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
 		if (entState)
 		{
 			var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
@@ -276,22 +276,3 @@ function getFormalCivName(civ)
 		return "Gaia";
 	}
 }
-
-/*
-function getTemplateCategory(templateName)
-{
-	var slashIndex = templateName.search("/");
-
-	if (slashIndex >= 0)
-		return templateName.substring(slashIndex+1, templateName.search("_"));
-	
-	return "unknown category";
-}
-*/
-
-
-function templatesEqualWithoutRank(templateName1, templateName2)
-{
-	return ((templateName1.substring(0, templateName1.length-2) == templateName2.substring(0, templateName2.length-2))? true : false);
-}
-

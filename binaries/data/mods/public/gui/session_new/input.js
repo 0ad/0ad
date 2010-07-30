@@ -4,7 +4,7 @@ const SDL_BUTTON_RIGHT = 3;
 const SDLK_RSHIFT = 303;
 const SDLK_LSHIFT = 304;
 
-const MAX_SELECTION_SIZE = 24;
+const MAX_SELECTION_SIZE = 32;
 
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
@@ -265,9 +265,6 @@ function handleInputBeforeGui(ev)
 				g_Selection.setHighlightList([]);
 				g_Selection.reset();
 				g_Selection.addList(ents);
-
-				// Create the selection groups
-				g_Selection.groups.createGroups(ents);
 
 				inputState = INPUT_NORMAL;
 				return true;
@@ -615,4 +612,13 @@ function getTrainingQueueBatchStatus(entity, trainEntType)
 function removeFromTrainingQueue(entity, id)
 {
 	Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
+}
+
+// Called by unit selection buttons
+function changePrimarySelectionGroup(index)
+{
+	if (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT])
+		g_Selection.makePrimarySelection(index, true);
+	else
+		g_Selection.makePrimarySelection(index, false);
 }
