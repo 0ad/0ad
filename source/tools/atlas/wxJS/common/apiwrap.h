@@ -790,8 +790,10 @@ JSClass wxjs::ApiWrapper<T_Port, T_Priv>::wxjs_class =
         {
 
 // CLASS MACROS
-#define WXJS_INIT_CLASS(type, name, ctor)                         \
-    template<> JSObject *type::TOBJECT::m_classProto = NULL;      \
-    template<> int type::TOBJECT::m_ctorArguments = ctor;         \
-    template<> const char* type::TOBJECT::m_jsClassName = name;
+#define WXJS_INIT_CLASS(type, name, ctor)                             \
+    namespace wxjs {                                                  \
+        template<> JSObject *type::TOBJECT::m_classProto = NULL;      \
+        template<> int type::TOBJECT::m_ctorArguments = ctor;         \
+        template<> const char* type::TOBJECT::m_jsClassName = name;   \
+    }
 #endif //  _JSOBJECT_H

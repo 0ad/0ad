@@ -71,7 +71,7 @@ public:
 	/**
 	 * Override the build-time setting of the directory to search for libraries.
 	 */
-	static void OverrideLibdir(const CStr& libdir);
+	static void OverrideLibdir(const char* libdir);
 
 private:
 	// Typeless version - the public LoadSymbol hides the slightly ugly

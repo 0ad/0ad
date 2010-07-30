@@ -307,7 +307,7 @@ namespace std
  * std::numeric_limits specialisation, currently just providing min and max
  */
 template<typename T, T max_t, int total_bits, int int_bits, int fract_bits_, int fract_pow2>
-class numeric_limits<CFixed<T, max_t, total_bits, int_bits, fract_bits_, fract_pow2> >
+struct numeric_limits<CFixed<T, max_t, total_bits, int_bits, fract_bits_, fract_pow2> >
 {
 	typedef CFixed<T, max_t, total_bits, int_bits, fract_bits_, fract_pow2> fixed;
 public:

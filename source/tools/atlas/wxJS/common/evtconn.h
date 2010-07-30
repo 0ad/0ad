@@ -65,11 +65,16 @@ namespace wxjs
     };
 
 #if (__GNUC__ >= 4)
-    #define WXJS_INIT_EVENT_MAP(class) template<> EventConnector<class>::ConnectEventMap \
-                                       EventConnector<class>::m_eventMap = EventConnector<class>::ConnectEventMap();
+    #define WXJS_INIT_EVENT_MAP(class) \
+        namespace wxjs { \
+            template<> EventConnector<class>::ConnectEventMap \
+            EventConnector<class>::m_eventMap = EventConnector<class>::ConnectEventMap(); \
+        }
 #else
-    #define WXJS_INIT_EVENT_MAP(class) EventConnector<class>::ConnectEventMap \
-                                       EventConnector<class>::m_eventMap;
+    #define WXJS_INIT_EVENT_MAP(class) \
+        namespace wxjs { \
+            EventConnector<class>::ConnectEventMap EventConnector<class>::m_eventMap; \
+        }
 #endif
 
 } // end namespace wxjs

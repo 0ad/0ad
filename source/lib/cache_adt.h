@@ -222,7 +222,7 @@ private:
 // remove an item, all are charged according to MCD and their size;
 // entries are evicted if their credit is exhausted. accessing an entry
 // restores "some" of its credit.
-template<typename Key, typename Entry, template<class Entry, class Entries> class McdCalc = McdCalc_Cached>
+template<typename Key, typename Entry, template<class Entry_, class Entries> class McdCalc = McdCalc_Cached>
 class Landlord
 {
 public:
@@ -655,7 +655,7 @@ template
 <
 typename Key, typename Item,
 // see documentation above for Manager's interface.
-template<typename Key, class Entry> class Manager = Landlord_Cached,
+template<typename Key_, class Entry> class Manager = Landlord_Cached,
 class Divider = Divider_Naive
 >
 class Cache

@@ -151,7 +151,7 @@ void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 		throw PSERROR_DllLoader_SymbolNotFound();
 }
 
-void DllLoader::OverrideLibdir(const CStr& libdir)
+void DllLoader::OverrideLibdir(const char* libdir)
 {
 	g_Libdir = libdir;
 }
