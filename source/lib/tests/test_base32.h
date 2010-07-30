@@ -33,7 +33,30 @@ public:
 		const u8 in[] = { 0x12, 0x57, 0x85, 0xA2, 0xF9, 0x41, 0xCD, 0x57, 0xF3 };
 		u8 out[20] = {0};
 		base32(ARRAY_SIZE(in), in, out);
-		const u8 correct_out[] = "CJLYLIXZIHGVP4C";
+		const u8 correct_out[] = "CJLYLIXZIHGVP4Y";
 		TS_ASSERT_SAME_DATA(out, correct_out, ARRAY_SIZE(correct_out));
+	}
+
+	void test_base32_lengths()
+	{
+#define TEST(in, expected) \
+		{ \
+			u8 out[20] = {0}; \
+			base32(ARRAY_SIZE(in), in, out); \
+			const u8 correct_out[] = expected; \
+			TS_ASSERT_SAME_DATA(out, correct_out, ARRAY_SIZE(correct_out)); \
+		}
+		const u8 in1[] = { 0xFF };
+		const u8 in2[] = { 0xFF, 0xFF };
+		const u8 in3[] = { 0xFF, 0xFF, 0xFF };
+		const u8 in4[] = { 0xFF, 0xFF, 0xFF, 0xFF };
+		const u8 in5[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+		const u8 in6[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+		TEST(in1, "74");
+		TEST(in2, "777Q");
+		TEST(in3, "77776");
+		TEST(in4, "777777Y");
+		TEST(in5, "77777777");
+		TEST(in6, "7777777774");
 	}
 };
