@@ -198,10 +198,6 @@ var UnitFsmSpec = {
 
 
 		"Order.Gather": function(msg) {
-			var cmpResourceSupply = Engine.QueryInterface(this.order.data.target, IID_ResourceSupply);
-			var type = cmpResourceSupply.GetType();
-			this.gatherType = type;
-	
 			// Try to move within range
 			if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
 			{
@@ -231,7 +227,7 @@ var UnitFsmSpec = {
 
 			"GATHERING": {
 				"enter": function() {
-					var typename = "gather_" + (this.gatherType.specific || this.gatherType.generic);
+					var typename = "gather_" + this.order.data.type.specific;
 					this.SelectAnimation(typename, false, 1.0, typename);
 					this.StartTimer(1000, 1000);
 				},
@@ -256,10 +252,33 @@ var UnitFsmSpec = {
 						}
 						else
 						{
-							// Can't reach it, or it doesn't exist any more - give up
-							this.FinishOrder();
-							
-							// TODO: see if we can switch to a new nearby target of the same type
+							// Save the current order's type in case we need it later
+							var oldType = this.order.data.type;
+
+							// Can't reach it, or it doesn't exist any more - give up on this order
+							if (this.FinishOrder())
+								return;
+
+							// No remaining orders - pick a useful default behaviour
+
+							// Try to find a nearby target of the same type
+
+							var range = 32; // TODO: what's a sensible number?
+							var players = [0]; // owned by Gaia (TODO: is this what we want?)
+							var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+							var nearby = rangeMan.ExecuteQuery(this.entity, range, players, IID_ResourceSupply);
+							for each (var ent in nearby)
+							{
+								var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+								var type = cmpResourceSupply.GetType();
+								if (type.specific == oldType.specific)
+								{
+									this.Gather(ent, true);
+									return;
+								}
+							}
+
+							// Nothing else to gather - just give up
 						}
 					}
 				},
@@ -337,7 +356,7 @@ var UnitFsmSpec = {
 				// if we are capable of doing so
 				if (this.CanGather(msg.data.newentity))
 				{
-					this.PushOrder("Gather", { "target": msg.data.newentity });
+					this.Gather(msg.data.newentity, true);
 				}
 				else
 				{
@@ -689,7 +708,13 @@ UnitAI.prototype.Gather = function(target, queued)
 		return;
 	}
 
-	this.AddOrder("Gather", { "target": target }, queued);
+	// Save the resource type now, so if the resource gets destroyed
+	// before we process the order then we still know what resource
+	// type to look for more of
+	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	var type = cmpResourceSupply.GetType();
+
+	this.AddOrder("Gather", { "target": target, "type": type }, queued);
 };
 
 UnitAI.prototype.Repair = function(target, queued)

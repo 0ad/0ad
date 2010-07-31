@@ -61,15 +61,10 @@ ResourceSupply.prototype.TakeResources = function(rate)
 
 ResourceSupply.prototype.GetType = function()
 {
-	if (this.template.Type.indexOf('.') == -1)
-	{
-		return { "generic": this.template.Type };
-	}
-	else
-	{
-		var [type, subtype] = this.template.Type.split('.');
-		return { "generic": type, "specific": subtype };
-	}
+	// All resources must have both type and subtype
+
+	var [type, subtype] = this.template.Type.split('.');
+	return { "generic": type, "specific": subtype };
 };
 
 Engine.RegisterComponentType(IID_ResourceSupply, "ResourceSupply", ResourceSupply);
