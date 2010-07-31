@@ -163,5 +163,5 @@ function updateSelectionDetails(simState)
 	detailsPanel.hidden = false;
 	
 	// Fill out commands panel for specific unit selected (or first unit of primary group)
-	updateUnitCommands(playerState, entState, commandsPanel, selection);
+	updateUnitCommands(entState, commandsPanel, selection);
 }

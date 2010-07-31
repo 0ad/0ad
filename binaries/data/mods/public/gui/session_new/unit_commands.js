@@ -1,12 +1,18 @@
+// Panel types
+const SELECTION = "Selection";
+const QUEUE = "Queue";
+const TRAINING = "Training";
+const CONSTRUCTION = "Construction";
+
 // Constants used by the Queue or Garrison panel
 const UNIT_PANEL_BASE = -56; // The offset above the main panel (will often be negative)
 const UNIT_PANEL_HEIGHT = 47; // The height needed for a row of buttons
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = { "Construction": 0, "Training": 0, "Queue": 0, "Selection": 0 };
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Training": 0, "Construction": 0};
 
 // Unit panels are panels with row(s) of buttons
-var g_unitPanels = ["Stance", "Formation", "Construction", "Research", "Training", "Queue", "Selection"];
+var g_unitPanels = ["Selection", "Queue", "Training", "Construction", "Research", "Stance", "Formation"];
 
 // Lay out button rows
 function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, startIndex, endIndex)
@@ -29,43 +35,35 @@ function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, sta
 }
 
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
-function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, callback)
+function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
-	var i = 0;
 	var selection = g_Selection.toList();
 
-	for each (var item in items)
+	// Set length of loop
+	var numberOfItems = items.length;
+	if (numberOfItems > 24)
+		numberOfItems = (((numberOfItems > 32) && (guiName == "Selection"))? 32 : 24);
+
+	var i;
+	for (i = 0; i < numberOfItems; i++)
 	{
-		// End loop early if there too many buttons
-		if ((guiName != "Selection") && (i > 23))
-			break;
-		else if (i > 31)
-			break;
+		var item = items[i];
 
 		// Get templates
-		var entType;
-		if (guiName == "Queue")
-			entType = item.template;
-		else
-			entType = item;
-			
+		var entType = ((guiName == "Queue")? item.template : item);	
 		var template = Engine.GuiInterfaceCall("GetTemplateData", entType);
 		if (!template)
 			continue; // ignore attempts to use invalid templates (an error should have been reported already)
 
-		// Name
-		var name;
-		if (guiName == "Selection")
-			name = "[font=\"serif-bold-16\"]" + (template.name.specific || template.name.generic || "???") + "[/font]";
-		else
-			name = getFullName(template);
-
 		// Tooltip
-		var tooltip = name;
+		var tooltip = "";
 
-		if (guiName == "Selection")
+		switch (guiName)
 		{
+		case SELECTION:
+			tooltip = getEntityName(template);
+
 			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[i]);
 			if (!entState)
 				return;
@@ -84,34 +82,34 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 				unitHealthBar.size = healthSize;
 				tooltip += " [font=\"serif-9\"](" + entState.hitpoints + "/" + entState.maxHitpoints + ")[/font]";
 			}
-		}
-		else if (guiName == "Queue")
-		{
+			break;
+
+		case QUEUE:
+			tooltip = getEntityNameWithGeneric(template);
+
 			var progress = Math.round(item.progress*100) + "%";
 			tooltip += " - " + progress;
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
 			getGUIObjectByName("unit"+guiName+"Progress["+i+"]").caption = (item.progress ? progress : "");
-		}
-		else if (guiName == "Construction" || guiName == "Training")
-		{
-			if (template.cost)
+			break;
+
+		case TRAINING:
+			tooltip = getEntityNameWithGeneric(template) + "\n" + getEntityCost(template);
+
+			var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
+			if (batchSize)
 			{
-				var costs = [];
-				if (template.cost.food) costs.push("[font=\"serif-bold-13\"]Food:[/font] " + template.cost.food);
-				if (template.cost.wood) costs.push("[font=\"serif-bold-13\"]Wood:[/font] " + template.cost.wood);
-				if (template.cost.metal) costs.push("[font=\"serif-bold-13\"]Metal:[/font] " + template.cost.metal);
-				if (template.cost.stone) costs.push("[font=\"serif-bold-13\"]Stone:[/font] " + template.cost.stone);
-				if (costs.length)
-					tooltip += "\n" + costs.join(", ");
+				tooltip += "\n[font=\"serif-13\"]Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; " + 
+				"Shift-click to train [font=\"serif-bold-13\"]"+ (batchSize+batchIncrement) + "[font=\"serif-13\"] units[/font]";
 			}
-		
-			if (guiName == "Training")
-			{
-				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
-				tooltip += "\n[font=\"serif-13\"]";
-				if (batchSize) tooltip += "Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; ";
-					tooltip += "Shift-click to train [font=\"serif-bold-13\"]"+ (batchSize+batchIncrement) + "[font=\"serif-13\"] units[/font]";
-			}	
+			break;
+			
+		case CONSTRUCTION:
+			tooltip = getEntityNameWithGeneric(template) + "\n" + getEntityCost(template);
+			break;
+
+		default:
+			break;
 		}
 
 		// Button
@@ -131,8 +129,6 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 			icon.cell_id = 0;
 		else
 			icon.cell_id = template.icon_cell;
-			
-		++i;
 	}
 
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
@@ -163,7 +159,7 @@ function setupUnitPanel(guiName, usedPanels, playerState, unitEntState, items, c
 }
 
 // Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
-function updateUnitCommands(playerState, entState, commandsPanel, selection)
+function updateUnitCommands(entState, commandsPanel, selection)
 {
 	// Panels that are active
 	var usedPanels = {};
@@ -184,18 +180,18 @@ function updateUnitCommands(playerState, entState, commandsPanel, selection)
 		}
 
 		if (entState.buildEntities && entState.buildEntities.length)
-			setupUnitPanel("Construction", usedPanels, playerState, entState, entState.buildEntities, startBuildingPlacement);
+			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
 
 		if (entState.training && entState.training.entities.length)
-			setupUnitPanel("Training", usedPanels, playerState, entState, entState.training.entities,
+			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
 				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
 
 		if (entState.training && entState.training.queue.length)
-			setupUnitPanel("Queue", usedPanels, playerState, entState, entState.training.queue,
+			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
 		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, playerState, entState, g_Selection.getTemplateNames(),
+			setupUnitPanel("Selection", usedPanels, entState, g_Selection.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
 	
 		commandsPanel.hidden = false;

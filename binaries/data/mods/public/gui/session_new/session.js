@@ -244,7 +244,27 @@ function getRankTitle(cellId)
 	return "";
 }
 
-function getFullName(template)
+function getEntityCost(template)
+{
+	if (template.cost)
+	{
+		var costs = [];
+		if (template.cost.food) costs.push("[font=\"serif-bold-13\"]Food:[/font] " + template.cost.food);
+		if (template.cost.wood) costs.push("[font=\"serif-bold-13\"]Wood:[/font] " + template.cost.wood);
+		if (template.cost.metal) costs.push("[font=\"serif-bold-13\"]Metal:[/font] " + template.cost.metal);
+		if (template.cost.stone) costs.push("[font=\"serif-bold-13\"]Stone:[/font] " + template.cost.stone);
+		if (costs.length)
+			return costs.join(", ");
+	}
+	return "";
+}
+
+function getEntityName(template)
+{
+		return "[font=\"serif-bold-16\"]" + (template.name.specific || template.name.generic || "???") + "[/font]";
+}
+
+function getEntityNameWithGeneric(template)
 {
 		var name;
 
