@@ -501,8 +501,15 @@ bool CCmpUnitMotion::MoveToPoint(entity_pos_t x, entity_pos_t z)
 	if (cmpObstructionManager.null())
 		return false;
 
+	ICmpObstructionManager::tag_t tag;
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), GetEntityId());
+	if (!cmpObstruction.null())
+		tag = cmpObstruction->GetObstruction();
+
+	SkipTagObstructionFilter filter(tag);
+
 	ICmpObstructionManager::ObstructionSquare obstruction;
-	if (cmpObstructionManager->FindMostImportantObstruction(x, z, m_Radius, obstruction))
+	if (cmpObstructionManager->FindMostImportantObstruction(filter, x, z, m_Radius, obstruction))
 	{
 		// If we're aiming inside a building, then aim for the outline of the building instead
 		// TODO: if we're aiming at a unit then maybe a circle would look nicer?
@@ -890,7 +897,7 @@ bool CCmpUnitMotion::PickNextWaypoint(const CFixedVector2D& pos, bool avoidMovin
 		goal.z = targetZ;
 	}
 
-	CmpPtr<ICmpPathfinder> cmpPathfinder (GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpPathfinder.null())
 		return false;
 

@@ -1115,11 +1115,11 @@ static bool CheckVisibility(CFixedVector2D a, CFixedVector2D b, const std::vecto
 			continue;
 
 		// The ray is crossing the infinitely-extended edge from in front to behind.
-		// If the edge's points are the same side of the infinitely-extended ray
-		// then the finite lines can't intersect, otherwise they're crossing
+		// Check the finite edge is crossing the infinitely-extended ray too.
+		// (Given the previous tests, it can only be crossing in one direction.)
 		fixed s = (edges[i].p0 - a).Dot(abn);
 		fixed t = (edges[i].p1 - a).Dot(abn);
-		if ((s <= fixed::Zero() && t >= fixed::Zero()) || (s >= fixed::Zero() && t <= fixed::Zero()))
+		if (s <= fixed::Zero() && t >= fixed::Zero())
 			return false;
 	}
 
@@ -1450,6 +1450,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 			break;
 		}
 
+		// Check the lines to every other vertex
 		for (size_t n = 0; n < vertexes.size(); ++n)
 		{
 			if (vertexes[n].status == Vertex::CLOSED)
@@ -1467,13 +1468,13 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 			/*
 			// Render the edges that we examine
 			m_DebugOverlayShortPathLines.push_back(SOverlayLine());
-			m_DebugOverlayShortPathLines.back().m_Color = visible ? CColor(0, 1, 0, 1) : CColor(0, 0, 0, 1);
+			m_DebugOverlayShortPathLines.back().m_Color = visible ? CColor(0, 1, 0, 0.5) : CColor(1, 0, 0, 0.5);
 			std::vector<float> xz;
 			xz.push_back(vertexes[curr.id].p.X.ToFloat());
 			xz.push_back(vertexes[curr.id].p.Y.ToFloat());
 			xz.push_back(npos.X.ToFloat());
 			xz.push_back(npos.Y.ToFloat());
-			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back());
+			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), false);
 			//*/
 
 			if (visible)

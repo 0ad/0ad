@@ -250,7 +250,7 @@ public:
 
 	virtual bool Rasterise(Grid<u8>& grid);
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
-	virtual bool FindMostImportantObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square);
+	virtual bool FindMostImportantObstruction(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square);
 
 	virtual void SetDebugOverlay(bool enabled)
 	{
@@ -554,14 +554,13 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 	}
 }
 
-bool CCmpObstructionManager::FindMostImportantObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square)
+bool CCmpObstructionManager::FindMostImportantObstruction(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square)
 {
 	std::vector<ObstructionSquare> squares;
 
 	CFixedVector2D center(x, z);
 
 	// First look for obstructions that are covering the exact target point
-	NullObstructionFilter filter;
 	GetObstructionsInRange(filter, x, z, x, z, squares);
 	// Building squares are more important but returned last, so check backwards
 	for (std::vector<ObstructionSquare>::reverse_iterator it = squares.rbegin(); it != squares.rend(); ++it)

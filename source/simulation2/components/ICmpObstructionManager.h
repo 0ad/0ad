@@ -200,7 +200,7 @@ public:
 	 * obstructions that cover the given point are more important than those that only cover
 	 * the point expanded by the radius.
 	 */
-	virtual bool FindMostImportantObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square) = 0;
+	virtual bool FindMostImportantObstruction(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square) = 0;
 
 	/**
 	 * Get the obstruction square representing the given shape.

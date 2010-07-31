@@ -22,6 +22,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include "lib/secure_crt.h"
+#include "lib/utf8.h"
 
 #include <sstream>
 #include <iomanip>
@@ -132,13 +133,12 @@ void CDebugSerializer::PutString(const char* name, const std::string& value)
 
 void CDebugSerializer::PutScriptVal(const char* name, jsval value)
 {
-	std::string source;
-	// TODO: should be wstring
+	std::wstring source = m_ScriptInterface.ToString(value);
 
-	if (!m_ScriptInterface.CallFunction(value, "toSource", source))
-		throw PSERROR_Serialize_ScriptError();
+	LibError err; // silently ignore encoding errors
+	std::string sourcea = utf8_from_wstring(source, &err);
 
-	m_Stream << INDENT << name << ": " << source << "\n";
+	m_Stream << INDENT << name << ": " << sourcea << "\n";
 }
 
 void CDebugSerializer::PutRaw(const char* name, const u8* data, size_t len)

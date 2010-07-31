@@ -71,28 +71,27 @@ cassert(sizeof(EntityData) == 12);
 
 /**
  * Functor for sorting entities by distance from a source point.
- * It must only be passed entities that has a Position component
+ * It must only be passed entities that are in 'entities'
  * and are currently in the world.
  */
 struct EntityDistanceOrdering
 {
-	EntityDistanceOrdering(const CSimContext& context, const CFixedVector2D& source) :
-		context(context), source(source)
+	EntityDistanceOrdering(const std::map<entity_id_t, EntityData>& entities, const CFixedVector2D& source) :
+		m_EntityData(entities), m_Source(source)
 	{
 	}
 
 	bool operator()(entity_id_t a, entity_id_t b)
 	{
-		CmpPtr<ICmpPosition> cmpPositionA(context, a);
-		CmpPtr<ICmpPosition> cmpPositionB(context, b);
-		// (these positions will be valid and in the world, else ExecuteQuery wouldn't have returned it)
-		CFixedVector2D vecA = cmpPositionA->GetPosition2D() - source;
-		CFixedVector2D vecB = cmpPositionB->GetPosition2D() - source;
+		const EntityData& da = m_EntityData.find(a)->second;
+		const EntityData& db = m_EntityData.find(b)->second;
+		CFixedVector2D vecA = CFixedVector2D(da.x, da.z) - m_Source;
+		CFixedVector2D vecB = CFixedVector2D(db.x, db.z) - m_Source;
 		return (vecA.CompareLength(vecB) < 0);
 	}
 
-	const CSimContext& context;
-	CFixedVector2D source;
+	const std::map<entity_id_t, EntityData>& m_EntityData;
+	CFixedVector2D m_Source;
 
 private:
 	EntityDistanceOrdering& operator=(const EntityDistanceOrdering&);
@@ -318,7 +317,7 @@ public:
 
 		// Return the list sorted by distance from the entity
 		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
-		std::stable_sort(r.begin(), r.end(), EntityDistanceOrdering(GetSimContext(), pos));
+		std::stable_sort(r.begin(), r.end(), EntityDistanceOrdering(m_EntityData, pos));
 
 		return r;
 	}
@@ -353,7 +352,7 @@ public:
 
 		// Return the list sorted by distance from the entity
 		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
-		std::stable_sort(r.begin(), r.end(), EntityDistanceOrdering(GetSimContext(), pos));
+		std::stable_sort(r.begin(), r.end(), EntityDistanceOrdering(m_EntityData, pos));
 
 		return r;
 	}
@@ -407,7 +406,7 @@ private:
 			// Return the 'added' list sorted by distance from the entity
 			// (Don't bother sorting 'removed' because they might not even have positions or exist any more)
 			CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
-			std::stable_sort(added.begin(), added.end(), EntityDistanceOrdering(GetSimContext(), pos));
+			std::stable_sort(added.begin(), added.end(), EntityDistanceOrdering(m_EntityData, pos));
 
 			messages.push_back(std::make_pair(q.source, CMessageRangeUpdate(it->first)));
 			messages.back().second.added.swap(added);

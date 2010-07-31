@@ -17,6 +17,7 @@
 
 #include "simulation2/system/ComponentTest.h"
 
+#include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
 
 #include "graphics/MapReader.h"
@@ -88,5 +89,36 @@ public:
 			ICmpPathfinder::Path path;
 			cmp->ComputePath(x0, z0, goal, cmp->GetPassabilityClass("default"), cmp->GetCostClass("default"), path);
 		}
+	}
+
+	void test_performance_short_DISABLED()
+	{
+		CTerrain terrain;
+		terrain.Initialize(5, NULL);
+
+		CSimulation2 sim2(NULL, &terrain);
+		sim2.LoadDefaultScripts();
+		sim2.ResetState();
+
+		const entity_pos_t range = entity_pos_t::FromInt(CELL_SIZE*12);
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionMan(sim2, SYSTEM_ENTITY);
+		CmpPtr<ICmpPathfinder> cmpPathfinder(sim2, SYSTEM_ENTITY);
+
+		srand(0);
+		for (size_t i = 0; i < 200; ++i)
+		{
+			fixed x = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
+			fixed z = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
+//			printf("# %f %f\n", x.ToFloat(), z.ToFloat());
+			cmpObstructionMan->AddUnitShape(x, z, fixed::FromInt(2), false);
+		}
+
+		NullObstructionFilter filter;
+		ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, range, range };
+		ICmpPathfinder::Path path;
+		cmpPathfinder->ComputeShortPath(filter, range/3, range/3, fixed::FromInt(2), range, goal, 0, path);
+		for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
+			printf("# %d: %f %f\n", (int)i, path.m_Waypoints[i].x.ToFloat(), path.m_Waypoints[i].z.ToFloat());
 	}
 };
