@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,11 +20,8 @@
 
 #include "gui/GUI.h"
 
-class CVector2D;
-class CVector3D;
 class CCamera;
 class CTerrain;
-class CUnitManager;
 
 extern bool g_TerrainModified;
 
@@ -55,16 +52,9 @@ protected:
 
 	void FireWorldClickEvent(int button, int clicks);
 
-    // calculate the relative heightmap space coordinates
-    // for a units world position
-    CVector2D GetMapSpaceCoords(CVector3D worldPos);
-
     // the terrain we are mini-mapping
     const CTerrain* m_Terrain;
 
-    // the unit manager with unit positions
-    const CUnitManager* m_UnitManager;
-    
 	// not const: camera is moved by clicking on minimap
 	CCamera* m_Camera;
 	

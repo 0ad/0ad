@@ -65,11 +65,8 @@
 
 #include "simulation2/Simulation2.h"
 
-#include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
 #include "scripting/ScriptGlue.h"
-#include "scripting/DOMEvent.h"
-#include "scripting/ScriptableComplex.h"
 
 #include "scriptinterface/ScriptInterface.h"
 
@@ -313,9 +310,6 @@ static void RegisterJavascriptInterfaces()
 
 	// sound
 	JSI_Sound::ScriptingInit();
-
-	// scripting
-	CScriptEvent::ScriptingInit();
 
 	// ps
 	JSI_Console::init();

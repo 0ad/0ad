@@ -37,7 +37,6 @@
 #include "ps/Hotkey.h"
 #include "ps/Pyrogenesis.h"
 #include "scripting/ScriptingHost.h"
-#include "scripting/ScriptableComplex.inl"
 
 #define LOG_CATEGORY L"Console"
 

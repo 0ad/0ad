@@ -26,8 +26,6 @@
 #include "Frustum.h"
 #include "maths/Matrix3D.h"
 
-extern int g_mouse_x, g_mouse_y;
-
 // view port
 struct SViewPort
 {
@@ -45,7 +43,6 @@ class CCamera
 		~CCamera ();
 		
 		// Methods for projection
-		void SetProjection (CMatrix3D *proj) { m_ProjMat = *proj; }
 		void SetProjection (float nearp, float farp, float fov);
 		void SetProjectionTile (int tiles, int tile_x, int tile_y);
 		CMatrix3D& GetProjection () { return m_ProjMat; }
@@ -65,9 +62,6 @@ class CCamera
 		float GetFarPlane() const { return m_FarPlane; }
 		float GetFOV() const { return m_FOV; }
 
-		// calculate and return the position of the 8 points of the frustum in world space
-		void GetFrustumPoints(CVector3D pts[8]) const;
-
 		// return four points in camera space at given distance from camera
 		void GetCameraPlanePoints(float dist,CVector3D pts[4]) const;
 
@@ -76,11 +70,6 @@ class CCamera
 		// BuildCameraRay: calculate origin and ray direction of a ray through
 		// the pixel (px,py) on the screen
 		void BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir);
-		// BuildCameraRay: as previous, using global mouse position
-		void BuildCameraRay(CVector3D& origin, CVector3D& dir)
-		{
-			BuildCameraRay(g_mouse_x, g_mouse_y, origin, dir);
-		}
 
 		// General helpers that seem to fit here
 
@@ -90,8 +79,6 @@ class CCamera
 		// Get the point on the terrain corresponding to pixel (px,py) (or the mouse coordinates)
 		// The aboveWater parameter determines whether we want to stop at the water plane or also get underwater points
 		CVector3D GetWorldCoordinates(int px, int py, bool aboveWater=false);
-		CVector3D GetWorldCoordinates(bool aboveWater=false) 
-			{ return GetWorldCoordinates(g_mouse_x, g_mouse_y, aboveWater); }
 		// Get the point on the plane at height h corresponding to pixel (px,py)
 		CVector3D GetWorldCoordinates(int px, int py, float h);
 		// Get the point on the terrain the camera is pointing towards

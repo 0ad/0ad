@@ -21,19 +21,13 @@
 
 #include "graphics/Camera.h"
 #include "graphics/CinemaTrack.h"
-#include "graphics/GameView.h"
-#include "graphics/Model.h"
-#include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
-#include "graphics/Unit.h"
-#include "graphics/UnitManager.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
-#include "ps/Game.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
 #include "ps/XML/Xeromyces.h"
@@ -781,7 +775,7 @@ void CXMLReader::ReadCinema(XMBElement parent)
 		m_MapReader.pCinema->SetAllPaths(pathList);
 }
 
-void CXMLReader::ReadTriggers(XMBElement parent)
+void CXMLReader::ReadTriggers(XMBElement UNUSED(parent))
 {
 //	MapTriggerGroup rootGroup( L"Triggers", L"" );
 //	if (m_MapReader.pTrigMan)

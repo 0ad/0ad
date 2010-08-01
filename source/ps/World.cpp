@@ -115,9 +115,9 @@ CWorld::~CWorld()
  **/
 void CWorld::RewriteMap()
 {
-	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager,
+	CMapWriter::RewriteAllMaps(m_Terrain,
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
 		&g_LightEnv, m_pGame->GetView()->GetCamera(), 
 		m_pGame->GetView()->GetCinema(), NULL,
-		m_pGame->GetSimulation2(), NULL);
+		m_pGame->GetSimulation2());
 }

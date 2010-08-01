@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,14 +27,12 @@
 
 class CLightEnv;
 class CTerrain;
-class CUnitManager;
 class CCamera;
 class CCinemaManager;
 class CTriggerManager;
 class WaterManager;
 class SkyManager;
 class CSimulation2;
-class CEntityManager;
 struct MapTrigger;
 struct MapTriggerGroup;
 class XMLWriter_File;
@@ -45,17 +43,17 @@ public:
 	// constructor
 	CMapWriter();
 	// SaveMap: try to save the current map to the given file
-	void SaveMap(const VfsPath& pathname, CTerrain* pTerr, CUnitManager* pUnitMan, 
+	void SaveMap(const VfsPath& pathname, CTerrain* pTerr,
 									WaterManager* pWaterMan, SkyManager* pSkyMan, 
 									CLightEnv* pLightEnv, CCamera* pCamera, 
 									CCinemaManager* pCinema, CSimulation2* pSimulation2);
 
 	// RewriteAllMaps: for use during development: load/save all maps, to
 	// update them to the newest format.
-	static void RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan, WaterManager* pWaterMan, 
+	static void RewriteAllMaps(CTerrain* pTerrain, WaterManager* pWaterMan,
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
 								CCinemaManager* pCinema, CTriggerManager* pTrigMan,
-								CSimulation2* pSimulation2, CEntityManager* pEntityMan);
+								CSimulation2* pSimulation2);
 
 private:
 	// PackMap: pack the current world into a raw data stream
@@ -69,7 +67,7 @@ private:
 		std::vector<STileDesc>& tileIndices);
 
 	// WriteXML: output some other data (entities, etc) in XML format
-	void WriteXML(const VfsPath& pathname, CUnitManager* pUnitMan, WaterManager* pWaterMan, 
+	void WriteXML(const VfsPath& pathname, WaterManager* pWaterMan,
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
 								CCinemaManager* pCinema, CSimulation2* pSimulation2);
 //	void WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group,

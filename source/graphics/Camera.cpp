@@ -161,21 +161,6 @@ void CCamera::GetCameraPlanePoints(float dist,CVector3D pts[4]) const
 	pts[3].Z=dist;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// GetFrustumPoints: calculate and return the position of the 8 points of the frustum in world space
-void CCamera::GetFrustumPoints(CVector3D pts[8]) const
-{
-	// get camera space points for near and far planes
-	CVector3D cpts[8];
-	GetCameraPlanePoints(m_NearPlane,pts);
-	GetCameraPlanePoints(m_FarPlane,pts+4);
-
-	// transform to world space
-	for (int i=0;i<8;i++) {
-		m_Orientation.Transform(cpts[i],pts[i]);
-	}
-}
-
 void CCamera::BuildCameraRay( int px, int py, CVector3D& origin, CVector3D& dir )
 {
 	CVector3D cPts[4];
@@ -401,5 +386,3 @@ void CCamera::Render(int intermediates) const
 		glEnd();
 	}
 }
-
-

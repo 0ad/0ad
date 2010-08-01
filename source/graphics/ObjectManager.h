@@ -25,8 +25,6 @@
 #include "ps/CStr.h"
 #include "lib/file/vfs/vfs_path.h"
 
-class CEntityTemplate;
-class CMatrix3D;
 class CMeshManager;
 class CObjectBase;
 class CObjectEntry;

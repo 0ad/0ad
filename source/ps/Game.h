@@ -66,18 +66,6 @@ class CGame
 
 	int m_PlayerID;
 
-	/**
-	 * enumerated values for game status.
-	 **/
-	enum EOG
-	{
-		EOG_NEUTRAL,	/// Game is in progress
-		EOG_DRAW,		/// Game is over as a Draw by means of agreement of civilizations
-		EOG_SPECIAL_DRAW,	/// Game is over by players dying at the same time...?
-		EOG_LOSE,		/// Game is over, local player loses		
-		EOG_WIN			/// Game is over, local player wins
-	} GameStatus;
-
 	CNetTurnManager* m_TurnManager;
 
 public:
@@ -105,9 +93,6 @@ public:
 
 	void Interpolate(float frameLength);
 
-	void UpdateGameStatus();
-	void EndGame();
-
 	int GetPlayerID();
 	void SetPlayerID(int playerID);
 
@@ -130,6 +115,7 @@ public:
 	 **/
 	inline CWorld *GetWorld()
 	{	return m_World; }
+
 	/**
 	 * Get the pointer to the game view object.
 	 *
@@ -137,6 +123,7 @@ public:
 	 **/
 	inline CGameView *GetView()
 	{	return m_GameView; }
+
 	/**
 	 * Get the pointer to the simulation2 object.
 	 *
@@ -155,13 +142,6 @@ public:
 	 **/
 	inline void SetSimRate(float simRate)
 	{	 m_SimRate = std::max(simRate, 0.0f); }
-	/**
-	 * Get the simulation scale multiplier.
-	 *
-	 * @return float value of m_SimRate.
-	 **/
-	inline float GetSimRate() const
-	{	return m_SimRate; }
 
 	/**
 	 * Replace the current turn manager.

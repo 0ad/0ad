@@ -35,8 +35,6 @@ ERROR_TYPE(Game_World, MapLoadFailed);
 
 class CGame;
 class CUnitManager;
-class CEntityManager;
-class CProjectileManager;
 class CLOSManager;
 class CTerritoryManager;
 class CTerrain;

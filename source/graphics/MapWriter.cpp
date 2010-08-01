@@ -22,20 +22,13 @@
 #include "LightEnv.h"
 #include "MapReader.h"
 #include "MapWriter.h"
-#include "Model.h"
-#include "ObjectBase.h"
-#include "ObjectEntry.h"
-#include "ObjectManager.h"
 #include "Patch.h"
 #include "Terrain.h"
 #include "TextureEntry.h"
 #include "TextureManager.h"
-#include "Unit.h"
-#include "UnitManager.h"
 
 #include "maths/MathUtil.h"
 #include "maths/NUSpline.h"
-#include "ps/Game.h"
 #include "ps/Loader.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/XMLWriter.h"
@@ -56,7 +49,7 @@ CMapWriter::CMapWriter()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SaveMap: try to save the current map to the given file
 void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
-						 CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
+						 WaterManager* pWaterMan, SkyManager* pSkyMan,
 						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
 						 CSimulation2* pSimulation2)
 {
@@ -69,7 +62,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 	packer.Write(pathname);
 
 	VfsPath pathnameXML = fs::change_extension(pathname, L".xml");
-	WriteXML(pathnameXML, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
+	WriteXML(pathnameXML, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -175,7 +168,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());	
 }
 void CMapWriter::WriteXML(const VfsPath& filename,
-						  CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
+						  WaterManager* pWaterMan, SkyManager* pSkyMan,
 						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
 						  CSimulation2* pSimulation2)
 {
@@ -285,7 +278,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		{
 			XML_Element("Entities");
 
-			CSimulation2& sim = *g_Game->GetSimulation2();
+			CSimulation2& sim = *pSimulation2;
 
 			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
 			debug_assert(!cmpTemplateManager.null());
@@ -495,10 +488,10 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RewriteAllMaps
-void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
+void CMapWriter::RewriteAllMaps(CTerrain* pTerrain,
 								WaterManager* pWaterMan, SkyManager* pSkyMan,
 								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
-								CTriggerManager* pTrigMan, CSimulation2* pSimulation2, CEntityManager* pEntityMan)
+								CTriggerManager* pTrigMan, CSimulation2* pSimulation2)
 {
 	VfsPaths pathnames;
 	(void)fs_util::GetPathnames(g_VFS, L"maps/scenarios", L"*.pmp", pathnames);
@@ -513,6 +506,6 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 		CStrW newPathname(pathnames[i].string());
 		newPathname.Replace(L"scenarios/", L"scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(newPathname, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
+		writer.SaveMap(newPathname, pTerrain, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
 	}
 }

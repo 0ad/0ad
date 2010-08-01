@@ -26,8 +26,6 @@
 #include "ScriptGlue.h"
 #include "JSConversions.h"
 
-#include "ScriptableComplex.inl"
-
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapWriter.h"

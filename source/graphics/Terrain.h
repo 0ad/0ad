@@ -22,7 +22,6 @@
 #ifndef INCLUDED_TERRAIN
 #define INCLUDED_TERRAIN
 
-#include "ps/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "maths/Fixed.h"
 #include "graphics/SColor.h"

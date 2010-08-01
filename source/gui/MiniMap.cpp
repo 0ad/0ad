@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,8 +26,6 @@
 #include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
-#include "graphics/Unit.h"
-#include "graphics/UnitManager.h"
 #include "lib/ogl.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/bits.h"
@@ -44,13 +42,6 @@
 bool g_TerrainModified = false;
 bool g_GameRestarted = false;
 
-// used by GetMapSpaceCoords (precalculated as an optimization).
-// this was formerly access via inline asm, which required it to be
-// static data instead of a class member. that is no longer the case,
-// but we leave it because this is slightly more efficient.
-static float m_scaleX, m_scaleY;
-
-
 static unsigned int ScaleColor(unsigned int color, float x)
 {
 	unsigned int r = unsigned(float(color & 0xff) * x);
@@ -61,7 +52,7 @@ static unsigned int ScaleColor(unsigned int color, float x)
 
 CMiniMap::CMiniMap()
 	: m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0),
-	m_LOSTexture(0), m_LOSData(0), m_UnitManager(0)
+	m_LOSTexture(0), m_LOSData(0)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStr,		"tooltip");
@@ -256,14 +247,10 @@ void CMiniMap::Draw()
 	// Set our globals in case they hadn't been set before
 	m_Camera      = g_Game->GetView()->GetCamera();
 	m_Terrain     = g_Game->GetWorld()->GetTerrain();
-	m_UnitManager = &g_Game->GetWorld()->GetUnitManager();
 	m_Width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = m_Terrain->GetVerticesPerSide();
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
-
-	m_scaleX = float(m_Width) / float(m_MapSize - 1);
-	m_scaleY = float(m_Height) / float(m_MapSize - 1);
 
 	if(!m_TerrainTexture || g_GameRestarted)
 		CreateTextures();
@@ -394,8 +381,8 @@ void CMiniMap::Draw()
 	// (~70msec/frame on a GF4 rendering a thousand points)
 	glPointSize(3.f);
 
-	float sx = m_scaleX / CELL_SIZE;
-	float sy = m_scaleY / CELL_SIZE;
+	float sx = (float)m_Width / ((m_MapSize - 1) * CELL_SIZE);
+	float sy = (float)m_Height / ((m_MapSize - 1) * CELL_SIZE);
 
 	CSimulation2* sim = g_Game->GetSimulation2();
 	const CSimulation2::InterfaceList& ents = sim->GetEntitiesWithInterface(IID_Minimap);
@@ -568,14 +555,4 @@ void CMiniMap::Destroy()
 
 	delete[] m_TerrainData; m_TerrainData = 0;
 	delete[] m_LOSData; m_LOSData = 0;
-}
-
-CVector2D CMiniMap::GetMapSpaceCoords(CVector3D worldPos)
-{
-	float x = rintf(worldPos.X / CELL_SIZE);
-	float y = rintf(worldPos.Z / CELL_SIZE);
-	// Entity's Z coordinate is really its longitudinal coordinate on the terrain
-
-	// Calculate map space scale
-	return CVector2D(x * m_scaleX, y * m_scaleY);
 }
