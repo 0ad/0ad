@@ -6,6 +6,7 @@
 class OggStream
 {
 public:
+	virtual ~OggStream() { }
 	virtual ALenum Format() = 0;
 	virtual ALsizei SamplingRate() = 0;
 	virtual LibError GetNextChunk(u8* buffer, size_t size) = 0;
