@@ -3,16 +3,17 @@ const SELECTION = "Selection";
 const QUEUE = "Queue";
 const TRAINING = "Training";
 const CONSTRUCTION = "Construction";
+const COMMAND = "Command";
 
 // Constants used by the Queue or Garrison panel
-const UNIT_PANEL_BASE = -56; // The offset above the main panel (will often be negative)
-const UNIT_PANEL_HEIGHT = 47; // The height needed for a row of buttons
+const UNIT_PANEL_BASE = -47; // The offset above the main panel (will often be negative)
+const UNIT_PANEL_HEIGHT = 37; // The height needed for a row of buttons
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Training": 0, "Construction": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Training": 0, "Construction": 0, "Command": 0};
 
 // Unit panels are panels with row(s) of buttons
-var g_unitPanels = ["Selection", "Queue", "Training", "Construction", "Research", "Stance", "Formation"];
+var g_unitPanels = ["Selection", "Queue", "Training", "Construction", "Research", "Stance", "Formation", "Command"];
 
 // Lay out button rows
 function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, startIndex, endIndex)
@@ -43,7 +44,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Set length of loop
 	var numberOfItems = items.length;
 	if (numberOfItems > 24)
-		numberOfItems = (((numberOfItems > 32) && (guiName == "Selection"))? 32 : 24);
+	{
+		if (guiName == "Selection")
+		{
+			if (numberOfItems > 32)
+				numberOfItems = 32;
+		}
+		else
+			numberOfItems = 24;
+	}
 
 	var i;
 	for (i = 0; i < numberOfItems; i++)
@@ -51,10 +60,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		var item = items[i];
 
 		// Get templates
-		var entType = ((guiName == "Queue")? item.template : item);	
-		var template = Engine.GuiInterfaceCall("GetTemplateData", entType);
-		if (!template)
-			continue; // ignore attempts to use invalid templates (an error should have been reported already)
+		if (guiName != "Command")
+		{
+			var entType = ((guiName == "Queue")? item.template : item);	
+			var template = Engine.GuiInterfaceCall("GetTemplateData", entType);
+			if (!template)
+				continue; // ignore attempts to use invalid templates (an error should have been reported already)
+		}
 
 		// Tooltip
 		var tooltip = "";
@@ -107,6 +119,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case CONSTRUCTION:
 			tooltip = getEntityNameWithGeneric(template) + "\n" + getEntityCost(template);
 			break;
+			
+		case COMMAND:
+			tooltip = item;
+			break;
 
 		default:
 			break;
@@ -123,20 +139,23 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		button.onpress = (function(e) { return function() { callback(e) } })(parameter); // (need nested functions to get the closure right)
 
 		// Get icon sheet
-		icon.sprite = template.icon_sheet;
-
-		if (typeof template.icon_cell == "undefined")
-			icon.cell_id = 0;
+		if (guiName == "Command")
+		{
+			icon.cell_id = i;
+		}
 		else
-			icon.cell_id = template.icon_cell;
+		{
+			icon.sprite = template.icon_sheet;
+			icon.cell_id = ((typeof template.icon_cell == "undefined")? 0 : template.icon_cell);
+		}
 	}
 
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
-	var rowLength = 8;
+	var rowLength = ((guiName == "Command")? 15 : 8);
 	var numRows = Math.ceil(numButtons / rowLength);
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
-	var buttonSpacer = ((guiName == "Selection")? buttonSideLength+1 : buttonSideLength+2);
+	var buttonSpacer = buttonSideLength+1;
 
 	// Resize Queue panel if needed
 	if (guiName == "Queue") // or garrison
@@ -194,6 +213,17 @@ function updateUnitCommands(entState, commandsPanel, selection)
 			setupUnitPanel("Selection", usedPanels, entState, g_Selection.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
 	
+		// HACK: This should be referenced in the entities template, rather that completely faked here
+		var commands = [];
+		for (var i = 0; i < 15; i++)
+			commands.push("test"+i);
+		commands[4] = "delete";
+
+		// Needs to have list provided by the entity
+		if (commands.length)
+			setupUnitPanel("Command", usedPanels, entState, commands,
+				function (item) { performCommand(entState.id, item); } );
+
 		commandsPanel.hidden = false;
 	}
 	else
@@ -208,18 +238,8 @@ function updateUnitCommands(entState, commandsPanel, selection)
 	{
 		var panel = getGUIObjectByName("unit" + panelName + "Panel");
 		if (usedPanels[panelName])
-		{
-//			var size = panel.size;
-//			var h = size.bottom - size.top;
-//			size.bottom = offset;
-//			size.top = offset - h;
-//			panel.size = size;
 			panel.hidden = false;
-//			offset -= (h + 6); // changed 12 point spacing to 6 point:   offset -= (h + 12);
-		}
 		else
-		{
 			panel.hidden = true;
-		}
 	}
 }

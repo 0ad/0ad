@@ -622,3 +622,16 @@ function changePrimarySelectionGroup(index)
 	else
 		g_Selection.makePrimarySelection(index, false);
 }
+
+// Performs the specified command
+function performCommand(entity, commandName)
+{
+	switch (commandName)
+	{
+	case "delete":
+		Engine.PostNetworkCommand({"type": "delete-entity", "entity": entity});
+		break;
+	default:
+		break;
+	}
+}

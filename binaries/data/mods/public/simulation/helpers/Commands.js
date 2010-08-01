@@ -123,6 +123,14 @@ function ProcessCommand(player, cmd)
 		});
 
 		break;
+	
+	case "delete-entity":
+		var cmpOwnership = Engine.QueryInterface(cmd.entity, IID_Ownership);
+		var entityOwner = cmpOwnership.GetOwner()
+		
+		if (player == entityOwner)
+			Engine.DestroyEntity(cmd.entity);
+		break;
 
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");

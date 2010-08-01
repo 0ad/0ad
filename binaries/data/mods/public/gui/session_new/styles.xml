@@ -54,11 +54,12 @@
 		tooltip_style="snToolTip"
 	/>
 
-	<style name="commandsIcon"
-		sprite="snIconSheetCommand"								
+	<style name="commandIcon"
+		sprite="snIconSheetCommand"
+		sprite_disabled="snIconSheetCommandDisabled"
 		ghost="true"
 	/>	
-
+	
 	<style name="sdIconOutline"
 		sprite="sdIconOutline"
 	/>

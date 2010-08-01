@@ -231,7 +231,7 @@
 		<object
 			name="mapAndResourcePanel"
 				style="sessionPanelStyle"
-				size="0 100%-158 272 100%"
+				size="0 100%-175 272 100%"
 				type="image"
 				z="30"
 		>
@@ -291,13 +291,13 @@
 		<object name="selectionDetails"
 			type="image"
 			style="sessionPanelStyle"
-			size="277 100%-158 583 100%"
+			size="282 100%-170 585 100%"
 			hidden="true"
 			z="20"
 		>
 			<!-- Unit Selection Area -->
 			<object name="unitSelectionPanel"
-				size="6 6 274 56"
+				size="4 6 274 56"
 			>	 
 				<object size="0 0 100% 47">
 					<repeat count="32">
@@ -364,12 +364,12 @@
 		<object name="unitCommands"
 			type="image"
 			style="sessionPanelStyle"
-			size="588 100%-158 1024 100%"
+			size="595 100%-175 1024 100%"
 			hidden="true"
 			z="50"
 		>
 			<object name="unitConstructionPanel"
-				size="0 6 100% 100%"
+				size="0 3 100% 100%"
 			>
 				<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="0" tooltip="Construction"/>
@@ -417,7 +417,7 @@
 			</object>
 
 			<object name="unitTrainingPanel"
-				size="0 6 100% 100%"
+				size="0 3 100% 100%"
 			>
 				<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="2" tooltip="Training"/>
@@ -433,22 +433,37 @@
 
 			<object name="unitQueuePanel"
 				style="sessionPanelStyle"
-				size="0 -56 100% 100%-164"
+				size="72 -46 100% 100%-180"
 				type="image"
 			>
-				<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
+				<object size="-2 -2 44 44" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="3" tooltip="Production queue"/>
 
 				<object size="54 3 100% 100%">
 					<repeat count="24">
-						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 45 45">
-							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 42 42"/>
+						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36">
+							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 34 34"/>
 							<object name="unitQueueCount[n]" ghost="true" style="iconButtonCount" type="text"/>
 							<object name="unitQueueProgress[n]" ghost="true" style="iconButtonProgress" type="text"/>
 						</object>
 					</repeat>
 				</object>
 			</object>
+
+			<object name="unitCommandPanel"
+				style="sessionPanelStyle"
+				size="0 100%-28 100% 100%"
+				type="image"
+			>
+				<object size="3 0 100% 100%">
+					<repeat count="24">
+						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 27 27">
+							<object name="unitCommandIcon[n]" ghost="true" type="image" size="3 3 24 24" style="commandIcon"/>
+						</object>
+					</repeat>
+				</object>
+			</object>
+
 		</object>
 
 	</object>
