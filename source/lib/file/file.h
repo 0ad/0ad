@@ -45,7 +45,6 @@ namespace FileImpl
 
 class File
 {
-	NONCOPYABLE(File);
 public:
 	File()
 		: m_pathname(), m_fd(0)

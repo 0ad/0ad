@@ -63,7 +63,6 @@ that of Atlas depending on commandline parameters.
 #include "graphics/GameView.h"
 #include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
-#include "sound/CMusicPlayer.h"
 #include "gui/GUIManager.h"
 
 #define LOG_CATEGORY L"main"
@@ -199,8 +198,6 @@ static int ProgressiveLoad()
 }
 
 
-CMusicPlayer music_player;
-
 static void Frame()
 {
 	MICROLOG(L"Frame");
@@ -240,11 +237,6 @@ static void Frame()
 	// TODO: throttling: limit update and render frequency to the minimum.
 	// this is mostly relevant for "inactive" state, so that other windows
 	// get enough CPU time, but it's always nice for power+thermal management.
-
-
-	PROFILE_START( "update music" );
-	music_player.Update();
-	PROFILE_END( "update music" );
 
 	bool is_building_archive;	// must come before PROFILE_START's {
 	PROFILE_START("build archive");
@@ -375,7 +367,6 @@ static void MainControllerInit()
 
 static void MainControllerShutdown()
 {
-	music_player.Release();
 }
 
 
