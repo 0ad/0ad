@@ -89,7 +89,7 @@ function displayGeneralInfo(playerState, entState, template)
 	// Resource stats
 	if (entState.resourceSupply)
 	{
-		var resources = entState.resourceSupply.amount + "/" + entState.resourceSupply.max + " ";
+		var resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max + " ";
 		var resourceType = entState.resourceSupply.type["generic"];
 		
 		getGUIObjectByName("sdResourceStats").caption = resources;

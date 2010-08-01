@@ -168,17 +168,6 @@ function updatePlayerDisplay(simState)
 // Utility functions
 //-------------------------------- -------------------------------- -------------------------------- 
 
-function ceiling(number)
-{
-	var integer = parseInt(number);
-	var remainder = number - integer;
-
-	if (remainder != 0)
-		integer++;
-
-	return integer;
-}
-
 function toTitleCase(string)
 {
 	if (string.length > 0)

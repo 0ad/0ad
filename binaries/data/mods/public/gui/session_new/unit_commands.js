@@ -134,7 +134,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
 	var rowLength = 8;
-	var numRows = ceiling(numButtons / rowLength);
+	var numRows = Math.ceil(numButtons / rowLength);
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = ((guiName == "Selection")? buttonSideLength+1 : buttonSideLength+2);
 
