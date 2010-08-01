@@ -34,6 +34,9 @@
 #include "ps/CLogger.h"
 #include "renderer/Scene.h"
 
+// Time (in seconds) before projectiles that stuck in the ground are destroyed
+const static float PROJECTILE_DECAY_TIME = 60.f;
+
 class CCmpProjectileManager : public ICmpProjectileManager
 {
 public:
@@ -234,7 +237,12 @@ void CCmpProjectileManager::AdvanceProjectile(const CSimContext& context, Projec
 	// If we're really close to the target now, delete the remaining time so that we don't do a little
 	// tiny numerically-imprecise movement next frame
 	if (projectile.timeLeft < 0.01f)
+	{
 		projectile.timeLeft = 0;
+		// Move exactly to the target, so we hit it precisely even if
+		// the framerate is very low
+		projectile.pos = projectile.target;
+	}
 
 	// Construct a rotation matrix so that (0,1,0) is in the direction of 'delta'
 
@@ -270,16 +278,26 @@ void CCmpProjectileManager::Interpolate(const CSimContext& context, float frameT
 	// Remove the ones that have reached their target
 	for (size_t i = 0; i < m_Projectiles.size(); )
 	{
-		// Only remove ones that were hitting entities - leave the ones that hit the ground, because
-		// it looks pretty. (TODO: they should expire after some limit, not stay forever)
-		if (m_Projectiles[i].timeLeft <= 0 && m_Projectiles[i].targetEnt != INVALID_ENTITY)
+		// Projectiles hitting targets get removed immediately.
+		// Those hitting the ground stay for a while, because it looks pretty.
+		if (m_Projectiles[i].timeLeft <= 0.f)
 		{
-			// Delete in-place by swapping with the last in the list
-			std::swap(m_Projectiles[i], m_Projectiles.back());
-			m_Projectiles.pop_back();
+			if (m_Projectiles[i].targetEnt == INVALID_ENTITY && m_Projectiles[i].timeLeft > -PROJECTILE_DECAY_TIME)
+			{
+				// AdvanceProjectile doesn't update timeLeft if the projectile's
+				// already finished, so just update its timer here
+				m_Projectiles[i].timeLeft -= frameTime;
+			}
+			else
+			{
+				// Delete in-place by swapping with the last in the list
+				std::swap(m_Projectiles[i], m_Projectiles.back());
+				m_Projectiles.pop_back();
+				continue; // don't increment i
+			}
 		}
-		else
-			++i;
+
+		++i;
 	}
 }
 

@@ -63,7 +63,12 @@ Health.prototype.SetHitpoints = function(value)
 		return;
 
 	this.hitpoints = Math.max(1, Math.min(this.GetMaxHitpoints(), value));
-}
+};
+
+Health.prototype.Kill = function()
+{
+	this.Reduce(this.hitpoints);
+};
 
 Health.prototype.Reduce = function(amount)
 {
@@ -88,7 +93,7 @@ Health.prototype.Reduce = function(amount)
 	{
 		this.hitpoints -= amount;
 	}
-}
+};
 
 Health.prototype.Increase = function(amount)
 {
@@ -97,7 +102,7 @@ Health.prototype.Increase = function(amount)
 		return;
 
 	this.hitpoints = Math.min(this.hitpoints + amount, this.GetMaxHitpoints());
-}
+};
 
 //// Private functions ////
 
@@ -106,9 +111,7 @@ Health.prototype.CreateCorpse = function()
 	// Create a static local version of the current entity
 	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTempMan.GetCurrentTemplateName(this.entity);
-	var corpse = Engine.AddLocalEntity("preview|" + templateName);
-	// (Maybe this should be some kind of "corpse|" instead of "preview|", if we want
-	// to add things like corpse-removal timers and change the terrain conformance mode)
+	var corpse = Engine.AddLocalEntity("corpse|" + templateName);
 
 	// Copy various parameters so it looks just like us
 

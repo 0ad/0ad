@@ -125,11 +125,17 @@ function ProcessCommand(player, cmd)
 		break;
 	
 	case "delete-entity":
+		// Verify the player owns the unit
 		var cmpOwnership = Engine.QueryInterface(cmd.entity, IID_Ownership);
-		var entityOwner = cmpOwnership.GetOwner()
+		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
+			break;
 		
-		if (player == entityOwner)
+		var cmpHealth = Engine.QueryInterface(cmd.entity, IID_Health);
+		if (cmpHealth)
+			cmpHealth.Kill();
+		else
 			Engine.DestroyEntity(cmd.entity);
+
 		break;
 
 	default:

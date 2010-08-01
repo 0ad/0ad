@@ -22,6 +22,12 @@
     <Max>100</Max>
     <Healable>true</Healable>
   </Health>
+  <Decay>
+    <Inactive/>
+    <DelayTime>15.0</DelayTime>
+    <SinkRate>0.05</SinkRate>
+    <SinkAccel>0.0</SinkAccel>
+  </Decay>
   <Armour>
     <Hack>0.0</Hack>
     <Pierce>0.0</Pierce>

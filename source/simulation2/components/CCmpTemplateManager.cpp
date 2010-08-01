@@ -165,7 +165,7 @@ private:
 
 	// Copy the non-interactive components of an entity template (position, actor, etc) into
 	// a new entity template
-	void CopyPreviewSubset(CParamNode& out, const CParamNode& in);
+	void CopyPreviewSubset(CParamNode& out, const CParamNode& in, bool corpse);
 
 	// Copy the components of an entity necessary for a construction foundation
 	// (position, actor, armour, health, etc) into a new entity template
@@ -264,7 +264,22 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 			return false;
 		}
 		// Copy a subset to the requested template
-		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
+		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName], false);
+		return true;
+	}
+
+	// Handle special case "corpse|foo"
+	if (templateName.find("corpse|") == 0)
+	{
+		// Load the base entity template, if it wasn't already loaded
+		std::string baseName = templateName.substr(7);
+		if (!LoadTemplateFile(baseName, depth+1))
+		{
+			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
+			return false;
+		}
+		// Copy a subset to the requested template
+		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName], true);
 		return true;
 	}
 
@@ -390,7 +405,7 @@ std::vector<std::wstring> CCmpTemplateManager::FindAllTemplates()
 	return templates;
 }
 
-void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& in)
+void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& in, bool corpse)
 {
 	// We only want to include components which are necessary (for the visual previewing of an entity)
 	// and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
@@ -401,6 +416,7 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	permittedComponentTypes.insert("VisualActor");
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Obstruction");
+	permittedComponentTypes.insert("Decay");
 
 	// Need these for the Actor Viewer:
 	permittedComponentTypes.insert("Attack");
@@ -416,6 +432,13 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	// (but can still be used for testing this entity for collisions against others)
 	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
 		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Inactive/></Obstruction></Entity>");
+
+	// Corpses should include decay components and un-inactivate them
+	if (corpse)
+	{
+		if (out.GetChild("Entity").GetChild("Decay").IsOk())
+			CParamNode::LoadXMLString(out, "<Entity><Decay><Inactive disable=''/></Decay></Entity>");
+	}
 }
 
 void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode& in)
@@ -433,6 +456,7 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Armour");
 	permittedComponentTypes.insert("Health");
+	permittedComponentTypes.insert("Decay");
 	permittedComponentTypes.insert("Cost");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
@@ -454,4 +478,3 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	if (out.GetChild("Entity").GetChild("Cost").IsOk())
 		CParamNode::LoadXMLString(out, "<Entity><Cost><PopulationBonus disable=''/></Cost></Entity>");
 }
-

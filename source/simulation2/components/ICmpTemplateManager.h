@@ -47,6 +47,9 @@ public:
 	 * based on entity template "foo" with the non-graphical components removed.
 	 * (This is for previewing construction/placement of units.)
 	 *
+	 * If templateName is of the form "corpse|foo" then it will load a template
+	 * like "preview|foo" but with corpse-related components included.
+	 *
 	 * If templateName is of the form "foundation|foo" then it will load a template
 	 * based on entity template "foo" with various components removed and a few changed
 	 * and added. (This is for constructing foundations of buildings.)

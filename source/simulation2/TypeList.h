@@ -56,6 +56,9 @@ COMPONENT(UnknownScript)
 INTERFACE(CommandQueue)
 COMPONENT(CommandQueue)
 
+INTERFACE(Decay)
+COMPONENT(Decay)
+
 INTERFACE(Footprint)
 COMPONENT(Footprint)
 

@@ -21,9 +21,15 @@
     </Resources>
   </Cost>
   <Health>
-    <DeathType>vanish</DeathType>
+    <DeathType>corpse</DeathType>
     <Repairable>true</Repairable>
   </Health>
+  <Decay>
+    <Inactive/>
+    <DelayTime>0.0</DelayTime>
+    <SinkRate>4.0</SinkRate>
+    <SinkAccel>9.8</SinkAccel>
+  </Decay>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>42.0</Pierce>
