@@ -175,9 +175,33 @@ function toTitleCase(string)
 	return string;
 }
 
-function getTemplateFirstWord(templateName)
+function isUnit(templateName)
 {
-	return templateName.substring(0, templateName.search("/"))
+	if (templateName.substring(0, templateName.search("/")) == "units")
+		return true;
+	return false;
+}
+
+function isAnimal(templateName)
+{
+	if (templateName.substring(0, templateName.search("_")) == "gaia/fauna")
+		return true;
+	return false;
+}
+
+function isStructure(templateName)
+{
+	if (templateName.substring(0, templateName.search("/")) == "structures")
+		return true;
+	return false;
+}
+
+function isTower(templateName)
+{
+	if (templateName.length > 5)
+		if (templateName.substring(templateName.length-5, templateName.length) == "tower")
+			return true;
+	return false;
 }
 
 function damageTypesToTextStacked(dmg)
@@ -209,10 +233,9 @@ function damageTypesToText(dmg)
 
 function getRankCellId(templateName)
 {
-	var firstWord = getTemplateFirstWord(templateName);
 	var endsWith = templateName.substring(templateName.length-2, templateName.length);
 	
-	if (firstWord == "units")
+	if (isUnit(templateName))
 	{
 		if (endsWith == "_e")
 			return 0;
@@ -254,7 +277,6 @@ function getEntityName(template)
 function getEntityNameWithGenericType(template)
 {
 		var name;
-
 		if ((template.name.specific && template.name.generic) && (template.name.specific != template.name.generic))
 			name = template.name.specific + " (" + template.name.generic + ")";
 		else

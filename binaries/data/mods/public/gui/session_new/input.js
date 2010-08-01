@@ -247,17 +247,55 @@ function handleInputBeforeGui(ev)
 				bandbox.hidden = true;
 
 				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
+				var chosenEnts = [];
+				var templateNames = [];
 
-				// Remove non-unit entities from the bandboxed selection (Probably should make buildings work somehow)
-				for (var i = ents.length-1; i >= 0; i--)
+				// Check if there are units or animals in the selection and collect a list of template names
+				for (var i = 0; i < ents.length; i++)
 				{
-					var template = Engine.GuiInterfaceCall("GetEntityState", ents[i]).template;
-					var firstWord = getTemplateFirstWord(template);
-					if (firstWord != "units")
-						ents.splice(i, 1);
+					var entState = Engine.GuiInterfaceCall("GetEntityState", ents[i]);
+					if (!entState)
+						continue;
+						
+					templateNames.push(entState.template);
+					if (isUnit(templateNames[i]) || isAnimal(templateNames[i]))
+						chosenEnts.push(ents[i]);
+				}
+				
+				// If nothing was added to the list, then there were no units or animals
+				if (!chosenEnts.length)
+				{
+					var towers = [];
+					var structures = [];
+					var structureTemplateName;
+
+					for (var i = 0; i < ents.length; i++)
+					{
+						if (isTower(templateNames[i]))
+						{
+							towers.push(ents[i]);
+						}	
+						else if (!towers.length && isStructure(templateNames[i]))
+						{
+							if (!structureTemplateName)
+								structureTemplateName = templateNames[i];
+							if (structureTemplateName == templateNames[i])
+								structures.push(ents[i]);
+						}
+					}
+
+					// Choose towers over other structures, and choose structures over other things
+					if (towers.length)
+						chosenEnts = towers;
+					else if (structures.length)
+						chosenEnts = structures;	
 				}
 
-				// Remove units if selection is too large
+				// Set new entity list
+				if (chosenEnts.length)			
+					ents = chosenEnts;
+
+				// Remove entities if selection is too large
 				if (ents.length > MAX_SELECTION_SIZE)
 					ents = ents.slice(0, MAX_SELECTION_SIZE);
 
