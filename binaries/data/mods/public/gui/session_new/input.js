@@ -4,7 +4,7 @@ const SDL_BUTTON_RIGHT = 3;
 const SDLK_RSHIFT = 303;
 const SDLK_LSHIFT = 304;
 
-const MAX_SELECTION_SIZE = 32;
+const MAX_SELECTION_SIZE = 32; // Limits selection size and ensures that there will not be too many selection items in the GUI
 
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
@@ -623,15 +623,18 @@ function changePrimarySelectionGroup(index)
 		g_Selection.makePrimarySelection(index, false);
 }
 
-// Performs the specified command
+// Performs the specified command (delete, town bell, repair, etc.)
 function performCommand(entity, commandName)
 {
-	switch (commandName)
+	if (entity)
 	{
-	case "delete":
-		Engine.PostNetworkCommand({"type": "delete-entity", "entity": entity});
-		break;
-	default:
-		break;
+		switch (commandName)
+		{
+		case "delete":
+			Engine.PostNetworkCommand({"type": "delete-entity", "entity": entity});
+			break;
+		default:
+			break;
+		}
 	}
 }

@@ -50,6 +50,11 @@
 			]]></action>
 		</object>
 		
+		<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
+		<object hotkey="killUnit">
+			<action on="Press">performCommand(g_Selection.toList()[0], "delete")</action>
+		</object>
+		
 		<!-- ================================  ================================ -->
 		<!-- Developer / Debug items -->
 		<!-- ================================  ================================ -->
@@ -311,26 +316,26 @@
 			</object>
 
 			<!-- Big unit icon -->
-			<object size= "6 30 86 110" name="sdIcon" type="image" tooltip_style="snToolTip">
+			<object size= "8 30 88 110" name="sdIcon" type="image" tooltip_style="snToolTip">
 				<object type="image" name="sdIconOutline" style="sdIconOutline" ghost="true"/>
 				<object type="image" name="sdIconImage" ghost="true"/>
-				 <object size="100%-24 -6 100%+6 24" name="sdRankIcon" type="image" cell_id="0" sprite="snIconSheetRank" ghost="true"/>
+				 <object size="100%-24 -6 100%+6 24" name="sdRankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
 			</object>
 
 			<!-- Health bar -->
-			<object size="6 112 86 118" type="image" name="sdHealth" tooltip="Hitpoints" tooltip_style="snToolTip">
+			<object size="8 112 88 118" type="image" name="sdHealth" tooltip="Hitpoints" tooltip_style="snToolTip">
 				<object type="image" sprite="sdHealthBackground" ghost="true"/>
 				<object type="image" sprite="sdHealthForeground" ghost="true" name="sdHealthBar"/>
 			</object>
 
 			<!-- Stamina bar -->
-			<object size="6 120 86 126" type="image" name="sdStamina" tooltip="Stamina" tooltip_style="snToolTip">
+			<object size="8 120 88 126" type="image" name="sdStamina" tooltip="Stamina" tooltip_style="snToolTip">
 				<object type="image" sprite="sdStaminaBackground" ghost="true"/>
 				<object type="image" sprite="sdStaminaForeground" ghost="true" name="sdStaminaBar"/>
 			</object>
 
 			<!-- Specific Name -->
-			<object size="0 0 100% 26" name="sdSpecific" type="text" style="leftAlignedText" font="serif-bold-18" tooltip_style="snToolTip"/>
+			<object size="2 0 100% 26" name="sdSpecific" type="text" style="leftAlignedText" font="serif-bold-18" tooltip_style="snToolTip"/>
 
 			<!-- Stats -->
 			<object size="86 30 100% 100%" name="sdStatsArea" type="image">
@@ -338,13 +343,13 @@
 				<object size="0 0 100% 24" name="sdPlayer" type="text" style="centeredText" font="serif-stroke-14" tooltip_style="snToolTip"/>
 				
 				<!-- Attack stats -->
-				<object size="4 32 100% 100%" type="image" name="sdAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
+				<object size="12 32 100% 100%" type="image" name="sdAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
 					<object size="-4 -8 36 36" type="image" name="sdAttackImage" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
 					<object size="30 0 100% 100%" type="text" name="sdAttackStats" style="statsText"/>
 				</object>
 
 				<!-- Armour stats -->
-				<object size="100 32 100% 100%" type="image" name="sdArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
+				<object size="108 32 100% 100%" type="image" name="sdArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
 					<object size="-4 -4 36 36" type="image" name="sdArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
 					<object size="30 0 100% 100%" type="text" name="sdArmourStats" style="statsText"/>
 				</object>
@@ -433,13 +438,13 @@
 
 			<object name="unitQueuePanel"
 				style="sessionPanelStyle"
-				size="72 -46 100% 100%-180"
+				size="80 -46 100% 100%-180"
 				type="image"
 			>
 				<object size="-2 -2 44 44" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="3" tooltip="Production queue"/>
 
-				<object size="54 3 100% 100%">
+				<object size="44 3 100% 100%">
 					<repeat count="24">
 						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36">
 							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 34 34"/>

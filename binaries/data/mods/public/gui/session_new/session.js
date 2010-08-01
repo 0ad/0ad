@@ -219,17 +219,15 @@ function getRankCellId(templateName)
 		else if (endsWith == "_a")
 			return 1;
 	}
-	
 	return -1;
 }
 
 function getRankTitle(cellId)
 {
 	if (cellId == 0)
-		return "Elite";
+		return " (Elite)";
 	else if (cellId == 1)
-		return "Advanced";
-
+		return " (Advanced)";
 	return "";
 }
 
@@ -253,7 +251,7 @@ function getEntityName(template)
 		return "[font=\"serif-bold-16\"]" + (template.name.specific || template.name.generic || "???") + "[/font]";
 }
 
-function getEntityNameWithGeneric(template)
+function getEntityNameWithGenericType(template)
 {
 		var name;
 

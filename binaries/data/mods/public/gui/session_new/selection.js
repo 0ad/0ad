@@ -52,7 +52,6 @@ EntitySelection.prototype.makePrimarySelection = function(primaryIndex, modifier
 			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[i]);
 			if (!entState)
 				return;
-
 			if (entState.template == primaryEntState.template)
 				ents.push(selection[i]);
 		}
@@ -61,7 +60,6 @@ EntitySelection.prototype.makePrimarySelection = function(primaryIndex, modifier
 	{
 		ents.push(selection[primaryIndex]);
 	}
-
 	this.reset();
 	this.addList(ents);
 }
@@ -78,29 +76,22 @@ EntitySelection.prototype.getTemplateNames = function()
 		if (entState)
 			templateNames.push(entState.template);
 	}
-
 	return templateNames;
 }
 
 // Update the selection to take care of changes (like units that have been killed)
-EntitySelection.prototype.updateSelection = function()
+EntitySelection.prototype.update = function()
 {
 	var numberRemoved = 0;
-	var i = 0;
-	
 	for each (var ent in this.selected)
 	{
 		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
-		
 		if (!entState)
 		{
 			delete this.selected[ent];
 			numberRemoved++;
 		}
-
-		i++;
 	}
-
 	if (numberRemoved > 0)
 		this.dirty = true;
 };

@@ -40,55 +40,34 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
 	var selection = g_Selection.toList();
-
-	// Set length of loop
+	
 	var numberOfItems = items.length;
-	if (numberOfItems > 24)
-	{
-		if (guiName == "Selection")
-		{
-			if (numberOfItems > 32)
-				numberOfItems = 32;
-		}
-		else
-			numberOfItems = 24;
-	}
+	if ((numberOfItems > 24) && (guiName != "Selection"))
+		numberOfItems =  24;
 
 	var i;
 	for (i = 0; i < numberOfItems; i++)
 	{
 		var item = items[i];
 
-		// Get templates
-		if (guiName != "Command")
-		{
-			var entType = ((guiName == "Queue")? item.template : item);	
-			var template = Engine.GuiInterfaceCall("GetTemplateData", entType);
-			if (!template)
-				continue; // ignore attempts to use invalid templates (an error should have been reported already)
-		}
-
-		// Tooltip
-		var tooltip = "";
-
 		switch (guiName)
 		{
 		case SELECTION:
-			tooltip = getEntityName(template);
+			var template = Engine.GuiInterfaceCall("GetTemplateData", item);
+			if (!template)
+				continue; // ignore attempts to use invalid templates (an error should have been reported already)
 
 			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[i]);
 			if (!entState)
-				return;
+				continue;
 
-			// Rank Title
-			var rankText = getRankTitle(getRankCellId(entState.template));
-			rankText = (rankText? " [font=\"serif-bold-16\"](" + rankText + ")[/font]" : "" );
-			tooltip += rankText;
+			var tooltip = getEntityName(template);
+			tooltip += "[font=\"serif-bold-16\"]" + getRankTitle(getRankCellId(entState.template)) + "[/font]";
 
 			// Hitpoints
 			if (entState.maxHitpoints != undefined)
 			{
-				var unitHealthBar = getGUIObjectByName("unitSelectionHealthForeground[" + i + "]");
+				var unitHealthBar = getGUIObjectByName("unitSelectionHealthForeground["+i+"]");
 				var healthSize = unitHealthBar.size;
 				healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 				unitHealthBar.size = healthSize;
@@ -97,8 +76,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case QUEUE:
-			tooltip = getEntityNameWithGeneric(template);
-
+			var template = Engine.GuiInterfaceCall("GetTemplateData", item.template);
+			if (!template)
+				continue; // ignore attempts to use invalid templates (an error should have been reported already)
+				
+			var tooltip = getEntityName(template);
 			var progress = Math.round(item.progress*100) + "%";
 			tooltip += " - " + progress;
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
@@ -106,9 +88,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case TRAINING:
-			tooltip = getEntityNameWithGeneric(template) + "\n" + getEntityCost(template);
+			var template = Engine.GuiInterfaceCall("GetTemplateData", item);
+			if (!template)
+				continue; // ignore attempts to use invalid templates (an error should have been reported already)
 
-			var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
+			var tooltip = getEntityNameWithGenericType(template) + "\n" + getEntityCost(template);
+			var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, item);
 			if (batchSize)
 			{
 				tooltip += "\n[font=\"serif-13\"]Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; " + 
@@ -117,11 +102,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 			
 		case CONSTRUCTION:
-			tooltip = getEntityNameWithGeneric(template) + "\n" + getEntityCost(template);
+			var template = Engine.GuiInterfaceCall("GetTemplateData", item);
+			if (!template)
+				continue; // ignore attempts to use invalid templates (an error should have been reported already)
+
+			var tooltip = getEntityNameWithGenericType(template) + "\n" + getEntityCost(template);
 			break;
 			
 		case COMMAND:
-			tooltip = item;
+			tooltip = toTitleCase(item);
 			break;
 
 		default:
@@ -138,7 +127,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		var parameter = ((guiName == "Selection")? i : item);
 		button.onpress = (function(e) { return function() { callback(e) } })(parameter); // (need nested functions to get the closure right)
 
-		// Get icon sheet
+		// Get icon image
 		if (guiName == "Command")
 		{
 			icon.cell_id = i;

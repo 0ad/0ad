@@ -37,14 +37,15 @@ function displayGeneralInfo(playerState, entState, template)
 	var iconTooltip = "";
 
 	// Rank Icon
-	var rankId = getRankCellId(entState.template);
-	getGUIObjectByName("sdRankIcon").cell_id = rankId;
+//	var rankId = getRankCellId(entState.template);
+//	getGUIObjectByName("sdRankIcon").cell_id = rankId;
 
-	var rankText = getRankTitle(rankId);
-	rankText = (rankText? " (" + rankText + ")" : "");
+	// Rank Title
+//	var rankText = getRankTitle(getRankCellId(entState.template));
+//	rankText = (rankText? rankText : "");
 
 	// Specific Name
-	var name = template.name.specific + rankText;
+	var name = template.name.specific + getRankTitle(getRankCellId(entState.template));
 	getGUIObjectByName("sdSpecific").caption = name;
 	iconTooltip += "[font=\"serif-bold-16\"]" + name + "[/font]";
 
@@ -126,7 +127,7 @@ function updateSelectionDetails(simState)
 	var detailsPanel = getGUIObjectByName("selectionDetails");
 	var commandsPanel = getGUIObjectByName("unitCommands");
 
-	g_Selection.updateSelection();
+	g_Selection.update();
 	var selection = g_Selection.toList();
 	
 	if (selection.length == 0)
