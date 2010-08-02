@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "ScriptInterface.h"
+#include "ScriptStats.h"
 #include "AutoRooters.h"
 
 #include "lib/debug.h"
@@ -34,7 +35,7 @@
 
 #include "valgrind.h"
 
-const int RUNTIME_SIZE = 4 * 1024 * 1024; // TODO: how much memory is needed?
+const int RUNTIME_SIZE = 8 * 1024 * 1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
 
 #ifdef NDEBUG
@@ -241,6 +242,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 		JS_SetOptions(m_cx, JSOPTION_STRICT // "warn on dubious practice"
 				| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
 				| JSOPTION_VAROBJFIX // "recommended" (fixes variable scoping)
+//				| JSOPTION_JIT
 		);
 
 		JS_SetVersion(m_cx, JSVERSION_LATEST);
@@ -281,13 +283,17 @@ void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs
 	JS_DefineFunction(m_cx, m_nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 }
 
-ScriptInterface::ScriptInterface(const char* nativeScopeName, JSContext* cx) :
-	m(new ScriptInterface_impl(nativeScopeName, cx))
+ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName) :
+	m(new ScriptInterface_impl(nativeScopeName, NULL))
 {
+	if (g_ScriptStatsTable)
+		g_ScriptStatsTable->Add(this, debugName);
 }
 
 ScriptInterface::~ScriptInterface()
 {
+	if (g_ScriptStatsTable)
+		g_ScriptStatsTable->Remove(this);
 }
 
 void ScriptInterface::ShutDown()
@@ -333,6 +339,11 @@ void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
 JSContext* ScriptInterface::GetContext() const
 {
 	return m->m_cx;
+}
+
+JSRuntime* ScriptInterface::GetRuntime() const
+{
+	return m->m_rt;
 }
 
 bool ScriptInterface::AddRoot(void* ptr, const char* name)

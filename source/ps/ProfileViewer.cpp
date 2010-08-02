@@ -37,7 +37,6 @@
 #include "lib/res/graphics/unifont.h"
 #include "renderer/Renderer.h"
 
-#define LOG_CATEGORY L"profiler"
 extern int g_xres, g_yres;
 
 struct CProfileViewerInternals
@@ -340,9 +339,12 @@ InReaction CProfileViewer::InputThunk(const SDL_Event_* ev)
 
 
 // Add a table to the list of roots
-void CProfileViewer::AddRootTable(AbstractProfileTable* table)
+void CProfileViewer::AddRootTable(AbstractProfileTable* table, bool front)
 {
-	m->rootTables.push_back(table);
+	if (front)
+		m->rootTables.insert(m->rootTables.begin(), table);
+	else
+		m->rootTables.push_back(table);
 }
 
 namespace
@@ -441,7 +443,7 @@ void CProfileViewer::SaveToFile()
 
 		if (m->outputStream.fail())
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to open profile log file");
+			LOGERROR(L"Failed to open profile log file");
 			return;
 		}
 	}

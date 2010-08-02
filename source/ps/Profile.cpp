@@ -657,5 +657,5 @@ void CProfileManager::StructuralReset()
 	delete( root );
 	root = new CProfileNode( "root", NULL );
 	current = root;
-	g_ProfileViewer.AddRootTable(root->display_table);
+	g_ProfileViewer.AddRootTable(root->display_table, true);
 }

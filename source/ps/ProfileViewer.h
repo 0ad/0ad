@@ -161,8 +161,10 @@ public:
 	 * the list of root tables when they are deleted.
 	 *
 	 * @param table This table is added as a root table.
+	 * @param front If true then the table will be the new first in the list,
+	 * else it will be the last.
 	 */
-	void AddRootTable(AbstractProfileTable* table);
+	void AddRootTable(AbstractProfileTable* table, bool front = false);
 
 	/**
 	 * InputThunk: Delegate to the singleton's Input() member function

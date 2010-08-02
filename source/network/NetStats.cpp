@@ -54,7 +54,10 @@ CStr CNetStatsTable::GetName()
 
 CStr CNetStatsTable::GetTitle()
 {
-	return "Network statistics";
+	if (m_Host)
+		return "Network host statistics";
+	else
+		return "Network client statistics";
 }
 
 size_t CNetStatsTable::GetNumberRows()

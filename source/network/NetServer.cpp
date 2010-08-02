@@ -47,7 +47,7 @@ static CStr DebugName(CNetServerSession* session)
 }
 
 CNetServer::CNetServer() :
-	m_ScriptInterface(new ScriptInterface("Engine")), m_NextHostID(1), m_Host(NULL), m_Stats(NULL)
+	m_ScriptInterface(new ScriptInterface("Engine", "Net server")), m_NextHostID(1), m_Host(NULL), m_Stats(NULL)
 {
 	m_State = SERVER_STATE_UNCONNECTED;
 

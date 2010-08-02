@@ -35,9 +35,10 @@
 #include "graphics/scripting/JSInterface_LightEnv.h"
 #include "gui/GUIManager.h"
 #include "gui/IGUIObject.h"
-#include "lib/timer.h"
-#include "lib/svn_revision.h"
 #include "lib/frequency_filter.h"
+#include "lib/svn_revision.h"
+#include "lib/timer.h"
+#include "lib/utf8.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "network/NetServer.h"
 #include "ps/CConsole.h"
@@ -467,41 +468,34 @@ JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsv
 	return JS_TRUE;
 }
 
-
-// Return distance between 2 points.
-// params: 2 position vectors [CVector3D]
-// returns: Euclidean distance [float]
-JSBool ComputeDistanceBetweenTwoPoints( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+#ifdef DEBUG
+void DumpHeap(const char* name, int idx, JSContext* cx)
 {
-	JSU_REQUIRE_PARAMS(2);
-
-	CVector3D* a = ToNative<CVector3D>( argv[0] );
-	CVector3D* b = ToNative<CVector3D>( argv[1] );
-	float dist = ( *a - *b ).Length();
-	*rval = ToJSVal( dist );
-	return( JS_TRUE );
+	wchar_t buf[64];
+	swprintf_s(buf, ARRAY_SIZE(buf), L"%hs.%03d.txt", name, idx);
+	fs::wpath path(psLogDir()/buf);
+	FILE* f = fopen(utf8_from_wstring(path.string()).c_str(), "w");
+	debug_assert(f);
+	JS_DumpHeap(cx, f, NULL, 0, NULL, (size_t)-1, NULL);
+	fclose(f);
 }
+#endif
 
-
-// Returns the global object.
-// params:
-// returns: global object
-// notes:
-// - Useful for accessing an object from another scope.
-JSBool GetGlobal( JSContext* cx, JSObject* globalObject, uintN argc, jsval* argv, jsval* rval )
+JSBool DumpHeaps(JSContext* UNUSED(cx), JSObject* UNUSED(globalObject), uintN UNUSED(argc), jsval* UNUSED(argv), jsval* UNUSED(rval) )
 {
-	JSU_REQUIRE_NO_PARAMS();
+#ifdef DEBUG
+	static int i = 0;
 
-	*rval = OBJECT_TO_JSVAL( globalObject );
-	return( JS_TRUE );
-}
+	if (ScriptingHost::IsInitialised())
+		DumpHeap("gui", i, g_ScriptingHost.GetContext());
+	if (g_Game)
+		DumpHeap("sim", i, g_Game->GetSimulation2()->GetScriptInterface().GetContext());
 
-// Saves the current profiling data to the logs/profile.txt file
-JSBool SaveProfileData( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-	g_ProfileViewer.SaveToFile();
-	return( JS_TRUE );
+	++i;
+#else
+	debug_warn(L"DumpHeaps only available in DEBUG mode");
+#endif
+	return JS_TRUE;
 }
 
 // Toggles drawing the sky
@@ -664,10 +658,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("getGUIObjectByName", GetGUIObjectByName, 1)
 
 	// Miscellany
-	JS_FUNC("v3dist", ComputeDistanceBetweenTwoPoints, 2)
 	JS_FUNC("buildTime", GetBuildTimestamp, 0)
-	JS_FUNC("getGlobal", GetGlobal, 0)
-	JS_FUNC("saveProfileData", SaveProfileData, 0)
+	JS_FUNC("dumpHeaps", DumpHeaps, 0)
 
 	// end of table marker
 	{0, 0, 0, 0, 0}

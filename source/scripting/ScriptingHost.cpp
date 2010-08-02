@@ -31,7 +31,7 @@
 
 ScriptingHost::ScriptingHost()
 {
-	m_ScriptInterface = new ScriptInterface("Engine");
+	m_ScriptInterface = new ScriptInterface("Engine", "GUI");
 
     m_Context = m_ScriptInterface->GetContext();
 

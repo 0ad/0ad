@@ -69,6 +69,7 @@
 #include "scripting/ScriptGlue.h"
 
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptStats.h"
 
 #include "maths/scripting/JSInterface_Vector3D.h"
 
@@ -628,6 +629,8 @@ void Shutdown(int UNUSED(flags))
 
 		CNetHost::Deinitialize();
 
+		SAFE_DELETE(g_ScriptStatsTable);
+
 		// should be last, since the above use them
 		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
@@ -728,6 +731,9 @@ void Init(const CmdLineArgs& args, int flags)
 
 	new CProfileViewer;
 	new CProfileManager;	// before any script code
+
+	g_ScriptStatsTable = new CScriptStatsTable;
+	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
 	MICROLOG(L"init scripting");
 	InitScripting();	// before GUI

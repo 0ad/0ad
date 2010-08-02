@@ -50,7 +50,7 @@ public:
 	 * @param cx NULL if the object should create and manage its own context; otherwise
 	 *   an existing context which it will share
 	 */
-	ScriptInterface(const char* nativeScopeName, JSContext* cx = NULL);
+	ScriptInterface(const char* nativeScopeName, const char* debugName = "Unknown");
 
 	~ScriptInterface();
 
@@ -64,6 +64,7 @@ public:
 	static void* GetCallbackData(JSContext* cx);
 
 	JSContext* GetContext() const;
+	JSRuntime* GetRuntime() const;
 
 	void ReplaceNondeterministicFunctions(boost::rand48& rng);
 
