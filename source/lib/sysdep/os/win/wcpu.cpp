@@ -31,6 +31,8 @@
 #include "lib/bits.h"
 #include "lib/module_init.h"
 #include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"
+#include "lib/sysdep/arch/x86_x64/topology.h"
 
 #ifdef _OPENMP
 # include <omp.h>
@@ -231,25 +233,30 @@ uintptr_t wcpu_ProcessorMaskFromAffinity(DWORD_PTR processAffinity, DWORD_PTR af
 }
 
 
-static const DWORD invalidProcessorNumber = (DWORD)-1;
+//-----------------------------------------------------------------------------
 
-
-
-static DWORD CurrentProcessorNumber()
+static void VerifyRunningOnCorrectProcessors(DWORD_PTR affinity)
 {
+	// note: we don't need to expose this to callers because the
+	// higher-level code ensures processor == omp_get_thread_num().
+	DWORD currentProcessor;
+
 	// note: NtGetCurrentProcessorNumber and RtlGetCurrentProcessorNumber aren't
 	// implemented on WinXP SP2.
 	WUTIL_FUNC(pGetCurrentProcessorNumber, DWORD, (void));
 	WUTIL_IMPORT_KERNEL32(GetCurrentProcessorNumber, pGetCurrentProcessorNumber);
 	if(pGetCurrentProcessorNumber)
-		return pGetCurrentProcessorNumber();
+		currentProcessor = pGetCurrentProcessorNumber();
 	else
 	{
-		// note: we won't bother mapping APIC IDs to processor numbers or
-		// using LSL to re-implement GetCurrentProcessorNumber because
-		// this routine is just a debug aid.
-		return invalidProcessorNumber;
+		const u8* apicIds = ApicIds();
+		const u8* end = apicIds+os_cpu_NumProcessors();
+		const u8* it = std::find(apicIds, end, x86_x64_ApicId());
+		debug_assert(it != end);
+		currentProcessor = it - apicIds;
 	}
+
+	debug_assert(IsBitSet(affinity, currentProcessor));
 }
 
 
@@ -259,20 +266,14 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 
 	DWORD_PTR processAffinity, systemAffinity;
 	const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
-	debug_assert(ok);
+	WARN_IF_FALSE(ok);
 
 	const DWORD_PTR affinity = wcpu_AffinityFromProcessorMask(processAffinity, processorMask);
 	const DWORD_PTR previousAffinity = SetThreadAffinityMask(GetCurrentThread(), affinity);
 	debug_assert(previousAffinity != 0);	// ensure function didn't fail
-
-	// hopefully reschedule our thread
-	Sleep(0);
-
-	// verify we're running on the correct processor
-	const DWORD currentProcessorNumber = CurrentProcessorNumber();
-	if(currentProcessorNumber != invalidProcessorNumber)
-		debug_assert(IsBitSet(affinity, currentProcessorNumber));
-
+	// (MSDN says SetThreadAffinityMask takes care of rescheduling)
+	VerifyRunningOnCorrectProcessors(affinity);
+	
 	const uintptr_t previousProcessorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, previousAffinity);
 	return previousProcessorMask;
 }
@@ -284,7 +285,7 @@ LibError os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 	DWORD_PTR processAffinity, systemAffinity;
 	{
 		const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
-		debug_assert(ok);
+		WARN_IF_FALSE(ok);
 		if(processAffinity != systemAffinity)
 			return ERR::OS_CPU_RESTRICTED_AFFINITY;	// NOWARN
 	}
