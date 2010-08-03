@@ -49,14 +49,18 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	for (i = 0; i < numberOfItems; i++)
 	{
 		var item = items[i];
-
+		var entType = ((guiName == "Queue")? item.template : item);
+		var template;
+		if (guiName != "Command")
+		{
+			template = Engine.GuiInterfaceCall("GetTemplateData", entType);
+			if (!template)
+				continue; // ignore attempts to use invalid templates (an error should have been reported already)
+		}
+		
 		switch (guiName)
 		{
 		case SELECTION:
-			var template = Engine.GuiInterfaceCall("GetTemplateData", item);
-			if (!template)
-				continue; // ignore attempts to use invalid templates (an error should have been reported already)
-
 			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[i]);
 			if (!entState)
 				continue;
@@ -76,10 +80,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case QUEUE:
-			var template = Engine.GuiInterfaceCall("GetTemplateData", item.template);
-			if (!template)
-				continue; // ignore attempts to use invalid templates (an error should have been reported already)
-				
 			var tooltip = getEntityName(template);
 			var progress = Math.round(item.progress*100) + "%";
 			tooltip += " - " + progress;
@@ -88,12 +88,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case TRAINING:
-			var template = Engine.GuiInterfaceCall("GetTemplateData", item);
-			if (!template)
-				continue; // ignore attempts to use invalid templates (an error should have been reported already)
-
 			var tooltip = getEntityNameWithGenericType(template) + "\n" + getEntityCost(template);
-			var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, item);
+			var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
 			if (batchSize)
 			{
 				tooltip += "\n[font=\"serif-13\"]Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; " + 
@@ -102,10 +98,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 			
 		case CONSTRUCTION:
-			var template = Engine.GuiInterfaceCall("GetTemplateData", item);
-			if (!template)
-				continue; // ignore attempts to use invalid templates (an error should have been reported already)
-
 			var tooltip = getEntityNameWithGenericType(template) + "\n" + getEntityCost(template);
 			break;
 			
@@ -130,7 +122,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		// Get icon image
 		if (guiName == "Command")
 		{
-			icon.cell_id = i;
+			//icon.cell_id = i;
+			icon.cell_id = getCommandCellId(item);
 		}
 		else
 		{
@@ -198,20 +191,23 @@ function updateUnitCommands(entState, commandsPanel, selection)
 			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
-		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, entState, g_Selection.getTemplateNames(),
-				function (entType) { changePrimarySelectionGroup(entType); } );
-	
-		// HACK: This should be referenced in the entities template, rather that completely faked here
+/*
+		// HACK: This should be referenced in the entities template, rather than completely faked here
 		var commands = [];
 		for (var i = 0; i < 15; i++)
 			commands.push("test"+i);
 		commands[4] = "delete";
-
+*/
 		// Needs to have list provided by the entity
+		var commands = ["delete"];
+		
 		if (commands.length)
 			setupUnitPanel("Command", usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item); } );
+
+		if (selection.length > 1)
+			setupUnitPanel("Selection", usedPanels, entState, g_Selection.getTemplateNames(),
+				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		commandsPanel.hidden = false;
 	}

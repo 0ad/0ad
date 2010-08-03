@@ -231,6 +231,17 @@ function damageTypesToText(dmg)
 	return dmgArray.join(", ");
 }
 
+function getCommandCellId(commandName)
+{
+	switch (commandName)
+	{
+	case "delete":
+		return 4;
+	default:
+		return -1;
+	}
+}
+
 function getRankCellId(templateName)
 {
 	var endsWith = templateName.substring(templateName.length-2, templateName.length);
