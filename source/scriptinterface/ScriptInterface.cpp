@@ -22,6 +22,7 @@
 #include "AutoRooters.h"
 
 #include "lib/debug.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "ps/utf16string.h"
@@ -626,6 +627,58 @@ std::wstring ScriptInterface::ToString(jsval obj)
 	std::wstring source = L"(error)";
 	CallFunction(obj, "toSource", source);
 	return source;
+}
+
+CScriptValRooted ScriptInterface::ParseJSON(const utf16string& string)
+{
+	jsval vp;
+	JSONParser* parser = JS_BeginJSONParse(m->m_cx, &vp);
+	if (!parser)
+	{
+		LOGERROR(L"ParseJSON failed to begin");
+		return CScriptValRooted();
+	}
+
+	if (!JS_ConsumeJSONText(m->m_cx, parser, string.c_str(), string.size()))
+	{
+		LOGERROR(L"ParseJSON failed to consume");
+		return CScriptValRooted();
+	}
+
+	if (!JS_FinishJSONParse(m->m_cx, parser, JSVAL_NULL))
+	{
+		LOGERROR(L"ParseJSON failed to finish");
+		return CScriptValRooted();
+	}
+
+	return CScriptValRooted(m->m_cx, vp);
+}
+
+struct Stringifier
+{
+	static JSBool callback(const jschar *buf, uint32 len, void *data)
+	{
+		utf16string str(buf, buf+len);
+		std::wstring strw(str.begin(), str.end());
+
+		LibError err; // ignore Unicode errors
+		static_cast<Stringifier*>(data)->stream << utf8_from_wstring(strw, &err);
+		return JS_TRUE;
+	}
+
+	std::stringstream stream;
+};
+
+std::string ScriptInterface::StringifyJSON(jsval obj)
+{
+	Stringifier str;
+	if (!JS_Stringify(m->m_cx, &obj, NULL, INT_TO_JSVAL(2), &Stringifier::callback, &str))
+	{
+		LOGERROR(L"StringifyJSON failed");
+		return "";
+	}
+
+	return str.stream.str();
 }
 
 void ScriptInterface::ReportError(const char* msg)

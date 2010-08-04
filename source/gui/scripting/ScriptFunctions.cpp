@@ -21,6 +21,7 @@
 
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
+#include "graphics/MapReader.h"
 #include "gui/GUIManager.h"
 #include "lib/sysdep/sysdep.h"
 #include "maths/FixedVector3D.h"
@@ -291,6 +292,18 @@ bool AtlasIsAvailable(void* UNUSED(cbdata))
 	return ATLAS_IsAvailable();
 }
 
+CScriptVal LoadMapData(void* cbdata, std::wstring name)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	CMapSummaryReader reader;
+	PSRETURN err = reader.LoadMap(VfsPath(L"maps/scenarios/") / (name + L".xml"));
+	if (err)
+		return CScriptVal();
+
+	return reader.GetScriptData(guiManager->GetScriptInterface()).get();
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -329,4 +342,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapData>("LoadMapData");
 }

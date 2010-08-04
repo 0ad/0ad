@@ -166,6 +166,9 @@ public:
 			return (value + fract_pow2 - 1) >> fract_bits;
 	}
 
+	/// Returns the shortest string such that FromString will parse to the correct value.
+	CStr8 ToString() const;
+
 	/// Returns true if the number is precisely 0.
 	bool IsZero() const { return value == 0; }
 

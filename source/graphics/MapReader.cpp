@@ -33,6 +33,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayer.h"
@@ -244,6 +245,50 @@ int CMapReader::ApplyData()
 
 	return 0;
 }
+
+
+
+PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
+{
+	VfsPath filename_xml = fs::change_extension(pathname, L".xml");
+
+	CXeromyces xmb_file;
+	if (xmb_file.Load(g_VFS, filename_xml) != PSRETURN_OK)
+		return PSRETURN_File_ReadFailed;
+
+	// Define all the relevant elements used in the XML file
+	#define EL(x) int el_##x = xmb_file.GetElementID(#x)
+	#define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
+	EL(scenario);
+	EL(scriptsettings);
+	#undef AT
+	#undef EL
+
+	XMBElement root = xmb_file.GetRoot();
+	debug_assert(root.GetNodeName() == el_scenario);
+
+	XERO_ITER_EL(root, child)
+	{
+		int child_name = child.GetNodeName();
+		if (child_name == el_scriptsettings)
+		{
+			m_ScriptSettings = child.GetText();
+		}
+	}
+
+	return PSRETURN_OK;
+}
+
+CScriptValRooted CMapSummaryReader::GetScriptData(ScriptInterface& scriptInterface)
+{
+	CScriptValRooted data;
+	scriptInterface.Eval("({})", data);
+	if (!m_ScriptSettings.empty())
+		scriptInterface.SetProperty(data.get(), "settings", scriptInterface.ParseJSON(m_ScriptSettings), false);
+	return data;
+}
+
+
 
 
 
@@ -1115,16 +1160,25 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 		entity_id_t ent = m_MapReader.pSimulation2->AddEntity(TemplateName);
 		if (ent != INVALID_ENTITY)
 		{
-			CmpPtr<ICmpPosition> cmpPos(*m_MapReader.pSimulation2, ent);
-			if (!cmpPos.null())
+			CmpPtr<ICmpPosition> cmpPosition(*m_MapReader.pSimulation2, ent);
+			if (!cmpPosition.null())
 			{
-				cmpPos->JumpTo(Position.X, Position.Z);
-				cmpPos->SetYRotation(Orientation);
+				cmpPosition->JumpTo(Position.X, Position.Z);
+				cmpPosition->SetYRotation(Orientation);
 			}
 
 			CmpPtr<ICmpOwnership> cmpOwner(*m_MapReader.pSimulation2, ent);
 			if (!cmpOwner.null())
 				cmpOwner->SetOwner(PlayerID);
+
+			if (m_MapReader.m_CameraStartupTarget == INVALID_ENTITY && !cmpPosition.null())
+			{
+				// Special-case civil centre files to initialise the camera.
+				if (PlayerID == m_MapReader.m_PlayerID && boost::algorithm::ends_with(TemplateName, L"civil_centre"))
+				{
+					m_MapReader.m_CameraStartupTarget = ent;
+				}
+			}
 		}
 
 		completed_jobs++;
@@ -1222,6 +1276,10 @@ int CXMLReader::ProgressiveRead()
 		else if (name == "Camera")
 		{
 			ReadCamera(node);
+		}
+		else if (name == "ScriptSettings")
+		{
+			m_MapReader.pSimulation2->SetMapSettings(node.GetText());
 		}
 		else if (m_MapReader.file_format_version <= 4 && name == "Entities")
 		{

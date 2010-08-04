@@ -19,6 +19,7 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 
 #include <boost/random/linear_congruential.hpp>
@@ -124,5 +125,21 @@ public:
 		rng.seed((u64)0);
 		TS_ASSERT(script.Eval("Math.random()", d2));
 		TS_ASSERT_EQUALS(d1, d2);
+	}
+
+	void test_json()
+	{
+		ScriptInterface script("Test");
+
+		std::string input = "({'x':1,'z':[2,'3\\u263A\\ud800'],\"y\":true})";
+		CScriptValRooted val;
+		TS_ASSERT(script.Eval(input.c_str(), val));
+
+		std::string stringified = script.StringifyJSON(val.get());
+		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\":1,\n  \"z\":[2,\n    \"3\xE2\x98\xBA\xEF\xBF\xBD\"\n  ],\n  \"y\":true\n}");
+
+		std::wstring stringifiedw = wstring_from_utf8(stringified.c_str());
+		val = script.ParseJSON(utf16string(stringifiedw.begin(), stringifiedw.end()));
+		TS_ASSERT_WSTR_EQUALS(script.ToString(val.get()), L"({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");
 	}
 };

@@ -116,6 +116,31 @@ public:
 		// TODO: could test more large/small numbers, errors, etc
 	}
 
+	void test_ToString()
+	{
+		#define T(n, str) { fixed f = fixed::FromDouble(n); TS_ASSERT_STR_EQUALS(f.ToString(), str); TS_ASSERT_EQUALS(fixed::FromString(f.ToString()), f); }
+
+		T(1.0, "1");
+		T(-1.0, "-1");
+		T(10000.0, "10000");
+		T(1.25, "1.25");
+		T(-1.25, "-1.25");
+		T(0.5, "0.5");
+		T(1.0/65536.0, "0.00002");
+		T(2.0/65536.0, "0.00004");
+		T(250367.0/65536.0, "3.8203");
+		T(32768.0 - 1.0/65536.0, "32767.99999");
+		T(-32768.0 + 1.0/65536.0, "-32767.99999");
+
+		#undef T
+
+		for (int i = 0; i < 65536; ++i)
+		{
+			fixed f = fixed::FromDouble(i / 65536.0);
+			TS_ASSERT_EQUALS(fixed::FromString(f.ToString()), f);
+		}
+	}
+
 	void test_RoundToZero()
 	{
 		TS_ASSERT_EQUALS(fixed::FromFloat(10.f).ToInt_RoundToZero(), 10);

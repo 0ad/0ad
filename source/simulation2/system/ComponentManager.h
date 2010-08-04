@@ -219,6 +219,7 @@ private:
 	static void Script_RegisterMessageType(void* cbdata, std::string name);
 	static void Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value);
 	static IComponent* Script_QueryInterface(void* cbdata, int ent, int iid);
+	static std::vector<int> Script_GetEntitiesWithInterface(void* cbdata, int iid);
 	static void Script_PostMessage(void* cbdata, int ent, int mtid, CScriptVal data);
 	static void Script_BroadcastMessage(void* cbdata, int mtid, CScriptVal data);
 	static int Script_AddEntity(void* cbdata, std::string templateName);

@@ -23,6 +23,7 @@
 #include "ps/Filesystem.h"
 #include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
+#include "maths/Fixed.h"
 
 #define LOG_CATEGORY L"xml"
 
@@ -271,6 +272,11 @@ template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const
 template <> void XMLWriter_File::ElementAttribute<std::wstring>(const char* name, const std::wstring& value, bool newelement)
 {
 	ElementAttribute(name, utf8_from_wstring(value).c_str(), newelement);
+}
+
+template <> void XMLWriter_File::ElementAttribute<fixed>(const char* name, const fixed& value, bool newelement)
+{
+	ElementAttribute(name, value.ToString().c_str(), newelement);
 }
 
 // Use CStr's conversion for most types:

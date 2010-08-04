@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,8 @@
 
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
+
+#include "ps/utf16string.h"
 
 class AutoGCRooter;
 
@@ -153,6 +155,16 @@ public:
 	template<typename T, typename CHAR> bool Eval(const CHAR* code, T& out);
 
 	std::wstring ToString(jsval obj);
+
+	/**
+	 * Parse a JSON string. Returns the undefined value on error.
+	 */
+	CScriptValRooted ParseJSON(const utf16string& string);
+
+	/**
+	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.
+	 */
+	std::string StringifyJSON(jsval obj);
 
 	/**
 	 * Report the given error message through the JS error reporting mechanism,

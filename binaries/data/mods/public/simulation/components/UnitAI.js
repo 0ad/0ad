@@ -5,6 +5,17 @@ UnitAI.prototype.Schema =
 	"<a:example/>" +
 	"<empty/>";
 
+// Very basic stance support (currently just for test maps where we don't want
+// everyone killing each other immediately after loading)
+var g_Stances = {
+	"aggressive": {
+		attackOnSight: true,
+	},
+	"holdfire": {
+		attackOnSight: false,
+	},
+};
+
 var UnitFsmSpec = {
 
 	"INDIVIDUAL": {
@@ -41,7 +52,7 @@ var UnitFsmSpec = {
 				{
 					var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 					var ents = rangeMan.ResetActiveQuery(this.losRangeQuery);
-					if (this.AttackVisibleEntity(ents))
+					if (this.GetStance().attackOnSight && this.AttackVisibleEntity(ents))
 						return true;
 				}
 
@@ -56,10 +67,11 @@ var UnitFsmSpec = {
 			},
 
 			"LosRangeUpdate": function(msg) {
-				// TODO: implement stances (ignore this message if hold-fire stance)
-
-				// Start attacking one of the newly-seen enemy (if any)
-				this.AttackVisibleEntity(msg.data.added);
+				if (this.GetStance().attackOnSight)
+				{
+					// Start attacking one of the newly-seen enemy (if any)
+					this.AttackVisibleEntity(msg.data.added);
+				}
 			},
 		},
 
@@ -373,6 +385,8 @@ UnitAI.prototype.Init = function()
 {
 	this.orderQueue = []; // current order is at the front of the list
 	this.order = undefined; // always == this.orderQueue[0]
+
+	this.SetStance("aggressive");
 };
 
 UnitAI.prototype.OnCreate = function()
@@ -730,6 +744,19 @@ UnitAI.prototype.Repair = function(target, queued)
 	// TODO: verify that this is a valid target
 
 	this.AddOrder("Repair", { "target": target }, queued);
+};
+
+UnitAI.prototype.SetStance = function(stance)
+{
+	if (g_Stances[stance])
+		this.stance = stance;
+	else
+		error("UnitAI: Setting to invalid stance '"+stance+"'");
+};
+
+UnitAI.prototype.GetStance = function()
+{
+	return g_Stances[this.stance];
 };
 
 //// Helper functions ////

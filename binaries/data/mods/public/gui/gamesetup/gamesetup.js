@@ -21,6 +21,9 @@ var g_MaxPlayers = 8;
 
 var g_ChatMessages = [];
 
+// Cache of output from Engine.LoadMapData
+var g_MapData = {};
+
 function init(attribs)
 {
 	switch (attribs.type)
@@ -162,6 +165,14 @@ function initMapNameList(object)
 	object.selected = selected;
 }
 
+function loadMapData(name)
+{
+	if (!(name in g_MapData))
+		g_MapData[name] = Engine.LoadMapData(name);
+
+	return g_MapData[name];
+}
+
 // Called when the user selects a map from the list
 function selectMap(name)
 {
@@ -193,16 +204,18 @@ function onGameAttributesChange()
 
 	getGUIObjectByName("mapInfoName").caption = mapName;
 
-	var description = "Sorry, no description available.";
+	var mapData = loadMapData(mapName);
+	var mapSettings = (mapData && mapData.settings ? mapData.settings : {});
 
-	// TODO: we ought to load map descriptions from the map itself, somehow.
-	// Just hardcode it now for testing.
-	if (mapName == "Latium")
-	{
-		description = "2 players. A fertile coastal region which was the birthplace of the Roman Empire. Plentiful natural resources let you build up a city and experiment with the game’s features in relative peace. Some more description could go here if you want as long as it’s not too long and still fits on the screen.";
-	}
+	// Load the description from the map file, if there is one
+	var description = mapSettings.Description || "Sorry, no description available.";
+	
+	// Describe the number of players
+	var playerString = "";
+	if (mapSettings.NumPlayers)
+		playerString = mapSettings.NumPlayers + " " + (mapSettings.NumPlayers == 1 ? "player" : "players") + ". ";
 
-	getGUIObjectByName("mapInfoDescription").caption = description;
+	getGUIObjectByName("mapInfoDescription").caption = playerString + description;
 
 	g_IsInGuiUpdate = false;
 }

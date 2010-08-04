@@ -24,6 +24,7 @@
 #include "scriptinterface/ScriptVal.h"
 
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/utf16string.h"
 
 #include <map>
 
@@ -65,8 +66,26 @@ public:
 	 */
 	bool LoadDefaultScripts();
 
+	/**
+	 * Set a startup script, which will get executed before the first turn.
+	 */
 	void SetStartupScript(const std::wstring& script);
+
+	/**
+	 * Get the current startup script.
+	 */
 	const std::wstring& GetStartupScript();
+
+	/**
+	 * Set the initial map settings (as a JSON string), which will be used
+	 * to set up the simulation state.
+	 */
+	void SetMapSettings(const utf16string& settings);
+
+	/**
+	 * Get the current map settings as a UTF-8 JSON string.
+	 */
+	std::string GetMapSettings();
 
 	/**
 	 * Reload any scripts that were loaded from the given filename.

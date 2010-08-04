@@ -71,6 +71,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterMessageType> ("RegisterMessageType");
 		m_ScriptInterface.RegisterFunction<void, std::string, CScriptVal, CComponentManager::Script_RegisterGlobal> ("RegisterGlobal");
 		m_ScriptInterface.RegisterFunction<IComponent*, int, int, CComponentManager::Script_QueryInterface> ("QueryInterface");
+		m_ScriptInterface.RegisterFunction<std::vector<int>, int, CComponentManager::Script_GetEntitiesWithInterface> ("GetEntitiesWithInterface");
 		m_ScriptInterface.RegisterFunction<void, int, int, CScriptVal, CComponentManager::Script_PostMessage> ("PostMessage");
 		m_ScriptInterface.RegisterFunction<void, int, CScriptVal, CComponentManager::Script_BroadcastMessage> ("BroadcastMessage");
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
@@ -342,6 +343,17 @@ IComponent* CComponentManager::Script_QueryInterface(void* cbdata, int ent, int 
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 	IComponent* component = componentManager->QueryInterface((entity_id_t)ent, iid);
 	return component;
+}
+
+std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(void* cbdata, int iid)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	std::vector<int> ret;
+	const std::map<entity_id_t, IComponent*>& ents = componentManager->GetEntitiesWithInterface(iid);
+	for (std::map<entity_id_t, IComponent*>::const_iterator it = ents.begin(); it != ents.end(); ++it)
+		ret.push_back(it->first);
+	return ret;
 }
 
 CMessage* CComponentManager::ConstructMessage(int mtid, CScriptVal data)

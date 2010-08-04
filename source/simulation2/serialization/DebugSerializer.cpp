@@ -23,6 +23,7 @@
 
 #include "lib/secure_crt.h"
 #include "lib/utf8.h"
+#include "ps/CStr.h"
 
 #include <sstream>
 #include <iomanip>
@@ -106,7 +107,7 @@ void CDebugSerializer::PutNumber(const char* name, double value)
 
 void CDebugSerializer::PutNumber(const char* name, fixed value)
 {
-	m_Stream << INDENT << name << ": " << canonfloat(value.ToDouble(), 11) << "\n";
+	m_Stream << INDENT << name << ": " << value.ToString() << "\n";
 }
 
 void CDebugSerializer::PutBool(const char* name, bool value)

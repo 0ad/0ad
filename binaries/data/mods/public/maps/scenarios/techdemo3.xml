@@ -27,6 +27,13 @@
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":1,
+  "Description":"A map for testing basic pathfinding.",
+  "DefaultStance":"holdfire"
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="6">
 			<Template>structures/celt_corral</Template>
@@ -50,7 +57,7 @@
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="332.805" z="253.457"/>
-			<Orientation y="3.82031"/>
+			<Orientation y="3.8203"/>
 		</Entity>
 		<Entity uid="10">
 			<Template>structures/celt_corral</Template>
@@ -62,13 +69,13 @@
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="367.801" z="211.574"/>
-			<Orientation y="3.14453"/>
+			<Orientation y="3.14452"/>
 		</Entity>
 		<Entity uid="12">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="338.383" z="211.004"/>
-			<Orientation y="3.14453"/>
+			<Orientation y="3.14452"/>
 		</Entity>
 		<Entity uid="13">
 			<Template>structures/celt_corral</Template>
@@ -80,85 +87,85 @@
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="306.805" z="308.824"/>
-			<Orientation y="-0.0273438"/>
+			<Orientation y="-0.0273"/>
 		</Entity>
 		<Entity uid="15">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="328.879" z="308.824"/>
-			<Orientation y="-0.0273438"/>
+			<Orientation y="-0.0273"/>
 		</Entity>
 		<Entity uid="16">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="296.16" z="297.316"/>
-			<Orientation y="1.51953"/>
+			<Orientation y="1.51952"/>
 		</Entity>
 		<Entity uid="17">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="342.578" z="298.086"/>
-			<Orientation y="1.51953"/>
+			<Orientation y="1.51952"/>
 		</Entity>
 		<Entity uid="18">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="363.242" z="297.316"/>
-			<Orientation y="1.51953"/>
+			<Orientation y="1.51952"/>
 		</Entity>
 		<Entity uid="19">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="275.598" z="296.172"/>
-			<Orientation y="1.51953"/>
+			<Orientation y="1.51952"/>
 		</Entity>
 		<Entity uid="20">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="267.59" z="311.305"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="21">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="268.316" z="332.051"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="22">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="269.438" z="353.195"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="23">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="270.547" z="374.977"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="24">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="370.652" z="314.473"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="25">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="370.984" z="338.418"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="26">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="371.293" z="361.965"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="371.711" z="384.176"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="28">
 			<Template>structures/celt_corral</Template>
@@ -224,13 +231,13 @@
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="312.637" z="384.512"/>
-			<Orientation y="9.37109"/>
+			<Orientation y="9.37108"/>
 		</Entity>
 		<Entity uid="39">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="293.746" z="366.816"/>
-			<Orientation y="9.37109"/>
+			<Orientation y="9.37108"/>
 		</Entity>
 		<Entity uid="40">
 			<Template>structures/celt_corral</Template>
@@ -254,13 +261,13 @@
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="290.602" z="437.578"/>
-			<Orientation y="0.941406"/>
+			<Orientation y="0.94137"/>
 		</Entity>
 		<Entity uid="44">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
 			<Position x="310.125" z="446.977"/>
-			<Orientation y="-1.80469"/>
+			<Orientation y="-1.8047"/>
 		</Entity>
 		<Entity uid="45">
 			<Template>structures/celt_corral</Template>
@@ -368,7 +375,7 @@
 			<Template>units/celt_infantry_javelinist_e</Template>
 			<Player>2</Player>
 			<Position x="356.75" z="215.902"/>
-			<Orientation y="3.73828"/>
+			<Orientation y="3.73827"/>
 		</Entity>
 		<Entity uid="71">
 			<Template>units/celt_infantry_javelinist_e</Template>
@@ -380,13 +387,13 @@
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
 			<Position x="293.941" z="235.59"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="77">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
 			<Position x="338.055" z="210.789"/>
-			<Orientation y="3.16406"/>
+			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="82">
 			<Template>structures/celt_temple</Template>
@@ -624,5 +631,4 @@
 		</Entity>
 	</Entities>
 	<Paths/>
-	<Triggers/>
 </Scenario>

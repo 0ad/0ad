@@ -35,6 +35,8 @@ class CCinemaManager;
 class CTriggerManager;
 class CSimulation2;
 class CTextureEntry;
+class CScriptValRooted;
+class ScriptInterface;
 
 class CXMLReader;
 
@@ -102,6 +104,33 @@ private:
 	size_t num_terrain_tex;
 
 	CXMLReader* xml_reader;
+};
+
+/**
+ * A restricted map reader that returns various summary information
+ * for use by scripts (particularly the GUI).
+ */
+class CMapSummaryReader
+{
+public:
+	/**
+	 * Try to load a map file.
+	 * @param pathname Path to .pmp or .xml file
+	 */
+	PSRETURN LoadMap(const VfsPath& pathname);
+
+	/**
+	 * Returns a value of the form:
+	 * @code
+	 * {
+	 *   "settings": { ... contents of the map's <ScriptSettings> ... }
+	 * }
+	 * @endcode
+	 */
+	CScriptValRooted GetScriptData(ScriptInterface& scriptInterface);
+
+private:
+	utf16string m_ScriptSettings;
 };
 
 #endif

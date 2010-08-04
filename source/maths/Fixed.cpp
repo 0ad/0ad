@@ -90,6 +90,57 @@ CFixed_15_16 CFixed_15_16::FromString(const CStrW& s)
 	return FromString(CStr8(s));
 }
 
+template<>
+CStr8 CFixed_15_16::ToString() const
+{
+	std::stringstream r;
+
+	u32 posvalue = abs(value);
+	if (value < 0)
+		r << "-";
+
+	r << (posvalue >> fract_bits);
+
+	u16 fraction = posvalue & ((1 << fract_bits) - 1);
+	if (fraction)
+	{
+		r << ".";
+
+		u32 frac = 0;
+		u32 div = 1;
+
+		// Do the inverse of FromString: Keep adding digits until (frac<<16)/div == expected fraction
+		while (true)
+		{
+			frac *= 10;
+			div *= 10;
+
+			// Low estimate of d such that ((frac+d)<<16)/div == fraction
+			u32 digit = (((u64)fraction*div) >> 16) - frac;
+			frac += digit;
+
+			// If this gives the exact target, then add the digit and stop
+			if (((u64)frac << 16) / div == fraction)
+			{
+				r << digit;
+				break;
+			}
+
+			// If the next higher digit gives the exact target, then add that digit and stop
+			if (digit <= 8 && (((u64)frac+1) << 16) / div == fraction)
+			{
+				r << digit+1;
+				break;
+			}
+
+			// Otherwise add the digit and continue
+			r << digit;
+		}
+	}
+
+	return r.str();
+}
+
 // Based on http://www.dspguru.com/dsp/tricks/fixed-point-atan2-with-self-normalization
 CFixed_15_16 atan2_approx(CFixed_15_16 y, CFixed_15_16 x)
 {

@@ -167,6 +167,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 	// pack tile data
 	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());	
 }
+
 void CMapWriter::WriteXML(const VfsPath& filename,
 						  WaterManager* pWaterMan, SkyManager* pSkyMan,
 						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
@@ -275,6 +276,16 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			}
 		}
 
+		if (pSimulation2)
+		{
+			std::string settings = pSimulation2->GetMapSettings();
+			if (!settings.empty())
+			{
+				XML_Element("ScriptSettings");
+				XML_CDATA(("\n" + settings + "\n").c_str());
+			}
+		}
+
 		{
 			XML_Element("Entities");
 
@@ -310,13 +321,13 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 					CFixedVector3D rot = cmpPosition->GetRotation();
 					{
 						XML_Element("Position");
-						XML_Attribute("x", pos.X.ToDouble());
-						XML_Attribute("z", pos.Z.ToDouble());
+						XML_Attribute("x", pos.X);
+						XML_Attribute("z", pos.Z);
 						// TODO: height offset etc
 					}
 					{
 						XML_Element("Orientation");
-						XML_Attribute("y", rot.Y.ToDouble());
+						XML_Attribute("y", rot.Y);
 						// TODO: X, Z maybe
 					}
 				}
