@@ -252,6 +252,7 @@ static void VerifyRunningOnCorrectProcessors(DWORD_PTR affinity)
 		// table won't work because initializing the table also requires
 		// this function. LSL only works on Vista (which already
 		// has GetCurrentProcessorNumber).
+		return;
 	}
 
 	debug_assert(IsBitSet(affinity, currentProcessor));
