@@ -96,6 +96,7 @@ protected:
 	ssize_t m_VertsPerSide;
 };
 
+//////////////////////////////////////////////////////////////////////////
 	
 BEGIN_COMMAND(AlterElevation)
 {
@@ -176,6 +177,118 @@ BEGIN_COMMAND(AlterElevation)
 	}
 };
 END_COMMAND(AlterElevation)
+
+//////////////////////////////////////////////////////////////////////////
+	
+BEGIN_COMMAND(SmoothElevation)
+{
+	TerrainArray m_TerrainDelta;
+	ssize_t m_i0, m_j0, m_i1, m_j1;
+
+	cSmoothElevation()
+	{
+		m_TerrainDelta.Init();
+	}
+
+	void MakeDirty()
+	{
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
+	}
+
+	void Do()
+	{
+		int amount = (int)msg->amount;
+
+		// If the framerate is very high, 'amount' is often very
+		// small (even zero) so the integer truncation is significant
+		static float roundingError = 0.0;
+		roundingError += msg->amount - (float)amount;
+		if (roundingError >= 1.f)
+		{
+			amount += (int)roundingError;
+			roundingError -= (float)(int)roundingError;
+		}
+
+		static CVector3D previousPosition;
+		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace(previousPosition);
+		previousPosition = g_CurrentBrush.m_Centre;
+
+		ssize_t x0, y0;
+		g_CurrentBrush.GetBottomLeft(x0, y0);
+
+		if (g_CurrentBrush.m_H > 2)
+		{
+			std::vector<float> terrainDeltas;
+			ssize_t num = (g_CurrentBrush.m_H - 2) * (g_CurrentBrush.m_W - 2);
+			terrainDeltas.resize(num);
+
+			// For each vertex, compute the average of the 9 adjacent vertices
+			for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+			{
+				for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
+				{
+					float delta = m_TerrainDelta.GetVertex(x0+dx, y0+dy) / 9.0f;
+					ssize_t x1_min = std::max((ssize_t)1, dx - 1);
+					ssize_t x1_max = std::min(dx + 1, g_CurrentBrush.m_W - 2);
+					ssize_t y1_min = std::max((ssize_t)1, dy - 1);
+					ssize_t y1_max = std::min(dy + 1, g_CurrentBrush.m_H - 2);
+
+					for (ssize_t yy = y1_min; yy <= y1_max; ++yy)
+					{
+						for (ssize_t xx = x1_min; xx <= x1_max; ++xx)
+						{
+							ssize_t index = (yy-1)*(g_CurrentBrush.m_W-2) + (xx-1);
+							terrainDeltas[index] += delta;
+						}
+					}
+				}
+			}
+
+			// Move each vertex towards the computed average of its neighbours
+			for (ssize_t dy = 1; dy < g_CurrentBrush.m_H - 1; ++dy)
+			{
+				for (ssize_t dx = 1; dx < g_CurrentBrush.m_W - 1; ++dx)
+				{
+					ssize_t index = (dy-1)*(g_CurrentBrush.m_W-2) + (dx-1);
+					float b = g_CurrentBrush.Get(dx, dy);
+					if (b)
+						m_TerrainDelta.MoveVertexTowards(x0+dx, y0+dy, (int)terrainDeltas[index], (int)(amount*b));
+				}
+			}
+		}
+
+		m_i0 = x0;
+		m_j0 = y0;
+		m_i1 = x0 + g_CurrentBrush.m_W;
+		m_j1 = y0 + g_CurrentBrush.m_H;
+		MakeDirty();
+	}
+
+	void Undo()
+	{
+		m_TerrainDelta.Undo();
+		MakeDirty();
+	}
+
+	void Redo()
+	{
+		m_TerrainDelta.Redo();
+		MakeDirty();
+	}
+
+	void MergeIntoPrevious(cSmoothElevation* prev)
+	{
+		prev->m_TerrainDelta.OverlayWith(m_TerrainDelta);
+		prev->m_i0 = std::min(prev->m_i0, m_i0);
+		prev->m_j0 = std::min(prev->m_j0, m_j0);
+		prev->m_i1 = std::max(prev->m_i1, m_i1);
+		prev->m_j1 = std::max(prev->m_j1, m_j1);
+	}
+};
+END_COMMAND(SmoothElevation)
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -56,6 +56,7 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 	{
 		wxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Elevation tools"));
 		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation"), wxSize(50,20)));
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation"), wxSize(50,20)));
 		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation"), wxSize(50,20)));
 //		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T(""), wxSize(50,20)));
 //		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Sample"), _T(""), wxSize(50,20)));

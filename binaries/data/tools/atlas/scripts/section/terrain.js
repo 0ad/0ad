@@ -129,6 +129,7 @@ function init(window, bottomWindow)
 		
 	var tools = [
 		{ label: 'Modify', name: 'AlterElevation' },
+		{ label: 'Smooth', name: 'SmoothElevation' },
 		{ label: 'Flatten', name: 'FlattenElevation' },
 		{ label: 'Paint', name: 'PaintTerrain' },
 	];
