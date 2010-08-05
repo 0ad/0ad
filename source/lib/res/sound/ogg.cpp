@@ -92,7 +92,7 @@ public:
 			NODEFAULT;
 		}
 
-		adapter->offset = Clamp(origin+offset, off_t(0), adapter->size);
+		adapter->offset = Clamp(off_t(origin+offset), off_t(0), adapter->size);
 		return 0;
 	}
 
