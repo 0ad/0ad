@@ -32,7 +32,6 @@
 #include "lib/module_init.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
-#include "lib/sysdep/arch/x86_x64/topology.h"
 
 #ifdef _OPENMP
 # include <omp.h>
@@ -249,11 +248,10 @@ static void VerifyRunningOnCorrectProcessors(DWORD_PTR affinity)
 		currentProcessor = pGetCurrentProcessorNumber();
 	else
 	{
-		const u8* apicIds = ApicIds();
-		const u8* end = apicIds+os_cpu_NumProcessors();
-		const u8* it = std::find(apicIds, end, x86_x64_ApicId());
-		debug_assert(it != end);
-		currentProcessor = it - apicIds;
+		// note: searching for the current APIC ID or IDT address in a
+		// table won't work because initializing the table also requires
+		// this function. LSL only works on Vista (which already
+		// has GetCurrentProcessorNumber).
 	}
 
 	debug_assert(IsBitSet(affinity, currentProcessor));
@@ -273,7 +271,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 	debug_assert(previousAffinity != 0);	// ensure function didn't fail
 	// (MSDN says SetThreadAffinityMask takes care of rescheduling)
 	VerifyRunningOnCorrectProcessors(affinity);
-	
+
 	const uintptr_t previousProcessorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, previousAffinity);
 	return previousProcessorMask;
 }
