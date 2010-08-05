@@ -51,7 +51,7 @@ EntitySelection.prototype.makePrimarySelection = function(primaryIndex, modifier
 		{
 			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[i]);
 			if (!entState)
-				return;
+				continue;
 			if (entState.template == primaryEntState.template)
 				ents.push(selection[i]);
 		}
