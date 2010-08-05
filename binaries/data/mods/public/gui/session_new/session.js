@@ -103,7 +103,12 @@ function onTick()
 
 	// If the selection changed, we need to regenerate the sim display
 	if (g_Selection.dirty)
+	{
 		onSimulationUpdate();
+
+		// Display rally points for selected buildings
+		Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
+	}
 }
 
 function onSimulationUpdate()

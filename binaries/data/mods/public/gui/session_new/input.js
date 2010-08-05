@@ -82,16 +82,34 @@ function determineAction(x, y)
 	if (entState.player != player && !g_DevSettings.controlAll)
 		return undefined;
 
+	// Work out whether the selection can have rally points
+	var haveRallyPoints = selection.every(function(ent) {
+		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
+		return entState && entState.rallyPoint;
+	});
+
 	var targets = Engine.PickEntitiesAtPoint(x, y);
 
-	// If there's no unit, just walk
+	// If there's no target unit
 	if (!targets.length)
-		return {"type": "move"};
+	{
+		// If all selected entities are buildings,
+		// set rally points, else make them walk
+		if (haveRallyPoints)
+			return {"type": "set-rallypoint"};
+		else
+			return {"type": "move"};
+	}
 
 	// Look at the first targeted entity
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
+
+	// If we selected buildings with rally points, and then click on one of those selected
+	// buildings, we should remove the rally point
+	if (haveRallyPoints && selection.indexOf(targets[0]) != -1)
+		return {"type": "unset-rallypoint"};
 
 	// Check if the target entity is a resource, foundation, or enemy unit.
 	// Check if any entities in the selection can gather the requested resource, can build the foundation, or can attack the enemy
@@ -499,6 +517,26 @@ function handleInputAfterGui(ev)
 					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
 					return true;
 
+				case "set-rallypoint":
+					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+					Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
+					// Display rally point at the new coordinates, to avoid display lag
+					Engine.GuiInterfaceCall("DisplayRallyPoint", {
+						"entities": selection,
+						"x": target.x,
+						"z": target.z
+					});
+					return true;
+
+				case "unset-rallypoint":
+					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+					Engine.PostNetworkCommand({"type": "unset-rallypoint", "entities": selection});
+					// Remove displayed rally point
+					Engine.GuiInterfaceCall("DisplayRallyPoint", {
+						"entities": []
+					});
+					return true;
+
 				default:
 					throw new Error("Invalid action.type "+action.type);
 				}
@@ -532,14 +570,11 @@ function handleInputAfterGui(ev)
 				if (!ents.length)
 				{
 					g_Selection.reset();
-					
 					inputState = INPUT_NORMAL;
 					return true;
 				}
-
 				g_Selection.reset();
 				g_Selection.addList([ents[0]]);
-
 				inputState = INPUT_NORMAL;
 				return true;
 			}

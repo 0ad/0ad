@@ -158,7 +158,8 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-
+	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
+	
 	for (var i = 0; i < count; ++i)
 	{
 		var ent = Engine.AddEntity(templateName);
@@ -180,7 +181,14 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 		var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
-		// TODO: move to rally points
+		// If a rally point is set, walk towards it
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (cmpUnitAI && cmpRallyPoint)
+		{
+			var rallyPos = cmpRallyPoint.GetPosition();
+			if (rallyPos)
+				cmpUnitAI.Walk(rallyPos.x, rallyPos.z, false);
+		}
 	}
 };
 

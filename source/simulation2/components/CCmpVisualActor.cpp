@@ -51,6 +51,8 @@ public:
 	std::wstring m_ActorName;
 	CUnit* m_Unit;
 
+	bool m_Hidden; // only valid between Interpolate and RenderSubmit
+
 	// Current animation state
 	std::string m_AnimName;
 	bool m_AnimOnce;
@@ -59,11 +61,6 @@ public:
 	float m_AnimDesync;
 
 	float m_AnimSyncRepeatTime; // 0.0 if not synced
-
-	CCmpVisualActor() :
-		m_Unit(NULL)
-	{
-	}
 
 	static std::string GetSchema()
 	{
@@ -93,6 +90,8 @@ public:
 
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
+		m_Unit = NULL;
+
 		if (!context.HasUnitManager())
 			return; // do nothing if graphics are disabled
 
@@ -310,11 +309,14 @@ void CCmpVisualActor::Interpolate(const CSimContext& context, float frameTime, f
 	if (cmpPosition.null())
 		return;
 
+	// Disable rendering of the unit if it has no position
 	if (!cmpPosition->IsInWorld())
 	{
-		// TODO: need to hide the unit from rendering
+		m_Hidden = true;
 		return;
 	}
+
+	m_Hidden = false;
 
 	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset));
 
@@ -325,6 +327,9 @@ void CCmpVisualActor::Interpolate(const CSimContext& context, float frameTime, f
 void CCmpVisualActor::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
 	if (m_Unit == NULL)
+		return;
+
+	if (m_Hidden)
 		return;
 
 	// TODO: need to think about things like LOS here

@@ -138,6 +138,24 @@ function ProcessCommand(player, cmd)
 
 		break;
 
+	case "set-rallypoint":
+		for each (var ent in cmd.entities)
+		{
+			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
+			if (cmpRallyPoint)
+				cmpRallyPoint.SetPosition(cmd.x, cmd.z);
+		}
+		break;
+
+	case "unset-rallypoint":
+		for each (var ent in cmd.entities)
+		{
+			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
+			if (cmpRallyPoint)
+				cmpRallyPoint.Unset();
+		}
+		break;
+
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");
 	}

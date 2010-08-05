@@ -11,6 +11,7 @@ GuiInterface.prototype.Serialize = function()
 GuiInterface.prototype.Init = function()
 {
 	this.placementEntity = undefined; // = undefined or [templateName, entityID]
+	this.rallyPoints = undefined;
 };
 
 GuiInterface.prototype.GetSimulationState = function(player)
@@ -124,6 +125,11 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.resourceGatherRates = cmpResourceGatherer.GetGatherRates();
 	}
 
+	var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
+	if (cmpRallyPoint)
+	{
+		ret.rallyPoint = { };
+	}
 	return ret;
 };
 
@@ -167,6 +173,65 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (cmpSelectable)
 			cmpSelectable.SetSelectionHighlight(cmd.colour);
 	}
+};
+
+/**
+ * Displays the rally point of a building
+ */
+GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
+{
+	// If there are rally points already displayed, destroy them
+	for each (var ent in this.rallyPoints)
+	{
+		// Hide it first (the destruction won't be instantaneous)
+		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		cmpPosition.MoveOutOfWorld();
+
+		Engine.DestroyEntity(ent);
+	}
+
+	this.rallyPoints = [];
+
+	var positions = [];
+	// DisplayRallyPoints is called passing a list of entities for which
+	// rally points must be displayed
+	for each (var ent in cmd.entities)
+	{
+		var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
+		if (!cmpRallyPoint)
+			continue;
+
+		// Verify the owner
+		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
+			continue;
+
+		// If the command was passed an explicit position, use that and
+		// override the real rally point position; otherwise use the real position
+		var pos;
+		if (cmd.x && cmd.z)
+			pos = {"x": cmd.x, "z": cmd.z};
+		else
+			pos = cmpRallyPoint.GetPosition();
+
+		if (pos)
+		{
+			// TODO: it'd probably be nice if we could draw some kind of line
+			// between the building and pos, to make the marker easy to find even
+			// if it's a long way from the building
+
+			positions.push(pos);
+		}
+	}
+
+	// Add rally point entity for each building
+	for each (var pos in positions)
+	{
+		var rallyPoint = Engine.AddLocalEntity("actor|props/special/common/waypoint_flag.xml");
+		var cmpPosition = Engine.QueryInterface(rallyPoint, IID_Position);
+		cmpPosition.JumpTo(pos.x, pos.z);
+		this.rallyPoints.push(rallyPoint);
+	}	
 };
 
 /**
@@ -269,6 +334,7 @@ var exposedFunctions = {
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
 	"SetRangeDebugOverlay": 1,
+	"DisplayRallyPoint": 1
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)
