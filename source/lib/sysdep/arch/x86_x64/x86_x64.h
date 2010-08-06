@@ -73,6 +73,11 @@ enum x86_x64_Vendors
 LIB_API x86_x64_Vendors x86_x64_Vendor();
 
 
+LIB_API size_t x86_x64_Model();
+
+LIB_API size_t x86_x64_Family();
+
+
 /**
  * @return the colloquial processor generation
  * (5 = Pentium, 6 = Pentium Pro/II/III / K6, 7 = Pentium4 / Athlon, 8 = Core / Opteron)
@@ -96,6 +101,7 @@ enum x86_x64_Cap
 	// standard (edx)
 	X86_X64_CAP_FPU             = 32+0,  // Floating Point Unit
 	X86_X64_CAP_TSC             = 32+4,  // TimeStamp Counter
+	X86_X64_CAP_MSR             = 32+5,	 // Model Specific Registers
 	X86_X64_CAP_CMOV            = 32+15, // Conditional MOVe
 	X86_X64_CAP_TM_SCC          = 32+22, // Thermal Monitoring and Software Controlled Clock
 	X86_X64_CAP_MMX             = 32+23, // MultiMedia eXtensions

@@ -41,47 +41,75 @@
 #define IOCTL_AKEN_WRITE_PORT          CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+1, METHOD_BUFFERED, FILE_ANY_ACCESS)
 #define IOCTL_AKEN_MAP                 CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+2, METHOD_BUFFERED, FILE_ANY_ACCESS)
 #define IOCTL_AKEN_UNMAP               CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+3, METHOD_BUFFERED, FILE_ANY_ACCESS)
+#define IOCTL_AKEN_READ_MSR            CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+4, METHOD_BUFFERED, FILE_ANY_ACCESS)
+#define IOCTL_AKEN_WRITE_MSR           CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+5, METHOD_BUFFERED, FILE_ANY_ACCESS)
+#define IOCTL_AKEN_READ_PMC            CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+6, METHOD_BUFFERED, FILE_ANY_ACCESS)
 
 
 // input and output data structures for the IOCTLs
 
 #pragma pack(push, 1)
 
-struct AkenReadPortIn
+typedef struct AkenReadPortIn_
 {
 	USHORT port;
 	UCHAR numBytes;
-};
+}
+AkenReadPortIn;
 
-struct AkenReadPortOut
+typedef struct AkenReadPortOut_
 {
 	DWORD32 value;
-};
+}
+AkenReadPortOut;
 
-struct AkenWritePortIn
+typedef struct AkenWritePortIn_
 {
 	DWORD32 value;
 	USHORT port;
 	UCHAR numBytes;
-};
+}
+AkenWritePortIn;
 
-struct AkenMapIn
+typedef struct AkenMapIn_
 {
 	// note: fixed-width types allow the 32 or 64-bit Mahaf wrapper to
 	// interoperate with the 32 or 64-bit Aken driver.
 	DWORD64 physicalAddress;
 	DWORD64 numBytes;
-};
+}
+AkenMapIn;
 
-struct AkenMapOut
+typedef struct AkenMapOut_
 {
 	DWORD64 virtualAddress;
-};
+}
+AkenMapOut;
 
-struct AkenUnmapIn
+typedef struct AkenUnmapIn_
 {
 	DWORD64 virtualAddress;
-};
+}
+AkenUnmapIn;
+
+typedef struct AkenReadRegisterIn_
+{
+	DWORD64 reg;
+}
+AkenReadRegisterIn;
+
+typedef struct AkenReadRegisterOut_
+{
+	DWORD64 value;
+}
+AkenReadRegisterOut;
+
+typedef struct AkenWriteRegisterIn_
+{
+	DWORD64 reg;
+	DWORD64 value;
+}
+AkenWriteRegisterIn;
 
 #pragma pack(pop)
 

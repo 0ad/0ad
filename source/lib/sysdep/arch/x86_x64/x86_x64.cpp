@@ -157,7 +157,7 @@ bool x86_x64_cap(x86_x64_Cap cap)
 
 
 //-----------------------------------------------------------------------------
-// CPU identification
+// vendor
 
 static x86_x64_Vendors vendor;
 
@@ -197,10 +197,14 @@ x86_x64_Vendors x86_x64_Vendor()
 }
 
 
+//-----------------------------------------------------------------------------
+// signature
+
 static size_t model;
 static size_t family;
+static ModuleInitState signatureInitState;
 
-static void InitModelAndFamily()
+static LibError InitSignature()
 {
 	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
@@ -214,71 +218,19 @@ static void InitModelAndFamily()
 		family += extendedFamily;
 	if(family == 0xF || (x86_x64_Vendor() == X86_X64_VENDOR_INTEL && family == 6))
 		model += extendedModel << 4;
-}
-
-
-static size_t generation;
-
-static LibError InitGeneration()
-{
-	InitModelAndFamily();
-
-	switch(x86_x64_Vendor())
-	{
-	case X86_X64_VENDOR_AMD:
-		switch(family)
-		{
-		case 5:
-			if(model < 6)
-				generation = 5;	// K5
-			else
-				generation = 6;	// K6
-			break;
-
-		case 6:
-			generation = 7;	// K7 (Athlon)
-			break;
-
-		case 0xF:
-		case 0x10:
-			generation = 8;	// K8 (Opteron)
-			break;
-		}
-		break;
-
-	case X86_X64_VENDOR_INTEL:
-		switch(family)
-		{
-		case 5:
-			generation = 5;	// Pentium
-			break;
-
-		case 6:
-			if(model < 0xF)
-				generation = 6;	// Pentium Pro/II/III/M
-			else
-				generation = 8;	// Core2Duo
-			break;
-
-		case 0xF:
-			if(model <= 6)
-				generation = 7;	// Pentium 4/D
-			break;
-		}
-		if(family >= 0x10)
-			generation = 9;
-		break;
-	}
-
-	debug_assert(generation != 0);
 	return INFO::OK;
 }
 
-size_t x86_x64_Generation()
+size_t x86_x64_Model()
 {
-	static ModuleInitState initState;
-	ModuleInit(&initState, InitGeneration);
-	return generation;
+	ModuleInit(&signatureInitState, InitSignature);
+	return model;
+}
+
+size_t x86_x64_Family()
+{
+	ModuleInit(&signatureInitState, InitSignature);
+	return family;
 }
 
 
@@ -832,7 +784,8 @@ static LibError InitIdentifierString()
 	//   doesn't recognize.
 	if(!gotBrandString || strncmp(identifierString, "Unknow", 6) == 0)
 	{
-		InitModelAndFamily();
+		const size_t family = x86_x64_Family();
+		const size_t model = x86_x64_Model();
 		switch(x86_x64_Vendor())
 		{
 		case X86_X64_VENDOR_AMD:

@@ -40,7 +40,7 @@ template<typename T>
 T Bit(size_t n)
 {
 	const T one = T(1);
-	return (one << n);
+	return (T)(one << n);
 }
 
 /**
@@ -71,16 +71,14 @@ bool IsBitSet(T value, size_t index)
 template<typename T>
 T bit_mask(size_t numBits)
 {
-	if(numBits == 0)	// prevent shift count == bitsInT, which would be undefined.
-		return 0;
-	// notes:
-	// - the perhaps more intuitive (1 << numBits)-1 cannot
-	//   handle numBits == bitsInT, but this implementation does.
-	// - though bulky, the below statements avoid sign-conversion warnings.
 	const T bitsInT = sizeof(T)*CHAR_BIT;
-	T mask(0);
-	mask = T(~mask);
-	mask >>= T(bitsInT-numBits);
+	const T allBits = (T)~T(0);
+	// (shifts of at least bitsInT are undefined)
+	if(numBits >= bitsInT)
+		return allBits;
+	// (note: the previous allBits >> (bitsInT-numBits) is not safe
+	// because right-shifts of negative numbers are undefined.)
+	const T mask = T(T(1) << numBits)-1;
 	return mask;
 }
 
@@ -98,11 +96,30 @@ T bit_mask(size_t numBits)
 template<typename T>
 inline T bits(T num, size_t lo_idx, size_t hi_idx)
 {
-	const size_t count = (hi_idx - lo_idx)+1;	// # bits to return
+	const size_t numBits = (hi_idx - lo_idx)+1;	// # bits to return
 	T result = T(num >> lo_idx);
-	result = T(result & bit_mask<T>(count));
+	result = T(result & bit_mask<T>(numBits));
 	return result;
 }
+
+/**
+ * set the value of bits hi_idx:lo_idx
+ *
+ * @param lo_idx bit index of lowest  bit to include
+ * @param hi_idx bit index of highest bit to include
+ * @param value new value to be assigned to these bits
+ **/
+template<typename T>
+inline T SetBitsTo(T num, size_t lo_idx, size_t hi_idx, size_t value)
+{
+	const size_t numBits = (hi_idx - lo_idx)+1;
+	debug_assert(value < (T(1) << numBits));
+	const T mask = bit_mask<T>(numBits) << lo_idx;
+	T result = num & ~mask;
+	result = T(result | (value << lo_idx));
+	return result;
+}
+
 
 /**
  * @return number of 1-bits in mask
@@ -127,12 +144,25 @@ size_t PopulationCount(T mask)
  * @return whether the given number is a power of two.
  **/
 template<typename T>
-bool is_pow2(T n)
+inline bool is_pow2(T n)
 {
 	// 0 would pass the test below but isn't a POT.
 	if(n == 0)
 		return false;
 	return (n & (n-1)) == 0;
+}
+
+template<typename T>
+inline T LeastSignificantBit(T x)
+{
+	const T negX = T(~x + 1);	// 2's complement (avoids 'negating unsigned type' warning)
+	return x & negX;
+}
+
+template<typename T>
+inline T ClearLeastSignificantBit(T x)
+{
+	return x & (x-1);
 }
 
 /**

@@ -116,7 +116,7 @@ static size_t MaxLogicalPerCache()
 
 
 //-----------------------------------------------------------------------------
-// determination of enabled cores/HTs
+// APIC IDs
 
 // APIC IDs consist of variable-length fields identifying the logical unit,
 // core, package and shared cache. if they are available, we can determine
@@ -174,106 +174,102 @@ const u8* ApicIds()
 }
 
 
-/**
- * count the number of unique APIC IDs after application of a mask.
- *
- * this is used to implement NumUniqueValuesInField and also required
- * for counting the number of caches.
- **/
-static size_t NumUniqueMaskedValues(const u8* apicIds, u8 mask)
+// (if maxValues == 1, the field is zero-width and thus zero)
+static size_t ApicField(size_t apicId, size_t indexOfLowestBit, size_t maxValues)
 {
-	std::set<u8> ids;
-	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
-	{
-		const u8 apicId = apicIds[processor];
-		const u8 field = u8(apicId & mask);
-		ids.insert(field);
-	}
-
-	return ids.size();
+	const size_t numBits = ceil_log2(maxValues);
+	const size_t mask = bit_mask<size_t>(numBits);
+	return (apicId >> indexOfLowestBit) & mask;
 }
 
 
-/**
- * Count the number of values assumed by a certain field within APIC IDs.
- *
- * @param apicIds
- * @param offset Index of the lowest bit that is part of the field.
- * @param numValues Number of values that can be assumed by the field.
- *		  If equal to one, the field is zero-width.
- * @return number of unique values (for convenience of the topology code,
- * this is always at least one)
- **/
-static size_t NumUniqueValuesInField(const u8* apicIds, size_t offset, size_t numValues)
-{
-	if(numValues == 1)	// see parameter description above
-		return 1;
-	const size_t numBits = ceil_log2(numValues);
-	const u8 mask = u8((bit_mask<u8>(numBits) << offset) & 0xFF);
-	return NumUniqueMaskedValues(apicIds, mask);
-}
-
-
-static size_t MinPackages(size_t maxCoresPerPackage, size_t maxLogicalPerCore)
-{
-	const size_t numNodes = numa_NumNodes();
-	const size_t logicalPerNode = PopulationCount(numa_ProcessorMaskFromNode(0));
-	// NB: some cores or logical processors may be disabled.
-	const size_t maxLogicalPerPackage = maxCoresPerPackage*maxLogicalPerCore;
-	const size_t minPackagesPerNode = DivideRoundUp(logicalPerNode, maxLogicalPerPackage);
-	return minPackagesPerNode*numNodes;
-}
-
+//-----------------------------------------------------------------------------
+// CPU topology interface
 
 struct CpuTopology	// POD
 {
-	size_t numPackages;
-	size_t coresPerPackage;
+	size_t maxLogicalPerCore;
+	size_t maxCoresPerPackage;
+
+	size_t logicalOffset;
+	size_t coreOffset;
+	size_t packageOffset;
+
+	// how many are actually enabled
 	size_t logicalPerCore;
+	size_t coresPerPackage;
+	size_t numPackages;
 };
 static CpuTopology cpuTopology;
 static ModuleInitState cpuInitState;
 
 static LibError InitCpuTopology()
 {
-	const size_t numProcessors = os_cpu_NumProcessors();
-	const size_t maxCoresPerPackage = MaxCoresPerPackage();
-	const size_t maxLogicalPerCore = MaxLogicalPerCore();
+	cpuTopology.maxLogicalPerCore = MaxLogicalPerCore();
+	cpuTopology.maxCoresPerPackage = MaxCoresPerPackage();
+
+	cpuTopology.logicalOffset = 0;
+	cpuTopology.coreOffset    = ceil_log2(cpuTopology.maxLogicalPerCore);
+	cpuTopology.packageOffset = cpuTopology.coreOffset + ceil_log2(cpuTopology.maxCoresPerPackage);
 
 	const u8* apicIds = ApicIds();
 	if(apicIds)
 	{
-		const size_t packageOffset = ceil_log2(maxCoresPerPackage) + ceil_log2(maxLogicalPerCore);
-		const size_t coreOffset    = ceil_log2(maxLogicalPerCore);
-		const size_t logicalOffset = 0;
-		cpuTopology.numPackages     = NumUniqueValuesInField(apicIds, packageOffset, 256);
-		cpuTopology.coresPerPackage = NumUniqueValuesInField(apicIds, coreOffset,    maxCoresPerPackage);
-		cpuTopology.logicalPerCore  = NumUniqueValuesInField(apicIds, logicalOffset, maxLogicalPerCore);
+		struct NumUniqueValuesInField
+		{
+			size_t operator()(const u8* apicIds, size_t indexOfLowestBit, size_t numValues) const
+			{
+				std::set<size_t> values;
+				for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
+				{
+					const size_t value = ApicField(apicIds[processor], numValues, indexOfLowestBit);
+					values.insert(value);
+				}
+				return values.size();
+			}
+		};
+
+		cpuTopology.logicalPerCore  = NumUniqueValuesInField()(apicIds, cpuTopology.logicalOffset, cpuTopology.maxLogicalPerCore);
+		cpuTopology.coresPerPackage = NumUniqueValuesInField()(apicIds, cpuTopology.coreOffset,    cpuTopology.maxCoresPerPackage);
+		cpuTopology.numPackages     = NumUniqueValuesInField()(apicIds, cpuTopology.packageOffset, 256);
 	}
 	else // the processor lacks an xAPIC, or the IDs are invalid
 	{
+		struct MinPackages
+		{
+			size_t operator()(size_t maxCoresPerPackage, size_t maxLogicalPerCore) const
+			{
+				const size_t numNodes = numa_NumNodes();
+				const size_t logicalPerNode = PopulationCount(numa_ProcessorMaskFromNode(0));
+				// NB: some cores or logical processors may be disabled.
+				const size_t maxLogicalPerPackage = maxCoresPerPackage*maxLogicalPerCore;
+				const size_t minPackagesPerNode = DivideRoundUp(logicalPerNode, maxLogicalPerPackage);
+				return minPackagesPerNode*numNodes;
+			}
+		};
+
 		// we can't differentiate between cores and logical processors.
 		// since the former are less likely to be disabled, we seek the
 		// maximum feasible number of cores and minimal number of packages:
-		const size_t minPackages = MinPackages(maxCoresPerPackage, maxLogicalPerCore);
-		const size_t maxPackages = numProcessors;
-		for(size_t numPackages = minPackages; numPackages <= maxPackages; numPackages++)
+		const size_t minPackages = MinPackages()(cpuTopology.maxCoresPerPackage, cpuTopology.maxLogicalPerCore);
+		const size_t numProcessors = os_cpu_NumProcessors();
+		for(size_t numPackages = minPackages; numPackages <= numProcessors; numPackages++)
 		{
 			if(numProcessors % numPackages != 0)
 				continue;
 			const size_t logicalPerPackage = numProcessors / numPackages;
-			const size_t minCoresPerPackage = DivideRoundUp(logicalPerPackage, maxLogicalPerCore);
-			for(size_t coresPerPackage = maxCoresPerPackage; coresPerPackage >= minCoresPerPackage; coresPerPackage--)
+			const size_t minCoresPerPackage = DivideRoundUp(logicalPerPackage, cpuTopology.maxLogicalPerCore);
+			for(size_t coresPerPackage = cpuTopology.maxCoresPerPackage; coresPerPackage >= minCoresPerPackage; coresPerPackage--)
 			{
 				if(logicalPerPackage % coresPerPackage != 0)
 					continue;
 				const size_t logicalPerCore = logicalPerPackage / coresPerPackage;
-				if(logicalPerCore <= maxLogicalPerCore)
+				if(logicalPerCore <= cpuTopology.maxLogicalPerCore)
 				{
 					debug_assert(numProcessors == numPackages*coresPerPackage*logicalPerCore);
-					cpuTopology.numPackages = numPackages;
-					cpuTopology.coresPerPackage = coresPerPackage;
 					cpuTopology.logicalPerCore = logicalPerCore;
+					cpuTopology.coresPerPackage = coresPerPackage;
+					cpuTopology.numPackages = numPackages;
 					return INFO::OK;
 				}
 			}
@@ -301,6 +297,24 @@ size_t cpu_topology_LogicalPerCore()
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 	return cpuTopology.logicalPerCore;
+}
+
+size_t cpu_topology_LogicalFromId(size_t apicId)
+{
+	ModuleInit(&cpuInitState, InitCpuTopology);
+	return ApicField(apicId, cpuTopology.logicalOffset, cpuTopology.maxLogicalPerCore);
+}
+
+size_t cpu_topology_CoreFromId(size_t apicId)
+{
+	ModuleInit(&cpuInitState, InitCpuTopology);
+	return ApicField(apicId, cpuTopology.coreOffset, cpuTopology.maxCoresPerPackage);
+}
+
+size_t cpu_topology_PackageFromId(size_t apicId)
+{
+	ModuleInit(&cpuInitState, InitCpuTopology);
+	return ApicField(apicId, cpuTopology.packageOffset, 256);
 }
 
 

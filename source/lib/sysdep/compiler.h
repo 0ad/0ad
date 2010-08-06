@@ -175,10 +175,15 @@
 // this macro should not generate any fallback code; it is merely the
 // compiler-specific backend for lib.h's UNREACHABLE.
 // #define it to nothing if the compiler doesn't support such a hint.
-#if MSC_VERSION
+#define HAVE_ASSUME_UNREACHABLE 1
+#if MSC_VERSION && !ICC_VERSION // (ICC ignores this)
 # define ASSUME_UNREACHABLE __assume(0)
+#elif GCC_VERSION >= 450
+# define ASSUME_UNREACHABLE __builtin_unreachable()
 #else
 # define ASSUME_UNREACHABLE
+# undef HAVE_ASSUME_UNREACHABLE
+# define HAVE_ASSUME_UNREACHABLE 0
 #endif
 
 

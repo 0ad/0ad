@@ -25,6 +25,7 @@
  */
 
 #include "precompiled.h"
+#include "lib/sysdep/os/win/mahaf.h"
 
 #include "lib/sysdep/os/win/win.h"
 #include <winioctl.h>
@@ -56,8 +57,7 @@ static u32 ReadPort(u16 port, u8 numBytes)
 	}
 
 	debug_assert(bytesReturned == sizeof(out));
-	const u32 value = out.value;
-	return value;
+	return out.value;
 }
 
 u8 mahaf_ReadPort8(u16 port)
@@ -155,6 +155,48 @@ void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress)
 	DWORD bytesReturned;	// unused but must be passed to DeviceIoControl
 	LPOVERLAPPED ovl = 0;	// synchronous
 	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_UNMAP, &in, sizeof(in), 0, 0u, &bytesReturned, ovl);
+	WARN_IF_FALSE(ok);
+}
+
+
+static u64 ReadRegister(DWORD ioctl, u64 reg)
+{
+	AkenReadRegisterIn in;
+	in.reg = reg;
+	AkenReadRegisterOut out;
+
+	DWORD bytesReturned;
+	LPOVERLAPPED ovl = 0;	// synchronous
+	BOOL ok = DeviceIoControl(hAken, ioctl, &in, sizeof(in), &out, sizeof(out), &bytesReturned, ovl);
+	if(!ok)
+	{
+		WARN_WIN32_ERR;
+		return 0;
+	}
+
+	debug_assert(bytesReturned == sizeof(out));
+	return out.value;
+}
+
+u64 mahaf_ReadModelSpecificRegister(u64 reg)
+{
+	return ReadRegister((DWORD)IOCTL_AKEN_READ_MSR, reg);
+}
+
+u64 mahaf_ReadPerformanceMonitoringCounter(u64 reg)
+{
+	return ReadRegister((DWORD)IOCTL_AKEN_READ_PMC, reg);
+}
+
+void mahaf_WriteModelSpecificRegister(u64 reg, u64 value)
+{
+	AkenWriteRegisterIn in;
+	in.reg = reg;
+	in.value = value;
+
+	DWORD bytesReturned;	// unused but must be passed to DeviceIoControl
+	LPOVERLAPPED ovl = 0;	// synchronous
+	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_WRITE_MSR, &in, sizeof(in), 0, 0u, &bytesReturned, ovl);
 	WARN_IF_FALSE(ok);
 }
 

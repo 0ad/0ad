@@ -38,6 +38,7 @@
 #if ARCH_X86_X64
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 # include "lib/sysdep/arch/x86_x64/topology.h"
+# include "lib/sysdep/arch/x86_x64/msr.h"
 #endif
 
 
@@ -173,7 +174,7 @@ public:
 
 #if ARCH_X86_X64
 		// recent CPU:
-		if(x86_x64_Generation() >= 7)
+		//if(x86_x64_Generation() >= 7)
 		{
 			// note: 8th generation CPUs support C1-clock ramping, which causes
 			// drift on multi-core systems, but those were excluded above.
@@ -183,7 +184,7 @@ public:
 			// the chipset thinks the system is dangerously overheated; the
 			// OS isn't even notified. this may be rare, but could cause
 			// incorrect results => unsafe.
-			return false;
+			//return false;
 		}
 #endif
 
@@ -217,6 +218,15 @@ public:
 		// note: even here, initial accuracy isn't critical because the
 		// clock is subject to thermal drift and would require continual
 		// recalibration anyway.
+#if ARCH_X86_X64
+		if(MSR::HasNehalem())
+		{
+			const u64 platformInfo = MSR::Read(MSR::PLATFORM_INFO);
+			const u8 maxNonTurboRatio = bits(platformInfo, 8, 15);
+			return maxNonTurboRatio * 133.33e6f;
+		}
+		else
+#endif
 		return os_cpu_ClockFrequency();
 	}
 

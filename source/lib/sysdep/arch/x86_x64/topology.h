@@ -65,6 +65,11 @@ LIB_API size_t cpu_topology_CoresPerPackage();
 LIB_API size_t cpu_topology_LogicalPerCore();
 
 
+LIB_API size_t cpu_topology_LogicalFromId(size_t apicId);
+LIB_API size_t cpu_topology_CoreFromId(size_t apicId);
+LIB_API size_t cpu_topology_PackageFromId(size_t apicId);
+
+
 //-----------------------------------------------------------------------------
 // L2 cache
 

@@ -43,60 +43,48 @@
 
 
 /**
-"unreachable code" helpers
-
-unreachable lines of code are often the source or symptom of subtle bugs.
-they are flagged by compiler warnings; however, the opposite problem -
-erroneously reaching certain spots (e.g. due to missing return statement)
-is worse and not detected automatically.
-
-to defend against this, the programmer can annotate their code to
-indicate to humans that a particular spot should never be reached.
-however, that isn't much help; better is a sentinel that raises an
-error if if it is actually reached. hence, the UNREACHABLE macro.
-
-ironically, if the code guarded by UNREACHABLE works as it should,
-compilers may flag the macro's code as unreachable. this would
-distract from genuine warnings, which is unacceptable.
-
-even worse, compilers differ in their code checking: GCC only complains if
-non-void functions end without returning a value (i.e. missing return
-statement), while VC checks if lines are unreachable (e.g. if they are
-preceded by a return on all paths).
-
-our implementation of UNREACHABLE solves this dilemna as follows:
-- on GCC: call abort(); since it has the noreturn attributes, the
-  "non-void" warning disappears.
-- on VC: avoid generating any code. we allow the compiler to assume the
-  spot is actually unreachable, which incidentally helps optimization.
-  if reached after all, a crash usually results. in that case, compile with
-  CONFIG_PARANOIA, which will cause an error message to be displayed.
-
-this approach still allows for the possiblity of automated
-checking, but does not cause any compiler warnings.
-**/
+ * "unreachable code" helpers
+ *
+ * unreachable lines of code are often the source or symptom of subtle bugs.
+ * they are flagged by compiler warnings; however, the opposite problem -
+ * erroneously reaching certain spots (e.g. due to missing return statement)
+ * is worse and not detected automatically.
+ *
+ * to defend against this, the programmer can annotate their code to
+ * indicate to humans that a particular spot should never be reached.
+ * however, that isn't much help; better is a sentinel that raises an
+ * error if if it is actually reached. hence, the UNREACHABLE macro.
+ *
+ * ironically, if the code guarded by UNREACHABLE works as it should,
+ * compilers may flag the macro's code as unreachable. this would
+ * distract from genuine warnings, which is unacceptable.
+ *
+ * even worse, compilers differ in their code checking: GCC only complains if
+ * non-void functions end without returning a value (i.e. missing return
+ * statement), while VC checks if lines are unreachable (e.g. if they are
+ * preceded by a return on all paths).
+ *
+ * the implementation below enables optimization and automated checking
+ * without raising warnings.
+ **/
 #define UNREACHABLE	// actually defined below.. this is for
 # undef UNREACHABLE	// CppDoc's benefit only.
 
-// 1) final build: optimize assuming this location cannot be reached.
-//    may crash if that turns out to be untrue, but removes checking overhead.
-#if CONFIG_FINAL
+// compiler supports ASSUME_UNREACHABLE => allow it to assume the code is
+// never reached (improves optimization at the cost of undefined behavior
+// if the annotation turns out to be incorrect).
+#if HAVE_ASSUME_UNREACHABLE && !CONFIG_PARANOIA
 # define UNREACHABLE ASSUME_UNREACHABLE
-// 2) normal build:
+// otherwise (or if CONFIG_PARANOIA is set), add a user-visible
+// warning if the code is reached. note that abort() fails to stop
+// ICC from warning about the lack of a return statement, so we
+// use an infinite loop instead.
 #else
-//    a) normal implementation: includes "abort", which is declared with
-//       noreturn attribute and therefore avoids GCC's "execution reaches
-//       end of non-void function" warning.
-# if !MSC_VERSION || ICC_VERSION || CONFIG_PARANOIA
-#  define UNREACHABLE\
+# define UNREACHABLE\
 	STMT(\
 		debug_assert(0);	/* hit supposedly unreachable code */\
-		abort();\
+		for(;;){};\
 	)
-//    b) VC only: don't generate any code; squelch the warning and optimize.
-# else
-#  define UNREACHABLE ASSUME_UNREACHABLE
-# endif
 #endif
 
 /**

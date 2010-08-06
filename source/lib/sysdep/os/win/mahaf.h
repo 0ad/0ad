@@ -39,20 +39,26 @@
  * note: mahaf_MapPhysicalMemory will complain if it
  * is called despite this function having returned true.
  **/
-extern bool mahaf_IsPhysicalMappingDangerous();
+LIB_API bool mahaf_IsPhysicalMappingDangerous();
 
 
-extern LibError mahaf_Init();
-extern void mahaf_Shutdown();
+LIB_API LibError mahaf_Init();
+LIB_API void mahaf_Shutdown();
 
-extern u8  mahaf_ReadPort8 (u16 port);
-extern u16 mahaf_ReadPort16(u16 port);
-extern u32 mahaf_ReadPort32(u16 port);
-extern void mahaf_WritePort8 (u16 port, u8  value);
-extern void mahaf_WritePort16(u16 port, u16 value);
-extern void mahaf_WritePort32(u16 port, u32 value);
+LIB_API u8  mahaf_ReadPort8 (u16 port);
+LIB_API u16 mahaf_ReadPort16(u16 port);
+LIB_API u32 mahaf_ReadPort32(u16 port);
+LIB_API void mahaf_WritePort8 (u16 port, u8  value);
+LIB_API void mahaf_WritePort16(u16 port, u16 value);
+LIB_API void mahaf_WritePort32(u16 port, u32 value);
 
-extern volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes);
-extern void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress);
+LIB_API volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes);
+LIB_API void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress);
+
+LIB_API u64 mahaf_ReadModelSpecificRegister(u64 reg);
+LIB_API void mahaf_WriteModelSpecificRegister(u64 reg, u64 value);
+
+// must be done in the driver because Windows clears CR4.PCE[8]
+LIB_API u64 mahaf_ReadPerformanceMonitoringCounter(u64 reg);
 
 #endif	// INCLUDED_MAHAF
