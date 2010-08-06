@@ -27,6 +27,8 @@
 #include "maths/MathUtil.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/Replay.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
 #include <sstream>
@@ -48,9 +50,9 @@ static std::string Hexify(const std::string& s)
 	return str.str();
 }
 
-CNetTurnManager::CNetTurnManager(CSimulation2& simulation, int clientId) :
+CNetTurnManager::CNetTurnManager(CSimulation2& simulation, int clientId, IReplayLogger& replay) :
 	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_DeltaTime(0),
-	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false)
+	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false), m_Replay(replay)
 {
 	// When we are on turn n, we schedule new commands for n+2.
 	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).
@@ -93,6 +95,8 @@ bool CNetTurnManager::Update(float frameLength)
 		}
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
+
+		m_Replay.Turn(m_CurrentTurn-1, TURN_LENGTH, commands);
 
 #ifdef NETTURN_LOG
 		NETTURN_LOG(L"Running %d cmds\n", commands.size());
@@ -224,6 +228,8 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 		bool ok = m_Simulation2.ComputeStateHash(hash);
 		debug_assert(ok);
 	}
+
+	m_Replay.Hash(hash);
 
 	// Send message to the server
 	CSyncCheckMessage msg;

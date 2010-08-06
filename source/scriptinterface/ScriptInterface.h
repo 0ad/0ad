@@ -164,7 +164,7 @@ public:
 	/**
 	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.
 	 */
-	std::string StringifyJSON(jsval obj);
+	std::string StringifyJSON(jsval obj, bool indent = true);
 
 	/**
 	 * Report the given error message through the JS error reporting mechanism,

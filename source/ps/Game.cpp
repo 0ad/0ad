@@ -37,6 +37,7 @@
 #include "ps/Loader.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
+#include "ps/Replay.h"
 #include "ps/World.h"
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -66,12 +67,15 @@ CGame::CGame(bool disableGraphics):
 	m_SimRate(1.0f),
 	m_PlayerID(-1)
 {
+	m_ReplayLogger = new CReplayLogger(m_Simulation2->GetScriptInterface());
+	// TODO: should use CDummyReplayLogger unless activated by cmd-line arg, perhaps?
+
 	// Need to set the CObjectManager references after various objects have
 	// been initialised, so do it here rather than via the initialisers above.
 	if (m_GameView)
 		m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
 
-	m_TurnManager = new CNetLocalTurnManager(*m_Simulation2); // this will get replaced if we're a net server/client
+	m_TurnManager = new CNetLocalTurnManager(*m_Simulation2, GetReplayLogger()); // this will get replaced if we're a net server/client
 
 	m_Simulation2->LoadDefaultScripts();
 	m_Simulation2->ResetState();
@@ -94,6 +98,7 @@ CGame::~CGame()
 	delete m_GameView;
 	delete m_Simulation2;
 	delete m_World;
+	delete m_ReplayLogger;
 }
 
 void CGame::SetTurnManager(CNetTurnManager* turnManager)
@@ -179,6 +184,8 @@ void CGame::SetPlayerID(int playerID)
 
 void CGame::StartGame(const CScriptValRooted& attribs)
 {
+	m_ReplayLogger->StartGame(attribs);
+
 	RegisterInit(attribs);
 }
 

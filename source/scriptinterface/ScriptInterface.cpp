@@ -669,10 +669,10 @@ struct Stringifier
 	std::stringstream stream;
 };
 
-std::string ScriptInterface::StringifyJSON(jsval obj)
+std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
 {
 	Stringifier str;
-	if (!JS_Stringify(m->m_cx, &obj, NULL, INT_TO_JSVAL(2), &Stringifier::callback, &str))
+	if (!JS_Stringify(m->m_cx, &obj, NULL, indent ? INT_TO_JSVAL(2) : JSVAL_VOID, &Stringifier::callback, &str))
 	{
 		LOGERROR(L"StringifyJSON failed");
 		return "";

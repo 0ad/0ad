@@ -49,12 +49,14 @@ that of Atlas depending on commandline parameters.
 #include "ps/Loader.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/Replay.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
+#include "ps/GameSetup/Paths.h"
 #include "ps/XML/Xeromyces.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -406,6 +408,28 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// when we get here, it has exited and we're done.
 	if(ran_atlas)
 		return;
+
+	// run non-visual simulation replay if requested
+	if (args.Has("replay"))
+	{
+		g_DisableAudio = true;
+
+		Paths paths(args);
+		g_VFS = CreateVfs(20 * MiB);
+		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
+		g_VFS->Mount(L"", paths.RData()/L"mods/public", VFS_MOUNT_MUST_EXIST);
+
+		{
+			CReplayPlayer replay;
+			replay.Load(args.Get("replay"));
+			replay.Replay();
+		}
+
+		g_VFS.reset();
+
+		CXeromyces::Terminate();
+		return;
+	}
 
 	const double res = timer_Resolution();
 	g_frequencyFilter = CreateFrequencyFilter(res, 30.0);

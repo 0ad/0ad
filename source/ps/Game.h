@@ -32,6 +32,7 @@ class CSimulation2;
 class CGameView;
 class CNetTurnManager;
 class CScriptValRooted;
+class IReplayLogger;
 struct CColor;
 
 /**
@@ -152,8 +153,12 @@ public:
 	CNetTurnManager* GetTurnManager() const
 	{	return m_TurnManager; }
 
+	IReplayLogger& GetReplayLogger() const
+	{	return *m_ReplayLogger; }
+
 private:
 	void RegisterInit(const CScriptValRooted& attribs);
+	IReplayLogger* m_ReplayLogger;
 };
 
 extern CGame *g_Game;

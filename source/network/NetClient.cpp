@@ -353,7 +353,8 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 	if (client->m_PlayerAssignments.find(client->m_GUID) != client->m_PlayerAssignments.end())
 		player = client->m_PlayerAssignments[client->m_GUID].m_PlayerID;
 
-	client->m_ClientTurnManager = new CNetClientTurnManager(*client->m_Game->GetSimulation2(), *client, client->m_HostID);
+	client->m_ClientTurnManager = new CNetClientTurnManager(
+			*client->m_Game->GetSimulation2(), *client, client->m_HostID, client->m_Game->GetReplayLogger());
 
 	client->m_Game->SetPlayerID(player);
 	client->m_Game->StartGame(client->m_GameAttributes);

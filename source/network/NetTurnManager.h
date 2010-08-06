@@ -26,6 +26,7 @@ class CNetServer;
 class CNetClient;
 class CSimulationMessage;
 class CSimulation2;
+class IReplayLogger;
 
 /*
  * This file deals with the logic of the network turn system. The basic idea is as in
@@ -54,7 +55,7 @@ public:
 	/**
 	 * Construct for a given network session ID.
 	 */
-	CNetTurnManager(CSimulation2& simulation, int clientId);
+	CNetTurnManager(CSimulation2& simulation, int clientId, IReplayLogger& replay);
 
 	virtual ~CNetTurnManager() { }
 
@@ -132,6 +133,8 @@ protected:
 	float m_DeltaTime;
 
 	bool m_HasSyncError;
+
+	IReplayLogger& m_Replay;
 };
 
 /**
@@ -140,8 +143,8 @@ protected:
 class CNetClientTurnManager : public CNetTurnManager
 {
 public:
-	CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId) :
-		CNetTurnManager(simulation, clientId), m_NetClient(client)
+	CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay) :
+		CNetTurnManager(simulation, clientId, replay), m_NetClient(client)
 	{
 	}
 
@@ -163,8 +166,8 @@ protected:
 class CNetLocalTurnManager : public CNetTurnManager
 {
 public:
-	CNetLocalTurnManager(CSimulation2& simulation) :
-		CNetTurnManager(simulation, 0)
+	CNetLocalTurnManager(CSimulation2& simulation, IReplayLogger& replay) :
+		CNetTurnManager(simulation, 0, replay)
 	{
 	}
 
