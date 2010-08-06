@@ -51,20 +51,22 @@ Identity.prototype.Schema =
 			"<list>" +
 				"<zeroOrMore>" +
 					"<choice>" +
+						"<value>Organic</value>" +
 						"<value>Foot</value>" +
 						"<value>Mounted</value>" +
 						"<value>Mechanical</value>" +
-						"<value>Organic</value>" +
+						"<value>Super</value>" +
+						"<value>Hero</value>" +
 						"<value>Civic</value>" +
 						"<value>Economic</value>" +
-						"<value>City</value>" +
+						"<value>Defensive</value>" +
 						"<value>Village</value>" +
 						"<value>Town</value>" +
+						"<value>City</value>" +
 						"<value a:help='Primary weapon type'>Bow</value>" + // TODO: what are these used for?
 						"<value a:help='Primary weapon type'>Javelin</value>" +
 						"<value a:help='Primary weapon type'>Spear</value>" +
 						"<value a:help='Primary weapon type'>Sword</value>" +
-						"<value>Hero</value>" +
 					"</choice>" +
 				"</zeroOrMore>" +
 			"</list>" +
@@ -89,6 +91,19 @@ Identity.prototype.Init = function()
 Identity.prototype.GetCiv = function()
 {
 	return this.template.Civ;
+};
+
+Identity.prototype.GetClassesList = function()
+{
+	if (this.template.Classes)
+	{
+		var string = this.template.Classes._string;
+		return string.split(/\s+/);
+	}
+	else
+	{
+		return [];
+	}
 };
 
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);

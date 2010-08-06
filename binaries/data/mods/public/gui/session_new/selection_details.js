@@ -37,7 +37,7 @@ function displayGeneralInfo(playerState, entState, template)
 	var iconTooltip = "";
 
 	// Rank Icon
-//	var rankId = getRankCellId(entState.template);
+//	var rankId = getRankCellId(entState);
 //	getGUIObjectByName("sdRankIcon").cell_id = rankId;
 
 	// Rank Title

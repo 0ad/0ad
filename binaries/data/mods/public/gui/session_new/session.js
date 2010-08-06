@@ -180,32 +180,29 @@ function toTitleCase(string)
 	return string;
 }
 
-function isUnit(templateName)
+function isUnit(entState)
 {
-	if (templateName.substring(0, templateName.search("/")) == "units")
-		return true;
+	if (entState.identity)
+	{
+		var classes = entState.identity.classes;
+		if (classes && classes.length)
+			for (var i = 0; i < classes.length; i++)
+				if ((classes[i] == "Organic") || (classes[i] == "Mechanical"))
+					return true;
+	}
 	return false;
 }
 
-function isAnimal(templateName)
+function isDefensive(entState)
 {
-	if (templateName.substring(0, templateName.search("_")) == "gaia/fauna")
-		return true;
-	return false;
-}
-
-function isStructure(templateName)
-{
-	if (templateName.substring(0, templateName.search("/")) == "structures")
-		return true;
-	return false;
-}
-
-function isTower(templateName)
-{
-	if (templateName.length > 5)
-		if (templateName.substring(templateName.length-5, templateName.length) == "tower")
-			return true;
+	if (entState.identity)
+	{
+		var classes = entState.identity.classes;
+		if (classes && classes.length)
+		for (var i = 0; i < classes.length; i++)
+			if (classes[i] == "Defensive")
+				return true;
+	}
 	return false;
 }
 
@@ -247,16 +244,27 @@ function getCommandCellId(commandName)
 	}
 }
 
-function getRankCellId(templateName)
+function getEntityCommandsList(entState)
 {
-	var endsWith = templateName.substring(templateName.length-2, templateName.length);
-	
-	if (isUnit(templateName))
+	var commands = [];
+	commands.push("delete");
+	return commands;
+}
+
+function getRankCellId(entState)
+{
+	if (entState.template)
 	{
-		if (endsWith == "_e")
-			return 0;
-		else if (endsWith == "_a")
-			return 1;
+		var templateName = entState.template;
+		var endsWith = templateName.substring(templateName.length-2, templateName.length);
+	
+		if (isUnit(entState))
+		{
+			if (endsWith == "_e")
+				return 0;
+			else if (endsWith == "_a")
+				return 1;
+		}
 	}
 	return -1;
 }

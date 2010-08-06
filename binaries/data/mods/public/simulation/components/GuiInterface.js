@@ -54,6 +54,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"template": template
 	}
 
+	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+	if (cmpIdentity)
+	{
+		ret.identity = {
+			"classes": cmpIdentity.GetClassesList(),
+		};
+	}
+	
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	if (cmpPosition)
 	{

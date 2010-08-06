@@ -66,7 +66,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				continue;
 
 			var tooltip = getEntityName(template);
-			tooltip += "[font=\"serif-bold-16\"]" + getRankTitle(getRankCellId(entState.template)) + "[/font]";
+			tooltip += "[font=\"serif-bold-16\"]" + getRankTitle(getRankCellId(entState)) + "[/font]";
 
 			// Hitpoints
 			if (entState.maxHitpoints != undefined)
@@ -192,15 +192,14 @@ function updateUnitCommands(entState, commandsPanel, selection)
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
 /*
-		// HACK: This should be referenced in the entities template, rather than completely faked here
+		// HACK: displays all command buttons
 		var commands = [];
 		for (var i = 0; i < 15; i++)
 			commands.push("test"+i);
 		commands[4] = "delete";
 */
-		// Needs to have list provided by the entity
-		var commands = ["delete"];
-		
+		var commands = getEntityCommandsList(entState);
+
 		if (commands.length)
 			setupUnitPanel("Command", usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item); } );

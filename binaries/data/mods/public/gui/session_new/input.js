@@ -198,6 +198,38 @@ function tryPlaceBuilding(queued)
 	return true;
 }
 
+// Limits bandboxed selections to certain types of entities based on priority
+function getPreferredEntities(ents)
+{
+	var entStateList = [];
+	var preferredEnts = [];
+
+	// Get list of ent states
+	for (var i = 0; i < ents.length; i++)
+	{
+		var entState = Engine.GuiInterfaceCall("GetEntityState", ents[i]);
+		if (!entState)
+			continue;
+
+		entStateList.push(entState);
+	}			
+
+	// Check if there are units in the selection
+	for (var i = 0; i < ents.length; i++)
+		if (isUnit(entStateList[i]))
+			preferredEnts.push(ents[i]);
+
+	if (!preferredEnts.length)
+	{
+		// Check if there are defensive entities in the selection
+		for (var i = 0; i < ents.length; i++)
+			if (isDefensive(entStateList[i]))
+				preferredEnts.push(ents[i]);
+	}
+
+	return preferredEnts;
+}
+
 function handleInputBeforeGui(ev)
 {
 	// Capture mouse position so we can use it for displaying cursors,
@@ -264,54 +296,12 @@ function handleInputBeforeGui(ev)
 				var bandbox = getGUIObjectByName("bandbox");
 				bandbox.hidden = true;
 
+				// Get list of entities limited to preferred entities
 				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
-				var chosenEnts = [];
-				var templateNames = [];
-
-				// Check if there are units or animals in the selection and collect a list of template names
-				for (var i = 0; i < ents.length; i++)
-				{
-					var entState = Engine.GuiInterfaceCall("GetEntityState", ents[i]);
-					if (!entState)
-						continue;
-						
-					templateNames.push(entState.template);
-					if (isUnit(templateNames[i]) || isAnimal(templateNames[i]))
-						chosenEnts.push(ents[i]);
-				}
+				var preferredEntities = getPreferredEntities(ents)
 				
-				// If nothing was added to the list, then there were no units or animals
-				if (!chosenEnts.length)
-				{
-					var towers = [];
-					var structures = [];
-					var structureTemplateName;
-
-					for (var i = 0; i < ents.length; i++)
-					{
-						if (isTower(templateNames[i]))
-						{
-							towers.push(ents[i]);
-						}	
-						else if (!towers.length && isStructure(templateNames[i]))
-						{
-							if (!structureTemplateName)
-								structureTemplateName = templateNames[i];
-							if (structureTemplateName == templateNames[i])
-								structures.push(ents[i]);
-						}
-					}
-
-					// Choose towers over other structures, and choose structures over other things
-					if (towers.length)
-						chosenEnts = towers;
-					else if (structures.length)
-						chosenEnts = structures;	
-				}
-
-				// Set new entity list
-				if (chosenEnts.length)			
-					ents = chosenEnts;
+				if (preferredEntities.length)			
+					ents = preferredEntities;
 
 				// Remove entities if selection is too large
 				if (ents.length > MAX_SELECTION_SIZE)
