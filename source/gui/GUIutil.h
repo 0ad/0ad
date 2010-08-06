@@ -349,7 +349,7 @@ private:
 
 		if (RR & GUIRR_HIDDEN)
 		{
-			bool hidden;
+			bool hidden = true;
 			GUI<bool>::GetSetting(pObject, strHidden, hidden);
 
 			if (hidden)
@@ -357,7 +357,7 @@ private:
 		}
 		if (RR & GUIRR_DISABLED)
 		{
-			bool enabled;
+			bool enabled = false;
 			GUI<bool>::GetSetting(pObject, strEnabled, enabled);
 
 			if (!enabled)
@@ -365,7 +365,7 @@ private:
 		}
 		if (RR & GUIRR_GHOST)
 		{
-			bool ghost;
+			bool ghost = true;
 			GUI<bool>::GetSetting(pObject, strGhost, ghost);
 
 			if (ghost)
