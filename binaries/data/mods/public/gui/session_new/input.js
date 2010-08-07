@@ -90,60 +90,57 @@ function determineAction(x, y)
 
 	var targets = Engine.PickEntitiesAtPoint(x, y);
 
-	// If there's no target unit
-	if (!targets.length)
+	// If there's a target unit
+	if (targets.length)
 	{
-		// If all selected entities are buildings,
-		// set rally points, else make them walk
-		if (haveRallyPoints)
-			return {"type": "set-rallypoint"};
-		else
-			return {"type": "move"};
-	}
+		// Look at the first targeted entity
+		// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
+		// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
+		var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
 
-	// Look at the first targeted entity
-	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
-	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
-	var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
+		// If we selected buildings with rally points, and then click on one of those selected
+		// buildings, we should remove the rally point
+		if (haveRallyPoints && selection.indexOf(targets[0]) != -1)
+			return {"type": "unset-rallypoint"};
 
-	// If we selected buildings with rally points, and then click on one of those selected
-	// buildings, we should remove the rally point
-	if (haveRallyPoints && selection.indexOf(targets[0]) != -1)
-		return {"type": "unset-rallypoint"};
-
-	// Check if the target entity is a resource, foundation, or enemy unit.
-	// Check if any entities in the selection can gather the requested resource, can build the foundation, or can attack the enemy
-	for each (var entityID in selection)
-	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", entityID);
-		if (!entState)
-			continue;
-
-		var playerOwned = ((targetState.player == entState.player)? true : false);
-		var enemyOwned = ((targetState.player != entState.player)? true : false);
-		var gaiaOwned = ((targetState.player == 0)? true : false);
-
-		// If the target is a resource and we have the right kind of resource gatherers selected, then gather
-		// If the target is a foundation and we have builders selected, then build (or repair)
-		// If the target is an enemy, then attack
-		if (targetState.resourceSupply && (playerOwned || gaiaOwned)) 
-		{	
-			var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
-			if (resource)
-				return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
-		}
-		else if (targetState.foundation && entState.buildEntities && playerOwned) 
+		// Check if the target entity is a resource, foundation, or enemy unit.
+		// Check if any entities in the selection can gather the requested resource, can build the foundation, or can attack the enemy
+		for each (var entityID in selection)
 		{
-			return {"type": "build", "cursor": "action-build", "target": targets[0]};
-		}
-		else if (entState.attack && enemyOwned)
-		{
-			return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
+			var entState = Engine.GuiInterfaceCall("GetEntityState", entityID);
+			if (!entState)
+				continue;
+
+			var playerOwned = ((targetState.player == entState.player)? true : false);
+			var enemyOwned = ((targetState.player != entState.player)? true : false);
+			var gaiaOwned = ((targetState.player == 0)? true : false);
+
+			// If the target is a resource and we have the right kind of resource gatherers selected, then gather
+			// If the target is a foundation and we have builders selected, then build (or repair)
+			// If the target is an enemy, then attack
+			if (targetState.resourceSupply && (playerOwned || gaiaOwned)) 
+			{	
+				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+				if (resource)
+					return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
+			}
+			else if (targetState.foundation && entState.buildEntities && playerOwned) 
+			{
+				return {"type": "build", "cursor": "action-build", "target": targets[0]};
+			}
+			else if (entState.attack && enemyOwned)
+			{
+				return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
+			}
 		}
 	}
 
-	// If we don't do anything more specific, just walk
-	return {"type": "move"};
+	// If we don't do anything more specific:
+	// If all selected entities are buildings, set rally points, else walk
+	if (haveRallyPoints)
+		return {"type": "set-rallypoint"};
+	else
+		return {"type": "move"};
 }
 
 /*
