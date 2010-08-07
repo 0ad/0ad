@@ -308,8 +308,10 @@
 					<repeat count="32">
 						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36">
 							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 34 34"/>
-							<object size="0 100%-3 100% 100%" name="unitSelectionHealthBackground[n]" type="image" sprite="sdHealthBackground" ghost="true"/>
-							<object size="0 100%-3 100% 100%" name="unitSelectionHealthForeground[n]" type="image" sprite="sdHealthForeground" ghost="true"/>
+							<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
+								<object size="0 0 100% 100%" name="unitSelectionHealthBackground[n]" type="image" sprite="sdHealthBackground" ghost="true"/>
+								<object size="0 0 100% 100%" name="unitSelectionHealthForeground[n]" type="image" sprite="sdHealthForeground" ghost="true"/>
+							</object>
 						</object>
 					</repeat>
 				</object>

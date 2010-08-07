@@ -204,28 +204,23 @@ function getPreferredEntities(ents)
 	var entStateList = [];
 	var preferredEnts = [];
 
-	// Get list of ent states
-	for (var i = 0; i < ents.length; i++)
+	// Check if there are units in the selection and get a list of entity states
+	for each (var ent in ents)
 	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", ents[i]);
+		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
 		if (!entState)
 			continue;
+		if (isUnit(entState))
+			preferredEnts.push(ent);
 
 		entStateList.push(entState);
 	}			
 
-	// Check if there are units in the selection
-	for (var i = 0; i < ents.length; i++)
-		if (isUnit(entStateList[i]))
-			preferredEnts.push(ents[i]);
-
+	// If there are no units, check if there are defensive entities in the selection
 	if (!preferredEnts.length)
-	{
-		// Check if there are defensive entities in the selection
 		for (var i = 0; i < ents.length; i++)
 			if (isDefensive(entStateList[i]))
 				preferredEnts.push(ents[i]);
-	}
 
 	return preferredEnts;
 }

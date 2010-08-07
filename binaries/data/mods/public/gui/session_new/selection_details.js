@@ -21,10 +21,10 @@ function layoutSelectionSingle(entState)
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
-//		if (entState.stamina != undefined)
+		if (entState.stamina != undefined)
 			getGUIObjectByName("sdStamina").hidden = false;
-//		else
-//			getGUIObjectByName("sdStamina").hidden = true;
+		else
+			getGUIObjectByName("sdStamina").hidden = true;
 	}
 }
 
@@ -61,7 +61,7 @@ function displayGeneralInfo(playerState, entState, template)
 	getGUIObjectByName("sdPlayer").textcolor = playerColor;
 
 	// Hitpoints
-	if (entState.maxHitpoints != undefined)
+	if (entState.hitpoints != undefined)
 	{
 		var unitHealthBar = getGUIObjectByName("sdHealthBar");
 		var healthSize = unitHealthBar.size;

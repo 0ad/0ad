@@ -69,13 +69,19 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			tooltip += "[font=\"serif-bold-16\"]" + getRankTitle(getRankCellId(entState)) + "[/font]";
 
 			// Hitpoints
-			if (entState.maxHitpoints != undefined)
+			var unitHealth = getGUIObjectByName("unitSelectionHealth["+i+"]");
+			if (entState.hitpoints != undefined)
 			{
 				var unitHealthBar = getGUIObjectByName("unitSelectionHealthForeground["+i+"]");
 				var healthSize = unitHealthBar.size;
 				healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 				unitHealthBar.size = healthSize;
 				tooltip += " [font=\"serif-9\"](" + entState.hitpoints + "/" + entState.maxHitpoints + ")[/font]";
+				unitHealth.hidden = false;
+			}
+			else
+			{
+				unitHealth.hidden = true;
 			}
 			break;
 
