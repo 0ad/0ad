@@ -76,7 +76,7 @@ public:
 	/**
 	 * Adds an item last to the list.
 	 */
-	virtual void AddItem(const CStr& str);
+	virtual void AddItem(const CStrW& str, const CStrW& data);
 
 protected:
 	/**

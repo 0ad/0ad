@@ -49,7 +49,9 @@ CList::CList()
 	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
 	AddSetting(GUIST_CStr,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
+	// Each list item has both a name (in 'list') and an associated data string (in 'list_data')
 	AddSetting(GUIST_CGUIList,				"list");
+	AddSetting(GUIST_CGUIList,				"list_data"); // TODO: this should be a list of raw strings, not of CGUIStrings
 
 	GUI<bool>::SetSetting(this, "scrollbar", false);
 
@@ -404,14 +406,19 @@ void CList::DrawList(const int &selected,
 	}
 }
 
-void CList::AddItem(const CStr& str) 
+void CList::AddItem(const CStrW& str, const CStrW& data)
 {
-	CGUIList *pList;
+	CGUIList *pList, *pListData;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+	GUI<CGUIList>::GetSettingPointer(this, "list_data", pListData);
 
-	CGUIString gui_string; 
-	gui_string.SetValue(str); 
+	CGUIString gui_string;
+	gui_string.SetValue(str);
 	pList->m_Items.push_back( gui_string );
+
+	CGUIString data_string;
+	data_string.SetValue(data);
+	pListData->m_Items.push_back( data_string );
 
 	// TODO Temp
 	SetupText();
@@ -423,7 +430,7 @@ bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 
 	if (child.GetNodeName() == elmt_item)
 	{
-		AddItem(CStr(child.GetText()));
+		AddItem(CStrW(child.GetText()), CStrW(child.GetText()));
 		
 		return true;
 	}
