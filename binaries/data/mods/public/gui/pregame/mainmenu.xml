@@ -185,22 +185,13 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			size="40.234375% 60.15625% 65.234375% 93.4895833%"
 			sprite_over="pgEditorOver"
 			sprite_disabled="pgEditorDisabled"
+			tooltip="Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;."
 		>
-			<action on="Load"><![CDATA[
-				// Disable the Editor button if the Atlas DLL is not active.
-				if (Engine.AtlasIsAvailable())
-				{
-					this.enabled = true;
-					this.tooltip = "Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument \"-editor\".";
-				}
-				else
-				{
-					this.enabled = false;
-					this.tooltip = "The Scenario Editor is not available.";
-				}
-			]]></action>
 			<action on="Press"><![CDATA[
-				Engine.RestartInAtlas();
+				if (Engine.AtlasIsAvailable())
+					Engine.RestartInAtlas();
+				else
+					messageBox(400, 200, "The scenario editor is not available or failed to load.", "Error", 2);
 			]]></action>
 		</object>
 
