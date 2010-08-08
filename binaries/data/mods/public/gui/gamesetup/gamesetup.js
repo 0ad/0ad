@@ -14,7 +14,7 @@ var g_IsInGuiUpdate;
 var g_PlayerAssignments = {};
 
 // Default game setup attributes
-var g_GameAttributes = { "map": "Latium" };
+var g_GameAttributes = { "map": "" };
 
 // Number of players for currently selected map
 var g_MaxPlayers = 8;
@@ -43,6 +43,14 @@ function init(attribs)
 	default:
 		error("Unexpected 'type' in gamesetup init: "+attribs.type);
 	}
+
+	// Set a default map
+	if (attribs.type == "offline")
+		g_GameAttributes.map = "Latium";
+	else
+		g_GameAttributes.map = "techdemo-mp";
+
+	initMapNameList(getGUIObjectByName("mapSelection"));
 
 	// If we're a network client, disable all the map controls
 	// TODO: make them look visually disabled so it's obvious why they don't work
@@ -134,34 +142,54 @@ function handleNetMessage(message)
 	}
 }
 
+// Convert map .xml filename into displayed name
+function getMapDisplayName(filename)
+{
+	var name = filename;
+
+	// Replace "_" with " " (so we can avoid spaces in filenames)
+	name = name.replace(/_/g, " ");
+
+	return name;
+}
+
 // Initialise the list control containing all the available maps
 function initMapNameList(object)
 {
 	var mapPath = "maps/scenarios/"
 
 	// Get a list of map filenames
-	var mapArray = buildDirEntList(mapPath, "*.xml", false);
+	var mapFiles = buildDirEntList(mapPath, "*.xml", false);
+
+	// Remove the path and extension from each name, since we just want the filename      
+	mapFiles = [ n.substring(mapPath.length, n.length-4) for each (n in mapFiles) ];
+
+	// Remove any files starting with "_" (these are for special maps used by the engine/editor)
+	mapFiles = [ n for each (n in mapFiles) if (n[0] != "_") ];
+
+	var mapList = [ { "name": getMapDisplayName(n), "file": n } for each (n in mapFiles) ];
 
 	// Alphabetically sort the list, ignoring case
-	mapArray.sort(function (x, y) {
-		var lowerX = x.toLowerCase();
-		var lowerY = y.toLowerCase();
+	mapList.sort(function (x, y) {
+		var lowerX = x.name.toLowerCase();
+		var lowerY = y.name.toLowerCase();
 		if (lowerX < lowerY) return -1;
 		else if (lowerX > lowerY) return 1;
 		else return 0;
 	});
 
-	// Remove the path and extension from each name, since we just want the filename
-	var mapNames = [ n.substring(mapPath.length, n.length-4) for each (n in mapArray) ];
+	var mapListNames = [ n.name for each (n in mapList) ];
+	var mapListFiles = [ n.file for each (n in mapList) ];
 
 	// Select the default map
-	var selected = mapNames.indexOf(g_GameAttributes.map);
+	var selected = mapListFiles.indexOf(g_GameAttributes.map);
 	// Default to the first element if we can't find the one we searched for
 	if (selected == -1)
 		selected = 0;
 
 	// Update the list control
-	object.list = mapNames;
+	object.list = mapListNames;
+	object.list_data = mapListFiles;
 	object.selected = selected;
 }
 
@@ -199,10 +227,10 @@ function onGameAttributesChange()
 	var mapName = g_GameAttributes.map;
 
 	var mapSelectionBox = getGUIObjectByName("mapSelection");
-	var mapIdx = mapSelectionBox.list.indexOf(mapName);
+	var mapIdx = mapSelectionBox.list_data.indexOf(mapName);
 	mapSelectionBox.selected = mapIdx;
 
-	getGUIObjectByName("mapInfoName").caption = mapName;
+	getGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
 
 	var mapData = loadMapData(mapName);
 	var mapSettings = (mapData && mapData.settings ? mapData.settings : {});
@@ -299,7 +327,10 @@ function updatePlayerList()
 			{
 				if (!g_IsInGuiUpdate)
 				{
-					g_PlayerAssignments[hostGuidList[this.selected]].player = playerID;
+					// If we didn't just select "unassigned", update the selected host's ID
+					if (this.selected > 0)
+						g_PlayerAssignments[hostGuidList[this.selected]].player = playerID;
+
 					updatePlayerList();
 				}
 			};

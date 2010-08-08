@@ -34,8 +34,7 @@
 					size="0 0 100% 100%-200"
 					tooltip_style="onscreenToolTip"
 					tooltip="Select a map to play on.">
-				<action on="Load">initMapNameList(this);</action>
-				<action on="SelectionChange">selectMap(this.list[this.selected]);</action>
+				<action on="SelectionChange">selectMap(this.list_data[this.selected]);</action>
 			</object>
 
 			<object type="image" style="indentedPanel" size="0 100%-190 100% 100%">
