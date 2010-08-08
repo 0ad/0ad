@@ -26,8 +26,11 @@
  */
 struct SOverlayLine
 {
+	SOverlayLine() : m_Thickness(1) { }
+
 	CColor m_Color;
 	std::vector<float> m_Coords; // (x, y, z) vertex coordinate triples; shape is not automatically closed
+	u8 m_Thickness; // pixels
 };
 
 // TODO: OverlaySprite, OverlayText

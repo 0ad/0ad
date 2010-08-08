@@ -1,11 +1,7 @@
-var g_ActiveSelectionColour    = { r:1, g:1, b:1, a:1 };
-var g_HighlightSelectionColour = { r:1, g:1, b:1, a:0.5 };
-var g_InactiveSelectionColour  = { r:1, g:1, b:1, a:0 };
-
-function _setHighlight(ents, colour)
+function _setHighlight(ents, alpha)
 {
 	if (ents.length)
-		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "colour":colour });
+		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "alpha":alpha });
 }
 
 function _setMotionOverlay(ents, enabled)
@@ -100,13 +96,13 @@ EntitySelection.prototype.toggle = function(ent)
 {
 	if (this.selected[ent])
 	{
-		_setHighlight([ent], g_InactiveSelectionColour);
+		_setHighlight([ent], 0);
 		_setMotionOverlay([ent], false);
 		delete this.selected[ent];
 	}
 	else
 	{
-		_setHighlight([ent], g_ActiveSelectionColour);
+		_setHighlight([ent], 1);
 		_setMotionOverlay([ent], this.motionDebugOverlay);
 		this.selected[ent] = ent;
 	}
@@ -124,14 +120,14 @@ EntitySelection.prototype.addList = function(ents)
 			this.selected[ent] = ent;
 		}
 	}
-	_setHighlight(added, g_ActiveSelectionColour);
+	_setHighlight(added, 1);
 	_setMotionOverlay(added, this.motionDebugOverlay);
 	this.dirty = true;
 };
 
 EntitySelection.prototype.reset = function()
 {
-	_setHighlight(this.toList(), g_InactiveSelectionColour);
+	_setHighlight(this.toList(), 0);
 	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
 	this.dirty = true;
@@ -160,8 +156,8 @@ EntitySelection.prototype.setHighlightList = function(ents)
 		if (!this.selected[ent])
 			added.push(ent);
 
-	_setHighlight(removed, g_InactiveSelectionColour);
-	_setHighlight(added, g_HighlightSelectionColour);
+	_setHighlight(removed, 0);
+	_setHighlight(added, 0.5);
 
 	// TODO: this could be a bit more efficient by only changing the ones that
 	// have entered/left the highlight list

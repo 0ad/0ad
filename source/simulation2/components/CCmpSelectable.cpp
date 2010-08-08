@@ -46,6 +46,7 @@ public:
 
 	CCmpSelectable()
 	{
+		m_Overlay.m_Thickness = 2;
 		m_Overlay.m_Color = CColor(0, 0, 0, 0);
 	}
 

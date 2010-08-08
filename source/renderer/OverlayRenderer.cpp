@@ -70,10 +70,12 @@ void OverlayRenderer::RenderOverlays()
 		debug_assert(line->m_Coords.size() % 3 == 0);
 
 		glColor4fv(line->m_Color.FloatArray());
+		glLineWidth((float)line->m_Thickness);
 
 		glInterleavedArrays(GL_V3F, sizeof(float)*3, &line->m_Coords[0]);
 		glDrawArrays(GL_LINE_STRIP, 0, line->m_Coords.size()/3);
 	}
 
+	glLineWidth(1.f);
 	glDisable(GL_BLEND);
 }

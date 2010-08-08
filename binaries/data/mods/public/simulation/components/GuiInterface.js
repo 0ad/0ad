@@ -175,11 +175,40 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+
+	var playerColours = {}; // cache of owner -> colour map
+	
 	for each (var ent in cmd.entities)
 	{
 		var cmpSelectable = Engine.QueryInterface(ent, IID_Selectable);
-		if (cmpSelectable)
-			cmpSelectable.SetSelectionHighlight(cmd.colour);
+		if (!cmpSelectable)
+			continue;
+
+		if (cmd.alpha == 0)
+		{
+			cmpSelectable.SetSelectionHighlight({"r":0, "g":0, "b":0, "a":0});
+			continue;
+		}
+
+		// Find the entity's owner's colour:
+
+		var owner = -1;
+		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		if (cmpOwnership)
+			owner = cmpOwnership.GetOwner();
+
+		var colour = playerColours[owner];
+		if (!colour)
+		{
+			colour = [1, 1, 1];
+			var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(owner), IID_Player);
+			if (cmpPlayer)
+				colour = cmpPlayer.GetColour();
+			playerColours[owner] = colour;
+		}
+
+		cmpSelectable.SetSelectionHighlight({"r":colour.r, "g":colour.g, "b":colour.b, "a":cmd.alpha});
 	}
 };
 
