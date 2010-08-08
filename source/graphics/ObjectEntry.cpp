@@ -27,12 +27,6 @@
 #include "MeshManager.h"
 #include "SkeletonAnim.h"
 
-#include "UnitManager.h"
-#include "Unit.h"
-
-#include "ps/XML/Xeromyces.h"
-#include "ps/XML/XMLWriter.h"
-
 #include "lib/rand.h"
 
 #include <sstream>
