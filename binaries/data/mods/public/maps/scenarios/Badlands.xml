@@ -27,6 +27,12 @@
 		<Rotation angle="-0.0152538"/>
 		<Declination angle="0.660514"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":1,
+  "Description":"Demonstration of the Neareastern Badlands environment, a jumbled maze of cliffs, canyons, rugged and barren mountains and passages going every which way."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="1">
 			<Template>special_settlement</Template>

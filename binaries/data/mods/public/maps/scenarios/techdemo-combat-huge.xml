@@ -76,6 +76,12 @@
 		<Rotation angle="0"/>
 		<Declination angle="0.3"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":2,
+  "Description":"1296 units. Extremely slow (we need more optimisation)."
+}
+]]></ScriptSettings>
 	<Entities/>
 	<Paths/>
 </Scenario>

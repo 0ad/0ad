@@ -27,6 +27,12 @@
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":8,
+  "Description":"Small map with lots of resources and some water, for testing gameplay in non-competitive multiplayer matches."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>structures/hele_civil_centre</Template>

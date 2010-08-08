@@ -27,6 +27,12 @@
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":8,
+  "Description":"Multiplayer map with each player's starting location protected by mountains."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="19">
 			<Template>gaia/geology_stone_mediterranean</Template>

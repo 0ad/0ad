@@ -27,6 +27,12 @@
 		<Rotation angle="-0.0121856"/>
 		<Declination angle="0.496738"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":1,
+  "Description":"A map for testing movement costs and terrain properties in the A* pathfinder."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="6">
 			<Template>units/hele_ship_bireme</Template>

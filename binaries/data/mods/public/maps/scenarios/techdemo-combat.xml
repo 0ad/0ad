@@ -27,6 +27,12 @@
 		<Rotation angle="-0.00766436"/>
 		<Declination angle="0.610889"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":2,
+  "Description":"Basic test of combat between ranged and melee units."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>units/hele_infantry_archer_b</Template>
