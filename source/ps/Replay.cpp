@@ -27,6 +27,11 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/SimulationCommand.h"
 
+#if MSC_VERSION
+#include <process.h>
+#define getpid _getpid // use the non-deprecated function name
+#endif
+
 static std::string Hexify(const std::string& s)
 {
 	std::stringstream str;
