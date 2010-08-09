@@ -212,7 +212,7 @@ void CCmpProjectileManager::AdvanceProjectile(const CSimContext& context, Projec
 		CmpPtr<ICmpPosition> targetPos(context, projectile.targetEnt);
 		if (!targetPos.null())
 		{
-			CMatrix3D t = targetPos->GetInterpolatedTransform(frameOffset);
+			CMatrix3D t = targetPos->GetInterpolatedTransform(frameOffset, false);
 			projectile.target = t.GetTranslation();
 			projectile.target.Y += 2.f; // TODO: ought to aim towards a random point in the solid body of the target
 

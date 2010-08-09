@@ -302,7 +302,7 @@ public:
 		rotY = m_InterpolatedRotY;
 	}
 
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset)
+	virtual CMatrix3D GetInterpolatedTransform(float frameOffset, bool forceFloating)
 	{
 		if (!m_InWorld)
 		{
@@ -320,7 +320,7 @@ public:
 		if (!cmpTerrain.null())
 			baseY = cmpTerrain->GetExactGroundLevel(x, z);
 
-		if (m_Floating)
+		if (m_Floating || forceFloating)
 		{
 			CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
 			if (!cmpWaterMan.null())

@@ -501,7 +501,7 @@ BEGIN_COMMAND(RotateObject)
 		m_AngleOld = cmpPos->GetRotation().Y.ToFloat();
 		if (msg->usetarget)
 		{
-			CMatrix3D transform = cmpPos->GetInterpolatedTransform(0.f);
+			CMatrix3D transform = cmpPos->GetInterpolatedTransform(0.f, false);
 			CVector3D pos = transform.GetTranslation();
 			CVector3D target = msg->target->GetWorldSpace(pos.Y);
 			m_AngleNew = atan2(target.X-pos.X, target.Z-pos.Z);

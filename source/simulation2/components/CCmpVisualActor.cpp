@@ -318,7 +318,9 @@ void CCmpVisualActor::Interpolate(const CSimContext& context, float frameTime, f
 
 	m_Hidden = false;
 
-	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset));
+	bool floating = m_Unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
+
+	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset, floating));
 
 	m_Unit->GetModel().SetTransform(transform);
 	m_Unit->UpdateModel(frameTime);

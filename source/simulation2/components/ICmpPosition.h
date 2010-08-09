@@ -143,7 +143,7 @@ public:
 	 * Get the current interpolated transform matrix, for rendering.
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) = 0;
+	virtual CMatrix3D GetInterpolatedTransform(float frameOffset, bool forceFloating) = 0;
 
 	DECLARE_INTERFACE_TYPE(Position)
 };
