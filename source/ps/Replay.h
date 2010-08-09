@@ -64,6 +64,7 @@ public:
  */
 class CReplayLogger : public IReplayLogger
 {
+	NONCOPYABLE(CReplayLogger);
 public:
 	CReplayLogger(ScriptInterface& scriptInterface);
 	~CReplayLogger();

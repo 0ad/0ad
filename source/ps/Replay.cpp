@@ -105,7 +105,7 @@ void CReplayPlayer::Replay()
 	g_Game = &game;
 
 	std::vector<SimulationCommand> commands;
-	u32 turnLength;
+	u32 turnLength = 0;
 
 	std::string type;
 	while ((*m_Stream >> type).good())
