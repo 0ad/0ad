@@ -43,4 +43,10 @@
     <RetainInFog>true</RetainInFog>
   </Vision>
   <RallyPoint/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+      <death>attack/destruction/explode_debris.xml</death>
+    </SoundGroups>
+  </Sound>
 </Entity>

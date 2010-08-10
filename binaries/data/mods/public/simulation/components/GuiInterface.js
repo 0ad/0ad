@@ -328,6 +328,11 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 	return false;
 };
 
+GuiInterface.prototype.PlaySound = function(player, data)
+{
+	PlaySound(data.name, data.entity);
+};
+
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
 {
 	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
@@ -365,13 +370,16 @@ var exposedFunctions = {
 	"GetSimulationState": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
+
 	"SetSelectionHighlight": 1,
+	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
+	"PlaySound": 1,
+
 	"SetPathfinderDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
-	"SetRangeDebugOverlay": 1,
-	"DisplayRallyPoint": 1
+	"SetRangeDebugOverlay": 1
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

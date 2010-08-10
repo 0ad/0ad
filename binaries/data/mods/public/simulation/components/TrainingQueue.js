@@ -189,6 +189,10 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 			if (rallyPos)
 				cmpUnitAI.Walk(rallyPos.x, rallyPos.z, false);
 		}
+
+		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)
+		if (i == 0)
+			PlaySound("trained", ent);
 	}
 };
 

@@ -142,7 +142,6 @@ var UnitFsmSpec = {
 			"APPROACHING": {
 				"enter": function() {
 					this.SelectAnimation("walk", false, this.GetWalkSpeed());
-					this.PlaySound("walk");
 				},
 
 				"MoveStopped": function() {
@@ -199,7 +198,6 @@ var UnitFsmSpec = {
 			"CHASING": {
 				"enter": function() {
 					this.SelectAnimation("walk", false, this.GetWalkSpeed());
-					this.PlaySound("walk");
 				},
 			
 				"MoveStopped": function() {

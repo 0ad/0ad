@@ -10,6 +10,11 @@ function _setMotionOverlay(ents, enabled)
 		Engine.GuiInterfaceCall("SetMotionDebugOverlay", { "entities":ents, "enabled":enabled });
 }
 
+function _playSound(ent)
+{
+	Engine.GuiInterfaceCall("PlaySound", { "name":"select", "entity":ent });
+}
+
 //-------------------------------- -------------------------------- -------------------------------- 
 // EntitySelection class for managing the entity selection list and the primary selection
 //-------------------------------- -------------------------------- -------------------------------- 
@@ -122,6 +127,8 @@ EntitySelection.prototype.addList = function(ents)
 	}
 	_setHighlight(added, 1);
 	_setMotionOverlay(added, this.motionDebugOverlay);
+	if (added.length)
+		_playSound(added[0]);
 	this.dirty = true;
 };
 

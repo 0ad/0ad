@@ -23,8 +23,8 @@
       <food.meat>4</food.meat>
       <wood.tree>.75</wood.tree>
       <stone.rock>.75</stone.rock>
-	  <metal.ore>.75</metal.ore>
-	  <metal.treasure>10000</metal.treasure>
+      <metal.ore>.75</metal.ore>
+      <metal.treasure>10000</metal.treasure>
     </Rates>
   </ResourceGatherer>
   <Health>
@@ -75,7 +75,7 @@
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>
-      <death>actor/human/death/death.xml</death>
+<!--       <death>actor/human/death/death.xml</death> -->
       <build>resource/construction/con_wood.xml</build>
       <gather_fruit>resource/foraging/forage_leaves.xml</gather_fruit>
       <gather_grain>resource/farming/farm.xml</gather_grain>
