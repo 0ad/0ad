@@ -28,6 +28,7 @@
 #include "lib/file/common/trace.h"
 
 #include <cstdio>
+#include <sstream>
 
 #include "lib/allocators/pool.h"
 #include "lib/bits.h"	// round_up
