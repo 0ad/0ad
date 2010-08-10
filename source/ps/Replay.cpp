@@ -27,6 +27,10 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/SimulationCommand.h"
 
+#include <sstream>
+#include <fstream>
+#include <iomanip>
+
 #if MSC_VERSION
 #include <process.h>
 #define getpid _getpid // use the non-deprecated function name
