@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Fence</GenericName>
+    <SpecificName>Short Wooden Fence</SpecificName>
+    <History>A split rail wooden fence.</History>
+  </Identity>
+  <Health>
+    <DeathType>vanish</DeathType>
+    <Max>30</Max>
+  </Health>
+  <Armour>
+    <Hack>1.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>1.0</Crush>
+  </Armour>
+  <VisualActor>
+    <Actor>temp/fence_wood_short_a.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square width="0.8" depth="6.5"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Vision>
+    <Range>4</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+</Entity>
