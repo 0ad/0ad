@@ -21,6 +21,8 @@
 
 #include "ps/CStr.h"
 
+#include <sstream>
+
 template<>
 CFixed_15_16 CFixed_15_16::FromString(const CStr8& s)
 {
