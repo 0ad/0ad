@@ -23,16 +23,10 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="446.406" y="98.6355" z="-18.0571"/>
+		<Position x="439.829" y="116.566" z="-46.4447"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
-	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":2,
-  "Description":"Desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation."
-}
-]]></ScriptSettings>
 	<Entities>
 		<Entity uid="7350">
 			<Template>gaia/special_settlement</Template>
@@ -140,7 +134,7 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="71.109" z="49.3674"/>
-			<Orientation y="-0.849106"/>
+			<Orientation y="-0.849091"/>
 		</Entity>
 		<Entity uid="7368">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -212,7 +206,7 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="20.6759" z="130.933"/>
-			<Orientation y="0.85643"/>
+			<Orientation y="0.856415"/>
 		</Entity>
 		<Entity uid="7380">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -386,7 +380,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="110.84" z="107.613"/>
-			<Orientation y="0.0592041"/>
+			<Orientation y="0.0591888"/>
 		</Entity>
 		<Entity uid="7409">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -470,19 +464,19 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="27.4691" z="74.277"/>
-			<Orientation y="-0.625061"/>
+			<Orientation y="-0.625046"/>
 		</Entity>
 		<Entity uid="7423">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="18.1908" z="80.6082"/>
-			<Orientation y="-0.0734406"/>
+			<Orientation y="-0.0734253"/>
 		</Entity>
 		<Entity uid="7424">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="23.5037" z="76.4203"/>
-			<Orientation y="0.713211"/>
+			<Orientation y="0.713196"/>
 		</Entity>
 		<Entity uid="7425">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -530,13 +524,13 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="44.3685" z="186.576"/>
-			<Orientation y="0.300705"/>
+			<Orientation y="0.30069"/>
 		</Entity>
 		<Entity uid="7433">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="89.3544" z="161.542"/>
-			<Orientation y="0.261551"/>
+			<Orientation y="0.261536"/>
 		</Entity>
 		<Entity uid="7434">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -548,7 +542,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="78.4019" z="176.82"/>
-			<Orientation y="-0.76947"/>
+			<Orientation y="-0.769455"/>
 		</Entity>
 		<Entity uid="7436">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -680,19 +674,19 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="556.505" z="416.743"/>
-			<Orientation y="0.3759"/>
+			<Orientation y="0.375885"/>
 		</Entity>
 		<Entity uid="7458">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="559.641" z="430.827"/>
-			<Orientation y="-0.0334625"/>
+			<Orientation y="-0.0334473"/>
 		</Entity>
 		<Entity uid="7459">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="558.429" z="443.185"/>
-			<Orientation y="0.847305"/>
+			<Orientation y="0.84729"/>
 		</Entity>
 		<Entity uid="7460">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -740,7 +734,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="469.504" z="501.34"/>
-			<Orientation y="-0.5755"/>
+			<Orientation y="-0.575485"/>
 		</Entity>
 		<Entity uid="7468">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -794,7 +788,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="491.149" z="525.1"/>
-			<Orientation y="0.220963"/>
+			<Orientation y="0.220947"/>
 		</Entity>
 		<Entity uid="7477">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -824,7 +818,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="499.853" z="531.963"/>
-			<Orientation y="0.617432"/>
+			<Orientation y="0.617416"/>
 		</Entity>
 		<Entity uid="7482">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1010,13 +1004,13 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="553.278" z="429.972"/>
-			<Orientation y="0.584961"/>
+			<Orientation y="0.584946"/>
 		</Entity>
 		<Entity uid="7513">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="556.304" z="435.848"/>
-			<Orientation y="0.817398"/>
+			<Orientation y="0.817383"/>
 		</Entity>
 		<Entity uid="7514">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1052,7 +1046,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="558.826" z="411.48"/>
-			<Orientation y="0.620789"/>
+			<Orientation y="0.620773"/>
 		</Entity>
 		<Entity uid="7520">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1064,7 +1058,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="498.039" z="414.734"/>
-			<Orientation y="0.840347"/>
+			<Orientation y="0.840332"/>
 		</Entity>
 		<Entity uid="7522">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1082,7 +1076,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="407.459" z="131.014"/>
-			<Orientation y="-0.0210571"/>
+			<Orientation y="-0.0210419"/>
 		</Entity>
 		<Entity uid="7525">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1160,7 +1154,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="479.232" z="121.248"/>
-			<Orientation y="0.336212"/>
+			<Orientation y="0.336197"/>
 		</Entity>
 		<Entity uid="7538">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1214,7 +1208,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="496.121" z="86.9352"/>
-			<Orientation y="-0.201462"/>
+			<Orientation y="-0.201447"/>
 		</Entity>
 		<Entity uid="7547">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1244,7 +1238,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="489.517" z="100.578"/>
-			<Orientation y="0.892441"/>
+			<Orientation y="0.892426"/>
 		</Entity>
 		<Entity uid="7552">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1316,13 +1310,13 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="404.835" z="49.3739"/>
-			<Orientation y="0.0118866"/>
+			<Orientation y="0.0118713"/>
 		</Entity>
 		<Entity uid="7564">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="405.22" z="58.7484"/>
-			<Orientation y="0.499283"/>
+			<Orientation y="0.499268"/>
 		</Entity>
 		<Entity uid="7565">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1364,7 +1358,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="408.343" z="47.3914"/>
-			<Orientation y="0.763565"/>
+			<Orientation y="0.76355"/>
 		</Entity>
 		<Entity uid="7572">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -1376,7 +1370,7 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="400.441" z="50.8358"/>
-			<Orientation y="0.823715"/>
+			<Orientation y="0.8237"/>
 		</Entity>
 		<Entity uid="7574">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -1454,7 +1448,7 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="474.329" z="15.4294"/>
-			<Orientation y="-0.0168762"/>
+			<Orientation y="-0.016861"/>
 		</Entity>
 		<Entity uid="7587">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -1466,7 +1460,7 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="482.676" z="24.7331"/>
-			<Orientation y="-0.876541"/>
+			<Orientation y="-0.876526"/>
 		</Entity>
 		<Entity uid="7589">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -1826,7 +1820,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="34.1394" z="438.696"/>
-			<Orientation y="0.449051"/>
+			<Orientation y="0.449036"/>
 		</Entity>
 		<Entity uid="7649">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1940,7 +1934,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="72.3207" z="406.969"/>
-			<Orientation y="0.889771"/>
+			<Orientation y="0.889755"/>
 		</Entity>
 		<Entity uid="7668">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -1994,13 +1988,13 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="58.5103" z="498.042"/>
-			<Orientation y="0.825546"/>
+			<Orientation y="0.825531"/>
 		</Entity>
 		<Entity uid="7677">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="61.6328" z="500.947"/>
-			<Orientation y="0.698837"/>
+			<Orientation y="0.698822"/>
 		</Entity>
 		<Entity uid="7678">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -2024,13 +2018,13 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="69.8376" z="505.344"/>
-			<Orientation y="0.285522"/>
+			<Orientation y="0.285507"/>
 		</Entity>
 		<Entity uid="7682">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="70.5454" z="501.252"/>
-			<Orientation y="-0.260498"/>
+			<Orientation y="-0.260483"/>
 		</Entity>
 		<Entity uid="7683">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -2054,13 +2048,13 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="75.7252" z="501.322"/>
-			<Orientation y="0.722321"/>
+			<Orientation y="0.722305"/>
 		</Entity>
 		<Entity uid="7687">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="60.4636" z="485.831"/>
-			<Orientation y="0.279648"/>
+			<Orientation y="0.279633"/>
 		</Entity>
 		<Entity uid="7688">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -2090,7 +2084,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="124.977" z="483.988"/>
-			<Orientation y="0.970551"/>
+			<Orientation y="0.970535"/>
 		</Entity>
 		<Entity uid="7693">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -2126,7 +2120,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="140.719" z="478.515"/>
-			<Orientation y="0.400452"/>
+			<Orientation y="0.400436"/>
 		</Entity>
 		<Entity uid="7699">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -2156,7 +2150,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="279.066" z="249.547"/>
-			<Orientation y="-0.218552"/>
+			<Orientation y="-0.218536"/>
 		</Entity>
 		<Entity uid="7705">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -2204,7 +2198,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="97.0366" z="142.912"/>
-			<Orientation y="0.791122"/>
+			<Orientation y="0.791107"/>
 		</Entity>
 		<Entity uid="7714">
 			<Template>gaia/fauna_gazelle</Template>
@@ -2216,7 +2210,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="94.8072" z="147.124"/>
-			<Orientation y="0.732941"/>
+			<Orientation y="0.732925"/>
 		</Entity>
 		<Entity uid="7716">
 			<Template>gaia/fauna_gazelle</Template>
@@ -2240,7 +2234,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="24.732" z="49.7131"/>
-			<Orientation y="0.919815"/>
+			<Orientation y="0.9198"/>
 		</Entity>
 		<Entity uid="7720">
 			<Template>gaia/fauna_gazelle</Template>
@@ -2312,7 +2306,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="537.16" z="398.936"/>
-			<Orientation y="0.776291"/>
+			<Orientation y="0.776276"/>
 		</Entity>
 		<Entity uid="7732">
 			<Template>gaia/fauna_gazelle</Template>
@@ -2360,7 +2354,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="407.018" z="94.4919"/>
-			<Orientation y="0.1315"/>
+			<Orientation y="0.131485"/>
 		</Entity>
 		<Entity uid="7740">
 			<Template>gaia/fauna_gazelle</Template>
@@ -2414,7 +2408,7 @@
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="131.83" z="429.214"/>
-			<Orientation y="-0.827133"/>
+			<Orientation y="-0.827118"/>
 		</Entity>
 		<Entity uid="7749">
 			<Template>gaia/fauna_gazelle</Template>
@@ -2456,7 +2450,7 @@
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="484.042" z="499.75"/>
-			<Orientation y="0.136993"/>
+			<Orientation y="0.136978"/>
 		</Entity>
 		<Entity uid="7768">
 			<Template>gaia/flora_bush_berry</Template>
@@ -2600,7 +2594,7 @@
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
 			<Position x="106.999" z="69.5085"/>
-			<Orientation y="0.483963"/>
+			<Orientation y="0.483948"/>
 		</Entity>
 		<Entity uid="7792">
 			<Template>gaia/fauna_chicken</Template>
@@ -2612,13 +2606,13 @@
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
 			<Position x="492.307" z="440.531"/>
-			<Orientation y="0.701813"/>
+			<Orientation y="0.701797"/>
 		</Entity>
 		<Entity uid="7794">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
 			<Position x="495.056" z="443.78"/>
-			<Orientation y="0.766251"/>
+			<Orientation y="0.766235"/>
 		</Entity>
 		<Entity uid="7795">
 			<Template>gaia/fauna_chicken</Template>
@@ -2636,7 +2630,7 @@
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
 			<Position x="494.09" z="446.055"/>
-			<Orientation y="0.520233"/>
+			<Orientation y="0.520218"/>
 		</Entity>
 		<Entity uid="7798">
 			<Template>gaia/fauna_goat</Template>
@@ -2678,7 +2672,7 @@
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
 			<Position x="536.139" z="524.929"/>
-			<Orientation y="0.376205"/>
+			<Orientation y="0.37619"/>
 		</Entity>
 		<Entity uid="7805">
 			<Template>gaia/fauna_goat</Template>
@@ -2696,7 +2690,7 @@
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
 			<Position x="393.706" z="352.819"/>
-			<Orientation y="0.637665"/>
+			<Orientation y="0.63765"/>
 		</Entity>
 		<Entity uid="7808">
 			<Template>gaia/fauna_goat</Template>
@@ -2720,7 +2714,7 @@
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
 			<Position x="128.615" z="82.0866"/>
-			<Orientation y="0.00697327"/>
+			<Orientation y="0.00695801"/>
 		</Entity>
 		<Entity uid="7812">
 			<Template>gaia/fauna_goat</Template>
@@ -2780,7 +2774,7 @@
 			<Template>gaia/fauna_goat</Template>
 			<Player>0</Player>
 			<Position x="241.202" z="86.8369"/>
-			<Orientation y="0.750977"/>
+			<Orientation y="0.750961"/>
 		</Entity>
 		<Entity uid="7822">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -2810,7 +2804,7 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="384.396" z="288.198"/>
-			<Orientation y="0.998352"/>
+			<Orientation y="0.998337"/>
 		</Entity>
 		<Entity uid="7827">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -2840,7 +2834,7 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="243.892" z="75.871"/>
-			<Orientation y="0.617859"/>
+			<Orientation y="0.617844"/>
 		</Entity>
 		<Entity uid="7832">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -2936,13 +2930,13 @@
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="322.498" z="462.505"/>
-			<Orientation y="0.479202"/>
+			<Orientation y="0.479187"/>
 		</Entity>
 		<Entity uid="7848">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="272.464" z="476.595"/>
-			<Orientation y="0.522324"/>
+			<Orientation y="0.522308"/>
 		</Entity>
 		<Entity uid="7849">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -2978,7 +2972,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="312.681" z="438.031"/>
-			<Orientation y="0.816452"/>
+			<Orientation y="0.816437"/>
 		</Entity>
 		<Entity uid="7855">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -3026,7 +3020,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="379.856" z="293.43"/>
-			<Orientation y="0.706543"/>
+			<Orientation y="0.706528"/>
 		</Entity>
 		<Entity uid="7863">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -3038,13 +3032,13 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="377.201" z="306.868"/>
-			<Orientation y="0.741547"/>
+			<Orientation y="0.741531"/>
 		</Entity>
 		<Entity uid="7865">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="376.351" z="313.08"/>
-			<Orientation y="0.571869"/>
+			<Orientation y="0.571854"/>
 		</Entity>
 		<Entity uid="7868">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -3086,7 +3080,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="389.568" z="59.2566"/>
-			<Orientation y="0.039032"/>
+			<Orientation y="0.0390167"/>
 		</Entity>
 		<Entity uid="7875">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -3098,19 +3092,19 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="215.557" z="62.8605"/>
-			<Orientation y="0.567352"/>
+			<Orientation y="0.567337"/>
 		</Entity>
 		<Entity uid="7877">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="179.045" z="29.4524"/>
-			<Orientation y="-0.374847"/>
+			<Orientation y="-0.374832"/>
 		</Entity>
 		<Entity uid="7878">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="21.8025" z="13.0922"/>
-			<Orientation y="-0.0422668"/>
+			<Orientation y="-0.0422516"/>
 		</Entity>
 		<Entity uid="7879">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -3122,7 +3116,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="14.6652" z="547.409"/>
-			<Orientation y="0.515411"/>
+			<Orientation y="0.515396"/>
 		</Entity>
 		<Entity uid="7881">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -3134,7 +3128,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="20.7755" z="546.66"/>
-			<Orientation y="-0.571655"/>
+			<Orientation y="-0.57164"/>
 		</Entity>
 		<Entity uid="7883">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -3266,7 +3260,7 @@
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="81.5097" z="381.992"/>
-			<Orientation y="0.363678"/>
+			<Orientation y="0.363663"/>
 		</Entity>
 		<Entity uid="7905">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3278,7 +3272,7 @@
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
 			<Position x="96.3091" z="118.497"/>
-			<Orientation y="-0.615433"/>
+			<Orientation y="-0.615417"/>
 		</Entity>
 		<Entity uid="7907">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3308,7 +3302,7 @@
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
 			<Position x="250.809" z="75.7104"/>
-			<Orientation y="-0.0844421"/>
+			<Orientation y="-0.0844269"/>
 		</Entity>
 		<Entity uid="7912">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3350,7 +3344,7 @@
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="447.566" z="160.663"/>
-			<Orientation y="0.321533"/>
+			<Orientation y="0.321518"/>
 		</Entity>
 		<Entity uid="7919">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3380,7 +3374,7 @@
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
 			<Position x="433.275" z="321.664"/>
-			<Orientation y="-0.0695496"/>
+			<Orientation y="-0.0695343"/>
 		</Entity>
 		<Entity uid="7924">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3398,7 +3392,7 @@
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
 			<Position x="442.732" z="488.756"/>
-			<Orientation y="0.126083"/>
+			<Orientation y="0.126068"/>
 		</Entity>
 		<Entity uid="7927">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3416,7 +3410,7 @@
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
 			<Position x="570.91" z="555.72"/>
-			<Orientation y="0.228882"/>
+			<Orientation y="0.228867"/>
 		</Entity>
 		<Entity uid="7930">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3458,7 +3452,7 @@
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
 			<Position x="105.863" z="284.282"/>
-			<Orientation y="-0.513077"/>
+			<Orientation y="-0.513062"/>
 		</Entity>
 		<Entity uid="7937">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3470,7 +3464,7 @@
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
 			<Position x="151.519" z="468.515"/>
-			<Orientation y="0.023468"/>
+			<Orientation y="0.0234528"/>
 		</Entity>
 		<Entity uid="7939">
 			<Template>gaia/geology_metal_desert_small</Template>
@@ -3488,7 +3482,7 @@
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="266.798" z="460.187"/>
-			<Orientation y="0.337677"/>
+			<Orientation y="0.337662"/>
 		</Entity>
 		<Entity uid="7942">
 			<Template>gaia/fauna_elephant_north_african</Template>
@@ -3500,7 +3494,7 @@
 			<Template>gaia/fauna_elephant_north_african</Template>
 			<Player>0</Player>
 			<Position x="494.969" z="508.745"/>
-			<Orientation y="-0.330811"/>
+			<Orientation y="-0.330795"/>
 		</Entity>
 		<Entity uid="7944">
 			<Template>gaia/fauna_elephant_african_infant</Template>
@@ -3602,7 +3596,7 @@
 			<Template>gaia/fauna_elephant_african_bush</Template>
 			<Player>0</Player>
 			<Position x="538.801" z="420.766"/>
-			<Orientation y="-0.862656"/>
+			<Orientation y="-0.86264"/>
 		</Entity>
 		<Entity uid="7973">
 			<Template>gaia/fauna_elephant_african_infant</Template>
@@ -3656,13 +3650,13 @@
 			<Template>gaia/fauna_zebra</Template>
 			<Player>0</Player>
 			<Position x="76.1749" z="228.278"/>
-			<Orientation y="0.867111"/>
+			<Orientation y="0.867096"/>
 		</Entity>
 		<Entity uid="7982">
 			<Template>gaia/fauna_zebra</Template>
 			<Player>0</Player>
 			<Position x="102.74" z="211.971"/>
-			<Orientation y="0.0449371"/>
+			<Orientation y="0.0449219"/>
 		</Entity>
 		<Entity uid="7983">
 			<Template>gaia/fauna_zebra</Template>
@@ -3686,7 +3680,7 @@
 			<Template>gaia/fauna_zebra</Template>
 			<Player>0</Player>
 			<Position x="558.763" z="489.723"/>
-			<Orientation y="-0.524567"/>
+			<Orientation y="-0.524551"/>
 		</Entity>
 		<Entity uid="7987">
 			<Template>gaia/fauna_zebra</Template>
@@ -3713,7 +3707,7 @@
 		<Entity uid="7991">
 			<Template>actor|props/flora/palm_date_leaves_a.xml</Template>
 			<Position x="42.6112" z="76.2517"/>
-			<Orientation y="0.656036"/>
+			<Orientation y="0.656021"/>
 		</Entity>
 		<Entity uid="7992">
 			<Template>actor|props/flora/palm_date_leaves_a.xml</Template>
@@ -3813,7 +3807,7 @@
 		<Entity uid="8011">
 			<Template>actor|props/flora/palm_date_leaves_a.xml</Template>
 			<Position x="22.0515" z="68.7753"/>
-			<Orientation y="0.44606"/>
+			<Orientation y="0.446045"/>
 		</Entity>
 		<Entity uid="8012">
 			<Template>actor|props/flora/palm_date_leaves_a.xml</Template>
@@ -3858,12 +3852,12 @@
 		<Entity uid="8020">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="389.093" z="268.672"/>
-			<Orientation y="0.782791"/>
+			<Orientation y="0.782776"/>
 		</Entity>
 		<Entity uid="8021">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="390.582" z="272.957"/>
-			<Orientation y="0.328934"/>
+			<Orientation y="0.328918"/>
 		</Entity>
 		<Entity uid="8022">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -3888,7 +3882,7 @@
 		<Entity uid="8026">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="379.065" z="289.748"/>
-			<Orientation y="0.610123"/>
+			<Orientation y="0.610107"/>
 		</Entity>
 		<Entity uid="8027">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -3898,7 +3892,7 @@
 		<Entity uid="8028">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="381.21" z="309.271"/>
-			<Orientation y="-0.750519"/>
+			<Orientation y="-0.750504"/>
 		</Entity>
 		<Entity uid="8029">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -3938,7 +3932,7 @@
 		<Entity uid="8036">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="438.528" z="261.134"/>
-			<Orientation y="0.881897"/>
+			<Orientation y="0.881882"/>
 		</Entity>
 		<Entity uid="8037">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4058,7 +4052,7 @@
 		<Entity uid="8064">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="395.953" z="84.1654"/>
-			<Orientation y="0.777481"/>
+			<Orientation y="0.777466"/>
 		</Entity>
 		<Entity uid="8065">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4103,7 +4097,7 @@
 		<Entity uid="8073">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="517.859" z="147.078"/>
-			<Orientation y="-0.49649"/>
+			<Orientation y="-0.496475"/>
 		</Entity>
 		<Entity uid="8074">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4123,7 +4117,7 @@
 		<Entity uid="8077">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="253.324" z="60.3183"/>
-			<Orientation y="-0.286667"/>
+			<Orientation y="-0.286652"/>
 		</Entity>
 		<Entity uid="8078">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4158,7 +4152,7 @@
 		<Entity uid="8084">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="260.419" z="63.5627"/>
-			<Orientation y="0.91452"/>
+			<Orientation y="0.914505"/>
 		</Entity>
 		<Entity uid="8085">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4223,7 +4217,7 @@
 		<Entity uid="8097">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="261.923" z="118.203"/>
-			<Orientation y="0.0380249"/>
+			<Orientation y="0.0380096"/>
 		</Entity>
 		<Entity uid="8098">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4233,7 +4227,7 @@
 		<Entity uid="8099">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="266.053" z="122.431"/>
-			<Orientation y="0.630112"/>
+			<Orientation y="0.630096"/>
 		</Entity>
 		<Entity uid="8100">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4253,7 +4247,7 @@
 		<Entity uid="8104">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="302.369" z="91.0124"/>
-			<Orientation y="-0.55899"/>
+			<Orientation y="-0.558975"/>
 		</Entity>
 		<Entity uid="8105">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4283,7 +4277,7 @@
 		<Entity uid="8110">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="27.8965" z="70.8342"/>
-			<Orientation y="0.754517"/>
+			<Orientation y="0.754501"/>
 		</Entity>
 		<Entity uid="8111">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4293,7 +4287,7 @@
 		<Entity uid="8112">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="36.7407" z="70.2019"/>
-			<Orientation y="0.906708"/>
+			<Orientation y="0.906693"/>
 		</Entity>
 		<Entity uid="8113">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4328,7 +4322,7 @@
 		<Entity uid="8119">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="26.2745" z="142.266"/>
-			<Orientation y="0.365005"/>
+			<Orientation y="0.36499"/>
 		</Entity>
 		<Entity uid="8120">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4358,7 +4352,7 @@
 		<Entity uid="8125">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="19.1742" z="118.947"/>
-			<Orientation y="-0.202789"/>
+			<Orientation y="-0.202774"/>
 		</Entity>
 		<Entity uid="8126">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4368,7 +4362,7 @@
 		<Entity uid="8127">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="21.77" z="122.641"/>
-			<Orientation y="0.954071"/>
+			<Orientation y="0.954056"/>
 		</Entity>
 		<Entity uid="8128">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4418,7 +4412,7 @@
 		<Entity uid="8137">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="80.4701" z="133.611"/>
-			<Orientation y="0.289703"/>
+			<Orientation y="0.289688"/>
 		</Entity>
 		<Entity uid="8138">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4428,7 +4422,7 @@
 		<Entity uid="8139">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="82.1941" z="141.203"/>
-			<Orientation y="0.464661"/>
+			<Orientation y="0.464645"/>
 		</Entity>
 		<Entity uid="8140">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4468,7 +4462,7 @@
 		<Entity uid="8147">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="65.165" z="156.303"/>
-			<Orientation y="0.0162506"/>
+			<Orientation y="0.0162354"/>
 		</Entity>
 		<Entity uid="8148">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4533,12 +4527,12 @@
 		<Entity uid="8160">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="47.2494" z="101.874"/>
-			<Orientation y="0.63887"/>
+			<Orientation y="0.638855"/>
 		</Entity>
 		<Entity uid="8161">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="49.2084" z="106.632"/>
-			<Orientation y="0.39212"/>
+			<Orientation y="0.392105"/>
 		</Entity>
 		<Entity uid="8162">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4573,7 +4567,7 @@
 		<Entity uid="8168">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="45.4229" z="75.5478"/>
-			<Orientation y="0.99234"/>
+			<Orientation y="0.992325"/>
 		</Entity>
 		<Entity uid="8169">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4618,7 +4612,7 @@
 		<Entity uid="8177">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="92.7184" z="125.817"/>
-			<Orientation y="0.146133"/>
+			<Orientation y="0.146118"/>
 		</Entity>
 		<Entity uid="8178">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4628,7 +4622,7 @@
 		<Entity uid="8179">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="100.591" z="116.267"/>
-			<Orientation y="0.234482"/>
+			<Orientation y="0.234467"/>
 		</Entity>
 		<Entity uid="8180">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4658,7 +4652,7 @@
 		<Entity uid="8185">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="76.8935" z="43.7333"/>
-			<Orientation y="0.42926"/>
+			<Orientation y="0.429245"/>
 		</Entity>
 		<Entity uid="8186">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4673,7 +4667,7 @@
 		<Entity uid="8188">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="60.1856" z="36.5746"/>
-			<Orientation y="0.815826"/>
+			<Orientation y="0.815811"/>
 		</Entity>
 		<Entity uid="8189">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4683,12 +4677,12 @@
 		<Entity uid="8190">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="121.349" z="207.619"/>
-			<Orientation y="-0.91275"/>
+			<Orientation y="-0.912735"/>
 		</Entity>
 		<Entity uid="8191">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="109.675" z="296.575"/>
-			<Orientation y="-0.0385132"/>
+			<Orientation y="-0.0384979"/>
 		</Entity>
 		<Entity uid="8192">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4703,7 +4697,7 @@
 		<Entity uid="8194">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="97.242" z="216.518"/>
-			<Orientation y="-0.113983"/>
+			<Orientation y="-0.113968"/>
 		</Entity>
 		<Entity uid="8195">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4778,7 +4772,7 @@
 		<Entity uid="8209">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="151.314" z="255.127"/>
-			<Orientation y="0.495972"/>
+			<Orientation y="0.495956"/>
 		</Entity>
 		<Entity uid="8210">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4838,7 +4832,7 @@
 		<Entity uid="8221">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="99.6146" z="275.716"/>
-			<Orientation y="0.883453"/>
+			<Orientation y="0.883438"/>
 		</Entity>
 		<Entity uid="8222">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4878,7 +4872,7 @@
 		<Entity uid="8229">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="251.615" z="288.877"/>
-			<Orientation y="0.513382"/>
+			<Orientation y="0.513367"/>
 		</Entity>
 		<Entity uid="8230">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4898,7 +4892,7 @@
 		<Entity uid="8233">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="261.171" z="287.073"/>
-			<Orientation y="0.883041"/>
+			<Orientation y="0.883026"/>
 		</Entity>
 		<Entity uid="8234">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4938,7 +4932,7 @@
 		<Entity uid="8241">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="320.223" z="183.229"/>
-			<Orientation y="-0.00578308"/>
+			<Orientation y="-0.00576782"/>
 		</Entity>
 		<Entity uid="8243">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5003,27 +4997,27 @@
 		<Entity uid="8255">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="315.708" z="429.524"/>
-			<Orientation y="0.410446"/>
+			<Orientation y="0.410431"/>
 		</Entity>
 		<Entity uid="8256">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="315.519" z="437.409"/>
-			<Orientation y="-0.361237"/>
+			<Orientation y="-0.361221"/>
 		</Entity>
 		<Entity uid="8257">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="310.504" z="448.501"/>
-			<Orientation y="0.672073"/>
+			<Orientation y="0.672058"/>
 		</Entity>
 		<Entity uid="8258">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="315.865" z="461.473"/>
-			<Orientation y="-0.0610199"/>
+			<Orientation y="-0.0610046"/>
 		</Entity>
 		<Entity uid="8259">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="315.302" z="475.8"/>
-			<Orientation y="-0.61174"/>
+			<Orientation y="-0.611725"/>
 		</Entity>
 		<Entity uid="8260">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5103,7 +5097,7 @@
 		<Entity uid="8275">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="274.467" z="438.223"/>
-			<Orientation y="-0.0085144"/>
+			<Orientation y="-0.00849915"/>
 		</Entity>
 		<Entity uid="8276">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5133,7 +5127,7 @@
 		<Entity uid="8281">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="108.832" z="544"/>
-			<Orientation y="0.167252"/>
+			<Orientation y="0.167236"/>
 		</Entity>
 		<Entity uid="8282">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5183,7 +5177,7 @@
 		<Entity uid="8291">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="17.9719" z="453.011"/>
-			<Orientation y="0.610092"/>
+			<Orientation y="0.610077"/>
 		</Entity>
 		<Entity uid="8292">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5343,22 +5337,22 @@
 		<Entity uid="8323">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="110.238" z="450.615"/>
-			<Orientation y="0.973083"/>
+			<Orientation y="0.973068"/>
 		</Entity>
 		<Entity uid="8324">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="105.274" z="448.722"/>
-			<Orientation y="-0.747528"/>
+			<Orientation y="-0.747513"/>
 		</Entity>
 		<Entity uid="8325">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="106.643" z="451.452"/>
-			<Orientation y="-0.128265"/>
+			<Orientation y="-0.12825"/>
 		</Entity>
 		<Entity uid="8326">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="113.446" z="447.177"/>
-			<Orientation y="0.503113"/>
+			<Orientation y="0.503098"/>
 		</Entity>
 		<Entity uid="8327">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5453,7 +5447,7 @@
 		<Entity uid="8345">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="73.1149" z="406.555"/>
-			<Orientation y="0.838196"/>
+			<Orientation y="0.838181"/>
 		</Entity>
 		<Entity uid="8346">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5488,7 +5482,7 @@
 		<Entity uid="8352">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="112.741" z="490.986"/>
-			<Orientation y="0.588562"/>
+			<Orientation y="0.588547"/>
 		</Entity>
 		<Entity uid="8353">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5523,17 +5517,17 @@
 		<Entity uid="8359">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="48.2944" z="439.987"/>
-			<Orientation y="0.0545502"/>
+			<Orientation y="0.0545349"/>
 		</Entity>
 		<Entity uid="8360">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="48.1319" z="443.142"/>
-			<Orientation y="0.298264"/>
+			<Orientation y="0.298248"/>
 		</Entity>
 		<Entity uid="8361">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="49.2596" z="446.571"/>
-			<Orientation y="0.873322"/>
+			<Orientation y="0.873306"/>
 		</Entity>
 		<Entity uid="8362">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5568,7 +5562,7 @@
 		<Entity uid="8368">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="318.779" z="442.771"/>
-			<Orientation y="-0.00675964"/>
+			<Orientation y="-0.00674438"/>
 		</Entity>
 		<Entity uid="8369">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5628,7 +5622,7 @@
 		<Entity uid="8380">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="507.441" z="521.148"/>
-			<Orientation y="0.322647"/>
+			<Orientation y="0.322632"/>
 		</Entity>
 		<Entity uid="8381">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5638,7 +5632,7 @@
 		<Entity uid="8382">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="519.712" z="515.86"/>
-			<Orientation y="0.393997"/>
+			<Orientation y="0.393982"/>
 		</Entity>
 		<Entity uid="8383">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5683,7 +5677,7 @@
 		<Entity uid="8391">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="521.466" z="520.692"/>
-			<Orientation y="-0.127991"/>
+			<Orientation y="-0.127975"/>
 		</Entity>
 		<Entity uid="8392">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5803,7 +5797,7 @@
 		<Entity uid="8415">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="512.216" z="517.291"/>
-			<Orientation y="0.448792"/>
+			<Orientation y="0.448776"/>
 		</Entity>
 		<Entity uid="8416">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5863,17 +5857,17 @@
 		<Entity uid="8427">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="553.917" z="424.972"/>
-			<Orientation y="0.297455"/>
+			<Orientation y="0.29744"/>
 		</Entity>
 		<Entity uid="8428">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="557.315" z="437.097"/>
-			<Orientation y="-0.045639"/>
+			<Orientation y="-0.0456238"/>
 		</Entity>
 		<Entity uid="8429">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="553.106" z="448.682"/>
-			<Orientation y="-0.00691223"/>
+			<Orientation y="-0.00689697"/>
 		</Entity>
 		<Entity uid="8430">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5913,12 +5907,12 @@
 		<Entity uid="8437">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="549.957" z="440.187"/>
-			<Orientation y="-0.0992737"/>
+			<Orientation y="-0.0992584"/>
 		</Entity>
 		<Entity uid="8438">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="547.927" z="449.275"/>
-			<Orientation y="0.40863"/>
+			<Orientation y="0.408615"/>
 		</Entity>
 		<Entity uid="8439">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -5958,7 +5952,7 @@
 		<Entity uid="8446">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="498.922" z="403.27"/>
-			<Orientation y="-0.137146"/>
+			<Orientation y="-0.137131"/>
 		</Entity>
 		<Entity uid="8447">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5998,7 +5992,7 @@
 		<Entity uid="8454">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="536.185" z="367.35"/>
-			<Orientation y="-0.837173"/>
+			<Orientation y="-0.837158"/>
 		</Entity>
 		<Entity uid="8455">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6028,7 +6022,7 @@
 		<Entity uid="8460">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="439.954" z="391.464"/>
-			<Orientation y="-0.419601"/>
+			<Orientation y="-0.419586"/>
 		</Entity>
 		<Entity uid="8461">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6058,7 +6052,7 @@
 		<Entity uid="8466">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="471.224" z="403.397"/>
-			<Orientation y="0.320389"/>
+			<Orientation y="0.320374"/>
 		</Entity>
 		<Entity uid="8467">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6088,7 +6082,7 @@
 		<Entity uid="8472">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="446.537" z="454.982"/>
-			<Orientation y="-0.543152"/>
+			<Orientation y="-0.543137"/>
 		</Entity>
 		<Entity uid="8473">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6113,7 +6107,7 @@
 		<Entity uid="8477">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="442.008" z="477.506"/>
-			<Orientation y="-0.143784"/>
+			<Orientation y="-0.143768"/>
 		</Entity>
 		<Entity uid="8478">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6143,7 +6137,7 @@
 		<Entity uid="8484">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="166.124" z="33.5101"/>
-			<Orientation y="0.776932"/>
+			<Orientation y="0.776917"/>
 		</Entity>
 		<Entity uid="8485">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6158,7 +6152,7 @@
 		<Entity uid="8487">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="43.5946" z="58.8003"/>
-			<Orientation y="0.391251"/>
+			<Orientation y="0.391235"/>
 		</Entity>
 		<Entity uid="8488">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6193,17 +6187,17 @@
 		<Entity uid="8494">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="108.925" z="534.465"/>
-			<Orientation y="0.634369"/>
+			<Orientation y="0.634354"/>
 		</Entity>
 		<Entity uid="8495">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="112.986" z="540.07"/>
-			<Orientation y="0.430542"/>
+			<Orientation y="0.430527"/>
 		</Entity>
 		<Entity uid="8496">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="116.465" z="549.324"/>
-			<Orientation y="0.68013"/>
+			<Orientation y="0.680115"/>
 		</Entity>
 		<Entity uid="8497">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6218,7 +6212,7 @@
 		<Entity uid="8499">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="228.242" z="466.258"/>
-			<Orientation y="-0.15657"/>
+			<Orientation y="-0.156555"/>
 		</Entity>
 		<Entity uid="8500">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6233,7 +6227,7 @@
 		<Entity uid="8502">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="438.109" z="395.417"/>
-			<Orientation y="-0.410309"/>
+			<Orientation y="-0.410294"/>
 		</Entity>
 		<Entity uid="8503">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6288,7 +6282,7 @@
 		<Entity uid="8513">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="520.25" z="129.315"/>
-			<Orientation y="0.685211"/>
+			<Orientation y="0.685196"/>
 		</Entity>
 		<Entity uid="8514">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6393,7 +6387,7 @@
 		<Entity uid="8534">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="474.473" z="139.124"/>
-			<Orientation y="0.661423"/>
+			<Orientation y="0.661407"/>
 		</Entity>
 		<Entity uid="8535">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -6403,7 +6397,7 @@
 		<Entity uid="8536">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="427.551" z="19.3139"/>
-			<Orientation y="0.759933"/>
+			<Orientation y="0.759918"/>
 		</Entity>
 		<Entity uid="8537">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -6428,7 +6422,7 @@
 		<Entity uid="8541">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="473.688" z="16.2303"/>
-			<Orientation y="0.91217"/>
+			<Orientation y="0.912155"/>
 		</Entity>
 		<Entity uid="8542">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -6483,7 +6477,7 @@
 		<Entity uid="8552">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="505.998" z="23.7081"/>
-			<Orientation y="0.978989"/>
+			<Orientation y="0.978973"/>
 		</Entity>
 		<Entity uid="8553">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6508,7 +6502,7 @@
 		<Entity uid="8557">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="563.713" z="84.1061"/>
-			<Orientation y="-0.075119"/>
+			<Orientation y="-0.0751038"/>
 		</Entity>
 		<Entity uid="8558">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6603,22 +6597,22 @@
 		<Entity uid="8576">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="485.87" z="79.604"/>
-			<Orientation y="0.876968"/>
+			<Orientation y="0.876953"/>
 		</Entity>
 		<Entity uid="8577">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="494.054" z="70.6206"/>
-			<Orientation y="0.777313"/>
+			<Orientation y="0.777298"/>
 		</Entity>
 		<Entity uid="8578">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="413.349" z="58.3231"/>
-			<Orientation y="-0.832596"/>
+			<Orientation y="-0.832581"/>
 		</Entity>
 		<Entity uid="8579">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="410.693" z="63.7052"/>
-			<Orientation y="-0.422501"/>
+			<Orientation y="-0.422485"/>
 		</Entity>
 		<Entity uid="8580">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -6633,7 +6627,7 @@
 		<Entity uid="8582">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="416.94" z="77.5003"/>
-			<Orientation y="-0.782715"/>
+			<Orientation y="-0.7827"/>
 		</Entity>
 		<Entity uid="8583">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -6648,7 +6642,7 @@
 		<Entity uid="8585">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="411.738" z="70.8772"/>
-			<Orientation y="0.133011"/>
+			<Orientation y="0.132996"/>
 		</Entity>
 		<Entity uid="8586">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -6692,19 +6686,19 @@
 			<Template>units/hele_infantry_javelinist_b</Template>
 			<Player>1</Player>
 			<Position x="448.854" z="138.187"/>
-			<Orientation y="0.591873"/>
+			<Orientation y="0.591858"/>
 		</Entity>
 		<Entity uid="8603">
 			<Template>units/hele_infantry_javelinist_a</Template>
 			<Player>1</Player>
 			<Position x="452.451" z="133.642"/>
-			<Orientation y="0.773315"/>
+			<Orientation y="0.7733"/>
 		</Entity>
 		<Entity uid="8604">
 			<Template>units/hele_infantry_javelinist_e</Template>
 			<Player>1</Player>
 			<Position x="455.604" z="130.246"/>
-			<Orientation y="0.512436"/>
+			<Orientation y="0.512421"/>
 		</Entity>
 		<Entity uid="8605">
 			<Template>units/hele_infantry_spearman_b</Template>
@@ -6728,37 +6722,37 @@
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>1</Player>
 			<Position x="418.208" z="123.324"/>
-			<Orientation y="-0.844376"/>
+			<Orientation y="-0.84436"/>
 		</Entity>
 		<Entity uid="8609">
 			<Template>units/hele_cavalry_swordsman_a</Template>
 			<Player>1</Player>
 			<Position x="420.029" z="130.24"/>
-			<Orientation y="-0.765518"/>
+			<Orientation y="-0.765503"/>
 		</Entity>
 		<Entity uid="8610">
 			<Template>units/hele_cavalry_swordsman_e</Template>
 			<Player>1</Player>
 			<Position x="424.823" z="134.92"/>
-			<Orientation y="-0.946655"/>
+			<Orientation y="-0.94664"/>
 		</Entity>
 		<Entity uid="8611">
 			<Template>units/hele_cavalry_swordsman_b</Template>
 			<Player>2</Player>
 			<Position x="137.162" z="416.978"/>
-			<Orientation y="0.749649"/>
+			<Orientation y="0.749634"/>
 		</Entity>
 		<Entity uid="8612">
 			<Template>units/hele_cavalry_swordsman_a</Template>
 			<Player>2</Player>
 			<Position x="133.711" z="419.578"/>
-			<Orientation y="0.698288"/>
+			<Orientation y="0.698273"/>
 		</Entity>
 		<Entity uid="8613">
 			<Template>units/hele_cavalry_swordsman_e</Template>
 			<Player>2</Player>
 			<Position x="128.975" z="424.17"/>
-			<Orientation y="0.567245"/>
+			<Orientation y="0.56723"/>
 		</Entity>
 		<Entity uid="8614">
 			<Template>units/hele_infantry_javelinist_b</Template>
@@ -6782,7 +6776,7 @@
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="88.7431" z="419.039"/>
-			<Orientation y="-0.784637"/>
+			<Orientation y="-0.784622"/>
 		</Entity>
 		<Entity uid="8618">
 			<Template>units/hele_infantry_spearman_a</Template>
@@ -6794,7 +6788,7 @@
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>2</Player>
 			<Position x="93.766" z="424.01"/>
-			<Orientation y="-0.703003"/>
+			<Orientation y="-0.702988"/>
 		</Entity>
 		<Entity uid="8620">
 			<Template>units/hele_support_female_citizen</Template>
@@ -6813,6 +6807,78 @@
 			<Player>2</Player>
 			<Position x="137.862" z="396.858"/>
 			<Orientation y="2.35619"/>
+		</Entity>
+		<Entity uid="8632">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="403.154" z="116.106"/>
+			<Orientation y="2.3562"/>
+		</Entity>
+		<Entity uid="8633">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="399.431" z="119.284"/>
+			<Orientation y="2.3562"/>
+		</Entity>
+		<Entity uid="8634">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="399.513" z="125.334"/>
+			<Orientation y="2.3562"/>
+		</Entity>
+		<Entity uid="8635">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="463.47" z="129.713"/>
+			<Orientation y="2.3562"/>
+		</Entity>
+		<Entity uid="8636">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="467.072" z="125.738"/>
+			<Orientation y="2.3562"/>
+		</Entity>
+		<Entity uid="8637">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="470.401" z="118.832"/>
+			<Orientation y="0.261353"/>
+		</Entity>
+		<Entity uid="8638">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="151.41" z="423.998"/>
+			<Orientation y="2.3562"/>
+		</Entity>
+		<Entity uid="8639">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="149.451" z="419.068"/>
+			<Orientation y="2.3562"/>
+		</Entity>
+		<Entity uid="8640">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="148.609" z="412.192"/>
+			<Orientation y="-1.70592"/>
+		</Entity>
+		<Entity uid="8641">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="98.2009" z="367.143"/>
+			<Orientation y="0.571884"/>
+		</Entity>
+		<Entity uid="8642">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="101.916" z="375.071"/>
+			<Orientation y="-0.166412"/>
+		</Entity>
+		<Entity uid="8643">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="97.4285" z="376.097"/>
+			<Orientation y="-1.93736"/>
 		</Entity>
 	</Entities>
 	<Paths/>
