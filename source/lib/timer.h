@@ -34,7 +34,6 @@
 # include "lib/sysdep/os_cpu.h"	// os_cpu_ClockFrequency
 #endif
 
-#include <sstream>	// std::stringstream
 
 /**
  * timer_Time will subsequently return values relative to the current time.
@@ -52,6 +51,14 @@ LIB_API double timer_Time();
 LIB_API double timer_Resolution();
 
 
+/**
+ * internal helper functions for returning an easily readable
+ * string (i.e. re-scaled to appropriate units)
+ **/
+LIB_API std::wstring StringForSeconds(double seconds);
+LIB_API std::wstring StringForCycles(i64 cycles);
+
+
 //-----------------------------------------------------------------------------
 // scope timing
 
@@ -67,18 +74,9 @@ public:
 
 	~ScopeTimer()
 	{
-		double t1 = timer_Time();
-		double dt = t1-m_t0;
-
-		// determine scale factor for pretty display
-		double scale = 1e6;
-		const wchar_t* unit = L"us";
-		if(dt > 1.0)
-			scale = 1, unit = L"s";
-		else if(dt > 1e-3)
-			scale = 1e3, unit = L"ms";
-
-		debug_printf(L"TIMER| %ls: %g %ls\n", m_description, dt*scale, unit);
+		const double t1 = timer_Time();
+		const std::wstring elapsedTimeString = StringForSeconds(t1-m_t0);
+		debug_printf(L"TIMER| %ls: %ls\n", m_description, elapsedTimeString.c_str());
 	}
 
 private:
@@ -137,7 +135,7 @@ private:
 
 // since TIMER_ACCRUE et al. are called so often, we try to keep
 // overhead to an absolute minimum. storing raw tick counts (e.g. CPU cycles
-// returned by ia32_rdtsc) instead of absolute time has two benefits:
+// returned by x86_x64_rdtsc) instead of absolute time has two benefits:
 // - no need to convert from raw->time on every call
 //   (instead, it's only done once when displaying the totals)
 // - possibly less overhead to querying the time itself
@@ -160,63 +158,49 @@ class TimerUnit
 public:
 	void SetToZero()
 	{
-		m_ticks = 0;
+		m_cycles = 0;
 	}
 
 	void SetFromTimer()
 	{
-		m_ticks = x86_x64_rdtsc();
+		m_cycles = x86_x64_rdtsc();
 	}
 
 	void AddDifference(TimerUnit t0, TimerUnit t1)
 	{
-		m_ticks += t1.m_ticks - t0.m_ticks;
+		m_cycles += t1.m_cycles - t0.m_cycles;
 	}
 
 	void AddDifferenceAtomic(TimerUnit t0, TimerUnit t1)
 	{
-		const i64 delta = t1.m_ticks - t0.m_ticks;
+		const i64 delta = t1.m_cycles - t0.m_cycles;
 #if ARCH_AMD64
-		cpu_AtomicAdd((volatile intptr_t*)&m_ticks, (intptr_t)delta);
+		cpu_AtomicAdd((volatile intptr_t*)&m_cycles, (intptr_t)delta);
 #else
 retry:
-		if(!cpu_CAS64(&m_ticks, m_ticks, m_ticks+delta))
+		if(!cpu_CAS64(&m_cycles, m_cycles, m_cycles+delta))
 			goto retry;
 #endif
 	}
 
 	void Subtract(TimerUnit t)
 	{
-		m_ticks -= t.m_ticks;
+		m_cycles -= t.m_cycles;
 	}
 
 	std::wstring ToString() const
 	{
-		debug_assert(m_ticks >= 0.0);
-
-		// determine scale factor for pretty display
-		double scale = 1.0;
-		const wchar_t* unit = L" c";
-		if(m_ticks > 10000000000LL)	// 10 Gc
-			scale = 1e-9, unit = L" Gc";
-		else if(m_ticks > 10000000)	// 10 Mc
-			scale = 1e-6, unit = L" Mc";
-		else if(m_ticks > 10000)	// 10 kc
-			scale = 1e-3, unit = L" kc";
-
-		std::wstringstream ss;
-		ss << m_ticks*scale;
-		ss << unit;
-		return ss.str();
+		debug_assert(m_cycles >= 0.0);
+		return StringForCycles(m_cycles);
 	}
 
 	double ToSeconds() const
 	{
-		return m_ticks / os_cpu_ClockFrequency();
+		return m_cycles / os_cpu_ClockFrequency();
 	}
 
 private:
-	i64 m_ticks;
+	i64 m_cycles;
 };
 
 #else
@@ -261,19 +245,7 @@ retry:
 	std::wstring ToString() const
 	{
 		debug_assert(m_seconds >= 0.0);
-
-		// determine scale factor for pretty display
-		double scale = 1e6;
-		const wchar_t* unit = L" us";
-		if(m_seconds > 1.0)
-			scale = 1, unit = L" s";
-		else if(m_seconds > 1e-3)
-			scale = 1e3, unit = L" ms";
-
-		std::wstringstream ss;
-		ss << m_seconds*scale;
-		ss << unit;
-		return ss.str();
+		return StringForSeconds(m_seconds);
 	}
 
 	double ToSeconds() const
@@ -299,7 +271,7 @@ struct TimerClient
 
 	TimerClient* next;
 
-	// how often timer_BillClient was called (helps measure relative
+	// how often the timer was billed (helps measure relative
 	// performance of something that is done indeterminately often).
 	intptr_t num_calls;
 };
@@ -307,7 +279,7 @@ struct TimerClient
 /**
  * make the given TimerClient (usually instantiated as static data)
  * ready for use. returns its address for TIMER_ADD_CLIENT's convenience.
- * this client's total (added to by timer_BillClient) will be
+ * this client's total (which is increased by a BillingPolicy) will be
  * displayed by timer_DisplayClientTotals.
  * notes:
  * - may be called at any time;
@@ -331,21 +303,29 @@ LIB_API TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description
 /**
  * bill the difference between t0 and t1 to the client's total.
  **/
-inline void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1)
+struct BillingPolicy_Default
 {
-	tc->sum.AddDifference(t0, t1);
-	tc->num_calls++;
-}
+	void operator()(TimerClient* tc, TimerUnit t0, TimerUnit t1) const
+	{
+		tc->sum.AddDifference(t0, t1);
+		tc->num_calls++;
+	}
+};
 
 /**
- * thread-safe version of timer_BillClient
- * (not used by default due to its higher overhead)
+ * thread-safe (not used by default due to its higher overhead)
+ * note: we can't just use thread-local variables to avoid
+ * synchronization overhead because we don't have control over all
+ * threads (for accumulating their separate timer copies).
  **/
-inline void timer_BillClientAtomic(TimerClient* tc, TimerUnit t0, TimerUnit t1)
+struct BillingPolicy_Atomic
 {
-	tc->sum.AddDifferenceAtomic(t0, t1);
-	cpu_AtomicAdd(&tc->num_calls, +1);
-}
+	void operator()(TimerClient* tc, TimerUnit t0, TimerUnit t1) const
+	{
+		tc->sum.AddDifferenceAtomic(t0, t1);
+		cpu_AtomicAdd(&tc->num_calls, +1);
+	}
+};
 
 /**
  * display all clients' totals; does not reset them.
@@ -353,7 +333,9 @@ inline void timer_BillClientAtomic(TimerClient* tc, TimerUnit t0, TimerUnit t1)
  **/
 LIB_API void timer_DisplayClientTotals();
 
+
 /// used by TIMER_ACCRUE
+template<class BillingPolicy = BillingPolicy_Default>
 class ScopeTimerAccrue
 {
 	NONCOPYABLE(ScopeTimerAccrue);
@@ -368,29 +350,7 @@ public:
 	{
 		TimerUnit t1;
 		t1.SetFromTimer();
-		timer_BillClient(m_tc, m_t0, t1);
-	}
-
-private:
-	TimerUnit m_t0;
-	TimerClient* m_tc;
-};
-
-class ScopeTimerAccrueAtomic
-{
-	NONCOPYABLE(ScopeTimerAccrueAtomic);
-public:
-	ScopeTimerAccrueAtomic(TimerClient* tc)
-		: m_tc(tc)
-	{
-		m_t0.SetFromTimer();
-	}
-
-	~ScopeTimerAccrueAtomic()
-	{
-		TimerUnit t1;
-		t1.SetFromTimer();
-		timer_BillClientAtomic(m_tc, m_t0, t1);
+		BillingPolicy()(m_tc, m_t0, t1);
 	}
 
 private:
@@ -403,22 +363,21 @@ private:
  * bill it to the given TimerClient object. Can safely be nested.
  * Useful for measuring total time spent in a function or basic block over the
  * entire program.
- * <description> must remain valid over the lifetime of this object;
- * a string literal is safest.
+ * `client' is an identifier registered via TIMER_ADD_CLIENT.
  * 
  * Example usage:
- * 	TIMER_ADD_CLIENT(identifier);
- * 
+ * 	TIMER_ADD_CLIENT(client);
+ *
  * 	void func()
  * 	{
- * 		TIMER_ACCRUE(name_of_pointer_to_client);
+ * 		TIMER_ACCRUE(client);
  * 		// code to be measured
  * 	}
  * 
- * 	[at exit]
+ * 	[later or at exit]
  * 	timer_DisplayClientTotals();
  **/
-#define TIMER_ACCRUE(client) ScopeTimerAccrue UID__(client)
-#define TIMER_ACCRUE_ATOMIC(client) ScopeTimerAccrueAtomic UID__(client)
+#define TIMER_ACCRUE(client) ScopeTimerAccrue<> UID__(client)
+#define TIMER_ACCRUE_ATOMIC(client) ScopeTimerAccrue<BillingPolicy_Atomic> UID__(client)
 
 #endif	// #ifndef INCLUDED_TIMER

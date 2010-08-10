@@ -182,7 +182,7 @@ JSBool StopJsTimer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rva
 	TimerUnit now;
 	now.SetFromTimer();
 	now.Subtract(js_timer_overhead);
-	timer_BillClient(&js_timer_clients[slot], js_start_times[slot], now);
+	BillingPolicy_Default()(&js_timer_clients[slot], js_start_times[slot], now);
 	js_start_times[slot].SetToZero();
 	return JS_TRUE;
 }

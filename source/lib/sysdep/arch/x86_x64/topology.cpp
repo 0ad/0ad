@@ -222,7 +222,7 @@ static LibError InitCpuTopology()
 				std::set<size_t> values;
 				for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 				{
-					const size_t value = ApicField(apicIds[processor], numValues, indexOfLowestBit);
+					const size_t value = ApicField(apicIds[processor], indexOfLowestBit, numValues);
 					values.insert(value);
 				}
 				return values.size();
@@ -299,19 +299,19 @@ size_t cpu_topology_LogicalPerCore()
 	return cpuTopology.logicalPerCore;
 }
 
-size_t cpu_topology_LogicalFromId(size_t apicId)
+size_t cpu_topology_LogicalFromApicId(size_t apicId)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 	return ApicField(apicId, cpuTopology.logicalOffset, cpuTopology.maxLogicalPerCore);
 }
 
-size_t cpu_topology_CoreFromId(size_t apicId)
+size_t cpu_topology_CoreFromApicId(size_t apicId)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 	return ApicField(apicId, cpuTopology.coreOffset, cpuTopology.maxCoresPerPackage);
 }
 
-size_t cpu_topology_PackageFromId(size_t apicId)
+size_t cpu_topology_PackageFromApicId(size_t apicId)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 	return ApicField(apicId, cpuTopology.packageOffset, 256);

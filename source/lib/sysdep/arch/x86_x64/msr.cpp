@@ -29,11 +29,12 @@
 
 namespace MSR {
 
-bool IsSupported()
+bool IsAccessible()
 {
 	if(!x86_x64_Cap(X86_X64_CAP_MSR))
 		return false;
 
+	// only read/writable from ring 0, so we need the driver.
 	if(mahaf_Init() < 0)
 		return false;
 

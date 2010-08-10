@@ -45,15 +45,15 @@ enum ModelSpecificRegisters
 	IA32_PERF_GLOBAL_OVF_CTRL   = 0x390,
 
 	// Nehalem (requires HasNehalem)
-	PLATFORM_INFO               = 0x0CE,
-	UNCORE_PERF_GLOBAL_CTRL     = 0x391,
-	UNCORE_PERF_GLOBAL_STATUS   = 0x392,
-	UNCORE_PERF_GLOBAL_OVF_CTRL = 0x393,
-	UNCORE_PMC0                 = 0x3B0,
-	UNCORE_PERFEVTSEL0          = 0x3C0
+	NHM_PLATFORM_INFO               = 0x0CE,
+	NHM_UNCORE_PERF_GLOBAL_CTRL     = 0x391,
+	NHM_UNCORE_PERF_GLOBAL_STATUS   = 0x392,
+	NHM_UNCORE_PERF_GLOBAL_OVF_CTRL = 0x393,
+	NHM_UNCORE_PMC0                 = 0x3B0,
+	NHM_UNCORE_PERFEVTSEL0          = 0x3C0
 };
 
-LIB_API bool IsSupported();
+LIB_API bool IsAccessible();
 
 LIB_API bool HasEnergyPerfBias();
 LIB_API bool HasNehalem();

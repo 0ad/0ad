@@ -65,9 +65,9 @@ LIB_API size_t cpu_topology_CoresPerPackage();
 LIB_API size_t cpu_topology_LogicalPerCore();
 
 
-LIB_API size_t cpu_topology_LogicalFromId(size_t apicId);
-LIB_API size_t cpu_topology_CoreFromId(size_t apicId);
-LIB_API size_t cpu_topology_PackageFromId(size_t apicId);
+LIB_API size_t cpu_topology_LogicalFromApicId(size_t apicId);
+LIB_API size_t cpu_topology_CoreFromApicId(size_t apicId);
+LIB_API size_t cpu_topology_PackageFromApicId(size_t apicId);
 
 
 //-----------------------------------------------------------------------------
