@@ -54,6 +54,7 @@ IGUIObject::IGUIObject() :
 	AddSetting(GUIST_float,			"z");
 	AddSetting(GUIST_bool,			"absolute");
 	AddSetting(GUIST_bool,			"ghost");
+	AddSetting(GUIST_float,			"aspectratio");
 
 	// Setup important defaults
 	GUI<bool>::SetSetting(this, "hidden", false);
@@ -335,6 +336,9 @@ void IGUIObject::UpdateCachedSize()
 	bool absolute;
 	GUI<bool>::GetSetting(this, "absolute", absolute);
 
+	float aspectratio = 0.f;
+	GUI<float>::GetSetting(this, "aspectratio", aspectratio);
+
 	CClientArea ca;
 	GUI<CClientArea>::GetSetting(this, "size", ca);
 	
@@ -346,6 +350,24 @@ void IGUIObject::UpdateCachedSize()
 	else
 		m_CachedActualSize = ca.GetClientArea(CRect(0.f, 0.f, (float)g_xres, (float)g_yres));
 
+	// In a few cases, GUI objects have to resize to fill the screen
+	// but maintain a constant aspect ratio.
+	// Adjust the size to be the max possible, centered in the original size:
+	if (aspectratio)
+	{
+		if (m_CachedActualSize.GetWidth() > m_CachedActualSize.GetHeight()*aspectratio)
+		{
+			float delta = m_CachedActualSize.GetWidth() - m_CachedActualSize.GetHeight()*aspectratio;
+			m_CachedActualSize.left += delta/2.f;
+			m_CachedActualSize.right -= delta/2.f;
+		}
+		else
+		{
+			float delta = m_CachedActualSize.GetHeight() - m_CachedActualSize.GetWidth()/aspectratio;
+			m_CachedActualSize.bottom -= delta/2.f;
+			m_CachedActualSize.top += delta/2.f;
+		}
+	}
 }
 
 void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr& StyleName)

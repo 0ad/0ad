@@ -62,9 +62,12 @@
 	==========================================
 	-->
 
+	<object	type="image" sprite="bkFillBlack"/>
+
 	<object	name="pg"
 		type="image"
 		sprite="pgBackground"
+		aspectratio="1.333333"
 	>
 		<!--
 		==========================================
