@@ -17,6 +17,7 @@
 
 #include "lib/self_test.h"
 
+#include "lib/external_libraries/enet.h"
 #include "lib/external_libraries/sdl.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
@@ -28,8 +29,6 @@
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
-
-#include <enet/enet.h>
 
 class TestNetComms : public CxxTest::TestSuite
 {

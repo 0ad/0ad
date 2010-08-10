@@ -19,10 +19,9 @@
 
 #include "NetHost.h"
 
+#include "lib/external_libraries/enet.h"
 #include "network/NetMessage.h"
 #include "ps/CLogger.h"
-
-#include <enet/enet.h>
 
 bool CNetHost::SendMessage(const CNetMessage* message, ENetPeer* peer, const char* peerName)
 {

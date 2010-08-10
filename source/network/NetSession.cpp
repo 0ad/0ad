@@ -21,10 +21,9 @@
 #include "NetServer.h"
 #include "NetMessage.h"
 #include "NetStats.h"
+#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
-
-#include <enet/enet.h>
 
 static const int CHANNEL_COUNT = 1;
 

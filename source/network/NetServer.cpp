@@ -25,11 +25,10 @@
 #include "NetStats.h"
 #include "NetTurnManager.h"
 
+#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
-
-#include <enet/enet.h>
 
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
 #define DEFAULT_WELCOME_MESSAGE		L"Welcome"
