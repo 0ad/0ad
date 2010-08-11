@@ -29,20 +29,13 @@ function layoutSelectionSingle(entState)
 }
 
 // Fills out information that most entities have
-function displayGeneralInfo(playerState, entState, template)
+function displayGeneralInfo(entState, template)
 {
-	var civName = toTitleCase(playerState.civ);
-	var color = playerState.color;
-	var playerColor = color["r"]*255 + " " + color["g"]*255 + " " + color["b"]*255 + " " + color["a"]*255;
+	var civName = toTitleCase(g_Players[entState.player].civ);
+	var playerColor = g_Players[entState.player].color.r + " " + g_Players[entState.player].color.g + " " +
+								g_Players[entState.player].color.b+ " " + g_Players[entState.player].color.a;
+	
 	var iconTooltip = "";
-
-	// Rank Icon
-//	var rankId = getRankCellId(entState);
-//	getGUIObjectByName("sdRankIcon").cell_id = rankId;
-
-	// Rank Title
-//	var rankText = getRankTitle(getRankCellId(entState.template));
-//	rankText = (rankText? rankText : "");
 
 	// Specific Name
 	var name = template.name.specific + getRankTitle(getRankCellId(entState.template));
@@ -56,7 +49,7 @@ function displayGeneralInfo(playerState, entState, template)
 		getGUIObjectByName("sdSpecific").tooltip = "";
 
 	// Player Name
-	getGUIObjectByName("sdPlayer").caption = playerState.name;
+	getGUIObjectByName("sdPlayer").caption = g_Players[entState.player].name;
 	getGUIObjectByName("sdPlayer").tooltip = getFormalCivName(civName);
 	getGUIObjectByName("sdPlayer").textcolor = playerColor;
 
@@ -130,7 +123,7 @@ function displayGeneralInfo(playerState, entState, template)
 }
 
 // Updates middle entity Selection Details Panel
-function updateSelectionDetails(simState)
+function updateSelectionDetails()
 {
 	var detailsPanel = getGUIObjectByName("selectionDetails");
 	var commandsPanel = getGUIObjectByName("unitCommands");
@@ -152,10 +145,6 @@ function updateSelectionDetails(simState)
 	if (!entState)
 		return;
 
-	var playerState = simState.players[entState.player];
-	if (!playerState)
-		return;
-
 	// Choose the highest ranked version of the primary selection
 	// Different selection details are shown based on whether multiple units or a single unit is selected
 	if (selection.length > 1)
@@ -166,7 +155,7 @@ function updateSelectionDetails(simState)
 	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
 
 	// Fill out general info and display it
-	displayGeneralInfo(playerState, entState, template); // must come after layout functions
+	displayGeneralInfo(entState, template); // must come after layout functions
 
 	// Show Panels
 	detailsPanel.hidden = false;

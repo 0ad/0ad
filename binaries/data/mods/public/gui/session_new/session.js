@@ -2,7 +2,6 @@ const GEOLOGY = "geology";
 const FLORA = "flora";
 const FAUNA = "fauna";
 const SPECIAL = "special";
-const CAMP = "camp";
 
 const GAIA = "Gaia"
 const CART = "Cart";
@@ -18,6 +17,17 @@ const HELLENES = "Hellenes";
 const CELTS = "Celts";
 const PERSIANS = "Persians";
 const IBERIANS = "Iberians";
+
+// Chat data
+const maxNumChatLines = 30;
+var g_ChatMessages = [];
+var g_ChatTimers = [];
+
+// Network Mode
+var g_IsNetworked = false;
+
+// Cache the basic player data (name, civ, color)
+var g_Players = [];
 
 // Cache dev-mode settings that are frequently or widely used
 var g_DevSettings = {
@@ -36,7 +46,53 @@ function init(initData, hotloadData)
 		startMusic();
 	}
 
+	if (initData)
+	{
+		g_IsNetworked = initData.isNetworked; // Set network mode
+		g_Players = getPlayerData(initData.playerAssignments); // Cache the player data
+	}
+
 	onSimulationUpdate();
+}
+
+// Get the basic player data
+function getPlayerData(playerAssignments)
+{
+	var players = [];
+
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	if (!simState)
+		return players;
+
+	for (var i = 0; i < simState.players.length; i++)
+	{
+		var playerState = simState.players[i];
+		if (!playerState)
+			continue;
+
+		var name = playerState.name;
+		var civ = playerState.civ;
+		var color = {"r": 255, "g": 255, "b": 255, "a": 255};
+		color.r = playerState.color["r"]*255;
+		color.g = playerState.color["g"]*255;
+		color.b = playerState.color["b"]*255;
+		color.a = playerState.color["a"]*255;
+
+		var player = {"name": name, "civ": civ, "color": color};
+		players.push(player);
+	}
+	
+	var i = 1;
+	if (playerAssignments)
+	{
+		for each (var playerAssignment in playerAssignments)
+		{
+			players[i].name = playerAssignment.name;
+			i++;
+		}
+	}
+	
+	return players;
 }
 
 function leaveGame()
@@ -75,14 +131,95 @@ function handleNetMessage(message)
 			obj.hidden = false;
 			// TODO: we need to give players some way to exit
 			break;
+
 		default:
 			error("Unrecognised netstatus type "+message.status);
 			break;
 		}
 		break;
+	case "chat":
+		addChatMessage({ "type": "message", "username": message.username, "text": message.text });
+		break;
 	default:
 		error("Unrecognised net message type "+message.type);
 	}
+}
+
+function submitChatInput()
+{
+	toggleChatWindow();
+	
+	var input = getGUIObjectByName("chatInput");
+	var text = input.caption;
+	if (text.length)
+	{
+		if (g_IsNetworked)
+			Engine.SendNetworkChat(text);
+		else
+			getGUIObjectByName("chatText").caption = "Chat is not currently supported in single player mode.";
+
+		input.caption = "";
+	}
+}
+
+function addChatMessage(msg)
+{
+	// TODO: we ought to escape all values before displaying them,
+	// to prevent people inserting colours and newlines etc
+
+	var playerColor;
+
+	for (var i = 0; i < g_Players.length; i++)
+	{
+		if (msg.username == g_Players[i].name)
+		{
+			playerColor  = g_Players[i].color.r + " " + g_Players[i].color.g + " " + g_Players[i].color.b;
+			break
+		}
+	}
+
+	var formatted;
+
+	switch (msg.type)
+	{
+	case "connect":
+		formatted = '<[color="' + playerColor + '"]' + msg.username + '[/color]> [color="64 64 64"]has joined[/color]';
+		break;
+
+	case "disconnect":
+		formatted = '<[color="' + playerColor + '"]' + msg.username + '[/color]> [color="64 64 64"]has left[/color]';
+		break;
+
+	case "message":
+		formatted = '<[color="' + playerColor + '"]' + msg.username + '[/color]> ' + msg.text;
+		break;
+
+	default:
+		error("Invalid chat message '" + uneval(msg) + "'");
+		return;
+	}
+
+	var timerExpiredFunction = function () { removeOldChatMessages(); }
+	
+	g_ChatMessages.push(formatted);
+	g_ChatTimers.push(setTimeout(timerExpiredFunction, 30000));
+
+	if (g_ChatMessages.length > maxNumChatLines)
+	{
+		clearTimeout(g_ChatTimers[0]);
+		g_ChatTimers.shift();
+		g_ChatMessages.shift();
+	}
+
+	getGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+}
+
+function removeOldChatMessages()
+{
+	clearTimeout(g_ChatTimers[0]);
+	g_ChatTimers.shift();
+	g_ChatMessages.shift();
+	getGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
 function onTick()
@@ -125,7 +262,11 @@ function onSimulationUpdate()
 
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
-	updateSelectionDetails(simState);
+	updateSelectionDetails();
+	
+	if (g_ChatTimers.length)
+		console.write(g_ChatTimers[0]);
+			
 }
 
 function updateDebug(simState)
@@ -161,7 +302,6 @@ function updateDebug(simState)
 function updatePlayerDisplay(simState)
 {
 	var playerState = simState.players[Engine.GetPlayerID()];
-
 	if (!playerState)
 		return;
 

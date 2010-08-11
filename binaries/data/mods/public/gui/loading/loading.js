@@ -1,9 +1,20 @@
+var g_Data;
+
 function init(data)
 {
 	var mapName = "map";
 	if (data && data.attribs)
 		mapName = data.attribs.map;
 
+		
+		
+		
+	if (data)
+		g_Data = data;
+
+		
+		
+		
 	// Set to "hourglass" cursor.
 	setCursor("cursor-wait");
 
@@ -45,7 +56,7 @@ function reallyStartGame()
 	// to start the game (i.e. loading progress has reached 100%).
 
 	// Switch GUI from loading screen to game session.
-	Engine.SwitchGuiPage("page_session_new.xml");
+	Engine.SwitchGuiPage("page_session_new.xml", g_Data);
 	
 	// Restore default cursor.
 	setCursor ("arrow-default");

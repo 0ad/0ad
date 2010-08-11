@@ -39,3 +39,18 @@ function toggleMenu()
 	else
 		getGUIObjectByName("menu").hidden = true; // Hide menu
 }
+
+function toggleChatWindow()
+{
+	if (getGUIObjectByName("chatWindow").hidden)
+	{
+		getGUIObjectByName("chatInput").focus();
+		getGUIObjectByName("chatWindow").hidden = false; // View chat
+	}
+	else
+	{
+		getGUIObjectByName("chatWindow").hidden = true; // Hide chat
+	}
+		
+	getGUIObjectByName("menu").hidden = true; // Hide menu
+}

@@ -51,9 +51,14 @@
 			]]></action>
 		</object>
 		
+		<!-- Depending on the current state, it either opens message window or closes message window / posts message -->
+		<object hotkey="chat">
+			<action on="Press">toggleChatWindow();</action>
+		</object>
+		
 		<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
 		<object hotkey="killUnit">
-			<action on="Press">performCommand(g_Selection.toList()[0], "delete")</action>
+			<action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
 		</object>
 		
 		<!-- ================================  ================================ -->
@@ -120,6 +125,27 @@
 		</object>
 
 		<!-- ================================  ================================ -->
+		<!-- Chat -->
+		<!-- ================================  ================================ -->
+
+		<!-- Chat panel -->
+		<object name="chatPanel" size="0 50 512 100%-200" type="image" ghost="true">
+			<object name="chatText" size="3 1 100%-1 100%-25" type="text" style="chatPanel" ghost="true"/>
+		</object>
+
+		<!-- Chat window -->
+		<object name="chatWindow" size="50%-200 50%-13 50%+200 50%+13" type="image" sprite="wheatIndentFillLight" hidden="true" z="10">
+			<object name="chatInput" size="2 100%-23 100%-66 100%-3" type="input" style="wheatInput" max_length="40">
+				<action on="Press">submitChatInput();</action>
+			</object>
+
+			<object size="100%-65 100%-25 100%-1 100%" type="button" style="wheatButton">
+				Send
+				<action on="Press">submitChatInput();</action>
+			</object>
+		</object>
+		
+		<!-- ================================  ================================ -->
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
 		<object name="settingsWindow"
@@ -127,7 +153,7 @@
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
-			z="50"
+			z="30"
 		>
 			<object name="settingsTitleBar" style="wheatWindowTitleBar" type="text">Settings</object>
 
@@ -178,10 +204,11 @@
 		<!-- Menu Details -->
 		<!-- ================================  ================================ -->
 		<object name="menu"
-			size="0 0 114 128"
+			size="0 0 114 160"
 			type="image"
 			sprite="menuBackground"
 			hidden="true"
+			z="20"
 		>
 			<!-- Settings button -->
 			<object type="button"
@@ -194,14 +221,25 @@
 				<action on="Press">toggleSettingsWindow();</action>
 			</object>
 
+			<!-- Chat button -->
+			<object type="button"
+				name="chatButton"
+				style="wheatButtonFancy"
+				size="0 64 114 96"
+				tooltip_style="snToolTip"
+			>
+				<object size="0 0 100% 100%" type="text" style="centeredText" name="chatButtonText" ghost="true">Chat</object>
+				<action on="Press">toggleChatWindow();</action>
+			</object>
+
 			<!-- Pause Button -->
 			<object type="button"
 				style="wheatButtonFancy"
 				name="pauseButton"
-				size="0 64 114 96"
+				size="0 96 114 128"
 				tooltip_style="snToolTip"
 			>
-				<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause Game</object>
+				<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
 				<action on="Press">togglePause();</action>
 			</object>
 
@@ -209,10 +247,10 @@
 			<object type="button"
 				name="exitButton"
 				style="wheatButtonFancy"
-				size="0 96 114 128"
+				size="0 128 114 160"
 				tooltip_style="snToolTip"
 			>
-				<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit Game</object>
+				<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
 				<action on="Press">
 					toggleMenu();
 					<![CDATA[messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0, ["Yes", "No!"], [leaveGame, null]);]]>
@@ -226,6 +264,7 @@
 			style="wheatButtonFancy"
 			size="0 0 114 32"
 			tooltip_style="snToolTip"
+			z="30"
 		>
 			<object size="0 0 100% 100%" type="text" style="largeBoldCenteredText" name="menuButtonText" ghost="true">Menu</object>
 			<action on="Press">toggleMenu();</action>
