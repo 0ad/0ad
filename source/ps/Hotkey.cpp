@@ -145,7 +145,9 @@ static SHotkeyInfo hotkeyInfo[] =
 	{ HOTKEY_PLAYMUSIC, "playmusic", SDLK_p, 0 },
 	{ HOTKEY_PAUSE, "pause", SDLK_PAUSE, 0 },
 	{ HOTKEY_SPEED_INCREASE, "speed.increase", 0, 0 },
-	{ HOTKEY_SPEED_DECREASE, "speed.decrease", 0, 0 }
+	{ HOTKEY_SPEED_DECREASE, "speed.decrease", 0, 0 },
+	{ HOTKEY_KILL, "killUnit", 0, 0 },
+	{ HOTKEY_CHAT, "chat", 0, 0 }
 };
 
 /* SDL-type ends */
