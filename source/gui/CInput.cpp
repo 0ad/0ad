@@ -620,7 +620,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		break;
 
 	case GUIM_GOT_FOCUS:
-		//m_iBufferPos = 0; // TODO, a keeper?
+		m_iBufferPos = 0;
 		
 		break;
 

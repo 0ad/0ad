@@ -109,6 +109,9 @@ function onTick()
 		// Display rally points for selected buildings
 		Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
 	}
+
+	// Run timers
+	updateTimers();
 }
 
 function onSimulationUpdate()

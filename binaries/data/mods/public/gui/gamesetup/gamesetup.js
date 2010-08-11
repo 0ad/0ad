@@ -70,6 +70,8 @@ function init(attribs)
 	}
 
 	updatePlayerList();
+
+	getGUIObjectByName("chatInput").focus();
 }
 
 function cancelSetup()

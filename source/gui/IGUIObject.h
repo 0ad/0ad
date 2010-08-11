@@ -319,6 +319,7 @@ protected:
 	 */
 	virtual void Destroy();
 	
+public:
 	/**
      * This function is called with different messages
 	 * for instance when the mouse enters the object.
@@ -327,6 +328,7 @@ protected:
 	 */
 	virtual void HandleMessage(const SGUIMessage& UNUSED(Message)) {}
 
+protected:
 	/**
 	 * Draws the object.
 	 *
@@ -386,11 +388,13 @@ protected:
 		m_MouseHovering = false;
 	}
 
+public:
 	/**
 	 * Take focus!
 	 */
 	void SetFocus();
 
+protected:
 	/**
 	 * Check if object is focused.
 	 */

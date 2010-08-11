@@ -47,6 +47,7 @@ JSPropertySpec JSI_IGUIObject::JSI_props[] =
 JSFunctionSpec JSI_IGUIObject::JSI_methods[] = 
 {
 	{ "toString", JSI_IGUIObject::toString, 0, 0, 0 },
+	{ "focus", JSI_IGUIObject::focus, 0, 0, 0 },
 	{ 0 }
 };
 
@@ -61,7 +62,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// access nonexistent properties.)
 	if (propName == "constructor" ||
 		propName == "prototype"   ||
-		propName == "toString"
+		propName == "toString"    ||
+		propName == "focus"
 	   )
 		return JS_TRUE;
 
@@ -575,5 +577,14 @@ JSBool JSI_IGUIObject::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc)
 	snprintf(buffer, 256, "[GUIObject: %s]", e->GetName().c_str());
 	buffer[255] = 0;
 	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer));
+	return JS_TRUE;
+}
+
+JSBool JSI_IGUIObject::focus(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
+{
+	IGUIObject* e = (IGUIObject*)JS_GetPrivate( cx, obj );
+
+	e->SetFocus();
+	e->HandleMessage(SGUIMessage(GUIM_GOT_FOCUS));
 	return JS_TRUE;
 }
