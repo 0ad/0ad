@@ -111,8 +111,16 @@ function displayGeneralInfo(playerState, entState, template)
 	}
 
 	// Icon
-	getGUIObjectByName("sdIconImage").sprite = template.icon_sheet;
-	getGUIObjectByName("sdIconImage").cell_id = template.icon_cell;
+	if (template.icon_sheet && typeof template.icon_cell != "undefined")
+	{
+		getGUIObjectByName("sdIconImage").sprite = template.icon_sheet;
+		getGUIObjectByName("sdIconImage").cell_id = template.icon_cell;
+	}
+	else
+	{
+		// TODO: we should require all entities to have icons, so this case never occurs
+		getGUIObjectByName("sdIconImage").sprite = "bkFillBlack";
+	}
 	getGUIObjectByName("sdIcon").tooltip = iconTooltip;
 	//getGUIObjectByName("sdIconOutline"); // Need to change color of icon outline with the playerColor
 
