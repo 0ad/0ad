@@ -46,9 +46,9 @@ function init(attribs)
 
 	// Set a default map
 	if (attribs.type == "offline")
-		g_GameAttributes.map = "Latium";
+		g_GameAttributes.map = "Arcadia";
 	else
-		g_GameAttributes.map = "techdemo-mp";
+		g_GameAttributes.map = "Multiplayer_demo";
 
 	initMapNameList(getGUIObjectByName("mapSelection"));
 
