@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="125.407" y="114.493" z="345.667"/>
+		<Position x="131.681" y="98.6899" z="370.25"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -2658,72 +2658,6 @@
 			<Player>0</Player>
 			<Position x="462.7194" z="367.16126"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="519">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="150.18992" z="460.45566"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="520">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="137.40355" z="443.87809"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="521">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="147.31234" z="447.01117"/>
-			<Orientation y="-2.01465"/>
-		</Entity>
-		<Entity uid="522">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="135.02472" z="455.93924"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="523">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="157.12558" z="446.26221"/>
-			<Orientation y="-1.55188"/>
-		</Entity>
-		<Entity uid="524">
-			<Template>gaia/geology_metal_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="66.81629" z="491.15296"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="525">
-			<Template>gaia/geology_metal_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="71.90938" z="469.58448"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="526">
-			<Template>gaia/geology_metal_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="76.17377" z="479.54358"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="527">
-			<Template>gaia/geology_metal_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="80.61501" z="471.46222"/>
-			<Orientation y="0.79551"/>
-		</Entity>
-		<Entity uid="528">
-			<Template>gaia/geology_metal_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="65.94492" z="481.81168"/>
-			<Orientation y="-0.21274"/>
-		</Entity>
-		<Entity uid="529">
-			<Template>gaia/geology_metal_mediterranean</Template>
-			<Player>1</Player>
-			<Position x="61.18793" z="473.26221"/>
-			<Orientation y="2.80715"/>
 		</Entity>
 		<Entity uid="540">
 			<Template>gaia/flora_tree_pine</Template>
@@ -9703,11 +9637,6 @@
 			<Position x="65.0397" z="469.91871"/>
 			<Orientation y="0.20192"/>
 		</Entity>
-		<Entity uid="1892">
-			<Template>actor|props/flora/grass_medit_field.xml</Template>
-			<Position x="67.45797" z="476.54221"/>
-			<Orientation y="-0.14267"/>
-		</Entity>
 		<Entity uid="1893">
 			<Template>actor|props/flora/grass_medit_field.xml</Template>
 			<Position x="65.8625" z="483.79233"/>
@@ -11757,6 +11686,72 @@
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
 			<Position x="278.71714" z="180.87732"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2322">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="70.40816" z="493.54316"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2323">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="78.19582" z="483.37372"/>
+			<Orientation y="-0.20408"/>
+		</Entity>
+		<Entity uid="2324">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="67.90784" z="478.94208"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2325">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="64.09537" z="470.17981"/>
+			<Orientation y="0.58674"/>
+		</Entity>
+		<Entity uid="2326">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="76.01598" z="469.39136"/>
+			<Orientation y="-3.12352"/>
+		</Entity>
+		<Entity uid="2327">
+			<Template>gaia/geology_metal_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="72.5651" z="503.1587"/>
+			<Orientation y="-2.95466"/>
+		</Entity>
+		<Entity uid="2328">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="148.29914" z="458.14994"/>
+			<Orientation y="0.40552"/>
+		</Entity>
+		<Entity uid="2329">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="138.86101" z="453.50458"/>
+			<Orientation y="3.12894"/>
+		</Entity>
+		<Entity uid="2330">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="138.07528" z="440.96601"/>
+			<Orientation y="0.6103"/>
+		</Entity>
+		<Entity uid="2331">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="152.90983" z="438.39512"/>
+			<Orientation y="-1.04343"/>
+		</Entity>
+		<Entity uid="2332">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="148.26133" z="447.77079"/>
+			<Orientation y="-2.73687"/>
 		</Entity>
 	</Entities>
 	<Paths/>
