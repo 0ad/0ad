@@ -273,8 +273,15 @@ var UnitFsmSpec = {
 
 							// Try to find a nearby target of the same type
 
-							var range = 32; // TODO: what's a sensible number?
-							var players = [0]; // owned by Gaia (TODO: is this what we want?)
+							var range = 64; // TODO: what's a sensible number?
+
+							// Accept any resources owned by Gaia
+							var players = [0];
+							// Also accept resources owned by this unit's player:
+							var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+							if (cmpOwnership)
+								players.push(cmpOwnership.GetOwner());
+
 							var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 							var nearby = rangeMan.ExecuteQuery(this.entity, range, players, IID_ResourceSupply);
 							for each (var ent in nearby)
