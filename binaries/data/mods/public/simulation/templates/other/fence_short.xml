@@ -22,6 +22,9 @@
     <Square width="0.8" depth="6.5"/>
     <Height>4.0</Height>
   </Footprint>
+  <Obstruction>
+    <Static width="0.8" depth="6.5"/>
+  </Obstruction>
   <Vision>
     <Range>4</Range>
     <RetainInFog>true</RetainInFog>
