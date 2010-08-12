@@ -3,10 +3,10 @@
   <Identity>
     <GenericName>Siege Ballista</GenericName>
     <IconCell>37</IconCell>
-    <Tooltip>Bonused vs. Infantry and Cavalry units.
-			</Tooltip>
+    <Tooltip>Bonused vs. Infantry and Cavalry units.</Tooltip>
   </Identity>
   <Cost>
+    <BuildTime>45</BuildTime>
     <Resources>
       <wood>190</wood>
       <stone>100</stone>
@@ -30,7 +30,7 @@
     <Ranged>
       <Hack>0.0</Hack>
       <Pierce>35.0</Pierce>
-      <Crush>30.0</Crush>
+      <Crush>35.0</Crush>
       <MaxRange>54</MaxRange>
       <MinRange>8.0</MinRange>
       <ProjectileSpeed>30.0</ProjectileSpeed>

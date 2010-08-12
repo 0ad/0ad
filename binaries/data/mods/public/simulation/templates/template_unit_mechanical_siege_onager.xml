@@ -3,11 +3,11 @@
   <Identity>
     <GenericName>Siege Onager</GenericName>
     <IconCell>35</IconCell>
-    <Tooltip>Bonused vs. Structures and Massed Infantry.
-			</Tooltip>
+    <Tooltip>Bonused vs. Structures and Massed Infantry.</Tooltip>
   </Identity>
   <Cost>
     <Resources>
+    <BuildTime>60</BuildTime>
       <wood>330</wood>
       <stone>80</stone>
     </Resources>
@@ -30,7 +30,7 @@
     <Ranged>
       <Hack>35.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>40.0</Crush>
+      <Crush>50.0</Crush>
       <MaxRange>72</MaxRange>
       <MinRange>12.0</MinRange>
       <ProjectileSpeed>20.0</ProjectileSpeed>
