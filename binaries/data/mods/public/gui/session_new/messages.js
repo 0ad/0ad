@@ -1,5 +1,5 @@
 // Chat data
-const CHAT_TIMEOUT = 30000;
+const CHAT_TIMEOUT = 45000;
 const MAX_NUM_CHAT_LINES = 20;
 var chatMessages = [];
 var chatTimers = [];
@@ -25,6 +25,7 @@ function handleNetMessage(message)
 		case "disconnected":
 			obj.caption = "Connection to the server has been lost";
 			obj.hidden = false;
+			getGUIObjectByName("disconnectedExitButton").hidden = false;
 			// TODO: we need to give players some way to exit
 			break;
 		default:
@@ -35,8 +36,15 @@ function handleNetMessage(message)
 	case "players":
 		// Find and report all leavings
 		for (var host in g_PlayerAssignments)
+		{
 			if (! message.hosts[host])
-				addChatMessage({ "type": "disconnect", "username": g_PlayerAssignments[host].name });
+			{
+				var obj = getGUIObjectByName("netStatus");
+				obj.caption = g_PlayerAssignments[host].name + " has left\n\nConnection to the server has been lost";
+				obj.hidden = false;
+				getGUIObjectByName("disconnectedExitButton").hidden = false;
+			}
+		}
 		break;
 	case "chat":
 		addChatMessage({ "type": "message", "username": message.username, "text": message.text });

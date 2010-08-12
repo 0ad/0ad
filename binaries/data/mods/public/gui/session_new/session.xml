@@ -131,13 +131,13 @@
 		<!-- ================================  ================================ -->
 
 		<!-- Chat panel -->
-		<object name="chatPanel" size="0 100 512 100%-240" type="image" ghost="true">
+		<object name="chatPanel" size="0 80 100% 100%-240" type="image" ghost="true">
 			<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
 		</object>
 
 		<!-- Chat window -->
 		<object name="chatWindow" size="50%-200 50%-13 50%+200 50%+13" type="image" hidden="true" z="10" style="sessionPanelStyle">
-			<object name="chatInput" size="2 2 100%-66 100%-2" type="input" style="wheatInput" max_length="40">
+			<object name="chatInput" size="2 2 100%-66 100%-2" type="input" style="wheatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
@@ -525,6 +525,19 @@
 	<!-- ================================  ================================ -->
 	<!-- Network status -->
 	<!-- ================================  ================================ -->
-	<object name="netStatus" type="text" style="netStatus" z="100" hidden="true"/>
+	<object name="netStatus" type="text" style="netStatus" z="100" hidden="true">
+			<object type="button"
+				name="disconnectedExitButton"
+				style="wheatButtonFancy"
+				size="50%-84 50%+128 50%+84 50%+160"
+				tooltip_style="snToolTip"
+				hidden="true"
+			>
+				<object size="0 0 100% 100%" type="text" style="centeredText" name="disconnectedExitButtonText" ghost="true" font="serif-14">Return to Main Menu</object>
+				<action on="Press">leaveGame()</action>
+			</object>
+	
+	</object>
+	
 
 </objects>
