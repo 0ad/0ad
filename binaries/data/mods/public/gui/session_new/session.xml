@@ -129,13 +129,13 @@
 		<!-- ================================  ================================ -->
 
 		<!-- Chat panel -->
-		<object name="chatPanel" size="0 50 512 100%-200" type="image" ghost="true">
-			<object name="chatText" size="3 1 100%-1 100%-25" type="text" style="chatPanel" ghost="true"/>
+		<object name="chatPanel" size="0 100 512 100%-240" type="image" ghost="true">
+			<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatWindow" size="50%-200 50%-13 50%+200 50%+13" type="image" sprite="wheatIndentFillLight" hidden="true" z="10">
-			<object name="chatInput" size="2 100%-23 100%-66 100%-3" type="input" style="wheatInput" max_length="40">
+		<object name="chatWindow" size="50%-200 50%-13 50%+200 50%+13" type="image" hidden="true" z="10" style="sessionPanelStyle">
+			<object name="chatInput" size="2 2 100%-66 100%-2" type="input" style="wheatInput" max_length="40">
 				<action on="Press">submitChatInput();</action>
 			</object>
 

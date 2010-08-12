@@ -19,7 +19,7 @@ const PERSIANS = "Persians";
 const IBERIANS = "Iberians";
 
 // Chat data
-const maxNumChatLines = 30;
+const maxNumChatLines = 20;
 var g_ChatMessages = [];
 var g_ChatTimers = [];
 
@@ -50,6 +50,10 @@ function init(initData, hotloadData)
 	{
 		g_IsNetworked = initData.isNetworked; // Set network mode
 		g_Players = getPlayerData(initData.playerAssignments); // Cache the player data
+	}
+	else // Needed for autostart loading option
+	{
+		g_Players = getPlayerData(null); 
 	}
 
 	onSimulationUpdate();
@@ -156,7 +160,7 @@ function submitChatInput()
 		if (g_IsNetworked)
 			Engine.SendNetworkChat(text);
 		else
-			getGUIObjectByName("chatText").caption = "Chat is not currently supported in single player mode.";
+			addChatMessage({ "type": "message", "username": g_Players[1].name, "text": text });
 
 		input.caption = "";
 	}
@@ -183,15 +187,15 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = '<[color="' + playerColor + '"]' + msg.username + '[/color]> [color="64 64 64"]has joined[/color]';
+		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> [color="64 64 64"]has joined[/color]';
 		break;
 
 	case "disconnect":
-		formatted = '<[color="' + playerColor + '"]' + msg.username + '[/color]> [color="64 64 64"]has left[/color]';
+		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> [color="64 64 64"]has left[/color]';
 		break;
 
 	case "message":
-		formatted = '<[color="' + playerColor + '"]' + msg.username + '[/color]> ' + msg.text;
+		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> ' + msg.text;
 		break;
 
 	default:
@@ -263,10 +267,6 @@ function onSimulationUpdate()
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
-	
-	if (g_ChatTimers.length)
-		console.write(g_ChatTimers[0]);
-			
 }
 
 function updateDebug(simState)

@@ -15,8 +15,10 @@ function layoutSelectionSingle(entState)
 	getGUIObjectByName("sdIcon").hidden = false;
 	getGUIObjectByName("sdStatsArea").hidden = false;
 	
-	if (entState.maxHitpoints != undefined)
+	if (entState.hitpoints != undefined)
 		getGUIObjectByName("sdHealth").hidden = false;
+	else
+		getGUIObjectByName("sdHealth").hidden = true;
 
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
