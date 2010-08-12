@@ -98,7 +98,6 @@ function addChatMessage(msg)
 
 function removeOldChatMessages()
 {
-	clearTimeout(chatTimers[0]);
 	chatTimers.shift();
 	chatMessages.shift();
 	getGUIObjectByName("chatText").caption = chatMessages.join("\n");
