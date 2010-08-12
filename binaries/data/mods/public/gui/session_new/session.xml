@@ -397,7 +397,7 @@
 				</object>
 				
 				<!-- Resource Quantity -->
-				<object hidden="true" size="50 40 100% 60" type="image" name="sdResources" tooltip="Resources" tooltip_style="snToolTip">
+				<object hidden="true" size="60 40 100% 60" type="image" name="sdResources" tooltip="Resources" tooltip_style="snToolTip">
 					<object size="0 0 28 24" name="sdResourceIcon" type="image" style="resourceIcon" cell_id="0"/>
 					<object size="28 0 100% 100%" name="sdResourceStats" type="text" style="resourceStatsText"/>
 				</object>

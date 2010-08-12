@@ -14,7 +14,7 @@ var g_IsInGuiUpdate;
 var g_PlayerAssignments = {};
 
 // Default game setup attributes
-var g_GameAttributes = { "map": ""};
+var g_GameAttributes = { "map": "" };
 
 // Number of players for currently selected map
 var g_MaxPlayers = 8;
@@ -132,7 +132,9 @@ function handleNetMessage(message)
 		break;
 
 	case "start":
-		Engine.SwitchGuiPage("page_loading.xml", { "attribs": g_GameAttributes, "isNetworked" : g_IsNetworked, "playerAssignments": g_PlayerAssignments});
+		Engine.SwitchGuiPage("page_loading.xml", { "attribs": g_GameAttributes, 
+																		"isNetworked" : g_IsNetworked, 
+																		"playerAssignments": g_PlayerAssignments} );
 		break;
 
 	case "chat":
