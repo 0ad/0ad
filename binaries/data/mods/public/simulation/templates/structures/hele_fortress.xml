@@ -13,6 +13,12 @@
   <Health>
     <Max>4620</Max>
   </Health>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/hele_mechanical_siege_oxybeles
+      units/hele_mechanical_siege_lithobolos
+    </Entities>
+  </TrainingQueue>
   <VisualActor>
     <Actor>structures/hellenes/fortress.xml</Actor>
   </VisualActor>
