@@ -24,6 +24,8 @@ var g_IsNetworked = false;
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
 
+var g_PlayerAssignments = {};
+
 // Cache dev-mode settings that are frequently or widely used
 var g_DevSettings = {
 	controlAll: false
@@ -44,6 +46,7 @@ function init(initData, hotloadData)
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked; // Set network mode
+		g_PlayerAssignments = initData.playerAssignments;
 		g_Players = getPlayerData(initData.playerAssignments); // Cache the player data
 	}
 	else // Needed for autostart loading option

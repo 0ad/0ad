@@ -27,11 +27,16 @@ function handleNetMessage(message)
 			obj.hidden = false;
 			// TODO: we need to give players some way to exit
 			break;
-
 		default:
 			error("Unrecognised netstatus type "+message.status);
 			break;
 		}
+		break;
+	case "players":
+		// Find and report all leavings
+		for (var host in g_PlayerAssignments)
+			if (! message.hosts[host])
+				addChatMessage({ "type": "disconnect", "username": g_PlayerAssignments[host].name });
 		break;
 	case "chat":
 		addChatMessage({ "type": "message", "username": message.username, "text": message.text });
@@ -98,7 +103,7 @@ function addChatMessage(msg)
 
 function removeOldChatMessages()
 {
-	clearTimeout(chatTimers[0]);
+	clearTimeout(chatTimers[0]); // The timer only needs to be cleared when new messages bump old messages off
 	chatTimers.shift();
 	chatMessages.shift();
 	getGUIObjectByName("chatText").caption = chatMessages.join("\n");
