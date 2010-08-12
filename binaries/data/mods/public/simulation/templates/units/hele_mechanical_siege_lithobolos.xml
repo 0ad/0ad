@@ -27,8 +27,8 @@
   <Footprint replace="">
     <Square width="3.5" depth="8.0"/>
     <Height>3.5</Height>
-  <Obstruction>
-    <Static width="3.0" depth="7.5"/>
-  </Obstruction>
   </Footprint>
+  <Obstruction>
+    <Unit radius="6.0"/>
+  </Obstruction>
 </Entity>
