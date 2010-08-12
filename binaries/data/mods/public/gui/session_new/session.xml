@@ -11,6 +11,8 @@
 	<script file="gui/session_new/menu.js"/>
 	<script file="gui/session_new/selection_details.js"/>
 	<script file="gui/session_new/unit_commands.js"/>
+	<script file="gui/session_new/messages.js"/>
+	<script file="gui/session_new/utility_functions.js"/>
 
 	<object name="sn" hotkey="session.gui.toggle">
 		<action on="Tick">
