@@ -1,18 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-  
   <group>
     <variant frequency="100" name="Mesh">
       <mesh>skeletal/goat.pmd</mesh>
     </variant>
   </group>
-  
   <group>
     <variant frequency="100" name="Hair-dark">
-      <texture>skeletal/animal_goat.dds</texture>
+      <texture>skeletal/special_fleece.dds</texture>
     </variant>
   </group>
-
 </actor>
