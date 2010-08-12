@@ -73,12 +73,8 @@ function addChatMessage(msg)
 
 	switch (msg.type)
 	{
-	case "connect":
-		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> [color="64 64 64"]has joined[/color]';
-		break;
-
 	case "disconnect":
-		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> [color="64 64 64"]has left[/color]';
+		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> has left';
 		break;
 
 	case "message":
