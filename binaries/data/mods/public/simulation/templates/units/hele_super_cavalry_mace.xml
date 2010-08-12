@@ -6,7 +6,7 @@
 	<IconSheet>snPortraitSheetHele</IconSheet>
     <IconCell>15</IconCell>
     <Tooltip>Bonused vs. Cavalry and Archers. Weak vs. Super Units.</Tooltip>
-    <History>The Heyairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
+    <History>The Hetairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
   </Identity>
   <Cost>
     <BuildTime>40</BuildTime>
@@ -31,14 +31,14 @@
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>11.0</Hack>
+      <Hack>12.0</Hack>
       <Pierce>15.0</Pierce>
       <Crush>0.0</Crush>
     </Melee>
     <Charge>
       <Hack>38.5</Hack>
       <Pierce>52.5</Pierce>
-      <Crush>0.0</Crush>
+      <Crush>10.0</Crush>
     </Charge>
   </Attack>
   <VisualActor>
