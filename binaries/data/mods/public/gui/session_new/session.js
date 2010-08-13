@@ -23,7 +23,6 @@ var g_IsNetworked = false;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
-
 var g_PlayerAssignments = {};
 
 // Cache dev-mode settings that are frequently or widely used
@@ -110,6 +109,10 @@ function onSimulationUpdate()
 	if (!simState)
 		return;
 
+		
+	handleNotifications();
+		
+		
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();

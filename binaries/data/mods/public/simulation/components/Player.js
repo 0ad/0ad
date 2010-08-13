@@ -82,14 +82,29 @@ Player.prototype.AddResources = function(amounts)
 
 Player.prototype.TrySubtractResources = function(amounts)
 {
-	// Check we can afford it all
+	// Check if we can afford it all
+	var amountsNeeded = {};
 	for (var type in amounts)
 		if (amounts[type] > this.resourceCount[type])
-			return false;
-
-	// Subtract the resources
-	for (var type in amounts)
-		this.resourceCount[type] -= amounts[type];
+			amountsNeeded[type] = amounts[type] - this.resourceCount[type];
+	
+	var formattedAmountsNeeded = [];
+	for (var type in amountsNeeded)
+		formattedAmountsNeeded.push(type + ": " + amountsNeeded[type]);
+			
+	// If we don't have enough resources, send a notification to the player
+	if (formattedAmountsNeeded.length)
+	{
+		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification("Resources needed: " + formattedAmountsNeeded.join(", "));
+		return false;
+	}
+	else
+	{
+		// Subtract the resources
+		for (var type in amounts)
+			his.resourceCount[type] -= amounts[type];	
+	}
 
 	return true;
 };

@@ -81,7 +81,7 @@ TrainingQueue.prototype.AddBatch = function(player, templateName, count)
 
 	if (!cmpPlayer.TrySubtractResources(costs))
 	{
-		// TODO: report error to player (they ran out of resources)
+		// TrySubtractResources should report error to player (they ran out of resources)
 		return;
 	}
 

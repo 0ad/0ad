@@ -1,4 +1,7 @@
-function GuiInterface() {}
+function GuiInterface()
+{
+	this.notifications = [];
+}
 
 GuiInterface.prototype.Schema =
 	"<a:component type='system'/><empty/>";
@@ -12,6 +15,21 @@ GuiInterface.prototype.Init = function()
 {
 	this.placementEntity = undefined; // = undefined or [templateName, entityID]
 	this.rallyPoints = undefined;
+};
+
+GuiInterface.prototype.PushNotification = function(notification)
+{
+	this.notifications.push(notification);
+};
+
+GuiInterface.prototype.PopNotification = function()
+{
+	//warn(uneval(this.notifications));
+
+	if (this.notifications.length)
+		return this.notifications.pop();
+	else
+		return "";
 };
 
 GuiInterface.prototype.GetSimulationState = function(player)
@@ -367,6 +385,7 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 // trusted and indicates the player associated with the current client; no data should
 // be returned unless this player is meant to be able to see it.)
 var exposedFunctions = {
+	"PopNotification": 1,
 	"GetSimulationState": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,

@@ -4,6 +4,39 @@ const MAX_NUM_CHAT_LINES = 20;
 var chatMessages = [];
 var chatTimers = [];
 
+// Notification Data
+const NOTIFICATION_TIMEOUT = 10000;
+const MAX_NUM_NOTIFICATION_LINES = 3;
+var notifications = [];
+var notificationsTimers = [];
+
+// Notifications
+function handleNotifications()
+{
+	var notification = Engine.GuiInterfaceCall("PopNotification");
+	var timerExpiredFunction = function () { removeOldNotifications(); }
+
+	if (notification)
+	{
+		notifications.push(notification);
+		notificationsTimers.push(setTimeout(timerExpiredFunction, NOTIFICATION_TIMEOUT));
+
+		if (notifications.length <= MAX_NUM_NOTIFICATION_LINES)
+			getGUIObjectByName("notificationText").caption = notifications.join("\n");
+		else
+			removeOldNotifications();
+	}
+}
+
+function removeOldNotifications()
+{
+	clearTimeout(notificationsTimers[0]); // The timer only needs to be cleared when new notifications bump old notifications off
+	notificationsTimers.shift();
+	notifications.shift();
+	getGUIObjectByName("notificationText").caption = notifications.join("\n");
+}
+
+//Messages
 function handleNetMessage(message)
 {
 	log("Net message: "+uneval(message));
@@ -84,7 +117,7 @@ function addChatMessage(msg)
 	switch (msg.type)
 	{
 	case "disconnect":
-		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> has left';
+		formatted = "<[color=\"" + playerColor + "\"]" + msg.username + "[/color]> has left";
 		break;
 
 	case "message":
@@ -102,7 +135,7 @@ function addChatMessage(msg)
 	chatMessages.push(formatted);
 	chatTimers.push(setTimeout(timerExpiredFunction, CHAT_TIMEOUT));
 
-	if (chatMessages.length < MAX_NUM_CHAT_LINES)
+	if (chatMessages.length <= MAX_NUM_CHAT_LINES)
 		getGUIObjectByName("chatText").caption = chatMessages.join("\n");
 	else
 		removeOldChatMessages();
@@ -124,9 +157,3 @@ function getColorByPlayerName(playerName)
 			
 	return "255 255 255";
 }
-
-function clearChatInput()
-{
-	getGUIObjectByName("chatInput").caption = "";
-}
-
