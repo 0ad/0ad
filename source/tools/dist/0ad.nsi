@@ -94,13 +94,14 @@ Section "!Game and data files" GameSection
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "NoRepair" 1
 
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
-    
+
   ;Create shortcuts
   CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\system\AtlasUI.dll"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
-  
+  WriteINIStr "$SMPROGRAMS\$StartMenuFolder\Web site.url" "InternetShortcut" "URL" "http://wildfiregames.com/0ad/"
+
   !insertmacro MUI_STARTMENU_WRITE_END
 
 SectionEnd
@@ -153,6 +154,7 @@ Section "Uninstall"
 
   RMDir /r "$INSTDIR\binaries"
   RMDir /r "$INSTDIR\source"
+  RMDir /r "$INSTDIR\docs"
   RMDir /r "$INSTDIR\build"
   RMDir /r "$INSTDIR\libraries"
   Delete "$INSTDIR\*.txt"
@@ -170,10 +172,10 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\Web site.lnk"
   RMDir "$SMPROGRAMS\$StartMenuFolder"
 
   DeleteRegKey SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D."
   DeleteRegKey /ifempty SHCTX "Software\0 A.D."
 
 SectionEnd
-
