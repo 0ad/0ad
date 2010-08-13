@@ -103,7 +103,7 @@ Player.prototype.TrySubtractResources = function(amounts)
 	{
 		// Subtract the resources
 		for (var type in amounts)
-			his.resourceCount[type] -= amounts[type];	
+			this.resourceCount[type] -= amounts[type];	
 	}
 
 	return true;

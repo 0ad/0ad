@@ -109,10 +109,8 @@ function onSimulationUpdate()
 	if (!simState)
 		return;
 
-		
 	handleNotifications();
-		
-		
+
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
