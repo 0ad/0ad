@@ -97,7 +97,7 @@ public:
 	 * Called when all commands for a given turn have been received.
 	 * This allows Update to progress to that turn.
 	 */
-	void FinishedAllCommands(u32 turn);
+	void FinishedAllCommands(u32 turn, u32 turnLength);
 
 protected:
 	/**
@@ -122,6 +122,9 @@ protected:
 
 	/// The latest turn for which we have received all commands from all clients
 	u32 m_ReadyTurn;
+
+	// Current turn length
+	u32 m_TurnLength;
 
 	/// Commands queued at each turn (index 0 is for m_CurrentTurn+1)
 	std::deque<std::map<u32, std::vector<SimulationCommand> > > m_QueuedCommands;
@@ -199,6 +202,8 @@ public:
 
 	void InitialiseClient(int client);
 
+	void SetTurnLength(u32 msecs);
+
 protected:
 	/// The latest turn for which we have received all commands from all clients
 	u32 m_ReadyTurn;
@@ -212,6 +217,9 @@ protected:
 
 	// Map of turn -> {Client ID -> state hash}; old indexes <= min(m_ClientsSimulated) are deleted
 	std::map<u32, std::map<int, std::string> > m_ClientStateHashes;
+
+	// Current turn length
+	u32 m_TurnLength;
 
 	CNetServer& m_NetServer;
 };

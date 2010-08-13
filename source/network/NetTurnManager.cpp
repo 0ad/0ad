@@ -35,7 +35,7 @@
 #include <fstream>
 #include <iomanip>
 
-static const int TURN_LENGTH = 200; // TODO: this should be a variable controlled by the server depending on latency
+static const int DEFAULT_TURN_LENGTH = 200;
 
 static const int COMMAND_DELAY = 2;
 
@@ -51,7 +51,7 @@ static std::string Hexify(const std::string& s)
 }
 
 CNetTurnManager::CNetTurnManager(CSimulation2& simulation, int clientId, IReplayLogger& replay) :
-	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_DeltaTime(0),
+	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH), m_DeltaTime(0),
 	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false), m_Replay(replay)
 {
 	// When we are on turn n, we schedule new commands for n+2.
@@ -96,18 +96,18 @@ bool CNetTurnManager::Update(float frameLength)
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
 
-		m_Replay.Turn(m_CurrentTurn-1, TURN_LENGTH, commands);
+		m_Replay.Turn(m_CurrentTurn-1, m_TurnLength, commands);
 
 #ifdef NETTURN_LOG
 		NETTURN_LOG(L"Running %d cmds\n", commands.size());
 #endif
 
-		m_Simulation2.Update(TURN_LENGTH, commands);
+		m_Simulation2.Update(m_TurnLength, commands);
 
 		NotifyFinishedUpdate(m_CurrentTurn);
 
 		// Set the time for the next turn update
-		m_DeltaTime -= TURN_LENGTH / 1000.f;
+		m_DeltaTime -= m_TurnLength / 1000.f;
 
 		return true;
 	}
@@ -156,7 +156,10 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 
 void CNetTurnManager::Interpolate(float frameLength)
 {
-	float offset = clamp(m_DeltaTime / (TURN_LENGTH / 1000.f) + 1.0, 0.0, 1.0);
+	// TODO: using m_TurnLength might be a bit dodgy when length changes - maybe
+	// we need to save the previous turn length?
+
+	float offset = clamp(m_DeltaTime / (m_TurnLength / 1000.f) + 1.0, 0.0, 1.0);
 	m_Simulation2.Interpolate(frameLength, offset);
 }
 
@@ -178,14 +181,15 @@ void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, 
 	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].push_back(cmd);
 }
 
-void CNetTurnManager::FinishedAllCommands(u32 turn)
+void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
 {
 #ifdef NETTURN_LOG
-	NETTURN_LOG(L"FinishedAllCommands(%d)\n", turn);
+	NETTURN_LOG(L"FinishedAllCommands(%d, %d)\n", turn, turnLength);
 #endif
 
 	debug_assert(turn == m_ReadyTurn + 1);
 	m_ReadyTurn = turn;
+	m_TurnLength = turnLength;
 }
 
 void CNetClientTurnManager::PostCommand(CScriptValRooted data)
@@ -211,7 +215,7 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 
 	// Send message to the server
 	CEndCommandBatchMessage msg;
-	msg.m_TurnLength = TURN_LENGTH;
+	msg.m_TurnLength = DEFAULT_TURN_LENGTH; // TODO: why do we send this?
 	msg.m_Turn = turn;
 	m_NetClient.SendMessage(&msg);
 }
@@ -255,7 +259,7 @@ void CNetLocalTurnManager::PostCommand(CScriptValRooted data)
 
 void CNetLocalTurnManager::NotifyFinishedOwnCommands(u32 turn)
 {
-	FinishedAllCommands(turn);
+	FinishedAllCommands(turn, DEFAULT_TURN_LENGTH);
 }
 
 void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn))
@@ -271,7 +275,7 @@ void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))
 
 
 CNetServerTurnManager::CNetServerTurnManager(CNetServer& server) :
-	m_NetServer(server), m_ReadyTurn(1)
+	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH)
 {
 }
 
@@ -300,7 +304,7 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
 
 	// Tell all clients that the next turn is ready
 	CEndCommandBatchMessage msg;
-	msg.m_TurnLength = TURN_LENGTH;
+	msg.m_TurnLength = m_TurnLength;
 	msg.m_Turn = turn;
 	m_NetServer.Broadcast(&msg);
 
@@ -363,4 +367,9 @@ void CNetServerTurnManager::InitialiseClient(int client)
 	m_ClientsSimulated[client] = 0;
 
 	// TODO: do we need some kind of UninitialiseClient in case they leave?
+}
+
+void CNetServerTurnManager::SetTurnLength(u32 msecs)
+{
+	m_TurnLength = msecs;
 }

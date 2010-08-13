@@ -165,6 +165,12 @@ public:
 	 */
 	ScriptInterface& GetScriptInterface();
 
+	/**
+	 * Set the turn length to a fixed value.
+	 * TODO: we should replace this with some adapative lag-dependent computation.
+	 */
+	void SetTurnLength(u32 msecs);
+
 protected:
 	/// Callback for autostart; called when a player has finished connecting
 	virtual void OnAddPlayer() { }

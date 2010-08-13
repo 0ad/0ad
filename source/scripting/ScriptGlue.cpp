@@ -121,6 +121,18 @@ JSBool SetSimRate(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval
 	return JS_TRUE;
 }
 
+JSBool SetTurnLength(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
+{
+	JSU_REQUIRE_PARAMS(1);
+
+	if (g_NetServer)
+		g_NetServer->SetTurnLength(ToPrimitive<unsigned int>(argv[0]));
+	else
+		LOGERROR(L"Only network host can change turn length");
+
+	return JS_TRUE;
+}
+
 // Script profiling functions: Begin timing a piece of code with StartJsTimer(num)
 // and stop timing with StopJsTimer(num). The results will be printed to stdout
 // when the game exits.
@@ -616,6 +628,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	// Timer
 	JS_FUNC("setSimRate", SetSimRate, 1)
+	JS_FUNC("setTurnLength", SetTurnLength, 1)
 
 	// Profiling
 	JS_FUNC("startXTimer", StartJsTimer, 1)

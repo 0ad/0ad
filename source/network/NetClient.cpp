@@ -405,7 +405,7 @@ bool CNetClient::OnInGame(void *context, CFsmEvent* event)
 		else if (message->GetType() == NMT_END_COMMAND_BATCH)
 		{
 			CEndCommandBatchMessage* endMessage = static_cast<CEndCommandBatchMessage*> (message);
-			client->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn);
+			client->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn, endMessage->m_TurnLength);
 		}
 	}
 

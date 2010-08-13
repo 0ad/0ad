@@ -371,6 +371,12 @@ ScriptInterface& CNetServer::GetScriptInterface()
 	return *m_ScriptInterface;
 }
 
+void CNetServer::SetTurnLength(u32 msecs)
+{
+	if (m_ServerTurnManager)
+		m_ServerTurnManager->SetTurnLength(msecs);
+}
+
 bool CNetServer::OnClientHandshake(void* context, CFsmEvent* event)
 {
 	debug_assert(event->GetType() == (uint)NMT_CLIENT_HANDSHAKE);
