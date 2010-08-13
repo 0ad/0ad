@@ -53,6 +53,8 @@ function init(initData, hotloadData)
 	{
 		g_Players = getPlayerData(null); 
 	}
+	
+	cacheMenuObjects();
 
 	onSimulationUpdate();
 }

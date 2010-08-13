@@ -141,15 +141,20 @@
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatWindow" size="50%-200 50%-13 50%+200 50%+13" type="image" hidden="true" z="10" style="sessionPanelStyle">
-			<object name="chatInput" size="2 2 100%-66 100%-2" type="input" style="wheatInput" max_length="80">
+		<object name="chatWindow" size="50%-160 50%-32 50%+160 50%+32" type="image" hidden="true" z="10" style="wheatWindow">
+			<object name="chatInput" size="0 0 100%-0 24" type="input" style="wheatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
-			<object size="100%-65 100%-25 100%-1 100%" type="button" style="wheatButton">
+			<object  size="32 32 144 64" type="button" style="wheatButton">
+				Cancel
+				<action on="Press">toggleChatWindow();</action>
+			</object>
+			<object size="100%-144 32 100%-32 64" type="button" style="wheatButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
+
 		</object>
 		
 		<!-- ================================  ================================ -->
@@ -167,7 +172,7 @@
 			<object name="settingsOptions"
 				size="30 30 100%-30 150"
 				type="image"
-				style="goldPanel"
+				style="sessionPanelStyle"
 			>
 				<!-- Settings / shadows -->
 				<object size="0 10 100%-80 35" type="text" style="settingsText" ghost="true">Enable Shadows</object>

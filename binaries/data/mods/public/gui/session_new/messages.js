@@ -1,5 +1,5 @@
 // Chat data
-const CHAT_TIMEOUT = 45000;
+const CHAT_TIMEOUT = 30000;
 const MAX_NUM_CHAT_LINES = 20;
 var chatMessages = [];
 var chatTimers = [];
@@ -26,7 +26,6 @@ function handleNetMessage(message)
 			obj.caption = "Connection to the server has been lost";
 			obj.hidden = false;
 			getGUIObjectByName("disconnectedExitButton").hidden = false;
-			// TODO: we need to give players some way to exit
 			break;
 		default:
 			error("Unrecognised netstatus type "+message.status);
@@ -56,8 +55,6 @@ function handleNetMessage(message)
 
 function submitChatInput()
 {
-	toggleChatWindow();
-	
 	var input = getGUIObjectByName("chatInput");
 	var text = input.caption;
 	if (text.length)
@@ -72,6 +69,8 @@ function submitChatInput()
 		// Remove focus
 		input.blur();
 	}
+	
+	toggleChatWindow();
 }
 
 function addChatMessage(msg)
@@ -89,7 +88,8 @@ function addChatMessage(msg)
 		break;
 
 	case "message":
-		formatted = '<[font=\"serif-bold-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> [font=\"serif-stroke-14\"]' + msg.text + '[/font]';
+		console.write("<" + msg.username + "> " + msg.text);
+		formatted = "<[color=\"" + playerColor + "\"]" + msg.username + "[/color]> " + msg.text;
 		break;
 
 	default:
@@ -124,3 +124,9 @@ function getColorByPlayerName(playerName)
 			
 	return "255 255 255";
 }
+
+function clearChatInput()
+{
+	getGUIObjectByName("chatInput").caption = "";
+}
+

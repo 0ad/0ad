@@ -1,56 +1,55 @@
+// Cache these objects for future access
+var devCommands;
+var menu;
+var settingsWindow;
+var chatWindow;
+var chatInput;
+var pauseOverlay;
+
+function cacheMenuObjects()
+{
+	devCommands = getGUIObjectByName("devCommands");
+	menu = getGUIObjectByName("menu");
+	settingsWindow = getGUIObjectByName("settingsWindow");
+	chatWindow = getGUIObjectByName("chatWindow");
+	chatInput = getGUIObjectByName("chatInput");
+	pauseOverlay = getGUIObjectByName("pauseOverlay");
+}
+
 function toggleDeveloperOverlay()
 {
-	if (getGUIObjectByName("devCommands").hidden)
-		getGUIObjectByName("devCommands").hidden = false; // show overlay
-	else
-		getGUIObjectByName("devCommands").hidden = true; // hide overlay
-}
-
-function toggleSettingsWindow()
-{
-	if (getGUIObjectByName("settingsWindow").hidden)
-		getGUIObjectByName("settingsWindow").hidden = false; // show settings
-	else
-		getGUIObjectByName("settingsWindow").hidden = true; // hide settings
-
-	getGUIObjectByName("menu").hidden = true; // Hide menu
-}
-
-function togglePause()
-{
-	if (getGUIObjectByName("pauseOverlay").hidden)
-	{
-		getGUIObjectByName("pauseOverlay").hidden = false; // pause game
-		setPaused(true);
-	}
-	else
-	{
-		getGUIObjectByName("pauseOverlay").hidden = true; // unpause game
-		setPaused(false);
-	}
-
-	getGUIObjectByName("menu").hidden = true; // Hide menu
+	devCommands.hidden = !devCommands.hidden;
 }
 
 function toggleMenu()
 {
-	if (getGUIObjectByName("menu").hidden)
-		getGUIObjectByName("menu").hidden = false; // View menu
-	else
-		getGUIObjectByName("menu").hidden = true; // Hide menu
+	menu.hidden = !menu.hidden;
+}
+
+function toggleSettingsWindow()
+{
+	settingsWindow.hidden = !settingsWindow.hidden;
+	menu.hidden = true;
 }
 
 function toggleChatWindow()
 {
-	if (getGUIObjectByName("chatWindow").hidden)
-	{
-		getGUIObjectByName("chatInput").focus();
-		getGUIObjectByName("chatWindow").hidden = false; // View chat
-	}
+	if (chatWindow.hidden)
+		chatInput.focus(); // Grant focus to the input area
 	else
-	{
-		getGUIObjectByName("chatWindow").hidden = true; // Hide chat
-	}
-		
-	getGUIObjectByName("menu").hidden = true; // Hide menu
+		chatInput.caption = ""; // Clear chat input
+
+	chatWindow.hidden = !chatWindow.hidden;
+	menu.hidden = true;
+}
+
+function togglePause()
+{
+	if (pauseOverlay.hidden)
+		setPaused(true);
+	else
+		setPaused(false);
+
+	pauseOverlay.hidden = !pauseOverlay.hidden;
+	menu.hidden = true;
 }
