@@ -58,8 +58,11 @@ TrainingQueue.prototype.AddBatch = function(player, templateName, count)
 	if (!template)
 		return;
 
-	var timeMult = count; // TODO: we want some kind of discount for larger batches
 	var costMult = count;
+
+	// Apply a time discount to larger batches.
+	// TODO: work out what equation we should use here.
+	var timeMult = Math.pow(count, 0.7);
 
 	var time = timeMult * (template.Cost.BuildTime || 1);
 	var costs = {};
@@ -202,8 +205,6 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 	// until we've used up all the time (so that we work accurately
 	// with items that take fractions of a second)
 	var time = g_ProgressInterval;
-
-	time *= 10; // XXX: this is a hack to make testing easier
 
 	while (time > 0 && this.queue.length)
 	{
