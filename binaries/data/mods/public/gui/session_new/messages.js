@@ -68,6 +68,9 @@ function submitChatInput()
 			addChatMessage({ "type": "message", "username": g_Players[1].name, "text": text });
 
 		input.caption = "";
+
+		// Remove focus
+		input.blur();
 	}
 }
 

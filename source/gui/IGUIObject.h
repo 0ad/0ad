@@ -375,9 +375,6 @@ protected:
 	 */
 	virtual float GetBufferedZ() const;
 
-	// This is done internally
-	CGUI *GetGUI() { return m_pGUI; }
-	const CGUI *GetGUI() const { return m_pGUI; }
 	void SetGUI(CGUI * const &pGUI) { m_pGUI = pGUI; }
 
 	// Set parent
@@ -389,6 +386,9 @@ protected:
 	}
 
 public:
+	CGUI *GetGUI() { return m_pGUI; }
+	const CGUI *GetGUI() const { return m_pGUI; }
+
 	/**
 	 * Take focus!
 	 */

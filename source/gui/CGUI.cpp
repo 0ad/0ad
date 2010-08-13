@@ -149,28 +149,16 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			switch (ev->ev.button.button)
 			{
 			case SDL_BUTTON_LEFT:
+				// Focus the clicked object (or focus none if nothing clicked on)
+				SetFocusedObject(pNearest);
+
 				if (pNearest)
 				{
-					if (pNearest != m_FocusedObject)
-					{
-						// Update focused object
-						if (m_FocusedObject)
-							m_FocusedObject->HandleMessage(SGUIMessage(GUIM_LOST_FOCUS));
-						m_FocusedObject = pNearest;
-						m_FocusedObject->HandleMessage(SGUIMessage(GUIM_GOT_FOCUS));
-					}
-
 					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_LEFT));
 					pNearest->ScriptEvent("mouseleftpress");
 
 					// Block event, so things on the map (behind the GUI) won't be pressed
 					ret = IN_HANDLED;
-				}
-				else if (m_FocusedObject)
-				{
-					m_FocusedObject->HandleMessage(SGUIMessage(GUIM_LOST_FOCUS));
-					//if (m_FocusedObject-> TODO SelfishFocus?
-					m_FocusedObject = 0;
 				}
 				break;
 
@@ -535,6 +523,19 @@ IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 		return it->second;
 }
 
+void CGUI::SetFocusedObject(IGUIObject* pObject)
+{
+	if (pObject == m_FocusedObject)
+		return;
+
+	if (m_FocusedObject)
+		m_FocusedObject->HandleMessage(SGUIMessage(GUIM_LOST_FOCUS));
+
+	m_FocusedObject = pObject;
+
+	if (m_FocusedObject)
+		m_FocusedObject->HandleMessage(SGUIMessage(GUIM_GOT_FOCUS));
+}
 
 // private struct used only in GenerateText(...)
 struct SGenerateTextImage

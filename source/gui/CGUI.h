@@ -311,6 +311,15 @@ private:
 	 */
 	IGUIObject *GetFocusedObject() { return m_FocusedObject; }
 
+public:
+	/**
+	 * Change focus to new object.
+	 * Will send LOST_FOCUS/GOT_FOCUS messages as appropriate.
+	 * pObject can be NULL to remove all focus.
+	 */
+	void SetFocusedObject(IGUIObject* pObject);
+
+private:
 	//--------------------------------------------------------
 	/** @name XML Reading Xeromyces specific subroutines
 	 *

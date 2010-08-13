@@ -48,6 +48,7 @@ JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
 {
 	{ "toString", JSI_IGUIObject::toString, 0, 0, 0 },
 	{ "focus", JSI_IGUIObject::focus, 0, 0, 0 },
+	{ "blur", JSI_IGUIObject::blur, 0, 0, 0 },
 	{ 0 }
 };
 
@@ -63,7 +64,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	if (propName == "constructor" ||
 		propName == "prototype"   ||
 		propName == "toString"    ||
-		propName == "focus"
+		propName == "focus"       ||
+		propName == "blur"
 	   )
 		return JS_TRUE;
 
@@ -580,11 +582,18 @@ JSBool JSI_IGUIObject::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc)
 	return JS_TRUE;
 }
 
-JSBool JSI_IGUIObject::focus(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
+JSBool JSI_IGUIObject::focus(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* UNUSED(rval))
 {
 	IGUIObject* e = (IGUIObject*)JS_GetPrivate( cx, obj );
 
-	e->SetFocus();
-	e->HandleMessage(SGUIMessage(GUIM_GOT_FOCUS));
+	e->GetGUI()->SetFocusedObject(e);
+	return JS_TRUE;
+}
+
+JSBool JSI_IGUIObject::blur(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* UNUSED(rval))
+{
+	IGUIObject* e = (IGUIObject*)JS_GetPrivate( cx, obj );
+
+	e->GetGUI()->SetFocusedObject(NULL);
 	return JS_TRUE;
 }

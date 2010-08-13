@@ -32,6 +32,7 @@ namespace JSI_IGUIObject
 	JSBool construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
 	JSBool toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
 	JSBool focus(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
+	JSBool blur(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
 	void init();
 }
 
