@@ -52,7 +52,7 @@ class CCamera
 		// everytime the view or projection matrices are
 		// altered.
 		void UpdateFrustum ();
-		const CFrustum& GetFrustum () { return m_ViewFrustum; }
+		const CFrustum& GetFrustum () const { return m_ViewFrustum; }
 
 		void SetViewPort (const SViewPort& viewport);
 		const SViewPort& GetViewPort () const { return m_ViewPort; }
@@ -69,7 +69,7 @@ class CCamera
 		/////////////////////////////////////////////////////////////////////////////////////////
 		// BuildCameraRay: calculate origin and ray direction of a ray through
 		// the pixel (px,py) on the screen
-		void BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir);
+		void BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) const;
 
 		// General helpers that seem to fit here
 
@@ -78,9 +78,9 @@ class CCamera
 
 		// Get the point on the terrain corresponding to pixel (px,py) (or the mouse coordinates)
 		// The aboveWater parameter determines whether we want to stop at the water plane or also get underwater points
-		CVector3D GetWorldCoordinates(int px, int py, bool aboveWater=false);
+		CVector3D GetWorldCoordinates(int px, int py, bool aboveWater=false) const;
 		// Get the point on the plane at height h corresponding to pixel (px,py)
-		CVector3D GetWorldCoordinates(int px, int py, float h);
+		CVector3D GetWorldCoordinates(int px, int py, float h) const;
 		// Get the point on the terrain the camera is pointing towards
 		CVector3D GetFocus();
 

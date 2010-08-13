@@ -19,6 +19,7 @@
 
 #include "Camera.h"
 #include "CinemaTrack.h"
+#include "GameView.h"
 #include "LightEnv.h"
 #include "MapReader.h"
 #include "MapWriter.h"
@@ -501,7 +502,7 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 // RewriteAllMaps
 void CMapWriter::RewriteAllMaps(CTerrain* pTerrain,
 								WaterManager* pWaterMan, SkyManager* pSkyMan,
-								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+								CLightEnv* pLightEnv, CGameView* pGameView, CCinemaManager* pCinema,
 								CTriggerManager* pTrigMan, CSimulation2* pSimulation2)
 {
 	VfsPaths pathnames;
@@ -510,13 +511,13 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain,
 	{
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(pathnames[i], pTerrain, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pTrigMan, pSimulation2, -1);
+		reader->LoadMap(pathnames[i], pTerrain, pWaterMan, pSkyMan, pLightEnv, pGameView, pCinema, pTrigMan, pSimulation2, -1);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 
 		CStrW newPathname(pathnames[i].string());
 		newPathname.Replace(L"scenarios/", L"scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(newPathname, pTerrain, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
+		writer.SaveMap(newPathname, pTerrain, pWaterMan, pSkyMan, pLightEnv, pGameView->GetCamera(), pCinema, pSimulation2);
 	}
 }

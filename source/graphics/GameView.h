@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,22 +81,8 @@ public:
 
 	InReaction HandleEvent(const SDL_Event_* ev);
 
-	//Keep the camera in between boundaries/smooth camera scrolling/translating
-	//Should call this whenever moving (translating) the camera
-	void CameraLock(const CVector3D& Trans, bool smooth=true);
-	void CameraLock(float x, float y, float z, bool smooth=true);
-
-	// Camera Control Functions (used by input handler)
-	void ResetCamera();
-	void ResetCameraOrientation();
-	void RotateAboutTarget();
-
-	void PushCameraTarget( const CVector3D& target );
-	void SetCameraTarget( const CVector3D& target );
-	void PopCameraTarget();
-
-	//Keep view the same but follow the unit
-//	void AttachToUnit(CEntity* target); // TODO: reimplement this for new sim system
+	void MoveCameraTarget(const CVector3D& target);
+	void ResetCameraTarget(const CVector3D& target);
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();

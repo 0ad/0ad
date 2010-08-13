@@ -161,7 +161,9 @@ MESSAGEHANDLER(CinemaEvent)
 	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_PATH )
 		manager->MoveToPointAt(msg->t);
 	else if ( msg->mode == eCinemaEventMode::RESET )
-		g_Game->GetView()->ResetCamera();
+	{
+//		g_Game->GetView()->ResetCamera();
+	}
 	else if ( msg->mode == eCinemaEventMode::SELECT )
 		manager->SetCurrentPath(*msg->path, msg->drawCurrent, msg->lines);
 	else

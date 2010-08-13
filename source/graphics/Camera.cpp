@@ -161,23 +161,23 @@ void CCamera::GetCameraPlanePoints(float dist,CVector3D pts[4]) const
 	pts[3].Z=dist;
 }
 
-void CCamera::BuildCameraRay( int px, int py, CVector3D& origin, CVector3D& dir )
+void CCamera::BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) const
 {
 	CVector3D cPts[4];
-	GetCameraPlanePoints( m_FarPlane, cPts );
+	GetCameraPlanePoints(m_FarPlane, cPts);
 
 	// transform to world space
 	CVector3D wPts[4];
-	for( int i = 0; i < 4; i++)
-		wPts[i] = m_Orientation.Transform( cPts[i] );
+	for (int i = 0; i < 4; i++)
+		wPts[i] = m_Orientation.Transform(cPts[i]);
 
 	// get world space position of mouse point
-	float dx = (float)px/(float)g_Renderer.GetWidth();
-	float dz=1-(float)py/(float)g_Renderer.GetHeight();
+	float dx = (float)px / (float)g_Renderer.GetWidth();
+	float dz = 1 - (float)py / (float)g_Renderer.GetHeight();
 
 	CVector3D vdx = wPts[1] - wPts[0];
 	CVector3D vdz = wPts[3] - wPts[0];
-	CVector3D pt = wPts[0] + ( vdx * dx ) + ( vdz * dz );
+	CVector3D pt = wPts[0] + (vdx * dx) + (vdz * dz);
 
 	// copy origin
 	origin = m_Orientation.GetTranslation();
@@ -186,39 +186,39 @@ void CCamera::BuildCameraRay( int px, int py, CVector3D& origin, CVector3D& dir 
 	dir.Normalize();
 }
 
-void CCamera::GetScreenCoordinates( const CVector3D& world, float& x, float& y ) const
+void CCamera::GetScreenCoordinates(const CVector3D& world, float& x, float& y) const
 {
 	CMatrix3D transform;
-	m_Orientation.GetInverse( transform );
-	transform.Concatenate( m_ProjMat );
+	m_Orientation.GetInverse(transform);
+	transform.Concatenate(m_ProjMat);
 
-	CVector3D screenspace = transform.Transform( world );
+	CVector3D screenspace = transform.Transform(world);
 
 	x = screenspace.X / screenspace.Z;
 	y = screenspace.Y / screenspace.Z;
-	x = ( x + 1 ) * 0.5f * g_Renderer.GetWidth();
-	y = ( 1 - y ) * 0.5f * g_Renderer.GetHeight();
+	x = (x + 1) * 0.5f * g_Renderer.GetWidth();
+	y = (1 - y) * 0.5f * g_Renderer.GetHeight();
 }
 
-CVector3D CCamera::GetWorldCoordinates( int px, int py, bool aboveWater )
+CVector3D CCamera::GetWorldCoordinates(int px, int py, bool aboveWater) const
 {
-	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() );
+	CHFTracer tracer(g_Game->GetWorld()->GetTerrain());
 	int x, z;
 	CVector3D origin, dir, delta, terrainPoint, waterPoint;
 
-	BuildCameraRay( px, py, origin, dir );
+	BuildCameraRay(px, py, origin, dir);
 
 
-	bool gotTerrain = tracer.RayIntersect( origin, dir, x, z, terrainPoint );
+	bool gotTerrain = tracer.RayIntersect(origin, dir, x, z, terrainPoint);
 
-	if( !aboveWater )
+	if (!aboveWater)
 	{
-		if( gotTerrain ) 
+		if (gotTerrain)
 			return terrainPoint;
 
 		// Off the edge of the world?
 		// Work out where it /would/ hit, if the map were extended out to infinity with average height.
-		return GetWorldCoordinates( px, py, 50.0f );
+		return GetWorldCoordinates(px, py, 50.0f);
 	}
 
 	CPlane plane;
@@ -236,12 +236,12 @@ CVector3D CCamera::GetWorldCoordinates( int px, int py, bool aboveWater )
 		waterPoint.Z = clamp(waterPoint.Z, 0.f, (float)((mapSize-1)*CELL_SIZE));
 	}
 
-	if( gotTerrain )
+	if (gotTerrain)
 	{
-		if( gotWater )
+		if (gotWater)
 		{
 			// Intersecting both heightmap and water plane; choose the closest of those
-			if( (origin - terrainPoint).LengthSquared() < (origin - waterPoint).LengthSquared() )
+			if ((origin - terrainPoint).LengthSquared() < (origin - waterPoint).LengthSquared())
 				return terrainPoint;
 			else
 				return waterPoint;
@@ -254,7 +254,7 @@ CVector3D CCamera::GetWorldCoordinates( int px, int py, bool aboveWater )
 	}
 	else
 	{
-		if( gotWater )
+		if (gotWater)
 		{
 			// Only intersecting water plane
 			return waterPoint;
@@ -268,7 +268,7 @@ CVector3D CCamera::GetWorldCoordinates( int px, int py, bool aboveWater )
 
 }
 
-CVector3D CCamera::GetWorldCoordinates(int px, int py, float h)
+CVector3D CCamera::GetWorldCoordinates(int px, int py, float h) const
 {
 	CPlane plane;
 	plane.Set(CVector3D(0.f, 1.f, 0.f), CVector3D(0.f, h, 0.f)); // upwards normal, passes through h
@@ -289,33 +289,34 @@ CVector3D CCamera::GetFocus()
 {
 	// Basically the same as GetWorldCoordinates
 
-	CHFTracer tracer( g_Game->GetWorld()->GetTerrain() ); int x, z;
+	CHFTracer tracer(g_Game->GetWorld()->GetTerrain());
+	int x, z;
 
 	CVector3D origin, dir, delta, currentTarget;
 
 	origin = m_Orientation.GetTranslation();
 	dir = m_Orientation.GetIn();
 
-	if( tracer.RayIntersect( origin, dir, x, z, currentTarget ) )
-		return( currentTarget );
+	if (tracer.RayIntersect(origin, dir, x, z, currentTarget))
+		return (currentTarget);
 
 	// Off the edge of the world?
 	// Work out where it /would/ hit, if the map were extended out to infinity with average height.
 
-	return( origin + dir * ( ( 50.0f - origin.Y ) / dir.Y ) );
+	return (origin + dir * ((50.0f - origin.Y) / dir.Y));
 }
 
-void CCamera::LookAt( const CVector3D& camera, const CVector3D& target, const CVector3D& up )
+void CCamera::LookAt(const CVector3D& camera, const CVector3D& target, const CVector3D& up)
 {
 	CVector3D delta = target - camera;
-	LookAlong( camera, delta, up );
+	LookAlong(camera, delta, up);
 }
 
-void CCamera::LookAlong( CVector3D camera, CVector3D orientation, CVector3D up )
+void CCamera::LookAlong(CVector3D camera, CVector3D orientation, CVector3D up)
 {
 	orientation.Normalize();
 	up.Normalize();
-	CVector3D s = orientation.Cross( up );
+	CVector3D s = orientation.Cross(up);
 
 	m_Orientation._11 = -s.X;	m_Orientation._12 = up.X;	m_Orientation._13 = orientation.X;	m_Orientation._14 = camera.X;
 	m_Orientation._21 = -s.Y;	m_Orientation._22 = up.Y;	m_Orientation._23 = orientation.Y;	m_Orientation._24 = camera.Y;

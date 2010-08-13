@@ -398,7 +398,7 @@ JSBool SetCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval*
 		JS_ReportError( cx, "Invalid camera target" );
 		return( JS_TRUE );
 	}
-	g_Game->GetView()->SetCameraTarget( *target );
+	g_Game->GetView()->ResetCameraTarget( *target );
 
 	*rval = JSVAL_TRUE;
 	return( JS_TRUE );

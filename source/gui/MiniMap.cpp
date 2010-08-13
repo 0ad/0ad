@@ -124,41 +124,14 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 
 void CMiniMap::SetCameraPos()
 {
-	CTerrain *MMTerrain=g_Game->GetWorld()->GetTerrain();
-	CVector3D CamOrient=m_Camera->m_Orientation.GetTranslation();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
-	//get center point of screen
-	int x = g_Renderer.GetWidth()/2;
-	int y = g_Renderer.GetHeight()/2;
-	CVector3D ScreenMiddle=m_Camera->GetWorldCoordinates(x,y);
-
-	//Get Vector required to go from camera position to ScreenMiddle
-	CVector3D TransVector;
-	TransVector.X=CamOrient.X-ScreenMiddle.X;
-	TransVector.Z=CamOrient.Z-ScreenMiddle.Z;
-	//world position of where mouse clicked
-	CVector3D Destination;
-	CPos MousePos = GetMousePos();
-	//X and Z according to proportion of mouse position and minimap
-	Destination.X = CELL_SIZE * m_MapSize *
-		( (MousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth() );
-	Destination.Z = CELL_SIZE * m_MapSize * ( (m_CachedActualSize.bottom - MousePos.y) /
-		m_CachedActualSize.GetHeight() );
-
-	m_Camera->m_Orientation._14=Destination.X;
-	m_Camera->m_Orientation._34=Destination.Z;
-	m_Camera->m_Orientation._14+=TransVector.X;
-	m_Camera->m_Orientation._34+=TransVector.Z;
-
-	//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase
-	float Height=MMTerrain->GetExactGroundLevel(
-		m_Camera->m_Orientation._14, m_Camera->m_Orientation._34) + g_YMinOffset;
-
-	if (m_Camera->m_Orientation._24 < Height)
-	{
-		m_Camera->m_Orientation._24=Height;
-	}
-	m_Camera->UpdateFrustum();
+	CVector3D target;
+	CPos mousePos = GetMousePos();
+	target.X = CELL_SIZE * m_MapSize * ((mousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth());
+	target.Z = CELL_SIZE * m_MapSize * ((m_CachedActualSize.bottom - mousePos.y) / m_CachedActualSize.GetHeight());
+	target.Y = terrain->GetExactGroundLevel(target.X, target.Z);
+	g_Game->GetView()->MoveCameraTarget(target);
 }
 
 void CMiniMap::FireWorldClickEvent(int button, int clicks)

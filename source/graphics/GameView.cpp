@@ -54,20 +54,83 @@
 #include "simulation/LOSManager.h"
 #include "simulation2/Simulation2.h"
 
-float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
-float g_YMinOffset=15.0f;
-
-
 extern int g_xres, g_yres;
-
-static CVector3D cameraBookmarks[10];
-static bool bookmarkInUse[10] = { false, false, false, false, false, false, false, false, false, false };
-static i8 currentBookmark = -1;
 
 const float CGameView::defaultFOV = DEGTORAD(20.f);
 const float CGameView::defaultNear = 4.f;
 const float CGameView::defaultFar = 4096.f;
 const float CGameView::defaultCullFOV = CGameView::defaultFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum
+
+/**
+ * A value with exponential decay towards the target value.
+ */
+class CSmoothedValue
+{
+public:
+	CSmoothedValue(float value, float smoothness, float minDelta)
+		: m_Target(value), m_Current(value), m_Smoothness(smoothness), m_MinDelta(minDelta)
+	{
+	}
+
+	float GetSmoothedValue()
+	{
+		return m_Current;
+	}
+
+	void SetValueSmoothly(float value)
+	{
+		m_Target = value;
+	}
+
+	void AddSmoothly(float value)
+	{
+		m_Target += value;
+	}
+
+	void Add(float value)
+	{
+		m_Target += value;
+		m_Current += value;
+	}
+
+	float GetValue()
+	{
+		return m_Target;
+	}
+
+	void SetValue(float value)
+	{
+		m_Target = value;
+		m_Current = value;
+	}
+
+	float Update(float time)
+	{
+		if (fabs(m_Target - m_Current) < m_MinDelta)
+			return 0.0f;
+
+		double p = pow((double)m_Smoothness, 10.0 * (double)time);
+		// (add the factor of 10 so that smoothnesses don't have to be tiny numbers)
+
+		double delta = (m_Target - m_Current) * (1.0 - p);
+		m_Current += delta;
+		return (float)delta;
+	}
+
+	void ClampSmoothly(float min, float max)
+	{
+		m_Target = Clamp(m_Target, (double)min, (double)max);
+	}
+
+private:
+	double m_Target; // the value which m_Current is tending towards
+	double m_Current;
+	// (We use double because the extra precision is worthwhile here)
+
+	float m_MinDelta; // cutoff where we stop moving (to avoid ugly shimmering effects)
+public:
+	float m_Smoothness;
+};
 
 class CGameViewImpl : public CJSObject<CGameViewImpl>
 {
@@ -80,20 +143,31 @@ public:
 		ViewCamera(),
 		CullCamera(),
 		LockCullCamera(false),
+		ConstrainCamera(true),
 		Culling(true),
-		ViewScrollSpeed(60),
-		ViewRotateSensitivity(0.002f),
-		ViewRotateSensitivityKeyboard(1.0f),
-		ViewRotateAboutTargetSensitivity(0.010f),
-		ViewRotateAboutTargetSensitivityKeyboard(2.0f),
-		ViewDragSensitivity(0.5f),
-		ViewZoomSensitivityWheel(16.0f),
-		ViewZoomSensitivity(256.0f),
-		ViewZoomSmoothness(0.02f),
-		ViewSnapSmoothness(0.02f),
-		CameraDelta(),
-		CameraPivot(),
-		ZoomDelta(0)
+
+		// Dummy values (these will be filled in by the config file)
+		ViewScrollSpeed(0),
+		ViewRotateXSpeed(0),
+		ViewRotateXMin(0),
+		ViewRotateXMax(0),
+		ViewRotateXDefault(0),
+		ViewRotateYSpeed(0),
+		ViewRotateYSpeedWheel(0),
+		ViewRotateYDefault(0),
+		ViewDragSpeed(0),
+		ViewZoomSpeed(0),
+		ViewZoomSpeedWheel(0),
+		ViewZoomMin(0),
+		ViewZoomMax(0),
+		ViewZoomDefault(0),
+
+		PosX(0, 0, 0.01f),
+		PosY(0, 0, 0.01f),
+		PosZ(0, 0, 0.01f),
+		Zoom(0, 0, 0.1f),
+		RotateX(0, 0, 0.001f),
+		RotateY(0, 0, 0.001f)
 	{
 	}
 
@@ -136,6 +210,12 @@ public:
 	bool Culling;
 
 	/**
+	 * Whether the camera movement should be constrained by min/max limits
+	 * and terrain avoidance.
+	 */
+	bool ConstrainCamera;
+
+	/**
 	 * Cache global lighting environment. This is used  to check whether the
 	 * environment has changed during the last frame, so that vertex data can be updated etc.
 	 */
@@ -146,31 +226,39 @@ public:
 	////////////////////////////////////////
 	// Settings
 	float ViewScrollSpeed;
-	float ViewRotateSensitivity;
-	float ViewRotateSensitivityKeyboard;
-	float ViewRotateAboutTargetSensitivity;
-	float ViewRotateAboutTargetSensitivityKeyboard;
-	float ViewDragSensitivity;
-	float ViewZoomSensitivityWheel;
-	float ViewZoomSensitivity;
-	float ViewZoomSmoothness; // 0.0 = instantaneous zooming, 1.0 = so slow it never moves
-	float ViewSnapSmoothness; // Just the same.
-
+	float ViewRotateXSpeed;
+	float ViewRotateXMin;
+	float ViewRotateXMax;
+	float ViewRotateXDefault;
+	float ViewRotateYSpeed;
+	float ViewRotateYSpeedWheel;
+	float ViewRotateYDefault;
+	float ViewDragSpeed;
+	float ViewZoomSpeed;
+	float ViewZoomSpeedWheel;
+	float ViewZoomMin;
+	float ViewZoomMax;
+	float ViewZoomDefault;
 
 	////////////////////////////////////////
 	// Camera Controls State
-	CVector3D CameraDelta;
-	CVector3D CameraPivot;
-
-//	CEntity* UnitAttach;
-	//float m_CameraZoom;
-	std::vector<CVector3D> CameraTargets;
-
-	// Accumulate zooming changes across frames for smoothness
-	float ZoomDelta;
+	CSmoothedValue PosX;
+	CSmoothedValue PosY;
+	CSmoothedValue PosZ;
+	CSmoothedValue Zoom;
+	CSmoothedValue RotateX; // inclination around x axis (relative to camera)
+	CSmoothedValue RotateY; // rotation around y (vertical) axis
 
 	static void ScriptingInit();
 };
+
+static void SetupCameraMatrix(CGameViewImpl* m, CMatrix3D* orientation)
+{
+	orientation->SetIdentity();
+	orientation->RotateX(m->RotateX.GetSmoothedValue());
+	orientation->RotateY(m->RotateY.GetSmoothedValue());
+	orientation->Translate(m->PosX.GetSmoothedValue(), m->PosY.GetSmoothedValue(), m->PosZ.GetSmoothedValue());
+}
 
 CGameView::CGameView(CGame *pGame):
 	m(new CGameViewImpl(pGame))
@@ -183,9 +271,9 @@ CGameView::CGameView(CGame *pGame):
 	m->ViewCamera.SetViewPort(vp);
 
 	m->ViewCamera.SetProjection(defaultNear, defaultFar, defaultFOV);
-	m->ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m->ViewCamera.m_Orientation.RotateY(DEGTORAD(0));
-	m->ViewCamera.m_Orientation.Translate (100, 150, -100);
+	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
+	m->ViewCamera.UpdateFrustum();
+
 	m->CullCamera = m->ViewCamera;
 	g_Renderer.SetSceneCamera(m->ViewCamera, m->CullCamera);
 }
@@ -240,27 +328,37 @@ void CGameViewImpl::ScriptingInit()
 {
 	AddProperty(L"culling", &CGameViewImpl::Culling);
 	AddProperty(L"lockCullCamera", &CGameViewImpl::LockCullCamera);
+	AddProperty(L"constrainCamera", &CGameViewImpl::ConstrainCamera);
 
 	CJSObject<CGameViewImpl>::ScriptingInit("GameView");
 }
 
 int CGameView::Initialize()
 {
-	CFG_GET_SYS_VAL( "view.scroll.speed", Float, m->ViewScrollSpeed );
-	CFG_GET_SYS_VAL( "view.rotate.speed", Float, m->ViewRotateSensitivity );
-	CFG_GET_SYS_VAL( "view.rotate.keyboard.speed", Float, m->ViewRotateSensitivityKeyboard );
-	CFG_GET_SYS_VAL( "view.rotate.abouttarget.speed", Float, m->ViewRotateAboutTargetSensitivity );
-	CFG_GET_SYS_VAL( "view.rotate.keyboard.abouttarget.speed", Float, m->ViewRotateAboutTargetSensitivityKeyboard );
-	CFG_GET_SYS_VAL( "view.drag.speed", Float, m->ViewDragSensitivity );
-	CFG_GET_SYS_VAL( "view.zoom.speed", Float, m->ViewZoomSensitivity );
-	CFG_GET_SYS_VAL( "view.zoom.wheel.speed", Float, m->ViewZoomSensitivityWheel );
-	CFG_GET_SYS_VAL( "view.zoom.smoothness", Float, m->ViewZoomSmoothness );
-	CFG_GET_SYS_VAL( "view.snap.smoothness", Float, m->ViewSnapSmoothness );
+	CFG_GET_SYS_VAL("view.scroll.speed", Float, m->ViewScrollSpeed);
+	CFG_GET_SYS_VAL("view.rotate.x.speed", Float, m->ViewRotateXSpeed);
+	CFG_GET_SYS_VAL("view.rotate.x.min", Float, m->ViewRotateXMin);
+	CFG_GET_SYS_VAL("view.rotate.x.max", Float, m->ViewRotateXMax);
+	CFG_GET_SYS_VAL("view.rotate.x.default", Float, m->ViewRotateXDefault);
+	CFG_GET_SYS_VAL("view.rotate.y.speed", Float, m->ViewRotateYSpeed);
+	CFG_GET_SYS_VAL("view.rotate.y.speed.wheel", Float, m->ViewRotateYSpeedWheel);
+	CFG_GET_SYS_VAL("view.rotate.y.default", Float, m->ViewRotateYDefault);
+	CFG_GET_SYS_VAL("view.drag.speed", Float, m->ViewDragSpeed);
+	CFG_GET_SYS_VAL("view.zoom.speed", Float, m->ViewZoomSpeed);
+	CFG_GET_SYS_VAL("view.zoom.speed.wheel", Float, m->ViewZoomSpeedWheel);
+	CFG_GET_SYS_VAL("view.zoom.min", Float, m->ViewZoomMin);
+	CFG_GET_SYS_VAL("view.zoom.max", Float, m->ViewZoomMax);
+	CFG_GET_SYS_VAL("view.zoom.default", Float, m->ViewZoomDefault);
 
-	if( ( m->ViewZoomSmoothness < 0.0f ) || ( m->ViewZoomSmoothness > 1.0f ) )
-		m->ViewZoomSmoothness = 0.02f;
-	if( ( m->ViewSnapSmoothness < 0.0f ) || ( m->ViewSnapSmoothness > 1.0f ) )
-		m->ViewSnapSmoothness = 0.02f;
+	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosX.m_Smoothness);
+	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosY.m_Smoothness);
+	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosZ.m_Smoothness);
+	CFG_GET_SYS_VAL("view.zoom.smoothness", Float, m->Zoom.m_Smoothness);
+	CFG_GET_SYS_VAL("view.rotate.x.smoothness", Float, m->RotateX.m_Smoothness);
+	CFG_GET_SYS_VAL("view.rotate.y.smoothness", Float, m->RotateY.m_Smoothness);
+
+	m->RotateX.SetValue(DEGTORAD(m->ViewRotateXDefault));
+	m->RotateY.SetValue(DEGTORAD(m->ViewRotateYDefault));
 
 	return 0;
 }
@@ -381,34 +479,6 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 }
 
 
-//locks the camera in place
-void CGameView::CameraLock(const CVector3D& Trans, bool smooth)
-{
-	CameraLock(Trans.X, Trans.Y, Trans.Z, smooth);
-}
-
-void CGameView::CameraLock(float x, float y, float z, bool smooth)
-{
-	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
-	float height = pTerrain->GetExactGroundLevel(
-			m->ViewCamera.m_Orientation._14 + x, m->ViewCamera.m_Orientation._34 + z) +
-			g_YMinOffset;
-	//is requested position within limits?
-	if (m->ViewCamera.m_Orientation._24 + y <= g_MaxZoomHeight)
-	{
-		if( m->ViewCamera.m_Orientation._24 + y >= height)
-		{
-			m->ViewCamera.m_Orientation.Translate(x, y, z);
-		}
-		else if (m->ViewCamera.m_Orientation._24 + y < height && smooth == true)
-		{
-			m->ViewCamera.m_Orientation.Translate(x, y, z);
-			m->ViewCamera.m_Orientation._24=height;
-		}
-	}
-}
-
-
 static void MarkUpdateColorRecursive(CModel& model)
 {
 	model.SetDirty(RENDERDATA_UPDATE_COLOR);
@@ -449,37 +519,41 @@ void CGameView::UnloadResources()
 }
 
 
-void CGameView::ResetCamera()
+static void ClampDistance(CGameViewImpl* m, bool smooth)
 {
-	// quick hack to return camera home, for screenshots (after alt+tabbing)
-	m->ViewCamera.SetProjection (defaultNear, defaultFar, defaultFOV);
-	m->ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m->ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
-	m->ViewCamera.m_Orientation.Translate (100, 150, -100);
-}
+	if (!m->ConstrainCamera)
+		return;
 
-void CGameView::ResetCameraOrientation()
-{
+	CCamera targetCam = m->ViewCamera;
+	targetCam.m_Orientation.SetIdentity();
+	targetCam.m_Orientation.RotateX(m->RotateX.GetSmoothedValue());
+	targetCam.m_Orientation.RotateY(m->RotateY.GetSmoothedValue());
+	// Use non-smoothed position:
+	targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
 
-	CVector3D origin = m->ViewCamera.m_Orientation.GetTranslation();
-	CVector3D dir = m->ViewCamera.m_Orientation.GetIn();
+	CVector3D forwards = targetCam.m_Orientation.GetIn();
 
-	CVector3D target = origin + dir * ( ( 50.0f - origin.Y ) / dir.Y );
+	CVector3D delta = targetCam.GetFocus() - targetCam.m_Orientation.GetTranslation();
 
-	target -= CVector3D( -22.474480f, 50.0f, 22.474480f );
+	float dist = delta.Dot(forwards);
+	float clampedDist = Clamp(dist, m->ViewZoomMin, m->ViewZoomMax);
+	float diff = clampedDist - dist;
 
-	m->ViewCamera.SetProjection (defaultNear, defaultFar, defaultFOV);
-	m->ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
-	m->ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
+	if (!diff)
+		return;
 
-	target += CVector3D( 100.0f, 150.0f, -100.0f );
-
-	m->ViewCamera.m_Orientation.Translate( target );
-}
-
-void CGameView::RotateAboutTarget()
-{
-	m->CameraPivot = m->ViewCamera.GetWorldCoordinates(g_mouse_x, g_mouse_y, true);
+	if (smooth)
+	{
+		m->PosX.AddSmoothly(forwards.X * -diff);
+		m->PosY.AddSmoothly(forwards.Y * -diff);
+		m->PosZ.AddSmoothly(forwards.Z * -diff);
+	}
+	else
+	{
+		m->PosX.Add(forwards.X * -diff);
+		m->PosY.Add(forwards.Y * -diff);
+		m->PosZ.Add(forwards.Z * -diff);
+	}
 }
 
 void CGameView::Update(float DeltaTime)
@@ -491,32 +565,14 @@ void CGameView::Update(float DeltaTime)
 	// in a CCmpWaterManager or some such thing (once such a thing exists)
 	g_Renderer.GetWaterManager()->m_WaterTexTimer += DeltaTime;
 
-/*
-	if (m->UnitAttach)
-	{
-		CVector3D ToMove = m->UnitAttach->m_position - m->ViewCamera.GetFocus();
-		m->ViewCamera.m_Orientation._14 += ToMove.X;
-		m->ViewCamera.m_Orientation._34 += ToMove.Z;
-		m->ViewCamera.UpdateFrustum();
-		return;
-	}
-*/
-
 	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
 	{
 		if (! m->TrackManager.Update(DeltaTime))
-			ResetCamera();
+		{
+//			ResetCamera();
+		}
 		return;
 	}
-
-	float delta = powf( m->ViewSnapSmoothness, DeltaTime );
-	m->ViewCamera.m_Orientation.Translate( m->CameraDelta * ( 1.0f - delta ) );
-	m->CameraDelta *= delta;
-
-
-	// This could be rewritten much more reliably, so it doesn't e.g. accidentally tilt
-	// the camera, assuming we know exactly what limits the camera should have.
-
 
 	// Calculate mouse movement
 	static int mouse_last_x = 0;
@@ -526,228 +582,194 @@ void CGameView::Update(float DeltaTime)
 	mouse_last_x = g_mouse_x;
 	mouse_last_y = g_mouse_y;
 
-	// Miscellaneous vectors
-	CVector3D forwards = m->ViewCamera.m_Orientation.GetIn();
-	CVector3D rightwards = m->ViewCamera.m_Orientation.GetLeft() * -1.0f; // upwards.Cross(forwards);
-	CVector3D upwards( 0.0f, 1.0f, 0.0f );
-	// rightwards.Normalize();
+	if (hotkeys[HOTKEY_CAMERA_ROTATE_CW])
+		m->RotateY.AddSmoothly(m->ViewRotateYSpeed * DeltaTime);
+	if (hotkeys[HOTKEY_CAMERA_ROTATE_CCW])
+		m->RotateY.AddSmoothly(-m->ViewRotateYSpeed * DeltaTime);
+	if (hotkeys[HOTKEY_CAMERA_ROTATE_UP])
+		m->RotateX.AddSmoothly(-m->ViewRotateXSpeed * DeltaTime);
+	if (hotkeys[HOTKEY_CAMERA_ROTATE_DOWN])
+		m->RotateX.AddSmoothly(m->ViewRotateXSpeed * DeltaTime);
 
-	CVector3D forwards_horizontal = forwards;
-	forwards_horizontal.Y = 0.0f;
-	forwards_horizontal.Normalize();
+	float moveRightward = 0.f;
+	float moveForward = 0.f;
 
-	if( hotkeys[HOTKEY_CAMERA_ROTATE] || hotkeys[HOTKEY_CAMERA_ROTATE_KEYBOARD] )
+	if (hotkeys[HOTKEY_CAMERA_PAN])
 	{
-		// Ctrl + middle-drag or left-and-right-drag to rotate view
-
-		// Untranslate the camera, so it rotates around the correct point
-		CVector3D position = m->ViewCamera.m_Orientation.GetTranslation();
-		m->ViewCamera.m_Orientation.Translate(position*-1);
-
-		// Sideways rotation
-
-		float rightways = 0.0f;
-		if( hotkeys[HOTKEY_CAMERA_ROTATE] )
-			rightways = (float)mouse_dx * m->ViewRotateSensitivity;
-		if( hotkeys[HOTKEY_CAMERA_ROTATE_KEYBOARD] )
-		{
-			if( hotkeys[HOTKEY_CAMERA_LEFT] )
-				rightways -= m->ViewRotateSensitivityKeyboard * DeltaTime;
-			if( hotkeys[HOTKEY_CAMERA_RIGHT] )
-				rightways += m->ViewRotateSensitivityKeyboard * DeltaTime;
-		}
-
-		m->ViewCamera.m_Orientation.RotateY( rightways );
-
-		// Up/down rotation
-
-		float upways = 0.0f;
-		if( hotkeys[HOTKEY_CAMERA_ROTATE] )
-			upways = (float)mouse_dy * m->ViewRotateSensitivity;
-		if( hotkeys[HOTKEY_CAMERA_ROTATE_KEYBOARD] )
-		{
-			if( hotkeys[HOTKEY_CAMERA_UP] )
-				upways -= m->ViewRotateSensitivityKeyboard * DeltaTime;
-			if( hotkeys[HOTKEY_CAMERA_DOWN] )
-				upways += m->ViewRotateSensitivityKeyboard * DeltaTime;
-		}
-
-		CQuaternion temp;
-		temp.FromAxisAngle(rightwards, upways);
-
-		m->ViewCamera.m_Orientation.Rotate(temp);
-
-		// Retranslate back to the right position
-		m->ViewCamera.m_Orientation.Translate(position);
-
-	}
-	else if( hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
-	{
-		CVector3D origin = m->ViewCamera.m_Orientation.GetTranslation();
-		CVector3D delta = origin - m->CameraPivot;
-
-		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
-
-		// Sideways rotation
-
-		float rightways = (float)mouse_dx * m->ViewRotateAboutTargetSensitivity;
-
-		rotateH.FromAxisAngle( upwards, rightways );
-
-		// Up/down rotation
-
-		float upways = (float)mouse_dy * m->ViewRotateAboutTargetSensitivity;
-		rotateV.FromAxisAngle( rightwards, upways );
-
-		rotateH *= rotateV;
-		rotateH.ToMatrix( rotateM );
-
-		delta = rotateM.Rotate( delta );
-
-		// Lock the inclination to a rather arbitrary values (for the sake of graphical decency)
-
-		float scan = sqrt( delta.X * delta.X + delta.Z * delta.Z ) / delta.Y;
-		if( ( scan >= 0.5f ) )
-		{
-			// Move the camera to the origin (in preparation for rotation )
-			m->ViewCamera.m_Orientation.Translate( origin * -1.0f );
-
-			m->ViewCamera.m_Orientation.Rotate( rotateH );
-
-			// Move the camera back to where it belongs
-			m->ViewCamera.m_Orientation.Translate( m->CameraPivot + delta );
-		}
-
-	}
-	else if( hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET_KEYBOARD] )
-	{
-		// Split up because the keyboard controls use the centre of the screen, not the mouse position.
-		CVector3D origin = m->ViewCamera.m_Orientation.GetTranslation();
-		CVector3D pivot = m->ViewCamera.GetFocus();
-		CVector3D delta = origin - pivot;
-
-		CQuaternion rotateH, rotateV; CMatrix3D rotateM;
-
-		// Sideways rotation
-
-		float rightways = 0.0f;
-		if( hotkeys[HOTKEY_CAMERA_LEFT] )
-			rightways -= m->ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
-		if( hotkeys[HOTKEY_CAMERA_RIGHT] )
-			rightways += m->ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
-
-		rotateH.FromAxisAngle( upwards, rightways );
-
-		// Up/down rotation
-
-		float upways = 0.0f;
-		if( hotkeys[HOTKEY_CAMERA_UP] )
-			upways -= m->ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
-		if( hotkeys[HOTKEY_CAMERA_DOWN] )
-			upways += m->ViewRotateAboutTargetSensitivityKeyboard * DeltaTime;
-
-		rotateV.FromAxisAngle( rightwards, upways );
-
-		rotateH *= rotateV;
-		rotateH.ToMatrix( rotateM );
-
-		delta = rotateM.Rotate( delta );
-
-		// Lock the inclination to a rather arbitrary values (for the sake of graphical decency)
-
-		float scan = sqrt( delta.X * delta.X + delta.Z * delta.Z ) / delta.Y;
-		if( ( scan >= 0.5f ) )
-		{
-			// Move the camera to the origin (in preparation for rotation )
-			m->ViewCamera.m_Orientation.Translate( origin * -1.0f );
-
-			m->ViewCamera.m_Orientation.Rotate( rotateH );
-
-			// Move the camera back to where it belongs
-			m->ViewCamera.m_Orientation.Translate( pivot + delta );
-		}
-
-	}
-	else if( hotkeys[HOTKEY_CAMERA_PAN] )
-	{
-		// Middle-drag to pan
-		//keep camera in bounds
-			CameraLock(rightwards * (m->ViewDragSensitivity * mouse_dx));
-			CameraLock(forwards_horizontal * (-m->ViewDragSensitivity * mouse_dy));
+		moveRightward += m->ViewDragSpeed * mouse_dx;
+		moveForward += m->ViewDragSpeed * -mouse_dy;
 	}
 
-	// Mouse movement
-	if( g_mouse_active && !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
+	if (g_mouse_active)
 	{
-		if (g_mouse_x >= g_xres-2 && g_mouse_x < g_xres)
-			CameraLock(rightwards * (m->ViewScrollSpeed * DeltaTime));
+		if (g_mouse_x >= g_xres - 2 && g_mouse_x < g_xres)
+			moveRightward += m->ViewScrollSpeed * DeltaTime;
 		else if (g_mouse_x <= 3 && g_mouse_x >= 0)
-			CameraLock(-rightwards * (m->ViewScrollSpeed * DeltaTime));
+			moveRightward -= m->ViewScrollSpeed * DeltaTime;
 
-		if (g_mouse_y >= g_yres-2 && g_mouse_y < g_yres)
-			CameraLock(-forwards_horizontal * (m->ViewScrollSpeed * DeltaTime));
+		if (g_mouse_y >= g_yres - 2 && g_mouse_y < g_yres)
+			moveForward -= m->ViewScrollSpeed * DeltaTime;
 		else if (g_mouse_y <= 3 && g_mouse_y >= 0)
-			CameraLock(forwards_horizontal * (m->ViewScrollSpeed * DeltaTime));
-
+			moveForward += m->ViewScrollSpeed * DeltaTime;
 	}
 
-	// Keyboard movement (added to mouse movement, so you can go faster if you want)
-
-	if( hotkeys[HOTKEY_CAMERA_PAN_KEYBOARD] )
+	if (hotkeys[HOTKEY_CAMERA_PAN_KEYBOARD])
 	{
-		if( hotkeys[HOTKEY_CAMERA_RIGHT] )
-			CameraLock(rightwards * (m->ViewScrollSpeed * DeltaTime));
-		if( hotkeys[HOTKEY_CAMERA_LEFT] )
-			CameraLock(-rightwards * (m->ViewScrollSpeed * DeltaTime));
-
-		if( hotkeys[HOTKEY_CAMERA_DOWN] )
-			CameraLock(-forwards_horizontal * (m->ViewScrollSpeed * DeltaTime));
-		if( hotkeys[HOTKEY_CAMERA_UP] )
-			CameraLock(forwards_horizontal * (m->ViewScrollSpeed * DeltaTime));
-
+		if (hotkeys[HOTKEY_CAMERA_RIGHT])
+			moveRightward += m->ViewScrollSpeed * DeltaTime;
+		if (hotkeys[HOTKEY_CAMERA_LEFT])
+			moveRightward -= m->ViewScrollSpeed * DeltaTime;
+		if (hotkeys[HOTKEY_CAMERA_UP])
+			moveForward += m->ViewScrollSpeed * DeltaTime;
+		if (hotkeys[HOTKEY_CAMERA_DOWN])
+			moveForward -= m->ViewScrollSpeed * DeltaTime;
 	}
 
-	// Smoothed zooming (move a certain percentage towards the desired zoom distance every frame)
-	// Note that scroll wheel zooming is event-based and handled in game_view_handler
-
-	if( hotkeys[HOTKEY_CAMERA_ZOOM_IN] )
-		m->ZoomDelta += m->ViewZoomSensitivity*DeltaTime;
-	else if( hotkeys[HOTKEY_CAMERA_ZOOM_OUT] )
-		m->ZoomDelta -= m->ViewZoomSensitivity*DeltaTime;
-
-	if (fabsf(m->ZoomDelta) > 0.1f) // use a fairly high limit to avoid nasty flickering when zooming
+	if (moveRightward || moveForward)
 	{
-		float zoom_proportion = powf(m->ViewZoomSmoothness, DeltaTime);
-		CameraLock(forwards * (m->ZoomDelta * (1.0f-zoom_proportion)), false);
-		m->ZoomDelta *= zoom_proportion;
+		float s = sin(m->RotateY.GetSmoothedValue());
+		float c = cos(m->RotateY.GetSmoothedValue());
+		m->PosX.AddSmoothly(c * moveRightward);
+		m->PosZ.AddSmoothly(-s * moveRightward);
+		m->PosX.AddSmoothly(s * moveForward);
+		m->PosZ.AddSmoothly(c * moveForward);
 	}
 
-	m->ViewCamera.UpdateFrustum ();
+	if (hotkeys[HOTKEY_CAMERA_ZOOM_IN])
+		m->Zoom.AddSmoothly(m->ViewZoomSpeed * DeltaTime);
+	if (hotkeys[HOTKEY_CAMERA_ZOOM_OUT])
+		m->Zoom.AddSmoothly(-m->ViewZoomSpeed * DeltaTime);
+
+	float zoomDelta = m->Zoom.Update(DeltaTime);
+	if (zoomDelta)
+	{
+		CVector3D forwards = m->ViewCamera.m_Orientation.GetIn();
+		m->PosX.AddSmoothly(forwards.X * zoomDelta);
+		m->PosY.AddSmoothly(forwards.Y * zoomDelta);
+		m->PosZ.AddSmoothly(forwards.Z * zoomDelta);
+	}
+
+	if (m->ConstrainCamera)
+		m->RotateX.ClampSmoothly(DEGTORAD(m->ViewRotateXMin), DEGTORAD(m->ViewRotateXMax));
+
+	ClampDistance(m, true);
+
+	m->PosX.Update(DeltaTime);
+	m->PosY.Update(DeltaTime);
+	m->PosZ.Update(DeltaTime);
+
+	// Handle rotation around the Y (vertical) axis
+	{
+		CCamera targetCam = m->ViewCamera;
+		SetupCameraMatrix(m, &targetCam.m_Orientation);
+
+		float rotateYDelta = m->RotateY.Update(DeltaTime);
+		if (rotateYDelta)
+		{
+			// We've updated RotateY, and need to adjust Pos so that it's still
+			// facing towards the original focus point (the terrain in the center
+			// of the screen).
+
+			CVector3D upwards(0.0f, 1.0f, 0.0f);
+
+			CVector3D pivot = targetCam.GetFocus();
+			CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
+
+			CQuaternion q;
+			q.FromAxisAngle(upwards, rotateYDelta);
+			CVector3D d = q.Rotate(delta) - delta;
+
+			m->PosX.Add(d.X);
+			m->PosY.Add(d.Y);
+			m->PosZ.Add(d.Z);
+		}
+	}
+
+	// Handle rotation around the X (sideways, relative to camera) axis
+	{
+		CCamera targetCam = m->ViewCamera;
+		SetupCameraMatrix(m, &targetCam.m_Orientation);
+
+		float rotateXDelta = m->RotateX.Update(DeltaTime);
+		if (rotateXDelta)
+		{
+			CVector3D rightwards = targetCam.m_Orientation.GetLeft() * -1.0f;
+
+			CVector3D pivot = m->ViewCamera.GetFocus();
+			CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
+
+			CQuaternion q;
+			q.FromAxisAngle(rightwards, rotateXDelta);
+			CVector3D d = q.Rotate(delta) - delta;
+
+			m->PosX.Add(d.X);
+			m->PosY.Add(d.Y);
+			m->PosZ.Add(d.Z);
+		}
+	}
+
+	/* This is disabled since it doesn't seem necessary:
+
+	// Ensure the camera's near point is never inside the terrain
+	if (m->ConstrainCamera)
+	{
+		CMatrix3D target;
+		target.SetIdentity();
+		target.RotateX(m->RotateX.GetValue());
+		target.RotateY(m->RotateY.GetValue());
+		target.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+
+		CVector3D nearPoint = target.GetTranslation() + target.GetIn() * defaultNear;
+		float ground = m->Game->GetWorld()->GetTerrain()->GetExactGroundLevel(nearPoint.X, nearPoint.Z);
+		float limit = ground + 16.f;
+		if (nearPoint.Y < limit)
+			m->PosY.AddSmoothly(limit - nearPoint.Y);
+	}
+	*/
+
+	// Update the camera matrix
+	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
+	m->ViewCamera.UpdateFrustum();
 }
 
-void CGameView::PushCameraTarget( const CVector3D& target )
-{
-	// Save the current position
-	m->CameraTargets.push_back( m->ViewCamera.m_Orientation.GetTranslation() );
-	// And set the camera
-	SetCameraTarget( target );
-}
-
-void CGameView::SetCameraTarget( const CVector3D& target )
+void CGameView::MoveCameraTarget(const CVector3D& target)
 {
 	// Maintain the same orientation and level of zoom, if we can
 	// (do this by working out the point the camera is looking at, saving
 	//  the difference between that position and the camera point, and restoring
 	//  that difference to our new target)
 
-	CVector3D CurrentTarget = m->ViewCamera.GetFocus();
-	m->CameraDelta = target - CurrentTarget;
+	CCamera targetCam = m->ViewCamera;
+	targetCam.m_Orientation.SetIdentity();
+	targetCam.m_Orientation.RotateX(m->RotateX.GetValue());
+	targetCam.m_Orientation.RotateY(m->RotateY.GetValue());
+	targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+
+	CVector3D pivot = targetCam.GetFocus();
+	CVector3D delta = target - pivot;
+	m->PosX.SetValueSmoothly(delta.X + m->PosX.GetValue());
+	m->PosY.SetValueSmoothly(delta.Y + m->PosY.GetValue());
+	m->PosZ.SetValueSmoothly(delta.Z + m->PosZ.GetValue());
+
+	ClampDistance(m, false);
 }
 
-void CGameView::PopCameraTarget()
+void CGameView::ResetCameraTarget(const CVector3D& target)
 {
-	m->CameraDelta = m->CameraTargets.back() - m->ViewCamera.m_Orientation.GetTranslation();
-	m->CameraTargets.pop_back();
+	CMatrix3D orientation;
+	orientation.SetIdentity();
+	orientation.RotateX(DEGTORAD(m->ViewRotateXDefault));
+	orientation.RotateY(DEGTORAD(m->ViewRotateYDefault));
+
+	CVector3D delta = orientation.GetIn() * m->ViewZoomDefault;
+	m->PosX.SetValue(target.X - delta.X);
+	m->PosY.SetValue(target.Y - delta.Y);
+	m->PosZ.SetValue(target.Z - delta.Z);
+
+	ClampDistance(m, false);
+
+	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
+	m->ViewCamera.UpdateFrustum();
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)
@@ -786,73 +808,27 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 				g_Renderer.SetTerrainRenderMode(SOLID);
 				g_Renderer.SetModelRenderMode(SOLID);
 			}
-			return( IN_HANDLED );
-
-		case HOTKEY_CAMERA_RESET_ORIGIN:
-			ResetCamera();
-			return( IN_HANDLED );
-
-		case HOTKEY_CAMERA_RESET:
-			ResetCameraOrientation();
-			return( IN_HANDLED );
-
-		case HOTKEY_CAMERA_ROTATE_ABOUT_TARGET:
-			RotateAboutTarget();
-			return( IN_HANDLED );
+			return IN_HANDLED;
 
 		// Mouse wheel must be treated using events instead of polling,
 		// because SDL auto-generates a sequence of mousedown/mouseup events
 		// and we never get to see the "down" state inside Update().
 		case HOTKEY_CAMERA_ZOOM_WHEEL_IN:
-			m->ZoomDelta += m->ViewZoomSensitivityWheel;
-			return( IN_HANDLED );
+			m->Zoom.AddSmoothly(m->ViewZoomSpeedWheel);
+			return IN_HANDLED;
 
 		case HOTKEY_CAMERA_ZOOM_WHEEL_OUT:
-			m->ZoomDelta -= m->ViewZoomSensitivityWheel;
-			return( IN_HANDLED );
+			m->Zoom.AddSmoothly(-m->ViewZoomSpeedWheel);
+			return IN_HANDLED;
 
-		default:
+		case HOTKEY_CAMERA_ROTATE_WHEEL_CW:
+			m->RotateY.AddSmoothly(m->ViewRotateYSpeedWheel);
+			return IN_HANDLED;
 
-			if( ( ev->ev.user.code >= HOTKEY_CAMERA_BOOKMARK_0 ) && ( ev->ev.user.code <= HOTKEY_CAMERA_BOOKMARK_9 ) )
-			{
-				// The above test limits it to 10 bookmarks, so don't worry about overflowing
-				i8 id = (i8)( ev->ev.user.code - HOTKEY_CAMERA_BOOKMARK_0 );
-
-				if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SAVE] )
-				{
-					// Attempt to track the ground we're looking at
-					cameraBookmarks[id] = GetCamera()->GetFocus();
-					bookmarkInUse[id] = true;
-				}
-				else if( hotkeys[HOTKEY_CAMERA_BOOKMARK_SNAP] )
-				{
-					if( bookmarkInUse[id] && ( currentBookmark == -1 ) )
-					{
-						PushCameraTarget( cameraBookmarks[id] );
-						currentBookmark = id;
-					}
-				}
-				else
-				{
-					if( bookmarkInUse[id] )
-						SetCameraTarget( cameraBookmarks[id] );
-				}
-				return( IN_HANDLED );
-			}
+		case HOTKEY_CAMERA_ROTATE_WHEEL_CCW:
+			m->RotateY.AddSmoothly(-m->ViewRotateYSpeedWheel);
+			return IN_HANDLED;
 		}
-	case SDL_HOTKEYUP:
-		switch( ev->ev.user.code )
-		{
-			case HOTKEY_CAMERA_BOOKMARK_SNAP:
-				if( currentBookmark != -1 )
-					PopCameraTarget();
-				currentBookmark = -1;
-				break;
-
-			default:
-				return( IN_PASS );
-		}
-		return( IN_HANDLED );
 	}
 
 	return IN_PASS;

@@ -25,7 +25,7 @@
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpVisual.h"
 
-std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, CCamera& camera, int screenX, int screenY)
+std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY)
 {
 	CVector3D origin, dir;
 	camera.BuildCameraRay(screenX, screenY, origin, dir);
@@ -71,7 +71,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	return hitEnts;
 }
 
-std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simulation, CCamera& camera, int sx0, int sy0, int sx1, int sy1, int owner)
+std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, int owner)
 {
 	// Make sure sx0 <= sx1, and sy0 <= sy1
 	if (sx0 > sx1)

@@ -55,8 +55,7 @@ protected:
     // the terrain we are mini-mapping
     const CTerrain* m_Terrain;
 
-	// not const: camera is moved by clicking on minimap
-	CCamera* m_Camera;
+	const CCamera* m_Camera;
 	
 	//Whether or not the mouse is currently down
 	bool m_Clicking;	

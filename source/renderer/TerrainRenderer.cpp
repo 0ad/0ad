@@ -435,7 +435,7 @@ void TerrainRenderer::RenderWater()
 	}
 
 	//(Crappy) fresnel effect
-	CCamera* Camera=g_Game->GetView()->GetCamera();
+	const CCamera* Camera=g_Game->GetView()->GetCamera();
 	CVector3D CamFace=Camera->m_Orientation.GetIn();
 	CamFace.Normalize();
 	float FresnelScalar = CamFace.Dot( CVector3D(0.0f, -1.0f, 0.0f) );

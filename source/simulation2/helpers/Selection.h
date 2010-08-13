@@ -37,14 +37,14 @@ namespace EntitySelection
  * Finds all selectable entities under the given screen coordinates.
  * Returns list ordered by closeness of picking, closest first.
  */
-std::vector<entity_id_t> PickEntitiesAtPoint(CSimulation2& simulation, CCamera& camera, int screenX, int screenY);
+std::vector<entity_id_t> PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY);
 
 /**
  * Finds all selectable entities within the given screen coordinate rectangle,
  * that belong to player @p owner.
  * Returns unordered list.
  */
-std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, CCamera& camera, int sx0, int sy0, int sx1, int sy1, int owner);
+std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, int owner);
 
 } // namespace
 

@@ -81,8 +81,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 			reader->LoadMap(mapfilename, m_Terrain,
 				CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
 				CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
-				&g_LightEnv,
-				m_pGame->GetView() ? m_pGame->GetView()->GetCamera() : NULL,
+				&g_LightEnv, m_pGame->GetView(),
 				m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
 				pTriggerManager, m_pGame->GetSimulation2(), playerID);
 				// fails immediately, or registers for delay loading
@@ -117,7 +116,7 @@ void CWorld::RewriteMap()
 {
 	CMapWriter::RewriteAllMaps(m_Terrain,
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
-		&g_LightEnv, m_pGame->GetView()->GetCamera(), 
+		&g_LightEnv, m_pGame->GetView(),
 		m_pGame->GetView()->GetCinema(), NULL,
 		m_pGame->GetSimulation2());
 }

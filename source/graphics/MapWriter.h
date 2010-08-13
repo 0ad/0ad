@@ -51,7 +51,7 @@ public:
 	// RewriteAllMaps: for use during development: load/save all maps, to
 	// update them to the newest format.
 	static void RewriteAllMaps(CTerrain* pTerrain, WaterManager* pWaterMan,
-								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
+								SkyManager* pSkyMan, CLightEnv* pLightEnv, CGameView* pGameView,
 								CCinemaManager* pCinema, CTriggerManager* pTrigMan,
 								CSimulation2* pSimulation2);
 

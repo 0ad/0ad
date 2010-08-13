@@ -30,13 +30,13 @@ class CTerrain;
 class WaterManager;
 class SkyManager;
 class CLightEnv;
-class CCamera;
 class CCinemaManager;
 class CTriggerManager;
 class CSimulation2;
 class CTextureEntry;
 class CScriptValRooted;
 class ScriptInterface;
+class CGameView;
 
 class CXMLReader;
 
@@ -49,7 +49,7 @@ public:
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 	void LoadMap(const VfsPath& pathname, CTerrain*,
-		WaterManager*, SkyManager*, CLightEnv*, CCamera*,
+		WaterManager*, SkyManager*, CLightEnv*, CGameView*,
 		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
 
 private:
@@ -89,7 +89,7 @@ private:
 	WaterManager* pWaterMan;
 	SkyManager* pSkyMan;
 	CLightEnv* pLightEnv;
-	CCamera* pCamera;
+	CGameView* pGameView;
 	CCinemaManager* pCinema;
 	CTriggerManager* pTrigMan;
 	CSimulation2* pSimulation2;

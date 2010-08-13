@@ -5,6 +5,20 @@ Thank you for installing 0 A.D.! This page will give a brief overview of the fea
 [font="serif-bold-16"]Graphics settings
 [font="serif-14"]You can switch between fullscreen and windowed mode by pressing Alt+Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the configuration file: look for binaries/data/config/default.cfg in the location where the game is installed, which gives instructions for editing, and try disabling the "fancywater" and "shadows" options.
 
+[font="serif-bold-16"]Playing the game
+[font="serif-14"]The controls and gameplay should be familiar to players of traditional RTS games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
+
+Basic controls:
+• Left-click to select units.
+• Left-click-and-drag to select groups of units.
+• Right-click to order units to the target.
+• Arrow keys or WASD keys to move the camera.
+• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera.
+• Mouse wheel, or "+" and "-" keys, to zoom.
+• F2 to save a screenshot (into %appdata%\0ad\screenshots\ on Windows, and ~/.local/share/0ad/screenshots/ on Unix).
+• Ctrl+Alt+F2 to save a very high-resolution screenshot.
+• F11 to view the built-in performance profiler.
+
 [font="serif-bold-16"]Modes
 [font="serif-14"]The main menu gives access to two game modes:
 
@@ -22,18 +36,5 @@ First, select a map to play on. The "techdemo" maps are designed for testing par
 Next, you can use the drop-down lists in the player list to select who controls which player in the map. This always shows 8 players – anyone who is assigned to a player that doesn't exist in the map, or is not assigned to any player at all, will probably not have a fun time.
 
 When you are ready to start, click the "Start game" button.
-
-[font="serif-bold-16"]Playing the game
-[font="serif-14"]The controls and gameplay should be familiar to players of traditional RTS games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
-
-Basic controls:
-• Left-click to select units.
-• Left-click-and-drag to select groups of units.
-• Right-click to order units to the target.
-• Arrow keys or WASD keys to move the camera.
-• Ctrl + arrow keys to rotate the camera.
-• F2 to save a screenshot (into %appdata%\0ad\screenshots\ on Windows, and ~/.local/share/0ad/screenshots/ on Unix).
-• Ctrl+Alt+F2 to save a very high-resolution screenshot.
-• F11 to view the built-in performance profiler.
 
 Use the "X" button in the top-right corner of this window to close it.

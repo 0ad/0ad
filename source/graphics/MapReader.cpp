@@ -21,6 +21,7 @@
 
 #include "graphics/Camera.h"
 #include "graphics/CinemaTrack.h"
+#include "graphics/GameView.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
@@ -56,13 +57,13 @@ CMapReader::CMapReader()
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
-						 CLightEnv *pLightEnv_, CCamera *pCamera_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_,
+						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_,
 						 CSimulation2 *pSimulation2_, int playerID_)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
 	pLightEnv = pLightEnv_;
-	pCamera = pCamera_;
+	pGameView = pGameView_;
 	pWaterMan = pWaterMan_;
 	pSkyMan = pSkyMan_;
 	pCinema = pCinema_;
@@ -220,22 +221,13 @@ int CMapReader::ApplyData()
 			*pLightEnv = m_LightEnv;
 	}
 
-	if (m_CameraStartupTarget != INVALID_ENTITY && pCamera)
+	if (m_CameraStartupTarget != INVALID_ENTITY && pGameView)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_CameraStartupTarget);
 		if (!cmpPosition.null())
 		{
-			pCamera->m_Orientation.SetIdentity();
-
-			pCamera->m_Orientation.Translate(CVector3D(0.f, 0.f, -200.f)); // move backwards from the target entity
-
-			pCamera->m_Orientation.RotateX(DEGTORAD(30));
-			pCamera->m_Orientation.RotateY(DEGTORAD(0));
-
 			CFixedVector3D pos = cmpPosition->GetPosition();
-			pCamera->m_Orientation.Translate(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
-
-			pCamera->UpdateFrustum();
+			pGameView->ResetCameraTarget(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
 		}
 	}
 
@@ -695,12 +687,12 @@ void CXMLReader::ReadCamera(XMBElement parent)
 			debug_warn(L"Invalid map XML data");
 	}
 
-	if (m_MapReader.pCamera)
+	if (m_MapReader.pGameView)
 	{
-		m_MapReader.pCamera->m_Orientation.SetXRotation(declination);
-		m_MapReader.pCamera->m_Orientation.RotateY(rotation);
-		m_MapReader.pCamera->m_Orientation.Translate(translation);
-		m_MapReader.pCamera->UpdateFrustum();
+		m_MapReader.pGameView->GetCamera()->m_Orientation.SetXRotation(declination);
+		m_MapReader.pGameView->GetCamera()->m_Orientation.RotateY(rotation);
+		m_MapReader.pGameView->GetCamera()->m_Orientation.Translate(translation);
+		m_MapReader.pGameView->GetCamera()->UpdateFrustum();
 	}
 }
 
