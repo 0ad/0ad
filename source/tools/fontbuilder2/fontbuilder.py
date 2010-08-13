@@ -154,6 +154,7 @@ def generate_font(chars, outname, ttf, size, renderstyle):
 filled = { "fill": [(1, 1, 1, 1)] }
 stroked1 = { "colour": True, "stroke": [((0, 0, 0, 1), 2.0), ((0, 0, 0, 1), 2.0)], "fill": [(1, 1, 1, 1)] }
 stroked2 = { "colour": True, "stroke": [((0, 0, 0, 1), 2.0)], "fill": [(1, 1, 1, 1), (1, 1, 1, 1)] }
+stroked3 = { "colour": True, "stroke": [((0, 0, 0, 1), 2.5)], "fill": [(1, 1, 1, 1), (1, 1, 1, 1)] }
 
 chars = load_char_list("charset.txt")
 
@@ -171,7 +172,8 @@ fonts = (
     ("serif-bold-14", "ConvertedPagella-Bold.ttf", 14, filled),
     ("serif-bold-16", "ConvertedPagella-Bold.ttf", 16, filled),
     ("serif-bold-18", "ConvertedPagella-Bold.ttf", 18, filled),
-    ("serif-stroke-14", "ConvertedPagella-Regular.ttf", 14, stroked1),
+    ("serif-stroke-14", "ConvertedPagella-Regular.ttf", 14, stroked2),
+    ("serif-bold-stroke-14", "ConvertedPagella-Bold.ttf", 14, stroked3),
 )
 
 for (name, fontname, size, style) in fonts:

@@ -389,7 +389,7 @@
 			<!-- Stats -->
 			<object size="86 30 100% 100%" name="sdStatsArea" type="image">
 				<!-- Player Name -->
-				<object size="0 0 100% 24" name="sdPlayer" type="text" style="centeredText" font="serif-stroke-14" tooltip_style="snToolTip"/>
+				<object size="0 0 100% 24" name="sdPlayer" type="text" style="centeredText" font="serif-bold-stroke-14" tooltip_style="snToolTip"/>
 				
 				<!-- Attack stats -->
 				<object size="12 32 100% 100%" type="image" name="sdAttack" tooltip="Attack strengths" tooltip_style="snToolTip">

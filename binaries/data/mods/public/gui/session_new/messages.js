@@ -89,7 +89,7 @@ function addChatMessage(msg)
 		break;
 
 	case "message":
-		formatted = '<[font=\"serif-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> ' + msg.text;
+		formatted = '<[font=\"serif-bold-stroke-14\"][color="' + playerColor + '"]' + msg.username + '[/color][/font]> [font=\"serif-stroke-14\"]' + msg.text + '[/font]';
 		break;
 
 	default:
