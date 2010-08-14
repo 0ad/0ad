@@ -471,7 +471,10 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 		// we maybe want to expand the square a bit so we're less likely to think there's
 		// free space between buildings when there isn't. But this is just a random guess
 		// and needs to be tweaked until everything works nicely.
-		entity_pos_t expand = entity_pos_t::FromInt(CELL_SIZE / 2);
+		//entity_pos_t expand = entity_pos_t::FromInt(CELL_SIZE / 2);
+		// Actually that's bad because units get stuck when the A* pathfinder thinks they're
+		// blocked on all sides, so it's better to underestimate
+		entity_pos_t expand = entity_pos_t::FromInt(0);
 
 		CFixedVector2D halfSize(it->second.hw + expand, it->second.hh + expand);
 		CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(it->second.u, it->second.v, halfSize);

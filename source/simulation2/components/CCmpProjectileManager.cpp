@@ -162,7 +162,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 		if (sourcePos.null())
 			return;
 
-		CVector3D sourceVec(sourcePos->GetPosition());
+		sourceVec = sourcePos->GetPosition();
 		sourceVec.Y += 3.f;
 	}
 

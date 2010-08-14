@@ -221,6 +221,8 @@ int CMapReader::ApplyData()
 			*pLightEnv = m_LightEnv;
 	}
 
+	pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
+
 	if (m_CameraStartupTarget != INVALID_ENTITY && pGameView)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_CameraStartupTarget);
