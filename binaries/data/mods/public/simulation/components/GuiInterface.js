@@ -17,21 +17,6 @@ GuiInterface.prototype.Init = function()
 	this.rallyPoints = undefined;
 };
 
-GuiInterface.prototype.PushNotification = function(notification)
-{
-	this.notifications.push(notification);
-};
-
-GuiInterface.prototype.PopNotification = function()
-{
-	//warn(uneval(this.notifications));
-
-	if (this.notifications.length)
-		return this.notifications.pop();
-	else
-		return "";
-};
-
 GuiInterface.prototype.GetSimulationState = function(player)
 {
 	var ret = {
@@ -189,6 +174,19 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	}
 
 	return ret;
+};
+
+GuiInterface.prototype.PushNotification = function(notification)
+{
+	this.notifications.push(notification);
+};
+
+GuiInterface.prototype.PopNotification = function()
+{
+	if (this.notifications.length)
+		return this.notifications.pop();
+	else
+		return "";
 };
 
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
@@ -385,10 +383,11 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 // trusted and indicates the player associated with the current client; no data should
 // be returned unless this player is meant to be able to see it.)
 var exposedFunctions = {
-	"PopNotification": 1,
+	
 	"GetSimulationState": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
+	"PopNotification": 1,
 
 	"SetSelectionHighlight": 1,
 	"DisplayRallyPoint": 1,

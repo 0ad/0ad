@@ -14,17 +14,18 @@ var notificationsTimers = [];
 function handleNotifications()
 {
 	var notification = Engine.GuiInterfaceCall("PopNotification");
-	var timerExpiredFunction = function () { removeOldNotifications(); }
 
-	if (notification)
+	if (notification && notification.player ==  Engine.GetPlayerID())
 	{
+		var timerExpiredFunction = function () { removeOldNotifications(); }
+
 		notifications.push(notification);
 		notificationsTimers.push(setTimeout(timerExpiredFunction, NOTIFICATION_TIMEOUT));
 
-		if (notifications.length <= MAX_NUM_NOTIFICATION_LINES)
-			getGUIObjectByName("notificationText").caption = notifications.join("\n");
-		else
+		if (notifications.length > MAX_NUM_NOTIFICATION_LINES)
 			removeOldNotifications();
+		else
+			displayNotifications();
 	}
 }
 
@@ -33,7 +34,15 @@ function removeOldNotifications()
 	clearTimeout(notificationsTimers[0]); // The timer only needs to be cleared when new notifications bump old notifications off
 	notificationsTimers.shift();
 	notifications.shift();
-	getGUIObjectByName("notificationText").caption = notifications.join("\n");
+	displayNotifications();
+}
+
+function displayNotifications()
+{
+	var messages = [];
+	for each (var n in notifications)
+		messages.push(n.message);
+	getGUIObjectByName("notificationText").caption = messages.join("\n");
 }
 
 //Messages
@@ -111,6 +120,8 @@ function addChatMessage(msg)
 	// TODO: we ought to escape all values before displaying them,
 	// to prevent people inserting colours and newlines etc
 
+	//var n = msg.player;
+	//var playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 	var playerColor = getColorByPlayerName(msg.username);
 	var formatted;
 
@@ -135,10 +146,10 @@ function addChatMessage(msg)
 	chatMessages.push(formatted);
 	chatTimers.push(setTimeout(timerExpiredFunction, CHAT_TIMEOUT));
 
-	if (chatMessages.length <= MAX_NUM_CHAT_LINES)
-		getGUIObjectByName("chatText").caption = chatMessages.join("\n");
-	else
+	if (chatMessages.length > MAX_NUM_CHAT_LINES)
 		removeOldChatMessages();
+	else
+		getGUIObjectByName("chatText").caption = chatMessages.join("\n");
 }
 
 function removeOldChatMessages()

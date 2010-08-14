@@ -95,8 +95,9 @@ Player.prototype.TrySubtractResources = function(amounts)
 	// If we don't have enough resources, send a notification to the player
 	if (formattedAmountsNeeded.length)
 	{
+		var notification = {"player": this.playerID, "message": "Resources needed: " + formattedAmountsNeeded.join(", ")};
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGUIInterface.PushNotification("Resources needed: " + formattedAmountsNeeded.join(", "));
+		cmpGUIInterface.PushNotification(notification);
 		return false;
 	}
 	else
