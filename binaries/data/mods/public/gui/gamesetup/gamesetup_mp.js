@@ -81,10 +81,13 @@ function startHost(playername, servername)
 		messageBox(400, 200,
 			"Cannot host game: " + e.message + ".",
 			"Error", 2);
+		return false;
 	}
 
 	startConnectionStatus("server");
 	// TODO: ought to do something(?) with servername
+
+	return true;
 }
 
 function startJoin(playername, ip)
@@ -99,7 +102,9 @@ function startJoin(playername, ip)
 		messageBox(400, 200,
 			"Cannot join game: " + e.message + ".",
 			"Error", 2);
+		return false;
 	}
 
 	startConnectionStatus("client");
+	return true;
 }

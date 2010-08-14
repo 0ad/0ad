@@ -21,8 +21,6 @@ function getPlayerData(playerAssignments)
 	for (var i = 0; i < simState.players.length; i++)
 	{
 		var playerState = simState.players[i];
-		if (!playerState)
-			continue;
 
 		var name = playerState.name;
 		var civ = playerState.civ;
@@ -36,13 +34,12 @@ function getPlayerData(playerAssignments)
 		players.push(player);
 	}
 	
-	var i = 1;
 	if (playerAssignments)
 	{
 		for each (var playerAssignment in playerAssignments)
 		{
-			players[i].name = playerAssignment.name;
-			i++;
+			if (players[playerAssignment.player])
+				players[playerAssignment.player].name = playerAssignment.name;
 		}
 	}
 	

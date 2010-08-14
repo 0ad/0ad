@@ -57,7 +57,7 @@ function handleNetMessage(message)
 		switch (message.status)
 		{
 		case "waiting_for_players":
-			obj.caption = "Waiting for other players to connect";
+			obj.caption = "Waiting for other players to connect...";
 			obj.hidden = false;
 			break;
 		case "active":
@@ -65,7 +65,7 @@ function handleNetMessage(message)
 			obj.hidden = true;
 			break;
 		case "disconnected":
-			obj.caption = "Connection to the server has been lost";
+			obj.caption = "Connection to the server has been lost.\n\nThe game has ended.";
 			obj.hidden = false;
 			getGUIObjectByName("disconnectedExitButton").hidden = false;
 			break;
@@ -81,7 +81,7 @@ function handleNetMessage(message)
 			if (! message.hosts[host])
 			{
 				var obj = getGUIObjectByName("netStatus");
-				obj.caption = g_PlayerAssignments[host].name + " has left\n\nConnection to the server has been lost";
+				obj.caption = g_PlayerAssignments[host].name + " has disconnected.\n\nThe game has ended.";
 				obj.hidden = false;
 				getGUIObjectByName("disconnectedExitButton").hidden = false;
 			}
@@ -104,7 +104,7 @@ function submitChatInput()
 		if (g_IsNetworked)
 			Engine.SendNetworkChat(text);
 		else
-			addChatMessage({ "type": "message", "guid": 1, "text": text });
+			addChatMessage({ "type": "message", "guid": "local", "text": text });
 
 		input.caption = ""; // Clear chat input
 		input.blur(); // Remove focus
@@ -118,8 +118,8 @@ function addChatMessage(msg)
 	// TODO: we ought to escape all values before displaying them,
 	// to prevent people inserting colours and newlines etc
 
-	var n = msg.guid;
-	var username = g_Players[n].name;
+	var n = g_PlayerAssignments[msg.guid].player;
+	var username = g_PlayerAssignments[msg.guid].name;
 	var playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 
 	var formatted;

@@ -80,10 +80,12 @@
 			<object type="button" size="50%-125 200 50%-25 230" style="wheatButton">
 				Continue
 				<action on="Press"><![CDATA[
-					startHost(
+					if (startHost(
 						getGUIObjectByName("hostPlayerName").caption,
-						getGUIObjectByName("hostServerName").caption);
-					switchSetupPage("pageHost", "pageConnecting");
+						getGUIObjectByName("hostServerName").caption))
+					{
+						switchSetupPage("pageHost", "pageConnecting");
+					}
 				]]></action>
 			</object>
 
@@ -123,10 +125,12 @@
 			<object type="button" size="50%-125 200 50%-25 230" style="wheatButton">
 				Continue
 				<action on="Press"><![CDATA[
-					startJoin(
+					if (startJoin(
 						getGUIObjectByName("joinPlayerName").caption,
-						getGUIObjectByName("joinIP").caption);
-					switchSetupPage("pageJoin", "pageConnecting");
+						getGUIObjectByName("joinIP").caption))
+					{
+						switchSetupPage("pageJoin", "pageConnecting");
+					}
 				]]></action>
 			</object>
 

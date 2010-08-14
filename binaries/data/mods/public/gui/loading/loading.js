@@ -6,15 +6,8 @@ function init(data)
 	if (data && data.attribs)
 		mapName = data.attribs.map;
 
-		
-		
-		
-	if (data)
-		g_Data = data;
-
-		
-		
-		
+	g_Data = data;
+	
 	// Set to "hourglass" cursor.
 	setCursor("cursor-wait");
 

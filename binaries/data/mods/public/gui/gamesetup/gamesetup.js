@@ -125,20 +125,22 @@ function handleNetMessage(message)
 				addChatMessage({ "type": "connect", "username": message.hosts[host].name });
 		for (var host in g_PlayerAssignments)
 			if (! message.hosts[host])
-				addChatMessage({ "type": "disconnect", "username": g_PlayerAssignments[host].name });
+				addChatMessage({ "type": "disconnect", "guid": host });
 		// Update the player list
 		g_PlayerAssignments = message.hosts;
 		updatePlayerList();
 		break;
 
 	case "start":
-		Engine.SwitchGuiPage("page_loading.xml", { "attribs": g_GameAttributes, 
-																		"isNetworked" : g_IsNetworked, 
-																		"playerAssignments": g_PlayerAssignments} );
+		Engine.SwitchGuiPage("page_loading.xml", {
+			"attribs": g_GameAttributes, 
+			"isNetworked" : g_IsNetworked, 
+			"playerAssignments": g_PlayerAssignments
+		});
 		break;
 
 	case "chat":
-		addChatMessage({ "type": "message", "username": message.username, "text": message.text });
+		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
 		break;
 
 	default:
@@ -276,7 +278,11 @@ function launchGame()
 				playerID = i+1;
 		}
 		Engine.StartGame(g_GameAttributes, playerID);
-		Engine.PushGuiPage("page_loading.xml", { "attribs": g_GameAttributes });
+		Engine.SwitchGuiPage("page_loading.xml", {
+			"attribs": g_GameAttributes, 
+			"isNetworked" : g_IsNetworked, 
+			"playerAssignments": g_PlayerAssignments
+		});
 	}
 }
 
@@ -360,19 +366,21 @@ function addChatMessage(msg)
 	// TODO: we ought to escape all values before displaying them,
 	// to prevent people inserting colours and newlines etc
 
+	var username = (msg.username || g_PlayerAssignments[msg.guid].name);
+
 	var formatted;
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = '[font="serif-bold-13"][color="255 0 0"]' + msg.username + '[/color][/font] [color="64 64 64"]has joined[/color]';
+		formatted = '[font="serif-bold-13"][color="255 0 0"]' + username + '[/color][/font] [color="64 64 64"]has joined[/color]';
 		break;
 
 	case "disconnect":
-		formatted = '[font="serif-bold-13"][color="255 0 0"]' + msg.username + '[/color][/font] [color="64 64 64"]has left[/color]';
+		formatted = '[font="serif-bold-13"][color="255 0 0"]' + username + '[/color][/font] [color="64 64 64"]has left[/color]';
 		break;
 
 	case "message":
-		formatted = '[font="serif-bold-13"]<[color="255 0 0"]' + msg.username + '[/color]>[/font] ' + msg.text;
+		formatted = '[font="serif-bold-13"]<[color="255 0 0"]' + username + '[/color]>[/font] ' + msg.text;
 		break;
 
 	default:
