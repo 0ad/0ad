@@ -122,6 +122,18 @@ public:
 		m_Target = Clamp(m_Target, (double)min, (double)max);
 	}
 
+	// Wrap so 'target' is in the range [min, max]
+	void Wrap(float min, float max)
+	{
+		double t = fmod(m_Target - min, (double)(max - min));
+		if (t < 0)
+			t += max - min;
+		t += min;
+
+		m_Current += t - m_Target;
+		m_Target = t;
+	}
+
 private:
 	double m_Target; // the value which m_Current is tending towards
 	double m_Current;
@@ -727,6 +739,8 @@ void CGameView::Update(float DeltaTime)
 	}
 	*/
 
+	m->RotateY.Wrap(-M_PI, M_PI);
+
 	// Update the camera matrix
 	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
@@ -770,6 +784,25 @@ void CGameView::ResetCameraTarget(const CVector3D& target)
 
 	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
+}
+
+void CGameView::ResetCameraAngleZoom()
+{
+	CCamera targetCam = m->ViewCamera;
+	targetCam.m_Orientation.SetIdentity();
+	targetCam.m_Orientation.RotateX(m->RotateX.GetValue());
+	targetCam.m_Orientation.RotateY(m->RotateY.GetValue());
+	targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+
+	// Compute the zoom adjustment to get us back to the default
+	CVector3D forwards = targetCam.m_Orientation.GetIn();
+	CVector3D delta = targetCam.GetFocus() - targetCam.m_Orientation.GetTranslation();
+	float dist = delta.Dot(forwards);
+	m->Zoom.AddSmoothly(dist - m->ViewZoomDefault);
+
+	// Reset orientations to default
+	m->RotateX.SetValueSmoothly(DEGTORAD(m->ViewRotateXDefault));
+	m->RotateY.SetValueSmoothly(DEGTORAD(m->ViewRotateYDefault));
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)
@@ -827,6 +860,10 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 
 		case HOTKEY_CAMERA_ROTATE_WHEEL_CCW:
 			m->RotateY.AddSmoothly(-m->ViewRotateYSpeedWheel);
+			return IN_HANDLED;
+
+		case HOTKEY_CAMERA_RESET:
+			ResetCameraAngleZoom();
 			return IN_HANDLED;
 		}
 	}

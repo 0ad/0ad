@@ -83,6 +83,7 @@ public:
 
 	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
+	void ResetCameraAngleZoom();
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();
