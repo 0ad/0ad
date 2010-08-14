@@ -107,7 +107,7 @@ START_NMT_CLASS_(AuthenticateResult, NMT_AUTHENTICATE_RESULT)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Chat, NMT_CHAT)
-	NMT_FIELD(CStrW, m_Sender) // ignored when client->server, valid when server->client
+	NMT_FIELD(CStr8, m_GUID) // ignored when client->server, valid when server->client
 	NMT_FIELD(CStrW, m_Message)
 END_NMT_CLASS()
 

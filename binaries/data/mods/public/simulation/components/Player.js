@@ -95,7 +95,7 @@ Player.prototype.TrySubtractResources = function(amounts)
 	// If we don't have enough resources, send a notification to the player
 	if (formattedAmountsNeeded.length)
 	{
-		var notification = {"player": this.playerID, "message": "Resources needed: " + formattedAmountsNeeded.join(", ")};
+		var notification = {"player": this.playerID, "message": "Insufficient resources - " + formattedAmountsNeeded.join(", ")};
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);
 		return false;
@@ -104,7 +104,7 @@ Player.prototype.TrySubtractResources = function(amounts)
 	{
 		// Subtract the resources
 		for (var type in amounts)
-			this.resourceCount[type] -= amounts[type];	
+			this.resourceCount[type] -= amounts[type];
 	}
 
 	return true;

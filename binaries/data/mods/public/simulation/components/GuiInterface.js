@@ -181,7 +181,7 @@ GuiInterface.prototype.PushNotification = function(notification)
 	this.notifications.push(notification);
 };
 
-GuiInterface.prototype.PopNotification = function()
+GuiInterface.prototype.GetNextNotification = function()
 {
 	if (this.notifications.length)
 		return this.notifications.pop();
@@ -387,7 +387,7 @@ var exposedFunctions = {
 	"GetSimulationState": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
-	"PopNotification": 1,
+	"GetNextNotification": 1,
 
 	"SetSelectionHighlight": 1,
 	"DisplayRallyPoint": 1,

@@ -13,7 +13,7 @@ var notificationsTimers = [];
 // Notifications
 function handleNotifications()
 {
-	var notification = Engine.GuiInterfaceCall("PopNotification");
+	var notification = Engine.GuiInterfaceCall("GetNextNotification");
 
 	if (notification && notification.player ==  Engine.GetPlayerID())
 	{
@@ -88,7 +88,7 @@ function handleNetMessage(message)
 		}
 		break;
 	case "chat":
-		addChatMessage({ "type": "message", "username": message.username, "text": message.text });
+		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
 		break;
 	default:
 		error("Unrecognised net message type "+message.type);
@@ -104,12 +104,10 @@ function submitChatInput()
 		if (g_IsNetworked)
 			Engine.SendNetworkChat(text);
 		else
-			addChatMessage({ "type": "message", "username": g_Players[1].name, "text": text });
+			addChatMessage({ "type": "message", "guid": 1, "text": text });
 
-		input.caption = "";
-
-		// Remove focus
-		input.blur();
+		input.caption = ""; // Clear chat input
+		input.blur(); // Remove focus
 	}
 	
 	toggleChatWindow();
@@ -120,22 +118,23 @@ function addChatMessage(msg)
 	// TODO: we ought to escape all values before displaying them,
 	// to prevent people inserting colours and newlines etc
 
-	//var n = msg.player;
-	//var playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-	var playerColor = getColorByPlayerName(msg.username);
+	var n = msg.guid;
+	var username = g_Players[n].name;
+	var playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
+
 	var formatted;
 
 	switch (msg.type)
 	{
+	/*
 	case "disconnect":
-		formatted = "<[color=\"" + playerColor + "\"]" + msg.username + "[/color]> has left";
+		formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> has left";
 		break;
-
+	*/
 	case "message":
-		console.write("<" + msg.username + "> " + msg.text);
-		formatted = "<[color=\"" + playerColor + "\"]" + msg.username + "[/color]> " + msg.text;
+		console.write("<" + username + "> " + msg.text);
+		formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + msg.text;
 		break;
-
 	default:
 		error("Invalid chat message '" + uneval(msg) + "'");
 		return;
@@ -158,13 +157,4 @@ function removeOldChatMessages()
 	chatTimers.shift();
 	chatMessages.shift();
 	getGUIObjectByName("chatText").caption = chatMessages.join("\n");
-}
-
-function getColorByPlayerName(playerName)
-{
-	for (var i = 0; i < g_Players.length; i++)
-		if (playerName == g_Players[i].name)
-			return  g_Players[i].color.r + " " + g_Players[i].color.g + " " + g_Players[i].color.b;
-			
-	return "255 255 255";
 }

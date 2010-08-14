@@ -292,7 +292,7 @@ bool CNetClient::OnChat(void* context, CFsmEvent* event)
 
 	CScriptValRooted msg;
 	client->GetScriptInterface().Eval("({'type':'chat'})", msg);
-	client->GetScriptInterface().SetProperty(msg.get(), "username", std::wstring(message->m_Sender), false);
+	client->GetScriptInterface().SetProperty(msg.get(), "guid", std::string(message->m_GUID), false);
 	client->GetScriptInterface().SetProperty(msg.get(), "text", std::wstring(message->m_Message), false);
 	client->PushGuiMessage(msg);
 

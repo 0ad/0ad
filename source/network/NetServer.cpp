@@ -484,7 +484,7 @@ bool CNetServer::OnChat(void* context, CFsmEvent* event)
 
 	CChatMessage* message = (CChatMessage*)event->GetParamRef();
 
-	message->m_Sender = session->GetUserName();
+	message->m_GUID = session->GetHostID();
 
 	server.Broadcast(message);
 

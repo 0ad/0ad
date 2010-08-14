@@ -23,7 +23,7 @@ var g_IsNetworked = false;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
-var g_PlayerAssignments = {};
+var g_PlayerAssignments = { "local": { "name": "You", "player": 1 } };
 var g_PlayerID;
 
 // Cache dev-mode settings that are frequently or widely used
