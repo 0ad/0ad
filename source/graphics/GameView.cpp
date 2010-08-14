@@ -739,7 +739,7 @@ void CGameView::Update(float DeltaTime)
 	}
 	*/
 
-	m->RotateY.Wrap(-M_PI, M_PI);
+	m->RotateY.Wrap(-(float)M_PI, (float)M_PI);
 
 	// Update the camera matrix
 	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
