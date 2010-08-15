@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="228.503" y="112.261" z="598.849"/>
-		<Rotation angle="0.000390864"/>
-		<Declination angle="0.551317"/>
+		<Position x="234.486" y="129.004" z="558.427"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -193,7 +193,7 @@
 		<Entity uid="37">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="253.06656" z="688.2176"/>
+			<Position x="252.05324" z="687.3791"/>
 			<Orientation y="-0.9519"/>
 		</Entity>
 		<Entity uid="38">
@@ -229,7 +229,7 @@
 		<Entity uid="43">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="250.25974" z="694.39448"/>
+			<Position x="285.55646" z="713.87665"/>
 			<Orientation y="-2.42817"/>
 		</Entity>
 		<Entity uid="44">
@@ -607,7 +607,7 @@
 		<Entity uid="133">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="173.01606" z="691.74988"/>
+			<Position x="173.355" z="689.89631"/>
 			<Orientation y="-2.68126"/>
 		</Entity>
 		<Entity uid="134">
@@ -11088,7 +11088,7 @@
 		</Entity>
 		<Entity uid="2256">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="284.72416" z="703.48475"/>
+			<Position x="269.7385" z="718.01587"/>
 			<Orientation y="2.18236"/>
 		</Entity>
 		<Entity uid="2257">
@@ -11533,12 +11533,12 @@
 		</Entity>
 		<Entity uid="2345">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="295.99762" z="664.40351"/>
+			<Position x="216.56347" z="677.83295"/>
 			<Orientation y="2.65474"/>
 		</Entity>
 		<Entity uid="2346">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="297.36414" z="662.97095"/>
+			<Position x="203.49573" z="673.52771"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2347">
@@ -11553,7 +11553,7 @@
 		</Entity>
 		<Entity uid="2349">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="285.95685" z="675.70496"/>
+			<Position x="288.03153" z="681.06525"/>
 			<Orientation y="-0.24282"/>
 		</Entity>
 		<Entity uid="2350">
@@ -11563,17 +11563,17 @@
 		</Entity>
 		<Entity uid="2351">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="284.14167" z="687.46143"/>
+			<Position x="167.06452" z="696.68445"/>
 			<Orientation y="0.1201"/>
 		</Entity>
 		<Entity uid="2352">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="285.17991" z="694.62488"/>
+			<Position x="217.01868" z="669.6526"/>
 			<Orientation y="0.63825"/>
 		</Entity>
 		<Entity uid="2353">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="287.64435" z="700.49012"/>
+			<Position x="277.92325" z="729.12458"/>
 			<Orientation y="-0.39992"/>
 		</Entity>
 		<Entity uid="2354">
@@ -17609,19 +17609,19 @@
 		<Entity uid="3457">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="422.10029" z="837.7909"/>
+			<Position x="419.56315" z="971.81214"/>
 			<Orientation y="0.07862"/>
 		</Entity>
 		<Entity uid="3458">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="436.22706" z="849.08118"/>
+			<Position x="431.78696" z="975.1648"/>
 			<Orientation y="2.86399"/>
 		</Entity>
 		<Entity uid="3459">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="447.90037" z="855.94263"/>
+			<Position x="439.5705" z="974.74256"/>
 			<Orientation y="0.28702"/>
 		</Entity>
 		<Entity uid="3460">
@@ -17827,6 +17827,400 @@
 			<Player>0</Player>
 			<Position x="712.24408" z="661.88575"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3512">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="337.82108" z="731.73725"/>
+			<Orientation y="-2.79632"/>
+		</Entity>
+		<Entity uid="3513">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="305.97721" z="732.20386"/>
+			<Orientation y="1.14972"/>
+		</Entity>
+		<Entity uid="3514">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="318.83948" z="729.73133"/>
+			<Orientation y="3.13955"/>
+		</Entity>
+		<Entity uid="3515">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="343.01166" z="730.41688"/>
+			<Orientation y="0.93746"/>
+		</Entity>
+		<Entity uid="3516">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="441.59003" z="851.9972"/>
+			<Orientation y="-3.04267"/>
+		</Entity>
+		<Entity uid="3517">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="432.61329" z="847.35102"/>
+			<Orientation y="1.19428"/>
+		</Entity>
+		<Entity uid="3518">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="445.01767" z="850.61365"/>
+			<Orientation y="-2.5847"/>
+		</Entity>
+		<Entity uid="3519">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="443.33844" z="865.28345"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3520">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="328.24103" z="727.3396"/>
+			<Orientation y="1.30591"/>
+		</Entity>
+		<Entity uid="3521">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="249.13044" z="127.75129"/>
+			<Orientation y="3.01355"/>
+		</Entity>
+		<Entity uid="3522">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="256.2464" z="115.43212"/>
+			<Orientation y="1.14713"/>
+		</Entity>
+		<Entity uid="3523">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="385.07657" z="312.13868"/>
+			<Orientation y="-3.01162"/>
+		</Entity>
+		<Entity uid="3524">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="265.32377" z="108.23806"/>
+			<Orientation y="-1.95575"/>
+		</Entity>
+		<Entity uid="3525">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="253.13474" z="104.15246"/>
+			<Orientation y="-2.46521"/>
+		</Entity>
+		<Entity uid="3526">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="252.07091" z="96.62037"/>
+			<Orientation y="0.87412"/>
+		</Entity>
+		<Entity uid="3527">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="379.63627" z="326.21143"/>
+			<Orientation y="0.55655"/>
+		</Entity>
+		<Entity uid="3528">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="379.16474" z="346.2898"/>
+			<Orientation y="1.86854"/>
+		</Entity>
+		<Entity uid="3529">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="392.37177" z="329.36106"/>
+			<Orientation y="-1.7227"/>
+		</Entity>
+		<Entity uid="3530">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="556.32703" z="225.67829"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3531">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="689.27369" z="134.38083"/>
+			<Orientation y="-2.73606"/>
+		</Entity>
+		<Entity uid="3532">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="699.2303" z="126.26746"/>
+			<Orientation y="0.21473"/>
+		</Entity>
+		<Entity uid="3533">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="703.61457" z="137.76761"/>
+			<Orientation y="-3.08977"/>
+		</Entity>
+		<Entity uid="3534">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="701.56794" z="144.36199"/>
+			<Orientation y="-2.62732"/>
+		</Entity>
+		<Entity uid="3535">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="563.65088" z="228.41511"/>
+			<Orientation y="-1.09031"/>
+		</Entity>
+		<Entity uid="3536">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="557.92493" z="231.98111"/>
+			<Orientation y="-2.94137"/>
+		</Entity>
+		<Entity uid="3537">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="561.78852" z="219.91892"/>
+			<Orientation y="1.14525"/>
+		</Entity>
+		<Entity uid="3538">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="693.17756" z="126.47262"/>
+			<Orientation y="-3.02607"/>
+		</Entity>
+		<Entity uid="3539">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="606.222" z="979.9292"/>
+			<Orientation y="-0.194"/>
+		</Entity>
+		<Entity uid="3540">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="624.2688" z="990.88062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3541">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="619.92902" z="973.88135"/>
+			<Orientation y="-2.9113"/>
+		</Entity>
+		<Entity uid="3542">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="615.11426" z="984.08228"/>
+			<Orientation y="-3.08942"/>
+		</Entity>
+		<Entity uid="3543">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="793.85822" z="681.77173"/>
+			<Orientation y="-2.64637"/>
+		</Entity>
+		<Entity uid="3544">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="778.82337" z="682.68726"/>
+			<Orientation y="1.12699"/>
+		</Entity>
+		<Entity uid="3545">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="783.05054" z="694.73237"/>
+			<Orientation y="0.95092"/>
+		</Entity>
+		<Entity uid="3546">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="790.06916" z="698.81257"/>
+			<Orientation y="2.1469"/>
+		</Entity>
+		<Entity uid="3547">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="801.28888" z="677.89454"/>
+			<Orientation y="0.79284"/>
+		</Entity>
+		<Entity uid="3548">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="703.90363" z="426.92515"/>
+			<Orientation y="-3.01821"/>
+		</Entity>
+		<Entity uid="3549">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="697.43598" z="420.7486"/>
+			<Orientation y="0.3819"/>
+		</Entity>
+		<Entity uid="3550">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="686.16797" z="433.27973"/>
+			<Orientation y="-1.39243"/>
+		</Entity>
+		<Entity uid="3551">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="675.48182" z="443.21308"/>
+			<Orientation y="0.36393"/>
+		</Entity>
+		<Entity uid="3552">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="683.14045" z="453.31507"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3553">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="712.8797" z="469.4007"/>
+			<Orientation y="-2.91805"/>
+		</Entity>
+		<Entity uid="3554">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="680.1637" z="431.64051"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3555">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="699.89399" z="528.1344"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3556">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="700.62244" z="419.51075"/>
+			<Orientation y="-2.10553"/>
+		</Entity>
+		<Entity uid="3557">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="703.0951" z="524.22004"/>
+			<Orientation y="1.26056"/>
+		</Entity>
+		<Entity uid="3558">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="398.30402" z="402.67975"/>
+			<Orientation y="1.19169"/>
+		</Entity>
+		<Entity uid="3559">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="410.54987" z="409.53657"/>
+			<Orientation y="2.7241"/>
+		</Entity>
+		<Entity uid="3560">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="416.2292" z="398.09504"/>
+			<Orientation y="1.86106"/>
+		</Entity>
+		<Entity uid="3561">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="417.98652" z="392.85297"/>
+			<Orientation y="-2.67116"/>
+		</Entity>
+		<Entity uid="3562">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="415.67838" z="388.02826"/>
+			<Orientation y="-2.17037"/>
+		</Entity>
+		<Entity uid="3563">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="405.68042" z="376.06739"/>
+			<Orientation y="-2.4983"/>
+		</Entity>
+		<Entity uid="3564">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="412.1435" z="384.91874"/>
+			<Orientation y="-2.74842"/>
+		</Entity>
+		<Entity uid="3565">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="406.0304" z="397.45386"/>
+			<Orientation y="0.54422"/>
+		</Entity>
+		<Entity uid="3566">
+			<Template>gaia/fauna_wildebeest</Template>
+			<Player>0</Player>
+			<Position x="405.7804" z="381.70423"/>
+			<Orientation y="-2.22564"/>
+		</Entity>
+		<Entity uid="3567">
+			<Template>gaia/fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="951.76386" z="581.1117"/>
+			<Orientation y="-2.67382"/>
+		</Entity>
+		<Entity uid="3568">
+			<Template>gaia/fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="981.04676" z="486.2793"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3569">
+			<Template>gaia/fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="38.6633" z="605.3758"/>
+			<Orientation y="-3.11202"/>
+		</Entity>
+		<Entity uid="3570">
+			<Template>gaia/fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="33.5641" z="527.79883"/>
+			<Orientation y="1.04194"/>
+		</Entity>
+		<Entity uid="3571">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="193.12433" z="477.53644"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3572">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="279.18915" z="535.51923"/>
+			<Orientation y="0.57401"/>
+		</Entity>
+		<Entity uid="3573">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="279.54645" z="397.96686"/>
+			<Orientation y="0.78289"/>
+		</Entity>
+		<Entity uid="3574">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="202.80747" z="390.04844"/>
+			<Orientation y="-1.53965"/>
+		</Entity>
+		<Entity uid="3575">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="869.55658" z="528.02167"/>
+			<Orientation y="-2.89083"/>
+		</Entity>
+		<Entity uid="3576">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="816.76185" z="523.79731"/>
+			<Orientation y="0.15381"/>
+		</Entity>
+		<Entity uid="3577">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="786.8042" z="499.52546"/>
+			<Orientation y="0.46895"/>
+		</Entity>
+		<Entity uid="3578">
+			<Template>actor|fauna/hawk.xml</Template>
+			<Position x="867.14246" z="460.01526"/>
+			<Orientation y="-0.70717"/>
 		</Entity>
 	</Entities>
 	<Paths/>

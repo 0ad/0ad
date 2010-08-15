@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_flora_tree">
+  <Identity>
+    <SpecificName>Apple Tree</SpecificName>
+    <IconCell>3</IconCell>
+    <History>Apple trees bear delicious fruit and are bountiful.</History>
+  </Identity>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>food.fruit</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>flora/trees/apple_bloom.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Circle radius="2.5"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="1.75" depth="1.75"/>
+  </Obstruction>
+</Entity>

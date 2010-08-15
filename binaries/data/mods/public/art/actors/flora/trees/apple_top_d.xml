@@ -1,15 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="d">
       <mesh>gaia/tree_apple_top_d.dae</mesh>
-      <texture>gaia/tree_apple_bloom.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant name="d-bloom">
+      <texture>gaia/tree_apple_bloom.dds</texture>
+    </variant>
+    <variant name="d-ripe">
+      <texture>gaia/tree_apple_a.dds</texture>
+    </variant>
+  </group>
   <material>basic_trans.xml</material>
-
 </actor>
