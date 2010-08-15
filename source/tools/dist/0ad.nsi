@@ -172,7 +172,7 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk"
-  Delete "$SMPROGRAMS\$StartMenuFolder\Web site.lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\Web site.url"
   RMDir "$SMPROGRAMS\$StartMenuFolder"
 
   DeleteRegKey SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D."
