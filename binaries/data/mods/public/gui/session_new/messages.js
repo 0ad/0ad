@@ -107,8 +107,9 @@ function submitChatInput()
 			addChatMessage({ "type": "message", "guid": "local", "text": text });
 
 		input.caption = ""; // Clear chat input
-		input.blur(); // Remove focus
 	}
+
+	input.blur(); // Remove focus
 	
 	toggleChatWindow();
 }
