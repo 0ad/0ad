@@ -1,3 +1,3 @@
 #!/bin/sh
 
-/usr/bin/pyrogenesis_dbg "$@"
+/usr/bin/pyrogenesis "$@"
