@@ -14,15 +14,12 @@
       <metal>137</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>280</Max>
-  </Health>
   <Stamina>
     <Max>990</Max>
   </Stamina>
   <Armour>
     <Hack>16.0</Hack>
-    <Pierce>14.0</Pierce>
+    <Pierce>21.0</Pierce>
     <Crush>21.0</Crush>
   </Armour>
   <UnitMotion>
@@ -33,11 +30,11 @@
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>27.0</Hack>
+      <Hack>30.0</Hack>
       <Crush>3.0</Crush>
     </Melee>
     <Charge>
-      <Hack>67.5</Hack>
+      <Hack>70.0</Hack>
       <Crush>7.5</Crush>
     </Charge>
   </Attack>
