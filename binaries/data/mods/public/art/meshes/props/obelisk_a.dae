@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-08-15T22:53:17Z</created>
+    <modified>2010-08-15T22:53:17Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__1-image" name="Map__1">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\obelisk_a.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_untitledMaterial_obelisk_a_copy_jpg" name="_untitledMaterial_obelisk_a_copy_jpg">
+      <instance_effect url="#_untitledMaterial_obelisk_a_copy_jpg-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_untitledMaterial_obelisk_a_copy_jpg-fx" name="_untitledMaterial_obelisk_a_copy_jpg">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.640000  0.640000 0.640000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__1-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.500000  0.500000 0.500000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">780.277322</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="default-lib" name="defaultMesh">
+      <mesh>
+        <source id="default-lib-Position">
+          <float_array id="default-lib-Position-array" count="51">
+1.043315 -1.043910 -8.442853
+-1.041317 -1.043910 -8.442852
+-1.041317 1.040721 -8.442852
+1.043315 1.040721 -8.442853
+-0.021044 0.003472 9.530216
+0.645184 0.642590 6.482522
+-0.643184 0.642590 6.482522
+-0.643184 -0.645778 6.482522
+0.645183 -0.645778 6.482522
+1.534275 -1.534873 -8.393244
+-1.532279 -1.534870 -8.393243
+-1.532277 1.531683 -8.393243
+1.534276 1.531683 -8.393244
+1.832505 1.829911 -9.787905
+-1.830507 1.829911 -9.787905
+-1.830508 -1.833100 -9.787905
+1.832505 -1.833101 -9.787905
+</float_array>
+          <technique_common>
+            <accessor source="#default-lib-Position-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default-lib-Normal0">
+          <float_array id="default-lib-Normal0-array" count="198">
+0.976931 -0.000001 0.213558
+0.976931 -0.000001 0.213558
+0.976930 -0.000001 0.213558
+-0.000000 0.978711 0.205241
+-0.000000 0.978711 0.205241
+-0.000000 0.978711 0.205241
+-0.979794 -0.000000 0.200010
+-0.979794 -0.000000 0.200010
+-0.979794 -0.000000 0.200010
+-0.000000 -0.978053 0.208355
+-0.000000 -0.978053 0.208355
+-0.000000 -0.978053 0.208355
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+-0.000000 -0.977893 0.209108
+-0.000000 -0.977893 0.209108
+-0.000000 -0.977893 0.209108
+-0.000001 -0.977892 0.209109
+-0.000001 -0.977892 0.209109
+-0.000001 -0.977892 0.209110
+-0.977892 0.000000 0.209108
+-0.977893 0.000000 0.209108
+-0.977893 0.000000 0.209108
+-0.977892 0.000001 0.209110
+-0.977892 0.000001 0.209110
+-0.977892 0.000001 0.209109
+0.000000 0.977892 0.209109
+0.000000 0.977893 0.209109
+0.000000 0.977893 0.209109
+0.000000 0.977893 0.209108
+0.000000 0.977893 0.209108
+0.000000 0.977893 0.209108
+0.977892 -0.000000 0.209109
+0.977892 -0.000000 0.209109
+0.977892 -0.000000 0.209109
+0.977892 0.000000 0.209109
+0.977892 0.000000 0.209109
+0.977892 0.000000 0.209109
+0.999644 0.000000 0.026665
+0.999644 0.000000 0.026665
+0.999644 0.000000 0.026665
+0.999644 -0.000001 0.026665
+0.999644 -0.000001 0.026665
+0.999644 -0.000001 0.026665
+-0.000000 0.999644 0.026665
+-0.000000 0.999644 0.026665
+-0.000000 0.999644 0.026665
+0.000000 0.999644 0.026665
+0.000000 0.999644 0.026665
+0.000000 0.999644 0.026665
+-0.999644 -0.000000 0.026665
+-0.999644 -0.000000 0.026665
+-0.999644 -0.000000 0.026665
+-0.999644 0.000000 0.026665
+-0.999644 0.000000 0.026665
+-0.999644 0.000000 0.026665
+-0.000000 -0.999644 0.026665
+-0.000000 -0.999644 0.026665
+-0.000000 -0.999644 0.026665
+0.000000 -0.999644 0.026665
+0.000000 -0.999644 0.026665
+0.000000 -0.999644 0.026665
+</float_array>
+          <technique_common>
+            <accessor source="#default-lib-Normal0-array" count="66" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default-lib-UV0">
+          <float_array id="default-lib-UV0-array" count="26">
+0.296875 1.000000
+0.476563 0.876953
+0.117188 0.876953
+1.000000 1.000000
+0.476563 1.000000
+0.476563 0.878906
+1.000000 0.878906
+1.000000 0.000000
+1.000000 0.125000
+0.000000 0.000000
+0.000000 0.125000
+0.562500 0.125000
+0.007813 0.125000
+</float_array>
+          <technique_common>
+            <accessor source="#default-lib-UV0-array" count="13" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="default-lib-Vertex">
+          <input semantic="POSITION" source="#default-lib-Position"/>
+        </vertices>
+        <polygons material="_untitledMaterial_obelisk_a_copy_jpg" count="22">
+          <input semantic="VERTEX" offset="0" source="#default-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#default-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#default-lib-UV0"/>
+          <p>4 0 0 8 1 1 5 2 2</p>
+          <p>6 3 2 4 4 0 5 5 1</p>
+          <p>7 6 1 4 7 0 6 8 2</p>
+          <p>8 9 1 4 10 0 7 11 2</p>
+          <p>9 12 3 12 13 4 11 14 5</p>
+          <p>9 15 3 11 16 5 10 17 6</p>
+          <p>16 18 7 9 19 8 15 20 9</p>
+          <p>9 21 8 10 22 10 15 23 9</p>
+          <p>15 24 7 10 25 8 14 26 9</p>
+          <p>10 27 8 11 28 10 14 29 9</p>
+          <p>14 30 9 11 31 10 13 32 7</p>
+          <p>11 33 10 12 34 8 13 35 7</p>
+          <p>9 36 8 16 37 7 12 38 10</p>
+          <p>16 39 7 13 40 9 12 41 10</p>
+          <p>8 42 1 0 43 11 3 44 12</p>
+          <p>8 45 1 3 46 12 5 47 2</p>
+          <p>2 48 12 6 49 2 5 50 1</p>
+          <p>2 51 12 5 52 1 3 53 11</p>
+          <p>1 54 11 7 55 1 6 56 2</p>
+          <p>1 57 11 6 58 2 2 59 12</p>
+          <p>0 60 11 8 61 1 7 62 2</p>
+          <p>0 63 11 7 64 2 1 65 12</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="default" name="default">
+        <translate sid="translate">0.000000 -0.000000 9.783967</translate>
+        <instance_geometry url="#default-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Map__1-Material" target="#Map__1-Material"/>
+              <instance_material symbol="_untitledMaterial_obelisk_a_copy_jpg" target="#_untitledMaterial_obelisk_a_copy_jpg"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
