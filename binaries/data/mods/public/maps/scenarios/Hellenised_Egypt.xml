@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="225.743" y="105.557" z="605.158"/>
+		<Position x="489.898" y="94.4251" z="649.074"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -2220,7 +2220,7 @@
 		<Entity uid="640">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="473.07316" z="795.81714"/>
+			<Position x="472.28403" z="794.78644"/>
 			<Orientation y="-1.50834"/>
 		</Entity>
 		<Entity uid="641">
@@ -2346,7 +2346,7 @@
 		<Entity uid="661">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="496.81238" z="736.8769"/>
+			<Position x="496.71406" z="735.7433"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="662">
@@ -2891,8 +2891,8 @@
 		</Entity>
 		<Entity uid="756">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="474.9589" z="791.87525"/>
-			<Orientation y="2.35621"/>
+			<Position x="474.47648" z="794.44056"/>
+			<Orientation y="-3.00141"/>
 		</Entity>
 		<Entity uid="757">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -2951,7 +2951,7 @@
 		</Entity>
 		<Entity uid="768">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="471.04667" z="797.21937"/>
+			<Position x="470.22767" z="799.40558"/>
 			<Orientation y="2.79174"/>
 		</Entity>
 		<Entity uid="771">
@@ -3676,7 +3676,7 @@
 		</Entity>
 		<Entity uid="936">
 			<Template>actor|props/flora/bush_tropic_a.xml</Template>
-			<Position x="473.87" z="802.16987"/>
+			<Position x="469.22327" z="787.48438"/>
 			<Orientation y="3.00496"/>
 		</Entity>
 		<Entity uid="937">
@@ -4106,7 +4106,7 @@
 		</Entity>
 		<Entity uid="1022">
 			<Template>actor|props/flora/grass_soft_dry_large.xml</Template>
-			<Position x="478.74964" z="793.19275"/>
+			<Position x="478.84925" z="796.39277"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1023">
@@ -4131,7 +4131,7 @@
 		</Entity>
 		<Entity uid="1027">
 			<Template>actor|props/flora/grass_soft_dry_large.xml</Template>
-			<Position x="479.50162" z="788.96589"/>
+			<Position x="479.40037" z="791.60499"/>
 			<Orientation y="1.18036"/>
 		</Entity>
 		<Entity uid="1028">
@@ -4416,7 +4416,7 @@
 		</Entity>
 		<Entity uid="1084">
 			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
-			<Position x="472.817" z="796.66651"/>
+			<Position x="472.01731" z="794.29206"/>
 			<Orientation y="-1.4969"/>
 		</Entity>
 		<Entity uid="1085">
@@ -6637,7 +6637,7 @@
 		<Entity uid="1460">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="462.31437" z="381.71192"/>
+			<Position x="462.64246" z="381.86591"/>
 			<Orientation y="-1.40246"/>
 		</Entity>
 		<Entity uid="1461">
@@ -10118,7 +10118,7 @@
 		</Entity>
 		<Entity uid="2062">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
-			<Position x="464.2923" z="379.46537"/>
+			<Position x="464.14353" z="380.61353"/>
 			<Orientation y="0.89762"/>
 		</Entity>
 		<Entity uid="2063">
@@ -15749,7 +15749,7 @@
 		</Entity>
 		<Entity uid="3084">
 			<Template>actor|props/flora/plant_tropic_large.xml</Template>
-			<Position x="459.56342" z="405.21198"/>
+			<Position x="459.41413" z="403.85108"/>
 			<Orientation y="-2.49186"/>
 		</Entity>
 		<Entity uid="3085">
@@ -18245,6 +18245,54 @@
 			<Player>3</Player>
 			<Position x="178.87177" z="180.14191"/>
 			<Orientation y="2.28313"/>
+		</Entity>
+		<Entity uid="3601">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="475.70508" z="787.51258"/>
+			<Orientation y="2.66561"/>
+		</Entity>
+		<Entity uid="3603">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="490.684" z="748.72608"/>
+			<Orientation y="2.7254"/>
+		</Entity>
+		<Entity uid="3604">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="583.07703" z="843.7829"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3605">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="600.54645" z="822.67023"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3606">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="462.84153" z="375.14753"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3607">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="438.77744" z="349.22034"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3608">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="569.20624" z="317.45856"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3609">
+			<Template>other/obelisk</Template>
+			<Player>0</Player>
+			<Position x="543.84791" z="287.82844"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
