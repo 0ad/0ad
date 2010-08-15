@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="234.486" y="129.004" z="558.427"/>
+		<Position x="225.743" y="105.557" z="605.158"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -18221,6 +18221,30 @@
 			<Template>actor|fauna/hawk.xml</Template>
 			<Position x="867.14246" z="460.01526"/>
 			<Orientation y="-0.70717"/>
+		</Entity>
+		<Entity uid="3588">
+			<Template>units/hele_cavalry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="225.24299" z="719.03724"/>
+			<Orientation y="-2.4052"/>
+		</Entity>
+		<Entity uid="3589">
+			<Template>units/hele_cavalry_swordsman_b</Template>
+			<Player>4</Player>
+			<Position x="769.14026" z="775.27118"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3590">
+			<Template>units/hele_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="752.6396" z="181.10932"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3591">
+			<Template>units/hele_cavalry_swordsman_b</Template>
+			<Player>3</Player>
+			<Position x="178.87177" z="180.14191"/>
+			<Orientation y="2.28313"/>
 		</Entity>
 	</Entities>
 	<Paths/>
