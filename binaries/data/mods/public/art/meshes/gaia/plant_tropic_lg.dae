@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2009-01-24T22:30:47Z</created>
+    <modified>2009-01-24T22:30:47Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__269-image" name="Map__269">
+      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\gaia\plant_tropic_i.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material__114" name="Material__114">
+      <instance_effect url="#Material__114-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Material__114-fx" name="Material__114">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__269-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object47-lib" name="Object47Mesh">
+      <mesh>
+        <source id="Object47-lib-Position">
+          <float_array id="Object47-lib-Position-array" count="96">
+0.682779 23.561604 13.676034
+8.107922 24.537901 14.877856
+7.757269 26.261435 14.169893
+0.332127 25.285137 12.968071
+2.006939 24.246567 13.394676
+2.006940 28.148705 13.394676
+-2.016354 28.148705 13.394676
+-2.016353 24.246567 13.394676
+-0.865983 23.710346 13.359616
+4.843738 22.347042 15.522465
+7.429860 23.672386 14.978065
+1.720142 25.035698 12.815212
+-1.403723 24.718473 13.255207
+-6.194727 22.960102 15.580336
+-3.112709 21.848003 16.037149
+1.678311 23.606375 13.712020
+0.314195 24.726210 13.252028
+-6.440972 26.777721 14.012200
+-8.141302 25.209707 14.656286
+-1.386132 23.158188 13.896118
+-1.952361 24.416288 13.112605
+-0.658064 21.090466 14.827146
+3.304112 21.420689 14.801702
+2.009825 24.746517 13.087162
+1.388070 23.434946 13.515700
+6.750594 26.247986 12.708628
+3.700857 27.419651 12.337551
+-1.661684 24.606613 13.144628
+0.389330 25.154562 12.809347
+-7.349395 24.154106 13.568716
+-6.014854 22.573095 14.328333
+1.723882 23.573549 13.568970
+</float_array>
+          <technique_common>
+            <accessor source="#Object47-lib-Position-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object47-lib-Normal0">
+          <float_array id="Object47-lib-Normal0-array" count="144">
+-0.193576 0.338816 0.920724
+-0.193576 0.338816 0.920724
+-0.193576 0.338816 0.920724
+-0.193576 0.338816 0.920724
+-0.193576 0.338816 0.920724
+-0.193576 0.338816 0.920724
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+-0.148993 0.610310 0.778025
+-0.148993 0.610310 0.778024
+-0.148993 0.610310 0.778025
+-0.148993 0.610310 0.778025
+-0.148993 0.610310 0.778025
+-0.148993 0.610310 0.778025
+0.124136 0.651465 0.748454
+0.124136 0.651465 0.748454
+0.124136 0.651465 0.748454
+0.124136 0.651465 0.748454
+0.124136 0.651465 0.748454
+0.124136 0.651465 0.748454
+0.171835 0.209101 0.962678
+0.171835 0.209100 0.962679
+0.171835 0.209100 0.962678
+0.171835 0.209100 0.962678
+0.171835 0.209102 0.962678
+0.171835 0.209101 0.962678
+-0.031622 0.448239 0.893354
+-0.031621 0.448239 0.893354
+-0.031622 0.448239 0.893354
+-0.031622 0.448239 0.893354
+-0.031622 0.448239 0.893354
+-0.031622 0.448239 0.893354
+-0.006331 0.286906 0.957938
+-0.006332 0.286906 0.957938
+-0.006331 0.286906 0.957938
+-0.006331 0.286906 0.957938
+-0.006331 0.286906 0.957938
+-0.006331 0.286906 0.957938
+0.028936 0.452630 0.891229
+0.028937 0.452629 0.891230
+0.028937 0.452629 0.891229
+0.028937 0.452629 0.891229
+0.028936 0.452630 0.891229
+0.028936 0.452630 0.891229
+</float_array>
+          <technique_common>
+            <accessor source="#Object47-lib-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object47-lib-UV0">
+          <float_array id="Object47-lib-UV0-array" count="72">
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+0.991682 0.005112
+0.991682 0.993006
+0.009188 0.993006
+0.009188 0.005112
+</float_array>
+          <technique_common>
+            <accessor source="#Object47-lib-UV0-array" count="36" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object47-lib-Vertex">
+          <input semantic="POSITION" source="#Object47-lib-Position"/>
+        </vertices>
+        <polygons material="Material__114" count="16">
+          <input semantic="VERTEX" offset="0" source="#Object47-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Object47-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Object47-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+          <p>4 6 4 5 7 5 6 8 6</p>
+          <p>6 9 6 7 10 7 4 11 4</p>
+          <p>8 12 8 9 13 9 10 14 10</p>
+          <p>10 15 10 11 16 11 8 17 8</p>
+          <p>12 18 12 13 19 13 14 20 14</p>
+          <p>14 21 14 15 22 15 12 23 12</p>
+          <p>16 24 16 17 25 17 18 26 18</p>
+          <p>18 27 18 19 28 19 16 29 16</p>
+          <p>20 30 20 21 31 21 22 32 22</p>
+          <p>22 33 22 23 34 23 20 35 20</p>
+          <p>24 36 24 25 37 25 26 38 26</p>
+          <p>26 39 26 27 40 27 24 41 24</p>
+          <p>28 42 28 29 43 29 30 44 30</p>
+          <p>30 45 30 31 46 31 28 47 28</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="SceneAmbient-lib" name="SceneAmbientMesh">
+      <technique_common>
+        <ambient>
+          <color>0.270588 0.270588 0.270588</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Object47" name="Object47">
+        <translate sid="translate">-0.085216 0.640048 0.443426</translate>
+        <rotate sid="rotateX">1 0 0 24.999998</rotate>
+        <scale sid="scale">0.286221 0.603231 0.684803</scale>
+        <node id="Object47-Pivot" name="Object47-Pivot">
+          <translate>0.000000 -25.168081 -13.359098</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#Object47-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__269-Material" target="#Map__269-Material"/>
+                <instance_material symbol="Material__114" target="#Material__114"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

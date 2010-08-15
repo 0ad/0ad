@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant frequency="1" name="plant-orange">
+      <mesh>gaia/plant_tropic_lg.dae</mesh>
+      <texture>gaia/plant_tropic_i.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-green">
+      <mesh>gaia/plant_tropic_lg.dae</mesh>
+      <texture>gaia/plant_tropic_j.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-ferns-a">
+      <mesh>gaia/plant_tropic_ferns_1.dae</mesh>
+      <texture>gaia/plant_tropic_k.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
