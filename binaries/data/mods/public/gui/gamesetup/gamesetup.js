@@ -48,7 +48,7 @@ function init(attribs)
 	if (attribs.type == "offline")
 		g_GameAttributes.map = "Arcadia";
 	else
-		g_GameAttributes.map = "Multiplayer_demo";
+		g_GameAttributes.map = "Hellenised_Egypt";
 
 	initMapNameList(getGUIObjectByName("mapSelection"));
 
