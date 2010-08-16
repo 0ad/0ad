@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-08-16T00:28:41Z</created>
+    <modified>2010-08-16T00:28:41Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__1-image" name="Map__1">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\pyramid_a.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_untitled_1_Material_Image_jpg" name="_untitled_1_Material_Image_jpg">
+      <instance_effect url="#_untitled_1_Material_Image_jpg-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_untitled_1_Material_Image_jpg-fx" name="_untitled_1_Material_Image_jpg">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__1-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Pyramid_Small-lib" name="Pyramid_SmallMesh">
+      <mesh>
+        <source id="Pyramid_Small-lib-Position">
+          <float_array id="Pyramid_Small-lib-Position-array" count="39">
+4.473902 4.473900 -3.156000
+4.473902 -4.473903 -3.155999
+-4.473902 -4.473901 -3.155999
+-4.473899 4.473903 -3.156000
+1.050553 1.050551 1.741659
+1.050552 -1.050552 1.741659
+-1.050551 -1.050552 1.741659
+-1.050550 1.050552 1.741659
+0.000001 -0.000000 3.156000
+-0.999999 1.000000 1.735789
+-0.999999 -1.000000 1.735789
+1.000001 -1.000000 1.735789
+1.000001 1.000000 1.735789
+</float_array>
+          <technique_common>
+            <accessor source="#Pyramid_Small-lib-Position-array" count="13" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Pyramid_Small-lib-Normal0">
+          <float_array id="Pyramid_Small-lib-Normal0-array" count="126">
+0.000000 0.817646 0.575722
+0.000000 0.817646 0.575722
+0.000000 0.817646 0.575722
+-0.817646 0.000000 0.575722
+-0.817646 0.000000 0.575722
+-0.817646 0.000000 0.575722
+0.000000 -0.817646 0.575722
+0.000000 -0.817646 0.575721
+0.000000 -0.817646 0.575722
+0.817646 0.000000 0.575722
+0.817646 0.000000 0.575721
+0.817646 0.000000 0.575722
+0.000000 0.819626 0.572899
+0.000000 0.819626 0.572899
+0.000000 0.819626 0.572900
+0.000000 0.819626 0.572899
+0.000000 0.819626 0.572899
+0.000000 0.819626 0.572899
+-0.819626 0.000000 0.572899
+-0.819626 0.000000 0.572899
+-0.819626 0.000000 0.572899
+-0.819626 0.000000 0.572899
+-0.819626 0.000000 0.572899
+-0.819626 0.000000 0.572899
+-0.000000 -0.819626 0.572899
+-0.000000 -0.819626 0.572899
+-0.000000 -0.819626 0.572899
+-0.000000 -0.819626 0.572900
+-0.000000 -0.819626 0.572899
+-0.000000 -0.819626 0.572899
+0.819626 -0.000000 0.572899
+0.819626 -0.000000 0.572899
+0.819626 -0.000000 0.572899
+0.819626 0.000000 0.572899
+0.819626 0.000000 0.572899
+0.819626 0.000000 0.572899
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Pyramid_Small-lib-Normal0-array" count="42" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Pyramid_Small-lib-UV0">
+          <float_array id="Pyramid_Small-lib-UV0-array" count="22">
+0.125000 0.589844
+0.210938 0.736328
+0.039063 0.736328
+0.623047 0.830078
+1.000000 0.000000
+0.376953 0.830078
+0.000000 0.000000
+0.250000 1.000000
+0.000000 1.000000
+0.000000 0.748047
+0.250000 0.748047
+</float_array>
+          <technique_common>
+            <accessor source="#Pyramid_Small-lib-UV0-array" count="11" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Pyramid_Small-lib-Vertex">
+          <input semantic="POSITION" source="#Pyramid_Small-lib-Position"/>
+        </vertices>
+        <polygons material="_untitled_1_Material_Image_jpg" count="14">
+          <input semantic="VERTEX" offset="0" source="#Pyramid_Small-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Pyramid_Small-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Pyramid_Small-lib-UV0"/>
+          <p>8 0 0 12 1 1 9 2 2</p>
+          <p>10 3 2 8 4 0 9 5 1</p>
+          <p>11 6 1 8 7 0 10 8 2</p>
+          <p>12 9 1 8 10 0 11 11 2</p>
+          <p>4 12 3 0 13 4 7 14 5</p>
+          <p>0 15 4 3 16 6 7 17 5</p>
+          <p>2 18 6 6 19 5 7 20 3</p>
+          <p>2 21 6 7 22 3 3 23 4</p>
+          <p>1 24 4 5 25 3 6 26 5</p>
+          <p>1 27 4 6 28 5 2 29 6</p>
+          <p>0 30 4 4 31 3 5 32 5</p>
+          <p>0 33 4 5 34 5 1 35 6</p>
+          <p>4 36 7 7 37 8 6 38 9</p>
+          <p>4 39 7 6 40 9 5 41 10</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Pyramid_Small" name="Pyramid_Small">
+        <translate sid="translate">0.000000 0.000000 11.565273</translate>
+        <scale sid="scale">3.784765 3.784765 3.784765</scale>
+        <instance_geometry url="#Pyramid_Small-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Map__1-Material" target="#Map__1-Material"/>
+              <instance_material symbol="_untitled_1_Material_Image_jpg" target="#_untitled_1_Material_Image_jpg"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

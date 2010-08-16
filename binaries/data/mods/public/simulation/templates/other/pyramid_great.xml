@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Pyramid</GenericName>
+    <SpecificName>Great Pyramid</SpecificName>
+    <History>A monumental ornamental structure built by the Egyptians of old.</History>
+  </Identity>
+  <Health>
+    <Max>15000</Max>
+  </Health>
+  <Armour>
+    <Hack>40.0</Hack>
+    <Pierce>50.0</Pierce>
+    <Crush>50.0</Crush>
+  </Armour>
+  <Loot>
+    <xp>100</xp>
+    <food>0</food>
+    <wood>0</wood>
+    <stone>10000</stone>
+    <metal>10000</metal>
+  </Loot>
+  <VisualActor>
+    <Actor>special/pyramid.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square width="60.5" depth="60.5"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="59.0" depth="59.0"/>
+  </Obstruction>
+  <Vision>
+    <Range>72</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+</Entity>
