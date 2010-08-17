@@ -57,7 +57,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			if (!template)
 				continue; // ignore attempts to use invalid templates (an error should have been reported already)
 		}
-		
+
 		switch (guiName)
 		{
 		case SELECTION:
@@ -65,12 +65,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			if (!entState)
 				continue;
 
-			var tooltip = getEntityName(template);
-			tooltip += "[font=\"serif-bold-16\"]" + getRankTitle(getRankCellId(entState)) + "[/font]";
-
-			// Hitpoints
+			var rank = entState.identity.rank? "[font=\"serif-bold-16\"]" + entState.identity.rank + " [/font]" : "";	
+			var tooltip = rank + getEntityName(template);
 			var unitHealth = getGUIObjectByName("unitSelectionHealth["+i+"]");
-			if (entState.hitpoints != undefined)
+	
+			if (entState.hitpoints)
 			{
 				var unitHealthBar = getGUIObjectByName("unitSelectionHealthForeground["+i+"]");
 				var healthSize = unitHealthBar.size;
@@ -107,15 +106,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				"Shift-click to train [font=\"serif-bold-13\"]"+ (batchSize+batchIncrement) + "[font=\"serif-13\"] units[/font]";
 			}
 			break;
-			
+
 		case CONSTRUCTION:
 			var tooltip = getEntityNameWithGenericType(template);
 			if (template.tooltip)
 				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
-				
+
 			tooltip += "\n" + getEntityCost(template);
 			break;
-			
+
 		case COMMAND:
 			tooltip = toTitleCase(item);
 			break;

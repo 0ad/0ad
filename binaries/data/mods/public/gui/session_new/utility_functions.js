@@ -1,3 +1,23 @@
+const GEOLOGY = "geology";
+const FLORA = "flora";
+const FAUNA = "fauna";
+const SPECIAL = "special";
+
+const GAIA = "Gaia"
+const CART = "Cart";
+const CELT = "Celt";
+const HELE = "Hele";
+const IBER = "Iber";
+const PERS = "Pers";
+const ROME = "Rome";
+
+const CARTHAGINIANS = "Carthaginians";
+const ROMANS = "Romans";
+const HELLENES = "Hellenes";
+const CELTS = "Celts";
+const PERSIANS = "Persians";
+const IBERIANS = "Iberians";
+
 //-------------------------------- -------------------------------- -------------------------------- 
 // Utility functions
 //-------------------------------- -------------------------------- -------------------------------- 
@@ -115,33 +135,6 @@ function getEntityCommandsList(entState)
 	var commands = [];
 	commands.push("delete");
 	return commands;
-}
-
-function getRankCellId(entState)
-{
-	if (entState.template)
-	{
-		var templateName = entState.template;
-		var endsWith = templateName.substring(templateName.length-2, templateName.length);
-	
-		if (isUnit(entState))
-		{
-			if (endsWith == "_e")
-				return 0;
-			else if (endsWith == "_a")
-				return 1;
-		}
-	}
-	return -1;
-}
-
-function getRankTitle(cellId)
-{
-	if (cellId == 0)
-		return " (Elite)";
-	else if (cellId == 1)
-		return " (Advanced)";
-	return "";
 }
 
 function getEntityCost(template)

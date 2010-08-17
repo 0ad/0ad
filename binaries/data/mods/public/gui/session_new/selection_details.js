@@ -33,72 +33,43 @@ function layoutSelectionSingle(entState)
 // Fills out information that most entities have
 function displayGeneralInfo(entState, template)
 {
-	var civName = toTitleCase(g_Players[entState.player].civ);
+	// Get general unit and player data
+	var specificName = "[font=\"serif-bold-18\"]" + template.name.specific + "[/font]";
+	var genericName = template.name.generic != template.name.specific? template.name.generic : "";
+
+	var rank = entState.identity.rank? "[font=\"serif-bold-18\"]" + entState.identity.rank + " [/font]" : "";
+	var civName = getFormalCivName(toTitleCase(g_Players[entState.player].civ));
+
+	var playerName = g_Players[entState.player].name;
 	var playerColor = g_Players[entState.player].color.r + " " + g_Players[entState.player].color.g + " " +
 								g_Players[entState.player].color.b+ " " + g_Players[entState.player].color.a;
-	
-	var iconTooltip = "";
-
-	// Specific Name
-	var name = template.name.specific + getRankTitle(getRankCellId(entState.template));
-	getGUIObjectByName("sdSpecific").caption = name;
-	iconTooltip += "[font=\"serif-bold-16\"]" + name + "[/font]";
-
-	// Generic Name
-	if (template.name.generic != template.name.specific)
-		getGUIObjectByName("sdSpecific").tooltip = template.name.generic;
-	else
-		getGUIObjectByName("sdSpecific").tooltip = "";
-
-	// Tooltip info
-	if (template.tooltip)
-		iconTooltip += " - [font=\"serif-13\"]" + template.tooltip + "[/font]";
-
-	// Player Name
-	getGUIObjectByName("sdPlayer").caption = g_Players[entState.player].name;
-	getGUIObjectByName("sdPlayer").tooltip = getFormalCivName(civName);
-	getGUIObjectByName("sdPlayer").textcolor = playerColor;
 
 	// Hitpoints
-	if (entState.hitpoints != undefined)
+	var hitpoints = "";
+
+	if (entState.hitpoints)
 	{
 		var unitHealthBar = getGUIObjectByName("sdHealthBar");
 		var healthSize = unitHealthBar.size;
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 		
-		var tooltipHitPoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
-		getGUIObjectByName("sdHealth").tooltip = tooltipHitPoints;
-		iconTooltip += "\n" + tooltipHitPoints;
+		hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
+		getGUIObjectByName("sdHealth").tooltip = hitpoints;
 	}
-	else
-	{
-		getGUIObjectByName("sdHealth").tooltip = "";
-	}
-
-	// Attack stats
-	getGUIObjectByName("sdAttackStats").caption = damageTypesToTextStacked(entState.attack);
-	if (entState.attack)
-		iconTooltip += "\n[font=\"serif-bold-13\"]Attack: [/font]" + damageTypesToText(entState.attack);	
-
-	// Armour stats
-	getGUIObjectByName("sdArmourStats").caption = damageTypesToTextStacked(entState.armour);
-	if (entState.armour)
-		iconTooltip += "\n[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);
 
 	// Resource stats
+	var resources = "";
+	var resourceType = "";
+	var resourceCellID = -1;
+
 	if (entState.resourceSupply)
 	{
-		var resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max + " ";
-		var resourceType = entState.resourceSupply.type["generic"];
-		
-		getGUIObjectByName("sdResourceStats").caption = resources;
-		getGUIObjectByName("sdResourceIcon").cell_id = RESOURCE_ICON_CELL_IDS[resourceType];
+		resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max + " ";
+		resourceType = entState.resourceSupply.type["generic"];
+		resourceCellID = RESOURCE_ICON_CELL_IDS[resourceType];
+
 		getGUIObjectByName("sdResources").hidden = false;
-			
-		iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
-			
-		// Don't show attack and armour stats on unit with resources - not enough space
 		getGUIObjectByName("sdAttack").hidden = true;
 		getGUIObjectByName("sdArmour").hidden = true;
 	}
@@ -109,8 +80,17 @@ function displayGeneralInfo(entState, template)
 		getGUIObjectByName("sdArmour").hidden = false;
 	}
 
-	// Icon
-	if (template.icon_sheet && typeof template.icon_cell != "undefined")
+	// Set Captions
+	getGUIObjectByName("sdSpecific").caption = rank + specificName;
+	getGUIObjectByName("sdPlayer").caption = playerName;
+	getGUIObjectByName("sdPlayer").textcolor = playerColor;
+	getGUIObjectByName("sdAttackStats").caption = damageTypesToTextStacked(entState.attack);
+	getGUIObjectByName("sdArmourStats").caption = damageTypesToTextStacked(entState.armour);
+	getGUIObjectByName("sdResourceStats").caption = resources;
+	getGUIObjectByName("sdResourceIcon").cell_id = resourceCellID;
+
+	// Icon image
+	if (template.icon_sheet && typeof template.icon_cell)
 	{
 		getGUIObjectByName("sdIconImage").sprite = template.icon_sheet;
 		getGUIObjectByName("sdIconImage").cell_id = template.icon_cell;
@@ -120,12 +100,30 @@ function displayGeneralInfo(entState, template)
 		// TODO: we should require all entities to have icons, so this case never occurs
 		getGUIObjectByName("sdIconImage").sprite = "bkFillBlack";
 	}
-	getGUIObjectByName("sdIcon").tooltip = iconTooltip;
-	//getGUIObjectByName("sdIconOutline"); // Need to change color of icon outline with the playerColor
 
-	// Is this a Gaia unit?
-	if (civName == GAIA)
-		getGUIObjectByName("sdPlayer").tooltip = ""; // Don't need civ tooltip for Gaia Player - redundant
+	// TODO: need to change color of icon outline with the playerColor
+	//getGUIObjectByName("sdIconOutline");
+
+	// Tooltips
+	getGUIObjectByName("sdSpecific").tooltip = genericName;
+	getGUIObjectByName("sdPlayer").tooltip = civName != GAIA? civName : ""; // Don't need civ tooltip for Gaia Player - redundant
+	getGUIObjectByName("sdHealth").tooltip = hitpoints;
+
+	// Icon Tooltip
+	var iconTooltip = "[font=\"serif-bold-16\"]" + rank + specificName + "[/font]";
+
+	if (template.tooltip)
+		iconTooltip += " - [font=\"serif-13\"]" + template.tooltip + "[/font]";
+	if (entState.hitpoints)
+		iconTooltip += "\n" + hitpoints;
+	if (entState.attack)
+		iconTooltip += "\n[font=\"serif-bold-13\"]Attack: [/font]" + damageTypesToText(entState.attack);
+	if (entState.armour)
+		iconTooltip += "\n[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);
+	if (entState.resourceSupply)
+		iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
+
+	getGUIObjectByName("sdIcon").tooltip = iconTooltip;
 }
 
 // Updates middle entity Selection Details Panel

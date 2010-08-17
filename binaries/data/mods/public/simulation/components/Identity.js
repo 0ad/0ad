@@ -44,6 +44,11 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
+		"<element name='Rank'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
 		"<element name='Classes'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
@@ -93,10 +98,10 @@ Identity.prototype.GetCiv = function()
 	return this.template.Civ;
 };
 
-Identity.prototype.GetTooltip= function()
+Identity.prototype.GetRank = function()
 {
-	if (this.template.Tooltip)
-		return this.template.Tooltip;
+	if (this.template.Rank)
+		return this.template.Rank;
 	return "";
 };
 

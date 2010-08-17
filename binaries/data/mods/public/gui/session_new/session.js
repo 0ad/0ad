@@ -1,30 +1,9 @@
-const GEOLOGY = "geology";
-const FLORA = "flora";
-const FAUNA = "fauna";
-const SPECIAL = "special";
-
-const GAIA = "Gaia"
-const CART = "Cart";
-const CELT = "Celt";
-const HELE = "Hele";
-const IBER = "Iber";
-const PERS = "Pers";
-const ROME = "Rome";
-
-const CARTHAGINIANS = "Carthaginians";
-const ROMANS = "Romans";
-const HELLENES = "Hellenes";
-const CELTS = "Celts";
-const PERSIANS = "Persians";
-const IBERIANS = "Iberians";
-
 // Network Mode
 var g_IsNetworked = false;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
 var g_PlayerAssignments = { "local": { "name": "You", "player": 1 } };
-var g_PlayerID;
 
 // Cache dev-mode settings that are frequently or widely used
 var g_DevSettings = {
