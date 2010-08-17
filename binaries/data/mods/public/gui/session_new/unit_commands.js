@@ -94,7 +94,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case TRAINING:
-			var tooltip = getEntityNameWithGenericType(template) + "\n" + getEntityCost(template);
+			var tooltip = getEntityNameWithGenericType(template);
+			if (template.tooltip)
+				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+
+			tooltip += "\n" + getEntityCost(template);
+
 			var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
 			if (batchSize)
 			{
@@ -104,7 +109,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 			
 		case CONSTRUCTION:
-			var tooltip = getEntityNameWithGenericType(template) + "\n" + getEntityCost(template);
+			var tooltip = getEntityNameWithGenericType(template);
+			if (template.tooltip)
+				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+				
+			tooltip += "\n" + getEntityCost(template);
 			break;
 			
 		case COMMAND:

@@ -50,6 +50,10 @@ function displayGeneralInfo(entState, template)
 	else
 		getGUIObjectByName("sdSpecific").tooltip = "";
 
+	// Tooltip info
+	if (template.tooltip)
+		iconTooltip += " - [font=\"serif-13\"]" + template.tooltip + "[/font]";
+
 	// Player Name
 	getGUIObjectByName("sdPlayer").caption = g_Players[entState.player].name;
 	getGUIObjectByName("sdPlayer").tooltip = getFormalCivName(civName);

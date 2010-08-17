@@ -93,6 +93,13 @@ Identity.prototype.GetCiv = function()
 	return this.template.Civ;
 };
 
+Identity.prototype.GetTooltip= function()
+{
+	if (this.template.Tooltip)
+		return this.template.Tooltip;
+	return "";
+};
+
 Identity.prototype.GetClassesList = function()
 {
 	if (this.template.Classes)

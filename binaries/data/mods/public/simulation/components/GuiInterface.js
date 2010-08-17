@@ -61,7 +61,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpIdentity)
 	{
 		ret.identity = {
-			"classes": cmpIdentity.GetClassesList(),
+			"classes": cmpIdentity.GetClassesList()
 		};
 	}
 	
@@ -162,6 +162,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		};
 		ret.icon_sheet = template.Identity.IconSheet;
 		ret.icon_cell = template.Identity.IconCell;
+		ret.tooltip =  template.Identity.Tooltip;
 	}
 
 	if (template.Cost)
