@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,6 +71,42 @@ static FMVector3 FMVector3_Normalize(const FMVector3& vec)
 		return FMVector3(1.0f, 0.0f, 0.0f);
 }
 
+static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, FCDSceneNode* node)
+{
+	if (node->GetName().find("prop-") == 0)
+	{
+		// Strip off the "prop-" from the name
+		std::string propPointName (node->GetName().substr(5));
+
+		Log(LOG_INFO, "Adding prop point %s", propPointName.c_str());
+
+		// Get translation and orientation of the world transform
+		// (TODO: maybe this should be relative to the main mesh's transform?)
+
+		FMMatrix44 transform = node->CalculateWorldTransform();
+
+		HMatrix matrix;
+		memcpy(matrix, transform.Transposed().m, sizeof(matrix));
+
+		AffineParts parts;
+		decomp_affine(matrix, &parts);
+
+		// Add prop point to list (attached to no bone)
+
+		PropPoint p = {
+			propPointName,
+			{ parts.t.x, parts.t.y, parts.t.z },
+			{ parts.q.x, parts.q.y, parts.q.z, parts.q.w },
+			0xff
+		};
+		propPoints.push_back(p);
+	}
+
+	// Search children for prop points
+	for (size_t i = 0; i < node->GetChildrenCount(); ++i)
+		AddStaticPropPoints(propPoints, node->GetChild(i));
+}
+
 class PMDConvert
 {
 public:
@@ -122,6 +158,8 @@ public:
 			std::vector<BoneTransform> boneTransforms;
 			std::vector<PropPoint> propPoints;
 			AddDefaultPropPoints(propPoints);
+
+			AddStaticPropPoints(propPoints, converter.GetInstance().GetParent());
 
 			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoord, vertexCount, boneWeights, boneTransforms, propPoints);
 		}
@@ -438,9 +476,8 @@ public:
 		REQUIRE(geom->IsMesh(), "geometry is mesh");
 		FCDGeometryMesh* mesh = geom->GetMesh();
 
-// 		if (! mesh->IsTriangles())
-// 			FCDGeometryPolygonsTools::Triangulate(mesh);
-		// disabled for now - just let the exporter triangulate the mesh
+ 		if (! mesh->IsTriangles())
+ 			FCDGeometryPolygonsTools::Triangulate(mesh);
 		
 		REQUIRE(mesh->IsTriangles(), "mesh is made of triangles");
 		REQUIRE(mesh->GetPolygonsCount() == 1, "mesh has single set of polygons");
