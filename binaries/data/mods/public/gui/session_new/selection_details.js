@@ -105,15 +105,17 @@ function displayGeneralInfo(entState, template)
 	//getGUIObjectByName("sdIconOutline");
 
 	// Tooltips
-	getGUIObjectByName("sdSpecific").tooltip = genericName;
+//	getGUIObjectByName("sdSpecific").tooltip = genericName;
 	getGUIObjectByName("sdPlayer").tooltip = civName != GAIA? civName : ""; // Don't need civ tooltip for Gaia Player - redundant
 	getGUIObjectByName("sdHealth").tooltip = hitpoints;
 
 	// Icon Tooltip
-	var iconTooltip = "[font=\"serif-bold-16\"]" + rank + specificName + "[/font]";
+	var iconTooltip = "[font=\"serif-bold-16\"]" + genericName + "[/font]";
 
 	if (template.tooltip)
-		iconTooltip += " - [font=\"serif-13\"]" + template.tooltip + "[/font]";
+		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+		
+	/*
 	if (entState.hitpoints)
 		iconTooltip += "\n" + hitpoints;
 	if (entState.attack)
@@ -122,6 +124,7 @@ function displayGeneralInfo(entState, template)
 		iconTooltip += "\n[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);
 	if (entState.resourceSupply)
 		iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
+	*/
 
 	getGUIObjectByName("sdIcon").tooltip = iconTooltip;
 }

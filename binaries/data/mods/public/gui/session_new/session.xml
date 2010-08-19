@@ -404,19 +404,19 @@
 				<object size="0 0 100% 24" name="sdPlayer" type="text" style="centeredText" font="serif-bold-stroke-14" tooltip_style="snToolTip"/>
 				
 				<!-- Attack stats -->
-				<object size="12 32 100% 100%" type="image" name="sdAttack" tooltip="Attack strengths" tooltip_style="snToolTip">
+				<object size="12 32 100% 100%" type="image" name="sdAttack" tooltip="" tooltip_style="snToolTip">
 					<object size="-4 -8 36 36" type="image" name="sdAttackImage" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
 					<object size="30 0 100% 100%" type="text" name="sdAttackStats" style="statsText"/>
 				</object>
 
 				<!-- Armour stats -->
-				<object size="108 32 100% 100%" type="image" name="sdArmour" tooltip="Armour strengths" tooltip_style="snToolTip">
+				<object size="108 32 100% 100%" type="image" name="sdArmour" tooltip="" tooltip_style="snToolTip">
 					<object size="-4 -4 36 36" type="image" name="sdArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
 					<object size="30 0 100% 100%" type="text" name="sdArmourStats" style="statsText"/>
 				</object>
 				
 				<!-- Resource Quantity -->
-				<object hidden="true" size="60 40 100% 60" type="image" name="sdResources" tooltip="Resources" tooltip_style="snToolTip">
+				<object hidden="true" size="60 40 100% 60" type="image" name="sdResources" tooltip="" tooltip_style="snToolTip">
 					<object size="0 0 28 24" name="sdResourceIcon" type="image" style="resourceIcon" cell_id="0"/>
 					<object size="28 0 100% 100%" name="sdResourceStats" type="text" style="resourceStatsText"/>
 				</object>
