@@ -110,7 +110,10 @@ function displayGeneralInfo(entState, template)
 	getGUIObjectByName("sdHealth").tooltip = hitpoints;
 
 	// Icon Tooltip
-	var iconTooltip = "[font=\"serif-bold-16\"]" + genericName + "[/font]";
+	var iconTooltip = "";
+	
+	if (genericName)
+		iconTooltip = "[font=\"serif-bold-16\"]" + genericName + "[/font]";
 
 	if (template.tooltip)
 		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
