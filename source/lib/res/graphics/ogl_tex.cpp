@@ -424,11 +424,9 @@ static LibError OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathn
 	if(!(ot->flags & OT_TEX_VALID))
 	{
 		shared_ptr<u8> file; size_t fileSize;
-		if(vfs->LoadFile(pathname, file, fileSize) >= 0)
-		{
-			if(tex_decode(file, fileSize, &ot->t) >= 0)
-				ot->flags |= OT_TEX_VALID;
-		}
+		RETURN_ERR(vfs->LoadFile(pathname, file, fileSize));
+		if(tex_decode(file, fileSize, &ot->t) >= 0)
+			ot->flags |= OT_TEX_VALID;
 	}
 
 	glGenTextures(1, &ot->id);

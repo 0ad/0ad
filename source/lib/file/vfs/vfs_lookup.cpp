@@ -50,7 +50,12 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 	// early-out for pathname == "" when mounting into VFS root
 	if(pathname.empty())	// (prevent iterator error in loop end condition)
-		return INFO::OK;
+	{
+		if(pfile)	// preserve a guarantee that if pfile then we either return an error or set *pfile
+			return ERR::VFS_FILE_NOT_FOUND;
+		else
+			return INFO::OK;
+	}
 
 	// for each directory component:
 	VfsPath::iterator it;	// (used outside of loop to get filename)
