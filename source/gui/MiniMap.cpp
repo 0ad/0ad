@@ -159,13 +159,17 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 // which represents the view of the camera in the world.
 void CMiniMap::DrawViewRect()
 {
-	// Get correct world coordinates based off corner of screen start
-	// at Bottom Left and going CW
+	// Compute the camera frustum intersected with a fixed-height plane.
+	// TODO: Currently we hard-code the height, so this'll be dodgy when maps aren't the
+	// expected height - how can we make it better without the view rect wobbling in
+	// size while the player scrolls?
+	float h = 16384.f * HEIGHT_SCALE;
+
 	CVector3D hitPt[4];
-	hitPt[0]=m_Camera->GetWorldCoordinates(0,g_Renderer.GetHeight());
-	hitPt[1]=m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(),g_Renderer.GetHeight());
-	hitPt[2]=m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(),0);
-	hitPt[3]=m_Camera->GetWorldCoordinates(0,0);
+	hitPt[0]=m_Camera->GetWorldCoordinates(0, g_Renderer.GetHeight(), h);
+	hitPt[1]=m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), g_Renderer.GetHeight(), h);
+	hitPt[2]=m_Camera->GetWorldCoordinates(g_Renderer.GetWidth(), 0, h);
+	hitPt[3]=m_Camera->GetWorldCoordinates(0, 0, h);
 
 	float ViewRect[4][2];
 	for (int i=0;i<4;i++) {
