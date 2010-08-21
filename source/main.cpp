@@ -200,6 +200,8 @@ static int ProgressiveLoad()
 }
 
 
+static bool quit = false;	// break out of main loop
+
 static void Frame()
 {
 	MICROLOG(L"Frame");
@@ -268,6 +270,12 @@ static void Frame()
 	MICROLOG(L"input");
 	PumpEvents();
 	PROFILE_END("input");
+
+	// if the user quit by closing the window, the GL context will be broken and
+	// may crash when we call Render() on some drivers, so leave this loop
+	// before rendering
+	if (quit)
+		return;
 
 	// respond to pumped resize events
 	if (g_ResizedW || g_ResizedH)
@@ -371,8 +379,6 @@ static void MainControllerShutdown()
 {
 }
 
-
-static bool quit = false;	// break out of main loop
 
 // stop the main loop and trigger orderly shutdown. called from several
 // places: the event handler (SDL_QUIT and hotkey) and JS exitProgram.
