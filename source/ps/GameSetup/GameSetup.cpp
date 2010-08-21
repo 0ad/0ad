@@ -196,7 +196,7 @@ void Render()
 
 	ogl_WarnIfError();
 
-	CStr skystring = "61 193 255";
+	CStr skystring = "255 0 255";
 	CFG_GET_USER_VAL("skycolor", String, skystring);
 	CColor skycol;
 	GUI<CColor>::ParseString(skystring, skycol);

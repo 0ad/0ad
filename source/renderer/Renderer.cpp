@@ -1238,17 +1238,6 @@ void CRenderer::RenderSubmissions()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	// render sky; this is done before everything so that 
-	// (a) we can use a box around the camera instead of placing it "infinitely far away"
-	//     (we just disable depth write so that this doesn't affect future rendering)
-	// (b) transparent objects properly overlap the sky
-	if (m_SkyManager->m_RenderSky)
-	{
-		MICROLOG(L"render sky");
-		m->skyManager.RenderSky();
-		ogl_WarnIfError();
-	}
-
 	// render submitted patches and models
 	MICROLOG(L"render patches");
 	RenderPatches();
