@@ -207,9 +207,10 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	// So we call two separate handler functions:
 
 	bool handled;
+
 	{
 		PROFILE("handleInputBeforeGui");
-		if (m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "handleInputBeforeGui", *ev, handled))
+		if (m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "handleInputBeforeGui", *ev, top()->FindObjectUnderMouse(), handled))
 			if (handled)
 				return IN_HANDLED;
 	}

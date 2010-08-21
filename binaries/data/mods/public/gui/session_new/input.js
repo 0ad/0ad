@@ -26,6 +26,7 @@ var placementEntity;
 
 var mouseX = 0;
 var mouseY = 0;
+var mouseIsOverObject = false;
 var specialKeyStates = {};
 specialKeyStates[SDLK_RSHIFT] = 0;
 specialKeyStates[SDLK_LSHIFT] = 0;
@@ -34,7 +35,7 @@ specialKeyStates[SDLK_LSHIFT] = 0;
 
 function updateCursor()
 {
-	if (inputState == INPUT_NORMAL)
+	if (!mouseIsOverObject && inputState == INPUT_NORMAL)
 	{
 		var action = determineAction(mouseX, mouseY);
 		if (action)
@@ -226,7 +227,7 @@ function getPreferredEntities(ents)
 	return preferredEnts;
 }
 
-function handleInputBeforeGui(ev)
+function handleInputBeforeGui(ev, hoveredObject)
 {
 	// Capture mouse position so we can use it for displaying cursors,
 	// and key states
@@ -247,6 +248,9 @@ function handleInputBeforeGui(ev)
 			specialKeyStates[ev.keysym.sym] = 0;
 		break;
 	}
+
+	// Remember whether the mouse is over a GUI object or not
+	mouseIsOverObject = (hoveredObject != null);
 
 	// State-machine processing:
 	//

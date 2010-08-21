@@ -203,6 +203,11 @@ public:
 	IGUIObject* FindObjectByName(const CStr& Name) const;
 
 	/**
+	 * Returns the GUI object under the mouse, or NULL if none.
+	 */
+	IGUIObject* FindObjectUnderMouse() const;
+
+	/**
 	 * The GUI needs to have all object types inputted and
 	 * their constructors. Also it needs to associate a type
 	 * by a string name of the type.

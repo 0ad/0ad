@@ -128,9 +128,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		//  these two recursive function are quite overhead heavy.
 
 		// pNearest will after this point at the hovered object, possibly NULL
-		GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
-										&IGUIObject::ChooseMouseOverAndClosest, 
-										pNearest);
+		pNearest = FindObjectUnderMouse();
 
 		// Is placed in the UpdateMouseOver function
 		//if (ev->ev.type == SDL_MOUSEMOTION && pNearest)
@@ -158,6 +156,16 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					pNearest->ScriptEvent("mouseleftpress");
 
 					// Block event, so things on the map (behind the GUI) won't be pressed
+					ret = IN_HANDLED;
+				}
+				break;
+
+			case SDL_BUTTON_RIGHT:
+				if (pNearest)
+				{
+					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_RIGHT));
+					pNearest->ScriptEvent("mouserightpress");
+
 					ret = IN_HANDLED;
 				}
 				break;
@@ -303,14 +311,7 @@ void CGUI::TickObjects()
 							&IGUIObject::ScriptEvent, action);
 
 	// Also update tooltips:
-
-	// TODO: Efficiency
-	IGUIObject* pNearest = NULL;
-	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
-		&IGUIObject::ChooseMouseOverAndClosest, 
-		pNearest);
-
-	m_Tooltip.Update(pNearest, m_MousePos, this);
+	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, this);
 }
 
 void CGUI::SendEventToAll(const CStr& EventName)
@@ -521,6 +522,15 @@ IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 		return NULL;
 	else
 		return it->second;
+}
+
+IGUIObject* CGUI::FindObjectUnderMouse() const
+{
+	IGUIObject* pNearest = NULL;
+	GUI<IGUIObject*>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject,
+									&IGUIObject::ChooseMouseOverAndClosest,
+									pNearest);
+	return pNearest;
 }
 
 void CGUI::SetFocusedObject(IGUIObject* pObject)

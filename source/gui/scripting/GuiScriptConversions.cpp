@@ -19,6 +19,7 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
+#include "gui/IGUIObject.h"
 #include "lib/external_libraries/sdl.h"
 #include "ps/Hotkey.h"
 
@@ -129,4 +130,12 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 	}
 
 	return OBJECT_TO_JSVAL(obj);
+}
+
+template<> jsval ScriptInterface::ToJSVal<IGUIObject*>(JSContext* UNUSED(cx), IGUIObject* const& val)
+{
+	if (val == NULL)
+		return JSVAL_NULL;
+
+	return OBJECT_TO_JSVAL(val->GetJSObject());
 }
