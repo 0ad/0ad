@@ -18,15 +18,18 @@ TrainingQueue.prototype.Schema =
 
 TrainingQueue.prototype.Init = function()
 {
-    this.nextID = 1;
+	this.nextID = 1;
 
 	this.queue = [];
 	// Queue items are:
 	//   {
 	//     "id": 1,
+	//     "player": 1, // who paid for this batch; we need this to cope with refunds cleanly
 	//     "template": "units/example",
 	//     "count": 10,
 	//     "resources": { "wood": 100, ... },
+	//     "population": 10,
+	//     "trainingStarted": false, // true iff we have reserved population
 	//     "timeTotal": 15000, // msecs
 	//     "timeRemaining": 10000, // msecs
 	//   }
@@ -46,7 +49,7 @@ TrainingQueue.prototype.GetEntitiesList = function()
 	return string.split(/\s+/);
 };
 
-TrainingQueue.prototype.AddBatch = function(player, templateName, count)
+TrainingQueue.prototype.AddBatch = function(templateName, count)
 {
 	// TODO: there should probably be a limit on the number of queued batches
 	// TODO: there should be a way for the GUI to determine whether it's going
@@ -64,20 +67,15 @@ TrainingQueue.prototype.AddBatch = function(player, templateName, count)
 	// TODO: work out what equation we should use here.
 	var timeMult = Math.pow(count, 0.7);
 
-	var time = timeMult * (template.Cost.BuildTime || 1);
+	var time = timeMult * template.Cost.BuildTime;
+
 	var costs = {};
 	for each (var r in ["food", "wood", "stone", "metal"])
-	{
-		if (template.Cost.Resources[r])
-			costs[r] = Math.floor(costMult * template.Cost.Resources[r]);
-		else
-			costs[r] = 0;
-	}
+		costs[r] = Math.floor(costMult * template.Cost.Resources[r]);
 
-	// Find the player
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var playerEnt = cmpPlayerMan.GetPlayerByID(player);
-	var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+	var population = template.Cost.Population * count;
+
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
 	if (!cmpPlayer.TrySubtractResources(costs))
 	{
@@ -87,9 +85,12 @@ TrainingQueue.prototype.AddBatch = function(player, templateName, count)
 
 	this.queue.push({
 		"id": this.nextID++,
+		"player": cmpPlayer.GetPlayerID(),
 		"template": templateName,
 		"count": count,
 		"resources": costs,
+		"population": population,
+		"trainingStarted": false,
 		"timeTotal": time*1000,
 		"timeRemaining": time*1000,
 	});
@@ -102,7 +103,7 @@ TrainingQueue.prototype.AddBatch = function(player, templateName, count)
 	}
 };
 
-TrainingQueue.prototype.RemoveBatch = function(player, id)
+TrainingQueue.prototype.RemoveBatch = function(id)
 {
 	for (var i = 0; i < this.queue.length; ++i)
 	{
@@ -112,20 +113,21 @@ TrainingQueue.prototype.RemoveBatch = function(player, id)
 
 		// Now we've found the item to remove
 
-		// Find the player
-		var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var playerEnt = cmpPlayerMan.GetPlayerByID(player);
-		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+		var cmpPlayer = QueryPlayerIDInterface(item.player, IID_Player);
 
 		// Refund the resource cost for this batch
 		cmpPlayer.AddResources(item.resources);
+
+		// Remove reserved population slots if necessary
+		if (item.trainingStarted)
+			cmpPlayer.UnReservePopulationSlots(item.population);
 
 		// Remove from the queue
 		// (We don't need to remove the timer - it'll expire if it discovers the queue is empty)
 		this.queue.splice(i, 1);
 		return;
 	}
-}
+};
 
 TrainingQueue.prototype.GetQueue = function()
 {
@@ -142,11 +144,30 @@ TrainingQueue.prototype.GetQueue = function()
 	return out;
 };
 
+TrainingQueue.prototype.ResetQueue = function()
+{
+	// Empty the training queue and refund all the resource costs
+	// to the player. (This is to avoid players having to micromanage their
+	// buildings' queues when they're about to be destroyed or captured.)
+
+	while (this.queue.length)
+		this.RemoveBatch(this.queue[0].id);
+};
+
+TrainingQueue.prototype.OnOwnershipChanged = function(msg)
+{
+	// Reset the training queue whenever the owner changes.
+	// (This should prevent players getting surprised when they capture
+	// an enemy building, and then loads of the enemy's civ's soldiers get
+	// created from it. Also it means we don't have to worry about
+	// updating the reserved pop slots.)
+	this.ResetQueue();
+};
+
 TrainingQueue.prototype.OnDestroy = function()
 {
-	// If the building is destroyed while it's got a large training queue,
-	// you lose all the resources invested in that queue. That'll teach you
-	// to be so reckless with your buildings.
+	// Reset the queue to refund any resources
+	this.ResetQueue();
 
 	if (this.timer)
 	{
@@ -205,10 +226,26 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 	// until we've used up all the time (so that we work accurately
 	// with items that take fractions of a second)
 	var time = g_ProgressInterval;
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
 	while (time > 0 && this.queue.length)
 	{
 		var item = this.queue[0];
+		if (!item.trainingStarted)
+		{
+			// Batch's training hasn't started yet.
+			// Try to reserve the necessary population slots
+			if (!cmpPlayer.TryReservePopulationSlots(item.population))
+			{
+				// No slots available - don't train this batch now
+				// (we'll try again on the next timeout)
+				break;
+			}
+
+			item.trainingStarted = true;
+		}
+
+		// If we won't finish the batch now, just update its timer
 		if (item.timeRemaining > time)
 		{
 			item.timeRemaining -= time;
@@ -217,6 +254,7 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 
 		// This item is finished now
 		time -= item.timeRemaining;
+		cmpPlayer.UnReservePopulationSlots(item.population);
 		this.SpawnUnits(item.template, item.count);
 		this.queue.shift();
 	}

@@ -51,13 +51,13 @@ function ProcessCommand(player, cmd)
 	case "train":
 		var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
 		if (queue)
-			queue.AddBatch(player, cmd.template, +cmd.count);
+			queue.AddBatch(cmd.template, +cmd.count);
 		break;
 
 	case "stop-train":
 		var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
 		if (queue)
-			queue.RemoveBatch(player, cmd.id);
+			queue.RemoveBatch(cmd.id);
 		break;
 
 	case "construct":

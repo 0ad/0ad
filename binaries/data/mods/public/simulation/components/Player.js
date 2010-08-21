@@ -9,8 +9,9 @@ Player.prototype.Init = function()
 	this.name = "Unknown";
 	this.civ = "gaia";
 	this.colour = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
-	this.popCount = 0;
-	this.popLimit = 50;
+	this.popUsed = 0; // population of units owned by this player
+	this.popReserved = 0; // population of units currently being trained
+	this.popLimit = 50; // maximum population
 	this.resourceCount = {
 		"food": 2000,	
 		"wood": 1500,	
@@ -22,6 +23,11 @@ Player.prototype.Init = function()
 Player.prototype.SetPlayerID = function(id)
 {
 	this.playerID = id;
+};
+
+Player.prototype.GetPlayerID = function()
+{
+	return this.playerID;
 };
 
 Player.prototype.SetName = function(name)
@@ -54,9 +60,23 @@ Player.prototype.GetColour = function()
 	return this.colour;
 };
 
+Player.prototype.TryReservePopulationSlots = function(num)
+{
+	if (num > this.GetPopulationLimit() - this.GetPopulationCount())
+		return false;
+
+	this.popReserved += num;
+	return true;
+};
+
+Player.prototype.UnReservePopulationSlots = function(num)
+{
+	this.popReserved -= num;
+};
+
 Player.prototype.GetPopulationCount = function()
 {
-	return this.popCount;
+	return this.popUsed + this.popReserved;
 };
 
 Player.prototype.GetPopulationLimit = function()
@@ -110,6 +130,8 @@ Player.prototype.TrySubtractResources = function(amounts)
 	return true;
 };
 
+// Keep track of population effects of all entities that
+// become owned or unowned by this player
 Player.prototype.OnGlobalOwnershipChanged = function(msg)
 {
 	if (msg.from == this.playerID)
@@ -117,7 +139,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
 		{
-			this.popCount -= cost.GetPopCost();
+			this.popUsed -= cost.GetPopCost();
 			this.popLimit -= cost.GetPopBonus();
 		}
 	}
@@ -127,7 +149,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
 		{
-			this.popCount += cost.GetPopCost();
+			this.popUsed += cost.GetPopCost();
 			this.popLimit += cost.GetPopBonus();
 		}
 	}

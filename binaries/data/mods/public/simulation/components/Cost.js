@@ -13,21 +13,15 @@ Cost.prototype.Schema =
 			"<metal>25</metal>" +
 		"</Resources>" +
 	"</a:example>" +
-	"<optional>" +
-		"<element name='Population' a:help='Population cost'>" +
-			"<data type='nonNegativeInteger'/>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='PopulationBonus' a:help='Population cap increase while this entity exists'>" +
-			"<data type='nonNegativeInteger'/>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='BuildTime' a:help='Time taken to construct/train this unit (in seconds)'>" +
-			"<ref name='positiveDecimal'/>" +
-		"</element>" +
-	"</optional>" +
+	"<element name='Population' a:help='Population cost'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>" +
+	"<element name='PopulationBonus' a:help='Population cap increase while this entity exists'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>" +
+	"<element name='BuildTime' a:help='Time taken to construct/train this unit (in seconds)'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>" +
 	"<element name='Resources' a:help='Resource costs to construct/train this unit'>" +
 		"<interleave>" +
 			"<element name='food'><data type='nonNegativeInteger'/></element>" +
@@ -37,27 +31,19 @@ Cost.prototype.Schema =
 		"</interleave>" +
 	"</element>";
 
-Cost.prototype.Init = function()
-{
-};
-
 Cost.prototype.GetPopCost = function()
 {
-	if ("Population" in this.template)
-		return +this.template.Population;
-	return 0;
+	return +this.template.Population;
 };
 
 Cost.prototype.GetPopBonus = function()
 {
-	if ("PopulationBonus" in this.template)
-		return +this.template.PopulationBonus;
-	return 0;
+	return +this.template.PopulationBonus;
 };
 
 Cost.prototype.GetBuildTime = function()
 {
-	return +(this.template.BuildTime || 1);
+	return +this.template.BuildTime;
 }
 
 Cost.prototype.GetResourceCosts = function()
