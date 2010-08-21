@@ -54,13 +54,15 @@ Builder.prototype.PerformBuilding = function(target)
 	if (cmpFoundation)
 	{
 		cmpFoundation.Build(this.entity, rate);
-		return { "finished": false };
+		return;
 	}
-	else
-	{
-		// TODO: do some kind of repairing
 
-		return { "finished": true };
+	// Otherwise try to repair it
+	var cmpHealth = Engine.QueryInterface(target, IID_Health);
+	if (cmpHealth)
+	{
+		cmpHealth.Repair(this.entity, rate);
+		return;
 	}
 };
 

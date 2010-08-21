@@ -15,27 +15,21 @@ Health.prototype.Schema =
 			"<data type='positiveInteger'/>" +
 		"</element>" +
 	"</optional>" +
-	"<optional>" +
-		"<element name='RegenRate' a:help='Hitpoint regeneration rate per second. Not yet implemented'>" +
-			"<ref name='positiveDecimal'/>" +
-		"</element>" +
-	"</optional>" +
+	"<element name='RegenRate' a:help='Hitpoint regeneration rate per second. Not yet implemented'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
 	"<element name='DeathType' a:help='Graphical behaviour when the unit dies'>" +
 		"<choice>" +
 			"<value a:help='Disappear instantly'>vanish</value>" +
 			"<value a:help='Turn into a corpse'>corpse</value>" +
 		"</choice>" +
 	"</element>" +
-	"<optional>" +
-		"<element name='Healable' a:help='Indicates that the entity can be healed by healer units'>" +
-			"<data type='boolean'/>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='Repairable' a:help='Indicates that the entity can be repaired by builder units'>" +
-			"<data type='boolean'/>" +
-		"</element>" +
-	"</optional>";
+	"<element name='Healable' a:help='Indicates that the entity can be healed by healer units'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
+	"<element name='Repairable' a:help='Indicates that the entity can be repaired by builder units'>" +
+		"<data type='boolean'/>" +
+	"</element>";
 
 Health.prototype.Init = function()
 {
@@ -63,6 +57,11 @@ Health.prototype.SetHitpoints = function(value)
 		return;
 
 	this.hitpoints = Math.max(1, Math.min(this.GetMaxHitpoints(), value));
+};
+
+Health.prototype.IsRepairable = function()
+{
+	return (this.template.Repairable == "true");
 };
 
 Health.prototype.Kill = function()
@@ -132,5 +131,31 @@ Health.prototype.CreateCorpse = function()
 	cmpCorpseVisual.SelectAnimation("death", true, 1.0, "");
 };
 
+Health.prototype.Repair = function(builderEnt, work)
+{
+	var damage = this.GetMaxHitpoints() - this.GetHitpoints();
+
+	// Do nothing if we're already at full hitpoints
+	if (damage <= 0)
+		return;
+
+	// Calculate the amount of hitpoints that will be added
+	// TODO: what computation should we use?
+	// TODO: should we do some diminishing returns thing? (see Foundation.Build)
+	var amount = Math.min(damage, work);
+
+	// TODO: resource costs?
+
+	// Add hitpoints
+	this.Increase(amount);
+
+	// If we repaired all the damage, send a message to entities
+	// to stop repairing this building
+	if (amount >= damage)
+	{
+		Engine.PostMessage(this.entity, MT_ConstructionFinished,
+			{ "entity": this.entity, "newentity": this.entity });
+	}
+};
 
 Engine.RegisterComponentType(IID_Health, "Health", Health);

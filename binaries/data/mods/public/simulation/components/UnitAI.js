@@ -352,9 +352,7 @@ var UnitFsmSpec = {
 					}
 					
 					var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-					var status = cmpBuilder.PerformBuilding(target);
-					if (!status.finished)
-						return; // continue repairing it
+					cmpBuilder.PerformBuilding(target);
 				},
 			},
 

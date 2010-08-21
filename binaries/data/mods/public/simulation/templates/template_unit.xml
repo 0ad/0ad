@@ -21,7 +21,9 @@
   <Health>
     <DeathType>corpse</DeathType>
     <Max>100</Max>
+    <RegenRate>0</RegenRate>
     <Healable>true</Healable>
+    <Repairable>false</Repairable>
   </Health>
   <Decay>
     <Inactive/>

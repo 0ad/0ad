@@ -128,6 +128,10 @@ function determineAction(x, y)
 			{
 				return {"type": "build", "cursor": "action-build", "target": targets[0]};
 			}
+			else if (entState.buildEntities && targetState.needsRepair && playerOwned)
+			{
+				return {"type": "build", "cursor": "action-repair", "target": targets[0]};
+			}
 			else if (entState.attack && enemyOwned)
 			{
 				return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
