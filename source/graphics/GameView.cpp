@@ -575,7 +575,8 @@ void CGameView::Update(float DeltaTime)
 
 	// TODO: this is probably not an ideal place for this, it should probably go
 	// in a CCmpWaterManager or some such thing (once such a thing exists)
-	g_Renderer.GetWaterManager()->m_WaterTexTimer += DeltaTime;
+	if (!g_Game->m_Paused)
+		g_Renderer.GetWaterManager()->m_WaterTexTimer += DeltaTime;
 
 	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
 	{
