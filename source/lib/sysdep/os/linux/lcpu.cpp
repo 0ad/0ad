@@ -112,6 +112,14 @@ size_t os_cpu_MemoryAvailable()
 
 uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 {
+	// This code is broken on kernels with CONFIG_NR_CPUS >= 1024, since cpu_set_t
+	// is too small by default. See <http://trac.wildfiregames.com/ticket/547>.
+	// It seems the most reliable solution is to use dynamically-allocated sets
+	// (CPU_SET_S etc), and do it in a loop until we've allocated a set large
+	// enough to fit all the CPUs.
+	// That's a pain and we currently don't actually need this code at all, and on OS X
+	// we don't implement this function anyway, so just disable it here.
+#if 0
 	int ret;
 	cpu_set_t set;
 
@@ -139,6 +147,10 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 	// (The process gets migrated immediately by the setaffinity call)
 
 	return previousProcessorMask;
+#endif
+
+	UNUSED2(processorMask);
+	return os_cpu_ProcessorMask();
 }
 
 
