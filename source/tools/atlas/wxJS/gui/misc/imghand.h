@@ -143,11 +143,13 @@ namespace wxjs
             static ImageHandlerPrivate* Construct(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, bool constructing);
         };
 
+#if wxUSE_LIBTIFF
         class TIFFHandler : public ApiWrapper<TIFFHandler, ImageHandlerPrivate>
         {
         public:
             static ImageHandlerPrivate* Construct(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, bool constructing);
         };
+#endif
 
         class XPMHandler : public ApiWrapper<XPMHandler, ImageHandlerPrivate>
         {

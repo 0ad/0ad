@@ -38,6 +38,8 @@
 using namespace wxjs;
 using namespace wxjs::gui;
 
+#if wxUSE_LIBTIFF
+
 /***
  * <file>misc/tiffhdlr</file>
  * <module>gui</module>
@@ -52,3 +54,4 @@ ImageHandlerPrivate* TIFFHandler::Construct(JSContext *cx, JSObject *obj, uintN 
     return new ImageHandlerPrivate(new wxTIFFHandler(), true);
 };
 
+#endif // wxUSE_LIBTIFF

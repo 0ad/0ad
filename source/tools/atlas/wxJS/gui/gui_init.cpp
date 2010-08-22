@@ -572,10 +572,12 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
     if (! obj )
         return false;
 
+#if wxUSE_LIBTIFF
     obj = TIFFHandler::JSInit(cx, global, ImageHandler::GetClassPrototype());
     wxASSERT_MSG(obj != NULL, wxT("wxTIFFHandler prototype creation failed"));
     if (! obj )
         return false;
+#endif
 
     obj = XPMHandler::JSInit(cx, global, ImageHandler::GetClassPrototype());
     wxASSERT_MSG(obj != NULL, wxT("wxXPMHandler prototype creation failed"));
