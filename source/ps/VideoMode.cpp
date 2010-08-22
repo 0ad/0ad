@@ -75,6 +75,11 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		return false;
 	}
 
+	if (fullscreen)
+		SDL_WM_GrabInput(SDL_GRAB_ON);
+	else
+		SDL_WM_GrabInput(SDL_GRAB_OFF);
+
 	m_IsFullscreen = fullscreen;
 	m_CurrentW = w;
 	m_CurrentH = h;
