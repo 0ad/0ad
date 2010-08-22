@@ -50,6 +50,7 @@ void IGUIButtonBehavior::HandleMessage(const SGUIMessage &Message)
 		m_Pressed = true;
 	}	break;
 
+	case GUIM_MOUSE_DBLCLICK_LEFT:
 	case GUIM_MOUSE_RELEASE_LEFT:
 	{
 		bool enabled;
