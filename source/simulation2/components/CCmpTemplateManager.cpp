@@ -477,5 +477,5 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 
 	// Don't provide population bonuses yet (but still do take up population cost)
 	if (out.GetChild("Entity").GetChild("Cost").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Cost><PopulationBonus disable=''/></Cost></Entity>");
+		CParamNode::LoadXMLString(out, "<Entity><Cost><PopulationBonus>0</PopulationBonus></Cost></Entity>");
 }
