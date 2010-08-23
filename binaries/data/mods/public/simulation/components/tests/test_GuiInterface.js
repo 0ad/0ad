@@ -72,6 +72,7 @@ AddMock(10, IID_Position, {
 AddMock(10, IID_Health, {
 	GetHitpoints: function() { return 50; },
 	GetMaxHitpoints: function() { return 60; },
+	IsRepairable: function() { return false; },
 });
 
 AddMock(10, IID_Builder, {
@@ -87,5 +88,6 @@ TS_ASSERT_UNEVAL_EQUALS(state, {
 	position: {x:1, y:2, z:3},
 	hitpoints: 50,
 	maxHitpoints: 60,
+	needsRepair: false,
 	buildEntities: ["test1", "test2"]
 });
