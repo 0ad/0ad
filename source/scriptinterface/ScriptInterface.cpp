@@ -117,8 +117,14 @@ JSBool print(JSContext* cx, uintN argc, jsval* vp)
 	return JS_TRUE;
 }
 
-JSBool logmsg(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+JSBool logmsg(JSContext* cx, uintN argc, jsval* vp)
 {
+	if (argc < 1)
+	{
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		return JS_TRUE;
+	}
+
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
 		return JS_FALSE;
@@ -127,8 +133,14 @@ JSBool logmsg(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	return JS_TRUE;
 }
 
-JSBool warn(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+JSBool warn(JSContext* cx, uintN argc, jsval* vp)
 {
+	if (argc < 1)
+	{
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		return JS_TRUE;
+	}
+
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
 		return JS_FALSE;
@@ -137,8 +149,14 @@ JSBool warn(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	return JS_TRUE;
 }
 
-JSBool error(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+JSBool error(JSContext* cx, uintN argc, jsval* vp)
 {
+	if (argc < 1)
+	{
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		return JS_TRUE;
+	}
+
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
 		return JS_FALSE;
