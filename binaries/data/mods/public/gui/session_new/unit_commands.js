@@ -53,7 +53,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		var template;
 		if (guiName != "Command")
 		{
-			template = Engine.GuiInterfaceCall("GetTemplateData", entType);
+			template = GetTemplateData(entType);
 			if (!template)
 				continue; // ignore attempts to use invalid templates (an error should have been reported already)
 		}
@@ -61,7 +61,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		switch (guiName)
 		{
 		case SELECTION:
-			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[i]);
+			var entState = GetEntityState(selection[i]);
 			if (!entState)
 				continue;
 

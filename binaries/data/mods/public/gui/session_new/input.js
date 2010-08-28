@@ -74,7 +74,7 @@ function determineAction(x, y)
 		return undefined;
 
 	// If the selection doesn't exist, no action
-	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
+	var entState = GetEntityState(selection[0]);
 	if (!entState)
 		return undefined;
 
@@ -85,7 +85,7 @@ function determineAction(x, y)
 
 	// Work out whether the selection can have rally points
 	var haveRallyPoints = selection.every(function(ent) {
-		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
+		var entState = GetEntityState(ent);
 		return entState && entState.rallyPoint;
 	});
 
@@ -97,7 +97,7 @@ function determineAction(x, y)
 		// Look at the first targeted entity
 		// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 		// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
-		var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
+		var targetState = GetEntityState(targets[0]);
 
 		// If we selected buildings with rally points, and then click on one of those selected
 		// buildings, we should remove the rally point
@@ -108,7 +108,7 @@ function determineAction(x, y)
 		// Check if any entities in the selection can gather the requested resource, can build the foundation, or can attack the enemy
 		for each (var entityID in selection)
 		{
-			var entState = Engine.GuiInterfaceCall("GetEntityState", entityID);
+			var entState = GetEntityState(entityID);
 			if (!entState)
 				continue;
 
@@ -209,7 +209,7 @@ function getPreferredEntities(ents)
 	// Check if there are units in the selection and get a list of entity states
 	for each (var ent in ents)
 	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
+		var entState = GetEntityState(ent);
 		if (!entState)
 			continue;
 		if (isUnit(entState))

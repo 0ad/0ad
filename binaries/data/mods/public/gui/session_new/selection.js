@@ -44,13 +44,13 @@ EntitySelection.prototype.makePrimarySelection = function(primaryIndex, modifier
 
 	if (modifierKey)
 	{
-		var primaryEntState = Engine.GuiInterfaceCall("GetEntityState", selection[primaryIndex]);
+		var primaryEntState = GetEntityState(selection[primaryIndex]);
 		if (!primaryEntState)
 			return;
 
 		for (var i = 0; i < selection.length; i++)
 		{
-			var entState = Engine.GuiInterfaceCall("GetEntityState", selection[i]);
+			var entState = GetEntityState(selection[i]);
 			if (!entState)
 				continue;
 			if (entState.template == primaryEntState.template)
@@ -73,7 +73,7 @@ EntitySelection.prototype.getTemplateNames = function()
 	
 	for each (var ent in ents)
 	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
+		var entState = GetEntityState(ent);
 		if (entState)
 			templateNames.push(entState.template);
 	}
@@ -86,7 +86,7 @@ EntitySelection.prototype.update = function()
 	var numberRemoved = 0;
 	for each (var ent in this.selected)
 	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
+		var entState = GetEntityState(ent);
 		if (!entState)
 		{
 			delete this.selected[ent];

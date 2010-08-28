@@ -10,6 +10,41 @@ var g_DevSettings = {
 	controlAll: false
 };
 
+// Cache EntityStates
+var g_EntityStates = {}; // {id:entState}
+
+function GetEntityState(entId)
+{
+	if (!(entId in g_EntityStates))
+	{
+		var entState = Engine.GuiInterfaceCall("GetEntityState", entId);
+		if (!entState)
+			entState = null;
+		
+		g_EntityStates[entId] = entState;
+	}
+
+	return g_EntityStates[entId];
+}
+
+// Cache TemplateData
+var g_TemplateData = {}; // {id:template}
+
+function GetTemplateData(templateName)
+{
+	if (!(templateName in g_TemplateData))
+	{
+		var template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
+		if (!template)
+			template = null;
+		
+		g_TemplateData[templateName] = template;
+	}
+
+	return g_TemplateData[templateName];
+}
+
+// Init
 function init(initData, hotloadData)
 {
 	if (hotloadData)
@@ -83,6 +118,9 @@ function onTick()
 function onSimulationUpdate()
 {
 	g_Selection.dirty = false;
+	g_EntityStates = {};
+	g_TemplateData = {};
+	
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 
 	// If we're called during init when the game is first loading, there will be no simulation yet, so do nothing
@@ -115,10 +153,10 @@ function updateDebug(simState)
 	var selection = g_Selection.toList();
 	if (selection.length)
 	{
-		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
+		var entState = GetEntityState(selection[0]);
 		if (entState)
 		{
-			var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
+			var template = GetTemplateData(entState.template);
 			text += "\n\n" + uneval(entState) + "\n\n" + uneval(template);
 		}
 	}

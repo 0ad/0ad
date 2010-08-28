@@ -151,7 +151,7 @@ function updateSelectionDetails()
 	/* If the unit has no data (e.g. it was killed), don't try displaying any
 	 data for it. (TODO: it should probably be removed from the selection too;
 	 also need to handle multi-unit selections) */
-	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
+	var entState = GetEntityState(selection[0]);
 	if (!entState)
 		return;
 
@@ -162,7 +162,7 @@ function updateSelectionDetails()
 	else
 		layoutSelectionSingle(entState);
 
-	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
+	var template = GetTemplateData(entState.template);
 
 	// Fill out general info and display it
 	displayGeneralInfo(entState, template); // must come after layout functions
