@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_geo_mineral">
+  <Position>
+    <Anchor>pitch-roll</Anchor>
+  </Position>
+  <ResourceSupply>
+    <Amount>3000</Amount>
+    <Type>metal.ore</Type>
+  </ResourceSupply>
+  <Footprint>
+    <Circle radius="10.0"/>
+    <Height>3.5</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="12.5" depth="12.5"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>geology/metalmine_desert_slabs.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="230.649" y="102.47" z="597.836"/>
+		<Position x="64.6863" y="86.4175" z="410.905"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -12579,42 +12579,6 @@
 			<Position x="646.33277" z="366.57001"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2534">
-			<Template>gaia/geology_metal_desert_small</Template>
-			<Player>0</Player>
-			<Position x="28.38157" z="506.09919"/>
-			<Orientation y="0.85582"/>
-		</Entity>
-		<Entity uid="2535">
-			<Template>gaia/geology_metal_desert_small</Template>
-			<Player>0</Player>
-			<Position x="43.0784" z="526.90296"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2536">
-			<Template>gaia/geology_metal_desert_small</Template>
-			<Player>0</Player>
-			<Position x="30.8307" z="539.62421"/>
-			<Orientation y="-3.0381"/>
-		</Entity>
-		<Entity uid="2537">
-			<Template>gaia/geology_metal_desert_small</Template>
-			<Player>0</Player>
-			<Position x="21.37336" z="521.74646"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2538">
-			<Template>gaia/geology_metal_desert_small</Template>
-			<Player>0</Player>
-			<Position x="14.79789" z="509.85602"/>
-			<Orientation y="-2.85363"/>
-		</Entity>
-		<Entity uid="2539">
-			<Template>gaia/geology_metal_desert_small</Template>
-			<Player>0</Player>
-			<Position x="23.59508" z="493.48047"/>
-			<Orientation y="-0.0953"/>
-		</Entity>
 		<Entity uid="2540">
 			<Template>gaia/geology_metal_desert_small</Template>
 			<Player>0</Player>
@@ -18458,6 +18422,24 @@
 			<Template>actor|fauna/hawk.xml</Template>
 			<Position x="108.85943" z="909.22791"/>
 			<Orientation y="-2.46358"/>
+		</Entity>
+		<Entity uid="3677">
+			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Player>0</Player>
+			<Position x="21.79778" z="521.34675"/>
+			<Orientation y="1.52462"/>
+		</Entity>
+		<Entity uid="3678">
+			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Player>0</Player>
+			<Position x="45.94181" z="525.8136"/>
+			<Orientation y="-3.13314"/>
+		</Entity>
+		<Entity uid="3679">
+			<Template>gaia/geology_metal_desert_slabs</Template>
+			<Player>0</Player>
+			<Position x="42.00832" z="501.65204"/>
+			<Orientation y="0.001"/>
 		</Entity>
 	</Entities>
 	<Paths/>
