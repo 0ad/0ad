@@ -433,17 +433,9 @@ void TerrainRenderer::RenderWater()
 			m->fancyWaterShader = h;
 		}
 	}
-
-	//(Crappy) fresnel effect
-	const CCamera* Camera=g_Game->GetView()->GetCamera();
-	CVector3D CamFace=Camera->m_Orientation.GetIn();
-	CamFace.Normalize();
-	float FresnelScalar = CamFace.Dot( CVector3D(0.0f, -1.0f, 0.0f) );
-	//Invert and set boundaries
-	FresnelScalar = (1 - FresnelScalar) * 0.4f + 0.6f;
-
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	int mapSize = terrain->GetVerticesPerSide();
+//	int mapSize = terrain->GetVerticesPerSide();
+
 //	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 	
 	glEnable(GL_BLEND);
@@ -490,10 +482,9 @@ void TerrainRenderer::RenderWater()
 
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-	
-	// Some offsets used to go around counterclockwise while keeping code concise
-	const int DX[] = {1,1,0,0};
-	const int DZ[] = {0,1,1,0};
+
+	const CCamera& camera = g_Renderer.GetViewCamera();
+	CVector3D camPos = camera.m_Orientation.GetTranslation();
 
 	GLint vertexDepth = 0;	// water depth attribute, if using fancy water
 	GLint losMultiplier = 0;	// LOS multiplier, if using fancy water
@@ -548,9 +539,6 @@ void TerrainRenderer::RenderWater()
 		pglUniform1iARB( normalMap, 0 );		// texture unit 0
 		pglUniform1iARB( reflectionMap, 1 );	// texture unit 1
 		pglUniform1iARB( refractionMap, 2 );	// texture unit 2
-
-		const CCamera& camera = g_Renderer.GetViewCamera();
-		CVector3D camPos = camera.m_Orientation.GetTranslation();
 		pglUniform3fvARB( cameraPos, 1, &camPos.X );
 
 		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
@@ -572,6 +560,10 @@ void TerrainRenderer::RenderWater()
 				ssize_t x = (patch->m_X*PATCH_SIZE + dx);
 				ssize_t z = (patch->m_Z*PATCH_SIZE + dz);
 
+				// Some offsets used to go around counterclockwise while keeping code concise
+				const int DX[] = {1,1,0,0};
+				const int DZ[] = {0,1,1,0};
+
 				// is any corner of the tile below the water height? if not, no point rendering it
 				bool shouldRender = false;
 				for(int j=0; j<4; j++)
@@ -588,7 +580,7 @@ void TerrainRenderer::RenderWater()
 					continue;
 				}
 
-				for(int j=0; j<4; j++)
+				for (int j=0; j<4; j++)
 				{
 					int ix = x + DX[j];
 					int iz = z + DZ[j];
@@ -597,12 +589,8 @@ void TerrainRenderer::RenderWater()
 					float vertZ = iz * CELL_SIZE;
 
 					float terrainHeight = terrain->GetVertexGroundLevel(ix, iz);
-
-					float alpha = clamp(
-						(WaterMgr->m_WaterHeight - terrainHeight) / WaterMgr->m_WaterFullDepth + WaterMgr->m_WaterAlphaOffset,
-						-100.0f, WaterMgr->m_WaterMaxAlpha);
-
 					float losMod = 1.0f;
+
 					/*
 					if (false) // XXX: need to implement this for new sim system
 					{
@@ -623,18 +611,33 @@ void TerrainRenderer::RenderWater()
 					}
 					*/
 
-					if(fancy)
+					if (fancy)
 					{
-						pglVertexAttrib1fARB( vertexDepth, WaterMgr->m_WaterHeight - terrainHeight );
-						pglVertexAttrib1fARB( losMultiplier, losMod );
+						pglVertexAttrib1fARB(vertexDepth, WaterMgr->m_WaterHeight - terrainHeight);
+						pglVertexAttrib1fARB(losMultiplier, losMod);
+						pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
+						glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
 					}
 					else
 					{
-						glColor4f(WaterMgr->m_WaterColor.r*losMod, WaterMgr->m_WaterColor.g*losMod, 
-							WaterMgr->m_WaterColor.b*losMod, alpha * FresnelScalar);
+						float alpha = clamp( (WaterMgr->m_WaterHeight - terrainHeight) / WaterMgr->m_WaterFullDepth + WaterMgr->m_WaterAlphaOffset,
+						                      WaterMgr->m_WaterAlphaOffset, WaterMgr->m_WaterMaxAlpha);
+
+						// (Crappy) fresnel effect
+						CVector3D CamFaceVertex=CVector3D(vertX,WaterMgr->m_WaterHeight,vertZ)-camPos;
+						CamFaceVertex.Normalize();
+						float FresnelScalar = CamFaceVertex.Dot(CVector3D(0.0f, -1.0f, 0.0f));
+						// Invert and set boundaries
+						FresnelScalar = 1.f - (FresnelScalar * 0.6);
+
+						glColor4f(WaterMgr->m_WaterColor.r*losMod,
+						          WaterMgr->m_WaterColor.g*losMod,
+						          WaterMgr->m_WaterColor.b*losMod,
+						          alpha * FresnelScalar);
+						pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
+						glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
 					}
-					pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
-					glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
+
 				}
 			}	//end of x loop
 		}	//end of z loop
