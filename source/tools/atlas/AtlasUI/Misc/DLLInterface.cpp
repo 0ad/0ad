@@ -186,8 +186,10 @@ public:
 	{
 // 		_CrtSetBreakAlloc(5632);
 
+#if wxUSE_ON_FATAL_EXCEPTION
 		if (! wxIsDebuggerRunning())
 			wxHandleFatalExceptions();
+#endif
 
 		// Initialise the global config file
 		wxConfigBase::Set(new wxConfig(_T("Atlas Editor"), _T("Wildfire Games")));
