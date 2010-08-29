@@ -2,8 +2,9 @@
 <Entity parent="template_gaia_geo">
   <Identity>
     <GenericName>Rock</GenericName>
+    <SpecificName>Stone Mine</SpecificName>
     <IconCell>0</IconCell>
-    <Rollover>A lump of hard common mineral.  It can be mined to provide stone building material.</Rollover>
+    <Tooltip>Mine these to provide Stone building material.</Tooltip>
   </Identity>
   <Minimap>
     <Type>stone</Type>

@@ -3,7 +3,7 @@
   <Identity>
     <GenericName>Tree</GenericName>
     <IconCell>0</IconCell>
-    <Rollover>Chop these down to accumulate Wood.</Rollover>
+    <Tooltip>Chop down to accumulate Wood.</Tooltip>
   </Identity>
   <Minimap>
     <Type>wood</Type>
@@ -11,7 +11,7 @@
   </Minimap>
   <Selectable/>
   <ResourceSupply>
-    <Amount>100</Amount>
+    <Amount>200</Amount>
     <Type>wood.tree</Type>
   </ResourceSupply>
 </Entity>
