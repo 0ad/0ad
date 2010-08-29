@@ -32,6 +32,9 @@
 # pragma warning(push, 3)
 #endif
 
+#define BOOST_FILESYSTEM_VERSION 2
+// TODO: port our code to work with the v3 API too
+
 #include "boost/filesystem.hpp"
 namespace fs = boost::filesystem;
 

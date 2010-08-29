@@ -63,7 +63,11 @@ struct VfsPathTraits
 
 namespace boost
 {
-	namespace filesystem
+#ifdef BOOST_FILESYSTEM2_NAMESPACE
+	namespace BOOST_FILESYSTEM2_NAMESPACE
+#else
+	namespace BOOST_FILESYSTEM_NAMESPACE
+#endif
 	{
 		template<> struct is_basic_path<VfsPath>
 		{
