@@ -183,14 +183,14 @@ void CMiniMap::DrawViewRect()
 	// Enable Scissoring as to restrict the rectangle
 	// to only the mini-map below by retrieving the mini-maps
 	// screen coords.
-	glScissor((int)m_CachedActualSize.left, 0, (int)m_CachedActualSize.right, (int)m_CachedActualSize.GetHeight());
+	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
+	glScissor((int)x, g_Renderer.GetHeight()-(int)y, (int)m_CachedActualSize.GetWidth(), (int)m_CachedActualSize.GetHeight());
 	glEnable(GL_SCISSOR_TEST);
 	glEnable(GL_LINE_SMOOTH);
 	glLineWidth(2.0f);
 	glColor3f(1.0f, 0.3f, 0.3f);
 
 	// Draw the viewing rectangle with the ScEd's conversion algorithm
-	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	glBegin(GL_LINE_LOOP);
 	glVertex2f(x+ViewRect[0][0], y-ViewRect[0][1]);
 	glVertex2f(x+ViewRect[1][0], y-ViewRect[1][1]);
