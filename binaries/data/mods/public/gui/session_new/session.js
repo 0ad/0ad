@@ -18,9 +18,6 @@ function GetEntityState(entId)
 	if (!(entId in g_EntityStates))
 	{
 		var entState = Engine.GuiInterfaceCall("GetEntityState", entId);
-		if (!entState)
-			entState = null;
-		
 		g_EntityStates[entId] = entState;
 	}
 
@@ -35,9 +32,6 @@ function GetTemplateData(templateName)
 	if (!(templateName in g_TemplateData))
 	{
 		var template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
-		if (!template)
-			template = null;
-		
 		g_TemplateData[templateName] = template;
 	}
 
