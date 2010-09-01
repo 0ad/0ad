@@ -12,6 +12,13 @@
   <Health>
     <Max>1320</Max>
   </Health>
+  <Footprint>
+    <Square width="7.5" depth="7.5"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="7.5" depth="7.5"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/scout_tower.xml</Actor>
   </VisualActor>
