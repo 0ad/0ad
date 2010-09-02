@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Identity>
+	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
+    <IconCell>4</IconCell>
+    <Civ>gaia</Civ>
+    <GenericName>Stone Fence</GenericName>
+    <SpecificName>Stone Fence</SpecificName>
+    <History>A stone fence.</History>
+  </Identity>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <Loot>
+    <xp>1</xp>
+    <food>0</food>
+    <wood>0</wood>
+    <stone>20</stone>
+    <metal>0</metal>
+  </Loot>
+  <VisualActor>
+    <Actor>props/special/eyecandy/fence_stone_medit.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square width="1.5" depth="11.0"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="1.0" depth="10.5"/>
+  </Obstruction>
+  <Vision>
+    <Range>4</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+</Entity>
