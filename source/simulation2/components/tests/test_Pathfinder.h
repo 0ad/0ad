@@ -111,7 +111,7 @@ public:
 			fixed x = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
 			fixed z = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
 //			printf("# %f %f\n", x.ToFloat(), z.ToFloat());
-			cmpObstructionMan->AddUnitShape(x, z, fixed::FromInt(2), false);
+			cmpObstructionMan->AddUnitShape(x, z, fixed::FromInt(2), false, INVALID_ENTITY);
 		}
 
 		NullObstructionFilter filter;
