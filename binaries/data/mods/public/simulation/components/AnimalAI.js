@@ -114,6 +114,10 @@ var AnimalFsmSpec = {
 
 	"PASSIVE": {
 
+		"ResourceGather": function(msg) {
+			// Do nothing, just let them gather meat
+		},
+	
 		"ROAMING": {
 			"enter": function() {
 				// Walk in a random direction
