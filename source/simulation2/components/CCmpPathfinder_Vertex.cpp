@@ -827,3 +827,44 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 
 	PROFILE_END("A*");
 }
+
+bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u8 passClass)
+{
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	if (cmpObstructionManager.null())
+		return false;
+
+	if (cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
+		return false;
+
+	// Test against terrain:
+
+	// (TODO: this could probably be a tiny bit faster by not reusing all the vertex computation code)
+
+	UpdateGrid();
+
+	std::vector<Edge> edgesAA;
+	std::vector<Vertex> vertexes;
+
+	u16 i0, j0, i1, j1;
+	NearestTile(std::min(x0, x1) - r, std::min(z0, z1) - r, i0, j0);
+	NearestTile(std::max(x0, x1) + r, std::max(z0, z1) + r, i1, j1);
+	AddTerrainEdges(edgesAA, vertexes, i0, j0, i1, j1, r, passClass, *m_Grid);
+
+	CFixedVector2D a(x0, z0);
+	CFixedVector2D b(x1, z1);
+
+	std::vector<EdgeAA> edgesLeft;
+	std::vector<EdgeAA> edgesRight;
+	std::vector<EdgeAA> edgesBottom;
+	std::vector<EdgeAA> edgesTop;
+	SplitAAEdges(a, edgesAA, edgesLeft, edgesRight, edgesBottom, edgesTop);
+
+	bool visible =
+		CheckVisibilityLeft(a, b, edgesLeft) &&
+		CheckVisibilityRight(a, b, edgesRight) &&
+		CheckVisibilityBottom(a, b, edgesBottom) &&
+		CheckVisibilityTop(a, b, edgesTop);
+
+	return visible;
+}

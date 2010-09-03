@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity>
+  <Position>
+    <Altitude>0</Altitude>
+    <Anchor>upright</Anchor>
+    <Floating>false</Floating>
+  </Position>
+  <Formation/>
+  <UnitAI>
+    <FormationController>true</FormationController>
+  </UnitAI>
+  <UnitMotion>
+    <FormationController>true</FormationController>
+    <WalkSpeed>1.0</WalkSpeed>
+    <PassabilityClass>default</PassabilityClass>
+    <CostClass>default</CostClass>
+  </UnitMotion>
+  <!--
+  <VisualActor>
+    <Actor>props/special/common/waypoint_flag.xml</Actor>
+  </VisualActor>
+  -->
+</Entity>

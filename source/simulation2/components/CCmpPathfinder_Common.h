@@ -117,6 +117,31 @@ const int COST_CLASS_BITS = 8 - (PASS_CLASS_BITS + 1);
 #define GET_COST_CLASS(item) ((item) >> (PASS_CLASS_BITS + 1))
 #define COST_CLASS_TAG(id) ((id) << (PASS_CLASS_BITS + 1))
 
+struct AsyncLongPathRequest
+{
+	u32 ticket;
+	entity_pos_t x0;
+	entity_pos_t z0;
+	ICmpPathfinder::Goal goal;
+	u8 passClass;
+	u8 costClass;
+	entity_id_t notify;
+};
+
+struct AsyncShortPathRequest
+{
+	u32 ticket;
+	entity_pos_t x0;
+	entity_pos_t z0;
+	entity_pos_t r;
+	entity_pos_t range;
+	ICmpPathfinder::Goal goal;
+	u8 passClass;
+	bool avoidMovingUnits;
+	entity_id_t group;
+	entity_id_t notify;
+};
+
 /**
  * Implementation of ICmpPathfinder
  */
@@ -125,6 +150,7 @@ class CCmpPathfinder : public ICmpPathfinder
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_Update);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 	}
@@ -139,10 +165,14 @@ public:
 	std::vector<std::vector<u32> > m_MoveCosts; // costs[unitClass][terrainClass]
 	std::vector<std::vector<fixed> > m_MoveSpeeds; // speeds[unitClass][terrainClass]
 
+	std::vector<AsyncLongPathRequest> m_AsyncLongPathRequests;
+	std::vector<AsyncShortPathRequest> m_AsyncShortPathRequests;
+
 	u16 m_MapSize; // tiles per side
 	Grid<TerrainTile>* m_Grid; // terrain/passability information
 	Grid<u8>* m_ObstructionGrid; // cached obstruction information (TODO: we shouldn't bother storing this, it's redundant with LSBs of m_Grid)
 	bool m_TerrainDirty; // indicates if m_Grid has been updated since terrain changed
+	u32 m_NextAsyncTicket; // unique IDs for asynchronous path requests
 
 	// Debugging - output from last pathfind operation:
 	Grid<PathfindTile>* m_DebugGrid;
@@ -186,7 +216,11 @@ public:
 
 	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& ret);
 
+	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, entity_id_t notify);
+
 	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& ret);
+
+	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify);
 
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass);
 
@@ -195,6 +229,10 @@ public:
 	virtual void SetDebugOverlay(bool enabled);
 
 	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass);
+
+	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u8 passClass);
+
+	virtual void FinishAsyncRequests();
 
 	/**
 	 * Returns the tile containing the given position
@@ -214,6 +252,8 @@ public:
 		z = entity_pos_t::FromInt(j*(int)CELL_SIZE + CELL_SIZE/2);
 	}
 
+	static fixed DistanceToGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal);
+
 	/**
 	 * Regenerates the grid based on the current obstruction list, if necessary
 	 */
@@ -221,28 +261,5 @@ public:
 
 	void RenderSubmit(const CSimContext& context, SceneCollector& collector);
 };
-
-static fixed DistanceToGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal)
-{
-	switch (goal.type)
-	{
-	case CCmpPathfinder::Goal::POINT:
-		return (pos - CFixedVector2D(goal.x, goal.z)).Length();
-
-	case CCmpPathfinder::Goal::CIRCLE:
-		return ((pos - CFixedVector2D(goal.x, goal.z)).Length() - goal.hw).Absolute();
-
-	case CCmpPathfinder::Goal::SQUARE:
-	{
-		CFixedVector2D halfSize(goal.hw, goal.hh);
-		CFixedVector2D d(pos.X - goal.x, pos.Y - goal.z);
-		return Geometry::DistanceToSquare(d, goal.u, goal.v, halfSize);
-	}
-
-	default:
-		debug_warn(L"invalid type");
-		return fixed::Zero();
-	}
-}
 
 #endif // INCLUDED_CCMPPATHFINDER_COMMON

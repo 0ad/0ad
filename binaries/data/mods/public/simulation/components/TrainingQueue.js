@@ -184,6 +184,8 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	
+	var ents = [];
+
 	for (var i = 0; i < count; ++i)
 	{
 		var ent = Engine.AddEntity(templateName);
@@ -205,18 +207,27 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 		var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
-		// If a rally point is set, walk towards it
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (cmpUnitAI && cmpRallyPoint)
-		{
-			var rallyPos = cmpRallyPoint.GetPosition();
-			if (rallyPos)
-				cmpUnitAI.Walk(rallyPos.x, rallyPos.z, false);
-		}
+		ents.push(ent);
 
 		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)
 		if (i == 0)
 			PlaySound("trained", ent);
+	}
+
+	// If a rally point is set, walk towards it (in formation)
+	if (cmpRallyPoint)
+	{
+		var rallyPos = cmpRallyPoint.GetPosition();
+		if (rallyPos)
+		{
+			ProcessCommand(cmpOwnership.GetOwner(), {
+				"type": "walk",
+				"entities": ents,
+				"x": rallyPos.x,
+				"z": rallyPos.z,
+				"queued": false
+			});
+		}
 	}
 };
 

@@ -66,6 +66,12 @@ public:
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
+	 * Join a formation, and move towards a given offset relative to the formation controller entity.
+	 * Continues following the formation until given a different command.
+	 */
+	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z) = 0;
+
+	/**
 	 * Stop moving immediately.
 	 */
 	virtual void StopMoving() = 0;
@@ -84,6 +90,13 @@ public:
 	 * Get the default speed that this unit will have when running, in metres per second.
 	 */
 	virtual fixed GetRunSpeed() = 0;
+
+	/**
+	 * Override the default obstruction radius, used for planning paths and checking for collisions.
+	 * Bad things may happen if this entity has an active Obstruction component with a larger
+	 * radius. (This is intended primarily for formation controllers.)
+	 */
+	virtual void SetUnitRadius(fixed radius) = 0;
 
 	/**
 	 * Toggle the rendering of debug info.

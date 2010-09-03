@@ -22,5 +22,7 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Obstruction)
+DEFINE_INTERFACE_METHOD_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
 DEFINE_INTERFACE_METHOD_0("CheckCollisions", bool, ICmpObstruction, CheckCollisions)
+DEFINE_INTERFACE_METHOD_1("SetControlGroup", void, ICmpObstruction, SetControlGroup, entity_id_t)
 END_INTERFACE_WRAPPER(Obstruction)

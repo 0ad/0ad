@@ -24,6 +24,8 @@
 
 #include "simulation2/helpers/Position.h"
 
+#include "simulation2/components/ICmpPathfinder.h"
+
 #define DEFAULT_MESSAGE_IMPL(name) \
 	virtual int GetType() const { return MT_##name; } \
 	virtual const char* GetScriptHandlerName() const { return "On" #name; } \
@@ -44,12 +46,68 @@ public:
 	}
 };
 
+// The update process is split into a number of phases, in an attempt
+// to cope with dependencies between components. Each phase is implemented
+// as a separate message. Simulation2.cpp sends them in sequence.
+
+/**
+ * Generic per-turn update message, for things that don't care much about ordering.
+ */
 class CMessageUpdate : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Update)
 
 	CMessageUpdate(fixed turnLength) :
+		turnLength(turnLength)
+	{
+	}
+
+	fixed turnLength;
+};
+
+/**
+ * Update phase for formation controller movement (must happen before individual
+ * units move to follow their formation).
+ */
+class CMessageUpdate_MotionFormation : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(Update_MotionFormation)
+
+	CMessageUpdate_MotionFormation(fixed turnLength) :
+		turnLength(turnLength)
+	{
+	}
+
+	fixed turnLength;
+};
+
+/**
+ * Update phase for non-formation-controller unit movement.
+ */
+class CMessageUpdate_MotionUnit : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(Update_MotionUnit)
+
+	CMessageUpdate_MotionUnit(fixed turnLength) :
+		turnLength(turnLength)
+	{
+	}
+
+	fixed turnLength;
+};
+
+/**
+ * Final update phase, after all other updates.
+ */
+class CMessageUpdate_Final : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(Update_Final)
+
+	CMessageUpdate_Final(fixed turnLength) :
 		turnLength(turnLength)
 	{
 	}
@@ -169,12 +227,13 @@ class CMessageMotionChanged : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(MotionChanged)
 
-	CMessageMotionChanged(fixed speed) :
-		speed(speed)
+	CMessageMotionChanged(bool starting, bool error) :
+		starting(starting), error(error)
 	{
 	}
 
-	fixed speed; // metres per second, or 0 if not moving
+	bool starting; // whether this is a start or end of movement
+	bool error; // whether we failed to start moving (couldn't find any path)
 };
 
 /**
@@ -232,6 +291,23 @@ public:
 		removed = other.removed;
 		return *this;
 	}
+};
+
+/**
+ * Sent by CCmpPathfinder after async path requests.
+ */
+class CMessagePathResult : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(PathResult)
+
+	CMessagePathResult(u32 ticket, const ICmpPathfinder::Path& path) :
+		ticket(ticket), path(path)
+	{
+	}
+
+	u32 ticket;
+	ICmpPathfinder::Path path;
 };
 
 #endif // INCLUDED_MESSAGETYPES

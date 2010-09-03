@@ -6,7 +6,9 @@
   <Minimap>
     <Type>unit</Type>
   </Minimap>
-  <UnitAI/>
+  <UnitAI>
+    <FormationController>false</FormationController>
+  </UnitAI>
   <Cost>
     <Population>1</Population>
     <PopulationBonus>0</PopulationBonus>
@@ -37,6 +39,7 @@
     <Crush>1.0</Crush>
   </Armour>
   <UnitMotion>
+    <FormationController>false</FormationController>
     <WalkSpeed>7.0</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>

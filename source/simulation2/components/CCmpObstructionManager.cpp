@@ -49,6 +49,7 @@ struct UnitShape
 	entity_pos_t x, z;
 	entity_pos_t r; // radius of circle, or half width of square
 	bool moving; // whether it's currently mobile (and should be generally ignored when pathing)
+	entity_id_t group; // control group (typically the owner entity, or a formation controller entity) (units ignore collisions with others in the same group)
 };
 
 /**
@@ -144,9 +145,9 @@ public:
 		MakeDirty();
 	}
 
-	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_pos_t r, bool moving)
+	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_pos_t r, bool moving, entity_id_t group)
 	{
-		UnitShape shape = { x, z, r, moving };
+		UnitShape shape = { x, z, r, moving, group };
 		size_t id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
 		MakeDirtyUnits();
@@ -204,6 +205,18 @@ public:
 		{
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
 			shape.moving = moving;
+			MakeDirtyUnits();
+		}
+	}
+
+	virtual void SetUnitControlGroup(tag_t tag, entity_id_t group)
+	{
+		debug_assert(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
+
+		if (TAG_IS_UNIT(tag))
+		{
+			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
+			shape.group = group;
 			MakeDirtyUnits();
 		}
 	}
@@ -328,7 +341,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
@@ -342,7 +355,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
@@ -374,7 +387,7 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
@@ -385,7 +398,7 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
@@ -409,7 +422,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
 			continue;
 
 		entity_pos_t r1 = it->second.r;
@@ -420,7 +433,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
@@ -524,7 +537,7 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
 			continue;
 
 		entity_pos_t r = it->second.r;
@@ -541,7 +554,7 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
 			continue;
 
 		entity_pos_t r = it->second.hw + it->second.hh; // overestimate the max dist of an edge from the center

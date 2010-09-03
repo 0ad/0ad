@@ -40,6 +40,15 @@ public:
 	 */
 	virtual bool CheckCollisions() = 0;
 
+	virtual void SetMovingFlag(bool enabled) = 0;
+
+	/**
+	 * Change the control group that the entity belongs to.
+	 * Control groups are used to let units ignore collisions with other units from
+	 * the same group. Default is the entity's own ID.
+	 */
+	virtual void SetControlGroup(entity_id_t group) = 0;
+
 	DECLARE_INTERFACE_TYPE(Obstruction)
 };
 

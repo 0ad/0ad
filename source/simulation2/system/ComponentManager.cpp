@@ -90,6 +90,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 #undef INTERFACE
 #undef COMPONENT
 
+	m_ScriptInterface.SetGlobal("INVALID_ENTITY", (int)INVALID_ENTITY);
 	m_ScriptInterface.SetGlobal("SYSTEM_ENTITY", (int)SYSTEM_ENTITY);
 
 	ResetState();

@@ -252,3 +252,8 @@ template<> bool ScriptInterface::FromJSVal<std::vector<int> >(JSContext* cx, jsv
 {
 	return FromJSVal_vector(cx, v, out);
 }
+
+template<> bool ScriptInterface::FromJSVal<std::vector<u32> >(JSContext* cx, jsval v, std::vector<u32>& out)
+{
+	return FromJSVal_vector(cx, v, out);
+}

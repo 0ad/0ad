@@ -93,7 +93,7 @@ public:
 	 * @param moving whether the unit is currently moving through the world or is stationary
 	 * @return a valid tag for manipulating the shape
 	 */
-	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_angle_t r, bool moving) = 0;
+	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_angle_t r, bool moving, entity_id_t group) = 0;
 
 	/**
 	 * Adjust the position and angle of an existing shape.
@@ -110,6 +110,13 @@ public:
 	 * @param moving whether the unit is currently moving through the world or is stationary
 	 */
 	virtual void SetUnitMovingFlag(tag_t tag, bool moving) = 0;
+
+	/**
+	 * Set the control group of a unit shape.
+	 * @param tag tag of shape (must be valid and a unit shape)
+	 * @param group control group entity ID
+	 */
+	virtual void SetUnitControlGroup(tag_t tag, entity_id_t group) = 0;
 
 	/**
 	 * Remove an existing shape. The tag will be made invalid and must not be used after this.
@@ -229,8 +236,9 @@ public:
 	 * This is called for all shapes that would collide, and also for some that wouldn't.
 	 * @param tag tag of shape being tested
 	 * @param moving whether the shape is a moving unit
+	 * @param group the control group (typically the shape's unit, or the unit's formation controller, or 0)
 	 */
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool moving) const = 0;
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool moving, entity_id_t group) const = 0;
 };
 
 /**
@@ -239,7 +247,10 @@ public:
 class NullObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool UNUSED(moving)) const { return true; }
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool UNUSED(moving), entity_id_t UNUSED(group)) const
+	{
+		return true;
+	}
 };
 
 /**
@@ -248,7 +259,34 @@ public:
 class StationaryObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool moving) const { return !moving; }
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool moving, entity_id_t UNUSED(group)) const
+	{
+		return !moving;
+	}
+};
+
+/**
+ * Obstruction test filter that reject shapes in a given control group,
+ * and optionally rejects moving shapes.
+ */
+class ControlGroupObstructionFilter : public IObstructionTestFilter
+{
+	bool m_AvoidMoving;
+	entity_id_t m_Group;
+public:
+	ControlGroupObstructionFilter(bool avoidMoving, entity_id_t group) :
+		m_AvoidMoving(avoidMoving), m_Group(group)
+	{
+	}
+
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool moving, entity_id_t group) const
+	{
+		if (group == m_Group)
+			return false;
+		if (moving && !m_AvoidMoving)
+			return false;
+		return true;
+	}
 };
 
 /**
@@ -258,8 +296,14 @@ class SkipTagObstructionFilter : public IObstructionTestFilter
 {
 	ICmpObstructionManager::tag_t m_Tag;
 public:
-	SkipTagObstructionFilter(ICmpObstructionManager::tag_t tag) : m_Tag(tag) {}
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool UNUSED(moving)) const { return tag.n != m_Tag.n; }
+	SkipTagObstructionFilter(ICmpObstructionManager::tag_t tag) : m_Tag(tag)
+	{
+	}
+
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool UNUSED(moving), entity_id_t UNUSED(group)) const
+	{
+		return tag.n != m_Tag.n;
+	}
 };
 
 #endif // INCLUDED_ICMPOBSTRUCTIONMANAGER

@@ -73,6 +73,12 @@ public:
 	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup) = 0;
 
 	/**
+	 * Start playing the walk/run animations, scaled to the unit's movement speed.
+	 * @param runThreshold movement speed at which to switch to the run animation
+	 */
+	virtual void SelectMovementAnimation(float runThreshold) = 0;
+
+	/**
 	 * Adjust the speed of the current animation, so it can match simulation events.
 	 * @param repeattime time for complete loop of animation, in msec
 	 */

@@ -64,19 +64,24 @@ CMessage* CMessageTurnStart::FromJSVal(ScriptInterface& UNUSED(scriptInterface),
 
 ////////////////////////////////
 
-jsval CMessageUpdate::ToJSVal(ScriptInterface& scriptInterface) const
-{
-	TOJSVAL_SETUP();
-	SET_MSG_PROPERTY(turnLength);
-	return OBJECT_TO_JSVAL(obj);
-}
+#define MESSAGE_1(name, t0, a0) \
+	jsval CMessage##name::ToJSVal(ScriptInterface& scriptInterface) const \
+	{ \
+		TOJSVAL_SETUP(); \
+		SET_MSG_PROPERTY(a0); \
+		return OBJECT_TO_JSVAL(obj); \
+	} \
+	CMessage* CMessage##name::FromJSVal(ScriptInterface& scriptInterface, jsval val) \
+	{ \
+		FROMJSVAL_SETUP(); \
+		GET_MSG_PROPERTY(t0, a0); \
+		return new CMessage##name(a0); \
+	}
 
-CMessage* CMessageUpdate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
-{
-	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(fixed, turnLength);
-	return new CMessageUpdate(turnLength);
-}
+MESSAGE_1(Update, fixed, turnLength)
+MESSAGE_1(Update_MotionFormation, fixed, turnLength)
+MESSAGE_1(Update_MotionUnit, fixed, turnLength)
+MESSAGE_1(Update_Final, fixed, turnLength)
 
 ////////////////////////////////
 
@@ -177,15 +182,17 @@ CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInter
 jsval CMessageMotionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	SET_MSG_PROPERTY(speed);
+	SET_MSG_PROPERTY(starting);
+	SET_MSG_PROPERTY(error);
 	return OBJECT_TO_JSVAL(obj);
 }
 
 CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
 	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(fixed, speed);
-	return new CMessageMotionChanged(speed);
+	GET_MSG_PROPERTY(bool, starting);
+	GET_MSG_PROPERTY(bool, error);
+	return new CMessageMotionChanged(starting, error);
 }
 
 ////////////////////////////////
@@ -212,6 +219,18 @@ jsval CMessageRangeUpdate::ToJSVal(ScriptInterface& scriptInterface) const
 }
 
 CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return NULL;
+}
+
+////////////////////////////////
+
+jsval CMessagePathResult::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	return JSVAL_VOID;
+}
+
+CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
 {
 	return NULL;
 }

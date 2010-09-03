@@ -152,15 +152,19 @@ void CReplayPlayer::Replay()
 			game.GetSimulation2()->Update(turnLength, commands);
 			commands.clear();
 
-			std::string hash;
-			bool ok = game.GetSimulation2()->ComputeStateHash(hash);
-			debug_assert(ok);
-
-			printf("%s\n", Hexify(hash).c_str());
+//			std::string hash;
+//			bool ok = game.GetSimulation2()->ComputeStateHash(hash);
+//			debug_assert(ok);
+//			printf("%s\n", Hexify(hash).c_str());
 		}
 		else
 		{
 			printf("Unrecognised replay token %s\n", type.c_str());
 		}
 	}
+
+	std::string hash;
+	bool ok = game.GetSimulation2()->ComputeStateHash(hash);
+	debug_assert(ok);
+	printf("# Final state: %s\n", Hexify(hash).c_str());
 }

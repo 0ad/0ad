@@ -3,7 +3,9 @@ function UnitAI() {}
 UnitAI.prototype.Schema =
 	"<a:help>Controls the unit's movement, attacks, etc, in response to commands from the player.</a:help>" +
 	"<a:example/>" +
-	"<empty/>";
+	"<element name='FormationController'>" +
+		"<data type='boolean'/>" +
+	"</element>";
 
 // Very basic stance support (currently just for test maps where we don't want
 // everyone killing each other immediately after loading)
@@ -18,21 +20,213 @@ var g_Stances = {
 
 var UnitFsmSpec = {
 
+	// Default event handlers:
+
+	"MoveCompleted": function() {
+		// ignore spurious movement messages
+		// (these can happen when stopping moving at the same time
+		// as switching states)
+	},
+
+	"MoveStarted": function() {
+		// ignore spurious movement messages
+	},
+
+	"ConstructionFinished": function(msg) {
+		// ignore uninteresting construction messages
+	},
+
+	"LosRangeUpdate": function(msg) {
+		// ignore newly-seen units by default
+	},
+
+	"Attacked": function(msg) {
+		// ignore attacker
+	},
+
+
+	// Formation handlers:
+
+	"FormationLeave": function(msg) {
+		// ignore when we're not in FORMATIONMEMBER
+	},
+
+	"Order.FormationWalk": function(msg) {
+		this.PlaySound("walk");
+
+		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+		cmpUnitMotion.MoveToFormationOffset(msg.data.target, msg.data.x, msg.data.z);
+
+		this.SetNextState("FORMATIONMEMBER.WALKING");
+	},
+
+
+	// Individual orders:
+	// (these will switch the unit out of formation mode)
+
+	"Order.Walk": function(msg) {
+		this.PlaySound("walk");
+
+		this.MoveToPoint(this.order.data.x, this.order.data.z);
+		this.SetNextState("INDIVIDUAL.WALKING");
+	},
+
+	"Order.WalkToTarget": function(msg) {
+		this.PlaySound("walk");
+
+		var ok = this.MoveToTarget(this.order.data.target);
+		if (ok)
+		{
+			// We've started walking to the given point
+			this.SetNextState("INDIVIDUAL.WALKING");
+		}
+		else
+		{
+			// We are already at the target, or can't move at all
+			this.FinishOrder();
+		}
+	},
+
+	"Order.Attack": function(msg) {
+		// Work out how to attack the given target
+		var type = this.GetBestAttack();
+		if (!type)
+		{
+			// Oops, we can't attack at all
+			this.FinishOrder();
+			return;
+		}
+		this.attackType = type;
+
+		// Try to move within attack range
+		if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+		{
+			// We've started walking to the given point
+			this.SetNextState("INDIVIDUAL.COMBAT.APPROACHING");
+		}
+		else
+		{
+			// We are already at the target, or can't move at all,
+			// so try attacking it from here.
+			// TODO: need better handling of the can't-reach-target case
+			this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
+		}
+	},
+
+	"Order.Gather": function(msg) {
+		// Try to move within range
+		if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
+		{
+			// We've started walking to the given point
+			this.SetNextState("INDIVIDUAL.GATHER.APPROACHING");
+		}
+		else
+		{
+			// We are already at the target, or can't move at all,
+			// so try gathering it from here.
+			// TODO: need better handling of the can't-reach-target case
+			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
+		}
+	},
+	
+	"Order.Repair": function(msg) {
+		// Try to move within range
+		if (this.MoveToTargetRange(this.order.data.target, IID_Builder))
+		{
+			// We've started walking to the given point
+			this.SetNextState("INDIVIDUAL.REPAIR.APPROACHING");
+		}
+		else
+		{
+			// We are already at the target, or can't move at all,
+			// so try repairing it from here.
+			// TODO: need better handling of the can't-reach-target case
+			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
+		}
+	},
+
+
+	// States for the special entity representing a group of units moving in formation:
+	"FORMATIONCONTROLLER": {
+
+		"Order.Walk": function(msg) {
+			this.MoveToPoint(this.order.data.x, this.order.data.z);
+			this.SetNextState("WALKING");
+		},
+
+		"Order.Attack": function(msg) {
+			// TODO: we should move in formation towards the target,
+			// then break up into individuals when close enough to it
+
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.ReplaceMemberOrders("Attack", msg.data);
+
+			// TODO: we should wait until the target is killed, then
+			// move on to the next queued order.
+			// Don't bother now, just disband the formation immediately.
+			cmpFormation.Disband();
+		},
+
+		"Order.Repair": function(msg) {
+			// TODO: see notes in Order.Attack
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.ReplaceMemberOrders("Repair", msg.data);
+			cmpFormation.Disband();
+		},
+
+		"Order.Gather": function(msg) {
+			// TODO: see notes in Order.Attack
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.ReplaceMemberOrders("Gather", msg.data);
+			cmpFormation.Disband();
+		},
+
+		"IDLE": {
+			"enter": function() {
+				this.SelectAnimation("idle");
+			},
+		},
+
+		"WALKING": {
+			"MoveStarted": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.MoveMembersIntoFormation();
+			},
+
+			"MoveCompleted": function(msg) {
+				if (this.FinishOrder())
+					return;
+
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.Disband();
+			},
+		},
+	},
+
+
+	// States for entities moving as part of a formation:
+	"FORMATIONMEMBER": {
+
+		"FormationLeave": function(msg) {
+			this.SetNextState("INDIVIDUAL.IDLE");
+		},
+
+		"IDLE": {
+			"enter": function() {
+				this.SelectAnimation("idle");
+			},
+		},
+
+		"WALKING": {
+			"enter": function () {
+				this.SelectAnimation("move");
+			},
+		},
+	},
+
+
+	// States for entities not part of a formation:
 	"INDIVIDUAL": {
-
-		"MoveStopped": function() {
-			// ignore spurious movement messages
-			// (these can happen when stopping moving at the same time
-			// as switching states)
-		},
-
-		"ConstructionFinished": function(msg) {
-			// ignore uninteresting construction messages
-		},
-
-		"LosRangeUpdate": function(msg) {
-			// ignore newly-seen units by default
-		},
 
 		"Attacked": function(msg) {
 			// Default behaviour: attack back at our attacker
@@ -41,7 +235,6 @@ var UnitFsmSpec = {
 				this.PushOrderFront("Attack", { "target": msg.data.attacker });
 			}
 		},
-
 
 		"IDLE": {
 			"enter": function() {
@@ -75,76 +268,28 @@ var UnitFsmSpec = {
 			},
 		},
 
-		"Order.Walk": function(msg) {
-			var ok;
-			if (this.order.data.target)
-				ok = this.MoveToTarget(this.order.data.target);
-			else
-				ok = this.MoveToPoint(this.order.data.x, this.order.data.z);
-
-			if (ok)
-			{
-				// We've started walking to the given point
-				this.SetNextState("WALKING");
-			}
-			else
-			{
-				// We are already at the target, or can't move at all
-				this.FinishOrder();
-			}
-		},
-
 		"WALKING": {
-			"enter": function() {
-				this.SelectAnimation("walk", false, this.GetWalkSpeed());
-				this.PlaySound("walk");
+			"enter": function () {
+				this.SelectAnimation("move");
 			},
 
-			"MoveStopped": function() {
+			"MoveCompleted": function() {
 				this.FinishOrder();
 			},
-		},
-
-
-		"Order.Attack": function(msg) {
-			// Work out how to attack the given target
-			var type = this.GetBestAttack();
-			if (!type)
-			{
-				// Oops, we can't attack at all
-				this.FinishOrder();
-				return;
-			}
-			this.attackType = type;
-
-			// Try to move within attack range
-			if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
-			{
-				// We've started walking to the given point
-				this.SetNextState("COMBAT.APPROACHING");
-			}
-			else
-			{
-				// We are already at the target, or can't move at all,
-				// so try attacking it from here.
-				// TODO: need better handling of the can't-reach-target case
-				this.SetNextState("COMBAT.ATTACKING");
-			}
 		},
 
 		"COMBAT": {
-
 			"Attacked": function(msg) {
 				// If we're already in combat mode, ignore anyone else
 				// who's attacking us
 			},
 
 			"APPROACHING": {
-				"enter": function() {
-					this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				"enter": function () {
+					this.SelectAnimation("move");
 				},
 
-				"MoveStopped": function() {
+				"MoveCompleted": function() {
 					this.SetNextState("ATTACKING");
 				},
 			},
@@ -196,41 +341,23 @@ var UnitFsmSpec = {
 			},
 
 			"CHASING": {
-				"enter": function() {
-					this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				"enter": function () {
+					this.SelectAnimation("move");
 				},
 			
-				"MoveStopped": function() {
+				"MoveCompleted": function() {
 					this.SetNextState("ATTACKING");
 				},
 			},
 		},
 
-
-		"Order.Gather": function(msg) {
-			// Try to move within range
-			if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
-			{
-				// We've started walking to the given point
-				this.SetNextState("GATHER.APPROACHING");
-			}
-			else
-			{
-				// We are already at the target, or can't move at all,
-				// so try gathering it from here.
-				// TODO: need better handling of the can't-reach-target case
-				this.SetNextState("GATHER.GATHERING");
-			}
-		},
-
 		"GATHER": {
 			"APPROACHING": {
-				"enter": function() {
-					this.SelectAnimation("walk", false, this.GetWalkSpeed());
-					this.PlaySound("walk");
+				"enter": function () {
+					this.SelectAnimation("move");
 				},
-			
-				"MoveStopped": function() {
+
+				"MoveCompleted": function() {
 					this.SetNextState("GATHERING");
 				},
 			},
@@ -302,31 +429,13 @@ var UnitFsmSpec = {
 			},
 		},
 
-
-		"Order.Repair": function(msg) {
-			// Try to move within range
-			if (this.MoveToTargetRange(this.order.data.target, IID_Builder))
-			{
-				// We've started walking to the given point
-				this.SetNextState("REPAIR.APPROACHING");
-			}
-			else
-			{
-				// We are already at the target, or can't move at all,
-				// so try repairing it from here.
-				// TODO: need better handling of the can't-reach-target case
-				this.SetNextState("REPAIR.REPAIRING");
-			}
-		},
-
 		"REPAIR": {
 			"APPROACHING": {
-				"enter": function() {
-					this.SelectAnimation("walk", false, this.GetWalkSpeed());
-					this.PlaySound("walk");
+				"enter": function () {
+					this.SelectAnimation("move");
 				},
 			
-				"MoveStopped": function() {
+				"MoveCompleted": function() {
 					this.SetNextState("REPAIRING");
 				},
 			},
@@ -388,13 +497,22 @@ UnitAI.prototype.Init = function()
 {
 	this.orderQueue = []; // current order is at the front of the list
 	this.order = undefined; // always == this.orderQueue[0]
+	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 
 	this.SetStance("aggressive");
 };
 
+UnitAI.prototype.IsFormationController = function()
+{
+	return (this.template.FormationController == "true");
+};
+
 UnitAI.prototype.OnCreate = function()
 {
-	UnitFsm.Init(this, "INDIVIDUAL.IDLE");
+	if (this.IsFormationController())
+		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE");
+	else
+		UnitFsm.Init(this, "INDIVIDUAL.IDLE");
 };
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
@@ -546,8 +664,14 @@ UnitAI.prototype.StopTimer = function()
 
 UnitAI.prototype.OnMotionChanged = function(msg)
 {
-	if (!msg.speed)
-		UnitFsm.ProcessMessage(this, {"type": "MoveStopped"});
+	if (msg.starting && !msg.error)
+	{
+		UnitFsm.ProcessMessage(this, {"type": "MoveStarted", "data": msg});
+	}
+	else if (!msg.starting || msg.error)
+	{
+		UnitFsm.ProcessMessage(this, {"type": "MoveCompleted", "data": msg});
+	}
 };
 
 UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
@@ -593,6 +717,17 @@ UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
 	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (!cmpVisual)
 		return;
+
+	// Special case: the "move" animation gets turned into a special
+	// movement mode that deals with speeds and walk/run automatically
+	if (name == "move")
+	{
+		// Speed to switch from walking to running animations
+		var runThreshold = (this.GetWalkSpeed() + this.GetRunSpeed()) / 2;
+
+		cmpVisual.SelectMovementAnimation(runThreshold);
+		return;
+	}
 
 	var soundgroup;
 	if (sound)
@@ -688,6 +823,31 @@ UnitAI.prototype.AttackVisibleEntity = function(ents)
 
 //// External interface functions ////
 
+UnitAI.prototype.SetFormationController = function(ent)
+{
+	this.formationController = ent;
+
+	// Set obstruction group, so we can walk through members
+	// of our own formation (or ourself if not in formation)
+	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	if (cmpObstruction)
+	{
+		if (ent == INVALID_ENTITY)
+			cmpObstruction.SetControlGroup(this.entity);
+		else
+			cmpObstruction.SetControlGroup(ent);
+	}
+
+	// If we were removed from a formation, let the FSM switch back to INDIVIDUAL
+	if (ent == INVALID_ENTITY)
+		UnitFsm.ProcessMessage(this, { "type": "FormationLeave" });
+};
+
+UnitAI.prototype.GetFormationController = function()
+{
+	return this.formationController;
+};
+
 UnitAI.prototype.AddOrder = function(type, data, queued)
 {
 	if (queued)
@@ -703,7 +863,7 @@ UnitAI.prototype.Walk = function(x, z, queued)
 
 UnitAI.prototype.WalkToTarget = function(target, queued)
 {
-	this.AddOrder("Walk", { "target": target }, queued);
+	this.AddOrder("WalkToTarget", { "target": target }, queued);
 };
 
 UnitAI.prototype.Attack = function(target, queued)
@@ -736,15 +896,11 @@ UnitAI.prototype.Gather = function(target, queued)
 
 UnitAI.prototype.Repair = function(target, queued)
 {
-	// Verify that we're able to respond to Repair commands
-	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-	if (!cmpBuilder)
+	if (!this.CanRepair(target))
 	{
 		this.WalkToTarget(target, queued);
 		return;
 	}
-
-	// TODO: verify that this is a valid target
 
 	this.AddOrder("Repair", { "target": target }, queued);
 };
@@ -766,6 +922,11 @@ UnitAI.prototype.GetStance = function()
 
 UnitAI.prototype.CanAttack = function(target)
 {
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	if (this.IsFormationController())
+		return true;
+
 	// Verify that we're able to respond to Attack commands
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
@@ -778,6 +939,11 @@ UnitAI.prototype.CanAttack = function(target)
 
 UnitAI.prototype.CanGather = function(target)
 {
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	if (this.IsFormationController())
+		return true;
+
 	// Verify that we're able to respond to Gather commands
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 	if (!cmpResourceGatherer)
@@ -788,6 +954,23 @@ UnitAI.prototype.CanGather = function(target)
 		return false;
 
 	// TODO: should verify it's owned by the correct player, etc
+
+	return true;
+};
+
+UnitAI.prototype.CanRepair = function(target)
+{
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	if (this.IsFormationController())
+		return true;
+
+	// Verify that we're able to respond to Attack commands
+	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+	if (!cmpAttack)
+		return false;
+
+	// TODO: verify that this is a valid target
 
 	return true;
 };

@@ -131,7 +131,11 @@ public:
 	 */
 	virtual CFixedVector3D GetRotation() = 0;
 
-	// TODO: do we want to add smooth rotation here?
+	/**
+	 * Returns the distance that the unit will be interpolated over,
+	 * i.e. the distance travelled since the start of the turn.
+	 */
+	virtual fixed GetDistanceTravelled() = 0;
 
 	/**
 	 * Get the current interpolated 2D position and orientation, for rendering.

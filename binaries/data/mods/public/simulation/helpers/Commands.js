@@ -12,40 +12,28 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "walk":
-		for each (var ent in cmd.entities)
-		{
-			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (ai)
-				ai.Walk(cmd.x, cmd.z, cmd.queued);
-		}
+		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		if (cmpUnitAI)
+			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		break;
 
 	case "attack":
-		for each (var ent in cmd.entities)
-		{
-			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (ai)
-				ai.Attack(cmd.target, cmd.queued);
-		}
+		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		if (cmpUnitAI)
+			cmpUnitAI.Attack(cmd.target, cmd.queued);
 		break;
 
 	case "repair":
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
-		for each (var ent in cmd.entities)
-		{
-			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (ai)
-				ai.Repair(cmd.target, cmd.queued);
-		}
+		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		if (cmpUnitAI)
+			cmpUnitAI.Repair(cmd.target, cmd.queued);
 		break;
 
 	case "gather":
-		for each (var ent in cmd.entities)
-		{
-			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (ai)
-				ai.Gather(cmd.target, cmd.queued);
-		}
+		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		if (cmpUnitAI)
+			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		break;
 
 	case "train":
@@ -159,6 +147,107 @@ function ProcessCommand(player, cmd)
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");
 	}
+}
+
+/**
+ * Get some information about the formations used by entities.
+ */
+function ExtractFormations(ents)
+{
+	var entities = []; // subset of ents that have UnitAI
+	var members = {}; // { formationentity: [ent, ent, ...], ... }
+	for each (var ent in ents)
+	{
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (cmpUnitAI)
+		{
+			var fid = cmpUnitAI.GetFormationController();
+			if (fid != INVALID_ENTITY)
+			{
+				if (!members[fid])
+					members[fid] = [];
+				members[fid].push(ent);
+			}
+			entities.push(ent);
+		}
+	}
+
+	var ids = [ id for (id in members) ];
+
+	return { "entities": entities, "members": members, "ids": ids };
+}
+
+/**
+ * Remove the given list of entities from their current formations.
+ */
+function RemoveFromFormation(ents)
+{
+	var formation = ExtractFormations(ents);
+	for (var fid in formation.members)
+	{
+		var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
+		if (cmpFormation)
+			cmpFormation.RemoveMembers(formation.members[fid]);
+	}
+}
+
+/**
+ * Return null or a UnitAI belonging either to the selected unit
+ * or to a formation entity for the selected group of units.
+ */
+function GetFormationUnitAI(ents)
+{
+	// If an individual was selected, remove it from any formation
+	// and command it individually
+	if (ents.length == 1)
+	{
+		RemoveFromFormation(ents);
+
+		return Engine.QueryInterface(ents[0], IID_UnitAI);
+	}
+	
+	// Find what formations the selected entities are currently in
+	var formation = ExtractFormations(ents);
+
+	if (formation.entities.length == 0)
+	{
+		// No units with AI - nothing to do here
+		return null;
+	}
+
+	var formationEnt = undefined;
+	if (formation.ids.length == 1)
+	{
+		// Selected units all belong to the same formation.
+		// Check that it doesn't have any other members
+		var fid = formation.ids[0];
+		var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
+		if (cmpFormation && cmpFormation.GetMemberCount() == formation.entities.length)
+		{
+			// The whole formation was selected, so reuse its controller for this command
+			formationEnt = +fid;
+		}
+	}
+
+	if (!formationEnt)
+	{
+		// We need to give the selected units a new formation controller
+
+		// Remove selected units from their current formation
+		for (var fid in formation.members)
+		{
+			var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
+			if (cmpFormation)
+				cmpFormation.RemoveMembers(formation.members[fid]);
+		}
+
+		// Create the new controller
+		formationEnt = Engine.AddEntity("special/formation");
+		var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
+		cmpFormation.SetMembers(formation.entities);
+	}
+
+	return Engine.QueryInterface(formationEnt, IID_UnitAI);
 }
 
 Engine.RegisterGlobal("ProcessCommand", ProcessCommand);

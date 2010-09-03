@@ -82,10 +82,6 @@ void CUnitAnimation::ReloadUnit()
 
 void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& actionSound)
 {
-	if (name == m_State)
-		return;
-
-	m_State = name;
 	m_Looping = !once;
 	m_OriginalSpeed = speed;
 	m_Desync = desync;
@@ -94,10 +90,15 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 	m_Speed = DesyncSpeed(m_OriginalSpeed, m_Desync);
 	m_SyncRepeatTime = 0.f;
 
-	if (! keepSelection)
-		m_Unit.SetEntitySelection(name);
+	if (name != m_State)
+	{
+		m_State = name;
 
-	ReloadUnit();
+		if (! keepSelection)
+			m_Unit.SetEntitySelection(name);
+
+		ReloadUnit();
+	}
 }
 
 void CUnitAnimation::SetAnimationSyncRepeat(float repeatTime)

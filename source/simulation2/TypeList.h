@@ -32,6 +32,9 @@ COMPONENT(Test2Scripted)
 // Message types:
 MESSAGE(TurnStart)
 MESSAGE(Update)
+MESSAGE(Update_MotionFormation)
+MESSAGE(Update_MotionUnit)
+MESSAGE(Update_Final)
 MESSAGE(Interpolate) // non-deterministic (use with caution)
 MESSAGE(RenderSubmit) // non-deterministic (use with caution)
 MESSAGE(Create)
@@ -41,6 +44,7 @@ MESSAGE(PositionChanged)
 MESSAGE(MotionChanged)
 MESSAGE(RangeUpdate)
 MESSAGE(TerrainChanged)
+MESSAGE(PathResult)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized

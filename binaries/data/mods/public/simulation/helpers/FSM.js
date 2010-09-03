@@ -218,7 +218,7 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	var toState = this.decompose[nextStateName];
 
 	if (!toState)
-		error("Tried to change to non-existent state '" + nextState + "'");
+		error("Tried to change to non-existent state '" + nextStateName + "'");
 
 	// Find the set of states in the hierarchy tree to leave then enter,
 	// to traverse from the old state to the new one.

@@ -288,6 +288,17 @@ public:
 		return CFixedVector3D(m_RotX, m_RotY, m_RotZ);
 	}
 
+	virtual fixed GetDistanceTravelled()
+	{
+		if (!m_InWorld)
+		{
+			LOGERROR(L"CCmpPosition::GetDistanceTravelled called on entity when IsInWorld is false");
+			return fixed::Zero();
+		}
+
+		return CFixedVector2D(m_X - m_LastX, m_Z - m_LastZ).Length();
+	}
+
 	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY)
 	{
 		if (!m_InWorld)

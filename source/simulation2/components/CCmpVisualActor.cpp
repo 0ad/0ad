@@ -41,6 +41,7 @@ class CCmpVisualActor : public ICmpVisual
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_Update_Final);
 		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
@@ -54,6 +55,7 @@ public:
 	bool m_Hidden; // only valid between Interpolate and RenderSubmit
 
 	// Current animation state
+	float m_AnimRunThreshold; // if non-zero this is the special walk/run mode
 	std::string m_AnimName;
 	bool m_AnimOnce;
 	float m_AnimSpeed;
@@ -150,20 +152,26 @@ public:
 		Init(context, paramNode);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
+		case MT_Update_Final:
+		{
+			const CMessageUpdate_Final& msgData = static_cast<const CMessageUpdate_Final&> (msg);
+			Update(msgData.turnLength);
+			break;
+		}
 		case MT_Interpolate:
 		{
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
-			Interpolate(context, msgData.frameTime, msgData.offset);
+			Interpolate(msgData.frameTime, msgData.offset);
 			break;
 		}
 		case MT_RenderSubmit:
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(context, msgData.collector, msgData.frustum, msgData.culling);
+			RenderSubmit(msgData.collector, msgData.frustum, msgData.culling);
 			break;
 		}
 		case MT_OwnershipChanged:
@@ -222,6 +230,7 @@ public:
 		if (!isfinite(speed) || speed < 0) // JS 'undefined' converts to NaN, which causes Bad Things
 			speed = 1.f;
 
+		m_AnimRunThreshold = 0.f;
 		m_AnimName = name;
 		m_AnimOnce = once;
 		m_AnimSpeed = speed;
@@ -230,6 +239,16 @@ public:
 		m_AnimSyncRepeatTime = 0.0f;
 
 		m_Unit->GetAnimation().SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
+	}
+
+	virtual void SelectMovementAnimation(float runThreshold)
+	{
+		if (!m_Unit)
+			return;
+
+		m_AnimRunThreshold = runThreshold;
+
+		m_Unit->GetAnimation().SetAnimationState("walk", false, 1.f, 0.f, false, L"");
 	}
 
 	virtual void SetAnimationSyncRepeat(float repeattime)
@@ -294,18 +313,42 @@ public:
 	}
 
 private:
-	void Interpolate(const CSimContext& context, float frameTime, float frameOffset);
-	void RenderSubmit(const CSimContext& context, SceneCollector& collector, const CFrustum& frustum, bool culling);
+	void Update(fixed turnLength);
+	void Interpolate(float frameTime, float frameOffset);
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
 
 REGISTER_COMPONENT_TYPE(VisualActor)
 
-void CCmpVisualActor::Interpolate(const CSimContext& context, float frameTime, float frameOffset)
+void CCmpVisualActor::Update(fixed turnLength)
 {
 	if (m_Unit == NULL)
 		return;
 
-	CmpPtr<ICmpPosition> cmpPosition(context, GetEntityId());
+	// If we're in the special movement mode, select an appropriate animation
+	if (m_AnimRunThreshold)
+	{
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		if (cmpPosition.null() || !cmpPosition->IsInWorld())
+			return;
+
+		float speed = cmpPosition->GetDistanceTravelled().ToFloat() / turnLength.ToFloat();
+
+		if (speed == 0.0f)
+			m_Unit->GetAnimation().SetAnimationState("idle", false, 1.f, 0.f, false, L"");
+		else if (speed < m_AnimRunThreshold)
+			m_Unit->GetAnimation().SetAnimationState("walk", false, speed, 0.f, false, L"");
+		else
+			m_Unit->GetAnimation().SetAnimationState("run", false, speed, 0.f, false, L"");
+	}
+}
+
+void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
+{
+	if (m_Unit == NULL)
+		return;
+
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (cmpPosition.null())
 		return;
 
@@ -326,7 +369,7 @@ void CCmpVisualActor::Interpolate(const CSimContext& context, float frameTime, f
 	m_Unit->UpdateModel(frameTime);
 }
 
-void CCmpVisualActor::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector, const CFrustum& frustum, bool culling)
+void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
 	if (m_Unit == NULL)
 		return;

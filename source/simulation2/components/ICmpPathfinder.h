@@ -95,6 +95,14 @@ public:
 	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& ret) = 0;
 
 	/**
+	 * Asynchronous version of ComputePath.
+	 * The result will be sent as CMessagePathResult to 'notify'.
+	 * Returns a unique non-zero number, which will match the 'ticket' in the result,
+	 * so callers can recognise each individual request they make.
+	 */
+	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, entity_id_t notify) = 0;
+
+	/**
 	 * If the debug overlay is enabled, render the path that will computed by ComputePath.
 	 */
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass) = 0;
@@ -108,15 +116,35 @@ public:
 	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& ret) = 0;
 
 	/**
+	 * Asynchronous version of ComputeShortPath (using ControlGroupObstructionFilter).
+	 * The result will be sent as CMessagePathResult to 'notify'.
+	 * Returns a unique non-zero number, which will match the 'ticket' in the result,
+	 * so callers can recognise each individual request they make.
+	 */
+	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify) = 0;
+
+	/**
 	 * Find the speed factor (typically around 1.0) for a unit of the given cost class
 	 * at the given position.
 	 */
 	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass) = 0;
 
 	/**
+	 * Check whether the given movement line is valid and doesn't hit any obstructions
+	 * or impassable terrain.
+	 * Returns true if the movement is okay.
+	 */
+	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u8 passClass) = 0;
+
+	/**
 	 * Toggle the storage and rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;
+
+	/**
+	 * Finish computing asynchronous path requests and send the CMessagePathResult messages.
+	 */
+	virtual void FinishAsyncRequests() = 0;
 
 	DECLARE_INTERFACE_TYPE(Pathfinder)
 };

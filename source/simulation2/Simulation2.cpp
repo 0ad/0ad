@@ -187,6 +187,9 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 {
 	fixed turnLengthFixed = fixed::FromInt(turnLength) / 1000;
 
+	// TODO: the update process is pretty ugly, with lots of messages and dependencies
+	// between different components. Ought to work out a nicer way to do this.
+
 	CMessageTurnStart msgTurnStart;
 	m_ComponentManager.BroadcastMessage(msgTurnStart);
 
@@ -200,12 +203,31 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			m_ComponentManager.GetScriptInterface().LoadScript(L"map startup script", m_StartupScript);
 	}
 
+	CmpPtr<ICmpPathfinder> cmpPathfinder(m_SimContext, SYSTEM_ENTITY);
+	if (!cmpPathfinder.null())
+		cmpPathfinder->FinishAsyncRequests();
+
 	CmpPtr<ICmpCommandQueue> cmpCommandQueue(m_SimContext, SYSTEM_ENTITY);
 	if (!cmpCommandQueue.null())
 		cmpCommandQueue->FlushTurn(commands);
 
-	CMessageUpdate msgUpdate(turnLengthFixed);
-	m_ComponentManager.BroadcastMessage(msgUpdate);
+	// Send all the update phases
+	{
+		CMessageUpdate msgUpdate(turnLengthFixed);
+		m_ComponentManager.BroadcastMessage(msgUpdate);
+	}
+	{
+		CMessageUpdate_MotionFormation msgUpdate(turnLengthFixed);
+		m_ComponentManager.BroadcastMessage(msgUpdate);
+	}
+	{
+		CMessageUpdate_MotionUnit msgUpdate(turnLengthFixed);
+		m_ComponentManager.BroadcastMessage(msgUpdate);
+	}
+	{
+		CMessageUpdate_Final msgUpdate(turnLengthFixed);
+		m_ComponentManager.BroadcastMessage(msgUpdate);
+	}
 
 	// Clean up any entities destroyed during the simulation update
 	m_ComponentManager.FlushDestroyedComponents();

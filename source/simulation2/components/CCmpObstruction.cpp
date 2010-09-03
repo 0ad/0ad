@@ -35,7 +35,6 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
-		componentManager.SubscribeToMessageType(MT_MotionChanged);
 		componentManager.SubscribeToMessageType(MT_Destroy);
 	}
 
@@ -54,6 +53,7 @@ public:
 	// Dynamic state:
 
 	bool m_Moving;
+	entity_id_t m_ControlGroup;
 	ICmpObstructionManager::tag_t m_Tag;
 
 	static std::string GetSchema()
@@ -104,6 +104,7 @@ public:
 
 		m_Tag = ICmpObstructionManager::tag_t();
 		m_Moving = false;
+		m_ControlGroup = GetEntityId();
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -150,26 +151,12 @@ public:
 				if (m_Type == STATIC)
 					m_Tag = cmpObstructionManager->AddStaticShape(data.x, data.z, data.a, m_Size0, m_Size1);
 				else
-					m_Tag = cmpObstructionManager->AddUnitShape(data.x, data.z, m_Size0, m_Moving);
+					m_Tag = cmpObstructionManager->AddUnitShape(data.x, data.z, m_Size0, m_Moving, m_ControlGroup);
 			}
 			else if (!data.inWorld && m_Tag.valid())
 			{
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = ICmpObstructionManager::tag_t();
-			}
-			break;
-		}
-		case MT_MotionChanged:
-		{
-			const CMessageMotionChanged& data = static_cast<const CMessageMotionChanged&> (msg);
-			m_Moving = !data.speed.IsZero();
-
-			if (m_Tag.valid() && m_Type == UNIT)
-			{
-				CmpPtr<ICmpObstructionManager> cmpObstructionManager(context, SYSTEM_ENTITY);
-				if (cmpObstructionManager.null())
-					break;
-				cmpObstructionManager->SetUnitMovingFlag(m_Tag, m_Moving);
 			}
 			break;
 		}
@@ -219,6 +206,31 @@ public:
 		else
 			return cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0);
 	}
+
+	virtual void SetMovingFlag(bool enabled)
+	{
+		m_Moving = enabled;
+
+		if (m_Tag.valid() && m_Type == UNIT)
+		{
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpObstructionManager.null())
+				cmpObstructionManager->SetUnitMovingFlag(m_Tag, m_Moving);
+		}
+	}
+
+	virtual void SetControlGroup(entity_id_t group)
+	{
+		m_ControlGroup = group;
+
+		if (m_Tag.valid() && m_Type == UNIT)
+		{
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpObstructionManager.null())
+				cmpObstructionManager->SetUnitControlGroup(m_Tag, m_ControlGroup);
+		}
+	}
+
 };
 
 REGISTER_COMPONENT_TYPE(Obstruction)

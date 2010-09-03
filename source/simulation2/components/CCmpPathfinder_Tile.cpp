@@ -194,6 +194,8 @@ struct PathfinderState
 	Grid<PathfindTile>* tiles;
 	Grid<TerrainTile>* terrain;
 
+	bool ignoreImpassable; // allows us to escape if stuck in patches of impassability
+
 	u32 hBest; // heuristic of closest discovered tile to goal
 	u16 iBest, jBest; // closest tile
 
@@ -215,7 +217,7 @@ static bool AtGoal(u16 i, u16 j, const ICmpPathfinder::Goal& goal)
 
 	entity_pos_t x, z;
 	CCmpPathfinder::TileCenter(i, j, x, z);
-	fixed dist = DistanceToGoal(CFixedVector2D(x, z), goal);
+	fixed dist = CCmpPathfinder::DistanceToGoal(CFixedVector2D(x, z), goal);
 	return (dist < tolerance);
 }
 
@@ -288,7 +290,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 
 	// Reject impassable tiles
 	TerrainTile tileTag = state.terrain->get(i, j);
-	if (!IS_PASSABLE(tileTag, state.passClass))
+	if (!IS_PASSABLE(tileTag, state.passClass) && !state.ignoreImpassable)
 		return;
 
 	u32 dg = CalculateCostDelta(pi, pj, i, j, state.tiles, state.moveCosts.at(GET_COST_CLASS(tileTag)));
@@ -402,6 +404,10 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	state.tiles->get(i0, j0).SetPred(i0, j0, i0, j0);
 	state.tiles->get(i0, j0).cost = 0;
 
+	// To prevent units getting very stuck, if they start on an impassable tile
+	// surrounded entirely by impassable tiles, we ignore the impassability
+	state.ignoreImpassable = !IS_PASSABLE(state.terrain->get(i0, j0), state.passClass);
+
 	while (1)
 	{
 		++state.steps;
@@ -432,6 +438,20 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 			state.jBest = j;
 			state.hBest = 0;
 			break;
+		}
+
+		// As soon as we find an escape route from the impassable terrain,
+		// take it and forbid any further use of impassable tiles
+		if (state.ignoreImpassable)
+		{
+			if (i > 0 && IS_PASSABLE(state.terrain->get(i-1, j), state.passClass))
+				state.ignoreImpassable = false;
+			else if (i < m_MapSize-1 && IS_PASSABLE(state.terrain->get(i+1, j), state.passClass))
+				state.ignoreImpassable = false;
+			else if (j > 0 && IS_PASSABLE(state.terrain->get(i, j-1), state.passClass))
+				state.ignoreImpassable = false;
+			else if (j < m_MapSize-1 && IS_PASSABLE(state.terrain->get(i, j+1), state.passClass))
+				state.ignoreImpassable = false;
 		}
 
 		u32 g = state.tiles->get(i, j).cost;

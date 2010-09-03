@@ -17,7 +17,7 @@
 
 /**
  * @file
- * Common and setup code for CCmpPathfinder.
+ * Common code and setup code for CCmpPathfinder.
  */
 
 #include "precompiled.h"
@@ -45,6 +45,7 @@ void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& 
 	m_Grid = NULL;
 	m_ObstructionGrid = NULL;
 	m_TerrainDirty = true;
+	m_NextAsyncTicket = 1;
 
 	m_DebugOverlay = NULL;
 	m_DebugGrid = NULL;
@@ -153,6 +154,8 @@ void CCmpPathfinder::RenderSubmit(const CSimContext& UNUSED(context), SceneColle
 
 fixed CCmpPathfinder::GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass)
 {
+	UpdateGrid();
+
 	u16 i, j;
 	NearestTile(x0, z0, i, j);
 	TerrainTile tileTag = m_Grid->get(i, j);
@@ -187,6 +190,29 @@ u8 CCmpPathfinder::GetCostClass(const std::string& name)
 	}
 
 	return m_UnitCostClassTags[name];
+}
+
+fixed CCmpPathfinder::DistanceToGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal)
+{
+	switch (goal.type)
+	{
+	case CCmpPathfinder::Goal::POINT:
+		return (pos - CFixedVector2D(goal.x, goal.z)).Length();
+
+	case CCmpPathfinder::Goal::CIRCLE:
+		return ((pos - CFixedVector2D(goal.x, goal.z)).Length() - goal.hw).Absolute();
+
+	case CCmpPathfinder::Goal::SQUARE:
+	{
+		CFixedVector2D halfSize(goal.hw, goal.hh);
+		CFixedVector2D d(pos.X - goal.x, pos.Y - goal.z);
+		return Geometry::DistanceToSquare(d, goal.u, goal.v, halfSize);
+	}
+
+	default:
+		debug_warn(L"invalid type");
+		return fixed::Zero();
+	}
 }
 
 void CCmpPathfinder::UpdateGrid()
@@ -263,5 +289,57 @@ void CCmpPathfinder::UpdateGrid()
 		}
 
 		m_TerrainDirty = false;
+	}
+}
+
+//////////////////////////////////////////////////////////
+
+// Async path requests:
+
+u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, entity_id_t notify)
+{
+	AsyncLongPathRequest req = { m_NextAsyncTicket++, x0, z0, goal, passClass, costClass, notify };
+	m_AsyncLongPathRequests.push_back(req);
+	return req.ticket;
+}
+
+u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify)
+{
+	AsyncShortPathRequest req = { m_NextAsyncTicket++, x0, z0, r, range, goal, passClass, avoidMovingUnits, group, notify };
+	m_AsyncShortPathRequests.push_back(req);
+	return req.ticket;
+}
+
+void CCmpPathfinder::FinishAsyncRequests()
+{
+	// Save the request queue in case it gets modified while iterating
+	std::vector<AsyncLongPathRequest> longRequests;
+	m_AsyncLongPathRequests.swap(longRequests);
+
+	std::vector<AsyncShortPathRequest> shortRequests;
+	m_AsyncShortPathRequests.swap(shortRequests);
+
+	// TODO: we should only compute one path per entity per turn
+
+	// TODO: this computation should be done incrementally, spread
+	// across multiple frames (or even multiple turns)
+
+	for (size_t i = 0; i < longRequests.size(); ++i)
+	{
+		const AsyncLongPathRequest& req = longRequests[i];
+		Path path;
+		ComputePath(req.x0, req.z0, req.goal, req.passClass, req.costClass, path);
+		CMessagePathResult msg(req.ticket, path);
+		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
+	}
+
+	for (size_t i = 0; i < shortRequests.size(); ++i)
+	{
+		const AsyncShortPathRequest& req = shortRequests[i];
+		Path path;
+		ControlGroupObstructionFilter filter(req.avoidMovingUnits, req.group);
+		ComputeShortPath(filter, req.x0, req.z0, req.r, req.range, req.goal, req.passClass, path);
+		CMessagePathResult msg(req.ticket, path);
+		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
 	}
 }

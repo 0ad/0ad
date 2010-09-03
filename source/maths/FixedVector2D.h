@@ -211,6 +211,16 @@ public:
 	{
 		return CFixedVector2D(Y, -X);
 	}
+
+	/**
+	 * Rotate the vector by the given angle (anticlockwise).
+	 */
+	CFixedVector2D Rotate(fixed angle)
+	{
+		fixed s, c;
+		sincos_approx(angle, s, c);
+		return CFixedVector2D(X.Multiply(c) + Y.Multiply(s), Y.Multiply(c) - X.Multiply(s));
+	}
 };
 
 #endif // INCLUDED_FIXED_VECTOR2D

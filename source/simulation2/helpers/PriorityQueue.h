@@ -83,7 +83,7 @@ public:
 		return NULL;
 	}
 
-	void promote(ID id, u32 newrank)
+	void promote(ID id, R newrank)
 	{
 		for (size_t n = 0; n < m_Heap.size(); ++n)
 		{

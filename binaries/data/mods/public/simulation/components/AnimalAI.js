@@ -32,6 +32,16 @@ AnimalAI.prototype.Schema =
 
 var AnimalFsmSpec = {
 
+	"MoveCompleted": function() {
+		// ignore spurious movement messages
+		// (these can happen when stopping moving at the same time
+		// as switching states)
+	},
+
+	"MoveStarted": function() {
+		// ignore spurious movement messages
+	},
+
 	"SKITTISH": {
 
 		"ResourceGather": function(msg) {
@@ -58,7 +68,7 @@ var AnimalFsmSpec = {
 				this.SetNextState("FEEDING");
 			},
 
-			"MoveStopped": function() {
+			"MoveCompleted": function() {
 				this.MoveRandomly(+this.template.RoamDistance);
 			},
 		},
@@ -75,7 +85,7 @@ var AnimalFsmSpec = {
 				this.StopTimer();
 			},
 
-			"MoveStopped": function() { },
+			"MoveCompleted": function() { },
 
 			"Timer": function(msg) {
 				this.SetNextState("ROAMING");
@@ -95,7 +105,7 @@ var AnimalFsmSpec = {
 				this.SetMoveSpeed(this.GetWalkSpeed());
 			},
 
-			"MoveStopped": function() {
+			"MoveCompleted": function() {
 				// When we've run far enough, go back to the roaming state
 				this.SetNextState("ROAMING");
 			},
@@ -103,13 +113,6 @@ var AnimalFsmSpec = {
 	},
 
 	"PASSIVE": {
-
-		"ResourceGather": function(msg) {
-			// If someone's carving chunks of meat off us, then run away
-//			this.MoveAwayFrom(msg.gatherer, +this.template.FleeDistance);
-//			this.SetNextState("FLEEING");
-//			this.PlaySound("panic");
-		},
 
 		"ROAMING": {
 			"enter": function() {
@@ -128,7 +131,7 @@ var AnimalFsmSpec = {
 				this.SetNextState("FEEDING");
 			},
 
-			"MoveStopped": function() {
+			"MoveCompleted": function() {
 				this.MoveRandomly(+this.template.RoamDistance);
 			},
 		},
@@ -145,28 +148,9 @@ var AnimalFsmSpec = {
 				this.StopTimer();
 			},
 
-			"MoveStopped": function() { },
+			"MoveCompleted": function() { },
 
 			"Timer": function(msg) {
-				this.SetNextState("ROAMING");
-			},
-		},
-
-		"FLEEING": {
-			"enter": function() {
-				// Run quickly
-//				var speed = this.GetRunSpeed();
-//				this.SelectAnimation("run", false, speed);
-//				this.SetMoveSpeed(speed);
-			},
-
-			"leave": function() {
-				// Reset normal speed
-				this.SetMoveSpeed(this.GetWalkSpeed());
-			},
-
-			"MoveStopped": function() {
-				// When we've run far enough, go back to the roaming state
 				this.SetNextState("ROAMING");
 			},
 		},
@@ -178,7 +162,6 @@ var AnimalFsm = new FSM(AnimalFsmSpec);
 
 AnimalAI.prototype.Init = function()
 {
-	this.messageQueue = [];
 };
 
 // FSM linkage functions:
@@ -206,36 +189,26 @@ AnimalAI.prototype.DeferMessage = function(msg)
 	AnimalFsm.DeferMessage(this, msg);
 };
 
-AnimalAI.prototype.PushMessage = function(msg)
-{
-	this.messageQueue.push(msg);
-};
-
-AnimalAI.prototype.OnUpdate = function()
-{
-	var mq = this.messageQueue;
-	if (mq.length)
-	{
-		this.messageQueue = [];
-		for each (var msg in mq)
-			AnimalFsm.ProcessMessage(this, msg);
-	}
-};
-
 AnimalAI.prototype.OnMotionChanged = function(msg)
 {
-	if (!msg.speed)
-		this.PushMessage({"type": "MoveStopped"});
+	if (msg.starting && !msg.error)
+	{
+		AnimalFsm.ProcessMessage(this, {"type": "MoveStarted", "data": msg});
+	}
+	else if (!msg.starting || msg.error)
+	{
+		AnimalFsm.ProcessMessage(this, {"type": "MoveCompleted", "data": msg});
+	}
 };
 
 AnimalAI.prototype.OnResourceGather = function(msg)
 {
-	this.PushMessage({"type": "ResourceGather", "gatherer": msg.gatherer});
+	AnimalFsm.ProcessMessage(this, {"type": "ResourceGather", "gatherer": msg.gatherer});
 };
 
 AnimalAI.prototype.TimerHandler = function(data, lateness)
 {
-	this.PushMessage({"type": "Timer", "data": data, "lateness": lateness});
+	AnimalFsm.ProcessMessage(this, {"type": "Timer", "data": data, "lateness": lateness});
 };
 
 // Functions to be called by the FSM:
