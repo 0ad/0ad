@@ -221,15 +221,18 @@ int CMapReader::ApplyData()
 			*pLightEnv = m_LightEnv;
 	}
 
-	pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
-
-	if (m_CameraStartupTarget != INVALID_ENTITY && pGameView)
+	if (pGameView)
 	{
-		CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_CameraStartupTarget);
-		if (!cmpPosition.null())
+		pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
+
+		if (m_CameraStartupTarget != INVALID_ENTITY)
 		{
-			CFixedVector3D pos = cmpPosition->GetPosition();
-			pGameView->ResetCameraTarget(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
+			CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_CameraStartupTarget);
+			if (!cmpPosition.null())
+			{
+				CFixedVector3D pos = cmpPosition->GetPosition();
+				pGameView->ResetCameraTarget(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
+			}
 		}
 	}
 

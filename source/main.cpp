@@ -418,7 +418,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run non-visual simulation replay if requested
 	if (args.Has("replay"))
 	{
-		g_DisableAudio = true;
+		snd_disable(true);
 
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
