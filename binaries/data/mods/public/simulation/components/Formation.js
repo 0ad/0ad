@@ -78,14 +78,14 @@ Formation.prototype.Disband = function()
 };
 
 /**
- * Call UnitAI.ReplaceOrder on all members.
+ * Call obj.funcname(args) on UnitAI components of all members.
  */
-Formation.prototype.ReplaceMemberOrders = function(type, data)
+Formation.prototype.CallMemberFunction = function(funcname, args)
 {
 	for each (var ent in this.members)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		cmpUnitAI.ReplaceOrder(type, data);
+		cmpUnitAI[funcname].apply(cmpUnitAI, args);
 	}
 };
 

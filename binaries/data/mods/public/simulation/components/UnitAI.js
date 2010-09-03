@@ -159,7 +159,7 @@ var UnitFsmSpec = {
 			// then break up into individuals when close enough to it
 
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.ReplaceMemberOrders("Attack", msg.data);
+			cmpFormation.CallMemberFunction("Attack", [msg.data.target, false]);
 
 			// TODO: we should wait until the target is killed, then
 			// move on to the next queued order.
@@ -170,14 +170,14 @@ var UnitFsmSpec = {
 		"Order.Repair": function(msg) {
 			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.ReplaceMemberOrders("Repair", msg.data);
+			cmpFormation.CallMemberFunction("Repair", [msg.data.target, false]);
 			cmpFormation.Disband();
 		},
 
 		"Order.Gather": function(msg) {
 			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.ReplaceMemberOrders("Gather", msg.data);
+			cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
 			cmpFormation.Disband();
 		},
 
@@ -967,7 +967,7 @@ UnitAI.prototype.CanRepair = function(target)
 
 	// Verify that we're able to respond to Attack commands
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-	if (!cmpAttack)
+	if (!cmpBuilder)
 		return false;
 
 	// TODO: verify that this is a valid target
