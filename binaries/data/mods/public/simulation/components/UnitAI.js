@@ -965,7 +965,7 @@ UnitAI.prototype.CanRepair = function(target)
 	if (this.IsFormationController())
 		return true;
 
-	// Verify that we're able to respond to Attack commands
+	// Verify that we're able to respond to Repair (Builder) commands
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 	if (!cmpBuilder)
 		return false;
