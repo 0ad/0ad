@@ -76,7 +76,7 @@ JSClass global_class = {
 	NULL, NULL, NULL, NULL
 };
 
-void ErrorReporter(JSContext* UNUSED(cx), const char* message, JSErrorReport* report)
+void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 {
 	// XXX Ugly hack: we want to compile code with 'use strict' and with JSOPTION_STRICT,
 	// but the latter causes the former to be reported as a useless expression, so
@@ -92,11 +92,28 @@ void ErrorReporter(JSContext* UNUSED(cx), const char* message, JSErrorReport* re
 		msg << report->filename;
 		msg << " line " << report->lineno << "\n";
 	}
+
 	msg << message;
+
+	// If there is an exception, then print its stack trace
+	jsval excn;
+	if (JS_GetPendingException(cx, &excn) && JSVAL_IS_OBJECT(excn))
+	{
+		jsval rval;
+		const char dumpStack[] = "this.stack.trimRight().replace(/^/mg, '  ')"; // indent each line
+		if (JS_EvaluateScript(cx, JSVAL_TO_OBJECT(excn), dumpStack, ARRAY_SIZE(dumpStack)-1, "(eval)", 1, &rval))
+		{
+			std::string stackTrace;
+			if (ScriptInterface::FromJSVal(cx, rval, stackTrace))
+				msg << "\n" << stackTrace;
+		}
+	}
+
 	if (isWarning)
 		LOGWARNING(L"%hs", msg.str().c_str());
 	else
 		LOGERROR(L"%hs", msg.str().c_str());
+
 	// When running under Valgrind, print more information in the error message
 	VALGRIND_PRINTF_BACKTRACE("->");
 }
@@ -399,6 +416,14 @@ bool ScriptInterface::LocalRootScope::OK()
 {
 	return m_OK;
 }
+
+void ScriptInterface::LocalRootScope::LeaveWithResult(jsval val)
+{
+	if (m_OK)
+		JS_LeaveLocalRootScopeWithResult(m_cx, val);
+	m_OK = false;
+}
+
 
 jsval ScriptInterface::CallConstructor(jsval ctor)
 {

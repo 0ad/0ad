@@ -221,6 +221,8 @@ public:
 		LocalRootScope(JSContext* cx);
 		// Returns true if the local root scope was successfully entered
 		bool OK();
+		// Leaves the local root scope, but keeps the given return value rooted
+		void LeaveWithResult(jsval val);
 		// Leaves the local root scope
 		~LocalRootScope();
 	private:

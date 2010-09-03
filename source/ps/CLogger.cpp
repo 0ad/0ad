@@ -42,6 +42,8 @@ static const double RENDER_TIMEOUT = 10.0; // seconds before messages are delete
 static const double RENDER_TIMEOUT_RATE = 10.0; // number of timed-out messages deleted per second
 static const size_t RENDER_LIMIT = 20; // maximum messages on screen at once
 
+static const size_t BUFFER_SIZE = 1024;
+
 extern int g_xres, g_yres;
 
 // Set up a default logger that throws everything away, because that's
@@ -215,7 +217,7 @@ void CLogger::LogUsingMethod(ELogMethod method, const wchar_t* message)
 void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512] = {0};
+	wchar_t buffer[BUFFER_SIZE] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -232,7 +234,7 @@ void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wcha
 void CLogger::LogOnce(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512] = {0};
+	wchar_t buffer[BUFFER_SIZE] = {0};
 
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -256,7 +258,7 @@ void CLogger::LogOnce(ELogMethod method, const wchar_t* UNUSED(category), const 
 void CLogger::LogMessage(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512] = {0};
+	wchar_t buffer[BUFFER_SIZE] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -272,7 +274,7 @@ void CLogger::LogMessage(const wchar_t* fmt, ...)
 void CLogger::LogWarning(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512] = {0};
+	wchar_t buffer[BUFFER_SIZE] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
@@ -288,7 +290,7 @@ void CLogger::LogWarning(const wchar_t* fmt, ...)
 void CLogger::LogError(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	wchar_t buffer[512] = {0};
+	wchar_t buffer[BUFFER_SIZE] = {0};
 	
 	va_start(argp, fmt);
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)

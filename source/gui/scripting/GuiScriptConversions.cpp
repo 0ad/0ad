@@ -129,7 +129,10 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 	}
 	}
 
-	return OBJECT_TO_JSVAL(obj);
+	jsval rval = OBJECT_TO_JSVAL(obj);
+
+	scope.LeaveWithResult(rval);
+	return rval;
 }
 
 template<> jsval ScriptInterface::ToJSVal<IGUIObject*>(JSContext* UNUSED(cx), IGUIObject* const& val)
