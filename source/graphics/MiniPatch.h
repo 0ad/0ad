@@ -24,7 +24,7 @@
 
 #include "lib/res/handle.h"
 
-#include "graphics/TextureEntry.h"
+#include "graphics/TerrainTextureEntry.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CMiniPatch: definition of a single terrain tile
@@ -35,11 +35,11 @@ public:
 	CMiniPatch();
 
 	// texture applied to tile
-	CTextureEntry* Tex;
+	CTerrainTextureEntry* Tex;
 	// 'priority' of the texture - determines drawing order of terrain textures
 	int Priority;
 
-	CTextureEntry* GetTextureEntry() { return Tex; }
+	CTerrainTextureEntry* GetTextureEntry() { return Tex; }
 	Handle GetHandle() { return Tex ? Tex->GetHandle() : 0; }
 	int GetPriority() { return Priority; }
 };

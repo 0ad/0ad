@@ -56,7 +56,7 @@
 #include "graphics/MapReader.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/ParticleEngine.h"
-#include "graphics/TextureManager.h"
+#include "graphics/TerrainTextureManager.h"
 
 #include "renderer/Renderer.h"
 #include "renderer/VertexBufferManager.h"
@@ -513,7 +513,7 @@ static void InitRenderer()
 	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
 
 	// create terrain related stuff
-	new CTextureManager;
+	new CTerrainTextureManager;
 
 	// create the material manager
 	new CMaterialManager;

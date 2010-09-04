@@ -27,12 +27,12 @@
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 
-// access to sole CTextureManager object
-#define g_TexMan CTextureManager::GetSingleton()
+// access to sole CTerrainTextureManager object
+#define g_TexMan CTerrainTextureManager::GetSingleton()
 
 class XMBElement;
 class CXeromyces;
-class CTextureEntry;
+class CTerrainTextureEntry;
 class CTerrainProperties;
 
 typedef shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
@@ -45,7 +45,7 @@ class CTerrainGroup
 	// priorities
 	size_t m_Index;
 	// list of textures of this type (found from the texture directory)
-	std::vector<CTextureEntry*> m_Terrains;
+	std::vector<CTerrainTextureEntry*> m_Terrains;
 
 public:
 	CTerrainGroup(CStr name, size_t index):
@@ -54,22 +54,22 @@ public:
 	{}
 	
 	// Add a texture entry to this terrain type
-	void AddTerrain(CTextureEntry *);
+	void AddTerrain(CTerrainTextureEntry *);
 	// Remove a texture entry
-	void RemoveTerrain(CTextureEntry *);
+	void RemoveTerrain(CTerrainTextureEntry *);
 
 	size_t GetIndex() const
 	{ return m_Index; }
 	CStr GetName() const
 	{ return m_Name; }
 
-	const std::vector<CTextureEntry*> &GetTerrains() const
+	const std::vector<CTerrainTextureEntry*> &GetTerrains() const
 	{ return m_Terrains; }
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// CTextureManager : manager class for all terrain texture objects
-class CTextureManager : public Singleton<CTextureManager>
+// CTerrainTextureManager : manager class for all terrain texture objects
+class CTerrainTextureManager : public Singleton<CTerrainTextureManager>
 {
 public:
 	typedef std::map<CStr, CTerrainGroup *> TerrainGroupMap;
@@ -77,7 +77,7 @@ public:
 private:
 	// All texture entries created by this class, for easy freeing now that
 	// textures may be in several STextureType's
-	std::vector<CTextureEntry *> m_TextureEntries;
+	std::vector<CTerrainTextureEntry *> m_TextureEntries;
 
 	TerrainGroupMap m_TerrainGroups;
 
@@ -94,8 +94,8 @@ private:
 
 public:
 	// constructor, destructor
-	CTextureManager();
-	~CTextureManager();
+	CTerrainTextureManager();
+	~CTerrainTextureManager();
 
 	// Find all XML's in the directory (with subdirs) and try to load them as
 	// terrain XML's
@@ -103,14 +103,14 @@ public:
 
 	void UnloadTerrainTextures();
 	
-	CTextureEntry* FindTexture(const CStr& tag);
+	CTerrainTextureEntry* FindTexture(const CStr& tag);
 	
 	// Create a texture object for a new terrain texture at path, using the
 	// property sheet props.
-	CTextureEntry *AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path);
+	CTerrainTextureEntry *AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path);
 	
 	// Remove the texture from all our maps and lists and delete it afterwards.
-	void DeleteTexture(CTextureEntry* entry);
+	void DeleteTexture(CTerrainTextureEntry* entry);
 	
 	// Find or create a new texture group. All terrain groups are owned by the
 	// texturemanager (TerrainTypeManager)

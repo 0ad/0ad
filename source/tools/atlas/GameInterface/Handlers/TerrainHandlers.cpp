@@ -22,8 +22,8 @@
 #include "../CommandProc.h"
 
 #include "graphics/Patch.h"
-#include "graphics/TextureManager.h"
-#include "graphics/TextureEntry.h"
+#include "graphics/TerrainTextureManager.h"
+#include "graphics/TerrainTextureEntry.h"
 #include "graphics/Terrain.h"
 #include "ps/Game.h"
 #include "ps/World.h"
@@ -41,9 +41,9 @@ namespace AtlasMessage {
 
 QUERYHANDLER(GetTerrainGroups)
 {
-	const CTextureManager::TerrainGroupMap &groups = g_TexMan.GetGroups();
+	const CTerrainTextureManager::TerrainGroupMap &groups = g_TexMan.GetGroups();
 	std::vector<std::wstring> groupnames;
-	for (CTextureManager::TerrainGroupMap::const_iterator it = groups.begin(); it != groups.end(); ++it)
+	for (CTerrainTextureManager::TerrainGroupMap::const_iterator it = groups.begin(); it != groups.end(); ++it)
 		groupnames.push_back(CStrW(it->first));
 	msg->groupnames = groupnames;
 }
@@ -58,7 +58,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 	std::vector<sTerrainGroupPreview> previews;
 
 	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupname));
-	for (std::vector<CTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
+	for (std::vector<CTerrainTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
 	{
 		previews.push_back(sTerrainGroupPreview());
 		previews.back().name = CStrW((*it)->GetTag());
@@ -139,8 +139,8 @@ BEGIN_COMMAND(PaintTerrain)
 {
 	struct TerrainTile
 	{
-		TerrainTile(CTextureEntry* t, ssize_t p) : tex(t), priority(p) {}
-		CTextureEntry* tex;
+		TerrainTile(CTerrainTextureEntry* t, ssize_t p) : tex(t), priority(p) {}
+		CTerrainTextureEntry* tex;
 		ssize_t priority;
 	};
 	class TerrainArray : public DeltaArray2D<TerrainTile>
@@ -152,7 +152,7 @@ BEGIN_COMMAND(PaintTerrain)
 			m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 		}
 
-		void PaintTile(ssize_t x, ssize_t y, CTextureEntry* tex, ssize_t priority)
+		void PaintTile(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priority)
 		{
 			// Ignore out-of-bounds tiles
 			if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
@@ -215,7 +215,7 @@ BEGIN_COMMAND(PaintTerrain)
 		ssize_t x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
-		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture));
+		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture));
 		if (! texentry)
 		{
 			debug_warn(L"Can't find texentry"); // TODO: nicer error handling

@@ -28,7 +28,7 @@
 #include "ps/XML/XeroXMB.h"
 #include "ps/XML/Xeromyces.h"
 
-#include "TextureManager.h"
+#include "TerrainTextureManager.h"
 #include "ps/Overlay.h"
 
 

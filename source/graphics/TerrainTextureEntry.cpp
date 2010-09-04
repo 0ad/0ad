@@ -22,19 +22,13 @@
 #include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
 
-#include "ps/CLogger.h"
-
-#include "TextureEntry.h"
-#include "TextureManager.h"
+#include "TerrainTextureEntry.h"
+#include "TerrainTextureManager.h"
 #include "TerrainProperties.h"
 #include "Texture.h"
 #include "renderer/Renderer.h"
 
-#define LOG_CATEGORY L"graphics"
-
-/////////////////////////////////////////////////////////////////////////////////////
-// CTextureEntry constructor
-CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
+CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
 	m_pProperties(props),
 	m_Handle(-1),
 	m_BaseColor(0),
@@ -51,9 +45,7 @@ CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
 	m_Tag = fs::basename(m_TexturePath);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////
-// CTextureEntry destructor
-CTextureEntry::~CTextureEntry()
+CTerrainTextureEntry::~CTerrainTextureEntry()
 {
 	if (m_Handle > 0)
 		(void)ogl_tex_free(m_Handle);
@@ -62,9 +54,8 @@ CTextureEntry::~CTextureEntry()
 		(*it)->RemoveTerrain(this);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////
 // LoadTexture: actually load the texture resource from file
-void CTextureEntry::LoadTexture()	
+void CTerrainTextureEntry::LoadTexture()	
 {
 	CTexture texture(m_TexturePath);
 	if (g_Renderer.LoadTexture(&texture,GL_REPEAT)) {
@@ -74,11 +65,9 @@ void CTextureEntry::LoadTexture()
 	}
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildBaseColor: calculate the root colour of the texture, used for coloring minimap, and store
 // in m_BaseColor member
-void CTextureEntry::BuildBaseColor()
+void CTerrainTextureEntry::BuildBaseColor()
 {
 	if (m_pProperties && m_pProperties->HasBaseColor())
 	{

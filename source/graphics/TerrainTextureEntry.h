@@ -24,15 +24,15 @@
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 
-#include "TextureManager.h"
+#include "TerrainTextureManager.h"
 
 class XMBElement;
 class CXeromyces;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-// CTextureEntry: class wrapping a terrain texture object; contains various other required
+// CTerrainTextureEntry: class wrapping a terrain texture object; contains various other required
 // elements - color of minimap, terrain "group" it belongs to, etc
-class CTextureEntry
+class CTerrainTextureEntry
 {
 public:
 	typedef std::vector<CTerrainGroup *> GroupVector;
@@ -65,8 +65,8 @@ private:
 public:
 	// Most of the texture's data is delay-loaded, so after the constructor has
 	// been called, the texture entry is ready to be used.
-	CTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path);
-	~CTextureEntry();
+	CTerrainTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path);
+	~CTerrainTextureEntry();
 
 	CStr GetTag() const
 	{ return m_Tag; }

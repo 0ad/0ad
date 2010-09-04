@@ -24,8 +24,8 @@
 #include "graphics/GameView.h"
 #include "graphics/MiniPatch.h"
 #include "graphics/Terrain.h"
-#include "graphics/TextureEntry.h"
-#include "graphics/TextureManager.h"
+#include "graphics/TerrainTextureEntry.h"
+#include "graphics/TerrainTextureManager.h"
 #include "lib/ogl.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/bits.h"
@@ -467,7 +467,7 @@ void CMiniMap::RebuildTerrainTexture()
 				CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
 				if(mp)
 				{
-					CTextureEntry *tex = mp->GetTextureEntry();
+					CTerrainTextureEntry *tex = mp->GetTextureEntry();
 					if(tex)
 						color = tex->GetBaseColor();
 				}

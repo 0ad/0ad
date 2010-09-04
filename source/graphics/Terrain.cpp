@@ -28,8 +28,8 @@
 #include "renderer/WaterManager.h"
 
 #include "TerrainProperties.h"
-#include "TextureEntry.h"
-#include "TextureManager.h"
+#include "TerrainTextureEntry.h"
+#include "TerrainTextureManager.h"
 
 #include <string.h>
 #include "Terrain.h"

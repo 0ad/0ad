@@ -29,7 +29,7 @@
 #include "graphics/Patch.h"
 #include "graphics/SkeletonAnimManager.h"
 #include "graphics/Terrain.h"
-#include "graphics/TextureManager.h"
+#include "graphics/TerrainTextureManager.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "lib/input.h"
@@ -384,7 +384,7 @@ void CGameView::RegisterInit()
 	RegMemFun(this, &CGameView::Initialize, L"CGameView init", 1);
 
 	// previously done by CGameView::InitResources
-	RegMemFun(g_TexMan.GetSingletonPtr(), &CTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);
+	RegMemFun(g_TexMan.GetSingletonPtr(), &CTerrainTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);
 	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 5);
 	RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
 	RegMemFun(g_Renderer.GetSingletonPtr()->GetSkyManager(), &SkyManager::LoadSkyTextures, L"LoadSkyTextures", 15);

@@ -24,8 +24,8 @@
 #include "graphics/GameView.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
-#include "graphics/TextureEntry.h"
-#include "graphics/TextureManager.h"
+#include "graphics/TerrainTextureEntry.h"
+#include "graphics/TerrainTextureManager.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
@@ -161,8 +161,8 @@ int CMapReader::UnpackTerrain()
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
-		CTextureEntry* texentry = NULL;
-		if (CTextureManager::IsInitialised())
+		CTerrainTextureEntry* texentry = NULL;
+		if (CTerrainTextureManager::IsInitialised())
 			texentry = g_TexMan.FindTexture(texturename);
 		m_TerrainTextures.push_back(texentry);
 
@@ -489,8 +489,8 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 	m_MapReader.m_PatchesPerSide = patches;
 
 	// Load the texture
-	CTextureEntry* texentry = NULL;
-	if (CTextureManager::IsInitialised())
+	CTerrainTextureEntry* texentry = NULL;
+	if (CTerrainTextureManager::IsInitialised())
 		texentry = g_TexMan.FindTexture(texture);
 
 	m_MapReader.pTerrain->Initialize(patches, NULL);

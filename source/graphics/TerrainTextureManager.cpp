@@ -20,8 +20,8 @@
 #include <algorithm>
 #include <vector>
 
-#include "TextureManager.h"
-#include "TextureEntry.h"
+#include "TerrainTextureManager.h"
+#include "TerrainTextureEntry.h"
 #include "TerrainProperties.h"
 
 #include "lib/res/graphics/ogl_tex.h"
@@ -33,16 +33,16 @@
 
 #define LOG_CATEGORY L"graphics"
 
-CTextureManager::CTextureManager():
+CTerrainTextureManager::CTerrainTextureManager():
 	m_LastGroupIndex(0)
 {}
 
-CTextureManager::~CTextureManager()
+CTerrainTextureManager::~CTerrainTextureManager()
 {
 	UnloadTerrainTextures();
 }
 
-void CTextureManager::UnloadTerrainTextures()
+void CTerrainTextureManager::UnloadTerrainTextures()
 {
 	for (size_t i=0; i < m_TextureEntries.size(); i++)
 		delete m_TextureEntries[i];
@@ -59,7 +59,7 @@ void CTextureManager::UnloadTerrainTextures()
 	m_LastGroupIndex = 0;
 }
 
-CTextureEntry* CTextureManager::FindTexture(const CStr& tag_)
+CTerrainTextureEntry* CTerrainTextureManager::FindTexture(const CStr& tag_)
 {
 	CStr tag(tag_);
 	// Strip extension off of tag
@@ -74,25 +74,25 @@ CTextureEntry* CTextureManager::FindTexture(const CStr& tag_)
 			return m_TextureEntries[i];
 	}
 
-	LOG(CLogger::Warning, LOG_CATEGORY, L"TextureManager: Couldn't find terrain %hs", tag.c_str());
+	LOG(CLogger::Warning, LOG_CATEGORY, L"CTerrainTextureManager: Couldn't find terrain %hs", tag.c_str());
 	return 0;
 }
 
-CTerrainPropertiesPtr CTextureManager::GetPropertiesFromFile(const CTerrainPropertiesPtr& props, const VfsPath& pathname)
+CTerrainPropertiesPtr CTerrainTextureManager::GetPropertiesFromFile(const CTerrainPropertiesPtr& props, const VfsPath& pathname)
 {
 	return CTerrainProperties::FromXML(props, pathname);
 }
 
-CTextureEntry *CTextureManager::AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path)
+CTerrainTextureEntry *CTerrainTextureManager::AddTexture(const CTerrainPropertiesPtr& props, const VfsPath& path)
 {
-	CTextureEntry *entry = new CTextureEntry(props, path);
+	CTerrainTextureEntry *entry = new CTerrainTextureEntry(props, path);
 	m_TextureEntries.push_back(entry);
 	return entry;
 }
 
-void CTextureManager::DeleteTexture(CTextureEntry* entry)
+void CTerrainTextureManager::DeleteTexture(CTerrainTextureEntry* entry)
 {
-	typedef std::vector<CTextureEntry*>::iterator Iter;
+	typedef std::vector<CTerrainTextureEntry*>::iterator Iter;
 	Iter i=std::find(m_TextureEntries.begin(),m_TextureEntries.end(),entry);
 	if (i!=m_TextureEntries.end()) {
 		m_TextureEntries.erase(i);
@@ -106,7 +106,7 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // jw: indeed this is inefficient and RecurseDirectory should be implemented
 // via VFSUtil::EnumFiles, but it works fine and "only" takes 25ms for
 // typical maps. therefore, we'll leave it for now.
-void CTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const VfsPath& path)
+void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const VfsPath& path)
 {
 	VfsPaths pathnames;
 	if(fs_util::GetPathnames(g_VFS, path, 0, pathnames) < 0)
@@ -129,7 +129,7 @@ void CTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const Vfs
 		{
 			myprops = GetPropertiesFromFile(props, pathnameXML);
 			if (myprops)
-				LOG(CLogger::Normal,  LOG_CATEGORY, L"CTextureManager: Successfully loaded override xml %ls for texture %ls", pathnameXML.string().c_str(), pathnames[i].string().c_str());
+				LOG(CLogger::Normal,  LOG_CATEGORY, L"CTerrainTextureManager: Successfully loaded override xml %ls for texture %ls", pathnameXML.string().c_str(), pathnames[i].string().c_str());
 		}
 
 		// Error or non-existant xml file -> use parent props
@@ -140,7 +140,7 @@ void CTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const Vfs
 	}
 }
 
-void CTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const VfsPath& path)
+void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const VfsPath& path)
 {
 	//LOG(CLogger::Normal,  LOG_CATEGORY, L"CTextureManager::RecurseDirectory(%ls)", path.string().c_str());
 
@@ -154,7 +154,7 @@ void CTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps,
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
 	{
-		LOG(CLogger::Normal, LOG_CATEGORY, L"CTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.string().c_str());
+		LOG(CLogger::Normal, LOG_CATEGORY, L"CTerrainTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.string().c_str());
 		props = parentProps;
 	}
 
@@ -171,13 +171,13 @@ void CTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps,
 }
 
 
-int CTextureManager::LoadTerrainTextures()
+int CTerrainTextureManager::LoadTerrainTextures()
 {
 	RecurseDirectory(CTerrainPropertiesPtr(), L"art/textures/terrain/types/");
 	return 0;
 }
 
-CTerrainGroup* CTextureManager::FindGroup(const CStr& name)
+CTerrainGroup* CTerrainTextureManager::FindGroup(const CStr& name)
 {
 	TerrainGroupMap::const_iterator it=m_TerrainGroups.find(name);
 	if (it != m_TerrainGroups.end())
@@ -186,14 +186,14 @@ CTerrainGroup* CTextureManager::FindGroup(const CStr& name)
 		return m_TerrainGroups[name] = new CTerrainGroup(name, ++m_LastGroupIndex);
 }
 
-void CTerrainGroup::AddTerrain(CTextureEntry *pTerrain)
+void CTerrainGroup::AddTerrain(CTerrainTextureEntry *pTerrain)
 {
 	m_Terrains.push_back(pTerrain);
 }
 
-void CTerrainGroup::RemoveTerrain(CTextureEntry *pTerrain)
+void CTerrainGroup::RemoveTerrain(CTerrainTextureEntry *pTerrain)
 {
-	std::vector<CTextureEntry *>::iterator it;
+	std::vector<CTerrainTextureEntry *>::iterator it;
 	it=find(m_Terrains.begin(), m_Terrains.end(), pTerrain);
 	if (it != m_Terrains.end())
 		m_Terrains.erase(it);

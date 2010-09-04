@@ -25,8 +25,8 @@
 #include "MapWriter.h"
 #include "Patch.h"
 #include "Terrain.h"
-#include "TextureEntry.h"
-#include "TextureManager.h"
+#include "TerrainTextureEntry.h"
+#include "TerrainTextureManager.h"
 
 #include "maths/MathUtil.h"
 #include "maths/NUSpline.h"
@@ -69,7 +69,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // GetHandleIndex: return the index of the given handle in the given list; or 0xFFFF if
 // handle isn't in list
-static u16 GetEntryIndex(const CTextureEntry* entry, const std::vector<CTextureEntry*>& entries)
+static u16 GetEntryIndex(const CTerrainTextureEntry* entry, const std::vector<CTerrainTextureEntry*>& entries)
 {
 	const size_t limit = std::min(entries.size(), size_t(0xFFFEu));	// paranoia
 	for (size_t i=0;i<limit;i++) {
@@ -89,7 +89,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 									 std::vector<STileDesc>& tiles)
 {
 	// the list of all handles in use
-	std::vector<CTextureEntry*> entries;
+	std::vector<CTerrainTextureEntry*> entries;
 	
 	// resize tile array to required size
 	tiles.resize(SQR(pTerrain->GetVerticesPerSide()-1));
@@ -120,7 +120,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 	// now find the texture names for each handle
 	for (size_t i=0;i<entries.size();i++) {
 		CStr texturename;
-		CTextureEntry* texentry=entries[i];
+		CTerrainTextureEntry* texentry=entries[i];
 		if (!texentry) {
 			// uh-oh, this shouldn't happen; set texturename to empty string
 			texturename="";

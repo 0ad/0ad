@@ -33,7 +33,7 @@ class CLightEnv;
 class CCinemaManager;
 class CTriggerManager;
 class CSimulation2;
-class CTextureEntry;
+class CTerrainTextureEntry;
 class CScriptValRooted;
 class ScriptInterface;
 class CGameView;
@@ -75,7 +75,7 @@ private:
 	// heightmap for map
 	std::vector<u16> m_Heightmap;
 	// list of terrain textures used by map
-	std::vector<CTextureEntry*> m_TerrainTextures;
+	std::vector<CTerrainTextureEntry*> m_TerrainTextures;
 	// tile descriptions for each tile
 	std::vector<STileDesc> m_Tiles;
 	// lightenv stored in file

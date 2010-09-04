@@ -27,8 +27,8 @@
 #include "graphics/Patch.h"
 #include "graphics/SkeletonAnimManager.h"
 #include "graphics/Terrain.h"
-#include "graphics/TextureEntry.h"
-#include "graphics/TextureManager.h"
+#include "graphics/TerrainTextureEntry.h"
+#include "graphics/TerrainTextureManager.h"
 #include "graphics/UnitManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Font.h"
@@ -94,7 +94,7 @@ ActorViewer::ActorViewer()
 	// Create a tiny empty piece of terrain, just so we can put shadows
 	// on it without having to think too hard
 	m.Terrain.Initialize(1, NULL);
-	CTextureEntry* tex = g_TexMan.FindTexture("whiteness");
+	CTerrainTextureEntry* tex = g_TexMan.FindTexture("whiteness");
 	if (tex)
 	{
 		CPatch* patch = m.Terrain.GetPatch(0, 0);
