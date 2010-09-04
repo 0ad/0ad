@@ -80,8 +80,22 @@
 			textcolor="white"
 			sprite="bkTranslucent"
 			hidden="true"
-			size="260 100%-40 100%-150 100%"
+			size="260 100%-40 100%-290 100%"
 		>[Tooltip text]</object>
+
+		<object
+			type="button"
+			style="wheatButton"
+			font="serif-16"
+			size="100%-280 100%-40 100%-143 100%+3"
+			tooltip_style="onscreenToolTip"
+			tooltip="Click this button to return to the main menu."
+		>Cancel
+			<action on="Press"><![CDATA[
+				cancelSetup();
+				Engine.PopGuiPage();
+			]]></action>
+		</object>
 
 		<object
 			type="button"

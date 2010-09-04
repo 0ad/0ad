@@ -108,30 +108,42 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 		- MAIN MENU - RANDOM BUTTONS
 		==========================================
 		-->
+		
+			<object size="100%-400 0 100% 30">
+			<object type="button" style="wheatButton" size="0 0 100 30">
+				Manual
+				<action on="Press"><![CDATA[
+					Engine.PushGuiPage("page_manual.xml");
+				]]></action>
+			</object>
 
-		<object type="button" style="wheatButton" size="8 230 158 270">
-			How to play
-			<action on="Press"><![CDATA[
-				Engine.PushGuiPage("page_manual.xml");
-			]]></action>
-		</object>
+			<object type="button" style="wheatButton" size="100 0 200 30">
+				Website
+				<action on="Press"><![CDATA[
+					var url = "http://wildfiregames.com/0ad/";
+					Engine.OpenURL(url);
+					messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+				]]></action>
+			</object>
 
-		<object type="button" style="wheatButton" size="8 275 158 315">
-			Visit our web site
-			<action on="Press"><![CDATA[
-				var url = "http://wildfiregames.com/0ad/";
-				Engine.OpenURL(url);
-				messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-			]]></action>
-		</object>
+			<object type="button" style="wheatButton" size="200 0 300 30">
+				IRC
+				<action on="Press"><![CDATA[
+					var url = "http://webchat.quakenet.org/?channels=0ad";
+					Engine.OpenURL(url);
+					messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+				]]></action>
+			</object>
 
-		<object type="button" style="wheatButton" size="8 320 158 360">
-			Chat on IRC
-			<action on="Press"><![CDATA[
-				var url = "http://webchat.quakenet.org/?channels=0ad";
-				Engine.OpenURL(url);
-				messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-			]]></action>
+			<!-- MAIN MENU - EXIT BUTTON -->
+			<object type="button" style="wheatButton" name="pgExit" size="300 0 400 30">
+				Quit
+				<action on="Press"><![CDATA[
+					var btCaptions = ["Yes", "No"];
+					var btCode = [exit, null];
+					messageBox (400, 200, "Are you sure you want to quit [icon=iconProduct] A.D.?", "Confirmation", 0, btCaptions, btCode);
+				]]></action>
+			</object>
 		</object>
 
 		<!--
@@ -306,25 +318,6 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 				messageBox (420, 320, "[icon=iconProduct] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2010\n\n" +
 				"Visit http://www.wildfiregames.com/0ad/ " +
 				"to learn more about [icon=iconProduct] A.D., participate in the community and meet the developers.\n\n", "About [icon=iconProduct] A.D.", 2, [], []);
-			]]></action>
-		</object>
-
-		<!--
-		==========================================
-		- MAIN MENU - EXIT BUTTON
-		==========================================
-		-->
-
-		<object	name="pgExit"
-			style="wheatExit"
-			type="button"
-			size="100%-18 2 100%-2 18"
-			tooltip="Tired of 0 A.D. ? Click here to leave and reenter the real world."
-		>
-			<action on="Press"><![CDATA[
-				var btCaptions = ["Yes, let me out!", "Nooooo!"];
-				var btCode = [exit, null];
-				messageBox (400, 200, "Do you really want to quit [icon=iconProduct] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
 			]]></action>
 		</object>
 	</object>

@@ -7,7 +7,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="bkTranslucent"/>
 
-	<object type="image" style="wheatWindow" size="100 100 100%-100 100%-100">
+	<object type="image" style="wheatWindow" size="150 100 100%-150 100%-100">
 
 		<object type="button" style="wheatExit" tooltip_style="snToolTip">
 			<action on="Press"><![CDATA[
@@ -15,12 +15,17 @@
 			]]></action>
 		</object>
 
-		<object type="image" sprite="wheatIndentFillVeryLight">
-
+		<object type="image" sprite="wheatIndentFillVeryLight" size="0 0 100% 100%-45">
 			<object name="mainText" type="text" style="textPanel"/>
-
 		</object>
 
+		<object type="button" style="wheatButton" tooltip_style="snToolTip" size="100%-103 100%-33 100%-3 100%-3">
+			Close
+			<action on="Press"><![CDATA[Engine.PopGuiPage();]]></action>
+		</object>
+		
 	</object>
+	
+
 
 </objects>

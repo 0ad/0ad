@@ -98,6 +98,11 @@
 
 		</object>
 
+		<object type="button" style="wheatButton" size="100%-103 100%-33 100%-3 100%-3">
+			Cancel
+			<action on="Press"><![CDATA[cancelSetup();]]></action>
+		</object>
+
 		<object name="pageJoin" hidden="true">
 		
 			<object type="text" size="0 0 400 30">
