@@ -36,7 +36,7 @@ public:
 
 	void test_overflow()
 	{
-		const int buflen = 512;
+		const int buflen = 1024;
 
 		std::string msg0 (buflen-2, '*');
 		std::string msg1 (buflen-1, '*');
