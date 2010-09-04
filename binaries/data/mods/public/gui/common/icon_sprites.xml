@@ -150,7 +150,64 @@
 						real_texture_placement="0 0 24 48"				
 						size="0 0 100% 100%" 
 				/>				
+			</sprite>
+
+		<!--
+		==========================================
+		SESSION GUI - PORTRAIT SHEETS - BUILDINGS
+		==========================================
+		-->
+		
+			<sprite	name="snPortraitSheetBuildings">
+				<image	texture="session/portraits/sheets/buildings.dds"
+						cell_size="128 128"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>
+			<sprite	name="snPortraitSheetBuildingsOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/portraits/sheets/buildings.dds"
+						cell_size="128 128"
+						size="2 2 100%-2 100%-2" 
+				/>
 			</sprite>			
+			<sprite name="snPortraitSheetBuildingsDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/portraits/sheets/buildings.dds"
+						cell_size="128 128"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>		
+
+			<sprite	name="snPortraitSheetButtonBuildings">
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/buildings.dds"
+						cell_size="128 128"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>
+			<sprite	name="snPortraitSheetButtonBuildingsOver">
+				<effect	add_color="42 42 42 0"/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/buildings.dds"
+						cell_size="128 128"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>			
+			<sprite name="snPortraitSheetButtonBuildingsDisabled">
+				<effect	grayscale=""/>
+				<image	texture="session/icons/bkg/portrait_black.dds"
+						size="-2 -2 100%+2 100%+2"
+				/>			
+				<image	texture="session/portraits/sheets/buildings.dds"
+						cell_size="128 128"
+						size="2 2 100%-2 100%-2" 
+				/>
+			</sprite>
 
 		<!--
 		==========================================
