@@ -53,7 +53,7 @@ bool VfsFile::IsSupersededBy(const VfsFile& file) const
 		const double threshold = 2.0;	// [seconds]; resolution provided by FAT
 		if(howMuchNewer > threshold)	// newer timestamp
 			return true;
-		if(howMuchNewer < threshold)	// older timestamp
+		if(howMuchNewer < -threshold)	// older timestamp
 			return false;
 		// else: "equal" (tolerating small differences due to FAT's low
 		// mtime resolution)
