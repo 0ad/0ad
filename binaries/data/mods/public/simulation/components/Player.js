@@ -12,6 +12,7 @@ Player.prototype.Init = function()
 	this.popUsed = 0; // population of units owned by this player
 	this.popReserved = 0; // population of units currently being trained
 	this.popLimit = 50; // maximum population
+	this.trainingQueueBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
 		"food": 2000,	
 		"wood": 1500,	
@@ -82,6 +83,21 @@ Player.prototype.GetPopulationCount = function()
 Player.prototype.GetPopulationLimit = function()
 {
 	return this.popLimit;
+};
+
+Player.prototype.IsTrainingQueueBlocked = function()
+{
+	return this.trainingQueueBlocked;
+};
+
+Player.prototype.BlockTrainingQueue = function()
+{
+	this.trainingQueueBlocked = true;
+};
+
+Player.prototype.UnBlockTrainingQueue = function()
+{
+	this.trainingQueueBlocked = false;
 };
 
 Player.prototype.GetResourceCounts = function()

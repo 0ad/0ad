@@ -156,6 +156,11 @@ TrainingQueue.prototype.ResetQueue = function()
 
 TrainingQueue.prototype.OnOwnershipChanged = function(msg)
 {
+	// Unset flag that previous owner's training queue may be blocked
+	var cmpPlayer = QueryPlayerIDInterface(msg.from, IID_Player);
+	if (cmpPlayer && this.queue.length > 0)
+		cmpPlayer.UnBlockTrainingQueue();
+
 	// Reset the training queue whenever the owner changes.
 	// (This should prevent players getting surprised when they capture
 	// an enemy building, and then loads of the enemy's civ's soldiers get
@@ -250,8 +255,15 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 			{
 				// No slots available - don't train this batch now
 				// (we'll try again on the next timeout)
+
+				// Set flag that training queue is blocked
+				cmpPlayer.BlockTrainingQueue();
+
 				break;
 			}
+
+			// Unset flag that training queue is blocked
+			cmpPlayer.UnBlockTrainingQueue();
 
 			item.trainingStarted = true;
 		}
@@ -274,6 +286,10 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 	if (this.queue.length == 0)
 	{
 		this.timer = undefined;
+
+		// Unset flag that training queue is blocked
+		// (This might happen when the player unqueues all batches)
+		cmpPlayer.UnBlockTrainingQueue();
 	}
 	else
 	{

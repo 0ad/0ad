@@ -35,7 +35,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"color": cmpPlayer.GetColour(),
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
-			"resourceCounts": cmpPlayer.GetResourceCounts()
+			"resourceCounts": cmpPlayer.GetResourceCounts(),
+			"trainingQueueBlocked": cmpPlayer.IsTrainingQueueBlocked()
 		};
 		ret.players.push(playerData);
 	}

@@ -10,6 +10,10 @@ var g_DevSettings = {
 	controlAll: false
 };
 
+// Indicate when one of the current player's training queues is blocked
+// (this is used to support population counter blinking)
+var g_IsTrainingQueueBlocked = false;
+
 // Cache EntityStates
 var g_EntityStates = {}; // {id:entState}
 
@@ -107,6 +111,12 @@ function onTick()
 
 	// Run timers
 	updateTimers();
+	
+	// When training is blocked, flash population (alternates colour every 500msec)
+	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)
+		getGUIObjectByName("resourcePop").textcolor = "255 0 0";
+	else
+		getGUIObjectByName("resourcePop").textcolor = "0 0 0";
 }
 
 function onSimulationUpdate()
@@ -169,4 +179,6 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;
 	getGUIObjectByName("resourceMetal").caption = playerState.resourceCounts.metal;
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
+	
+	g_IsTrainingQueueBlocked = playerState.trainingQueueBlocked;
 }
