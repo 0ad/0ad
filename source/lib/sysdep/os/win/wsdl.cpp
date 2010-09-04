@@ -331,7 +331,7 @@ static void video_SetPixelFormat(HDC g_hDC, int bpp)
 
 // set video mode width x height : bpp (or leave unchanged if already adequate).
 // w = h = bpp = 0 => no change.
-int SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
+SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 {
 	WinScopedPreserveLastError s;	// OpenGL and GDI
 
@@ -398,7 +398,14 @@ int SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 		}
 	}
 
-	return 1;
+	// get the actual updated window size and return it
+	static SDL_Surface screen;
+	RECT rect;
+	WARN_IF_FALSE(GetClientRect(g_hWnd, &rect));
+	screen.w = rect.right;
+	screen.h = rect.bottom;
+
+	return &screen;
 }
 
 

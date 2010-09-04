@@ -66,13 +66,13 @@ LIB_API int SDL_GL_SetAttribute(SDL_GLattr attr, int value);
 #define SDL_FULLSCREEN 1
 #define SDL_RESIZABLE 2
 
-LIB_API int SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags);
-
 typedef struct
 {
 	int w, h;
 }
 SDL_Surface;
+
+LIB_API SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags);
 
 LIB_API SDL_Surface* SDL_GetVideoSurface();
 

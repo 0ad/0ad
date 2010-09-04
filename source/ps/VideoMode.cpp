@@ -69,10 +69,26 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	else
 		flags |= SDL_RESIZABLE;
 
-	if (!SDL_SetVideoMode(w, h, bpp, flags))
+	SDL_Surface* screen = SDL_SetVideoMode(w, h, bpp, flags);
+
+	if (!screen)
 	{
-		LOGERROR(L"SetVideoMode failed: %dx%d:%d %d (\"%hs\")", w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
-		return false;
+		// If fullscreen fails, try windowed mode
+		if (fullscreen)
+		{
+			LOGWARNING(L"Failed to set the video mode to fullscreen for the chosen resolution "
+				L"%dx%d:%d (\"%hs\"), falling back to windowed mode",
+				w, h, bpp, SDL_GetError());
+			// Using default size for the window for now, as the attempted setting
+			// could be as large, or larger than the screen size.
+			return SetVideoMode(DEFAULT_WINDOW_W, DEFAULT_WINDOW_H, bpp, false);		
+		}
+		else
+		{
+			LOGERROR(L"SetVideoMode failed: %dx%d:%d %d (\"%hs\")",
+				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+			return false;
+		}
 	}
 
 	if (fullscreen)
@@ -81,12 +97,14 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		SDL_WM_GrabInput(SDL_GRAB_OFF);
 
 	m_IsFullscreen = fullscreen;
-	m_CurrentW = w;
-	m_CurrentH = h;
-	m_CurrentBPP = bpp;
 
-	g_xres = w;
-	g_yres = h;
+	// Grab the current video settings
+	m_CurrentW = screen->w;
+	m_CurrentH = screen->h;
+	m_CurrentBPP = bpp; // getting bpp from surface not supported in wsdl
+
+	g_xres = m_CurrentW;
+	g_yres = m_CurrentH;
 
 	return true;
 }
@@ -225,7 +243,7 @@ bool CVideoMode::SetFullscreen(bool fullscreen)
 		if (!SetVideoMode(w, h, bpp, fullscreen))
 			return false;
 
-		UpdateRenderer(w, h);
+		UpdateRenderer(m_CurrentW, m_CurrentH);
 
 		return true;
 	}
