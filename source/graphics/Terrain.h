@@ -66,10 +66,15 @@ public:
 	// return number of patches along edge of the terrain
 	ssize_t GetPatchesPerSide() const { return m_MapSizePatches; }
 
+	float GetMinX() const { return 0.0f; }
+	float GetMinZ() const { return 0.0f; }
+	float GetMaxX() const { return (float)((m_MapSize-1) * CELL_SIZE); }
+	float GetMaxZ() const { return (float)((m_MapSize-1) * CELL_SIZE); }
+
 	bool IsOnMap(float x, float z) const
 	{
-		return ((x >= 0.0f) && (x < (float)((m_MapSize-1) * CELL_SIZE))
-		     && (z >= 0.0f) && (z < (float)((m_MapSize-1) * CELL_SIZE)));
+		return ((x >= GetMinX()) && (x < GetMaxX())
+		     && (z >= GetMinZ()) && (z < GetMaxZ()));
 	}
 
 	CStr8 GetMovementClass(ssize_t i, ssize_t j) const;

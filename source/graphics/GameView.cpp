@@ -60,6 +60,7 @@ const float CGameView::defaultFOV = DEGTORAD(20.f);
 const float CGameView::defaultNear = 4.f;
 const float CGameView::defaultFar = 4096.f;
 const float CGameView::defaultCullFOV = CGameView::defaultFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum
+const float CGameView::cameraPivotMargin = 20.0f;
 
 /**
  * A value with exponential decay towards the target value.
@@ -666,6 +667,25 @@ void CGameView::Update(float DeltaTime)
 		m->RotateX.ClampSmoothly(DEGTORAD(m->ViewRotateXMin), DEGTORAD(m->ViewRotateXMax));
 
 	ClampDistance(m, true);
+
+	// Ensure the ViewCamera focus is inside the map with the chosen margins
+	// if not so - apply margins to the camera
+	if (m->ConstrainCamera)
+	{
+		CCamera targetCam = m->ViewCamera;
+		SetupCameraMatrix(m, &targetCam.m_Orientation);
+
+		CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
+		float min_x = pTerrain->GetMinX() + cameraPivotMargin;
+		float max_x = pTerrain->GetMaxX() - cameraPivotMargin;
+		float min_z = pTerrain->GetMinZ() + cameraPivotMargin;
+		float max_z = pTerrain->GetMaxZ() - cameraPivotMargin;
+
+		// Clamp so that pos+in is within the margin
+		CVector3D in = targetCam.m_Orientation.GetIn() * m->ViewZoomDefault;
+		m->PosX.ClampSmoothly(min_x - in.X, max_x - in.X);
+		m->PosZ.ClampSmoothly(min_z - in.Z, max_z - in.Z);
+	}
 
 	m->PosX.Update(DeltaTime);
 	m->PosY.Update(DeltaTime);
