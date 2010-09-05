@@ -22,6 +22,6 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Ownership)
-DEFINE_INTERFACE_METHOD_0("GetOwner", int32_t, ICmpOwnership, GetOwner)
-DEFINE_INTERFACE_METHOD_1("SetOwner", void, ICmpOwnership, SetOwner, int32_t)
+DEFINE_INTERFACE_METHOD_0("GetOwner", player_id_t, ICmpOwnership, GetOwner)
+DEFINE_INTERFACE_METHOD_1("SetOwner", void, ICmpOwnership, SetOwner, player_id_t)
 END_INTERFACE_WRAPPER(Ownership)

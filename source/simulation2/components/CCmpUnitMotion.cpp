@@ -201,7 +201,7 @@ public:
 		}
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

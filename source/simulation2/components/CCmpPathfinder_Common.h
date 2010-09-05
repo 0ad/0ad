@@ -115,7 +115,7 @@ const int COST_CLASS_BITS = 8 - (PASS_CLASS_BITS + 1);
 #define IS_TERRAIN_PASSABLE(item, classmask) (((item) & (classmask)) == 0)
 #define IS_PASSABLE(item, classmask) (((item) & ((classmask) | 1)) == 0)
 #define GET_COST_CLASS(item) ((item) >> (PASS_CLASS_BITS + 1))
-#define COST_CLASS_TAG(id) ((id) << (PASS_CLASS_BITS + 1))
+#define COST_CLASS_TAG(id) ( (u8) ((id) << (PASS_CLASS_BITS + 1)) )
 
 struct AsyncLongPathRequest
 {

@@ -73,7 +73,7 @@ void OverlayRenderer::RenderOverlays()
 		glLineWidth((float)line->m_Thickness);
 
 		glInterleavedArrays(GL_V3F, sizeof(float)*3, &line->m_Coords[0]);
-		glDrawArrays(GL_LINE_STRIP, 0, line->m_Coords.size()/3);
+		glDrawArrays(GL_LINE_STRIP, 0, (GLsizei)line->m_Coords.size()/3);
 	}
 
 	glLineWidth(1.f);

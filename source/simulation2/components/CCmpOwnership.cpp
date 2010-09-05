@@ -35,7 +35,7 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Ownership)
 
-	int32_t m_Owner;
+	player_id_t m_Owner;
 
 	static std::string GetSchema()
 	{
@@ -47,7 +47,7 @@ public:
 
 	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
-		m_Owner = -1;
+		m_Owner = INVALID_PLAYER;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -71,23 +71,23 @@ public:
 		case MT_Destroy:
 		{
 			// Reset the owner so this entity is e.g. removed from population counts
-			SetOwner(-1);
+			SetOwner(INVALID_PLAYER);
 			break;
 		}
 		}
 	}
 
-	virtual int32_t GetOwner()
+	virtual player_id_t GetOwner()
 	{
 		return m_Owner;
 	}
 
-	virtual void SetOwner(int32_t playerID)
+	virtual void SetOwner(player_id_t playerID)
 	{
 		if (playerID == m_Owner)
 			return;
 
-		int32_t old = m_Owner;
+		player_id_t old = m_Owner;
 		m_Owner = playerID;
 
 		CMessageOwnershipChanged msg(GetEntityId(), old, playerID);

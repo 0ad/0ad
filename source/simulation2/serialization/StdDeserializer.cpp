@@ -37,7 +37,7 @@ CStdDeserializer::~CStdDeserializer()
 
 void CStdDeserializer::Get(u8* data, size_t len)
 {
-	m_Stream.read((char*)data, len);
+	m_Stream.read((char*)data, (std::streamsize)len);
 	if (!m_Stream.good()) // hit eof before len, or other errors
 		throw PSERROR_Deserialize_ReadFailed();
 }

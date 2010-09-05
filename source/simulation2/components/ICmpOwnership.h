@@ -19,18 +19,19 @@
 #define INCLUDED_ICMPOWNERSHIP
 
 #include "simulation2/system/Interface.h"
+#include "simulation2/helpers/Player.h"
 
 /**
  * Player ownership.
- * Owner values are either a player ID (if >= 0), or unassigned (-1).
+ * Owner values are either a player ID (if >= 0), or unassigned (INVALID_PLAYER).
  * Sends message OwnershipChanged after it changes.
  */
 class ICmpOwnership : public IComponent
 {
 public:
-	virtual int32_t GetOwner() = 0;
+	virtual player_id_t GetOwner() = 0;
 
-	virtual void SetOwner(int32_t playerID) = 0;
+	virtual void SetOwner(player_id_t playerID) = 0;
 
 	DECLARE_INTERFACE_TYPE(Ownership)
 };

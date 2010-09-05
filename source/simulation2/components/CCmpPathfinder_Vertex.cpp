@@ -789,7 +789,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 					// Remember the heuristically best vertex we've seen so far, in case we never actually reach the target
 					if (vertexes[n].h < hBest)
 					{
-						idBest = n;
+						idBest = (u16)n;
 						hBest = vertexes[n].h;
 					}
 				}

@@ -714,7 +714,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name)
 
 bool ScriptInterface::CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret)
 {
-	const uintN argc = args.size();
+	const uintN argc = (uintN)args.size();
 	jsval* argv = NULL;
 	if (argc)
 		argv = &args[0];
@@ -730,14 +730,13 @@ bool ScriptInterface::CallFunction_(jsval val, const char* name, std::vector<jsv
 bool ScriptInterface::Eval(const wxString& script)
 {
 	jsval rval;
-	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob, script.mb_str(), script.length(), NULL, 0, &rval);
+	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob, script.mb_str(), (uintN)script.length(), NULL, 0, &rval);
 	return ok ? true : false;
 }
 
 bool ScriptInterface::Eval_(const wxString& script, jsval& rval)
 {
-	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob,
-		script.mb_str(), script.length(), NULL, 0, &rval);
+	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob, script.mb_str(), (uintN)script.length(), NULL, 0, &rval);
 	return ok ? true : false;
 }
 

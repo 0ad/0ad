@@ -56,7 +56,7 @@ void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& 
 	{
 		std::string name = it->first;
 		debug_assert((int)m_PassClasses.size() <= PASS_CLASS_BITS);
-		u8 mask = (1 << (m_PassClasses.size() + 1));
+		u8 mask = (u8)(1u << (m_PassClasses.size() + 1));
 		m_PassClasses.push_back(PathfinderPassability(mask, it->second));
 		m_PassClassMasks[name] = mask;
 	}
@@ -89,7 +89,7 @@ void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& 
 		size_t i = 0;
 		for (std::set<std::string>::const_iterator nit = unitClassNames.begin(); nit != unitClassNames.end(); ++nit)
 		{
-			m_UnitCostClassTags[*nit] = i;
+			m_UnitCostClassTags[*nit] = (u8)i;
 			++i;
 
 			std::vector<u32> costs;
@@ -241,9 +241,9 @@ void CCmpPathfinder::UpdateGrid()
 		// Obstructions or terrain changed - we need to recompute passability
 		// TODO: only bother recomputing the region that has actually changed
 
-		for (size_t j = 0; j < m_MapSize; ++j)
+		for (u16 j = 0; j < m_MapSize; ++j)
 		{
-			for (size_t i = 0; i < m_MapSize; ++i)
+			for (u16 i = 0; i < m_MapSize; ++i)
 			{
 				fixed x, z;
 				TileCenter(i, j, x, z);

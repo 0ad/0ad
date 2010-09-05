@@ -37,7 +37,7 @@ public:
 #else
 		UNUSED2(name);
 #endif
-		m_Stream.write((const char*)data, len);
+		m_Stream.write((const char*)data, (std::streamsize)len);
 	}
 
 private:

@@ -39,7 +39,7 @@
 
 // does this return code indicate the coroutine yielded and
 // wasn't yet finished?
-static bool ldr_was_interrupted(int ret)
+static inline bool ldr_was_interrupted(int ret)
 {
 	return (0 < ret && ret <= 100);
 }

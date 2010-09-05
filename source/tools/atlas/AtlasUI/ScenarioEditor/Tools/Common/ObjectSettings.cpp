@@ -49,8 +49,12 @@ AtlasMessage::sObjectSettings ObjectSettings::GetSettings() const
 
 void ObjectSettings::OnSelectionChange(const std::vector<AtlasMessage::ObjectID>& selection)
 {
-	// Convert to ints so they can be passed to JS
-	std::vector<int> objs (selection.begin(), selection.end());
+	// Convert to int so they can be passed to JS
+	// (manual loop instead of vector range ctor avoids conversion warning)
+	std::vector<int> objs;
+	objs.reserve(selection.size());
+	for(std::vector<AtlasMessage::ObjectID>::const_iterator it = selection.begin(); it != selection.end(); ++it)
+		objs.push_back((int)*it);
 
 	m_ScriptInterface.SetValue(_T("Atlas.State.objectSettings.selectedObjects"), objs);
 	m_ScriptInterface.Eval(_T("Atlas.State.objectSettings.onSelectionChange()"));

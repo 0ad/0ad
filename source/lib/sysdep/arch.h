@@ -29,7 +29,7 @@
 
 // detect target CPU architecture via predefined macros
 // .. IA-32
-#if defined(_M_IX86) || defined(i386) || defined(_X86_)
+#if defined(_M_IX86) || defined(__X86__) || defined(_X86_) || defined(__i386__) || defined(__i386) || defined(i386)
 # define ARCH_IA32 1
 #else
 # define ARCH_IA32 0
@@ -41,7 +41,7 @@
 # define ARCH_IA64 0
 #endif
 // .. AMD64
-#if defined(_M_X64) || defined(__amd64__) || defined(__amd64)
+#if defined(_M_X64) || defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64)
 # define ARCH_AMD64 1
 #else
 # define ARCH_AMD64 0

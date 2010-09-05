@@ -190,7 +190,7 @@ QUERYHANDLER(GetObjectSettings)
 
 BEGIN_COMMAND(SetObjectSettings)
 {
-	size_t m_PlayerOld, m_PlayerNew;
+	player_id_t m_PlayerOld, m_PlayerNew;
 	std::set<CStr> m_SelectionsOld, m_SelectionsNew;
 
 	void Do()
@@ -212,7 +212,7 @@ BEGIN_COMMAND(SetObjectSettings)
 		// TODO: selections
 //		m_SelectionsOld = unit->GetActorSelections();
 
-		m_PlayerNew = (size_t)settings.player;
+		m_PlayerNew = (player_id_t)settings.player;
 
 		std::vector<std::wstring> selections = *settings.selections;
 		for (std::vector<std::wstring>::iterator it = selections.begin(); it != selections.end(); ++it)
@@ -234,7 +234,7 @@ BEGIN_COMMAND(SetObjectSettings)
 	}
 
 private:
-	void Set(size_t player, const std::set<CStr>& selections)
+	void Set(player_id_t player, const std::set<CStr>& selections)
 	{
 		View* view = View::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();
@@ -328,7 +328,7 @@ MESSAGEHANDLER(ObjectPreview)
 
 		CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), g_PreviewEntityID);
 		if (!cmpOwner.null())
-			cmpOwner->SetOwner(msg->settings->player);
+			cmpOwner->SetOwner((player_id_t)msg->settings->player);
 	}
 }
 
@@ -337,7 +337,7 @@ BEGIN_COMMAND(CreateObject)
 	CVector3D m_Pos;
 	float m_Angle;
 	size_t m_ID; // old simulation system
-	size_t m_Player;
+	player_id_t m_Player;
 	entity_id_t m_EntityID; // new simulation system
 
 	void Do()
@@ -358,7 +358,7 @@ BEGIN_COMMAND(CreateObject)
 		}
 
 		// TODO: variations too
-		m_Player = msg->settings->player;
+		m_Player = (player_id_t)msg->settings->player;
 
 		Redo();
 	}
@@ -408,7 +408,7 @@ QUERYHANDLER(PickObject)
 	if (target)
 		msg->id = target->GetID();
 	else
-		msg->id = invalidUnitId;
+		msg->id = INVALID_ENTITY;
 
 	if (target)
 	{
@@ -442,7 +442,7 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
 		if (cmpPos.null())
 		{
 			// error
@@ -461,7 +461,7 @@ BEGIN_COMMAND(MoveObject)
 
 	void SetPos(CVector3D& pos)
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
 		if (cmpPos.null())
 			return;
 
@@ -494,7 +494,7 @@ BEGIN_COMMAND(RotateObject)
 
 	void Do()
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
 		if (cmpPos.null())
 			return;
 
@@ -516,7 +516,7 @@ BEGIN_COMMAND(RotateObject)
 
 	void SetAngle(float angle)
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
 		if (cmpPos.null())
 			return;
 
@@ -569,7 +569,7 @@ BEGIN_COMMAND(DeleteObject)
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
 		debug_assert(!cmpTemplateManager.null());
 
-		m_EntityID = msg->id;
+		m_EntityID = (entity_id_t)msg->id;
 		m_TemplateName = cmpTemplateManager->GetCurrentTemplateName(m_EntityID);
 
 		CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);

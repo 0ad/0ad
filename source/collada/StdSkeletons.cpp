@@ -200,7 +200,7 @@ void Skeleton::LoadSkeletonDataFromXml(const char* xmlData, size_t xmlLength, st
 	try
 	{
 		xmlSetGenericErrorFunc(&xmlErrors, &errorHandler);
-		doc = xmlParseMemory(xmlData, xmlLength);
+		doc = xmlParseMemory(xmlData, (int)xmlLength);
 		if (doc)
 		{
 			xmlNode* root = xmlDocGetRootElement(doc);

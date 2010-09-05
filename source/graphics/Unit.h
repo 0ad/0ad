@@ -21,19 +21,13 @@
 #include <set>
 
 #include "ps/CStr.h"
+#include "simulation2/system/Entity.h"	// entity_id_t
 
 class CModel;
 class CObjectEntry;
 class CObjectManager;
 class CSkeletonAnim;
 class CUnitAnimation;
-
-// note: we can't declare as static const size_t invalidId = ~size_t(0) in
-// the class because it seems to be a grey area in the C++ standard whether
-// or not the constant is propagated or needs an external definition.
-// an enum causes conversion warnings in MSC, so we go with a file-scope
-// constant.
-const size_t invalidUnitId = ~size_t(0);
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,8 +69,8 @@ public:
 	// Most units have a hopefully-unique ID number, so they can be referred to
 	// persistently despite saving/loading maps. Default for new units is -1; should
 	// usually be set to CUnitManager::GetNewID() after creation.
-	size_t GetID() const { return m_ID; }
-	void SetID(size_t id) { m_ID = id; }
+	entity_id_t GetID() const { return m_ID; }
+	void SetID(entity_id_t id) { m_ID = id; }
 
 	const std::set<CStr>& GetActorSelections() const { return m_ActorSelections; }
 	
@@ -91,8 +85,8 @@ private:
 	CUnitAnimation* m_Animation;
 
 	// unique (per map) ID number for units created in the editor, as a
-	// permanent way of referencing them. ~0 for non-editor units.
-	size_t m_ID;
+	// permanent way of referencing them.
+	entity_id_t m_ID;
 
 	// actor-level selections for this unit
 	std::set<CStr> m_ActorSelections;

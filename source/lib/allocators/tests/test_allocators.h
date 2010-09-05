@@ -47,7 +47,7 @@ public:
 		TS_ASSERT_EQUALS(read_le32(buf), (u32)0x78563412);	// read correct value
 		debug_SkipErrors(ERR::FAIL);
 		TS_ASSERT(da_read(&da, buf, 1) < 0);		// no more data left
-		TS_ASSERT_EQUALS(debug_StopSkippingErrors(), (size_t)1);
+		TS_ASSERT_EQUALS((uint32_t)debug_StopSkippingErrors(), (uint32_t)1);
 		TS_ASSERT_OK(da_free(&da));
 	}
 

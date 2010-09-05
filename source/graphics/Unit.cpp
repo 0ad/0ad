@@ -29,7 +29,7 @@
 CUnit::CUnit(CObjectEntry* object, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()),
-  m_ID(invalidUnitId), m_ActorSelections(actorSelections),
+  m_ID(INVALID_ENTITY), m_ActorSelections(actorSelections),
   m_ObjectManager(objectManager)
 {
 	m_Animation = new CUnitAnimation(*this);

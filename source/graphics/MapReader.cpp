@@ -410,9 +410,9 @@ void CXMLReader::ReadPlayers()
 	// TODO: we ought to read at least some of this data from the map file.
 	// For now, just always use the defaults.
 
-	std::map<int, CStrW> playerDefaultNames;
-	std::map<int, CStrW> playerDefaultCivs;
-	std::map<int, SColor3ub> playerDefaultColours;
+	std::map<player_id_t, CStrW> playerDefaultNames;
+	std::map<player_id_t, CStrW> playerDefaultCivs;
+	std::map<player_id_t, SColor3ub> playerDefaultColours;
 
 	CXeromyces playerDefaultFile;
 	if (playerDefaultFile.Load(g_VFS, L"simulation/data/players.xml") != PSRETURN_OK)
@@ -440,9 +440,9 @@ void CXMLReader::ReadPlayers()
 		playerDefaultColours[id] = colour;
 	}
 
-	size_t numPlayers = 9; // including Gaia
+	player_id_t numPlayers = 9; // including Gaia
 
-	for (size_t i = 0; i < numPlayers; ++i)
+	for (player_id_t i = 0; i < numPlayers; ++i)
 	{
 		int uid = ++max_uid;
 		entity_id_t ent = m_MapReader.pSimulation2->AddEntity(L"special/player", uid);

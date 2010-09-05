@@ -306,7 +306,7 @@ void CComponentManager::Script_RegisterInterface(void* cbdata, std::string name)
 
 	// IIDs start at 1, so size+1 is the next unused one
 	size_t id = componentManager->m_InterfaceIdsByName.size() + 1;
-	componentManager->m_InterfaceIdsByName[name] = id;
+	componentManager->m_InterfaceIdsByName[name] = (InterfaceId)id;
 	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
 }
 
@@ -326,7 +326,7 @@ void CComponentManager::Script_RegisterMessageType(void* cbdata, std::string nam
 
 	// MTIDs start at 1, so size+1 is the next unused one
 	size_t id = componentManager->m_MessageTypeIdsByName.size() + 1;
-	componentManager->RegisterMessageType(id, name.c_str());
+	componentManager->RegisterMessageType((MessageTypeId)id, name.c_str());
 	componentManager->m_ScriptInterface.SetGlobal(("MT_" + name).c_str(), (int)id);
 }
 

@@ -500,7 +500,7 @@ bool ScriptInterface::CallFunction_(jsval val, const char* name, size_t argc, js
 		return false;
 	}
 
-	JSBool ok = JS_CallFunctionName(m->m_cx, obj, name, argc, argv, &ret);
+	JSBool ok = JS_CallFunctionName(m->m_cx, obj, name, (uintN)argc, argv, &ret);
 	JS_RemoveRoot(m->m_cx, &obj);
 
 	return ok ? true : false;
@@ -682,7 +682,7 @@ CScriptValRooted ScriptInterface::ParseJSON(const utf16string& string)
 		return CScriptValRooted();
 	}
 
-	if (!JS_ConsumeJSONText(m->m_cx, parser, string.c_str(), string.size()))
+	if (!JS_ConsumeJSONText(m->m_cx, parser, string.c_str(), (uint32)string.size()))
 	{
 		LOGERROR(L"ParseJSON failed to consume");
 		return CScriptValRooted();

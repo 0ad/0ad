@@ -601,6 +601,6 @@ CStrW CNetServer::DeduplicatePlayerName(const CStrW& original)
 		if (unique)
 			return name;
 
-		name = original + L" (" + CStrW(id++) + L")";
+		name = original + L" (" + CStrW((unsigned long)id++) + L")";
 	}
 }

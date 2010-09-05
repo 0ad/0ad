@@ -32,6 +32,19 @@ ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_OPCODE, L"Disassembly failed", -1);
 ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_VENDOR, L"CPU vendor unknown", -1);
 
 
+// ensure the actual pointer size matches expectations on the most common
+// architectures (IA-32 and AMD64) - just in case the predefined macros
+// are wrong or misleading.
+#if ARCH_IA32
+cassert(sizeof(void*) == 4);
+#elif ARCH_AMD64
+cassert(sizeof(void*) == 8);
+cassert(sizeof(i64) == sizeof(intptr_t));	// required by cpu_CAS64
+#endif
+cassert(sizeof(void*) == sizeof(intptr_t));
+
+
+
 static void TestCAS64()
 {
 	volatile i64 var = 1;

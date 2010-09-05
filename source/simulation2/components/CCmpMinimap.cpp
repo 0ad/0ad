@@ -73,7 +73,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
 	{
 		m_Active = true;
 

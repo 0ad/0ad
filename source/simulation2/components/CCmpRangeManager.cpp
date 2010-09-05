@@ -257,7 +257,7 @@ public:
 		size_t id = m_QueryNext++;
 		m_Queries[id] = ConstructQuery(source, maxRange, owners, requiredInterface);
 
-		return id;
+		return (tag_t)id;
 	}
 
 	virtual void DestroyActiveQuery(tag_t tag)
