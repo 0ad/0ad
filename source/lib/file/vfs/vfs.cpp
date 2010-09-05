@@ -143,12 +143,12 @@ public:
 			else if(size > m_cacheSize)
 			{
 				fileContents = io_Allocate(size);
-				RETURN_ERR(file->Load(fileContents));
+				RETURN_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
 			}
 			else
 			{
 				fileContents = m_fileCache.Reserve(size);
-				RETURN_ERR(file->Load(fileContents));
+				RETURN_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
 				m_fileCache.Add(pathname, fileContents, size);
 			}
 		}
@@ -170,9 +170,9 @@ public:
 
 	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& realPathname)
 	{
-		VfsDirectory* directory;
-		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
-		realPathname = directory->AssociatedDirectory()->Path() / pathname.leaf();
+		VfsDirectory* directory; VfsFile* file;
+		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
+		realPathname = file->Loader()->Path() / pathname.leaf();
 		return INFO::OK;
 	}
 

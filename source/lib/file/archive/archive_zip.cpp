@@ -265,6 +265,11 @@ public:
 		return 'A';
 	}
 
+	virtual fs::wpath Path() const
+	{
+		return m_file->Pathname();
+	}
+
 	virtual LibError Load(const std::wstring& UNUSED(name), const shared_ptr<u8>& buf, size_t size) const
 	{
 		AdjustOffset();

@@ -41,43 +41,38 @@ VfsFile::VfsFile(const std::wstring& name, size_t size, time_t mtime, size_t pri
 }
 
 
-bool VfsFile::IsSupersededBy(const VfsFile& file) const
-{
-	// 1) priority (override mods)
-	if(file.m_priority < m_priority)	// lower priority
-		return false;
-
-	// 2) timestamp
-	{
-		const double howMuchNewer = difftime(file.MTime(), MTime());
-		const double threshold = 2.0;	// [seconds]; resolution provided by FAT
-		if(howMuchNewer > threshold)	// newer timestamp
-			return true;
-		if(howMuchNewer < -threshold)	// older timestamp
-			return false;
-		// else: "equal" (tolerating small differences due to FAT's low
-		// mtime resolution)
-	}
-
-	// 3) precedence (efficiency of file provider)
-	if(file.m_loader->Precedence() < m_loader->Precedence())	// less efficient
-		return false;
-
-	return true;
-}
-
-
-LibError VfsFile::Load(const shared_ptr<u8>& buf) const
-{
-	return m_loader->Load(Name(), buf, Size());
-}
-
 
 //-----------------------------------------------------------------------------
 
 VfsDirectory::VfsDirectory()
 	: m_shouldPopulate(0)
 {
+}
+
+
+static bool ShouldReplaceWith(const VfsFile& previousFile, const VfsFile& newFile)
+{
+	// 1) priority (override mods)
+	if(newFile.Priority() < previousFile.Priority())
+		return false;
+
+	// 2) timestamp
+	{
+		const double howMuchNewer = difftime(newFile.MTime(), previousFile.MTime());
+		const double threshold = 2.0;	// FAT timestamp resolution [seconds]
+		if(howMuchNewer > threshold)	// newer
+			return true;
+		if(howMuchNewer < -threshold)	// older
+			return false;
+		// else: "equal" (tolerating small differences due to FAT's low
+		// mtime resolution)
+	}
+
+	// 3) precedence (efficiency of file provider)
+	if(newFile.Loader()->Precedence() < previousFile.Loader()->Precedence())
+		return false;
+
+	return true;
 }
 
 
@@ -89,7 +84,7 @@ VfsFile* VfsDirectory::AddFile(const VfsFile& file)
 	{
 		VfsFile& previousFile = ret.first->second;
 		const VfsFile& newFile = value.second;
-		if(previousFile.IsSupersededBy(newFile))
+		if(ShouldReplaceWith(previousFile, newFile))
 			previousFile = newFile;
 	}
 	else
@@ -166,7 +161,7 @@ std::wstring FileDescription(const VfsFile& file)
 	wcsftime(timestamp, ARRAY_SIZE(timestamp), L"%a %b %d %H:%M:%S %Y", localtime(&mtime));
 
 	wchar_t buf[200];
-	swprintf_s(buf, ARRAY_SIZE(buf), L"(%c; %6lu; %ls) %ls", file.LocationCode(), (unsigned long)file.Size(), timestamp, file.Name().c_str());
+	swprintf_s(buf, ARRAY_SIZE(buf), L"(%c; %6lu; %ls) %ls", file.Loader()->LocationCode(), (unsigned long)file.Size(), timestamp, file.Name().c_str());
 	return buf;
 }
 

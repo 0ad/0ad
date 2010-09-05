@@ -29,6 +29,7 @@ struct IFileLoader
 
 	virtual size_t Precedence() const = 0;
 	virtual wchar_t LocationCode() const = 0;
+	virtual fs::wpath Path() const = 0;
 
 	virtual LibError Load(const std::wstring& name, const shared_ptr<u8>& buf, size_t size) const = 0;
 };

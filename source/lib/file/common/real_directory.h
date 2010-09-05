@@ -32,11 +32,6 @@ class RealDirectory : public IFileLoader
 public:
 	RealDirectory(const fs::wpath& path, size_t priority, size_t flags);
 
-	const fs::wpath& Path() const
-	{
-		return m_path;
-	}
-
 	size_t Priority() const
 	{
 		return m_priority;
@@ -50,6 +45,10 @@ public:
 	// IFileLoader
 	virtual size_t Precedence() const;
 	virtual wchar_t LocationCode() const;
+	virtual fs::wpath Path() const
+	{
+		return m_path;
+	}
 	virtual LibError Load(const std::wstring& name, const shared_ptr<u8>& buf, size_t size) const;
 
 	LibError Store(const std::wstring& name, const shared_ptr<u8>& fileContents, size_t size);

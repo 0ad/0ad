@@ -43,11 +43,6 @@ public:
 		return m_name;
 	}
 
-	wchar_t LocationCode() const
-	{
-		return m_loader->LocationCode();
-	}
-
 	size_t Size() const
 	{
 		return m_size;
@@ -58,9 +53,15 @@ public:
 		return m_mtime;
 	}
 
-	bool IsSupersededBy(const VfsFile& file) const;
+	size_t Priority() const
+	{
+		return m_priority;
+	}
 
-	LibError Load(const shared_ptr<u8>& buf) const;
+	const PIFileLoader& Loader() const
+	{
+		return m_loader;
+	}
 
 private:
 	std::wstring m_name;
