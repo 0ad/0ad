@@ -30,8 +30,11 @@
 #include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
 #include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
 #if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
-# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 # include "lib/sysdep/os_cpu.h"	// os_cpu_ClockFrequency
+# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
+# if ARCH_IA32
+#  include "lib/sysdep/arch/ia32/ia32_asm.h"	// ia32_asm_CAS64
+# endif
 #endif
 
 
@@ -176,10 +179,12 @@ public:
 		const i64 delta = t1.m_cycles - t0.m_cycles;
 #if ARCH_AMD64
 		cpu_AtomicAdd((volatile intptr_t*)&m_cycles, (intptr_t)delta);
-#else
+#elif ARCH_IA32
 retry:
-		if(!cpu_CAS64(&m_cycles, m_cycles, m_cycles+delta))
+		if(!ia32_asm_CAS64(&m_cycles, m_cycles, m_cycles+delta))
 			goto retry;
+#else
+# error "port"
 #endif
 	}
 
@@ -233,8 +238,15 @@ retry:
 		i64 newRepresentation;
 		memcpy(&newRepresentation, &seconds, sizeof(newRepresentation));
 
-		if(!cpu_CAS64((volatile i64*)&m_seconds, oldRepresentation, newRepresentation))
+#if ARCH_AMD64
+		if(!cpu_CAS((volatile intptr_t*)&m_seconds, oldRepresentation, newRepresentation))
 			goto retry;
+#elif ARCH_IA32
+		if(!ia32_asm_CAS64((volatile i64*)&m_seconds, oldRepresentation, newRepresentation))
+			goto retry;
+#else
+# error "port"
+#endif
 	}
 
 	void Subtract(TimerUnit t)

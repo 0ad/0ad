@@ -90,12 +90,6 @@ bool cpu_CAS(volatile T* location, T expected, T new_value)
 	return cpu_CAS((volatile intptr_t*)location, (intptr_t)expected, (intptr_t)new_value);
 }
 
-#if ARCH_AMD64
-# define cpu_CAS64 cpu_CAS
-#else
-LIB_API bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue);
-#endif
-
 
 /**
  * add a signed value to a variable without the possibility of interference
