@@ -11,11 +11,11 @@ Player.prototype.Init = function()
 	this.colour = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
 	this.popUsed = 0; // population of units owned by this player
 	this.popReserved = 0; // population of units currently being trained
-	this.popLimit = 50; // maximum population
+	this.popLimit = 0; // maximum population
 	this.trainingQueueBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
-		"food": 2000,	
-		"wood": 1500,	
+		"food": 1000,	
+		"wood": 1000,	
 		"metal": 500,	
 		"stone": 1000	
 	};
