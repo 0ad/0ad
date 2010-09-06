@@ -13,7 +13,10 @@
     <Actor>fauna/elephant_african_forest.xml</Actor>
   </VisualActor>
   <Footprint>
-    <Circle radius="2.5"/>
-    <Height>3.0</Height>
+    <Circle radius="2.6"/>
+    <Height>2.7</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="2.6"/>
+  </Obstruction>
 </Entity>

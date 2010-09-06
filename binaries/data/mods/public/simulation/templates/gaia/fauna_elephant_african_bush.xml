@@ -14,6 +14,9 @@
   </VisualActor>
   <Footprint>
     <Circle radius="3.0"/>
-    <Height>3.5</Height>
+    <Height>3.0</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="3.0"/>
+  </Obstruction>
 </Entity>
