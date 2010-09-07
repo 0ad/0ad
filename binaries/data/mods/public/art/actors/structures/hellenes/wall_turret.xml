@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant>
-      <mesh>structural/hele_wt.pmd</mesh>
+      <mesh>structural/hele_wall_tower.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/wall_turret.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/hellenes/wall_turret.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_1.dds</texture>
+      <texture>structural/hele_struct_b.dds</texture>
     </variant>
   </group>
-
+  <material>player_trans.xml</material>
 </actor>

@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/hele_wt.pmd</mesh>
-      <texture>structural/hele_struct_2.dds</texture>
+      <mesh>props/hele_wall_tower_props.dae</mesh>
+      <texture>props/hele_props_a.dds</texture>
     </variant>
   </group>
-
 </actor>
