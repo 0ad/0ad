@@ -77,7 +77,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" size="50%-125 200 50%-25 230" style="wheatButton">
+			<object type="button" size="3 100%-33 103 100%-3" style="wheatButton">
 				Continue
 				<action on="Press"><![CDATA[
 					if (startHost(
@@ -89,7 +89,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" style="wheatButton" size="50%+25 200 50%+125 230">
+			<object type="button" style="wheatButton" size="50%-50 100%-33 50%+50 100%-3"> 
 				Back
 				<action on="Press"><![CDATA[
 					switchSetupPage("pageHost", "pageSelectMode");
@@ -127,7 +127,7 @@
 				127.0.0.1
 			</object>
 
-			<object type="button" size="50%-125 200 50%-25 230" style="wheatButton">
+			<object type="button" size="3 100%-33 103 100%-3" style="wheatButton"> 
 				Continue
 				<action on="Press"><![CDATA[
 					if (startJoin(
@@ -139,7 +139,7 @@
 				]]></action>
 			</object>
 
-			<object type="button" size="50%+25 200 50%+125 230" style="wheatButton">
+			<object type="button" size="50%-50 100%-33 50%+50 100%-3" style="wheatButton"> 
 				Back
 				<action on="Press"><![CDATA[
 					switchSetupPage("pageJoin", "pageSelectMode");
