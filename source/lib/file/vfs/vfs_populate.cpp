@@ -95,7 +95,7 @@ private:
 		{
 			const fs::wpath pathname = path/files[i].Name();
 			const std::wstring extension = fs::extension(pathname);
-			if(wcscasecmp(extension.c_str(), L"zip") == 0)
+			if(wcscasecmp(extension.c_str(), L".zip") == 0)
 			{
 				PIArchiveReader archiveReader = CreateArchiveReader_Zip(pathname);
 				RETURN_ERR(archiveReader->ReadEntries(AddArchiveFile, (uintptr_t)this));
