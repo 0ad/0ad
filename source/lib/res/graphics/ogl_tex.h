@@ -297,6 +297,18 @@ extern LibError ogl_tex_set_filter(Handle ht, GLint filter);
 */
 extern LibError ogl_tex_set_wrap(Handle ht, GLint wrap);
 
+/**
+* Override default maximum anisotropic filtering for this texture.
+*
+* @param ht Texture handle
+* @param anisotropy Anisotropy value (must not be less than 1.0; should
+*        usually be a power of two)
+* @return LibError
+*
+* Must be called before uploading (raises a warning if called afterwards).
+*/
+extern LibError ogl_tex_set_anisotropy(Handle ht, GLfloat anisotropy);
+
 
 //
 // upload
@@ -305,7 +317,8 @@ extern LibError ogl_tex_set_wrap(Handle ht, GLint wrap);
 enum OglTexOverrides
 {
 	OGL_TEX_S3TC,
-	OGL_TEX_AUTO_MIPMAP_GEN
+	OGL_TEX_AUTO_MIPMAP_GEN,
+	OGL_TEX_ANISOTROPY
 };
 
 enum OglTexAllow
@@ -383,6 +396,18 @@ extern LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt);
 */
 extern LibError ogl_tex_get_data(Handle ht, u8** p);
 
+/**
+ * Retrieve ARGB value of 1x1 mipmap level of the texture,
+ * i.e. the average colour of the whole texture.
+ *
+ * @param ht Texture handle
+ * @param p will be filled with ARGB value (or 0 if texture does not have mipmaps)
+ * @return LibError
+ *
+ * Must be called before uploading (raises a warning if called afterwards).
+ */
+extern LibError ogl_tex_get_average_colour(Handle ht, u32* p);
+
 
 //
 // misc
@@ -442,5 +467,16 @@ extern LibError ogl_tex_transform_to(Handle ht, size_t new_flags);
  * ogl_tex_upload must be called at least once before this.
  */
 extern bool ogl_tex_has_s3tc();
+
+/**
+ * Return whether anisotropic filtering support is available.
+ * (The anisotropy might still be disabled or overridden by the driver
+ * configuration.)
+ *
+ * @return true if anisotropic filtering supported.
+ *
+ * ogl_tex_upload must be called at least once before this.
+ */
+extern bool ogl_tex_has_anisotropy();
 
 #endif	// #ifndef INCLUDED_OGL_TEX

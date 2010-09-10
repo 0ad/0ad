@@ -120,8 +120,10 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 	{
 		switch(dxt)
 		{
+		case DXT1A:
+			return GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
 		case 1:
-			return alpha? GL_COMPRESSED_RGBA_S3TC_DXT1_EXT : GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
+			return GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
 		case 3:
 			return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
 		case 5:
@@ -277,6 +279,9 @@ struct OglTexState
 	//          set S/T modes independently. it that becomes necessary,
 	//          it's easy to add.
 	GLint wrap;
+	// .. anisotropy
+	//    note: ignored unless EXT_texture_filter_anisotropic is supported.
+	GLfloat anisotropy;
 };
 
 
@@ -285,6 +290,7 @@ static void state_set_to_defaults(OglTexState* ots)
 {
 	ots->filter = default_filter;
 	ots->wrap = GL_REPEAT;
+	ots->anisotropy = 1.0f;
 }
 
 
@@ -307,6 +313,13 @@ static void state_latch(OglTexState* ots)
 	//    may have resulted if this GL implementation is old.
 	if(wrap != GL_CLAMP && wrap != GL_REPEAT)
 		ogl_SquelchError(GL_INVALID_ENUM);
+
+	// anisotropy
+	const GLfloat anisotropy = ots->anisotropy;
+	if (anisotropy != 1.0f && ogl_tex_has_anisotropy())
+	{
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, anisotropy);
+	}
 }
 
 
@@ -373,12 +386,12 @@ struct OglTex
 	OglTexState state;
 
 	// OglTexQualityFlags
-	int q_flags;
+	u8 q_flags;
 
 	// to which Texture Mapping Unit was this bound?
-	size_t tmu;
+	u8 tmu;
 
-	size_t flags;
+	u16 flags;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -448,14 +461,14 @@ static LibError OglTex_validate(const OglTex* ot)
 		// width, height
 		// (note: this is done here because tex.cpp doesn't impose any
 		// restrictions on dimensions, while OpenGL does).
-		GLsizei w = (GLsizei)ot->t.w;
-		GLsizei h = (GLsizei)ot->t.h;
+		size_t w = ot->t.w;
+		size_t h = ot->t.h;
 		// .. == 0; texture file probably not loaded successfully.
 		if(w == 0 || h == 0)
 			WARN_RETURN(ERR::_11);
 		// .. greater than max supported tex dimension.
 		//    no-op if ogl_Init not yet called
-		if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
+		if(w > (size_t)ogl_max_tex_size || h > (size_t)ogl_max_tex_size)
 			WARN_RETURN(ERR::_12);
 		// .. not power-of-2.
 		//    note: we can't work around this because both NV_texture_rectangle
@@ -625,6 +638,24 @@ LibError ogl_tex_set_wrap(Handle ht, GLint wrap)
 }
 
 
+// override default anisotropy for this texture.
+// must be called before uploading (raises a warning if called afterwards).
+LibError ogl_tex_set_anisotropy(Handle ht, GLfloat anisotropy)
+{
+	H_DEREF(ht, OglTex, ot);
+
+	if(anisotropy < 1.0f)
+		WARN_RETURN(ERR::INVALID_PARAM);
+
+	if(ot->state.anisotropy != anisotropy)
+	{
+		warn_if_uploaded(ht, ot);
+		ot->state.anisotropy = anisotropy;
+	}
+	return INFO::OK;
+}
+
+
 //----------------------------------------------------------------------------
 // upload
 //----------------------------------------------------------------------------
@@ -637,6 +668,7 @@ LibError ogl_tex_set_wrap(Handle ht, GLint wrap)
 // tristate; -1 is undecided
 static int have_auto_mipmap_gen = -1;
 static int have_s3tc = -1;
+static int have_anistropy = -1;
 
 // override the default decision and force/disallow use of the
 // given feature. should be called from ah_override_gl_upload_caps.
@@ -652,6 +684,9 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 		break;
 	case OGL_TEX_AUTO_MIPMAP_GEN:
 		have_auto_mipmap_gen = enable;
+		break;
+	case OGL_TEX_ANISOTROPY:
+		have_anistropy = enable;
 		break;
 	default:
 		debug_assert(0);	// invalid <what>
@@ -679,6 +714,10 @@ static void detect_gl_upload_caps()
 		// note: we don't bother checking for GL_S3_s3tc - it is incompatible
 		// and irrelevant (was never widespread).
 		have_s3tc = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", NULL) == 0;
+	}
+	if(have_anistropy == -1)
+	{
+		have_anistropy = ogl_HaveExtension("GL_EXT_texture_filter_anisotropic");
 	}
 
 	// allow app hook to make ogl_tex_override calls
@@ -941,6 +980,15 @@ LibError ogl_tex_get_data(Handle ht, u8** p)
 	return INFO::OK;
 }
 
+// retrieve colour of 1x1 mipmap level
+extern LibError ogl_tex_get_average_colour(Handle ht, u32* p)
+{
+	H_DEREF(ht, OglTex, ot);
+	warn_if_uploaded(ht, ot);
+
+	*p = tex_get_average_colour(&ot->t);
+	return INFO::OK;
+}
 
 //----------------------------------------------------------------------------
 // misc API
@@ -1014,4 +1062,13 @@ bool ogl_tex_has_s3tc()
 	debug_assert(have_s3tc != -1);
 
 	return (have_s3tc != 0);
+}
+
+// return whether anisotropic filtering support is available
+bool ogl_tex_has_anisotropy()
+{
+	// ogl_tex_upload must be called before this
+	debug_assert(have_anistropy != -1);
+
+	return (have_anistropy != 0);
 }

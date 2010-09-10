@@ -291,17 +291,39 @@ TIMER_ACCRUE(tc_plain_transform);
 	const size_t w = t->w, h = t->h, bpp = t->bpp;
 	const size_t flags = t->flags;
 	u8* const data = tex_get_data(t);
-	const size_t data_size = tex_img_size(t);
 
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
-	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS))
+	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS|TEX_ALPHA))
 		return INFO::TEX_CODEC_CANNOT_HANDLE;
 	// .. data is not in "plain" format
 	RETURN_ERR(tex_validate_plain_format(bpp, flags));
 	// .. nothing to do
 	if(!transforms)
 		return INFO::OK;
+
+	const size_t data_size = tex_img_size(t);	// size of source
+	size_t new_data_size = data_size;	// size of destination
+
+	if(transforms & TEX_ALPHA)
+	{
+		// add alpha channel
+		if(bpp == 24)
+		{
+			new_data_size = (data_size / 3) * 4;
+			t->bpp = 32;
+		}
+		// remove alpha channel
+		else if(bpp == 32)
+		{
+			return INFO::TEX_CODEC_CANNOT_HANDLE;
+		}
+		// can't have alpha with greyscale
+		else
+		{
+			return INFO::TEX_CODEC_CANNOT_HANDLE;
+		}
+	}
 
 	// allocate copy of the image data.
 	// rationale: L1 cache is typically A2 => swapping in-place with a
@@ -310,13 +332,12 @@ TIMER_ACCRUE(tc_plain_transform);
 	//
 	// this is necessary even when not flipping because the initial data
 	// is read-only.
-	shared_ptr<u8> newData = io_Allocate(data_size);
-	cpu_memcpy(newData.get(), data, data_size);
+	shared_ptr<u8> newData = io_Allocate(new_data_size);
 
 	// setup row source/destination pointers (simplifies outer loop)
 	u8* dst = (u8*)newData.get();
-	const u8* src = (const u8*)newData.get();
-	const size_t pitch = w * bpp/8;
+	const u8* src;
+	const size_t pitch = w * bpp/8;	// source bpp (not necessarily dest bpp)
 	// .. avoid y*pitch multiply in row loop; instead, add row_ofs.
 	ssize_t row_ofs = (ssize_t)pitch;
 
@@ -326,19 +347,65 @@ TIMER_ACCRUE(tc_plain_transform);
 		src = (const u8*)data+data_size-pitch;	// last row
 		row_ofs = -(ssize_t)pitch;
 	}
+	// adding/removing alpha channel (can't convert in-place)
+	else if(transforms & TEX_ALPHA)
+	{
+		src = (const u8*)data;
+	}
+	// do other transforms in-place
+	else
+	{
+		src = (const u8*)newData.get();
+		cpu_memcpy(newData.get(), data, data_size);
+	}
 
-	// no BGR convert necessary
-	if(!(transforms & TEX_BGR))
+	// no conversion necessary
+	if(!(transforms & (TEX_BGR | TEX_ALPHA)))
+	{
+		if(src != dst)	// avoid overlapping memcpy if not flipping rows
+		{
+			for(size_t y = 0; y < h; y++)
+			{
+				cpu_memcpy(dst, src, pitch);
+				dst += pitch;
+				src += row_ofs;
+			}
+		}
+	}
+	// RGB -> BGRA, BGR -> RGBA
+	else if(bpp == 24 && (transforms & TEX_ALPHA) && (transforms & TEX_BGR))
 	{
 		for(size_t y = 0; y < h; y++)
 		{
-			cpu_memcpy(dst, src, pitch);
-			dst += pitch;
-			src += row_ofs;
+			for(size_t x = 0; x < w; x++)
+			{
+				// need temporaries in case src == dst (i.e. not flipping)
+				const u8 b = src[0], g = src[1], r = src[2];
+				dst[0] = r; dst[1] = g; dst[2] = b; dst[3] = 0xFF;
+				dst += 4;
+				src += 3;
+			}
+			src += row_ofs - pitch;	// flip? previous row : stay
+		}
+	}
+	// RGB -> RGBA, BGR -> BGRA
+	else if(bpp == 24 && (transforms & TEX_ALPHA) && !(transforms & TEX_BGR))
+	{
+		for(size_t y = 0; y < h; y++)
+		{
+			for(size_t x = 0; x < w; x++)
+			{
+				// need temporaries in case src == dst (i.e. not flipping)
+				const u8 r = src[0], g = src[1], b = src[2];
+				dst[0] = r; dst[1] = g; dst[2] = b; dst[3] = 0xFF;
+				dst += 4;
+				src += 3;
+			}
+			src += row_ofs - pitch;	// flip? previous row : stay
 		}
 	}
 	// RGB <-> BGR
-	else if(bpp == 24)
+	else if(bpp == 24 && !(transforms & TEX_ALPHA))
 	{
 		for(size_t y = 0; y < h; y++)
 		{
@@ -354,7 +421,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		}
 	}
 	// RGBA <-> BGRA
-	else if(bpp == 32)
+	else if(bpp == 32 && !(transforms & TEX_ALPHA))
 	{
 		for(size_t y = 0; y < h; y++)
 		{
@@ -369,13 +436,18 @@ TIMER_ACCRUE(tc_plain_transform);
 			src += row_ofs - pitch;	// flip? previous row : stay
 		}
 	}
+	else
+	{
+		debug_warn(L"unsupported transform");
+		return INFO::TEX_CODEC_CANNOT_HANDLE;
+	}
 
 	t->data = newData;
-	t->dataSize = data_size;
+	t->dataSize = new_data_size;
 	t->ofs = 0;
 
 	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
-		RETURN_ERR(add_mipmaps(t, w, h, bpp, newData.get(), data_size));
+		RETURN_ERR(add_mipmaps(t, w, h, bpp, newData.get(), new_data_size));
 
 	CHECK_TEX(t);
 	return INFO::OK;
@@ -557,6 +629,39 @@ u8* tex_get_data(const Tex* t)
 	if(!p)
 		return 0;
 	return p + t->ofs;
+}
+
+// returns colour of 1x1 mipmap level
+u32 tex_get_average_colour(const Tex* t)
+{
+	// require mipmaps
+	if(!(t->flags & TEX_MIPMAPS))
+		return 0;
+
+	// find the total size of image data
+	size_t size = tex_img_size(t);
+
+	// compute the size of the last (1x1) mipmap level
+	const size_t data_padding = (t->flags & TEX_DXT)? 4 : 1;
+	size_t last_level_size = (size_t)(data_padding * data_padding * t->bpp/8);
+
+	// construct a new texture based on the current one,
+	// but set its data pointer offset to the last mipmap level's data
+	Tex basetex = *t;
+	basetex.w = 1;
+	basetex.h = 1;
+	basetex.ofs += size - last_level_size;
+
+	// convert to BGRA
+	WARN_ERR(tex_transform_to(&basetex, TEX_BGR | TEX_ALPHA));
+
+	// extract components into u32
+	debug_assert(basetex.dataSize >= basetex.ofs+4);
+	u8 b = basetex.data.get()[basetex.ofs];
+	u8 g = basetex.data.get()[basetex.ofs+1];
+	u8 r = basetex.data.get()[basetex.ofs+2];
+	u8 a = basetex.data.get()[basetex.ofs+3];
+	return b + (g << 8) + (r << 16) + (a << 24);
 }
 
 

@@ -373,6 +373,14 @@ extern LibError tex_transform_to(Tex* t, size_t new_flags);
 extern u8* tex_get_data(const Tex* t);
 
 /**
+ * return the ARGB value of the 1x1 mipmap level of the texture.
+ *
+ * @param t input texture object
+ * @return ARGB value (or 0 if texture does not have mipmaps)
+ **/
+extern u32 tex_get_average_colour(const Tex* t);
+
+/**
  * return total byte size of the image pixels. (including mipmaps!)
  * rationale: this is preferable to calculating manually because it's
  * less error-prone (e.g. confusing bits_per_pixel with bytes).
