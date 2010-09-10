@@ -230,7 +230,7 @@ namespace
 
 	template<> struct ToJSVal<bool>
 	{
-		static jsval Convert(JSContext* cx, const bool& val)
+		static jsval Convert(JSContext* WXUNUSED(cx), const bool& val)
 		{
 			return val ? JSVAL_TRUE : JSVAL_FALSE;
 		}

@@ -78,8 +78,11 @@ function TerrainPreviewPage(panel, name)
 }
 TerrainPreviewPage.prototype = {
 	reloadPreviews: function() {
+		this.panel.freeze();
 		this.scrolled.destroyChildren();
 		this.itemSizer.clear();
+
+		lastTerrainSelection = null; // clear any reference to deleted window
 
 		// TODO: Do something clever like load the preview images asynchronously,
 		// to avoid the annoying freeze when switching tabs
@@ -106,7 +109,9 @@ TerrainPreviewPage.prototype = {
 			this.itemSizer.add(imgSizer, 0, wxAlignment.CENTRE | wxStretch.EXPAND);
 		}
 
+		this.itemSizer.layout();
 		this.panel.layout();
+		this.panel.thaw();
 
 		// If not all textures were loaded yet, run a timer to reload the previews
 		// every so often until they've all finished
