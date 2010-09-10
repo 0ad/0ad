@@ -15,7 +15,12 @@ local function add_extern_lib_paths(extern_lib)
 	-- Often, the headers in libraries/ are windows-specific (always, except
 	-- for cxxtest and fcollada). So don't add the include dir unless on
 	-- windows or processing one of those libs.
-	if OS == "windows" or extern_lib == "cxxtest" or extern_lib == "fcollada" or extern_lib == "valgrind" then
+	if OS == "windows" or
+		extern_lib == "cxxtest" or
+		extern_lib == "fcollada" or
+		extern_lib == "valgrind" or
+		(extern_lib == "nvtt" and not options["with-system-nvtt"])
+	then
 		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
 		-- Insert libs at pos=1 (i.e. the front of the list) so they take
 		-- precedence over system libraries
@@ -156,6 +161,12 @@ extern_lib_defs = {
 				end
 			end
 		end,
+	},
+	nvtt = {
+		win_names  = { "nvtt" },
+		unix_names = { "nvtt" },
+		defines = { "NVTT_SHARED=1" },
+		dbg_suffix = "", -- for performance we always use the Release-mode version
 	},
 	openal = {
 		win_names  = { "openal32" },

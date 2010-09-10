@@ -6,6 +6,7 @@ addoption("icc", "Use Intel C++ Compiler (Linux only; should use either \"--cc i
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
+addoption("with-system-nvtt", "Search standard paths for nvidia-texture-tools library, instead of using bundled copy")
 addoption("bindir", "Directory for executables (typically '/usr/games'); default is to be relocatable")
 addoption("datadir", "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable")
 addoption("libdir", "Directory for libraries (typically '/usr/lib/games/0ad'); default is ./ relative to executable")
@@ -466,6 +467,7 @@ function setup_all_libs ()
 		"renderer"
 	}
 	extern_libs = {
+		"nvtt",
 		"opengl",
 		"sdl",	-- key definitions
 		"spidermonkey",	-- for graphics/scripting
@@ -615,6 +617,8 @@ used_extern_libs = {
 	"enet",
 
 	"valgrind",
+
+	"nvtt",
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.

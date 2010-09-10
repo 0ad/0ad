@@ -2,9 +2,17 @@
 
 die()
 {
-	echo ERROR: $*
-	exit 1
+  echo ERROR: $*
+  exit 1
 }
+
+with_system_nvtt=false
+for i in "$@"
+do
+  case $i in
+    --with-system-nvtt ) with_system_nvtt=true ;;
+  esac
+done
 
 cd "$(dirname $0)"
 # Now in build/workspaces/ (where we assume this script resides)
@@ -14,7 +22,13 @@ echo
 
 # Build/update bundled external libraries
 (cd ../../libraries/fcollada/src && make) || die "FCollada build failed"
+echo
 (cd ../../libraries/spidermonkey-tip && ./build.sh) || die "SpiderMonkey build failed"
+echo
+if [ "$with_system_nvtt" = "false" ]; then
+  (cd ../../libraries/nvtt && ./build.sh) || die "NVTT build failed"
+fi
+echo
 
 # Make sure workspaces/gcc exists.
 mkdir -p gcc
