@@ -405,14 +405,14 @@
 	</sprite>
 
 	<sprite name="wheatButton">
-		<image	texture="global/button/button_wood.dds"
+		<image	texture="global/button/button_wood.png"
 			real_texture_placement="0 0 160 31" 
 			size="0 0 100% 100%" 
 		/>
 	</sprite>
         
 	<sprite name="wheatButtonOver">
-		<image 	texture="global/button/button_wood.dds"
+		<image 	texture="global/button/button_wood.png"
 			real_texture_placement="0 32 160 64" 
 			size="0 0 100% 100%" 
 		/>
@@ -420,7 +420,7 @@
 
 	<sprite name="wheatButtonDisabled">
 		<effect grayscale="" />
-		<image 	texture="global/button/button_wood.dds"
+		<image 	texture="global/button/button_wood.png"
 			real_texture_placement="0 0 160 31" 
 			size="0 0 100% 100%" 
 		/>
@@ -428,7 +428,7 @@
 
 	<sprite name="wheatButtonGlow">
 		<effect	add_color="60 42 42 0" />
-		<image 	texture="global/button/button_wood.dds"
+		<image 	texture="global/button/button_wood.png"
 			real_texture_placement="0 0 160 31" 
 			size="0 0 100% 100%" 
 		/>
