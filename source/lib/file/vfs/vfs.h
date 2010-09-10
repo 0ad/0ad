@@ -93,6 +93,16 @@ struct IVFS
 	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
 
 	/**
+	 * Retrieve mount priority for a file.
+	 *
+	 * @param pathname
+	 * @param ppriority receives priority value, if the file can be found.
+	 *
+	 * @return LibError.
+	 **/
+	virtual LibError GetFilePriority(const VfsPath& pathname, size_t* ppriority) const = 0;
+
+	/**
 	 * Retrieve lists of all files and subdirectories in a directory.
 	 *
 	 * @return LibError.

@@ -75,6 +75,14 @@ public:
 		return INFO::OK;
 	}
 
+	virtual LibError GetFilePriority(const VfsPath& pathname, size_t* ppriority) const
+	{
+		VfsDirectory* directory; VfsFile* file;
+		RETURN_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
+		*ppriority = file->Priority();
+		return INFO::OK;
+	}
+
 	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
 	{
 		VfsDirectory* directory;
