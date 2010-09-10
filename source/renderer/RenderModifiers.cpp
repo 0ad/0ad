@@ -27,16 +27,13 @@
 
 #include "maths/Matrix3D.h"
 
-#include "ps/CLogger.h"
-
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
+#include "graphics/TextureManager.h"
 
 #include "renderer/RenderModifiers.h"
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
-
-#define LOG_CATEGORY L"graphics"
 
 
 
@@ -126,9 +123,9 @@ bool PlainRenderModifier::EndPass(int UNUSED(pass))
 	return true;
 }
 
-void PlainRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
+void PlainRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 {
-	g_Renderer.SetTexture(0, texture);
+	texture->Bind(0);
 }
 
 
@@ -209,9 +206,9 @@ bool PlainLitRenderModifier::EndPass(int UNUSED(pass))
 	return true;
 }
 
-void PlainLitRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
+void PlainLitRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 {
-	g_Renderer.SetTexture(0, texture);
+	texture->Bind(0);
 }
 
 
@@ -237,7 +234,7 @@ int WireframeRenderModifier::BeginPass(int pass)
 
 	// setup some renderstate ..
 	glDepthMask(0);
-	g_Renderer.SetTexture(0,0);
+	ogl_tex_bind(0, 0);
 	glColor4f(1,1,1,0.75f);
 	glLineWidth(1.0f);
 
@@ -261,7 +258,7 @@ bool WireframeRenderModifier::EndPass(int UNUSED(pass))
 }
 
 
-void WireframeRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* UNUSED(texture))
+void WireframeRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& UNUSED(texture))
 {
 }
 
@@ -285,7 +282,7 @@ SolidColorRenderModifier::~SolidColorRenderModifier()
 
 int SolidColorRenderModifier::BeginPass(int UNUSED(pass))
 {
-	g_Renderer.SetTexture(0,0);
+	ogl_tex_bind(0, 0);
 
 	return STREAM_POS;
 }
@@ -295,7 +292,7 @@ bool SolidColorRenderModifier::EndPass(int UNUSED(pass))
 	return true;
 }
 
-void SolidColorRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* UNUSED(texture))
+void SolidColorRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& UNUSED(texture))
 {
 }
 

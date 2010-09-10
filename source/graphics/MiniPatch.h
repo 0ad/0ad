@@ -40,7 +40,6 @@ public:
 	int Priority;
 
 	CTerrainTextureEntry* GetTextureEntry() { return Tex; }
-	Handle GetHandle() { return Tex ? Tex->GetHandle() : 0; }
 	int GetPriority() { return Priority; }
 };
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,12 +20,14 @@
  */
 
 #include "precompiled.h"
+
 #include "ParticleEmitter.h"
+
 #include "ParticleEngine.h"
+#include "graphics/TextureManager.h"
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "ps/XML/Xeromyces.h"
-#define LOG_CATEGORY L"particleSystem"
 
 //forward declaration
 void GetValueAndVariation(CXeromyces XeroFile, XMBElement parent, CStr& value, CStr& variation);
@@ -41,7 +43,6 @@ CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int UNUSED(textu
 	m_decrementAlpha = true;
 	m_renderParticles = true;
 	isFinished = false;
-	m_texture = NULL;
 	
 	// init the used/open list
 	m_usedList = NULL;
@@ -107,7 +108,7 @@ bool CEmitter::LoadXml(const VfsPath& pathname)
 
 	if( root.GetNodeName() != el_Emitter )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CEmitter::LoadEmitterXML: XML root was not \"Emitter\" in file %ls. Load failed.", pathname.string().c_str() );
+		LOGERROR(L"CEmitter::LoadXml: XML root was not \"Emitter\" in file %ls. Load failed.", pathname.string().c_str() );
 		return( false );
 	}
 
@@ -151,11 +152,8 @@ bool CEmitter::LoadXml(const VfsPath& pathname)
 				}
 				else if( settingName == el_Texture )
 				{
-					stringValue = settingElement.GetText();
-					m_texture = new CTexture(CStrW(stringValue));
-					u32 flags = 0;
-					if(!(CRenderer::GetSingletonPtr()->LoadTexture(m_texture, flags)))
-						return false;
+					CTextureProperties textureProps(CStrW(settingElement.GetText()));
+					m_texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 				}
 				else if( settingName == el_Size )
 				{
@@ -408,9 +406,7 @@ bool CEmitter::Render()
 			break;
 		}
 
-		// Bind the texture. Use the texture assigned to this emitter.
-		int unit = 0;
-		g_Renderer.SetTexture(unit, m_texture);
+		m_texture->Bind();
 
 		glBegin(GL_QUADS);
 		{

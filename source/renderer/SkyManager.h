@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 #ifndef INCLUDED_SKYMANAGER
 #define INCLUDED_SKYMANAGER
 
-#include "ps/Overlay.h"
+#include "graphics/Texture.h"
 
 /**
  * Class SkyManager: Maintain sky settings and textures, and render the sky.
@@ -35,22 +35,6 @@ public:
 
 public:
 	SkyManager();
-	~SkyManager();
-
-	/**
-	 * LoadSkyTextures: Load sky textures from within the
-	 * progressive load framework.
-	 *
-	 * @return 0 if loading has completed, a value from 1 to 100 (in percent of completion)
-	 * if more textures need to be loaded and a negative error value on failure.
-	 */
-	int LoadSkyTextures();
-
-	/**
-	 * UnloadSkyTextures: Free any loaded sky textures and reset the internal state
-	 * so that another call to LoadSkyTextures will begin progressive loading.
-	 */
-	void UnloadSkyTextures();
 
 	/**
 	 * RenderSky: Render the sky.
@@ -76,11 +60,7 @@ public:
 	std::vector<CStrW> GetSkySets() const;
 
 private:
-	/**
-	 * load texture file from skyset and store in m_SkyTexture
-	 * @param index 0..numTextures-1
-	 **/
-	LibError LoadSkyTexture(size_t index);
+	void LoadSkyTextures();
 
 	/// Name of current skyset (a directory within art/textures/skies)
 	CStrW m_SkySet;
@@ -97,13 +77,10 @@ private:
 	};
 
 	// Sky textures
-	Handle m_SkyTexture[numTextures];
+	CTexturePtr m_SkyTexture[numTextures];
 
 	// Array of image names (defined in SkyManager.cpp), in the order of the IMG_ id's
 	static const wchar_t* s_imageNames[numTextures];
-
-	/// State of progressive loading (in # of loaded textures)
-	size_t cur_loading_tex;
 };
 
 

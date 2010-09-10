@@ -60,7 +60,6 @@
 #include "simulation2/Simulation2.h"
 
 #define LOG_CATEGORY L"script"
-extern bool g_TerrainModified;
 
 // rationale: the function table is now at the end of the source file to
 // avoid the need for forward declarations for every function.

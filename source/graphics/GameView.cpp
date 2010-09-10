@@ -48,7 +48,6 @@
 #include "ps/Pyrogenesis.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
-#include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "scripting/ScriptableObject.h"
 #include "simulation/LOSManager.h"
@@ -387,7 +386,6 @@ void CGameView::RegisterInit()
 	RegMemFun(g_TexMan.GetSingletonPtr(), &CTerrainTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);
 	RegMemFun(g_Renderer.GetSingletonPtr(), &CRenderer::LoadAlphaMaps, L"LoadAlphaMaps", 5);
 	RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
-	RegMemFun(g_Renderer.GetSingletonPtr()->GetSkyManager(), &SkyManager::LoadSkyTextures, L"LoadSkyTextures", 15);
 }
 
 

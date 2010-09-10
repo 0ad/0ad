@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,25 +15,17 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Billboarding sprite class - always faces the camera. It does this by
- * getting the current model view matrix state.
- */
-
-// Usage: Instantiate, then be sure to pass a loaded
-// (using ogl_tex_load()) texture before calling Render().
-
 #include "precompiled.h"
 
 #include "Sprite.h"
+
+#include "graphics/TextureManager.h"
 #include "renderer/Renderer.h"
 #include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
 
-CSprite::CSprite() :
-m_texture(NULL) 
+CSprite::CSprite()
 {
-
 	// default scale 1:1
 	m_scale.X = m_scale.Y = m_scale.Z = 1.0f;
 	
@@ -59,8 +51,8 @@ void CSprite::Render()
 	BeginBillboard();
 	glDisable(GL_CULL_FACE);
 
-	if ( m_texture && m_texture->GetHandle() != 0 )
-		(void)ogl_tex_bind(m_texture->GetHandle());
+	if (m_texture)
+		m_texture->Bind();
 
 	glColor4fv(m_colour);
 
@@ -87,12 +79,9 @@ void CSprite::Render()
 	EndBillboard();
 }
 
-int CSprite::SetTexture(CTexture *texture) 
+void CSprite::SetTexture(const CTexturePtr& texture)
 {
-	if (texture == NULL) return -1;
-	
 	m_texture = texture;
-	return 0;
 }
 
 void CSprite::SetSize(float width, float height) 

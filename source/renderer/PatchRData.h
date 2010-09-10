@@ -25,6 +25,7 @@
 #include "VertexBufferManager.h"
 
 class CPatch;
+class CTerrainTextureEntry;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // CPatchRData: class encapsulating logic for rendering terrain patches; holds per
@@ -45,8 +46,8 @@ private:
 	struct SSplat {
 		SSplat() : m_Texture(0), m_IndexCount(0) {}
 
-		// handle of texture to apply during splat
-		Handle m_Texture;
+		// texture to apply during splat
+		CTerrainTextureEntry* m_Texture;
 		// offset into the index array for this patch where splat starts
 		size_t m_IndexStart;
 		// number of indices used by splat
@@ -76,9 +77,9 @@ private:
 	};
 
 	struct STex {
-		bool operator==(const STex& rhs) const { return m_Handle==rhs.m_Handle; }
+		bool operator==(const STex& rhs) const { return m_Texture==rhs.m_Texture; }
 		bool operator<(const STex& rhs) const { return m_Priority<rhs.m_Priority; }
-		Handle m_Handle;
+		CTerrainTextureEntry* m_Texture;
 		int m_Priority;
 	};
 

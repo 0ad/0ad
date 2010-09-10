@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,12 +18,14 @@
 #ifndef GUIRenderer_h
 #define GUIRenderer_h
 
+#include "graphics/Texture.h"
 #include "lib/res/handle.h"
 #include "ps/Overlay.h"
 #include "ps/CStr.h"
 #include <vector>
 
 struct SGUIImageEffects;
+struct SGUIImage;
 
 namespace GUIRenderer
 {
@@ -31,22 +33,28 @@ namespace GUIRenderer
 	{
 	public:
 		virtual ~IGLState() {};
-		virtual void Set(Handle tex)=0;
+		virtual void Set(const CTexturePtr& tex)=0;
 		virtual void Unset()=0;
 	};
 
 	struct SDrawCall
 	{
-		SDrawCall() : m_TexHandle(0), m_Effects(NULL) {}
+		SDrawCall(const SGUIImage* image) : m_Image(image), m_Effects(NULL) {}
+		CRect ComputeTexCoords() const;
 
-		Handle m_TexHandle;
+		const SGUIImage* m_Image;
+
+		bool m_HasTexture;
+		CTexturePtr m_Texture;
+
+		CRect m_ObjectSize;
+		int m_CellID;
 
 		bool m_EnableBlending;
 
 		IGLState* m_Effects;
 
 		CRect m_Vertices;
-		CRect m_TexCoords;
 		float m_DeltaZ;
 
 		CColor m_BorderColor; // == CColor() for no border

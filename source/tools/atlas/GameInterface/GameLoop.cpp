@@ -28,6 +28,7 @@
 
 #include "InputProcessor.h"
 
+#include "graphics/TextureManager.h"
 #include "gui/GUIManager.h"
 #include "lib/app_hooks.h"
 #include "lib/external_libraries/sdl.h"
@@ -37,6 +38,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/GameSetup/Paths.h"
+#include "renderer/Renderer.h"
 #include "scripting/ScriptingHost.h"
 
 using namespace AtlasMessage;
@@ -93,6 +95,23 @@ static ErrorReaction AtlasDisplayError(const wchar_t* text, size_t flags)
 	Atlas_DisplayError(text, flags);
 
 	return ER_CONTINUE;
+}
+
+static void RendererIncrementalLoad()
+{
+	// TODO: shouldn't duplicate this code from main.cpp
+
+	if (!CRenderer::IsInitialised())
+		return;
+
+	const double maxTime = 0.1f;
+
+	double startTime = timer_Time();
+	bool more;
+	do {
+		more = g_Renderer.GetTextureManager().MakeProgress();
+	}
+	while (more && timer_Time() - startTime < maxTime);
 }
 
 bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll) 
@@ -231,6 +250,8 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		// Do per-frame processing:
 
 		ReloadChangedFiles();
+
+		RendererIncrementalLoad();
 
 		// Pump SDL events (e.g. hotkeys)
 		SDL_Event_ ev;

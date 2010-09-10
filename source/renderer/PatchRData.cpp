@@ -21,7 +21,6 @@
 #include <set>
 #include <algorithm>
 #include "ps/Pyrogenesis.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "graphics/LightEnv.h"
 #include "Renderer.h"
 #include "renderer/PatchRData.h"
@@ -70,12 +69,12 @@ CPatchRData::~CPatchRData()
 }
 
 
-static Handle GetTerrainTileTexture(CTerrain* terrain,ssize_t gx,ssize_t gz)
+static CTerrainTextureEntry* GetTerrainTileTexture(CTerrain* terrain, ssize_t gx, ssize_t gz)
 {
-	CMiniPatch* mp=terrain->GetTile(gx,gz);
+	CMiniPatch* mp = terrain->GetTile(gx, gz);
 	if (!mp)
 		return 0;
-	return mp->GetHandle();
+	return mp->GetTextureEntry();
 }
 
 const float uvFactor = 0.125f / sqrt(2.f);
@@ -87,7 +86,7 @@ static void CalculateUV(float uv[2], ssize_t x, ssize_t z)
 }
 
 struct STmpSplat {
-	Handle m_Texture;
+	CTerrainTextureEntry* m_Texture;
 	u16 m_Indices[4];
 };
 
@@ -103,7 +102,7 @@ void CPatchRData::BuildBlends()
 	// temporary list of splats
 	std::vector<STmpSplat> splats;
 	// set of textures used for splats
-	std::set<Handle> splatTextures;
+	std::set<CTerrainTextureEntry*> splatTextures;
 
 	// for each tile in patch ..
 	for (ssize_t j=0;j<PATCH_SIZE;j++) {
@@ -120,7 +119,7 @@ void CPatchRData::BuildBlends()
 					if (nmp && nmp->GetTextureEntry() != mp->GetTextureEntry()) {
 						if (nmp->GetPriority() > mp->GetPriority() || (nmp->GetPriority() == mp->GetPriority() && nmp->GetTextureEntry() > mp->GetTextureEntry())) {
 							STex tex;
-							tex.m_Handle=nmp->GetHandle();
+							tex.m_Texture=nmp->GetTextureEntry();
 							tex.m_Priority=nmp->GetPriority();
 							if (std::find(neighbourTextures.begin(),neighbourTextures.end(),tex)==neighbourTextures.end()) {
 								neighbourTextures.push_back(tex);
@@ -145,9 +144,9 @@ void CPatchRData::BuildBlends()
 						ssize_t oz=gz+BlendOffsets[m][0];
 
 						// get texture on adjacent tile
-						Handle atex=GetTerrainTileTexture(terrain,ox,oz);
+						CTerrainTextureEntry* atex=GetTerrainTileTexture(terrain,ox,oz);
 						// fill 0/1 into shape array
-						shape[m]=(atex==neighbourTextures[k].m_Handle) ? 0 : 1;
+						shape[m]=(atex==neighbourTextures[k].m_Texture) ? 0 : 1;
 					}
 
 					// calculate the required alphamap and the required rotation of the alphamap from blendshape
@@ -239,7 +238,7 @@ void CPatchRData::BuildBlends()
 
 						// build a splat for this quad
 						STmpSplat splat;
-						splat.m_Texture=neighbourTextures[k].m_Handle;
+						splat.m_Texture=neighbourTextures[k].m_Texture;
 						splat.m_Indices[0]=(u16)(vindex);
 						splat.m_Indices[1]=(u16)(vindex+1);
 						splat.m_Indices[2]=(u16)(vindex+2);
@@ -270,9 +269,9 @@ void CPatchRData::BuildBlends()
 
 		debug_assert(m_VBBlends->m_Index < 65536);
 		unsigned short base = (unsigned short)m_VBBlends->m_Index;
-		std::set<Handle>::iterator iter=splatTextures.begin();
+		std::set<CTerrainTextureEntry*>::iterator iter=splatTextures.begin();
 		for (;iter!=splatTextures.end();++iter) {
-			Handle tex=*iter;
+			CTerrainTextureEntry* tex=*iter;
 
 			SSplat& splat=m_BlendSplats[splatCount];
 			splat.m_IndexStart=m_BlendIndices.size();
@@ -306,14 +305,14 @@ void CPatchRData::BuildIndices()
 	m_Splats.clear();
 
 	// build grid of textures on this patch and boundaries of adjacent patches
-	std::vector<Handle> textures;
-	Handle texgrid[PATCH_SIZE][PATCH_SIZE];
+	std::vector<CTerrainTextureEntry*> textures;
+	CTerrainTextureEntry* texgrid[PATCH_SIZE][PATCH_SIZE];
 	for (ssize_t j=0;j<PATCH_SIZE;j++) {
 		for (ssize_t i=0;i<PATCH_SIZE;i++) {
-			Handle h=m_Patch->m_MiniPatches[j][i].GetHandle();
-			texgrid[j][i]=h;
-			if (std::find(textures.begin(),textures.end(),h)==textures.end()) {
-				textures.push_back(h);
+			CTerrainTextureEntry* tex=m_Patch->m_MiniPatches[j][i].GetTextureEntry();
+			texgrid[j][i]=tex;
+			if (std::find(textures.begin(),textures.end(),tex)==textures.end()) {
+				textures.push_back(tex);
 			}
 		}
 	}
@@ -323,15 +322,15 @@ void CPatchRData::BuildIndices()
 	// build indices for base splats
 	size_t base=m_VBBase->m_Index;
 	for (size_t i=0;i<m_Splats.size();i++) {
-		Handle h=textures[i];
+		CTerrainTextureEntry* tex=textures[i];
 
 		SSplat& splat=m_Splats[i];
-		splat.m_Texture=h;
+		splat.m_Texture=tex;
 		splat.m_IndexStart=m_Indices.size();
 
 		for (ssize_t j=0;j<PATCH_SIZE;j++) {
 			for (ssize_t i=0;i<PATCH_SIZE;i++) {
-				if (texgrid[j][i]==h){
+				if (texgrid[j][i]==tex){
 					m_Indices.push_back(u16(((j+0)*vsize+(i+0))+base));
 					m_Indices.push_back(u16(((j+0)*vsize+(i+1))+base));
 					m_Indices.push_back(u16(((j+1)*vsize+(i+1))+base));
@@ -516,7 +515,11 @@ void CPatchRData::RenderBase(bool losColor)
 	// render each splat
 	for (size_t i=0;i<m_Splats.size();i++) {
 		SSplat& splat=m_Splats[i];
-		ogl_tex_bind(splat.m_Texture);
+
+		if (splat.m_Texture)
+			splat.m_Texture->GetTexture()->Bind();
+		else
+			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
 
 		if (!g_Renderer.m_SkipSubmit) {
 			glDrawElements(GL_QUADS, (GLsizei)splat.m_IndexCount,
@@ -588,7 +591,11 @@ void CPatchRData::RenderBlends()
 
 	for (size_t i=0;i<m_BlendSplats.size();i++) {
 		SSplat& splat=m_BlendSplats[i];
-		ogl_tex_bind(splat.m_Texture);
+
+		if (splat.m_Texture)
+			splat.m_Texture->GetTexture()->Bind();
+		else
+			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
 
 		if (!g_Renderer.m_SkipSubmit) {
 			glDrawElements(GL_QUADS, (GLsizei)splat.m_IndexCount,

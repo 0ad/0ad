@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,7 @@
 #include "ps/ProfileViewer.h"
 #include "graphics/Camera.h"
 #include "graphics/Texture.h"
+#include "graphics/TextureManager.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Terrain.h"
 #include "graphics/Model.h"
@@ -214,6 +215,9 @@ public:
 	/// Sky manager
 	SkyManager skyManager;
 
+	/// Texture manager
+	CTextureManager textureManager;
+
 	/// Terrain renderer
 	TerrainRenderer* terrainRenderer;
 
@@ -273,7 +277,7 @@ public:
 
 
 	CRendererInternals()
-	: IsOpen(false), profileTable(g_Renderer.m_Stats)
+	: IsOpen(false), profileTable(g_Renderer.m_Stats), textureManager(g_VFS)
 	{
 		terrainRenderer = new TerrainRenderer();
 		shadow = new ShadowMap();
@@ -889,7 +893,7 @@ void CRenderer::RenderPatches()
 
 		// setup some renderstate ..
 		glDepthMask(0);
-		SetTexture(0,0);
+		ogl_tex_bind(0, 0);
 		glColor4f(1,1,1,0.35f);
 		glLineWidth(2.0f);
 
@@ -1326,7 +1330,7 @@ void CRenderer::RenderSubmissions()
 // EndFrame: signal frame end
 void CRenderer::EndFrame()
 {
-	g_Renderer.SetTexture(0,0);
+	ogl_tex_bind(0, 0);
 
 	static bool once=false;
 	if (!once && glGetError()) {
@@ -1441,48 +1445,6 @@ void CRenderer::RenderScene(Scene *scene)
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// LoadTexture: try and load the given texture; set clamp/repeat flags on texture object if necessary
-bool CRenderer::LoadTexture(CTexture* texture,int wrapflags)
-{
-	const Handle errorhandle = -1;
-
-	Handle h = texture->GetHandle();
-	// already tried to load this texture
-	if (h)
-	{
-		// nothing to do here - just return success according to
-		// whether this is a valid handle or not
-		return h==errorhandle ? true : false;
-	}
-
-	h = ogl_tex_load(g_VFS, texture->GetName());
-	if (h <= 0)
-	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"LoadTexture failed on \"%ls\"", texture->GetName().string().c_str());
-		texture->SetHandle(errorhandle);
-		return false;
-	}
-
-	if(!wrapflags)
-		wrapflags = GL_CLAMP_TO_EDGE;
-	(void)ogl_tex_set_wrap(h, wrapflags);
-	(void)ogl_tex_set_filter(h, GL_LINEAR_MIPMAP_LINEAR);
-
-	// (this also verifies that the texture is a power-of-two)
-	if(ogl_tex_upload(h) < 0)
-	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"LoadTexture failed on \"%ls\" : upload failed", texture->GetName().string().c_str());
-		ogl_tex_free(h);
-		texture->SetHandle(errorhandle);
-		return false;
-	}
-
-	texture->SetHandle(h);
-	return true;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BindTexture: bind a GL texture object to current active unit
 void CRenderer::BindTexture(int unit,GLuint tex)
 {
@@ -1495,32 +1457,6 @@ void CRenderer::BindTexture(int unit,GLuint tex)
 		glDisable(GL_TEXTURE_2D);
 	}
 	m_ActiveTextures[unit]=tex;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SetTexture: set the given unit to reference the given texture; pass a null texture to disable texturing on any unit
-void CRenderer::SetTexture(int unit,CTexture* texture)
-{
-	Handle h = texture? texture->GetHandle() : 0;
-
-	// Errored textures will give a handle of -1
-	if (h == -1)
-		h = 0;
-
-	ogl_tex_bind(h, unit);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// IsTextureTransparent: return true if given texture is transparent, else false - note texture must be loaded
-// beforehand
-bool CRenderer::IsTextureTransparent(CTexture* texture)
-{
-	if (!texture) return false;
-	Handle h=texture->GetHandle();
-
-	size_t flags = 0;	// assume no alpha on failure
-	(void)ogl_tex_get_format(h, &flags, 0);
-	return (flags & TEX_ALPHA) != 0;
 }
 
 static inline void CopyTriple(unsigned char* dst,const unsigned char* src)
@@ -1765,4 +1701,7 @@ void CRenderer::ScriptingInit()
 }
 
 
-
+CTextureManager& CRenderer::GetTextureManager()
+{
+	return m->textureManager;
+}

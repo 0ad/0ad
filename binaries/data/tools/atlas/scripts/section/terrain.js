@@ -69,14 +69,64 @@ function TerrainPreviewPage(panel, name)
 {
 	this.panel = panel;
 	this.name = name;
+
+	// Size of texture preview images
+	this.w = 120
+	this.h = 40;
+
+	this.previewReloadTimer = null;
 }
 TerrainPreviewPage.prototype = {
+	reloadPreviews: function() {
+		this.scrolled.destroyChildren();
+		this.itemSizer.clear();
+
+		// TODO: Do something clever like load the preview images asynchronously,
+		// to avoid the annoying freeze when switching tabs
+		var previews = Atlas.Message.GetTerrainGroupPreviews(this.name, this.w, this.h).previews;
+		var i = 0;
+		var names = [];
+		var allLoaded = true;
+		for each (var p in previews)
+		{
+			if (!p.loaded)
+				allLoaded = false;
+
+			// Create a wrapped-text label (replacing '_' with ' ' so there are more wrapping opportunities)
+			var labelText = p.name.replace(/_/g, ' ');
+			var label = new wxStaticText(this.scrolled, -1, labelText, wxDefaultPosition, wxDefaultSize, wxStaticText.ALIGN_CENTER);
+			label.wrap(this.w);
+			
+			var imgSizer = new wxBoxSizer(wxOrientation.VERTICAL);
+			var button = new wxBitmapButton(this.scrolled, -1, p.imagedata);
+			button.terrainName = p.name;
+			button.onClicked = onTerrainSelect;
+			imgSizer.add(button, 0, wxAlignment.CENTRE);
+			imgSizer.add(label, 1, wxAlignment.CENTRE);
+			this.itemSizer.add(imgSizer, 0, wxAlignment.CENTRE | wxStretch.EXPAND);
+		}
+
+		this.panel.layout();
+
+		// If not all textures were loaded yet, run a timer to reload the previews
+		// every so often until they've all finished
+		if (allLoaded && this.previewReloadTimer)
+		{
+			this.previewReloadTimer.stop();
+			this.previewReloadTimer = null;
+		}
+		else if (!allLoaded && !this.previewReloadTimer)
+		{
+			this.previewReloadTimer = new wxTimer();
+			var self = this;
+			this.previewReloadTimer.onNotify = function() { self.reloadPreviews(); };
+			this.previewReloadTimer.start(2000);
+		}
+	},
+
 	display: function() {
 		if (this.loaded)
 			return;
-
-		// Size of texture preview images
-		var w = 120, h = 40;
 		
 		this.panel.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
 		var scrolled = new wxScrolledWindow(this.panel, -1, wxDefaultPosition, wxDefaultSize, wxWindow.VSCROLL);
@@ -89,35 +139,16 @@ TerrainPreviewPage.prototype = {
 		
 		// Adjust the number of columns to fit in the available area
 		scrolled.onSize = function (evt) {
-			var numCols = Math.max(1, Math.floor(evt.size.width / (w+16)));
+			var numCols = Math.max(1, Math.floor(evt.size.width / (this.w+16)));
 			if (itemSizer.cols != numCols)
 				itemSizer.cols = numCols;
 		};
 		
-		// TODO: Do something clever like load the preview images asynchronously,
-		// to avoid the annoying freeze when switching tabs
-		var previews = Atlas.Message.GetTerrainGroupPreviews(this.name, w, h).previews;
-		var i = 0;
-		var names = [];
-		for each (var p in previews)
-		{
-			// Create a wrapped-text label (replacing '_' with ' ' so there are more wrapping opportunities)
-			var labelText = p.name.replace(/_/g, ' ');
-			var label = new wxStaticText(scrolled, -1, labelText, wxDefaultPosition, wxDefaultSize, wxStaticText.ALIGN_CENTER);
-			label.wrap(w);
-			
-			var imgSizer = new wxBoxSizer(wxOrientation.VERTICAL);
-			var button = new wxBitmapButton(scrolled, -1, p.imagedata);
-			button.terrainName = p.name;
-			button.onClicked = onTerrainSelect;
-			imgSizer.add(button, 0, wxAlignment.CENTRE);
-			imgSizer.add(label, 1, wxAlignment.CENTRE);
-			itemSizer.add(imgSizer, 0, wxAlignment.CENTRE | wxStretch.EXPAND);
-		}
+		this.scrolled = scrolled;
+		this.itemSizer = itemSizer;
+		this.reloadPreviews();
 
 		// TODO: fix keyboard navigation of the terrain previews
-
-		this.panel.layout();
 
 		this.loaded = true;
 	}

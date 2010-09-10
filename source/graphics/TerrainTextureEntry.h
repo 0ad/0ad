@@ -15,16 +15,17 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_TEXTUREENTRY
-#define INCLUDED_TEXTUREENTRY
+#ifndef INCLUDED_TERRAINTEXTUREENTRY
+#define INCLUDED_TERRAINTEXTUREENTRY
 
 #include <map>
+
+#include "TerrainTextureManager.h"
+#include "TextureManager.h"
 
 #include "lib/res/handle.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
-
-#include "TerrainTextureManager.h"
 
 class XMBElement;
 class CXeromyces;
@@ -44,9 +45,7 @@ private:
 	// The property sheet used by this texture
 	CTerrainPropertiesPtr m_pProperties;
 	
-	VfsPath m_TexturePath;
-	
-	Handle m_Handle; // handle to GL texture data
+	CTexturePtr m_Texture;
 	
 	// BGRA color of topmost mipmap level, for coloring minimap, or a color
 	// specified by the terrain properties
@@ -57,8 +56,6 @@ private:
 	// All terrain type groups we're a member of
 	GroupVector m_Groups;
 
-	// load texture from file
-	void LoadTexture();
 	// calculate the root color of the texture, used for coloring minimap
 	void BuildBaseColor();
 
@@ -74,13 +71,9 @@ public:
 	CTerrainPropertiesPtr GetProperties() const
 	{ return m_pProperties; }
 	
-	VfsPath GetTexturePath() const
-	{ return m_TexturePath; }
-
 	// Get texture handle, load texture if not loaded.
-	Handle GetHandle() { 
-		if (m_Handle==-1) LoadTexture();
-		return m_Handle; 
+	const CTexturePtr& GetTexture() {
+		return m_Texture;
 	}
 	// Get mipmap color in BGRA format
 	u32 GetBaseColor() {
@@ -93,9 +86,6 @@ public:
 	{ return m_Groups[0]->GetIndex(); }
 	const GroupVector &GetGroups() const
 	{ return m_Groups; }
-	
-	// returns whether this texture-entry has loaded any data yet
-	bool IsLoaded() { return (m_Handle!=-1); }
 };
 
 #endif 

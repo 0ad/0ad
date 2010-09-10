@@ -450,11 +450,11 @@ void TerrainRenderer::RenderWater()
 
 	if(fancy)
 	{
-		ogl_tex_bind(WaterMgr->m_NormalMap[curTex], 0);
+		WaterMgr->m_NormalMap[curTex]->Bind();
 	}
 	else
 	{
-		ogl_tex_bind(WaterMgr->m_WaterTexture[curTex], 0);
+		WaterMgr->m_WaterTexture[curTex]->Bind();
 	}
 
 	// Shift the texture coordinates by these amounts to make the water "flow"

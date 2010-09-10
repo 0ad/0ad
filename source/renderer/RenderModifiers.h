@@ -25,12 +25,11 @@
 #define INCLUDED_RENDERMODIFIERS
 
 #include "ModelRenderer.h"
-
+#include "graphics/Texture.h"
 
 class CLightEnv;
 class CMatrix3D;
 class CModel;
-class CTexture;
 class ShadowMap;
 
 /**
@@ -94,7 +93,7 @@ public:
 	 * @param pass The current pass number (pass == 0 is the first pass)
 	 * @param texture The texture used by subsequent models
 	 */
-	virtual void PrepareTexture(int pass, CTexture* texture) = 0;
+	virtual void PrepareTexture(int pass, CTexturePtr& texture) = 0;
 
 	/**
 	 * PrepareModel: Called before rendering the given model.
@@ -172,7 +171,7 @@ public:
 	// Implementation
 	int BeginPass(int pass);
 	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 };
 
 
@@ -191,7 +190,7 @@ public:
 	int BeginPass(int pass);
 	const CMatrix3D* GetTexGenMatrix(int pass);
 	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 };
 
 
@@ -207,7 +206,7 @@ public:
 	// Implementation
 	int BeginPass(int pass);
 	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 };
 
@@ -227,7 +226,7 @@ public:
 	// Implementation
 	int BeginPass(int pass);
 	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 };
 

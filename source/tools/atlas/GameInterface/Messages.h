@@ -196,6 +196,7 @@ QUERY(GetTerrainGroups,
 struct sTerrainGroupPreview
 {
 	Shareable<std::wstring> name;
+	Shareable<bool> loaded;
 	Shareable<int> imagewidth;
 	Shareable<int> imageheight;
 	Shareable<std::vector<unsigned char> > imagedata; // RGB*width*height

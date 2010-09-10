@@ -32,6 +32,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
+#include "graphics/TextureManager.h"
 
 #include "renderer/ModelRenderer.h"
 #include "renderer/ModelVertexRenderer.h"
@@ -324,7 +325,6 @@ void BatchModelRenderer::Submit(CModel* model)
 		rdata = bmrdata;
 		model->SetRenderData(bmrdata);
 		model->SetDirty(~0u);
-		g_Renderer.LoadTexture(model->GetTexture(), GL_CLAMP_TO_EDGE);
 	}
 
 	// Add the model def tracker to the submission list if necessary
@@ -335,14 +335,14 @@ void BatchModelRenderer::Submit(CModel* model)
 	}
 
 	// Add the bmrdata to the modeldef list
-	Handle htex = model->GetTexture()->GetHandle();
+	CTexturePtr tex = model->GetTexture();
 	size_t idx;
 
 	for(idx = 0; idx < mdeftracker->m_Slots; ++idx)
 	{
 		BMRModelData* in = mdeftracker->m_ModelSlots[idx];
 
-		if (in->GetModel()->GetTexture()->GetHandle() == htex)
+		if (in->GetModel()->GetTexture() == tex)
 			break;
 	}
 

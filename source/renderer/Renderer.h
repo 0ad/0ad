@@ -37,11 +37,11 @@ class CPatch;
 class CMaterial;
 class CModel;
 class CLightEnv;
-class CTexture;
 
 class RenderPathVertexShader;
 class WaterManager;
 class SkyManager;
+class CTextureManager;
 
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
@@ -247,15 +247,8 @@ public:
 	// get the mode to render subsequent models
 	ERenderMode GetModelRenderMode() const { return m_ModelRenderMode; }
 
-	// try and load the given texture
-	bool LoadTexture(CTexture* texture,int wrapflags);
-	// set the given unit to reference the given texture; pass a null texture to disable texturing on any unit;
-	// active texture unit always set to given unit on exit
-	void SetTexture(int unit,CTexture* texture);
 	// bind a GL texture object to active unit
 	void BindTexture(int unit,GLuint tex);
-	// query transparency of given texture
-	bool IsTextureTransparent(CTexture* texture);
 
 	// load the default set of alphamaps.
 	// return a negative error code if anything along the way fails.
@@ -290,6 +283,8 @@ public:
 	 * @return the SkyManager object used by the renderer
 	 */
 	SkyManager* GetSkyManager() { return m_SkyManager; }
+
+	CTextureManager& GetTextureManager();
 
 	/**
 	 * SetFastPlayerColor: Tell the renderer which path to take for

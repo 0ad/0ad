@@ -27,10 +27,8 @@
 
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
+#include "graphics/TextureManager.h"
 
-#include "ps/CLogger.h"
-
-#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,11 +121,11 @@ bool FastPlayerColorRender::EndPass(int UNUSED(pass))
 	return true;
 }
 
-void FastPlayerColorRender::PrepareTexture(int UNUSED(pass), CTexture* texture)
+void FastPlayerColorRender::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 {
-	g_Renderer.SetTexture(2, texture);
-	g_Renderer.SetTexture(1, texture);
-	g_Renderer.SetTexture(0, texture);
+	texture->Bind(2);
+	texture->Bind(1);
+	texture->Bind(0);
 }
 
 void FastPlayerColorRender::PrepareModel(int UNUSED(pass), CModel* model)
@@ -234,11 +232,11 @@ bool SlowPlayerColorRender::EndPass(int pass)
 	return true;
 }
 
-void SlowPlayerColorRender::PrepareTexture(int pass, CTexture* texture)
+void SlowPlayerColorRender::PrepareTexture(int pass, CTexturePtr& texture)
 {
 	if (pass == 1)
-		g_Renderer.SetTexture(1, texture);
-	g_Renderer.SetTexture(0, texture);
+		texture->Bind(1);
+	texture->Bind(0);
 }
 
 
@@ -393,10 +391,10 @@ const CMatrix3D* LitPlayerColorRender::GetTexGenMatrix(int UNUSED(pass))
 	return &GetShadowMap()->GetTextureMatrix();
 }
 
-void LitPlayerColorRender::PrepareTexture(int pass, CTexture* texture)
+void LitPlayerColorRender::PrepareTexture(int pass, CTexturePtr& texture)
 {
 	if (pass == 0)
-		g_Renderer.SetTexture(0, texture);
+		texture->Bind(0);
 }
 
 void LitPlayerColorRender::PrepareModel(int pass, CModel* model)
@@ -410,6 +408,3 @@ void LitPlayerColorRender::PrepareModel(int pass, CModel* model)
 		glColor3f(colour.r, colour.g, colour.b);
 	}
 }
-
-
-

@@ -23,8 +23,6 @@
 class CCamera;
 class CTerrain;
 
-extern bool g_TerrainModified;
-
 class CMiniMap : public IGUIObject
 {
     GUI_OBJECT(CMiniMap)
@@ -67,6 +65,9 @@ protected:
     // texture data
     u32* m_TerrainData;
     u8* m_LOSData;
+
+    // whether we need to regenerate the terrain texture
+    bool m_TerrainDirty;
 
     ssize_t m_Width, m_Height;
 

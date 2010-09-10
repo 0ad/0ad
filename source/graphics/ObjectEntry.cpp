@@ -26,6 +26,8 @@
 #include "MaterialManager.h"
 #include "MeshManager.h"
 #include "SkeletonAnim.h"
+#include "TextureManager.h"
+#include "renderer/Renderer.h"
 
 #include "lib/rand.h"
 
@@ -91,10 +93,15 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	// delete old model, create new 
 	delete m_Model;
 	m_Model = new CModel(objectManager.GetSkeletonAnimManager());
-	m_Model->SetTexture(CTexture(m_TextureName));
 	m_Model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
 	m_Model->InitModel(modeldef);
 	m_Model->SetPlayerColor(m_Color);
+
+	CTextureProperties textureProps(m_TextureName);
+	textureProps.SetWrap(GL_CLAMP_TO_EDGE);
+	CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+	texture->Prefetch(); // if we've loaded this model we're probably going to render it soon, so prefetch its texture
+	m_Model->SetTexture(texture);
 
 	// calculate initial object space bounds, based on vertex positions
 	m_Model->CalcObjectBounds();

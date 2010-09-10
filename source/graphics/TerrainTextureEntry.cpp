@@ -30,11 +30,19 @@
 
 CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
 	m_pProperties(props),
-	m_Handle(-1),
 	m_BaseColor(0),
-	m_BaseColorValid(false),
-	m_TexturePath(path)
+	m_BaseColorValid(false)
 {
+	CTextureProperties texture(path);
+	texture.SetWrap(GL_REPEAT);
+
+	// TODO: anisotropy should probably be user-configurable, but we want it to be
+	// at least 2 for terrain else the ground looks very blurry when you tilt the
+	// camera upwards
+	texture.SetMaxAnisotropy(2.0f);
+
+	m_Texture = g_Renderer.GetTextureManager().CreateTexture(texture);
+
 	if (m_pProperties)
 		m_Groups = m_pProperties->GetGroups();
 	
@@ -42,64 +50,31 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const Vf
 	for (;it!=m_Groups.end();++it)
 		(*it)->AddTerrain(this);
 	
-	m_Tag = fs::basename(m_TexturePath);
+	m_Tag = fs::basename(path);
 }
 
 CTerrainTextureEntry::~CTerrainTextureEntry()
 {
-	if (m_Handle > 0)
-		(void)ogl_tex_free(m_Handle);
-
 	for (GroupVector::iterator it=m_Groups.begin();it!=m_Groups.end();++it)
 		(*it)->RemoveTerrain(this);
-}
-
-// LoadTexture: actually load the texture resource from file
-void CTerrainTextureEntry::LoadTexture()	
-{
-	CTexture texture(m_TexturePath);
-	if (g_Renderer.LoadTexture(&texture,GL_REPEAT)) {
-		m_Handle=texture.GetHandle();
-	} else {
-		m_Handle=0;
-	}
 }
 
 // BuildBaseColor: calculate the root colour of the texture, used for coloring minimap, and store
 // in m_BaseColor member
 void CTerrainTextureEntry::BuildBaseColor()
 {
+	// Use the explicit properties value if possible
 	if (m_pProperties && m_pProperties->HasBaseColor())
 	{
 		m_BaseColor=m_pProperties->GetBaseColor();
-		m_BaseColorValid=true;
+		m_BaseColorValid = true;
 		return;
 	}
 
-	LibError ret = ogl_tex_bind(GetHandle());
-	debug_assert(ret == INFO::OK);
-
-	// get root colour for coloring minimap by querying root level of the texture 
-	// (this should decompress any compressed textures for us),
-	// then scaling it down to a 1x1 size 
-	//	- an alternative approach of just grabbing the top level of the mipmap tree fails 
-	//	(or gives an incorrect colour) in some cases: 
-	//		- suspect bug on Radeon cards when SGIS_generate_mipmap is used 
-	//		- any textures without mipmaps
-	// we'll just take the basic approach here.
-	//
-	// jw: this is horribly inefficient (taking 750ms for 10 texture types),
-	// but it is no longer called, since terrain XML files are supposed to
-	// include a minimap color attribute. therefore, leave it as-is.
-	GLint width,height;
-	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_WIDTH,&width);
-	glGetTexLevelParameteriv(GL_TEXTURE_2D,0,GL_TEXTURE_HEIGHT,&height);
-
-	unsigned char* buf=new unsigned char[width*height*4];
-	glGetTexImage(GL_TEXTURE_2D,0,GL_BGRA_EXT,GL_UNSIGNED_BYTE,buf);
-	gluScaleImage(GL_BGRA_EXT,width,height,GL_UNSIGNED_BYTE,buf,
-			1,1,GL_UNSIGNED_BYTE,&m_BaseColor);
-	delete[] buf;
-
-	m_BaseColorValid=true;
+	// Use the texture colour if available
+	if (m_Texture->TryLoad())
+	{
+		m_BaseColor = m_Texture->GetBaseColour();
+		m_BaseColorValid = true;
+	}
 }

@@ -75,7 +75,7 @@ public:
 	CModelDefPtr GetModelDef() { return m_pModelDef; }
 
 	// set the model's texture
-	void SetTexture(const CTexture& tex) { m_Texture=tex; }
+	void SetTexture(const CTexturePtr& tex) { m_Texture=tex; }
 	// set the model's material
 	void SetMaterial(const CMaterial &material);
 	// set the model's player ID, recursively through props
@@ -87,10 +87,10 @@ public:
 	// set the models mod color
 	void SetShadingColor(const CColor& colour);
 	// get the model's texture
-	CTexture* GetTexture() { return &m_Texture; }
-	// get the models material
-	CMaterial &GetMaterial() { return m_Material; }
-	// get the model's texture
+	CTexturePtr& GetTexture() { return m_Texture; }
+	// get the model's material
+	CMaterial& GetMaterial() { return m_Material; }
+	// get the model's shading color
 	CColor GetShadingColor() { return m_ShadingColor; }
 
 	// set the given animation as the current animation on this model
@@ -214,7 +214,7 @@ private:
 	// object flags
 	int m_Flags;
 	// texture used by model
-	CTexture m_Texture;
+	CTexturePtr m_Texture;
 	// model's material
 	CMaterial m_Material;
 	// pointer to the model's raw 3d data

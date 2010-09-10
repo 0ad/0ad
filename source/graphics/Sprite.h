@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@
  */
 
 // Usage: Instantiate, then be sure to pass a loaded
-// (using ogl_tex_load()) texture before calling Render().
+// (using CTextureManager) texture before calling Render().
 
 #ifndef INCLUDED_SPRITE
 #define INCLUDED_SPRITE
@@ -45,7 +45,7 @@ public:
 
 	void Render();
 
-	int SetTexture(CTexture *texture);
+	void SetTexture(const CTexturePtr& texture);
 
 	void SetSize(float width, float height);
 
@@ -69,7 +69,7 @@ private:
 	void BeginBillboard();
 	void EndBillboard();
 
-	CTexture	*m_texture;
+	CTexturePtr	m_texture;
 
 	CVector3D	m_coords[4];
 

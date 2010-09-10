@@ -74,7 +74,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 		// disk, which is slow.)
 		GLint w, h;
 		ssize_t level = 1; // level 0 is the original size
-		ogl_tex_bind((*it)->GetHandle());
+		(*it)->GetTexture()->Bind();
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_WIDTH,  &w);
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_HEIGHT, &h);
 
@@ -109,6 +109,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 			delete[] texdata;
 		}
 
+		previews.back().loaded = (*it)->GetTexture()->IsLoaded();
 		previews.back().imagewidth = msg->imagewidth;
 		previews.back().imageheight = msg->imageheight;
 		previews.back().imagedata = buf;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ private:
 	CParticleEngine(void);
 	static CParticleEngine*  m_pInstance;    // The singleton instance
 
-	CTexture idTexture[MAX_TEXTURES];
+	CTexturePtr idTexture[MAX_TEXTURES];
 	int totalParticles;					// Total Amount of particles of all emitters.
 
 	struct tEmitterNode

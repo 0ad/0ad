@@ -19,13 +19,15 @@
 
 #include "GUIRenderer.h"
 
+#include "graphics/TextureManager.h"
 #include "lib/ogl.h"
 #include "lib/utf8.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
-
-#include "ps/Filesystem.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "renderer/Renderer.h"
+
 #define LOG_CATEGORY L"gui"
 
 using namespace GUIRenderer;
@@ -36,7 +38,6 @@ void DrawCalls::clear()
 	for (iterator it = begin(); it != end(); ++it)
 	{
 		delete it->m_Effects;
-		ogl_tex_free(it->m_TexHandle);
 	}
 	std::vector<SDrawCall>::clear();
 }
@@ -114,7 +115,7 @@ public:
 
 	~Effect_AddColor() {}
 
-	void Set(Handle tex)
+	void Set(const CTexturePtr& tex)
 	{
 		glEnable(GL_TEXTURE_2D);
 
@@ -149,11 +150,12 @@ public:
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
 
-		ogl_tex_bind(tex);
+		tex->Bind();
 	}
 
 	void Unset()
 	{
+		glColor4f(1.f, 1.f, 1.f, 1.f);
 	}
 
 private:
@@ -192,7 +194,7 @@ public:
 		}
 	}
 	~Effect_MultiplyColor() {}
-	void Set(Handle tex)
+	void Set(const CTexturePtr& tex)
 	{
 		glEnable(GL_TEXTURE_2D);
 
@@ -226,12 +228,14 @@ public:
 				glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale4);
 		}
 
-		ogl_tex_bind(tex);
+		tex->Bind();
 	}
 	void Unset()
 	{
 		if (m_Scale != 1)
 			glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale1);
+
+		glColor4f(1.f, 1.f, 1.f, 1.f);
 	}
 private:
 	CColor m_Color;
@@ -248,7 +252,7 @@ class Effect_Greyscale : public IGLState
 {
 public:
 	~Effect_Greyscale() {}
-	void Set(Handle tex)
+	void Set(const CTexturePtr& tex)
 	{
 		/*
 
@@ -288,7 +292,7 @@ public:
 
 		// Texture unit 0:
 
-		ogl_tex_bind(tex, 0);
+		tex->Bind(0);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
@@ -308,7 +312,7 @@ public:
 
 		// Texture unit 1:
 
-		ogl_tex_bind(tex, 1);
+		tex->Bind(1);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
@@ -339,6 +343,8 @@ public:
 	{
 		glDisable(GL_TEXTURE_2D);
 		pglActiveTextureARB(GL_TEXTURE0);
+
+		glColor4f(1.f, 1.f, 1.f, 1.f);
 	}
 };
 
@@ -399,7 +405,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 	std::vector<SGUIImage>::const_iterator cit;
 	for (cit = it->second.m_Images.begin(); cit != it->second.m_Images.end(); ++cit)
 	{
-		SDrawCall Call;
+		SDrawCall Call(&*cit); // pointers are safe since we never modify sprites/images after startup
 
 		CRect ObjectSize = cit->m_Size.GetClientArea(Size);
 
@@ -418,94 +424,20 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 		if (! cit->m_TextureName.empty())
 		{
-			Handle h = ogl_tex_load(g_VFS, cit->m_TextureName);
-			if (h <= 0)
-			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"Error reading texture '%ls': %ld", cit->m_TextureName.string().c_str(), (long)h);
-				return;
-			}
+			CTextureProperties textureProps(cit->m_TextureName);
+			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+			texture->Prefetch();
+			Call.m_HasTexture = true;
+			Call.m_Texture = texture;
 
-			(void)ogl_tex_set_filter(h, GL_LINEAR);
+			Call.m_EnableBlending = false; // will be overridden if the texture has an alpha channel
 
-			int err = ogl_tex_upload(h);
-			if (err < 0)
-			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"Error uploading texture '%ls': %d", cit->m_TextureName.string().c_str(), err);
-				return;
-			}
-
-			Call.m_TexHandle = h;
-
-			size_t t_w = 0, t_h = 0;
-			(void)ogl_tex_get_size(h, &t_w, &t_h, 0);
-			float TexWidth = t_w, TexHeight = t_h;
-
-			size_t flags = 0;	// assume no alpha on failure
-			(void)ogl_tex_get_format(h, &flags, 0);
-			Call.m_EnableBlending = (flags & TEX_ALPHA) != 0;
-
-			// Textures are positioned by defining a rectangular block of the
-			// texture (usually the whole texture), and a rectangular block on
-			// the screen. The texture is positioned to make those blocks line up.
-
-			
-			// Get the screen's position/size for the block
-			CRect BlockScreen = cit->m_TextureSize.GetClientArea(ObjectSize);
-
-
-			// Get the texture's position/size for the block:
-			CRect BlockTex;
-
-			// "real_texture_placement" overrides everything
-			if (cit->m_TexturePlacementInFile != CRect())
-			{
-				BlockTex = cit->m_TexturePlacementInFile;
-			}
-			// Check whether this sprite has "cell_size" set
-			else if (cit->m_CellSize != CSize())
-			{
-				int cols = (int)t_w / (int)cit->m_CellSize.cx;
-				int col = CellID % cols;
-				int row = CellID / cols;
-				BlockTex = CRect(cit->m_CellSize.cx*col, cit->m_CellSize.cy*row,
-								 cit->m_CellSize.cx*(col+1), cit->m_CellSize.cy*(row+1));
-			}
-			// Use the whole texture
-			else
-				BlockTex = CRect(0, 0, TexWidth, TexHeight);
-
-
-			// When rendering, BlockTex will be transformed onto BlockScreen.
-			// Also, TexCoords will be transformed onto ObjectSize (giving the
-			// UV coords at each vertex of the object). We know everything
-			// except for TexCoords, so calculate it:
-
-			CPos translation (BlockTex.TopLeft()-BlockScreen.TopLeft());
-			float ScaleW = BlockTex.GetWidth()/BlockScreen.GetWidth();
-			float ScaleH = BlockTex.GetHeight()/BlockScreen.GetHeight();
-			
-			CRect TexCoords (
-						// Resize (translating to/from the origin, so the
-						// topleft corner stays in the same place)
-						(ObjectSize-ObjectSize.TopLeft())
-						.Scale(ScaleW, ScaleH)
-						+ ObjectSize.TopLeft()
-						// Translate from BlockTex to BlockScreen
-						+ translation
-			);
-
-			// The tex coords need to be scaled so that (texwidth,texheight) is
-			// mapped onto (1,1)
-			TexCoords.left   /= TexWidth;
-			TexCoords.right  /= TexWidth;
-			TexCoords.top    /= TexHeight;
-			TexCoords.bottom /= TexHeight;
-
-			Call.m_TexCoords = TexCoords;
+			Call.m_ObjectSize = ObjectSize;
+			Call.m_CellID = CellID;
 		}
 		else
 		{
-			Call.m_TexHandle = 0;
+			Call.m_HasTexture = false;
 			// Enable blending if it's transparent (allowing a little error in the calculations)
 			Call.m_EnableBlending = !(fabs(cit->m_BackColor.a - 1.0f) < 0.0000001f);
 		}
@@ -550,6 +482,75 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 	}
 }
 
+CRect SDrawCall::ComputeTexCoords() const
+{
+	float TexWidth = m_Texture->GetWidth();
+	float TexHeight = m_Texture->GetHeight();
+
+	if (!TexWidth || !TexHeight)
+	{
+		return CRect(0, 0, 1, 1);
+	}
+
+	// Textures are positioned by defining a rectangular block of the
+	// texture (usually the whole texture), and a rectangular block on
+	// the screen. The texture is positioned to make those blocks line up.
+
+	// Get the screen's position/size for the block
+	CRect BlockScreen = m_Image->m_TextureSize.GetClientArea(m_ObjectSize);
+
+	// Get the texture's position/size for the block:
+	CRect BlockTex;
+
+	// "real_texture_placement" overrides everything
+	if (m_Image->m_TexturePlacementInFile != CRect())
+	{
+		BlockTex = m_Image->m_TexturePlacementInFile;
+	}
+	// Check whether this sprite has "cell_size" set (and non-zero)
+	else if ((int)m_Image->m_CellSize.cx)
+	{
+		int cols = (int)TexWidth / (int)m_Image->m_CellSize.cx;
+		if (cols == 0)
+			cols = 1; // avoid divide-by-zero
+		int col = m_CellID % cols;
+		int row = m_CellID / cols;
+		BlockTex = CRect(m_Image->m_CellSize.cx*col, m_Image->m_CellSize.cy*row,
+		                 m_Image->m_CellSize.cx*(col+1), m_Image->m_CellSize.cy*(row+1));
+	}
+	// Use the whole texture
+	else
+		BlockTex = CRect(0, 0, TexWidth, TexHeight);
+
+	// When rendering, BlockTex will be transformed onto BlockScreen.
+	// Also, TexCoords will be transformed onto ObjectSize (giving the
+	// UV coords at each vertex of the object). We know everything
+	// except for TexCoords, so calculate it:
+
+	CPos translation (BlockTex.TopLeft()-BlockScreen.TopLeft());
+	float ScaleW = BlockTex.GetWidth()/BlockScreen.GetWidth();
+	float ScaleH = BlockTex.GetHeight()/BlockScreen.GetHeight();
+
+	CRect TexCoords (
+				// Resize (translating to/from the origin, so the
+				// topleft corner stays in the same place)
+				(m_ObjectSize-m_ObjectSize.TopLeft())
+				.Scale(ScaleW, ScaleH)
+				+ m_ObjectSize.TopLeft()
+				// Translate from BlockTex to BlockScreen
+				+ translation
+	);
+
+	// The tex coords need to be scaled so that (texwidth,texheight) is
+	// mapped onto (1,1)
+	TexCoords.left   /= TexWidth;
+	TexCoords.right  /= TexWidth;
+	TexCoords.top    /= TexHeight;
+	TexCoords.bottom /= TexHeight;
+
+	return TexCoords;
+}
+
 void GUIRenderer::Draw(DrawCalls &Calls)
 {
 	// Called every frame, to draw the object (based on cached calculations)
@@ -559,38 +560,40 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		if (cit->m_EnableBlending)
-		{
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glEnable(GL_BLEND);
-		}
-
-		if (cit->m_TexHandle)
+		if (cit->m_HasTexture)
 		{
 			// TODO: Handle the GL state in a nicer way
 
 			if (cit->m_Effects)
-				cit->m_Effects->Set(cit->m_TexHandle);
+				cit->m_Effects->Set(cit->m_Texture);
 			else
 			{
 				glEnable(GL_TEXTURE_2D);
 				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-				ogl_tex_bind(cit->m_TexHandle);
+				cit->m_Texture->Bind();
 			}
-			
+
+			if (cit->m_EnableBlending || cit->m_Texture->HasAlpha()) // (shouldn't call HasAlpha before Bind)
+			{
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				glEnable(GL_BLEND);
+			}
+
+			CRect TexCoords = cit->ComputeTexCoords();
+
 			glBegin(GL_QUADS);
 
-				glTexCoord2f(cit->m_TexCoords.right,cit->m_TexCoords.bottom);
-				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
+				glTexCoord2f(TexCoords.right, TexCoords.bottom);
+				glVertex3f(cit->m_Vertices.right, cit->m_Vertices.bottom, cit->m_DeltaZ);
 
-				glTexCoord2f(cit->m_TexCoords.left,	cit->m_TexCoords.bottom);
-				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
+				glTexCoord2f(TexCoords.left, TexCoords.bottom);
+				glVertex3f(cit->m_Vertices.left, cit->m_Vertices.bottom, cit->m_DeltaZ);
 
-				glTexCoord2f(cit->m_TexCoords.left,	cit->m_TexCoords.top);
-				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.top,	cit->m_DeltaZ);
+				glTexCoord2f(TexCoords.left, TexCoords.top);
+				glVertex3f(cit->m_Vertices.left, cit->m_Vertices.top, cit->m_DeltaZ);
 
-				glTexCoord2f(cit->m_TexCoords.right,cit->m_TexCoords.top);
-				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.top,	cit->m_DeltaZ);
+				glTexCoord2f(TexCoords.right, TexCoords.top);
+				glVertex3f(cit->m_Vertices.right, cit->m_Vertices.top, cit->m_DeltaZ);
 
 			glEnd();
 
@@ -600,6 +603,12 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 		else
 		{
 			glDisable(GL_TEXTURE_2D);
+
+			if (cit->m_EnableBlending)
+			{
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				glEnable(GL_BLEND);
+			}
 
 			glColor4fv(cit->m_BackColor.FloatArray());
 

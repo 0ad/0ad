@@ -33,6 +33,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
+#include "graphics/TextureManager.h"
 
 #include "ps/Profile.h"
 
@@ -460,7 +461,6 @@ void SortModelRenderer::Submit(CModel* model)
 		rdata = smdl;
 		model->SetRenderData(rdata);
 		model->SetDirty(~0u);
-		g_Renderer.LoadTexture(model->GetTexture(), GL_CLAMP_TO_EDGE);
 	}
 
 	m->models.push_back(smdl);
@@ -536,7 +536,7 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 		int streamflags = modifier->BeginPass(pass);
 		const CMatrix3D* texturematrix = 0;
 		CModelDefPtr lastmdef;
-		CTexture* lasttex = 0;
+		CTexturePtr lasttex;
 
 		if (streamflags & STREAM_TEXGENTOUV1)
 			texturematrix = modifier->GetTexGenMatrix(pass);
@@ -554,7 +554,7 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 			debug_assert(smdl->GetKey() == m);
 
 			CModelDefPtr mdef = mdl->GetModelDef();
-			CTexture* tex = mdl->GetTexture();
+			CTexturePtr tex = mdl->GetTexture();
 
 			// Prepare per-CModelDef data if changed
 			if (mdef != lastmdef)
@@ -661,9 +661,9 @@ bool TransparentRenderModifier::EndPass(int pass)
 	return true;
 }
 
-void TransparentRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
+void TransparentRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 {
-	g_Renderer.SetTexture(0, texture);
+	texture->Bind(0);
 }
 
 void TransparentRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
@@ -798,9 +798,9 @@ const CMatrix3D* LitTransparentRenderModifier::GetTexGenMatrix(int UNUSED(pass))
 	return &GetShadowMap()->GetTextureMatrix();
 }
 
-void LitTransparentRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
+void LitTransparentRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 {
-	g_Renderer.SetTexture(0, texture);
+	texture->Bind(0);
 }
 
 void LitTransparentRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
@@ -851,9 +851,9 @@ bool TransparentShadowRenderModifier::EndPass(int UNUSED(pass))
 	return true;
 }
 
-void TransparentShadowRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
+void TransparentShadowRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 {
-	g_Renderer.SetTexture(0, texture);
+	texture->Bind(0);
 }
 
 void TransparentShadowRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
@@ -901,9 +901,9 @@ bool TransparentDepthShadowModifier::EndPass(int UNUSED(pass))
 	return true;
 }
 
-void TransparentDepthShadowModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
+void TransparentDepthShadowModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 {
-	g_Renderer.SetTexture(0, texture);
+	texture->Bind(0);
 }
 
 void TransparentDepthShadowModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))

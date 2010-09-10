@@ -85,9 +85,7 @@ void CModel::ReleaseData()
 	m_Props.clear();
 	m_pModelDef = CModelDefPtr();
 
-	Handle h = m_Texture.GetHandle();
-	ogl_tex_free(h);
-	m_Texture.SetHandle(0);
+	m_Texture.reset();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -452,8 +450,6 @@ CModel* CModel::Clone() const
 	clone->m_ObjectBounds = m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetTexture(m_Texture);
-	if (m_Texture.GetHandle())
-		h_add_ref(m_Texture.GetHandle());
 	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetFlags(m_Flags);

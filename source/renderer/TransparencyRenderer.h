@@ -104,7 +104,7 @@ public:
 	// Implementation
 	int BeginPass(int pass);
 	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 
 };
@@ -127,7 +127,7 @@ public:
 	int BeginPass(int pass);
 	bool EndPass(int pass);
 	const CMatrix3D* GetTexGenMatrix(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 
 };
@@ -146,7 +146,7 @@ public:
 	// Implementation
 	int BeginPass(int pass);
 	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 };
 
@@ -164,7 +164,7 @@ public:
 	// Implementation
 	int BeginPass(int pass);
 	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 };
 

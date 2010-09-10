@@ -39,7 +39,6 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
 
-bool g_TerrainModified = false;
 bool g_GameRestarted = false;
 
 static unsigned int ScaleColor(unsigned int color, float x)
@@ -52,7 +51,7 @@ static unsigned int ScaleColor(unsigned int color, float x)
 
 CMiniMap::CMiniMap()
 	: m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0),
-	m_LOSTexture(0), m_LOSData(0)
+	m_LOSTexture(0), m_LOSData(0), m_TerrainDirty(true)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStr,		"tooltip");
@@ -232,20 +231,20 @@ void CMiniMap::Draw()
 	if(!m_TerrainTexture || g_GameRestarted)
 		CreateTextures();
 
-	// do not limit this as with LOS updates below - we must update
-	// immediately after changes are reported because this flag will be
-	// reset at the end of the frame.
-	if(g_TerrainModified)
-		RebuildTerrainTexture();
 
 	// only update 10x / second
 	// (note: since units only move a few pixels per second on the minimap,
 	// we can get away with infrequent updates; this is slow, ~20ms)
+	// TODO: we don't need to do it this frequently, it only needs to be once
+	// per simulation turn at most
 	static double last_time;
 	const double cur_time = timer_Time();
 	if(cur_time - last_time > 100e-3)	// 10 updates/sec
 	{
 		last_time = cur_time;
+
+		if(m_TerrainDirty)
+			RebuildTerrainTexture();
 
 //		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 //		if(losMgr->m_LOSSetting != LOS_SETTING_ALL_VISIBLE)
@@ -442,6 +441,8 @@ void CMiniMap::RebuildTerrainTexture()
 	u32 h = m_MapSize - 1;
 	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
 
+	m_TerrainDirty = false;
+
 	for(u32 j = 0; j < h; j++)
 	{
 		u32 *dataPtr = m_TerrainData + ((y + j) * (m_MapSize - 1)) + x;
@@ -469,7 +470,14 @@ void CMiniMap::RebuildTerrainTexture()
 				{
 					CTerrainTextureEntry *tex = mp->GetTextureEntry();
 					if(tex)
+					{
+						// If the texture can't be loaded yet, set the dirty flags
+						// so we'll try regenerating the terrain texture again soon
+						if(!tex->GetTexture()->TryLoad())
+							m_TerrainDirty = true;
+
 						color = tex->GetBaseColor();
+					}
 				}
 
 				*dataPtr++ = ScaleColor(color, float(val) / 255.0f);

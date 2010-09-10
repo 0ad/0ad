@@ -22,6 +22,7 @@
 #ifndef INCLUDED_WATERMANAGER
 #define INCLUDED_WATERMANAGER
 
+#include "graphics/Texture.h"
 #include "ps/Overlay.h"
 #include "maths/Matrix3D.h"
 #include "lib/ogl.h"
@@ -35,8 +36,8 @@
 class WaterManager
 {
 public:
-	Handle m_WaterTexture[60];
-	Handle m_NormalMap[60];
+	CTexturePtr m_WaterTexture[60];
+	CTexturePtr m_NormalMap[60];
 
 	int m_WaterCurrentTex;
 	CColor m_WaterColor;
@@ -100,11 +101,6 @@ public:
 	 * and it hasn't been configured off)
 	 */
 	bool WillRenderFancyWater();
-
-private:
-	/// State of progressive loading (in # of loaded textures)
-	size_t cur_loading_water_tex;
-	size_t cur_loading_normal_map;
 };
 
 

@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_TEXTUREMANAGER
-#define INCLUDED_TEXTUREMANAGER
+#ifndef INCLUDED_TERRAINTEXTUREMANAGER
+#define INCLUDED_TERRAINTEXTUREMANAGER
 
 #include <vector>
 #include <map>

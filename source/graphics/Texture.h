@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,33 +15,11 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-//-----------------------------------------------------------
-// Name:		Texture.h
-// Description: Basic texture class
-//
-//-----------------------------------------------------------
-
 #ifndef INCLUDED_TEXTURE
 #define INCLUDED_TEXTURE
 
-#include "lib/res/handle.h"
-#include "lib/file/vfs/vfs_path.h"
-
-class CTexture
-{
-public:
-	CTexture() : m_Handle(0) {}
-	CTexture(const VfsPath& pathname) : m_Name(pathname), m_Handle(0) {}
-
-	void SetName(const VfsPath& pathname) { m_Name=pathname; }
-	const VfsPath& GetName() const { return m_Name; }
-
-	Handle GetHandle() const { return m_Handle; }
-	void SetHandle(Handle handle) { m_Handle=handle; }
-
-private:
-	VfsPath m_Name;
-	Handle m_Handle;
-};
+// Forward-declare for CTextureManager handles
+class CTexture;
+typedef shared_ptr<CTexture> CTexturePtr;
 
 #endif

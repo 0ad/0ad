@@ -39,6 +39,7 @@
 
 #include "graphics/Camera.h"
 #include "graphics/LightEnv.h"
+#include "graphics/TextureManager.h"
 
 #define LOG_CATEGORY L"graphics"
 
@@ -64,74 +65,26 @@ SkyManager::SkyManager()
 {
 	m_RenderSky = true;
 
-	// TODO: add a way to set the initial skyset before progressive load
-	m_SkySet = L"default";
+	m_SkySet = L"";
 
 	m_HorizonHeight = -150.0f;
-
-	for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
-		m_SkyTexture[i] = 0;
-
-	cur_loading_tex = 0;
-}
-
-SkyManager::~SkyManager()
-{
-	// Cleanup if the caller messed up
-	UnloadSkyTextures();
 }
 
 
 ///////////////////////////////////////////////////////////////////
-// Load single sky textures
-LibError SkyManager::LoadSkyTexture(size_t index)
+// Load all sky textures
+void SkyManager::LoadSkyTextures()
 {
-	wchar_t filename[PATH_MAX];
-	swprintf_s(filename, ARRAY_SIZE(filename), L"art/textures/skies/%ls/%ls.dds", m_SkySet.c_str(), s_imageNames[index]);
-	Handle ht = ogl_tex_load(g_VFS, filename);
-	if(ht <= 0)
+	for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); ++i)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"SkyManager::LoadSkyTexture failed on \"%ls\"", filename);
-		return ht;
+		VfsPath path = VfsPath(L"art/textures/skies") / std::wstring(m_SkySet) / (std::wstring(s_imageNames[i])+L".dds");
+
+		CTextureProperties textureProps(path);
+		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
+		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+		texture->Prefetch();
+		m_SkyTexture[i] = texture;
 	}
-	ogl_tex_set_wrap(ht, GL_CLAMP_TO_EDGE);
-	m_SkyTexture[index] = ht;
-	RETURN_ERR(ogl_tex_upload(ht));
-	return INFO::OK;
-}
-
-
-///////////////////////////////////////////////////////////////////
-// Progressive load of sky textures
-int SkyManager::LoadSkyTextures()
-{
-	const size_t num_textures = ARRAY_SIZE(m_SkyTexture);
-
-	// yield after this time is reached. balances increased progress bar
-	// smoothness vs. slowing down loading.
-	const double end_time = timer_Time() + 100e-3;
-
-	while (cur_loading_tex < num_textures)
-	{
-		RETURN_ERR(LoadSkyTexture(cur_loading_tex));
-		cur_loading_tex++;
-		LDR_CHECK_TIMEOUT(cur_loading_tex, num_textures);
-	}
-
-	return 0;
-}
-
-
-///////////////////////////////////////////////////////////////////
-// Unload sky textures
-void SkyManager::UnloadSkyTextures()
-{
-	for(size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
-	{
-		ogl_tex_free(m_SkyTexture[i]);
-		m_SkyTexture[i] = 0;
-	}
-	cur_loading_tex = 0;
 }
 
 
@@ -143,10 +96,7 @@ void SkyManager::SetSkySet( const CStrW& newSet )
 		return;
 	m_SkySet = newSet;
 
-	UnloadSkyTextures();
-
-	for(size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
-		LoadSkyTexture(i);
+	LoadSkyTextures();
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -182,6 +132,10 @@ void SkyManager::RenderSky()
 	// Note: The coordinates for this were set up through a rather cumbersome trial-and-error 
 	//       process - there might be a smarter way to do it, but this seems to work.
 
+	// Do nothing unless SetSkySet was called
+	if (m_SkySet.empty())
+		return;
+
 	glDepthMask( GL_FALSE );
 
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
@@ -204,7 +158,7 @@ void SkyManager::RenderSky()
 	const float D = 2000.0;
 
 	// Front face (positive Z)
-	ogl_tex_bind( m_SkyTexture[FRONT] );
+	m_SkyTexture[FRONT]->Bind();
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, +D );
@@ -217,7 +171,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Back face (negative Z)
-	ogl_tex_bind( m_SkyTexture[BACK] );
+	m_SkyTexture[BACK]->Bind();
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( -D, -D, -D );
@@ -230,7 +184,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Right face (negative X)
-	ogl_tex_bind( m_SkyTexture[RIGHT] );
+	m_SkyTexture[RIGHT]->Bind();
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, -D );
@@ -243,7 +197,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Left face (positive X)
-	ogl_tex_bind( m_SkyTexture[LEFT] );
+	m_SkyTexture[LEFT]->Bind();
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( +D, -D, -D );
@@ -256,7 +210,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Top face (positive Y)
-	ogl_tex_bind( m_SkyTexture[TOP] );
+	m_SkyTexture[TOP]->Bind();
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 0 );
 		glVertex3f( +D, +D, -D );

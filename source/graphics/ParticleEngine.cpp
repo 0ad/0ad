@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,10 @@
  */
 
 #include "precompiled.h"
+
 #include "ParticleEngine.h"
+
+#include "graphics/TextureManager.h"
 
 CParticleEngine *CParticleEngine::m_pInstance = 0;
 CParticleEngine::CParticleEngine(void)
@@ -76,31 +79,17 @@ void CParticleEngine::DeleteInstance()
 bool CParticleEngine::InitParticleSystem()
 {
 	// Texture Loading
-	CTexture pTex(L"art/textures/particles/sprite.tga");
+	CTextureProperties textureProps(L"art/textures/particles/sprite.tga");
+	CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 
-	int flags = 0;
-	if(!(g_Renderer.LoadTexture(&pTex, flags)))
-		return false;
-
-	g_Renderer.SetTexture(0, &pTex);
-	idTexture[DEFAULTTEXT] = pTex;
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-	glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
-	//glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
-	//glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_BLEND);
-	//glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
+	idTexture[DEFAULTTEXT] = texture;
 
 	return true;
 }
 
 bool CParticleEngine::AddEmitter(CEmitter *emitter, int type, int ID)
 {
-	emitter->SetTexture(&idTexture[type]);
+	emitter->SetTexture(idTexture[type]);
 	if(m_pHead == NULL)
 	{
 		tEmitterNode *temp = new tEmitterNode;

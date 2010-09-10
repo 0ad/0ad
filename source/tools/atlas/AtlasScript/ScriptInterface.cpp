@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -228,6 +228,14 @@ namespace
 	////////////////////////////////////////////////////////////////
 	// Primitive types:
 
+	template<> struct ToJSVal<bool>
+	{
+		static jsval Convert(JSContext* cx, const bool& val)
+		{
+			return val ? JSVAL_TRUE : JSVAL_FALSE;
+		}
+	};
+
 	template<> struct ToJSVal<float>
 	{
 		static jsval Convert(JSContext* cx, const float& val)
@@ -377,7 +385,9 @@ namespace
 			JS_AddRoot(cx, &obj);
 			
 			JS_DefineProperty(cx, obj, "name", ToJSVal<std::wstring>::Convert(cx, *val.name), NULL, NULL, JSPROP_ENUMERATE);
-			
+
+			JS_DefineProperty(cx, obj, "loaded", ToJSVal<bool>::Convert(cx, val.loaded), NULL, NULL, JSPROP_ENUMERATE);
+
 			unsigned char* buf = (unsigned char*)(malloc(val.imagedata.GetSize()));
 			memcpy(buf, val.imagedata.GetBuffer(), val.imagedata.GetSize());
 			jsval bmp = wxjs::gui::Bitmap::CreateObject(cx, new wxBitmap (wxImage(val.imagewidth, val.imageheight, buf)));

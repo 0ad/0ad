@@ -21,6 +21,8 @@
 
 #include "precompiled.h"
 
+#include "graphics/TextureManager.h"
+
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/tex/tex.h"
@@ -28,14 +30,8 @@
 
 #include "maths/MathUtil.h"
 
-#include "ps/Filesystem.h"
-#include "ps/CLogger.h"
-#include "ps/Loader.h"
-
 #include "renderer/WaterManager.h"
 #include "renderer/Renderer.h"
-
-#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,15 +69,6 @@ WaterManager::WaterManager()
 	m_WaterTint = CColor(0.28f, 0.3f, 0.59f, 1.0f);
 	m_Murkiness = 0.45f;
 	m_RepeatPeriod = 16.0f;
-
-	for (size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
-		m_WaterTexture[i] = 0;
-
-	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
-		m_NormalMap[i] = 0;
-
-	cur_loading_water_tex = 0;
-	cur_loading_normal_map = 0;
 }
 
 WaterManager::~WaterManager()
@@ -95,53 +82,41 @@ WaterManager::~WaterManager()
 // Progressive load of water textures
 int WaterManager::LoadWaterTextures()
 {
-	const size_t num_textures = ARRAY_SIZE(m_WaterTexture);
-	const size_t num_normal_maps = ARRAY_SIZE(m_NormalMap);
+	// TODO: this doesn't need to be progressive-loading any more
+	// (since texture loading is async now)
 
 	// TODO: add a member variable and setter for this. (can't make this
 	// a parameter because this function is called via delay-load code)
 	static const wchar_t* const water_type = L"default";
 
-	// yield after this time is reached. balances increased progress bar
-	// smoothness vs. slowing down loading.
-	const double end_time = timer_Time() + 100e-3;
-
 	wchar_t pathname[PATH_MAX];
 
 	// Load diffuse grayscale images (for non-fancy water)
-	while (cur_loading_water_tex < num_textures)
+	for (size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); ++i)
 	{
-		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/diffuse%02d.dds", water_type, (int)cur_loading_water_tex+1);
-		Handle ht = ogl_tex_load(g_VFS, pathname);
-		if (ht <= 0)
-		{
-			LOG(CLogger::Error, LOG_CATEGORY, L"LoadWaterTextures failed on \"%ls\"", pathname);
-			return ht;
-		}
-		m_WaterTexture[cur_loading_water_tex] = ht;
-		RETURN_ERR(ogl_tex_upload(ht));
-		cur_loading_water_tex++;
-		LDR_CHECK_TIMEOUT(cur_loading_water_tex, num_textures + num_normal_maps);
+		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/diffuse%02d.dds", water_type, (int)i+1);
+		CTextureProperties textureProps(pathname);
+		textureProps.SetWrap(GL_REPEAT);
+
+		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+		texture->Prefetch();
+		m_WaterTexture[i] = texture;
 	}
 
 	// Load normalmaps (for fancy water)
-	while (cur_loading_normal_map < num_normal_maps)
+	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); ++i)
 	{
-		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal%02d.dds", water_type, (int)cur_loading_normal_map+1);
-		Handle ht = ogl_tex_load(g_VFS, pathname);
-		if (ht <= 0)
-		{
-			LOG(CLogger::Error, LOG_CATEGORY, L"LoadWaterTextures failed on \"%ls\"", pathname);
-			return ht;
-		}
-		m_NormalMap[cur_loading_normal_map] = ht;
-		RETURN_ERR(ogl_tex_upload(ht));
-		cur_loading_normal_map++;
-		LDR_CHECK_TIMEOUT(num_textures + cur_loading_normal_map, num_textures + num_normal_maps);
+		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal%02d.dds", water_type, (int)i+1);
+		CTextureProperties textureProps(pathname);
+		textureProps.SetWrap(GL_REPEAT);
+
+		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+		texture->Prefetch();
+		m_NormalMap[i] = texture;
 	}
 
 	// Set the size to the largest power of 2 that is <= to the window height, so
-	// the reflection/reflaction images will fit within the window 
+	// the reflection/refraction images will fit within the window
 	// (alternative: use FBO's, which can have arbitrary size - but do we need
 	// the reflection/refraction textures to be that large?)
 	int size = (int)round_up_to_pow2((unsigned)g_Renderer.GetHeight());
@@ -184,19 +159,14 @@ void WaterManager::UnloadWaterTextures()
 {
 	for(size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 	{
-		ogl_tex_free(m_WaterTexture[i]);
-		m_WaterTexture[i] = 0;
+		m_WaterTexture[i].reset();
 	}
 
 
 	for(size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
 	{
-		ogl_tex_free(m_NormalMap[i]);
-		m_NormalMap[i] = 0;
+		m_NormalMap[i].reset();
 	}
-
-	cur_loading_water_tex = 0; // so they will be reloaded if LoadWaterTextures is called again
-	cur_loading_normal_map = 0;
 }
 
 

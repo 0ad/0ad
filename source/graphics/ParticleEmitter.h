@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,11 +22,10 @@
 #ifndef INCLUDED_PARTICLEEMITTER
 #define INCLUDED_PARTICLEEMITTER
 
+#include "graphics/Texture.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "maths/Vector3D.h"
 #include "ps/CStr.h"
-
-class CTexture;
 
 class CEmitter
 {
@@ -89,7 +88,7 @@ protected:
 	tParticle* m_usedList;				// linked list of used particles	
 
 	//Particle appearence
-	CTexture* m_texture;				// Texture
+	CTexturePtr m_texture;				// Texture
 	float m_size;						// size of the particles (if point sprites is not enabled)
 	tColor m_startColor, m_startColorVar;	// Current color of particle
 	tColor m_endColor, m_endColorVar;		// End color of particle
@@ -188,7 +187,7 @@ public:
 	{
 		m_pos = newPos;
 	}
-	void SetTexture(CTexture* id) { m_texture = id; }
+	void SetTexture(CTexturePtr id) { m_texture = id; }
 	void SetIsFinished(bool finished) { isFinished = finished; }
 	void SetEmitterLife(int life) { m_emitterLife = life; }
 	void SetLife(int newlife) { m_life = newlife; }

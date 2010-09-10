@@ -63,13 +63,14 @@ that of Atlas depending on commandline parameters.
 #include "network/NetSession.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
+#include "graphics/TextureManager.h"
+#include "gui/GUIManager.h"
+#include "renderer/Renderer.h"
 #include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
-#include "gui/GUIManager.h"
 
 #define LOG_CATEGORY L"main"
 
-extern bool g_TerrainModified;
 extern bool g_GameRestarted;
 
 void kill_mainloop();
@@ -200,6 +201,19 @@ static int ProgressiveLoad()
 }
 
 
+static void RendererIncrementalLoad()
+{
+	const double maxTime = 0.1f;
+
+	double startTime = timer_Time();
+	bool more;
+	do {
+		more = g_Renderer.GetTextureManager().MakeProgress();
+	}
+	while (more && timer_Time() - startTime < maxTime);
+}
+
+
 static bool quit = false;	// break out of main loop
 
 static void Frame()
@@ -265,6 +279,10 @@ static void Frame()
 	MICROLOG(L"progressive load");
 	ProgressiveLoad();
 	PROFILE_END("progressive load");
+
+	PROFILE_START("renderer incremental load");
+	RendererIncrementalLoad();
+	PROFILE_END("renderer incremental load");
 
 	PROFILE_START("input");
 	MICROLOG(L"input");
@@ -360,7 +378,6 @@ static void Frame()
 
 	g_Profiler.Frame();
 
-	g_TerrainModified = false;
 	g_GameRestarted = false;
 }
 
