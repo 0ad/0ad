@@ -127,7 +127,7 @@ private:
 	{
 		const size_t num_filler_bits = 8-num_bits;
 		const size_t field = (size_t)bits(c, bits_below, bits_below+num_bits-1);
-		const size_t filler = field >> (8-num_bits);
+		const size_t filler = field >> (num_bits-num_filler_bits);
 		return (field << num_filler_bits) | filler;
 	}
 
@@ -609,10 +609,20 @@ static LibError dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da
 
 static LibError dds_transform(Tex* t, size_t transforms)
 {
+	size_t mipmaps = t->flags & TEX_MIPMAPS;
 	size_t dxt = t->flags & TEX_DXT;
 	debug_assert(is_valid_dxt(dxt));
 
+	const size_t transform_mipmaps = transforms & TEX_MIPMAPS;
 	const size_t transform_dxt = transforms & TEX_DXT;
+	// requesting removal of mipmaps
+	if(mipmaps && transform_mipmaps)
+	{
+		// we don't need to actually change anything except the flag - the
+		// mipmap levels will just be treated as trailing junk
+		t->flags &= ~TEX_MIPMAPS;
+		return INFO::OK;
+	}
 	// requesting decompression
 	if(dxt && transform_dxt)
 	{
@@ -622,8 +632,7 @@ static LibError dds_transform(Tex* t, size_t transforms)
 	// both are DXT (unsupported; there are no flags we can change while
 	// compressed) or requesting compression (not implemented) or
 	// both not DXT (nothing we can do) - bail.
-	else
-		return INFO::TEX_CODEC_CANNOT_HANDLE;
+	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
 
 

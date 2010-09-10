@@ -62,8 +62,10 @@ class TestTex : public CxxTest::TestSuite
 public:
 
 	// this also covers BGR and orientation transforms.
-	void test_encode_decode()
+	void DISABLED_test_encode_decode()	// disabled because it's completely broken
 	{
+		tex_codec_register_all();
+
 		// for each codec
 		const TexCodecVTbl* c = 0;
 		for(;;)
@@ -94,6 +96,8 @@ public:
 						flags |= (TEX_DXT&3);	// DXT3
 					if(bpp == 8)
 						flags |= TEX_GREY;
+					else if(bpp == 16)
+						continue; // not supported
 					else if(bpp == 32)
 						flags |= TEX_ALPHA;
 
@@ -120,6 +124,8 @@ public:
 				}	// for bpp
 			}	// for width/height
 		}	 // foreach codec
+
+		tex_codec_unregister_all();
 	}
 
 	// have mipmaps be created for a test image; check resulting size and pixels
@@ -150,5 +156,37 @@ public:
 		Tex t2;
 		TS_ASSERT_OK(tex_wrap(97, 97, 4, DXT1A, img, 0, &t2));
 		TS_ASSERT_EQUALS((int)tex_img_size(&t2),  5000);
+	}
+
+	void test_s3tc_decode()
+	{
+		tex_codec_register_all();
+
+		const size_t w = 4, h = 4, bpp = 4;
+		const size_t size = w*h/2;
+		shared_ptr<u8> img(new u8[size], ArrayDeleter());
+		memcpy(img.get(), "\xFF\xFF\x00\x00\x00\xAA\xFF\x55", 8); // gradient from white to black
+		const u8 expected[] =
+			"\xFF\xFF\xFF" "\xFF\xFF\xFF" "\xFF\xFF\xFF" "\xFF\xFF\xFF"
+			"\xAA\xAA\xAA" "\xAA\xAA\xAA" "\xAA\xAA\xAA" "\xAA\xAA\xAA"
+			"\x55\x55\x55" "\x55\x55\x55" "\x55\x55\x55" "\x55\x55\x55"
+			"\x00\x00\x00" "\x00\x00\x00" "\x00\x00\x00" "\x00\x00\x00";
+
+		const size_t flags = TEX_DXT&1;
+
+		// wrap in Tex
+		Tex t;
+		TS_ASSERT_OK(tex_wrap(w, h, bpp, flags, img, 0, &t));
+
+		// decompress S3TC
+		TS_ASSERT_OK(tex_transform_to(&t, 0));
+
+		// compare img
+		TS_ASSERT_SAME_DATA(tex_get_data(&t), expected, 48);
+
+		// cleanup
+		tex_free(&t);
+
+		tex_codec_unregister_all();
 	}
 };
