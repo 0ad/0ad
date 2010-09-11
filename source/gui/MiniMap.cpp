@@ -36,6 +36,7 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
 
@@ -135,19 +136,18 @@ void CMiniMap::SetCameraPos()
 
 void CMiniMap::FireWorldClickEvent(int button, int clicks)
 {
-	// TODO: we ought to pass this through to the GUI system
-
-	//debug_printf(L"FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
-	
-/*
+	// Determine X and Z according to proportion of mouse position and minimap
 	CPos MousePos = GetMousePos();
-	CVector2D Destination;
-	//X and Z according to proportion of mouse position and minimap
-	Destination.x = CELL_SIZE * m_MapSize *
-		( (MousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth() );
-	Destination.y = CELL_SIZE * m_MapSize * ( (m_CachedActualSize.bottom - MousePos.y) /
-		m_CachedActualSize.GetHeight() );
-*/
+	float x = CELL_SIZE * m_MapSize *
+		((MousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth());
+	float z = CELL_SIZE * m_MapSize *
+		((m_CachedActualSize.bottom - MousePos.y) / m_CachedActualSize.GetHeight());
+
+	CScriptValRooted coords;
+	g_ScriptingHost.GetScriptInterface().Eval("({})", coords);
+	g_ScriptingHost.GetScriptInterface().SetProperty(coords.get(), "x", x, false);
+	g_ScriptingHost.GetScriptInterface().SetProperty(coords.get(), "z", z, false);
+	ScriptEvent("worldclick", coords);
 
 	UNUSED2(button);
 	UNUSED2(clicks);

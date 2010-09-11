@@ -310,7 +310,9 @@
 				<object name="minimapDisplay"
 					type="minimap"
 					size="6 100%-182 182 100%-6"
-				/>
+				>
+					<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
+				</object>
 			</object>
 
 			<!-- Player resource bar -->

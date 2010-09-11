@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,7 @@ The base class of an object
 struct SGUISetting;
 struct SGUIStyle;
 class CGUI;
+class CScriptValRooted;
 
 //--------------------------------------------------------
 //  Macros
@@ -437,10 +438,20 @@ protected:
 	/**
 	 * Execute the script for a particular action.
 	 * Does nothing if no script has been registered for that action.
+	 * The mouse coordinates will be passed as the first argument.
 	 *
 	 * @param Action Name of action
 	 */
 	void ScriptEvent(const CStr& Action);
+
+	/**
+	 * Execute the script for a particular action.
+	 * Does nothing if no script has been registered for that action.
+	 *
+	 * @param Action Name of action
+	 * @param Argument Argument to pass to action
+	 */
+	void ScriptEvent(const CStr& Action, const CScriptValRooted& Argument);
 
 	void SetScriptHandler(const CStr& Action, JSObject* Function);
 

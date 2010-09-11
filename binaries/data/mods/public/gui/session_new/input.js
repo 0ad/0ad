@@ -65,7 +65,7 @@ function findGatherType(gatherer, supply)
 /**
  * Determine the context-sensitive action that should be performed when the mouse is at (x,y)
  */
-function determineAction(x, y)
+function determineAction(x, y, fromMinimap)
 {
 	var selection = g_Selection.toList();
 
@@ -89,7 +89,9 @@ function determineAction(x, y)
 		return entState && entState.rallyPoint;
 	});
 
-	var targets = Engine.PickEntitiesAtPoint(x, y);
+	var targets = [];
+	if (!fromMinimap)
+		targets = Engine.PickEntitiesAtPoint(x, y);
 
 	// If there's a target unit
 	if (targets.length)
@@ -119,13 +121,13 @@ function determineAction(x, y)
 			// If the target is a resource and we have the right kind of resource gatherers selected, then gather
 			// If the target is a foundation and we have builders selected, then build (or repair)
 			// If the target is an enemy, then attack
-			if (targetState.resourceSupply && (playerOwned || gaiaOwned)) 
-			{	
+			if (targetState.resourceSupply && (playerOwned || gaiaOwned))
+			{
 				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
 				if (resource)
 					return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
 			}
-			else if (targetState.foundation && entState.buildEntities && playerOwned) 
+			else if (targetState.foundation && entState.buildEntities && playerOwned)
 			{
 				return {"type": "build", "cursor": "action-build", "target": targets[0]};
 			}
@@ -528,7 +530,7 @@ function handleInputAfterGui(ev)
 					return true;
 
 				default:
-					throw new Error("Invalid action.type "+action.type);
+					error("Invalid action.type "+action.type);
 				}
 			}
 			break;
@@ -604,6 +606,45 @@ function handleInputAfterGui(ev)
 			break;
 		}
 		break;
+	}
+	return false;
+}
+
+function handleMinimapEvent(target)
+{
+	// Partly duplicated from handleInputAfterGui(), but with the input being
+	// world coordinates instead of screen coordinates.
+
+	if (inputState == INPUT_NORMAL)
+	{
+		var fromMinimap = true;
+		var action = determineAction(undefined, undefined, fromMinimap);
+		if (!action)
+			return false;
+
+		var selection = g_Selection.toList();
+
+		var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+
+		switch (action.type)
+		{
+		case "move":
+			Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
+			return true;
+
+		case "set-rallypoint":
+			Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
+			// Display rally point at the new coordinates, to avoid display lag
+			Engine.GuiInterfaceCall("DisplayRallyPoint", {
+				"entities": selection,
+				"x": target.x,
+				"z": target.z
+			});
+			return true;
+
+		default:
+			error("Invalid action.type "+action.type);
+		}
 	}
 	return false;
 }

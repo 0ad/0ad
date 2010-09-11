@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ IGUIObject
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
+#include "scriptinterface/ScriptVal.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"gui"
@@ -509,6 +510,8 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, m_pGUI->m_ScriptObject, NULL, 1, &guiObject);
 	debug_assert(jsGuiObject); // TODO: Handle errors
 	
+	// TODO: why don't we use GetJSObject here?
+
 	// Prevent it from being garbage-collected before it's passed into the function
 	JS_AddRoot(g_ScriptingHost.getContext(), &jsGuiObject);
 
@@ -535,6 +538,24 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	// Allow the temporary parameters to be garbage-collected
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &mouseObj);
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &jsGuiObject);
+}
+
+void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argument)
+{
+	std::map<CStr, JSObject**>::iterator it = m_ScriptHandlers.find(Action);
+	if (it == m_ScriptHandlers.end())
+		return;
+
+	JSObject* object = GetJSObject();
+
+	jsval arg = Argument.get();
+
+	jsval result;
+	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), object, OBJECT_TO_JSVAL(*it->second), 1, &arg, &result);
+	if (!ok)
+	{
+		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
+	}
 }
 
 JSObject* IGUIObject::GetJSObject()
