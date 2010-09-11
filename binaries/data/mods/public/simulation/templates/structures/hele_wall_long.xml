@@ -11,7 +11,14 @@
   <Health>
     <Max>2200</Max>
   </Health>
+  <Footprint>
+    <Square width="25.0" depth="6.5"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="24.0" depth="6.0"/>
+  </Obstruction>
   <VisualActor>
-    <Actor>structures/hellenes/wall.xml</Actor>
+    <Actor>structures/hellenes/wall_med.xml</Actor>
   </VisualActor>
 </Entity>
