@@ -75,6 +75,7 @@ public:
 		// without needing to load any files
 
 		// Default placeholder texture (grey)
+		if (!m_DisableGL)
 		{
 			// Construct 1x1 24-bit texture
 			shared_ptr<u8> data(new u8[3], ArrayDeleter());
@@ -91,6 +92,7 @@ public:
 		}
 
 		// Error texture (magenta)
+		if (!m_DisableGL)
 		{
 			// Construct 1x1 24-bit texture
 			shared_ptr<u8> data(new u8[3], ArrayDeleter());
@@ -156,6 +158,9 @@ public:
 	 */
 	void LoadTexture(const CTexturePtr& texture, const VfsPath& path)
 	{
+		if (m_DisableGL)
+			return;
+
 		Handle h = ogl_tex_load(m_VFS, path, RES_UNIQUE);
 		if (h <= 0)
 		{
@@ -547,12 +552,14 @@ CTexture::CTexture(Handle handle, const CTextureProperties& props, CTextureManag
 {
 	// Add a reference to the handle (it might be shared by multiple CTextures
 	// so we can't take ownership of it)
-	h_add_ref(m_Handle);
+	if (m_Handle)
+		h_add_ref(m_Handle);
 }
 
 CTexture::~CTexture()
 {
-	ogl_tex_free(m_Handle);
+	if (m_Handle)
+		ogl_tex_free(m_Handle);
 }
 
 void CTexture::Bind(size_t unit)

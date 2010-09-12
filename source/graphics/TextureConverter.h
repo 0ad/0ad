@@ -19,6 +19,7 @@
 #define INCLUDED_TEXTURECONVERTER
 
 #include "lib/file/vfs/vfs.h"
+#include "lib/external_libraries/sdl.h"
 
 #include "TextureManager.h"
 
@@ -201,8 +202,8 @@ private:
 	PIVFS m_VFS;
 
 	pthread_t m_WorkerThread;
-	sem_t m_WorkerSem;
 	pthread_mutex_t m_WorkerMutex;
+	SDL_sem* m_WorkerSem;
 
 	struct ConversionRequest;
 	struct ConversionResult;

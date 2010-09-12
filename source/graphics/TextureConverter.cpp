@@ -275,10 +275,19 @@ CTextureConverter::CTextureConverter(PIVFS vfs) :
 	// to avoid bugs caused by ABI changes
 	debug_assert(nvtt::version() >= NVTT_VERSION);
 
-	// Start up the worker thread
-	sem_init(&m_WorkerSem, 0, 0);
-	pthread_mutex_init(&m_WorkerMutex, NULL);
-	pthread_create(&m_WorkerThread, NULL, &RunThread, this);
+	// Set up the worker thread:
+
+	int ret;
+
+	// Use SDL semaphores since OS X doesn't implement sem_init
+	m_WorkerSem = SDL_CreateSemaphore(0);
+	debug_assert(m_WorkerSem);
+
+	ret = pthread_mutex_init(&m_WorkerMutex, NULL);
+	debug_assert(ret == 0);
+
+	ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
+	debug_assert(ret == 0);
 
 	// Maybe we should share some centralised pool of worker threads?
 	// For now we'll just stick with a single thread for this specific use.
@@ -292,10 +301,14 @@ CTextureConverter::~CTextureConverter()
 	pthread_mutex_unlock(&m_WorkerMutex);
 
 	// Wake it up so it sees the notification
-	sem_post(&m_WorkerSem);
+	SDL_SemPost(m_WorkerSem);
 
 	// Wait for it to shut down cleanly
 	pthread_join(m_WorkerThread, NULL);
+
+	// Clean up resources
+	SDL_DestroySemaphore(m_WorkerSem);
+	pthread_mutex_destroy(&m_WorkerMutex);
 }
 
 bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath& src, const VfsPath& dest, const Settings& settings)
@@ -412,7 +425,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	pthread_mutex_unlock(&m_WorkerMutex);
 
 	// Wake up the worker thread
-	sem_post(&m_WorkerSem);
+	SDL_SemPost(m_WorkerSem);
 
 	return true;
 }
@@ -475,7 +488,7 @@ void* CTextureConverter::RunThread(void* data)
 	CTextureConverter* textureConverter = static_cast<CTextureConverter*>(data);
 
 	// Wait until the main thread wakes us up
-	while (sem_wait(&textureConverter->m_WorkerSem) == 0)
+	while (SDL_SemWait(textureConverter->m_WorkerSem) == 0)
 	{
 		pthread_mutex_lock(&textureConverter->m_WorkerMutex);
 		if (textureConverter->m_Shutdown)
