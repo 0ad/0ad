@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="stoa_roof">
+      <mesh>props/hele_stoa_props_roof.dae</mesh>
+      <texture>structural/hele_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

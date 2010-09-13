@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="stoa_base">
+      <mesh>structural/hele_stoa_base.dae</mesh>
+      <props>
+        <prop actor="props/special/greek_stoa_roof.xml" attachpoint="root"/>
+        <prop actor="props/special/greek_stoa_props_a.xml" attachpoint="root"/>
+        <prop actor="props/special/greek_stoa_props_b.xml" attachpoint="root"/>
+      </props>
+      <texture>props/hele_tile_b.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -63,21 +63,21 @@
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
-      structures/{civ}_barracks
-      structures/{civ}_civil_centre
-      structures/{civ}_corral
-      structures/{civ}_dock
+	  structures/{civ}_house
+      structures/{civ}_mill
       structures/{civ}_farmstead
       structures/{civ}_field
-      structures/{civ}_fortress
-      structures/{civ}_house
-      structures/{civ}_market
-      structures/{civ}_mill
-      structures/{civ}_scout_tower
+      structures/{civ}_corral
       structures/{civ}_temple
-      structures/{civ}_wall_gate
+      structures/{civ}_market
+      structures/{civ}_civil_centre
+      structures/{civ}_barracks
+      structures/{civ}_dock
+      structures/{civ}_scout_tower
       structures/{civ}_wall_long
       structures/{civ}_wall_tower
+      structures/{civ}_wall_gate
+      structures/{civ}_fortress
     </Entities>
   </Builder>
   <Sound>
