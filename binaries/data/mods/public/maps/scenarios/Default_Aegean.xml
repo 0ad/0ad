@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.5019" g="1.5019" b="1.5019"/>
+		<SunColour r="0.996078" g="0.996078" b="0.996078"/>
 		<SunElevation angle="0.865165"/>
 		<SunRotation angle="-1.22718"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
@@ -23,14 +23,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="611.289" y="118.456" z="469.74"/>
-		<Rotation angle="0"/>
+		<Position x="199.859" y="110.082" z="251.605"/>
+		<Rotation angle="0.0636742"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
 		<Entity uid="150">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="426.15024" z="724.94776"/>
+			<Position x="428.76545" z="721.38282"/>
 			<Orientation y="0.41051"/>
 		</Entity>
 		<Entity uid="151">
@@ -465,7 +465,7 @@
 		</Entity>
 		<Entity uid="237">
 			<Template>actor|props/flora/grass_soft_dry_small_tall.xml</Template>
-			<Position x="428.67109" z="728.31727"/>
+			<Position x="430.64701" z="726.93458"/>
 			<Orientation y="-1.43717"/>
 		</Entity>
 		<Entity uid="238">
@@ -572,7 +572,7 @@
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
 			<Player>0</Player>
 			<Position x="426.56055" z="740.96491"/>
-			<Orientation y="1.04297"/>
+			<Orientation y="0.12256"/>
 		</Entity>
 		<Entity uid="264">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
@@ -875,7 +875,7 @@
 		</Entity>
 		<Entity uid="331">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="429.31946" z="722.99585"/>
+			<Position x="447.33811" z="720.07728"/>
 			<Orientation y="1.8363"/>
 		</Entity>
 		<Entity uid="332">
@@ -1721,7 +1721,7 @@
 		</Entity>
 		<Entity uid="540">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="573.42829" z="600.14527"/>
+			<Position x="562.99231" z="606.99573"/>
 			<Orientation y="2.60347"/>
 		</Entity>
 		<Entity uid="541">
@@ -2431,7 +2431,7 @@
 		</Entity>
 		<Entity uid="682">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="583.31775" z="611.96753"/>
+			<Position x="584.36335" z="607.23133"/>
 			<Orientation y="-2.3296"/>
 		</Entity>
 		<Entity uid="683">
@@ -2871,8 +2871,8 @@
 		</Entity>
 		<Entity uid="770">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="301.8289" z="619.35315"/>
-			<Orientation y="1.19372"/>
+			<Position x="324.948" z="612.2635"/>
+			<Orientation y="-0.43982"/>
 		</Entity>
 		<Entity uid="771">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
@@ -2881,8 +2881,8 @@
 		</Entity>
 		<Entity uid="772">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="316.07847" z="599.80024"/>
-			<Orientation y="-2.29203"/>
+			<Position x="332.60535" z="599.58619"/>
+			<Orientation y="-0.42505"/>
 		</Entity>
 		<Entity uid="773">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
@@ -2891,7 +2891,7 @@
 		</Entity>
 		<Entity uid="774">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="340.47574" z="600.9972"/>
+			<Position x="331.73011" z="597.89985"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="775">
@@ -2961,7 +2961,7 @@
 		</Entity>
 		<Entity uid="788">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="323.04368" z="619.33667"/>
+			<Position x="316.24964" z="622.82996"/>
 			<Orientation y="-2.49566"/>
 		</Entity>
 		<Entity uid="789">
@@ -3046,7 +3046,7 @@
 		</Entity>
 		<Entity uid="805">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="569.34211" z="589.38685"/>
+			<Position x="569.56934" z="586.82734"/>
 			<Orientation y="1.3729"/>
 		</Entity>
 		<Entity uid="806">
@@ -3056,7 +3056,7 @@
 		</Entity>
 		<Entity uid="807">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="567.24701" z="593.49311"/>
+			<Position x="565.59803" z="592.0185"/>
 			<Orientation y="-1.88915"/>
 		</Entity>
 		<Entity uid="808">
@@ -3066,7 +3066,7 @@
 		</Entity>
 		<Entity uid="809">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="573.89484" z="584.92737"/>
+			<Position x="574.11536" z="583.57575"/>
 			<Orientation y="-1.23676"/>
 		</Entity>
 		<Entity uid="810">
@@ -3076,8 +3076,8 @@
 		</Entity>
 		<Entity uid="811">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="589.67646" z="593.6526"/>
-			<Orientation y="2.62351"/>
+			<Position x="584.38465" z="602.8089"/>
+			<Orientation y="1.65221"/>
 		</Entity>
 		<Entity uid="812">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
@@ -3116,8 +3116,8 @@
 		</Entity>
 		<Entity uid="819">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="575.68946" z="596.88593"/>
-			<Orientation y="1.31945"/>
+			<Position x="566.24683" z="652.0157"/>
+			<Orientation y="2.92208"/>
 		</Entity>
 		<Entity uid="820">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
@@ -5449,13 +5449,13 @@
 		<Entity uid="1252">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
 			<Player>0</Player>
-			<Position x="611.70984" z="422.95127"/>
+			<Position x="622.32868" z="431.60346"/>
 			<Orientation y="1.85373"/>
 		</Entity>
 		<Entity uid="1253">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
 			<Player>0</Player>
-			<Position x="572.49244" z="596.5669"/>
+			<Position x="573.50837" z="596.25812"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1263">
