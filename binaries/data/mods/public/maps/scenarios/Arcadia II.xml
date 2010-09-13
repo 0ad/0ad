@@ -23,10 +23,16 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="604.553" y="99.1106" z="534.687"/>
-		<Rotation angle="-0.0209109"/>
-		<Declination angle="0.627642"/>
+		<Position x="593.952" y="102.399" z="498.895"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":2,
+  "Description":"A representation of the interior of the Greek Peloponnese. Players start on either side of a mountainous region, across broad streams with 2 fords each. Players start with a Stoa for a +10 population bonus. Build up your lands, then expand into the interior to claim areas rick in Metal, Animals, Lumber, and Stone."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="150">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
@@ -21002,6 +21008,198 @@
 			<Player>0</Player>
 			<Position x="424.09296" z="384.63678"/>
 			<Orientation y="0.00313"/>
+		</Entity>
+		<Entity uid="4293">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="238.0724" z="346.47443"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4294">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="245.60204" z="339.76081"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4295">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="248.69112" z="327.98993"/>
+			<Orientation y="0.15555"/>
+		</Entity>
+		<Entity uid="4296">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="255.01345" z="342.30973"/>
+			<Orientation y="-2.47655"/>
+		</Entity>
+		<Entity uid="4297">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="388.19111" z="507.7902"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4298">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="386.65735" z="520.79975"/>
+			<Orientation y="-2.95975"/>
+		</Entity>
+		<Entity uid="4299">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="376.19132" z="504.7703"/>
+			<Orientation y="1.11507"/>
+		</Entity>
+		<Entity uid="4300">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="371.59205" z="515.93104"/>
+			<Orientation y="3.11921"/>
+		</Entity>
+		<Entity uid="4301">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="457.89161" z="178.84961"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4302">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="463.48783" z="189.20173"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4303">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="468.18052" z="176.6543"/>
+			<Orientation y="-2.81415"/>
+		</Entity>
+		<Entity uid="4304">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="481.78183" z="175.72077"/>
+			<Orientation y="-2.71705"/>
+		</Entity>
+		<Entity uid="4305">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="572.94697" z="42.8425"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4306">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="583.40906" z="36.63059"/>
+			<Orientation y="1.13305"/>
+		</Entity>
+		<Entity uid="4307">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="594.31098" z="24.3491"/>
+			<Orientation y="-2.28544"/>
+		</Entity>
+		<Entity uid="4308">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="576.35047" z="22.93195"/>
+			<Orientation y="-2.34354"/>
+		</Entity>
+		<Entity uid="4309">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="719.73926" z="281.63016"/>
+			<Orientation y="0.18773"/>
+		</Entity>
+		<Entity uid="4310">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="721.21674" z="297.5199"/>
+			<Orientation y="-2.52137"/>
+		</Entity>
+		<Entity uid="4311">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="711.00098" z="287.84379"/>
+			<Orientation y="0.06359"/>
+		</Entity>
+		<Entity uid="4312">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="713.74054" z="304.9781"/>
+			<Orientation y="-2.70023"/>
+		</Entity>
+		<Entity uid="4313">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="22.60802" z="463.83783"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4314">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="18.76862" z="477.83265"/>
+			<Orientation y="-3.03841"/>
+		</Entity>
+		<Entity uid="4315">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="30.93165" z="470.00116"/>
+			<Orientation y="0.02933"/>
+		</Entity>
+		<Entity uid="4316">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="12.59449" z="491.67231"/>
+			<Orientation y="-3.13468"/>
+		</Entity>
+		<Entity uid="4317">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="94.16555" z="666.93903"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4318">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="100.38323" z="674.42646"/>
+			<Orientation y="3.07964"/>
+		</Entity>
+		<Entity uid="4319">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="90.94944" z="656.49341"/>
+			<Orientation y="-0.29665"/>
+		</Entity>
+		<Entity uid="4320">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="102.059" z="661.32605"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4321">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="274.62098" z="523.82679"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4322">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="266.5753" z="531.52485"/>
+			<Orientation y="-0.95719"/>
+		</Entity>
+		<Entity uid="4323">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="285.60636" z="532.44306"/>
+			<Orientation y="-2.55259"/>
+		</Entity>
+		<Entity uid="4324">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>1</Player>
+			<Position x="279.7143" z="516.31055"/>
+			<Orientation y="0.66451"/>
 		</Entity>
 	</Entities>
 	<Paths/>
