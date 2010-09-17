@@ -53,9 +53,7 @@ void CComponentTypeScript::HandleMessage(const CSimContext& UNUSED(context), con
 {
 	const char* name = global ? msg.GetScriptGlobalHandlerName() : msg.GetScriptHandlerName();
 
-	CScriptVal msgVal = msg.ToJSVal(m_ScriptInterface);
-	// TODO: repeated conversions are exceedingly inefficient. Should
-	// cache this once per message (if it's used by >= 1 scripted component)
+	CScriptVal msgVal = msg.ToJSValCached(m_ScriptInterface);
 
 	if (!m_ScriptInterface.CallFunctionVoid(m_Instance, name, msgVal))
 		LOGERROR(L"Script message handler %hs failed", name);

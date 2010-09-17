@@ -52,5 +52,9 @@ jsval CScriptValRooted::get() const
 bool CScriptValRooted::undefined() const
 {
 	return (!m_Val || *m_Val == JSVAL_VOID);
+}
 
+bool CScriptValRooted::uninitialised() const
+{
+	return !m_Val;
 }

@@ -50,6 +50,14 @@ jsval prop;
 	if (! ScriptInterface::FromJSVal(scriptInterface.GetContext(), prop, name)) \
 		return NULL;
 
+jsval CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
+{
+	if (m_Cached.uninitialised())
+		m_Cached = CScriptValRooted(scriptInterface.GetContext(), ToJSVal(scriptInterface));
+
+	return m_Cached.get();
+}
+
 ////////////////////////////////
 
 jsval CMessageTurnStart::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
