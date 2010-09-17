@@ -601,6 +601,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
 						debug_assert(!cmpWaterMan.null());
 						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(CStr(waterelement.GetText())));
+						continue;
 					}
 
 					// The rest are purely graphical effects, and should be ignored if
