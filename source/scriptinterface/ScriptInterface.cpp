@@ -36,7 +36,7 @@
 
 #include "valgrind.h"
 
-const int RUNTIME_SIZE = 8 * 1024 * 1024; // TODO: how much memory is needed?
+const int RUNTIME_SIZE = 16 * 1024 * 1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
 
 #ifdef NDEBUG
