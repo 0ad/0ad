@@ -41,7 +41,8 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const Vf
 	// camera upwards
 	texture.SetMaxAnisotropy(2.0f);
 
-	m_Texture = g_Renderer.GetTextureManager().CreateTexture(texture);
+	if (CRenderer::IsInitialised())
+		m_Texture = g_Renderer.GetTextureManager().CreateTexture(texture);
 
 	if (m_pProperties)
 		m_Groups = m_pProperties->GetGroups();

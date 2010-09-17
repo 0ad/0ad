@@ -161,9 +161,8 @@ int CMapReader::UnpackTerrain()
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
-		CTerrainTextureEntry* texentry = NULL;
-		if (CTerrainTextureManager::IsInitialised())
-			texentry = g_TexMan.FindTexture(texturename);
+		debug_assert(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
+		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texturename);
 		m_TerrainTextures.push_back(texentry);
 
 		cur_terrain_tex++;
@@ -489,9 +488,8 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 	m_MapReader.m_PatchesPerSide = patches;
 
 	// Load the texture
-	CTerrainTextureEntry* texentry = NULL;
-	if (CTerrainTextureManager::IsInitialised())
-		texentry = g_TexMan.FindTexture(texture);
+	debug_assert(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
+	CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texture);
 
 	m_MapReader.pTerrain->Initialize(patches, NULL);
 
@@ -597,21 +595,23 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				debug_assert(waterbody.GetNodeName() == el_waterbody);
 				XERO_ITER_EL(waterbody, waterelement)
 				{
-					if (!m_MapReader.pWaterMan)
-						continue;
-
 					int element_name = waterelement.GetNodeName();
-					if (element_name == el_type)
-					{
-						// TODO: implement this, when WaterManager supports it
-					}
-					else if (element_name == el_height)
+					if (element_name == el_height)
 					{
 						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
 						debug_assert(!cmpWaterMan.null());
 						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(CStr(waterelement.GetText())));
 					}
 
+					// The rest are purely graphical effects, and should be ignored if
+					// graphics are disabled
+					if (!m_MapReader.pWaterMan)
+						continue;
+
+					if (element_name == el_type)
+					{
+						// TODO: implement this, when WaterManager supports it
+					}
 #define READ_COLOUR(el, out) \
 					else if (element_name == el) \
 					{ \
