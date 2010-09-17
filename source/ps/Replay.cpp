@@ -19,11 +19,16 @@
 
 #include "Replay.h"
 
+#include "graphics/TerrainTextureManager.h"
 #include "lib/utf8.h"
 #include "lib/file/file_system.h"
+#include "lib/tex/tex.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
+#include "ps/Profile.h"
+#include "ps/ProfileViewer.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptStats.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/SimulationCommand.h"
 
@@ -105,15 +110,30 @@ void CReplayPlayer::Replay()
 {
 	debug_assert(m_Stream);
 
+	new CProfileViewer;
+	new CProfileManager;
+	g_ScriptStatsTable = new CScriptStatsTable;
+	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
+
 	CGame game(true);
 	g_Game = &game;
 
+	// Need some stuff for terrain movement costs:
+	// (TODO: this ought to be independent of any graphics code)
+	tex_codec_register_all();
+	new CTerrainTextureManager;
+	g_TexMan.LoadTerrainTextures();
+
+
 	std::vector<SimulationCommand> commands;
+	u32 turn = 0;
 	u32 turnLength = 0;
 
 	std::string type;
 	while ((*m_Stream >> type).good())
 	{
+//		if (turn >= 1400) break;
+
 		if (type == "start")
 		{
 			std::string line;
@@ -129,9 +149,8 @@ void CReplayPlayer::Replay()
 		}
 		else if (type == "turn")
 		{
-			u32 turn;
 			*m_Stream >> turn >> turnLength;
-			printf("Turn %d (%d)... ", turn, turnLength);
+			debug_printf(L"Turn %d (%d)... ", turn, turnLength);
 		}
 		else if (type == "cmd")
 		{
@@ -147,6 +166,25 @@ void CReplayPlayer::Replay()
 			SimulationCommand cmd = { player, data };
 			commands.push_back(cmd);
 		}
+		else if (type == "hash")
+		{
+			std::string replayHash;
+			*m_Stream >> replayHash;
+
+//			if (turn >= 1300)
+//			if (turn >= 0)
+			if (turn % 100 == 0)
+			{
+				std::string hash;
+				bool ok = game.GetSimulation2()->ComputeStateHash(hash);
+				debug_assert(ok);
+				std::string hexHash = Hexify(hash);
+				if (hexHash == replayHash)
+					debug_printf(L"hash ok (%hs)", hexHash.c_str());
+				else
+					debug_printf(L"HASH MISMATCH (%hs != %hs)", hexHash.c_str(), replayHash.c_str());
+			}
+		}
 		else if (type == "end")
 		{
 			game.GetSimulation2()->Update(turnLength, commands);
@@ -155,16 +193,33 @@ void CReplayPlayer::Replay()
 //			std::string hash;
 //			bool ok = game.GetSimulation2()->ComputeStateHash(hash);
 //			debug_assert(ok);
-//			printf("%s\n", Hexify(hash).c_str());
+//			debug_printf(L"%hs\n", Hexify(hash).c_str());
+
+			debug_printf(L"\n");
+
+			g_Profiler.Frame();
+
+//			if (turn % 1000 == 0)
+//				JS_GC(game.GetSimulation2()->GetScriptInterface().GetContext());
+
+			if (turn % 20 == 0)
+				g_ProfileViewer.SaveToFile();
 		}
 		else
 		{
-			printf("Unrecognised replay token %s\n", type.c_str());
+			debug_printf(L"Unrecognised replay token %hs\n", type.c_str());
 		}
 	}
 
 	std::string hash;
 	bool ok = game.GetSimulation2()->ComputeStateHash(hash);
 	debug_assert(ok);
-	printf("# Final state: %s\n", Hexify(hash).c_str());
+	debug_printf(L"# Final state: %hs\n", Hexify(hash).c_str());
+
+	// Clean up
+	delete &g_TexMan;
+	tex_codec_unregister_all();
+
+	delete &g_Profiler;
+	delete &g_ProfileViewer;
 }
