@@ -31,6 +31,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/serialization/SerializeTemplates.h"
 
 // Default cost to move a single tile is a fairly arbitrary number, which should be big
 // enough to be precise when multiplied/divided and small enough to never overflow when
@@ -124,6 +125,55 @@ void CCmpPathfinder::Deinit(const CSimContext& UNUSED(context))
 
 	delete m_Grid;
 	delete m_ObstructionGrid;
+}
+
+struct SerializeLongRequest
+{
+	template<typename S>
+	void operator()(S& serialize, const char* UNUSED(name), AsyncLongPathRequest& value)
+	{
+		serialize.NumberU32_Unbounded("ticket", value.ticket);
+		serialize.NumberFixed_Unbounded("x0", value.x0);
+		serialize.NumberFixed_Unbounded("z0", value.z0);
+		SerializeGoal()(serialize, "goal", value.goal);
+		serialize.NumberU8_Unbounded("pass class", value.passClass);
+		serialize.NumberU8_Unbounded("cost class", value.costClass);
+		serialize.NumberU32_Unbounded("notify", value.notify);
+	}
+};
+
+struct SerializeShortRequest
+{
+	template<typename S>
+	void operator()(S& serialize, const char* UNUSED(name), AsyncShortPathRequest& value)
+	{
+		serialize.NumberU32_Unbounded("ticket", value.ticket);
+		serialize.NumberFixed_Unbounded("x0", value.x0);
+		serialize.NumberFixed_Unbounded("z0", value.z0);
+		serialize.NumberFixed_Unbounded("r", value.r);
+		serialize.NumberFixed_Unbounded("range", value.range);
+		SerializeGoal()(serialize, "goal", value.goal);
+		serialize.NumberU8_Unbounded("pass class", value.passClass);
+		serialize.Bool("avoid moving units", value.avoidMovingUnits);
+		serialize.NumberU32_Unbounded("group", value.group);
+		serialize.NumberU32_Unbounded("notify", value.notify);
+	}
+};
+
+void CCmpPathfinder::Serialize(ISerializer& serialize)
+{
+	SerializeVector<SerializeLongRequest>()(serialize, "long requests", m_AsyncLongPathRequests);
+	SerializeVector<SerializeShortRequest>()(serialize, "short requests", m_AsyncShortPathRequests);
+	serialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
+}
+
+void CCmpPathfinder::Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+{
+	Init(context, paramNode);
+
+	SerializeVector<SerializeLongRequest>()(deserialize, "long requests", m_AsyncLongPathRequests);
+	SerializeVector<SerializeShortRequest>()(deserialize, "short requests", m_AsyncShortPathRequests);
+	deserialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
 }
 
 void CCmpPathfinder::HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))

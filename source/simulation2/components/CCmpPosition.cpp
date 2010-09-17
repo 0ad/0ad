@@ -156,18 +156,18 @@ public:
 	{
 		Init(context, paramNode);
 
-		deserialize.Bool(m_InWorld);
+		deserialize.Bool("in world", m_InWorld);
 		if (m_InWorld)
 		{
-			deserialize.NumberFixed_Unbounded(m_X);
-			deserialize.NumberFixed_Unbounded(m_Z);
-			deserialize.NumberFixed_Unbounded(m_LastX);
-			deserialize.NumberFixed_Unbounded(m_LastZ);
+			deserialize.NumberFixed_Unbounded("x", m_X);
+			deserialize.NumberFixed_Unbounded("z", m_Z);
+			deserialize.NumberFixed_Unbounded("last x", m_LastX);
+			deserialize.NumberFixed_Unbounded("last z", m_LastZ);
 		}
-		deserialize.NumberFixed_Unbounded(m_RotX);
-		deserialize.NumberFixed_Unbounded(m_RotY);
-		deserialize.NumberFixed_Unbounded(m_RotZ);
-		deserialize.NumberFixed_Unbounded(m_YOffset);
+		deserialize.NumberFixed_Unbounded("rot x", m_RotX);
+		deserialize.NumberFixed_Unbounded("rot y", m_RotY);
+		deserialize.NumberFixed_Unbounded("rot z", m_RotZ);
+		deserialize.NumberFixed_Unbounded("altitude", m_YOffset);
 		// TODO: should there be range checks on all these values?
 
 		m_InterpolatedRotY = m_RotY.ToFloat();

@@ -126,10 +126,10 @@ const u8* CSimulationMessage::Deserialize(const u8* pStart, const u8* pEnd)
 	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
 	std::istringstream stream(std::string(pos, pEnd));
 	CStdDeserializer deserializer(m_ScriptInterface, stream);
-	deserializer.NumberU32_Unbounded(m_Client);
-	deserializer.NumberI32_Unbounded(m_Player);
-	deserializer.NumberU32_Unbounded(m_Turn);
-	deserializer.ScriptVal(m_Data);
+	deserializer.NumberU32_Unbounded("client", m_Client);
+	deserializer.NumberI32_Unbounded("player", m_Player);
+	deserializer.NumberU32_Unbounded("turn", m_Turn);
+	deserializer.ScriptVal("command", m_Data);
 	return pEnd;
 }
 
@@ -184,7 +184,7 @@ const u8* CGameSetupMessage::Deserialize(const u8* pStart, const u8* pEnd)
 	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
 	std::istringstream stream(std::string(pos, pEnd));
 	CStdDeserializer deserializer(m_ScriptInterface, stream);
-	deserializer.ScriptVal(m_Data);
+	deserializer.ScriptVal("command", m_Data);
 	return pEnd;
 }
 

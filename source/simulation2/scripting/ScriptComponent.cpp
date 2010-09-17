@@ -82,7 +82,7 @@ void CComponentTypeScript::Deserialize(const CSimContext& UNUSED(context), const
 
 	// Use ScriptObjectAppend so we don't lose the carefully-constructed
 	// prototype/parent of this object
-	deserialize.ScriptObjectAppend(m_Instance);
+	deserialize.ScriptObjectAppend("object", m_Instance);
 
 	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true);
 	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true);

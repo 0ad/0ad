@@ -63,13 +63,13 @@ public:
 		JSContext* cx = context.GetScriptInterface().GetContext();
 
 		u32 numCmds;
-		deserialize.NumberU32_Unbounded(numCmds);
+		deserialize.NumberU32_Unbounded("num commands", numCmds);
 		for (size_t i = 0; i < numCmds; ++i)
 		{
 			i32 player;
 			jsval data;
-			deserialize.NumberI32_Unbounded(player);
-			deserialize.ScriptVal(data);
+			deserialize.NumberI32_Unbounded("player", player);
+			deserialize.ScriptVal("data", data);
 			SimulationCommand c = { player, CScriptValRooted(cx, data) };
 			m_LocalQueue.push_back(c);
 		}

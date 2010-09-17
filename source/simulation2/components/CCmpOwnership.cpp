@@ -61,7 +61,7 @@ public:
 
 	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		deserialize.NumberI32_Unbounded(m_Owner);
+		deserialize.NumberI32_Unbounded("owner", m_Owner);
 	}
 
 	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))

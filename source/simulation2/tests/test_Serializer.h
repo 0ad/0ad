@@ -153,11 +153,11 @@ public:
 		CStdDeserializer deserialize(script, stream);
 		int32_t n;
 
-		deserialize.NumberI32_Unbounded(n);
+		deserialize.NumberI32_Unbounded("x", n);
 		TS_ASSERT_EQUALS(n, -123);
-		deserialize.NumberI32_Unbounded(n);
+		deserialize.NumberI32_Unbounded("y", n);
 		TS_ASSERT_EQUALS(n, 1234);
-		deserialize.NumberI32(n, 0, 65535);
+		deserialize.NumberI32("z", n, 0, 65535);
 		TS_ASSERT_EQUALS(n, 12345);
 
 		TS_ASSERT(stream.good());
@@ -184,37 +184,37 @@ public:
 		std::wstring wstr;
 		u8 cbuf[256];
 
-		deserialize.NumberU8_Unbounded(u8v);
+		deserialize.NumberU8_Unbounded("u8", u8v);
 		TS_ASSERT_EQUALS(u8v, 255);
-		deserialize.NumberI32_Unbounded(i32v);
+		deserialize.NumberI32_Unbounded("i32", i32v);
 		TS_ASSERT_EQUALS(i32v, -123);
-		deserialize.NumberU32_Unbounded(u32v);
+		deserialize.NumberU32_Unbounded("u32", u32v);
 		TS_ASSERT_EQUALS(u32v, 4294967173u);
-		deserialize.NumberFloat_Unbounded(flt);
+		deserialize.NumberFloat_Unbounded("float", flt);
 		TS_ASSERT_EQUALS(flt, 1e+30f);
-		deserialize.NumberDouble_Unbounded(dbl);
+		deserialize.NumberDouble_Unbounded("double", dbl);
 		TS_ASSERT_EQUALS(dbl, 1e+300);
-		deserialize.NumberFixed_Unbounded(fxd);
+		deserialize.NumberFixed_Unbounded("fixed", fxd);
 		TS_ASSERT_EQUALS(fxd.ToDouble(), 1234.5);
 
-		deserialize.Bool(bl);
+		deserialize.Bool("t", bl);
 		TS_ASSERT_EQUALS(bl, true);
-		deserialize.Bool(bl);
+		deserialize.Bool("f", bl);
 		TS_ASSERT_EQUALS(bl, false);
 
-		deserialize.StringASCII(str, 0, 255);
+		deserialize.StringASCII("string", str, 0, 255);
 		TS_ASSERT_STR_EQUALS(str, "example");
-		deserialize.StringASCII(str, 0, 255);
+		deserialize.StringASCII("string 2", str, 0, 255);
 		TS_ASSERT_STR_EQUALS(str, "example\"\\\"");
-		deserialize.StringASCII(str, 0, 255);
+		deserialize.StringASCII("string 3", str, 0, 255);
 		TS_ASSERT_STR_EQUALS(str, "example\n\ntest");
 
 		wchar_t testw[] = { 't', 0xEA, 's', 't', 0 };
-		deserialize.String(wstr, 0, 255);
+		deserialize.String("string 4", wstr, 0, 255);
 		TS_ASSERT_WSTR_EQUALS(wstr, testw);
 
 		cbuf[6] = 0x42; // sentinel
-		deserialize.RawBytes(cbuf, 6);
+		deserialize.RawBytes("raw bytes", cbuf, 6);
 		TS_ASSERT_SAME_DATA(cbuf, (const u8*)"\0\1\2\3\x0f\x10\x42", 7);
 
 		TS_ASSERT(stream.good());
@@ -297,7 +297,7 @@ public:
 			CStdDeserializer deserialize(script, stream);
 
 			jsval newobj;
-			deserialize.ScriptVal(newobj);
+			deserialize.ScriptVal("script", newobj);
 			TS_ASSERT(stream.good());
 			TS_ASSERT_EQUALS(stream.peek(), EOF);
 
@@ -326,7 +326,7 @@ public:
 		CStdDeserializer deserialize(script, stream);
 
 		jsval newobj;
-		deserialize.ScriptVal(newobj);
+		deserialize.ScriptVal("script", newobj);
 		TSM_ASSERT(msg, stream.good());
 		TSM_ASSERT_EQUALS(msg, stream.peek(), EOF);
 
@@ -436,7 +436,7 @@ public:
 			CStdDeserializer deserialize(script, stream);
 
 			jsval newobj;
-			deserialize.ScriptVal(newobj);
+			deserialize.ScriptVal("script", newobj);
 			TS_ASSERT(stream.good());
 			TS_ASSERT_EQUALS(stream.peek(), EOF);
 

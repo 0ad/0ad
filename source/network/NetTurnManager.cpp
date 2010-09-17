@@ -264,6 +264,15 @@ void CNetLocalTurnManager::NotifyFinishedOwnCommands(u32 turn)
 
 void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn))
 {
+#if 0 // this hurts performance and is only useful for verifying log replays
+	std::string hash;
+	{
+		PROFILE("state hash check");
+		bool ok = m_Simulation2.ComputeStateHash(hash);
+		debug_assert(ok);
+	}
+	m_Replay.Hash(hash);
+#endif
 }
 
 void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))

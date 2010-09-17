@@ -36,29 +36,31 @@ class IDeserializer
 public:
 	virtual ~IDeserializer();
 
-	virtual void NumberU8(uint8_t& out, uint8_t lower, uint8_t upper);
-	virtual void NumberI32(int32_t& out, int32_t lower, int32_t upper);
-	virtual void NumberU32(uint32_t& out, uint32_t lower, uint32_t upper);
-	virtual void NumberU8_Unbounded(uint8_t& out);
-	virtual void NumberI32_Unbounded(int32_t& out);
-	virtual void NumberU32_Unbounded(uint32_t& out);
-	virtual void NumberFloat_Unbounded(float& out);
-	virtual void NumberDouble_Unbounded(double& out);
-	virtual void NumberFixed_Unbounded(fixed& out);
-	virtual void Bool(bool& out);
-	virtual void StringASCII(std::string& out, uint32_t minlength, uint32_t maxlength);
-	virtual void String(std::wstring& out, uint32_t minlength, uint32_t maxlength);
+	virtual void NumberU8(const char* name, uint8_t& out, uint8_t lower, uint8_t upper);
+	virtual void NumberI32(const char* name, int32_t& out, int32_t lower, int32_t upper);
+	virtual void NumberU32(const char* name, uint32_t& out, uint32_t lower, uint32_t upper);
+	virtual void NumberU8_Unbounded(const char* name, uint8_t& out);
+	virtual void NumberI32_Unbounded(const char* name, int32_t& out);
+	virtual void NumberU32_Unbounded(const char* name, uint32_t& out);
+	virtual void NumberFloat_Unbounded(const char* name, float& out);
+	virtual void NumberDouble_Unbounded(const char* name, double& out);
+	virtual void NumberFixed_Unbounded(const char* name, fixed& out);
+	virtual void Bool(const char* name, bool& out);
+	virtual void StringASCII(const char* name, std::string& out, uint32_t minlength, uint32_t maxlength);
+	virtual void String(const char* name, std::wstring& out, uint32_t minlength, uint32_t maxlength);
 
 	/// Deserialize a jsval, replacing 'out'
-	virtual void ScriptVal(jsval& out) = 0;
+	virtual void ScriptVal(const char* name, jsval& out) = 0;
+	virtual void ScriptVal(const char* name, CScriptVal& out) = 0;
+	virtual void ScriptVal(const char* name, CScriptValRooted& out) = 0;
 
 	/// Deserialize an object jsval, appending properties to object 'obj'
-	virtual void ScriptObjectAppend(jsval& obj) = 0;
+	virtual void ScriptObjectAppend(const char* name, jsval& obj) = 0;
 
 	/// Deserialize a JSString
-	virtual void ScriptString(JSString*& out) = 0;
+	virtual void ScriptString(const char* name, JSString*& out) = 0;
 
-	virtual void RawBytes(u8* data, size_t len);
+	virtual void RawBytes(const char* name, u8* data, size_t len);
 
 	// Features for simulation-state serialisation:
 	virtual int GetVersion() const;

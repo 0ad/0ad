@@ -167,12 +167,12 @@ public:
 
 	std::vector<AsyncLongPathRequest> m_AsyncLongPathRequests;
 	std::vector<AsyncShortPathRequest> m_AsyncShortPathRequests;
+	u32 m_NextAsyncTicket; // unique IDs for asynchronous path requests
 
 	u16 m_MapSize; // tiles per side
 	Grid<TerrainTile>* m_Grid; // terrain/passability information
 	Grid<u8>* m_ObstructionGrid; // cached obstruction information (TODO: we shouldn't bother storing this, it's redundant with LSBs of m_Grid)
 	bool m_TerrainDirty; // indicates if m_Grid has been updated since terrain changed
-	u32 m_NextAsyncTicket; // unique IDs for asynchronous path requests
 
 	// Debugging - output from last pathfind operation:
 	Grid<PathfindTile>* m_DebugGrid;
@@ -188,25 +188,15 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode);
+	virtual void Init(const CSimContext& context, const CParamNode& paramNode);
 
-	virtual void Deinit(const CSimContext& UNUSED(context));
+	virtual void Deinit(const CSimContext& context);
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
-	{
-		// TODO: do something here
-		// (Do we need to serialise the pathfinder state, or is it fine to regenerate it from
-		// the original entities after deserialisation?)
-	}
+	virtual void Serialize(ISerializer& serialize);
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
-	{
-		Init(context, paramNode);
+	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize);
 
-		// TODO
-	}
-
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global));
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool global);
 
 	virtual u8 GetPassabilityClass(const std::string& name);
 

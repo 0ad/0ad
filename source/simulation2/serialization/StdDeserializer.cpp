@@ -76,7 +76,7 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 	JSContext* cx = m_ScriptInterface.GetContext();
 
 	uint8_t type;
-	NumberU8_Unbounded(type);
+	NumberU8_Unbounded("type", type);
 	switch (type)
 	{
 	case SCRIPT_TYPE_VOID:
@@ -103,7 +103,7 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 		AddScriptBackref(obj);
 
 		uint32_t numProps;
-		NumberU32_Unbounded(numProps);
+		NumberU32_Unbounded("num props", numProps);
 
 		for (uint32_t i = 0; i < numProps; ++i)
 		{
@@ -122,19 +122,19 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 	case SCRIPT_TYPE_STRING:
 	{
 		JSString* str;
-		ScriptString(str);
+		ScriptString("string", str);
 		return STRING_TO_JSVAL(str);
 	}
 	case SCRIPT_TYPE_INT:
 	{
 		int32_t value;
-		NumberI32(value, JSVAL_INT_MIN, JSVAL_INT_MAX);
+		NumberI32("value", value, JSVAL_INT_MIN, JSVAL_INT_MAX);
 		return INT_TO_JSVAL(value);
 	}
 	case SCRIPT_TYPE_DOUBLE:
 	{
 		double value;
-		NumberDouble_Unbounded(value);
+		NumberDouble_Unbounded("value", value);
 		jsval rval;
 		if (!JS_NewNumberValue(cx, value, &rval))
 			throw PSERROR_Deserialize_ScriptError("JS_NewNumberValue failed");
@@ -143,13 +143,13 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 	case SCRIPT_TYPE_BOOLEAN:
 	{
 		uint8_t value;
-		NumberU8(value, 0, 1);
+		NumberU8("value", value, 0, 1);
 		return BOOLEAN_TO_JSVAL(value ? JS_TRUE : JS_FALSE);
 	}
 	case SCRIPT_TYPE_BACKREF:
 	{
 		u32 tag;
-		NumberU32_Unbounded(tag);
+		NumberU32_Unbounded("tag", tag);
 		JSObject* obj = GetScriptBackref(tag);
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError("Invalid backref tag");
@@ -163,12 +163,12 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 void CStdDeserializer::ReadStringUTF16(utf16string& str)
 {
 	uint32_t len;
-	NumberU32_Unbounded(len);
+	NumberU32_Unbounded("string length", len);
 	str.resize(len); // TODO: should check len*2 <= bytes remaining in stream, before resizing
 	Get((u8*)str.data(), len*2);
 }
 
-void CStdDeserializer::ScriptString(JSString*& out)
+void CStdDeserializer::ScriptString(const char* UNUSED(name), JSString*& out)
 {
 	utf16string str;
 	ReadStringUTF16(str);
@@ -182,22 +182,22 @@ void CStdDeserializer::ScriptString(JSString*& out)
 		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
 }
 
-void CStdDeserializer::ScriptVal(jsval& out)
+void CStdDeserializer::ScriptVal(const char* UNUSED(name), jsval& out)
 {
 	out = ReadScriptVal(NULL);
 }
 
-void CStdDeserializer::ScriptVal(CScriptVal& out)
+void CStdDeserializer::ScriptVal(const char* UNUSED(name), CScriptVal& out)
 {
 	out = ReadScriptVal(NULL);
 }
 
-void CStdDeserializer::ScriptVal(CScriptValRooted& out)
+void CStdDeserializer::ScriptVal(const char* UNUSED(name), CScriptValRooted& out)
 {
 	out = CScriptValRooted(m_ScriptInterface.GetContext(), ReadScriptVal(NULL));
 }
 
-void CStdDeserializer::ScriptObjectAppend(jsval& obj)
+void CStdDeserializer::ScriptObjectAppend(const char* UNUSED(name), jsval& obj)
 {
 	if (!JSVAL_IS_OBJECT(obj))
 		throw PSERROR_Deserialize_ScriptError();

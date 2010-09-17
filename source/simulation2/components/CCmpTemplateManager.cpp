@@ -89,13 +89,13 @@ public:
 		Init(context, paramNode);
 
 		u32 numEntities;
-		deserialize.NumberU32_Unbounded(numEntities);
+		deserialize.NumberU32_Unbounded("num entities", numEntities);
 		for (u32 i = 0; i < numEntities; ++i)
 		{
 			entity_id_t ent;
 			std::string templateName;
-			deserialize.NumberU32_Unbounded(ent);
-			deserialize.StringASCII(templateName, 0, 256);
+			deserialize.NumberU32_Unbounded("id", ent);
+			deserialize.StringASCII("template", templateName, 0, 256);
 			m_LatestTemplates[ent] = templateName;
 		}
 	}

@@ -236,13 +236,13 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 	ResetState();
 
 	std::string rng;
-	deserializer.StringASCII(rng, 0, 32);
+	deserializer.StringASCII("rng", rng, 0, 32);
 	DeserializeRNG(rng, m_RNG);
 
-	deserializer.NumberU32_Unbounded(m_NextEntityId); // TODO: use sensible bounds
+	deserializer.NumberU32_Unbounded("next entity id", m_NextEntityId); // TODO: use sensible bounds
 
 	uint32_t numComponentTypes;
-	deserializer.NumberU32_Unbounded(numComponentTypes);
+	deserializer.NumberU32_Unbounded("num component types", numComponentTypes);
 
 	ICmpTemplateManager* templateManager = NULL;
 	CParamNode noParam;
@@ -250,7 +250,7 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 	for (size_t i = 0; i < numComponentTypes; ++i)
 	{
 		std::string ctname;
-		deserializer.StringASCII(ctname, 0, 255);
+		deserializer.StringASCII("name", ctname, 0, 255);
 
 		ComponentTypeId ctid = LookupCID(ctname);
 		if (ctid == CID__Invalid)
@@ -260,12 +260,12 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 		}
 
 		uint32_t numComponents;
-		deserializer.NumberU32_Unbounded(numComponents);
+		deserializer.NumberU32_Unbounded("num components", numComponents);
 
 		for (size_t j = 0; j < numComponents; ++j)
 		{
 			entity_id_t ent;
-			deserializer.NumberU32_Unbounded(ent);
+			deserializer.NumberU32_Unbounded("entity id", ent);
 			IComponent* component = ConstructComponent(ent, ctid);
 			if (!component)
 				return false;

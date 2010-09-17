@@ -31,11 +31,11 @@ public:
 	CStdDeserializer(ScriptInterface& scriptInterface, std::istream& stream);
 	virtual ~CStdDeserializer();
 
-	virtual void ScriptVal(jsval& out);
-	virtual void ScriptVal(CScriptVal& out);
-	virtual void ScriptVal(CScriptValRooted& out);
-	virtual void ScriptObjectAppend(jsval& obj);
-	virtual void ScriptString(JSString*& out);
+	virtual void ScriptVal(const char* name, jsval& out);
+	virtual void ScriptVal(const char* name, CScriptVal& out);
+	virtual void ScriptVal(const char* name, CScriptValRooted& out);
+	virtual void ScriptObjectAppend(const char* name, jsval& obj);
+	virtual void ScriptString(const char* name, JSString*& out);
 
 protected:
 	virtual void Get(u8* data, size_t len);

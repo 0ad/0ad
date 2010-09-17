@@ -27,6 +27,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
+#include "simulation2/serialization/SerializeTemplates.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -74,7 +75,7 @@ public:
 
 	entity_pos_t m_Radius;
 
-	enum
+	enum State
 	{
 		STATE_IDLE, // not moving at all
 		STATE_STOPPING, // will go IDLE next turn (this delay fixes animation timings)
@@ -86,7 +87,8 @@ public:
 		// Entities that represent individual units or formation controllers:
 		// ('target' is m_FinalGoal)
 		STATE_INDIVIDUAL_PATH_COMPUTING, // waiting for a path to target
-		STATE_INDIVIDUAL_PATH_FOLLOWING // following the computed path to target
+		STATE_INDIVIDUAL_PATH_FOLLOWING, // following the computed path to target
+		STATE_MAX
 	};
 	int m_State;
 
@@ -97,7 +99,6 @@ public:
 
 	fixed m_Speed;
 
-	// These values contain undefined junk if !HasTarget:
 	ICmpPathfinder::Path m_LongPath;
 	ICmpPathfinder::Path m_ShortPath;
 	entity_pos_t m_ShortTargetX, m_ShortTargetZ;
@@ -157,10 +158,6 @@ public:
 			m_RunSpeed = m_WalkSpeed;
 		}
 
-		CmpPtr<ICmpObstruction> cmpObstruction(context, GetEntityId());
-		if (!cmpObstruction.null())
-			m_Radius = cmpObstruction->GetUnitRadius();
-
 		CmpPtr<ICmpPathfinder> cmpPathfinder(context, SYSTEM_ENTITY);
 		if (!cmpPathfinder.null())
 		{
@@ -168,9 +165,17 @@ public:
 			m_CostClass = cmpPathfinder->GetCostClass(paramNode.GetChild("CostClass").ToASCIIString());
 		}
 
+		CmpPtr<ICmpObstruction> cmpObstruction(context, GetEntityId());
+		if (!cmpObstruction.null())
+			m_Radius = cmpObstruction->GetUnitRadius();
+
 		m_State = STATE_IDLE;
 
 		m_ExpectedPathTicket = 0;
+
+		m_TargetEntity = 0;
+
+		m_FinalGoal.type = ICmpPathfinder::Goal::POINT;
 
 		m_DebugOverlayEnabled = false;
 	}
@@ -181,24 +186,46 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-//		serialize.Bool("has target", m_HasTarget);
-//		if (m_HasTarget)
-		{
-			// TODO: m_Path
-			// TODO: m_FinalTargetAngle
-		}
+		serialize.NumberFixed_Unbounded("radius", m_Radius);
 
-		// TODO: m_State
+		serialize.NumberU8("state", m_State, 0, STATE_MAX-1);
+
+		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket);
+
+		serialize.NumberU32_Unbounded("target entity", m_TargetEntity);
+		serialize.NumberFixed_Unbounded("target offset x", m_TargetOffsetX);
+		serialize.NumberFixed_Unbounded("target offset z", m_TargetOffsetZ);
+		serialize.NumberFixed_Unbounded("speed", m_Speed);
+
+		SerializeVector<SerializeWaypoint>()(serialize, "long path", m_LongPath.m_Waypoints);
+		SerializeVector<SerializeWaypoint>()(serialize, "short path", m_ShortPath.m_Waypoints);
+		serialize.NumberFixed_Unbounded("short target x", m_ShortTargetX);
+		serialize.NumberFixed_Unbounded("short target z", m_ShortTargetZ);
+		SerializeGoal()(serialize, "goal", m_FinalGoal);
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
 
-//		deserialize.Bool(m_HasTarget);
-//		if (m_HasTarget)
-		{
-		}
+		deserialize.NumberFixed_Unbounded("radius", m_Radius);
+
+		u8 state;
+		deserialize.NumberU8("state", state, 0, STATE_MAX-1);
+		m_State = (State)state;
+
+		deserialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket);
+
+		deserialize.NumberU32_Unbounded("target entity", m_TargetEntity);
+		deserialize.NumberFixed_Unbounded("target offset x", m_TargetOffsetX);
+		deserialize.NumberFixed_Unbounded("target offset z", m_TargetOffsetZ);
+		deserialize.NumberFixed_Unbounded("speed", m_Speed);
+
+		SerializeVector<SerializeWaypoint>()(deserialize, "long path", m_LongPath.m_Waypoints);
+		SerializeVector<SerializeWaypoint>()(deserialize, "short path", m_ShortPath.m_Waypoints);
+		deserialize.NumberFixed_Unbounded("short target x", m_ShortTargetX);
+		deserialize.NumberFixed_Unbounded("short target z", m_ShortTargetZ);
+		SerializeGoal()(deserialize, "goal", m_FinalGoal);
 	}
 
 	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))

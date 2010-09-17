@@ -62,8 +62,8 @@ public:
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
-		deserialize.NumberFloat_Unbounded(m_SpeedX);
-		deserialize.NumberFloat_Unbounded(m_SpeedZ);
+		deserialize.NumberFloat_Unbounded("speed x", m_SpeedX);
+		deserialize.NumberFloat_Unbounded("speed z", m_SpeedZ);
 	}
 
 	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))

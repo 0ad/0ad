@@ -46,7 +46,7 @@ class ICmpPathfinder : public IComponent
 public:
 	struct Goal
 	{
-		enum {
+		enum Type {
 			POINT,
 			CIRCLE,
 			SQUARE

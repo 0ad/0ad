@@ -19,6 +19,7 @@
 #define INCLUDED_MESSAGE
 
 #include "scriptinterface/ScriptTypes.h"
+#include "scriptinterface/ScriptVal.h"
 
 class CMessage
 {
@@ -31,6 +32,9 @@ public:
 	virtual const char* GetScriptHandlerName() const = 0;
 	virtual const char* GetScriptGlobalHandlerName() const = 0;
 	virtual jsval ToJSVal(ScriptInterface&) const = 0;
+	jsval ToJSValCached(ScriptInterface&) const;
+private:
+	mutable CScriptValRooted m_Cached;
 };
 // TODO: GetType could be replaced with a plain member variable to avoid some
 // virtual calls, if that turns out to be worthwhile

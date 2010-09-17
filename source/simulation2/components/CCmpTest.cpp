@@ -60,7 +60,7 @@ public:
 
 	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		deserialize.NumberI32_Unbounded(m_x);
+		deserialize.NumberI32_Unbounded("x", m_x);
 	}
 
 	virtual int GetX()
@@ -121,7 +121,7 @@ public:
 
 	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		deserialize.NumberI32_Unbounded(m_x);
+		deserialize.NumberI32_Unbounded("x", m_x);
 	}
 
 	virtual int GetX()
@@ -182,7 +182,7 @@ public:
 
 	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		deserialize.NumberI32_Unbounded(m_x);
+		deserialize.NumberI32_Unbounded("x", m_x);
 	}
 
 	virtual int GetX()
