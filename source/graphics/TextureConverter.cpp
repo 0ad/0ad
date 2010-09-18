@@ -485,6 +485,8 @@ bool CTextureConverter::IsBusy()
 
 void* CTextureConverter::RunThread(void* data)
 {
+	debug_SetThreadName("TextureConverter");
+
 	CTextureConverter* textureConverter = static_cast<CTextureConverter*>(data);
 
 	// Wait until the main thread wakes us up

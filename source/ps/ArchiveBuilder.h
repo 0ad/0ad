@@ -43,6 +43,8 @@ public:
 	/**
 	 * Add a mod which will be loaded but not archived, to provide
 	 * files like textures.xml needed for the conversion.
+	 * Typically this will be called with 'public', when packaging
+	 * a user's mod.
 	 * @param mod path to data/mods/foo directory, containing files for loading
 	 */
 	void AddBaseMod(const fs::wpath& mod);
