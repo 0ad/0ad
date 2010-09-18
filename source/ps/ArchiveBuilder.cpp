@@ -24,6 +24,11 @@
 #include "lib/tex/tex_codec.h"
 #include "lib/file/archive/archive_zip.h"
 
+// Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
+#if MSC_VERSION
+#pragma warning(disable:4512)
+#endif
+
 #include <boost/algorithm/string.hpp>
 
 CArchiveBuilder::CArchiveBuilder(const fs::wpath& mod, const fs::wpath& tempdir) :
