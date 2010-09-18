@@ -101,7 +101,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 	debug_assert(g_XeromycesStarted);
 
 	// Make sure the .xml actually exists
-	if (! FileExists(filename))
+	if (! FileExists(vfs, filename))
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to find XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
@@ -145,7 +145,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 	GetXMBPath(vfs, filename, xmbFilename, xmbPath);
 
 	// If the file exists, use it
-	if (FileExists(xmbPath))
+	if (FileExists(vfs, xmbPath))
 	{
 		if (ReadXMBFile(vfs, xmbPath))
 			return PSRETURN_OK;

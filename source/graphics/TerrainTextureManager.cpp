@@ -31,6 +31,8 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
+#include <boost/algorithm/string.hpp>
+
 #define LOG_CATEGORY L"graphics"
 
 CTerrainTextureManager::CTerrainTextureManager():
@@ -111,6 +113,19 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 	VfsPaths pathnames;
 	if(fs_util::GetPathnames(g_VFS, path, 0, pathnames) < 0)
 		return;
+
+	// If we have any .cached.dds files then strip that extension to get the
+	// 'real' texture name
+	for(size_t i = 0; i < pathnames.size(); i++)
+	{
+		if(boost::algorithm::ends_with(pathnames[i].leaf(), L".cached.dds"))
+			pathnames[i] = pathnames[i].branch_path() / boost::algorithm::erase_last_copy(pathnames[i].leaf(), L".cached.dds");
+	}
+
+	// Remove any duplicates created by the stripping
+	std::sort(pathnames.begin(), pathnames.end());
+	pathnames.erase(std::unique(pathnames.begin(), pathnames.end()), pathnames.end());
+
 	for(size_t i = 0; i < pathnames.size(); i++)
 	{
 		// skip files that obviously aren't textures.

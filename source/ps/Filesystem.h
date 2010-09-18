@@ -30,6 +30,8 @@
 
 extern PIVFS g_VFS;
 
+extern bool FileExists(const PIVFS& vfs, const VfsPath& pathname);
+
 extern bool FileExists(const VfsPath& pathname);
 
 /**

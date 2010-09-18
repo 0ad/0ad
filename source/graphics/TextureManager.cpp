@@ -271,7 +271,7 @@ public:
 		VfsPath sourcePath = texture->m_Properties.m_Path;
 		VfsPath sourceDir = sourcePath.branch_path();
 		std::wstring sourceName = sourcePath.leaf();
-		VfsPath archiveCachePath = sourceDir / (sourceName + L".dds");
+		VfsPath archiveCachePath = sourceDir / (sourceName + L".cached.dds");
 
 		// Try the archive cache file first
 		if (CanUseArchiveCache(sourcePath, archiveCachePath))
@@ -369,6 +369,35 @@ public:
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
 		m_TextureConverter.ConvertTexture(texture, sourcePath, looseCachePath, settings);
+	}
+
+	bool GenerateCachedTexture(const VfsPath& sourcePath, VfsPath& archiveCachePath)
+	{
+		VfsPath sourceDir = sourcePath.branch_path();
+		std::wstring sourceName = sourcePath.leaf();
+		archiveCachePath = sourceDir / (sourceName + L".cached.dds");
+
+		CTextureProperties textureProps(sourcePath);
+		CTexturePtr texture = CreateTexture(textureProps);
+		CTextureConverter::Settings settings = GetConverterSettings(texture);
+
+		// TODO: we ought to use a higher-quality compression mode here
+		// (since we don't care about performance)
+
+		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, L"cache"/archiveCachePath, settings))
+			return false;
+
+		while (true)
+		{
+			CTexturePtr textureOut;
+			VfsPath dest;
+			bool ok;
+			if (m_TextureConverter.Poll(textureOut, dest, ok))
+				return ok;
+
+			// Spin-loop is dumb but it works okay for now
+			SDL_Delay(0);
+		}
 	}
 
 	bool MakeProgress()
@@ -671,4 +700,9 @@ CTexturePtr CTextureManager::GetErrorTexture()
 bool CTextureManager::MakeProgress()
 {
 	return m->MakeProgress();
+}
+
+bool CTextureManager::GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath)
+{
+	return m->GenerateCachedTexture(path, outputPath);
 }

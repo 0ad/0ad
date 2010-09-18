@@ -560,10 +560,10 @@ public:
 		wtruncate(pathname.string().c_str(), m_fileSize);
 	}
 
-	LibError AddFile(const fs::wpath& pathname)
+	LibError AddFile(const fs::wpath& sourcepathname, const fs::wpath& pathname)
 	{
 		FileInfo fileInfo;
-		RETURN_ERR(GetFileInfo(pathname, &fileInfo));
+		RETURN_ERR(GetFileInfo(sourcepathname, &fileInfo));
 		const off_t usize = fileInfo.Size();
 		// skip 0-length files.
 		// rationale: zip.cpp needs to determine whether a CDFH entry is
@@ -577,7 +577,7 @@ public:
 			return INFO::SKIPPED;
 
 		PFile file(new File);
-		RETURN_ERR(file->Open(pathname, 'r'));
+		RETURN_ERR(file->Open(sourcepathname, 'r'));
 
 		const size_t pathnameLength = pathname.string().length();
 

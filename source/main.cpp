@@ -38,9 +38,11 @@ that of Atlas depending on commandline parameters.
 #include "lib/input.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
+#include "lib/utf8.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/sound/snd_mgr.h"
 
+#include "ps/ArchiveBuilder.h"
 #include "ps/CConsole.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
@@ -449,6 +451,25 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		}
 
 		g_VFS.reset();
+
+		CXeromyces::Terminate();
+		return;
+	}
+
+	// run in archive-building mode if requested
+	if (args.Has("archivebuild"))
+	{
+		Paths paths(args);
+
+		fs::wpath mod = wstring_from_utf8(args.Get("archivebuild"));
+		fs::wpath zip;
+		if (args.Has("archivebuild-output"))
+			zip = wstring_from_utf8(args.Get("archivebuild-output"));
+		else
+			zip = mod.leaf()+L".zip";
+
+		CArchiveBuilder builder(mod, paths.Cache());
+		builder.Build(zip);
 
 		CXeromyces::Terminate();
 		return;

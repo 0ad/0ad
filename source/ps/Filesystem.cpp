@@ -29,9 +29,14 @@ PIVFS g_VFS;
 
 static std::vector<std::pair<FileReloadFunc, void*> > g_ReloadFuncs;
 
+bool FileExists(const PIVFS& vfs, const VfsPath& pathname)
+{
+	return vfs->GetFileInfo(pathname, 0) == INFO::OK;
+}
+
 bool FileExists(const VfsPath& pathname)
 {
-	return g_VFS->GetFileInfo(pathname, 0) == INFO::OK;
+	return FileExists(g_VFS, pathname);
 }
 
 void RegisterFileReloadFunc(FileReloadFunc func, void* obj)

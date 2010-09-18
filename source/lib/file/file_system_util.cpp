@@ -112,7 +112,15 @@ LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb,
 			break;
 
 		for(size_t i = 0; i < subdirectoryNames.size(); i++)
-			pendingDirectories.push(AddSlash(path/subdirectoryNames[i]));
+		{
+			VfsPath pathname;
+			if (path.string() == L"/") // special case for startPath == L""
+				pathname = AddSlash(VfsPath(subdirectoryNames[i]));
+			else
+				pathname = AddSlash(path/subdirectoryNames[i]);
+
+			pendingDirectories.push(pathname);
+		}
 		pendingDirectories.pop();
 	}
 

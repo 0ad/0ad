@@ -100,6 +100,14 @@ public:
 	 */
 	bool MakeProgress();
 
+	/**
+	 * Synchronously converts and compresses and saves the texture,
+	 * and returns the output path (minus a "cache/" prefix). This
+	 * is intended for pre-caching textures in release archives.
+	 * @return true on success
+	 */
+	bool GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath);
+
 private:
 	CTextureManagerImpl* m;
 };

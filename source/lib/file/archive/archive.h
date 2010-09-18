@@ -87,8 +87,11 @@ struct IArchiveWriter
 	 * archived versions. however, the archive builder usually adds files
 	 * precisely because they aren't in archives, and the cache would
 	 * thrash anyway, so this is deemed acceptable.
+	 *
+	 * @param sourcepathname the path to the source file on the filesystem
+	 * @param pathname the path to use for the file inside the archive
 	 **/
-	virtual LibError AddFile(const fs::wpath& pathname) = 0;
+	virtual LibError AddFile(const fs::wpath& sourcepathname, const fs::wpath& pathame) = 0;
 };
 
 typedef shared_ptr<IArchiveWriter> PIArchiveWriter;
