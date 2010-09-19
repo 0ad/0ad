@@ -21,6 +21,7 @@
 #include "ICmpTerrain.h"
 
 #include "ICmpObstructionManager.h"
+#include "ICmpRangeManager.h"
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Terrain.h"
@@ -78,13 +79,23 @@ public:
 
 	virtual void ReloadTerrain()
 	{
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpObstructionManager.null())
-			return;
+		// TODO: should refactor this code to be nicer
 
-		cmpObstructionManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
-				entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
-				entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE));
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpObstructionManager.null())
+		{
+			cmpObstructionManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
+					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
+					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE));
+		}
+
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpRangeManager.null())
+		{
+			cmpRangeManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
+					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
+					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE));
+		}
 	}
 
 	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)

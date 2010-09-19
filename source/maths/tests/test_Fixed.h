@@ -157,6 +157,38 @@ public:
 		TS_ASSERT_EQUALS(fixed::FromFloat(-2.99f).ToInt_RoundToZero(), -2);
 	}
 
+	void test_RoundToInfinity()
+	{
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.f).ToInt_RoundToInfinity(), 10);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.1f).ToInt_RoundToInfinity(), 11);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.5f).ToInt_RoundToInfinity(), 11);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.99f).ToInt_RoundToInfinity(), 11);
+		TS_ASSERT_EQUALS(fixed::FromFloat(0.1f).ToInt_RoundToInfinity(), 1);
+		TS_ASSERT_EQUALS(fixed::FromFloat(0.0f).ToInt_RoundToInfinity(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-0.1f).ToInt_RoundToInfinity(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-0.99f).ToInt_RoundToInfinity(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-1.0f).ToInt_RoundToInfinity(), -1);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.0f).ToInt_RoundToInfinity(), -2);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.5f).ToInt_RoundToInfinity(), -2);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.99f).ToInt_RoundToInfinity(), -2);
+	}
+
+	void test_RoundToNegInfinity()
+	{
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.f).ToInt_RoundToNegInfinity(), 10);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.1f).ToInt_RoundToNegInfinity(), 10);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.5f).ToInt_RoundToNegInfinity(), 10);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.99f).ToInt_RoundToNegInfinity(), 10);
+		TS_ASSERT_EQUALS(fixed::FromFloat(0.1f).ToInt_RoundToNegInfinity(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(0.0f).ToInt_RoundToNegInfinity(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-0.1f).ToInt_RoundToNegInfinity(), -1);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-0.99f).ToInt_RoundToNegInfinity(), -1);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-1.0f).ToInt_RoundToNegInfinity(), -1);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.0f).ToInt_RoundToNegInfinity(), -2);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.5f).ToInt_RoundToNegInfinity(), -3);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.99f).ToInt_RoundToNegInfinity(), -3);
+	}
+
 	// TODO: test all the arithmetic operators
 
 	void test_Mod()

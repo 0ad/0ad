@@ -233,6 +233,48 @@ bool Geometry::TestRaySquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D 
 	return false;
 }
 
+bool Geometry::TestRayAASquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D halfSize)
+{
+	// Exactly like TestRaySquare with u=(1,0), v=(0,1)
+
+	// Assume the compiler is clever enough to inline and simplify all this
+	// (TODO: stop assuming that)
+	CFixedVector2D u (fixed::FromInt(1), fixed::Zero());
+	CFixedVector2D v (fixed::Zero(), fixed::FromInt(1));
+
+	fixed hw = halfSize.X;
+	fixed hh = halfSize.Y;
+
+	fixed au = a.Dot(u);
+	fixed av = a.Dot(v);
+
+	if (-hw <= au && au <= hw && -hh <= av && av <= hh)
+		return false; // a is inside
+
+	fixed bu = b.Dot(u);
+	fixed bv = b.Dot(v);
+
+	if (-hw <= bu && bu <= hw && -hh <= bv && bv <= hh) // TODO: isn't this subsumed by the next checks?
+		return true; // a is outside, b is inside
+
+	if ((au < -hw && bu < -hw) || (au > hw && bu > hw) || (av < -hh && bv < -hh) || (av > hh && bv > hh))
+		return false; // ab is entirely above/below/side the square
+
+	CFixedVector2D abp = (b - a).Perpendicular();
+	fixed s0 = abp.Dot((u.Multiply(hw) + v.Multiply(hh)) - a);
+	fixed s1 = abp.Dot((u.Multiply(hw) - v.Multiply(hh)) - a);
+	fixed s2 = abp.Dot((-u.Multiply(hw) - v.Multiply(hh)) - a);
+	fixed s3 = abp.Dot((-u.Multiply(hw) + v.Multiply(hh)) - a);
+	if (s0.IsZero() || s1.IsZero() || s2.IsZero() || s3.IsZero())
+		return true; // ray intersects the corner
+
+	bool sign = (s0 < fixed::Zero());
+	if ((s1 < fixed::Zero()) != sign || (s2 < fixed::Zero()) != sign || (s3 < fixed::Zero()) != sign)
+		return true; // ray cuts through the square
+
+	return false;
+}
+
 /**
  * Separating axis test; returns true if the square defined by u/v/halfSize at the origin
  * is not entirely on the clockwise side of a line in direction 'axis' passing through 'a'

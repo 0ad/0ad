@@ -23,8 +23,11 @@
 #include "ICmpPosition.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Render.h"
+#include "simulation2/helpers/Spatial.h"
 
 #include "graphics/Overlay.h"
+#include "graphics/Terrain.h"
+#include "lib/timer.h"
 #include "maths/FixedVector2D.h"
 #include "ps/CLogger.h"
 #include "ps/Overlay.h"
@@ -126,6 +129,8 @@ public:
 	bool m_DebugOverlayDirty;
 	std::vector<SOverlayLine> m_DebugOverlayLines;
 
+	SpatialSubdivision<entity_id_t> m_Subdivision;
+
 	tag_t m_QueryNext; // next allocated id
 	std::map<tag_t, Query> m_Queries;
 	std::map<entity_id_t, EntityData> m_EntityData;
@@ -141,6 +146,10 @@ public:
 
 		m_DebugOverlayEnabled = false;
 		m_DebugOverlayDirty = true;
+
+		// Initialise with bogus values (these will get replaced when
+		// SetBounds is called)
+		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -198,12 +207,20 @@ public:
 
 			if (msgData.inWorld)
 			{
+				if (it->second.inWorld)
+					m_Subdivision.Move(ent, CFixedVector2D(it->second.x, it->second.z), CFixedVector2D(msgData.x, msgData.z));
+				else
+					m_Subdivision.Add(ent, CFixedVector2D(msgData.x, msgData.z));
+
 				it->second.inWorld = 1;
 				it->second.x = msgData.x;
 				it->second.z = msgData.z;
 			}
 			else
 			{
+				if (it->second.inWorld)
+					m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z));
+
 				it->second.inWorld = 0;
 				it->second.x = entity_pos_t::Zero();
 				it->second.z = entity_pos_t::Zero();
@@ -231,7 +248,16 @@ public:
 			const CMessageDestroy& msgData = static_cast<const CMessageDestroy&> (msg);
 			entity_id_t ent = msgData.entity;
 
-			m_EntityData.erase(ent);
+			std::map<u32, EntityData>::iterator it = m_EntityData.find(ent);
+
+			// Ignore if we're not already tracking this entity
+			if (it == m_EntityData.end())
+				break;
+
+			if (it->second.inWorld)
+				m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z));
+
+			m_EntityData.erase(it);
 
 			break;
 		}
@@ -250,6 +276,24 @@ public:
 		}
 	}
 
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
+	{
+		debug_assert(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
+		ResetSubdivisions(x1, z1);
+	}
+
+	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
+	{
+		// Use 8x8 tile subdivisions
+		// (TODO: find the optimal number instead of blindly guessing)
+		m_Subdivision.Reset(x1, z1, entity_pos_t::FromInt(8*CELL_SIZE));
+
+		for (std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
+		{
+			if (it->second.inWorld)
+				m_Subdivision.Add(it->first, CFixedVector2D(it->second.x, it->second.z));
+		}
+	}
 
 	virtual tag_t CreateActiveQuery(entity_id_t source, entity_pos_t maxRange,
 		std::vector<int> owners, int requiredInterface)
@@ -429,14 +473,19 @@ private:
 			return;
 		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 
-		for (std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
+		// Get a quick list of entities that are potentially in range
+		std::vector<entity_id_t> ents = m_Subdivision.GetNear(pos, q.maxRange);
+
+		for (size_t i = 0; i < ents.size(); ++i)
 		{
+			std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.find(ents[i]);
+			debug_assert(it != m_EntityData.end());
+
 			// Quick filter to ignore entities with the wrong owner
 			if (!(it->second.ownerMask & q.ownersMask))
 				continue;
 
-			// Restrict based on location
-			// (TODO: this bit ought to use a quadtree or something)
+			// Restrict based on precise location
 			if (!it->second.inWorld)
 				continue;
 			int distVsMax = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.maxRange);

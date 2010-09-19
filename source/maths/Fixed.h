@@ -166,6 +166,16 @@ public:
 			return (value + fract_pow2 - 1) >> fract_bits;
 	}
 
+	int ToInt_RoundToInfinity() const
+	{
+		return (value + fract_pow2 - 1) >> fract_bits;
+	}
+
+	int ToInt_RoundToNegInfinity() const
+	{
+		return value >> fract_bits;
+	}
+
 	/// Returns the shortest string such that FromString will parse to the correct value.
 	CStr8 ToString() const;
 

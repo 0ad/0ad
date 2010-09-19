@@ -40,6 +40,8 @@ CFixedVector2D NearestPointOnSquare(CFixedVector2D point, CFixedVector2D u, CFix
 
 bool TestRaySquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
 
+bool TestRayAASquare(CFixedVector2D a, CFixedVector2D b, CFixedVector2D halfSize);
+
 bool TestSquareSquare(
 		CFixedVector2D c0, CFixedVector2D u0, CFixedVector2D v0, CFixedVector2D halfSize0,
 		CFixedVector2D c1, CFixedVector2D u1, CFixedVector2D v1, CFixedVector2D halfSize1);

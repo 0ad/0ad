@@ -23,6 +23,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
+#include "simulation2/helpers/Spatial.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -76,6 +77,9 @@ public:
 	bool m_DebugOverlayDirty;
 	std::vector<SOverlayLine> m_DebugOverlayLines;
 
+	SpatialSubdivision<u32> m_UnitSubdivision;
+	SpatialSubdivision<u32> m_StaticSubdivision;
+
 	// TODO: using std::map is a bit inefficient; is there a better way to store these?
 	std::map<u32, UnitShape> m_UnitShapes;
 	std::map<u32, StaticShape> m_StaticShapes;
@@ -103,6 +107,10 @@ public:
 		m_DirtyID = 1; // init to 1 so default-initialised grids are considered dirty
 
 		m_WorldX0 = m_WorldZ0 = m_WorldX1 = m_WorldZ1 = entity_pos_t::Zero();
+
+		// Initialise with bogus values (these will get replaced when
+		// SetBounds is called)
+		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -143,6 +151,32 @@ public:
 		m_WorldX1 = x1;
 		m_WorldZ1 = z1;
 		MakeDirty();
+
+		// Subdivision system bounds:
+		debug_assert(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
+		ResetSubdivisions(x1, z1);
+	}
+
+	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
+	{
+		// Use 8x8 tile subdivisions
+		// (TODO: find the optimal number instead of blindly guessing)
+		m_UnitSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*CELL_SIZE));
+		m_StaticSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*CELL_SIZE));
+
+		for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
+		{
+			CFixedVector2D center(it->second.x, it->second.z);
+			CFixedVector2D halfSize(it->second.r, it->second.r);
+			m_UnitSubdivision.Add(it->first, center - halfSize, center + halfSize);
+		}
+
+		for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
+		{
+			CFixedVector2D center(it->second.x, it->second.z);
+			CFixedVector2D bbHalfSize = Geometry::GetHalfBoundingBox(it->second.u, it->second.v, CFixedVector2D(it->second.hw, it->second.hh));
+			m_StaticSubdivision.Add(it->first, center - bbHalfSize, center + bbHalfSize);
+		}
 	}
 
 	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_pos_t r, bool moving, entity_id_t group)
@@ -151,6 +185,9 @@ public:
 		size_t id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
 		MakeDirtyUnits();
+
+		m_UnitSubdivision.Add(id, CFixedVector2D(x - r, z - r), CFixedVector2D(x + r, z + r));
+
 		return UNIT_INDEX_TO_TAG(id);
 	}
 
@@ -165,6 +202,11 @@ public:
 		size_t id = m_StaticShapeNext++;
 		m_StaticShapes[id] = shape;
 		MakeDirty();
+
+		CFixedVector2D center(x, z);
+		CFixedVector2D bbHalfSize = Geometry::GetHalfBoundingBox(u, v, CFixedVector2D(w/2, h/2));
+		m_StaticSubdivision.Add(id, center - bbHalfSize, center + bbHalfSize);
+
 		return STATIC_INDEX_TO_TAG(id);
 	}
 
@@ -175,6 +217,13 @@ public:
 		if (TAG_IS_UNIT(tag))
 		{
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
+
+			m_UnitSubdivision.Move(TAG_TO_INDEX(tag),
+				CFixedVector2D(shape.x - shape.r, shape.z - shape.r),
+				CFixedVector2D(shape.x + shape.r, shape.z + shape.r),
+				CFixedVector2D(x - shape.r, z - shape.r),
+				CFixedVector2D(x + shape.r, z + shape.r));
+
 			shape.x = x;
 			shape.z = z;
 
@@ -188,6 +237,15 @@ public:
 			CFixedVector2D v(s, c);
 
 			StaticShape& shape = m_StaticShapes[TAG_TO_INDEX(tag)];
+
+			CFixedVector2D fromBbHalfSize = Geometry::GetHalfBoundingBox(shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh));
+			CFixedVector2D toBbHalfSize = Geometry::GetHalfBoundingBox(u, v, CFixedVector2D(shape.hw, shape.hh));
+			m_StaticSubdivision.Move(TAG_TO_INDEX(tag),
+				CFixedVector2D(shape.x, shape.z) - fromBbHalfSize,
+				CFixedVector2D(shape.x, shape.z) + fromBbHalfSize,
+				CFixedVector2D(x, z) - toBbHalfSize,
+				CFixedVector2D(x, z) + toBbHalfSize);
+
 			shape.x = x;
 			shape.z = z;
 			shape.u = u;
@@ -227,11 +285,22 @@ public:
 
 		if (TAG_IS_UNIT(tag))
 		{
+			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
+			m_UnitSubdivision.Remove(TAG_TO_INDEX(tag),
+				CFixedVector2D(shape.x - shape.r, shape.z - shape.r),
+				CFixedVector2D(shape.x + shape.r, shape.z + shape.r));
+
 			m_UnitShapes.erase(TAG_TO_INDEX(tag));
 			MakeDirtyUnits();
 		}
 		else
 		{
+			StaticShape& shape = m_StaticShapes[TAG_TO_INDEX(tag)];
+
+			CFixedVector2D center(shape.x, shape.z);
+			CFixedVector2D bbHalfSize = Geometry::GetHalfBoundingBox(shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh));
+			m_StaticSubdivision.Remove(TAG_TO_INDEX(tag), center - bbHalfSize, center + bbHalfSize);
+
 			m_StaticShapes.erase(TAG_TO_INDEX(tag));
 			MakeDirty();
 		}
@@ -333,28 +402,34 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 {
 	PROFILE("TestLine");
 
-	// TODO: this is all very inefficient, it should use some kind of spatial data structures
-
 	// Check that both end points are within the world (which means the whole line must be)
 	if (!IsInWorld(x0, z0, r) || !IsInWorld(x1, z1, r))
 		return true;
 
-	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
+	CFixedVector2D posMin (std::min(x0, x1) - r, std::min(z0, z1) - r);
+	CFixedVector2D posMax (std::max(x0, x1) + r, std::max(z0, z1) + r);
+
+	std::vector<u32> unitShapes = m_UnitSubdivision.GetInRange(posMin, posMax);
+	for (size_t i = 0; i < unitShapes.size(); ++i)
 	{
+		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
+		debug_assert(it != m_UnitShapes.end());
+
 		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
 		CFixedVector2D halfSize(it->second.r + r, it->second.r + r);
-		CFixedVector2D u(entity_pos_t::FromInt(1), entity_pos_t::Zero());
-		CFixedVector2D v(entity_pos_t::Zero(), entity_pos_t::FromInt(1));
-		if (Geometry::TestRaySquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, u, v, halfSize))
+		if (Geometry::TestRayAASquare(CFixedVector2D(x0, z0) - center, CFixedVector2D(x1, z1) - center, halfSize))
 			return true;
-		// If this is slow we could use a specialised TestRayAlignedSquare for axis-aligned squares
 	}
 
-	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
+	std::vector<u32> staticShapes = m_StaticSubdivision.GetInRange(posMin, posMax);
+	for (size_t i = 0; i < staticShapes.size(); ++i)
 	{
+		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
+		debug_assert(it != m_StaticShapes.end());
+
 		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
 			continue;
 
@@ -370,6 +445,8 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h)
 {
 	PROFILE("TestStaticShape");
+
+	// TODO: should use the subdivision stuff here, if performance is non-negligible
 
 	fixed s, c;
 	sincos_approx(a, s, c);
@@ -413,6 +490,8 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r)
 {
 	PROFILE("TestUnitShape");
+
+	// TODO: should use the subdivision stuff here, if performance is non-negligible
 
 	// Check that the shape is within the world
 	if (!IsInWorld(x, z, r))
@@ -532,11 +611,16 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 
 void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares)
 {
-	// TODO: this should be made faster with quadtrees or whatever
 	PROFILE("GetObstructionsInRange");
 
-	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
+	debug_assert(x0 <= x1 && z0 <= z1);
+
+	std::vector<u32> unitShapes = m_UnitSubdivision.GetInRange(CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
+	for (size_t i = 0; i < unitShapes.size(); ++i)
 	{
+		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
+		debug_assert(it != m_UnitShapes.end());
+
 		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
 			continue;
 
@@ -552,8 +636,12 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		squares.push_back(s);
 	}
 
-	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
+	std::vector<u32> staticShapes = m_StaticSubdivision.GetInRange(CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
+	for (size_t i = 0; i < staticShapes.size(); ++i)
 	{
+		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
+		debug_assert(it != m_StaticShapes.end());
+
 		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
 			continue;
 

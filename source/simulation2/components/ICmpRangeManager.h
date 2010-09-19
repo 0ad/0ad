@@ -64,6 +64,13 @@ public:
 	typedef u32 tag_t;
 
 	/**
+	 * Set the bounds of the world.
+	 * Entities should not be outside the bounds (else efficiency will suffer).
+	 * @param x0,z0,x1,z1 Coordinates of the corners of the world
+	 */
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) = 0;
+
+	/**
 	 * Execute a passive query.
 	 * @param source the entity around which the range will be computed.
 	 * @param maxRange maximum distance in metres (inclusive).

@@ -154,6 +154,10 @@ public:
 
 	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
 	{
+		// Quick exit for running in non-graphical mode
+		if (m_Unit == NULL)
+			return;
+
 		switch (msg.GetType())
 		{
 		case MT_Update_Final:
@@ -177,8 +181,7 @@ public:
 		case MT_OwnershipChanged:
 		{
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
-			if (m_Unit)
-				m_Unit->GetModel().SetPlayerID(msgData.to);
+			m_Unit->GetModel().SetPlayerID(msgData.to);
 			break;
 		}
 		}
