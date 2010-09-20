@@ -74,9 +74,10 @@ public:
 	/**
 	 * Construct texture manager. vfs must be the VFS instance used for all textures
 	 * loaded from this object.
+	 * highQuality is slower and intended for batch-conversion modes.
 	 * disableGL is intended for tests, and will disable all GL uploads.
 	 */
-	CTextureManager(PIVFS vfs, bool disableGL = false);
+	CTextureManager(PIVFS vfs, bool highQuality, bool disableGL);
 
 	~CTextureManager();
 

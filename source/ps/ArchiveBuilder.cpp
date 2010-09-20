@@ -68,7 +68,7 @@ void CArchiveBuilder::Build(const fs::wpath& archive)
 
 	// Use CTextureManager instead of CTextureConverter directly,
 	// so it can deal with all the loading of settings.xml files
-	CTextureManager texman(m_VFS, true);
+	CTextureManager texman(m_VFS, true, true);
 
 	for (size_t i = 0; i < m_Files.size(); ++i)
 	{

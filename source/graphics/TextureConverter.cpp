@@ -268,8 +268,8 @@ CTextureConverter::Settings CTextureConverter::ComputeSettings(const std::wstrin
 	return settings;
 }
 
-CTextureConverter::CTextureConverter(PIVFS vfs) :
-	m_VFS(vfs), m_Shutdown(false)
+CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
+	m_VFS(vfs), m_HighQuality(highQuality), m_Shutdown(false)
 {
 	// Verify that we are running with at least the version we were compiled with,
 	// to avoid bugs caused by ABI changes
@@ -409,7 +409,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 
 	request->inputOptions.setWrapMode(nvtt::WrapMode_Mirror); // TODO: should this be configurable?
 
-	request->compressionOptions.setQuality(nvtt::Quality_Fastest); // TODO: allow running with higher quality
+	request->compressionOptions.setQuality(m_HighQuality ? nvtt::Quality_Production : nvtt::Quality_Fastest);
 
 	// TODO: normal maps, gamma, etc
 

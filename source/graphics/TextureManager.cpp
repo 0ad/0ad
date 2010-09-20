@@ -68,8 +68,8 @@ class CTextureManagerImpl
 {
 	friend class CTexture;
 public:
-	CTextureManagerImpl(PIVFS vfs, bool disableGL)
-		: m_VFS(vfs), m_DisableGL(disableGL), m_TextureConverter(vfs), m_DefaultHandle(0), m_ErrorHandle(0)
+	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL)
+		: m_VFS(vfs), m_DisableGL(disableGL), m_TextureConverter(vfs, highQuality), m_DefaultHandle(0), m_ErrorHandle(0)
 	{
 		// Initialise some textures that will always be available,
 		// without needing to load any files
@@ -677,8 +677,8 @@ u32 CTexture::GetBaseColour() const
 
 // CTextureManager: forward all calls to impl:
 
-CTextureManager::CTextureManager(PIVFS vfs, bool disableGL) :
-	m(new CTextureManagerImpl(vfs, disableGL))
+CTextureManager::CTextureManager(PIVFS vfs, bool highQuality, bool disableGL) :
+	m(new CTextureManagerImpl(vfs, highQuality, disableGL))
 {
 }
 

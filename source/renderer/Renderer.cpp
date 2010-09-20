@@ -277,7 +277,7 @@ public:
 
 
 	CRendererInternals()
-	: IsOpen(false), profileTable(g_Renderer.m_Stats), textureManager(g_VFS)
+	: IsOpen(false), profileTable(g_Renderer.m_Stats), textureManager(g_VFS, false, false)
 	{
 		terrainRenderer = new TerrainRenderer();
 		shadow = new ShadowMap();

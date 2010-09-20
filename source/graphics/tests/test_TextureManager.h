@@ -59,7 +59,7 @@ public:
 	void test_load_basic()
 	{
 		{
-			CTextureManager texman(m_VFS, true);
+			CTextureManager texman(m_VFS, false, true);
 
 			CTexturePtr t1 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo.png"));
 
@@ -90,7 +90,7 @@ public:
 
 		// New texture manager - should use the cached file
 		{
-			CTextureManager texman(m_VFS, true);
+			CTextureManager texman(m_VFS, false, true);
 
 			CTexturePtr t1 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo.png"));
 
@@ -102,7 +102,7 @@ public:
 
 	void test_load_formats()
 	{
-		CTextureManager texman(m_VFS, true);
+		CTextureManager texman(m_VFS, false, true);
 		CTexturePtr t1 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo.tga"));
 		CTexturePtr t2 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo-abgr.dds"));
 		CTexturePtr t3 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo-dxt1.dds"));

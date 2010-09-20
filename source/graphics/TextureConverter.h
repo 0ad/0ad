@@ -148,7 +148,7 @@ public:
 	/**
 	 * Construct texture converter, for use with files in the given vfs.
 	 */
-	CTextureConverter(PIVFS vfs);
+	CTextureConverter(PIVFS vfs, bool highQuality);
 
 	/**
 	 * Destroy texture converter and wait to shut down worker thread.
@@ -200,6 +200,7 @@ private:
 	static void* RunThread(void* data);
 
 	PIVFS m_VFS;
+	bool m_HighQuality;
 
 	pthread_t m_WorkerThread;
 	pthread_mutex_t m_WorkerMutex;
