@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="106.278" y="110.317" z="410.286"/>
+		<Position x="109.828" y="110.642" z="414.247"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -170,13 +170,13 @@
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
 			<Position x="159.34507" z="601.82453"/>
-			<Orientation y="-0.16767"/>
+			<Orientation y="-0.28"/>
 		</Entity>
 		<Entity uid="44">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="146.52405" z="601.82569"/>
-			<Orientation y="2.35621"/>
+			<Position x="144.95086" z="601.04328"/>
+			<Orientation y="0.31579"/>
 		</Entity>
 		<Entity uid="45">
 			<Template>gaia/geology_stone_savanna_small</Template>
@@ -2749,8 +2749,8 @@
 		<Entity uid="496">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="181.74358" z="534.13733"/>
-			<Orientation y="-0.0058"/>
+			<Position x="180.5591" z="535.7245"/>
+			<Orientation y="-0.64504"/>
 		</Entity>
 		<Entity uid="497">
 			<Template>gaia/fauna_gazelle</Template>
@@ -2761,14 +2761,14 @@
 		<Entity uid="498">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="176.53284" z="539.68836"/>
-			<Orientation y="1.22182"/>
+			<Position x="174.4291" z="539.32355"/>
+			<Orientation y="-1.86661"/>
 		</Entity>
 		<Entity uid="499">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
 			<Position x="187.83204" z="524.44599"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-2.1558"/>
 		</Entity>
 		<Entity uid="500">
 			<Template>gaia/fauna_gazelle</Template>
@@ -3650,7 +3650,7 @@
 		</Entity>
 		<Entity uid="668">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="218.90903" z="491.26297"/>
+			<Position x="210.96155" z="484.0204"/>
 			<Orientation y="2.4246"/>
 		</Entity>
 		<Entity uid="669">
@@ -4260,7 +4260,7 @@
 		</Entity>
 		<Entity uid="790">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="166.6623" z="600.38941"/>
+			<Position x="164.93589" z="600.7215"/>
 			<Orientation y="-2.03963"/>
 		</Entity>
 		<Entity uid="791">
@@ -4275,7 +4275,7 @@
 		</Entity>
 		<Entity uid="793">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="148.46146" z="600.81592"/>
+			<Position x="149.99863" z="600.08387"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="794">
@@ -4705,12 +4705,12 @@
 		</Entity>
 		<Entity uid="879">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="187.51124" z="613.36585"/>
+			<Position x="183.35517" z="610.39997"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="880">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="185.45418" z="612.2798"/>
+			<Position x="182.29313" z="607.0517"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="881">
@@ -4750,17 +4750,17 @@
 		</Entity>
 		<Entity uid="888">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="188.49393" z="615.73365"/>
+			<Position x="174.30361" z="608.8871"/>
 			<Orientation y="-1.80388"/>
 		</Entity>
 		<Entity uid="889">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="174.38138" z="613.05433"/>
+			<Position x="178.86342" z="605.6261"/>
 			<Orientation y="-2.203"/>
 		</Entity>
 		<Entity uid="890">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="169.70978" z="609.99213"/>
+			<Position x="161.71944" z="594.90687"/>
 			<Orientation y="-2.16492"/>
 		</Entity>
 		<Entity uid="891">
@@ -5920,47 +5920,11 @@
 			<Position x="376.9462" z="598.1988"/>
 			<Orientation y="0.29117"/>
 		</Entity>
-		<Entity uid="1112">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="550.05134" z="22.96424"/>
-			<Orientation y="0.35676"/>
-		</Entity>
-		<Entity uid="1113">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="553.00477" z="33.71396"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1114">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="567.60248" z="29.46483"/>
-			<Orientation y="-2.59905"/>
-		</Entity>
-		<Entity uid="1115">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="563.15522" z="19.88965"/>
-			<Orientation y="-1.8498"/>
-		</Entity>
-		<Entity uid="1116">
-			<Template>gaia/fauna_elephant_african_infant</Template>
-			<Player>0</Player>
-			<Position x="558.48066" z="27.2377"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1117">
 			<Template>gaia/fauna_elephant_african_bush</Template>
 			<Player>0</Player>
 			<Position x="77.7713" z="93.99094"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1118">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="78.47838" z="71.88546"/>
-			<Orientation y="0.58727"/>
 		</Entity>
 		<Entity uid="1119">
 			<Template>gaia/fauna_elephant_african_bush</Template>
@@ -5998,12 +5962,6 @@
 			<Position x="87.59907" z="665.13941"/>
 			<Orientation y="-1.59186"/>
 		</Entity>
-		<Entity uid="1125">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="65.29203" z="658.85297"/>
-			<Orientation y="0.56626"/>
-		</Entity>
 		<Entity uid="1126">
 			<Template>gaia/fauna_elephant_african_infant</Template>
 			<Player>0</Player>
@@ -6014,12 +5972,6 @@
 			<Template>gaia/fauna_elephant_african_infant</Template>
 			<Player>0</Player>
 			<Position x="618.34522" z="702.64582"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1128">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="602.30457" z="710.12006"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1129">
@@ -6045,12 +5997,6 @@
 			<Player>0</Player>
 			<Position x="716.06116" z="171.75709"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1133">
-			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>0</Player>
-			<Position x="710.7447" z="184.5243"/>
-			<Orientation y="-0.62877"/>
 		</Entity>
 		<Entity uid="1134">
 			<Template>gaia/fauna_elephant_african_bush</Template>
@@ -6134,6 +6080,102 @@
 			<Template>other/hellenic_stoa</Template>
 			<Player>1</Player>
 			<Position x="83.52555" z="587.84156"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1157">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="208.7298" z="477.23902"/>
+			<Orientation y="-1.9188"/>
+		</Entity>
+		<Entity uid="1158">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="209.44448" z="491.28922"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1159">
+			<Template>gaia/fauna_giraffe_infant</Template>
+			<Player>0</Player>
+			<Position x="220.35132" z="476.88184"/>
+			<Orientation y="-1.35418"/>
+		</Entity>
+		<Entity uid="1160">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="192.58448" z="486.14795"/>
+			<Orientation y="-2.18175"/>
+		</Entity>
+		<Entity uid="1161">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="681.71192" z="510.0175"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1162">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="691.57911" z="523.72413"/>
+			<Orientation y="-2.08008"/>
+		</Entity>
+		<Entity uid="1163">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="672.0185" z="520.69336"/>
+			<Orientation y="0.08074"/>
+		</Entity>
+		<Entity uid="1164">
+			<Template>gaia/fauna_giraffe_infant</Template>
+			<Player>0</Player>
+			<Position x="675.3606" z="517.69135"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1165">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="497.06742" z="252.83062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1166">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="490.11188" z="238.44784"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1167">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="508.12687" z="217.94729"/>
+			<Orientation y="-0.383"/>
+		</Entity>
+		<Entity uid="1168">
+			<Template>gaia/fauna_giraffe_infant</Template>
+			<Player>0</Player>
+			<Position x="502.72986" z="231.12624"/>
+			<Orientation y="-1.71032"/>
+		</Entity>
+		<Entity uid="1169">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="201.66858" z="162.5779"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1170">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="202.57267" z="175.94692"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1171">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="194.71067" z="177.77984"/>
+			<Orientation y="-0.10323"/>
+		</Entity>
+		<Entity uid="1172">
+			<Template>gaia/fauna_giraffe_infant</Template>
+			<Player>0</Player>
+			<Position x="197.66709" z="169.18047"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
