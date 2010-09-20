@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="612.063" y="99.7968" z="501.351"/>
+		<Position x="608.978" y="110.377" z="484.815"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -1817,8 +1817,8 @@
 		</Entity>
 		<Entity uid="558">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="711.19947" z="679.3213"/>
-			<Orientation y="0.08664"/>
+			<Position x="706.69709" z="680.2483"/>
+			<Orientation y="0.27408"/>
 		</Entity>
 		<Entity uid="559">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
@@ -3796,7 +3796,7 @@
 		<Entity uid="951">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="703.32056" z="671.53705"/>
+			<Position x="709.34955" z="672.37238"/>
 			<Orientation y="-2.81624"/>
 		</Entity>
 		<Entity uid="952">
@@ -4200,7 +4200,7 @@
 		</Entity>
 		<Entity uid="1035">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="737.67597" z="695.92579"/>
+			<Position x="733.20734" z="694.47803"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1036">
@@ -4225,22 +4225,22 @@
 		</Entity>
 		<Entity uid="1040">
 			<Template>actor|props/flora/grass_soft_small.xml</Template>
-			<Position x="734.10413" z="691.87574"/>
+			<Position x="722.95936" z="681.69672"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1041">
 			<Template>actor|props/flora/grass_soft_small.xml</Template>
-			<Position x="741.92603" z="694.92353"/>
+			<Position x="736.33796" z="697.83167"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1042">
 			<Template>actor|props/flora/grass_soft_small.xml</Template>
-			<Position x="745.53888" z="700.59522"/>
-			<Orientation y="1.48993"/>
+			<Position x="727.80066" z="687.64423"/>
+			<Orientation y="1.01229"/>
 		</Entity>
 		<Entity uid="1043">
 			<Template>actor|props/flora/grass_soft_small.xml</Template>
-			<Position x="752.58893" z="707.18323"/>
+			<Position x="712.84205" z="679.67359"/>
 			<Orientation y="0.45038"/>
 		</Entity>
 		<Entity uid="1044">
@@ -10757,7 +10757,7 @@
 		</Entity>
 		<Entity uid="2330">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="39.00477" z="293.08674"/>
+			<Position x="35.84302" z="293.16095"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2331">
@@ -10817,12 +10817,12 @@
 		</Entity>
 		<Entity uid="2342">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="71.11188" z="290.82193"/>
+			<Position x="71.4782" z="293.22547"/>
 			<Orientation y="-1.96972"/>
 		</Entity>
 		<Entity uid="2343">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="67.88683" z="289.12046"/>
+			<Position x="67.59842" z="289.73212"/>
 			<Orientation y="2.87832"/>
 		</Entity>
 		<Entity uid="2344">
@@ -11397,7 +11397,7 @@
 		</Entity>
 		<Entity uid="2458">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="91.04395" z="289.48713"/>
+			<Position x="76.48176" z="295.8083"/>
 			<Orientation y="-0.18873"/>
 		</Entity>
 		<Entity uid="2459">
@@ -11452,8 +11452,8 @@
 		</Entity>
 		<Entity uid="2469">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="44.78322" z="309.33484"/>
-			<Orientation y="-2.89498"/>
+			<Position x="42.81495" z="298.65281"/>
+			<Orientation y="2.71772"/>
 		</Entity>
 		<Entity uid="2470">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
@@ -21665,6 +21665,126 @@
 			<Player>0</Player>
 			<Position x="576.172" z="689.5625"/>
 			<Orientation y="2.13614"/>
+		</Entity>
+		<Entity uid="4457">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="739.99427" z="683.19153"/>
+			<Orientation y="-2.68879"/>
+		</Entity>
+		<Entity uid="4458">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="690.30958" z="676.88465"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4459">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="696.91083" z="670.72999"/>
+			<Orientation y="1.33"/>
+		</Entity>
+		<Entity uid="4460">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="671.70337" z="677.98877"/>
+			<Orientation y="1.93448"/>
+		</Entity>
+		<Entity uid="4461">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="741.67469" z="692.11878"/>
+			<Orientation y="2.44253"/>
+		</Entity>
+		<Entity uid="4462">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="682.06635" z="697.43506"/>
+			<Orientation y="1.98565"/>
+		</Entity>
+		<Entity uid="4463">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="691.20698" z="691.35065"/>
+			<Orientation y="-0.38878"/>
+		</Entity>
+		<Entity uid="4464">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="9.28165" z="133.37076"/>
+			<Orientation y="0.90539"/>
+		</Entity>
+		<Entity uid="4465">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="17.07132" z="137.69367"/>
+			<Orientation y="2.75757"/>
+		</Entity>
+		<Entity uid="4466">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="26.56241" z="123.2395"/>
+			<Orientation y="-0.66572"/>
+		</Entity>
+		<Entity uid="4467">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="19.3533" z="129.16639"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4468">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="32.4926" z="129.04278"/>
+			<Orientation y="0.9076"/>
+		</Entity>
+		<Entity uid="4469">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="36.29305" z="120.02422"/>
+			<Orientation y="2.78708"/>
+		</Entity>
+		<Entity uid="4470">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="63.48877" z="307.50617"/>
+			<Orientation y="-2.8686"/>
+		</Entity>
+		<Entity uid="4471">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="62.02491" z="298.91498"/>
+			<Orientation y="-2.58111"/>
+		</Entity>
+		<Entity uid="4472">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="58.01943" z="291.12427"/>
+			<Orientation y="-2.17055"/>
+		</Entity>
+		<Entity uid="4473">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="50.6574" z="291.05283"/>
+			<Orientation y="-1.82462"/>
+		</Entity>
+		<Entity uid="4474">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="53.90635" z="282.26523"/>
+			<Orientation y="-0.17457"/>
+		</Entity>
+		<Entity uid="4475">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="67.90069" z="283.18375"/>
+			<Orientation y="0.27121"/>
+		</Entity>
+		<Entity uid="4476">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="86.71891" z="294.28647"/>
+			<Orientation y="2.60613"/>
+		</Entity>
+		<Entity uid="4477">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="68.77732" z="314.35688"/>
+			<Orientation y="2.24082"/>
+		</Entity>
+		<Entity uid="4478">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="56.8551" z="309.3603"/>
+			<Orientation y="3.07326"/>
+		</Entity>
+		<Entity uid="4479">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="54.9233" z="300.74335"/>
+			<Orientation y="-0.61017"/>
+		</Entity>
+		<Entity uid="4480">
+			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
+			<Position x="43.1544" z="298.92542"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
