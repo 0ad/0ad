@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="608.978" y="110.377" z="484.815"/>
+		<Position x="605.819" y="102.196" z="496.31"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -21785,6 +21785,18 @@
 			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
 			<Position x="43.1544" z="298.92542"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4491">
+			<Template>gaia/special_treasure_pegasus</Template>
+			<Player>0</Player>
+			<Position x="358.26566" z="316.29844"/>
+			<Orientation y="-1.77085"/>
+		</Entity>
+		<Entity uid="4501">
+			<Template>gaia/special_treasure_pegasus</Template>
+			<Player>0</Player>
+			<Position x="22.57499" z="650.9889"/>
+			<Orientation y="1.84865"/>
 		</Entity>
 	</Entities>
 	<Paths/>

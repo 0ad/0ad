@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/column_doric.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/column_doric_top.xml" attachpoint="root"/>
+      </props>
+      <texture>props/hele_props_a.dds</texture>
+    </variant>
+  </group>
+</actor>

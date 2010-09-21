@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-09-21T22:37:42Z</created>
+    <modified>2010-09-21T22:37:42Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__315-image" name="Map__315">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_props_a.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_10___Default" name="_10___Default">
+      <instance_effect url="#_10___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_10___Default-fx" name="_10___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__315-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Doric_Column-lib" name="Doric_ColumnMesh">
+      <mesh>
+        <source id="Doric_Column-lib-Position">
+          <float_array id="Doric_Column-lib-Position-array" count="48">
+-2342.520508 -7042.425781 590.551270
+-2452.066895 -6777.957031 590.551270
+-2542.464355 -6868.354492 3937.008301
+-2470.361816 -7042.425781 3937.008301
+-2716.535889 -6668.410156 590.551270
+-2716.535889 -6796.251953 3937.008301
+-2981.004883 -6777.957031 590.551270
+-2890.607666 -6868.354492 3937.008301
+-3090.551758 -7042.425781 590.551270
+-2962.709717 -7042.425781 3937.008301
+-2981.004883 -7306.894043 590.551270
+-2890.607666 -7216.497559 3937.008301
+-2716.535889 -7416.441895 590.551270
+-2716.536133 -7288.599121 3937.008301
+-2452.066895 -7306.894043 590.551270
+-2542.464355 -7216.497559 3937.008301
+</float_array>
+          <technique_common>
+            <accessor source="#Doric_Column-lib-Position-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Doric_Column-lib-Normal0">
+          <float_array id="Doric_Column-lib-Normal0-array" count="144">
+0.923305 0.382445 0.035272
+0.923305 0.382445 0.035272
+0.923305 0.382445 0.035272
+0.923305 0.382445 0.035272
+0.923305 0.382445 0.035272
+0.923305 0.382445 0.035272
+0.382446 0.923304 0.035272
+0.382446 0.923304 0.035272
+0.382446 0.923304 0.035272
+0.382444 0.923305 0.035272
+0.382444 0.923305 0.035272
+0.382444 0.923305 0.035272
+-0.382446 0.923304 0.035272
+-0.382446 0.923304 0.035272
+-0.382446 0.923304 0.035272
+-0.382444 0.923305 0.035272
+-0.382444 0.923305 0.035272
+-0.382444 0.923305 0.035272
+-0.923304 0.382446 0.035272
+-0.923304 0.382446 0.035272
+-0.923304 0.382446 0.035272
+-0.923306 0.382442 0.035272
+-0.923306 0.382442 0.035272
+-0.923306 0.382442 0.035272
+-0.923304 -0.382447 0.035272
+-0.923304 -0.382447 0.035272
+-0.923304 -0.382447 0.035272
+-0.923306 -0.382441 0.035272
+-0.923306 -0.382441 0.035272
+-0.923306 -0.382441 0.035272
+-0.382449 -0.923303 0.035272
+-0.382449 -0.923303 0.035272
+-0.382449 -0.923303 0.035272
+-0.382440 -0.923307 0.035272
+-0.382440 -0.923307 0.035272
+-0.382440 -0.923307 0.035272
+0.382449 -0.923303 0.035272
+0.382449 -0.923303 0.035272
+0.382449 -0.923303 0.035272
+0.382439 -0.923307 0.035273
+0.382439 -0.923307 0.035273
+0.382439 -0.923307 0.035273
+0.923304 -0.382445 0.035272
+0.923305 -0.382445 0.035272
+0.923305 -0.382445 0.035272
+0.923305 -0.382444 0.035272
+0.923305 -0.382444 0.035272
+0.923305 -0.382444 0.035272
+</float_array>
+          <technique_common>
+            <accessor source="#Doric_Column-lib-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Doric_Column-lib-UV0">
+          <float_array id="Doric_Column-lib-UV0-array" count="36">
+0.742682 0.000000
+0.762451 0.000000
+0.762451 0.857958
+0.742682 0.857958
+0.782221 0.000000
+0.782221 0.857958
+0.782220 0.000000
+0.762451 0.000000
+0.762451 0.857958
+0.782220 0.857958
+0.742681 0.000000
+0.742681 0.857958
+0.722911 0.000000
+0.722911 0.857958
+0.703142 0.000000
+0.703142 0.857958
+0.722912 0.000000
+0.722912 0.857958
+</float_array>
+          <technique_common>
+            <accessor source="#Doric_Column-lib-UV0-array" count="18" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Doric_Column-lib-Vertex">
+          <input semantic="POSITION" source="#Doric_Column-lib-Position"/>
+        </vertices>
+        <polygons material="_10___Default" count="16">
+          <input semantic="VERTEX" offset="0" source="#Doric_Column-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Doric_Column-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Doric_Column-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+          <p>1 6 1 4 7 4 5 8 5</p>
+          <p>5 9 5 2 10 2 1 11 1</p>
+          <p>4 12 6 6 13 7 7 14 8</p>
+          <p>7 15 8 5 16 9 4 17 6</p>
+          <p>6 18 7 8 19 10 9 20 11</p>
+          <p>9 21 11 7 22 8 6 23 7</p>
+          <p>8 24 10 10 25 12 11 26 13</p>
+          <p>11 27 13 9 28 11 8 29 10</p>
+          <p>10 30 12 12 31 14 13 32 15</p>
+          <p>13 33 15 11 34 13 10 35 12</p>
+          <p>12 36 14 14 37 16 15 38 17</p>
+          <p>15 39 17 13 40 15 12 41 14</p>
+          <p>14 42 16 0 43 0 3 44 3</p>
+          <p>3 45 3 15 46 17 14 47 16</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Doric_Column" name="Doric_Column">
+        <translate sid="translate">-0.008221 0.036029 -1.598580</translate>
+        <rotate sid="rotateZ">0 0 1 155.000012</rotate>
+        <scale sid="scale">0.002710 0.002710 0.002710</scale>
+        <node id="Doric_Column-Pivot" name="Doric_Column-Pivot">
+          <translate>2702.658691 7039.968750 0.121785</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#Doric_Column-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__315-Material" target="#Map__315-Material"/>
+                <instance_material symbol="_10___Default" target="#_10___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

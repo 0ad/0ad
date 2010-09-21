@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-09-21T22:37:55Z</created>
+    <modified>2010-09-21T22:37:55Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__310-image" name="Map__310">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_tile_c.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_18___Default" name="_18___Default">
+      <instance_effect url="#_18___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_18___Default-fx" name="_18___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__310-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Doric_Capital_1-lib" name="Doric_Capital_1Mesh">
+      <mesh>
+        <source id="Doric_Capital_1-lib-Position">
+          <float_array id="Doric_Capital_1-lib-Position-array" count="24">
+-335.411011 -805.655151 434.557617
+-246.811859 -805.655151 434.557617
+-246.811874 -717.056030 434.557617
+-335.410980 -717.056030 434.557617
+-335.411011 -805.655151 421.900604
+-246.811859 -805.655151 421.900604
+-246.811874 -717.056030 421.900604
+-335.410980 -717.056030 421.900604
+</float_array>
+          <technique_common>
+            <accessor source="#Doric_Capital_1-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Doric_Capital_1-lib-Normal0">
+          <float_array id="Doric_Capital_1-lib-Normal0-array" count="90">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Doric_Capital_1-lib-Normal0-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Doric_Capital_1-lib-UV0">
+          <float_array id="Doric_Capital_1-lib-UV0-array" count="40">
+0.754013 0.750884
+0.869619 0.750884
+0.869619 0.995948
+0.754013 0.995948
+0.754013 0.948904
+0.869619 0.948904
+0.869619 0.995948
+0.754013 0.995948
+0.754013 0.948904
+0.869619 0.948904
+0.869619 0.995948
+0.754013 0.995948
+0.754013 0.948904
+0.869619 0.948904
+0.869619 0.995948
+0.754013 0.995948
+0.754013 0.948904
+0.869619 0.948904
+0.869619 0.995948
+0.754013 0.995948
+</float_array>
+          <technique_common>
+            <accessor source="#Doric_Capital_1-lib-UV0-array" count="20" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Doric_Capital_1-lib-Vertex">
+          <input semantic="POSITION" source="#Doric_Capital_1-lib-Position"/>
+        </vertices>
+        <polygons material="_18___Default" count="10">
+          <input semantic="VERTEX" offset="0" source="#Doric_Capital_1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Doric_Capital_1-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Doric_Capital_1-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+          <p>4 6 4 5 7 5 1 8 6</p>
+          <p>1 9 6 0 10 7 4 11 4</p>
+          <p>5 12 8 6 13 9 2 14 10</p>
+          <p>2 15 10 1 16 11 5 17 8</p>
+          <p>6 18 12 7 19 13 3 20 14</p>
+          <p>3 21 14 2 22 15 6 23 12</p>
+          <p>7 24 16 4 25 17 0 26 18</p>
+          <p>0 27 18 3 28 19 7 29 16</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Doric_Capital_1" name="Doric_Capital_1">
+        <translate sid="translate">-0.008221 0.036029 -1.598580</translate>
+        <rotate sid="rotateZ">0 0 1 90.000009</rotate>
+        <scale sid="scale">0.025400 0.025400 0.025400</scale>
+        <node id="Doric_Capital_1-Pivot" name="Doric_Capital_1-Pivot">
+          <translate>291.400818 760.486633 0.013131</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#Doric_Capital_1-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__310-Material" target="#Map__310-Material"/>
+                <instance_material symbol="_18___Default" target="#_18___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

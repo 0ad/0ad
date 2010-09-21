@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="700"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="700"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="props/special/pegasus_wings.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="white">
+      <texture>skeletal/horse_white_a.dds</texture>
+    </variant>
+  </group>
+</actor>

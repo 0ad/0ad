@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_geo_mineral">
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Pegasus</SpecificName>
+	<IconSheet>snPortraitSheetRockGaia</IconSheet>
+	<IconCell>1</IconCell>
+  </Identity>
+  <ResourceSupply>
+    <Amount>1000</Amount>
+    <Type>metal.treasure</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>special/pegasus.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Circle radius="2.0"/>
+    <Height>2.0</Height>
+  </Footprint>
+</Entity>
