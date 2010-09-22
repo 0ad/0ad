@@ -4,7 +4,14 @@
   <group>
     <variant frequency="1" name="Giraffe Adult">
       <mesh>skeletal/giraffe_adult.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Light">
       <texture>skeletal/animal_giraffe.png</texture>
+    </variant>
+    <variant frequency="1" name="Dark">
+      <texture>skeletal/animal_giraffeb.png</texture>
     </variant>
   </group>
 </actor>
