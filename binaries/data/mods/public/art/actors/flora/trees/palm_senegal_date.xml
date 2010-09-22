@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Senegal-Date-Palm-01">
       <mesh>gaia/tree_senegal_01.dae</mesh>
@@ -25,8 +23,10 @@
     <variant frequency="1" name="Senegal-Date-Palm-07">
       <mesh>gaia/tree_senegal_07.dae</mesh>
     </variant>
+    <variant frequency="1" name="Senegal-Date-Palm-08">
+      <mesh>gaia/tree_senegal_08.dae</mesh>
+    </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Palm Fronds-a">
       <texture>gaia/tree_palm_senegal_a.dds</texture>
@@ -35,7 +35,5 @@
       <texture>gaia/tree_palm_senegal_b.dds</texture>
     </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>

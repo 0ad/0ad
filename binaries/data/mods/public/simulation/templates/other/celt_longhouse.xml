@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_house">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Longhouse</SpecificName>
+    <History>Later Celts constructed larger dwellings, called long houses, which could house more than one family.</History>
+	<Tooltip>Add +10 to Population Cap.</Tooltip>
+  </Identity>
+  <Cost>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>100</wood>
+      <stone>100</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>1000</Max>
+  </Health>
+  <Footprint>
+    <Square width="12" depth="16.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="10.0" depth="14.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/celts/longhouse.xml</Actor>
+  </VisualActor>
+</Entity>

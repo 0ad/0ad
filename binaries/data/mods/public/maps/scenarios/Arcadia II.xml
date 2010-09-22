@@ -4,8 +4,8 @@
 	<Environment>
 		<SkySet>sunny</SkySet>
 		<SunColour r="1.29445" g="1.29445" b="1.29445"/>
-		<SunElevation angle="0.865165"/>
-		<SunRotation angle="-1.22718"/>
+		<SunElevation angle="1.00919"/>
+		<SunRotation angle="-0.785398"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="605.819" y="102.196" z="496.31"/>
+		<Position x="593.68" y="110.536" z="493.122"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -7024,12 +7024,6 @@
 			<Position x="246.92746" z="353.02631"/>
 			<Orientation y="-2.44898"/>
 		</Entity>
-		<Entity uid="1588">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="100.36474" z="141.35653"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1589">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>1</Player>
@@ -7070,48 +7064,6 @@
 			<Template>units/hele_cavalry_swordsman_e</Template>
 			<Player>1</Player>
 			<Position x="623.29175" z="612.05677"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1605">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="109.22846" z="122.153"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1606">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="111.7412" z="124.16996"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1607">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="114.83814" z="126.17006"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1608">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="112.6072" z="116.57178"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1609">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="114.7245" z="118.3198"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1610">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="117.45975" z="121.49598"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1611">
-			<Template>units/hele_cavalry_swordsman_e</Template>
-			<Player>2</Player>
-			<Position x="118.70022" z="113.51694"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1621">
@@ -11522,7 +11474,7 @@
 		</Entity>
 		<Entity uid="2483">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="125.08393" z="124.00904"/>
+			<Position x="126.02279" z="123.33693"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2484">
@@ -12674,12 +12626,6 @@
 			<Player>1</Player>
 			<Position x="561.17774" z="634.07941"/>
 			<Orientation y="1.93113"/>
-		</Entity>
-		<Entity uid="2719">
-			<Template>other/hellenic_stoa</Template>
-			<Player>2</Player>
-			<Position x="125.39173" z="189.80056"/>
-			<Orientation y="-3.07833"/>
 		</Entity>
 		<Entity uid="2729">
 			<Template>gaia/flora_tree_carob</Template>
@@ -21797,6 +21743,60 @@
 			<Player>0</Player>
 			<Position x="22.57499" z="650.9889"/>
 			<Orientation y="1.84865"/>
+		</Entity>
+		<Entity uid="4511">
+			<Template>other/celt_longhouse</Template>
+			<Player>2</Player>
+			<Position x="90.6266" z="132.29654"/>
+			<Orientation y="2.563"/>
+		</Entity>
+		<Entity uid="4512">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>0</Player>
+			<Position x="106.28206" z="144.01407"/>
+			<Orientation y="-2.34803"/>
+		</Entity>
+		<Entity uid="4513">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="108.67644" z="123.14678"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4514">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="111.4139" z="125.5469"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4515">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="113.9435" z="127.3958"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4516">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="112.291" z="117.78185"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4517">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="114.49721" z="119.6794"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4518">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="117.07776" z="121.74115"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4519">
+			<Template>units/celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="118.8926" z="114.54542"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
