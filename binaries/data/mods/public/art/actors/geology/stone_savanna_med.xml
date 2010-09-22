@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="shape-a">
+      <mesh>gaia/stone_granite_me_a.pmd</mesh>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/stone_granite_me_b.pmd</mesh>
+    </variant>
+    <variant name="c">
+      <mesh>gaia/stone_granite_me_c.pmd</mesh>
+    </variant>
+    <variant name="d">
+      <mesh>gaia/stone_granite_me_d.pmd</mesh>
+    </variant>
+    <variant name="e">
+      <mesh>gaia/stone_granite_me_e.pmd</mesh>
+    </variant>
+    <variant name="f">
+      <mesh>gaia/stone_granite_me_f.pmd</mesh>
+    </variant>
+    <variant name="shape-g">
+      <mesh>gaia/stone_granite_me_g.pmd</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="stone color a">
+      <texture>gaia/stone_savanna_b.dds</texture>
+    </variant>
+    <variant name="stone color b">
+      <texture>gaia/stone_savanna_a.dds</texture>
+    </variant>
+  </group>
+</actor>
