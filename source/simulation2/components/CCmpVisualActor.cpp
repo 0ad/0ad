@@ -221,6 +221,10 @@ public:
 	{
 		if (!m_Unit)
 			return CVector3D();
+
+		// Ensure the prop transforms are correct
+		m_Unit->GetModel().ValidatePosition();
+
 		CModel* ammo = m_Unit->GetModel().FindFirstAmmoProp();
 		if (!ammo)
 			return CVector3D();

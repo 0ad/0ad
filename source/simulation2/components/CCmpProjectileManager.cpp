@@ -21,6 +21,7 @@
 #include "ICmpProjectileManager.h"
 
 #include "ICmpPosition.h"
+#include "ICmpRangeManager.h"
 #include "ICmpVisual.h"
 #include "simulation2/MessageTypes.h"
 
@@ -305,8 +306,19 @@ void CCmpProjectileManager::Interpolate(const CSimContext& context, float frameT
 
 void CCmpProjectileManager::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
+	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+	int player = GetSimContext().GetCurrentDisplayedPlayer();
+	ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(player));
+	bool losRevealAll = cmpRangeManager->GetLosRevealAll(player);
+
 	for (size_t i = 0; i < m_Projectiles.size(); ++i)
 	{
+		// Don't display projectiles outside the visible area
+		ssize_t posi = (ssize_t)(0.5f + m_Projectiles[i].pos.X / CELL_SIZE);
+		ssize_t posj = (ssize_t)(0.5f + m_Projectiles[i].pos.Z / CELL_SIZE);
+		if (!losRevealAll && !los.IsVisible(posi, posj))
+			continue;
+
 		CModel& model = m_Projectiles[i].unit->GetModel();
 
 		model.ValidatePosition();
