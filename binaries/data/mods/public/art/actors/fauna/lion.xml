@@ -1,18 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Mesh">
-      <mesh>skeletal/lion.pmd</mesh>
+      <mesh>skeletal/animal_lion.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="100" name="texture">
-      <texture>skeletal/animal_lion.dds</texture>
+      <texture>skeletal/animal_lion.png</texture>
     </variant>
   </group>
-
 </actor>
