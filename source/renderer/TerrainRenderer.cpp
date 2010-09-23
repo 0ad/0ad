@@ -438,7 +438,7 @@ void TerrainRenderer::RenderWater()
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	debug_assert(!cmpRangeManager.null());
-	ICmpRangeManager::CLosQuerier los = cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID());
+	ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
 	bool losRevealAll = cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID());
 	
 	glEnable(GL_BLEND);

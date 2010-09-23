@@ -167,6 +167,8 @@ public:
 				m_PlayerMask = 0;
 		}
 
+		const CLosQuerier& operator=(const CLosQuerier&); // not implemented
+
 	public:
 		/**
 		 * Returns whether the given vertex is visible (i.e. is within a unit's LOS).
@@ -178,7 +180,10 @@ public:
 			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check high bit of each bit-pair
-			return (m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0xAAAAAAAAu;
+			if ((m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0xAAAAAAAAu)
+				return true;
+			else
+				return false;
 		}
 
 		/**
@@ -191,7 +196,10 @@ public:
 			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check low bit of each bit-pair
-			return (m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0x55555555u;
+			if ((m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0x55555555u)
+				return true;
+			else
+				return false;
 		}
 
 	private:

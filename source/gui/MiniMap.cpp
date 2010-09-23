@@ -512,7 +512,7 @@ void CMiniMap::RebuildLOSTexture()
 	}
 	else
 	{
-		ICmpRangeManager::CLosQuerier los = cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID());
+		ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
 
 		u8 *dataPtr = m_LOSData;
 

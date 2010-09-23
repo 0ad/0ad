@@ -23,7 +23,7 @@
 class CCmpVision: public ICmpVision
 {
 public:
-	static void ClassInit(CComponentManager& componentManager)
+	static void ClassInit(CComponentManager& UNUSED(componentManager))
 	{
 	}
 

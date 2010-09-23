@@ -449,7 +449,7 @@ void CPatchRData::Update()
 	}
 	else
 	{
-		ICmpRangeManager::CLosQuerier los = cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID());
+		ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
 
 		// this is very similar to BuildVertices(), but just for color
 		for (ssize_t j = 0; j < vsize; j++)
