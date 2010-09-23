@@ -12,6 +12,13 @@ function LoadMapSettings(settings)
 			cmpUnitAI.SetStance(settings.DefaultStance);
 		}
 	}
+
+	if (settings.RevealMap)
+	{
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		if (cmpRangeManager)
+			cmpRangeManager.SetLosRevealAll(true);
+	}
 }
 
 Engine.RegisterGlobal("LoadMapSettings", LoadMapSettings);

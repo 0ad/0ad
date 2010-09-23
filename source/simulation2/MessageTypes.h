@@ -115,6 +115,9 @@ public:
 	fixed turnLength;
 };
 
+/**
+ * Prepare for rendering a new frame (set up model positions etc).
+ */
 class CMessageInterpolate : public CMessage
 {
 public:
@@ -129,6 +132,10 @@ public:
 	float offset; // range [0, 1] (inclusive); fractional time of current frame between previous/next simulation turns
 };
 
+/**
+ * Add renderable objects to the scene collector.
+ * Called after CMessageInterpolate.
+ */
 class CMessageRenderSubmit : public CMessage
 {
 public:

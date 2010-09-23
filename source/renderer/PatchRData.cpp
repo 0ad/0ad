@@ -33,6 +33,7 @@
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpRangeManager.h"
 
 const ssize_t BlendOffsets[8][2] = {
 	{  0, -1 },
@@ -431,47 +432,11 @@ void CPatchRData::Update()
 	ssize_t pz=m_Patch->m_Z;
 
 	CTerrain* terrain=m_Patch->m_Parent;
-	ssize_t mapSize=terrain->GetVerticesPerSide();
 	ssize_t vsize=PATCH_SIZE+1;
 	SColor4ub baseColour = terrain->GetBaseColour();
 
-	/*
-	if (g_Game) // XXX: need to implement this for new sim system
-	{
-		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
-		// this is very similar to BuildVertices(), but just for color
-		for (ssize_t j=0;j<vsize;j++) {
-			for (ssize_t i=0;i<vsize;i++) {
-				ssize_t ix=px*PATCH_SIZE+i;
-				ssize_t iz=pz*PATCH_SIZE+j;
-				ssize_t v=(j*vsize)+i;
-
-				const ssize_t DX[] = {1,1,0,0};
-				const ssize_t DZ[] = {0,1,1,0};
-				SColor4ub losMod = baseColour;
-
-				for(size_t k=0; k<4; k++)
-				{
-					ssize_t tx = ix - DX[k];
-					ssize_t tz = iz - DZ[k];
-
-					if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
-					{
-						ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-						if(s==LOS_EXPLORED && losMod.R > 178)
-							losMod = SColor4ub(178, 178, 178, 255);
-						else if(s==LOS_UNEXPLORED && losMod.R > 0)
-							losMod = SColor4ub(0, 0, 0, 255);
-					}
-				}
-
-				m_Vertices[v].m_LOSColor = losMod;
-			}
-		}
-	}
-	else
-	*/
+	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpRangeManager.null() || cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID()))
 	{
 		for (ssize_t j = 0; j < vsize; ++j)
 		{
@@ -481,7 +446,31 @@ void CPatchRData::Update()
 				m_Vertices[v].m_LOSColor = baseColour;
 			}
 		}
+	}
+	else
+	{
+		ICmpRangeManager::CLosQuerier los = cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID());
 
+		// this is very similar to BuildVertices(), but just for color
+		for (ssize_t j = 0; j < vsize; j++)
+		{
+			for (ssize_t i = 0; i < vsize; i++)
+			{
+				ssize_t ix = px * PATCH_SIZE + i;
+				ssize_t iz = pz * PATCH_SIZE + j;
+				ssize_t v = (j * vsize) + i;
+
+				SColor4ub losMod;
+				if (los.IsVisible(ix, iz))
+					losMod = baseColour;
+				else if (los.IsExplored(ix, iz))
+					losMod = SColor4ub(178, 178, 178, 255);
+				else
+					losMod = SColor4ub(0, 0, 0, 255);
+
+				m_Vertices[v].m_LOSColor = losMod;
+			}
+		}
 	}
 
 	// upload base vertices into their vertex buffer

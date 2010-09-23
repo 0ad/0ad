@@ -21,6 +21,8 @@
 
 #include "ComponentManager.h"
 
+#include "ps/Game.h"
+
 CSimContext::CSimContext() :
 	m_ComponentManager(NULL), m_UnitManager(NULL), m_Terrain(NULL)
 {
@@ -62,4 +64,11 @@ void CSimContext::SetComponentManager(CComponentManager* man)
 ScriptInterface& CSimContext::GetScriptInterface() const
 {
 	return GetComponentManager().GetScriptInterface();
+}
+
+int CSimContext::GetCurrentDisplayedPlayer() const
+{
+	if (!g_Game)
+		return -1;
+	return g_Game->GetPlayerID();
 }

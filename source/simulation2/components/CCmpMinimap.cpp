@@ -160,7 +160,7 @@ public:
 		}
 	}
 
-	virtual bool GetRenderData(u8& r, u8& g, u8& b, float& x, float& z)
+	virtual bool GetRenderData(u8& r, u8& g, u8& b, entity_pos_t& x, entity_pos_t& z)
 	{
 		if (!m_Active)
 			return false;
@@ -168,8 +168,8 @@ public:
 		r = m_R;
 		g = m_G;
 		b = m_B;
-		x = m_X.ToFloat();
-		z = m_Z.ToFloat();
+		x = m_X;
+		z = m_Z;
 		return true;
 	}
 };

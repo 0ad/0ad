@@ -15,27 +15,24 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPMINIMAP
-#define INCLUDED_ICMPMINIMAP
+#ifndef INCLUDED_ICMPVISION
+#define INCLUDED_ICMPVISION
 
 #include "simulation2/system/Interface.h"
 
 #include "simulation2/helpers/Position.h"
 
 /**
- * Per-unit minimap data.
+ * Vision (LOS etc) interface (typically implemented by a scripted component).
  */
-class ICmpMinimap : public IComponent
+class ICmpVision : public IComponent
 {
 public:
-	/**
-	 * Get the data for rendering this entity on the minimap.
-	 * If it should not be drawn, returns false; otherwise the arguments are set
-	 * to the colour and world position.
-	 */
-	virtual bool GetRenderData(u8& r, u8& g, u8& b, entity_pos_t& x, entity_pos_t& z) = 0;
+	virtual entity_pos_t GetRange() = 0;
 
-	DECLARE_INTERFACE_TYPE(Minimap)
+	virtual bool GetRetainInFog() = 0;
+
+	DECLARE_INTERFACE_TYPE(Vision)
 };
 
-#endif // INCLUDED_ICMPMINIMAP
+#endif // INCLUDED_ICMPVISION

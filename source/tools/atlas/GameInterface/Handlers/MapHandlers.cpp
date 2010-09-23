@@ -37,6 +37,7 @@
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpRangeManager.h"
 
 namespace
 {
@@ -66,6 +67,11 @@ namespace
 		LDR_NonprogressiveLoad();
 		PSRETURN ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
+
+		// Disable fog-of-war
+		CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpRangeManager.null())
+			cmpRangeManager->SetLosRevealAll(true);
 	}
 }
 

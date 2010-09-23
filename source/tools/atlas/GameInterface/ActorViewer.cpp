@@ -40,6 +40,8 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/components/ICmpVisual.h"
 
@@ -116,6 +118,15 @@ ActorViewer::ActorViewer()
 	// Start the simulation
 	m.Simulation2.LoadDefaultScripts();
 	m.Simulation2.ResetState();
+
+	// Tell the simulation we've already loaded the terrain
+	CmpPtr<ICmpTerrain> cmpTerrain(m.Simulation2, SYSTEM_ENTITY);
+	if (!cmpTerrain.null())
+		cmpTerrain->ReloadTerrain();
+
+	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);
+	if (!cmpRangeManager.null())
+		cmpRangeManager->SetLosRevealAll(true);
 }
 
 ActorViewer::~ActorViewer()

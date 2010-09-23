@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 #include "ps/World.h"
 
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpRangeManager.h"
 
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
@@ -434,9 +435,11 @@ void TerrainRenderer::RenderWater()
 		}
 	}
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-//	int mapSize = terrain->GetVerticesPerSide();
 
-//	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
+	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	debug_assert(!cmpRangeManager.null());
+	ICmpRangeManager::CLosQuerier los = cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID());
+	bool losRevealAll = cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID());
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -566,50 +569,35 @@ void TerrainRenderer::RenderWater()
 
 				// is any corner of the tile below the water height? if not, no point rendering it
 				bool shouldRender = false;
-				for(int j=0; j<4; j++)
+				for (int j = 0; j < 4; j++)
 				{
 					float terrainHeight = terrain->GetVertexGroundLevel(x + DX[j], z + DZ[j]);
-					if( terrainHeight < WaterMgr->m_WaterHeight )
+					if (terrainHeight < WaterMgr->m_WaterHeight)
 					{
 						shouldRender = true;
 						break;
 					}
 				}
-				if(!shouldRender)
-				{
+				if (!shouldRender)
 					continue;
-				}
 
 				for (int j=0; j<4; j++)
 				{
-					int ix = x + DX[j];
-					int iz = z + DZ[j];
+					ssize_t ix = x + DX[j];
+					ssize_t iz = z + DZ[j];
 
 					float vertX = ix * CELL_SIZE;
 					float vertZ = iz * CELL_SIZE;
 
 					float terrainHeight = terrain->GetVertexGroundLevel(ix, iz);
-					float losMod = 1.0f;
 
-					/*
-					if (false) // XXX: need to implement this for new sim system
-					{
-						for(size_t k=0; k<4; k++)
-						{
-							ssize_t tx = ix - DX[k];
-							ssize_t tz = iz - DZ[k];
-
-							if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
-							{
-								ELOSStatus s = losMgr->GetStatus(tx, tz, g_Game->GetLocalPlayer());
-								if(s == LOS_EXPLORED && losMod > 0.7f)
-									losMod = 0.7f;
-								else if(s==LOS_UNEXPLORED && losMod > 0.0f)
-									losMod = 0.0f;
-							}
-						}
-					}
-					*/
+					float losMod;
+					if (losRevealAll || los.IsVisible(ix, iz))
+						losMod = 1.0f;
+					else if (los.IsExplored(ix, iz))
+						losMod = 0.7f;
+					else
+						losMod = 0.0f;
 
 					if (fancy)
 					{
@@ -672,5 +660,3 @@ void TerrainRenderer::RenderWater()
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
 }
-
-

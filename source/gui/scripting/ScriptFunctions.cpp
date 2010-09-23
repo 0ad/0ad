@@ -36,6 +36,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
+#include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/helpers/Selection.h"
 
@@ -119,7 +120,7 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 
 std::vector<entity_id_t> PickEntitiesAtPoint(void* UNUSED(cbdata), int x, int y)
 {
-	return EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y);
+	return EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, g_Game->GetPlayerID());
 }
 
 std::vector<entity_id_t> PickFriendlyEntitiesInRect(void* UNUSED(cbdata), int x0, int y0, int x1, int y1, int player)
@@ -304,6 +305,18 @@ CScriptVal LoadMapData(void* cbdata, std::wstring name)
 	return reader.GetScriptData(guiManager->GetScriptInterface()).get();
 }
 
+void SetRevealMap(void* UNUSED(cbdata), bool enabled)
+{
+	if (!g_Game)
+		return;
+
+	CSimulation2* sim = g_Game->GetSimulation2();
+	debug_assert(sim);
+	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
+	if (!cmpRangeManager.null())
+		cmpRangeManager->SetLosRevealAll(enabled);
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -343,4 +356,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapData>("LoadMapData");
+	scriptInterface.RegisterFunction<void, bool, &SetRevealMap>("SetRevealMap");
 }

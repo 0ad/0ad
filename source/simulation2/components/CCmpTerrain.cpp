@@ -94,7 +94,8 @@ public:
 		{
 			cmpRangeManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
 					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
-					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE));
+					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
+					m_Terrain->GetVerticesPerSide());
 		}
 	}
 

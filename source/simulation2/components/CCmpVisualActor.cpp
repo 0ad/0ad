@@ -21,6 +21,8 @@
 #include "ICmpVisual.h"
 
 #include "ICmpPosition.h"
+#include "ICmpRangeManager.h"
+#include "ICmpVision.h"
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Frustum.h"
@@ -52,7 +54,7 @@ public:
 	std::wstring m_ActorName;
 	CUnit* m_Unit;
 
-	bool m_Hidden; // only valid between Interpolate and RenderSubmit
+	ICmpRangeManager::ELosVisibility m_Visibility; // only valid between Interpolate and RenderSubmit
 
 	// Current animation state
 	float m_AnimRunThreshold; // if non-zero this is the special walk/run mode
@@ -358,11 +360,15 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 	// Disable rendering of the unit if it has no position
 	if (!cmpPosition->IsInWorld())
 	{
-		m_Hidden = true;
+		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
 		return;
 	}
 
-	m_Hidden = false;
+	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+	m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), GetSimContext().GetCurrentDisplayedPlayer());
+
+	// Even if HIDDEN due to LOS, we need to set up the transforms
+	// so that projectiles will be launched from the right place
 
 	bool floating = m_Unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
 
@@ -377,10 +383,8 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 	if (m_Unit == NULL)
 		return;
 
-	if (m_Hidden)
+	if (m_Visibility == ICmpRangeManager::VIS_HIDDEN)
 		return;
-
-	// TODO: need to think about things like LOS here
 
 	CModel& model = m_Unit->GetModel();
 
@@ -389,7 +393,10 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBounds()))
 		return;
 
-	// TODO: model->SetShadingColor(CColor(1.0f, 1.0f, 1.0f, 1.0f) if visible, CColor(0.7f, 0.7f, 0.7f, 1.0f) if hidden in FOW)
+	if (m_Visibility == ICmpRangeManager::VIS_FOGGED)
+		model.SetShadingColor(CColor(0.7f, 0.7f, 0.7f, 1.0f));
+	else
+		model.SetShadingColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	collector.SubmitRecursive(&model);
 }

@@ -433,9 +433,15 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
 		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Inactive/></Obstruction></Entity>");
 
-	// Corpses should include decay components and un-inactivate them
+	if (!corpse)
+	{
+		// Previews should always be visible in fog-of-war
+		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>true</RetainInFog></Vision></Entity>");
+	}
+
 	if (corpse)
 	{
+		// Corpses should include decay components and un-inactivate them
 		if (out.GetChild("Entity").GetChild("Decay").IsOk())
 			CParamNode::LoadXMLString(out, "<Entity><Decay><Inactive disable=''/></Decay></Entity>");
 	}
@@ -459,6 +465,7 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	permittedComponentTypes.insert("Decay");
 	permittedComponentTypes.insert("Cost");
 	permittedComponentTypes.insert("Sound");
+	permittedComponentTypes.insert("Vision");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
@@ -478,4 +485,9 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	// Don't provide population bonuses yet (but still do take up population cost)
 	if (out.GetChild("Entity").GetChild("Cost").IsOk())
 		CParamNode::LoadXMLString(out, "<Entity><Cost><PopulationBonus>0</PopulationBonus></Cost></Entity>");
+
+	// Foundations should be visible themselves in fog-of-war if their base template is,
+	// but shouldn't have any vision range
+	if (out.GetChild("Entity").GetChild("Vision").IsOk())
+		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range></Vision></Entity>");
 }

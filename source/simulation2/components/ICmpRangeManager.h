@@ -22,8 +22,14 @@
 
 #include "simulation2/helpers/Position.h"
 
+#include "graphics/Terrain.h" // for CELL_SIZE
+
 /**
- * Provides efficient range-based queries of the game world.
+ * Provides efficient range-based queries of the game world,
+ * and also LOS-based effects (fog of war).
+ *
+ * (These are somewhat distinct concepts but they share a lot of the implementation,
+ * so for efficiency they're combined into this class.)
  *
  * Possible use cases:
  * - combat units need to detect targetable enemies entering LOS, so they can choose
@@ -67,8 +73,9 @@ public:
 	 * Set the bounds of the world.
 	 * Entities should not be outside the bounds (else efficiency will suffer).
 	 * @param x0,z0,x1,z1 Coordinates of the corners of the world
+	 * @param vertices Number of terrain vertices per side
 	 */
-	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) = 0;
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, ssize_t vertices) = 0;
 
 	/**
 	 * Execute a passive query.
@@ -122,6 +129,98 @@ public:
 	 * Toggle the rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;
+
+	// LOS interface:
+
+	enum ELosState
+	{
+		LOS_UNEXPLORED = 0,
+		LOS_EXPLORED = 1,
+		LOS_VISIBLE = 2,
+		LOS_MASK = 3
+	};
+
+	enum ELosVisibility
+	{
+		VIS_HIDDEN,
+		VIS_FOGGED,
+		VIS_VISIBLE
+	};
+
+	/**
+	 * Object providing efficient abstracted access to the LOS state.
+	 * This depends on some implementation details of CCmpRangeManager.
+	 *
+	 * This *ignores* the GetLosRevealAll flag - callers should check that explicitly.
+	 */
+	class CLosQuerier
+	{
+	private:
+		friend class CCmpRangeManager;
+
+		CLosQuerier(int player, const std::vector<u32>& data, ssize_t verticesPerSide) :
+			m_Data(data), m_VerticesPerSide(verticesPerSide)
+		{
+			if (player > 0 && player <= 16)
+				m_PlayerMask = LOS_MASK << (2*(player-1));
+			else
+				m_PlayerMask = 0;
+		}
+
+	public:
+		/**
+		 * Returns whether the given vertex is visible (i.e. is within a unit's LOS).
+		 * i and j must be in the range [0, verticesPerSide).
+		 */
+		inline bool IsVisible(ssize_t i, ssize_t j)
+		{
+#ifndef NDEBUG
+			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
+#endif
+			// Check high bit of each bit-pair
+			return (m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0xAAAAAAAAu;
+		}
+
+		/**
+		 * Returns whether the given vertex is explored (i.e. was (or still is) within a unit's LOS).
+		 * i and j must be in the range [0, verticesPerSide).
+		 */
+		inline bool IsExplored(ssize_t i, ssize_t j)
+		{
+#ifndef NDEBUG
+			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
+#endif
+			// Check low bit of each bit-pair
+			return (m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0x55555555u;
+		}
+
+	private:
+		u32 m_PlayerMask;
+		const std::vector<u32>& m_Data;
+		ssize_t m_VerticesPerSide;
+	};
+
+	/**
+	 * Returns a CLosQuerier for checking whether vertex positions are visible to the given player.
+	 */
+	virtual CLosQuerier GetLosQuerier(int player) = 0;
+
+	/**
+	 * Returns the visibility status of the given entity, with respect to the given player.
+	 * Returns VIS_HIDDEN if the entity doesn't exist or is not in the world.
+	 * This respects the GetLosRevealAll flag.
+	 */
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, int player) = 0;
+
+	/**
+	 * Set globally whether the whole map should be made visible.
+	 */
+	virtual void SetLosRevealAll(bool enabled) = 0;
+
+	/**
+	 * Returns whether the whole map has been made visible to the given player.
+	 */
+	virtual bool GetLosRevealAll(int player) = 0;
 
 	DECLARE_INTERFACE_TYPE(RangeManager)
 };

@@ -43,6 +43,12 @@ public:
 
 	ScriptInterface& GetScriptInterface() const;
 
+	/**
+	 * Returns the player ID that the current display is being rendered for.
+	 * Currently relies on g_Game being initialised (evil globals...)
+	 */
+	int GetCurrentDisplayedPlayer() const;
+
 private:
 	CComponentManager* m_ComponentManager;
 	CUnitManager* m_UnitManager;

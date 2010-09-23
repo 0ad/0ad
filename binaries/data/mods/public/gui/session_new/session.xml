@@ -77,7 +77,7 @@
 		/>
 
 		<!-- Dev/cheat commands -->
-		<object name="devCommands" size="100%-155 50 100%-16 162" z="200" type="image" sprite="devCommandsBackground"
+		<object name="devCommands" size="100%-155 50 100%-16 178" z="200" type="image" sprite="devCommandsBackground"
 				hidden="true" hotkey="session.devcommands.toggle">
 			<action on="Press">
 				this.hidden = !this.hidden;
@@ -112,6 +112,11 @@
 			<object size="0 96 100%-18 112" type="text" style="devCommandsText">Restrict camera</object>
 			<object size="100%-16 96 100% 112" type="checkbox" style="wheatCrossBox" checked="true">
 				<action on="Press">gameView.constrainCamera = this.checked;</action>
+			</object>
+
+			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Reveal map</object>
+			<object size="100%-16 112 100% 128" type="checkbox" style="wheatCrossBox">
+				<action on="Press">Engine.SetRevealMap(this.checked);</action>
 			</object>
 		</object>
 

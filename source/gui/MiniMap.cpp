@@ -39,6 +39,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
+#include "simulation2/components/ICmpRangeManager.h"
 
 bool g_GameRestarted = false;
 
@@ -246,9 +247,7 @@ void CMiniMap::Draw()
 		if(m_TerrainDirty)
 			RebuildTerrainTexture();
 
-//		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-//		if(losMgr->m_LOSSetting != LOS_SETTING_ALL_VISIBLE)
-//			RebuildLOSTexture();
+		RebuildLOSTexture();
 	}
 
 	const float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
@@ -366,16 +365,24 @@ void CMiniMap::Draw()
 	std::vector<MinimapUnitVertex> vertexArray;
 	vertexArray.reserve(ents.size());
 
+	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
+	debug_assert(!cmpRangeManager.null());
+
 	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
 		MinimapUnitVertex v;
 		ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
-		if (cmpMinimap->GetRenderData(v.r, v.g, v.b, v.x, v.y))
+		entity_pos_t posX, posZ;
+		if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
 		{
-			v.a = 255;
-			v.x = x + v.x*sx;
-			v.y = y - v.y*sy;
-			vertexArray.push_back(v);
+			ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, g_Game->GetPlayerID());
+			if (vis != ICmpRangeManager::VIS_HIDDEN)
+			{
+				v.a = 255;
+				v.x = x + posX.ToFloat()*sx;
+				v.y = y - posZ.ToFloat()*sy;
+				vertexArray.push_back(v);
+			}
 		}
 	}
 
@@ -421,7 +428,7 @@ void CMiniMap::CreateTextures()
 	glGenTextures(1, &m_LOSTexture);
 	g_Renderer.BindTexture(0, m_LOSTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
-	m_LOSData = new u8[(m_MapSize - 1) * (m_MapSize - 1)];
+	m_LOSData = new u8[m_MapSize * m_MapSize];
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
@@ -493,41 +500,39 @@ void CMiniMap::RebuildTerrainTexture()
 
 void CMiniMap::RebuildLOSTexture()
 {
-	PROFILE_START("rebuild minimap: los");
+	PROFILE("rebuild minimap: los");
 
-	ssize_t x = 0;
-	ssize_t y = 0;
-	ssize_t w = m_MapSize - 1;
-	ssize_t h = m_MapSize - 1;
+	ssize_t w = m_MapSize;
+	ssize_t h = m_MapSize;
 
-	memset(m_LOSData, 0, w*h);
+	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpRangeManager.null() || cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID()))
+	{
+		memset(m_LOSData, 0, w*h);
+	}
+	else
+	{
+		ICmpRangeManager::CLosQuerier los = cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID());
 
-	// TODO: ought to do something like:
-/*
-		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-		CPlayer* player = g_Game->GetLocalPlayer();
+		u8 *dataPtr = m_LOSData;
 
-		for(ssize_t j = 0; j < h; j++)
+		for (ssize_t j = 0; j < h; j++)
 		{
-			u8 *dataPtr = m_LOSData + ((y + j) * (m_MapSize - 1)) + x;
-			for(ssize_t i = 0; i < w; i++)
+			for (ssize_t i = 0; i < w; i++)
 			{
-				ELOSStatus status = losMgr->GetStatus(i, j, player);
-				if(status == LOS_UNEXPLORED)
-					*dataPtr++ = 0xff;
-				else if(status == LOS_EXPLORED)
-					*dataPtr++ = (u8) (0xff * 0.3f);
-				else
+				if (los.IsVisible(i, j))
 					*dataPtr++ = 0;
+				else if (los.IsExplored(i, j))
+					*dataPtr++ = 76;
+				else
+					*dataPtr++ = 255;
 			}
 		}
-*/
+	}
 
 	// Upload the texture
 	g_Renderer.BindTexture(0, m_LOSTexture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, m_LOSData);
-
-	PROFILE_END("rebuild minimap: los");
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, m_LOSData);
 }
 
 void CMiniMap::Destroy()

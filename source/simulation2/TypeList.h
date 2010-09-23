@@ -118,6 +118,9 @@ COMPONENT(Terrain)
 INTERFACE(UnitMotion)
 COMPONENT(UnitMotion) // must be after Obstruction
 
+INTERFACE(Vision)
+COMPONENT(Vision)
+
 INTERFACE(Visual)
 COMPONENT(VisualActor)
 

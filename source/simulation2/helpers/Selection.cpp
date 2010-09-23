@@ -22,13 +22,17 @@
 #include "graphics/Camera.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
+#include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpVisual.h"
 
-std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY)
+std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, int player)
 {
 	CVector3D origin, dir;
 	camera.BuildCameraRay(screenX, screenY, origin, dir);
+
+	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
+	debug_assert(!cmpRangeManager.null());
 
 	std::vector<std::pair<float, entity_id_t> > hits; // (dist^2, entity) pairs
 
@@ -37,7 +41,9 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	{
 		entity_id_t ent = it->first;
 
-		// TODO: ought to filter out units hidden by current player's LOS
+		// Ignore entities hidden by LOS
+		if (cmpRangeManager->GetLosVisibility(ent, player) == ICmpRangeManager::VIS_HIDDEN)
+			continue;
 
 		CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
 		if (cmpVisual.null())
@@ -80,6 +86,9 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 		std::swap(sy0, sy1);
 
 	std::vector<entity_id_t> hitEnts;
+
+	// (We don't bother doing LOS checks for these units, since we assume 'owner'
+	// will be the current local player and all their own units will always be visible)
 
 	const CSimulation2::InterfaceList& ents = simulation.GetEntitiesWithInterface(IID_Selectable);
 	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)

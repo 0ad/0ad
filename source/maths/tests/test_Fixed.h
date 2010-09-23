@@ -189,6 +189,22 @@ public:
 		TS_ASSERT_EQUALS(fixed::FromFloat(-2.99f).ToInt_RoundToNegInfinity(), -3);
 	}
 
+	void test_RoundToNearest()
+	{
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.f).ToInt_RoundToNearest(), 10);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.1f).ToInt_RoundToNearest(), 10);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.5f).ToInt_RoundToNearest(), 11);
+		TS_ASSERT_EQUALS(fixed::FromFloat(10.99f).ToInt_RoundToNearest(), 11);
+		TS_ASSERT_EQUALS(fixed::FromFloat(0.1f).ToInt_RoundToNearest(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(0.0f).ToInt_RoundToNearest(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-0.1f).ToInt_RoundToNearest(), 0);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-0.99f).ToInt_RoundToNearest(), -1);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-1.0f).ToInt_RoundToNearest(), -1);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.0f).ToInt_RoundToNearest(), -2);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.5f).ToInt_RoundToNearest(), -2);
+		TS_ASSERT_EQUALS(fixed::FromFloat(-2.99f).ToInt_RoundToNearest(), -3);
+	}
+
 	// TODO: test all the arithmetic operators
 
 	void test_Mod()

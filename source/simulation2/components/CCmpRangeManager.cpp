@@ -21,6 +21,7 @@
 #include "ICmpRangeManager.h"
 
 #include "ICmpPosition.h"
+#include "ICmpVision.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
@@ -49,11 +50,11 @@ struct Query
 
 /**
  * Convert an owner ID (-1 = unowned, 0 = gaia, 1..30 = players)
- * into a 31-bit mask for quick set-membership tests.
+ * into a 32-bit mask for quick set-membership tests.
  */
 static u32 CalcOwnerMask(i32 owner)
 {
-	if (owner >= -1 && owner < 30)
+	if (owner >= -1 && owner < 31)
 		return 1 << (1+owner);
 	else
 		return 0; // owner was invalid
@@ -64,13 +65,15 @@ static u32 CalcOwnerMask(i32 owner)
  */
 struct EntityData
 {
-	EntityData() : ownerMask(CalcOwnerMask(-1)), inWorld(0) { }
+	EntityData() : retainInFog(0), owner(-1), inWorld(0) { }
 	entity_pos_t x, z;
-	u32 ownerMask : 31;
-	u32 inWorld : 1;
+	entity_pos_t visionRange;
+	u8 retainInFog; // boolean
+	i8 owner;
+	u8 inWorld; // boolean
 };
 
-cassert(sizeof(EntityData) == 12);
+cassert(sizeof(EntityData) == 16);
 
 /**
  * Functor for sorting entities by distance from a source point.
@@ -101,12 +104,13 @@ private:
 };
 
 /**
- * Basic range manager implementation.
+ * Range manager implementation.
  * Maintains a list of all entities (and their positions and owners), which is used for
  * queries.
  *
- * TODO: Ideally this would use a quadtree or something for more efficient spatial queries,
- * since it's about O(n^2) in the total number of entities on the map.
+ * LOS implementation is based on the model described in GPG2.
+ * (TODO: would be nice to make it cleverer, so e.g. mountains and walls
+ * can block vision)
  */
 class CCmpRangeManager : public ICmpRangeManager
 {
@@ -131,9 +135,26 @@ public:
 
 	SpatialSubdivision<entity_id_t> m_Subdivision;
 
+	// Range query state:
 	tag_t m_QueryNext; // next allocated id
 	std::map<tag_t, Query> m_Queries;
 	std::map<entity_id_t, EntityData> m_EntityData;
+
+	// LOS state:
+
+	bool m_LosRevealAll;
+	ssize_t m_TerrainVerticesPerSide;
+
+	// Counts of units seeing vertex, per vertex, per player (starting with player 0).
+	// Use u16 to avoid overflows when we have very large (but not infeasibly large) numbers
+	// of units in a very small area.
+	// (Note we use vertexes, not tiles, to better match the renderer.)
+	// Lazily constructed when it's needed, to save memory in smaller games.
+	std::vector<std::vector<u16> > m_LosPlayerCounts;
+
+	// 2-bit ELosState per player, starting with player 1 (not 0!) up to player MAX_LOS_PLAYER_ID (inclusive)
+	std::vector<u32> m_LosState;
+	static const int MAX_LOS_PLAYER_ID = 16;
 
 	static std::string GetSchema()
 	{
@@ -150,6 +171,9 @@ public:
 		// Initialise with bogus values (these will get replaced when
 		// SetBounds is called)
 		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
+
+		m_LosRevealAll = false;
+		m_TerrainVerticesPerSide = 0;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -189,6 +213,14 @@ public:
 			// use the default-constructed EntityData here
 			EntityData entdata;
 
+			// Store the LOS data, if any
+			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
+			if (!cmpVision.null())
+			{
+				entdata.visionRange = cmpVision->GetRange();
+				entdata.retainInFog = (cmpVision->GetRetainInFog() ? 1 : 0);
+			}
+
 			// Remember this entity
 			m_EntityData.insert(std::make_pair(ent, entdata));
 
@@ -208,9 +240,18 @@ public:
 			if (msgData.inWorld)
 			{
 				if (it->second.inWorld)
-					m_Subdivision.Move(ent, CFixedVector2D(it->second.x, it->second.z), CFixedVector2D(msgData.x, msgData.z));
+				{
+					CFixedVector2D from(it->second.x, it->second.z);
+					CFixedVector2D to(msgData.x, msgData.z);
+					m_Subdivision.Move(ent, from, to);
+					LosMove(it->second.owner, it->second.visionRange, from, to);
+				}
 				else
-					m_Subdivision.Add(ent, CFixedVector2D(msgData.x, msgData.z));
+				{
+					CFixedVector2D to(msgData.x, msgData.z);
+					m_Subdivision.Add(ent, to);
+					LosAdd(it->second.owner, it->second.visionRange, to);
+				}
 
 				it->second.inWorld = 1;
 				it->second.x = msgData.x;
@@ -219,7 +260,11 @@ public:
 			else
 			{
 				if (it->second.inWorld)
-					m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z));
+				{
+					CFixedVector2D from(it->second.x, it->second.z);
+					m_Subdivision.Remove(ent, from);
+					LosRemove(it->second.owner, it->second.visionRange, from);
+				}
 
 				it->second.inWorld = 0;
 				it->second.x = entity_pos_t::Zero();
@@ -239,7 +284,14 @@ public:
 			if (it == m_EntityData.end())
 				break;
 
-			it->second.ownerMask = CalcOwnerMask(msgData.to);
+			if (it->second.inWorld)
+			{
+				CFixedVector2D pos(it->second.x, it->second.z);
+				LosRemove(it->second.owner, it->second.visionRange, pos);
+				LosAdd(msgData.to, it->second.visionRange, pos);
+			}
+
+			it->second.owner = msgData.to;
 
 			break;
 		}
@@ -276,10 +328,19 @@ public:
 		}
 	}
 
-	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, ssize_t vertices)
 	{
 		debug_assert(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(x1, z1);
+
+		m_TerrainVerticesPerSide = vertices;
+		m_LosPlayerCounts.clear();
+		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);
+		m_LosState.clear();
+		m_LosState.resize(vertices*vertices);
+
+		for (std::map<u32, EntityData>::iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
+			LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 	}
 
 	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
@@ -482,7 +543,7 @@ private:
 			debug_assert(it != m_EntityData.end());
 
 			// Quick filter to ignore entities with the wrong owner
-			if (!(it->second.ownerMask & q.ownersMask))
+			if (!(CalcOwnerMask(it->second.owner) & q.ownersMask))
 				continue;
 
 			// Restrict based on precise location
@@ -572,6 +633,158 @@ private:
 
 		for (size_t i = 0; i < m_DebugOverlayLines.size(); ++i)
 			collector.Submit(&m_DebugOverlayLines[i]);
+	}
+
+
+	// LOS implementation:
+
+	virtual CLosQuerier GetLosQuerier(int player)
+	{
+		return CLosQuerier(player, m_LosState, m_TerrainVerticesPerSide);
+	}
+
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, int player)
+	{
+		// (We can't use m_EntityData since this needs to handle LOCAL entities too)
+
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
+		if (cmpPosition.null() || !cmpPosition->IsInWorld())
+			return VIS_HIDDEN;
+
+		if (m_LosRevealAll)
+			return VIS_VISIBLE;
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+		CLosQuerier los(player, m_LosState, m_TerrainVerticesPerSide);
+
+		int i = (pos.X / (int)CELL_SIZE).ToInt_RoundToNearest();
+		int j = (pos.Y / (int)CELL_SIZE).ToInt_RoundToNearest();
+
+		if (los.IsVisible(i, j))
+			return VIS_VISIBLE;
+
+		if (los.IsExplored(i, j))
+		{
+			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
+			if (!cmpVision.null() && cmpVision->GetRetainInFog())
+				return VIS_FOGGED;
+		}
+
+		return VIS_HIDDEN;
+	}
+
+	virtual void SetLosRevealAll(bool enabled)
+	{
+		// Eventually we might want this to be a per-player flag (which is why
+		// GetLosRevealAll takes a player argument), but currently it's just a
+		// global setting since I can't quite work out where per-player would be useful
+
+		m_LosRevealAll = enabled;
+	}
+
+	virtual bool GetLosRevealAll(int UNUSED(player))
+	{
+		return m_LosRevealAll;
+	}
+
+	/**
+	 * Update the LOS state of tiles within a given horizontal strip (i0,j) to (i1,j) (inclusive).
+	 * amount is +1 or -1.
+	 */
+	inline void LosUpdateStripHelper(u8 owner, ssize_t i0, ssize_t i1, ssize_t j, int amount, std::vector<u16>& counts)
+	{
+		for (ssize_t i = i0; i <= i1; ++i)
+		{
+			ssize_t idx = j*m_TerrainVerticesPerSide + i;
+
+			// Increasing from zero to non-zero - move from unexplored/explored to visible+explored
+			if (counts[idx] == 0 && amount > 0)
+			{
+				m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
+			}
+
+			counts[idx] += amount;
+
+			// Decreasing from non-zero to zero - move from visible+explored to explored
+			if (counts[idx] == 0 && amount < 0)
+			{
+				m_LosState[idx] &= ~(LOS_VISIBLE << (2*(owner-1)));
+			}
+		}
+	}
+
+	/**
+	 * Update the LOS state of tiles within a given circular range.
+	 * Assumes owner is in the valid range.
+	 */
+	inline void LosUpdateHelper(u8 owner, entity_pos_t visionRange, CFixedVector2D pos, int amount)
+	{
+		if (m_TerrainVerticesPerSide == 0) // do nothing if not initialised yet
+			return;
+
+		PROFILE("LosUpdateHelper");
+
+		std::vector<u16>& counts = m_LosPlayerCounts.at(owner);
+
+		// Lazy initialisation of counts:
+		if (counts.empty())
+			counts.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+
+		// Compute the circular region as a series of strips.
+		// Rather than quantise pos to vertexes, we do more precise sub-tile computations
+		// to get smoother behaviour as a unit moves rather than jumping a whole tile
+		// at once.
+
+		// Compute top/bottom coordinates, and clamp to exclude the 1-tile border around the map
+		// (so that we never render the sharp edge of the map)
+		ssize_t j0 = ((pos.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
+		ssize_t j1 = ((pos.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
+		ssize_t j0clamp = std::max(j0, (ssize_t)1);
+		ssize_t j1clamp = std::min(j1, m_TerrainVerticesPerSide-2);
+
+		entity_pos_t xscale = pos.X / (int)CELL_SIZE;
+		entity_pos_t yscale = pos.Y / (int)CELL_SIZE;
+		entity_pos_t rsquared = (visionRange / (int)CELL_SIZE).Square();
+
+		for (ssize_t j = j0clamp; j <= j1clamp; ++j)
+		{
+			// Compute values such that (i - x)^2 + (j - y)^2 <= r^2
+			// (TODO: is this sqrt slow? can we optimise it?)
+			entity_pos_t di = (rsquared - (entity_pos_t::FromInt(j) - yscale).Square()).Sqrt();
+			ssize_t i0 = (xscale - di).ToInt_RoundToInfinity();
+			ssize_t i1 = (xscale + di).ToInt_RoundToNegInfinity();
+
+			ssize_t i0clamp = std::max(i0, (ssize_t)1);
+			ssize_t i1clamp = std::min(i1, m_TerrainVerticesPerSide-2);
+			LosUpdateStripHelper(owner, i0clamp, i1clamp, j, amount, counts);
+		}
+	}
+
+	void LosAdd(i8 owner, entity_pos_t visionRange, CFixedVector2D pos)
+	{
+		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
+			return;
+
+		LosUpdateHelper(owner, visionRange, pos, 1);
+	}
+
+	void LosRemove(i8 owner, entity_pos_t visionRange, CFixedVector2D pos)
+	{
+		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
+			return;
+
+		LosUpdateHelper(owner, visionRange, pos, -1);
+	}
+
+	void LosMove(i8 owner, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
+	{
+		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
+			return;
+
+		// TODO: we could optimise this by only modifying tiles that changed
+		LosRemove(owner, visionRange, from);
+		LosAdd(owner, visionRange, to);
 	}
 };
 

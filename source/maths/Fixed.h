@@ -176,6 +176,11 @@ public:
 		return value >> fract_bits;
 	}
 
+	int ToInt_RoundToNearest() const // (ties to infinity)
+	{
+		return (value + fract_pow2/2) >> fract_bits;
+	}
+
 	/// Returns the shortest string such that FromString will parse to the correct value.
 	CStr8 ToString() const;
 
@@ -278,6 +283,14 @@ public:
 
 		CheckCastOverflow(t, T, L"Overflow in CFixed::Multiply(CFixed n)", L"Underflow in CFixed::Multiply(CFixed n)")
 		return CFixed((T)t);
+	}
+
+	/**
+	 * Multiply the value by itself. Might overflow.
+	 */
+	CFixed Square() const
+	{
+		return (*this).Multiply(*this);
 	}
 
 	/**
