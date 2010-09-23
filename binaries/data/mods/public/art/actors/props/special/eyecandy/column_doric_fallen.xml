@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="fallen columns a">
+      <mesh>props/column_fallen_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="fallen columns b">
+      <mesh>props/column_fallen_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="fallen columns c">
+      <mesh>props/column_fallen_c.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="texture">
+      <texture>props/hele_props_a.dds</texture>
+    </variant>
+  </group>
+</actor>
