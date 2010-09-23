@@ -2,13 +2,13 @@
 <Entity parent="template_gaia">
   <Identity>
     <GenericName>Generic Flora</GenericName>
-	<IconSheet>snPortraitSheetTreeGaia</IconSheet>
+    <IconSheet>snPortraitSheetTreeGaia</IconSheet>
   </Identity>
   <Footprint>
     <Circle radius="1.5"/>
     <Height>10.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="3.0" depth="3.0"/>
+    <Unit radius="1.5"/>
   </Obstruction>
 </Entity>
