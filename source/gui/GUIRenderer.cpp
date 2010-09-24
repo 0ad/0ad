@@ -632,10 +632,6 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 			}
 		}
 
-		if (cit->m_EnableBlending)
-		{
-			glDisable(GL_BLEND);
-		}
-
+		glDisable(GL_BLEND);
 	}
 }
