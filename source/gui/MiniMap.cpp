@@ -53,12 +53,14 @@ static unsigned int ScaleColor(unsigned int color, float x)
 
 CMiniMap::CMiniMap()
 	: m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0),
-	m_LOSTexture(0), m_LOSData(0), m_TerrainDirty(true)
+	m_LOSTexture(0), m_TerrainDirty(true)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStr,		"tooltip");
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;
+
+	m_LOSScale = 2;
 }
 
 CMiniMap::~CMiniMap()
@@ -227,20 +229,20 @@ void CMiniMap::Draw()
 	m_Width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = m_Terrain->GetVerticesPerSide();
+	m_LOSMapSize = (m_MapSize + m_LOSScale - 1) / m_LOSScale; // divide and round upwards
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
+	m_LOSTextureSize = (GLsizei)round_up_to_pow2((size_t)m_LOSMapSize);
 
 	if(!m_TerrainTexture || g_GameRestarted)
 		CreateTextures();
 
 
-	// only update 10x / second
+	// only update 2x / second
 	// (note: since units only move a few pixels per second on the minimap,
-	// we can get away with infrequent updates; this is slow, ~20ms)
-	// TODO: we don't need to do it this frequently, it only needs to be once
-	// per simulation turn at most
+	// we can get away with infrequent updates; this is slow)
 	static double last_time;
 	const double cur_time = timer_Time();
-	if(cur_time - last_time > 100e-3)	// 10 updates/sec
+	if(cur_time - last_time > 0.5)
 	{
 		last_time = cur_time;
 
@@ -250,7 +252,8 @@ void CMiniMap::Draw()
 		RebuildLOSTexture();
 	}
 
-	const float texCoordMax = ((float)m_MapSize - 1) / ((float)m_TextureSize);
+	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
+	const float losTexCoordMax = (float)(m_LOSMapSize - 1) / (float)m_LOSTextureSize;
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 	const float z = GetBufferedZ();
@@ -341,11 +344,11 @@ void CMiniMap::Draw()
 	glColor3f(0.0f, 0.0f, 0.0f);
 	glTexCoord2f(0.0f, 0.0f);
 	glVertex3f(x, y, z);
-	glTexCoord2f(texCoordMax, 0.0f);
+	glTexCoord2f(losTexCoordMax, 0.0f);
 	glVertex3f(x2, y, z);
-	glTexCoord2f(texCoordMax, texCoordMax);
+	glTexCoord2f(losTexCoordMax, losTexCoordMax);
 	glVertex3f(x2, y2, z);
-	glTexCoord2f(0.0f, texCoordMax);
+	glTexCoord2f(0.0f, losTexCoordMax);
 	glVertex3f(x, y2, z);
 	glEnd();
 	glDisable(GL_BLEND);
@@ -427,8 +430,8 @@ void CMiniMap::CreateTextures()
 	// Create LOS texture
 	glGenTextures(1, &m_LOSTexture);
 	g_Renderer.BindTexture(0, m_LOSTexture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
-	m_LOSData = new u8[m_MapSize * m_MapSize];
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_LOSTextureSize, m_LOSTextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
+	m_LOSData.resize(m_LOSMapSize * m_LOSMapSize);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
@@ -508,17 +511,17 @@ void CMiniMap::RebuildLOSTexture()
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	if (cmpRangeManager.null() || cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID()))
 	{
-		memset(m_LOSData, 0, w*h);
+		memset(&m_LOSData[0], 0, m_LOSData.size());
 	}
 	else
 	{
 		ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
 
-		u8 *dataPtr = m_LOSData;
+		u8 *dataPtr = &m_LOSData[0];
 
-		for (ssize_t j = 0; j < h; j++)
+		for (ssize_t j = 0; j < h; j += m_LOSScale)
 		{
-			for (ssize_t i = 0; i < w; i++)
+			for (ssize_t i = 0; i < w; i += m_LOSScale)
 			{
 				if (los.IsVisible(i, j))
 					*dataPtr++ = 0;
@@ -532,17 +535,22 @@ void CMiniMap::RebuildLOSTexture()
 
 	// Upload the texture
 	g_Renderer.BindTexture(0, m_LOSTexture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, m_LOSData);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_LOSMapSize, m_LOSMapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &m_LOSData[0]);
 }
 
 void CMiniMap::Destroy()
 {
 	if(m_TerrainTexture)
+	{
 		glDeleteTextures(1, &m_TerrainTexture);
+		m_TerrainTexture = 0;
+	}
 
 	if(m_LOSTexture)
+	{
 		glDeleteTextures(1, &m_LOSTexture);
+		m_LOSTexture = 0;
+	}
 
 	delete[] m_TerrainData; m_TerrainData = 0;
-	delete[] m_LOSData; m_LOSData = 0;
 }

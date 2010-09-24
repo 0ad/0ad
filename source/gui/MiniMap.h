@@ -62,9 +62,13 @@ protected:
     GLuint m_TerrainTexture;
     GLuint m_LOSTexture;
     
+    // number of vertexes per LOS-texture texel
+    u8 m_LOSScale;
+    ssize_t m_LOSMapSize;
+
     // texture data
     u32* m_TerrainData;
-    u8* m_LOSData;
+    std::vector<u8> m_LOSData;
 
     // whether we need to regenerate the terrain texture
     bool m_TerrainDirty;
@@ -76,6 +80,7 @@ protected:
 
     // texture size
     GLsizei m_TextureSize;
+    GLsizei m_LOSTextureSize;
 
 	void DrawViewRect();	// split out of Draw
 };
