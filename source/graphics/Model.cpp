@@ -288,7 +288,7 @@ void CModel::ValidatePosition()
 
 	if (m_Anim && m_BoneMatrices)
 	{
-		PROFILE( "generating bone matrices" );
+//		PROFILE( "generating bone matrices" );
 	
 		debug_assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
 	

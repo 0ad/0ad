@@ -1395,7 +1395,7 @@ void CRenderer::Submit(SOverlayLine* overlay)
 void CRenderer::SubmitNonRecursive(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
-		PROFILE( "updating shadow bounds" );
+//		PROFILE( "updating shadow bounds" );
 		m->shadow->AddShadowedBound(model->GetBounds());
 	}
 
