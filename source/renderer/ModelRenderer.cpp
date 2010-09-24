@@ -86,11 +86,8 @@ void ModelRenderer::BuildPositionAndNormals(
 			return;
 		}
 
-		for (size_t j=0; j<numVertices; j++)
-		{
-			Position[j] = CModelDef::SkinPoint(vertices[j], model->GetAnimatedBoneMatrices(), model->GetInverseBindBoneMatrices());
-			Normal[j] = CModelDef::SkinNormal(vertices[j], model->GetAnimatedBoneMatrices(), model->GetInverseBindBoneMatrices());
-		}
+		CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, model->GetAnimatedBoneMatrices(), model->GetInverseBindBoneMatrices());
+
 	}
 	else
 	{

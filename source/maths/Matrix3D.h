@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,7 +23,8 @@
 #ifndef INCLUDED_MATRIX3D
 #define INCLUDED_MATRIX3D
 
-class CVector3D;
+#include "maths/Vector3D.h"
+
 class CVector4D;
 class CQuaternion;
 
@@ -137,14 +138,39 @@ public:
 	CQuaternion GetRotation() const;
 
 	// transform a 3D vector by this matrix
-	void Transform(const CVector3D &vector,CVector3D& result) const;
-	CVector3D Transform(const CVector3D &vector) const;
-	// transform a 4D vector by this matrix
-	void Transform(const CVector4D &vector,CVector4D& result) const;
-	CVector4D Transform(const CVector4D &vector) const;
+	CVector3D Transform (const CVector3D &vector) const
+	{
+		CVector3D result;
+		Transform(vector, result);
+		return result;
+	}
+
+	void Transform(const CVector3D& vector, CVector3D& result) const
+	{
+		result.X = _11*vector.X + _12*vector.Y + _13*vector.Z + _14;
+		result.Y = _21*vector.X + _22*vector.Y + _23*vector.Z + _24;
+		result.Z = _31*vector.X + _32*vector.Y + _33*vector.Z + _34;
+	}
+
 	// rotate a vector by this matrix
-	void Rotate(const CVector3D& vector,CVector3D& result) const;
-	CVector3D Rotate(const CVector3D& vector) const;
+	CVector3D Rotate(const CVector3D& vector) const
+	{
+		CVector3D result;
+		Rotate(vector, result);
+		return result;
+	}
+
+	void Rotate(const CVector3D& vector, CVector3D& result) const
+	{
+		result.X = _11*vector.X + _12*vector.Y + _13*vector.Z;
+		result.Y = _21*vector.X + _22*vector.Y + _23*vector.Z;
+		result.Z = _31*vector.X + _32*vector.Y + _33*vector.Z;
+	}
+
+	// transform a 4D vector by this matrix
+	void Transform(const CVector4D& vector,CVector4D& result) const;
+	CVector4D Transform(const CVector4D& vector) const;
+
 	// rotate a vector by the transpose of this matrix
 	void RotateTransposed(const CVector3D& vector,CVector3D& result) const;
 	CVector3D RotateTransposed(const CVector3D& vector) const;

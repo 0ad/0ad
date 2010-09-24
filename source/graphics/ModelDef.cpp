@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,6 +87,46 @@ CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
 		result.Normalize();
 
 	return result;
+}
+
+void CModelDef::SkinPointsAndNormals(
+		size_t numVertices,
+		const VertexArrayIterator<CVector3D>& Position,
+		const VertexArrayIterator<CVector3D>& Normal,
+		const SModelVertex* vertices,
+		const CMatrix3D newPoseMatrices[],
+		const CMatrix3D inverseBindMatrices[])
+{
+	for (size_t j = 0; j < numVertices; ++j)
+	{
+		const SModelVertex vtx = vertices[j];
+
+		CVector3D pos(0, 0, 0);
+		CVector3D normal(0, 0, 0);
+
+		for (int i = 0; i < SVertexBlend::SIZE && vtx.m_Blend.m_Bone[i] != 0xff; ++i)
+		{
+			CVector3D posBindSpace = inverseBindMatrices[vtx.m_Blend.m_Bone[i]].Transform(vtx.m_Coords);
+			CVector3D normBindSpace = inverseBindMatrices[vtx.m_Blend.m_Bone[i]].Rotate(vtx.m_Norm);
+
+			CVector3D posWorldSpace = newPoseMatrices[vtx.m_Blend.m_Bone[i]].Transform(posBindSpace);
+			CVector3D normWorldSpace = newPoseMatrices[vtx.m_Blend.m_Bone[i]].Rotate(normBindSpace);
+
+			pos += posWorldSpace * vtx.m_Blend.m_Weight[i];
+			normal += normWorldSpace * vtx.m_Blend.m_Weight[i];
+		}
+
+		// If there was more than one influence, the result is probably not going
+		// to be of unit length (since it's a weighted sum of several independent
+		// unit vectors), so we need to normalise it.
+		// (It's fairly common to only have one influence, so it seems sensible to
+		// optimise that case a bit.)
+		if (vtx.m_Blend.m_Bone[1] != 0xff) // if more than one influence
+			normal.Normalize();
+
+		Position[j] = pos;
+		Normal[j] = normal;
+	}
 }
 
 // CModelDef Constructor

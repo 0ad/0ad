@@ -23,14 +23,13 @@
 const float EPSILON=0.0001f;
 
 
-CQuaternion::CQuaternion()
+CQuaternion::CQuaternion() :
+	m_W(1)
 {
-	m_V.Clear();
-	m_W = 1;
 }
 
-CQuaternion::CQuaternion(float x, float y, float z, float w)
-: m_V(x, y, z), m_W(w)
+CQuaternion::CQuaternion(float x, float y, float z, float w) :
+	m_V(x, y, z), m_W(w)
 {
 }
 
@@ -109,13 +108,13 @@ void CQuaternion::FromEulerAngles (float x, float y, float z)
 	sp = sinf(y * 0.5f);
 	sy = sinf(z * 0.5f);
 
-	QRoll.m_V.Set (sr,0,0);
+	QRoll.m_V = CVector3D(sr, 0, 0);
 	QRoll.m_W = cr;
 
-	QPitch.m_V.Set (0,sp,0);
+	QPitch.m_V = CVector3D(0, sp, 0);
 	QPitch.m_W = cp;
 
-	QYaw.m_V.Set (0,0,sy);
+	QYaw.m_V = CVector3D(0, 0, sy);
 	QYaw.m_W = cy;
 
 	(*this) = QYaw * QPitch * QRoll;

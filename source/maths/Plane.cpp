@@ -29,7 +29,6 @@
 
 CPlane::CPlane ()
 {
-	m_Norm.Clear ();
 	m_Dist = 0.0f;
 }
 

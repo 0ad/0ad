@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,47 +31,74 @@ class CVector3D
 		float X, Y, Z;
 
 	public:
-		CVector3D () : X(0.0f), Y(0.0f), Z(0.0f) {}
-		CVector3D (float x, float y, float z) : X(x), Y(y), Z(z) {}
-		CVector3D (const CFixedVector3D& v);
+		CVector3D() : X(0.0f), Y(0.0f), Z(0.0f) {}
+		CVector3D(float x, float y, float z) : X(x), Y(y), Z(z) {}
+		CVector3D(const CFixedVector3D& v);
 
 		int operator!() const;
 
 		float& operator[](int index) { return *((&X)+index); }
 		const float& operator[](int index) const { return *((&X)+index); }
 
-		//vector equality (testing float equality, so please be careful if necessary)
-		bool operator== (const CVector3D &vector) const;
-		bool operator!= (const CVector3D &vector) const { return !operator==(vector); }
+		// vector equality (testing float equality, so please be careful if necessary)
+		bool operator==(const CVector3D &vector) const
+		{
+			return (X == vector.X && Y == vector.Y && Z == vector.Z);
+		}
 
-		//vector addition
-		CVector3D operator + (const CVector3D &vector) const ;
-		//vector addition/assignment
-		CVector3D &operator += (const CVector3D &vector);
+		bool operator!=(const CVector3D& vector) const
+		{
+			return !operator==(vector);
+		}
 
-		//vector subtraction
-		CVector3D operator - (const CVector3D &vector) const ;
-		//vector subtraction/assignment
-		CVector3D &operator -= (const CVector3D &vector);
-		
-		//scalar multiplication
-		CVector3D operator * (float value) const ;
-		//scalar multiplication/assignment
-		CVector3D& operator *= (float value);
+		CVector3D operator+(const CVector3D& vector) const
+		{
+			return CVector3D(X + vector.X, Y + vector.Y, Z + vector.Z);
+		}
 
-		// negation
-		CVector3D operator-() const;
+		CVector3D& operator+=(const CVector3D& vector)
+		{
+			X += vector.X;
+			Y += vector.Y;
+			Z += vector.Z;
+			return *this;
+		}
+
+		CVector3D operator-(const CVector3D& vector) const
+		{
+			return CVector3D(X - vector.X, Y - vector.Y, Z - vector.Z);
+		}
+
+		CVector3D& operator-=(const CVector3D& vector)
+		{
+			X -= vector.X;
+			Y -= vector.Y;
+			Z -= vector.Z;
+			return *this;
+		}
+
+		CVector3D operator*(float value) const
+		{
+			return CVector3D(X * value, Y * value, Z * value);
+		}
+
+		CVector3D& operator*=(float value)
+		{
+			X *= value;
+			Y *= value;
+			Z *= value;
+			return *this;
+		}
+
+		CVector3D operator-() const
+		{
+			return CVector3D(-X, -Y, -Z);
+		}
 
 	public:
-		void Set (float x, float y, float z);
-		void Clear ();
-
-		//Dot product
 		float Dot (const CVector3D &vector) const;
-		//Cross product
 		CVector3D Cross (const CVector3D &vector) const;
 
-		//Returns length of the vector
 		float Length () const;
 		float LengthSquared () const;
 		void Normalize ();

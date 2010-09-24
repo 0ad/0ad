@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -340,22 +340,6 @@ CVector3D CMatrix3D::GetIn () const
 	return Temp;
 }
 
-
-//Transform a vector by this matrix
-CVector3D CMatrix3D::Transform (const CVector3D &vector) const
-{
-	CVector3D result;
-	Transform(vector,result);
-	return result;
-}
-
-void CMatrix3D::Transform(const CVector3D& vector,CVector3D& result) const
-{
-	result.X = _11*vector.X + _12*vector.Y + _13*vector.Z + _14;
-	result.Y = _21*vector.X + _22*vector.Y + _23*vector.Z + _24;
-	result.Z = _31*vector.X + _32*vector.Y + _33*vector.Z + _34;
-}
-
 //Transform a vector by this matrix
 CVector4D CMatrix3D::Transform(const CVector4D &vector) const
 {
@@ -370,21 +354,6 @@ void CMatrix3D::Transform(const CVector4D& vector,CVector4D& result) const
 	result[1] = _21*vector[0] + _22*vector[1] + _23*vector[2] + _24*vector[3];
 	result[2] = _31*vector[0] + _32*vector[1] + _33*vector[2] + _34*vector[3];
 	result[3] = _41*vector[0] + _42*vector[1] + _43*vector[2] + _44*vector[3];
-}
-
-//Only rotate (not translate) a vector by this matrix
-CVector3D CMatrix3D::Rotate(const CVector3D& vector) const
-{
-	CVector3D result;
-	Rotate(vector,result);
-	return result;
-}
-
-void CMatrix3D::Rotate(const CVector3D& vector,CVector3D& result) const
-{
-	result.X = _11*vector.X + _12*vector.Y + _13*vector.Z;
-	result.Y = _21*vector.X + _22*vector.Y + _23*vector.Z;
-	result.Z = _31*vector.X + _32*vector.Y + _33*vector.Z;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

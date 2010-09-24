@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "renderer/VertexArray.h"
 #include <map>
 
 class CBoneState;
@@ -157,6 +158,19 @@ public:
 	 */
 	static CVector3D SkinNormal(const SModelVertex& vtx,
 		const CMatrix3D newPoseMatrices[], const CMatrix3D inverseBindMatrices[]);
+
+	/**
+	 * Transform vertices' positions and normals.
+	 * (This is equivalent to looping over SkinPoint and SkinNormal,
+	 * but slightly more efficient.)
+	 */
+	static void SkinPointsAndNormals(
+		size_t numVertices,
+		const VertexArrayIterator<CVector3D>& Position,
+		const VertexArrayIterator<CVector3D>& Normal,
+		const SModelVertex* vertices,
+		const CMatrix3D newPoseMatrices[],
+		const CMatrix3D inverseBindMatrices[]);
 
 	/**
 	 * Register renderer private data. Use the key to
