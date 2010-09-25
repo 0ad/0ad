@@ -6,14 +6,79 @@ const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
 
 // Constants used by the Queue or Garrison panel
-const UNIT_PANEL_BASE = -47; // The offset above the main panel (will often be negative)
-const UNIT_PANEL_HEIGHT = 37; // The height needed for a row of buttons
+const UNIT_PANEL_BASE = -50; // The offset above the main panel (will often be negative)
+const UNIT_PANEL_HEIGHT = 43; // The height needed for a row of buttons
 
 // The number of currently visible buttons (used to optimise showing/hiding)
 var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Training": 0, "Construction": 0, "Command": 0};
 
 // Unit panels are panels with row(s) of buttons
 var g_unitPanels = ["Selection", "Queue", "Training", "Construction", "Research", "Stance", "Formation", "Command"];
+
+// Lay out a row of centered buttons (does not work inside a loop like the other function)
+function layoutButtonRowCentered(rowNumber, guiName, startIndex, endIndex, width)
+{
+	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
+	var buttonSpacer = buttonSideLength+1;
+	var colNumber = 0;
+
+	// Collect buttons
+	var buttons = [];
+	var icons = [];
+
+	for (var i = startIndex; i < endIndex; i++)
+	{
+		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
+
+		if (button)
+		{
+			buttons.push(button);
+			icons.push(icon);
+		}
+	}
+
+	// Location of middle button
+	var middleIndex = Math.ceil(buttons.length/2);
+
+	// Determine whether even or odd number of buttons
+	var center = (buttons.length/2 == Math.ceil(buttons.length/2))? Math.ceil(width/2) : Math.ceil(width/2+buttonSpacer/2);
+
+	// Left Side
+	for (var i = middleIndex-1; i >= 0; i--)
+	{
+		if (buttons[i])
+		{
+			var icon = icons[i];
+			var size = buttons[i].size;
+			size.left = center - buttonSpacer*colNumber - buttonSideLength;
+			size.right = center - buttonSpacer*colNumber;
+			size.top = buttonSpacer*rowNumber;
+			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
+			buttons[i].size = size;
+			colNumber++;
+		}
+	}
+
+	// Right Side
+	center += 1; // add spacing to center buttons
+	colNumber = 0; // reset to 0
+
+	for (var i = middleIndex; i < buttons.length; i++)
+	{
+		if (buttons[i])
+		{
+			var icon = icons[i];
+			var size = buttons[i].size;
+			size.left = center + buttonSpacer*colNumber;
+			size.right = center + buttonSpacer*colNumber + buttonSideLength;
+			size.top = buttonSpacer*rowNumber;
+			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
+			buttons[i].size = size;
+			colNumber++;
+		}
+	}
+}
 
 // Lay out button rows
 function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, startIndex, endIndex)
@@ -23,15 +88,19 @@ function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, sta
 	for (var i = startIndex; i < endIndex; i++)
 	{
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		var size = button.size;
-		
-		size.left = buttonSpacer*colNumber;
-		size.right = buttonSpacer*colNumber + buttonSideLength;
-		size.top = buttonSpacer*rowNumber;
-		size.bottom = buttonSpacer*rowNumber + buttonSideLength;
-		
-		button.size = size;
-		colNumber++;
+
+		if (button)
+		{
+			var size = button.size;
+			
+			size.left = buttonSpacer*colNumber;
+			size.right = buttonSpacer*colNumber + buttonSideLength;
+			size.top = buttonSpacer*rowNumber;
+			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
+			
+			button.size = size;
+			colNumber++;
+		}
 	}
 }
 
@@ -40,10 +109,14 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
 	var selection = g_Selection.toList();
-	
 	var numberOfItems = items.length;
-	if ((numberOfItems > 24) && (guiName != "Selection"))
-		numberOfItems =  24;
+
+	if (numberOfItems > 8 && guiName == "Command")
+		numberOfItems = 8;
+	else if (numberOfItems > 13 && guiName == "Selection")
+		numberOfItems =  13;
+	else if (numberOfItems > 18)
+			numberOfItems =  18;
 
 	var i;
 	for (i = 0; i < numberOfItems; i++)
@@ -61,27 +134,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		switch (guiName)
 		{
 		case SELECTION:
-			var entState = GetEntityState(selection[i]);
-			if (!entState)
-				continue;
-
-			var rank = entState.identity.rank? "[font=\"serif-bold-16\"]" + entState.identity.rank + " [/font]" : "";	
-			var tooltip = rank + getEntityName(template);
-			var unitHealth = getGUIObjectByName("unitSelectionHealth["+i+"]");
-	
-			if (entState.hitpoints)
-			{
-				var unitHealthBar = getGUIObjectByName("unitSelectionHealthForeground["+i+"]");
-				var healthSize = unitHealthBar.size;
-				healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
-				unitHealthBar.size = healthSize;
-				tooltip += " [font=\"serif-9\"](" + entState.hitpoints + "/" + entState.maxHitpoints + ")[/font]";
-				unitHealth.hidden = false;
-			}
-			else
-			{
-				unitHealth.hidden = true;
-			}
+			var tooltip = getEntityName(template);
+			var count = g_Selection.groups.getCount(item);
+			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 			break;
 
 		case QUEUE:
@@ -130,8 +185,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		button.tooltip = tooltip;
 
 		// Button Function
-		var parameter = ((guiName == "Selection")? i : item);
-		button.onpress = (function(e) { return function() { callback(e) } })(parameter); // (need nested functions to get the closure right)
+		button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
 
 		// Get icon image
 		if (guiName == "Command")
@@ -148,7 +202,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
-	var rowLength = ((guiName == "Command")? 15 : 8);
+	var rowLength = 9;//guiName == "Command"? 1 : 9;
 	var numRows = Math.ceil(numButtons / rowLength);
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = buttonSideLength+1;
@@ -163,8 +217,19 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	}
 
 	// Layout buttons
-	for (var i = 0; i < numRows; i++)
-		layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
+	if (guiName == "Selection")
+	{
+		layoutButtonRowCentered(0, guiName, 0, numButtons, 600);
+	}
+	else if (guiName == "Command")
+	{
+		layoutButtonRowCentered(0, guiName, 0, numButtons, 224);
+	}
+	else
+	{
+		for (var i = 0; i < numRows; i++)
+			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
+	}
 
 	// Hide any buttons we're no longer using
 	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
@@ -205,28 +270,20 @@ function updateUnitCommands(entState, commandsPanel, selection)
 			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
-/*
-		// HACK: displays all command buttons
-		var commands = [];
-		for (var i = 0; i < 15; i++)
-			commands.push("test"+i);
-		commands[4] = "delete";
-*/
 		var commands = getEntityCommandsList(entState);
-
 		if (commands.length)
 			setupUnitPanel("Command", usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item); } );
 
 		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, entState, g_Selection.getTemplateNames(),
+			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
-
+				
 		commandsPanel.hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("sdStamina").hidden = true;
+		getGUIObjectByName("stamina").hidden = true;
 		commandsPanel.hidden = true;
 	}
 

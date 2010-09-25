@@ -16,6 +16,96 @@ function _playSound(ent)
 }
 
 //-------------------------------- -------------------------------- -------------------------------- 
+// EntityGroup class for managing grouped entities
+//-------------------------------- -------------------------------- -------------------------------- 
+function EntityGroup()
+{
+	this.groupCounts = {};
+	this.groupEntIDs = {};
+}
+
+EntityGroup.prototype.create = function(entIDs)
+{
+	this.groupCounts = {};
+	var rankedTemplates = {};
+	
+	for each (var entID in entIDs)
+	{
+		var entState = GetEntityState(entID);
+		var rank = entState.identity.rank;
+		var templateName = entState.template;
+		var template = GetTemplateData(templateName);
+		var unitName = template.name.specific || template.name.generic || "???";
+
+		if (rank)
+		{
+			if (rankedTemplates[unitName])
+			{
+				this.groupCounts[rankedTemplates[unitName]] += 1;
+				this.groupEntIDs[unitName].push(entID);
+			}
+			else
+			{
+				rankedTemplates[unitName] = templateName;
+				this.groupCounts[rankedTemplates[unitName]] = 1;
+				this.groupEntIDs[unitName] = [entID];
+			}
+		}
+		else
+		{
+			if (this.groupCounts[templateName])
+			{
+				this.groupCounts[templateName] += 1;
+				this.groupEntIDs[unitName].push(entID);
+			}
+			else
+			{
+				this.groupCounts[templateName] = 1;
+				this.groupEntIDs[unitName] = [entID];
+			}
+		}
+	}
+};
+
+EntityGroup.prototype.remove = function(templateName)
+{
+	delete this.groupCounts[templateName];
+};
+
+EntityGroup.prototype.getCount = function(templateName)
+{
+	if (this.groupCounts[templateName])
+		return this.groupCounts[templateName];
+	else
+		return 0;
+};
+
+EntityGroup.prototype.getTemplateNames = function()
+{
+	var templateNames = [];
+	for (var templateName in this.groupCounts)
+		templateNames.push(templateName);
+	return templateNames;
+};
+
+EntityGroup.prototype.getEntsByUnitName = function(unitName)
+{
+	return this.groupEntIDs[unitName];
+};
+
+
+EntityGroup.prototype.getEntsByUnitNameInverse = function(unitName)
+{
+	var ents = [];
+
+	for (var name in this.groupEntIDs)
+		if (name != unitName)
+			ents = ents.concat(this.groupEntIDs[name]);	
+
+	return ents;
+};
+
+//-------------------------------- -------------------------------- -------------------------------- 
 // EntitySelection class for managing the entity selection list and the primary selection
 //-------------------------------- -------------------------------- -------------------------------- 
 function EntitySelection()
@@ -33,36 +123,41 @@ function EntitySelection()
 	// Public properties:
 	//--------------------------------
 	this.dirty = false; // set whenever the selection has changed
+	this.groups = new EntityGroup();
 }
 
 // Deselect everything but entities of the chosen type if the modifier is true
 // otherwise deselect just the chosen entity
-EntitySelection.prototype.makePrimarySelection = function(primaryIndex, modifierKey)
+EntitySelection.prototype.makePrimarySelection = function(primaryTemplateName, modifierKey)
 {
-	var ents = [];
 	var selection = this.toList();
+	var entID;
+	
+	// Find an entID of a unit of the same type
+	for (var i = 0; i < selection.length; i++)
+	{
+		var entState = GetEntityState(selection[i]);
+		if (!entState)
+			continue;
+		if (entState.template == primaryTemplateName)
+			entID = selection[i];
+	}
+	
+	var primaryEntState = GetEntityState(entID);
+	if (!primaryEntState)
+		return;
+	var primaryTemplate = GetTemplateData(primaryTemplateName);
+	var primaryUnitName = primaryTemplate.name.specific || primaryTemplate.name.generic || "???";
 
+	var ents = [];
 	if (modifierKey)
-	{
-		var primaryEntState = GetEntityState(selection[primaryIndex]);
-		if (!primaryEntState)
-			return;
-
-		for (var i = 0; i < selection.length; i++)
-		{
-			var entState = GetEntityState(selection[i]);
-			if (!entState)
-				continue;
-			if (entState.template == primaryEntState.template)
-				ents.push(selection[i]);
-		}
-	}
+		ents = this.groups.getEntsByUnitNameInverse(primaryUnitName);
 	else
-	{
-		ents.push(selection[primaryIndex]);
-	}
+		ents = this.groups.getEntsByUnitName(primaryUnitName);
+
 	this.reset();
 	this.addList(ents);
+	this.CreateSelectionGroups();
 }
 
 // Get a list of the template names
@@ -80,6 +175,12 @@ EntitySelection.prototype.getTemplateNames = function()
 	return templateNames;
 }
 
+// Make selection groups
+EntitySelection.prototype.CreateSelectionGroups = function()
+{
+	this.groups.create(this.toList());
+};
+
 // Update the selection to take care of changes (like units that have been killed)
 EntitySelection.prototype.update = function()
 {
@@ -94,7 +195,10 @@ EntitySelection.prototype.update = function()
 		}
 	}
 	if (numberRemoved > 0)
+	{
 		this.dirty = true;
+		this.groups.create(this.toList());
+	}
 };
 
 EntitySelection.prototype.toggle = function(ent)
@@ -138,6 +242,7 @@ EntitySelection.prototype.reset = function()
 	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
 	this.dirty = true;
+	this.groups = new EntityGroup();
 };
 
 EntitySelection.prototype.toList = function()

@@ -22,13 +22,25 @@
 		text_valign="center"
 	/>
 	
-	<style 	name="sessionPanelStyle"
-		sprite="veryThinWheatWindowSand"
-		buffer_zone="10"
+	<style 	name="sessionPanel"
+		sprite="mainPanel"
+		buffer_zone="2"
 		text_align="left"
 		text_valign="top"
 	/>
+	
+	<style 	name="insetWheatWindow"
+		sprite="insetWheatWindow"
+	/>
 
+	<style 	name="resourcePanel"
+		size="50%-150 0 50%+150 32"
+		font="serif-bold-18"
+		sprite="titleBar"
+		text_align="center"
+		text_valign="center"
+	/>
+	
 	<style name="statsText"
 		font="serif-bold-12"
 		ghost="true"
@@ -59,10 +71,6 @@
 		sprite_disabled="snIconSheetCommandDisabled"
 		ghost="true"
 	/>	
-	
-	<style name="sdIconOutline"
-		sprite="sdIconOutline"
-	/>
 
 	<style name="iconButton"
 		sprite="snIconPortrait"
@@ -87,10 +95,10 @@
 	/>
 	
 	<style name="groupIconsText"
-		font="mono-stroke-10"
-		textcolor="255 255 255"
-		text_align="left"
-		text_valign="bottom"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
 	/>
 	
 	<style name="groupIconsCenteredText"

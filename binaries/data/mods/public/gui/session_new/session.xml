@@ -31,13 +31,13 @@
 		<!-- ALPHA LABELS (alpha, build time, revision) -->
 		<!-- ================================  ================================ -->
 		
-		<!-- Displays Alpha name and number -->
-		<object size="100%-170 0 100%-8 25" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white">
-			<action on="Load"><![CDATA[this.caption = "ALPHA I : Argonaut";]]></action>
+		<!-- Displays Alpha name and number (Alpha 2 Bellerophon) -->
+		<object size="100%-200 0 100%-8 25" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white">
+			<action on="Load"><![CDATA[this.caption = "ALPHA II : Bxxxxxxxxxx";]]></action>
 		</object>
 
 		<!-- Displays build date and revision number-->
-		<object size="100%-170 25 100%-8 45" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
+		<object size="100%-200 25 100%-8 45" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
 			<action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
 		</object>
 	
@@ -184,7 +184,7 @@
 			<object name="settingsOptions"
 				size="30 30 100%-30 150"
 				type="image"
-				style="sessionPanelStyle"
+				style="sessionPanel"
 			>
 				<!-- Settings / shadows -->
 				<object size="0 10 100%-80 35" type="text" style="settingsText" ghost="true">Enable Shadows</object>
@@ -295,162 +295,170 @@
 		</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Bottom-left Minimap and Resource Panel-->
+		<!-- Player resource bar -->
 		<!-- ================================  ================================ -->
 		<object
-			name="mapAndResourcePanel"
-				style="sessionPanelStyle"
-				size="0 100%-175 272 100%"
-				type="image"
-				z="30"
+			size="50%-300 -4 50%+300 28"
+			type="image"
+			style="resourcePanel"
+			z="140"
 		>
-			<!-- Minimap -->
-			<object name="minimap">
-				<object
-					size="24 100%-164 164 100%-24"
-					type="image"
-					style="wheatWindow"
-				/>
-
-				<object name="minimapDisplay"
-					type="minimap"
-					size="6 100%-182 182 100%-6"
-				>
-					<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
-				</object>
+			<!-- Food -->
+			<object size="50 4 150 100%" type="image" style="resourceCounter" tooltip="Food" >
+				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="28 0 150 24" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
-			<!-- Player resource bar -->
-			<object
-				size="188 100%-130 100% 100%-2"
-			>
-				<!-- Food -->
-				<object size="0 0 100% 26" type="image" style="resourceCounter" tooltip="Food" >
-					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="0"/>
-					<object size="28 0 100% 24" type="text" style="resourceText" name="resourceFood"/>
-				</object>
+			<!-- Wood -->
+			<object size="150 4 250 100%" type="image" style="resourceCounter" tooltip="Wood">
+				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="1"/>
+				<object size="28 0 250 24" type="text" style="resourceText" name="resourceWood"/>
+			</object>
 
-				<!-- Wood -->
-				<object size="0 26 100% 52" type="image" style="resourceCounter" tooltip="Wood">
-					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="1"/>
-					<object size="28 0 100% 24" type="text" style="resourceText" name="resourceWood"/>
-				</object>
+			<!-- Stone -->
+			<object size="250 4 350 100%" type="image" style="resourceCounter" tooltip="Stone">
+				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="2"/>
+				<object size="28 0 350 24" type="text" style="resourceText" name="resourceStone"/>
+			</object>
 
-				<!-- Stone -->
-				<object size="0 52 100%78" type="image" style="resourceCounter" tooltip="Stone">
-					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="2"/>
-					<object size="28 0 100% 24" type="text" style="resourceText" name="resourceStone"/>
-				</object>
+			<!-- Metal -->
+			<object size="350 4 450 100%" type="image" style="resourceCounter" tooltip="Metal">
+				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="3"/>
+				<object size="28 0 450 24" type="text" style="resourceText" name="resourceMetal"/>
+			</object>
 
-				<!-- Metal -->
-				<object size="0 78 100% 104" type="image" style="resourceCounter" tooltip="Metal">
-					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="3"/>
-					<object size="28 0 100% 24" type="text" style="resourceText" name="resourceMetal"/>
-				</object>
-
-				<!-- Population -->
-				<object size="0 104 100% 130" type="image" style="resourceCounter" tooltip="Population (current / maximum)">
-					<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="4"/>
-					<object size="28 0 100% 24" type="text" style="resourceText" name="resourcePop"/>
-				</object>
+			<!-- Population -->
+			<object size="450 4 550 100%" type="image" style="resourceCounter" tooltip="Population (current / maximum)">
+				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="4"/>
+				<object size="28 0 550 24" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Bottom-middle selected-units and unit details panel ("Selection Details" is Abbreviated as "sd") -->
+		<!-- Unit Selection Area -->
+		<!-- ================================  ================================ -->
+		<object name="unitSelectionPanel"
+			size="50%-300 20 50%+300 60"
+		>
+			<object size="0 0 100% 100%">
+				<repeat count="13">
+					<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" z="100">
+						<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 35 35"/>
+						<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+					</object>
+				</repeat>
+			</object>
+		</object>
+
+		<!-- ================================  ================================ -->
+		<!-- Minimap -->
+		<!-- ================================  ================================ -->
+		<object
+			name="minimapPanel"
+			size="100%-180 100%-180 100% 100%"
+			type="image"
+			style="insetWheatWindow"
+		>
+			<object name="minimap"
+				type="minimap"
+				size="6 6 100%-6 100%-6"
+			>
+				<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
+			</object>
+		</object>
+
+		<!-- ================================  ================================ -->
+		<!-- Details Panel -->
 		<!-- ================================  ================================ -->
 		<object name="selectionDetails"
 			type="image"
-			style="sessionPanelStyle"
-			size="282 100%-170 585 100%"
+			style="sessionPanel"
+			size="22 100%-160 202 100%"
 			hidden="true"
 			z="20"
 		>
-			<!-- Unit Selection Area -->
-			<object name="unitSelectionPanel"
-				size="4 6 274 56"
-			>	 
-				<object size="0 0 100% 47">
-					<repeat count="32">
-						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36">
-							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 34 34"/>
-							<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
-								<object size="0 0 100% 100%" name="unitSelectionHealthBackground[n]" type="image" sprite="sdHealthBackground" ghost="true"/>
-								<object size="0 0 100% 100%" name="unitSelectionHealthForeground[n]" type="image" sprite="sdHealthForeground" ghost="true"/>
-							</object>
+			 <!-- Big unit icon -->
+			<object size= "50%-53 -10 50%+53 96" type="image" name="iconBorder" style="insetWheatWindow" tooltip_style="snToolTip">
+				<object size= "3 3 100%-3 100%-3" type="image" name="icon" ghost="true"/>
+				<object size="100%-32 0 100% 32" name="rankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
+
+				<!-- Health bar -->
+				<object size="100%+8 16 100%+18 100%" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
+					<object type="image" sprite="healthBackground" ghost="true"/>
+					<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
+					<object type="image" sprite="statsBarShader" ghost="true"/>
+				</object>
+				
+				<!-- Stamina bar -->
+				<object size="100%+20 16 100%+30 100%" type="image" name="stamina" tooltip="Stamina" tooltip_style="snToolTip">
+					<object type="image" sprite="staminaBackground" ghost="true"/>
+					<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
+					<object type="image" sprite="statsBarShader" ghost="true"/>
+				</object>
+				
+				<!-- Resource bar -->
+				<object size="100%+8 16 100%+18 100%" type="image" name="resources" tooltip="Resources" tooltip_style="snToolTip">
+					<object type="image" sprite="resourceBackground" ghost="true"/>
+					<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
+					<object type="image" sprite="statsBarShader" ghost="true"/>
+				</object>
+			</object>
+
+			<!-- Stats -->
+			<object size="-2 6 40 96" name="statsArea" type="image">
+				<!-- Attack icon -->
+				<object size="0 0 40 40" type="image" name="attackIcon" sprite="snIconSheetStance" cell_id="1" tooltip_style="snToolTip"/>
+
+				<!-- Armour icon -->
+				<object size="0 40 40 80" type="image" name="armourIcon" sprite="snIconSheetStance" cell_id="3" tooltip_style="snToolTip"/>
+			</object>
+
+			<!-- Names -->
+			<object size="50%-112 100%-60 50%+112 100%" name="names" type="image" style="sessionPanel">
+				<!-- Specific Name -->
+				<object size="0 -4 100% 30" name="specific" type="text" style="centeredText" font="serif-bold-18" tooltip_style="snToolTip"/>
+
+				<!-- Player Name -->
+				<object size="0 26 100% 100%-2" name="player" type="text" style="centeredText" font="serif-bold-stroke-14" tooltip_style="snToolTip"/>
+			</object>
+
+			<!-- Unit Commands -->
+			<object name="unitCommandPanel"
+				size="50%-112 100%-30 50%+112 100%"
+				type="image"
+				style="sessionPanel"
+				z="30"
+			>
+				<object size="0 2 100% 100%-2">
+					<repeat count="8">
+						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 27 27">
+							<object name="unitCommandIcon[n]" ghost="true" type="image" size="3 3 24 24" style="commandIcon"/>
 						</object>
 					</repeat>
 				</object>
 			</object>
 
-			<!-- Big unit icon -->
-			<object size= "8 30 88 110" name="sdIcon" type="image" tooltip_style="snToolTip">
-				<object type="image" name="sdIconOutline" style="sdIconOutline" ghost="true"/>
-				<object type="image" name="sdIconImage" ghost="true"/>
-				 <object size="100%-24 -6 100%+6 24" name="sdRankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
-			</object>
-
-			<!-- Health bar -->
-			<object size="8 112 88 118" type="image" name="sdHealth" tooltip="Hitpoints" tooltip_style="snToolTip">
-				<object type="image" sprite="sdHealthBackground" ghost="true"/>
-				<object type="image" sprite="sdHealthForeground" ghost="true" name="sdHealthBar"/>
-			</object>
-
-			<!-- Stamina bar -->
-			<object size="8 120 88 126" type="image" name="sdStamina" tooltip="Stamina" tooltip_style="snToolTip">
-				<object type="image" sprite="sdStaminaBackground" ghost="true"/>
-				<object type="image" sprite="sdStaminaForeground" ghost="true" name="sdStaminaBar"/>
-			</object>
-
-			<!-- Specific Name -->
-			<object size="2 0 100% 26" name="sdSpecific" type="text" style="leftAlignedText" font="serif-bold-18" tooltip_style="snToolTip"/>
-
-			<!-- Stats -->
-			<object size="86 30 100% 100%" name="sdStatsArea" type="image">
-				<!-- Player Name -->
-				<object size="0 0 100% 24" name="sdPlayer" type="text" style="centeredText" font="serif-bold-stroke-14" tooltip_style="snToolTip"/>
-				
-				<!-- Attack stats -->
-				<object size="12 32 100% 100%" type="image" name="sdAttack" tooltip="" tooltip_style="snToolTip">
-					<object size="-4 -8 36 36" type="image" name="sdAttackImage" ghost="true" sprite="snIconSheetStance" cell_id="1"/>
-					<object size="30 0 100% 100%" type="text" name="sdAttackStats" style="statsText"/>
-				</object>
-
-				<!-- Armour stats -->
-				<object size="108 32 100% 100%" type="image" name="sdArmour" tooltip="" tooltip_style="snToolTip">
-					<object size="-4 -4 36 36" type="image" name="sdArmourImage" ghost="true" sprite="snIconSheetStance" cell_id="3"/>
-					<object size="30 0 100% 100%" type="text" name="sdArmourStats" style="statsText"/>
-				</object>
-				
-				<!-- Resource Quantity -->
-				<object hidden="true" size="60 40 100% 60" type="image" name="sdResources" tooltip="" tooltip_style="snToolTip">
-					<object size="0 0 28 24" name="sdResourceIcon" type="image" style="resourceIcon" cell_id="0"/>
-					<object size="28 0 100% 100%" name="sdResourceStats" type="text" style="resourceStatsText"/>
-				</object>
-			</object>
-
-		</object>
+		</object> <!-- END OF SELECTION DETAILS -->
 
 		<!-- ================================  ================================ -->
-		<!-- Bottom-right commands panel -->
+		<!--Commands Panel -->
 		<!-- ================================  ================================ -->
 		<object name="unitCommands"
 			type="image"
-			style="sessionPanelStyle"
-			size="595 100%-175 1024 100%"
+			style="sessionPanel"
+			size="204 100%-104 676 100%"
 			hidden="true"
-			z="50"
 		>
 			<object name="unitConstructionPanel"
-				size="0 3 100% 100%"
+				size="28 4 100% 100%"
 			>
-				<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
-					 cell_id="0" tooltip="Construction"/>
+				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
+					 cell_id="0" tooltip="Construction"/>-->
 
-				<object size="54 0 100% 50">
-					<repeat count="24">
-						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 45 45">
-							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 42 42"/>
+				<object size="0 0 100% 50">
+					<repeat count="18">
+						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
+							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="1 1 47 47"/>
 						</object>
 					</repeat>
 				</object>
@@ -490,32 +498,32 @@
 			</object>
 
 			<object name="unitTrainingPanel"
-				size="0 3 100% 100%"
+				size="0 0 100% 100%"
 			>
-				<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
-					 cell_id="2" tooltip="Training"/>
+				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
+					 cell_id="2" tooltip="Training"/>-->
 
-				<object size="54 0 100% 50">
-					<repeat count="24">
-						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 45 45">
-							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 42 42"/>
+				<object size="28 4 100% 100%">
+					<repeat count="18">
+						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
+							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="1 1 47 47"/>
 						</object>
 					</repeat>
 				</object>
 			</object>
 
 			<object name="unitQueuePanel"
-				style="sessionPanelStyle"
-				size="80 -46 100% 100%-180"
+				style="sessionPanel"
+				size="0 -52 100% 0"
 				type="image"
 			>
-				<object size="-2 -2 44 44" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
-					 cell_id="3" tooltip="Production queue"/>
+				<object size="-2 -4 54 52" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
+					 cell_id="3" tooltip="Production queue" />
 
-				<object size="44 3 100% 100%">
-					<repeat count="24">
-						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36">
-							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 34 34"/>
+				<object size="54 4 100% 100%">
+					<repeat count="18">
+						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 42 42">
+							<object name="unitQueueIcon[n]" ghost="true" type="image" size="1 1 41 41"/>
 							<object name="unitQueueCount[n]" ghost="true" style="iconButtonCount" type="text"/>
 							<object name="unitQueueProgress[n]" ghost="true" style="iconButtonProgress" type="text"/>
 						</object>
@@ -523,24 +531,10 @@
 				</object>
 			</object>
 
-			<object name="unitCommandPanel"
-				style="sessionPanelStyle"
-				size="0 100%-28 100% 100%"
-				type="image"
-			>
-				<object size="3 0 100% 100%">
-					<repeat count="24">
-						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 27 27">
-							<object name="unitCommandIcon[n]" ghost="true" type="image" size="3 3 24 24" style="commandIcon"/>
-						</object>
-					</repeat>
-				</object>
-			</object>
-
 		</object>
 
-	</object>
-
+	</object> <!-- END OF SN OBJECT -->
+	
 	<!-- ================================  ================================ -->
 	<!-- Selection bandbox -->
 	<!-- ================================  ================================ -->
@@ -562,6 +556,5 @@
 			</object>
 	
 	</object>
-	
 
 </objects>

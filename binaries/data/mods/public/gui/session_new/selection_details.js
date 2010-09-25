@@ -2,31 +2,31 @@ const RESOURCE_ICON_CELL_IDS = {food : 0, wood : 1, stone : 2, metal : 3};
 
 function layoutSelectionMultiple()
 {
-	getGUIObjectByName("sdSpecific").hidden = true;
-	getGUIObjectByName("sdIcon").hidden = true;
-	getGUIObjectByName("sdStatsArea").hidden = true;
-	getGUIObjectByName("sdHealth").hidden = true;
-	getGUIObjectByName("sdStamina").hidden = true;
+//	getGUIObjectByName("specific").hidden = true;
+//	getGUIObjectByName("iconBorder").hidden = true;
+//	getGUIObjectByName("statsArea").hidden = true;
+//	getGUIObjectByName("health").hidden = true;
+//	getGUIObjectByName("stamina").hidden = true;
 }
 
 function layoutSelectionSingle(entState)
 {
-	getGUIObjectByName("sdSpecific").hidden = false;
-	getGUIObjectByName("sdIcon").hidden = false;
-	getGUIObjectByName("sdStatsArea").hidden = false;
-	
+	getGUIObjectByName("specific").hidden = false;
+	getGUIObjectByName("iconBorder").hidden = false;
+//	getGUIObjectByName("sdStatsArea").hidden = false;
+
 	if (entState.hitpoints != undefined)
-		getGUIObjectByName("sdHealth").hidden = false;
+		getGUIObjectByName("health").hidden = false;
 	else
-		getGUIObjectByName("sdHealth").hidden = true;
+		getGUIObjectByName("health").hidden = true;
 
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
 		if (entState.stamina != undefined)
-			getGUIObjectByName("sdStamina").hidden = false;
+			getGUIObjectByName("stamina").hidden = false;
 		else
-			getGUIObjectByName("sdStamina").hidden = true;
+			getGUIObjectByName("stamina").hidden = true;
 	}
 }
 
@@ -37,99 +37,93 @@ function displayGeneralInfo(entState, template)
 	var specificName = "[font=\"serif-bold-18\"]" + template.name.specific + "[/font]";
 	var genericName = template.name.generic != template.name.specific? template.name.generic : "";
 
-	var rank = entState.identity.rank? "[font=\"serif-bold-18\"]" + entState.identity.rank + " [/font]" : "";
 	var civName = getFormalCivName(toTitleCase(g_Players[entState.player].civ));
 
 	var playerName = g_Players[entState.player].name;
 	var playerColor = g_Players[entState.player].color.r + " " + g_Players[entState.player].color.g + " " +
 								g_Players[entState.player].color.b+ " " + g_Players[entState.player].color.a;
 
+	// Rank					
+	getGUIObjectByName("rankIcon").cell_id = getRankIconCellId(entState);							
+								
 	// Hitpoints
 	var hitpoints = "";
 
 	if (entState.hitpoints)
 	{
-		var unitHealthBar = getGUIObjectByName("sdHealthBar");
+		var unitHealthBar = getGUIObjectByName("healthBar");
 		var healthSize = unitHealthBar.size;
-		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
+		healthSize.rtop = 100-100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
-		
+
 		hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
-		getGUIObjectByName("sdHealth").tooltip = hitpoints;
+		getGUIObjectByName("health").tooltip = hitpoints;
 	}
 
 	// Resource stats
 	var resources = "";
 	var resourceType = "";
-	var resourceCellID = -1;
 
 	if (entState.resourceSupply)
 	{
-		resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max + " ";
+		resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max;
 		resourceType = entState.resourceSupply.type["generic"];
-		resourceCellID = RESOURCE_ICON_CELL_IDS[resourceType];
 
-		getGUIObjectByName("sdResources").hidden = false;
-		getGUIObjectByName("sdAttack").hidden = true;
-		getGUIObjectByName("sdArmour").hidden = true;
+		var unitResourceBar = getGUIObjectByName("resourceBar");
+		var resourceSize = unitResourceBar.size;
+
+		resourceSize.rtop = 100-100*Math.max(0, Math.min(1, +entState.resourceSupply.amount / entState.resourceSupply.max));
+		unitResourceBar.size = resourceSize;
+
+		var unitResources = getGUIObjectByName("resources");
+		unitResources.tooltip = "[font=\"serif-bold-13\"]Resources: [/font]" + resources + " " + resourceType;
+
+		if (!entState.hitpoints)
+			unitResources.size = getGUIObjectByName("health").size;
+		else
+			unitResources.size = getGUIObjectByName("stamina").size;
+
+		getGUIObjectByName("resources").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("sdResources").hidden = true;
-		getGUIObjectByName("sdAttack").hidden = false;
-		getGUIObjectByName("sdArmour").hidden = false;
+		getGUIObjectByName("resources").hidden = true;
 	}
 
 	// Set Captions
-	getGUIObjectByName("sdSpecific").caption = rank + specificName;
-	getGUIObjectByName("sdPlayer").caption = playerName;
-	getGUIObjectByName("sdPlayer").textcolor = playerColor;
-	getGUIObjectByName("sdAttackStats").caption = damageTypesToTextStacked(entState.attack);
-	getGUIObjectByName("sdArmourStats").caption = damageTypesToTextStacked(entState.armour);
-	getGUIObjectByName("sdResourceStats").caption = resources;
-	getGUIObjectByName("sdResourceIcon").cell_id = resourceCellID;
+	getGUIObjectByName("specific").caption = specificName;
+	getGUIObjectByName("player").caption = playerName;
+	getGUIObjectByName("player").textcolor = playerColor;
 
 	// Icon image
 	if (template.icon_sheet && typeof template.icon_cell)
 	{
-		getGUIObjectByName("sdIconImage").sprite = template.icon_sheet;
-		getGUIObjectByName("sdIconImage").cell_id = template.icon_cell;
+		getGUIObjectByName("icon").sprite = template.icon_sheet;
+		getGUIObjectByName("icon").cell_id = template.icon_cell;
 	}
 	else
 	{
 		// TODO: we should require all entities to have icons, so this case never occurs
-		getGUIObjectByName("sdIconImage").sprite = "bkFillBlack";
+		getGUIObjectByName("icon").sprite = "bkFillBlack";
 	}
-
-	// TODO: need to change color of icon outline with the playerColor
-	//getGUIObjectByName("sdIconOutline");
 
 	// Tooltips
 //	getGUIObjectByName("sdSpecific").tooltip = genericName;
-	getGUIObjectByName("sdPlayer").tooltip = civName != GAIA? civName : ""; // Don't need civ tooltip for Gaia Player - redundant
-	getGUIObjectByName("sdHealth").tooltip = hitpoints;
+	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
+	getGUIObjectByName("armourIcon").tooltip = damageTypesToText(entState.armour);
+	getGUIObjectByName("player").tooltip = civName != GAIA? civName : ""; // Don't need civ tooltip for Gaia Player - redundant
+	getGUIObjectByName("health").tooltip = hitpoints;
 
 	// Icon Tooltip
 	var iconTooltip = "";
-	
+
 	if (genericName)
 		iconTooltip = "[font=\"serif-bold-16\"]" + genericName + "[/font]";
 
 	if (template.tooltip)
 		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
-		
-	/*
-	if (entState.hitpoints)
-		iconTooltip += "\n" + hitpoints;
-	if (entState.attack)
-		iconTooltip += "\n[font=\"serif-bold-13\"]Attack: [/font]" + damageTypesToText(entState.attack);
-	if (entState.armour)
-		iconTooltip += "\n[font=\"serif-bold-13\"]Armour: [/font]" + damageTypesToText(entState.armour);
-	if (entState.resourceSupply)
-		iconTooltip += "\n[font=\"serif-bold-13\"]Resources: [/font]" + resources + "[font=\"serif-12\"]" + resourceType + "[/font]";
-	*/
 
-	getGUIObjectByName("sdIcon").tooltip = iconTooltip;
+	getGUIObjectByName("iconBorder").tooltip = iconTooltip;
 }
 
 // Updates middle entity Selection Details Panel
@@ -145,6 +139,7 @@ function updateSelectionDetails()
 	{
 		detailsPanel.hidden = true;
 		commandsPanel.hidden = true;
+		getGUIObjectByName("unitSelectionPanel").hidden = true;
 		return;
 	}
 

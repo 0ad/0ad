@@ -3,6 +3,8 @@ const SDL_BUTTON_MIDDLE = 2;
 const SDL_BUTTON_RIGHT = 3;
 const SDLK_RSHIFT = 303;
 const SDLK_LSHIFT = 304;
+const SDLK_RCTRL = 305;
+const SDLK_LCTRL = 306;
 
 const MAX_SELECTION_SIZE = 32; // Limits selection size and ensures that there will not be too many selection items in the GUI
 
@@ -30,6 +32,8 @@ var mouseIsOverObject = false;
 var specialKeyStates = {};
 specialKeyStates[SDLK_RSHIFT] = 0;
 specialKeyStates[SDLK_LSHIFT] = 0;
+specialKeyStates[SDLK_RCTRL] = 0;
+specialKeyStates[SDLK_LCTRL] = 0;
 // (TODO: maybe we should fix the hotkey system to be usable in this situation,
 // rather than hardcoding Shift into this code?)
 
@@ -313,6 +317,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				g_Selection.setHighlightList([]);
 				g_Selection.reset();
 				g_Selection.addList(ents);
+				g_Selection.CreateSelectionGroups();
 
 				inputState = INPUT_NORMAL;
 				return true;
@@ -719,12 +724,12 @@ function removeFromTrainingQueue(entity, id)
 }
 
 // Called by unit selection buttons
-function changePrimarySelectionGroup(index)
+function changePrimarySelectionGroup(templateName)
 {
-	if (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT])
-		g_Selection.makePrimarySelection(index, true);
+	if (specialKeyStates[SDLK_RCTRL] || specialKeyStates[SDLK_LCTRL])
+		g_Selection.makePrimarySelection(templateName, true);
 	else
-		g_Selection.makePrimarySelection(index, false);
+		g_Selection.makePrimarySelection(templateName, false);
 }
 
 // Performs the specified command (delete, town bell, repair, etc.)
@@ -732,13 +737,25 @@ function performCommand(entity, commandName)
 {
 	if (entity)
 	{
-		switch (commandName)
+		var entState = GetEntityState(entity);
+		var template = GetTemplateData(entState.template);
+		var unitName = getEntityName(template);
+	
+		var player = Engine.GetPlayerID();
+		if (entState.player == player || g_DevSettings.controlAll)
 		{
-		case "delete":
-			Engine.PostNetworkCommand({"type": "delete-entity", "entity": entity});
-			break;
-		default:
-			break;
+			switch (commandName)
+			{
+			case "delete":
+				var deleteFunction = function () { Engine.PostNetworkCommand({"type": "delete-entity", "entity": entity}); };
+				var btCaptions = ["Yes", "No"];
+				var btCode = [deleteFunction, null];
+				messageBox(320, 180, "Are you sure you want to delete: " + unitName + "?", "Confirmation", 0, btCaptions, btCode);
+
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }

@@ -134,6 +134,10 @@ function getEntityCommandsList(entState)
 {
 	var commands = [];
 	commands.push("delete");
+	//commands.push("command1");
+	//commands.push("command2");
+	//commands.push("command3");
+	//commands.push("command4");
 	return commands;
 }
 
@@ -166,6 +170,30 @@ function getEntityNameWithGenericType(template)
 			name = template.name.specific || template.name.generic || "???";
 		
 		return "[font=\"serif-bold-16\"]" + name + "[/font]";
+}
+
+function getEntityRankedName(entState)
+{
+	var template = GetTemplateData(entState.template)
+	var rank = entState.identity.rank;
+	if (rank)
+		return rank + " " + template.name.specific;
+	else
+		return template.name.specific;
+}
+
+function getRankIconCellId(entState)
+{
+	var template = GetTemplateData(entState.template)
+	var rank = entState.identity.rank;
+	if (rank)
+	{
+		if (rank == "Elite")
+			return 0;
+		else if (rank == "Advanced")
+			return 1;
+	}
+	return -1;
 }
 
 function getFormalCivName(civ)
