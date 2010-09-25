@@ -301,7 +301,6 @@
 			size="50%-300 -4 50%+300 28"
 			type="image"
 			style="resourcePanel"
-			z="140"
 		>
 			<!-- Food -->
 			<object size="50 4 150 100%" type="image" style="resourceCounter" tooltip="Food" >
@@ -339,6 +338,7 @@
 		<!-- ================================  ================================ -->
 		<object name="unitSelectionPanel"
 			size="50%-300 20 50%+300 60"
+			z="-120"
 		>
 			<object size="0 0 100% 100%">
 				<repeat count="13">
@@ -373,31 +373,31 @@
 		<object name="selectionDetails"
 			type="image"
 			style="sessionPanel"
-			size="22 100%-160 202 100%"
+			size="22 100%-154 202 100%"
 			hidden="true"
 			z="20"
 		>
 			 <!-- Big unit icon -->
-			<object size= "50%-53 -10 50%+53 96" type="image" name="iconBorder" style="insetWheatWindow" tooltip_style="snToolTip">
+			<object size= "50%-53 -14 50%+53 92" type="image" name="iconBorder" style="insetWheatWindow" tooltip_style="snToolTip">
 				<object size= "3 3 100%-3 100%-3" type="image" name="icon" ghost="true"/>
 				<object size="100%-32 0 100% 32" name="rankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
 
 				<!-- Health bar -->
-				<object size="100%+8 16 100%+18 100%" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
+				<object size="100%+8 18 100%+18 100%-4" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
 					<object type="image" sprite="healthBackground" ghost="true"/>
 					<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
 					<object type="image" sprite="statsBarShader" ghost="true"/>
 				</object>
 				
 				<!-- Stamina bar -->
-				<object size="100%+20 16 100%+30 100%" type="image" name="stamina" tooltip="Stamina" tooltip_style="snToolTip">
+				<object size="100%+20 18 100%+30 100%-4" type="image" name="stamina" tooltip="Stamina" tooltip_style="snToolTip">
 					<object type="image" sprite="staminaBackground" ghost="true"/>
 					<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
 					<object type="image" sprite="statsBarShader" ghost="true"/>
 				</object>
 				
 				<!-- Resource bar -->
-				<object size="100%+8 16 100%+18 100%" type="image" name="resources" tooltip="Resources" tooltip_style="snToolTip">
+				<object size="100%+8 18 100%+18 100%-4" type="image" name="resources" tooltip="Resources" tooltip_style="snToolTip">
 					<object type="image" sprite="resourceBackground" ghost="true"/>
 					<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
 					<object type="image" sprite="statsBarShader" ghost="true"/>
@@ -405,7 +405,7 @@
 			</object>
 
 			<!-- Stats -->
-			<object size="-2 6 40 96" name="statsArea" type="image">
+			<object size="-2 2 40 90" name="statsArea" type="image">
 				<!-- Attack icon -->
 				<object size="0 0 40 40" type="image" name="attackIcon" sprite="snIconSheetStance" cell_id="1" tooltip_style="snToolTip"/>
 

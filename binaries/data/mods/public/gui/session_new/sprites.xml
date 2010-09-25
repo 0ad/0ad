@@ -110,21 +110,25 @@
 		<!-- (currently this is all a hack - need proper textures) -->
 		<image
 			texture="global/titlebar/middle_gold_fern.dds"
-			texture_size="0 0 64 8"
+			real_texture_placement="0 4 64 6"
+			texture_size="0 0 64 32"
 			size="0 -2 100% 0"
 		/>
 		<image
 			texture="global/titlebar/middle_gold_fern.dds"
+			real_texture_placement="0 4 64 6"
 			texture_size="0 0 64 32"
 			size="0 100%-2 100% 100%+2"
 		/>
 		<image
 			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
 			texture_size="0 0 16 100%"
 			size="-2 -2 0 100%+2"
 		/>
 		<image
 			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
 			texture_size="0 0 16 100%"
 			size="100% 0%-2 100%+2 100%+2"
 		/>
