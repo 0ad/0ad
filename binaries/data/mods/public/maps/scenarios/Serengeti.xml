@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="110.784" y="115.368" z="413.964"/>
+		<Position x="100.805" y="79.9799" z="456.76"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -181,7 +181,7 @@
 		<Entity uid="44">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="144.95086" z="601.04328"/>
+			<Position x="142.48073" z="604.69855"/>
 			<Orientation y="0.31579"/>
 		</Entity>
 		<Entity uid="45">
@@ -207,18 +207,6 @@
 			<Player>0</Player>
 			<Position x="175.08378" z="584.47834"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="59">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="157.96448" z="592.80225"/>
-			<Orientation y="-0.44059"/>
-		</Entity>
-		<Entity uid="60">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="143.10135" z="593.88324"/>
-			<Orientation y="-0.33382"/>
 		</Entity>
 		<Entity uid="70">
 			<Template>gaia/geology_metal_savanna_slabs</Template>
@@ -4001,12 +3989,12 @@
 		</Entity>
 		<Entity uid="793">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="149.99863" z="600.08387"/>
+			<Position x="153.33944" z="606.41053"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="794">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="156.36605" z="587.97315"/>
+			<Position x="165.65372" z="579.40003"/>
 			<Orientation y="1.52225"/>
 		</Entity>
 		<Entity uid="795">
@@ -4421,7 +4409,7 @@
 		</Entity>
 		<Entity uid="877">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="148.15181" z="605.98371"/>
+			<Position x="147.98722" z="607.95313"/>
 			<Orientation y="1.57081"/>
 		</Entity>
 		<Entity uid="878">
@@ -15202,6 +15190,126 @@
 			<Player>0</Player>
 			<Position x="381.06553" z="336.21607"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3055">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="416.39325" z="486.25962"/>
+			<Orientation y="-3.05282"/>
+		</Entity>
+		<Entity uid="3056">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="411.75016" z="474.23121"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3057">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="406.52948" z="474.63257"/>
+			<Orientation y="0.36199"/>
+		</Entity>
+		<Entity uid="3058">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="409.65931" z="487.37635"/>
+			<Orientation y="-3.08132"/>
+		</Entity>
+		<Entity uid="3059">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="422.3389" z="472.83484"/>
+			<Orientation y="-0.18343"/>
+		</Entity>
+		<Entity uid="3060">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="428.38102" z="252.91031"/>
+			<Orientation y="-2.69014"/>
+		</Entity>
+		<Entity uid="3061">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="419.08112" z="258.2667"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3062">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="422.19254" z="266.73725"/>
+			<Orientation y="0.28512"/>
+		</Entity>
+		<Entity uid="3063">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="428.35441" z="264.59287"/>
+			<Orientation y="1.20894"/>
+		</Entity>
+		<Entity uid="3064">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>1</Player>
+			<Position x="439.62681" z="249.26868"/>
+			<Orientation y="-2.1546"/>
+		</Entity>
+		<Entity uid="3065">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="408.41266" z="253.90137"/>
+			<Orientation y="1.05503"/>
+		</Entity>
+		<Entity uid="3066">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="393.01603" z="255.39267"/>
+			<Orientation y="-2.45243"/>
+		</Entity>
+		<Entity uid="3067">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="415.1898" z="277.11033"/>
+			<Orientation y="3.06737"/>
+		</Entity>
+		<Entity uid="3068">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="395.02839" z="287.83057"/>
+			<Orientation y="-2.248"/>
+		</Entity>
+		<Entity uid="3069">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="390.9799" z="264.7399"/>
+			<Orientation y="-0.50062"/>
+		</Entity>
+		<Entity uid="3070">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="303.80872" z="351.49494"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3071">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="308.51716" z="366.95646"/>
+			<Orientation y="-2.86"/>
+		</Entity>
+		<Entity uid="3072">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="310.63437" z="381.11677"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3073">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="314.17945" z="357.81104"/>
+			<Orientation y="0.60457"/>
+		</Entity>
+		<Entity uid="3074">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="318.14191" z="373.11307"/>
+			<Orientation y="-1.00257"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="113.289" y="112.684" z="418.78"/>
-		<Rotation angle="-0.0586418"/>
-		<Declination angle="0.55603"/>
+		<Position x="622.554" y="88.736" z="23.7662"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -5965,7 +5965,7 @@
 		<Entity uid="1161">
 			<Template>gaia/fauna_giraffe</Template>
 			<Player>0</Player>
-			<Position x="681.71192" z="510.0175"/>
+			<Position x="680.74225" z="508.56284"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1162">
@@ -5983,8 +5983,8 @@
 		<Entity uid="1164">
 			<Template>gaia/fauna_giraffe_infant</Template>
 			<Player>0</Player>
-			<Position x="675.3606" z="517.69135"/>
-			<Orientation y="2.35621"/>
+			<Position x="679.83686" z="519.96241"/>
+			<Orientation y="0.32074"/>
 		</Entity>
 		<Entity uid="1165">
 			<Template>gaia/fauna_giraffe</Template>
@@ -15260,6 +15260,96 @@
 			<Template>actor|geology/stone_savanna_med.xml</Template>
 			<Position x="91.0469" z="529.7931"/>
 			<Orientation y="0.14594"/>
+		</Entity>
+		<Entity uid="3028">
+			<Template>gaia/fauna_lion</Template>
+			<Player>0</Player>
+			<Position x="133.48772" z="733.98084"/>
+			<Orientation y="-2.44217"/>
+		</Entity>
+		<Entity uid="3029">
+			<Template>gaia/fauna_lion</Template>
+			<Player>0</Player>
+			<Position x="462.0048" z="520.67676"/>
+			<Orientation y="-1.82242"/>
+		</Entity>
+		<Entity uid="3030">
+			<Template>gaia/fauna_lion</Template>
+			<Player>0</Player>
+			<Position x="458.31034" z="220.64017"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3031">
+			<Template>gaia/fauna_lion</Template>
+			<Player>0</Player>
+			<Position x="227.52099" z="189.12163"/>
+			<Orientation y="0.24637"/>
+		</Entity>
+		<Entity uid="3032">
+			<Template>gaia/fauna_lion</Template>
+			<Player>0</Player>
+			<Position x="317.35947" z="413.4835"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3033">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="29.916" z="328.82145"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3034">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="29.58944" z="336.90705"/>
+			<Orientation y="0.19524"/>
+		</Entity>
+		<Entity uid="3035">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="31.14142" z="344.75547"/>
+			<Orientation y="-2.08404"/>
+		</Entity>
+		<Entity uid="3036">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="42.98905" z="327.8783"/>
+			<Orientation y="0.23693"/>
+		</Entity>
+		<Entity uid="3037">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="42.35352" z="336.21216"/>
+			<Orientation y="-1.85512"/>
+		</Entity>
+		<Entity uid="3038">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="701.12928" z="459.17121"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3039">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="704.39173" z="465.86902"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3040">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="710.75318" z="470.03553"/>
+			<Orientation y="-2.7965"/>
+		</Entity>
+		<Entity uid="3041">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="709.37989" z="458.06778"/>
+			<Orientation y="0.14649"/>
+		</Entity>
+		<Entity uid="3042">
+			<Template>gaia/fauna_lioness</Template>
+			<Player>0</Player>
+			<Position x="715.02491" z="462.75425"/>
+			<Orientation y="-2.06168"/>
 		</Entity>
 	</Entities>
 	<Paths/>

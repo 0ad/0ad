@@ -8,6 +8,13 @@
   <VisualActor>
     <Actor>structures/celts/civil_centre.xml</Actor>
   </VisualActor>
+  <Footprint>
+    <Square width="24.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="23.0" depth="23.0"/>
+  </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/celt_cavalry_javelinist_b

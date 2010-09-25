@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="quadraped/mastiff_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/mastiff_run.psa" name="Walk" speed="17"/>
-        <animation file="quadraped/mastiff_run.psa" name="run" speed="25"/>
+        <animation file="quadraped/mastiff_run.psa" name="Walk" speed="25"/>
+        <animation file="quadraped/mastiff_run.psa" name="run" speed="35"/>
       </animations>
       <mesh>skeletal/mastiff.pmd</mesh>
       <props>
@@ -17,7 +15,6 @@
       <texture>skeletal/mastiff_e.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="brown">
       <colour>255 149 79</colour>
@@ -29,7 +26,5 @@
       <colour>255 179 59</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>
