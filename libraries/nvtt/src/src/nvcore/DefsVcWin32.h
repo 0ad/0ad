@@ -39,7 +39,7 @@
 #define __FUNC__ __FUNCTION__ 
 #endif
 
-
+/*
 // Type definitions
 typedef unsigned char       uint8;
 typedef signed char         int8;
@@ -55,7 +55,7 @@ typedef signed __int64      int64;
 
 // Aliases
 typedef uint32              uint;
-
+*/
 
 // Unwanted VC++ warnings to disable.
 /*

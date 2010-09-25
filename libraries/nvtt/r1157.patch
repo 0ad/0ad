@@ -1,0 +1,13 @@
+Index: branches/2.0/cmake/FindCUDA.cmake
+===================================================================
+--- branches/2.0/cmake/FindCUDA.cmake	(revision 1156)
++++ branches/2.0/cmake/FindCUDA.cmake	(revision 1157)
+@@ -120,7 +120,7 @@
+ 	FOREACH (CUFILE ${ARGN})
+ 		GET_FILENAME_COMPONENT (CUFILE ${CUFILE} ABSOLUTE)
+ 		GET_FILENAME_COMPONENT (CFILE ${CUFILE} NAME_WE)
+-		SET (CFILE ${CMAKE_CURRENT_BINARY_DIR}/${CFILE}.gen.c)
++		SET (CFILE ${CMAKE_CURRENT_BINARY_DIR}/${CFILE}.gen.cpp)
+ 
+ 		GET_CUFILE_DEPENDENCIES(CUDEPS ${CUFILE})
+ 		#MESSAGE("${CUDEPS}")

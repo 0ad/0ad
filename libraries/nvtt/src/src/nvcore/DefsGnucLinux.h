@@ -47,7 +47,7 @@
 
 #define restrict    __restrict__
 
-
+/*
 // Type definitions
 typedef unsigned char       uint8;
 typedef signed char         int8;
@@ -63,3 +63,4 @@ typedef signed long long    int64;
 
 // Aliases
 typedef uint32              uint;
+*/

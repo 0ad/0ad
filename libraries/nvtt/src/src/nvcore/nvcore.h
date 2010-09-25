@@ -99,6 +99,23 @@
 #define NV_ENDIAN_STRING	POSH_ENDIAN_STRING
 
 
+// Type definitions:
+typedef posh_u8_t   uint8;
+typedef posh_i8_t   int8;
+
+typedef posh_u16_t  uint16;
+typedef posh_i16_t  int16;
+
+typedef posh_u32_t  uint32;
+typedef posh_i32_t  int32;
+
+typedef posh_u64_t  uint64;
+typedef posh_i64_t  int64;
+
+// Aliases
+typedef uint32      uint;
+
+
 // Version string:
 #define NV_VERSION_STRING \
 	NV_OS_STRING "/" NV_CC_STRING "/" NV_CPU_STRING"/" \

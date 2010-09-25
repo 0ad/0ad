@@ -1,0 +1,114 @@
+Index: branches/2.0/src/nvcore/nvcore.h
+===================================================================
+--- branches/2.0/src/nvcore/nvcore.h	(revision 1155)
++++ branches/2.0/src/nvcore/nvcore.h	(revision 1156)
+@@ -99,6 +99,23 @@
+ #define NV_ENDIAN_STRING	POSH_ENDIAN_STRING
+ 
+ 
++// Type definitions:
++typedef posh_u8_t   uint8;
++typedef posh_i8_t   int8;
++
++typedef posh_u16_t  uint16;
++typedef posh_i16_t  int16;
++
++typedef posh_u32_t  uint32;
++typedef posh_i32_t  int32;
++
++typedef posh_u64_t  uint64;
++typedef posh_i64_t  int64;
++
++// Aliases
++typedef uint32      uint;
++
++
+ // Version string:
+ #define NV_VERSION_STRING \
+ 	NV_OS_STRING "/" NV_CC_STRING "/" NV_CPU_STRING"/" \
+Index: branches/2.0/src/nvcore/DefsVcWin32.h
+===================================================================
+--- branches/2.0/src/nvcore/DefsVcWin32.h	(revision 1155)
++++ branches/2.0/src/nvcore/DefsVcWin32.h	(revision 1156)
+@@ -39,7 +39,7 @@
+ #define __FUNC__ __FUNCTION__ 
+ #endif
+ 
+-
++/*
+ // Type definitions
+ typedef unsigned char       uint8;
+ typedef signed char         int8;
+@@ -55,8 +55,8 @@
+ 
+ // Aliases
+ typedef uint32              uint;
++*/
+ 
+-
+ // Unwanted VC++ warnings to disable.
+ /*
+ #pragma warning(disable : 4244)		// conversion to float, possible loss of data
+Index: branches/2.0/src/nvcore/DefsGnucDarwin.h
+===================================================================
+--- branches/2.0/src/nvcore/DefsGnucDarwin.h	(revision 1155)
++++ branches/2.0/src/nvcore/DefsGnucDarwin.h	(revision 1156)
+@@ -2,7 +2,7 @@
+ #error "Do not include this file directly."
+ #endif
+ 
+-#include <stdint.h> // uint8_t, int8_t, ...
++//#include <stdint.h> // uint8_t, int8_t, ...
+ 
+ // Function linkage
+ #define DLL_IMPORT
+@@ -48,7 +48,7 @@
+ 
+ #define restrict    __restrict__
+ 
+-
++/*
+ // Type definitions
+ typedef uint8_t     uint8;
+ typedef int8_t      int8;
+@@ -64,3 +64,4 @@
+ 
+ // Aliases
+ typedef uint32      uint;
++*/
+Index: branches/2.0/src/nvcore/DefsGnucLinux.h
+===================================================================
+--- branches/2.0/src/nvcore/DefsGnucLinux.h	(revision 1155)
++++ branches/2.0/src/nvcore/DefsGnucLinux.h	(revision 1156)
+@@ -47,7 +47,7 @@
+ 
+ #define restrict    __restrict__
+ 
+-
++/*
+ // Type definitions
+ typedef unsigned char       uint8;
+ typedef signed char         int8;
+@@ -63,3 +63,4 @@
+ 
+ // Aliases
+ typedef uint32              uint;
++*/
+Index: branches/2.0/src/nvcore/DefsGnucWin32.h
+===================================================================
+--- branches/2.0/src/nvcore/DefsGnucWin32.h	(revision 1155)
++++ branches/2.0/src/nvcore/DefsGnucWin32.h	(revision 1156)
+@@ -41,7 +41,7 @@
+ 
+ #define restrict	__restrict__
+ 
+-
++/*
+ // Type definitions
+ typedef unsigned char		uint8;
+ typedef signed char			int8;
+@@ -57,3 +57,4 @@
+ 
+ // Aliases
+ typedef uint32				uint;
++*/
