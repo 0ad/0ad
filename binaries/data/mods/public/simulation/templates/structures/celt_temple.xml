@@ -8,6 +8,13 @@
   <Cost>
     <PopulationBonus>7</PopulationBonus>
   </Cost>
+  <Footprint replace="">
+    <Circle radius="8.0"/>
+    <Height>16.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="15.0" depth="15.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/celts/temple.xml</Actor>
   </VisualActor>

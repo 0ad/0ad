@@ -8,4 +8,11 @@
   <VisualActor>
     <Actor>structures/celts/house.xml</Actor>
   </VisualActor>
+  <Footprint replace="">
+    <Circle radius="5.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="7.0" depth="7.0"/>
+  </Obstruction>
 </Entity>

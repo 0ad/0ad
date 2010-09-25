@@ -3,9 +3,9 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.29445" g="1.29445" b="1.29445"/>
-		<SunElevation angle="1.00919"/>
-		<SunRotation angle="-0.785398"/>
+		<SunColour r="1.47461" g="1.47461" b="1.47461"/>
+		<SunElevation angle="1.08416"/>
+		<SunRotation angle="0.478602"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
@@ -15,15 +15,15 @@
 				<Height>17.6262</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.728516</Murkiness>
-				<Tint r="0.447059" g="0.411765" b="0.321569"/>
-				<ReflectionTint r="0.447059" g="0.411765" b="0.321569"/>
-				<ReflectionTintStrength>0.304688</ReflectionTintStrength>
+				<Murkiness>0.224609</Murkiness>
+				<Tint r="0.611765" g="0.447059" b="0.219608"/>
+				<ReflectionTint r="0.768627" g="0.745098" b="0.67451"/>
+				<ReflectionTintStrength>0.423828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="593.68" y="110.536" z="493.122"/>
+		<Position x="605.642" y="95.6239" z="514.129"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -1215,7 +1215,7 @@
 		<Entity uid="403">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="604.64655" z="640.41413"/>
+			<Position x="603.57728" z="639.87623"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="408">
@@ -1486,25 +1486,25 @@
 		<Entity uid="494">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="631.4516" z="638.23792"/>
+			<Position x="639.5246" z="642.45978"/>
 			<Orientation y="-2.58277"/>
 		</Entity>
 		<Entity uid="495">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="626.25843" z="644.53919"/>
+			<Position x="642.44306" z="647.64258"/>
 			<Orientation y="0.10433"/>
 		</Entity>
 		<Entity uid="496">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="622.20844" z="651.21296"/>
+			<Position x="628.69788" z="643.23224"/>
 			<Orientation y="-1.10029"/>
 		</Entity>
 		<Entity uid="497">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="617.15992" z="653.4574"/>
+			<Position x="621.05585" z="650.6006"/>
 			<Orientation y="-0.05071"/>
 		</Entity>
 		<Entity uid="498">
@@ -1546,7 +1546,7 @@
 		<Entity uid="504">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="611.24903" z="660.89643"/>
+			<Position x="613.7204" z="658.56873"/>
 			<Orientation y="-3.06844"/>
 		</Entity>
 		<Entity uid="505">
@@ -1657,7 +1657,7 @@
 		</Entity>
 		<Entity uid="526">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="626.39002" z="674.49787"/>
+			<Position x="622.375" z="686.53431"/>
 			<Orientation y="2.49738"/>
 		</Entity>
 		<Entity uid="527">
@@ -1842,12 +1842,12 @@
 		</Entity>
 		<Entity uid="563">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="648.32972" z="615.87244"/>
+			<Position x="645.86854" z="617.77857"/>
 			<Orientation y="0.99412"/>
 		</Entity>
 		<Entity uid="564">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="632.253" z="623.95899"/>
+			<Position x="614.2931" z="619.0774"/>
 			<Orientation y="0.13797"/>
 		</Entity>
 		<Entity uid="565">
@@ -3027,22 +3027,22 @@
 		</Entity>
 		<Entity uid="800">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="545.23621" z="638.57862"/>
+			<Position x="548.16541" z="621.72272"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="801">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="549.3816" z="623.2768"/>
+			<Position x="548.06446" z="613.72754"/>
 			<Orientation y="1.86394"/>
 		</Entity>
 		<Entity uid="802">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="545.42225" z="628.62409"/>
-			<Orientation y="2.35621"/>
+			<Position x="548.48127" z="630.83368"/>
+			<Orientation y="-2.47252"/>
 		</Entity>
 		<Entity uid="803">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="545.72834" z="612.33265"/>
+			<Position x="546.96583" z="607.305"/>
 			<Orientation y="2.64129"/>
 		</Entity>
 		<Entity uid="804">
@@ -3072,7 +3072,7 @@
 		</Entity>
 		<Entity uid="809">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="574.11536" z="583.57575"/>
+			<Position x="576.46924" z="582.70234"/>
 			<Orientation y="-1.23676"/>
 		</Entity>
 		<Entity uid="810">
@@ -3082,8 +3082,8 @@
 		</Entity>
 		<Entity uid="811">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
-			<Position x="582.91285" z="602.03394"/>
-			<Orientation y="1.65221"/>
+			<Position x="664.06257" z="678.27692"/>
+			<Orientation y="2.47913"/>
 		</Entity>
 		<Entity uid="812">
 			<Template>actor|props/flora/grass_soft_dry_large_tall.xml</Template>
@@ -3097,7 +3097,7 @@
 		</Entity>
 		<Entity uid="814">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="556.39515" z="588.14643"/>
+			<Position x="556.41547" z="586.89631"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="815">
@@ -3247,7 +3247,7 @@
 		</Entity>
 		<Entity uid="845">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="580.112" z="665.21863"/>
+			<Position x="557.68262" z="672.90223"/>
 			<Orientation y="0.7672"/>
 		</Entity>
 		<Entity uid="846">
@@ -3442,14 +3442,14 @@
 		<Entity uid="883">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="611.4286" z="575.39972"/>
-			<Orientation y="-1.34087"/>
+			<Position x="610.47724" z="570.12226"/>
+			<Orientation y="-0.10941"/>
 		</Entity>
 		<Entity uid="884">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
 			<Position x="600.80256" z="571.71467"/>
-			<Orientation y="-0.37298"/>
+			<Orientation y="-0.01105"/>
 		</Entity>
 		<Entity uid="885">
 			<Template>gaia/flora_tree_carob</Template>
@@ -3623,7 +3623,7 @@
 			<Template>gaia/geology_stone_mediterranean</Template>
 			<Player>0</Player>
 			<Position x="567.6988" z="656.30347"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.1594"/>
 		</Entity>
 		<Entity uid="923">
 			<Template>gaia/geology_stone_mediterranean</Template>
@@ -3635,7 +3635,7 @@
 			<Template>gaia/geology_stone_mediterranean</Template>
 			<Player>0</Player>
 			<Position x="563.20258" z="671.13801"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-0.21204"/>
 		</Entity>
 		<Entity uid="925">
 			<Template>gaia/geology_stone_mediterranean</Template>
@@ -6550,13 +6550,13 @@
 		</Entity>
 		<Entity uid="1492">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
-			<Position x="594.54938" z="556.95051"/>
+			<Position x="594.08991" z="556.4532"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1493">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
 			<Position x="602.95636" z="549.55176"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-0.69924"/>
 		</Entity>
 		<Entity uid="1494">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
@@ -6570,13 +6570,13 @@
 		</Entity>
 		<Entity uid="1496">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
-			<Position x="605.98578" z="571.67267"/>
+			<Position x="612.17786" z="553.18958"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1497">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
-			<Position x="595.5138" z="565.61451"/>
-			<Orientation y="0.77701"/>
+			<Position x="591.50855" z="563.98896"/>
+			<Orientation y="2.57132"/>
 		</Entity>
 		<Entity uid="1498">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
@@ -8978,25 +8978,25 @@
 		<Entity uid="1991">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="74.0228" z="139.2512"/>
+			<Position x="71.94518" z="142.58045"/>
 			<Orientation y="2.8671"/>
 		</Entity>
 		<Entity uid="1992">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="77.2227" z="132.07753"/>
+			<Position x="68.58843" z="141.67844"/>
 			<Orientation y="2.02277"/>
 		</Entity>
 		<Entity uid="1993">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="81.32319" z="128.50263"/>
+			<Position x="74.91454" z="123.72188"/>
 			<Orientation y="-0.06461"/>
 		</Entity>
 		<Entity uid="1994">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="85.43725" z="124.35746"/>
+			<Position x="81.76088" z="119.16005"/>
 			<Orientation y="2.74299"/>
 		</Entity>
 		<Entity uid="1995">
@@ -9038,32 +9038,32 @@
 		<Entity uid="2001">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="121.76171" z="154.15123"/>
-			<Orientation y="0.1029"/>
+			<Position x="124.22028" z="156.3962"/>
+			<Orientation y="0.14779"/>
 		</Entity>
 		<Entity uid="2002">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="115.04758" z="164.07107"/>
+			<Position x="116.76836" z="167.5324"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2003">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="109.03461" z="167.97565"/>
+			<Position x="110.04848" z="171.67347"/>
 			<Orientation y="-1.24752"/>
 		</Entity>
 		<Entity uid="2004">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="106.14588" z="171.09345"/>
+			<Position x="102.22901" z="175.35831"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2005">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
 			<Player>0</Player>
-			<Position x="62.72684" z="182.42371"/>
-			<Orientation y="-0.5923"/>
+			<Position x="61.21502" z="182.0027"/>
+			<Orientation y="2.04146"/>
 		</Entity>
 		<Entity uid="2013">
 			<Template>gaia/geology_stone_mediterranean</Template>
@@ -11274,7 +11274,7 @@
 		</Entity>
 		<Entity uid="2443">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="199.91991" z="65.53498"/>
+			<Position x="136.828" z="139.13883"/>
 			<Orientation y="-2.5944"/>
 		</Entity>
 		<Entity uid="2444">
@@ -11459,7 +11459,7 @@
 		</Entity>
 		<Entity uid="2480">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="138.80672" z="181.39432"/>
+			<Position x="128.13393" z="142.08535"/>
 			<Orientation y="1.39702"/>
 		</Entity>
 		<Entity uid="2481">
@@ -11469,7 +11469,7 @@
 		</Entity>
 		<Entity uid="2482">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="136.17891" z="135.96363"/>
+			<Position x="137.98028" z="162.43766"/>
 			<Orientation y="-2.75489"/>
 		</Entity>
 		<Entity uid="2483">
@@ -11574,7 +11574,7 @@
 		</Entity>
 		<Entity uid="2503">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="139.33167" z="162.1109"/>
+			<Position x="119.86142" z="162.67203"/>
 			<Orientation y="0.88172"/>
 		</Entity>
 		<Entity uid="2504">
@@ -12624,8 +12624,8 @@
 		<Entity uid="2718">
 			<Template>other/hellenic_stoa</Template>
 			<Player>1</Player>
-			<Position x="561.17774" z="634.07941"/>
-			<Orientation y="1.93113"/>
+			<Position x="630.23548" z="658.82721"/>
+			<Orientation y="-2.41614"/>
 		</Entity>
 		<Entity uid="2729">
 			<Template>gaia/flora_tree_carob</Template>
@@ -19100,8 +19100,8 @@
 		</Entity>
 		<Entity uid="3939">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="644.4798" z="607.21363"/>
-			<Orientation y="0.10862"/>
+			<Position x="637.09205" z="614.47803"/>
+			<Orientation y="2.98201"/>
 		</Entity>
 		<Entity uid="3940">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
@@ -19110,7 +19110,7 @@
 		</Entity>
 		<Entity uid="3941">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="660.8075" z="656.95984"/>
+			<Position x="658.40015" z="681.62873"/>
 			<Orientation y="2.18355"/>
 		</Entity>
 		<Entity uid="3942">
@@ -21075,23 +21075,11 @@
 			<Position x="279.7143" z="516.31055"/>
 			<Orientation y="0.66451"/>
 		</Entity>
-		<Entity uid="4334">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="361.30936" z="615.43982"/>
-			<Orientation y="-2.00426"/>
-		</Entity>
 		<Entity uid="4335">
 			<Template>gaia/geology_stone_mediterranean</Template>
 			<Player>0</Player>
 			<Position x="364.75852" z="595.85914"/>
 			<Orientation y="2.85969"/>
-		</Entity>
-		<Entity uid="4336">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="371.89902" z="583.5929"/>
-			<Orientation y="2.2581"/>
 		</Entity>
 		<Entity uid="4337">
 			<Template>gaia/geology_stone_mediterranean</Template>
@@ -21138,14 +21126,14 @@
 		<Entity uid="4344">
 			<Template>gaia/geology_stone_mediterranean</Template>
 			<Player>0</Player>
-			<Position x="344.81455" z="638.6247"/>
-			<Orientation y="-1.38616"/>
+			<Position x="341.79563" z="649.15735"/>
+			<Orientation y="0.42537"/>
 		</Entity>
 		<Entity uid="4345">
 			<Template>gaia/geology_stone_mediterranean</Template>
 			<Player>0</Player>
-			<Position x="323.2274" z="714.87037"/>
-			<Orientation y="-3.07262"/>
+			<Position x="326.98343" z="701.31836"/>
+			<Orientation y="2.33071"/>
 		</Entity>
 		<Entity uid="4346">
 			<Template>gaia/geology_stone_mediterranean</Template>
@@ -21262,24 +21250,9 @@
 			<Position x="141.62851" z="367.6125"/>
 			<Orientation y="-1.52872"/>
 		</Entity>
-		<Entity uid="4377">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="122.48128" z="382.01978"/>
-			<Orientation y="-0.54809"/>
-		</Entity>
 		<Entity uid="4378">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
 			<Position x="118.30578" z="392.39115"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4379">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="136.65703" z="379.649"/>
-			<Orientation y="-2.84322"/>
-		</Entity>
-		<Entity uid="4380">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="49.24436" z="399.56983"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4381">
@@ -21289,8 +21262,8 @@
 		</Entity>
 		<Entity uid="4382">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="34.26383" z="404.90925"/>
-			<Orientation y="-1.57081"/>
+			<Position x="11.70458" z="401.02393"/>
+			<Orientation y="0.22484"/>
 		</Entity>
 		<Entity uid="4383">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
@@ -21302,75 +21275,45 @@
 			<Position x="52.07186" z="410.99729"/>
 			<Orientation y="3.1187"/>
 		</Entity>
-		<Entity uid="4385">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="29.98676" z="385.52118"/>
-			<Orientation y="0.57789"/>
-		</Entity>
 		<Entity uid="4386">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="70.07966" z="387.05542"/>
+			<Position x="73.90662" z="389.01868"/>
 			<Orientation y="-2.46482"/>
 		</Entity>
 		<Entity uid="4387">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="467.3679" z="459.41443"/>
+			<Position x="473.66633" z="471.73224"/>
 			<Orientation y="2.79723"/>
 		</Entity>
 		<Entity uid="4388">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="469.58017" z="453.2833"/>
+			<Position x="472.12598" z="460.67798"/>
 			<Orientation y="-2.47555"/>
 		</Entity>
 		<Entity uid="4389">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="459.11472" z="443.36371"/>
+			<Position x="453.90848" z="451.17347"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4390">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="478.61365" z="447.58942"/>
-			<Orientation y="-2.45241"/>
-		</Entity>
-		<Entity uid="4391">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="452.53602" z="422.81019"/>
-			<Orientation y="-3.0534"/>
-		</Entity>
-		<Entity uid="4392">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="451.73707" z="407.04255"/>
-			<Orientation y="3.11913"/>
+			<Position x="482.10578" z="457.91224"/>
+			<Orientation y="-2.7164"/>
 		</Entity>
 		<Entity uid="4393">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="468.50205" z="409.4853"/>
+			<Position x="439.9141" z="518.26697"/>
 			<Orientation y="0.418"/>
-		</Entity>
-		<Entity uid="4394">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="473.59559" z="424.32087"/>
-			<Orientation y="0.27323"/>
 		</Entity>
 		<Entity uid="4395">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="445.73047" z="516.99427"/>
+			<Position x="437.78104" z="509.64625"/>
 			<Orientation y="-1.3232"/>
 		</Entity>
 		<Entity uid="4396">
 			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="452.14277" z="521.23658"/>
+			<Position x="455.87925" z="509.9975"/>
 			<Orientation y="-0.76552"/>
-		</Entity>
-		<Entity uid="4397">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="426.56101" z="533.95228"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4398">
-			<Template>actor|geology/stonemine_mediterranean.xml</Template>
-			<Position x="427.25605" z="540.98395"/>
-			<Orientation y="-3.13967"/>
 		</Entity>
 		<Entity uid="4408">
 			<Template>gaia/flora_bush_grapes</Template>
@@ -21747,14 +21690,8 @@
 		<Entity uid="4511">
 			<Template>other/celt_longhouse</Template>
 			<Player>2</Player>
-			<Position x="90.6266" z="132.29654"/>
-			<Orientation y="2.563"/>
-		</Entity>
-		<Entity uid="4512">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>0</Player>
-			<Position x="106.28206" z="144.01407"/>
-			<Orientation y="-2.34803"/>
+			<Position x="74.71795" z="153.22724"/>
+			<Orientation y="2.33184"/>
 		</Entity>
 		<Entity uid="4513">
 			<Template>units/celt_support_female_citizen</Template>
@@ -21797,6 +21734,12 @@
 			<Player>2</Player>
 			<Position x="118.8926" z="114.54542"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4529">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="103.36625" z="146.67057"/>
+			<Orientation y="-2.35462"/>
 		</Entity>
 	</Entities>
 	<Paths/>

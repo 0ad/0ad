@@ -1,30 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
       </animations>
       <mesh>skeletal/m_dress_cuffs.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_celt_su3.xml" attachpoint="head"/>
         <prop actor="props/units/cape_m_long.xml" attachpoint="shoulders"/>
         <prop actor="props/units/heads/celt_hood_priest.xml" attachpoint="helmet"/>
+        <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="healer-outfit-1">
       <texture>skeletal/celt_healer_2.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

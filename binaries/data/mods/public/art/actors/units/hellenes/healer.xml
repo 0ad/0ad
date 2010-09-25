@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
         <animation file="biped/inf_staff_idle_a.dae" name="Idle" speed="200"/>
         <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="70"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
       </animations>
       <mesh>skeletal/m_dress_a.pmd</mesh>
       <props>
@@ -17,7 +15,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="healer-robe-1">
       <props>
@@ -29,7 +26,5 @@
       <texture>skeletal/hele_healer_2.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
