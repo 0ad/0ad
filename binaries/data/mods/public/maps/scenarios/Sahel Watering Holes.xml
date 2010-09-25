@@ -3,29 +3,29 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.19922" g="1.19922" b="1.19922"/>
-		<SunElevation angle="0.951868"/>
-		<SunRotation angle="-0.816638"/>
+		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunElevation angle="0.984816"/>
+		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.576471" g="0.541176" b="0.47451"/>
+		<UnitsAmbientColour r="0.486275" g="0.478431" b="0.427451"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>3.4623</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.508789</Murkiness>
-				<Tint r="0.611765" g="0.447059" b="0.219608"/>
+				<Murkiness>0.246094</Murkiness>
+				<Tint r="0.447059" g="0.415686" b="0.321569"/>
 				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
-				<ReflectionTintStrength>0.404297</ReflectionTintStrength>
+				<ReflectionTintStrength>0.458008</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="622.554" y="88.736" z="23.7662"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="115.233" y="103.859" z="422.746"/>
+		<Rotation angle="-0.0169829"/>
+		<Declination angle="0.523576"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {

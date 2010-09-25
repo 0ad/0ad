@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant>
-      <mesh>structural/hele_wg.pmd</mesh>
+      <mesh>structural/hele_gate.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/wall_gate.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/hellenes/gate_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/gate_door.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_1.dds</texture>
+      <texture>structural/hele_struct_b.png</texture>
     </variant>
   </group>
-
+  <material>player_trans.xml</material>
 </actor>

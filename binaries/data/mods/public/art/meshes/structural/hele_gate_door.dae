@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-09-25T09:15:09Z</created>
+    <modified>2010-09-25T09:15:09Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__327-image" name="Map__327">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_gate.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_15___Default" name="_15___Default">
+      <instance_effect url="#_15___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_15___Default-fx" name="_15___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__327-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Cube_002-lib" name="Cube_002Mesh">
+      <mesh>
+        <source id="Cube_002-lib-Position">
+          <float_array id="Cube_002-lib-Position-array" count="48">
+0.460430 -0.702090 9.466870
+0.460430 0.702090 9.466870
+0.460430 -0.702090 -0.925610
+0.460430 0.702090 -0.925610
+-4.694220 0.702090 9.466870
+-4.694220 -0.702090 9.466870
+-4.694220 0.702090 -0.925610
+-4.694220 -0.702090 -0.925610
+0.397370 0.702090 9.466870
+0.397370 -0.702090 9.466870
+0.397370 0.702090 -0.925610
+0.397370 -0.702090 -0.925610
+5.552020 -0.702090 9.466870
+5.552020 0.702090 9.466870
+5.552020 -0.702090 -0.925610
+5.552020 0.702090 -0.925610
+</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-lib-Position-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_002-lib-Normal0">
+          <float_array id="Cube_002-lib-Normal0-array" count="216">
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-lib-Normal0-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_002-lib-UV0">
+          <float_array id="Cube_002-lib-UV0-array" count="144">
+0.496140 0.928660
+0.992140 0.928660
+0.992140 0.001910
+0.992140 0.001910
+0.496140 0.001910
+0.496140 0.928660
+0.000000 0.934390
+0.496000 0.934390
+0.496000 0.000000
+0.496000 0.000000
+0.000000 0.000000
+0.000000 0.934390
+0.000000 0.823580
+0.497070 0.823580
+0.497070 0.708600
+0.497070 0.708600
+0.000000 0.708600
+0.000000 0.823580
+0.506840 0.268550
+0.000000 0.268550
+0.000000 0.423780
+0.000000 0.423780
+0.506840 0.423780
+0.506840 0.268550
+0.081400 0.000000
+0.081400 0.926760
+0.000000 0.926760
+0.000000 0.926760
+0.000000 0.000000
+0.081400 0.000000
+0.366210 0.926760
+0.366210 0.000000
+0.501330 0.000000
+0.501330 0.000000
+0.501330 0.926760
+0.366210 0.926760
+0.496140 0.928660
+0.992140 0.928660
+0.992140 0.001910
+0.992140 0.001910
+0.496140 0.001910
+0.496140 0.928660
+0.000000 0.928280
+0.496000 0.928280
+0.496000 0.000000
+0.496000 0.000000
+0.000000 0.000000
+0.000000 0.928280
+0.000000 0.823580
+0.497070 0.823580
+0.497070 0.708600
+0.497070 0.708600
+0.000000 0.708600
+0.000000 0.823580
+0.506840 0.268550
+0.000000 0.268550
+0.000000 0.423780
+0.000000 0.423780
+0.506840 0.423780
+0.506840 0.268550
+0.081400 0.000000
+0.081400 0.926760
+0.000000 0.926760
+0.000000 0.926760
+0.000000 0.000000
+0.081400 0.000000
+0.366210 0.926760
+0.366210 0.000000
+0.501330 0.000000
+0.501330 0.000000
+0.501330 0.926760
+0.366210 0.926760
+</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-lib-UV0-array" count="72" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_002-lib-Vertex">
+          <input semantic="POSITION" source="#Cube_002-lib-Position"/>
+        </vertices>
+        <polygons material="_15___Default" count="24">
+          <input semantic="VERTEX" offset="0" source="#Cube_002-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Cube_002-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Cube_002-lib-UV0"/>
+          <p>0 0 0 5 1 1 7 2 2</p>
+          <p>7 3 3 2 4 4 0 5 5</p>
+          <p>4 6 6 1 7 7 3 8 8</p>
+          <p>3 9 9 6 10 10 4 11 11</p>
+          <p>5 12 12 0 13 13 1 14 14</p>
+          <p>1 15 15 4 16 16 5 17 17</p>
+          <p>2 18 18 7 19 19 6 20 20</p>
+          <p>6 21 21 3 22 22 2 23 23</p>
+          <p>7 24 24 5 25 25 4 26 26</p>
+          <p>4 27 27 6 28 28 7 29 29</p>
+          <p>0 30 30 2 31 31 3 32 32</p>
+          <p>3 33 33 1 34 34 0 35 35</p>
+          <p>8 36 36 13 37 37 15 38 38</p>
+          <p>15 39 39 10 40 40 8 41 41</p>
+          <p>12 42 42 9 43 43 11 44 44</p>
+          <p>11 45 45 14 46 46 12 47 47</p>
+          <p>13 48 48 8 49 49 9 50 50</p>
+          <p>9 51 51 12 52 52 13 53 53</p>
+          <p>10 54 54 15 55 55 14 56 56</p>
+          <p>14 57 57 11 58 58 10 59 59</p>
+          <p>15 60 60 13 61 61 12 62 62</p>
+          <p>12 63 63 14 64 64 15 65 65</p>
+          <p>8 66 66 10 67 67 11 68 68</p>
+          <p>11 69 69 9 70 70 8 71 71</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Cube_002" name="Cube_002">
+        <scale sid="scale">1.003147 0.464487 0.945892</scale>
+        <node id="Cube_002-Pivot" name="Cube_002-Pivot">
+          <translate>-0.327560 -0.910740 0.991040</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#Cube_002-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__327-Material" target="#Map__327-Material"/>
+                <instance_material symbol="_15___Default" target="#_15___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
