@@ -3,34 +3,46 @@
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Spartan Phalangite</SpecificName>
-    <IconCell>13</IconCell>
+	<IconSheet>snPortraitSheetHele</IconSheet>
+    <IconCell>12</IconCell>
     <Tooltip>Bonused vs. Cavalry and Infantry. Weak vs. Ranged Units. Uses the Syntagma Formation.</Tooltip>
-    <History>The 3rd Century BC saw the brief rise of a resurgent Sparta. Eager to regain past glory, the Spartan kings Agis and Cleomenes briefly resurrected the ancient Spartan laws and nearly reconquered the Peloponese. If not for the intervention of the Macedonians in both insurrections Sparta would have reigned victorious. This soldier here is a Spartan armed in the 'Macedonian fashion' with a small round pelta shield and the line pike, or "Sarissa" for use in the Syntagma phalanx formation.</History>
+    <History>The 3rd Century BC saw the brief rise of a resurgent Sparta. Eager to regain past glory, the Spartan kings Agis and Cleomenes briefly resurrected the ancient Spartan laws and nearly reconquered the Peloponnese. If not for the intervention of the Macedonians in both insurrections Sparta would have reigned victorious. This soldier here is a Spartan armed in the 'Macedonian fashion' with a small round pelta shield and the line pike, or "Sarissa" for use in the Syntagma phalanx formation.</History>
   </Identity>
   <Cost>
+    <BuildTime>27</BuildTime>
     <Resources>
-      <food>70</food>
-      <wood>75</wood>
-      <metal>50</metal>
+      <wood>63</wood>
+      <metal>30</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>125</Max>
+    <Max>140</Max>
   </Health>
+  <Stamina>
+    <Max>580</Max>
+  </Stamina>
   <Armour>
-    <Hack>8.5</Hack>
-    <Pierce>7.0</Pierce>
-    <Crush>14.0</Crush>
+    <Hack>12.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>16.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>5.2</WalkSpeed>
+    <Run>
+      <Speed>13.0</Speed>
+    </Run>
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>9.0</Hack>
-      <Pierce>28.0</Pierce>
-      <MaxRange>7.25</MaxRange>
+      <Hack>10.0</Hack>
+      <Pierce>35.0</Pierce>
+      <MaxRange>7.0</MaxRange>
     </Melee>
+    <Charge>
+      <Hack>30.5</Hack>
+      <Pierce>50.0</Pierce>
+      <MaxRange>7.0</MaxRange>
+    </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/spartan_pikeman.xml</Actor>
