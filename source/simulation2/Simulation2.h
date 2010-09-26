@@ -115,6 +115,12 @@ public:
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
 	/**
+	 * Returns the last frame offset passed to Interpolate(), i.e. the offset corresponding
+	 * to the currently-rendered scene.
+	 */
+	float GetLastFrameOffset() const;
+
+	/**
 	 * Construct a new entity and add it to the world.
 	 * @param templateName see ICmpTemplateManager for syntax
 	 * @return the new entity ID, or INVALID_ENTITY on error

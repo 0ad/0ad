@@ -759,3 +759,22 @@ function performCommand(entity, commandName)
 		}
 	}
 }
+
+// Set the camera to follow the given unit
+function setCameraFollow(entity)
+{
+	// Follow the given entity if it's a unit
+	if (entity)
+	{
+		var entState = GetEntityState(entity);
+		if (entState && isUnit(entState))
+		{
+			Engine.CameraFollow(entity);
+			return;
+		}
+	}
+
+	// Otherwise stop following
+	Engine.CameraFollow(0);
+}
+

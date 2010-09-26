@@ -83,6 +83,7 @@ public:
 		m_ComponentManager.ResetState();
 
 		m_DeltaTime = 0.0;
+		m_LastFrameOffset = 0.0f;
 		m_TurnNumber = 0;
 
 		CParamNode noParam;
@@ -133,6 +134,7 @@ public:
 	CSimContext m_SimContext;
 	CComponentManager m_ComponentManager;
 	double m_DeltaTime;
+	float m_LastFrameOffset;
 
 	std::wstring m_StartupScript;
 	CScriptValRooted m_MapSettings;
@@ -245,6 +247,8 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 void CSimulation2Impl::Interpolate(float frameLength, float frameOffset)
 {
+	m_LastFrameOffset = frameOffset;
+
 	CMessageInterpolate msg(frameLength, frameOffset);
 	m_ComponentManager.BroadcastMessage(msg);
 }
@@ -374,6 +378,11 @@ void CSimulation2::RenderSubmit(SceneCollector& collector, const CFrustum& frust
 {
 	CMessageRenderSubmit msg(collector, frustum, culling);
 	m->m_ComponentManager.BroadcastMessage(msg);
+}
+
+float CSimulation2::GetLastFrameOffset() const
+{
+	return m->m_LastFrameOffset;
 }
 
 bool CSimulation2::LoadScripts(const VfsPath& path)

@@ -62,6 +62,11 @@
 		<object hotkey="killUnit">
 			<action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
 		</object>
+
+		<!-- camera.follow mode - follow the first unit in the selection -->
+		<object hotkey="camera.follow">
+			<action on="Press">setCameraFollow(g_Selection.toList()[0]);</action>
+		</object>
 		
 		<!-- ================================  ================================ -->
 		<!-- Developer / Debug items -->

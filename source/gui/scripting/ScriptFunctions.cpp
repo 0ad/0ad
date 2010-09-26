@@ -73,11 +73,6 @@ void PopGuiPage(void* UNUSED(cbdata))
 	g_GUI->PopPage();
 }
 
-bool IsNewSimulation(void* UNUSED(cbdata))
-{
-	return true; // XXX: delete this function
-}
-
 CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
@@ -317,6 +312,16 @@ void SetRevealMap(void* UNUSED(cbdata), bool enabled)
 		cmpRangeManager->SetLosRevealAll(enabled);
 }
 
+/**
+ * Start / stop camera following mode
+ * @param entityid unit id to follow. If zero, stop following mode
+ */
+void CameraFollow(void* UNUSED(cbdata), entity_id_t entityid)
+{
+	if (g_Game && g_Game->GetView())
+		g_Game->GetView()->CameraFollow(entityid);
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -328,7 +333,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &PopGuiPage>("PopGuiPage");
 
 	// Simulation<->GUI interface functions:
-	scriptInterface.RegisterFunction<bool, &IsNewSimulation>("IsNewSimulation");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, CScriptVal, &GuiInterfaceCall>("GuiInterfaceCall");
 	scriptInterface.RegisterFunction<void, CScriptVal, &PostNetworkCommand>("PostNetworkCommand");
 
@@ -357,4 +361,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapData>("LoadMapData");
 	scriptInterface.RegisterFunction<void, bool, &SetRevealMap>("SetRevealMap");
+	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 }

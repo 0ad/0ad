@@ -52,6 +52,7 @@
 #include "scripting/ScriptableObject.h"
 #include "simulation/LOSManager.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPosition.h"
 
 extern int g_xres, g_yres;
 
@@ -157,6 +158,7 @@ public:
 		LockCullCamera(false),
 		ConstrainCamera(true),
 		Culling(true),
+		FollowEntity(INVALID_ENTITY),
 
 		// Dummy values (these will be filled in by the config file)
 		ViewScrollSpeed(0),
@@ -234,6 +236,11 @@ public:
 	CLightEnv CachedLightEnv;
 
 	CCinemaManager TrackManager;
+
+	/**
+	 * Entity for the camera to follow, or INVALID_ENTITY if none.
+	 */
+	entity_id_t FollowEntity;
 
 	////////////////////////////////////////
 	// Settings
@@ -574,7 +581,7 @@ void CGameView::Update(float DeltaTime)
 
 	// TODO: this is probably not an ideal place for this, it should probably go
 	// in a CCmpWaterManager or some such thing (once such a thing exists)
-	if (!g_Game->m_Paused)
+	if (!m->Game->m_Paused)
 		g_Renderer.GetWaterManager()->m_WaterTexTimer += DeltaTime;
 
 	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
@@ -639,12 +646,46 @@ void CGameView::Update(float DeltaTime)
 
 	if (moveRightward || moveForward)
 	{
+		// Break out of following mode when the user starts scrolling
+		m->FollowEntity = INVALID_ENTITY;
+
 		float s = sin(m->RotateY.GetSmoothedValue());
 		float c = cos(m->RotateY.GetSmoothedValue());
 		m->PosX.AddSmoothly(c * moveRightward);
 		m->PosZ.AddSmoothly(-s * moveRightward);
 		m->PosX.AddSmoothly(s * moveForward);
 		m->PosZ.AddSmoothly(c * moveForward);
+	}
+
+	if (m->FollowEntity)
+	{
+		CmpPtr<ICmpPosition> cmpPosition(*(m->Game->GetSimulation2()), m->FollowEntity);
+		if (!cmpPosition.null() && cmpPosition->IsInWorld())
+		{
+			// Get the most recent interpolated position
+			float frameOffset = m->Game->GetSimulation2()->GetLastFrameOffset();
+			CVector3D pos = cmpPosition->GetInterpolatedTransform(frameOffset, false).GetTranslation();
+
+			// move the camera after unit
+			// use smoothed values of rotation around X and Y, since we need to hold user's rotation done
+			// in this function above
+			CCamera targetCam = m->ViewCamera;
+			targetCam.m_Orientation.SetIdentity();
+			targetCam.m_Orientation.RotateX(m->RotateX.GetSmoothedValue());
+			targetCam.m_Orientation.RotateY(m->RotateY.GetSmoothedValue());
+			targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+
+			CVector3D pivot = targetCam.GetFocus();
+			CVector3D delta = pos - pivot;
+			m->PosX.AddSmoothly(delta.X);
+			m->PosY.AddSmoothly(delta.Y);
+			m->PosZ.AddSmoothly(delta.Z);
+		}
+		else
+		{
+			// The unit disappeared (died or garrisoned etc), so stop following it
+			m->FollowEntity = INVALID_ENTITY;
+		}
 	}
 
 	if (hotkeys[HOTKEY_CAMERA_ZOOM_IN])
@@ -785,6 +826,9 @@ void CGameView::MoveCameraTarget(const CVector3D& target)
 	m->PosZ.SetValueSmoothly(delta.Z + m->PosZ.GetValue());
 
 	ClampDistance(m, false);
+
+	// Break out of following mode so the camera really moves to the target
+	m->FollowEntity = INVALID_ENTITY;
 }
 
 void CGameView::ResetCameraTarget(const CVector3D& target)
@@ -803,6 +847,9 @@ void CGameView::ResetCameraTarget(const CVector3D& target)
 
 	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
+
+	// Break out of following mode so the camera really moves to the target
+	m->FollowEntity = INVALID_ENTITY;
 }
 
 void CGameView::ResetCameraAngleZoom()
@@ -822,6 +869,11 @@ void CGameView::ResetCameraAngleZoom()
 	// Reset orientations to default
 	m->RotateX.SetValueSmoothly(DEGTORAD(m->ViewRotateXDefault));
 	m->RotateY.SetValueSmoothly(DEGTORAD(m->ViewRotateYDefault));
+}
+
+void CGameView::CameraFollow(entity_id_t entity)
+{
+	m->FollowEntity = entity;
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)

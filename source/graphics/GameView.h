@@ -23,6 +23,7 @@ extern float g_MaxZoomHeight;	//note:  Max terrain height is this minus YMinOffs
 extern float g_YMinOffset;
 
 #include "renderer/Scene.h"
+#include "simulation2/system/Entity.h"
 
 #include "lib/input.h" // InReaction - can't forward-declare enum
 
@@ -85,6 +86,7 @@ public:
 	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
 	void ResetCameraAngleZoom();
+	void CameraFollow(entity_id_t entity);
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();
