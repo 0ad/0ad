@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Identity>
+    <Civ>celt</Civ>
+    <GenericName>Special Building</GenericName>
+    <SpecificName>Kennel</SpecificName>
+    <Tooltip>Train Celtic war dogs, who are excellent hunters.</Tooltip>
+  </Identity>
+  <Cost>
+    <PopulationBonus>0</PopulationBonus>
+    <BuildTime>60</BuildTime>
+    <Resources>
+      <wood>75</wood>
+      <stone>75</stone>
+    </Resources>
+  </Cost>
+  <VisualActor>
+    <Actor>structures/celts/kennel.xml</Actor>
+  </VisualActor>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/celt_cavalry_spearman_b
+    </Entities>
+  </TrainingQueue>
+  <Footprint>
+    <Square width="18.0" depth="16.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="16.5" depth="13.0"/>
+  </Obstruction>
+</Entity>

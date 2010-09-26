@@ -47,9 +47,12 @@
     <Actor>units/celts/cavalry_spearman_b.xml</Actor>
   </VisualActor>
   <Footprint>
-    <Circle radius="0.6"/>
-    <Height>3.0</Height>
+    <Circle radius="1.5"/>
+    <Height>1.5</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="1.0"/>
+  </Obstruction>
   <Vision>
     <Range>40</Range>
   </Vision>
