@@ -8,12 +8,15 @@
   </Identity>
   <Cost>
     <PopulationBonus>0</PopulationBonus>
-    <BuildTime>60</BuildTime>
+    <BuildTime>50</BuildTime>
     <Resources>
-      <wood>75</wood>
-      <stone>75</stone>
+      <wood>50</wood>
+      <stone>50</stone>
     </Resources>
   </Cost>
+  <Health>
+    <Max>500</Max>
+  </Health>
   <VisualActor>
     <Actor>structures/celts/kennel.xml</Actor>
   </VisualActor>
@@ -23,10 +26,10 @@
     </Entities>
   </TrainingQueue>
   <Footprint>
-    <Square width="18.0" depth="16.0"/>
+    <Square width="8.0" depth="7.0"/>
     <Height>5.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="16.5" depth="13.0"/>
+    <Static width="7.5" depth="6.75"/>
   </Obstruction>
 </Entity>

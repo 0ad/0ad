@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_house">
+  <Identity>
+    <Civ>celt</Civ>
+    <GenericName>Tavern</GenericName>
+    <SpecificName>Tavern</SpecificName>
+    <History>Taverns are where Celtic warriors go for a tall glass of mead after a hard-won battle. Some might even find rest in one of the back rooms for rent in this seedy establishment.</History>
+	<Tooltip>Add +10 to Population Cap. Heal units around it.</Tooltip>
+  </Identity>
+  <Cost>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>100</wood>
+      <stone>100</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>1500</Max>
+  </Health>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/celt_support_trader
+    </Entities>
+  </TrainingQueue>
+  <Footprint>
+    <Square width="18.0" depth="18.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="17.0" depth="17.0"/>
+  </Obstruction>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
+  <Auras>
+    <Heal>
+      <Radius>30</Radius>
+      <Speed>1000</Speed>
+    </Heal>
+  </Auras>
+  <VisualActor>
+    <Actor>structures/celts/tavern.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
+</Entity>

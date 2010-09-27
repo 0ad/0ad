@@ -2,7 +2,7 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunny</SkySet>
+		<SkySet>cirrus</SkySet>
 		<SunColour r="1.47461" g="1.47461" b="1.47461"/>
 		<SunElevation angle="0.951868"/>
 		<SunRotation angle="-0.532844"/>
@@ -15,17 +15,17 @@
 				<Height>17.6262</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.224609</Murkiness>
-				<Tint r="0.611765" g="0.447059" b="0.219608"/>
-				<ReflectionTint r="0.764706" g="0.741176" b="0.67451"/>
-				<ReflectionTintStrength>0.423828</ReflectionTintStrength>
+				<Murkiness>0.458008</Murkiness>
+				<Tint r="0.447059" g="0.415686" b="0.321569"/>
+				<ReflectionTint r="0.623529" g="0.588235" b="0.47451"/>
+				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="105.776" y="94.361" z="20.8915"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="115.445" y="100.924" z="4.86485"/>
+		<Rotation angle="0.0457285"/>
+		<Declination angle="0.556061"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -21710,6 +21710,48 @@
 			<Player>2</Player>
 			<Position x="113.94562" z="111.68801"/>
 			<Orientation y="2.34278"/>
+		</Entity>
+		<Entity uid="4569">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="548.36103" z="600.2027"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4570">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="553.83228" z="596.09571"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4571">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="552.28882" z="587.10785"/>
+			<Orientation y="1.01822"/>
+		</Entity>
+		<Entity uid="4572">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="558.16456" z="576.72138"/>
+			<Orientation y="-2.52717"/>
+		</Entity>
+		<Entity uid="4573">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="545.71991" z="567.93396"/>
+			<Orientation y="-1.14916"/>
+		</Entity>
+		<Entity uid="4574">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="544.0146" z="582.15967"/>
+			<Orientation y="0.1832"/>
+		</Entity>
+		<Entity uid="4575">
+			<Template>other/celt_tavern</Template>
+			<Player>2</Player>
+			<Position x="147.9222" z="119.67664"/>
+			<Orientation y="-2.27611"/>
 		</Entity>
 	</Entities>
 	<Paths/>

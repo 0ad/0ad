@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="110"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
         <animation event="0.4" file="biped/not used/ijv_def_02.psa" load="0" name="Melee" speed="100"/>
         <animation file="biped/not used/ijv_def_03.psa" name="Melee" speed="100"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
@@ -31,11 +30,11 @@
       <props>
         <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
       </props>
       <texture>skeletal/celt_ijv_b_01.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
@@ -49,7 +48,7 @@
     <variant name="gather_tree">
       <props>
         <prop attachpoint="shield"/>
-		<prop attachpoint="r_hand"/>
+        <prop attachpoint="r_hand"/>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
       </props>
     </variant>
@@ -63,7 +62,7 @@
     <variant name="gather_fruit">
       <props>
         <prop attachpoint="shield"/>
-		<prop attachpoint="r_hand"/>
+        <prop attachpoint="r_hand"/>
         <prop attachpoint="l_hand"/>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
       </props>
@@ -71,22 +70,22 @@
     <variant name="gather_meat">
       <props>
         <prop attachpoint="shield"/>
-		<prop attachpoint="r_hand"/>
+        <prop attachpoint="r_hand"/>
         <prop attachpoint="l_hand"/>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
       </props>
     </variant>
     <variant name="gather_rock">
       <props>
-		<prop attachpoint="shield"/>
-		<prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
       </props>
     </variant>
     <variant name="gather_ore">
       <props>
         <prop attachpoint="shield"/>
-		<prop attachpoint="r_hand"/>
+        <prop attachpoint="r_hand"/>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
       </props>
     </variant>
@@ -98,7 +97,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
