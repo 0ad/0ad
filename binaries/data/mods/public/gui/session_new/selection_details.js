@@ -99,7 +99,7 @@ function displayGeneralInfo(entState, template)
 	
 	// Set Captions
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("player").caption = civName == GAIA? playerName : playerName + " (" + civName + ")";
+	getGUIObjectByName("player").caption = civName == GAIA? playerName : playerName + " (" + civName + ")"; // Don't need civ tooltip for Gaia Player - redundant
 	getGUIObjectByName("player").textcolor = playerColor;
 
 
@@ -116,12 +116,11 @@ function displayGeneralInfo(entState, template)
 	}
 
 	// Tooltips
-//	getGUIObjectByName("sdSpecific").tooltip = genericName;
+//	getGUIObjectByName("specific").tooltip = genericName;
+	getGUIObjectByName("health").tooltip = hitpoints;
 	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
 	getGUIObjectByName("armourIcon").tooltip = damageTypesToText(entState.armour);
 
-//	getGUIObjectByName("player").tooltip = civName != GAIA? civName : ""; // Don't need civ tooltip for Gaia Player - redundant
-	getGUIObjectByName("health").tooltip = hitpoints;
 
 	// Icon Tooltip
 	var iconTooltip = "";

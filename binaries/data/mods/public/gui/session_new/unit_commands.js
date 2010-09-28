@@ -329,14 +329,17 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 		var commands = getEntityCommandsList(entState);
 		if (commands.length)
+
 			setupUnitPanel("Command", usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item); } );
 
+		getGUIObjectByName("player").hidden = true;
 		supplementalDetailsPanel.hidden = false;
 		commandsPanel.hidden = false;
 	}
 	else
 	{
+		getGUIObjectByName("player").hidden = false;
 		getGUIObjectByName("stamina").hidden = true;
 		supplementalDetailsPanel.hidden = true;
 		commandsPanel.hidden = true;

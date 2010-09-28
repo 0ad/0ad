@@ -116,20 +116,9 @@ function onTick()
 
 	// When training is blocked, flash population (alternates colour every 500msec)
 	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)
-		getGUIObjectByName("populationWarning").hidden = false;
-	else
-		getGUIObjectByName("populationWarning").hidden = true;
-	
-	
-	
-	
-	/*
-	// When training is blocked, flash population (alternates colour every 500msec)
-	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)
-		getGUIObjectByName("resourcePop").textcolor = "255 0 0";
+		getGUIObjectByName("resourcePop").textcolor = "255 165 0";
 	else
 		getGUIObjectByName("resourcePop").textcolor = "white";
-	*/
 }
 
 function onSimulationUpdate()

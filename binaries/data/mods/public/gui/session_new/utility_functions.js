@@ -123,31 +123,31 @@ function getFormationCellId(formationName)
 {
 	switch (formationName)
 	{
-	case "Fromation0":
+	case "Formation0":
 		return 0;
-	case "Fromation1":
+	case "Formation1":
 		return 1;
-	case "Fromation2":
+	case "Formation2":
 		return 2;
-	case "Fromation3":
+	case "Formation3":
 		return 3;
-	case "Fromation4":
+	case "Formation4":
 		return 4;
-	case "Fromation5":
+	case "Formation5":
 		return 5;
-	case "Fromation6":
+	case "Formation6":
 		return 6;
-	case "Fromation7":
+	case "Formation7":
 		return 7;
-	case "Fromation8":
+	case "Formation8":
 		return 8;
-	case "Fromation9":
+	case "Formation9":
 		return 9;
-	case "Fromation10":
+	case "Formation10":
 		return 10;	
-	case "Fromation11":
+	case "Formation11":
 		return 11;
-	case "Fromation12":
+	case "Formation12":
 		return 12;
 	default:
 		return -1;
@@ -169,19 +169,19 @@ function getEntityFormationsList(entState)
 {
 	var formations = [];
 
-	formations.push("Fromation0");
-	formations.push("Fromation1");
-	formations.push("Fromation2");
-	formations.push("Fromation3");
-	formations.push("Fromation4");
-	formations.push("Fromation5");
-	formations.push("Fromation6");
-	formations.push("Fromation7");
-	formations.push("Fromation8");
-	formations.push("Fromation9");
-	formations.push("Fromation10");
-	formations.push("Fromation11");
-	formations.push("Fromation12");
+	formations.push("Formation0");
+	formations.push("Formation1");
+	formations.push("Formation2");
+	formations.push("Formation3");
+	formations.push("Formation4");
+	formations.push("Formation5");
+	formations.push("Formation6");
+	formations.push("Formation7");
+	formations.push("Formation8");
+	formations.push("Formation9");
+	formations.push("Formation10");
+	formations.push("Formation11");
+	formations.push("Formation12");
 	return formations;
 }
 

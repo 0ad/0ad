@@ -52,10 +52,15 @@
 					["Yes", "No!"], [leaveGame, null]);
 			]]></action>
 		</object>
-		
+
 		<!-- Depending on the current state, it either opens message window or closes message window / posts message -->
 		<object hotkey="chat">
 			<action on="Press">toggleChatWindow();</action>
+		</object>
+
+		<!-- Depending on the current state, it either opens message window or closes message window / posts message -->
+		<object hotkey="pause">
+			<action on="Press">togglePause();</action>
 		</object>
 		
 		<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
@@ -158,7 +163,7 @@
 
 		<!-- Chat window -->
 		<object name="chatWindow" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" z="10" style="sessionPanel">
-			<object name="chatInput" size="12 12 100%-12 36" type="input" style="wheatInput" max_length="80">
+			<object name="chatInput" size="16 12 100%-16 36" type="input" style="chatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
@@ -172,7 +177,80 @@
 			</object>
 
 		</object>
-		
+
+		<!-- ================================  ================================ -->
+		<!-- Menu -->
+		<!-- ================================  ================================ -->
+		<object name="menuPanel"
+			size="50%-74 50%-180 50%+74 50%+20"
+			type="image"
+			style="sessionPanel"
+			hidden="true"
+		>
+			<object size="0 0 100% 32" type="text" style="largeBoldCenteredText">Menu</object >
+
+			<object size="0 32 100% 100%">
+				<!-- Settings button -->
+				<object type="button"
+					name="settingsButton"
+					style="wheatButtonFancy"
+					size="50%-60 0 50%+60 32"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsButtonText" ghost="true">Settings</object>
+					<action on="Press">toggleSettingsWindow();</action>
+				</object>
+
+				<!-- Chat button -->
+				<object type="button"
+					name="chatButton"
+					style="wheatButtonFancy"
+					size="50%-60 32 50%+60 64"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" style="centeredText" name="chatButtonText" ghost="true">Chat</object>
+					<action on="Press">toggleChatWindow();</action>
+				</object>
+
+				<!-- Pause Button -->
+				<object type="button"
+					style="wheatButtonFancy"
+					name="pauseButton"
+					size="50%-60 64 50%+60 96"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
+					<action on="Press">togglePause();</action>
+				</object>
+
+				<!-- Exit button -->
+				<object type="button"
+					name="exitButton"
+					style="wheatButtonFancy"
+					size="50%-60 96 50%+60 128"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
+					<action on="Press">
+						toggleMenu();
+						<![CDATA[messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0, ["Yes", "No!"], [leaveGame, null]);]]>
+					</action>
+				</object>
+				
+				<!-- Cancel Button -->
+				<object type="button"
+					style="wheatButtonFancy"
+					name="cancelButton"
+					size="50%-60 128 50%+60 160"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Cancel</object>
+					<action on="Press">this.parent.parent.hidden=true;</action>
+				</object>
+			</object>
+
+		</object>
+
 		<!-- ================================  ================================ -->
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
@@ -183,10 +261,10 @@
 			hidden="true"
 			z="30"
 		>
-			<object size="50%-100 -16 50%+100 16" name="settingsTitleBar" style="wheatWindowTitleBar" type="text">Settings</object>
+			<object size="0 0 100% 32" type="text" style="largeBoldCenteredText">Settings</object >
 
 			<object name="settingsOptions"
-				size="30 30 100%-30 150"
+				size="30 36 100%-30 180"
 				type="image"
 				style="sessionPanel"
 			>
@@ -243,34 +321,33 @@
 			size="0 3 500 100%-3"
 		>	
 			<!-- Food -->
-			<object size="6 0 96 100%" type="image" sprite="resourceBox" tooltip="Food" tooltip_style="snToolTip">
+			<object size="6 0 96 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="snToolTip">
 				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
+				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
 			<!-- Wood -->
-			<object size="98 0 188 100%" type="image" sprite="resourceBox" tooltip="Wood" tooltip_style="snToolTip">
-				<object size="0 -4 28 22" type="image"  style="resourceIcon" cell_id="1"/>
-				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
+			<object size="98 0 188 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="snToolTip">
+				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="1"/>
+				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 			</object>
 
 			<!-- Stone -->
-			<object size="190 0 280 100%" type="image" sprite="resourceBox" tooltip="Stone" tooltip_style="snToolTip">
+			<object size="190 0 280 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="snToolTip">
 				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="2"/>
-				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
+				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 			</object>
 
 			<!-- Metal -->
-			<object size="282 0 372 100%"  type="image" sprite="resourceBox" tooltip="Metal" tooltip_style="snToolTip">
+			<object size="282 0 372 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="snToolTip">
 				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="3"/>
-				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
+				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 			</object>
 
 			<!-- Population -->
-			<object size="374 0 464 100%" type="image" sprite="resourceBox" tooltip="Population (current / maximum)" tooltip_style="snToolTip">
-				<object name="populationWarning" type="image" sprite="populationWarning" ghost="true" hidden="false"/>
+			<object size="374 0 464 100%" type="image" style="resourceCounter" tooltip="Population (current / maximum)" tooltip_style="snToolTip">
 				<object size="0 -5 28 21" type="image" style="resourceIcon" cell_id="4"/>
-				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
+				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
 
@@ -282,76 +359,18 @@
 		<!-- ================================  ================================ -->
 		<!-- Phase -->
 		<!-- ================================  ================================ -->
-		<object size="67%-100 0%-4 67%+100 26" name="PhaseTitleBar" style="wheatWindowTitleBar" type="text">Village</object>
+		<object size="67%-100 1 67%+100 26" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white">Phase: Village</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Menu Details -->
+		<!-- Menu Button -->
 		<!-- ================================  ================================ -->
 		<object type="button"
 			name="menuButton"
-			style="wheatButtonFancy"
-			size="100%-114 1 100%+2 27"
+			size="100%-100 0 100% 24"
 			tooltip_style="snToolTip"
 		>
-			<object size="0 0 100% 100%" type="text" style="largeBoldCenteredText" name="menuButtonText" ghost="true">Menu</object>
+			<object size="0 0 100% 100%" type="text" style="largeBoldCenteredText" name="menuButtonText" ghost="true">MENU</object>
 			<action on="Press">toggleMenu();</action>
-
-			<!-- Menu Panel -->
-			<object name="menuPanel"
-				size="100%-116 0 100% 130"
-				type="image"
-				sprite="menuBackground"
-				hidden="true"
-				z="-10"
-			>
-				<!-- Settings button -->
-				<object type="button"
-					name="settingsButton"
-					style="wheatButtonFancy"
-					size="0 26 114 52"
-					tooltip_style="snToolTip"
-				>
-					<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsButtonText" ghost="true">Settings</object>
-					<action on="Press">toggleSettingsWindow();</action>
-				</object>
-
-				<!-- Chat button -->
-				<object type="button"
-					name="chatButton"
-					style="wheatButtonFancy"
-					size="0 52 114 78"
-					tooltip_style="snToolTip"
-				>
-					<object size="0 0 100% 100%" type="text" style="centeredText" name="chatButtonText" ghost="true">Chat</object>
-					<action on="Press">toggleChatWindow();</action>
-				</object>
-
-				<!-- Pause Button -->
-				<object type="button"
-					style="wheatButtonFancy"
-					name="pauseButton"
-					size="0 78 114 104"
-					tooltip_style="snToolTip"
-				>
-					<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
-					<action on="Press">togglePause();</action>
-				</object>
-
-				<!-- Exit button -->
-				<object type="button"
-					name="exitButton"
-					style="wheatButtonFancy"
-					size="0 104 114 130"
-					tooltip_style="snToolTip"
-				>
-					<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
-					<action on="Press">
-						toggleMenu();
-						<![CDATA[messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0, ["Yes", "No!"], [leaveGame, null]);]]>
-					</action>
-				</object>
-			</object>
-
 		</object> <!-- END OF MENU -->
 		
 	</object> <!-- END OF TOP PANEL -->
@@ -497,7 +516,6 @@
 			<object name="unitCommandPanel"
 				size="0 100%-35 100% 100%"
 				type="image"
-				sprite="titleBar"
 				z="30"
 			>
 				<object size="0 4 100% 100%-2">

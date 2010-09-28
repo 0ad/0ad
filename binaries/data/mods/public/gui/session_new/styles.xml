@@ -63,12 +63,11 @@
 		textcolor="white"
 		font="serif-bold-14"
 		ghost="true"
-		text_align="right"
+		text_align="left"
 		text_valign="center"
 	/>
 
 	<style name="resourceCounter"
-		sprite="resourceBox"
 		tooltip_style="snToolTip"
 	/>
 
@@ -157,7 +156,7 @@
 
 	<style name="largeBoldCenteredText"
 		font="serif-bold-18"
-		textcolor="black"
+		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
@@ -177,6 +176,13 @@
 		textcolor_selected="white"
 		text_align="left"
 		text_valign="top"
+	/>
+	
+	<style  name="chatInput"
+		sprite="chatInput"
+		sprite_selectarea="chatInputHighlight"
+		textcolor="white"
+		textcolor_selected="darkgray"
 	/>
 	
 	<style name="notificationPanel"
