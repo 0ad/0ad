@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="147.641" y="101.401" z="-22.7813"/>
+		<Position x="156.857" y="84.2158" z="-10.2362"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -939,6 +939,168 @@
 			<Player>0</Player>
 			<Position x="28.89736" z="106.77501"/>
 			<Orientation y="-3.01966"/>
+		</Entity>
+		<Entity uid="328">
+			<Template>units/celt_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="116.81377" z="107.9598"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="329">
+			<Template>units/celt_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="119.46576" z="110.53995"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="330">
+			<Template>units/celt_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="121.85868" z="113.35084"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="331">
+			<Template>units/celt_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="116.54921" z="87.36548"/>
+			<Orientation y="2.96595"/>
+		</Entity>
+		<Entity uid="332">
+			<Template>units/celt_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="110.09073" z="90.88297"/>
+			<Orientation y="-0.65683"/>
+		</Entity>
+		<Entity uid="333">
+			<Template>units/celt_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="104.254" z="97.80645"/>
+			<Orientation y="0.459"/>
+		</Entity>
+		<Entity uid="334">
+			<Template>units/celt_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="107.16358" z="102.23871"/>
+			<Orientation y="-2.71793"/>
+		</Entity>
+		<Entity uid="335">
+			<Template>units/celt_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="106.76247" z="90.8127"/>
+			<Orientation y="0.03522"/>
+		</Entity>
+		<Entity uid="336">
+			<Template>units/celt_cavalry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="126.25403" z="118.29226"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="337">
+			<Template>units/celt_cavalry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="129.5979" z="121.49282"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="338">
+			<Template>units/celt_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="132.47362" z="123.96271"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="348">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="153.08875" z="87.36101"/>
+			<Orientation y="-0.63985"/>
+		</Entity>
+		<Entity uid="349">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="151.64098" z="86.1002"/>
+			<Orientation y="-0.47414"/>
+		</Entity>
+		<Entity uid="350">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="150.26313" z="83.54554"/>
+			<Orientation y="-0.67972"/>
+		</Entity>
+		<Entity uid="351">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="154.8991" z="88.03542"/>
+			<Orientation y="-0.17632"/>
+		</Entity>
+		<Entity uid="352">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="157.04571" z="91.28187"/>
+			<Orientation y="-0.43892"/>
+		</Entity>
+		<Entity uid="353">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="159.53309" z="91.90114"/>
+			<Orientation y="-0.51851"/>
+		</Entity>
+		<Entity uid="354">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="161.00834" z="93.81647"/>
+			<Orientation y="-0.64078"/>
+		</Entity>
+		<Entity uid="355">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="162.5537" z="95.8228"/>
+			<Orientation y="-0.4475"/>
+		</Entity>
+		<Entity uid="356">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="163.86487" z="92.08875"/>
+			<Orientation y="-0.4211"/>
+		</Entity>
+		<Entity uid="357">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="161.79323" z="89.36118"/>
+			<Orientation y="-0.22889"/>
+		</Entity>
+		<Entity uid="358">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="160.6123" z="87.08341"/>
+			<Orientation y="-0.42563"/>
+		</Entity>
+		<Entity uid="359">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="158.63628" z="85.99248"/>
+			<Orientation y="-0.40087"/>
+		</Entity>
+		<Entity uid="360">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="157.50303" z="84.67116"/>
+			<Orientation y="-0.38814"/>
+		</Entity>
+		<Entity uid="361">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="156.4142" z="82.4042"/>
+			<Orientation y="-0.40014"/>
+		</Entity>
+		<Entity uid="362">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="154.88241" z="81.43989"/>
+			<Orientation y="-0.40609"/>
+		</Entity>
+		<Entity uid="363">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="153.33783" z="80.96723"/>
+			<Orientation y="-0.30704"/>
 		</Entity>
 	</Entities>
 	<Paths/>
