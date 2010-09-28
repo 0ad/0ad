@@ -50,9 +50,12 @@
     <Actor>units/celts/super_unit_4.xml</Actor>
   </VisualActor>
   <Footprint replace="">
-    <Square width="1.0" depth="7.0"/>
+    <Square width="4.5" depth="9.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="1.5"/>
+  </Obstruction>
   <Vision>
     <Range>68</Range>
   </Vision>
