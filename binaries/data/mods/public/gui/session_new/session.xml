@@ -151,13 +151,6 @@
 		</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Notification Area -->
-		<!-- ================================  ================================ -->
-		<object name="notificationPanel" type="image" size="50%-300 30 50%+300 90" ghost="true">
-			<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
-		</object>
-		
-		<!-- ================================  ================================ -->
 		<!-- Chat -->
 		<!-- ================================  ================================ -->
 
@@ -543,6 +536,14 @@
 			size="621 100%-150 100%+3 100%+3"
 			hidden="true"
 		>
+			<!-- ================================  ================================ -->
+			<!-- Notification Area -->
+			<!-- ================================  ================================ -->
+			<object name="notificationPanel" type="image" size="0 -60 100% 0" ghost="true">
+				<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
+			</object>
+		
+		
 			<object name="unitConstructionPanel"
 				size="12 12 100% 100%"
 			>

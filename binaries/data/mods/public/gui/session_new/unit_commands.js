@@ -283,6 +283,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 // Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
 function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
 {
+	var isInvisble = true;
+	
 	// Panels that are active
 	var usedPanels = {};
 
@@ -305,9 +307,10 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
-		if (entState.training && entState.training.queue.length)
-			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
-				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
+		var commands = getEntityCommandsList(entState);
+		if (commands.length)
+			setupUnitPanel("Command", usedPanels, entState, commands,
+				function (item) { performCommand(entState.id, item); } );
 
 /*
 		if (selection.length > 1)
@@ -321,21 +324,25 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 				function (item) { performFormation(entState.id, item); } );
 
 		if (entState.buildEntities && entState.buildEntities.length)
+		{
 			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
+			isInvisble = false;
+		}
 
 		if (entState.training && entState.training.entities.length)
+		{
 			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
 				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
+			isInvisble = false;
+		}
 
-		var commands = getEntityCommandsList(entState);
-		if (commands.length)
-
-			setupUnitPanel("Command", usedPanels, entState, commands,
-				function (item) { performCommand(entState.id, item); } );
+		if (entState.training && entState.training.queue.length)
+			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
+				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
 		getGUIObjectByName("player").hidden = true;
 		supplementalDetailsPanel.hidden = false;
-		commandsPanel.hidden = false;
+		commandsPanel.hidden = isInvisble;
 	}
 	else
 	{
