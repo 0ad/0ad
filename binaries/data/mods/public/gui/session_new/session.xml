@@ -132,7 +132,6 @@
 			name="pauseOverlay"
 			size="0 0 100% 100%"
 			tooltip_style="snToolTip"
-			tooltip="Click to Unpause Game"
 			hidden="true"
 			z="0"
 		>
@@ -158,16 +157,16 @@
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatWindow" size="50%-160 50%-32 50%+160 50%+32" type="image" hidden="true" z="10" style="wheatWindow">
-			<object name="chatInput" size="0 0 100%-0 24" type="input" style="wheatInput" max_length="80">
+		<object name="chatWindow" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" z="10" style="sessionPanel">
+			<object name="chatInput" size="12 12 100%-12 36" type="input" style="wheatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
-			<object  size="32 32 144 64" type="button" style="wheatButton">
+			<object  size="32 100%-44 144 100%-12" type="button" style="wheatButton">
 				Cancel
 				<action on="Press">toggleChatWindow();</action>
 			</object>
-			<object size="100%-144 32 100%-32 64" type="button" style="wheatButton">
+			<object size="100%-144 100%-44 100%-32 100%-12" type="button" style="wheatButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
@@ -375,15 +374,16 @@
 			<object
 				type="image"
 				style="sessionPanel"
-				size="8 8 100%-8 100%-8"
-			/>
-			
-			<object name="minimap"
-				type="minimap"
-				size="10 10 100%-10 100%-10"
+				size="6 6 100%-6 100%-6"
 			>
-				<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
+				<object name="minimap"
+					type="minimap"
+					size="2 2 100%-2 100%-2"
+				>
+					<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
+				</object>
 			</object>
+
 		</object>
 
 		<!-- ================================  ================================ -->
