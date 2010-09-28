@@ -66,6 +66,8 @@ function init(initData, hotloadData)
 		g_Players = getPlayerData(null); 
 	}
 
+	getGUIObjectByName("civIcon").sprite = g_Players[Engine.GetPlayerID()].civ+"Icon";
+
 	cacheMenuObjects();
 
 	onSimulationUpdate();

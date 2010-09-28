@@ -2,9 +2,24 @@
 
 <sprites>
 
+	<sprite name="heleIcon">
+		<image
+			texture="session/portraits/emblems/emblem_hellenes.png"
+			cell_size="72 72"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="celtIcon">->
+		<image
+			texture="session/portraits/emblems/emblem_celts.png"
+			cell_size="72 72"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
 	<!-- NEED TO MORE FORMATIONS TO A MORE APPROPRIATE PLACE -->
 	<sprite name="formation">
-		<!-- (currently this is all a hack - need proper textures) -->
 		<image
 			texture="session/icons/sheets/formation_select.png"
 			cell_size="64 64"
@@ -14,7 +29,6 @@
 
 	<!-- NEED TO MORE FORMATIONS TO A MORE APPROPRIATE PLACE -->
 	<sprite name="formation_disabled">
-		<!-- (currently this is all a hack - need proper textures) -->
 		<image
 			texture="session/icons/sheets/formation_nonselect.png"
 			cell_size="64 64"

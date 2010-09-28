@@ -178,13 +178,13 @@
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
 		<object name="settingsWindow"
-			style="wheatWindow"
+			style="sessionPanel"
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
 			z="30"
 		>
-			<object name="settingsTitleBar" style="wheatWindowTitleBar" type="text">Settings</object>
+			<object size="50%-100 -16 50%+100 16" name="settingsTitleBar" style="wheatWindowTitleBar" type="text">Settings</object>
 
 			<object name="settingsOptions"
 				size="30 30 100%-30 150"
@@ -235,7 +235,7 @@
 	<object name="topPanel"
 		type="image"
 		style="sessionPanel"
-		size="0 0 100% 28"
+		size="-3 0 100%+3 26"
 	>
 		<!-- ================================  ================================ -->
 		<!-- Player resource bar -->
@@ -274,6 +274,11 @@
 				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
+
+		<!-- ================================  ================================ -->
+		<!-- Civ Icon -->
+		<!-- ================================  ================================ -->
+		<object size="50%-32 -20 50%+32 44" name="civIcon" type="image"/>
 
 		<!-- ================================  ================================ -->
 		<!-- Phase -->
