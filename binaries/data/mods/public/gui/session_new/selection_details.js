@@ -7,10 +7,17 @@ function layoutSelectionMultiple()
 //	getGUIObjectByName("statsArea").hidden = true;
 //	getGUIObjectByName("health").hidden = true;
 //	getGUIObjectByName("stamina").hidden = true;
+
+
+	getGUIObjectByName("detailsArea").hidden = true;
+
 }
 
 function layoutSelectionSingle(entState)
 {
+	getGUIObjectByName("detailsArea").hidden = false;
+
+
 	getGUIObjectByName("specific").hidden = false;
 	getGUIObjectByName("iconBorder").hidden = false;
 //	getGUIObjectByName("sdStatsArea").hidden = false;
@@ -23,10 +30,10 @@ function layoutSelectionSingle(entState)
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
-		if (entState.stamina != undefined)
+		//if (entState.stamina != undefined)
 			getGUIObjectByName("stamina").hidden = false;
-		else
-			getGUIObjectByName("stamina").hidden = true;
+		//else
+		//	getGUIObjectByName("stamina").hidden = true;
 	}
 }
 
@@ -89,11 +96,12 @@ function displayGeneralInfo(entState, template)
 	{
 		getGUIObjectByName("resources").hidden = true;
 	}
-
+	
 	// Set Captions
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("player").caption = playerName;
+	getGUIObjectByName("player").caption = civName == GAIA? playerName : playerName + " (" + civName + ")";
 	getGUIObjectByName("player").textcolor = playerColor;
+
 
 	// Icon image
 	if (template.icon_sheet && typeof template.icon_cell)
@@ -111,7 +119,8 @@ function displayGeneralInfo(entState, template)
 //	getGUIObjectByName("sdSpecific").tooltip = genericName;
 	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
 	getGUIObjectByName("armourIcon").tooltip = damageTypesToText(entState.armour);
-	getGUIObjectByName("player").tooltip = civName != GAIA? civName : ""; // Don't need civ tooltip for Gaia Player - redundant
+
+//	getGUIObjectByName("player").tooltip = civName != GAIA? civName : ""; // Don't need civ tooltip for Gaia Player - redundant
 	getGUIObjectByName("health").tooltip = hitpoints;
 
 	// Icon Tooltip
@@ -129,6 +138,7 @@ function displayGeneralInfo(entState, template)
 // Updates middle entity Selection Details Panel
 function updateSelectionDetails()
 {
+	var supplementalDetailsPanel = getGUIObjectByName("supplementalSelectionDetails");
 	var detailsPanel = getGUIObjectByName("selectionDetails");
 	var commandsPanel = getGUIObjectByName("unitCommands");
 
@@ -137,6 +147,7 @@ function updateSelectionDetails()
 	
 	if (selection.length == 0)
 	{
+		supplementalDetailsPanel.hidden = true;
 		detailsPanel.hidden = true;
 		commandsPanel.hidden = true;
 		getGUIObjectByName("unitSelectionPanel").hidden = true;
@@ -152,19 +163,29 @@ function updateSelectionDetails()
 
 	// Choose the highest ranked version of the primary selection
 	// Different selection details are shown based on whether multiple units or a single unit is selected
+	/*
 	if (selection.length > 1)
 		layoutSelectionMultiple();
 	else
 		layoutSelectionSingle(entState);
+	*/
 
 	var template = GetTemplateData(entState.template);
 
 	// Fill out general info and display it
-	displayGeneralInfo(entState, template); // must come after layout functions
+	if (selection.length == 1)
+	{
+		displayGeneralInfo(entState, template); // must come after layout functions
+		getGUIObjectByName("detailsArea").hidden = false;
+	}
+	else
+	{
+		getGUIObjectByName("detailsArea").hidden = true;
+	}
 
 	// Show Panels
 	detailsPanel.hidden = false;
 	
 	// Fill out commands panel for specific unit selected (or first unit of primary group)
-	updateUnitCommands(entState, commandsPanel, selection);
+	updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
 }

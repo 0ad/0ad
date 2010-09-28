@@ -1,19 +1,21 @@
 // Panel types
 const SELECTION = "Selection";
 const QUEUE = "Queue";
+const GARRISON = "Garrison";
+const FORMATION = "Formation";
 const TRAINING = "Training";
 const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
 
 // Constants used by the Queue or Garrison panel
-const UNIT_PANEL_BASE = -50; // The offset above the main panel (will often be negative)
-const UNIT_PANEL_HEIGHT = 43; // The height needed for a row of buttons
+//const UNIT_PANEL_BASE = -48; // The offset above the main panel (will often be negative)
+//const UNIT_PANEL_HEIGHT = 41; // The height needed for a row of buttons
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Training": 0, "Construction": 0, "Command": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Construction": 0, "Command": 0};
 
 // Unit panels are panels with row(s) of buttons
-var g_unitPanels = ["Selection", "Queue", "Training", "Construction", "Research", "Stance", "Formation", "Command"];
+var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Construction", "Research", "Stance", "Command"];
 
 // Lay out a row of centered buttons (does not work inside a loop like the other function)
 function layoutButtonRowCentered(rowNumber, guiName, startIndex, endIndex, width)
@@ -111,12 +113,25 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var selection = g_Selection.toList();
 	var numberOfItems = items.length;
 
-	if (numberOfItems > 8 && guiName == "Command")
-		numberOfItems = 8;
-	else if (numberOfItems > 13 && guiName == "Selection")
-		numberOfItems =  13;
+	if (guiName == "Selection" || guiName == "Formation" || guiName == "Garrison")
+	{
+		if (numberOfItems > 15)
+				numberOfItems =  15;
+	}
+	else if (guiName == "Queue")
+	{
+		if (numberOfItems > 16)
+			numberOfItems = 16;
+	}
+	else if ( guiName == "Command")
+	{
+		if (numberOfItems > 4)
+			numberOfItems = 4;
+	}
 	else if (numberOfItems > 18)
-			numberOfItems =  18;
+	{
+		numberOfItems =  18;
+	}
 
 	var i;
 	for (i = 0; i < numberOfItems; i++)
@@ -124,7 +139,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		var item = items[i];
 		var entType = ((guiName == "Queue")? item.template : item);
 		var template;
-		if (guiName != "Command")
+		if (guiName != "Formation" && guiName != "Command")
 		{
 			template = GetTemplateData(entType);
 			if (!template)
@@ -134,7 +149,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		switch (guiName)
 		{
 		case SELECTION:
-			var tooltip = getEntityName(template);
+			var tooltip = getEntityName(template);	
 			var count = g_Selection.groups.getCount(item);
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 			break;
@@ -142,9 +157,25 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case QUEUE:
 			var tooltip = getEntityName(template);
 			var progress = Math.round(item.progress*100) + "%";
-			tooltip += " - " + progress;
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
-			getGUIObjectByName("unit"+guiName+"Progress["+i+"]").caption = (item.progress ? progress : "");
+			
+			if (i == 0)
+			{
+				getGUIObjectByName("queueProgress").caption = (item.progress ? progress : "");
+				var size = getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size;
+				size.top = Math.round(item.progress*40);
+				getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size = size;
+			}
+			break;
+
+		case GARRISON:
+			var tooltip = getEntityName(template);
+			var count = g_Selection.groups.getCount(item);
+			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
+			break;
+
+		case FORMATION:
+			var tooltip = toTitleCase(item);
 			break;
 
 		case TRAINING:
@@ -188,7 +219,14 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
 
 		// Get icon image
-		if (guiName == "Command")
+		if (guiName == "Formation")
+		{
+			icon.cell_id = getFormationCellId(item);
+			icon.enabled = false;
+			if (!icon.enabled)
+				icon.sprite = "formation_disabled";
+		}
+		else if (guiName == "Command")
 		{
 			//icon.cell_id = i;
 			icon.cell_id = getCommandCellId(item);
@@ -202,11 +240,18 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
-	var rowLength = 9;//guiName == "Command"? 1 : 9;
+
+	var rowLength = 8;
+	if (guiName == "Selection" || guiName == "Formation" || guiName == "Garrison")
+		rowLength = 5;
+	else if (guiName == "Command")
+		rowLength = 4;
+
 	var numRows = Math.ceil(numButtons / rowLength);
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = buttonSideLength+1;
 
+/*
 	// Resize Queue panel if needed
 	if (guiName == "Queue") // or garrison
 	{
@@ -215,15 +260,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
 		panel.size = size;
 	}
+*/
 
 	// Layout buttons
-	if (guiName == "Selection")
+	if (guiName == "Command")
 	{
-		layoutButtonRowCentered(0, guiName, 0, numButtons, 600);
-	}
-	else if (guiName == "Command")
-	{
-		layoutButtonRowCentered(0, guiName, 0, numButtons, 224);
+		layoutButtonRowCentered(0, guiName, 0, numButtons, 222);
 	}
 	else
 	{
@@ -239,7 +281,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 }
 
 // Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
-function updateUnitCommands(entState, commandsPanel, selection)
+function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
 {
 	// Panels that are active
 	var usedPanels = {};
@@ -259,6 +301,25 @@ function updateUnitCommands(entState, commandsPanel, selection)
 			//usedPanels["Research"] = 1;
 		}
 
+		if (selection.length > 1)
+			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.getTemplateNames(),
+				function (entType) { changePrimarySelectionGroup(entType); } );
+
+		if (entState.training && entState.training.queue.length)
+			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
+				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
+
+/*
+		if (selection.length > 1)
+			setupUnitPanel("Garrison", usedPanels, entState, g_Selection.groups.getTemplateNames(),
+				function (entType) { changePrimarySelectionGroup(entType); } );
+*/
+
+		var formations = getEntityFormationsList(entState);
+		if (formations.length)
+			setupUnitPanel("Formation", usedPanels, entState, formations,
+				function (item) { performFormation(entState.id, item); } );
+
 		if (entState.buildEntities && entState.buildEntities.length)
 			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
 
@@ -266,24 +327,18 @@ function updateUnitCommands(entState, commandsPanel, selection)
 			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
 				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
 
-		if (entState.training && entState.training.queue.length)
-			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
-				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
-
 		var commands = getEntityCommandsList(entState);
 		if (commands.length)
 			setupUnitPanel("Command", usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item); } );
 
-		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.getTemplateNames(),
-				function (entType) { changePrimarySelectionGroup(entType); } );
-				
+		supplementalDetailsPanel.hidden = false;
 		commandsPanel.hidden = false;
 	}
 	else
 	{
 		getGUIObjectByName("stamina").hidden = true;
+		supplementalDetailsPanel.hidden = true;
 		commandsPanel.hidden = true;
 	}
 

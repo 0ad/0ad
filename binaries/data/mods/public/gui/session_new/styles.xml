@@ -21,14 +21,21 @@
 		text_align="center"
 		text_valign="center"
 	/>
-	
-	<style 	name="sessionPanel"
-		sprite="mainPanel"
+
+	<style 	name="sessionPanelLight"
+		sprite="lightPanel"
 		buffer_zone="2"
 		text_align="left"
 		text_valign="top"
 	/>
 	
+	<style 	name="sessionPanel"
+		sprite="darkPanel"
+		buffer_zone="2"
+		text_align="left"
+		text_valign="top"
+	/>
+
 	<style 	name="insetWheatWindow"
 		sprite="insetWheatWindow"
 	/>
@@ -42,28 +49,37 @@
 	/>
 	
 	<style name="statsText"
-		font="serif-bold-12"
+		font="serif-bold-16"
+		text_valign="center"
 		ghost="true"
 	/>
 	
-	<style name="resourceStatsText"
-		font="serif-bold-14"
-		ghost="true"
-	/>
-
 	<style name="resourceIcon"
 		sprite="snIconSheetResource"
 		ghost="true"
 	/>	
 
 	<style name="resourceText"
+		textcolor="white"
 		font="serif-bold-14"
 		ghost="true"
+		text_align="right"
 		text_valign="center"
 	/>
 
 	<style name="resourceCounter"
+		sprite="resourceBox"
 		tooltip_style="snToolTip"
+	/>
+
+	<style name="resourceCounter"
+		tooltip_style="snToolTip"
+	/>
+
+	<style name="formationIcon"
+		sprite="formation"
+		sprite_disabled="formation_disabled"
+		ghost="true"
 	/>
 
 	<style name="commandIcon"

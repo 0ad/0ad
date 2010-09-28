@@ -32,12 +32,12 @@
 		<!-- ================================  ================================ -->
 		
 		<!-- Displays Alpha name and number (Alpha 2 Bellerophon) -->
-		<object size="100%-200 0 100%-8 25" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white">
+		<object size="100%-200 28 100% 48" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white">
 			<action on="Load"><![CDATA[this.caption = "ALPHA II : Bxxxxxxxxxx";]]></action>
 		</object>
 
 		<!-- Displays build date and revision number-->
-		<object size="100%-200 25 100%-8 45" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
+		<object size="100%-200 48 100% 58" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
 			<action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
 		</object>
 	
@@ -82,7 +82,7 @@
 		/>
 
 		<!-- Dev/cheat commands -->
-		<object name="devCommands" size="100%-155 50 100%-16 178" z="200" type="image" sprite="devCommandsBackground"
+		<object name="devCommands" size="16 44 156 172" type="image" sprite="devCommandsBackground"
 				hidden="true" hotkey="session.devcommands.toggle">
 			<action on="Press">
 				this.hidden = !this.hidden;
@@ -144,7 +144,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Notification Area -->
 		<!-- ================================  ================================ -->
-		<object name="notificationPanel" type="image" size="217 100%-240 650 100%-180" ghost="true">
+		<object name="notificationPanel" type="image" size="50%-300 30 50%+300 90" ghost="true">
 			<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
 		</object>
 		
@@ -229,147 +229,192 @@
 			</object>
 		</object>
 
-		<!-- ================================  ================================ -->
-		<!-- Menu Details -->
-		<!-- ================================  ================================ -->
-		<object name="menu"
-			size="0 0 114 160"
-			type="image"
-			sprite="menuBackground"
-			hidden="true"
-			z="20"
-		>
-			<!-- Settings button -->
-			<object type="button"
-				name="settingsButton"
-				style="wheatButtonFancy"
-				size="0 32 114 64"
-				tooltip_style="snToolTip"
-			>
-				<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsButtonText" ghost="true">Settings</object>
-				<action on="Press">toggleSettingsWindow();</action>
-			</object>
-
-			<!-- Chat button -->
-			<object type="button"
-				name="chatButton"
-				style="wheatButtonFancy"
-				size="0 64 114 96"
-				tooltip_style="snToolTip"
-			>
-				<object size="0 0 100% 100%" type="text" style="centeredText" name="chatButtonText" ghost="true">Chat</object>
-				<action on="Press">toggleChatWindow();</action>
-			</object>
-
-			<!-- Pause Button -->
-			<object type="button"
-				style="wheatButtonFancy"
-				name="pauseButton"
-				size="0 96 114 128"
-				tooltip_style="snToolTip"
-			>
-				<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
-				<action on="Press">togglePause();</action>
-			</object>
-
-			<!-- Exit button -->
-			<object type="button"
-				name="exitButton"
-				style="wheatButtonFancy"
-				size="0 128 114 160"
-				tooltip_style="snToolTip"
-			>
-				<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
-				<action on="Press">
-					toggleMenu();
-					<![CDATA[messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0, ["Yes", "No!"], [leaveGame, null]);]]>
-				</action>
-			</object>
-		</object>
-
-		<!-- Menu Button -->
-		<object type="button"
-			name="menuButton"
-			style="wheatButtonFancy"
-			size="0 0 114 32"
-			tooltip_style="snToolTip"
-			z="30"
-		>
-			<object size="0 0 100% 100%" type="text" style="largeBoldCenteredText" name="menuButtonText" ghost="true">Menu</object>
-			<action on="Press">toggleMenu();</action>
-		</object>
-
+	<!-- ================================  ================================ -->
+	<!-- Top Panel  -->
+	<!-- ================================  ================================ -->
+	<object name="topPanel"
+		type="image"
+		style="sessionPanel"
+		size="0 0 100% 28"
+	>
 		<!-- ================================  ================================ -->
 		<!-- Player resource bar -->
 		<!-- ================================  ================================ -->
 		<object
-			size="50%-300 -4 50%+300 28"
-			type="image"
-			style="resourcePanel"
-		>
+			size="0 3 500 100%-3"
+		>	
 			<!-- Food -->
-			<object size="50 4 150 100%" type="image" style="resourceCounter" tooltip="Food" >
-				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="28 0 150 24" type="text" style="resourceText" name="resourceFood"/>
+			<object size="6 0 96 100%" type="image" sprite="resourceBox" tooltip="Food" tooltip_style="snToolTip">
+				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
 			<!-- Wood -->
-			<object size="150 4 250 100%" type="image" style="resourceCounter" tooltip="Wood">
-				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="1"/>
-				<object size="28 0 250 24" type="text" style="resourceText" name="resourceWood"/>
+			<object size="98 0 188 100%" type="image" sprite="resourceBox" tooltip="Wood" tooltip_style="snToolTip">
+				<object size="0 -4 28 22" type="image"  style="resourceIcon" cell_id="1"/>
+				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 			</object>
 
 			<!-- Stone -->
-			<object size="250 4 350 100%" type="image" style="resourceCounter" tooltip="Stone">
-				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="2"/>
-				<object size="28 0 350 24" type="text" style="resourceText" name="resourceStone"/>
+			<object size="190 0 280 100%" type="image" sprite="resourceBox" tooltip="Stone" tooltip_style="snToolTip">
+				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="2"/>
+				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 			</object>
 
 			<!-- Metal -->
-			<object size="350 4 450 100%" type="image" style="resourceCounter" tooltip="Metal">
-				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="3"/>
-				<object size="28 0 450 24" type="text" style="resourceText" name="resourceMetal"/>
+			<object size="282 0 372 100%"  type="image" sprite="resourceBox" tooltip="Metal" tooltip_style="snToolTip">
+				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="3"/>
+				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 			</object>
 
 			<!-- Population -->
-			<object size="450 4 550 100%" type="image" style="resourceCounter" tooltip="Population (current / maximum)">
-				<object size="0 0 28 24" type="image" style="resourceIcon" cell_id="4"/>
-				<object size="28 0 550 24" type="text" style="resourceText" name="resourcePop"/>
+			<object size="374 0 464 100%" type="image" sprite="resourceBox" tooltip="Population (current / maximum)" tooltip_style="snToolTip">
+				<object name="populationWarning" type="image" sprite="populationWarning" ghost="true" hidden="false"/>
+				<object size="0 -5 28 21" type="image" style="resourceIcon" cell_id="4"/>
+				<object size="40 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Unit Selection Area -->
+		<!-- Phase -->
 		<!-- ================================  ================================ -->
-		<object name="unitSelectionPanel"
-			size="50%-300 20 50%+300 60"
-			z="-120"
+		<object size="67%-100 0%-4 67%+100 26" name="PhaseTitleBar" style="wheatWindowTitleBar" type="text">Village</object>
+
+		<!-- ================================  ================================ -->
+		<!-- Menu Details -->
+		<!-- ================================  ================================ -->
+		<object type="button"
+			name="menuButton"
+			style="wheatButtonFancy"
+			size="100%-114 1 100%+2 27"
+			tooltip_style="snToolTip"
 		>
-			<object size="0 0 100% 100%">
-				<repeat count="13">
-					<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" z="100">
-						<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 35 35"/>
-						<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
-					</object>
-				</repeat>
+			<object size="0 0 100% 100%" type="text" style="largeBoldCenteredText" name="menuButtonText" ghost="true">Menu</object>
+			<action on="Press">toggleMenu();</action>
+
+			<!-- Menu Panel -->
+			<object name="menuPanel"
+				size="100%-116 0 100% 130"
+				type="image"
+				sprite="menuBackground"
+				hidden="true"
+				z="-10"
+			>
+				<!-- Settings button -->
+				<object type="button"
+					name="settingsButton"
+					style="wheatButtonFancy"
+					size="0 26 114 52"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsButtonText" ghost="true">Settings</object>
+					<action on="Press">toggleSettingsWindow();</action>
+				</object>
+
+				<!-- Chat button -->
+				<object type="button"
+					name="chatButton"
+					style="wheatButtonFancy"
+					size="0 52 114 78"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" style="centeredText" name="chatButtonText" ghost="true">Chat</object>
+					<action on="Press">toggleChatWindow();</action>
+				</object>
+
+				<!-- Pause Button -->
+				<object type="button"
+					style="wheatButtonFancy"
+					name="pauseButton"
+					size="0 78 114 104"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
+					<action on="Press">togglePause();</action>
+				</object>
+
+				<!-- Exit button -->
+				<object type="button"
+					name="exitButton"
+					style="wheatButtonFancy"
+					size="0 104 114 130"
+					tooltip_style="snToolTip"
+				>
+					<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
+					<action on="Press">
+						toggleMenu();
+						<![CDATA[messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0, ["Yes", "No!"], [leaveGame, null]);]]>
+					</action>
+				</object>
 			</object>
-		</object>
+
+		</object> <!-- END OF MENU -->
+		
+	</object> <!-- END OF TOP PANEL -->
+
+	<!-- ================================  ================================ -->
+	<!-- START of BOTTOM PANEL -->
+	<!-- ================================  ================================ -->
+	<object size="50%-512 100%-180 50%+512 100%">
 
 		<!-- ================================  ================================ -->
 		<!-- Minimap -->
 		<!-- ================================  ================================ -->
 		<object
 			name="minimapPanel"
-			size="100%-180 100%-180 100% 100%"
+			size="0 100%-180 180 100%"
 			type="image"
-			style="insetWheatWindow"
-		>
+			style="sessionPanel"
+			z="20"
+		>	
+			<object
+				type="image"
+				style="sessionPanel"
+				size="8 8 100%-8 100%-8"
+			/>
+			
 			<object name="minimap"
 				type="minimap"
-				size="6 6 100%-6 100%-6"
+				size="10 10 100%-10 100%-10"
 			>
 				<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
 			</object>
+		</object>
+
+		<!-- ================================  ================================ -->
+		<!-- Supplemental Details Panel on Left -->
+		<!-- ================================  ================================ -->
+		<object size="177 100%-150 50%-109 100%+3" name="supplementalSelectionDetails" type="image" style="sessionPanel">
+
+			<object name="unitFormationPanel"
+				size="12 12 100% 100%"
+			>
+				<!--<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="5" tooltip="Formations"/>-->
+			
+				<object size="0 0 100% 100%">
+					<repeat count="15">
+						<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" z="100">
+							<object name="unitFormationIcon[n]" type="image" style="formationIcon" ghost="true" size="1 1 39 39"/>
+						</object>
+					</repeat>
+				</object>
+			</object>
+		
+			<object name="unitGarrisonPanel"
+				size="12 12 100% 100%"
+			>
+				<!--<object size="-6 -6 50 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="1" tooltip="Garrison"/>-->
+
+				<object size="0 0 100% 100%">
+					<repeat count="15">
+						<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" z="100">
+							<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="1 1 39 39"/>
+							<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+						</object>
+					</repeat>
+				</object>
+			</object>
+
 		</object>
 
 		<!-- ================================  ================================ -->
@@ -378,66 +423,82 @@
 		<object name="selectionDetails"
 			type="image"
 			style="sessionPanel"
-			size="22 100%-154 202 100%"
+			size="50%-112 100%-170 50%+112 100%+3"
 			hidden="true"
 			z="20"
 		>
-			 <!-- Big unit icon -->
-			<object size= "50%-53 -14 50%+53 92" type="image" name="iconBorder" style="insetWheatWindow" tooltip_style="snToolTip">
-				<object size= "3 3 100%-3 100%-3" type="image" name="icon" ghost="true"/>
-				<object size="100%-32 0 100% 32" name="rankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
-
-				<!-- Health bar -->
-				<object size="100%+8 18 100%+18 100%-4" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
-					<object type="image" sprite="healthBackground" ghost="true"/>
-					<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
-					<object type="image" sprite="statsBarShader" ghost="true"/>
+			<object name="unitSelectionPanel"
+				size="10 10 100%-20 100%"
+			>
+				<object size="0 0 100% 100%">
+					<repeat count="15">
+						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" z="100">
+							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 39 39"/>
+							<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+							<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
+							</object>
+						</object>
+					</repeat>
 				</object>
-				
-				<!-- Stamina bar -->
-				<object size="100%+20 18 100%+30 100%-4" type="image" name="stamina" tooltip="Stamina" tooltip_style="snToolTip">
-					<object type="image" sprite="staminaBackground" ghost="true"/>
-					<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
-					<object type="image" sprite="statsBarShader" ghost="true"/>
+			</object>	
+	
+			<!-- Specific unit details -->
+			<object size="50%-112 16 50%+112 100%" name="detailsArea">
+	
+				<!-- Stats -->
+				<object size="6 0 50 100%" name="statsArea" type="image">
+					<!-- Attack icon -->
+					<object size="0 0 48 48" type="image" name="attackIcon" sprite="snIconSheetStance" cell_id="1" tooltip_style="snToolTip"/>
+
+					<!-- Armour icon -->
+					<object size="0 48 48 96" type="image" name="armourIcon" sprite="snIconSheetStance" cell_id="3" tooltip_style="snToolTip"/>
 				</object>
-				
-				<!-- Resource bar -->
-				<object size="100%+8 18 100%+18 100%-4" type="image" name="resources" tooltip="Resources" tooltip_style="snToolTip">
-					<object type="image" sprite="resourceBackground" ghost="true"/>
-					<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
-					<object type="image" sprite="statsBarShader" ghost="true"/>
+
+				<!-- Big unit icon -->
+				<object size= "50%-48 0 50%+48 96" type="image" name="iconBorder" style="sessionPanel" tooltip_style="snToolTip">
+					<object size= "3 3 100%-3 100%-3" type="image" name="icon" ghost="true"/>
+					<object size="100%-32 0 100% 32" name="rankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
+
+					<!-- Health bar -->
+					<object size="100%+18 0 100%+30 100%" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
+						<object type="image" sprite="healthBackground" ghost="true"/>
+						<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
+						<object type="image" sprite="statsBarShader" ghost="true"/>
+					</object>
+					
+					<!-- Stamina bar -->
+					<object size="100%+32 0 100%+44 100%" type="image" name="stamina" tooltip="Stamina" tooltip_style="snToolTip">
+						<object type="image" sprite="staminaBackground" ghost="true"/>
+						<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
+						<object type="image" sprite="statsBarShader" ghost="true"/>
+					</object>
+					
+					<!-- Resource bar -->
+					<object size="100%+18 0 100%+30 100%" type="image" name="resources" tooltip="Resources" tooltip_style="snToolTip">
+						<object type="image" sprite="resourceBackground" ghost="true"/>
+						<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
+						<object type="image" sprite="statsBarShader" ghost="true"/>
+					</object>
 				</object>
-			</object>
 
-			<!-- Stats -->
-			<object size="-2 2 40 90" name="statsArea" type="image">
-				<!-- Attack icon -->
-				<object size="0 0 40 40" type="image" name="attackIcon" sprite="snIconSheetStance" cell_id="1" tooltip_style="snToolTip"/>
-
-				<!-- Armour icon -->
-				<object size="0 40 40 80" type="image" name="armourIcon" sprite="snIconSheetStance" cell_id="3" tooltip_style="snToolTip"/>
-			</object>
-
-			<!-- Names -->
-			<object size="50%-112 100%-60 50%+112 100%" name="names" type="image" style="sessionPanel">
 				<!-- Specific Name -->
-				<object size="0 -4 100% 30" name="specific" type="text" style="centeredText" font="serif-bold-18" tooltip_style="snToolTip"/>
-
+				<object size="0 96 100% 122" name="specific" type="text" style="centeredText" font="serif-bold-18" textcolor="white" tooltip_style="snToolTip"/>
+			
 				<!-- Player Name -->
-				<object size="0 26 100% 100%-2" name="player" type="text" style="centeredText" font="serif-bold-stroke-14" tooltip_style="snToolTip"/>
+				<object size="0 100%-34 100% 100%-8" name="player" type="text" style="centeredText" font="serif-bold-stroke-14" tooltip_style="snToolTip"/>
 			</object>
-
+	
 			<!-- Unit Commands -->
 			<object name="unitCommandPanel"
-				size="50%-112 100%-30 50%+112 100%"
+				size="0 100%-35 100% 100%"
 				type="image"
-				style="sessionPanel"
+				sprite="titleBar"
 				z="30"
 			>
-				<object size="0 2 100% 100%-2">
-					<repeat count="8">
-						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 27 27">
-							<object name="unitCommandIcon[n]" ghost="true" type="image" size="3 3 24 24" style="commandIcon"/>
+				<object size="0 4 100% 100%-2">
+					<repeat count="9">
+						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 24 24">
+							<object name="unitCommandIcon[n]" ghost="true" type="image" size="1 1 23 23" style="commandIcon"/>
 						</object>
 					</repeat>
 				</object>
@@ -451,19 +512,19 @@
 		<object name="unitCommands"
 			type="image"
 			style="sessionPanel"
-			size="204 100%-104 676 100%"
+			size="621 100%-150 100%+3 100%+3"
 			hidden="true"
 		>
 			<object name="unitConstructionPanel"
-				size="28 4 100% 100%"
+				size="12 12 100% 100%"
 			>
 				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="0" tooltip="Construction"/>-->
 
-				<object size="0 0 100% 50">
+				<object size="0 0 100% 100%">
 					<repeat count="18">
-						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
-							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="1 1 47 47"/>
+						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40">
+							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="1 1 39 39"/>
 						</object>
 					</repeat>
 				</object>
@@ -480,17 +541,6 @@
 				[stance commands]
 			</object>
 
-			<object name="unitFormationPanel"
-				style="goldPanelFrilly"
-				size="0 100%-56 100% 100%"
-				type="text"
-			>
-				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
-					 cell_id="5" tooltip="Formations"/>
-
-				[formation commands]
-			</object>
-
 			<object name="unitResearchPanel"
 				style="goldPanelFrilly"
 				size="0 100%-56 100% 100%"
@@ -503,47 +553,50 @@
 			</object>
 
 			<object name="unitTrainingPanel"
-				size="0 0 100% 100%"
+				size="12 12 100% 100%"
 			>
 				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="2" tooltip="Training"/>-->
 
-				<object size="28 4 100% 100%">
+				<object size="0 0 100% 100%">
 					<repeat count="18">
-						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
-							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="1 1 47 47"/>
+						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40">
+							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="1 1 39 39"/>
 						</object>
 					</repeat>
 				</object>
 			</object>
 
 			<object name="unitQueuePanel"
-				style="sessionPanel"
-				size="0 -52 100% 0"
+				size="3 100%-51 100% 100%-3"
 				type="image"
+				style="sessionPanel"
 			>
-				<object size="-2 -4 54 52" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
-					 cell_id="3" tooltip="Production queue" />
+				<object size="-4 -3 52 53" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="3" tooltip="Production queue">
+						<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
+				</object>
 
-				<object size="54 4 100% 100%">
-					<repeat count="18">
-						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 42 42">
-							<object name="unitQueueIcon[n]" ghost="true" type="image" size="1 1 41 41"/>
-							<object name="unitQueueCount[n]" ghost="true" style="iconButtonCount" type="text"/>
-							<object name="unitQueueProgress[n]" ghost="true" style="iconButtonProgress" type="text"/>
+				<object size="48 5 100% 100%">
+					<repeat count="16">
+						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40">
+							<object name="unitQueueIcon[n]" ghost="true" type="image" size="1 1 39 39"/>
+							<object name="unitQueueProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="1 1 100%-1 100%-1" z="20"/>
+							<object name="unitQueueCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
 						</object>
 					</repeat>
 				</object>
 			</object>
 
-		</object>
+		</object> <!-- END OF UNIT COMMANDS -->
 
+	</object><!-- END OF BOTTOM PANEL -->
+		
 	</object> <!-- END OF SN OBJECT -->
 	
 	<!-- ================================  ================================ -->
 	<!-- Selection bandbox -->
 	<!-- ================================  ================================ -->
-	<object name="bandbox" type="image" sprite="bandbox" ghost="true" hidden="true" z="100"/>
+	<object name="bandbox" type="image" sprite="bandbox" ghost="true" hidden="true" z="200"/>
 
 	<!-- ================================  ================================ -->
 	<!-- Network status -->

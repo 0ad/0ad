@@ -9,7 +9,7 @@ var pauseOverlay;
 function cacheMenuObjects()
 {
 	devCommands = getGUIObjectByName("devCommands");
-	menu = getGUIObjectByName("menu");
+	menu = getGUIObjectByName("menuPanel");
 	settingsWindow = getGUIObjectByName("settingsWindow");
 	chatWindow = getGUIObjectByName("chatWindow");
 	chatInput = getGUIObjectByName("chatInput");

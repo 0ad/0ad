@@ -116,7 +116,42 @@ function damageTypesToText(dmg)
 	if (pierceDamage) dmgArray.push(pierceDamage + pierceLabel);
 	if (crushDamage) dmgArray.push(crushDamage + crushLabel);
 
-	return dmgArray.join(", ");
+	return dmgArray.join("[font=\"serif-12\"], [/font]");
+}
+
+function getFormationCellId(formationName)
+{
+	switch (formationName)
+	{
+	case "Fromation0":
+		return 0;
+	case "Fromation1":
+		return 1;
+	case "Fromation2":
+		return 2;
+	case "Fromation3":
+		return 3;
+	case "Fromation4":
+		return 4;
+	case "Fromation5":
+		return 5;
+	case "Fromation6":
+		return 6;
+	case "Fromation7":
+		return 7;
+	case "Fromation8":
+		return 8;
+	case "Fromation9":
+		return 9;
+	case "Fromation10":
+		return 10;	
+	case "Fromation11":
+		return 11;
+	case "Fromation12":
+		return 12;
+	default:
+		return -1;
+	}
 }
 
 function getCommandCellId(commandName)
@@ -130,14 +165,37 @@ function getCommandCellId(commandName)
 	}
 }
 
+function getEntityFormationsList(entState)
+{
+	var formations = [];
+
+	formations.push("Fromation0");
+	formations.push("Fromation1");
+	formations.push("Fromation2");
+	formations.push("Fromation3");
+	formations.push("Fromation4");
+	formations.push("Fromation5");
+	formations.push("Fromation6");
+	formations.push("Fromation7");
+	formations.push("Fromation8");
+	formations.push("Fromation9");
+	formations.push("Fromation10");
+	formations.push("Fromation11");
+	formations.push("Fromation12");
+	return formations;
+}
+
+
 function getEntityCommandsList(entState)
 {
 	var commands = [];
 	commands.push("delete");
-	//commands.push("command1");
-	//commands.push("command2");
-	//commands.push("command3");
-	//commands.push("command4");
+	commands.push("Stop");
+	commands.push("Stop that!");
+	commands.push("Really stop now, OK?!");
+//	commands.push("command4");
+//	commands.push("command5");
+//	commands.push("command6");
 	return commands;
 }
 

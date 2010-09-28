@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <sprites>
+
+	<!-- NEED TO MORE FORMATIONS TO A MORE APPROPRIATE PLACE -->
+	<sprite name="formation">
+		<!-- (currently this is all a hack - need proper textures) -->
+		<image
+			texture="session/icons/sheets/formation_select.png"
+			cell_size="64 64"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<!-- NEED TO MORE FORMATIONS TO A MORE APPROPRIATE PLACE -->
+	<sprite name="formation_disabled">
+		<!-- (currently this is all a hack - need proper textures) -->
+		<image
+			texture="session/icons/sheets/formation_nonselect.png"
+			cell_size="64 64"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="lightPanel">
+		<!-- (currently this is all a hack - need proper textures) -->
+		<image
+			texture="global/tile/tile_light.png"
+			texture_size="0 0 256 256"
+		/>
+
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			real_texture_placement="0 4 64 6"
+			texture_size="0 0 64 32"
+			size="0 0 100% 3"
+		/>
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			real_texture_placement="0 4 64 6"
+			texture_size="0 0 64 32"
+			size="0 100%-3 100% 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
+			texture_size="0 0 16 100%"
+			size="0 0 3 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
+			texture_size="0 0 16 100%"
+			size="100%-3 0 100% 100%"
+		/>
+	</sprite>
+
+	<sprite name="darkPanel">
+		<!-- (currently this is all a hack - need proper textures) -->
+		<image
+			texture="global/tile/tile_dark.png"
+			texture_size="0 0 256 256"
+		/>
+
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			real_texture_placement="0 4 64 6"
+			texture_size="0 0 64 32"
+			size="0 0 100% 3"
+		/>
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			real_texture_placement="0 4 64 6"
+			texture_size="0 0 64 32"
+			size="0 100%-3 100% 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
+			texture_size="0 0 16 100%"
+			size="0 0 3 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
+			texture_size="0 0 16 100%"
+			size="100%-3 0 100% 100%"
+		/>
+	</sprite>
+
 	<sprite name="goldPanel">
 		<!-- (currently this is all a hack - need proper textures) -->
 		<image
@@ -109,32 +196,33 @@
 	<sprite name="mainPanel">
 		<!-- (currently this is all a hack - need proper textures) -->
 		<image
-			texture="global/titlebar/middle_gold_fern.dds"
-			real_texture_placement="0 4 64 6"
-			texture_size="0 0 64 32"
-			size="0 -2 100% 0"
-		/>
-		<image
-			texture="global/titlebar/middle_gold_fern.dds"
-			real_texture_placement="0 4 64 6"
-			texture_size="0 0 64 32"
-			size="0 100%-2 100% 100%+2"
-		/>
-		<image
-			texture="global/border/corner_bronze.dds"
-			real_texture_placement="1 1 15 15"
-			texture_size="0 0 16 100%"
-			size="-2 -2 0 100%+2"
-		/>
-		<image
-			texture="global/border/corner_bronze.dds"
-			real_texture_placement="1 1 15 15"
-			texture_size="0 0 16 100%"
-			size="100% 0%-2 100%+2 100%+2"
-		/>
-		<image
 			texture="global/tile/sandstone.dds"
 			texture_size="0 0 128 128"
+		/>
+
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			real_texture_placement="0 4 64 6"
+			texture_size="0 0 64 32"
+			size="0 0 100% 3"
+		/>
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			real_texture_placement="0 4 64 6"
+			texture_size="0 0 64 32"
+			size="0 100%-3 100% 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
+			texture_size="0 0 16 100%"
+			size="0 0 3 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			real_texture_placement="1 1 15 15"
+			texture_size="0 0 16 100%"
+			size="100%-3 0 100% 100%"
 		/>
 	</sprite>
 	
@@ -214,6 +302,25 @@
 		<image backcolor="0 0 0 64" size="2 3 3 100%-3"/>
 	</sprite>
 
+	<sprite name="resourceBox">
+	
+		<!--<image backcolor="0 0 0 128" size="0 0 100% 100%"/>-->
+		<image backcolor="0 0 0 192" size="2 0 100%-2 100%-2"/>
+
+		<image backcolor="255 255 255 64" size="100%-2 1 100%-1 100%-2"/>
+		<image backcolor="255 255 255 96" size="100%-1 0 100% 100%-1"/>
+		
+		<image backcolor="255 255 255 64" size="1 100%-2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 96" size="0 100%-1 100% 100%"/>
+	
+		<image backcolor="255 255 255 64" size="1 1 2 100%-2"/>
+		<image backcolor="255 255 255 96" size="0 0 1 100%-1"/>
+	</sprite>
+
+	<sprite name="queueProgressSlider">
+		<image backcolor="0 255 0 128"/>
+	</sprite>
+
 	<sprite name="healthBackground">
 		<image backcolor="red"/>
 	</sprite>
@@ -236,6 +343,10 @@
 
 	<sprite name="staminaForeground">
 		<image backcolor="blue"/>
+	</sprite>
+
+	<sprite name="populationWarning">
+		<image backcolor="255 255 0 128"/>
 	</sprite>
 
 	<sprite name="bandbox">

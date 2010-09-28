@@ -105,6 +105,7 @@ EntityGroup.prototype.getEntsByUnitNameInverse = function(unitName)
 	return ents;
 };
 
+
 //-------------------------------- -------------------------------- -------------------------------- 
 // EntitySelection class for managing the entity selection list and the primary selection
 //-------------------------------- -------------------------------- -------------------------------- 

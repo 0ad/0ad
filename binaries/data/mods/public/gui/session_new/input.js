@@ -6,7 +6,7 @@ const SDLK_LSHIFT = 304;
 const SDLK_RCTRL = 305;
 const SDLK_LCTRL = 306;
 
-const MAX_SELECTION_SIZE = 32; // Limits selection size and ensures that there will not be too many selection items in the GUI
+const MAX_SELECTION_SIZE = 40; // Limits selection size and ensures that there will not be too many selection items in the GUI
 
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
@@ -747,16 +747,37 @@ function performCommand(entity, commandName)
 			switch (commandName)
 			{
 			case "delete":
-				var deleteFunction = function () { Engine.PostNetworkCommand({"type": "delete-entity", "entity": entity}); };
-				var btCaptions = ["Yes", "No"];
-				var btCode = [deleteFunction, null];
-				messageBox(320, 180, "Are you sure you want to delete: " + unitName + "?", "Confirmation", 0, btCaptions, btCode);
+				var selection = g_Selection.toList();
 
+				if (selection.length > 0)
+				{
+					var message = selection.length > 1? "Are you sure you want to delete all of the units you have selected?" :
+																			"Are you sure you want to delete: "+unitName+"?";
+
+					var deleteFunction = deleteFunction = function ()
+					{ 
+						for each (var ent in selection)
+							Engine.PostNetworkCommand({"type": "delete-entity", "entity": ent});
+					};
+
+					var btCaptions = ["Yes", "No"];
+					var btCode = [deleteFunction, null];
+					messageBox(320, 180, message, "Confirmation", 0, btCaptions, btCode);
+				}
 				break;
 			default:
 				break;
 			}
 		}
+	}
+}
+
+// Performs the specified formation
+function performFormation(entity, formationName)
+{
+	if (entity)
+	{
+		console.write(formationName);
 	}
 }
 
