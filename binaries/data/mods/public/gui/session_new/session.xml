@@ -53,12 +53,17 @@
 			]]></action>
 		</object>
 
-		<!-- Depending on the current state, it either opens message window or closes message window / posts message -->
+		<!-- Chat: Depending on the current state, it either opens message window or closes message window / posts message -->
 		<object hotkey="chat">
 			<action on="Press">toggleChatWindow();</action>
 		</object>
 
-		<!-- Depending on the current state, it either opens message window or closes message window / posts message -->
+		<!-- Menu -->
+		<object hotkey="menu.toggle">
+			<action on="Press">toggleMenu();</action>
+		</object>
+
+		<!-- Pause -->
 		<object hotkey="pause">
 			<action on="Press">togglePause();</action>
 		</object>
@@ -162,7 +167,7 @@
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatWindow" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" z="10" style="sessionPanel">
+		<object name="chatWindow" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" z="40" style="sessionPanel">
 			<object name="chatInput" size="16 12 100%-16 36" type="input" style="chatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
@@ -186,6 +191,7 @@
 			type="image"
 			style="sessionPanel"
 			hidden="true"
+			z="60"
 		>
 			<object size="0 0 100% 32" type="text" style="largeBoldCenteredText">Menu</object >
 
@@ -259,7 +265,6 @@
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
-			z="30"
 		>
 			<object size="0 0 100% 32" type="text" style="largeBoldCenteredText">Settings</object >
 
