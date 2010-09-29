@@ -5,6 +5,12 @@
     <SpecificName>Goat</SpecificName>
 	<IconCell>9</IconCell>
   </Identity>
+  <Cost>
+    <BuildTime>50</BuildTime>
+    <Resources>
+      <food>60</food>
+    </Resources>
+  </Cost>
   <ResourceSupply>
     <Amount>120</Amount>
     <Type>food.meat</Type>
@@ -12,8 +18,4 @@
   <VisualActor>
     <Actor>fauna/goat.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="1.25"/>
-    <Height>2.0</Height>
-  </Footprint>
 </Entity>

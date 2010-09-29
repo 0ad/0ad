@@ -11,6 +11,11 @@
   <Health>
     <Max>110</Max>
   </Health>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      gaia/fauna_goat
+    </Entities>
+  </TrainingQueue>
   <VisualActor>
     <Actor>structures/plot_corral.xml</Actor>
   </VisualActor>
