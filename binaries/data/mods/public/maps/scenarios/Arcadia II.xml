@@ -16,16 +16,16 @@
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.458008</Murkiness>
-				<Tint r="0.447059" g="0.415686" b="0.321569"/>
-				<ReflectionTint r="0.623529" g="0.588235" b="0.47451"/>
+				<Tint r="0.447059" g="0.411765" b="0.321569"/>
+				<ReflectionTint r="0.619608" g="0.584314" b="0.47451"/>
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="112.716" y="107.636" z="6.66831"/>
-		<Rotation angle="-0.00131338"/>
-		<Declination angle="0.50414"/>
+		<Position x="601.962" y="117.579" z="471.135"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -14658,8 +14658,8 @@
 		<Entity uid="3106">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="689.25684" z="185.46195"/>
-			<Orientation y="0.751"/>
+			<Position x="667.11811" z="182.17518"/>
+			<Orientation y="0.23713"/>
 		</Entity>
 		<Entity uid="3107">
 			<Template>gaia/flora_tree_carob</Template>
@@ -14670,7 +14670,7 @@
 		<Entity uid="3108">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="701.50019" z="229.6724"/>
+			<Position x="701.68348" z="233.98702"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3109">
@@ -16390,20 +16390,20 @@
 		<Entity uid="3429">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="729.6247" z="220.71702"/>
-			<Orientation y="-1.40484"/>
+			<Position x="715.87415" z="204.4279"/>
+			<Orientation y="-1.82598"/>
 		</Entity>
 		<Entity uid="3430">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="722.69147" z="222.30799"/>
+			<Position x="701.5318" z="188.11121"/>
 			<Orientation y="-0.59597"/>
 		</Entity>
 		<Entity uid="3431">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="716.29511" z="235.48662"/>
-			<Orientation y="0.13836"/>
+			<Position x="707.72925" z="194.98302"/>
+			<Orientation y="-0.34295"/>
 		</Entity>
 		<Entity uid="3432">
 			<Template>gaia/flora_tree_cypress</Template>
@@ -21752,6 +21752,66 @@
 			<Player>2</Player>
 			<Position x="147.9222" z="119.67664"/>
 			<Orientation y="-2.27611"/>
+		</Entity>
+		<Entity uid="4585">
+			<Template>other/unfinished_greek_temple</Template>
+			<Player>0</Player>
+			<Position x="696.20521" z="206.17661"/>
+			<Orientation y="-2.35447"/>
+		</Entity>
+		<Entity uid="4586">
+			<Template>other/column_doric</Template>
+			<Player>0</Player>
+			<Position x="708.01874" z="225.287"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4588">
+			<Template>other/column_doric_fallen</Template>
+			<Player>0</Player>
+			<Position x="712.77582" z="223.53736"/>
+			<Orientation y="-0.26554"/>
+		</Entity>
+		<Entity uid="4589">
+			<Template>other/column_doric_fallen_b</Template>
+			<Player>0</Player>
+			<Position x="705.60016" z="206.5236"/>
+			<Orientation y="1.5513"/>
+		</Entity>
+		<Entity uid="4590">
+			<Template>other/column_doric_fallen_b</Template>
+			<Player>0</Player>
+			<Position x="699.8025" z="217.19782"/>
+			<Orientation y="-2.1455"/>
+		</Entity>
+		<Entity uid="4591">
+			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
+			<Position x="682.86878" z="197.67791"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4592">
+			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
+			<Position x="705.73646" z="203.43264"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4595">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="701.71705" z="196.01532"/>
+			<Orientation y="1.83686"/>
+		</Entity>
+		<Entity uid="4596">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="694.37232" z="190.45656"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4597">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="710.86261" z="209.44463"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4601">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="684.97126" z="208.68335"/>
+			<Orientation y="-2.15029"/>
 		</Entity>
 	</Entities>
 	<Paths/>

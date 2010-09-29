@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Identity>
+	<IconSheet>snPortraitSheetHele</IconSheet>
+    <IconCell>6</IconCell>
+    <Civ>hele</Civ>
+    <GenericName>Ruins</GenericName>
+    <SpecificName>Unfinished Greek Temple</SpecificName>
+    <History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
+	<Tooltip>This temple is unfinished and has fallen to ruin.</Tooltip>
+  </Identity>
+  <Health>
+    <Max>1500</Max>
+  </Health>
+  <Armour>
+    <Hack>40.0</Hack>
+    <Pierce>50.0</Pierce>
+    <Crush>50.0</Crush>
+  </Armour>
+  <Loot>
+    <xp>100</xp>
+    <food>0</food>
+    <wood>0</wood>
+    <stone>1000</stone>
+    <metal>500</metal>
+  </Loot>
+  <VisualActor>
+    <Actor>props/special/eyecandy/greek_temple_unfinished.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square width="19.0" depth="31.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="17.5" depth="30.0"/>
+  </Obstruction>
+  <Vision>
+    <Range>40</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+</Entity>

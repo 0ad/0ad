@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="unfinished abandoned Greek temple">
+      <mesh>props/temple_unfinished.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/greek_temple_unfinished_columns.xml" attachpoint="root"/>
+      </props>
+      <texture>props/hele_tile_c.dds</texture>
+    </variant>
+  </group>
+</actor>
