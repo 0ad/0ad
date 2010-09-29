@@ -2,7 +2,9 @@
 <Entity parent="template_unit_fauna_fish">
   <Identity>
     <Civ>gaia</Civ>
-    <SpecificName>Fish</SpecificName>
+    <IconCell>22</IconCell>
+    <SpecificName>Tuna Fish</SpecificName>
+	<Tooltip>Collect food from this bountiful oceanic resource.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>fauna/fish.xml</Actor>

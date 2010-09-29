@@ -4,9 +4,12 @@
     <GenericName>Fish</GenericName>
   </Identity>
   <Footprint>
-    <Circle radius="3.0"/>
+    <Circle radius="5.0"/>
     <Height>2.5</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="0.1"/>
+  </Obstruction>
   <Position>
 	<Altitude>-4.0</Altitude>
 	<Floating>true</Floating>
