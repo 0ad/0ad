@@ -29,7 +29,14 @@
 		text_valign="top"
 	/>
 	
-	<style 	name="sessionPanel"
+	<style 	name="sessionPanelLight"
+		sprite="lightPanel"
+		buffer_zone="2"
+		text_align="left"
+		text_valign="top"
+	/>
+	
+	<style 	name="sessionPanelDark"
 		sprite="darkPanel"
 		buffer_zone="2"
 		text_align="left"
@@ -59,9 +66,10 @@
 		ghost="true"
 	/>	
 
+	<!--font="serif-bold-14"-->
 	<style name="resourceText"
 		textcolor="white"
-		font="serif-bold-14"
+		font="serif-bold-stroke-14"
 		ghost="true"
 		text_align="left"
 		text_valign="center"
@@ -160,6 +168,13 @@
 		text_align="center"
 		text_valign="center"
 	/>
+	
+	<style name="largeCenteredOutlinedText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
 
 	<style name="netStatus"
 		font="serif-bold-18"
@@ -189,7 +204,6 @@
 		buffer_zone="5"
 		font="serif-bold-stroke-14"
 		textcolor="white"
-		textcolor_selected="black"
 		text_align="center"
 		text_valign="bottom"
 	/>

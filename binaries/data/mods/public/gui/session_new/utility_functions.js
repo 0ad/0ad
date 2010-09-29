@@ -216,7 +216,7 @@ function getEntityCost(template)
 
 function getEntityName(template)
 {
-		return "[font=\"serif-bold-16\"]" + (template.name.specific || template.name.generic || "???") + "[/font]";
+		return (template.name.specific || template.name.generic || "???");
 }
 
 function getEntityNameWithGenericType(template)

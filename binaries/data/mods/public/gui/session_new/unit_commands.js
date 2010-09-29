@@ -8,8 +8,8 @@ const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
 
 // Constants used by the Queue or Garrison panel
-//const UNIT_PANEL_BASE = -48; // The offset above the main panel (will often be negative)
-//const UNIT_PANEL_HEIGHT = 41; // The height needed for a row of buttons
+const UNIT_PANEL_BASE = -48; // The offset above the main panel (will often be negative)
+const UNIT_PANEL_HEIGHT = 41; // The height needed for a row of buttons
 
 // The number of currently visible buttons (used to optimise showing/hiding)
 var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Construction": 0, "Command": 0};
@@ -243,7 +243,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 	var rowLength = 8;
 	if (guiName == "Selection" || guiName == "Formation" || guiName == "Garrison")
-		rowLength = 5;
+		rowLength = 4;
 	else if (guiName == "Command")
 		rowLength = 4;
 
@@ -251,7 +251,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = buttonSideLength+1;
 
-/*
 	// Resize Queue panel if needed
 	if (guiName == "Queue") // or garrison
 	{
@@ -260,12 +259,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
 		panel.size = size;
 	}
-*/
 
 	// Layout buttons
 	if (guiName == "Command")
 	{
-		layoutButtonRowCentered(0, guiName, 0, numButtons, 222);
+		layoutButtonRowCentered(0, guiName, 0, numButtons, 230);
 	}
 	else
 	{
@@ -340,13 +338,11 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
-		getGUIObjectByName("player").hidden = true;
 		supplementalDetailsPanel.hidden = false;
 		commandsPanel.hidden = isInvisble;
 	}
 	else
 	{
-		getGUIObjectByName("player").hidden = false;
 		getGUIObjectByName("stamina").hidden = true;
 		supplementalDetailsPanel.hidden = true;
 		commandsPanel.hidden = true;

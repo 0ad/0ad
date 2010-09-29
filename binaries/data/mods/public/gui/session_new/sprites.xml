@@ -36,6 +36,294 @@
 		/>
 	</sprite>
 
+	<sprite name="menuButton">
+		<image
+			texture="session/icons/single/menu.png"
+			real_texture_placement="0 0 120 30"
+			size="0 2 100%-8 100%-2"
+		/>
+	</sprite>
+		
+	<sprite name="glassSquareMap">
+		<image backcolor="255 255 255 56" size="0 0 100% 1"/>
+		<image backcolor="255 255 255 56" size="100%-1 1 100% 100%"/>
+		<image backcolor="255 255 255 56" size="0 100%-1 100% 100%"/>
+		<image backcolor="255 255 255 56" size="0 1 1 100%-1"/>
+		
+		<image backcolor="255 255 255 44" size="1 1 100%-1 2"/>
+		<image backcolor="255 255 255 44" size="100%-2 2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 44" size="1 100%-2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 44" size="1 2 2 100%-2"/>
+		
+		<image backcolor="255 255 255 32" size="2 2 100%-2 3"/>
+		<image backcolor="255 255 255 32" size="100%-3 3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 32" size="2 100%-3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 32" size="2 3 3 100%-3"/>
+	</sprite>
+
+	<sprite name="glassSquareIcon">
+		<image backcolor="255 255 255 128" size="0 0 100% 1"/>
+		<image backcolor="255 255 255 44" size="100%-1 1 100% 100%"/>
+		<image backcolor="255 255 255 44" size="0 100%-1 100% 100%"/>
+		<image backcolor="255 255 255 128" size="0 1 1 100%-1"/>
+		
+		<image backcolor="255 255 255 96" size="1 1 100%-1 2"/>
+		<image backcolor="255 255 255 32" size="100%-2 2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 32" size="1 100%-2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 96" size="1 2 2 100%-2"/>
+		
+		<image backcolor="255 255 255 64" size="2 2 100%-2 3"/>
+		<image backcolor="255 255 255 16" size="100%-3 3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 16" size="2 100%-3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 64" size="2 3 3 100%-3"/>
+	</sprite>
+	
+	<!-- PANELS -->
+	
+	<!-- top -->
+	<sprite name="topPanel">
+		<image
+			texture="session/ribbon_bg.png"
+			texture_size="0 0 1024 32"
+			size="0 0 100% 100%"
+		/>
+		<!-- Sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+	</sprite>
+
+	<!-- Map -->
+	<sprite name="mapPanel">
+		<image
+			texture="session/map_bg.png"
+			texture_size="0 0 212 212"
+		/>
+			<!-- Sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- Corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!-- bottomLeft -->
+	<sprite name="bottomLeft">
+		<image
+			texture="global/tile/tile_dark.png"
+			texture_size="0 0 256 256"
+		/>
+
+		<!-- Sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- Corners -->
+		<image
+			texture="global/border/line_corner_middle_left.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_middle.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_middle.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_middle_right.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!-- bottomMiddle-->
+	<sprite name="bottomMiddle">
+		<image
+			texture="session/ui_bg.png"
+			real_texture_placement="256 0 768 205"
+			texture_size="0 0 224 256"
+		/>
+
+		<!-- Sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- Corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!-- bottomRight -->
+	<sprite name="bottomRight">
+		<image
+			texture="global/tile/tile_dark.png"
+			texture_size="0 0 256 256"
+		/>
+
+		<!-- Sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- Corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_middle.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_middle_right.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<sprite name="lightPanel">
 		<!-- (currently this is all a hack - need proper textures) -->
 		<image

@@ -41,7 +41,7 @@ function layoutSelectionSingle(entState)
 function displayGeneralInfo(entState, template)
 {
 	// Get general unit and player data
-	var specificName = "[font=\"serif-bold-18\"]" + template.name.specific + "[/font]";
+	var specificName = template.name.specific;
 	var genericName = template.name.generic != template.name.specific? template.name.generic : "";
 
 	var civName = getFormalCivName(toTitleCase(g_Players[entState.player].civ));
@@ -100,7 +100,7 @@ function displayGeneralInfo(entState, template)
 	// Set Captions
 	getGUIObjectByName("specific").caption = specificName;
 	getGUIObjectByName("player").caption = civName == GAIA? playerName : playerName + " (" + civName + ")"; // Don't need civ tooltip for Gaia Player - redundant
-	getGUIObjectByName("player").textcolor = playerColor;
+//	getGUIObjectByName("player").textcolor = playerColor;
 
 
 	// Icon image
