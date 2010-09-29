@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-09-29T07:52:33Z</created>
+    <modified>2010-09-29T07:52:33Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__9-image" name="Map__9">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\celt_prop_1.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_8___Defaultfg" name="_8___Defaultfg">
+      <instance_effect url="#_8___Defaultfg-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_8___Defaultfg-fx" name="_8___Defaultfg">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__9-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="door04-lib" name="door04Mesh">
+      <mesh>
+        <source id="door04-lib-Position">
+          <float_array id="door04-lib-Position-array" count="36">
+-59.625038 9.273064 0.775309
+-59.625038 9.273064 -1.606797
+-59.625038 11.491802 -1.606797
+-59.625038 11.491802 0.775309
+-73.404449 16.918907 -6.953298
+-77.512772 17.229111 -7.087189
+-77.512772 17.872185 -4.963688
+-73.404449 17.561981 -4.829797
+-73.363197 4.262002 -1.287797
+-77.471519 3.951795 -1.153905
+-77.471519 3.308721 -3.277406
+-73.363205 3.618927 -3.411298
+</float_array>
+          <technique_common>
+            <accessor source="#door04-lib-Position-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="door04-lib-Normal0">
+          <float_array id="door04-lib-Normal0-array" count="54">
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.081440 0.953897 -0.288875
+0.081440 0.953897 -0.288875
+0.081440 0.953897 -0.288875
+0.081440 0.953897 -0.288875
+0.081440 0.953897 -0.288875
+0.081440 0.953897 -0.288875
+0.081440 -0.953897 0.288875
+0.081441 -0.953897 0.288875
+0.081440 -0.953897 0.288875
+0.081440 -0.953897 0.288875
+0.081440 -0.953897 0.288875
+0.081440 -0.953897 0.288875
+</float_array>
+          <technique_common>
+            <accessor source="#door04-lib-Normal0-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="door04-lib-UV0">
+          <float_array id="door04-lib-UV0-array" count="24">
+0.644764 0.278279
+0.644764 0.124426
+0.793190 0.124426
+0.793190 0.278279
+0.496094 0.230469
+0.496094 0.001953
+0.646484 0.001953
+0.646484 0.230469
+0.496094 0.230469
+0.496094 0.001953
+0.646484 0.001953
+0.646484 0.230469
+</float_array>
+          <technique_common>
+            <accessor source="#door04-lib-UV0-array" count="12" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="door04-lib-Vertex">
+          <input semantic="POSITION" source="#door04-lib-Position"/>
+        </vertices>
+        <polygons material="_8___Defaultfg" count="6">
+          <input semantic="VERTEX" offset="0" source="#door04-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#door04-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#door04-lib-UV0"/>
+          <p>1 0 1 2 1 2 3 2 3</p>
+          <p>3 3 3 0 4 0 1 5 1</p>
+          <p>5 6 5 6 7 6 7 8 7</p>
+          <p>7 9 7 4 10 4 5 11 5</p>
+          <p>9 12 9 10 13 10 11 14 11</p>
+          <p>11 15 11 8 16 8 9 17 9</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="door04" name="door04">
+        <translate sid="translate">2.255286 -1.078047 17.788465</translate>
+        <rotate sid="rotateY">0 1 0 -90.000000</rotate>
+        <rotate sid="rotateX">1 0 0 149.207884</rotate>
+        <node id="door04-Pivot" name="door04-Pivot">
+          <translate>59.616943 -10.383518 1.590648</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#door04-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__9-Material" target="#Map__9-Material"/>
+                <instance_material symbol="_8___Defaultfg" target="#_8___Defaultfg"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

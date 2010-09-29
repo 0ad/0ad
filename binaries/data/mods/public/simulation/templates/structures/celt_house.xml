@@ -10,10 +10,10 @@
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
   <Footprint replace="">
-    <Circle radius="5.0"/>
+    <Circle radius="6.0"/>
     <Height>5.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="7.0" depth="7.0"/>
+    <Static width="10.0" depth="10.0"/>
   </Obstruction>
 </Entity>

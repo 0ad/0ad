@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/celt_ff_b.pmd</mesh>
+    <variant frequency="100" name="Brythonic Broch">
+      <mesh>structural/celt_broch.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/fortress_b1.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/celts/fortress_b2.xml" attachpoint="props_extra"/>
+        <prop actor="props/structures/celts/broch_weapons.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/broch_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/broch_doors.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/broch_top.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_broch.dds</texture>
     </variant>
   </group>
-
 </actor>
