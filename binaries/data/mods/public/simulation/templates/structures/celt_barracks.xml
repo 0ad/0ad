@@ -8,8 +8,16 @@
     <PopulationBonus>7</PopulationBonus>
   </Cost>
   <VisualActor>
-    <Actor>structures/celts/barracks.xml</Actor>
+    <Actor>structures/celts/barracks_new.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
+  <Footprint>
+    <Square width="22.0" depth="22.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/celt_cavalry_javelinist_b

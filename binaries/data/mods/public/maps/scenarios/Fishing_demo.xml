@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>sunny</SkySet>
+		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>58.4393</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.491211</Murkiness>
+				<Tint r="0.721569" g="0.772549" b="0.862745"/>
+				<ReflectionTint r="0.447059" g="0.545098" b="0.729412"/>
+				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="229.468" y="130.583" z="38.6414"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="11">
+			<Template>units/celt_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="209.03977" z="181.79581"/>
+			<Orientation y="2.3645"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>units/celt_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="236.13013" z="179.06864"/>
+			<Orientation y="-2.20308"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="225.00048" z="148.42492"/>
+			<Orientation y="-2.05118"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="262.26505" z="147.87525"/>
+			<Orientation y="-0.4285"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
