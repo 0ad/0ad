@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,17 +75,11 @@ CStrW CStr8::FromUTF8() const
 
 #ifdef  _UNICODE
  #define tstringstream wstringstream
- #define _tstod wcstod
- #define _ttoi(a) wcstol(a, NULL, 0)
- #define _ttol(a) wcstol(a, NULL, 0)
  #define _istspace iswspace
  #define _totlower towlower
  #define _totupper towupper
 #else
  #define tstringstream stringstream
- #define _tstod strtod
- #define _ttoi atoi
- #define _ttol atol
  #define _istspace isspace
  #define _totlower tolower
  #define _totupper toupper
@@ -130,32 +124,50 @@ NUM_TYPE(double)
 
 int CStr::ToInt() const
 {
-	return _ttoi(c_str());
+	int ret = 0;
+	std::tstringstream str(*this);
+	str >> ret;
+	return ret;
 }
 
 unsigned int CStr::ToUInt() const
 {
-	return (unsigned int)_ttoi(c_str());
+	unsigned int ret = 0;
+	std::tstringstream str(*this);
+	str >> ret;
+	return ret;
 }
 
 long CStr::ToLong() const
 {
-	return _ttol(c_str());
+	long ret = 0;
+	std::tstringstream str(*this);
+	str >> ret;
+	return ret;
 }
 
 unsigned long CStr::ToULong() const
 {
-	return (unsigned long)_ttol(c_str());
+	unsigned long ret = 0;
+	std::tstringstream str(*this);
+	str >> ret;
+	return ret;
 }
 
 float CStr::ToFloat() const
 {
-	return (float)_tstod(c_str(), NULL);
+	float ret = 0;
+	std::tstringstream str(*this);
+	str >> ret;
+	return ret;
 }
 
 double CStr::ToDouble() const
 {
-	return _tstod(c_str(), NULL);
+	double ret = 0;
+	std::tstringstream str(*this);
+	str >> ret;
+	return ret;
 }
 
 
