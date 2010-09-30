@@ -84,7 +84,7 @@
 	<!-- generic -->
 	<sprite name="genericPanel">
 		<image
-			texture="session/ui_bg.png"
+			texture="session/panel_bg.png"
 			real_texture_placement="256 0 768 205"
 			size="0 0 100% 100%"
 		/>
@@ -133,16 +133,12 @@
 			size="0 0 4 4"
 		/>
 	</sprite>
-	
-	
-	
-	
-	
+
 	<!-- top -->
 	<sprite name="topPanel">
 		<image
 			texture="session/ribbon_bg.png"
-			texture_size="0 0 1024 32"
+			real_texture_placement="0 0 2048 32"
 			size="0 0 100% 100%"
 		/>
 		<!-- Sides -->
@@ -212,7 +208,7 @@
 	<!-- bottomLeft -->
 	<sprite name="bottomLeft">
 		<image
-			texture="global/tile/tile_dark.png"
+			texture="session/panel_bg.png"
 			texture_size="0 0 256 256"
 		/>
 
@@ -264,9 +260,9 @@
 	<!-- bottomMiddle-->
 	<sprite name="bottomMiddle">
 		<image
-			texture="session/ui_bg.png"
-			real_texture_placement="256 0 768 205"
-			texture_size="0 0 224 256"
+			texture="session/panel_bg.png"
+			real_texture_placement="0 0 512 256"
+			size="0 0 100% 100%"
 		/>
 
 		<!-- Sides -->
@@ -317,8 +313,9 @@
 	<!-- bottomRight -->
 	<sprite name="bottomRight">
 		<image
-			texture="global/tile/tile_dark.png"
-			texture_size="0 0 256 256"
+			texture="session/panel_bg.png"
+			real_texture_placement="0 0 512 256"
+			size="0 0 100% 100%"
 		/>
 
 		<!-- Sides -->
