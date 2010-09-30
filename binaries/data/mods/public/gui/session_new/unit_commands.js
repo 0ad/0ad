@@ -113,7 +113,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var selection = g_Selection.toList();
 	var numberOfItems = items.length;
 
-	if (guiName == "Selection" || guiName == "Formation" || guiName == "Garrison")
+	if (guiName == "Selection")
+	{
+		if (numberOfItems > 12)
+				numberOfItems =  12;
+	}
+	if (guiName == "Formation" || guiName == "Garrison")
 	{
 		if (numberOfItems > 15)
 				numberOfItems =  15;
@@ -263,7 +268,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Layout buttons
 	if (guiName == "Command")
 	{
-		layoutButtonRowCentered(0, guiName, 0, numButtons, 230);
+		layoutButtonRowCentered(0, guiName, 0, numButtons, 228);
 	}
 	else
 	{

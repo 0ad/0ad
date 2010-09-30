@@ -2,39 +2,24 @@ const RESOURCE_ICON_CELL_IDS = {food : 0, wood : 1, stone : 2, metal : 3};
 
 function layoutSelectionMultiple()
 {
-//	getGUIObjectByName("specific").hidden = true;
-//	getGUIObjectByName("iconBorder").hidden = true;
-//	getGUIObjectByName("statsArea").hidden = true;
-//	getGUIObjectByName("health").hidden = true;
-//	getGUIObjectByName("stamina").hidden = true;
+	getGUIObjectByName("specific").hidden = true;
+	getGUIObjectByName("iconBorder").hidden = true;
 
-
-	getGUIObjectByName("detailsArea").hidden = true;
-
+	getGUIObjectByName("attackIcon").size = "-4 10 32 46";
+	getGUIObjectByName("armourIcon").size = "-4 46 32 82";
+	
+	getGUIObjectByName("barsArea").size = "50%+60 40 100% 136"
 }
 
-function layoutSelectionSingle(entState)
+function layoutSelectionSingle()
 {
-	getGUIObjectByName("detailsArea").hidden = false;
-
-
 	getGUIObjectByName("specific").hidden = false;
 	getGUIObjectByName("iconBorder").hidden = false;
-//	getGUIObjectByName("sdStatsArea").hidden = false;
 
-	if (entState.hitpoints != undefined)
-		getGUIObjectByName("health").hidden = false;
-	else
-		getGUIObjectByName("health").hidden = true;
-
-	var player = Engine.GetPlayerID();
-	if (entState.player == player || g_DevSettings.controlAll)
-	{
-		//if (entState.stamina != undefined)
-			getGUIObjectByName("stamina").hidden = false;
-		//else
-		//	getGUIObjectByName("stamina").hidden = true;
-	}
+	getGUIObjectByName("attackIcon").size = "0 0 48 48";
+	getGUIObjectByName("armourIcon").size = "0 48 48 96";
+	
+	getGUIObjectByName("barsArea").size = "50%+48 40 100% 136"
 }
 
 // Fills out information that most entities have
@@ -173,14 +158,25 @@ function updateSelectionDetails()
 
 	// Fill out general info and display it
 	if (selection.length == 1)
-	{
-		displayGeneralInfo(entState, template); // must come after layout functions
-		getGUIObjectByName("detailsArea").hidden = false;
-	}
+		layoutSelectionSingle();
 	else
+		 layoutSelectionMultiple();
+
+	if (entState.hitpoints != undefined)
+		getGUIObjectByName("health").hidden = false;
+	else
+		getGUIObjectByName("health").hidden = true;
+
+	var player = Engine.GetPlayerID();
+	if (entState.player == player || g_DevSettings.controlAll)
 	{
-		getGUIObjectByName("detailsArea").hidden = true;
+		//if (entState.stamina != undefined)
+			getGUIObjectByName("stamina").hidden = false;
+		//else
+		//	getGUIObjectByName("stamina").hidden = true;
 	}
+	
+	displayGeneralInfo(entState, template); // must come after layout functions
 
 	// Show Panels
 	detailsPanel.hidden = false;

@@ -168,7 +168,7 @@
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatWindow" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" z="40" style="sessionPanelDark">
+		<object name="chatWindow" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" z="40" sprite="genericPanel">
 			<object name="chatInput" size="16 12 100%-16 36" type="input" style="chatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
@@ -190,7 +190,7 @@
 		<object name="menuPanel"
 			size="50%-74 50%-180 50%+74 50%+20"
 			type="image"
-			style="sessionPanelDark"
+			sprite="genericPanel"
 			hidden="true"
 			z="60"
 		>
@@ -262,7 +262,7 @@
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
 		<object name="settingsWindow"
-			style="sessionPanelDark"
+			sprite="genericPanel"
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
@@ -272,7 +272,7 @@
 			<object name="settingsOptions"
 				size="30 36 100%-30 180"
 				type="image"
-				style="sessionPanelDark"
+				sprite="genericPanel"
 			>
 				<!-- Settings / shadows -->
 				<object size="0 10 100%-80 35" type="text" style="settingsText" ghost="true">Enable Shadows</object>
@@ -318,7 +318,7 @@
 	<object name="topPanel"
 		type="image"
 		sprite="topPanel"
-		size="-3 0 100%+3 26"
+		size="-3 0 100%+3 32"
 	>
 		<!-- ================================  ================================ -->
 		<!-- Player resource bar -->
@@ -328,31 +328,31 @@
 		>	
 			<!-- Food -->
 			<object size="6 0 96 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="snToolTip">
-				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="0"/>
 				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
 			<!-- Wood -->
 			<object size="98 0 188 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="snToolTip">
-				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="1"/>
+				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="1"/>
 				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 			</object>
 
 			<!-- Stone -->
 			<object size="190 0 280 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="snToolTip">
-				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="2"/>
+				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="2"/>
 				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 			</object>
 
 			<!-- Metal -->
 			<object size="282 0 372 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="snToolTip">
-				<object size="0 -4 28 22" type="image" style="resourceIcon" cell_id="3"/>
+				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="3"/>
 				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 			</object>
 
 			<!-- Population -->
 			<object size="374 0 464 100%" type="image" style="resourceCounter" tooltip="Population (current / maximum)" tooltip_style="snToolTip">
-				<object size="0 -5 28 21" type="image" style="resourceIcon" cell_id="4"/>
+				<object size="0 -2 28 24" type="image" style="resourceIcon" cell_id="4"/>
 				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
@@ -360,12 +360,12 @@
 		<!-- ================================  ================================ -->
 		<!-- Civ Icon -->
 		<!-- ================================  ================================ -->
-		<object size="50%-32 -20 50%+32 44" name="civIcon" type="image"/>
+		<object size="50%-36 -20 50%+36 52" name="civIcon" type="image"/>
 
 		<!-- ================================  ================================ -->
 		<!-- Phase -->
 		<!-- ================================  ================================ -->
-		<object size="50%+50 1 50%+300 26" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>
+		<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>
 
 		<!-- ================================  ================================ -->
 		<!-- Menu Button -->
@@ -452,12 +452,12 @@
 			hidden="true"
 		>
 			<object name="unitSelectionPanel"
-				size="10 10 100%-20 100%"
+				size="40 36 100%-20 100%"
 			>
 				<object size="0 0 100% 100%">
-					<repeat count="15">
-						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" z="100">
-							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 39 39"/>
+					<repeat count="12">
+						<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" z="100">
+							<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 35 35"/>
 							<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 							<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
 							</object>
@@ -473,7 +473,7 @@
 				<object size="0 8 100% 30" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
 	
 				<!-- Stats -->
-				<object size="6 44 50 100%" name="statsArea" type="image">
+				<object size="6 36 50 100%" name="statsArea" type="image">
 					<!-- Attack icon -->
 					<object size="0 0 48 48" type="image" name="attackIcon" sprite="snIconSheetStance" cell_id="1" tooltip_style="snToolTip"/>
 
@@ -482,33 +482,36 @@
 				</object>
 
 				<!-- Big unit icon -->
-				<object size= "50%-48 44 50%+48 140" type="image" name="iconBorder" tooltip_style="snToolTip">
+				<object size= "50%-48 36 50%+48 140" type="image" name="iconBorder" tooltip_style="snToolTip">
 					<object size= "0 0 100% 100%" type="image" name="icon" ghost="true"/>
 					<object size="100%-32 0 100% 32" name="rankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
 					<object type="image" sprite="glassSquareIcon" ghost="true"/>
-
+				</object>
+						
+				<!-- Stats Bars -->
+				<object size= "50%+48 36 100% 140" type="image" name="barsArea" tooltip_style="snToolTip">		
 					<!-- Health bar -->
-					<object size="100%+18 0 100%+30 100%" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
+					<object size="18 0 30 100%" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
 						<object type="image" sprite="healthBackground" ghost="true"/>
 						<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
 					
 					<!-- Stamina bar -->
-					<object size="100%+32 0 100%+44 100%" type="image" name="stamina" tooltip="Stamina" tooltip_style="snToolTip">
+					<object size="32 0 44 100%" type="image" name="stamina" tooltip="Stamina" tooltip_style="snToolTip">
 						<object type="image" sprite="staminaBackground" ghost="true"/>
 						<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
 					
 					<!-- Resource bar -->
-					<object size="100%+18 0 100%+30 100%" type="image" name="resources" tooltip="Resources" tooltip_style="snToolTip">
+					<object size="18 0 30 100%" type="image" name="resources" tooltip="Resources" tooltip_style="snToolTip">
 						<object type="image" sprite="resourceBackground" ghost="true"/>
 						<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
 				</object>
-
+				
 				<!-- Specific Name -->
 				<object size="0 144 100% 164" name="specific" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
 			</object>
@@ -519,7 +522,7 @@
 				type="image"
 				z="30"
 			>
-				<object size="0 4 100% 100%-2">
+				<object size="0 0 100% 100%">
 					<repeat count="9">
 						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 28 28">
 							<object name="unitCommandIcon[n]" ghost="true" type="image" size="1 1 25 25" style="commandIcon"/>

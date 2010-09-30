@@ -39,8 +39,8 @@
 	<sprite name="menuButton">
 		<image
 			texture="session/icons/single/menu.png"
-			real_texture_placement="0 0 120 30"
-			size="0 2 100%-8 100%-2"
+			real_texture_placement="0 0 120 32"
+			size="0 4 100%-4 100%-4"
 		/>
 	</sprite>
 		
@@ -79,6 +79,64 @@
 	</sprite>
 	
 	<!-- PANELS -->
+	
+	
+	<!-- generic -->
+	<sprite name="genericPanel">
+		<image
+			texture="session/ui_bg.png"
+			real_texture_placement="256 0 768 205"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- Sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- Corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+	
+	
+	
+	
 	
 	<!-- top -->
 	<sprite name="topPanel">
@@ -673,6 +731,8 @@
 		<image backcolor="255 255 255 64" size="100%-3 3 100%-2 100%-3"/>
 		<image backcolor="255 255 255 64" size="0 100%-3 100% 100%-2"/>
 		<image backcolor="255 255 255 64" size="2 3 3 100%-3"/>
+		
+		<image backcolor="0 0 0 144" size="3 3 100%-3 100%-3"/>
 	</sprite>
 	
 	<sprite name="chatInputHighlight">
