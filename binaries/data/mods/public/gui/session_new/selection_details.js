@@ -50,6 +50,11 @@ function displayGeneralInfo(entState, template)
 
 		hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
 		getGUIObjectByName("health").tooltip = hitpoints;
+		getGUIObjectByName("health").hidden = false;
+	}
+	else
+	{
+		getGUIObjectByName("health").hidden = true;
 	}
 
 	// Resource stats
@@ -160,17 +165,12 @@ function updateSelectionDetails()
 	if (selection.length == 1)
 	{
 		layoutSelectionSingle();
-		displayGeneralInfo(entState, template); // must come after layout functions
+
 	}
 	else
 	{
 		 layoutSelectionMultiple();
 	}
-
-	if (entState.hitpoints != undefined)
-		getGUIObjectByName("health").hidden = false;
-	else
-		getGUIObjectByName("health").hidden = true;
 
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
@@ -181,6 +181,8 @@ function updateSelectionDetails()
 		//	getGUIObjectByName("stamina").hidden = true;
 	}
 
+	displayGeneralInfo(entState, template); // must come after layout functions
+	
 	// Show Panels
 	detailsPanel.hidden = false;
 	
