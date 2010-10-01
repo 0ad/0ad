@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <mesh>structural/celt_rc.pmd</mesh>
+      <mesh>structural/celt_mill.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/mill_1.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/celts/mill_2.xml" attachpoint="props_extra"/>
+        <prop actor="props/structures/celts/mill_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/mill_2.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/mill_shield.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/tavern_mud.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
-
 </actor>

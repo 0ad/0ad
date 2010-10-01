@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/celt_mill_silo.dae</mesh>
-      <texture>structural/celt_broch.dds</texture>
+      <mesh>props/decal_celt_farmstead.dae</mesh>
+      <texture>props/decal_struct_mud_long.dds</texture>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>

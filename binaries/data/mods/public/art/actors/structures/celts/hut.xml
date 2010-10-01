@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Celtic Hut">
+      <mesh>structural/celt_hut.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/hut_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/hut_shield.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/celt_struct_1.dds</texture>
+    </variant>
+  </group>
+</actor>

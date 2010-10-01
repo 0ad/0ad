@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-10-01T07:08:37Z</created>
+    <modified>2010-10-01T07:08:37Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__349-image" name="Map__349">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\prop_weap.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_4___Default" name="_4___Default">
+      <instance_effect url="#_4___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_4___Default-fx" name="_4___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__349-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="hoe01-lib" name="hoe01Mesh">
+      <mesh>
+        <source id="hoe01-lib-Position">
+          <float_array id="hoe01-lib-Position-array" count="54">
+-41.432774 11.704618 323.880127
+-39.716042 14.678069 323.880127
+-39.716053 14.678127 439.973236
+-41.432751 11.704586 439.973236
+-43.149483 14.678129 323.880127
+-43.149448 14.678065 439.973236
+-40.524498 14.211330 441.211914
+-41.432743 12.638118 441.211914
+-42.341030 14.211329 441.211914
+-40.828915 17.169399 447.527710
+-41.432755 15.596217 447.527710
+-42.036636 17.169399 447.527710
+-34.475590 18.808010 447.580139
+-41.432735 0.683222 447.580139
+-48.389915 18.808008 447.580139
+-34.475590 18.808010 448.961609
+-41.432728 0.683222 448.961609
+-48.389915 18.808008 448.961609
+</float_array>
+          <technique_common>
+            <accessor source="#hoe01-lib-Position-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hoe01-lib-Normal0">
+          <float_array id="hoe01-lib-Normal0-array" count="288">
+-0.000008 -1.000000 0.000000
+0.866030 0.499991 0.000001
+0.832788 0.480832 0.274344
+0.832788 0.480832 0.274344
+0.000004 -0.961631 0.274347
+-0.000008 -1.000000 0.000000
+0.866030 0.499991 0.000001
+-0.866018 0.500014 0.000001
+-0.832801 0.480813 0.274338
+-0.832801 0.480813 0.274338
+0.832788 0.480832 0.274344
+0.866030 0.499991 0.000001
+-0.866018 0.500014 0.000001
+-0.000008 -1.000000 0.000000
+0.000004 -0.961631 0.274347
+0.000004 -0.961631 0.274347
+-0.832801 0.480813 0.274338
+-0.866018 0.500014 0.000001
+0.000004 -0.961631 0.274347
+0.832788 0.480832 0.274344
+0.858487 0.373980 0.350913
+0.858487 0.373980 0.350913
+0.002603 -0.833536 0.552459
+0.000004 -0.961631 0.274347
+0.832788 0.480832 0.274344
+-0.832801 0.480813 0.274338
+-0.864839 0.378444 0.329900
+-0.864839 0.378444 0.329900
+0.858487 0.373980 0.350913
+0.832788 0.480832 0.274344
+-0.832801 0.480813 0.274338
+0.000004 -0.961631 0.274347
+0.002603 -0.833536 0.552459
+0.002603 -0.833536 0.552459
+-0.864839 0.378444 0.329900
+-0.832801 0.480813 0.274338
+0.002603 -0.833536 0.552459
+0.858487 0.373980 0.350913
+0.692186 0.655770 -0.301404
+0.692186 0.655770 -0.301404
+0.018775 -0.886582 0.462189
+0.002603 -0.833536 0.552459
+0.858487 0.373980 0.350913
+-0.864839 0.378444 0.329900
+-0.688421 0.669018 -0.280163
+-0.688421 0.669018 -0.280163
+0.692186 0.655770 -0.301404
+0.858487 0.373980 0.350913
+-0.864839 0.378444 0.329900
+0.002603 -0.833536 0.552459
+0.018775 -0.886582 0.462189
+0.018775 -0.886582 0.462189
+-0.688421 0.669018 -0.280163
+-0.864839 0.378444 0.329900
+0.000000 -0.003516 -0.999994
+0.009159 -0.003515 -0.999952
+0.009159 -0.003515 -0.999952
+0.009159 -0.003515 -0.999952
+-0.000000 -0.003516 -0.999994
+0.000000 -0.003516 -0.999994
+-0.000000 0.031980 -0.999489
+0.000000 0.031980 -0.999489
+-0.000000 0.031980 -0.999489
+-0.000000 0.031980 -0.999489
+-0.000000 0.031980 -0.999489
+-0.000000 0.031980 -0.999489
+-0.009159 -0.003516 -0.999952
+0.000000 -0.003516 -0.999994
+-0.000000 -0.003516 -0.999994
+-0.000000 -0.003516 -0.999994
+-0.009159 -0.003516 -0.999952
+-0.009159 -0.003516 -0.999952
+0.933586 -0.358354 -0.000005
+0.933586 -0.358354 0.000000
+0.933586 -0.358354 -0.000000
+0.933586 -0.358354 -0.000000
+0.933586 -0.358354 -0.000005
+0.933586 -0.358354 -0.000005
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.933585 -0.358356 0.000000
+-0.933585 -0.358356 0.000005
+-0.933585 -0.358356 0.000005
+-0.933585 -0.358356 0.000005
+-0.933585 -0.358356 0.000000
+-0.933585 -0.358356 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#hoe01-lib-Normal0-array" count="96" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hoe01-lib-UV0">
+          <float_array id="hoe01-lib-UV0-array" count="96">
+0.996613 0.736961
+0.985834 0.736961
+0.985834 0.412709
+0.996613 0.412709
+0.989249 0.736961
+0.989249 0.412709
+0.976803 0.736961
+0.976803 0.412709
+0.987526 0.409250
+0.993229 0.409250
+0.986319 0.409250
+0.979734 0.409250
+0.976803 0.391609
+0.982506 0.391609
+0.985215 0.391609
+0.980837 0.391609
+0.995737 0.374355
+0.992521 0.373315
+0.995737 0.372275
+0.999086 0.385301
+0.962015 0.372968
+0.996647 0.372968
+0.988602 0.380084
+0.962015 0.380084
+0.962015 0.376526
+0.996647 0.376526
+0.961241 0.375219
+0.998422 0.385272
+0.998123 0.386616
+0.961961 0.374582
+0.998123 0.360788
+0.998422 0.360787
+0.962015 0.369954
+0.996647 0.369954
+0.962015 0.373512
+0.996647 0.373512
+0.988602 0.377070
+0.962015 0.377070
+0.962037 0.373315
+0.999086 0.361330
+0.976803 0.736961
+0.976803 0.412709
+0.987582 0.736961
+0.987582 0.412709
+0.980187 0.409250
+0.985890 0.409250
+0.990910 0.391609
+0.996613 0.391609
+</float_array>
+          <technique_common>
+            <accessor source="#hoe01-lib-UV0-array" count="48" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hoe01-lib-Vertex">
+          <input semantic="POSITION" source="#hoe01-lib-Position"/>
+        </vertices>
+        <polygons material="_4___Default" count="32">
+          <input semantic="VERTEX" offset="0" source="#hoe01-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#hoe01-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#hoe01-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+          <p>1 6 4 4 7 6 5 8 7</p>
+          <p>5 9 7 2 10 5 1 11 4</p>
+          <p>4 12 42 0 13 40 3 14 41</p>
+          <p>3 15 41 5 16 43 4 17 42</p>
+          <p>3 18 3 2 19 2 6 20 8</p>
+          <p>6 21 8 7 22 9 3 23 3</p>
+          <p>2 24 5 5 25 7 8 26 11</p>
+          <p>8 27 11 6 28 10 2 29 5</p>
+          <p>5 30 43 3 31 41 7 32 44</p>
+          <p>7 33 44 8 34 45 5 35 43</p>
+          <p>7 36 9 6 37 8 9 38 12</p>
+          <p>9 39 12 10 40 13 7 41 9</p>
+          <p>6 42 10 8 43 11 11 44 15</p>
+          <p>11 45 15 9 46 14 6 47 10</p>
+          <p>8 48 45 7 49 44 10 50 46</p>
+          <p>10 51 46 11 52 47 8 53 45</p>
+          <p>10 54 17 9 55 16 12 56 19</p>
+          <p>12 57 19 13 58 38 10 59 17</p>
+          <p>9 60 16 11 61 18 14 62 39</p>
+          <p>14 63 39 12 64 19 9 65 16</p>
+          <p>11 66 18 10 67 17 13 68 38</p>
+          <p>13 69 38 14 70 39 11 71 18</p>
+          <p>13 72 21 12 73 20 15 74 32</p>
+          <p>15 75 32 16 76 33 13 77 21</p>
+          <p>12 78 22 14 79 23 17 80 37</p>
+          <p>17 81 37 15 82 36 12 83 22</p>
+          <p>14 84 25 13 85 24 16 86 34</p>
+          <p>16 87 34 17 88 35 14 89 25</p>
+          <p>4 90 28 1 91 29 0 92 30</p>
+          <p>16 93 26 15 94 31 17 95 27</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="hoe01" name="hoe01">
+        <translate sid="translate">-0.759847 -4.536083 1.545043</translate>
+        <rotate sid="rotateZ">0 0 1 -90.000009</rotate>
+        <rotate sid="rotateY">0 1 0 0.000001</rotate>
+        <rotate sid="rotateX">1 0 0 -14.244981</rotate>
+        <scale sid="scale">0.024549 0.024549 0.024549</scale>
+        <node id="hoe01-Pivot" name="hoe01-Pivot">
+          <translate>41.432751 -9.745616 -386.420837</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#hoe01-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__349-Material" target="#Map__349-Material"/>
+                <instance_material symbol="_4___Default" target="#_4___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

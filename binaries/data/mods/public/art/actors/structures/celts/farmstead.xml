@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/celt_fc.pmd</mesh>
+    <variant frequency="100" name="Celt Farmstead">
+      <mesh>structural/celt_farmstead.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/farmstead.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/celts/farmstead.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_shield.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_hoe.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
-
 </actor>

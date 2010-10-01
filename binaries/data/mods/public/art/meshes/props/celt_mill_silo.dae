@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-10-01T06:27:39Z</created>
+    <modified>2010-10-01T06:27:39Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__4-image" name="Map__4">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\celt_broch.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_7___Defaulta" name="_7___Defaulta">
+      <instance_effect url="#_7___Defaulta-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_7___Defaulta-fx" name="_7___Defaulta">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__4-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="mill_prop2-lib" name="mill_prop2Mesh">
+      <mesh>
+        <source id="mill_prop2-lib-Position">
+          <float_array id="mill_prop2-lib-Position-array" count="60">
+-0.676216 3.347204 0.000000
+-1.257279 5.135533 0.000000
+-2.778523 6.240781 0.000000
+-4.658883 6.240781 0.000000
+-6.180126 5.135533 0.000000
+-6.761189 3.347204 0.000000
+-6.180125 1.558876 0.000000
+-4.658882 0.453628 0.000000
+-2.778522 0.453628 0.000000
+-1.257279 1.558876 0.000000
+-1.412522 3.347204 10.000000
+-1.852963 4.702744 10.000000
+-3.006054 5.540512 10.000000
+-4.431352 5.540512 10.000000
+-5.584442 4.702743 10.000000
+-6.024883 3.347204 10.000000
+-5.584442 1.991665 10.000000
+-4.431351 1.153896 10.000000
+-3.006053 1.153897 10.000000
+-1.852963 1.991666 10.000000
+</float_array>
+          <technique_common>
+            <accessor source="#mill_prop2-lib-Position-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="mill_prop2-lib-Normal0">
+          <float_array id="mill_prop2-lib-Normal0-array" count="180">
+0.997300 0.000000 0.073432
+0.806833 0.586198 0.073432
+0.806833 0.586199 0.073432
+0.806833 0.586199 0.073432
+0.997300 -0.000000 0.073432
+0.997300 0.000000 0.073432
+0.806833 0.586198 0.073432
+0.308183 0.948489 0.073432
+0.308183 0.948489 0.073432
+0.308183 0.948489 0.073432
+0.806833 0.586199 0.073432
+0.806833 0.586198 0.073432
+0.308183 0.948489 0.073432
+-0.308183 0.948489 0.073432
+-0.308183 0.948489 0.073432
+-0.308183 0.948489 0.073432
+0.308183 0.948489 0.073432
+0.308183 0.948489 0.073432
+-0.308183 0.948489 0.073432
+-0.806833 0.586198 0.073432
+-0.806833 0.586198 0.073432
+-0.806833 0.586198 0.073432
+-0.308183 0.948489 0.073432
+-0.308183 0.948489 0.073432
+-0.806833 0.586198 0.073432
+-0.997300 -0.000000 0.073432
+-0.997300 -0.000000 0.073432
+-0.997300 -0.000000 0.073432
+-0.806833 0.586198 0.073432
+-0.806833 0.586198 0.073432
+-0.997300 -0.000000 0.073432
+-0.806833 -0.586198 0.073432
+-0.806833 -0.586198 0.073432
+-0.806833 -0.586198 0.073432
+-0.997300 -0.000000 0.073432
+-0.997300 -0.000000 0.073432
+-0.806833 -0.586198 0.073432
+-0.308183 -0.948489 0.073432
+-0.308183 -0.948489 0.073432
+-0.308183 -0.948489 0.073432
+-0.806833 -0.586198 0.073432
+-0.806833 -0.586198 0.073432
+-0.308183 -0.948489 0.073432
+0.308183 -0.948489 0.073432
+0.308183 -0.948489 0.073432
+0.308183 -0.948489 0.073432
+-0.308183 -0.948489 0.073432
+-0.308183 -0.948489 0.073432
+0.308183 -0.948489 0.073432
+0.806833 -0.586198 0.073432
+0.806833 -0.586198 0.073432
+0.806833 -0.586198 0.073432
+0.308183 -0.948489 0.073432
+0.308183 -0.948489 0.073432
+0.806833 -0.586198 0.073432
+0.997300 0.000000 0.073432
+0.997300 -0.000000 0.073432
+0.997300 -0.000000 0.073432
+0.806833 -0.586198 0.073432
+0.806833 -0.586198 0.073432
+</float_array>
+          <technique_common>
+            <accessor source="#mill_prop2-lib-Normal0-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="mill_prop2-lib-UV0">
+          <float_array id="mill_prop2-lib-UV0-array" count="44">
+0.546695 -0.000000
+0.617652 -0.000000
+0.688608 -0.000000
+0.050000 -0.000000
+0.120957 -0.000000
+0.191913 -0.000000
+0.262869 -0.000000
+0.333826 -0.000000
+0.404782 -0.000000
+0.475739 -0.000000
+0.546695 0.341386
+0.617652 0.341386
+0.688608 0.341386
+0.050000 0.341386
+0.120957 0.341386
+0.191913 0.341386
+0.262869 0.341386
+0.333826 0.341386
+0.404782 0.341386
+0.475739 0.341386
+0.759565 -0.000000
+0.759565 0.341386
+</float_array>
+          <technique_common>
+            <accessor source="#mill_prop2-lib-UV0-array" count="22" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="mill_prop2-lib-Vertex">
+          <input semantic="POSITION" source="#mill_prop2-lib-Position"/>
+        </vertices>
+        <polygons material="_7___Defaulta" count="20">
+          <input semantic="VERTEX" offset="0" source="#mill_prop2-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#mill_prop2-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#mill_prop2-lib-UV0"/>
+          <p>0 0 0 1 1 1 11 2 11</p>
+          <p>11 3 11 10 4 10 0 5 0</p>
+          <p>1 6 1 2 7 2 12 8 12</p>
+          <p>12 9 12 11 10 11 1 11 1</p>
+          <p>2 12 2 3 13 20 13 14 21</p>
+          <p>13 15 21 12 16 12 2 17 2</p>
+          <p>3 18 3 4 19 4 14 20 14</p>
+          <p>14 21 14 13 22 13 3 23 3</p>
+          <p>4 24 4 5 25 5 15 26 15</p>
+          <p>15 27 15 14 28 14 4 29 4</p>
+          <p>5 30 5 6 31 6 16 32 16</p>
+          <p>16 33 16 15 34 15 5 35 5</p>
+          <p>6 36 6 7 37 7 17 38 17</p>
+          <p>17 39 17 16 40 16 6 41 6</p>
+          <p>7 42 7 8 43 8 18 44 18</p>
+          <p>18 45 18 17 46 17 7 47 7</p>
+          <p>8 48 8 9 49 9 19 50 19</p>
+          <p>19 51 19 18 52 18 8 53 8</p>
+          <p>9 54 9 0 55 0 10 56 10</p>
+          <p>10 57 10 19 58 19 9 59 9</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="mill_prop2" name="mill_prop2">
+        <translate sid="translate">0.081188 -0.332780 0.000000</translate>
+        <rotate sid="rotateZ">0 0 1 -90.000003</rotate>
+        <instance_geometry url="#mill_prop2-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Map__4-Material" target="#Map__4-Material"/>
+              <instance_material symbol="_7___Defaulta" target="#_7___Defaulta"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
