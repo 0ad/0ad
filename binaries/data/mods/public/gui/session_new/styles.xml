@@ -90,8 +90,7 @@
 	/>
 
 	<style name="commandIcon"
-		sprite="snIconSheetCommand"
-		sprite_disabled="snIconSheetCommandDisabled"
+		sprite="commands"
 		ghost="true"
 	/>	
 
@@ -205,7 +204,7 @@
 		font="serif-bold-stroke-14"
 		textcolor="white"
 		text_align="center"
-		text_valign="bottom"
+		text_valign="top"
 	/>
 
 </styles>

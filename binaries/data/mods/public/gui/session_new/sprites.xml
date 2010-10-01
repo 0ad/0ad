@@ -16,7 +16,7 @@
 		/>
 	</sprite>
 
-	<!-- NEED TO MORE FORMATIONS TO A MORE APPROPRIATE PLACE -->
+	<!-- ICONS NEED BETTER PLACE -->
 	<sprite name="formation">
 		<image
 			texture="session/icons/sheets/formation_select.png"
@@ -25,7 +25,6 @@
 		/>
 	</sprite>
 
-	<!-- NEED TO MORE FORMATIONS TO A MORE APPROPRIATE PLACE -->
 	<sprite name="formation_disabled">
 		<image
 			texture="session/icons/sheets/formation_nonselect.png"
@@ -33,6 +32,24 @@
 			size="0 0 100% 100%"
 		/>
 	</sprite>
+	
+	<sprite name="commands">
+		<image
+			texture="session/icons/sheets/commands.png"
+			cell_size="32 32"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<sprite name="menuButton">
 		<image
@@ -82,6 +99,7 @@
 	<sprite name="genericPanel">
 		<image
 			texture="global/tile/tile_dark.png"
+			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>
 
@@ -154,7 +172,8 @@
 	<sprite name="mapPanel">
 		<image
 			texture="session/map_bg.png"
-			texture_size="0 0 212 212"
+			texture_size="0 0 100% 100%"
+			size="0 0 100% 100%"
 		/>
 			<!-- Sides -->
 		<image
@@ -257,7 +276,7 @@
 	<sprite name="bottomMiddle">
 		<image
 			texture="session/panel_bg.png"
-			real_texture_placement="0 0 512 256"
+			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>
 
@@ -310,6 +329,7 @@
 	<sprite name="bottomRight">
 		<image
 			texture="global/tile/tile_dark.png"
+			texture_size="0 0 256 256"
 			size="0 0 100% 100%"
 		/>
 

@@ -159,7 +159,7 @@ function getCommandCellId(commandName)
 	switch (commandName)
 	{
 	case "delete":
-		return 4;
+		return 1;
 	default:
 		return -1;
 	}

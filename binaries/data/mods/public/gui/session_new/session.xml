@@ -32,12 +32,12 @@
 		<!-- ================================  ================================ -->
 		
 		<!-- Displays Alpha name and number (Alpha 2 Bellerophon) -->
-		<object size="100%-200 28 100% 48" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white">
+		<object size="100%-200 32 100% 52" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white">
 			<action on="Load"><![CDATA[this.caption = "ALPHA II : Bxxxxxxxxxx";]]></action>
 		</object>
 
 		<!-- Displays build date and revision number-->
-		<object size="100%-200 48 100% 58" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
+		<object size="100%-200 52 100% 62" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
 			<action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
 		</object>
 	
@@ -524,8 +524,8 @@
 			>
 				<object size="0 0 100% 100%">
 					<repeat count="9">
-						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 28 28">
-							<object name="unitCommandIcon[n]" ghost="true" type="image" size="1 1 25 25" style="commandIcon"/>
+						<object name="unitCommandButton[n]" hidden="true" style="iconButton"  type="button" size="0 0 32 32" tooltip_style="snToolTipBottom">
+							<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 32 32" style="commandIcon"/>
 						</object>
 					</repeat>
 				</object>
@@ -595,15 +595,15 @@
 			</object>
 
 			<object name="unitQueuePanel"
-				size="3 100%-51 100% 100%-3"
+				size="4 -56 100% 0"
 				type="image"
-				style="sessionPanelDark"
+				sprite="genericPanel"
 			>
-				<object size="-4 -3 52 53" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="3" tooltip="Production queue">
+				<object size="-4 -2 52 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="3" tooltip="Production queue">
 						<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
 				</object>
 
-				<object size="48 5 100% 100%">
+				<object size="48 6 100% 100%">
 					<repeat count="16">
 						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40">
 							<object name="unitQueueIcon[n]" ghost="true" type="image" size="1 1 39 39"/>

@@ -158,9 +158,14 @@ function updateSelectionDetails()
 
 	// Fill out general info and display it
 	if (selection.length == 1)
+	{
 		layoutSelectionSingle();
+		displayGeneralInfo(entState, template); // must come after layout functions
+	}
 	else
+	{
 		 layoutSelectionMultiple();
+	}
 
 	if (entState.hitpoints != undefined)
 		getGUIObjectByName("health").hidden = false;
@@ -175,8 +180,6 @@ function updateSelectionDetails()
 		//else
 		//	getGUIObjectByName("stamina").hidden = true;
 	}
-	
-	displayGeneralInfo(entState, template); // must come after layout functions
 
 	// Show Panels
 	detailsPanel.hidden = false;
