@@ -2,8 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant name="shields 1">
       <mesh>props/celt_outpost_shields.dae</mesh>
+    </variant>
+    <variant name="shields 2">
+      <mesh>props/celt_outpost2_shields.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
       <texture>props/celt_props_new.dds</texture>
     </variant>
   </group>

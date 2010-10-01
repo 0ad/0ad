@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-10-01T08:58:13Z</created>
+    <modified>2010-10-01T08:58:13Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__4-image" name="Map__4">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\celt_broch.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_7___Defaulta" name="_7___Defaulta">
+      <instance_effect url="#_7___Defaulta-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_7___Defaulta-fx" name="_7___Defaulta">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__4-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="default04-lib" name="default04Mesh">
+      <mesh>
+        <source id="default04-lib-Position">
+          <float_array id="default04-lib-Position-array" count="72">
+0.334590 0.823561 0.748312
+-0.334591 0.823563 0.748312
+-0.334591 -0.823563 0.748312
+0.334589 -0.823563 0.748312
+-0.334591 0.823563 1.370787
+0.334590 0.823561 1.370787
+0.334589 -0.823563 1.370787
+-0.334591 -0.823563 1.370787
+-0.893359 0.305405 -0.468285
+-0.893359 -0.305405 -0.468285
+0.893358 -0.305405 -0.468285
+0.893358 0.305405 -0.468285
+0.334590 0.815431 -0.468285
+-0.334591 0.815432 -0.468285
+-0.334591 -0.815431 -0.468285
+0.334589 -0.815432 -0.468285
+-0.893359 -0.305405 -1.370786
+-0.893359 0.305405 -1.370786
+0.893358 0.305405 -1.370786
+0.893358 -0.305406 -1.370786
+-0.334591 0.815431 -1.370786
+0.334590 0.815431 -1.370786
+0.334589 -0.815432 -1.370786
+-0.334591 -0.815432 -1.370786
+</float_array>
+          <technique_common>
+            <accessor source="#default04-lib-Position-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default04-lib-Normal0">
+          <float_array id="default04-lib-Normal0-array" count="108">
+0.000002 1.000000 0.000000
+0.000002 1.000000 0.000000
+0.000002 1.000000 0.000000
+0.000002 1.000000 0.000000
+0.000002 1.000000 0.000000
+0.000002 1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+1.000000 -0.000002 -0.000001
+1.000000 -0.000002 -0.000001
+1.000000 -0.000002 -0.000001
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000002 1.000000 -0.000001
+0.000002 1.000000 -0.000001
+0.000002 1.000000 -0.000001
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.000002 -1.000000 0.000000
+-0.000002 -1.000000 0.000000
+-0.000002 -1.000000 0.000000
+0.000000 -1.000000 0.000001
+0.000000 -1.000000 0.000001
+0.000000 -1.000000 0.000001
+</float_array>
+          <technique_common>
+            <accessor source="#default04-lib-Normal0-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default04-lib-UV0">
+          <float_array id="default04-lib-UV0-array" count="48">
+0.482172 0.753879
+0.482172 0.673511
+0.527391 0.673511
+0.527391 0.753879
+0.525438 0.673556
+0.525438 0.754525
+0.485069 0.754525
+0.485069 0.673556
+0.525693 0.671207
+0.525693 0.758301
+0.481603 0.758301
+0.481603 0.671207
+0.525152 0.671521
+0.525152 0.758095
+0.480829 0.758095
+0.480829 0.671521
+0.525783 0.671640
+0.525783 0.756230
+0.480928 0.756230
+0.480928 0.671640
+0.482760 0.672285
+0.482216 0.757331
+0.525810 0.757331
+0.525266 0.672285
+</float_array>
+          <technique_common>
+            <accessor source="#default04-lib-UV0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="default04-lib-Vertex">
+          <input semantic="POSITION" source="#default04-lib-Position"/>
+        </vertices>
+        <polygons material="_7___Defaulta" count="12">
+          <input semantic="VERTEX" offset="0" source="#default04-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#default04-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#default04-lib-UV0"/>
+          <p>5 0 0 0 1 1 1 2 2</p>
+          <p>5 3 0 1 4 2 4 5 3</p>
+          <p>3 6 4 6 7 5 7 8 6</p>
+          <p>3 9 4 7 10 6 2 11 7</p>
+          <p>16 12 8 9 13 9 8 14 10</p>
+          <p>16 15 8 8 16 10 17 17 11</p>
+          <p>18 18 12 11 19 13 10 20 14</p>
+          <p>18 21 12 10 22 14 19 23 15</p>
+          <p>20 24 16 13 25 17 12 26 18</p>
+          <p>20 27 16 12 28 18 21 29 19</p>
+          <p>22 30 20 15 31 21 14 32 22</p>
+          <p>22 33 20 14 34 22 23 35 23</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="default04" name="default04">
+        <scale sid="scale">2.471158 2.471158 2.471158</scale>
+        <node id="default04-Pivot" name="default04-Pivot">
+          <translate>0.000000 0.000000 4.753799</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#default04-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__4-Material" target="#Map__4-Material"/>
+                <instance_material symbol="_7___Defaulta" target="#_7___Defaulta"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

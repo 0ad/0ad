@@ -5,10 +5,22 @@
     <variant frequency="1" name="celt outpost a">
       <mesh>structural/celt_outpost.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/outpost_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/outpost_windows.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/outpost_door.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/outpost_shields.xml" attachpoint="root"/>
       </props>
+    </variant>
+    <variant frequency="1" name="celt outpost b">
+      <mesh>structural/celt_outpost2.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/outpost2_windows.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/outpost_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/outpost_door.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
