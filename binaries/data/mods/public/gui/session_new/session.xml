@@ -360,7 +360,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Civ Icon -->
 		<!-- ================================  ================================ -->
-		<object size="50%-36 -20 50%+36 52" name="civIcon" type="image"/>
+		<object size="50%-32 -20 50%+32 44" name="civIcon" type="image"/>
 
 		<!-- ================================  ================================ -->
 		<!-- Phase -->
@@ -372,7 +372,7 @@
 		<!-- ================================  ================================ -->
 		<object type="button"
 			name="menuButton"
-			size="100%-80 4 100%-4 100%-4"
+			size="100%-80 0 100%-4 100%"
 			tooltip_style="snToolTip"
 		>
 			<object size="0 0 100% 100%" type="image" sprite="menuButton" name="menuButtonText" ghost="true">MENU</object>
@@ -409,7 +409,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Supplemental Details Panel on Left -->
 		<!-- ================================  ================================ -->
-		<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="bottomLeft" z="20">
+		<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="bottomLeft" z="30">
 
 			<object name="unitFormationPanel"
 				size="20 10 100% 100%"

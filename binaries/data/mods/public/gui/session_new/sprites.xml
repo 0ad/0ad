@@ -5,7 +5,6 @@
 	<sprite name="heleIcon">
 		<image
 			texture="session/portraits/emblems/emblem_hellenes.png"
-			cell_size="72 72"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
@@ -13,7 +12,6 @@
 	<sprite name="celtIcon">->
 		<image
 			texture="session/portraits/emblems/emblem_celts.png"
-			cell_size="72 72"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
@@ -39,8 +37,7 @@
 	<sprite name="menuButton">
 		<image
 			texture="session/icons/single/menu.png"
-			real_texture_placement="0 0 120 32"
-			size="0 4 100%-4 100%-4"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 		
@@ -84,8 +81,7 @@
 	<!-- generic -->
 	<sprite name="genericPanel">
 		<image
-			texture="session/panel_bg.png"
-			real_texture_placement="256 0 768 205"
+			texture="global/tile/tile_dark.png"
 			size="0 0 100% 100%"
 		/>
 
@@ -208,8 +204,8 @@
 	<!-- bottomLeft -->
 	<sprite name="bottomLeft">
 		<image
-			texture="session/panel_bg.png"
-			texture_size="0 0 256 256"
+			texture="global/tile/tile_dark.png"
+			size="0 0 100% 100%"
 		/>
 
 		<!-- Sides -->
@@ -313,8 +309,7 @@
 	<!-- bottomRight -->
 	<sprite name="bottomRight">
 		<image
-			texture="session/panel_bg.png"
-			real_texture_placement="0 0 512 256"
+			texture="global/tile/tile_dark.png"
 			size="0 0 100% 100%"
 		/>
 
