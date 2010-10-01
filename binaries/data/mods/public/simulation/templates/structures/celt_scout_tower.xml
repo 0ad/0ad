@@ -5,6 +5,13 @@
     <SpecificName>Tyrau</SpecificName>
     <History>*I could not find any evidence of a celtic tower, but I'm giving them one for gameplay reasons.*</History>
   </Identity>
+  <Footprint>
+    <Square width="8.0" depth="8.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="7.5" depth="7.5"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/celts/outpost.xml</Actor>
   </VisualActor>
