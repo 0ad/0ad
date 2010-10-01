@@ -6,7 +6,7 @@
 // *******************************************
 // messageBox
 // *******************************************
-// @params:     int mbWidth, int mbHeight, string mbMessage, string mbTitle, int mbMode, arr mbButtonCaptions
+// @params:     int mbWidth, int mbHeight, string mbMessage, string mbTitle, int mbMode, arr mbButtonCaptions, arr mbButtonsCode
 // @return:     void
 // @desc:       Displays a new modal message box.
 // *******************************************

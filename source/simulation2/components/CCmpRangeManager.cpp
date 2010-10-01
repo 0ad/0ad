@@ -462,6 +462,22 @@ public:
 		return r;
 	}
 
+	virtual std::vector<entity_id_t> GetEntitiesByPlayer(int playerId)
+	{
+		std::vector<entity_id_t> entities;
+
+		u32 ownerMask = CalcOwnerMask(playerId);
+
+		for (std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
+		{
+			// Check owner and add to list if it matches
+			if (CalcOwnerMask(it->second.owner) & ownerMask)
+				entities.push_back(it->first);
+		}
+
+		return entities;
+	}
+
 	virtual void SetDebugOverlay(bool enabled)
 	{
 		m_DebugOverlayEnabled = enabled;

@@ -2,6 +2,9 @@
 <Entity parent="template_entity_full">
   <Identity>
     <GenericName>Unit</GenericName>
+    <Classes datatype="tokens">
+      ConquestCritical
+    </Classes>
   </Identity>
   <Minimap>
     <Type>unit</Type>

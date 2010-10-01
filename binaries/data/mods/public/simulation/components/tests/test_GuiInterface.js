@@ -31,6 +31,7 @@ AddMock(100, IID_Player, {
 	GetPopulationLimit: function() { return 20; },
 	GetResourceCounts: function() { return { food: 100 }; },
 	IsTrainingQueueBlocked: function() { return false; },
+	GetState: function() { return "active"; },
 });
 
 AddMock(101, IID_Player, {
@@ -41,6 +42,7 @@ AddMock(101, IID_Player, {
 	GetPopulationLimit: function() { return 30; },
 	GetResourceCounts: function() { return { food: 200 }; },
 	IsTrainingQueueBlocked: function() { return false; },
+	GetState: function() { return "active"; },
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
@@ -53,6 +55,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			popLimit: 20,
 			resourceCounts: { food: 100 },
 			trainingQueueBlocked: false,
+			state: "active",
 		},
 		{
 			name: "Player 2",
@@ -62,6 +65,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			popLimit: 30,
 			resourceCounts: { food: 200 },
 			trainingQueueBlocked: false,
+			state: "active",
 		}
 	]
 });

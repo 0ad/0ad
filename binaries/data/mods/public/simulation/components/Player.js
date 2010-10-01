@@ -19,6 +19,8 @@ Player.prototype.Init = function()
 		"metal": 500,	
 		"stone": 1000	
 	};
+	this.state = "active"; // game state - one of "active", "defeated", "won"
+	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -146,12 +148,40 @@ Player.prototype.TrySubtractResources = function(amounts)
 	return true;
 };
 
+Player.prototype.GetState = function()
+{
+	return this.state;
+};
+
+Player.prototype.SetState = function(newState)
+{
+	this.state = newState;
+};
+
+Player.prototype.GetConquestCriticalEntitiesCount = function()
+{
+	return this.conquestCriticalEntitiesCount;
+};
+
 // Keep track of population effects of all entities that
 // become owned or unowned by this player
 Player.prototype.OnGlobalOwnershipChanged = function(msg)
 {
+	var classes = [];
+
+	// Load class list only if we're going to need it
+	if (msg.from == this.playerID || msg.to == this.playerID)
+	{
+		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
+		if (cmpIdentity)
+			classes = cmpIdentity.GetClassesList();
+	}
+
 	if (msg.from == this.playerID)
 	{
+		if (classes.indexOf("ConquestCritical") != -1)
+			this.conquestCriticalEntitiesCount--;
+
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
 		{
@@ -162,6 +192,9 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	
 	if (msg.to == this.playerID)
 	{
+		if (classes.indexOf("ConquestCritical") != -1)
+			this.conquestCriticalEntitiesCount++;
+
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
 		{
@@ -170,5 +203,20 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		}
 	}
 };
+
+Player.prototype.OnPlayerDefeated = function()
+{
+	this.state = "defeated";
+
+	// Reassign all player's entities to Gaia
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
+	for each (var entity in entities)
+	{
+		// Note: maybe we need to reassign units and buildings only?
+		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+		cmpOwnership.SetOwner(0);
+	}
+}
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);

@@ -113,6 +113,7 @@ public:
 			LOAD_SCRIPTED_COMPONENT("GuiInterface");
 			LOAD_SCRIPTED_COMPONENT("PlayerManager");
 			LOAD_SCRIPTED_COMPONENT("Timer");
+			LOAD_SCRIPTED_COMPONENT("EndGameManager");
 
 #undef LOAD_SCRIPTED_COMPONENT
 		}

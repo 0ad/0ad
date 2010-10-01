@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+==========================================
+- POST-GAME SUMMARY SCREEN -
+==========================================
+-->
+
+<objects>
+	<script file="gui/summary/summary.js"/>
+	<object type="image" sprite="bkFillBlack">
+
+		<object type="image"
+			style="wheatWindowGranite"
+			size="25 35 100%-25 100%-25"
+		>
+			<object type="button" style="wheatWindowTitleBar">
+				Summary
+			</object>
+			
+			<object name="summaryText"
+				type="text"
+				size="50 50 100%-50 100%-200"
+				font="serif-16"
+				text_align="center"
+				text_valign="center"
+			/>
+			
+			<object type="button" style="wheatButton" size="100%-150 100%-40 100% 100%">
+				Main menu
+				<action on="Press"><![CDATA[
+					Engine.SwitchGuiPage("page_pregame.xml");
+				]]></action>
+			</object>
+
+		</object>
+	</object>
+</objects>

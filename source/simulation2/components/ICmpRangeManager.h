@@ -126,6 +126,14 @@ public:
 	virtual std::vector<entity_id_t> ResetActiveQuery(tag_t tag) = 0;
 
 	/**
+	 * Returns list of all entities for specific player.
+	 * (This is on this interface because it shares a lot of the implementation.
+	 * Maybe it should be extended to be more like ExecuteQuery without
+	 * the range parameter.)
+	 */
+	virtual std::vector<entity_id_t> GetEntitiesByPlayer(int playerId) = 0;
+
+	/**
 	 * Toggle the rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;

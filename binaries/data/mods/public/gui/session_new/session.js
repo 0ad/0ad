@@ -17,6 +17,9 @@ var g_IsTrainingQueueBlocked = false;
 // Cache EntityStates
 var g_EntityStates = {}; // {id:entState}
 
+// Whether the player has lost/won and reached the end of their game
+var g_GameEnded = false;
+
 function GetEntityState(entId)
 {
 	if (!(entId in g_EntityStates))
@@ -75,9 +78,36 @@ function init(initData, hotloadData)
 
 function leaveGame()
 {
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	var playerState = simState.players[Engine.GetPlayerID()];
+
+	var gameResult;
+	if (playerState.state == "won")
+	{
+		gameResult = "You have won the battle!";
+	}
+	else if (playerState.state == "defeated")
+	{
+		gameResult = "You have been defeated...";
+	}
+	else // "active"
+	{
+		gameResult = "You have abandoned the game.";
+
+		// Tell other players that we have given up and
+		// been defeated
+		Engine.PostNetworkCommand({
+			"type": "defeat-player",
+			"playerId": Engine.GetPlayerID()
+		});
+	
+	}
+
 	stopMusic();
 	endGame();
-	Engine.SwitchGuiPage("page_pregame.xml");
+	
+	Engine.SwitchGuiPage("page_summary.xml", { "gameResult" : gameResult });
+	
 }
 
 // Return some data that we'll use when hotloading this file after changes
@@ -88,6 +118,8 @@ function getHotloadData()
 
 function onTick()
 {
+	checkPlayerState();
+
 	while (true)
 	{
 		var message = Engine.PollNetworkClient();
@@ -119,6 +151,28 @@ function onTick()
 		getGUIObjectByName("resourcePop").textcolor = "255 165 0";
 	else
 		getGUIObjectByName("resourcePop").textcolor = "white";
+}
+
+function checkPlayerState()
+{
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	var playerState = simState.players[Engine.GetPlayerID()];
+	
+	if (!g_GameEnded)
+	{
+		if (playerState.state == "defeated")
+		{
+			g_GameEnded = true;
+			messageBox(400, 200, "You have been defeated... Do you want to leave the game now?",
+				"Defeat", 0, ["Yes", "No!"], [leaveGame, null]);
+		}
+		else if (playerState.state == "won")
+		{
+			g_GameEnded = true;
+			messageBox(400, 200, "You have won the battle! Do you want to leave the game now?",
+				"Victory", 0, ["Yes", "No!"], [leaveGame, null]);
+		}
+	}
 }
 
 function onSimulationUpdate()

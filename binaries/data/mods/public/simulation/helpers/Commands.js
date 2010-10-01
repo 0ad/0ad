@@ -143,6 +143,14 @@ function ProcessCommand(player, cmd)
 				cmpRallyPoint.Unset();
 		}
 		break;
+		
+	case "defeat-player":
+		// Get player entity by playerId
+		var cmpPlayerMananager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		var playerEnt = cmpPlayerManager.GetPlayerByID(cmd.playerId);
+		// Send "OnPlayerDefeated" message to player
+		Engine.PostMessage(playerEnt, MT_PlayerDefeated, null);
+		break;
 
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");

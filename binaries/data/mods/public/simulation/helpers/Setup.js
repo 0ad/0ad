@@ -19,6 +19,13 @@ function LoadMapSettings(settings)
 		if (cmpRangeManager)
 			cmpRangeManager.SetLosRevealAll(true);
 	}
+	
+	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	if (settings.GameType)
+	{	
+		cmpEndGameManager.SetGameType(settings.GameType);
+	}
+	cmpEndGameManager.Start();
 }
 
 Engine.RegisterGlobal("LoadMapSettings", LoadMapSettings);
