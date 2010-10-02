@@ -3,9 +3,12 @@ function Formation() {}
 Formation.prototype.Schema =
 	"<a:component type='system'/><empty/>";
 
+var g_ColumnDistanceThreshold = 32; // distance at which we'll switch between column/box formations
+
 Formation.prototype.Init = function()
 {
-	this.members = [];
+	this.members = []; // entity IDs currently belonging to this formation
+	this.columnar = false; // whether we're travelling in column (vs box) formation
 };
 
 Formation.prototype.GetMemberCount = function()
@@ -111,7 +114,12 @@ Formation.prototype.MoveMembersIntoFormation = function()
 		types["Unknown"] += 1; // TODO
 	}
 
-	var offsets = this.ComputeFormationOffsets(types);
+	// Work out whether this should be a column or box formation
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
+	this.columnar = (walkingDistance > g_ColumnDistanceThreshold);
+
+	var offsets = this.ComputeFormationOffsets(types, this.columnar);
 
 	var avgpos = this.ComputeAveragePosition(positions);
 	var avgoffset = this.ComputeAveragePosition(offsets);
@@ -153,22 +161,35 @@ Formation.prototype.MoveToMembersCenter = function()
 	cmpPosition.JumpTo(avgpos.x, avgpos.z);
 };
 
-Formation.prototype.ComputeFormationOffsets = function(types)
+Formation.prototype.ComputeFormationOffsets = function(types, columnar)
 {
 	var separation = 4; // TODO: don't hardcode this
 
 	var count = types["Unknown"];
 
-	// Choose a sensible width for the basic box formation
+	// Choose a sensible width for the basic default formation
 	var cols;
-	if (count <= 4)
-		cols = count;
-	if (count <= 8)
-		cols = 4;
-	else if (count <= 16)
-		cols = Math.ceil(count / 2);
+	if (columnar)
+	{
+		// Have at most 3 files
+		if (count <= 3)
+			cols = count;
+		else
+			cols = 3;
+	}
 	else
-		cols = 8;
+	{
+		// Try to have at least 5 files (so batch training gives a single line),
+		// and at most 8
+		if (count <= 5)
+			cols = count;
+		if (count <= 10)
+			cols = 5;
+		else if (count <= 16)
+			cols = Math.ceil(count / 2);
+		else
+			cols = 8;
+	}
 
 	var ranks = Math.ceil(count / cols);
 
@@ -226,6 +247,16 @@ Formation.prototype.ComputeMotionParameters = function()
 	cmpUnitMotion.SetSpeed(minSpeed);
 
 	// TODO: we also need to do something about PassabilityClass, CostClass
+};
+
+Formation.prototype.OnUpdate_Final = function(msg)
+{
+	// Switch between column and box if necessary
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
+	var columnar = (walkingDistance > g_ColumnDistanceThreshold);
+	if (columnar != this.columnar)
+		this.MoveMembersIntoFormation();
 };
 
 Formation.prototype.OnGlobalOwnershipChanged = function(msg)

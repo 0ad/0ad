@@ -848,6 +848,68 @@ UnitAI.prototype.GetFormationController = function()
 	return this.formationController;
 };
 
+/**
+ * Returns the estimated distance that this unit will travel before either
+ * finishing all of its orders, or reaching a non-walk target (attack, gather, etc).
+ * Intended for Formation to switch to column layout on long walks.
+ */
+UnitAI.prototype.ComputeWalkingDistance = function()
+{
+	var distance = 0;
+
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return 0;
+
+	// Keep track of the position at the start of each order
+	var pos = cmpPosition.GetPosition();
+
+	for (var i = 0; i < this.orderQueue.length; ++i)
+	{
+		var order = this.orderQueue[i];
+		switch (order.type)
+		{
+		case "Walk":
+			// Add the distance to the target point
+			var dx = order.data.x - pos.x;
+			var dz = order.data.z - pos.z;
+			var d = Math.sqrt(dx*dx + dz*dz);
+			distance += d;
+			
+			// Remember this as the start position for the next order
+			pos = order.data;
+
+			break; // and continue the loop
+
+		case "WalkToTarget":
+		case "Attack":
+		case "Gather":
+		case "Repair":
+			// Find the target unit's position
+			var cmpTargetPosition = Engine.QueryInterface(order.data.target, IID_Position);
+			if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
+				return distance;
+			var targetPos = cmpTargetPosition.GetPosition();
+
+			// Add the distance to the target unit
+			var dx = targetPos.x - pos.x;
+			var dz = targetPos.z - pos.z;
+			var d = Math.sqrt(dx*dx + dz*dz);
+			distance += d;
+
+			// Return the total distance to the target
+			return distance;
+
+		default:
+			error("Unrecognised order type '"+order.type+"'");
+			return distance;
+		}
+	}
+
+	// Return the total distance to the end of the order queue
+	return distance;
+};
+
 UnitAI.prototype.AddOrder = function(type, data, queued)
 {
 	if (queued)
