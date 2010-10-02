@@ -223,8 +223,9 @@
 	<!-- bottomLeft -->
 	<sprite name="bottomLeft">
 		<image
-			texture="global/tile/tile_dark.png"
-			texture_size="0 0 256 256"
+			texture="session/panel_left.png"
+			real_texture_placement="0 0 189 170"
+			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>
 
@@ -276,8 +277,8 @@
 	<!-- bottomMiddle-->
 	<sprite name="bottomMiddle">
 		<image
-			texture="session/panel_bg.png"
-			real_texture_placement="16 0 240 198"
+			texture="session/panel_middle.png"
+			real_texture_placement="0 0 228 205"
 			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>
@@ -330,8 +331,9 @@
 	<!-- bottomRight -->
 	<sprite name="bottomRight">
 		<image
-			texture="global/tile/tile_dark.png"
-			texture_size="0 0 256 256"
+			texture="session/panel_right.png"
+			real_texture_placement="0 0 398 170"
+			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>
 
