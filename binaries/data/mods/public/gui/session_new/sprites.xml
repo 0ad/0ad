@@ -224,6 +224,7 @@
 	<sprite name="bottomLeft">
 		<image
 			texture="global/tile/tile_dark.png"
+			texture_size="0 0 256 256"
 			size="0 0 100% 100%"
 		/>
 
@@ -276,6 +277,7 @@
 	<sprite name="bottomMiddle">
 		<image
 			texture="session/panel_bg.png"
+			real_texture_placement="16 0 240 198"
 			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>

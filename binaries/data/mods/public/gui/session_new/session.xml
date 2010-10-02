@@ -470,7 +470,7 @@
 			<object size="50%-112 0 50%+112 100%" name="detailsArea">
 	
 				<!-- Player Name -->
-				<object size="0 8 100% 30" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
+				<object size="0 10 100% 30" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
 	
 				<!-- Stats -->
 				<object size="6 36 50 100%" name="statsArea" type="image">
@@ -482,7 +482,7 @@
 				</object>
 
 				<!-- Big unit icon -->
-				<object size= "50%-48 36 50%+48 140" type="image" name="iconBorder" tooltip_style="snToolTip">
+				<object size= "50%-48 40 50%+48 136" type="image" name="iconBorder" tooltip_style="snToolTip">
 					<object size= "0 0 100% 100%" type="image" name="icon" ghost="true"/>
 					<object size="100%-32 0 100% 32" name="rankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
 					<object type="image" sprite="glassSquareIcon" ghost="true"/>
@@ -513,7 +513,7 @@
 				</object>
 				
 				<!-- Specific Name -->
-				<object size="0 144 100% 164" name="specific" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
+				<object size="0 142 100% 162" name="specific" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
 			</object>
 	
 			<!-- Unit Commands -->
