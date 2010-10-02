@@ -189,13 +189,13 @@ function getEntityFormationsList(entState)
 function getEntityCommandsList(entState)
 {
 	var commands = [];
-	commands.push("delete");
 	commands.push("Stop");
 	commands.push("Stop that!");
 	commands.push("Really stop now, OK?!");
 //	commands.push("command4");
 //	commands.push("command5");
 //	commands.push("command6");
+	commands.push("delete");
 	return commands;
 }
 

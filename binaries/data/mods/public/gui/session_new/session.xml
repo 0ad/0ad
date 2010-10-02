@@ -524,7 +524,7 @@
 			>
 				<object size="0 0 100% 100%">
 					<repeat count="9">
-						<object name="unitCommandButton[n]" hidden="true" style="iconButton"  type="button" size="0 0 32 32" tooltip_style="snToolTipBottom">
+						<object name="unitCommandButton[n]" hidden="true" type="button" size="0 0 32 32" tooltip_style="snToolTipBottom">
 							<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 32 32" style="commandIcon"/>
 						</object>
 					</repeat>
