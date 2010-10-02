@@ -233,6 +233,17 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 	}
 };
 
+GuiInterface.prototype.SetStatusBars = function(player, cmd)
+{
+	for each (var ent in cmd.entities)
+	{
+		var cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
+		if (cmpStatusBars)
+			cmpStatusBars.SetEnabled(cmd.enabled);
+	}
+};
+
+/**
 /**
  * Displays the rally point of a building
  */
@@ -395,6 +406,7 @@ var exposedFunctions = {
 	"GetNextNotification": 1,
 
 	"SetSelectionHighlight": 1,
+	"SetStatusBars": 1,
 	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
 	"PlaySound": 1,

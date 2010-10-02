@@ -56,7 +56,10 @@ Health.prototype.SetHitpoints = function(value)
 	if (this.hitpoints == 0)
 		return;
 
+	var old = this.hitpoints;
 	this.hitpoints = Math.max(1, Math.min(this.GetMaxHitpoints(), value));
+
+	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 };
 
 Health.prototype.IsRepairable = function()
@@ -84,13 +87,20 @@ Health.prototype.Reduce = function(amount)
 				this.CreateCorpse();
 
 			Engine.DestroyEntity(this.entity);
+
+			var old = this.hitpoints;
+			this.hitpoints = 0;
+			
+			Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 		}
 
-		this.hitpoints = 0;
 	}
 	else
 	{
+		var old = this.hitpoints;
 		this.hitpoints -= amount;
+
+		Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 	}
 };
 
@@ -100,7 +110,10 @@ Health.prototype.Increase = function(amount)
 	if (this.hitpoints == 0)
 		return;
 
+	var old = this.hitpoints;
 	this.hitpoints = Math.min(this.hitpoints + amount, this.GetMaxHitpoints());
+
+	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 };
 
 //// Private functions ////

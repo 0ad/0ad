@@ -1311,6 +1311,12 @@ void CRenderer::RenderSubmissions()
 		ogl_WarnIfError();
 	}
 
+	// render overlays that should appear on top of all other objects
+	PROFILE_START("render fg overlays");
+	m->overlayRenderer.RenderForegroundOverlays(m_ViewCamera);
+	PROFILE_END("render fg overlays");
+	ogl_WarnIfError();
+
 	// empty lists
 	MICROLOG(L"empty lists");
 	m->terrainRenderer->EndFrame();
@@ -1388,6 +1394,11 @@ void CRenderer::Submit(CPatch* patch)
 }
 
 void CRenderer::Submit(SOverlayLine* overlay)
+{
+	m->overlayRenderer.Submit(overlay);
+}
+
+void CRenderer::Submit(SOverlaySprite* overlay)
 {
 	m->overlayRenderer.Submit(overlay);
 }

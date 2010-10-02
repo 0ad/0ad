@@ -82,6 +82,9 @@ COMPONENT(Obstruction)
 INTERFACE(ObstructionManager)
 COMPONENT(ObstructionManager)
 
+INTERFACE(OverlayRenderer)
+COMPONENT(OverlayRenderer)
+
 INTERFACE(Ownership)
 COMPONENT(Ownership)
 
@@ -108,9 +111,6 @@ COMPONENT(Selectable)
 
 INTERFACE(SoundManager)
 COMPONENT(SoundManager)
-
-INTERFACE(StatusBars)
-COMPONENT(StatusBars)
 
 INTERFACE(Terrain)
 COMPONENT(Terrain)

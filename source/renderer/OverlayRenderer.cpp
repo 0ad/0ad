@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,12 +20,14 @@
 #include "OverlayRenderer.h"
 
 #include "graphics/Overlay.h"
+#include "graphics/TextureManager.h"
 #include "lib/ogl.h"
 #include "renderer/Renderer.h"
 
 struct OverlayRendererInternals
 {
 	std::vector<SOverlayLine*> lines;
+	std::vector<SOverlaySprite*> sprites;
 };
 
 OverlayRenderer::OverlayRenderer()
@@ -43,9 +45,15 @@ void OverlayRenderer::Submit(SOverlayLine* overlay)
 	m->lines.push_back(overlay);
 }
 
+void OverlayRenderer::Submit(SOverlaySprite* overlay)
+{
+	m->sprites.push_back(overlay);
+}
+
 void OverlayRenderer::EndFrame()
 {
 	m->lines.clear();
+	m->sprites.clear();
 	// this should leave the capacity unchanged, which is okay since it
 	// won't be very large or very variable
 }
@@ -78,4 +86,47 @@ void OverlayRenderer::RenderOverlays()
 
 	glLineWidth(1.f);
 	glDisable(GL_BLEND);
+}
+
+void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
+{
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glDisable(GL_DEPTH_TEST);
+
+	CVector3D right = -viewCamera.m_Orientation.GetLeft();
+	CVector3D up = viewCamera.m_Orientation.GetUp();
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	float uvs[8] = { 0,0, 1,0, 1,1, 0,1 };
+	glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, &uvs);
+
+	for (size_t i = 0; i < m->sprites.size(); ++i)
+	{
+		SOverlaySprite* sprite = m->sprites[i];
+
+		sprite->m_Texture->Bind();
+
+		CVector3D pos[4] = {
+			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y0,
+			sprite->m_Position + right*sprite->m_X1 + up*sprite->m_Y0,
+			sprite->m_Position + right*sprite->m_X1 + up*sprite->m_Y1,
+			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
+		};
+
+		glVertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
+
+		glDrawArrays(GL_QUADS, 0, (GLsizei)4);
+	}
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
+	glDisable(GL_TEXTURE_2D);
 }

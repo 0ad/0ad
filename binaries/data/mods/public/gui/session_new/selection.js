@@ -4,6 +4,12 @@ function _setHighlight(ents, alpha)
 		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "alpha":alpha });
 }
 
+function _setStatusBars(ents, enabled)
+{
+	if (ents.length)
+		Engine.GuiInterfaceCall("SetStatusBars", { "entities":ents, "enabled":enabled });
+}
+
 function _setMotionOverlay(ents, enabled)
 {
 	if (ents.length)
@@ -207,12 +213,14 @@ EntitySelection.prototype.toggle = function(ent)
 	if (this.selected[ent])
 	{
 		_setHighlight([ent], 0);
+		_setStatusBars([ent], false);
 		_setMotionOverlay([ent], false);
 		delete this.selected[ent];
 	}
 	else
 	{
 		_setHighlight([ent], 1);
+		_setStatusBars([ent], true);
 		_setMotionOverlay([ent], this.motionDebugOverlay);
 		this.selected[ent] = ent;
 	}
@@ -231,6 +239,7 @@ EntitySelection.prototype.addList = function(ents)
 		}
 	}
 	_setHighlight(added, 1);
+	_setStatusBars(added, true);
 	_setMotionOverlay(added, this.motionDebugOverlay);
 	if (added.length)
 		_playSound(added[0]);
@@ -240,6 +249,7 @@ EntitySelection.prototype.addList = function(ents)
 EntitySelection.prototype.reset = function()
 {
 	_setHighlight(this.toList(), 0);
+	_setStatusBars(this.toList(), false);
 	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
 	this.dirty = true;
@@ -256,29 +266,32 @@ EntitySelection.prototype.toList = function()
 
 EntitySelection.prototype.setHighlightList = function(ents)
 {
+	var highlighted = {};
+	for each (var ent in ents)
+		highlighted[ent] = ent;
+
 	var removed = [];
 	var added = [];
 
-	// Remove highlighting for the old units (excluding ones that are actively selected too)
+	// Remove highlighting for the old units that are no longer highlighted
+	// (excluding ones that are actively selected too)
 	for each (var ent in this.highlighted)
-		if (!this.selected[ent])
-			removed.push(ent);
+		if (!highlighted[ent] && !this.selected[ent])
+			removed.push(+ent);
 	
-	// Add new highlighting
+	// Add new highlighting for units that aren't already highlighted
 	for each (var ent in ents)
-		if (!this.selected[ent])
-			added.push(ent);
+		if (!this.highlighted[ent] && !this.selected[ent])
+			added.push(+ent);
 
 	_setHighlight(removed, 0);
-	_setHighlight(added, 0.5);
+	_setStatusBars(removed, false);
 
-	// TODO: this could be a bit more efficient by only changing the ones that
-	// have entered/left the highlight list
+	_setHighlight(added, 0.5);
+	_setStatusBars(added, true);
 	
-	// Store the new list
-	this.highlighted = {};
-	for each (var ent in ents)
-		this.highlighted[ent] = ent;
+	// Store the new highlight list
+	this.highlighted = highlighted;
 };
 
 EntitySelection.prototype.SetMotionDebugOverlay = function(enabled)

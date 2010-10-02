@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,8 @@
 #define INCLUDED_OVERLAYRENDERER
 
 struct SOverlayLine;
+struct SOverlaySprite;
+class CCamera;
 
 struct OverlayRendererInternals;
 
@@ -38,6 +40,11 @@ public:
 	void Submit(SOverlayLine* overlay);
 
 	/**
+	 * Add a sprite overlay for rendering in this frame.
+	 */
+	void Submit(SOverlaySprite* overlay);
+
+	/**
 	 * Prepare internal data structures for rendering.
 	 * Must be called after all Submit calls for a frame, and before
 	 * any rendering calls.
@@ -50,9 +57,17 @@ public:
 	void EndFrame();
 
 	/**
-	 * Render all the submitted overlays.
+	 * Render all the submitted overlays that are embedded in the world
+	 * (i.e. rendered behind other objects, underwater, etc).
 	 */
 	void RenderOverlays();
+
+	/**
+	 * Render all the submitted overlays that should appear on top of everything
+	 * in the world.
+	 * @param viewCamera camera to be used for billboard computations
+	 */
+	void RenderForegroundOverlays(const CCamera& viewCamera);
 
 private:
 	OverlayRendererInternals* m;

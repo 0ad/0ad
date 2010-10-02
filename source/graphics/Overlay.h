@@ -18,11 +18,13 @@
 #ifndef INCLUDED_GRAPHICS_OVERLAY
 #define INCLUDED_GRAPHICS_OVERLAY
 
+#include "graphics/Texture.h"
+#include "maths/Vector3D.h"
 #include "ps/Overlay.h" // CColor  (TODO: that file has nothing to do with overlays, it should be renamed)
 
 /**
- * Line-based overlay. Exists in world-space, but gets rendered on top
- * of all other objects. Designed for selection circles.
+ * Line-based overlay, with world-space coordinates, rendered in the world
+ * potentially behind other objects. Designed for selection circles and debug info.
  */
 struct SOverlayLine
 {
@@ -33,6 +35,17 @@ struct SOverlayLine
 	u8 m_Thickness; // pixels
 };
 
-// TODO: OverlaySprite, OverlayText
+/**
+ * Billboard sprite overlay, with world-space coordinates, rendered on top
+ * of all other objects. Designed for health bars and rank icons.
+ */
+struct SOverlaySprite
+{
+	CTexturePtr m_Texture;
+	CVector3D m_Position; // base position
+	float m_X0, m_Y0, m_X1, m_Y1; // billboard corner coordinates, relative to base position
+};
+
+// TODO: OverlayText
 
 #endif // INCLUDED_GRAPHICS_OVERLAY

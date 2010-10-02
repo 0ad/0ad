@@ -338,6 +338,7 @@ protected:
 	//BEGIN: Implementation of SceneCollector
 	void Submit(CPatch* patch);
 	void Submit(SOverlayLine* overlay);
+	void Submit(SOverlaySprite* overlay);
 	void SubmitNonRecursive(CModel* model);
 	//END: Implementation of SceneCollector
 

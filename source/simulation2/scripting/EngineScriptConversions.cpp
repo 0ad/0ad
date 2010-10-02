@@ -20,6 +20,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include "maths/Fixed.h"
+#include "maths/FixedVector2D.h"
 #include "maths/FixedVector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Overlay.h"
@@ -241,4 +242,25 @@ template<> jsval ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, const C
 	JS_SetProperty(cx, obj, "z", &z);
 
 	return OBJECT_TO_JSVAL(obj);
+}
+
+template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, jsval v, CFixedVector2D& out)
+{
+	ScriptInterface::LocalRootScope scope(cx);
+	if (!scope.OK())
+		return false;
+
+	if (!JSVAL_IS_OBJECT(v))
+		return false; // TODO: report type error
+	JSObject* obj = JSVAL_TO_OBJECT(v);
+
+	jsval p;
+
+	if (!JS_GetProperty(cx, obj, "x", &p)) return false; // TODO: report type errors
+	if (!FromJSVal(cx, p, out.X)) return false;
+
+	if (!JS_GetProperty(cx, obj, "y", &p)) return false;
+	if (!FromJSVal(cx, p, out.Y)) return false;
+
+	return true;
 }
