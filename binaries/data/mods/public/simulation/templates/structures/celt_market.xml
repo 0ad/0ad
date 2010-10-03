@@ -8,7 +8,15 @@
   <Cost>
     <PopulationBonus>12</PopulationBonus>
   </Cost>
+  <Footprint>
+    <Square width="26.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="25.0" depth="23.0"/>
+  </Obstruction>
   <VisualActor>
-    <Actor>structures/celts/market.xml</Actor>
+    <Actor>structures/celts/market_new.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>

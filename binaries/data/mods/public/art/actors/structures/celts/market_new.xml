@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/celt_market.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/market_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/market_props_new.xml" attachpoint="root"/>
+        <prop actor=""/>
+      </props>
+      <texture>structural/celt_struct_1.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
