@@ -1,6 +1,12 @@
 function StatusBars() {}
 
 StatusBars.prototype.Schema =
+	"<element name='BarWidth'>" +
+		"<data type='decimal'/>" +
+	"</element>" +
+	"<element name='BarHeight'>" +
+		"<data type='decimal'/>" +
+	"</element>" +
 	"<element name='HeightOffset'>" +
 		"<data type='decimal'/>" +
 	"</element>";
@@ -34,6 +40,12 @@ StatusBars.prototype.OnHealthChanged = function(msg)
 		this.RegenerateSprites();
 };
 
+StatusBars.prototype.OnResourceSupplyChanged = function(msg)
+{
+	if (this.enabled)
+		this.RegenerateSprites();
+};
+
 StatusBars.prototype.ResetSprites = function()
 {
 	var cmpOverlayRenderer = Engine.QueryInterface(this.entity, IID_OverlayRenderer);
@@ -46,28 +58,42 @@ StatusBars.prototype.RegenerateSprites = function()
 	cmpOverlayRenderer.Reset();
 
 	// Size of health bar (in world-space units)
-	var width = 2;
-	var height = 1/3;
+	var width = +this.template.BarWidth;
+	var height = +this.template.BarHeight;
 
-	// Offset from the unit's position
+	// World-space offset from the unit's position
 	var offset = { "x": 0, "y": +this.template.HeightOffset, "z": 0 };
+
+	// Billboard offset of next bar
+	var yoffset = 0;
+
+	var AddBar = function(type, amount)
+	{
+		cmpOverlayRenderer.AddSprite(
+			"art/textures/ui/session/icons/"+type+"_bg.png",
+			{ "x": -width/2, "y": -height/2 + yoffset }, { "x": width/2, "y": height/2 + yoffset },
+			offset
+		);
+
+		cmpOverlayRenderer.AddSprite(
+			"art/textures/ui/session/icons/"+type+"_fg.png",
+			{ "x": -width/2, "y": -height/2 + yoffset }, { "x": width*(amount - 0.5), "y": height/2 + yoffset },
+			offset
+		);
+
+		yoffset -= height * 1.2;
+	};
 
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (cmpHealth)
 	{
-		var filled = cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints();
+		AddBar("health", cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints());
+	}
 
-		cmpOverlayRenderer.AddSprite(
-			"art/textures/ui/session/icons/health_bg.png",
-			{ "x": -width/2, "y": -height/2 }, { "x": width/2, "y": height/2 },
-			offset
-		);
-
-		cmpOverlayRenderer.AddSprite(
-			"art/textures/ui/session/icons/health_fg.png",
-			{ "x": -width/2, "y": -height/2 }, { "x": width*(filled - 0.5), "y": height/2 },
-			offset
-		);
+	var cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
+	if (cmpResourceSupply)
+	{
+		AddBar("supply", cmpResourceSupply.GetCurrentAmount() / cmpResourceSupply.GetMaxAmount());
 	}
 };
 

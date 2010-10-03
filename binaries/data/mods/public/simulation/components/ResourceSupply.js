@@ -56,6 +56,8 @@ ResourceSupply.prototype.TakeResources = function(rate)
 	if (this.amount == 0)
 		Engine.DestroyEntity(this.entity);
 
+	Engine.PostMessage(this.entity, MT_ResourceSupplyChanged, { "from": old, "to": this.amount });
+
 	return { "amount": change, "exhausted": (old == 0) };
 };
 

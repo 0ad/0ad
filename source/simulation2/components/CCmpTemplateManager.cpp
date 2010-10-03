@@ -462,6 +462,8 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Armour");
 	permittedComponentTypes.insert("Health");
+	permittedComponentTypes.insert("StatusBars");
+	permittedComponentTypes.insert("OverlayRenderer");
 	permittedComponentTypes.insert("Decay");
 	permittedComponentTypes.insert("Cost");
 	permittedComponentTypes.insert("Sound");
