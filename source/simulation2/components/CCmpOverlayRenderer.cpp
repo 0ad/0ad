@@ -115,6 +115,13 @@ public:
 
 	void Interpolate(float UNUSED(frameTime), float frameOffset)
 	{
+		// Skip all the following computations if we have no sprites
+		if (m_Sprites.empty())
+		{
+			m_Enabled = false;
+			return;
+		}
+
 		// Disable rendering of the unit if it has no position
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null() || !cmpPosition->IsInWorld())

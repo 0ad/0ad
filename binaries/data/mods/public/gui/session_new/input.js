@@ -471,20 +471,12 @@ function handleInputAfterGui(ev)
 		switch (ev.type)
 		{
 		case "mousemotion":
-			// Highlight the first hovered entities, if it's not a unit
+			// Highlight the first hovered entity (if any)
 			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
-			if (ents.length == 0)
-			{
-				g_Selection.setHighlightList([]);
-			}
+			if (ents.length)
+				g_Selection.setHighlightList([ents[0]]);
 			else
-			{
-		 		var entState = GetEntityState(ents[0]);
-				if (entState && !isUnit(entState))
-					g_Selection.setHighlightList([ents[0]]);
-				else
-					g_Selection.setHighlightList([]);
-			}
+				g_Selection.setHighlightList([]);
 
 			return false;
 
