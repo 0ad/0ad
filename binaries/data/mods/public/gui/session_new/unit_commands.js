@@ -7,9 +7,10 @@ const TRAINING = "Training";
 const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
 
-// Constants used by the Queue or Garrison panel
-const UNIT_PANEL_BASE = -52; // The offset above the main panel (will often be negative)
-const UNIT_PANEL_HEIGHT = 44; // The height needed for a row of buttons
+// Constants
+const COMMANDS_PANEL_WIDTH = 228;
+const UNIT_PANEL_BASE = -52; // QUEUE: The offset above the main panel (will often be negative)
+const UNIT_PANEL_HEIGHT = 44; // QUEUE: The height needed for a row of buttons
 
 // The number of currently visible buttons (used to optimise showing/hiding)
 var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Construction": 0, "Command": 0};
@@ -112,15 +113,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
 	var numberOfItems = items.length;
-
 	var selection = g_Selection.toList();
-	var averageHealth = 0;
-	var maxHealth = 0;
 
 	if (guiName == "Selection")
 	{
-		if (numberOfItems > 12)
-				numberOfItems =  12;
+		if (numberOfItems > 15)
+				numberOfItems =  15;
 	}
 	if (guiName == "Formation" || guiName == "Garrison")
 	{
@@ -161,29 +159,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			var tooltip = getEntityName(template);	
 			var count = g_Selection.groups.getCount(item);
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
-
-			var entState = GetEntityState(selection[i])
-			if (entState)
-			{
-				if (entState.hitpoints)
-				{
-					averageHealth += entState.hitpoints*count;
-					maxHealth += entState.maxHitpoints*count;
-				}
-			}
-
-			if (i == numberOfItems-1)
-			{
-				var unitHealthBar = getGUIObjectByName("healthBar");
-				var healthSize = unitHealthBar.size;
-							
-				healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
-				unitHealthBar.size = healthSize;
-
-				var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + "/" + maxHealth;
-				getGUIObjectByName("health").tooltip = hitpoints;
-			}
-
 			break;
 
 		case QUEUE:
@@ -270,29 +245,30 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		}
 	}
 
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
 
 	var rowLength = 8;
-	if (guiName == "Selection" || guiName == "Formation" || guiName == "Garrison")
-		rowLength = 4;
-	else if (guiName == "Command")
+	if (guiName == "Selection")
+		rowLength = 5;
+	else if (guiName == "Formation" || guiName == "Garrison" || guiName == "Command")
 		rowLength = 4;
 
 	var numRows = Math.ceil(numButtons / rowLength);
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = buttonSideLength+1;
 
+	// Layout buttons
+	if (guiName == "Command")
+	{
+		layoutButtonRowCentered(0, guiName, 0, numButtons, COMMANDS_PANEL_WIDTH);
+	}
+	else
+	{
+		for (var i = 0; i < numRows; i++)
+			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
+	}
+	
 	// Resize Queue panel if needed
 	if (guiName == "Queue") // or garrison
 	{
@@ -300,17 +276,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		var size = panel.size;
 		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
 		panel.size = size;
-	}
-
-	// Layout buttons
-	if (guiName == "Command")
-	{
-		layoutButtonRowCentered(0, guiName, 0, numButtons, 228);
-	}
-	else
-	{
-		for (var i = 0; i < numRows; i++)
-			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
 	}
 
 	// Hide any buttons we're no longer using

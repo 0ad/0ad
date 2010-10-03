@@ -53,3 +53,13 @@ function togglePause()
 	pauseOverlay.hidden = !pauseOverlay.hidden;
 	menu.hidden = true;
 }
+
+function escapeKeyAction() // runs multiple times, so always closes all for now...
+{
+	if (!menu.hidden)
+		menu.hidden = true;
+	else if (!chatWindow.hidden)
+		chatWindow.hidden = true;
+	else if (!settingsWindow.hidden)
+		settingsWindow.hidden = true;
+}

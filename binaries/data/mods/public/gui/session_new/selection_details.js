@@ -1,29 +1,32 @@
 const RESOURCE_ICON_CELL_IDS = {food : 0, wood : 1, stone : 2, metal : 3};
 
-function layoutSelectionMultiple()
-{
-	getGUIObjectByName("specific").hidden = true;
-	getGUIObjectByName("iconBorder").hidden = true;
-
-	getGUIObjectByName("attackIcon").size = "-4 10 32 46";
-	getGUIObjectByName("armourIcon").size = "-4 46 32 82";
-	
-	getGUIObjectByName("barsArea").size = "50%+60 40 100% 136"
-}
-
 function layoutSelectionSingle()
 {
-	getGUIObjectByName("specific").hidden = false;
-	getGUIObjectByName("iconBorder").hidden = false;
+	getGUIObjectByName("detailsAreaSingle").hidden = false;
+	getGUIObjectByName("detailsAreaMultiple").hidden = true;
 
-	getGUIObjectByName("attackIcon").size = "0 0 48 48";
-	getGUIObjectByName("armourIcon").size = "0 48 48 96";
-	
-	getGUIObjectByName("barsArea").size = "50%+48 40 100% 136"
+//	getGUIObjectByName("specific").hidden = false;
+//	getGUIObjectByName("iconBorder").hidden = false;
+
+	//getGUIObjectByName("attackIcon").size = "0 0 48 48";
+	//getGUIObjectByName("armourIcon").size = "0 48 48 96";
+	//getGUIObjectByName("barsArea").size = "50%+48 40 100% 136"
+}
+
+function layoutSelectionMultiple()
+{
+//	getGUIObjectByName("specific").hidden = true;
+//	getGUIObjectByName("iconBorder").hidden = true;
+
+	//getGUIObjectByName("attackIcon").size = "-4 10 32 46";
+	//getGUIObjectByName("armourIcon").size = "-4 46 32 82";
+	//getGUIObjectByName("barsArea").size = "50%+60 40 100% 136"
+	getGUIObjectByName("detailsAreaMultiple").hidden = false;
+	getGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
 // Fills out information that most entities have
-function displayGeneralInfo(entState, template)
+function displaySingle(entState, template)
 {
 	// Get general unit and player data
 	var specificName = template.name.specific;
@@ -111,7 +114,6 @@ function displayGeneralInfo(entState, template)
 	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
 	getGUIObjectByName("armourIcon").tooltip = damageTypesToText(entState.armour);
 
-
 	// Icon Tooltip
 	var iconTooltip = "";
 
@@ -122,6 +124,46 @@ function displayGeneralInfo(entState, template)
 		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
 	getGUIObjectByName("iconBorder").tooltip = iconTooltip;
+
+	// Unhide Details Area
+	getGUIObjectByName("detailsAreaSingle").hidden = false;
+	getGUIObjectByName("detailsAreaMultiple").hidden = true;
+}
+
+// Fills out information for multiple entities
+function displayMultiple(selection, template)
+{
+	var averageHealth = 0;
+	var maxHealth = 0;
+
+	for (var i = 0; i < selection.length; i++)
+	{
+		var entState = GetEntityState(selection[i])
+		if (entState)
+		{
+			if (entState.hitpoints)
+			{
+				averageHealth += entState.hitpoints;
+				maxHealth += entState.maxHitpoints;
+			}
+		}
+
+		if (i == selection.length-1)
+		{
+			var unitHealthBar = getGUIObjectByName("healthBarMultiple");
+			var healthSize = unitHealthBar.size;
+							
+			healthSize.rright = 100*Math.max(0, Math.min(1, averageHealth / maxHealth));
+			unitHealthBar.size = healthSize;
+			
+			var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + "/" + maxHealth;
+			getGUIObjectByName("healthMultiple").tooltip = hitpoints;
+		}
+	}
+
+	// Unhide Details Area
+	getGUIObjectByName("detailsAreaMultiple").hidden = false;
+	getGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
 // Updates middle entity Selection Details Panel
@@ -150,27 +192,13 @@ function updateSelectionDetails()
 	if (!entState)
 		return;
 
-	// Choose the highest ranked version of the primary selection
-	// Different selection details are shown based on whether multiple units or a single unit is selected
-	/*
-	if (selection.length > 1)
-		layoutSelectionMultiple();
-	else
-		layoutSelectionSingle(entState);
-	*/
-
 	var template = GetTemplateData(entState.template);
 
 	// Fill out general info and display it
 	if (selection.length == 1)
-	{
-		layoutSelectionSingle();
-
-	}
+		displaySingle(entState, template);
 	else
-	{
-		 layoutSelectionMultiple();
-	}
+		displayMultiple(selection, template);
 
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
@@ -181,8 +209,6 @@ function updateSelectionDetails()
 		//	getGUIObjectByName("stamina").hidden = true;
 	}
 
-	displayGeneralInfo(entState, template); // must come after layout functions
-	
 	// Show Panels
 	detailsPanel.hidden = false;
 	

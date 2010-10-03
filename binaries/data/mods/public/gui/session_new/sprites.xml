@@ -2,6 +2,9 @@
 
 <sprites>
 
+	<!-- ================================  ================================ -->
+	<!-- Civ Icons -->
+	<!-- ================================  ================================ -->
 	<sprite name="heleIcon">
 		<image
 			texture="session/portraits/emblems/emblem_hellenes.png"
@@ -16,7 +19,9 @@
 		/>
 	</sprite>
 
-	<!-- ICONS NEED BETTER PLACE -->
+	<!-- ================================  ================================ -->
+	<!-- Unit Command Icons -->
+	<!-- ================================  ================================ -->
 	<sprite name="formation">
 		<image
 			texture="session/icons/sheets/formation_select.png"
@@ -40,62 +45,22 @@
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	<!-- ================================  ================================ -->
+	<!-- Menu -->
+	<!-- ================================  ================================ -->
 	<sprite name="menuButton">
 		<image
 			texture="session/icons/single/menu.png"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-		
-	<sprite name="glassSquareMap">
-		<image backcolor="255 255 255 56" size="0 0 100% 1"/>
-		<image backcolor="255 255 255 56" size="100%-1 1 100% 100%"/>
-		<image backcolor="255 255 255 56" size="0 100%-1 100% 100%"/>
-		<image backcolor="255 255 255 56" size="0 1 1 100%-1"/>
-		
-		<image backcolor="255 255 255 44" size="1 1 100%-1 2"/>
-		<image backcolor="255 255 255 44" size="100%-2 2 100%-1 100%-1"/>
-		<image backcolor="255 255 255 44" size="1 100%-2 100%-1 100%-1"/>
-		<image backcolor="255 255 255 44" size="1 2 2 100%-2"/>
-		
-		<image backcolor="255 255 255 32" size="2 2 100%-2 3"/>
-		<image backcolor="255 255 255 32" size="100%-3 3 100%-2 100%-2"/>
-		<image backcolor="255 255 255 32" size="2 100%-3 100%-2 100%-2"/>
-		<image backcolor="255 255 255 32" size="2 3 3 100%-3"/>
-	</sprite>
 
-	<sprite name="glassSquareIcon">
-		<image backcolor="255 255 255 128" size="0 0 100% 1"/>
-		<image backcolor="255 255 255 44" size="100%-1 1 100% 100%"/>
-		<image backcolor="255 255 255 44" size="0 100%-1 100% 100%"/>
-		<image backcolor="255 255 255 128" size="0 1 1 100%-1"/>
-		
-		<image backcolor="255 255 255 96" size="1 1 100%-1 2"/>
-		<image backcolor="255 255 255 32" size="100%-2 2 100%-1 100%-1"/>
-		<image backcolor="255 255 255 32" size="1 100%-2 100%-1 100%-1"/>
-		<image backcolor="255 255 255 96" size="1 2 2 100%-2"/>
-		
-		<image backcolor="255 255 255 64" size="2 2 100%-2 3"/>
-		<image backcolor="255 255 255 16" size="100%-3 3 100%-2 100%-2"/>
-		<image backcolor="255 255 255 16" size="2 100%-3 100%-2 100%-2"/>
-		<image backcolor="255 255 255 64" size="2 3 3 100%-3"/>
-	</sprite>
-	
-	<!-- PANELS -->
-	
-	
-	<!-- generic -->
+	<!-- ================================  ================================ -->
+	<!-- Panel Backgrounds -->
+	<!-- ================================  ================================ -->
+
+	<!-- Generic Panel -->
 	<sprite name="genericPanel">
 		<image
 			texture="global/tile/tile_dark.png"
@@ -103,7 +68,7 @@
 			size="0 0 100% 100%"
 		/>
 
-		<!-- Sides -->
+		<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
@@ -125,7 +90,7 @@
 			size="0 4 4 100%-4"
 		/>
 
-		<!-- Corners -->
+		<!-- corners -->
 		<image
 			texture="global/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
@@ -148,14 +113,14 @@
 		/>
 	</sprite>
 
-	<!-- top -->
+	<!-- Top Panel -->
 	<sprite name="topPanel">
 		<image
 			texture="session/ribbon_bg.png"
 			real_texture_placement="0 0 2048 32"
 			size="0 0 100% 100%"
 		/>
-		<!-- Sides -->
+		<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
@@ -168,14 +133,14 @@
 		/>
 	</sprite>
 
-	<!-- Map -->
+	<!-- Map Panel -->
 	<sprite name="mapPanel">
 		<image
 			texture="session/map_bg.png"
 			texture_size="0 0 100% 100%"
 			size="0 0 100% 100%"
 		/>
-			<!-- Sides -->
+			<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
@@ -197,7 +162,7 @@
 			size="0 4 4 100%-4"
 		/>
 
-		<!-- Corners -->
+		<!-- corners -->
 		<image
 			texture="global/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
@@ -220,7 +185,7 @@
 		/>
 	</sprite>
 
-	<!-- bottomLeft -->
+	<!-- Bottom Left Panel -->
 	<sprite name="bottomLeft">
 		<image
 			texture="session/panel_left.png"
@@ -229,7 +194,7 @@
 			size="0 0 100% 100%"
 		/>
 
-		<!-- Sides -->
+		<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
@@ -251,7 +216,7 @@
 			size="0 4 4 100%-4"
 		/>
 
-		<!-- Corners -->
+		<!-- corners -->
 		<image
 			texture="global/border/line_corner_middle_left.png"
 			texture_size="0 0 4 4"
@@ -274,7 +239,7 @@
 		/>
 	</sprite>
 
-	<!-- bottomMiddle-->
+	<!-- Bottom Middle Panel -->
 	<sprite name="bottomMiddle">
 		<image
 			texture="session/panel_middle.png"
@@ -283,7 +248,7 @@
 			size="0 0 100% 100%"
 		/>
 
-		<!-- Sides -->
+		<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
@@ -305,7 +270,7 @@
 			size="0 4 4 100%-4"
 		/>
 
-		<!-- Corners -->
+		<!-- corners -->
 		<image
 			texture="global/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
@@ -328,7 +293,7 @@
 		/>
 	</sprite>
 
-	<!-- bottomRight -->
+	<!-- Bottom Right Panel -->
 	<sprite name="bottomRight">
 		<image
 			texture="session/panel_right.png"
@@ -337,7 +302,7 @@
 			size="0 0 100% 100%"
 		/>
 
-		<!-- Sides -->
+		<!-- sides -->
 		<image
 			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
@@ -359,7 +324,7 @@
 			size="0 4 4 100%-4"
 		/>
 
-		<!-- Corners -->
+		<!-- corners -->
 		<image
 			texture="global/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
@@ -381,89 +346,8 @@
 			size="0 0 4 4"
 		/>
 	</sprite>
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<sprite name="lightPanel">
-		<!-- (currently this is all a hack - need proper textures) -->
-		<image
-			texture="global/tile/tile_light.png"
-			texture_size="0 0 256 256"
-		/>
-
-		<image
-			texture="global/titlebar/middle_gold_fern.dds"
-			real_texture_placement="0 4 64 6"
-			texture_size="0 0 64 32"
-			size="0 0 100% 3"
-		/>
-		<image
-			texture="global/titlebar/middle_gold_fern.dds"
-			real_texture_placement="0 4 64 6"
-			texture_size="0 0 64 32"
-			size="0 100%-3 100% 100%"
-		/>
-		<image
-			texture="global/border/corner_bronze.dds"
-			real_texture_placement="1 1 15 15"
-			texture_size="0 0 16 100%"
-			size="0 0 3 100%"
-		/>
-		<image
-			texture="global/border/corner_bronze.dds"
-			real_texture_placement="1 1 15 15"
-			texture_size="0 0 16 100%"
-			size="100%-3 0 100% 100%"
-		/>
-	</sprite>
-
-	<sprite name="darkPanel">
-		<!-- (currently this is all a hack - need proper textures) -->
-		<image
-			texture="global/tile/tile_dark.png"
-			texture_size="0 0 256 256"
-		/>
-
-		<image
-			texture="global/titlebar/middle_gold_fern.dds"
-			real_texture_placement="0 4 64 6"
-			texture_size="0 0 64 32"
-			size="0 0 100% 3"
-		/>
-		<image
-			texture="global/titlebar/middle_gold_fern.dds"
-			real_texture_placement="0 4 64 6"
-			texture_size="0 0 64 32"
-			size="0 100%-3 100% 100%"
-		/>
-		<image
-			texture="global/border/corner_bronze.dds"
-			real_texture_placement="1 1 15 15"
-			texture_size="0 0 16 100%"
-			size="0 0 3 100%"
-		/>
-		<image
-			texture="global/border/corner_bronze.dds"
-			real_texture_placement="1 1 15 15"
-			texture_size="0 0 16 100%"
-			size="100%-3 0 100% 100%"
-		/>
-	</sprite>
-
+<!-- Older Panel Sprites -->
 	<sprite name="goldPanel">
 		<!-- (currently this is all a hack - need proper textures) -->
 		<image
@@ -491,7 +375,7 @@
 			texture_size="0 0 128 128"
 		/>
 	</sprite>
-	
+
 	<sprite name="goldPanelFrilly">
 		<!-- (currently this is all a hack - need proper textures) -->
 		<image
@@ -660,7 +544,44 @@
 			size="100%-64 0% 100%+0 0%+30" 
 		/>
 	</sprite>
-	
+
+	<!-- ================================  ================================ -->
+	<!-- Shading -->
+	<!-- ================================  ================================ -->	
+	<sprite name="glassSquareMap">
+		<image backcolor="255 255 255 56" size="0 0 100% 1"/>
+		<image backcolor="255 255 255 56" size="100%-1 1 100% 100%"/>
+		<image backcolor="255 255 255 56" size="0 100%-1 100% 100%"/>
+		<image backcolor="255 255 255 56" size="0 1 1 100%-1"/>
+		
+		<image backcolor="255 255 255 44" size="1 1 100%-1 2"/>
+		<image backcolor="255 255 255 44" size="100%-2 2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 44" size="1 100%-2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 44" size="1 2 2 100%-2"/>
+		
+		<image backcolor="255 255 255 32" size="2 2 100%-2 3"/>
+		<image backcolor="255 255 255 32" size="100%-3 3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 32" size="2 100%-3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 32" size="2 3 3 100%-3"/>
+	</sprite>
+
+	<sprite name="glassSquareIcon">
+		<image backcolor="255 255 255 128" size="0 0 100% 1"/>
+		<image backcolor="255 255 255 44" size="100%-1 1 100% 100%"/>
+		<image backcolor="255 255 255 44" size="0 100%-1 100% 100%"/>
+		<image backcolor="255 255 255 128" size="0 1 1 100%-1"/>
+		
+		<image backcolor="255 255 255 96" size="1 1 100%-1 2"/>
+		<image backcolor="255 255 255 32" size="100%-2 2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 32" size="1 100%-2 100%-1 100%-1"/>
+		<image backcolor="255 255 255 96" size="1 2 2 100%-2"/>
+		
+		<image backcolor="255 255 255 64" size="2 2 100%-2 3"/>
+		<image backcolor="255 255 255 16" size="100%-3 3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 16" size="2 100%-3 100%-2 100%-2"/>
+		<image backcolor="255 255 255 64" size="2 3 3 100%-3"/>
+	</sprite>
+
 	<sprite name="statsBarShader">
 		<image backcolor="0 0 0 192" size="0 0 100% 1"/>
 		<image backcolor="0 0 0 192" size="100%-1 1 100% 100%-1"/>
@@ -678,21 +599,9 @@
 		<image backcolor="0 0 0 64" size="2 3 3 100%-3"/>
 	</sprite>
 
-	<sprite name="resourceBox">
-	
-		<!--<image backcolor="0 0 0 128" size="0 0 100% 100%"/>-->
-		<image backcolor="0 0 0 192" size="2 0 100%-2 100%-2"/>
-
-		<image backcolor="255 255 255 64" size="100%-2 1 100%-1 100%-2"/>
-		<image backcolor="255 255 255 96" size="100%-1 0 100% 100%-1"/>
-		
-		<image backcolor="255 255 255 64" size="1 100%-2 100%-1 100%-1"/>
-		<image backcolor="255 255 255 96" size="0 100%-1 100% 100%"/>
-	
-		<image backcolor="255 255 255 64" size="1 1 2 100%-2"/>
-		<image backcolor="255 255 255 96" size="0 0 1 100%-1"/>
-	</sprite>
-
+	<!-- ================================  ================================ -->
+	<!-- Colored Bars -->
+	<!-- ================================  ================================ -->
 	<sprite name="queueProgressSlider">
 		<image backcolor="0 255 0 128"/>
 	</sprite>
@@ -721,17 +630,9 @@
 		<image backcolor="blue"/>
 	</sprite>
 
-	<sprite name="bandbox">
-		<image backcolor="black" size="0 0 100% 1"/>
-		<image backcolor="black" size="100%-1 0 100% 100%"/>
-		<image backcolor="black" size="0 100%-1 100% 100%"/>
-		<image backcolor="black" size="0 0 1 100%"/>
-		<image backcolor="white" size="1 1 100%-1 2"/>
-		<image backcolor="white" size="100%-2 1 100%-1 100%-1"/>
-		<image backcolor="white" size="1 100%-2 100%-1 100%-1"/>
-		<image backcolor="white" size="1 1 2 100%-1"/>
-	</sprite>
-
+	<!-- ================================  ================================ -->
+	<!-- Chat -->
+	<!-- ================================  ================================ -->
 	<sprite name="chatInput">
 		<image backcolor="255 255 255 192" size="0 0 100% 1"/>
 		<image backcolor="255 255 255 192" size="100%-1 1 100% 100%-1"/>
@@ -753,6 +654,20 @@
 	
 	<sprite name="chatInputHighlight">
 		<image backcolor="255 165 0 192" size="-2 1 100% 100%+1"/>
+	</sprite>
+
+	<!-- ================================  ================================ -->
+	<!-- Misc -->
+	<!-- ================================  ================================ -->
+	<sprite name="bandbox">
+		<image backcolor="black" size="0 0 100% 1"/>
+		<image backcolor="black" size="100%-1 0 100% 100%"/>
+		<image backcolor="black" size="0 100%-1 100% 100%"/>
+		<image backcolor="black" size="0 0 1 100%"/>
+		<image backcolor="white" size="1 1 100%-1 2"/>
+		<image backcolor="white" size="100%-2 1 100%-1 100%-1"/>
+		<image backcolor="white" size="1 100%-2 100%-1 100%-1"/>
+		<image backcolor="white" size="1 1 2 100%-1"/>
 	</sprite>
 	
 	<sprite name="devCommandsBackground">
