@@ -17,6 +17,18 @@ Formation.prototype.GetMemberCount = function()
 };
 
 /**
+ * Returns the 'primary' member of this formation (typically the most
+ * important unit type), for e.g. playing a representative sound.
+ * Returns undefined if no members.
+ * TODO: actually implement something like that; currently this just returns
+ * the arbitrary first one.
+ */
+Formation.prototype.GetPrimaryMember = function()
+{
+	return this.members[0];
+};
+
+/**
  * Initialise the members of this formation.
  * Must only be called once.
  * All members must implement UnitAI.

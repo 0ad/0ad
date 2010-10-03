@@ -64,7 +64,7 @@
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
-	  structures/{civ}_house
+      structures/{civ}_house
       structures/{civ}_mill
       structures/{civ}_farmstead
       structures/{civ}_field
@@ -83,6 +83,11 @@
   </Builder>
   <Sound>
     <SoundGroups>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <order_attack>voice/hellenes/civ/civ_male_attack.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
+      <order_repair>voice/hellenes/civ/civ_male_ack.xml</order_repair>
       <walk>actor/human/movement/walk.xml</walk>
       <run>actor/human/movement/run.xml</run>
       <attack>attack/weapon/sword.xml</attack>

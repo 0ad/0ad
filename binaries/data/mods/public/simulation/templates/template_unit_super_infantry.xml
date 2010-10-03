@@ -54,6 +54,11 @@
   </Vision>
   <Sound>
     <SoundGroups>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <order_attack>voice/hellenes/civ/civ_male_attack.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
+      <order_repair>voice/hellenes/civ/civ_male_ack.xml</order_repair>
       <walk>actor/human/movement/walk.xml</walk>
       <run>actor/human/movement/walk.xml</run>
       <attack>attack/weapon/sword.xml</attack>

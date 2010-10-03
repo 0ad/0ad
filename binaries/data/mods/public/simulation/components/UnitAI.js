@@ -51,9 +51,8 @@ var UnitFsmSpec = {
 		// ignore when we're not in FORMATIONMEMBER
 	},
 
+	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
-		this.PlaySound("walk");
-
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		cmpUnitMotion.MoveToFormationOffset(msg.data.target, msg.data.x, msg.data.z);
 
@@ -65,15 +64,11 @@ var UnitFsmSpec = {
 	// (these will switch the unit out of formation mode)
 
 	"Order.Walk": function(msg) {
-		this.PlaySound("walk");
-
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
 		this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
 	"Order.WalkToTarget": function(msg) {
-		this.PlaySound("walk");
-
 		var ok = this.MoveToTarget(this.order.data.target);
 		if (ok)
 		{
@@ -707,9 +702,24 @@ UnitAI.prototype.GetRunSpeed = function()
 	return cmpMotion.GetRunSpeed();
 };
 
+/**
+ * Play a sound appropriate to the current entity.
+ */
 UnitAI.prototype.PlaySound = function(name)
 {
-	PlaySound(name, this.entity);
+	// If we're a formation controller, use the sounds from our first member
+	if (this.IsFormationController())
+	{
+		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+		var member = cmpFormation.GetPrimaryMember();
+		if (member)
+			PlaySound(name, member);
+	}
+	else
+	{
+		// Otherwise use our own sounds
+		PlaySound(name, this.entity);
+	}
 };
 
 UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)

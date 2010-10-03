@@ -362,6 +362,10 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 
 GuiInterface.prototype.PlaySound = function(player, data)
 {
+	// Ignore if no entity was passed
+	if (!data.entity)
+		return;
+
 	PlaySound(data.name, data.entity);
 };
 

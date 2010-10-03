@@ -202,6 +202,7 @@ function tryPlaceBuilding(queued)
 		"entities": selection,
 		"queued": queued
 	});
+	Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 
 	return true;
 }
@@ -504,19 +505,23 @@ function handleInputAfterGui(ev)
 				case "move":
 					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
 					Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
+					Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
 					return true;
 
 				case "attack":
 					Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
+					Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
 					return true;
 
 				case "build": // (same command as repair)
 				case "repair":
 					Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "queued": queued});
+					Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 					return true;
 
 				case "gather":
 					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
+					Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
 					return true;
 
 				case "set-rallypoint":
@@ -640,6 +645,7 @@ function handleMinimapEvent(target)
 		{
 		case "move":
 			Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
+			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
 			return true;
 
 		case "set-rallypoint":
