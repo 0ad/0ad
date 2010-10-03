@@ -18,6 +18,14 @@ StatusBars.prototype.Init = function()
 	this.enabled = false;
 };
 
+StatusBars.prototype.Serialize = function()
+{
+	// Because this is enabled directly by the GUI and is not
+	// network-synchronised (it only affects local rendering),
+	// return a dummy value to prevent OOS errors
+	return { "enabled": false };
+};
+
 StatusBars.prototype.SetEnabled = function(enabled)
 {
 	// Quick return if no change
