@@ -32,6 +32,8 @@ public:
 
 	virtual bool GetRetainInFog() = 0;
 
+	virtual bool GetAlwaysVisible() = 0;
+
 	DECLARE_INTERFACE_TYPE(Vision)
 };
 

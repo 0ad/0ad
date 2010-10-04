@@ -24,4 +24,5 @@
 BEGIN_INTERFACE_WRAPPER(Vision)
 DEFINE_INTERFACE_METHOD_0("GetRange", entity_pos_t, ICmpVision, GetRange)
 DEFINE_INTERFACE_METHOD_0("GetRetainInFog", bool, ICmpVision, GetRetainInFog)
+DEFINE_INTERFACE_METHOD_0("GetAlwaysVisible", bool, ICmpVision, GetAlwaysVisible)
 END_INTERFACE_WRAPPER(Vision)

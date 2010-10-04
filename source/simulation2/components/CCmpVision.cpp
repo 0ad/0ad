@@ -31,6 +31,7 @@ public:
 
 	entity_pos_t m_Range;
 	bool m_RetainInFog;
+	bool m_AlwaysVisible;
 
 	static std::string GetSchema()
 	{
@@ -40,6 +41,9 @@ public:
 			"</element>"
 			"<element name='RetainInFog'>"
 				"<data type='boolean'/>"
+			"</element>"
+			"<element name='AlwaysVisible'>"
+				"<data type='boolean'/>"
 			"</element>";
 	}
 
@@ -47,6 +51,7 @@ public:
 	{
 		m_Range = paramNode.GetChild("Range").ToFixed();
 		m_RetainInFog = paramNode.GetChild("RetainInFog").ToBool();
+		m_AlwaysVisible = paramNode.GetChild("AlwaysVisible").ToBool();
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -70,6 +75,11 @@ public:
 	virtual bool GetRetainInFog()
 	{
 		return m_RetainInFog;
+	}
+
+	virtual bool GetAlwaysVisible()
+	{
+		return m_AlwaysVisible;
 	}
 };
 

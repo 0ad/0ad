@@ -331,8 +331,10 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 
 	if (this.placementEntity)
 	{
+		var ent = this.placementEntity[1];
+
 		// Move the preview into the right location
-		var pos = Engine.QueryInterface(this.placementEntity[1], IID_Position);
+		var pos = Engine.QueryInterface(ent, IID_Position);
 		if (pos)
 		{
 			pos.JumpTo(cmd.x, cmd.z);
@@ -340,21 +342,26 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		}
 
 		// Check whether it's obstructed by other entities
-		var cmpObstruction = Engine.QueryInterface(this.placementEntity[1], IID_Obstruction);
+		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
 		var colliding = (cmpObstruction && cmpObstruction.CheckCollisions());
 
-		// Set it to a red shade if this is an obstructed location
-		var cmpVisual = Engine.QueryInterface(this.placementEntity[1], IID_Visual);
+		// Check whether it's in a visible region
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
+
+		var ok = (!colliding && visible);
+
+		// Set it to a red shade if this is an invalid location
+		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 		if (cmpVisual)
 		{
-			if (colliding)
+			if (!ok)
 				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
 			else
 				cmpVisual.SetShadingColour(1, 1, 1, 1);
 		}
 
-		if (!colliding)
-			return true;
+		return ok;
 	}
 
 	return false;

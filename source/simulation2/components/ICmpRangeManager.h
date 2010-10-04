@@ -229,6 +229,12 @@ public:
 	virtual ELosVisibility GetLosVisibility(entity_id_t ent, int player) = 0;
 
 	/**
+	 * GetLosVisibility wrapped for script calls.
+	 * Returns "hidden", "fogged" or "visible".
+	 */
+	std::string GetLosVisibility_wrapper(entity_id_t ent, int player);
+
+	/**
 	 * Set globally whether the whole map should be made visible.
 	 */
 	virtual void SetLosRevealAll(bool enabled) = 0;

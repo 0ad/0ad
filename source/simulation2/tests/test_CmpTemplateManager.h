@@ -83,7 +83,7 @@ public:
 		TS_ASSERT(preview != NULL);
 		TS_ASSERT_WSTR_EQUALS(preview->ToXML(),
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
-				L"<Vision><Range>0</Range><RetainInFog>true</RetainInFog></Vision>"
+				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
 				L"<VisualActor><Actor>example</Actor></VisualActor>");
 
 		const CParamNode* previewobstruct = tempMan->LoadTemplate(ent2, "preview|unitobstruct", -1);
@@ -92,14 +92,14 @@ public:
 				L"<Footprint><Circle radius=\"4\"></Circle><Height>1.0</Height></Footprint>"
 				L"<Obstruction><Inactive></Inactive><Unit radius=\"4\"></Unit></Obstruction>"
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
-				L"<Vision><Range>0</Range><RetainInFog>true</RetainInFog></Vision>"
+				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
 				L"<VisualActor><Actor>example</Actor></VisualActor>");
 
 		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, "preview|actor|example2", -1);
 		TS_ASSERT(previewactor != NULL);
 		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(),
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
-				L"<Vision><Range>0</Range><RetainInFog>true</RetainInFog></Vision>"
+				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
 				L"<VisualActor><Actor>example2</Actor></VisualActor>");
 	}
 

@@ -663,12 +663,16 @@ private:
 	{
 		// (We can't use m_EntityData since this needs to handle LOCAL entities too)
 
+		// Entities not with positions in the world are never visible
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
 		if (cmpPosition.null() || !cmpPosition->IsInWorld())
 			return VIS_HIDDEN;
 
+		// Global flag makes all positioned entities visible
 		if (m_LosRevealAll)
 			return VIS_VISIBLE;
+
+		// Visible if within a visible region
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
@@ -680,6 +684,7 @@ private:
 		if (los.IsVisible(i, j))
 			return VIS_VISIBLE;
 
+		// Fogged if the 'retain in fog' flag is set, and in a non-visible explored region
 		if (los.IsExplored(i, j))
 		{
 			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
@@ -687,6 +692,7 @@ private:
 				return VIS_FOGGED;
 		}
 
+		// Otherwise not visible
 		return VIS_HIDDEN;
 	}
 

@@ -54,6 +54,8 @@ public:
 	std::wstring m_ActorName;
 	CUnit* m_Unit;
 
+	fixed m_R, m_G, m_B; // shading colour
+
 	ICmpRangeManager::ELosVisibility m_Visibility; // only valid between Interpolate and RenderSubmit
 
 	// Current animation state
@@ -105,6 +107,8 @@ public:
 			m_ActorName = paramNode.GetChild("FoundationActor").ToString();
 		else
 			m_ActorName = paramNode.GetChild("Actor").ToString();
+
+		m_R = m_G = m_B = fixed::FromInt(1);
 
 		std::set<CStr> selections;
 		m_Unit = context.GetUnitManager().CreateUnit(m_ActorName, selections);
@@ -280,10 +284,10 @@ public:
 
 	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a)
 	{
-		if (!m_Unit)
-			return;
-
-		m_Unit->GetModel().SetShadingColor(CColor(r.ToFloat(), g.ToFloat(), b.ToFloat(), a.ToFloat()));
+		m_R = r;
+		m_G = g;
+		m_B = b;
+		UNUSED2(a); // TODO: why is this even an argument?
 	}
 
 	virtual void Hotload(const std::wstring& name)
@@ -368,8 +372,18 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 		return;
 	}
 
-	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-	m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), GetSimContext().GetCurrentDisplayedPlayer());
+	// The 'always visible' flag means we should always render the unit
+	// (regardless of whether the LOS system thinks it's visible)
+	CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+	if (!cmpVision.null() && cmpVision->GetAlwaysVisible())
+	{
+		m_Visibility = ICmpRangeManager::VIS_VISIBLE;
+	}
+	else
+	{
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), GetSimContext().GetCurrentDisplayedPlayer());
+	}
 
 	// Even if HIDDEN due to LOS, we need to set up the transforms
 	// so that projectiles will be launched from the right place
@@ -378,8 +392,21 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 
 	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset, floating));
 
-	m_Unit->GetModel().SetTransform(transform);
+	CModel& model = m_Unit->GetModel();
+
+	model.SetTransform(transform);
 	m_Unit->UpdateModel(frameTime);
+
+	// If not hidden, then we need to set up some extra state for rendering
+	if (m_Visibility != ICmpRangeManager::VIS_HIDDEN)
+	{
+		model.ValidatePosition();
+
+		if (m_Visibility == ICmpRangeManager::VIS_FOGGED)
+			model.SetShadingColor(CColor(0.7f * m_R.ToFloat(), 0.7f * m_G.ToFloat(), 0.7f * m_B.ToFloat(), 1.0f));
+		else
+			model.SetShadingColor(CColor(m_R.ToFloat(), m_G.ToFloat(), m_B.ToFloat(), 1.0f));
+	}
 }
 
 void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
@@ -392,15 +419,8 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 
 	CModel& model = m_Unit->GetModel();
 
-	model.ValidatePosition();
-
 	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBounds()))
 		return;
-
-	if (m_Visibility == ICmpRangeManager::VIS_FOGGED)
-		model.SetShadingColor(CColor(0.7f, 0.7f, 0.7f, 1.0f));
-	else
-		model.SetShadingColor(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	collector.SubmitRecursive(&model);
 }

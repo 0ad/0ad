@@ -435,8 +435,8 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 
 	if (!corpse)
 	{
-		// Previews should always be visible in fog-of-war
-		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>true</RetainInFog></Vision></Entity>");
+		// Previews should always be visible in fog-of-war/etc
+		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>false</RetainInFog><AlwaysVisible>true</AlwaysVisible></Vision></Entity>");
 	}
 
 	if (corpse)

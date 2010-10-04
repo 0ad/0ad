@@ -72,6 +72,7 @@ function ProcessCommand(player, cmd)
 		cmpPosition.JumpTo(cmd.x, cmd.z);
 		cmpPosition.SetYRotation(cmd.angle);
 
+		// Check whether it's obstructed by other entities
 		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
 		if (cmpObstruction && cmpObstruction.CheckCollisions())
 		{
@@ -83,14 +84,21 @@ function ProcessCommand(player, cmd)
 			break;
 		}
 
+		// Check whether it's in a visible region
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
+		if (!visible)
+		{
+			// TODO: report error to player (the building site was not visible)
+			Engine.DestroyEntity(ent);
+			break;
+		}
+
 		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
 		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 		{
 			// TODO: report error to player (they ran out of resources)
-
-			// Remove the foundation because the construction was aborted
 			Engine.DestroyEntity(ent);
-
 			break;
 		}
 
