@@ -1,16 +1,22 @@
 # Adapted from http://cairographics.org/freetypepython/
 
-# TODO: Windows compatibility
-
 import ctypes
 import cairo
+import sys
 
 CAIRO_STATUS_SUCCESS = 0
 FT_Err_Ok = 0
 
-# find shared objects
-_freetype_so = ctypes.CDLL ("libfreetype.so.6")
-_cairo_so = ctypes.CDLL ("libcairo.so.2")
+# find required libraries (platform specific)
+if sys.platform == "win32":
+    ft_lib = "freetype6.dll"
+    lc_lib = "libcairo-2.dll"
+else:
+    ft_lib = "libfreetype.so.6"
+    lc_lib = "libcairo.so.2"
+
+_freetype_so = ctypes.CDLL (ft_lib)
+_cairo_so = ctypes.CDLL (lc_lib)
 
 # initialize freetype
 _ft_lib = ctypes.c_void_p ()
