@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="130"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="30"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="200"/>
+        <animation file="infantry/general/chop.psa" name="gather_tree" speed="200"/>
+        <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
+        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="110"/>
+        <animation file="biped/inf_hoplite_atk_a.psa" name="gather_meat" speed="200"/>
+        <animation file="infantry/general/mine.psa" name="gather_rock" speed="200"/>
+        <animation file="infantry/general/mine.psa" name="gather_ore" speed="200"/>
+        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/thebes_sacred_band.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Helmets-boeotian Varieties">
+      <props>
+        <prop actor="props/units/heads/hele_cav_e.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmets-Illyrian-Chalcidean-Varieties">
+      <props>
+        <prop actor="props/units/heads/hele_hoplite_e2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="armour-var-f">
+      <texture>skeletal/hele_isp_e_f.dds</texture>
+    </variant>
+    <variant frequency="2" name="armour-var-sb">
+      <texture>skeletal/hele_thebes_sacredband.dds</texture>
+    </variant>
+    <variant frequency="1" name="armour-var-g">
+      <texture>skeletal/hele_isp_e_g.dds</texture>
+    </variant>
+    <variant frequency="1" name="armour-bronze">
+      <texture>skeletal/hele_spartitiate.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

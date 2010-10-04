@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super_infantry">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Sacred Band</SpecificName>
+	<IconSheet>snPortraitSheetHele</IconSheet>
+    <IconCell>12</IconCell>
+    <Tooltip>Bonused vs. Melee Cavalry and Melee Infantry. Weak vs. Ranged Infantry and Ranged Cavalry. Long Train Time. Small Bonus vs. All Greek Units.</Tooltip>
+    <History>The Theban Sacred Band.</History>
+  </Identity>
+  <Cost>
+    <BuildTime>30</BuildTime>
+    <Resources>
+      <wood>35</wood>
+      <metal>78</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Stamina>
+    <Max>590</Max>
+  </Stamina>
+  <Armour>
+    <Hack>12.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>5.5</WalkSpeed>
+    <Run>
+      <Speed>13.5</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Melee>
+      <Hack>14.0</Hack>
+      <Pierce>21.0</Pierce>
+      <MaxRange>4.8</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>35.0</Hack>
+      <Pierce>51.0</Pierce>
+      <MaxRange>4.8</MaxRange>
+    </Charge>
+  </Attack>
+  <VisualActor>
+    <Actor>units/hellenes/super_sacred_band.xml</Actor>
+  </VisualActor>
+  <Vision>
+    <Range>32</Range>
+  </Vision>
+</Entity>
