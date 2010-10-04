@@ -227,10 +227,6 @@ function package_set_build_flags()
 			"/usr/X11R6/lib"
 		}
 
-		if OS == "linux" and options["icc"] then
-			tinsert(package.libpaths, "/usr/i686-pc-linux-gnu/lib") -- needed for ICC to find libbfd
-		end
-
 		if options["bindir"] then
 			tinsert(package.defines, "INSTALLED_BINDIR=" .. options["bindir"])
 		end
@@ -679,8 +675,6 @@ function setup_main_exe ()
 			"fam",
 			-- Utilities
 			"rt",
-			-- Debugging
-			"bfd", "iberty",
 			-- Dynamic libraries (needed for linking for gold)
 			"dl",
 		})
@@ -1085,8 +1079,6 @@ function setup_tests()
 			"fam",
 			-- Utilities
 			"rt",
-			-- Debugging
-			"bfd", "iberty",
 			-- Dynamic libraries (needed for linking for gold)
 			"dl",
 		})
