@@ -35,7 +35,8 @@
 - @ref allowing-js-interfaces
 - @ref defining-js-components
 - @ref defining-js-interfaces
-- @ref defining-message
+- @ref defining-cpp-message
+- @ref defining-js-message
 - @ref communication
  - @ref message-passing
  - @ref query-interface
@@ -421,7 +422,7 @@ it's just a convention that allows mods to easily extend the game with new inter
 
 
 
-@section defining-message Defining a new message type
+@section defining-cpp-message Defining a new message type in C++
 
 Think of a name. We'll use @c Example again. (The name should typically be a present-tense verb, possibly
 with a prefix to make its meaning clearer: "Update", "TurnStart", "RenderSubmit", etc).
@@ -491,6 +492,24 @@ CMessage* CMessageExample::FromJSVal(ScriptInterface& UNUSED(scriptInterface), j
 	return NULL;
 }
 @endcode
+
+
+
+@section defining-js-message Defining a new message type in JS
+
+If a message will only be sent and received by JS components, it can be defined purely in JS.
+For example, add to the file @b interfaces/Example.js:
+
+@code
+// Message of the form { "foo": 1, "bar": "baz" }
+// sent whenever the example component wants to demonstrate the message feature.
+Engine.RegisterMessageType("Example");
+@endcode
+
+Note that the only specification of the structure of the message is in comments -
+there is no need to tell the engine what properties it will have.
+
+This message type can then be used from JS exactly like the @c CMessageExample defined in C++.
 
 
 
