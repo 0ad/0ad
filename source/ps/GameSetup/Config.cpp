@@ -103,7 +103,7 @@ static void LoadGlobals()
 
 	float gain = -1.0f;
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
-	if(gain > 0.0f)
+	if(gain >= 0.0f)
 		WARN_ERR(snd_set_master_gain(gain));
 }
 
