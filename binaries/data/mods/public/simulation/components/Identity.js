@@ -45,7 +45,11 @@ Identity.prototype.Schema =
 	"</optional>" +
 	"<optional>" +
 		"<element name='Rank'>" +
-			"<text/>" +
+			"<choice>" +
+				"<value>Basic</value>" +
+				"<value>Advanced</value>" +
+				"<value>Elite</value>" +
+			"</choice>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
