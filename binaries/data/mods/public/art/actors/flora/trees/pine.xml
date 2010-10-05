@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="Base">
       <texture>gaia/pine.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant name="a1">
       <mesh>gaia/pine1.pmd</mesh>
@@ -56,7 +53,5 @@
       <mesh>gaia/pine15.pmd</mesh>
     </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>

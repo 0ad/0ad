@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="575.612" y="107.077" z="59.4759"/>
-		<Rotation angle="0.0665822"/>
-		<Declination angle="0.578671"/>
+		<Position x="587.42" y="88.9309" z="67.4194"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
 		<Entity uid="11">
@@ -565,8 +565,8 @@
 		<Entity uid="140">
 			<Template>structures/celt_scout_tower</Template>
 			<Player>1</Player>
-			<Position x="140.44025" z="539.70228"/>
-			<Orientation y="2.8961"/>
+			<Position x="140.50882" z="537.53931"/>
+			<Orientation y="-2.84881"/>
 		</Entity>
 		<Entity uid="141">
 			<Template>structures/celt_scout_tower</Template>
@@ -577,7 +577,7 @@
 		<Entity uid="143">
 			<Template>units/celt_hero_caratacos</Template>
 			<Player>1</Player>
-			<Position x="162.80964" z="574.81696"/>
+			<Position x="163.56568" z="574.24231"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="144">
@@ -643,7 +643,7 @@
 		<Entity uid="154">
 			<Template>units/celt_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="157.42785" z="581.9557"/>
+			<Position x="156.93331" z="582.67103"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="155">
@@ -2306,8 +2306,8 @@
 		<Entity uid="490">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="206.73417" z="645.75727"/>
-			<Orientation y="1.37494"/>
+			<Position x="152.44773" z="528.18726"/>
+			<Orientation y="0.79513"/>
 		</Entity>
 		<Entity uid="491">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
@@ -4794,12 +4794,12 @@
 		</Entity>
 		<Entity uid="982">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="132.31095" z="521.19831"/>
+			<Position x="136.6838" z="534.81373"/>
 			<Orientation y="2.54595"/>
 		</Entity>
 		<Entity uid="983">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="136.76784" z="518.90168"/>
+			<Position x="143.67658" z="536.9134"/>
 			<Orientation y="1.18899"/>
 		</Entity>
 		<Entity uid="992">
@@ -5175,7 +5175,7 @@
 		<Entity uid="1101">
 			<Template>structures/celt_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="144.19935" z="599.11841"/>
+			<Position x="143.25725" z="601.12049"/>
 			<Orientation y="2.38718"/>
 		</Entity>
 		<Entity uid="1102">
@@ -7405,8 +7405,8 @@
 		</Entity>
 		<Entity uid="1535">
 			<Template>actor|geology/stone_medit_med.xml</Template>
-			<Position x="495.30231" z="247.88285"/>
-			<Orientation y="-2.16083"/>
+			<Position x="494.53992" z="251.00052"/>
+			<Orientation y="-2.60297"/>
 		</Entity>
 		<Entity uid="1536">
 			<Template>actor|geology/stone_medit_med.xml</Template>
