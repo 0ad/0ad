@@ -372,7 +372,7 @@ void PolygonSortModelRenderer::RenderModel(int streamflags, CModel* model, void*
 	size_t numFaces = mdef->GetNumFaces();
 
 	if (!g_Renderer.m_SkipSubmit) {
-		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdef->GetNumVertices(),
+		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdef->GetNumVertices()-1,
 					(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, psmdl->m_Indices);
 	}
 

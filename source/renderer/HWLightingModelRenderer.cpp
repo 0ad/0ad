@@ -321,7 +321,7 @@ void HWLightingModelRenderer::RenderModel(int streamflags, CModel* model, void* 
 	size_t numFaces = mdldef->GetNumFaces();
 
 	if (!g_Renderer.m_SkipSubmit) {
-		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices(),
+		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
 					   (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->hwlmodeldef->m_Indices);
 	}
 
