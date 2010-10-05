@@ -79,13 +79,15 @@ StatusBars.prototype.RegenerateSprites = function()
 	{
 		cmpOverlayRenderer.AddSprite(
 			"art/textures/ui/session/icons/"+type+"_bg.png",
-			{ "x": -width/2, "y": -height/2 + yoffset }, { "x": width/2, "y": height/2 + yoffset },
+			{ "x": -width/2, "y": -height/2 + yoffset },
+			{ "x": width/2, "y": height/2 + yoffset },
 			offset
 		);
 
 		cmpOverlayRenderer.AddSprite(
 			"art/textures/ui/session/icons/"+type+"_fg.png",
-			{ "x": -width/2, "y": -height/2 + yoffset }, { "x": width*(amount - 0.5), "y": height/2 + yoffset },
+			{ "x": -width/2, "y": -height/2 + yoffset },
+			{ "x": width*(amount - 0.5), "y": height/2 + yoffset },
 			offset
 		);
 
@@ -102,6 +104,29 @@ StatusBars.prototype.RegenerateSprites = function()
 	if (cmpResourceSupply)
 	{
 		AddBar("supply", cmpResourceSupply.GetCurrentAmount() / cmpResourceSupply.GetMaxAmount());
+	}
+
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (cmpIdentity)
+	{
+		var rank = cmpIdentity.GetRank();
+		if (rank == "Advanced" || rank == "Elite")
+		{
+			var icon;
+			if (rank == "Advanced")
+				icon = "art/textures/ui/session/icons/advanced.dds";
+			else
+				icon = "art/textures/ui/session/icons/elite.dds";
+
+			var rankSize = 0.666;
+			var xoffset = -width/2 - rankSize/2;
+			cmpOverlayRenderer.AddSprite(
+				icon,
+				{ "x": -rankSize/2 + xoffset, "y": -rankSize/2 + yoffset },
+				{ "x": rankSize/2 + xoffset, "y": rankSize/2 + yoffset },
+				offset
+			);
+		}
 	}
 };
 
