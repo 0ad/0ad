@@ -454,20 +454,6 @@
 			size="50%-114 100%-205 50%+114 100%"
 			hidden="true"
 		>
-			
-			
-			
-			
-			
-			
-		
-			
-			
-			
-			
-			
-			
-	
 			<!-- Unit details for Single Unit -->
 			<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
 	
@@ -517,20 +503,17 @@
 				<!-- Specific Name -->
 				<object size="0 142 100% 162" name="specific" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
 			</object>
-	
-	
-	
-	
+
 			<!-- Unit details for Multiplle Units -->
 			<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
 					
 				<object name="unitSelectionPanel"
-					size="20 16 100%-20 100%"
+					size="35 10 100%-20 100%"
 				>
 					<object size="0 0 100% 100%">
-						<repeat count="15">
-							<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" z="100">
-								<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 35 35"/>
+						<repeat count="12">
+							<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
+								<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 37 37"/>
 								<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 								<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
 								</object>
@@ -539,9 +522,8 @@
 					</object>
 				</object>	
 
-				
 				<!-- Stats Bars -->
-				<object size= "40 100%-65 100%-40 100%-35" type="image" tooltip_style="snToolTip">
+				<object size= "55 100%-70 100%-55 100%-40" type="image" tooltip_style="snToolTip">
 					<!-- Health bar -->
 					<object size="0 0 100% 12" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="snToolTip">
 						<object type="image" sprite="healthBackground" ghost="true"/>
@@ -558,12 +540,7 @@
 				</object>
 
 			</object>
-	
-	
-	
-	
-	
-	
+
 			<!-- Unit Commands -->
 			<object name="unitCommandPanel"
 				size="0 100%-35 100% 100%"
