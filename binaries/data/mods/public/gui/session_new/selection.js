@@ -195,10 +195,24 @@ EntitySelection.prototype.update = function()
 	for each (var ent in this.selected)
 	{
 		var entState = GetEntityState(ent);
+		// Remove deleted units
 		if (!entState)
 		{
 			delete this.selected[ent];
 			numberRemoved++;
+			continue;
+		}
+		// Remove non-visible units (e.g. moved back into fog-of-war)
+		if (entState.visibility == "hidden")
+		{
+			// Disable any highlighting of the disappeared unit
+			_setHighlight([ent], 0);
+			_setStatusBars([ent], false);
+			_setMotionOverlay([ent], false);
+
+			delete this.selected[ent];
+			numberRemoved++;
+			continue;
 		}
 	}
 	if (numberRemoved > 0)

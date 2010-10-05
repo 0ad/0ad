@@ -145,6 +145,10 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.rallyPoint = { };
 	}
+
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player);
+
 	return ret;
 };
 
