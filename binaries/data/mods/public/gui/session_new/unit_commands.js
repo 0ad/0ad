@@ -117,8 +117,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 	if (guiName == "Selection")
 	{
-		if (numberOfItems > 12)
-				numberOfItems =  12;
+		if (numberOfItems > 16)
+				numberOfItems =  16;
 	}
 	if (guiName == "Formation" || guiName == "Garrison")
 	{

@@ -153,13 +153,15 @@ function displayMultiple(selection, template)
 			var unitHealthBar = getGUIObjectByName("healthBarMultiple");
 			var healthSize = unitHealthBar.size;
 							
-			healthSize.rright = 100*Math.max(0, Math.min(1, averageHealth / maxHealth));
+			healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 			unitHealthBar.size = healthSize;
 			
 			var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + "/" + maxHealth;
 			getGUIObjectByName("healthMultiple").tooltip = hitpoints;
 		}
 	}
+
+	getGUIObjectByName("numberOfUnits").caption = selection.length;
 
 	// Unhide Details Area
 	getGUIObjectByName("detailsAreaMultiple").hidden = false;

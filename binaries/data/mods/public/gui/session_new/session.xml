@@ -157,7 +157,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Notification Area -->
 		<!-- ================================  ================================ -->
-		<object name="notificationPanel" type="image" size="50%-300 30 50%+300 90" ghost="true">
+		<object name="notificationPanel" type="image" size="50%-300 100%-280 50%+300 100%-220" ghost="true">
 			<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
 		</object>
 
@@ -429,7 +429,7 @@
 			</object>
 		
 			<object name="unitGarrisonPanel"
-				size="12 12 100% 100%"
+				size="20 10 100% 100%"
 			>
 				<!--<object size="-6 -6 50 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="1" tooltip="Garrison"/>-->
 
@@ -504,14 +504,14 @@
 				<object size="0 142 100% 162" name="specific" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
 			</object>
 
-			<!-- Unit details for Multiplle Units -->
+			<!-- Unit details for Multiple Units -->
 			<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
 					
 				<object name="unitSelectionPanel"
-					size="35 10 100%-20 100%"
+					size="20 10 100%-20 100%"
 				>
 					<object size="0 0 100% 100%">
-						<repeat count="12">
+						<repeat count="16">
 							<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
 								<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 37 37"/>
 								<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
@@ -522,17 +522,22 @@
 					</object>
 				</object>	
 
+				<!-- Total -->
+				<object size="100%-42 12 100%-8 46" type="image" sprite="maceIcon">
+					<object size="0 0 100%-2 100%-2" type="text" style="largeCenteredOutlinedText" name="numberOfUnits"/>
+				</object>	
+
 				<!-- Stats Bars -->
-				<object size= "55 100%-70 100%-55 100%-40" type="image" tooltip_style="snToolTip">
+				<object size= "100%-38 52 100%-18 100%-40" type="image" tooltip_style="snToolTip">
 					<!-- Health bar -->
-					<object size="0 0 100% 12" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="snToolTip">
+					<object size="0 0 12 100%" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="snToolTip">
 						<object type="image" sprite="healthBackground" ghost="true"/>
 						<object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
 					
 					<!-- Stamina bar -->
-					<object size="0 14 100% 26" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="snToolTip">
+					<object size="14 0 26 100%" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="snToolTip">
 						<object type="image" sprite="staminaBackground" ghost="true"/>
 						<object type="image" sprite="staminaForeground" ghost="true" name="staminaBarMultiple"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>

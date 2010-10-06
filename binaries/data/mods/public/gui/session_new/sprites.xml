@@ -12,9 +12,16 @@
 		/>
 	</sprite>
 
-	<sprite name="celtIcon">->
+	<sprite name="celtIcon">
 		<image
 			texture="session/portraits/emblems/emblem_celts.png"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+	
+	<sprite name="maceIcon">
+		<image
+			texture="session/portraits/emblems/emblem_macedon.png"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
