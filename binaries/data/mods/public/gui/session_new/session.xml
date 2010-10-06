@@ -420,7 +420,7 @@
 				<!--<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="5" tooltip="Formations"/>-->
 			
 				<object size="0 0 100% 100%">
-					<repeat count="15">
+					<repeat count="16">
 						<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
 							<object name="unitFormationIcon[n]" type="image" style="formationIcon" ghost="true" size="1 1 37 37"/>
 						</object>
@@ -428,13 +428,27 @@
 				</object>
 			</object>
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--
+								GARRISON GOES HERE
+		-->
+		
 			<object name="unitGarrisonPanel"
 				size="20 10 100% 100%"
 			>
 				<!--<object size="-6 -6 50 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="1" tooltip="Garrison"/>-->
 
 				<object size="0 0 100% 100%">
-					<repeat count="15">
+					<repeat count="16">
 						<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
 							<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="1 1 37 37"/>
 							<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
@@ -443,6 +457,21 @@
 				</object>
 			</object>
 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		</object>
 
 		<!-- ================================  ================================ -->

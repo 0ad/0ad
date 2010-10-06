@@ -122,15 +122,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	}
 	if (guiName == "Formation" || guiName == "Garrison")
 	{
-		if (numberOfItems > 15)
-				numberOfItems =  15;
+		if (numberOfItems > 16)
+				numberOfItems =  16;
 	}
 	else if (guiName == "Queue")
 	{
 		if (numberOfItems > 16)
 			numberOfItems = 16;
 	}
-	else if ( guiName == "Command")
+	else if (guiName == "Command")
 	{
 		if (numberOfItems > 4)
 			numberOfItems = 4;
@@ -176,9 +176,29 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case GARRISON:
+		
+		
+		
+		
+		
+		/*
+
+!!!!!
+GARRISON GOES HERE (need to customize this)
+!!!!!
+		
+		
 			var tooltip = getEntityName(template);
 			var count = g_Selection.groups.getCount(item);
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
+			
+			
+		*/	
+		
+		
+		
+			
+			
 			break;
 
 		case FORMATION:
@@ -317,17 +337,33 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitPanel("Command", usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item); } );
 
+				
+				
+				
+				
+				
 /*
+!!!!!
+									GARRISON GOES HERE (need to customize this)
+!!!!!
+*/
+
 		if (selection.length > 1)
 			setupUnitPanel("Garrison", usedPanels, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
-*/
 
+
+
+
+
+
+/*
 		var formations = getEntityFormationsList(entState);
 		if (formations.length)
 			setupUnitPanel("Formation", usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
-
+*/
+				
 		if (entState.buildEntities && entState.buildEntities.length)
 		{
 			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
