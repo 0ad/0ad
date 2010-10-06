@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna">
-  <Identity>
-  </Identity>
+  <Health>
+    <DeathType>remain</DeathType>
+  </Health>
   <ResourceSupply>
     <Amount>100</Amount>
     <Type>food.meat</Type>

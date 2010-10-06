@@ -18,10 +18,11 @@ Health.prototype.Schema =
 	"<element name='RegenRate' a:help='Hitpoint regeneration rate per second. Not yet implemented'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='DeathType' a:help='Graphical behaviour when the unit dies'>" +
+	"<element name='DeathType' a:help='Behaviour when the unit dies'>" +
 		"<choice>" +
 			"<value a:help='Disappear instantly'>vanish</value>" +
 			"<value a:help='Turn into a corpse'>corpse</value>" +
+			"<value a:help='Remain in the world with 0 health'>remain</value>" +
 		"</choice>" +
 	"</element>" +
 	"<element name='Healable' a:help='Indicates that the entity can be healed by healer units'>" +
@@ -40,6 +41,10 @@ Health.prototype.Init = function()
 
 //// Interface functions ////
 
+/**
+ * Returns the current hitpoint value.
+ * This is 0 if (and only if) the unit is dead.
+ */
 Health.prototype.GetHitpoints = function()
 {
 	return this.hitpoints;
@@ -84,9 +89,23 @@ Health.prototype.Reduce = function(amount)
 			PlaySound("death", this.entity);
 
 			if (this.template.DeathType == "corpse")
+			{
 				this.CreateCorpse();
+				Engine.DestroyEntity(this.entity);
+			}
+			else if (this.template.DeathType == "vanish")
+			{
+				Engine.DestroyEntity(this.entity);
+			}
+			else if (this.template.DeathType == "remain")
+			{
+				// Don't destroy the entity
 
-			Engine.DestroyEntity(this.entity);
+				// Make it fall over
+				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+				if (cmpVisual)
+					cmpVisual.SelectAnimation("death", true, 1.0, "");
+			}
 
 			var old = this.hitpoints;
 			this.hitpoints = 0;

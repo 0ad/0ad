@@ -83,6 +83,13 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Attack": function(msg) {
+		// Check the target is alive
+		if (!this.TargetIsAlive(this.order.data.target))
+		{
+			this.FinishOrder();
+			return;
+		}
+
 		// Work out how to attack the given target
 		var type = this.GetBestAttack();
 		if (!type)
@@ -109,6 +116,22 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
+		// If the target is still alive, we need to kill it first
+		if (this.TargetIsAlive(this.order.data.target))
+		{
+			// Make sure we can attack the target, else we'll get very stuck
+			if (!this.GetBestAttack())
+			{
+				// Oops, we can't attack at all - give up
+				// TODO: should do something so the player knows why this failed
+				this.FinishOrder();
+				return;
+			}
+
+			this.PushOrderFront("Attack", { "target": this.order.data.target });
+			return;
+		}
+
 		// Try to move within range
 		if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
 		{
@@ -308,27 +331,29 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					// Check we can still reach the target
-					if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+					// Check the target is still alive
+					if (this.TargetIsAlive(this.order.data.target))
 					{
-						var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-						cmpAttack.PerformAttack(this.attackType, this.order.data.target);
-					}
-					else
-					{
-						// Try to chase after it
+						// Check we can still reach the target
+						if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+						{
+							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+							cmpAttack.PerformAttack(this.attackType, this.order.data.target);
+							return;
+						}
+
+						// Can't reach it - try to chase after it
 						if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
 						{
 							this.SetNextState("COMBAT.CHASING");
-						}
-						else
-						{
-							// Can't reach it, or it doesn't exist any more - give up
-							this.FinishOrder();
-							
-							// TODO: see if we can switch to a new nearby enemy
+							return;
 						}
 					}
+
+					// Can't reach it, or it doesn't exist any more - give up
+					this.FinishOrder();
+							
+					// TODO: see if we can switch to a new nearby enemy
 				},
 
 				// TODO: respond to target deaths immediately, rather than waiting
@@ -700,6 +725,15 @@ UnitAI.prototype.GetRunSpeed = function()
 {
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpMotion.GetRunSpeed();
+};
+
+UnitAI.prototype.TargetIsAlive = function(ent)
+{
+	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
+	if (!cmpHealth)
+		return false;
+
+	return (cmpHealth.GetHitpoints() != 0);
 };
 
 /**

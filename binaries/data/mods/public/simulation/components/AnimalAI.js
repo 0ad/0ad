@@ -42,11 +42,27 @@ var AnimalFsmSpec = {
 		// ignore spurious movement messages
 	},
 
+	"HealthChanged": function(msg) {
+		// If we died (got reduced to 0 hitpoints), stop the AI and act like a corpse
+		if (msg.to == 0)
+			this.SetNextState("CORPSE");
+	},
+
+	"CORPSE": {
+		"enter": function() {
+			this.StopMoving();
+		},
+
+		"Attacked": function(msg) {
+			// Do nothing, because we're dead already
+		},
+	},
+
 	"SKITTISH": {
 
-		"ResourceGather": function(msg) {
-			// If someone's carving chunks of meat off us, then run away
-			this.MoveAwayFrom(msg.gatherer, +this.template.FleeDistance);
+		"Attacked": function(msg) {
+			// If someone's attacking us, then run away
+			this.MoveAwayFrom(msg.data.attacker, +this.template.FleeDistance);
 			this.SetNextState("FLEEING");
 			this.PlaySound("panic");
 		},
@@ -114,8 +130,8 @@ var AnimalFsmSpec = {
 
 	"PASSIVE": {
 
-		"ResourceGather": function(msg) {
-			// Do nothing, just let them gather meat
+		"Attacked": function(msg) {
+			// Do nothing, just let them kill us
 		},
 	
 		"ROAMING": {
@@ -205,9 +221,14 @@ AnimalAI.prototype.OnMotionChanged = function(msg)
 	}
 };
 
-AnimalAI.prototype.OnResourceGather = function(msg)
+AnimalAI.prototype.OnAttacked = function(msg)
 {
-	AnimalFsm.ProcessMessage(this, {"type": "ResourceGather", "gatherer": msg.gatherer});
+	AnimalFsm.ProcessMessage(this, {"type": "Attacked", "data": msg});
+};
+
+AnimalAI.prototype.OnHealthChanged = function(msg)
+{
+	AnimalFsm.ProcessMessage(this, {"type": "HealthChanged", "from": msg.from, "to": msg.to});
 };
 
 AnimalAI.prototype.TimerHandler = function(data, lateness)
