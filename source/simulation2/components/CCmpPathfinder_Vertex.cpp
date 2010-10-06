@@ -719,9 +719,19 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 			// If this is the magical goal vertex, move it to near the current vertex
 			CFixedVector2D npos;
 			if (n == GOAL_VERTEX_ID)
+			{
 				npos = NearestPointOnGoal(vertexes[curr.id].p, goal);
+
+				// To prevent integer overflows later on, we need to ensure all vertexes are
+				// 'close' to the source. The goal might be far away (not a good idea but
+				// sometimes it happens), so clamp it to the current search range
+				npos.X = clamp(npos.X, rangeXMin, rangeXMax);
+				npos.Y = clamp(npos.Y, rangeZMin, rangeZMax);
+			}
 			else
+			{
 				npos = vertexes[n].p;
+			}
 
 			// Work out which quadrant(s) we're approaching the new vertex from
 			u8 quad = 0;
