@@ -298,6 +298,7 @@ public:
 
 	virtual void StopMoving()
 	{
+		m_ExpectedPathTicket = 0;
 		m_State = STATE_STOPPING;
 	}
 
@@ -723,8 +724,7 @@ void CCmpUnitMotion::Move(fixed dt)
 
 void CCmpUnitMotion::StopAndFaceGoal(CFixedVector2D pos)
 {
-	m_ExpectedPathTicket = 0;
-	m_State = STATE_STOPPING;
+	StopMoving();
 	FaceTowardsPoint(pos, m_FinalGoal.x, m_FinalGoal.z);
 
 	// TODO: if the goal was a square building, we ought to point towards the
