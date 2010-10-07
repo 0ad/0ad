@@ -69,16 +69,19 @@
 Section "!Game and data files" GameSection
 
   SetOutPath "$INSTDIR"
-  File /r "${CHECKOUTPATH}\binaries"
   File "${CHECKOUTPATH}\*.txt"
   File "${CHECKOUTPATH}\*.bat"
-    
+  File /r /x "public" "${CHECKOUTPATH}\binaries"
+
+  SetOutPath "$INSTDIR\binaries\data\mods\public"
+  File "${CHECKOUTPATH}\binaries\data\mods\public\public.zip"
+
   ;Store installation folder
   WriteRegStr SHCTX "Software\0 A.D." "" $INSTDIR
-  
+
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
-  
+
   ;Add uninstall information
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayName" "0 A.D."
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayVersion" "r0${REVISION}-alpha"
