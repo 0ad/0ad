@@ -95,7 +95,7 @@ StatusBars.prototype.RegenerateSprites = function()
 	};
 
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	if (cmpHealth)
+	if (cmpHealth && cmpHealth.GetHitpoints() > 0)
 	{
 		AddBar("health", cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints());
 	}
