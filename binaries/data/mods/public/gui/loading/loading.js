@@ -21,6 +21,7 @@ function init(data)
 		// Get a random index from the list of loading screen backgrounds.
 		sprite = "stretched:" + loadingBkgArray[getRandom (0, loadingBkgArray.length-1)];
 		sprite = sprite.replace ("art/textures/ui/", "");
+		sprite = sprite.replace (".cached.dds", ""); // cope with pre-cached textures
 	}
 	getGUIObjectByName ("ldConcept").sprite = sprite;
 
