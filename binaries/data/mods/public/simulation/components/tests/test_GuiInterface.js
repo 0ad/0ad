@@ -22,6 +22,10 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	GetTemplate: function(name) { return ""; },
 });
 
+AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+	GetLosVisibility: function(ent, player) { return "visible"; },
+});
+
 
 AddMock(100, IID_Player, {
 	GetName: function() { return "Player 1"; },
@@ -97,5 +101,6 @@ TS_ASSERT_UNEVAL_EQUALS(state, {
 	hitpoints: 50,
 	maxHitpoints: 60,
 	needsRepair: false,
-	buildEntities: ["test1", "test2"]
+	buildEntities: ["test1", "test2"],
+	visibility: "visible",
 });
