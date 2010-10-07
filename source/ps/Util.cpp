@@ -298,7 +298,10 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 	Tex t;
 	GLvoid* img = img_buf.get() + hdr_size;
 	if(tex_wrap(img_w, img_h, bpp, flags, img_buf, hdr_size, &t) < 0)
+	{
+		free(tile_data);
 		return;
+	}
 
 	ogl_WarnIfError();
 
