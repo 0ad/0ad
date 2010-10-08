@@ -164,7 +164,7 @@ extern_lib_defs = {
 	},
 	nvtt = {
 		win_names  = { "nvtt" },
-		unix_names = { "nvtt" },
+		unix_names = { "nvcore", "nvmath", "nvimage", "nvtt" },
 		defines = { "NVTT_SHARED=1" },
 		dbg_suffix = "", -- for performance we always use the Release-mode version
 	},
