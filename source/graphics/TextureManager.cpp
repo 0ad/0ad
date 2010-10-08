@@ -325,7 +325,7 @@ public:
 		u64 mtime = (u64)fileInfo.MTime() & ~1; // skip lowest bit, since zip and FAT don't preserve it
 		u64 size = (u64)fileInfo.Size();
 
-		u32 version = 0; // change this if we update the code and need to invalidate old users' caches
+		u32 version = 1; // change this if we update the code and need to invalidate old users' caches
 
 		// Construct a hash of the file data and settings.
 

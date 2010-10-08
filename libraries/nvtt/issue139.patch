@@ -1,0 +1,55 @@
+Index: src/src/nvmath/Vector.h
+===================================================================
+--- src/src/nvmath/Vector.h	(revision 8311)
++++ src/src/nvmath/Vector.h	(working copy)
+@@ -68,7 +68,7 @@
+ 	scalar y() const;
+ 	scalar z() const;
+ 
+-	const Vector2 & xy() const;
++	Vector2 xy() const;
+ 
+ 	scalar component(uint idx) const;
+ 
+@@ -111,8 +111,8 @@
+ 	scalar z() const;
+ 	scalar w() const;
+ 	
+-	const Vector2 & xy() const;
+-	const Vector3 & xyz() const;
++	Vector2 xy() const;
++	Vector3 xyz() const;
+ 
+ 	scalar component(uint idx) const;
+ 
+@@ -231,9 +231,9 @@
+ inline scalar Vector3::y() const { return m_y; }
+ inline scalar Vector3::z() const { return m_z; }
+ 	
+-inline const Vector2 & Vector3::xy() const
++inline Vector2 Vector3::xy() const
+ {
+-	return *(Vector2 *)this;
++	return Vector2(m_x, m_y);
+ }
+ 
+ inline scalar Vector3::component(uint idx) const
+@@ -332,14 +332,14 @@
+ inline scalar Vector4::z() const { return m_z; }
+ inline scalar Vector4::w() const { return m_w; }
+ 
+-inline const Vector2 & Vector4::xy() const
++inline Vector2 Vector4::xy() const
+ {
+-	return *(Vector2 *)this;
++	return Vector2(m_x, m_y);
+ }
+ 
+-inline const Vector3 & Vector4::xyz() const
++inline Vector3 Vector4::xyz() const
+ {
+-	return *(Vector3 *)this;
++	return Vector3(m_x, m_y, m_z);
+ }
+ 
+ inline scalar Vector4::component(uint idx) const
