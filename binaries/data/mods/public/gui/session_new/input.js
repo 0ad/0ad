@@ -1,6 +1,8 @@
 const SDL_BUTTON_LEFT = 1;
 const SDL_BUTTON_MIDDLE = 2;
 const SDL_BUTTON_RIGHT = 3;
+const SDLK_LEFTBRACKET = 91;
+const SDLK_RIGHTBRACKET = 93;
 const SDLK_RSHIFT = 303;
 const SDLK_LSHIFT = 304;
 const SDLK_RCTRL = 305;
@@ -593,11 +595,11 @@ function handleInputAfterGui(ev)
 		switch (ev.type)
 		{
 		case "mousemotion":
-			var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+			placementPosition = Engine.GetTerrainAtPoint(ev.x, ev.y);
 			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
 				"template": placementEntity,
-				"x": target.x,
-				"z": target.z,
+				"x": placementPosition.x,
+				"z": placementPosition.z,
 				"angle": placementAngle
 			});
 
@@ -619,6 +621,28 @@ function handleInputAfterGui(ev)
 				return true;
 			}
 			break;
+
+		case "keydown":
+			var rotation_step = Math.PI / 12; // 24 clicks make a full rotation
+
+			if (ev.keysym.sym == SDLK_LEFTBRACKET) // rotate anti-clockwise
+			{
+				placementAngle = placementAngle - rotation_step;
+			}
+			else if (ev.keysym.sym == SDLK_RIGHTBRACKET) // rotate clockwise
+			{
+				placementAngle = placementAngle + rotation_step;
+			}
+
+			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+				"template": placementEntity,
+				"x": placementPosition.x,
+				"z": placementPosition.z,
+				"angle": placementAngle
+			});
+
+			break;
+
 		}
 		break;
 	}
