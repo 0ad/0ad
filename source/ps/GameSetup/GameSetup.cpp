@@ -31,6 +31,9 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/tex/tex.h"
+#if OS_WIN
+#include "lib/sysdep/os/win/wversion.h"
+#endif
 
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -334,12 +337,69 @@ static void InitScripting()
 }
 
 
-static size_t ChooseCacheSize()
+static size_t OperatingSystemFootprint()
 {
 #if OS_WIN
-	//const size_t overheadKiB = (wutil_WindowsVersion() >= WUTIL_VERSION_VISTA)? 1024 : 512;
+	switch(wversion_Number())
+	{
+	case WVERSION_2K:
+	case WVERSION_XP:
+		return 150;
+	case WVERSION_XP64:
+		return 200;
+	default:
+		debug_assert(0);
+		//fall through
+	case WVERSION_VISTA:
+		return 300;
+	case WVERSION_7:
+		return 250;
+	}
+#else
+	return 200;
 #endif
-	return 96*MiB;
+}
+
+static size_t ChooseCacheSize()
+{
+	// (all sizes in MiB)
+	const size_t total = os_cpu_MemorySize();
+	const size_t available = os_cpu_MemoryAvailable();
+	debug_assert(total >= available);
+	const size_t inUse = total-available;
+	size_t os = OperatingSystemFootprint();
+	debug_assert(total >= os/2);
+	size_t apps = (inUse > os)? (inUse - os) : 0;
+	size_t game = 400;
+	size_t cache = 200;
+
+	// plenty of memory
+	if(os + apps + game + cache < total)
+	{
+		// data is currently about 500 MiB; clamp max size to twice that
+		// to avoid unnecessarily wiping out the OS file cache.
+		cache = std::min(total - os - apps - game, (size_t)1024);
+	}
+	else	// below min-spec
+	{
+		// assume kernel+other apps will be swapped out
+		os = 9*os/10;
+		apps = 1*apps/3;
+		game = 3*game/4;
+		if(os + apps + game + cache < total)
+			cache = total - os - apps - game;
+		else
+		{
+			cache = 50;
+			debug_printf(L"Warning: memory size (%d MiB, %d used) is rather low\n", total, available);
+		}
+	}
+
+	// ensure the value will fit in size_t
+	cache = std::min(cache, (size_t)(std::numeric_limits<size_t>::max()/MiB));
+
+	debug_printf(L"Cache: %d (total: %d; available: %d)\n", cache, total, available);
+	return cache*MiB;
 }
 
 

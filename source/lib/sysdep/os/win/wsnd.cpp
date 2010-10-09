@@ -34,7 +34,7 @@
 
 #include "lib/path_util.h"
 #include "lib/sysdep/os/win/wdll_ver.h"
-#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wversion.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wmi.h"
 
@@ -134,7 +134,7 @@ LibError win_get_snd_info()
 
 	// find all DLLs related to OpenAL and retrieve their versions.
 	std::wstring versionList;
-	if(wutil_WindowsVersion() < WUTIL_VERSION_VISTA)
+	if(wversion_Number() < WVERSION_VISTA)
 		wdll_ver_Append(GetDirectSoundDriverPath(), versionList);
 	StringSet dlls;	// ensures uniqueness
 	(void)add_oal_dlls_in_dir(wutil_ExecutablePath(), dlls, versionList);

@@ -177,26 +177,6 @@ extern const fs::wpath& wutil_AppdataPath();
 
 
 //-----------------------------------------------------------------------------
-// version
-
-extern const wchar_t* wutil_WindowsVersionString();
-
-// (same format as WINVER)
-const size_t WUTIL_VERSION_2K    = 0x0500;
-const size_t WUTIL_VERSION_XP    = 0x0501;
-const size_t WUTIL_VERSION_XP64  = 0x0502;
-const size_t WUTIL_VERSION_VISTA = 0x0600;
-const size_t WUTIL_VERSION_7     = 0x0601;
-
-/**
- * @return short textual representation of the appropriate WUTIL_VERSION
- **/
-extern const wchar_t* wutil_WindowsFamily();
-
-LIB_API size_t wutil_WindowsVersion();
-
-
-//-----------------------------------------------------------------------------
 // Wow64
 
 extern bool wutil_IsWow64();

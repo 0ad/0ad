@@ -27,14 +27,15 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/mahaf.h"
 
-#include "lib/sysdep/os/win/win.h"
-#include <winioctl.h>
-#include "lib/sysdep/os/win/aken/aken.h"
-#include "lib/sysdep/os/win/wutil.h"
 #include "lib/module_init.h"
 
+#include "lib/sysdep/os/win/wutil.h"
+#include <winioctl.h>
+#include "lib/sysdep/os/win/aken/aken.h"
+#include "lib/sysdep/os/win/wversion.h"
 
 static HANDLE hAken = INVALID_HANDLE_VALUE;	// handle to Aken driver
+
 
 //-----------------------------------------------------------------------------
 // ioctl wrappers
@@ -114,7 +115,7 @@ bool mahaf_IsPhysicalMappingDangerous()
 {
 	// pre-XP versions don't prevent re-mapping pages with incompatible
 	// attributes, which may lead to disaster due to TLB corruption.
-	if(wutil_WindowsVersion() < WUTIL_VERSION_XP)
+	if(wversion_Number() < WVERSION_XP)
 		return true;
 
 	return false;

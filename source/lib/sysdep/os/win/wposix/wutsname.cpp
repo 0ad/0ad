@@ -24,7 +24,7 @@
 #include "lib/sysdep/os/win/wposix/wutsname.h"
 
 #include "lib/utf8.h"
-#include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/os/win/wversion.h"
 
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 
@@ -36,7 +36,7 @@ int uname(struct utsname* un)
 	GetVersionExW(&vi);
 
 	// OS implementation name
-	sprintf_s(un->sysname, ARRAY_SIZE(un->sysname), "%ls", wutil_WindowsFamily());
+	sprintf_s(un->sysname, ARRAY_SIZE(un->sysname), "%ls", wversion_Family());
 
 	// release info
 	const wchar_t* vs = vi.szCSDVersion;
@@ -45,7 +45,7 @@ int uname(struct utsname* un)
 		sprintf_s(un->release, ARRAY_SIZE(un->release), "SP %d", sp);
 
 	// version
-	sprintf_s(un->version, ARRAY_SIZE(un->version), "%ls.%lu", wutil_WindowsVersionString(), vi.dwBuildNumber & 0xFFFF);
+	sprintf_s(un->version, ARRAY_SIZE(un->version), "%ls.%lu", wversion_String(), vi.dwBuildNumber & 0xFFFF);
 
 	// node name
 	DWORD buf_size = sizeof(un->nodename);

@@ -381,77 +381,6 @@ static void EnableLowFragmentationHeap()
 
 
 //-----------------------------------------------------------------------------
-// version
-
-static wchar_t windowsVersionString[20];
-static size_t windowsVersion;	// see WUTIL_VERSION_*
-
-static void DetectWindowsVersion()
-{
-	// note: don't use GetVersion[Ex] because it gives the version of the
-	// emulated OS when running an app with compatibility shims enabled.
-	HKEY hKey;
-	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
-	{
-		DWORD size = sizeof(windowsVersionString);
-		(void)RegQueryValueExW(hKey, L"CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
-
-		unsigned major = 0, minor = 0;
-		// ICC 11.1.082 generates incorrect code for the following:
-		// const int ret = swscanf_s(windowsVersionString, L"%u.%u", &major, &minor);
-		std::wstringstream ss(windowsVersionString);
-		ss >> major;
-		wchar_t dot;
-		ss >> dot;
-		debug_assert(dot == '.');
-		ss >> minor;
-
-		debug_assert(4 <= major && major <= 0xFF);
-		debug_assert(minor <= 0xFF);
-		windowsVersion = (major << 8) | minor;
-
-		RegCloseKey(hKey);
-	}
-	else
-		debug_assert(0);
-}
-
-
-const wchar_t* wutil_WindowsFamily()
-{
-	debug_assert(windowsVersion != 0);
-	switch(windowsVersion)
-	{
-	case WUTIL_VERSION_2K:
-		return L"Win2k";
-	case WUTIL_VERSION_XP:
-		return L"WinXP";
-	case WUTIL_VERSION_XP64:
-		return L"WinXP64";
-	case WUTIL_VERSION_VISTA:
-		return L"Vista";
-	case WUTIL_VERSION_7:
-		return L"Win7";
-	default:
-		return L"Windows";
-	}
-}
-
-
-const wchar_t* wutil_WindowsVersionString()
-{
-	debug_assert(windowsVersionString[0] != '\0');
-	return windowsVersionString;
-}
-
-size_t wutil_WindowsVersion()
-{
-	debug_assert(windowsVersion != 0);
-	return windowsVersion;
-}
-
-
-//-----------------------------------------------------------------------------
 // Wow64
 
 // Wow64 'helpfully' redirects all 32-bit apps' accesses of
@@ -600,8 +529,6 @@ static LibError wutil_Init()
 	ReadCommandLine();
 
 	GetDirectories();
-
-	DetectWindowsVersion();
 
 	ImportWow64Functions();
 	DetectWow64();
