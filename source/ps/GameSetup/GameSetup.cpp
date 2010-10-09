@@ -433,13 +433,11 @@ static void InitPs(bool setup_gui, const CStrW& gui_page)
 	// Warn nicely about missing S3TC support
 	if (!ogl_tex_has_s3tc())
 	{
-		g_GUI->DisplayMessageBox(600, 350, L"Warning",
-			L"Performance warning:\n\n"
-			L"Your graphics drivers do not support S3TC compressed textures. This will significantly reduce performance and increase memory usage.\n\n"
+		g_GUI->DisplayMessageBox(600, 270, L"Warning",
+			L"Your graphics drivers do not support S3TC compressed textures. This may reduce performance.\n\n"
 #if !(OS_WIN || OS_MACOSX)
-			L"See http://dri.freedesktop.org/wiki/S3TC for details. "
-			L"Installing the libtxc_dxtn library will fix these problems. "
-			L"Alternatively, running 'driconf' and setting force_s3tc_enable will fix the performance but may cause rendering bugs."
+			L"To fix this, run the program \"driconf\" and enable the force_s3tc_enable option (\"Enable S3TC texture compression\"). "
+			L"(If this causes rendering errors, you may have to disable the option again.)"
 #else
 			L"Please try updating your graphics drivers to ensure you have full hardware acceleration."
 #endif
