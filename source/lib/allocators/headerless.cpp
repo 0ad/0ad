@@ -586,10 +586,10 @@ public:
 	}
 
 private:
-	size_t m_totalAllocatedBlocks, m_totalAllocatedBytes;
-	size_t m_totalDeallocatedBlocks, m_totalDeallocatedBytes;
-	size_t m_currentExtantBlocks, m_currentExtantBytes;
-	size_t m_currentFreeBlocks, m_currentFreeBytes;
+	u64 m_totalAllocatedBlocks, m_totalAllocatedBytes;
+	u64 m_totalDeallocatedBlocks, m_totalDeallocatedBytes;
+	u64 m_currentExtantBlocks, m_currentExtantBytes;
+	u64 m_currentFreeBlocks, m_currentFreeBytes;
 };
 
 
