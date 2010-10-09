@@ -79,13 +79,25 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 				currentPath = directory->AssociatedDirectory()->Path();
 			currentPath /= subdirectoryName;
 
-			const int ret = wmkdir(currentPath.string().c_str(), S_IRWXU);
-			if(ret == 0)
+			int ret = wmkdir(currentPath.string().c_str(), S_IRWXU);
+			// tolerate external creation of the directory subsequent to
+			// a vfs_Lookup with VFS_LOOKUP_ADD but not VFS_LOOKUP_CREATE
+			if(ret == -1 && errno == EEXIST)
+			{
+				// but first ensure it's really a directory (otherwise, a
+				// file is "in the way" and needs to be deleted)
+				struct stat s;
+				ret = wstat(currentPath.string().c_str(), &s);
+				// side effect: we'll enter the if() below and vfs_Attach
+				debug_assert(ret == 0);	// (wmkdir said it existed)
+				debug_assert(S_ISDIR(s.st_mode));
+			}
+			if(ret == 0)	// NB: don't use else, since ret is changed above
 			{
 				PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
 				RETURN_ERR(vfs_Attach(subdirectory, realDirectory));
 			}
-			else if(errno != EEXIST)	// notify of unexpected failures
+			else	// unexpected failure
 			{
 				debug_printf(L"mkdir failed with errno=%d\n", errno);
 				debug_assert(0);
