@@ -34,8 +34,11 @@
 #include "lib/file/vfs/vfs.h"	// error codes
 
 
+#define ENABLE_ARCHIVE_STATS 0
+#if ENABLE_ARCHIVE_STATS
 static std::vector<const VfsFile*> s_looseFiles;
 static size_t s_numArchivedFiles;
+#endif
 
 // helper class that allows breaking up the logic into sub-functions without
 // always having to pass directory/realDirectory as parameters.
@@ -50,11 +53,17 @@ public:
 
 	LibError AddEntries() const
 	{
-		FileInfos files; files.reserve(100);
-		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(20);
+#if ENABLE_ARCHIVE_STATS
+		s_looseFiles.reserve(10000);
+#endif
+
+		FileInfos files; files.reserve(500);
+		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(50);
 		RETURN_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
+
 		RETURN_ERR(AddFiles(files));
 		AddSubdirectories(subdirectoryNames);
+
 		return INFO::OK;
 	}
 
@@ -64,6 +73,7 @@ private:
 		const VfsFile file(fileInfo.Name(), (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
 		const VfsFile* pfile = m_directory->AddFile(file);
 
+#if ENABLE_ARCHIVE_STATS
 		// notify archive builder that this file could be archived but
 		// currently isn't; if there are too many of these, archive will
 		// be rebuilt.
@@ -71,6 +81,9 @@ private:
 		// from counting towards the threshold.
 		if(m_realDirectory->Flags() & VFS_MOUNT_ARCHIVABLE)
 			s_looseFiles.push_back(pfile);
+#else
+		UNUSED2(pfile);
+#endif
 	}
 
 	static void AddArchiveFile(const VfsPath& pathname, const FileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData)
@@ -79,12 +92,14 @@ private:
 
 		// (we have to create missing subdirectoryNames because archivers
 		// don't always place directory entries before their files)
-		const size_t flags = VFS_LOOKUP_ADD;
+		const size_t flags = VFS_LOOKUP_ADD|VFS_LOOKUP_SKIP_POPULATE;
 		VfsDirectory* directory;
 		WARN_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
 		const VfsFile file(fileInfo.Name(), (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
 		directory->AddFile(file);
+#if ENABLE_ARCHIVE_STATS
 		s_numArchivedFiles++;
+#endif
 	}
 
 	LibError AddFiles(const FileInfos& files) const

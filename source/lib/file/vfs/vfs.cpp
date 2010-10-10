@@ -58,7 +58,8 @@ public:
 		}
 
 		VfsDirectory* directory;
-		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD));
+		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_SKIP_POPULATE));
+
 		PRealDirectory realDirectory(new RealDirectory(path, priority, flags));
 		RETURN_ERR(vfs_Attach(directory, realDirectory));
 		return INFO::OK;

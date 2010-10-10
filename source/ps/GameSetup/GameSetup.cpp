@@ -24,6 +24,7 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/external_libraries/sdl.h"
+#include "lib/file/common/file_stats.h"
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/cursor.h"
 #include "lib/res/sound/snd_mgr.h"
@@ -679,6 +680,8 @@ void Shutdown(int UNUSED(flags))
 		// this forcibly frees all open handles (thus preventing real leaks),
 		// and makes further access to h_mgr impossible.
 		h_mgr_shutdown();
+
+		file_stats_dump();
 
 	TIMER_END(L"resource modules");
 

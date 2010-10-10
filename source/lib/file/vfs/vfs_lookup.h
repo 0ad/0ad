@@ -41,8 +41,15 @@ enum VfsLookupFlags
 	// encountered in the path[name].
 	VFS_LOOKUP_ADD = 1,
 
-	// create a real directory
-	VFS_LOOKUP_CREATE = 2
+	// if VFS directories encountered are not already associated
+	// with a real directory, do so (creating the directories
+	// if they do not already exist).
+	VFS_LOOKUP_CREATE = 2,
+
+	// don't populate the directories encountered. this makes sense
+	// when adding files from an archive, which would otherwise
+	// cause nearly every directory to be populated.
+	VFS_LOOKUP_SKIP_POPULATE = 4
 };
 
 /**

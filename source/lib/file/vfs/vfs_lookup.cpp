@@ -35,18 +35,50 @@
 #include "lib/timer.h"
 
 
+static LibError CreateDirectory(const fs::wpath& path)
+{
+	{
+		const int ret = wmkdir(path.string().c_str(), S_IRWXU);
+		if(ret == 0)	// success
+			return INFO::OK;
+	}
+
+	// failed because the directory already exists. this can happen
+	// when the first vfs_Lookup has addMissingDirectories &&
+	// !createMissingDirectories, and the directory is subsequently
+	// created. return 'success' to attach the existing directory..
+	if(errno == EEXIST)
+	{
+		// but first ensure it's really a directory (otherwise, a
+		// file is "in the way" and needs to be deleted)
+		struct stat s;
+		const int ret = wstat(path.string().c_str(), &s);
+		debug_assert(ret == 0);	// (wmkdir said it existed)
+		debug_assert(S_ISDIR(s.st_mode));
+		return INFO::OK;
+	}
+
+	// unexpected failure
+	debug_printf(L"wmkdir failed with errno=%d\n", errno);
+	debug_assert(0);
+	return LibError_from_errno();
+}
+
+
 LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, size_t flags)
 {
 	// extract and validate flags (ensure no unknown bits are set)
 	const bool addMissingDirectories    = (flags & VFS_LOOKUP_ADD) != 0;
 	const bool createMissingDirectories = (flags & VFS_LOOKUP_CREATE) != 0;
-	debug_assert((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE)) == 0);
+	const bool skipPopulate = (flags & VFS_LOOKUP_SKIP_POPULATE) != 0;
+	debug_assert((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_SKIP_POPULATE)) == 0);
 
+	directory = startDirectory;
 	if(pfile)
 		*pfile = 0;
 
-	directory = startDirectory;
-	RETURN_ERR(vfs_Populate(directory));
+	if(!skipPopulate)
+		RETURN_ERR(vfs_Populate(directory));
 
 	// early-out for pathname == "" when mounting into VFS root
 	if(pathname.empty())	// (prevent iterator error in loop end condition)
@@ -79,32 +111,15 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 				currentPath = directory->AssociatedDirectory()->Path();
 			currentPath /= subdirectoryName;
 
-			int ret = wmkdir(currentPath.string().c_str(), S_IRWXU);
-			// tolerate external creation of the directory subsequent to
-			// a vfs_Lookup with VFS_LOOKUP_ADD but not VFS_LOOKUP_CREATE
-			if(ret == -1 && errno == EEXIST)
-			{
-				// but first ensure it's really a directory (otherwise, a
-				// file is "in the way" and needs to be deleted)
-				struct stat s;
-				ret = wstat(currentPath.string().c_str(), &s);
-				// side effect: we'll enter the if() below and vfs_Attach
-				debug_assert(ret == 0);	// (wmkdir said it existed)
-				debug_assert(S_ISDIR(s.st_mode));
-			}
-			if(ret == 0)	// NB: don't use else, since ret is changed above
-			{
-				PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
-				RETURN_ERR(vfs_Attach(subdirectory, realDirectory));
-			}
-			else	// unexpected failure
-			{
-				debug_printf(L"mkdir failed with errno=%d\n", errno);
-				debug_assert(0);
-			}
+			RETURN_ERR(CreateDirectory(currentPath));
+
+			PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
+			RETURN_ERR(vfs_Attach(subdirectory, realDirectory));
 		}
 
-		RETURN_ERR(vfs_Populate(subdirectory));
+		if(!skipPopulate)
+			RETURN_ERR(vfs_Populate(subdirectory));
+
 		directory = subdirectory;
 	}
 
