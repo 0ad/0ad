@@ -176,12 +176,9 @@ extern LibError snd_set_master_gain(float gain);
  *		  its gain (0.0 .. 1.0).
  *		  Otherwise, it is taken to be the sound file name and
  *		  gain is set to the default of 1.0 (no attenuation).
- * @param is_stream (Default false) Set to true to forces the sound to be opened as a
- *		  stream: opening is faster, it won't be kept in memory, but
- *		  only one instance can be open at a time.
  * @return Handle or LibError
  **/
-extern Handle snd_open(const PIVFS& vfs, const VfsPath& pathname, bool is_stream = false);
+extern Handle snd_open(const PIVFS& vfs, const VfsPath& pathname);
 
 /**
  * Close the sound instance. If it was playing, it will be stopped.

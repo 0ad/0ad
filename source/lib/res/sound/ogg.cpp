@@ -49,9 +49,9 @@ static LibError LibErrorFromVorbis(int err)
 class VorbisFileAdapter
 {
 public:
-	VorbisFileAdapter(const File& openedFile)
+	VorbisFileAdapter(const PFile& openedFile)
 		: file(openedFile)
-		, size(fs::file_size(openedFile.Pathname()))
+		, size(fs::file_size(openedFile->Pathname()))
 		, offset(0)
 	{
 	}
@@ -63,7 +63,7 @@ public:
 		const off_t sizeRemaining = adapter->size - adapter->offset;
 		const size_t sizeToRead = (size_t)std::min(sizeRequested, sizeRemaining);
 
-		if(adapter->file.Read(adapter->offset, (u8*)bufferToFill, sizeToRead) == INFO::OK)
+		if(adapter->file->Read(adapter->offset, (u8*)bufferToFill, sizeToRead) == INFO::OK)
 		{
 			adapter->offset += sizeToRead;
 			return sizeToRead;
@@ -99,7 +99,7 @@ public:
 	static int Close(void* context)
 	{
 		VorbisFileAdapter* adapter = (VorbisFileAdapter*)context;
-		adapter->file.Close();
+		adapter->file.reset();
 		return 0;	// return value is ignored
 	}
 
@@ -110,7 +110,7 @@ public:
 	}
 
 private:
-	File file;
+	PFile file;
 	off_t size;
 	off_t offset;
 };
@@ -121,7 +121,7 @@ private:
 class OggStreamImpl : public OggStream
 {
 public:
-	OggStreamImpl(const File& openedFile)
+	OggStreamImpl(const PFile& openedFile)
 		: adapter(openedFile)
 	{
 	}
@@ -175,7 +175,7 @@ public:
 			{
 				bytesRead += ret;
 				if(bytesRead == size)
-					return INFO::OK;
+					return (LibError)bytesRead;
 			}
 		}
 	}
@@ -191,8 +191,8 @@ private:
 
 LibError OpenOggStream(const fs::wpath& pathname, OggStreamPtr& stream)
 {
-	File file;
-    RETURN_ERR(file.Open(pathname, L'r'));
+	PFile file(new File);
+    RETURN_ERR(file->Open(pathname, L'r'));
 
 	shared_ptr<OggStreamImpl> tmp(new OggStreamImpl(file));
 	RETURN_ERR(tmp->Open());

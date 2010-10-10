@@ -9,6 +9,10 @@ public:
 	virtual ~OggStream() { }
 	virtual ALenum Format() = 0;
 	virtual ALsizei SamplingRate() = 0;
+
+	/**
+	 * @return bytes read (<= size) or a (negative) LibError
+	 **/
 	virtual LibError GetNextChunk(u8* buffer, size_t size) = 0;
 };
 
