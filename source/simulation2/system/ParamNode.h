@@ -65,7 +65,7 @@ class XMBElement;
  *     <A>example</A>   <!-- replace the content of the old A element -->
  *     <D>new</D>       <!-- add a new child to the old Example1 element -->
  *   </Example1>
- *   <Example2 delete=""/>   <!-- delete the old Example2 element -->
+ *   <Example2 disable=""/>   <!-- delete the old Example2 element -->
  *   <Example3 replace="">   <!-- replace all the old children of the Example3 element -->
  *     <D>new</D>
  *   </Example3>
