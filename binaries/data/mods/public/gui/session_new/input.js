@@ -308,19 +308,25 @@ function handleInputBeforeGui(ev, hoveredObject)
 				// Get list of entities limited to preferred entities
 				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
 				var preferredEntities = getPreferredEntities(ents)
-				
+
 				if (preferredEntities.length)			
 					ents = preferredEntities;
 
-				// Remove entities if selection is too large
-				if (ents.length > MAX_SELECTION_SIZE)
-					ents = ents.slice(0, MAX_SELECTION_SIZE);
+				// If shift is pressed, don't reset the selection, but allow units to be added to the existing selection
+				var addition = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]); 
+				if (!addition)
+					g_Selection.reset();
 
-				// Set selection list
+				// Remove entities if new selection is too large
+				var selection = g_Selection.toList();
+				var selectionSizeEstimate = selection.length + ents.length;
+
+				if (selectionSizeEstimate > MAX_SELECTION_SIZE)
+					ents = ents.slice(0, MAX_SELECTION_SIZE - selection.length);
+
+				// Set Selection
 				g_Selection.setHighlightList([]);
-				g_Selection.reset();
 				g_Selection.addList(ents);
-				g_Selection.CreateSelectionGroups();
 
 				inputState = INPUT_NORMAL;
 				return true;
@@ -582,8 +588,16 @@ function handleInputAfterGui(ev)
 					inputState = INPUT_NORMAL;
 					return true;
 				}
-				g_Selection.reset();
-				g_Selection.addList([ents[0]]);
+
+				// If shift is pressed, don't reset the selection, but allow units to be added to the existing selection
+				var addition = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]); 
+				if (!addition)
+					g_Selection.reset(); 
+
+				// Only add the entity if selection is not too large
+				if (g_Selection.toList().length < MAX_SELECTION_SIZE)
+					g_Selection.addList([ents[0]]);
+
 				inputState = INPUT_NORMAL;
 				return true;
 			}
