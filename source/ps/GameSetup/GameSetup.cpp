@@ -348,9 +348,7 @@ static size_t OperatingSystemFootprint()
 		return 150;
 	case WVERSION_XP64:
 		return 200;
-	default:
-		debug_assert(0);
-		//fall through
+	default:	// don't warn about newer Windows versions
 	case WVERSION_VISTA:
 		return 300;
 	case WVERSION_7:
@@ -371,21 +369,19 @@ static size_t ChooseCacheSize()
 	size_t os = OperatingSystemFootprint();
 	debug_assert(total >= os/2);
 	size_t apps = (inUse > os)? (inUse - os) : 0;
-	size_t game = 400;
+	size_t game = 300;
 	size_t cache = 200;
 
 	// plenty of memory
 	if(os + apps + game + cache < total)
 	{
-		// data is currently about 500 MiB; clamp max size to twice that
-		// to avoid unnecessarily wiping out the OS file cache.
-		cache = std::min(total - os - apps - game, (size_t)1024);
+		cache = total - os - apps - game;
 	}
 	else	// below min-spec
 	{
 		// assume kernel+other apps will be swapped out
 		os = 9*os/10;
-		apps = 1*apps/3;
+		apps = 2*apps/3;
 		game = 3*game/4;
 		if(os + apps + game + cache < total)
 			cache = total - os - apps - game;
@@ -396,8 +392,11 @@ static size_t ChooseCacheSize()
 		}
 	}
 
-	// ensure the value will fit in size_t
-	cache = std::min(cache, (size_t)(std::numeric_limits<size_t>::max()/MiB));
+	// total data is currently about 500 MiB, and not all of it
+	// is used at once, so don't use more than that.
+	// (this also ensures the byte count will fit in size_t and
+	// avoids using up too much address space)
+	cache = std::min(cache, (size_t)500);
 
 	debug_printf(L"Cache: %d (total: %d; available: %d)\n", cache, total, available);
 	return cache*MiB;
