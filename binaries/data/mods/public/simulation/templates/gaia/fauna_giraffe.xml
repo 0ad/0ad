@@ -5,6 +5,10 @@
     <SpecificName>Giraffe (Adult)</SpecificName>
 	<IconCell>21</IconCell>
   </Identity>
+  <Health>
+    <Max>150</Max>
+    <RegenRate>1</RegenRate>
+  </Health>
   <ResourceSupply>
     <Amount>350</Amount>
     <Type>food.meat</Type>
