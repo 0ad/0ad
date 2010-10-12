@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_geo_mineral">
-  <Position>
-    <Anchor>pitch-roll</Anchor>
-  </Position>
-  <ResourceSupply>
-    <Amount>5000</Amount>
-    <Type>metal.ore</Type>
-  </ResourceSupply>
-  <Footprint>
-    <Circle radius="10.0"/>
-    <Height>3.5</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="13.0" depth="13.0"/>
-  </Obstruction>
+<Entity parent="template_gaia_geo_mineral_slabs">
   <VisualActor>
     <Actor>geology/metalmine_savanna_slabs.xml</Actor>
   </VisualActor>
