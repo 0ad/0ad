@@ -50,9 +50,12 @@
     </Charge>
   </Attack>
   <Footprint>
-    <Circle radius="1.2"/>
+    <Circle radius="2.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="1.0"/>
+  </Obstruction>
   <Vision>
     <Range>60</Range>
   </Vision>
