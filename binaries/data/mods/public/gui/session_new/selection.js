@@ -92,10 +92,8 @@ EntityGroups.prototype.removeEnt = function(ent)
 		delete this.groups[name];
 };
 
-EntityGroups.prototype.getCount = function(templateName)
+EntityGroups.prototype.getCount = function(name)
 {
-	var template = GetTemplateData(templateName);
-	var name = template.name.specific || template.name.generic || "???";
 	return this.groups[name].count;
 };
 

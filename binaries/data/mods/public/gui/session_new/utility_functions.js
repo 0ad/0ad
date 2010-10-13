@@ -185,16 +185,9 @@ function getEntityFormationsList(entState)
 	return formations;
 }
 
-
 function getEntityCommandsList(entState)
 {
 	var commands = [];
-	commands.push("Stop");
-	commands.push("Stop that!");
-	commands.push("Really stop now, OK?!");
-//	commands.push("command4");
-//	commands.push("command5");
-//	commands.push("command6");
 	commands.push("delete");
 	return commands;
 }
@@ -216,7 +209,7 @@ function getEntityCost(template)
 
 function getEntityName(template)
 {
-		return (template.name.specific || template.name.generic || "???");
+		return template.name.specific || template.name.generic || "???";
 }
 
 function getEntityNameWithGenericType(template)
