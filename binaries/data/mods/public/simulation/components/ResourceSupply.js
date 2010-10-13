@@ -6,6 +6,9 @@ ResourceSupply.prototype.Schema =
 		"<Amount>1000</Amount>" +
 		"<Type>food.meat</Type>" +
 	"</a:example>" +
+	"<element name='KillBeforeGather' a:help='Whether this entity must be killed (health reduced to 0) before its resources can be gathered'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
 	"<element name='Amount' a:help='Amount of resources available from this entity'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
@@ -27,6 +30,11 @@ ResourceSupply.prototype.Init = function()
 {
 	// Current resource amount (non-negative; can be a fractional amount)
 	this.amount = this.GetMaxAmount();
+};
+
+ResourceSupply.prototype.GetKillBeforeGather = function()
+{
+	return (this.template.KillBeforeGather == "true");
 };
 
 ResourceSupply.prototype.GetMaxAmount = function()

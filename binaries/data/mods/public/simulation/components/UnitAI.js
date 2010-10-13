@@ -117,7 +117,7 @@ var UnitFsmSpec = {
 
 	"Order.Gather": function(msg) {
 		// If the target is still alive, we need to kill it first
-		if (this.TargetIsAlive(this.order.data.target))
+		if (this.MustKillGatherTarget(this.order.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
 			if (!this.GetBestAttack())
@@ -727,6 +727,9 @@ UnitAI.prototype.GetRunSpeed = function()
 	return cmpMotion.GetRunSpeed();
 };
 
+/**
+ * Returns true if the target exists and has non-zero hitpoints.
+ */
 UnitAI.prototype.TargetIsAlive = function(ent)
 {
 	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
@@ -734,6 +737,22 @@ UnitAI.prototype.TargetIsAlive = function(ent)
 		return false;
 
 	return (cmpHealth.GetHitpoints() != 0);
+};
+
+/**
+ * Returns true if the target exists and needs to be killed before
+ * beginning to gather resources from it.
+ */
+UnitAI.prototype.MustKillGatherTarget = function(ent)
+{
+	var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+	if (!cmpResourceSupply)
+		return false;
+
+	if (!cmpResourceSupply.GetKillBeforeGather())
+		return false;
+
+	return this.TargetIsAlive(ent);
 };
 
 /**
