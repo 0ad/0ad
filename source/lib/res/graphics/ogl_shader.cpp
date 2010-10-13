@@ -191,7 +191,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const PIVFS& vfs, const VfsP
 	return INFO::OK;
 
 fail_shadercreated:
-	pglDeleteObjectARB(shdr->id);
+	pglDeleteShader(shdr->id);
 	shdr->id = 0;
 	return err;
 }
@@ -203,7 +203,7 @@ static void Ogl_Shader_dtor(Ogl_Shader* shdr)
 	// shdr->id is 0 when reload has failed
 	if (shdr->id)
 	{
-		pglDeleteObjectARB(shdr->id);
+		pglDeleteShader(shdr->id);
 		shdr->id = 0;
 	}
 }
@@ -427,7 +427,7 @@ static void Ogl_Program_dtor(Ogl_Program* p)
 {
 	if (p->id)
 	{
-		pglDeleteObjectARB(p->id);
+		pglDeleteProgram(p->id);
 		p->id = 0;
 	}
 }

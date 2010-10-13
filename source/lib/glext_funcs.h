@@ -110,8 +110,11 @@ FUNC(void, glGetFramebufferAttachmentParameterivEXT, (GLenum target, GLenum atta
 FUNC(void, glGenerateMipmapEXT, (GLenum target))
 
 // GL_ARB_shader_objects
-// (NOTE: Many of these have "Object" in their ARB names, but "Program" or "Shader" in their core names.)
-FUNC2(void, glDeleteObjectARB, glDeleteShader, "2.0", (GLhandleARB obj))
+// (NOTE: Many of these have "Object" in their ARB names, but "Program" or "Shader" in their core names.
+// When both Program and Shader versions exist, we use FUNC3 here and the engine must call the specific
+// core name instead of the generic ARB name.)
+FUNC3(void, glDeleteObjectARB, glDeleteShader, "2.0", (GLhandleARB obj))
+FUNC3(void, glDeleteObjectARB, glDeleteProgram, "2.0", (GLhandleARB obj))
 // FUNC2(GLhandleARB, glGetHandleARB, glGetHandle, "2.0", (GLenum pname))
   // there is no analog to the ARB function in GL 2.0 (the functionality is probably moved into glGetIntegerv(GL_CURRENT_PROGRAM))
   // so we can't represent it in this FUNC2 system, so just pretend it doesn't exist
