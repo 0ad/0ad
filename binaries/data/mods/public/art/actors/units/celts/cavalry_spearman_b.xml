@@ -7,6 +7,9 @@
         <animation file="quadraped/mastiff_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/mastiff_run.psa" name="Walk" speed="25"/>
         <animation file="quadraped/mastiff_run.psa" name="run" speed="35"/>
+        <animation file="quadraped/mastiff_idle_a.psa" name="melee" speed="50"/>
+        <animation file="quadraped/mastiff_idle_a.psa" name="gather_meat" speed="50"/>
+        <animation file="quadraped/mastiff_idle_a.psa" name="death" speed="50"/>
       </animations>
       <mesh>skeletal/mastiff.pmd</mesh>
       <props>

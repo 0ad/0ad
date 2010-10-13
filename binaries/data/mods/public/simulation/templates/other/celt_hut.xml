@@ -28,6 +28,10 @@
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>
+  <ResourceDropsite>
+    <Radius>12</Radius>
+    <Types>food wood stone metal</Types>
+  </ResourceDropsite>
   <VisualActor>
     <Actor>structures/celts/hut.xml</Actor>
   </VisualActor>
