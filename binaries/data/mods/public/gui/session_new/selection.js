@@ -1,3 +1,5 @@
+const MAX_SELECTION_SIZE = 40; // Limits selection size and ensures that there will not be too many selection items in the GUI
+
 function _setHighlight(ents, alpha)
 {
 	if (ents.length)
@@ -22,111 +24,107 @@ function _playSound(ent)
 }
 
 //-------------------------------- -------------------------------- -------------------------------- 
-// EntityGroup class for managing grouped entities
-// (I've opted for value duplication in member vars for efficiency considering how often selections are made)
+// EntityGroups class for managing grouped entities
 //-------------------------------- -------------------------------- -------------------------------- 
-function EntityGroup()
+function EntityGroups()
 {
-	// These are used to display the groups
-	this.templateNames = []; // List of templateNames
-	this.groupCounts = {}; // {unitName : count}
+	this.EntityGroup = function(name, templateName, ent)
+	{
+		this.name = name;
+		this.templateName = templateName;
+		this.ents = {ent : ent}; // the second element is stored as number
+		this.count = 1;
+	};
+
+	this.EntityGroup.prototype.add = function(ent)
+	{
+		this.ents[ent] = ent;
+		this.count++;
+	};
 	
-	// These are used to create or modify the groups
-	this.entIDs = {}; // {entID : unitName}
-	this.rankedTemplates = {}; // {ranked unitName : templateName}
-	this.groupEntIDs = {}; // {unitName : entIDs of that type}
+	this.EntityGroup.prototype.remove= function(ent)
+	{
+		delete this.ents[ent];
+		this.count--;
+	};
+
+	this.groups = {};
+	this.ents = {};
 }
 
-EntityGroup.prototype.reset = function()
+EntityGroups.prototype.reset = function()
 {
-	this.templateNames = [];
-	this.groupCounts = {};
-	this.entIDs = {};
-	this.rankedTemplates = {};
-	this.groupEntIDs = {};
+	this.groups = {};
+	this.ents = {};
 };
 
-EntityGroup.prototype.add = function(entIDs)
+EntityGroups.prototype.add = function(ents)
 {
-	for each (var entID in entIDs)
+	for each (var ent in ents)
 	{
-		if (!this.entIDs[entID])
+		if (!this.ents[ent])
 		{
-			this.entIDs[entID] = true;
-			var entState = GetEntityState(entID);
-			var rank = entState.identity.rank;
+			var entState = GetEntityState(ent);
 			var templateName = entState.template;
 			var template = GetTemplateData(templateName);
-			var unitName = template.name.specific || template.name.generic || "???";
+			var name = template.name.specific || template.name.generic || "???";
 
-			if (rank)
-			{
-				if (this.rankedTemplates[unitName])
-				{
-					this.groupCounts[this.rankedTemplates[unitName]] += 1;
-					this.groupEntIDs[unitName].push(entID);
-				}
-				else
-				{
-					this.rankedTemplates[unitName] = templateName; // must come before groupCounts
-					this.groupCounts[this.rankedTemplates[unitName]] = 1;
-					this.groupEntIDs[unitName] = [entID];
-					this.templateNames.push(templateName);
-				}
-			}
+			if (this.groups[name])
+				this.groups[name].add(ent);
 			else
-			{
-				if (this.groupCounts[templateName])
-				{
-					this.groupCounts[templateName] += 1;
-					this.groupEntIDs[unitName].push(entID);
-				}
-				else
-				{
-					this.groupCounts[templateName] = 1;
-					this.groupEntIDs[unitName] = [entID];
-					this.templateNames.push(templateName);
-				}
-			}
+				this.groups[name] = new this.EntityGroup(name, templateName, ent);
+			
+			this.ents[ent] = name;
 		}
 	}
 };
 
-EntityGroup.prototype.remove = function(templateName)
+EntityGroups.prototype.removeEnt = function(ent)
 {
-	delete this.groupCounts[templateName];
+	var name = this.ents[ent];
+	
+	// Remove the entity
+	delete this.ents[ent];
+	this.groups[name].remove(ent);
+	
+	// Remove the entire group
+	if (this.groups[name].count == 0)
+		delete this.groups[name];
 };
 
-EntityGroup.prototype.getCount = function(templateName)
+EntityGroups.prototype.getCount = function(templateName)
 {
-	if (this.groupCounts[templateName])
-		return this.groupCounts[templateName];
-	else
-		return 0;
+	var template = GetTemplateData(templateName);
+	var name = template.name.specific || template.name.generic || "???";
+	return this.groups[name].count;
 };
 
-EntityGroup.prototype.getTemplateNames = function()
+EntityGroups.prototype.getTemplateNames = function()
 {
-	return this.templateNames;
+	var templateNames = [];
+	for each (var group in this.groups)
+		templateNames.push(group.templateName);
+	return templateNames;
 };
 
-EntityGroup.prototype.getEntsByUnitName = function(unitName)
-{
-	return this.groupEntIDs[unitName];
-};
-
-// Gets all ents in every group except that unitname
-EntityGroup.prototype.getEntsByUnitNameInverse = function(unitName)
+EntityGroups.prototype.getEntsByName = function(name)
 {
 	var ents = [];
-
-	for (var name in this.groupEntIDs)
-		if (name != unitName)
-			ents = ents.concat(this.groupEntIDs[name]);	
-
+	for each (var ent in this.groups[name].ents)
+		ents.push(ent);
 	return ents;
 };
 
+// Gets all ents in every group except ones of the specified group
+EntityGroups.prototype.getEntsByNameInverse = function(name)
+{
+	var ents = [];
+	for each (var group in this.groups)
+		if (group.name != name)
+			for each (var ent in group.ents)
+				ents.push(ent);
+	return ents;
+};
 
 //-------------------------------- -------------------------------- -------------------------------- 
 // EntitySelection class for managing the entity selection list and the primary selection
@@ -146,41 +144,40 @@ function EntitySelection()
 	// Public properties:
 	//--------------------------------
 	this.dirty = false; // set whenever the selection has changed
-	this.groups = new EntityGroup();
+	this.groups = new EntityGroups();
 }
 
-// Deselect everything but entities of the chosen type if the modifier is true
-// otherwise deselect just the chosen entity
+// Deselect everything but entities of the chosen type if the modifier is true otherwise deselect just the chosen entity
 EntitySelection.prototype.makePrimarySelection = function(primaryTemplateName, modifierKey)
 {
 	var selection = this.toList();
-	var entID;
+	var ent;
 	
-	// Find an entID of a unit of the same type
+	// Find an ent of a unit of the same type
 	for (var i = 0; i < selection.length; i++)
 	{
 		var entState = GetEntityState(selection[i]);
 		if (!entState)
 			continue;
 		if (entState.template == primaryTemplateName)
-			entID = selection[i];
+			ent = selection[i];
 	}
 	
-	var primaryEntState = GetEntityState(entID);
+	var primaryEntState = GetEntityState(ent);
 	if (!primaryEntState)
 		return;
+
 	var primaryTemplate = GetTemplateData(primaryTemplateName);
-	var primaryUnitName = primaryTemplate.name.specific || primaryTemplate.name.generic || "???";
+	var primaryName = primaryTemplate.name.specific || primaryTemplate.name.generic || "???";
 
 	var ents = [];
 	if (modifierKey)
-		ents = this.groups.getEntsByUnitNameInverse(primaryUnitName);
+		ents = this.groups.getEntsByNameInverse(primaryName);
 	else
-		ents = this.groups.getEntsByUnitName(primaryUnitName);
+		ents = this.groups.getEntsByName(primaryName);
 
 	this.reset();
 	this.addList(ents);
-	this.groups.add(this.toList()); // Create Selection Groups
 }
 
 // Get a list of the template names
@@ -201,17 +198,19 @@ EntitySelection.prototype.getTemplateNames = function()
 // Update the selection to take care of changes (like units that have been killed)
 EntitySelection.prototype.update = function()
 {
-	var numberRemoved = 0;
 	for each (var ent in this.selected)
 	{
 		var entState = GetEntityState(ent);
+
 		// Remove deleted units
 		if (!entState)
 		{
-			delete this.selected[ent];
-			numberRemoved++;
+			delete this.selected[ent];	
+			this.groups.removeEnt(ent);
+			this.dirty = true;
 			continue;
 		}
+
 		// Remove non-visible units (e.g. moved back into fog-of-war)
 		if (entState.visibility == "hidden")
 		{
@@ -221,14 +220,9 @@ EntitySelection.prototype.update = function()
 			_setMotionOverlay([ent], false);
 
 			delete this.selected[ent];
-			numberRemoved++;
+			this.dirty = true;
 			continue;
 		}
-	}
-	if (numberRemoved > 0)
-	{
-		this.dirty = true;
-		this.groups.add(this.toList());
 	}
 };
 
@@ -253,21 +247,26 @@ EntitySelection.prototype.toggle = function(ent)
 
 EntitySelection.prototype.addList = function(ents)
 {
+	var selectionSize = this.toList().length;
+	var i = 1;
 	var added = [];
+
 	for each (var ent in ents)
 	{
-		if (!this.selected[ent])
+		if (!this.selected[ent] && (selectionSize + i) <= MAX_SELECTION_SIZE)
 		{
 			added.push(ent);
 			this.selected[ent] = ent;
+			i++;
 		}
 	}
+
 	_setHighlight(added, 1);
 	_setStatusBars(added, true);
 	_setMotionOverlay(added, this.motionDebugOverlay);
 	if (added.length)
 		_playSound(added[0]);
-	
+
 	this.groups.add(this.toList()); // Create Selection Groups
 	this.dirty = true;
 };

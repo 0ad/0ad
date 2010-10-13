@@ -8,8 +8,6 @@ const SDLK_LSHIFT = 304;
 const SDLK_RCTRL = 305;
 const SDLK_LCTRL = 306;
 
-const MAX_SELECTION_SIZE = 40; // Limits selection size and ensures that there will not be too many selection items in the GUI
-
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
 
@@ -317,17 +315,9 @@ function handleInputBeforeGui(ev, hoveredObject)
 				if (!addition)
 					g_Selection.reset();
 
-				// Remove entities if new selection is too large
-				var selection = g_Selection.toList();
-				var selectionSizeEstimate = selection.length + ents.length;
-
-				if (selectionSizeEstimate > MAX_SELECTION_SIZE)
-					ents = ents.slice(0, MAX_SELECTION_SIZE - selection.length);
-
 				// Set Selection
 				g_Selection.setHighlightList([]);
 				g_Selection.addList(ents);
-
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -594,10 +584,7 @@ function handleInputAfterGui(ev)
 				if (!addition)
 					g_Selection.reset(); 
 
-				// Only add the entity if selection is not too large
-				if (g_Selection.toList().length < MAX_SELECTION_SIZE)
-					g_Selection.addList([ents[0]]);
-
+				g_Selection.addList([ents[0]]);
 				inputState = INPUT_NORMAL;
 				return true;
 			}

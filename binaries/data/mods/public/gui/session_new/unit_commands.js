@@ -348,10 +348,12 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 !!!!!
 */
 
+
+/*
 		if (selection.length > 1)
 			setupUnitPanel("Garrison", usedPanels, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
-
+*/
 
 
 
