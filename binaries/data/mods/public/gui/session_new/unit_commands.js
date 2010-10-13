@@ -360,12 +360,12 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 
 
-/*
+
 		var formations = getEntityFormationsList(entState);
 		if (formations.length)
 			setupUnitPanel("Formation", usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
-*/
+
 				
 		if (entState.buildEntities && entState.buildEntities.length)
 		{
