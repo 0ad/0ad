@@ -73,7 +73,7 @@ public:
 		}
 
 		shared_ptr<u8> file;
-		size_t fileSize;
+		size_t fileSize = 0;
 		TS_ASSERT_OK(m_VFS->LoadFile(dest, file, fileSize));
 
 		Tex tex;

@@ -32,8 +32,10 @@
 #include "ps/Filesystem.h"
 
 // Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
+// and "find_format_store.hpp(74) : warning C4100: 'Input' : unreferenced formal parameter"
 #if MSC_VERSION
 #pragma warning(disable:4512)
+#pragma warning(disable:4100)
 #endif
 
 #include <boost/algorithm/string.hpp>
