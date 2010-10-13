@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Stoa 2">
+      <mesh>structural/hele_stoa2_base.dae</mesh>
+      <props>
+        <prop actor="props/special/greek_stoa2_trees.xml" attachpoint="root"/>
+        <prop actor="props/special/greek_stoa2_shields.xml" attachpoint="root"/>
+        <prop actor="props/special/greek_stoa2_props_a.xml" attachpoint="root"/>
+        <prop actor="props/special/greek_stoa2_tiles.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

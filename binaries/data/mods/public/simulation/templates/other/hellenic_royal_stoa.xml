@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Identity>
+	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
+    <IconCell>5</IconCell>
+    <Civ>hele</Civ>
+    <GenericName>Stoa</GenericName>
+    <SpecificName>Hellenic Royal Stoa</SpecificName>
+    <History>A structure built for civic purposes. Stoas eventually became meeting places for philosophy and commerce. They were usually built within the Agora, or city center, of a Greek city.</History>
+	<Tooltip>Add +10 to Population Cap.</Tooltip>
+  </Identity>
+  <Cost>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>100</stone>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>1400</Max>
+  </Health>
+  <Armour>
+    <Hack>20.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Loot>
+    <xp>10</xp>
+    <food>0</food>
+    <wood>0</wood>
+    <stone>75</stone>
+    <metal>75</metal>
+  </Loot>
+  <VisualActor>
+    <Actor>special/greek_stoa_great.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square width="29" depth="21.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="28.0" depth="20.0"/>
+  </Obstruction>
+  <Vision>
+    <Range>40</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+</Entity>
