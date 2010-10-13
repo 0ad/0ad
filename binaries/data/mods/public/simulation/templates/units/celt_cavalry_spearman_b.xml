@@ -12,6 +12,7 @@
   </Promotion>
   <Cost>
     <BuildTime>15</BuildTime>
+    <Population>1</Population>
     <Resources>
       <food>90</food>
       <wood>0</wood>
@@ -21,9 +22,9 @@
     <Max>50</Max>
   </Health>
   <Armour>
-    <Hack>1.0</Hack>
-    <Pierce>1.0</Pierce>
-    <Crush>1.0</Crush>
+    <Hack>5.0</Hack>
+    <Pierce>5.0</Pierce>
+    <Crush>5.0</Crush>
   </Armour>
   <UnitMotion>
     <WalkSpeed>10.0</WalkSpeed>
@@ -36,12 +37,10 @@
       <Hack>20.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>0.5</MaxRange>
     </Melee>
     <Charge>
       <Hack>40.0</Hack>
       <Pierce>0.0</Pierce>
-      <MaxRange>0.5</MaxRange>
     </Charge>
   </Attack>
   <VisualActor>
