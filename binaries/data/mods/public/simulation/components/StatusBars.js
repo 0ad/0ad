@@ -11,8 +11,6 @@ StatusBars.prototype.Schema =
 		"<data type='decimal'/>" +
 	"</element>";
 
-// TODO: should add rank icon too
-
 StatusBars.prototype.Init = function()
 {
 	this.enabled = false;
@@ -106,6 +104,10 @@ StatusBars.prototype.RegenerateSprites = function()
 		AddBar("supply", cmpResourceSupply.GetCurrentAmount() / cmpResourceSupply.GetMaxAmount());
 	}
 
+	/*
+	// Rank icon disabled for now - see discussion around
+	// http://www.wildfiregames.com/forum/index.php?s=&showtopic=13608&view=findpost&p=212154
+
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 	if (cmpIdentity)
 	{
@@ -128,6 +130,7 @@ StatusBars.prototype.RegenerateSprites = function()
 			);
 		}
 	}
+	*/
 };
 
 Engine.RegisterComponentType(IID_StatusBars, "StatusBars", StatusBars);
