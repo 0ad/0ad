@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Celt Temple">
+      <mesh>structural/celt_temple.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/temple_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/temple_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/celt_temple.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

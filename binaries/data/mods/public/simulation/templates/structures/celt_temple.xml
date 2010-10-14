@@ -8,15 +8,18 @@
   <Cost>
     <PopulationBonus>7</PopulationBonus>
   </Cost>
+  <Health>
+    <Max>5000</Max>
+  </Health>
   <Footprint replace="">
-    <Circle radius="8.0"/>
-    <Height>16.0</Height>
+    <Circle radius="15.0"/>
+    <Height>12.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="15.0" depth="15.0"/>
+    <Static width="25.0" depth="25.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/celts/temple.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+    <Actor>structures/celts/temple_new.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>
