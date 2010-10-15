@@ -208,7 +208,7 @@ var UnitFsmSpec = {
 		"WALKING": {
 			"MoveStarted": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.MoveMembersIntoFormation();
+				cmpFormation.MoveMembersIntoFormation(true);
 			},
 
 			"MoveCompleted": function(msg) {

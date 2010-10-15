@@ -73,7 +73,7 @@ Formation.prototype.RemoveMembers = function(ents)
 	this.ComputeMotionParameters();
 
 	// Rearrange the remaining members
-	this.MoveMembersIntoFormation();
+	this.MoveMembersIntoFormation(true);
 };
 
 /**
@@ -106,8 +106,10 @@ Formation.prototype.CallMemberFunction = function(funcname, args)
 
 /**
  * Set all members to form up into the formation shape.
+ * If moveCenter is true, the formation center will be reinitialised
+ * to the center of the units.
  */
-Formation.prototype.MoveMembersIntoFormation = function()
+Formation.prototype.MoveMembersIntoFormation = function(moveCenter)
 {
 	var active = [];
 	var positions = [];
@@ -136,8 +138,10 @@ Formation.prototype.MoveMembersIntoFormation = function()
 	var avgpos = this.ComputeAveragePosition(positions);
 	var avgoffset = this.ComputeAveragePosition(offsets);
 
+	// Reposition the formation if we're told to or if we don't already have a position
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	cmpPosition.JumpTo(avgpos.x, avgpos.z);
+	if (moveCenter || !cmpPosition.IsInWorld())
+		cmpPosition.JumpTo(avgpos.x, avgpos.z);
 
 	// TODO: assign to minimise worst-case distances or whatever
 
@@ -268,7 +272,9 @@ Formation.prototype.OnUpdate_Final = function(msg)
 	var walkingDistance = cmpUnitAI.ComputeWalkingDistance();
 	var columnar = (walkingDistance > g_ColumnDistanceThreshold);
 	if (columnar != this.columnar)
-		this.MoveMembersIntoFormation();
+		this.MoveMembersIntoFormation(false);
+		// (disable moveCenter so we can't get stuck in a loop of switching
+		// shape causing center to change causing shape to switch back)
 };
 
 Formation.prototype.OnGlobalOwnershipChanged = function(msg)
