@@ -10,10 +10,6 @@
       <mesh>props/helmet/hele_helmet_t.pmd</mesh>
       <texture>props/helmet/hele_a1.dds</texture>
     </variant>
-    <variant frequency="1" name="Helmet-Boeotian-Tinned-Wreath">
-      <mesh>props/helmet/hele_helmet_u.pmd</mesh>
-      <texture>props/helmet/hele_a2.dds</texture>
-    </variant>
     <variant frequency="1" name="Helmet-Boeotian-Plume-Tinned">
       <mesh>props/helmet/hele_helmet_u.pmd</mesh>
       <texture>props/helmet/hele_a4.dds</texture>
@@ -41,6 +37,10 @@
     <variant frequency="2" name="Helmet-Pilos-Crested">
       <mesh>props/helmet/hele_helmet_j.pmd</mesh>
       <texture>props/helmet/hele_a3.dds</texture>
+    </variant>
+    <variant frequency="4" name="Helmet-Boeotian-HighCrest">
+      <mesh>props/helmet/hele_boeotian_highcrest.dae</mesh>
+      <texture>props/helmet/mace_d1.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
