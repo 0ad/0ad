@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="610.005" y="94.2987" z="436.968"/>
-		<Rotation angle="0.00529825"/>
-		<Declination angle="0.523599"/>
+		<Position x="370.64" y="102.44" z="292.02"/>
+		<Rotation angle="-0.00441158"/>
+		<Declination angle="0.523597"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -3571,35 +3571,17 @@
 			<Position x="543.95948" z="180.86805"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="718">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="532.84772" z="166.02657"/>
-			<Orientation y="1.15642"/>
-		</Entity>
 		<Entity uid="719">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="544.70551" z="155.31621"/>
-			<Orientation y="-2.90325"/>
+			<Position x="541.38276" z="164.77393"/>
+			<Orientation y="-0.36786"/>
 		</Entity>
 		<Entity uid="720">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="531.50855" z="179.3742"/>
 			<Orientation y="0.85457"/>
-		</Entity>
-		<Entity uid="721">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="542.22248" z="169.40001"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="722">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="183.26038" z="212.6619"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="723">
 			<Template>gaia/geology_stone_desert_small</Template>
@@ -3618,12 +3600,6 @@
 			<Player>0</Player>
 			<Position x="180.77497" z="196.88302"/>
 			<Orientation y="0.50008"/>
-		</Entity>
-		<Entity uid="726">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="169.33034" z="214.1676"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="727">
 			<Template>gaia/geology_stone_desert_small</Template>
@@ -3655,34 +3631,22 @@
 			<Position x="173.98945" z="515.82166"/>
 			<Orientation y="-2.2838"/>
 		</Entity>
-		<Entity uid="732">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="654.787" z="614.76276"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="733">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="656.86847" z="632.7381"/>
+			<Position x="651.61005" z="617.04188"/>
 			<Orientation y="-2.91382"/>
-		</Entity>
-		<Entity uid="734">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="643.14106" z="622.64704"/>
-			<Orientation y="0.68645"/>
 		</Entity>
 		<Entity uid="735">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="646.3501" z="603.47132"/>
-			<Orientation y="-2.81354"/>
+			<Orientation y="-2.21076"/>
 		</Entity>
 		<Entity uid="736">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="664.45264" z="602.47315"/>
+			<Position x="658.65876" z="606.51197"/>
 			<Orientation y="0.62928"/>
 		</Entity>
 		<Entity uid="737">
@@ -5458,6 +5422,30 @@
 			<Player>3</Player>
 			<Position x="135.77805" z="549.55982"/>
 			<Orientation y="-2.14739"/>
+		</Entity>
+		<Entity uid="1048">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>1</Player>
+			<Position x="711.33936" z="710.67371"/>
+			<Orientation y="1.69135"/>
+		</Entity>
+		<Entity uid="1049">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="718.64454" z="66.50214"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1050">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="63.713" z="44.71097"/>
+			<Orientation y="-2.20196"/>
+		</Entity>
+		<Entity uid="1051">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="62.82224" z="717.92481"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

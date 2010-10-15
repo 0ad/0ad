@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_flora_tree">
+  <Identity>
+    <SpecificName>Fig</SpecificName>
+    <IconCell>3</IconCell>
+    <History>The Common Fig is widely grown for its edible fruit throughout its natural range in the Mediterranean region, North Africa, Persia, and northern India.</History>
+  </Identity>
+  <ResourceSupply>
+    <Amount>500</Amount>
+    <Type>food.fruit</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>flora/trees/fig.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Circle radius="3.5"/>
+    <Height>10.0</Height>
+  </Footprint>
+</Entity>

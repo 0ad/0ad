@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="Base">
       <texture>gaia/pine_w.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="2" name="a1">
       <mesh>gaia/pine1.pmd</mesh>
@@ -55,8 +52,12 @@
     <variant frequency="1" name="c5">
       <mesh>gaia/pine15.pmd</mesh>
     </variant>
+    <variant frequency="3" name="mr2">
+      <mesh>gaia/tree_pine_02.dae</mesh>
+    </variant>
+    <variant frequency="3" name="mr3">
+      <mesh>gaia/tree_pine_03.dae</mesh>
+    </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>
