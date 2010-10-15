@@ -337,6 +337,8 @@ static void InitScripting()
 	RegisterJavascriptInterfaces();
 }
 
+#if 0
+// disabled because the file cache doesn't work (http://trac.wildfiregames.com/ticket/611)
 
 static size_t OperatingSystemFootprint()
 {
@@ -401,7 +403,12 @@ static size_t ChooseCacheSize()
 	debug_printf(L"Cache: %d (total: %d; available: %d)\n", cache, total, available);
 	return cache*MiB;
 }
-
+#else
+static size_t ChooseCacheSize()
+{
+	return 32*MiB;
+}
+#endif
 
 static void InitVfs(const CmdLineArgs& args)
 {
