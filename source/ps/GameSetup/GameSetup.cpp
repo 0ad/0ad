@@ -493,15 +493,12 @@ static void InitPs(bool setup_gui, const CStrW& gui_page)
 	// Warn nicely about missing S3TC support
 	if (!ogl_tex_has_s3tc())
 	{
-		g_GUI->DisplayMessageBox(600, 270, L"Warning",
-			L"Your graphics drivers do not support S3TC compressed textures. This may reduce performance.\n\n"
 #if !(OS_WIN || OS_MACOSX)
-			L"To fix this, you may have to install the \"libtxc_dxtn\" library. "
-			L"See http://dri.freedesktop.org/wiki/S3TC for more information."
+		bool isMesa = true;
 #else
-			L"Please try updating your graphics drivers to ensure you have full hardware acceleration."
+		bool isMesa = false;
 #endif
-		);
+		g_GUI->GetScriptInterface().CallFunctionVoid(OBJECT_TO_JSVAL(g_GUI->GetScriptObject()), "s3tcWarning", isMesa);
 	}
 }
 
