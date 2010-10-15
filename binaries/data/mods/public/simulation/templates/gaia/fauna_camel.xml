@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_hunt_skittish">
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Camel</SpecificName>
+	<IconCell>23</IconCell>
+  </Identity>
+  <ResourceSupply>
+    <Amount>200</Amount>
+  </ResourceSupply>
+  <UnitMotion>
+    <WalkSpeed>2.0</WalkSpeed>
+    <Run>
+      <Speed>10.0</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Footprint>
+    <Circle radius="1.75"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="1.5"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>fauna/camel.xml</Actor>
+  </VisualActor>
+</Entity>

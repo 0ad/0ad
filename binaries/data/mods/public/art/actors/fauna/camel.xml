@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="Mesh">
+    <variant frequency="1" name="camel">
       <mesh>skeletal/camel_1.dae</mesh>
-      <texture>skeletal/animal_camel2.dds</texture>
+      <texture>skeletal/animal_camel.png</texture>
     </variant>
   </group>
-
 </actor>

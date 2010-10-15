@@ -23,4 +23,20 @@
   <Obstruction>
     <Unit radius="3.0"/>
   </Obstruction>
+  <Attack>
+    <Melee>
+      <Hack>10.0</Hack>
+      <Pierce>10.0</Pierce>
+      <Crush>10.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>30.0</Hack>
+      <Pierce>30.0</Pierce>
+      <Crush>30.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
 </Entity>
