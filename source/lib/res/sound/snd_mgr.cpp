@@ -924,6 +924,8 @@ static void SndData_dtor(SndData* sd)
 
 static LibError SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pathname, Handle hsd)
 {
+#if 0 // HACK: streaming disabled because it breaks archives
+
 	// (OGG streaming requires a real POSIX pathname - see OpenOggStream)
 	fs::wpath real_pathname;
 	RETURN_ERR(vfs->GetRealPath(pathname, real_pathname));
@@ -934,10 +936,17 @@ static LibError SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pat
 	// effort - OGG should be better in all cases.
 
 	RETURN_ERR(OpenOggStream(real_pathname, sd->ogg));
+	const size_t size = fs::file_size(real_pathname);
+#else
+	RETURN_ERR(OpenOggNonstream(vfs, pathname, sd->ogg));
+	FileInfo fileInfo;
+	RETURN_ERR(vfs->GetFileInfo(pathname, &fileInfo));
+	const size_t size = fileInfo.Size();
+#endif
+
 	sd->al_freq = sd->ogg->SamplingRate();
 	sd->al_fmt  = sd->ogg->Format();
 
-	const size_t size = fs::file_size(real_pathname);
 	// HACK - it would be nicer for callers to confirm they won't
 	// open the same (streamed) file multiple times,
 	// but that's not possible with the current JSI_Sound.

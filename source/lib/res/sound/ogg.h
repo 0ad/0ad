@@ -2,6 +2,7 @@
 #define INCLUDED_OGG
 
 #include "lib/external_libraries/openal.h"
+#include "lib/file/vfs/vfs.h"
 
 class OggStream
 {
@@ -19,5 +20,11 @@ public:
 typedef shared_ptr<OggStream> OggStreamPtr;
 
 extern LibError OpenOggStream(const fs::wpath& pathname, OggStreamPtr& stream);
+
+/**
+ * A non-streaming OggStream (reading the whole file in advance)
+ * that can cope with archived/compressed files.
+ */
+extern LibError OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr& stream);
 
 #endif // INCLUDED_OGG
