@@ -1,46 +1,23 @@
-/*
-	DESCRIPTION	: Main Pregame JS Script file.
-	NOTES		: Contains functions and code for Main Menu.
-*/
-
-// ====================================================================
-
-// Switch from the archive builder to the main menu.
-function startMainMenu()
+function init()
 {
-	// Reveal the main menu now that the archive has been loaded.
-	guiHide ("ab");
-	guiUnHide ("pg");
-
-	// Play main 0 A.D. theme when the main menu starts.
 	global.curr_music = newRandomSound("music", "menu");
 	if (global.curr_music)
 		global.curr_music.loop();
-	
-	// Set starting volume (I'm using a value of zero here for no sound; feel free to comment out these two lines to use defaults).
-//	global.curr_music.setGain (0.0);
-//	g_ConfigDB.system["sound.mastergain"] = 0.0;	
 }
-
-// ====================================================================
 
 // Helper function that enables the dark background mask, then reveals a given subwindow object.
 function openMainMenuSubWindow (windowName)
 {
-	guiUnHide	("pgSubWindow");
-	guiUnHide	(windowName);
+	guiUnHide("pgSubWindow");
+	guiUnHide(windowName);
 }
-
-// ====================================================================
 
 // Helper function that disables the dark background mask, then hides a given subwindow object.
 function closeMainMenuSubWindow (windowName)
 {
-	guiHide		("pgSubWindow");
-	guiHide		(windowName);
+	guiHide("pgSubWindow");
+	guiHide(windowName);
 }
-
-// ====================================================================
 
 // Switch to a given options tab window.
 function openOptionsTab(tabName)
@@ -75,8 +52,6 @@ function openOptionsTab(tabName)
 	getGUIObjectByName (tabName + "Button").enabled = false;
 }
 
-// ====================================================================
-
 // Move the credits up the screen.
 function updateCredits()
 {
@@ -95,6 +70,3 @@ function updateCredits()
 		guiUnHide ("pg");
 	}
 }
-
-// ====================================================================
-

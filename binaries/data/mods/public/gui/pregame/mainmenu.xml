@@ -2,60 +2,8 @@
 
 <objects>
 
-	<script>
-	function init() { }
-	</script>
+	<script file="gui/pregame/mainmenu.js"/>
 
-	<!--
-	==========================================
-	- PROGRESS BAR FOR ARCHIVE BUILDER
-	==========================================
-	-->
-
-	<object	name="ab"
-			type="button"
-			size="0 0 100% 100%"
-			hidden="true"
-			ghost="false"
-			hotkey="archive.abort"
-			sprite="bkFillBlack"			
-	>
-		<action on="Press"><![CDATA[
-			// If the user aborts the archive, switch to the main menu.
-			archiveBuilderCancel();
-			startMainMenu();
-		]]></action>  	
-	
-		<object name="abProgressBarText"
-			type="text"
-			size="25 100%-190 100%-25 100%-175"
-			font="serif-14"
-			textcolor="255 255 255"
-			text_align="center"
-			text_valign="center"
-		>
-		Rebuilding Archive ... Press Alt+F4 or Left-Click to Cancel
-		</object>
-
-		<object name="abProgressBar"
-			style="wheatProgressBarBlue"
-			type="progressbar"
-			size="25 100%-160 100%-25 100%-145"
-		>
-			<action on="Load"><![CDATA[
-				// Reset progress bar to zero at start of game.
-				this.caption = 0;
-			]]></action>
-			<action on="ArchiveBuilderProgress"><![CDATA[
-				this.caption = g_ArchiveBuilderProgress;  
-			]]></action>  
-			<action on="ArchiveBuilderComplete"><![CDATA[
-				// When the archive is finished, switch to the main menu.
-				startMainMenu();
-			]]></action>			
-		</object>	
-	</object>
-	
 	<!--
 	==========================================
 	- MAIN MENU - "COMMANDER'S TENT" BACKDROP
