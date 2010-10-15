@@ -72,6 +72,7 @@ private:
 	int m_ConfigH;
 	int m_ConfigBPP;
 	bool m_ConfigFullscreen;
+	bool m_ConfigForceS3TCEnable;
 
 	// If we're fullscreen, size of window when we were last windowed (or the default window size
 	// if we started fullscreen), to support switching back to the old window size
