@@ -3,29 +3,29 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.37305" g="1.37305" b="1.37305"/>
-		<SunElevation angle="0.717903"/>
-		<SunRotation angle="-0.582913"/>
+		<SunColour r="1.27148" g="1.27148" b="1.27148"/>
+		<SunElevation angle="0.825282"/>
+		<SunRotation angle="-1.00705"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.478431" g="0.478431" b="0.478431"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>20.459</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>20.0394</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.701172</Murkiness>
-				<Tint r="0.227451" g="0.313726" b="0.458824"/>
-				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
-				<ReflectionTintStrength>0.338867</ReflectionTintStrength>
+				<Murkiness>0.491211</Murkiness>
+				<Tint r="0.447059" g="0.545098" b="0.729412"/>
+				<ReflectionTint r="0" g="0.6" b="0.666667"/>
+				<ReflectionTintStrength>0.152344</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="148.547" y="127.156" z="378.16"/>
-		<Rotation angle="0.0127744"/>
-		<Declination angle="0.581303"/>
+		<Position x="137.617" y="107.563" z="458.637"/>
+		<Rotation angle="0.000668993"/>
+		<Declination angle="0.562979"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -1784,14 +1784,14 @@
 		<Entity uid="426">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="226.6292" z="704.2522"/>
-			<Orientation y="1.82261"/>
+			<Position x="213.57891" z="730.59424"/>
+			<Orientation y="-0.13472"/>
 		</Entity>
 		<Entity uid="427">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
 			<Position x="251.64167" z="700.19385"/>
-			<Orientation y="0.91311"/>
+			<Orientation y="-0.81795"/>
 		</Entity>
 		<Entity uid="428">
 			<Template>gaia/flora_tree_carob</Template>
@@ -1802,7 +1802,7 @@
 		<Entity uid="429">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="272.3678" z="714.771"/>
+			<Position x="306.01362" z="685.79645"/>
 			<Orientation y="-3.01963"/>
 		</Entity>
 		<Entity uid="430">
@@ -1820,7 +1820,7 @@
 		<Entity uid="432">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="281.38132" z="673.154"/>
+			<Position x="271.63639" z="659.34247"/>
 			<Orientation y="-3.1146"/>
 		</Entity>
 		<Entity uid="433">
@@ -2520,7 +2520,7 @@
 		<Entity uid="563">
 			<Template>other/celt_hut</Template>
 			<Player>1</Player>
-			<Position x="29.46232" z="404.48722"/>
+			<Position x="35.34296" z="399.83146"/>
 			<Orientation y="1.99079"/>
 		</Entity>
 		<Entity uid="564">
@@ -2664,7 +2664,7 @@
 		<Entity uid="596">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="420.1594" z="312.51087"/>
+			<Position x="418.8531" z="309.70453"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="597">
@@ -2682,7 +2682,7 @@
 		<Entity uid="599">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="461.86258" z="269.74152"/>
+			<Position x="460.0752" z="268.59992"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="600">
@@ -2700,13 +2700,13 @@
 		<Entity uid="602">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="477.69172" z="253.47748"/>
+			<Position x="476.32792" z="252.52073"/>
 			<Orientation y="2.12546"/>
 		</Entity>
 		<Entity uid="603">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="450.55729" z="280.5879"/>
+			<Position x="449.98801" z="279.65787"/>
 			<Orientation y="1.87047"/>
 		</Entity>
 		<Entity uid="604">
@@ -4600,8 +4600,8 @@
 		</Entity>
 		<Entity uid="972">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="262.0597" z="661.83619"/>
-			<Orientation y="2.35621"/>
+			<Position x="261.34104" z="650.3224"/>
+			<Orientation y="1.01885"/>
 		</Entity>
 		<Entity uid="973">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
@@ -5031,8 +5031,8 @@
 		<Entity uid="1101">
 			<Template>structures/celt_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="143.25725" z="601.12049"/>
-			<Orientation y="2.38718"/>
+			<Position x="142.87275" z="602.12409"/>
+			<Orientation y="2.3151"/>
 		</Entity>
 		<Entity uid="1102">
 			<Template>structures/celt_field</Template>
@@ -5043,7 +5043,7 @@
 		<Entity uid="1103">
 			<Template>structures/celt_field</Template>
 			<Player>0</Player>
-			<Position x="436.38062" z="268.784"/>
+			<Position x="436.0529" z="269.29139"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1104">
@@ -10423,7 +10423,7 @@
 		</Entity>
 		<Entity uid="2182">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="532.04981" z="115.75408"/>
+			<Position x="528.06867" z="127.73844"/>
 			<Orientation y="0.46886"/>
 		</Entity>
 		<Entity uid="2183">
@@ -10443,12 +10443,12 @@
 		</Entity>
 		<Entity uid="2186">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="544.13495" z="115.8136"/>
+			<Position x="547.17518" z="146.23134"/>
 			<Orientation y="0.94567"/>
 		</Entity>
 		<Entity uid="2187">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="549.6059" z="120.20134"/>
+			<Position x="554.96607" z="127.9881"/>
 			<Orientation y="-2.79314"/>
 		</Entity>
 		<Entity uid="2188">
@@ -10463,17 +10463,17 @@
 		</Entity>
 		<Entity uid="2190">
 			<Template>actor|props/flora/grass_soft_small.xml</Template>
-			<Position x="537.25745" z="117.4771"/>
+			<Position x="530.54572" z="120.41758"/>
 			<Orientation y="-2.74451"/>
 		</Entity>
 		<Entity uid="2191">
 			<Template>actor|props/flora/grass_soft_small.xml</Template>
-			<Position x="551.18885" z="116.20672"/>
+			<Position x="544.33436" z="129.3451"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2192">
 			<Template>actor|props/flora/grass_soft_small.xml</Template>
-			<Position x="541.94361" z="121.34176"/>
+			<Position x="537.29456" z="143.21624"/>
 			<Orientation y="-1.84856"/>
 		</Entity>
 		<Entity uid="2193">
@@ -15021,7 +15021,7 @@
 		<Entity uid="2998">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="502.66492" z="564.76624"/>
+			<Position x="453.46369" z="570.09546"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2999">
@@ -15057,7 +15057,7 @@
 		<Entity uid="3004">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="544.32062" z="523.42273"/>
+			<Position x="561.34784" z="520.74506"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3005">
@@ -15147,26 +15147,26 @@
 		<Entity uid="3019">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="320.80753" z="220.63846"/>
+			<Position x="322.89292" z="252.65328"/>
 			<Orientation y="0.74817"/>
 		</Entity>
 		<Entity uid="3020">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="352.03516" z="234.64123"/>
+			<Position x="341.6933" z="226.51836"/>
 			<Orientation y="-2.67487"/>
 		</Entity>
 		<Entity uid="3021">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="294.30298" z="184.10628"/>
-			<Orientation y="2.35621"/>
+			<Position x="295.36921" z="189.18314"/>
+			<Orientation y="-0.0934"/>
 		</Entity>
 		<Entity uid="3022">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="324.90113" z="188.95615"/>
-			<Orientation y="-2.77277"/>
+			<Position x="327.23462" z="190.6327"/>
+			<Orientation y="-0.15978"/>
 		</Entity>
 		<Entity uid="3023">
 			<Template>gaia/flora_tree_carob</Template>
@@ -15273,19 +15273,19 @@
 		<Entity uid="3040">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="285.9874" z="619.64954"/>
+			<Position x="284.06959" z="585.7757"/>
 			<Orientation y="0.36634"/>
 		</Entity>
 		<Entity uid="3041">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="312.29365" z="671.5265"/>
+			<Position x="290.15583" z="643.96088"/>
 			<Orientation y="-2.87278"/>
 		</Entity>
 		<Entity uid="3042">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="294.9968" z="564.95521"/>
+			<Position x="296.70795" z="541.15845"/>
 			<Orientation y="-3.06298"/>
 		</Entity>
 		<Entity uid="3043">
@@ -15309,25 +15309,25 @@
 		<Entity uid="3046">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="309.81385" z="513.69239"/>
+			<Position x="304.81284" z="524.83063"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3047">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="314.51175" z="517.40668"/>
+			<Position x="308.4604" z="528.12806"/>
 			<Orientation y="-1.0599"/>
 		</Entity>
 		<Entity uid="3048">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="294.38962" z="599.42194"/>
+			<Position x="301.20835" z="614.76844"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3049">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="305.02659" z="606.21827"/>
+			<Position x="301.84131" z="625.08411"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3050">
@@ -15345,7 +15345,7 @@
 		<Entity uid="3052">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="314.6295" z="627.17444"/>
+			<Position x="304.24946" z="635.26001"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3053">
@@ -15393,7 +15393,7 @@
 		<Entity uid="3060">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="362.38993" z="454.00138"/>
+			<Position x="352.32206" z="452.03095"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3061">
@@ -16173,7 +16173,7 @@
 		<Entity uid="3199">
 			<Template>gaia/flora_tree_apple</Template>
 			<Player>0</Player>
-			<Position x="523.5318" z="563.98761"/>
+			<Position x="519.8617" z="570.4513"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3200">
@@ -16365,13 +16365,13 @@
 		<Entity uid="3237">
 			<Template>other/column_doric_fallen_b</Template>
 			<Player>0</Player>
-			<Position x="349.33207" z="464.28248"/>
+			<Position x="382.53577" z="440.79517"/>
 			<Orientation y="0.4404"/>
 		</Entity>
 		<Entity uid="3238">
 			<Template>other/column_doric_fallen_b</Template>
 			<Player>0</Player>
-			<Position x="357.01151" z="454.28806"/>
+			<Position x="357.24054" z="461.39612"/>
 			<Orientation y="-1.78113"/>
 		</Entity>
 		<Entity uid="3239">
@@ -16383,8 +16383,8 @@
 		<Entity uid="3240">
 			<Template>other/column_doric_fallen</Template>
 			<Player>0</Player>
-			<Position x="381.10935" z="441.04157"/>
-			<Orientation y="2.35621"/>
+			<Position x="364.13459" z="452.38413"/>
+			<Orientation y="2.79021"/>
 		</Entity>
 		<Entity uid="3241">
 			<Template>other/column_doric_fallen</Template>
@@ -16449,7 +16449,7 @@
 		<Entity uid="3251">
 			<Template>other/column_doric_fallen_b</Template>
 			<Player>0</Player>
-			<Position x="351.06501" z="457.20734"/>
+			<Position x="355.37961" z="465.13471"/>
 			<Orientation y="-1.23597"/>
 		</Entity>
 		<Entity uid="3252">
@@ -16547,6 +16547,237 @@
 			<Player>0</Player>
 			<Position x="30.16671" z="88.93256"/>
 			<Orientation y="-1.53637"/>
+		</Entity>
+		<Entity uid="3277">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="510.97147" z="580.35114"/>
+			<Orientation y="-0.75597"/>
+		</Entity>
+		<Entity uid="3278">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="531.48401" z="555.20398"/>
+			<Orientation y="0.06844"/>
+		</Entity>
+		<Entity uid="3279">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="541.67756" z="544.87537"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3280">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="532.49915" z="538.76716"/>
+			<Orientation y="-0.706"/>
+		</Entity>
+		<Entity uid="3281">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="522.64197" z="549.91285"/>
+			<Orientation y="2.24166"/>
+		</Entity>
+		<Entity uid="3282">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="511.88593" z="563.84339"/>
+			<Orientation y="-1.75652"/>
+		</Entity>
+		<Entity uid="3283">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="503.68378" z="573.01948"/>
+			<Orientation y="-0.45595"/>
+		</Entity>
+		<Entity uid="3284">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="16.24993" z="456.41807"/>
+			<Orientation y="3.09693"/>
+		</Entity>
+		<Entity uid="3285">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="15.05434" z="468.9307"/>
+			<Orientation y="0.34701"/>
+		</Entity>
+		<Entity uid="3286">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="25.33684" z="462.15345"/>
+			<Orientation y="-2.96125"/>
+		</Entity>
+		<Entity uid="3287">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="27.59281" z="448.65241"/>
+			<Orientation y="0.62159"/>
+		</Entity>
+		<Entity uid="3288">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="36.2282" z="460.07551"/>
+			<Orientation y="-1.29574"/>
+		</Entity>
+		<Entity uid="3289">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="17.65816" z="476.18512"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3290">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="16.35" z="372.08066"/>
+			<Orientation y="2.97028"/>
+		</Entity>
+		<Entity uid="3291">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="26.07465" z="270.24997"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3292">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="368.29505" z="226.73462"/>
+			<Orientation y="-0.36432"/>
+		</Entity>
+		<Entity uid="3293">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="426.84449" z="104.13828"/>
+			<Orientation y="-3.02663"/>
+		</Entity>
+		<Entity uid="3294">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="141.72922" z="123.55327"/>
+			<Orientation y="-2.75666"/>
+		</Entity>
+		<Entity uid="3295">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="242.40587" z="3.29778"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3296">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="246.79941" z="5.98116"/>
+			<Orientation y="-2.30481"/>
+		</Entity>
+		<Entity uid="3297">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="29.1749" z="126.43908"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3298">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="18.314" z="130.66695"/>
+			<Orientation y="-1.00832"/>
+		</Entity>
+		<Entity uid="3299">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="6.86516" z="140.30472"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3300">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="3.67698" z="138.04432"/>
+			<Orientation y="3.06888"/>
+		</Entity>
+		<Entity uid="3301">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="6.69623" z="124.03068"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3302">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="11.68187" z="128.2833"/>
+			<Orientation y="-3.0709"/>
+		</Entity>
+		<Entity uid="3303">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="16.79085" z="137.1583"/>
+			<Orientation y="-2.58104"/>
+		</Entity>
+		<Entity uid="3304">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="24.04456" z="124.4918"/>
+			<Orientation y="-0.78226"/>
+		</Entity>
+		<Entity uid="3305">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="34.20626" z="129.29947"/>
+			<Orientation y="-2.89408"/>
+		</Entity>
+		<Entity uid="3306">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="117.84894" z="95.07209"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3307">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="224.62864" z="558.59211"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3320">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="369.91947" z="290.71351"/>
+			<Orientation y="-2.91608"/>
+		</Entity>
+		<Entity uid="3321">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="369.17347" z="283.31498"/>
+			<Orientation y="-3.12443"/>
+		</Entity>
+		<Entity uid="3322">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="372.62992" z="275.31455"/>
+			<Orientation y="-2.9412"/>
+		</Entity>
+		<Entity uid="3324">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="393.02128" z="293.80988"/>
+			<Orientation y="-1.87284"/>
+		</Entity>
+		<Entity uid="3330">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="370.67951" z="270.94913"/>
+			<Orientation y="2.5579"/>
+		</Entity>
+		<Entity uid="3331">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="375.81803" z="273.1258"/>
+			<Orientation y="-2.18081"/>
+		</Entity>
+		<Entity uid="3332">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="376.60084" z="281.73038"/>
+			<Orientation y="-0.67363"/>
+		</Entity>
+		<Entity uid="3335">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="350.52451" z="275.46262"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3336">
+			<Template>actor|props/flora/grass_medit_field.xml</Template>
+			<Position x="349.34852" z="276.80088"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
