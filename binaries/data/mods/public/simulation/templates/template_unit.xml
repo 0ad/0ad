@@ -41,6 +41,13 @@
     <Pierce>1.0</Pierce>
     <Crush>1.0</Crush>
   </Armour>
+  <ResourceGatherer>
+    <MaxDistance>2.0</MaxDistance>
+    <BaseSpeed>1.0</BaseSpeed>
+    <Rates>
+      <metal.treasure>10000</metal.treasure>
+    </Rates>
+  </ResourceGatherer>
   <UnitMotion>
     <FormationController>false</FormationController>
     <WalkSpeed>7.0</WalkSpeed>

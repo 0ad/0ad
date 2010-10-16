@@ -23,7 +23,6 @@
       <wood.tree>.75</wood.tree>
       <stone.rock>.75</stone.rock>
       <metal.ore>.75</metal.ore>
-      <metal.treasure>10000</metal.treasure>
     </Rates>
   </ResourceGatherer>
   <Health>
@@ -38,6 +37,15 @@
     <Pierce>1.0</Pierce>
     <Crush>5.0</Crush>
   </Armour>
+  <Attack>
+    <Melee>
+      <Hack>5.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+  </Attack>
   <UnitMotion>
     <WalkSpeed>6.0</WalkSpeed>
     <Run>
