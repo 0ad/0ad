@@ -29,6 +29,8 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
+#include <iomanip>
+
 // Comparison functor that operates over texture properties, or
 // over the properties of a CTexturePtr (ignoring the mutable state like Handle).
 struct TextureCacheCmp
