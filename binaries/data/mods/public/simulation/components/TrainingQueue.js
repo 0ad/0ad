@@ -1,4 +1,5 @@
 var g_ProgressInterval = 1000;
+const MAX_QUEUE_SIZE = 16;
 
 function TrainingQueue() {}
 
@@ -54,52 +55,58 @@ TrainingQueue.prototype.AddBatch = function(templateName, count)
 	// TODO: there should probably be a limit on the number of queued batches
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits)
-
-	// Find the template data so we can determine the build costs
-	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTempMan.GetTemplate(templateName);
-	if (!template)
-		return;
-
-	var costMult = count;
-
-	// Apply a time discount to larger batches.
-	// TODO: work out what equation we should use here.
-	var timeMult = Math.pow(count, 0.7);
-
-	var time = timeMult * template.Cost.BuildTime;
-
-	var costs = {};
-	for each (var r in ["food", "wood", "stone", "metal"])
-		costs[r] = Math.floor(costMult * template.Cost.Resources[r]);
-
-	var population = template.Cost.Population * count;
-
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
-	if (!cmpPlayer.TrySubtractResources(costs))
+	if (this.queue.length < MAX_QUEUE_SIZE)
 	{
+		// Find the template data so we can determine the build costs
+		var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+		var template = cmpTempMan.GetTemplate(templateName);
+		if (!template)
+			return;
+
+		var costMult = count;
+
+		// Apply a time discount to larger batches.
+		// TODO: work out what equation we should use here.
+		var timeMult = Math.pow(count, 0.7);
+
+		var time = timeMult * template.Cost.BuildTime;
+
+		var costs = {};
+		for each (var r in ["food", "wood", "stone", "metal"])
+			costs[r] = Math.floor(costMult * template.Cost.Resources[r]);
+
+		var population = template.Cost.Population * count;
+	
 		// TrySubtractResources should report error to player (they ran out of resources)
-		return;
+		if (!cmpPlayer.TrySubtractResources(costs))
+			return;
+
+		this.queue.push({
+			"id": this.nextID++,
+			"player": cmpPlayer.GetPlayerID(),
+			"template": templateName,
+			"count": count,
+			"resources": costs,
+			"population": population,
+			"trainingStarted": false,
+			"timeTotal": time*1000,
+			"timeRemaining": time*1000,
+		});
+
+		// If this is the first item in the queue, start the timer
+		if (!this.timer)
+		{
+			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			this.timer = cmpTimer.SetTimeout(this.entity, IID_TrainingQueue, "ProgressTimeout", g_ProgressInterval, {});
+		}
 	}
-
-	this.queue.push({
-		"id": this.nextID++,
-		"player": cmpPlayer.GetPlayerID(),
-		"template": templateName,
-		"count": count,
-		"resources": costs,
-		"population": population,
-		"trainingStarted": false,
-		"timeTotal": time*1000,
-		"timeRemaining": time*1000,
-	});
-
-	// If this is the first item in the queue, start the timer
-	if (!this.timer)
+	else
 	{
- 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_TrainingQueue, "ProgressTimeout", g_ProgressInterval, {});
+		var notification = {"player": cmpPlayer.GetPlayerID(), "message": "The training queue is full."};
+		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification(notification);
 	}
 };
 
