@@ -46,9 +46,9 @@ function init(attribs)
 
 	// Set a default map
 	if (attribs.type == "offline")
-		g_GameAttributes.map = "Arcadia";
+		g_GameAttributes.map = "The Massacre of Delphi";
 	else
-		g_GameAttributes.map = "Hellenised_Egypt";
+		g_GameAttributes.map = "Gold_Rush";
 
 	initMapNameList(getGUIObjectByName("mapSelection"));
 
