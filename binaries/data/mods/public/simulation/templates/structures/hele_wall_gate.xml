@@ -11,6 +11,13 @@
   <Health>
     <Max>3300</Max>
   </Health>
+  <Footprint>
+    <Square width="39.0" depth="8.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="38.0" depth="6.5"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/wall_gate.xml</Actor>
   </VisualActor>

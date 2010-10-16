@@ -5,6 +5,13 @@
     <SpecificName>Gwarchglawdd</SpecificName>
     <History>The Romans called this wall 'Murus Gallicus'. Translated, it means 'Gaulish wall'. It was extremely resistant to assault by battering ram. Julius Caesar described a type of wood and stone wall, known as a Murus Gallicus, in his account of the Gallic Wars. These walls were made of a stone wall filled with rubble, with wooden logs inside for stability. Caesar noted how the flexibility of the wood added to the strength of the fort in case of battering ram attack.</History>
   </Identity>
+  <Footprint>
+    <Square width="25.0" depth="6.5"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="24.0" depth="6.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/celts/wall.xml</Actor>
   </VisualActor>

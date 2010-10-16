@@ -5,6 +5,13 @@
     <SpecificName>(Insert name here)</SpecificName>
     <History>(Insert History Here)</History>
   </Identity>
+  <Footprint>
+    <Square width="15.0" depth="6.5"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="14.0" depth="6.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/celts/wall_gate.xml</Actor>
   </VisualActor>
