@@ -95,6 +95,17 @@ function handleNetMessage(message)
 	}
 }
 
+function submitChatDirectly(text)
+{
+	if (text.length)
+	{
+		if (g_IsNetworked)
+			Engine.SendNetworkChat(text);
+		else
+			addChatMessage({ "type": "message", "guid": "local", "text": text });
+	}
+}
+
 function submitChatInput()
 {
 	var input = getGUIObjectByName("chatInput");
@@ -118,7 +129,6 @@ function addChatMessage(msg)
 {
 	// TODO: we ought to escape all values before displaying them,
 	// to prevent people inserting colours and newlines etc
-
 	var n = g_PlayerAssignments[msg.guid].player;
 	var username = g_PlayerAssignments[msg.guid].name;
 	var playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;

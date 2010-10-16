@@ -18,6 +18,9 @@ function cacheMenuObjects()
 
 function toggleDeveloperOverlay()
 {
+	var text = devCommands.hidden? "opened." : "closed.";
+	submitChatDirectly("The Developer Console was " + text);
+	
 	devCommands.hidden = !devCommands.hidden;
 }
 
@@ -57,9 +60,16 @@ function togglePause()
 function escapeKeyAction() // runs multiple times, so always closes all for now...
 {
 	if (!menu.hidden)
+	{
 		menu.hidden = true;
+	}
 	else if (!chatWindow.hidden)
+	{
 		chatWindow.hidden = true;
+		chatInput.caption = "";
+	}
 	else if (!settingsWindow.hidden)
+	{
 		settingsWindow.hidden = true;
+	}
 }
