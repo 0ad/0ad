@@ -99,7 +99,7 @@
 		<object name="devCommands" size="100%-156 72 100%-16 200" type="image" sprite="devCommandsBackground"
 				hidden="true" hotkey="session.devcommands.toggle">
 			<action on="Press">
-				this.hidden = !this.hidden;
+				toggleDeveloperOverlay();
 			</action>
 
 			<object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
