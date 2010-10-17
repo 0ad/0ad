@@ -55,7 +55,7 @@ typedef enum
 {
 	SDL_GL_DEPTH_SIZE,
 	SDL_GL_DOUBLEBUFFER,	// ignored - always double buffered
-	SDL_GL_SWAP_CONTROL		// not implemented yet
+	SDL_GL_SWAP_CONTROL
 }
 SDL_GLattr;
 

@@ -259,7 +259,26 @@ static HWND wnd_CreateWindow(int w, int h)
 static DEVMODE dm;			// current video mode
 static HGLRC hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 
-static int depth_bits = 24;	// depth buffer size; set via SDL_GL_SetAttribute
+// set via SDL_GL_SetAttribute:
+static int depthBufferBits = 24;
+static int vsyncEnabled = 1;
+
+int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
+{
+	switch(attr)
+	{
+	case SDL_GL_DEPTH_SIZE:
+		depthBufferBits = value;
+		break;
+
+	case SDL_GL_SWAP_CONTROL:
+		vsyncEnabled = value;
+		break;
+	}
+
+	return 0;
+}
+
 
 // check if resolution needs to be changed
 static bool video_NeedsChange(int w, int h, int cur_w, int cur_h, bool fullscreen)
@@ -280,15 +299,6 @@ static bool video_NeedsChange(int w, int h, int cur_w, int cur_h, bool fullscree
 }
 
 
-int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
-{
-	if(attr == SDL_GL_DEPTH_SIZE)
-		depth_bits = value;
-
-	return 0;
-}
-
-
 static void video_SetPixelFormat(HDC g_hDC, int bpp)
 {
 	const DWORD dwFlags = PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER;
@@ -300,7 +310,7 @@ static void video_SetPixelFormat(HDC g_hDC, int bpp)
 		cAlphaBits = 8;
 	}
 	const BYTE cAccumBits   = 0;
-	const BYTE cDepthBits   = (BYTE)depth_bits;
+	const BYTE cDepthBits   = (BYTE)depthBufferBits;
 	const BYTE cStencilBits = 0;
 	const BYTE cAuxBuffers  = 0;
 
@@ -404,6 +414,12 @@ SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 	WARN_IF_FALSE(GetClientRect(g_hWnd, &rect));
 	screen.w = rect.right;
 	screen.h = rect.bottom;
+
+	// (required for ogl_HaveExtension, but callers should also invoke
+	// ogl_Init in case the real SDL is being used.)
+	ogl_Init();
+	if(ogl_HaveExtension("WGL_EXT_swap_control") && pwglSwapIntervalEXT)
+		pwglSwapIntervalEXT(vsyncEnabled);
 
 	return &screen;
 }

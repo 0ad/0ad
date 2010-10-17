@@ -871,13 +871,6 @@ void Init(const CmdLineArgs& args, int flags)
 		g_Shadows = false;
 	}
 
-	// enable/disable VSync
-	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
-#if OS_WIN
-	if(ogl_HaveExtension("WGL_EXT_swap_control"))
-		pwglSwapIntervalEXT(g_VSync? 1 : 0);
-#endif
-
 	ogl_WarnIfError();
 	InitRenderer();
 
