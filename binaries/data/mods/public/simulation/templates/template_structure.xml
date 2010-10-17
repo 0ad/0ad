@@ -2,10 +2,7 @@
 <Entity parent="template_entity_full">
   <Identity>
     <GenericName>Structure</GenericName>
-    <Classes datatype="tokens">
-      Structure
-      ConquestCritical
-    </Classes>
+    <Classes datatype="tokens">Structure ConquestCritical</Classes>
     <IconSheet>snPortraitSheetBuildings</IconSheet>
   </Identity>
   <BuildRestrictions>

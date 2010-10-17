@@ -73,8 +73,34 @@ function isUnit(entState)
 		var classes = entState.identity.classes;
 		if (classes && classes.length)
 			for (var i = 0; i < classes.length; i++)
-				if ((classes[i] == "Organic") || (classes[i] == "Mechanical"))
+				if (classes[i] == "Unit")
 					return true;
+	}
+	return false;
+}
+
+function isAnimal(entState)
+{
+	if (entState.identity)
+	{
+		var classes = entState.identity.classes;
+		if (classes && classes.length)
+		for (var i = 0; i < classes.length; i++)
+			if (classes[i] == "Animal")
+				return true;
+	}
+	return false;
+}
+
+function isStructure(entState)
+{
+	if (entState.identity)
+	{
+		var classes = entState.identity.classes;
+		if (classes && classes.length)
+		for (var i = 0; i < classes.length; i++)
+			if (classes[i] == "Structure")
+				return true;
 	}
 	return false;
 }

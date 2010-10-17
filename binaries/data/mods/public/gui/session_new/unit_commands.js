@@ -362,7 +362,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 
 		var formations = getEntityFormationsList(entState);
-		if (formations.length)
+		if (isUnit(entState) && !isAnimal(entState) && formations.length)
 			setupUnitPanel("Formation", usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
 
