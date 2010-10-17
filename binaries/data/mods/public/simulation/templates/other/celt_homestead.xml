@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_civic_civil_centre">
+<Entity parent="template_structure_civic_house">
   <Identity>
     <Civ>celt</Civ>
+    <GenericName>Homestead</GenericName>
     <SpecificName>Caer</SpecificName>
     <History>This was be the centre of the town, a great hall where the clan leader resided. All political matters were probably performed inside such a structure.</History>
 	<Tooltip>A Celtic homestead.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>structures/celts/homestead.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
   </VisualActor>
   <Footprint replace="">
     <Circle radius="15.0"/>
@@ -16,6 +18,34 @@
   <Obstruction>
     <Static width="24.0" depth="24.0"/>
   </Obstruction>
+  <Cost>
+    <PopulationBonus>20</PopulationBonus>
+    <BuildTime>600</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>100</wood>
+      <stone>100</stone>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>3000</Max>
+  </Health>
+  <Armour>
+    <Hack>20.0</Hack>
+    <Pierce>40</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
+  <GarrisonHolder>
+    <Max>15</Max>
+  </GarrisonHolder>
+  <ResourceDropsite>
+    <Radius>60</Radius>
+    <Types>food wood stone metal</Types>
+  </ResourceDropsite>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/celt_cavalry_javelinist_b
