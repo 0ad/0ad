@@ -147,18 +147,22 @@ function displayMultiple(selection, template)
 				maxHealth += entState.maxHitpoints;
 			}
 		}
+	}
 
-		if (i == selection.length-1)
-		{
-			var unitHealthBar = getGUIObjectByName("healthBarMultiple");
-			var healthSize = unitHealthBar.size;
-							
-			healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
-			unitHealthBar.size = healthSize;
-			
-			var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + "/" + maxHealth;
-			getGUIObjectByName("healthMultiple").tooltip = hitpoints;
-		}
+	if (averageHealth > 0)
+	{
+		var unitHealthBar = getGUIObjectByName("healthBarMultiple");
+		var healthSize = unitHealthBar.size;
+				
+		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
+		unitHealthBar.size = healthSize;
+
+		var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + "/" + maxHealth;
+		getGUIObjectByName("healthMultiple").tooltip = hitpoints;
+	}
+	else
+	{
+		getGUIObjectByName("healthMultiple").hidden = true;
 	}
 
 	getGUIObjectByName("numberOfUnits").caption = selection.length;
