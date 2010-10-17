@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="226.08" y="102.639" z="630.299"/>
-		<Rotation angle="0.0245807"/>
-		<Declination angle="0.615376"/>
+		<Position x="241.426" y="110.275" z="604.598"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -16618,102 +16618,6 @@
 			<Position x="757.69611" z="760.88233"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3400">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>1</Player>
-			<Position x="203.10012" z="758.18506"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3401">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>1</Player>
-			<Position x="205.0921" z="761.34375"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3402">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>1</Player>
-			<Position x="206.93801" z="764.10846"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3403">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>1</Player>
-			<Position x="208.9662" z="767.45942"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3404">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>2</Player>
-			<Position x="757.56843" z="236.26584"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3405">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>2</Player>
-			<Position x="755.41248" z="233.31888"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3406">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>2</Player>
-			<Position x="753.59736" z="232.16483"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3407">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>2</Player>
-			<Position x="751.92328" z="229.75788"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3408">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>3</Player>
-			<Position x="201.35413" z="231.51325"/>
-			<Orientation y="-2.72869"/>
-		</Entity>
-		<Entity uid="3409">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>3</Player>
-			<Position x="204.65687" z="228.56426"/>
-			<Orientation y="-2.96538"/>
-		</Entity>
-		<Entity uid="3410">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>3</Player>
-			<Position x="207.76142" z="226.90564"/>
-			<Orientation y="-2.81643"/>
-		</Entity>
-		<Entity uid="3411">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>3</Player>
-			<Position x="211.88898" z="223.714"/>
-			<Orientation y="-2.51362"/>
-		</Entity>
-		<Entity uid="3412">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>4</Player>
-			<Position x="785.11115" z="750.41016"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3413">
-			<Template>other/camp_mace_hypaspist_argyraspidai</Template>
-			<Player>4</Player>
-			<Position x="783.06043" z="748.69336"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3414">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>4</Player>
-			<Position x="781.01661" z="746.65064"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3415">
-			<Template>other/camp_mace_hypaspist</Template>
-			<Player>4</Player>
-			<Position x="779.21906" z="745.1125"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3425">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
@@ -18492,6 +18396,150 @@
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
 			<Position x="443.4322" z="584.34314"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3843">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>1</Player>
+			<Position x="212.15448" z="764.60236"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3844">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>1</Player>
+			<Position x="210.24117" z="762.94648"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3845">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>1</Player>
+			<Position x="209.27485" z="766.23432"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3846">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="207.81647" z="760.41926"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3847">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="206.08747" z="758.8943"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3848">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="205.42458" z="761.4867"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3849">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="749.85541" z="229.45575"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3850">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="752.18702" z="231.84758"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3851">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="749.31415" z="233.3024"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3852">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="755.80054" z="234.32828"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3853">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="758.14905" z="236.42756"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3854">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="754.92164" z="238.22707"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3855">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>4</Player>
+			<Position x="815.18812" z="776.57612"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3856">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>4</Player>
+			<Position x="818.06916" z="780.11219"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3857">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>4</Player>
+			<Position x="815.0619" z="781.80762"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3858">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>4</Player>
+			<Position x="809.41657" z="785.44373"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3859">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>4</Player>
+			<Position x="811.63788" z="787.53382"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3860">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>4</Player>
+			<Position x="808.7273" z="788.95624"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3861">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>3</Player>
+			<Position x="199.85976" z="228.86402"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3862">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>3</Player>
+			<Position x="202.31638" z="230.91459"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3863">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>3</Player>
+			<Position x="199.75187" z="231.88715"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3864">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>3</Player>
+			<Position x="205.15174" z="221.34089"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3865">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>3</Player>
+			<Position x="207.71377" z="223.22725"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3866">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>3</Player>
+			<Position x="204.89124" z="224.50724"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

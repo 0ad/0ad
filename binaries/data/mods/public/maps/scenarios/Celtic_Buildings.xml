@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="147.955" y="106.021" z="6.7663"/>
+		<Position x="89.2534" y="106.42" z="-56.917"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -188,7 +188,7 @@
 		<Entity uid="173">
 			<Template>structures/celt_temple</Template>
 			<Player>1</Player>
-			<Position x="157.64295" z="59.92325"/>
+			<Position x="158.07824" z="57.25248"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="174">
@@ -284,7 +284,7 @@
 		<Entity uid="190">
 			<Template>units/celt_ship_merchant</Template>
 			<Player>1</Player>
-			<Position x="121.20615" z="237.0659"/>
+			<Position x="120.22318" z="237.20142"/>
 			<Orientation y="2.45775"/>
 		</Entity>
 		<Entity uid="192">
@@ -644,7 +644,7 @@
 		<Entity uid="251">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="69.06855" z="53.81655"/>
+			<Position x="26.64872" z="18.45247"/>
 			<Orientation y="2.49909"/>
 		</Entity>
 		<Entity uid="252">
@@ -692,7 +692,7 @@
 		<Entity uid="259">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="51.99512" z="59.21477"/>
+			<Position x="20.11986" z="65.88828"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="260">
@@ -716,7 +716,7 @@
 		<Entity uid="263">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="49.72707" z="46.96518"/>
+			<Position x="17.7956" z="28.24436"/>
 			<Orientation y="-0.70817"/>
 		</Entity>
 		<Entity uid="264">
@@ -1168,6 +1168,18 @@
 			<Player>2</Player>
 			<Position x="395.79651" z="153.17127"/>
 			<Orientation y="-2.76722"/>
+		</Entity>
+		<Entity uid="392">
+			<Template>units/celt_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="108.4665" z="230.81978"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="393">
+			<Template>other/celt_homestead</Template>
+			<Player>1</Player>
+			<Position x="49.08245" z="88.37061"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

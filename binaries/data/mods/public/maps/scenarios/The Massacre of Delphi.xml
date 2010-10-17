@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="147.824" y="89.8189" z="479.007"/>
-		<Rotation angle="-0.0104578"/>
-		<Declination angle="0.56181"/>
+		<Position x="158.276" y="86.4167" z="486.005"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -2462,54 +2462,6 @@
 			<Template>actor|props/flora/water_lillies.xml</Template>
 			<Position x="13.05901" z="549.14148"/>
 			<Orientation y="-2.05591"/>
-		</Entity>
-		<Entity uid="553">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="615.91626" z="187.48179"/>
-			<Orientation y="2.45513"/>
-		</Entity>
-		<Entity uid="554">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="618.00794" z="189.83681"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="555">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="620.0282" z="191.98166"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="556">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="622.03211" z="194.15111"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="557">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="620.02063" z="196.03965"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="558">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="618.02308" z="194.04186"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="559">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="615.81574" z="191.95908"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="560">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="613.85914" z="190.03869"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="561">
 			<Template>other/hellenic_stoa</Template>
@@ -16146,18 +16098,6 @@
 			<Position x="137.59507" z="583.25812"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3212">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="622.27002" z="198.0907"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3213">
-			<Template>other/camp_theban_sacred_band</Template>
-			<Player>2</Player>
-			<Position x="624.4535" z="195.5596"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3217">
 			<Template>other/hellenic_royal_stoa</Template>
 			<Player>2</Player>
@@ -16747,6 +16687,66 @@
 			<Template>structures/hele_field</Template>
 			<Player>0</Player>
 			<Position x="424.14222" z="232.51667"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3367">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="615.11805" z="190.2262"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3368">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="617.12696" z="191.81344"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3369">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="618.92011" z="193.3494"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3370">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="620.64271" z="195.01633"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3371">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="622.34308" z="197.11274"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3372">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="620.32172" z="198.58079"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3373">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="618.44001" z="196.91938"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3374">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="616.99915" z="195.96103"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3375">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="615.5788" z="195.01633"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3376">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="613.55781" z="193.16681"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
