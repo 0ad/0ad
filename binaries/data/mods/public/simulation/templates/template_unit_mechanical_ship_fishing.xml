@@ -7,7 +7,7 @@
   </Identity>
   <Cost>
     <Resources>
-      <Wood>50</Wood>
+      <wood>50</wood>
     </Resources>
   </Cost>
   <ResourceGatherer>
@@ -17,6 +17,13 @@
       <food.fish>3</food.fish>
     </Rates>
   </ResourceGatherer>
+  <Footprint>
+    <Square width="6.0" depth="12.0"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="4.0"/>
+  </Obstruction>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>10.0</Pierce>

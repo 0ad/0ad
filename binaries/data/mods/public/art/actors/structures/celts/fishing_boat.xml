@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="Celt fishing Boat">
+      <mesh>structural/celt_boat_fishing.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/fishing_boat_sail.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/celt_merchant.dds</texture>
+    </variant>
+  </group>
+</actor>

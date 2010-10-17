@@ -12,7 +12,10 @@
     <Actor>structures/celts/trireme.xml</Actor>
   </VisualActor>
   <Footprint>
-    <Square width="7.0" depth="18.0"/>
+    <Square width="9.0" depth="20.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Obstruction>
+    <Unit radius="6.0"/>
+  </Obstruction>
 </Entity>

@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="229.468" y="130.583" z="38.6414"/>
+		<Position x="231.213" y="119.286" z="56.221"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -38,14 +38,8 @@
 		<Entity uid="11">
 			<Template>units/celt_ship_trireme</Template>
 			<Player>1</Player>
-			<Position x="209.03977" z="181.79581"/>
-			<Orientation y="2.3645"/>
-		</Entity>
-		<Entity uid="13">
-			<Template>units/celt_ship_merchant</Template>
-			<Player>1</Player>
-			<Position x="236.13013" z="179.06864"/>
-			<Orientation y="-2.20308"/>
+			<Position x="194.90995" z="190.18613"/>
+			<Orientation y="1.8871"/>
 		</Entity>
 		<Entity uid="14">
 			<Template>gaia/fauna_fish</Template>
@@ -58,6 +52,18 @@
 			<Player>0</Player>
 			<Position x="262.26505" z="147.87525"/>
 			<Orientation y="-0.4285"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/hele_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="246.02141" z="172.59205"/>
+			<Orientation y="-1.86446"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/celt_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="221.42496" z="180.82381"/>
+			<Orientation y="-2.76288"/>
 		</Entity>
 	</Entities>
 	<Paths/>
