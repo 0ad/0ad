@@ -55,7 +55,7 @@ public:
 	/**
 	 * Construct for a given network session ID.
 	 */
-	CNetTurnManager(CSimulation2& simulation, int clientId, IReplayLogger& replay);
+	CNetTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay);
 
 	virtual ~CNetTurnManager() { }
 
@@ -146,10 +146,7 @@ protected:
 class CNetClientTurnManager : public CNetTurnManager
 {
 public:
-	CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay) :
-		CNetTurnManager(simulation, clientId, replay), m_NetClient(client)
-	{
-	}
+	CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay);
 
 	virtual void OnSimulationMessage(CSimulationMessage* msg);
 
@@ -169,10 +166,7 @@ protected:
 class CNetLocalTurnManager : public CNetTurnManager
 {
 public:
-	CNetLocalTurnManager(CSimulation2& simulation, IReplayLogger& replay) :
-		CNetTurnManager(simulation, 0, replay)
-	{
-	}
+	CNetLocalTurnManager(CSimulation2& simulation, IReplayLogger& replay);
 
 	virtual void OnSimulationMessage(CSimulationMessage* msg);
 

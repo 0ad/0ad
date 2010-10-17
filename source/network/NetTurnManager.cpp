@@ -35,7 +35,8 @@
 #include <fstream>
 #include <iomanip>
 
-static const int DEFAULT_TURN_LENGTH = 200;
+static const int DEFAULT_TURN_LENGTH_MP = 500;
+static const int DEFAULT_TURN_LENGTH_SP = 200;
 
 static const int COMMAND_DELAY = 2;
 
@@ -50,8 +51,8 @@ static std::string Hexify(const std::string& s)
 	return str.str();
 }
 
-CNetTurnManager::CNetTurnManager(CSimulation2& simulation, int clientId, IReplayLogger& replay) :
-	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH), m_DeltaTime(0),
+CNetTurnManager::CNetTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay) :
+	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength), m_DeltaTime(0),
 	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false), m_Replay(replay)
 {
 	// When we are on turn n, we schedule new commands for n+2.
@@ -192,6 +193,12 @@ void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
 	m_TurnLength = turnLength;
 }
 
+
+CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay) :
+	CNetTurnManager(simulation, DEFAULT_TURN_LENGTH_MP, clientId, replay), m_NetClient(client)
+{
+}
+
 void CNetClientTurnManager::PostCommand(CScriptValRooted data)
 {
 #ifdef NETTURN_LOG
@@ -215,7 +222,7 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 
 	// Send message to the server
 	CEndCommandBatchMessage msg;
-	msg.m_TurnLength = DEFAULT_TURN_LENGTH; // TODO: why do we send this?
+	msg.m_TurnLength = DEFAULT_TURN_LENGTH_MP; // TODO: why do we send this?
 	msg.m_Turn = turn;
 	m_NetClient.SendMessage(&msg);
 }
@@ -249,6 +256,10 @@ void CNetClientTurnManager::OnSimulationMessage(CSimulationMessage* msg)
 }
 
 
+CNetLocalTurnManager::CNetLocalTurnManager(CSimulation2& simulation, IReplayLogger& replay) :
+	CNetTurnManager(simulation, DEFAULT_TURN_LENGTH_SP, 0, replay)
+{
+}
 
 void CNetLocalTurnManager::PostCommand(CScriptValRooted data)
 {
@@ -259,7 +270,7 @@ void CNetLocalTurnManager::PostCommand(CScriptValRooted data)
 
 void CNetLocalTurnManager::NotifyFinishedOwnCommands(u32 turn)
 {
-	FinishedAllCommands(turn, DEFAULT_TURN_LENGTH);
+	FinishedAllCommands(turn, m_TurnLength);
 }
 
 void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn))
@@ -284,7 +295,7 @@ void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))
 
 
 CNetServerTurnManager::CNetServerTurnManager(CNetServer& server) :
-	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH)
+	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP)
 {
 }
 
