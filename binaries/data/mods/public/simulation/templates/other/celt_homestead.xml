@@ -4,16 +4,17 @@
     <Civ>celt</Civ>
     <SpecificName>Caer</SpecificName>
     <History>This was be the centre of the town, a great hall where the clan leader resided. All political matters were probably performed inside such a structure.</History>
+	<Tooltip>A Celtic homestead.</Tooltip>
   </Identity>
   <VisualActor>
-    <Actor>structures/celts/civic_centre.xml</Actor>
+    <Actor>structures/celts/homestead.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Square width="28.0" depth="28.0"/>
+  <Footprint replace="">
+    <Circle radius="15.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="25.0" depth="25.0"/>
+    <Static width="24.0" depth="24.0"/>
   </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">

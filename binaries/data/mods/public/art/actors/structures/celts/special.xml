@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <mesh>structural/celt_sb1.pmd</mesh>
+      <mesh>structural/celt_sb_walls.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/special.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/celts/special_stone.xml" attachpoint="props_stone"/>
-        <prop actor="props/structures/celts/special_donkey.xml" attachpoint="props_donkey"/>
-        <prop actor="props/structures/celts/special_hay.xml" attachpoint="props_hay"/>
+        <prop actor="props/structures/celts/special.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_stone.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_donkey.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_hay.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_broch.dds</texture>
     </variant>
   </group>
-
 </actor>

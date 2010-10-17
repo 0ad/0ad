@@ -2,10 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/celt_sb_prop_1.dae</mesh>
+    <variant>
+      <mesh>props/celt_civic3_props_1.dae</mesh>
       <texture>props/celt_prop_1.dds</texture>
     </variant>
   </group>
-  <material>player_trans.xml</material>
 </actor>

@@ -2,13 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
-      <mesh>structural/celt_civic_centre.dae</mesh>
+    <variant name="Celtic Great Hall">
+      <mesh>structural/celt_civic3.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/civic_roof.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/civic_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/civic_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/civic_entry.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/civic3_props_arch.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/civic3_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/civic3_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
