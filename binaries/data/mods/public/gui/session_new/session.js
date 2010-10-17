@@ -163,12 +163,14 @@ function checkPlayerState()
 		if (playerState.state == "defeated")
 		{
 			g_GameEnded = true;
+			switchMusic("loss_1", 0.0);
 			messageBox(400, 200, "You have been defeated... Do you want to leave the game now?",
 				"Defeat", 0, ["Yes", "No!"], [leaveGame, null]);
 		}
 		else if (playerState.state == "won")
 		{
 			g_GameEnded = true;
+			switchMusic("win_1", 0.0);
 			messageBox(400, 200, "You have won the battle! Do you want to leave the game now?",
 				"Victory", 0, ["Yes", "No!"], [leaveGame, null]);
 		}
