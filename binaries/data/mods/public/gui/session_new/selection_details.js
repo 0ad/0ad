@@ -152,13 +152,14 @@ function displayMultiple(selection, template)
 	if (averageHealth > 0)
 	{
 		var unitHealthBar = getGUIObjectByName("healthBarMultiple");
-		var healthSize = unitHealthBar.size;
-				
+		var healthSize = unitHealthBar.size;	
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
 		var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + "/" + maxHealth;
-		getGUIObjectByName("healthMultiple").tooltip = hitpoints;
+		var healthMultiple = getGUIObjectByName("healthMultiple");
+		healthMultiple.tooltip = hitpoints;
+		healthMultiple.hidden = false;
 	}
 	else
 	{
