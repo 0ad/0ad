@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="247.046" y="170.55" z="-111.474"/>
+		<Position x="215.829" y="95.22" z="42.1467"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -955,31 +955,31 @@
 		<Entity uid="166">
 			<Template>structures/celt_fortress_g</Template>
 			<Player>2</Player>
-			<Position x="315.63337" z="360.34955"/>
+			<Position x="424.96692" z="355.82212"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="167">
 			<Template>structures/celt_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="393.21491" z="306.90168"/>
+			<Position x="480.68378" z="303.07395"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="168">
 			<Template>structures/celt_barracks</Template>
 			<Player>2</Player>
-			<Position x="274.99177" z="357.21186"/>
+			<Position x="383.02662" z="398.08384"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="169">
 			<Template>units/celt_super_infantry_gaul</Template>
 			<Player>2</Player>
-			<Position x="434.31296" z="325.2516"/>
+			<Position x="469.46003" z="355.70466"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="170">
 			<Template>units/celt_super_infantry_gaul</Template>
 			<Player>2</Player>
-			<Position x="436.4073" z="327.08185"/>
+			<Position x="458.44077" z="352.26462"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="171">
@@ -1040,6 +1040,12 @@
 			<Template>units/celt_super_infantry_gaul</Template>
 			<Player>2</Player>
 			<Position x="439.89081" z="322.55225"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>structures/hele_dock</Template>
+			<Player>1</Player>
+			<Position x="219.84208" z="216.36205"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
