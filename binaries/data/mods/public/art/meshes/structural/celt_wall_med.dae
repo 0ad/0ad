@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-10-17T18:40:23Z</created>
+    <modified>2010-10-17T18:40:23Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__325-image" name="Map__325">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\celt_wall.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_9___Default" name="_9___Default">
+      <instance_effect url="#_9___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_9___Default-fx" name="_9___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__325-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="wall04-lib" name="wall04Mesh">
+      <mesh>
+        <source id="wall04-lib-Position">
+          <float_array id="wall04-lib-Position-array" count="42">
+-10.000000 -1.501658 0.000000
+10.000000 -1.501659 0.000000
+-10.000000 1.501659 0.000000
+10.000000 1.501658 0.000000
+-10.000000 -0.165484 9.247301
+10.000000 -0.165484 9.247301
+-10.000000 0.337926 9.247052
+10.000000 0.337927 9.247052
+-10.000000 -0.049514 9.347719
+10.000000 -0.049513 9.347719
+-10.000000 0.223796 9.347719
+10.000000 0.223797 9.347719
+-10.001702 0.629130 6.929871
+10.004907 0.629130 6.929871
+</float_array>
+          <technique_common>
+            <accessor source="#wall04-lib-Position-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wall04-lib-Normal0">
+          <float_array id="wall04-lib-Normal0-array" count="162">
+0.000000 -0.349299 0.937011
+0.000000 -0.349300 0.937011
+-0.000000 0.353586 0.935402
+-0.000000 0.353586 0.935402
+-0.000000 0.353586 0.935402
+0.000000 -0.349299 0.937011
+0.000000 -0.989721 0.143008
+0.000000 -0.877428 0.479709
+0.000000 -0.877427 0.479710
+0.000000 -0.877427 0.479710
+-0.000000 -0.989722 0.143008
+0.000000 -0.989721 0.143008
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-0.000000 0.884014 0.467461
+-0.000000 0.884091 0.467315
+-0.000000 0.992196 0.124691
+-0.000000 0.992196 0.124691
+-0.000000 0.992196 0.124691
+-0.000000 0.884014 0.467461
+0.000000 -0.349299 0.937011
+0.000000 -0.877427 0.479710
+0.000000 -0.877428 0.479709
+0.000000 -0.877428 0.479709
+0.000000 -0.349300 0.937011
+0.000000 -0.349299 0.937011
+-0.000000 0.884014 0.467461
+-0.000000 0.353586 0.935402
+-0.000000 0.353586 0.935402
+-0.000000 0.353586 0.935402
+-0.000000 0.884091 0.467315
+-0.000000 0.884014 0.467461
+</float_array>
+          <technique_common>
+            <accessor source="#wall04-lib-Normal0-array" count="54" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wall04-lib-UV0">
+          <float_array id="wall04-lib-UV0-array" count="72">
+0.000614 0.000135
+0.999953 0.000135
+0.054820 0.001295
+0.155885 0.001140
+0.000614 0.714381
+0.999953 0.714381
+0.088464 0.713258
+0.999953 0.757773
+0.000614 0.727485
+0.999953 0.727485
+0.000614 0.741893
+0.000614 0.757773
+0.999953 0.741893
+0.122240 0.713103
+0.000614 0.998543
+0.999953 0.998543
+0.114650 0.720853
+0.053955 0.001140
+0.114650 0.720853
+0.114650 0.720853
+0.095190 0.720853
+0.087601 0.713122
+0.053955 0.001140
+0.114650 0.720853
+0.087601 0.713122
+0.156749 0.001295
+0.123104 0.713277
+0.115514 0.721009
+0.156749 0.001295
+0.115514 0.721009
+0.115514 0.721009
+0.096055 0.721009
+0.115514 0.721009
+0.054820 0.001295
+0.155885 0.001140
+0.088464 0.713258
+</float_array>
+          <technique_common>
+            <accessor source="#wall04-lib-UV0-array" count="36" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wall04-lib-Vertex">
+          <input semantic="POSITION" source="#wall04-lib-Position"/>
+        </vertices>
+        <polygons material="_9___Default" count="18">
+          <input semantic="VERTEX" offset="0" source="#wall04-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#wall04-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#wall04-lib-UV0"/>
+          <p>8 0 8 9 1 9 11 2 12</p>
+          <p>11 3 12 10 4 10 8 5 8</p>
+          <p>1 6 1 5 7 5 4 8 4</p>
+          <p>4 9 4 0 10 0 1 11 1</p>
+          <p>3 12 3 7 13 13 11 14 16</p>
+          <p>1 15 17 3 16 34 11 17 18</p>
+          <p>11 18 19 9 19 20 5 20 21</p>
+          <p>1 21 22 11 22 23 5 23 24</p>
+          <p>0 24 25 4 25 26 8 26 27</p>
+          <p>2 27 2 0 28 28 8 29 29</p>
+          <p>8 30 30 10 31 31 6 32 6</p>
+          <p>2 33 33 8 34 32 6 35 35</p>
+          <p>6 36 11 7 37 7 13 38 15</p>
+          <p>13 39 15 12 40 14 6 41 11</p>
+          <p>8 42 8 4 43 4 5 44 5</p>
+          <p>5 45 5 9 46 9 8 47 8</p>
+          <p>6 48 11 10 49 10 11 50 12</p>
+          <p>11 51 12 7 52 7 6 53 11</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="wall04" name="wall04">
+        <translate sid="translate">0.000000 -2.573418 0.000000</translate>
+        <node id="wall04-Pivot" name="wall04-Pivot">
+          <translate>0.000000 0.000000 -0.495397</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#wall04-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__325-Material" target="#Map__325-Material"/>
+                <instance_material symbol="_9___Default" target="#_9___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant>
+      <mesh>props/special/selection_infantry.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="blue">
+      <texture>selections/select_blue_infantry.png</texture>
+    </variant>
+    <variant name="red">
+      <texture>selections/select_red_infantry.png</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

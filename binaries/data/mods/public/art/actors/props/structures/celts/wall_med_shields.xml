@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="wall-med-shields">
+      <mesh>props/celt_wall_shields_med.dae</mesh>
+      <texture>props/celt_props_new.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/celt_wc1.pmd</mesh>
+    <variant frequency="1" name="wall-medium-studs">
+      <mesh>props/celt_wall_studs_med.dae</mesh>
       <texture>props/celt_wall_stump.dds</texture>
     </variant>
   </group>
-
 </actor>

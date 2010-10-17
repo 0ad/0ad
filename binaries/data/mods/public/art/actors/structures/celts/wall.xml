@@ -1,17 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/celt_wc.pmd</mesh>
+    <variant frequency="100" name="wall-med-middle">
+      <mesh>structural/celt_wall_med.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/wall_2.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/celts/wall_1.xml" attachpoint="props_extra"/>
+        <prop actor="props/structures/celts/wall_2.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/wall_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/wall_med_shields.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_wall.dds</texture>
     </variant>
   </group>
-
 </actor>

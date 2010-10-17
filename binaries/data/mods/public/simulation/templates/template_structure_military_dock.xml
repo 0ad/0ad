@@ -37,6 +37,12 @@
   <Obstruction>
     <Static width="18.0" depth="18.0"/>
   </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/{civ}_ship_fishing
+      units/{civ}_ship_merchant
+    </Entities>
+  </TrainingQueue>
   <Vision>
     <Range>60</Range>
   </Vision>
