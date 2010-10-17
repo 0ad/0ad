@@ -33,11 +33,11 @@
 		
 		<!-- Displays Alpha name and number (Alpha 2 Bellerophon) -->
 		<object size="100%-200 32 100% 52" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white">
-			<action on="Load"><![CDATA[this.caption = "ALPHA II : Bxxxxxxxxxx";]]></action>
+			<action on="Load"><![CDATA[this.caption = "ALPHA II : Bellerophon";]]></action>
 		</object>
 
 		<!-- Displays build date and revision number-->
-		<object size="100%-200 52 100% 62" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
+		<object size="100%-200 52 100% 72" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white">
 			<action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
 		</object>
 	
