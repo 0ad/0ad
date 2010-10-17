@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship">
   <Identity>
-    <GenericName>Merchantman</GenericName>
+    <GenericName>Fishing Boat</GenericName>
     <IconCell>38</IconCell>
-    <Tooltip>Trade resources between allied docks. Garrison a Trader inside to increase trade profit.</Tooltip>
+    <Tooltip>Fish the water for Food. Garrison a unit inside to boost fishing rate.</Tooltip>
   </Identity>
   <Cost>
     <Resources>
-      <metal>100</metal>
+      <Wood>50</Wood>
     </Resources>
   </Cost>
   <ResourceGatherer>
     <MaxDistance>12.0</MaxDistance>
+    <BaseSpeed>1.0</BaseSpeed>
+    <Rates>
+      <food.fish>3</food.fish>
+    </Rates>
   </ResourceGatherer>
   <Armour>
     <Hack>10.0</Hack>
