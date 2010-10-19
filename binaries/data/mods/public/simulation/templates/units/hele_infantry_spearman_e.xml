@@ -6,17 +6,23 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
+  <Cost>
+    <Resources>
+      <wood>60</wood>
+      <metal>12</metal>
+    </Resources>
+  </Cost>
   <Health>
     <Max>120</Max>
     <RegenRate>0.4</RegenRate>
   </Health>
   <Stamina>
-    <Max>670</Max>
+    <Max>600</Max>
   </Stamina>
   <Armour>
-    <Hack>13.0</Hack>
+    <Hack>16.0</Hack>
     <Pierce>16.0</Pierce>
-    <Crush>15.0</Crush>
+    <Crush>8.0</Crush>
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.4</WalkSpeed>
@@ -26,15 +32,18 @@
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>7.0</Hack>
-      <Pierce>17.0</Pierce>
+      <Hack>9.0</Hack>
+      <Pierce>24.0</Pierce>
     </Melee>
     <Charge>
-      <Hack>14.0</Hack>
-      <Pierce>34.0</Pierce>
+      <Hack>18.0</Hack>
+      <Pierce>48.0</Pierce>
     </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_e.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>64</Range>
+  </Vision>
 </Entity>

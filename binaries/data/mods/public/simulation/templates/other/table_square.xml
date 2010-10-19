@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Identity>
+	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
+    <IconCell>4</IconCell>
+    <Civ>gaia</Civ>
+    <GenericName>Table</GenericName>
+    <SpecificName>Square Table</SpecificName>
+    <History>A wooden table.</History>
+  </Identity>
+  <Minimap>
+    <Colour r="119" g="82" b="46"/>
+  </Minimap>
+  <Health>
+    <Max>100</Max>
+  </Health>
+  <Armour>
+    <Hack>1.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Loot>
+    <xp>1</xp>
+    <food>0</food>
+    <wood>20</wood>
+    <stone>0</stone>
+    <metal>0</metal>
+  </Loot>
+  <VisualActor>
+    <Actor>props/special/eyecandy/table_square.xml</Actor>
+  </VisualActor>
+  <StatusBars>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
+  <Footprint>
+    <Square width="4.5" depth="4.5"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="4.0" depth="4.0"/>
+  </Obstruction>
+  <Vision>
+    <Range>4</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+</Entity>

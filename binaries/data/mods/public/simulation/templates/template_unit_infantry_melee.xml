@@ -3,6 +3,10 @@
   <Identity>
     <GenericName>Melee Infantry</GenericName>
   </Identity>
+  <Health>
+    <Max>100</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
   <Attack>
     <Melee>
       <Hack>1.0</Hack>

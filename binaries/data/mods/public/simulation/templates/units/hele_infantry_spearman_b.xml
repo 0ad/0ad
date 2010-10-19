@@ -12,17 +12,17 @@
   </Promotion>
   <Cost>
     <Resources>
-      <wood>75</wood>
+      <wood>45</wood>
       <metal>5</metal>
     </Resources>
   </Cost>
   <Stamina>
-    <Max>540</Max>
+    <Max>780</Max>
   </Stamina>
   <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>8.0</Pierce>
-    <Crush>9.0</Crush>
+    <Hack>9.0</Hack>
+    <Pierce>11.0</Pierce>
+    <Crush>2.0</Crush>
   </Armour>
   <UnitMotion>
     <WalkSpeed>6.1</WalkSpeed>
@@ -32,11 +32,13 @@
   </UnitMotion>
   <Attack>
     <Melee>
-      <MaxRange>4.8</MaxRange>
+      <Hack>7.0</Hack>
+      <Pierce>22.0</Pierce>
+      <MaxRange>6.0</MaxRange>
     </Melee>
     <Charge>
-      <Hack>10.0</Hack>
-      <Pierce>30.0</Pierce>
+      <Hack>14.0</Hack>
+      <Pierce>44.0</Pierce>
     </Charge>
   </Attack>
   <VisualActor>
@@ -49,4 +51,7 @@
       structures/hele_tholos
     </Entities>
   </Builder>
+  <Vision>
+    <Range>76</Range>
+  </Vision>
 </Entity>
