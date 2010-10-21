@@ -20,6 +20,7 @@
 #include "GUIRenderer.h"
 
 #include "graphics/TextureManager.h"
+#include "gui/GUIutil.h"
 #include "lib/ogl.h"
 #include "lib/utf8.h"
 #include "lib/res/h_mgr.h"
@@ -371,13 +372,17 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 	if (it == Sprites.end())
 	{
 		// Sprite not found. Check whether this a special sprite:
-		//     stretched:filename.ext
-		//     <currently that's the only one>
+		//     "stretched:filename.ext" - stretched image
+		//     "colour:r g b a"         - solid colour
+		//
 		// and if so, try to create it as a new sprite.
 		if (SpriteName.substr(0, 10) == "stretched:")
 		{
+			// TODO: Should check (nicely) that this is a valid file?
 			SGUIImage Image;
+
 			Image.m_TextureName = VfsPath(L"art/textures/ui")/wstring_from_utf8(SpriteName.substr(10));
+
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			Image.m_Size = ca;
 			Image.m_TextureSize = ca;
@@ -387,6 +392,34 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 			Sprites[SpriteName] = Sprite;
 			
+			it = Sprites.find(SpriteName);
+			debug_assert(it != Sprites.end()); // The insertion above shouldn't fail
+		}
+		else if (SpriteName.substr(0, 7) == "colour:")
+		{
+			CStrW value = wstring_from_utf8(SpriteName.substr(7));
+			CColor color;
+
+			// Check colour is valid
+			if (!GUI<CColor>::ParseString(value, color))
+			{
+				LOGERROR(L"GUI: Error parsing sprite 'colour' (\"%ls\")", value.c_str());
+				return;
+			}
+
+			SGUIImage image;
+
+			image.m_BackColor = color;
+
+			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
+			image.m_Size = ca;
+			image.m_TextureSize = ca;
+
+			CGUISprite Sprite;
+			Sprite.AddImage(image);
+
+			Sprites[SpriteName] = Sprite;
+
 			it = Sprites.find(SpriteName);
 			debug_assert(it != Sprites.end()); // The insertion above shouldn't fail
 		}
