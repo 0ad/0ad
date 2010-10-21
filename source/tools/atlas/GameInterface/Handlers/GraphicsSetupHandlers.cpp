@@ -37,15 +37,25 @@
 
 namespace AtlasMessage {
 
-static bool g_IsInitialised = false;
+const int g_InitFlags = INIT_HAVE_VMODE|INIT_NO_GUI;
 
 MESSAGEHANDLER(Init)
 {
 	UNUSED2(msg);
 	
-	// Don't do anything if we're called multiple times
-	if (g_IsInitialised)
-		return;
+	g_Quickstart = true;
+
+	Init(g_GameLoop->args, g_InitFlags);
+
+	// Initialise some graphics state for Atlas.
+	// (This must be done after Init loads the config DB,
+	// but before the UI constructs its GL canvases.)
+	g_VideoMode.InitNonSDL();
+}
+
+MESSAGEHANDLER(InitGraphics)
+{
+	UNUSED2(msg);
 
 #if OS_LINUX || OS_MACOSX
 	// When using GLX (Linux), SDL has to load the GL library to find
@@ -65,13 +75,7 @@ MESSAGEHANDLER(Init)
 
 	ogl_Init();
 
-	g_Quickstart = true;
-
-	int flags = INIT_HAVE_VMODE|INIT_NO_GUI;
-
-	Init(g_GameLoop->args, flags);
-
-	// TODO: we don't use msg->initsimulation any more, it should be deleted
+	InitGraphics(g_GameLoop->args, g_InitFlags);
 
 #if OS_WIN
 	// HACK (to stop things looking very ugly when scrolling) - should
@@ -79,8 +83,6 @@ MESSAGEHANDLER(Init)
 	if(ogl_HaveExtension("WGL_EXT_swap_control"))
 		pwglSwapIntervalEXT(1);
 #endif
-	
-	g_IsInitialised = true;
 }
 
 
@@ -88,10 +90,6 @@ MESSAGEHANDLER(Shutdown)
 {
 	UNUSED2(msg);
 	
-	// Don't do anything if we're called multiple times
-	if (! g_IsInitialised)
-		return;
-
 	// Empty the CommandProc, to get rid of its references to entities before
 	// we kill the EntityManager
 	GetCommandProc().Destroy();
@@ -101,8 +99,6 @@ MESSAGEHANDLER(Shutdown)
 
 	int flags = 0;
 	Shutdown(flags);
-	
-	g_IsInitialised = false;
 }
 
 

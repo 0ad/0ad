@@ -52,6 +52,7 @@ extern void RenderGui(bool RenderingState);
 
 class CmdLineArgs;
 extern void Init(const CmdLineArgs& args, int flags);
+extern void InitGraphics(const CmdLineArgs& args, int flags);
 extern void Shutdown(int flags);
 
 #endif // INCLUDED_GAMESETUP

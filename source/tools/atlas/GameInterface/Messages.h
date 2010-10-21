@@ -29,10 +29,14 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-MESSAGE(Init,
-		((bool, initsimulation)) // whether to initialise simulation/game-specific objects
-		);
+// Initialise some engine code. Must be called before anything else.
+MESSAGE(Init, );
 
+// Initialise graphics-related code. Must be called after the first SetCanvas,
+// and before much else.
+MESSAGE(InitGraphics, );
+
+// Shut down engine/graphics code.
 MESSAGE(Shutdown, );
 
 struct eRenderView { enum renderViews { NONE, GAME, ACTOR }; };

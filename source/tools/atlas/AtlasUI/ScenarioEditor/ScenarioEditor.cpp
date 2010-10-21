@@ -419,6 +419,13 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	m_ObjectSettings.Init(AtlasMessage::eRenderView::GAME);
 
 	//////////////////////////////////////////////////////////////////////////
+
+	// Do some early game initialisation:
+	// (This must happen before constructing the GL canvas.)
+
+	POST_MESSAGE(Init, ());
+
+	//////////////////////////////////////////////////////////////////////////
 	// Menu
 
 	wxMenuBar* menuBar = new wxMenuBar;
@@ -516,7 +523,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas)));
 
-	POST_MESSAGE(Init, (true));
+	POST_MESSAGE(InitGraphics, ());
 
 	canvas->InitSize();
 

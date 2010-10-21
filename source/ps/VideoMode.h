@@ -29,6 +29,13 @@ public:
 	bool InitSDL();
 
 	/**
+	 * Initialise parts of the video mode, for use in Atlas (which uses
+	 * wxWidgets instead of SDL for GL).
+	 * Currently this just tries to enable S3TC.
+	 */
+	bool InitNonSDL();
+
+	/**
 	 * Resize the SDL window and associated graphics stuff to the new size.
 	 */
 	bool ResizeWindow(int w, int h);
@@ -58,6 +65,7 @@ private:
 	void ReadConfig();
 	int GetBestBPP();
 	bool SetVideoMode(int w, int h, int bpp, bool fullscreen);
+	void EnableS3TC();
 
 	bool m_IsInitialised;
 

@@ -480,6 +480,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 	// run the game
 	Init(args, 0);
+	InitGraphics(args, 0);
 	MainControllerInit();
 	while(!quit)
 		Frame();

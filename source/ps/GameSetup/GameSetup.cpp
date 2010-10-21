@@ -737,8 +737,6 @@ static bool Autostart(const CmdLineArgs& args);
 
 void Init(const CmdLineArgs& args, int flags)
 {
-	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
-
 	MICROLOG(L"Init");
 
 	h_mgr_init();
@@ -790,9 +788,6 @@ void Init(const CmdLineArgs& args, int flags)
 
 	CNetHost::Initialize();
 
-	if(setup_vmode)
-		InitSDL();
-
 	new CProfileViewer;
 	new CProfileManager;	// before any script code
 
@@ -804,9 +799,16 @@ void Init(const CmdLineArgs& args, int flags)
 
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
+}
 
-	if (setup_vmode)
+void InitGraphics(const CmdLineArgs& args, int flags)
+{
+	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
+
+	if(setup_vmode)
 	{
+		InitSDL();
+
 		if (!g_VideoMode.InitSDL())
 			throw PSERROR_System_VmodeFailed(); // abort startup
 

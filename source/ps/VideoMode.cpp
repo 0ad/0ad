@@ -116,24 +116,7 @@ bool CVideoMode::InitSDL()
 
 	ReadConfig();
 
-	// On Linux we have to try hard to get S3TC compressed texture support.
-	// If the extension is already provided by default, that's fine.
-	// Otherwise we should enable the 'force_s3tc_enable' environment variable
-	// and (re)initialise the video system, so that Mesa provides the extension
-	// (if the driver at least supports decompression).
-	// (This overrides the force_s3tc_enable specified via driconf files.)
-	// Otherwise we should complain to the user, and stop using compressed textures.
-	//
-	// Setting the environment variable causes Mesa to print an ugly message to stderr
-	// ("ATTENTION: default value of option force_s3tc_enable overridden by environment."),
-	// so it'd be nicer to skip that if S3TC will be supported by default,
-	// but reinitialising video is a pain (and it might do weird things when fullscreen)
-	// so we just unconditionally set it (unless our config file explicitly disables it).
-
-#if !(OS_WIN || OS_MACOSX) // (assume Mesa is used for all non-Windows non-Mac platforms)
-	if (m_ConfigForceS3TCEnable)
-		setenv("force_s3tc_enable", "true", 0);
-#endif
+	EnableS3TC();
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
@@ -200,6 +183,41 @@ bool CVideoMode::InitSDL()
 	}
 
 	return true;
+}
+
+bool CVideoMode::InitNonSDL()
+{
+	debug_assert(!m_IsInitialised);
+
+	ReadConfig();
+
+	EnableS3TC();
+
+	m_IsInitialised = true;
+
+	return true;
+}
+
+void CVideoMode::EnableS3TC()
+{
+	// On Linux we have to try hard to get S3TC compressed texture support.
+	// If the extension is already provided by default, that's fine.
+	// Otherwise we should enable the 'force_s3tc_enable' environment variable
+	// and (re)initialise the video system, so that Mesa provides the extension
+	// (if the driver at least supports decompression).
+	// (This overrides the force_s3tc_enable specified via driconf files.)
+	// Otherwise we should complain to the user, and stop using compressed textures.
+	//
+	// Setting the environment variable causes Mesa to print an ugly message to stderr
+	// ("ATTENTION: default value of option force_s3tc_enable overridden by environment."),
+	// so it'd be nicer to skip that if S3TC will be supported by default,
+	// but reinitialising video is a pain (and it might do weird things when fullscreen)
+	// so we just unconditionally set it (unless our config file explicitly disables it).
+
+#if !(OS_WIN || OS_MACOSX) // (assume Mesa is used for all non-Windows non-Mac platforms)
+	if (m_ConfigForceS3TCEnable)
+		setenv("force_s3tc_enable", "true", 0);
+#endif
 }
 
 bool CVideoMode::ResizeWindow(int w, int h)
