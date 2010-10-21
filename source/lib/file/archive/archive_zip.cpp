@@ -395,7 +395,9 @@ public:
 	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)
 	{
 		// locate and read Central Directory
-		off_t cd_ofs; size_t cd_numEntries; size_t cd_size;
+		off_t cd_ofs = 0;
+		size_t cd_numEntries = 0;
+		size_t cd_size = 0;
 		RETURN_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
 		shared_ptr<u8> buf = io_Allocate(cd_size, cd_ofs);
 		u8* cd;
