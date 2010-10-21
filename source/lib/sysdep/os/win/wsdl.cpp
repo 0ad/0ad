@@ -742,6 +742,9 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 			ShowWindow(g_hWnd, SW_RESTORE);
 			ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 		}
+
+		// re-assert mouse grab state
+		SDL_WM_GrabInput(SDL_WM_GrabInput(SDL_GRAB_QUERY));
 	}
 	// deactivated (Alt+Tab out) or minimized
 	else
