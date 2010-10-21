@@ -7,14 +7,14 @@
         <animation file="biped/inf_sword_ready_e.dae" name="idle" speed="100"/>
         <animation file="biped/inf_sword_ready_e.dae" name="idle" speed="90"/>
         <animation file="biped/inf_sword_ready_e.dae" name="idle" speed="75"/>
-        <animation file="biped/walk_spearshield.psa" name="walk" speed="18"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="run" speed="8"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="melee" speed="150"/>
-        <animation file="infantry/general/death/inf_01.psa" name="death" speed="200"/>
-        <animation file="infantry/general/death/inf_02.psa" name="death" speed="200"/>
-        <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>
-        <animation file="infantry/general/death/inf_07.psa" name="death" speed="200"/>
+        <animation file="biped/walk_spearshield.psa" name="walk" speed="120"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="run" speed="40"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="100"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="melee" speed="100"/>
+        <animation file="infantry/general/death/inf_01.psa" name="death" speed="400"/>
+        <animation file="infantry/general/death/inf_02.psa" name="death" speed="700"/>
+        <animation file="infantry/general/death/inf_06.psa" name="death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="death" speed="400"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
