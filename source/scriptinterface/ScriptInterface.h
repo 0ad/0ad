@@ -29,6 +29,9 @@
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
 
+#include "js/jsapi.h"
+
+#include "ps/Profile.h"
 #include "ps/utf16string.h"
 
 class AutoGCRooter;
@@ -39,6 +42,12 @@ namespace boost { class rand48; }
 // (This should be as small as possible (for compiler efficiency),
 // but as large as necessary for all wrapped functions)
 #define SCRIPT_INTERFACE_MAX_ARGS 6
+
+#ifdef NDEBUG
+#define ENABLE_SCRIPT_PROFILING 0
+#else
+#define ENABLE_SCRIPT_PROFILING 1
+#endif
 
 struct ScriptInterface_impl;
 class ScriptInterface
@@ -241,7 +250,7 @@ private:
 	static JSClass* GetClass(JSContext* cx, JSObject* obj);
 	static void* GetPrivate(JSContext* cx, JSObject* obj);
 
-	void Register(const char* name, JSNative fptr, size_t nargs);
+	void Register(const char* name, JSFastNative fptr, size_t nargs);
 	std::auto_ptr<ScriptInterface_impl> m;
 
 // The nasty macro/template bits are split into a separate file so you don't have to look at them
@@ -253,10 +262,10 @@ public:
 	//   void RegisterFunction(const char* functionName);
 	//
 	//   template <R, T0..., TR (*fptr) (void* cbdata, T0...)>
-	//   static JSNative call;
+	//   static JSFastNative call;
 	//
 	//   template <R, T0..., JSClass*, TC, TR (TC:*fptr) (T0...)>
-	//   static JSNative callMethod;
+	//   static JSFastNative callMethod;
 	//
 	//   template <dummy, T0...>
 	//   static size_t nargs();

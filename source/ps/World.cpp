@@ -58,7 +58,6 @@ CWorld::CWorld(CGame *pGame):
 	m_pGame(pGame),
 	m_Terrain(new CTerrain()),
 	m_UnitManager(new CUnitManager()),
-	m_LOSManager(NULL),
 	m_TerritoryManager(NULL)
 {
 }
@@ -104,19 +103,4 @@ CWorld::~CWorld()
 {
 	delete m_Terrain;
 	delete m_UnitManager;
-}
-
-
-/**
- * Redraw the world.
- * Provided for JS _rewritemaps function.
- *
- **/
-void CWorld::RewriteMap()
-{
-	CMapWriter::RewriteAllMaps(m_Terrain,
-		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
-		&g_LightEnv, m_pGame->GetView(),
-		m_pGame->GetView()->GetCinema(), NULL,
-		m_pGame->GetSimulation2());
 }

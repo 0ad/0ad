@@ -97,11 +97,7 @@ public:
 	void RunScript(const VfsPath& filename, JSObject* globalObject = 0);
 
 
-	jsval CallFunction(const std::string & functionName, jsval * params, int numParams);
-
 	jsval ExecuteScript(const CStrW& script, const CStrW& calledFrom = L"Console", JSObject* contextObject = NULL );
-
-	void DefineConstant(const std::string & name, int value);
 
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uintN nargs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
@@ -117,7 +113,6 @@ public:
 
 	std::string ValueToString(const jsval value);
 	CStrW ValueToUCString(const jsval value);
-	jsval UCStringToValue(const CStrW& str);
 };
 
 #define g_ScriptingHost ScriptingHost::GetSingleton()

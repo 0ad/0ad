@@ -48,13 +48,6 @@ public:
 									CLightEnv* pLightEnv, CCamera* pCamera, 
 									CCinemaManager* pCinema, CSimulation2* pSimulation2);
 
-	// RewriteAllMaps: for use during development: load/save all maps, to
-	// update them to the newest format.
-	static void RewriteAllMaps(CTerrain* pTerrain, WaterManager* pWaterMan,
-								SkyManager* pSkyMan, CLightEnv* pLightEnv, CGameView* pGameView,
-								CCinemaManager* pCinema, CTriggerManager* pTrigMan,
-								CSimulation2* pSimulation2);
-
 private:
 	// PackMap: pack the current world into a raw data stream
 	void PackMap(CFilePacker& packer, CTerrain* pTerrain);

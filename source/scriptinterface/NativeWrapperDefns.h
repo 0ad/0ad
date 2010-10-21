@@ -71,15 +71,27 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 	#undef OVERLOADS
 };
 
+// Fast natives don't trigger the hook we use for profiling, so explicitly
+// notify the profiler when these functions are being called
+#if ENABLE_SCRIPT_PROFILING
+#define SCRIPT_PROFILE \
+	debug_assert(JSVAL_IS_OBJECT(JS_CALLEE(cx, vp)) && JS_ObjectIsFunction(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)))); \
+	const char* name = JS_GetFunctionName(JS_ValueToFunction(cx, JS_CALLEE(cx, vp))); /* native function so ValueToFunction is safe; this makes unsafe lifetime assumptions */ \
+	CProfileSampleScript profile(name);
+#else
+#define SCRIPT_PROFILE
+#endif
 
-
-// JSNative-compatible function that wraps the function identified in the template argument list
+// JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( void* T0_TAIL(z,i) )> \
-	JSBool ScriptInterface::call(JSContext* cx, JSObject* /*obj*/, uintN /*argc*/, jsval* argv, jsval* rval) { \
-		(void)argv; /* avoid 'unused parameter' warnings */ \
+	JSBool ScriptInterface::call(JSContext* cx, uintN argc, jsval* vp) { \
+		UNUSED2(argc); \
+		SCRIPT_PROFILE \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
-		ScriptInterface_NativeWrapper<R>::call(cx, *rval, fptr  A0_TAIL(z,i)); \
+		jsval rval = JSVAL_VOID; \
+		ScriptInterface_NativeWrapper<R>::call(cx, rval, fptr  A0_TAIL(z,i)); \
+		JS_SET_RVAL(cx, vp, rval); \
 		return (ScriptInterface::IsExceptionPending(cx) ? JS_FALSE : JS_TRUE); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
@@ -88,19 +100,23 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // Same idea but for methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0(z,i) )> \
-	JSBool ScriptInterface::callMethod(JSContext* cx, JSObject* obj, uintN /*argc*/, jsval* argv, jsval* rval) { \
-		(void)argv; /* avoid 'unused parameter' warnings */ \
-		if (ScriptInterface::GetClass(cx, obj) != CLS) return JS_FALSE; \
-		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(cx, obj)); \
+	JSBool ScriptInterface::callMethod(JSContext* cx, uintN argc, jsval* vp) { \
+		UNUSED2(argc); \
+		SCRIPT_PROFILE \
+		if (ScriptInterface::GetClass(cx, JS_THIS_OBJECT(cx, vp)) != CLS) return JS_FALSE; \
+		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(cx, JS_THIS_OBJECT(cx, vp))); \
 		if (! c) return JS_FALSE; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
-		ScriptInterface_NativeMethodWrapper<R, TC>::call(cx, *rval, c, fptr  A0_TAIL(z,i)); \
+		jsval rval = JSVAL_VOID; \
+		ScriptInterface_NativeMethodWrapper<R, TC>::call(cx, rval, c, fptr  A0_TAIL(z,i)); \
+		JS_SET_RVAL(cx, vp, rval); \
 		return (ScriptInterface::IsExceptionPending(cx) ? JS_FALSE : JS_TRUE); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 // Clean up our mess
+#undef SCRIPT_PROFILE
 #undef NUMBERED_LIST_HEAD
 #undef NUMBERED_LIST_TAIL
 #undef NUMBERED_LIST_BALANCED

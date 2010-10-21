@@ -35,7 +35,6 @@ ERROR_TYPE(Game_World, MapLoadFailed);
 
 class CGame;
 class CUnitManager;
-class CLOSManager;
 class CTerritoryManager;
 class CTerrain;
 class CStrW;
@@ -62,10 +61,6 @@ class CWorld
 	 **/
 	CUnitManager *m_UnitManager;
 	/**
-	 * pointer to the CLOSManager that holds the visibility matrix for the world. 
-	 **/
-	CLOSManager *m_LOSManager;
-	/**
 	 * pointer to the CTerritoryManager that holds territory matrix for the world. 
 	 **/
 	CTerritoryManager *m_TerritoryManager;
@@ -78,9 +73,6 @@ public:
 	Initialize the World - load the map and all objects
 	*/
 	void RegisterInit(const CStrW& mapFile, int playerID);
-
-	// provided for JS _rewritemaps function
-	void RewriteMap();
 
 	/**
 	 * Get the pointer to the terrain object.
@@ -97,13 +89,6 @@ public:
 	 **/
 	inline CUnitManager &GetUnitManager()
 	{	return *m_UnitManager; }
-	/**
-	 * Get the pointer to the LOS manager object.
-	 *
-	 * @return CLOSManager * the value of m_LOSManager.
-	 **/
-	inline CLOSManager *GetLOSManager()
-	{	return m_LOSManager; }
 	/**
 	 * Get the pointer to the territory manager object.
 	 *

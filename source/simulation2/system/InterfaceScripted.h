@@ -45,38 +45,38 @@
 
 #define DEFINE_INTERFACE_METHOD_0(scriptname, rettype, classname, methodname) \
 	{ scriptname, \
-		ScriptInterface::callMethod<rettype, &class_##classname, classname, &classname::methodname>, \
+		reinterpret_cast<JSNative>(static_cast<JSFastNative>(ScriptInterface::callMethod<rettype, &class_##classname, classname, &classname::methodname>)), \
 		0, \
-		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT|JSFUN_FAST_NATIVE, 0 },
 
 #define DEFINE_INTERFACE_METHOD_1(scriptname, rettype, classname, methodname, arg1) \
 	{ scriptname, \
-		ScriptInterface::callMethod<rettype, arg1, &class_##classname, classname, &classname::methodname>, \
+		reinterpret_cast<JSNative>(static_cast<JSFastNative>(ScriptInterface::callMethod<rettype, arg1, &class_##classname, classname, &classname::methodname>)), \
 		1, \
-		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT|JSFUN_FAST_NATIVE, 0 },
 
 #define DEFINE_INTERFACE_METHOD_2(scriptname, rettype, classname, methodname, arg1, arg2) \
 	{ scriptname, \
-		ScriptInterface::callMethod<rettype, arg1, arg2, &class_##classname, classname, &classname::methodname>, \
+		reinterpret_cast<JSNative>(static_cast<JSFastNative>(ScriptInterface::callMethod<rettype, arg1, arg2, &class_##classname, classname, &classname::methodname>)), \
 		2, \
-		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT|JSFUN_FAST_NATIVE, 0 },
 
 #define DEFINE_INTERFACE_METHOD_3(scriptname, rettype, classname, methodname, arg1, arg2, arg3) \
 	{ scriptname, \
-		ScriptInterface::callMethod<rettype, arg1, arg2, arg3, &class_##classname, classname, &classname::methodname>, \
+		reinterpret_cast<JSNative>(static_cast<JSFastNative>(ScriptInterface::callMethod<rettype, arg1, arg2, arg3, &class_##classname, classname, &classname::methodname>)), \
 		3, \
-		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT|JSFUN_FAST_NATIVE, 0 },
 
 #define DEFINE_INTERFACE_METHOD_4(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4) \
 	{ scriptname, \
-		ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, &class_##classname, classname, &classname::methodname>, \
+		reinterpret_cast<JSNative>(static_cast<JSFastNative>(ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, &class_##classname, classname, &classname::methodname>)), \
 		4, \
-		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT|JSFUN_FAST_NATIVE, 0 },
 
 #define DEFINE_INTERFACE_METHOD_5(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5) \
 	{ scriptname, \
-		ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, &class_##classname, classname, &classname::methodname>, \
+		reinterpret_cast<JSNative>(static_cast<JSFastNative>(ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, &class_##classname, classname, &classname::methodname>)), \
 		5, \
-		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT, 0 },
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT|JSFUN_FAST_NATIVE, 0 },
 
 #endif // INCLUDED_INTERFACE_SCRIPTED

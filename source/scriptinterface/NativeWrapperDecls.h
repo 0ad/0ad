@@ -26,7 +26,7 @@
 #define NUMBERED_LIST_BALANCED(z, i, data) BOOST_PP_COMMA_IF(i) data##i
 // Some other things
 #define TYPED_ARGS(z, i, data) , T##i a##i
-#define CONVERT_ARG(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, argv[i], a##i)) return JS_FALSE;
+#define CONVERT_ARG(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, i < argc ? JS_ARGV(cx, vp)[i] : JSVAL_VOID, a##i)) return JS_FALSE;
 
 // List-generating macros, named roughly after their first list item
 #define TYPENAME_T0_HEAD(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_HEAD, typename T) // "typename T0, typename T1, "
@@ -47,18 +47,18 @@
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
-// JSNative-compatible function that wraps the function identified in the template argument list
+// JSFastNative-compatible function that wraps the function identified in the template argument list
 // (Definition comes later, since it depends on some things we haven't defined yet)
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( void* T0_TAIL(z,i) )> \
-	static JSBool call(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
+	static JSBool call(JSContext* cx, uintN argc, jsval* vp);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 // Similar, for class methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0(z,i) )> \
-	static JSBool callMethod(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
+	static JSBool callMethod(JSContext* cx, uintN argc, jsval* vp);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 

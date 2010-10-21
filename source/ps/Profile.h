@@ -154,7 +154,6 @@ public:
 
 class CProfileSample
 {
-	static std::map<CStrW, char*> evMap;
 public:
 	CProfileSample( const char* name )
 	{
@@ -162,6 +161,21 @@ public:
 			g_Profiler.Start( name );
 	}
 	~CProfileSample()
+	{
+		if (CProfileManager::IsInitialised())
+			g_Profiler.Stop();
+	}
+};
+
+class CProfileSampleScript
+{
+public:
+	CProfileSampleScript( const char* name )
+	{
+		if (CProfileManager::IsInitialised())
+			g_Profiler.StartScript( name );
+	}
+	~CProfileSampleScript()
 	{
 		if (CProfileManager::IsInitialised())
 			g_Profiler.Stop();

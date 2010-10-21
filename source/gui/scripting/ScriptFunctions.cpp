@@ -23,14 +23,17 @@
 #include "graphics/GameView.h"
 #include "graphics/MapReader.h"
 #include "gui/GUIManager.h"
+#include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "maths/FixedVector3D.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "network/NetTurnManager.h"
 #include "ps/CLogger.h"
+#include "ps/CConsole.h"
 #include "ps/Game.h"
 #include "ps/Overlay.h"
+#include "ps/Pyrogenesis.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
 #include "simulation2/Simulation2.h"
@@ -322,6 +325,47 @@ void CameraFollow(void* UNUSED(cbdata), entity_id_t entityid)
 		g_Game->GetView()->CameraFollow(entityid);
 }
 
+
+void SetSimRate(void* UNUSED(cbdata), float rate)
+{
+	g_Game->SetSimRate(rate);
+}
+
+void SetTurnLength(void* UNUSED(cbdata), int length)
+{
+	if (g_NetServer)
+		g_NetServer->SetTurnLength(length);
+	else
+		LOGERROR(L"Only network host can change turn length");
+}
+
+// Focus the game camera on a given position.
+void SetCameraTarget(void* UNUSED(cbdata), float x, float y, float z)
+{
+	g_Game->GetView()->ResetCameraTarget(CVector3D(x, y, z));
+}
+
+// Deliberately cause the game to crash.
+// Currently implemented via access violation (read of address 0).
+// Useful for testing the crashlog/stack trace code.
+int Crash(void* UNUSED(cbdata))
+{
+	MICROLOG(L"Crashing at user's request.");
+	return *(int*)0;
+}
+
+// Force a JS garbage collection cycle to take place immediately.
+// Writes an indication of how long this took to the console.
+void ForceGC(void* cbdata)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	double time = timer_Time();
+	JS_GC(guiManager->GetScriptInterface().GetContext());
+	time = timer_Time() - time;
+	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -362,4 +406,11 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapData>("LoadMapData");
 	scriptInterface.RegisterFunction<void, bool, &SetRevealMap>("SetRevealMap");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
+
+	// Development/debugging functions
+	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
+	scriptInterface.RegisterFunction<void, int, &SetTurnLength>("SetTurnLength");
+	scriptInterface.RegisterFunction<void, float, float, float, &SetCameraTarget>("SetCameraTarget");
+	scriptInterface.RegisterFunction<int, &Crash>("Crash");
+	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
 }

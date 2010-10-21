@@ -39,12 +39,6 @@
 const int RUNTIME_SIZE = 16 * 1024 * 1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
 
-#ifdef NDEBUG
-#define ENABLE_SCRIPT_PROFILING 0
-#else
-#define ENABLE_SCRIPT_PROFILING 1
-#endif
-
 #if ENABLE_SCRIPT_PROFILING
 #include "js/jsdbgapi.h"
 #endif
@@ -55,7 +49,7 @@ struct ScriptInterface_impl
 {
 	ScriptInterface_impl(const char* nativeScopeName, JSContext* cx);
 	~ScriptInterface_impl();
-	void Register(const char* name, JSNative fptr, uintN nargs);
+	void Register(const char* name, JSFastNative fptr, uintN nargs);
 
 	JSRuntime* m_rt; // NULL if m_cx is shared; non-NULL if we own m_cx
 	JSContext* m_cx;
@@ -314,9 +308,9 @@ ScriptInterface_impl::~ScriptInterface_impl()
 	}
 }
 
-void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
+void ScriptInterface_impl::Register(const char* name, JSFastNative fptr, uintN nargs)
 {
-	JS_DefineFunction(m_cx, m_nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_nativeScope, name, reinterpret_cast<JSNative>(fptr), nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
 }
 
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName) :
@@ -367,7 +361,7 @@ void ScriptInterface::ReplaceNondeterministicFunctions(boost::rand48& rng)
 	JS_SetReservedSlot(m->m_cx, JS_GetFunctionObject(random), 0, PRIVATE_TO_JSVAL(&rng));
 }
 
-void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
+void ScriptInterface::Register(const char* name, JSFastNative fptr, size_t nargs)
 {
 	m->Register(name, fptr, (uintN)nargs);
 }

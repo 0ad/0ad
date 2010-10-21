@@ -100,18 +100,6 @@ void ScriptingHost::RunScript(const VfsPath& pathname, JSObject* globalObject)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();
 }
 
-jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * params, int numParams)
-{
-	jsval result;
-
-	JSBool ok = JS_CallFunctionName(m_Context, m_GlobalObject, functionName.c_str(), numParams, params, &result);
-
-	if (ok == JS_FALSE)
-		throw PSERROR_Scripting_CallFunctionFailed();
-
-	return result;
-}
-
 jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom, JSObject* contextObject )
 {
 	jsval rval; 
@@ -122,18 +110,6 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 	if (!ok) return JSVAL_NULL;
 
 	return rval;
-}
-
-void ScriptingHost::DefineConstant(const std::string & name, int value)
-{
-	// First remove this constant if it already exists
-	JS_DeleteProperty(m_Context, m_GlobalObject, name.c_str());
-
-	JSBool ok = JS_DefineProperty(	m_Context, m_GlobalObject, name.c_str(), INT_TO_JSVAL(value), 
-									NULL, NULL, JSPROP_READONLY);
-
-	if (ok == JS_FALSE)
-		throw PSERROR_Scripting_DefineConstantFailed();
 }
 
 void ScriptingHost::DefineCustomObjectType(JSClass *clasp, JSNative constructor, uintN minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs)
@@ -245,9 +221,4 @@ CStrW ScriptingHost::ValueToUCString( const jsval value )
 	jschar *strptr=JS_GetStringChars(string);
 	size_t length=JS_GetStringLength(string);
 	return std::wstring(strptr, strptr+length);
-}
-
-jsval ScriptingHost::UCStringToValue( const CStrW& str )
-{
-	return STRING_TO_JSVAL(JS_NewUCStringCopyZ(m_Context, str.utf16().c_str()));
 }
