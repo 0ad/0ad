@@ -10,43 +10,10 @@
   <Promotion>
     <Entity>hele_cavalry_swordsman_a</Entity>
   </Promotion>
-  <Cost>
-    <BuildTime>28</BuildTime>
-    <Resources>
-      <wood>5</wood>
-      <metal>17</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>140</Max>
-  </Health>
-  <Armour>
-    <Hack>3.0</Hack>
-    <Pierce>1.0</Pierce>
-    <Crush>6.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.4</WalkSpeed>
-    <Run>
-      <Speed>21</Speed>
-    </Run>
-  </UnitMotion>
-  <Attack>
-    <Melee>
-      <Hack>17.0</Hack>
-      <Crush>3.0</Crush>
-      <MaxRange>2.4</MaxRange>
-    </Melee>
-    <Charge>
-      <Hack>51.0</Hack>
-      <Crush>9.0</Crush>
-      <MaxRange>3.4</MaxRange>
-    </Charge>
-  </Attack>
+  <Vision>
+    <Range>110</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_b.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>64</Range>
-  </Vision>
 </Entity>

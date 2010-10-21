@@ -7,36 +7,28 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <Health>
-    <Max>160</Max>
-    <RegenRate>0.4</RegenRate>
+    <Max>150</Max>
   </Health>
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>16.0</Crush>
-  </Armour>
   <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>8.4</WalkSpeed>
     <Run>
-      <Speed>18.75</Speed>
+      <Speed>25.2</Speed>
     </Run>
   </UnitMotion>
+  <Armour>
+    <Hack>8.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>7.0</Crush>
+  </Armour>
   <Attack>
     <Melee>
-      <Hack>19.0</Hack>
-      <Crush>7.0</Crush>
-      <MaxRange>2.0</MaxRange>
+      <Hack>22.0</Hack>
     </Melee>
     <Charge>
-      <Hack>57.0</Hack>
-      <Crush>21.0</Crush>
-      <MaxRange>4.0</MaxRange>
+      <Hack>66.0</Hack>
     </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_e.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>52</Range>
-  </Vision>
 </Entity>

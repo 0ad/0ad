@@ -7,12 +7,28 @@
     <Tooltip>Bonused vs. Infantry Swordsmen and Cavalry Spearmen.</Tooltip>
     <Classes datatype="tokens">Bow</Classes>
   </Identity>
+  <Cost>
+    <Resources>
+      <wood>40</wood>
+    </Resources>
+  </Cost>
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>2.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>7.2</WalkSpeed>
+    <Run>
+      <Speed>21.6</Speed>
+    </Run>
+  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
       <Pierce>25.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>44.0</MaxRange>
+      <MaxRange>56.0</MaxRange>
       <MinRange>20.0</MinRange>
       <ProjectileSpeed>40.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>

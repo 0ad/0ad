@@ -7,4 +7,38 @@
     <Tooltip>Bonused vs. Support Units and Infantry Archers.</Tooltip>
     <Classes datatype="tokens">Sword</Classes>
   </Identity>
+  <Cost>
+    <Resources>
+      <metal>60</metal>
+    </Resources>
+  </Cost>
+  <UnitMotion>
+    <WalkSpeed>9.2</WalkSpeed>
+    <Run>
+      <Speed>27.6</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>20.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>6.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>60.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>6.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
 </Entity>

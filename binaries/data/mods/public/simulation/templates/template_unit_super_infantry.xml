@@ -6,51 +6,51 @@
     <Classes datatype="tokens">Organic Foot</Classes>
   </Identity>
   <Cost>
-    <BuildTime>30</BuildTime>
+    <BuildTime>13</BuildTime>
     <Resources>
-      <food>75</food>
+      <food>50</food>
       <wood>0</wood>
       <stone>0</stone>
-      <metal>0</metal>
+      <metal>80</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>150</Max>
+    <Max>130</Max>
   </Health>
   <Stamina>
-    <Max>800</Max>
+    <Max>1500</Max>
   </Stamina>
   <Armour>
-    <Hack>0.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>12.0</Crush>
+    <Hack>9.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>8.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>5.2</WalkSpeed>
     <Run>
-      <Speed>17.5</Speed>
+      <Speed>15.6</Speed>
       <Range>600.0</Range>
       <RangeMin>5.0</RangeMin>
     </Run>
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
+      <Hack>23.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>4.0</MaxRange>
+      <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>60.0</Hack>
+      <Hack>46.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>4.0</MaxRange>
+      <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
   <Vision>
-    <Range>48</Range>
+    <Range>80</Range>
   </Vision>
   <Sound>
     <SoundGroups>

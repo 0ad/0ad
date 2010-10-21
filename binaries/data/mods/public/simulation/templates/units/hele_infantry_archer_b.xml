@@ -11,33 +11,15 @@
     <Entity>hele_infantry_archer_a</Entity>
   </Promotion>
   <Cost>
-    <BuildTime>17</BuildTime>
     <Resources>
-      <wood>35</wood>
+      <food>0</food>
+      <wood>0</wood>
+      <metal>75</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>85</Max>
-    <RegenRate>0.2</RegenRate>
-  </Health>
-  <Armour>
-    <Hack>2.0</Hack>
-    <Pierce>1.0</Pierce>
-    <Crush>1.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.8</WalkSpeed>
-    <Run>
-      <Speed>17.0</Speed>
-    </Run>
-  </UnitMotion>
-  <Attack>
-    <Ranged>
-      <Pierce>35.0</Pierce>
-      <MaxRange>36.0</MaxRange>
-      <MinRange>12.0</MinRange>
-    </Ranged>
-  </Attack>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_b.xml</Actor>
   </VisualActor>

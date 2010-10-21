@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry">
+<Entity parent="template_unit_super_infantry_swordsman">
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Brythonic Delamokludda</SpecificName>
@@ -45,7 +45,4 @@
   <VisualActor>
     <Actor>units/celts/super_unit_3.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>40</Range>
-  </Vision>
 </Entity>

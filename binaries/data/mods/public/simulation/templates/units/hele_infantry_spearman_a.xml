@@ -6,47 +6,34 @@
   <Promotion>
     <Entity>hele_infantry_spearman_e</Entity>
   </Promotion>
-  <Cost>
-    <Resources>
-      <wood>45</wood>
-      <metal>27</metal>
-    </Resources>
-  </Cost>
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <Health>
     <Max>110</Max>
-    <RegenRate>0.3</RegenRate>
   </Health>
-  <Stamina>
-    <Max>550</Max>
-  </Stamina>
   <Armour>
-    <Hack>16.0</Hack>
-    <Pierce>15.0</Pierce>
-    <Crush>14.0</Crush>
+    <Hack>5.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>6.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
+    <WalkSpeed>5.6</WalkSpeed>
     <Run>
-      <Speed>12.5</Speed>
+      <Speed>16.8</Speed>
     </Run>
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>8.0</Hack>
-      <Pierce>23.0</Pierce>
+      <Hack>6.0</Hack>
+      <Pierce>16.0</Pierce>
     </Melee>
     <Charge>
-      <Hack>16.0</Hack>
-      <Pierce>46.0</Pierce>
+      <Hack>12.0</Hack>
+      <Pierce>32.0</Pierce>
     </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_a.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>72</Range>
-  </Vision>
 </Entity>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super">
+  <Identity>
+    <GenericName>Super Infantry Spearman</GenericName>
+    <IconCell>43</IconCell>
+    <Classes datatype="tokens">Organic Foot</Classes>
+  </Identity>
+  <Cost>
+    <Resources>
+      <food>50</food>
+      <wood>75</wood>
+    </Resources>
+  </Cost>
+  <Armour>
+    <Hack>8.0</Hack>
+    <Pierce>9.0</Pierce>
+    <Crush>8.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>5.2</WalkSpeed>
+    <Run>
+      <Speed>15.6</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Melee>
+      <Hack>8.0</Hack>
+      <Pierce>18.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>16.0</Hack>
+      <Pierce>36.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
+  <Sound>
+    <SoundGroups>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <order_attack>voice/hellenes/civ/civ_male_attack.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
+      <order_repair>voice/hellenes/civ/civ_male_ack.xml</order_repair>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/walk.xml</run>
+      <attack>attack/weapon/sword.xml</attack>
+      <death>actor/human/death/death.xml</death>
+    </SoundGroups>
+  </Sound>
+</Entity>

@@ -7,27 +7,19 @@
     <Tooltip>General Bonus vs. Infantry.</Tooltip>
   </Identity>
   <Cost>
-    <BuildTime>8</BuildTime>
     <Resources>
-      <food>50</food>
-      <stone>30</stone>
+      <stone>20</stone>
     </Resources>
   </Cost>
-  <Health>
-    <Max>70</Max>
-  </Health>
-  <Stamina>
-    <Max>550</Max>
-  </Stamina>
   <Armour>
-    <Hack>1.0</Hack>
+    <Hack>2.0</Hack>
     <Pierce>2.0</Pierce>
     <Crush>2.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>7.6</WalkSpeed>
     <Run>
-      <Speed>18.0</Speed>
+      <Speed>22.8</Speed>
     </Run>
   </UnitMotion>
   <Attack>
@@ -35,7 +27,7 @@
       <Hack>0.0</Hack>
       <Pierce>20.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>28.0</MaxRange>
+      <MaxRange>48.0</MaxRange>
       <MinRange>16.0</MinRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
       <PrepareTime>900</PrepareTime>

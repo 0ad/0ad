@@ -7,13 +7,29 @@
     <Tooltip>Bonused vs. Infantry Spearmen and Cavalry Archers.</Tooltip>
     <Classes datatype="tokens">Javelin</Classes>
   </Identity>
+  <Cost>
+    <Resources>
+      <wood>45</wood>
+    </Resources>
+  </Cost>
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>3.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>7.2</WalkSpeed>
+    <Run>
+      <Speed>21.6</Speed>
+    </Run>
+  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
       <Pierce>30.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>32</MaxRange>
-      <MinRange>8.0</MinRange>
+      <MaxRange>40</MaxRange>
+      <MinRange>12.0</MinRange>
       <ProjectileSpeed>30.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>

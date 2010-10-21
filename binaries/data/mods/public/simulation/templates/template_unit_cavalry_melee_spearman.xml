@@ -7,4 +7,30 @@
     <Tooltip>Bonused vs. Infantry Swordsmen and Infantry Javelinists.</Tooltip>
     <Classes datatype="tokens">Spear</Classes>
   </Identity>
+  <Cost>
+    <Resources>
+      <wood>55</wood>
+    </Resources>
+  </Cost>
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>7.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>5.0</Hack>
+      <Pierce>15.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>6.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>15.0</Hack>
+      <Pierce>45.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>6.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
 </Entity>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1">
+      <mesh>props/shield/scutum_l_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/rome_scutum_imp_back2.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shield-scutum-a">
+      <texture>props/shield/rome_imp_scutum_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-b">
+      <texture>props/shield/rome_imp_scutum_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-c">
+      <texture>props/shield/rome_imp_scutum_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-d">
+      <texture>props/shield/rome_imp_scutum_d.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-e">
+      <texture>props/shield/rome_imp_scutum_e.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

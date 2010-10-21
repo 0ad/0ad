@@ -12,28 +12,15 @@
   </Promotion>
   <Cost>
     <Resources>
-      <food>0</food>
-      <wood>0</wood>
-      <metal>75</metal>
+      <wood>50</wood>
     </Resources>
   </Cost>
-  <Stamina>
-    <Max>590</Max>
-  </Stamina>
-  <Armour>
-    <Hack>2.0</Hack>
-    <Pierce>2.0</Pierce>
-    <Crush>6.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.7</WalkSpeed>
-    <Run>
-      <Speed>16.75</Speed>
-    </Run>
-  </UnitMotion>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
   <Attack>
     <Ranged>
-      <MaxRange>36.0</MaxRange>
+      <MaxRange>44.0</MaxRange>
     </Ranged>
   </Attack>
   <VisualActor>
