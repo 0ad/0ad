@@ -2,9 +2,16 @@
 <Entity parent="template_unit_super_infantry_swordsman">
   <Identity>
     <Civ>rome</Civ>
-    <SpecificName>Legionnaire</SpecificName>
+	<IconSheet>snPortraitSheetRome</IconSheet>
+    <GenericName>Roman Legion</GenericName>
+    <SpecificName>Marian Legionnaire</SpecificName>
     <History>The Marian Legionnaire.</History>
+	<Tooltip>The famed legion of the Late Republic.</Tooltip>
   </Identity>
+  <Promotion>
+    <Entity>rome_legionnaire_imperial</Entity>
+    <Req>500</Req>
+  </Promotion>
   <VisualActor>
     <Actor>units/romans/super_unit_3.xml</Actor>
   </VisualActor>

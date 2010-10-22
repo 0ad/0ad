@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super_cavalry">
+  <Identity>
+    <GenericName>Super Cavalry Spearman</GenericName>
+    <IconCell>43</IconCell>
+    <Classes datatype="tokens">Organic Mounted</Classes>
+  </Identity>
+  <Cost>
+    <Resources>
+      <wood>80</wood>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>160</Max>
+  </Health>
+  <Armour>
+    <Hack>8.0</Hack>
+    <Pierce>12.0</Pierce>
+    <Crush>8.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>8.0</Hack>
+      <Pierce>18.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>24.0</Hack>
+      <Pierce>54.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
+</Entity>

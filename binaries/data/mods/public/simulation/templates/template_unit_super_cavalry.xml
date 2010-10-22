@@ -8,27 +8,27 @@
   <Cost>
     <Population>2</Population>
     <Resources>
-      <food>150</food>
+      <food>100</food>
       <wood>0</wood>
       <stone>0</stone>
       <metal>0</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>200</Max>
+    <Max>150</Max>
   </Health>
   <Stamina>
-    <Max>2000</Max>
+    <Max>2500</Max>
   </Stamina>
   <Armour>
-    <Hack>7.0</Hack>
-    <Pierce>8.0</Pierce>
-    <Crush>14.0</Crush>
+    <Hack>6.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>5.0</Crush>
   </Armour>
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
     <Run>
-      <Speed>23.0</Speed>
+      <Speed>24.0</Speed>
       <Range>1000.0</Range>
       <RangeMin>10.0</RangeMin>
     </Run>

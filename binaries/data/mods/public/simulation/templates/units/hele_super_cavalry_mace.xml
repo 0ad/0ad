@@ -9,19 +9,12 @@
     <History>The Hetairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
   </Identity>
   <Cost>
-    <BuildTime>30</BuildTime>
     <Resources>
-      <wood>32</wood>
-      <metal>45</metal>
+      <metal>20</metal>
     </Resources>
   </Cost>
-  <Stamina>
-    <Max>1135</Max>
-  </Stamina>
   <Armour>
-    <Hack>12.0</Hack>
-    <Pierce>15.0</Pierce>
-    <Crush>16.0</Crush>
+    <Hack>10.0</Hack>
   </Armour>
   <UnitMotion>
     <WalkSpeed>8.3</WalkSpeed>
@@ -31,20 +24,19 @@
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>12.0</Hack>
-      <Pierce>15.0</Pierce>
-      <Crush>0.0</Crush>
+      <MaxRange>6.0</MaxRange>
     </Melee>
     <Charge>
-      <Hack>38.5</Hack>
-      <Pierce>52.5</Pierce>
-      <Crush>10.0</Crush>
+      <Hack>26.0</Hack>
+      <Pierce>60.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Vision>
+    <Range>110</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/super_unit_4.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>56</Range>
-  </Vision>
 </Entity>

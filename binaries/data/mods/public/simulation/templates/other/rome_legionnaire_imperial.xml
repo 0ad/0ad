@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry_swordsman">
+<Entity parent="other/rome_legionnaire_marian">
   <Identity>
     <Civ>rome</Civ>
-    <SpecificName>Legionnaire</SpecificName>
+    <SpecificName>Imperial Legionnaire</SpecificName>
     <History>The Imperial Legionnaire.</History>
+	<Tooltip>The famed legion of the Early Empire.</Tooltip>
   </Identity>
+  <Promotion>
+    <Entity>rome_centurio_imperial</Entity>
+    <Req>700</Req>
+  </Promotion>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>25.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>50.0</Hack>
+    </Charge>
+  </Attack>
   <VisualActor>
     <Actor>units/romans/super_unit_4_imp_legion.xml</Actor>
   </VisualActor>

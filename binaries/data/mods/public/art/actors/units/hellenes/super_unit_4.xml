@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -16,19 +14,18 @@
       <mesh>skeletal/horse.pmd</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-roan">
-      <colour>243 224 180</colour>
+      <colour>242 219 164</colour>
     </variant>
     <variant frequency="1" name="horse-brown">
-      <colour>135 94 63</colour>
+      <colour>255 148 89</colour>
     </variant>
     <variant frequency="1" name="horse-rust">
       <colour>228 187 101</colour>
     </variant>
     <variant frequency="1" name="horse-black">
-      <colour>45 45 45</colour>
+      <colour>81 81 81</colour>
     </variant>
     <variant frequency="1" name="horse-gray">
       <colour>164 164 164</colour>
@@ -36,8 +33,13 @@
     <variant frequency="1" name="horse-white">
       <colour>255 255 255</colour>
     </variant>
+    <variant frequency="1" name="horse-chocolate">
+      <colour>98 68 58</colour>
+    </variant>
+    <variant frequency="1" name="horse-liver">
+      <colour>172 95 68</colour>
+    </variant>
   </group>
-
   <group>
     <variant frequency="4" name="saddle-leopard-1">
       <props>
@@ -96,7 +98,5 @@
       <texture>skeletal/horse_hele_g.dds</texture>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>
