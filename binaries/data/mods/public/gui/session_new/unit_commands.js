@@ -259,10 +259,14 @@ GARRISON GOES HERE (need to customize this)
 			//icon.cell_id = i;
 			icon.cell_id = getCommandCellId(item);
 		}
+		else if (template.icon)
+		{
+			icon.sprite = "stretched:session/portraits/" + template.icon;
+		}
 		else
 		{
-			icon.sprite = template.icon_sheet;
-			icon.cell_id = ((typeof template.icon_cell == "undefined")? 0 : template.icon_cell);
+			// TODO: we should require all entities to have icons, so this case never occurs
+			icon.sprite = "bkFillBlack";
 		}
 	}
 

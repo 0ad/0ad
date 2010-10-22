@@ -2,9 +2,9 @@
 <Entity parent="template_structure_military">
   <Identity>
     <GenericName>Dock</GenericName>
-    <IconCell>10</IconCell>
     <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
+    <Icon>structures/dock.png</Icon>
   </Identity>
   <BuildRestrictions>
     <Category>Dock</Category>

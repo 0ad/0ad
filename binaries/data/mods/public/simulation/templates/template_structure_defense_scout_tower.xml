@@ -2,9 +2,9 @@
 <Entity parent="template_structure_civic">
   <Identity>
     <GenericName>Outpost</GenericName>
-    <IconCell>14</IconCell>
     <Tooltip>Garrison to reconnoiter and to provide defense.</Tooltip>
     <Classes datatype="tokens">Village Defensive</Classes>
+    <Icon>structures/outpost.png</Icon>
   </Identity>
   <BuildRestrictions>
     <Category>ScoutTower</Category>

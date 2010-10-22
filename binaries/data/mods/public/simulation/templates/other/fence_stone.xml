@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Identity>
-	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
-    <IconCell>4</IconCell>
     <Civ>gaia</Civ>
     <GenericName>Stone Fence</GenericName>
     <SpecificName>Stone Fence</SpecificName>
     <History>A stone fence.</History>
+    <Icon>gaia/special_fence.png</Icon>
   </Identity>
   <Health>
     <Max>200</Max>

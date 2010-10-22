@@ -2,9 +2,9 @@
 <Entity parent="template_structure_military">
   <Identity>
     <GenericName>Fortress</GenericName>
-    <IconCell>9</IconCell>
     <Tooltip>Train Heroes, Super Units, and Siege Units. Research some Special Technologies.</Tooltip>
     <Classes datatype="tokens">City Defensive</Classes>
+    <Icon>structures/fortress.png</Icon>
   </Identity>
   <BuildRestrictions>
     <Category>Fortress</Category>

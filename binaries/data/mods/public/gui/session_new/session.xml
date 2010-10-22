@@ -450,7 +450,7 @@
 				<object size="0 0 100% 100%">
 					<repeat count="16">
 						<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
-							<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="1 1 37 37"/>
+							<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
 							<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 						</object>
 					</repeat>
@@ -500,7 +500,7 @@
 
 				<!-- Big unit icon -->
 				<object size= "50%-48 40 50%+48 136" type="image" name="iconBorder" tooltip_style="snToolTip">
-					<object size= "0 0 100% 100%" type="image" name="icon" ghost="true"/>
+					<object size="2 2 100%-2 100%-2" type="image" name="icon" ghost="true"/>
 					<object size="100%-32 0 100% 32" name="rankIcon" type="image" cell_id="-1" sprite="snIconSheetRank" ghost="true"/>
 					<object type="image" sprite="glassSquareIcon" ghost="true"/>
 				</object>
@@ -542,7 +542,7 @@
 					<object size="0 0 100% 100%">
 						<repeat count="16">
 							<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
-								<object name="unitSelectionIcon[n]" type="image" ghost="true" size="1 1 37 37"/>
+								<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
 								<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 								<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
 								</object>
@@ -610,7 +610,7 @@
 				<object size="0 0 100% 100%">
 					<repeat count="18">
 						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
-							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="1 1 47 47"/>
+							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 45 45"/>
 						</object>
 					</repeat>
 				</object>
@@ -647,7 +647,7 @@
 				<object size="0 0 100% 100%">
 					<repeat count="18">
 						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
-							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="1 1 47 47"/>
+							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 45 45"/>
 						</object>
 					</repeat>
 				</object>
@@ -665,7 +665,7 @@
 				<object size="48 6 100% 100%">
 					<repeat count="16">
 						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40">
-							<object name="unitQueueIcon[n]" ghost="true" type="image" size="1 1 39 39"/>
+							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 37 37"/>
 							<object name="unitQueueProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="1 1 100%-1 100%-1" z="20"/>
 							<object name="unitQueueCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
 						</object>

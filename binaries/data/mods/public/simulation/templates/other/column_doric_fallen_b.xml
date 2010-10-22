@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Identity>
-	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
-    <IconCell>4</IconCell>
     <Civ>hele</Civ>
     <GenericName>Column</GenericName>
     <SpecificName>Fallen Doric Column</SpecificName>
     <History>Column drums fallen off some Greek ruin.</History>
+    <Icon>gaia/special_fence.png</Icon>
   </Identity>
   <Health>
     <Max>100</Max>

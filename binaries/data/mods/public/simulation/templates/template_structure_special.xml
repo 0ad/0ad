@@ -2,9 +2,9 @@
 <Entity parent="template_structure">
   <Identity>
     <GenericName>Special Building</GenericName>
-    <IconCell>62</IconCell>
     <Rollover>This is a special building unique to a particular civilisation. (Later we should break this down into child elements with different special building templates.)</Rollover>
     <Classes datatype="tokens">City</Classes>
+    <Icon>.png</Icon>
   </Identity>
   <BuildRestrictions>
     <Category>Special</Category>

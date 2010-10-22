@@ -2,9 +2,9 @@
 <Entity parent="template_structure_civic">
   <Identity>
     <GenericName>Temple</GenericName>
-    <IconCell>6</IconCell>
     <Tooltip>Train physicians, research medicine, and heal nearby units.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
+    <Icon>structures/temple.png</Icon>
   </Identity>
   <Cost>
     <PopulationBonus>5</PopulationBonus>

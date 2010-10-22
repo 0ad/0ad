@@ -97,10 +97,9 @@ function displaySingle(entState, template)
 
 
 	// Icon image
-	if (template.icon_sheet && typeof template.icon_cell)
+	if (template.icon)
 	{
-		getGUIObjectByName("icon").sprite = template.icon_sheet;
-		getGUIObjectByName("icon").cell_id = template.icon_cell;
+		getGUIObjectByName("icon").sprite = "stretched:session/portraits/" + template.icon;
 	}
 	else
 	{

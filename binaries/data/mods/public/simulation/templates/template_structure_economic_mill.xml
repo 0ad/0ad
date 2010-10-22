@@ -2,9 +2,9 @@
 <Entity parent="template_structure_economic">
   <Identity>
     <GenericName>Mill</GenericName>
-    <IconCell>2</IconCell>
     <Tooltip>Gather Wood, Stone, and Metal within its aura. Research economic improvements.</Tooltip>
     <Classes datatype="tokens">Village</Classes>
+    <Icon>structures/mill.png</Icon>
   </Identity>
   <BuildRestrictions>
     <Territory>all</Territory>

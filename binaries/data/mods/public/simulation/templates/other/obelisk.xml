@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Identity>
-	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
-    <IconCell>2</IconCell>
     <Civ>gaia</Civ>
     <GenericName>Obelisk</GenericName>
     <SpecificName>Egyptian Obelisk</SpecificName>
     <History>A monumental ornamental structure built by the Egyptians of old.</History>
+    <Icon>gaia/special_obelisk.png</Icon>
   </Identity>
   <Health>
     <Max>1000</Max>

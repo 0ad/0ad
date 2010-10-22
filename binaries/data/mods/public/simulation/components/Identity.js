@@ -6,8 +6,7 @@ Identity.prototype.Schema =
 		"<Civ>hele</Civ>" +
 		"<GenericName>Infantry Spearman</GenericName>" +
 		"<SpecificName>Hoplite</SpecificName>" +
-		"<IconCell>3</IconCell>" +
-		"<IconSheet>PortraitSheet</IconSheet>" +
+		"<Icon>units/hele_infantry_spearman.png</Icon>" +
 	"</a:example>" +
 	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with'>" +
 		"<choice>" +
@@ -86,12 +85,7 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='IconCell'>" +
-			"<data type='nonNegativeInteger'/>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='IconSheet'>" +
+		"<element name='Icon'>" +
 			"<text/>" +
 		"</element>" +
 	"</optional>";

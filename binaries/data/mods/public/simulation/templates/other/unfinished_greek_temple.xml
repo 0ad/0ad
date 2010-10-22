@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Identity>
-    <IconCell>6</IconCell>
     <Civ>hele</Civ>
     <GenericName>Ruins</GenericName>
     <SpecificName>Unfinished Greek Temple</SpecificName>
     <History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
 	<Tooltip>This temple is unfinished and has fallen to ruin.</Tooltip>
+    <Icon>structures/temple.png</Icon>
   </Identity>
   <Health>
     <Max>1500</Max>

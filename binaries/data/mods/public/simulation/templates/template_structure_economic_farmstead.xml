@@ -2,9 +2,9 @@
 <Entity parent="template_structure_economic">
   <Identity>
     <GenericName>Farmstead</GenericName>
-    <IconCell>3</IconCell>
     <Tooltip>Gather food within this building's aura.</Tooltip>
     <Classes datatype="tokens">Village</Classes>
+    <Icon>structures/farmstead.png</Icon>
   </Identity>
   <BuildRestrictions>
     <Category>Farmstead</Category>

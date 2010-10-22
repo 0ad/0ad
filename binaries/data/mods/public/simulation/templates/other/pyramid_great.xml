@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Identity>
-	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
-    <IconCell>3</IconCell>
     <Civ>gaia</Civ>
     <GenericName>Pyramid</GenericName>
     <SpecificName>Great Pyramid</SpecificName>
     <History>A monumental ornamental structure built by the Egyptians of old.</History>
 	<Tooltip>What treasures lay within this monumental tomb?</Tooltip>
+    <Icon>gaia/special_pyramid.png</Icon>
   </Identity>
   <Health>
     <Max>20000</Max>

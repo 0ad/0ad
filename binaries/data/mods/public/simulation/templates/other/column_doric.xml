@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Identity>
-	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
-    <IconCell>4</IconCell>
     <Civ>hele</Civ>
     <GenericName>Column</GenericName>
     <SpecificName>Doric Column</SpecificName>
     <History>A column of the understated Greek Doric Order.</History>
+    <Icon>gaia/special_fence.png</Icon>
   </Identity>
   <Health>
     <Max>200</Max>

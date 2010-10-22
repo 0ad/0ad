@@ -2,9 +2,9 @@
 <Entity parent="template_structure_military">
   <Identity>
     <GenericName>Barracks</GenericName>
-    <IconCell>8</IconCell>
     <Tooltip>Train Citizen-Soldiers. Research military technology.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
+    <Icon>structures/barracks.png</Icon>
   </Identity>
   <BuildRestrictions>
     <Category>Barracks</Category>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Identity>
-	<IconSheet>snPortraitSheetSpecialGaia</IconSheet>
-    <IconCell>4</IconCell>
     <Civ>gaia</Civ>
     <GenericName>Table</GenericName>
     <SpecificName>Rectangle Table</SpecificName>
     <History>A wooden table.</History>
+    <Icon>gaia/special_fence.png</Icon>
   </Identity>
   <Minimap>
     <Colour r="119" g="82" b="46"/>

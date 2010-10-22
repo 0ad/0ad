@@ -168,8 +168,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 			"specific": (template.Identity.SpecificName || template.Identity.GenericName),
 			"generic": template.Identity.GenericName
 		};
-		ret.icon_sheet = template.Identity.IconSheet;
-		ret.icon_cell = template.Identity.IconCell;
+		ret.icon = template.Identity.Icon;
 		ret.tooltip =  template.Identity.Tooltip;
 	}
 
