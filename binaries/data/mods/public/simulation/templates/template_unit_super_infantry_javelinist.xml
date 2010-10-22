@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super_infantry">
+  <Identity>
+    <GenericName>Super Ranged</GenericName>
+    <Classes datatype="tokens">Organic Foot</Classes>
+  </Identity>
+  <Cost>
+    <BuildTime>12</BuildTime>
+    <Resources>
+      <food>50</food>
+      <wood>80</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>17.5</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>38.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>52</MaxRange>
+      <MinRange>12.0</MinRange>
+      <ProjectileSpeed>25.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
+</Entity>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_ranged">
+<Entity parent="template_unit_super_infantry_javelinist">
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Ekdromos Athenaikos</SpecificName>
@@ -8,43 +8,29 @@
     <Tooltip>Bonused vs. Support Units and Ranged Units. Weak vs. Melee Units. Fast Move Speed.</Tooltip>
     <History>Ekdromos (literally: out runner) was a development of the Hoplite. Development of the Hoplite took many twists and turns based on the changing dynamics on the field of battle. Once armies began using Peltasts imported from Thrace something had to be done to counter this barrage of javelins thrown into the midst of a phalanx. The Thebans began to increase the armor of their hoplites, but the Athenians took a completely different approach and lightened the load for their infantry. The Ekdromoi would dash out from the phalanx, close with the enemy ranged units at speed, and cut them down at will. This approach also worked to harass more heavily armed troops as well, the enemy carrying too much weight to catch the vexatious Ekdromoi.</History>
   </Identity>
-  <Cost>
-    <BuildTime>26</BuildTime>
-    <Resources>
-      <wood>55</wood>
-      <metal>35</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>130</Max>
-  </Health>
-  <Stamina>
-    <Max>675</Max>
-  </Stamina>
   <Armour>
-    <Hack>7.0</Hack>
-    <Pierce>9.0</Pierce>
-    <Crush>14.0</Crush>
+    <Hack>5.0</Hack>
+    <Pierce>10.0</Pierce>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>8.8</WalkSpeed>
     <Run>
-      <Speed>16.0</Speed>
+      <Speed>17.6</Speed>
     </Run>
   </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>55.0</Pierce>
+      <Pierce>40.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>28.0</MaxRange>
+      <MaxRange>50</MaxRange>
       <MinRange>10.0</MinRange>
     </Ranged>
   </Attack>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/super_unit_2.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>36</Range>
-  </Vision>
 </Entity>

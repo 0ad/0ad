@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry">
+<Entity parent="template_unit_super_infantry_spearman">
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Hypaspist (Shield Bearer)</SpecificName>
@@ -14,36 +14,34 @@
   </Promotion>
   <Cost>
     <Resources>
-      <wood>75</wood>
-      <metal>50</metal>
+      <metal>20</metal>
     </Resources>
   </Cost>
   <Health>
     <Max>135</Max>
   </Health>
   <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>15.0</Pierce>
-    <Crush>15.0</Crush>
+    <Hack>9.0</Hack>
+    <Pierce>12.0</Pierce>
+    <Crush>9.0</Crush>
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.5</WalkSpeed>
     <Run>
-      <Speed>15.0</Speed>
+      <Speed>16.5</Speed>
     </Run>
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>14.0</Hack>
+      <Hack>10.0</Hack>
       <Pierce>20.0</Pierce>
-      <Crush>0.0</Crush>
-      <RepeatTime>1500</RepeatTime>
+      <MaxRange>6.0</MaxRange>
     </Melee>
     <Charge>
-      <Hack>36.0</Hack>
+      <Hack>20.0</Hack>
       <Pierce>40.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>3.0</MaxRange>
+      <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
   <VisualActor>

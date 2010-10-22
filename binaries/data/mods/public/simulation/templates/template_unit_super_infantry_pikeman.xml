@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_super_infantry">
   <Identity>
-    <GenericName>Super Infantry Swordsman</GenericName>
+    <GenericName>Super Infantry Pikeman</GenericName>
     <IconCell>43</IconCell>
     <Classes datatype="tokens">Organic Foot</Classes>
   </Identity>
   <Cost>
+    <BuildTime>13</BuildTime>
     <Resources>
       <food>50</food>
-      <metal>80</metal>
+      <wood>50</wood>
+      <stone>0</stone>
+      <metal>50</metal>
     </Resources>
   </Cost>
+  <Health>
+    <Max>130</Max>
+  </Health>
+  <Stamina>
+    <Max>1200</Max>
+  </Stamina>
   <Armour>
-    <Hack>9.0</Hack>
-    <Pierce>6.0</Pierce>
-    <Crush>8.0</Crush>
+    <Hack>10.0</Hack>
+    <Pierce>9.0</Pierce>
+    <Crush>9.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>5.6</WalkSpeed>
+    <WalkSpeed>4.0</WalkSpeed>
     <Run>
-      <Speed>16.8</Speed>
+      <Speed>12.0</Speed>
       <Range>600.0</Range>
       <RangeMin>5.0</RangeMin>
     </Run>
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>23.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>10.0</Hack>
+      <Pierce>25.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
+      <MaxRange>8.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>46.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>15.0</Hack>
+      <Pierce>38.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
+      <MaxRange>7.0</MaxRange>
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>

@@ -10,9 +10,9 @@
     <Max>145</Max>
   </Health>
   <Armour>
-    <Hack>15.0</Hack>
-    <Pierce>20.0</Pierce>
-    <Crush>20.0</Crush>
+    <Hack>10.0</Hack>
+    <Pierce>12.0</Pierce>
+    <Crush>10.0</Crush>
   </Armour>
   <UnitMotion>
     <WalkSpeed>5.0</WalkSpeed>
@@ -22,12 +22,15 @@
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>16.0</Hack>
-      <Pierce>22.0</Pierce>
+      <Hack>11.0</Hack>
+      <Pierce>21.0</Pierce>
+      <MaxRange>6.0</MaxRange>
     </Melee>
     <Charge>
-      <Hack>40.0</Hack>
-      <Pierce>48.0</Pierce>
+      <Hack>22.0</Hack>
+      <Pierce>42.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
   <VisualActor>
