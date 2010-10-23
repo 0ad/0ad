@@ -41,7 +41,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	{
 		entity_id_t ent = it->first;
 
-		// Ignore entities hidden by LOS
+		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		if (cmpRangeManager->GetLosVisibility(ent, player) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
@@ -85,15 +85,19 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	if (sy0 > sy1)
 		std::swap(sy0, sy1);
 
-	std::vector<entity_id_t> hitEnts;
+	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
+	debug_assert(!cmpRangeManager.null());
 
-	// (We don't bother doing LOS checks for these units, since we assume 'owner'
-	// will be the current local player and all their own units will always be visible)
+	std::vector<entity_id_t> hitEnts;
 
 	const CSimulation2::InterfaceList& ents = simulation.GetEntitiesWithInterface(IID_Selectable);
 	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
 		entity_id_t ent = it->first;
+
+		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
+		if (cmpRangeManager->GetLosVisibility(ent, owner) == ICmpRangeManager::VIS_HIDDEN)
+			continue;
 
 		// Ignore entities not owned by 'owner'
 		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
