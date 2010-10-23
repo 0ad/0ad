@@ -425,6 +425,10 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	POST_MESSAGE(Init, ());
 
+	// Wait for it to finish running Init
+	qPing qry;
+	qry.Post();
+
 	//////////////////////////////////////////////////////////////////////////
 	// Menu
 
