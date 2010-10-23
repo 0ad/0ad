@@ -18,6 +18,7 @@
 #ifndef INCLUDED_PARAMNODE
 #define INCLUDED_PARAMNODE
 
+#include "lib/file/vfs/vfs_path.h"
 #include "maths/Fixed.h"
 #include "ps/Errors.h"
 #include "scriptinterface/ScriptVal.h"
@@ -123,6 +124,13 @@ public:
 	 * can be called multiple times to build up a node from multiple inputs.
 	 */
 	static void LoadXML(CParamNode& ret, const XMBFile& file);
+
+	/**
+	 * Loads the XML data specified by @a path into the node @a ret.
+	 * Any existing data in @a ret will be overwritten or else kept, so this
+	 * can be called multiple times to build up a node from multiple inputs.
+	 */
+	static void LoadXML(CParamNode& ret, const VfsPath& path);
 
 	/**
 	 * See LoadXML, but parses the XML string @a xml.

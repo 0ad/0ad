@@ -102,6 +102,7 @@ public:
 
 	virtual void Serialize(ISerializer& UNUSED(serialize))
 	{
+		// No dynamic state to serialize
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))

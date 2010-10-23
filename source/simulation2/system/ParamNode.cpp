@@ -20,6 +20,7 @@
 #include "ParamNode.h"
 
 #include "ps/CStr.h"
+#include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 
 #include "js/jsapi.h"
@@ -44,6 +45,16 @@ CParamNode::CParamNode(bool isOk) :
 void CParamNode::LoadXML(CParamNode& ret, const XMBFile& xmb)
 {
 	ret.ApplyLayer(xmb, xmb.GetRoot());
+}
+
+void CParamNode::LoadXML(CParamNode& ret, const VfsPath& path)
+{
+	CXeromyces xero;
+	PSRETURN ok = xero.Load(g_VFS, path);
+	if (ok != PSRETURN_OK)
+		return; // (Xeromyces already logged an error)
+
+	LoadXML(ret, xero);
 }
 
 PSRETURN CParamNode::LoadXMLString(CParamNode& ret, const char* xml)

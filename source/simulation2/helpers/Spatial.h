@@ -15,6 +15,11 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_SPATIAL
+#define INCLUDED_SPATIAL
+
+#include "simulation2/serialization/SerializeTemplates.h"
+
 /**
  * A very basic subdivision scheme for finding items in ranges.
  * Items are stored in lists in fixed-size divisions.
@@ -221,4 +226,37 @@ private:
 	std::vector<std::vector<T> > m_Divisions;
 	size_t m_DivisionsW;
 	size_t m_DivisionsH;
+
+	template<typename ELEM> friend struct SerializeSpatialSubdivision;
 };
+
+/**
+ * Serialization helper template for SpatialSubdivision
+ */
+template<typename ELEM>
+struct SerializeSpatialSubdivision
+{
+	template<typename T>
+	void operator()(ISerializer& serialize, const char* UNUSED(name), SpatialSubdivision<T>& value)
+	{
+		serialize.NumberFixed_Unbounded("div size", value.m_DivisionSize);
+		SerializeVector<SerializeVector<ELEM> >()(serialize, "divs", value.m_Divisions);
+		serialize.NumberU32_Unbounded("divs w", value.m_DivisionsW);
+		serialize.NumberU32_Unbounded("divs h", value.m_DivisionsH);
+	}
+
+	template<typename T>
+	void operator()(IDeserializer& serialize, const char* UNUSED(name), SpatialSubdivision<T>& value)
+	{
+		serialize.NumberFixed_Unbounded("div size", value.m_DivisionSize);
+		SerializeVector<SerializeVector<ELEM> >()(serialize, "divs", value.m_Divisions);
+
+		u32 w, h;
+		serialize.NumberU32_Unbounded("divs w", w);
+		serialize.NumberU32_Unbounded("divs h", h);
+		value.m_DivisionsW = w;
+		value.m_DivisionsH = h;
+	}
+};
+
+#endif // INCLUDED_SPATIAL

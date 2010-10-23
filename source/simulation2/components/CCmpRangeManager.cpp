@@ -44,7 +44,7 @@ struct Query
 	entity_id_t source;
 	entity_pos_t maxRange;
 	u32 ownersMask;
-	int interface;
+	i32 interface;
 	std::vector<entity_id_t> lastMatch;
 };
 
@@ -74,6 +74,42 @@ struct EntityData
 };
 
 cassert(sizeof(EntityData) == 16);
+
+
+/**
+ * Serialization helper template for Query
+ */
+struct SerializeQuery
+{
+	template<typename S>
+	void operator()(S& serialize, const char* UNUSED(name), Query& value)
+	{
+		serialize.Bool("enabled", value.enabled);
+		serialize.NumberU32_Unbounded("source", value.source);
+		serialize.NumberFixed_Unbounded("max range", value.maxRange);
+		serialize.NumberU32_Unbounded("owners mask", value.ownersMask);
+		serialize.NumberI32_Unbounded("interface", value.interface);
+		SerializeVector<SerializeU32_Unbounded>()(serialize, "last match", value.lastMatch);
+	}
+};
+
+/**
+ * Serialization helper template for EntityData
+ */
+struct SerializeEntityData
+{
+	template<typename S>
+	void operator()(S& serialize, const char* UNUSED(name), EntityData& value)
+	{
+		serialize.NumberFixed_Unbounded("x", value.x);
+		serialize.NumberFixed_Unbounded("z", value.z);
+		serialize.NumberFixed_Unbounded("vision", value.visionRange);
+		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
+		serialize.NumberI8_Unbounded("owner", value.owner);
+		serialize.NumberU8("in world", value.inWorld, 0, 1);
+	}
+};
+
 
 /**
  * Functor for sorting entities by distance from a source point.
@@ -133,17 +169,22 @@ public:
 	bool m_DebugOverlayDirty;
 	std::vector<SOverlayLine> m_DebugOverlayLines;
 
-	SpatialSubdivision<entity_id_t> m_Subdivision;
+	// World bounds (entities are expected to be within this range)
+	entity_pos_t m_WorldX0;
+	entity_pos_t m_WorldZ0;
+	entity_pos_t m_WorldX1;
+	entity_pos_t m_WorldZ1;
 
 	// Range query state:
 	tag_t m_QueryNext; // next allocated id
 	std::map<tag_t, Query> m_Queries;
 	std::map<entity_id_t, EntityData> m_EntityData;
+	SpatialSubdivision<entity_id_t> m_Subdivision; // spatial index of m_EntityData
 
 	// LOS state:
 
 	bool m_LosRevealAll;
-	ssize_t m_TerrainVerticesPerSide;
+	i32 m_TerrainVerticesPerSide;
 
 	// Counts of units seeing vertex, per vertex, per player (starting with player 0).
 	// Use u16 to avoid overflows when we have very large (but not infeasibly large) numbers
@@ -168,6 +209,8 @@ public:
 		m_DebugOverlayEnabled = false;
 		m_DebugOverlayDirty = true;
 
+		m_WorldX0 = m_WorldZ0 = m_WorldX1 = m_WorldZ1 = entity_pos_t::Zero();
+
 		// Initialise with bogus values (these will get replaced when
 		// SetBounds is called)
 		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
@@ -180,14 +223,38 @@ public:
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	template<typename S>
+	void SerializeCommon(S& serialize)
 	{
-		// TODO
+		serialize.NumberFixed_Unbounded("world x0", m_WorldX0);
+		serialize.NumberFixed_Unbounded("world z0", m_WorldZ0);
+		serialize.NumberFixed_Unbounded("world x1", m_WorldX1);
+		serialize.NumberFixed_Unbounded("world z1", m_WorldZ1);
+
+		serialize.NumberU32_Unbounded("query next", m_QueryNext);
+		SerializeMap<SerializeU32_Unbounded, SerializeQuery>()(serialize, "queries", m_Queries);
+		SerializeMap<SerializeU32_Unbounded, SerializeEntityData>()(serialize, "entity data", m_EntityData);
+
+		serialize.Bool("los reveal all", m_LosRevealAll);
+		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
+
+		// We don't serialize m_Subdivision, m_LosPlayerCounts, m_LosState
+		// since they can be recomputed from the entity data when deserializing
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Serialize(ISerializer& serialize)
+	{
+		SerializeCommon(serialize);
+	}
+
+	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
+
+		SerializeCommon(deserialize);
+
+		// Reinitialise subdivisions and LOS data
+		SetBounds(m_WorldX0, m_WorldZ0, m_WorldX1, m_WorldZ1, m_TerrainVerticesPerSide);
 	}
 
 	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
@@ -330,10 +397,15 @@ public:
 
 	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, ssize_t vertices)
 	{
+		m_WorldX0 = x0;
+		m_WorldZ0 = z0;
+		m_WorldX1 = x1;
+		m_WorldZ1 = z1;
+		m_TerrainVerticesPerSide = vertices;
+
 		debug_assert(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(x1, z1);
 
-		m_TerrainVerticesPerSide = vertices;
 		m_LosPlayerCounts.clear();
 		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);
 		m_LosState.clear();
@@ -760,25 +832,25 @@ private:
 
 		// Compute top/bottom coordinates, and clamp to exclude the 1-tile border around the map
 		// (so that we never render the sharp edge of the map)
-		ssize_t j0 = ((pos.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
-		ssize_t j1 = ((pos.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
-		ssize_t j0clamp = std::max(j0, (ssize_t)1);
-		ssize_t j1clamp = std::min(j1, m_TerrainVerticesPerSide-2);
+		i32 j0 = ((pos.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
+		i32 j1 = ((pos.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0clamp = std::max(j0, 1);
+		i32 j1clamp = std::min(j1, m_TerrainVerticesPerSide-2);
 
 		entity_pos_t xscale = pos.X / (int)CELL_SIZE;
 		entity_pos_t yscale = pos.Y / (int)CELL_SIZE;
 		entity_pos_t rsquared = (visionRange / (int)CELL_SIZE).Square();
 
-		for (ssize_t j = j0clamp; j <= j1clamp; ++j)
+		for (i32 j = j0clamp; j <= j1clamp; ++j)
 		{
 			// Compute values such that (i - x)^2 + (j - y)^2 <= r^2
 			// (TODO: is this sqrt slow? can we optimise it?)
 			entity_pos_t di = (rsquared - (entity_pos_t::FromInt(j) - yscale).Square()).Sqrt();
-			ssize_t i0 = (xscale - di).ToInt_RoundToInfinity();
-			ssize_t i1 = (xscale + di).ToInt_RoundToNegInfinity();
+			i32 i0 = (xscale - di).ToInt_RoundToInfinity();
+			i32 i1 = (xscale + di).ToInt_RoundToNegInfinity();
 
-			ssize_t i0clamp = std::max(i0, (ssize_t)1);
-			ssize_t i1clamp = std::min(i1, m_TerrainVerticesPerSide-2);
+			i32 i0clamp = std::max(i0, 1);
+			i32 i1clamp = std::min(i1, m_TerrainVerticesPerSide-2);
 			LosUpdateStripHelper(owner, i0clamp, i1clamp, j, amount, counts);
 		}
 	}

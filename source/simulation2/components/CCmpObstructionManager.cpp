@@ -24,6 +24,7 @@
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
+#include "simulation2/serialization/SerializeTemplates.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -63,6 +64,41 @@ struct StaticShape
 	entity_pos_t hw, hh; // half width/height in local coordinate space
 };
 
+/**
+ * Serialization helper template for UnitShape
+ */
+struct SerializeUnitShape
+{
+	template<typename S>
+	void operator()(S& serialize, const char* UNUSED(name), UnitShape& value)
+	{
+		serialize.NumberFixed_Unbounded("x", value.x);
+		serialize.NumberFixed_Unbounded("z", value.z);
+		serialize.NumberFixed_Unbounded("r", value.r);
+		serialize.Bool("moving", value.moving);
+		serialize.NumberU32_Unbounded("group", value.group);
+	}
+};
+
+/**
+ * Serialization helper template for StaticShape
+ */
+struct SerializeStaticShape
+{
+	template<typename S>
+	void operator()(S& serialize, const char* UNUSED(name), StaticShape& value)
+	{
+		serialize.NumberFixed_Unbounded("x", value.x);
+		serialize.NumberFixed_Unbounded("z", value.z);
+		serialize.NumberFixed_Unbounded("u.x", value.u.X);
+		serialize.NumberFixed_Unbounded("u.y", value.u.Y);
+		serialize.NumberFixed_Unbounded("v.x", value.v.X);
+		serialize.NumberFixed_Unbounded("v.y", value.v.Y);
+		serialize.NumberFixed_Unbounded("hw", value.hw);
+		serialize.NumberFixed_Unbounded("hh", value.hh);
+	}
+};
+
 class CCmpObstructionManager : public ICmpObstructionManager
 {
 public:
@@ -96,7 +132,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
 		m_DebugOverlayEnabled = false;
 		m_DebugOverlayDirty = true;
@@ -117,18 +153,36 @@ public:
 	{
 	}
 
+	template<typename S>
+	void SerializeCommon(S& serialize)
+	{
+		SerializeSpatialSubdivision<SerializeU32_Unbounded>()(serialize, "unit subdiv", m_UnitSubdivision);
+		SerializeSpatialSubdivision<SerializeU32_Unbounded>()(serialize, "static subdiv", m_StaticSubdivision);
+
+		SerializeMap<SerializeU32_Unbounded, SerializeUnitShape>()(serialize, "unit shapes", m_UnitShapes);
+		SerializeMap<SerializeU32_Unbounded, SerializeStaticShape>()(serialize, "static shapes", m_StaticShapes);
+		serialize.NumberU32_Unbounded("unit shape next", m_UnitShapeNext);
+		serialize.NumberU32_Unbounded("static shape next", m_StaticShapeNext);
+
+		serialize.NumberFixed_Unbounded("world x0", m_WorldX0);
+		serialize.NumberFixed_Unbounded("world z0", m_WorldZ0);
+		serialize.NumberFixed_Unbounded("world x1", m_WorldX1);
+		serialize.NumberFixed_Unbounded("world z1", m_WorldZ1);
+	}
+
 	virtual void Serialize(ISerializer& serialize)
 	{
-		// TODO: do something here
-		// (Do we need to serialise the obstruction state, or is it fine to regenerate it from
-		// the original entities after deserialisation?)
+		// TODO: this could perhaps be optimised by not storing all the obstructions,
+		// and instead regenerating them from the other entities on Deserialize
+
+		SerializeCommon(serialize);
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
 
-		// TODO
+		SerializeCommon(deserialize);
 	}
 
 	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))

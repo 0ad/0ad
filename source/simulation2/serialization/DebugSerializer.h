@@ -42,8 +42,9 @@ public:
 
 protected:
 	virtual void PutNumber(const char* name, uint8_t value);
-	virtual void PutNumber(const char* name, int32_t value);
+	virtual void PutNumber(const char* name, int8_t value);
 	virtual void PutNumber(const char* name, uint32_t value);
+	virtual void PutNumber(const char* name, int32_t value);
 	virtual void PutNumber(const char* name, float value);
 	virtual void PutNumber(const char* name, double value);
 	virtual void PutNumber(const char* name, fixed value);

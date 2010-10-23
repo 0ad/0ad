@@ -32,7 +32,7 @@ void ISerializer::NumberU8(const char* name, uint8_t value, uint8_t lower, uint8
 	PutNumber(name, value);
 }
 
-void ISerializer::NumberI32(const char* name, int32_t value, int32_t lower, int32_t upper)
+void ISerializer::NumberI8(const char* name, int8_t value, int8_t lower, int8_t upper)
 {
 	if (!(lower <= value && value <= upper))
 		throw PSERROR_Serialize_OutOfBounds();
@@ -40,6 +40,13 @@ void ISerializer::NumberI32(const char* name, int32_t value, int32_t lower, int3
 }
 
 void ISerializer::NumberU32(const char* name, uint32_t value, uint32_t lower, uint32_t upper)
+{
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Serialize_OutOfBounds();
+	PutNumber(name, value);
+}
+
+void ISerializer::NumberI32(const char* name, int32_t value, int32_t lower, int32_t upper)
 {
 	if (!(lower <= value && value <= upper))
 		throw PSERROR_Serialize_OutOfBounds();

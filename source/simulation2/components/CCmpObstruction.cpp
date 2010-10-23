@@ -111,16 +111,24 @@ public:
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	template<typename S>
+	void SerializeCommon(S& serialize)
 	{
-		// TODO: Coordinate with CCmpObstructionManager serialisation
+		serialize.Bool("moving", m_Moving);
+		serialize.NumberU32_Unbounded("control group", m_ControlGroup);
+		serialize.NumberU32_Unbounded("tag", m_Tag.n);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Serialize(ISerializer& serialize)
+	{
+		SerializeCommon(serialize);
+	}
+
+	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
 
-		// TODO: Coordinate with CCmpObstructionManager serialisation
+		SerializeCommon(deserialize);
 	}
 
 	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))

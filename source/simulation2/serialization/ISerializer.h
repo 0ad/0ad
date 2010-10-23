@@ -135,8 +135,9 @@ public:
 	 * @param upper inclusive upper bound
 	 */
 	void NumberU8(const char* name, uint8_t value, uint8_t lower, uint8_t upper);
-	void NumberI32(const char* name, int32_t value, int32_t lower, int32_t upper); ///< @copydoc NumberU8
+	void NumberI8(const char* name, int8_t value, int8_t lower, int8_t upper);
 	void NumberU32(const char* name, uint32_t value, uint32_t lower, uint32_t upper); ///< @copydoc NumberU8
+	void NumberI32(const char* name, int32_t value, int32_t lower, int32_t upper); ///< @copydoc NumberU8
 
 	/**
 	 * Serialize a number.
@@ -150,12 +151,17 @@ public:
 		PutNumber(name, value);
 	}
 
-	void NumberI32_Unbounded(const char* name, int32_t value) ///@copydoc NumberU8_Unbounded()
+	void NumberI8_Unbounded(const char* name, int8_t value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}
 
 	void NumberU32_Unbounded(const char* name, uint32_t value) ///@copydoc NumberU8_Unbounded()
+	{
+		PutNumber(name, value);
+	}
+
+	void NumberI32_Unbounded(const char* name, int32_t value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}
@@ -234,8 +240,9 @@ public:
 
 protected:
 	virtual void PutNumber(const char* name, uint8_t value) = 0;
-	virtual void PutNumber(const char* name, int32_t value) = 0;
+	virtual void PutNumber(const char* name, int8_t value) = 0;
 	virtual void PutNumber(const char* name, uint32_t value) = 0;
+	virtual void PutNumber(const char* name, int32_t value) = 0;
 	virtual void PutNumber(const char* name, float value) = 0;
 	virtual void PutNumber(const char* name, double value) = 0;
 	virtual void PutNumber(const char* name, fixed value) = 0;

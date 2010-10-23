@@ -60,7 +60,6 @@ public:
 		PITCH_ROLL = 2,
 	} m_AnchorType;
 
-	entity_pos_t m_YOffset;
 	bool m_Floating;
 	float m_RotYSpeed; // maximum radians per second, used by InterpolatedRotY to follow RotY
 
@@ -68,6 +67,7 @@ public:
 
 	bool m_InWorld;
 	entity_pos_t m_X, m_Z, m_LastX, m_LastZ; // these values contain undefined junk if !InWorld
+	entity_pos_t m_YOffset;
 
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
 	float m_InterpolatedRotY; // not serialized

@@ -150,12 +150,18 @@ public:
 
 		// TODO: store animation state
 
-		// TODO: store shading colour
+		serialize.NumberFixed_Unbounded("r", m_R);
+		serialize.NumberFixed_Unbounded("g", m_G);
+		serialize.NumberFixed_Unbounded("b", m_B);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
+
+		deserialize.NumberFixed_Unbounded("r", m_R);
+		deserialize.NumberFixed_Unbounded("g", m_G);
+		deserialize.NumberFixed_Unbounded("b", m_B);
 	}
 
 	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))

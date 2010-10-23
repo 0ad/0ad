@@ -157,6 +157,8 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Pathfinder)
 
+	// Template state:
+
 	std::map<std::string, u8> m_PassClassMasks;
 	std::vector<PathfinderPassability> m_PassClasses;
 
@@ -165,9 +167,13 @@ public:
 	std::vector<std::vector<u32> > m_MoveCosts; // costs[unitClass][terrainClass]
 	std::vector<std::vector<fixed> > m_MoveSpeeds; // speeds[unitClass][terrainClass]
 
+	// Dynamic state:
+
 	std::vector<AsyncLongPathRequest> m_AsyncLongPathRequests;
 	std::vector<AsyncShortPathRequest> m_AsyncShortPathRequests;
 	u32 m_NextAsyncTicket; // unique IDs for asynchronous path requests
+
+	// Lazily-constructed dynamic state (not serialized):
 
 	u16 m_MapSize; // tiles per side
 	Grid<TerrainTile>* m_Grid; // terrain/passability information

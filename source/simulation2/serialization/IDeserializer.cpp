@@ -44,9 +44,9 @@ void IDeserializer::NumberU8(const char* UNUSED(name), uint8_t& out, uint8_t low
 	out = Number_(lower, upper);
 }
 
-void IDeserializer::NumberI32(const char* UNUSED(name), int32_t& out, int32_t lower, int32_t upper)
+void IDeserializer::NumberI8(const char* UNUSED(name), int8_t& out, int8_t lower, int8_t upper)
 {
-	out = (i32)to_le32((u32)Number_(lower, upper));
+	out = Number_(lower, upper);
 }
 
 void IDeserializer::NumberU32(const char* UNUSED(name), uint32_t& out, uint32_t lower, uint32_t upper)
@@ -54,16 +54,19 @@ void IDeserializer::NumberU32(const char* UNUSED(name), uint32_t& out, uint32_t 
 	out = to_le32(Number_(lower, upper));
 }
 
+void IDeserializer::NumberI32(const char* UNUSED(name), int32_t& out, int32_t lower, int32_t upper)
+{
+	out = (i32)to_le32((u32)Number_(lower, upper));
+}
+
 void IDeserializer::NumberU8_Unbounded(const char* UNUSED(name), uint8_t& out)
 {
 	Get((u8*)&out, sizeof(uint8_t));
 }
 
-void IDeserializer::NumberI32_Unbounded(const char* UNUSED(name), int32_t& out)
+void IDeserializer::NumberI8_Unbounded(const char* UNUSED(name), int8_t& out)
 {
-	int32_t value;
-	Get((u8*)&value, sizeof(int32_t));
-	out = (i32)to_le32((u32)value);
+	Get((u8*)&out, sizeof(int8_t));
 }
 
 void IDeserializer::NumberU32_Unbounded(const char* UNUSED(name), uint32_t& out)
@@ -71,6 +74,13 @@ void IDeserializer::NumberU32_Unbounded(const char* UNUSED(name), uint32_t& out)
 	uint32_t value;
 	Get((u8*)&value, sizeof(uint32_t));
 	out = to_le32(value);
+}
+
+void IDeserializer::NumberI32_Unbounded(const char* UNUSED(name), int32_t& out)
+{
+	int32_t value;
+	Get((u8*)&value, sizeof(int32_t));
+	out = (i32)to_le32((u32)value);
 }
 
 void IDeserializer::NumberFloat_Unbounded(const char* UNUSED(name), float& out)

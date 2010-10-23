@@ -37,10 +37,16 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Minimap)
 
-	bool m_Active;
+	// Template state:
+
 	bool m_UsePlayerColour;
-	u8 m_R, m_G, m_B;
-	entity_pos_t m_X, m_Z; // cache the latest position for more efficient rendering
+
+	u8 m_R, m_G, m_B; // static template state if m_UsePlayerColour false; dynamic state if true
+
+	// Dynamic state:
+
+	bool m_Active;
+	entity_pos_t m_X, m_Z; // cache the latest position for more efficient rendering; only valid when m_Active true
 
 	static std::string GetSchema()
 	{
@@ -99,16 +105,35 @@ public:
 	{
 	}
 
+	template<typename S>
+	void SerializeCommon(S& serialize)
+	{
+		if (m_UsePlayerColour)
+		{
+			serialize.NumberU8_Unbounded("r", m_R);
+			serialize.NumberU8_Unbounded("g", m_G);
+			serialize.NumberU8_Unbounded("b", m_B);
+		}
+
+		serialize.Bool("active", m_Active);
+
+		if (m_Active)
+		{
+			serialize.NumberFixed_Unbounded("x", m_X);
+			serialize.NumberFixed_Unbounded("z", m_Z);
+		}
+	}
+
 	virtual void Serialize(ISerializer& serialize)
 	{
-		// TODO
+		SerializeCommon(serialize);
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
 
-		// TODO
+		SerializeCommon(deserialize);
 	}
 
 	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))

@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_SERIALIZETEMPLATES
+#define INCLUDED_SERIALIZETEMPLATES
+
 /**
  * @file
  * Helper templates for serializing/deserializing common objects.
@@ -35,6 +38,7 @@ struct SerializeVector
 	template<typename T>
 	void operator()(IDeserializer& deserialize, const char* name, std::vector<T>& value)
 	{
+		value.clear();
 		u32 len;
 		deserialize.NumberU32_Unbounded("length", len);
 		value.reserve(len); // TODO: watch out for out-of-memory
@@ -47,18 +51,35 @@ struct SerializeVector
 	}
 };
 
-struct SerializeWaypoint
+template<typename KS, typename VS>
+struct SerializeMap
 {
-	void operator()(ISerializer& serialize, const char* UNUSED(name), const ICmpPathfinder::Waypoint& value)
+	template<typename K, typename V>
+	void operator()(ISerializer& serialize, const char* UNUSED(name), std::map<K, V>& value)
 	{
-		serialize.NumberFixed_Unbounded("waypoint x", value.x);
-		serialize.NumberFixed_Unbounded("waypoint z", value.z);
+		size_t len = value.size();
+		serialize.NumberU32_Unbounded("length", (u32)len);
+		for (typename std::map<K, V>::iterator it = value.begin(); it != value.end(); ++it)
+		{
+			KS()(serialize, "key", it->first);
+			VS()(serialize, "value", it->second);
+		}
 	}
 
-	void operator()(IDeserializer& deserialize, const char* UNUSED(name), ICmpPathfinder::Waypoint& value)
+	template<typename K, typename V>
+	void operator()(IDeserializer& deserialize, const char* UNUSED(name), std::map<K, V>& value)
 	{
-		deserialize.NumberFixed_Unbounded("waypoint x", value.x);
-		deserialize.NumberFixed_Unbounded("waypoint z", value.z);
+		value.clear();
+		u32 len;
+		deserialize.NumberU32_Unbounded("length", len);
+		for (size_t i = 0; i < len; ++i)
+		{
+			K k;
+			V v;
+			KS()(deserialize, "key", k);
+			VS()(deserialize, "value", v);
+			value.insert(std::make_pair(k, v));
+		}
 	}
 };
 
@@ -78,6 +99,34 @@ struct SerializeU8_Enum
 	}
 };
 
+struct SerializeU32_Unbounded
+{
+	void operator()(ISerializer& serialize, const char* name, u32 value)
+	{
+		serialize.NumberU32_Unbounded(name, value);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, u32& value)
+	{
+		deserialize.NumberU32_Unbounded(name, value);
+	}
+};
+
+struct SerializeWaypoint
+{
+	void operator()(ISerializer& serialize, const char* UNUSED(name), const ICmpPathfinder::Waypoint& value)
+	{
+		serialize.NumberFixed_Unbounded("waypoint x", value.x);
+		serialize.NumberFixed_Unbounded("waypoint z", value.z);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* UNUSED(name), ICmpPathfinder::Waypoint& value)
+	{
+		deserialize.NumberFixed_Unbounded("waypoint x", value.x);
+		deserialize.NumberFixed_Unbounded("waypoint z", value.z);
+	}
+};
+
 struct SerializeGoal
 {
 	template<typename S>
@@ -94,3 +143,5 @@ struct SerializeGoal
 		serialize.NumberFixed_Unbounded("goal hh", value.hh);
 	}
 };
+
+#endif // INCLUDED_SERIALIZETEMPLATES

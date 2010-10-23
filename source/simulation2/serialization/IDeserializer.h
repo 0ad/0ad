@@ -37,11 +37,13 @@ public:
 	virtual ~IDeserializer();
 
 	virtual void NumberU8(const char* name, uint8_t& out, uint8_t lower, uint8_t upper);
-	virtual void NumberI32(const char* name, int32_t& out, int32_t lower, int32_t upper);
+	virtual void NumberI8(const char* name, int8_t& out, int8_t lower, int8_t upper);
 	virtual void NumberU32(const char* name, uint32_t& out, uint32_t lower, uint32_t upper);
+	virtual void NumberI32(const char* name, int32_t& out, int32_t lower, int32_t upper);
 	virtual void NumberU8_Unbounded(const char* name, uint8_t& out);
-	virtual void NumberI32_Unbounded(const char* name, int32_t& out);
+	virtual void NumberI8_Unbounded(const char* name, int8_t& out);
 	virtual void NumberU32_Unbounded(const char* name, uint32_t& out);
+	virtual void NumberI32_Unbounded(const char* name, int32_t& out);
 	virtual void NumberFloat_Unbounded(const char* name, float& out);
 	virtual void NumberDouble_Unbounded(const char* name, double& out);
 	virtual void NumberFixed_Unbounded(const char* name, fixed& out);

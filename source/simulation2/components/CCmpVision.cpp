@@ -29,6 +29,8 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Vision)
 
+	// Template state:
+
 	entity_pos_t m_Range;
 	bool m_RetainInFog;
 	bool m_AlwaysVisible;
@@ -60,6 +62,7 @@ public:
 
 	virtual void Serialize(ISerializer& UNUSED(serialize))
 	{
+		// No dynamic state to serialize
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))

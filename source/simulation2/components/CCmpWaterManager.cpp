@@ -33,6 +33,8 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(WaterManager)
 
+	// Dynamic state:
+
 	entity_pos_t m_WaterHeight;
 
 	static std::string GetSchema()
@@ -49,13 +51,16 @@ public:
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	virtual void Serialize(ISerializer& serialize)
 	{
+		serialize.NumberFixed_Unbounded("height", m_WaterHeight);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(context, paramNode);
+
+		deserialize.NumberFixed_Unbounded("height", m_WaterHeight);
 	}
 
 	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))

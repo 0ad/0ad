@@ -44,6 +44,8 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Selectable)
 
+	SOverlayLine m_Overlay;
+
 	CCmpSelectable()
 	{
 		m_Overlay.m_Thickness = 2;
@@ -154,8 +156,6 @@ public:
 
 		collector.Submit(&m_Overlay);
 	}
-
-	SOverlayLine m_Overlay;
 };
 
 REGISTER_COMPONENT_TYPE(Selectable)

@@ -40,7 +40,7 @@ const int DEFAULT_MOVE_COST = 256;
 
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
-void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
+void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 {
 	m_MapSize = 0;
 	m_Grid = NULL;
@@ -52,7 +52,14 @@ void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& 
 	m_DebugGrid = NULL;
 	m_DebugPath = NULL;
 
-	const CParamNode::ChildrenMap& passClasses = paramNode.GetChild("PassabilityClasses").GetChildren();
+	// Since this is used as a system component (not loaded from an entity template),
+	// we can't use the real paramNode (it won't get handled properly when deserializing),
+	// so load the data from a special XML file.
+	CParamNode externalParamNode;
+	CParamNode::LoadXML(externalParamNode, L"simulation/templates/special/pathfinder.xml");
+
+
+	const CParamNode::ChildrenMap& passClasses = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses").GetChildren();
 	for (CParamNode::ChildrenMap::const_iterator it = passClasses.begin(); it != passClasses.end(); ++it)
 	{
 		std::string name = it->first;
@@ -63,7 +70,7 @@ void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& 
 	}
 
 
-	const CParamNode::ChildrenMap& moveClasses = paramNode.GetChild("MovementClasses").GetChildren();
+	const CParamNode::ChildrenMap& moveClasses = externalParamNode.GetChild("Pathfinder").GetChild("MovementClasses").GetChildren();
 
 	// First find the set of unit classes used by any terrain classes,
 	// and assign unique tags to terrain classes

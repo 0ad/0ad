@@ -85,12 +85,17 @@ void CDebugSerializer::PutNumber(const char* name, uint8_t value)
 	m_Stream << INDENT << name << ": " << (int)value << "\n";
 }
 
-void CDebugSerializer::PutNumber(const char* name, int32_t value)
+void CDebugSerializer::PutNumber(const char* name, int8_t value)
+{
+	m_Stream << INDENT << name << ": " << (int)value << "\n";
+}
+
+void CDebugSerializer::PutNumber(const char* name, uint32_t value)
 {
 	m_Stream << INDENT << name << ": " << value << "\n";
 }
 
-void CDebugSerializer::PutNumber(const char* name, uint32_t value)
+void CDebugSerializer::PutNumber(const char* name, int32_t value)
 {
 	m_Stream << INDENT << name << ": " << value << "\n";
 }
