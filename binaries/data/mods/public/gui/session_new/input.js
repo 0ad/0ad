@@ -7,7 +7,8 @@ const SDLK_RSHIFT = 303;
 const SDLK_LSHIFT = 304;
 const SDLK_RCTRL = 305;
 const SDLK_LCTRL = 306;
-
+const SDLK_RALT = 307;
+const SDLK_LALT = 308;
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
 
@@ -34,6 +35,9 @@ specialKeyStates[SDLK_RSHIFT] = 0;
 specialKeyStates[SDLK_LSHIFT] = 0;
 specialKeyStates[SDLK_RCTRL] = 0;
 specialKeyStates[SDLK_LCTRL] = 0;
+specialKeyStates[SDLK_RALT] = 0;
+specialKeyStates[SDLK_LALT] = 0;
+
 // (TODO: maybe we should fix the hotkey system to be usable in this situation,
 // rather than hardcoding Shift into this code?)
 
@@ -72,7 +76,7 @@ function findGatherType(gatherer, supply)
 function determineAction(x, y, fromMinimap)
 {
 	var selection = g_Selection.toList();
-
+	var ctrlPressed = specialKeyStates[SDLK_LCTRL] || specialKeyStates[SDLK_RCTRL];
 	// No action if there's no selection
 	if (!selection.length)
 		return undefined;
@@ -122,11 +126,16 @@ function determineAction(x, y, fromMinimap)
 			var enemyOwned = ((targetState.player != entState.player)? true : false);
 			var gaiaOwned = ((targetState.player == 0)? true : false);
 
-			// If the target is a resource and we have the right kind of resource gatherers selected, then gather
-			// If the target is a foundation and we have builders selected, then build (or repair)
-			// If the target is an enemy, then attack
-			if (targetState.resourceSupply && (playerOwned || gaiaOwned))
+			
+			if (targetState.garrisonHolder && playerOwned && ctrlPressed)
 			{
+				return {"type": "garrison", "cursor": "action-garrison", "target": targets[0]};
+			}
+			else if (targetState.resourceSupply && (playerOwned || gaiaOwned))
+			{
+				// If the target is a resource and we have the right kind of resource gatherers selected, then gather
+				// If the target is a foundation and we have builders selected, then build (or repair)
+				// If the target is an enemy, then attack
 				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
 				if (resource)
 					return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
@@ -522,6 +531,11 @@ function handleInputAfterGui(ev)
 					Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
 					return true;
 
+				case "garrison":
+					Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
+					//Need to play some sound here??
+					return true;
+					
 				case "set-rallypoint":
 					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
 					Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
@@ -801,6 +815,9 @@ function performCommand(entity, commandName)
 					messageBox(320, 180, message, "Confirmation", 0, btCaptions, btCode);
 				}
 				break;
+			case "unload-all":
+				unloadAll(entity);
+				break;
 			default:
 				break;
 			}
@@ -835,3 +852,12 @@ function setCameraFollow(entity)
 	Engine.CameraFollow(0);
 }
 
+function unload(garrisonHolder, entity)
+{
+	Engine.PostNetworkCommand({"type": "unload", "entity": entity, "garrisonHolder": garrisonHolder});
+}
+
+function unloadAll(garrisonHolder)
+{
+	Engine.PostNetworkCommand({"type": "unload-all", "garrisonHolder": garrisonHolder});
+}

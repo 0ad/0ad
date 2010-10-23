@@ -43,7 +43,10 @@
     <Range>100</Range>
   </Vision>
   <GarrisonHolder>
-    <Max>20</Max>
+    <Max>15</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
   <ResourceDropsite>
     <Radius>60</Radius>

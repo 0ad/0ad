@@ -186,6 +186,8 @@ function getCommandCellId(commandName)
 	{
 	case "delete":
 		return 1;
+	case "unload-all":
+		return 2;
 	default:
 		return -1;
 	}
@@ -214,6 +216,8 @@ function getEntityFormationsList(entState)
 function getEntityCommandsList(entState)
 {
 	var commands = [];
+	if (entState.garrisonHolder)
+		commands.push("unload-all");
 	commands.push("delete");
 	return commands;
 }

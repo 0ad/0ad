@@ -114,13 +114,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	usedPanels[guiName] = 1;
 	var numberOfItems = items.length;
 	var selection = g_Selection.toList();
-
+	var garrisonGroups = new EntityGroups();
 	if (guiName == "Selection")
 	{
 		if (numberOfItems > 16)
 				numberOfItems =  16;
 	}
-	if (guiName == "Formation" || guiName == "Garrison")
+	if (guiName == "Formation")
 	{
 		if (numberOfItems > 16)
 				numberOfItems =  16;
@@ -129,6 +129,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	{
 		if (numberOfItems > 16)
 			numberOfItems = 16;
+	}
+	else if (guiName == "Garrison")
+	{
+		if (numberOfItems > 16)
+			numberOfItems = 16;
+		//Group garrisoned units based on class
+		garrisonGroups.add(unitEntState.garrisonHolder.entities);
 	}
 	else if (guiName == "Command")
 	{
@@ -177,29 +184,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case GARRISON:
-		
-		
-		
-		
-		
-		/*
-
-!!!!!
-GARRISON GOES HERE (need to customize this)
-!!!!!
-		
-		
-			var tooltip = getEntityName(template);
-			var count = g_Selection.groups.getCount(item);
+			var name = getEntityName(template);
+			var tooltip = "Unload " + getEntityName(template);
+			var count = garrisonGroups.getCount(name);
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
-			
-			
-		*/	
-		
-		
-		
-			
-			
 			break;
 
 		case FORMATION:
@@ -342,35 +330,24 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitPanel("Command", usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item); } );
 
-				
-				
-				
-				
-				
-/*
-!!!!!
-									GARRISON GOES HERE (need to customize this)
-!!!!!
-*/
-
-
-/*
-		if (selection.length > 1)
-			setupUnitPanel("Garrison", usedPanels, entState, g_Selection.groups.getTemplateNames(),
-				function (entType) { changePrimarySelectionGroup(entType); } );
-*/
-
-
-
-
-
+		if (entState.garrisonHolder)
+		{
+			var groups = new EntityGroups();
+			groups.add(entState.garrisonHolder.entities);
+			setupUnitPanel("Garrison", usedPanels, entState, groups.getTemplateNames(),
+				function (item)
+				{
+					var template = GetTemplateData(item);
+					var unitName = template.name.specific || template.name.generic || "???";
+					unload(entState.id, groups.getEntsByName(unitName)[0]); 
+				} );
+		}
 
 		var formations = getEntityFormationsList(entState);
-		if (isUnit(entState) && !isAnimal(entState) && formations.length)
+		if (isUnit(entState) && !isAnimal(entState) && !entState.garrisonHolder && formations.length)
 			setupUnitPanel("Formation", usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
 
-				
 		if (entState.buildEntities && entState.buildEntities.length)
 		{
 			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);

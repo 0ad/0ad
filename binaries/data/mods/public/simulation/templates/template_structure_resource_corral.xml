@@ -40,5 +40,8 @@
   </Vision>
   <GarrisonHolder>
     <Max>10</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Animal</List>
+	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
 </Entity>

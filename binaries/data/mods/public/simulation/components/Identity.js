@@ -60,11 +60,15 @@ Identity.prototype.Schema =
 				"<zeroOrMore>" +
 					"<choice>" +
 						"<value>Unit</value>" +
-						"<value>Foot</value>" +
-						"<value>Mounted</value>" +
+						"<value>Infantry</value>" +
+						"<value>Cavalry</value>" +
+						"<value>Ranged</value>" +
 						"<value>Mechanical</value>" +
+						"<value>Ship</value>" +
+						"<value>Siege</value>" +
 						"<value>Super</value>" +
 						"<value>Hero</value>" +
+						"<value>Support</value>" +
 						"<value>Animal</value>" +
 						"<value>Organic</value>" +
 						"<value>Structure</value>" +

@@ -417,8 +417,6 @@
 			<object name="unitFormationPanel"
 				size="20 10 100% 100%"
 			>
-				<!--<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="5" tooltip="Formations"/>-->
-			
 				<object size="0 0 100% 100%">
 					<repeat count="16">
 						<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
@@ -428,25 +426,9 @@
 				</object>
 			</object>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<!--
-								GARRISON GOES HERE
-		-->
-		
 			<object name="unitGarrisonPanel"
 				size="20 10 100% 100%"
 			>
-				<!--<object size="-6 -6 50 50" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip" cell_id="1" tooltip="Garrison"/>-->
-
 				<object size="0 0 100% 100%">
 					<repeat count="16">
 						<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
@@ -457,21 +439,6 @@
 				</object>
 			</object>
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		</object>
 
 		<!-- ================================  ================================ -->
@@ -582,9 +549,9 @@
 				z="30"
 			>
 				<object size="0 0 100% 100%">
-					<repeat count="9">
-						<object name="unitCommandButton[n]" hidden="true" type="button" size="0 0 32 32" tooltip_style="snToolTipBottom">
-							<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 32 32" style="commandIcon"/>
+					<repeat count="6">
+						<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" tooltip_style="snToolTipBottom">
+							<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 100% 100%" style="commandIcon"/>
 						</object>
 					</repeat>
 				</object>

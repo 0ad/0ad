@@ -160,6 +160,39 @@ function ProcessCommand(player, cmd)
 		Engine.PostMessage(playerEnt, MT_PlayerDefeated, null);
 		break;
 
+	case "garrison":
+		var targetCmpOwnership = Engine.QueryInterface(cmd.target, IID_Ownership);
+		if (!targetCmpOwnership || targetCmpOwnership.GetOwner() != player)
+			break;
+		for each (var ent in cmd.entities)
+		{
+			var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+			if (!cmpOwnership || cmpOwnership.GetOwner() != player)
+				break;
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+				cmpUnitAI.Garrison(cmd.target);
+		}
+		break;
+		
+	case "unload":
+		var cmpOwnership = Engine.QueryInterface(cmd.garrisonHolder, IID_Ownership);
+		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
+			break;
+		var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
+		if (cmpGarrisonHolder)
+			cmpGarrisonHolder.Unload(cmd.entity);
+		break;
+		
+	case "unload-all":
+		var cmpOwnership = Engine.QueryInterface(cmd.garrisonHolder, IID_Ownership);
+		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
+			break;
+		
+		var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
+		cmpGarrisonHolder.UnloadAll();
+		break;
+		
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");
 	}

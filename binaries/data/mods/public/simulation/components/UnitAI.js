@@ -162,7 +162,17 @@ var UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
 		}
 	},
-
+	
+	"Order.Garrison": function(msg) {
+		if (this.MoveToTarget(this.order.data.target))
+		{
+			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
+		}
+		else
+		{
+			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
+		}
+	},
 
 	// States for the special entity representing a group of units moving in formation:
 	"FORMATIONCONTROLLER": {
@@ -508,6 +518,41 @@ var UnitFsmSpec = {
 				}
 			},
 		},
+
+		"GARRISON": {
+			"APPROACHING": {
+				"enter": function() {
+					this.SelectAnimation("walk", false, this.GetWalkSpeed());
+					this.PlaySound("walk");
+				},
+
+				"MoveCompleted": function() {
+					this.SetNextState("GARRISONED");
+				},
+				
+				"leave": function() {
+					this.StopTimer();
+				}
+			},
+
+			"GARRISONED": {
+				"enter": function() {
+					var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
+					if (cmpGarrisonHolder)
+					{
+						cmpGarrisonHolder.Garrison(this.entity);
+						
+					}
+					if (this.FinishOrder())
+						return;
+				},
+
+				"leave": function() {
+
+				}
+			},
+		},
+
 	},
 };
 
@@ -1002,6 +1047,16 @@ UnitAI.prototype.Attack = function(target, queued)
 	this.AddOrder("Attack", { "target": target }, queued);
 };
 
+UnitAI.prototype.Garrison = function(target, queued)
+{
+	if (!this.CanGarrison(target))
+	{
+		this.WalkToTarget(target, queued);
+		return;
+	}
+	this.AddOrder("Garrison", { "target": target }, queued);
+};
+
 UnitAI.prototype.Gather = function(target, queued)
 {
 	if (!this.CanGather(target))
@@ -1059,6 +1114,15 @@ UnitAI.prototype.CanAttack = function(target)
 
 	// TODO: verify that this is a valid target
 
+	return true;
+};
+
+UnitAI.prototype.CanGarrison = function(target)
+{
+	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder)
+		return false;
+	
 	return true;
 };
 

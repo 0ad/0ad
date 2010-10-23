@@ -2,6 +2,7 @@
 <Entity parent="template_unit_cavalry">
   <Identity>
     <GenericName>Ranged Cavalry</GenericName>
+	<Classes datatype="tokens">Ranged</Classes>
   </Identity>
   <Attack>
     <Ranged>

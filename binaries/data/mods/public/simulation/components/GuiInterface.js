@@ -69,7 +69,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	}
 	
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-	if (cmpPosition)
+	if (cmpPosition && cmpPosition.IsInWorld())
 	{
 		ret.position = cmpPosition.GetPosition();
 	}
@@ -146,6 +146,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.rallyPoint = { };
 	}
 
+	var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
+	if (cmpGarrisonHolder)
+	{
+		ret.garrisonHolder = {
+				"entities": cmpGarrisonHolder.GetEntities()
+		};
+	}
+	
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player);
 
