@@ -601,19 +601,19 @@ void CGameView::Update(float DeltaTime)
 	mouse_last_x = g_mouse_x;
 	mouse_last_y = g_mouse_y;
 
-	if (hotkeys[HOTKEY_CAMERA_ROTATE_CW])
+	if (HotkeyIsPressed("camera.rotate.cw"))
 		m->RotateY.AddSmoothly(m->ViewRotateYSpeed * DeltaTime);
-	if (hotkeys[HOTKEY_CAMERA_ROTATE_CCW])
+	if (HotkeyIsPressed("camera.rotate.ccw"))
 		m->RotateY.AddSmoothly(-m->ViewRotateYSpeed * DeltaTime);
-	if (hotkeys[HOTKEY_CAMERA_ROTATE_UP])
+	if (HotkeyIsPressed("camera.rotate.up"))
 		m->RotateX.AddSmoothly(-m->ViewRotateXSpeed * DeltaTime);
-	if (hotkeys[HOTKEY_CAMERA_ROTATE_DOWN])
+	if (HotkeyIsPressed("camera.rotate.down"))
 		m->RotateX.AddSmoothly(m->ViewRotateXSpeed * DeltaTime);
 
 	float moveRightward = 0.f;
 	float moveForward = 0.f;
 
-	if (hotkeys[HOTKEY_CAMERA_PAN])
+	if (HotkeyIsPressed("camera.pan"))
 	{
 		moveRightward += m->ViewDragSpeed * mouse_dx;
 		moveForward += m->ViewDragSpeed * -mouse_dy;
@@ -632,15 +632,15 @@ void CGameView::Update(float DeltaTime)
 			moveForward += m->ViewScrollSpeed * DeltaTime;
 	}
 
-	if (hotkeys[HOTKEY_CAMERA_PAN_KEYBOARD])
+	if (HotkeyIsPressed("camera.pan.keyboard"))
 	{
-		if (hotkeys[HOTKEY_CAMERA_RIGHT])
+		if (HotkeyIsPressed("camera.right"))
 			moveRightward += m->ViewScrollSpeed * DeltaTime;
-		if (hotkeys[HOTKEY_CAMERA_LEFT])
+		if (HotkeyIsPressed("camera.left"))
 			moveRightward -= m->ViewScrollSpeed * DeltaTime;
-		if (hotkeys[HOTKEY_CAMERA_UP])
+		if (HotkeyIsPressed("camera.up"))
 			moveForward += m->ViewScrollSpeed * DeltaTime;
-		if (hotkeys[HOTKEY_CAMERA_DOWN])
+		if (HotkeyIsPressed("camera.down"))
 			moveForward -= m->ViewScrollSpeed * DeltaTime;
 	}
 
@@ -688,9 +688,9 @@ void CGameView::Update(float DeltaTime)
 		}
 	}
 
-	if (hotkeys[HOTKEY_CAMERA_ZOOM_IN])
+	if (HotkeyIsPressed("camera.zoom.in"))
 		m->Zoom.AddSmoothly(m->ViewZoomSpeed * DeltaTime);
-	if (hotkeys[HOTKEY_CAMERA_ZOOM_OUT])
+	if (HotkeyIsPressed("camera.zoom.out"))
 		m->Zoom.AddSmoothly(-m->ViewZoomSpeed * DeltaTime);
 
 	float zoomDelta = m->Zoom.Update(DeltaTime);
@@ -894,9 +894,10 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 	{
 
 	case SDL_HOTKEYDOWN:
-		switch(ev->ev.user.code)
+		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+
+		if (hotkey == "wireframe")
 		{
-		case HOTKEY_WIREFRAME:
 			if (g_Renderer.GetModelRenderMode() == SOLID)
 			{
 				g_Renderer.SetTerrainRenderMode(EDGED_FACES);
@@ -913,27 +914,32 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 				g_Renderer.SetModelRenderMode(SOLID);
 			}
 			return IN_HANDLED;
-
+		}
 		// Mouse wheel must be treated using events instead of polling,
 		// because SDL auto-generates a sequence of mousedown/mouseup events
 		// and we never get to see the "down" state inside Update().
-		case HOTKEY_CAMERA_ZOOM_WHEEL_IN:
+		else if (hotkey == "camera.zoom.wheel.in")
+		{
 			m->Zoom.AddSmoothly(m->ViewZoomSpeedWheel);
 			return IN_HANDLED;
-
-		case HOTKEY_CAMERA_ZOOM_WHEEL_OUT:
+		}
+		else if (hotkey == "camera.zoom.wheel.out")
+		{
 			m->Zoom.AddSmoothly(-m->ViewZoomSpeedWheel);
 			return IN_HANDLED;
-
-		case HOTKEY_CAMERA_ROTATE_WHEEL_CW:
+		}
+		else if (hotkey == "camera.rotate.wheel.cw")
+		{
 			m->RotateY.AddSmoothly(m->ViewRotateYSpeedWheel);
 			return IN_HANDLED;
-
-		case HOTKEY_CAMERA_ROTATE_WHEEL_CCW:
+		}
+		else if (hotkey == "camera.rotate.wheel.ccw")
+		{
 			m->RotateY.AddSmoothly(-m->ViewRotateYSpeedWheel);
 			return IN_HANDLED;
-
-		case HOTKEY_CAMERA_RESET:
+		}
+		else if (hotkey == "camera.reset")
+		{
 			ResetCameraAngleZoom();
 			return IN_HANDLED;
 		}

@@ -79,7 +79,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 	if (ev->ev.type == SDL_HOTKEYDOWN)
 	{
-		if (ev->ev.user.code == HOTKEY_CONSOLE_PASTE)
+		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+		if (hotkey == "console.paste")
 		{
 			wchar_t* text = sys_clipboard_get();
 			if (text)

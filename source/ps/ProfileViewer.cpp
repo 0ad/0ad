@@ -286,7 +286,9 @@ InReaction CProfileViewer::Input(const SDL_Event_* ev)
 		break;
 	}
 	case SDL_HOTKEYDOWN:
-		if( ev->ev.user.code == HOTKEY_PROFILE_TOGGLE )
+		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+
+		if( hotkey == "profile.toggle" )
 		{
 			if (!m->profileVisible)
 			{
@@ -319,7 +321,7 @@ InReaction CProfileViewer::Input(const SDL_Event_* ev)
 			}
 			return( IN_HANDLED );
 		}
-		else if( ev->ev.user.code == HOTKEY_PROFILE_SAVE )
+		else if( hotkey == "profile.save" )
 		{
 			SaveToFile();
 			return( IN_HANDLED );

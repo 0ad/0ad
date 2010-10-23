@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,57 +83,70 @@ public:
 	// the JS interface can be registered.
 	CConfigDB();
 
-	// GetValue()
-	// Attempt to find a config variable with the given name; will search all
-	// namespaces from system up to the specified namespace.
-	//
-	// Returns a pointer to the config value structure for the variable, or
-	// NULL if such a variable could not be found
+	/**
+	 * Attempt to find a config variable with the given name; will search all
+	 * namespaces from system up to the specified namespace.
+	 *
+	 * Returns a pointer to the config value structure for the variable, or
+	 * NULL if such a variable could not be found
+	 */
 	CConfigValue *GetValue(EConfigNamespace ns, const CStr& name);
 	
-	// GetValues()
-	// Attempt to retrieve a vector of values corresponding to the given setting;
-	// will search all namespaces from system up to the specified namespace.
-	// 
-	// Returns a pointer to the vector, or NULL if the setting could not be found.
+	/**
+	 * Attempt to retrieve a vector of values corresponding to the given setting;
+	 * will search all namespaces from system up to the specified namespace.
+	 *
+	 * Returns a pointer to the vector, or NULL if the setting could not be found.
+	 */
 	CConfigValueSet *GetValues(EConfigNamespace ns, const CStr& name);
 
-	// CreateValue()
-	// Create a new config value in the specified namespace. If such a
-	// variable already exists, the old value is returned and the effect is
-	// exactly the same as that of GetValue()
-	//
-	// Returns a pointer to the value of the newly created config variable, or
-	// that of the already existing config variable.
+	/**
+	 * Retrieve a vector of values corresponding to settings whose names begin
+	 * with the given prefix;
+	 * will search all namespaces from system up to the specified namespace.
+	 */
+	std::vector<std::pair<CStr, CConfigValueSet> > GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix);
+
+	/**
+	 * Create a new config value in the specified namespace. If such a
+	 * variable already exists, the old value is returned and the effect is
+	 * exactly the same as that of GetValue()
+	 *
+	 * Returns a pointer to the value of the newly created config variable, or
+	 * that of the already existing config variable.
+	 */
 	CConfigValue *CreateValue(EConfigNamespace ns, const CStr& name);
 	
-	// SetConfigFile()
-	// Set the path to the config file used to populate the specified namespace
-	// Note that this function does not actually load the config file. Use
-	// the Reload() method if you want to read the config file at the same time.
-	//
-	// 'path': The path to the config file.
-	//		VFS: relative to VFS root
-	//		non-VFS: relative to current working directory (binaries/data/)
-	// 'useVFS': true if the path is a VFS path, false if it is a real path
+	/**
+	 * Set the path to the config file used to populate the specified namespace
+	 * Note that this function does not actually load the config file. Use
+	 * the Reload() method if you want to read the config file at the same time.
+	 *
+	 * 'path': The path to the config file.
+	 *		VFS: relative to VFS root
+	 *		non-VFS: relative to current working directory (binaries/data/)
+	 * 'useVFS': true if the path is a VFS path, false if it is a real path
+	 */
 	void SetConfigFile(EConfigNamespace ns, bool useVFS, const CStrW& path);
 	
-	// Reload()
-	// Reload the config file associated with the specified config namespace
-	// (the last config file path set with SetConfigFile)
-	//
-	// Returns:
-	//	true:	if the reload succeeded, 
-	//	false:	if the reload failed
+	/**
+	 * Reload the config file associated with the specified config namespace
+	 * (the last config file path set with SetConfigFile)
+	 *
+	 * Returns:
+	 *	true:	if the reload succeeded,
+	 *	false:	if the reload failed
+	 */
 	bool Reload(EConfigNamespace);
 	
-	// WriteFile()
-	// Write the current state of the specified config namespace to the file
-	// specified by 'path'
-	//
-	// Returns:
-	//	true:	if the config namespace was successfully written to the file
-	//	false:	if an error occured
+	/**
+	 * Write the current state of the specified config namespace to the file
+	 * specified by 'path'
+	 *
+	 * Returns:
+	 *	true:	if the config namespace was successfully written to the file
+	 *	false:	if an error occurred
+	 */
 	bool WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path);
 };
 

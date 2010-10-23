@@ -75,18 +75,17 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 {
 	InReaction ret = IN_PASS;
 
-	if (ev->ev.type == SDL_GUIHOTKEYPRESS)
+	if (ev->ev.type == SDL_HOTKEYDOWN)
 	{
-		const CStr& objectName = *(CStr*) ev->ev.user.data1;
-		IGUIObject* object = FindObjectByName(objectName);
-		if (! object)
+		const char* hotkey = static_cast<const char*>(ev->ev.user.data1);
+		std::map<CStr, std::vector<IGUIObject*> >::iterator it = m_HotkeyObjects.find(hotkey);
+		if (it != m_HotkeyObjects.end())
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, L"Cannot find hotkeyed object '%hs'", objectName.c_str());
-		}
-		else
-		{
-			object->HandleMessage( SGUIMessage( GUIM_PRESSED ) );
-			object->ScriptEvent("press");
+			for (size_t i = 0; i < it->second.size(); ++i)
+			{
+				it->second[i]->HandleMessage(SGUIMessage(GUIM_PRESSED));
+				it->second[i]->ScriptEvent("press");
+			}
 		}
 	}
 
@@ -1226,7 +1225,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 	// Attempt to register the hotkey tag, if one was provided
 	if (! hotkeyTag.empty())
-		HotkeyRegisterGuiObject(object->GetName(), hotkeyTag);
+		m_HotkeyObjects[hotkeyTag].push_back(object);
 
 	CStrW caption (Element.GetText());
 	if (! caption.empty())

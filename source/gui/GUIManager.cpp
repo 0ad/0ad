@@ -37,8 +37,6 @@ CGUIManager* g_GUI = NULL;
 // A lot of the CGUI data could (and should) be shared between
 // multiple pages, instead of treating them as completely independent, to save
 // memory and loading time.
-//
-// Hotkeys are not unregistered when a page is unloaded.
 
 
 // called from main loop when (input) events are received.

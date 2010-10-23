@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,25 +15,20 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PS_HOTKEY_H
-#define PS_HOTKEY_H
+#ifndef INCLUDED_HOTKEY
+#define INCLUDED_HOTKEY
 
-// Hotkey.h
-// 
-// Constant definitions and a couple of exports for the hotkey processor
-//
-// Hotkeys can be mapped onto SDL events (for use internal to the engine),
-// or used to trigger activation of GUI buttons.
-//
-// Adding a hotkey (SDL event type):
-//
-// - Define your constant in the enum, just below;
-// - Add an entry to hotkeyInfo[], in Hotkey.cpp
-//     first column is this constant, second is the config string (minus 'hotkey.') it maps to
-//     third and fourth are the default keys, used if the config file doesn't contain that string.
-// - Create an input handler for SDL_HOTKEYDOWN, SDL_HOTKEYUP, or poll the hotkeys[] array.
-//     For SDL_HOTKEYDOWN, SDL_HOTKEYUP, the constant is passed in as ev->ev.user.code.
-// - Add some bindings to the config file.
+/**
+ * @file
+ * Hotkey system.
+ *
+ * Hotkeys consist of a name (an arbitrary string), and a key mapping.
+ * The names and mappings are loaded from the config system (any
+ * config setting with the name prefix "hotkey.").
+ * When a hotkey is pressed or released, SDL_HOTKEYDOWN and SDL_HOTKEYUP
+ * events are triggered, with the hotkey name stored in ev.user.data1
+ * as a const char*.
+ */
 
 #include "CStr.h"
 #include "lib/input.h"
@@ -45,105 +40,10 @@
 
 const int SDL_HOTKEYDOWN = SDL_USEREVENT;
 const int SDL_HOTKEYUP = SDL_USEREVENT + 1;
-const int SDL_GUIHOTKEYPRESS = SDL_USEREVENT + 2;
-
-enum
-{
-	HOTKEY_EXIT,
-	HOTKEY_SCREENSHOT,
-	HOTKEY_BIGSCREENSHOT,
-	HOTKEY_WIREFRAME,
-	HOTKEY_TOGGLEFULLSCREEN,
-	HOTKEY_CAMERA_RESET,
-	HOTKEY_CAMERA_FOLLOW,
-	HOTKEY_CAMERA_ZOOM_IN,
-	HOTKEY_CAMERA_ZOOM_OUT,
-	HOTKEY_CAMERA_ZOOM_WHEEL_IN,
-	HOTKEY_CAMERA_ZOOM_WHEEL_OUT,
-	HOTKEY_CAMERA_ROTATE_CW,
-	HOTKEY_CAMERA_ROTATE_CCW,
-	HOTKEY_CAMERA_ROTATE_UP,
-	HOTKEY_CAMERA_ROTATE_DOWN,
-	HOTKEY_CAMERA_ROTATE_WHEEL_CW,
-	HOTKEY_CAMERA_ROTATE_WHEEL_CCW,
-	HOTKEY_CAMERA_PAN,
-	HOTKEY_CAMERA_PAN_KEYBOARD,
-	HOTKEY_CAMERA_LEFT,
-	HOTKEY_CAMERA_RIGHT,
-	HOTKEY_CAMERA_UP,
-	HOTKEY_CAMERA_DOWN,
-	HOTKEY_CAMERA_CINEMA_ADD,
-	HOTKEY_CAMERA_CINEMA_DELETE,
-	HOTKEY_CAMERA_CINEMA_DELETE_ALL,
-	HOTKEY_CAMERA_CINEMA_QUEUE,
-	HOTKEY_CONSOLE_TOGGLE,
-	HOTKEY_CONSOLE_COPY,
-	HOTKEY_CONSOLE_PASTE,
-	HOTKEY_SELECTION_ADD,
-	HOTKEY_SELECTION_REMOVE,
-	HOTKEY_SELECTION_GROUP_0,
-	HOTKEY_SELECTION_GROUP_1,
-	HOTKEY_SELECTION_GROUP_2,
-	HOTKEY_SELECTION_GROUP_3,
-	HOTKEY_SELECTION_GROUP_4,
-	HOTKEY_SELECTION_GROUP_5,
-	HOTKEY_SELECTION_GROUP_6,
-	HOTKEY_SELECTION_GROUP_7,
-	HOTKEY_SELECTION_GROUP_8,
-	HOTKEY_SELECTION_GROUP_9,
-	HOTKEY_SELECTION_GROUP_10,
-	HOTKEY_SELECTION_GROUP_11,
-	HOTKEY_SELECTION_GROUP_12,
-	HOTKEY_SELECTION_GROUP_13,
-	HOTKEY_SELECTION_GROUP_14,
-	HOTKEY_SELECTION_GROUP_15,
-	HOTKEY_SELECTION_GROUP_16,
-	HOTKEY_SELECTION_GROUP_17,
-	HOTKEY_SELECTION_GROUP_18,
-	HOTKEY_SELECTION_GROUP_19,
-	HOTKEY_SELECTION_GROUP_ADD,
-	HOTKEY_SELECTION_GROUP_SAVE,
-	HOTKEY_SELECTION_GROUP_SNAP,
-	HOTKEY_SELECTION_SNAP,
-	HOTKEY_ORDER_QUEUE,
-	HOTKEY_CONTEXTORDER_NEXT,
-	HOTKEY_CONTEXTORDER_PREVIOUS,
-	HOTKEY_HIGHLIGHTALL,
-	HOTKEY_PROFILE_TOGGLE,
-	HOTKEY_PROFILE_SAVE,
-	HOTKEY_PLAYMUSIC,
-	HOTKEY_PAUSE,
-	HOTKEY_SPEED_INCREASE,
-	HOTKEY_SPEED_DECREASE,
-	HOTKEY_KILL,
-	HOTKEY_CHAT,
-	
-	HOTKEY_LAST,
-
-	HOTKEY_NEGATION_FLAG = 65536
-};
 
 extern void LoadHotkeys();
 extern InReaction HotkeyInputHandler(const SDL_Event_* ev);
-extern void HotkeyRegisterGuiObject(const CStr& objName, const CStr& hotkeyName);
 
-/**
- * @return the name of the specified HOTKEY_*, or empty string if not defined
- **/
-extern CStr HotkeyGetName(int hotkey);
-
-/**
- * @return whether the specified HOTKEY_* responds to the specified SDLK_*
- * (mainly for the screenshot system to know whether it needs to override
- * the printscreen screen). Ignores modifier keys.
- **/
-extern bool HotkeyRespondsTo(int hotkey, int sdlkey);
-
-/**
- * @return whether one of the key combinations for the given hotkey is pressed
- **/
 extern bool HotkeyIsPressed(const CStr& keyname);
 
-extern bool hotkeys[HOTKEY_LAST];
-
-#endif // PS_HOTKEY_H
+#endif // INCLUDED_HOTKEY

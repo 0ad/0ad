@@ -100,26 +100,26 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		break;
 
 	case SDL_HOTKEYDOWN:
-		switch(ev->ev.user.code)
+		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+		if (hotkey == "exit")
 		{
-		case HOTKEY_EXIT:
 			kill_mainloop();
 			return IN_HANDLED;
-
-		case HOTKEY_SCREENSHOT:
+		}
+		else if (hotkey == "screenshot")
+		{
 			WriteScreenshot(L".png");
 			return IN_HANDLED;
-
-		case HOTKEY_BIGSCREENSHOT:
+		}
+		else if (hotkey == "bigscreenshot")
+		{
 			WriteBigScreenshot(L".bmp", 10);
 			return IN_HANDLED;
-
-		case HOTKEY_TOGGLEFULLSCREEN:
+		}
+		else if (hotkey == "togglefullscreen")
+		{
 			g_VideoMode.ToggleFullscreen();
 			return IN_HANDLED;
-
-		default:
-			break;
 		}
 		break;
 	}

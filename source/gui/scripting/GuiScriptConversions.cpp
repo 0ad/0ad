@@ -43,7 +43,6 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 	case SDL_MOUSEBUTTONUP: typeName = "mousebuttonup"; break;
 	case SDL_HOTKEYDOWN: typeName = "hotkeydown"; break;
 	case SDL_HOTKEYUP: typeName = "hotkeyup"; break;
-	case SDL_GUIHOTKEYPRESS: typeName = "guihotkeypress"; break;
 	default: typeName = "(unknown)"; break;
 	}
 
@@ -117,14 +116,7 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 	case SDL_HOTKEYDOWN:
 	case SDL_HOTKEYUP:
 	{
-		CStr name = HotkeyGetName(val.ev.user.code);
-		SET(obj, "hotkey", name.c_str());
-		break;
-	}
-	case SDL_GUIHOTKEYPRESS:
-	{
-		CStr* name = static_cast<CStr*>(val.ev.user.data1);
-		SET(obj, "object", name->c_str());
+		SET(obj, "hotkey", static_cast<const char*>(val.ev.user.data1));
 		break;
 	}
 	}

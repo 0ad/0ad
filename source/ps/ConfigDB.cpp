@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 #include "CLogger.h"
 #include "Filesystem.h"
 #include "scripting/ScriptingHost.h"
+
+#include <boost/algorithm/string.hpp>
 
 typedef std::map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
@@ -213,7 +215,7 @@ CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, const CStr& name)
 	return &( (*values)[0] );
 }
 
-CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name )
+CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name)
 {
 	if (ns < 0 || ns >= CFG_LAST)
 	{
@@ -234,6 +236,34 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name )
 
 	return( NULL );
 }	
+
+std::vector<std::pair<CStr, CConfigValueSet> > CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)
+{
+	std::vector<std::pair<CStr, CConfigValueSet> > ret;
+
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn(L"CConfigDB: Invalid ns value");
+		return ret;
+	}
+
+	for (TConfigMap::iterator it = m_Map[CFG_COMMAND].begin(); it != m_Map[CFG_COMMAND].end(); ++it)
+	{
+		if (boost::algorithm::starts_with(it->first, prefix))
+			ret.push_back(std::make_pair(it->first, it->second));
+	}
+
+	for (int search_ns = ns; search_ns >= 0; search_ns--)
+	{
+		for (TConfigMap::iterator it = m_Map[search_ns].begin(); it != m_Map[search_ns].end(); ++it)
+		{
+			if (boost::algorithm::starts_with(it->first, prefix))
+				ret.push_back(std::make_pair(it->first, it->second));
+		}
+	}
+
+	return ret;
+}
 
 CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 {

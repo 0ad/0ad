@@ -651,6 +651,15 @@ private:
 	 */
 	std::map<CStr, ConstructObjectFunction>	m_ObjectTypes;
 
+	/**
+	 * Map from hotkey names to objects that listen to the hotkey.
+	 * (This is an optimisation to avoid recursing over the whole GUI
+	 * tree every time a hotkey is pressed).
+	 * Currently this is only set at load time - dynamic changes to an
+	 * object's hotkey property will be ignored.
+	 */
+	std::map<CStr, std::vector<IGUIObject*> > m_HotkeyObjects;
+
 	//--------------------------------------------------------
 	//	Databases
 	//--------------------------------------------------------

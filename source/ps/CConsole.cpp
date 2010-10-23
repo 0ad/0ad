@@ -759,17 +759,19 @@ InReaction conInputHandler(const SDL_Event_* ev)
 {
 	if( ev->ev.type == SDL_HOTKEYDOWN )
 	{
-		if( ev->ev.user.code == HOTKEY_CONSOLE_TOGGLE )
+		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+
+		if( hotkey == "console.toggle" )
 		{
 			g_Console->ToggleVisible();
 			return IN_HANDLED;
 		}
-		else if( ev->ev.user.code == HOTKEY_CONSOLE_COPY )
+		else if( hotkey == "console.copy" )
 		{
 			sys_clipboard_set( g_Console->GetBuffer() );
 			return IN_HANDLED;
 		}
-		else if( ev->ev.user.code == HOTKEY_CONSOLE_PASTE )
+		else if( hotkey == "console.paste" )
 		{
 			wchar_t* text = sys_clipboard_get();
 			if(text)
@@ -794,7 +796,7 @@ InReaction conInputHandler(const SDL_Event_* ev)
 	// Stop unprintable characters (ctrl+, alt+ and escape),
 	// also prevent ` and/or ~ appearing in console every time it's toggled.
 	if( !isUnprintableChar(ev->ev.key.keysym) &&
-		!hotkeys[HOTKEY_CONSOLE_TOGGLE] )
+		!HotkeyIsPressed("console.toggle") )
 		g_Console->InsertChar(sym, (wchar_t)ev->ev.key.keysym.unicode );
 
 	return IN_PASS;
