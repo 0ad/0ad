@@ -27,7 +27,6 @@ GarrisonHolder.prototype.Init = function()
 	this.spaceOccupied = 0;
 	this.timer = undefined;
 	this.healRate = this.template.BuffHeal;
-
 };
 
 /**
@@ -67,10 +66,11 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
 	var allowedClasses = this.GetAllowedClassesList();
 	var classNotAllowed = true;
-	
+
 	if (!this.HasEnoughHealth())
 		return false;
-	//Check if the unit is allowed to be garrisoned inside the building
+
+	// Check if the unit is allowed to be garrisoned inside the building
 	for each (var allowedClass in allowedClasses)
 	{
 		if (entityClasses.indexOf(allowedClass) != -1)
@@ -79,21 +79,25 @@ GarrisonHolder.prototype.Garrison = function(entity)
 			break;
 		}
 	}
+
 	if (classNotAllowed)
 		return false;
-	if (this.GetCapacity() < (this.spaceOccupied + entityPopCost))
+
+	if (this.GetCapacity() < this.spaceOccupied + 1)
 		return false;
-	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
+
 	if (!this.timer)
 	{
  		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
 	}
+
+	var cmpPosition = Engine.QueryInterface(entity, IID_Position);
 	if (cmpPosition)
 	{
-		//Actual garrisoning happens here
+		// Actual garrisoning happens here
 		this.entities.push(entity);
-		this.spaceOccupied += entityPopCost;
+		this.spaceOccupied += 1;
 		cmpPosition.MoveOutOfWorld();
 		return true;
 	}
@@ -110,7 +114,7 @@ GarrisonHolder.prototype.Unload = function(entity)
 {
 	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	var entityIndex = this.entities.indexOf(entity);
-	this.spaceOccupied -= (Engine.QueryInterface(entity, IID_Cost)).GetPopCost();
+	this.spaceOccupied -= 1;
 	this.entities.splice(entityIndex, 1);
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	var pos = cmpFootprint.PickSpawnPoint(entity);
@@ -154,7 +158,6 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
 	{
 		this.UnloadAll();
 	}
-	
 };
 
 /**
@@ -167,7 +170,6 @@ GarrisonHolder.prototype.HasEnoughHealth = function()
 	var maxHitpoints = cmpHealth.GetMaxHitpoints();
 	var ejectHitpoints = parseInt(parseFloat(this.template.EjectHealth) * maxHitpoints);
 	return hitpoints > ejectHitpoints; 
-	
 };
 
 /**

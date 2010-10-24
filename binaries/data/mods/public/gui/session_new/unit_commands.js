@@ -218,6 +218,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case COMMAND:
+			if (item == "unload-all")
+			{
+				var count = unitEntState.garrisonHolder.entities.length;
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
+			}
+
 			tooltip = toTitleCase(item);
 			break;
 
