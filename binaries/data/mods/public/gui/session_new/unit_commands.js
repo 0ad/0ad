@@ -311,7 +311,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 // Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
 function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
 {
-	var isInvisble = true;
+	//var isInvisible = true;
 	
 	// Panels that are active
 	var usedPanels = {};
@@ -361,28 +361,28 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.buildEntities && entState.buildEntities.length)
 		{
 			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
-			isInvisble = false;
+//			isInvisible = false;
 		}
 
 		if (entState.training && entState.training.entities.length)
 		{
 			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
 				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
-			isInvisble = false;
+//			isInvisible = false;
 		}
 
 		if (entState.training && entState.training.queue.length)
 			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
 
-		supplementalDetailsPanel.hidden = false;
-		commandsPanel.hidden = isInvisble;
+//		supplementalDetailsPanel.hidden = false;
+//		commandsPanel.hidden = isInvisible;
 	}
 	else
 	{
 		getGUIObjectByName("stamina").hidden = true;
-		supplementalDetailsPanel.hidden = true;
-		commandsPanel.hidden = true;
+//		supplementalDetailsPanel.hidden = true;
+//		commandsPanel.hidden = true;
 	}
 
 	// Hides / unhides Unit Panels (panels should be grouped by type, not by order, but we will leave that for another time)
@@ -395,4 +395,11 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		else
 			panel.hidden = true;
 	}
+}
+
+// Force hide commands panels
+function hideUnitCommands()
+{
+	for each (var panelName in g_unitPanels)
+		getGUIObjectByName("unit" + panelName + "Panel").hidden = true;
 }

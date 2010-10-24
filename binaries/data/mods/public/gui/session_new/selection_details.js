@@ -184,10 +184,14 @@ function updateSelectionDetails()
 	
 	if (selection.length == 0)
 	{
-		supplementalDetailsPanel.hidden = true;
-		detailsPanel.hidden = true;
-		commandsPanel.hidden = true;
-		getGUIObjectByName("unitSelectionPanel").hidden = true;
+		getGUIObjectByName("detailsAreaMultiple").hidden = true;
+		getGUIObjectByName("detailsAreaSingle").hidden = true;
+		hideUnitCommands();
+	
+//		supplementalDetailsPanel.hidden = true;
+//		detailsPanel.hidden = true;
+//		commandsPanel.hidden = true;
+//		getGUIObjectByName("unitSelectionPanel").hidden = true;
 		return;
 	}
 

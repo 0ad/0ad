@@ -415,24 +415,24 @@
 		<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="bottomLeft" z="30">
 
 			<object name="unitFormationPanel"
-				size="20 10 100% 100%"
+				size="24 12 100% 100%"
 			>
 				<object size="0 0 100% 100%">
 					<repeat count="16">
-						<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
-							<object name="unitFormationIcon[n]" type="image" style="formationIcon" ghost="true" size="1 1 37 37"/>
+						<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" z="100">
+							<object name="unitFormationIcon[n]" type="image" style="formationIcon" ghost="true" size="3 3 33 33"/>
 						</object>
 					</repeat>
 				</object>
 			</object>
 		
 			<object name="unitGarrisonPanel"
-				size="20 10 100% 100%"
+				size="24 12 100% 100%"
 			>
 				<object size="0 0 100% 100%">
 					<repeat count="16">
-						<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
-							<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
+						<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" z="100">
+							<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
 							<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 						</object>
 					</repeat>
@@ -448,7 +448,7 @@
 			type="image"
 			sprite="bottomMiddle"
 			size="50%-114 100%-205 50%+114 100%"
-			hidden="true"
+			hidden="false"
 		>
 			<!-- Unit details for Single Unit -->
 			<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
@@ -473,7 +473,7 @@
 				</object>
 						
 				<!-- Stats Bars -->
-				<object size= "50%+48 36 100% 140" type="image" tooltip_style="snToolTip">
+				<object size= "50%+48 40 100% 136" type="image" tooltip_style="snToolTip">
 					<!-- Health bar -->
 					<object size="18 0 30 100%" type="image" name="health" tooltip="Hitpoints" tooltip_style="snToolTip">
 						<object type="image" sprite="healthBackground" ghost="true"/>
@@ -504,12 +504,12 @@
 			<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
 					
 				<object name="unitSelectionPanel"
-					size="20 10 100%-20 100%"
+					size="20 12 100%-20 100%"
 				>
 					<object size="0 0 100% 100%">
 						<repeat count="16">
-							<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" z="100">
-								<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
+							<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" z="100">
+								<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
 								<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 								<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
 								</object>
@@ -544,7 +544,7 @@
 
 			<!-- Unit Commands -->
 			<object name="unitCommandPanel"
-				size="0 100%-35 100% 100%"
+				size="0 100%-36 100% 100%-4"
 				type="image"
 				z="30"
 			>
@@ -566,19 +566,19 @@
 		<object name="unitCommands"
 			type="image"
 			sprite="bottomRight"
-			size="622 100%-170 100% 100%"
-			hidden="true"
+			size="622 100%-170 100%-4 100%"
+			hidden="false"
 		>
 			<object name="unitConstructionPanel"
-				size="6 10 100% 100%"
+				size="12 12 100% 100%"
 			>
 				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="0" tooltip="Construction"/>-->
 
 				<object size="0 0 100% 100%">
 					<repeat count="18">
-						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
-							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 45 45"/>
+						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46">
+							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 						</object>
 					</repeat>
 				</object>
@@ -607,15 +607,15 @@
 			</object>
 
 			<object name="unitTrainingPanel"
-				size="6 10 100% 100%"
+				size="12 12 100% 100%"
 			>
 				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="2" tooltip="Training"/>-->
 
 				<object size="0 0 100% 100%">
 					<repeat count="18">
-						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 48 48">
-							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 45 45"/>
+						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46">
+							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 						</object>
 					</repeat>
 				</object>
