@@ -2,6 +2,7 @@ Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
+Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Identity.js");
 Engine.LoadComponentScript("interfaces/RallyPoint.js");
@@ -78,7 +79,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 AddMock(10, IID_Position, {
 	GetPosition: function() {
 		return {x:1, y:2, z:3};
-	}
+	},
+	IsInWorld: function() {
+		return true;
+	},
 });
 
 AddMock(10, IID_Health, {
