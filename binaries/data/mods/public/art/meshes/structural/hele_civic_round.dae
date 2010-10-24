@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2009-06-14T23:10:40Z</created>
-    <modified>2009-06-14T23:10:40Z</modified>
+    <created>2010-10-24T07:14:52Z</created>
+    <modified>2010-10-24T07:14:52Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,17 +16,17 @@
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__308-image" name="Map__308">
-      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_roof_round.dds</init_from>
+    <image id="Map__313-image" name="Map__313">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_roof_round.dds</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="_23___Default" name="_23___Default">
-      <instance_effect url="#_23___Default-fx"/>
+    <material id="_15___Default" name="_15___Default">
+      <instance_effect url="#_15___Default-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="_23___Default-fx" name="_23___Default">
+    <effect id="_15___Default-fx" name="_15___Default">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -34,10 +34,10 @@
               <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+              <color sid="ambient">0.588200  0.588200 0.588200 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__308-image" texcoord="CHANNEL0">
+              <texture texture="Map__313-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -51,7 +51,7 @@
               <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
             </specular>
             <shininess>
-              <float sid="shininess">2.000000</float>
+              <float sid="shininess">32.000000</float>
             </shininess>
             <reflective>
               <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
@@ -480,7 +480,7 @@
         <vertices id="roundRoof-lib-Vertex">
           <input semantic="POSITION" source="#roundRoof-lib-Position"/>
         </vertices>
-        <polygons material="_23___Default" count="80">
+        <polygons material="_15___Default" count="80">
           <input semantic="VERTEX" offset="0" source="#roundRoof-lib-Vertex"/>
           <input semantic="NORMAL" offset="1" source="#roundRoof-lib-Normal0"/>
           <input semantic="TEXCOORD" offset="2" set="0" source="#roundRoof-lib-UV0"/>
@@ -571,6 +571,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="roundRoof" name="roundRoof">
+        <translate sid="translate">-0.306240 -0.378324 -0.002705</translate>
         <scale sid="scale">1.390430 1.390430 1.390430</scale>
         <node id="roundRoof-Pivot" name="roundRoof-Pivot">
           <translate>0.688198 -2.953858 6.775834</translate>
@@ -578,8 +579,8 @@
           <instance_geometry url="#roundRoof-lib">
             <bind_material>
               <technique_common>
-                <instance_material symbol="Map__308-Material" target="#Map__308-Material"/>
-                <instance_material symbol="_23___Default" target="#_23___Default"/>
+                <instance_material symbol="Map__313-Material" target="#Map__313-Material"/>
+                <instance_material symbol="_15___Default" target="#_15___Default"/>
               </technique_common>
             </bind_material>
           </instance_geometry>

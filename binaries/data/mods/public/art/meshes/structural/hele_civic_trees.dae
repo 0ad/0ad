@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2009-06-14T23:11:36Z</created>
-    <modified>2009-06-14T23:11:36Z</modified>
+    <created>2010-10-24T07:14:40Z</created>
+    <modified>2010-10-24T07:14:40Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,17 +16,17 @@
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__312-image" name="Map__312">
-      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\gaia\prop_tree_cypess.dds</init_from>
+    <image id="Map__317-image" name="Map__317">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\wrld_prop_cypress.dds</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="_16___Default" name="_16___Default">
-      <instance_effect url="#_16___Default-fx"/>
+    <material id="_12___Default" name="_12___Default">
+      <instance_effect url="#_12___Default-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="_16___Default-fx" name="_16___Default">
+    <effect id="_12___Default-fx" name="_12___Default">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__312-image" texcoord="CHANNEL0">
+              <texture texture="Map__317-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -1258,7 +1258,26 @@
           </technique_common>
         </source>
         <source id="trees-lib-UV0">
-          <float_array id="trees-lib-UV0-array" count="38">
+          <float_array id="trees-lib-UV0-array" count="76">
+0.701300 0.000000
+0.801300 0.500000
+0.601300 0.500000
+1.001300 0.500000
+0.101300 0.000000
+0.201300 0.500000
+0.001300 0.500000
+0.401300 0.000000
+0.401300 0.500000
+0.651300 0.750000
+0.751300 0.750000
+0.851300 0.750000
+0.051300 0.750000
+0.151300 0.750000
+0.251300 0.750000
+0.551300 0.750000
+0.701300 1.000000
+0.101300 1.000000
+1.001300 0.000000
 0.701300 0.000000
 0.801300 0.500000
 0.601300 0.500000
@@ -1280,7 +1299,7 @@
 1.001300 0.000000
 </float_array>
           <technique_common>
-            <accessor source="#trees-lib-UV0-array" count="19" stride="2">
+            <accessor source="#trees-lib-UV0-array" count="38" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
@@ -1289,7 +1308,7 @@
         <vertices id="trees-lib-Vertex">
           <input semantic="POSITION" source="#trees-lib-Position"/>
         </vertices>
-        <polygons material="_16___Default" count="322">
+        <polygons material="_12___Default" count="322">
           <input semantic="VERTEX" offset="0" source="#trees-lib-Vertex"/>
           <input semantic="NORMAL" offset="1" source="#trees-lib-Normal0"/>
           <input semantic="TEXCOORD" offset="2" set="0" source="#trees-lib-UV0"/>
@@ -1622,6 +1641,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="trees" name="trees">
+        <translate sid="translate">-0.306240 -0.378324 -0.002705</translate>
         <scale sid="scale">1.390430 1.390430 1.390430</scale>
         <node id="trees-Pivot" name="trees-Pivot">
           <translate>0.198899 -7.983109 2.226533</translate>
@@ -1629,8 +1649,8 @@
           <instance_geometry url="#trees-lib">
             <bind_material>
               <technique_common>
-                <instance_material symbol="Map__312-Material" target="#Map__312-Material"/>
-                <instance_material symbol="_16___Default" target="#_16___Default"/>
+                <instance_material symbol="Map__317-Material" target="#Map__317-Material"/>
+                <instance_material symbol="_12___Default" target="#_12___Default"/>
               </technique_common>
             </bind_material>
           </instance_geometry>
