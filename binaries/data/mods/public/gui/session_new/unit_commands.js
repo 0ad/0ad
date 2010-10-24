@@ -221,7 +221,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			if (item == "unload-all")
 			{
 				var count = unitEntState.garrisonHolder.entities.length;
-				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 0 ? count : "");
 			}
 			else
 			{
