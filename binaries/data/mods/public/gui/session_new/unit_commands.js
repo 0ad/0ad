@@ -223,6 +223,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				var count = unitEntState.garrisonHolder.entities.length;
 				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 			}
+			else
+			{
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = "";
+			}
 
 			tooltip = toTitleCase(item);
 			break;
