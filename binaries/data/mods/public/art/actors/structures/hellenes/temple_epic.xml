@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Epic Greek Temple">
+      <mesh>structural/parth_struct.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/parth_steps.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/parth_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/parth_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/parth_walls.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/parth_antefixes.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

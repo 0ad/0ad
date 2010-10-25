@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-10-25T01:38:11Z</created>
+    <modified>2010-10-25T01:38:11Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__301-image" name="Map__301">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\Meshes\meshes\structural\hellenes\Map__50_Mix.tga</init_from>
+    </image>
+    <image id="Map__302-image" name="Map__302">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_wonder_rooftile.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_08___Default" name="_08___Default">
+      <instance_effect url="#_08___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_08___Default-fx" name="_08___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <texture texture="Map__301-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__302-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">32.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="par_roof_1_-lib" name="par_roof_1_Mesh">
+      <mesh>
+        <source id="par_roof_1_-lib-Position">
+          <float_array id="par_roof_1_-lib-Position-array" count="60">
+1.229720 -2.639795 -0.200250
+1.229720 2.639626 -0.200250
+1.229720 -2.639795 -0.143840
+1.229720 2.639626 -0.143840
+-0.000003 -0.879983 0.200250
+1.229720 -0.879922 -0.143840
+1.229720 0.879930 -0.143840
+1.229720 -0.879922 -0.200250
+1.229720 0.879930 -0.200250
+-1.229720 0.879930 -0.200250
+-1.229720 -0.879922 -0.200250
+-1.229720 0.879930 -0.143840
+-1.229720 -0.879922 -0.143840
+0.000000 0.879983 0.200250
+0.000000 -2.639950 0.200250
+0.000000 2.639950 0.200250
+-1.229720 2.639626 -0.143840
+-1.229720 -2.639795 -0.143840
+-1.229720 2.639626 -0.200250
+-1.229720 -2.639795 -0.200250
+</float_array>
+          <technique_common>
+            <accessor source="#par_roof_1_-lib-Position-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="par_roof_1_-lib-Normal0">
+          <float_array id="par_roof_1_-lib-Normal0-array" count="216">
+0.269461 -0.000000 0.963011
+-0.000001 0.000000 1.000000
+0.269462 0.000000 0.963011
+-0.000001 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.269462 0.000000 0.963011
+0.269462 0.000000 0.963011
+0.000000 -0.000000 1.000000
+0.269461 -0.000000 0.963011
+0.000000 -0.000000 1.000000
+-0.000001 0.000000 1.000000
+0.269461 -0.000000 0.963011
+0.269462 0.000000 0.963011
+0.269462 0.000000 0.963011
+0.000000 -0.000000 1.000000
+0.269462 0.000000 0.963011
+0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-0.269462 0.000000 0.963011
+0.000000 -0.000000 1.000000
+-0.269462 0.000000 0.963011
+0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
+-0.269462 0.000000 0.963011
+-0.000001 0.000000 1.000000
+0.000000 -0.000000 1.000000
+-0.269462 0.000000 0.963011
+0.000000 -0.000000 1.000000
+-0.269462 0.000000 0.963011
+-0.269462 0.000000 0.963011
+0.000000 0.000000 1.000000
+-0.000001 0.000000 1.000000
+-0.269462 -0.000000 0.963011
+-0.000001 0.000000 1.000000
+-0.269462 0.000000 0.963011
+-0.269462 -0.000000 0.963011
+</float_array>
+          <technique_common>
+            <accessor source="#par_roof_1_-lib-Normal0-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="par_roof_1_-lib-UV0">
+          <float_array id="par_roof_1_-lib-UV0-array" count="42">
+0.998882 0.072530
+0.998882 1.003816
+0.001177 0.072530
+0.001177 1.003814
+0.999823 0.072530
+0.999823 1.003819
+0.002118 0.072530
+0.002118 1.003816
+0.001177 1.003819
+0.998882 1.003821
+0.000580 0.071613
+0.000580 0.001032
+1.001179 0.001032
+1.001179 0.071613
+0.000933 0.072522
+0.000933 0.001453
+1.000067 0.001453
+1.000067 0.072522
+0.000933 0.072523
+0.000933 -0.002453
+1.000067 -0.002453
+</float_array>
+          <technique_common>
+            <accessor source="#par_roof_1_-lib-UV0-array" count="21" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="par_roof_1_-lib-Vertex">
+          <input semantic="POSITION" source="#par_roof_1_-lib-Position"/>
+        </vertices>
+        <polygons material="_08___Default" count="24">
+          <input semantic="VERTEX" offset="0" source="#par_roof_1_-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#par_roof_1_-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#par_roof_1_-lib-UV0"/>
+          <p>5 0 0 4 1 1 2 2 2</p>
+          <p>4 3 1 14 4 3 2 5 2</p>
+          <p>6 6 4 13 7 5 5 8 6</p>
+          <p>13 9 5 4 10 7 5 11 6</p>
+          <p>6 12 2 3 13 0 13 14 8</p>
+          <p>3 15 0 15 16 9 13 17 8</p>
+          <p>6 18 10 8 19 11 1 20 12</p>
+          <p>6 21 10 1 22 12 3 23 13</p>
+          <p>5 24 14 7 25 15 8 26 16</p>
+          <p>5 27 14 8 28 16 6 29 17</p>
+          <p>2 30 18 0 31 19 7 32 20</p>
+          <p>2 33 18 7 34 20 5 35 17</p>
+          <p>10 36 20 19 37 19 17 38 18</p>
+          <p>10 39 20 17 40 18 12 41 17</p>
+          <p>9 42 16 10 43 15 12 44 14</p>
+          <p>9 45 16 12 46 14 11 47 17</p>
+          <p>18 48 12 9 49 11 11 50 10</p>
+          <p>18 51 12 11 52 10 16 53 13</p>
+          <p>11 54 2 13 55 8 16 56 0</p>
+          <p>13 57 8 15 58 9 16 59 0</p>
+          <p>4 60 7 13 61 5 12 62 6</p>
+          <p>13 63 5 11 64 4 12 65 6</p>
+          <p>14 66 3 4 67 1 17 68 2</p>
+          <p>4 69 1 12 70 0 17 71 2</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="par_roof_1_" name="par_roof_1_">
+        <translate sid="translate">0.013965 -0.006122 -0.016809</translate>
+        <scale sid="scale">9.862178 9.862178 9.862178</scale>
+        <node id="par_roof_1_-Pivot" name="par_roof_1_-Pivot">
+          <translate>0.000000 0.000000 1.771430</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#par_roof_1_-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__302-Material" target="#Map__302-Material"/>
+                <instance_material symbol="_08___Default" target="#_08___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
