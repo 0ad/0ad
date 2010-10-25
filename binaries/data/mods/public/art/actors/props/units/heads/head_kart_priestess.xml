@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <colour>44 41 37</colour>
+      <mesh>props/helmet/head_female_c.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/kart_healer_hat.xml" attachpoint="root"/>
+      </props>
+      <texture>props/head/kart_fem_a_cin.dds</texture>
+    </variant>
+  </group>
+</actor>
