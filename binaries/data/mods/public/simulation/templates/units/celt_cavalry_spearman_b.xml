@@ -12,27 +12,30 @@
     <Entity>celt_cavalry_spearman_a</Entity>
   </Promotion>
   <Cost>
-    <BuildTime>15</BuildTime>
+    <BuildTime>10</BuildTime>
     <Population>1</Population>
     <Resources>
-      <food>90</food>
+      <food>75</food>
       <wood>0</wood>
     </Resources>
   </Cost>
   <Health>
-    <Max>50</Max>
+    <Max>100</Max>
   </Health>
   <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>5.0</Crush>
+    <Hack>3.0</Hack>
+    <Pierce>3.0</Pierce>
+    <Crush>3.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>10.0</WalkSpeed>
+    <WalkSpeed>9.68</WalkSpeed>
     <Run>
-      <Speed>25</Speed>
+      <Speed>29.04</Speed>
     </Run>
   </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
   <Attack>
     <Melee>
       <Hack>20.0</Hack>
@@ -40,7 +43,7 @@
       <Crush>0.0</Crush>
     </Melee>
     <Charge>
-      <Hack>40.0</Hack>
+      <Hack>60.0</Hack>
       <Pierce>0.0</Pierce>
     </Charge>
   </Attack>
@@ -54,7 +57,4 @@
   <Obstruction>
     <Unit radius="1.0"/>
   </Obstruction>
-  <Vision>
-    <Range>40</Range>
-  </Vision>
 </Entity>

@@ -9,38 +9,27 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <Loot>
-    <food>1</food>
-    <wood>13</wood>
-    <stone>1</stone>
-    <metal>2</metal>
-  </Loot>
   <Health>
-    <Max>83</Max>
+    <Max>100</Max>
   </Health>
-  <Stamina>
-    <Max>525</Max>
-  </Stamina>
   <Armour>
-    <Hack>1.2</Hack>
-    <Pierce>5.2</Pierce>
-    <Crush>2.2</Crush>
+    <Hack>3.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>4.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>9.2</WalkSpeed>
+    <WalkSpeed>7.48</WalkSpeed>
     <Run>
-      <Speed>17.9</Speed>
+      <Speed>22.44</Speed>
     </Run>
   </UnitMotion>
   <Attack>
     <Ranged>
-      <Pierce>35.0</Pierce>
+      <Pierce>36.0</Pierce>
+      <MaxRange>44</MaxRange>
     </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/celts/infantry_javelinist_a.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>52</Range>
-  </Vision>
 </Entity>

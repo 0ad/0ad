@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_ranged">
+<Entity parent="template_unit_hero_cavalry_javelinist">
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Boudicca</SpecificName>
@@ -11,20 +11,16 @@
     <Population>4</Population>
     <BuildTime>50</BuildTime>
     <Resources>
-      <food>180</food>
+      <food>200</food>
       <wood>100</wood>
-      <metal>250</metal>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>350</Max>
+    <Max>500</Max>
   </Health>
-  <Stamina>
-    <Max>1000</Max>
-  </Stamina>
   <Armour>
     <Hack>7.0</Hack>
-    <Pierce>12.0</Pierce>
     <Crush>12.0</Crush>
   </Armour>
   <UnitMotion>
@@ -33,18 +29,12 @@
       <Speed>26.0</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>50.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>30</MaxRange>
-      <MinRange>0.0</MinRange>
-      <ProjectileSpeed>30.0</ProjectileSpeed>
-      <PrepareTime>1200</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
-    </Ranged>
-  </Attack>
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Courage>
+  </Auras>
   <VisualActor>
     <Actor>units/celts/boudicca_chariot.xml</Actor>
   </VisualActor>
@@ -55,10 +45,4 @@
   <Obstruction>
     <Unit radius="1.5"/>
   </Obstruction>
-  <Auras>
-    <Courage>
-      <Radius>20</Radius>
-      <Bonus>5</Bonus>
-    </Courage>
-  </Auras>
 </Entity>

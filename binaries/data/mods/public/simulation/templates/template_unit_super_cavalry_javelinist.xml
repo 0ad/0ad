@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super_cavalry">
+  <Identity>
+    <GenericName>Super Cavalry Javelinist</GenericName>
+    <Classes datatype="tokens">Cavalry Ranged</Classes>
+  </Identity>
+  <Cost>
+    <Resources>
+      <food>100</food>
+      <wood>80</wood>
+    </Resources>
+  </Cost>
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>9.6</WalkSpeed>
+    <Run>
+      <Speed>28.8</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>38.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>56</MaxRange>
+      <MinRange>16.0</MinRange>
+      <ProjectileSpeed>30.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
+  <Footprint>
+    <Circle radius="2.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="1.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <death>actor/fauna/death/death_horse.xml</death>
+      <attack>attack/weapon/arrowfly.xml</attack>
+    </SoundGroups>
+  </Sound>
+</Entity>

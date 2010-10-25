@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_infantry">
+<Entity parent="template_unit_hero_infantry_spearman">
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Leonidas</SpecificName>
@@ -9,41 +9,11 @@
   </Identity>
   <Cost>
     <Resources>
-      <wood>35</wood>
-      <metal>150</metal>
+      <metal>110</metal>
     </Resources>
   </Cost>
-  <Stamina>
-    <Max>990</Max>
-  </Stamina>
-  <Armour>
-    <Hack>16.0</Hack>
-    <Pierce>21.0</Pierce>
-    <Crush>21.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
-    <Run>
-      <Speed>12.5</Speed>
-    </Run>
-  </UnitMotion>
-  <Attack>
-    <Melee>
-      <Hack>20.0</Hack>
-      <Pierce>20.0</Pierce>
-      <Crush>0.0</Crush>
-    </Melee>
-    <Charge>
-      <Hack>60.0</Hack>
-      <Pierce>60.0</Pierce>
-      <Crush>0.0</Crush>
-    </Charge>
-  </Attack>
-  <VisualActor>
-    <Actor>units/hellenes/leonidas.xml</Actor>
-  </VisualActor>
   <Vision>
-    <Range>32</Range>
+    <Range>88</Range>
   </Vision>
   <Auras>
     <Fear>
@@ -51,4 +21,19 @@
       <Bonus>5</Bonus>
     </Fear>
   </Auras>
+  <Attack>
+    <Melee>
+      <Hack>10.0</Hack>
+      <Pierce>25.0</Pierce>
+      <MaxRange>6.0</MaxRange>
+    </Melee>
+    <Charge>
+      <Hack>20.0</Hack>
+      <Pierce>50.0</Pierce>
+      <MaxRange>6.0</MaxRange>
+    </Charge>
+  </Attack>
+  <VisualActor>
+    <Actor>units/hellenes/leonidas.xml</Actor>
+  </VisualActor>
 </Entity>

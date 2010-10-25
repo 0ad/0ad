@@ -7,42 +7,25 @@
     <History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
     <Icon>units/celt_super_infantry_brit.png</Icon>
   </Identity>
-  <Cost>
-    <BuildTime>35</BuildTime>
-    <Resources>
-      <food>65</food>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>100</Max>
-  </Health>
   <Armour>
-    <Hack>12.0</Hack>
-    <Pierce>2.0</Pierce>
-    <Crush>10.0</Crush>
+    <Hack>9.0</Hack>
+    <Pierce>5.0</Pierce>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>6.16</WalkSpeed>
     <Run>
-      <Speed>16.5</Speed>
+      <Speed>18.48</Speed>
     </Run>
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>35.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <RepeatTime>1500</RepeatTime>
+      <Hack>25.0</Hack>
     </Melee>
     <Charge>
-      <Hack>85.0</Hack>
-      <MaxRange>3.0</MaxRange>
+      <Hack>50.0</Hack>
     </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/super_unit_3.xml</Actor>
   </VisualActor>
-  
 </Entity>

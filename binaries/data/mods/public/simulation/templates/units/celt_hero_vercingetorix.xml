@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry">
+<Entity parent="template_unit_hero_cavalry_swordsman">
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Vercingetorix</SpecificName>
@@ -8,45 +8,34 @@
     <Icon>units/celt_hero_vercingetorix.png</Icon>
   </Identity>
   <Cost>
-    <BuildTime>50</BuildTime>
     <Resources>
-      <food>150</food>
-      <metal>300</metal>
+      <metal>260</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>300</Max>
-  </Health>
-  <Stamina>
-    <Max>2000</Max>
-  </Stamina>
   <Armour>
-    <Hack>6.0</Hack>
-    <Pierce>13.0</Pierce>
-    <Crush>13.0</Crush>
+    <Hack>10.0</Hack>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>9.24</WalkSpeed>
     <Run>
-      <Speed>22.0</Speed>
+      <Speed>27.72</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Melee>
-      <Hack>50.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>150.0</Hack>
-      <MaxRange>5.0</MaxRange>
-    </Charge>
-  </Attack>
-  <VisualActor>
-    <Actor>units/celts/vercingetorix_horse.xml</Actor>
-  </VisualActor>
   <Auras>
     <Courage>
       <Radius>20</Radius>
       <Bonus>5</Bonus>
     </Courage>
   </Auras>
+  <Attack>
+    <Melee>
+      <Hack>27.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>54.0</Hack>
+    </Charge>
+  </Attack>
+  <VisualActor>
+    <Actor>units/celts/vercingetorix_horse.xml</Actor>
+  </VisualActor>
 </Entity>

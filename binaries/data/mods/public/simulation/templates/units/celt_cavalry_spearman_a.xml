@@ -9,45 +9,26 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <Loot>
-    <food>14</food>
-    <wood>4</wood>
-    <metal>2</metal>
-  </Loot>
-  <Health>
-    <Max>163</Max>
-  </Health>
-  <Stamina>
-    <Max>825</Max>
-  </Stamina>
   <Armour>
-    <Hack>3.2</Hack>
-    <Pierce>10.2</Pierce>
-    <Crush>12.2</Crush>
+    <Hack>4.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>4.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>6.05</WalkSpeed>
+    <WalkSpeed>9.24</WalkSpeed>
     <Run>
-      <Speed>28.9</Speed>
+      <Speed>27.72</Speed>
     </Run>
   </UnitMotion>
   <Attack>
     <Melee>
-      <Hack>16.0</Hack>
-      <Pierce>6.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>3.6</MaxRange>
+      <Hack>21.0</Hack>
     </Melee>
     <Charge>
-      <Hack>46.0</Hack>
-      <Pierce>16.0</Pierce>
-      <MaxRange>3.6</MaxRange>
+      <Hack>63.0</Hack>
     </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_spearman_a.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>64</Range>
-  </Vision>
 </Entity>

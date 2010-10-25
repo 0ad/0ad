@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
@@ -10,7 +8,7 @@
         <animation file="female/f_chariot_idle_01.dae" name="Walk" speed="20"/>
         <animation file="female/f_chariot_run_01.dae" name="Run" speed="10"/>
         <animation file="female/f_death_01.dae" name="Death" speed="100"/>
-        <animation file="female/f_jav_atk_01.dae" name="melee" speed="100"/>
+        <animation event="0.6" file="female/f_jav_atk_01.dae" load="0" name="melee" speed="120"/>
       </animations>
       <mesh>skeletal/f_tunic.dae</mesh>
       <props>
@@ -21,7 +19,6 @@
       <texture>skeletal/celt_boudicca_2.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant name="Melee">
       <props>
@@ -31,7 +28,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry">
+<Entity parent="template_unit_hero_infantry">
   <Identity>
     <GenericName>Hero</GenericName>
     <Classes datatype="tokens">Hero Infantry</Classes>
   </Identity>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Cost>
-    <BuildTime>40</BuildTime>
-    <Resources>
-      <food>50</food>
-      <metal>200</metal>
-    </Resources>
-  </Cost>
-  <Loot>
-    <xp>1000</xp>
-    <food>10</food>
-    <wood>10</wood>
-    <stone>10</stone>
-    <metal>100</metal>
-  </Loot>
   <Health>
     <Max>400</Max>
     <RegenRate>0.5</RegenRate>

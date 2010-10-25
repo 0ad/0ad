@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_infantry">
+<Entity parent="template_unit_hero_infantry_swordsman">
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Caratacos</SpecificName>
@@ -7,51 +7,30 @@
     <History>Caratacos's name is better known in its Romanized form, Caratacus. Under this name he is remembered as a fierce defender of Britain against the Romans after their invasion in 43 AD. Son of King Cynvelin of the Catuvellauni tribe, Caratacos fought for nine years against the Romans with little success, eventually fleeing to the tribes in Wales, where he was defeated decisively. Finally he entered Northern Britain, where was handed over to the Romans. Taken to Rome, Caratacos was allowed to live by the Emperor Claudius and died in Italy.</History>
     <Icon>units/celt_hero_caratacos.png</Icon>
   </Identity>
-  <Cost>
-    <BuildTime>50</BuildTime>
-    <Resources>
-      <food>150</food>
-      <metal>175</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>225</Max>
-  </Health>
-  <Stamina>
-    <Max>700</Max>
-  </Stamina>
   <Armour>
-    <Hack>2.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>14.0</Crush>
+    <Hack>8.0</Hack>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>6.16</WalkSpeed>
     <Run>
-      <Speed>17.0</Speed>
+      <Speed>18.48</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Melee>
-      <Hack>50.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <RepeatTime>1500</RepeatTime>
-    </Melee>
-    <Charge>
-      <Hack>150.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-    </Charge>
-  </Attack>
-  <VisualActor>
-    <Actor>units/celts/caradoc.xml</Actor>
-  </VisualActor>
   <Auras>
     <Courage>
       <Radius>20</Radius>
       <Bonus>5</Bonus>
     </Courage>
   </Auras>
+  <Attack>
+    <Melee>
+      <Hack>27.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>54.0</Hack>
+    </Charge>
+  </Attack>
+  <VisualActor>
+    <Actor>units/celts/caradoc.xml</Actor>
+  </VisualActor>
 </Entity>

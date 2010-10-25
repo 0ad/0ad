@@ -23,17 +23,11 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="95.4022" y="67.0408" z="32.6005"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="82.9491" y="71.4425" z="35.0358"/>
+		<Rotation angle="0.00014857"/>
+		<Declination angle="0.476257"/>
 	</Camera>
 	<Entities>
-		<Entity uid="11">
-			<Template>other/rome_centurio_imperial</Template>
-			<Player>1</Player>
-			<Position x="76.26804" z="109.50284"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="12">
 			<Template>other/rome_legionnaire_imperial</Template>
 			<Player>1</Player>
@@ -133,19 +127,19 @@
 		<Entity uid="28">
 			<Template>other/rome_legionnaire_marian</Template>
 			<Player>1</Player>
-			<Position x="88.7724" z="122.80784"/>
+			<Position x="88.81005" z="123.59937"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="29">
 			<Template>other/rome_legionnaire_marian</Template>
 			<Player>1</Player>
-			<Position x="89.98217" z="124.29717"/>
+			<Position x="89.98472" z="125.10209"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="30">
 			<Template>other/rome_legionnaire_marian</Template>
 			<Player>1</Player>
-			<Position x="91.39672" z="126.43308"/>
+			<Position x="91.26528" z="126.89356"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="31">
@@ -169,7 +163,7 @@
 		<Entity uid="34">
 			<Template>other/rome_legionnaire_marian</Template>
 			<Player>1</Player>
-			<Position x="86.8645" z="134.04462"/>
+			<Position x="86.96193" z="133.51476"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="35">
@@ -187,7 +181,7 @@
 		<Entity uid="37">
 			<Template>other/rome_legionnaire_marian</Template>
 			<Player>1</Player>
-			<Position x="86.85196" z="124.71796"/>
+			<Position x="86.70376" z="125.2393"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="38">
@@ -241,25 +235,25 @@
 		<Entity uid="46">
 			<Template>other/macedonian_hypaspist</Template>
 			<Player>2</Player>
-			<Position x="158.34984" z="71.85727"/>
+			<Position x="168.33802" z="62.09197"/>
 			<Orientation y="-0.6568"/>
 		</Entity>
 		<Entity uid="47">
 			<Template>other/macedonian_hypaspist</Template>
 			<Player>2</Player>
-			<Position x="156.69529" z="69.17277"/>
+			<Position x="166.90127" z="59.12096"/>
 			<Orientation y="-0.62021"/>
 		</Entity>
 		<Entity uid="48">
 			<Template>other/macedonian_hypaspist</Template>
 			<Player>2</Player>
-			<Position x="154.94002" z="66.70539"/>
+			<Position x="165.22464" z="56.83964"/>
 			<Orientation y="-0.85964"/>
 		</Entity>
 		<Entity uid="49">
 			<Template>other/macedonian_hypaspist</Template>
 			<Player>2</Player>
-			<Position x="153.77608" z="63.19155"/>
+			<Position x="164.16567" z="54.3536"/>
 			<Orientation y="-0.6662"/>
 		</Entity>
 		<Entity uid="50">
@@ -289,25 +283,25 @@
 		<Entity uid="54">
 			<Template>units/hele_super_infantry_mace</Template>
 			<Player>2</Player>
-			<Position x="151.6406" z="59.14551"/>
+			<Position x="161.20089" z="52.02874"/>
 			<Orientation y="-1.00701"/>
 		</Entity>
 		<Entity uid="55">
 			<Template>units/hele_super_infantry_mace</Template>
 			<Player>2</Player>
-			<Position x="150.4223" z="57.18876"/>
+			<Position x="159.60103" z="50.79551"/>
 			<Orientation y="-0.91303"/>
 		</Entity>
 		<Entity uid="56">
 			<Template>units/hele_super_infantry_mace</Template>
 			<Player>2</Player>
-			<Position x="149.10907" z="55.90778"/>
+			<Position x="158.28626" z="49.31428"/>
 			<Orientation y="-1.12336"/>
 		</Entity>
 		<Entity uid="57">
 			<Template>units/hele_super_infantry_mace</Template>
 			<Player>2</Player>
-			<Position x="148.24457" z="54.39484"/>
+			<Position x="157.12401" z="46.98362"/>
 			<Orientation y="-0.81775"/>
 		</Entity>
 		<Entity uid="58">
@@ -381,6 +375,840 @@
 			<Player>2</Player>
 			<Position x="159.35524" z="53.68114"/>
 			<Orientation y="-0.98142"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>other/hellenic_epic_temple</Template>
+			<Player>2</Player>
+			<Position x="366.00943" z="237.1885"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="96.54702" z="132.11344"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="98.38006" z="133.90159"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="100.52221" z="135.88479"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="102.52028" z="137.63453"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="105.13082" z="139.95115"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="102.92632" z="141.38883"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="100.33652" z="139.3917"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="98.14217" z="137.40072"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="96.3176" z="135.58413"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="94.34443" z="133.97246"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="91.7986" z="135.33419"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="94.24727" z="137.56171"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="96.12011" z="139.52283"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="97.65398" z="140.71805"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="99.7138" z="142.52695"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="97.40835" z="143.95954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="95.23406" z="142.26323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="93.58584" z="140.4982"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="91.44076" z="138.73403"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="89.76214" z="136.90986"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="71.58596" z="114.78098"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="73.55935" z="113.44404"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="75.22936" z="112.229"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="77.21845" z="110.72181"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="75.77276" z="109.14716"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="74.04168" z="110.33606"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="71.83162" z="111.95186"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="69.85477" z="113.35476"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="68.3445" z="111.86783"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="70.40633" z="110.36432"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="72.41468" z="108.7601"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="74.18902" z="107.47056"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="85.14635" z="119.62111"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="83.07038" z="120.71958"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="81.18038" z="122.03821"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="79.35184" z="123.53748"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="71.19088" z="104.4021"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="69.3471" z="105.45282"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="67.47326" z="106.70594"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="65.4933" z="108.08338"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="64.04825" z="106.5455"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="65.94762" z="105.17728"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="67.64675" z="103.65812"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="69.55854" z="102.70017"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="68.13009" z="101.10224"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="66.06653" z="102.49672"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="64.3722" z="103.92792"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="62.6988" z="104.988"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="61.24207" z="103.09347"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="62.81354" z="101.8512"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="64.67995" z="100.6377"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="66.33161" z="99.49775"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="159.92054" z="58.40038"/>
+			<Orientation y="-0.74447"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="160.99033" z="60.75054"/>
+			<Orientation y="-0.62192"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="161.71337" z="63.68265"/>
+			<Orientation y="-1.36638"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="163.47863" z="66.67142"/>
+			<Orientation y="-0.58451"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="162.94867" z="56.42293"/>
+			<Orientation y="-0.26632"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="164.05524" z="58.99561"/>
+			<Orientation y="-0.6211"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="164.8503" z="62.07731"/>
+			<Orientation y="-0.88529"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>other/macedonian_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="166.29517" z="64.92014"/>
+			<Orientation y="-0.85615"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="146.99628" z="50.69851"/>
+			<Orientation y="-0.97606"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="149.53077" z="48.24035"/>
+			<Orientation y="-0.81241"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="151.55314" z="46.33347"/>
+			<Orientation y="-0.98372"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="153.29351" z="44.9536"/>
+			<Orientation y="-1.06841"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="144.81968" z="47.8548"/>
+			<Orientation y="-1.10373"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="146.31058" z="46.156"/>
+			<Orientation y="-1.16004"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="148.30665" z="44.67484"/>
+			<Orientation y="-0.8807"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="150.04719" z="42.96274"/>
+			<Orientation y="-1.14637"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="142.82091" z="46.37066"/>
+			<Orientation y="-1.13787"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="144.51871" z="44.43009"/>
+			<Orientation y="-0.89373"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="146.14052" z="42.74202"/>
+			<Orientation y="-0.77852"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="147.76989" z="40.77024"/>
+			<Orientation y="-0.76287"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="140.02668" z="44.30349"/>
+			<Orientation y="-0.39025"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="142.59534" z="41.03373"/>
+			<Orientation y="-0.61037"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="144.65008" z="38.83455"/>
+			<Orientation y="-0.4739"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>other/macedonian_argyraspidai</Template>
+			<Player>2</Player>
+			<Position x="146.40615" z="36.69455"/>
+			<Orientation y="-0.47625"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="176.89658" z="71.33423"/>
+			<Orientation y="-1.04217"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="168.11431" z="77.93313"/>
+			<Orientation y="-0.81795"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="170.49657" z="75.91915"/>
+			<Orientation y="-0.6081"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="172.57084" z="74.08544"/>
+			<Orientation y="-0.71598"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="174.67907" z="73.14123"/>
+			<Orientation y="-0.82016"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="179.71982" z="73.56211"/>
+			<Orientation y="-0.87493"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="170.6138" z="80.78173"/>
+			<Orientation y="-1.01827"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="172.94425" z="78.88857"/>
+			<Orientation y="-1.01674"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="175.154" z="77.55204"/>
+			<Orientation y="-0.996"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="177.26984" z="75.79583"/>
+			<Orientation y="-0.73581"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="181.41074" z="75.35888"/>
+			<Orientation y="-0.8744"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="173.22489" z="83.82702"/>
+			<Orientation y="-0.86765"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="175.19968" z="82.39168"/>
+			<Orientation y="-0.8765"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="176.88866" z="80.96853"/>
+			<Orientation y="-0.86756"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="178.63228" z="79.26095"/>
+			<Orientation y="-0.67939"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="183.24787" z="78.04511"/>
+			<Orientation y="-0.81708"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="176.04908" z="85.41781"/>
+			<Orientation y="-0.58834"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="178.57544" z="83.49091"/>
+			<Orientation y="-0.89763"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="180.3215" z="82.11204"/>
+			<Orientation y="-0.87542"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="181.71602" z="80.73116"/>
+			<Orientation y="-1.08712"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="185.96146" z="80.7375"/>
+			<Orientation y="-0.82262"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="178.82566" z="87.4376"/>
+			<Orientation y="-1.0635"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="180.44912" z="86.15888"/>
+			<Orientation y="-0.78603"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="182.68058" z="84.27205"/>
+			<Orientation y="-1.13016"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>units/hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="184.10602" z="82.72686"/>
+			<Orientation y="-1.16425"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="136.10726" z="38.99695"/>
+			<Orientation y="-0.86406"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="136.87006" z="37.63276"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="138.38648" z="35.67641"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="139.4669" z="33.77428"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="138.30272" z="31.60018"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="136.36681" z="33.70051"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="135.23784" z="36.7453"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="133.53336" z="38.09586"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="131.95774" z="35.96268"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="133.92434" z="33.9649"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="135.11454" z="31.03695"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="136.37206" z="28.0725"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="134.41086" z="27.45653"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="131.42914" z="30.80547"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="130.52161" z="32.87682"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>2</Player>
+			<Position x="128.80675" z="34.84206"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="95.23284" z="145.908"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="92.77738" z="144.21885"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="90.69048" z="142.21114"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="88.85488" z="140.41251"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="87.36564" z="138.67728"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="76.85517" z="125.15311"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="75.09572" z="123.88001"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="73.80477" z="122.2422"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="72.39144" z="120.52596"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="71.15612" z="118.55073"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="69.36135" z="116.73168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="67.79178" z="114.7061"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="66.08634" z="113.27892"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="63.50223" z="109.15583"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="62.29432" z="107.54966"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="61.2301" z="106.04767"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="59.86246" z="104.37778"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="84.93635" z="135.19428"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="83.27006" z="133.7538"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="81.95192" z="132.22904"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="80.45951" z="130.43395"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

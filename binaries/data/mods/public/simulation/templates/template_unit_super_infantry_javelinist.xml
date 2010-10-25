@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_super_infantry">
   <Identity>
-    <GenericName>Super Ranged</GenericName>
+    <GenericName>Super Infantry Javelinist</GenericName>
     <Classes datatype="tokens">Ranged</Classes>
   </Identity>
   <Cost>
     <BuildTime>12</BuildTime>
     <Resources>
       <food>50</food>
-      <wood>80</wood>
+      <wood>200</wood>
       <stone>0</stone>
       <metal>0</metal>
     </Resources>
@@ -39,4 +39,9 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <Sound>
+    <SoundGroups>
+      <attack>attack/weapon/arrowfly.xml</attack>
+    </SoundGroups>
+  </Sound>
 </Entity>

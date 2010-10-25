@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_ranged">
+<Entity parent="template_unit_super_cavalry_javelinist">
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Brythonic Carbanto</SpecificName>
@@ -19,12 +19,8 @@
   <Health>
     <Max>200</Max>
   </Health>
-  <Stamina>
-    <Max>2500</Max>
-  </Stamina>
   <Armour>
     <Hack>5.0</Hack>
-    <Pierce>6.0</Pierce>
     <Crush>12.0</Crush>
   </Armour>
   <UnitMotion>
@@ -33,18 +29,6 @@
       <Speed>30.0</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>38.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>56</MaxRange>
-      <MinRange>16.0</MinRange>
-      <ProjectileSpeed>30.0</ProjectileSpeed>
-      <PrepareTime>1200</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
-    </Ranged>
-  </Attack>
   <VisualActor>
     <Actor>units/celts/super_unit_4.xml</Actor>
   </VisualActor>
@@ -55,8 +39,4 @@
   <Obstruction>
     <Unit radius="1.5"/>
   </Obstruction>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
-  
 </Entity>

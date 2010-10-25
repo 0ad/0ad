@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry">
+<Entity parent="template_unit_hero_cavalry_spearman">
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Philip II</SpecificName>
@@ -7,44 +7,8 @@
     <History>The king of Macedonia (359 BC - 336 BC), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia.</History>
     <Icon>units/hele_hero_philip.png</Icon>
   </Identity>
-  <Cost>
-    <BuildTime>76</BuildTime>
-    <Resources>
-      <metal>93</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>480</Max>
-  </Health>
-  <Stamina>
-    <Max>1340</Max>
-  </Stamina>
-  <Armour>
-    <Hack>14.0</Hack>
-    <Pierce>11.0</Pierce>
-    <Crush>22.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.9</WalkSpeed>
-    <Run>
-      <Speed>17.25</Speed>
-    </Run>
-  </UnitMotion>
-  <Attack>
-    <Melee>
-      <Hack>32.0</Hack>
-      <Crush>3.0</Crush>
-    </Melee>
-    <Charge>
-      <Hack>112</Hack>
-      <Crush>9.0</Crush>
-    </Charge>
-  </Attack>
-  <VisualActor>
-    <Actor>units/hellenes/philip_horse.xml</Actor>
-  </VisualActor>
   <Vision>
-    <Range>64</Range>
+    <Range>110</Range>
   </Vision>
   <Auras>
     <Courage>
@@ -52,4 +16,7 @@
       <Bonus>5</Bonus>
     </Courage>
   </Auras>
+  <VisualActor>
+    <Actor>units/hellenes/philip_horse.xml</Actor>
+  </VisualActor>
 </Entity>

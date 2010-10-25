@@ -9,35 +9,15 @@
   <Promotion>
     <Entity>celt_cavalry_swordsman_a</Entity>
   </Promotion>
-  <Cost>
-    <BuildTime>15</BuildTime>
-    <Resources>
-      <wood>10</wood>
-      <metal>20</metal>
-    </Resources>
-  </Cost>
   <Armour>
     <Hack>3.0</Hack>
-    <Pierce>9.0</Pierce>
-    <Crush>10.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>14.0</WalkSpeed>
+    <WalkSpeed>10.12</WalkSpeed>
     <Run>
-      <Speed>25.5</Speed>
+      <Speed>30.36</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Melee>
-      <Hack>18.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-    </Melee>
-    <Charge>
-      <Hack>54.0</Hack>
-      <Pierce>0.0</Pierce>
-    </Charge>
-  </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_swordsman_b.xml</Actor>
   </VisualActor>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_ranged">
+<Entity parent="template_unit_hero_infantry_javelinist">
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Xenophon</SpecificName>
@@ -7,44 +7,14 @@
     <History>Xenophon (c. 430 B. C. to c. 355 B. C.) was a Greek soldier and (later) historian who was born in Athens of an oligarch family and was a student of Socrates during his youth. He was elected one of the new Greek leaders chosen to lead the army in its retreat out of Persia. Xenophon went on to fight and lead troops in numerous battles then later write numerous books on military tactics, organization and command throughout the remainder of his lifetime.</History>
     <Icon>units/hele_hero_xenophon.png</Icon>
   </Identity>
-  <Cost>
-    <BuildTime>56</BuildTime>
-    <Resources>
-      <wood>50</wood>
-      <metal>82</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>380</Max>
-  </Health>
-  <Stamina>
-    <Max>1005</Max>
-  </Stamina>
-  <Armour>
-    <Hack>12.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>22.0</Crush>
-  </Armour>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>8.8</WalkSpeed>
     <Run>
-      <Speed>16.0</Speed>
+      <Speed>17.6</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>60.0</Pierce>
-      <Crush>5.0</Crush>
-      <MaxRange>28.0</MaxRange>
-      <MinRange>8.0</MinRange>
-    </Ranged>
-  </Attack>
-  <VisualActor>
-    <Actor>units/hellenes/xenophon.xml</Actor>
-  </VisualActor>
   <Vision>
-    <Range>48</Range>
+    <Range>88</Range>
   </Vision>
   <Auras>
     <Courage>
@@ -52,4 +22,7 @@
       <Bonus>5</Bonus>
     </Courage>
   </Auras>
+  <VisualActor>
+    <Actor>units/hellenes/xenophon.xml</Actor>
+  </VisualActor>
 </Entity>

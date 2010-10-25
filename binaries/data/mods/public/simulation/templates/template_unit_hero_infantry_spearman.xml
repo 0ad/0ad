@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry">
+  <Identity>
+    <GenericName>Hero</GenericName>
+    <Classes datatype="tokens">Hero Infantry</Classes>
+  </Identity>
+  <Minimap>
+    <Type>hero</Type>
+  </Minimap>
+  <Cost>
+    <Resources>
+      <wood>100</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <UnitMotion>
+    <WalkSpeed>5.2</WalkSpeed>
+    <Run>
+      <Speed>15.6</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Melee>
+      <Hack>10.0</Hack>
+      <Pierce>20.0</Pierce>
+      <Crush>0.0</Crush>
+    </Melee>
+    <Charge>
+      <Hack>20.0</Hack>
+      <Pierce>40.0</Pierce>
+    </Charge>
+  </Attack>
+</Entity>

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
@@ -15,12 +13,12 @@
       <mesh>skeletal/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_lime.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="pants-01">
       <texture>skeletal/celt_ijv_a_01.dds</texture>
@@ -56,7 +54,5 @@
       <texture>skeletal/celt_ijv_a_11.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

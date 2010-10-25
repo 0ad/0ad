@@ -6,40 +6,29 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
-  <Loot>
-    <food>14</food>
-    <wood>5</wood>
-    <metal>2</metal>
-  </Loot>
   <Health>
-    <Max>165</Max>
+    <Max>150</Max>
   </Health>
-  <Stamina>
-    <Max>850</Max>
-  </Stamina>
-  <Armour>
-    <Hack>3.4</Hack>
-    <Pierce>10.4</Pierce>
-    <Crush>12.4</Crush>
-  </Armour>
   <UnitMotion>
-    <WalkSpeed>10.3</WalkSpeed>
+    <WalkSpeed>9.24</WalkSpeed>
     <Run>
-      <Speed>20.1</Speed>
+      <Speed>27.72</Speed>
     </Run>
   </UnitMotion>
+  <Armour>
+    <Hack>7.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>7.0</Crush>
+  </Armour>
   <Attack>
     <Melee>
-      <Hack>21.0</Hack>
+      <Hack>22.0</Hack>
     </Melee>
     <Charge>
-      <Hack>55.0</Hack>
+      <Hack>66.0</Hack>
     </Charge>
   </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_swordsman_e.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>68</Range>
-  </Vision>
 </Entity>
