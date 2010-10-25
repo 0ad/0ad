@@ -2,6 +2,7 @@
 <Entity parent="template_unit_mechanical">
   <Identity>
     <GenericName>Siege</GenericName>
+	<Classes datatype="tokens">Siege</Classes>
   </Identity>
   <Position>
     <Anchor>pitch-roll</Anchor>

@@ -45,4 +45,10 @@
       <Speed>1000</Speed>
     </Heal>
   </Auras>
+   <GarrisonHolder>
+    <Max>15</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
 </Entity>
