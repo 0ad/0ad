@@ -27,6 +27,12 @@
 		<Rotation angle="-0.0261136"/>
 		<Declination angle="0.523599"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":2,
+  "Description":"A wide-open Savanna map with a small ravine runnign down the center, which is easily forded."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>gaia/flora_tree_baobab</Template>

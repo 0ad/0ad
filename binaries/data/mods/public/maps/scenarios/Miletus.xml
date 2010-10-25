@@ -27,6 +27,13 @@
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":1,
+  "Description":"A sandbox scenario for one player.",
+  "GameType":"endless"
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="13">
 			<Template>other/hellenic_royal_stoa</Template>

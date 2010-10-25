@@ -27,6 +27,12 @@
 		<Rotation angle="0.00014857"/>
 		<Declination angle="0.476257"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "NumPlayers":2,
+  "Description":"A quick battle between Romans and Macedonians. Showcases the new Roman legionnairy units."
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="12">
 			<Template>other/rome_legionnaire_imperial</Template>
