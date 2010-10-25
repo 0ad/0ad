@@ -5,13 +5,20 @@
     <Tooltip>Trade resources between allied docks. Garrison a Trader inside to increase trade profit.</Tooltip>
   </Identity>
   <Cost>
+    <BuildTime>15</BuildTime>
     <Resources>
       <metal>100</metal>
     </Resources>
   </Cost>
+  <Health>
+    <Max>150</Max>
+  </Health>
   <ResourceGatherer>
     <MaxDistance>12.0</MaxDistance>
   </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>10.0</WalkSpeed>
+  </UnitMotion>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>10.0</Pierce>

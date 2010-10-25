@@ -2,13 +2,8 @@
 <Entity parent="template_unit_mechanical_ship">
   <Identity>
     <GenericName>Fishing Boat</GenericName>
-    <Tooltip>Fish the water for Food. Garrison a unit inside to boost fishing rate.</Tooltip>
+    <Tooltip>Fish the waters for Food. Garrison a unit inside to boost fishing rate.</Tooltip>
   </Identity>
-  <Cost>
-    <Resources>
-      <wood>50</wood>
-    </Resources>
-  </Cost>
   <ResourceGatherer>
     <MaxDistance>12.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
@@ -16,6 +11,9 @@
       <food.fish>3</food.fish>
     </Rates>
   </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>8.0</WalkSpeed>
+  </UnitMotion>
   <Footprint>
     <Square width="6.0" depth="12.0"/>
     <Height>6.0</Height>
@@ -24,8 +22,8 @@
     <Unit radius="4.0"/>
   </Obstruction>
   <Armour>
-    <Hack>10.0</Hack>
+    <Hack>5.0</Hack>
     <Pierce>10.0</Pierce>
-    <Crush>1.0</Crush>
+    <Crush>5.0</Crush>
   </Armour>
 </Entity>

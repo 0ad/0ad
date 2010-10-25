@@ -6,6 +6,19 @@
   <Position>
     <Floating>true</Floating>
   </Position>
+  <Cost>
+    <Population>1</Population>
+    <BuildTime>10</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>50</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>100</Max>
+  </Health>
   <Attack>
     <Charge>
       <Hack>0.0</Hack>
@@ -15,6 +28,12 @@
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
+  <Decay>
+    <Inactive/>
+    <DelayTime>0.0</DelayTime>
+    <SinkRate>4.0</SinkRate>
+    <SinkAccel>9.8</SinkAccel>
+  </Decay>
   <UnitMotion>
     <PassabilityClass>ship</PassabilityClass>
   </UnitMotion>

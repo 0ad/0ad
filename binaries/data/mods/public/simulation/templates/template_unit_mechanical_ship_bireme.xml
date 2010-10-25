@@ -2,14 +2,21 @@
 <Entity parent="template_unit_mechanical_ship">
   <Identity>
     <GenericName>Bireme</GenericName>
-    <Tooltip>Warship.</Tooltip>
+    <Tooltip>Light Warship.</Tooltip>
   </Identity>
   <Cost>
+    <BuildTime>30</BuildTime>
     <Resources>
-      <wood>250</wood>
-      <metal>250</metal>
+      <wood>200</wood>
+      <metal>200</metal>
     </Resources>
   </Cost>
+  <Health>
+    <Max>300</Max>
+  </Health>
+  <UnitMotion>
+    <WalkSpeed>12.0</WalkSpeed>
+  </UnitMotion>
   <Armour>
     <Hack>15.0</Hack>
     <Pierce>15.0</Pierce>
