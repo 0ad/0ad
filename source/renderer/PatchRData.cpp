@@ -436,7 +436,7 @@ void CPatchRData::Update()
 	SColor4ub baseColour = terrain->GetBaseColour();
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	if (cmpRangeManager.null() || cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID()))
+	if (cmpRangeManager.null())
 	{
 		for (ssize_t j = 0; j < vsize; ++j)
 		{

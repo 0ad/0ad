@@ -56,6 +56,7 @@ CMiniMap::CMiniMap()
 	m_LOSTexture(0), m_TerrainDirty(true)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
+	AddSetting(GUIST_bool,		"circular");
 	AddSetting(GUIST_CStr,		"tooltip");
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;
@@ -125,26 +126,51 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 	}	// switch
 }
 
+void CMiniMap::GetMouseWorldCoordinates(float& x, float& z)
+{
+	// Determine X and Z according to proportion of mouse position and minimap
+
+	CPos mousePos = GetMousePos();
+
+	float px = (mousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth();
+	float py = (m_CachedActualSize.bottom - mousePos.y) / m_CachedActualSize.GetHeight();
+
+	float angle = GetAngle();
+
+	x = CELL_SIZE * m_MapSize * (cos(angle)*(px-0.5) - sin(angle)*(py-0.5) + 0.5);
+	z = CELL_SIZE * m_MapSize * (cos(angle)*(py-0.5) + sin(angle)*(px-0.5) + 0.5);
+}
+
 void CMiniMap::SetCameraPos()
 {
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
 	CVector3D target;
-	CPos mousePos = GetMousePos();
-	target.X = CELL_SIZE * m_MapSize * ((mousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth());
-	target.Z = CELL_SIZE * m_MapSize * ((m_CachedActualSize.bottom - mousePos.y) / m_CachedActualSize.GetHeight());
+	GetMouseWorldCoordinates(target.X, target.Z);
 	target.Y = terrain->GetExactGroundLevel(target.X, target.Z);
 	g_Game->GetView()->MoveCameraTarget(target);
 }
 
+float CMiniMap::GetAngle()
+{
+	bool circular;
+	GUI<bool>::GetSetting(this, "circular", circular);
+
+	// If this is a circular map, rotate it to match the camera angle
+	if (circular)
+	{
+		CVector3D cameraIn = m_Camera->m_Orientation.GetIn();
+		return -atan2(cameraIn.X, cameraIn.Z);
+	}
+
+	// Otherwise there's no rotation
+	return 0.f;
+}
+
 void CMiniMap::FireWorldClickEvent(int button, int clicks)
 {
-	// Determine X and Z according to proportion of mouse position and minimap
-	CPos MousePos = GetMousePos();
-	float x = CELL_SIZE * m_MapSize *
-		((MousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth());
-	float z = CELL_SIZE * m_MapSize *
-		((m_CachedActualSize.bottom - MousePos.y) / m_CachedActualSize.GetHeight());
+	float x, z;
+	GetMouseWorldCoordinates(x, z);
 
 	CScriptValRooted coords;
 	g_ScriptingHost.GetScriptInterface().Eval("({})", coords);
@@ -194,10 +220,10 @@ void CMiniMap::DrawViewRect()
 
 	// Draw the viewing rectangle with the ScEd's conversion algorithm
 	glBegin(GL_LINE_LOOP);
-	glVertex2f(x+ViewRect[0][0], y-ViewRect[0][1]);
-	glVertex2f(x+ViewRect[1][0], y-ViewRect[1][1]);
-	glVertex2f(x+ViewRect[2][0], y-ViewRect[2][1]);
-	glVertex2f(x+ViewRect[3][0], y-ViewRect[3][1]);
+	glVertex2f(ViewRect[0][0], -ViewRect[0][1]);
+	glVertex2f(ViewRect[1][0], -ViewRect[1][1]);
+	glVertex2f(ViewRect[2][0], -ViewRect[2][1]);
+	glVertex2f(ViewRect[3][0], -ViewRect[3][1]);
 	glEnd();
 
 	// restore state
@@ -212,6 +238,25 @@ struct MinimapUnitVertex
 	float x, y;
 };
 
+void CMiniMap::DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z)
+{
+	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
+	const float s = sin(angle);
+	const float c = cos(angle);
+	const float m = coordMax / 2.f;
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(m*(-c + s + 1.f), m*(-c + -s + 1.f));
+	glVertex3f(x, y, z);
+	glTexCoord2f(m*(c + s + 1.f), m*(-c + s + 1.f));
+	glVertex3f(x2, y, z);
+	glTexCoord2f(m*(c + -s + 1.f), m*(c + s + 1.f));
+	glVertex3f(x2, y2, z);
+	glTexCoord2f(m*(-c + -s + 1.f), m*(c + -s + 1.f));
+	glVertex3f(x, y2, z);
+	glEnd();
+}
+
 void CMiniMap::Draw()
 {
 	PROFILE("minimap");
@@ -220,7 +265,7 @@ void CMiniMap::Draw()
 	// happens when the game is started, so abort until then.
 	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
 		return;
-	
+
 	glDisable(GL_DEPTH_TEST);
 
 	// Set our globals in case they hadn't been set before
@@ -252,27 +297,20 @@ void CMiniMap::Draw()
 		RebuildLOSTexture();
 	}
 
-	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
-	const float losTexCoordMax = (float)(m_LOSMapSize - 1) / (float)m_LOSTextureSize;
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 	const float z = GetBufferedZ();
+	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
+	const float losTexCoordMax = (float)(m_LOSMapSize - 1) / (float)m_LOSTextureSize;
+
+	const float angle = GetAngle();
 
 	// Draw the main textured quad
 	g_Renderer.BindTexture(0, m_TerrainTexture);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f);
-	glVertex3f(x, y, z);
-	glTexCoord2f(texCoordMax, 0.0f);
-	glVertex3f(x2, y, z);
-	glTexCoord2f(texCoordMax, texCoordMax);
-	glVertex3f(x2, y2, z);
-	glTexCoord2f(0.0f, texCoordMax);
-	glVertex3f(x, y2, z);
-	glEnd();
+	DrawTexture(texCoordMax, angle, x, y, x2, y2, z);
 
 	/* // TODO: reimplement with new sim system
 	// Shade territories by player
@@ -340,18 +378,17 @@ void CMiniMap::Draw()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBegin(GL_QUADS);
 	glColor3f(0.0f, 0.0f, 0.0f);
-	glTexCoord2f(0.0f, 0.0f);
-	glVertex3f(x, y, z);
-	glTexCoord2f(losTexCoordMax, 0.0f);
-	glVertex3f(x2, y, z);
-	glTexCoord2f(losTexCoordMax, losTexCoordMax);
-	glVertex3f(x2, y2, z);
-	glTexCoord2f(0.0f, losTexCoordMax);
-	glVertex3f(x, y2, z);
-	glEnd();
+	DrawTexture(losTexCoordMax, angle, x, y, x2, y2, z);
 	glDisable(GL_BLEND);
+
+	// Set up the matrix for drawing points and lines
+	glPushMatrix();
+	glTranslatef(x, y, z);
+	// Rotate around the center of the map
+	glTranslatef((x2-x)/2.f, (y2-y)/2.f, 0.f);
+	glRotatef(angle * 180.f/M_PI, 0.f, 0.f, 1.f);
+	glTranslatef(-(x2-x)/2.f, -(y2-y)/2.f, 0.f);
 
 	PROFILE_START("minimap units");
 
@@ -382,8 +419,8 @@ void CMiniMap::Draw()
 			if (vis != ICmpRangeManager::VIS_HIDDEN)
 			{
 				v.a = 255;
-				v.x = x + posX.ToFloat()*sx;
-				v.y = y - posZ.ToFloat()*sy;
+				v.x = posX.ToFloat()*sx;
+				v.y = -posZ.ToFloat()*sy;
 				vertexArray.push_back(v);
 			}
 		}
@@ -391,21 +428,18 @@ void CMiniMap::Draw()
 
 	if (!vertexArray.empty())
 	{
-		glPushMatrix();
-		glTranslatef(0, 0, z);
-
 		glInterleavedArrays(GL_C4UB_V2F, sizeof(MinimapUnitVertex), &vertexArray[0]);
 		glDrawArrays(GL_POINTS, 0, (GLsizei)vertexArray.size());
 
 		glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
-
-		glPopMatrix();
 	}
 
 	PROFILE_END("minimap units");
 
 	DrawViewRect();
+
+	glPopMatrix();
 
 	// Reset everything back to normal
 	glPointSize(1.0f);

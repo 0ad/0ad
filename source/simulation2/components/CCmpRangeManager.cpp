@@ -184,6 +184,7 @@ public:
 	// LOS state:
 
 	bool m_LosRevealAll;
+	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
 
 	// Counts of units seeing vertex, per vertex, per player (starting with player 0).
@@ -196,6 +197,10 @@ public:
 	// 2-bit ELosState per player, starting with player 1 (not 0!) up to player MAX_LOS_PLAYER_ID (inclusive)
 	std::vector<u32> m_LosState;
 	static const int MAX_LOS_PLAYER_ID = 16;
+
+	// Special static visibility data for the "reveal whole map" mode
+	// (TODO: this is usually a waste of memory)
+	std::vector<u32> m_LosStateRevealed;
 
 	static std::string GetSchema()
 	{
@@ -216,6 +221,7 @@ public:
 		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
 
 		m_LosRevealAll = false;
+		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
 	}
 
@@ -236,6 +242,7 @@ public:
 		SerializeMap<SerializeU32_Unbounded, SerializeEntityData>()(serialize, "entity data", m_EntityData);
 
 		serialize.Bool("los reveal all", m_LosRevealAll);
+		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
 		// We don't serialize m_Subdivision, m_LosPlayerCounts, m_LosState
@@ -254,7 +261,7 @@ public:
 		SerializeCommon(deserialize);
 
 		// Reinitialise subdivisions and LOS data
-		SetBounds(m_WorldX0, m_WorldZ0, m_WorldX1, m_WorldZ1, m_TerrainVerticesPerSide);
+		ResetDerivedData();
 	}
 
 	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
@@ -403,16 +410,28 @@ public:
 		m_WorldZ1 = z1;
 		m_TerrainVerticesPerSide = vertices;
 
-		debug_assert(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
-		ResetSubdivisions(x1, z1);
+		ResetDerivedData();
+	}
+
+	// Reinitialise subdivisions and LOS data, based on entity data
+	void ResetDerivedData()
+	{
+		debug_assert(m_WorldX0.IsZero() && m_WorldZ0.IsZero()); // don't bother implementing non-zero offsets yet
+		ResetSubdivisions(m_WorldX1, m_WorldZ1);
 
 		m_LosPlayerCounts.clear();
 		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);
 		m_LosState.clear();
-		m_LosState.resize(vertices*vertices);
+		m_LosState.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+		m_LosStateRevealed.clear();
+		m_LosStateRevealed.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
 
 		for (std::map<u32, EntityData>::iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 			LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
+
+		for (ssize_t j = 0; j < m_TerrainVerticesPerSide; ++j)
+			for (ssize_t i = 0; i < m_TerrainVerticesPerSide; ++i)
+				m_LosStateRevealed[i + j*m_TerrainVerticesPerSide] = LosIsOffWorld(i, j) ? 0 : 0xFFFFFFFFu;
 	}
 
 	void ResetSubdivisions(entity_pos_t x1, entity_pos_t z1)
@@ -728,7 +747,10 @@ private:
 
 	virtual CLosQuerier GetLosQuerier(int player)
 	{
-		return CLosQuerier(player, m_LosState, m_TerrainVerticesPerSide);
+		if (m_LosRevealAll)
+			return CLosQuerier(player, m_LosStateRevealed, m_TerrainVerticesPerSide);
+		else
+			return CLosQuerier(player, m_LosState, m_TerrainVerticesPerSide);
 	}
 
 	virtual ELosVisibility GetLosVisibility(entity_id_t ent, int player)
@@ -740,18 +762,23 @@ private:
 		if (cmpPosition.null() || !cmpPosition->IsInWorld())
 			return VIS_HIDDEN;
 
-		// Global flag makes all positioned entities visible
-		if (m_LosRevealAll)
-			return VIS_VISIBLE;
-
-		// Visible if within a visible region
-
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-		CLosQuerier los(player, m_LosState, m_TerrainVerticesPerSide);
 
 		int i = (pos.X / (int)CELL_SIZE).ToInt_RoundToNearest();
 		int j = (pos.Y / (int)CELL_SIZE).ToInt_RoundToNearest();
+
+		// Global flag makes all positioned entities visible
+		if (m_LosRevealAll)
+		{
+			if (LosIsOffWorld(i, j))
+				return VIS_HIDDEN;
+			else
+				return VIS_VISIBLE;
+		}
+
+		// Visible if within a visible region
+
+		CLosQuerier los(player, m_LosState, m_TerrainVerticesPerSide);
 
 		if (los.IsVisible(i, j))
 			return VIS_VISIBLE;
@@ -782,6 +809,35 @@ private:
 		return m_LosRevealAll;
 	}
 
+	virtual void SetLosCircular(bool enabled)
+	{
+		m_LosCircular = enabled;
+
+		ResetDerivedData();
+	}
+
+	/**
+	 * Returns whether the given vertex is outside the normal bounds of the world
+	 * (i.e. outside the range of a circular map)
+	 */
+	inline bool LosIsOffWorld(ssize_t i, ssize_t j)
+	{
+		if (m_LosCircular)
+		{
+			// With a circular map, vertex is off-world if hypot(i - size/2, j - size/2) > size/2:
+
+			ssize_t dist2 = (i - m_TerrainVerticesPerSide/2)*(i - m_TerrainVerticesPerSide/2)
+					+ (j - m_TerrainVerticesPerSide/2)*(j - m_TerrainVerticesPerSide/2);
+
+			if (dist2 >= m_TerrainVerticesPerSide*m_TerrainVerticesPerSide/4)
+				return true;
+		}
+
+		// With a square map, nothing is off-world
+
+		return false;
+	}
+
 	/**
 	 * Update the LOS state of tiles within a given horizontal strip (i0,j) to (i1,j) (inclusive).
 	 * amount is +1 or -1.
@@ -795,7 +851,8 @@ private:
 			// Increasing from zero to non-zero - move from unexplored/explored to visible+explored
 			if (counts[idx] == 0 && amount > 0)
 			{
-				m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
+				if (!LosIsOffWorld(i, j))
+					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
 			}
 
 			counts[idx] += amount;
@@ -803,6 +860,7 @@ private:
 			// Decreasing from non-zero to zero - move from visible+explored to explored
 			if (counts[idx] == 0 && amount < 0)
 			{
+				// (If LosIsOffWorld then this is a no-op, so don't bother doing the check)
 				m_LosState[idx] &= ~(LOS_VISIBLE << (2*(owner-1)));
 			}
 		}

@@ -244,6 +244,11 @@ public:
 	 */
 	virtual bool GetLosRevealAll(int player) = 0;
 
+	/**
+	 * Set the LOS to be restricted to a circular map.
+	 */
+	virtual void SetLosCircular(bool enabled) = 0;
+
 	DECLARE_INTERFACE_TYPE(RangeManager)
 };
 

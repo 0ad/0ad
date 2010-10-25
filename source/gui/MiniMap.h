@@ -82,7 +82,13 @@ protected:
     GLsizei m_TextureSize;
     GLsizei m_LOSTextureSize;
 
-	void DrawViewRect();	// split out of Draw
+	void DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z);
+
+	void DrawViewRect();
+
+	void GetMouseWorldCoordinates(float& x, float& z);
+
+	float GetAngle();
 };
 
 #endif

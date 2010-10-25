@@ -19,10 +19,17 @@ function LoadMapSettings(settings)
 		if (cmpRangeManager)
 			cmpRangeManager.SetLosRevealAll(true);
 	}
+
+	if (settings.CircularMap)
+	{
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		if (cmpRangeManager)
+			cmpRangeManager.SetLosCircular(true);
+	}
 	
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	if (settings.GameType)
-	{	
+	{
 		cmpEndGameManager.SetGameType(settings.GameType);
 	}
 	cmpEndGameManager.Start();

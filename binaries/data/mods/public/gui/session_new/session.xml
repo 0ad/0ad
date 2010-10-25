@@ -402,11 +402,13 @@
 			<object name="minimap"
 				type="minimap"
 				size="10 10 100%-10 100%-10"
+				circular="true"
 			>
 				<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
 			</object>
 				
-			<object size="10 10 100%-10 100%-10" type="image" sprite="glassSquareMap" ghost="true"/>
+<!--			<object size="10 10 100%-10 100%-10" type="image" sprite="glassSquareMap" ghost="true"/>-->
+			<object size="10 10 100%-10 100%-10" type="image" sprite="stretched:session/minimap_circle.png" ghost="true"/>
 		</object>
 
 		<!-- ================================  ================================ -->

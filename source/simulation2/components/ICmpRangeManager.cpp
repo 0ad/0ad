@@ -44,4 +44,5 @@ DEFINE_INTERFACE_METHOD_1("GetEntitiesByPlayer", std::vector<entity_id_t>, ICmpR
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOverlay, bool)
 DEFINE_INTERFACE_METHOD_1("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, bool)
 DEFINE_INTERFACE_METHOD_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, int)
+DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
 END_INTERFACE_WRAPPER(RangeManager)
