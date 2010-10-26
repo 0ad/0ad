@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.40625" g="1.40625" b="1.40625"/>
+		<SunColour r="1.05882" g="1.05882" b="1.05882"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="0.374291"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
@@ -16,16 +16,16 @@
 				<Shininess>250</Shininess>
 				<Waviness>7.96875</Waviness>
 				<Murkiness>0.508789</Murkiness>
-				<Tint r="0.447059" g="0.545098" b="0.729412"/>
-				<ReflectionTint r="0.447059" g="0.541176" b="0.729412"/>
+				<Tint r="0.447059" g="0.541176" b="0.729412"/>
+				<ReflectionTint r="0.447059" g="0.537255" b="0.729412"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="351.247" y="126.508" z="217.765"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="231.617" y="97.9107" z="136.806"/>
+		<Rotation angle="-0.0396765"/>
+		<Declination angle="0.5738"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -236,44 +236,38 @@
 		<Entity uid="63">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="306.34916" z="111.36376"/>
-			<Orientation y="2.35621"/>
+			<Position x="324.26072" z="142.27448"/>
+			<Orientation y="2.82874"/>
 		</Entity>
 		<Entity uid="64">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="311.2851" z="115.90192"/>
+			<Position x="331.28928" z="149.02985"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="65">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="315.28718" z="123.70292"/>
+			<Position x="352.45234" z="182.0508"/>
 			<Orientation y="1.66172"/>
 		</Entity>
 		<Entity uid="66">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="323.05912" z="133.80832"/>
-			<Orientation y="2.35621"/>
+			<Position x="339.35697" z="162.01983"/>
+			<Orientation y="-0.7652"/>
 		</Entity>
 		<Entity uid="67">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="327.35022" z="150.63041"/>
-			<Orientation y="0.57345"/>
+			<Position x="343.68882" z="166.46813"/>
+			<Orientation y="2.39055"/>
 		</Entity>
 		<Entity uid="68">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="306.15793" z="92.80875"/>
+			<Position x="316.60492" z="131.2483"/>
 			<Orientation y="-3.00905"/>
-		</Entity>
-		<Entity uid="69">
-			<Template>units/hele_ship_merchant</Template>
-			<Player>1</Player>
-			<Position x="338.83375" z="74.26751"/>
-			<Orientation y="1.34989"/>
 		</Entity>
 		<Entity uid="70">
 			<Template>gaia/fauna_fish</Template>
@@ -398,7 +392,7 @@
 		<Entity uid="99">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="578.22522" z="709.3617"/>
+			<Position x="559.83527" z="632.13721"/>
 			<Orientation y="-2.30578"/>
 		</Entity>
 		<Entity uid="100">
@@ -410,7 +404,7 @@
 		<Entity uid="101">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="597.07917" z="736.9286"/>
+			<Position x="607.65918" z="619.6297"/>
 			<Orientation y="-2.93596"/>
 		</Entity>
 		<Entity uid="102">
@@ -500,7 +494,7 @@
 		<Entity uid="116">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="453.99051" z="0"/>
+			<Position x="436.43293" z="1.37702"/>
 			<Orientation y="-1.59049"/>
 		</Entity>
 		<Entity uid="117">
@@ -962,7 +956,7 @@
 		<Entity uid="193">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="277.44123" z="79.93285"/>
+			<Position x="286.4998" z="90.36472"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="194">
@@ -1304,7 +1298,7 @@
 		<Entity uid="250">
 			<Template>gaia/flora_tree_medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="111.34505" z="301.24021"/>
+			<Position x="81.5997" z="297.88227"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="251">
@@ -1556,25 +1550,25 @@
 		<Entity uid="292">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="150.12316" z="161.56266"/>
+			<Position x="168.02504" z="162.30021"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="293">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="151.3184" z="170.45786"/>
+			<Position x="147.5947" z="168.31022"/>
 			<Orientation y="-0.20452"/>
 		</Entity>
 		<Entity uid="294">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="148.88515" z="183.36677"/>
+			<Position x="160.39795" z="150.44442"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="295">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="152.0568" z="194.8343"/>
+			<Position x="156.02457" z="178.02929"/>
 			<Orientation y="0.61265"/>
 		</Entity>
 		<Entity uid="296">
@@ -1844,7 +1838,7 @@
 		<Entity uid="340">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="80.03164" z="429.01703"/>
+			<Position x="78.68792" z="430.25928"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="341">
@@ -1856,38 +1850,38 @@
 		<Entity uid="342">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="101.80983" z="433.2003"/>
+			<Position x="99.28426" z="436.58924"/>
 			<Orientation y="1.49061"/>
 		</Entity>
 		<Entity uid="343">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="66.3373" z="423.05365"/>
+			<Position x="96.16446" z="448.5672"/>
 			<Orientation y="1.93224"/>
 		</Entity>
 		<Entity uid="344">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="48.50493" z="423.70856"/>
+			<Position x="148.21665" z="463.30048"/>
 			<Orientation y="-2.3359"/>
 		</Entity>
 		<Entity uid="345">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="108.96013" z="437.49823"/>
+			<Position x="106.49338" z="440.72156"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="346">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="113.22152" z="440.30707"/>
+			<Position x="110.88263" z="445.85636"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="347">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="119.20412" z="442.06623"/>
-			<Orientation y="2.63826"/>
+			<Position x="125.52878" z="453.59147"/>
+			<Orientation y="-0.65941"/>
 		</Entity>
 		<Entity uid="348">
 			<Template>structures/hele_dock</Template>
@@ -1904,7 +1898,7 @@
 		<Entity uid="350">
 			<Template>structures/hele_dock</Template>
 			<Player>1</Player>
-			<Position x="292.78202" z="51.78966"/>
+			<Position x="309.74686" z="110.4787"/>
 			<Orientation y="1.68105"/>
 		</Entity>
 		<Entity uid="360">
@@ -2002,6 +1996,156 @@
 			<Player>0</Player>
 			<Position x="372.478" z="311.53602"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="385">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="88.05324" z="355.6208"/>
+			<Orientation y="-1.83333"/>
+		</Entity>
+		<Entity uid="386">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="97.19506" z="330.2305"/>
+			<Orientation y="-2.02245"/>
+		</Entity>
+		<Entity uid="387">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="108.8316" z="305.60505"/>
+			<Orientation y="-2.02468"/>
+		</Entity>
+		<Entity uid="388">
+			<Template>structures/hele_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="119.11757" z="278.73725"/>
+			<Orientation y="-1.88987"/>
+		</Entity>
+		<Entity uid="389">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="129.19886" z="252.23505"/>
+			<Orientation y="-2.00577"/>
+		</Entity>
+		<Entity uid="390">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="140.1839" z="227.48037"/>
+			<Orientation y="-2.045"/>
+		</Entity>
+		<Entity uid="391">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="154.02756" z="203.12046"/>
+			<Orientation y="-2.17086"/>
+		</Entity>
+		<Entity uid="392">
+			<Template>structures/hele_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="170.52096" z="178.82493"/>
+			<Orientation y="-2.19143"/>
+		</Entity>
+		<Entity uid="393">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="189.46093" z="156.40963"/>
+			<Orientation y="-2.38155"/>
+		</Entity>
+		<Entity uid="394">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="210.08765" z="138.2883"/>
+			<Orientation y="-2.47277"/>
+		</Entity>
+		<Entity uid="395">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="231.77189" z="121.92678"/>
+			<Orientation y="-2.55973"/>
+		</Entity>
+		<Entity uid="397">
+			<Template>structures/hele_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="258.34913" z="109.5331"/>
+			<Orientation y="-2.79352"/>
+		</Entity>
+		<Entity uid="398">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="286.5651" z="100.93021"/>
+			<Orientation y="-2.90026"/>
+		</Entity>
+		<Entity uid="399">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="297.03394" z="98.3595"/>
+			<Orientation y="-2.98395"/>
+		</Entity>
+		<Entity uid="400">
+			<Template>structures/hele_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="80.24045" z="381.29145"/>
+			<Orientation y="-1.86008"/>
+		</Entity>
+		<Entity uid="401">
+			<Template>structures/hele_wall</Template>
+			<Player>1</Player>
+			<Position x="71.46808" z="409.0763"/>
+			<Orientation y="-1.83523"/>
+		</Entity>
+		<Entity uid="402">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="67.53586" z="423.0477"/>
+			<Orientation y="-1.79796"/>
+		</Entity>
+		<Entity uid="403">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="219.73098" z="129.57929"/>
+			<Orientation y="-2.46506"/>
+		</Entity>
+		<Entity uid="404">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="198.67359" z="147.03997"/>
+			<Orientation y="-2.39408"/>
+		</Entity>
+		<Entity uid="405">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="145.98894" z="214.40061"/>
+			<Orientation y="-2.10462"/>
+		</Entity>
+		<Entity uid="406">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="133.15261" z="240.50725"/>
+			<Orientation y="-2.01339"/>
+		</Entity>
+		<Entity uid="407">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="102.0681" z="319.03296"/>
+			<Orientation y="-2.0135"/>
+		</Entity>
+		<Entity uid="408">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="90.78463" z="342.8017"/>
+			<Orientation y="-1.97165"/>
+		</Entity>
+		<Entity uid="409">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="56.43813" z="185.5019"/>
+			<Orientation y="-0.83982"/>
+		</Entity>
+		<Entity uid="410">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="41.39527" z="31.29845"/>
+			<Orientation y="2.13936"/>
 		</Entity>
 	</Entities>
 	<Paths/>
