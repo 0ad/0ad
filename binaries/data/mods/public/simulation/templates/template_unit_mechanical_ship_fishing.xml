@@ -2,7 +2,7 @@
 <Entity parent="template_unit_mechanical_ship">
   <Identity>
     <GenericName>Fishing Boat</GenericName>
-    <Tooltip>Fish the waters for Food. Garrison a unit inside to boost fishing rate.</Tooltip>
+    <Tooltip>Fish the waters for Food. Garrison a support or infantry unit inside to boost fishing rate.</Tooltip>
   </Identity>
   <ResourceGatherer>
     <MaxDistance>12.0</MaxDistance>
@@ -26,4 +26,10 @@
     <Pierce>10.0</Pierce>
     <Crush>5.0</Crush>
   </Armour>
+  <GarrisonHolder>
+    <Max>1</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
 </Entity>
