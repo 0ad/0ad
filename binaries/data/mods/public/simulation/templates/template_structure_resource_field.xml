@@ -13,14 +13,14 @@
     <Category>Field</Category>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>24</BuildTime>
+    <BuildTime>50</BuildTime>
     <Resources>
-      <wood>20</wood>
+      <wood>50</wood>
     </Resources>
   </Cost>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
-    <Amount>1000</Amount>
+    <Amount>2000</Amount>
     <Type>food.grain</Type>
   </ResourceSupply>
   <Health>
@@ -29,9 +29,10 @@
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>40.0</Pierce>
-    <Crush>10.0</Crush>
+    <Crush>40.0</Crush>
   </Armour>
   <VisualActor>
+    <Actor>props/special/common/field_grain.xml</Actor>
     <FoundationActor>structures/plot_field_found.xml</FoundationActor>
   </VisualActor>
   <Footprint>
