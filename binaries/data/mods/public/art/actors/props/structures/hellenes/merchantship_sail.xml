@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="mesh">
+      <mesh>props/kyrenia_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail-pegasus">
+      <texture>structural/hele_sail_pegasus.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail-krater">
+      <texture>structural/hele_sail_krater.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
