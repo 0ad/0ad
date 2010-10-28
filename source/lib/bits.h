@@ -78,7 +78,7 @@ T bit_mask(size_t numBits)
 		return allBits;
 	// (note: the previous allBits >> (bitsInT-numBits) is not safe
 	// because right-shifts of negative numbers are undefined.)
-	const T mask = T(T(1) << numBits)-1;
+	const T mask = (T)((T(1) << numBits)-1);
 	return mask;
 }
 

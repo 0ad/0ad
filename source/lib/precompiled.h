@@ -38,6 +38,7 @@
 
 #define _SECURE_SCL 0
 
+#include "lib/config.h"	// CONFIG_ENABLE_PCH
 #include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH
 #include "lib/sysdep/os.h"	// (must come before posix_types.h)
 
@@ -69,6 +70,7 @@
 #  pragma warning(disable:1572)	// floating-point equality and inequality comparisons are unreliable
 #  pragma warning(disable:1786)	// function is deprecated (disabling 4996 isn't sufficient)
 #  pragma warning(disable:1684)	// conversion from pointer to same-sized integral type
+#  pragma warning(disable:2415)	// variable of static storage duration was declared but never referenced (raised by Boost)
 # endif
 #endif
 
@@ -94,6 +96,8 @@ long double __cdecl abs(long double x);	// required for Eigen
 #include "lib/lib.h"
 #include "lib/secure_crt.h"
 
+#include "lib/external_libraries/suppress_boost_warnings.h"
+
 // Boost
 // .. if this package isn't going to be statically linked, we're better off
 // using Boost via DLL. (otherwise, we would have to ensure the exact same
@@ -104,22 +108,30 @@ long double __cdecl abs(long double x);	// required for Eigen
 
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:
-#include "lib/external_libraries/boost_filesystem.h"
+#define BOOST_FILESYSTEM_VERSION 2
+#include <boost/filesystem.hpp>
+namespace fs = boost::filesystem;
 #include <boost/shared_ptr.hpp>
 using boost::shared_ptr;
-#if !MINIMAL_PCH
+
 // (these ones are used more rarely, so we don't enable them in minimal configurations)
+#if !MINIMAL_PCH
 #include <boost/array.hpp>
 using boost::array;
+
 #include <boost/mem_fn.hpp>
 using boost::mem_fn;
+
 #include <boost/function.hpp>
 using boost::function;
+
 #include <boost/bind.hpp>
 using boost::bind;
 #endif // !MINIMAL_PCH
 
-#include "lib/posix/posix.h"	// (must come after boost and common lib headers)
+// (must come after boost and common lib headers, but before re-enabling
+// warnings to avoid boost spew)
+#include "lib/posix/posix.h"	
 
 
 //
@@ -131,9 +143,6 @@ using boost::bind;
 // are pulled in and source files must include all the system headers
 // they use. this policy ensures good compile performance whether or not
 // PCHs are being used.
-
-#include "lib/config.h"	// CONFIG_ENABLE_PCH
-#include "lib/sysdep/compiler.h"	// HAVE_PCH
 
 #if CONFIG_ENABLE_PCH && HAVE_PCH
 
@@ -221,9 +230,12 @@ using boost::bind;
 #endif
 #endif // !MINIMAL_PCH
 
-#endif // #if CONFIG_PCH
+#endif // #if CONFIG_ENABLE_PCH && HAVE_PCH
 
 // restore temporarily-disabled warnings
+#if ICC_VERSION
+# pragma warning(pop)
+#endif
 #if MSC_VERSION
 # pragma warning(default:4702)
 #endif

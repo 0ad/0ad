@@ -27,6 +27,8 @@
 #include "precompiled.h"
 #include "lib/file/vfs/file_cache.h"
 
+#include "lib/external_libraries/suppress_boost_warnings.h"
+
 #include "lib/file/common/file_stats.h"
 #include "lib/file/io/io_align.h"       // BLOCK_SIZE
 #include "lib/cache_adt.h"              // Cache

@@ -519,7 +519,7 @@ static SDLKey g_SDLKeyForVK[256]; // g_SDLKeyForVK[vk] == SDLK
 static void key_Init()
 {
 	// Map the VK keysyms
-	for(int i = 0; i < ARRAY_SIZE(g_SDLKeyForVK); i++)
+	for(size_t i = 0; i < ARRAY_SIZE(g_SDLKeyForVK); i++)
 		g_SDLKeyForVK[i] = SDLK_UNKNOWN;
 
 	g_SDLKeyForVK[VK_BACK] = SDLK_BACKSPACE;
@@ -616,7 +616,7 @@ static void key_ResetAll()
 	spoofed_up_event.type = SDL_KEYUP;
 	spoofed_up_event.key.keysym.unicode = 0;
 
-	for(int i = 0; i < ARRAY_SIZE(keys); i++)
+	for(size_t i = 0; i < ARRAY_SIZE(keys); i++)
 	{
 		if(keys[i])
 		{

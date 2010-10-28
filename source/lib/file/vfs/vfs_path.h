@@ -23,8 +23,6 @@
 #ifndef INCLUDED_VFS_PATH
 #define INCLUDED_VFS_PATH
 
-#include "lib/external_libraries/boost_filesystem.h"
-
 struct VfsPathTraits;
 
 /**

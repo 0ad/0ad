@@ -37,8 +37,6 @@
 #ifndef INCLUDED_PATH_UTIL
 #define INCLUDED_PATH_UTIL
 
-#include "lib/external_libraries/boost_filesystem.h"
-
 namespace ERR
 {
 	const LibError PATH_EMPTY               = -100300;

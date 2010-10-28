@@ -113,8 +113,20 @@ enum DataKind
 
 //-----------------------------------------------------------------------------
 
+#if ICC_VERSION
+# pragma warning(push)
+# pragma warning(disable:94)	// the size of an array must be greater than zero
+# pragma warning(disable:271)	// trailing comma is nonstandard
+# pragma warning(disable:418)	// declaration requires a typedef name
+# pragma warning(disable:791)	// calling convention specified more than once
+#endif
+
 #define _NO_CVCONST_H	// request SymTagEnum be defined
 #include <dbghelp.h>	// must come after win.h and the above definitions
+
+#if ICC_VERSION
+# pragma warning(pop)
+#endif
 
 
 //-----------------------------------------------------------------------------

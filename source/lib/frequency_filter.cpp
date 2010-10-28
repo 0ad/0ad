@@ -191,7 +191,7 @@ class FrequencyFilter : public IFrequencyFilter
 	NONCOPYABLE(FrequencyFilter);
 public:
 	FrequencyFilter(double resolution, double expectedFrequency)
-		: m_controller(expectedFrequency), m_frequencyEstimator(resolution), m_iirFilter(sensitivity, expectedFrequency)
+		: m_frequencyEstimator(resolution), m_controller(expectedFrequency), m_iirFilter(sensitivity, expectedFrequency)
 		, m_stableFrequency((int)expectedFrequency), m_smoothedFrequency(expectedFrequency)
 	{
 	}

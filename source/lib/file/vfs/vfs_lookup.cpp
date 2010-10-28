@@ -27,6 +27,8 @@
 #include "precompiled.h"
 #include "lib/file/vfs/vfs_lookup.h"
 
+#include "lib/external_libraries/suppress_boost_warnings.h"
+
 #include "lib/path_util.h"	// path_foreach_component
 #include "lib/file/vfs/vfs.h"	// error codes
 #include "lib/file/vfs/vfs_tree.h"
