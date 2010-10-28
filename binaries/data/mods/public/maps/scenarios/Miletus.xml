@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="230.37" y="100.496" z="122.873"/>
-		<Rotation angle="0.0223302"/>
-		<Declination angle="0.531219"/>
+		<Position x="221.539" y="102.43" z="84.7671"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -5572,6 +5572,66 @@
 			<Template>actor|props/flora/grass_soft_large.xml</Template>
 			<Position x="180.06507" z="7.02189"/>
 			<Orientation y="1.03109"/>
+		</Entity>
+		<Entity uid="1108">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="165.7057" z="228.55547"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1109">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="169.11837" z="230.03443"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1110">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="172.04403" z="231.98984"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1111">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="174.19614" z="233.82859"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1112">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="173" z="239.05954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1113">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="169.53125" z="238.73502"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1114">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="164.25379" z="236.3322"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1115">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="162.29848" z="233.9833"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1116">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="159.56034" z="230.18351"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1117">
+			<Template>units/hele_support_slave</Template>
+			<Player>1</Player>
+			<Position x="163.68024" z="222.57216"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

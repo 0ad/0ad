@@ -14,4 +14,9 @@
   <VisualActor>
     <Actor>structures/hellenes/market.xml</Actor>
   </VisualActor>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/{civ}_support_slave
+    </Entities>
+  </TrainingQueue> 
 </Entity>

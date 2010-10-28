@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_slave">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Doulos</SpecificName>
+    <History>Slavery played a major role in ancient Greek civilization. Slaves could be found everywhere. They worked not only as domestic servants, but as factory workers, shopkeepers, mineworkers, farm workers and as ship's crewmembers. There may have been as many, if not more, slaves than free people in ancient Greece. It is difficult for historians to determine exactly how many slaves there were during these times, because many did not appear any different from the poorer Greek citizens. There were many different ways in which a person could have become a slave in ancient Greece. They might have been born into slavery as the child of a slave. They might have been taken prisoner if their city was attacked in one of the many battles which took place during these times. They might have been exposed as an infant, meaning the parents abandoned their newborn baby upon a hillside or at the gates of the city to die or be claimed by a passerby.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/global/slave.xml</Actor>
+  </VisualActor>
+</Entity>
