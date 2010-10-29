@@ -36,6 +36,11 @@ public:
 	bool InitNonSDL();
 
 	/**
+	 * Shut down after InitSDL/InitNonSDL, so that they can be used again.
+	 */
+	void Shutdown();
+
+	/**
 	 * Resize the SDL window and associated graphics stuff to the new size.
 	 */
 	bool ResizeWindow(int w, int h);
@@ -67,6 +72,11 @@ private:
 	bool SetVideoMode(int w, int h, int bpp, bool fullscreen);
 	void EnableS3TC();
 
+	/**
+	 * Remember whether Init has been called. (This isn't used for anything
+	 * important, just for verifying that the callers call our methods in
+	 * the right order.)
+	 */
 	bool m_IsInitialised;
 
 	// Initial desktop settings

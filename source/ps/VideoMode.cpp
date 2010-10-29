@@ -198,6 +198,13 @@ bool CVideoMode::InitNonSDL()
 	return true;
 }
 
+void CVideoMode::Shutdown()
+{
+	debug_assert(m_IsInitialised);
+
+	m_IsInitialised = false;
+}
+
 void CVideoMode::EnableS3TC()
 {
 	// On Linux we have to try hard to get S3TC compressed texture support.

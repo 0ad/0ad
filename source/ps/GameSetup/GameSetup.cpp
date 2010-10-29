@@ -659,6 +659,8 @@ void Shutdown(int UNUSED(flags))
 	ShutdownSDL();
 	TIMER_END(L"shutdown SDL");
 
+	g_VideoMode.Shutdown();
+
 	TIMER_BEGIN(L"shutdown ScriptingHost");
 	delete &g_ScriptingHost;
 	TIMER_END(L"shutdown ScriptingHost");
