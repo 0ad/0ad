@@ -6,7 +6,7 @@
 		<SunColour r="1.05882" g="1.05882" b="1.05882"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="0.374291"/>
-		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
+		<TerrainAmbientColour r="0.341176" g="0.403922" b="0.466667"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -16,14 +16,14 @@
 				<Shininess>250</Shininess>
 				<Waviness>7.96875</Waviness>
 				<Murkiness>0.508789</Murkiness>
-				<Tint r="0.447059" g="0.541176" b="0.729412"/>
+				<Tint r="0.447059" g="0.537255" b="0.729412"/>
 				<ReflectionTint r="0.447059" g="0.537255" b="0.729412"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="221.539" y="102.43" z="84.7671"/>
+		<Position x="225.483" y="106.026" z="93.9925"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -236,8 +236,8 @@
 		<Entity uid="63">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="324.26072" z="142.27448"/>
-			<Orientation y="2.82874"/>
+			<Position x="325.18012" z="138.98313"/>
+			<Orientation y="-0.50582"/>
 		</Entity>
 		<Entity uid="64">
 			<Template>units/hele_ship_fishing</Template>
@@ -249,13 +249,13 @@
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="352.45234" z="182.0508"/>
-			<Orientation y="1.66172"/>
+			<Orientation y="-2.43413"/>
 		</Entity>
 		<Entity uid="66">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="339.35697" z="162.01983"/>
-			<Orientation y="-0.7652"/>
+			<Orientation y="2.40772"/>
 		</Entity>
 		<Entity uid="67">
 			<Template>units/hele_ship_fishing</Template>
