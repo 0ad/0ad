@@ -18,12 +18,6 @@
   <Health>
     <Healable>false</Healable>
   </Health>
-  <Decay>
-    <Inactive/>
-    <DelayTime>80.0</DelayTime>
-    <SinkRate>0.01</SinkRate>
-    <SinkAccel>0.0</SinkAccel>
-  </Decay>
   <Loot>
     <xp>1</xp>
     <food>0</food>
@@ -36,14 +30,14 @@
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
-      <food.fish>0.75</food.fish>
-      <food.fruit>0.75</food.fruit>
-      <food.grain>1</food.grain>
+      <food.fish>1</food.fish>
+      <food.fruit>1</food.fruit>
+      <food.grain>2</food.grain>
       <food.meat>3</food.meat>
-	  <wood.tree>2.0</wood.tree>
-      <stone.rock>2.0</stone.rock>
-      <metal.ore>2.0</metal.ore>
-	  <metal.treasure>10000</metal.treasure>
+	  <wood.tree>5.0</wood.tree>
+      <stone.rock>5.0</stone.rock>
+      <metal.ore>5.0</metal.ore>
+	  <metal.treasure>0</metal.treasure>
     </Rates>
   </ResourceGatherer>
   <Armour>

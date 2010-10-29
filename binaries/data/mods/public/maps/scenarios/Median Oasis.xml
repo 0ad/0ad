@@ -2,30 +2,30 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>default</SkySet>
+		<SkySet>cirrus</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
 		<SunElevation angle="0.785398"/>
-		<SunRotation angle="5.49779"/>
+		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.3" g="0.35" b="0.7"/>
-				<Height>5</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>20.0394</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
-				<Tint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="390.674" y="258.358" z="-96.683"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="609.518" y="114.131" z="476.496"/>
+		<Rotation angle="0.00674457"/>
+		<Declination angle="0.62028"/>
 	</Camera>
 	<Entities>
 		<Entity uid="11">
