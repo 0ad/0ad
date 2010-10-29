@@ -25,4 +25,10 @@
   <Vision>
     <Range>160</Range>
   </Vision>
+  <GarrisonHolder>
+    <Max>40</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>  
 </Entity>

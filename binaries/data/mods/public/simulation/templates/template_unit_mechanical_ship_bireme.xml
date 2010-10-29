@@ -22,4 +22,10 @@
     <Pierce>15.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
+  <GarrisonHolder>
+    <Max>20</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
 </Entity>
