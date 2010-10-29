@@ -25,6 +25,18 @@
   <Vision>
     <Range>160</Range>
   </Vision>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>50.0</Pierce>
+      <Crush>100.0</Crush>
+      <MaxRange>100.0</MaxRange>
+      <MinRange>20.0</MinRange>
+      <ProjectileSpeed>40.0</ProjectileSpeed>
+      <PrepareTime>4000</PrepareTime>
+      <RepeatTime>4000</RepeatTime>
+    </Ranged>
+  </Attack>
   <GarrisonHolder>
     <Max>40</Max>
 	<EjectHealth>0.1</EjectHealth>

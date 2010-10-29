@@ -22,10 +22,27 @@
     <Pierce>15.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>40.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>64.0</MaxRange>
+      <MinRange>10.0</MinRange>
+      <ProjectileSpeed>50.0</ProjectileSpeed>
+      <PrepareTime>2000</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
   <GarrisonHolder>
     <Max>20</Max>
 	<EjectHealth>0.1</EjectHealth>
 	<List datatype="tokens">Support Infantry Cavalry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
+  <Sound>
+    <SoundGroups>
+      <attack_impact>attack/impact/arrow_metal.xml</attack_impact>
+    </SoundGroups>
+  </Sound>
 </Entity>
