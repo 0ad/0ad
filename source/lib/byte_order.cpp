@@ -30,12 +30,13 @@
 #include "lib/bits.h"
 
 #ifndef swap16
-
 u16 swap16(const u16 x)
 {
 	return (u16)(((x & 0xff) << 8) | (x >> 8));
 }
+#endif
 
+#ifndef swap32
 u32 swap32(const u32 x)
 {
 	return (x << 24) |
@@ -43,7 +44,9 @@ u32 swap32(const u32 x)
 		((x << 8) & 0x00ff0000) |
 		((x >> 8) & 0x0000ff00);
 }
+#endif
 
+#ifndef swap64
 u64 swap64(const u64 x)
 {
 	const u32 lo = (u32)(x & 0xFFFFFFFF);
@@ -54,8 +57,7 @@ u64 swap64(const u64 x)
 	ret |= swap32(hi);
 	return ret;
 }
-
-#endif	// #ifndef swap16
+#endif
 
 
 //-----------------------------------------------------------------------------

@@ -25,6 +25,7 @@
 // so include this header from such source files as well.
 
 #include "lib/sysdep/compiler.h"	// ICC_VERSION
+#include "lib/sysdep/arch.h"	// ARCH_IA32
 
 #if ICC_VERSION
 # pragma warning(push)
@@ -38,4 +39,7 @@
 # pragma warning(disable:1879)	// unimplemented pragma ignored
 # pragma warning(disable:2270)	// the declaration of the copy assignment operator has been suppressed
 # pragma warning(disable:2273)	// the declaration of the copy constructor has been suppressed
+# if ARCH_IA32
+#  pragma warning(disable:693)	// calling convention specified here is ignored
+# endif
 #endif

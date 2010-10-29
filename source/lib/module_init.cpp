@@ -45,7 +45,7 @@ LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)())
 		{
 			LibError ret = init();
 			*initState = (ret == INFO::OK)? INITIALIZED : ret;
-			cpu_MemoryBarrier();
+			COMPILER_FENCE;
 			return ret;
 		}
 
@@ -70,7 +70,7 @@ LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)())
 		{
 			shutdown();
 			*initState = UNINITIALIZED;
-			cpu_MemoryBarrier();
+			COMPILER_FENCE;
 			return INFO::OK;
 		}
 

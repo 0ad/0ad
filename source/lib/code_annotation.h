@@ -183,4 +183,19 @@ private:\
 # define SENTINEL_ARG
 #endif
 
+/**
+ * prevent the compiler from reordering loads or stores across this point.
+ **/
+#if ICC_VERSION
+# define COMPILER_FENCE __memory_barrier()
+#elif MSC_VERSION
+# include <intrin.h>
+# pragma intrinsic(_ReadWriteBarrier)
+# define COMPILER_FENCE _ReadWriteBarrier()
+#elif GCC_VERSION
+# define COMPILER_FENCE asm volatile("" : : : "memory")
+#else
+# define COMPILER_FENCE
+#endif
+
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION

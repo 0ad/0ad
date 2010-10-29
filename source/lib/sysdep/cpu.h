@@ -53,23 +53,6 @@ LIB_API const char* cpu_IdentifierString();
 // lock-free support routines
 
 /**
- * prevent the CPU from reordering previous loads or stores past the barrier,
- * thus ensuring they retire before any subsequent memory operations.
- * this also prevents compiler reordering.
- **/
-#if MSC_VERSION
-# include <intrin.h>
-# if !ICC_VERSION
-#  pragma intrinsic(_ReadWriteBarrier)
-# endif
-# define cpu_MemoryBarrier() _ReadWriteBarrier()
-#elif GCC_VERSION
-# define cpu_MemoryBarrier() asm volatile("" : : : "memory")
-#else
-# define cpu_MemoryBarrier()
-#endif
-
-/**
  * atomic "compare and swap".
  *
  * @param location address of the word to compare and possibly overwrite

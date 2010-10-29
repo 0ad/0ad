@@ -499,7 +499,7 @@ static ALuint srcs_pop(volatile intptr_t* srcs)
 	{
 retry:
 		intptr_t al_src = srcs[i];
-		cpu_MemoryBarrier();
+		COMPILER_FENCE;
 		if(!cpu_CAS(&srcs[i], al_src, 0))
 			goto retry;
 		if(al_src != 0)	// got a valid source

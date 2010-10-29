@@ -211,7 +211,7 @@ double whrt_Time()
 retry:
 	// latch timer state (counter and time must be from the same update)
 	const double time = ts->time;
-	cpu_MemoryBarrier();
+	COMPILER_FENCE;
 	const u64 counter = ts->counter;
 	// ts changed after reading time. note: don't compare counter because
 	// it _might_ have the same value after two updates.

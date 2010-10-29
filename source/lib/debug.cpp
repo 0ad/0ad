@@ -510,7 +510,7 @@ void debug_SkipErrors(LibError err)
 	{
 		errorToSkip = err;
 		numSkipped = 0;
-		cpu_MemoryBarrier();
+		COMPILER_FENCE;
 		skipStatus = VALID;	// linearization point
 	}
 	else
@@ -522,7 +522,7 @@ size_t debug_StopSkippingErrors()
 	if(cpu_CAS(&skipStatus, VALID, BUSY))
 	{
 		const size_t ret = numSkipped;
-		cpu_MemoryBarrier();
+		COMPILER_FENCE;
 		skipStatus = INVALID;	// linearization point
 		return ret;
 	}
@@ -539,7 +539,7 @@ static bool ShouldSkipError(LibError err)
 	{
 		numSkipped++;
 		const bool ret = (err == errorToSkip);
-		cpu_MemoryBarrier();
+		COMPILER_FENCE;
 		skipStatus = VALID;
 		return ret;
 	}

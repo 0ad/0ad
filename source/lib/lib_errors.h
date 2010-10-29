@@ -228,7 +228,7 @@ extern int error_AddAssociation(LibErrorAssociation*);
  * @param max_chars size of buffer [characters]
  * @return buf (allows using this function in expressions)
  **/
-extern wchar_t* error_description_r(LibError err, wchar_t* buf, size_t max_chars);
+LIB_API wchar_t* error_description_r(LibError err, wchar_t* buf, size_t max_chars);
 
 //-----------------------------------------------------------------------------
 

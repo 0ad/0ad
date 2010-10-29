@@ -1851,7 +1851,7 @@ LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* pcontext, const wc
 	LibError ret = wdbg_sym_WalkStack(dump_frame_cb, 0, (const CONTEXT*)pcontext, lastFuncToSkip);
 
 	busy = 0;
-	cpu_MemoryBarrier();
+	COMPILER_FENCE;
 
 	return ret;
 }
