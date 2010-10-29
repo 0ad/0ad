@@ -24,7 +24,6 @@
 
 #include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
-#include "lib/external_libraries/boost_filesystem.h"
 
 #define GNU_SOURCE
 #include "mocks/dlfcn.h"
