@@ -84,9 +84,31 @@ GUITooltip::GUITooltip()
 
 const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 
-static bool GetTooltip(IGUIObject* obj, CStr& style)
+bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 {
-	if (obj && obj->SettingExists("tooltip_style")
+	if (obj && obj->SettingExists("_icon_tooltip_style") && obj->MouseOverIcon())
+	{	//Special code to handle icon tooltips in text objects
+		if(GUI<CStr>::GetSetting(obj, "_icon_tooltip_style", style) == PSRETURN_OK)
+		{	//Check if icon tooltip text exists
+			CStr text;
+			if (GUI<CStr>::GetSetting(obj, "_icon_tooltip", text) == PSRETURN_OK)
+			{
+				if (text.empty())
+				{
+					// No tooltip
+					return false;
+				}
+
+				if (style.empty())
+					// Text, but no style - use default
+					style = "default";
+
+				m_IsIconTooltip = true;
+				return true;
+			}
+		}
+
+	} else if (obj && obj->SettingExists("tooltip_style")
 		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PSRETURN_OK)
 	{
 		CStr text;
@@ -102,6 +124,7 @@ static bool GetTooltip(IGUIObject* obj, CStr& style)
 				// Text, but no style - use default
 				style = "default";
 
+			m_IsIconTooltip = false;
 			return true;
 		}
 	}
@@ -154,8 +177,16 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 
 	// Retrieve object's 'tooltip' setting
 	CStr text;
-	if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
-		debug_warn(L"Failed to retrieve tooltip text"); // shouldn't fail
+	if (m_IsIconTooltip)
+	{	//Use icon tooltip property
+		if (GUI<CStr>::GetSetting(obj, "_icon_tooltip", text) != PSRETURN_OK)
+			debug_warn(L"Failed to retrieve icon tooltip text"); // shouldn't fail
+	}
+	else
+	{	//use normal tooltip property
+		if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
+			debug_warn(L"Failed to retrieve tooltip text"); // shouldn't fail
+	}
 
 	// Do some minimal processing ("\n" -> newline, etc)
 	text = text.UnescapeBackslashes();
@@ -283,7 +314,8 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 		break;
 
 	case ST_SHOWING:
-		if (Nearest == m_PreviousObject)
+		// Handle special case of icon tooltips
+		if (Nearest == m_PreviousObject && (!m_IsIconTooltip || Nearest->MouseOverIcon()))
 		{
 			// Still showing the same object's tooltip, but the text might have changed
 			if (GetTooltip(Nearest, style))

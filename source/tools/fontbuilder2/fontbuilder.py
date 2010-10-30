@@ -172,6 +172,9 @@ fonts = (
     ("serif-bold-14", "ConvertedPagella-Bold.ttf", 14, filled),
     ("serif-bold-16", "ConvertedPagella-Bold.ttf", 16, filled),
     ("serif-bold-18", "ConvertedPagella-Bold.ttf", 18, filled),
+    ("serif-bold-20", "ConvertedPagella-Bold.ttf", 20, filled),
+    ("serif-bold-22", "ConvertedPagella-Bold.ttf", 22, filled),
+    ("serif-bold-24", "ConvertedPagella-Bold.ttf", 24, filled),
     ("serif-stroke-14", "ConvertedPagella-Regular.ttf", 14, stroked2),
     ("serif-bold-stroke-14", "ConvertedPagella-Bold.ttf", 14, stroked3),
 )

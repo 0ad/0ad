@@ -28,13 +28,19 @@
 		<Declination angle="0.496738"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "RevealMap":true,
-  "NumPlayers":1,
-  "Description":"A map for testing movement costs and terrain properties in the A* pathfinder.",
-  "GameType":"endless"
-}
-]]></ScriptSettings>
+	{
+		"Name":"Pathfinding Terrain Demo",
+		"Description":"A map for testing movement costs and terrain properties in the A* pathfinder.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			}
+		],
+		"RevealMap":true,
+		"GameType":"endless"
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="6">
 			<Template>units/hele_ship_bireme</Template>

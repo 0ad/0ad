@@ -32,8 +32,9 @@ public:
 
 private:
 
-	static void ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI* gui);
-	static void HideTooltip(const CStr& style, CGUI* gui);
+	void ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI* gui);
+	void HideTooltip(const CStr& style, CGUI* gui);
+	bool GetTooltip(IGUIObject* obj, CStr& style);
 
 	int m_State;
 
@@ -41,6 +42,7 @@ private:
 	CStr m_PreviousTooltipName;
 	CPos m_PreviousMousePos;
 	double m_Time;
+	bool m_IsIconTooltip;
 };
 
 #endif // INCLUDED_GUITOOLTIP

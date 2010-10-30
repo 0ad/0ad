@@ -1,9 +1,15 @@
+
+/**
+ * Used to initialize non-player settings relevant to the map, like
+ * default stance and victory conditions. DO NOT load players here
+ */
 function LoadMapSettings(settings)
 {
-	// Default settings for old maps
+	// Default settings
 	if (!settings)
 		settings = {};
-
+	
+	
 	if (settings.DefaultStance)
 	{
 		for each (var ent in Engine.GetEntitiesWithInterface(IID_UnitAI))
@@ -26,7 +32,7 @@ function LoadMapSettings(settings)
 		if (cmpRangeManager)
 			cmpRangeManager.SetLosCircular(true);
 	}
-	
+
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	if (settings.GameType)
 	{

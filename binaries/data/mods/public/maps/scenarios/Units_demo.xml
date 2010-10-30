@@ -82,13 +82,19 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "RevealMap":true,
-  "NumPlayers":1,
-  "Description":"Every unit in the game.",
-  "GameType":"endless"
-}
-]]></ScriptSettings>
+	{
+		"Name":"Units Demo",
+		"Description":"Every unit in the game.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			}
+		],
+		"RevealMap":true,
+		"GameType":"endless"
+	}
+	]]></ScriptSettings>
 	<Entities/>
 	<Paths/>
 	<Triggers/>

@@ -67,6 +67,16 @@ public:
 	bool LoadDefaultScripts();
 
 	/**
+	 * Loads the player settings script (called before map is loaded)
+	 */
+	void LoadPlayerSettings();
+
+	/**
+	 * Loads the map settings script (called after map is loaded)
+	 */
+	void LoadMapSettings();
+	
+	/**
 	 * Set a startup script, which will get executed before the first turn.
 	 */
 	void SetStartupScript(const std::wstring& script);
@@ -81,6 +91,12 @@ public:
 	 * to set up the simulation state.
 	 */
 	void SetMapSettings(const utf16string& settings);
+
+	/**
+	 * Set the initial map settings, which will be used
+	 * to set up the simulation state.
+	 */
+	void SetMapSettings(const CScriptValRooted& settings);
 
 	/**
 	 * Get the current map settings as a UTF-8 JSON string.
@@ -103,7 +119,7 @@ public:
 	void ResetState(bool skipScriptedComponents = false);
 
 	/**
-	 * Initialise a new game, based on some script data.
+	 * Initialise a new game, based on some script data. (Called on CGame instantiation)
 	 * (This mustn't be used when e.g. loading saved games, only when starting new ones.)
 	 * This calls the InitGame function defined in helpers/InitGame.js.
 	 */

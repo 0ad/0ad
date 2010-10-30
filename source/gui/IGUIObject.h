@@ -166,6 +166,11 @@ public:
 	 */
 	virtual bool MouseOver();
 
+	/**
+	 * Test if mouse position is over an icon
+	 */
+	virtual bool MouseOverIcon();
+
 	//--------------------------------------------------------
 	/** @name Leaf Functions */
 	//--------------------------------------------------------

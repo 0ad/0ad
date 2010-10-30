@@ -32,12 +32,15 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerData = {
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
-			"color": cmpPlayer.GetColour(),
+			"colour": cmpPlayer.GetColour(),
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"resourceCounts": cmpPlayer.GetResourceCounts(),
 			"trainingQueueBlocked": cmpPlayer.IsTrainingQueueBlocked(),
-			"state": cmpPlayer.GetState()
+			"state": cmpPlayer.GetState(),
+			"team": cmpPlayer.GetTeam(),
+			"diplomacy": cmpPlayer.GetDiplomacy(),
+			"phase": cmpPlayer.GetPhase(),
 		};
 		ret.players.push(playerData);
 	}

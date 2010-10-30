@@ -127,12 +127,11 @@ function submitChatInput()
 
 function addChatMessage(msg)
 {
-	// TODO: we ought to escape all values before displaying them,
-	// to prevent people inserting colours and newlines etc
 	var n = g_PlayerAssignments[msg.guid].player;
-	var username = g_PlayerAssignments[msg.guid].name;
 	var playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-
+	var username = escapeText(g_PlayerAssignments[msg.guid].name);
+	var message = escapeText(msg.text);
+	
 	var formatted;
 
 	switch (msg.type)
@@ -143,8 +142,8 @@ function addChatMessage(msg)
 		break;
 	*/
 	case "message":
-		console.write("<" + username + "> " + msg.text);
-		formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + msg.text;
+		console.write("<" + username + "> " + message);
+		formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
 		break;
 	default:
 		error("Invalid chat message '" + uneval(msg) + "'");

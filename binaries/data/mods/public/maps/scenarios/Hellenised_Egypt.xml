@@ -28,12 +28,27 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "CircularMap":true,
-  "NumPlayers":4,
-  "Description":"Greek colonists have settled the Nile River valley. A large map divided down the center by a mighty river with two wide crossings."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Hellenised Egypt",
+		"Description":"Greek colonists have settled the Nile River valley. A large map divided down the center by a mighty river with two wide crossings.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			}
+		],
+		"CircularMap":true
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>structures/hele_civil_centre</Template>

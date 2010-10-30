@@ -79,6 +79,16 @@ struct SGUIText
 		CGUISpriteInstance m_Sprite;
 
 		int m_CellID;
+
+		/**
+		 * Tooltip text
+		 */
+		CStrW m_Tooltip;
+
+		/**
+		 * Tooltip style
+		 */
+		CStrW m_TooltipStyle;
 	};
 
 	/**
@@ -193,6 +203,12 @@ public:
 				TAG_ICON
 			};
 
+			struct TagAttribute
+			{
+				std::string attrib;
+				std::string value;
+			};
+
 			/**
 			 * Set tag from string
 			 *
@@ -214,9 +230,9 @@ public:
 			std::string m_TagValue;
 
 			/**
-			 * Some tags need an additional value
+			 * Some tags need an additional attributes
 			 */
-			std::string m_TagAdditionalValue;
+			std::vector<TagAttribute> m_TagAttributes;
 		};
 
 		/**

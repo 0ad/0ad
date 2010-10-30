@@ -27,10 +27,29 @@ function init(data)
 
 	// janwas: main loop now sets progress / description, but that won't
 	// happen until the first timeslice completes, so set initial values.
-	getGUIObjectByName ("ldTitleBar").caption = "Loading Scenario";
+	
+	var ldTitleBar = getGUIObjectByName ("ldTitleBar");
+	var ldText = getGUIObjectByName ("ldText");
+	
+	switch(data.attribs.mapType) {
+	case "scenario":
+		ldTitleBar.caption = "Loading Scenario";
+		ldText.caption = "Loading " + mapName + "\nPlease wait...";
+		break;
+		
+	case "random":
+		ldTitleBar.caption = "Loading Random Map";
+		ldText.caption = "Generating " + mapName + "\nPlease wait...";
+		break;
+		
+	default:
+		error("Unkown map type: "+data.attribs.mapType);
+	}
+	
+	
 	getGUIObjectByName ("ldProgressBarText").caption = "";
 	getGUIObjectByName ("ldProgressBar").caption = 0;
-	getGUIObjectByName ("ldText").caption = "Loading " + mapName + "\nPlease wait...";
+	
 
 	// Pick a random tip of the day (each line is a separate tip).
 	var tipArray  = readFileLines("gui/text/tips.txt");

@@ -1,8 +1,10 @@
-function InitGame(data)
+function InitGame(settings)
 {
-	// This will be called after the map has been loaded, before the simulation has started.
-	// It should initialise the game based on parameters passed from the GUI, e.g. player
-	// names and colours.
+	// This will be called after the map (settings) have been loaded, before the simulation has started.
+	// TODO: Is this even needed?
+	if (!settings)
+		settings = {};
+	
 }
 
 Engine.RegisterGlobal("InitGame", InitGame);

@@ -28,11 +28,26 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":4,
-  "Description":"A plateau of riches awaits the player that conquers this wide open desert map."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Gold Rush",
+		"Description":"A wide-open map with a central rocky region rich in Minerals (Metal Resource). This map may be played if the other more detailed maps cause uncomfortable lag.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			}
+		]
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>gaia/geology_metal_desert_slabs</Template>

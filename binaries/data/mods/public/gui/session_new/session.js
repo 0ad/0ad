@@ -3,6 +3,9 @@ var g_IsNetworked = false;
 
 // Cache the basic player data (name, civ, color)
 var g_Players = [];
+// Cache the useful civ data
+var g_CivData = {};
+
 var g_PlayerAssignments = { "local": { "name": "You", "player": 1 } };
 
 // Cache dev-mode settings that are frequently or widely used
@@ -33,6 +36,7 @@ function GetEntityState(entId)
 
 // Cache TemplateData
 var g_TemplateData = {}; // {id:template}
+
 
 function GetTemplateData(templateName)
 {
@@ -68,11 +72,15 @@ function init(initData, hotloadData)
 	{
 		g_Players = getPlayerData(null); 
 	}
+	
+	// Cache civ data
+	g_CivData = loadCivData();
+	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia"};
 
 	getGUIObjectByName("civIcon").sprite = g_Players[Engine.GetPlayerID()].civ+"Icon";
 
 	cacheMenuObjects();
-
+	
 	onSimulationUpdate();
 }
 
@@ -184,7 +192,7 @@ function onSimulationUpdate()
 	g_TemplateData = {};
 	
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
-
+	
 	// If we're called during init when the game is first loading, there will be no simulation yet, so do nothing
 	if (!simState)
 		return;

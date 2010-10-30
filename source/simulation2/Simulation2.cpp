@@ -182,16 +182,6 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	CMessageTurnStart msgTurnStart;
 	m_ComponentManager.BroadcastMessage(msgTurnStart);
 
-	if (m_TurnNumber == 0)
-	{
-		ScriptInterface& scriptInterface = m_ComponentManager.GetScriptInterface();
-		CScriptVal ret;
-		scriptInterface.CallFunction(scriptInterface.GetGlobalObject(), "LoadMapSettings", m_MapSettings, ret);
-
-		if (!m_StartupScript.empty())
-			m_ComponentManager.GetScriptInterface().LoadScript(L"map startup script", m_StartupScript);
-	}
-
 	CmpPtr<ICmpPathfinder> cmpPathfinder(m_SimContext, SYSTEM_ENTITY);
 	if (!cmpPathfinder.null())
 		cmpPathfinder->FinishAsyncRequests();
@@ -401,9 +391,28 @@ void CSimulation2::SetMapSettings(const utf16string& settings)
 	m->m_MapSettings = m->m_ComponentManager.GetScriptInterface().ParseJSON(settings);
 }
 
+void CSimulation2::SetMapSettings(const CScriptValRooted& settings)
+{
+	m->m_MapSettings = settings;
+}
+
 std::string CSimulation2::GetMapSettings()
 {
 	return m->m_ComponentManager.GetScriptInterface().StringifyJSON(m->m_MapSettings.get());
+}
+
+void CSimulation2::LoadPlayerSettings()
+{
+	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadPlayerSettings", m->m_MapSettings);
+}
+
+void CSimulation2::LoadMapSettings()
+{
+	// Initialize here instead of in Update()
+	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadMapSettings", m->m_MapSettings);
+
+	if (!m->m_StartupScript.empty())
+		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
 }
 
 LibError CSimulation2::ReloadChangedFile(const VfsPath& path)

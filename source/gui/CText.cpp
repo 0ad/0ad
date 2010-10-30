@@ -47,6 +47,10 @@ CText::CText()
 	AddSetting(GUIST_CStr,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
+	//Private settings
+	AddSetting(GUIST_CStr,					"_icon_tooltip");
+	AddSetting(GUIST_CStr,					"_icon_tooltip_style");
+
 	//GUI<bool>::SetSetting(this, "ghost", true);
 	GUI<bool>::SetSetting(this, "scrollbar", false);
 	GUI<bool>::SetSetting(this, "clip", true);
@@ -242,4 +246,35 @@ void CText::Draw()
 		else
 			IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f, cliparea);
 	}
+}
+
+bool CText::MouseOverIcon()
+{
+	std::vector<SGUIText*>::iterator text_it;
+	std::list<SGUIText::SSpriteCall>::iterator sprite_it;
+
+	for (text_it=m_GeneratedTexts.begin(); text_it!=m_GeneratedTexts.end(); ++text_it)
+	{
+		SGUIText* guitext = *text_it;
+
+		for (sprite_it=guitext->m_SpriteCalls.begin(); sprite_it!=guitext->m_SpriteCalls.end(); ++sprite_it)
+		{
+			//Check mouse over sprite
+			SGUIText::SSpriteCall spritecall = *sprite_it;
+
+			if (spritecall.m_Area.PointInside(GetMousePos() - m_CachedActualSize.TopLeft()))
+			{
+				//If tooltip exists, set the property
+				if(!spritecall.m_Tooltip.empty())
+				{
+					SetSetting("_icon_tooltip_style", spritecall.m_TooltipStyle);
+					SetSetting("_icon_tooltip", spritecall.m_Tooltip);
+				}
+
+				return true;
+			}
+		}
+	}
+
+	return false;
 }

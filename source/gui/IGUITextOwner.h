@@ -91,6 +91,11 @@ public:
 	virtual void Draw(const int &index, const CColor &color, const CPos &pos, 
 					  const float &z, const CRect &clipping = CRect());
 
+	/**
+	 * Test if mouse position is over an icon
+	 */
+	virtual bool MouseOverIcon();
+
 protected:
 
 	/**

@@ -225,6 +225,7 @@ private:
 	static int Script_AddEntity(void* cbdata, std::string templateName);
 	static int Script_AddLocalEntity(void* cbdata, std::string templateName);
 	static void Script_DestroyEntity(void* cbdata, int ent);
+	static CScriptVal Script_ReadJSONFile(void* cbdata, std::string fileName);
 
 	CMessage* ConstructMessage(int mtid, CScriptVal data);
 	void SendGlobalMessage(const CMessage& msg) const;

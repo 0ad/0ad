@@ -77,6 +77,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
+		m_ScriptInterface.RegisterFunction<CScriptVal, std::string, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
 	}
 
 	// Define MT_*, IID_* as script globals, and store their names
@@ -881,4 +882,32 @@ std::string CComponentManager::GenerateSchema()
 
 	// TODO: pretty-print
 	return schema;
+}
+
+CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string fileName)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	VfsPath path = VfsPath(L"simulation/data/" + CStrW(fileName));
+	
+	if (!FileExists(g_VFS, path))
+	{
+		LOGERROR(L"File 'simulation/data/%hs' does not exist", fileName);
+		return CScriptVal();
+	}
+
+	CVFSFile file;
+
+	PSRETURN ret = file.Load(g_VFS, path);
+
+	if (ret != PSRETURN_OK)
+	{
+		LOGERROR(L"Failed to load file '%s': %s", path.string(), GetErrorString(ret));
+		return CScriptVal();
+	}
+
+	utf16string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // TODO: encodings etc
+
+	return (componentManager->m_ScriptInterface.ParseJSON(content)).get();
+
 }

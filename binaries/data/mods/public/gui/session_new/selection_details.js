@@ -32,7 +32,7 @@ function displaySingle(entState, template)
 	var specificName = template.name.specific;
 	var genericName = template.name.generic != template.name.specific? template.name.generic : "";
 
-	var civName = getFormalCivName(toTitleCase(g_Players[entState.player].civ));
+	var civName = g_CivData[g_Players[entState.player].civ].Name;
 
 	var playerName = g_Players[entState.player].name;
 	var playerColor = g_Players[entState.player].color.r + " " + g_Players[entState.player].color.g + " " +
@@ -92,7 +92,7 @@ function displaySingle(entState, template)
 	
 	// Set Captions
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("player").caption = civName == GAIA? playerName : playerName + " (" + civName + ")"; // Don't need civ tooltip for Gaia Player - redundant
+	getGUIObjectByName("player").caption = (entState.player == 0 ? civName : playerName + " (" + civName + ")"); // Don't display civ for Gaia units
 //	getGUIObjectByName("player").textcolor = playerColor;
 
 

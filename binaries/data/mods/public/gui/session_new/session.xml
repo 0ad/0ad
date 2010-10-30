@@ -2,6 +2,8 @@
 
 <objects>
 
+	<script file="gui/common/functions_civinfo.js"/>
+	<script file="gui/common/functions_utility.js" />
 	<script file="gui/common/functions_global_object.js" />
 	<script file="gui/common/timer.js"/>
 	<script file="gui/session_new/session.js"/>
@@ -235,7 +237,7 @@
 
 				<!-- Exit button -->
 				<object type="button"
-					name="exitButton"
+					name="menuExitButton"
 					style="wheatButtonFancy"
 					size="50%-60 96 50%+60 128"
 					tooltip_style="snToolTip"
@@ -250,7 +252,7 @@
 				<!-- Cancel Button -->
 				<object type="button"
 					style="wheatButtonFancy"
-					name="cancelButton"
+					name="menuCancelButton"
 					size="50%-60 128 50%+60 160"
 					tooltip_style="snToolTip"
 				>
@@ -369,6 +371,7 @@
 		<!-- Phase -->
 		<!-- ================================  ================================ -->
 		<!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
+		
 
 		<!-- ================================  ================================ -->
 		<!-- Menu Button -->

@@ -28,11 +28,20 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":2,
-  "Description":"Desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Oasis",
+		"Description":"Desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			}
+		]
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="7355">
 			<Template>gaia/flora_tree_date_palm</Template>

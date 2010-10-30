@@ -28,11 +28,26 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":4,
-  "Description":"The African serengeti has herds of animals criss crossing the plain. Mineral wealth is bountiful and wood is in full supply."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Serengeti",
+		"Description":"The African serengeti has herds of animals criss crossing the plain. Mineral wealth is bountiful and wood is in full supply.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			}
+		]
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="14">
 			<Template>gaia/flora_tree_baobab</Template>

@@ -28,12 +28,18 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":1,
-  "Description":"Test out fishing with a fishing boat. Still in development.",
-  "GameType":"endless"
-}
-]]></ScriptSettings>
+	{
+		"Name":"Fishing Demo",
+		"Description":"Test out fishing with a fishing boat. Still in development.",
+		"PlayerData":
+		[
+			{
+				"Civ":"celt"
+			}
+		],
+		"GameType":"endless"
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>units/celt_ship_trireme</Template>

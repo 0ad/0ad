@@ -28,11 +28,38 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":8,
-  "Description":"Small map with lots of resources and some water, for testing gameplay in non-competitive multiplayer matches."
-}
-]]></ScriptSettings>
+	{
+	"Name":"Multiplayer Demo",
+	"Description":"Small map with lots of resources and some water, for testing gameplay in non-competitive multiplayer matches.",
+	"PlayerData":
+	[
+		{
+			"Civ":"hele"
+		},
+		{
+			"Civ":"hele"
+		},
+		{
+			"Civ":"hele"
+		},
+		{
+			"Civ":"hele"
+		},
+		{
+			"Civ":"hele"
+		},
+		{
+			"Civ":"hele"
+		},
+		{
+			"Civ":"hele"
+		},
+		{
+			"Civ":"hele"
+		}
+	]
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>structures/hele_civil_centre</Template>

@@ -77,12 +77,21 @@
 		<Declination angle="0.3"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "RevealMap":true,
-  "NumPlayers":2,
-  "Description":"1296 units. Extremely slow (we need more optimisation)."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Combat Demo (Huge)",
+		"Description":"1296 units. Extremely slow (we need more optimisation).",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			}
+		],
+		"RevealMap":true
+	}
+	]]></ScriptSettings>
 	<Entities/>
 	<Paths/>
 </Scenario>

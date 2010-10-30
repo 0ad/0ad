@@ -140,3 +140,8 @@ void IGUITextOwner::CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUITex
 		break;
 	}
 }
+
+bool IGUITextOwner::MouseOverIcon()
+{
+	return false;
+}

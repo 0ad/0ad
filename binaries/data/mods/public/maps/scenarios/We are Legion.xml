@@ -28,11 +28,20 @@
 		<Declination angle="0.476257"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":2,
-  "Description":"A quick battle between Romans and Macedonians. Showcases the new Roman legionnairy units."
-}
-]]></ScriptSettings>
+	{
+		"Name":"We Are Legion",
+		"Description":"A quick battle between Romans and Macedonians. Showcases the new Roman legionnairy units.",
+		"PlayerData":
+		[
+			{
+				"Civ":"rome"
+			},
+			{
+				"Civ":"hele"
+			}
+		]
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="12">
 			<Template>other/rome_legionnaire_imperial</Template>

@@ -1,0 +1,86 @@
+{
+	"Code": "iber",
+	"Name": "Iberians",
+	"Emblem": "iber.dds",
+	"History": "No one really knows when the Iberians appeared as a people, though first contact with them came in 1100 B.C.  with the establishment of a trading post by the Phoenicians. They were a relatively peaceful culture, and when they fought it fighting in other's battles as mercenaries. When they fought their won battle, they proved tenacious when Rome sought to take their land and freedom away from them. Yet, the Iberians were put in submission once and for all by the Romans in 18 B.C.",
+	"Factions":
+	[
+		{
+			"Name": "",
+			"Description": "",
+			"Technologies":
+			[
+				{
+					"Name": "Falarica del Fuego",
+					"History": "'Flaming Javelin' Iberian tribesmen were noted for wrapping bundles of grass about the shafts of their throwing spears, soaking that in some sort of flammable pitch, then setting it afire just before throwing.",
+					"Description": "Causes targets struck to become inflamed and lose hitpoints at a constant rate until and if either healed or repaired, as appropriate." 
+				},
+				{
+					"Name": "Maestros Herreros",
+					"History": "'Master Iron Workers' The Iberians were known to produce the finest iron and steel implements and weapons of the age.",
+					"Description": "CO -50% any Ore." 
+				} 
+			],
+			"Heroes":
+			[
+				{
+					"Name": "Viriato",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Viriato, like Vercingentorix amongst the Gauls, was the most famous of the Iberian tribal war leaders, having conducted at least 7 campaigns against the Romans in the southern half of the peninsula during the 'Lusitani Wars' from 147 to 139 BCE. He surfaced as a survivor of the treacherous massacre of 9,000 men and the selling into slavery of 21,000 elderly, women, and children of the Lusitani. They had signed a treaty of peace with the Romans, conducted by Servius Sulpicius Galba, governor of Hispania Ulterior, as the 'final solution' to the Lusitani problem. He emerged from humble beginnings in 151 BCE to become war chief of the Lusitani. He was intelligent and a superior tactician, never really defeated in any encounter (though suffered losses in some requiring retreat). He succumbed instead to another treachery arranged by a later Roman commander, Q. Servilius Cepio, to have him assassinated by three comrades that were close to him." 
+				},
+				{
+					"Name": "Karos",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Karos was a chief of the Belli tribe located just east of the Celtiberi (Numantines at the centre). Leading the confederated tribes of the meseta central (central upland plain) he concealed 20,000 foot and 5,000 mounted troops along a densely wooded track. Q. Fulvius Nobilior neglected proper reconnaissance and lead his army into the trap strung out in a long column. Some 10,000 of 15,000 Roman legionaries fell in the massive ambush that was sprung upon them. The date was 23 August of 153 BCE, the day when Rome celebrated the feast of Vulcan. By later Senatorial Decree it was ever thereafter known as dies ater, a 'sinister day', from whence our word disaster comes, and Rome never again fought a battle on the 23rd of August. Karos was wounded in an after battle small cavalry action the same evening and soon died thereafter, but he had carried off one of the most humiliating defeats that Rome ever suffered." 
+				},
+				{
+					"Name": "Indibil",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Indibil was king of the Ilegetes, a large federation ranged principally along the Ebro River in the northwest of the Iberian Peninsula. During the Barcid expansion, from 212 BCE he had initially been talked into allying himself with the Carthaginians who hade taken control of a lot of territory to the south and west, however after loss and his capture in a major battle he was convinced, some say tricked, to switch to the Roman side by Scipio Africanus. But that alliance didn't last long, as Roman promises were hollow and the Romans acted more like conquerors than allies. So, while the Romans and their allies had ended Carthaginian presence in 'Hispania' in 206 BCE, Indibil and another tribal prince by the name of Mandonio, who may have been his brother, rose up in repbellion against the Romans. They were defeated in battle, but rose up in a 2nd even larger rebellion that had unified all the Ilergetes again in 205 BCE. Outnumbered and outarmed they were again defeated, Indibil losing his life in the final battle and Mandonio being captured then later put to death. From that date onward the Ilergetes remained a pacified tribe under Roman rule."
+				} 
+			]
+		} 
+	],
+	"CivBonuses":
+	[
+		{
+			"Name": "El Pedregal",
+			"History": "'The Rocky Place' With exception to alluvial plains and river valleys, stone is abundant in the Iberian Peninsula and was greatly used in construction of structures of all types.",
+			"Description": "Stone CO -33% any structure or Tech requiring the resource." 
+		},
+		{
+			"Name": "Manada de Caballos",
+			"History": "'Horse Herd' Not unlike Numidia in North Africa, the Iberian Peninsula was known as 'horse country', capable of producing up to 100,000 new mounts each year.",
+			"Description": "As long as horses remain corralled, the resource cost of training horse-mounted units (cavalry) is reduced by 5% per animal corralled." 
+		} 
+	],
+	"TeamBonuses":
+	[
+		{
+			"Name": "Mercenario",
+			"History": "The Iberians were long known to provide mercenary soldiers to other nations to serve as auxiliaries to their armies in foreign wars. Carthage is the most well known example, and we have evidence of them serving in such a capacity in Aquitania.",
+			"Description": "Infantry and Cavalry Citizen Soldier Javelinists civ CO -50%." 
+		} 
+	],
+	"Structures":
+	[
+		{
+			"Name": "Monumento Venerado",
+			"Class": "",
+			"Emblem": "",
+			"History": "'Revered Monument' The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "" 
+		} 
+	],
+	"StartEntities":
+	[
+	]
+}

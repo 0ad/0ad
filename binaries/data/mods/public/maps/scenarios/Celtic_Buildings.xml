@@ -28,12 +28,21 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":2,
-  "Description":"A showcase for all Celtic buildings and units. There are also a small number of enemy units to kill and some resources to gather.",
-  "GameType":"endless"
-}
-]]></ScriptSettings>
+	{
+		"Name":"Celtic Buildings",
+		"Description":"A showcase for all Celtic buildings and units. There are also a small number of enemy units to kill and some resources to gather.",
+		"PlayerData":
+		[
+			{
+				"Civ":"celt"
+			},
+			{
+				"Civ":"hele"
+			}
+		],
+		"GameType":"endless"
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>other/celt_tavern</Template>

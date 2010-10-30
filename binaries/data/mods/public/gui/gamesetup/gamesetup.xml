@@ -3,7 +3,9 @@
 <objects>
 
 	<script file="gui/common/network.js"/>
+	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/common/functions_global_object.js"/>
+	<script file="gui/common/functions_utility.js"/>
 	<script file="gui/gamesetup/gamesetup.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
@@ -15,7 +17,7 @@
 			onTick();
 		</action>
 
-		<object style="wheatWindowTitleBar" type="text">Match setup</object>
+		<object style="wheatWindowTitleBar" type="text">Match Setup</object>
 
 		<object type="button" style="wheatExit" tooltip_style="snToolTip">
 			<action on="Press"><![CDATA[
@@ -27,53 +29,118 @@
 		<!-- Map selection -->
 
 		<object size="0 0 250 100%">
-
+			<object name="mapSelectionHeading" type="text" text_valign="center" size="0 0 100% 30" font="serif-bold-16">Match Type</object>
+				
+			<object name="mapTypeSelection"
+				type="dropdown"
+				style="wheatDropDown"
+				size="100 0 100% 30"
+				tooltip_style="onscreenToolTip"
+				tooltip="Select a map type.">
+				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
+			</object>
+		  
 			<object name="mapSelection"
-					style="wheatList"
-					type="list"
-					size="0 0 100% 100%-200"
-					tooltip_style="onscreenToolTip"
-					tooltip="Select a map to play on.">
+				style="wheatList"
+				type="list"
+				size="0 36 100% 100%-200"
+				tooltip_style="onscreenToolTip"
+				tooltip="Select a map to play on.">
 				<action on="SelectionChange">selectMap(this.list_data[this.selected]);</action>
 			</object>
-
+			
 			<object type="image" style="indentedPanel" size="0 100%-190 100% 100%">
 				<object name="mapInfoName" type="text" size="0 0 100% 30" font="serif-bold-18">[Map name]</object>
 				<object name="mapInfoDescription" type="text" size="0 24 100% 100%" font="serif-13">[Description]</object>
 			</object>
-
+	
 		</object>
 
 		<!-- Player assignments -->
-
-		<object size="260 0 100% 100%-200" type="image" sprite="wheatIndentFillLight">
-			<repeat count="8">
-				<object name="playerBox[n]" size="0 0 100% 30">
-					<object name="playerName[n]" type="text" text_align="right" size="0 6 150 100%">[Player name]</object>
-					<object name="playerAssignment[n]" type="dropdown" style="wheatDropDown" size="150 2 300 100%"/>
-				</object>
-			</repeat>
+		
+		<object name="numPlayersBox" size="260 0 100% 30" hidden="true">
+			<object name="numPlayersSelectionHeading" type="text" text_valign="center" font="serif-bold-16">Number of Players</object>
+			<object name="numPlayersSelection"
+				type="dropdown"
+				style="wheatDropDown"
+				size="150 0 200 30"
+				tooltip_style="onscreenToolTip"
+				tooltip="Select number of players.">
+				<action on="SelectionChange">selectNumPlayers(this.list_data[this.selected]);</action>
+			</object>
 		</object>
 
+		<object size="260 36 100% 100%-260" type="image" sprite="wheatIndentFillLight">
+			<object size="0 6 100% 30">
+				<object name="playerNameHeading" type="text" text_align="center" size="100 0 250 100%" font="serif-bold-14">Player Name</object>
+				<object name="playerCivHeading" type="text" text_align="center" size="250 0 400 100%" font="serif-bold-14">Civilization</object>
+				<object name="civInfoButton"
+					type="button"
+					sprite="iconInfo"
+					sprite_over="iconInfoOver"
+					size="375 0 391 16"
+					tooltip_style="onscreenToolTip"
+					tooltip="View civilization info"
+				>
+					<action on="Press"><![CDATA[
+						Engine.PushGuiPage("page_civinfo.xml");
+					]]></action>
+				</object>
+				<object name="playerTeamHeading" type="text" text_align="center" size="400 0 500 100%" font="serif-bold-14">Team</object>
+			</object>
+			<object size="1 36 100%-1 100%">
+				<repeat count="8">
+					<object name="playerBox[n]" size="0 0 100% 30" hidden="true">
+						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
+						<object name="playerName[n]" type="text" text_align="right" text_valign="center" size="0 0 100 100%"/>
+						<object name="playerAssignment[n]" type="dropdown" style="wheatDropDown" size="100 2 250 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player"/>
+						<object name="playerCiv[n]" type="dropdown" style="wheatDropDown" size="265 2 395 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's civilization"/>
+						<object name="playerCivText[n]" type="text" text_align="center" text_valign="center" size="250 0 400 100%"/>
+						<object name="playerTeam[n]" type="dropdown" style="wheatDropDown" size="415 2 485 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's team"/>
+						<object name="playerTeamText[n]" type="text" text_align="center" text_valign="center" size="415 0 485 100%"/>
+					</object>
+				</repeat>
+			</object>
+		</object>
+				
+				
+		<!-- Options -->
+		
+		<object name="gameOptionsBox" size="260 100%-260 100% 100%-190">
+			<object size="2 2 100% 50%-2">	<!-- Top row -->
+				<object name="mapSizeText" size="0 0 175 100%" type="text">Map size: n/a</object>
+				<object name="mapSize" size="75 -2 175 100%-6" type="dropdown" style="wheatDropDown" hidden="true"/>
+				<object name="victoryConditionText" size="195 0 450 100%" type="text">Victory condition: </object>
+				<object name="victoryCondition" size="325 -2 450 100%-6" type="dropdown" style="wheatDropDown" hidden="true"/>
+			</object>
+			<object size="2 50%+2 100% 100%"> 	<!-- Bottom row -->
+				<object name="revealMapText" size="0 0 120 100%" type="text">Reveal map: </object>
+				<object name="revealMap" size="100 2 120 100%" type="checkbox" style="wheatCrossBox" hidden="true"/>
+				<object name="lockTeamsText" size="140 0 280 100%" type="text">Teams locked: </object>
+				<object name="lockTeams" size="260 2 280 100%" type="checkbox" style="wheatCrossBox" hidden="true"/>
+			</object>
+		</object>
+		
+		
 		<!-- Chat window -->
 
 		<object name="chatPanel" size="260 100%-190 100% 100%-45" type="image" sprite="wheatIndentFillLight">
-
+	
 			<object name="chatText" size="3 1 100%-1 100%-25" type="text" style="chatPanel"/>
-
+	
 			<object name="chatInput" size="2 100%-23 100%-66 100%-3" type="input" style="wheatInput">
 				<action on="Press">submitChatInput();</action>
 			</object>
-
+	
 			<object size="100%-65 100%-25 100%-1 100%" type="button" style="wheatButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
-
+	
 		</object>
 
 		<!-- Other things -->
-
+	
 		<object name="onscreenToolTip"
 			type="text"
 			font="serif-14"
@@ -82,8 +149,9 @@
 			hidden="true"
 			size="260 100%-40 100%-290 100%"
 		>[Tooltip text]</object>
-
+	
 		<object
+			name="cancelGame"
 			type="button"
 			style="wheatButton"
 			font="serif-16"
@@ -96,8 +164,9 @@
 				Engine.PopGuiPage();
 			]]></action>
 		</object>
-
+	
 		<object
+			name="startGame"
 			type="button"
 			style="wheatButton"
 			font="serif-16"
@@ -107,7 +176,7 @@
 		>Start game!
 			<action on="Press">launchGame();</action>
 		</object>
-
+		
 	</object>
 
 </objects>

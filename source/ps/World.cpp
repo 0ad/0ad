@@ -70,7 +70,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 	// Load the map, if one was specified
 	if (mapFile.length())
 	{
-		VfsPath mapfilename(VfsPath(L"maps/scenarios/")/(std::wstring)mapFile);
+		VfsPath mapfilename(VfsPath(L"maps/scenarios/")/(std::wstring)(mapFile + L".pmp"));
 		CMapReader* reader = 0;
 
 		try
@@ -93,7 +93,6 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 		}
 	}
 }
-
 
 /**
  * Destructor.

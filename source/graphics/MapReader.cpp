@@ -34,7 +34,6 @@
 #include "ps/XML/Xeromyces.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
-#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayer.h"
@@ -46,6 +45,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 
 #define LOG_CATEGORY L"graphics"
+
 
 CMapReader::CMapReader()
 	: xml_reader(0), m_PatchesPerSide(0)
@@ -101,6 +101,12 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	if (pSimulation2)
 		pSimulation2->ResetState();
 
+	// load map settings script
+	RegMemFun(this, &CMapReader::LoadScriptSettings, L"CMapReader::LoadScriptSettings", 50);
+
+	// load player settings script (must be done before reading map)
+	RegMemFun(this, &CMapReader::LoadPlayerSettings, L"CMapReader::LoadPlayerSettings", 50);
+
 	// unpack the data
 	if (!only_xml)
 		RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1200);
@@ -112,6 +118,9 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 
 	// apply data to the world
 	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 5);
+
+	// load map settings script (must be done after reading map)
+	RegMemFun(this, &CMapReader::LoadMapSettings, L"CMapReader::LoadMapSettings", 5);
 
 	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 5);
 }
@@ -242,6 +251,9 @@ int CMapReader::ApplyData()
 	return 0;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
@@ -275,7 +287,7 @@ PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 	return PSRETURN_OK;
 }
 
-CScriptValRooted CMapSummaryReader::GetScriptData(ScriptInterface& scriptInterface)
+CScriptValRooted CMapSummaryReader::GetMapSettings(ScriptInterface& scriptInterface)
 {
 	CScriptValRooted data;
 	scriptInterface.Eval("({})", data);
@@ -284,8 +296,9 @@ CScriptValRooted CMapSummaryReader::GetScriptData(ScriptInterface& scriptInterfa
 	return data;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Holds various state data while reading maps, so that loading can be
@@ -299,6 +312,8 @@ public:
 	{
 		Init(xml_filename);
 	}
+
+	utf16string ReadScriptSettings();
 
 	// return semantics: see Loader.cpp!LoadFunc.
 	int ProgressiveRead();
@@ -333,7 +348,6 @@ private:
 
 	void Init(const VfsPath& xml_filename);
 
-	void ReadPlayers();
 	void ReadTerrain(XMBElement parent);
 	void ReadEnvironment(XMBElement parent);
 	void ReadCamera(XMBElement parent);
@@ -395,67 +409,18 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 		utf16string uid = ent.GetAttributes().GetNamedItem(at_uid);
 		max_uid = std::max(max_uid, (entity_id_t)CStr(uid).ToInt());
 	}
-
-	// Initialise player data
-	ReadPlayers();
 }
 
 
-void CXMLReader::ReadPlayers()
+utf16string CXMLReader::ReadScriptSettings()
 {
-	CmpPtr<ICmpPlayerManager> cmpPlayerMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
-	debug_assert(!cmpPlayerMan.null());
+	XMBElement root = xmb_file.GetRoot();
+	debug_assert(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
+	nodes = root.GetChildNodes();
 
-	// TODO: we ought to read at least some of this data from the map file.
-	// For now, just always use the defaults.
+	XMBElement settings = nodes.GetFirstNamedItem(xmb_file.GetElementID("ScriptSettings"));
 
-	std::map<player_id_t, CStrW> playerDefaultNames;
-	std::map<player_id_t, CStrW> playerDefaultCivs;
-	std::map<player_id_t, SColor3ub> playerDefaultColours;
-
-	CXeromyces playerDefaultFile;
-	if (playerDefaultFile.Load(g_VFS, L"simulation/data/players.xml") != PSRETURN_OK)
-		throw PSERROR_File_ReadFailed();
-
-#define AT(x) int at_##x = playerDefaultFile.GetAttributeID(#x)
-	AT(id);
-	AT(name);
-	AT(civ);
-	AT(r); AT(g); AT(b);
-#undef AT
-
-	XERO_ITER_EL(playerDefaultFile.GetRoot(), player)
-	{
-		XMBAttributeList attrs = player.GetAttributes();
-		int id = CStr(attrs.GetNamedItem(at_id)).ToInt();
-
-		playerDefaultNames[id] = attrs.GetNamedItem(at_name);
-		playerDefaultCivs[id] = attrs.GetNamedItem(at_civ);
-
-		SColor3ub colour;
-		colour.R = (u8)CStr(attrs.GetNamedItem(at_r)).ToInt();
-		colour.G = (u8)CStr(attrs.GetNamedItem(at_g)).ToInt();
-		colour.B = (u8)CStr(attrs.GetNamedItem(at_b)).ToInt();
-		playerDefaultColours[id] = colour;
-	}
-
-	player_id_t numPlayers = 9; // including Gaia
-
-	for (player_id_t i = 0; i < numPlayers; ++i)
-	{
-		int uid = ++max_uid;
-		entity_id_t ent = m_MapReader.pSimulation2->AddEntity(L"special/player", uid);
-		CmpPtr<ICmpPlayer> cmpPlayer(*m_MapReader.pSimulation2, ent);
-		debug_assert(!cmpPlayer.null());
-
-		cmpPlayer->SetName(playerDefaultNames[i]);
-		cmpPlayer->SetCiv(playerDefaultCivs[i]);
-
-		SColor3ub colour = playerDefaultColours[i];
-		cmpPlayer->SetColour(colour.R, colour.G, colour.B);
-
-		cmpPlayerMan->AddPlayer(ent);
-	}
+	return settings.GetText();
 }
 
 
@@ -1282,7 +1247,7 @@ int CXMLReader::ProgressiveRead()
 		}
 		else if (name == "ScriptSettings")
 		{
-			m_MapReader.pSimulation2->SetMapSettings(node.GetText());
+			//Already loaded - this is to prevent an assertion
 		}
 		else if (m_MapReader.file_format_version <= 4 && name == "Entities")
 		{
@@ -1326,6 +1291,36 @@ int CXMLReader::ProgressiveRead()
 	return 0;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// load script settings from map
+int CMapReader::LoadScriptSettings()
+{
+	if (!xml_reader)
+		xml_reader = new CXMLReader(filename_xml, *this);
+
+	// parse the script settings
+	pSimulation2->SetMapSettings(xml_reader->ReadScriptSettings());
+
+	return 0;
+}
+
+// load player settings script
+int CMapReader::LoadPlayerSettings()
+{
+	pSimulation2->LoadPlayerSettings();
+	return 0;
+}
+
+// load map settings script
+int CMapReader::LoadMapSettings()
+{
+	pSimulation2->LoadMapSettings();
+	return 0;
+}
 
 // progressive
 int CMapReader::ReadXML()

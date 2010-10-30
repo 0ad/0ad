@@ -31,11 +31,13 @@
 #include "network/NetTurnManager.h"
 #include "ps/CLogger.h"
 #include "ps/CConsole.h"
+#include "ps/Errors.h"
 #include "ps/Game.h"
 #include "ps/Overlay.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
+
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
@@ -291,16 +293,16 @@ bool AtlasIsAvailable(void* UNUSED(cbdata))
 	return ATLAS_IsAvailable();
 }
 
-CScriptVal LoadMapData(void* cbdata, std::wstring name)
+CScriptVal LoadMapSettings(void* cbdata, std::wstring pathname)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
 	CMapSummaryReader reader;
-	PSRETURN err = reader.LoadMap(VfsPath(L"maps/scenarios/") / (name + L".xml"));
-	if (err)
+
+	if (reader.LoadMap(VfsPath(pathname + L".xml")) != PSRETURN_OK)
 		return CScriptVal();
 
-	return reader.GetScriptData(guiManager->GetScriptInterface()).get();
+	return reader.GetMapSettings(guiManager->GetScriptInterface()).get();
 }
 
 void SetRevealMap(void* UNUSED(cbdata), bool enabled)
@@ -403,7 +405,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
-	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapData>("LoadMapData");
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<void, bool, &SetRevealMap>("SetRevealMap");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 

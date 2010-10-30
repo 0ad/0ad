@@ -3,31 +3,10 @@ const FLORA = "flora";
 const FAUNA = "fauna";
 const SPECIAL = "special";
 
-const GAIA = "Gaia"
-const CART = "Cart";
-const CELT = "Celt";
-const HELE = "Hele";
-const IBER = "Iber";
-const PERS = "Pers";
-const ROME = "Rome";
-
-const CARTHAGINIANS = "Carthaginians";
-const ROMANS = "Romans";
-const HELLENES = "Hellenes";
-const CELTS = "Celts";
-const PERSIANS = "Persians";
-const IBERIANS = "Iberians";
 
 //-------------------------------- -------------------------------- -------------------------------- 
 // Utility functions
 //-------------------------------- -------------------------------- -------------------------------- 
-
-function toTitleCase(string)
-{
-	if (string.length > 0)
-		string = string.charAt(0).toUpperCase() + string.substring(1, string.length).toLowerCase();
-	return string;
-}
 
 // Get the basic player data
 function getPlayerData(playerAssignments)
@@ -44,16 +23,13 @@ function getPlayerData(playerAssignments)
 
 		var name = playerState.name;
 		var civ = playerState.civ;
-		var color = {"r": 255, "g": 255, "b": 255, "a": 255};
-		color.r = playerState.color["r"]*255;
-		color.g = playerState.color["g"]*255;
-		color.b = playerState.color["b"]*255;
-		color.a = playerState.color["a"]*255;
+		var color = {"r": playerState.colour["r"]*255, "g": playerState.colour["g"]*255, "b": playerState.colour["b"]*255, "a": playerState.colour["a"]*255};
 
-		var player = {"name": name, "civ": civ, "color": color};
+		var player = {"name": name, "civ": civ, "color": color, "team": playerState.team, "diplomacy": playerState.diplomacy, "state": playerState.state};
 		players.push(player);
 	}
 	
+	// Overwrite default player names with multiplayer names
 	if (playerAssignments)
 	{
 		for each (var playerAssignment in playerAssignments)
@@ -275,25 +251,4 @@ function getRankIconCellId(entState)
 			return 1;
 	}
 	return -1;
-}
-
-function getFormalCivName(civ)
-{
-	switch (civ)
-	{
-	case CART:
-		return "Carthaginians";
-	case CELT:
-		return "Celts";
-	case HELE:
-		return "Hellenes";
-	case IBER:
-		return "Iberians";
-	case PERS:
-		return "Persians";
-	case ROME:
-		return "Romans";
-	default:
-		return "Gaia";
-	}
 }

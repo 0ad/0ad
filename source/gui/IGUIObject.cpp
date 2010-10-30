@@ -200,6 +200,11 @@ bool IGUIObject::MouseOver()
 	return m_CachedActualSize.PointInside(GetMousePos());
 }
 
+bool IGUIObject::MouseOverIcon()
+{
+	return false;
+}
+
 CPos IGUIObject::GetMousePos() const
 { 
 	return ((GetGUI())?(GetGUI()->m_MousePos):CPos()); 

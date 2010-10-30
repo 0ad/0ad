@@ -28,14 +28,20 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "RevealMap":true,
-  "NumPlayers":1,
-  "Description":"A map for testing unit movement algorithms.",
-  "DefaultStance":"holdfire",
-  "GameType":"endless"
-}
-]]></ScriptSettings>
+	{
+		"Name":"Pathfinding Demo",
+		"Description":"A map for testing unit movement algorithms.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			}
+		],
+		"RevealMap":true,
+		"DefaultStance":"holdfire",
+		"GameType":"endless"
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="6">
 			<Template>structures/celt_corral</Template>

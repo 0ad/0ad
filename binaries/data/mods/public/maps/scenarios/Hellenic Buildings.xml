@@ -27,6 +27,22 @@
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+	{
+		"Name":"Hellenic Buildings",
+		"Description":"A showcase for all Hellenic buildings and units.",
+		"PlayerData":
+		[
+			{
+				"Civ":"celt"
+			},
+			{
+				"Civ":"celt"
+			}
+		],
+		"GameType":"endless"
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>structures/hele_barracks</Template>

@@ -28,12 +28,21 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "RevealMap":true,
-  "NumPlayers":2,
-  "Description":"A combat demonstration between a small number of ranged and melee infantry units."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Combat Demo",
+		"Description": "A combat demonstration between a small number of ranged and melee infantry units.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			}
+		],
+		"RevealMap":true
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>units/hele_infantry_archer_e</Template>

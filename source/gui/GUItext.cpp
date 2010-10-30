@@ -155,16 +155,30 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					TextCall.m_Size = size;
 					SpriteCall.m_Area = size;
 
-					// Now displace the sprite if the additional value in the tag
-					//  exists
-					if (itTextChunk->m_Tags[0].m_TagAdditionalValue != std::string())
+					// Handle additional attributes
+					std::vector<TextChunk::Tag::TagAttribute>::const_iterator att_it;
+					for(att_it = itTextChunk->m_Tags[0].m_TagAttributes.begin(); att_it != itTextChunk->m_Tags[0].m_TagAttributes.end(); ++att_it)
 					{
-						CSize displacement;
-						// Parse the value
-						if (!GUI<CSize>::ParseString(CStrW(itTextChunk->m_Tags[0].m_TagAdditionalValue), displacement))
-							LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing 'displace' value for tag [ICON]");
-						else
-							SpriteCall.m_Area += displacement;
+						TextChunk::Tag::TagAttribute tagAttrib = (TextChunk::Tag::TagAttribute)(*att_it);
+
+						if (tagAttrib.attrib == "displace" && !tagAttrib.value.empty())
+						{	//Displace the sprite
+							CSize displacement;
+							// Parse the value
+							if (!GUI<CSize>::ParseString(CStrW(tagAttrib.value), displacement))
+								LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing 'displace' value for tag [ICON]");
+							else
+								SpriteCall.m_Area += displacement;
+
+						}
+						else if(tagAttrib.attrib == "tooltip")
+						{
+							SpriteCall.m_Tooltip = CStrW(tagAttrib.value);
+						}
+						else if(tagAttrib.attrib == "tooltip_style")
+						{
+							SpriteCall.m_TooltipStyle = CStrW(tagAttrib.value);
+						}
 					}
 
 					SpriteCall.m_Sprite = icon.m_SpriteName;
@@ -399,21 +413,16 @@ void CGUIString::SetValue(const CStrW& str)
 							if (Line.GetArgCount() >= 2)
 								Line.GetArgString(1, tag.m_TagValue);
 
-							// Check if an additional parameter was specified
-							if (Line.GetArgCount() == 4)
-							{
-								std::string str;
-								Line.GetArgString(2, str);
+							//Handle arbitrary number of additional parameters
+							size_t argn;
+							for(argn = 2; argn < Line.GetArgCount(); argn += 2)
+							{	
+								TextChunk::Tag::TagAttribute a;
+								
+								Line.GetArgString(argn, a.attrib);
+								Line.GetArgString(argn+1, a.value);
 
-								if (tag.m_TagType == TextChunk::Tag::TAG_ICON && 
-									str == "displace")
-								{
-									Line.GetArgString(3, tag.m_TagAdditionalValue);
-								}
-								else
-								{
-									LOG(CLogger::Warning, LOG_CATEGORY, L"Trying to declare an additional attribute ('%hs') in a [%hs]-tag, which the tag isn't accepting", str.c_str(), Str_TagType.c_str());
-								}
+								tag.m_TagAttributes.push_back(a);
 							}
 
 							// Finalize last

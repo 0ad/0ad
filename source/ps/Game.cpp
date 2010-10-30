@@ -80,7 +80,8 @@ CGame::CGame(bool disableGraphics):
 	m_Simulation2->LoadDefaultScripts();
 	m_Simulation2->ResetState();
 
-	CScriptVal initData; // TODO: ought to get this from the GUI, somehow
+	// TODO: If this function is even needed now, get initData
+	CScriptVal initData;
 	m_Simulation2->InitGame(initData);
 }
 
@@ -120,9 +121,8 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
  **/
 void CGame::RegisterInit(const CScriptValRooted& attribs)
 {
-	std::wstring mapFile;
-	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "map", mapFile);
-	mapFile += L".pmp";
+	std::string mapType;
+	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "mapType", mapType);
 
 	LDR_BeginRegistering();
 
@@ -133,7 +133,21 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
 	// some point to be stored in the world object?
 	if (m_GameView)
 		m_GameView->RegisterInit();
-	m_World->RegisterInit(mapFile, m_PlayerID);
+
+	if (mapType == "scenario")
+	{
+		// Load scenario attributes
+		std::wstring mapFile;
+		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "map", mapFile);
+
+		m_World->RegisterInit(mapFile, m_PlayerID);
+	}
+	else if (mapType == "random")
+	{
+		// TODO: Coming in another patch
+	}
+
+
 	LDR_EndRegistering();
 }
 

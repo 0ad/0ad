@@ -28,11 +28,20 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":2,
-  "Description":"Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. Players start on either side of a mountainous region rich in resources. A Stoa with a +10 population bonus helps players jumpstart building their new colonies."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Arcadia II",
+		"Description":"Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. Players start on either side of a mountainous region rich in resources. A Stoa with a +10 population bonus helps players jumpstart building their new colonies.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"celt"
+			}
+		]
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="150">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>

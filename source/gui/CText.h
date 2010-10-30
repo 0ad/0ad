@@ -66,6 +66,11 @@ public:
 
 	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
 
+	/**
+	 * Test if mouse position is over an icon
+	 */
+	virtual bool MouseOverIcon();
+
 protected:
 	/**
 	 * Sets up text, should be called every time changes has been

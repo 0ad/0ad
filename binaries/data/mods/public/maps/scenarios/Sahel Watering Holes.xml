@@ -28,11 +28,26 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-{
-  "NumPlayers":4,
-  "Description":"The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
-}
-]]></ScriptSettings>
+	{
+		"Name":"Sahel Watering Holes",
+		"Description":"The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.",
+		"PlayerData":
+		[
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			},
+			{
+				"Civ":"hele"
+			}
+		]
+	}
+	]]></ScriptSettings>
 	<Entities>
 		<Entity uid="14">
 			<Template>gaia/flora_tree_baobab</Template>

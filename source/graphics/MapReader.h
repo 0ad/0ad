@@ -23,6 +23,7 @@
 #include "ps/CStr.h"
 #include "LightEnv.h"
 #include "ps/FileIo.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation2/system/Entity.h"
 
 class CObjectEntry;
@@ -48,11 +49,22 @@ public:
 	// constructor
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-	void LoadMap(const VfsPath& pathname, CTerrain*,
-		WaterManager*, SkyManager*, CLightEnv*, CGameView*,
+	void LoadMap(const VfsPath& pathname, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
+		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
+
+	void LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
 		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
 
 private:
+	// Load script settings for use by scripts
+	int LoadScriptSettings();
+
+	// load player settings only
+	int LoadPlayerSettings();
+
+	// load map settings only
+	int LoadMapSettings();
+
 	// UnpackTerrain: unpack the terrain from the input stream
 	int UnpackTerrain();
 	//UnpackCinema: unpack the cinematic tracks from the input stream
@@ -127,7 +139,7 @@ public:
 	 * }
 	 * @endcode
 	 */
-	CScriptValRooted GetScriptData(ScriptInterface& scriptInterface);
+	CScriptValRooted GetMapSettings(ScriptInterface& scriptInterface);
 
 private:
 	utf16string m_ScriptSettings;

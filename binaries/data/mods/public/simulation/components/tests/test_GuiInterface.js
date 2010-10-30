@@ -37,6 +37,9 @@ AddMock(100, IID_Player, {
 	GetResourceCounts: function() { return { food: 100 }; },
 	IsTrainingQueueBlocked: function() { return false; },
 	GetState: function() { return "active"; },
+	GetTeam: function() { return -1; },
+	GetDiplomacy: function() { return []; },
+	GetPhase: function() { return ""; },
 });
 
 AddMock(101, IID_Player, {
@@ -48,6 +51,9 @@ AddMock(101, IID_Player, {
 	GetResourceCounts: function() { return { food: 200 }; },
 	IsTrainingQueueBlocked: function() { return false; },
 	GetState: function() { return "active"; },
+	GetTeam: function() { return -1; },
+	GetDiplomacy: function() { return [1]; },
+	GetPhase: function() { return "village"; },
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
@@ -55,22 +61,28 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 		{
 			name: "Player 1",
 			civ: "gaia",
-			color: { r:1, g:1, b:1, a:1 },
+			colour: { r:1, g:1, b:1, a:1 },
 			popCount: 10,
 			popLimit: 20,
 			resourceCounts: { food: 100 },
 			trainingQueueBlocked: false,
 			state: "active",
+			team: -1,
+			diplomacy: [],
+			phase: "",
 		},
 		{
 			name: "Player 2",
 			civ: "celt",
-			color: { r:1, g:0, b:0, a:1 },
+			colour: { r:1, g:0, b:0, a:1 },
 			popCount: 40,
 			popLimit: 30,
 			resourceCounts: { food: 200 },
 			trainingQueueBlocked: false,
 			state: "active",
+			team: -1,
+			diplomacy: [1],
+			phase: "village",
 		}
 	]
 });
