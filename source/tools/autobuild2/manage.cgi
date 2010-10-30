@@ -66,7 +66,7 @@ So:
 
     my $instances_status = get_ec2_status_table();
     for (@$instances_status) {
-        if ($_->{instance_state} ne 'terminated') {
+        if (instance_is_autobuild($_) and $_->{instance_state} ne 'terminated') {
             die "Already got an active instance ($_->{instance_id}) - can't start another one.";
         }
     }
@@ -111,13 +111,19 @@ So:
 
 $dbh->disconnect;
 
+sub instance_is_autobuild {
+    my ($instance) = @_;
+    return 0 if $instance->{key_name} eq 'backupserver';
+    return 1;
+}
+
 sub print_index {
     my ($info) = @_;
 
     my $instances_status = get_ec2_status_table();
     my $got_active_instance;
     for (@$instances_status) {
-        if ($_->{instance_state} ne 'terminated') {
+        if (instance_is_autobuild($_) and $_->{instance_state} ne 'terminated') {
             $got_active_instance = $_->{instance_id} || '?';
         }
     }
@@ -209,16 +215,18 @@ sub generate_status_table {
                 my $t = DateTime::Format::ISO8601->parse_datetime($item->{$_->[0]});
                 my $now = DateTime->now();
                 my $diff = $now - $t;
-                my ($hours, $minutes) = $diff->in_units('hours', 'minutes');
+                my ($days, $hours, $minutes) = $diff->in_units('days', 'hours', 'minutes');
                 my $age = "$minutes minutes ago";
                 $age = "$hours hours, $age" if $hours;
+                $age = "$days days, $age" if $days;
                 $status .= qq{<td>$item->{$_->[0]} ($age)};
             } else {
                 $status .= qq{<td>$item->{$_->[0]}};
             }
         }
         $status .= qq{<td><a href="?action=console;instance_id=$item->{instance_id}">Console output</a>\n};
-        $status .= qq{<td><form action="?action=stop;instance_id=$item->{instance_id}" method="post" onsubmit="return confirm('Are you sure you want to terminate this instance?')"><button type="submit">Terminate</button></form>\n};
+        $status .= qq{<td><form action="?action=stop;instance_id=$item->{instance_id}" method="post" onsubmit="return confirm('Are you sure you want to terminate this instance?')"><button type="submit">Terminate</button></form>\n}
+            if instance_is_autobuild($item);
     }
 
     $status .= qq{</table>};
@@ -235,6 +243,7 @@ sub flatten_instance {
         dns_name => $instance->dns_name,
         launch_time => $instance->launch_time,
         reason => $instance->reason,
+        key_name => $instance->key_name,
     };
 }
 

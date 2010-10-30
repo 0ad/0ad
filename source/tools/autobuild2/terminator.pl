@@ -55,6 +55,7 @@ for my $reservation (@$reservations) {
             state => $instance->instance_state->name,
             launch_time => $instance->launch_time,
             local_launch_time => $local_launch_time,
+            key_name => $instance->key_name,
         };
     }
 }
@@ -69,6 +70,7 @@ use Data::Dumper; print Dumper \@instances;
 
 for my $instance (@instances) {
     next if $instance->{state} eq 'terminated';
+    next if $instance->{key_name} eq 'backupserver';
 
     my $too_old = 0;
     my $age = $now - DateTime::Format::ISO8601->parse_datetime($instance->{launch_time});
