@@ -120,8 +120,8 @@ function parseJSONData(pathname)
 
 // ====================================================================
 
-// A sorting function for arrays, that ignores case
-function sortIgnoreCase (x, y)
+// A sorting function for arrays of objects with 'name' properties, ignoring case
+function sortNameIgnoreCase(x, y)
 {
 	var lowerX = x.name.toLowerCase();
 	var lowerY = y.name.toLowerCase();
@@ -210,7 +210,7 @@ function initPlayerDefaults()
 function iColorToString(color)
 {
 	var string = "0 0 0";
-	if(color.r && color.g && color.b)
+	if (color && color.r && color.g && color.b)
 		string = color.r + " " + color.g + " " + color.b;
 	
 	return string;

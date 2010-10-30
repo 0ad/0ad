@@ -15,13 +15,13 @@ function init(data)
 	var sprite = "";
 	var loadingBkgArray = buildDirEntList("art/textures/ui/loading/", "*.dds", false);
 	if (loadingBkgArray.length == 0)
-		console.write ("ERROR: Failed to find any matching textures for the loading screen background.");
+		error("Failed to find any matching textures for the loading screen background.");
 	else
 	{
 		// Get a random index from the list of loading screen backgrounds.
 		sprite = "stretched:" + loadingBkgArray[getRandom (0, loadingBkgArray.length-1)];
-		sprite = sprite.replace ("art/textures/ui/", "");
-		sprite = sprite.replace (".cached.dds", ""); // cope with pre-cached textures
+		sprite = sprite.replace("art/textures/ui/", "");
+		sprite = sprite.replace(".cached.dds", ""); // cope with pre-cached textures
 	}
 	getGUIObjectByName ("ldConcept").sprite = sprite;
 
@@ -31,7 +31,8 @@ function init(data)
 	var ldTitleBar = getGUIObjectByName ("ldTitleBar");
 	var ldText = getGUIObjectByName ("ldText");
 	
-	switch(data.attribs.mapType) {
+	switch(data.attribs.mapType)
+	{
 	case "scenario":
 		ldTitleBar.caption = "Loading Scenario";
 		ldText.caption = "Loading " + mapName + "\nPlease wait...";
@@ -52,9 +53,9 @@ function init(data)
 	
 
 	// Pick a random tip of the day (each line is a separate tip).
-	var tipArray  = readFileLines("gui/text/tips.txt");
+	var tipArray = readFileLines("gui/text/tips.txt");
 	// Set tip string.
-	getGUIObjectByName ("ldTip").caption = tipArray[getRandom(0, tipArray.length-1)];
+	getGUIObjectByName("ldTip").caption = tipArray[getRandom(0, tipArray.length-1)];
 }
 
 // ====================================================================

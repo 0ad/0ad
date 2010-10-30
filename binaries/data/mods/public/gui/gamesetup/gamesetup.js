@@ -31,7 +31,7 @@ var g_GameAttributes = {
 }
 
 // Max number of players for any map
-var g_MaxPlayers = g_ConfigDB.system["max_players"] || 8;
+var g_MaxPlayers = 8;
 
 // Number of players for currently selected map
 var g_NumPlayers = 0;
@@ -44,8 +44,9 @@ var g_CivData = {};
 
 
 function init(attribs)
-{	
-	switch (attribs.type) {
+{
+	switch (attribs.type)
+	{
 	case "offline":
 		g_IsNetworked = false;
 		g_IsController = true;
@@ -93,7 +94,7 @@ function init(attribs)
 		
 		var numPlayers = getGUIObjectByName("numPlayersSelection");
 		var players = [];
-		for(var i = 1; i <= g_MaxPlayers; ++i)
+		for (var i = 1; i <= g_MaxPlayers; ++i)
 			players.push(i);
 		numPlayers.list = players;
 		numPlayers.list_data = players;
@@ -107,7 +108,7 @@ function init(attribs)
 			if (this.selected != -1)
 				g_GameAttributes.settings.GameType = this.list_data[this.selected];
 			
-			if(!g_IsInGuiUpdate)
+			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
 		};
 		victoryConditions.selected = -1;
@@ -121,7 +122,7 @@ function init(attribs)
 			if (this.selected != -1)
 				g_GameAttributes.settings.Size = parseInt(this.list_data[this.selected]);
 			
-			if(!g_IsInGuiUpdate)
+			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
 		};
 		mapSize.selected = -1;
@@ -130,7 +131,7 @@ function init(attribs)
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.RevealMap = this.checked;
 			
-			if(!g_IsInGuiUpdate)
+			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
 		};
 		
@@ -138,7 +139,7 @@ function init(attribs)
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.LockTeams = this.checked;
 			
-			if(!g_IsInGuiUpdate)
+			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
 		};
 	}
@@ -195,7 +196,7 @@ function init(attribs)
 			if (this.selected != -1)
 				g_GameAttributes.settings.PlayerData[playerID].Team = this.list_data[this.selected];
 			
-			if(!g_IsInGuiUpdate)
+			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
 		};
 		
@@ -206,7 +207,7 @@ function init(attribs)
 			if (this.selected != -1)
 				g_GameAttributes.settings.PlayerData[playerID].Civ = this.list_data[this.selected];
 			
-			if(!g_IsInGuiUpdate)
+			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
 		};
 	}
@@ -236,9 +237,11 @@ function handleNetMessage(message)
 {
 	log("Net message: "+uneval(message));
 
-	switch (message.type) {
+	switch (message.type)
+	{
 	case "netstatus":
-		switch (message.status) {
+		switch (message.status)
+		{
 		case "disconnected":
 			Engine.DisconnectNetworkGame();
 			Engine.PopGuiPage();
@@ -324,7 +327,7 @@ function initCivNameList()
 	var civList = [ { "name": civ.Name, "code": civ.Code } for each (civ in g_CivData) ];
 
 	// Alphabetically sort the list, ignoring case
-	civList.sort(sortIgnoreCase);
+	civList.sort(sortNameIgnoreCase);
 
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
@@ -348,7 +351,8 @@ function initMapNameList()
 	var mapSelectionBox = getGUIObjectByName("mapSelection")
 	var mapFiles;
 	
-	switch (g_GameAttributes.mapType) {
+	switch (g_GameAttributes.mapType)
+	{
 	case "scenario":
 		mapFiles = getXMLFileList(g_GameAttributes.mapPath);
 		break;
@@ -369,7 +373,7 @@ function initMapNameList()
 	var mapList = [ { "name": getMapDisplayName(file), "file": file } for each (file in mapFiles) ];
 
 	// Alphabetically sort the list, ignoring case
-	mapList.sort(sortIgnoreCase);
+	mapList.sort(sortNameIgnoreCase);
 
 	var mapListNames = [ map.name for each (map in mapList) ];
 	var mapListFiles = [ map.file for each (map in mapList) ];
@@ -390,7 +394,8 @@ function loadMapData(name)
 {
 	if (!g_MapData[name])
 	{
-		switch(g_GameAttributes.mapType) {
+		switch (g_GameAttributes.mapType)
+		{
 		case "scenario":
 			g_MapData[name] = Engine.LoadMapSettings(g_GameAttributes.mapPath+name);
 			break;
@@ -448,7 +453,8 @@ function selectMapType(type)
 	g_MapData = {};
 	
 	// Select correct path
-	switch (g_GameAttributes.mapType) {
+	switch (g_GameAttributes.mapType)
+	{
 	case "scenario":
 		g_GameAttributes.mapPath = "maps/scenarios/";
 		break;
@@ -487,7 +493,8 @@ function selectMap(name)
 	var mapSettings = (mapData && mapData.settings ? mapData.settings : {});
 	
 	// Load map type specific settings (so we can overwrite them in the GUI)
-	switch (g_GameAttributes.mapType) {
+	switch (g_GameAttributes.mapType)
+	{
 	case "scenario":
 		g_NumPlayers = (mapSettings.PlayerData ? mapSettings.PlayerData.length : g_MaxPlayers);
 		break;
@@ -550,7 +557,8 @@ function onGameAttributesChange()
 	var numPlayersBox = getGUIObjectByName("numPlayersBox");
 		
 	// Handle map type specific logic
-	switch (g_GameAttributes.mapType) {
+	switch (g_GameAttributes.mapType)
+	{
 	case "random":
 		
 		g_GameAttributes.script = mapSettings.Script;
@@ -795,7 +803,8 @@ function addChatMessage(msg)
 	}
 	
 	var formatted;
-	switch (msg.type) {
+	switch (msg.type)
+	{
 	case "connect":
 		formatted = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font] [color="64 64 64"]has joined[/color]';
 		break;

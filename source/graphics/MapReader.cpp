@@ -1038,13 +1038,6 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				// per-player camera start locations.
 				if (m_MapReader.m_CameraStartupTarget == INVALID_ENTITY && PlayerID == m_MapReader.m_PlayerID && !cmpPosition.null())
 					m_MapReader.m_CameraStartupTarget = ent;
-
-				// HACK: we also special-case civil centres to set the reported civ
-				// for a (non-Gaia) player. This ought to be specified in the map file itself.
-				// (The Identity component is script-only and this is a temporary hack anyway,
-				// so we just eval a script.)
-				if (PlayerID >= 1)
-					sim.GetScriptInterface().Eval(("var ent = " + CStr(ent) + "; QueryOwnerInterface(ent, IID_Player).SetCiv(Engine.QueryInterface(ent, IID_Identity).GetCiv())").c_str());
 			}
 		}
 

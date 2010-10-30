@@ -892,7 +892,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string file
 	
 	if (!FileExists(g_VFS, path))
 	{
-		LOGERROR(L"File 'simulation/data/%hs' does not exist", fileName);
+		LOGERROR(L"File 'simulation/data/%hs' does not exist", fileName.c_str());
 		return CScriptVal();
 	}
 
@@ -902,7 +902,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string file
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to load file '%s': %s", path.string(), GetErrorString(ret));
+		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
 		return CScriptVal();
 	}
 

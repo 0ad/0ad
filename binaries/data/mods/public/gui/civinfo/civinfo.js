@@ -17,7 +17,7 @@ function initCivNameList()
 	var civList = [ { "name": civ.Name, "code": civ.Code } for each (civ in g_CivData) ];
 	
 	// Alphabetically sort the list, ignoring case
-	civList.sort(sortIgnoreCase);
+	civList.sort(sortNameIgnoreCase);
 
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];

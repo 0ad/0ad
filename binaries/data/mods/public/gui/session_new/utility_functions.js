@@ -23,7 +23,7 @@ function getPlayerData(playerAssignments)
 
 		var name = playerState.name;
 		var civ = playerState.civ;
-		var color = {"r": playerState.colour["r"]*255, "g": playerState.colour["g"]*255, "b": playerState.colour["b"]*255, "a": playerState.colour["a"]*255};
+		var color = {"r": playerState.colour.r*255, "g": playerState.colour.g*255, "b": playerState.colour.b*255, "a": playerState.colour.a*255};
 
 		var player = {"name": name, "civ": civ, "color": color, "team": playerState.team, "diplomacy": playerState.diplomacy, "state": playerState.state};
 		players.push(player);

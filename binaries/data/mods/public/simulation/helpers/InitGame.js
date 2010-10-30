@@ -4,7 +4,6 @@ function InitGame(settings)
 	// TODO: Is this even needed?
 	if (!settings)
 		settings = {};
-	
 }
 
 Engine.RegisterGlobal("InitGame", InitGame);

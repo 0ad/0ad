@@ -75,7 +75,7 @@ function init(initData, hotloadData)
 	
 	// Cache civ data
 	g_CivData = loadCivData();
-	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia"};
+	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia" };
 
 	getGUIObjectByName("civIcon").sprite = g_Players[Engine.GetPlayerID()].civ+"Icon";
 

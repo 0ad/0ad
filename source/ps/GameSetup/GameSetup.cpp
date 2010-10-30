@@ -985,9 +985,11 @@ static bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
+		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 		CScriptValRooted attrs;
-		g_Game->GetSimulation2()->GetScriptInterface().Eval("({})", attrs);
-		g_Game->GetSimulation2()->GetScriptInterface().SetProperty(attrs.get(), "map", std::string(autostartMap), false);
+		scriptInterface.Eval("({})", attrs);
+		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
+		scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap), false);
 
 		g_Game->SetPlayerID(1);
 		g_Game->StartGame(attrs);

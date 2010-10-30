@@ -59,9 +59,11 @@ namespace
 	{
 		CStrW mapBase = map.BeforeLast(L".pmp"); // strip the file extension, if any
 
+		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 		CScriptValRooted attrs;
-		g_Game->GetSimulation2()->GetScriptInterface().Eval("({})", attrs);
-		g_Game->GetSimulation2()->GetScriptInterface().SetProperty(attrs.get(), "map", std::wstring(mapBase), false);
+		scriptInterface.Eval("({})", attrs);
+		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
+		scriptInterface.SetProperty(attrs.get(), "map", std::wstring(mapBase), false);
 
 		g_Game->StartGame(attrs);
 		LDR_NonprogressiveLoad();
