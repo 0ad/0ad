@@ -409,9 +409,9 @@
 			>
 				<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
 			</object>
-				
-<!--			<object size="10 10 100%-10 100%-10" type="image" sprite="glassSquareMap" ghost="true"/>-->
-			<object size="10 10 100%-10 100%-10" type="image" sprite="stretched:session/minimap_circle.png" ghost="true"/>
+
+			<object name="minimapSquareOverlay" size="10 10 100%-10 100%-10" type="image" sprite="glassSquareMap" ghost="true"/>
+			<object name="minimapCircleOverlay" size="10 10 100%-10 100%-10" type="image" sprite="stretched:session/minimap_circle.png" ghost="true" hidden="true"/>
 		</object>
 
 		<!-- ================================  ================================ -->

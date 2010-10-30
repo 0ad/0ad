@@ -249,6 +249,11 @@ public:
 	 */
 	virtual void SetLosCircular(bool enabled) = 0;
 
+	/**
+	 * Returns whether the LOS is restricted to a circular map.
+	 */
+	virtual bool GetLosCircular() = 0;
+
 	DECLARE_INTERFACE_TYPE(RangeManager)
 };
 

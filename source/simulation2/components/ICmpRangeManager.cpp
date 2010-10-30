@@ -45,4 +45,5 @@ DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOve
 DEFINE_INTERFACE_METHOD_1("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, bool)
 DEFINE_INTERFACE_METHOD_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, int)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
+DEFINE_INTERFACE_METHOD_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
 END_INTERFACE_WRAPPER(RangeManager)

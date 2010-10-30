@@ -192,16 +192,33 @@ function onSimulationUpdate()
 	g_TemplateData = {};
 	
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
-	
+
 	// If we're called during init when the game is first loading, there will be no simulation yet, so do nothing
 	if (!simState)
 		return;
 
 	handleNotifications();
 
+	updateMinimap(simState);
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
+}
+
+function updateMinimap(simState)
+{
+	if (simState.circularMap)
+	{
+		getGUIObjectByName("minimap").circular = true;
+		getGUIObjectByName("minimapSquareOverlay").hidden = true;
+		getGUIObjectByName("minimapCircleOverlay").hidden = false;
+	}
+	else
+	{
+		getGUIObjectByName("minimap").circular = false;
+		getGUIObjectByName("minimapSquareOverlay").hidden = false;
+		getGUIObjectByName("minimapCircleOverlay").hidden = true;
+	}
 }
 
 function updateDebug(simState)

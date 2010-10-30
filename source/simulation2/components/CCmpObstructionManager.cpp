@@ -122,6 +122,8 @@ public:
 	u32 m_UnitShapeNext; // next allocated id
 	u32 m_StaticShapeNext;
 
+	bool m_PassabilityCircular;
+
 	entity_pos_t m_WorldX0;
 	entity_pos_t m_WorldZ0;
 	entity_pos_t m_WorldX1;
@@ -141,6 +143,8 @@ public:
 		m_StaticShapeNext = 1;
 
 		m_DirtyID = 1; // init to 1 so default-initialised grids are considered dirty
+
+		m_PassabilityCircular = false;
 
 		m_WorldX0 = m_WorldZ0 = m_WorldX1 = m_WorldZ1 = entity_pos_t::Zero();
 
@@ -163,6 +167,8 @@ public:
 		SerializeMap<SerializeU32_Unbounded, SerializeStaticShape>()(serialize, "static shapes", m_StaticShapes);
 		serialize.NumberU32_Unbounded("unit shape next", m_UnitShapeNext);
 		serialize.NumberU32_Unbounded("static shape next", m_StaticShapeNext);
+
+		serialize.Bool("circular", m_PassabilityCircular);
 
 		serialize.NumberFixed_Unbounded("world x0", m_WorldX0);
 		serialize.NumberFixed_Unbounded("world z0", m_WorldZ0);
@@ -387,6 +393,12 @@ public:
 	virtual bool Rasterise(Grid<u8>& grid);
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
 	virtual bool FindMostImportantObstruction(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, ObstructionSquare& square);
+
+	virtual void SetPassabilityCircular(bool enabled)
+	{
+		m_PassabilityCircular = enabled;
+		MakeDirty();
+	}
 
 	virtual void SetDebugOverlay(bool enabled)
 	{
@@ -659,6 +671,27 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 			for (u16 i = i0; i <= i1; ++i)
 				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
 	}
+
+	if (m_PassabilityCircular)
+	{
+		for (u16 j = 0; j < grid.m_H; ++j)
+		{
+			for (u16 i = 0; i < grid.m_W; ++i)
+			{
+				// Based on CCmpRangeManager::LosIsOffWorld
+				// but tweaked since it's tile-based instead.
+				// This needs to be slightly tighter than the LOS circle,
+				// else units might get themselves lost in the SoD around the edge.
+
+				ssize_t dist2 = (i*2 + 1 - grid.m_W)*(i*2 + 1 - grid.m_W)
+						+ (j*2 + 1 - grid.m_H)*(j*2 + 1 - grid.m_H);
+
+				if (dist2 >= (grid.m_W-2)*(grid.m_H-2))
+					grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+			}
+		}
+	}
+
 
 	return true;
 }

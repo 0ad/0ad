@@ -816,6 +816,11 @@ private:
 		ResetDerivedData();
 	}
 
+	virtual bool GetLosCircular()
+	{
+		return m_LosCircular;
+	}
+
 	/**
 	 * Returns whether the given vertex is outside the normal bounds of the world
 	 * (i.e. outside the range of a circular map)
@@ -824,12 +829,12 @@ private:
 	{
 		if (m_LosCircular)
 		{
-			// With a circular map, vertex is off-world if hypot(i - size/2, j - size/2) > size/2:
+			// With a circular map, vertex is off-world if hypot(i - size/2, j - size/2) >= size/2:
 
 			ssize_t dist2 = (i - m_TerrainVerticesPerSide/2)*(i - m_TerrainVerticesPerSide/2)
 					+ (j - m_TerrainVerticesPerSide/2)*(j - m_TerrainVerticesPerSide/2);
 
-			if (dist2 >= m_TerrainVerticesPerSide*m_TerrainVerticesPerSide/4)
+			if (dist2 >= (m_TerrainVerticesPerSide/2)*(m_TerrainVerticesPerSide/2))
 				return true;
 		}
 

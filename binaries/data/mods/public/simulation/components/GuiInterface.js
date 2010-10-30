@@ -45,6 +45,12 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		ret.players.push(playerData);
 	}
 
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (cmpRangeManager)
+	{
+		ret.circularMap = cmpRangeManager.GetLosCircular();
+	}
+
 	return ret;
 };
 

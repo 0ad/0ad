@@ -31,6 +31,10 @@ function LoadMapSettings(settings)
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		if (cmpRangeManager)
 			cmpRangeManager.SetLosCircular(true);
+
+		var cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+		if (cmpObstructionManager)
+			cmpObstructionManager.SetPassabilityCircular(true);
 	}
 
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);

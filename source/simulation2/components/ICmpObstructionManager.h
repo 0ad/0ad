@@ -216,6 +216,11 @@ public:
 	virtual ObstructionSquare GetObstruction(tag_t tag) = 0;
 
 	/**
+	 * Set the passability to be restricted to a circular map.
+	 */
+	virtual void SetPassabilityCircular(bool enabled) = 0;
+
+	/**
 	 * Toggle the rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;
