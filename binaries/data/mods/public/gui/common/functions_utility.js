@@ -181,8 +181,9 @@ function toTitleCase (string)
 // Load default player data, for when it's not otherwise specified
 function initPlayerDefaults()
 {
+	var filename = "simulation/data/player_defaults.json";
 	var defaults = [];
-	var rawData = readFile("simulation/data/player_defaults.json");
+	var rawData = readFile(filename);
 	if (!rawData)
 		error("Failed to read player defaults file: "+filename);
 	
