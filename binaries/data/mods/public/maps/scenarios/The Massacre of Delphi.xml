@@ -23,25 +23,23 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="158.276" y="86.4167" z="486.005"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="583.55" y="94.6097" z="92.9354"/>
+		<Rotation angle="-0.0257526"/>
+		<Declination angle="0.586667"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"The Massacre of Delphi",
-		"Description":"The Celts invade Greece. Fight through the central valley or cut through the rich highlands in order to secure the lands around Delphi!",
-		"PlayerData":
-		[
-			{
-				"Civ":"celt"
-			},
-			{
-				"Civ":"hele"
-			}
-		]
-	}
-	]]></ScriptSettings>
+{
+  "Name":"The Massacre of Delphi",
+  "Description":"The Celts invade Greece. Fight through the central valley or cut through the rich highlands in order to secure the lands around Delphi!",
+  "PlayerData":[{
+      "Civ":"celt"
+    },
+    {
+      "Civ":"hele"
+    }
+  ]
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>gaia/flora_tree_carob</Template>
@@ -16116,7 +16114,7 @@
 		<Entity uid="3218">
 			<Template>other/celt_longhouse</Template>
 			<Player>1</Player>
-			<Position x="198.05443" z="602.9521"/>
+			<Position x="193.7531" z="604.22895"/>
 			<Orientation y="-1.98253"/>
 		</Entity>
 		<Entity uid="3221">

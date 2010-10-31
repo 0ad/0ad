@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>sunny</SkySet>
+		<SunColour r="1.88086" g="1.88086" b="1.88086"/>
+		<SunElevation angle="0.877437"/>
+		<SunRotation angle="-0.263845"/>
+		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
+		<UnitsAmbientColour r="0.411765" g="0.411765" b="0.411765"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>15.33</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.298828</Murkiness>
+				<Tint r="0.603922" g="0.556863" b="0.392157"/>
+				<ReflectionTint r="0.603922" g="0.556863" b="0.392157"/>
+				<ReflectionTintStrength>0.338867</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="989.893" y="224.02" z="527.818"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name":"Blank Round Map 256 Radius",
+  "Description":"A very large blank round map.",
+  "PlayerData":[{
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    }
+  ],
+  "CircularMap":true
+}
+]]></ScriptSettings>
+	<Entities/>
+	<Paths/>
+</Scenario>
