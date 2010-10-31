@@ -25,6 +25,7 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 	GetLosVisibility: function(ent, player) { return "visible"; },
+	GetLosCircular: function() { return false; },
 });
 
 
@@ -84,7 +85,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			diplomacy: [1],
 			phase: "village",
 		}
-	]
+	],
+	circularMap: false,
 });
 
 
