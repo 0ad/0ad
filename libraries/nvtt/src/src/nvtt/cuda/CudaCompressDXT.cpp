@@ -137,7 +137,7 @@ void CudaCompressor::compressDXT1(const CompressionOptions::Private & compressio
 	const uint h = (m_image->height() + 3) / 4;
 
 	uint imageSize = w * h * 16 * sizeof(Color32);
-    uint * blockLinearImage = (uint *) malloc(imageSize);
+    uint * blockLinearImage = (uint *) ::malloc(imageSize);
 	convertToBlockLinear(m_image, blockLinearImage);	// @@ Do this in parallel with the GPU, or in the GPU!
 
 	const uint blockNum = w * h;
@@ -207,14 +207,14 @@ void CudaCompressor::compressDXT3(const CompressionOptions::Private & compressio
 	const uint h = (m_image->height() + 3) / 4;
 
 	uint imageSize = w * h * 16 * sizeof(Color32);
-    uint * blockLinearImage = (uint *) malloc(imageSize);
+    uint * blockLinearImage = (uint *) ::malloc(imageSize);
 	convertToBlockLinear(m_image, blockLinearImage);
 
 	const uint blockNum = w * h;
 	const uint compressedSize = blockNum * 8;
 
 	AlphaBlockDXT3 * alphaBlocks = NULL;
-	alphaBlocks = (AlphaBlockDXT3 *)malloc(min(compressedSize, MAX_BLOCKS * 8U));
+	alphaBlocks = (AlphaBlockDXT3 *)::malloc(min(compressedSize, MAX_BLOCKS * 8U));
 
 	setupCompressKernel(compressionOptions.colorWeight.ptr());
 	
@@ -298,14 +298,14 @@ void CudaCompressor::compressDXT5(const CompressionOptions::Private & compressio
 	const uint h = (m_image->height() + 3) / 4;
 
 	uint imageSize = w * h * 16 * sizeof(Color32);
-    uint * blockLinearImage = (uint *) malloc(imageSize);
+    uint * blockLinearImage = (uint *) ::malloc(imageSize);
 	convertToBlockLinear(m_image, blockLinearImage);
 
 	const uint blockNum = w * h;
 	const uint compressedSize = blockNum * 8;
 
 	AlphaBlockDXT5 * alphaBlocks = NULL;
-	alphaBlocks = (AlphaBlockDXT5 *)malloc(min(compressedSize, MAX_BLOCKS * 8U));
+	alphaBlocks = (AlphaBlockDXT5 *)::malloc(min(compressedSize, MAX_BLOCKS * 8U));
 
 	setupCompressKernel(compressionOptions.colorWeight.ptr());
 	

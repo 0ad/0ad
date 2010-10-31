@@ -148,13 +148,13 @@ void FloatImage::allocate(uint c, uint w, uint h)
 	m_height = h;
 	m_componentNum = c;
 	m_count = w * h * c;
-	m_mem = reinterpret_cast<float *>(nv::mem::malloc(m_count * sizeof(float)));
+	m_mem = reinterpret_cast<float *>(::malloc(m_count * sizeof(float)));
 }
 
 /// Free the image, but don't clear the members.
 void FloatImage::free()
 {
-	nv::mem::free( reinterpret_cast<void *>(m_mem) );
+	::free( reinterpret_cast<void *>(m_mem) );
 	m_mem = NULL;
 }
 

@@ -1,0 +1,589 @@
+Index: branches/2.0/src/nvimage/FloatImage.cpp
+===================================================================
+--- branches/2.0/src/nvimage/FloatImage.cpp	(revision 1171)
++++ branches/2.0/src/nvimage/FloatImage.cpp	(revision 1172)
+@@ -151,13 +151,13 @@
+ 	m_height = h;
+ 	m_componentNum = c;
+ 	m_count = w * h * c;
+-	m_mem = reinterpret_cast<float *>(nv::mem::malloc(m_count * sizeof(float)));
++	m_mem = reinterpret_cast<float *>(::malloc(m_count * sizeof(float)));
+ }
+ 
+ /// Free the image, but don't clear the members.
+ void FloatImage::free()
+ {
+-	nv::mem::free( reinterpret_cast<void *>(m_mem) );
++	::free( reinterpret_cast<void *>(m_mem) );
+ 	m_mem = NULL;
+ }
+ 
+Index: branches/2.0/src/nvimage/ImageIO.cpp
+===================================================================
+--- branches/2.0/src/nvimage/ImageIO.cpp	(revision 1171)
++++ branches/2.0/src/nvimage/ImageIO.cpp	(revision 1172)
+@@ -954,7 +954,7 @@
+ 	fimage->allocate(spp, width, height);
+ 	
+ 	int linesize = TIFFScanlineSize(tif);
+-	tdata_t buf = (::uint8 *)nv::mem::malloc(linesize);
++	tdata_t buf = (::uint8 *)::malloc(linesize);
+ 	
+ 	for (uint y = 0; y < height; y++) 
+ 	{
+@@ -991,7 +991,7 @@
+ 		}
+ 	}
+ 
+-	nv::mem::free(buf);
++	::free(buf);
+ 	
+ 	TIFFClose(tif);
+ 	
+Index: branches/2.0/src/nvimage/Image.cpp
+===================================================================
+--- branches/2.0/src/nvimage/Image.cpp	(revision 1171)
++++ branches/2.0/src/nvimage/Image.cpp	(revision 1172)
+@@ -78,7 +78,7 @@
+ 
+ void Image::free()
+ {
+-	nv::mem::free(m_data);
++	::free(m_data);
+ 	m_data = NULL;
+ }
+ 
+Index: branches/2.0/src/nvtt/CompressRGB.cpp
+===================================================================
+--- branches/2.0/src/nvtt/CompressRGB.cpp	(revision 1171)
++++ branches/2.0/src/nvtt/CompressRGB.cpp	(revision 1172)
+@@ -82,7 +82,7 @@
+     // Determine pitch.
+     uint pitch = computePitch(w, compressionOptions.bitcount, 8);
+ 
+-    uint8 * dst = (uint8 *)mem::malloc(pitch + 4);
++    uint8 * dst = (uint8 *)::malloc(pitch + 4);
+ 
+     for (uint y = 0; y < h; y++)
+     {
+@@ -127,6 +127,6 @@
+         }
+     }
+ 
+-    mem::free(dst);
++    ::free(dst);
+ }
+ 
+Index: branches/2.0/src/nvtt/cuda/CudaCompressDXT.cpp
+===================================================================
+--- branches/2.0/src/nvtt/cuda/CudaCompressDXT.cpp	(revision 1171)
++++ branches/2.0/src/nvtt/cuda/CudaCompressDXT.cpp	(revision 1172)
+@@ -137,7 +137,7 @@
+ 	const uint h = (m_image->height() + 3) / 4;
+ 
+ 	uint imageSize = w * h * 16 * sizeof(Color32);
+-    uint * blockLinearImage = (uint *) malloc(imageSize);
++    uint * blockLinearImage = (uint *) ::malloc(imageSize);
+ 	convertToBlockLinear(m_image, blockLinearImage);	// @@ Do this in parallel with the GPU, or in the GPU!
+ 
+ 	const uint blockNum = w * h;
+@@ -207,14 +207,14 @@
+ 	const uint h = (m_image->height() + 3) / 4;
+ 
+ 	uint imageSize = w * h * 16 * sizeof(Color32);
+-    uint * blockLinearImage = (uint *) malloc(imageSize);
++    uint * blockLinearImage = (uint *) ::malloc(imageSize);
+ 	convertToBlockLinear(m_image, blockLinearImage);
+ 
+ 	const uint blockNum = w * h;
+ 	const uint compressedSize = blockNum * 8;
+ 
+ 	AlphaBlockDXT3 * alphaBlocks = NULL;
+-	alphaBlocks = (AlphaBlockDXT3 *)malloc(min(compressedSize, MAX_BLOCKS * 8U));
++	alphaBlocks = (AlphaBlockDXT3 *)::malloc(min(compressedSize, MAX_BLOCKS * 8U));
+ 
+ 	setupCompressKernel(compressionOptions.colorWeight.ptr());
+ 	
+@@ -298,14 +298,14 @@
+ 	const uint h = (m_image->height() + 3) / 4;
+ 
+ 	uint imageSize = w * h * 16 * sizeof(Color32);
+-    uint * blockLinearImage = (uint *) malloc(imageSize);
++    uint * blockLinearImage = (uint *) ::malloc(imageSize);
+ 	convertToBlockLinear(m_image, blockLinearImage);
+ 
+ 	const uint blockNum = w * h;
+ 	const uint compressedSize = blockNum * 8;
+ 
+ 	AlphaBlockDXT5 * alphaBlocks = NULL;
+-	alphaBlocks = (AlphaBlockDXT5 *)malloc(min(compressedSize, MAX_BLOCKS * 8U));
++	alphaBlocks = (AlphaBlockDXT5 *)::malloc(min(compressedSize, MAX_BLOCKS * 8U));
+ 
+ 	setupCompressKernel(compressionOptions.colorWeight.ptr());
+ 	
+Index: branches/2.0/src/nvcore/StrLib.cpp
+===================================================================
+--- branches/2.0/src/nvcore/StrLib.cpp	(revision 1171)
++++ branches/2.0/src/nvcore/StrLib.cpp	(revision 1172)
+@@ -21,17 +21,17 @@
+ {
+ 	static char * strAlloc(uint size)
+ 	{
+-		return static_cast<char *>(mem::malloc(size));
++		return static_cast<char *>(::malloc(size));
+ 	}
+ 	
+ 	static char * strReAlloc(char * str, uint size)
+ 	{
+-		return static_cast<char *>(mem::realloc(str, size));
++		return static_cast<char *>(::realloc(str, size));
+ 	}
+ 	
+ 	static void strFree(const char * str)
+ 	{
+-		return mem::free(const_cast<char *>(str));
++		return ::free(const_cast<char *>(str));
+ 	}
+ 	
+ 	/*static char * strDup( const char * str ) 
+Index: branches/2.0/src/nvcore/StrLib.h
+===================================================================
+--- branches/2.0/src/nvcore/StrLib.h	(revision 1171)
++++ branches/2.0/src/nvcore/StrLib.h	(revision 1172)
+@@ -294,7 +294,7 @@
+ 				const uint16 count = getRefCount();
+ 				setRefCount(count - 1);
+ 				if (count - 1 == 0) {
+-					mem::free(data - 2);
++					free(data - 2);
+ 					data = NULL;
+ 				}
+ 			}
+@@ -323,7 +323,7 @@
+ 
+ 		void allocString(const char * str, int len)
+ 		{
+-			const char * ptr = static_cast<const char *>(mem::malloc(2 + len + 1));
++			const char * ptr = static_cast<const char *>(::malloc(2 + len + 1));
+ 	
+ 			setData( ptr );				
+ 			setRefCount( 0 );
+Index: branches/2.0/src/nvcore/Memory.cpp
+===================================================================
+--- branches/2.0/src/nvcore/Memory.cpp	(revision 1171)
++++ branches/2.0/src/nvcore/Memory.cpp	(revision 1172)
+@@ -1,3 +1,4 @@
++// This code is in the public domain -- Ignacio Casta�o <castano@gmail.com>
+ 
+ #include "Memory.h"
+ #include "Debug.h"
+@@ -2,33 +3,114 @@
+ 
+-//#if HAVE_MALLOC_H
+-//#include <malloc.h>
+-//#endif
+-
+ #include <stdlib.h>
+ 
++#define USE_EFENCE 0
+ 
++#if USE_EFENCE
++extern "C" void *EF_malloc(size_t size);
++extern "C" void *EF_realloc(void * oldBuffer, size_t newSize);
++extern "C" void EF_free(void * address);
++#endif
++
+ using namespace nv;
+ 
+-void * nv::mem::malloc(size_t size)
++#if NV_OVERRIDE_ALLOC
++
++void * malloc(size_t size)
+ {
+-	return ::malloc(size);
++#if USE_EFENCE
++    return EF_malloc(size);
++#else
++    return ::malloc(size);
++#endif
+ }
+ 
+-void * nv::mem::malloc(size_t size, const char * file, int line)
++void * debug_malloc(size_t size, const char * file, int line)
+ {
+-	NV_UNUSED(file);
+-	NV_UNUSED(line);
+-	return ::malloc(size);
++    NV_UNUSED(file);
++    NV_UNUSED(line);
++#if USE_EFENCE
++    return EF_malloc(size);
++#else
++    return ::malloc(size);
++#endif
+ }
+ 
+-void nv::mem::free(const void * ptr)
++void free(void * ptr)
+ {
+-	::free(const_cast<void *>(ptr));
++#if USE_EFENCE
++    return EF_free(const_cast<void *>(ptr));
++#else
++    ::free(const_cast<void *>(ptr));
++#endif
+ }
+ 
+-void * nv::mem::realloc(void * ptr, size_t size)
++void * realloc(void * ptr, size_t size)
+ {
+-	nvDebugCheck(ptr != NULL || size != 0);	// undefined realloc behavior.
+-	return ::realloc(ptr, size);
++    nvDebugCheck(ptr != NULL || size != 0); // undefined realloc behavior.
++#if USE_EFENCE
++    return EF_realloc(ptr, size);
++#else
++    return ::realloc(ptr, size);
++#endif
+ }
+ 
++/* No need to override this unless we want line info.
++void * operator new (size_t size) throw()
++{
++    return malloc(size);
++}
++
++void operator delete (void *p) throw()
++{
++    free(p);
++}
++
++void * operator new [] (size_t size) throw()
++{
++    return malloc(size);
++}
++
++void operator delete [] (void * p) throw()
++{
++    free(p);
++}
++*/
++
++#if 0 // Code from Apple:
++void* operator new(std::size_t sz) throw (std::bad_alloc)
++{
++        void *result = std::malloc (sz == 0 ? 1 : sz);
++        if (result == NULL)
++                throw std::bad_alloc();
++        gNewCounter++;
++        return result;
++}
++void operator delete(void* p) throw()
++{
++        if (p == NULL)
++                return;
++        std::free (p);
++        gDeleteCounter++;
++}
++
++/* These are the 'nothrow' versions of the above operators.
++   The system version will try to call a std::new_handler if they
++   fail, but your overriding versions are not required to do this.  */
++void* operator new(std::size_t sz, const std::nothrow_t&) throw()
++{
++        try {
++                void * result = ::operator new (sz);  // calls our overridden operator new
++                return result;
++        } catch (std::bad_alloc &) {
++          return NULL;
++        }
++}
++void operator delete(void* p, const std::nothrow_t&) throw()
++{
++        ::operator delete (p);
++}
++
++#endif // 0
++
++
++#endif // NV_OVERRIDE_ALLOC
+Index: branches/2.0/src/nvcore/Containers.h
+===================================================================
+--- branches/2.0/src/nvcore/Containers.h	(revision 1171)
++++ branches/2.0/src/nvcore/Containers.h	(revision 1172)
+@@ -16,9 +16,9 @@
+ 
+ 
+ // nvcore
+-#include <nvcore/nvcore.h>
+-#include <nvcore/Memory.h>
+-#include <nvcore/Debug.h>
++#include "nvcore.h"
++#include "Memory.h"
++#include "Debug.h"
+ 
+ #include <string.h>	// memmove
+ #include <new>		// for placement new
+@@ -589,15 +589,15 @@
+ 			// free the buffer.
+ 			if( m_buffer_size == 0 ) {
+ 				if( m_buffer ) {
+-					mem::free( m_buffer );
++					free( m_buffer );
+ 					m_buffer = NULL;
+ 				}
+ 			}
+ 			
+ 			// realloc the buffer
+ 			else {
+-				if( m_buffer ) m_buffer = (T *) mem::realloc( m_buffer, sizeof(T) * m_buffer_size );
+-				else m_buffer = (T *) mem::malloc( sizeof(T) * m_buffer_size );
++				if( m_buffer ) m_buffer = (T *) realloc(m_buffer, sizeof(T) * m_buffer_size);
++				else m_buffer = (T *) ::malloc(sizeof(T) * m_buffer_size);
+ 			}
+ 		}
+ 		
+@@ -778,7 +778,7 @@
+ 						e->clear();
+ 					}
+ 				}
+-				mem::free(table);
++				free(table);
+ 				table = NULL;
+ 				entry_count = 0;
+ 				size_mask = -1;
+@@ -1001,7 +1001,7 @@
+ 			new_size = nextPowerOfTwo(new_size);
+ 			
+ 			HashMap<T, U, hash_functor> new_hash;
+-			new_hash.table = (Entry *) mem::malloc(sizeof(Entry) * new_size);
++			new_hash.table = (Entry *) ::malloc(sizeof(Entry) * new_size);
+ 			nvDebugCheck(new_hash.table != NULL);
+ 			
+ 			new_hash.entry_count = 0;
+@@ -1026,7 +1026,7 @@
+ 				}
+ 				
+ 				// Delete our old data buffer.
+-				mem::free(table);
++				free(table);
+ 			}
+ 			
+ 			// Steal new_hash's data.
+Index: branches/2.0/src/nvcore/Memory.h
+===================================================================
+--- branches/2.0/src/nvcore/Memory.h	(revision 1171)
++++ branches/2.0/src/nvcore/Memory.h	(revision 1172)
+@@ -1,186 +1,52 @@
+-// This code is in the public domain -- castanyo@yahoo.es
++// This code is in the public domain -- Ignacio Castaño <castano@gmail.com>
+ 
++#pragma once
+ #ifndef NV_CORE_MEMORY_H
+ #define NV_CORE_MEMORY_H
+ 
+-#include <nvcore/nvcore.h>
++#include "nvcore.h"
+ 
+ #include <stdlib.h> // malloc(), realloc() and free()
+-#include <stddef.h>	// size_t
++#include <stddef.h> // size_t
+ 
+ #include <new>	// new and delete
+ 
+-// Custom memory allocator
+-namespace nv
+-{
+-	namespace mem 
+-	{
+-		NVCORE_API void * malloc(size_t size);
+-		NVCORE_API void * malloc(size_t size, const char * file, int line);
+-		
+-		NVCORE_API void free(const void * ptr);
+-		NVCORE_API void * realloc(void * ptr, size_t size);
+-		
+-	} // mem namespace
+-	
+-} // nv namespace
++#define NV_OVERRIDE_ALLOC 0
+ 
++#if NV_OVERRIDE_ALLOC
+ 
+-// Override new/delete
+-
+-inline void * operator new (size_t size) throw()
+-{
+-	return nv::mem::malloc(size); 
++// Custom memory allocator
++extern "C" {
++    NVCORE_API void * malloc(size_t size);
++    NVCORE_API void * debug_malloc(size_t size, const char * file, int line);
++    NVCORE_API void free(void * ptr);
++    NVCORE_API void * realloc(void * ptr, size_t size);
+ }
+ 
+-inline void operator delete (void *p) throw()
+-{
+-	nv::mem::free(p); 
+-}
+-
+-inline void * operator new [] (size_t size) throw()
+-{
+-	return nv::mem::malloc(size);
+-}
+-
+-inline void operator delete [] (void * p) throw()
+-{
+-	nv::mem::free(p); 
+-}
+-
+ /*
+ #ifdef _DEBUG
+ #define new new(__FILE__, __LINE__)
+-#define malloc(i) malloc(i, __FILE__, __LINE__)
++#define malloc(i) debug_malloc(i, __FILE__, __LINE__)
+ #endif
+ */
+ 
+-#if 0
+-/*
+-    File:	main.cpp
+-    
+-    Version:	1.0
++#endif
+ 
+-	Abstract: Overrides the C++ 'operator new' and 'operator delete'.
++namespace nv {
+ 
+-    Disclaimer:	IMPORTANT:  This Apple software is supplied to you by Apple Computer, Inc.
+-		("Apple") in consideration of your agreement to the following terms, and your
+-		use, installation, modification or redistribution of this Apple software
+-		constitutes acceptance of these terms.  If you do not agree with these terms,
+-		please do not use, install, modify or redistribute this Apple software.
++    // C++ helpers.
++    template <typename T> T * malloc(size_t count) {
++        return (T *)::malloc(sizeof(T) * count);
++    }
+ 
+-		In consideration of your agreement to abide by the following terms, and subject
+-		to these terms, Apple grants you a personal, non-exclusive license, under Apple’s
+-		copyrights in this original Apple software (the "Apple Software"), to use,
+-		reproduce, modify and redistribute the Apple Software, with or without
+-		modifications, in source and/or binary forms; provided that if you redistribute
+-		the Apple Software in its entirety and without modifications, you must retain
+-		this notice and the following text and disclaimers in all such redistributions of
+-		the Apple Software.  Neither the name, trademarks, service marks or logos of
+-		Apple Computer, Inc. may be used to endorse or promote products derived from the
+-		Apple Software without specific prior written permission from Apple.  Except as
+-		expressly stated in this notice, no other rights or licenses, express or implied,
+-		are granted by Apple herein, including but not limited to any patent rights that
+-		may be infringed by your derivative works or by other works in which the Apple
+-		Software may be incorporated.
++    template <typename T> T * realloc(T * ptr, size_t count) {
++        return (T *)::realloc(ptr, sizeof(T) * count);
++    }
+ 
+-		The Apple Software is provided by Apple on an "AS IS" basis.  APPLE MAKES NO
+-		WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED
+-		WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+-		PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS USE AND OPERATION ALONE OR IN
+-		COMBINATION WITH YOUR PRODUCTS.
++    template <typename T> void free(const T * ptr) {
++        ::free((void *)ptr);
++    }
+ 
+-		IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR
+-		CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+-		GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+-		ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION
+-		OF THE APPLE SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT, TORT
+-		(INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN
+-		ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++} // nv namespace
+ 
+-	Copyright © 2006 Apple Computer, Inc., All Rights Reserved
+-*/
+-
+-/* This sample shows how to override the C++ global 'new' and 'delete' operators.  */
+-#include <new>
+-#include <iostream>
+-#include <cstdlib>
+-#include <stdexcept>
+-#include <locale>
+-
+-/* Some variables and code to make the example do something.  */
+-namespace {
+-  unsigned long long gNewCounter; // number of times 'new' was called
+-  unsigned long long gDeleteCounter;  // number of times 'delete' was called
+-  
+-  void printCounters()  // print the counters above
+-  {
+-	std::cout << "new was called " << gNewCounter << " times and delete was called " << gDeleteCounter << " times\n";
+-  }
+-}
+-
+-/* These are the overridden new and delete routines.
+-   Most applications will want to override at least these four versions of new/delete if they override any of them.
+-
+-   In Mac OS, it's not necessary to override the array versions of operator new and delete if all
+-   they would do is call the non-array versions; the C++ standard library, as an extension
+-   to the C++ standard, does this for you.
+-
+-   Developers should consult the section [lib.support.dynamic] in the C++ standard to see the requirements
+-   on the generic operators new and delete; the system may expect that your overridden operators meet all these
+-   requirements.
+-
+-   Your operators may be called by the system, even early in start-up before constructors have been executed.  */
+-void* operator new(std::size_t sz) throw (std::bad_alloc)
+-{
+-	void *result = std::malloc (sz == 0 ? 1 : sz);
+-	if (result == NULL)
+-		throw std::bad_alloc();
+-	gNewCounter++;
+-	return result;
+-}
+-void operator delete(void* p) throw()
+-{
+-	if (p == NULL)
+-		return;
+-	std::free (p);
+-	gDeleteCounter++;
+-}
+-
+-/* These are the 'nothrow' versions of the above operators.
+-   The system version will try to call a std::new_handler if they
+-   fail, but your overriding versions are not required to do this.  */
+-void* operator new(std::size_t sz, const std::nothrow_t&) throw()
+-{
+-	try {
+-		void * result = ::operator new (sz);  // calls our overridden operator new
+-		return result;
+-	} catch (std::bad_alloc &) {
+-	  return NULL;
+-	}
+-}
+-void operator delete(void* p, const std::nothrow_t&) throw()
+-{
+-	::operator delete (p);
+-}
+-
+-/* Bug 4067110 is that if your program has no weak symbols at all, the linker will not set the
+-   WEAK_DEFINES bit in the Mach-O header and as a result the new and delete operators above won't
+-   be seen by system libraries.  This is mostly a problem for test programs and small examples,
+-   since almost all real C++ programs complicated enough to override new and delete will have at
+-   least one weak symbol.  However, this is a small example, so:  */
+-void __attribute__((weak, visibility("default"))) workaroundFor4067110 () { }
+-
+-/* This is a simple test program that causes the runtime library to call new and delete.  */
+-int main() 
+-{
+-	atexit (printCounters);
+-	try {
+-	  std::locale example("does_not_exist");
+-	} catch (std::runtime_error &x) {
+-	}
+-	return 0;
+-}
+-#endif // 0
+-
+ #endif // NV_CORE_MEMORY_H

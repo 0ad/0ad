@@ -78,7 +78,7 @@ void Image::unwrap()
 
 void Image::free()
 {
-	nv::mem::free(m_data);
+	::free(m_data);
 	m_data = NULL;
 }
 

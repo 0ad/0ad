@@ -16,9 +16,9 @@ Do not use memmove in insert & remove, use copy ctors instead.
 
 
 // nvcore
-#include <nvcore/nvcore.h>
-#include <nvcore/Memory.h>
-#include <nvcore/Debug.h>
+#include "nvcore.h"
+#include "Memory.h"
+#include "Debug.h"
 
 #include <string.h>	// memmove
 #include <new>		// for placement new
@@ -589,15 +589,15 @@ namespace nv
 			// free the buffer.
 			if( m_buffer_size == 0 ) {
 				if( m_buffer ) {
-					mem::free( m_buffer );
+					free( m_buffer );
 					m_buffer = NULL;
 				}
 			}
 			
 			// realloc the buffer
 			else {
-				if( m_buffer ) m_buffer = (T *) mem::realloc( m_buffer, sizeof(T) * m_buffer_size );
-				else m_buffer = (T *) mem::malloc( sizeof(T) * m_buffer_size );
+				if( m_buffer ) m_buffer = (T *) realloc(m_buffer, sizeof(T) * m_buffer_size);
+				else m_buffer = (T *) ::malloc(sizeof(T) * m_buffer_size);
 			}
 		}
 		
@@ -778,7 +778,7 @@ namespace nv
 						e->clear();
 					}
 				}
-				mem::free(table);
+				free(table);
 				table = NULL;
 				entry_count = 0;
 				size_mask = -1;
@@ -1001,7 +1001,7 @@ namespace nv
 			new_size = nextPowerOfTwo(new_size);
 			
 			HashMap<T, U, hash_functor> new_hash;
-			new_hash.table = (Entry *) mem::malloc(sizeof(Entry) * new_size);
+			new_hash.table = (Entry *) ::malloc(sizeof(Entry) * new_size);
 			nvDebugCheck(new_hash.table != NULL);
 			
 			new_hash.entry_count = 0;
@@ -1026,7 +1026,7 @@ namespace nv
 				}
 				
 				// Delete our old data buffer.
-				mem::free(table);
+				free(table);
 			}
 			
 			// Steal new_hash's data.

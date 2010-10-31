@@ -294,7 +294,7 @@ namespace nv
 				const uint16 count = getRefCount();
 				setRefCount(count - 1);
 				if (count - 1 == 0) {
-					mem::free(data - 2);
+					free(data - 2);
 					data = NULL;
 				}
 			}
@@ -323,7 +323,7 @@ namespace nv
 
 		void allocString(const char * str, int len)
 		{
-			const char * ptr = static_cast<const char *>(mem::malloc(2 + len + 1));
+			const char * ptr = static_cast<const char *>(::malloc(2 + len + 1));
 	
 			setData( ptr );				
 			setRefCount( 0 );
