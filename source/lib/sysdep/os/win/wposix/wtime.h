@@ -58,21 +58,12 @@ typedef enum
 }
 clockid_t;
 
-// BSD gettimeofday
-struct timeval
-{
-	time_t tv_sec;
-	suseconds_t tv_usec;
-};
-
 // POSIX realtime clock_*
 struct timespec
 {
 	time_t tv_sec;
 	long   tv_nsec;
 };
-
-extern int gettimeofday(struct timeval* tv, void* tzp);
 
 extern int nanosleep(const struct timespec* rqtp, struct timespec* rmtp);
 extern int clock_gettime(clockid_t clock, struct timespec* ts);
