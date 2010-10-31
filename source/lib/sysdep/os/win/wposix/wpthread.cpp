@@ -52,6 +52,11 @@ static pthread_t pthread_from_HANDLE(HANDLE h)
 // misc
 //-----------------------------------------------------------------------------
 
+int pthread_equal(pthread_t t1, pthread_t t2)
+{
+	return t1 == t2;
+}
+
 pthread_t pthread_self()
 {
 	return pthread_from_HANDLE(GetCurrentThread());

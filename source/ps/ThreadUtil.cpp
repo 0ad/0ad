@@ -23,7 +23,7 @@ static pthread_t g_MainThread;
 
 bool ThreadUtil::IsMainThread()
 {
-	return pthread_equal(pthread_self(), g_MainThread);
+	return pthread_equal(pthread_self(), g_MainThread) ? true : false;
 }
 
 void ThreadUtil::SetMainThread()

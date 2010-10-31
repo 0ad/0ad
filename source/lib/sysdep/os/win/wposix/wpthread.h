@@ -62,6 +62,7 @@ LIB_API int pthread_once(pthread_once_t*, void (*init_routine)());
 // thread
 typedef uintptr_t pthread_t;
 
+LIB_API int pthread_equal(pthread_t t1, pthread_t t2);
 LIB_API pthread_t pthread_self();
 LIB_API int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
 LIB_API int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
