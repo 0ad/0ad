@@ -85,9 +85,10 @@ void MessagePasserImpl::Add(IMessage* msg)
 	if (m_Trace)
 		debug_printf(L"%8.3f add message: %hs\n", timer_Time(), msg->GetName());
 
-	m_Mutex.Lock();
-	m_Queue.push(msg);
-	m_Mutex.Unlock();
+	{
+		CScopeLock lock(m_Mutex);
+		m_Queue.push(msg);
+	}
 }
 
 IMessage* MessagePasserImpl::Retrieve()
@@ -96,16 +97,16 @@ IMessage* MessagePasserImpl::Retrieve()
 	// since there's only one thread adding items and one thread consuming;
 	// but it's not worthwhile yet.)
 
-	m_Mutex.Lock();
-
 	IMessage* msg = NULL;
-	if (! m_Queue.empty())
-	{
-		msg = m_Queue.front();
-		m_Queue.pop();
-	}
 
-	m_Mutex.Unlock();
+	{
+		CScopeLock lock(m_Mutex);
+		if (! m_Queue.empty())
+		{
+			msg = m_Queue.front();
+			m_Queue.pop();
+		}
+	}
 
 	if (m_Trace && msg)
 		debug_printf(L"%8.3f retrieved message: %hs\n", timer_Time(), msg->GetName());
@@ -124,9 +125,10 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 	// Set the semaphore, so we can block until the query has been handled
 	qry->m_Semaphore = static_cast<void*>(m_Semaphore);
 
-	m_Mutex.Lock();
-	m_Queue.push(qry);
-	m_Mutex.Unlock();
+	{
+		CScopeLock lock(m_Mutex);
+		m_Queue.push(qry);
+	}
 
 	// Wait until the query handler has handled the query and called sem_post:
 
@@ -183,10 +185,8 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 
 bool MessagePasserImpl::IsEmpty()
 {
-	m_Mutex.Lock();
-	bool empty = m_Queue.empty();
-	m_Mutex.Unlock();
-	return empty;
+	CScopeLock lock(m_Mutex);
+	return m_Queue.empty();
 }
 
 void MessagePasserImpl::SetTrace(bool t)

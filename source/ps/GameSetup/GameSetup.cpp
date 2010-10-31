@@ -711,6 +711,8 @@ void EarlyInit()
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(232647);
 
+	ThreadUtil::SetMainThread();
+
 	debug_SetThreadName("main");
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add(L"TIMER");
@@ -895,54 +897,6 @@ void RenderGui(bool RenderingState)
 }
 
 
-// Network autostart:
-
-class AutostartNetServer : public CNetServer
-{
-public:
-	AutostartNetServer(const CStr& map, int maxPlayers) :
-		CNetServer(), m_NeedsStart(false), m_NumPlayers(0), m_MaxPlayers(maxPlayers)
-	{
-		CScriptValRooted attrs;
-		GetScriptInterface().Eval("({})", attrs);
-		GetScriptInterface().SetProperty(attrs.get(), "map", std::string(map), false);
-		UpdateGameAttributes(attrs);
-	}
-
-protected:
-	virtual void OnAddPlayer()
-	{
-		m_NumPlayers++;
-
-		debug_printf(L"# player joined (got %d, need %d)\n", (int)m_NumPlayers, (int)m_MaxPlayers);
-
-		if (m_NumPlayers >= m_MaxPlayers)
-			m_NeedsStart = true; // delay until next Poll, so the new player has been fully processed
-	}
-
-	virtual void OnRemovePlayer()
-	{
-		debug_warn(L"client left?!");
-		m_NumPlayers--;
-	}
-
-	virtual void Poll()
-	{
-		if (m_NeedsStart)
-		{
-			StartGame();
-			m_NeedsStart = false;
-		}
-
-		CNetServer::Poll();
-	}
-
-private:
-	bool m_NeedsStart;
-	size_t m_NumPlayers;
-	size_t m_MaxPlayers;
-};
-
 static bool Autostart(const CmdLineArgs& args)
 {
 	/*
@@ -958,6 +912,12 @@ static bool Autostart(const CmdLineArgs& args)
 
 	g_Game = new CGame();
 
+	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	CScriptValRooted attrs;
+	scriptInterface.Eval("({})", attrs);
+	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
+	scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap), false);
+
 	if (args.Has("autostart-host"))
 	{
 		InitPs(true, L"page_loading.xml");
@@ -966,7 +926,10 @@ static bool Autostart(const CmdLineArgs& args)
 		if (args.Has("autostart-players"))
 			maxPlayers = args.Get("autostart-players").ToUInt();
 
-		g_NetServer = new AutostartNetServer(autostartMap, maxPlayers);
+		g_NetServer = new CNetServer(maxPlayers);
+
+		g_NetServer->UpdateGameAttributes(attrs.get(), scriptInterface);
+
 		bool ok = g_NetServer->SetupConnection();
 		debug_assert(ok);
 
@@ -980,17 +943,16 @@ static bool Autostart(const CmdLineArgs& args)
 
 		g_NetClient = new CNetClient(g_Game);
 		// TODO: player name, etc
-		bool ok = g_NetClient->SetupConnection(args.Get("autostart-ip"));
+
+		CStr ip = "127.0.0.1";
+		if (args.Has("autostart-ip"))
+			ip = args.Get("autostart-ip");
+
+		bool ok = g_NetClient->SetupConnection(ip);
 		debug_assert(ok);
 	}
 	else
 	{
-		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-		CScriptValRooted attrs;
-		scriptInterface.Eval("({})", attrs);
-		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
-		scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap), false);
-
 		g_Game->SetPlayerID(1);
 		g_Game->StartGame(attrs);
 		LDR_NonprogressiveLoad();

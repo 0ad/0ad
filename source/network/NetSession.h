@@ -24,7 +24,7 @@
 #include "scriptinterface/ScriptVal.h"
 
 class CNetClient;
-class CNetServer;
+class CNetServerWorker;
 
 class CNetStatsTable;
 
@@ -84,15 +84,18 @@ private:
  * The server's end of a network session.
  * Represents an abstraction of the state of the client, storing all the per-client data
  * needed by the server.
+ *
+ * Thread-safety:
+ * - This is constructed and used by CNetServerWorker in the network server thread.
  */
 class CNetServerSession : public CFsm
 {
 	NONCOPYABLE(CNetServerSession);
 
 public:
-	CNetServerSession(CNetServer& server, ENetPeer* peer);
+	CNetServerSession(CNetServerWorker& server, ENetPeer* peer);
 
-	CNetServer& GetServer() { return m_Server; }
+	CNetServerWorker& GetServer() { return m_Server; }
 
 	const CStr& GetGUID() const { return m_GUID; }
 	void SetGUID(const CStr& guid) { m_GUID = guid; }
@@ -124,7 +127,7 @@ public:
 	bool SendMessage(const CNetMessage* message);
 
 private:
-	CNetServer& m_Server;
+	CNetServerWorker& m_Server;
 
 	ENetPeer* m_Peer;
 

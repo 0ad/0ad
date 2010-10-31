@@ -137,7 +137,7 @@
 
 			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Reveal map</object>
 			<object size="100%-16 112 100% 128" type="checkbox" style="wheatCrossBox">
-				<action on="Press">Engine.SetRevealMap(this.checked);</action>
+				<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
 			</object>
 		</object>
 

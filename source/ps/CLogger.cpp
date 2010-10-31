@@ -114,7 +114,7 @@ void CLogger::Init()
 	*m_InterestingLog << html_header0 << "Main log (warnings and errors only)" << html_header1;
 }
 
-CLogger::~CLogger ()
+CLogger::~CLogger()
 {
 	char buffer[128];
 	sprintf_s(buffer, ARRAY_SIZE(buffer), " with %d message(s), %d error(s) and %d warning(s).", m_NumberOfMessages,m_NumberOfErrors,m_NumberOfWarnings);
@@ -154,6 +154,8 @@ void CLogger::WriteMessage(const wchar_t* message)
 {
 	std::string cmessage = ToHTML(message);
 
+	CScopeLock lock(m_Mutex);
+
 	++m_NumberOfMessages;
 //	if (m_UseDebugPrintf)
 //		debug_printf(L"MESSAGE: %ls\n", message);
@@ -168,6 +170,8 @@ void CLogger::WriteMessage(const wchar_t* message)
 void CLogger::WriteError(const wchar_t* message)
 {
 	std::string cmessage = ToHTML(message);
+
+	CScopeLock lock(m_Mutex);
 
 	++m_NumberOfErrors;
 	if (m_UseDebugPrintf)
@@ -187,6 +191,8 @@ void CLogger::WriteWarning(const wchar_t* message)
 {
 	std::string cmessage = ToHTML(message);
 
+	CScopeLock lock(m_Mutex);
+
 	++m_NumberOfWarnings;
 	if (m_UseDebugPrintf)
 		debug_printf(L"WARNING: %ls\n", message);
@@ -205,11 +211,11 @@ void CLogger::WriteWarning(const wchar_t* message)
 // -- This function has not been removed because the build would break.
 void CLogger::LogUsingMethod(ELogMethod method, const wchar_t* message)
 {
-	if(method == Normal)
+	if (method == Normal)
 		WriteMessage(message);
-	else if(method == Error)
+	else if (method == Error)
 		WriteError(message);
-	else if(method == Warning)
+	else if (method == Warning)
 		WriteWarning(message);
 	else
 		WriteMessage(message);
@@ -229,31 +235,6 @@ void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wcha
 	}
 	va_end(argp);
 
-	LogUsingMethod(method, buffer);
-}
-
-// -- This function has not been removed because the build would break.
-void CLogger::LogOnce(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
-{
-	va_list argp;
-	wchar_t buffer[BUFFER_SIZE] = {0};
-
-	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
-	{
-		// Buffer too small - ensure the string is nicely terminated
-		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
-	}
-	va_end(argp);
-
-	std::wstring message(buffer);
-
-	// If this message has already been logged, ignore it
-	if (m_LoggedOnce.find(message) != m_LoggedOnce.end())
-		return;
-
-	// If not, mark it as having been logged and then log it
-	m_LoggedOnce.insert(message);
 	LogUsingMethod(method, buffer);
 }
 
@@ -321,6 +302,10 @@ void CLogger::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	// (Lock must come after loading the CFont, since that might log error messages
+	// and attempt to lock the mutex recursively which is forbidden)
+	CScopeLock lock(m_Mutex);
+
 	for (std::deque<RenderedMessage>::iterator it = m_RenderMessages.begin(); it != m_RenderMessages.end(); ++it)
 	{
 		const wchar_t* type;
@@ -357,7 +342,7 @@ void CLogger::Render()
 
 void CLogger::PushRenderMessage(ELogMethod method, const wchar_t* message)
 {
-	double now = timer_Time();
+	double now = timer_Time(); // XXX: this is not thread-safe (http://trac.wildfiregames.com/ticket/653)
 
 	// Add each message line separately
 	const wchar_t* pos = message;
@@ -381,6 +366,8 @@ void CLogger::PushRenderMessage(ELogMethod method, const wchar_t* message)
 
 void CLogger::CleanupRenderQueue()
 {
+	CScopeLock lock(m_Mutex);
+
 	if (m_RenderMessages.empty())
 		return;
 

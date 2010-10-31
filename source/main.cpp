@@ -305,8 +305,6 @@ static void Frame()
 	}
 
 	PROFILE_START("network poll");
-	if (g_NetServer)
-		g_NetServer->Poll();
 	if (g_NetClient)
 		g_NetClient->Poll();
 	PROFILE_END("network poll");
@@ -354,8 +352,6 @@ static void Frame()
 
 	// Immediately flush any messages produced by simulation code
 	PROFILE_START("network flush");
-	if (g_NetServer)
-		g_NetServer->Flush();
 	if (g_NetClient)
 		g_NetClient->Flush();
 	PROFILE_END("network flush");

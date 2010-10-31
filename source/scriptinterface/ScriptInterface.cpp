@@ -252,10 +252,14 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 		debug_assert(m_rt); // TODO: error handling
 
 #if ENABLE_SCRIPT_PROFILING
-		if (CProfileManager::IsInitialised())
+		// Profiler isn't thread-safe, so only enable this on the main thread
+		if (ThreadUtil::IsMainThread())
 		{
-			JS_SetExecuteHook(m_rt, jshook_script, this);
-			JS_SetCallHook(m_rt, jshook_function, this);
+			if (CProfileManager::IsInitialised())
+			{
+				JS_SetExecuteHook(m_rt, jshook_script, this);
+				JS_SetCallHook(m_rt, jshook_function, this);
+			}
 		}
 #endif
 
@@ -316,14 +320,21 @@ void ScriptInterface_impl::Register(const char* name, JSFastNative fptr, uintN n
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName) :
 	m(new ScriptInterface_impl(nativeScopeName, NULL))
 {
-	if (g_ScriptStatsTable)
-		g_ScriptStatsTable->Add(this, debugName);
+	// Profiler stats table isn't thread-safe, so only enable this on the main thread
+	if (ThreadUtil::IsMainThread())
+	{
+		if (g_ScriptStatsTable)
+			g_ScriptStatsTable->Add(this, debugName);
+	}
 }
 
 ScriptInterface::~ScriptInterface()
 {
-	if (g_ScriptStatsTable)
-		g_ScriptStatsTable->Remove(this);
+	if (ThreadUtil::IsMainThread())
+	{
+		if (g_ScriptStatsTable)
+			g_ScriptStatsTable->Remove(this);
+	}
 }
 
 void ScriptInterface::ShutDown()
@@ -691,9 +702,16 @@ CScriptValRooted ScriptInterface::ParseJSON(const utf16string& string)
 	return CScriptValRooted(m->m_cx, vp);
 }
 
+CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
+{
+	// TODO: we could do more efficient string conversion
+	std::wstring attrsW = wstring_from_utf8(string_utf8);
+	return ParseJSON(utf16string(attrsW.begin(), attrsW.end()));
+}
+
 struct Stringifier
 {
-	static JSBool callback(const jschar *buf, uint32 len, void *data)
+	static JSBool callback(const jschar* buf, uint32 len, void* data)
 	{
 		utf16string str(buf, buf+len);
 		std::wstring strw(str.begin(), str.end());

@@ -360,9 +360,11 @@ namespace
 		{
 			std::vector<CStr> data; // 2d array of (rows+head)*columns elements
 
+			const std::vector<ProfileColumn>& columns = table->GetColumns();
+
 			// Add column headers to 'data'
-			for (std::vector<ProfileColumn>::const_iterator col_it = table->GetColumns().begin();
-					col_it != table->GetColumns().end(); ++col_it)
+			for (std::vector<ProfileColumn>::const_iterator col_it = columns.begin();
+					col_it != columns.end(); ++col_it)
 				data.push_back(col_it->title);
 
 			// Recursively add all profile data to 'data'
@@ -371,7 +373,7 @@ namespace
 			// Calculate the width of each column ( = the maximum width of
 			// any value in that column)
 			std::vector<size_t> columnWidths;
-			size_t cols = table->GetColumns().size();
+			size_t cols = columns.size();
 			for (size_t c = 0; c < cols; ++c)
 			{
 				size_t max = 0;
@@ -401,6 +403,8 @@ namespace
 
 		void WriteRows(int indent, AbstractProfileTable* table, std::vector<CStr>& data)
 		{
+			const std::vector<ProfileColumn>& columns = table->GetColumns();
+
 			for (size_t r = 0; r < table->GetNumberRows(); ++r)
 			{
 				// Do pretty tree-structure indenting
@@ -410,7 +414,7 @@ namespace
 				else
 					indentation += "|-";
 
-				for (size_t c = 0; c < table->GetColumns().size(); ++c)
+				for (size_t c = 0; c < columns.size(); ++c)
 					if (c == 0)
 						data.push_back(indentation + table->GetCellText(r, c));
 					else

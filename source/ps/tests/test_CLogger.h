@@ -51,11 +51,6 @@ public:
 		logger->Log(CLogger::Normal, L"", L"%hs", msg2.c_str());
 		logger->Log(CLogger::Normal, L"", L"%hs", msg3.c_str());
 
-		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg0.c_str());
-		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg1.c_str());
-		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg2.c_str());
-		logger->LogOnce(CLogger::Normal, L"", L"%hs", msg3.c_str());
-
 		logger->LogMessage(L"%hs", msg0.c_str());
 		logger->LogMessage(L"%hs", msg1.c_str());
 		logger->LogMessage(L"%hs", msg2.c_str());
@@ -73,7 +68,7 @@ public:
 
 		ParseOutput();
 
-		TS_ASSERT_EQUALS((int)lines.size(), 4*5-1);
+		TS_ASSERT_EQUALS((int)lines.size(), 4*4);
 		TS_ASSERT_EQUALS(lines[0], msg0);
 		TS_ASSERT_EQUALS(lines[1], msg1);
 		TS_ASSERT_EQUALS(lines[2], clipped);
@@ -82,21 +77,17 @@ public:
 		TS_ASSERT_EQUALS(lines[4], msg0);
 		TS_ASSERT_EQUALS(lines[5], msg1);
 		TS_ASSERT_EQUALS(lines[6], clipped);
+		TS_ASSERT_EQUALS(lines[7], clipped);
 
-		TS_ASSERT_EQUALS(lines[7], msg0);
-		TS_ASSERT_EQUALS(lines[8], msg1);
-		TS_ASSERT_EQUALS(lines[9], clipped);
-		TS_ASSERT_EQUALS(lines[10], clipped);
+		TS_ASSERT_EQUALS(lines[8], "WARNING: "+msg0);
+		TS_ASSERT_EQUALS(lines[9], "WARNING: "+msg1);
+		TS_ASSERT_EQUALS(lines[10], "WARNING: "+clipped);
+		TS_ASSERT_EQUALS(lines[11], "WARNING: "+clipped);
 
-		TS_ASSERT_EQUALS(lines[11], "WARNING: "+msg0);
-		TS_ASSERT_EQUALS(lines[12], "WARNING: "+msg1);
-		TS_ASSERT_EQUALS(lines[13], "WARNING: "+clipped);
-		TS_ASSERT_EQUALS(lines[14], "WARNING: "+clipped);
-
-		TS_ASSERT_EQUALS(lines[15], "ERROR: "+msg0);
-		TS_ASSERT_EQUALS(lines[16], "ERROR: "+msg1);
-		TS_ASSERT_EQUALS(lines[17], "ERROR: "+clipped);
-		TS_ASSERT_EQUALS(lines[18], "ERROR: "+clipped);
+		TS_ASSERT_EQUALS(lines[12], "ERROR: "+msg0);
+		TS_ASSERT_EQUALS(lines[13], "ERROR: "+msg1);
+		TS_ASSERT_EQUALS(lines[14], "ERROR: "+clipped);
+		TS_ASSERT_EQUALS(lines[15], "ERROR: "+clipped);
 	}
 
 	void test_unicode()

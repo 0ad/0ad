@@ -906,7 +906,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string file
 		return CScriptVal();
 	}
 
-	utf16string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // TODO: encodings etc
+	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // assume it's UTF-8
 
 	return (componentManager->m_ScriptInterface.ParseJSON(content)).get();
 

@@ -188,11 +188,7 @@ void SetNetworkGameAttributes(void* cbdata, CScriptVal attribs)
 
 	debug_assert(g_NetServer);
 
-	// Convert from GUI script context to net server script context
-	CScriptValRooted gameAttribs (g_NetServer->GetScriptInterface().GetContext(),
-			g_NetServer->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), attribs.get()));
-
-	g_NetServer->UpdateGameAttributes(gameAttribs);
+	g_NetServer->UpdateGameAttributes(attribs, guiManager->GetScriptInterface());
 }
 
 void StartNetworkHost(void* cbdata, std::wstring playerName)
@@ -305,18 +301,6 @@ CScriptVal LoadMapSettings(void* cbdata, std::wstring pathname)
 	return reader.GetMapSettings(guiManager->GetScriptInterface()).get();
 }
 
-void SetRevealMap(void* UNUSED(cbdata), bool enabled)
-{
-	if (!g_Game)
-		return;
-
-	CSimulation2* sim = g_Game->GetSimulation2();
-	debug_assert(sim);
-	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
-	if (!cmpRangeManager.null())
-		cmpRangeManager->SetLosRevealAll(enabled);
-}
-
 /**
  * Start / stop camera following mode
  * @param entityid unit id to follow. If zero, stop following mode
@@ -406,7 +390,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapSettings>("LoadMapSettings");
-	scriptInterface.RegisterFunction<void, bool, &SetRevealMap>("SetRevealMap");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 
 	// Development/debugging functions

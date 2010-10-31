@@ -37,15 +37,15 @@ class CNetMessage : public ISerializable
 
 public:
 
-	CNetMessage( void );
-	CNetMessage( NetMessageType type );
-	virtual ~CNetMessage( void );
+	CNetMessage();
+	CNetMessage(NetMessageType type);
+	virtual ~CNetMessage();
 
 	/**
 	 * Retrieves the message type.
 	 * @return						Message type
 	 */
-	NetMessageType GetType( void ) const { return m_Type; }
+	NetMessageType GetType() const { return m_Type; }
 
 	/**
 	 * Serialize the message into the specified buffer parameter. The size 
@@ -58,7 +58,7 @@ public:
 	 * @return						The position in the buffer right after the
 	 *								serialized message
 	 */
-	virtual u8* Serialize( u8* pBuffer ) const;
+	virtual u8* Serialize(u8* pBuffer) const;
 
 	/**
 	 * Deserializes the message from the specified buffer.
@@ -68,7 +68,7 @@ public:
 	 * @return						The position in the buffer right after the
 	 *								message or NULL if an error occured
 	 */
-	virtual const u8* Deserialize( const u8* pStart, const u8* pEnd );
+	virtual const u8* Deserialize(const u8* pStart, const u8* pEnd);
 
 	/**
 	 * Retrieves the size in bytes of the serialized message. Before calling
@@ -84,17 +84,15 @@ public:
 	 *
 	 * @return							The message as a string
 	 */
-	virtual CStr ToString( void ) const;
+	virtual CStr ToString() const;
 
 private:
 	NetMessageType	m_Type;				// Message type
 };
 
-/*
-	CLASS			: CNetMessageFactory
-	DESCRIPTION		: Creates messages from data received through the network
-	NOTES			: It follows the factory method pattern implementation
-*/
+/**
+ * Creates messages from data received through the network.
+ */
 class CNetMessageFactory
 {
 public:
@@ -107,15 +105,7 @@ public:
 	 * @param scriptInterface			Script instance to use when constructing scripted messages
 	 * @return							The new message created
 	 */
-	static CNetMessage* CreateMessage( const void* pData, size_t dataSize, ScriptInterface& scriptInterface );
-
-	/**
-	 * Clone a message object into a new scripting context.
-	 * @param message message to clone (can come from any script context)
-	 * @param scriptInterface script context to use for the new message
-	 * @return new message, or NULL on failure
-	 */
-	static CNetMessage* CloneMessage( const CNetMessage* message, ScriptInterface& scriptInterface );
+	static CNetMessage* CreateMessage(const void* pData, size_t dataSize, ScriptInterface& scriptInterface);
 };
 
 /**

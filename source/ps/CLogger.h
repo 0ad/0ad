@@ -23,11 +23,12 @@
 #include <set>
 #include <sstream>
 
+#include "ps/ThreadUtil.h"
+
 class CLogger;
 extern CLogger* g_Logger;
 
 #define LOG (g_Logger->Log)
-#define LOG_ONCE (g_Logger->LogOnce)
 
 // Should become LOG_MESSAGE but this can only be changed once the LOG function is removed
 // from all of the files. LOG_INFO, LOG_WARNING and LOG_ERROR are currently existing macros.
@@ -36,6 +37,14 @@ extern CLogger* g_Logger;
 #define LOGWARNING g_Logger->LogWarning
 #define LOGERROR g_Logger->LogError
 
+/**
+ * Error/warning/message logging class.
+ *
+ * Thread-safety:
+ * - Expected to be constructed/destructed in the main thread.
+ * - The message logging functions may be called from any thread
+ *   while the object is alive.
+ */
 class CLogger
 {
 	NONCOPYABLE(CLogger);
@@ -65,10 +74,7 @@ public:
 	// Function to log stuff to file
 	// -- This function has not been removed because the build would break.
 	void Log(ELogMethod method, const wchar_t* category, const wchar_t* fmt, ...) WPRINTF_ARGS(4);
-	// Similar to Log, but only outputs each message once no matter how many times it's called
-	// -- This function has not been removed because the build would break.
-	void LogOnce(ELogMethod method, const wchar_t* category, const wchar_t* fmt, ...) WPRINTF_ARGS(4);
-	
+
 	// Functions to write a message, warning or error to file.
 	void LogMessage(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
 	void LogWarning(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
@@ -102,9 +108,6 @@ private:
 	int m_NumberOfErrors;
 	int m_NumberOfWarnings;
 
-	// Used to remember LogOnce messages
-	std::set<std::wstring> m_LoggedOnce;
-
 	// Used for Render()
 	struct RenderedMessage
 	{
@@ -114,6 +117,9 @@ private:
 	};
 	std::deque<RenderedMessage> m_RenderMessages;
 	double m_RenderLastEraseTime;
+
+	// Lock for all state modified by logging commands
+	CMutex m_Mutex;
 };
 
 /**

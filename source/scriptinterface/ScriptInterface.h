@@ -50,6 +50,15 @@ namespace boost { class rand48; }
 #endif
 
 struct ScriptInterface_impl;
+
+/**
+ * Abstraction around a SpiderMonkey JSContext.
+ *
+ * Thread-safety:
+ * - May be used in non-main threads.
+ * - Each ScriptInterface must be created, used, and destroyed, all in a single thread
+ *   (it must never be shared between threads).
+ */
 class ScriptInterface
 {
 public:
@@ -169,6 +178,11 @@ public:
 	 * Parse a JSON string. Returns the undefined value on error.
 	 */
 	CScriptValRooted ParseJSON(const utf16string& string);
+
+	/**
+	 * Parse a UTF-8-encoded JSON string. Returns the undefined value on error.
+	 */
+	CScriptValRooted ParseJSON(const std::string& string_utf8);
 
 	/**
 	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.

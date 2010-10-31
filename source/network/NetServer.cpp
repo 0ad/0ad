@@ -25,6 +25,7 @@
 #include "NetStats.h"
 #include "NetTurnManager.h"
 
+#include "lib/utf8.h"
 #include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -33,6 +34,13 @@
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
 #define DEFAULT_WELCOME_MESSAGE		L"Welcome"
 #define MAX_CLIENTS					8
+
+/**
+ * enet_host_service timeout (msecs).
+ * Smaller numbers may hurt performance; larger numbers will
+ * hurt latency responding to messages from game thread.
+ */
+static const int HOST_SERVICE_TIMEOUT = 50;
 
 CNetServer* g_NetServer = NULL;
 
@@ -45,8 +53,17 @@ static CStr DebugName(CNetServerSession* session)
 	return "[" + session->GetGUID().substr(0, 8) + "...]";
 }
 
-CNetServer::CNetServer() :
-	m_ScriptInterface(new ScriptInterface("Engine", "Net server")), m_NextHostID(1), m_Host(NULL), m_Stats(NULL)
+/*
+ * XXX: We use some non-threadsafe functions from the worker thread.
+ * See http://trac.wildfiregames.com/ticket/654
+ * and http://trac.wildfiregames.com/ticket/653
+ */
+
+CNetServerWorker::CNetServerWorker(int autostartPlayers) :
+	m_AutostartPlayers(autostartPlayers),
+	m_Shutdown(false),
+	m_ScriptInterface(NULL),
+	m_NextHostID(1), m_Host(NULL), m_Stats(NULL)
 {
 	m_State = SERVER_STATE_UNCONNECTED;
 
@@ -56,8 +73,22 @@ CNetServer::CNetServer() :
 	m_WelcomeMessage = DEFAULT_WELCOME_MESSAGE;
 }
 
-CNetServer::~CNetServer()
+CNetServerWorker::~CNetServerWorker()
 {
+	if (m_State != SERVER_STATE_UNCONNECTED)
+	{
+		// Tell the thread to shut down
+		{
+			CScopeLock lock(m_WorkerMutex);
+			m_Shutdown = true;
+		}
+
+		// Wait for it to shut down cleanly
+		pthread_join(m_WorkerThread, NULL);
+	}
+
+	// Clean up resources
+
 	delete m_Stats;
 
 	for (size_t i = 0; i < m_Sessions.size(); ++i)
@@ -72,12 +103,9 @@ CNetServer::~CNetServer()
 	}
 
 	delete m_ServerTurnManager;
-
-	m_GameAttributes = CScriptValRooted(); // clear root before deleting its context
-	delete m_ScriptInterface;
 }
 
-bool CNetServer::SetupConnection()
+bool CNetServerWorker::SetupConnection()
 {
 	debug_assert(m_State == SERVER_STATE_UNCONNECTED);
 	debug_assert(!m_Host);
@@ -95,16 +123,20 @@ bool CNetServer::SetupConnection()
 		return false;
 	}
 
-	m_Stats = new CNetStatsTable(m_Host);
+	m_Stats = new CNetStatsTable();
 	if (CProfileViewer::IsInitialised())
 		g_ProfileViewer.AddRootTable(m_Stats);
 
 	m_State = SERVER_STATE_PREGAME;
 
+	// Launch the worker thread
+	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
+	debug_assert(ret == 0);
+
 	return true;
 }
 
-bool CNetServer::SendMessage(ENetPeer* peer, const CNetMessage* message)
+bool CNetServerWorker::SendMessage(ENetPeer* peer, const CNetMessage* message)
 {
 	debug_assert(m_Host);
 
@@ -113,7 +145,7 @@ bool CNetServer::SendMessage(ENetPeer* peer, const CNetMessage* message)
 	return CNetHost::SendMessage(message, peer, DebugName(session).c_str());
 }
 
-bool CNetServer::Broadcast(const CNetMessage* message)
+bool CNetServerWorker::Broadcast(const CNetMessage* message)
 {
 	debug_assert(m_Host);
 
@@ -135,103 +167,178 @@ bool CNetServer::Broadcast(const CNetMessage* message)
 	return ok;
 }
 
-void CNetServer::Poll()
+void* CNetServerWorker::RunThread(void* data)
 {
-	debug_assert(m_Host);
+	debug_SetThreadName("NetServer");
 
-	// Poll host for events
-	ENetEvent event;
-	while (enet_host_service(m_Host, &event, 0) > 0)
+	static_cast<CNetServerWorker*>(data)->Run();
+
+	return NULL;
+}
+
+void CNetServerWorker::Run()
+{
+	// To avoid the need for JS_SetContextThread, we create and use and destroy
+	// the script interface entirely within this network thread
+	m_ScriptInterface = new ScriptInterface("Engine", "Net server");
+
+	while (true)
 	{
-		switch (event.type)
-		{
-		case ENET_EVENT_TYPE_CONNECT:
-		{
-			// Report the client address
-			char hostname[256] = "(error)";
-			enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
-			LOGMESSAGE(L"Net server: Received connection from %hs:%u", hostname, event.peer->address.port);
-
-			if (m_State != SERVER_STATE_PREGAME)
-			{
-				enet_peer_disconnect(event.peer, NDR_SERVER_ALREADY_IN_GAME);
-				break;
-			}
-
-			// Set up a session object for this peer
-
-			CNetServerSession* session = new CNetServerSession(*this, event.peer);
-
-			m_Sessions.push_back(session);
-
-			SetupSession(session);
-
-			debug_assert(event.peer->data == NULL);
-			event.peer->data = session;
-
-			HandleConnect(session);
-
+		if (!RunStep())
 			break;
-		}
 
-		case ENET_EVENT_TYPE_DISCONNECT:
-		{
-			// If there is an active session with this peer, then reset and delete it
+		// Implement autostart mode
+		if (m_State == SERVER_STATE_PREGAME && (int)m_PlayerAssignments.size() == m_AutostartPlayers)
+			StartGame();
 
-			CNetServerSession* session = static_cast<CNetServerSession*>(event.peer->data);
-			if (session)
-			{
-				LOGMESSAGE(L"Net server: Disconnected %hs", DebugName(session).c_str());
-
-				// Remove the session first, so we won't send player-update messages to it
-				// when updating the FSM
-				m_Sessions.erase(remove(m_Sessions.begin(), m_Sessions.end(), session), m_Sessions.end());
-
-				session->Update((uint)NMT_CONNECTION_LOST, NULL);
-
-				delete session;
-				event.peer->data = NULL;
-			}
-
-			break;
-		}
-
-		case ENET_EVENT_TYPE_RECEIVE:
-		{
-			// If there is an active session with this peer, then process the message
-
-			CNetServerSession* session = static_cast<CNetServerSession*>(event.peer->data);
-			if (session)
-			{
-				// Create message from raw data
-				CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, GetScriptInterface());
-				if (msg)
-				{
-					LOGMESSAGE(L"Net server: Received message %hs of size %lu from %hs", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
-
-					HandleMessageReceive(msg, session);
-
-					delete msg;
-				}
-			}
-
-			// Done using the packet
-			enet_packet_destroy(event.packet);
-
-			break;
-		}
-		}
+		// Update profiler stats
+		m_Stats->LatchHostState(m_Host);
 	}
+
+	// Clear root before deleting its context
+	m_GameAttributes = CScriptValRooted();
+
+	SAFE_DELETE(m_ScriptInterface);
 }
 
-void CNetServer::Flush()
+bool CNetServerWorker::RunStep()
 {
-	debug_assert(m_Host);
+	// Check for messages from the game thread.
+	// (Do as little work as possible while the mutex is held open,
+	// to avoid performance problems and deadlocks.)
 
-	enet_host_flush(m_Host);
+	std::vector<std::pair<int, CStr> > newAssignPlayer;
+	std::vector<bool> newStartGame;
+	std::vector<std::string> newGameAttributes;
+	std::vector<u32> newTurnLength;
+
+	{
+		CScopeLock lock(m_WorkerMutex);
+
+		if (m_Shutdown)
+			return false;
+
+		newStartGame.swap(m_StartGameQueue);
+		newAssignPlayer.swap(m_AssignPlayerQueue);
+		newGameAttributes.swap(m_GameAttributesQueue);
+		newTurnLength.swap(m_TurnLengthQueue);
+	}
+
+	for (size_t i = 0; i < newAssignPlayer.size(); ++i)
+		AssignPlayer(newAssignPlayer[i].first, newAssignPlayer[i].second);
+
+	if (!newGameAttributes.empty())
+		UpdateGameAttributes(GetScriptInterface().ParseJSON(newGameAttributes.back()));
+
+	if (!newTurnLength.empty())
+		SetTurnLength(newTurnLength.back());
+
+	// Do StartGame last, so we have the most up-to-date game attributes when we start
+	if (!newStartGame.empty())
+		StartGame();
+
+	// Process network events:
+
+	ENetEvent event;
+	int status = enet_host_service(m_Host, &event, HOST_SERVICE_TIMEOUT);
+	if (status < 0)
+	{
+		LOGERROR(L"CNetServerWorker: enet_host_service failed (%d)", status);
+		// TODO: notify game that the server has shut down
+		return false;
+	}
+
+	if (status == 0)
+	{
+		// Reached timeout with no events - try again
+		return true;
+	}
+
+	// Process the event:
+
+	switch (event.type)
+	{
+	case ENET_EVENT_TYPE_CONNECT:
+	{
+		// Report the client address
+		char hostname[256] = "(error)";
+		enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
+		LOGMESSAGE(L"Net server: Received connection from %hs:%u", hostname, event.peer->address.port);
+
+		if (m_State != SERVER_STATE_PREGAME)
+		{
+			enet_peer_disconnect(event.peer, NDR_SERVER_ALREADY_IN_GAME);
+			break;
+		}
+
+		// Set up a session object for this peer
+
+		CNetServerSession* session = new CNetServerSession(*this, event.peer);
+
+		m_Sessions.push_back(session);
+
+		SetupSession(session);
+
+		debug_assert(event.peer->data == NULL);
+		event.peer->data = session;
+
+		HandleConnect(session);
+
+		break;
+	}
+
+	case ENET_EVENT_TYPE_DISCONNECT:
+	{
+		// If there is an active session with this peer, then reset and delete it
+
+		CNetServerSession* session = static_cast<CNetServerSession*>(event.peer->data);
+		if (session)
+		{
+			LOGMESSAGE(L"Net server: Disconnected %hs", DebugName(session).c_str());
+
+			// Remove the session first, so we won't send player-update messages to it
+			// when updating the FSM
+			m_Sessions.erase(remove(m_Sessions.begin(), m_Sessions.end(), session), m_Sessions.end());
+
+			session->Update((uint)NMT_CONNECTION_LOST, NULL);
+
+			delete session;
+			event.peer->data = NULL;
+		}
+
+		break;
+	}
+
+	case ENET_EVENT_TYPE_RECEIVE:
+	{
+		// If there is an active session with this peer, then process the message
+
+		CNetServerSession* session = static_cast<CNetServerSession*>(event.peer->data);
+		if (session)
+		{
+			// Create message from raw data
+			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, GetScriptInterface());
+			if (msg)
+			{
+				LOGMESSAGE(L"Net server: Received message %ls of size %lu from %hs", CStrW(msg->ToString()).c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
+
+				HandleMessageReceive(msg, session);
+
+				delete msg;
+			}
+		}
+
+		// Done using the packet
+		enet_packet_destroy(event.packet);
+
+		break;
+	}
+	}
+
+	return true;
 }
 
-void CNetServer::HandleMessageReceive(const CNetMessage* message, CNetServerSession* session)
+void CNetServerWorker::HandleMessageReceive(const CNetMessage* message, CNetServerSession* session)
 {
 	// Update FSM
 	bool ok = session->Update(message->GetType(), (void*)message);
@@ -239,7 +346,7 @@ void CNetServer::HandleMessageReceive(const CNetMessage* message, CNetServerSess
 		LOGERROR(L"Net server: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)session->GetCurrState());
 }
 
-void CNetServer::SetupSession(CNetServerSession* session)
+void CNetServerWorker::SetupSession(CNetServerSession* session)
 {
 	void* context = session;
 
@@ -267,7 +374,7 @@ void CNetServer::SetupSession(CNetServerSession* session)
 	session->SetFirstState(NSS_HANDSHAKE);
 }
 
-bool CNetServer::HandleConnect(CNetServerSession* session)
+bool CNetServerWorker::HandleConnect(CNetServerSession* session)
 {
 	CSrvHandshakeMessage handshake;
 	handshake.m_Magic = PS_PROTOCOL_MAGIC;
@@ -276,7 +383,7 @@ bool CNetServer::HandleConnect(CNetServerSession* session)
 	return session->SendMessage(&handshake);
 }
 
-void CNetServer::OnUserJoin(CNetServerSession* session)
+void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 {
 	AddPlayer(session->GetGUID(), session->GetUserName());
 
@@ -287,18 +394,14 @@ void CNetServer::OnUserJoin(CNetServerSession* session)
 	CPlayerAssignmentMessage assignMessage;
 	ConstructPlayerAssignmentMessage(assignMessage);
 	session->SendMessage(&assignMessage);
-
-	OnAddPlayer();
 }
 
-void CNetServer::OnUserLeave(CNetServerSession* session)
+void CNetServerWorker::OnUserLeave(CNetServerSession* session)
 {
 	RemovePlayer(session->GetGUID());
-
-	OnRemovePlayer();
 }
 
-void CNetServer::AddPlayer(const CStr& guid, const CStrW& name)
+void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 {
 	// Find the first free player ID
 
@@ -322,16 +425,14 @@ void CNetServer::AddPlayer(const CStr& guid, const CStrW& name)
 	SendPlayerAssignments();
 }
 
-void CNetServer::RemovePlayer(const CStr& guid)
+void CNetServerWorker::RemovePlayer(const CStr& guid)
 {
 	m_PlayerAssignments.erase(guid);
 
 	SendPlayerAssignments();
-
-	OnRemovePlayer();
 }
 
-void CNetServer::AssignPlayer(int playerID, const CStr& guid)
+void CNetServerWorker::AssignPlayer(int playerID, const CStr& guid)
 {
 	// Remove anyone who's already assigned to this player
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
@@ -347,7 +448,7 @@ void CNetServer::AssignPlayer(int playerID, const CStr& guid)
 	SendPlayerAssignments();
 }
 
-void CNetServer::ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& message)
+void CNetServerWorker::ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& message)
 {
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
 	{
@@ -359,30 +460,30 @@ void CNetServer::ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& mess
 	}
 }
 
-void CNetServer::SendPlayerAssignments()
+void CNetServerWorker::SendPlayerAssignments()
 {
 	CPlayerAssignmentMessage message;
 	ConstructPlayerAssignmentMessage(message);
 	Broadcast(&message);
 }
 
-ScriptInterface& CNetServer::GetScriptInterface()
+ScriptInterface& CNetServerWorker::GetScriptInterface()
 {
 	return *m_ScriptInterface;
 }
 
-void CNetServer::SetTurnLength(u32 msecs)
+void CNetServerWorker::SetTurnLength(u32 msecs)
 {
 	if (m_ServerTurnManager)
 		m_ServerTurnManager->SetTurnLength(msecs);
 }
 
-bool CNetServer::OnClientHandshake(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 {
 	debug_assert(event->GetType() == (uint)NMT_CLIENT_HANDSHAKE);
 
 	CNetServerSession* session = (CNetServerSession*)context;
-	CNetServer& server = session->GetServer();
+	CNetServerWorker& server = session->GetServer();
 
 	if (server.m_State != SERVER_STATE_PREGAME)
 	{
@@ -406,12 +507,12 @@ bool CNetServer::OnClientHandshake(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetServer::OnAuthenticate(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 {
 	debug_assert(event->GetType() == (uint)NMT_AUTHENTICATE);
 
 	CNetServerSession* session = (CNetServerSession*)context;
-	CNetServer& server = session->GetServer();
+	CNetServerWorker& server = session->GetServer();
 
 	if (server.m_State != SERVER_STATE_PREGAME)
 	{
@@ -442,12 +543,12 @@ bool CNetServer::OnAuthenticate(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetServer::OnInGame(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 {
 	// TODO: should split each of these cases into a separate method
 
 	CNetServerSession* session = (CNetServerSession*)context;
-	CNetServer& server = session->GetServer();
+	CNetServerWorker& server = session->GetServer();
 
 	CNetMessage* message = (CNetMessage*)event->GetParamRef();
 	if (message->GetType() == (uint)NMT_SIMULATION_COMMAND)
@@ -475,12 +576,12 @@ bool CNetServer::OnInGame(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetServer::OnChat(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnChat(void* context, CFsmEvent* event)
 {
 	debug_assert(event->GetType() == (uint)NMT_CHAT);
 
 	CNetServerSession* session = (CNetServerSession*)context;
-	CNetServer& server = session->GetServer();
+	CNetServerWorker& server = session->GetServer();
 
 	CChatMessage* message = (CChatMessage*)event->GetParamRef();
 
@@ -491,31 +592,31 @@ bool CNetServer::OnChat(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetServer::OnLoadedGame(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnLoadedGame(void* context, CFsmEvent* event)
 {
 	debug_assert(event->GetType() == (uint)NMT_LOADED_GAME);
 
 	CNetServerSession* session = (CNetServerSession*)context;
-	CNetServer& server = session->GetServer();
+	CNetServerWorker& server = session->GetServer();
 
 	server.CheckGameLoadStatus(session);
 
 	return true;
 }
 
-bool CNetServer::OnDisconnect(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnDisconnect(void* context, CFsmEvent* event)
 {
 	debug_assert(event->GetType() == (uint)NMT_CONNECTION_LOST);
 
 	CNetServerSession* session = (CNetServerSession*)context;
-	CNetServer& server = session->GetServer();
+	CNetServerWorker& server = session->GetServer();
 
 	server.OnUserLeave(session);
 
 	return true;
 }
 
-void CNetServer::CheckGameLoadStatus(CNetServerSession* changedSession)
+void CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 {
 	for (size_t i = 0; i < m_Sessions.size(); ++i)
 	{
@@ -529,7 +630,7 @@ void CNetServer::CheckGameLoadStatus(CNetServerSession* changedSession)
 	m_State = SERVER_STATE_INGAME;
 }
 
-void CNetServer::StartGame()
+void CNetServerWorker::StartGame()
 {
 	m_ServerTurnManager = new CNetServerTurnManager(*this);
 
@@ -546,7 +647,7 @@ void CNetServer::StartGame()
 	Broadcast(&gameStart);
 }
 
-void CNetServer::UpdateGameAttributes(const CScriptValRooted& attrs)
+void CNetServerWorker::UpdateGameAttributes(const CScriptValRooted& attrs)
 {
 	m_GameAttributes = attrs;
 
@@ -558,7 +659,7 @@ void CNetServer::UpdateGameAttributes(const CScriptValRooted& attrs)
 	Broadcast(&gameSetupMessage);
 }
 
-CStrW CNetServer::SanitisePlayerName(const CStrW& original)
+CStrW CNetServerWorker::SanitisePlayerName(const CStrW& original)
 {
 	const size_t MAX_LENGTH = 32;
 
@@ -580,7 +681,7 @@ CStrW CNetServer::SanitisePlayerName(const CStrW& original)
 	return name;
 }
 
-CStrW CNetServer::DeduplicatePlayerName(const CStrW& original)
+CStrW CNetServerWorker::DeduplicatePlayerName(const CStrW& original)
 {
 	CStrW name = original;
 
@@ -603,4 +704,50 @@ CStrW CNetServer::DeduplicatePlayerName(const CStrW& original)
 
 		name = original + L" (" + CStrW((unsigned long)id++) + L")";
 	}
+}
+
+
+
+
+CNetServer::CNetServer(int autostartPlayers) :
+	m_Worker(new CNetServerWorker(autostartPlayers))
+{
+}
+
+CNetServer::~CNetServer()
+{
+	delete m_Worker;
+}
+
+bool CNetServer::SetupConnection()
+{
+	return m_Worker->SetupConnection();
+}
+
+void CNetServer::AssignPlayer(int playerID, const CStr& guid)
+{
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	m_Worker->m_AssignPlayerQueue.push_back(std::make_pair(playerID, guid));
+}
+
+void CNetServer::StartGame()
+{
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	m_Worker->m_StartGameQueue.push_back(true);
+}
+
+void CNetServer::UpdateGameAttributes(const CScriptVal& attrs, ScriptInterface& scriptInterface)
+{
+	// Pass the attributes as JSON, since that's the easiest safe
+	// cross-thread way of passing script data
+	std::string attrsJSON = scriptInterface.StringifyJSON(attrs.get(), false);
+
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	m_Worker->m_GameAttributesQueue.push_back(attrsJSON);
+}
+
+void CNetServer::SetTurnLength(u32 msecs)
+{
+	CScopeLock lock(m_Worker->m_WorkerMutex);
+	m_Worker->m_TurnLengthQueue.push_back(msecs);
 }

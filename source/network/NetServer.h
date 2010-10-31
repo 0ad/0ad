@@ -20,6 +20,7 @@
 
 #include "NetHost.h"
 
+#include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptVal.h"
 
 #include <vector>
@@ -31,10 +32,12 @@ class ScriptInterface;
 class CPlayerAssignmentMessage;
 class CNetStatsTable;
 
+class CNetServerWorker;
+
 enum NetServerState
 {
 	// We haven't opened the port yet, we're just setting some stuff up.
-	// This is probably equivalent to the first "Start Network Game" screen
+	// The worker thread has not been started.
 	SERVER_STATE_UNCONNECTED,
 
 	// The server is open and accepting connections. This is the screen where
@@ -80,43 +83,80 @@ enum NetServerSessionState
 };
 
 /**
- * Network server.
- * Handles all the coordination between players.
+ * Network server interface. Handles all the coordination between players.
  * One person runs this object, and every player (including the host) connects their CNetClient to it.
  *
- * TODO: ideally the ENet server would run in a separate thread so it can receive
- * and forward messages with minimal latency. But that's not supported now.
+ * The actual work is performed by CNetServerWorker in a separate thread.
  */
 class CNetServer
 {
 	NONCOPYABLE(CNetServer);
 public:
-	CNetServer();
-	virtual ~CNetServer();
-
 	/**
-	 * Get the current server's connection/game state.
+	 * Construct a new network server.
+	 * @param autostartPlayers if positive then StartGame will be called automatically
+	 * once this many players are connected (intended for the command-line testing mode).
 	 */
-	NetServerState GetState() const { return m_State; }
+	CNetServer(int autostartPlayers = -1);
+
+	~CNetServer();
 
 	/**
 	 * Begin listening for network connections.
+	 * This function is synchronous (it won't return until the connection is established).
 	 * @return true on success, false on error (e.g. port already in use)
 	 */
 	bool SetupConnection();
 
 	/**
-	 * Poll the connections for messages from clients and process them, and send
-	 * any queued messages.
-	 * This must be called frequently (i.e. once per frame).
+	 * Call from the GUI to update the player assignments.
+	 * The given GUID will be (re)assigned to the given player ID.
+	 * Any player currently using that ID will be unassigned.
+	 * The changes will be asynchronously propagated to all clients.
 	 */
-	virtual void Poll();
+	void AssignPlayer(int playerID, const CStr& guid);
 
 	/**
-	 * Flush any queued outgoing network messages.
-	 * This should be called soon after sending a group of messages that may be batched together.
+	 * Call from the GUI to asynchronously notify all clients that they should start loading the game.
 	 */
-	void Flush();
+	void StartGame();
+
+	/**
+	 * Call from the GUI to update the game setup attributes.
+	 * This must be called at least once before starting the game.
+	 * The changes will be asynchronously propagated to all clients.
+	 * @param attrs game attributes, in the script context of scriptInterface
+	 */
+	void UpdateGameAttributes(const CScriptVal& attrs, ScriptInterface& scriptInterface);
+
+	/**
+	 * Set the turn length to a fixed value.
+	 * TODO: we should replace this with some adapative lag-dependent computation.
+	 */
+	void SetTurnLength(u32 msecs);
+
+private:
+	CNetServerWorker* m_Worker;
+};
+
+/**
+ * Network server worker thread.
+ * (This is run in a thread so that client/server communication is not delayed
+ * by the host player's framerate - the only delay should be the network latency.)
+ *
+ * Thread-safety:
+ * - SetupConnection and constructor/destructor must be called from the main thread.
+ * - The main thread may push commands onto the Queue members,
+ *   while holding the m_WorkerMutex lock.
+ * - Public functions (SendMessage, Broadcast) must be called from the network
+ *   server thread.
+ */
+class CNetServerWorker
+{
+	NONCOPYABLE(CNetServerWorker);
+
+public:
+	// Public functions for CNetSession/CNetServerTurnManager to use:
 
 	/**
 	 * Send a message to the given network peer.
@@ -128,6 +168,18 @@ public:
 	 * (i.e. are in the pre-game or in-game states).
 	 */
 	bool Broadcast(const CNetMessage* message);
+
+private:
+	friend class CNetServer;
+
+	CNetServerWorker(int autostartPlayers);
+	~CNetServerWorker();
+
+	/**
+	 * Begin listening for network connections.
+	 * @return true on success, false on error (e.g. port already in use)
+	 */
+	bool SetupConnection();
 
 	/**
 	 * Call from the GUI to update the player assignments.
@@ -171,19 +223,9 @@ public:
 	 */
 	void SetTurnLength(u32 msecs);
 
-protected:
-	/// Callback for autostart; called when a player has finished connecting
-	virtual void OnAddPlayer() { }
-	/// Callback for autostart; called when a player has left the game
-	virtual void OnRemovePlayer() { }
-
-private:
 	void AddPlayer(const CStr& guid, const CStrW& name);
 	void RemovePlayer(const CStr& guid);
 	void SendPlayerAssignments();
-	PlayerAssignmentMap m_PlayerAssignments;
-
-	CScriptValRooted m_GameAttributes;
 
 	void SetupSession(CNetServerSession* session);
 	bool HandleConnect(CNetServerSession* session);
@@ -204,12 +246,20 @@ private:
 
 	void HandleMessageReceive(const CNetMessage* message, CNetServerSession* session);
 
+
 	/**
-	 * Internal script context for (de)serializing script messages.
+	 * Internal script context for (de)serializing script messages,
+	 * and for storing game attributes.
 	 * (TODO: we shouldn't bother deserializing (except for debug printing of messages),
 	 * we should just forward messages blindly and efficiently.)
 	 */
 	ScriptInterface* m_ScriptInterface;
+
+	PlayerAssignmentMap m_PlayerAssignments;
+
+	CScriptValRooted m_GameAttributes;
+
+	int m_AutostartPlayers;
 
 	ENetHost* m_Host;
 	std::vector<CNetServerSession*> m_Sessions;
@@ -224,6 +274,24 @@ private:
 	u32 m_NextHostID;
 
 	CNetServerTurnManager* m_ServerTurnManager;
+
+private:
+	// Thread-related stuff:
+
+	static void* RunThread(void* data);
+	void Run();
+	bool RunStep();
+
+	pthread_t m_WorkerThread;
+	CMutex m_WorkerMutex;
+
+	bool m_Shutdown; // protected by m_WorkerMutex
+
+	// Queues for messages sent by the game thread:
+	std::vector<std::pair<int, CStr> > m_AssignPlayerQueue; // protected by m_WorkerMutex
+	std::vector<bool> m_StartGameQueue; // protected by m_WorkerMutex
+	std::vector<std::string> m_GameAttributesQueue; // protected by m_WorkerMutex
+	std::vector<u32> m_TurnLengthQueue; // protected by m_WorkerMutex
 };
 
 /// Global network server for the standard game

@@ -17,8 +17,10 @@
 
 #include "lib/self_test.h"
 
+#include "graphics/TerrainTextureManager.h"
 #include "lib/external_libraries/enet.h"
 #include "lib/external_libraries/sdl.h"
+#include "lib/tex/tex.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
 #include "network/NetTurnManager.h"
@@ -40,12 +42,21 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/L"_testcache"));
 		CXeromyces::Startup();
 
+		// Need some stuff for terrain movement costs:
+		// (TODO: this ought to be independent of any graphics code)
+		tex_codec_register_all();
+		new CTerrainTextureManager;
+		g_TexMan.LoadTerrainTextures();
+
 		enet_initialize();
 	}
 
 	void tearDown()
 	{
 		enet_deinitialize();
+
+		delete &g_TexMan;
+		tex_codec_unregister_all();
 
 		CXeromyces::Terminate();
 		g_VFS.reset();
@@ -69,11 +80,10 @@ public:
 		for (size_t i = 0; ; ++i)
 		{
 //			debug_printf(L".");
-			server.Poll();
 			for (size_t j = 0; j < clients.size(); ++j)
 				clients[j]->Poll();
 
-			if (server.GetState() == SERVER_STATE_PREGAME && clients_are_all(clients, NCS_PREGAME))
+			if (clients_are_all(clients, NCS_PREGAME))
 				break;
 
 			if (i > 20)
@@ -86,6 +96,7 @@ public:
 		}
 	}
 
+#if 0
 	void disconnect(CNetServer& server, const std::vector<CNetClient*>& clients)
 	{
 		for (size_t i = 0; ; ++i)
@@ -107,12 +118,12 @@ public:
 			SDL_Delay(100);
 		}
 	}
+#endif
 
-	void wait(CNetServer& server, const std::vector<CNetClient*>& clients, size_t msecs)
+	void wait(const std::vector<CNetClient*>& clients, size_t msecs)
 	{
 		for (size_t i = 0; i < msecs/10; ++i)
 		{
-			server.Poll();
 			for (size_t j = 0; j < clients.size(); ++j)
 				clients[j]->Poll();
 
@@ -125,6 +136,7 @@ public:
 		// This doesn't actually test much, it just runs a very quick multiplayer game
 		// and prints a load of debug output so you can see if anything funny's going on
 
+		ScriptInterface scriptInterface("Engine");
 		TestStdoutLogger logger;
 
 		std::vector<CNetClient*> clients;
@@ -136,8 +148,8 @@ public:
 		CNetServer server;
 
 		CScriptValRooted attrs;
-		server.GetScriptInterface().Eval("({map:'_default',thing:'example'})", attrs);
-		server.UpdateGameAttributes(attrs);
+		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", attrs);
+		server.UpdateGameAttributes(attrs.get(), scriptInterface);
 
 		CNetClient client1(&client1Game);
 		CNetClient client2(&client2Game);
@@ -151,7 +163,6 @@ public:
 		debug_printf(L"%ls", client1.TestReadGuiMessages().c_str());
 
 		server.StartGame();
-		server.Poll();
 		SDL_Delay(100);
 		for (size_t j = 0; j < clients.size(); ++j)
 		{
@@ -160,7 +171,7 @@ public:
 			clients[j]->LoadFinished();
 		}
 
-		wait(server, clients, 100);
+		wait(clients, 100);
 
 		{
 			CScriptValRooted cmd;
@@ -174,14 +185,14 @@ public:
 			client2Game.GetTurnManager()->PostCommand(cmd);
 		}
 
-		wait(server, clients, 100);
+		wait(clients, 100);
 		client1Game.GetTurnManager()->Update(1.0f);
 		client2Game.GetTurnManager()->Update(1.0f);
 		client3Game.GetTurnManager()->Update(1.0f);
-		wait(server, clients, 100);
+		wait(clients, 100);
 		client1Game.GetTurnManager()->Update(1.0f);
 		client2Game.GetTurnManager()->Update(1.0f);
 		client3Game.GetTurnManager()->Update(1.0f);
-		wait(server, clients, 100);
+		wait(clients, 100);
 	}
 };

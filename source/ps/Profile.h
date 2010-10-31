@@ -25,6 +25,7 @@
 #include <vector>
 #include <map>
 #include "Singleton.h"
+#include "ps/ThreadUtil.h"
 
 #define PROFILE_AMORTIZE
 #define PROFILE_AMORTIZE_FRAMES 50
@@ -158,7 +159,12 @@ public:
 	CProfileSample( const char* name )
 	{
 		if (CProfileManager::IsInitialised())
+		{
+			// The profiler is only safe to use on the main thread
+			debug_assert(ThreadUtil::IsMainThread());
+
 			g_Profiler.Start( name );
+		}
 	}
 	~CProfileSample()
 	{
@@ -173,7 +179,12 @@ public:
 	CProfileSampleScript( const char* name )
 	{
 		if (CProfileManager::IsInitialised())
+		{
+			// The profiler is only safe to use on the main thread
+			debug_assert(ThreadUtil::IsMainThread());
+
 			g_Profiler.StartScript( name );
+		}
 	}
 	~CProfileSampleScript()
 	{

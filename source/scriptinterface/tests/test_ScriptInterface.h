@@ -138,8 +138,7 @@ public:
 		std::string stringified = script.StringifyJSON(val.get());
 		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\":1,\n  \"z\":[2,\n    \"3\xE2\x98\xBA\xEF\xBF\xBD\"\n  ],\n  \"y\":true\n}");
 
-		std::wstring stringifiedw = wstring_from_utf8(stringified.c_str());
-		val = script.ParseJSON(utf16string(stringifiedw.begin(), stringifiedw.end()));
+		val = script.ParseJSON(stringified);
 		TS_ASSERT_WSTR_EQUALS(script.ToString(val.get()), L"({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");
 	}
 };

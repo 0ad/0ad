@@ -161,7 +161,7 @@ bool CNetClientSession::SendMessage(const CNetMessage* message)
 
 
 
-CNetServerSession::CNetServerSession(CNetServer& server, ENetPeer* peer) :
+CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
 	m_Server(server), m_Peer(peer)
 {
 }

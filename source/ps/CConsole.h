@@ -24,10 +24,10 @@
 #include <deque>
 #include <map>
 
-#include "CStr.h"
-
 #include "lib/input.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/CStr.h"
+#include "ps/ThreadUtil.h"
 
 #ifndef INCLUDED_CCONSOLE
 #define INCLUDED_CCONSOLE
@@ -37,6 +37,13 @@
 
 #define CONSOLE_FONT L"mono-10"
 
+/**
+ * In-game console.
+ *
+ * Thread-safety:
+ * - Expected to be constructed/destructed in the main thread.
+ * - InsertMessage may be called from any thread while the object is alive.
+ */
 class CConsole
 {
 public:
@@ -56,7 +63,6 @@ public:
 	void InsertMessage(const wchar_t* szMessage, ...) WPRINTF_ARGS(2);
 	void InsertChar(const int szChar, const wchar_t cooked);
 
-	void SendChatMessage(const wchar_t *szMessage);
 	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
 
 	void SetBuffer(const wchar_t* szMessage);
@@ -75,6 +81,9 @@ public:
 	size_t m_charsPerPage;
 
 private:
+	// Lock for all state modified by InsertMessage
+	CMutex m_Mutex;
+
 	float m_fX;
 	float m_fY;
 
@@ -85,42 +94,38 @@ private:
 	// allows implementing other animations than sliding, e.g. fading in/out.
 	float m_fVisibleFrac;
 	
-	CStrW m_helpText;
-
-	std::deque<std::wstring> m_deqMsgHistory;
+	std::deque<std::wstring> m_deqMsgHistory; // protected by m_Mutex
 	std::deque<std::wstring> m_deqBufHistory;
 
 	int m_iMsgHistPos;
 
-    wchar_t* m_szBuffer;
+	wchar_t* m_szBuffer;
 	int	m_iBufferPos;
 	int	m_iBufferLength;
 
 	VfsPath m_sHistoryFile;
 	int m_MaxHistoryLines;
 
-    bool m_bFocus;
+	bool m_bFocus;
 	bool m_bVisible;	// console is to be drawn
 	bool m_bToggle;		// show/hide animation is currently active
 
 	void ToLower(wchar_t* szMessage, size_t iSize = 0);
 	void Trim(wchar_t* szMessage, const wchar_t cChar = 32, size_t iSize = 0);
 
-    void DrawHistory(void);
-    void DrawWindow(void);
-	void DrawBuffer(void);
-	void DrawCursor(void);
+	void DrawHistory();
+	void DrawWindow();
+	void DrawBuffer();
+	void DrawCursor();
 
-	bool IsEOB(void) {return (m_iBufferPos == m_iBufferLength);}; //Is end of Buffer?
-	bool IsBOB(void) {return (m_iBufferPos == 0);}; //Is beginning of Buffer?
-	bool IsFull(void) {return (m_iBufferLength == CONSOLE_BUFFER_SIZE);};
-	bool IsEmpty(void) {return (m_iBufferLength == 0);};
+	bool IsEOB() { return (m_iBufferPos == m_iBufferLength); } // Is end of Buffer?
+	bool IsBOB() { return (m_iBufferPos == 0); } // Is beginning of Buffer?
+	bool IsFull() { return (m_iBufferLength == CONSOLE_BUFFER_SIZE); }
+	bool IsEmpty() { return (m_iBufferLength == 0); }
 
-	void InsertBuffer(void){InsertMessage(L"%ls", m_szBuffer);};
-    void ProcessBuffer(const wchar_t* szLine);
+	void ProcessBuffer(const wchar_t* szLine);
 
-	// Insert message without printf-style formatting, and without
-	// length limits
+	// Insert message without printf-style formatting, and without length limits
 	void InsertMessageRaw(const CStrW& message);
 
 	void LoadHistory();

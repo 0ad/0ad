@@ -37,6 +37,7 @@
 #include "ps/Hotkey.h"
 #include "ps/Pyrogenesis.h"
 #include "scripting/ScriptingHost.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #define LOG_CATEGORY L"Console"
 
@@ -44,7 +45,6 @@ CConsole* g_Console = 0;
 
 CConsole::CConsole()
 {
-
 	m_bToggle = false;
 	m_bVisible = false;
 
@@ -56,25 +56,8 @@ CConsole::CConsole()
 	m_iMsgHistPos = 1;
 	m_charsPerPage=0;
 	
-	InsertMessage(L"[ 0 A.D. Console v0.12 ]   type \"\\info\" for help");
+	InsertMessage(L"[ 0 A.D. Console v0.14 ]");
 	InsertMessage(L"");
-
-	if (FileExists(L"gui/text/help.txt"))
-	{
-		shared_ptr<u8> buf; size_t size;
-		if ( g_VFS->LoadFile(L"gui/text/help.txt", buf, size) < 0 )
-		{
-			LOG(CLogger::Error, LOG_CATEGORY, L"Help file not found for console");
-			return;
-		}
-		// TODO: read in text mode, or at least get rid of the \r\n somehow
-		// TODO: maybe the help file should be UTF-8 - we assume it's iso-8859-1 here
-		m_helpText = CStrW((const char*)buf.get());
-	}
-	else
-	{
-		InsertMessage(L"No help file found.");
-	}
 }
 
 CConsole::~CConsole()
@@ -218,7 +201,7 @@ void CConsole::Render()
 }
 
 
-void CConsole::DrawWindow(void)
+void CConsole::DrawWindow()
 {
 	// TODO:  Add texturing
 	glDisable(GL_TEXTURE_2D);
@@ -255,10 +238,13 @@ void CConsole::DrawWindow(void)
 }
 
 
-void CConsole::DrawHistory(void) {
+void CConsole::DrawHistory()
+{
 	int i = 1;
 
 	std::deque<std::wstring>::iterator Iter; //History iterator
+
+	CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
 	glPushMatrix();
 		glColor3f(1.0f, 1.0f, 1.0f); //Set color of text
@@ -390,6 +376,8 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 		case SDLK_HOME:
 			if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
 			{
+				CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+
 				int linesShown = (int)m_fHeight/m_iFontHeight - 4;
 				m_iMsgHistPos = clamp((int)m_deqMsgHistory.size() - linesShown, 1, (int)m_deqMsgHistory.size());
 			}
@@ -487,8 +475,12 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 
 		// BEGIN: Message History Lookup
 		case SDLK_PAGEUP:
+		{
+			CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+
 			if (m_iMsgHistPos != (int)m_deqMsgHistory.size()) m_iMsgHistPos++;
 			return;
+		}
 
 		case SDLK_PAGEDOWN:
 			if (m_iMsgHistPos != 1) m_iMsgHistPos--;
@@ -563,13 +555,17 @@ void CConsole::InsertMessageRaw(const CStrW& message)
 	// Split into lines and add each one individually
 	oldNewline = 0;
 
-	while ( (distance = wrapAround.find(newline, oldNewline)) != wrapAround.npos)
 	{
-		distance -= oldNewline;
-		m_deqMsgHistory.push_front(wrapAround.substr(oldNewline, distance));
-		oldNewline += distance+1;
+		CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
+
+		while ( (distance = wrapAround.find(newline, oldNewline)) != wrapAround.npos)
+		{
+			distance -= oldNewline;
+			m_deqMsgHistory.push_front(wrapAround.substr(oldNewline, distance));
+			oldNewline += distance+1;
+		}
+		m_deqMsgHistory.push_front(wrapAround.substr(oldNewline));
 	}
-	m_deqMsgHistory.push_front(wrapAround.substr(oldNewline));
 }
 
 const wchar_t* CConsole::GetBuffer()
@@ -608,64 +604,11 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	SaveHistory(); // Do this each line for the moment; if a script causes
 	               // a crash it's a useful record.
 
-	wchar_t szCommand[CONSOLE_BUFFER_SIZE] = { 0 };
+	// Process it as JavaScript
 
-	if (szLine[0] == '\\')
-	{
-		if (swscanf(szLine, L"\\%ls", szCommand) != 1)
-			return;
-
-		Trim(szCommand);
-		ToLower(szCommand);
-
-		if (!wcscmp(szCommand, L"info"))
-		{
-			InsertMessage(L"");
-			InsertMessage(L"[Information]");
-			InsertMessage(L"   -View commands \"\\commands\"");
-			InsertMessage(L"   -Call command \"\\<command>\"");
-			InsertMessage(L"   -Say \"<string>\"");
-			InsertMessage(L"   -Help - Lists functions usable from console");
-			InsertMessage(L"");
-		}
-		else if (!wcscmp(szCommand, L"commands"))
-		{
-			InsertMessage(L"");
-			InsertMessage(L"[Commands]");
-
-			InsertMessage(L"   (none registered)");
-
-			InsertMessage(L"");
-		}
-		else if (! (wcscmp(szCommand, L"Help") && wcscmp(szCommand, L"help")) )
-		{
-			InsertMessage(L"");
-			InsertMessage(L"[Help]");
-			InsertMessageRaw(m_helpText);
-		}
-		else
-		{
-			InsertMessage(L"unknown command <%ls>", szCommand);
-		}
-	}
-	else if (szLine[0] == ':' || szLine[0] == '?')
-	{
-		// Process it as JavaScript
-
-		jsval rval = g_ScriptingHost.ExecuteScript( szLine+1, L"Console" );
-		if (szLine[0] == '?' && rval)
-		{
-			try {
-				InsertMessage( L"%ls", g_ScriptingHost.ValueToUCString( rval ).c_str() );
-			} catch (PSERROR_Scripting_ConversionFailed) {
-				InsertMessage( L"%hs", "<error converting return value to string>" );
-			}
-		}
-	}
-	else
-	{
-		SendChatMessage(szLine);
-	}
+	jsval rval = g_ScriptingHost.ExecuteScript(szLine, L"Console");
+	if (!JSVAL_IS_VOID(rval))
+		InsertMessage(L"%ls", g_ScriptingHost.GetScriptInterface().ToString(rval).c_str());
 }
 
 void CConsole::LoadHistory()
@@ -714,15 +657,6 @@ void CConsole::SaveHistory()
 		buffer.Append(&newline, 1);
 	}
 	g_VFS->CreateFile(m_sHistoryFile, buffer.Data(), buffer.Size());
-}
-
-void CConsole::SendChatMessage(const wchar_t *pText)
-{
-	if (g_NetClient)
-	{
-		// TODO
-//		g_NetClient3->SendChatMessage(pText);
-	}
 }
 
 void CConsole::ReceivedChatMessage(const wchar_t *szSender, const wchar_t *szMessage)

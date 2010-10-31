@@ -19,15 +19,25 @@
 #define INCLUDED_NETSTATS
 
 #include "ps/ProfileViewer.h"
+#include "ps/ThreadUtil.h"
 
 typedef struct _ENetPeer ENetPeer;
 typedef struct _ENetHost ENetHost;
 
+/**
+ * ENet connection statistics profiler table.
+ *
+ * Thread-safety:
+ * - Must be constructed in the main thread (to match the profiler).
+ * - In host mode, the host can be running in a separate thread;
+ *   call LatchHostState from that thread periodically to safely
+ *   update our displayed copy of the data.
+ */
 class CNetStatsTable : public AbstractProfileTable
 {
 	NONCOPYABLE(CNetStatsTable);
 public:
-	CNetStatsTable(const ENetHost* host);
+	CNetStatsTable();
 	CNetStatsTable(const ENetPeer* peer);
 
 	virtual CStr GetName();
@@ -37,10 +47,14 @@ public:
 	virtual CStr GetCellText(size_t row, size_t col);
 	virtual AbstractProfileTable* GetChild(size_t row);
 
+	void LatchHostState(const ENetHost* host);
+
 private:
-	const ENetHost* m_Host;
 	const ENetPeer* m_Peer;
 	std::vector<ProfileColumn> m_ColumnDescriptions;
+
+	CMutex m_Mutex;
+	std::vector<std::vector<CStr> > m_LatchedData; // protected by m_Mutex
 };
 
 #endif // INCLUDED_NETSTATS

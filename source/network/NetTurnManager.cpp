@@ -294,7 +294,7 @@ void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))
 
 
 
-CNetServerTurnManager::CNetServerTurnManager(CNetServer& server) :
+CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server) :
 	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP)
 {
 }

@@ -31,26 +31,27 @@ function init(data)
 	var ldTitleBar = getGUIObjectByName ("ldTitleBar");
 	var ldText = getGUIObjectByName ("ldText");
 	
-	switch(data.attribs.mapType)
+	if (data)
 	{
-	case "scenario":
-		ldTitleBar.caption = "Loading Scenario";
-		ldText.caption = "Loading " + mapName + "\nPlease wait...";
-		break;
-		
-	case "random":
-		ldTitleBar.caption = "Loading Random Map";
-		ldText.caption = "Generating " + mapName + "\nPlease wait...";
-		break;
-		
-	default:
-		error("Unkown map type: "+data.attribs.mapType);
+		switch (data.attribs.mapType)
+		{
+		case "scenario":
+			ldTitleBar.caption = "Loading Scenario";
+			ldText.caption = "Loading " + mapName + "\nPlease wait...";
+			break;
+
+		case "random":
+			ldTitleBar.caption = "Loading Random Map";
+			ldText.caption = "Generating " + mapName + "\nPlease wait...";
+			break;
+
+		default:
+			error("Unkown map type: "+data.attribs.mapType);
+		}
 	}
-	
-	
-	getGUIObjectByName ("ldProgressBarText").caption = "";
-	getGUIObjectByName ("ldProgressBar").caption = 0;
-	
+
+	getGUIObjectByName("ldProgressBarText").caption = "";
+	getGUIObjectByName("ldProgressBar").caption = 0;
 
 	// Pick a random tip of the day (each line is a separate tip).
 	var tipArray = readFileLines("gui/text/tips.txt");
@@ -73,5 +74,5 @@ function reallyStartGame()
 	Engine.SwitchGuiPage("page_session_new.xml", g_Data);
 	
 	// Restore default cursor.
-	setCursor ("arrow-default");
+	setCursor("arrow-default");
 }

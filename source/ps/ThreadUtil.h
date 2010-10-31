@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,71 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
-ThreadUtil.h - Thread Utility Functions
-
---Overview-- 
-
-Contains three classes: CMutex, CRWLock and CLocker.
-CMutex is a Mutual Exclusion lock that can be locked and unlocked. The Lock
-function waits for the current lock holder (if any) to release the lock and
-then acquires it.
-
-CRWLock is a lock where any number of readers *or* one writer can hold the lock.
-
-CLocker is a generic wrapper class that can wrap any data class with any locker
-class.
-
---Example--
-
-CMutex usage:
-
-	CMutex protectData;
-
-	void function()
-	{
-		protectData.Lock();
-		.. do stuff with data ..
-		protectData.Unlock();
-	}
-
-CLocker usage:
-
-	class CDataClass {};
-	CLocker<CDataClass> instance;
-	
-	void function()
-	{
-		instance.Lock();
-		.. do stuff with instance ..
-		instance.Unlock();
-	}
-
-CLocker usage 2:
-
-	class CDataClass {};
-	class CCustomLockerClass { void MyOwnLock(); void MyOwnUnlock(); };
-	
-	CLocker<CDataClass, CCustomLockerClass> instance;
-	
-	void function()
-	{
-		instance.MyOwnLock();
-		.. do stuff with instance ..
-		instance.MyOwnUnlock();
-	}
-
---More Info--
-
-
-*/
-
-#ifndef _ThreadUtil_h
-#define _ThreadUtil_h
-
-//--------------------------------------------------------
-//  Includes / Compiler directives
-//--------------------------------------------------------
+#ifndef INCLUDED_THREADUTIL
+#define INCLUDED_THREADUTIL
 
 #include "lib/posix/posix_pthread.h"
 
@@ -102,98 +39,79 @@ CLocker usage 2:
 
 #endif
 
-//-------------------------------------------------
-// Types
-//-------------------------------------------------
-
-//-------------------------------------------------
-// Declarations
-//-------------------------------------------------
-
 /**
- * A Mutual Exclusion lock.
+ * A non-recursive mutual exclusion lock.
  */
 class CMutex
 {
+	NONCOPYABLE(CMutex);
+
+	friend class CScopeLock;
+
 public:
-	inline CMutex()
+	CMutex()
 	{
-		pthread_mutex_init(&m_Mutex, NULL);
+		int ret = pthread_mutex_init(&m_Mutex, NULL);
+		debug_assert(ret == 0);
 	}
 	
-	inline ~CMutex()
+	~CMutex()
 	{
-		if (pthread_mutex_destroy(&m_Mutex) != 0)
-		{
-			Unlock();
-			pthread_mutex_destroy(&m_Mutex);
-		}
-	}
-
-	/**
-	 * Atomically wait for the mutex to become unlocked, then lock it.
-	 */
-	inline void Lock()
-	{
-		LOCK_MUTEX(&m_Mutex);
-	}
-
-	/**
-	 * Unlock the mutex.
-	 */
-	inline void Unlock()
-	{
-		UNLOCK_MUTEX(&m_Mutex);
-	}
-
-	pthread_mutex_t m_Mutex;
-};
-
-// CScopeLock
-// ---------------------------------------------------------------------| Class
-// Locks a CMutex over the objects lifetime
-class CScopeLock
-{
-	NONCOPYABLE(CScopeLock);
-public:
-	inline CScopeLock(pthread_mutex_t &mutex): m_Mutex(mutex)
-	{
-		LOCK_MUTEX(&m_Mutex);
-	}
-	
-	inline CScopeLock(CMutex &mutex): m_Mutex(mutex.m_Mutex)
-	{
-		LOCK_MUTEX(&m_Mutex);
-	}
-	
-	inline ~CScopeLock()
-	{
-		UNLOCK_MUTEX(&m_Mutex);
+		int ret = pthread_mutex_destroy(&m_Mutex);
+		debug_assert(ret == 0);
 	}
 
 private:
-	pthread_mutex_t &m_Mutex;
+	pthread_mutex_t m_Mutex;
 };
 
-// CLocker
-// ---------------------------------------------------------------------| Class
-// This will not give access to the wrapped class constructors directly,
-// to use them you have to do CLocker(CWrappedClass(args))
-template <typename _T>
-struct CLocker: public CMutex, public _T
+/**
+ * Locks a CMutex over this object's lifetime.
+ * The mutexes are non-recursive - a single thread locking a mutex more than once
+ * results in undefined behaviour.
+ */
+class CScopeLock
 {
-public: 
-	inline CLocker()
-	{}
+	NONCOPYABLE(CScopeLock);
 
-	/*
-	GCC doesn't take these... I don't understand what the problem is! // Simon
-	
-	inline CLocker(const _T &arg): _T(arg)
-	{}
-	
-	inline CLocker(_T &arg): _T(arg)
-	{}*/
+public:
+	CScopeLock(pthread_mutex_t* mutex) :
+		m_Mutex(mutex)
+	{
+		LOCK_MUTEX(m_Mutex);
+	}
+
+	CScopeLock(CMutex& mutex) :
+		m_Mutex(&mutex.m_Mutex)
+	{
+		LOCK_MUTEX(m_Mutex);
+	}
+
+	~CScopeLock()
+	{
+		UNLOCK_MUTEX(m_Mutex);
+	}
+
+private:
+	pthread_mutex_t* m_Mutex;
 };
 
-#endif
+
+namespace ThreadUtil
+{
+
+/**
+ * Returns whether the current thread is the 'main' thread
+ * (i.e. matches an earlier call to SetMainThread).
+ */
+bool IsMainThread();
+
+/**
+ * Set the current thread as the 'main' thread.
+ * (This is called during engine initialisation.)
+ */
+void SetMainThread();
+
+}
+
+#endif // INCLUDED_THREADUTIL

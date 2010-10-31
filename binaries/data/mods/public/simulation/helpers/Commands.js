@@ -11,6 +11,11 @@ function ProcessCommand(player, cmd)
 		print(cmd.message);
 		break;
 
+	case "reveal-map":
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		cmpRangeManager.SetLosRevealAll(cmd.enable);
+		break;
+
 	case "walk":
 		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
 		if (cmpUnitAI)

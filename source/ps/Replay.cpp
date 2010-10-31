@@ -138,9 +138,7 @@ void CReplayPlayer::Replay()
 		{
 			std::string line;
 			std::getline(*m_Stream, line);
-			std::wstring linew = wstring_from_utf8(line);
-			utf16string line16(linew.begin(), linew.end());
-			CScriptValRooted attribs = game.GetSimulation2()->GetScriptInterface().ParseJSON(line16);
+			CScriptValRooted attribs = game.GetSimulation2()->GetScriptInterface().ParseJSON(line);
 
 			game.StartGame(attribs);
 			LDR_NonprogressiveLoad();
@@ -159,9 +157,7 @@ void CReplayPlayer::Replay()
 
 			std::string line;
 			std::getline(*m_Stream, line);
-			std::wstring linew = wstring_from_utf8(line);
-			utf16string line16(linew.begin(), linew.end());
-			CScriptValRooted data = game.GetSimulation2()->GetScriptInterface().ParseJSON(line16);
+			CScriptValRooted data = game.GetSimulation2()->GetScriptInterface().ParseJSON(line);
 
 			SimulationCommand cmd = { player, data };
 			commands.push_back(cmd);

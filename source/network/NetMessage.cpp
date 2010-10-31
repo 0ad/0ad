@@ -27,121 +27,81 @@
 #define ALLNETMSGS_IMPLEMENT
 #include "NetMessages.h"
 
-//-----------------------------------------------------------------------------
-// Name: CNetMessage()
-// Desc: Constructor
-//-----------------------------------------------------------------------------
-CNetMessage::CNetMessage( void )
+CNetMessage::CNetMessage()
 {
 	m_Type	= NMT_INVALID;
 }
 
-//-----------------------------------------------------------------------------
-// Name: CNetMessage()
-// Desc: Constructor
-//-----------------------------------------------------------------------------
-CNetMessage::CNetMessage( NetMessageType type )
+CNetMessage::CNetMessage(NetMessageType type)
 {
 	m_Type  = type;
 }
 
-//-----------------------------------------------------------------------------
-// Name: ~CNetMessage()
-// Desc: Destructor
-//-----------------------------------------------------------------------------
-CNetMessage::~CNetMessage( void )
+CNetMessage::~CNetMessage()
 {
 }
 
-//-----------------------------------------------------------------------------
-// Name: Serialize()
-// Desc: Serializes the message into the buffer parameter
-//-----------------------------------------------------------------------------
-u8* CNetMessage::Serialize( u8* pBuffer ) const
+u8* CNetMessage::Serialize(u8* pBuffer) const
 {
-	// Validate parameters
-	if ( !pBuffer ) return NULL;
-
 	size_t size = GetSerializedLength();
-	Serialize_int_1( pBuffer, m_Type );
-	Serialize_int_2( pBuffer, size );
+	Serialize_int_1(pBuffer, m_Type);
+	Serialize_int_2(pBuffer, size);
 
 	return pBuffer;
 }
 
-//-----------------------------------------------------------------------------
-// Name: Deserialize()
-// Desc: Loads this message from the specified buffer parameter
-//-----------------------------------------------------------------------------
-const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
+const u8* CNetMessage::Deserialize(const u8* pStart, const u8* pEnd)
 {
-	// Validate parameters
-	if ( !pStart || !pEnd )	return NULL;
-
-	debug_assert( pStart + 3 <= pEnd );
+	if (pStart + 3 > pEnd)
+	{
+		LOGERROR(L"CNetMessage: Corrupt packet (smaller than header)");
+		return NULL;
+	}
 
 	const u8* pBuffer = pStart;
 
 	int type;
 	size_t size;
-	Deserialize_int_1( pBuffer, type );
-	Deserialize_int_2( pBuffer, size );
+	Deserialize_int_1(pBuffer, type);
+	Deserialize_int_2(pBuffer, size);
 	m_Type = (NetMessageType)type;
 
-	debug_assert( pStart + size == pEnd );
+	if (pStart + size != pEnd)
+	{
+		LOGERROR(L"CNetMessage: Corrupt packet (incorrect size)");
+		return NULL;
+	}
 
 	return pBuffer;
 }
 
-//-----------------------------------------------------------------------------
-// Name: GetSerializedLength()
-// Desc: Returns the size of the serialized message
-//-----------------------------------------------------------------------------
-size_t CNetMessage::GetSerializedLength( void ) const
+size_t CNetMessage::GetSerializedLength() const
 {
 	// By default, return header size
 	return 3;
 }
 
-//-----------------------------------------------------------------------------
-// Name: ToString()
-// Desc: Returns a string representation for the message
-//-----------------------------------------------------------------------------
-CStr CNetMessage::ToString( void ) const
+CStr CNetMessage::ToString() const
 {
-	CStr ret;
+	// This is called only when the subclass doesn't override it
 
-	// Not defined yet?
-	if ( GetType() == NMT_INVALID )
-	{
-		ret = "MESSAGE_TYPE_NONE { Undefined Message }";
-	}
+	if (GetType() == NMT_INVALID)
+		return "MESSAGE_TYPE_NONE { Undefined Message }";
 	else
-	{
-		ret = " Unknown Message " + CStr( GetType() );
-	}
-
-	return ret;
+		return "Unknown Message " + CStr(GetType());
 }
 
-//-----------------------------------------------------------------------------
-// Name: CreateMessage()
-// Desc: Creates the appropriate message based on the given data
-//-----------------------------------------------------------------------------
 CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 											   size_t dataSize,
 											   ScriptInterface& scriptInterface)
 {
-	CNetMessage*	pNewMessage = NULL;
-	CNetMessage		header;
-
-	// Validate parameters
-	if ( !pData ) return NULL;
+	CNetMessage* pNewMessage = NULL;
+	CNetMessage header;
 
 	// Figure out message type
-	header.Deserialize( ( const u8* )pData, ( const u8* )pData  + dataSize );
+	header.Deserialize((const u8*)pData, (const u8*)pData + dataSize);
 
-	switch ( header.GetType() )
+	switch (header.GetType())
 	{
 	case NMT_GAME_SETUP:
 		pNewMessage = new CGameSetupMessage(scriptInterface);
@@ -204,34 +164,8 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		break;
 	}
 
-	if ( pNewMessage )
-		pNewMessage->Deserialize( ( const u8* )pData, ( const u8* )pData + dataSize );
+	if (pNewMessage)
+		pNewMessage->Deserialize((const u8*)pData, (const u8*)pData + dataSize);
 
 	return pNewMessage;
-}
-
-CNetMessage* CNetMessageFactory::CloneMessage( const CNetMessage* message, ScriptInterface& scriptInterface )
-{
-	// TODO: maybe this could be implemented more efficiently,
-	// particularly for script messages where serialisation is
-	// relatively expensive
-
-	size_t len = message->GetSerializedLength();
-	u8* buffer = new u8[len];
-
-	u8* bufend = message->Serialize(buffer);
-
-	if (!bufend)
-	{
-		delete[] buffer;
-		return NULL;
-	}
-
-	debug_assert(bufend == buffer+len);
-
-	CNetMessage* ret = CreateMessage(buffer, len, scriptInterface);
-
-	delete[] buffer;
-
-	return ret;
 }

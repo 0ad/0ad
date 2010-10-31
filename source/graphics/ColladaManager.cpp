@@ -26,8 +26,6 @@
 #include "ps/DllLoader.h"
 #include "ps/Filesystem.h"
 
-#define LOG_CATEGORY L"collada"
-
 namespace Collada
 {
 	#include "collada/DLL.h"
@@ -37,8 +35,12 @@ namespace
 {
 	void ColladaLog(int severity, const char* text)
 	{
-		const CLogger::ELogMethod method = severity == LOG_INFO ? CLogger::Normal : severity == LOG_WARNING ? CLogger::Warning : CLogger::Error;
-		LOG(method, LOG_CATEGORY, L"%hs", text);
+		if (severity == LOG_INFO)
+			LOGMESSAGE(L"Collada message: %hs", text);
+		else if (severity == LOG_WARNING)
+			LOGWARNING(L"Collada warning: %hs", text);
+		else
+			LOGERROR(L"Collada error: %hs", text);
 	}
 
 	void ColladaOutput(void* cb_data, const char* data, unsigned int length)
@@ -81,7 +83,7 @@ public:
 		{
 			if (! dll.LoadDLL())
 			{
-				LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Failed to load COLLADA conversion DLL");
+				LOGERROR(L"Failed to load COLLADA conversion DLL");
 				return false;
 			}
 
@@ -94,7 +96,7 @@ public:
 			}
 			catch (PSERROR_DllLoader&)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load symbols from COLLADA conversion DLL");
+				LOGERROR(L"Failed to load symbols from COLLADA conversion DLL");
 				dll.Unload();
 				return false;
 			}
@@ -104,7 +106,7 @@ public:
 			CVFSFile skeletonFile;
 			if (skeletonFile.Load(g_VFS, L"art/skeletons/skeletons.xml") != PSRETURN_OK)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to read skeleton definitions");
+				LOGERROR(L"Failed to read skeleton definitions");
 				dll.Unload();
 				return false;
 			}
@@ -112,7 +114,7 @@ public:
 			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
 			if (ok < 0)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load skeleton definitions");
+				LOGERROR(L"Failed to load skeleton definitions");
 				dll.Unload();
 				return false;
 			}
@@ -214,7 +216,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	if (g_VFS->GetFileInfo(dae, &fileInfo) < 0)
 	{
 		// This shouldn't occur for any sensible reasons
-		LOG(CLogger::Error, LOG_CATEGORY, L"Failed to stat DAE file '%ls'", dae.string().c_str());
+		LOGERROR(L"Failed to stat DAE file '%ls'", dae.string().c_str());
 		return VfsPath();
 	}
 

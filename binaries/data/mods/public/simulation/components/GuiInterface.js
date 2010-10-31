@@ -264,7 +264,6 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 };
 
 /**
-/**
  * Displays the rally point of a building
  */
 GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)

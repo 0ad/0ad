@@ -22,7 +22,7 @@
 
 #include <map>
 
-class CNetServer;
+class CNetServerWorker;
 class CNetClient;
 class CSimulationMessage;
 class CSimulation2;
@@ -183,12 +183,15 @@ protected:
  * The server-side counterpart to CNetClientTurnManager.
  * Records the turn state of each client, and sends turn advancement messages
  * when all clients are ready.
+ *
+ * Thread-safety:
+ * - This is constructed and used by CNetServerWorker in the network server thread.
  */
 class CNetServerTurnManager
 {
 	NONCOPYABLE(CNetServerTurnManager);
 public:
-	CNetServerTurnManager(CNetServer& server);
+	CNetServerTurnManager(CNetServerWorker& server);
 
 	void NotifyFinishedClientCommands(int client, u32 turn);
 
@@ -215,7 +218,7 @@ protected:
 	// Current turn length
 	u32 m_TurnLength;
 
-	CNetServer& m_NetServer;
+	CNetServerWorker& m_NetServer;
 };
 
 #endif // INCLUDED_NETTURNMANAGER
