@@ -439,7 +439,6 @@ void TerrainRenderer::RenderWater()
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	debug_assert(!cmpRangeManager.null());
 	ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
-	bool losRevealAll = cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID());
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -592,7 +591,7 @@ void TerrainRenderer::RenderWater()
 					float terrainHeight = terrain->GetVertexGroundLevel(ix, iz);
 
 					float losMod;
-					if (losRevealAll || los.IsVisible(ix, iz))
+					if (los.IsVisible(ix, iz))
 						losMod = 1.0f;
 					else if (los.IsExplored(ix, iz))
 						losMod = 0.7f;
