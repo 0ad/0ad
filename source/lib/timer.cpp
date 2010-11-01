@@ -82,22 +82,32 @@ void timer_LatchStartTime()
 }
 
 
-static void EnsureMonotonic(double& t)
+// NB: does not guarantee strict monotonicity - callers must avoid
+// dividing by the difference of two equal times.
+// (this avoids having to update maxRepresentation when
+// updating newTime to the (more recent) oldTime)
+static void EnsureMonotonic(double& newTime)
 {
-//retry:
-//	static i64 t_lastBits;	// initially 0.0
-//	memcpy(&t_lastBits, &m_seconds, sizeof(t_lastBits));
-//
-//	i64 tBits;
-//	memcpy(&tBits, &seconds, sizeof(tBits));
-//
-//	if(!cpu_CAS64((volatile i64*)&m_seconds, t_lastBits, tBits))
-//		goto retry;
-//
-//	static double t_last = 0.0;
-//	if(t < t_last)
-//		t = t_last;
-//	t_last = t;
+	i64 newRepresentation;
+	memcpy(&newRepresentation, &newTime, sizeof(newRepresentation));
+
+	// representation of the latest time reported by any thread
+	static volatile i64 maxRepresentation;	// initially 0.0
+
+retry:
+	const i64 oldRepresentation = maxRepresentation;	// latch
+	double oldTime;
+	memcpy(&oldTime, &oldRepresentation, sizeof(oldTime));
+	// a previous or concurrent call got a more recent time -
+	// return that and avoid updating maxRepresentation.
+	if(newTime < oldTime)
+	{
+		newTime = oldTime;
+		return;
+	}
+
+	if(!cpu_CAS64(&maxRepresentation, oldRepresentation, newRepresentation))
+		goto retry;
 }
 
 
