@@ -41,11 +41,11 @@ void WriteBuffer::Append(const void* data, size_t size)
 	{
 		m_capacity = round_up_to_pow2(m_size + size);
 		shared_ptr<u8> newData = io_Allocate(m_capacity);
-		cpu_memcpy(newData.get(), m_data.get(), m_size);
+		memcpy(newData.get(), m_data.get(), m_size);
 		m_data = newData;
 	}
 
-	cpu_memcpy(m_data.get() + m_size, data, size);
+	memcpy(m_data.get() + m_size, data, size);
 	m_size += size;
 }
 
@@ -53,7 +53,7 @@ void WriteBuffer::Append(const void* data, size_t size)
 void WriteBuffer::Overwrite(const void* data, size_t size, size_t offset)
 {
 	debug_assert(offset+size < m_size);
-	cpu_memcpy(m_data.get()+offset, data, size);
+	memcpy(m_data.get()+offset, data, size);
 }
 
 
@@ -93,7 +93,7 @@ LibError UnalignedWriter::Append(const u8* data, size_t size) const
 		}
 
 		const size_t chunkSize = std::min(size, BLOCK_SIZE-m_bytesUsed);
-		cpu_memcpy(m_alignedBuf.get()+m_bytesUsed, data, chunkSize);
+		memcpy(m_alignedBuf.get()+m_bytesUsed, data, chunkSize);
 		m_bytesUsed += chunkSize;
 		data += chunkSize;
 		size -= chunkSize;

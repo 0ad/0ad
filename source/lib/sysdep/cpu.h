@@ -111,22 +111,11 @@ inline void cpu_Pause()
 // misc
 
 /**
- * drop-in replacement for POSIX memcpy().
- **/
-LIB_API void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
-
-
-/**
  * set the FPU control word to "desirable" values (see implementation)
  **/
 LIB_API void cpu_ConfigureFloatingPoint();
 
-// convert float to int much faster than _ftol2, which would normally be
-// used by (int) casts.
-// VC8 and GCC with -ffast-math now manage to generate SSE instructions,
-// so our implementation is no longer needed.
-#define cpu_i32FromFloat(f)  ((i32)(f))
-#define cpu_i32FromDouble(d) ((i32)(d))
-#define cpu_i64FromDouble(d) ((i64)(d))
+// NB: cpu_i64FromDouble et al. were faster than _ftol2, but are obsolete
+// since VC8 and GCC (with -ffast-math) generate SSE instructions.
 
 #endif	// #ifndef INCLUDED_CPU

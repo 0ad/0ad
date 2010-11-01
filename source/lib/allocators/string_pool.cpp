@@ -28,7 +28,6 @@
 #include "lib/allocators/string_pool.h"
 
 #include "lib/rand.h"
-#include "lib/sysdep/cpu.h"	// cpu_memcpy
 
 
 StringPool::StringPool(size_t maxSize)
@@ -63,7 +62,7 @@ const char* StringPool::UniqueCopy(const char* string)
 	char* uniqueCopy = (char*)pool_alloc(&m_pool, length+1);
 	if(!uniqueCopy)
 		throw std::bad_alloc();
-	cpu_memcpy((void*)uniqueCopy, string, length);
+	memcpy((void*)uniqueCopy, string, length);
 	uniqueCopy[length] = '\0';
 
 	m_map.insert(uniqueCopy, uniqueCopy);

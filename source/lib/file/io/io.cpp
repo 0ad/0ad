@@ -24,7 +24,6 @@
 #include "lib/file/io/io.h"
 
 #include "lib/allocators/allocators.h"	// AllocatorChecker
-#include "lib/sysdep/cpu.h"	// cpu_memcpy
 #include "lib/file/file.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/file/io/block_cache.h"
@@ -35,7 +34,7 @@ static const size_t ioDepth = 16;
 
 // the underlying aio implementation likes buffer and offset to be
 // sector-aligned; if not, the transfer goes through an align buffer,
-// and requires an extra cpu_memcpy.
+// and requires an extra memcpy.
 //
 // if the user specifies an unaligned buffer, there's not much we can
 // do - we can't assume the buffer contains padding. therefore,
@@ -138,7 +137,7 @@ public:
 				// copy from cache into user buffer
 				if(alignedBuf)
 				{
-					cpu_memcpy(alignedBuf, m_cachedBlock.get(), BLOCK_SIZE);
+					memcpy(alignedBuf, m_cachedBlock.get(), BLOCK_SIZE);
 					m_alignedBuf = alignedBuf;
 				}
 				// return cached block

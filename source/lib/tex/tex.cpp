@@ -191,7 +191,7 @@ static void create_level(size_t level, size_t level_w, size_t level_h, const u8*
 	if(level == 0)
 	{
 		debug_assert(level_data_size == cld->prev_level_data_size);
-		cpu_memcpy(dst, src, level_data_size);
+		memcpy(dst, src, level_data_size);
 	}
 	else
 	{
@@ -356,7 +356,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	else
 	{
 		src = (const u8*)newData.get();
-		cpu_memcpy(newData.get(), data, data_size);
+		memcpy(newData.get(), data, data_size);
 	}
 
 	// no conversion necessary
@@ -366,7 +366,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		{
 			for(size_t y = 0; y < h; y++)
 			{
-				cpu_memcpy(dst, src, pitch);
+				memcpy(dst, src, pitch);
 				dst += pitch;
 				src += row_ofs;
 			}

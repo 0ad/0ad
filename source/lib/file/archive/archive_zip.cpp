@@ -36,7 +36,6 @@
 #include "lib/fat_time.h"
 #include "lib/path_util.h"
 #include "lib/allocators/pool.h"
-#include "lib/sysdep/cpu.h"		// cpu_memcpy
 #include "lib/file/archive/archive.h"
 #include "lib/file/archive/codec_zlib.h"
 #include "lib/file/archive/stream.h"
@@ -81,7 +80,7 @@ public:
 		m_fn_len    = to_le16(u16_from_larger(pathnameLength));
 		m_e_len     = to_le16(0);
 
-		cpu_memcpy((char*)this + sizeof(LFH), pathname_c.string().c_str(), pathnameLength);
+		memcpy((char*)this + sizeof(LFH), pathname_c.string().c_str(), pathnameLength);
 	}
 
 	size_t Size() const
@@ -133,7 +132,7 @@ public:
 		m_x3        = to_le32(0);
 		m_lfh_ofs   = to_le32(u32_from_larger(ofs));
 
-		cpu_memcpy((char*)this + sizeof(CDFH), pathname_c.string().c_str(), pathnameLength);
+		memcpy((char*)this + sizeof(CDFH), pathname_c.string().c_str(), pathnameLength);
 	}
 
 	fs::wpath Pathname() const
@@ -332,7 +331,7 @@ private:
 		LFH_Copier* p = (LFH_Copier*)cbData;
 
 		debug_assert(size <= p->lfh_bytes_remaining);
-		cpu_memcpy(p->lfh_dst, block, size);
+		memcpy(p->lfh_dst, block, size);
 		p->lfh_dst += size;
 		p->lfh_bytes_remaining -= size;
 

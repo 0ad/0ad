@@ -54,7 +54,7 @@ namespace I18n
 			ref = new strImW_data;
 			size_t len = wcslen(s)+1;
 			ref->data = new wchar_t[len];
-			cpu_memcpy((void*)ref->data, s, len*sizeof(wchar_t));
+			memcpy((void*)ref->data, s, len*sizeof(wchar_t));
 		}
 
 		StrImW(const char* s)

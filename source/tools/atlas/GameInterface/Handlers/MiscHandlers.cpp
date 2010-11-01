@@ -87,9 +87,9 @@ QUERYHANDLER(CinemaRecord)
 //* // TODO: BGR24 output doesn't need flipping, YUV420 and RGBA32 do
 		for (int y = 0; y < h/2; ++y)
 		{
-			cpu_memcpy(temp, &img[y*w*3], w*3);
-			cpu_memcpy(&img[y*w*3], &img[(h-1-y)*w*3], w*3);
-			cpu_memcpy(&img[(h-1-y)*w*3], temp, w*3);
+			memcpy(temp, &img[y*w*3], w*3);
+			memcpy(&img[y*w*3], &img[(h-1-y)*w*3], w*3);
+			memcpy(&img[(h-1-y)*w*3], temp, w*3);
 		}
 //*/
 

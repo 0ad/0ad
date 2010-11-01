@@ -97,7 +97,7 @@ bool XMLWriter_File::StoreVFS(const PIVFS& vfs, const VfsPath& pathname)
 
 	const size_t size = m_Data.length();
 	shared_ptr<u8> data = io_Allocate(size);
-	cpu_memcpy(data.get(), m_Data.data(), size);
+	memcpy(data.get(), m_Data.data(), size);
 	LibError ret = vfs->CreateFile(pathname, data, size);
 	if (ret < 0)
 	{

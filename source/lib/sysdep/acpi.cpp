@@ -248,7 +248,7 @@ static void* UnsafeAllocateAndCopyTable(PCV_u8 mem, size_t numBytes, void* arg)
 	if(!copy)
 		return FAILED;
 
-	cpu_memcpy((void*)copy, (const void*)mem, tableSize);
+	memcpy((void*)copy, (const void*)mem, tableSize);
 	return (void*)copy;
 }
 

@@ -207,7 +207,7 @@ void CVertexBuffer::AppendBatch(VBChunk* UNUSED(chunk),Handle texture,size_t num
 
 	// resize the chunk's batch to fit its indices
 	batch->m_IndexData.push_back(std::pair<size_t,u16*>(numIndices,indices));
-//	cpu_memcpy(&batch->m_Indices[0]+cursize,indices,sizeof(u16)*numIndices);
+//	memcpy(&batch->m_Indices[0]+cursize,indices,sizeof(u16)*numIndices);
 }
 
 
@@ -224,7 +224,7 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
 	} else {
 		debug_assert(m_SysMem);
-		cpu_memcpy(m_SysMem + chunk->m_Index * m_VertexSize, data, chunk->m_Count * m_VertexSize);
+		memcpy(m_SysMem + chunk->m_Index * m_VertexSize, data, chunk->m_Count * m_VertexSize);
 	}
 }
 

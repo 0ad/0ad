@@ -72,7 +72,7 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 	{
 		const size_t copySize = sizeof(wchar_t) * LOG_CHARS/2;
 		wchar_t* const middle = &debug_log[LOG_CHARS/2];
-		cpu_memcpy(debug_log, middle, copySize);
+		memcpy(debug_log, middle, copySize);
 		memset(middle, 0, copySize);
 		debug_log_pos -= LOG_CHARS/2;	// don't assign middle (may leave gap)
 	}

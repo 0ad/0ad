@@ -34,9 +34,4 @@ void cpu_ConfigureFloatingPoint()
 	// *guess* we don't need to do anything...
 }
 
-void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
-{
-	return memcpy(dst, src, size);
-}
-
 #endif // ARCH_AMD64

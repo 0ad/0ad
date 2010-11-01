@@ -84,7 +84,7 @@ public:
 	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		const size_t transferSize = std::min(inSize, outSize);
-		cpu_memcpy(out, in, transferSize);
+		memcpy(out, in, transferSize);
 		inConsumed = outProduced = transferSize;
 		m_checksum = UpdateChecksum(m_checksum, out, outProduced);
 		return INFO::OK;

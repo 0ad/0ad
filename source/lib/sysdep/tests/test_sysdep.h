@@ -40,24 +40,6 @@
 class TestSysdep : public CxxTest::TestSuite 
 {
 public:
-	void test_float_int()
-	{
-		TS_ASSERT_EQUALS(cpu_i32FromFloat(0.99999f), 0);
-		TS_ASSERT_EQUALS(cpu_i32FromFloat(1.0f), 1);
-		TS_ASSERT_EQUALS(cpu_i32FromFloat(1.01f), 1);
-		TS_ASSERT_EQUALS(cpu_i32FromFloat(5.6f), 5);
-
-		TS_ASSERT_EQUALS(cpu_i32FromDouble(0.99999), 0);
-		TS_ASSERT_EQUALS(cpu_i32FromDouble(1.0), 1);
-		TS_ASSERT_EQUALS(cpu_i32FromDouble(1.01), 1);
-		TS_ASSERT_EQUALS(cpu_i32FromDouble(5.6), 5);
-
-		TS_ASSERT_EQUALS(cpu_i64FromDouble(0.99999), 0LL);
-		TS_ASSERT_EQUALS(cpu_i64FromDouble(1.0), 1LL);
-		TS_ASSERT_EQUALS(cpu_i64FromDouble(1.01), 1LL);
-		TS_ASSERT_EQUALS(cpu_i64FromDouble(5.6), 5LL);
-	}
-
 	void test_round()
 	{
 		TS_ASSERT_EQUALS(rintf(0.99999f), 1.0f);

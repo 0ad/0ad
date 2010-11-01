@@ -265,7 +265,7 @@ static inline LibError InitUpdateThread()
 	// make sure our interval isn't too long
 	// (counterBits can be 64 => Bit() would overflow => calculate period/2)
 	const double period_2 = Bit<u64>(counterBits-1) / nominalFrequency;
-	const size_t rolloversPerInterval = size_t(UPDATE_INTERVAL_MS / cpu_i64FromDouble(period_2*2.0*1000.0));
+	const size_t rolloversPerInterval = size_t(UPDATE_INTERVAL_MS / i64(period_2*2.0*1000.0));
 	debug_assert(rolloversPerInterval <= 1);
 
 	hExitEvent = CreateEvent(0, TRUE, FALSE, 0);	// manual reset, initially false

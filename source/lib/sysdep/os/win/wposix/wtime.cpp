@@ -32,7 +32,6 @@
 #include "lib/sysdep/os/win/wposix/wtime.h"
 
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
-#include "lib/sysdep/cpu.h"				// cpu_i64FromDouble
 #include "lib/sysdep/os/win/whrt/whrt.h"
 
 WINIT_REGISTER_MAIN_INIT(wtime_Init);	// whrt -> wtime
@@ -96,7 +95,7 @@ static void LatchInitialSystemTime()
 // algorithm: add current HRT value to the startup system time
 static i64 CurrentSystemTime_ns()
 {
-	const i64 ns = stInitial_ns + cpu_i64FromDouble(whrt_Time() * _1e9);
+	const i64 ns = stInitial_ns + i64(whrt_Time() * _1e9);
 	return ns;
 }
 
@@ -134,7 +133,7 @@ int clock_getres(clockid_t clock, struct timespec* ts)
 	debug_assert(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
 
 	const double resolution = whrt_Resolution();
-	const i64 ns = cpu_i64FromDouble(resolution * 1e9);
+	const i64 ns = i64(resolution * 1e9);
 	*ts = TimespecFromNs(ns);
 	return 0;
 }

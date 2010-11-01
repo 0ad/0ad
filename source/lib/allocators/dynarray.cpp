@@ -189,7 +189,7 @@ LibError da_read(DynArray* da, void* data, size_t size)
 	if(da->pos+size > da->cur_size)
 		WARN_RETURN(ERR::FAIL);
 
-	cpu_memcpy(data, da->base+da->pos, size);
+	memcpy(data, da->base+da->pos, size);
 	da->pos += size;
 	return INFO::OK;
 }
@@ -198,7 +198,7 @@ LibError da_read(DynArray* da, void* data, size_t size)
 LibError da_append(DynArray* da, const void* data, size_t size)
 {
 	RETURN_ERR(da_reserve(da, size));
-	cpu_memcpy(da->base+da->pos, data, size);
+	memcpy(da->base+da->pos, data, size);
 	da->pos += size;
 	return INFO::OK;
 }

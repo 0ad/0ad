@@ -149,7 +149,7 @@ void CFileUnpacker::UnpackRaw(void* rawData, size_t rawDataSize)
 		throw PSERROR_File_UnexpectedEOF();
 
 	void* src = m_buf.get() + m_unpackPos;
-	cpu_memcpy(rawData, src, rawDataSize);
+	memcpy(rawData, src, rawDataSize);
 	m_unpackPos += rawDataSize;
 }
 

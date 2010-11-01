@@ -145,9 +145,3 @@ void cpu_ConfigureFloatingPoint()
 	// results were changed significantly, so it had to be disabled.
 	//ia32_asm_control87(IA32_RC_CHOP, IA32_MCW_RC);
 }
-
-
-void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
-{
-	return memcpy(dst, src, size);
-}
