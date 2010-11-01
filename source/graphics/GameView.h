@@ -86,7 +86,7 @@ public:
 	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
 	void ResetCameraAngleZoom();
-	void CameraFollow(entity_id_t entity);
+	void CameraFollow(entity_id_t entity, bool firstPerson);
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();

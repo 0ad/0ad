@@ -308,9 +308,14 @@ CScriptVal LoadMapSettings(void* cbdata, std::wstring pathname)
 void CameraFollow(void* UNUSED(cbdata), entity_id_t entityid)
 {
 	if (g_Game && g_Game->GetView())
-		g_Game->GetView()->CameraFollow(entityid);
+		g_Game->GetView()->CameraFollow(entityid, false);
 }
 
+void CameraFollowFPS(void* UNUSED(cbdata), entity_id_t entityid)
+{
+	if (g_Game && g_Game->GetView())
+		g_Game->GetView()->CameraFollow(entityid, true);
+}
 
 void SetSimRate(void* UNUSED(cbdata), float rate)
 {
@@ -391,6 +396,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
+	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
 
 	// Development/debugging functions
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");

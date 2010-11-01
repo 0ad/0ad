@@ -159,6 +159,7 @@ public:
 		ConstrainCamera(true),
 		Culling(true),
 		FollowEntity(INVALID_ENTITY),
+		FollowFirstPerson(false),
 
 		// Dummy values (these will be filled in by the config file)
 		ViewScrollSpeed(0),
@@ -241,6 +242,11 @@ public:
 	 * Entity for the camera to follow, or INVALID_ENTITY if none.
 	 */
 	entity_id_t FollowEntity;
+
+	/**
+	 * Whether to follow FollowEntity in first-person mode.
+	 */
+	bool FollowFirstPerson;
 
 	////////////////////////////////////////
 	// Settings
@@ -664,22 +670,39 @@ void CGameView::Update(float DeltaTime)
 		{
 			// Get the most recent interpolated position
 			float frameOffset = m->Game->GetSimulation2()->GetLastFrameOffset();
-			CVector3D pos = cmpPosition->GetInterpolatedTransform(frameOffset, false).GetTranslation();
+			CMatrix3D transform = cmpPosition->GetInterpolatedTransform(frameOffset, false);
+			CVector3D pos = transform.GetTranslation();
 
-			// move the camera after unit
-			// use smoothed values of rotation around X and Y, since we need to hold user's rotation done
-			// in this function above
-			CCamera targetCam = m->ViewCamera;
-			targetCam.m_Orientation.SetIdentity();
-			targetCam.m_Orientation.RotateX(m->RotateX.GetSmoothedValue());
-			targetCam.m_Orientation.RotateY(m->RotateY.GetSmoothedValue());
-			targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+			if (m->FollowFirstPerson)
+			{
+				float x, z, angle;
+				cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, angle);
+				float height = 4.f;
+				m->ViewCamera.m_Orientation.SetIdentity();
+				m->ViewCamera.m_Orientation.RotateX(M_PI/24.f);
+				m->ViewCamera.m_Orientation.RotateY(angle);
+				m->ViewCamera.m_Orientation.Translate(pos.X, pos.Y + height, pos.Z);
 
-			CVector3D pivot = targetCam.GetFocus();
-			CVector3D delta = pos - pivot;
-			m->PosX.AddSmoothly(delta.X);
-			m->PosY.AddSmoothly(delta.Y);
-			m->PosZ.AddSmoothly(delta.Z);
+				m->ViewCamera.UpdateFrustum();
+				return;
+			}
+			else
+			{
+				// move the camera after unit
+				// use smoothed values of rotation around X and Y, since we need to hold user's rotation done
+				// in this function above
+				CCamera targetCam = m->ViewCamera;
+				targetCam.m_Orientation.SetIdentity();
+				targetCam.m_Orientation.RotateX(m->RotateX.GetSmoothedValue());
+				targetCam.m_Orientation.RotateY(m->RotateY.GetSmoothedValue());
+				targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+
+				CVector3D pivot = targetCam.GetFocus();
+				CVector3D delta = pos - pivot;
+				m->PosX.AddSmoothly(delta.X);
+				m->PosY.AddSmoothly(delta.Y);
+				m->PosZ.AddSmoothly(delta.Z);
+			}
 		}
 		else
 		{
@@ -871,9 +894,10 @@ void CGameView::ResetCameraAngleZoom()
 	m->RotateY.SetValueSmoothly(DEGTORAD(m->ViewRotateYDefault));
 }
 
-void CGameView::CameraFollow(entity_id_t entity)
+void CGameView::CameraFollow(entity_id_t entity, bool firstPerson)
 {
 	m->FollowEntity = entity;
+	m->FollowFirstPerson = firstPerson;
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)
