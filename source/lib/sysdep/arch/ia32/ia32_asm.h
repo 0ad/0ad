@@ -34,9 +34,7 @@ extern "C" {
 struct x86_x64_CpuidRegs;
 extern void CALL_CONV ia32_asm_cpuid(x86_x64_CpuidRegs* regs);
 
-extern intptr_t CALL_CONV ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
-extern bool CALL_CONV ia32_asm_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value);
-extern bool CALL_CONV ia32_asm_CAS64(volatile i64* location, i64 expected, i64 new_value);
+// also implements cpu_AtomicAdd, cpu_CAS and cpu_CAS64 from "sysdep/cpu.h"
 
 /// control87
 // FPU control word

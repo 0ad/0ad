@@ -60,9 +60,9 @@ sym(ia32_asm_cpuid):
 ; lock-free support routines
 ;-------------------------------------------------------------------------------
 
-; extern "C" intptr_t __cdecl ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
-global sym(ia32_asm_AtomicAdd)
-sym(ia32_asm_AtomicAdd):
+; extern "C" intptr_t __cdecl cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+global sym(cpu_AtomicAdd)
+sym(cpu_AtomicAdd):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; increment
 db		0xf0							; LOCK prefix
@@ -79,9 +79,9 @@ db		0xf0							; LOCK prefix
 ; - nor do we bother skipping the LOCK prefix on single-processor systems.
 ;   the branch may be well-predicted, but difference in performance still
 ;   isn't expected to be enough to justify the effort.
-; extern "C" bool __cdecl ia32_asm_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
-global sym(ia32_asm_CAS)
-sym(ia32_asm_CAS):
+; extern "C" bool __cdecl cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value);
+global sym(cpu_CAS)
+sym(cpu_CAS):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; expected
 	mov		ecx, [esp+12]				; new_value
@@ -92,9 +92,9 @@ db		0xf0							; LOCK prefix
 	ret
 
 
-; extern bool CALL_CONV ia32_asm_CAS64(volatile i64* location, i64 expected, i64 new_value);
-global sym(ia32_asm_CAS64)
-sym(ia32_asm_CAS64):
+; extern bool CALL_CONV cpu_CAS64(volatile i64* location, i64 expected, i64 new_value);
+global sym(cpu_CAS64)
+sym(cpu_CAS64):
 	push	ebx
 	push	esi
 	mov		esi, [esp+8+4]				; location

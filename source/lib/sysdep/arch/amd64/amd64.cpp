@@ -25,12 +25,8 @@
 #if ARCH_AMD64
 
 #include "lib/sysdep/arch/amd64/amd64.h"
-#include "lib/sysdep/arch/amd64/amd64_asm.h"
 
 #include "lib/sysdep/cpu.h"
-#if MSC_VERSION
-#include <intrin.h>
-#endif
 
 void cpu_ConfigureFloatingPoint()
 {
@@ -42,32 +38,5 @@ void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
 {
 	return memcpy(dst, src, size);
 }
-
-#if MSC_VERSION
-
-bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
-{
-	const intptr_t initial = _InterlockedCompareExchange64((volatile __int64*)location, newValue, expected);
-	return initial == expected;
-}
-
-intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
-{
-	return _InterlockedExchangeAdd64(location, increment);
-}
-
-#elif GCC_VERSION
-
-intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
-{
-	return amd64_AtomicAdd(location, increment);
-}
-
-bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
-{
-	return amd64_CAS(location, expected, newValue) ? true : false;
-}
-
-#endif
 
 #endif // ARCH_AMD64

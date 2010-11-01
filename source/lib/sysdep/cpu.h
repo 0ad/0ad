@@ -52,6 +52,16 @@ LIB_API const char* cpu_IdentifierString();
 //-----------------------------------------------------------------------------
 // lock-free support routines
 
+extern "C" {	// (assembly-language implementations)
+
+/**
+ * add a signed value to a variable without the possibility of interference
+ * from other threads/CPUs.
+ *
+ * @return the previous value.
+ **/
+LIB_API intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+
 /**
  * atomic "compare and swap".
  *
@@ -62,6 +72,9 @@ LIB_API const char* cpu_IdentifierString();
  * otherwise true (also overwriting the contents of location)
  **/
 LIB_API bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue);
+LIB_API bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue);
+
+}	// extern "C"
 
 /**
  * specialization of cpu_CAS for pointer types. this avoids error-prone
@@ -73,14 +86,6 @@ bool cpu_CAS(volatile T* location, T expected, T new_value)
 	return cpu_CAS((volatile intptr_t*)location, (intptr_t)expected, (intptr_t)new_value);
 }
 
-
-/**
- * add a signed value to a variable without the possibility of interference
- * from other threads/CPUs.
- *
- * @return the previous value.
- **/
-LIB_API intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 
 LIB_API void cpu_Test();
 

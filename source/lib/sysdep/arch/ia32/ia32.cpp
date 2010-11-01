@@ -147,18 +147,6 @@ void cpu_ConfigureFloatingPoint()
 }
 
 
-intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
-{
-	return ia32_asm_AtomicAdd(location, increment);
-}
-
-
-bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value)
-{
-	return ia32_asm_CAS(location, expected, new_value);
-}
-
-
 void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
 {
 	return memcpy(dst, src, size);

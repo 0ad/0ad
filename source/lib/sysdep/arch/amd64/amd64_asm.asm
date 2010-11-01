@@ -46,18 +46,23 @@ sym(amd64_asm_cpuid):
 	ret
 	ALIGN 8
 
-; extern "C" intptr_t amd64_CAS(volatile uintptr_t *location, uintptr_t expected, uintptr_t newValue);
-global sym(amd64_CAS)
-sym(amd64_CAS):
+
+; extern "C" intptr_t cpu_AtomicAdd(intptr_t* location, intptr_t increment);
+global sym(cpu_AtomicAdd)
+sym(cpu_AtomicAdd):
+	lock xadd	[arg0], arg1
+	mov			rax, arg1
+	ret
+
+
+; extern "C" bool amd64_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue);
+; extern "C" bool amd64_CAS64(volatile i64* location, i64 expected, i64 newValue);
+global sym(cpu_CAS)
+global sym(cpu_CAS64)
+sym(cpu_CAS):
+sym(cpu_CAS64):
 	mov			rax, arg1 ; expected -> rax
 	lock cmpxchg [arg0], arg2
 	sete		al
 	movzx		rax, al
-	ret
-
-; extern "C" intptr_t amd64_AtomicAdd(intptr_t *location, intptr_t increment);
-global sym(amd64_AtomicAdd)
-sym(amd64_AtomicAdd):
-	lock xadd	[arg0], arg1
-	mov			rax, arg1
 	ret

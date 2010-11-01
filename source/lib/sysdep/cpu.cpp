@@ -27,10 +27,6 @@
 #include "precompiled.h"
 #include "lib/sysdep/cpu.h"
 
-#if ARCH_IA32
-# include "lib/sysdep/arch/ia32/ia32_asm.h"	// ia32_asm_CAS64
-#endif
-
 ERROR_ASSOCIATE(ERR::CPU_FEATURE_MISSING, L"This CPU doesn't support a required feature", -1);
 ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_OPCODE, L"Disassembly failed", -1);
 ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_VENDOR, L"CPU vendor unknown", -1);
@@ -51,11 +47,9 @@ cassert(sizeof(void*) == sizeof(intptr_t));
 
 static void TestCAS64()
 {
-#if ARCH_IA32
 	volatile i64 var = 1;
-	ia32_asm_CAS64(&var, 1ull, 2ull);
+	cpu_CAS64(&var, 1ull, 2ull);
 	debug_assert(var == 2ull);
-#endif
 }
 
 static void TestAtomicAdd()

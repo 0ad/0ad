@@ -35,6 +35,7 @@
 
 #include "lib/module_init.h"
 #include "lib/posix/posix_time.h"
+# include "lib/sysdep/cpu.h"
 #if OS_WIN
 # include "lib/sysdep/os/win/whrt/whrt.h"
 #endif
@@ -81,6 +82,25 @@ void timer_LatchStartTime()
 }
 
 
+static void EnsureMonotonic(double& t)
+{
+//retry:
+//	static i64 t_lastBits;	// initially 0.0
+//	memcpy(&t_lastBits, &m_seconds, sizeof(t_lastBits));
+//
+//	i64 tBits;
+//	memcpy(&tBits, &seconds, sizeof(tBits));
+//
+//	if(!cpu_CAS64((volatile i64*)&m_seconds, t_lastBits, tBits))
+//		goto retry;
+//
+//	static double t_last = 0.0;
+//	if(t < t_last)
+//		t = t_last;
+//	t_last = t;
+}
+
+
 double timer_Time()
 {
 	double t;
@@ -99,12 +119,7 @@ double timer_Time()
 # error "timer_Time: add timer implementation for this platform!"
 #endif
 
-	// make sure time is monotonic (never goes backwards)
-	static double t_last = 0.0;
-	if(t < t_last)
-		t = t_last+DBL_EPSILON;
-	t_last = t;
-
+	EnsureMonotonic(t);
 	return t;
 }
 
