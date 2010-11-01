@@ -63,12 +63,6 @@ static bool fullscreen;
 // if set, ignore further Windows messages for clean shutdown.
 static bool is_quitting;
 
-// when a SDL_VIDEORESIZE event is received, SDL wants the application
-// to call SDL_SetVideoMode, which would trigger another SDL_VIDEORESIZE.
-// we prevent this by skipping a subsequent resize event for every
-// call to SDL_SetVideoMode.
-static bool skipResize;
-
 static HWND g_hWnd = (HWND)INVALID_HANDLE_VALUE;
 static HDC g_hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
 
@@ -364,8 +358,6 @@ SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 		dm.dmFields |= DM_PELSWIDTH|DM_PELSHEIGHT;
 	}
 	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
-
-	skipResize = true;
 
 	if(g_hWnd == (HWND)INVALID_HANDLE_VALUE)
 	{
@@ -1066,14 +1058,17 @@ SDL_GrabMode SDL_WM_GrabInput(SDL_GrabMode mode)
 
 static bool ResizeEventEnabled(int clientWidth, int clientHeight)
 {
-	// SDL_SetVideoMode causes this message, and relaying the
-	// resize event to the app requires it to call
-	// SDL_SetVideoMode again, so avoid infinite recursion.
-	if(skipResize)
-	{
-		skipResize = false;
+	// when the app receives a resize event, it must call SDL_SetVideoMode.
+	// avoid that if the size hasn't actually changed. this also
+	// prevents infinite recursion, since SDL_SetVideoMode might
+	// trigger resize events. note that this logic is safer than a
+	// skipResize flag, because that would remain set if SDL_SetVideoMode
+	// doesn't trigger a resize, and we would miss an actual resize.
+	static int lastClientWidth, lastClientHeight;
+	if(lastClientWidth == clientWidth && lastClientHeight == clientHeight)
 		return false;
-	}
+	lastClientWidth = clientWidth;
+	lastClientHeight = clientHeight;
 
 	// if fullscreen, interaction with other topmost windows causes
 	// minimization and a spurious resize. however, the app only
@@ -1122,6 +1117,14 @@ static BOOL OnEraseBkgnd(HWND UNUSED(hWnd), HDC UNUSED(hDC))
 
 //----------------------------------------------------------------------------
 
+static LRESULT OnPaint(HWND hWnd)
+{
+	PAINTSTRUCT ps;
+	BeginPaint(hWnd, &ps);
+	EndPaint(hWnd, &ps);
+	return 0;
+}
+
 static LRESULT OnDestroy(HWND hWnd)
 {
 	debug_assert(hWnd == g_hWnd);
@@ -1129,7 +1132,6 @@ static LRESULT OnDestroy(HWND hWnd)
 	g_hDC = (HDC)INVALID_HANDLE_VALUE;
 	g_hWnd = (HWND)INVALID_HANDLE_VALUE;
 	QueueQuitEvent();
-	PostQuitMessage(0);
 
 #ifdef _DEBUG
 	// see http://www.adrianmccarthy.com/blog/?p=51
@@ -1139,7 +1141,35 @@ static LRESULT OnDestroy(HWND hWnd)
 	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
 #endif
 
+	PostQuitMessage(0);
 	return 0;
+}
+
+
+enum DefWindowProcDisposition
+{
+	kSkipDefWindowProc,
+	kRunDefWindowProc
+};
+
+static DefWindowProcDisposition OnSysCommand(WPARAM wParam)
+{
+	switch(wParam)
+	{
+	case SC_SCREENSAVE:
+		// disable screen-saver in fullscreen mode (other applications
+		// may interfere with us, and have set the system-wide gamma)
+		if(fullscreen)
+			return kSkipDefWindowProc;
+		break;
+
+	// Alt+F4 or system menu doubleclick/exit
+	case SC_CLOSE:
+		QueueQuitEvent();
+		break;
+	}
+
+	return kRunDefWindowProc;
 }
 
 
@@ -1151,10 +1181,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	switch(uMsg)
 	{
 	case WM_PAINT:
-		PAINTSTRUCT ps;
-		BeginPaint(hWnd, &ps);
-		EndPaint(hWnd, &ps);
-		return 0;
+		return OnPaint(hWnd);
 
 	HANDLE_MSG(hWnd, WM_ERASEBKGND, OnEraseBkgnd);
 
@@ -1168,22 +1195,8 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	HANDLE_MSG(hWnd, WM_DESTROY, OnDestroy);
 
 	case WM_SYSCOMMAND:
-		switch(wParam)
-		{
-		// prevent moving, sizing, screensaver, and power-off in fullscreen mode
-		case SC_MOVE:
-		case SC_SIZE:
-		case SC_MAXIMIZE:
-		case SC_MONITORPOWER:
-			if(fullscreen)
-				return 1;
-			break;
-
-		// Alt+F4 or system menu doubleclick/exit
-		case SC_CLOSE:
-			QueueQuitEvent();
-			break;
-		}
+		if(OnSysCommand(wParam) == kSkipDefWindowProc)
+			return 0;
 		break;
 
 	HANDLE_MSG(hWnd, WM_SYSKEYUP  , OnKey);
@@ -1205,8 +1218,8 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		return OnMouseButton(hWnd, uMsg, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (UINT)wParam);
 
 	default:
-		// can't call DefWindowProc here: some messages
-		// are only conditionally 'grabbed' (e.g. NCHITTEST)
+		// (DefWindowProc must be called outside the switch because some
+		// messages are only conditionally 'grabbed', e.g. NCHITTEST)
 		break;
 	}
 
