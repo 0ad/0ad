@@ -117,7 +117,7 @@ template<class Entries> float ll_calc_min_credit_density(const Entries& entries)
 	for(typename Entries::const_iterator it = entries.begin(); it != entries.end(); ++it)
 	{
 		const float credit_density = Entries::entry_from_it(it).credit_density();
-		min_credit_density = fminf(min_credit_density, credit_density);
+		min_credit_density = std::min(min_credit_density, credit_density);
 	}
 	return min_credit_density;
 }

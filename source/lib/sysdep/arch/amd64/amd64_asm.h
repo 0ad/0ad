@@ -34,8 +34,6 @@ extern "C" {
 struct x86_x64_CpuidRegs;
 extern void CALL_CONV amd64_asm_cpuid(x86_x64_CpuidRegs* reg);
 
-// also implements cpu_AtomicAdd, cpu_CAS and cpu_CAS64 from "sysdep/cpu.h"
-
 #ifdef __cplusplus
 }
 #endif

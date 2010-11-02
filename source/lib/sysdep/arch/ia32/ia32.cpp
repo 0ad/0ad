@@ -26,9 +26,8 @@
 
 #include "precompiled.h"
 
-#include "lib/sysdep/arch/ia32/ia32.h"
-
 #include "lib/sysdep/cpu.h"
+#include "lib/sysdep/arch/ia32/ia32.h"
 #include "lib/sysdep/arch/ia32/ia32_asm.h"
 
 
@@ -145,3 +144,51 @@ void cpu_ConfigureFloatingPoint()
 	// results were changed significantly, so it had to be disabled.
 	//ia32_asm_control87(IA32_RC_CHOP, IA32_MCW_RC);
 }
+
+
+#if MSC_VERSION
+
+// VC 2008 and ICC 12 differ in their declaration of _Interlocked*
+#if ICC_VERSION
+typedef long* P32;
+typedef __int64* P64;
+#else
+typedef volatile long* P32;
+typedef volatile __int64* P64;
+#endif
+
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
+{
+	const intptr_t initial = _InterlockedCompareExchange((P32)location, newValue, expected);
+	return initial == expected;
+}
+
+bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue)
+{
+	const i64 initial = _InterlockedCompareExchange64((P64)location, newValue, expected);
+	return initial == expected;
+}
+
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+{
+	return _InterlockedExchangeAdd((P32)location, increment);
+}
+
+#elif GCC_VERSION
+
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+{
+	return __sync_fetch_and_add(location, increment);
+}
+
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
+{
+	return __sync_bool_compare_and_swap(location, expected, newValue);
+}
+
+bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue)
+{
+	return __sync_bool_compare_and_swap(location, expected, newValue);
+}
+
+#endif

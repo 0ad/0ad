@@ -49,25 +49,6 @@ double rint(double d)
 }
 
 
-float fminf(float a, float b)
-{
-#if ARCH_IA32
-	return ia32_asm_fminf(a, b);
-#else
-	return (a < b)? a : b;
-#endif
-}
-
-float fmaxf(float a, float b)
-{
-#if ARCH_IA32
-	return ia32_asm_fmaxf(a, b);
-#else
-	return (a > b)? a : b;
-#endif
-}
-
-
 size_t fpclassifyd(double d)
 {
 #if ARCH_IA32

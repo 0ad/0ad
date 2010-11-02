@@ -115,7 +115,7 @@ extern wchar_t* wcsdup(const wchar_t* str);
 extern int wcscasecmp(const wchar_t* s1, const wchar_t* s2);
 #endif
 
-// rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
+// rint*, fpclassify (too few/diverse to make separate HAVE_ for each)
 #if HAVE_C99 || ICC_VERSION || GCC_VERSION
 # define HAVE_C99_MATH 1
 #else
@@ -127,9 +127,6 @@ extern int wcscasecmp(const wchar_t* s1, const wchar_t* s2);
 // current rounding mode.
 extern float rintf(float f);
 extern double rint(double d);
-// return minimum/maximum of two floats.
-extern float fminf(float a, float b);
-extern float fmaxf(float a, float b);
 
 extern size_t fpclassifyf(float f);
 extern size_t fpclassifyd(double d);

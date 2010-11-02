@@ -28,7 +28,7 @@
 #include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/sysdep.h"
-#include "lib/posix/posix.h"	// fminf etc.
+#include "lib/posix/posix.h"	// rintf etc.
 
 #if OS_LINUX
 # include "mocks/dlfcn.h"
@@ -51,21 +51,6 @@ public:
 		TS_ASSERT_EQUALS(rint(1.0), 1.0);
 		TS_ASSERT_EQUALS(rint(1.01), 1.0);
 		TS_ASSERT_EQUALS(rint(5.6), 6.0);
-	}
-
-	void test_min_max()
-	{
-		TS_ASSERT_EQUALS(fminf(0.0f, 10000.0f), 0.0f);
-		TS_ASSERT_EQUALS(fminf(100.0f, 10000.0f), 100.0f);
-		TS_ASSERT_EQUALS(fminf(-1.0f, 2.0f), -1.0f);
-		TS_ASSERT_EQUALS(fminf(-2.0f, 1.0f), -2.0f);
-		TS_ASSERT_EQUALS(fminf(0.001f, 0.00001f), 0.00001f);
-
-		TS_ASSERT_EQUALS(fmaxf(0.0f, 10000.0f), 10000.0f);
-		TS_ASSERT_EQUALS(fmaxf(100.0f, 10000.0f), 10000.0f);
-		TS_ASSERT_EQUALS(fmaxf(-1.0f, 2.0f), 2.0f);
-		TS_ASSERT_EQUALS(fmaxf(-2.0f, 1.0f), 1.0f);
-		TS_ASSERT_EQUALS(fmaxf(0.001f, 0.00001f), 0.001f);
 	}
 
 	void test_random()

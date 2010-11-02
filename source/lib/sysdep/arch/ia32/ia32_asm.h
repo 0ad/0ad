@@ -34,8 +34,6 @@ extern "C" {
 struct x86_x64_CpuidRegs;
 extern void CALL_CONV ia32_asm_cpuid(x86_x64_CpuidRegs* regs);
 
-// also implements cpu_AtomicAdd, cpu_CAS and cpu_CAS64 from "sysdep/cpu.h"
-
 /// control87
 // FPU control word
 // .. Precision Control:
@@ -74,14 +72,6 @@ extern size_t CALL_CONV ia32_asm_fpclassifyf(float f);
 /// POSIX rintf
 extern float CALL_CONV ia32_asm_rintf(float);
 extern double CALL_CONV ia32_asm_rint(double);
-
-/// POSIX fminf
-extern float CALL_CONV ia32_asm_fminf(float, float);
-extern float CALL_CONV ia32_asm_fmaxf(float, float);
-
-extern i32 CALL_CONV ia32_asm_i32FromFloat(float f);
-extern i32 CALL_CONV ia32_asm_i32FromDouble(double d);
-extern i64 CALL_CONV ia32_asm_i64FromDouble(double d);
 
 /**
  * write the current execution state (e.g. all register values) into

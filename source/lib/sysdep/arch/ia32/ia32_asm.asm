@@ -57,72 +57,8 @@ sym(ia32_asm_cpuid):
 
 
 ;-------------------------------------------------------------------------------
-; lock-free support routines
-;-------------------------------------------------------------------------------
-
-; extern "C" intptr_t __cdecl cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
-global sym(cpu_AtomicAdd)
-sym(cpu_AtomicAdd):
-	mov		edx, [esp+4]				; location
-	mov		eax, [esp+8]				; increment
-db		0xf0							; LOCK prefix
-	xadd	[edx], eax
-	ret
-
-
-; notes:
-; - a 486 or later processor is required since we use CMPXCHG.
-;   there's no feature flag we can check, and the ia32 code doesn't
-;   bother detecting anything < Pentium, so this'll crash and burn if
-;   run on 386. we could fall back to simple MOVs there (since 386 CPUs
-;   aren't MP-capable), but it's not worth the trouble.
-; - nor do we bother skipping the LOCK prefix on single-processor systems.
-;   the branch may be well-predicted, but difference in performance still
-;   isn't expected to be enough to justify the effort.
-; extern "C" bool __cdecl cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t new_value);
-global sym(cpu_CAS)
-sym(cpu_CAS):
-	mov		edx, [esp+4]				; location
-	mov		eax, [esp+8]				; expected
-	mov		ecx, [esp+12]				; new_value
-db		0xf0							; LOCK prefix
-	cmpxchg	[edx], ecx
-	sete	al
-	movzx	eax, al
-	ret
-
-
-; extern bool CALL_CONV cpu_CAS64(volatile i64* location, i64 expected, i64 new_value);
-global sym(cpu_CAS64)
-sym(cpu_CAS64):
-	push	ebx
-	push	esi
-	mov		esi, [esp+8+4]				; location
-	mov		eax, [esp+8+8]
-	mov		edx, [esp+8+12]				; edx:eax = expected
-	mov		ebx, [esp+8+16]
-	mov		ecx, [esp+8+20]				; ecx:ebx = new_value
-db		0xf0							; LOCK prefix
-	cmpxchg8b	[esi]
-	sete	al
-	movzx	eax, al
-	pop		esi
-	pop		ebx
-	ret
-
-
-;-------------------------------------------------------------------------------
 ; FPU
 ;-------------------------------------------------------------------------------
-
-[section .data]
-
-; to conform with the fallback implementation (a C cast), we need to
-; end up with truncate/"chop" rounding. subtracting does the trick,
-; assuming RC is the IA-32 default round-to-nearest mode.
-round_bias		dd 0.4999999
-
-__SECT__
 
 ; extern "C" u32 __cdecl ia32_asm_control87(u32 new_cw, u32 mask);
 global sym(ia32_asm_control87)
@@ -179,62 +115,6 @@ global sym(ia32_asm_rint)
 sym(ia32_asm_rint):
 	fld		qword [esp+4]
 	frndint
-	ret
-
-
-; extern "C" float __cdecl ia32_asm_fminf(float, float);
-global sym(ia32_asm_fminf)
-sym(ia32_asm_fminf):
-	fld		dword [esp+4]
-	fld		dword [esp+8]
-	fcomi	st0, st1
-	fcmovnb	st0, st1
-	fxch
-	fstp	st0
-	ret
-
-; extern "C" float __cdecl ia32_asm_fmaxf(float, float);
-global sym(ia32_asm_fmaxf)
-sym(ia32_asm_fmaxf):
-	fld		dword [esp+4]
-	fld		dword [esp+8]
-	fcomi	st0, st1
-	fcmovb	st0, st1
-	fxch
-	fstp	st0
-	ret
-
-
-; extern "C" i32 __cdecl ia32_asm_i32FromFloat(float f);
-global sym(ia32_asm_i32FromFloat)
-sym(ia32_asm_i32FromFloat):
-	push		eax
-	fld			dword [esp+8]
-	fsub		dword [round_bias]
-	fistp		dword [esp]
-	pop			eax
-	ret
-
-; extern "C" i32 __cdecl ia32_asm_i32FromDouble(double d);
-global sym(ia32_asm_i32FromDouble)
-sym(ia32_asm_i32FromDouble):
-	push		eax
-	fld			qword [esp+8]
-	fsub		dword [round_bias]
-	fistp		dword [esp]
-	pop			eax
-	ret
-
-; extern "C" i64 __cdecl ia32_asm_i64FromDouble(double d);
-global sym(ia32_asm_i64FromDouble)
-sym(ia32_asm_i64FromDouble):
-	push		edx
-	push		eax
-	fld			qword [esp+12]
-	fsub		dword [round_bias]
-	fistp		qword [esp]
-	pop			eax
-	pop			edx
 	ret
 
 

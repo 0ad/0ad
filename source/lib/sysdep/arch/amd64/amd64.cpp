@@ -24,14 +24,59 @@
 
 #if ARCH_AMD64
 
+#include "lib/sysdep/cpu.h"
 #include "lib/sysdep/arch/amd64/amd64.h"
 
-#include "lib/sysdep/cpu.h"
 
 void cpu_ConfigureFloatingPoint()
 {
-	// 64-bit CPU:s apparently use SSE2 for all floating-point operations, so I
-	// *guess* we don't need to do anything...
+	// 64-bit CPUs use SSE2 for all floating-point operations, so we
+	// don't need to change the FPU control word.
 }
+
+#if MSC_VERSION
+
+// VC 2008 and ICC 12 differ in their declaration of _Interlocked*
+#if ICC_VERSION
+typedef __int64* P64;
+#else
+typedef volatile __int64* P64;
+#endif
+
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
+{
+	const intptr_t initial = _InterlockedCompareExchange64((P64)location, newValue, expected);
+	return initial == expected;
+}
+
+bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue)
+{
+	const i64 initial = _InterlockedCompareExchange64((P64)location, newValue, expected);
+	return initial == expected;
+}
+
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+{
+	return _InterlockedExchangeAdd64((P64)location, increment);
+}
+
+#elif GCC_VERSION
+
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+{
+	return __sync_fetch_and_add(location, increment);
+}
+
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
+{
+	return __sync_bool_compare_and_swap(location, expected, newValue);
+}
+
+bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue)
+{
+	return __sync_bool_compare_and_swap(location, expected, newValue);
+}
+
+#endif
 
 #endif // ARCH_AMD64

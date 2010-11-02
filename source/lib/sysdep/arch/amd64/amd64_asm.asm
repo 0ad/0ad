@@ -26,9 +26,10 @@
 
 BITS 64
 
-; extern "C" void __cdecl amd64_asm_cpuid(Ia32CpuidRegs* reg);
+; extern "C" void CALL_CONV amd64_asm_cpuid(x86_x64_CpuidRegs* reg);
 ; reference: http://softwarecommunity.intel.com/articles/eng/2669.htm
 global sym(amd64_asm_cpuid)
+	ALIGN 8
 sym(amd64_asm_cpuid):
 	push		rbx			; rbx is the only caller-save register we clobber
 
@@ -45,24 +46,3 @@ sym(amd64_asm_cpuid):
 
 	ret
 	ALIGN 8
-
-
-; extern "C" intptr_t cpu_AtomicAdd(intptr_t* location, intptr_t increment);
-global sym(cpu_AtomicAdd)
-sym(cpu_AtomicAdd):
-	lock xadd	[arg0], arg1
-	mov			rax, arg1
-	ret
-
-
-; extern "C" bool amd64_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue);
-; extern "C" bool amd64_CAS64(volatile i64* location, i64 expected, i64 newValue);
-global sym(cpu_CAS)
-global sym(cpu_CAS64)
-sym(cpu_CAS):
-sym(cpu_CAS64):
-	mov			rax, arg1 ; expected -> rax
-	lock cmpxchg [arg0], arg2
-	sete		al
-	movzx		rax, al
-	ret
