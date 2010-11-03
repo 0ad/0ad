@@ -66,7 +66,10 @@ function init(initData, hotloadData)
 	{
 		g_IsNetworked = initData.isNetworked; // Set network mode
 		g_PlayerAssignments = initData.playerAssignments;
-		g_Players = getPlayerData(initData.playerAssignments); // Cache the player data
+
+		// Cache the player data
+		// (This may be updated at runtime by handleNetMessage)
+		g_Players = getPlayerData(g_PlayerAssignments);
 	}
 	else // Needed for autostart loading option
 	{

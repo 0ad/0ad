@@ -40,7 +40,11 @@ static const int DEFAULT_TURN_LENGTH_SP = 200;
 
 static const int COMMAND_DELAY = 2;
 
-//#define NETTURN_LOG debug_printf
+#if 0
+#define NETTURN_LOG(args) debug_printf args
+#else
+#define NETTURN_LOG(args)
+#endif
 
 static std::string Hexify(const std::string& s)
 {
@@ -77,9 +81,7 @@ bool CNetTurnManager::Update(float frameLength)
 	if (m_DeltaTime < 0)
 		return false;
 
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"Update current=%d ready=%d\n", m_CurrentTurn, m_ReadyTurn);
-#endif
+	NETTURN_LOG((L"Update current=%d ready=%d\n", m_CurrentTurn, m_ReadyTurn));
 
 	// Check that the next turn is ready for execution
 	if (m_ReadyTurn > m_CurrentTurn)
@@ -99,9 +101,7 @@ bool CNetTurnManager::Update(float frameLength)
 
 		m_Replay.Turn(m_CurrentTurn-1, m_TurnLength, commands);
 
-#ifdef NETTURN_LOG
-		NETTURN_LOG(L"Running %d cmds\n", commands.size());
-#endif
+		NETTURN_LOG((L"Running %d cmds\n", commands.size()));
 
 		m_Simulation2.Update(m_TurnLength, commands);
 
@@ -130,9 +130,7 @@ bool CNetTurnManager::Update(float frameLength)
 
 void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"OnSyncError(%d, %hs)\n", turn, Hexify(expectedHash).c_str());
-#endif
+	NETTURN_LOG((L"OnSyncError(%d, %hs)\n", turn, Hexify(expectedHash).c_str()));
 
 	// Only complain the first time
 	if (m_HasSyncError)
@@ -166,9 +164,7 @@ void CNetTurnManager::Interpolate(float frameLength)
 
 void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, u32 turn)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"AddCommand(client=%d player=%d turn=%d)\n", client, player, turn);
-#endif
+	NETTURN_LOG((L"AddCommand(client=%d player=%d turn=%d)\n", client, player, turn));
 
 	if (!(m_CurrentTurn < turn && turn <= m_CurrentTurn + COMMAND_DELAY + 1))
 	{
@@ -184,9 +180,7 @@ void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, 
 
 void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"FinishedAllCommands(%d, %d)\n", turn, turnLength);
-#endif
+	NETTURN_LOG((L"FinishedAllCommands(%d, %d)\n", turn, turnLength));
 
 	debug_assert(turn == m_ReadyTurn + 1);
 	m_ReadyTurn = turn;
@@ -201,9 +195,7 @@ CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClien
 
 void CNetClientTurnManager::PostCommand(CScriptValRooted data)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"PostCommand()\n");
-#endif
+	NETTURN_LOG((L"PostCommand()\n"));
 
 	// Transmit command to server
 	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data.get());
@@ -216,9 +208,7 @@ void CNetClientTurnManager::PostCommand(CScriptValRooted data)
 
 void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"NotifyFinishedOwnCommands(%d)\n", turn);
-#endif
+	NETTURN_LOG((L"NotifyFinishedOwnCommands(%d)\n", turn));
 
 	// Send message to the server
 	CEndCommandBatchMessage msg;
@@ -229,16 +219,14 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 
 void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"NotifyFinishedUpdate(%d, %hs)\n", turn, Hexify(hash).c_str());
-#endif
-
 	std::string hash;
 	{
 		PROFILE("state hash check");
 		bool ok = m_Simulation2.ComputeStateHash(hash);
 		debug_assert(ok);
 	}
+
+	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %hs)\n", turn, Hexify(hash).c_str()));
 
 	m_Replay.Hash(hash);
 
@@ -301,9 +289,7 @@ CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server) :
 
 void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
 {
-#ifdef NETTURN_LOG
-	NETTURN_LOG(L"NotifyFinishedClientCommands(client=%d, turn=%d)\n", client, turn);
-#endif
+	NETTURN_LOG((L"NotifyFinishedClientCommands(client=%d, turn=%d)\n", client, turn));
 
 	// Must be a client we've already heard of
 	debug_assert(m_ClientsReady.find(client) != m_ClientsReady.end());
@@ -312,23 +298,30 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
 	debug_assert(turn == m_ClientsReady[client] + 1);
 	m_ClientsReady[client] = turn;
 
+	// Check whether this was the final client to become ready
+	CheckClientsReady();
+}
+
+void CNetServerTurnManager::CheckClientsReady()
+{
 	// See if all clients (including self) are ready for a new turn
 	for (std::map<int, u32>::iterator it = m_ClientsReady.begin(); it != m_ClientsReady.end(); ++it)
 	{
-#ifdef NETTURN_LOG
-		NETTURN_LOG(L"  %d: %d <=? %d\n", it->first, it->second, m_ReadyTurn);
-#endif
+		NETTURN_LOG((L"  %d: %d <=? %d\n", it->first, it->second, m_ReadyTurn));
 		if (it->second <= m_ReadyTurn)
-			return;
+			return; // wasn't ready for m_ReadyTurn+1
 	}
+
+	// Advance the turn
+	++m_ReadyTurn;
+
+	NETTURN_LOG((L"CheckClientsReady: ready for turn %d\n", m_ReadyTurn));
 
 	// Tell all clients that the next turn is ready
 	CEndCommandBatchMessage msg;
 	msg.m_TurnLength = m_TurnLength;
-	msg.m_Turn = turn;
+	msg.m_Turn = m_ReadyTurn;
 	m_NetServer.Broadcast(&msg);
-
-	m_ReadyTurn = turn;
 }
 
 void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash)
@@ -358,9 +351,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 
 		for (std::map<int, std::string>::iterator cit = it->second.begin(); cit != it->second.end(); ++cit)
 		{
-#ifdef NETTURN_LOG
-			NETTURN_LOG(L"sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str());
-#endif
+			NETTURN_LOG((L"sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str()));
 			if (cit->second != expected)
 			{
 				// Oh no, out of sync
@@ -382,11 +373,24 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 
 void CNetServerTurnManager::InitialiseClient(int client)
 {
+	NETTURN_LOG((L"InitialiseClient(client=%d)\n", client));
+
 	debug_assert(m_ClientsReady.find(client) == m_ClientsReady.end());
 	m_ClientsReady[client] = 1;
 	m_ClientsSimulated[client] = 0;
+}
 
-	// TODO: do we need some kind of UninitialiseClient in case they leave?
+void CNetServerTurnManager::UninitialiseClient(int client)
+{
+	NETTURN_LOG((L"UninitialiseClient(client=%d)\n", client));
+
+	debug_assert(m_ClientsReady.find(client) != m_ClientsReady.end());
+	m_ClientsReady.erase(client);
+	m_ClientsSimulated.erase(client);
+
+	// Check whether we're ready for the next turn now that we're not
+	// waiting for this client any more
+	CheckClientsReady();
 }
 
 void CNetServerTurnManager::SetTurnLength(u32 msecs)

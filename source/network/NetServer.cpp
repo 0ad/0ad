@@ -56,7 +56,6 @@ static CStr DebugName(CNetServerSession* session)
 /*
  * XXX: We use some non-threadsafe functions from the worker thread.
  * See http://trac.wildfiregames.com/ticket/654
- * and http://trac.wildfiregames.com/ticket/653
  */
 
 CNetServerWorker::CNetServerWorker(int autostartPlayers) :
@@ -399,6 +398,12 @@ void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 void CNetServerWorker::OnUserLeave(CNetServerSession* session)
 {
 	RemovePlayer(session->GetGUID());
+
+	if (m_ServerTurnManager)
+		m_ServerTurnManager->UninitialiseClient(session->GetHostID()); // TODO: only for non-observers
+
+	// TODO: ought to switch the player controlled by that client
+	// back to AI control, or something?
 }
 
 void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)

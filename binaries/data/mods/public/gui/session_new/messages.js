@@ -45,7 +45,7 @@ function displayNotifications()
 	getGUIObjectByName("notificationText").caption = messages.join("\n");
 }
 
-//Messages
+// Messages
 function handleNetMessage(message)
 {
 	log("Net message: "+uneval(message));
@@ -74,22 +74,39 @@ function handleNetMessage(message)
 			break;
 		}
 		break;
+
 	case "players":
 		// Find and report all leavings
 		for (var host in g_PlayerAssignments)
 		{
 			if (! message.hosts[host])
 			{
-				var obj = getGUIObjectByName("netStatus");
-				obj.caption = g_PlayerAssignments[host].name + " has disconnected.\n\nThe game has ended.";
-				obj.hidden = false;
-				getGUIObjectByName("disconnectedExitButton").hidden = false;
+				// Tell the user about the disconnection
+				addChatMessage({ "type": "disconnect", "guid": host });
+
+				// Update the cached player data, so we can display the disconnection status
+				updatePlayerDataRemove(g_Players, host);
 			}
 		}
+
+		// Find and report all joinings
+		for (var host in message.hosts)
+		{
+			if (! g_PlayerAssignments[host])
+			{
+				// Update the cached player data, so we can display the correct name
+				updatePlayerDataAdd(g_Players, host, message.hosts[host]);
+			}
+		}
+
+		g_PlayerAssignments = message.hosts;
+
 		break;
+
 	case "chat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
 		break;
+
 	default:
 		error("Unrecognised net message type "+message.type);
 	}
@@ -136,11 +153,9 @@ function addChatMessage(msg)
 
 	switch (msg.type)
 	{
-	/*
 	case "disconnect":
-		formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> has left";
+		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has left the game.";
 		break;
-	*/
 	case "message":
 		console.write("<" + username + "> " + message);
 		formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;

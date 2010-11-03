@@ -25,21 +25,52 @@ function getPlayerData(playerAssignments)
 		var civ = playerState.civ;
 		var color = {"r": playerState.colour.r*255, "g": playerState.colour.g*255, "b": playerState.colour.b*255, "a": playerState.colour.a*255};
 
-		var player = {"name": name, "civ": civ, "color": color, "team": playerState.team, "diplomacy": playerState.diplomacy, "state": playerState.state};
+		var player = {
+			"name": name,
+			"civ": civ,
+			"color": color,
+			"team": playerState.team,
+			"diplomacy": playerState.diplomacy,
+			"state": playerState.state,
+			"guid": undefined, // network guid for players controlled by hosts
+			"disconnected": false, // flag for host-controlled players who have left the game
+		};
 		players.push(player);
 	}
 	
 	// Overwrite default player names with multiplayer names
 	if (playerAssignments)
 	{
-		for each (var playerAssignment in playerAssignments)
+		for (var playerGuid in playerAssignments)
 		{
+			var playerAssignment = playerAssignments[playerGuid];
 			if (players[playerAssignment.player])
+			{
+				players[playerAssignment.player].guid = playerGuid;
 				players[playerAssignment.player].name = playerAssignment.name;
+			}
 		}
 	}
 	
 	return players;
+}
+
+// Update player data when a host has connected
+function updatePlayerDataAdd(players, hostGuid, playerAssignment)
+{
+	if (players[playerAssignment.player])
+	{
+		players[playerAssignment.player].guid = hostGuid;
+		players[playerAssignment.player].name = playerAssignment.name;
+	}
+}
+
+// Update player data when a host has disconnected
+function updatePlayerDataRemove(players, hostGuid)
+{
+	for each (var player in players)
+		if (player.guid == hostGuid)
+			player.offline = true;
 }
 
 function isUnit(entState)

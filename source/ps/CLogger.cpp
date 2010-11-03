@@ -342,7 +342,7 @@ void CLogger::Render()
 
 void CLogger::PushRenderMessage(ELogMethod method, const wchar_t* message)
 {
-	double now = timer_Time(); // XXX: this is not thread-safe (http://trac.wildfiregames.com/ticket/653)
+	double now = timer_Time();
 
 	// Add each message line separately
 	const wchar_t* pos = message;

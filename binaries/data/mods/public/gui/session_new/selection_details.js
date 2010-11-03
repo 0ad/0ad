@@ -38,6 +38,12 @@ function displaySingle(entState, template)
 	var playerColor = g_Players[entState.player].color.r + " " + g_Players[entState.player].color.g + " " +
 								g_Players[entState.player].color.b+ " " + g_Players[entState.player].color.a;
 
+	// Indicate disconnected players by prefixing their name
+	if (g_Players[entState.player].offline)
+	{
+		playerName = "[OFFLINE] " + playerName;
+	}
+
 	// Rank					
 	getGUIObjectByName("rankIcon").cell_id = getRankIconCellId(entState);							
 								

@@ -197,11 +197,22 @@ public:
 
 	void NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash);
 
+	/**
+	 * Inform the turn manager of a new client who will be sending commands.
+	 */
 	void InitialiseClient(int client);
+
+	/**
+	 * Inform the turn manager that a previously-initialised client has left the game
+	 * and will no longer be sending commands.
+	 */
+	void UninitialiseClient(int client);
 
 	void SetTurnLength(u32 msecs);
 
 protected:
+	void CheckClientsReady();
+
 	/// The latest turn for which we have received all commands from all clients
 	u32 m_ReadyTurn;
 

@@ -458,7 +458,7 @@ static void InitVfs(const CmdLineArgs& args)
 }
 
 
-static void InitPs(bool setup_gui, const CStrW& gui_page)
+static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 {
 	{
 		// console
@@ -490,12 +490,12 @@ static void InitPs(bool setup_gui, const CStrW& gui_page)
 	{
 		// We do actually need *some* kind of GUI loaded, so use the
 		// (currently empty) Atlas one
-		g_GUI->SwitchPage(L"page_atlas.xml", JSVAL_VOID);
+		g_GUI->SwitchPage(L"page_atlas.xml", initData);
 		return;
 	}
 
 	// GUI uses VFS, so this must come after VFS init.
-	g_GUI->SwitchPage(gui_page, JSVAL_VOID);
+	g_GUI->SwitchPage(gui_page, initData);
 
 	// Warn nicely about missing S3TC support
 	if (!ogl_tex_has_s3tc())
@@ -887,7 +887,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	if (!Autostart(args))
 	{
 		const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
-		InitPs(setup_gui, L"page_pregame.xml");
+		InitPs(setup_gui, L"page_pregame.xml", JSVAL_VOID);
 	}
 }
 
@@ -918,9 +918,14 @@ static bool Autostart(const CmdLineArgs& args)
 	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
 	scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap), false);
 
+	CScriptValRooted mpInitData;
+	g_GUI->GetScriptInterface().Eval("({isNetworked:true, playerAssignments:{}})", mpInitData);
+	g_GUI->GetScriptInterface().SetProperty(mpInitData.get(), "attribs",
+			CScriptVal(g_GUI->GetScriptInterface().CloneValueFromOtherContext(scriptInterface, attrs.get())), false);
+
 	if (args.Has("autostart-host"))
 	{
-		InitPs(true, L"page_loading.xml");
+		InitPs(true, L"page_loading.xml", mpInitData.get());
 
 		size_t maxPlayers = 2;
 		if (args.Has("autostart-players"))
@@ -939,7 +944,7 @@ static bool Autostart(const CmdLineArgs& args)
 	}
 	else if (args.Has("autostart-client"))
 	{
-		InitPs(true, L"page_loading.xml");
+		InitPs(true, L"page_loading.xml", mpInitData.get());
 
 		g_NetClient = new CNetClient(g_Game);
 		// TODO: player name, etc
@@ -959,7 +964,7 @@ static bool Autostart(const CmdLineArgs& args)
 		PSRETURN ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 
-		InitPs(true, L"page_session_new.xml");
+		InitPs(true, L"page_session_new.xml", JSVAL_VOID);
 	}
 
 	return true;
