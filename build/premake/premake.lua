@@ -198,15 +198,23 @@ function package_set_build_flags()
 				-- positively by the optimisation
 				"-fno-omit-frame-pointer",
 			})
+
 			if OS == "linux" then
 				tinsert(package.linkoptions, {
 					"-Wl,--no-undefined",
 					"-Wl,--as-needed",
 				})
 			end
+
 			if options["coverage"] then
 				tinsert(package.buildoptions, {"-fprofile-arcs", "-ftest-coverage"})
 				tinsert(package.links, "gcov")
+			end
+
+			-- To support intrinsics like __sync_bool_compare_and_swap on x86
+			-- we need to set -march to something that supports them
+			if arch == "x86" then
+				tinsert(package.buildoptions, "-march=i686")
 			end
 		end
 
