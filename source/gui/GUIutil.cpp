@@ -23,7 +23,6 @@ GUI utilities
 #include "GUI.h"
 #include "GUIManager.h"
 #include "ps/Parser.h"
-#include "ps/i18n.h"
 
 extern int g_yres;
 

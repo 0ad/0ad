@@ -50,7 +50,6 @@
 #include "ps/Hotkey.h"
 #include "ps/ProfileViewer.h"
 #include "ps/World.h"
-#include "ps/i18n.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "renderer/Renderer.h"

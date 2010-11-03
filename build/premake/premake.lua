@@ -480,19 +480,6 @@ function setup_all_libs ()
 	setup_static_lib_package("graphics", source_dirs, extern_libs, {})
 
 
-	-- internationalization = i18n
-	-- note: this package isn't large, but is separate because it may be
-	-- useful for other projects.
-	source_dirs = {
-		"i18n"
-	}
-	extern_libs = {
-		"spidermonkey",
-		"boost"
-	}
-	setup_static_lib_package("i18n", source_dirs, extern_libs, {})
-
-
 	source_dirs = {
 		"tools/atlas/GameInterface",
 		"tools/atlas/GameInterface/Handlers"

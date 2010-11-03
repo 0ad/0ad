@@ -20,7 +20,6 @@
 #include <cstdio>
 
 #include "Pyrogenesis.h"
-#include "ps/i18n.h"
 
 #include "lib/sysdep/sysdep.h"
 #include "lib/path_util.h"
@@ -31,21 +30,7 @@ static const wchar_t* translate_no_mem = L"(no mem)";
 // overrides ah_translate. registered in GameSetup.cpp
 const wchar_t* psTranslate(const wchar_t* text)
 {
-	// make sure i18n system is (already|still) initialized.
-	if(g_CurrentLocale)
-	{
-		// be prepared for this to fail, because translation potentially
-		// involves script code and the JS context might be corrupted.
-		try
-		{
-			CStrW ret = I18n::translate(text);
-			const wchar_t* ret_dup = wcsdup(ret.c_str());
-			return ret_dup? ret_dup : translate_no_mem;
-		}
-		catch(...)
-		{
-		}
-	}
+	// TODO: implement this somehow
 
 	// i18n not available: at least try and return the text (unchanged)
 	const wchar_t* ret_dup = wcsdup(text);

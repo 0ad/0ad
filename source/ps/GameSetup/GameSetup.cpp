@@ -52,7 +52,6 @@
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
-#include "ps/i18n.h"
 
 #include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
@@ -185,8 +184,7 @@ retry:
 // display progress / description in loading screen
 void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
-	CStrW i18n_description = I18n::translate(pending_task);
-	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
+	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), pending_task);
 	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent));
 	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
 	g_GUI->SendEventToAll("progress");
@@ -475,14 +473,9 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 		g_Console->m_iFontOffset = 7;
 	}
 
-	// language and hotkeys
+	// hotkeys
 	{
 		TIMER(L"ps_lang_hotkeys");
-
-		std::string lang = "english";
-		CFG_GET_SYS_VAL("language", String, lang);
-		I18n::LoadLanguage(lang.c_str());
-
 		LoadHotkeys();
 	}
 
@@ -547,10 +540,6 @@ static void ShutdownPs()
 
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y);
-
-	// Unload the real language (since it depends on the scripting engine,
-	// which is going to be killed later) and use the English fallback messages
-	I18n::LoadLanguage(NULL);
 }
 
 
@@ -669,12 +658,6 @@ void Shutdown(int UNUSED(flags))
 	delete &g_ConfigDB;
 	TIMER_END(L"shutdown ConfigDB");
 
-	// Really shut down the i18n system. Any future calls
-	// to translate() will crash.
-	TIMER_BEGIN(L"shutdown I18N");
-	I18n::Shutdown();
-	TIMER_END(L"shutdown I18N");
-
 	// resource
 	// first shut down all resource owners, and then the handle manager.
 	TIMER_BEGIN(L"resource modules");
@@ -767,17 +750,6 @@ void Init(const CmdLineArgs& args, int flags)
 		std::cout << "Generated entity.rng\n";
 		exit(0);
 	}
-
-	// Call LoadLanguage(NULL) to initialize the I18n system, but
-	// without loading an actual language file - translate() will
-	// just show the English key text, which is better than crashing
-	// from a null pointer when attempting to translate e.g. error messages.
-	// Real languages can only be loaded when the scripting system has
-	// been initialised.
-	//
-	// this uses LOG and must therefore come after CLogger init.
-	MICROLOG(L"init i18n");
-	I18n::LoadLanguage(NULL);
 
 	// override ah_translate with our i18n code.
 	AppHooks hooks = {0};
