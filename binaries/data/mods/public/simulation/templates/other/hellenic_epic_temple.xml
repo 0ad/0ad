@@ -2,11 +2,12 @@
 <Entity parent="structures/hele_temple">
   <Identity>
     <Civ>hele</Civ>
-    <SpecificName>Naos</SpecificName>
+    <GenericName>Epic Temple</GenericName>
+    <SpecificName>Athene Parthenos</SpecificName>
     <History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
   </Identity>
   <Cost>
-    <BuildTime>160</BuildTime>
+    <BuildTime>300</BuildTime>
     <Resources>
       <food>0</food>
       <wood>0</wood>
@@ -18,6 +19,7 @@
     <Max>5000</Max>
   </Health>
   <VisualActor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
     <Actor>structures/hellenes/temple_epic.xml</Actor>
   </VisualActor>
   <Footprint>

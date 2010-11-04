@@ -10,7 +10,7 @@
   </Identity>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
-    <BuildTime>300</BuildTime>
+    <BuildTime>140</BuildTime>
     <Resources>
       <food>0</food>
       <wood>0</wood>
@@ -35,6 +35,7 @@
   </Loot>
   <VisualActor>
     <Actor>special/greek_stoa_great.xml</Actor>
+    <FoundationActor>structures/fndn_wall.xml</FoundationActor>
   </VisualActor>
   <Footprint>
     <Square width="29" depth="21.0"/>
