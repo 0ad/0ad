@@ -162,15 +162,11 @@ function init(attribs)
 		getGUIObjectByName("startGame").enabled = false;
 	}
 	
-
 	// Set up offline-only bits:
 	if (!g_IsNetworked)
 	{
 		getGUIObjectByName("chatPanel").hidden = true;
-
-		g_PlayerAssignments = { "local": { "name": "You", "player": 1, "civ": "", "team": -1} };
 	}
-	
 	
 	// Settings for all possible player slots
 	var boxSpacing = 32;
@@ -211,8 +207,6 @@ function init(attribs)
 				onGameAttributesChange();
 		};
 	}
-
-	updatePlayerList();
 
 	getGUIObjectByName("chatInput").focus();
 }
@@ -514,6 +508,23 @@ function selectMap(name)
 	default:
 		error("selectMap: Unexpected map type '"+g_GameAttributes.mapType+"'");
 		return;
+	}
+	
+	// Reset player assignments on map change
+	if (!g_IsNetworked)
+	{	// Slot 1
+		g_PlayerAssignments = { "local": { "name": "You", "player": 1, "civ": "", "team": -1} };
+		updatePlayerList();
+	}
+	else
+	{
+		for (var guid in g_PlayerAssignments)
+		{	// Unassign extra players
+			var player = g_PlayerAssignments[guid].player;
+
+			if (player <= g_MaxPlayers && player > g_NumPlayers)
+				Engine.AssignNetworkPlayer(player, "");
+		}
 	}
 	
 	if (g_IsNetworked)
