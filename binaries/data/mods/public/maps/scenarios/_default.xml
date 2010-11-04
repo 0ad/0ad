@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Scenario version="5">
-	<Terrain patches="12" texture="grass1_spring" priority="0" height="16384"/>
+	<Terrain patches="16" texture="grass1_spring" priority="0" height="16384"/>
 	<Environment>
 		<SkySet>default</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="100" y="150" z="-100"/>
+		<Position x="300" y="300" z="-100"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -58,7 +58,8 @@
 			{
 				"Civ":"hele"
 			}
-		]
+		],
+		"CircularMap":true
 	}
 	]]></ScriptSettings>
 </Scenario>

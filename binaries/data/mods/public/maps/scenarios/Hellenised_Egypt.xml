@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1" g="1" b="1"/>
+		<SunColour r="1.89844" g="1.89844" b="1.89844"/>
 		<SunElevation angle="0.895845"/>
 		<SunRotation angle="-0.824594"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
@@ -15,40 +15,38 @@
 				<Height>19.7246</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.203125</Murkiness>
+				<Murkiness>0.199219</Murkiness>
 				<Tint r="0" g="0.6" b="0.666667"/>
 				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
-				<ReflectionTintStrength>0.253906</ReflectionTintStrength>
+				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="241.426" y="110.275" z="604.598"/>
+		<Position x="227.277" y="115.15" z="578.035"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Hellenised Egypt",
-		"Description":"Greek colonists have settled the Nile River valley. A large map divided down the center by a mighty river with two wide crossings.",
-		"PlayerData":
-		[
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			}
-		],
-		"CircularMap":true
-	}
-	]]></ScriptSettings>
+{
+  "Name":"Hellenised Egypt",
+  "Description":"Greek colonists have settled the Nile River valley. A large map divided down the center by a mighty river with two wide crossings.",
+  "PlayerData":[{
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    }
+  ],
+  "CircularMap":true
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>structures/hele_civil_centre</Template>
@@ -1595,25 +1593,25 @@
 		<Entity uid="322">
 			<Template>gaia/fauna_elephant_african_bush</Template>
 			<Player>0</Player>
-			<Position x="115.83214" z="819.14002"/>
+			<Position x="111.26044" z="787.20936"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="323">
 			<Template>gaia/fauna_elephant_african_infant</Template>
 			<Player>0</Player>
-			<Position x="111.6103" z="816.60944"/>
+			<Position x="106.63259" z="806.8512"/>
 			<Orientation y="2.98615"/>
 		</Entity>
 		<Entity uid="324">
 			<Template>gaia/fauna_elephant_north_african</Template>
 			<Player>0</Player>
-			<Position x="108.93937" z="823.68928"/>
+			<Position x="100.752" z="796.79072"/>
 			<Orientation y="0.22385"/>
 		</Entity>
 		<Entity uid="325">
 			<Template>gaia/fauna_elephant_north_african</Template>
 			<Player>0</Player>
-			<Position x="116.9451" z="833.41175"/>
+			<Position x="108.83646" z="797.98383"/>
 			<Orientation y="1.99346"/>
 		</Entity>
 		<Entity uid="350">
@@ -10541,7 +10539,7 @@
 		</Entity>
 		<Entity uid="2214">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="226.71003" z="616.75532"/>
+			<Position x="223.2605" z="629.50403"/>
 			<Orientation y="2.1686"/>
 		</Entity>
 		<Entity uid="2215">
@@ -17795,7 +17793,7 @@
 		<Entity uid="3695">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="228.732" z="620.2978"/>
+			<Position x="154.64858" z="500.60944"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3696">
@@ -17831,7 +17829,7 @@
 		<Entity uid="3701">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="690.60236" z="653.86042"/>
+			<Position x="846.61481" z="512.04725"/>
 			<Orientation y="-2.75246"/>
 		</Entity>
 		<Entity uid="3703">
@@ -17951,7 +17949,7 @@
 		<Entity uid="3722">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="224.88051" z="108.32"/>
+			<Position x="229.43984" z="110.12229"/>
 			<Orientation y="0.46592"/>
 		</Entity>
 		<Entity uid="3724">
@@ -18258,12 +18256,6 @@
 			<Position x="290.0474" z="249.80585"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3793">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="894.7057" z="258.76905"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3794">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
@@ -18328,7 +18320,7 @@
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="683.03412" z="346.87482"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-0.84481"/>
 		</Entity>
 		<Entity uid="3814">
 			<Template>gaia/geology_stone_desert_small</Template>
@@ -18557,6 +18549,30 @@
 			<Player>3</Player>
 			<Position x="204.89124" z="224.50724"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3867">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="160.19755" z="353.02137"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3868">
+			<Template>gaia/fauna_elephant_african_infant</Template>
+			<Player>0</Player>
+			<Position x="155.95376" z="346.79157"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3869">
+			<Template>gaia/fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="150.54998" z="361.74296"/>
+			<Orientation y="-2.55556"/>
+		</Entity>
+		<Entity uid="3870">
+			<Template>gaia/fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="171.75611" z="343.65952"/>
+			<Orientation y="0.22173"/>
 		</Entity>
 	</Entities>
 	<Paths/>
