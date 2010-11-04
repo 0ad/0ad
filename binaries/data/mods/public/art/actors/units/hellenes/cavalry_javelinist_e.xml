@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
+        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
+        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/hellenes/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hyppikon-horse-texture-plain">
+      <texture>skeletal/horse_hele_csw_e_1.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse-color-bay">
+      <colour>228 107 27</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-red-chestnut">
+      <colour>207 132 109</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-black-chestnut">
+      <colour>164 87 68</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-black">
+      <colour>42 42 42</colour>
+    </variant>
+    <variant frequency="5" name="horse-color-gray">
+      <colour>255 255 255</colour>
+    </variant>
+    <variant frequency="2" name="horse-color-beige">
+      <colour>251 254 146</colour>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

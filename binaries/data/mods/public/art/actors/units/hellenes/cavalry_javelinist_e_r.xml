@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
+        <animation event="0.59" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_cav_a.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+        <prop actor="props/units/cape_m_med.xml" attachpoint="shoulders"/>
+      </props>
+      <texture>skeletal/hele_cjv_e_1.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

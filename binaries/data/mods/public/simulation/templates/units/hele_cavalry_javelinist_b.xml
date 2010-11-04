@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelinist">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Prodromos</SpecificName>
+    <History>Prodromoi were the light scouts of Greek armies.</History>
+    <Icon>units/hele_cavalry_swordsman.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>hele_cavalry_javelinist_a</Entity>
+  </Promotion>
+  <Vision>
+    <Range>110</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/hellenes/cavalry_javelinist_b.xml</Actor>
+  </VisualActor>
+  
+</Entity>

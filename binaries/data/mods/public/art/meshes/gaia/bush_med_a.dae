@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-11-04T14:12:34Z</created>
+    <modified>2010-11-04T14:12:34Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__1-image" name="Map__1">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\gaia\bush_lush_a.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_01___Default" name="_01___Default">
+      <instance_effect url="#_01___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_01___Default-fx" name="_01___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__1-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Plane04-lib" name="Plane04Mesh">
+      <mesh>
+        <source id="Plane04-lib-Position">
+          <float_array id="Plane04-lib-Position-array" count="48">
+-4.640370 -4.640370 0.000000
+4.640370 -4.640370 -1.833179
+-4.640370 4.640370 -1.833179
+4.640370 4.640370 0.000000
+3.744951 -4.337895 2.633185
+4.337895 3.744951 1.032330
+-4.337895 -3.744951 1.032330
+-3.744951 4.337895 2.633185
+-6.320581 1.765311 1.353138
+-1.765311 -6.320581 -0.480042
+1.765311 6.320581 -0.480042
+6.320581 -1.765311 1.353138
+-1.048149 -5.634126 4.186278
+5.634126 -1.048149 2.585423
+-5.634126 1.048149 2.585423
+1.048149 5.634126 4.186278
+</float_array>
+          <technique_common>
+            <accessor source="#Plane04-lib-Position-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane04-lib-Normal0">
+          <float_array id="Plane04-lib-Normal0-array" count="72">
+-0.190242 0.190242 0.963128
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.190242 -0.190242 0.963128
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+-0.203651 -0.175814 0.963128
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.203651 0.175814 0.963128
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.072373 0.259126 0.963128
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+-0.072373 -0.259126 0.963128
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+-0.264505 0.049207 0.963128
+-0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.264505 -0.049207 0.963128
+0.000000 -0.000000 1.000000
+-0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Plane04-lib-Normal0-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane04-lib-UV0">
+          <float_array id="Plane04-lib-UV0-array" count="32">
+1.002727 0.007168
+0.998386 0.507164
+0.001614 0.004995
+-0.002727 0.504990
+0.000000 0.000062
+1.000000 0.000062
+0.000000 0.500623
+1.000000 0.500623
+0.000000 0.499439
+1.000000 0.499439
+0.000000 1.000000
+1.000000 1.000000
+0.000000 0.499439
+1.000000 0.499439
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Plane04-lib-UV0-array" count="16" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane04-lib-Vertex">
+          <input semantic="POSITION" source="#Plane04-lib-Position"/>
+        </vertices>
+        <polygons material="_01___Default" count="8">
+          <input semantic="VERTEX" offset="0" source="#Plane04-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Plane04-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane04-lib-UV0"/>
+          <p>2 0 2 0 1 0 3 2 3</p>
+          <p>1 3 1 3 4 3 0 5 0</p>
+          <p>6 6 6 4 7 4 7 8 7</p>
+          <p>5 9 5 7 10 7 4 11 4</p>
+          <p>10 12 10 8 13 8 11 14 11</p>
+          <p>9 15 9 11 16 11 8 17 8</p>
+          <p>14 18 14 12 19 12 15 20 15</p>
+          <p>13 21 13 15 22 15 12 23 12</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="SceneAmbient-lib" name="SceneAmbientMesh">
+      <technique_common>
+        <ambient>
+          <color>0.419608 0.419608 0.419608</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Plane04" name="Plane04">
+        <matrix sid="matrix">0.434003 0.297852 0.000000 0.016065 -0.000000 -0.000000 0.526378 1.183365 0.297852 -0.434003 0.000000 0.053761 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Plane04-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_01___Default" target="#_01___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

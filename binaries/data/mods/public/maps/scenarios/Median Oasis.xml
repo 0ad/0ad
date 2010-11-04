@@ -3,10 +3,10 @@
 <Scenario version="5">
 	<Environment>
 		<SkySet>sunset</SkySet>
-		<SunColour r="1.71875" g="1.25368" b="0.579657"/>
-		<SunElevation angle="0.239301"/>
+		<SunColour r="0.905882" g="0.662745" b="0.305882"/>
+		<SunElevation angle="0.398835"/>
 		<SunRotation angle="0.404971"/>
-		<TerrainAmbientColour r="0.192157" g="0.258824" b="0.356863"/>
+		<TerrainAmbientColour r="0.286275" g="0.341176" b="0.4"/>
 		<UnitsAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
 		<Water>
 			<WaterBody>
@@ -15,7 +15,7 @@
 				<Height>20.459</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.45</Murkiness>
+				<Murkiness>0.576172</Murkiness>
 				<Tint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="511.238" y="226.095" z="141.128"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="517.987" y="104.26" z="727.835"/>
+		<Rotation angle="0.00368874"/>
+		<Declination angle="0.536578"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -3081,7 +3081,7 @@
 		<Entity uid="516">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="279.29734" z="320.81888"/>
+			<Position x="278.36008" z="327.78669"/>
 			<Orientation y="1.41027"/>
 		</Entity>
 		<Entity uid="517">
@@ -5043,8 +5043,8 @@
 		<Entity uid="843">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="536.00983" z="818.99964"/>
-			<Orientation y="2.35621"/>
+			<Position x="535.99842" z="817.5843"/>
+			<Orientation y="1.32918"/>
 		</Entity>
 		<Entity uid="844">
 			<Template>gaia/geology_metal_desert_slabs</Template>
@@ -5409,19 +5409,19 @@
 		<Entity uid="908">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="434.46088" z="874.9214"/>
+			<Position x="433.71012" z="875.47211"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="909">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="434.38538" z="887.04474"/>
+			<Position x="431.95374" z="886.98707"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="910">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="441.8664" z="901.6855"/>
+			<Position x="440.60193" z="898.3556"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="911">
@@ -6208,7 +6208,7 @@
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="510.83091" z="800.44727"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="0.46073"/>
 		</Entity>
 		<Entity uid="1043">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -6588,7 +6588,7 @@
 		</Entity>
 		<Entity uid="1112">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="441.7978" z="883.2602"/>
+			<Position x="441.46711" z="881.3042"/>
 			<Orientation y="-2.08138"/>
 		</Entity>
 		<Entity uid="1113">
@@ -6603,12 +6603,12 @@
 		</Entity>
 		<Entity uid="1115">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="435.25547" z="874.28089"/>
+			<Position x="434.84925" z="874.85907"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1116">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="436.94434" z="889.6573"/>
+			<Position x="433.13245" z="886.86512"/>
 			<Orientation y="-2.39103"/>
 		</Entity>
 		<Entity uid="1117">
@@ -6618,7 +6618,7 @@
 		</Entity>
 		<Entity uid="1118">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="442.7588" z="898.04786"/>
+			<Position x="442.32425" z="896.57831"/>
 			<Orientation y="-2.33347"/>
 		</Entity>
 		<Entity uid="1119">
@@ -6633,7 +6633,7 @@
 		</Entity>
 		<Entity uid="1121">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="436.82248" z="894.12085"/>
+			<Position x="431.97928" z="889.96088"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1122">
@@ -6643,7 +6643,7 @@
 		</Entity>
 		<Entity uid="1123">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="443.55045" z="877.19605"/>
+			<Position x="444.97623" z="883.51282"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1124">
@@ -8688,19 +8688,19 @@
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="525.5163" z="839.84705"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.87514"/>
 		</Entity>
 		<Entity uid="1532">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="528.15705" z="841.72468"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.73217"/>
 		</Entity>
 		<Entity uid="1533">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="530.4856" z="843.90265"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.02851"/>
 		</Entity>
 		<Entity uid="1534">
 			<Template>units/hele_infantry_spearman_e</Template>
