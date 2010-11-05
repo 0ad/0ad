@@ -5,21 +5,9 @@
     <SpecificName>Lithobolos</SpecificName>
     <Icon>units/hele_mechanical_siege_lithobolos.png</Icon>
   </Identity>
-  <Cost>
-    <Resources>
-      <wood>330</wood>
-      <stone>100</stone>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>300</Max>
-  </Health>
-  <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
-    <Run>
-      <Speed>5.9</Speed>
-    </Run>
-  </UnitMotion>
+  <Vision>
+    <Range>99</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/siege_rock.xml</Actor>
   </VisualActor>

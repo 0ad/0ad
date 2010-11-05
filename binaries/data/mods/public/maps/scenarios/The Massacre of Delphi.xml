@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="149.299" y="126.386" z="416.824"/>
+		<Position x="143.78" y="92.2436" z="462.256"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -449,24 +449,6 @@
 			<Position x="163.56568" z="574.24231"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="144">
-			<Template>units/celt_cavalry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="172.81743" z="577.40333"/>
-			<Orientation y="-2.20107"/>
-		</Entity>
-		<Entity uid="145">
-			<Template>units/celt_cavalry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="176.85575" z="572.45936"/>
-			<Orientation y="-2.22"/>
-		</Entity>
-		<Entity uid="146">
-			<Template>units/celt_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="169.7063" z="581.89618"/>
-			<Orientation y="-2.2301"/>
-		</Entity>
 		<Entity uid="147">
 			<Template>units/celt_infantry_javelinist_b</Template>
 			<Player>1</Player>
@@ -573,18 +555,6 @@
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="604.15033" z="156.51586"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="165">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="614.41517" z="166.30611"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="166">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="617.37366" z="169.73172"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="176">
@@ -4644,7 +4614,7 @@
 		</Entity>
 		<Entity uid="1007">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="169.93985" z="582.4314"/>
+			<Position x="166.68342" z="598.50287"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1010">
@@ -16045,66 +16015,6 @@
 			<Position x="648.88813" z="107.81617"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3202">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="135.05025" z="581.38416"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3203">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="133.15426" z="579.82032"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3204">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="131.46351" z="577.70252"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3205">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="129.69977" z="575.94996"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3206">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="127.65534" z="578.99695"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3207">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="129.52152" z="581.54328"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3208">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="131.43577" z="583.24958"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3209">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="133.04104" z="585.47181"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3210">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="135.18558" z="587.284"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3211">
-			<Template>units/celt_super_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="137.59507" z="583.25812"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3217">
 			<Template>other/hellenic_royal_stoa</Template>
 			<Player>2</Player>
@@ -16754,6 +16664,96 @@
 			<Template>other/thebes_sacred_band_hoplitai</Template>
 			<Player>2</Player>
 			<Position x="613.55781" z="193.16681"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3377">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="137.2194" z="583.54969"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3378">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="136.1622" z="581.76038"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3379">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="134.71973" z="580.3125"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3380">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="133.25222" z="578.27088"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3381">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="131.77521" z="576.57837"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3382">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="129.5359" z="578.61963"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3383">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="131.35792" z="580.4178"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3384">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="132.81705" z="582.42298"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3385">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="133.95095" z="584.01716"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3386">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="135.39594" z="585.9264"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3387">
+			<Template>units/celt_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="173.57995" z="577.65772"/>
+			<Orientation y="-2.14193"/>
+		</Entity>
+		<Entity uid="3388">
+			<Template>units/celt_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="176.94495" z="574.66358"/>
+			<Orientation y="-2.17658"/>
+		</Entity>
+		<Entity uid="3389">
+			<Template>units/celt_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="168.9958" z="582.93372"/>
+			<Orientation y="-2.14057"/>
+		</Entity>
+		<Entity uid="3390">
+			<Template>units/hele_cavalry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="619.08808" z="171.86545"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3391">
+			<Template>units/hele_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="615.8855" z="167.47472"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

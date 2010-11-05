@@ -5,24 +5,12 @@
     <SpecificName>Oxybeles</SpecificName>
     <Icon>units/hele_mechanical_siege_oxybeles.png</Icon>
   </Identity>
-  <Cost>
-    <Resources>
-      <wood>190</wood>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>200</Max>
-  </Health>
-  <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
-    <Run>
-      <Speed>7.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/hellenes/siege_spear.xml</Actor>
   </VisualActor>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
   <Footprint replace="">
     <Square width="2.0" depth="4.0"/>
     <Height>2.0</Height>
