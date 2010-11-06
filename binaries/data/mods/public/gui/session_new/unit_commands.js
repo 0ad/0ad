@@ -139,12 +139,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	}
 	else if (guiName == "Command")
 	{
-		if (numberOfItems > 4)
-			numberOfItems = 4;
+		if (numberOfItems > 6)
+			numberOfItems = 6;
 	}
-	else if (numberOfItems > 18)
+	else if (numberOfItems > 24)
 	{
-		numberOfItems =  18;
+		numberOfItems =  24;
 	}
 
 	var i;

@@ -98,9 +98,8 @@ function displaySingle(entState, template)
 	
 	// Set Captions
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("player").caption = (entState.player == 0 ? civName : playerName + " (" + civName + ")"); // Don't display civ for Gaia units
-//	getGUIObjectByName("player").textcolor = playerColor;
-
+	getGUIObjectByName("player").caption = playerName;
+	getGUIObjectByName("player").textcolor = playerColor;
 
 	// Icon image
 	if (template.icon)
@@ -114,7 +113,8 @@ function displaySingle(entState, template)
 	}
 
 	// Tooltips
-//	getGUIObjectByName("specific").tooltip = genericName;
+	getGUIObjectByName("specific").tooltip = genericName;
+	getGUIObjectByName("player").tooltip = civName;
 	getGUIObjectByName("health").tooltip = hitpoints;
 	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
 	getGUIObjectByName("armourIcon").tooltip = damageTypesToText(entState.armour);
