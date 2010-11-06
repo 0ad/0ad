@@ -404,7 +404,7 @@
 		>	
 			<object name="minimap"
 				type="minimap"
-				size="10 10 100%-10 100%-10"
+				size="14 14 100%-14 100%-14"
 				circular="true"
 			>
 				<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
