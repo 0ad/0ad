@@ -34,7 +34,6 @@
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
-#include "ps/Pyrogenesis.h"	// MICROLOG
 #include "ps/World.h"
 
 #include "simulation2/Simulation2.h"
@@ -166,7 +165,6 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	
 	// render everything fullbright
 	// set up texture environment for base pass
-	MICROLOG(L"base splat textures");
 	pglActiveTextureARB(GL_TEXTURE0);
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);

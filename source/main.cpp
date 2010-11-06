@@ -220,7 +220,6 @@ static bool quit = false;	// break out of main loop
 
 static void Frame()
 {
-	MICROLOG(L"Frame");
 	ogl_WarnIfError();
 
 	// get elapsed time
@@ -260,7 +259,6 @@ static void Frame()
 
 	bool is_building_archive;	// must come before PROFILE_START's {
 	PROFILE_START("build archive");
-	MICROLOG(L"build archive");
 	is_building_archive = ProgressiveBuildArchive();
 	PROFILE_END( "build archive");
 
@@ -272,13 +270,11 @@ static void Frame()
 	if(!is_building_archive)
 	{
 		PROFILE_START("reload changed files");
-		MICROLOG(L"reload changed files");
 		ReloadChangedFiles();
 		PROFILE_END( "reload changed files");
 	}
 
 	PROFILE_START("progressive load");
-	MICROLOG(L"progressive load");
 	ProgressiveLoad();
 	PROFILE_END("progressive load");
 
@@ -287,7 +283,6 @@ static void Frame()
 	PROFILE_END("renderer incremental load");
 
 	PROFILE_START("input");
-	MICROLOG(L"input");
 	PumpEvents();
 	PROFILE_END("input");
 
@@ -312,7 +307,6 @@ static void Frame()
 	ogl_WarnIfError();
 
 	PROFILE_START("gui tick");
-	MICROLOG(L"gui tick");
 	g_GUI->TickObjects();
 	PROFILE_END("gui tick");
 
@@ -364,9 +358,7 @@ static void Frame()
 	ogl_WarnIfError();
 	if(need_render)
 	{
-		MICROLOG(L"render");
 		Render();
-		MICROLOG(L"finished render");
 		PROFILE_START( "swap buffers" );
 		SDL_GL_SwapBuffers();
 		PROFILE_END( "swap buffers" );

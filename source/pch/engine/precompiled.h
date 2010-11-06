@@ -19,7 +19,7 @@
 
 // "engine"-specific PCH:
 
-#include "ps/Pyrogenesis.h"	// MICROLOG and old error system
+#include "ps/Pyrogenesis.h"	// old error system
 
 #if HAVE_PCH
 

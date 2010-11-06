@@ -24,8 +24,6 @@ Standard declarations which are included in all projects.
 #ifndef INCLUDED_PYROGENESIS
 #define INCLUDED_PYROGENESIS
 
-#define MICROLOG debug_wprintf_mem
-
 // overrides ah_translate. registered in GameSetup.cpp
 extern const wchar_t* psTranslate(const wchar_t* text);
 extern void psTranslateFree(const wchar_t* text);

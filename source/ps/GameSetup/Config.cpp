@@ -176,7 +176,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 void CONFIG_Init(const CmdLineArgs& args)
 {
 	TIMER(L"CONFIG_Init");
-	MICROLOG(L"init config");
 
 	new CConfigDB;
 

@@ -30,7 +30,6 @@
 #include "Renderer.h"
 #include "maths/Matrix3D.h"
 #include "maths/MathUtil.h"
-#include "ps/Pyrogenesis.h"	// MICROLOG
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
@@ -874,17 +873,14 @@ void CRenderer::RenderPatches()
 
 	// switch on wireframe if we need it
 	if (m_TerrainRenderMode==WIREFRAME) {
-		MICROLOG(L"wireframe on");
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
 	// render all the patches, including blend pass
-	MICROLOG(L"render patch submissions");
 	m->terrainRenderer->RenderTerrain(m_Options.m_Shadows ? m->shadow : 0);
 
 	if (m_TerrainRenderMode==WIREFRAME) {
 		// switch wireframe off again
-		MICROLOG(L"wireframe off");
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_TerrainRenderMode==EDGED_FACES) {
 		// edged faces: need to make a second pass over the data:
@@ -1223,7 +1219,6 @@ void CRenderer::RenderSubmissions()
 
 	if (m_Options.m_Shadows)
 	{
-		MICROLOG(L"render shadows");
 		RenderShadowMap();
 	}
 
@@ -1243,7 +1238,6 @@ void CRenderer::RenderSubmissions()
 	}
 
 	// render submitted patches and models
-	MICROLOG(L"render patches");
 	RenderPatches();
 	ogl_WarnIfError();
 
@@ -1263,24 +1257,20 @@ void CRenderer::RenderSubmissions()
 	PROFILE_END("render overlays");
 	ogl_WarnIfError();
 
-	MICROLOG(L"render models");
 	RenderModels();
 	ogl_WarnIfError();
 
 	// render transparent stuff, so it can overlap models/terrain
-	MICROLOG(L"render transparent");
 	RenderTransparentModels();
 	ogl_WarnIfError();
 
 	// render water
 	if (m_WaterManager->m_RenderWater && g_Game)
 	{
-		MICROLOG(L"render water");
 		m->terrainRenderer->RenderWater();
 		ogl_WarnIfError();
 		
 		// render transparent stuff again, so it can overlap the water
-		MICROLOG(L"render transparent 2");
 		RenderTransparentModels();
 		ogl_WarnIfError();
 		
@@ -1298,14 +1288,12 @@ void CRenderer::RenderSubmissions()
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	// Particle Engine Rendering.
-	MICROLOG(L"render particles");
 	CParticleEngine::GetInstance()->RenderParticles();
 	ogl_WarnIfError();
 
 	// render debug lines
 	if (m_DisplayFrustum)
 	{
-		MICROLOG(L"display frustum");
 		DisplayFrustum();
 		m->shadow->RenderDebugDisplay();
 		ogl_WarnIfError();
@@ -1318,7 +1306,6 @@ void CRenderer::RenderSubmissions()
 	ogl_WarnIfError();
 
 	// empty lists
-	MICROLOG(L"empty lists");
 	m->terrainRenderer->EndFrame();
 	m->overlayRenderer.EndFrame();
 
@@ -1445,12 +1432,10 @@ void CRenderer::RenderScene(Scene *scene)
 {
 	CFrustum frustum = m_CullCamera.GetFrustum();
 
-	MICROLOG(L"collect objects");
 	scene->EnumerateObjects(frustum, this);
 
 	ogl_WarnIfError();
 
-	MICROLOG(L"flush objects");
 	RenderSubmissions();
 }
 

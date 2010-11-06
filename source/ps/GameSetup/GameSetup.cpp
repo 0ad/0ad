@@ -194,8 +194,6 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 
 void Render()
 {
-	MICROLOG(L"begin frame");
-
 	ogl_WarnIfError();
 
 	CStr skystring = "255 0 255";
@@ -291,7 +289,6 @@ void Render()
 	glPopMatrix();
 	glPopAttrib();
 
-	MICROLOG(L"end frame");
 	g_Renderer.EndFrame();
 
 	ogl_WarnIfError();
@@ -569,7 +566,6 @@ static void InitRenderer()
 	// create the material manager
 	new CMaterialManager;
 
-	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres);
 
 	// Setup lighting environment. Since the Renderer accesses the
@@ -591,7 +587,6 @@ static void InitRenderer()
 
 static void InitSDL()
 {
-	MICROLOG(L"init sdl");
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, L"SDL library initialization failed: %hs", SDL_GetError());
@@ -618,8 +613,6 @@ void EndGame()
 
 void Shutdown(int UNUSED(flags))
 {
-	MICROLOG(L"Shutdown");
-
 	EndGame();
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
@@ -689,8 +682,6 @@ void Shutdown(int UNUSED(flags))
 
 void EarlyInit()
 {
-	MICROLOG(L"EarlyInit");
-
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(232647);
 
@@ -724,14 +715,11 @@ static bool Autostart(const CmdLineArgs& args);
 
 void Init(const CmdLineArgs& args, int flags)
 {
-	MICROLOG(L"Init");
-
 	h_mgr_init();
 
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.
-	MICROLOG(L"init vfs");
 	InitVfs(args);
 
 	// This must come after VFS init, which sets the current directory
@@ -770,7 +758,6 @@ void Init(const CmdLineArgs& args, int flags)
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
-	MICROLOG(L"init scripting");
 	InitScripting();	// before GUI
 
 	// g_ConfigDB, command line args, globals

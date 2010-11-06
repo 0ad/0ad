@@ -341,7 +341,7 @@ void SetCameraTarget(void* UNUSED(cbdata), float x, float y, float z)
 // Useful for testing the crashlog/stack trace code.
 int Crash(void* UNUSED(cbdata))
 {
-	MICROLOG(L"Crashing at user's request.");
+	debug_printf(L"Crashing at user's request.\n");
 	return *(int*)0;
 }
 
