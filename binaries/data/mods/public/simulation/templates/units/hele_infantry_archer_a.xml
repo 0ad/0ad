@@ -24,12 +24,10 @@
   <Attack>
     <Ranged>
       <Pierce>30.0</Pierce>
+      <MaxRange>64.0</MaxRange>
     </Ranged>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_a.xml</Actor>
   </VisualActor>
-  <Vision>
-    <Range>52</Range>
-  </Vision>
 </Entity>

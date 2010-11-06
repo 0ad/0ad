@@ -40,6 +40,11 @@
 	<List datatype="tokens">Support Infantry Cavalry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.5</BarHeight>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
   <Sound>
     <SoundGroups>
       <attack_impact>attack/impact/arrow_metal.xml</attack_impact>
