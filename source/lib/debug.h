@@ -106,13 +106,20 @@ enum DebugDisplayErrorFlags
 };
 
 /**
+ * a bool that is reasonably certain to be set atomically.
+ * we cannot assume support for OpenMP (requires GCC 4.2) or C++0x,
+ * so we'll have to resort to intptr_t, cpu_CAS and COMPILER_FENCE.
+ **/
+typedef volatile intptr_t atomic_bool;
+
+/**
  * value for suppress flag once set by debug_DisplayError.
  * rationale: this value is fairly distinctive and helps when
  * debugging the symbol engine.
  * initial value is 0 rather that another constant; this avoids
  * allocating .rdata space.
  **/
-const u8 DEBUG_SUPPRESS = 0xAB;
+const atomic_bool DEBUG_SUPPRESS = 0xAB;
 
 /**
  * choices offered by the shared error dialog
@@ -170,7 +177,7 @@ enum ErrorReaction
  * provides the storage. values: see DEBUG_SUPPRESS above.
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const wchar_t* lastFuncToSkip, const wchar_t* file, int line, const char* func, u8* suppress);
+LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const wchar_t* lastFuncToSkip, const wchar_t* file, int line, const char* func, atomic_bool* suppress);
 
 /**
  * convenience version, in case the advanced parameters aren't needed.
@@ -201,8 +208,9 @@ LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flag
  * - filter changes only affect subsequent debug_*printf calls;
  *   output that didn't pass the filter is permanently discarded.
  * - strings not starting with a tag are always displayed.
- * - debug_filter_* can be called at any time and from the debugger.
-
+ * - debug_filter_* can be called at any time and from the debugger,
+ *   but are not reentrant.
+ *
  * in future, allow output with the given tag to proceed.
  * no effect if already added.
  **/
@@ -226,15 +234,6 @@ LIB_API void debug_filter_clear();
  * each of their format strings.
  **/
 LIB_API bool debug_filter_allows(const wchar_t* text);
-
-
-/**
- * write to memory buffer (fast)
- * used for "last activity" reporting in the crashlog.
- *
- * @param fmt Format string and varags; see printf.
- **/
-LIB_API void debug_wprintf_mem(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
 /**
  * write an error description and all logs into crashlog.txt
@@ -273,7 +272,7 @@ LIB_API LibError debug_WriteCrashlog(const wchar_t* text);
  **/
 #define debug_assert(expr) \
 STMT(\
-	static u8 suppress__;\
+	static atomic_bool suppress__;\
 	if(!(expr))\
 	{\
 	switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
@@ -302,7 +301,7 @@ STMT(\
  **/
 #define debug_warn(expr) \
 STMT(\
-	static u8 suppress__;\
+	static atomic_bool suppress__;\
 	switch(debug_OnAssertionFailure(expr, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 	{\
 	case ER_BREAK:\
@@ -321,7 +320,7 @@ STMT(\
  **/
 #define DEBUG_WARN_ERR(err)\
 STMT(\
-	static u8 suppress__;\
+	static atomic_bool suppress__;\
 	switch(debug_OnError(err, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 	{\
 	case ER_BREAK:\
@@ -344,7 +343,7 @@ STMT(\
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, u8* suppress, const wchar_t* file, int line, const char* func);
+LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, atomic_bool* suppress, const wchar_t* file, int line, const char* func);
 
 /**
  * called when a DEBUG_WARN_ERR indicates an error occurred;
@@ -356,7 +355,7 @@ LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, u8* s
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const char* func);
+LIB_API ErrorReaction debug_OnError(LibError err, atomic_bool* suppress, const wchar_t* file, int line, const char* func);
 
 
 /**

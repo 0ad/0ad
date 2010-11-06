@@ -55,40 +55,6 @@ ERROR_ASSOCIATE(ERR::SYM_SINGLE_SYMBOL_LIMIT, L"Symbol has produced too much out
 ERROR_ASSOCIATE(INFO::SYM_SUPPRESS_OUTPUT, L"Symbol was suppressed", -1);
 
 
-// needed when writing crashlog
-static const size_t LOG_CHARS = 16384;
-wchar_t debug_log[LOG_CHARS];
-wchar_t* debug_log_pos = debug_log;
-
-// write to memory buffer (fast)
-void debug_wprintf_mem(const wchar_t* fmt, ...)
-{
-	const ssize_t charsLeft = (ssize_t)(LOG_CHARS - (debug_log_pos-debug_log));
-	debug_assert(charsLeft >= 0);
-
-	// potentially not enough room for the new string; throw away the
-	// older half of the log. we still protect against overflow below.
-	if(charsLeft < 512)
-	{
-		const size_t copySize = sizeof(wchar_t) * LOG_CHARS/2;
-		wchar_t* const middle = &debug_log[LOG_CHARS/2];
-		memcpy(debug_log, middle, copySize);
-		memset(middle, 0, copySize);
-		debug_log_pos -= LOG_CHARS/2;	// don't assign middle (may leave gap)
-	}
-
-	// write into buffer (in-place)
-	va_list args;
-	va_start(args, fmt);
-	int len = vswprintf_s(debug_log_pos, charsLeft-2, fmt, args);
-
-	va_end(args);
-	debug_log_pos += len+2;
-	wcscpy_s(debug_log_pos-2, 3, L"\r\n");
-}
-
-
-
 // need to shoehorn printf-style variable params into
 // the OutputDebugString call.
 // - don't want to split into multiple calls - would add newlines to output.
@@ -223,8 +189,6 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 
 	// allow user to bundle whatever information they want
 	ah_bundle_logs(f);
-
-	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
 	fclose(f);
 	state = IDLE;
@@ -383,11 +347,11 @@ void debug_DisplayMessage(const wchar_t* caption, const wchar_t* msg)
 // errors (e.g. caused by atexit handlers) to come up, possibly causing an
 // infinite loop. hiding errors isn't good, but we assume that whoever clicked
 // exit really doesn't want to see any more messages.
-static bool isExiting;
+static atomic_bool isExiting;
 
 // this logic is applicable to any type of error. special cases such as
 // suppressing certain expected WARN_ERRs are done there.
-static bool ShouldSuppressError(u8* suppress)
+static bool ShouldSuppressError(atomic_bool* suppress)
 {
 	if(isExiting)
 		return true;
@@ -412,7 +376,7 @@ static ErrorReaction CallDisplayError(const wchar_t* text, size_t flags)
 	return er;
 }
 
-static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, u8* suppress)
+static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, atomic_bool* suppress)
 {
 	const bool shouldHandleBreak = (flags & DE_MANUAL_BREAK) == 0;
 
@@ -429,12 +393,13 @@ static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, u8* su
 		break;
 
 	case ER_SUPPRESS:
-		*suppress = DEBUG_SUPPRESS;
+		(void)cpu_CAS(suppress, 0, DEBUG_SUPPRESS);
 		er = ER_CONTINUE;
 		break;
 
 	case ER_EXIT:
-		isExiting = true;	// see declaration
+		isExiting = 1;	// see declaration
+		COMPILER_FENCE;
 
 #if OS_WIN
 		// prevent (slow) heap reporting since we're exiting abnormally and
@@ -451,7 +416,7 @@ static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, u8* su
 ErrorReaction debug_DisplayError(const wchar_t* description,
 	size_t flags, void* context, const wchar_t* lastFuncToSkip,
 	const wchar_t* pathname, int line, const char* func,
-	u8* suppress)
+	atomic_bool* suppress)
 {
 	// "suppressing" this error means doing nothing and returning ER_CONTINUE.
 	if(ShouldSuppressError(suppress))
@@ -500,7 +465,7 @@ enum SkipStatus
 {
 	INVALID, VALID, BUSY
 };
-static intptr_t skipStatus = INVALID;	// cpu_CAS requires uintptr_t
+static intptr_t skipStatus = INVALID;
 static LibError errorToSkip;
 static size_t numSkipped;
 
@@ -547,7 +512,7 @@ static bool ShouldSkipError(LibError err)
 }
 
 
-ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const char* func)
+ErrorReaction debug_OnError(LibError err, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
 {
 	if(ShouldSkipError(err))
 		return ER_CONTINUE;
@@ -561,7 +526,7 @@ ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int
 }
 
 
-ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, u8* suppress, const wchar_t* file, int line, const char* func)
+ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
 {
 	void* context = 0;
 	const std::wstring lastFuncToSkip = L"debug_OnAssertionFailure";

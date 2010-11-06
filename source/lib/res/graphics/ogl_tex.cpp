@@ -1022,7 +1022,7 @@ LibError ogl_tex_bind(Handle ht, size_t unit)
 	// we don't bother catching that and disabling texturing because a
 	// debug warning is raised anyway, and it's quite unlikely.
 	H_DEREF(ht, OglTex, ot);
-	ot->tmu = unit;
+	ot->tmu = (u8)unit;
 
 	// if 0, there's a problem in the OglTex reload/dtor logic.
 	// binding it results in whiteness, which can have many causes;
