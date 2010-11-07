@@ -30,15 +30,6 @@ var placementEntity;
 var mouseX = 0;
 var mouseY = 0;
 var mouseIsOverObject = false;
-var specialKeyStates = {};
-specialKeyStates[SDLK_RSHIFT] = 0;
-specialKeyStates[SDLK_LSHIFT] = 0;
-specialKeyStates[SDLK_RCTRL] = 0;
-specialKeyStates[SDLK_LCTRL] = 0;
-specialKeyStates[SDLK_RALT] = 0;
-specialKeyStates[SDLK_LALT] = 0;
-// (TODO: maybe we should fix the hotkey system to be usable in this situation,
-// rather than hardcoding Shift/Ctrl/Alt into this code?)
 
 // Number of pixels the mouse can move before the action is considered a drag
 var maxDragDelta = 4;
@@ -85,7 +76,7 @@ function findGatherType(gatherer, supply)
 function determineAction(x, y, fromMinimap)
 {
 	var selection = g_Selection.toList();
-	var ctrlPressed = specialKeyStates[SDLK_LCTRL] || specialKeyStates[SDLK_RCTRL];
+
 	// No action if there's no selection
 	if (!selection.length)
 		return undefined;
@@ -135,7 +126,7 @@ function determineAction(x, y, fromMinimap)
 			var enemyOwned = ((targetState.player != entState.player)? true : false);
 			var gaiaOwned = ((targetState.player == 0)? true : false);
 			
-			if (targetState.garrisonHolder && playerOwned && ctrlPressed)
+			if (targetState.garrisonHolder && playerOwned && Engine.HotkeyIsPressed("session.garrison"))
 			{
 				return {"type": "garrison", "cursor": "action-garrison", "target": targets[0]};
 			}
@@ -171,21 +162,6 @@ function determineAction(x, y, fromMinimap)
 		return {"type": "move"};
 }
 
-/*
-
-Selection methods: (not all currently implemented)
-
-- Left-click on entity to select (always chooses the 'closest' one if the mouse is over several).
-  Includes non-controllable units (e.g. trees, enemy units).
-- Double-left-click to select entity plus all of the same type on the screen.
-- Triple-left-click to select entity plus all of the same type in the world.
-- Left-click-and-drag to select all in region. Only includes controllable units.
-- Left-click on empty space to deselect all.
-- Hotkeys to select various groups.
-- Shift plus left-click on entity to toggle selection of that unit. Only includes controllable.
-- Shift plus any other selection method above, to add them to current selection.
-
-*/
 
 var dragStart; // used for remembering mouse coordinates at start of drag operations
 
@@ -263,14 +239,6 @@ function handleInputBeforeGui(ev, hoveredObject)
 		mouseX = ev.x;
 		mouseY = ev.y;
 		break;
-	case "keydown":
-		if (ev.keysym.sym in specialKeyStates)
-			specialKeyStates[ev.keysym.sym] = 1;
-		break;
-	case "keyup":
-		if (ev.keysym.sym in specialKeyStates)
-			specialKeyStates[ev.keysym.sym] = 0;
-		break;
 	}
 
 	// Remember whether the mouse is over a GUI object or not
@@ -327,14 +295,24 @@ function handleInputBeforeGui(ev, hoveredObject)
 				if (preferredEntities.length)			
 					ents = preferredEntities;
 
-				// If shift is pressed, don't reset the selection, but allow units to be added to the existing selection
-				var addition = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]); 
-				if (!addition)
-					g_Selection.reset();
-
-				// Set Selection
+				// Remove the bandbox hover highlighting
 				g_Selection.setHighlightList([]);
-				g_Selection.addList(ents);
+
+				// Update the list of selected units
+				if (Engine.HotkeyIsPressed("selection.add"))
+				{
+					g_Selection.addList(ents);
+				}
+				else if (Engine.HotkeyIsPressed("selection.remove"))
+				{
+					g_Selection.removeList(ents);
+				}
+				else
+				{
+					g_Selection.reset();
+					g_Selection.addList(ents);
+				}
+
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -373,7 +351,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
 				// If shift is down, let the player continue placing another of the same building
-				var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+				var queued = Engine.HotkeyIsPressed("session.queue");
 				if (tryPlaceBuilding(queued))
 				{
 					if (queued)
@@ -433,7 +411,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
 				// If shift is down, let the player continue placing another of the same building
-				var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+				var queued = Engine.HotkeyIsPressed("session.queue");
 				if (tryPlaceBuilding(queued))
 				{
 					if (queued)
@@ -464,8 +442,8 @@ function handleInputBeforeGui(ev, hoveredObject)
 	case INPUT_BATCHTRAINING:
 		switch (ev.type)
 		{
-		case "keyup":
-			if (ev.keysym.sym == SDLK_RSHIFT || ev.keysym.sym == SDLK_LSHIFT)
+		case "hotkeyup":
+			if (ev.hotkey == "session.batchtrain")
 			{
 				flushTrainingQueueBatch();
 				inputState = INPUT_NORMAL;
@@ -513,7 +491,7 @@ function handleInputAfterGui(ev)
 
 				// If shift is down, add the order to the unit's order queue instead
 				// of running it immediately
-				var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+				var queued = Engine.HotkeyIsPressed("session.queue");
 
 				switch (action.type)
 				{
@@ -639,12 +617,20 @@ function handleInputAfterGui(ev)
 					ents = [ents[0]];
 				}
 
-				// If shift is pressed, don't reset the selection, but allow units to be added to the existing selection
-				var addition = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]); 
-				if (!addition)
+				// Update the list of selected units
+				if (Engine.HotkeyIsPressed("selection.add"))
+				{
+					g_Selection.addList(ents);
+				}
+				else if (Engine.HotkeyIsPressed("selection.remove"))
+				{
+					g_Selection.removeList(ents);
+				}
+				else
+				{
 					g_Selection.reset();
-
-				g_Selection.addList(ents);
+					g_Selection.addList(ents);
+				}
 				
 				inputState = INPUT_NORMAL;
 				return true;
@@ -684,24 +670,31 @@ function handleInputAfterGui(ev)
 			}
 			break;
 
-		case "keydown":
+		case "hotkeydown":
+
 			var rotation_step = Math.PI / 12; // 24 clicks make a full rotation
 
-			if (ev.keysym.sym == SDLK_LEFTBRACKET) // rotate anti-clockwise
+			switch (ev.hotkey)
 			{
-				placementAngle = placementAngle - rotation_step;
+			case "session.rotate.cw":
+				placementAngle += rotation_step;
+				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+					"template": placementEntity,
+					"x": placementPosition.x,
+					"z": placementPosition.z,
+					"angle": placementAngle
+				});
+				break;
+			case "session.rotate.ccw":
+				placementAngle -= rotation_step;
+				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+					"template": placementEntity,
+					"x": placementPosition.x,
+					"z": placementPosition.z,
+					"angle": placementAngle
+				});
+				break;
 			}
-			else if (ev.keysym.sym == SDLK_RIGHTBRACKET) // rotate clockwise
-			{
-				placementAngle = placementAngle + rotation_step;
-			}
-
-			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
-				"template": placementEntity,
-				"x": placementPosition.x,
-				"z": placementPosition.z,
-				"angle": placementAngle
-			});
 
 			break;
 
@@ -725,7 +718,7 @@ function handleMinimapEvent(target)
 
 		var selection = g_Selection.toList();
 
-		var queued = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]);
+		var queued = Engine.HotkeyIsPressed("session.queue");
 
 		switch (action.type)
 		{
@@ -775,7 +768,7 @@ function flushTrainingQueueBatch()
 // Called by GUI when user clicks training button
 function addToTrainingQueue(entity, trainEntType)
 {
-	if (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT])
+	if (Engine.HotkeyIsPressed("session.batchtrain"))
 	{
 		if (inputState == INPUT_BATCHTRAINING)
 		{
@@ -823,7 +816,7 @@ function removeFromTrainingQueue(entity, id)
 // Called by unit selection buttons
 function changePrimarySelectionGroup(templateName)
 {
-	if (specialKeyStates[SDLK_RCTRL] || specialKeyStates[SDLK_LCTRL])
+	if (Engine.HotkeyIsPressed("session.deselectgroup"))
 		g_Selection.makePrimarySelection(templateName, true);
 	else
 		g_Selection.makePrimarySelection(templateName, false);

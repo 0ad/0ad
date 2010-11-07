@@ -224,25 +224,6 @@ EntitySelection.prototype.update = function()
 	}
 };
 
-EntitySelection.prototype.toggle = function(ent)
-{
-	if (this.selected[ent])
-	{
-		_setHighlight([ent], 0);
-		_setStatusBars([ent], false);
-		_setMotionOverlay([ent], false);
-		delete this.selected[ent];
-	}
-	else
-	{
-		_setHighlight([ent], 1);
-		_setStatusBars([ent], true);
-		_setMotionOverlay([ent], this.motionDebugOverlay);
-		this.selected[ent] = ent;
-	}
-	this.dirty = true;
-};
-
 EntitySelection.prototype.addList = function(ents)
 {
 	var selectionSize = this.toList().length;
@@ -266,6 +247,27 @@ EntitySelection.prototype.addList = function(ents)
 		_playSound(added[0]);
 
 	this.groups.add(this.toList()); // Create Selection Groups
+	this.dirty = true;
+};
+
+EntitySelection.prototype.removeList = function(ents)
+{
+	var removed = [];
+
+	for each (var ent in ents)
+	{
+		if (this.selected[ent])
+		{
+			this.groups.removeEnt(ent);
+			removed.push(ent);
+			delete this.selected[ent];
+		}
+	}
+
+	_setHighlight(removed, 0);
+	_setStatusBars(removed, false);
+	_setMotionOverlay(removed, false);
+
 	this.dirty = true;
 };
 

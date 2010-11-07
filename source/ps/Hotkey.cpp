@@ -256,12 +256,12 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	
 	// -- KEYDOWN SECTION -- 
 
-	const char* closestMapName = NULL;
+	std::vector<const char*> closestMapNames;
 	size_t closestMapMatch = 0;
 
 	for( std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); it++ )
 	{
-		// If a key has been pressed, and this event triggers on it's release, skip it.
+		// If a key has been pressed, and this event triggers on its release, skip it.
 		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
 		if( it->negated == typeKeyDown )
 			continue;
@@ -298,22 +298,34 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 		if( accept && !( isCapturable && consoleCapture ) )
 		{
-			g_HotkeyStatus[it->name] = true;
-			if( it->requires.size() >= closestMapMatch )
+			// Tentatively set status to un-pressed, since it may be overridden by
+			// a closer match. (The closest matches will be set to pressed later.)
+			g_HotkeyStatus[it->name] = false;
+
+			// Check if this is an equally precise or more precise match
+			if( it->requires.size() + 1 >= closestMapMatch )
 			{
-				// Only if it's a more precise match, and it either isn't capturable or the console won't capture it.
-				closestMapName = it->name.c_str();
-				closestMapMatch = it->requires.size() + 1;
+				// Check if more precise
+				if( it->requires.size() + 1 > closestMapMatch )
+				{
+					// Throw away the old less-precise matches
+					closestMapNames.clear();
+					closestMapMatch = it->requires.size() + 1;
+				}
+
+				closestMapNames.push_back(it->name.c_str());
 			}
 		}
 	}
 
-	if( closestMapMatch )
+	for (size_t i = 0; i < closestMapNames.size(); ++i)
 	{
+		g_HotkeyStatus[closestMapNames[i]] = true;
+
 		SDL_Event hotkeyNotification;
 		hotkeyNotification.type = SDL_HOTKEYDOWN;
-		hotkeyNotification.user.data1 = const_cast<char*>(closestMapName);
-		SDL_PushEvent( &hotkeyNotification );
+		hotkeyNotification.user.data1 = const_cast<char*>(closestMapNames[i]);
+		SDL_PushEvent(&hotkeyNotification);
 	}
 
 	// -- KEYUP SECTION --

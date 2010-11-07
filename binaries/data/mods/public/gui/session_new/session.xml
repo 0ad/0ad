@@ -75,7 +75,7 @@
 		</object>
 		
 		<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
-		<object hotkey="killUnit">
+		<object hotkey="session.kill">
 			<action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
 		</object>
 

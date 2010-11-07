@@ -33,6 +33,7 @@
 #include "ps/CConsole.h"
 #include "ps/Errors.h"
 #include "ps/Game.h"
+#include "ps/Hotkey.h"
 #include "ps/Overlay.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/GameSetup/Atlas.h"
@@ -322,6 +323,11 @@ void CameraFollowFPS(void* UNUSED(cbdata), entity_id_t entityid)
 		g_Game->GetView()->CameraFollow(entityid, true);
 }
 
+bool HotkeyIsPressed_(void* UNUSED(cbdata), std::string hotkeyName)
+{
+	return HotkeyIsPressed(hotkeyName);
+}
+
 void SetSimRate(void* UNUSED(cbdata), float rate)
 {
 	g_Game->SetSimRate(rate);
@@ -403,6 +409,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
+	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 
 	// Development/debugging functions
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");

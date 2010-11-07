@@ -38,6 +38,28 @@ public:
 		TS_ASSERT(Line.GetArgInt(1, i) && i == 23);
 	}
 
+	void test_hotkey()
+	{
+		CParser Parser;
+		Parser.InputTaskType( "multikey", "<[~$arg(_negate)]$value_+_>_[~$arg(_negate)]$value" );
+
+		std::string str;
+
+		CParserLine Line;
+
+		TS_ASSERT(Line.ParseString(Parser, "x+yzzy+~w"));
+		TS_ASSERT_EQUALS((int)Line.GetArgCount(), 4);
+		TS_ASSERT(Line.GetArgString(0, str) && str == "x");
+		TS_ASSERT(Line.GetArgString(1, str) && str == "yzzy");
+		TS_ASSERT(Line.GetArgString(2, str) && str == "_negate");
+		TS_ASSERT(Line.GetArgString(3, str) && str == "w");
+
+		// This fails because '[' isn't a value character (per _IsValueChar).
+		// I don't know whether that's a feature or a bug.
+//		TS_ASSERT(Line.ParseString(Parser, "["));
+//		TS_ASSERT_EQUALS((int)Line.GetArgCount(), 1);
+//		TS_ASSERT(Line.GetArgString(0, str) && str == "[");
+	}
 
 	void test_optional()
 	{

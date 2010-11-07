@@ -638,17 +638,14 @@ void CGameView::Update(float DeltaTime)
 			moveForward += m->ViewScrollSpeed * DeltaTime;
 	}
 
-	if (HotkeyIsPressed("camera.pan.keyboard"))
-	{
-		if (HotkeyIsPressed("camera.right"))
-			moveRightward += m->ViewScrollSpeed * DeltaTime;
-		if (HotkeyIsPressed("camera.left"))
-			moveRightward -= m->ViewScrollSpeed * DeltaTime;
-		if (HotkeyIsPressed("camera.up"))
-			moveForward += m->ViewScrollSpeed * DeltaTime;
-		if (HotkeyIsPressed("camera.down"))
-			moveForward -= m->ViewScrollSpeed * DeltaTime;
-	}
+	if (HotkeyIsPressed("camera.right"))
+		moveRightward += m->ViewScrollSpeed * DeltaTime;
+	if (HotkeyIsPressed("camera.left"))
+		moveRightward -= m->ViewScrollSpeed * DeltaTime;
+	if (HotkeyIsPressed("camera.up"))
+		moveForward += m->ViewScrollSpeed * DeltaTime;
+	if (HotkeyIsPressed("camera.down"))
+		moveForward -= m->ViewScrollSpeed * DeltaTime;
 
 	if (moveRightward || moveForward)
 	{
