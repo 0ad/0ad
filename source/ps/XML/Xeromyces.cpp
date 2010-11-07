@@ -194,6 +194,11 @@ bool CXeromyces::ReadXMBFile(const PIVFS& vfs, const VfsPath& filename)
 	size_t size;
 	if(vfs->LoadFile(filename, m_XMBBuffer, size) < 0)
 		return false;
+	// if the game crashes during loading, (e.g. due to driver bugs),
+	// it sometimes leaves empty XMB files in the cache.
+	// reporting failure will cause our caller to re-generate the XMB.
+	if(size == 0)
+		return false;
 	debug_assert(size >= 4); // make sure it's at least got the initial header
 
 	// Set up the XMBFile
