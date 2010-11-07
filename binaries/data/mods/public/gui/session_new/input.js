@@ -37,9 +37,18 @@ specialKeyStates[SDLK_RCTRL] = 0;
 specialKeyStates[SDLK_LCTRL] = 0;
 specialKeyStates[SDLK_RALT] = 0;
 specialKeyStates[SDLK_LALT] = 0;
-
 // (TODO: maybe we should fix the hotkey system to be usable in this situation,
-// rather than hardcoding Shift into this code?)
+// rather than hardcoding Shift/Ctrl/Alt into this code?)
+
+// Number of pixels the mouse can move before the action is considered a drag
+var maxDragDelta = 4;
+
+// Time in milliseconds in which a double click is recognized
+const doubleClickTime = 500;
+var doubleClickTimer = 0;
+var doubleClicked = false;
+// Store the previously clicked entity - ensure a double/triple click happens on the same entity
+var prevClickedEntity = 0;
 
 function updateCursor()
 {
@@ -125,7 +134,6 @@ function determineAction(x, y, fromMinimap)
 			var playerOwned = ((targetState.player == entState.player)? true : false);
 			var enemyOwned = ((targetState.player != entState.player)? true : false);
 			var gaiaOwned = ((targetState.player == 0)? true : false);
-
 			
 			if (targetState.garrisonHolder && playerOwned && ctrlPressed)
 			{
@@ -571,7 +579,7 @@ function handleInputAfterGui(ev)
 			// If the mouse moved further than a limit, switch to bandbox mode
 			var dragDeltaX = ev.x - dragStart[0];
 			var dragDeltaY = ev.y - dragStart[1];
-			var maxDragDelta = 4;
+			
 			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
 			{
 				inputState = INPUT_BANDBOXING;
@@ -593,12 +601,51 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
+				var onScreenOnly;
+				var selectedEntity = ents[0];
+				var now = new Date();
+
+				if ((now.getTime() - doubleClickTimer < doubleClickTime) && (selectedEntity == prevClickedEntity))
+				{
+					// Double click or triple click has occurred
+					
+					// Check for double click or triple click
+					if (!doubleClicked)
+					{
+						// If double click hasn't already occurred, this is a double click.
+						// Select only similar on-screen units
+						onScreenOnly = true;
+						doubleClicked = true;
+					}
+					else
+					{
+						// Double click has already occurred, so this is a triple click.
+						// Select all similar units whether they are on-screen or not
+						onScreenOnly = false;
+					}
+					
+					var templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
+					
+					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, onScreenOnly);
+				}
+				else
+				{
+					// It's single click right now but it may become double or triple click
+					doubleClicked = false;
+					doubleClickTimer = now.getTime();
+					prevClickedEntity = selectedEntity;
+
+					// We only want to include the first picked unit in the selection
+					ents = [ents[0]];
+				}
+
 				// If shift is pressed, don't reset the selection, but allow units to be added to the existing selection
 				var addition = (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT]); 
 				if (!addition)
-					g_Selection.reset(); 
+					g_Selection.reset();
 
-				g_Selection.addList([ents[0]]);
+				g_Selection.addList(ents);
+				
 				inputState = INPUT_NORMAL;
 				return true;
 			}

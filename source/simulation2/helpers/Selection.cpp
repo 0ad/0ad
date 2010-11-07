@@ -23,6 +23,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpVisual.h"
 
@@ -129,4 +130,45 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	}
 
 	return hitEnts;
+}
+
+std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, std::string templateName, int owner, bool onScreenOnly)
+{
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(simulation, SYSTEM_ENTITY);
+	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
+
+	std::vector<entity_id_t> hitEnts;
+
+ 	std::vector<entity_id_t> entities = cmpTemplateManager->GetEntitiesUsingTemplate(templateName);
+ 	for (std::vector<entity_id_t>::iterator it = entities.begin(); it != entities.end(); ++it)
+ 	{
+ 		entity_id_t ent = *it;
+
+		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
+		// In this case, the checking is done to avoid selecting garrisoned units
+		if (cmpRangeManager->GetLosVisibility(ent, owner) == ICmpRangeManager::VIS_HIDDEN)
+			continue;
+
+ 		// Ignore entities not owned by 'owner'
+ 		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
+ 		if (cmpOwnership.null() || cmpOwnership->GetOwner() != owner)
+ 			continue;
+
+ 		if (onScreenOnly)
+ 		{
+ 			// Find the current interpolated model position.
+			CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
+			if (cmpVisual.null())
+				continue;
+			CVector3D position = cmpVisual->GetPosition();
+
+			// Reject if it's not on-screen (e.g. it's behind the camera)
+			if (!camera.GetFrustum().IsPointVisible(position))
+				continue;
+ 		}
+
+ 		hitEnts.push_back(ent);
+ 	}
+
+ 	return hitEnts;
 }

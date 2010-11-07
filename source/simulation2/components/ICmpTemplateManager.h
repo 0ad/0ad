@@ -80,6 +80,11 @@ public:
 	virtual std::string GetCurrentTemplateName(entity_id_t ent) = 0;
 
 	/**
+	 * Returns the list of entities having the specified template.
+	 */
+	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(std::string templateName) = 0;
+
+	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.
 	 * (This includes "actor|foo" etc names).
 	 * Intended for use by the map editor. This is likely to be quite slow.

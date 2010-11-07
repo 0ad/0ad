@@ -131,6 +131,8 @@ public:
 
 	virtual std::vector<std::wstring> FindAllTemplates();
 
+	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(std::string templateName);
+
 private:
 	// Entity template XML validator
 	RelaxNGValidator m_Validator;
@@ -403,6 +405,20 @@ std::vector<std::wstring> CCmpTemplateManager::FindAllTemplates()
 	WARN_ERR(ok);
 
 	return templates;
+}
+
+/**
+ * Get the list of entities using the specified template
+ */
+std::vector<entity_id_t> CCmpTemplateManager::GetEntitiesUsingTemplate(std::string templateName)
+{
+	std::vector<entity_id_t> entities;
+	for (std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.begin(); it != m_LatestTemplates.end(); ++it)
+	{
+		if(it->second == templateName)
+			entities.push_back(it->first);
+	}
+	return entities;
 }
 
 void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& in, bool corpse)
