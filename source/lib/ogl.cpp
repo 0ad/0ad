@@ -38,9 +38,6 @@
 
 #if MSC_VERSION
 #pragma comment(lib, "opengl32.lib")
-#pragma comment(lib, "glu32.lib")
-	// glu32 is required - it is apparently pulled in by opengl32,
-	// even though depends.exe marks it as demand-loaded.
 #endif
 
 

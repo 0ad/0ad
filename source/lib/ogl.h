@@ -41,10 +41,8 @@
 
 #if OS_MACOSX || OS_MAC
 # include <OpenGL/gl.h>
-# include <OpenGL/glu.h>
 #else
 # include <GL/gl.h>
-# include <GL/glu.h>
 #endif
 
 // if gl.h provides real prototypes for 1.2 / 1.3 functions,

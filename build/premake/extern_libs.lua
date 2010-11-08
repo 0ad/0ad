@@ -175,8 +175,8 @@ extern_lib_defs = {
 		dbg_suffix = "",
 	},
 	opengl = {
-		win_names  = { "opengl32", "glu32", "gdi32" },
-		unix_names = { "GL", "GLU", "X11" },
+		win_names  = { "opengl32", "gdi32" },
+		unix_names = { "GL", "X11" },
 		osx_frameworks = { "OpenGL" },
 		dbg_suffix = "",
 	},
