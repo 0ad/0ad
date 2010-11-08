@@ -42,6 +42,12 @@ typedef unsigned int mode_t;	// defined by MinGW but not VC
 #define S_IWUSR _S_IWRITE
 #define S_IWGRP _S_IWRITE
 #define S_IWOTH _S_IWRITE
+#define S_IXUSR 0
+#define S_IXGRP 0
+#define S_IXOTH 0
+#define S_IRWXU (S_IRUSR|S_IWUSR|S_IXUSR)
+#define S_IRWXG (S_IRGRP|S_IWGRP|S_IXGRP)
+#define S_IRWXO (S_IROTH|S_IWOTH|S_IXOTH)
 
 #define S_ISDIR(m) (m & S_IFDIR)
 #define S_ISREG(m) (m & S_IFREG)

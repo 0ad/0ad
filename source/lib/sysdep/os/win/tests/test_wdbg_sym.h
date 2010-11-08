@@ -48,6 +48,8 @@ static LibError OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
 	return INFO::CB_CONTINUE;
 }
 
+#pragma optimize("", off)
+
 // (these must be outside of TestWdbgSym so that we can simply
 // search for the function's name as a substring within the ILT
 // decorated name (which omits the :: scope resolution operator,
@@ -70,8 +72,6 @@ __declspec(noinline) static void Func3()
 
 class TestWdbgSym : public CxxTest::TestSuite 
 {
-#pragma optimize("", off)
-
 	static void m_test_array()
 	{
 		struct Small

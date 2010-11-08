@@ -56,7 +56,9 @@ LibError Open(const fs::wpath& pathname, wchar_t accessType, int& fd)
 #if OS_WIN
 	oflag |= O_BINARY_NP;
 #endif
-	const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH; // R/W for user, group and other
+	// prevent exploits by disallowing writes to our files by other users.
+	// note that the system-wide installed cache is read-only.
+	const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;	// 0644
 	fd = wopen(pathname.string().c_str(), oflag, mode);
 	if(fd < 0)
 		return LibError_from_errno();

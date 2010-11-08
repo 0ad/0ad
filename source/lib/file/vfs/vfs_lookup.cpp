@@ -40,7 +40,7 @@
 static LibError CreateDirectory(const fs::wpath& path)
 {
 	{
-		const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH; // R/W for user, group and other
+		const mode_t mode = S_IRWXU; // 0700 as prescribed by XDG basedir
 		const int ret = wmkdir(path.string().c_str(), mode);
 		if(ret == 0)	// success
 			return INFO::OK;
