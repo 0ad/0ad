@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
+  <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>props/wrld_well_b.pmd</mesh>
       <props>
-        <prop actor="props/temp/eyecandy/well_woodbit.xml" attachpoint="woodbit"/>
+        <prop actor="props/special/eyecandy/well_woodbit.xml" attachpoint="woodbit"/>
       </props>
       <texture>props/wrld_well_b_2.dds</texture>
     </variant>
   </group>
-
 </actor>
