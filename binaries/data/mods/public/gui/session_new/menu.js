@@ -19,7 +19,7 @@ function cacheMenuObjects()
 function toggleDeveloperOverlay()
 {
 	var text = devCommands.hidden? "opened." : "closed.";
-	submitChatDirectly("The Developer Console was " + text);
+	submitChatDirectly("The Developer Overlay was " + text);
 	
 	devCommands.hidden = !devCommands.hidden;
 }

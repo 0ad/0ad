@@ -571,11 +571,11 @@
 		<object name="unitCommands"
 			type="image"
 			sprite="bottomRight"
-			size="622 100%-170 100%-4 100%"
+			size="622 100%-170 100% 100%"
 			hidden="false"
 		>
 			<object name="unitConstructionPanel"
-				size="12 12 100% 100%"
+				size="14 12 100% 100%"
 			>
 				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="0" tooltip="Construction"/>-->
@@ -612,7 +612,7 @@
 			</object>
 
 			<object name="unitTrainingPanel"
-				size="12 12 100% 100%"
+				size="14 12 100% 100%"
 			>
 				<!--<object size="-2 -2 54 54" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="2" tooltip="Training"/>-->

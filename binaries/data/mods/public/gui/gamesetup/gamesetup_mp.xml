@@ -148,18 +148,9 @@
 		</object>
 
 		<object name="pageConnecting" hidden="true">
-
 			<object name="connectionStatus" type="text" text_align="center" size="0 100 100% 120">
 				[Connection status]
 			</object>
-
-			<object type="button" size="100%-110 200 100%-10 230" style="wheatButton">
-				Cancel
-				<action on="Press"><![CDATA[
-					cancelSetup();
-				]]></action>
-			</object>
-
 		</object>
 
 	</object>
