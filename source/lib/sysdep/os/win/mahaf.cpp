@@ -218,7 +218,7 @@ static SC_HANDLE OpenServiceControlManager()
 		// Least-Permission accounts to use it, but is too invasive and
 		// thus out of the question.
 
-		// make sure the error is as expected, otherwise something is afoot.
+		// rule out other problems
 		debug_assert(GetLastError() == ERROR_ACCESS_DENIED);
 
 		return 0;
@@ -286,9 +286,10 @@ static void StartDriver(const fs::wpath& driverPathname)
 	if(!hService)
 	{
 		LPCWSTR startName = 0;	// LocalSystem
+		// NB: Windows 7 seems to insist upon backslashes (i.e. external_file_string)
 		hService = CreateServiceW(hSCM, AKEN_NAME, AKEN_NAME,
 			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
-			driverPathname.string().c_str(), 0, 0, 0, startName, 0);
+			driverPathname.external_file_string().c_str(), 0, 0, 0, startName, 0);
 		debug_assert(hService != 0);
 	}
 
@@ -302,7 +303,7 @@ static void StartDriver(const fs::wpath& driverPathname)
 			{
 				// starting failed. don't raise a warning because this
 				// always happens on least-permission user accounts.
-				//WARN_IF_FALSE(0);
+				//debug_assert(0);
 			}
 		}
 	}
@@ -340,7 +341,7 @@ static fs::wpath DriverPathname()
 static LibError Init()
 {
 	if(wutil_HasCommandLineArgument(L"-wNoMahaf"))
-		return ERR::NOT_SUPPORTED;
+		return ERR::NOT_SUPPORTED;	// NOWARN
 
 	{
 		const fs::wpath driverPathname = DriverPathname();
@@ -351,7 +352,7 @@ static LibError Init()
 		const DWORD shareMode = 0;
 		hAken = CreateFileW(L"\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 		if(hAken == INVALID_HANDLE_VALUE)
-			return ERR::INVALID_HANDLE;
+			return ERR::INVALID_HANDLE;	// NOWARN (happens often due to security restrictions)
 	}
 
 	return INFO::OK;
@@ -364,6 +365,7 @@ static void Shutdown()
 
 	UninstallDriver();
 }
+
 
 static ModuleInitState initState;
 

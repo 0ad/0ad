@@ -127,15 +127,16 @@ LIB_API i64 movsx_le64(const u8* p, size_t size);
 LIB_API i64 movsx_be64(const u8* p, size_t size);
 
 
-#if MSC_VERSION
+#if ICC_VERSION
+#define swap32 _bswap
+#define swap64 _bswap64
+#elif MSC_VERSION
 extern unsigned short _byteswap_ushort(unsigned short);
 extern unsigned long _byteswap_ulong(unsigned long);
 extern unsigned __int64 _byteswap_uint64(unsigned __int64);
-# if !ICC_VERSION	// ICC doesn't need (and warns about) the pragmas
-#  pragma intrinsic(_byteswap_ushort)
-#  pragma intrinsic(_byteswap_ulong)
-#  pragma intrinsic(_byteswap_uint64)
-# endif
+#pragma intrinsic(_byteswap_ushort)
+#pragma intrinsic(_byteswap_ulong)
+#pragma intrinsic(_byteswap_uint64)
 # define swap16 _byteswap_ushort
 # define swap32 _byteswap_ulong
 # define swap64 _byteswap_uint64

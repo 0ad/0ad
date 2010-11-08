@@ -27,12 +27,20 @@
 #ifndef INCLUDED_CODE_ANNOTATION
 #define INCLUDED_CODE_ANNOTATION
 
+#include "lib/sysdep/compiler.h"
+
 /**
  * mark a function local variable or parameter as unused and avoid
  * the corresponding compiler warning.
  * use inside the function body, e.g. void f(int x) { UNUSED2(x); }
  **/
-#define UNUSED2(param) (void)param;
+#if ICC_VERSION
+// NB: #pragma unused is documented but "unrecognized" when used;
+// casting to void isn't sufficient, but the following is:
+# define UNUSED2(param) param = param
+#else
+# define UNUSED2(param) (void)param
+#endif
 
 /**
  * mark a function parameter as unused and avoid
