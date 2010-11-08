@@ -36,9 +36,12 @@ typedef unsigned int mode_t;	// defined by MinGW but not VC
 
 // permission masks when creating files (_wsopen_s doesn't distinguish
 // between owner/user/group)
-#define S_IRWXO _S_IREAD|_S_IWRITE
-#define S_IRWXU _S_IREAD|_S_IWRITE
-#define S_IRWXG _S_IREAD|_S_IWRITE
+#define S_IRUSR _S_IREAD
+#define S_IRGRP _S_IREAD
+#define S_IROTH _S_IREAD
+#define S_IWUSR _S_IWRITE
+#define S_IWGRP _S_IWRITE
+#define S_IWOTH _S_IWRITE
 
 #define S_ISDIR(m) (m & S_IFDIR)
 #define S_ISREG(m) (m & S_IFREG)

@@ -36,10 +36,10 @@ ERROR_ASSOCIATE(ERR::IO, L"Error during IO", EIO);
 
 namespace FileImpl {
 
-LibError Open(const fs::wpath& pathname, wchar_t mode, int& fd)
+LibError Open(const fs::wpath& pathname, wchar_t accessType, int& fd)
 {
-	int oflag = -1;
-	switch(mode)
+	int oflag = 0;
+	switch(accessType)
 	{
 	case 'r':
 		oflag = O_RDONLY;
@@ -56,7 +56,8 @@ LibError Open(const fs::wpath& pathname, wchar_t mode, int& fd)
 #if OS_WIN
 	oflag |= O_BINARY_NP;
 #endif
-	fd = wopen(pathname.string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
+	const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH; // R/W for user, group and other
+	fd = wopen(pathname.string().c_str(), oflag, mode);
 	if(fd < 0)
 		return LibError_from_errno();
 
@@ -75,16 +76,16 @@ void Close(int& fd)
 }
 
 
-LibError IO(int fd, wchar_t mode, off_t ofs, u8* buf, size_t size)
+LibError IO(int fd, wchar_t accessType, off_t ofs, u8* buf, size_t size)
 {
-	debug_assert(mode == 'r' || mode == 'w');
+	debug_assert(accessType == 'r' || accessType == 'w');
 
 	ScopedIoMonitor monitor;
 
 	lseek(fd, ofs, SEEK_SET);
 
 	errno = 0;
-	const ssize_t ret = (mode == 'w')? write(fd, buf, size) : read(fd, buf, size);
+	const ssize_t ret = (accessType == 'w')? write(fd, buf, size) : read(fd, buf, size);
 	if(ret < 0)
 		return LibError_from_errno();
 
@@ -92,15 +93,15 @@ LibError IO(int fd, wchar_t mode, off_t ofs, u8* buf, size_t size)
 	if(totalTransferred != size)
 		WARN_RETURN(ERR::IO);
 
-	monitor.NotifyOfSuccess(FI_LOWIO, mode, totalTransferred);
+	monitor.NotifyOfSuccess(FI_LOWIO, accessType, totalTransferred);
 	return INFO::OK;
 }
 
 
-LibError Issue(aiocb& req, int fd, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize)
+LibError Issue(aiocb& req, int fd, wchar_t accessType, off_t alignedOfs, u8* alignedBuf, size_t alignedSize)
 {
 	memset(&req, 0, sizeof(req));
-	req.aio_lio_opcode = (mode == 'w')? LIO_WRITE : LIO_READ;
+	req.aio_lio_opcode = (accessType == 'w')? LIO_WRITE : LIO_READ;
 	req.aio_buf        = (volatile void*)alignedBuf;
 	req.aio_fildes     = fd;
 	req.aio_offset     = alignedOfs;

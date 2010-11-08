@@ -40,7 +40,8 @@
 static LibError CreateDirectory(const fs::wpath& path)
 {
 	{
-		const int ret = wmkdir(path.string().c_str(), S_IRWXU);
+		const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH; // R/W for user, group and other
+		const int ret = wmkdir(path.string().c_str(), mode);
 		if(ret == 0)	// success
 			return INFO::OK;
 	}
