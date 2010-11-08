@@ -1,0 +1,5033 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>sunny</SkySet>
+		<SunColour r="1.19922" g="1.19922" b="0.860617"/>
+		<SunElevation angle="0.613592"/>
+		<SunRotation angle="-1.41126"/>
+		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>22.1377</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.199219</Murkiness>
+				<Tint r="0.447059" g="0.411765" b="0.321569"/>
+				<ReflectionTint r="0.447059" g="0.411765" b="0.321569"/>
+				<ReflectionTintStrength>0.40918</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="158.791" y="114.471" z="353.228"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name":"Belgian Bog",
+  "Description":"Two Celtic tribes face off across a large bog.",
+  "PlayerData":[{
+      "Civ":"celt"
+    },
+    {
+      "Civ":"celt"
+    }
+  ],
+  "CircularMap":true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="132">
+			<Template>gaia/flora_tree_fig</Template>
+			<Player>0</Player>
+			<Position x="459.68506" z="530.66529"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="559.27021" z="403.62894"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="565.48963" z="394.3512"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="570.81348" z="387.45423"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="573.05634" z="379.63855"/>
+			<Orientation y="1.62943"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="579.47034" z="378.68808"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="585.32514" z="379.36847"/>
+			<Orientation y="-2.20221"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="557.98487" z="387.22504"/>
+			<Orientation y="0.99921"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="555.19764" z="394.79438"/>
+			<Orientation y="0.8119"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="354.59864" z="457.69654"/>
+			<Orientation y="2.52306"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="362.87766" z="454.57221"/>
+			<Orientation y="2.27675"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="372.93058" z="453.04407"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="378.09241" z="469.3227"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="365.82581" z="485.48136"/>
+			<Orientation y="-0.5429"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="349.51734" z="499.1168"/>
+			<Orientation y="3.10822"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="357.24314" z="467.83378"/>
+			<Orientation y="2.47967"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="366.538" z="463.8993"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="343.03891" z="473.12958"/>
+			<Orientation y="-1.78849"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="343.37406" z="445.01728"/>
+			<Orientation y="-1.92806"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="345.25037" z="456.63993"/>
+			<Orientation y="-0.20824"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="353.16153" z="444.72864"/>
+			<Orientation y="2.83509"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="361.58881" z="443.03303"/>
+			<Orientation y="-1.67437"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="378.73682" z="492.6189"/>
+			<Orientation y="-0.73551"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="372.04316" z="474.02475"/>
+			<Orientation y="-0.72095"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="349.62793" z="502.71842"/>
+			<Orientation y="2.96499"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="352.07688" z="479.45002"/>
+			<Orientation y="-2.47197"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="342.34812" z="475.03821"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="417.08176" z="379.50226"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="417.99808" z="382.77155"/>
+			<Orientation y="-0.72298"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="406.41001" z="393.13855"/>
+			<Orientation y="-1.35187"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="397.0098" z="392.26203"/>
+			<Orientation y="-1.51218"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="390.41321" z="392.21009"/>
+			<Orientation y="-2.25074"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="389.09684" z="378.2483"/>
+			<Orientation y="1.91391"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="399.69672" z="381.66517"/>
+			<Orientation y="-2.9297"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="433.01987" z="361.78425"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="431.05835" z="385.71494"/>
+			<Orientation y="0.45096"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="444.35581" z="391.56946"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="450.81138" z="414.08674"/>
+			<Orientation y="0.25072"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="455.69001" z="431.67688"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="460.26523" z="421.78882"/>
+			<Orientation y="2.98874"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="462.39124" z="410.82184"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="468.51587" z="419.99781"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="464.70801" z="428.56171"/>
+			<Orientation y="-0.17496"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="461.35157" z="452.16236"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="451.1641" z="397.297"/>
+			<Orientation y="0.9859"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="463.49668" z="392.34565"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="426.72501" z="373.6106"/>
+			<Orientation y="-2.90055"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="385.58915" z="386.2682"/>
+			<Orientation y="1.30999"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="478.38016" z="325.67661"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="496.46943" z="337.90098"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="489.95084" z="330.52274"/>
+			<Orientation y="-2.41832"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="466.47196" z="351.1367"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="466.22461" z="358.41486"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="429.0098" z="342.166"/>
+			<Orientation y="-0.00924"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="453.45685" z="344.65271"/>
+			<Orientation y="-2.61254"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="447.70743" z="339.2212"/>
+			<Orientation y="-1.33745"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="439.07871" z="345.27839"/>
+			<Orientation y="-0.8597"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="430.98981" z="351.85297"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="381.52656" z="276.60172"/>
+			<Orientation y="2.94736"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="369.71744" z="300.93049"/>
+			<Orientation y="-2.75153"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="383.47083" z="252.50013"/>
+			<Orientation y="2.9358"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="386.81492" z="241.75797"/>
+			<Orientation y="2.21131"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="395.42545" z="237.36966"/>
+			<Orientation y="2.13703"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="402.32465" z="234.04914"/>
+			<Orientation y="2.60369"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="405.19715" z="228.02518"/>
+			<Orientation y="2.83765"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="412.70737" z="215.06904"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="418.71152" z="218.93155"/>
+			<Orientation y="0.32082"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="421.76984" z="228.52341"/>
+			<Orientation y="2.04235"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="431.34443" z="223.3772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="429.2993" z="217.53205"/>
+			<Orientation y="-2.48322"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="421.6858" z="213.2328"/>
+			<Orientation y="-1.63312"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="410.56232" z="212.95987"/>
+			<Orientation y="-1.79964"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="402.96518" z="214.14603"/>
+			<Orientation y="-0.892"/>
+		</Entity>
+		<Entity uid="205">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="398.57654" z="220.1136"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="385.33027" z="232.79902"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="404.59101" z="234.6013"/>
+			<Orientation y="1.71425"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="419.02997" z="229.33881"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="413.68882" z="229.65598"/>
+			<Orientation y="1.13395"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="423.68125" z="236.29255"/>
+			<Orientation y="-2.94393"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="476.09971" z="543.51148"/>
+			<Orientation y="-3.05857"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="473.49286" z="525.30011"/>
+			<Orientation y="-2.76772"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="467.58527" z="520.12269"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="461.3798" z="515.50867"/>
+			<Orientation y="-2.49282"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="457.13877" z="509.23801"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="455.73267" z="503.70914"/>
+			<Orientation y="3.12362"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="456.05515" z="492.74567"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="461.45832" z="500.9279"/>
+			<Orientation y="0.65253"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="466.32688" z="506.45173"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="469.2281" z="510.64438"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="473.49628" z="514.099"/>
+			<Orientation y="1.49462"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="484.19764" z="517.12964"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="484.10773" z="522.53235"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="483.5756" z="531.00226"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="482.57679" z="541.22767"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="541.58033" z="515.41224"/>
+			<Orientation y="-2.81661"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="529.55976" z="496.24222"/>
+			<Orientation y="-2.72594"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="525.38733" z="486.1201"/>
+			<Orientation y="-2.75132"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="519.67188" z="471.90217"/>
+			<Orientation y="-3.04671"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="519.77033" z="467.0702"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="520.32538" z="467.06992"/>
+			<Orientation y="0.40835"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="551.46155" z="492.688"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="548.14222" z="480.597"/>
+			<Orientation y="-2.5273"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="538.29523" z="470.6019"/>
+			<Orientation y="-2.302"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="533.91462" z="465.59864"/>
+			<Orientation y="-2.97471"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="533.42292" z="460.8982"/>
+			<Orientation y="1.3509"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="544.9076" z="465.22452"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="546.39197" z="472.47977"/>
+			<Orientation y="0.36335"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="550.83246" z="483.71512"/>
+			<Orientation y="0.75383"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="556.72187" z="490.54139"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="560.80933" z="490.56736"/>
+			<Orientation y="-3.02601"/>
+		</Entity>
+		<Entity uid="242">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="555.77631" z="476.3364"/>
+			<Orientation y="-2.56652"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="552.01001" z="470.78803"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="244">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="538.64142" z="497.49457"/>
+			<Orientation y="-2.914"/>
+		</Entity>
+		<Entity uid="245">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="533.42756" z="494.615"/>
+			<Orientation y="1.7441"/>
+		</Entity>
+		<Entity uid="246">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="532.16047" z="509.78098"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="247">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="538.95246" z="520.69776"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="248">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="539.10383" z="559.14716"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="249">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="535.28498" z="563.97358"/>
+			<Orientation y="-0.65595"/>
+		</Entity>
+		<Entity uid="250">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="531.8155" z="571.65052"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="251">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="528.87562" z="576.7024"/>
+			<Orientation y="-0.43287"/>
+		</Entity>
+		<Entity uid="252">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="523.39081" z="593.30024"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="253">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="543.09522" z="578.06373"/>
+			<Orientation y="-2.2072"/>
+		</Entity>
+		<Entity uid="254">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="526.45911" z="585.28016"/>
+			<Orientation y="1.11165"/>
+		</Entity>
+		<Entity uid="255">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="315.46497" z="428.0839"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="256">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="321.8921" z="440.06348"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="257">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="324.75074" z="444.69358"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="258">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="293.11231" z="523.14289"/>
+			<Orientation y="-2.12275"/>
+		</Entity>
+		<Entity uid="259">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="314.92075" z="449.77515"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="260">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="267.98221" z="492.68024"/>
+			<Orientation y="-2.22025"/>
+		</Entity>
+		<Entity uid="261">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="303.58121" z="439.57856"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="262">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="299.33851" z="436.00361"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="263">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="293.72248" z="439.60901"/>
+			<Orientation y="3.13523"/>
+		</Entity>
+		<Entity uid="264">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="294.48765" z="422.72526"/>
+			<Orientation y="-2.93297"/>
+		</Entity>
+		<Entity uid="265">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="291.25687" z="407.49894"/>
+			<Orientation y="2.95871"/>
+		</Entity>
+		<Entity uid="266">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="292.91813" z="398.51157"/>
+			<Orientation y="2.9164"/>
+		</Entity>
+		<Entity uid="267">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="295.50104" z="386.74088"/>
+			<Orientation y="2.68776"/>
+		</Entity>
+		<Entity uid="268">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="300.74231" z="395.33857"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="269">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="301.15848" z="406.08738"/>
+			<Orientation y="0.33443"/>
+		</Entity>
+		<Entity uid="270">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="304.20356" z="418.24268"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="271">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="310.93375" z="424.62497"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="272">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="309.9408" z="435.63871"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="273">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="307.34806" z="445.22489"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="274">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="303.85834" z="456.5337"/>
+			<Orientation y="-2.33765"/>
+		</Entity>
+		<Entity uid="275">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="297.82575" z="457.48108"/>
+			<Orientation y="3.12031"/>
+		</Entity>
+		<Entity uid="276">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="296.53351" z="447.27881"/>
+			<Orientation y="-2.4513"/>
+		</Entity>
+		<Entity uid="277">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="291.79395" z="443.59238"/>
+			<Orientation y="-1.76195"/>
+		</Entity>
+		<Entity uid="278">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="287.00907" z="439.03443"/>
+			<Orientation y="-2.989"/>
+		</Entity>
+		<Entity uid="279">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="285.76331" z="428.91388"/>
+			<Orientation y="3.08451"/>
+		</Entity>
+		<Entity uid="280">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="287.04011" z="416.67823"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="281">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="288.29654" z="411.65918"/>
+			<Orientation y="2.82113"/>
+		</Entity>
+		<Entity uid="282">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="305.45124" z="407.32215"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="283">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="331.79883" z="440.88486"/>
+			<Orientation y="-1.9302"/>
+		</Entity>
+		<Entity uid="284">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="280.84083" z="475.67444"/>
+			<Orientation y="-2.62458"/>
+		</Entity>
+		<Entity uid="285">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="308.86872" z="413.39573"/>
+			<Orientation y="0.50095"/>
+		</Entity>
+		<Entity uid="286">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="308.91742" z="394.70643"/>
+			<Orientation y="-2.77428"/>
+		</Entity>
+		<Entity uid="287">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="304.78919" z="383.68241"/>
+			<Orientation y="-2.95676"/>
+		</Entity>
+		<Entity uid="288">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="302.83262" z="376.85352"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="289">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="292.77335" z="381.32291"/>
+			<Orientation y="-0.31368"/>
+		</Entity>
+		<Entity uid="290">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="284.56379" z="401.57111"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="291">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="285.64283" z="404.61207"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="292">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="442.25437" z="290.85663"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="293">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="435.80002" z="295.98078"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="294">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="428.2198" z="301.86231"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="295">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="421.09327" z="303.21512"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="296">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="415.95112" z="301.07184"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="297">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="413.05997" z="302.52247"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="298">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="412.61194" z="344.12262"/>
+			<Orientation y="1.62945"/>
+		</Entity>
+		<Entity uid="299">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="467.12668" z="324.2204"/>
+			<Orientation y="0.95398"/>
+		</Entity>
+		<Entity uid="300">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="473.37098" z="325.7574"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="301">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="365.51319" z="571.37"/>
+			<Orientation y="1.85763"/>
+		</Entity>
+		<Entity uid="302">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="377.64753" z="577.99384"/>
+			<Orientation y="-0.45379"/>
+		</Entity>
+		<Entity uid="303">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="367.0073" z="596.18281"/>
+			<Orientation y="-1.31153"/>
+		</Entity>
+		<Entity uid="304">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="353.2139" z="596.03309"/>
+			<Orientation y="-2.57021"/>
+		</Entity>
+		<Entity uid="305">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="344.76157" z="587.91724"/>
+			<Orientation y="-1.33025"/>
+		</Entity>
+		<Entity uid="306">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="323.34437" z="594.30964"/>
+			<Orientation y="-1.25306"/>
+		</Entity>
+		<Entity uid="307">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="316.97489" z="598.30311"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="308">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="306.05835" z="635.89893"/>
+			<Orientation y="1.19304"/>
+		</Entity>
+		<Entity uid="309">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="315.66388" z="646.95997"/>
+			<Orientation y="0.35402"/>
+		</Entity>
+		<Entity uid="310">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="326.72077" z="661.93201"/>
+			<Orientation y="0.72806"/>
+		</Entity>
+		<Entity uid="311">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="307.18076" z="653.99701"/>
+			<Orientation y="0.36643"/>
+		</Entity>
+		<Entity uid="312">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="351.55842" z="711.2616"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="313">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="363.65821" z="709.16663"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="314">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="376.87076" z="706.4568"/>
+			<Orientation y="1.49082"/>
+		</Entity>
+		<Entity uid="315">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="359.75733" z="686.03071"/>
+			<Orientation y="-2.00518"/>
+		</Entity>
+		<Entity uid="316">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="334.91099" z="679.32154"/>
+			<Orientation y="-2.51229"/>
+		</Entity>
+		<Entity uid="317">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="317.83875" z="664.49061"/>
+			<Orientation y="-2.20983"/>
+		</Entity>
+		<Entity uid="318">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="331.6059" z="659.60596"/>
+			<Orientation y="-2.0254"/>
+		</Entity>
+		<Entity uid="319">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="320.06113" z="645.16602"/>
+			<Orientation y="0.34766"/>
+		</Entity>
+		<Entity uid="320">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="322.55866" z="655.92774"/>
+			<Orientation y="3.08376"/>
+		</Entity>
+		<Entity uid="321">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="317.73438" z="635.974"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="322">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="313.46015" z="628.77472"/>
+			<Orientation y="-2.85145"/>
+		</Entity>
+		<Entity uid="323">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="310.30951" z="614.70813"/>
+			<Orientation y="-3.01986"/>
+		</Entity>
+		<Entity uid="324">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="309.03403" z="608.79908"/>
+			<Orientation y="-2.44393"/>
+		</Entity>
+		<Entity uid="325">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="298.33841" z="608.54841"/>
+			<Orientation y="3.03074"/>
+		</Entity>
+		<Entity uid="326">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="300.78937" z="596.14667"/>
+			<Orientation y="2.32572"/>
+		</Entity>
+		<Entity uid="327">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="315.1056" z="583.81482"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="328">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="323.45533" z="579.29627"/>
+			<Orientation y="1.7148"/>
+		</Entity>
+		<Entity uid="329">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="334.63245" z="578.672"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="330">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="333.37531" z="583.86731"/>
+			<Orientation y="-2.19231"/>
+		</Entity>
+		<Entity uid="331">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="302.54212" z="632.2422"/>
+			<Orientation y="2.65183"/>
+		</Entity>
+		<Entity uid="332">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="357.66428" z="569.49451"/>
+			<Orientation y="0.06086"/>
+		</Entity>
+		<Entity uid="333">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="356.91031" z="577.59095"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="334">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="360.35315" z="588.60102"/>
+			<Orientation y="1.62945"/>
+		</Entity>
+		<Entity uid="335">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="434.80411" z="595.40931"/>
+			<Orientation y="0.12652"/>
+		</Entity>
+		<Entity uid="336">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="438.5601" z="592.12891"/>
+			<Orientation y="2.83674"/>
+		</Entity>
+		<Entity uid="337">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="442.45945" z="579.69178"/>
+			<Orientation y="2.75107"/>
+		</Entity>
+		<Entity uid="338">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="447.12198" z="577.60761"/>
+			<Orientation y="1.3902"/>
+		</Entity>
+		<Entity uid="339">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="477.43879" z="586.068"/>
+			<Orientation y="-1.66843"/>
+		</Entity>
+		<Entity uid="340">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="482.70075" z="579.02851"/>
+			<Orientation y="-2.95958"/>
+		</Entity>
+		<Entity uid="341">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="526.93335" z="685.2873"/>
+			<Orientation y="-0.83297"/>
+		</Entity>
+		<Entity uid="342">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="517.97632" z="697.49036"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="343">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="516.63691" z="709.01691"/>
+			<Orientation y="-0.40096"/>
+		</Entity>
+		<Entity uid="344">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="506.68738" z="726.08753"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="345">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="501.77781" z="728.92676"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="346">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="500.81415" z="719.9065"/>
+			<Orientation y="2.99273"/>
+		</Entity>
+		<Entity uid="347">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="503.94022" z="704.8053"/>
+			<Orientation y="2.89808"/>
+		</Entity>
+		<Entity uid="348">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="508.7165" z="689.32276"/>
+			<Orientation y="2.7234"/>
+		</Entity>
+		<Entity uid="349">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="518.21686" z="727.18134"/>
+			<Orientation y="-3.07596"/>
+		</Entity>
+		<Entity uid="350">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="523.23554" z="737.30591"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="351">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="530.48108" z="743.4997"/>
+			<Orientation y="1.18541"/>
+		</Entity>
+		<Entity uid="352">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="538.10431" z="751.26612"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="353">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="548.71558" z="766.90809"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="354">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="549.57099" z="774.43171"/>
+			<Orientation y="-1.51217"/>
+		</Entity>
+		<Entity uid="355">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="522.00922" z="771.56946"/>
+			<Orientation y="-2.67907"/>
+		</Entity>
+		<Entity uid="356">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="507.80442" z="745.7876"/>
+			<Orientation y="-2.96499"/>
+		</Entity>
+		<Entity uid="357">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="505.4303" z="731.65351"/>
+			<Orientation y="-1.83454"/>
+		</Entity>
+		<Entity uid="358">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="482.86045" z="726.12732"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="359">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="472.76322" z="726.59998"/>
+			<Orientation y="-1.34481"/>
+		</Entity>
+		<Entity uid="360">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="464.12864" z="728.74878"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="361">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="459.72757" z="724.57502"/>
+			<Orientation y="-2.8685"/>
+		</Entity>
+		<Entity uid="362">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="456.02863" z="712.0564"/>
+			<Orientation y="-1.58873"/>
+		</Entity>
+		<Entity uid="363">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="437.33411" z="814.38178"/>
+			<Orientation y="-0.73491"/>
+		</Entity>
+		<Entity uid="364">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="433.4897" z="805.047"/>
+			<Orientation y="-1.07592"/>
+		</Entity>
+		<Entity uid="365">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="410.68482" z="732.95887"/>
+			<Orientation y="-1.33863"/>
+		</Entity>
+		<Entity uid="366">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="401.80088" z="736.01386"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="367">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="404.46033" z="721.1543"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="368">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="408.70234" z="715.02002"/>
+			<Orientation y="0.37818"/>
+		</Entity>
+		<Entity uid="369">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="413.12287" z="728.83277"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="370">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="433.11094" z="832.33051"/>
+			<Orientation y="0.59635"/>
+		</Entity>
+		<Entity uid="371">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="427.62244" z="813.7204"/>
+			<Orientation y="2.29801"/>
+		</Entity>
+		<Entity uid="372">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="442.07752" z="816.37238"/>
+			<Orientation y="0.01104"/>
+		</Entity>
+		<Entity uid="373">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="447.68332" z="744.72138"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="374">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="451.17682" z="725.94385"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="375">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="449.50815" z="720.33863"/>
+			<Orientation y="-0.09885"/>
+		</Entity>
+		<Entity uid="376">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="456.29587" z="753.08436"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="377">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="453.04789" z="740.09504"/>
+			<Orientation y="2.00338"/>
+		</Entity>
+		<Entity uid="378">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="464.63733" z="743.89527"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="379">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="465.33512" z="745.48688"/>
+			<Orientation y="2.15522"/>
+		</Entity>
+		<Entity uid="380">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="483.46064" z="740.94733"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="381">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="485.62311" z="741.83185"/>
+			<Orientation y="-2.95066"/>
+		</Entity>
+		<Entity uid="382">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="483.28702" z="717.7237"/>
+			<Orientation y="2.65127"/>
+		</Entity>
+		<Entity uid="383">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="496.69654" z="704.71747"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="384">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="497.01075" z="704.25733"/>
+			<Orientation y="-0.08336"/>
+		</Entity>
+		<Entity uid="385">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="490.41407" z="734.86054"/>
+			<Orientation y="-0.88408"/>
+		</Entity>
+		<Entity uid="386">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="485.06818" z="742.90699"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="387">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="495.41413" z="756.13404"/>
+			<Orientation y="-2.69979"/>
+		</Entity>
+		<Entity uid="388">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="488.73398" z="725.7068"/>
+			<Orientation y="3.0862"/>
+		</Entity>
+		<Entity uid="389">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="489.29404" z="709.72864"/>
+			<Orientation y="1.62945"/>
+		</Entity>
+		<Entity uid="390">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="648.91681" z="444.80213"/>
+			<Orientation y="-2.15847"/>
+		</Entity>
+		<Entity uid="391">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="661.5105" z="554.72022"/>
+			<Orientation y="0.15432"/>
+		</Entity>
+		<Entity uid="392">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="649.72797" z="425.98261"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="393">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="655.52338" z="416.84382"/>
+			<Orientation y="2.96073"/>
+		</Entity>
+		<Entity uid="394">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="656.28522" z="409.227"/>
+			<Orientation y="2.8842"/>
+		</Entity>
+		<Entity uid="395">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="658.6952" z="402.77027"/>
+			<Orientation y="2.31266"/>
+		</Entity>
+		<Entity uid="396">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="675.54828" z="394.44446"/>
+			<Orientation y="2.34372"/>
+		</Entity>
+		<Entity uid="397">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="679.43097" z="390.47587"/>
+			<Orientation y="3.13508"/>
+		</Entity>
+		<Entity uid="398">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="679.83674" z="377.02604"/>
+			<Orientation y="-1.7091"/>
+		</Entity>
+		<Entity uid="399">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="668.83039" z="382.33954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="400">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="666.26264" z="394.4946"/>
+			<Orientation y="0.09691"/>
+		</Entity>
+		<Entity uid="401">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="666.57923" z="406.991"/>
+			<Orientation y="-0.30123"/>
+		</Entity>
+		<Entity uid="402">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="661.66163" z="424.9864"/>
+			<Orientation y="-0.03316"/>
+		</Entity>
+		<Entity uid="403">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="656.26417" z="444.13376"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="404">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="645.60029" z="537.52485"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="405">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="652.53107" z="511.74317"/>
+			<Orientation y="-0.57541"/>
+		</Entity>
+		<Entity uid="406">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="661.15247" z="515.88453"/>
+			<Orientation y="-1.22423"/>
+		</Entity>
+		<Entity uid="407">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="649.67334" z="524.84986"/>
+			<Orientation y="3.11121"/>
+		</Entity>
+		<Entity uid="408">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="631.6194" z="472.64997"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="409">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="624.91083" z="461.0561"/>
+			<Orientation y="0.19018"/>
+		</Entity>
+		<Entity uid="410">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="630.64545" z="461.0073"/>
+			<Orientation y="0.41369"/>
+		</Entity>
+		<Entity uid="411">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="650.16358" z="542.63831"/>
+			<Orientation y="-0.00306"/>
+		</Entity>
+		<Entity uid="412">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="655.99585" z="526.39325"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="413">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="656.10877" z="544.35254"/>
+			<Orientation y="0.75498"/>
+		</Entity>
+		<Entity uid="414">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="665.18494" z="552.50434"/>
+			<Orientation y="1.10625"/>
+		</Entity>
+		<Entity uid="415">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="668.71052" z="550.01948"/>
+			<Orientation y="1.62943"/>
+		</Entity>
+		<Entity uid="416">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="642.6894" z="290.66288"/>
+			<Orientation y="-2.93699"/>
+		</Entity>
+		<Entity uid="417">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="634.14252" z="267.23398"/>
+			<Orientation y="-2.48772"/>
+		</Entity>
+		<Entity uid="418">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="619.59363" z="253.49627"/>
+			<Orientation y="-2.13595"/>
+		</Entity>
+		<Entity uid="419">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="609.2558" z="250.49181"/>
+			<Orientation y="-1.08986"/>
+		</Entity>
+		<Entity uid="420">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="597.0893" z="260.03827"/>
+			<Orientation y="-0.95772"/>
+		</Entity>
+		<Entity uid="421">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="588.48926" z="264.67997"/>
+			<Orientation y="-2.33434"/>
+		</Entity>
+		<Entity uid="422">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="582.29011" z="255.68421"/>
+			<Orientation y="-2.65856"/>
+		</Entity>
+		<Entity uid="423">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="576.73133" z="244.02358"/>
+			<Orientation y="2.21113"/>
+		</Entity>
+		<Entity uid="424">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="590.31141" z="240.55852"/>
+			<Orientation y="0.4052"/>
+		</Entity>
+		<Entity uid="425">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="594.74567" z="251.34363"/>
+			<Orientation y="0.9572"/>
+		</Entity>
+		<Entity uid="426">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="603.45533" z="262.63035"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="427">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="604.40406" z="269.74515"/>
+			<Orientation y="1.4717"/>
+		</Entity>
+		<Entity uid="428">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="614.63318" z="270.35914"/>
+			<Orientation y="-3.05369"/>
+		</Entity>
+		<Entity uid="429">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="612.4001" z="253.92461"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="430">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="611.33802" z="248.82291"/>
+			<Orientation y="3.13831"/>
+		</Entity>
+		<Entity uid="431">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="612.06428" z="234.89992"/>
+			<Orientation y="2.44593"/>
+		</Entity>
+		<Entity uid="432">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="619.39765" z="232.33898"/>
+			<Orientation y="0.59177"/>
+		</Entity>
+		<Entity uid="433">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="629.27704" z="251.1081"/>
+			<Orientation y="-0.25942"/>
+		</Entity>
+		<Entity uid="434">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="623.23993" z="260.10846"/>
+			<Orientation y="-0.06017"/>
+		</Entity>
+		<Entity uid="435">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="622.45362" z="269.02732"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="436">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="601.28992" z="239.50886"/>
+			<Orientation y="-2.10317"/>
+		</Entity>
+		<Entity uid="437">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="598.81647" z="251.3272"/>
+			<Orientation y="0.96731"/>
+		</Entity>
+		<Entity uid="438">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="586.16102" z="244.93162"/>
+			<Orientation y="-2.38956"/>
+		</Entity>
+		<Entity uid="439">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="577.6844" z="258.26444"/>
+			<Orientation y="1.23649"/>
+		</Entity>
+		<Entity uid="440">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="516.93824" z="269.01462"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="441">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="506.72886" z="280.8895"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="442">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="505.52433" z="275.17972"/>
+			<Orientation y="-2.88563"/>
+		</Entity>
+		<Entity uid="443">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="500.65891" z="258.11066"/>
+			<Orientation y="-2.68133"/>
+		</Entity>
+		<Entity uid="444">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="493.49228" z="245.14869"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="445">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="492.93201" z="240.1846"/>
+			<Orientation y="2.97915"/>
+		</Entity>
+		<Entity uid="446">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="501.93699" z="229.80341"/>
+			<Orientation y="1.92118"/>
+		</Entity>
+		<Entity uid="447">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="513.03418" z="226.99495"/>
+			<Orientation y="0.7753"/>
+		</Entity>
+		<Entity uid="448">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="515.92524" z="237.58143"/>
+			<Orientation y="-0.44726"/>
+		</Entity>
+		<Entity uid="449">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="510.07267" z="251.39872"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="450">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="510.53721" z="257.297"/>
+			<Orientation y="0.09652"/>
+		</Entity>
+		<Entity uid="451">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="512.17566" z="272.34852"/>
+			<Orientation y="0.20203"/>
+		</Entity>
+		<Entity uid="452">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="514.498" z="285.06791"/>
+			<Orientation y="1.2332"/>
+		</Entity>
+		<Entity uid="453">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="519.23353" z="288.04679"/>
+			<Orientation y="2.54368"/>
+		</Entity>
+		<Entity uid="454">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="529.25293" z="276.18244"/>
+			<Orientation y="-2.70997"/>
+		</Entity>
+		<Entity uid="455">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="520.97016" z="258.87195"/>
+			<Orientation y="3.09829"/>
+		</Entity>
+		<Entity uid="456">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="522.35834" z="243.64315"/>
+			<Orientation y="3.02047"/>
+		</Entity>
+		<Entity uid="457">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="525.92566" z="232.38353"/>
+			<Orientation y="2.10195"/>
+		</Entity>
+		<Entity uid="458">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="505.97776" z="250.26755"/>
+			<Orientation y="-2.87305"/>
+		</Entity>
+		<Entity uid="459">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="508.67667" z="236.30172"/>
+			<Orientation y="1.35245"/>
+		</Entity>
+		<Entity uid="460">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="487.07465" z="246.81614"/>
+			<Orientation y="-2.17792"/>
+		</Entity>
+		<Entity uid="461">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="472.17951" z="241.29386"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="462">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="472.2862" z="240.58396"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="463">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="474.45786" z="269.61509"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="464">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="470.27375" z="279.23868"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="465">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="463.05964" z="295.34366"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="466">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="460.633" z="308.55143"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="467">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="484.33747" z="322.8581"/>
+			<Orientation y="0.0079"/>
+		</Entity>
+		<Entity uid="468">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="422.73414" z="359.92936"/>
+			<Orientation y="1.62943"/>
+		</Entity>
+		<Entity uid="469">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="447.85831" z="261.15851"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="470">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="456.09653" z="249.5316"/>
+			<Orientation y="3.10445"/>
+		</Entity>
+		<Entity uid="471">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="453.63706" z="237.07236"/>
+			<Orientation y="-2.1482"/>
+		</Entity>
+		<Entity uid="472">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="506.50705" z="223.35213"/>
+			<Orientation y="0.72664"/>
+		</Entity>
+		<Entity uid="473">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="498.87073" z="236.77378"/>
+			<Orientation y="2.22538"/>
+		</Entity>
+		<Entity uid="474">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="495.64618" z="227.09702"/>
+			<Orientation y="0.7078"/>
+		</Entity>
+		<Entity uid="475">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="460.11155" z="230.10178"/>
+			<Orientation y="-0.10698"/>
+		</Entity>
+		<Entity uid="476">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="457.96348" z="246.6796"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="477">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="462.232" z="250.90853"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="478">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="465.21348" z="243.35547"/>
+			<Orientation y="-3.09466"/>
+		</Entity>
+		<Entity uid="479">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="462.55991" z="228.89374"/>
+			<Orientation y="2.75612"/>
+		</Entity>
+		<Entity uid="480">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="468.19648" z="222.36806"/>
+			<Orientation y="1.81948"/>
+		</Entity>
+		<Entity uid="481">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="474.44843" z="222.40413"/>
+			<Orientation y="0.15604"/>
+		</Entity>
+		<Entity uid="482">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="476.39066" z="239.1723"/>
+			<Orientation y="0.17882"/>
+		</Entity>
+		<Entity uid="483">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="480.12845" z="252.86168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="484">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="482.09614" z="258.08841"/>
+			<Orientation y="2.7981"/>
+		</Entity>
+		<Entity uid="485">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="483.03672" z="242.0211"/>
+			<Orientation y="-2.91852"/>
+		</Entity>
+		<Entity uid="486">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="480.41797" z="227.42225"/>
+			<Orientation y="2.91544"/>
+		</Entity>
+		<Entity uid="487">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="485.46204" z="220.75245"/>
+			<Orientation y="0.86722"/>
+		</Entity>
+		<Entity uid="488">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="629.68055" z="680.4911"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="489">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="643.14332" z="688.48877"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="490">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="644.57056" z="684.98267"/>
+			<Orientation y="2.93607"/>
+		</Entity>
+		<Entity uid="491">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="654.90467" z="662.78907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="492">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="661.50208" z="674.06153"/>
+			<Orientation y="0.38672"/>
+		</Entity>
+		<Entity uid="493">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="671.74305" z="699.12287"/>
+			<Orientation y="0.90084"/>
+		</Entity>
+		<Entity uid="494">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="683.15638" z="707.58045"/>
+			<Orientation y="1.62945"/>
+		</Entity>
+		<Entity uid="495">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="692.01233" z="704.87354"/>
+			<Orientation y="-2.52277"/>
+		</Entity>
+		<Entity uid="496">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="677.35041" z="683.80744"/>
+			<Orientation y="-2.75226"/>
+		</Entity>
+		<Entity uid="497">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="671.78834" z="670.6435"/>
+			<Orientation y="-1.51217"/>
+		</Entity>
+		<Entity uid="498">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="661.90668" z="685.56788"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="499">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="661.24732" z="690.5301"/>
+			<Orientation y="-2.31945"/>
+		</Entity>
+		<Entity uid="500">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="651.96375" z="678.16486"/>
+			<Orientation y="-2.81342"/>
+		</Entity>
+		<Entity uid="501">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="643.21637" z="658.40174"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="502">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="636.71546" z="656.9922"/>
+			<Orientation y="-1.51217"/>
+		</Entity>
+		<Entity uid="503">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="621.32898" z="667.6609"/>
+			<Orientation y="1.38001"/>
+		</Entity>
+		<Entity uid="504">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="637.66462" z="678.22315"/>
+			<Orientation y="0.17293"/>
+		</Entity>
+		<Entity uid="505">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="641.25147" z="700.91285"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="506">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="637.72938" z="706.43616"/>
+			<Orientation y="-2.25962"/>
+		</Entity>
+		<Entity uid="507">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="626.891" z="692.23975"/>
+			<Orientation y="-3.04027"/>
+		</Entity>
+		<Entity uid="508">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="625.73206" z="680.80701"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="509">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="625.57654" z="673.13917"/>
+			<Orientation y="2.98142"/>
+		</Entity>
+		<Entity uid="510">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="628.55396" z="658.58228"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="511">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="635.90931" z="686.82038"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="512">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="655.57038" z="648.75171"/>
+			<Orientation y="2.86162"/>
+		</Entity>
+		<Entity uid="513">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="663.69654" z="644.4972"/>
+			<Orientation y="0.30935"/>
+		</Entity>
+		<Entity uid="514">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="693.1421" z="695.26301"/>
+			<Orientation y="1.62945"/>
+		</Entity>
+		<Entity uid="515">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="710.10676" z="697.92225"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="516">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="713.1731" z="704.72175"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="517">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="714.59412" z="676.63465"/>
+			<Orientation y="-2.90333"/>
+		</Entity>
+		<Entity uid="518">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="711.40845" z="664.0326"/>
+			<Orientation y="2.93389"/>
+		</Entity>
+		<Entity uid="519">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="713.86689" z="649.27662"/>
+			<Orientation y="-2.65545"/>
+		</Entity>
+		<Entity uid="520">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="696.0633" z="626.01282"/>
+			<Orientation y="-2.44355"/>
+		</Entity>
+		<Entity uid="521">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="685.09327" z="617.90711"/>
+			<Orientation y="-2.49352"/>
+		</Entity>
+		<Entity uid="522">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="677.55231" z="630.41456"/>
+			<Orientation y="-2.08336"/>
+		</Entity>
+		<Entity uid="523">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="670.88904" z="628.98938"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="524">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="672.95038" z="622.96357"/>
+			<Orientation y="2.01973"/>
+		</Entity>
+		<Entity uid="525">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="681.09864" z="620.6609"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="526">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="682.57764" z="627.21009"/>
+			<Orientation y="0.4273"/>
+		</Entity>
+		<Entity uid="527">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="731.25336" z="579.92426"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="528">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="747.15967" z="589.94605"/>
+			<Orientation y="2.29671"/>
+		</Entity>
+		<Entity uid="529">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="755.40125" z="575.90162"/>
+			<Orientation y="-2.69901"/>
+		</Entity>
+		<Entity uid="530">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="748.20594" z="563.86347"/>
+			<Orientation y="-2.1176"/>
+		</Entity>
+		<Entity uid="531">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="738.17933" z="556.25489"/>
+			<Orientation y="-2.98418"/>
+		</Entity>
+		<Entity uid="532">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="737.32245" z="546.95795"/>
+			<Orientation y="2.69974"/>
+		</Entity>
+		<Entity uid="533">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="743.62043" z="541.02918"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="534">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="746.47126" z="538.77283"/>
+			<Orientation y="-3.04552"/>
+		</Entity>
+		<Entity uid="535">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="744.47309" z="527.82337"/>
+			<Orientation y="-2.51668"/>
+		</Entity>
+		<Entity uid="536">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="730.82728" z="514.649"/>
+			<Orientation y="-2.09668"/>
+		</Entity>
+		<Entity uid="537">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="724.88276" z="511.99115"/>
+			<Orientation y="-2.78301"/>
+		</Entity>
+		<Entity uid="538">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="724.2975" z="502.76996"/>
+			<Orientation y="1.65984"/>
+		</Entity>
+		<Entity uid="539">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="734.6438" z="502.91718"/>
+			<Orientation y="0.99921"/>
+		</Entity>
+		<Entity uid="540">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="746.29029" z="511.88422"/>
+			<Orientation y="0.17905"/>
+		</Entity>
+		<Entity uid="541">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="749.78907" z="531.08075"/>
+			<Orientation y="-0.05053"/>
+		</Entity>
+		<Entity uid="542">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="745.36347" z="551.72651"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="543">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="750.49018" z="558.12232"/>
+			<Orientation y="0.51777"/>
+		</Entity>
+		<Entity uid="544">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="753.4217" z="564.60676"/>
+			<Orientation y="-0.648"/>
+		</Entity>
+		<Entity uid="545">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="742.6761" z="572.79401"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="546">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="734.87739" z="568.67408"/>
+			<Orientation y="-2.70456"/>
+		</Entity>
+		<Entity uid="547">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="732.08356" z="558.54871"/>
+			<Orientation y="2.73221"/>
+		</Entity>
+		<Entity uid="548">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="737.33545" z="552.47736"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="549">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="744.96558" z="577.4546"/>
+			<Orientation y="-2.49061"/>
+		</Entity>
+		<Entity uid="550">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="738.35822" z="584.53834"/>
+			<Orientation y="1.40734"/>
+		</Entity>
+		<Entity uid="551">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="753.56305" z="589.92652"/>
+			<Orientation y="-2.71831"/>
+		</Entity>
+		<Entity uid="552">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="719.51343" z="507.8772"/>
+			<Orientation y="1.58953"/>
+		</Entity>
+		<Entity uid="553">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="717.7273" z="595.6825"/>
+			<Orientation y="0.98986"/>
+		</Entity>
+		<Entity uid="554">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="723.2168" z="590.67798"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="555">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="406.58732" z="476.77906"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="556">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="411.16147" z="479.54462"/>
+			<Orientation y="-2.54409"/>
+		</Entity>
+		<Entity uid="557">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="400.91272" z="478.58097"/>
+			<Orientation y="1.38984"/>
+		</Entity>
+		<Entity uid="558">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="402.60526" z="471.32206"/>
+			<Orientation y="0.77341"/>
+		</Entity>
+		<Entity uid="559">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="403.94724" z="491.78327"/>
+			<Orientation y="-2.42562"/>
+		</Entity>
+		<Entity uid="560">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="321.4203" z="516.65241"/>
+			<Orientation y="0.99444"/>
+		</Entity>
+		<Entity uid="561">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="329.28293" z="521.82721"/>
+			<Orientation y="2.03278"/>
+		</Entity>
+		<Entity uid="562">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="340.97287" z="517.8368"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="563">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="340.2363" z="510.01465"/>
+			<Orientation y="-3.03002"/>
+		</Entity>
+		<Entity uid="564">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="338.29502" z="494.80582"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="565">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="331.88273" z="494.01594"/>
+			<Orientation y="-0.10196"/>
+		</Entity>
+		<Entity uid="566">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="329.7692" z="506.7227"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="567">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="309.3378" z="517.79615"/>
+			<Orientation y="0.1965"/>
+		</Entity>
+		<Entity uid="568">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="315.62302" z="541.222"/>
+			<Orientation y="-0.09343"/>
+		</Entity>
+		<Entity uid="569">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="313.01783" z="558.61268"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="570">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="310.34302" z="572.0033"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="571">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="365.76465" z="692.90241"/>
+			<Orientation y="0.29571"/>
+		</Entity>
+		<Entity uid="572">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="373.38074" z="716.54261"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="573">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="380.36796" z="729.13782"/>
+			<Orientation y="1.62945"/>
+		</Entity>
+		<Entity uid="574">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="391.11033" z="726.52106"/>
+			<Orientation y="-2.9512"/>
+		</Entity>
+		<Entity uid="575">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="384.26166" z="704.00342"/>
+			<Orientation y="-2.56981"/>
+		</Entity>
+		<Entity uid="576">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="376.56281" z="693.03364"/>
+			<Orientation y="-2.57598"/>
+		</Entity>
+		<Entity uid="577">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="368.0886" z="680.37134"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="578">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="357.0539" z="723.16688"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="579">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="359.19318" z="734.41803"/>
+			<Orientation y="0.75617"/>
+		</Entity>
+		<Entity uid="580">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="368.34043" z="747.08387"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="581">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="374.18577" z="730.00062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="582">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="373.62571" z="726.07184"/>
+			<Orientation y="0.3533"/>
+		</Entity>
+		<Entity uid="583">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="383.70759" z="750.04694"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="584">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="387.92914" z="758.34687"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="585">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="397.97828" z="765.47248"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="586">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="401.92084" z="749.53626"/>
+			<Orientation y="2.99482"/>
+		</Entity>
+		<Entity uid="587">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="402.50489" z="728.33814"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="588">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="396.91898" z="712.93506"/>
+			<Orientation y="-3.03647"/>
+		</Entity>
+		<Entity uid="589">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="395.83976" z="699.60486"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="590">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="389.00693" z="706.77234"/>
+			<Orientation y="0.96705"/>
+		</Entity>
+		<Entity uid="591">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="377.92084" z="746.52149"/>
+			<Orientation y="-2.67434"/>
+		</Entity>
+		<Entity uid="592">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="372.0633" z="721.32892"/>
+			<Orientation y="2.42305"/>
+		</Entity>
+		<Entity uid="593">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="382.80921" z="719.2724"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="594">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="382.90857" z="734.04883"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="595">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="326.87797" z="342.5741"/>
+			<Orientation y="-3.0984"/>
+		</Entity>
+		<Entity uid="596">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="325.85373" z="317.24012"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="597">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="331.01511" z="305.91413"/>
+			<Orientation y="2.40993"/>
+		</Entity>
+		<Entity uid="598">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="335.68299" z="304.84815"/>
+			<Orientation y="0.53281"/>
+		</Entity>
+		<Entity uid="599">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="342.09269" z="321.24903"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="600">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="337.06977" z="327.61304"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="601">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="329.25007" z="326.53132"/>
+			<Orientation y="1.8281"/>
+		</Entity>
+		<Entity uid="602">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="338.56516" z="310.87208"/>
+			<Orientation y="-3.04917"/>
+		</Entity>
+		<Entity uid="603">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="330.08094" z="334.52063"/>
+			<Orientation y="3.0356"/>
+		</Entity>
+		<Entity uid="604">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="570.69324" z="642.91858"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="605">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="583.97278" z="645.85425"/>
+			<Orientation y="1.8832"/>
+		</Entity>
+		<Entity uid="606">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="599.1966" z="657.25611"/>
+			<Orientation y="1.24013"/>
+		</Entity>
+		<Entity uid="607">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="607.69495" z="662.70868"/>
+			<Orientation y="2.46938"/>
+		</Entity>
+		<Entity uid="608">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="615.67347" z="647.22608"/>
+			<Orientation y="-2.93483"/>
+		</Entity>
+		<Entity uid="609">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="613.03669" z="627.30152"/>
+			<Orientation y="-2.1999"/>
+		</Entity>
+		<Entity uid="610">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="605.17792" z="625.66144"/>
+			<Orientation y="-2.09762"/>
+		</Entity>
+		<Entity uid="611">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="592.58735" z="621.474"/>
+			<Orientation y="-0.82886"/>
+		</Entity>
+		<Entity uid="612">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="581.08466" z="630.49628"/>
+			<Orientation y="1.62946"/>
+		</Entity>
+		<Entity uid="613">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="593.12214" z="634.44605"/>
+			<Orientation y="0.68175"/>
+		</Entity>
+		<Entity uid="614">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="598.80286" z="639.94288"/>
+			<Orientation y="0.81296"/>
+		</Entity>
+		<Entity uid="615">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="604.05677" z="644.02283"/>
+			<Orientation y="-2.81884"/>
+		</Entity>
+		<Entity uid="616">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="597.10273" z="621.22962"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="617">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="587.08552" z="630.862"/>
+			<Orientation y="2.19935"/>
+		</Entity>
+		<Entity uid="618">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="575.89673" z="634.3451"/>
+			<Orientation y="2.85549"/>
+		</Entity>
+		<Entity uid="619">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="622.35218" z="631.62964"/>
+			<Orientation y="-2.30274"/>
+		</Entity>
+		<Entity uid="620">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="600.1388" z="614.82221"/>
+			<Orientation y="0.12063"/>
+		</Entity>
+		<Entity uid="621">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="591.79822" z="640.07728"/>
+			<Orientation y="-2.72832"/>
+		</Entity>
+		<Entity uid="622">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="589.29383" z="695.42804"/>
+			<Orientation y="-0.80428"/>
+		</Entity>
+		<Entity uid="623">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="575.24988" z="714.22382"/>
+			<Orientation y="-0.19585"/>
+		</Entity>
+		<Entity uid="624">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="567.6844" z="746.4297"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="625">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="559.91291" z="763.74744"/>
+			<Orientation y="-3.01777"/>
+		</Entity>
+		<Entity uid="626">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="606.39875" z="495.76362"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="627">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="614.46772" z="481.52231"/>
+			<Orientation y="-2.91803"/>
+		</Entity>
+		<Entity uid="628">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="611.95905" z="468.42188"/>
+			<Orientation y="2.31058"/>
+		</Entity>
+		<Entity uid="629">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="620.54468" z="467.5475"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="630">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="622.41272" z="478.10138"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="631">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="618.8614" z="484.45984"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="632">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="613.67078" z="490.40967"/>
+			<Orientation y="-2.10814"/>
+		</Entity>
+		<Entity uid="633">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="607.27088" z="477.17234"/>
+			<Orientation y="0.87273"/>
+		</Entity>
+		<Entity uid="634">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="615.74433" z="470.36823"/>
+			<Orientation y="-2.60447"/>
+		</Entity>
+		<Entity uid="635">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="625.93116" z="472.19742"/>
+			<Orientation y="-2.69152"/>
+		</Entity>
+		<Entity uid="636">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="604.30994" z="485.28867"/>
+			<Orientation y="-0.43882"/>
+		</Entity>
+		<Entity uid="637">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="722.08063" z="421.14417"/>
+			<Orientation y="2.05491"/>
+		</Entity>
+		<Entity uid="638">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="735.43262" z="414.77851"/>
+			<Orientation y="1.18876"/>
+		</Entity>
+		<Entity uid="639">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="745.56946" z="419.53254"/>
+			<Orientation y="1.21964"/>
+		</Entity>
+		<Entity uid="640">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="753.97034" z="415.88691"/>
+			<Orientation y="2.49625"/>
+		</Entity>
+		<Entity uid="641">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="757.66431" z="408.58704"/>
+			<Orientation y="-3.12609"/>
+		</Entity>
+		<Entity uid="642">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="758.3006" z="394.51008"/>
+			<Orientation y="2.98732"/>
+		</Entity>
+		<Entity uid="643">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="759.53919" z="383.46058"/>
+			<Orientation y="-2.96235"/>
+		</Entity>
+		<Entity uid="644">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="756.40461" z="371.41791"/>
+			<Orientation y="-2.15098"/>
+		</Entity>
+		<Entity uid="645">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="747.75263" z="405.70206"/>
+			<Orientation y="-1.55655"/>
+		</Entity>
+		<Entity uid="646">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="735.86823" z="407.81428"/>
+			<Orientation y="-1.40305"/>
+		</Entity>
+		<Entity uid="647">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="722.76587" z="406.16767"/>
+			<Orientation y="-2.95395"/>
+		</Entity>
+		<Entity uid="648">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="720.01337" z="395.48877"/>
+			<Orientation y="2.96708"/>
+		</Entity>
+		<Entity uid="649">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="724.15632" z="379.32544"/>
+			<Orientation y="2.44674"/>
+		</Entity>
+		<Entity uid="650">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="733.60438" z="368.86274"/>
+			<Orientation y="2.1179"/>
+		</Entity>
+		<Entity uid="651">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="741.0702" z="364.87574"/>
+			<Orientation y="1.94724"/>
+		</Entity>
+		<Entity uid="652">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="752.52771" z="361.18277"/>
+			<Orientation y="-0.01186"/>
+		</Entity>
+		<Entity uid="653">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="757.15497" z="433.48902"/>
+			<Orientation y="0.34002"/>
+		</Entity>
+		<Entity uid="654">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="758.97968" z="450.9463"/>
+			<Orientation y="-0.67071"/>
+		</Entity>
+		<Entity uid="655">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="746.12958" z="467.07428"/>
+			<Orientation y="-0.86234"/>
+		</Entity>
+		<Entity uid="656">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="733.86854" z="476.09256"/>
+			<Orientation y="-1.29821"/>
+		</Entity>
+		<Entity uid="657">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="727.31824" z="476.1518"/>
+			<Orientation y="-1.61677"/>
+		</Entity>
+		<Entity uid="658">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="719.45698" z="476.35578"/>
+			<Orientation y="-2.52858"/>
+		</Entity>
+		<Entity uid="659">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="715.86548" z="465.01001"/>
+			<Orientation y="-2.96016"/>
+		</Entity>
+		<Entity uid="660">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="713.2527" z="456.97587"/>
+			<Orientation y="3.07012"/>
+		</Entity>
+		<Entity uid="661">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="713.98334" z="445.93174"/>
+			<Orientation y="2.80201"/>
+		</Entity>
+		<Entity uid="662">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="719.21546" z="433.76258"/>
+			<Orientation y="2.02433"/>
+		</Entity>
+		<Entity uid="663">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="738.39771" z="426.20594"/>
+			<Orientation y="1.74431"/>
+		</Entity>
+		<Entity uid="664">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="750.34314" z="416.146"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="665">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="705.86457" z="381.41416"/>
+			<Orientation y="2.93429"/>
+		</Entity>
+		<Entity uid="666">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="713.56513" z="366.66926"/>
+			<Orientation y="1.81318"/>
+		</Entity>
+		<Entity uid="667">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="720.90882" z="366.72584"/>
+			<Orientation y="0.68323"/>
+		</Entity>
+		<Entity uid="668">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="727.19129" z="376.47568"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="669">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="730.22742" z="384.06455"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="670">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="727.3473" z="360.5615"/>
+			<Orientation y="0.79514"/>
+		</Entity>
+		<Entity uid="671">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="489.10444" z="403.22425"/>
+			<Orientation y="1.63741"/>
+		</Entity>
+		<Entity uid="672">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="480.08451" z="413.2721"/>
+			<Orientation y="0.26467"/>
+		</Entity>
+		<Entity uid="673">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="476.9644" z="404.10596"/>
+			<Orientation y="-0.05613"/>
+		</Entity>
+		<Entity uid="674">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="473.9769" z="418.25464"/>
+			<Orientation y="0.60596"/>
+		</Entity>
+		<Entity uid="675">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="471.38678" z="403.31568"/>
+			<Orientation y="0.18386"/>
+		</Entity>
+		<Entity uid="676">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="351.84354" z="286.261"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="677">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="355.30878" z="296.50293"/>
+			<Orientation y="-0.06977"/>
+		</Entity>
+		<Entity uid="678">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="353.82029" z="319.4384"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="679">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="387.9095" z="298.4842"/>
+			<Orientation y="0.79572"/>
+		</Entity>
+		<Entity uid="681">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="146.66083" z="519.39411"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="682">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="879.10914" z="498.43348"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="683">
+			<Template>other/celt_homestead</Template>
+			<Player>1</Player>
+			<Position x="505.85721" z="898.4463"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="684">
+			<Template>other/celt_homestead</Template>
+			<Player>2</Player>
+			<Position x="513.21052" z="98.58271"/>
+			<Orientation y="-0.82177"/>
+		</Entity>
+		<Entity uid="685">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="754.29816" z="918.39576"/>
+			<Orientation y="0.88608"/>
+		</Entity>
+		<Entity uid="686">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="760.69459" z="927.99762"/>
+			<Orientation y="0.90371"/>
+		</Entity>
+		<Entity uid="687">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="768.41218" z="932.87812"/>
+			<Orientation y="2.77028"/>
+		</Entity>
+		<Entity uid="688">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="770.46637" z="924.5381"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="689">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="771.62153" z="920.06006"/>
+			<Orientation y="1.97596"/>
+		</Entity>
+		<Entity uid="690">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="780.36396" z="918.34034"/>
+			<Orientation y="1.78396"/>
+		</Entity>
+		<Entity uid="691">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="789.43787" z="918.90809"/>
+			<Orientation y="1.59232"/>
+		</Entity>
+		<Entity uid="692">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="796.55506" z="920.55555"/>
+			<Orientation y="2.4386"/>
+		</Entity>
+		<Entity uid="693">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="810.1139" z="908.22364"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="694">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="814.623" z="908.59327"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="695">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="824.28821" z="908.38514"/>
+			<Orientation y="1.03914"/>
+		</Entity>
+		<Entity uid="696">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="802.7704" z="918.62098"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="697">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="799.53797" z="910.80512"/>
+			<Orientation y="-2.04453"/>
+		</Entity>
+		<Entity uid="698">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="794.00837" z="908.5705"/>
+			<Orientation y="-1.54926"/>
+		</Entity>
+		<Entity uid="699">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="782.49103" z="908.81855"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="700">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="774.66877" z="911.81757"/>
+			<Orientation y="0.79685"/>
+		</Entity>
+		<Entity uid="701">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="779.57117" z="931.78187"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="702">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="772.66633" z="941.69343"/>
+			<Orientation y="-2.30423"/>
+		</Entity>
+		<Entity uid="703">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="763.94794" z="928.2024"/>
+			<Orientation y="3.04941"/>
+		</Entity>
+		<Entity uid="704">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="762.79554" z="915.22376"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="705">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="752.95295" z="935.23224"/>
+			<Orientation y="0.90496"/>
+		</Entity>
+		<Entity uid="706">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="744.37018" z="843.05701"/>
+			<Orientation y="-1.18326"/>
+		</Entity>
+		<Entity uid="707">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="735.66279" z="848.18702"/>
+			<Orientation y="-1.26105"/>
+		</Entity>
+		<Entity uid="708">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="728.47431" z="850.66553"/>
+			<Orientation y="-1.29004"/>
+		</Entity>
+		<Entity uid="709">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="721.57996" z="851.52082"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="710">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="715.36487" z="852.8429"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="711">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="713.03705" z="846.62476"/>
+			<Orientation y="-2.85343"/>
+		</Entity>
+		<Entity uid="712">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="709.6941" z="840.56116"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="713">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="716.15473" z="835.23401"/>
+			<Orientation y="0.47062"/>
+		</Entity>
+		<Entity uid="714">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="722.18403" z="841.36194"/>
+			<Orientation y="1.59234"/>
+		</Entity>
+		<Entity uid="715">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="731.00318" z="841.60303"/>
+			<Orientation y="1.96915"/>
+		</Entity>
+		<Entity uid="716">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="736.58228" z="837.875"/>
+			<Orientation y="-2.7125"/>
+		</Entity>
+		<Entity uid="717">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="825.27448" z="828.40143"/>
+			<Orientation y="-1.96076"/>
+		</Entity>
+		<Entity uid="718">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="809.89472" z="823.94874"/>
+			<Orientation y="-2.52492"/>
+		</Entity>
+		<Entity uid="719">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="803.12732" z="815.03052"/>
+			<Orientation y="-2.23327"/>
+		</Entity>
+		<Entity uid="720">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="793.66511" z="806.96961"/>
+			<Orientation y="-2.84121"/>
+		</Entity>
+		<Entity uid="721">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="793.40107" z="800.68036"/>
+			<Orientation y="2.02587"/>
+		</Entity>
+		<Entity uid="722">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="805.89155" z="802.83002"/>
+			<Orientation y="0.38923"/>
+		</Entity>
+		<Entity uid="723">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="810.23304" z="813.38526"/>
+			<Orientation y="0.48429"/>
+		</Entity>
+		<Entity uid="724">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="817.96973" z="828.75721"/>
+			<Orientation y="0.41578"/>
+		</Entity>
+		<Entity uid="725">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="823.30158" z="842.31751"/>
+			<Orientation y="1.06803"/>
+		</Entity>
+		<Entity uid="726">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="833.86756" z="842.41645"/>
+			<Orientation y="3.04761"/>
+		</Entity>
+		<Entity uid="727">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="833.70234" z="831.73694"/>
+			<Orientation y="-2.76021"/>
+		</Entity>
+		<Entity uid="728">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="826.53724" z="819.04859"/>
+			<Orientation y="-2.20353"/>
+		</Entity>
+		<Entity uid="729">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="819.3683" z="814.55671"/>
+			<Orientation y="-2.55237"/>
+		</Entity>
+		<Entity uid="730">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="813.84015" z="806.40882"/>
+			<Orientation y="-2.86718"/>
+		</Entity>
+		<Entity uid="731">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="809.33277" z="797.5829"/>
+			<Orientation y="-1.9514"/>
+		</Entity>
+		<Entity uid="732">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="801.40601" z="795.9361"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="733">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="797.50855" z="809.63294"/>
+			<Orientation y="1.12256"/>
+		</Entity>
+		<Entity uid="734">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="739.33576" z="761.72126"/>
+			<Orientation y="-1.70621"/>
+		</Entity>
+		<Entity uid="735">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="729.14002" z="760.07825"/>
+			<Orientation y="-2.10915"/>
+		</Entity>
+		<Entity uid="736">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="717.99213" z="756.3678"/>
+			<Orientation y="-1.62916"/>
+		</Entity>
+		<Entity uid="737">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="709.73731" z="759.8603"/>
+			<Orientation y="-0.66042"/>
+		</Entity>
+		<Entity uid="738">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="703.25611" z="767.37702"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="739">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="701.31452" z="774.43305"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="740">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="701.93177" z="762.00171"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="741">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="703.85615" z="757.0157"/>
+			<Orientation y="2.26955"/>
+		</Entity>
+		<Entity uid="742">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="712.02186" z="751.81653"/>
+			<Orientation y="2.15683"/>
+		</Entity>
+		<Entity uid="743">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="716.667" z="750.5829"/>
+			<Orientation y="1.84592"/>
+		</Entity>
+		<Entity uid="744">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="724.48237" z="748.8194"/>
+			<Orientation y="1.80948"/>
+		</Entity>
+		<Entity uid="745">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="731.2079" z="748.51661"/>
+			<Orientation y="1.0363"/>
+		</Entity>
+		<Entity uid="746">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="737.60108" z="752.08411"/>
+			<Orientation y="1.31951"/>
+		</Entity>
+		<Entity uid="747">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="744.90803" z="755.27527"/>
+			<Orientation y="1.45974"/>
+		</Entity>
+		<Entity uid="748">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="740.42316" z="767.64966"/>
+			<Orientation y="-1.54926"/>
+		</Entity>
+		<Entity uid="749">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="731.86377" z="768.00141"/>
+			<Orientation y="-2.00643"/>
+		</Entity>
+		<Entity uid="750">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="722.53736" z="767.52063"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="751">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="714.58167" z="772.33423"/>
+			<Orientation y="-1.46375"/>
+		</Entity>
+		<Entity uid="752">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="706.95215" z="774.64673"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="753">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="699.22962" z="775.27924"/>
+			<Orientation y="0.66279"/>
+		</Entity>
+		<Entity uid="754">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="766.87403" z="786.49317"/>
+			<Orientation y="1.64977"/>
+		</Entity>
+		<Entity uid="755">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="772.11207" z="787.42713"/>
+			<Orientation y="-2.84652"/>
+		</Entity>
+		<Entity uid="756">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="766.68903" z="777.05042"/>
+			<Orientation y="0.5285"/>
+		</Entity>
+		<Entity uid="757">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="772.85187" z="778.74817"/>
+			<Orientation y="-2.2921"/>
+		</Entity>
+		<Entity uid="758">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="723.28669" z="913.93073"/>
+			<Orientation y="-1.54928"/>
+		</Entity>
+		<Entity uid="759">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="708.15113" z="910.4397"/>
+			<Orientation y="-2.9022"/>
+		</Entity>
+		<Entity uid="760">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="704.99433" z="899.05268"/>
+			<Orientation y="2.8771"/>
+		</Entity>
+		<Entity uid="761">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="712.35187" z="901.41694"/>
+			<Orientation y="0.38686"/>
+		</Entity>
+		<Entity uid="762">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="715.57557" z="911.599"/>
+			<Orientation y="-0.06986"/>
+		</Entity>
+		<Entity uid="763">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="715.26728" z="923.68818"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="764">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="721.01636" z="927.48377"/>
+			<Orientation y="1.98078"/>
+		</Entity>
+		<Entity uid="765">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="732.08143" z="920.79236"/>
+			<Orientation y="3.01163"/>
+		</Entity>
+		<Entity uid="766">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="731.16138" z="913.76111"/>
+			<Orientation y="-1.81632"/>
+		</Entity>
+		<Entity uid="767">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="724.37537" z="909.71662"/>
+			<Orientation y="-2.05057"/>
+		</Entity>
+		<Entity uid="768">
+			<Template>gaia/flora_tree_pine</Template>
+			<Player>0</Player>
+			<Position x="719.44288" z="905.62598"/>
+			<Orientation y="-2.86252"/>
+		</Entity>
+		<Entity uid="769">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="224.16063" z="190.28948"/>
+			<Orientation y="1.12034"/>
+		</Entity>
+		<Entity uid="770">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="236.41048" z="192.31215"/>
+			<Orientation y="-3.12301"/>
+		</Entity>
+		<Entity uid="771">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="233.63923" z="173.6471"/>
+			<Orientation y="-2.44204"/>
+		</Entity>
+		<Entity uid="772">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="227.34568" z="170.67682"/>
+			<Orientation y="-0.83852"/>
+		</Entity>
+		<Entity uid="773">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="221.29244" z="181.86933"/>
+			<Orientation y="-1.00997"/>
+		</Entity>
+		<Entity uid="774">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="211.64917" z="194.66059"/>
+			<Orientation y="0.27099"/>
+		</Entity>
+		<Entity uid="775">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="227.6818" z="182.29946"/>
+			<Orientation y="2.93589"/>
+		</Entity>
+		<Entity uid="776">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="236.40458" z="180.09975"/>
+			<Orientation y="0.11446"/>
+		</Entity>
+		<Entity uid="777">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="238.4649" z="191.33362"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="778">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="241.468" z="193.29471"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="779">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="230.16283" z="206.95939"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="780">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="174.65555" z="168.4702"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="781">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="176.30024" z="181.0673"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="782">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="179.35038" z="190.09311"/>
+			<Orientation y="1.59234"/>
+		</Entity>
+		<Entity uid="783">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="184.4636" z="189.551"/>
+			<Orientation y="2.32403"/>
+		</Entity>
+		<Entity uid="784">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="190.95447" z="184.14173"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="785">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="195.26592" z="194.6534"/>
+			<Orientation y="-0.65801"/>
+		</Entity>
+		<Entity uid="786">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="185.65046" z="202.49073"/>
+			<Orientation y="-1.54928"/>
+		</Entity>
+		<Entity uid="787">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="176.08671" z="202.96091"/>
+			<Orientation y="-3.09044"/>
+		</Entity>
+		<Entity uid="788">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="172.58545" z="193.35712"/>
+			<Orientation y="-2.42457"/>
+		</Entity>
+		<Entity uid="789">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="169.42301" z="188.17647"/>
+			<Orientation y="2.80619"/>
+		</Entity>
+		<Entity uid="790">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="183.99994" z="176.60084"/>
+			<Orientation y="0.87136"/>
+		</Entity>
+		<Entity uid="791">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="212.04487" z="98.10933"/>
+			<Orientation y="1.81334"/>
+		</Entity>
+		<Entity uid="792">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="219.6107" z="94.271"/>
+			<Orientation y="2.59945"/>
+		</Entity>
+		<Entity uid="793">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="224.81827" z="87.54571"/>
+			<Orientation y="2.04987"/>
+		</Entity>
+		<Entity uid="794">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="233.62151" z="84.98101"/>
+			<Orientation y="1.36168"/>
+		</Entity>
+		<Entity uid="795">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="241.18915" z="87.07267"/>
+			<Orientation y="1.42656"/>
+		</Entity>
+		<Entity uid="796">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="249.48395" z="87.86316"/>
+			<Orientation y="2.63192"/>
+		</Entity>
+		<Entity uid="797">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="254.58367" z="82.22522"/>
+			<Orientation y="-2.66213"/>
+		</Entity>
+		<Entity uid="798">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="249.67888" z="74.47304"/>
+			<Orientation y="-0.94515"/>
+		</Entity>
+		<Entity uid="799">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="242.24575" z="79.59607"/>
+			<Orientation y="1.18474"/>
+		</Entity>
+		<Entity uid="800">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="224.14548" z="91.91315"/>
+			<Orientation y="1.7392"/>
+		</Entity>
+		<Entity uid="801">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="281.7121" z="229.52834"/>
+			<Orientation y="-1.72713"/>
+		</Entity>
+		<Entity uid="802">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="269.47172" z="222.69692"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="803">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="270.09629" z="217.33887"/>
+			<Orientation y="0.8149"/>
+		</Entity>
+		<Entity uid="804">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="275.23737" z="223.38466"/>
+			<Orientation y="-0.00295"/>
+		</Entity>
+		<Entity uid="805">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="275.04834" z="237.04633"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="806">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="282.8559" z="243.5562"/>
+			<Orientation y="0.6571"/>
+		</Entity>
+		<Entity uid="807">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="324.66568" z="269.22217"/>
+			<Orientation y="-1.81943"/>
+		</Entity>
+		<Entity uid="808">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="317.37073" z="274.29831"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="809">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="309.09952" z="279.26456"/>
+			<Orientation y="-2.98572"/>
+		</Entity>
+		<Entity uid="810">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="306.60666" z="264.14219"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="811">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="313.65568" z="269.10901"/>
+			<Orientation y="0.57975"/>
+		</Entity>
+		<Entity uid="812">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="322.77952" z="286.48127"/>
+			<Orientation y="-3.09893"/>
+		</Entity>
+		<Entity uid="813">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="331.49018" z="266.55768"/>
+			<Orientation y="2.08756"/>
+		</Entity>
+		<Entity uid="814">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="335.33658" z="219.51598"/>
+			<Orientation y="-3.04232"/>
+		</Entity>
+		<Entity uid="815">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="331.9711" z="196.8819"/>
+			<Orientation y="-2.66823"/>
+		</Entity>
+		<Entity uid="816">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="327.7975" z="191.30979"/>
+			<Orientation y="-2.89005"/>
+		</Entity>
+		<Entity uid="817">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="326.50815" z="179.93323"/>
+			<Orientation y="1.80692"/>
+		</Entity>
+		<Entity uid="818">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="334.00831" z="182.16927"/>
+			<Orientation y="0.43683"/>
+		</Entity>
+		<Entity uid="819">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="338.16297" z="193.98398"/>
+			<Orientation y="-0.00882"/>
+		</Entity>
+		<Entity uid="820">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="338.63685" z="206.95838"/>
+			<Orientation y="0.37406"/>
+		</Entity>
+		<Entity uid="821">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="344.89466" z="217.8953"/>
+			<Orientation y="2.30781"/>
+		</Entity>
+		<Entity uid="822">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="307.92588" z="141.10514"/>
+			<Orientation y="-1.54926"/>
+		</Entity>
+		<Entity uid="823">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="295.15067" z="138.4256"/>
+			<Orientation y="-2.88946"/>
+		</Entity>
+		<Entity uid="824">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="292.20115" z="128.27855"/>
+			<Orientation y="-2.9805"/>
+		</Entity>
+		<Entity uid="825">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="291.43842" z="115.02677"/>
+			<Orientation y="2.01931"/>
+		</Entity>
+		<Entity uid="826">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="299.4965" z="114.50841"/>
+			<Orientation y="0.57798"/>
+		</Entity>
+		<Entity uid="827">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="304.07276" z="125.71428"/>
+			<Orientation y="-0.1859"/>
+		</Entity>
+		<Entity uid="828">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="302.46671" z="134.65087"/>
+			<Orientation y="0.35758"/>
+		</Entity>
+		<Entity uid="829">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="307.42539" z="145.56864"/>
+			<Orientation y="2.11806"/>
+		</Entity>
+		<Entity uid="830">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="316.43183" z="141.17537"/>
+			<Orientation y="-2.96604"/>
+		</Entity>
+		<Entity uid="831">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="309.24982" z="120.34519"/>
+			<Orientation y="-2.77535"/>
+		</Entity>
+		<Entity uid="832">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="275.22318" z="87.95115"/>
+			<Orientation y="1.01464"/>
+		</Entity>
+		<Entity uid="833">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="254.25803" z="214.92113"/>
+			<Orientation y="0.80526"/>
+		</Entity>
+		<Entity uid="834">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="692.32398" z="821.266"/>
+			<Orientation y="1.08709"/>
+		</Entity>
+		<Entity uid="835">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="693.29206" z="804.95911"/>
+			<Orientation y="-2.16123"/>
+		</Entity>
+		<Entity uid="836">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="685.58478" z="813.45362"/>
+			<Orientation y="0.79679"/>
+		</Entity>
+		<Entity uid="837">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="695.23395" z="812.92884"/>
+			<Orientation y="-2.55541"/>
+		</Entity>
+		<Entity uid="838">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="685.37543" z="820.3827"/>
+			<Orientation y="0.85772"/>
+		</Entity>
+		<Entity uid="839">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="81.84624" z="657.35047"/>
+			<Orientation y="-2.33252"/>
+		</Entity>
+		<Entity uid="840">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="69.06978" z="651.80933"/>
+			<Orientation y="2.90296"/>
+		</Entity>
+		<Entity uid="841">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="75.1012" z="633.89643"/>
+			<Orientation y="2.3374"/>
+		</Entity>
+		<Entity uid="842">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="90.8318" z="624.64258"/>
+			<Orientation y="1.84623"/>
+		</Entity>
+		<Entity uid="843">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="103.17377" z="625.22938"/>
+			<Orientation y="0.0189"/>
+		</Entity>
+		<Entity uid="844">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="100.17243" z="644.90918"/>
+			<Orientation y="-0.46964"/>
+		</Entity>
+		<Entity uid="845">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="87.7384" z="666.71338"/>
+			<Orientation y="-0.93017"/>
+		</Entity>
+		<Entity uid="846">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="66.6517" z="681.9043"/>
+			<Orientation y="-1.84005"/>
+		</Entity>
+		<Entity uid="847">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="56.20002" z="672.90723"/>
+			<Orientation y="2.81987"/>
+		</Entity>
+		<Entity uid="848">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="68.12842" z="654.40156"/>
+			<Orientation y="2.19855"/>
+		</Entity>
+		<Entity uid="849">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="81.72472" z="647.08838"/>
+			<Orientation y="2.39263"/>
+		</Entity>
+		<Entity uid="850">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="91.84553" z="641.96607"/>
+			<Orientation y="0.59321"/>
+		</Entity>
+		<Entity uid="851">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="92.80155" z="652.38251"/>
+			<Orientation y="-2.23789"/>
+		</Entity>
+		<Entity uid="852">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="94.62558" z="633.3805"/>
+			<Orientation y="0.44242"/>
+		</Entity>
+		<Entity uid="853">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="76.78524" z="647.60077"/>
+			<Orientation y="0.01685"/>
+		</Entity>
+		<Entity uid="854">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="74.5855" z="661.97718"/>
+			<Orientation y="0.55568"/>
+		</Entity>
+		<Entity uid="855">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="79.57386" z="678.09693"/>
+			<Orientation y="2.66634"/>
+		</Entity>
+		<Entity uid="856">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="94.072" z="671.6999"/>
+			<Orientation y="3.01462"/>
+		</Entity>
+		<Entity uid="857">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="83.35402" z="636.01191"/>
+			<Orientation y="1.6186"/>
+		</Entity>
+		<Entity uid="858">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="100.33907" z="629.88636"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="859">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="110.31934" z="628.89185"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="860">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="68.81574" z="639.78187"/>
+			<Orientation y="-0.12542"/>
+		</Entity>
+		<Entity uid="861">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="61.42548" z="652.52881"/>
+			<Orientation y="0.58933"/>
+		</Entity>
+		<Entity uid="862">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="62.96108" z="678.17438"/>
+			<Orientation y="-2.89388"/>
+		</Entity>
+		<Entity uid="863">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="160.17379" z="345.96888"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="864">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="171.21274" z="348.23566"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="865">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="180.16831" z="343.69758"/>
+			<Orientation y="1.8559"/>
+		</Entity>
+		<Entity uid="866">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="188.88033" z="341.59107"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="867">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="190.79845" z="335.43131"/>
+			<Orientation y="-2.75185"/>
+		</Entity>
+		<Entity uid="868">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="185.85361" z="322.65238"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="869">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="184.86908" z="313.41364"/>
+			<Orientation y="-2.48632"/>
+		</Entity>
+		<Entity uid="870">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="180.42916" z="309.6626"/>
+			<Orientation y="-1.89856"/>
+		</Entity>
+		<Entity uid="871">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="170.22686" z="311.0622"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="872">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="167.87719" z="320.04825"/>
+			<Orientation y="-0.12699"/>
+		</Entity>
+		<Entity uid="873">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="165.2818" z="334.07721"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="874">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="169.5476" z="337.04114"/>
+			<Orientation y="2.18137"/>
+		</Entity>
+		<Entity uid="875">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="177.20179" z="336.2508"/>
+			<Orientation y="3.07311"/>
+		</Entity>
+		<Entity uid="876">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="175.44927" z="324.9375"/>
+			<Orientation y="3.11136"/>
+		</Entity>
+		<Entity uid="877">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="175.83727" z="315.82615"/>
+			<Orientation y="1.48577"/>
+		</Entity>
+		<Entity uid="878">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="182.7023" z="325.57218"/>
+			<Orientation y="-2.9706"/>
+		</Entity>
+		<Entity uid="879">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="190.39528" z="324.8678"/>
+			<Orientation y="-2.82615"/>
+		</Entity>
+		<Entity uid="880">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="184.83864" z="345.67875"/>
+			<Orientation y="-3.10586"/>
+		</Entity>
+		<Entity uid="881">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="162.31017" z="329.784"/>
+			<Orientation y="0.97501"/>
+		</Entity>
+		<Entity uid="882">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="163.39715" z="317.70572"/>
+			<Orientation y="-3.1354"/>
+		</Entity>
+		<Entity uid="883">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="935.5091" z="381.75376"/>
+			<Orientation y="0.4964"/>
+		</Entity>
+		<Entity uid="884">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="933.93268" z="398.9404"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="885">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="923.64484" z="397.79429"/>
+			<Orientation y="-2.80536"/>
+		</Entity>
+		<Entity uid="886">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="914.87891" z="384.70353"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="887">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="908.00586" z="374.10276"/>
+			<Orientation y="2.9299"/>
+		</Entity>
+		<Entity uid="888">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="910.91785" z="364.60981"/>
+			<Orientation y="2.32627"/>
+		</Entity>
+		<Entity uid="889">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="916.38428" z="367.92374"/>
+			<Orientation y="0.32964"/>
+		</Entity>
+		<Entity uid="890">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="918.8913" z="376.06086"/>
+			<Orientation y="0.2655"/>
+		</Entity>
+		<Entity uid="891">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="922.90796" z="386.01911"/>
+			<Orientation y="1.05402"/>
+		</Entity>
+		<Entity uid="892">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="928.35468" z="389.76951"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="893">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="936.73304" z="390.1612"/>
+			<Orientation y="2.54625"/>
+		</Entity>
+		<Entity uid="894">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="940.79822" z="385.66303"/>
+			<Orientation y="2.86626"/>
+		</Entity>
+		<Entity uid="895">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="941.73267" z="377.89646"/>
+			<Orientation y="-2.62737"/>
+		</Entity>
+		<Entity uid="896">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="934.16517" z="366.04661"/>
+			<Orientation y="-1.87758"/>
+		</Entity>
+		<Entity uid="897">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="927.76508" z="364.73527"/>
+			<Orientation y="-0.02508"/>
+		</Entity>
+		<Entity uid="898">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="927.6554" z="374.01114"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="899">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="924.13593" z="378.59595"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="900">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="921.81702" z="368.75907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="901">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="919.64863" z="359.18885"/>
+			<Orientation y="-2.31441"/>
+		</Entity>
+		<Entity uid="902">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="903.57465" z="366.08509"/>
+			<Orientation y="0.34168"/>
+		</Entity>
+		<Entity uid="903">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="936.46271" z="602.39057"/>
+			<Orientation y="1.5879"/>
+		</Entity>
+		<Entity uid="904">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="930.35505" z="615.48591"/>
+			<Orientation y="0.66585"/>
+		</Entity>
+		<Entity uid="905">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="919.8506" z="620.46009"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="906">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="912.8871" z="619.03266"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="907">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="900.06067" z="611.28382"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="908">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="901.01392" z="629.60438"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="909">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="908.81476" z="635.38971"/>
+			<Orientation y="-0.50745"/>
+		</Entity>
+		<Entity uid="910">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="919.56354" z="633.6761"/>
+			<Orientation y="2.18335"/>
+		</Entity>
+		<Entity uid="911">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="925.87464" z="629.03681"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="912">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="927.32538" z="615.96082"/>
+			<Orientation y="-0.0977"/>
+		</Entity>
+		<Entity uid="913">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="922.9355" z="600.08802"/>
+			<Orientation y="-1.81926"/>
+		</Entity>
+		<Entity uid="914">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="910.93738" z="603.86152"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="915">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="904.20051" z="617.86"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="916">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="912.19983" z="609.3733"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="917">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="918.23603" z="609.16175"/>
+			<Orientation y="0.47147"/>
+		</Entity>
+		<Entity uid="918">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="927.82154" z="604.8246"/>
+			<Orientation y="-2.79157"/>
+		</Entity>
+		<Entity uid="919">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="931.11152" z="598.08722"/>
+			<Orientation y="-2.87908"/>
+		</Entity>
+		<Entity uid="920">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="937.89753" z="614.73591"/>
+			<Orientation y="-2.97072"/>
+		</Entity>
+		<Entity uid="921">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="917.66242" z="595.60114"/>
+			<Orientation y="2.27079"/>
+		</Entity>
+		<Entity uid="922">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="905.41376" z="600.66742"/>
+			<Orientation y="-0.87851"/>
+		</Entity>
+		<Entity uid="928">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="539.37537" z="440.42255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="929">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="429.97312" z="496.8943"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="930">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="500.8238" z="568.63331"/>
+			<Orientation y="-0.1321"/>
+		</Entity>
+		<Entity uid="931">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="536.2317" z="667.04627"/>
+			<Orientation y="-2.70246"/>
+		</Entity>
+		<Entity uid="932">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="632.3874" z="517.71265"/>
+			<Orientation y="0.13769"/>
+		</Entity>
+		<Entity uid="933">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="494.56412" z="308.40638"/>
+			<Orientation y="-2.9173"/>
+		</Entity>
+		<Entity uid="934">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="403.89689" z="82.55799"/>
+			<Orientation y="-0.0587"/>
+		</Entity>
+		<Entity uid="935">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="624.70765" z="870.38312"/>
+			<Orientation y="0.0455"/>
+		</Entity>
+		<Entity uid="936">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="171.6862" z="571.29651"/>
+			<Orientation y="2.89797"/>
+		</Entity>
+		<Entity uid="937">
+			<Template>gaia/geology_metal_mediterranean_slabs</Template>
+			<Player>0</Player>
+			<Position x="847.97541" z="433.22754"/>
+			<Orientation y="0.32738"/>
+		</Entity>
+		<Entity uid="938">
+			<Template>other/celt_longhouse</Template>
+			<Player>0</Player>
+			<Position x="532.4751" z="477.37851"/>
+			<Orientation y="-2.1608"/>
+		</Entity>
+		<Entity uid="939">
+			<Template>other/celt_hut</Template>
+			<Player>0</Player>
+			<Position x="467.54902" z="716.503"/>
+			<Orientation y="-0.73435"/>
+		</Entity>
+		<Entity uid="940">
+			<Template>other/celt_hut</Template>
+			<Player>0</Player>
+			<Position x="642.63227" z="450.34711"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="941">
+			<Template>other/celt_tavern</Template>
+			<Player>2</Player>
+			<Position x="539.28022" z="122.14417"/>
+			<Orientation y="-2.38091"/>
+		</Entity>
+		<Entity uid="942">
+			<Template>other/celt_tavern</Template>
+			<Player>1</Player>
+			<Position x="534.02808" z="917.10315"/>
+			<Orientation y="-2.35656"/>
+		</Entity>
+		<Entity uid="943">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="891.3512" z="477.25403"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="944">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="893.75513" z="478.57288"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="945">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="895.9358" z="480.31891"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="946">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="898.0572" z="482.52918"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="947">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="900.37171" z="484.93088"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="948">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="902.54163" z="480.78547"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="949">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="899.55042" z="478.83494"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="950">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="897.45002" z="476.47916"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="951">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="894.88471" z="474.66694"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="952">
+			<Template>other/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="891.7876" z="472.05222"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="953">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="166.96209" z="506.05958"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="954">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="164.77549" z="503.8675"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="955">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="162.24985" z="501.12165"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="956">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="159.1703" z="498.899"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="957">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="157.67849" z="497.15488"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="958">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="160.72825" z="492.76835"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="959">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="162.58904" z="494.56727"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="960">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="164.87456" z="496.9769"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="961">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="167.07685" z="499.8993"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="962">
+			<Template>other/celt_fanatic</Template>
+			<Player>2</Player>
+			<Position x="169.49947" z="502.60981"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="963">
+			<Template>structures/celt_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="744.43995" z="487.97333"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="964">
+			<Template>structures/celt_scout_tower</Template>
+			<Player>2</Player>
+			<Position x="274.48444" z="510.47077"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="965">
+			<Template>other/celt_longhouse</Template>
+			<Player>1</Player>
+			<Position x="859.69135" z="476.29636"/>
+			<Orientation y="0.83816"/>
+		</Entity>
+		<Entity uid="966">
+			<Template>other/celt_longhouse</Template>
+			<Player>1</Player>
+			<Position x="850.23536" z="483.2761"/>
+			<Orientation y="-2.44721"/>
+		</Entity>
+		<Entity uid="967">
+			<Template>other/celt_longhouse</Template>
+			<Player>2</Player>
+			<Position x="177.47197" z="532.92566"/>
+			<Orientation y="-2.44555"/>
+		</Entity>
+		<Entity uid="969">
+			<Template>other/celt_longhouse</Template>
+			<Player>2</Player>
+			<Position x="166.14437" z="542.75293"/>
+			<Orientation y="-2.42032"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
