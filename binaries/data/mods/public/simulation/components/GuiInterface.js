@@ -196,6 +196,8 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		if (template.Cost.Resources.wood) ret.cost.wood = +template.Cost.Resources.wood;
 		if (template.Cost.Resources.stone) ret.cost.stone = +template.Cost.Resources.stone;
 		if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
+		if (template.Cost.Population) ret.cost.population = +template.Cost.Population;
+		if (template.Cost.PopulationBonus) ret.cost.populationBonus = +template.Cost.PopulationBonus;
 	}
 
 	return ret;

@@ -238,10 +238,20 @@ function getEntityCost(template)
 		if (template.cost.wood) costs.push("[font=\"serif-bold-13\"]Wood:[/font] " + template.cost.wood);
 		if (template.cost.metal) costs.push("[font=\"serif-bold-13\"]Metal:[/font] " + template.cost.metal);
 		if (template.cost.stone) costs.push("[font=\"serif-bold-13\"]Stone:[/font] " + template.cost.stone);
+		if (template.cost.population) costs.push("[font=\"serif-bold-13\"]Population:[/font] " + template.cost.population);
+
 		if (costs.length)
 			return costs.join(", ");
 	}
 	return "";
+}
+
+function getPopulationBonus(template)
+{
+	var popBonus = "";
+	if (template.cost.populationBonus)
+		popBonus = "[font=\"serif-bold-13\"]Population Bonus:[/font] " + template.cost.populationBonus;
+	return popBonus;
 }
 
 function getEntityName(template)
