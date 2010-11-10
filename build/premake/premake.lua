@@ -1062,6 +1062,8 @@ function setup_tests()
 		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/os/win/error_dialog.rc")
 
+		tinsert(package.buildflags, "no-rtti")
+
 		-- this seems to be required when using vcbuild but not the IDE (?!)
 		tinsert(package.links, "ws2_32")
 
