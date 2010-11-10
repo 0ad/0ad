@@ -2,57 +2,86 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>default</SkySet>
+		<SkySet>sunny</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
 		<SunElevation angle="0.785398"/>
-		<SunRotation angle="5.49779"/>
+		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.3" g="0.35" b="0.7"/>
-				<Height>5</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>20.0394</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.45</Murkiness>
-				<Tint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Murkiness>0.0566406</Murkiness>
+				<Tint r="0.611765" g="0.447059" b="0.219608"/>
+				<ReflectionTint r="0.447059" g="0.415686" b="0.321569"/>
+				<ReflectionTintStrength>0.614258</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
-	<ScriptSettings><![CDATA[
-	{
-		"Name":"Saharan Oases",
-		"Description":"",
-		"PlayerData":
-		[
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			}
-		]
-	}
-	]]></ScriptSettings>
 	<Camera>
-		<Position x="390.674" y="618.317" z="-720.15"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="658.768" y="533.286" z="-343.441"/>
+		<Rotation angle="-0.0102129"/>
+		<Declination angle="0.523603"/>
 	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name":"Unnamed map",
+  "Description":"Give an interesting description of your map.",
+  "PlayerData":[{
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    },
+    {
+      "Civ":"hele"
+    }
+  ],
+  "CircularMap":true
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="151.26127" z="603.80042"/>
+			<Position x="226.30259" z="643.29188"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="12">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="594.21204" z="166.02717"/>
+			<Position x="640.89435" z="225.30958"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="1057.57007" z="643.3545"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="641.57587" z="1059.43934"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
