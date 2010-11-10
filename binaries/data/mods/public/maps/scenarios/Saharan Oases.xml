@@ -11,26 +11,26 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>20.0394</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.0566406</Murkiness>
 				<Tint r="0.611765" g="0.447059" b="0.219608"/>
-				<ReflectionTint r="0.447059" g="0.415686" b="0.321569"/>
-				<ReflectionTintStrength>0.614258</ReflectionTintStrength>
+				<ReflectionTint r="0.447059" g="0.411765" b="0.321569"/>
+				<ReflectionTintStrength>0.415039</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="658.768" y="533.286" z="-343.441"/>
-		<Rotation angle="-0.0102129"/>
-		<Declination angle="0.523603"/>
+		<Position x="640.222" y="254.318" z="145.25"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"Unnamed map",
-  "Description":"Give an interesting description of your map.",
+  "Name":"Saharan Oases",
+  "Description":"A desert biome map where each player has founded their colony at their own oasis. The rest of the map is generally wide-open and barren.",
   "PlayerData":[{
       "Civ":"hele"
     },
@@ -38,22 +38,10 @@
       "Civ":"hele"
     },
     {
-      "Civ":"hele"
+      "Civ":"celt"
     },
     {
-      "Civ":"hele"
-    },
-    {
-      "Civ":"hele"
-    },
-    {
-      "Civ":"hele"
-    },
-    {
-      "Civ":"hele"
-    },
-    {
-      "Civ":"hele"
+      "Civ":"celt"
     }
   ],
   "CircularMap":true
@@ -74,13 +62,13 @@
 		</Entity>
 		<Entity uid="13">
 			<Template>structures/celt_civil_centre</Template>
-			<Player>2</Player>
+			<Player>3</Player>
 			<Position x="1057.57007" z="643.3545"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="14">
 			<Template>structures/celt_civil_centre</Template>
-			<Player>2</Player>
+			<Player>4</Player>
 			<Position x="641.57587" z="1059.43934"/>
 			<Orientation y="2.35621"/>
 		</Entity>
