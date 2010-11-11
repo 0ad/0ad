@@ -215,7 +215,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + " " + getPopulationBonus(template) + "[/font]";
 
 			tooltip += "\n" + getEntityCost(template);
-		
 			break;
 
 		case COMMAND:

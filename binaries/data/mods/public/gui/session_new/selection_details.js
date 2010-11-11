@@ -194,9 +194,9 @@ function updateSelectionDetails()
 		getGUIObjectByName("detailsAreaSingle").hidden = true;
 		hideUnitCommands();
 	
-//		supplementalDetailsPanel.hidden = true;
-//		detailsPanel.hidden = true;
-//		commandsPanel.hidden = true;
+		supplementalDetailsPanel.hidden = true;
+		detailsPanel.hidden = true;
+		commandsPanel.hidden = true;
 //		getGUIObjectByName("unitSelectionPanel").hidden = true;
 		return;
 	}
@@ -226,7 +226,9 @@ function updateSelectionDetails()
 	}
 
 	// Show Panels
+	supplementalDetailsPanel.hidden = false;
 	detailsPanel.hidden = false;
+	commandsPanel.hidden = false;
 	
 	// Fill out commands panel for specific unit selected (or first unit of primary group)
 	updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
