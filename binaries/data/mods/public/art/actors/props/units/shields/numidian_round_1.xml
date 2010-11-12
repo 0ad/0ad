@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="base">
       <mesh>props/shield/round_s_f.pmd</mesh>
@@ -11,7 +9,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Shield-Numidian-1">
       <texture>props/shield/kart_round_b.dds</texture>
@@ -23,5 +20,4 @@
       <texture>props/shield/kart_round_t.dds</texture>
     </variant>
   </group>
-
 </actor>

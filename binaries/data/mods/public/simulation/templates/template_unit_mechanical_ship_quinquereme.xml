@@ -25,6 +25,12 @@
   <Vision>
     <Range>160</Range>
   </Vision>
+  <ResourceGatherer>
+    <MaxDistance>12.0</MaxDistance>
+    <Rates>
+      <metal.treasure>20</metal.treasure>
+    </Rates>
+  </ResourceGatherer>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>

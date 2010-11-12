@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="shipwreck hull 1">
+      <mesh>props/special/shipwreck_hull.dae</mesh>
+    </variant>
+    <variant frequency="1" name="shipwreck hull 2">
+      <mesh>props/special/shipwreck_hull_2.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <texture>structural/kyrenia.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail">
+      <props>
+        <prop actor="props/special/eyecandy/shipwreck_sail.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="no sail">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>

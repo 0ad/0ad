@@ -19,6 +19,13 @@
   <Health>
     <Max>200</Max>
   </Health>
+  <ResourceGatherer>
+    <MaxDistance>4.0</MaxDistance>
+    <BaseSpeed>1.0</BaseSpeed>
+    <Rates>
+      <metal.treasure>10</metal.treasure>
+    </Rates>
+  </ResourceGatherer>
   <Decay>
     <Inactive/>
     <DelayTime>0.0</DelayTime>

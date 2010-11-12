@@ -2,7 +2,7 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>default</SkySet>
+		<SkySet>cirrus</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
 		<SunElevation angle="0.591071"/>
 		<SunRotation angle="-0.629803"/>
@@ -12,7 +12,7 @@
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>5</Height>
+				<Height>16.3672</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
@@ -23,26 +23,24 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="89.2534" y="106.42" z="-56.917"/>
+		<Position x="155.853" y="119.969" z="-48.4189"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Celtic Buildings",
-		"Description":"A showcase for all Celtic buildings and units. There are also a small number of enemy units to kill and some resources to gather.",
-		"PlayerData":
-		[
-			{
-				"Civ":"celt"
-			},
-			{
-				"Civ":"hele"
-			}
-		],
-		"GameType":"endless"
-	}
-	]]></ScriptSettings>
+{
+  "Name":"Celts Sandbox",
+  "Description":"A showcase for all Celtic buildings and units. There are also a small number of enemy units to kill and some resources to gather.",
+  "PlayerData":[{
+      "Civ":"celt"
+    },
+    {
+      "Civ":"hele"
+    }
+  ],
+  "GameType":"endless"
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>other/celt_tavern</Template>
@@ -293,7 +291,7 @@
 		<Entity uid="190">
 			<Template>units/celt_ship_merchant</Template>
 			<Player>1</Player>
-			<Position x="120.22318" z="237.20142"/>
+			<Position x="84.12058" z="305.14258"/>
 			<Orientation y="2.45775"/>
 		</Entity>
 		<Entity uid="192">
@@ -515,7 +513,7 @@
 		<Entity uid="228">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="111.57441" z="29.63068"/>
+			<Position x="396.57004" z="394.05616"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="229">
@@ -647,7 +645,7 @@
 		<Entity uid="250">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="75.11912" z="31.70595"/>
+			<Position x="174.62275" z="402.93769"/>
 			<Orientation y="-0.432"/>
 		</Entity>
 		<Entity uid="251">
@@ -1121,14 +1119,14 @@
 		<Entity uid="373">
 			<Template>units/celt_ship_trireme</Template>
 			<Player>1</Player>
-			<Position x="143.47791" z="242.38611"/>
+			<Position x="102.5696" z="325.1826"/>
 			<Orientation y="2.35488"/>
 		</Entity>
 		<Entity uid="374">
 			<Template>structures/celt_dock</Template>
 			<Player>1</Player>
-			<Position x="128.23966" z="208.96418"/>
-			<Orientation y="2.35621"/>
+			<Position x="107.28151" z="276.39298"/>
+			<Orientation y="-0.73821"/>
 		</Entity>
 		<Entity uid="375">
 			<Template>other/celt_hut</Template>
@@ -1181,7 +1179,7 @@
 		<Entity uid="392">
 			<Template>units/celt_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="108.4665" z="230.81978"/>
+			<Position x="71.05346" z="290.49601"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="393">
@@ -1189,6 +1187,30 @@
 			<Player>1</Player>
 			<Position x="49.08245" z="88.37061"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="394">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="99.59618" z="385.14646"/>
+			<Orientation y="-2.41524"/>
+		</Entity>
+		<Entity uid="395">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="149.47086" z="372.20752"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="396">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="37.68241" z="285.18482"/>
+			<Orientation y="-2.92473"/>
+		</Entity>
+		<Entity uid="397">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="289.53092" z="380.35117"/>
+			<Orientation y="-2.32058"/>
 		</Entity>
 	</Entities>
 	<Paths/>

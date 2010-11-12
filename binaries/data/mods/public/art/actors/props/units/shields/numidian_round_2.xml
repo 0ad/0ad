@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
+  <castshadow/>
   <group>
     <variant frequency="1" name="base">
       <mesh>props/shield/round_b_f.pmd</mesh>
@@ -9,13 +9,13 @@
       </props>
     </variant>
   </group>
-
   <group>
-    <variant frequency="1" name="Shield-Numidian-Adv">
+    <variant frequency="1" name="Shield-Numidian-Adv-s">
       <texture>props/shield/kart_round_s.dds</texture>
     </variant>
+    <variant name="Shield-Numidian-Adv-a">
+      <texture>props/shield/kart_round_a.dds</texture>
+    </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

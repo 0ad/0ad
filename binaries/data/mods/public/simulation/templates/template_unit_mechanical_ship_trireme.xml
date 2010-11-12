@@ -22,6 +22,12 @@
     <Pierce>20.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
+  <ResourceGatherer>
+    <MaxDistance>10.0</MaxDistance>
+    <Rates>
+      <metal.treasure>20</metal.treasure>
+    </Rates>
+  </ResourceGatherer>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -29,7 +35,7 @@
       <Crush>0.0</Crush>
       <MaxRange>80.0</MaxRange>
       <MinRange>10.0</MinRange>
-      <ProjectileSpeed>50.0</ProjectileSpeed>
+      <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
     </Ranged>

@@ -3,18 +3,24 @@
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Treasure</GenericName>
-    <SpecificName>Golden Fleece</SpecificName>
+    <SpecificName>Shipwreck Cargo</SpecificName>
     <Icon>gaia/special_treasure.png</Icon>
   </Identity>
+  <Position>
+    <Floating>true</Floating>
+  </Position>
   <ResourceSupply>
-    <Amount>1000</Amount>
+    <Amount>500</Amount>
     <Type>metal.treasure</Type>
   </ResourceSupply>
   <VisualActor>
-    <Actor>special/golden_fleece.xml</Actor>
+    <Actor>props/special/eyecandy/barrels_floating.xml</Actor>
   </VisualActor>
   <Footprint>
-    <Circle radius="1.0"/>
+    <Circle radius="4.0"/>
     <Height>2.5</Height>
   </Footprint>
+  <Obstruction>
+    <Static width="7.0" depth="7.0"/>
+  </Obstruction>
 </Entity>

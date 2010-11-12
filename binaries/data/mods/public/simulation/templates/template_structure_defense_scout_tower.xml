@@ -48,4 +48,16 @@
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>25.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>80.0</MaxRange>
+      <MinRange>20.0</MinRange>
+      <ProjectileSpeed>60.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
 </Entity>

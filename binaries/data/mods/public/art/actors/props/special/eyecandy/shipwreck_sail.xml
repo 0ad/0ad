@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="shipwreck sail 1">
+      <mesh>props/special/shipwreck_sail.dae</mesh>
+    </variant>
+    <variant frequency="1" name="shipwreck sail 2">
+      <mesh>props/special/shipwreck_sail_2.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail blank">
+      <texture>structural/hele_sail.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail eye">
+      <texture>structural/hele_sail_eye.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail tris">
+      <texture>structural/hele_sail_runner.dds</texture>
+    </variant>
+  </group>
+</actor>
