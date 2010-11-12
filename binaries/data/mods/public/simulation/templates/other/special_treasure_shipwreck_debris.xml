@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_geo_mineral">
+<Entity parent="template_gaia_treasure">
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Treasure</GenericName>
@@ -11,12 +11,12 @@
   </Position>
   <ResourceSupply>
     <Amount>500</Amount>
-    <Type>metal.treasure</Type>
+    <Type>food.treasure</Type>
   </ResourceSupply>
   <VisualActor>
     <Actor>props/special/eyecandy/barrels_floating.xml</Actor>
   </VisualActor>
-  <Footprint>
+  <Footprint replace="">
     <Circle radius="4.0"/>
     <Height>2.5</Height>
   </Footprint>

@@ -11,11 +11,11 @@
     <Colour r="128" g="128" b="128"/>
   </Minimap>
   <Footprint>
-    <Circle radius="1.0"/>
-    <Height>1.0</Height>
+    <Circle radius="4.0"/>
+    <Height>2.5</Height>
   </Footprint>
   <Obstruction>
-    <Unit radius="1.0"/>
+    <Static width="7.0" depth="7.0"/>
   </Obstruction>
   <Selectable/>
   <ResourceSupply>

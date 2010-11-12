@@ -43,7 +43,10 @@
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
-      <metal.treasure>10000</metal.treasure>
+	  <food.treasure>100</food.treasure>
+	  <wood.treasure>100</wood.treasure>
+	  <stone.treasure>100</stone.treasure>
+      <metal.treasure>100</metal.treasure>
     </Rates>
   </ResourceGatherer>
   <UnitMotion>

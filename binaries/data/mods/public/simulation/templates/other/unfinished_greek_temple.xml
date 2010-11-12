@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure">
+<Entity parent="template_gaia_ruins">
   <Identity>
     <Civ>hele</Civ>
     <GenericName>Ruins</GenericName>
@@ -8,25 +8,13 @@
 	<Tooltip>This temple is unfinished and has fallen to ruin.</Tooltip>
     <Icon>structures/temple.png</Icon>
   </Identity>
-  <Health>
-    <Max>1500</Max>
-  </Health>
-  <Armour>
-    <Hack>40.0</Hack>
-    <Pierce>50.0</Pierce>
-    <Crush>50.0</Crush>
-  </Armour>
   <Loot>
     <xp>10</xp>
-    <food>0</food>
-    <wood>0</wood>
-    <stone>1000</stone>
-    <metal>500</metal>
   </Loot>
   <VisualActor>
     <Actor>props/special/eyecandy/greek_temple_unfinished.xml</Actor>
   </VisualActor>
-  <Footprint>
+  <Footprint replace="">
     <Square width="19.0" depth="31.5"/>
     <Height>12.0</Height>
   </Footprint>
