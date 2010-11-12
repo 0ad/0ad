@@ -246,7 +246,7 @@ function init(window, bottomWindow)
 	var animationSelector = new wxChoice(bottomWindow, -1, wxDefaultPosition, wxDefaultSize,
 		[ "idle", "walk", "run", "melee", "death", "build", 
 		"gather_fruit", "gather_grain", "gather_meat", 
-		"gather_tree", "gather_rock", "gather_ore", "gather_treasure" ] // TODO: this list should come from the actor
+		"gather_tree", "gather_rock", "gather_ore", "gather_ruins", "gather_treasure" ] // TODO: this list should come from the actor
 	);
 	animationSelector.stringSelection = "idle";
 	actorViewer.controls.push(animationSelector);

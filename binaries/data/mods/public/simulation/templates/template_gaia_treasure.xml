@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia">
+  <Identity>
+    <GenericName>Generic Treasure</GenericName>
+    <SpecificName>Treasure</SpecificName>
+    <Tooltip>A treasure that can be quickly gathered.</Tooltip>
+    <Icon>gaia/special_treasure.png</Icon>
+  </Identity>
+    <Minimap>
+    <Type>metal</Type>
+    <Colour r="192" g="192" b="0"/>
+  </Minimap>
+  <Footprint>
+    <Circle radius="1.0"/>
+    <Height>1.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="1.0"/>
+  </Obstruction>
+  <Selectable/>
+  <ResourceSupply>
+    <KillBeforeGather>false</KillBeforeGather>
+    <Amount>300</Amount>
+    <Type>metal.treasure</Type>
+  </ResourceSupply>
+</Entity>

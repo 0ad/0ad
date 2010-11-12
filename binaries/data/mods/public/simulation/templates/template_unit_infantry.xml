@@ -29,13 +29,18 @@
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
-      <food.fish>.5</food.fish>
-      <food.fruit>.5</food.fruit>
-      <food.grain>.5</food.grain>
+      <food.fish>0.5</food.fish>
+      <food.fruit>0.5</food.fruit>
+      <food.grain>0.5</food.grain>
       <food.meat>5</food.meat>
-	  <wood.tree>1.0</wood.tree>
-      <stone.rock>1.0</stone.rock>
-      <metal.ore>1.0</metal.ore>
+	  <food.treasure>10000</food.treasure>
+	  <wood.tree>1</wood.tree>
+	  <wood.ruins>5</wood.ruins>
+	  <wood.treasure>10000</wood.treasure>
+      <stone.rock>1</stone.rock>
+	  <stone.ruins>3</stone.ruins>
+	  <stone.treasure>10000</stone.treasure>
+      <metal.ore>1</metal.ore>
 	  <metal.treasure>10000</metal.treasure>
     </Rates>
   </ResourceGatherer>

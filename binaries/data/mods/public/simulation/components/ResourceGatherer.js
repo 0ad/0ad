@@ -29,8 +29,13 @@ ResourceGatherer.prototype.Schema =
 			"<optional><element name='food.grain' a:help='Grain gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.meat' a:help='Meat gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.milk' a:help='Milk gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='food.treasure' a:help='Treasure gather rate(overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='wood.tree' a:help='Tree gather rate (overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='wood.ruins' a:help='Tree gather rate (overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='wood.treasure' a:help='Treasure gather rate(overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='stone.rock' a:help='Rock gather rate (overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='stone.ruins' a:help='Rock gather rate (overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='stone.treasure' a:help='Treasure gather rate(overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='metal.ore' a:help='Ore gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='metal.treasure' a:help='Treasure gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
 		"</interleave>" +

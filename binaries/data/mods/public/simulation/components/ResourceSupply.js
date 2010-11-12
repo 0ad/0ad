@@ -15,7 +15,11 @@ ResourceSupply.prototype.Schema =
 	"<element name='Type' a:help='Type of resources'>" +
 		"<choice>" +
 			"<value>wood.tree</value>" +
+			"<value>wood.ruins</value>" +
+			"<value>wood.treasure</value>" +
 			"<value>stone.rock</value>" +
+			"<value>stone.ruins</value>" +
+			"<value>stone.treasure</value>" +
 			"<value>metal.ore</value>" +
 			"<value>metal.treasure</value>" +
 			"<value>food.fish</value>" +
@@ -23,6 +27,7 @@ ResourceSupply.prototype.Schema =
 			"<value>food.grain</value>" +
 			"<value>food.meat</value>" +
 			"<value>food.milk</value>" +
+			"<value>food.treasure</value>" +
 		"</choice>" +
 	"</element>";
 

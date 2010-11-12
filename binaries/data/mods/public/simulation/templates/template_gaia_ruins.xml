@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia">
+  <Identity>
+    <GenericName>Generic Ruins</GenericName>
+    <SpecificName>Ruins</SpecificName>
+    <Tooltip>These ruins that can be mined for resources.</Tooltip>
+    <Icon>gaia/geology_stone_1.png</Icon>
+  </Identity>
+    <Minimap>
+    <Type>stone</Type>
+    <Colour r="128" g="128" b="128"/>
+  </Minimap>
+  <Footprint>
+    <Circle radius="1.0"/>
+    <Height>1.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="1.0"/>
+  </Obstruction>
+  <Selectable/>
+  <ResourceSupply>
+    <KillBeforeGather>false</KillBeforeGather>
+    <Amount>500</Amount>
+    <Type>stone.rock</Type>
+  </ResourceSupply>
+</Entity>

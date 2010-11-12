@@ -18,9 +18,15 @@
       <food.fruit>2</food.fruit>
       <food.grain>2</food.grain>
       <food.meat>2</food.meat>
-      <wood.tree>.75</wood.tree>
-      <stone.rock>.75</stone.rock>
-      <metal.ore>.75</metal.ore>
+	  <stone.treasure>10000</stone.treasure>
+      <wood.tree>0.75</wood.tree>
+	  <wood.ruins>2</wood.ruins>
+	  <wood.treasure>10000</wood.treasure>
+      <stone.rock>0.75</stone.rock>
+	  <stone.ruins>2.25</stone.ruins>
+	  <stone.treasure>10000</stone.treasure>
+      <metal.ore>0.75</metal.ore>
+	  <metal.treasure>10000</metal.treasure>
     </Rates>
   </ResourceGatherer>
   <Health>

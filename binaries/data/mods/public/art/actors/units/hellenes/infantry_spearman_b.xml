@@ -14,6 +14,7 @@
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
         <animation file="infantry/general/mine.psa" name="gather_rock" speed="200"/>
         <animation file="infantry/general/mine.psa" name="gather_ore" speed="200"/>
+		<animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -88,6 +89,14 @@
       </props>
     </variant>
     <variant name="gather_ore">
+      <props>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+	<variant name="gather_ruins">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
