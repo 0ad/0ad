@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/shield/shield_cape.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="cape a">
+      <texture>props/shield/hele_cape_a.dds</texture>
+    </variant>
+    <variant name="cape b">
+      <texture>props/shield/hele_cape_b.dds</texture>
+    </variant>
+    <variant name="cape c">
+      <texture>props/shield/hele_cape_c.dds</texture>
+    </variant>
+    <variant name="cape d">
+      <texture>props/shield/hele_cape_d.dds</texture>
+    </variant>
+    <variant name="cape e">
+      <texture>props/shield/hele_cape_e.dds</texture>
+    </variant>
+    <variant name="cape f">
+      <texture>props/shield/hele_cape_f.dds</texture>
+    </variant>
+    <variant name="cape g">
+      <texture>props/shield/hele_cape_g.dds</texture>
+    </variant>
+  </group>
+</actor>

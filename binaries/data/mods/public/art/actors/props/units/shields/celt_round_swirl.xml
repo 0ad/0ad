@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="back">
+      <mesh>props/shield/round_noboss_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/round_noboss_back.xml" attachpoint="root"/>
+      </props>
+      <texture>props/shield/celt_round_swirl.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
