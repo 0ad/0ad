@@ -121,15 +121,28 @@ Player.prototype.GetResourceCounts = function()
 	return this.resourceCount;
 };
 
-Player.prototype.AddResource = function(type, amount)
+/**
+ * Add resource of specified type to player and increase gathered resources statistics
+ * @param type Generic type of resource (string)
+ * @param amount Amount of resource, whick should be added (integer)
+ * @param specificType Specific type of resource (string, optional)
+ */
+Player.prototype.AddResource = function(type, amount, specificType)
 {
 	this.resourceCount[type] += (+amount);
+	var cmpStatisticsTracker = Engine.QueryInterface(this.entity, IID_StatisticsTracker);
+	cmpStatisticsTracker.IncreaseResourceGatheredCounter(type, amount, specificType);
 };
 
+/**
+ * Add resources to player but not increase gathered resources statistics
+ */
 Player.prototype.AddResources = function(amounts)
 {
 	for (var type in amounts)
+	{
 		this.resourceCount[type] += (+amounts[type]);
+	}
 };
 
 Player.prototype.TrySubtractResources = function(amounts)
@@ -177,6 +190,7 @@ Player.prototype.GetConquestCriticalEntitiesCount = function()
 	return this.conquestCriticalEntitiesCount;
 };
 
+
 Player.prototype.GetTeam = function()
 {
 	return this.team;
@@ -207,24 +221,29 @@ Player.prototype.SetPhase = function(p)
 	this.phase = p;
 };
 
-// Keep track of population effects of all entities that
-// become owned or unowned by this player
+/**
+ * Keep track of population effects of all entities that
+ * become owned or unowned by this player
+ */
 Player.prototype.OnGlobalOwnershipChanged = function(msg)
 {
-	var classes = [];
+	var isConquestCritical = false;
 
 	// Load class list only if we're going to need it
 	if (msg.from == this.playerID || msg.to == this.playerID)
 	{
 		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 		if (cmpIdentity)
-			classes = cmpIdentity.GetClassesList();
+		{
+			var classes = cmpIdentity.GetClassesList();
+			isConquestCritical = classes.indexOf("ConquestCritical") != -1;
+		}
 	}
-
+	
 	if (msg.from == this.playerID)
 	{
-		if (classes.indexOf("ConquestCritical") != -1)
-			this.conquestCriticalEntitiesCount--;
+		if (isConquestCritical)
+			this.conquestCriticalEntitiesCount--;	
 
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
@@ -236,9 +255,9 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	
 	if (msg.to == this.playerID)
 	{
-		if (classes.indexOf("ConquestCritical") != -1)
+		if (isConquestCritical)
 			this.conquestCriticalEntitiesCount++;
-
+			
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
 		{

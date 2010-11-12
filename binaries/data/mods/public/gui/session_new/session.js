@@ -117,8 +117,11 @@ function leaveGame()
 	stopMusic();
 	endGame();
 	
-	Engine.SwitchGuiPage("page_summary.xml", { "gameResult" : gameResult });
-	
+	Engine.SwitchGuiPage("page_summary.xml", 
+							{ "gameResult"  : gameResult, 
+							  "timeElapsed" : simState.timeElapsed, 
+							  "playerStates": simState.players 
+						    });
 }
 
 // Return some data that we'll use when hotloading this file after changes

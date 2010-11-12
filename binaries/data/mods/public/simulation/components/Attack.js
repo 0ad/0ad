@@ -203,8 +203,21 @@ Attack.prototype.PerformAttack = function(type, target)
 	// TODO: charge attacks (need to design how they work)
 };
 
+/**
+ * Called when some units kills something (another unit, building, animal etc)
+ * update player statistics only for now
+ */
+Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
+{
+	var cmpKillerPlayerStatisticsTracker = QueryOwnerInterface(killerEntity, IID_StatisticsTracker);
+	if (cmpKillerPlayerStatisticsTracker) cmpKillerPlayerStatisticsTracker.KilledEntity(targetEntity);
+	var cmpTargetPlayerStatisticsTracker = QueryOwnerInterface(targetEntity, IID_StatisticsTracker);
+	if (cmpTargetPlayerStatisticsTracker) cmpTargetPlayerStatisticsTracker.LostEntity(targetEntity);
+}
 
-// Inflict damage on the target
+/**
+ * Inflict damage on the target
+ */
 Attack.prototype.CauseDamage = function(data)
 {
 	var strengths = this.GetAttackStrengths(data.type);
@@ -212,7 +225,12 @@ Attack.prototype.CauseDamage = function(data)
 	var cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	if (!cmpDamageReceiver)
 		return;
-	cmpDamageReceiver.TakeDamage(strengths.hack, strengths.pierce, strengths.crush);
+	var targetState = cmpDamageReceiver.TakeDamage(strengths.hack, strengths.pierce, strengths.crush);
+	// if target killed pick up loot and credit experience
+	if (targetState.killed == true)
+	{
+		this.TargetKilled(this.entity, data.target);
+	}
 
 	Engine.PostMessage(data.target, MT_Attacked,
 		{ "attacker": this.entity, "target": data.target });

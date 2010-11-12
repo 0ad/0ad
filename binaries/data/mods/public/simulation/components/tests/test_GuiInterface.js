@@ -9,6 +9,8 @@ Engine.LoadComponentScript("interfaces/RallyPoint.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
 Engine.LoadComponentScript("interfaces/TrainingQueue.js");
+Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("GuiInterface.js");
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
@@ -28,6 +30,11 @@ AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 	GetLosCircular: function() { return false; },
 });
 
+AddMock(SYSTEM_ENTITY, IID_Timer, {
+	GetTime: function() { return 0; },
+	SetTimeout: function(ent, iid, funcname, time, data) { return 0; },
+});
+
 
 AddMock(100, IID_Player, {
 	GetName: function() { return "Player 1"; },
@@ -41,6 +48,29 @@ AddMock(100, IID_Player, {
 	GetTeam: function() { return -1; },
 	GetDiplomacy: function() { return []; },
 	GetPhase: function() { return ""; },
+	GetConquestCriticalEntitiesCount: function() { return 1; },
+});
+
+AddMock(100, IID_StatisticsTracker, {
+	GetStatistics: function() { 
+		return {
+			"unitsTrained": 10,
+			"unitsLost": 9,
+			"buildingsConstructed": 5,
+			"buildingsLost": 4,
+			"civCentresBuilt": 1,
+			"resourcesGathered": {
+				"food": 100,	
+				"wood": 0,	
+				"metal": 0,	
+				"stone": 0,
+				"vegetarianFood": 0, 
+			},
+		};
+	},
+	IncreaseTrainedUnitsCounter: function() { return 1; },
+	IncreaseConstructedBuildingsCounter: function() { return 1; },
+	IncreaseBuiltCivCentresCounter: function() { return 1; },
 });
 
 AddMock(101, IID_Player, {
@@ -55,6 +85,29 @@ AddMock(101, IID_Player, {
 	GetTeam: function() { return -1; },
 	GetDiplomacy: function() { return [1]; },
 	GetPhase: function() { return "village"; },
+	GetConquestCriticalEntitiesCount: function() { return 1; },
+});
+
+AddMock(101, IID_StatisticsTracker, {
+	GetStatistics: function() { 
+		return {
+			"unitsTrained": 10,
+			"unitsLost": 9,
+			"buildingsConstructed": 5,
+			"buildingsLost": 4,
+			"civCentresBuilt": 1,
+			"resourcesGathered": {
+				"food": 100,	
+				"wood": 0,	
+				"metal": 0,	
+				"stone": 0,
+				"vegetarianFood": 0, 
+			},
+		};
+	},
+	IncreaseTrainedUnitsCounter: function() { return 1; },
+	IncreaseConstructedBuildingsCounter: function() { return 1; },
+	IncreaseBuiltCivCentresCounter: function() { return 1; },
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
@@ -71,6 +124,20 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			team: -1,
 			diplomacy: [],
 			phase: "",
+			statistics: {
+				unitsTrained: 10,
+				unitsLost: 9,
+				buildingsConstructed: 5,
+				buildingsLost: 4,
+				civCentresBuilt: 1,
+				resourcesGathered: {
+					food: 100,	
+					wood: 0,	
+					metal: 0,	
+					stone: 0,
+					vegetarianFood: 0, 
+				},
+			},
 		},
 		{
 			name: "Player 2",
@@ -84,8 +151,23 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			team: -1,
 			diplomacy: [1],
 			phase: "village",
+			statistics: {
+				unitsTrained: 10,
+				unitsLost: 9,
+				buildingsConstructed: 5,
+				buildingsLost: 4,
+				civCentresBuilt: 1,
+				resourcesGathered: {
+					food: 100,	
+					wood: 0,	
+					metal: 0,	
+					stone: 0,
+					vegetarianFood: 0, 
+				},
+			},
 		}
 	],
+	timeElapsed: 0,
 	circularMap: false,
 });
 

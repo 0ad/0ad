@@ -73,6 +73,7 @@ Identity.prototype.Schema =
 						"<value>Organic</value>" +
 						"<value>Structure</value>" +
 						"<value>Civic</value>" +
+						"<value>CivCentre</value>" +
 						"<value>Economic</value>" +
 						"<value>Defensive</value>" +
 						"<value>Village</value>" +

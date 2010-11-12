@@ -33,7 +33,7 @@ Armour.prototype.TakeDamage = function(hack, pierce, crush)
 
 	// Reduce health
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	cmpHealth.Reduce(total);
+	return cmpHealth.Reduce(total);
 };
 
 Armour.prototype.GetArmourStrengths = function()

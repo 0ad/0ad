@@ -20,15 +20,20 @@ GuiInterface.prototype.Init = function()
 GuiInterface.prototype.GetSimulationState = function(player)
 {
 	var ret = {
-		"players": []
+		"players": [],
+		"timeElapsed": 0	
 	};
 
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	ret.timeElapsed = cmpTimer.GetTime();
+	
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var n = cmpPlayerMan.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
 	{
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		var playerData = {
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
@@ -41,6 +46,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"team": cmpPlayer.GetTeam(),
 			"diplomacy": cmpPlayer.GetDiplomacy(),
 			"phase": cmpPlayer.GetPhase(),
+			"statistics": cmpPlayerStatisticsTracker.GetStatistics() 
 		};
 		ret.players.push(playerData);
 	}

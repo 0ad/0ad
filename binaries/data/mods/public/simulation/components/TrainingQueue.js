@@ -218,7 +218,10 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 
 		var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
-
+		
+		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+		cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter();
+		
 		ents.push(ent);
 
 		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)

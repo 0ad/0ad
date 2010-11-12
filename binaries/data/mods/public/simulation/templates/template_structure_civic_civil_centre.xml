@@ -3,7 +3,11 @@
   <Identity>
     <GenericName>Civic Centre</GenericName>
     <Tooltip>Build upon a settlement to capture territory.</Tooltip>
-    <Classes datatype="tokens">Village Defensive</Classes>
+    <Classes datatype="tokens">
+		Village 
+		Defensive
+		CivCentre
+	</Classes>
     <Icon>structures/civic_centre.png</Icon>
   </Identity>
   <BuildRestrictions>

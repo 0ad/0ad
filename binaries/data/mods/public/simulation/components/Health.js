@@ -79,6 +79,7 @@ Health.prototype.Kill = function()
 
 Health.prototype.Reduce = function(amount)
 {
+	var state = { "killed": false };
 	if (amount >= this.hitpoints)
 	{
 		// If this is the first time we reached 0, then die.
@@ -86,6 +87,8 @@ Health.prototype.Reduce = function(amount)
 		// might get called multiple times)
 		if (this.hitpoints)
 		{
+			state.killed = true;
+			
 			PlaySound("death", this.entity);
 
 			if (this.template.DeathType == "corpse")
@@ -121,6 +124,7 @@ Health.prototype.Reduce = function(amount)
 
 		Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 	}
+	return state;
 };
 
 Health.prototype.Increase = function(amount)
