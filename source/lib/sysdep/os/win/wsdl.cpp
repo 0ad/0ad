@@ -907,7 +907,7 @@ static unsigned mouse_buttons;
 
 // (we define a new function signature since the windowsx.h message crackers
 // don't provide for passing uMsg)
-static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int client_y, UINT UNUSED(flags))
+static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int client_y, UINT flags)
 {
 	int button;
 	int state;
@@ -935,6 +935,14 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int cli
 		break;
 	case WM_MBUTTONUP:
 		button = SDL_BUTTON_MIDDLE;
+		state = SDL_RELEASED;
+		break;
+	case WM_XBUTTONDOWN:
+		button = SDL_BUTTON_X1 + GET_XBUTTON_WPARAM(flags) - 1;
+		state = SDL_PRESSED;
+		break;
+	case WM_XBUTTONUP:
+		button = SDL_BUTTON_X1 + GET_XBUTTON_WPARAM(flags) - 1;
 		state = SDL_RELEASED;
 		break;
 	NODEFAULT;
@@ -968,6 +976,11 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int cli
 	int x, y;
 	if(mouse_GetCoords(screen_pt.x, screen_pt.y, x, y))
 		QueueButtonEvent(button, state, x, y);
+
+	// Per MSDN, return TRUE for XBUTTON events
+	if (uMsg == WM_XBUTTONDOWN || uMsg == WM_XBUTTONUP)
+		return TRUE;
+
 	return 0;
 }
 
@@ -1215,6 +1228,8 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	case WM_RBUTTONUP:
 	case WM_MBUTTONDOWN:
 	case WM_MBUTTONUP:
+	case WM_XBUTTONDOWN:
+	case WM_XBUTTONUP:
 		return OnMouseButton(hWnd, uMsg, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (UINT)wParam);
 
 	default:
