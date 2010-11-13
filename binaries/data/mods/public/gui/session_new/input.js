@@ -117,14 +117,19 @@ function determineAction(x, y, fromMinimap)
 		// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
 		// Check if any entities in the selection can gather the requested resource,
 		// can return to the dropsite, can build the foundation, or can attack the enemy
+		var simState = Engine.GuiInterfaceCall("GetSimulationState");
+		
 		for each (var entityID in selection)
 		{
 			var entState = GetEntityState(entityID);
 			if (!entState)
 				continue;
+			
+			// Get entity owner diplomacy array
+			var diplomacy = simState.players[entState.player].diplomacy;
 
 			var playerOwned = ((targetState.player == entState.player)? true : false);
-			var enemyOwned = ((targetState.player != entState.player && entState.diplomacy && entState.diplomacy[targetState.player - 1] < 0)? true : false);
+			var enemyOwned = ((targetState.player != entState.player && (!diplomacy || diplomacy[targetState.player - 1] < 0))? true : false);
 			var gaiaOwned = ((targetState.player == 0)? true : false);
 
 			// Find the resource type we're carrying, if any
