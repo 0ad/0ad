@@ -1,0 +1,1228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="438.262" y="118.383" z="324.983"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name": "Resource demo",
+  "Description": "Demo map for resource gathering.",
+  "GameType": "endless",
+  "PlayerData": [
+    {
+      "Civ": "celt"
+    }
+  ],
+  "CircularMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="511.68302" z="393.275"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>structures/celt_farmstead</Template>
+			<Player>1</Player>
+			<Position x="441.86014" z="467.12775"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="459.1927" z="449.12101"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="480.42695" z="469.95566"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="459.25727" z="493.52659"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="439.416" z="515.5871"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="421.09751" z="494.07074"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="402.57123" z="473.52634"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="422.09339" z="449.48163"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>structures/celt_field</Template>
+			<Player>1</Player>
+			<Position x="440.47477" z="427.3943"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>structures/celt_mill</Template>
+			<Player>1</Player>
+			<Position x="554.89441" z="443.89039"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>structures/celt_mill</Template>
+			<Player>1</Player>
+			<Position x="546.42548" z="348.22522"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="460.21091" z="410.43567"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="463.53559" z="414.2099"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="466.5074" z="418.39478"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="468.92475" z="421.56092"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="471.38929" z="425.1132"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="474.06626" z="429.0824"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="477.31275" z="432.86326"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="480.36643" z="435.77576"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="482.64972" z="430.9585"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="479.49167" z="427.5406"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="477.12476" z="421.56092"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="474.74604" z="418.39478"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="472.89701" z="414.75928"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="470.81873" z="411.23404"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="467.44074" z="407.297"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="464.63032" z="404.49482"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="539.88038" z="398.46741"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="546.72876" z="399.1023"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="550.43201" z="398.15113"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="555.08631" z="398.15113"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="543.45575" z="398.78443"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="558.96485" z="398.15113"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="562.66138" z="397.8357"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="565.54426" z="397.20716"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="564.23462" z="389.90552"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="560.7845" z="389.90552"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="555.9665" z="389.61066"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="552.53418" z="389.90555"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="548.65174" z="390.49756"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="545.95057" z="390.79465"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="542.49158" z="391.69037"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="539.167" z="391.69037"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="538.3664" z="383.58005"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="542.45624" z="383.58005"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="545.9618" z="383.58002"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="549.73963" z="383.02143"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="553.52826" z="383.02143"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="557.0069" z="382.74314"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="559.99708" z="381.91218"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="564.46552" z="381.63648"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="563.1811" z="372.89179"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="558.5807" z="372.89179"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="555.12678" z="373.40302"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="551.11902" z="374.43247"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="547.77204" z="375.2108"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="544.67334" z="375.21082"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="540.30695" z="375.21082"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="536.77497" z="375.73267"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="482.29435" z="351.78364"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="485.93131" z="351.78364"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="490.40763" z="351.78364"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="494.60416" z="351.78364"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="495.64435" z="344.3358"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="491.30976" z="345.05826"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="486.28907" z="345.0583"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="482.35395" z="345.05826"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="482.63413" z="336.91742"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="486.95151" z="336.69376"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="491.51648" z="336.91742"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="496.103" z="338.04294"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="496.12681" z="330.19886"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="491.45255" z="329.78016"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="486.91681" z="329.57148"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="481.74894" z="329.57148"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="438.37531" z="340.66095"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="453.37229" z="329.0796"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="442.23768" z="319.91132"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="454.13859" z="305.22498"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="534.73682" z="323.08518"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="546.47577" z="322.79316"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="546.54041" z="303.73246"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>gaia/geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="532.685" z="301.77344"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="568.62952" z="328.5293"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="587.36695" z="322.26557"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="568.84101" z="301.9574"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="582.8722" z="300.29291"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="583.56232" z="460.40156"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="601.71857" z="451.43284"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="601.32746" z="422.24207"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="575.89228" z="421.99189"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="617.3606" z="433.06226"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="624.87763" z="433.06226"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="632.29444" z="432.224"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="634.39728" z="419.82947"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="632.74964" z="407.41291"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="620.77924" z="394.17273"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="611.23487" z="395.11912"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="602.32813" z="368.27558"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="601.81098" z="354.99811"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="604.27808" z="350.41871"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="608.701" z="347.2685"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="616.16736" z="343.81351"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="628.98786" z="338.37412"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="633.09363" z="354.99814"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="624.23005" z="358.1667"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="617.87879" z="358.1667"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="611.83008" z="367.27155"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="611.94318" z="371.34302"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="625.56763" z="377.192"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="635.45954" z="377.73884"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="641.22364" z="385.67469"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="638.52314" z="394.80286"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="621.76063" z="408.46302"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="613.758" z="406.0257"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="609.33124" z="330.25733"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="617.073" z="322.51465"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="622.5896" z="324.80237"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="629.98194" z="318.51832"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="630.78516" z="312.38892"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="624.81104" z="306.22632"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="619.52186" z="306.61246"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="613.52625" z="306.03382"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="608.7204" z="304.50745"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="602.9311" z="298.99094"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="617.36756" z="456.28882"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="613.02173" z="473.45954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="609.42206" z="476.61847"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="599.23871" z="479.85486"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="590.4889" z="483.17157"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="582.93525" z="483.9198"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="566.53431" z="483.91977"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="550.52704" z="483.17157"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="536.45746" z="482.42743"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="522.80042" z="481.68738"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="517.93738" z="481.68738"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="479.56437" z="513.4546"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="487.22709" z="501.07099"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="500.88205" z="490.74958"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="511.35471" z="482.79896"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="528.92994" z="476.61847"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="544.71174" z="481.31885"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="560.23591" z="482.0569"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="471.75165" z="520.61133"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="461.0286" z="526.85456"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="453.18143" z="532.66346"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="447.57099" z="536.04474"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="440.08283" z="541.47614"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="455.18967" z="541.47608"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="461.86673" z="536.42566"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="469.641" z="531.18744"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="479.1623" z="527.56696"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="486.4774" z="519.93586"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="495.60615" z="511.78101"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="498.253" z="507.13169"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="497.16245" z="494.4433"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="494.03739" z="490.14991"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="507.20813" z="487.03287"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="508.83793" z="498.33515"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="508.1631" z="509.90021"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="518.26276" z="502.65281"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="531.55451" z="500.9069"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="541.07282" z="504.72236"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="551.67774" z="523.69562"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="559.88434" z="513.37037"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="550.1175" z="504.72236"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="566.59351" z="505.02094"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="572.78217" z="512.0973"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="581.72632" z="505.92109"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="580.41651" z="493.62595"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="574.16047" z="485.25373"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="598.33185" z="502.13624"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="601.97461" z="511.78644"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="609.1261" z="503.9391"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="624.3006" z="493.47547"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="635.39594" z="483.49122"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="624.6709" z="473.11347"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="632.26532" z="457.46637"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="623.87165" z="459.71778"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="610.10798" z="513.33375"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>gaia/flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="619.43812" z="503.93903"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="489.47037" z="446.36402"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="491.88352" z="452.8154"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="495.47501" z="448.77265"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="493.4127" z="444.28974"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="545.58979" z="468.83875"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="542.47779" z="464.49119"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="542.65662" z="456.57657"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="546.45527" z="460.89994"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="386.56199" z="443.61176"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="390.03714" z="442.87067"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="393.23414" z="433.50559"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="387.98191" z="435.76053"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>gaia/fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="497.24152" z="456.89258"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>gaia/fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="500.84922" z="449.06104"/>
+			<Orientation y="-2.77442"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>gaia/fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="496.67872" z="440.76276"/>
+			<Orientation y="-0.39296"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
