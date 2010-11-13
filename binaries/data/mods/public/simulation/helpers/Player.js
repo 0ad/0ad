@@ -18,7 +18,7 @@ function LoadPlayerSettings(settings)
 	var playerDefaults = rawData.PlayerData;
 	
 	// default number of players
-	var numPlayers = 2;
+	var numPlayers = 8;
 	
 	if (settings.PlayerData)
 	{	//Get number of players including gaia
@@ -41,12 +41,17 @@ function LoadPlayerSettings(settings)
 		diplomacy[i] = cmpPlayerMan.Diplomacy.ENEMY;
 		
 		var pData = settings.PlayerData ? settings.PlayerData[i] : {};
-		var pDefs = playerDefaults ? playerDefaults[i] : {};
-		var team = getSetting(settings, pDefs, "Team");
+		var pDefs = playerDefaults ? playerDefaults[i+1] : {};
+		var team = getSetting(pData, pDefs, "Team");
 		
 		// If team defined, add player to the team
 		if (team && team != -1)
-			teams[team].push(i);
+		{
+			if (!teams[team])
+				teams[team] = [i];
+			else
+				teams[team].push(i);
+		}
 	}
 	
 	for (var i = 0; i < numPlayers; ++i)
@@ -82,7 +87,7 @@ function LoadPlayerSettings(settings)
 				player.SetResourceCounts(getSetting(pData, pDefs, "Resources"));
 			
 			
-			var team = getSetting(settings, pDefs, "Team");
+			var team = getSetting(pData, pDefs, "Team");
 			
 			//If diplomacy array exists use that, otherwise use team data or default diplomacy
 			if (getSetting(pData, pDefs, "Diplomacy") !== undefined)

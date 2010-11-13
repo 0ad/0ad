@@ -123,7 +123,7 @@ function determineAction(x, y, fromMinimap)
 				continue;
 
 			var playerOwned = ((targetState.player == entState.player)? true : false);
-			var enemyOwned = ((targetState.player != entState.player)? true : false);
+			var enemyOwned = ((targetState.player != entState.player && entState.diplomacy && entState.diplomacy[targetState.player - 1] < 0)? true : false);
 			var gaiaOwned = ((targetState.player == 0)? true : false);
 			
 			if (targetState.garrisonHolder && playerOwned && Engine.HotkeyIsPressed("session.garrison"))

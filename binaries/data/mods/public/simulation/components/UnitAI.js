@@ -262,6 +262,9 @@ var UnitFsmSpec = {
 			{
 				this.PushOrderFront("Attack", { "target": msg.data.attacker });
 			}
+			else
+			{	// TODO: If unit can't attack, run away
+			}
 		},
 
 		"IDLE": {
@@ -604,21 +607,33 @@ UnitAI.prototype.SetupRangeQuery = function(owner)
 	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
 	if (!cmpVision)
 		return;
-
+	
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-
+	
 	if (this.losRangeQuery)
 		rangeMan.DestroyActiveQuery(this.losRangeQuery);
 
 	var range = cmpVision.GetRange();
-
-	// Find all enemy players (i.e. exclude Gaia and ourselves)
+	
 	var players = [];
-	for (var i = 1; i < playerMan.GetNumPlayers(); ++i)
-		if (i != owner)
-			players.push(i);
+	
+	if(owner != -1)
+	{	// If unit not just killed, get enemy players via diplomacy
+		var player = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
 
+		// Get our diplomacy array
+		var diplomacy = player.GetDiplomacy();
+		var numPlayers = playerMan.GetNumPlayers();
+		
+		for (var i = 1; i < numPlayers; ++i)
+		{	// Exclude gaia, allies, and self
+			// TODO: How to handle neutral players - Special query to attack military only?
+			if (i != owner && diplomacy[i - 1] < 0)
+				players.push(i);
+		}
+	}
+	
 	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range, players, IID_DamageReceiver);
 	rangeMan.EnableActiveQuery(this.losRangeQuery);
 };
