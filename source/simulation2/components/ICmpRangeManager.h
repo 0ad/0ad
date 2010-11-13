@@ -80,7 +80,7 @@ public:
 	/**
 	 * Execute a passive query.
 	 * @param source the entity around which the range will be computed.
-	 * @param maxRange maximum distance in metres (inclusive).
+	 * @param maxRange non-negative maximum distance in metres (inclusive); or -1.0 to ignore distance.
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
 	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
@@ -90,7 +90,7 @@ public:
 	/**
 	 * Construct an active query. The query will be disabled by default.
 	 * @param source the entity around which the range will be computed.
-	 * @param maxRange maximum distance in metres (inclusive).
+	 * @param maxRange non-negative maximum distance in metres (inclusive); or -1.0 to ignore distance.
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
 	 * @return unique non-zero identifier of query.

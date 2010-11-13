@@ -278,9 +278,14 @@ void Render()
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	CStrW cursorName = g_CursorName;
 	if (cursorName.empty())
+	{
 		cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y);
+	}
 	else
-		cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y);
+	{
+		if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y) < 0)
+			LOGWARNING(L"Failed to draw cursor '%ls'", cursorName.c_str());
+	}
 
 	// restore
 	glMatrixMode(GL_PROJECTION);

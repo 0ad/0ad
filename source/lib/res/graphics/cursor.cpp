@@ -299,6 +299,9 @@ LibError cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
 	}
 
 	Handle hc = cursor_load(vfs, name);
+
+	RETURN_ERR(hc); // silently ignore failures
+
 	H_DEREF(hc, Cursor, c);
 
 	switch(c->kind)

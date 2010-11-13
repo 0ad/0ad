@@ -632,6 +632,30 @@ private:
 	}
 
 	/**
+	 * Returns whether the given entity matches the given query (ignoring maxRange)
+	 */
+	bool TestEntityQuery(const Query& q, entity_id_t id, const EntityData& entity)
+	{
+		// Quick filter to ignore entities with the wrong owner
+		if (!(CalcOwnerMask(entity.owner) & q.ownersMask))
+			return false;
+
+		// Ignore entities not present in the world
+		if (!entity.inWorld)
+			return false;
+
+		// Ignore self
+		if (id == q.source)
+			return false;
+
+		// Ignore if it's missing the required interface
+		if (q.interface && !GetSimContext().GetComponentManager().QueryInterface(id, q.interface))
+			return false;
+
+		return true;
+	}
+
+	/**
 	 * Returns a list of distinct entity IDs that match the given query, sorted by ID.
 	 */
 	void PerformQuery(const Query& q, std::vector<entity_id_t>& r)
@@ -641,39 +665,46 @@ private:
 			return;
 		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 
-		// Get a quick list of entities that are potentially in range
-		std::vector<entity_id_t> ents = m_Subdivision.GetNear(pos, q.maxRange);
-
-		for (size_t i = 0; i < ents.size(); ++i)
+		// Special case: range -1.0 means check all entities ignoring distance
+		if (q.maxRange == entity_pos_t::FromInt(-1))
 		{
-			std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.find(ents[i]);
-			debug_assert(it != m_EntityData.end());
+			for (std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
+			{
+				if (!TestEntityQuery(q, it->first, it->second))
+					continue;
 
-			// Quick filter to ignore entities with the wrong owner
-			if (!(CalcOwnerMask(it->second.owner) & q.ownersMask))
-				continue;
+				r.push_back(it->first);
+			}
+		}
+		else
+		{
+			// Get a quick list of entities that are potentially in range
+			std::vector<entity_id_t> ents = m_Subdivision.GetNear(pos, q.maxRange);
 
-			// Restrict based on precise location
-			if (!it->second.inWorld)
-				continue;
-			int distVsMax = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.maxRange);
-			if (distVsMax > 0)
-				continue;
+			for (size_t i = 0; i < ents.size(); ++i)
+			{
+				std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.find(ents[i]);
+				debug_assert(it != m_EntityData.end());
 
-			// Ignore self
-			if (it->first == q.source)
-				continue;
+				if (!TestEntityQuery(q, it->first, it->second))
+					continue;
 
-			// Ignore if it's missing the required interface
-			if (q.interface && !GetSimContext().GetComponentManager().QueryInterface(it->first, q.interface))
-				continue;
+				// Restrict based on precise distance
+				int distVsMax = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.maxRange);
+				if (distVsMax > 0)
+					continue;
 
-			r.push_back(it->first);
+				r.push_back(it->first);
+			}
 		}
 	}
 
 	Query ConstructQuery(entity_id_t source, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface)
 	{
+		// Range must be non-negative, or else -1
+		if (maxRange < entity_pos_t::Zero() && maxRange != entity_pos_t::FromInt(-1))
+			LOGWARNING(L"CCmpRangeManager: Invalid range %f in query for entity %d", maxRange.ToDouble(), source);
+
 		Query q;
 		q.enabled = false;
 		q.source = source;

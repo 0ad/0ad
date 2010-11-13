@@ -1,9 +1,6 @@
 function ResourceDropsite() {}
 
 ResourceDropsite.prototype.Schema =
-	"<element name='Radius'>" +
-		"<data type='nonNegativeInteger'/>" +
-	"</element>" +
 	"<element name='Types'>" +
 		"<list>" +
 			"<oneOrMore>" +
@@ -17,8 +14,21 @@ ResourceDropsite.prototype.Schema =
 		"</list>" +
 	"</element>";
 
-/*
- * TODO: this all needs to be designed and implemented
+
+/**
+ * Returns the list of resource types accepted by this dropsite.
  */
+ResourceDropsite.prototype.GetTypes = function()
+{
+	return this.template.Types.split(/\s+/);
+};
+
+/**
+ * Returns whether this dropsite accepts the given generic type of resource.
+ */
+ResourceDropsite.prototype.AcceptsType = function(type)
+{
+	return this.GetTypes().indexOf(type) != -1;
+};
 
 Engine.RegisterComponentType(IID_ResourceDropsite, "ResourceDropsite", ResourceDropsite);

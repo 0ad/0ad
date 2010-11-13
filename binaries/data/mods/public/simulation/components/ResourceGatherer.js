@@ -11,6 +11,12 @@ ResourceGatherer.prototype.Schema =
 			"<stone.rock>3</stone.rock>" +
 			"<wood.tree>2</wood.tree>" +
 		"</Rates>" +
+		"<Capacities>" +
+			"<food>10</food>" +
+			"<metal>10</metal>" +
+			"<stone>10</stone>" +
+			"<wood>10</wood>" +
+		"</Capacities>" +
 	"</a:example>" +
 	"<element name='MaxDistance' a:help='Max resource-gathering distance'>" +
 		"<ref name='positiveDecimal'/>" +
@@ -39,10 +45,53 @@ ResourceGatherer.prototype.Schema =
 			"<optional><element name='metal.ore' a:help='Ore gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='metal.treasure' a:help='Treasure gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
 		"</interleave>" +
+	"</element>" +
+	"<element name='Capacities' a:help='Per-resource-type maximum carrying capacity'>" +
+		"<interleave>" +
+			"<element name='food' a:help='Food capacity'><ref name='positiveDecimal'/></element>" +
+			"<element name='wood' a:help='Wood capacity'><ref name='positiveDecimal'/></element>" +
+			"<element name='stone' a:help='Stone capacity'><ref name='positiveDecimal'/></element>" +
+			"<element name='metal' a:help='Metal capacity'><ref name='positiveDecimal'/></element>" +
+		"</interleave>" +
 	"</element>";
 
 ResourceGatherer.prototype.Init = function()
 {
+	this.carrying = {}; // { type: integer amount currently carried }
+	// (Note that this component supports carrying multiple types of resources,
+	// each with an independent capacity, but the rest of the game currently
+	// ensures and assumes we'll only be carrying one type at once)
+};
+
+/**
+ * Returns data about what resources the unit is currently carrying,
+ * in the form [ {"type":"wood", "amount":7, "max":10} ]
+ */
+ResourceGatherer.prototype.GetCarryingStatus = function()
+{
+	var ret = [];
+	for (var type in this.carrying)
+	{
+		ret.push({
+			"type": type,
+			"amount": this.carrying[type],
+			"max": +this.template.Capacities[type]
+		});
+	}
+	return ret;
+};
+
+/**
+ * Returns the type of one particular resource this unit is
+ * currently carrying, or undefined if none.
+ */
+ResourceGatherer.prototype.GetMainCarryingType = function()
+{
+	// Return the first key, if any
+	for (var type in this.carrying)
+		return type;
+
+	return undefined;
 };
 
 ResourceGatherer.prototype.GetGatherRates = function()
@@ -73,19 +122,33 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 	var type = cmpResourceSupply.GetType();
 
-	var status = cmpResourceSupply.TakeResources(rate);
+	// Initialise the carried count if necessary
+	if (!this.carrying[type.generic])
+		this.carrying[type.generic] = 0;
 
-	// Give the gathered resources to the player
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(cmpOwnership.GetOwner()), IID_Player);
-	cmpPlayer.AddResource(type.generic, status.amount, type.specific);
+	// Find the maximum so we won't exceed our capacity
+	var maxGathered = this.template.Capacities[type.generic] - this.carrying[type.generic];
+
+	var status = cmpResourceSupply.TakeResources(Math.min(rate, maxGathered));
+
+	this.carrying[type.generic] += status.amount;
+
+	// Update stats of how much the player collected.
+	// (We have to do it here rather than at the dropsite, because we
+	// need to know what subtype it was)
+	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	if (cmpStatisticsTracker)
+		cmpStatisticsTracker.IncreaseResourceGatheredCounter(type.generic, status.amount, type.specific);
 
 	// Tell the target we're gathering from it
 	Engine.PostMessage(target, MT_ResourceGather,
 		{ "entity": target, "gatherer": this.entity });
 
-	return status;
+	return {
+		"amount": status.amount,
+		"exhausted": status.exhausted,
+		"filled": (this.carrying[type.generic] >= this.template.Capacities[type.generic])
+	};
 };
 
 /**
@@ -109,5 +172,59 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 
 	return (rate || 0) * this.template.BaseSpeed;
 }
+
+/**
+ * Returns whether this unit can carry more of the given type of resource.
+ * (This ignores whether the unit is actually able to gather that
+ * resource type or not.)
+ */
+ResourceGatherer.prototype.CanCarryMore = function(type)
+{
+	var amount = (this.carrying[type] || 0);
+	return (amount < this.template.Capacities[type]);
+};
+
+/**
+ * Returns whether this unit is carrying any resources of a type that is
+ * not the requested type. (This is to support cases where the unit is
+ * only meant to be able to carry one type at once.)
+ */
+ResourceGatherer.prototype.IsCarryingAnythingExcept = function(exceptedType)
+{
+	for (var type in this.carrying)
+		if (type != exceptedType)
+			return true;
+
+	return false;
+};
+
+/**
+ * Transfer our carried resources to our owner immediately.
+ * Only resources of the given types will be transferred.
+ * (This should typically be called after reaching a dropsite).
+ */
+ResourceGatherer.prototype.CommitResources = function(types)
+{
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+
+	for each (var type in types)
+	{
+		if (type in this.carrying)
+		{
+			cmpPlayer.AddResource(type, this.carrying[type]);
+			delete this.carrying[type];
+		}
+	}
+};
+
+/**
+ * Drop all currently-carried resources.
+ * (Currently they just vanish after being dropped - we don't bother depositing
+ * them onto the ground.)
+ */
+ResourceGatherer.prototype.DropResources = function()
+{
+	this.carrying = {};
+};
 
 Engine.RegisterComponentType(IID_ResourceGatherer, "ResourceGatherer", ResourceGatherer);

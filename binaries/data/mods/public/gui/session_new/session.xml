@@ -468,6 +468,10 @@
 
 					<!-- Armour icon -->
 					<object size="0 48 48 96" type="image" name="armourIcon" sprite="snIconSheetStance" cell_id="3" tooltip_style="snToolTip"/>
+
+					<!-- Resource carrying icon/counter -->
+					<object size="0 96 24 120" type="image" name="resourceCarryingIcon" style="resourceIcon"/>
+					<object size="18 102 56 114" type="text" name="resourceCarryingText" style="resourceText"/>
 				</object>
 
 				<!-- Big unit icon -->

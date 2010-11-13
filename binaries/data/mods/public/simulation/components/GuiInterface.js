@@ -153,6 +153,15 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpResourceGatherer)
 	{
 		ret.resourceGatherRates = cmpResourceGatherer.GetGatherRates();
+		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
+	}
+
+	var cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
+	if (cmpResourceDropsite)
+	{
+		ret.resourceDropsite = {
+			"types": cmpResourceDropsite.GetTypes()
+		};
 	}
 
 	var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);

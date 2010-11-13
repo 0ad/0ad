@@ -6,6 +6,10 @@
       <animations>
         <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="200"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_stone" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_metal" speed="120"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
@@ -108,6 +112,40 @@
         <prop attachpoint="shield"/>
         <prop attachpoint="l_hand"/>
         <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+
+    <variant name="carry_food">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop actor="fauna/pig1.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant name="carry_wood">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+        <prop actor="props/flora/bush_tropic_a.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant name="carry_stone">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop actor="geology/gray1.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant name="carry_metal">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop actor="geology/gray1.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>

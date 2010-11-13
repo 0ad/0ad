@@ -41,6 +41,12 @@ function ProcessCommand(player, cmd)
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		break;
 
+	case "returnresource":
+		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		if (cmpUnitAI)
+			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
+		break;
+
 	case "train":
 		var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
 		if (queue)

@@ -48,6 +48,12 @@
 	  <stone.treasure>1000</stone.treasure>
       <metal.treasure>1000</metal.treasure>
     </Rates>
+    <Capacities>
+      <food>15</food>
+      <metal>15</metal>
+      <stone>15</stone>
+      <wood>15</wood>
+    </Capacities>
   </ResourceGatherer>
   <UnitMotion>
     <FormationController>false</FormationController>

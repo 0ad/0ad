@@ -1,7 +1,7 @@
 // Hierarchical finite state machine implementation.
 //
 // FSMs are specified as a JS data structure;
-// see e.g. AnimalAI.js for an example of the syntax.
+// see e.g. UnitAI.js for an example of the syntax.
 //
 // FSMs are implicitly linked with an external object.
 // That object stores all FSM-related state.

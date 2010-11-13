@@ -122,20 +122,17 @@ Player.prototype.GetResourceCounts = function()
 };
 
 /**
- * Add resource of specified type to player and increase gathered resources statistics
+ * Add resource of specified type to player
  * @param type Generic type of resource (string)
  * @param amount Amount of resource, whick should be added (integer)
- * @param specificType Specific type of resource (string, optional)
  */
-Player.prototype.AddResource = function(type, amount, specificType)
+Player.prototype.AddResource = function(type, amount)
 {
 	this.resourceCount[type] += (+amount);
-	var cmpStatisticsTracker = Engine.QueryInterface(this.entity, IID_StatisticsTracker);
-	cmpStatisticsTracker.IncreaseResourceGatheredCounter(type, amount, specificType);
 };
 
 /**
- * Add resources to player but not increase gathered resources statistics
+ * Add resources to player
  */
 Player.prototype.AddResources = function(amounts)
 {

@@ -114,8 +114,9 @@ function determineAction(x, y, fromMinimap)
 		if (haveRallyPoints && selection.indexOf(targets[0]) != -1)
 			return {"type": "unset-rallypoint"};
 
-		// Check if the target entity is a resource, foundation, or enemy unit.
-		// Check if any entities in the selection can gather the requested resource, can build the foundation, or can attack the enemy
+		// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
+		// Check if any entities in the selection can gather the requested resource,
+		// can return to the dropsite, can build the foundation, or can attack the enemy
 		for each (var entityID in selection)
 		{
 			var entState = GetEntityState(entityID);
@@ -125,6 +126,11 @@ function determineAction(x, y, fromMinimap)
 			var playerOwned = ((targetState.player == entState.player)? true : false);
 			var enemyOwned = ((targetState.player != entState.player && entState.diplomacy && entState.diplomacy[targetState.player - 1] < 0)? true : false);
 			var gaiaOwned = ((targetState.player == 0)? true : false);
+
+			// Find the resource type we're carrying, if any
+			var carriedType = undefined;
+			if (entState.resourceCarrying && entState.resourceCarrying.length)
+				carriedType = entState.resourceCarrying[0].type;
 			
 			if (targetState.garrisonHolder && playerOwned && Engine.HotkeyIsPressed("session.garrison"))
 			{
@@ -138,6 +144,11 @@ function determineAction(x, y, fromMinimap)
 				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
 				if (resource)
 					return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
+			}
+			else if (targetState.resourceDropsite && playerOwned && carriedType &&
+				targetState.resourceDropsite.types.indexOf(carriedType) != -1)
+			{
+				return {"type": "returnresource", "cursor": "action-return-"+carriedType, "target": targets[0]};
 			}
 			else if (targetState.foundation && entState.buildEntities && playerOwned)
 			{
@@ -514,6 +525,11 @@ function handleInputAfterGui(ev)
 
 				case "gather":
 					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
+					Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
+					return true;
+
+				case "returnresource":
+					Engine.PostNetworkCommand({"type": "returnresource", "entities": selection, "target": action.target, "queued": queued});
 					Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
 					return true;
 
