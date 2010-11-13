@@ -329,36 +329,36 @@
 		<!-- Player resource bar -->
 		<!-- ================================  ================================ -->
 		<object
-			size="0 3 500 100%-3"
+			size="0 0 500 100%"
 		>	
 			<!-- Food -->
 			<object size="6 0 96 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="snToolTip">
-				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
+				<object size="0 0 34 30" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
 			<!-- Wood -->
 			<object size="98 0 188 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="snToolTip">
-				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="1"/>
-				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
+				<object size="0 0 34 30" type="image" style="resourceIcon" cell_id="1"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 			</object>
 
 			<!-- Stone -->
 			<object size="190 0 280 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="snToolTip">
-				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="2"/>
-				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
+				<object size="0 2 34 30" type="image" style="resourceIcon" cell_id="2"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 			</object>
 
 			<!-- Metal -->
 			<object size="282 0 372 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="snToolTip">
-				<object size="0 0 28 26" type="image" style="resourceIcon" cell_id="3"/>
-				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
+				<object size="0 0 34 30" type="image" style="resourceIcon" cell_id="3"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 			</object>
 
 			<!-- Population -->
 			<object size="374 0 464 100%" type="image" style="resourceCounter" tooltip="Population (current / maximum)" tooltip_style="snToolTip">
-				<object size="0 -2 28 24" type="image" style="resourceIcon" cell_id="4"/>
-				<object size="28 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
+				<object size="-2 0 30 28" type="image" style="resourceIcon" cell_id="4"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
 
@@ -462,16 +462,23 @@
 				<object size="0 0 100% 40" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="snToolTip"/>
 	
 				<!-- Stats -->
-				<object size="6 36 50 100%" name="statsArea" type="image">
+				<object size="8 36 50%-48 100%" name="statsArea" type="image">
 					<!-- Attack icon -->
-					<object size="0 0 48 48" type="image" name="attackIcon" sprite="snIconSheetStance" cell_id="1" tooltip_style="snToolTip"/>
+					<object hidden="true" size="0 0 48 48" type="image" name="attackIcon" sprite="snIconSheetStance" cell_id="1" tooltip_style="snToolTip"/>
 
-					<!-- Armour icon -->
-					<object size="0 48 48 96" type="image" name="armourIcon" sprite="snIconSheetStance" cell_id="3" tooltip_style="snToolTip"/>
+					<!-- Armour icon "0 48 48 96"-->
+					<object size="0 0 48 48" type="image" name="armourIcon" sprite="snIconSheetStance" cell_id="3" tooltip_style="snToolTip"/>
 
 					<!-- Resource carrying icon/counter -->
+					<object size="2 48 50 96" type="image" name="resourceCarryingIcon" style="resourceIcon">
+						<object size="0 75% 100% 100%" type="text" name="resourceCarryingText" style="resourceText"/>
+					</object>
+					
+					<!-- Resource carrying icon/counter
 					<object size="0 96 24 120" type="image" name="resourceCarryingIcon" style="resourceIcon"/>
 					<object size="18 102 56 114" type="text" name="resourceCarryingText" style="resourceText"/>
+					
+					-->
 				</object>
 
 				<!-- Big unit icon -->
