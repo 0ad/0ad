@@ -11,10 +11,13 @@
     <Type>wood.treasure</Type>
   </ResourceSupply>
   <VisualActor>
-    <Actor>props/special/eyecandy/barrel_a.xml</Actor>
+    <Actor>props/special/eyecandy/wood_pile.xml</Actor>
   </VisualActor>
-  <Footprint replace="">
-    <Circle radius="1.0"/>
-    <Height>2.5</Height>
+  <Footprint >
+    <Square width="4.0" depth="7.0"/>
+    <Height>12.0</Height>
   </Footprint>
+  <Obstruction>
+    <Static width="3.5" depth="6.5"/>
+  </Obstruction>
 </Entity>

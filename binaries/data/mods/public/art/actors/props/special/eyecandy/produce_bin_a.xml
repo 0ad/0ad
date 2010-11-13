@@ -1,13 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
+  <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations/>
+    <variant frequency="1" name="Bin a">
       <mesh>props/wrld_producebin_a.pmd</mesh>
-      <props/>
+    </variant>
+    <variant frequency="1" name="Bin b">
+      <mesh>props/wrld_producebin_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Bin c">
+      <mesh>props/wrld_producebin_c.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Bin d">
+      <mesh>props/wrld_producebin_d.pmd</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
       <texture>props/celt_prop_1.dds</texture>
     </variant>
   </group>
-
 </actor>

@@ -11,10 +11,13 @@
     <Type>stone.treasure</Type>
   </ResourceSupply>
   <VisualActor>
-    <Actor>props/special/eyecandy/barrel_a.xml</Actor>
+    <Actor>props/special/eyecandy/stone_pile.xml</Actor>
   </VisualActor>
   <Footprint replace="">
-    <Circle radius="1.0"/>
-    <Height>2.5</Height>
+    <Circle radius="4.0"/>
+    <Height>2.0</Height>
   </Footprint>
+  <Obstruction>
+    <Static width="6.5" depth="6.5"/>
+  </Obstruction>
 </Entity>
