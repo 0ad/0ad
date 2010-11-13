@@ -281,6 +281,8 @@ static SKeycodeMapping keycodeMapping[] =
 	{ MOUSE_MIDDLE, "Middle Mouse Button", "MouseMiddle" },
 	{ MOUSE_WHEELUP, "Mouse Wheel Up", "WheelUp" },
 	{ MOUSE_WHEELDOWN, "Mouse Wheel Down", "WheelDown" },
+	{ MOUSE_X1, "Mouse X1", "MouseX1" },
+	{ MOUSE_X2, "Mouse X2", "MouseX2" },
 	{ UNIFIED_SHIFT, "Shift", "AnyShift" },
 	{ UNIFIED_CTRL, "Ctrl", "AnyCtrl" },
 	{ UNIFIED_ALT, "Alt", "AnyAlt" },
