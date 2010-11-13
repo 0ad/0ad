@@ -61,6 +61,9 @@ ResourceGatherer.prototype.Init = function()
 	// (Note that this component supports carrying multiple types of resources,
 	// each with an independent capacity, but the rest of the game currently
 	// ensures and assumes we'll only be carrying one type at once)
+
+	// The last exact type gathered, so we can render appropriate props
+	this.lastCarriedType = undefined; // { generic, specific }
 };
 
 /**
@@ -92,6 +95,15 @@ ResourceGatherer.prototype.GetMainCarryingType = function()
 		return type;
 
 	return undefined;
+};
+
+/**
+ * Returns the exact resource type we last picked up, in the form
+ * { generic, specific }
+ */
+ResourceGatherer.prototype.GetLastCarriedType = function()
+{
+	return this.lastCarriedType;
 };
 
 ResourceGatherer.prototype.GetGatherRates = function()
@@ -132,6 +144,8 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	var status = cmpResourceSupply.TakeResources(Math.min(rate, maxGathered));
 
 	this.carrying[type.generic] += status.amount;
+
+	this.lastCarriedType = type;
 
 	// Update stats of how much the player collected.
 	// (We have to do it here rather than at the dropsite, because we

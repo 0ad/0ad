@@ -535,7 +535,13 @@ var UnitFsmSpec = {
 				"enter": function () {
 					// Work out what we're carrying, in order to select an appropriate animation
 					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-					var typename = "carry_" + cmpResourceGatherer.GetMainCarryingType();
+					var type = cmpResourceGatherer.GetLastCarriedType();
+					var typename = "carry_" + type.generic;
+
+					// Special case for meat
+					if (type.specific == "meat")
+						typename = "carry_" + type.specific;
+
 					this.SelectAnimation(typename, false, this.GetWalkSpeed());
 				},
 
