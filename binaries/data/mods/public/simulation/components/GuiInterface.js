@@ -187,6 +187,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 
 	if (template.Identity)
 	{
+		ret.selectionGroupName = template.Identity.SelectionGroupName;
 		ret.name = {
 			"specific": (template.Identity.SpecificName || template.Identity.GenericName),
 			"generic": template.Identity.GenericName

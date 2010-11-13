@@ -28,6 +28,11 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
+		"<element name='SelectionGroupName' a:help='Name used to group ranked entities'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
 		"<element name='Tooltip'>" +
 			"<text/>" +
 		"</element>" +

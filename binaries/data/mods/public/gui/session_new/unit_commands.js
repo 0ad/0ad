@@ -165,7 +165,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case SELECTION:
 			var name = getEntityName(template);
 			var tooltip = name;
-			var count = g_Selection.groups.getCount(name);
+			var count = g_Selection.groups.getCount(item);	
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 			break;
 
@@ -186,7 +186,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case GARRISON:
 			var name = getEntityName(template);
 			var tooltip = "Unload " + getEntityName(template);
-			var count = garrisonGroups.getCount(name);
+			var count = garrisonGroups.getCount(item);
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 			break;
 
@@ -345,12 +345,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			var groups = new EntityGroups();
 			groups.add(entState.garrisonHolder.entities);
 			setupUnitPanel("Garrison", usedPanels, entState, groups.getTemplateNames(),
-				function (item)
-				{
-					var template = GetTemplateData(item);
-					var unitName = template.name.specific || template.name.generic || "???";
-					unload(entState.id, groups.getEntsByName(unitName)[0]); 
-				} );
+				function (item) { unload(entState.id, groups.getEntsByName(item)[0]); } );
 		}
 
 		var formations = getEntityFormationsList(entState);

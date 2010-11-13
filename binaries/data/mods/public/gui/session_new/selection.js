@@ -28,26 +28,6 @@ function _playSound(ent)
 //-------------------------------- -------------------------------- -------------------------------- 
 function EntityGroups()
 {
-	this.EntityGroup = function(name, templateName, ent)
-	{
-		this.name = name;
-		this.templateName = templateName;
-		this.ents = {ent : ent}; // the second element is stored as number
-		this.count = 1;
-	};
-
-	this.EntityGroup.prototype.add = function(ent)
-	{
-		this.ents[ent] = ent;
-		this.count++;
-	};
-	
-	this.EntityGroup.prototype.remove= function(ent)
-	{
-		delete this.ents[ent];
-		this.count--;
-	};
-
 	this.groups = {};
 	this.ents = {};
 }
@@ -67,60 +47,78 @@ EntityGroups.prototype.add = function(ents)
 			var entState = GetEntityState(ent);
 			var templateName = entState.template;
 			var template = GetTemplateData(templateName);
-			var name = template.name.specific || template.name.generic || "???";
-
-			if (this.groups[name])
-				this.groups[name].add(ent);
-			else
-				this.groups[name] = new this.EntityGroup(name, templateName, ent);
+			var key = template.selectionGroupName || templateName;
 			
-			this.ents[ent] = name;
+			if (this.groups[key])
+				this.groups[key] += 1;
+			else
+				this.groups[key] = 1;
+
+			this.ents[ent] = key;
 		}
 	}
 };
 
 EntityGroups.prototype.removeEnt = function(ent)
 {
-	var name = this.ents[ent];
+	var templateName = this.ents[ent];
 	
 	// Remove the entity
 	delete this.ents[ent];
-	this.groups[name].remove(ent);
+	this.groups[templateName]--;
 	
 	// Remove the entire group
-	if (this.groups[name].count == 0)
-		delete this.groups[name];
+	if (this.groups[templateName] == 0)
+		delete this.groups[templateName];
 };
 
-EntityGroups.prototype.getCount = function(name)
+EntityGroups.prototype.getCount = function(templateName)
 {
-	return this.groups[name].count;
+	return this.groups[templateName];
 };
 
 EntityGroups.prototype.getTemplateNames = function()
 {
 	var templateNames = [];
-	for each (var group in this.groups)
-		templateNames.push(group.templateName);
+	for (var templateName in this.groups)
+		templateNames.push(templateName);
 	return templateNames;
 };
 
-EntityGroups.prototype.getEntsByName = function(name)
+EntityGroups.prototype.getEntsByName = function(templateName)
 {
+	var entTemplateNames = [];
+	for each (var entTemplateName in this.ents)
+		entTemplateNames.push(entTemplateName);
+	
+	var i = 0;
 	var ents = [];
-	for each (var ent in this.groups[name].ents)
-		ents.push(ent);
+	for (var ent in this.ents)
+	{
+		if (entTemplateNames[i] == templateName)
+			ents.push(parseInt(ent));
+		i++;
+	}
+
 	return ents;
 };
 
 // Gets all ents in every group except ones of the specified group
-EntityGroups.prototype.getEntsByNameInverse = function(name)
+EntityGroups.prototype.getEntsByNameInverse = function(templateName)
 {
+	var entTemplateNames = [];
+	for each (var entTemplateName in this.ents)
+		entTemplateNames.push(entTemplateName);
+	
+	var i = 0;
 	var ents = [];
-	for each (var group in this.groups)
-		if (group.name != name)
-			for each (var ent in group.ents)
-				ents.push(ent);
+	for (var ent in this.ents)
+	{
+		if (entTemplateNames[i] != templateName)
+			ents.push(parseInt(ent));
+		i++;
+	}
+
 	return ents;
 };
 
@@ -146,33 +144,29 @@ function EntitySelection()
 }
 
 // Deselect everything but entities of the chosen type if the modifier is true otherwise deselect just the chosen entity
-EntitySelection.prototype.makePrimarySelection = function(primaryTemplateName, modifierKey)
+EntitySelection.prototype.makePrimarySelection = function(templateName, modifierKey)
 {
 	var selection = this.toList();
 	var ent;
-	
+
 	// Find an ent of a unit of the same type
 	for (var i = 0; i < selection.length; i++)
 	{
 		var entState = GetEntityState(selection[i]);
 		if (!entState)
 			continue;
-		if (entState.template == primaryTemplateName)
+		if (entState.template == templateName)
 			ent = selection[i];
 	}
-	
-	var primaryEntState = GetEntityState(ent);
-	if (!primaryEntState)
-		return;
 
-	var primaryTemplate = GetTemplateData(primaryTemplateName);
-	var primaryName = primaryTemplate.name.specific || primaryTemplate.name.generic || "???";
+	var template = GetTemplateData(templateName);
+	var key = template.selectionGroupName || templateName;
 
 	var ents = [];
 	if (modifierKey)
-		ents = this.groups.getEntsByNameInverse(primaryName);
+		ents = this.groups.getEntsByNameInverse(key);
 	else
-		ents = this.groups.getEntsByName(primaryName);
+		ents = this.groups.getEntsByName(key);
 
 	this.reset();
 	this.addList(ents);
