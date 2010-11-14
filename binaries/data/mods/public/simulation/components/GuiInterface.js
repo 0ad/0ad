@@ -17,15 +17,15 @@ GuiInterface.prototype.Init = function()
 	this.rallyPoints = undefined;
 };
 
+/**
+ * All of the functions defined below are called via Engine.GuiInterfaceCall(name, arg) from GUI scripts, and executed here with arguments (player, arg)
+*/
+
 GuiInterface.prototype.GetSimulationState = function(player)
 {
 	var ret = {
-		"players": [],
-		"timeElapsed": 0	
+		"players": []
 	};
-
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	ret.timeElapsed = cmpTimer.GetTime();
 	
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var n = cmpPlayerMan.GetNumPlayers();
@@ -45,8 +45,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"state": cmpPlayer.GetState(),
 			"team": cmpPlayer.GetTeam(),
 			"diplomacy": cmpPlayer.GetDiplomacy(),
-			"phase": cmpPlayer.GetPhase(),
-			"statistics": cmpPlayerStatisticsTracker.GetStatistics() 
+			"phase": cmpPlayer.GetPhase()
 		};
 		ret.players.push(playerData);
 	}
@@ -55,6 +54,28 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	if (cmpRangeManager)
 	{
 		ret.circularMap = cmpRangeManager.GetLosCircular();
+	}
+	
+	// Add timeElapsed
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	ret.timeElapsed = cmpTimer.GetTime();
+
+	return ret;
+};
+
+GuiInterface.prototype.GetExtendedSimulationState = function(player)
+{
+	// Get basic simulation info
+	var ret = this.GetSimulationState();
+
+	// Add statistics to each player
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var n = cmpPlayerMan.GetNumPlayers();
+	for (var i = 0; i < n; ++i)
+	{
+		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
+		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
+		ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
 	}
 
 	return ret;
@@ -449,6 +470,7 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 var exposedFunctions = {
 	
 	"GetSimulationState": 1,
+	"GetExtendedSimulationState": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
 	"GetNextNotification": 1,

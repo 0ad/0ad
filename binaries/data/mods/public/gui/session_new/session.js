@@ -89,8 +89,8 @@ function init(initData, hotloadData)
 
 function leaveGame()
 {
-	var simState = Engine.GuiInterfaceCall("GetSimulationState");
-	var playerState = simState.players[Engine.GetPlayerID()];
+	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
+	var playerState = extendedSimState.players[Engine.GetPlayerID()];
 
 	var gameResult;
 	if (playerState.state == "won")
@@ -119,8 +119,8 @@ function leaveGame()
 	
 	Engine.SwitchGuiPage("page_summary.xml", 
 							{ "gameResult"  : gameResult, 
-							  "timeElapsed" : simState.timeElapsed, 
-							  "playerStates": simState.players 
+							  "timeElapsed" : extendedSimState.timeElapsed, 
+							  "playerStates": extendedSimState.players 
 						    });
 }
 
