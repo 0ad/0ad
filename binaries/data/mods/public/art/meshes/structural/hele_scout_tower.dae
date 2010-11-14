@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-11-14T19:16:27Z</created>
-    <modified>2010-11-14T19:16:27Z</modified>
+    <created>2010-11-14T19:56:57Z</created>
+    <modified>2010-11-14T19:56:57Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="Mesh_003_Pivot-lib" name="Mesh_003_PivotMesh">
+    <geometry id="scout_tower-lib" name="scout_towerMesh">
       <mesh>
-        <source id="Mesh_003_Pivot-lib-Position">
-          <float_array id="Mesh_003_Pivot-lib-Position-array" count="1164">
+        <source id="scout_tower-lib-Position">
+          <float_array id="scout_tower-lib-Position-array" count="1164">
 -1.903000 6.711600 -1.005440
 -1.903000 -2.105130 -1.005440
 0.316290 -2.105130 -1.005440
@@ -465,15 +465,15 @@
 -2.498130 0.588910 26.725410
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_003_Pivot-lib-Position-array" count="388" stride="3">
+            <accessor source="#scout_tower-lib-Position-array" count="388" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh_003_Pivot-lib-Normal0">
-          <float_array id="Mesh_003_Pivot-lib-Normal0-array" count="5301">
+        <source id="scout_tower-lib-Normal0">
+          <float_array id="scout_tower-lib-Normal0-array" count="5301">
 1.000000 0.000000 0.000000
 1.000000 0.000000 0.000000
 1.000000 0.000000 0.000000
@@ -2243,15 +2243,15 @@
 1.000000 0.000000 0.000000
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_003_Pivot-lib-Normal0-array" count="1767" stride="3">
+            <accessor source="#scout_tower-lib-Normal0-array" count="1767" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh_003_Pivot-lib-UV0">
-          <float_array id="Mesh_003_Pivot-lib-UV0-array" count="3534">
+        <source id="scout_tower-lib-UV0">
+          <float_array id="scout_tower-lib-UV0-array" count="3534">
 0.668080 0.529420
 0.983100 0.526290
 0.823250 0.610160
@@ -4021,19 +4021,19 @@
 0.041250 0.814430
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_003_Pivot-lib-UV0-array" count="1767" stride="2">
+            <accessor source="#scout_tower-lib-UV0-array" count="1767" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Mesh_003_Pivot-lib-Vertex">
-          <input semantic="POSITION" source="#Mesh_003_Pivot-lib-Position"/>
+        <vertices id="scout_tower-lib-Vertex">
+          <input semantic="POSITION" source="#scout_tower-lib-Position"/>
         </vertices>
         <polygons material="_07___Default" count="589">
-          <input semantic="VERTEX" offset="0" source="#Mesh_003_Pivot-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Mesh_003_Pivot-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Mesh_003_Pivot-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#scout_tower-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#scout_tower-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#scout_tower-lib-UV0"/>
           <p>149 0 0 151 1 1 152 2 2</p>
           <p>193 3 3 192 4 4 196 5 5</p>
           <p>194 6 6 197 7 7 195 8 8</p>
@@ -4629,9 +4629,9 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="Mesh_003_Pivot" name="Mesh_003_Pivot">
+      <node id="scout_tower" name="scout_tower">
         <matrix sid="matrix">0.000000 0.490040 -0.000000 -1.128908 0.000000 0.000000 0.490040 1.162935 0.490040 -0.000000 0.000000 3.786384 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#Mesh_003_Pivot-lib">
+        <instance_geometry url="#scout_tower-lib">
           <bind_material>
             <technique_common>
               <instance_material symbol="_07___Default" target="#_07___Default"/>
@@ -4639,7 +4639,7 @@
           </bind_material>
         </instance_geometry>
         <node id="prop-projectile" name="prop-projectile">
-          <matrix sid="matrix">-0.000000 -2.040649 0.000000 -7.726682 2.040649 -0.000000 -0.000000 2.303705 -0.000000 -0.000000 2.040649 32.318855 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">-0.000000 -2.040649 0.000000 -7.726682 2.040649 -0.000000 -0.000000 2.303705 -0.000000 -0.000000 2.040649 34.660175 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>
