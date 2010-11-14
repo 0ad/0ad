@@ -56,7 +56,8 @@ protected:
 	const CCamera* m_Camera;
 	
 	//Whether or not the mouse is currently down
-	bool m_Clicking;	
+	bool m_Clicking;
+	bool m_Hovering;
 
     // minimap texture handles
     GLuint m_TerrainTexture;

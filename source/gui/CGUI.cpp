@@ -116,6 +116,13 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		}
 	}
 
+	// Update m_MousePos (for delayed mouse button events)
+	CPos oldMousePos = m_MousePos;
+	if (ev->ev.type == SDL_MOUSEBUTTONDOWN || ev->ev.type == SDL_MOUSEBUTTONUP)
+	{
+		m_MousePos = CPos((float)ev->ev.button.x, (float)ev->ev.button.y);
+	}
+
 	// Only one object can be hovered
 	IGUIObject *pNearest = NULL;
 
@@ -282,6 +289,12 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		default:
 			break;
 		}
+	}
+
+	// Restore m_MousePos (for delayed mouse button events)
+	if (ev->ev.type == SDL_MOUSEBUTTONDOWN || ev->ev.type == SDL_MOUSEBUTTONUP)
+	{
+		m_MousePos = oldMousePos;
 	}
 
 	// Handle keys for input boxes
