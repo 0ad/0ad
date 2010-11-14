@@ -22,7 +22,7 @@
         <animation file="infantry/sword/attack/isw_s_def_06.psa" name="gather_meat" speed="350"/>
         <animation file="infantry/general/mine.psa" name="gather_rock" speed="200"/>
         <animation file="infantry/general/mine.psa" name="gather_ore" speed="200"/>
-		<animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
+        <animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -101,7 +101,7 @@
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop attachpoint="shield"/>
         <prop attachpoint="r_hand"/>
@@ -115,7 +115,6 @@
         <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
       </props>
     </variant>
-
     <variant name="carry_food">
       <props>
         <prop attachpoint="shield"/>
@@ -128,10 +127,8 @@
     <variant name="carry_meat">
       <props>
         <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
         <prop attachpoint="l_hand"/>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-        <prop actor="fauna/pig1.xml" attachpoint="head"/>
       </props>
     </variant>
     <variant name="carry_wood">
