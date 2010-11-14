@@ -43,6 +43,9 @@
       units/{civ}_ship_merchant
     </Entities>
   </TrainingQueue>
+  <ResourceDropsite>
+    <Types>food wood stone metal</Types>
+  </ResourceDropsite>
   <Vision>
     <Range>60</Range>
   </Vision>
