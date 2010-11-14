@@ -118,10 +118,8 @@
     <variant name="carry_food">
       <props>
         <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/shuttle_basket.xml" attachpoint="r_hand"/>
         <prop attachpoint="l_hand"/>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="head"/>
       </props>
     </variant>
     <variant name="carry_meat">

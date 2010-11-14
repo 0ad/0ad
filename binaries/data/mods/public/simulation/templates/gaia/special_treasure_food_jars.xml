@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_treasure">
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Treasure</GenericName>
+    <SpecificName>Food Treasure</SpecificName>
+    <Icon>gaia/special_treasure.png</Icon>
+  </Identity>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>food.treasure</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>props/special/eyecandy/amphorae.xml</Actor>
+  </VisualActor>
+  <Footprint replace="">
+    <Circle radius="4.0"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="6.5" depth="6.5"/>
+  </Obstruction>
+</Entity>
