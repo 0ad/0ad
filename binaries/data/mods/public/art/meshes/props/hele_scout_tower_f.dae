@@ -6,27 +6,27 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-09-01T16:09:16Z</created>
-    <modified>2010-09-01T16:09:16Z</modified>
+    <created>2010-11-14T19:24:01Z</created>
+    <modified>2010-11-14T19:24:01Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__2-image" name="Map__2">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct.dds</init_from>
+    <image id="Map__314-image" name="Map__314">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct.png</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="_08___Default" name="_08___Default">
-      <instance_effect url="#_08___Default-fx"/>
+    <material id="_14___Default" name="_14___Default">
+      <instance_effect url="#_14___Default-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="_08___Default-fx" name="_08___Default">
+    <effect id="_14___Default-fx" name="_14___Default">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -34,10 +34,10 @@
               <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+              <color sid="ambient">0.588200  0.588200 0.588200 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__2-image" texcoord="CHANNEL0">
+              <texture texture="Map__314-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -51,7 +51,7 @@
               <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
             </specular>
             <shininess>
-              <float sid="shininess">2.000000</float>
+              <float sid="shininess">32.000000</float>
             </shininess>
             <reflective>
               <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="Mesh_002-lib" name="Mesh_002Mesh">
+    <geometry id="Mesh_002_Pivot-lib" name="Mesh_002_PivotMesh">
       <mesh>
-        <source id="Mesh_002-lib-Position">
-          <float_array id="Mesh_002-lib-Position-array" count="72">
+        <source id="Mesh_002_Pivot-lib-Position">
+          <float_array id="Mesh_002_Pivot-lib-Position-array" count="72">
 -1.374970 0.193690 35.454762
 -1.374960 4.412780 35.454762
 -14.018290 4.412780 35.454762
@@ -101,15 +101,15 @@
 -13.194540 -3.200730 34.143009
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_002-lib-Position-array" count="24" stride="3">
+            <accessor source="#Mesh_002_Pivot-lib-Position-array" count="24" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh_002-lib-Normal0">
-          <float_array id="Mesh_002-lib-Normal0-array" count="288">
+        <source id="Mesh_002_Pivot-lib-Normal0">
+          <float_array id="Mesh_002_Pivot-lib-Normal0-array" count="288">
 0.000000 1.000000 0.000000
 0.000000 1.000000 0.000000
 0.000000 1.000000 0.000000
@@ -119,9 +119,9 @@
 0.000000 -1.000000 0.000000
 0.000000 -1.000000 0.000000
 0.000000 -1.000000 0.000000
-0.000000 -1.000000 -0.000000
-0.000000 -1.000000 -0.000000
-0.000000 -1.000000 -0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
 0.000000 0.000000 -1.000000
 0.000000 0.000000 -1.000000
 0.000000 0.000000 -1.000000
@@ -208,15 +208,15 @@
 0.000000 0.000000 -1.000000
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_002-lib-Normal0-array" count="96" stride="3">
+            <accessor source="#Mesh_002_Pivot-lib-Normal0-array" count="96" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh_002-lib-UV0">
-          <float_array id="Mesh_002-lib-UV0-array" count="192">
+        <source id="Mesh_002_Pivot-lib-UV0">
+          <float_array id="Mesh_002_Pivot-lib-UV0-array" count="192">
 1.000340 0.660530
 1.000340 0.734100
 0.498000 0.660530
@@ -315,19 +315,19 @@
 0.786670 0.997420
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_002-lib-UV0-array" count="96" stride="2">
+            <accessor source="#Mesh_002_Pivot-lib-UV0-array" count="96" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Mesh_002-lib-Vertex">
-          <input semantic="POSITION" source="#Mesh_002-lib-Position"/>
+        <vertices id="Mesh_002_Pivot-lib-Vertex">
+          <input semantic="POSITION" source="#Mesh_002_Pivot-lib-Position"/>
         </vertices>
-        <polygons material="_08___Default" count="32">
-          <input semantic="VERTEX" offset="0" source="#Mesh_002-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Mesh_002-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Mesh_002-lib-UV0"/>
+        <polygons material="_14___Default" count="32">
+          <input semantic="VERTEX" offset="0" source="#Mesh_002_Pivot-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Mesh_002_Pivot-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Mesh_002_Pivot-lib-UV0"/>
           <p>16 0 0 14 1 1 17 2 2</p>
           <p>14 3 3 13 4 4 17 5 5</p>
           <p>19 6 6 18 7 7 15 8 8</p>
@@ -367,16 +367,13 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Mesh_002" name="Mesh_002">
-        <rotate sid="rotateZ">0 0 1 -90.000003</rotate>
-        <scale sid="scale">0.490040 0.490040 0.490040</scale>
-        <node id="Mesh_002-Pivot" name="Mesh_002-Pivot">
-          <translate>7.700711 -2.304494 2.373482</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#Mesh_002-lib">
+        <matrix sid="matrix">0.000000 0.490040 -0.000000 70.275314 0.000000 0.000000 0.490040 0.000000 0.490040 -0.000000 0.000000 -19.800491 0.000000 0.000000 0.000000 1.000000</matrix>
+        <node id="Mesh_002_Pivot" name="Mesh_002_Pivot">
+          <matrix sid="matrix">1.000000 -0.000000 0.000000 48.132576 0.000000 1.000000 -0.000000 -145.711044 0.000000 0.000000 1.000000 2.373143 0.000000 0.000000 0.000000 1.000000</matrix>
+          <instance_geometry url="#Mesh_002_Pivot-lib">
             <bind_material>
               <technique_common>
-                <instance_material symbol="Map__2-Material" target="#Map__2-Material"/>
-                <instance_material symbol="_08___Default" target="#_08___Default"/>
+                <instance_material symbol="_14___Default" target="#_14___Default"/>
               </technique_common>
             </bind_material>
           </instance_geometry>
