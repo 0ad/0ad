@@ -22,9 +22,12 @@
   <ResourceGatherer>
     <MaxDistance>4.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
-    <Rates>
-      <metal.treasure>10</metal.treasure>
-    </Rates>
+    <Capacities>
+      <food>50</food>
+      <wood>50</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Capacities>
   </ResourceGatherer>
   <Decay>
     <Inactive/>

@@ -22,12 +22,7 @@
     <Pierce>15.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
-  <ResourceGatherer>
-    <MaxDistance>8.0</MaxDistance>
-    <Rates>
-      <metal.treasure>20</metal.treasure>
-    </Rates>
-  </ResourceGatherer>
+  <ResourceGatherer disable=""/>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>

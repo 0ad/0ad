@@ -2,42 +2,41 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>default</SkySet>
+		<SkySet>stormy</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
 		<SunElevation angle="0.785398"/>
-		<SunRotation angle="5.49779"/>
+		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.3" g="0.35" b="0.7"/>
-				<Height>5</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>15.6328</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
-				<Tint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="438.262" y="118.383" z="324.983"/>
+		<Position x="504.028" y="102.574" z="263.058"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Resource demo",
-  "Description": "Demo map for resource gathering.",
-  "GameType": "endless",
-  "PlayerData": [
-    {
-      "Civ": "celt"
+  "Name":"Resource demo",
+  "Description":"Demo map for resource gathering.",
+  "GameType":"endless",
+  "PlayerData":[{
+      "Civ":"celt"
     }
   ],
-  "CircularMap": true
+  "CircularMap":true
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -1222,6 +1221,192 @@
 			<Player>0</Player>
 			<Position x="496.67872" z="440.76276"/>
 			<Orientation y="-0.39296"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>structures/celt_dock</Template>
+			<Player>1</Player>
+			<Position x="380.79563" z="399.65894"/>
+			<Orientation y="-1.86342"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="293.04175" z="365.45197"/>
+			<Orientation y="3.08222"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="313.75058" z="337.25037"/>
+			<Orientation y="0.67408"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="302.18683" z="391.56601"/>
+			<Orientation y="-2.99761"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="322.35611" z="352.76813"/>
+			<Orientation y="0.1956"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="329.07898" z="411.97001"/>
+			<Orientation y="-2.83227"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>gaia/fauna_fish</Template>
+			<Player>0</Player>
+			<Position x="348.67396" z="342.88266"/>
+			<Orientation y="0.3908"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="278.80326" z="355.64194"/>
+			<Orientation y="-1.20253"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="340.56006" z="428.14521"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="291.28437" z="342.84168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="279.1998" z="365.61731"/>
+			<Orientation y="3.01034"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="284.17817" z="361.1244"/>
+			<Orientation y="-0.07573"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="370.54828" z="357.17283"/>
+			<Orientation y="-2.30025"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="373.96641" z="347.97291"/>
+			<Orientation y="0.61535"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="380.41205" z="356.53064"/>
+			<Orientation y="-2.67183"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="375.22703" z="354.47312"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="418.80045" z="356.14652"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="426.92161" z="364.43891"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="434.3618" z="372.69318"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="440.8573" z="380.37897"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="447.92893" z="388.74646"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="438.26758" z="397.15717"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="430.18076" z="387.24555"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="423.67096" z="379.6117"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="418.03595" z="373.40491"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="410.12363" z="366.12061"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="427.491" z="346.49616"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="434.94605" z="355.5495"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="441.66401" z="362.49015"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="448.75321" z="370.48206"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="455.80808" z="377.38147"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
