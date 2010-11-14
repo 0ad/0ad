@@ -132,9 +132,8 @@
     <variant name="carry_wood">
       <props>
         <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
-        <prop actor="props/flora/bush_tropic_a.xml" attachpoint="head"/>
+        <prop actor="props/units/shuttle_wood.xml" attachpoint="r_hand"/>
+        <prop actor="" attachpoint="l_hand"/>
       </props>
     </variant>
     <variant name="carry_stone">
