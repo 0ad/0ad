@@ -6,15 +6,15 @@
 	<script file="gui/common/functions_utility.js" />
 	<script file="gui/common/functions_global_object.js" />
 	<script file="gui/common/timer.js"/>
-	<script file="gui/session_new/session.js"/>
-	<script file="gui/session_new/selection.js"/>
-	<script file="gui/session_new/input.js"/>
-	<script file="gui/session_new/music.js"/>
-	<script file="gui/session_new/menu.js"/>
-	<script file="gui/session_new/selection_details.js"/>
-	<script file="gui/session_new/unit_commands.js"/>
-	<script file="gui/session_new/messages.js"/>
-	<script file="gui/session_new/utility_functions.js"/>
+	<script file="gui/session/session.js"/>
+	<script file="gui/session/selection.js"/>
+	<script file="gui/session/input.js"/>
+	<script file="gui/session/music.js"/>
+	<script file="gui/session/menu.js"/>
+	<script file="gui/session/selection_details.js"/>
+	<script file="gui/session/unit_commands.js"/>
+	<script file="gui/session/messages.js"/>
+	<script file="gui/session/utility_functions.js"/>
 
 	<object name="sn" hotkey="session.gui.toggle">
 		<action on="Tick">

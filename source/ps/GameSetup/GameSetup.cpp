@@ -928,7 +928,7 @@ static bool Autostart(const CmdLineArgs& args)
 		PSRETURN ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 
-		InitPs(true, L"page_session_new.xml", JSVAL_VOID);
+		InitPs(true, L"page_session.xml", JSVAL_VOID);
 	}
 
 	return true;
