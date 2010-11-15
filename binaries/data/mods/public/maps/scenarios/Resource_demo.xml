@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="504.028" y="102.574" z="263.058"/>
+		<Position x="497.458" y="90.2081" z="261.581"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -1406,6 +1406,66 @@
 			<Template>structures/celt_house</Template>
 			<Player>1</Player>
 			<Position x="455.80808" z="377.38147"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>units/celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="469.44004" z="381.78501"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>units/celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="471.3573" z="384.07813"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="242">
+			<Template>units/celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="473.25647" z="386.04105"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>units/celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="475.13501" z="388.05301"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="244">
+			<Template>units/celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="476.92307" z="390.11591"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="245">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="473.67841" z="376.098"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="246">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="475.62342" z="377.51038"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="247">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="477.17115" z="379.31345"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="248">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="479.15348" z="382.79596"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="249">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="481.13263" z="384.72709"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

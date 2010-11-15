@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -23,7 +21,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="clothing-01">
       <texture>skeletal/celt_isw_b_01.dds</texture>
@@ -38,7 +35,16 @@
       <texture>skeletal/celt_isw_b_04.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
-
 </actor>
