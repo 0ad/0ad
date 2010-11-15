@@ -470,15 +470,9 @@
 					<object size="0 0 48 48" type="image" name="armourIcon" sprite="snIconSheetStance" cell_id="3" tooltip_style="snToolTip"/>
 
 					<!-- Resource carrying icon/counter -->
-					<object size="2 48 50 96" type="image" name="resourceCarryingIcon" style="resourceIcon">
-						<object size="0 75% 100% 100%" type="text" name="resourceCarryingText" style="resourceText"/>
-					</object>
-					
-					<!-- Resource carrying icon/counter
-					<object size="0 96 24 120" type="image" name="resourceCarryingIcon" style="resourceIcon"/>
-					<object size="18 102 56 114" type="text" name="resourceCarryingText" style="resourceText"/>
-					
-					-->
+					<object size="0 40 48 88" type="image" name="resourceCarryingIcon" style="resourceIcon"/>
+					<object size="0 80 48 100" type="text" name="resourceCarryingText" style="statsText"/>
+
 				</object>
 
 				<!-- Big unit icon -->

@@ -133,8 +133,9 @@ function displaySingle(entState, template)
 	getGUIObjectByName("specific").tooltip = genericName;
 	getGUIObjectByName("player").tooltip = civName;
 	getGUIObjectByName("health").tooltip = hitpoints;
-	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
-	getGUIObjectByName("armourIcon").tooltip = damageTypesToText(entState.armour);
+//	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
+	getGUIObjectByName("armourIcon").tooltip = "[font=\"serif-bold-16\"]Attack: [/font]" + damageTypesToText(entState.attack) + 
+																		"\n[font=\"serif-bold-16\"]Armor: [/font]" + damageTypesToText(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";
