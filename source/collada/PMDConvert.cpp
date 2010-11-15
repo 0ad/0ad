@@ -73,7 +73,7 @@ static FMVector3 FMVector3_Normalize(const FMVector3& vec)
 
 static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, FCDSceneNode* node)
 {
-	if (node->GetName().find("prop-") == 0)
+	if (node->GetName().find("prop-") == 0 || node->GetName().find("prop_") == 0)
 	{
 		// Strip off the "prop-" from the name
 		std::string propPointName (node->GetName().substr(5));
@@ -297,7 +297,7 @@ public:
 
 			// Construct the list of prop points.
 			// Currently takes all objects that are directly attached to a
-			// standard bone, and whose name begins with "prop-".
+			// standard bone, and whose name begins with "prop-" or "prop_".
 
 			std::vector<PropPoint> propPoints;
 			AddDefaultPropPoints(propPoints);
@@ -317,7 +317,7 @@ public:
 				for (size_t j = 0; j < joint->GetChildrenCount(); ++j)
 				{
 					FCDSceneNode* child = joint->GetChild(j);
-					if (child->GetName().find("prop-") != 0)
+					if (child->GetName().find("prop-") != 0 && child->GetName().find("prop_") != 0)
 					{
 						// doesn't begin with "prop-", so skip it
 						continue;
