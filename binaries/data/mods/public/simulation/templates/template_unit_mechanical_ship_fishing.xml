@@ -9,6 +9,10 @@
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
       <food.fish>2</food.fish>
+      <food.treasure disable=""/>
+      <wood.treasure disable=""/>
+      <stone.treasure disable=""/>
+      <metal.treasure disable=""/>
     </Rates>
   </ResourceGatherer>
   <UnitMotion>
