@@ -83,6 +83,14 @@
         <prop attachpoint="helmet"/>
       </props>
     </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+      </props>
+    </variant>
     <variant name="gather_rock">
       <props>
         <prop attachpoint="shield"/>
