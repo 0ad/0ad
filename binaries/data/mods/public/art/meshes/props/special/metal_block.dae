@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-11-15T00:05:06Z</created>
+    <modified>2010-11-15T00:05:06Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__325-image" name="Map__325">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\foundation.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_21___Default" name="_21___Default">
+      <instance_effect url="#_21___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_21___Default-fx" name="_21___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__325-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="carry_metal-lib" name="carry_metalMesh">
+      <mesh>
+        <source id="carry_metal-lib-Position">
+          <float_array id="carry_metal-lib-Position-array" count="24">
+-0.253113 -0.156742 0.638797
+-0.057159 -0.576984 0.648792
+0.912964 -0.124615 0.648794
+0.716995 0.295635 0.638797
+-0.557747 -0.186535 0.000000
+-0.257248 -0.830982 0.000000
+1.236099 -0.134628 0.000000
+0.935585 0.509823 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#carry_metal-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="carry_metal-lib-Normal0">
+          <float_array id="carry_metal-lib-Normal0-array" count="90">
+-0.009109 0.019531 0.999768
+-0.009109 0.019531 0.999768
+-0.009109 0.019531 0.999768
+-0.009109 0.019535 0.999768
+-0.009109 0.019535 0.999768
+-0.009109 0.019535 0.999768
+-0.828043 -0.386108 0.406529
+-0.828043 -0.386108 0.406528
+-0.828043 -0.386108 0.406529
+-0.829140 -0.376795 0.412980
+-0.829140 -0.376795 0.412980
+-0.829140 -0.376795 0.412980
+0.412354 -0.884303 0.219024
+0.412354 -0.884303 0.219024
+0.412354 -0.884303 0.219024
+0.412351 -0.884303 0.219029
+0.412351 -0.884303 0.219029
+0.412351 -0.884303 0.219029
+0.825913 0.385132 0.411753
+0.825913 0.385132 0.411753
+0.825913 0.385132 0.411753
+0.825000 0.394339 0.404810
+0.825000 0.394339 0.404810
+0.825000 0.394339 0.404810
+-0.417360 0.895025 0.157291
+-0.417360 0.895025 0.157291
+-0.417360 0.895025 0.157291
+-0.417365 0.895025 0.157282
+-0.417365 0.895025 0.157282
+-0.417365 0.895025 0.157282
+</float_array>
+          <technique_common>
+            <accessor source="#carry_metal-lib-Normal0-array" count="30" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="carry_metal-lib-UV0">
+          <float_array id="carry_metal-lib-UV0-array" count="24">
+0.092368 0.402263
+0.420932 0.402263
+0.420932 0.990647
+0.092368 0.990647
+0.530078 0.428451
+0.989581 0.428451
+0.909003 0.823232
+0.604900 0.823232
+0.079274 0.013187
+0.901665 0.013187
+0.772597 0.392069
+0.249494 0.392069
+</float_array>
+          <technique_common>
+            <accessor source="#carry_metal-lib-UV0-array" count="12" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="carry_metal-lib-Vertex">
+          <input semantic="POSITION" source="#carry_metal-lib-Position"/>
+        </vertices>
+        <polygons material="_21___Default" count="10">
+          <input semantic="VERTEX" offset="0" source="#carry_metal-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#carry_metal-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#carry_metal-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+          <p>4 6 4 5 7 5 1 8 6</p>
+          <p>1 9 6 0 10 7 4 11 4</p>
+          <p>5 12 8 6 13 9 2 14 10</p>
+          <p>2 15 10 1 16 11 5 17 8</p>
+          <p>6 18 4 7 19 5 3 20 6</p>
+          <p>3 21 6 2 22 7 6 23 4</p>
+          <p>7 24 8 4 25 9 0 26 10</p>
+          <p>0 27 10 3 28 11 7 29 8</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="carry_metal" name="carry_metal">
+        <matrix sid="matrix">0.880744 0.410698 -0.000000 0.449269 0.071317 -0.152939 0.957030 0.063920 0.404458 -0.867364 -0.168750 -0.077243 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#carry_metal-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_21___Default" target="#_21___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

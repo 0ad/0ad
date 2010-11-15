@@ -139,17 +139,15 @@
     <variant name="carry_stone">
       <props>
         <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop actor="geology/gray1.xml" attachpoint="head"/>
+        <prop actor="props/units/shuttle_stone.xml" attachpoint="r_hand"/>
+        <prop actor="" attachpoint="l_hand"/>
       </props>
     </variant>
     <variant name="carry_metal">
       <props>
         <prop attachpoint="shield"/>
-        <prop attachpoint="r_hand"/>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop actor="geology/gray1.xml" attachpoint="head"/>
+        <prop actor="props/units/shuttle_metal.xml" attachpoint="r_hand"/>
+        <prop actor="" attachpoint="l_hand"/>
       </props>
     </variant>
   </group>
