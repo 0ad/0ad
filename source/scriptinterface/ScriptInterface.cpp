@@ -777,6 +777,10 @@ void ScriptInterface::DumpHeap()
 	fprintf(stderr, "# Bytes allocated after GC: %d\n", JS_GetGCParameter(m->m_rt, JSGC_BYTES));
 }
 
+void ScriptInterface::MaybeGC()
+{
+	JS_MaybeGC(m->m_cx);
+}
 
 class ValueCloner
 {

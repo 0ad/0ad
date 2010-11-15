@@ -214,6 +214,12 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 //	if (m_TurnNumber == 0)
 //		m_ComponentManager.GetScriptInterface().DumpHeap();
 
+	// Run the GC occasionally
+	// (TODO: we ought to schedule this for a frame where we're not
+	// running the sim update, to spread the load)
+	if (m_TurnNumber % 10 == 0)
+		m_ComponentManager.GetScriptInterface().MaybeGC();
+
 	if (m_EnableOOSLog)
 		DumpState();
 

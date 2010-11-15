@@ -253,6 +253,8 @@ public:
 	};
 #define LOCAL_ROOT_SCOPE LocalRootScope scope(GetContext()); if (! scope.OK()) return false
 
+	void MaybeGC();
+
 private:
 	bool CallFunction_(jsval val, const char* name, size_t argc, jsval* argv, jsval& ret);
 	bool Eval_(const char* code, jsval& ret);
