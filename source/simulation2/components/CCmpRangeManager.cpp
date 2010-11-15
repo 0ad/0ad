@@ -876,25 +876,46 @@ private:
 
 	/**
 	 * Update the LOS state of tiles within a given horizontal strip (i0,j) to (i1,j) (inclusive).
-	 * amount is +1 or -1.
 	 */
-	inline void LosUpdateStripHelper(u8 owner, ssize_t i0, ssize_t i1, ssize_t j, int amount, std::vector<u16>& counts)
+	inline void LosAddStripHelper(u8 owner, i32 i0, i32 i1, i32 j, u16* counts)
 	{
-		for (ssize_t i = i0; i <= i1; ++i)
-		{
-			ssize_t idx = j*m_TerrainVerticesPerSide + i;
+		if (i1 < i0)
+			return;
 
+		i32 idx0 = j*m_TerrainVerticesPerSide + i0;
+		i32 idx1 = j*m_TerrainVerticesPerSide + i1;
+
+		for (i32 idx = idx0; idx <= idx1; ++idx)
+		{
 			// Increasing from zero to non-zero - move from unexplored/explored to visible+explored
-			if (counts[idx] == 0 && amount > 0)
+			if (counts[idx] == 0)
 			{
+				i32 i = i0 + idx - idx0;
 				if (!LosIsOffWorld(i, j))
 					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
 			}
 
-			counts[idx] += amount;
+			counts[idx] += 1;
+		}
+	}
+
+	/**
+	 * Update the LOS state of tiles within a given horizontal strip (i0,j) to (i1,j) (inclusive).
+	 */
+	inline void LosRemoveStripHelper(u8 owner, i32 i0, i32 i1, i32 j, u16* counts)
+	{
+		if (i1 < i0)
+			return;
+
+		i32 idx0 = j*m_TerrainVerticesPerSide + i0;
+		i32 idx1 = j*m_TerrainVerticesPerSide + i1;
+
+		for (i32 idx = idx0; idx <= idx1; ++idx)
+		{
+			counts[idx] -= 1;
 
 			// Decreasing from non-zero to zero - move from visible+explored to explored
-			if (counts[idx] == 0 && amount < 0)
+			if (counts[idx] == 0)
 			{
 				// (If LosIsOffWorld then this is a no-op, so don't bother doing the check)
 				m_LosState[idx] &= ~(LOS_VISIBLE << (2*(owner-1)));
@@ -903,10 +924,12 @@ private:
 	}
 
 	/**
-	 * Update the LOS state of tiles within a given circular range.
+	 * Update the LOS state of tiles within a given circular range,
+	 * either adding or removing visibility depending on the template parameter.
 	 * Assumes owner is in the valid range.
 	 */
-	inline void LosUpdateHelper(u8 owner, entity_pos_t visionRange, CFixedVector2D pos, int amount)
+	template<bool adding>
+	void LosUpdateHelper(u8 owner, entity_pos_t visionRange, CFixedVector2D pos)
 	{
 		if (m_TerrainVerticesPerSide == 0) // do nothing if not initialised yet
 			return;
@@ -923,6 +946,10 @@ private:
 		// Rather than quantise pos to vertexes, we do more precise sub-tile computations
 		// to get smoother behaviour as a unit moves rather than jumping a whole tile
 		// at once.
+		// To avoid the cost of sqrt when computing the outline of the circle,
+		// we loop from the bottom to the top and estimate the width of the current
+		// strip based on the previous strip, then adjust each end of the strip
+		// inwards or outwards until it's the widest that still falls within the circle.
 
 		// Compute top/bottom coordinates, and clamp to exclude the 1-tile border around the map
 		// (so that we never render the sharp edge of the map)
@@ -931,21 +958,153 @@ private:
 		i32 j0clamp = std::max(j0, 1);
 		i32 j1clamp = std::min(j1, m_TerrainVerticesPerSide-2);
 
-		entity_pos_t xscale = pos.X / (int)CELL_SIZE;
-		entity_pos_t yscale = pos.Y / (int)CELL_SIZE;
-		entity_pos_t rsquared = (visionRange / (int)CELL_SIZE).Square();
+		// Translate world coordinates into fractional tile-space coordinates
+		entity_pos_t x = pos.X / (int)CELL_SIZE;
+		entity_pos_t y = pos.Y / (int)CELL_SIZE;
+		entity_pos_t r = visionRange / (int)CELL_SIZE;
+		entity_pos_t r2 = r.Square();
+
+		// Compute the integers on either side of x
+		i32 xfloor = x.ToInt_RoundToNegInfinity();
+		i32 xceil = x.ToInt_RoundToInfinity();
+
+		// Initialise the strip (i0, i1) to a rough guess
+		i32 i0 = xfloor;
+		i32 i1 = xceil;
 
 		for (i32 j = j0clamp; j <= j1clamp; ++j)
 		{
-			// Compute values such that (i - x)^2 + (j - y)^2 <= r^2
-			// (TODO: is this sqrt slow? can we optimise it?)
-			entity_pos_t di = (rsquared - (entity_pos_t::FromInt(j) - yscale).Square()).Sqrt();
-			i32 i0 = (xscale - di).ToInt_RoundToInfinity();
-			i32 i1 = (xscale + di).ToInt_RoundToNegInfinity();
+			// Adjust i0 and i1 to be the outermost values that don't exceed
+			// the circle's radius (i.e. require dy^2 + dx^2 <= r^2).
+			// When moving the points inwards, clamp them to xceil+1 or xfloor-1
+			// so they don't accidentally shoot off in the wrong direction forever.
 
+			entity_pos_t dy = entity_pos_t::FromInt(j) - y;
+			entity_pos_t dy2 = dy.Square();
+			while (dy2 + (entity_pos_t::FromInt(i0-1) - x).Square() <= r2)
+				--i0;
+			while (i0 <= xceil && dy2 + (entity_pos_t::FromInt(i0) - x).Square() > r2)
+				++i0;
+			while (dy2 + (entity_pos_t::FromInt(i1+1) - x).Square() <= r2)
+				++i1;
+			while (i1 >= xfloor && dy2 + (entity_pos_t::FromInt(i1) - x).Square() > r2)
+				--i1;
+
+			// Clamp the strip to exclude the 1-tile border,
+			// then add or remove the strip as requested
 			i32 i0clamp = std::max(i0, 1);
 			i32 i1clamp = std::min(i1, m_TerrainVerticesPerSide-2);
-			LosUpdateStripHelper(owner, i0clamp, i1clamp, j, amount, counts);
+			if (adding)
+				LosAddStripHelper(owner, i0clamp, i1clamp, j, counts.data());
+			else
+				LosRemoveStripHelper(owner, i0clamp, i1clamp, j, counts.data());
+		}
+	}
+
+	/**
+	 * Update the LOS state of tiles within a given circular range,
+	 * by removing visibility around the 'from' position
+	 * and then adding visibility around the 'to' position.
+	 */
+	void LosUpdateHelperIncremental(u8 owner, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
+	{
+		if (m_TerrainVerticesPerSide == 0) // do nothing if not initialised yet
+			return;
+
+		PROFILE("LosUpdateHelperIncremental");
+
+		std::vector<u16>& counts = m_LosPlayerCounts.at(owner);
+
+		// Lazy initialisation of counts:
+		if (counts.empty())
+			counts.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+
+		// See comments in LosUpdateHelper.
+		// This does exactly the same, except computing the strips for
+		// both circles simultaneously.
+		// (The idea is that the circles will be heavily overlapping,
+		// so we can compute the difference between the removed/added strips
+		// and only have to touch tiles that have a net change.)
+
+		i32 j0_from = ((from.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
+		i32 j1_from = ((from.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0_to = ((to.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
+		i32 j1_to = ((to.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0clamp = std::max(std::min(j0_from, j0_to), 1);
+		i32 j1clamp = std::min(std::max(j1_from, j1_to), m_TerrainVerticesPerSide-2);
+
+		entity_pos_t x_from = from.X / (int)CELL_SIZE;
+		entity_pos_t y_from = from.Y / (int)CELL_SIZE;
+		entity_pos_t x_to = to.X / (int)CELL_SIZE;
+		entity_pos_t y_to = to.Y / (int)CELL_SIZE;
+		entity_pos_t r = visionRange / (int)CELL_SIZE;
+		entity_pos_t r2 = r.Square();
+
+		i32 xfloor_from = x_from.ToInt_RoundToNegInfinity();
+		i32 xceil_from = x_from.ToInt_RoundToInfinity();
+		i32 xfloor_to = x_to.ToInt_RoundToNegInfinity();
+		i32 xceil_to = x_to.ToInt_RoundToInfinity();
+
+		i32 i0_from = xfloor_from;
+		i32 i1_from = xceil_from;
+		i32 i0_to = xfloor_to;
+		i32 i1_to = xceil_to;
+
+		for (i32 j = j0clamp; j <= j1clamp; ++j)
+		{
+			entity_pos_t dy_from = entity_pos_t::FromInt(j) - y_from;
+			entity_pos_t dy2_from = dy_from.Square();
+			while (dy2_from + (entity_pos_t::FromInt(i0_from-1) - x_from).Square() <= r2)
+				--i0_from;
+			while (i0_from <= xceil_from && dy2_from + (entity_pos_t::FromInt(i0_from) - x_from).Square() > r2)
+				++i0_from;
+			while (dy2_from + (entity_pos_t::FromInt(i1_from+1) - x_from).Square() <= r2)
+				++i1_from;
+			while (i1_from >= xfloor_from && dy2_from + (entity_pos_t::FromInt(i1_from) - x_from).Square() > r2)
+				--i1_from;
+
+			entity_pos_t dy_to = entity_pos_t::FromInt(j) - y_to;
+			entity_pos_t dy2_to = dy_to.Square();
+			while (dy2_to + (entity_pos_t::FromInt(i0_to-1) - x_to).Square() <= r2)
+				--i0_to;
+			while (i0_to <= xceil_to && dy2_to + (entity_pos_t::FromInt(i0_to) - x_to).Square() > r2)
+				++i0_to;
+			while (dy2_to + (entity_pos_t::FromInt(i1_to+1) - x_to).Square() <= r2)
+				++i1_to;
+			while (i1_to >= xfloor_to && dy2_to + (entity_pos_t::FromInt(i1_to) - x_to).Square() > r2)
+				--i1_to;
+
+			// Check whether this strip moved at all
+			if (!(i0_to == i0_from && i1_to == i1_from))
+			{
+				i32 i0clamp_from = std::max(i0_from, 1);
+				i32 i1clamp_from = std::min(i1_from, m_TerrainVerticesPerSide-2);
+				i32 i0clamp_to = std::max(i0_to, 1);
+				i32 i1clamp_to = std::min(i1_to, m_TerrainVerticesPerSide-2);
+
+				// Check whether one strip is negative width,
+				// and we can just add/remove the entire other strip
+				if (i1clamp_from < i0clamp_from)
+				{
+					LosAddStripHelper(owner, i0clamp_to, i1clamp_to, j, counts.data());
+				}
+				else if (i1clamp_to < i0clamp_to)
+				{
+					LosRemoveStripHelper(owner, i0clamp_from, i1clamp_from, j, counts.data());
+				}
+				else
+				{
+					// There are four possible regions of overlap between the two strips
+					// (remove before add, remove after add, add before remove, add after remove).
+					// Process each of the regions as its own strip.
+					// (If this produces negative-width strips then they'll just get ignored
+					// which is fine.)
+					LosRemoveStripHelper(owner, i0clamp_from, i0clamp_to-1, j, counts.data());
+					LosRemoveStripHelper(owner, i1clamp_to+1, i1clamp_from, j, counts.data());
+					LosAddStripHelper(owner, i0clamp_to, i0clamp_from-1, j, counts.data());
+					LosAddStripHelper(owner, i1clamp_from+1, i1clamp_to, j, counts.data());
+				}
+			}
 		}
 	}
 
@@ -954,7 +1113,7 @@ private:
 		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
 			return;
 
-		LosUpdateHelper(owner, visionRange, pos, 1);
+		LosUpdateHelper<true>(owner, visionRange, pos);
 	}
 
 	void LosRemove(i8 owner, entity_pos_t visionRange, CFixedVector2D pos)
@@ -962,7 +1121,7 @@ private:
 		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
 			return;
 
-		LosUpdateHelper(owner, visionRange, pos, -1);
+		LosUpdateHelper<false>(owner, visionRange, pos);
 	}
 
 	void LosMove(i8 owner, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
@@ -970,9 +1129,19 @@ private:
 		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
 			return;
 
-		// TODO: we could optimise this by only modifying tiles that changed
-		LosRemove(owner, visionRange, from);
-		LosAdd(owner, visionRange, to);
+		if ((from - to).CompareLength(visionRange) > 0)
+		{
+			// If it's a very large move, then simply remove and add to the new position
+
+			LosUpdateHelper<false>(owner, visionRange, from);
+			LosUpdateHelper<true>(owner, visionRange, to);
+		}
+		else
+		{
+			// Otherwise use the version optimised for mostly-overlapping circles
+
+			LosUpdateHelperIncremental(owner, visionRange, from, to);
+		}
 	}
 };
 
