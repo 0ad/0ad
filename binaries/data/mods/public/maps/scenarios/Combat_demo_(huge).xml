@@ -37,14 +37,15 @@
 
 	var mx = 192;
 	var mz = 128;
+	var sep = 46;
 	for (var i = 0; i < 8; ++i)
 	{
-		createBlock("units/hele_infantry_spearman_e", 1, Math.PI/2, mx - 32, mz, 16, 4, 2.1, 3.0);
-		createBlock("units/hele_infantry_spearman_e", 2, 3*Math.PI/2, mx + 32, mz, 16, 4, 2.1, 3.0);
-		createBlock("units/hele_infantry_archer_b", 1, Math.PI/2, mx - 26, mz, 8, 1, 5.0, 3.0);
-		createBlock("units/hele_infantry_archer_b", 1, Math.PI/2, mx - 28, mz, 7, 1, 5.0, 3.0);
-		createBlock("units/hele_infantry_archer_b", 2, 3*Math.PI/2, mx + 26, mz, 8, 1, 5.0, 3.0);
-		createBlock("units/hele_infantry_archer_b", 2, 3*Math.PI/2, mx + 28, mz, 7, 1, 5.0, 3.0);
+		createBlock("units/hele_infantry_spearman_e", 1, Math.PI/2, mx - sep - 6, mz, 16, 4, 2.1, 3.0);
+		createBlock("units/hele_infantry_spearman_e", 2, 3*Math.PI/2, mx + sep + 6, mz, 16, 4, 2.1, 3.0);
+		createBlock("units/hele_infantry_archer_b", 1, Math.PI/2, mx - sep, mz, 8, 1, 5.0, 3.0);
+		createBlock("units/hele_infantry_archer_b", 1, Math.PI/2, mx - sep - 2, mz, 7, 1, 5.0, 3.0);
+		createBlock("units/hele_infantry_archer_b", 2, 3*Math.PI/2, mx + sep, mz, 8, 1, 5.0, 3.0);
+		createBlock("units/hele_infantry_archer_b", 2, 3*Math.PI/2, mx + sep + 2, mz, 7, 1, 5.0, 3.0);
 
 		mz += 42;
 	}
