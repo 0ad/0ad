@@ -29,8 +29,14 @@
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
-      <food.meat>40</food.meat>
+      <food.meat>20</food.meat>
     </Rates>
+    <Capacities>
+      <food>30</food>
+      <wood>30</wood>
+      <stone>30</stone>
+      <metal>30</metal>
+    </Capacities>
   </ResourceGatherer>
   <Health>
     <Max>130</Max>
