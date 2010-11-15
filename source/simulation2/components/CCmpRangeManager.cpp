@@ -942,6 +942,8 @@ private:
 		if (counts.empty())
 			counts.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
 
+		u16* countsData = &counts[0];
+
 		// Compute the circular region as a series of strips.
 		// Rather than quantise pos to vertexes, we do more precise sub-tile computations
 		// to get smoother behaviour as a unit moves rather than jumping a whole tile
@@ -995,9 +997,9 @@ private:
 			i32 i0clamp = std::max(i0, 1);
 			i32 i1clamp = std::min(i1, m_TerrainVerticesPerSide-2);
 			if (adding)
-				LosAddStripHelper(owner, i0clamp, i1clamp, j, counts.data());
+				LosAddStripHelper(owner, i0clamp, i1clamp, j, countsData);
 			else
-				LosRemoveStripHelper(owner, i0clamp, i1clamp, j, counts.data());
+				LosRemoveStripHelper(owner, i0clamp, i1clamp, j, countsData);
 		}
 	}
 
@@ -1018,6 +1020,8 @@ private:
 		// Lazy initialisation of counts:
 		if (counts.empty())
 			counts.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+
+		u16* countsData = &counts[0];
 
 		// See comments in LosUpdateHelper.
 		// This does exactly the same, except computing the strips for
@@ -1086,11 +1090,11 @@ private:
 				// and we can just add/remove the entire other strip
 				if (i1clamp_from < i0clamp_from)
 				{
-					LosAddStripHelper(owner, i0clamp_to, i1clamp_to, j, counts.data());
+					LosAddStripHelper(owner, i0clamp_to, i1clamp_to, j, countsData);
 				}
 				else if (i1clamp_to < i0clamp_to)
 				{
-					LosRemoveStripHelper(owner, i0clamp_from, i1clamp_from, j, counts.data());
+					LosRemoveStripHelper(owner, i0clamp_from, i1clamp_from, j, countsData);
 				}
 				else
 				{
@@ -1099,10 +1103,10 @@ private:
 					// Process each of the regions as its own strip.
 					// (If this produces negative-width strips then they'll just get ignored
 					// which is fine.)
-					LosRemoveStripHelper(owner, i0clamp_from, i0clamp_to-1, j, counts.data());
-					LosRemoveStripHelper(owner, i1clamp_to+1, i1clamp_from, j, counts.data());
-					LosAddStripHelper(owner, i0clamp_to, i0clamp_from-1, j, counts.data());
-					LosAddStripHelper(owner, i1clamp_from+1, i1clamp_to, j, counts.data());
+					LosRemoveStripHelper(owner, i0clamp_from, i0clamp_to-1, j, countsData);
+					LosRemoveStripHelper(owner, i1clamp_to+1, i1clamp_from, j, countsData);
+					LosAddStripHelper(owner, i0clamp_to, i0clamp_from-1, j, countsData);
+					LosAddStripHelper(owner, i1clamp_from+1, i1clamp_to, j, countsData);
 				}
 			}
 		}
