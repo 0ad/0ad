@@ -42,6 +42,7 @@ struct Query
 {
 	bool enabled;
 	entity_id_t source;
+	entity_pos_t minRange;
 	entity_pos_t maxRange;
 	u32 ownersMask;
 	i32 interface;
@@ -86,6 +87,7 @@ struct SerializeQuery
 	{
 		serialize.Bool("enabled", value.enabled);
 		serialize.NumberU32_Unbounded("source", value.source);
+		serialize.NumberFixed_Unbounded("min range", value.minRange);
 		serialize.NumberFixed_Unbounded("max range", value.maxRange);
 		serialize.NumberU32_Unbounded("owners mask", value.ownersMask);
 		serialize.NumberI32_Unbounded("interface", value.interface);
@@ -447,11 +449,12 @@ public:
 		}
 	}
 
-	virtual tag_t CreateActiveQuery(entity_id_t source, entity_pos_t maxRange,
+	virtual tag_t CreateActiveQuery(entity_id_t source,
+		entity_pos_t minRange, entity_pos_t maxRange,
 		std::vector<int> owners, int requiredInterface)
 	{
 		size_t id = m_QueryNext++;
-		m_Queries[id] = ConstructQuery(source, maxRange, owners, requiredInterface);
+		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface);
 
 		return (tag_t)id;
 	}
@@ -493,12 +496,13 @@ public:
 		q.enabled = false;
 	}
 
-	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source, entity_pos_t maxRange,
+	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
+		entity_pos_t minRange, entity_pos_t maxRange,
 		std::vector<int> owners, int requiredInterface)
 	{
 		PROFILE("ExecuteQuery");
 
-		Query q = ConstructQuery(source, maxRange, owners, requiredInterface);
+		Query q = ConstructQuery(source, minRange, maxRange, owners, requiredInterface);
 
 		std::vector<entity_id_t> r;
 
@@ -694,20 +698,34 @@ private:
 				if (distVsMax > 0)
 					continue;
 
+				if (!q.minRange.IsZero())
+				{
+					int distVsMin = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.minRange);
+					if (distVsMin < 0)
+						continue;
+				}
+
 				r.push_back(it->first);
 			}
 		}
 	}
 
-	Query ConstructQuery(entity_id_t source, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface)
+	Query ConstructQuery(entity_id_t source,
+		entity_pos_t minRange, entity_pos_t maxRange,
+		const std::vector<int>& owners, int requiredInterface)
 	{
-		// Range must be non-negative, or else -1
+		// Min range must be non-negative
+		if (minRange < entity_pos_t::Zero())
+			LOGWARNING(L"CCmpRangeManager: Invalid min range %f in query for entity %d", minRange.ToDouble(), source);
+
+		// Max range must be non-negative, or else -1
 		if (maxRange < entity_pos_t::Zero() && maxRange != entity_pos_t::FromInt(-1))
-			LOGWARNING(L"CCmpRangeManager: Invalid range %f in query for entity %d", maxRange.ToDouble(), source);
+			LOGWARNING(L"CCmpRangeManager: Invalid max range %f in query for entity %d", maxRange.ToDouble(), source);
 
 		Query q;
 		q.enabled = false;
 		q.source = source;
+		q.minRange = minRange;
 		q.maxRange = maxRange;
 
 		q.ownersMask = 0;
@@ -741,10 +759,18 @@ private:
 					continue;
 				CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 
-				// Draw the range circle
+				// Draw the max range circle
 				m_DebugOverlayLines.push_back(SOverlayLine());
 				m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
 				SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToDouble(), q.maxRange.ToFloat(), m_DebugOverlayLines.back(), true);
+
+				// Draw the min range circle
+				if (!q.minRange.IsZero())
+				{
+					m_DebugOverlayLines.push_back(SOverlayLine());
+					m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
+					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToDouble(), q.minRange.ToFloat(), m_DebugOverlayLines.back(), true);
+				}
 
 				// Draw a ray from the source to each matched entity
 				for (size_t i = 0; i < q.lastMatch.size(); ++i)

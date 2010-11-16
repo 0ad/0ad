@@ -34,8 +34,8 @@ std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int play
 }
 
 BEGIN_INTERFACE_WRAPPER(RangeManager)
-DEFINE_INTERFACE_METHOD_4("ExecuteQuery", std::vector<entity_id_t>, ICmpRangeManager, ExecuteQuery, entity_id_t, entity_pos_t, std::vector<int>, int)
-DEFINE_INTERFACE_METHOD_4("CreateActiveQuery", ICmpRangeManager::tag_t, ICmpRangeManager, CreateActiveQuery, entity_id_t, entity_pos_t, std::vector<int>, int)
+DEFINE_INTERFACE_METHOD_5("ExecuteQuery", std::vector<entity_id_t>, ICmpRangeManager, ExecuteQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int)
+DEFINE_INTERFACE_METHOD_5("CreateActiveQuery", ICmpRangeManager::tag_t, ICmpRangeManager, CreateActiveQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int)
 DEFINE_INTERFACE_METHOD_1("DestroyActiveQuery", void, ICmpRangeManager, DestroyActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("EnableActiveQuery", void, ICmpRangeManager, EnableActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("DisableActiveQuery", void, ICmpRangeManager, DisableActiveQuery, ICmpRangeManager::tag_t)

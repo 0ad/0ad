@@ -462,7 +462,7 @@ var UnitFsmSpec = {
 							if (cmpOwnership)
 								players.push(cmpOwnership.GetOwner());
 
-							var dropsites = cmpRangeManager.ExecuteQuery(this.entity, -1, players, IID_ResourceDropsite);
+							var dropsites = cmpRangeManager.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
 
 							// Try to find the first (nearest) dropsite which supports this resource type
 							for each (var dropsite in dropsites)
@@ -510,7 +510,7 @@ var UnitFsmSpec = {
 								players.push(cmpOwnership.GetOwner());
 
 							var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-							var nearby = rangeMan.ExecuteQuery(this.entity, range, players, IID_ResourceSupply);
+							var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
 							for each (var ent in nearby)
 							{
 								var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
@@ -740,7 +740,7 @@ UnitAI.prototype.SetupRangeQuery = function(owner)
 		}
 	}
 	
-	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range, players, IID_DamageReceiver);
+	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, 0, range, players, IID_DamageReceiver);
 	rangeMan.EnableActiveQuery(this.losRangeQuery);
 };
 
