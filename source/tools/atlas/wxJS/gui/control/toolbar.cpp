@@ -396,7 +396,7 @@ JSBool ToolBar::create(JSContext *cx,
 
     if ( p->Create(parent, id, *pt, *size, style) )
     {
-      *rval = JS_TRUE;
+      *rval = JSVAL_TRUE;
       p->SetClientObject(new JavaScriptClientData(cx, obj, true, false));
       JSObject *objActionArray = JS_NewArrayObject(cx, 0, NULL);
       JS_DefineProperty(cx, obj, "actions", OBJECT_TO_JSVAL(objActionArray), 

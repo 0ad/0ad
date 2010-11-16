@@ -48,34 +48,31 @@ public:
 
 	// Script-bound functions
 
-	CStr ToString( JSContext* cx, uintN argc, jsval* argv );
+	CStr ToString(JSContext* cx, uintN argc, jsval* argv);
 
 	// start playing the sound (one-shot).
 	// it will automatically be freed when done.
-	bool Play( JSContext* cx, uintN argc, jsval* argv );
+	bool Play(JSContext* cx, uintN argc, jsval* argv);
 
 	// request the sound be played until free() is called. returns immediately.
-	bool Loop( JSContext* cx, uintN argc, jsval* argv );
+	bool Loop(JSContext* cx, uintN argc, jsval* argv);
 
 	// stop sound if currently playing and free resources.
 	// doesn't need to be called unless played via loop() -
 	// sounds are freed automatically when done playing.
-	bool Free( JSContext* cx, uintN argc, jsval* argv );
+	bool Free(JSContext* cx, uintN argc, jsval* argv);
 
-	bool SetGain( JSContext* cx, uintN argc, jsval* argv );
+	bool SetGain(JSContext* cx, uintN argc, jsval* argv);
 
-	bool SetPitch( JSContext* cx, uintN argc, jsval* argv );
+	bool SetPitch(JSContext* cx, uintN argc, jsval* argv);
 
-	bool SetPosition( JSContext* cx, uintN argc, jsval* argv );
+	bool SetPosition(JSContext* cx, uintN argc, jsval* argv);
 
-	bool Fade ( JSContext* cx, uintN argc, jsval* argv );
+	bool Fade(JSContext* cx, uintN argc, jsval* argv);
 
-	static JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	static JSBool Construct(JSContext* cx, uintN argc, jsval* vp);
 
 	static void ScriptingInit();
-
-private:
-	bool m_SoundDisabled;	// see constructor and JSI_Sound::Construct
 };
 
 #endif	// #ifndef INCLUDED_JSI_SOUND

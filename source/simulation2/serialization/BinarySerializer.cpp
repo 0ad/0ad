@@ -25,18 +25,9 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
-// Shut up some warnings triggered by jsobj.h
-#if MSC_VERSION
-# pragma warning(push)
-# pragma warning(disable:4512)	// assignment operator could not be generated
-# pragma warning(disable:4800)	// forcing value to bool 'true' or 'false' (performance warning)
-#endif
-
-#include "js/jsobj.h"
-
-#if MSC_VERSION
-# pragma warning(pop)
-#endif
+#define signbit std::signbit
+#include "js/jsvalue.h" // for JSDOUBLE_IS_INT32
+#undef signbit
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_Rooter(m_ScriptInterface),
@@ -100,43 +91,18 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 
 		// Find all properties (ordered by insertion time)
 
-		// JS_Enumerate is a bit slow (lots of memory allocation), so do the enumeration manually
-		// (based on the code from JS_Enumerate, using the probably less stable JSObject API):
-		//
-		// Correction: Actually array_enumerate returns an incorrect num_properties so we can't
-		// trust it and have to iterate over all ids before we know how many there are, so
-		// actually this probably isn't any faster than JS_Enumerate. Also it's less compatible
-		// with future JSAPI updates. This probably wasn't a great idea.
-
 		// (Note that we don't do any rooting, because we assume nothing is going to trigger GC.
 		// I'm not absolute certain that's necessarily a valid assumption.)
 
-		jsval iter_state, num_properties;
-		if (!obj->enumerate(cx, JSENUMERATE_INIT, &iter_state, &num_properties))
-			throw PSERROR_Serialize_ScriptError("enumerate INIT failed");
-		debug_assert(JSVAL_IS_INT(num_properties));
-		debug_assert(JSVAL_TO_INT(num_properties) >= 0);
+		AutoJSIdArray ida (cx, JS_Enumerate(cx, obj));
+		if (!ida.get())
+			throw PSERROR_Serialize_ScriptError("JS_Enumerate failed");
 
-		std::vector<jsid> ids;
-		ids.reserve(JSVAL_TO_INT(num_properties));
+		m_Serializer.NumberU32_Unbounded("num props", (uint32_t)ida.length());
 
-		while (true)
+		for (size_t i = 0; i < ida.length(); ++i)
 		{
-			jsval id;
-			if (!obj->enumerate(cx, JSENUMERATE_NEXT, &iter_state, &id))
-				throw PSERROR_Serialize_ScriptError("enumerate NEXT failed");
-
-			if (JSVAL_IS_NULL(iter_state))
-				break;
-
-			ids.push_back(id);
-		}
-
-		m_Serializer.NumberU32_Unbounded("num props", (uint32_t)ids.size());
-
-		for (size_t i = 0; i < ids.size(); ++i)
-		{
-			jsval id = ids[i];
+			jsid id = ida[i];
 
 			jsval idval, propval;
 
@@ -176,15 +142,26 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 		if (JSVAL_IS_INT(val))
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_INT);
-			// jsvals are limited to JSVAL_INT_BITS == 31 bits, even on 64-bit platforms
-			m_Serializer.NumberI32("value", (int32_t)JSVAL_TO_INT(val), JSVAL_INT_MIN, JSVAL_INT_MAX);
+			m_Serializer.NumberI32_Unbounded("value", (int32_t)JSVAL_TO_INT(val));
 		}
 		else
 		{
 			debug_assert(JSVAL_IS_DOUBLE(val));
-			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_DOUBLE);
-			jsdouble* dbl = JSVAL_TO_DOUBLE(val);
-			m_Serializer.NumberDouble_Unbounded("value", *dbl);
+
+			// If the value fits in an int, serialise as an int
+			jsdouble d = JSVAL_TO_DOUBLE(val);
+			int32_t i;
+			if (JSDOUBLE_IS_INT32(d, &i))
+			{
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_INT);
+				m_Serializer.NumberI32_Unbounded("value", i);
+			}
+			// Otherwise serialise as a double
+			else
+			{
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_DOUBLE);
+				m_Serializer.NumberDouble_Unbounded("value", d);
+			}
 		}
 		break;
 	}

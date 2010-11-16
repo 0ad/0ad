@@ -45,30 +45,32 @@ JSPropertySpec JSI_GUISize::JSI_props[] =
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] = 
 {
-	{ "toString", JSI_GUISize::toString, 0, 0, 0 },
+	{ "toString", JSI_GUISize::toString, 0, 0 },
 	{ 0 }
 };
 
-JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
+JSBool JSI_GUISize::construct(JSContext* cx, uintN argc, jsval* vp)
 {
+	JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
+
 	if (argc == 8)
 	{
-		JS_SetProperty(cx, obj, "left",		&argv[0]);
-		JS_SetProperty(cx, obj, "top",		&argv[1]);
-		JS_SetProperty(cx, obj, "right",	&argv[2]);
-		JS_SetProperty(cx, obj, "bottom",	&argv[3]);
-		JS_SetProperty(cx, obj, "rleft",	&argv[4]);
-		JS_SetProperty(cx, obj, "rtop",		&argv[5]);
-		JS_SetProperty(cx, obj, "rright",	&argv[6]);
-		JS_SetProperty(cx, obj, "rbottom",	&argv[7]);
+		JS_SetProperty(cx, obj, "left",		&JS_ARGV(cx, vp)[0]);
+		JS_SetProperty(cx, obj, "top",		&JS_ARGV(cx, vp)[1]);
+		JS_SetProperty(cx, obj, "right",	&JS_ARGV(cx, vp)[2]);
+		JS_SetProperty(cx, obj, "bottom",	&JS_ARGV(cx, vp)[3]);
+		JS_SetProperty(cx, obj, "rleft",	&JS_ARGV(cx, vp)[4]);
+		JS_SetProperty(cx, obj, "rtop",		&JS_ARGV(cx, vp)[5]);
+		JS_SetProperty(cx, obj, "rright",	&JS_ARGV(cx, vp)[6]);
+		JS_SetProperty(cx, obj, "rbottom",	&JS_ARGV(cx, vp)[7]);
 	}
 	else if (argc == 4)
 	{
 		jsval zero = JSVAL_ZERO;
-		JS_SetProperty(cx, obj, "left",		&argv[0]);
-		JS_SetProperty(cx, obj, "top",		&argv[1]);
-		JS_SetProperty(cx, obj, "right",	&argv[2]);
-		JS_SetProperty(cx, obj, "bottom",	&argv[3]);
+		JS_SetProperty(cx, obj, "left",		&JS_ARGV(cx, vp)[0]);
+		JS_SetProperty(cx, obj, "top",		&JS_ARGV(cx, vp)[1]);
+		JS_SetProperty(cx, obj, "right",	&JS_ARGV(cx, vp)[2]);
+		JS_SetProperty(cx, obj, "bottom",	&JS_ARGV(cx, vp)[3]);
 		JS_SetProperty(cx, obj, "rleft",	&zero);
 		JS_SetProperty(cx, obj, "rtop",		&zero);
 		JS_SetProperty(cx, obj, "rright",	&zero);
@@ -87,6 +89,7 @@ JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* a
 		JS_SetProperty(cx, obj, "rbottom",	&zero);
 	}
 
+	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
 	return JS_TRUE;
 }
 
@@ -99,13 +102,15 @@ CStr ToPercentString(double pix, double per)
 		return CStr(per)+CStr("%")+( pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr(pix) : CStr(pix) );
 }
 
-JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
+JSBool JSI_GUISize::toString(JSContext* cx, uintN argc, jsval* vp)
 {
+	UNUSED2(argc);
+
 	CStr buffer;
 
 	try
 	{
-#define SIDE(side) buffer += ToPercentString(g_ScriptingHost.GetObjectProperty_Double(obj, #side), g_ScriptingHost.GetObjectProperty_Double(obj, "r"#side));
+#define SIDE(side) buffer += ToPercentString(g_ScriptingHost.GetObjectProperty_Double(JS_THIS_OBJECT(cx, vp), #side), g_ScriptingHost.GetObjectProperty_Double(JS_THIS_OBJECT(cx, vp), "r"#side));
 		SIDE(left);
 		buffer += " ";
 		SIDE(top);
@@ -117,11 +122,11 @@ JSBool JSI_GUISize::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc), j
 	}
 	catch (PSERROR_Scripting_ConversionFailed)
 	{
-		*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "<Error converting value to numbers>"));
+		JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "<Error converting value to numbers>")));
 		return JS_TRUE;
 	}
 
-	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer.c_str()));
+	JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer.c_str())));
 	return JS_TRUE;
 }
 
@@ -149,45 +154,57 @@ JSPropertySpec JSI_GUIColor::JSI_props[] =
 
 JSFunctionSpec JSI_GUIColor::JSI_methods[] = 
 {
-	{ "toString", JSI_GUIColor::toString, 0, 0, 0 },
+	{ "toString", JSI_GUIColor::toString, 0, 0 },
 	{ 0 }
 };
 
-JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
+JSBool JSI_GUIColor::construct(JSContext* cx, uintN argc, jsval* vp)
 {
+	JSObject* obj = JS_NewObject(cx, &JSI_GUIColor::JSI_class, NULL, NULL);
+
 	if (argc == 4)
 	{
-		JS_SetProperty(cx, obj, "r", &argv[0]);
-		JS_SetProperty(cx, obj, "g", &argv[1]);
-		JS_SetProperty(cx, obj, "b", &argv[2]);
-		JS_SetProperty(cx, obj, "a", &argv[3]);
+		JS_SetProperty(cx, obj, "r", &JS_ARGV(cx, vp)[0]);
+		JS_SetProperty(cx, obj, "g", &JS_ARGV(cx, vp)[1]);
+		JS_SetProperty(cx, obj, "b", &JS_ARGV(cx, vp)[2]);
+		JS_SetProperty(cx, obj, "a", &JS_ARGV(cx, vp)[3]);
 	}
 	else
 	{
 		// Nice magenta:
-		jsval r = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
-		JS_SetProperty(cx, obj, "r", &r);
-		jsval g = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 0.0));
-		JS_SetProperty(cx, obj, "g", &g);
-		jsval b = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
-		JS_SetProperty(cx, obj, "b", &b);
-		jsval a = DOUBLE_TO_JSVAL(JS_NewDouble(cx, 1.0));
-		JS_SetProperty(cx, obj, "a", &a);
+		jsval c;
+		if (!JS_NewNumberValue(cx, 1.0, &c))
+			return JS_FALSE;
+		JS_SetProperty(cx, obj, "r", &c);
+		JS_SetProperty(cx, obj, "b", &c);
+		JS_SetProperty(cx, obj, "a", &c);
+		if (!JS_NewNumberValue(cx, 0.0, &c))
+			return JS_FALSE;
+		JS_SetProperty(cx, obj, "g", &c);
 	}
+
+	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
 	return JS_TRUE;
 }
 
-JSBool JSI_GUIColor::toString(JSContext* cx, JSObject* obj,
-	uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
+JSBool JSI_GUIColor::toString(JSContext* cx, uintN argc, jsval* vp)
 {
+	UNUSED2(argc);
+
+	jsdouble r, g, b, a;
+	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "r"), &r)) return JS_FALSE;
+	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "g"), &g)) return JS_FALSE;
+	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "b"), &b)) return JS_FALSE;
+	if (!JS_ValueToNumber(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "a"), &a)) return JS_FALSE;
+
 	char buffer[256];
 	// Convert to integers, to be compatible with the GUI's string SetSetting
 	snprintf(buffer, 256, "%d %d %d %d",
-		(int)( 255.0 * *JSVAL_TO_DOUBLE(g_ScriptingHost.GetObjectProperty(obj, "r")) ),
-		(int)( 255.0 * *JSVAL_TO_DOUBLE(g_ScriptingHost.GetObjectProperty(obj, "g")) ),
-		(int)( 255.0 * *JSVAL_TO_DOUBLE(g_ScriptingHost.GetObjectProperty(obj, "b")) ),
-		(int)( 255.0 * *JSVAL_TO_DOUBLE(g_ScriptingHost.GetObjectProperty(obj, "a")) ));
-	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer));
+		(int)(255.0 * r),
+		(int)(255.0 * g),
+		(int)(255.0 * b),
+		(int)(255.0 * a));
+	JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer)));
 	return JS_TRUE;
 }
 
@@ -213,17 +230,19 @@ JSPropertySpec JSI_GUIMouse::JSI_props[] =
 
 JSFunctionSpec JSI_GUIMouse::JSI_methods[] = 
 {
-	{ "toString", JSI_GUIMouse::toString, 0, 0, 0 },
+	{ "toString", JSI_GUIMouse::toString, 0, 0 },
 	{ 0 }
 };
 
-JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
+JSBool JSI_GUIMouse::construct(JSContext* cx, uintN argc, jsval* vp)
 {
+	JSObject* obj = JS_NewObject(cx, &JSI_GUIMouse::JSI_class, NULL, NULL);
+
 	if (argc == 3)
 	{
-		JS_SetProperty(cx, obj, "x", &argv[0]);
-		JS_SetProperty(cx, obj, "y", &argv[1]);
-		JS_SetProperty(cx, obj, "buttons", &argv[2]);
+		JS_SetProperty(cx, obj, "x", &JS_ARGV(cx, vp)[0]);
+		JS_SetProperty(cx, obj, "y", &JS_ARGV(cx, vp)[1]);
+		JS_SetProperty(cx, obj, "buttons", &JS_ARGV(cx, vp)[2]);
 	}
 	else
 	{
@@ -232,17 +251,23 @@ JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* 
 		JS_SetProperty(cx, obj, "y", &zero);
 		JS_SetProperty(cx, obj, "buttons", &zero);
 	}
+
+	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
 	return JS_TRUE;
 }
 
-JSBool JSI_GUIMouse::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
+JSBool JSI_GUIMouse::toString(JSContext* cx, uintN argc, jsval* vp)
 {
+	UNUSED2(argc);
+
+	int32 x, y, buttons;
+	if (!JS_ValueToECMAInt32(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "x"), &x)) return JS_FALSE;
+	if (!JS_ValueToECMAInt32(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "y"), &y)) return JS_FALSE;
+	if (!JS_ValueToECMAInt32(cx, g_ScriptingHost.GetObjectProperty(JS_THIS_OBJECT(cx, vp), "buttons"), &buttons)) return JS_FALSE;
+
 	char buffer[256];
-	snprintf(buffer, 256, "%d %d %d",
-		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "x")),
-		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "y")),
-		JSVAL_TO_INT(g_ScriptingHost.GetObjectProperty(obj, "buttons")) );
-	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer));
+	snprintf(buffer, 256, "%d %d %d", x, y, buttons);
+	JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer)));
 	return JS_TRUE;
 }
 

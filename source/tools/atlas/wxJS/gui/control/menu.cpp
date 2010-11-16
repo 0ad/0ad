@@ -200,7 +200,7 @@ wxMenu* Menu::Construct(JSContext *cx,
             break;
         }
     case 1:
-        if ( JSVAL_IS_INT(argv[0]) )
+        if ( JSVAL_IS_NUMBER(argv[0]) )
         {
             int style = 0;
             if ( FromJS(cx, argv[0], style) )

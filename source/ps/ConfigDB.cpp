@@ -24,6 +24,8 @@
 #include "Filesystem.h"
 #include "scripting/ScriptingHost.h"
 
+#include "scriptinterface/ScriptInterface.h"
+
 #include <boost/algorithm/string.hpp>
 
 typedef std::map <CStr, CConfigValueSet> TConfigMap;
@@ -35,38 +37,49 @@ bool CConfigDB::m_UseVFS[CFG_LAST];
 
 namespace ConfigNamespace_JS
 {
-	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	JSBool GetProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp)
 	{
 		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
-		CStr propName = g_ScriptingHost.ValueToString(id);
-		CConfigValue *val=g_ConfigDB.GetValue(cfgNs, propName);
+		jsval idval;
+		if (!JS_IdToValue(cx, id, &idval))
+			return JS_FALSE;
+
+		std::string propName;
+		if (!ScriptInterface::FromJSVal(cx, idval, propName))
+			return JS_FALSE;
+
+		CConfigValue *val = g_ConfigDB.GetValue(cfgNs, propName);
 		if (val)
 		{
-			JSString *js_str=JS_NewStringCopyN(cx, val->m_String.c_str(), val->m_String.size());
+			JSString *js_str = JS_NewStringCopyN(cx, val->m_String.c_str(), val->m_String.size());
 			*vp = STRING_TO_JSVAL(js_str);
 		}
 		return JS_TRUE;
 	}
 
-	JSBool SetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	JSBool SetProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp)
 	{
 		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
-		CStr propName = g_ScriptingHost.ValueToString(id);
-		CConfigValue *val=g_ConfigDB.CreateValue(cfgNs, propName);
-		char *str;
-		if (JS_ConvertArguments(cx, 1, vp, "s", &str))
-		{
-			val->m_String=str;
-			return JS_TRUE;
-		}
-		else
+		jsval idval;
+		if (!JS_IdToValue(cx, id, &idval))
 			return JS_FALSE;
+
+		std::string propName;
+		if (!ScriptInterface::FromJSVal(cx, idval, propName))
+			return JS_FALSE;
+
+		CConfigValue *val = g_ConfigDB.CreateValue(cfgNs, propName);
+
+		if (!ScriptInterface::FromJSVal(cx, *vp, val->m_String))
+			return JS_FALSE;
+
+		return JS_TRUE;
 	}
 
 	JSClass Class = {
@@ -77,13 +90,12 @@ namespace ConfigNamespace_JS
 		JS_ConvertStub, JS_FinalizeStub
 	};
 
-	JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* UNUSED(argv), jsval* rval )
+	JSBool Construct(JSContext* cx, uintN argc, jsval* vp)
 	{
-		if (argc != 0)
-			return JS_FALSE;
+		UNUSED2(argc);
 
-		JSObject *newObj=JS_NewObject(cx, &Class, NULL, obj);
-		*rval=OBJECT_TO_JSVAL(newObj);
+		JSObject *newObj = JS_NewObject(cx, &Class, NULL, NULL);
+		JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(newObj));
 		return JS_TRUE;
 	}
 
@@ -92,65 +104,70 @@ namespace ConfigNamespace_JS
 		JS_SetPrivate(cx, obj, (void *)((uintptr_t)cfgNs << 1)); // JS requires bottom bit = 0
 	}
 
-	JSBool WriteFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+	JSBool WriteFile(JSContext* cx, uintN argc, jsval* vp)
 	{
-		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, JS_THIS_OBJECT(cx, vp));
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 		
 		if (argc != 2)
 			return JS_FALSE;
 
-		JSBool useVFS;
-		char *path;
-		if (JS_ConvertArguments(cx, 2, argv, "bs", &useVFS, &path))
-		{
-			JSBool res=g_ConfigDB.WriteFile(cfgNs, useVFS?true:false, CStrW(path));
-			*rval = BOOLEAN_TO_JSVAL(res);
-			return JS_TRUE;
-		}
-		else
-			return JS_FALSE;
-	}
-
-	JSBool Reload( JSContext* cx, JSObject* obj, uintN argc, jsval* UNUSED(argv), jsval* rval )
-	{
-		if (argc != 0)
+		bool useVFS;
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], useVFS))
 			return JS_FALSE;
 
-		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
-		if (cfgNs < 0 || cfgNs >= CFG_LAST)
+		std::wstring path;
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[1], path))
 			return JS_FALSE;
 
-		JSBool ret=g_ConfigDB.Reload(cfgNs);
-		*rval = BOOLEAN_TO_JSVAL(ret);
+		bool res = g_ConfigDB.WriteFile(cfgNs, useVFS, path);
+
+		JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(res));
 		return JS_TRUE;
 	}
 
-	JSBool SetFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval) )
+	JSBool Reload(JSContext* cx, uintN argc, jsval* vp)
 	{
 		if (argc != 0)
 			return JS_FALSE;
 
-		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, JS_THIS_OBJECT(cx, vp));
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
-		JSBool useVFS;
-		char *path;
-		if (JS_ConvertArguments(cx, 2, argv, "bs", &useVFS, &path))
-		{
-			g_ConfigDB.SetConfigFile(cfgNs, useVFS?true:false, CStrW(path));
-			return JS_TRUE;
-		}
-		else
+		JSBool ret = g_ConfigDB.Reload(cfgNs);
+		JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(ret));
+		return JS_TRUE;
+	}
+
+	JSBool SetFile(JSContext* cx, uintN argc, jsval* vp)
+	{
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, JS_THIS_OBJECT(cx, vp));
+		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
+
+		if (argc != 2)
+			return JS_FALSE;
+
+		bool useVFS;
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], useVFS))
+			return JS_FALSE;
+
+		std::wstring path;
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[1], path))
+			return JS_FALSE;
+
+		g_ConfigDB.SetConfigFile(cfgNs, useVFS, path);
+
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		return JS_TRUE;
 	}
 
 	JSFunctionSpec Funcs[] = {
-		{ "writeFile", WriteFile, 2, 0, 0},
-		{ "reload", Reload, 0, 0, 0},
-		{ "setFile", SetFile, 2, 0, 0},
+		{ "writeFile", WriteFile, 2, 0 },
+		{ "reload", Reload, 0, 0 },
+		{ "setFile", SetFile, 2, 0 },
 		{0}
 	};
 };
@@ -173,13 +190,12 @@ namespace ConfigDB_JS
 		{0}
 	};
 
-	JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* UNUSED(argv), jsval* rval )
+	JSBool Construct(JSContext* cx, uintN argc, jsval* vp)
 	{
-		if (argc != 0)
-			return JS_FALSE;
+		UNUSED2(argc);
 
-		JSObject *newObj=JS_NewObject(cx, &Class, NULL, obj);
-		*rval=OBJECT_TO_JSVAL(newObj);
+		JSObject *newObj = JS_NewObject(cx, &Class, NULL, NULL);
+		JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(newObj));
 
 		int flags=JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT;
 #define cfg_ns(_propname, _enum) STMT (\
@@ -204,15 +220,16 @@ CConfigDB::CConfigDB()
 {
 	g_ScriptingHost.DefineCustomObjectType(&ConfigDB_JS::Class, ConfigDB_JS::Construct, 0, ConfigDB_JS::Props, ConfigDB_JS::Funcs, NULL, NULL);
 	g_ScriptingHost.DefineCustomObjectType(&ConfigNamespace_JS::Class, ConfigNamespace_JS::Construct, 0, NULL, ConfigNamespace_JS::Funcs, NULL, NULL);
-	JSObject *js_ConfigDB=g_ScriptingHost.CreateCustomObject("ConfigDB");
+	JSObject *js_ConfigDB = g_ScriptingHost.CreateCustomObject("ConfigDB");
 	g_ScriptingHost.SetGlobal("g_ConfigDB", OBJECT_TO_JSVAL(js_ConfigDB));
 }
 
 CConfigValue *CConfigDB::GetValue(EConfigNamespace ns, const CStr& name)
 {
-	CConfigValueSet* values = GetValues( ns, name );
-	if( !values ) return( NULL );
-	return &( (*values)[0] );
+	CConfigValueSet* values = GetValues(ns, name);
+	if (!values)
+		return (NULL);
+	return &((*values)[0]);
 }
 
 CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name)
@@ -223,18 +240,18 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name)
 		return NULL;
 	}
 
-	TConfigMap::iterator it = m_Map[CFG_COMMAND].find( name );
-	if( it != m_Map[CFG_COMMAND].end() )
-		return &( it->second );
+	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
+	if (it != m_Map[CFG_COMMAND].end())
+		return &(it->second);
 
-	for( int search_ns = ns; search_ns >= 0; search_ns-- )
+	for (int search_ns = ns; search_ns >= 0; search_ns--)
 	{
 		TConfigMap::iterator it = m_Map[search_ns].find(name);
 		if (it != m_Map[search_ns].end())
-			return &( it->second );
+			return &(it->second);
 	}
 
-	return( NULL );
+	return NULL;
 }	
 
 std::vector<std::pair<CStr, CConfigValueSet> > CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)

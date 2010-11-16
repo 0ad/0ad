@@ -46,9 +46,9 @@ namespace wxjs
         /**
          * Implements wxMessageBox
          */
-        JSBool MessageBox(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
-        JSBool InitAllImageHandlers(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
-        JSBool GetKeyState(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
+        JSBool MessageBox(JSContext *cx, uintN argc, jsval *vp);
+        JSBool InitAllImageHandlers(JSContext *cx, uintN argc, jsval *vp);
+        JSBool GetKeyState(JSContext *cx, uintN argc, jsval *vp);
 
         void DefineGlobals(JSContext *cx, JSObject *global);
     }; // namespace gui

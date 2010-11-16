@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,21 +24,21 @@
 struct Unrooter
 {
 	Unrooter(JSContext* cx) : cx(cx) { }
-	void operator()(jsval* p) { JS_RemoveRoot(cx, p); delete p; }
+	void operator()(jsval* p) { JS_RemoveValueRoot(cx, p); delete p; }
 	JSContext* cx;
 };
 
 CScriptValRooted::CScriptValRooted(JSContext* cx, jsval val)
 {
 	jsval* p = new jsval(val);
-	JS_AddNamedRoot(cx, p, "CScriptValRooted");
+	JS_AddNamedValueRoot(cx, p, "CScriptValRooted");
 	m_Val = boost::shared_ptr<jsval>(p, Unrooter(cx));
 }
 
 CScriptValRooted::CScriptValRooted(JSContext* cx, CScriptVal val)
 {
 	jsval* p = new jsval(val.get());
-	JS_AddNamedRoot(cx, p, "CScriptValRooted");
+	JS_AddNamedValueRoot(cx, p, "CScriptValRooted");
 	m_Val = boost::shared_ptr<jsval>(p, Unrooter(cx));
 }
 
@@ -49,12 +49,47 @@ jsval CScriptValRooted::get() const
 	return *m_Val;
 }
 
+jsval& CScriptValRooted::getRef() const
+{
+	debug_assert(m_Val);
+	return *m_Val;
+}
+
 bool CScriptValRooted::undefined() const
 {
-	return (!m_Val || *m_Val == JSVAL_VOID);
+	return (!m_Val || JSVAL_IS_VOID(*m_Val));
 }
 
 bool CScriptValRooted::uninitialised() const
 {
 	return !m_Val;
+}
+
+AutoJSIdArray::AutoJSIdArray(JSContext* cx, JSIdArray* ida) :
+	m_Context(cx), m_IdArray(ida)
+{
+}
+
+AutoJSIdArray::~AutoJSIdArray()
+{
+	if (m_IdArray)
+		JS_DestroyIdArray(m_Context, m_IdArray);
+}
+
+JSIdArray* AutoJSIdArray::get() const
+{
+	return m_IdArray;
+}
+
+size_t AutoJSIdArray::length() const
+{
+	debug_assert(m_IdArray);
+	return m_IdArray->length;
+}
+
+jsid AutoJSIdArray::operator[](size_t i) const
+{
+	debug_assert(m_IdArray);
+	debug_assert(i < (size_t)m_IdArray->length);
+	return m_IdArray->vector[i];
 }

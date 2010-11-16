@@ -48,22 +48,6 @@ InReaction gui_handler(const SDL_Event_* ev)
 	return g_GUI->HandleEvent(ev);
 }
 
-CGUIManager::SGUIPage::SGUIPage()
-{
-	JS_AddNamedRoot(g_ScriptingHost.GetContext(), &initData, "SGUIPage initData");
-}
-
-CGUIManager::SGUIPage::SGUIPage(const SGUIPage& page)
-{
-	*this = page;
-	JS_AddNamedRoot(g_ScriptingHost.GetContext(), &initData, "SGUIPage initData copy");
-}
-
-CGUIManager::SGUIPage::~SGUIPage()
-{
-	JS_RemoveRoot(g_ScriptingHost.GetContext(), &initData);
-}
-
 CGUIManager::CGUIManager(ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface)
 {
@@ -90,7 +74,7 @@ void CGUIManager::PushPage(const CStrW& pageName, CScriptVal initData)
 {
 	m_PageStack.push_back(SGUIPage());
 	m_PageStack.back().name = pageName;
-	m_PageStack.back().initData = initData;
+	m_PageStack.back().initData = CScriptValRooted(m_ScriptInterface.GetContext(), initData);
 	LoadPage(m_PageStack.back());
 }
 

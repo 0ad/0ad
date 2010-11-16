@@ -676,7 +676,7 @@ void CGameView::Update(float DeltaTime)
 				cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, angle);
 				float height = 4.f;
 				m->ViewCamera.m_Orientation.SetIdentity();
-				m->ViewCamera.m_Orientation.RotateX(M_PI/24.f);
+				m->ViewCamera.m_Orientation.RotateX((float)M_PI/24.f);
 				m->ViewCamera.m_Orientation.RotateY(angle);
 				m->ViewCamera.m_Orientation.Translate(pos.X, pos.Y + height, pos.Z);
 

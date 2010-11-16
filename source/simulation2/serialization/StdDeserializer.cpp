@@ -46,7 +46,7 @@ void CStdDeserializer::AddScriptBackref(JSObject* obj)
 {
 	std::pair<std::map<u32, JSObject*>::iterator, bool> it = m_ScriptBackrefs.insert(std::make_pair((u32)m_ScriptBackrefs.size()+1, obj));
 	debug_assert(it.second);
-	if (!JS_AddRoot(m_ScriptInterface.GetContext(), (void*)&it.first->second))
+	if (!JS_AddObjectRoot(m_ScriptInterface.GetContext(), &it.first->second))
 		throw PSERROR_Deserialize_ScriptError("JS_AddRoot failed");
 }
 
@@ -63,7 +63,7 @@ void CStdDeserializer::FreeScriptBackrefs()
 	std::map<u32, JSObject*>::iterator it = m_ScriptBackrefs.begin();
 	for (; it != m_ScriptBackrefs.end(); ++it)
 	{
-		if (!JS_RemoveRoot(m_ScriptInterface.GetContext(), (void*)&it->second))
+		if (!JS_RemoveObjectRoot(m_ScriptInterface.GetContext(), &it->second))
 			throw PSERROR_Deserialize_ScriptError("JS_RemoveRoot failed");
 	}
 	m_ScriptBackrefs.clear();

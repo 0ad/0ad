@@ -66,7 +66,7 @@ private:
 		DeallocFunc dealloc;
 		std::string name;
 		std::string schema; // RelaxNG fragment
-		jsval ctor; // only valid if type == CT_Script
+		CScriptValRooted ctor; // only valid if type == CT_Script
 	};
 
 public:

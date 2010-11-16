@@ -325,6 +325,7 @@ public:
 	{
 		CSimContext context;
 		CComponentManager man(context);
+		ScriptTestSetup(man.m_ScriptInterface);
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-entityid.js"));
 
@@ -334,10 +335,8 @@ public:
 		man.AddComponent(ent1, man.LookupCID("TestScript1A"), noParam);
 		man.AddComponent(ent2, man.LookupCID("TestScript1A"), noParam);
 
-		TestLogger log;
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), (int)ent1);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), (int)ent2);
-		TS_ASSERT_WSTR_CONTAINS(log.GetOutput(), L"this.entity is read-only");
 	}
 
 	void test_script_QueryInterface()
@@ -632,6 +631,7 @@ public:
 	{
 		CSimContext context;
 		CComponentManager man(context);
+		ScriptTestSetup(man.m_ScriptInterface);
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-serialize.js"));
 

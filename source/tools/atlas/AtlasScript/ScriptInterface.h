@@ -20,11 +20,18 @@
 
 #ifdef _WIN32
 # define XP_WIN
+# define WIN32 // SpiderMonkey expects this
+
+// The jsval struct type causes crashes due to weird miscompilation
+// issues in (at least) VC2008, so force it to be the less-type-safe
+// non-struct type instead
+# define JS_NO_JSVAL_JSID_STRUCT_TYPES
+
 #else
 # define XP_UNIX
 #endif // (we don't support XP_OS2 or XP_BEOS)
 
-#include "js/jspubtd.h"
+#include "js/jsapi.h"
 
 class wxWindow;
 class wxString;
@@ -70,26 +77,8 @@ public:
 	// value must be rooted if you don't want it to be collected.)
 	template <typename T> static jsval ToJSVal(JSContext* cx, const T& val);
 
-	bool AddRoot(void* ptr);
-	bool RemoveRoot(void* ptr);
-
-	// Helper class for automatically rooting values
-	class LocalRootScope
-	{
-		ScriptInterface& m_ScriptInterface;
-		bool m_OK;
-	public:
-		// Tries to enter local root scope, so newly created
-		// values won't be GCed. This might fail, so check OK()
-		LocalRootScope(ScriptInterface& scriptInterface);
-		// Returns true if the local root scope was successfully entered
-		bool OK();
-		// Leaves the local root scope
-		~LocalRootScope();
-	private:
-		LocalRootScope& operator=(const LocalRootScope&);
-	};
-	#define LOCAL_ROOT_SCOPE LocalRootScope scope(*this); if (! scope.OK()) return false
+	bool AddRoot(jsval* ptr);
+	bool RemoveRoot(jsval* ptr);
 
 private:
 	JSContext* GetContext();
@@ -113,7 +102,6 @@ bool ScriptInterface::SetValue(const wxString& name, const T& val)
 template <typename T>
 bool ScriptInterface::GetValue(const wxString& name, T& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	if (! GetValue_(name, jsRet)) return false;
 	return FromJSVal(GetContext(), jsRet, ret);
@@ -122,7 +110,6 @@ bool ScriptInterface::GetValue(const wxString& name, T& ret)
 template <typename T, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T& a, R& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	std::vector<jsval> argv;
 	argv.push_back(ToJSVal(GetContext(), a));
@@ -134,7 +121,6 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T& a, R& r
 template <typename T, typename S, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T& a, const S& b, R& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	std::vector<jsval> argv;
 	argv.push_back(ToJSVal(GetContext(), a));
@@ -147,7 +133,6 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T& a, cons
 template <typename T>
 bool ScriptInterface::Eval(const wxString& script, T& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	if (! Eval_(script, jsRet)) return false;
 	return FromJSVal(GetContext(), jsRet, ret);
@@ -161,7 +146,7 @@ bool ScriptInterface::Eval(const wxString& script, T& ret)
 class CScriptVal
 {
 public:
-	CScriptVal() : m_Val(0) { }
+	CScriptVal() : m_Val(JSVAL_VOID) { }
 	CScriptVal(jsval val) : m_Val(val) { }
 
 	jsval get() const { return m_Val; }

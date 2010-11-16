@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,6 +57,7 @@ CGUI
 #include "ps/Profile.h"
 
 #include "scripting/ScriptingHost.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Filesystem.h"
@@ -347,10 +348,15 @@ CGUI::CGUI() : m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);
 
-	// Construct the parent object for all GUI JavaScript things
-	m_ScriptObject = JS_NewObject(g_ScriptingHost.getContext(), NULL, g_ScriptingHost.GetGlobalObject(), NULL);
-	debug_assert(m_ScriptObject != NULL); // How should it handle errors?
-	JS_AddRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
+	// Construct the root object for all GUI JavaScript things.
+	// (We need an object with no parent, so functions defined by scripts get
+	// put onto this object and not its parent. In the current version of SpiderMonkey
+	// that means it must be a global object. Then we adjust its prototype so it
+	// can still read standard properties from the context's standard global object.)
+	m_ScriptObject = JS_NewGlobalObject(g_ScriptingHost.getContext(), g_ScriptingHost.GetScriptInterface().GetGlobalClass());
+	JS_AddObjectRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
+
+	JS_SetPrototype(g_ScriptingHost.getContext(), m_ScriptObject, g_ScriptingHost.GetGlobalObject());
 }
 
 CGUI::~CGUI()
@@ -363,7 +369,7 @@ CGUI::~CGUI()
 	if (m_ScriptObject)
 	{
 		// Let it be garbage-collected
-		JS_RemoveRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
+		JS_RemoveObjectRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
 	}
 }
 

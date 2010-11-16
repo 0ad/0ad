@@ -136,7 +136,7 @@ public:
 		TS_ASSERT(script.Eval(input.c_str(), val));
 
 		std::string stringified = script.StringifyJSON(val.get());
-		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\":1,\n  \"z\":[2,\n    \"3\xE2\x98\xBA\xEF\xBF\xBD\"\n  ],\n  \"y\":true\n}");
+		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\": 1,\n  \"z\": [\n    2,\n    \"3\xE2\x98\xBA\xEF\xBF\xBD\"\n  ],\n  \"y\": true\n}");
 
 		val = script.ParseJSON(stringified);
 		TS_ASSERT_WSTR_EQUALS(script.ToString(val.get()), L"({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");

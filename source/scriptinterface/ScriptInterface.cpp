@@ -40,7 +40,9 @@ const int RUNTIME_SIZE = 16 * 1024 * 1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
 
 #if ENABLE_SCRIPT_PROFILING
-#include "js/jsdbgapi.h"
+# define signbit std::signbit
+# include "js/jsdbgapi.h"
+# undef signbit
 #endif
 
 ////////////////////////////////////////////////////////////////
@@ -49,7 +51,7 @@ struct ScriptInterface_impl
 {
 	ScriptInterface_impl(const char* nativeScopeName, JSContext* cx);
 	~ScriptInterface_impl();
-	void Register(const char* name, JSFastNative fptr, uintN nargs);
+	void Register(const char* name, JSNative fptr, uintN nargs);
 
 	JSRuntime* m_rt; // NULL if m_cx is shared; non-NULL if we own m_cx
 	JSContext* m_cx;
@@ -109,7 +111,7 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 		LOGERROR(L"%hs", msg.str().c_str());
 
 	// When running under Valgrind, print more information in the error message
-	VALGRIND_PRINTF_BACKTRACE("->");
+//	VALGRIND_PRINTF_BACKTRACE("->");
 }
 
 // Functions in the global namespace:
@@ -276,7 +278,11 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 		JS_SetOptions(m_cx, JSOPTION_STRICT // "warn on dubious practice"
 				| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
 				| JSOPTION_VAROBJFIX // "recommended" (fixes variable scoping)
+
+				// Enable all the JIT features:
 //				| JSOPTION_JIT
+//				| JSOPTION_METHODJIT
+//				| JSOPTION_PROFILING
 		);
 
 		JS_SetVersion(m_cx, JSVERSION_LATEST);
@@ -286,7 +292,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 		// Threadsafe SpiderMonkey requires that we have a request before doing anything much
 		JS_BeginRequest(m_cx);
 
-		m_glob = JS_NewObject(m_cx, &global_class, NULL, NULL);
+		m_glob = JS_NewGlobalObject(m_cx, &global_class);
 		ok = JS_InitStandardClasses(m_cx, m_glob);
 
 		JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
@@ -296,10 +302,10 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
 
-	JS_DefineFunction(m_cx, m_glob, "print", (JSNative)::print,  0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
-	JS_DefineFunction(m_cx, m_glob, "log",   (JSNative)::logmsg, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
-	JS_DefineFunction(m_cx, m_glob, "warn",  (JSNative)::warn,   1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
-	JS_DefineFunction(m_cx, m_glob, "error", (JSNative)::error,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_glob, "print", ::print,  0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "log",   ::logmsg, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "warn",  ::warn,   1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "error", ::error,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()
@@ -312,9 +318,9 @@ ScriptInterface_impl::~ScriptInterface_impl()
 	}
 }
 
-void ScriptInterface_impl::Register(const char* name, JSFastNative fptr, uintN nargs)
+void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
 {
-	JS_DefineFunction(m_cx, m_nativeScope, name, reinterpret_cast<JSNative>(fptr), nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JS_DefineFunction(m_cx, m_nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 }
 
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName) :
@@ -361,8 +367,8 @@ void ScriptInterface::ReplaceNondeterministicFunctions(boost::rand48& rng)
 		return;
 	}
 
-	JSFunction* random = JS_DefineFunction(m->m_cx, JSVAL_TO_OBJECT(math), "random", (JSNative)Math_random, 0,
-			JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT | JSFUN_FAST_NATIVE);
+	JSFunction* random = JS_DefineFunction(m->m_cx, JSVAL_TO_OBJECT(math), "random", Math_random, 0,
+			JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	if (!random)
 	{
 		LOGERROR(L"ReplaceNondeterministicFunctions: failed to replace Math.random");
@@ -372,7 +378,7 @@ void ScriptInterface::ReplaceNondeterministicFunctions(boost::rand48& rng)
 	JS_SetReservedSlot(m->m_cx, JS_GetFunctionObject(random), 0, PRIVATE_TO_JSVAL(&rng));
 }
 
-void ScriptInterface::Register(const char* name, JSFastNative fptr, size_t nargs)
+void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
 {
 	m->Register(name, fptr, (uintN)nargs);
 }
@@ -387,46 +393,12 @@ JSRuntime* ScriptInterface::GetRuntime() const
 	return m->m_rt;
 }
 
-bool ScriptInterface::AddRoot(void* ptr, const char* name)
-{
-	return JS_AddNamedRoot(m->m_cx, ptr, name) ? true : false;
-}
-
-bool ScriptInterface::RemoveRoot(void* ptr)
-{
-	return JS_RemoveRoot(m->m_cx, ptr) ? true : false;
-}
-
 AutoGCRooter* ScriptInterface::ReplaceAutoGCRooter(AutoGCRooter* rooter)
 {
 	debug_assert(m->m_rt); // this class must own the runtime, else the rooter won't work
 	AutoGCRooter* ret = m->m_rooter;
 	m->m_rooter = rooter;
 	return ret;
-}
-
-ScriptInterface::LocalRootScope::LocalRootScope(JSContext* cx) :
-	m_cx(cx)
-{
-	m_OK = JS_EnterLocalRootScope(m_cx) ? true : false;
-}
-
-ScriptInterface::LocalRootScope::~LocalRootScope()
-{
-	if (m_OK)
-		JS_LeaveLocalRootScope(m_cx);
-}
-
-bool ScriptInterface::LocalRootScope::OK()
-{
-	return m_OK;
-}
-
-void ScriptInterface::LocalRootScope::LeaveWithResult(jsval val)
-{
-	if (m_OK)
-		JS_LeaveLocalRootScopeWithResult(m_cx, val);
-	m_OK = false;
 }
 
 
@@ -494,19 +466,14 @@ bool ScriptInterface::CallFunction_(jsval val, const char* name, size_t argc, js
 	JSObject* obj;
 	if (!JS_ValueToObject(m->m_cx, val, &obj) || obj == NULL)
 		return false;
-	JS_AddRoot(m->m_cx, &obj);
 
 	// Check that the named function actually exists, to avoid ugly JS error reports
 	// when calling an undefined value
 	JSBool found;
 	if (!JS_HasProperty(m->m_cx, obj, name, &found) || !found)
-	{
-		JS_RemoveRoot(m->m_cx, &obj);
 		return false;
-	}
 
 	JSBool ok = JS_CallFunctionName(m->m_cx, obj, name, (uintN)argc, argv, &ret);
-	JS_RemoveRoot(m->m_cx, &obj);
 
 	return ok ? true : false;
 }
@@ -514,6 +481,11 @@ bool ScriptInterface::CallFunction_(jsval val, const char* name, size_t argc, js
 jsval ScriptInterface::GetGlobalObject()
 {
 	return OBJECT_TO_JSVAL(JS_GetGlobalObject(m->m_cx));
+}
+
+JSClass* ScriptInterface::GetGlobalClass()
+{
+	return &global_class;
 }
 
 bool ScriptInterface::SetGlobal_(const char* name, jsval value, bool replace)
@@ -577,8 +549,6 @@ bool ScriptInterface::HasProperty(jsval obj, const char* name)
 
 bool ScriptInterface::EnumeratePropertyNamesWithPrefix(jsval obj, const char* prefix, std::vector<std::string>& out)
 {
-	LOCAL_ROOT_SCOPE;
-
 	utf16string prefix16 (prefix, prefix+strlen(prefix));
 
 	if (! JSVAL_IS_OBJECT(obj))
@@ -638,10 +608,8 @@ bool ScriptInterface::LoadScript(const std::wstring& filename, const std::wstrin
 	if (!func)
 		return false;
 
-	JS_AddRoot(m->m_cx, &func); // TODO: do we need to root this?
 	jsval scriptRval;
 	JSBool ok = JS_CallFunction(m->m_cx, NULL, func, 0, NULL, &scriptRval);
-	JS_RemoveRoot(m->m_cx, &func);
 
 	return ok ? true : false;
 }
@@ -687,7 +655,7 @@ CScriptValRooted ScriptInterface::ParseJSON(const utf16string& string)
 		return CScriptValRooted();
 	}
 
-	if (!JS_ConsumeJSONText(m->m_cx, parser, string.c_str(), (uint32)string.size()))
+	if (!JS_ConsumeJSONText(m->m_cx, parser, reinterpret_cast<const jschar*>(string.c_str()), (uint32)string.size()))
 	{
 		LOGERROR(L"ParseJSON failed to consume");
 		return CScriptValRooted();
@@ -786,7 +754,7 @@ class ValueCloner
 {
 public:
 	ValueCloner(ScriptInterface& from, ScriptInterface& to) :
-		cxFrom(from.GetContext()), cxTo(to.GetContext()), m_RooterFrom(from), m_RooterTo(to)
+		scriptInterfaceFrom(from), cxFrom(from.GetContext()), cxTo(to.GetContext()), m_RooterFrom(from), m_RooterTo(to)
 	{
 	}
 
@@ -796,7 +764,7 @@ public:
 		if (!JSVAL_IS_GCTHING(val) || JSVAL_IS_NULL(val))
 			return val;
 
-		std::map<jsval, jsval>::iterator it = m_Mapping.find(val);
+		std::map<void*, jsval>::iterator it = m_Mapping.find(JSVAL_TO_GCTHING(val));
 		if (it != m_Mapping.end())
 			return it->second;
 
@@ -815,8 +783,7 @@ private:
 		if (JSVAL_IS_DOUBLE(val))
 		{
 			jsval rval;
-			CLONE_REQUIRE(JS_NewNumberValue(cxTo, *JSVAL_TO_DOUBLE(val), &rval), L"JS_NewNumberValue");
-			m_Mapping[val] = rval;
+			CLONE_REQUIRE(JS_NewNumberValue(cxTo, JSVAL_TO_DOUBLE(val), &rval), L"JS_NewNumberValue");
 			m_RooterTo.Push(rval);
 			return rval;
 		}
@@ -826,7 +793,7 @@ private:
 			JSString* str = JS_NewUCStringCopyN(cxTo, JS_GetStringChars(JSVAL_TO_STRING(val)), JS_GetStringLength(JSVAL_TO_STRING(val)));
 			CLONE_REQUIRE(str, L"JS_NewUCStringCopyN");
 			jsval rval = STRING_TO_JSVAL(str);
-			m_Mapping[val] = rval;
+			m_Mapping[JSVAL_TO_GCTHING(val)] = rval;
 			m_RooterTo.Push(rval);
 			return rval;
 		}
@@ -847,17 +814,18 @@ private:
 			CLONE_REQUIRE(newObj, L"JS_NewObject");
 		}
 
-		m_Mapping[val] = OBJECT_TO_JSVAL(newObj);
+		m_Mapping[JSVAL_TO_GCTHING(val)] = OBJECT_TO_JSVAL(newObj);
 		m_RooterTo.Push(newObj);
 
-		JSIdArray* ida = JS_Enumerate(cxFrom, JSVAL_TO_OBJECT(val));
-		CLONE_REQUIRE(ida, L"JS_Enumerate");
+		AutoJSIdArray ida (cxFrom, JS_Enumerate(cxFrom, JSVAL_TO_OBJECT(val)));
+		CLONE_REQUIRE(ida.get(), L"JS_Enumerate");
 
-		IdArrayWrapper idaWrapper(cxFrom, ida);
+		AutoGCRooter idaRooter(scriptInterfaceFrom);
+		idaRooter.Push(ida.get());
 
-		for (jsint i = 0; i < ida->length; ++i)
+		for (size_t i = 0; i < ida.length(); ++i)
 		{
-			jsid id = ida->vector[i];
+			jsid id = ida[i];
 			jsval idval, propval;
 			CLONE_REQUIRE(JS_IdToValue(cxFrom, id, &idval), L"JS_IdToValue");
 			CLONE_REQUIRE(JS_GetPropertyById(cxFrom, JSVAL_TO_OBJECT(val), id, &propval), L"JS_GetPropertyById");
@@ -884,9 +852,10 @@ private:
 		return OBJECT_TO_JSVAL(newObj);
 	}
 
+	ScriptInterface& scriptInterfaceFrom;
 	JSContext* cxFrom;
 	JSContext* cxTo;
-	std::map<jsval, jsval> m_Mapping;
+	std::map<void*, jsval> m_Mapping;
 	AutoGCRooter m_RooterFrom;
 	AutoGCRooter m_RooterTo;
 };

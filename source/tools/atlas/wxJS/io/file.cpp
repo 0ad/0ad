@@ -355,7 +355,7 @@ JSBool File::create(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval
 		return JS_FALSE;
 	}
 
-	*rval = p->Create(fileName, overwrite, access);
+	*rval = ToJS(cx, p->Create(fileName, overwrite, access));
 
 	return JS_TRUE;
 }

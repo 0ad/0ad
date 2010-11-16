@@ -261,7 +261,7 @@ template<>
 jsval wxjs::ToJS<unsigned long>(JSContext* cx, const unsigned long&from)
 {
     jsval v;
-    JS_NewDoubleValue(cx, from, &v);
+    JS_NewNumberValue(cx, from, &v);
 	return v;
 }
 
@@ -269,7 +269,7 @@ template<>
 jsval wxjs::ToJS<float>(JSContext* cx, const float &from)
 {
     jsval v;
-    JS_NewDoubleValue(cx, from, &v);
+    JS_NewNumberValue(cx, from, &v);
 	return v;
 }
 
@@ -277,7 +277,7 @@ template<>
 jsval wxjs::ToJS<double>(JSContext* cx, const double &from)
 {
     jsval v;
-    JS_NewDoubleValue(cx, from, &v);
+    JS_NewNumberValue(cx, from, &v);
 	return v;
 }
 
@@ -324,13 +324,11 @@ template<>
 jsval wxjs::ToJS<wxArrayString>(JSContext *cx, const wxArrayString &from)
 {
     JSObject *objArray = JS_NewArrayObject(cx, 0, NULL);
-    JS_AddRoot(cx, &objArray);
     for(size_t i = 0; i < from.GetCount(); i++)
     {
 	    jsval element = ToJS(cx, from.Item(i));
 	    JS_SetElement(cx, objArray, i, &element);
     }
-    JS_RemoveRoot(cx, &objArray);
     return OBJECT_TO_JSVAL(objArray);
 }
 
@@ -338,7 +336,6 @@ template<>
 jsval wxjs::ToJS<wxStringList>(JSContext *cx, const wxStringList &from)
 {
     JSObject *objArray = JS_NewArrayObject(cx, 0, NULL);
-    JS_AddRoot(cx, &objArray);
 
     int i = 0;
     wxStringListNode *node = from.GetFirst();
@@ -351,6 +348,5 @@ jsval wxjs::ToJS<wxStringList>(JSContext *cx, const wxStringList &from)
 
         node = node->GetNext();
     }
-    JS_RemoveRoot(cx, &objArray);
     return OBJECT_TO_JSVAL(objArray);
 }

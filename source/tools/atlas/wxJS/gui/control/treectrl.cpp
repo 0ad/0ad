@@ -260,7 +260,7 @@ bool TreeCtrl::SetProperty(wxTreeCtrl *p,
     case P_INDENT:
         {
             int indent;
-            if ( FromJS(cx, p->GetIndent(), indent))
+            if ( FromJS(cx, *vp, indent))
                 p->SetIndent(indent);
             break;
         }

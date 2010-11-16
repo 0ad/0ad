@@ -18,10 +18,6 @@
 #ifndef INCLUDED_SCRIPTINTERFACE
 #define INCLUDED_SCRIPTINTERFACE
 
-// XXX: This is largely copied from tools/atlas/AtlasScript
-// Duplication is bad - they should use a shared version of the common code,
-// and just add their own extensions individually
-
 #include <memory>
 #include <vector>
 #include <string>
@@ -144,6 +140,8 @@ public:
 
 	jsval GetGlobalObject();
 
+	JSClass* GetGlobalClass();
+
 	/**
 	 * Set the named property on the global object.
 	 * If @p replace is true, an existing property will be overwritten; otherwise attempts
@@ -223,35 +221,12 @@ public:
 	 */
 	template<typename T> static jsval ToJSVal(JSContext* cx, T const& val);
 
-	bool AddRoot(void* ptr, const char* name);
-	bool RemoveRoot(void* ptr);
-
 	AutoGCRooter* ReplaceAutoGCRooter(AutoGCRooter* rooter);
 
 	/**
 	 * Dump some memory heap debugging information to stderr.
 	 */
 	void DumpHeap();
-
-	// Helper class for automatically rooting values
-	class LocalRootScope
-	{
-		JSContext* m_cx;
-		bool m_OK;
-	public:
-		// Tries to enter local root scope, so newly created
-		// values won't be GCed. This might fail, so check OK()
-		LocalRootScope(JSContext* cx);
-		// Returns true if the local root scope was successfully entered
-		bool OK();
-		// Leaves the local root scope, but keeps the given return value rooted
-		void LeaveWithResult(jsval val);
-		// Leaves the local root scope
-		~LocalRootScope();
-	private:
-		LocalRootScope& operator=(const LocalRootScope&);
-	};
-#define LOCAL_ROOT_SCOPE LocalRootScope scope(GetContext()); if (! scope.OK()) return false
 
 	void MaybeGC();
 
@@ -266,7 +241,7 @@ private:
 	static JSClass* GetClass(JSContext* cx, JSObject* obj);
 	static void* GetPrivate(JSContext* cx, JSObject* obj);
 
-	void Register(const char* name, JSFastNative fptr, size_t nargs);
+	void Register(const char* name, JSNative fptr, size_t nargs);
 	std::auto_ptr<ScriptInterface_impl> m;
 
 // The nasty macro/template bits are split into a separate file so you don't have to look at them
@@ -278,10 +253,10 @@ public:
 	//   void RegisterFunction(const char* functionName);
 	//
 	//   template <R, T0..., TR (*fptr) (void* cbdata, T0...)>
-	//   static JSFastNative call;
+	//   static JSNative call;
 	//
 	//   template <R, T0..., JSClass*, TC, TR (TC:*fptr) (T0...)>
-	//   static JSFastNative callMethod;
+	//   static JSNative callMethod;
 	//
 	//   template <dummy, T0...>
 	//   static size_t nargs();
@@ -293,7 +268,6 @@ public:
 template<typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, R& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	bool ok = CallFunction_(val, name, 0, NULL, jsRet);
 	if (!ok)
@@ -304,7 +278,6 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, R& ret)
 template<typename T0>
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	jsval argv[1];
 	argv[0] = ToJSVal(GetContext(), a0);
@@ -314,7 +287,6 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 template<typename T0, typename T1>
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0, const T1& a1)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	jsval argv[2];
 	argv[0] = ToJSVal(GetContext(), a0);
@@ -325,7 +297,6 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 template<typename T0, typename T1, typename T2>
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	jsval argv[3];
 	argv[0] = ToJSVal(GetContext(), a0);
@@ -337,7 +308,6 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 template<typename T0, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, R& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	jsval argv[1];
 	argv[0] = ToJSVal(GetContext(), a0);
@@ -350,7 +320,6 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, R&
 template<typename T0, typename T1, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, R& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	jsval argv[2];
 	argv[0] = ToJSVal(GetContext(), a0);
@@ -364,7 +333,6 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 template<typename T0, typename T1, typename T2, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, R& ret)
 {
-	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	jsval argv[3];
 	argv[0] = ToJSVal(GetContext(), a0);
@@ -379,14 +347,12 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 template<typename T>
 bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
 {
-	LOCAL_ROOT_SCOPE;
 	return SetGlobal_(name, ToJSVal(GetContext(), value), replace);
 }
 
 template<typename T>
 bool ScriptInterface::SetProperty(jsval obj, const char* name, const T& value, bool readonly)
 {
-	LOCAL_ROOT_SCOPE;
 	return SetProperty_(obj, name, ToJSVal(GetContext(), value), readonly);
 }
 

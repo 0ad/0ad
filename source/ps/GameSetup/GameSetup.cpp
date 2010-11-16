@@ -48,7 +48,6 @@
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
-#include "ps/StringConvert.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
@@ -75,9 +74,6 @@
 #include "scriptinterface/ScriptStats.h"
 
 #include "maths/scripting/JSInterface_Vector3D.h"
-
-#include "graphics/scripting/JSInterface_Camera.h"
-#include "graphics/scripting/JSInterface_LightEnv.h"
 
 #include "ps/scripting/JSInterface_Console.h"
 
@@ -184,9 +180,8 @@ retry:
 // display progress / description in loading screen
 void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
-	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), pending_task);
-	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent));
-	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
+	g_ScriptingHost.GetScriptInterface().SetGlobal("g_Progress", percent, true);
+	g_ScriptingHost.GetScriptInterface().SetGlobal("g_LoadDescription", pending_task, true);
 	g_GUI->SendEventToAll("progress");
 }
 
@@ -306,8 +301,6 @@ static void RegisterJavascriptInterfaces()
 	JSI_Vector3D::init();
 
 	// graphics
-	JSI_Camera::init();
-	JSI_LightEnv::init();
 	CGameView::ScriptingInit();
 
 	// renderer

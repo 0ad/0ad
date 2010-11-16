@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "ps/Parser.h"
 #include "lib/sysdep/sysdep.h"	// isfinite
+#include "scriptinterface/ScriptInterface.h"
 #include <math.h>
 #include <cfloat>
 
@@ -180,12 +181,16 @@ template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage )
 
 template<> jsval ToJSVal<double>( const double& Native )
 {
-	return( DOUBLE_TO_JSVAL( JS_NewDouble( g_ScriptingHost.getContext(), Native ) ) );
+	jsval val = JSVAL_VOID;
+	JS_NewNumberValue( g_ScriptingHost.getContext(), Native, &val );
+	return val;
 }
 
 template<> jsval ToJSVal<double>( double& Native )
 {
-	return( DOUBLE_TO_JSVAL( JS_NewDouble( g_ScriptingHost.getContext(), Native ) ) );
+	jsval val = JSVAL_VOID;
+	JS_NewNumberValue( g_ScriptingHost.getContext(), Native, &val );
+	return val;
 }
 
 template<> bool ToPrimitive<double>( JSContext* cx, jsval v, double& Storage )
@@ -200,12 +205,16 @@ template<> bool ToPrimitive<double>( JSContext* cx, jsval v, double& Storage )
 
 template<> jsval ToJSVal<float>( const float& Native )
 {
-	return( DOUBLE_TO_JSVAL( JS_NewDouble( g_ScriptingHost.getContext(), Native ) ) );
+	jsval val = JSVAL_VOID;
+	JS_NewNumberValue( g_ScriptingHost.getContext(), Native, &val );
+	return val;
 }
 
 template<> jsval ToJSVal<float>( float& Native )
 {
-	return( DOUBLE_TO_JSVAL( JS_NewDouble( g_ScriptingHost.getContext(), Native ) ) );
+	jsval val = JSVAL_VOID;
+	JS_NewNumberValue( g_ScriptingHost.getContext(), Native, &val );
+	return val;
 }
 
 template<> bool ToPrimitive<float>( JSContext* cx, jsval v, float& Storage )
@@ -256,27 +265,23 @@ template<> bool ToPrimitive<CStrW>( JSContext* UNUSED(cx), jsval v, CStrW& Stora
 
 template<> jsval ToJSVal<CStrW>( const CStrW& Native )
 {
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), Native.utf16().c_str() ) ) );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), reinterpret_cast<const jschar*>(Native.utf16().c_str()) ) ) );
 }
 
 template<> jsval ToJSVal<CStrW>( CStrW& Native )
 {
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), Native.utf16().c_str() ) ) );
+	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( g_ScriptingHost.GetContext(), reinterpret_cast<const jschar*>(Native.utf16().c_str()) ) ) );
 }
 
 // CStr/CStr8
 
-template<> bool ToPrimitive<CStr8>( JSContext* UNUSED(cx), jsval v, CStr8& Storage )
+template<> bool ToPrimitive<CStr8>( JSContext* cx, jsval v, CStr8& Storage )
 {
-	try
-	{
-		Storage = g_ScriptingHost.ValueToString( v );
-	}
-	catch( PSERROR_Scripting_ConversionFailed )
-	{
-		return( false );
-	}
-	return( true );
+	std::string str;
+	if (!ScriptInterface::FromJSVal(cx, v, str))
+		return false;
+	Storage = str;
+	return true;
 }
 
 template<> jsval ToJSVal<CStr8>( const CStr8& Native )
@@ -304,18 +309,12 @@ jsval JSParseString( const CStrW& Native )
 	stringParser.InputTaskType( "string", "_$value_" );
 	CParserLine result;
 	result.ParseString( stringParser, CStr(Native) );
-	bool boolResult; int intResult; float floatResult;
+	bool boolResult;
+	float floatResult;
 
 	if( result.GetArgFloat( 0, floatResult ) )
-	{
-		if( floatResult == floor( floatResult ) )
-		{
-			intResult = (int)floatResult;
-			if( INT_FITS_IN_JSVAL( intResult ) )
-				return( ToJSVal( intResult ) );
-		}
 		return( ToJSVal( floatResult ) );
-	}
+
 	if( result.GetArgBool( 0, boolResult ) )
 		return( BOOLEAN_TO_JSVAL( boolResult ) ); 
 	

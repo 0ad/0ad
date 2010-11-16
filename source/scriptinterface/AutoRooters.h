@@ -22,30 +22,6 @@
 
 #include "js/jsapi.h"
 
-// Exception-safety and GC-safety wrapper for JSIdArray
-// (TODO: it'd be nicer to use the existing js::AutoIdArray but currently that
-// requires a load of semi-private SpiderMonkey headers that cause a load of compile warnings)
-class IdArrayWrapper
-{
-	JSContext* m_cx;
-	JSIdArray* m_ida;
-public:
-	IdArrayWrapper(JSContext* cx, JSIdArray* ida) :
-		m_cx(cx), m_ida(ida)
-	{
-		for (jsint i = 0; i < m_ida->length; ++i)
-			if (!JS_AddRoot(m_cx, &m_ida->vector[i]))
-				debug_warn(L"JS_AddRoot failed");
-	}
-	~IdArrayWrapper()
-	{
-		for (jsint i = 0; i < m_ida->length; ++i)
-			if (!JS_RemoveRoot(m_cx, &m_ida->vector[i]))
-				debug_warn(L"JS_RemoveRoot failed");
-		JS_DestroyIdArray(m_cx, m_ida);
-	}
-};
-
 /**
  * Helper for rooting large groups of script values.
  * Construct this object, push values into it, and they will all be rooted until this
@@ -61,6 +37,7 @@ public:
 
 	void Push(JSObject* obj) { m_Objects.push_back(obj); }
 	void Push(jsval val) { m_Vals.push_back(val); }
+	void Push(JSIdArray* ida) { m_IdArrays.push_back(ida); }
 
 	void Trace(JSTracer* trc);
 private:
@@ -69,6 +46,7 @@ private:
 
 	std::vector<JSObject*> m_Objects;
 	std::vector<jsval> m_Vals;
+	std::vector<JSIdArray*> m_IdArrays;
 	// TODO: add vectors of other value types
 };
 

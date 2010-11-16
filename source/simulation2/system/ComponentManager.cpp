@@ -100,12 +100,6 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 CComponentManager::~CComponentManager()
 {
 	ResetState();
-
-	// Release GC roots
-	std::map<ComponentTypeId, ComponentType>::iterator it = m_ComponentTypesById.begin();
-	for (; it != m_ComponentTypesById.end(); ++it)
-		if (it->second.type == CT_Script)
-			m_ScriptInterface.RemoveRoot(&it->second.ctor);
 }
 
 void CComponentManager::LoadComponentTypes()
@@ -194,10 +188,7 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 			}
 		}
 
-		// Clean up the old component type
-		componentManager->m_ScriptInterface.RemoveRoot(&componentManager->m_ComponentTypesById[cid].ctor);
-
-		// Remove its old message subscriptions
+		// Remove the old component type's message subscriptions
 		std::map<MessageTypeId, std::vector<ComponentTypeId> >::iterator it;
 		for (it = componentManager->m_LocalMessageSubscriptions.begin(); it != componentManager->m_LocalMessageSubscriptions.end(); ++it)
 		{
@@ -228,14 +219,18 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 	}
 
 	// Construct a new ComponentType, using the wrapper's alloc functions
-	ComponentType ct = { CT_Script, iid, ctWrapper.alloc, ctWrapper.dealloc, cname, schema, ctor.get() };
+	ComponentType ct = {
+		CT_Script,
+		iid,
+		ctWrapper.alloc,
+		ctWrapper.dealloc,
+		cname,
+		schema,
+		CScriptValRooted(componentManager->m_ScriptInterface.GetContext(), ctor)
+	};
 	componentManager->m_ComponentTypesById[cid] = ct;
 
 	componentManager->m_CurrentComponent = cid; // needed by Subscribe
-
-	// Stop the ctor getting GCed
-	componentManager->m_ScriptInterface.AddRoot(&componentManager->m_ComponentTypesById[cid].ctor, "ComponentType ctor");
-	// TODO: check carefully that roots will never get leaked etc
 
 
 	// Find all the ctor prototype's On* methods, and subscribe to the appropriate messages:
@@ -285,7 +280,7 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 		for (; eit != comps.end(); ++eit)
 		{
 			jsval instance = eit->second->GetJSInstance();
-			if (instance)
+			if (!JSVAL_IS_NULL(instance))
 				componentManager->m_ScriptInterface.SetPrototype(instance, proto.get());
 		}
 	}
@@ -458,7 +453,7 @@ void CComponentManager::ResetState()
 void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc,
 		const char* name, const std::string& schema)
 {
-	ComponentType c = { CT_Native, iid, alloc, dealloc, name, schema, 0 };
+	ComponentType c = { CT_Native, iid, alloc, dealloc, name, schema, CScriptValRooted() };
 	m_ComponentTypesById.insert(std::make_pair(cid, c));
 	m_ComponentTypeIdsByName[name] = cid;
 }
@@ -466,7 +461,7 @@ void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId c
 void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc,
 		DeallocFunc dealloc, const char* name, const std::string& schema)
 {
-	ComponentType c = { CT_ScriptWrapper, iid, alloc, dealloc, name, schema, 0 };
+	ComponentType c = { CT_ScriptWrapper, iid, alloc, dealloc, name, schema, CScriptValRooted() };
 	m_ComponentTypesById.insert(std::make_pair(cid, c));
 	m_ComponentTypeIdsByName[name] = cid;
 	// TODO: merge with RegisterComponentType
@@ -584,11 +579,11 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 	std::map<entity_id_t, IComponent*>& emap2 = m_ComponentsByTypeId[cid];
 
 	// If this is a scripted component, construct the appropriate JS object first
-	jsval obj = 0;
+	jsval obj = JSVAL_NULL;
 	if (ct.type == CT_Script)
 	{
-		obj = m_ScriptInterface.CallConstructor(ct.ctor);
-		if (!obj)
+		obj = m_ScriptInterface.CallConstructor(ct.ctor.get());
+		if (JSVAL_IS_VOID(obj))
 		{
 			LOGERROR(L"Script component constructor failed");
 			return NULL;

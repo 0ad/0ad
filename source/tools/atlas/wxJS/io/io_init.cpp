@@ -301,24 +301,24 @@ bool io::InitClass(JSContext *cx, JSObject *global)
 	if (! obj )
 		return false;
 
-	JS_DefineFunction(cx, global, "wxConcatFiles", concatFiles, 3, 0);
-	JS_DefineFunction(cx, global, "wxCopyFile", copyFile, 2, 0);
-	JS_DefineFunction(cx, global, "wxFileExists", fileExists, 1, 0);
-	JS_DefineFunction(cx, global, "wxRenameFile", renameFile, 2, 0);
-	JS_DefineFunction(cx, global, "wxGetCwd", getCwd, 0, 0);
-	JS_DefineFunction(cx, global, "wxGetFreeDiskSpace", getFreeDiskSpace, 1, 0);
-	JS_DefineFunction(cx, global, "wxGetTotalDiskSpace", getTotalDiskSpace, 1, 0);
-	JS_DefineFunction(cx, global, "wxGetOSDirectory", getOSDirectory, 0, 0);
-	JS_DefineFunction(cx, global, "wxIsAbsolutePath", isAbsolutePath, 1, 0);
-	JS_DefineFunction(cx, global, "wxIsWild", isWild, 1, 0);
-	JS_DefineFunction(cx, global, "wxDirExists", dirExists, 1, 0);
-	JS_DefineFunction(cx, global, "wxMatchWild", matchWild, 3, 0);
-	JS_DefineFunction(cx, global, "wxMkDir", mkDir, 2, 0);
-	JS_DefineFunction(cx, global, "wxRemoveFile", removeFile, 1, 0);
-	JS_DefineFunction(cx, global, "wxRmDir", rmDir, 1, 0);
-	JS_DefineFunction(cx, global, "wxSetWorkingDirectory", setWorkingDirectory, 1, 0);
-    JS_DefineFunction(cx, global, "wxExecute", execute, 1, 0);
-    JS_DefineFunction(cx, global, "wxShell", shell, 1, 0);
+	JS_DefineFunction(cx, global, "wxConcatFiles", methodInterfaceWrapper<concatFiles>, 3, 0);
+	JS_DefineFunction(cx, global, "wxCopyFile", methodInterfaceWrapper<copyFile>, 2, 0);
+	JS_DefineFunction(cx, global, "wxFileExists", methodInterfaceWrapper<fileExists>, 1, 0);
+	JS_DefineFunction(cx, global, "wxRenameFile", methodInterfaceWrapper<renameFile>, 2, 0);
+	JS_DefineFunction(cx, global, "wxGetCwd", methodInterfaceWrapper<getCwd>, 0, 0);
+	JS_DefineFunction(cx, global, "wxGetFreeDiskSpace", methodInterfaceWrapper<getFreeDiskSpace>, 1, 0);
+	JS_DefineFunction(cx, global, "wxGetTotalDiskSpace", methodInterfaceWrapper<getTotalDiskSpace>, 1, 0);
+	JS_DefineFunction(cx, global, "wxGetOSDirectory", methodInterfaceWrapper<getOSDirectory>, 0, 0);
+	JS_DefineFunction(cx, global, "wxIsAbsolutePath", methodInterfaceWrapper<isAbsolutePath>, 1, 0);
+	JS_DefineFunction(cx, global, "wxIsWild", methodInterfaceWrapper<isWild>, 1, 0);
+	JS_DefineFunction(cx, global, "wxDirExists", methodInterfaceWrapper<dirExists>, 1, 0);
+	JS_DefineFunction(cx, global, "wxMatchWild", methodInterfaceWrapper<matchWild>, 3, 0);
+	JS_DefineFunction(cx, global, "wxMkDir", methodInterfaceWrapper<mkDir>, 2, 0);
+	JS_DefineFunction(cx, global, "wxRemoveFile", methodInterfaceWrapper<removeFile>, 1, 0);
+	JS_DefineFunction(cx, global, "wxRmDir", methodInterfaceWrapper<rmDir>, 1, 0);
+	JS_DefineFunction(cx, global, "wxSetWorkingDirectory", methodInterfaceWrapper<setWorkingDirectory>, 1, 0);
+    JS_DefineFunction(cx, global, "wxExecute", methodInterfaceWrapper<execute>, 1, 0);
+    JS_DefineFunction(cx, global, "wxShell", methodInterfaceWrapper<shell>, 1, 0);
 
 	return true;
 }

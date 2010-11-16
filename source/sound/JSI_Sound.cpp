@@ -28,21 +28,14 @@ JSI_Sound::JSI_Sound(const VfsPath& pathname)
 {
 	m_Handle = snd_open(g_VFS, pathname);
 
-	// special-case to avoid throwing exceptions if quickstart has
-	// disabled sound: set a flag queried by Construct; the object will
-	// then immediately be freed.
-	if (m_Handle == ERR::AGAIN)
+	// if open failed, we still have to return a valid non-null object to
+	// the script, so just reset the handle to 0 so all subsequent method
+	// calls will do nothing
+	if (m_Handle < 0)
 	{
-		m_SoundDisabled = true;
+		m_Handle = 0;
 		return;
 	}
-	m_SoundDisabled = false;
-
-	// if open failed, raise an exception - it's the only way to
-	// report errors, since we're in the ctor and don't want to move
-	// the open call elsewhere (by requiring an explicit open() call).
-	if (m_Handle < 0)
-		throw std::exception(); // caught by JSI_Sound::Construct.
 
 	(void)snd_set_pos(m_Handle, 0,0,0, true);
 }
@@ -190,35 +183,17 @@ CStr JSI_Sound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSE
 	return "[object Sound: " + CStr(h_filename(m_Handle).string()) + "]";
 }
 
-JSBool JSI_Sound::Construct(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval)
+JSBool JSI_Sound::Construct(JSContext* cx, uintN argc, jsval* vp)
 {
-	debug_assert(argc >= 1); // FIXME
+	JSU_REQUIRE_MIN_PARAMS(1);
+
 	CStrW filename;
-	if (! ToPrimitive<CStrW>(cx, argv[0], filename))
+	if (! ToPrimitive<CStrW>(cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
-	try
-	{
-		JSI_Sound* newObject = new JSI_Sound(filename);
-
-		// somewhat of a hack to avoid throwing exceptions if
-		// sound was disabled due to quickstart. see JSI_Sound().
-		if (newObject->m_SoundDisabled)
-		{
-			delete newObject;
-			*rval = JSVAL_NULL;
-			return JS_TRUE;
-		}
-
-		newObject->m_EngineOwned = false;
-		*rval = OBJECT_TO_JSVAL(newObject->GetScript());
-	}
-	catch (std::exception)
-	{
-		// failed, but this can happen easily enough that we don't want to
-		// return JS_FALSE (since that stops the script).
-		*rval = JSVAL_NULL;
-	}
+	JSI_Sound* newObject = new JSI_Sound(filename);
+	newObject->m_EngineOwned = false;
+	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(newObject->GetScript()));
 
 	return JS_TRUE;
 }

@@ -29,7 +29,7 @@ public:
 	#define NUMBERED_LIST_BALANCED(z, i, data) BOOST_PP_COMMA_IF(i) data##i
 	// Some other things
 	#define TYPED_ARGS(z, i, data) , T##i a##i
-	#define CONVERT_ARG(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, argv[i], a##i)) return JS_FALSE;
+	#define CONVERT_ARG(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, i < argc ? JS_ARGV(cx, vp)[i] : JSVAL_VOID, a##i)) return JS_FALSE;
 
 	// List-generating macros, named roughly after their first list item
 	#define TYPENAME_T0_HEAD(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_HEAD, typename T)
@@ -56,7 +56,7 @@ private:
 	// (Definition comes later, since it depends on some things we haven't defined yet)
 	#define OVERLOADS(z, i, data) \
 		template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( void* T0_TAIL(z,i) )> \
-		static JSBool call(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
+		static JSBool call(JSContext* cx, uintN argc, jsval* vp);
 	BOOST_PP_REPEAT(MAX_ARGS, OVERLOADS, ~)
 	#undef OVERLOADS
 
@@ -102,10 +102,12 @@ struct ScriptInterface_NativeWrapper<void> {
 // JSNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
 	template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( void* T0_TAIL(z,i) )> \
-	JSBool ScriptInterface::call(JSContext* cx, JSObject* /*obj*/, uintN /*argc*/, jsval* argv, jsval* rval) { \
-		(void)argv; /* avoid 'unused parameter' warnings */ \
+	JSBool ScriptInterface::call(JSContext* cx, uintN argc, jsval* vp) { \
+		(void)cx; (void)argc; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
-		ScriptInterface_NativeWrapper<TR>::call(cx, *rval, fptr  A0_TAIL(z,i)); \
+		jsval rval = JSVAL_VOID; \
+		ScriptInterface_NativeWrapper<TR>::call(cx, rval, fptr  A0_TAIL(z,i)); \
+		JS_SET_RVAL(cx, vp, rval); \
 		return JS_TRUE; \
 	}
 BOOST_PP_REPEAT(MAX_ARGS, OVERLOADS, ~)

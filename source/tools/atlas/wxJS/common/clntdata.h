@@ -69,12 +69,12 @@ namespace wxjs
           if (    m_protected
                && ! protect )
           {
-            JS_RemoveRoot(m_cx, &m_obj);
+            JS_RemoveObjectRoot(m_cx, &m_obj);
           }
           else if (    protect
                     && ! m_protected )
           {
-            JS_AddRoot(m_cx, &m_obj);
+            JS_AddObjectRoot(m_cx, &m_obj);
           }
           m_protected = protect;
         }

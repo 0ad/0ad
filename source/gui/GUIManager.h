@@ -135,15 +135,11 @@ public:
 private:
 	struct SGUIPage
 	{
-		SGUIPage();
-		SGUIPage(const SGUIPage&);
-		~SGUIPage();
-
 		CStrW name;
 		std::set<VfsPath> inputs; // for hotloading
 
 		JSContext* cx;
-		CScriptVal initData; // data to be passed to the init() function
+		CScriptValRooted initData; // data to be passed to the init() function
 
 		shared_ptr<CGUI> gui; // the actual GUI page
 	};

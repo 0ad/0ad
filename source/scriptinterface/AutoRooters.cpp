@@ -47,4 +47,15 @@ void AutoGCRooter::Trace(JSTracer* trc)
 	{
 		JS_CALL_VALUE_TRACER(trc, m_Vals[i], "AutoGCRooter val");
 	}
+
+	for (size_t i = 0; i < m_IdArrays.size(); ++i)
+	{
+		for (jsint j = 0; j < m_IdArrays[i]->length; ++j)
+		{
+			jsval val = JSVAL_VOID;
+			JS_IdToValue(m_ScriptInterface.GetContext(), m_IdArrays[i]->vector[j], &val);
+			JS_CALL_VALUE_TRACER(trc, val, "AutoGCRooter id array");
+		}
+	}
+
 }

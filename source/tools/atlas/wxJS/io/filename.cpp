@@ -472,7 +472,7 @@ wxFileName* FileName::Construct(JSContext *cx, JSObject *obj, uintN argc, jsval 
     // Argc > 1
     int format = wxPATH_NATIVE;
     uintN stringCount = argc;
-    if ( JSVAL_IS_INT(argv[argc-1]) )
+    if ( JSVAL_IS_NUMBER(argv[argc-1]) )
     {
         FromJS(cx, argv[argc-1], format);
         stringCount--;
@@ -615,7 +615,7 @@ JSBool FileName::assign(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, j
     // Argc > 1
     int format = wxPATH_NATIVE;
     uintN stringCount = argc;
-    if ( JSVAL_IS_INT(argv[argc-1]) )
+    if ( JSVAL_IS_NUMBER(argv[argc-1]) )
     {
         FromJS(cx, argv[argc-1], format);
         stringCount--;

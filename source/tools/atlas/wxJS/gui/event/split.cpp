@@ -82,17 +82,17 @@ bool SplitterEvent::GetProperty(PrivSplitterEvent* p,
     {
     case P_SASH_POSITION:
 	  {
-		 *vp = event->GetSashPosition();
+		 *vp = ToJS(cx, event->GetSashPosition());
          break;
 	  }
     case P_X:
 	  {
-		 *vp = event->GetX();
+		 *vp = ToJS(cx, event->GetX());
          break;
 	  }
     case P_Y:
 	  {
-		 *vp = event->GetY();
+		 *vp = ToJS(cx, event->GetY());
          break;
 	  }
     case P_WINDOW_BEING_REMOVED:

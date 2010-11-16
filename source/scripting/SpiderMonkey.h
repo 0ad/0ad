@@ -30,27 +30,10 @@
 // (notably precompiled.h and i18n/ScriptInterface.cpp) want only these
 // definitions without pulling in the whole of ScriptingHost.
 
-// jstypes.h (included via jsapi.h) requires we define
-// "one of XP_BEOS, XP_MAC, XP_OS2, XP_WIN or XP_UNIX".
-#include "lib/config.h"
-#if OS_WIN
-# define XP_WIN
-#elif OS_MAC
-# define XP_MAC
-#elif OS_BEOS
-# define XP_BEOS
-#else
-# define XP_UNIX
-#endif
+// (Actually that XP_* stuff is handled by the newer scriptinterface
+// code instead; this file no longer does anything interesting)
 
-#include <js/jsapi.h>
-
-#ifndef NDEBUG
-// Used by ScriptingHost::jshook_{script,function}
-# include <js/jsdbgapi.h>
-#endif
-
-// include any further required headers here
+#include "scriptinterface/ScriptTypes.h"
 
 #include "JSUtil.h"
 

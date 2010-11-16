@@ -90,13 +90,13 @@ IGUIObject::~IGUIObject()
 		std::map<CStr, JSObject**>::iterator it;
 		for (it = m_ScriptHandlers.begin(); it != m_ScriptHandlers.end(); ++it)
 		{
-			JS_RemoveRoot(g_ScriptingHost.getContext(), it->second);
+			JS_RemoveObjectRoot(g_ScriptingHost.getContext(), it->second);
 			delete it->second;
 		}
 	}
 	
 	if (m_JSObject)
-		JS_RemoveRoot(g_ScriptingHost.getContext(), &m_JSObject);
+		JS_RemoveObjectRoot(g_ScriptingHost.getContext(), &m_JSObject);
 }
 
 //-------------------------------------------------------------------
@@ -488,11 +488,11 @@ void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
 {
 	JSObject** obj = new JSObject*;
 	*obj = Function;
-	JS_AddRoot(g_ScriptingHost.getContext(), obj);
+	JS_AddObjectRoot(g_ScriptingHost.getContext(), obj);
 
 	if (m_ScriptHandlers[Action])
 	{
-		JS_RemoveRoot(g_ScriptingHost.getContext(), m_ScriptHandlers[Action]);
+		JS_RemoveObjectRoot(g_ScriptingHost.getContext(), m_ScriptHandlers[Action]);
 		delete m_ScriptHandlers[Action];
 	}
 	m_ScriptHandlers[Action] = obj;
@@ -504,10 +504,6 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	if (it == m_ScriptHandlers.end())
 		return;
 
-	// PRIVATE_TO_JSVAL assumes two-byte alignment,
-	// so make sure that's always true
-	debug_assert(! ((jsval)this & JSVAL_INT));
-
 	// The IGUIObject needs to be stored inside the script's object
 	jsval guiObject = PRIVATE_TO_JSVAL(this);
 
@@ -517,9 +513,6 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	
 	// TODO: why don't we use GetJSObject here?
 
-	// Prevent it from being garbage-collected before it's passed into the function
-	JS_AddRoot(g_ScriptingHost.getContext(), &jsGuiObject);
-
 	// Set up the 'mouse' parameter
 	jsval mouseParams[3];
 	mouseParams[0] = INT_TO_JSVAL(m_pGUI->m_MousePos.x);
@@ -527,9 +520,6 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	mouseParams[2] = INT_TO_JSVAL(m_pGUI->m_MouseButtons);
 	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, m_pGUI->m_ScriptObject, NULL, 3, mouseParams);
 	debug_assert(mouseObj); // TODO: Handle errors
-
-	// Don't garbage collect the mouse
-	JS_AddRoot(g_ScriptingHost.getContext(), &mouseObj);
 
 	jsval paramData[] = { OBJECT_TO_JSVAL(mouseObj) };
 
@@ -539,10 +529,6 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	{
 		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
 	}
-
-	// Allow the temporary parameters to be garbage-collected
-	JS_RemoveRoot(g_ScriptingHost.getContext(), &mouseObj);
-	JS_RemoveRoot(g_ScriptingHost.getContext(), &jsGuiObject);
 }
 
 void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argument)
@@ -571,7 +557,7 @@ JSObject* IGUIObject::GetJSObject()
 	if (! m_JSObject)
 	{
 		m_JSObject = JS_NewObject(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, NULL);
-		JS_AddRoot(g_ScriptingHost.getContext(), &m_JSObject);
+		JS_AddObjectRoot(g_ScriptingHost.getContext(), &m_JSObject);
 		JS_SetPrivate(g_ScriptingHost.getContext(), m_JSObject, this);
 	}
 	return m_JSObject;

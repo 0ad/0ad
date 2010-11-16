@@ -5,6 +5,13 @@
 
 #ifdef _WIN32
 # define XP_WIN
+# define WIN32 // SpiderMonkey expects this
+
+// The jsval struct type causes crashes due to weird miscompilation
+// issues in (at least) VC2008, so force it to be the less-type-safe
+// non-struct type instead
+# define JS_NO_JSVAL_JSID_STRUCT_TYPES
+
 #else
 # define XP_UNIX
 #endif // (we don't support XP_OS2 or XP_BEOS)

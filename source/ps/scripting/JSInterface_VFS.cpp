@@ -29,15 +29,15 @@
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
 	/* this is liable to happen often, so don't complain */\
-	if(err == ERR::VFS_FILE_NOT_FOUND)\
+	if (err == ERR::VFS_FILE_NOT_FOUND)\
 	{\
-		*rval = JSVAL_NULL;\
-		return( JS_TRUE );\
+		JS_SET_RVAL(cx, vp, JSVAL_NULL);\
+		return JS_TRUE;\
 	}\
 	/* unknown failure. we return an error (akin to an exception in JS) that
 	   stops the script to make sure this error is noticed. */\
-	else if(err < 0)\
-		return( JS_FALSE );\
+	else if (err < 0)\
+		return JS_FALSE;\
 	/* else: success */
 
 
@@ -54,13 +54,13 @@ struct BuildDirEntListState
 		: cx(cx_)
 	{
 		filename_array = JS_NewArrayObject(cx, 0, NULL);
-		JS_AddRoot(cx, &filename_array);
+		JS_AddObjectRoot(cx, &filename_array);
 		cur_idx = 0;
 	}
 
 	~BuildDirEntListState()
 	{
-		JS_RemoveRoot(cx, &filename_array);
+		JS_RemoveObjectRoot(cx, &filename_array);
 	}
 };
 
@@ -85,44 +85,45 @@ static LibError BuildDirEntListCB(const VfsPath& pathname, const FileInfo& UNUSE
 //
 // note: full pathnames of each file/subdirectory are returned,
 // ready for use as a "filename" for the other functions.
-JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 {
 	//
 	// get arguments
 	//
 
-	debug_assert( argc >= 1 );
+	JSU_REQUIRE_MIN_PARAMS(1);
+
 	CStr path;
-	if( !ToPrimitive<CStr>( cx, argv[0], path ) )
-		return( JS_FALSE );
+	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], path))
+		return JS_FALSE;
 
 	CStrW filter_str = L"";
-	if(argc >= 2)
+	if (argc >= 2)
 	{
-		if( !ToPrimitive<CStrW>( cx, argv[1], filter_str ) )
-			return( JS_FALSE );
+		if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[1], filter_str))
+			return JS_FALSE;
 	}
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
 	// (interpreted as: "accept all files without comparing").
 	const wchar_t* filter = 0;
-	if(!filter_str.empty())
+	if (!filter_str.empty())
 		filter = filter_str.c_str();
 
 	bool recursive = false;
-	if(argc >= 3)
+	if (argc >= 3)
 	{
-		if( !ToPrimitive<bool>( cx, argv[2], recursive ) )
-			return( JS_FALSE );
+		if (!ToPrimitive<bool> (cx, JS_ARGV(cx, vp)[2], recursive))
+			return JS_FALSE;
 	}
-	int flags = recursive? fs_util::DIR_RECURSIVE : 0;
+	int flags = recursive ? fs_util::DIR_RECURSIVE : 0;
 
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
 	fs_util::ForEachFile(g_VFS, CStrW(path), BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
-	*rval = OBJECT_TO_JSVAL( state.filename_array );
-	return( JS_TRUE );
+	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(state.filename_array));
+	return JS_TRUE;
 }
 
 
@@ -130,19 +131,20 @@ JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN arg
 //
 // mtime = getFileMTime(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::GetFileMTime(JSContext* cx, uintN argc, jsval* vp)
 {
-	debug_assert( argc >= 1 );
+	JSU_REQUIRE_MIN_PARAMS(1);
+
 	CStr filename;
-	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
-		return( JS_FALSE );
+	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+		return JS_FALSE;
 
 	FileInfo fileInfo;
 	LibError err = g_VFS->GetFileInfo(CStrW(filename), &fileInfo);
-	JS_CHECK_FILE_ERR( err );
+	JS_CHECK_FILE_ERR(err);
 
-	*rval = ToJSVal( (double)fileInfo.MTime() );
-	return( JS_TRUE );
+	JS_SET_RVAL(cx, vp, ToJSVal((double)fileInfo.MTime()));
+	return JS_TRUE;
 }
 
 
@@ -150,19 +152,20 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* UNUSED(obj), uintN argc, 
 //
 // size = getFileSize(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
 {
-	debug_assert( argc >= 1 );
+	JSU_REQUIRE_MIN_PARAMS(1);
+
 	CStr filename;
-	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
-		return( JS_FALSE );
+	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+		return JS_FALSE;
 
 	FileInfo fileInfo;
 	LibError err = g_VFS->GetFileInfo(CStrW(filename), &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
-	*rval = ToJSVal( (unsigned)fileInfo.Size() );
-	return( JS_TRUE );
+	JS_SET_RVAL(cx, vp, ToJSVal( (unsigned)fileInfo.Size() ));
+	return JS_TRUE;
 }
 
 
@@ -170,25 +173,27 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* UNUSED(obj), uintN argc, j
 //
 // contents = readFile(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 {
-	debug_assert( argc >= 1 );
-	CStr filename;
-	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
-		return( JS_FALSE );
+	JSU_REQUIRE_MIN_PARAMS(1);
 
-	shared_ptr<u8> buf; size_t size;
-	LibError err = g_VFS->LoadFile( CStrW(filename), buf, size );
+	CStr filename;
+	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+		return JS_FALSE;
+
+	shared_ptr<u8> buf;
+	size_t size;
+	LibError err = g_VFS->LoadFile(CStrW(filename), buf, size);
 	JS_CHECK_FILE_ERR( err );
 
-	CStr contents( (const char*)buf.get(), size );
+	CStr contents((const char*)buf.get(), size);
 
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");
 
 	// Decode as UTF-8
-	*rval = ToJSVal( contents.FromUTF8() );
-	return( JS_TRUE );
+	JS_SET_RVAL(cx, vp, ToJSVal( contents.FromUTF8() ));
+	return JS_TRUE;
 }
 
 
@@ -196,22 +201,24 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsva
 //
 // lines = readFileLines(filename);
 //   filename: VFS filename (may include path)
-JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
+JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 {
-	debug_assert( argc >= 1 );
+	JSU_REQUIRE_MIN_PARAMS(1);
+
 	CStr filename;
-	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
-		return( JS_FALSE );
+	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+		return (JS_FALSE);
 
 	//
 	// read file
 	//
 
-	shared_ptr<u8> buf; size_t size;
-	LibError err = g_VFS->LoadFile( CStrW(filename), buf, size );
+	shared_ptr<u8> buf;
+	size_t size;
+	LibError err = g_VFS->LoadFile(CStrW(filename), buf, size);
 	JS_CHECK_FILE_ERR( err );
 
-	CStr contents( (const char*)buf.get(), size );
+	CStr contents((const char*)buf.get(), size);
 
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");
@@ -220,32 +227,33 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	// split into array of strings (one per line)
 	//
 
-	std::stringstream ss( contents );
+	std::stringstream ss(contents);
 
-	JSObject* line_array = JS_NewArrayObject( cx, 0, NULL );
-	JS_AddRoot(cx, &line_array);
+	JSObject* line_array = JS_NewArrayObject(cx, 0, NULL);
 
 	std::string line;
 	int cur_line = 0;
-	while( std::getline( ss, line ) )
+	while (std::getline(ss, line))
 	{
 		// Decode each line as UTF-8
-		jsval val = ToJSVal( CStr( line ).FromUTF8() );
-		JS_SetElement( cx, line_array, cur_line++, &val );
+		jsval val = ToJSVal(CStr(line).FromUTF8());
+		JS_SetElement(cx, line_array, cur_line++, &val);
 	}
 
-	JS_RemoveRoot(cx, &line_array);
-
-	*rval = OBJECT_TO_JSVAL( line_array );
-	return( JS_TRUE );
+	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL( line_array ));
+	return JS_TRUE ;
 }
 
 
 // vfs_optimizer
 
-JSBool JSI_VFS::ArchiveBuilderCancel(JSContext* UNUSED(cx), JSObject* UNUSED(obj), uintN argc, jsval* UNUSED(argv), jsval* UNUSED(rval) )
+JSBool JSI_VFS::ArchiveBuilderCancel(JSContext* cx, uintN argc, jsval* vp)
 {
-	debug_assert( argc == 0 );
+	UNUSED2(cx);
+	UNUSED2(argc);
+
 //	vfs_opt_auto_build_cancel();
-	return( JS_TRUE );
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
 }

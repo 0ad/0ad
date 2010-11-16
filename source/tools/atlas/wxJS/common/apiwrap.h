@@ -431,26 +431,26 @@ namespace wxjs
 
       static JSBool JSGetStaticProperty(JSContext* cx, 
                                         JSObject* WXUNUSED(obj), 
-                                        jsval id, 
+                                        jsid id,
                                         jsval* vp)
       {
-        if ( JSVAL_IS_INT(id) )
+        if ( JSID_IS_INT(id) )
         {
-          return T_Port::GetStaticProperty(cx, JSVAL_TO_INT(id), vp) ? JS_TRUE 
-                                                                     : JS_FALSE;
+          return T_Port::GetStaticProperty(cx, JSID_TO_INT(id), vp) ? JS_TRUE
+                                                                    : JS_FALSE;
         }
         return JS_TRUE;
       }
 
       static JSBool JSSetStaticProperty(JSContext* cx, 
                                         JSObject* WXUNUSED(obj), 
-                                        jsval id, 
+                                        jsid id,
                                         jsval *vp)
       {
-        if ( JSVAL_IS_INT(id) )
+        if ( JSID_IS_INT(id) )
         {
-          return T_Port::SetStaticProperty(cx, JSVAL_TO_INT(id), vp) ? JS_TRUE 
-                                                                     : JS_FALSE;
+          return T_Port::SetStaticProperty(cx, JSID_TO_INT(id), vp) ? JS_TRUE
+                                                                    : JS_FALSE;
         }
         return JS_TRUE;
       }
@@ -516,16 +516,19 @@ namespace wxjs
        */
       static JSBool JSAddProperty(JSContext *cx, 
                                   JSObject *obj, 
-                                  jsval id, 
+                                  jsid id,
                                   jsval *vp)
       {
-        if (JSVAL_IS_STRING(id)) 
+        if (JSID_IS_STRING(id))
         {
           T_Priv *p = (T_Priv *) GetPrivate(cx, obj, false);
           if ( p != NULL )
           {
+            jsval idval;
+            if (!JS_IdToValue(cx, id, &idval))
+              return JS_FALSE;
             wxString str;
-            FromJS(cx, id, str);
+            FromJS(cx, idval, str);
             JSBool res = T_Port::AddProperty(p, cx, obj, str, vp) ? JS_TRUE 
                                                                   : JS_FALSE;
             return res;
@@ -540,16 +543,19 @@ namespace wxjs
        */
       static JSBool JSDeleteProperty(JSContext *cx, 
                                      JSObject *obj, 
-                                     jsval id, 
+                                     jsid id,
                                      jsval* WXUNUSED(vp))
       {
-        if (JSVAL_IS_STRING(id)) 
+        if (JSID_IS_STRING(id))
         {
           T_Priv *p = (T_Priv *) GetPrivate(cx, obj, false);
           if ( p != NULL )
           {
             wxString str;
-            FromJS(cx, id, str);
+            jsval idval;
+            if (!JS_IdToValue(cx, id, &idval))
+              return JS_FALSE;
+            FromJS(cx, idval, str);
             JSBool res = T_Port::DeleteProperty(p, cx, obj, str) ? JS_TRUE 
                                                                   : JS_FALSE;
             return res;
@@ -564,21 +570,24 @@ namespace wxjs
        */
       static JSBool JSGetProperty(JSContext *cx, 
                                   JSObject *obj, 
-                                  jsval id, 
+                                  jsid id,
                                   jsval *vp)
       {
         T_Priv *p = (T_Priv *) GetPrivate(cx, obj, false);
-        if (JSVAL_IS_INT(id)) 
+        if (JSID_IS_INT(id))
         {
-          return T_Port::GetProperty(p, cx, obj, JSVAL_TO_INT(id), vp) 
+          return T_Port::GetProperty(p, cx, obj, JSID_TO_INT(id), vp)
                  ? JS_TRUE : JS_FALSE; 
         }
         else
         {
-          if (JSVAL_IS_STRING(id)) 
+          if (JSID_IS_STRING(id))
           {
             wxString s;
-            FromJS(cx, id, s);
+            jsval idval;
+            if (!JS_IdToValue(cx, id, &idval))
+              return JS_FALSE;
+            FromJS(cx, idval, s);
             JSBool res = T_Port::GetStringProperty(p, cx, obj, s, vp) ? JS_TRUE 
                                                                      : JS_FALSE;
             return res;
@@ -593,21 +602,24 @@ namespace wxjs
        */
       static JSBool JSSetProperty(JSContext *cx, 
                                   JSObject *obj, 
-                                  jsval id, 
+                                  jsid id,
                                   jsval *vp)
       {
         T_Priv *p = (T_Priv *) GetPrivate(cx, obj, false);
-        if (JSVAL_IS_INT(id)) 
+        if (JSID_IS_INT(id))
         {
-          return T_Port::SetProperty(p, cx, obj, JSVAL_TO_INT(id), vp) 
+          return T_Port::SetProperty(p, cx, obj, JSID_TO_INT(id), vp)
                  ? JS_TRUE : JS_FALSE; 
         }
         else
         {
-          if (JSVAL_IS_STRING(id)) 
+          if (JSID_IS_STRING(id))
           {
               wxString s;
-              FromJS(cx, id, s);
+              jsval idval;
+              if (!JS_IdToValue(cx, id, &idval))
+                return JS_FALSE;
+              FromJS(cx, idval, s);
               JSBool res = T_Port::SetStringProperty(p, cx, obj, s, vp) 
                            ? JS_TRUE : JS_FALSE;
               return res;
@@ -616,9 +628,12 @@ namespace wxjs
         return JS_TRUE;
       }
 
-      static JSBool JSResolve(JSContext *cx, JSObject *obj, jsval id)
+      static JSBool JSResolve(JSContext *cx, JSObject *obj, jsid id)
       {
-        return T_Port::Resolve(cx, obj, id) ? JS_TRUE : JS_FALSE;
+        jsval idval;
+        if (!JS_IdToValue(cx, id, &idval))
+          return JS_FALSE;
+        return T_Port::Resolve(cx, obj, idval) ? JS_TRUE : JS_FALSE;
       }
 
       /**
@@ -628,19 +643,19 @@ namespace wxjs
        *  with a new statement in JavaScript.
        */
       static JSBool JSConstructor(JSContext *cx, 
-                                  JSObject *obj, 
                                   uintN argc, 
-                                  jsval *argv, 
-                                  jsval* WXUNUSED(rval))
+                                  jsval *vp)
       {
-        T_Priv *p = T_Port::Construct(cx, obj, argc, argv, 
-                                      JS_IsConstructing(cx) == JS_TRUE);
+        JSObject* obj = JS_NewObject(cx, &wxjs_class, m_classProto, NULL);
+        T_Priv *p = T_Port::Construct(cx, obj, argc, JS_ARGV(cx, vp),
+                                      JS_IsConstructing(cx, vp) == JS_TRUE);
         if ( p == NULL )
         {
           JS_ReportError(cx, "Class %s can't be constructed", m_jsClassName);
           return JS_FALSE;
         }
         JS_SetPrivate(cx, obj, p);
+        JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
         return JS_TRUE;
       }
 
@@ -765,13 +780,23 @@ JSClass wxjs::ApiWrapper<T_Port, T_Priv>::wxjs_class =
         {
 
 #define WXJS_END_METHOD_MAP()                  \
-            { 0, 0, 0, 0, 0 }                  \
+            { 0, 0, 0, 0 }                     \
         };                                     \
         JS_DefineFunctions(cx, obj, methods);  \
     }
- 
+
+template<JSBool (*fptr)(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)>
+static JSBool methodInterfaceWrapper(JSContext* cx, uintN argc, jsval* vp)
+{
+  jsval rval = JSVAL_VOID;
+  if (!fptr(cx, JS_THIS_OBJECT(cx, vp), argc, JS_ARGV(cx, vp), &rval))
+    return JS_FALSE;
+  JS_SET_RVAL(cx, vp, rval);
+  return JS_TRUE;
+}
+
 #define WXJS_METHOD(name, fun, args) \
-    { name, fun, args, 0, 0 },
+    { name, methodInterfaceWrapper<fun>, args, 0 },
 
 // A macro to reduce the size of the ported classes header.
 #define WXJS_DECLARE_METHOD(name) static JSBool name(JSContext *cx, \

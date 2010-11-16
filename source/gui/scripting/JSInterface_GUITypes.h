@@ -26,8 +26,8 @@
 		extern JSClass JSI_class;				\
 		extern JSPropertySpec JSI_props[];		\
 		extern JSFunctionSpec JSI_methods[];	\
-		JSBool construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );	\
-		JSBool toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );	\
+		JSBool construct(JSContext* cx, uintN argc, jsval* vp);	\
+		JSBool toString(JSContext* cx, uintN argc, jsval* vp);	\
 	}
 
 GUISTDTYPE(Size)

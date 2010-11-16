@@ -46,10 +46,6 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 	default: typeName = "(unknown)"; break;
 	}
 
-	ScriptInterface::LocalRootScope scope(cx);
-	if (! scope.OK())
-		return JSVAL_VOID;
-
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (! obj)
 		return JSVAL_VOID;
@@ -123,7 +119,6 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 
 	jsval rval = OBJECT_TO_JSVAL(obj);
 
-	scope.LeaveWithResult(rval);
 	return rval;
 }
 

@@ -37,7 +37,7 @@ template<> jsval ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, IComponent
 
 	// If this is a scripted component, just return the JS object directly
 	jsval instance = val->GetJSInstance();
-	if (instance)
+	if (!JSVAL_IS_NULL(instance))
 		return instance;
 
 	// Otherwise we need to construct a wrapper object
@@ -72,7 +72,7 @@ static jsval ConvertCParamNode(JSContext* cx, CParamNode const& val)
 
 		// Just a string
 		utf16string text(val.ToString().begin(), val.ToString().end());
-		JSString* str = JS_InternUCStringN(cx, text.data(), text.length());
+		JSString* str = JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length());
 		if (str)
 			return STRING_TO_JSVAL(str);
 		// TODO: report error
@@ -97,7 +97,7 @@ static jsval ConvertCParamNode(JSContext* cx, CParamNode const& val)
 	if (!val.ToString().empty())
 	{
 		utf16string text(val.ToString().begin(), val.ToString().end());
-		JSString* str = JS_InternUCStringN(cx, text.data(), text.length());
+		JSString* str = JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length());
 		if (!str)
 			return JSVAL_VOID; // TODO: report error
 		jsval childVal = STRING_TO_JSVAL(str);
@@ -135,10 +135,6 @@ template<> jsval ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, cons
 
 template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, jsval v, CColor& out)
 {
-	ScriptInterface::LocalRootScope scope(cx);
-	if (!scope.OK())
-		return false;
-
 	if (!JSVAL_IS_OBJECT(v))
 		return false; // TODO: report type error
 	JSObject* obj = JSVAL_TO_OBJECT(v);
@@ -160,10 +156,6 @@ template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, jsval v, CColo
 
 template<> jsval ScriptInterface::ToJSVal<CColor>(JSContext* cx, CColor const& val)
 {
-	ScriptInterface::LocalRootScope scope(cx);
-	if (!scope.OK())
-		return JSVAL_VOID;
-
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (!obj)
 		return JSVAL_VOID;
@@ -201,10 +193,6 @@ template<> jsval ScriptInterface::ToJSVal<fixed>(JSContext* cx, const fixed& val
 
 template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, jsval v, CFixedVector3D& out)
 {
-	ScriptInterface::LocalRootScope scope(cx);
-	if (!scope.OK())
-		return false;
-
 	if (!JSVAL_IS_OBJECT(v))
 		return false; // TODO: report type error
 	JSObject* obj = JSVAL_TO_OBJECT(v);
@@ -225,10 +213,6 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, jsval 
 
 template<> jsval ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, const CFixedVector3D& val)
 {
-	ScriptInterface::LocalRootScope scope(cx);
-	if (!scope.OK())
-		return JSVAL_VOID;
-
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (!obj)
 		return JSVAL_VOID;
@@ -246,10 +230,6 @@ template<> jsval ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, const C
 
 template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, jsval v, CFixedVector2D& out)
 {
-	ScriptInterface::LocalRootScope scope(cx);
-	if (!scope.OK())
-		return false;
-
 	if (!JSVAL_IS_OBJECT(v))
 		return false; // TODO: report type error
 	JSObject* obj = JSVAL_TO_OBJECT(v);

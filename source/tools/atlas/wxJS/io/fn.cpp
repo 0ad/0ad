@@ -448,7 +448,7 @@ JSBool io::execute(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval 
             return JS_TRUE;
         }
 
-        if ( JSVAL_IS_INT(argv[1]) )
+        if ( JSVAL_IS_NUMBER(argv[1]) )
         {
             wxProcess *p = NULL;
             if ( argc > 2 )
@@ -472,7 +472,7 @@ JSBool io::execute(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval 
                     return JS_FALSE;
             }
             if (    argc > 2
-                 && JSVAL_IS_INT(argv[2]) )
+                 && JSVAL_IS_NUMBER(argv[2]) )
             {
                 if ( ! FromJS(cx, argv[2], flags) )
                     return JS_FALSE;

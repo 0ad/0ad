@@ -166,8 +166,11 @@ namespace
 			JSString* ret = JS_ValueToString(cx, v);
 			if (! ret)
 				FAIL("Argument must be convertible to a string");
-			char* ch = JS_GetStringBytes(ret);
-			out = std::string(ch);
+			char* ch = JS_EncodeString(cx, ret); // chops off high byte of each jschar
+			if (! ch)
+				FAIL("JS_EncodeString failed"); // out of memory
+			out = std::string(ch, ch + JS_GetStringLength(ret));
+			JS_free(cx, ch);
 			return true;
 		}
 	};
@@ -241,7 +244,7 @@ namespace
 		static jsval Convert(JSContext* cx, const float& val)
 		{
 			jsval rval = JSVAL_VOID;
-			JS_NewDoubleValue(cx, val, &rval); // ignore return value
+			JS_NewNumberValue(cx, val, &rval); // ignore return value
 			return rval;
 		}
 	};
@@ -326,13 +329,11 @@ namespace
 		{
 			JSObject* obj = JS_NewArrayObject(cx, 0, NULL);
 			if (! obj) return JSVAL_VOID;
-			JS_AddRoot(cx, &obj);
 			for (size_t i = 0; i < val.size(); ++i)
 			{
 				jsval el = ToJSVal<T>::Convert(cx, val[i]);
 				JS_SetElement(cx, obj, (jsint)i, &el);
 			}
-			JS_RemoveRoot(cx, &obj);
 			return OBJECT_TO_JSVAL(obj);
 		}
 	};
@@ -382,7 +383,6 @@ namespace
 		{
 			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 			if (! obj) return JSVAL_VOID;
-			JS_AddRoot(cx, &obj);
 			
 			JS_DefineProperty(cx, obj, "name", ToJSVal<std::wstring>::Convert(cx, *val.name), NULL, NULL, JSPROP_ENUMERATE);
 
@@ -392,8 +392,6 @@ namespace
 			memcpy(buf, val.imagedata.GetBuffer(), val.imagedata.GetSize());
 			jsval bmp = wxjs::gui::Bitmap::CreateObject(cx, new wxBitmap (wxImage(val.imagewidth, val.imageheight, buf)));
 			JS_DefineProperty(cx, obj, "imagedata", bmp, NULL, NULL, JSPROP_ENUMERATE);
-			
-			JS_RemoveRoot(cx, &obj);
 			
 			return OBJECT_TO_JSVAL(obj);
 		}
@@ -405,11 +403,9 @@ namespace
 		{
 			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 			if (! obj) return JSVAL_VOID;
-			JS_AddRoot(cx, &obj);
 			JS_DefineProperty(cx, obj, "id", ToJSVal<std::wstring>::Convert(cx, *val.id), NULL, NULL, JSPROP_ENUMERATE);
 			JS_DefineProperty(cx, obj, "name", ToJSVal<std::wstring>::Convert(cx, *val.name), NULL, NULL, JSPROP_ENUMERATE);
 			JS_DefineProperty(cx, obj, "type", ToJSVal<int>::Convert(cx, val.type), NULL, NULL, JSPROP_ENUMERATE);
-			JS_RemoveRoot(cx, &obj);
 			return OBJECT_TO_JSVAL(obj);
 		}
 	};
@@ -420,11 +416,9 @@ namespace
 		{
 			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 			if (! obj) return JSVAL_VOID;
-			JS_AddRoot(cx, &obj);
 			JS_DefineProperty(cx, obj, "player", ToJSVal<size_t>::Convert(cx, val.player), NULL, NULL, JSPROP_ENUMERATE);
 			JS_DefineProperty(cx, obj, "selections", ToJSVal<std::vector<std::wstring> >::Convert(cx, *val.selections), NULL, NULL, JSPROP_ENUMERATE);
 			JS_DefineProperty(cx, obj, "variantgroups", ToJSVal<std::vector<std::vector<std::wstring> > >::Convert(cx, *val.variantgroups), NULL, NULL, JSPROP_ENUMERATE);
-			JS_RemoveRoot(cx, &obj);
 			return OBJECT_TO_JSVAL(obj);
 		}
 	};
@@ -531,37 +525,47 @@ namespace
 
 	// Functions in the Atlas.* namespace:
 	
-	JSBool ForceGC(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* WXUNUSED(argv), jsval* WXUNUSED(rval))
+	JSBool ForceGC(JSContext* cx, uintN WXUNUSED(argc), jsval* vp)
 	{
 		JS_GC(cx);
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
 	}
 
-	JSBool LoadScript(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* rval)
+	JSBool LoadScript(JSContext* cx, uintN argc, jsval* vp)
 	{
-		if (! ( JSVAL_IS_STRING(argv[0]) && JSVAL_IS_STRING(argv[1]) ))
+		if (argc < 2 || !JSVAL_IS_STRING(JS_ARGV(cx, vp)[0]) || !JSVAL_IS_STRING(JS_ARGV(cx, vp)[1]))
 			return JS_FALSE;
 		
-		JSString* name = JSVAL_TO_STRING(argv[0]);
-		JSString* code = JSVAL_TO_STRING(argv[1]);
+		std::string name;
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], name))
+			return JS_FALSE;
+
+		JSString* code = JSVAL_TO_STRING(JS_ARGV(cx, vp)[1]);
 		
-		return ScriptInterface_impl::LoadScript(cx,
+		jsval rval = JSVAL_VOID;
+		if (!ScriptInterface_impl::LoadScript(cx,
 				JS_GetStringChars(code), (uintN)JS_GetStringLength(code),
-				JS_GetStringBytes(name), rval);
+				name.c_str(), &rval))
+			return JS_FALSE;
+
+		JS_SET_RVAL(cx, vp, rval);
+		return JS_TRUE;
 	}
 	
 	// Functions in the global namespace:
 
-	JSBool print(JSContext* cx, JSObject* WXUNUSED(obj), uintN argc, jsval* argv, jsval* WXUNUSED(rval))
+	JSBool print(JSContext* cx, uintN argc, jsval* vp)
 	{
 		for (uintN i = 0; i < argc; ++i)
 		{
 			std::string str;
-			if (! ScriptInterface::FromJSVal(cx, argv[i], str))
+			if (! ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[i], str))
 				return JS_FALSE;
 			printf("%s", str.c_str());
 		}
 		fflush(stdout);
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
 	}
 }
@@ -588,7 +592,7 @@ ScriptInterface_impl::ScriptInterface_impl()
 		| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
 		);
 
-	m_glob = JS_NewObject(m_cx, &global_class, NULL, NULL);
+	m_glob = JS_NewGlobalObject(m_cx, &global_class);
 	ok = JS_InitStandardClasses(m_cx, m_glob);
 	
 	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
@@ -666,31 +670,14 @@ JSContext* ScriptInterface::GetContext()
 	return m->m_cx;
 }
 
-bool ScriptInterface::AddRoot(void* ptr)
+bool ScriptInterface::AddRoot(jsval* ptr)
 {
-	return JS_AddRoot(m->m_cx, ptr) ? true : false;
+	return JS_AddValueRoot(m->m_cx, ptr) ? true : false;
 }
 
-bool ScriptInterface::RemoveRoot(void* ptr)
+bool ScriptInterface::RemoveRoot(jsval* ptr)
 {
-	return JS_RemoveRoot(m->m_cx, ptr) ? true : false;
-}
-
-ScriptInterface::LocalRootScope::LocalRootScope(ScriptInterface& scriptInterface)
-	: m_ScriptInterface(scriptInterface)
-{
-	m_OK = JS_EnterLocalRootScope(m_ScriptInterface.m->m_cx) ? true : false;
-}
-
-ScriptInterface::LocalRootScope::~LocalRootScope()
-{
-	if (m_OK)
-		JS_LeaveLocalRootScope(m_ScriptInterface.m->m_cx);
-}
-
-bool ScriptInterface::LocalRootScope::OK()
-{
-	return m_OK;
+	return JS_RemoveValueRoot(m->m_cx, ptr) ? true : false;
 }
 
 
@@ -813,7 +800,7 @@ std::pair<wxPanel*, wxPanel*> ScriptInterface::LoadScriptAsSidebar(const wxStrin
 
 #define CONVERT_ARGS(r, data, i, elem) \
 	TYPE(elem) a##i; \
-	if (! ScriptInterface::FromJSVal< TYPE(elem) >(cx, argv[i], a##i)) \
+	if (! ScriptInterface::FromJSVal< TYPE(elem) >(cx, i < argc ? JS_ARGV(cx, vp)[i] : JSVAL_VOID, a##i)) \
 		return JS_FALSE;
 		
 #define CONVERT_OUTPUTS(r, data, i, elem) \
@@ -823,33 +810,35 @@ std::pair<wxPanel*, wxPanel*> ScriptInterface::LoadScriptAsSidebar(const wxStrin
 #define ARG_LIST(r, data, i, elem) BOOST_PP_COMMA_IF(i) a##i
 
 #define MESSAGE(name, vals) \
-	JSBool call_##name(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* WXUNUSED(rval)) \
+	JSBool call_##name(JSContext* cx, uintN argc, jsval* vp) \
 	{ \
-		(void)cx; (void)argv; /* avoid 'unused parameter' warnings */ \
+		(void)cx; (void)argc; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, vals) \
 		g_MessagePasser->Add(SHAREABLE_NEW(m##name, ( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, vals) ))); \
+		JS_SET_RVAL(cx, vp, JSVAL_VOID); \
 		return JS_TRUE; \
 	}
 	
 #define COMMAND(name, merge, vals) \
-	JSBool call_##name(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* WXUNUSED(rval)) \
+	JSBool call_##name(JSContext* cx, uintN argc, jsval* vp) \
 	{ \
-		(void)cx; (void)argv; /* avoid 'unused parameter' warnings */ \
+		(void)cx; (void)argc; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, vals) \
 		g_SubmitCommand(new AtlasMessage::m##name (AtlasMessage::d##name ( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, vals) ))); \
+		JS_SET_RVAL(cx, vp, JSVAL_VOID); \
 		return JS_TRUE; \
 	}
 	
 #define QUERY(name, in_vals, out_vals) \
-	JSBool call_##name(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* rval) \
+	JSBool call_##name(JSContext* cx, uintN argc, jsval* vp) \
 	{ \
-		(void)argv; /* avoid 'unused parameter' warnings */ \
+		(void)cx; (void)argc; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, in_vals) \
 		q##name q = q##name( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, in_vals) ); \
 		q.Post(); \
 		JSObject* ret = JS_NewObject(cx, NULL, NULL, NULL); \
 		if (! ret) return JS_FALSE; \
-		*rval = OBJECT_TO_JSVAL(ret); \
+		JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(ret)); \
 		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_OUTPUTS, ~, out_vals) \
 		return JS_TRUE; \
 	}
@@ -898,4 +887,3 @@ void ScriptInterface_impl::RegisterMessages(JSObject* parent)
 	#undef COMMAND
 	#undef QUERY
 }
-

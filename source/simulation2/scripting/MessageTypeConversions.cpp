@@ -23,9 +23,6 @@
 #include "js/jsapi.h"
 
 #define TOJSVAL_SETUP() \
-	ScriptInterface::LocalRootScope scope(scriptInterface.GetContext()); \
-	if (! scope.OK()) \
-		return JSVAL_VOID; \
 	JSObject* obj = JS_NewObject(scriptInterface.GetContext(), NULL, NULL, NULL); \
 	if (! obj) \
 		return JSVAL_VOID

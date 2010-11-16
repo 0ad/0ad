@@ -372,17 +372,17 @@ public:
 		const char stream[] = "\x02" // SCRIPT_TYPE_ARRAY
 					"\x04\0\0\0" // num props
 					"\x01\0\0\0" "0\0" // "0"
-					"\x05" "\x00\0\0\xC0" // SCRIPT_TYPE_INT -1073741824 (JS_INT_MIN)
+					"\x05" "\0\0\0\x80" // SCRIPT_TYPE_INT -2147483648 (JS_INT_MIN)
 					"\x01\0\0\0" "1\0" // "1"
-					"\x06" "\0\0\x40\0\0\0\xD0\xC1" // SCRIPT_TYPE_DOUBLE -1073741825 (JS_INT_MIN-1)
+					"\x06" "\0\0\x20\0\0\0\xE0\xC1" // SCRIPT_TYPE_DOUBLE -2147483649 (JS_INT_MIN-1)
 					"\x01\0\0\0" "2\0" // "2"
-					"\x05" "\xFF\xFF\xFF\x3F" // SCRIPT_TYPE_INT 1073741823
+					"\x05" "\xFF\xFF\xFF\x7F" // SCRIPT_TYPE_INT 2147483647 (JS_INT_MAX)
 					"\x01\0\0\0" "3\0" // "3"
-					"\x06" "\0\0\0\0\0\0\xD0\x41" // SCRIPT_TYPE_DOUBLE 1073741824
+					"\x06" "\0\0\0\0\0\0\xE0\x41" // SCRIPT_TYPE_DOUBLE 2147483648 (JS_INT_MAX+1)
 		;
 
-		helper_script_roundtrip("numbers", "[-1073741824, -1073741825, 1.073741823e+9, 1073741824]",
-				"[-1073741824, -1073741825, 1073741823, 1073741824]", sizeof(stream) - 1, stream);
+		helper_script_roundtrip("numbers", "[-2147483648, -2147483649, 2.147483647e+9, 2147483648]",
+				"[-2147483648, -2147483649, 2147483647, 2147483648]", sizeof(stream) - 1, stream);
 	}
 
 	void test_script_exceptions()

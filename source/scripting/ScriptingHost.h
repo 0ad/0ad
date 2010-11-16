@@ -111,7 +111,6 @@ public:
 
 	void SetGlobal(const std::string& globalName, jsval value);
 
-	std::string ValueToString(const jsval value);
 	CStrW ValueToUCString(const jsval value);
 };
 

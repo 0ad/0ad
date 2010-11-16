@@ -40,5 +40,5 @@ JSClass* IComponent::GetJSClass() const
 
 jsval IComponent::GetJSInstance() const
 {
-	return 0;
+	return JSVAL_NULL;
 }

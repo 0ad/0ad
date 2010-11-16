@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,13 +20,19 @@
 
 #ifdef _WIN32
 # define XP_WIN
+# define WIN32 // SpiderMonkey expects this
+
+// The jsval struct type causes crashes due to weird miscompilation
+// issues in (at least) VC2008, so force it to be the less-type-safe
+// non-struct type instead
+# define JS_NO_JSVAL_JSID_STRUCT_TYPES
+
 #else
 # define XP_UNIX
 #endif
 // (we don't support XP_OS2 or XP_BEOS)
 
-#include "js/jspubtd.h"
-#include "js/jsversion.h"
+#include "js/jsapi.h"
 
 #if JS_VERSION != 185
 #error Your compiler is trying to use an incorrect version of the SpiderMonkey library.

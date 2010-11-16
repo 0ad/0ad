@@ -94,7 +94,9 @@ void ScriptingHost::RunScript(const VfsPath& pathname, JSObject* globalObject)
 	utf16string script(scriptw.begin(), scriptw.end());
 
 	jsval rval;
-	JSBool ok = JS_EvaluateUCScript(m_Context, globalObject, script.c_str(), (uintN)script.size(), CStr(pathname.string()).c_str(), 1, &rval);
+	JSBool ok = JS_EvaluateUCScript(m_Context, globalObject,
+		reinterpret_cast<const jschar*>(script.c_str()), (uintN)script.size(),
+		CStr(pathname.string()).c_str(), 1, &rval);
 
 	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();
@@ -105,7 +107,8 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 	jsval rval; 
 
 	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject,
-		script.utf16().c_str(), (int)script.length(), CStr(calledFrom), 1, &rval); 
+		reinterpret_cast<const jschar*>(script.utf16().c_str()), (int)script.length(),
+		CStr(calledFrom), 1, &rval);
 
 	if (!ok) return JSVAL_NULL;
 
@@ -168,11 +171,9 @@ jsval ScriptingHost::GetObjectProperty( JSObject* object, const std::string& pro
 
 void ScriptingHost::SetObjectProperty_Double(JSObject* object, const char* propertyName, double value)
 {
-	jsdouble* d = JS_NewDouble(m_Context, value);
-	if (! d)
+	jsval v;
+	if (! JS_NewNumberValue(m_Context, value, &v))
 		throw PSERROR_Scripting_ConversionFailed();
-
-	jsval v = DOUBLE_TO_JSVAL(d);
 
 	if (! JS_SetProperty(m_Context, object, propertyName, &v))
 		throw PSERROR_Scripting_ConversionFailed();
@@ -202,15 +203,6 @@ void ScriptingHost::SetGlobal(const std::string &globalName, jsval value)
 //----------------------------------------------------------------------------
 // conversions
 //----------------------------------------------------------------------------
-
-std::string ScriptingHost::ValueToString(const jsval value)
-{
-	JSString* string = JS_ValueToString(m_Context, value);
-	if (string == NULL)
-		throw PSERROR_Scripting_ConversionFailed();
-
-	return std::string(JS_GetStringBytes(string), JS_GetStringLength(string));
-}
 
 CStrW ScriptingHost::ValueToUCString( const jsval value )
 {

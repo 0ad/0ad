@@ -76,6 +76,7 @@ function TerrainPreviewPage(panel, name)
 
 	this.previewReloadTimer = null;
 }
+
 TerrainPreviewPage.prototype = {
 	reloadPreviews: function() {
 		this.panel.freeze();
@@ -108,7 +109,6 @@ TerrainPreviewPage.prototype = {
 			imgSizer.add(label, 1, wxAlignment.CENTRE);
 			this.itemSizer.add(imgSizer, 0, wxAlignment.CENTRE | wxStretch.EXPAND);
 		}
-
 		this.itemSizer.layout();
 		this.panel.layout();
 		this.panel.thaw();
@@ -143,8 +143,9 @@ TerrainPreviewPage.prototype = {
 		scrolled.sizer = itemSizer;
 		
 		// Adjust the number of columns to fit in the available area
+		var w = this.w;
 		scrolled.onSize = function (evt) {
-			var numCols = Math.max(1, Math.floor(evt.size.width / (this.w+16)));
+			var numCols = Math.max(1, Math.floor(evt.size.width / (w+16)));
 			if (itemSizer.cols != numCols)
 				itemSizer.cols = numCols;
 		};

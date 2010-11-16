@@ -23,30 +23,22 @@
 #include "simulation2/serialization/IDeserializer.h"
 
 CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, jsval instance) :
-	m_ScriptInterface(scriptInterface), m_Instance(instance)
+	m_ScriptInterface(scriptInterface), m_Instance(CScriptValRooted(scriptInterface.GetContext(), instance))
 {
-	debug_assert(instance);
-	m_ScriptInterface.AddRoot(&m_Instance, "CComponentTypeScript.m_Instance");
-
 	// Cache the property detection for efficiency
-	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance, "Serialize");
-}
-
-CComponentTypeScript::~CComponentTypeScript()
-{
-	m_ScriptInterface.RemoveRoot(&m_Instance);
+	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance.get(), "Serialize");
 }
 
 void CComponentTypeScript::Init(const CSimContext& UNUSED(context), const CParamNode& paramNode, entity_id_t ent)
 {
-	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true);
-	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true);
-	m_ScriptInterface.CallFunctionVoid(m_Instance, "Init");
+	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true);
+	m_ScriptInterface.SetProperty(m_Instance.get(), "template", paramNode, true);
+	m_ScriptInterface.CallFunctionVoid(m_Instance.get(), "Init");
 }
 
 void CComponentTypeScript::Deinit(const CSimContext& UNUSED(context))
 {
-	m_ScriptInterface.CallFunctionVoid(m_Instance, "Deinit");
+	m_ScriptInterface.CallFunctionVoid(m_Instance.get(), "Deinit");
 }
 
 void CComponentTypeScript::HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool global)
@@ -55,7 +47,7 @@ void CComponentTypeScript::HandleMessage(const CSimContext& UNUSED(context), con
 
 	CScriptVal msgVal = msg.ToJSValCached(m_ScriptInterface);
 
-	if (!m_ScriptInterface.CallFunctionVoid(m_Instance, name, msgVal))
+	if (!m_ScriptInterface.CallFunctionVoid(m_Instance.get(), name, msgVal))
 		LOGERROR(L"Script message handler %hs failed", name);
 }
 
@@ -66,13 +58,13 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 	if (m_HasCustomSerialize)
 	{
 		CScriptValRooted val;
-		if (!m_ScriptInterface.CallFunction(m_Instance, "Serialize", val))
+		if (!m_ScriptInterface.CallFunction(m_Instance.get(), "Serialize", val))
 			LOGERROR(L"Script Serialize call failed");
 		serialize.ScriptVal("object", val);
 	}
 	else
 	{
-		serialize.ScriptVal("object", m_Instance);
+		serialize.ScriptVal("object", m_Instance.get());
 	}
 }
 
@@ -82,8 +74,8 @@ void CComponentTypeScript::Deserialize(const CSimContext& UNUSED(context), const
 
 	// Use ScriptObjectAppend so we don't lose the carefully-constructed
 	// prototype/parent of this object
-	deserialize.ScriptObjectAppend("object", m_Instance);
+	deserialize.ScriptObjectAppend("object", m_Instance.getRef());
 
-	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true);
-	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true);
+	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true);
+	m_ScriptInterface.SetProperty(m_Instance.get(), "template", paramNode, true);
 }

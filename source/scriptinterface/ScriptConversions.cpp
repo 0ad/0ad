@@ -21,18 +21,19 @@
 
 #include "ps/utf16string.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 
 #include "js/jsapi.h"
 
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
 
 // Implicit type conversions often hide bugs, so warn about them
-#define WARN_IF_NOT(c) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s", #c); })
+#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarning(cx, "Script value conversion check failed: %s (got type %s)", #c, JS_GetTypeName(cx, JS_TypeOfValue(cx, v))); })
 
 template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, jsval v, bool& out)
 {
 	JSBool ret;
-	WARN_IF_NOT(JSVAL_IS_BOOLEAN(v));
+	WARN_IF_NOT(JSVAL_IS_BOOLEAN(v), v);
 	if (!JS_ValueToBoolean(cx, v, &ret))
 		return false;
 	out = (ret ? true : false);
@@ -42,7 +43,7 @@ template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, jsval v, bool& o
 template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, jsval v, float& out)
 {
 	jsdouble ret;
-	WARN_IF_NOT(JSVAL_IS_NUMBER(v));
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v), v);
 	if (!JS_ValueToNumber(cx, v, &ret))
 		return false;
 	out = ret;
@@ -52,7 +53,7 @@ template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, jsval v, float&
 template<> bool ScriptInterface::FromJSVal<double>(JSContext* cx, jsval v, double& out)
 {
 	jsdouble ret;
-	WARN_IF_NOT(JSVAL_IS_NUMBER(v));
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v), v);
 	if (!JS_ValueToNumber(cx, v, &ret))
 		return false;
 	out = ret;
@@ -62,7 +63,7 @@ template<> bool ScriptInterface::FromJSVal<double>(JSContext* cx, jsval v, doubl
 template<> bool ScriptInterface::FromJSVal<i32>(JSContext* cx, jsval v, i32& out)
 {
 	int32 ret;
-	WARN_IF_NOT(JSVAL_IS_INT(v));
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v), v);
 	if (!JS_ValueToECMAInt32(cx, v, &ret))
 		return false;
 	out = ret;
@@ -72,7 +73,7 @@ template<> bool ScriptInterface::FromJSVal<i32>(JSContext* cx, jsval v, i32& out
 template<> bool ScriptInterface::FromJSVal<u32>(JSContext* cx, jsval v, u32& out)
 {
 	uint32 ret;
-	WARN_IF_NOT(JSVAL_IS_INT(v));
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v), v);
 	if (!JS_ValueToECMAUint32(cx, v, &ret))
 		return false;
 	out = ret;
@@ -94,7 +95,7 @@ template<> bool ScriptInterface::FromJSVal<CScriptValRooted>(JSContext* cx, jsva
 
 template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v, std::wstring& out)
 {
-	WARN_IF_NOT(JSVAL_IS_STRING(v));
+	WARN_IF_NOT(JSVAL_IS_STRING(v) || JSVAL_IS_NUMBER(v), v); // allow implicit number conversions
 	JSString* ret = JS_ValueToString(cx, v);
 	if (!ret)
 		FAIL("Argument must be convertible to a string");
@@ -105,15 +106,15 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v,
 
 template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, std::string& out)
 {
-	WARN_IF_NOT(JSVAL_IS_STRING(v));
+	WARN_IF_NOT(JSVAL_IS_STRING(v) || JSVAL_IS_NUMBER(v), v); // allow implicit number conversions
 	JSString* ret = JS_ValueToString(cx, v);
 	if (!ret)
 		FAIL("Argument must be convertible to a string");
-	char* ch = JS_GetStringBytes(ret);
+	char* ch = JS_EncodeString(cx, ret); // chops off high byte of each jschar
+	if (!ch)
+		FAIL("JS_EncodeString failed"); // out of memory
 	out = std::string(ch, ch + JS_GetStringLength(ret));
-	// TODO: if JS_GetStringBytes fails it'll return a zero-length string
-	// and we'll overflow its bounds by using JS_GetStringLength - should
-	// use one of the new SpiderMonkey 1.8 functions instead
+	JS_free(cx, ch);
 	return true;
 }
 
@@ -139,13 +140,10 @@ template<> jsval ScriptInterface::ToJSVal<double>(JSContext* cx, const double& v
 	return rval;
 }
 
-template<> jsval ScriptInterface::ToJSVal<i32>(JSContext* cx, const i32& val)
+template<> jsval ScriptInterface::ToJSVal<i32>(JSContext* UNUSED(cx), const i32& val)
 {
-	if (INT_FITS_IN_JSVAL(val))
-		return INT_TO_JSVAL(val);
-	jsval rval = JSVAL_VOID;
-	JS_NewNumberValue(cx, val, &rval); // ignore return value
-	return rval;
+	cassert(JSVAL_INT_BITS == 32);
+	return INT_TO_JSVAL(val);
 }
 
 template<> jsval ScriptInterface::ToJSVal<u32>(JSContext* cx, const u32& val)
@@ -185,12 +183,27 @@ template<> jsval ScriptInterface::ToJSVal<std::string>(JSContext* cx, const std:
 	return JSVAL_VOID;
 }
 
+template<> jsval ScriptInterface::ToJSVal<const wchar_t*>(JSContext* cx, const wchar_t* const& val)
+{
+	return ToJSVal(cx, std::wstring(val));
+}
+
 template<> jsval ScriptInterface::ToJSVal<const char*>(JSContext* cx, const char* const& val)
 {
 	JSString* str = JS_NewStringCopyZ(cx, val);
 	if (str)
 		return STRING_TO_JSVAL(str);
 	return JSVAL_VOID;
+}
+
+template<> jsval ScriptInterface::ToJSVal<CStrW>(JSContext* cx, const CStrW& val)
+{
+	return ToJSVal(cx, static_cast<const std::wstring&>(val));
+}
+
+template<> jsval ScriptInterface::ToJSVal<CStr8>(JSContext* cx, const CStr8& val)
+{
+	return ToJSVal(cx, static_cast<const std::string&>(val));
 }
 
 ////////////////////////////////////////////////////////////////
@@ -201,13 +214,11 @@ template<typename T> static jsval ToJSVal_vector(JSContext* cx, const std::vecto
 	JSObject* obj = JS_NewArrayObject(cx, 0, NULL);
 	if (!obj)
 		return JSVAL_VOID;
-	JS_AddRoot(cx, &obj);
 	for (size_t i = 0; i < val.size(); ++i)
 	{
 		jsval el = ScriptInterface::ToJSVal<T>(cx, val[i]);
 		JS_SetElement(cx, obj, (jsint)i, &el);
 	}
-	JS_RemoveRoot(cx, &obj);
 	return OBJECT_TO_JSVAL(obj);
 }
 

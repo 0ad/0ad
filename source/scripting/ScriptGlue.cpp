@@ -31,8 +31,6 @@
 #include "graphics/MapWriter.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
-#include "graphics/scripting/JSInterface_Camera.h"
-#include "graphics/scripting/JSInterface_LightEnv.h"
 #include "gui/GUIManager.h"
 #include "gui/IGUIObject.h"
 #include "lib/frequency_filter.h"
@@ -109,24 +107,26 @@ static void InitJsTimers()
 	js_timer_clients[0].sum.SetToZero();
 }
 
-JSBool StartJsTimer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
+JSBool StartJsTimer(JSContext* cx, uintN argc, jsval* vp)
 {
 	ONCE(InitJsTimers());
 
 	JSU_REQUIRE_PARAMS(1);
-	size_t slot = ToPrimitive<size_t>(argv[0]);
+	size_t slot = ToPrimitive<size_t>(JS_ARGV(cx, vp)[0]);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
 
 	js_start_times[slot].SetFromTimer();
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
 }
 
 
-JSBool StopJsTimer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
+JSBool StopJsTimer(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_PARAMS(1);
-	size_t slot = ToPrimitive<size_t>(argv[0]);
+	size_t slot = ToPrimitive<size_t>(JS_ARGV(cx, vp)[0]);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
 
@@ -135,6 +135,8 @@ JSBool StopJsTimer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rva
 	now.Subtract(js_timer_overhead);
 	BillingPolicy_Default()(&js_timer_clients[slot], js_start_times[slot], now);
 	js_start_times[slot].SetToZero();
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
 }
 
@@ -146,11 +148,13 @@ JSBool StopJsTimer(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rva
 // Immediately ends the current game (if any).
 // params:
 // returns:
-JSBool EndGame(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
+JSBool EndGame(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
 	EndGame();
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
 }
 
@@ -164,13 +168,13 @@ JSBool EndGame(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 // notes:
 // - This value is recalculated once a frame. We take special care to
 //   filter it, so it is both accurate and free of jitter.
-JSBool GetFps( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
+JSBool GetFps(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_NO_PARAMS();
 	int freq = 0;
 	if (g_frequencyFilter)
 		freq = g_frequencyFilter->StableFrequency();
-	*rval = INT_TO_JSVAL(freq);
+	JS_SET_RVAL(cx, vp, INT_TO_JSVAL(freq));
 	return JS_TRUE;
 }
 
@@ -181,28 +185,13 @@ JSBool GetFps( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
 // notes:
 // - Exit happens after the current main loop iteration ends
 //   (since this only sets a flag telling it to end)
-JSBool ExitProgram( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
+JSBool ExitProgram(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
 	kill_mainloop();
-	return JS_TRUE;
-}
 
-
-// Write an indication of total video RAM to console.
-// params:
-// returns:
-// notes:
-// - May not be supported on all platforms.
-// - Only a rough approximation; do not base low-level decisions
-//   ("should I allocate one more texture?") on this.
-JSBool WriteVideoMemToConsole( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_NO_PARAMS();
-
-	const SDL_VideoInfo* videoInfo = SDL_GetVideoInfo();
-	g_Console->InsertMessage(L"VRAM: total %d", videoInfo->video_mem);
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
 }
 
@@ -212,38 +201,27 @@ JSBool WriteVideoMemToConsole( JSContext* cx, JSObject*, uintN argc, jsval* argv
 // returns:
 // notes:
 // - Cursors are stored in "art\textures\cursors"
-JSBool SetCursor( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
+JSBool SetCursor(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_PARAMS(1);
-	g_CursorName = g_ScriptingHost.ValueToUCString(argv[0]);
+	g_CursorName = g_ScriptingHost.ValueToUCString(JS_ARGV(cx, vp)[0]);
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
 }
 
-// Change the LOD bias.
-// params: LOD bias [float]
-// returns:
-// notes:
-// - value is as required by GL_TEXTURE_LOD_BIAS.
-// - useful for adjusting image "sharpness" (since it affects which mipmap level is chosen)
-JSBool _LodBias( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
+JSBool GetGUIObjectByName(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_PARAMS(1);
 
-	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, ToPrimitive<float>(argv[0]));
-	return JS_TRUE;
-}
-
-
-JSBool GetGUIObjectByName(JSContext* cx, JSObject* UNUSED(obj), uintN UNUSED(argc), jsval* argv, jsval* rval)
-{
 	try
 	{
-		CStr name = ToPrimitive<CStr>(cx, argv[0]);
+		CStr name = ToPrimitive<CStr>(cx, JS_ARGV(cx, vp)[0]);
 		IGUIObject* guiObj = g_GUI->FindObjectByName(name);
 		if (guiObj)
-			*rval = OBJECT_TO_JSVAL(guiObj->GetJSObject());
+			JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(guiObj->GetJSObject()));
 		else
-			*rval = JSVAL_NULL;
+			JS_SET_RVAL(cx, vp, JSVAL_NULL);
 		return JS_TRUE;
 	}
 	catch (PSERROR_Scripting&)
@@ -270,14 +248,14 @@ JSBool GetGUIObjectByName(JSContext* cx, JSObject* UNUSED(obj), uintN UNUSED(arg
 //   lib/svn_revision.cpp. it is useful to know when attempting to
 //   reproduce bugs (the main EXE and PDB should be temporarily reverted to
 //   that revision so that they match user-submitted crashdumps).
-JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
+JSBool GetBuildTimestamp(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_MAX_PARAMS(1);
 
 	char buf[200];
 
 	// see function documentation
-	const int mode = argc? JSVAL_TO_INT(argv[0]) : -1;
+	const int mode = argc? JSVAL_TO_INT(JS_ARGV(cx, vp)[0]) : -1;
 	switch(mode)
 	{
 	case -1:
@@ -294,7 +272,7 @@ JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsv
 		break;
 	}
 
-	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buf));
+	JS_SET_RVAL(cx, vp, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buf)));
 	return JS_TRUE;
 }
 
@@ -311,8 +289,11 @@ void DumpHeap(const char* name, int idx, JSContext* cx)
 }
 #endif
 
-JSBool DumpHeaps(JSContext* UNUSED(cx), JSObject* UNUSED(globalObject), uintN UNUSED(argc), jsval* UNUSED(argv), jsval* UNUSED(rval) )
+JSBool DumpHeaps(JSContext* cx, uintN argc, jsval* vp)
 {
+	UNUSED2(cx);
+	UNUSED2(argc);
+
 #ifdef DEBUG
 	static int i = 0;
 
@@ -325,47 +306,50 @@ JSBool DumpHeaps(JSContext* UNUSED(cx), JSObject* UNUSED(globalObject), uintN UN
 #else
 	debug_warn(L"DumpHeaps only available in DEBUG mode");
 #endif
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
 }
 
 //-----------------------------------------------------------------------------
 
 // Is the game paused?
-JSBool IsPaused( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
+JSBool IsPaused(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
-	if( !g_Game )
+	if (!g_Game)
 	{
-		JS_ReportError( cx, "Game is not started" );
+		JS_ReportError(cx, "Game is not started");
 		return JS_FALSE;
 	}
 
-	*rval = g_Game->m_Paused ? JSVAL_TRUE : JSVAL_FALSE;
-	return JS_TRUE ;
+	JS_SET_RVAL(cx, vp, g_Game->m_Paused ? JSVAL_TRUE : JSVAL_FALSE);
+	return JS_TRUE;
 }
 
 // Pause/unpause the game
-JSBool SetPaused( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
+JSBool SetPaused(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_PARAMS( 1 );
 
-	if( !g_Game )
+	if (!g_Game)
 	{
-		JS_ReportError( cx, "Game is not started" );
+		JS_ReportError(cx, "Game is not started");
 		return JS_FALSE;
 	}
 
 	try
 	{
-		g_Game->m_Paused = ToPrimitive<bool>( argv[0] );
+		g_Game->m_Paused = ToPrimitive<bool> (JS_ARGV(cx, vp)[0]);
 	}
-	catch( PSERROR_Scripting_ConversionFailed )
+	catch (PSERROR_Scripting_ConversionFailed)
 	{
-		JS_ReportError( cx, "Invalid parameter to SetPaused" );
+		JS_ReportError(cx, "Invalid parameter to SetPaused");
 	}
 
-	return  JS_TRUE;
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
 }
 
 
@@ -381,7 +365,7 @@ JSBool SetPaused( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsv
 // - Extra (reserved for future use, always zero)
 //
 // we simplify this a bit with a macro:
-#define JS_FUNC(script_name, cpp_function, min_params) { script_name, cpp_function, min_params, 0, 0 },
+#define JS_FUNC(script_name, cpp_function, min_params) { script_name, cpp_function, min_params, 0 },
 
 JSFunctionSpec ScriptFunctionTable[] =
 {
@@ -404,8 +388,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("exit", ExitProgram, 0)
 	JS_FUNC("isPaused", IsPaused, 0)
 	JS_FUNC("setPaused", SetPaused, 1)
-	JS_FUNC("vmem", WriteVideoMemToConsole, 0)
-	JS_FUNC("_lodBias", _LodBias, 0)
 	JS_FUNC("setCursor", SetCursor, 1)
 	JS_FUNC("getFPS", GetFps, 0)
 	JS_FUNC("getGUIObjectByName", GetGUIObjectByName, 1)
@@ -415,7 +397,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("dumpHeaps", DumpHeaps, 0)
 
 	// end of table marker
-	{0, 0, 0, 0, 0}
+	{0}
 };
 #undef JS_FUNC
 
@@ -424,23 +406,22 @@ JSFunctionSpec ScriptFunctionTable[] =
 // property accessors
 //-----------------------------------------------------------------------------
 
-JSBool GetGameView( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
+JSBool GetGameView(JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsid UNUSED(id), jsval* vp)
 {
 	if (g_Game)
-		*vp = OBJECT_TO_JSVAL( g_Game->GetView()->GetScript() );
+		*vp = OBJECT_TO_JSVAL(g_Game->GetView()->GetScript());
 	else
 		*vp = JSVAL_NULL;
-	return( JS_TRUE );
+	return JS_TRUE;
 }
 
-
-JSBool GetRenderer( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(id), jsval* vp )
+JSBool GetRenderer(JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsid UNUSED(id), jsval* vp)
 {
 	if (CRenderer::IsInitialised())
-		*vp = OBJECT_TO_JSVAL( g_Renderer.GetScript() );
+		*vp = OBJECT_TO_JSVAL(g_Renderer.GetScript());
 	else
 		*vp = JSVAL_NULL;
-	return( JS_TRUE );
+	return JS_TRUE;
 }
 
 
@@ -455,9 +436,7 @@ enum ScriptGlobalTinyIDs
 
 JSPropertySpec ScriptGlobalTable[] =
 {
-	{ "camera"     , GLOBAL_CAMERA,      JSPROP_PERMANENT, JSI_Camera::getCamera, JSI_Camera::setCamera },
 	{ "console"    , GLOBAL_CONSOLE,     JSPROP_PERMANENT|JSPROP_READONLY, JSI_Console::getConsole, 0 },
-	{ "lightenv"   , GLOBAL_LIGHTENV,    JSPROP_PERMANENT, JSI_LightEnv::getLightEnv, JSI_LightEnv::setLightEnv },
 	{ "gameView"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetGameView, 0 },
 	{ "renderer"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetRenderer, 0 },
 

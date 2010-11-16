@@ -287,7 +287,7 @@ wxImage* Image::Construct(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
 
     if ( argc > 1 )
     {
-        if ( JSVAL_IS_INT(argv[1]) )
+        if ( JSVAL_IS_NUMBER(argv[1]) )
         {
             if ( ! FromJS(cx, argv[1], type) )
                 return NULL;
@@ -1123,7 +1123,7 @@ JSBool Image::loadFile(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, js
             return JS_FALSE;
         }
 
-        if ( JSVAL_IS_INT(argv[1]) )
+        if ( JSVAL_IS_NUMBER(argv[1]) )
         {
             long type = wxBITMAP_TYPE_ANY;
             if ( ! FromJS(cx, argv[1], type) )
@@ -1145,7 +1145,7 @@ JSBool Image::loadFile(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, js
 
         if ( argc > 1 )
         {
-            if ( JSVAL_IS_INT(argv[1]) )
+            if ( JSVAL_IS_NUMBER(argv[1]) )
             {
                 long type = wxBITMAP_TYPE_ANY;
                 if ( ! FromJS(cx, argv[1], type) )
@@ -1222,7 +1222,7 @@ JSBool Image::saveFile(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, js
             return JS_FALSE;
         }
 
-        if ( JSVAL_IS_INT(argv[1]) )
+        if ( JSVAL_IS_NUMBER(argv[1]) )
         {
             long type = wxBITMAP_TYPE_ANY;
             if ( ! FromJS(cx, argv[1], type) )
@@ -1242,7 +1242,7 @@ JSBool Image::saveFile(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, js
         wxString name;
         FromJS(cx, argv[0], name);
 
-        if ( JSVAL_IS_INT(argv[1]) )
+        if ( JSVAL_IS_NUMBER(argv[1]) )
         {
             long type;
             if ( ! FromJS(cx, argv[1], type) )

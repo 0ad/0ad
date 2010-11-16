@@ -35,9 +35,8 @@ class CComponentTypeScript
 {
 public:
 	CComponentTypeScript(ScriptInterface& scriptInterface, jsval instance);
-	~CComponentTypeScript();
 
-	jsval GetInstance() const { return m_Instance; }
+	jsval GetInstance() const { return m_Instance.get(); }
 
 	void Init(const CSimContext& context, const CParamNode& paramNode, entity_id_t ent);
 	void Deinit(const CSimContext& context);
@@ -58,7 +57,7 @@ public:
 	R Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
 	{ \
 		R ret; \
-		if (m_ScriptInterface.CallFunction(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
+		if (m_ScriptInterface.CallFunction(m_Instance.get(), funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
 			return ret; \
 		LOGERROR(L"Error calling component script function %hs", funcname); \
 		return R(); \
@@ -66,7 +65,7 @@ public:
 	BOOST_PP_IF(i, template<, ) BOOST_PP_ENUM_PARAMS(i, typename T) BOOST_PP_IF(i, >, ) \
 	void CallVoid(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
 	{ \
-		if (m_ScriptInterface.CallFunctionVoid(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
+		if (m_ScriptInterface.CallFunctionVoid(m_Instance.get(), funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
 			return; \
 		LOGERROR(L"Error calling component script function %hs", funcname); \
 	}
@@ -75,7 +74,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 
 private:
 	ScriptInterface& m_ScriptInterface;
-	jsval m_Instance;
+	CScriptValRooted m_Instance;
 	bool m_HasCustomSerialize;
 
 	NONCOPYABLE(CComponentTypeScript);

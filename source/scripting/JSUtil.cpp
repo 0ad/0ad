@@ -19,12 +19,12 @@
 
 #include "SpiderMonkey.h"
 
-jsval jsu_report_param_error(JSContext* cx, jsval* rval)
+JSBool jsu_report_param_error(JSContext* cx, jsval* vp)
 {
 	JS_ReportError(cx, "Invalid parameter(s) or count");
 
-	if(rval)
-		*rval = JSVAL_NULL;
+	if (vp)
+		JS_SET_RVAL(cx, vp, JSVAL_NULL);
 
 	// yes, we had an error, but returning JS_FALSE would cause SpiderMonkey
 	// to abort. that would be hard to debug.

@@ -195,13 +195,13 @@ namespace wxjs
                                                    , m_val(v)
 	        {
                 if ( JSVAL_IS_GCTHING(m_val) )
-                    JS_AddRoot(m_cx, &m_val);
+                    JS_AddValueRoot(m_cx, &m_val);
 	        }
 
 	        virtual ~ObjectTreeData()
 	        {
                 if ( JSVAL_IS_GCTHING(m_val) )
-                    JS_RemoveRoot(m_cx, &m_val);
+                    JS_RemoveValueRoot(m_cx, &m_val);
 	        }
 
 	        inline jsval GetJSVal()

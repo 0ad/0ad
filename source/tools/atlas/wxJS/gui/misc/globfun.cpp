@@ -64,13 +64,14 @@ static JSFunctionSpec Functions[] =
  *  </desc>
  * </method>
  */
-JSBool wxjs::gui::MessageBox(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool wxjs::gui::MessageBox(JSContext *cx, uintN argc, jsval *vp)
 {
 	if ( argc == 1 )
 	{
         wxString msg;
-        FromJS(cx, argv[0], msg);
+        FromJS(cx, JS_ARGV(cx, vp)[0], msg);
 		wxMessageBox(msg);
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
 	}
 	return JS_FALSE;
@@ -90,18 +91,19 @@ JSBool wxjs::gui::MessageBox(JSContext *cx, JSObject *obj, uintN argc, jsval *ar
  *  </desc>
  * </method>
  */
-JSBool wxjs::gui::InitAllImageHandlers(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool wxjs::gui::InitAllImageHandlers(JSContext *cx, uintN argc, jsval *vp)
 {
     wxInitAllImageHandlers();
+    JS_SET_RVAL(cx, vp, JSVAL_VOID);
     return JS_TRUE;
 }
 
-JSBool wxjs::gui::GetKeyState(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool wxjs::gui::GetKeyState(JSContext *cx, uintN argc, jsval *vp)
 {
 	int key;
-	if (! FromJS(cx, argv[0], key))
+	if (! FromJS(cx, JS_ARGV(cx, vp)[0], key))
 		return JS_FALSE;
-	*rval = (wxGetKeyState((wxKeyCode)key) ? JSVAL_TRUE : JSVAL_FALSE);
+	JS_SET_RVAL(cx, vp, wxGetKeyState((wxKeyCode)key) ? JSVAL_TRUE : JSVAL_FALSE);
 	return JS_TRUE;
 }
 

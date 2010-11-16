@@ -38,36 +38,36 @@ namespace JSI_VFS
 	//
 	// note: full pathnames of each file/subdirectory are returned,
 	// ready for use as a "filename" for the other functions.
-	JSBool BuildDirEntList( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool BuildDirEntList(JSContext* cx, uintN argc, jsval* vp);
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
 	//
 	// mtime = getFileMTime(filename);
 	//   filename: VFS filename (may include path)
-	JSBool GetFileMTime( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool GetFileMTime(JSContext* cx, uintN argc, jsval* vp);
 
 	// Return current size of file.
 	//
 	// size = getFileSize(filename);
 	//   filename: VFS filename (may include path)
-	JSBool GetFileSize( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool GetFileSize(JSContext* cx, uintN argc, jsval* vp);
 
 	// Return file contents in a string.
 	//
 	// contents = readFile(filename);
 	//   filename: VFS filename (may include path)
-	JSBool ReadFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool ReadFile(JSContext* cx, uintN argc, jsval* vp);
 
 	// Return file contents as an array of lines.
 	//
 	// lines = readFileLines(filename);
 	//   filename: VFS filename (may include path)
-	JSBool ReadFileLines( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool ReadFileLines(JSContext* cx, uintN argc, jsval* vp);
 
 	// Abort the current archive build operation (no-op if not currently active).
 	//
 	// archiveBuilderCancel();
-	JSBool ArchiveBuilderCancel(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool ArchiveBuilderCancel(JSContext* cx, uintN argc, jsval* vp);
 }
 
 #endif

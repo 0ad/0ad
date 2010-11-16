@@ -17,7 +17,7 @@
 
 // included from SpiderMonkey.h
 
-extern jsval jsu_report_param_error(JSContext* cx, jsval* rval);
+extern JSBool jsu_report_param_error(JSContext* cx, jsval* vp);
 
 
 // consistent argc checking for normal function wrappers: reports an
@@ -25,24 +25,23 @@ extern jsval jsu_report_param_error(JSContext* cx, jsval* rval);
 // .. require exact number (most common case)
 #define JSU_REQUIRE_PARAMS(exact_number)\
 	if(argc != exact_number)\
-		return jsu_report_param_error(cx, rval);
+		return jsu_report_param_error(cx, vp);
 // .. require 0 params (avoids L4 warning "unused argv param")
 #define JSU_REQUIRE_NO_PARAMS()\
-	UNUSED2(argv);\
 	if(argc != 0)\
-		return jsu_report_param_error(cx, rval);
+		return jsu_report_param_error(cx, vp);
 // .. require a certain range (e.g. due to optional params)
 #define JSU_REQUIRE_PARAM_RANGE(min_number, max_number)\
 	if(!(min_number <= argc && argc <= max_number))\
-		return jsu_report_param_error(cx, rval);
+		return jsu_report_param_error(cx, vp);
 // .. require at most a certain count
 #define JSU_REQUIRE_MAX_PARAMS(max_number)\
 	if(argc > max_number)\
-		return jsu_report_param_error(cx, rval);
+		return jsu_report_param_error(cx, vp);
 // .. require at least a certain count (rarely needed)
 #define JSU_REQUIRE_MIN_PARAMS(min_number)\
 	if(argc < min_number)\
-		return jsu_report_param_error(cx, rval);
+		return jsu_report_param_error(cx, vp);
 
 // same as JSU_REQUIRE_PARAMS, but used from C++ functions that are
 // a bit further removed from SpiderMonkey, i.e. return a

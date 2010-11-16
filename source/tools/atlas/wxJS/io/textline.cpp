@@ -157,7 +157,7 @@ bool TextLine::Enumerate(Index *p, JSContext *cx, JSObject *obj, JSIterateOp enu
 	{
 		*statep = JSVAL_NULL;
         if (idp)
-            *idp = INT_TO_JSVAL(0);
+            *idp = INT_TO_JSID(0);
 		return true;
 	}
 
@@ -166,7 +166,7 @@ bool TextLine::Enumerate(Index *p, JSContext *cx, JSObject *obj, JSIterateOp enu
 	{
 		*statep = JSVAL_NULL;
         if (idp)
-            *idp = INT_TO_JSVAL(0);
+            *idp = INT_TO_JSID(0);
 		return true;
 	}
 
@@ -177,7 +177,7 @@ bool TextLine::Enumerate(Index *p, JSContext *cx, JSObject *obj, JSIterateOp enu
 	case JSENUMERATE_INIT:
 		*statep = ToJS(cx, 0);
 		if ( idp )
-			*idp = INT_TO_JSVAL(file->GetLineCount());
+			*idp = INT_TO_JSID(file->GetLineCount());
 		break;
 	case JSENUMERATE_NEXT:
 		{

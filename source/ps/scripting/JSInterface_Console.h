@@ -34,14 +34,14 @@ namespace JSI_Console
 	extern JSPropertySpec JSI_props[];
 	extern JSFunctionSpec JSI_methods[];
 
-	JSBool getProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
-	JSBool setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
+	JSBool getProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
+	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
 
-	JSBool getConsole( JSContext* context, JSObject* obj, jsval id, jsval* vp );
+	JSBool getConsole(JSContext* context, JSObject* obj, jsid id, jsval* vp);
 
 	void init();
 
-	JSBool writeConsole( JSContext* context, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool writeConsole(JSContext* cx, uintN argc, jsval* vp);
 }
 
 #endif

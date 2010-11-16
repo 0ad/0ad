@@ -155,12 +155,12 @@ public:
 	void Root()
 	{
 		if( JSVAL_IS_GCTHING( m_Data ) )
-			JS_AddNamedRoot( g_ScriptingHost.GetContext(), (void*)&m_Data, "ScriptableObjectProperty" );
+			JS_AddNamedValueRoot( g_ScriptingHost.GetContext(), &m_Data, "ScriptableObjectProperty" );
 	}
 	void Uproot()
 	{
 		if( JSVAL_IS_GCTHING( m_Data ))
-			JS_RemoveRoot( g_ScriptingHost.GetContext(), (void*)&m_Data );
+			JS_RemoveValueRoot( g_ScriptingHost.GetContext(), &m_Data );
 	}
 	jsval Get( JSContext* UNUSED(cx), IJSObject* UNUSED(object))
 	{
@@ -179,14 +179,14 @@ public:
 template<typename T, bool ReadOnly, typename RType, RType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> class CNativeFunction
 {
 public:
-	static JSBool JSFunction( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
+	static JSBool JSFunction( JSContext* cx, uintN argc, jsval* vp )
 	{
-		T* Native = ToNative<T>( cx, obj );
+		T* Native = ToNative<T>( cx, JS_THIS_OBJECT( cx, vp ) );
 		if( !Native )
-			return( JS_TRUE );
+			return( JS_FALSE );
 
-		*rval = ToJSVal<RType>( (Native->*NativeFunction)( cx, argc, argv ) );
-
+		jsval rval = ToJSVal<RType>( (Native->*NativeFunction)( cx, argc, JS_ARGV(cx, vp) ) );
+		JS_SET_RVAL( cx, vp, rval );
 		return( JS_TRUE );
 	}
 };
@@ -196,14 +196,15 @@ template<typename T, bool ReadOnly, void (T::*NativeFunction)( JSContext* cx, ui
 class CNativeFunction<T, ReadOnly, void, NativeFunction>
 {
 public:
-	static JSBool JSFunction( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval) )
+	static JSBool JSFunction( JSContext* cx, uintN argc, jsval* vp )
 	{
-		T* Native = ToNative<T>( cx, obj );
+		T* Native = ToNative<T>( cx, JS_THIS_OBJECT( cx, vp ) );
 		if( !Native )
-			return( JS_TRUE );
+			return( JS_FALSE );
 
-		(Native->*NativeFunction)( cx, argc, argv );
+		(Native->*NativeFunction)( cx, argc, JS_ARGV(cx, vp) );
 
+		JS_SET_RVAL( cx, vp, JSVAL_VOID );
 		return( JS_TRUE );
 	}
 };
@@ -328,7 +329,7 @@ public:
 	template<typename ReturnType, ReturnType (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )> 
 		static void AddMethod( const char* Name, uintN MinArgs )
 	{
-		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, (uint8)MinArgs, 0, 0 };
+		JSFunctionSpec FnInfo = { Name, CNativeFunction<T, ReadOnly, ReturnType, NativeFunction>::JSFunction, (uint8)MinArgs, 0 };
 		m_Methods.push_back( FnInfo );
 	}
 	template<typename PropType> static void AddProperty( const CStrW& PropertyName, PropType T::*Native, bool PropReadOnly = ReadOnly )
@@ -373,7 +374,7 @@ public:
 		{
 			m_JS = JS_NewObject( g_ScriptingHost.GetContext(), &JSI_class, NULL, NULL );
 			if( m_EngineOwned )
-				JS_AddNamedRoot( g_ScriptingHost.GetContext(), (void*)&m_JS, JSI_class.name );
+				JS_AddNamedObjectRoot( g_ScriptingHost.GetContext(), &m_JS, JSI_class.name );
 	
 			JS_SetPrivate( g_ScriptingHost.GetContext(), m_JS, (T*)this );
 		}
@@ -384,7 +385,7 @@ public:
 		{
 			JS_SetPrivate( g_ScriptingHost.GetContext(), m_JS, NULL );
 			if( m_EngineOwned )
-				JS_RemoveRoot( g_ScriptingHost.GetContext(), &m_JS );
+				JS_RemoveObjectRoot( g_ScriptingHost.GetContext(), &m_JS );
 			m_JS = NULL;
 		}
 	}
@@ -393,26 +394,34 @@ public:
 	// Functions and data that must be provided to JavaScript
 	// 
 private:
-	static JSBool JSGetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	static JSBool JSGetProperty( JSContext* cx, JSObject* obj, jsid id, jsval* vp )
 	{
 		T* Instance = ToNative<T>( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
-		CStrW PropName = g_ScriptingHost.ValueToUCString( id );
+		jsval idval;
+		if( !JS_IdToValue( cx, id, &idval ) )
+			return( JS_FALSE );
+
+		CStrW PropName = g_ScriptingHost.ValueToUCString( idval );
 
 		if( !Instance->GetProperty( cx, PropName, vp ) )
 			return( JS_TRUE );
 		
 		return( JS_TRUE );
 	}
-	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
+	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsid id, jsval* vp )
 	{
 		T* Instance = ToNative<T>( cx, obj );
 		if( !Instance )
 			return( JS_TRUE );
 
-		CStrW PropName = g_ScriptingHost.ValueToUCString( id );
+		jsval idval;
+		if( !JS_IdToValue( cx, id, &idval ) )
+			return( JS_FALSE );
+
+		CStrW PropName = g_ScriptingHost.ValueToUCString( idval );
 
 		Instance->SetProperty( cx, PropName, vp );
 

@@ -32,10 +32,6 @@ CScriptVal ICmpFootprint::GetShape_wrapper()
 
 	JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 
-	ScriptInterface::LocalRootScope scope(cx);
-	if (!scope.OK())
-		return JSVAL_VOID;
-
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (!obj)
 		return JSVAL_VOID;
