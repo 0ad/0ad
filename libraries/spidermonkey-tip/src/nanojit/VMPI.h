@@ -85,10 +85,17 @@ typedef unsigned __int64 uint64_t;
 #define VMPI_strncat strncat
 #define VMPI_strcpy strcpy
 #define VMPI_sprintf sprintf
+#ifdef _MSC_VER
+#   define VMPI_snprintf sprintf_s
+#else
+#   define VMPI_snprintf snprintf
+#endif
 #define VMPI_vfprintf vfprintf
 #define VMPI_memset memset
 #define VMPI_isdigit isdigit
 #define VMPI_getDate()
+
+extern size_t VMPI_getVMPageSize();
 
 extern void VMPI_setPageProtection(void *address,
                                    size_t size,

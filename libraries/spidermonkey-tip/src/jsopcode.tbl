@@ -43,6 +43,8 @@
  * for a name of the form JSOP_UNUSED* and claim it.  Otherwise, always add at
  * the end of the table.
  *
+ * When changing the bytecode, don't forget to update JSXDR_BYTECODE_VERSION!
+ *
  * Includers must define an OPDEF macro of the following form:
  *
  * #define OPDEF(op,val,name,image,length,nuses,ndefs,prec,format) ...
@@ -124,8 +126,8 @@ OPDEF(JSOP_IFNE,      8,  "ifne",       NULL,         3,  1,  0,  0,  JOF_JUMP|J
 OPDEF(JSOP_ARGUMENTS, 9, js_arguments_str, js_arguments_str, 1, 0, 1, 18, JOF_BYTE)
 
 /* ECMA-compliant for-in loop with argument or local loop control. */
-OPDEF(JSOP_FORARG,    10, "forarg",     NULL,         3,  2,  2, 19,  JOF_QARG|JOF_NAME|JOF_FOR)
-OPDEF(JSOP_FORLOCAL,  11, "forlocal",   NULL,         3,  2,  2, 19,  JOF_LOCAL|JOF_NAME|JOF_FOR)
+OPDEF(JSOP_FORARG,    10, "forarg",     NULL,         3,  1,  1, 19,  JOF_QARG|JOF_NAME|JOF_FOR|JOF_TMPSLOT)
+OPDEF(JSOP_FORLOCAL,  11, "forlocal",   NULL,         3,  1,  1, 19,  JOF_LOCAL|JOF_NAME|JOF_FOR|JOF_TMPSLOT)
 
 /* More long-standing bytecodes. */
 OPDEF(JSOP_DUP,       12, "dup",        NULL,         1,  1,  2,  0,  JOF_BYTE)
@@ -158,17 +160,17 @@ OPDEF(JSOP_DELELEM,   38, "delelem",    NULL,         1,  2,  1, 15,  JOF_BYTE |
 OPDEF(JSOP_TYPEOF,    39, js_typeof_str,NULL,         1,  1,  1, 15,  JOF_BYTE|JOF_DETECTING)
 OPDEF(JSOP_VOID,      40, js_void_str,  NULL,         1,  1,  1, 15,  JOF_BYTE)
 
-OPDEF(JSOP_INCNAME,   41, "incname",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_TMPSLOT2)
-OPDEF(JSOP_INCPROP,   42, "incprop",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_INC|JOF_TMPSLOT2)
+OPDEF(JSOP_INCNAME,   41, "incname",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_TMPSLOT3)
+OPDEF(JSOP_INCPROP,   42, "incprop",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_INC|JOF_TMPSLOT3)
 OPDEF(JSOP_INCELEM,   43, "incelem",    NULL,         1,  2,  1, 15,  JOF_BYTE |JOF_ELEM|JOF_INC|JOF_TMPSLOT2)
-OPDEF(JSOP_DECNAME,   44, "decname",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_TMPSLOT2)
-OPDEF(JSOP_DECPROP,   45, "decprop",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_DEC|JOF_TMPSLOT2)
+OPDEF(JSOP_DECNAME,   44, "decname",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_TMPSLOT3)
+OPDEF(JSOP_DECPROP,   45, "decprop",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_DEC|JOF_TMPSLOT3)
 OPDEF(JSOP_DECELEM,   46, "decelem",    NULL,         1,  2,  1, 15,  JOF_BYTE |JOF_ELEM|JOF_DEC|JOF_TMPSLOT2)
-OPDEF(JSOP_NAMEINC,   47, "nameinc",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_POST|JOF_TMPSLOT2)
-OPDEF(JSOP_PROPINC,   48, "propinc",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_INC|JOF_POST|JOF_TMPSLOT2)
+OPDEF(JSOP_NAMEINC,   47, "nameinc",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_POST|JOF_TMPSLOT3)
+OPDEF(JSOP_PROPINC,   48, "propinc",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_INC|JOF_POST|JOF_TMPSLOT3)
 OPDEF(JSOP_ELEMINC,   49, "eleminc",    NULL,         1,  2,  1, 15,  JOF_BYTE |JOF_ELEM|JOF_INC|JOF_POST|JOF_TMPSLOT2)
-OPDEF(JSOP_NAMEDEC,   50, "namedec",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_POST|JOF_TMPSLOT2)
-OPDEF(JSOP_PROPDEC,   51, "propdec",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_DEC|JOF_POST|JOF_TMPSLOT2)
+OPDEF(JSOP_NAMEDEC,   50, "namedec",    NULL,         3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_POST|JOF_TMPSLOT3)
+OPDEF(JSOP_PROPDEC,   51, "propdec",    NULL,         3,  1,  1, 15,  JOF_ATOM|JOF_PROP|JOF_DEC|JOF_POST|JOF_TMPSLOT3)
 OPDEF(JSOP_ELEMDEC,   52, "elemdec",    NULL,         1,  2,  1, 15,  JOF_BYTE |JOF_ELEM|JOF_DEC|JOF_POST|JOF_TMPSLOT2)
 
 OPDEF(JSOP_GETPROP,   53, "getprop",    NULL,         3,  1,  1, 18,  JOF_ATOM|JOF_PROP)
@@ -199,27 +201,27 @@ OPDEF(JSOP_STRICTNE,  73, "strictne",   "!==",        1,  2,  1, 10,  JOF_BYTE|J
 
 /*
  * Host object extension: given 'o.item(i) = j', the left-hand side compiles
- * JSOP_SETCALL, rather than JSOP_CALL.
+ * JSOP_SETCALL after JSOP_CALL, JSOP_EVAL, JSOP_FUNAPPLY, or JSOP_FUNCALL.
  */
-OPDEF(JSOP_SETCALL,   74, "setcall",    NULL,         3, -1,  2, 18,  JOF_UINT16|JOF_SET)
+OPDEF(JSOP_SETCALL,   74, "setcall",    NULL,         1,  1,  2, 18,  JOF_BYTE)
 
 /*
  * JSOP_ITER sets up a for-in or for-each-in loop using the JSITER_* flag bits
- * in this op's uint8 immediate operand. It replaces the top of stack object
- * with an iterator for that object, and pushes a slot used by JSOP_NEXTITER.
+ * in this op's uint8 immediate operand. It replaces the top of stack value
+ * with an iterator for that value.
  *
- * JSOP_NEXTITER stores the next iterated value in the top of stack slot which
- * was allocated by JSOP_ITER and pushes true, or stores JSVAL_HOLE and pushes
- * false. It is followed immediately by JSOP_IFNE{,X}.
+ * JSOP_MOREITER stores the next iterated value into cx->iterValue and pushes
+ * true if another value is available, and false otherwise. It is followed
+ * immediately by JSOP_IFNE{,X}.
  *
  * JSOP_ENDITER cleans up after the loop. It uses the slot above the iterator
  * for temporary GC rooting.
  */
-OPDEF(JSOP_ITER,      75, "iter",       NULL,         2,  1,  2,  0,  JOF_UINT8)
-OPDEF(JSOP_NEXTITER,  76, "nextiter",   NULL,         1,  2,  3,  0,  JOF_BYTE)
-OPDEF(JSOP_ENDITER,   77, "enditer",    NULL,         1,  2,  0,  0,  JOF_BYTE)
+OPDEF(JSOP_ITER,      75, "iter",       NULL,         2,  1,  1,  0,  JOF_UINT8)
+OPDEF(JSOP_MOREITER,  76, "moreiter",   NULL,         1,  1,  2,  0,  JOF_BYTE)
+OPDEF(JSOP_ENDITER,   77, "enditer",    NULL,         1,  1,  0,  0,  JOF_BYTE)
 
-OPDEF(JSOP_APPLY,     78, "apply",      NULL,         3, -1,  1, 18,  JOF_UINT16|JOF_INVOKE)
+OPDEF(JSOP_FUNAPPLY,  78, "funapply",   NULL,         3, -1,  1, 18,  JOF_UINT16|JOF_INVOKE)
 OPDEF(JSOP_SWAP,      79, "swap",       NULL,         1,  2,  2,  0,  JOF_BYTE)
 
 /* Push object literal. */
@@ -244,7 +246,7 @@ OPDEF(JSOP_SETLOCAL,  87,"setlocal",    NULL,         3,  1,  1,  3,  JOF_LOCAL|
 OPDEF(JSOP_UINT16,    88, "uint16",     NULL,         3,  0,  1, 16,  JOF_UINT16)
 
 /* Object and array literal support. */
-OPDEF(JSOP_NEWINIT,   89, "newinit",    NULL,         2,  0,  1, 19,  JOF_INT8)
+OPDEF(JSOP_NEWINIT,   89, "newinit",    NULL,         5,  0,  1, 19,  JOF_UINT16PAIR)
 OPDEF(JSOP_ENDINIT,   90, "endinit",    NULL,         1,  0,  0, 19,  JOF_BYTE)
 OPDEF(JSOP_INITPROP,  91, "initprop",   NULL,         3,  2,  1,  3,  JOF_ATOM|JOF_PROP|JOF_SET|JOF_DETECTING)
 OPDEF(JSOP_INITELEM,  92, "initelem",   NULL,         1,  3,  1,  3,  JOF_BYTE |JOF_ELEM|JOF_SET|JOF_DETECTING)
@@ -252,22 +254,22 @@ OPDEF(JSOP_DEFSHARP,  93, "defsharp",   NULL,         5,  0,  0,  0,  JOF_UINT16
 OPDEF(JSOP_USESHARP,  94, "usesharp",   NULL,         5,  0,  1,  0,  JOF_UINT16PAIR|JOF_SHARPSLOT)
 
 /* Fast inc/dec ops for args and locals. */
-OPDEF(JSOP_INCARG,    95, "incarg",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_INC)
-OPDEF(JSOP_DECARG,    96, "decarg",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_DEC)
-OPDEF(JSOP_ARGINC,    97, "arginc",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_INC|JOF_POST)
-OPDEF(JSOP_ARGDEC,    98, "argdec",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_DEC|JOF_POST)
+OPDEF(JSOP_INCARG,    95, "incarg",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_INC|JOF_TMPSLOT3)
+OPDEF(JSOP_DECARG,    96, "decarg",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_DEC|JOF_TMPSLOT3)
+OPDEF(JSOP_ARGINC,    97, "arginc",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_INC|JOF_POST|JOF_TMPSLOT3)
+OPDEF(JSOP_ARGDEC,    98, "argdec",     NULL,         3,  0,  1, 15,  JOF_QARG |JOF_NAME|JOF_DEC|JOF_POST|JOF_TMPSLOT3)
 
-OPDEF(JSOP_INCLOCAL,  99, "inclocal",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_INC)
-OPDEF(JSOP_DECLOCAL,  100,"declocal",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_DEC)
-OPDEF(JSOP_LOCALINC,  101,"localinc",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_INC|JOF_POST)
-OPDEF(JSOP_LOCALDEC,  102,"localdec",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_DEC|JOF_POST)
+OPDEF(JSOP_INCLOCAL,  99, "inclocal",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_INC|JOF_TMPSLOT3)
+OPDEF(JSOP_DECLOCAL,  100,"declocal",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_DEC|JOF_TMPSLOT3)
+OPDEF(JSOP_LOCALINC,  101,"localinc",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_INC|JOF_POST|JOF_TMPSLOT3)
+OPDEF(JSOP_LOCALDEC,  102,"localdec",   NULL,         3,  0,  1, 15,  JOF_LOCAL|JOF_NAME|JOF_DEC|JOF_POST|JOF_TMPSLOT3)
 
 OPDEF(JSOP_IMACOP,    103,"imacop",     NULL,         1,  0,  0,  0,  JOF_BYTE)
 
 /* ECMA-compliant for/in ops. */
-OPDEF(JSOP_FORNAME,   104,"forname",    NULL,         3,  2,  2, 19,  JOF_ATOM|JOF_NAME|JOF_FOR)
-OPDEF(JSOP_FORPROP,   105,"forprop",    NULL,         3,  3,  2, 18,  JOF_ATOM|JOF_PROP|JOF_FOR)
-OPDEF(JSOP_FORELEM,   106,"forelem",    NULL,         1,  2,  3, 18,  JOF_BYTE |JOF_ELEM|JOF_FOR)
+OPDEF(JSOP_FORNAME,   104,"forname",    NULL,         3,  1,  1, 19,  JOF_ATOM|JOF_NAME|JOF_FOR|JOF_TMPSLOT3)
+OPDEF(JSOP_FORPROP,   105,"forprop",    NULL,         3,  2,  1, 18,  JOF_ATOM|JOF_PROP|JOF_FOR|JOF_TMPSLOT3)
+OPDEF(JSOP_FORELEM,   106,"forelem",    NULL,         1,  1,  2, 18,  JOF_BYTE |JOF_ELEM|JOF_FOR)
 OPDEF(JSOP_POPN,      107,"popn",       NULL,         3, -1,  0,  0,  JOF_UINT16)
 
 /* ECMA-compliant assignment ops. */
@@ -279,7 +281,7 @@ OPDEF(JSOP_THROW,     110,js_throw_str, NULL,         1,  1,  0,  0,  JOF_BYTE)
 
 /* 'in' and 'instanceof' ops. */
 OPDEF(JSOP_IN,        111,js_in_str,    js_in_str,    1,  2,  1, 11,  JOF_BYTE|JOF_LEFTASSOC)
-OPDEF(JSOP_INSTANCEOF,112,js_instanceof_str,js_instanceof_str,1,2,1,11,JOF_BYTE|JOF_LEFTASSOC)
+OPDEF(JSOP_INSTANCEOF,112,js_instanceof_str,js_instanceof_str,1,2,1,11,JOF_BYTE|JOF_LEFTASSOC|JOF_TMPSLOT)
 
 /* debugger op */
 OPDEF(JSOP_DEBUGGER,  113,"debugger",   NULL,         1,  0,  0,  0,  JOF_BYTE)
@@ -311,7 +313,7 @@ OPDEF(JSOP_EVAL,      121,"eval",       NULL,         3, -1,  1, 18,  JOF_UINT16
 /*
  * ECMA-compliant helper for 'for (x[i] in o)' loops.
  */
-OPDEF(JSOP_ENUMELEM,  122,"enumelem",   NULL,         1,  3,  0,  3,  JOF_BYTE |JOF_SET)
+OPDEF(JSOP_ENUMELEM,  122,"enumelem",   NULL,         1,  3,  0,  3,  JOF_BYTE |JOF_SET|JOF_TMPSLOT)
 
 /*
  * Getter and setter prefix bytecodes.  These modify the next bytecode, either
@@ -351,12 +353,13 @@ OPDEF(JSOP_TRY,         132,"try",        NULL,       1,  0,  0,  0,  JOF_BYTE)
 OPDEF(JSOP_FINALLY,     133,"finally",    NULL,       1,  0,  2,  0,  JOF_BYTE)
 
 /*
- * Get a dynamic slot from an object known to have at least one greater than
- * the slot index number of values at obj->dslots. The CALL variant computes
- * the callee and this-object in preparation for a JSOP_CALL.
+ * Get a slot from a flat closure function object that contains a snapshot of
+ * the closure-invariant upvar values. The immediate operand indexes the upvar
+ * in the function's u.i.script->upvars() array. The CALL variant computes the
+ * callee and this-object in preparation for a JSOP_CALL.
  */
-OPDEF(JSOP_GETDSLOT,    134,"getdslot",   NULL,       3,  0,  1, 19,  JOF_UINT16|JOF_NAME)
-OPDEF(JSOP_CALLDSLOT,   135,"calldslot",  NULL,       3,  0,  2, 19,  JOF_UINT16|JOF_NAME|JOF_CALLOP)
+OPDEF(JSOP_GETFCSLOT,   134,"getfcslot",  NULL,       3,  0,  1, 19,  JOF_UINT16|JOF_NAME)
+OPDEF(JSOP_CALLFCSLOT,  135,"callfcslot", NULL,       3,  0,  2, 19,  JOF_UINT16|JOF_NAME|JOF_CALLOP)
 
 /*
  * Bytecodes that avoid making an arguments object in most cases:
@@ -371,7 +374,7 @@ OPDEF(JSOP_ARGCNT,      137,"argcnt",     NULL,       1,  0,  1, 18,  JOF_BYTE)
  * The local variable's slot number is the first immediate two-byte operand.
  * The function object's atom index is the second immediate operand.
  */
-OPDEF(JSOP_DEFLOCALFUN, 138,"deflocalfun",NULL,       5,  0,  0,  0,  JOF_SLOTOBJECT|JOF_DECLARING)
+OPDEF(JSOP_DEFLOCALFUN, 138,"deflocalfun",NULL,       5,  0,  0,  0,  JOF_SLOTOBJECT|JOF_DECLARING|JOF_TMPSLOT)
 
 /* Extended jumps. */
 OPDEF(JSOP_GOTOX,         139,"gotox",    NULL,       5,  0,  0,  0,  JOF_JUMPX)
@@ -396,13 +399,13 @@ OPDEF(JSOP_THROWING,      151,"throwing", NULL,       1,  1,  0,  0,  JOF_BYTE)
 OPDEF(JSOP_SETRVAL,       152,"setrval",  NULL,       1,  1,  0,  2,  JOF_BYTE)
 OPDEF(JSOP_RETRVAL,       153,"retrval",  NULL,       1,  0,  0,  0,  JOF_BYTE)
 
-/* Optimized global variable ops (we don't bother doing a JSOP_FORGVAR op). */
-OPDEF(JSOP_GETGVAR,       154,"getgvar",  NULL,       3,  0,  1, 19,  JOF_ATOM|JOF_NAME)
-OPDEF(JSOP_SETGVAR,       155,"setgvar",  NULL,       3,  1,  1,  3,  JOF_ATOM|JOF_NAME|JOF_SET|JOF_DETECTING)
-OPDEF(JSOP_INCGVAR,       156,"incgvar",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_TMPSLOT2)
-OPDEF(JSOP_DECGVAR,       157,"decgvar",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_TMPSLOT2)
-OPDEF(JSOP_GVARINC,       158,"gvarinc",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_POST|JOF_TMPSLOT2)
-OPDEF(JSOP_GVARDEC,       159,"gvardec",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_POST|JOF_TMPSLOT2)
+/* Free variable references that must either be found on the global or a ReferenceError */
+OPDEF(JSOP_GETGNAME,      154,"getgname",  NULL,       3,  0,  1, 19,  JOF_ATOM|JOF_NAME|JOF_GNAME)
+OPDEF(JSOP_SETGNAME,      155,"setgname",  NULL,       3,  2,  1,  3,  JOF_ATOM|JOF_NAME|JOF_SET|JOF_DETECTING|JOF_GNAME)
+OPDEF(JSOP_INCGNAME,      156,"incgname",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_TMPSLOT3|JOF_GNAME)
+OPDEF(JSOP_DECGNAME,      157,"decgname",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_TMPSLOT3|JOF_GNAME)
+OPDEF(JSOP_GNAMEINC,      158,"gnameinc",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_INC|JOF_POST|JOF_TMPSLOT3|JOF_GNAME)
+OPDEF(JSOP_GNAMEDEC,      159,"gnamedec",  NULL,       3,  0,  1, 15,  JOF_ATOM|JOF_NAME|JOF_DEC|JOF_POST|JOF_TMPSLOT3|JOF_GNAME)
 
 /* Regular expression literal requiring special "fork on exec" handling. */
 OPDEF(JSOP_REGEXP,        160,"regexp",   NULL,       3,  0,  1, 19,  JOF_REGEXP)
@@ -427,11 +430,11 @@ OPDEF(JSOP_TOXML,         176,"toxml",      NULL,     1,  1,  1, 19,  JOF_BYTE)
 OPDEF(JSOP_TOXMLLIST,     177,"toxmllist",  NULL,     1,  1,  1, 19,  JOF_BYTE)
 OPDEF(JSOP_XMLTAGEXPR,    178,"xmltagexpr", NULL,     1,  1,  1,  0,  JOF_BYTE)
 OPDEF(JSOP_XMLELTEXPR,    179,"xmleltexpr", NULL,     1,  1,  1,  0,  JOF_BYTE)
-OPDEF(JSOP_XMLOBJECT,     180,"xmlobject",  NULL,     3,  0,  1, 19,  JOF_OBJECT)
+OPDEF(JSOP_NOTRACE,       180,"notrace",    NULL,     3,  0,  0,  0,  JOF_UINT16)
 OPDEF(JSOP_XMLCDATA,      181,"xmlcdata",   NULL,     3,  0,  1, 19,  JOF_ATOM)
 OPDEF(JSOP_XMLCOMMENT,    182,"xmlcomment", NULL,     3,  0,  1, 19,  JOF_ATOM)
 OPDEF(JSOP_XMLPI,         183,"xmlpi",      NULL,     3,  1,  1, 19,  JOF_ATOM)
-OPDEF(JSOP_CALLPROP,      184,"callprop",   NULL,     3,  1,  2, 18,  JOF_ATOM|JOF_PROP|JOF_CALLOP)
+OPDEF(JSOP_CALLPROP,      184,"callprop",   NULL,     3,  1,  2, 18,  JOF_ATOM|JOF_PROP|JOF_CALLOP|JOF_TMPSLOT3)
 
 /*
  * Get a display (free) variable from the closure's reserved slots.
@@ -452,7 +455,7 @@ OPDEF(JSOP_UINT24,        188,"uint24",     NULL,     4,  0,  1, 16,  JOF_UINT24
  * JSOP_INDEXBASE and JSOP_RESETBASE to provide the upper bits of the index.
  * See jsemit.c, EmitIndexOp.
  */
-OPDEF(JSOP_INDEXBASE,     189,"atombase",   NULL,     2,  0,  0,  0,  JOF_UINT8|JOF_INDEXBASE)
+OPDEF(JSOP_INDEXBASE,     189,"indexbase",  NULL,     2,  0,  0,  0,  JOF_UINT8|JOF_INDEXBASE)
 OPDEF(JSOP_RESETBASE,     190,"resetbase",  NULL,     1,  0,  0,  0,  JOF_BYTE)
 OPDEF(JSOP_RESETBASE0,    191,"resetbase0", NULL,     1,  0,  0,  0,  JOF_BYTE)
 
@@ -487,7 +490,7 @@ OPDEF(JSOP_TYPEOFEXPR,    198,"typeofexpr",  NULL,    1,  1,  1, 15,  JOF_BYTE|J
  * Block-local scope support.
  */
 OPDEF(JSOP_ENTERBLOCK,    199,"enterblock",  NULL,    3,  0, -1,  0,  JOF_OBJECT)
-OPDEF(JSOP_LEAVEBLOCK,    200,"leaveblock",  NULL,    3, -1,  0,  0,  JOF_UINT16)
+OPDEF(JSOP_LEAVEBLOCK,    200,"leaveblock",  NULL,    5, -1,  0,  0,  JOF_UINT16)
 
 /* Jump to target if top of stack value is of primitive type. */
 OPDEF(JSOP_IFPRIMTOP,     201,"ifprimtop",   NULL,    3,  1,  1,  0,  JOF_JUMP|JOF_DETECTING)
@@ -516,7 +519,7 @@ OPDEF(JSOP_ENUMCONSTELEM, 207,"enumconstelem",NULL,   1,  3,  0,  3,  JOF_BYTE|J
  * Variant of JSOP_LEAVEBLOCK has a result on the stack above the locals,
  * which must be moved down when the block pops.
  */
-OPDEF(JSOP_LEAVEBLOCKEXPR,208,"leaveblockexpr",NULL,  3, -1,  1,  3,  JOF_UINT16)
+OPDEF(JSOP_LEAVEBLOCKEXPR,208,"leaveblockexpr",NULL,  5, -1,  1,  3,  JOF_UINT16)
 
 /*
  * Optimize common JSOP_{THIS,GET{ARG,LOCAL}} -> JSOP_GETPROP cliches.
@@ -529,14 +532,14 @@ OPDEF(JSOP_GETLOCALPROP,  211,"getlocalprop",  NULL,  5,  0,  1, 18,  JOF_SLOTAT
  * Optimize atom segments 1-3.  These must be followed by JSOP_RESETBASE0 after
  * the opcode that they prefix.
  */
-OPDEF(JSOP_INDEXBASE1,    212,"atombase1",     NULL,  1,  0,  0,  0,  JOF_BYTE |JOF_INDEXBASE)
-OPDEF(JSOP_INDEXBASE2,    213,"atombase2",     NULL,  1,  0,  0,  0,  JOF_BYTE |JOF_INDEXBASE)
-OPDEF(JSOP_INDEXBASE3,    214,"atombase3",     NULL,  1,  0,  0,  0,  JOF_BYTE |JOF_INDEXBASE)
+OPDEF(JSOP_INDEXBASE1,    212,"indexbase1",    NULL,  1,  0,  0,  0,  JOF_BYTE |JOF_INDEXBASE)
+OPDEF(JSOP_INDEXBASE2,    213,"indexbase2",    NULL,  1,  0,  0,  0,  JOF_BYTE |JOF_INDEXBASE)
+OPDEF(JSOP_INDEXBASE3,    214,"indexbase3",    NULL,  1,  0,  0,  0,  JOF_BYTE |JOF_INDEXBASE)
 
-OPDEF(JSOP_CALLGVAR,      215, "callgvar",     NULL,  3,  0,  2, 19,  JOF_ATOM|JOF_NAME|JOF_CALLOP)
+OPDEF(JSOP_CALLGNAME,     215, "callgname",    NULL,  3,  0,  2, 19,  JOF_ATOM|JOF_NAME|JOF_CALLOP|JOF_GNAME)
 OPDEF(JSOP_CALLLOCAL,     216, "calllocal",    NULL,  3,  0,  2, 19,  JOF_LOCAL|JOF_NAME|JOF_CALLOP)
 OPDEF(JSOP_CALLARG,       217, "callarg",      NULL,  3,  0,  2, 19,  JOF_QARG |JOF_NAME|JOF_CALLOP)
-OPDEF(JSOP_CALLBUILTIN,   218, "callbuiltin",  NULL,  3,  1,  2,  0,  JOF_UINT16)
+OPDEF(JSOP_BINDGNAME,     218, "bindgname",    NULL,  3,  0,  1,  0,  JOF_ATOM|JOF_NAME|JOF_SET|JOF_GNAME)
 
 /*
  * Opcodes to hold 8-bit and 32-bit immediate integer operands.
@@ -569,7 +572,7 @@ OPDEF(JSOP_HOLE,          223, "hole",         NULL,  1,  0,  1,  0,  JOF_BYTE)
  * Variants of JSOP_{DEF{,LOCAL}FUN,LAMBDA} optimized for the flat closure case.
  */
 OPDEF(JSOP_DEFFUN_FC,     224,"deffun_fc",     NULL,  3,  0,  0,  0,  JOF_OBJECT|JOF_DECLARING)
-OPDEF(JSOP_DEFLOCALFUN_FC,225,"deflocalfun_fc",NULL,  5,  0,  0,  0,  JOF_SLOTOBJECT|JOF_DECLARING)
+OPDEF(JSOP_DEFLOCALFUN_FC,225,"deflocalfun_fc",NULL,  5,  0,  0,  0,  JOF_SLOTOBJECT|JOF_DECLARING|JOF_TMPSLOT)
 OPDEF(JSOP_LAMBDA_FC,     226,"lambda_fc",     NULL,  3,  0,  1, 19,  JOF_OBJECT)
 
 /*
@@ -579,7 +582,8 @@ OPDEF(JSOP_LAMBDA_FC,     226,"lambda_fc",     NULL,  3,  0,  1, 19,  JOF_OBJECT
  */
 OPDEF(JSOP_OBJTOP,        227,"objtop",        NULL,  3,  0,  0,  0,  JOF_UINT16)
 
-OPDEF(JSOP_TRACE,         228, "trace",         NULL,  1,  0,  0,  0,  JOF_BYTE)
+/* This opcode stores an index that is unique to the given loop. */
+OPDEF(JSOP_TRACE,         228, "trace",         NULL,  3,  0,  0,  0,  JOF_UINT16)
 
 /*
  * Debugger versions of JSOP_{GET,CALL}UPVAR and the flat closure (_FC) ops.
@@ -587,26 +591,40 @@ OPDEF(JSOP_TRACE,         228, "trace",         NULL,  1,  0,  0,  0,  JOF_BYTE)
 OPDEF(JSOP_GETUPVAR_DBG,  229,"getupvar_dbg",  NULL,  3,  0,  1, 19,  JOF_UINT16|JOF_NAME)
 OPDEF(JSOP_CALLUPVAR_DBG, 230,"callupvar_dbg", NULL,  3,  0,  2, 19,  JOF_UINT16|JOF_NAME|JOF_CALLOP)
 OPDEF(JSOP_DEFFUN_DBGFC,     231,"deffun_dbgfc",     NULL,  3,  0,  0,  0,  JOF_OBJECT|JOF_DECLARING)
-OPDEF(JSOP_DEFLOCALFUN_DBGFC,232,"deflocalfun_dbgfc",NULL,  5,  0,  0,  0,  JOF_SLOTOBJECT|JOF_DECLARING)
+OPDEF(JSOP_DEFLOCALFUN_DBGFC,232,"deflocalfun_dbgfc",NULL,  5,  0,  0,  0,  JOF_SLOTOBJECT|JOF_DECLARING|JOF_TMPSLOT)
 OPDEF(JSOP_LAMBDA_DBGFC,     233,"lambda_dbgfc",     NULL,  3,  0,  1, 19,  JOF_OBJECT)
-
-/*
- * Concatenate N values, coercing to string if necessary, where N is concatn's
- * immediate.  See record_JSOP_CONCATN for recording behavior.
- */
-OPDEF(JSOP_CONCATN,       234,"concatn",       NULL,  3, -1,  1, 13,  JOF_UINT16|JOF_TMPSLOT2)
 
 /*
  * Joined function object as method optimization support.
  */
-OPDEF(JSOP_SETMETHOD,     235,"setmethod",     NULL,  3,  2,  1,  3,  JOF_ATOM|JOF_PROP|JOF_SET|JOF_DETECTING)
-OPDEF(JSOP_INITMETHOD,    236,"initmethod",    NULL,  3,  2,  1,  3,  JOF_ATOM|JOF_PROP|JOF_SET|JOF_DETECTING)
-OPDEF(JSOP_UNBRAND,       237,"unbrand",       NULL,  1,  1,  1,  0,  JOF_BYTE)
-OPDEF(JSOP_UNBRANDTHIS,   238,"unbrandthis",   NULL,  1,  0,  0,  0,  JOF_BYTE)
+OPDEF(JSOP_SETMETHOD,     234,"setmethod",     NULL,  3,  2,  1,  3,  JOF_ATOM|JOF_PROP|JOF_SET|JOF_DETECTING)
+OPDEF(JSOP_INITMETHOD,    235,"initmethod",    NULL,  3,  2,  1,  3,  JOF_ATOM|JOF_PROP|JOF_SET|JOF_DETECTING)
+OPDEF(JSOP_UNBRAND,       236,"unbrand",       NULL,  1,  1,  1,  0,  JOF_BYTE)
+OPDEF(JSOP_UNBRANDTHIS,   237,"unbrandthis",   NULL,  1,  0,  0,  0,  JOF_BYTE)
 
-OPDEF(JSOP_SHARPINIT,     239,"sharpinit",     NULL,  3,  0,  0,  0,  JOF_UINT16|JOF_SHARPSLOT)
+OPDEF(JSOP_SHARPINIT,     238,"sharpinit",     NULL,  3,  0,  0,  0,  JOF_UINT16|JOF_SHARPSLOT)
+
+/* Static binding for globals. */
+OPDEF(JSOP_GETGLOBAL,     239,"getglobal",     NULL,  3,  0,  1, 19,  JOF_GLOBAL|JOF_NAME)
+OPDEF(JSOP_SETGLOBAL,     240,"setglobal",     NULL,  3,  1,  1,  3,  JOF_GLOBAL|JOF_NAME|JOF_SET|JOF_DETECTING)
+OPDEF(JSOP_INCGLOBAL,     241,"incglobal",     NULL,  3,  0,  1, 15,  JOF_GLOBAL|JOF_NAME|JOF_INC|JOF_TMPSLOT2)
+OPDEF(JSOP_DECGLOBAL,     242,"decglobal",     NULL,  3,  0,  1, 15,  JOF_GLOBAL|JOF_NAME|JOF_DEC|JOF_TMPSLOT2)
+OPDEF(JSOP_GLOBALINC,     243,"globalinc",     NULL,  3,  0,  1, 15,  JOF_GLOBAL|JOF_NAME|JOF_INC|JOF_POST|JOF_TMPSLOT2)
+OPDEF(JSOP_GLOBALDEC,     244,"globaldec",     NULL,  3,  0,  1, 15,  JOF_GLOBAL|JOF_NAME|JOF_DEC|JOF_POST|JOF_TMPSLOT2)
+OPDEF(JSOP_CALLGLOBAL,    245,"callglobal",    NULL,  3,  0,  2, 19,  JOF_GLOBAL|JOF_NAME|JOF_CALLOP)
+OPDEF(JSOP_FORGLOBAL,     246,"forglobal",     NULL,  3,  1,  1, 19,  JOF_GLOBAL|JOF_NAME|JOF_FOR|JOF_TMPSLOT)
 
 /*
- * If the argument is an object, perform toString conversion (E-262-3 section 9.8).
+ * These opcodes contain a reference to the current blockChain object.
+ * They are emitted directly after instructions, such as DEFFUN, that need fast access to
+ * the blockChain. The special NULLBLOCKCHAIN is needed because the JOF_OBJECT
+ * does not permit NULL object references, since it stores an index into a table of
+ * objects.
  */
-OPDEF(JSOP_OBJTOSTR,      240,"objtostr",      NULL,  1,  1,  1,  0,  JOF_BYTE)
+OPDEF(JSOP_BLOCKCHAIN,    247,"blockchain",    NULL,  3,  0,  0,  0, JOF_OBJECT)
+OPDEF(JSOP_NULLBLOCKCHAIN,248,"nullblockchain",NULL,  1,  0,  0,  0, JOF_BYTE)
+
+/* Like JSOP_FUNAPPLY but for f.call instead of f.apply. */
+OPDEF(JSOP_FUNCALL,       249,"funcall",       NULL,  3, -1,  1, 18,  JOF_UINT16|JOF_INVOKE)
+
+/* When changing bytecodes, don't forget to update JSXDR_BYTECODE_VERSION. */

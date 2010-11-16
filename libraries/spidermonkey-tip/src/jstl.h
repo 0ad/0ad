@@ -40,9 +40,18 @@
 #ifndef jstl_h_
 #define jstl_h_
 
+/* Gross special case for Gecko, which defines malloc/calloc/free. */
+#ifdef mozilla_mozalloc_macro_wrappers_h
+#  define JS_UNDEFD_MOZALLOC_WRAPPERS
+/* The "anti-header" */
+#  include "mozilla/mozalloc_undef_macro_wrappers.h"
+#endif
+
 #include "jsbit.h"
+#include "jsstaticcheck.h"
 
 #include <new>
+#include <string.h>
 
 namespace js {
 
@@ -171,14 +180,20 @@ template <class T, size_t N> inline T *ArrayEnd(T (&arr)[N]) { return arr + N; }
 /* Useful for implementing containers that assert non-reentrancy */
 class ReentrancyGuard
 {
+    /* ReentrancyGuard is not copyable. */
+    ReentrancyGuard(const ReentrancyGuard &);
+    void operator=(const ReentrancyGuard &);
+
 #ifdef DEBUG
     bool &entered;
 #endif
   public:
     template <class T>
-    ReentrancyGuard(T &obj)
 #ifdef DEBUG
+    ReentrancyGuard(T &obj)
       : entered(obj.entered)
+#else
+    ReentrancyGuard(T &/*obj*/)
 #endif
     {
 #ifdef DEBUG
@@ -198,10 +213,10 @@ class ReentrancyGuard
  * Round x up to the nearest power of 2.  This function assumes that the most
  * significant bit of x is not set, which would lead to overflow.
  */
+STATIC_POSTCONDITION_ASSUME(return >= x)
 JS_ALWAYS_INLINE size_t
 RoundUpPow2(size_t x)
 {
-    typedef tl::StaticAssert<tl::IsSameType<size_t,JSUword>::result>::result _;
     size_t log2 = JS_CEILING_LOG2W(x);
     JS_ASSERT(log2 < tl::BitSize<size_t>::result);
     size_t result = size_t(1) << log2;
@@ -237,10 +252,44 @@ PointerRangeSize(T *begin, T *end)
 class SystemAllocPolicy
 {
   public:
-    void *malloc(size_t bytes) { return ::malloc(bytes); }
-    void *realloc(void *p, size_t bytes) { return ::realloc(p, bytes); }
-    void free(void *p) { ::free(p); }
+    void *malloc(size_t bytes) { return js_malloc(bytes); }
+    void *realloc(void *p, size_t bytes) { return js_realloc(p, bytes); }
+    void free(void *p) { js_free(p); }
     void reportAllocOverflow() const {}
+};
+
+/*
+ * This utility pales in comparison to Boost's aligned_storage. The utility
+ * simply assumes that JSUint64 is enough alignment for anyone. This may need
+ * to be extended one day...
+ *
+ * As an important side effect, pulling the storage into this template is
+ * enough obfuscation to confuse gcc's strict-aliasing analysis into not giving
+ * false negatives when we cast from the char buffer to whatever type we've
+ * constructed using the bytes.
+ */
+template <size_t nbytes>
+struct AlignedStorage
+{
+    union U {
+        char bytes[nbytes];
+        uint64 _;
+    } u;
+
+    const void *addr() const { return u.bytes; }
+    void *addr() { return u.bytes; }
+};
+
+template <class T>
+struct AlignedStorage2
+{
+    union U {
+        char bytes[sizeof(T)];
+        uint64 _;
+    } u;
+
+    const T *addr() const { return (const T *)u.bytes; }
+    T *addr() { return (T *)u.bytes; }
 };
 
 /*
@@ -250,47 +299,171 @@ class SystemAllocPolicy
  * LazilyConstructed<T> is destroyed. Upon calling |construct|, a T object will
  * be constructed with the given arguments and that object will be destroyed
  * when the owning LazilyConstructed<T> is destroyed.
+ *
+ * N.B. GCC seems to miss some optimizations with LazilyConstructed and may
+ * generate extra branches/loads/stores. Use with caution on hot paths.
  */
 template <class T>
 class LazilyConstructed
 {
-    char bytes[sizeof(T)];
+    AlignedStorage2<T> storage;
     bool constructed;
-    T &asT() { return *reinterpret_cast<T *>(bytes); }
+
+    T &asT() { return *storage.addr(); }
 
   public:
-    LazilyConstructed() : constructed(false) {}
+    LazilyConstructed() { constructed = false; }
     ~LazilyConstructed() { if (constructed) asT().~T(); }
 
     bool empty() const { return !constructed; }
 
     void construct() {
         JS_ASSERT(!constructed);
-        new(bytes) T();
+        new(storage.addr()) T();
         constructed = true;
     }
 
     template <class T1>
     void construct(const T1 &t1) {
         JS_ASSERT(!constructed);
-        new(bytes) T(t1);
+        new(storage.addr()) T(t1);
         constructed = true;
     }
 
     template <class T1, class T2>
     void construct(const T1 &t1, const T2 &t2) {
         JS_ASSERT(!constructed);
-        new(bytes) T(t1, t2);
+        new(storage.addr()) T(t1, t2);
         constructed = true;
     }
 
     template <class T1, class T2, class T3>
     void construct(const T1 &t1, const T2 &t2, const T3 &t3) {
         JS_ASSERT(!constructed);
-        new(bytes) T(t1, t2, t3);
+        new(storage.addr()) T(t1, t2, t3);
         constructed = true;
     }
+
+    template <class T1, class T2, class T3, class T4>
+    void construct(const T1 &t1, const T2 &t2, const T3 &t3, const T4 &t4) {
+        JS_ASSERT(!constructed);
+        new(storage.addr()) T(t1, t2, t3, t4);
+        constructed = true;
+    }
+
+    T *addr() {
+        JS_ASSERT(constructed);
+        return &asT();
+    }
+
+    T &ref() {
+        JS_ASSERT(constructed);
+        return asT();
+    }
+
+    void destroy() {
+        ref().~T();
+        constructed = false;
+    }
 };
+
+
+/*
+ * N.B. GCC seems to miss some optimizations with Conditionally and may
+ * generate extra branches/loads/stores. Use with caution on hot paths.
+ */
+template <class T>
+class Conditionally {
+    LazilyConstructed<T> t;
+
+  public:
+    Conditionally(bool b) { if (b) t.construct(); }
+
+    template <class T1>
+    Conditionally(bool b, const T1 &t1) { if (b) t.construct(t1); }
+};
+
+template <class T>
+class AlignedPtrAndFlag
+{
+    uintptr_t bits;
+
+  public:
+    AlignedPtrAndFlag(T *t, bool flag) {
+        JS_ASSERT((uintptr_t(t) & 1) == 0);
+        bits = uintptr_t(t) | uintptr_t(flag);
+    }
+
+    T *ptr() const {
+        return (T *)(bits & ~uintptr_t(1));
+    }
+
+    bool flag() const {
+        return (bits & 1) != 0;
+    }
+
+    void setPtr(T *t) {
+        JS_ASSERT((uintptr_t(t) & 1) == 0);
+        bits = uintptr_t(t) | uintptr_t(flag());
+    }
+
+    void setFlag() {
+        bits |= 1;
+    }
+
+    void unsetFlag() {
+        bits &= ~uintptr_t(1);
+    }
+
+    void set(T *t, bool flag) {
+        JS_ASSERT((uintptr_t(t) & 1) == 0);
+        bits = uintptr_t(t) | flag;
+    }
+};
+
+template <class T>
+static inline void
+Reverse(T *beg, T *end)
+{
+    while (beg != end) {
+        if (--end == beg)
+            return;
+        T tmp = *beg;
+        *beg = *end;
+        *end = tmp;
+        ++beg;
+    }
+}
+
+template <typename InputIterT, typename CallableT>
+void
+ForEach(InputIterT begin, InputIterT end, CallableT f)
+{
+    for (; begin != end; ++begin)
+        f(*begin);
+}
+
+template <class T>
+static inline T
+Min(T t1, T t2)
+{
+    return t1 < t2 ? t1 : t2;
+}
+
+template <class T>
+static inline T
+Max(T t1, T t2)
+{
+    return t1 > t2 ? t1 : t2;
+}
+
+/* Allows a const variable to be initialized after its declaration. */
+template <class T>
+static T&
+InitConst(const T &t)
+{
+    return const_cast<T &>(t);
+}
 
 } /* namespace js */
 

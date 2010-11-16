@@ -40,8 +40,8 @@
 #define jslock_h__
 
 #include "jstypes.h"
-#include "jsprvtd.h"    /* for JSScope, etc. */
-#include "jspubtd.h"    /* for JSRuntime, etc. */
+#include "jsapi.h"
+#include "jsprvtd.h"
 
 #ifdef JS_THREADSAFE
 # include "pratom.h"
@@ -88,27 +88,6 @@ typedef struct JSThinLock {
 
 typedef PRLock JSLock;
 
-typedef struct JSTitle JSTitle;
-
-struct JSTitle {
-    JSContext       *ownercx;           /* creating context, NULL if shared */
-    JSThinLock      lock;               /* binary semaphore protecting title */
-    union {                             /* union lockful and lock-free state: */
-        jsrefcount  count;              /* lock entry count for reentrancy */
-        JSTitle     *link;              /* next link in rt->titleSharingTodo */
-    } u;
-#ifdef JS_DEBUG_TITLE_LOCKS
-    const char      *file[4];           /* file where lock was (re-)taken */
-    unsigned int    line[4];            /* line where lock was (re-)taken */
-#endif
-};
-
-/*
- * Title structure is always allocated as a field of JSScope.
- */
-#define TITLE_TO_SCOPE(title)                                                 \
-    ((JSScope *)((uint8 *) (title) - offsetof(JSScope, title)))
-
 /*
  * Atomic increment and decrement for a reference counter, given jsrefcount *p.
  * NB: jsrefcount is int32, aka PRInt32, so that pratom.h functions work.
@@ -118,7 +97,7 @@ struct JSTitle {
 #define JS_ATOMIC_ADD(p,v)          PR_AtomicAdd((PRInt32 *)(p), (PRInt32)(v))
 #define JS_ATOMIC_SET(p,v)          PR_AtomicSet((PRInt32 *)(p), (PRInt32)(v))
 
-#define js_CurrentThreadId()        (jsword)PR_GetCurrentThread()
+#define js_CurrentThreadId()        PR_GetCurrentThread()
 #define JS_NEW_LOCK()               PR_NewLock()
 #define JS_DESTROY_LOCK(l)          PR_DestroyLock(l)
 #define JS_ACQUIRE_LOCK(l)          PR_Lock(l)
@@ -131,102 +110,30 @@ struct JSTitle {
 #define JS_NOTIFY_CONDVAR(cv)       PR_NotifyCondVar(cv)
 #define JS_NOTIFY_ALL_CONDVAR(cv)   PR_NotifyAllCondVar(cv)
 
-#ifdef JS_DEBUG_TITLE_LOCKS
-
-#define JS_SET_OBJ_INFO(obj_, file_, line_)                                   \
-    JS_SET_SCOPE_INFO(OBJ_SCOPE(obj_), file_, line_)
-
-#define JS_SET_SCOPE_INFO(scope_, file_, line_)                               \
-    js_SetScopeInfo(scope_, file_, line_)
-
-#endif
-
 #define JS_LOCK(cx, tl)             js_Lock(cx, tl)
 #define JS_UNLOCK(cx, tl)           js_Unlock(cx, tl)
 
 #define JS_LOCK_RUNTIME(rt)         js_LockRuntime(rt)
 #define JS_UNLOCK_RUNTIME(rt)       js_UnlockRuntime(rt)
 
-/*
- * NB: The JS_LOCK_OBJ and JS_UNLOCK_OBJ macros work *only* on native objects
- * (objects for which OBJ_IS_NATIVE returns true).  All uses of these macros in
- * the engine are predicated on OBJ_IS_NATIVE or equivalent checks.  These uses
- * are for optimizations above the JSObjectOps layer, under which object locks
- * normally hide.
- */
-#define CX_OWNS_SCOPE_TITLE(cx,scope)   ((scope)->title.ownercx == (cx))
-
-#define JS_LOCK_OBJ(cx,obj)       (CX_OWNS_SCOPE_TITLE(cx, OBJ_SCOPE(obj))    \
-                                   ? (void)0                                  \
-                                   : (js_LockObj(cx, obj),                    \
-                                      JS_SET_OBJ_INFO(obj,__FILE__,__LINE__)))
-#define JS_UNLOCK_OBJ(cx,obj)     (CX_OWNS_SCOPE_TITLE(cx, OBJ_SCOPE(obj))    \
-                                   ? (void)0 : js_UnlockObj(cx, obj))
-
-#define JS_LOCK_TITLE(cx,title)                                               \
-    ((title)->ownercx == (cx) ? (void)0                                       \
-     : (js_LockTitle(cx, (title)),                                            \
-        JS_SET_TITLE_INFO(title,__FILE__,__LINE__)))
-
-#define JS_UNLOCK_TITLE(cx,title) ((title)->ownercx == (cx) ? (void)0         \
-                                   : js_UnlockTitle(cx, title))
-
-#define JS_LOCK_SCOPE(cx,scope)   JS_LOCK_TITLE(cx,&(scope)->title)
-#define JS_UNLOCK_SCOPE(cx,scope) JS_UNLOCK_TITLE(cx,&(scope)->title)
-
-#define JS_DROP_ALL_EMPTY_SCOPE_LOCKS(cx,scope)                               \
-    JS_BEGIN_MACRO                                                            \
-        JS_ASSERT((scope)->isSharedEmpty());                                  \
-        if (!CX_OWNS_SCOPE_TITLE(cx, scope))                                  \
-            js_DropAllEmptyScopeLocks(cx, scope);                             \
-    JS_END_MACRO
-
 extern void js_Lock(JSContext *cx, JSThinLock *tl);
 extern void js_Unlock(JSContext *cx, JSThinLock *tl);
 extern void js_LockRuntime(JSRuntime *rt);
 extern void js_UnlockRuntime(JSRuntime *rt);
-extern void js_LockObj(JSContext *cx, JSObject *obj);
-extern void js_UnlockObj(JSContext *cx, JSObject *obj);
-extern void js_InitTitle(JSContext *cx, JSTitle *title);
-extern void js_FinishTitle(JSContext *cx, JSTitle *title);
-extern void js_LockTitle(JSContext *cx, JSTitle *title);
-extern void js_UnlockTitle(JSContext *cx, JSTitle *title);
 extern int js_SetupLocks(int,int);
 extern void js_CleanupLocks();
-extern void js_DropAllEmptyScopeLocks(JSContext *cx, JSScope *scope);
-extern JS_FRIEND_API(jsval)
-js_GetSlotThreadSafe(JSContext *, JSObject *, uint32);
-extern void js_SetSlotThreadSafe(JSContext *, JSObject *, uint32, jsval);
 extern void js_InitLock(JSThinLock *);
 extern void js_FinishLock(JSThinLock *);
-
-/*
- * This function must be called with the GC lock held.
- */
-extern void
-js_ShareWaitingTitles(JSContext *cx);
-
-extern void
-js_NudgeOtherContexts(JSContext *cx);
 
 #ifdef DEBUG
 
 #define JS_IS_RUNTIME_LOCKED(rt)        js_IsRuntimeLocked(rt)
-#define JS_IS_OBJ_LOCKED(cx,obj)        js_IsObjLocked(cx,obj)
-#define JS_IS_TITLE_LOCKED(cx,title)    js_IsTitleLocked(cx,title)
 
 extern JSBool js_IsRuntimeLocked(JSRuntime *rt);
-extern JSBool js_IsObjLocked(JSContext *cx, JSObject *obj);
-extern JSBool js_IsTitleLocked(JSContext *cx, JSTitle *title);
-#ifdef JS_DEBUG_TITLE_LOCKS
-extern void js_SetScopeInfo(JSScope *scope, const char *file, int line);
-#endif
 
 #else
 
 #define JS_IS_RUNTIME_LOCKED(rt)        0
-#define JS_IS_OBJ_LOCKED(cx,obj)        1
-#define JS_IS_TITLE_LOCKED(cx,title)    1
 
 #endif /* DEBUG */
 
@@ -253,17 +160,8 @@ extern void js_SetScopeInfo(JSScope *scope, const char *file, int line);
 
 #define JS_LOCK_RUNTIME(rt)         ((void)0)
 #define JS_UNLOCK_RUNTIME(rt)       ((void)0)
-#define CX_OWNS_SCOPE_TITLE(cx,obj) true
-#define JS_LOCK_OBJ(cx,obj)         ((void)0)
-#define JS_UNLOCK_OBJ(cx,obj)       ((void)0)
-
-#define JS_LOCK_SCOPE(cx,scope)     ((void)0)
-#define JS_UNLOCK_SCOPE(cx,scope)   ((void)0)
-#define JS_DROP_ALL_EMPTY_SCOPE_LOCKS(cx,scope) ((void)0)
 
 #define JS_IS_RUNTIME_LOCKED(rt)        1
-#define JS_IS_OBJ_LOCKED(cx,obj)        1
-#define JS_IS_TITLE_LOCKED(cx,title)    1
 
 #endif /* !JS_THREADSAFE */
 
@@ -282,8 +180,6 @@ extern void js_SetScopeInfo(JSScope *scope, const char *file, int line);
                                                     JS_NO_TIMEOUT)
 #define JS_NOTIFY_REQUEST_DONE(rt)  JS_NOTIFY_CONDVAR((rt)->requestDone)
 
-#define CX_OWNS_OBJECT_TITLE(cx,obj) CX_OWNS_SCOPE_TITLE(cx, OBJ_SCOPE(obj))
-
 #ifndef JS_SET_OBJ_INFO
 #define JS_SET_OBJ_INFO(obj,f,l)        ((void)0)
 #endif
@@ -294,13 +190,21 @@ extern void js_SetScopeInfo(JSScope *scope, const char *file, int line);
 #ifdef JS_THREADSAFE
 
 extern JSBool
-js_CompareAndSwap(jsword *w, jsword ov, jsword nv);
+js_CompareAndSwap(volatile jsword *w, jsword ov, jsword nv);
 
 /* Atomically bitwise-or the mask into the word *w using compare and swap. */
 extern void
-js_AtomicSetMask(jsword *w, jsword mask);
+js_AtomicSetMask(volatile jsword *w, jsword mask);
+
+/*
+ * Atomically bitwise-and the complement of the mask into the word *w using
+ * compare and swap.
+ */
+extern void
+js_AtomicClearMask(volatile jsword *w, jsword mask);
 
 #define JS_ATOMIC_SET_MASK(w, mask) js_AtomicSetMask(w, mask)
+#define JS_ATOMIC_CLEAR_MASK(w, mask) js_AtomicClearMask(w, mask)
 
 #else
 
@@ -311,9 +215,25 @@ js_CompareAndSwap(jsword *w, jsword ov, jsword nv)
 }
 
 #define JS_ATOMIC_SET_MASK(w, mask) (*(w) |= (mask))
+#define JS_ATOMIC_CLEAR_MASK(w, mask) (*(w) &= ~(mask))
 
 #endif /* JS_THREADSAFE */
 
 JS_END_EXTERN_C
+
+#if defined JS_THREADSAFE && defined __cplusplus
+namespace js {
+
+class AutoLock {
+  private:
+    JSLock *lock;
+
+  public:
+    AutoLock(JSLock *lock) : lock(lock) { JS_ACQUIRE_LOCK(lock); }
+    ~AutoLock() { JS_RELEASE_LOCK(lock); }
+};
+
+}
+#endif
 
 #endif /* jslock_h___ */

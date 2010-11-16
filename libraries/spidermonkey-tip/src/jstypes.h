@@ -77,16 +77,12 @@
 **
 **
 ***********************************************************************/
-#ifdef WIN32
+
+#define DEFINE_LOCAL_CLASS_OF_STATIC_FUNCTION(Name) class Name
+
+#if defined(WIN32) || defined(XP_OS2)
 
 /* These also work for __MWERKS__ */
-# define JS_EXTERN_API(__type)  extern __declspec(dllexport) __type
-# define JS_EXPORT_API(__type)  __declspec(dllexport) __type
-# define JS_EXTERN_DATA(__type) extern __declspec(dllexport) __type
-# define JS_EXPORT_DATA(__type) __declspec(dllexport) __type
-
-#elif defined(XP_OS2) && defined(__declspec)
-
 # define JS_EXTERN_API(__type)  extern __declspec(dllexport) __type
 # define JS_EXPORT_API(__type)  __declspec(dllexport) __type
 # define JS_EXTERN_DATA(__type) extern __declspec(dllexport) __type
@@ -103,6 +99,17 @@
 
 # ifdef HAVE_VISIBILITY_ATTRIBUTE
 #  define JS_EXTERNAL_VIS __attribute__((visibility ("default")))
+#  if defined(__GNUC__) && __GNUC__ <= 4 && __GNUC_MINOR__ < 5
+    /*
+     * GCC wrongly produces a warning when a type with hidden visibility
+     * (e.g. js::Value) is a member of a local class of a static function.
+     * This is apparently fixed with GCC 4.5 and above.  See:
+     *
+     *   http://gcc.gnu.org/bugzilla/show_bug.cgi?id=40145.
+     */
+#   undef  DEFINE_LOCAL_CLASS_OF_STATIC_FUNCTION
+#   define DEFINE_LOCAL_CLASS_OF_STATIC_FUNCTION(Name) class __attribute__((visibility ("hidden"))) Name
+#  endif
 # elif defined(__SUNPRO_C) || defined(__SUNPRO_CC)
 #  define JS_EXTERNAL_VIS __global
 # else
@@ -122,7 +129,7 @@
 # else
 #  define JS_IMPORT_API(__x)    __declspec(dllimport) __x
 # endif
-#elif defined(XP_OS2) && defined(__declspec)
+#elif defined(XP_OS2)
 # define JS_IMPORT_API(__x)     __declspec(dllimport) __x
 #elif defined(__SYMBIAN32__)
 # define JS_IMPORT_API(__x)     IMPORT_C __x
@@ -132,7 +139,7 @@
 
 #if defined(_WIN32) && !defined(__MWERKS__)
 # define JS_IMPORT_DATA(__x)      __declspec(dllimport) __x
-#elif defined(XP_OS2) && defined(__declspec)
+#elif defined(XP_OS2)
 # define JS_IMPORT_DATA(__x)      __declspec(dllimport) __x
 #elif defined(__SYMBIAN32__)
 # if defined(__CW32__)
@@ -155,7 +162,7 @@
 # define JS_PUBLIC_API(t)   t
 # define JS_PUBLIC_DATA(t)  t
 
-#elif defined(EXPORT_JS_API)
+#elif defined(EXPORT_JS_API) || defined(STATIC_EXPORTABLE_JS_API)
 
 # define JS_PUBLIC_API(t)   JS_EXPORT_API(t)
 # define JS_PUBLIC_DATA(t)  JS_EXPORT_DATA(t)
@@ -201,6 +208,16 @@
 #  define JS_ALWAYS_INLINE   __attribute__((always_inline)) JS_INLINE
 # else
 #  define JS_ALWAYS_INLINE   JS_INLINE
+# endif
+#endif
+
+#ifndef JS_NEVER_INLINE
+# if defined _MSC_VER
+#  define JS_NEVER_INLINE __declspec(noinline)
+# elif defined __GNUC__
+#  define JS_NEVER_INLINE __attribute__((noinline))
+# else
+#  define JS_NEVER_INLINE
 # endif
 #endif
 
@@ -268,19 +285,6 @@
 #define JS_BITMASK(n)   (JS_BIT(n) - 1)
 
 /***********************************************************************
-** MACROS:      JS_PTR_TO_INT32
-**              JS_PTR_TO_UINT32
-**              JS_INT32_TO_PTR
-**              JS_UINT32_TO_PTR
-** DESCRIPTION:
-** Integer to pointer and pointer to integer conversion macros.
-***********************************************************************/
-#define JS_PTR_TO_INT32(x)  ((jsint)((char *)(x) - (char *)0))
-#define JS_PTR_TO_UINT32(x) ((jsuint)((char *)(x) - (char *)0))
-#define JS_INT32_TO_PTR(x)  ((void *)((char *)0 + (jsint)(x)))
-#define JS_UINT32_TO_PTR(x) ((void *)((char *)0 + (jsuint)(x)))
-
-/***********************************************************************
 ** MACROS:      JS_HOWMANY
 **              JS_ROUNDUP
 **              JS_MIN
@@ -301,6 +305,27 @@
 #else
 # include "jsautocfg.h" /* Use auto-detected configuration */
 #endif
+
+/*
+ * Define JS_64BIT iff we are building in an environment with 64-bit
+ * addresses.
+ */
+#ifdef _MSC_VER
+# if defined(_M_X64) || defined(_M_AMD64)
+#  define JS_64BIT
+# endif
+#elif defined(__GNUC__)
+# ifdef __x86_64__
+#  define JS_64BIT
+# endif
+#elif defined(__SUNPRO_C) || defined(__SUNPRO_CC)
+# ifdef __x86_64
+#  define JS_64BIT
+# endif
+#else
+# error "Implement me"
+#endif
+
 
 #include "jsinttypes.h"
 
@@ -360,6 +385,11 @@ typedef JSUintPtr JSUptrdiff;
 typedef JSIntn JSBool;
 #define JS_TRUE (JSIntn)1
 #define JS_FALSE (JSIntn)0
+/*
+** Special: JS_NEITHER is used by the tracer to have tri-state booleans.
+** This should not be used in new code.
+*/
+#define JS_NEITHER (JSIntn)2
 
 /************************************************************************
 ** TYPES:       JSPackedBool
@@ -448,8 +478,8 @@ typedef JSUintPtr JSUword;
 ***********************************************************************/
 
 #ifdef __GNUC__
-# define JS_FUNC_TO_DATA_PTR(type, fun) (__extension__ (type) (fun))
-# define JS_DATA_TO_FUNC_PTR(type, ptr) (__extension__ (type) (ptr))
+# define JS_FUNC_TO_DATA_PTR(type, fun) (__extension__ (type) (size_t) (fun))
+# define JS_DATA_TO_FUNC_PTR(type, ptr) (__extension__ (type) (size_t) (ptr))
 #else
 /* Use an extra (void *) cast for MSVC. */
 # define JS_FUNC_TO_DATA_PTR(type, fun) ((type) (void *) (fun))

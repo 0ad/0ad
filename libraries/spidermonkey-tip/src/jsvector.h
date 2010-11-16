@@ -41,6 +41,13 @@
 #define jsvector_h_
 
 #include "jstl.h"
+#include "jsprvtd.h"
+
+/* Silence dire "bugs in previous versions of MSVC have been fixed" warnings */
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable:4345)
+#endif
 
 namespace js {
 
@@ -190,6 +197,8 @@ class Vector : AllocPolicy
     bool growHeapStorageBy(size_t lengthInc);
     bool convertToHeapStorage(size_t lengthInc);
 
+    template <bool InitNewElems> inline bool growByImpl(size_t inc);
+
     /* magic constants */
 
     static const int sMaxInlineBytes = 1024;
@@ -208,7 +217,7 @@ class Vector : AllocPolicy
     /*
      * Since a vector either stores elements inline or in a heap-allocated
      * buffer, reuse the storage. mLengthOrCapacity serves as the union
-     * discriminator. In inline mode (when elements are stored in u.mBuf),
+     * discriminator. In inline mode (when elements are stored in u.storage),
      * mLengthOrCapacity holds the vector's length. In heap mode (when elements
      * are stored in [u.ptrs.mBegin, u.ptrs.mEnd)), mLengthOrCapacity holds the
      * vector's capacity.
@@ -228,7 +237,7 @@ class Vector : AllocPolicy
 
     union {
         BufferPtrs ptrs;
-        char mBuf[sInlineBytes];
+        AlignedStorage<sInlineBytes> storage;
     } u;
 
     /* Only valid when usingInlineStorage() */
@@ -244,12 +253,12 @@ class Vector : AllocPolicy
 
     T *inlineBegin() const {
         JS_ASSERT(usingInlineStorage());
-        return (T *)u.mBuf;
+        return (T *)u.storage.addr();
     }
 
     T *inlineEnd() const {
         JS_ASSERT(usingInlineStorage());
-        return (T *)u.mBuf + mLengthOrCapacity;
+        return (T *)u.storage.addr() + mLengthOrCapacity;
     }
 
     /* Only valid when !usingInlineStorage() */
@@ -305,6 +314,8 @@ class Vector : AllocPolicy
 
     /* accessors */
 
+    enum { InlineLength = N };
+
     size_t length() const {
         return usingInlineStorage() ? inlineLength() : heapLength();
     }
@@ -359,21 +370,21 @@ class Vector : AllocPolicy
 
     /* mutators */
 
-    /* If reserve(N) succeeds, the N next appends are guaranteed to succeed. */
+    /* If reserve(length() + N) succeeds, the N next appends are guaranteed to succeed. */
     bool reserve(size_t capacity);
 
     /* Destroy elements in the range [begin() + incr, end()). */
     void shrinkBy(size_t incr);
 
-    /*
-     * Grow the vector by incr elements.  If T is a POD (as judged by
-     * tl::IsPodType), leave as uninitialized memory.  Otherwise, default
-     * construct each element.
-     */
+    /* Grow the vector by incr elements. */
     bool growBy(size_t incr);
 
     /* Call shrinkBy or growBy based on whether newSize > length(). */
     bool resize(size_t newLength);
+
+    /* Leave new elements as uninitialized memory. */
+    bool growByUninitialized(size_t incr);
+    bool resizeUninitialized(size_t newLength);
 
     void clear();
 
@@ -381,6 +392,7 @@ class Vector : AllocPolicy
     bool appendN(const T &t, size_t n);
     template <class U> bool append(const U *begin, const U *end);
     template <class U> bool append(const U *begin, size_t length);
+    template <class U, size_t O, class BP> bool append(const Vector<U,O,BP> &other);
 
     void popBack();
 
@@ -400,6 +412,18 @@ class Vector : AllocPolicy
      *      passed array.
      */
     void replaceRawBuffer(T *p, size_t length);
+
+    /*
+     * Places |val| at position |p|, shifting existing elements
+     * from |p| onward one position higher.
+     */
+    bool insert(T *p, const T &val);
+
+    /*
+     * Removes the element |t|, which must fall in the bounds [begin, end),
+     * shifting existing elements from |t + 1| onward one position lower.
+     */
+    void erase(T *t);
 };
 
 /* Helper functions */
@@ -410,7 +434,7 @@ class Vector : AllocPolicy
  * care not to append the terminating '\0'.
  */
 template <class T, size_t N, class AP, size_t ArrayLength>
-bool
+JS_ALWAYS_INLINE bool
 js_AppendLiteral(Vector<T,N,AP> &v, const char (&array)[ArrayLength])
 {
     return v.append(array, array + ArrayLength - 1);
@@ -420,7 +444,7 @@ js_AppendLiteral(Vector<T,N,AP> &v, const char (&array)[ArrayLength])
 /* Vector Implementation */
 
 template <class T, size_t N, class AllocPolicy>
-inline
+JS_ALWAYS_INLINE
 Vector<T,N,AllocPolicy>::Vector(AllocPolicy ap)
   : AllocPolicy(ap), mLengthOrCapacity(0)
 #ifdef DEBUG
@@ -429,7 +453,7 @@ Vector<T,N,AllocPolicy>::Vector(AllocPolicy ap)
 {}
 
 template <class T, size_t N, class AP>
-inline
+JS_ALWAYS_INLINE
 Vector<T,N,AP>::~Vector()
 {
     ReentrancyGuard g(*this);
@@ -446,6 +470,7 @@ Vector<T,N,AP>::~Vector()
  * curLength and check for overflow.
  */
 template <class T, size_t N, class AP>
+STATIC_POSTCONDITION(!return || newCap >= curLength + lengthInc)
 inline bool
 Vector<T,N,AP>::calculateNewCapacity(size_t curLength, size_t lengthInc,
                                      size_t &newCap)
@@ -481,7 +506,7 @@ Vector<T,N,AP>::calculateNewCapacity(size_t curLength, size_t lengthInc,
  * (heapLength() + lengthInc) and fail on OOM or integer overflow.
  */
 template <class T, size_t N, class AP>
-inline bool
+JS_ALWAYS_INLINE bool
 Vector<T,N,AP>::growHeapStorageBy(size_t lengthInc)
 {
     size_t newCap;
@@ -550,15 +575,16 @@ Vector<T,N,AP>::shrinkBy(size_t incr)
 }
 
 template <class T, size_t N, class AP>
-inline bool
-Vector<T,N,AP>::growBy(size_t incr)
+template <bool InitNewElems>
+JS_ALWAYS_INLINE bool
+Vector<T,N,AP>::growByImpl(size_t incr)
 {
     ReentrancyGuard g(*this);
     if (usingInlineStorage()) {
         size_t freespace = sInlineCapacity - inlineLength();
         if (incr <= freespace) {
             T *newend = inlineEnd() + incr;
-            if (!tl::IsPodType<T>::result)
+            if (InitNewElems)
                 Impl::initialize(inlineEnd(), newend);
             inlineLength() += incr;
             JS_ASSERT(usingInlineStorage());
@@ -579,19 +605,45 @@ Vector<T,N,AP>::growBy(size_t incr)
     /* We are !usingInlineStorage(). Initialize new elements. */
     JS_ASSERT(heapCapacity() - heapLength() >= incr);
     T *newend = heapEnd() + incr;
-    if (!tl::IsPodType<T>::result)
+    if (InitNewElems)
         Impl::initialize(heapEnd(), newend);
     heapEnd() = newend;
     return true;
 }
 
 template <class T, size_t N, class AP>
+JS_ALWAYS_INLINE bool
+Vector<T,N,AP>::growBy(size_t incr)
+{
+    return growByImpl<true>(incr);
+}
+
+template <class T, size_t N, class AP>
+JS_ALWAYS_INLINE bool
+Vector<T,N,AP>::growByUninitialized(size_t incr)
+{
+    return growByImpl<false>(incr);
+}
+
+template <class T, size_t N, class AP>
+STATIC_POSTCONDITION(!return || ubound(this->begin()) >= newLength)
 inline bool
 Vector<T,N,AP>::resize(size_t newLength)
 {
     size_t curLength = length();
     if (newLength > curLength)
         return growBy(newLength - curLength);
+    shrinkBy(curLength - newLength);
+    return true;
+}
+
+template <class T, size_t N, class AP>
+JS_ALWAYS_INLINE bool
+Vector<T,N,AP>::resizeUninitialized(size_t newLength)
+{
+    size_t curLength = length();
+    if (newLength > curLength)
+        return growByUninitialized(newLength - curLength);
     shrinkBy(curLength - newLength);
     return true;
 }
@@ -612,7 +664,7 @@ Vector<T,N,AP>::clear()
 }
 
 template <class T, size_t N, class AP>
-inline bool
+JS_ALWAYS_INLINE bool
 Vector<T,N,AP>::append(const T &t)
 {
     ReentrancyGuard g(*this);
@@ -637,7 +689,7 @@ Vector<T,N,AP>::append(const T &t)
 }
 
 template <class T, size_t N, class AP>
-inline bool
+JS_ALWAYS_INLINE bool
 Vector<T,N,AP>::appendN(const T &t, size_t needed)
 {
     ReentrancyGuard g(*this);
@@ -665,8 +717,41 @@ Vector<T,N,AP>::appendN(const T &t, size_t needed)
 }
 
 template <class T, size_t N, class AP>
-template <class U>
 inline bool
+Vector<T,N,AP>::insert(T *p, const T &val)
+{
+    JS_ASSERT(begin() <= p && p <= end());
+    size_t pos = p - begin();
+    JS_ASSERT(pos <= length());
+    size_t oldLength = length();
+    if (pos == oldLength)
+        return append(val);
+    {
+        T oldBack = back();
+        if (!append(oldBack)) /* Dup the last element. */
+            return false;
+    }
+    for (size_t i = oldLength; i > pos; --i)
+        (*this)[i] = (*this)[i - 1];
+    (*this)[pos] = val;
+    return true;
+}
+
+template<typename T, size_t N, class AP>
+inline void
+Vector<T,N,AP>::erase(T *it)
+{
+    JS_ASSERT(begin() <= it && it < end());
+    while (it + 1 != end()) {
+        *it = *(it + 1);
+        ++it;
+    }
+    popBack();
+}
+
+template <class T, size_t N, class AP>
+template <class U>
+JS_ALWAYS_INLINE bool
 Vector<T,N,AP>::append(const U *insBegin, const U *insEnd)
 {
     ReentrancyGuard g(*this);
@@ -695,15 +780,23 @@ Vector<T,N,AP>::append(const U *insBegin, const U *insEnd)
 }
 
 template <class T, size_t N, class AP>
-template <class U>
+template <class U, size_t O, class BP>
 inline bool
+Vector<T,N,AP>::append(const Vector<U,O,BP> &other)
+{
+    return append(other.begin(), other.end());
+}
+
+template <class T, size_t N, class AP>
+template <class U>
+JS_ALWAYS_INLINE bool
 Vector<T,N,AP>::append(const U *insBegin, size_t length)
 {
     return this->append(insBegin, insBegin + length);
 }
 
 template <class T, size_t N, class AP>
-inline void
+JS_ALWAYS_INLINE void
 Vector<T,N,AP>::popBack()
 {
     ReentrancyGuard g(*this);
@@ -769,5 +862,9 @@ Vector<T,N,AP>::replaceRawBuffer(T *p, size_t length)
 }
 
 }  /* namespace js */
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 #endif /* jsvector_h_ */

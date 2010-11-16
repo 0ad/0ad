@@ -42,7 +42,9 @@
 #define _LIBMATH_H
 
 #include <math.h>
-#include "jsversion.h"
+#ifdef XP_WIN
+# include "jsnum.h"
+#endif
 
 /*
  * Use system provided math routines.

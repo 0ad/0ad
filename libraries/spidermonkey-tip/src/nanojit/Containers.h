@@ -237,7 +237,8 @@ namespace nanojit
 
     template<class K> struct DefaultHash {
         static size_t hash(const K &k) {
-            return murmurhash(&k, sizeof(K));
+            // (const void*) cast is required by ARM RVCT 2.2
+            return murmurhash((const void*) &k, sizeof(K));
         }
     };
 
@@ -252,6 +253,7 @@ namespace nanojit
 
     /** Bucket hashtable with a fixed # of buckets (never rehash)
      *  Intended for use when a reasonable # of buckets can be estimated ahead of time.
+     *  Note that operator== is used to compare keys.
      */
     template<class K, class T, class H=DefaultHash<K> > class HashMap {
         Allocator& allocator;

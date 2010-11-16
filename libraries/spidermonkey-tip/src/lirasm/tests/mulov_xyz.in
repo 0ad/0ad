@@ -1,12 +1,12 @@
 ; 1073741824 * 2 >= 2^31, and will overflow.
-big = int 1073741824
-two = int 2
+big = immi 1073741824
+two = immi 2
 
-res = mulxov big two    ; overflow, so we exit here
+res = mulxovi big two    ; overflow, so we exit here
 
 ; Ensure that 'big' and 'two' get their own registers and
 ; aren't shared with 'res'.  Also store 'res' so it isn't dead.
-m = alloc 12
+m = allocp 12
 sti big m 0
 sti two m 4
 sti res m 8

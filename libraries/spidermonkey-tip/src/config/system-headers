@@ -62,6 +62,7 @@ be/kernel/image.h
 be/kernel/OS.h
 bfd.h
 Bitmap.h
+bitset
 blapi.h
 bsd/libc.h
 bsd/syscall.h
@@ -93,6 +94,7 @@ cairo-directfb.h
 cairo-qpainter.h
 #endif
 dfiff.h
+exception
 ffi.h
 fusion/reactor.h
 fusion/property.h
@@ -196,6 +198,7 @@ CPString.h
 crtdbg.h
 crt_externs.h
 crypt.h
+cstddef
 cstdio
 cstdlib
 cstring
@@ -212,6 +215,7 @@ dbus/dbus-glib.h
 dbus/dbus-glib-lowlevel.h
 ddeml.h
 Debug.h
+deque
 dem.h
 descrip.h
 Devices.h
@@ -274,6 +278,7 @@ freetype/tttables.h
 freetype/t1tables.h
 fribidi/fribidi.h
 FSp_fopen.h
+fstream
 fstream.h
 ft2build.h
 fts.h
@@ -329,6 +334,7 @@ IOKit/pwr_mgt/IOPMLib.h
 iomanip
 iostream
 iostream.h
+iterator
 jar.h
 JavaControl.h
 JavaEmbedding/JavaControl.h
@@ -536,6 +542,7 @@ Objsafe.h
 ojiapitests.h
 ole2.h
 oleidl.h
+OpenGL/OpenGL.h
 OpenTptInternet.h
 OpenTransport.h
 os2.h
@@ -607,6 +614,7 @@ pthread.h
 pwd.h
 Python.h
 QDOffscreen.h
+queue
 Quickdraw.h
 QuickDraw.h
 QuickTimeComponents.h
@@ -641,6 +649,7 @@ security.h
 secutil.h
 semaphore.h
 servprov.h
+set
 setjmp.h
 SFNTLayoutTypes.h
 SFNTTypes.h
@@ -834,6 +843,7 @@ UReanimator.h
 URegions.h
 URegistrar.h
 UResourceMgr.h
+utility
 urlhist.h
 urlmon.h
 UScrap.h
@@ -855,6 +865,7 @@ Volume.h
 wab.h
 wait.h
 wchar.h
+wctype.h
 winbase.h
 win/compobj.h
 windef.h
@@ -885,6 +896,7 @@ wx/xrc/xmlres.h
 X11/cursorfont.h
 X11/extensions/Print.h
 X11/extensions/shape.h
+X11/extensions/scrnsaver.h
 X11/extensions/XIElib.h
 X11/extensions/XShm.h
 X11/extensions/Xrender.h
@@ -1023,4 +1035,23 @@ gio/gio.h
 conic/conicconnection.h
 conic/conicconnectionevent.h
 conic/conicstatisticsevent.h
+#endif
+#if MOZ_NATIVE_LIBEVENT==1
+event.h
+#endif
+#ifdef MOZ_ENABLE_LIBPROXY
+proxy.h
+#endif
+#if MOZ_PLATFORM_MAEMO==6
+contentaction/contentaction.h
+#endif
+#ifndef MOZ_TREE_PIXMAN
+pixman.h
+#endif
+#if MOZ_ENABLE_MEEGOTOUCHSHARE
+shareuiinterface.h
+#endif
+#if MOZ_NATIVE_LIBVPX==1
+vpx/vpx_decoder.h
+vpx/vp8dx.h
 #endif

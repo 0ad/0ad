@@ -45,8 +45,9 @@
 #endif
 #include <string.h>
 #include <time.h>
-#include "jstypes.h"
+
 #include "jsstdint.h"
+#include "jstypes.h"
 #include "jsutil.h"
 
 #include "jsprf.h"
@@ -97,16 +98,27 @@ extern int gettimeofday(struct timeval *tv);
 #define PRMJ_YEAR_SECONDS (PRMJ_DAY_SECONDS * PRMJ_YEAR_DAYS)
 #define PRMJ_MAX_UNIX_TIMET 2145859200L /*time_t value equiv. to 12/31/2037 */
 
-/* function prototypes */
-static void PRMJ_basetime(JSInt64 tsecs, PRMJTime *prtm);
+/* Get the local time. localtime_r is preferred as it is reentrant. */
+static inline bool
+ComputeLocalTime(time_t local, struct tm *ptm)
+{
+#ifdef HAVE_LOCALTIME_R
+    return localtime_r(&local, ptm);
+#else
+    struct tm *otm = localtime(&local);
+    if (!otm)
+        return false;
+    *ptm = *otm;
+    return true;
+#endif
+}
+
 /*
  * get the difference in seconds between this time zone and UTC (GMT)
  */
 JSInt32
 PRMJ_LocalGMTDifference()
 {
-    struct tm ltime;
-
 #if defined(XP_WIN) && !defined(WINCE)
     /* Windows does not follow POSIX. Updates to the
      * TZ environment variable are not reflected
@@ -115,11 +127,30 @@ PRMJ_LocalGMTDifference()
      */
     _tzset();
 #endif
-    /* get the difference between this time zone and GMT */
-    memset((char *)&ltime,0,sizeof(ltime));
-    ltime.tm_mday = 2;
-    ltime.tm_year = 70;
-    return (JSInt32)mktime(&ltime) - (24L * 3600L);
+
+    /*
+     * Get the difference between this time zone and GMT, by checking the local
+     * time for days 0 and 180 of 1970, using a date for which daylight savings
+     * time was not in effect.
+     */
+    int day = 0;
+    struct tm tm;
+
+    if (!ComputeLocalTime(0, &tm))
+        return 0;
+    if (tm.tm_isdst > 0) {
+        day = 180;
+        if (!ComputeLocalTime(PRMJ_DAY_SECONDS * day, &tm))
+            return 0;
+    }
+
+    int time = (tm.tm_hour * 3600) + (tm.tm_min * 60) + tm.tm_sec;
+    time = PRMJ_DAY_SECONDS - time;
+
+    if (tm.tm_yday == day)
+        time -= PRMJ_DAY_SECONDS;
+
+    return time;
 }
 
 /* Constants for GMT offset from 1970 */
@@ -128,34 +159,6 @@ PRMJ_LocalGMTDifference()
 
 #define G2037GMTMICROHI        0x00e45fab /* micro secs to 2037 high */
 #define G2037GMTMICROLOW       0x7a238000 /* micro secs to 2037 low */
-
-/* Convert from base time to extended time */
-static JSInt64
-PRMJ_ToExtendedTime(JSInt32 base_time)
-{
-    JSInt64 exttime;
-    JSInt64 g1970GMTMicroSeconds;
-    JSInt64 low;
-    JSInt32 diff;
-    JSInt64  tmp;
-    JSInt64  tmp1;
-
-    diff = PRMJ_LocalGMTDifference();
-    JSLL_UI2L(tmp, PRMJ_USEC_PER_SEC);
-    JSLL_I2L(tmp1,diff);
-    JSLL_MUL(tmp,tmp,tmp1);
-
-    JSLL_UI2L(g1970GMTMicroSeconds,G1970GMTMICROHI);
-    JSLL_UI2L(low,G1970GMTMICROLOW);
-    JSLL_SHL(g1970GMTMicroSeconds,g1970GMTMicroSeconds,16);
-    JSLL_SHL(g1970GMTMicroSeconds,g1970GMTMicroSeconds,16);
-    JSLL_ADD(g1970GMTMicroSeconds,g1970GMTMicroSeconds,low);
-
-    JSLL_I2L(exttime,base_time);
-    JSLL_ADD(exttime,exttime,g1970GMTMicroSeconds);
-    JSLL_SUB(exttime,exttime,tmp);
-    return exttime;
-}
 
 #ifdef HAVE_SYSTEMTIMETOFILETIME
 
@@ -407,6 +410,11 @@ def PRMJ_Now():
 
 */
 
+// We parameterize the delay count just so that shell builds can
+// set it to 0 in order to get high-resolution benchmarking.
+// 10 seems to be the number of calls to load with a blank homepage.
+int CALIBRATION_DELAY_COUNT = 10;
+
 JSInt64
 PRMJ_Now(void)
 {
@@ -424,8 +432,7 @@ PRMJ_Now(void)
        This does not appear to be needed on Vista as the timeBegin/timeEndPeriod
        calls seem to immediately take effect. */
     int thiscall = JS_ATOMIC_INCREMENT(&nCalls);
-    /* 10 seems to be the number of calls to load with a blank homepage */
-    if (thiscall <= 10) {
+    if (thiscall <= CALIBRATION_DELAY_COUNT) {
         LowResTime(&ft);
         return (FILETIME2INT64(ft)-win2un)/10L;
     }
@@ -550,68 +557,6 @@ PRMJ_Now(void)
     return returnedTime;
 }
 #endif
-
-/* Get the DST timezone offset for the time passed in */
-JSInt64
-PRMJ_DSTOffset(JSInt64 local_time)
-{
-    JSInt64 us2s;
-    time_t local;
-    JSInt32 diff;
-    JSInt64  maxtimet;
-    struct tm tm;
-    PRMJTime prtm;
-#ifndef HAVE_LOCALTIME_R
-    struct tm *ptm;
-#endif
-
-
-    JSLL_UI2L(us2s, PRMJ_USEC_PER_SEC);
-    JSLL_DIV(local_time, local_time, us2s);
-
-    /* get the maximum of time_t value */
-    JSLL_UI2L(maxtimet,PRMJ_MAX_UNIX_TIMET);
-
-    if(JSLL_CMP(local_time,>,maxtimet)){
-        JSLL_UI2L(local_time,PRMJ_MAX_UNIX_TIMET);
-    } else if(!JSLL_GE_ZERO(local_time)){
-        /*go ahead a day to make localtime work (does not work with 0) */
-        JSLL_UI2L(local_time,PRMJ_DAY_SECONDS);
-    }
-
-#if defined(XP_WIN) && !defined(WINCE)
-    /* Windows does not follow POSIX. Updates to the
-     * TZ environment variable are not reflected
-     * immediately on that platform as they are
-     * on UNIX systems without this call.
-     */
-    _tzset();
-#endif
-
-    JSLL_L2UI(local,local_time);
-    PRMJ_basetime(local_time,&prtm);
-#ifndef HAVE_LOCALTIME_R
-    ptm = localtime(&local);
-    if(!ptm){
-        return 0;
-    }
-    tm = *ptm;
-#else
-    localtime_r(&local,&tm); /* get dst information */
-#endif
-
-    diff = ((tm.tm_hour - prtm.tm_hour) * PRMJ_HOUR_SECONDS) +
-           ((tm.tm_min - prtm.tm_min) * 60);
-
-    if (diff < 0)
-        diff += PRMJ_DAY_SECONDS;
-
-    JSLL_UI2L(local_time,diff);
-
-    JSLL_MUL(local_time,local_time,us2s);
-
-    return(local_time);
-}
 
 #ifdef NS_HAVE_INVALID_PARAMETER_HANDLER
 static void
@@ -738,174 +683,181 @@ PRMJ_FormatTime(char *buf, int buflen, const char *fmt, PRMJTime *prtm)
     return result;
 }
 
-/* table for number of days in a month */
-static int mtab[] = {
-    /* jan, feb,mar,apr,may,jun */
-    31,28,31,30,31,30,
-    /* july,aug,sep,oct,nov,dec */
-    31,31,30,31,30,31
-};
-
-/*
- * basic time calculation functionality for localtime and gmtime
- * setups up prtm argument with correct values based upon input number
- * of seconds.
- */
-static void
-PRMJ_basetime(JSInt64 tsecs, PRMJTime *prtm)
+JSInt64
+DSTOffsetCache::computeDSTOffsetMilliseconds(int64 localTimeSeconds)
 {
-    /* convert tsecs back to year,month,day,hour,secs */
-    JSInt32 year    = 0;
-    JSInt32 month   = 0;
-    JSInt32 yday    = 0;
-    JSInt32 mday    = 0;
-    JSInt32 wday    = 6; /* start on a Sunday */
-    JSInt32 days    = 0;
-    JSInt32 seconds = 0;
-    JSInt32 minutes = 0;
-    JSInt32 hours   = 0;
-    JSInt32 isleap  = 0;
+    JS_ASSERT(localTimeSeconds >= 0);
+    JS_ASSERT(localTimeSeconds <= MAX_UNIX_TIMET);
 
-    /* Temporaries used for various computations */
-    JSInt64 result;
-    JSInt64	result1;
-    JSInt64	result2;
+#if defined(XP_WIN) && !defined(WINCE)
+    /* Windows does not follow POSIX. Updates to the
+     * TZ environment variable are not reflected
+     * immediately on that platform as they are
+     * on UNIX systems without this call.
+     */
+    _tzset();
+#endif
 
-    JSInt64 base;
+    struct tm tm;
+    if (!ComputeLocalTime(static_cast<time_t>(localTimeSeconds), &tm))
+        return 0;
 
-    /* Some variables for intermediate result storage to make computing isleap
-       easier/faster */
-    JSInt32 fourCenturyBlocks;
-    JSInt32 centuriesLeft;
-    JSInt32 fourYearBlocksLeft;
-    JSInt32 yearsLeft;
+    JSInt32 base = PRMJ_LocalGMTDifference();
 
-    /* Since leap years work by 400/100/4 year intervals, precompute the length
-       of those in seconds if they start at the beginning of year 1. */
-    JSInt64 fourYears;
-    JSInt64 century;
-    JSInt64 fourCenturies;
+    int32 dayoff = int32((localTimeSeconds - base) % (SECONDS_PER_HOUR * 24));
+    int32 tmoff = tm.tm_sec + (tm.tm_min * SECONDS_PER_MINUTE) +
+        (tm.tm_hour * SECONDS_PER_HOUR);
 
-    JSLL_UI2L(result, PRMJ_DAY_SECONDS);
+    JSInt32 diff = tmoff - dayoff;
 
-    JSLL_I2L(fourYears, PRMJ_FOUR_YEARS_DAYS);
-    JSLL_MUL(fourYears, fourYears, result);
+    if (diff < 0)
+        diff += SECONDS_PER_DAY;
 
-    JSLL_I2L(century, PRMJ_CENTURY_DAYS);
-    JSLL_MUL(century, century, result);
-
-    JSLL_I2L(fourCenturies, PRMJ_FOUR_CENTURIES_DAYS);
-    JSLL_MUL(fourCenturies, fourCenturies, result);
-
-    /* get the base time via UTC */
-    base = PRMJ_ToExtendedTime(0);
-    JSLL_UI2L(result,  PRMJ_USEC_PER_SEC);
-    JSLL_DIV(base,base,result);
-    JSLL_ADD(tsecs,tsecs,base);
-
-    /* Compute our |year|, |isleap|, and part of |days|.  When this part is
-       done, |year| should hold the year our date falls in (number of whole
-       years elapsed before our date), isleap should hold 1 if the year the
-       date falls in is a leap year and 0 otherwise. */
-
-    /* First do year 0; it's special and nonleap. */
-    JSLL_UI2L(result, PRMJ_YEAR_SECONDS);
-    if (!JSLL_CMP(tsecs,<,result)) {
-        days = PRMJ_YEAR_DAYS;
-        year = 1;
-        JSLL_SUB(tsecs, tsecs, result);
-    }
-
-    /* Now use those constants we computed above */
-    JSLL_UDIVMOD(&result1, &result2, tsecs, fourCenturies);
-    JSLL_L2I(fourCenturyBlocks, result1);
-    year += fourCenturyBlocks * 400;
-    days += fourCenturyBlocks * PRMJ_FOUR_CENTURIES_DAYS;
-    tsecs = result2;
-
-    JSLL_UDIVMOD(&result1, &result2, tsecs, century);
-    JSLL_L2I(centuriesLeft, result1);
-    year += centuriesLeft * 100;
-    days += centuriesLeft * PRMJ_CENTURY_DAYS;
-    tsecs = result2;
-
-    JSLL_UDIVMOD(&result1, &result2, tsecs, fourYears);
-    JSLL_L2I(fourYearBlocksLeft, result1);
-    year += fourYearBlocksLeft * 4;
-    days += fourYearBlocksLeft * PRMJ_FOUR_YEARS_DAYS;
-    tsecs = result2;
-
-    /* Recall that |result| holds PRMJ_YEAR_SECONDS */
-    JSLL_UDIVMOD(&result1, &result2, tsecs, result);
-    JSLL_L2I(yearsLeft, result1);
-    year += yearsLeft;
-    days += yearsLeft * PRMJ_YEAR_DAYS;
-    tsecs = result2;
-
-    /* now compute isleap.  Note that we don't have to use %, since we've
-       already computed those remainders.  Also note that they're all offset by
-       1 because of the 1 for year 0. */
-    isleap =
-        (yearsLeft == 3) && (fourYearBlocksLeft != 24 || centuriesLeft == 3);
-    JS_ASSERT(isleap ==
-              ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0)));
-
-    JSLL_UI2L(result1,PRMJ_DAY_SECONDS);
-
-    JSLL_DIV(result,tsecs,result1);
-    JSLL_L2I(mday,result);
-
-    /* let's find the month */
-    while(((month == 1 && isleap) ?
-            (mday >= mtab[month] + 1) :
-            (mday >= mtab[month]))){
-	 yday += mtab[month];
-	 days += mtab[month];
-
-	 mday -= mtab[month];
-
-         /* it's a Feb, check if this is a leap year */
-	 if(month == 1 && isleap != 0){
-	     yday++;
-	     days++;
-	     mday--;
-	 }
-	 month++;
-    }
-
-    /* now adjust tsecs */
-    JSLL_MUL(result,result,result1);
-    JSLL_SUB(tsecs,tsecs,result);
-
-    mday++; /* day of month always start with 1 */
-    days += mday;
-    wday = (days + wday) % 7;
-
-    yday += mday;
-
-    /* get the hours */
-    JSLL_UI2L(result1,PRMJ_HOUR_SECONDS);
-    JSLL_DIV(result,tsecs,result1);
-    JSLL_L2I(hours,result);
-    JSLL_MUL(result,result,result1);
-    JSLL_SUB(tsecs,tsecs,result);
-
-    /* get minutes */
-    JSLL_UI2L(result1,60);
-    JSLL_DIV(result,tsecs,result1);
-    JSLL_L2I(minutes,result);
-    JSLL_MUL(result,result,result1);
-    JSLL_SUB(tsecs,tsecs,result);
-
-    JSLL_L2I(seconds,tsecs);
-
-    prtm->tm_usec  = 0L;
-    prtm->tm_sec   = (JSInt8)seconds;
-    prtm->tm_min   = (JSInt8)minutes;
-    prtm->tm_hour  = (JSInt8)hours;
-    prtm->tm_mday  = (JSInt8)mday;
-    prtm->tm_mon   = (JSInt8)month;
-    prtm->tm_wday  = (JSInt8)wday;
-    prtm->tm_year  = (JSInt16)year;
-    prtm->tm_yday  = (JSInt16)yday;
+    return diff * MILLISECONDS_PER_SECOND;
 }
+
+JSInt64
+DSTOffsetCache::getDSTOffsetMilliseconds(JSInt64 localTimeMilliseconds, JSContext *cx)
+{
+    sanityCheck();
+    noteOffsetCalculation();
+
+    JSInt64 localTimeSeconds = localTimeMilliseconds / MILLISECONDS_PER_SECOND;
+
+    if (localTimeSeconds > MAX_UNIX_TIMET) {
+        localTimeSeconds = MAX_UNIX_TIMET;
+    } else if (localTimeSeconds < 0) {
+        /* Go ahead a day to make localtime work (does not work with 0). */
+        localTimeSeconds = SECONDS_PER_DAY;
+    }
+
+    /*
+     * NB: Be aware of the initial range values when making changes to this
+     *     code: the first call to this method, with those initial range
+     *     values, must result in a cache miss.
+     */
+
+    if (rangeStartSeconds <= localTimeSeconds &&
+        localTimeSeconds <= rangeEndSeconds) {
+        noteCacheHit();
+        return offsetMilliseconds;
+    }
+
+    if (oldRangeStartSeconds <= localTimeSeconds &&
+        localTimeSeconds <= oldRangeEndSeconds) {
+        noteCacheHit();
+        return oldOffsetMilliseconds;
+    }
+
+    oldOffsetMilliseconds = offsetMilliseconds;
+    oldRangeStartSeconds = rangeStartSeconds;
+    oldRangeEndSeconds = rangeEndSeconds;
+
+    if (rangeStartSeconds <= localTimeSeconds) {
+        JSInt64 newEndSeconds = JS_MIN(rangeEndSeconds + RANGE_EXPANSION_AMOUNT, MAX_UNIX_TIMET);
+        if (newEndSeconds >= localTimeSeconds) {
+            JSInt64 endOffsetMilliseconds = computeDSTOffsetMilliseconds(newEndSeconds);
+            if (endOffsetMilliseconds == offsetMilliseconds) {
+                noteCacheMissIncrease();
+                rangeEndSeconds = newEndSeconds;
+                return offsetMilliseconds;
+            }
+
+            offsetMilliseconds = computeDSTOffsetMilliseconds(localTimeSeconds);
+            if (offsetMilliseconds == endOffsetMilliseconds) {
+                noteCacheMissIncreasingOffsetChangeUpper();
+                rangeStartSeconds = localTimeSeconds;
+                rangeEndSeconds = newEndSeconds;
+            } else {
+                noteCacheMissIncreasingOffsetChangeExpand();
+                rangeEndSeconds = localTimeSeconds;
+            }
+            return offsetMilliseconds;
+        }
+
+        noteCacheMissLargeIncrease();
+        offsetMilliseconds = computeDSTOffsetMilliseconds(localTimeSeconds);
+        rangeStartSeconds = rangeEndSeconds = localTimeSeconds;
+        return offsetMilliseconds;
+    }
+
+    JSInt64 newStartSeconds = JS_MAX(rangeStartSeconds - RANGE_EXPANSION_AMOUNT, 0);
+    if (newStartSeconds <= localTimeSeconds) {
+        JSInt64 startOffsetMilliseconds = computeDSTOffsetMilliseconds(newStartSeconds);
+        if (startOffsetMilliseconds == offsetMilliseconds) {
+            noteCacheMissDecrease();
+            rangeStartSeconds = newStartSeconds;
+            return offsetMilliseconds;
+        }
+
+        offsetMilliseconds = computeDSTOffsetMilliseconds(localTimeSeconds);
+        if (offsetMilliseconds == startOffsetMilliseconds) {
+            noteCacheMissDecreasingOffsetChangeLower();
+            rangeStartSeconds = newStartSeconds;
+            rangeEndSeconds = localTimeSeconds;
+        } else {
+            noteCacheMissDecreasingOffsetChangeExpand();
+            rangeStartSeconds = localTimeSeconds;
+        }
+        return offsetMilliseconds;
+    }
+
+    noteCacheMissLargeDecrease();
+    rangeStartSeconds = rangeEndSeconds = localTimeSeconds;
+    offsetMilliseconds = computeDSTOffsetMilliseconds(localTimeSeconds);
+    return offsetMilliseconds;
+}
+
+void
+DSTOffsetCache::sanityCheck()
+{
+    JS_ASSERT(rangeStartSeconds <= rangeEndSeconds);
+    JS_ASSERT_IF(rangeStartSeconds == INT64_MIN, rangeEndSeconds == INT64_MIN);
+    JS_ASSERT_IF(rangeEndSeconds == INT64_MIN, rangeStartSeconds == INT64_MIN);
+    JS_ASSERT_IF(rangeStartSeconds != INT64_MIN,
+                 rangeStartSeconds >= 0 && rangeEndSeconds >= 0);
+    JS_ASSERT_IF(rangeStartSeconds != INT64_MIN,
+                 rangeStartSeconds <= MAX_UNIX_TIMET && rangeEndSeconds <= MAX_UNIX_TIMET);
+
+#ifdef JS_METER_DST_OFFSET_CACHING
+    JS_ASSERT(totalCalculations ==
+              hit +
+              missIncreasing + missDecreasing +
+              missIncreasingOffsetChangeExpand + missIncreasingOffsetChangeUpper +
+              missDecreasingOffsetChangeExpand + missDecreasingOffsetChangeLower +
+              missLargeIncrease + missLargeDecrease);
+#endif
+}
+
+#ifdef JS_METER_DST_OFFSET_CACHING
+void
+DSTOffsetCache::dumpStats()
+{
+    if (!getenv("JS_METER_DST_OFFSET_CACHING"))
+        return;
+    FILE *fp = fopen("/tmp/dst-offset-cache.stats", "a");
+    if (!fp)
+        return;
+    typedef unsigned long UL;
+    fprintf(fp,
+            "hit:\n"
+            "  in range: %lu\n"
+            "misses:\n"
+            "  increase range end:                 %lu\n"
+            "  decrease range start:               %lu\n"
+            "  increase, offset change, expand:    %lu\n"
+            "  increase, offset change, new range: %lu\n"
+            "  decrease, offset change, expand:    %lu\n"
+            "  decrease, offset change, new range: %lu\n"
+            "  large increase:                     %lu\n"
+            "  large decrease:                     %lu\n"
+            "total: %lu\n\n",
+            UL(hit),
+            UL(missIncreasing), UL(missDecreasing),
+            UL(missIncreasingOffsetChangeExpand), UL(missIncreasingOffsetChangeUpper),
+            UL(missDecreasingOffsetChangeExpand), UL(missDecreasingOffsetChangeLower),
+            UL(missLargeIncrease), UL(missLargeDecrease),
+            UL(totalCalculations));
+    fclose(fp);
+}
+#endif

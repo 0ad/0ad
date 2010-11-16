@@ -1,27 +1,27 @@
 .begin a
-ptr = alloc 8
-a = int 65
-sti a ptr 0
-b = int 66
-sti b ptr 1
-c = int 67
-sti c ptr 2
-zero = int 0
-sti zero ptr 3
-ss = icall puts cdecl ptr
-nn = ge ss zero
-ret nn
+ptr = allocp 8
+a = immi 65
+sti2c a ptr 0
+b = immi 66
+sti2c b ptr 1
+c = immi 67
+sti2c c ptr 2
+zero = immi 0
+sti2c zero ptr 3
+ss = calli puts cdecl ptr
+nn = gei ss zero
+reti nn
 .end
 
 .begin b
-rr = icall a fastcall
-ret rr
+rr = calli a fastcall
+reti rr
 .end
 
 .begin main
-ans = icall b fastcall
-five = int 5
-res = add five ans
-ret res
+ans = calli b fastcall
+five = immi 5
+res = addi five ans
+reti res
 .end
 

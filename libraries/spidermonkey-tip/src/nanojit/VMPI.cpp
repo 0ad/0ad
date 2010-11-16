@@ -42,6 +42,12 @@
 
 using namespace avmplus;
 
+size_t
+VMPI_getVMPageSize()
+{
+    return 4096;
+}
+
 #ifdef WIN32
 void
 VMPI_setPageProtection(void *address,
@@ -101,7 +107,7 @@ VMPI_setPageProtection(void *address,
         ULONG attrib;
         ULONG range = size;
         ULONG retval = DosQueryMem(address, &range, &attrib);
-        AvmAssert(retval == 0);
+        NanoAssert(retval == 0);
 
         // exit if this is the start of the next memory object
         if (attrib & attribFlags) {
@@ -111,7 +117,7 @@ VMPI_setPageProtection(void *address,
 
         range = size > range ? range : size;
         retval = DosSetMem(address, range, flags);
-        AvmAssert(retval == 0);
+        NanoAssert(retval == 0);
 
         address = (char*)address + range;
         size -= range;
@@ -140,7 +146,7 @@ void VMPI_setPageProtection(void *address,
     flags |= PROT_WRITE;
   }
   int retval = mprotect((maddr_ptr)beginPage, (unsigned int)sizePaged, flags);
-  AvmAssert(retval == 0);
+  NanoAssert(retval == 0);
   (void)retval;
 }
 

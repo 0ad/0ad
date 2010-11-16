@@ -48,10 +48,12 @@
 #include "jsutil.h"
 
 #ifdef WIN32
-#    include <windows.h>
+#    include "jswin.h"
 #else
 #    include <signal.h>
 #endif
+
+using namespace js;
 
 /*
  * Checks the assumption that JS_FUNC_TO_DATA_PTR and JS_DATA_TO_FUNC_PTR
@@ -62,8 +64,13 @@ JS_STATIC_ASSERT(sizeof(void *) == sizeof(void (*)()));
 JS_PUBLIC_API(void) JS_Assert(const char *s, const char *file, JSIntn ln)
 {
     fprintf(stderr, "Assertion failure: %s, at %s:%d\n", s, file, ln);
+    fflush(stderr);
 #if defined(WIN32)
-    DebugBreak();
+    /*
+     * We used to call DebugBreak() on Windows, but amazingly, it causes
+     * the MSVS 2010 debugger not to be able to recover a call stack.
+     */
+    *((int *) NULL) = 0;
     exit(3);
 #elif defined(__APPLE__)
     /*
@@ -71,6 +78,7 @@ JS_PUBLIC_API(void) JS_Assert(const char *s, const char *file, JSIntn ln)
      * trapped.
      */
     *((int *) NULL) = 0;  /* To continue from here in GDB: "return" then "continue". */
+    raise(SIGABRT);  /* In case above statement gets nixed by the optimizer. */
 #else
     raise(SIGABRT);  /* To continue from here in GDB: "signal 0". */
 #endif
@@ -140,7 +148,7 @@ JS_BasicStatsAccum(JSBasicStats *bs, uint32 val)
             if (newscale != oldscale) {
                 uint32 newhist[11], newbin;
 
-                memset(newhist, 0, sizeof newhist);
+                PodArrayZero(newhist);
                 for (bin = 0; bin <= 10; bin++) {
                     newbin = ValToBin(newscale, BinToVal(oldscale, bin));
                     newhist[newbin] += bs->hist[bin];
@@ -191,7 +199,7 @@ void
 JS_DumpHistogram(JSBasicStats *bs, FILE *fp)
 {
     uintN bin;
-    uint32 cnt, max, prev, val, i;
+    uint32 cnt, max;
     double sum, mean;
 
     for (bin = 0, max = 0, sum = 0; bin <= 10; bin++) {
@@ -201,20 +209,23 @@ JS_DumpHistogram(JSBasicStats *bs, FILE *fp)
         sum += cnt;
     }
     mean = sum / cnt;
-    for (bin = 0, prev = 0; bin <= 10; bin++, prev = val) {
-        val = BinToVal(bs->logscale, bin);
+    for (bin = 0; bin <= 10; bin++) {
+        uintN val = BinToVal(bs->logscale, bin);
+        uintN end = (bin == 10) ? 0 : BinToVal(bs->logscale, bin + 1);
         cnt = bs->hist[bin];
-        if (prev + 1 >= val)
+        if (val + 1 == end)
             fprintf(fp, "        [%6u]", val);
+        else if (end != 0)
+            fprintf(fp, "[%6u, %6u]", val, end - 1);
         else
-            fprintf(fp, "[%6u, %6u]", prev + 1, val);
-        fprintf(fp, "%s %8u ", (bin == 10) ? "+" : ":", cnt);
+            fprintf(fp, "[%6u,   +inf]", val);
+        fprintf(fp, ": %8u ", cnt);
         if (cnt != 0) {
             if (max > 1e6 && mean > 1e3)
                 cnt = (uint32) ceil(log10((double) cnt));
             else if (max > 16 && mean > 8)
                 cnt = JS_CeilingLog2(cnt);
-            for (i = 0; i < cnt; i++)
+            for (uintN i = 0; i < cnt; i++)
                 putc('*', fp);
         }
         putc('\n', fp);

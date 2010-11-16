@@ -62,7 +62,7 @@
 
 // GCC and RealView usually define __ARM_ARCH__
 #if defined(__ARM_ARCH__)
-    
+
     #define NJ_COMPILER_ARM_ARCH __ARM_ARCH__
 
 // ok, try well-known GCC flags ( see http://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html )
@@ -91,15 +91,24 @@
 
     #define NJ_COMPILER_ARM_ARCH 5
 
+#elif   defined(__ARM_ARCH_4T__)
+
+    #define NJ_COMPILER_ARM_ARCH 4
+
 // Visual C has its own mojo
 #elif defined(_MSC_VER) && defined(_M_ARM)
 
     #define NJ_COMPILER_ARM_ARCH _M_ARM
 
+// RVCT
+#elif defined(__TARGET_ARCH_ARM)
+
+    #define NJ_COMPILER_ARM_ARCH __TARGET_ARCH_ARM
+
 #else
-    
+
     // non-numeric value
-    #define NJ_COMPILER_ARM_ARCH "Unable to determine valid NJ_COMPILER_ARM_ARCH (nanojit only supports ARMv5 or later)"
+    #define NJ_COMPILER_ARM_ARCH "Unable to determine valid NJ_COMPILER_ARM_ARCH (nanojit only supports ARMv4T or later)"
 
 #endif
 

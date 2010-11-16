@@ -64,14 +64,16 @@
 #include "NativeSparc.h"
 #elif defined(NANOJIT_X64)
 #include "NativeX64.h"
+#elif defined(NANOJIT_SH4)
+#include "NativeSH4.h"
 #elif defined(NANOJIT_MIPS)
 #include "NativeMIPS.h"
 #else
 #error "unknown nanojit architecture"
 #endif
 
-#ifndef NJ_USES_QUAD_CONSTANTS
-#  define NJ_USES_QUAD_CONSTANTS 0
+#ifndef NJ_USES_IMMD_POOL
+#  define NJ_USES_IMMD_POOL 0
 #endif
 
 #ifndef NJ_JTBL_SUPPORTED
@@ -90,6 +92,9 @@
 #  define NJ_SOFTFLOAT_SUPPORTED 0
 #endif
 
+#ifndef NJ_DIVI_SUPPORTED
+#  define NJ_DIVI_SUPPORTED 0
+#endif
 
 #if NJ_SOFTFLOAT_SUPPORTED
     #define CASESF(x)   case x
@@ -98,15 +103,6 @@
 #endif
 
 namespace nanojit {
-
-    inline Register nextreg(Register r) {
-        return Register(r+1);
-    }
-
-    inline Register prevreg(Register r) {
-        return Register(r-1);
-    }
-
 
     class Fragment;
     struct SideExit;
@@ -144,21 +140,20 @@ namespace nanojit {
 
     #ifdef NJ_NO_VARIADIC_MACROS
         static void asm_output(const char *f, ...) {}
-        #define gpn(r)                    regNames[(r)]
+        #define gpn(r)                    regNames[(REGNUM(n))]
     #elif defined(NJ_VERBOSE)
         // Used for printing native instructions.  Like Assembler::outputf(),
-        // but only outputs if LC_Assembly is set.  Also prepends the output
+        // but only outputs if LC_Native is set.  Also prepends the output
         // with the address of the current native instruction.
         #define asm_output(...) do { \
-            counter_increment(native); \
-            if (_logc->lcbits & LC_Assembly) { \
+            if (_logc->lcbits & LC_Native) { \
                 outline[0]='\0'; \
-               VMPI_sprintf(outline, "%010lx   ", (unsigned long)_nIns); \
-                sprintf(&outline[13], ##__VA_ARGS__); \
-                output(); \
+                VMPI_sprintf(outline, "%p   ", _nIns);  \
+                VMPI_sprintf(outline+VMPI_strlen(outline), ##__VA_ARGS__);   \
+                output();                               \
             } \
         } while (0) /* no semi */
-        #define gpn(r)                  regNames[(r)]
+        #define gpn(r)                  regNames[(REGNUM(r))]
     #else
         #define asm_output(...)
         #define gpn(r)

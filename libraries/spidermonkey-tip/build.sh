@@ -20,13 +20,15 @@ echo
 MAKE_OPTS="-j2"
 
 CONF_OPTS="--disable-tests"
-# Potentially useful flags:
-#  --enable-valgrind
-#  --enable-callgrind
-#  --enable-tracevis
-#
 # (We don't use --enable-threadsafe because we don't use a single runtime in
 # multiple threads, so it is unnecessary complexity and performance overhead)
+
+# If Valgrind looks like it's installed, then set up SM to support it
+# (else the JITs will interact poorly with it)
+if [ -e /usr/include/valgrind/valgrind.h ]
+then
+  CONF_OPTS="${CONF_OPTS} --enable-valgrind"
+fi
 
 cd src
 
@@ -46,7 +48,7 @@ cd ..
 perl -i.bak -pe 's/^(LIBRARY_NAME\s+= mozjs).*/$1-ps-release/' Makefile.in
 mkdir -p build-release
 cd build-release
-../configure ${CONF_OPTS}
+../configure ${CONF_OPTS} #--enable-debug-symbols
 make ${MAKE_OPTS}
 cd ..
 

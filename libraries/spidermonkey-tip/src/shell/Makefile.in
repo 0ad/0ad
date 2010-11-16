@@ -45,7 +45,10 @@ VPATH		= @srcdir@
 include $(DEPTH)/config/autoconf.mk
 
 PROGRAM         = js$(BIN_SUFFIX)
-CPPSRCS		= js.cpp
+CPPSRCS		= \
+  js.cpp \
+  jsworkers.cpp \
+  $(NULL)
 
 DEFINES         += -DEXPORT_JS_API
 
@@ -56,6 +59,12 @@ LOCAL_INCLUDES += -I$(topsrcdir) -I..
 ifdef _MSC_VER
 ifdef WINCE
 WIN32_EXE_LDFLAGS += -ENTRY:mainACRTStartup
+endif
+endif
+
+ifeq ($(OS_ARCH),Darwin)
+ifeq ($(TARGET_CPU),x86_64)
+DARWIN_EXE_LDFLAGS += -pagezero_size 10000 -image_base 100000000
 endif
 endif
 
