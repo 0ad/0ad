@@ -6,14 +6,14 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-10-01T08:58:13Z</created>
-    <modified>2010-10-01T08:58:13Z</modified>
+    <created>2010-11-17T20:45:30Z</created>
+    <modified>2010-11-17T20:45:30Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__4-image" name="Map__4">
@@ -75,30 +75,30 @@
       <mesh>
         <source id="default04-lib-Position">
           <float_array id="default04-lib-Position-array" count="72">
-0.334590 0.823561 0.748312
--0.334591 0.823563 0.748312
--0.334591 -0.823563 0.748312
-0.334589 -0.823563 0.748312
--0.334591 0.823563 1.370787
-0.334590 0.823561 1.370787
-0.334589 -0.823563 1.370787
--0.334591 -0.823563 1.370787
--0.893359 0.305405 -0.468285
--0.893359 -0.305405 -0.468285
-0.893358 -0.305405 -0.468285
-0.893358 0.305405 -0.468285
-0.334590 0.815431 -0.468285
--0.334591 0.815432 -0.468285
--0.334591 -0.815431 -0.468285
-0.334589 -0.815432 -0.468285
--0.893359 -0.305405 -1.370786
--0.893359 0.305405 -1.370786
-0.893358 0.305405 -1.370786
-0.893358 -0.305406 -1.370786
--0.334591 0.815431 -1.370786
-0.334590 0.815431 -1.370786
-0.334589 -0.815432 -1.370786
--0.334591 -0.815432 -1.370786
+0.334590 0.823561 5.502112
+-0.334591 0.823563 5.502112
+-0.334591 -0.823563 5.502112
+0.334589 -0.823563 5.502112
+-0.334591 0.823563 6.124586
+0.334590 0.823561 6.124586
+0.334589 -0.823563 6.124586
+-0.334591 -0.823563 6.124586
+-0.893359 0.305405 4.285515
+-0.893359 -0.305405 4.285515
+0.893358 -0.305405 4.285515
+0.893358 0.305405 4.285515
+0.334590 0.815431 4.285515
+-0.334591 0.815432 4.285515
+-0.334591 -0.815431 4.285515
+0.334589 -0.815432 4.285515
+-0.893359 -0.305405 3.383013
+-0.893359 0.305405 3.383013
+0.893358 0.305405 3.383013
+0.893358 -0.305406 3.383013
+-0.334591 0.815431 3.383013
+0.334590 0.815431 3.383013
+0.334589 -0.815432 3.383013
+-0.334591 -0.815432 3.383013
 </float_array>
           <technique_common>
             <accessor source="#default04-lib-Position-array" count="24" stride="3">
@@ -215,19 +215,14 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="default04" name="default04">
-        <scale sid="scale">2.471158 2.471158 2.471158</scale>
-        <node id="default04-Pivot" name="default04-Pivot">
-          <translate>0.000000 0.000000 4.753799</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#default04-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__4-Material" target="#Map__4-Material"/>
-                <instance_material symbol="_7___Defaulta" target="#_7___Defaulta"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-        </node>
+        <matrix sid="matrix">2.471158 0.000000 0.000000 0.013473 0.000000 0.000000 2.471158 0.000000 0.000000 -2.471158 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#default04-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_7___Defaulta" target="#_7___Defaulta"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
       </node>
     </visual_scene>
   </library_visual_scenes>

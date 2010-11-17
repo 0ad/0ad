@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant frequency="100" name="scout tower">
       <mesh>structural/hele_scout_tower.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/scout_tower_fancy.xml" attachpoint="root"/>

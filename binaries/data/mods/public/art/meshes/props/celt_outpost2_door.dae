@@ -6,14 +6,14 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-10-01T08:58:30Z</created>
-    <modified>2010-10-01T08:58:30Z</modified>
+    <created>2010-11-17T20:45:12Z</created>
+    <modified>2010-11-17T20:45:12Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__9-image" name="Map__9">
@@ -75,10 +75,10 @@
       <mesh>
         <source id="default05-lib-Position">
           <float_array id="default05-lib-Position-array" count="12">
-0.445630 -0.000050 -0.979353
--0.444400 -0.000050 -0.979353
--0.445630 -0.000050 0.979354
-0.444248 -0.000050 0.979354
+0.439958 -0.861994 -0.005184
+-0.450072 -0.861994 -0.005184
+-0.451301 -0.861994 1.953523
+0.438576 -0.861994 1.953523
 </float_array>
           <technique_common>
             <accessor source="#default05-lib-Position-array" count="4" stride="3">
@@ -135,20 +135,14 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="default05" name="default05">
-        <translate sid="translate">0.000348 -0.087701 0.000000</translate>
-        <scale sid="scale">2.528650 2.528650 2.553864</scale>
-        <node id="default05-Pivot" name="default05-Pivot">
-          <translate>-0.005672 -0.861944 0.974169</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#default05-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__9-Material" target="#Map__9-Material"/>
-                <instance_material symbol="_8___Defaultfg" target="#_8___Defaultfg"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-        </node>
+        <matrix sid="matrix">2.528650 0.000000 0.000000 0.013824 0.000000 0.000000 2.553864 0.000000 0.000000 -2.528650 0.000000 0.087701 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#default05-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_8___Defaultfg" target="#_8___Defaultfg"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
       </node>
     </visual_scene>
   </library_visual_scenes>

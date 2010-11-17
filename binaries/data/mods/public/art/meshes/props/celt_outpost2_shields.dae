@@ -6,14 +6,14 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-10-01T09:09:02Z</created>
-    <modified>2010-10-01T09:09:02Z</modified>
+    <created>2010-11-17T20:44:39Z</created>
+    <modified>2010-11-17T20:44:39Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__0-image" name="Map__0">
@@ -1255,12 +1255,10 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="celt_coolus_feathers02" name="celt_coolus_feathers02">
-        <translate sid="translate">-1.842609 4.298317 -0.054688</translate>
-        <rotate sid="rotateZ">0 0 1 121.679811</rotate>
+        <matrix sid="matrix">-0.525172 -0.850996 0.000000 -1.829140 0.000000 0.000000 1.000000 -0.054688 -0.850996 0.525172 0.000000 -4.298317 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#celt_coolus_feathers02-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Map__0-Material" target="#Map__0-Material"/>
               <instance_material symbol="_01___Default" target="#_01___Default"/>
             </technique_common>
           </bind_material>

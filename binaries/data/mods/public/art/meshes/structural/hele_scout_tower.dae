@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-11-14T19:56:57Z</created>
-    <modified>2010-11-14T19:56:57Z</modified>
+    <created>2010-11-17T20:31:02Z</created>
+    <modified>2010-11-17T20:31:02Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -4630,7 +4630,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="scout_tower" name="scout_tower">
-        <matrix sid="matrix">0.000000 0.490040 -0.000000 -1.128908 0.000000 0.000000 0.490040 1.162935 0.490040 -0.000000 0.000000 3.786384 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">0.000000 0.490040 -0.000000 -1.129011 0.000000 0.000000 0.490040 1.162934 0.490040 -0.000000 0.000000 3.786345 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#scout_tower-lib">
           <bind_material>
             <technique_common>
@@ -4638,8 +4638,8 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
-        <node id="prop-projectile" name="prop-projectile">
-          <matrix sid="matrix">-0.000000 -2.040649 0.000000 -7.726682 2.040649 -0.000000 -0.000000 2.303705 -0.000000 -0.000000 2.040649 34.660175 0.000000 0.000000 0.000000 1.000000</matrix>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">-0.000000 -2.040649 0.000000 -7.726682 2.040649 -0.000000 -0.000000 2.303705 -0.000000 -0.000000 2.040649 45.518433 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

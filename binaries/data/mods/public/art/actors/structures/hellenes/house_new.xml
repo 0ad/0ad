@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Hellenes House A">
+      <mesh>structural/hele_house_a.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/house_a_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/house_a_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct_b.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
