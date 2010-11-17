@@ -56,6 +56,42 @@ GarrisonHolder.prototype.GetCapacity = function()
 };
 
 /**
+ * Get number of garrisoned units capable of shooting arrows
+ * Not necessarily archers
+ */
+GarrisonHolder.prototype.GetGarrisonedArcherCount = function()
+{
+	var count = 0;
+	for each (var entity in this.entities)
+	{
+		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+		var classes = cmpIdentity.GetClassesList();
+		if (classes.indexOf("Infantry") != -1 || classes.indexOf("Ranged") != -1)
+			count++;
+	}
+	return count;
+}
+/**
+ * Checks if an entity can be allowed to garrison in the building
+ * based on it's class
+ */
+GarrisonHolder.prototype.AllowedToGarrison = function(entity)
+{
+	var allowedClasses = this.GetAllowedClassesList();
+	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
+	var classNotAllowed = true;
+	// Check if the unit is allowed to be garrisoned inside the building
+	for each (var allowedClass in allowedClasses)
+	{
+		if (entityClasses.indexOf(allowedClass) != -1)
+		{
+			return true;
+		}
+	}
+	return false;
+};
+
+/**
  * Garrison a unit inside.
  * Returns true if successful, false if not
  * The timer for AutoHeal is started here
@@ -65,22 +101,12 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	var entityPopCost = (Engine.QueryInterface(entity, IID_Cost)).GetPopCost();
 	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
 	var allowedClasses = this.GetAllowedClassesList();
-	var classNotAllowed = true;
 
 	if (!this.HasEnoughHealth())
 		return false;
 
 	// Check if the unit is allowed to be garrisoned inside the building
-	for each (var allowedClass in allowedClasses)
-	{
-		if (entityClasses.indexOf(allowedClass) != -1)
-		{
-			classNotAllowed = false;
-			break;
-		}
-	}
-
-	if (classNotAllowed)
+	if(!this.AllowedToGarrison(entity))
 		return false;
 
 	if (this.GetCapacity() < this.spaceOccupied + 1)
