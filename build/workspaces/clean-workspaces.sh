@@ -10,6 +10,7 @@ cd "$(dirname $0)"
 echo "Cleaning bundled third-party dependencies..."
 
 (cd ../../libraries/fcollada/src && rm -rf ./output)
+(cd ../../libraries/spidermonkey-tip && rm -f .already-built)
 (cd ../../libraries/spidermonkey-tip/src && rm -rf ./build-debug)
 (cd ../../libraries/spidermonkey-tip/src && rm -rf ./build-release)
 (cd ../../libraries/nvtt/src && rm -rf ./build)
