@@ -352,7 +352,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		if (!next) next=filebufend;
 
 		char *lend=next;
-		if (*(lend-1) == '\r') lend--;
+		if (lend > filebuf && *(lend-1) == '\r') lend--;
 
 		// Send line to parser
 		bool parseOk=parserLine.ParseString(parser, std::string(pos, lend));
