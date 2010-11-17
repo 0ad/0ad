@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Base">
+      <texture>props/rome_qui_props.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="oars-up">
+      <mesh>props/rome_qui_oars.dae</mesh>
+    </variant>
+    <variant frequency="1" name="oars-down">
+      <mesh>props/rome_qui_oars2.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
