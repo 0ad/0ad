@@ -79,7 +79,6 @@ GarrisonHolder.prototype.AllowedToGarrison = function(entity)
 {
 	var allowedClasses = this.GetAllowedClassesList();
 	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
-	var classNotAllowed = true;
 	// Check if the unit is allowed to be garrisoned inside the building
 	for each (var allowedClass in allowedClasses)
 	{
@@ -100,7 +99,6 @@ GarrisonHolder.prototype.Garrison = function(entity)
 {
 	var entityPopCost = (Engine.QueryInterface(entity, IID_Cost)).GetPopCost();
 	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
-	var allowedClasses = this.GetAllowedClassesList();
 
 	if (!this.HasEnoughHealth())
 		return false;

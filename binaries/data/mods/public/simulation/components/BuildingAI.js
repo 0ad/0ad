@@ -49,9 +49,11 @@ BuildingAI.prototype.OnDestroy = function()
  */
 BuildingAI.prototype.SetupRangeQuery = function(owner)
 {
+	
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	
+	if (this.enemyUnitsQuery)
+		cmpRangeManager.DestroyActiveQuery(this.enemyUnitsQuery);
 	var players = [];
 	
 	var player = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
@@ -80,12 +82,20 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
  */
 BuildingAI.prototype.OnRangeUpdate = function(msg)
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var targetUnits = cmpRangeManager.ResetActiveQuery(this.enemyUnitsQuery);
-	if (targetUnits.length > 0)
-		this.targetUnit = targetUnits[0];
-	else
-		this.targetUnit = undefined;
+	if (!this.targetUnit && msg.added.length > 0)
+	{
+		this.targetUnit = msg.added[0];
+		return;
+	}
+	else if (this.targetUnit && msg.removed.length > 0 && msg.removed.indexOf(this.targetUnit) != -1)
+	{
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		var targetUnits = cmpRangeManager.ResetActiveQuery(this.enemyUnitsQuery);
+		if (targetUnits.length > 0)
+			this.targetUnit = targetUnits[0];
+		else
+			this.targetUnit = undefined;
+	}
 };
 
 /**
@@ -127,7 +137,7 @@ BuildingAI.prototype.FireArrows = function()
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_BuildingAI, "FireArrows", timerInterval, {});
 		
-		if ((this.targetUnit != undefined) && (arrowCount > 0))
+		if (this.targetUnit && (arrowCount > 0))
 		{
 			cmpAttack.PerformAttack("Ranged", this.targetUnit);	
 		}
