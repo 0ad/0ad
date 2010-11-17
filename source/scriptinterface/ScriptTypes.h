@@ -27,6 +27,10 @@
 // non-struct type instead
 # define JS_NO_JSVAL_JSID_STRUCT_TYPES
 
+// Make JS think the int8_t etc types are defined, since wposix_types.h emulates
+// the ones that are needed and this avoids conflicting definitions
+# define JS_SYS_TYPES_H_DEFINES_EXACT_SIZE_TYPES
+
 #else
 # define XP_UNIX
 #endif
