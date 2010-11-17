@@ -404,55 +404,13 @@ AutoGCRooter* ScriptInterface::ReplaceAutoGCRooter(AutoGCRooter* rooter)
 
 jsval ScriptInterface::CallConstructor(jsval ctor)
 {
-	// Constructing JS objects similarly to "new Foo" is non-trivial.
-	// https://developer.mozilla.org/En/SpiderMonkey/JSAPI_Phrasebook#Constructing_an_object_with_new
-	// suggests some ugly ways, so we'll use a different way that's less compatible but less ugly
-
-	if (!(JSVAL_IS_OBJECT(ctor) && JS_ObjectIsFunction(m->m_cx, JSVAL_TO_OBJECT(ctor))))
+	if (!JSVAL_IS_OBJECT(ctor))
 	{
-		LOGERROR(L"CallConstructor: ctor is not a function object");
+		LOGERROR(L"CallConstructor: ctor is not an object");
 		return JSVAL_VOID;
 	}
 
-	// Get the constructor's prototype
-	// (Can't use JS_GetPrototype, since we want .prototype not .__proto__)
-	jsval protoVal;
-	if (!JS_GetProperty(m->m_cx, JSVAL_TO_OBJECT(ctor), "prototype", &protoVal))
-	{
-		LOGERROR(L"CallConstructor: can't get prototype");
-		return JSVAL_VOID;
-	}
-
-	if (!JSVAL_IS_OBJECT(protoVal))
-	{
-		LOGERROR(L"CallConstructor: prototype is not an object");
-		return JSVAL_VOID;
-	}
-
-	JSObject* proto = JSVAL_TO_OBJECT(protoVal);
-	JSObject* parent = JS_GetParent(m->m_cx, JSVAL_TO_OBJECT(ctor));
-	// TODO: rooting?
-	if (!proto || !parent)
-	{
-		LOGERROR(L"CallConstructor: null proto/parent");
-		return JSVAL_VOID;
-	}
-
-	JSObject* obj = JS_NewObject(m->m_cx, NULL, proto, parent);
-	if (!obj)
-	{
-		LOGERROR(L"CallConstructor: object creation failed");
-		return JSVAL_VOID;
-	}
-
-	jsval rval;
-	if (!JS_CallFunctionValue(m->m_cx, obj, ctor, 0, NULL, &rval))
-	{
-		LOGERROR(L"CallConstructor: ctor failed");
-		return JSVAL_VOID;
-	}
-
-	return OBJECT_TO_JSVAL(obj);
+	return OBJECT_TO_JSVAL(JS_New(m->m_cx, JSVAL_TO_OBJECT(ctor), 0, NULL));
 }
 
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name)
