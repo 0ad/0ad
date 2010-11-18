@@ -129,7 +129,7 @@ function determineAction(x, y, fromMinimap)
 			var diplomacy = simState.players[entState.player].diplomacy;
 
 			var playerOwned = ((targetState.player == entState.player)? true : false);
-			var enemyOwned = ((targetState.player != entState.player && (!diplomacy || diplomacy[targetState.player - 1] < 0))? true : false);
+			var enemyOwned = ((targetState.player != entState.player && targetState.player && diplomacy[targetState.player - 1] < 0)? true : false);
 			var gaiaOwned = ((targetState.player == 0)? true : false);
 
 			// Find the resource type we're carrying, if any
@@ -163,8 +163,8 @@ function determineAction(x, y, fromMinimap)
 			{
 				return {"type": "build", "cursor": "action-repair", "target": targets[0]};
 			}
-			else if (entState.attack && enemyOwned)
-			{
+			else if (entState.attack && (enemyOwned || gaiaOwned))
+			{	// TODO: Decide how we want to treat gaia
 				return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
 			}
 		}
