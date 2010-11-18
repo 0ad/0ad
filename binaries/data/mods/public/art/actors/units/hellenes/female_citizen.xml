@@ -18,7 +18,7 @@
         <animation file="female/f_gather_01.dae" name="gather_meat" speed="25"/>
         <animation file="female/f_mine_01.dae" name="gather_rock" speed="140"/>
         <animation file="female/f_mine_01.dae" name="gather_ore" speed="140"/>
-		<animation file="female/f_mine_01.dae" name="gather_ruins" speed="140"/>
+        <animation file="female/f_mine_01.dae" name="gather_ruins" speed="140"/>
         <animation file="female/f_build_01.dae" name="Build" speed="40"/>
         <animation file="female/f_death_01.dae" name="Death" speed="120"/>
       </animations>
@@ -102,7 +102,7 @@
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
@@ -116,35 +116,35 @@
     </variant>
     <variant name="carry_food">
       <props>
-        <prop actor="props/units/shuttle_basket_head.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="carry_meat">
       <props>
-        <prop actor="props/units/shuttle_basket_head.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="carry_wood">
       <props>
-        <prop actor="props/units/shuttle_basket_head.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="carry_stone">
       <props>
-        <prop actor="props/units/shuttle_basket_head.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="carry_metal">
       <props>
-        <prop actor="props/units/shuttle_basket_head.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
