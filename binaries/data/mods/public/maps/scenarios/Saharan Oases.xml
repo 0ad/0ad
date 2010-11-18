@@ -23,26 +23,54 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="219.33" y="93.7726" z="517.819"/>
-		<Rotation angle="0.0889222"/>
-		<Declination angle="0.51301"/>
+		<Position x="236.843" y="99.5346" z="510.974"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "Name": "Saharan Oases",
-  "Description": "A desert biome map where each player has founded their colony at their own oasis. The rest of the map is generally wide-open and barren.",
+  "Description": "Greeks vs. Celts! For 2 teams of 2 players. A desert biome map where each player has founded their colony at their own oasis. The rest of the map is generally wide-open and barren.",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "Civ": "hele",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 0
     },
     {
-      "Civ": "hele"
+      "Civ": "hele",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 0
     },
     {
-      "Civ": "celt"
+      "Civ": "celt",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 1
     },
     {
-      "Civ": "celt"
+      "Civ": "celt",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 1
     }
   ],
   "CircularMap": true
@@ -5781,6 +5809,102 @@
 			<Player>0</Player>
 			<Position x="549.9339" z="771.40717"/>
 			<Orientation y="0.17432"/>
+		</Entity>
+		<Entity uid="1041">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="249.47095" z="660.52082"/>
+			<Orientation y="-2.03803"/>
+		</Entity>
+		<Entity uid="1042">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="252.00149" z="653.47266"/>
+			<Orientation y="0.91678"/>
+		</Entity>
+		<Entity uid="1043">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="240.27546" z="667.91388"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1044">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="242.98287" z="670.9784"/>
+			<Orientation y="-0.5634"/>
+		</Entity>
+		<Entity uid="1045">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="615.58375" z="1090.07984"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1046">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="610.51404" z="1087.19642"/>
+			<Orientation y="1.35206"/>
+		</Entity>
+		<Entity uid="1047">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="634.10242" z="1020.3506"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1048">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="639.28034" z="1023.73548"/>
+			<Orientation y="-1.05922"/>
+		</Entity>
+		<Entity uid="1049">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="1090.93396" z="625.3506"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1050">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="1089.12684" z="616.04767"/>
+			<Orientation y="0.42782"/>
+		</Entity>
+		<Entity uid="1051">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="1061.33997" z="676.82636"/>
+			<Orientation y="1.16257"/>
+		</Entity>
+		<Entity uid="1052">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="1064.25806" z="670.52198"/>
+			<Orientation y="2.61579"/>
+		</Entity>
+		<Entity uid="1053">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="663.61426" z="245.08884"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1054">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="667.01227" z="246.89957"/>
+			<Orientation y="-0.70765"/>
+		</Entity>
+		<Entity uid="1055">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="661.68714" z="198.75205"/>
+			<Orientation y="-2.54592"/>
+		</Entity>
+		<Entity uid="1056">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="657.50898" z="194.5864"/>
+			<Orientation y="0.74596"/>
 		</Entity>
 	</Entities>
 	<Paths/>
