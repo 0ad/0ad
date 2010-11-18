@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="boulder-01">
       <mesh>gaia/geo_desert_01.dae</mesh>
@@ -29,7 +27,6 @@
       <mesh>gaia/geo_desert_08.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="stone-desert-a">
       <texture>gaia/stone_desert_a.dds</texture>
@@ -38,5 +35,4 @@
       <texture>gaia/stone_desert_b.dds</texture>
     </variant>
   </group>
-
 </actor>
