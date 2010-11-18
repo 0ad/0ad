@@ -19,7 +19,7 @@ var g_GameAttributes = {
 	map: "",
 	mapPath: "",
 	settings: {
-		Size: 208,
+		Size: 16,
 		Seed: 0,
 		BaseTerrain: "grass1_spring",
 		BaseHeight: 0,
@@ -113,10 +113,9 @@ function init(attribs)
 		};
 		victoryConditions.selected = -1;
 		
-		// From: http://trac.wildfiregames.com/wiki/List%3A_Maps%3A_Intro
 		var mapSize = getGUIObjectByName("mapSize");
 		mapSize.list = ["Small", "Medium", "Large", "Huge"];
-		mapSize.list_data = [144, 176, 208, 272];
+		mapSize.list_data = [16, 32, 48, 64];
 		mapSize.onSelectionChange = function()
 		{
 			if (this.selected != -1)
@@ -665,7 +664,7 @@ function onGameAttributesChange()
 			{	
 				// TODO: If scenario settings can be changed, handle that (using dropdowns rather than textboxes)
 				pCivText.caption = g_CivData[civ].Name;
-				pTeamText.caption = (team && team > 0) ? pData.Team : "-";
+				pTeamText.caption = (team && team >= 0) ? team+1 : "-";
 				pCivText.hidden = false;
 				pCiv.hidden = true;
 				pTeamText.hidden = false;
