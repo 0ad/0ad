@@ -38,6 +38,22 @@
   <Vision>
     <Range>40</Range>
   </Vision>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>25.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>40.0</MaxRange>
+      <MinRange>12.0</MinRange>
+      <ProjectileSpeed>60.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
+  <BuildingAI>
+    <DefaultArrowCount>1</DefaultArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+  </BuildingAI>
   <GarrisonHolder>
     <Max>20</Max>
 	<EjectHealth>0.1</EjectHealth>

@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="340.643" y="142.332" z="240.017"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name": "Unnamed map",
+  "Description": "Give an interesting description of your map.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ],
+  "CircularMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="287.40632" z="366.04148"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="290.3924" z="445.32251"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="347.65397" z="359.75812"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="386.15571" z="279.93256"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="397.28086" z="342.55854"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="396.53794" z="407.3307"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="345.3176" z="301.21598"/>
+			<Orientation y="-2.56278"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="315.13373" z="278.93699"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="300.69639" z="257.24909"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="304.05356" z="292.40848"/>
+			<Orientation y="0.58686"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="320.43876" z="323.30341"/>
+			<Orientation y="-0.6965"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="273.47687" z="314.15894"/>
+			<Orientation y="-2.87215"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="290.85651" z="315.40235"/>
+			<Orientation y="-0.2236"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="237.82927" z="449.30176"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="245.98317" z="452.63953"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="237.93464" z="429.8159"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="240.41132" z="420.21369"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="246.1567" z="427.37952"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="243.09884" z="438.48719"/>
+			<Orientation y="0.09815"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="244.44282" z="454.97529"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="245.56257" z="470.00141"/>
+			<Orientation y="2.32328"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="251.55677" z="463.01587"/>
+			<Orientation y="2.96834"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="254.37339" z="440.76398"/>
+			<Orientation y="-3.09171"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="252.2966" z="428.31012"/>
+			<Orientation y="-3.07351"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="251.27771" z="413.99714"/>
+			<Orientation y="-3.01143"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="245.8737" z="395.48951"/>
+			<Orientation y="-2.90851"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="298.85764" z="416.94706"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="303.94727" z="422.74762"/>
+			<Orientation y="0.1306"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="307.90366" z="439.38343"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="307.12275" z="440.38123"/>
+			<Orientation y="-1.92473"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="291.0525" z="435.64472"/>
+			<Orientation y="3.0635"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="291.30967" z="420.83655"/>
+			<Orientation y="-2.46267"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="281.64112" z="419.43317"/>
+			<Orientation y="-0.38375"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="274.2855" z="441.02372"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="276.41157" z="452.01642"/>
+			<Orientation y="0.75516"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="247.09302" z="361.0511"/>
+			<Orientation y="2.74077"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>units/celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="243.24756" z="365.53257"/>
+			<Orientation y="2.80929"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>units/celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="240.98395" z="361.31873"/>
+			<Orientation y="2.7623"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>units/celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="243.25872" z="355.6771"/>
+			<Orientation y="0.4098"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>units/celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="238.6118" z="368.88645"/>
+			<Orientation y="-0.37623"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>units/celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="241.6278" z="370.78635"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>units/celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="236.37919" z="363.88953"/>
+			<Orientation y="2.65253"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>units/celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="233.21601" z="360.34464"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>units/celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="236.94988" z="358.84577"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>units/celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="233.1382" z="367.08155"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>units/celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="234.70934" z="370.6566"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="232.02373" z="355.26801"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="235.2593" z="354.58545"/>
+			<Orientation y="2.70057"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="237.34873" z="354.34833"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="243.3749" z="374.39908"/>
+			<Orientation y="2.79719"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="246.24785" z="370.14203"/>
+			<Orientation y="3.1357"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="228.33114" z="368.87964"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="230.83736" z="373.4398"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>units/celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="279.74079" z="370.60749"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>structures/celt_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="309.77796" z="484.39234"/>
+			<Orientation y="-2.94794"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>structures/celt_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="246.42362" z="301.31226"/>
+			<Orientation y="0.63407"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="395.61908" z="447.93271"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="394.90583" z="454.77833"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="395.66807" z="465.33616"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="394.66184" z="459.14637"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>other/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="393.5142" z="469.75574"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="405.41556" z="471.52012"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="405.40677" z="468.14292"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="405.13431" z="463.15235"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="404.6709" z="458.6702"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>other/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="404.365" z="452.29566"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="411.28751" z="473.84314"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="410.66172" z="466.0394"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="409.62858" z="458.55051"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="408.90687" z="454.43928"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>other/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="409.03022" z="449.90793"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>structures/hele_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="343.1826" z="431.02125"/>
+			<Orientation y="-1.16767"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>structures/celt_fortress_b</Template>
+			<Player>1</Player>
+			<Position x="330.73115" z="462.77076"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
