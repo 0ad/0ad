@@ -296,10 +296,35 @@ AllocGCChunk()
             UnmapPages(p, GC_CHUNK_SIZE * 2);
             p = MapPages(FindChunkStart(p), GC_CHUNK_SIZE);
 
+#ifdef XP_WIN
             /*
              * Failure here indicates a race with another thread, so
              * try again.
              */
+#else
+            /*
+             * Failure here may indicate a race with another thread,
+             * or may indicate kernel security features that change the
+             * return value of mmap. Fall back to a slower allocation
+             * approach. (This violates the 1:1 mapping mentioned above
+             * so we don't try this on Windows.)
+             */
+            if (!p) {
+                p = MapPages(NULL, GC_CHUNK_SIZE * 2);
+                void* start = FindChunkStart(p);
+                ptrdiff_t offset = (char*)start - (char*)p;
+
+                if (offset != 0)
+                {
+                    /* Remove leading space. */
+                    UnmapPages(p, offset);
+                    p = start;
+                }
+
+                /* Remove trailing space. */
+                UnmapPages((char*)start + GC_CHUNK_SIZE, GC_CHUNK_SIZE - offset);
+            }
+#endif
         }
     }
 #endif /* !JS_GC_HAS_MAP_ALIGN */

@@ -7,6 +7,7 @@ then run start-msvc8.bat and run ./build.sh here.
 This version of SpiderMonkey comes from http://hg.mozilla.org/tracemonkey/
 revision a4ed852d402a
 plus the patch https://bug610228.bugzilla.mozilla.org/attachment.cgi?id=489277
+plus the patch https://bug613089.bugzilla.mozilla.org/attachment.cgi?id=491381
 
 The game must be compiled with precisely this version, and must not use a
 standard system-provided version of the library, since SpiderMonkey does not
