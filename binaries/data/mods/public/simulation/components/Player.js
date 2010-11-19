@@ -113,7 +113,14 @@ Player.prototype.UnBlockTrainingQueue = function()
 
 Player.prototype.SetResourceCounts = function(resources)
 {
-	this.resourceCount = resources;
+	if (resources.food !== undefined)
+		this.resourceCount.food = resources.food;
+	if (resources.wood !== undefined)
+		this.resourceCount.wood = resources.wood;
+	if (resources.stone !== undefined)
+		this.resourceCount.stone = resources.stone;
+	if (resources.metal !== undefined)
+		this.resourceCount.metal = resources.metal;
 };
 
 Player.prototype.GetResourceCounts = function()

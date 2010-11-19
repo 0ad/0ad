@@ -189,7 +189,7 @@ function init(attribs)
 		team.onSelectionChange = function()
 		{	// Update team
 			if (this.selected != -1)
-				g_GameAttributes.settings.PlayerData[playerID].Team = this.list_data[this.selected];
+				g_GameAttributes.settings.PlayerData[playerID].Team = this.selected - 1;
 			
 			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
@@ -664,7 +664,7 @@ function onGameAttributesChange()
 			{	
 				// TODO: If scenario settings can be changed, handle that (using dropdowns rather than textboxes)
 				pCivText.caption = g_CivData[civ].Name;
-				pTeamText.caption = (team && team >= 0) ? team+1 : "-";
+				pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 				pCivText.hidden = false;
 				pCiv.hidden = true;
 				pTeamText.hidden = false;
@@ -679,7 +679,7 @@ function onGameAttributesChange()
 				
 				// Set dropdown values
 				pCiv.selected = (civ ? pCiv.list_data.indexOf(civ) : 0);
-				pTeam.selected = (team ? pTeam.list_data.indexOf(team) : 0);
+				pTeam.selected = (team !== undefined && team >= 0) ? team+1 : 0;
 			}
 		}
 	}
