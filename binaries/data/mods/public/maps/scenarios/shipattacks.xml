@@ -2,140 +2,165 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunset</SkySet>
-		<SunColour r="1.35882" g="0.994118" b="0.458824"/>
-		<SunElevation angle="0.38969"/>
-		<SunRotation angle="-0.911706"/>
+		<SkySet>sunny</SkySet>
+		<SunColour r="1.67773" g="1.67773" b="1.67773"/>
+		<SunElevation angle="0.668816"/>
+		<SunRotation angle="-0.345556"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.192157" g="0.258824" b="0.356863"/>
+		<UnitsAmbientColour r="0.341176" g="0.403922" b="0.466667"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.298039" g="0.34902" b="0.698039"/>
-				<Height>47.6328</Height>
+				<Height>29.1672</Height>
 				<Shininess>150</Shininess>
-				<Waviness>8</Waviness>
-				<Murkiness>1</Murkiness>
-				<Tint r="0.141176" g="0.188235" b="0.258824"/>
+				<Waviness>8.96484</Waviness>
+				<Murkiness>0.338867</Murkiness>
+				<Tint r="0" g="0.6" b="0.666667"/>
 				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="199.458" y="142.309" z="39.4988"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="494.82" y="126.352" z="-85.0529"/>
+		<Rotation angle="0.00417802"/>
+		<Declination angle="0.564637"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"Ship Attacks",
-  "Description":"",
-  "PlayerData":[{
-      "Civ":"hele"
+  "Name": "Ships Demo",
+  "Description": "Move ships around. Attack each other.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
     },
     {
-      "Civ":"hele"
+      "Civ": "hele"
     }
   ],
-  "CircularMap":true
+  "CircularMap": true
 }
 ]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
-			<Template>units/hele_ship_merchant</Template>
+			<Template>units/pers_ship_trireme</Template>
 			<Player>1</Player>
-			<Position x="173.67011" z="246.62427"/>
-			<Orientation y="-0.18714"/>
+			<Position x="501.40168" z="81.94466"/>
+			<Orientation y="-2.5445"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>units/rome_ship_quinquereme</Template>
+			<Player>1</Player>
+			<Position x="529.9975" z="77.21589"/>
+			<Orientation y="-2.50403"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>units/rome_ship_quinquereme</Template>
+			<Player>1</Player>
+			<Position x="553.3039" z="63.45945"/>
+			<Orientation y="-2.49854"/>
 		</Entity>
 		<Entity uid="14">
-			<Template>units/hele_ship_merchant</Template>
+			<Template>units/pers_ship_trireme</Template>
 			<Player>1</Player>
-			<Position x="152.76944" z="242.9568"/>
-			<Orientation y="3.06051"/>
+			<Position x="484.12015" z="96.64238"/>
+			<Orientation y="-2.56753"/>
 		</Entity>
 		<Entity uid="15">
-			<Template>units/hele_ship_fishing</Template>
+			<Template>units/hele_ship_bireme</Template>
 			<Player>1</Player>
-			<Position x="169.2425" z="201.29126"/>
-			<Orientation y="-2.29177"/>
+			<Position x="433.19404" z="33.4513"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="16">
+			<Template>units/hele_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="447.87095" z="48.77063"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>units/hele_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="483.93036" z="39.12108"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>units/hele_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="471.2483" z="24.21598"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="175.6634" z="186.84021"/>
+			<Position x="493.46644" z="11.52193"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>units/hele_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="502.81217" z="21.01"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>units/hele_ship_fishing</Template>
+			<Player>2</Player>
+			<Position x="548.51465" z="970.80707"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>units/hele_ship_fishing</Template>
+			<Player>2</Player>
+			<Position x="535.64844" z="955.55976"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/hele_ship_merchant</Template>
+			<Player>2</Player>
+			<Position x="569.0362" z="948.92048"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="26">
-			<Template>units/hele_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="192.55045" z="201.29126"/>
+			<Template>units/hele_ship_merchant</Template>
+			<Player>2</Player>
+			<Position x="554.25336" z="933.94916"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>units/hele_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="204.13236" z="213.43396"/>
+			<Player>2</Player>
+			<Position x="521.43146" z="982.32453"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="28">
 			<Template>units/hele_ship_bireme</Template>
-			<Player>1</Player>
-			<Position x="215.34617" z="227.58686"/>
+			<Player>2</Player>
+			<Position x="502.05845" z="964.86567"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="29">
-			<Template>units/hele_ship_bireme</Template>
-			<Player>1</Player>
-			<Position x="225.06666" z="240.21912"/>
+			<Template>units/pers_ship_trireme</Template>
+			<Player>2</Player>
+			<Position x="485.80698" z="949.78962"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="30">
-			<Template>units/hele_ship_bireme</Template>
+			<Template>units/pers_ship_trireme</Template>
 			<Player>2</Player>
-			<Position x="285.06144" z="538.92542"/>
-			<Orientation y="0.39576"/>
+			<Position x="466.97349" z="928.55646"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="31">
-			<Template>units/hele_ship_trireme</Template>
+			<Template>units/rome_ship_quinquereme</Template>
 			<Player>2</Player>
-			<Position x="242.76635" z="555.33277"/>
-			<Orientation y="2.41134"/>
+			<Position x="531.57782" z="907.34467"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="32">
-			<Template>units/celt_ship_trireme</Template>
+			<Template>units/rome_ship_quinquereme</Template>
 			<Player>2</Player>
-			<Position x="581.5558" z="171.05823"/>
-			<Orientation y="-1.72584"/>
-		</Entity>
-		<Entity uid="33">
-			<Template>units/celt_ship_fishing</Template>
-			<Player>2</Player>
-			<Position x="291.61551" z="141.39173"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="34">
-			<Template>units/celt_ship_merchant</Template>
-			<Player>2</Player>
-			<Position x="271.36991" z="159.67054"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="35">
-			<Template>units/hele_ship_fishing</Template>
-			<Player>2</Player>
-			<Position x="406.58368" z="283.44251"/>
-			<Orientation y="-2.78037"/>
-		</Entity>
-		<Entity uid="36">
-			<Template>units/hele_ship_fishing</Template>
-			<Player>2</Player>
-			<Position x="425.46924" z="269.99988"/>
-			<Orientation y="0.86454"/>
-		</Entity>
-		<Entity uid="37">
-			<Template>units/hele_ship_merchant</Template>
-			<Player>2</Player>
-			<Position x="385.39472" z="306.09937"/>
+			<Position x="513.5539" z="882.76508"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
