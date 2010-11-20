@@ -525,7 +525,9 @@ static void out(const wchar_t* fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	int len = vswprintf_s(out_pos, out_chars_left, fmt, args);
+	// use vswprintf, not vswprintf_s, because we want to gracefully
+	// handle buffer overflows
+	int len = vswprintf(out_pos, out_chars_left, fmt, args);
 	va_end(args);
 
 	// success
@@ -1150,7 +1152,7 @@ static LibError dump_sym_data(DWORD id, const u8* p, DumpState state)
 	SYMBOL_INFO_PACKAGEW2 sp;
 	SYMBOL_INFOW* sym = &sp.si;
 	if(!pSymFromIndexW(hProcess, mod_base, id, sym))
-		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
+		RETURN_ERR(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
 	out(L"%ls = ", sym->Name);
 
