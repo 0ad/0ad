@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations/>
@@ -12,5 +9,12 @@
       <texture>gaia/ani_sheep_a.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>

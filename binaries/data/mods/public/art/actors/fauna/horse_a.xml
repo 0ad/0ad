@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
@@ -13,7 +11,6 @@
       <mesh>skeletal/horse.pmd</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="16" name="black">
       <texture>skeletal/horse_black_a.dds</texture>
@@ -34,5 +31,12 @@
       <texture>skeletal/horse_tan_a.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>
