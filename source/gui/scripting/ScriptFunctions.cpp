@@ -356,6 +356,11 @@ int Crash(void* UNUSED(cbdata))
 	return *(int*)0;
 }
 
+void DebugWarn(void* UNUSED(cbdata))
+{
+	debug_warn(L"Warning at user's request.");
+}
+
 // Force a JS garbage collection cycle to take place immediately.
 // Writes an indication of how long this took to the console.
 void ForceGC(void* cbdata)
@@ -416,5 +421,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, int, &SetTurnLength>("SetTurnLength");
 	scriptInterface.RegisterFunction<void, float, float, float, &SetCameraTarget>("SetCameraTarget");
 	scriptInterface.RegisterFunction<int, &Crash>("Crash");
+	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
 }

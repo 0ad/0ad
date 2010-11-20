@@ -403,6 +403,27 @@ static size_t ChooseCacheSize()
 }
 #endif
 
+ErrorReaction psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
+{
+	// If we're fullscreen, then sometimes (at least on some particular drivers on Linux)
+	// displaying the error dialog hangs the desktop since the dialog box is behind the
+	// fullscreen window. So we just force the game to windowed mode before displaying the dialog.
+	// (But only if we're in the main thread, and not if we're being reentrant.)
+	if (ThreadUtil::IsMainThread())
+	{
+		static bool reentering = false;
+		if (!reentering)
+		{
+			reentering = true;
+			g_VideoMode.SetFullscreen(false);
+			reentering = false;
+		}
+	}
+
+	// We don't actually implement the error display here, so return appropriately
+	return ER_NOT_IMPLEMENTED;
+}
+
 static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER(L"InitVfs");
@@ -418,6 +439,7 @@ static void InitVfs(const CmdLineArgs& args)
 	AppHooks hooks = {0};
 	hooks.bundle_logs = psBundleLogs;
 	hooks.get_log_dir = psLogDir;
+	hooks.display_error = psDisplayError;
 	app_hooks_update(&hooks);
 
 	const size_t cacheSize = ChooseCacheSize();

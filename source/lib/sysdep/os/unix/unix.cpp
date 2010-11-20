@@ -32,8 +32,12 @@
 #include "lib/sysdep/cursor.h"
 #include "udbg.h"
 
+#include <boost/algorithm/string/replace.hpp>
+
 #define GNU_SOURCE
 #include <dlfcn.h>
+
+#include <sys/wait.h>
 
 #if OS_MACOSX
 #define URL_OPEN_COMMAND "open"
@@ -49,6 +53,100 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 	fprintf(stderr, "%ls: %ls\n", caption, msg); // must not use fwprintf, since stderr is byte-oriented
 }
 
+static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
+{
+	pid_t cpid = fork();
+	if(cpid == -1)
+		return ER_NOT_IMPLEMENTED;
+
+	if(cpid == 0)
+	{
+		// This is the child process
+
+		// Set ASCII charset, to avoid font warnings from xmessage
+		setenv("LC_ALL", "C", 1);
+
+		LibError err; // ignore UTF-8 errors
+		std::string message = utf8_from_wstring(text, &err);
+
+		// Replace CRLF->LF
+		boost::algorithm::replace_all(message, "\r\n", "\n");
+
+		const char* cmd = "/usr/bin/xmessage";
+
+		char buttons[256] = "";
+		const char* defaultButton = "Exit";
+
+		if(!no_continue)
+		{
+			strcat_s(buttons, sizeof(buttons), "Continue:100,");
+			defaultButton = "Continue";
+		}
+
+		if(allow_suppress)
+			strcat_s(buttons, sizeof(buttons), "Suppress:101,");
+
+		strcat_s(buttons, sizeof(buttons), "Break:102,Debugger:103,Exit:104");
+
+		// Since execv wants non-const strings, we strdup them here
+		// and don't care about the memory leak
+		char* const argv[] = {
+			strdup(cmd),
+			strdup("-buttons"), buttons,
+			strdup("-default"), strdup(defaultButton),
+			strdup(message.c_str()),
+			NULL
+		};
+		execv(cmd, argv);
+
+		// If exec returns, it failed
+		//fprintf(stderr, "Error running %s: %d\n", cmd, errno);
+		exit(-1);
+	}
+
+	// This is the parent process
+
+	int status = 0;
+	waitpid(cpid, &status, 0);
+
+	// If it didn't exist successfully, fall back to the non-GUI prompt
+	if(!WIFEXITED(status))
+		return ER_NOT_IMPLEMENTED;
+
+	switch(WEXITSTATUS(status))
+	{
+	case 103: // Debugger
+		udbg_launch_debugger();
+		//-fallthrough
+
+	case 102: // Break
+		if(manual_break)
+			return ER_BREAK;
+		debug_break();
+		return ER_CONTINUE;
+
+	case 100: // Continue
+		if(!no_continue)
+			return ER_CONTINUE;
+		// continue isn't allowed, so this was invalid input.
+		return ER_NOT_IMPLEMENTED;
+
+	case 101: // Suppress
+		if(allow_suppress)
+			return ER_SUPPRESS;
+		// suppress isn't allowed, so this was invalid input.
+		return ER_NOT_IMPLEMENTED;
+
+	case 104: // Exit
+		abort();
+		return ER_EXIT;	// placebo; never reached
+
+	}
+
+	// Unexpected return value - fall back to the non-GUI prompt
+	return ER_NOT_IMPLEMENTED;
+}
+
 ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 {
 	printf("%ls\n\n", text);
@@ -57,7 +155,14 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 	const bool allow_suppress = (flags & DE_ALLOW_SUPPRESS) != 0;
 	const bool no_continue    = (flags & DE_NO_CONTINUE   ) != 0;
 
-	// until valid input given:
+	// Try the GUI prompt if possible
+	ErrorReaction ret = try_gui_display_error(text, manual_break, allow_suppress, no_continue);
+	if (ret != ER_NOT_IMPLEMENTED)
+		return ret;
+
+	// Otherwise fall back to the terminal-based input
+
+	// Loop until valid input given:
 	for(;;)
 	{
 		if(!no_continue)
@@ -85,7 +190,7 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 
 		case 'c': case 'C':
 			if(!no_continue)
-                return ER_CONTINUE;
+				return ER_CONTINUE;
 			// continue isn't allowed, so this was invalid input. loop again.
 			break;
 		case 's': case 'S':

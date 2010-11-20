@@ -254,7 +254,10 @@ bool CVideoMode::ResizeWindow(int w, int h)
 
 bool CVideoMode::SetFullscreen(bool fullscreen)
 {
-	debug_assert(m_IsInitialised);
+	// This might get called before initialisation by psDisplayError;
+	// if so then silently fail
+	if (!m_IsInitialised)
+		return false;
 
 	// Check whether this is actually a change
 	if (fullscreen == m_IsFullscreen)
@@ -325,12 +328,17 @@ void CVideoMode::UpdateRenderer(int w, int h)
 
 	SViewPort vp = { 0, 0, w, h };
 
-	g_Renderer.SetViewport(vp);
-	g_Renderer.Resize(w, h);
+	if (CRenderer::IsInitialised())
+	{
+		g_Renderer.SetViewport(vp);
+		g_Renderer.Resize(w, h);
+	}
 
-	g_GUI->UpdateResolution();
+	if (g_GUI)
+		g_GUI->UpdateResolution();
 
-	g_Console->UpdateScreenSize(w, h);
+	if (g_Console)
+		g_Console->UpdateScreenSize(w, h);
 
 	if (g_Game)
 		g_Game->GetView()->SetViewport(vp);
