@@ -132,7 +132,7 @@ void CModelDef::SkinPointsAndNormals(
 // CModelDef Constructor
 CModelDef::CModelDef()	
 	: m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
-	m_NumPropPoints(0), m_PropPoints(0), m_Name(L"[not loaded]")
+	m_Name(L"[not loaded]")
 {
 }
 
@@ -144,14 +144,13 @@ CModelDef::~CModelDef()
 	delete[] m_pVertices;
 	delete[] m_pFaces;
 	delete[] m_Bones;
-	delete[] m_PropPoints;
 }
 
 // FindPropPoint: find and return pointer to prop point matching given name; 
 // return null if no match (case insensitive search)
-SPropPoint* CModelDef::FindPropPoint(const char* name) const
+const SPropPoint* CModelDef::FindPropPoint(const char* name) const
 {
-	for (size_t i = 0; i < m_NumPropPoints; ++i)
+	for (size_t i = 0; i < m_PropPoints.size(); ++i)
 		if (m_PropPoints[i].m_Name == name)
 			return &m_PropPoints[i];
 
@@ -193,14 +192,16 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 	if (unpacker.GetVersion() >= 2)
 	{
 		// versions >=2 also have prop point data
-		mdef->m_NumPropPoints = unpacker.UnpackSize();
-		if (mdef->m_NumPropPoints) {
-			mdef->m_PropPoints=new SPropPoint[mdef->m_NumPropPoints];
-			for (size_t i=0;i<mdef->m_NumPropPoints;i++) {
+		size_t numPropPoints = unpacker.UnpackSize();
+		mdef->m_PropPoints.resize(numPropPoints);
+		if (numPropPoints)
+		{
+			for (size_t i = 0; i < numPropPoints; i++)
+			{
 				unpacker.UnpackString(mdef->m_PropPoints[i].m_Name);
-				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_Position.X,sizeof(mdef->m_PropPoints[i].m_Position));
-				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_Rotation.m_V.X,sizeof(mdef->m_PropPoints[i].m_Rotation));
-				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_BoneIndex,sizeof(mdef->m_PropPoints[i].m_BoneIndex));
+				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_Position.X, sizeof(mdef->m_PropPoints[i].m_Position));
+				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_Rotation.m_V.X, sizeof(mdef->m_PropPoints[i].m_Rotation));
+				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_BoneIndex, sizeof(mdef->m_PropPoints[i].m_BoneIndex));
 
 				// build prop point transform
 				mdef->m_PropPoints[i].m_Transform.SetIdentity();
@@ -208,6 +209,18 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 				mdef->m_PropPoints[i].m_Transform.Translate(mdef->m_PropPoints[i].m_Position);
 			}
 		}
+	}
+
+	if (unpacker.GetVersion() <= 2)
+	{
+		// Versions <=2 don't include the default 'root' prop point, so add it here
+
+		SPropPoint prop;
+		prop.m_Name = "root";
+		prop.m_Transform.SetIdentity();
+		prop.m_BoneIndex = 0xFF;
+
+		mdef->m_PropPoints.push_back(prop);
 	}
 
 	if (unpacker.GetVersion() <= 2)
@@ -244,31 +257,32 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 }
 
 // Save: write the given CModelDef to the given file
-void CModelDef::Save(const VfsPath& filename,const CModelDef* mdef)
+void CModelDef::Save(const VfsPath& filename, const CModelDef* mdef)
 {
 	CFilePacker packer(FILE_VERSION, "PSMD");
 
 	// pack everything up
 	const size_t numVertices = mdef->GetNumVertices();
 	packer.PackSize(numVertices);
-	packer.PackRaw(mdef->GetVertices(),sizeof(SModelVertex)*numVertices);
-	
+	packer.PackRaw(mdef->GetVertices(), sizeof(SModelVertex) * numVertices);
+
 	const size_t numFaces = mdef->GetNumFaces();
 	packer.PackSize(numFaces);
-	packer.PackRaw(mdef->GetFaces(),sizeof(SModelFace)*numFaces);
+	packer.PackRaw(mdef->GetFaces(), sizeof(SModelFace) * numFaces);
 	
 	const size_t numBones = mdef->m_NumBones;
 	packer.PackSize(numBones);
 	if (numBones)
-		packer.PackRaw(mdef->m_Bones,sizeof(CBoneState)*numBones);
+		packer.PackRaw(mdef->m_Bones, sizeof(CBoneState) * numBones);
 
-	const size_t numPropPoints = mdef->m_NumPropPoints;
+	const size_t numPropPoints = mdef->m_PropPoints.size();
 	packer.PackSize(numPropPoints);
-	for (size_t i=0;i<mdef->m_NumPropPoints;i++) {
+	for (size_t i = 0; i < numPropPoints; i++)
+	{
 		packer.PackString(mdef->m_PropPoints[i].m_Name);
-		packer.PackRaw(&mdef->m_PropPoints[i].m_Position.X,sizeof(mdef->m_PropPoints[i].m_Position));
-		packer.PackRaw(&mdef->m_PropPoints[i].m_Rotation.m_V.X,sizeof(mdef->m_PropPoints[i].m_Rotation));
-		packer.PackRaw(&mdef->m_PropPoints[i].m_BoneIndex,sizeof(mdef->m_PropPoints[i].m_BoneIndex));
+		packer.PackRaw(&mdef->m_PropPoints[i].m_Position.X, sizeof(mdef->m_PropPoints[i].m_Position));
+		packer.PackRaw(&mdef->m_PropPoints[i].m_Rotation.m_V.X, sizeof(mdef->m_PropPoints[i].m_Rotation));
+		packer.PackRaw(&mdef->m_PropPoints[i].m_BoneIndex, sizeof(mdef->m_PropPoints[i].m_BoneIndex));
 	}
 	
 	// flush everything out to file

@@ -51,7 +51,7 @@ public:
 	{
 		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
 
-		SPropPoint* m_Point;
+		const SPropPoint* m_Point;
 		CModel* m_Model;
 		CObjectEntry* m_ObjectEntry;
 
@@ -159,13 +159,13 @@ public:
 	/**
 	 * Add a prop to the model on the given point.
 	 */
-	void AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);
+	void AddProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry);
 
 	/**
 	 * Add a prop to the model on the given point, and treat it as the ammo prop.
 	 * The prop will be hidden by default.
 	 */
-	void AddAmmoProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);
+	void AddAmmoProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry);
 
 	/**
 	 * Show the ammo prop (if any), and hide any other props on that prop point.
@@ -237,7 +237,7 @@ private:
 	/**
 	 * The prop point to which the ammo prop is attached, or NULL if none
 	 */
-	SPropPoint* m_AmmoPropPoint;
+	const SPropPoint* m_AmmoPropPoint;
 
 	/**
 	 * If m_AmmoPropPoint is not NULL, then the index in m_Props of the ammo prop

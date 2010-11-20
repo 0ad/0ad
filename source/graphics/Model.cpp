@@ -384,7 +384,7 @@ void CModel::CopyAnimationFrom(CModel* source)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
-void CModel::AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry)
+void CModel::AddProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry)
 {
 	// position model according to prop point position
 	model->SetTransform(point->m_Transform);
@@ -397,7 +397,7 @@ void CModel::AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry
 	m_Props.push_back(prop);
 }
 
-void CModel::AddAmmoProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry)
+void CModel::AddAmmoProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry)
 {
 	AddProp(point, model, objectentry);
 	m_AmmoPropPoint = point;

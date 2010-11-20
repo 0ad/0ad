@@ -135,13 +135,9 @@ public:
 	size_t GetNumBones() const { return (size_t)m_NumBones; }
 	CBoneState* GetBones() const { return m_Bones; }
 
-	// accessor: get prop data
-	size_t GetNumPropPoints() const { return m_NumPropPoints; }
-	SPropPoint* GetPropPoints() const { return m_PropPoints; }
-
 	// find and return pointer to prop point matching given name; return
 	// null if no match (case insensitive search)
-	SPropPoint* FindPropPoint(const char* name) const;
+	const SPropPoint* FindPropPoint(const char* name) const;
 
 	/**
 	 * Transform the given vertex's position from the bind pose into the new pose.
@@ -205,8 +201,7 @@ public:
 	size_t m_NumBones;
 	CBoneState* m_Bones;
 	// prop point data
-	size_t m_NumPropPoints;
-	SPropPoint* m_PropPoints;
+	std::vector<SPropPoint> m_PropPoints;
 
 private:
 	VfsPath m_Name;	// filename

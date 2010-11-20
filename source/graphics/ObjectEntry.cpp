@@ -181,7 +181,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			isAmmo = true;
 		}
 
-		SPropPoint* proppoint = modeldef->FindPropPoint(ppn.c_str());
+		const SPropPoint* proppoint = modeldef->FindPropPoint(ppn.c_str());
 		if (proppoint)
 		{
 			CModel* propmodel = oe->m_Model->Clone();
