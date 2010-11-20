@@ -26,7 +26,7 @@ IGUIObject
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
-#include "scriptinterface/ScriptVal.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"gui"
@@ -504,27 +504,17 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	if (it == m_ScriptHandlers.end())
 		return;
 
-	// The IGUIObject needs to be stored inside the script's object
-	jsval guiObject = PRIVATE_TO_JSVAL(this);
-
-	// Make a 'this', allowing access to the IGUIObject
-	JSObject* jsGuiObject = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, m_pGUI->m_ScriptObject, NULL, 1, &guiObject);
-	debug_assert(jsGuiObject); // TODO: Handle errors
-	
-	// TODO: why don't we use GetJSObject here?
-
 	// Set up the 'mouse' parameter
-	jsval mouseParams[3];
-	mouseParams[0] = INT_TO_JSVAL(m_pGUI->m_MousePos.x);
-	mouseParams[1] = INT_TO_JSVAL(m_pGUI->m_MousePos.y);
-	mouseParams[2] = INT_TO_JSVAL(m_pGUI->m_MouseButtons);
-	JSObject* mouseObj = JS_ConstructObjectWithArguments(g_ScriptingHost.getContext(), &JSI_GUIMouse::JSI_class, m_pGUI->m_ScriptObject, NULL, 3, mouseParams);
-	debug_assert(mouseObj); // TODO: Handle errors
+	CScriptVal mouse;
+	g_ScriptingHost.GetScriptInterface().Eval("({})", mouse);
+	g_ScriptingHost.GetScriptInterface().SetProperty(mouse.get(), "x", m_pGUI->m_MousePos.x, false);
+	g_ScriptingHost.GetScriptInterface().SetProperty(mouse.get(), "y", m_pGUI->m_MousePos.y, false);
+	g_ScriptingHost.GetScriptInterface().SetProperty(mouse.get(), "buttons", m_pGUI->m_MouseButtons, false);
 
-	jsval paramData[] = { OBJECT_TO_JSVAL(mouseObj) };
+	jsval paramData[] = { mouse.get() };
 
 	jsval result;
-	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), jsGuiObject, OBJECT_TO_JSVAL(*it->second), ARRAY_SIZE(paramData), paramData, &result);
+	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), GetJSObject(), OBJECT_TO_JSVAL(*it->second), ARRAY_SIZE(paramData), paramData, &result);
 	if (!ok)
 	{
 		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());

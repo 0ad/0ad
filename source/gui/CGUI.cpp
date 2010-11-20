@@ -343,20 +343,84 @@ void CGUI::SendEventToAll(const CStr& EventName)
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
+
+// To isolate the vars declared by each GUI page, we need to create
+// a pseudo-global object to declare them in. In particular, it must
+// have no parent object, so it must be declared with JS_NewGlobalObject.
+// But GUI scripts should have access to the real global's properties
+// (Array, undefined, getGUIObjectByName, etc), so we add a custom resolver
+// that defers to the real global object when necessary.
+
+static JSBool GetGlobalProperty(JSContext* cx, JSObject* UNUSED(obj), jsid id, jsval* vp)
+{
+	return JS_GetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, vp);
+}
+
+static JSBool SetGlobalProperty(JSContext* cx, JSObject* UNUSED(obj), jsid id, jsval* vp)
+{
+	return JS_SetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, vp);
+}
+
+static JSBool ResolveGlobalProperty(JSContext* cx, JSObject* obj, jsid id, uintN flags, JSObject** objp)
+{
+	// This gets called when the property can't be resolved in the page_global object.
+
+	// Warning: The interaction between this resolution stuff and the JITs appears
+	// to be quite fragile, and I don't quite understand what the constraints are.
+	// If changing it, be careful to test with each JIT to make sure it works.
+	// (This code is somewhat based on GPSEE's module system.)
+
+	// Declarations and assignments shouldn't affect the real global
+	if (flags & (JSRESOLVE_DECLARING | JSRESOLVE_ASSIGNING))
+	{
+		// Can't be resolved - return NULL
+		*objp = NULL;
+		return JS_TRUE;
+	}
+
+	// Check whether the real global object defined this property
+	uintN attrs;
+	JSBool found;
+	if (!JS_GetPropertyAttrsGetterAndSetterById(cx, g_ScriptingHost.GetGlobalObject(), id, &attrs, &found, NULL, NULL))
+		return JS_FALSE;
+
+	if (!found)
+	{
+		// Not found on real global, so can't be resolved - return NULL
+		*objp = NULL;
+		return JS_TRUE;
+	}
+
+	// Retrieve the property value from the global
+	jsval v;
+	if (!JS_GetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, &v))
+		return JS_FALSE;
+
+	// Add the global's property value onto this object, with getter/setter that will
+	// update the global's copy instead of this copy, and then return this object
+	if (!JS_DefinePropertyById(cx, obj, id, v, GetGlobalProperty, SetGlobalProperty, attrs))
+		return JS_FALSE;
+
+	*objp = obj;
+	return JS_TRUE;
+}
+
+static JSClass page_global_class = {
+	"page_global", JSCLASS_GLOBAL_FLAGS | JSCLASS_NEW_RESOLVE,
+	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
+	JS_EnumerateStub, (JSResolveOp)ResolveGlobalProperty, JS_ConvertStub, JS_FinalizeStub,
+	NULL, NULL, NULL, NULL,
+	NULL, NULL, NULL, NULL
+};
+
 CGUI::CGUI() : m_MouseButtons(0), m_FocusedObject(NULL), m_InternalNameNumber(0)
 {
 	m_BaseObject = new CGUIDummyObject;
 	m_BaseObject->SetGUI(this);
 
-	// Construct the root object for all GUI JavaScript things.
-	// (We need an object with no parent, so functions defined by scripts get
-	// put onto this object and not its parent. In the current version of SpiderMonkey
-	// that means it must be a global object. Then we adjust its prototype so it
-	// can still read standard properties from the context's standard global object.)
-	m_ScriptObject = JS_NewGlobalObject(g_ScriptingHost.getContext(), g_ScriptingHost.GetScriptInterface().GetGlobalClass());
+	// Construct the root object for all GUI JavaScript things
+	m_ScriptObject = JS_NewGlobalObject(g_ScriptingHost.getContext(), &page_global_class);
 	JS_AddObjectRoot(g_ScriptingHost.getContext(), &m_ScriptObject);
-
-	JS_SetPrototype(g_ScriptingHost.getContext(), m_ScriptObject, g_ScriptingHost.GetGlobalObject());
 }
 
 CGUI::~CGUI()

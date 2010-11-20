@@ -99,9 +99,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 		if (parent)
 		{
 			// If the object isn't parentless, return a new object
-			JSObject* entity = JS_NewObject(cx, &JSI_IGUIObject::JSI_class, NULL, NULL);
-			JS_SetPrivate(cx, entity, parent);
-			*vp = OBJECT_TO_JSVAL(entity);
+			*vp = OBJECT_TO_JSVAL(parent->GetJSObject());
 		}
 		else
 		{
