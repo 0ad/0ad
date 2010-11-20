@@ -94,6 +94,7 @@
 #include "ps/GameSetup/Paths.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
+#include "ps/GameSetup/HWDetect.h"
 
 #if !(OS_WIN || OS_MACOSX) // assume all other platforms use X11 for wxWidgets
 #define MUST_INIT_X11 1
@@ -798,15 +799,17 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 	}
 
-	tex_codec_register_all();
-
-	const int quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
-	SetTextureQuality(quality);
-
 	// needed by ogl_tex to detect broken gfx card/driver combos,
 	// but takes a while due to WMI startup, so make it optional.
 	if(!g_Quickstart)
 		gfx_detect();
+
+	RunHardwareDetection();
+
+	tex_codec_register_all();
+
+	const int quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
+	SetTextureQuality(quality);
 
 	ogl_WarnIfError();
 

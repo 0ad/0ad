@@ -328,6 +328,12 @@ bool HotkeyIsPressed_(void* UNUSED(cbdata), std::string hotkeyName)
 	return HotkeyIsPressed(hotkeyName);
 }
 
+void DisplayErrorDialog(void* UNUSED(cbdata), std::wstring msg)
+{
+	debug_DisplayError(msg.c_str(), DE_NO_DEBUG_INFO, NULL, NULL, NULL, 0, NULL, NULL);
+}
+
+
 void SetSimRate(void* UNUSED(cbdata), float rate)
 {
 	g_Game->SetSimRate(rate);
@@ -415,6 +421,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
+	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 
 	// Development/debugging functions
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");

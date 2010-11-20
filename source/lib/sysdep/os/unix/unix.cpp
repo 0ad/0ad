@@ -72,6 +72,10 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 		// Replace CRLF->LF
 		boost::algorithm::replace_all(message, "\r\n", "\n");
 
+		// TODO: we ought to wrap the text if it's very long,
+		// since xmessage doesn't do that and it'll get clamped
+		// to the screen width
+
 		const char* cmd = "/usr/bin/xmessage";
 
 		char buttons[256] = "";
@@ -92,6 +96,8 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 		// and don't care about the memory leak
 		char* const argv[] = {
 			strdup(cmd),
+			strdup("-geometry"), strdup("x500"), // set height so the box will always be very visible
+			strdup("-title"), strdup("0 A.D. message"), // TODO: maybe shouldn't hard-code app name
 			strdup("-buttons"), buttons,
 			strdup("-default"), strdup(defaultButton),
 			strdup(message.c_str()),

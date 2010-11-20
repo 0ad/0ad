@@ -429,6 +429,15 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 	//    the error display implementation enables the Suppress option.
 	if(suppress)
 		flags |= DE_ALLOW_SUPPRESS;
+
+	if(flags & DE_NO_DEBUG_INFO)
+	{
+		// in non-debug-info mode, simply display the given description
+		// and then return immediately
+		ErrorReaction er = CallDisplayError(description, flags);
+		return PerformErrorReaction(er, flags, suppress);
+	}
+
 	// .. deal with incomplete file/line info
 	if(!pathname || pathname[0] == '\0')
 		pathname = L"unknown";

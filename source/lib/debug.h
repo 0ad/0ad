@@ -102,7 +102,13 @@ enum DebugDisplayErrorFlags
 	 * will take care of this if ER_BREAK is returned. this is so that the
 	 * debugger can jump directly into the offending function.
 	 **/
-	DE_MANUAL_BREAK = 4
+	DE_MANUAL_BREAK = 4,
+
+	/**
+	 * display just the given message; do not add any information about the
+	 * call stack, do not write crashlogs, etc.
+	 */
+	DE_NO_DEBUG_INFO = 8
 };
 
 /**
