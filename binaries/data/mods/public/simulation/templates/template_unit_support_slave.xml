@@ -37,7 +37,7 @@
 	  <wood.tree>5.0</wood.tree>
       <stone.rock>5.0</stone.rock>
       <metal.ore>5.0</metal.ore>
-	  <metal.treasure>0</metal.treasure>
+	  <treasure disable=""/>
     </Rates>
   </ResourceGatherer>
   <Armour>
@@ -45,13 +45,6 @@
     <Pierce>2.0</Pierce>
     <Crush>2.0</Crush>
   </Armour>
-  <ResourceGatherer>
-    <MaxDistance>2.0</MaxDistance>
-    <BaseSpeed>1.0</BaseSpeed>
-    <Rates>
-      <metal.treasure>10000</metal.treasure>
-    </Rates>
-  </ResourceGatherer>
   <UnitMotion>
     <WalkSpeed>6.0</WalkSpeed>
     <Run>

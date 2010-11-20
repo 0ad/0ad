@@ -30,20 +30,21 @@ ResourceGatherer.prototype.Schema =
 			"<optional><element name='wood' a:help='Wood gather rate'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='stone' a:help='Stone gather rate'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='metal' a:help='Metal gather rate'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='treasure' a:help='Treasure gather rate (only presense on value makes sense, size is ignored)'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.fish' a:help='Fish gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.fruit' a:help='Fruit gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.grain' a:help='Grain gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.meat' a:help='Meat gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.milk' a:help='Milk gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='food.treasure' a:help='Treasure gather rate(overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='wood.tree' a:help='Tree gather rate (overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='wood.ruins' a:help='Tree gather rate (overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='wood.treasure' a:help='Treasure gather rate(overrides \"wood\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='stone.rock' a:help='Rock gather rate (overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='stone.ruins' a:help='Rock gather rate (overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='stone.treasure' a:help='Treasure gather rate(overrides \"stone\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='metal.ore' a:help='Ore gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='metal.treasure' a:help='Treasure gather rate(overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='metal.ore' a:help='Ore gather rate (overrides \"metal\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='treasure.food' a:help='Food treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='treasure.wood' a:help='Wood treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='treasure.stone' a:help='Stone treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='treasure.metal' a:help='Metal treasure gather rate (overrides \"treasure\")'><ref name='positiveDecimal'/></element></optional>" +
 		"</interleave>" +
 	"</element>" +
 	"<element name='Capacities' a:help='Per-resource-type maximum carrying capacity'>" +
@@ -119,6 +120,29 @@ ResourceGatherer.prototype.GetRange = function()
 	return { "max": +this.template.MaxDistance, "min": 0 };
 	// maybe this should depend on the unit or target or something?
 }
+
+/**
+ * Try to gather treasure
+ * @return 'true' if treasure is successfully gathered and 'false' in the other case
+ */
+ResourceGatherer.prototype.TryInstantGather = function(target)
+{
+	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	var type = cmpResourceSupply.GetType();
+	
+	if (type.generic != "treasure") return false;
+	
+	var status = cmpResourceSupply.TakeResources(cmpResourceSupply.GetCurrentAmount());
+
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	cmpPlayer.AddResource(type.specific, status.amount);
+	
+	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	if (cmpStatisticsTracker)
+		cmpStatisticsTracker.IncreaseTreasuresCollectedCounter();
+
+	return true;
+};
 
 /**
  * Gather from the target entity. This should only be called after a successful range check,

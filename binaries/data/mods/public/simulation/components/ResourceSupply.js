@@ -16,18 +16,18 @@ ResourceSupply.prototype.Schema =
 		"<choice>" +
 			"<value>wood.tree</value>" +
 			"<value>wood.ruins</value>" +
-			"<value>wood.treasure</value>" +
 			"<value>stone.rock</value>" +
 			"<value>stone.ruins</value>" +
-			"<value>stone.treasure</value>" +
 			"<value>metal.ore</value>" +
-			"<value>metal.treasure</value>" +
 			"<value>food.fish</value>" +
 			"<value>food.fruit</value>" +
 			"<value>food.grain</value>" +
 			"<value>food.meat</value>" +
 			"<value>food.milk</value>" +
-			"<value>food.treasure</value>" +
+			"<value>treasure.wood</value>" +
+			"<value>treasure.stone</value>" +
+			"<value>treasure.metal</value>" +
+			"<value>treasure.food</value>" +
 		"</choice>" +
 	"</element>";
 

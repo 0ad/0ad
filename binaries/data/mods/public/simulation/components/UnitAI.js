@@ -439,6 +439,10 @@ var UnitFsmSpec = {
 
 						var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 
+						// Try to gather treasure
+						if (cmpResourceGatherer.TryInstantGather(this.order.data.target)) 
+							return;
+						
 						// If we've already got some resources but they're the wrong type,
 						// drop them first to ensure we're only ever carrying one type
 						if (cmpResourceGatherer.IsCarryingAnythingExcept(this.order.data.type.generic))

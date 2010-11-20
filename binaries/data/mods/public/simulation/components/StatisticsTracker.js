@@ -24,6 +24,7 @@ StatisticsTracker.prototype.Init = function()
 			"stone": 0,
 			"vegetarianFood": 0
 	}
+	this.treasuresCollected = 0;
 };
 
 StatisticsTracker.prototype.GetStatistics = function()
@@ -37,7 +38,8 @@ StatisticsTracker.prototype.GetStatistics = function()
  		"enemyBuildingsDestroyed": this.enemyBuildingsDestroyed,
  		"civCentresBuilt": this.civCentresBuilt,
  		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
- 		"resourcesGathered": this.resourcesGathered
+ 		"resourcesGathered": this.resourcesGathered,
+		"treasuresCollected": this.treasuresCollected
  	};
 };
 
@@ -107,6 +109,11 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 	
 	if (type == "food" && (specificType == "fruit" || specificType == "grain"))
 		this.resourcesGathered["vegetarianFood"] += amount;
+};
+
+StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
+{
+	return this.treasuresCollected++;
 };
 
 Engine.RegisterComponentType(IID_StatisticsTracker, "StatisticsTracker", StatisticsTracker);
