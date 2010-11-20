@@ -74,6 +74,8 @@ function displaySingle(entState, template)
 	{
 		resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max;
 		resourceType = entState.resourceSupply.type["generic"];
+		if (resourceType == "treasure")
+			resourceType = entState.resourceSupply.type["specific"];
 
 		var unitResourceBar = getGUIObjectByName("resourceBar");
 		var resourceSize = unitResourceBar.size;
