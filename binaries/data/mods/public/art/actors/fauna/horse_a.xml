@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -29,14 +29,6 @@
     </variant>
     <variant frequency="17" name="tan">
       <texture>skeletal/horse_tan_a.dds</texture>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
     </variant>
   </group>
 </actor>

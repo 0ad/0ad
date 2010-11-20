@@ -35,6 +35,13 @@
         <prop attachpoint="shield"/>
       </props>
     </variant>
+    <variant name="carry_food">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

@@ -1,28 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Mesh">
       <mesh>skeletal/chicken.pmd</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="feathers-red">
       <texture>skeletal/animal_chicken.dds</texture>
     </variant>
     <variant frequency="1" name="feathers-brown">
       <texture>skeletal/animal_chicken_b.dds</texture>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
     </variant>
   </group>
 </actor>
