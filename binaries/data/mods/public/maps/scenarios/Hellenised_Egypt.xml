@@ -23,28 +23,29 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="227.277" y="115.15" z="578.035"/>
+		<Position x="224.915" y="126.476" z="550.815"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"Hellenised Egypt",
-  "Description":"Greek colonists have settled the Nile River valley. A large map divided down the center by a mighty river with two wide crossings.",
-  "PlayerData":[{
-      "Civ":"hele"
+  "Name": "Hellenised Egypt",
+  "Description": "Greek colonists have settled the Nile River valley. A large map divided down the center by a mighty river with two wide crossings.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
     },
     {
-      "Civ":"hele"
+      "Civ": "hele"
     },
     {
-      "Civ":"hele"
+      "Civ": "hele"
     },
     {
-      "Civ":"hele"
+      "Civ": "hele"
     }
   ],
-  "CircularMap":true
+  "CircularMap": false
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -2079,8 +2080,8 @@
 		<Entity uid="637">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="479.74204" z="813.29462"/>
-			<Orientation y="2.3104"/>
+			<Position x="480.34617" z="811.13514"/>
+			<Orientation y="0.11451"/>
 		</Entity>
 		<Entity uid="638">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -7637,7 +7638,7 @@
 		<Entity uid="1654">
 			<Template>gaia/flora_tree_baobab</Template>
 			<Player>0</Player>
-			<Position x="663.46143" z="658.86408"/>
+			<Position x="645.40461" z="653.39124"/>
 			<Orientation y="0.48954"/>
 		</Entity>
 		<Entity uid="1655">
@@ -7847,7 +7848,7 @@
 		<Entity uid="1689">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="650.33661" z="640.65461"/>
+			<Position x="647.51417" z="637.17298"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1690">
@@ -10604,7 +10605,7 @@
 		</Entity>
 		<Entity uid="2228">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="231.2619" z="793.75733"/>
+			<Position x="229.70757" z="802.61799"/>
 			<Orientation y="0.42472"/>
 		</Entity>
 		<Entity uid="2229">
@@ -10614,7 +10615,7 @@
 		</Entity>
 		<Entity uid="2230">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="244.68319" z="807.74091"/>
+			<Position x="234.97902" z="812.42231"/>
 			<Orientation y="1.22983"/>
 		</Entity>
 		<Entity uid="2231">
@@ -10629,7 +10630,7 @@
 		</Entity>
 		<Entity uid="2233">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="244.42948" z="816.74421"/>
+			<Position x="235.92733" z="816.72663"/>
 			<Orientation y="2.20777"/>
 		</Entity>
 		<Entity uid="2234">
@@ -10639,12 +10640,12 @@
 		</Entity>
 		<Entity uid="2235">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="241.82369" z="806.31696"/>
+			<Position x="234.13657" z="803.16736"/>
 			<Orientation y="-1.51313"/>
 		</Entity>
 		<Entity uid="2236">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="235.34925" z="805.06995"/>
+			<Position x="233.3697" z="801.63727"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2237">
@@ -16119,7 +16120,7 @@
 		<Entity uid="3302">
 			<Template>gaia/fauna_elephant_african_bush</Template>
 			<Player>0</Player>
-			<Position x="780.70191" z="889.14704"/>
+			<Position x="775.26478" z="900.49506"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3303">
@@ -17769,26 +17770,14 @@
 		<Entity uid="3691">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="237.61733" z="814.92328"/>
+			<Position x="229.62198" z="810.14179"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3692">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="231.10505" z="802.99286"/>
-			<Orientation y="0.42141"/>
 		</Entity>
 		<Entity uid="3693">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
 			<Position x="136.44742" z="715.41211"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3694">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="149.50054" z="716.69086"/>
-			<Orientation y="-2.4931"/>
 		</Entity>
 		<Entity uid="3695">
 			<Template>gaia/geology_metal_desert_slabs</Template>
@@ -17814,29 +17803,17 @@
 			<Position x="824.94208" z="812.14661"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3699">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="832.23682" z="795.4026"/>
-			<Orientation y="0.80915"/>
-		</Entity>
 		<Entity uid="3700">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="679.32276" z="643.44355"/>
-			<Orientation y="2.18648"/>
+			<Position x="675.89106" z="651.48584"/>
+			<Orientation y="0.17408"/>
 		</Entity>
 		<Entity uid="3701">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
 			<Position x="846.61481" z="512.04725"/>
 			<Orientation y="-2.75246"/>
-		</Entity>
-		<Entity uid="3703">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="885.53168" z="709.7146"/>
-			<Orientation y="1.30855"/>
 		</Entity>
 		<Entity uid="3704">
 			<Template>gaia/geology_metal_desert_slabs</Template>
@@ -17874,23 +17851,11 @@
 			<Position x="693.75721" z="408.47248"/>
 			<Orientation y="1.8179"/>
 		</Entity>
-		<Entity uid="3710">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="768.8354" z="270.11686"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3711">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
 			<Position x="780.04126" z="252.64692"/>
 			<Orientation y="0.61091"/>
-		</Entity>
-		<Entity uid="3712">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="654.78333" z="156.4494"/>
-			<Orientation y="-1.70691"/>
 		</Entity>
 		<Entity uid="3713">
 			<Template>gaia/geology_metal_desert_slabs</Template>
@@ -17928,12 +17893,6 @@
 			<Position x="425.87449" z="549.27033"/>
 			<Orientation y="0.55826"/>
 		</Entity>
-		<Entity uid="3719">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="156.61554" z="249.03391"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3720">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
@@ -17951,12 +17910,6 @@
 			<Player>0</Player>
 			<Position x="229.43984" z="110.12229"/>
 			<Orientation y="0.46592"/>
-		</Entity>
-		<Entity uid="3724">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="114.6309" z="113.70945"/>
-			<Orientation y="1.2145"/>
 		</Entity>
 		<Entity uid="3725">
 			<Template>gaia/geology_metal_desert_slabs</Template>
