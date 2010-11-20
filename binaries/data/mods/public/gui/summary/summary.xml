@@ -7,6 +7,7 @@
 -->
 
 <objects>
+	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/summary/summary.js"/>
 	<object type="image" sprite="bkFillBlack">
 
@@ -43,14 +44,18 @@
 				<action on="Press">selectPanel(0);</action>
 				Units/buildings
 			</object>
-			<object name="resourcesPanelButton" type="button" sprite="bgInfoHeading" text_align="center" size="160 75 310 101">
+			<object name="conquestPanelButton" type="button" sprite="bgInfoHeading" text_align="center" size="160 75 310 101">
 				<action on="Press">selectPanel(1);</action>
+				Conquest
+			</object>
+			<object name="resourcesPanelButton" type="button" sprite="bgInfoHeading" text_align="center" size="310 75 460 101">
+				<action on="Press">selectPanel(2);</action>
 				Resources
 			</object>
 			<object name="unitsBuildingsPanel" type="image" sprite="bgInfoBox" size="10 100 100%-10 100%-50">
 				
 				<object size="0 0 100% 100%-50">
-					<object name="playerNameHeading" type="text" text_align="left" font="serif-bold-14"	>
+					<object name="playerName0Heading" type="text" text_align="left" font="serif-bold-14"	>
 						Player name
 					</object>
 					<object name="unitsTrainedHeading" type="text" text_align="center" font="serif-bold-14" >
@@ -71,6 +76,32 @@
 					<object name="enemyBuildingsDestroyedHeading" type="text" text_align="center" font="serif-bold-14" >
 						Enemy&#10;buildings&#10;destroyed
 					</object>
+					
+				</object>	
+				
+				<object size="0 65 100% 100%-50">
+					<repeat count="8">
+						<object type="image" name="playerBox0[n]" size="10 0 10 30" hidden="true">
+							<object name="playerColourBox0[n]"     		type="image" size="10 4 30 24" />
+							<object name="playerName0[n]"          		type="text"  text_align="left"  size="40 2 208 100%" />
+							<object name="civIcon0[n]" 					type="image" size="208 0 240 32"/>
+							<object name="unitsTrained[n]"         		type="text"  text_align="center" />
+							<object name="unitsLost[n]"            		type="text"  text_align="center" />
+							<object name="enemyUnitsKilled[n]"     		type="text"  text_align="center" />
+							<object name="buildingsConstructed[n]" 		type="text"  text_align="center" />
+							<object name="buildingsLost[n]"        		type="text"  text_align="center" />
+							<object name="enemyBuildingsDestroyed[n]"   type="text"  text_align="center" />
+						</object>
+					</repeat>
+				</object>
+			
+			</object>
+			<object name="conquestPanel" type="image" sprite="bgInfoBox" size="10 100 100%-10 100%-50" hidden="true">
+				
+				<object size="0 0 100% 100%-50">
+					<object name="playerName1Heading" type="text" text_align="left" font="serif-bold-14"	>
+						Player name
+					</object>
 					<object name="civCentresBuiltHeading" type="text" text_align="center" font="serif-bold-14" >
 						Civ centres&#10;built
 					</object>
@@ -82,17 +113,12 @@
 				
 				<object size="0 65 100% 100%-50">
 					<repeat count="8">
-						<object type="image" name="playerBox0[n]" size="10 0 10 30" hidden="true">
-							<object name="playerColourBox0[n]"     		type="image" size="10 4 30 24" />
-							<object name="playerName0[n]"          		type="text" text_align="left"  size="40 2 140 100%" />
-							<object name="unitsTrained[n]"         		type="text" text_align="center" />
-							<object name="unitsLost[n]"            		type="text" text_align="center" />
-							<object name="enemyUnitsKilled[n]"     		type="text" text_align="center" />
-							<object name="buildingsConstructed[n]" 		type="text" text_align="center" />
-							<object name="buildingsLost[n]"        		type="text" text_align="center" />
-							<object name="enemyBuildingsDestroyed[n]"   type="text" text_align="center" />
-							<object name="civCentresBuilt[n]"      		type="text" text_align="center" />
-							<object name="enemyCivCentresDestroyed[n]" 	type="text" text_align="center" />
+						<object type="image" name="playerBox1[n]" size="10 0 10 30" hidden="true">
+							<object name="playerColourBox1[n]"     		type="image" size="10 4 30 24" />
+							<object name="playerName1[n]"          		type="text"  text_align="left"  size="40 2 208 100%" />
+							<object name="civIcon1[n]" 					type="image" size="208 0 240 32"/>
+							<object name="civCentresBuilt[n]"      		type="text"  text_align="center" />
+							<object name="enemyCivCentresDestroyed[n]" 	type="text"  text_align="center" />
 						</object>
 					</repeat>
 				</object>
@@ -124,14 +150,15 @@
 				
 				<object size="0 65 100% 100%-50">
 					<repeat count="8">
-						<object type="image" name="playerBox1[n]" size="10 0 10 30" hidden="true">
-							<object name="playerColourBox1[n]" type="image" size="10 4 30 24" />
-							<object name="playerName1[n]"      type="text" text_align="left"  size="40 2 140 100%" />
-							<object name="foodGathered[n]"     type="text" text_align="center" />
-							<object name="vegetarianRatio[n]"  type="text" text_align="center" />
-							<object name="woodGathered[n]"     type="text" text_align="center" />
-							<object name="metalGathered[n]"    type="text" text_align="center" />
-							<object name="stoneGathered[n]"    type="text" text_align="center" />
+						<object type="image" name="playerBox2[n]" size="10 0 10 30" hidden="true">
+							<object name="playerColourBox2[n]" type="image" size="10 4 30 24" />
+							<object name="playerName2[n]"      type="text"  text_align="left"  size="40 2 208 100%" />
+							<object name="civIcon2[n]" 		   type="image" size="208 0 240 32"/>
+							<object name="foodGathered[n]"     type="text"  text_align="center" />
+							<object name="vegetarianRatio[n]"  type="text"  text_align="center" />
+							<object name="woodGathered[n]"     type="text"  text_align="center" />
+							<object name="metalGathered[n]"    type="text"  text_align="center" />
+							<object name="stoneGathered[n]"    type="text"  text_align="center" />
 						</object>
 					</repeat>
 				</object>

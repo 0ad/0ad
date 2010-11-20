@@ -1,8 +1,8 @@
 // Max player slots for any map (should read from config)
 const MAX_SLOTS = 8;
 
-var panelNames = [ 'unitsBuildingsPanel', 'resourcesPanel' ];
-var panelButtonNames = [ 'unitsBuildingsPanelButton', 'resourcesPanelButton' ];
+var panelNames = [ 'unitsBuildingsPanel', 'conquestPanel', 'resourcesPanel' ];
+var panelButtonNames = [ 'unitsBuildingsPanelButton', 'conquestPanelButton', 'resourcesPanelButton' ];
 
 /**
  * @param time Time period in milliseconds (integer)
@@ -39,6 +39,8 @@ function selectPanel(panelNumber)
 
 function init(data)
 {
+	var civData = loadCivData();
+
 	getGUIObjectByName("timeElapsed").caption = "Time elapsed: " + timeToString(data.timeElapsed);
 
 	getGUIObjectByName("summaryText").caption = data.gameResult;
@@ -62,18 +64,22 @@ function init(data)
 	// align headers
 	var left = 50; 
 	var width = 100;
-	getGUIObjectByName("playerNameHeading").size 				= left + " 26 " + (left + width) + " 100%"; left += width;
+	var playerNameHeadingWidth = 200;
+	getGUIObjectByName("playerName0Heading").size 				= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("unitsTrainedHeading").size 				= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("unitsLostHeading").size 				= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("enemyUnitsKilledHeading").size 			= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("buildingsConstructedHeading").size 		= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("buildingsLostHeading").size 			= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("enemyBuildingsDestroyedHeading").size 	= left +  " 6 " + (left + width) + " 100%"; left += width;
+	
+	var left = 50; 
+	getGUIObjectByName("playerName1Heading").size 				= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("civCentresBuiltHeading").size 			= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("enemyCivCentresDestroyedHeading").size 	= left +  " 6 " + (left + width) + " 100%"; left += width;
 	
 	var left = 50; 
-	getGUIObjectByName("playerName2Heading").size 		= left + " 26 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("playerName2Heading").size 		= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("foodGatheredHeading").size 		= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("vegetarianRatioHeading").size 	= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("woodGatheredHeading").size 		= left + " 16 " + (left + width) + " 100%"; left += width;
@@ -102,6 +108,9 @@ function init(data)
 			
 				var playerName = getGUIObjectByName("playerName"+k+"["+i+"]");
 				playerName.caption = playerState.name;
+				
+				
+				getGUIObjectByName("civIcon"+k+"["+i+"]").sprite = "stretched:"+civData[playerState.civ].Emblem;
 			}
 			
 			var unitsTrained         		= getGUIObjectByName("unitsTrained["+i+"]");
@@ -110,6 +119,7 @@ function init(data)
 			var buildingsConstructed 		= getGUIObjectByName("buildingsConstructed["+i+"]");
 			var buildingsLost        		= getGUIObjectByName("buildingsLost["+i+"]");
 			var enemyBuildingsDestroyed 	= getGUIObjectByName("enemyBuildingsDestroyed["+i+"]");
+			
 			var civCentresBuilt       		= getGUIObjectByName("civCentresBuilt["+i+"]");
 			var enemyCivCentresDestroyed 	= getGUIObjectByName("enemyCivCentresDestroyed["+i+"]");
 			
@@ -121,7 +131,7 @@ function init(data)
 			
 			// align counters
 			
-			var left = 140;
+			var left = 240;
 			var width = 100;
 			unitsTrained.size				= left + " 2 " + (left + width) + " 100%"; left += width;
 			unitsLost.size 					= left + " 2 " + (left + width) + " 100%"; left += width;
@@ -129,22 +139,26 @@ function init(data)
 			buildingsConstructed.size 		= left + " 2 " + (left + width) + " 100%"; left += width;
 			buildingsLost.size 				= left + " 2 " + (left + width) + " 100%"; left += width;
 			enemyBuildingsDestroyed.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
-			civCentresBuilt.size 			= left + " 2 " + (left + width) + " 100%"; left += width;
-			enemyCivCentresDestroyed.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
 			var size = getGUIObjectByName("playerBox0["+i+"]").size;
 			size.right = left + 10;
 			getGUIObjectByName("playerBox0["+i+"]").size = size;
 			
+			var left = 240;
+			civCentresBuilt.size 			= left + " 2 " + (left + width) + " 100%"; left += width;
+			enemyCivCentresDestroyed.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
+			var size = getGUIObjectByName("playerBox1["+i+"]").size;
+			size.right = left + 10;
+			getGUIObjectByName("playerBox1["+i+"]").size = size;
 			
-			var left = 140;
+			var left = 240;
 			foodGathered.size       = left + " 2 " + (left + width) + " 100%"; left += width;
 			vegetarianRatio.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
 			woodGathered.size       = left + " 2 " + (left + width) + " 100%"; left += width;
 			metalGathered.size      = left + " 2 " + (left + width) + " 100%"; left += width;
 			stoneGathered.size      = left + " 2 " + (left + width) + " 100%"; left += width;
-			var size = getGUIObjectByName("playerBox1["+i+"]").size;
+			var size = getGUIObjectByName("playerBox2["+i+"]").size;
 			size.right = left + 10;
-			getGUIObjectByName("playerBox1["+i+"]").size = size;
+			getGUIObjectByName("playerBox2["+i+"]").size = size;
 			
 			// display counters
 			unitsTrained.caption         		= playerState.statistics.unitsTrained;
@@ -153,6 +167,7 @@ function init(data)
 			buildingsConstructed.caption 		= playerState.statistics.buildingsConstructed;
 			buildingsLost.caption        		= playerState.statistics.buildingsLost;
 			enemyBuildingsDestroyed.caption 	= playerState.statistics.enemyBuildingsDestroyed;
+			
 			civCentresBuilt.caption      		= playerState.statistics.civCentresBuilt;
 			enemyCivCentresDestroyed.caption    = playerState.statistics.enemyCivCentresDestroyed;
 			
