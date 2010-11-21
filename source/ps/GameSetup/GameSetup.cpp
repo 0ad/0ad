@@ -113,6 +113,7 @@ ERROR_TYPE(System, RequiredExtensionsMissing);
 #define LOG_CATEGORY L"gamesetup"
 
 bool g_DoRenderGui = true;
+bool g_DoRenderLogger = true;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
@@ -258,7 +259,7 @@ void Render()
 	ogl_WarnIfError();
 
 	PROFILE_START("render logger");
-	g_Logger->Render();
+	if(g_DoRenderLogger) g_Logger->Render();
 	PROFILE_END("render logger");
 
 	ogl_WarnIfError();
@@ -734,7 +735,7 @@ void EarlyInit()
 
 static bool Autostart(const CmdLineArgs& args);
 
-void Init(const CmdLineArgs& args, int flags)
+void Init(const CmdLineArgs& args, int UNUSED(flags))
 {
 	h_mgr_init();
 
@@ -878,6 +879,10 @@ void RenderGui(bool RenderingState)
 	g_DoRenderGui = RenderingState;
 }
 
+void RenderLogger(bool RenderingState)
+{
+	g_DoRenderLogger = RenderingState;
+}
 
 static bool Autostart(const CmdLineArgs& args)
 {

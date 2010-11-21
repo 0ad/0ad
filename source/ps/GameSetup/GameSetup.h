@@ -49,6 +49,7 @@ enum InitFlags
  * enable/disable rendering of the GUI (intended mainly for screenshots)
  */
 extern void RenderGui(bool RenderingState);
+extern void RenderLogger(bool RenderingState);
 
 class CmdLineArgs;
 extern void Init(const CmdLineArgs& args, int flags);

@@ -36,6 +36,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Game.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
@@ -243,6 +244,11 @@ void WriteScreenshot(const std::wstring& extension)
 		flags |= TEX_BGR;
 	}
 
+	// Hide log messages and re-render
+	RenderLogger(false);
+	Render();
+	RenderLogger(true);
+
 	const size_t img_size = w * h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(filename);
 	shared_ptr<u8> buf = io_Allocate(hdr_size+img_size);
@@ -251,7 +257,16 @@ void WriteScreenshot(const std::wstring& extension)
 	if(tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
 		return;
 	glReadPixels(0, 0, (GLsizei)w, (GLsizei)h, fmt, GL_UNSIGNED_BYTE, img);
-	(void)tex_write(&t, filename);
+
+	if (tex_write(&t, filename) == INFO::OK)
+	{
+		fs::wpath realPath;
+		g_VFS->GetRealPath(filename, realPath);
+		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.string().c_str());
+	}
+	else
+		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
+
 	tex_free(&t);
 }
 
@@ -335,9 +350,11 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 			// Adjust the camera to render the appropriate region
 			g_Game->GetView()->GetCamera()->SetProjectionTile(tiles, tile_x, tile_y);
 
+			RenderLogger(false);
 			RenderGui(false);
 			Render();
 			RenderGui(true);
+			RenderLogger(true);
 
 			// Copy the tile pixels into the main image
 			glReadPixels(0, 0, tile_w, tile_h, fmt, GL_UNSIGNED_BYTE, tile_data);
@@ -367,7 +384,15 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 		g_Game->GetView()->GetCamera()->SetProjectionTile(1, 0, 0);
 	}
 
-	(void)tex_write(&t, filename);
+	if (tex_write(&t, filename) == INFO::OK)
+	{
+		fs::wpath realPath;
+		g_VFS->GetRealPath(filename, realPath);
+		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.string().c_str());
+	}
+	else
+		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
+
 	tex_free(&t);
 	free(tile_data);
 }

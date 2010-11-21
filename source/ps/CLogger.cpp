@@ -150,7 +150,7 @@ static std::string ToHTML(const wchar_t* message)
 	return cmessage;
 }
 
-void CLogger::WriteMessage(const wchar_t* message)
+void CLogger::WriteMessage(const wchar_t* message, bool doRender = false)
 {
 	std::string cmessage = ToHTML(message);
 
@@ -163,8 +163,12 @@ void CLogger::WriteMessage(const wchar_t* message)
 	*m_MainLog << "<p>" << cmessage << "</p>\n";
 	m_MainLog->flush();
 	
-	// Don't do this since it results in too much noise:
-//	PushRenderMessage(Normal, message);
+	if (doRender)
+	{
+		if (g_Console) g_Console->InsertMessage(L"INFO: %ls", message);
+
+		PushRenderMessage(Normal, message);
+	}
 }
 
 void CLogger::WriteError(const wchar_t* message)
@@ -252,6 +256,22 @@ void CLogger::LogMessage(const wchar_t* fmt, ...)
 	va_end(argp);
 
 	WriteMessage(buffer);
+}
+
+void CLogger::LogMessageRender(const wchar_t* fmt, ...)
+{
+	va_list argp;
+	wchar_t buffer[BUFFER_SIZE] = {0};
+	
+	va_start(argp, fmt);
+	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
+	{
+		// Buffer too small - ensure the string is nicely terminated
+		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
+	}
+	va_end(argp);
+
+	WriteMessage(buffer, true);
 }
 
 void CLogger::LogWarning(const wchar_t* fmt, ...)

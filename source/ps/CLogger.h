@@ -34,6 +34,7 @@ extern CLogger* g_Logger;
 // from all of the files. LOG_INFO, LOG_WARNING and LOG_ERROR are currently existing macros.
 
 #define LOGMESSAGE g_Logger->LogMessage
+#define LOGMESSAGERENDER g_Logger->LogMessageRender
 #define LOGWARNING g_Logger->LogWarning
 #define LOGERROR g_Logger->LogError
 
@@ -67,7 +68,7 @@ public:
 
 	// Functions to write different message types (Errors and warnings are placed 
 	// both in mainLog and intrestingLog.)
-	void WriteMessage(const wchar_t* message);
+	void WriteMessage(const wchar_t* message, bool doRender);
 	void WriteError  (const wchar_t* message);
 	void WriteWarning(const wchar_t* message);
 	
@@ -77,6 +78,7 @@ public:
 
 	// Functions to write a message, warning or error to file.
 	void LogMessage(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
+	void LogMessageRender(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
 	void LogWarning(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
 	void LogError(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
 
