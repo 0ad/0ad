@@ -826,7 +826,7 @@ void CGameView::Update(float DeltaTime)
 	m->ViewCamera.UpdateFrustum();
 }
 
-void CGameView::MoveCameraTarget(const CVector3D& target)
+void CGameView::MoveCameraTarget(const CVector3D& target, bool minimap)
 {
 	// Maintain the same orientation and level of zoom, if we can
 	// (do this by working out the point the camera is looking at, saving
@@ -841,8 +841,13 @@ void CGameView::MoveCameraTarget(const CVector3D& target)
 
 	CVector3D pivot = targetCam.GetFocus();
 	CVector3D delta = target - pivot;
+	
+	//If minimap movement, maintain previous zoom level by not changing Y position
+	//	- this prevents strange behavior when moving across changes in terrain height
+	if (!minimap)
+		m->PosY.SetValueSmoothly(delta.Y + m->PosY.GetValue());
+
 	m->PosX.SetValueSmoothly(delta.X + m->PosX.GetValue());
-	m->PosY.SetValueSmoothly(delta.Y + m->PosY.GetValue());
 	m->PosZ.SetValueSmoothly(delta.Z + m->PosZ.GetValue());
 
 	ClampDistance(m, false);

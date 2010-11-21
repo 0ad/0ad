@@ -153,7 +153,7 @@ void CMiniMap::SetCameraPos()
 	CVector3D target;
 	GetMouseWorldCoordinates(target.X, target.Z);
 	target.Y = terrain->GetExactGroundLevel(target.X, target.Z);
-	g_Game->GetView()->MoveCameraTarget(target);
+	g_Game->GetView()->MoveCameraTarget(target, true);
 }
 
 float CMiniMap::GetAngle()
