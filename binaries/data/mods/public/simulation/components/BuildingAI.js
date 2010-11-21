@@ -1,3 +1,7 @@
+//Number of rounds of firing per 2 seconds
+const roundCount = 10;
+const timerInterval = 2000 / roundCount;
+
 function BuildingAI() {}
 
 BuildingAI.prototype.Schema = 
@@ -16,7 +20,11 @@ BuildingAI.prototype.Init = function()
 	if (this.template.DefaultArrowCount > 0 || this.template.GarrisonArrowMultiplier > 0)
 	{
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_BuildingAI, "FireArrows", 1000, {});
+		this.currentRound = 0;
+		//Arrows left to fire
+		this.arrowsLeft = 0;
+		this.timer = cmpTimer.SetTimeout(this.entity, IID_BuildingAI, "FireArrows", timerInterval, {});
+		this.targetUnits = [];
 	}
 };
 
@@ -49,7 +57,6 @@ BuildingAI.prototype.OnDestroy = function()
  */
 BuildingAI.prototype.SetupRangeQuery = function(owner)
 {
-	
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	if (this.enemyUnitsQuery)
@@ -82,19 +89,19 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
  */
 BuildingAI.prototype.OnRangeUpdate = function(msg)
 {
-	if (!this.targetUnit && msg.added.length > 0)
+	if (msg.added.length > 0)
 	{
-		this.targetUnit = msg.added[0];
-		return;
+		for each (var entity in msg.added)
+		{
+			this.targetUnits.push(entity);
+		}
 	}
-	else if (this.targetUnit && msg.removed.length > 0 && msg.removed.indexOf(this.targetUnit) != -1)
+	if (msg.removed.length > 0)
 	{
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var targetUnits = cmpRangeManager.ResetActiveQuery(this.enemyUnitsQuery);
-		if (targetUnits.length > 0)
-			this.targetUnit = targetUnits[0];
-		else
-			this.targetUnit = undefined;
+		for each (var entity in msg.removed)
+		{
+			this.targetUnits.splice(this.targetUnits.indexOf(entity), 1);
+		}
 	}
 };
 
@@ -109,8 +116,7 @@ BuildingAI.prototype.GetArrowCount = function()
 	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	if (cmpGarrisonHolder)
 	{
-		//Need to get garrisoned infantry count
-		count += Math.round(cmpGarrisonHolder.GetGarrisonedArcherCount() * this.template.GarrisonArrowMultiplier);
+		count += Math.round(cmpGarrisonHolder.GetGarrisonedArcherCount() * +this.template.GarrisonArrowMultiplier);
 	}
 	return count;
 };
@@ -124,24 +130,41 @@ BuildingAI.prototype.FireArrows = function()
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (cmpAttack)
 	{
-		var timerInterval;
-		var arrowCount = this.GetArrowCount();
-		if (arrowCount > 0)
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		this.timer = cmpTimer.SetTimeout(this.entity, IID_BuildingAI, "FireArrows", timerInterval, {});
+		var arrowsToFire = 0;
+		if (this.currentRound > (roundCount - 1))
 		{
-			timerInterval = Math.round(2000 / arrowCount);
+			//Reached end of rounds. Reset count
+			this.currentRound = 0;
+		}
+		
+		if (this.currentRound == 0)
+		{
+			//First round. Calculate arrows to fire
+			this.arrowsLeft = this.GetArrowCount();
+		}
+		
+		if (this.currentRound == (roundCount - 1))
+		{
+			//Last round. Need to fire all left-over arrows
+			arrowsToFire = this.arrowsLeft;
 		}
 		else
 		{
-			timerInterval = 1000;
+			//Fire N arrows, 0 <= N <= Number of arrows left
+			arrowsToFire = Math.floor(Math.random() * this.arrowsLeft);
 		}
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_BuildingAI, "FireArrows", timerInterval, {});
-		
-		if (this.targetUnit && (arrowCount > 0))
+		if (this.targetUnits.length > 0)
 		{
-			cmpAttack.PerformAttack("Ranged", this.targetUnit);	
+			for (var i = 0;i < arrowsToFire;i++)
+			{
+				cmpAttack.PerformAttack("Ranged", this.targetUnits[Math.floor(Math.random() * this.targetUnits.length)]);
+				PlaySound("arrowfly", this.entity);
+			}
+			this.arrowsLeft -= arrowsToFire;
 		}
-		
+		this.currentRound++;
 	}
 };
 
