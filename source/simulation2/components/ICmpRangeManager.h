@@ -19,8 +19,8 @@
 #define INCLUDED_ICMPRANGEMANAGER
 
 #include "simulation2/system/Interface.h"
-
 #include "simulation2/helpers/Position.h"
+#include "simulation2/helpers/Player.h"
 
 #include "graphics/Terrain.h" // for CELL_SIZE
 
@@ -257,6 +257,11 @@ public:
 	 * Returns whether the LOS is restricted to a circular map.
 	 */
 	virtual bool GetLosCircular() = 0;
+
+	/**
+	 * Get percent map explored statistics for specified player
+	 */
+	virtual i32 GetPercentMapExplored(player_id_t playerId) = 0;
 
 	DECLARE_INTERFACE_TYPE(RangeManager)
 };

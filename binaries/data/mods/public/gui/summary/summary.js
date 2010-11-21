@@ -77,6 +77,7 @@ function init(data)
 	getGUIObjectByName("playerName1Heading").size 				= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
 	getGUIObjectByName("civCentresBuiltHeading").size 			= left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("enemyCivCentresDestroyedHeading").size 	= left +  " 6 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("mapExplorationHeading").size 			= left +  " 6 " + (left + width) + " 100%"; left += width;
 	
 	var left = 50; 
 	getGUIObjectByName("playerName2Heading").size 		= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
@@ -122,6 +123,7 @@ function init(data)
 			
 			var civCentresBuilt       		= getGUIObjectByName("civCentresBuilt["+i+"]");
 			var enemyCivCentresDestroyed 	= getGUIObjectByName("enemyCivCentresDestroyed["+i+"]");
+			var mapExploration 				= getGUIObjectByName("mapExploration["+i+"]");
 			
 			var foodGathered         		= getGUIObjectByName("foodGathered["+i+"]");
 			var vegetarianRatio      		= getGUIObjectByName("vegetarianRatio["+i+"]");
@@ -146,6 +148,7 @@ function init(data)
 			var left = 240;
 			civCentresBuilt.size 			= left + " 2 " + (left + width) + " 100%"; left += width;
 			enemyCivCentresDestroyed.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
+			mapExploration.size 			= left + " 2 " + (left + width) + " 100%"; left += width;
 			var size = getGUIObjectByName("playerBox1["+i+"]").size;
 			size.right = left + 10;
 			getGUIObjectByName("playerBox1["+i+"]").size = size;
@@ -170,6 +173,7 @@ function init(data)
 			
 			civCentresBuilt.caption      		= playerState.statistics.civCentresBuilt;
 			enemyCivCentresDestroyed.caption    = playerState.statistics.enemyCivCentresDestroyed;
+			mapExploration.caption				= playerState.statistics.percentMapExplored + "%";
 			
 			foodGathered.caption         = playerState.statistics.resourcesGathered.food;
 			vegetarianRatio.caption      = Math.floor(playerState.statistics.resourcesGathered.food > 0 ? 

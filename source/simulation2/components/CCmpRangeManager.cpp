@@ -581,8 +581,6 @@ public:
 			m_DebugOverlayLines.clear();
 	}
 
-private:
-
 	/**
 	 * Update all currently-enabled active queries.
 	 */
@@ -1172,6 +1170,26 @@ private:
 
 			LosUpdateHelperIncremental(owner, visionRange, from, to);
 		}
+	}
+
+	virtual i32 GetPercentMapExplored(player_id_t playerId)
+	{
+		i32 exploredVertices = 0;
+		i32 overallVisibleVertices = 0;
+		CLosQuerier los(playerId, m_LosState, m_TerrainVerticesPerSide);
+
+		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
+		{
+			for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
+			{
+				if (!LosIsOffWorld(i, j))
+				{
+					overallVisibleVertices++;
+					exploredVertices += (i32)los.IsExplored(i, j);
+				}
+			}
+		}
+		return exploredVertices * 100 / overallVisibleVertices;
 	}
 };
 

@@ -108,7 +108,9 @@
 					<object name="enemyCivCentresDestroyedHeading" type="text" text_align="center" font="serif-bold-14" >
 						Enemy&#10;civ centres&#10;destroyed
 					</object>
-					
+					<object name="mapExplorationHeading" type="text" text_align="center" font="serif-bold-14" >
+						Map&#10;exploration
+					</object>
 				</object>	
 				
 				<object size="0 65 100% 100%-50">
@@ -119,6 +121,7 @@
 							<object name="civIcon1[n]" 					type="image" size="208 0 240 32"/>
 							<object name="civCentresBuilt[n]"      		type="text"  text_align="center" />
 							<object name="enemyCivCentresDestroyed[n]" 	type="text"  text_align="center" />
+							<object name="mapExploration[n]" 			type="text"  text_align="center" />
 						</object>
 					</repeat>
 				</object>

@@ -46,4 +46,5 @@ DEFINE_INTERFACE_METHOD_1("SetLosRevealAll", void, ICmpRangeManager, SetLosRevea
 DEFINE_INTERFACE_METHOD_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, int)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
 DEFINE_INTERFACE_METHOD_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
+DEFINE_INTERFACE_METHOD_1("GetPercentMapExplored", i32, ICmpRangeManager, GetPercentMapExplored, player_id_t)
 END_INTERFACE_WRAPPER(RangeManager)

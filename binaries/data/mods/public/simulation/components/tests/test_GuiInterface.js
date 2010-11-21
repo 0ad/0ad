@@ -68,6 +68,7 @@ AddMock(100, IID_StatisticsTracker, {
 				"vegetarianFood": 0, 
 			},
 			"treasuresCollected": 0,
+			"percentMapExplored": 10,
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
@@ -106,6 +107,7 @@ AddMock(101, IID_StatisticsTracker, {
 				"vegetarianFood": 0, 
 			},
 			"treasuresCollected": 0,
+			"percentMapExplored": 10,
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
@@ -174,6 +176,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					vegetarianFood: 0, 
 				},
 				treasuresCollected: 0,
+				percentMapExplored: 10,
 			},
 		},
 		{
@@ -202,6 +205,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 					vegetarianFood: 0, 
 				},
 				treasuresCollected: 0,
+				percentMapExplored: 10,
 			},
 		}
 	],

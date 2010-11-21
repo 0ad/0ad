@@ -39,7 +39,8 @@ StatisticsTracker.prototype.GetStatistics = function()
  		"civCentresBuilt": this.civCentresBuilt,
  		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
  		"resourcesGathered": this.resourcesGathered,
-		"treasuresCollected": this.treasuresCollected
+		"treasuresCollected": this.treasuresCollected,
+		"percentMapExplored": this.GetPercentMapExplored()
  	};
 };
 
@@ -114,6 +115,13 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
 {
 	return this.treasuresCollected++;
+};
+
+StatisticsTracker.prototype.GetPercentMapExplored = function()
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	return cmpRangeManager.GetPercentMapExplored(cmpPlayer.GetPlayerID());
 };
 
 Engine.RegisterComponentType(IID_StatisticsTracker, "StatisticsTracker", StatisticsTracker);
