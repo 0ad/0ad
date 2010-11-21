@@ -45,7 +45,7 @@ function LoadPlayerSettings(settings)
 		var team = getSetting(pData, pDefs, "Team");
 		
 		// If team defined, add player to the team
-		if (team && team != -1)
+		if (team !== undefined && team != -1)
 		{
 			if (!teams[team])
 				teams[team] = [i];

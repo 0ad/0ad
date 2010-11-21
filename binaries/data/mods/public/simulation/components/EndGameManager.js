@@ -15,11 +15,20 @@ EndGameManager.prototype.Init = function()
 	// Game type, initialised from the map settings.
 	// One of: "conquest" (default) and "endless"
 	this.gameType = "conquest";
+	
+	// Allied victory means allied players can win if victory conditions are met for each of them
+	// Would be false for a "last man standing" game (when diplomacy is fully implemented)
+	this.alliedVictory = true;
 };
 
 EndGameManager.prototype.SetGameType = function(newGameType)
 {
 	this.gameType = newGameType;
+};
+
+EndGameManager.prototype.SetAlliedVictory = function(flag)
+{
+	this.alliedVictory = flag;
 };
 
 /**
@@ -60,12 +69,15 @@ EndGameManager.prototype.UpdatePlayerStates = function()
 	{
 	case "conquest":
 
+		// Ignore gaia
+		var numPlayers = cmpPlayerManager.GetNumPlayers() - 1;
+		var diplomacy = new Array(numPlayers);
+		
 		// If a player is currently active but has no suitable units left,
-		// mark that player as defeated
-		// (Start from player 1 since we ignore Gaia)
-		for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); i++)
+		// mark that player as defeated (else get diplomacy for victory check)
+		for (var i = 0; i < numPlayers; i++)
 		{
-			var playerEntityId = cmpPlayerManager.GetPlayerByID(i);
+			var playerEntityId = cmpPlayerManager.GetPlayerByID(i+1);
 			var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
 			if (cmpPlayer.GetState() == "active")
 			{
@@ -73,30 +85,43 @@ EndGameManager.prototype.UpdatePlayerStates = function()
 				{
 					Engine.PostMessage(playerEntityId, MT_PlayerDefeated, null);
 				}
+				else
+				{	// Get active diplomacy array
+					diplomacy[i] = cmpPlayer.GetDiplomacy();
+				}
 			}
 		}
 
-		// If there's only player remaining active, mark them as the winner
-		// TODO: update this code for allies
-
-		var alivePlayersCount = 0;
-		var lastAlivePlayerId;
-		// (Start from 1 to ignore Gaia)
-		for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); i++)
+		// Check diplomacy to see if all active players are allied - if so, they all won
+		var onlyAlliesLeft = true;
+		var allyIDs = [];
+		
+		for (var i = 0; i < numPlayers && onlyAlliesLeft; i++)
 		{
-			var playerEntityId = cmpPlayerManager.GetPlayerByID(i);
-			var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
-			if (cmpPlayer.GetState() == "active")
+			if (diplomacy[i])
+			{	//Active player
+				for (var j = 0; j < numPlayers && j != i && onlyAlliesLeft; j++)
+				{
+					if (diplomacy[j] && (diplomacy[i][j] <= 0 || diplomacy[j][i] <= 0))
+					{	// Only need to find an active non-allied player
+						onlyAlliesLeft = false;
+					}
+				}
+				
+				if (onlyAlliesLeft)
+					allyIDs.push(i+1);
+			}
+		}
+
+		// If only allies left and allied victory set (or only one player left)
+		if (onlyAlliesLeft && (this.alliedVictory || allyIDs.length == 1))
+		{
+			for (var p in allyIDs)
 			{
-				alivePlayersCount++;
-				lastAlivePlayerId = i;
+				var playerEntityId = cmpPlayerManager.GetPlayerByID(allyIDs[p]);
+				var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
+				cmpPlayer.SetState("won");
 			}
-		}
-		if (alivePlayersCount == 1)
-		{
-			var playerEntityId = cmpPlayerManager.GetPlayerByID(lastAlivePlayerId);
-			var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
-			cmpPlayer.SetState("won");
 		}
 
 		break;
