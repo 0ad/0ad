@@ -889,6 +889,8 @@ function performCommand(entity, commandName)
 // Performs the specified formation
 function performFormation(entity, formationName)
 {
+	submitChatDirectly("FORMATIONS are not implemented yet.");
+
 	if (entity)
 	{
 		console.write(formationName);
