@@ -235,9 +235,6 @@ var UnitFsmSpec = {
 		},
 
 		"IDLE": {
-			"enter": function() {
-				this.SelectAnimation("idle");
-			},
 		},
 
 		"WALKING": {
@@ -261,6 +258,11 @@ var UnitFsmSpec = {
 	"FORMATIONMEMBER": {
 
 		"FormationLeave": function(msg) {
+			// We're leaving the formation, so stop our FormationWalk order
+			if (this.FinishOrder())
+				return;
+
+			// No orders left, we're an individual now
 			this.SetNextState("INDIVIDUAL.IDLE");
 		},
 
@@ -294,6 +296,10 @@ var UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function() {
+				// Switch back to idle animation to guarantee we won't
+				// get stuck with an incorrect animation
+				this.SelectAnimation("idle");
+
 				// If we entered the idle state we must have nothing better to do,
 				// so immediately check whether there's anybody nearby to attack.
 				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
@@ -302,11 +308,10 @@ var UnitFsmSpec = {
 					var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 					var ents = rangeMan.ResetActiveQuery(this.losRangeQuery);
 					if (this.GetStance().attackOnSight && this.AttackVisibleEntity(ents))
-						return true;
+						return true; // (abort the transition since we may have already switched state)
 				}
 
-				// Nobody to attack - switch to idle
-				this.SelectAnimation("idle");
+				// Nobody to attack - stay in idle
 				return false;
 			},
 
@@ -728,8 +733,9 @@ UnitAI.prototype.SetupRangeQuery = function(owner)
 	
 	var players = [];
 	
-	if(owner != -1)
-	{	// If unit not just killed, get enemy players via diplomacy
+	if (owner != -1)
+	{
+		// If unit not just killed, get enemy players via diplomacy
 		var player = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
 
 		// Get our diplomacy array
@@ -737,7 +743,8 @@ UnitAI.prototype.SetupRangeQuery = function(owner)
 		var numPlayers = playerMan.GetNumPlayers();
 		
 		for (var i = 1; i < numPlayers; ++i)
-		{	// Exclude gaia, allies, and self
+		{
+			// Exclude gaia, allies, and self
 			// TODO: How to handle neutral players - Special query to attack military only?
 			if (i != owner && diplomacy[i - 1] < 0)
 				players.push(i);

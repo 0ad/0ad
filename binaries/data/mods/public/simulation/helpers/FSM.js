@@ -9,6 +9,73 @@
 // plain old JS objects, with no need to serialise the complex
 // FSM structure itself or to add custom serialisation code.)
 
+/**
+
+FSM API:
+
+Users define the FSM behaviour like:
+
+var FsmSpec = {
+
+	// Define some default message handlers:
+
+	"MessageName1": function(msg) {
+		// This function will be called in response to calls to
+		//   Fsm.ProcessMessage(this, { "type": "MessageName1", "data": msg });
+		//
+		// In this function, 'this' is the component object passed into
+		// ProcessMessage, so you can access 'this.propertyName'
+		// and 'this.methodName()' etc.
+	},
+
+	"MessageName2": function(msg) {
+		// Another message handler.
+	},
+
+	// Define the behaviour for the 'STATENAME' state:
+	"STATENAME": {
+
+		"MessageName1": function(msg) {
+			// This overrides the previous MessageName1 that was
+			// defined earlier, and will be called instead of it
+			// in response to ProcessMessage.
+		},
+
+		// We don't override MessageName2, so the default one
+		// will be called instead.
+
+		// Define the 'STATENAME.SUBSTATENAME' state:
+		// (we support arbitrarily-nested hierarchies of states)
+		"SUBSTATENAME": {
+
+			"MessageName2": function(msg) {
+				// Override the default MessageName2.
+				// But we don't override MessageName1, so the one from
+				// STATENAME will be used instead.
+			},
+
+			"enter": function() {
+				// This is a special function called when transitioning
+				// into this state, or into a substate of this state.
+				//
+				// If it returns true, the transition will be aborted:
+				// do this if you've called SetNextState inside this enter
+				// handler, because otherwise the new state transition
+				// will get mixed up with the previous ongoing one.
+				// In normal cases, you can return false or nothing.
+			},
+
+			"leave": function() {
+				// Called when transitioning out of this state.
+			},
+		},
+
+	}
+
+}
+
+ */
+
 function FSM(spec)
 {
 	// The (relatively) human-readable FSM specification needs to get

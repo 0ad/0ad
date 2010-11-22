@@ -51,6 +51,12 @@ public:
 		TS_ASSERT(componentManager->LoadScript(L"simulation/components/"+name));
 	}
 
+	static void Script_LoadHelperScript(void* cbdata, std::wstring name)
+	{
+		CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+		TS_ASSERT(componentManager->LoadScript(L"simulation/helpers/"+name));
+	}
+
 	void test_scripts()
 	{
 		if (!FileExists(L"simulation/components/tests/setup.js"))
@@ -69,6 +75,7 @@ public:
 			ScriptTestSetup(componentManager.GetScriptInterface());
 
 			componentManager.GetScriptInterface().RegisterFunction<void, std::wstring, Script_LoadComponentScript> ("LoadComponentScript");
+			componentManager.GetScriptInterface().RegisterFunction<void, std::wstring, Script_LoadHelperScript> ("LoadHelperScript");
 
 			componentManager.LoadComponentTypes();
 

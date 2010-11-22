@@ -379,6 +379,13 @@ void ForceGC(void* cbdata)
 	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
 }
 
+void DumpSimState(void* UNUSED(cbdata))
+{
+	fs::wpath path (psLogDir()/L"sim_dump.txt");
+	std::ofstream file (path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	g_Game->GetSimulation2()->DumpDebugState(file);
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -430,4 +437,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<int, &Crash>("Crash");
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
+	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
 }

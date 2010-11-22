@@ -28,10 +28,33 @@ Engine.QueryInterface = function(ent, iid)
 	return null;
 };
 
+Engine.RegisterGlobal = function(name, value)
+{
+	global[name] = value;
+};
+
+Engine.DestroyEntity = function(ent)
+{
+	for (var cid in g_Components[ent])
+	{
+		var cmp = g_Components[ent][cid];
+		if (cmp.Deinit)
+			cmp.Deinit();
+	}
+
+	delete g_Components[ent];
+
+	// TODO: should send Destroy message
+};
+
 // TODO:
-//  Engine.RegisterGlobal
 //  Engine.PostMessage
 //  Engine.BroadcastMessage
+
+global.ResetState = function()
+{
+	g_Components = {};
+};
 
 global.AddMock = function(ent, iid, mock)
 {
@@ -46,5 +69,10 @@ global.ConstructComponent = function(ent, name, template)
 	cmp.entity = ent;
 	cmp.template = template;
 	cmp.Init();
+
+	if (!g_Components[ent])
+		g_Components[ent] = {};
+	g_Components[ent][g_ComponentTypes[name].iid] = cmp;
+
 	return cmp;
 };
