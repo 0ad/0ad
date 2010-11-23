@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="sail mesh">
+      <mesh>props/celt_merchant.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="swirl">
+      <texture>props/celt_sail_swirl.dds</texture>
+    </variant>
+    <variant frequency="1" name="circle">
+      <texture>props/celt_sail_circle.dds</texture>
+    </variant>
+    <variant frequency="1" name="face">
+      <texture>props/celt_sail_face.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

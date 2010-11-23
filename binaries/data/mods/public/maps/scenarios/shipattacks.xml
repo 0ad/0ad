@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="494.82" y="126.352" z="-85.0529"/>
-		<Rotation angle="0.00417802"/>
-		<Declination angle="0.564637"/>
+		<Position x="559.746" y="126.512" z="-100.552"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -162,6 +162,12 @@
 			<Player>2</Player>
 			<Position x="513.5539" z="882.76508"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>units/celt_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="601.54194" z="82.14554"/>
+			<Orientation y="2.32444"/>
 		</Entity>
 	</Entities>
 	<Paths/>

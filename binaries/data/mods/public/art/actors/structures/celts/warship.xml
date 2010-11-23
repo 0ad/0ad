@@ -4,9 +4,9 @@
   <float/>
   <group>
     <variant frequency="100" name="ship mesh">
-      <mesh>structural/celt_fishing_boat.dae</mesh>
+      <mesh>structural/celt_warship.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/fishing_sail.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/warship_sail.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_ship.png</texture>
     </variant>

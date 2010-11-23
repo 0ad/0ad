@@ -7,10 +7,10 @@
     <Icon>units/celt_ship_merchant.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/celts/merchant.xml</Actor>
+    <Actor>structures/celts/merchant_ship.xml</Actor>
   </VisualActor>
   <Footprint>
-    <Square width="6.0" depth="12.0"/>
+    <Square width="12.0" depth="24.0"/>
     <Height>6.0</Height>
   </Footprint>
 </Entity>
