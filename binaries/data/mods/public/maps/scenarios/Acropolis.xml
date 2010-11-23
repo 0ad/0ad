@@ -31,17 +31,46 @@
 {
   "Name":"Acropolis",
   "Description":"Four Greek cities duke it out on a gigantic round map. Each city starts on a large flat plateau, or 'Acropolis' and comes with a group of important civic buildings and a battalion of soldiers. The map represents central Greece around the area of Boeotia and Attica.",
-  "PlayerData":[{
-      "Civ":"hele"
+  "PlayerData": [
+    {
+      "Civ": "hele",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 0
     },
     {
-      "Civ":"hele"
+      "Civ": "hele",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 0
     },
     {
-      "Civ":"hele"
+      "Civ": "hele",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 1
     },
     {
-      "Civ":"hele"
+      "Civ": "hele",
+      "Resources": {
+        "food": 250,
+        "wood": 250,
+        "metal": 250,
+        "stone": 250
+      },
+      "Team": 1
     }
   ],
   "CircularMap":true
