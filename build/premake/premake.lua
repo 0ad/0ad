@@ -216,6 +216,12 @@ function package_set_build_flags()
 			if arch == "x86" then
 				tinsert(package.buildoptions, "-march=i686")
 			end
+
+			-- We don't want to require SSE2 everywhere yet, but OS X headers do
+			-- require it (and Intel Macs always have it) so enable it here
+			if OS == "macosx" then
+				tinsert(package.buildoptions, "-msse2")
+			end
 		end
 
 		tinsert(package.buildoptions, {
