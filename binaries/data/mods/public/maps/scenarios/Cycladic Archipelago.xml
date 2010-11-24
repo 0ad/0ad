@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="117.886" y="120.046" z="437.668"/>
+		<Position x="121.098" y="107.858" z="475.058"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.510887"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -2226,6 +2226,31 @@
 			<Player>0</Player>
 			<Position x="592.80756" z="102.14557"/>
 			<Orientation y="-2.06913"/>
+		</Entity>
+		<Entity uid="385">
+			<Template>actor|props/special/eyecandy/shipwreck_sail.xml</Template>
+			<Position x="380.01594" z="826.3412"/>
+			<Orientation y="1.62357"/>
+		</Entity>
+		<Entity uid="386">
+			<Template>actor|props/units/heads/prop_skull.xml</Template>
+			<Position x="117.06144" z="610.98682"/>
+			<Orientation y="-3.01955"/>
+		</Entity>
+		<Entity uid="387">
+			<Template>actor|props/units/heads/prop_skull.xml</Template>
+			<Position x="117.76455" z="610.86634"/>
+			<Orientation y="1.76188"/>
+		</Entity>
+		<Entity uid="388">
+			<Template>actor|props/units/heads/prop_skull.xml</Template>
+			<Position x="117.4065" z="611.44617"/>
+			<Orientation y="-0.08114"/>
+		</Entity>
+		<Entity uid="389">
+			<Template>actor|props/units/heads/prop_skull.xml</Template>
+			<Position x="116.38901" z="611.33851"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
