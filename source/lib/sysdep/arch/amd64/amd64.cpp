@@ -60,6 +60,27 @@ intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 	return _InterlockedExchangeAdd64((P64)location, increment);
 }
 
+#elif OS_MACOSX
+
+#include <libkern/OSAtomic.h>
+
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+{
+	cassert(sizeof(intptr_t) == sizeof(int64_t));
+	return OSAtomicAdd64Barrier(increment, (volatile int64_t*)location);
+}
+
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
+{
+	cassert(sizeof(intptr_t) == sizeof(void*));
+	return OSAtomicCompareAndSwapPtrBarrier((void*)expected, (void*)newValue, (void* volatile*)location);
+}
+
+bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue)
+{
+	return OSAtomicCompareAndSwap64Barrier(expected, newValue, location);
+}
+
 #elif GCC_VERSION
 
 intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)

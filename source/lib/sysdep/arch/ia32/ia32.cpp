@@ -178,19 +178,11 @@ intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 
 #include <libkern/OSAtomic.h>
 
-#if ARCH_IA32
 intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 {
 	cassert(sizeof(intptr_t) == sizeof(int32_t));
 	return OSAtomicAdd32Barrier(increment, (volatile int32_t*)location);
 }
-#else
-intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
-{
-	cassert(sizeof(intptr_t) == sizeof(int64_t));
-	return OSAtomicAdd64Barrier(increment, (volatile int64_t*)location);
-}
-#endif
 
 bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
 {
