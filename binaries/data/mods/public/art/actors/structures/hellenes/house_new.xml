@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Hellenes House A">
+    <variant frequency="3" name="Hellenes House A">
       <mesh>structural/hele_house_a.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/house_a_shields.xml" attachpoint="root"/>
@@ -10,6 +10,26 @@
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
       <texture>structural/hele_struct_b.png</texture>
+    </variant>
+    <variant frequency="2" name="Hellenes House B">
+      <mesh>structural/hele_house_b.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/house_b_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/house_b_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/house_b_gables.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct.dds</texture>
+    </variant>
+    <variant frequency="2" name="Hellenes House C">
+      <mesh>structural/hele_house_c.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/house_c_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/house_c_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/house_c_gables.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
