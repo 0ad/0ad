@@ -55,6 +55,50 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 
 static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
 {
+	// We'll run xmessage via fork/exec.
+	// To avoid bad interaction between fork and pthreads, the child process
+	// should only call async-signal-safe functions before exec.
+	// So prepare all the child's data in advance, before forking:
+
+	LibError err; // ignore UTF-8 errors
+	std::string message = utf8_from_wstring(text, &err);
+
+	// Replace CRLF->LF
+	boost::algorithm::replace_all(message, "\r\n", "\n");
+
+	// TODO: we ought to wrap the text if it's very long,
+	// since xmessage doesn't do that and it'll get clamped
+	// to the screen width
+
+	const char* cmd = "/usr/bin/xmessage";
+
+	char buttons[256] = "";
+	const char* defaultButton = "Exit";
+
+	if(!no_continue)
+	{
+		strcat_s(buttons, sizeof(buttons), "Continue:100,");
+		defaultButton = "Continue";
+	}
+
+	if(allow_suppress)
+		strcat_s(buttons, sizeof(buttons), "Suppress:101,");
+
+	strcat_s(buttons, sizeof(buttons), "Break:102,Debugger:103,Exit:104");
+
+	// Since execv wants non-const strings, we strdup them all here
+	// and will clean them up later (except in the child process where
+	// memory leaks don't matter)
+	char* const argv[] = {
+		strdup(cmd),
+		strdup("-geometry"), strdup("x500"), // set height so the box will always be very visible
+		strdup("-title"), strdup("0 A.D. message"), // TODO: maybe shouldn't hard-code app name
+		strdup("-buttons"), strdup(buttons),
+		strdup("-default"), strdup(defaultButton),
+		strdup(message.c_str()),
+		NULL
+	};
+
 	pid_t cpid = fork();
 	if(cpid == -1)
 		return ER_NOT_IMPLEMENTED;
@@ -66,43 +110,20 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 		// Set ASCII charset, to avoid font warnings from xmessage
 		setenv("LC_ALL", "C", 1);
 
-		LibError err; // ignore UTF-8 errors
-		std::string message = utf8_from_wstring(text, &err);
+		// NOTE: setenv is not async-signal-safe, so we shouldn't really use
+		// it here (it might want some mutex that was held by another thread
+		// in the parent process and that will never be freed within this
+		// process). But setenv/getenv are not guaranteed reentrant either,
+		// and this error-reporting function might get called from a non-main
+		// thread, so we can't just call setenv before forking as it might
+		// break the other threads. And we can't just clone environ manually
+		// inside the parent thread and use execve, because other threads might
+		// be calling setenv and will break our iteration over environ.
+		// In the absence of a good easy solution, and given that this is only
+		// an error-reporting function and shouldn't get called frequently,
+		// we'll just do setenv after the fork and hope that it fails
+		// extremely rarely.
 
-		// Replace CRLF->LF
-		boost::algorithm::replace_all(message, "\r\n", "\n");
-
-		// TODO: we ought to wrap the text if it's very long,
-		// since xmessage doesn't do that and it'll get clamped
-		// to the screen width
-
-		const char* cmd = "/usr/bin/xmessage";
-
-		char buttons[256] = "";
-		const char* defaultButton = "Exit";
-
-		if(!no_continue)
-		{
-			strcat_s(buttons, sizeof(buttons), "Continue:100,");
-			defaultButton = "Continue";
-		}
-
-		if(allow_suppress)
-			strcat_s(buttons, sizeof(buttons), "Suppress:101,");
-
-		strcat_s(buttons, sizeof(buttons), "Break:102,Debugger:103,Exit:104");
-
-		// Since execv wants non-const strings, we strdup them here
-		// and don't care about the memory leak
-		char* const argv[] = {
-			strdup(cmd),
-			strdup("-geometry"), strdup("x500"), // set height so the box will always be very visible
-			strdup("-title"), strdup("0 A.D. message"), // TODO: maybe shouldn't hard-code app name
-			strdup("-buttons"), buttons,
-			strdup("-default"), strdup(defaultButton),
-			strdup(message.c_str()),
-			NULL
-		};
 		execv(cmd, argv);
 
 		// If exec returns, it failed
@@ -111,6 +132,10 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 	}
 
 	// This is the parent process
+
+	// Avoid memory leaks
+	for(char* const* a = argv; *a; ++a)
+		free(*a);
 
 	int status = 0;
 	waitpid(cpid, &status, 0);
