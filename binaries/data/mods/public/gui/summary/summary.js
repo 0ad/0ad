@@ -65,27 +65,28 @@ function init(data)
 	var left = 50; 
 	var width = 100;
 	var playerNameHeadingWidth = 200;
-	getGUIObjectByName("playerName0Heading").size 				= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("unitsTrainedHeading").size 				= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("unitsLostHeading").size 				= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyUnitsKilledHeading").size 			= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("buildingsConstructedHeading").size 		= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("buildingsLostHeading").size 			= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyBuildingsDestroyedHeading").size 	= left +  " 6 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("playerName0Heading").size				= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("unitsTrainedHeading").size				= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("unitsLostHeading").size					= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("enemyUnitsKilledHeading").size			= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("buildingsConstructedHeading").size		= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("buildingsLostHeading").size				= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("enemyBuildingsDestroyedHeading").size	= left +  " 6 " + (left + width) + " 100%"; left += width;
 	
 	var left = 50; 
-	getGUIObjectByName("playerName1Heading").size 				= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("civCentresBuiltHeading").size 			= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("enemyCivCentresDestroyedHeading").size 	= left +  " 6 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("mapExplorationHeading").size 			= left +  " 6 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("playerName1Heading").size				= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("civCentresBuiltHeading").size			= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("enemyCivCentresDestroyedHeading").size	= left +  " 6 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("mapExplorationHeading").size			= left +  " 6 " + (left + width) + " 100%"; left += width;
 	
 	var left = 50; 
-	getGUIObjectByName("playerName2Heading").size 		= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("foodGatheredHeading").size 		= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("vegetarianRatioHeading").size 	= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("woodGatheredHeading").size 		= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("metalGatheredHeading").size 	= left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("stoneGatheredHeading").size 	= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("playerName2Heading").size			= left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("foodGatheredHeading").size			= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("vegetarianRatioHeading").size		= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("woodGatheredHeading").size			= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("metalGatheredHeading").size			= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("stoneGatheredHeading").size			= left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("treasuresCollectedHeading").size	= left + " 16 " + (left + width) + " 100%"; left += width;
 	
 	// Show counters
 	for (var i = 0; i < MAX_SLOTS; ++i)
@@ -114,73 +115,76 @@ function init(data)
 				getGUIObjectByName("civIcon"+k+"["+i+"]").sprite = "stretched:"+civData[playerState.civ].Emblem;
 			}
 			
-			var unitsTrained         		= getGUIObjectByName("unitsTrained["+i+"]");
-			var unitsLost            		= getGUIObjectByName("unitsLost["+i+"]");
-			var enemyUnitsKilled     		= getGUIObjectByName("enemyUnitsKilled["+i+"]");
-			var buildingsConstructed 		= getGUIObjectByName("buildingsConstructed["+i+"]");
-			var buildingsLost        		= getGUIObjectByName("buildingsLost["+i+"]");
-			var enemyBuildingsDestroyed 	= getGUIObjectByName("enemyBuildingsDestroyed["+i+"]");
+			var unitsTrained				= getGUIObjectByName("unitsTrained["+i+"]");
+			var unitsLost					= getGUIObjectByName("unitsLost["+i+"]");
+			var enemyUnitsKilled			= getGUIObjectByName("enemyUnitsKilled["+i+"]");
+			var buildingsConstructed		= getGUIObjectByName("buildingsConstructed["+i+"]");
+			var buildingsLost				= getGUIObjectByName("buildingsLost["+i+"]");
+			var enemyBuildingsDestroyed		= getGUIObjectByName("enemyBuildingsDestroyed["+i+"]");
 			
-			var civCentresBuilt       		= getGUIObjectByName("civCentresBuilt["+i+"]");
-			var enemyCivCentresDestroyed 	= getGUIObjectByName("enemyCivCentresDestroyed["+i+"]");
-			var mapExploration 				= getGUIObjectByName("mapExploration["+i+"]");
+			var civCentresBuilt				= getGUIObjectByName("civCentresBuilt["+i+"]");
+			var enemyCivCentresDestroyed	= getGUIObjectByName("enemyCivCentresDestroyed["+i+"]");
+			var mapExploration				= getGUIObjectByName("mapExploration["+i+"]");
 			
-			var foodGathered         		= getGUIObjectByName("foodGathered["+i+"]");
-			var vegetarianRatio      		= getGUIObjectByName("vegetarianRatio["+i+"]");
-			var woodGathered         		= getGUIObjectByName("woodGathered["+i+"]");
-			var metalGathered        		= getGUIObjectByName("metalGathered["+i+"]");
-			var stoneGathered        		= getGUIObjectByName("stoneGathered["+i+"]");
+			var foodGathered				= getGUIObjectByName("foodGathered["+i+"]");
+			var vegetarianRatio				= getGUIObjectByName("vegetarianRatio["+i+"]");
+			var woodGathered				= getGUIObjectByName("woodGathered["+i+"]");
+			var metalGathered				= getGUIObjectByName("metalGathered["+i+"]");
+			var stoneGathered				= getGUIObjectByName("stoneGathered["+i+"]");
+			var treasuresCollected			= getGUIObjectByName("treasuresCollected["+i+"]");
 			
 			// align counters
 			
 			var left = 240;
 			var width = 100;
 			unitsTrained.size				= left + " 2 " + (left + width) + " 100%"; left += width;
-			unitsLost.size 					= left + " 2 " + (left + width) + " 100%"; left += width;
-			enemyUnitsKilled.size 			= left + " 2 " + (left + width) + " 100%"; left += width;
-			buildingsConstructed.size 		= left + " 2 " + (left + width) + " 100%"; left += width;
-			buildingsLost.size 				= left + " 2 " + (left + width) + " 100%"; left += width;
-			enemyBuildingsDestroyed.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
+			unitsLost.size					= left + " 2 " + (left + width) + " 100%"; left += width;
+			enemyUnitsKilled.size			= left + " 2 " + (left + width) + " 100%"; left += width;
+			buildingsConstructed.size		= left + " 2 " + (left + width) + " 100%"; left += width;
+			buildingsLost.size				= left + " 2 " + (left + width) + " 100%"; left += width;
+			enemyBuildingsDestroyed.size	= left + " 2 " + (left + width) + " 100%"; left += width;
 			var size = getGUIObjectByName("playerBox0["+i+"]").size;
 			size.right = left + 10;
 			getGUIObjectByName("playerBox0["+i+"]").size = size;
 			
 			var left = 240;
-			civCentresBuilt.size 			= left + " 2 " + (left + width) + " 100%"; left += width;
-			enemyCivCentresDestroyed.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
-			mapExploration.size 			= left + " 2 " + (left + width) + " 100%"; left += width;
+			civCentresBuilt.size			= left + " 2 " + (left + width) + " 100%"; left += width;
+			enemyCivCentresDestroyed.size	= left + " 2 " + (left + width) + " 100%"; left += width;
+			mapExploration.size				= left + " 2 " + (left + width) + " 100%"; left += width;
 			var size = getGUIObjectByName("playerBox1["+i+"]").size;
 			size.right = left + 10;
 			getGUIObjectByName("playerBox1["+i+"]").size = size;
 			
 			var left = 240;
-			foodGathered.size       = left + " 2 " + (left + width) + " 100%"; left += width;
-			vegetarianRatio.size 	= left + " 2 " + (left + width) + " 100%"; left += width;
-			woodGathered.size       = left + " 2 " + (left + width) + " 100%"; left += width;
-			metalGathered.size      = left + " 2 " + (left + width) + " 100%"; left += width;
-			stoneGathered.size      = left + " 2 " + (left + width) + " 100%"; left += width;
+			foodGathered.size		= left + " 2 " + (left + width) + " 100%"; left += width;
+			vegetarianRatio.size	= left + " 2 " + (left + width) + " 100%"; left += width;
+			woodGathered.size		= left + " 2 " + (left + width) + " 100%"; left += width;
+			metalGathered.size		= left + " 2 " + (left + width) + " 100%"; left += width;
+			stoneGathered.size		= left + " 2 " + (left + width) + " 100%"; left += width;
+			treasuresCollected.size	= left + " 2 " + (left + width) + " 100%"; left += width;
 			var size = getGUIObjectByName("playerBox2["+i+"]").size;
 			size.right = left + 10;
 			getGUIObjectByName("playerBox2["+i+"]").size = size;
 			
 			// display counters
-			unitsTrained.caption         		= playerState.statistics.unitsTrained;
-			unitsLost.caption            		= playerState.statistics.unitsLost;
-			enemyUnitsKilled.caption     		= playerState.statistics.enemyUnitsKilled;
-			buildingsConstructed.caption 		= playerState.statistics.buildingsConstructed;
-			buildingsLost.caption        		= playerState.statistics.buildingsLost;
-			enemyBuildingsDestroyed.caption 	= playerState.statistics.enemyBuildingsDestroyed;
+			unitsTrained.caption				= playerState.statistics.unitsTrained;
+			unitsLost.caption					= playerState.statistics.unitsLost;
+			enemyUnitsKilled.caption			= playerState.statistics.enemyUnitsKilled;
+			buildingsConstructed.caption		= playerState.statistics.buildingsConstructed;
+			buildingsLost.caption				= playerState.statistics.buildingsLost;
+			enemyBuildingsDestroyed.caption		= playerState.statistics.enemyBuildingsDestroyed;
 			
-			civCentresBuilt.caption      		= playerState.statistics.civCentresBuilt;
-			enemyCivCentresDestroyed.caption    = playerState.statistics.enemyCivCentresDestroyed;
+			civCentresBuilt.caption				= playerState.statistics.civCentresBuilt;
+			enemyCivCentresDestroyed.caption	= playerState.statistics.enemyCivCentresDestroyed;
 			mapExploration.caption				= playerState.statistics.percentMapExplored + "%";
 			
-			foodGathered.caption         = playerState.statistics.resourcesGathered.food;
-			vegetarianRatio.caption      = Math.floor(playerState.statistics.resourcesGathered.food > 0 ? 
+			foodGathered.caption		= playerState.statistics.resourcesGathered.food;
+			vegetarianRatio.caption		= Math.floor(playerState.statistics.resourcesGathered.food > 0 ? 
 				(playerState.statistics.resourcesGathered.vegetarianFood / playerState.statistics.resourcesGathered.food) * 100 : 0) + "%";
-			woodGathered.caption         = playerState.statistics.resourcesGathered.wood;
-			metalGathered.caption        = playerState.statistics.resourcesGathered.metal;
-			stoneGathered.caption        = playerState.statistics.resourcesGathered.stone;
+			woodGathered.caption		= playerState.statistics.resourcesGathered.wood;
+			metalGathered.caption		= playerState.statistics.resourcesGathered.metal;
+			stoneGathered.caption		= playerState.statistics.resourcesGathered.stone;
+			treasuresCollected.caption	= playerState.statistics.treasuresCollected;
 		}
 		else
 		{
