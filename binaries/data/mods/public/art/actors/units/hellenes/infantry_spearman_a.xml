@@ -19,7 +19,7 @@
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
         <animation file="infantry/general/mine.psa" name="gather_rock" speed="200"/>
         <animation file="infantry/general/mine.psa" name="gather_ore" speed="200"/>
-		<animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
+        <animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -51,10 +51,7 @@
   </group>
   <group>
     <variant frequency="1" name="Armour-a">
-      <texture>skeletal/hele_isp_a.dds</texture>
-    </variant>
-    <variant frequency="1" name="Armour-b">
-      <texture>skeletal/hele_csw_e.dds</texture>
+      <texture>skeletal/hele_isp_b_3.dds</texture>
     </variant>
   </group>
   <group>
@@ -118,7 +115,7 @@
         <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
