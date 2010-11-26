@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="shield ekdromos slung">
+      <mesh>props/shield/aspis_back_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/hele_round_slung_b.xml" attachpoint="root"/>
+      </props>
+      <texture>props/shield/hele_round_h.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

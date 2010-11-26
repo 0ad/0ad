@@ -47,6 +47,8 @@
         <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="projectile"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+        <prop actor="props/units/shields/hele_round_slung_ekdromos.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
