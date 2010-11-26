@@ -4,6 +4,13 @@
     <Icon>gaia/flora_bush_berry.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>props/flora/foliagebush.xml</Actor>
+    <Actor>props/flora/bush_berries_large.xml</Actor>
   </VisualActor>
+  <Footprint>
+    <Circle radius="3.0"/>
+    <Height>1.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="2.0"/>
+  </Obstruction>
 </Entity>
