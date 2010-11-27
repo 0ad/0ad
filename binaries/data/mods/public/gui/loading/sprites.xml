@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<sprites>
+
+	<!-- BACKGROUND -->
+	<sprite name="loadingBackground">
+		<!-- background -->
+		<image
+			texture="loading/background-tile.png"
+			texture_size="0 0 512 512"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- gradient -->
+		<image
+			texture="loading/gradient_wide.png"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- sides -->
+		<image
+			texture="loading/border/border-top.png"
+			texture_size="0 0 128 16"
+			size="16 0 100%-16 16"
+		/>
+		<image
+			texture="loading/border/border-right.png"
+			texture_size="0 0 16 128"
+			size="100%-16 16 100% 100%-16"
+		/>
+		<image
+			texture="loading/border/border-bottom.png"
+			texture_size="0 0 128 16"
+			size="16 100%-16 100%-16 100%"
+		/>
+		<image
+			texture="loading/border/border-left.png"
+			texture_size="0 0 16 128"
+			size="0 16 16 100%-16"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="loading/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 0 100% 16"
+		/>
+		<image
+			texture="loading/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 100%-16 100% 100%"
+		/>
+		<image
+			texture="loading/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 100%-16 16 100%"
+		/>
+		<image
+			texture="loading/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 0 16 16"
+		/>
+	</sprite>
+
+	<!-- PROGRESS BAR BACKGROUND-->
+	<sprite name="loadingBarBackground">
+		<image
+			texture="loading/progressbar/progressbar_background_left.png"
+			real_texture_placement="0 0 64 32"
+			size="0%+0 0% 64 0%+32" 
+		/>
+        <image
+			texture="loading/progressbar/progressbar_background_middle.png"
+			real_texture_placement="0 0 64 32"
+			size="64 0% 100%-64 0%+32" 
+		/>
+        <image
+			texture="loading/progressbar/progressbar_background_right.png"
+			real_texture_placement="0 0 64 32"
+			size="100%-64 0% 100%+0 0%+32" 
+		/>
+	</sprite>
+
+	<!-- PROGRESS BAR -->
+	<sprite name="loadingProgressbar_left">
+		<image
+			texture="loading/progressbar/progressbar_left.png"
+			real_texture_placement="0 0 12 20"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
+	<sprite name="loadingProgressbar_middle">
+		<image
+			texture="loading/progressbar/progressbar_middle.png"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+	<sprite name="loadingProgressbar_right">
+		<image
+			texture="loading/progressbar/progressbar_right.png"
+			real_texture_placement="4 0 16 20"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
+
+	<!-- TIP IMAGE-->
+	<sprite name="loadingTipImage">
+		<image
+			texture="global/tile/tile_dark.png"
+			texture_size="0 0 100% 100%"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!-- TIP TEXT -->
+	<sprite name="loadingTipText">
+		<image
+			texture="loading/parchment.png"
+			real_texture_placement="0 0 322 386"
+		/>
+	</sprite>
+
+</sprites>

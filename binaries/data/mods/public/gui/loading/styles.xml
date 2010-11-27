@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<styles>
+
+	<style name="loadingPageTitleText"
+		font="serif-bold-18"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="loadingBarText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="loadingTitleText"
+		font="serif-bold-18"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style name="loadingText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style name="loadingTipTitleText"
+		font="serif-bold-16"
+		textcolor="black"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style name="loadingTipText"
+		font="serif-bold-14"
+		textcolor="black"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style name="loadingProgressBar"
+		sprite_bar="loadingProgressbar_middle"
+		ghost="true"
+		tooltip_style="snToolTip"
+		tooltip="(TBA)"
+	/>
+
+</styles>
