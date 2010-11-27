@@ -19,15 +19,15 @@
     <Max>2200</Max>
   </Health>
   <VisualActor>
-    <Actor>structures/hellenes/special_gym.xml</Actor>
-    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+    <Actor>structures/hellenes/gymnasion.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
   </VisualActor>
   <Footprint>
-    <Square width="22.0" depth="24.0"/>
+    <Square width="30.0" depth="30.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="22.0" depth="24.0"/>
+    <Static width="28.0" depth="28.0"/>
   </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
