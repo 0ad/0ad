@@ -33,18 +33,18 @@
 	</object>
 		
 	<!-- LOADING SCREEN TIP IMAGE-->
-	<object size="50%-448 50%-192 50%+64 50%+192" type="image" sprite="loadingTipImage">
+	<object size="50%-452 50%-194 50%+68 50%+194" type="image" sprite="loadingTipImage">
 		<object name="loadingTipImage" size="4 4 100%-4 100%-4" type="image" sprite="wheatIndentBorder"/>
 	</object>
 
 	<!-- LOADING SCREEN TIP TEXT-->
-	<object size="50%+128 50%-192 50%+448 50%+192" type="image" sprite="loadingTipText">
+	<object size="50%+128 50%-193 50%+448 50%+193" type="image" sprite="loadingTipText">
 		<object name="loadingTipTitle" size="30 30 100% 60" type="text" style="loadingTipTitleText"/>
 		<object name="loadingTipText" size="30 60 100%-30 100%" type="text" style="loadingTipText"/>
 	</object>
 
 	<!-- LOADING SCREEN QUOTE -->
-	<object size="64 50%+230 100% 100%">
+	<object size="64 50%+230 100% 100%-64">
 		<object name="loadingQuoteTitleText" size="0 0 100% 30" type="text" style="loadingTitleText">Quote of the Day:</object>
 		<object name="loadingQuoteText" size="0 30 100% 100%" type="text" style="loadingText"></object>
 	</object>
