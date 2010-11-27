@@ -142,6 +142,32 @@
 		</object>
 
 		<!-- ================================  ================================ -->
+		<!-- Session Dialog -->
+		<!-- ================================  ================================ -->
+		<object name="sessionDialog"
+			sprite="genericPanel"
+			type="image"
+			size="50%-180 50%-200 50%+180 50%+50"
+			hidden="true"
+		>
+			<object name="sessionDialogTitle" size="0 0 100% 32" type="text" style="largeBoldCenteredText">Title</object >
+			<object name="sessionDialogMessage" size="10 10 100%-10 100%-48" type="text" style="dialogText"/>
+			<object name="sessionDialogPanel" size="10 10 100%-10 100%-48" type="image"/>
+
+			<object size="0 100%-48 100% 100%">
+				<object name="sessionDialogConfirm" size="32 100%-44 144 100%-12" type="button" style="wheatButton">
+					OK
+				<action on="Press"></action>
+				</object>
+
+				<object name="sessionDialogCancel" size="100%-144 100%-44 100%-32 100%-12" type="button" style="wheatButton">
+					Cancel
+				<action on="Press">g_SessionDialog.close();</action>
+				</object>
+			</object>
+		</object>
+
+		<!-- ================================  ================================ -->
 		<!-- Pause Overlay -->
 		<!-- ================================  ================================ -->
 		<object type="button"
@@ -245,7 +271,8 @@
 					<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
 					<action on="Press">
 						toggleMenu();
-						<![CDATA[messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0, ["Yes", "No!"], [leaveGame, null]);]]>
+						openExitGameDialog();
+						
 					</action>
 				</object>
 				

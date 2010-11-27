@@ -46,7 +46,7 @@
 	</object>
 
 	<!-- LOADING SCREEN QUOTE (needs increased z value to overcome the transparent area of the tip image above it -->
-	<object size="64 50%+230 50% 100%-16" z="20">
+	<object size="50%-448 50%+230 50%+448 100%-16" z="20">
 		<object name="loadingQuoteTitleText" size="0 0 100% 30" type="text" style="loadingTitleText">Quote of the Day:</object>
 		<object name="loadingQuoteText" size="0 30 100% 100%" type="text" style="loadingText"></object>
 	</object>

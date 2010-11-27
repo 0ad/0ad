@@ -871,9 +871,7 @@ function performCommand(entity, commandName)
 							Engine.PostNetworkCommand({"type": "delete-entity", "entity": ent});
 					};
 
-					var btCaptions = ["Yes", "No"];
-					var btCode = [deleteFunction, null];
-					messageBox(320, 180, message, "Confirmation", 0, btCaptions, btCode);
+					g_SessionDialog.open("Delete", message, null, 170, 80, deleteFunction);
 				}
 				break;
 			case "unload-all":

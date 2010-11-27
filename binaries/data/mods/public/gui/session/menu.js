@@ -57,7 +57,12 @@ function togglePause()
 	menu.hidden = true;
 }
 
-function escapeKeyAction() // runs multiple times, so always closes all for now...
+function openExitGameDialog()
+{
+	g_SessionDialog.open("Confirmation", "Do you really want to quit?", null, 160, 70, leaveGame);
+}
+
+function escapeKeyAction()
 {
 	if (!menu.hidden)
 	{
@@ -71,5 +76,6 @@ function escapeKeyAction() // runs multiple times, so always closes all for now.
 	else if (!settingsWindow.hidden)
 	{
 		settingsWindow.hidden = true;
+		console.write("test");
 	}
 }

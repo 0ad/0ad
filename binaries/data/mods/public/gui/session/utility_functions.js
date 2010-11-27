@@ -3,6 +3,62 @@ const FLORA = "flora";
 const FAUNA = "fauna";
 const SPECIAL = "special";
 
+//-------------------------------- -------------------------------- -------------------------------- 
+// Session Dialog (only one at a time)
+//-------------------------------- -------------------------------- -------------------------------- 
+var g_SessionDialog = new SessionDialog();
+
+function SessionDialog()
+{
+	this.panel = {};
+}
+
+SessionDialog.prototype.open = function(title, message, panel, x, y, confirmFunction)
+{
+	getGUIObjectByName("sessionDialogTitle").caption = title;
+
+	if (message)
+		getGUIObjectByName("sessionDialogMessage").caption = message;
+	else
+		getGUIObjectByName("sessionDialogMessage").caption = "";
+
+	if(panel)
+	{
+		this.panel = panel;
+		panel.hidden = false;
+	}
+
+	if (confirmFunction)
+	{
+		var buttonFunction = function () {
+			this.close(panel); // "this" is defined as SessionDialog in this context
+			confirmFunction();
+		};
+
+		var dialog = this;
+		var confirmButton = getGUIObjectByName("sessionDialogConfirm");
+		confirmButton.onpress = function() { buttonFunction.call(dialog); };
+		confirmButton.hidden = false;
+		confirmButton.size = "32 100%-44 144 100%-12";
+		getGUIObjectByName("sessionDialogCancel").size = "100%-144 100%-44 100%-32 100%-12";
+	}
+	else
+	{
+		getGUIObjectByName("sessionDialogConfirm").hidden = true;
+		getGUIObjectByName("sessionDialogCancel").size = "50%-56 100%-44 50%+56 100%-12";
+	}
+	
+	getGUIObjectByName("sessionDialog").size = "50%-" + x + " 50%-" + y + " 50%+" + x + " 50%+" + y;
+	getGUIObjectByName("sessionDialog").hidden = false;
+};
+
+
+SessionDialog.prototype.close = function()
+{
+	getGUIObjectByName("sessionDialog").hidden = true;
+	if (this.panel)
+		this.panel.hidden = true;
+};
 
 //-------------------------------- -------------------------------- -------------------------------- 
 // Utility functions
