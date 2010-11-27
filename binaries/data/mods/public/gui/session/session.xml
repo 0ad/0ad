@@ -142,32 +142,6 @@
 		</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Session Dialog -->
-		<!-- ================================  ================================ -->
-		<object name="sessionDialog"
-			sprite="genericPanel"
-			type="image"
-			size="50%-180 50%-200 50%+180 50%+50"
-			hidden="true"
-		>
-			<object name="sessionDialogTitle" size="0 0 100% 32" type="text" style="largeBoldCenteredText">Title</object >
-			<object name="sessionDialogMessage" size="10 10 100%-10 100%-48" type="text" style="dialogText"/>
-			<object name="sessionDialogPanel" size="10 10 100%-10 100%-48" type="image"/>
-
-			<object size="0 100%-48 100% 100%">
-				<object name="sessionDialogConfirm" size="32 100%-44 144 100%-12" type="button" style="wheatButton">
-					OK
-				<action on="Press"></action>
-				</object>
-
-				<object name="sessionDialogCancel" size="100%-144 100%-44 100%-32 100%-12" type="button" style="wheatButton">
-					Cancel
-				<action on="Press">g_SessionDialog.close();</action>
-				</object>
-			</object>
-		</object>
-
-		<!-- ================================  ================================ -->
 		<!-- Pause Overlay -->
 		<!-- ================================  ================================ -->
 		<object type="button"
@@ -199,14 +173,14 @@
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatWindow" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" z="40" sprite="genericPanel">
+		<object name="chatDialogPanel" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" sprite="genericPanel">
 			<object name="chatInput" size="16 12 100%-16 36" type="input" style="chatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
 			<object  size="32 100%-44 144 100%-12" type="button" style="wheatButton">
 				Cancel
-				<action on="Press">toggleChatWindow();</action>
+				<action on="Press">closeChat();</action>
 			</object>
 			<object size="100%-144 100%-44 100%-32 100%-12" type="button" style="wheatButton">
 				Send
@@ -216,48 +190,71 @@
 		</object>
 
 		<!-- ================================  ================================ -->
+		<!-- Session Dialog -->
+		<!-- ================================  ================================ -->
+		<object name="sessionDialog"
+			sprite="genericPanel"
+			type="image"
+			size="50%-180 50%-200 50%+180 50%+50"
+			hidden="true"
+			z="30"
+		>
+			<object name="sessionDialogTitle" size="0 10 100% 36" type="text" style="largeBoldCenteredText">Title</object >
+			<object name="sessionDialogMessage" size="10 36 100%-10 100%-48" type="text" style="dialogText"/>
+			<object name="sessionDialogPanel" size="30 40 100%-30 100%-64" type="image"/>
+
+			<object size="0 100%-48 100% 100%">
+				<object name="sessionDialogConfirm" size="32 100%-44 144 100%-12" type="button" style="wheatButton">
+					OK
+				<action on="Press"></action>
+				</object>
+
+				<object name="sessionDialogCancel" size="100%-144 100%-44 100%-32 100%-12" type="button" style="wheatButton">
+					Cancel
+				<action on="Press">g_SessionDialog.close();</action>
+				</object>
+			</object>
+		</object>
+		
+		<!-- ================================  ================================ -->
 		<!-- Menu -->
 		<!-- ================================  ================================ -->
-		<object name="menuPanel"
+		<object name="menuDialogPanel"
 			size="50%-74 50%-180 50%+74 50%+20"
 			type="image"
-			sprite="genericPanel"
 			hidden="true"
-			z="60"
+			z="30"
 		>
-			<object size="0 0 100% 32" type="text" style="largeBoldCenteredText">Menu</object >
-
-			<object size="0 32 100% 100%">
-				<!-- Settings button -->
-				<object type="button"
-					name="settingsButton"
-					style="wheatButtonFancy"
-					size="50%-60 0 50%+60 32"
-					tooltip_style="snToolTip"
-				>
-					<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsButtonText" ghost="true">Settings</object>
-					<action on="Press">toggleSettingsWindow();</action>
-				</object>
+			<!-- Settings button -->
+			<object type="button"
+				name="settingsButton"
+				style="wheatButtonFancy"
+				size="50%-56 0 50%+56 32"
+				tooltip_style="snToolTip"
+			>
+				<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsButtonText" ghost="true">Settings</object>
+				<action on="Press">openSettingsDialog();</action>
+			</object>
 
 				<!-- Chat button -->
 				<object type="button"
 					name="chatButton"
 					style="wheatButtonFancy"
-					size="50%-60 32 50%+60 64"
+					size="50%-56 32 50%+56 64"
 					tooltip_style="snToolTip"
 				>
 					<object size="0 0 100% 100%" type="text" style="centeredText" name="chatButtonText" ghost="true">Chat</object>
-					<action on="Press">toggleChatWindow();</action>
+					<action on="Press">openChat();</action>
 				</object>
 
 				<!-- Pause Button -->
 				<object type="button"
 					style="wheatButtonFancy"
 					name="pauseButton"
-					size="50%-60 64 50%+60 96"
+					size="50%-56 64 50%+56 96"
 					tooltip_style="snToolTip"
 				>
-					<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
+					<object name="pauseButtonText" size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
 					<action on="Press">togglePause();</action>
 				</object>
 
@@ -265,82 +262,50 @@
 				<object type="button"
 					name="menuExitButton"
 					style="wheatButtonFancy"
-					size="50%-60 96 50%+60 128"
+					size="50%-56 96 50%+56 128"
 					tooltip_style="snToolTip"
 				>
 					<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
 					<action on="Press">
-						toggleMenu();
 						openExitGameDialog();
-						
 					</action>
 				</object>
-				
-				<!-- Cancel Button -->
-				<object type="button"
-					style="wheatButtonFancy"
-					name="menuCancelButton"
-					size="50%-60 128 50%+60 160"
-					tooltip_style="snToolTip"
-				>
-					<object size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Cancel</object>
-					<action on="Press">this.parent.parent.hidden=true;</action>
-				</object>
-			</object>
-
 		</object>
 
 		<!-- ================================  ================================ -->
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
-		<object name="settingsWindow"
+		<object name="settingsDialogPanel"
 			sprite="genericPanel"
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
+			z="30"
 		>
-			<object size="0 0 100% 32" type="text" style="largeBoldCenteredText">Settings</object >
-
-			<object name="settingsOptions"
-				size="30 36 100%-30 180"
-				type="image"
-				sprite="genericPanel"
-			>
-				<!-- Settings / shadows -->
-				<object size="0 10 100%-80 35" type="text" style="settingsText" ghost="true">Enable Shadows</object>
-				<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="wheatCrossBox" checked="true">
-					<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.shadows = this.checked;</action>
-				</object>	
+			<!-- Settings / shadows -->
+			<object size="0 10 100%-80 35" type="text" style="settingsText" ghost="true">Enable Shadows</object>
+			<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="wheatCrossBox" checked="true">
+				<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
+				<action on="Press">renderer.shadows = this.checked;</action>
+			</object>	
 				
-				<!-- Settings / Water -->
-				<object size="0 35 100%-80 60" type="text" style="settingsText" ghost="true">Enable Water Reflections</object>
-				<object name="fancyWaterCheckbox" size="100%-56 40 100%-30 65"  type="checkbox" style="wheatCrossBox" checked="true">
-					<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.fancyWater = this.checked;</action>
-				</object>
-				
-				<!-- Settings / Music-->
-				<object size="0 60 100%-80 85" type="text" style="settingsText" ghost="true">Enable Music</object>
-				<object size="100%-56 65 100%-30 90" type="checkbox" style="wheatCrossBox" checked="true">
-					<action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
-				</object>
-				
-				<!-- Settings / Dev Overlay -->
-				<object size="0 85 100%-80 110" type="text" style="settingsText" ghost="true">Developer Overlay</object>
-				<object size="100%-56 90 100%-30 115" type="checkbox" style="wheatCrossBox" checked="false">
-					<action on="Press">toggleDeveloperOverlay();</action>
-				</object>
-
+			<!-- Settings / Water -->
+			<object size="0 35 100%-80 60" type="text" style="settingsText" ghost="true">Enable Water Reflections</object>
+			<object name="fancyWaterCheckbox" size="100%-56 40 100%-30 65"  type="checkbox" style="wheatCrossBox" checked="true">
+				<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
+				<action on="Press">renderer.fancyWater = this.checked;</action>
 			</object>
-
-			<object name="settingsOKButton"
-				style="wheatButtonFancy"
-				type="button"
-				size="50%-50 100%-52 50%+50 100%-20" 
-			>
-				<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsOKButtonText" ghost="true">OK</object>
-				<action on="Press">toggleSettingsWindow();</action>
+				
+			<!-- Settings / Music-->
+			<object size="0 60 100%-80 85" type="text" style="settingsText" ghost="true">Enable Music</object>
+			<object size="100%-56 65 100%-30 90" type="checkbox" style="wheatCrossBox" checked="true">
+				<action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
+			</object>
+				
+			<!-- Settings / Dev Overlay -->
+			<object size="0 85 100%-80 110" type="text" style="settingsText" ghost="true">Developer Overlay</object>
+				<object size="100%-56 90 100%-30 115" type="checkbox" style="wheatCrossBox" checked="false">
+				<action on="Press">toggleDeveloperOverlay();</action>
 			</object>
 		</object>
 
@@ -409,7 +374,7 @@
 			tooltip_style="snToolTip"
 		>
 			<object size="0 0 100% 100%" type="image" sprite="menuButton" name="menuButtonText" ghost="true">MENU</object>
-			<action on="Press">toggleMenu();</action>
+			<action on="Press">openMenuDialog();</action>
 		</object> <!-- END OF MENU -->
 		
 	</object> <!-- END OF TOP PANEL -->

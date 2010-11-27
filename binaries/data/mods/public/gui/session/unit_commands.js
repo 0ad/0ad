@@ -255,7 +255,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		else if (guiName == "Command")
 		{
 			//icon.cell_id = i;
-			icon.cell_id = getCommandCellId(item);
+			//icon.cell_id = getCommandCellId(item);
+			icon.sprite = "stretched:session/icons/single/" + getCommandImage(item);
+			
 		}
 		else if (template.icon)
 		{

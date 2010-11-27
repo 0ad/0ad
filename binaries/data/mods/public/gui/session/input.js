@@ -862,7 +862,7 @@ function performCommand(entity, commandName)
 
 				if (selection.length > 0)
 				{
-					var message = selection.length > 1? "Are you sure you want to delete all of the units you have selected?" :
+					var message = selection.length > 1? "Are you sure you want to delete the " + selection.length + " units you have selected?" :
 																			"Are you sure you want to delete: "+unitName+"?";
 
 					var deleteFunction = deleteFunction = function ()
@@ -871,7 +871,7 @@ function performCommand(entity, commandName)
 							Engine.PostNetworkCommand({"type": "delete-entity", "entity": ent});
 					};
 
-					g_SessionDialog.open("Delete", message, null, 170, 80, deleteFunction);
+					g_SessionDialog.open("Delete", message, null, 340, 160, deleteFunction);
 				}
 				break;
 			case "unload-all":

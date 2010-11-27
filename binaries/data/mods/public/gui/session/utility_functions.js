@@ -10,28 +10,34 @@ var g_SessionDialog = new SessionDialog();
 
 function SessionDialog()
 {
-	this.panel = {};
+	this.referencedPanel = {};
 }
 
-SessionDialog.prototype.open = function(title, message, panel, x, y, confirmFunction)
+SessionDialog.prototype.open = function(title, message, referencedPanel, x, y, confirmFunction)
 {
-	getGUIObjectByName("sessionDialogTitle").caption = title;
+	// hide previous panel referencedPanel if applicable
+	if (this.referencedPanel)
+		this.referencedPanel.hidden = true
 
-	if (message)
-		getGUIObjectByName("sessionDialogMessage").caption = message;
-	else
-		getGUIObjectByName("sessionDialogMessage").caption = "";
+	// set dialog title if applicable
+	getGUIObjectByName("sessionDialogTitle").caption = title? title : "";
 
-	if(panel)
+	// set dialog message if applicable
+	getGUIObjectByName("sessionDialogMessage").caption = message? message : "";
+
+	// set panel reference if applicable
+	if(referencedPanel)
 	{
-		this.panel = panel;
-		panel.hidden = false;
+		referencedPanel.size =  "50%-" + ((x/2)-30) + " 50%-" + ((y/2)-44) + " 50%+" + ((x/2)-30) + " 50%+" + ((y/2)-52);
+		referencedPanel.hidden = false;
+		this.referencedPanel = referencedPanel;
 	}
 
+	// set confirm function if applicable
 	if (confirmFunction)
 	{
 		var buttonFunction = function () {
-			this.close(panel); // "this" is defined as SessionDialog in this context
+			this.close(referencedPanel); // "this" is defined as SessionDialog in this context
 			confirmFunction();
 		};
 
@@ -41,14 +47,16 @@ SessionDialog.prototype.open = function(title, message, panel, x, y, confirmFunc
 		confirmButton.hidden = false;
 		confirmButton.size = "32 100%-44 144 100%-12";
 		getGUIObjectByName("sessionDialogCancel").size = "100%-144 100%-44 100%-32 100%-12";
+		getGUIObjectByName("sessionDialogCancel").caption = "Cancel";
 	}
 	else
 	{
 		getGUIObjectByName("sessionDialogConfirm").hidden = true;
 		getGUIObjectByName("sessionDialogCancel").size = "50%-56 100%-44 50%+56 100%-12";
+		getGUIObjectByName("sessionDialogCancel").caption = "Close";
 	}
-	
-	getGUIObjectByName("sessionDialog").size = "50%-" + x + " 50%-" + y + " 50%+" + x + " 50%+" + y;
+
+	getGUIObjectByName("sessionDialog").size = "50%-" + x/2 + " 50%-" + y/2 + " 50%+" + x/2 + " 50%+" + y/2;
 	getGUIObjectByName("sessionDialog").hidden = false;
 };
 
@@ -56,8 +64,8 @@ SessionDialog.prototype.open = function(title, message, panel, x, y, confirmFunc
 SessionDialog.prototype.close = function()
 {
 	getGUIObjectByName("sessionDialog").hidden = true;
-	if (this.panel)
-		this.panel.hidden = true;
+	if (this.referencedPanel)
+		this.referencedPanel.hidden = true;
 };
 
 //-------------------------------- -------------------------------- -------------------------------- 
@@ -243,16 +251,16 @@ function getFormationCellId(formationName)
 	}
 }
 
-function getCommandCellId(commandName)
+function getCommandImage(commandName)
 {
 	switch (commandName)
 	{
 	case "delete":
-		return 1;
+		return "kill_small.png";
 	case "unload-all":
-		return 2;
+		return "garrison.png";
 	default:
-		return -1;
+		return "";
 	}
 }
 
