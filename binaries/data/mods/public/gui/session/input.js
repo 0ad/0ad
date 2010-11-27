@@ -862,8 +862,8 @@ function performCommand(entity, commandName)
 
 				if (selection.length > 0)
 				{
-					var message = selection.length > 1? "Are you sure you want to delete the " + selection.length + " units you have selected?" :
-																			"Are you sure you want to delete: "+unitName+"?";
+					var message = selection.length > 1? "Are you sure you want to delete the " + selection.length + " selected units?" :
+																			"Are you sure you want to delete the selected unit?";
 
 					var deleteFunction = deleteFunction = function ()
 					{ 
