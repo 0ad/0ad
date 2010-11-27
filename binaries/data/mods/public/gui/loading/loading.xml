@@ -39,8 +39,8 @@
 
 	<!-- LOADING SCREEN TIP TEXT-->
 	<object size="50%+128 50%-193 50%+448 50%+193" type="image" sprite="loadingTipText">
-		<object name="loadingTipTitle" size="30 30 100% 60" type="text" style="loadingTipTitleText"/>
-		<object name="loadingTipText" size="30 60 100%-30 100%" type="text" style="loadingTipText"/>
+		<object name="loadingTipTitle" size="30 30 100% 50" type="text" style="loadingTipTitleText"/>
+		<object name="loadingTipText" size="30 50 100%-30 100%" type="text" style="loadingTipText"/>
 	</object>
 
 	<!-- LOADING SCREEN QUOTE -->
