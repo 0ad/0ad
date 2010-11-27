@@ -105,54 +105,57 @@
 
 	<!-- TIP IMAGE-->
 	<sprite name="loadingTipImage">
-		<image
-			texture="global/tile/tile_dark.png"
-			texture_size="0 0 100% 100%"
-			size="0 0 100% 100%"
-		/>
-
 		<!-- sides -->
 		<image
-			texture="global/border/line_horiz.png"
+			texture="loading/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 0 100%-4 4"
 		/>
 		<image
-			texture="global/border/line_vert.png"
+			texture="loading/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="100%-4 4 100% 100%-4"
 		/>
 		<image
-			texture="global/border/line_horiz.png"
+			texture="loading/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 100%-4 100%-4 100%"
 		/>
 		<image
-			texture="global/border/line_vert.png"
+			texture="loading/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="0 4 4 100%-4"
 		/>
 
 		<!-- corners -->
 		<image
-			texture="global/border/line_corner_top_right.png"
+			texture="loading/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 0 100% 4"
 		/>
 		<image
-			texture="global/border/line_corner_bottom_right.png"
+			texture="loading/border/line_corner_bottom_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 100%-4 100% 100%"
 		/>
 		<image
-			texture="global/border/line_corner_bottom_left.png"
+			texture="loading/border/line_corner_bottom_left.png"
 			texture_size="0 0 4 4"
 			size="0 100%-4 4 100%"
 		/>
 		<image
-			texture="global/border/line_corner_top_left.png"
+			texture="loading/border/line_corner_top_left.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
+		/>
+	</sprite>
+	
+	<!-- TIP IMAGE GRADIENT -->
+	<sprite name="loadingTipImageCover">
+		<image
+			texture="loading/gradient_tips.png"
+			texture_size="0 0 100% 100%"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
