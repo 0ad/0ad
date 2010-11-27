@@ -2,14 +2,18 @@
 <Entity parent="template_structure_civic_house">
   <Identity>
     <Civ>hele</Civ>
-    <SpecificName>Oikos</SpecificName>
+    <SpecificName>Oikon</SpecificName>
     <History>Hellenic houses from the Classical Age were generally humble yet stylish. During the Hellenistic Age, however, luxurious palaces and estates became commonplace in the rich Hellenistic metropolises like Antioch, Alexandria and Seleucia.</History>
   </Identity>
   <Cost>
-    <BuildTime>88</BuildTime>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>120</BuildTime>
+    <Resources>
+      <wood>150</wood>
+    </Resources>
   </Cost>
   <Health>
-    <Max>880</Max>
+    <Max>1200</Max>
   </Health>
   <VisualActor>
     <Actor>structures/hellenes/house_new.xml</Actor>
