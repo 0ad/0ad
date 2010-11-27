@@ -176,15 +176,13 @@ function checkPlayerState()
 		{
 			g_GameEnded = true;
 			switchMusic("loss_1", 0.0);
-			messageBox(400, 200, "You have been defeated... Do you want to leave the game now?",
-				"Defeat", 0, ["Yes", "No!"], [leaveGame, null]);
+			g_SessionDialog.open("Defeat",  "You have been defeated...\nDo you want to leave the game now?", null, 320, 160, leaveGame);
 		}
 		else if (playerState.state == "won")
 		{
 			g_GameEnded = true;
 			switchMusic("win_1", 0.0);
-			messageBox(400, 200, "You have won the battle! Do you want to leave the game now?",
-				"Victory", 0, ["Yes", "No!"], [leaveGame, null]);
+			g_SessionDialog.open("Victory", "You have won the battle!\nDo you want to leave the game now?", null, 320, 160, leaveGame);
 		}
 	}
 }

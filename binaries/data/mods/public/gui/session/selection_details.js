@@ -101,13 +101,20 @@ function displaySingle(entState, template)
 	// Resource carrying
 	if (entState.resourceCarrying && entState.resourceCarrying.length)
 	{
-		var carried = entState.resourceCarrying[0];
 		// (we should only be carrying one resource type at once, so just display the first)
-
-		getGUIObjectByName("resourceCarryingIcon").hidden = false;
-		getGUIObjectByName("resourceCarryingText").hidden = false;
-		getGUIObjectByName("resourceCarryingIcon").cell_id = RESOURCE_ICON_CELL_IDS[carried.type];
-		getGUIObjectByName("resourceCarryingText").caption = carried.amount + "/" + carried.max;
+		var carried = entState.resourceCarrying[0];
+	//	if (carried.amount >= 1)
+	//	{
+			getGUIObjectByName("resourceCarryingIcon").hidden = false;
+			getGUIObjectByName("resourceCarryingText").hidden = false;
+			getGUIObjectByName("resourceCarryingIcon").cell_id = RESOURCE_ICON_CELL_IDS[carried.type];
+			getGUIObjectByName("resourceCarryingText").caption = carried.amount + "/" + carried.max;
+	//	}
+	//	else
+	//	{
+	//		getGUIObjectByName("resourceCarryingIcon").hidden = true;
+	//		getGUIObjectByName("resourceCarryingText").hidden = true;
+	//	}
 	}
 	else
 	{

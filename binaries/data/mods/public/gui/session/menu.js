@@ -67,7 +67,7 @@ function togglePause()
 
 function openExitGameDialog()
 {
-	g_SessionDialog.open("Confirmation", "Do you really want to quit?", null, 320, 140, leaveGame);
+	g_SessionDialog.open("Exit Game", "Do you really want to quit?", null, 320, 140, leaveGame);
 }
 
 function escapeKeyAction()
