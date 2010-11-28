@@ -1,18 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/hele_sb4.pmd</mesh>
       <props>
         <prop actor="props/structures/hellenes/tholos.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
       <texture>structural/hele_struct_1.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
