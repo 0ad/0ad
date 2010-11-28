@@ -9,7 +9,7 @@ function toggleDeveloperOverlay()
 function openMenuDialog()
 {
 	var menu = getGUIObjectByName("menuDialogPanel");
-	g_SessionDialog.open("Menu", null, menu, 148, 224, null);
+	g_SessionDialog.open("Menu", null, menu, 156, 224, null);
 }
 
 function openSettingsDialog()

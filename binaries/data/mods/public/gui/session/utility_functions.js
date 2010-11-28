@@ -28,7 +28,7 @@ SessionDialog.prototype.open = function(title, message, referencedPanel, x, y, c
 	// set panel reference if applicable
 	if(referencedPanel)
 	{
-		referencedPanel.size =  "50%-" + ((x/2)-30) + " 50%-" + ((y/2)-44) + " 50%+" + ((x/2)-30) + " 50%+" + ((y/2)-52);
+		referencedPanel.size =  "50%-" + ((x/2)-30) + " 50%-" + ((y/2)-30) + " 50%+" + ((x/2)-30) + " 50%+" + ((y/2)-72);
 		referencedPanel.hidden = false;
 		this.referencedPanel = referencedPanel;
 	}
@@ -45,14 +45,14 @@ SessionDialog.prototype.open = function(title, message, referencedPanel, x, y, c
 		var confirmButton = getGUIObjectByName("sessionDialogConfirm");
 		confirmButton.onpress = function() { buttonFunction.call(dialog); };
 		confirmButton.hidden = false;
-		confirmButton.size = "32 100%-44 144 100%-12";
-		getGUIObjectByName("sessionDialogCancel").size = "100%-144 100%-44 100%-32 100%-12";
+		confirmButton.size = "32 100%-56 144 100%-24";
+		getGUIObjectByName("sessionDialogCancel").size = "100%-144 100%-56 100%-32 100%-24";
 		getGUIObjectByName("sessionDialogCancel").caption = "Cancel";
 	}
 	else
 	{
 		getGUIObjectByName("sessionDialogConfirm").hidden = true;
-		getGUIObjectByName("sessionDialogCancel").size = "50%-56 100%-44 50%+56 100%-12";
+		getGUIObjectByName("sessionDialogCancel").size = "50%-56 100%-56 50%+56 100%-24";
 		getGUIObjectByName("sessionDialogCancel").caption = "Close";
 	}
 

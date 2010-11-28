@@ -50,6 +50,93 @@
 	<!-- Panel Backgrounds -->
 	<!-- ================================  ================================ -->
 
+	
+	
+
+	
+	
+	
+	
+	
+
+	<sprite name="sessionDialog">
+		<!-- background -->
+		<image
+			texture="global/tile/tile_dark.png"
+			texture_size="0 0 100% 100%"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- sides -->
+		<image
+			texture="session/border/border-top.png"
+			texture_size="0 0 128 16"
+			size="16 0 100%-16 16"
+		/>
+		<image
+			texture="session/border/border-right.png"
+			texture_size="0 0 16 128"
+			size="100%-16 16 100% 100%-16"
+		/>
+		<image
+			texture="session/border/border-bottom.png"
+			texture_size="0 0 128 16"
+			size="16 100%-16 100%-16 100%"
+		/>
+		<image
+			texture="session/border/border-left.png"
+			texture_size="0 0 16 128"
+			size="0 16 16 100%-16"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 0 100% 16"
+		/>
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 100%-16 100% 100%"
+		/>
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 100%-16 16 100%"
+		/>
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 0 16 16"
+		/>
+	</sprite>
+	
+	
+	
+	
+	<sprite name="sessionDialogTitleBar">
+		<image	texture="session/titlebar/titlebar_left.png"
+			real_texture_placement="0 0 64 32"
+			size="0%+0 0% 64 0%+32" 
+		/>
+                <image 	texture="session/titlebar/titlebar_middle.png"
+			real_texture_placement="0 0 64 32"
+			size="64 0% 100%-64 0%+32" 
+		/>
+                <image 	texture="session/titlebar/titlebar_right.png"
+			real_texture_placement="0 0 64 32"
+			size="100%-64 0% 100%+0 0%+32" 
+		/>
+	</sprite>
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- Generic Panel -->
 	<sprite name="genericPanel">
 		<image

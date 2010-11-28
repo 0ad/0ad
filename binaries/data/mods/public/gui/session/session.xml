@@ -193,23 +193,25 @@
 		<!-- Session Dialog -->
 		<!-- ================================  ================================ -->
 		<object name="sessionDialog"
-			sprite="genericPanel"
+			sprite="sessionDialog"
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
 			z="30"
 		>
-			<object name="sessionDialogTitle" size="0 10 100% 36" type="text" style="largeBoldCenteredText">Title</object >
-			<object name="sessionDialogMessage" size="10 36 100%-10 100%-48" type="text" style="dialogText"/>
-			<object name="sessionDialogPanel" size="30 40 100%-30 100%-64" type="image"/>
+			<object name="sessionDialogTitleBar" size="50%-100 -16 50%+100 16" type="image" sprite="sessionDialogTitleBar">
+				<object name="sessionDialogTitle" size="0 -2 100% 100%" type="text" style="dialogTitleText">Title</object>
+			</object>
+			
+			<object name="sessionDialogMessage" size="10 10 100%-10 100%-48" type="text" style="dialogText"/>
 
 			<object size="0 100%-48 100% 100%">
-				<object name="sessionDialogConfirm" size="32 100%-44 144 100%-12" type="button" style="wheatButton">
+				<object name="sessionDialogConfirm" size="32 100%-64 144 100%-32" type="button" style="wheatButton">
 					OK
 				<action on="Press"></action>
 				</object>
 
-				<object name="sessionDialogCancel" size="100%-144 100%-44 100%-32 100%-12" type="button" style="wheatButton">
+				<object name="sessionDialogCancel" size="100%-144 100%-64 100%-32 100%-32" type="button" style="wheatButton">
 					Cancel
 				<action on="Press">g_SessionDialog.close();</action>
 				</object>
