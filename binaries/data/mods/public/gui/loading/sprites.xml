@@ -66,17 +66,14 @@
 	<sprite name="loadingBarBackground">
 		<image
 			texture="loading/progressbar/progressbar_background_left.png"
-			real_texture_placement="0 0 64 32"
 			size="0%+0 0% 64 0%+32" 
 		/>
         <image
 			texture="loading/progressbar/progressbar_background_middle.png"
-			real_texture_placement="0 0 64 32"
 			size="64 0% 100%-64 0%+32" 
 		/>
         <image
 			texture="loading/progressbar/progressbar_background_right.png"
-			real_texture_placement="0 0 64 32"
 			size="100%-64 0% 100%+0 0%+32" 
 		/>
 	</sprite>
@@ -92,6 +89,7 @@
 	<sprite name="loadingProgressbar_middle">
 		<image
 			texture="loading/progressbar/progressbar_middle.png"
+			real_texture_placement="0 0 1 20"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
