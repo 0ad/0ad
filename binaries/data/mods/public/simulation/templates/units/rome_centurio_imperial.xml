@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="other/rome_legionnaire_imperial">
+<Entity parent="units/rome_legionnaire_imperial">
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Centurio Legionnaire</SpecificName>
@@ -19,6 +19,6 @@
     </Charge>
   </Attack>
   <VisualActor>
-    <Actor>temp/imp_rome_su1.xml</Actor>
+    <Actor>units/romans/imp_rome_su1.xml</Actor>
   </VisualActor>
 </Entity>

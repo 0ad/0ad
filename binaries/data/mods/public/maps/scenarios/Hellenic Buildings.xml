@@ -23,26 +23,27 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="516.547" y="96.4782" z="389.41"/>
-		<Rotation angle="0.0109396"/>
-		<Declination angle="0.555106"/>
+		<Position x="506.574" y="102.441" z="375.77"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"Hellenes Sandbox",
-  "Description":"A sandbox scenario to play around with the Hellenes civilisation.",
-  "PlayerData":[{
-      "Civ":"hele"
+  "Name": "Hellenes Sandbox",
+  "Description": "A sandbox scenario to play around with the Hellenes civilisation.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
     },
     {
-      "Civ":"rome"
+      "Civ": "rome"
     },
     {
-      "Civ":"celt"
+      "Civ": "celt"
     }
   ],
-  "CircularMap":true,
-  "GameType":"endless"
+  "CircularMap": true,
+  "GameType": "endless"
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -109,7 +110,7 @@
 		<Entity uid="22">
 			<Template>structures/hele_gymnasion</Template>
 			<Player>1</Player>
-			<Position x="566.42432" z="513.82416"/>
+			<Position x="565.21418" z="516.0702"/>
 			<Orientation y="-2.35068"/>
 		</Entity>
 		<Entity uid="23">
@@ -1088,60 +1089,6 @@
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="528.87812" z="501.61713"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="194">
-			<Template>other/rome_centurio_imperial</Template>
-			<Player>2</Player>
-			<Position x="801.29542" z="245.8246"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="195">
-			<Template>other/rome_centurio_imperial</Template>
-			<Player>2</Player>
-			<Position x="803.5019" z="247.64748"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="196">
-			<Template>other/rome_centurio_imperial</Template>
-			<Player>2</Player>
-			<Position x="805.6081" z="249.41608"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="197">
-			<Template>other/rome_legionnaire_imperial</Template>
-			<Player>2</Player>
-			<Position x="804.39655" z="241.7589"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="198">
-			<Template>other/rome_legionnaire_imperial</Template>
-			<Player>2</Player>
-			<Position x="805.86457" z="243.26864"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="199">
-			<Template>other/rome_legionnaire_imperial</Template>
-			<Player>2</Player>
-			<Position x="808.05188" z="246.12494"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="200">
-			<Template>other/rome_legionnaire_marian</Template>
-			<Player>2</Player>
-			<Position x="807.41639" z="238.73649"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="201">
-			<Template>other/rome_legionnaire_marian</Template>
-			<Player>2</Player>
-			<Position x="809.40278" z="240.82764"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="202">
-			<Template>other/rome_legionnaire_marian</Template>
-			<Player>2</Player>
-			<Position x="812.26069" z="243.18177"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="203">

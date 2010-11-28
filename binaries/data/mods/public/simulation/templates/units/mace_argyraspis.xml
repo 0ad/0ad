@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="other/macedonian_hypaspist">
+<Entity parent="units/mace_hypaspist">
   <Identity>
     <SpecificName>Argyraspidai (Silver shield)</SpecificName>
 	<Tooltip>Alexander's elite guard infantry.</Tooltip>
@@ -33,6 +33,6 @@
     </Charge>
   </Attack>
   <VisualActor>
-    <Actor>temp/mace_su1_argyraspis.xml</Actor>
+    <Actor>units/macedonians/mace_su1_argyraspis.xml</Actor>
   </VisualActor>
 </Entity>
