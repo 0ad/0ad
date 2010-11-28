@@ -35,7 +35,7 @@ function init(data)
 	}
 
 	// Set tip image
-	getGUIObjectByName("loadingTipImage").sprite = sprite;
+	getGUIObjectByName("tipImage").sprite = sprite;
 
 	// Set tip text
 	if (tipText)
@@ -43,8 +43,8 @@ function init(data)
 		var index = tipText.indexOf("\n");
 		tipTextTitle = tipText.substring(0, index);
 		tipTextMessage = tipText.substring(index);
-		getGUIObjectByName("loadingTipTitle").caption = tipTextTitle? tipTextTitle : "";
-		getGUIObjectByName("loadingTipText").caption = tipTextMessage? tipTextMessage : "";
+		getGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
+		getGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
 	}
 
 	// janwas: main loop now sets progress / description, but that won't
@@ -56,37 +56,35 @@ function init(data)
 		switch (data.attribs.mapType)
 		{
 		case "scenario":
-			//ldTitleBar.caption = "Loading Scenario";
 			loadingMapName.caption = "Loading \"" + mapName + "\"";
 			break;
 
 		case "random":
-			//ldTitleBar.caption = "Loading Random Map";
 			loadingMapName.caption = "Generating \"" + mapName + "\"";
 			break;
 
 		default:
-			error("Unkown map type: "+data.attribs.mapType);
+			error("Unkown map type: " + data.attribs.mapType);
 		}
 	}
 
 	getGUIObjectByName("progressText").caption = "";
-	getGUIObjectByName("progressBar").caption = 0;
+	getGUIObjectByName("progressbar").caption = 0;
 
 	// Pick a random quote of the day (each line is a separate tip).
 	var quoteArray = readFileLines("gui/text/quotes.txt");
-	getGUIObjectByName("loadingQuoteText").caption = quoteArray[getRandom(0, quoteArray.length-1)];
+	getGUIObjectByName("quoteText").caption = quoteArray[getRandom(0, quoteArray.length-1)];
 }
 
 // ====================================================================
 function displayProgress()
 {
-	getGUIObjectByName("progressBar").caption = g_Progress; // display current progress
+	getGUIObjectByName("progressbar").caption = g_Progress; // display current progress
 	getGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
 	
 	// Keep curved right edge of progress bar in sync with the rest of the progress bar
-	var middle = getGUIObjectByName("progressBar");
-	var rightSide = getGUIObjectByName("loadingProgressbar_right");
+	var middle = getGUIObjectByName("progressbar");
+	var rightSide = getGUIObjectByName("progressbar_right");
 	
 	var middleLength = middle.size.right - middle.size.left;
 	var increment = Math.round(g_Progress*middleLength/100);

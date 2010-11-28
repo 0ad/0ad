@@ -120,7 +120,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			size="51.8554688% 22.9166667% 68.359375% 43.2291667%"
 			sprite_over="pgSinglePlayerOver"
 			sprite_disabled="pgSinglePlayerDisabled"
-			tooltip="Want to move some Dudes around or test something? Click here to start a new game on the default map."
+			tooltip="Click here to start a new single player game. (There is no computer opponent currently available.)"
 		>
 			<action on="Press"><![CDATA[
 				// Open Session Setup window.
