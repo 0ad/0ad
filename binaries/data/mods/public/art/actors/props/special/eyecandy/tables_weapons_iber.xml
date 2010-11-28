@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant>
+      <mesh>props/eyecandy_iber_weapons_table.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/tables_weapons_iber_shields.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+
+</actor>
