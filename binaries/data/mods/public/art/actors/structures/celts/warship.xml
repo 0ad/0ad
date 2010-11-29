@@ -7,6 +7,7 @@
       <mesh>structural/celt_warship.dae</mesh>
       <props>
         <prop actor="props/structures/celts/warship_sail.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/celt_ship.png</texture>
     </variant>
