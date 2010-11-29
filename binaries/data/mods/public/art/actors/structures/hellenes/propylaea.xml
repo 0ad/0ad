@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="propylaea">
+      <mesh>structural/propylaea.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/propylaea_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/propylaea_floor.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/propylaea_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/propylaea_walls.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

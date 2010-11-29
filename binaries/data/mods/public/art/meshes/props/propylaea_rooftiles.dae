@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-11-29T08:12:26Z</created>
+    <modified>2010-11-29T08:12:26Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__301-image" name="Map__301">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\Meshes\meshes\structural\hellenes\Map__50_Mix.tga</init_from>
+    </image>
+    <image id="Map__302-image" name="Map__302">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_wonder_rooftile.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_08___Default" name="_08___Default">
+      <instance_effect url="#_08___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_08___Default-fx" name="_08___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <texture texture="Map__301-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__302-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">32.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="parthenon_OBJ_011-lib" name="parthenon_OBJ_011Mesh">
+      <mesh>
+        <source id="parthenon_OBJ_011-lib-Position">
+          <float_array id="parthenon_OBJ_011-lib-Position-array" count="84">
+13.772860 -17.185490 12.766990
+13.772860 -17.817280 12.766990
+0.000000 -21.671089 12.770620
+-13.772860 -17.817280 12.766990
+-13.772860 -17.185490 12.766990
+13.772860 -17.185490 -0.201892
+13.772860 -17.817280 -0.201892
+-13.772860 -17.817280 -0.201892
+-13.772860 -17.185490 -0.201892
+0.000000 -21.671089 -0.201892
+4.709604 -20.353291 -0.201892
+13.772860 -17.601231 -0.201892
+-13.772860 -17.601231 -0.201892
+-4.709603 -20.353291 -0.201892
+13.772860 -15.588600 29.563850
+13.772860 -16.220400 29.563850
+0.000000 -20.074200 29.567480
+-13.772860 -16.220400 29.563850
+-13.772860 -15.588600 29.563850
+13.772860 -15.588600 12.082100
+13.772860 -16.220400 12.082100
+-13.772860 -16.220400 12.082100
+-13.772860 -15.588600 12.082100
+0.000000 -20.074200 12.082100
+1.555805 -19.638870 12.082100
+13.772860 -16.149010 12.082100
+-13.772860 -16.149010 12.082100
+-1.555804 -19.638870 12.082100
+</float_array>
+          <technique_common>
+            <accessor source="#parthenon_OBJ_011-lib-Position-array" count="28" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="parthenon_OBJ_011-lib-Normal0">
+          <float_array id="parthenon_OBJ_011-lib-Normal0-array" count="216">
+0.796686 -0.604358 0.000000
+0.624226 -0.781243 0.000000
+0.269448 -0.962981 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.269448 -0.962981 0.000000
+0.269448 -0.962981 0.000000
+0.624226 -0.781243 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-0.269448 -0.962981 0.000000
+-0.624226 -0.781243 0.000000
+-0.796686 -0.604358 0.000000
+-0.624226 -0.781243 0.000000
+-0.269448 -0.962981 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+-0.624226 -0.781243 0.000000
+0.796686 -0.604358 0.000000
+0.624226 -0.781243 0.000000
+0.269448 -0.962981 0.000000
+0.000000 -0.999969 0.000000
+0.000000 -0.999969 0.000000
+0.269448 -0.962981 0.000000
+0.269448 -0.962981 0.000000
+0.624226 -0.781243 0.000000
+0.000000 -0.999969 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-0.269448 -0.962981 0.000000
+-0.624226 -0.781243 0.000000
+-0.796686 -0.604358 0.000000
+-0.624226 -0.781243 0.000000
+-0.269448 -0.962981 0.000000
+0.000000 -0.999969 0.000000
+0.000000 -0.999969 0.000000
+0.000000 -0.999969 0.000000
+-0.624226 -0.781243 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#parthenon_OBJ_011-lib-Normal0-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="parthenon_OBJ_011-lib-UV0">
+          <float_array id="parthenon_OBJ_011-lib-UV0-array" count="112">
+0.342360 0.072530
+0.998882 0.072530
+0.342340 0.685367
+0.998882 1.003821
+0.342277 1.003820
+0.342340 0.685367
+0.998882 0.072530
+0.342752 0.001032
+1.001179 0.001032
+0.342752 0.047476
+0.342752 0.047476
+1.001179 0.001032
+1.001179 0.071613
+0.342752 0.071613
+0.342752 0.047476
+1.001179 0.001032
+0.342752 0.001032
+1.001179 0.001032
+0.342752 0.047476
+0.342752 0.071613
+1.001179 0.071613
+0.342340 0.685367
+0.998882 0.072530
+0.342360 0.072530
+0.998882 0.072530
+0.342340 0.685367
+0.342277 1.003820
+0.998882 1.003821
+0.113906 0.072530
+0.998882 0.072530
+0.113879 0.898619
+0.998882 1.003821
+0.113858 1.003819
+0.113879 0.898619
+0.998882 0.072530
+0.113636 0.001032
+1.001179 0.001032
+0.113636 0.063638
+0.113636 0.063638
+1.001179 0.001032
+1.001179 0.071613
+0.113636 0.071613
+0.113636 0.063638
+1.001179 0.001032
+0.113636 0.001032
+1.001179 0.001032
+0.113636 0.063638
+0.113636 0.071613
+1.001179 0.071613
+0.113879 0.898619
+0.998882 0.072530
+0.113906 0.072530
+0.998882 0.072530
+0.113879 0.898619
+0.113858 1.003819
+0.998882 1.003821
+</float_array>
+          <technique_common>
+            <accessor source="#parthenon_OBJ_011-lib-UV0-array" count="56" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="parthenon_OBJ_011-lib-Vertex">
+          <input semantic="POSITION" source="#parthenon_OBJ_011-lib-Position"/>
+        </vertices>
+        <polygons material="_08___Default" count="24">
+          <input semantic="VERTEX" offset="0" source="#parthenon_OBJ_011-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#parthenon_OBJ_011-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#parthenon_OBJ_011-lib-UV0"/>
+          <p>6 0 0 1 1 1 10 2 2</p>
+          <p>2 3 3 9 4 4 10 5 5</p>
+          <p>10 6 5 1 7 6 2 8 3</p>
+          <p>5 9 7 0 10 8 11 11 9</p>
+          <p>11 12 10 0 13 11 1 14 12</p>
+          <p>1 15 12 6 16 13 11 17 10</p>
+          <p>12 18 14 4 19 15 8 20 16</p>
+          <p>4 21 17 12 22 18 7 23 19</p>
+          <p>7 24 19 3 25 20 4 26 17</p>
+          <p>13 27 21 3 28 22 7 29 23</p>
+          <p>3 30 24 13 31 25 9 32 26</p>
+          <p>9 33 26 2 34 27 3 35 24</p>
+          <p>20 36 28 15 37 29 24 38 30</p>
+          <p>16 39 31 23 40 32 24 41 33</p>
+          <p>24 42 33 15 43 34 16 44 31</p>
+          <p>19 45 35 14 46 36 25 47 37</p>
+          <p>25 48 38 14 49 39 15 50 40</p>
+          <p>15 51 40 20 52 41 25 53 38</p>
+          <p>26 54 42 18 55 43 22 56 44</p>
+          <p>18 57 45 26 58 46 21 59 47</p>
+          <p>21 60 47 17 61 48 18 62 45</p>
+          <p>27 63 49 17 64 50 21 65 51</p>
+          <p>17 66 52 27 67 53 23 68 54</p>
+          <p>23 69 54 16 70 55 17 71 52</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="parthenon_OBJ_011-anim" name="parthenon_OBJ_011">
+      <animation>
+        <source id="parthenon_OBJ_011-Matrix-animation-input">
+          <float_array id="parthenon_OBJ_011-Matrix-animation-input-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#parthenon_OBJ_011-Matrix-animation-input-array" count="0">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="parthenon_OBJ_011-Matrix-animation-output-transform">
+          <float_array id="parthenon_OBJ_011-Matrix-animation-output-transform-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#parthenon_OBJ_011-Matrix-animation-output-transform-array" count="0" stride="16">
+              <param type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="parthenon_OBJ_011-Interpolations">
+          <Name_array id="parthenon_OBJ_011-Interpolations-array" count="0">
+</Name_array>
+          <technique_common>
+            <accessor source="#parthenon_OBJ_011-Interpolations-array" count="0">
+              <param type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="parthenon_OBJ_011-Matrix-animation-transform">
+          <input semantic="INPUT" source="#parthenon_OBJ_011-Matrix-animation-input"/>
+          <input semantic="OUTPUT" source="#parthenon_OBJ_011-Matrix-animation-output-transform"/>
+          <input semantic="INTERPOLATION" source="#parthenon_OBJ_011-Interpolations"/>
+        </sampler>
+        <channel source="#parthenon_OBJ_011-Matrix-animation-transform" target="parthenon_OBJ_011/matrix"/>
+      </animation>
+    </animation>
+  </library_animations>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="parthenon_OBJ_011" name="parthenon_OBJ_011">
+        <matrix sid="matrix">-0.857416 0.000000 0.000000 0.053105 -0.000000 -0.857416 -0.000000 0.423795 0.000000 -0.000000 0.857416 -13.182063 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#parthenon_OBJ_011-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_08___Default" target="#_08___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
