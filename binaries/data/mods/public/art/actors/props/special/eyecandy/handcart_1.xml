@@ -4,7 +4,20 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/wrld_handcart.pmd</mesh>
-      <texture>props/wrld_cart.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="wood a">
+      <texture>props/wood_a.png</texture>
+    </variant>
+    <variant frequency="1" name="wood b">
+      <texture>props/wood_b.png</texture>
+    </variant>
+    <variant frequency="1" name="wood c">
+      <texture>props/wood_c.png</texture>
+    </variant>
+    <variant frequency="1" name="wood d">
+      <texture>props/wood_d.png</texture>
     </variant>
   </group>
 </actor>

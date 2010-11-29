@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>props/wrld_handcart_broken.pmd</mesh>
-      <props/>
-      <texture>props/wrld_wood_2.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1" name="wood b">
+      <texture>props/wood_b.png</texture>
+    </variant>
+    <variant frequency="1" name="wood d">
+      <texture>props/wood_d.png</texture>
+    </variant>
+  </group>
 </actor>

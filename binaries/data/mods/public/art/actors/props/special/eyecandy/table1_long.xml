@@ -1,15 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>props/wrld_table_long.pmd</mesh>
-      <props/>
-      <texture>props/wrld_wood_9.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1" name="wood a">
+      <texture>props/wood_a.png</texture>
+    </variant>
+    <variant frequency="1" name="wood b">
+      <texture>props/wood_b.png</texture>
+    </variant>
+    <variant frequency="1" name="wood c">
+      <texture>props/wood_c.png</texture>
+    </variant>
+    <variant frequency="1" name="wood d">
+      <texture>props/wood_d.png</texture>
+    </variant>
+    <variant frequency="1" name="wood e">
+      <texture>props/wood_e.png</texture>
+    </variant>
+  </group>
 </actor>

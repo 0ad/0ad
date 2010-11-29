@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="vase a">
+      <mesh>props/wrld_vase_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="vase b">
+      <mesh>props/wrld_vase_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="vase c">
+      <mesh>props/wrld_vase_c.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="vase d">
+      <mesh>props/wrld_vase_d.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="vase e">
+      <mesh>props/wrld_vase_e.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="vase f">
+      <mesh>props/wrld_vase_f.pmd</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <texture>props/vase_iberians.png</texture>
+    </variant>
+  </group>
+</actor>
