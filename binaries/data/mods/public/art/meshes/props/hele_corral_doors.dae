@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-11-29T13:39:42Z</created>
+    <modified>2010-11-29T13:39:42Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__309-image" name="Map__309">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_props_a.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_22___Default" name="_22___Default">
+      <instance_effect url="#_22___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_22___Default-fx" name="_22___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__309-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object1048-lib" name="Object1048Mesh">
+      <mesh>
+        <source id="Object1048-lib-Position">
+          <float_array id="Object1048-lib-Position-array" count="96">
+-1.702179 -9.622960 1.093575
+6.889175 -9.622960 0.995570
+6.889175 4.170314 0.995569
+-1.702179 4.170314 1.093575
+6.881149 -9.622959 1.772850
+-1.710861 -9.622959 1.794303
+-1.710861 4.170314 1.794302
+6.881149 4.170314 1.772849
+15.626938 -9.622959 1.850777
+7.034927 -9.622959 1.872230
+7.034927 4.170314 1.872229
+15.626938 4.170314 1.850776
+7.044022 -9.622959 1.093577
+15.635376 -9.622959 0.995572
+15.635376 4.170314 0.995571
+7.044022 4.170314 1.093577
+-1.931656 -9.622959 21.997891
+6.659698 -9.622959 21.899886
+6.659698 4.170315 21.899885
+-1.931656 4.170315 21.997891
+6.651672 -9.622958 22.677166
+-1.940338 -9.622958 22.698619
+-1.940338 4.170314 22.698618
+6.651672 4.170314 22.677165
+15.397461 -9.622958 22.755093
+6.805450 -9.622958 22.776546
+6.805450 4.170314 22.776545
+15.397461 4.170314 22.755092
+6.814545 -9.622958 21.997893
+15.405899 -9.622958 21.899888
+15.405899 4.170314 21.899887
+6.814545 4.170314 21.997893
+</float_array>
+          <technique_common>
+            <accessor source="#Object1048-lib-Position-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object1048-lib-Normal0">
+          <float_array id="Object1048-lib-Normal0-array" count="144">
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+0.002497 0.000000 0.999997
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 -0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+-0.011407 0.000000 -0.999935
+</float_array>
+          <technique_common>
+            <accessor source="#Object1048-lib-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object1048-lib-UV0">
+          <float_array id="Object1048-lib-UV0-array" count="64">
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+0.622337 0.002988
+0.502668 0.002988
+0.502668 0.498966
+0.622337 0.498966
+</float_array>
+          <technique_common>
+            <accessor source="#Object1048-lib-UV0-array" count="32" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object1048-lib-Vertex">
+          <input semantic="POSITION" source="#Object1048-lib-Position"/>
+        </vertices>
+        <polygons material="_22___Default" count="16">
+          <input semantic="VERTEX" offset="0" source="#Object1048-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Object1048-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Object1048-lib-UV0"/>
+          <p>1 0 1 0 1 0 2 2 2</p>
+          <p>0 3 0 3 4 3 2 5 2</p>
+          <p>5 6 5 4 7 4 6 8 6</p>
+          <p>4 9 4 7 10 7 6 11 6</p>
+          <p>9 12 9 8 13 8 10 14 10</p>
+          <p>8 15 8 11 16 11 10 17 10</p>
+          <p>13 18 13 12 19 12 14 20 14</p>
+          <p>12 21 12 15 22 15 14 23 14</p>
+          <p>17 24 17 16 25 16 18 26 18</p>
+          <p>16 27 16 19 28 19 18 29 18</p>
+          <p>21 30 21 20 31 20 22 32 22</p>
+          <p>20 33 20 23 34 23 22 35 22</p>
+          <p>25 36 25 24 37 24 26 38 26</p>
+          <p>24 39 24 27 40 27 26 41 26</p>
+          <p>29 42 29 28 43 28 30 44 30</p>
+          <p>28 45 28 31 46 31 30 47 30</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Object1048" name="Object1048">
+        <matrix sid="matrix">-0.271359 -0.000000 -0.002979 1.744713 -0.000000 0.301210 0.000000 3.073353 0.002684 0.000000 -0.301196 0.199627 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Object1048-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_22___Default" target="#_22___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

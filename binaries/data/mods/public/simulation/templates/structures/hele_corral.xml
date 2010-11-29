@@ -17,6 +17,14 @@
     </Entities>
   </TrainingQueue>
   <VisualActor>
-    <Actor>structures/plot_corral.xml</Actor>
+    <Actor>structures/hellenes/corral.xml</Actor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
+  <Footprint>
+    <Square width="17.0" depth="17.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="14.0" depth="14.0"/>
+  </Obstruction>
 </Entity>

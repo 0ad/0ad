@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-11-29T13:40:21Z</created>
+    <modified>2010-11-29T13:40:21Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__346-image" name="Map__346">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\rooftiles_broken.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material__13" name="Material__13">
+      <instance_effect url="#Material__13-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Material__13-fx" name="Material__13">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__346-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="default01-lib" name="default01Mesh">
+      <mesh>
+        <source id="default01-lib-Position">
+          <float_array id="default01-lib-Position-array" count="81">
+-0.323990 -5.393280 1.359509
+0.363673 -5.393280 1.358500
+0.014097 -5.393280 1.571306
+0.363194 0.000001 1.186333
+-0.324375 0.000001 1.187342
+0.013628 0.000001 1.399088
+0.014097 5.393278 1.571306
+0.363673 5.393277 1.358500
+-0.323990 5.393279 1.359509
+0.359547 5.393280 1.359509
+3.678837 5.393273 -1.325886
+3.678837 -0.000000 -1.325886
+0.359932 0.000001 1.187342
+3.678837 -5.393280 -1.325886
+0.359547 -5.393280 1.359509
+3.982687 5.387637 -1.571306
+3.982687 -0.000000 -1.571306
+3.982687 -5.387645 -1.571306
+-3.982687 -5.387645 -1.493552
+-3.982687 -0.000000 -1.493552
+-3.982687 5.387637 -1.493552
+-0.304854 -5.393280 1.368474
+-3.676238 -5.393280 -1.251218
+-0.305243 0.000001 1.196315
+-3.676238 -0.000000 -1.251218
+-3.676238 5.393273 -1.251219
+-0.304854 5.393280 1.368474
+</float_array>
+          <technique_common>
+            <accessor source="#default01-lib-Position-array" count="27" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default01-lib-Normal0">
+          <float_array id="default01-lib-Normal0-array" count="216">
+-0.613382 0.025154 0.789385
+-0.613382 0.025154 0.789385
+-0.613382 0.025154 0.789385
+-0.587528 0.000000 0.809204
+-0.587528 0.000000 0.809204
+-0.587528 0.000000 0.809204
+-0.587528 0.000000 0.809204
+-0.587528 0.000000 0.809204
+-0.587528 0.000000 0.809204
+-0.613383 -0.025154 0.789385
+-0.613382 -0.025154 0.789385
+-0.613382 -0.025154 0.789385
+-0.620276 0.000000 0.784384
+-0.620276 0.000000 0.784384
+-0.620276 0.000000 0.784384
+-0.620274 0.000000 0.784385
+-0.620274 0.000000 0.784385
+-0.620274 0.000000 0.784385
+-0.620276 0.000000 0.784384
+-0.620276 0.000000 0.784384
+-0.620276 0.000000 0.784384
+-0.620276 0.000000 0.784384
+-0.620276 0.000000 0.784384
+-0.620276 0.000000 0.784384
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+0.628341 0.000000 0.777938
+-0.530692 0.027005 0.847134
+-0.530692 0.027005 0.847134
+-0.530692 0.027005 0.847134
+-0.530696 0.027005 0.847132
+-0.530696 0.027005 0.847132
+-0.530696 0.027005 0.847132
+0.519789 0.027304 0.853858
+0.519789 0.027304 0.853858
+0.519789 0.027304 0.853858
+0.519710 0.027312 0.853906
+0.519710 0.027312 0.853906
+0.519710 0.027312 0.853906
+0.519710 -0.027312 0.853906
+0.519710 -0.027312 0.853906
+0.519710 -0.027312 0.853906
+0.519789 -0.027304 0.853858
+0.519789 -0.027304 0.853858
+0.519789 -0.027304 0.853858
+-0.530693 -0.027005 0.847134
+-0.530693 -0.027005 0.847134
+-0.530693 -0.027005 0.847134
+-0.530696 -0.027005 0.847132
+-0.530696 -0.027005 0.847132
+-0.530696 -0.027005 0.847132
+0.603691 0.000000 0.797219
+0.603691 0.000000 0.797219
+0.603691 0.000000 0.797219
+0.628772 -0.024765 0.777195
+0.628772 -0.024765 0.777195
+0.628772 -0.024765 0.777195
+0.628772 0.024765 0.777195
+0.628772 0.024765 0.777195
+0.628772 0.024765 0.777195
+0.603691 0.000000 0.797219
+0.603691 0.000000 0.797219
+0.603691 0.000000 0.797219
+</float_array>
+          <technique_common>
+            <accessor source="#default01-lib-Normal0-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default01-lib-UV0">
+          <float_array id="default01-lib-UV0-array" count="50">
+0.233657 0.910697
+0.233657 0.082742
+0.622269 0.910697
+0.622268 0.082742
+0.993790 0.082742
+0.993790 0.910697
+0.622269 0.012583
+0.993790 0.012583
+0.233657 0.012583
+0.002945 0.082742
+0.384233 0.082742
+0.002945 0.012583
+0.384233 0.012583
+0.756649 0.082742
+0.755075 0.012583
+0.288839 0.993062
+0.289440 0.906735
+0.732450 0.993142
+0.732605 0.906735
+0.289261 0.906735
+0.732559 0.906735
+0.732450 0.993141
+0.384233 0.910697
+0.754858 0.910697
+0.002945 0.910697
+</float_array>
+          <technique_common>
+            <accessor source="#default01-lib-UV0-array" count="25" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="default01-lib-Vertex">
+          <input semantic="POSITION" source="#default01-lib-Position"/>
+        </vertices>
+        <polygons material="Material__13" count="24">
+          <input semantic="VERTEX" offset="0" source="#default01-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#default01-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#default01-lib-UV0"/>
+          <p>22 0 1 21 1 0 23 2 2</p>
+          <p>24 3 3 22 4 1 23 5 2</p>
+          <p>25 6 4 24 7 3 23 8 2</p>
+          <p>26 9 5 25 10 4 23 11 2</p>
+          <p>19 12 6 24 13 3 20 14 7</p>
+          <p>20 15 7 24 16 3 25 17 4</p>
+          <p>18 18 8 22 19 1 24 20 3</p>
+          <p>19 21 6 18 22 8 24 23 3</p>
+          <p>11 24 10 13 25 9 17 26 11</p>
+          <p>16 27 12 11 28 10 17 29 11</p>
+          <p>10 30 13 11 31 10 15 32 14</p>
+          <p>15 33 14 11 34 10 16 35 12</p>
+          <p>0 36 16 2 37 15 5 38 17</p>
+          <p>4 39 18 0 40 16 5 41 17</p>
+          <p>2 42 15 1 43 19 3 44 20</p>
+          <p>5 45 21 2 46 15 3 47 20</p>
+          <p>6 48 15 5 49 21 3 50 20</p>
+          <p>7 51 19 6 52 15 3 53 20</p>
+          <p>5 54 17 6 55 15 8 56 16</p>
+          <p>4 57 18 5 58 17 8 59 16</p>
+          <p>12 60 22 11 61 10 10 62 13</p>
+          <p>9 63 23 12 64 22 10 65 13</p>
+          <p>12 66 22 14 67 24 13 68 9</p>
+          <p>11 69 10 12 70 22 13 71 9</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="default01" name="default01">
+        <matrix sid="matrix">0.000000 1.000000 -0.000000 -0.009924 0.000000 0.000000 1.000000 6.848003 1.000000 -0.000000 0.000000 -3.376243 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#default01-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material__13" target="#Material__13"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
