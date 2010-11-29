@@ -129,7 +129,7 @@ function package_set_build_flags()
 	package.config["Testing"].defines = { "TESTING" }
 
 	package.config["Release"].buildflags = { "no-runtime-checks", "optimize-speed" }
-	package.config["Release"].defines = { "NDEBUG" }
+	package.config["Release"].defines = { "NDEBUG", "CONFIG_FINAL=1" }
 
 	-- required for the lowlevel library. must be set from all packages that use it, otherwise it assumes it is
 	-- being used as a DLL (which is currently not the case in 0ad)
