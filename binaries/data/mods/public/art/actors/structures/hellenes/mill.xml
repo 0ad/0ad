@@ -2,13 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/hele_rc.pmd</mesh>
+    <variant frequency="100" name="Hellenes Mill">
+      <mesh>structural/hele_mill.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/mill.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/mill_blocks.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/mill_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/mill_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/mill_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_1.dds</texture>
+      <texture>structural/hele_struct_b.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
