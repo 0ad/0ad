@@ -23,25 +23,27 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="349.127" y="149.574" z="38.1659"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="418.568" y="103.803" z="122.663"/>
+		<Rotation angle="-0.0367896"/>
+		<Declination angle="0.66796"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Pathfinding Demo",
-		"Description":"A map for testing unit movement algorithms.",
-		"PlayerData":
-		[
-			{
-				"Civ":"hele"
-			}
-		],
-		"RevealMap":true,
-		"DefaultStance":"holdfire",
-		"GameType":"endless"
-	}
-	]]></ScriptSettings>
+{
+  "Name": "Pathfinding Demo",
+  "Description": "A map for testing unit movement algorithms.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "celt"
+    }
+  ],
+  "RevealMap": true,
+  "DefaultStance": "holdfire",
+  "GameType": "endless"
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="6">
 			<Template>structures/celt_corral</Template>
@@ -404,7 +406,7 @@
 			<Orientation y="3.16405"/>
 		</Entity>
 		<Entity uid="82">
-			<Template>structures/celt_temple</Template>
+			<Template>structures/celt_kennel</Template>
 			<Player>2</Player>
 			<Position x="402.766" z="251.594"/>
 			<Orientation y="2.67188"/>
@@ -505,14 +507,8 @@
 			<Position x="407.746" z="268.559"/>
 			<Orientation y="2.67188"/>
 		</Entity>
-		<Entity uid="99">
-			<Template>structures/celt_temple</Template>
-			<Player>2</Player>
-			<Position x="424.23" z="255.586"/>
-			<Orientation y="3.13672"/>
-		</Entity>
 		<Entity uid="100">
-			<Template>structures/celt_temple</Template>
+			<Template>structures/celt_kennel</Template>
 			<Player>2</Player>
 			<Position x="463.375" z="256.234"/>
 			<Orientation y="2.67188"/>
@@ -631,11 +627,59 @@
 			<Position x="404.113" z="300.098"/>
 			<Orientation y="2.35547"/>
 		</Entity>
-		<Entity uid="128">
-			<Template>gaia/fauna_zebra</Template>
+		<Entity uid="129">
+			<Template>gaia/flora_bush_berry</Template>
 			<Player>1</Player>
-			<Position x="470.902" z="305.414"/>
-			<Orientation y="3.79688"/>
+			<Position x="471.12751" z="300.61597"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>units/celt_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="487.26542" z="258.37821"/>
+			<Orientation y="-1.71404"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>units/celt_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="495.40305" z="258.75858"/>
+			<Orientation y="-1.65319"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>units/celt_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="503.53602" z="258.96335"/>
+			<Orientation y="-1.61608"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>units/celt_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="512.7602" z="258.94617"/>
+			<Orientation y="-1.78721"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>units/celt_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="520.07496" z="259.06864"/>
+			<Orientation y="-1.65012"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>units/celt_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="527.00422" z="259.19413"/>
+			<Orientation y="-1.51781"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>structures/celt_corral</Template>
+			<Player>2</Player>
+			<Position x="425.16663" z="256.90998"/>
+			<Orientation y="3.1124"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="402.36667" z="209.59253"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
