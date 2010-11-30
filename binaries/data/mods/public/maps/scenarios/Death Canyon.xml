@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>sunny</SkySet>
+		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>15.7377</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.796875</Murkiness>
+				<Tint r="0.192157" g="0.258824" b="0.356863"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="466.069" y="289.52" z="177.078"/>
+		<Rotation angle="-0.0631586"/>
+		<Declination angle="0.507085"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name": "Death Canyon",
+  "Description": "A deep rocky canyon cutting through the desert.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ],
+  "CircularMap": true
+}
+]]></ScriptSettings>
+	<Entities/>
+	<Paths/>
+</Scenario>

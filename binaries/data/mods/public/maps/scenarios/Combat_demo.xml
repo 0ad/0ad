@@ -2,7 +2,7 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>stormy</SkySet>
+		<SkySet>cirrus</SkySet>
 		<SunColour r="1.69922" g="1.69922" b="1.69922"/>
 		<SunElevation angle="0.676026"/>
 		<SunRotation angle="0.592187"/>
@@ -23,119 +23,120 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="128.116" y="111.297" z="26.2618"/>
-		<Rotation angle="0.00889592"/>
-		<Declination angle="0.626119"/>
+		<Position x="122.057" y="111.803" z="7.81555"/>
+		<Rotation angle="0.0231291"/>
+		<Declination angle="0.538964"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"Combat Demo",
-  "Description":"A combat demonstration between a small number of ranged and melee infantry units.",
-  "PlayerData":[{
-      "Civ":"hele"
+  "Name": "Combat Demo",
+  "Description": "A combat demonstration between a small number of ranged and melee infantry units.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
     },
     {
-      "Civ":"hele"
+      "Civ": "hele"
     }
   ],
-  "RevealMap":true
+  "RevealMap": true
 }
 ]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="92.23147" z="139.33631"/>
+			<Position x="85.15519" z="140.54519"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="12">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="92.09475" z="135.37818"/>
+			<Position x="85.08178" z="136.46955"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="13">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="92.07326" z="131.31533"/>
+			<Position x="84.68078" z="132.29049"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="14">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="92.10633" z="127.8973"/>
+			<Position x="84.58814" z="128.5625"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="15">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="92.0197" z="119.50557"/>
+			<Position x="84.54111" z="119.59098"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="16">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="91.97193" z="123.69698"/>
+			<Position x="84.61438" z="123.77323"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="26">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="96.213" z="139.80062"/>
+			<Position x="87.67463" z="142.93183"/>
 			<Orientation y="1.547"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="96.06325" z="135.52216"/>
+			<Position x="87.72016" z="137.77866"/>
 			<Orientation y="1.57961"/>
 		</Entity>
 		<Entity uid="28">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="96.08097" z="143.44347"/>
+			<Position x="88.15882" z="146.16172"/>
 			<Orientation y="1.63631"/>
 		</Entity>
 		<Entity uid="29">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="95.99604" z="150.92829"/>
+			<Position x="87.92872" z="154.50611"/>
 			<Orientation y="1.6508"/>
 		</Entity>
 		<Entity uid="30">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="96.37882" z="131.72928"/>
+			<Position x="88.56109" z="133.22132"/>
 			<Orientation y="1.56295"/>
 		</Entity>
 		<Entity uid="31">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="95.71866" z="120.38817"/>
+			<Position x="87.7494" z="121.28443"/>
 			<Orientation y="1.38645"/>
 		</Entity>
 		<Entity uid="32">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="96.19869" z="127.70691"/>
+			<Position x="88.09148" z="129.64138"/>
 			<Orientation y="1.46003"/>
 		</Entity>
 		<Entity uid="33">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="95.70763" z="124.5465"/>
+			<Position x="87.97072" z="125.21911"/>
 			<Orientation y="1.67937"/>
 		</Entity>
 		<Entity uid="34">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="95.97988" z="147.06011"/>
+			<Position x="88.36658" z="150.86048"/>
 			<Orientation y="1.60602"/>
 		</Entity>
 		<Entity uid="35">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="95.79886" z="117.7754"/>
+			<Position x="88.1539" z="117.16916"/>
 			<Orientation y="1.74827"/>
 		</Entity>
 		<Entity uid="49">
@@ -285,49 +286,49 @@
 		<Entity uid="87">
 			<Template>units/hele_super_ranged_polis</Template>
 			<Player>1</Player>
-			<Position x="91.51507" z="112.15552"/>
+			<Position x="85.35996" z="115.0928"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="88">
 			<Template>units/hele_super_ranged_polis</Template>
 			<Player>1</Player>
-			<Position x="91.88711" z="107.90511"/>
+			<Position x="85.40084" z="109.64284"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="89">
 			<Template>units/hele_super_ranged_polis</Template>
 			<Player>1</Player>
-			<Position x="91.97706" z="103.9348"/>
+			<Position x="85.4768" z="104.69619"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="90">
 			<Template>units/hele_super_ranged_polis</Template>
 			<Player>1</Player>
-			<Position x="91.48443" z="99.33594"/>
+			<Position x="85.74891" z="100.50165"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="91">
 			<Template>units/hele_super_infantry_polis</Template>
 			<Player>1</Player>
-			<Position x="92.61365" z="155.03304"/>
+			<Position x="85.69983" z="158.74531"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="92">
 			<Template>units/hele_super_infantry_polis</Template>
 			<Player>1</Player>
-			<Position x="91.9586" z="160.08585"/>
+			<Position x="85.65835" z="162.1988"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="93">
 			<Template>units/hele_super_infantry_polis</Template>
 			<Player>1</Player>
-			<Position x="92.31395" z="163.68683"/>
+			<Position x="86.43186" z="166.41028"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="94">
 			<Template>units/hele_super_infantry_polis</Template>
 			<Player>1</Player>
-			<Position x="91.68123" z="167.54168"/>
+			<Position x="86.41076" z="169.14298"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="100">
@@ -393,37 +394,37 @@
 		<Entity uid="133">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="87.73726" z="119.48472"/>
+			<Position x="82.00031" z="119.69343"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="134">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="87.75222" z="123.36765"/>
+			<Position x="81.79651" z="123.9323"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="135">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="88.1048" z="128.09003"/>
+			<Position x="81.89438" z="129.08104"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="136">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="88.06241" z="132.11817"/>
+			<Position x="82.47654" z="132.5271"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="137">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="88.06621" z="135.8907"/>
+			<Position x="82.42194" z="137.56394"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="138">
 			<Template>units/hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="88.24859" z="139.91266"/>
+			<Position x="82.26951" z="141.66085"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="148">
@@ -455,6 +456,831 @@
 			<Player>2</Player>
 			<Position x="165.6308" z="154.0413"/>
 			<Orientation y="-1.7224"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="93.55131" z="196.04044"/>
+			<Orientation y="-0.05416"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="100.2059" z="196.81395"/>
+			<Orientation y="0.1375"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="108.77642" z="195.42637"/>
+			<Orientation y="0.01464"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="115.92881" z="195.73288"/>
+			<Orientation y="0.16369"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="123.54836" z="196.34903"/>
+			<Orientation y="0.09055"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="130.39568" z="195.12089"/>
+			<Orientation y="0.1853"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="137.8165" z="194.05979"/>
+			<Orientation y="0.09961"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="144.28331" z="196.50376"/>
+			<Orientation y="0.31612"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="150.16401" z="196.96946"/>
+			<Orientation y="0.23981"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="157.32308" z="195.88653"/>
+			<Orientation y="0.19652"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="102.53267" z="60.37061"/>
+			<Orientation y="3.09627"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="109.60294" z="60.11126"/>
+			<Orientation y="3.03866"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="115.94045" z="59.767"/>
+			<Orientation y="3.09458"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="122.49677" z="60.28405"/>
+			<Orientation y="-3.09868"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="127.891" z="60.89231"/>
+			<Orientation y="-3.01844"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="132.57477" z="60.71798"/>
+			<Orientation y="-3.08663"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="137.60975" z="60.28405"/>
+			<Orientation y="-3.01603"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="142.77277" z="61.15467"/>
+			<Orientation y="-3.0513"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="148.431" z="61.5942"/>
+			<Orientation y="-2.95421"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="154.53423" z="61.85926"/>
+			<Orientation y="-2.83761"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="164.36094" z="198.3874"/>
+			<Orientation y="-0.14963"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="171.18427" z="196.90304"/>
+			<Orientation y="0.00441"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="177.99465" z="196.90304"/>
+			<Orientation y="0.04299"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="183.95482" z="199.13898"/>
+			<Orientation y="0.12874"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="189.49872" z="199.89692"/>
+			<Orientation y="0.0861"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="194.82097" z="200.35473"/>
+			<Orientation y="0.13311"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="200.36091" z="200.66124"/>
+			<Orientation y="0.15796"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="85.73194" z="196.90304"/>
+			<Orientation y="-0.00931"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="80.21192" z="196.90304"/>
+			<Orientation y="0.01948"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="74.27268" z="196.60914"/>
+			<Orientation y="0.03573"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="69.77114" z="197.64213"/>
+			<Orientation y="-0.06882"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="64.04015" z="197.34575"/>
+			<Orientation y="0.11048"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="57.96673" z="199.8969"/>
+			<Orientation y="0.17592"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="52.13453" z="199.44138"/>
+			<Orientation y="-0.22782"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.07137" z="187.6481"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="52.85344" z="178.87026"/>
+			<Orientation y="-1.35808"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="52.79319" z="169.99645"/>
+			<Orientation y="-1.41765"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.07105" z="161.1642"/>
+			<Orientation y="-1.69584"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.21732" z="153.41715"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.45047" z="146.14866"/>
+			<Orientation y="-1.49312"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="52.86995" z="140.30407"/>
+			<Orientation y="-1.58132"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="52.72561" z="134.35021"/>
+			<Orientation y="-1.28548"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.1866" z="125.93258"/>
+			<Orientation y="-1.73449"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.84311" z="117.21229"/>
+			<Orientation y="-1.76903"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="54.08632" z="108.40874"/>
+			<Orientation y="-1.34607"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="54.15517" z="102.69086"/>
+			<Orientation y="-1.25141"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.55303" z="95.3372"/>
+			<Orientation y="-1.32604"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="53.87899" z="87.89133"/>
+			<Orientation y="-1.33306"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="54.55526" z="79.80971"/>
+			<Orientation y="-1.39238"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="55.09821" z="72.89211"/>
+			<Orientation y="-1.41527"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="55.64477" z="64.6248"/>
+			<Orientation y="-1.37415"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="56.29339" z="58.46029"/>
+			<Orientation y="3.1061"/>
+		</Entity>
+		<Entity uid="205">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="61.70662" z="59.78936"/>
+			<Orientation y="3.0051"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="67.3211" z="58.85682"/>
+			<Orientation y="3.03331"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="73.90725" z="59.12218"/>
+			<Orientation y="-3.11812"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="79.34742" z="60.19219"/>
+			<Orientation y="3.1329"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="84.13813" z="59.78936"/>
+			<Orientation y="3.13195"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="90.29313" z="59.78937"/>
+			<Orientation y="-3.06472"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="96.7927" z="61.27594"/>
+			<Orientation y="-2.85111"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="160.51992" z="61.72884"/>
+			<Orientation y="3.06913"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="167.58118" z="62.31449"/>
+			<Orientation y="3.03055"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="174.3474" z="62.66799"/>
+			<Orientation y="3.13067"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="179.61266" z="62.668"/>
+			<Orientation y="3.1091"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="185.47771" z="60.34081"/>
+			<Orientation y="-3.12844"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="191.50223" z="61.26343"/>
+			<Orientation y="-3.0148"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="198.11834" z="61.4958"/>
+			<Orientation y="-2.8517"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="203.83732" z="62.07972"/>
+			<Orientation y="-2.68131"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.28664" z="76.26519"/>
+			<Orientation y="1.48745"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="203.28345" z="68.31084"/>
+			<Orientation y="1.4444"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.55613" z="82.26571"/>
+			<Orientation y="1.24268"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.35261" z="90.30156"/>
+			<Orientation y="1.37505"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.74265" z="97.34218"/>
+			<Orientation y="1.2478"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.2305" z="103.23414"/>
+			<Orientation y="1.52302"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.85895" z="110.05605"/>
+			<Orientation y="1.53547"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.71656" z="116.01272"/>
+			<Orientation y="1.58695"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.19433" z="121.85218"/>
+			<Orientation y="1.35978"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.11728" z="129.62616"/>
+			<Orientation y="1.60473"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="202.70005" z="136.20231"/>
+			<Orientation y="1.57624"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.6055" z="142.61785"/>
+			<Orientation y="0.86162"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.47352" z="148.87075"/>
+			<Orientation y="1.47304"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.73765" z="155.81493"/>
+			<Orientation y="1.45241"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.6814" z="161.30915"/>
+			<Orientation y="1.64641"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.22507" z="165.5698"/>
+			<Orientation y="1.4741"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="205.69892" z="171.36472"/>
+			<Orientation y="1.51912"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.64844" z="177.2687"/>
+			<Orientation y="1.4743"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.8902" z="183.62476"/>
+			<Orientation y="1.76384"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="203.6107" z="190.90508"/>
+			<Orientation y="1.61974"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>actor|props/special/common/waypoint_flag_factions.xml</Template>
+			<Position x="204.98884" z="196.37487"/>
+			<Orientation y="1.34876"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="24.09777" z="10.94149"/>
+			<Orientation y="-1.8136"/>
+		</Entity>
+		<Entity uid="242">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="18.30564" z="45.95205"/>
+			<Orientation y="0.8145"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="19.74958" z="129.83954"/>
+			<Orientation y="-2.25504"/>
+		</Entity>
+		<Entity uid="244">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="22.1819" z="189.82078"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="245">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="21.44245" z="231.97628"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="246">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="95.38221" z="225.0082"/>
+			<Orientation y="-1.66596"/>
+		</Entity>
+		<Entity uid="247">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="230.20478" z="232.55745"/>
+			<Orientation y="1.02048"/>
+		</Entity>
+		<Entity uid="248">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="233.0583" z="197.99228"/>
+			<Orientation y="-2.33655"/>
+		</Entity>
+		<Entity uid="249">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="241.22414" z="115.67377"/>
+			<Orientation y="0.69285"/>
+		</Entity>
+		<Entity uid="250">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="235.76034" z="50.85524"/>
+			<Orientation y="-1.28077"/>
+		</Entity>
+		<Entity uid="251">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="195.93171" z="22.05062"/>
+			<Orientation y="0.7803"/>
+		</Entity>
+		<Entity uid="252">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="124.58095" z="21.73012"/>
+			<Orientation y="-1.62168"/>
+		</Entity>
+		<Entity uid="253">
+			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
+			<Position x="69.73842" z="17.81537"/>
+			<Orientation y="0.55465"/>
+		</Entity>
+		<Entity uid="254">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="51.77524" z="56.1783"/>
+			<Orientation y="-2.81887"/>
+		</Entity>
+		<Entity uid="255">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="52.58643" z="54.62182"/>
+			<Orientation y="0.65285"/>
+		</Entity>
+		<Entity uid="256">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="53.67078" z="55.98652"/>
+			<Orientation y="0.03978"/>
+		</Entity>
+		<Entity uid="257">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="53.82865" z="58.51212"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="258">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="54.65876" z="59.02291"/>
+			<Orientation y="2.46119"/>
+		</Entity>
+		<Entity uid="259">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="55.48665" z="57.08103"/>
+			<Orientation y="-2.90203"/>
+		</Entity>
+		<Entity uid="260">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="57.236" z="54.4358"/>
+			<Orientation y="1.24958"/>
+		</Entity>
+		<Entity uid="261">
+			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
+			<Position x="55.73435" z="54.66913"/>
+			<Orientation y="-2.7257"/>
+		</Entity>
+		<Entity uid="262">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="202.49762" z="106.43627"/>
+			<Orientation y="-2.53582"/>
+		</Entity>
+		<Entity uid="263">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="200.40294" z="103.55146"/>
+			<Orientation y="2.56586"/>
+		</Entity>
+		<Entity uid="264">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="202.41092" z="102.87121"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="265">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="204.49474" z="105.48148"/>
+			<Orientation y="-0.07821"/>
+		</Entity>
+		<Entity uid="266">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="203.64512" z="109.58451"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="267">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="202.31525" z="110.59411"/>
+			<Orientation y="-2.33916"/>
+		</Entity>
+		<Entity uid="268">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="200.35592" z="107.60148"/>
+			<Orientation y="2.85758"/>
+		</Entity>
+		<Entity uid="269">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="200.8119" z="106.03942"/>
+			<Orientation y="-2.24141"/>
+		</Entity>
+		<Entity uid="270">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="199.78434" z="104.37658"/>
+			<Orientation y="1.88257"/>
+		</Entity>
+		<Entity uid="271">
+			<Template>actor|props/special/eyecandy/basket_hele_a.xml</Template>
+			<Position x="203.40566" z="104.16984"/>
+			<Orientation y="-2.57895"/>
+		</Entity>
+		<Entity uid="272">
+			<Template>actor|props/special/eyecandy/basket_iber_a.xml</Template>
+			<Position x="200.12026" z="90.02073"/>
+			<Orientation y="-2.84327"/>
+		</Entity>
+		<Entity uid="273">
+			<Template>actor|props/special/eyecandy/basket_iber_a.xml</Template>
+			<Position x="199.16485" z="87.19292"/>
+			<Orientation y="3.0932"/>
+		</Entity>
+		<Entity uid="274">
+			<Template>actor|props/special/eyecandy/basket_iber_a.xml</Template>
+			<Position x="199.35206" z="84.45533"/>
+			<Orientation y="0.84388"/>
+		</Entity>
+		<Entity uid="275">
+			<Template>actor|props/special/eyecandy/basket_iber_a.xml</Template>
+			<Position x="201.07197" z="86.99408"/>
+			<Orientation y="0.30474"/>
+		</Entity>
+		<Entity uid="276">
+			<Template>actor|props/special/eyecandy/basket_iber_a.xml</Template>
+			<Position x="201.70116" z="88.82795"/>
+			<Orientation y="0.45768"/>
+		</Entity>
+		<Entity uid="277">
+			<Template>actor|props/special/eyecandy/basket_iber_a.xml</Template>
+			<Position x="203.02634" z="91.61216"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="278">
+			<Template>actor|props/special/eyecandy/bench_1.xml</Template>
+			<Position x="52.85126" z="201.7006"/>
+			<Orientation y="2.70432"/>
+		</Entity>
+		<Entity uid="279">
+			<Template>actor|props/special/eyecandy/crate_a.xml</Template>
+			<Position x="51.862" z="197.77573"/>
+			<Orientation y="3.13067"/>
+		</Entity>
+		<Entity uid="280">
+			<Template>actor|props/special/eyecandy/crate_a.xml</Template>
+			<Position x="50.30472" z="200.36255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="281">
+			<Template>actor|props/special/eyecandy/crate_a.xml</Template>
+			<Position x="50.34046" z="204.95917"/>
+			<Orientation y="-2.44985"/>
+		</Entity>
+		<Entity uid="282">
+			<Template>actor|props/special/eyecandy/crate_a.xml</Template>
+			<Position x="55.96468" z="201.75222"/>
+			<Orientation y="0.6807"/>
+		</Entity>
+		<Entity uid="283">
+			<Template>actor|props/special/eyecandy/dummy_a.xml</Template>
+			<Position x="53.51594" z="204.88572"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="284">
+			<Template>actor|props/special/eyecandy/produce_bin_a.xml</Template>
+			<Position x="57.66086" z="204.26197"/>
+			<Orientation y="-2.26987"/>
+		</Entity>
+		<Entity uid="285">
+			<Template>actor|props/special/eyecandy/rug_stand_iber.xml</Template>
+			<Position x="199.15325" z="197.70322"/>
+			<Orientation y="-2.78365"/>
+		</Entity>
+		<Entity uid="286">
+			<Template>actor|props/special/eyecandy/rug_stand_iber.xml</Template>
+			<Position x="196.91013" z="202.37214"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="287">
+			<Template>actor|props/special/eyecandy/sack_1.xml</Template>
+			<Position x="201.08245" z="194.04355"/>
+			<Orientation y="-3.00362"/>
+		</Entity>
+		<Entity uid="288">
+			<Template>actor|props/special/eyecandy/sack_1.xml</Template>
+			<Position x="203.03187" z="196.23606"/>
+			<Orientation y="1.13674"/>
+		</Entity>
+		<Entity uid="289">
+			<Template>actor|props/special/eyecandy/sack_1_rough.xml</Template>
+			<Position x="202.47992" z="194.68703"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="292">
+			<Template>actor|props/special/eyecandy/table1_long.xml</Template>
+			<Position x="52.35117" z="191.143"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="293">
+			<Template>actor|props/special/eyecandy/table_rectangle.xml</Template>
+			<Position x="61.922" z="201.63598"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="294">
+			<Template>actor|props/special/eyecandy/table_square.xml</Template>
+			<Position x="50.71071" z="194.34505"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="295">
+			<Template>actor|props/special/eyecandy/tables_weapons_iber.xml</Template>
+			<Position x="55.52977" z="196.6873"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="296">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="59.18123" z="55.7405"/>
+			<Orientation y="2.94384"/>
+		</Entity>
+		<Entity uid="297">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="61.60576" z="54.8065"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="298">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="60.79381" z="55.85904"/>
+			<Orientation y="-0.54134"/>
+		</Entity>
+		<Entity uid="299">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="59.7077" z="58.00937"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="300">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="59.8234" z="60.7164"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="301">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="62.43648" z="57.21924"/>
+			<Orientation y="-3.05034"/>
+		</Entity>
+		<Entity uid="302">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="62.44057" z="53.27465"/>
+			<Orientation y="0.85012"/>
+		</Entity>
+		<Entity uid="303">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="64.08698" z="55.4366"/>
+			<Orientation y="0.27932"/>
+		</Entity>
+		<Entity uid="304">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="59.55036" z="53.56919"/>
+			<Orientation y="0.8845"/>
+		</Entity>
+		<Entity uid="305">
+			<Template>actor|props/special/eyecandy/vase_hele_a.xml</Template>
+			<Position x="65.76122" z="53.58239"/>
+			<Orientation y="-2.81722"/>
+		</Entity>
+		<Entity uid="306">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="205.73581" z="54.54451"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="307">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="203.17812" z="55.95575"/>
+			<Orientation y="-1.54767"/>
+		</Entity>
+		<Entity uid="308">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="201.94997" z="55.97371"/>
+			<Orientation y="-3.0278"/>
+		</Entity>
+		<Entity uid="309">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="201.89666" z="53.8698"/>
+			<Orientation y="1.45386"/>
+		</Entity>
+		<Entity uid="310">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="204.42431" z="54.48642"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="311">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="205.08484" z="56.83909"/>
+			<Orientation y="1.59392"/>
+		</Entity>
+		<Entity uid="312">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="206.23911" z="57.00554"/>
+			<Orientation y="3.1139"/>
+		</Entity>
+		<Entity uid="313">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="206.28652" z="55.63285"/>
+			<Orientation y="2.98397"/>
+		</Entity>
+		<Entity uid="314">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="206.4862" z="53.68674"/>
+			<Orientation y="-3.11786"/>
+		</Entity>
+		<Entity uid="315">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="206.37862" z="52.7417"/>
+			<Orientation y="-1.74837"/>
+		</Entity>
+		<Entity uid="316">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="204.94501" z="52.76326"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="317">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="204.29148" z="53.22532"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="318">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="202.80735" z="54.39438"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="319">
+			<Template>actor|props/special/eyecandy/vase_iberians_a.xml</Template>
+			<Position x="202.73786" z="55.09504"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
