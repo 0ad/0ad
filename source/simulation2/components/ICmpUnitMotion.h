@@ -34,36 +34,30 @@
 class ICmpUnitMotion : public IComponent
 {
 public:
+
 	/**
-	 * Attempt to walk to a given point, or as close as possible.
+	 * Attempt to walk into range of a to a given point, or as close as possible.
 	 * If the unit cannot move anywhere at all, or if there is some other error, then
 	 * returns false.
-	 * Otherwise, sends a MotionChanged message and returns true; it will send another
-	 * MotionChanged message (with speed 0) once it has reached the target or otherwise
-	 * given up trying to reach it.
+	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
+	 * and sends another MotionChanged after finishing moving.
 	 */
-	virtual bool MoveToPoint(entity_pos_t x, entity_pos_t z) = 0;
+	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
 	 * Determine whether the target is within the given range, using the same measurement
-	 * as MoveToAttackRange.
+	 * as MoveToTargetRange.
 	 */
-	virtual bool IsInAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
 	 * Attempt to walk into range of a given target entity, or as close as possible.
 	 * If the unit is already in range, or cannot move anywhere at all, or if there is
 	 * some other error, then returns false.
-	 * Otherwise, sends a MotionChanged message and returns true; it will send another
-	 * MotionChanged message (with speed 0) once it has reached the target range (such that
-	 * IsInAttackRange should return true) or otherwise given up trying to reach it.
+	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
+	 * and sends another MotionChanged after finishing moving.
 	 */
-	virtual bool MoveToAttackRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
-
-	/**
-	 * See MoveToAttackRange, but the target is the given point.
-	 */
-	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
 	/**
 	 * Join a formation, and move towards a given offset relative to the formation controller entity.

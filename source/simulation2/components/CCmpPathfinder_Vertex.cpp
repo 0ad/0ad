@@ -317,6 +317,14 @@ static CFixedVector2D NearestPointOnGoal(CFixedVector2D pos, const CCmpPathfinde
 	}
 }
 
+CFixedVector2D CCmpPathfinder::GetNearestPointOnGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal)
+{
+	return NearestPointOnGoal(pos, goal);
+	// (It's intentional that we don't put the implementation inside this
+	// function, to avoid the (admittedly unmeasured and probably trivial)
+	// cost of a virtual call inside ComputeShortPath)
+}
+
 typedef PriorityQueueList<u16, fixed> PriorityQueue;
 
 struct TileEdge
@@ -541,14 +549,14 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 		edges.push_back(e3);
 	}
 
-	CFixedVector2D goalVec(goal.x, goal.z);
-
 	// List of obstruction vertexes (plus start/end points); we'll try to find paths through
 	// the graph defined by these vertexes
 	std::vector<Vertex> vertexes;
 
 	// Add the start point to the graph
-	Vertex start = { CFixedVector2D(x0, z0), fixed::Zero(), (CFixedVector2D(x0, z0) - goalVec).Length(), 0, Vertex::OPEN, QUADRANT_NONE, QUADRANT_ALL };
+	CFixedVector2D posStart(x0, z0);
+	fixed hStart = (posStart - NearestPointOnGoal(posStart, goal)).Length();
+	Vertex start = { posStart, fixed::Zero(), hStart, 0, Vertex::OPEN, QUADRANT_NONE, QUADRANT_ALL };
 	vertexes.push_back(start);
 	const size_t START_VERTEX_ID = 0;
 

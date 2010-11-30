@@ -22,10 +22,9 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(UnitMotion)
-DEFINE_INTERFACE_METHOD_2("MoveToPoint", bool, ICmpUnitMotion, MoveToPoint, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_3("IsInAttackRange", bool, ICmpUnitMotion, IsInAttackRange, entity_id_t, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_3("MoveToAttackRange", bool, ICmpUnitMotion, MoveToAttackRange, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_4("MoveToPointRange", bool, ICmpUnitMotion, MoveToPointRange, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_3("IsInTargetRange", bool, ICmpUnitMotion, IsInTargetRange, entity_id_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_3("MoveToTargetRange", bool, ICmpUnitMotion, MoveToTargetRange, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("MoveToFormationOffset", void, ICmpUnitMotion, MoveToFormationOffset, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("StopMoving", void, ICmpUnitMotion, StopMoving)
 DEFINE_INTERFACE_METHOD_1("SetSpeed", void, ICmpUnitMotion, SetSpeed, fixed)

@@ -130,6 +130,11 @@ public:
 	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass) = 0;
 
 	/**
+	 * Returns the coordinates of the point on the goal that is closest to pos in a straight line.
+	 */
+	virtual CFixedVector2D GetNearestPointOnGoal(CFixedVector2D pos, const Goal& goal) = 0;
+
+	/**
 	 * Check whether the given movement line is valid and doesn't hit any obstructions
 	 * or impassable terrain.
 	 * Returns true if the movement is okay.

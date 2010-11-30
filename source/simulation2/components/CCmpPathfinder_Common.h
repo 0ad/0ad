@@ -226,6 +226,8 @@ public:
 
 	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass);
 
+	virtual CFixedVector2D GetNearestPointOnGoal(CFixedVector2D pos, const Goal& goal);
+
 	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u8 passClass);
 
 	virtual void FinishAsyncRequests();

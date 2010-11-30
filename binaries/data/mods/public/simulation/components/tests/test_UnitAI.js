@@ -58,7 +58,8 @@ function TestFormationExiting(mode)
 	AddMock(unit, IID_UnitMotion, {
 		GetWalkSpeed: function() { return 1; },
 		MoveToFormationOffset: function(target, x, z) { },
-		MoveToAttackRange: function(target, min, max) { },
+		MoveToTargetRange: function(target, min, max) { },
+		StopMoving: function() { },
 	});
 
 	AddMock(unit, IID_Vision, {
@@ -97,7 +98,7 @@ function TestFormationExiting(mode)
 	AddMock(controller, IID_UnitMotion, {
 		SetUnitRadius: function(r) { },
 		SetSpeed: function(speed) { },
-		MoveToPoint: function(x, z) { },
+		MoveToPointRange: function(x, z, minRange, maxRange) { },
 	});
 
 	controllerAI.OnCreate();

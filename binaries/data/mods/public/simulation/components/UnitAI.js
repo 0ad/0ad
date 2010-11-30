@@ -258,6 +258,9 @@ var UnitFsmSpec = {
 	"FORMATIONMEMBER": {
 
 		"FormationLeave": function(msg) {
+			// Stop moving as soon as the formation disbands
+			this.StopMoving();
+
 			// We're leaving the formation, so stop our FormationWalk order
 			if (this.FinishOrder())
 				return;
@@ -290,7 +293,8 @@ var UnitFsmSpec = {
 				this.PushOrderFront("Attack", { "target": msg.data.attacker });
 			}
 			else
-			{	// TODO: If unit can't attack, run away
+			{
+				// TODO: If unit can't attack, run away
 			}
 		},
 
@@ -420,7 +424,34 @@ var UnitFsmSpec = {
 					this.SelectAnimation("move");
 				},
 
-				"MoveCompleted": function() {
+				"MoveCompleted": function(msg) {
+					if (msg.data.error)
+					{
+						// We failed to reach the target
+
+						// Save the current order's data in case we need it later
+						var oldType = this.order.data.type;
+						var oldTarget = this.order.data.target;
+
+						// Try the next queued order if there is any
+						if (this.FinishOrder())
+							return;
+
+						// Try to find another nearby target of the same type
+						var nearby = this.FindNearbyResource(oldType, oldTarget);
+						if (nearby)
+						{
+							this.Gather(nearby, true);
+							return;
+						}
+
+						// Couldn't find anything else. Just try this one again,
+						// maybe we'll succeed next time
+						this.Gather(oldTarget, true);
+						return;
+					}
+
+					// We reached the target - start gathering from it now
 					this.SetNextState("GATHERING");
 				},
 			},
@@ -509,26 +540,11 @@ var UnitFsmSpec = {
 
 							// Try to find a nearby target of the same type
 
-							var range = 64; // TODO: what's a sensible number?
-
-							// Accept any resources owned by Gaia
-							var players = [0];
-							// Also accept resources owned by this unit's player:
-							var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-							if (cmpOwnership)
-								players.push(cmpOwnership.GetOwner());
-
-							var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-							var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
-							for each (var ent in nearby)
+							var nearby = this.FindNearbyResource(oldType);
+							if (nearby)
 							{
-								var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
-								var type = cmpResourceSupply.GetType();
-								if (type.specific == oldType.specific)
-								{
-									this.Gather(ent, true);
-									return;
-								}
+								this.Gather(nearby, true);
+								return;
 							}
 
 							// Nothing else to gather - just give up
@@ -894,14 +910,14 @@ UnitAI.prototype.OnRangeUpdate = function(msg)
 
 UnitAI.prototype.GetWalkSpeed = function()
 {
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpMotion.GetWalkSpeed();
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.GetWalkSpeed();
 };
 
 UnitAI.prototype.GetRunSpeed = function()
 {
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpMotion.GetRunSpeed();
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.GetRunSpeed();
 };
 
 /**
@@ -930,6 +946,40 @@ UnitAI.prototype.MustKillGatherTarget = function(ent)
 		return false;
 
 	return this.TargetIsAlive(ent);
+};
+
+/**
+ * Returns the entity ID of the nearest resource supply of the given
+ * type, excluding the one with ID 'exclude',
+ * or undefined if none can be found.
+ * TODO: extend this to exclude resources that already have lots of
+ * gatherers.
+ */
+UnitAI.prototype.FindNearbyResource = function(requestedType, exclude)
+{
+	var range = 64; // TODO: what's a sensible number?
+
+	// Accept any resources owned by Gaia
+	var players = [0];
+	// Also accept resources owned by this unit's player:
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership)
+		players.push(cmpOwnership.GetOwner());
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
+	for each (var ent in nearby)
+	{
+		if (ent == exclude)
+			continue;
+
+		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+		var type = cmpResourceSupply.GetType();
+		if (type.specific == requestedType.specific)
+			return ent;
+	}
+
+	return undefined;
 };
 
 /**
@@ -998,23 +1048,22 @@ UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)
 	cmpVisual.SetAnimationSyncOffset(actiontime);
 };
 
+UnitAI.prototype.StopMoving = function()
+{
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	cmpUnitMotion.StopMoving();
+};
+
 UnitAI.prototype.MoveToPoint = function(x, z)
 {
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpMotion.MoveToPoint(x, z);
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToPointRange(x, z, 0, 0);
 };
 
 UnitAI.prototype.MoveToTarget = function(target)
 {
-	var cmpPosition = Engine.QueryInterface(target, IID_Position);
-	if (!cmpPosition)
-		return false;
-
-	if (!cmpPosition.IsInWorld())
-		return false;
-
-	var pos = cmpPosition.GetPosition();
-	return this.MoveToPoint(pos.x, pos.z);
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToTargetRange(target, 0, 0);
 };
 
 UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
@@ -1022,8 +1071,8 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
 	var range = cmpRanged.GetRange(type);
 
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpMotion.MoveToAttackRange(target, range.min, range.max);
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
@@ -1031,8 +1080,8 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
 	var range = cmpRanged.GetRange(type);
 
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	return cmpMotion.IsInAttackRange(target, range.min, range.max);
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
 };
 
 UnitAI.prototype.GetBestAttack = function()
