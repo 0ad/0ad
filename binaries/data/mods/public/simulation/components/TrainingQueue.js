@@ -163,10 +163,13 @@ TrainingQueue.prototype.ResetQueue = function()
 
 TrainingQueue.prototype.OnOwnershipChanged = function(msg)
 {
-	// Unset flag that previous owner's training queue may be blocked
-	var cmpPlayer = QueryPlayerIDInterface(msg.from, IID_Player);
-	if (cmpPlayer && this.queue.length > 0)
-		cmpPlayer.UnBlockTrainingQueue();
+	if (msg.from != -1)
+	{
+		// Unset flag that previous owner's training queue may be blocked
+		var cmpPlayer = QueryPlayerIDInterface(msg.from, IID_Player);
+		if (cmpPlayer && this.queue.length > 0)
+			cmpPlayer.UnBlockTrainingQueue();
+	}
 
 	// Reset the training queue whenever the owner changes.
 	// (This should prevent players getting surprised when they capture

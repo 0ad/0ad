@@ -23,10 +23,19 @@ PlayerManager.prototype.AddPlayer = function(ent)
 	return id;
 };
 
+/**
+ * Returns the player entity ID for the given player ID.
+ * The player ID must be valid (else there will be an error message).
+ */
 PlayerManager.prototype.GetPlayerByID = function(id)
 {
-	return this.playerEntities[id];
-	// TODO: report error message if invalid id
+	if (id in this.playerEntities)
+		return this.playerEntities[id];
+
+	var stack = new Error().stack.trimRight().replace(/^/mg, '  '); // indent each line
+	warn("GetPlayerByID: no player defined for id '"+id+"'\n"+stack);
+
+	return INVALID_ENTITY;
 };
 
 PlayerManager.prototype.GetNumPlayers = function()
