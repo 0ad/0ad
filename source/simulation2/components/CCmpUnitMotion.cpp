@@ -44,6 +44,15 @@
 static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(CELL_SIZE*8);
 
 /**
+ * When advancing along the long path, we'll pick a new waypoint to move
+ * towards if we expect to reach the end of our current short path within
+ * this many turns (assuming constant speed and turn length).
+ * (This could typically be 1, but we need some tolerance in case speeds
+ * or turn lengths change.)
+ */
+static const int WAYPOINT_ADVANCE_LOOKAHEAD_TURNS = 4;
+
+/**
  * Maximum range to restrict short path queries to. (Larger ranges are slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
@@ -757,9 +766,16 @@ void CCmpUnitMotion::Move(fixed dt)
 		else
 			basicSpeed = m_Speed; // (typically but not always WalkSpeed)
 
-		// We want to move (at most) basicSpeed*terrainSpeed*dt units from pos towards the next waypoint
+		// Find the speed factor of the underlying terrain
+		// (We only care about the tile we start on - it doesn't matter if we're moving
+		// partially onto a much slower/faster tile)
+		fixed terrainSpeed = cmpPathfinder->GetMovementSpeed(pos.X, pos.Y, m_CostClass);
+
+		fixed maxSpeed = basicSpeed.Multiply(terrainSpeed);
 
 		bool wasObstructed = false;
+
+		// We want to move (at most) maxSpeed*dt units from pos towards the next waypoint
 
 		fixed timeLeft = dt;
 
@@ -778,13 +794,6 @@ void CCmpUnitMotion::Move(fixed dt)
 				entity_angle_t angle = atan2_approx(offset.X, offset.Y);
 				cmpPosition->TurnTo(angle);
 			}
-
-			// Find the speed factor of the underlying terrain
-			// (We only care about the tile we start on - it doesn't matter if we're moving
-			// partially onto a much slower/faster tile)
-			fixed terrainSpeed = cmpPathfinder->GetMovementSpeed(pos.X, pos.Y, m_CostClass);
-
-			fixed maxSpeed = basicSpeed.Multiply(terrainSpeed); // TODO: running?
 
 			// Work out how far we can travel in timeLeft
 			fixed maxdist = maxSpeed.Multiply(timeLeft);
@@ -857,7 +866,7 @@ void CCmpUnitMotion::Move(fixed dt)
 			// If we are close to reaching the end of the short path
 			// (or have reached it already), try to extend it
 
-			entity_pos_t minDistance = basicSpeed.Multiply(dt) * 8; // XXX
+			entity_pos_t minDistance = basicSpeed.Multiply(dt) * WAYPOINT_ADVANCE_LOOKAHEAD_TURNS;
 			if (PathIsShort(m_ShortPath, pos, minDistance))
 			{
 				// Start the path extension from the end of this short path
