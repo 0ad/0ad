@@ -155,6 +155,50 @@
 				sprite="bkWhiteBorderBlack"
 				textcolor="0 0 0"
 		/>
+
+		<tooltip 	name="sessionToolTip"
+				anchor="top"
+				buffer_zone="4"
+				delay="100"
+				font="serif-14"
+				maxwidth="300"
+				offset="16 32"
+				sprite="bkDarkTransparentBorderGold"
+				textcolor="255 255 255"
+		/>
+		
+		<tooltip 	name="sessionToolTipBottom"
+				anchor="bottom"
+				buffer_zone="4"
+				delay="100"
+				font="serif-14"
+				maxwidth="400"
+				offset="-4 -4"
+				sprite="bkDarkTransparentBorderGold"
+				textcolor="255 255 255"
+		/>
+
+		<tooltip 	name="sessionToolTipBold"
+				anchor="top"
+				buffer_zone="4"
+				delay="100"
+				font="serif-bold-14"
+				maxwidth="300"
+				offset="16 32"
+				sprite="bkDarkTransparentBorderGold"
+				textcolor="255 255 255"
+		/>
+
+		<tooltip 	name="sessionToolTipBottomBold"
+				anchor="bottom"
+				buffer_zone="4"
+				delay="100"
+				font="serif-bold-14"
+				maxwidth="400"
+				offset="-4 -4"
+				sprite="bkDarkTransparentBorderGold"
+				textcolor="255 255 255"
+		/>
 		
 		<!--
 		==========================================
@@ -169,11 +213,13 @@
 		<color name="yellow">255 255 0</color>
 
 		<color name="gold">237 227 167</color>
-		<color name="gray">243 242 240</color>
+		<color name="lightgray">243 242 240</color>
+		<color name="gray">143 142 140</color>    
 		<color name="darkgray">43 42 40</color>                
 		<color name="green">0 200 0</color>        
 		<color name="mustard">191 191 2</color>        
 		<color name="brown">159 98 24</color>
+		<color name="orange">255 165 0</color>
 
 		<color name="transparent">0 0 0 0</color>
 
