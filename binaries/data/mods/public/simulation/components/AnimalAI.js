@@ -314,7 +314,7 @@ AnimalAI.prototype.MoveRandomly = function(distance)
 AnimalAI.prototype.MoveAwayFrom = function(ent, distance)
 {
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpMotion.MoveToAttackRange(ent, distance, distance);
+	cmpMotion.MoveToTargetRange(ent, distance, distance);
 };
 
 AnimalAI.prototype.StopMoving = function()
