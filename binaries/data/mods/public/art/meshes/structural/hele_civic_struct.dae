@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-10-24T07:13:39Z</created>
-    <modified>2010-10-24T07:13:39Z</modified>
+    <created>2010-12-01T08:21:37Z</created>
+    <modified>2010-12-01T08:21:37Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,7 +16,7 @@
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__314-image" name="Map__314">
+    <image id="Map__314_image-image" name="Map__314_image">
       <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct.png</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588200  0.588200 0.588200 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__314-image" texcoord="CHANNEL0">
+              <texture texture="Map__314_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="material1-lib" name="material1Mesh">
+    <geometry id="material1_Pivot-lib" name="material1_PivotMesh">
       <mesh>
-        <source id="material1-lib-Position">
-          <float_array id="material1-lib-Position-array" count="1224">
+        <source id="material1_Pivot-lib-Position">
+          <float_array id="material1_Pivot-lib-Position-array" count="1224">
 3.785100 -2.926350 1.451750
 3.625200 -1.916950 1.451750
 3.725000 -1.884550 1.814750
@@ -485,15 +485,15 @@
 8.801110 9.986582 1.451750
 </float_array>
           <technique_common>
-            <accessor source="#material1-lib-Position-array" count="408" stride="3">
+            <accessor source="#material1_Pivot-lib-Position-array" count="408" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="material1-lib-Normal0">
-          <float_array id="material1-lib-Normal0-array" count="5094">
+        <source id="material1_Pivot-lib-Normal0">
+          <float_array id="material1_Pivot-lib-Normal0-array" count="5094">
 0.960625 0.000032 -0.277848
 0.913644 0.296883 -0.277695
 0.913644 0.296873 -0.277707
@@ -867,24 +867,24 @@
 0.500032 0.866007 0.000000
 0.866043 0.499970 0.000000
 0.500032 0.866007 0.000000
--0.000000 1.000000 0.000000
--0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
 0.500032 0.866007 0.000000
--0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
 0.500032 0.866007 0.000000
--0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
 -0.500032 0.866007 0.000000
 -0.500032 0.866007 0.000000
--0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
 -0.500032 0.866007 0.000000
--0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
 -0.500032 0.866007 0.000000
 -0.866043 0.499970 0.000000
--0.866043 0.499970 0.000000
--0.500032 0.866007 0.000000
 -0.866043 0.499970 0.000000
 -0.500032 0.866007 0.000000
 -0.866043 0.499970 0.000000
+-0.500032 0.866007 0.000000
+-0.866043 0.499970 0.000000
 -1.000000 0.000016 0.000000
 -1.000000 0.000016 0.000000
 -0.866043 0.499970 0.000000
@@ -903,17 +903,17 @@
 -0.500032 -0.866007 0.000000
 -0.866051 -0.499956 0.000000
 -0.500032 -0.866007 0.000000
--0.000000 -1.000000 0.000000
--0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
 -0.500032 -0.866007 0.000000
--0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
 -0.500032 -0.866007 0.000000
--0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
 0.500032 -0.866007 0.000000
 0.500032 -0.866007 0.000000
--0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
 0.500032 -0.866007 0.000000
--0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
 0.500032 -0.866007 0.000000
 0.866051 -0.499956 0.000000
 0.866051 -0.499956 0.000000
@@ -1689,7 +1689,7 @@
 0.000000 1.000000 0.000000
 0.000000 1.000000 0.000000
 0.000000 -0.293016 0.956108
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.000000 1.000000
 0.000000 -0.293016 0.956108
 0.000000 0.000000 1.000000
@@ -1706,10 +1706,10 @@
 0.000000 0.293016 0.956108
 0.000000 0.000000 1.000000
 0.000000 0.293015 0.956108
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.293015 0.956108
 0.000000 0.293016 0.956108
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.293016 0.956108
 0.000000 0.000000 1.000000
 0.000000 -0.980581 -0.196116
@@ -1845,7 +1845,7 @@
 0.000000 1.000000 0.000000
 0.000000 0.995118 -0.098694
 0.000000 -0.291090 0.956696
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.000000 1.000000
 0.000000 -0.291090 0.956696
 0.000000 0.000000 1.000000
@@ -1855,17 +1855,17 @@
 0.000000 -0.291090 0.956696
 0.000000 0.000000 1.000000
 0.000000 -0.291090 0.956696
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.291090 0.956695
 0.000000 0.000000 1.000000
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.291090 0.956695
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.291091 0.956696
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.291091 0.956696
 0.000000 0.291090 0.956695
-0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
 0.000000 0.291090 0.956695
 0.000000 0.000000 1.000000
 0.000000 0.988954 -0.148225
@@ -2194,15 +2194,15 @@
 -0.989966 0.000000 -0.141309
 </float_array>
           <technique_common>
-            <accessor source="#material1-lib-Normal0-array" count="1698" stride="3">
+            <accessor source="#material1_Pivot-lib-Normal0-array" count="1698" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="material1-lib-UV0">
-          <float_array id="material1-lib-UV0-array" count="1498">
+        <source id="material1_Pivot-lib-UV0">
+          <float_array id="material1_Pivot-lib-UV0-array" count="1354">
 0.898900 0.587300
 0.998700 0.587300
 0.998700 0.652700
@@ -2880,93 +2880,21 @@
 0.957100 0.586600
 0.966900 0.651500
 0.883400 0.651500
-0.669300 0.651400
-1.000900 0.651400
-1.000900 0.758100
-0.669300 0.758100
-0.835100 0.651400
-1.000900 0.651400
-1.000900 0.758100
-0.835100 0.758100
-0.503400 0.651400
-1.000900 0.651400
-1.000900 0.758100
-0.503400 0.758100
-0.669300 0.651400
-0.669300 0.758100
-0.503400 0.758100
-0.503400 0.651400
-0.835100 0.651400
-0.835100 0.758100
-0.503400 0.758100
-0.503400 0.651400
-0.504100 0.494500
-0.504100 0.003200
-0.669500 0.167000
-0.669500 0.494500
-1.000200 0.003200
-1.000200 0.167000
-0.641600 0.130600
-0.973300 0.130600
-0.973300 0.195600
-0.641600 0.195600
-0.862700 0.130600
-0.973300 0.130600
-0.973300 0.195600
-0.862700 0.195600
-0.531100 0.130600
-0.973300 0.130600
-0.973300 0.195600
-0.531100 0.195600
-0.531100 0.130600
-0.641600 0.130600
-0.641600 0.195600
-0.531100 0.195600
-0.531100 0.130600
-0.862700 0.130600
-0.862700 0.195600
-0.531100 0.195600
-0.669300 0.651400
-1.000900 0.651400
-1.000900 0.758100
-0.669300 0.758100
-0.835100 0.651400
-1.000900 0.651400
-1.000900 0.758100
-0.835100 0.758100
-0.503400 0.651400
-1.000900 0.651400
-1.000900 0.758100
-0.503400 0.758100
-0.669300 0.651400
-0.669300 0.758100
-0.503400 0.758100
-0.503400 0.651400
-0.835100 0.651400
-0.835100 0.758100
-0.503400 0.758100
-0.503400 0.651400
-0.504100 0.494500
-0.504100 0.003200
-0.669500 0.167000
-0.669500 0.494500
-1.000200 0.003200
-1.000200 0.167000
 </float_array>
           <technique_common>
-            <accessor source="#material1-lib-UV0-array" count="749" stride="2">
+            <accessor source="#material1_Pivot-lib-UV0-array" count="677" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="material1-lib-Vertex">
-          <input semantic="POSITION" source="#material1-lib-Position"/>
+        <vertices id="material1_Pivot-lib-Vertex">
+          <input semantic="POSITION" source="#material1_Pivot-lib-Position"/>
         </vertices>
         <polygons material="_14___Default" count="566">
-          <input semantic="VERTEX" offset="0" source="#material1-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#material1-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#material1-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#material1_Pivot-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#material1_Pivot-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#material1_Pivot-lib-UV0"/>
           <p>0 0 0 1 1 1 2 2 2</p>
           <p>0 3 0 2 4 2 3 5 3</p>
           <p>1 6 4 4 7 5 5 8 6</p>
@@ -3537,22 +3465,98 @@
       </mesh>
     </geometry>
   </library_geometries>
+  <library_animations>
+    <animation id="material1-anim" name="material1">
+      <animation>
+        <source id="material1-Matrix-animation-input">
+          <float_array id="material1-Matrix-animation-input-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#material1-Matrix-animation-input-array" count="0">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="material1-Matrix-animation-output-transform">
+          <float_array id="material1-Matrix-animation-output-transform-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#material1-Matrix-animation-output-transform-array" count="0" stride="16">
+              <param type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="material1-Interpolations">
+          <Name_array id="material1-Interpolations-array" count="0">
+</Name_array>
+          <technique_common>
+            <accessor source="#material1-Interpolations-array" count="0">
+              <param type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="material1-Matrix-animation-transform">
+          <input semantic="INPUT" source="#material1-Matrix-animation-input"/>
+          <input semantic="OUTPUT" source="#material1-Matrix-animation-output-transform"/>
+          <input semantic="INTERPOLATION" source="#material1-Interpolations"/>
+        </sampler>
+        <channel source="#material1-Matrix-animation-transform" target="material1/matrix"/>
+      </animation>
+    </animation>
+    <animation id="material1_Pivot-anim" name="material1_Pivot">
+      <animation>
+        <source id="material1_Pivot-Matrix-animation-input">
+          <float_array id="material1_Pivot-Matrix-animation-input-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#material1_Pivot-Matrix-animation-input-array" count="0">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="material1_Pivot-Matrix-animation-output-transform">
+          <float_array id="material1_Pivot-Matrix-animation-output-transform-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#material1_Pivot-Matrix-animation-output-transform-array" count="0" stride="16">
+              <param type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="material1_Pivot-Interpolations">
+          <Name_array id="material1_Pivot-Interpolations-array" count="0">
+</Name_array>
+          <technique_common>
+            <accessor source="#material1_Pivot-Interpolations-array" count="0">
+              <param type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="material1_Pivot-Matrix-animation-transform">
+          <input semantic="INPUT" source="#material1_Pivot-Matrix-animation-input"/>
+          <input semantic="OUTPUT" source="#material1_Pivot-Matrix-animation-output-transform"/>
+          <input semantic="INTERPOLATION" source="#material1_Pivot-Interpolations"/>
+        </sampler>
+        <channel source="#material1_Pivot-Matrix-animation-transform" target="material1_Pivot/matrix"/>
+      </animation>
+    </animation>
+  </library_animations>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="material1" name="material1">
-        <translate sid="translate">-0.306240 -0.378324 -0.002705</translate>
-        <scale sid="scale">1.390430 1.390430 1.390430</scale>
-        <node id="material1-Pivot" name="material1-Pivot">
-          <translate>0.169698 -0.027458 3.898183</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#material1-lib">
+        <matrix sid="matrix">1.390430 0.000000 0.000000 -0.306240 0.000000 1.390430 0.000000 -0.378324 0.000000 0.000000 1.390430 -0.002705 0.000000 0.000000 0.000000 1.000000</matrix>
+        <node id="material1_Pivot" name="material1_Pivot">
+          <matrix sid="matrix">1.000000 0.000000 0.000000 0.169698 0.000000 1.000000 0.000000 -0.027458 0.000000 0.000000 1.000000 3.898183 0.000000 0.000000 0.000000 1.000000</matrix>
+          <instance_geometry url="#material1_Pivot-lib">
             <bind_material>
               <technique_common>
-                <instance_material symbol="Map__314-Material" target="#Map__314-Material"/>
                 <instance_material symbol="_14___Default" target="#_14___Default"/>
               </technique_common>
             </bind_material>
           </instance_geometry>
+          <node id="prop_garrisoned" name="prop_garrisoned">
+            <matrix sid="matrix">0.719202 0.000000 0.000000 9.669615 0.000000 0.719202 0.000000 6.918396 0.000000 0.000000 0.719202 3.884730 0.000000 0.000000 0.000000 1.000000</matrix>
+          </node>
         </node>
       </node>
     </visual_scene>

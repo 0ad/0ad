@@ -13,5 +13,13 @@
       <texture>structural/hele_struct_b.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/structures/hellenes/garrisonflag.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

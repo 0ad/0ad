@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-12-01T08:13:09Z</created>
+    <modified>2010-12-01T08:13:09Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__328-image" name="Map__328">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\banner_greek.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_19___Default" name="_19___Default">
+      <instance_effect url="#_19___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_19___Default-fx" name="_19___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__328-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="waypoint_flag-lib" name="waypoint_flagMesh">
+      <mesh>
+        <source id="waypoint_flag-lib-Position">
+          <float_array id="waypoint_flag-lib-Position-array" count="72">
+-0.070216 -0.070216 0.000000
+0.070216 -0.070216 0.000000
+-0.070216 0.070216 0.000000
+0.070216 0.070216 0.000000
+-0.070216 -0.070216 8.547498
+0.070216 -0.070216 8.547498
+-0.070216 0.070216 8.547498
+0.070216 0.070216 8.547498
+1.686182 -0.215625 8.209383
+1.686182 -0.215625 8.349813
+1.686182 -0.075193 8.209383
+1.686182 -0.075193 8.349813
+-1.736655 -0.215625 8.209382
+-1.736655 -0.215625 8.349813
+-1.736655 -0.075193 8.209382
+-1.736655 -0.075193 8.349813
+-1.529334 -0.235091 4.877232
+1.528021 -0.235091 4.877232
+-1.529334 -0.210269 8.217468
+1.528021 -0.210269 8.217468
+-1.529334 -0.228028 4.877232
+1.528021 -0.228028 4.877232
+-1.529334 -0.203206 8.217468
+1.528021 -0.203206 8.217468
+</float_array>
+          <technique_common>
+            <accessor source="#waypoint_flag-lib-Position-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="waypoint_flag-lib-Normal0">
+          <float_array id="waypoint_flag-lib-Normal0-array" count="252">
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 -0.999972 0.007431
+0.000000 -0.999972 0.007431
+0.000000 -0.999972 0.007431
+0.000000 -0.999972 0.007431
+0.000000 -0.999972 0.007431
+0.000000 -0.999972 0.007431
+0.000000 0.999972 -0.007431
+0.000000 0.999972 -0.007431
+0.000000 0.999972 -0.007431
+0.000000 0.999972 -0.007431
+0.000000 0.999972 -0.007431
+0.000000 0.999972 -0.007431
+</float_array>
+          <technique_common>
+            <accessor source="#waypoint_flag-lib-Normal0-array" count="84" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="waypoint_flag-lib-UV0">
+          <float_array id="waypoint_flag-lib-UV0-array" count="64">
+0.899738 0.000000
+1.000000 0.000000
+0.899738 0.975683
+1.000000 0.975683
+0.899738 0.000000
+1.000000 0.000000
+0.899738 0.975683
+1.000000 0.975683
+0.000000 0.000000
+0.107557 0.000000
+0.000000 0.107557
+0.107557 0.107557
+0.899738 0.000000
+1.000000 0.000000
+0.899738 0.975683
+1.000000 0.975683
+0.899738 0.000000
+1.000000 0.000000
+0.899738 0.975683
+1.000000 0.975683
+0.000000 0.000000
+0.107557 0.000000
+0.000000 0.107557
+0.107557 0.107557
+-0.000000 0.109531
+0.882669 0.109531
+-0.000000 1.000000
+0.882669 1.000000
+-0.000000 0.109531
+0.882669 0.109531
+-0.000000 1.000000
+0.882669 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#waypoint_flag-lib-UV0-array" count="32" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="waypoint_flag-lib-Vertex">
+          <input semantic="POSITION" source="#waypoint_flag-lib-Position"/>
+        </vertices>
+        <polygons material="_19___Default" count="28">
+          <input semantic="VERTEX" offset="0" source="#waypoint_flag-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#waypoint_flag-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#waypoint_flag-lib-UV0"/>
+          <p>0 0 9 2 1 11 3 2 10</p>
+          <p>3 3 10 1 4 8 0 5 9</p>
+          <p>4 6 8 5 7 9 7 8 11</p>
+          <p>7 9 11 6 10 10 4 11 8</p>
+          <p>0 12 4 1 13 5 5 14 7</p>
+          <p>5 15 7 4 16 6 0 17 4</p>
+          <p>1 18 0 3 19 1 7 20 3</p>
+          <p>7 21 3 5 22 2 1 23 0</p>
+          <p>3 24 4 2 25 5 6 26 7</p>
+          <p>6 27 7 7 28 6 3 29 4</p>
+          <p>2 30 0 0 31 1 4 32 3</p>
+          <p>4 33 3 6 34 2 2 35 0</p>
+          <p>8 36 21 10 37 23 11 38 22</p>
+          <p>11 39 22 9 40 20 8 41 21</p>
+          <p>12 42 20 13 43 21 15 44 23</p>
+          <p>15 45 23 14 46 22 12 47 20</p>
+          <p>8 48 16 9 49 17 13 50 19</p>
+          <p>13 51 19 12 52 18 8 53 16</p>
+          <p>9 54 12 11 55 13 15 56 15</p>
+          <p>15 57 15 13 58 14 9 59 12</p>
+          <p>11 60 16 10 61 17 14 62 19</p>
+          <p>14 63 19 15 64 18 11 65 16</p>
+          <p>10 66 12 8 67 13 12 68 15</p>
+          <p>12 69 15 14 70 14 10 71 12</p>
+          <p>18 72 26 16 73 24 19 74 27</p>
+          <p>17 75 25 19 76 27 16 77 24</p>
+          <p>20 78 28 22 79 30 23 80 31</p>
+          <p>23 81 31 21 82 29 20 83 28</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="waypoint_flag" name="waypoint_flag">
+        <matrix sid="matrix">1.000000 -0.000000 -0.000000 0.000000 0.000000 0.000000 1.000000 -0.000000 -0.000000 -1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#waypoint_flag-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_19___Default" target="#_19___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

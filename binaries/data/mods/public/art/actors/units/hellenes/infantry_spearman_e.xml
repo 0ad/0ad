@@ -19,7 +19,7 @@
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
         <animation file="infantry/general/mine.psa" name="gather_rock" speed="200"/>
         <animation file="infantry/general/mine.psa" name="gather_ore" speed="200"/>
-		<animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
+        <animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -28,6 +28,7 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
       </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
@@ -50,19 +51,15 @@
   </group>
   <group>
     <variant frequency="2" name="armour-var-a">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_a.dds</texture>
     </variant>
     <variant frequency="1" name="armour-var-c">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_c.dds</texture>
     </variant>
     <variant frequency="3" name="armour-var-f">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_f.dds</texture>
     </variant>
     <variant frequency="1" name="armour-var-g">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_g.dds</texture>
     </variant>
   </group>
@@ -127,7 +124,7 @@
         <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>

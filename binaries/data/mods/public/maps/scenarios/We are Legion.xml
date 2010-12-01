@@ -23,38 +23,20 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="463.905" y="91.6604" z="152.089"/>
-		<Rotation angle="-0.199842"/>
-		<Declination angle="0.546597"/>
+		<Position x="431.017" y="102.395" z="136.83"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Unnamed map",
-  "Description": "Give an interesting description of your map.",
+  "Name": "We Are Legion",
+  "Description": "A quick battle demo map using Roman legionnaires.",
   "PlayerData": [
     {
       "Civ": "hele"
     },
     {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
+      "Civ": "rome"
     }
   ],
   "CircularMap": true
@@ -649,515 +631,689 @@
 			<Position x="438.48505" z="300.30771"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="109">
+		<Entity uid="194">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="444.0323" z="233.09655"/>
-			<Orientation y="-0.75493"/>
+			<Position x="458.28513" z="203.27497"/>
+			<Orientation y="-0.95234"/>
 		</Entity>
-		<Entity uid="110">
+		<Entity uid="195">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="445.98142" z="234.3307"/>
-			<Orientation y="-0.60769"/>
+			<Position x="459.79493" z="204.60972"/>
+			<Orientation y="-0.6386"/>
 		</Entity>
-		<Entity uid="111">
+		<Entity uid="196">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="447.40326" z="235.22976"/>
-			<Orientation y="-0.8494"/>
+			<Position x="461.19282" z="205.89283"/>
+			<Orientation y="-0.73986"/>
 		</Entity>
-		<Entity uid="112">
+		<Entity uid="197">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="449.18134" z="235.76761"/>
-			<Orientation y="-0.48157"/>
+			<Position x="462.53312" z="207.43717"/>
+			<Orientation y="-0.56952"/>
 		</Entity>
-		<Entity uid="113">
+		<Entity uid="198">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="450.71744" z="236.87641"/>
-			<Orientation y="-0.51119"/>
+			<Position x="464.07682" z="208.86214"/>
+			<Orientation y="-0.82451"/>
 		</Entity>
-		<Entity uid="114">
+		<Entity uid="199">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="452.39979" z="237.72425"/>
-			<Orientation y="-0.41158"/>
+			<Position x="456.85428" z="201.94928"/>
+			<Orientation y="-0.96621"/>
 		</Entity>
-		<Entity uid="115">
+		<Entity uid="200">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="454.70301" z="238.46651"/>
-			<Orientation y="-0.8171"/>
+			<Position x="458.43064" z="200.38895"/>
+			<Orientation y="-0.67325"/>
 		</Entity>
-		<Entity uid="116">
+		<Entity uid="201">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="446.73273" z="230.12937"/>
-			<Orientation y="-0.527"/>
+			<Position x="459.76017" z="199.20899"/>
+			<Orientation y="-0.87146"/>
 		</Entity>
-		<Entity uid="117">
+		<Entity uid="202">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="449.09668" z="230.63079"/>
-			<Orientation y="-0.40685"/>
+			<Position x="465.64386" z="207.29183"/>
+			<Orientation y="-0.79053"/>
 		</Entity>
-		<Entity uid="118">
+		<Entity uid="203">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="451.43812" z="231.47774"/>
-			<Orientation y="-0.57302"/>
+			<Position x="467.07773" z="206.16411"/>
+			<Orientation y="-0.73746"/>
 		</Entity>
-		<Entity uid="119">
+		<Entity uid="204">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="452.87186" z="232.75525"/>
-			<Orientation y="-0.74056"/>
+			<Position x="468.3697" z="204.4853"/>
+			<Orientation y="-0.82738"/>
 		</Entity>
-		<Entity uid="120">
+		<Entity uid="205">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="454.66724" z="234.14541"/>
-			<Orientation y="-0.41514"/>
+			<Position x="469.63505" z="203.20104"/>
+			<Orientation y="-0.67072"/>
 		</Entity>
-		<Entity uid="121">
+		<Entity uid="206">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="456.23719" z="234.78074"/>
-			<Orientation y="-0.47251"/>
+			<Position x="471.2682" z="201.60718"/>
+			<Orientation y="-0.83198"/>
 		</Entity>
-		<Entity uid="122">
+		<Entity uid="207">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="458.18348" z="235.91733"/>
-			<Orientation y="-0.10906"/>
+			<Position x="463.98115" z="205.8115"/>
+			<Orientation y="-0.7607"/>
 		</Entity>
-		<Entity uid="123">
+		<Entity uid="208">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="450.02189" z="226.79853"/>
-			<Orientation y="0.72306"/>
+			<Position x="465.27982" z="204.65111"/>
+			<Orientation y="-0.61661"/>
 		</Entity>
-		<Entity uid="124">
+		<Entity uid="209">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="452.23572" z="228.59632"/>
-			<Orientation y="2.35621"/>
+			<Position x="466.94288" z="203.3262"/>
+			<Orientation y="-0.82796"/>
 		</Entity>
-		<Entity uid="125">
+		<Entity uid="210">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="454.27256" z="229.73014"/>
-			<Orientation y="2.35621"/>
+			<Position x="468.24732" z="202.04647"/>
+			<Orientation y="-0.91964"/>
 		</Entity>
-		<Entity uid="126">
+		<Entity uid="211">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="455.87778" z="230.83217"/>
-			<Orientation y="2.35621"/>
+			<Position x="469.71354" z="200.47844"/>
+			<Orientation y="-0.67225"/>
 		</Entity>
-		<Entity uid="127">
+		<Entity uid="212">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="457.52897" z="231.94158"/>
-			<Orientation y="2.35621"/>
+			<Position x="462.69651" z="204.38639"/>
+			<Orientation y="-0.83455"/>
 		</Entity>
-		<Entity uid="128">
+		<Entity uid="213">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="458.8657" z="233.02884"/>
-			<Orientation y="2.35621"/>
+			<Position x="464.0965" z="203.26352"/>
+			<Orientation y="-0.84168"/>
 		</Entity>
-		<Entity uid="129">
+		<Entity uid="214">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="460.00669" z="234.10369"/>
-			<Orientation y="2.35621"/>
+			<Position x="465.44639" z="202.04647"/>
+			<Orientation y="-0.70704"/>
 		</Entity>
-		<Entity uid="130">
+		<Entity uid="215">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="461.43915" z="231.75504"/>
-			<Orientation y="2.35621"/>
+			<Position x="466.93537" z="200.61625"/>
+			<Orientation y="-0.65375"/>
 		</Entity>
-		<Entity uid="131">
+		<Entity uid="216">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="459.96378" z="230.31281"/>
-			<Orientation y="2.35621"/>
+			<Position x="468.27024" z="199.14902"/>
+			<Orientation y="-0.85288"/>
 		</Entity>
-		<Entity uid="132">
+		<Entity uid="217">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="458.91816" z="229.14394"/>
-			<Orientation y="2.35621"/>
+			<Position x="461.24909" z="203.10764"/>
+			<Orientation y="-0.7016"/>
 		</Entity>
-		<Entity uid="133">
+		<Entity uid="218">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="457.77674" z="228.27945"/>
-			<Orientation y="-2.35079"/>
+			<Position x="462.5229" z="202.04647"/>
+			<Orientation y="-0.87273"/>
 		</Entity>
-		<Entity uid="134">
+		<Entity uid="219">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="455.60907" z="226.7581"/>
-			<Orientation y="2.35621"/>
+			<Position x="463.86051" z="200.47844"/>
+			<Orientation y="-0.69214"/>
 		</Entity>
-		<Entity uid="135">
+		<Entity uid="220">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="454.66086" z="226.10663"/>
-			<Orientation y="2.35621"/>
+			<Position x="465.28223" z="199.22637"/>
+			<Orientation y="-0.82012"/>
 		</Entity>
-		<Entity uid="136">
+		<Entity uid="221">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="453.23581" z="224.96026"/>
-			<Orientation y="2.35621"/>
+			<Position x="466.72443" z="197.82993"/>
+			<Orientation y="-0.68354"/>
 		</Entity>
-		<Entity uid="137">
+		<Entity uid="222">
 			<Template>units/mace_hypaspist</Template>
 			<Player>1</Player>
-			<Position x="452.03196" z="224.10157"/>
-			<Orientation y="2.35621"/>
+			<Position x="459.93485" z="201.7526"/>
+			<Orientation y="-0.69487"/>
 		</Entity>
-		<Entity uid="138">
+		<Entity uid="223">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="461.27149" z="200.56101"/>
+			<Orientation y="-0.82009"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="462.77683" z="199.02076"/>
+			<Orientation y="-0.86184"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="464.12085" z="197.78185"/>
+			<Orientation y="-0.77518"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="465.37354" z="196.40516"/>
+			<Orientation y="-0.7622"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="461.1425" z="197.72477"/>
+			<Orientation y="-0.67235"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="462.56772" z="196.33176"/>
+			<Orientation y="-0.76684"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="463.99482" z="195.14939"/>
+			<Orientation y="-0.68624"/>
+		</Entity>
+		<Entity uid="230">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="461.19675" z="242.40618"/>
-			<Orientation y="2.35621"/>
+			<Position x="497.77186" z="242.63483"/>
+			<Orientation y="-0.71828"/>
 		</Entity>
-		<Entity uid="139">
+		<Entity uid="231">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="463.40442" z="244.53373"/>
-			<Orientation y="2.35621"/>
+			<Position x="499.44397" z="241.21015"/>
+			<Orientation y="-0.57369"/>
 		</Entity>
-		<Entity uid="140">
+		<Entity uid="232">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="464.52091" z="245.52558"/>
-			<Orientation y="2.35621"/>
+			<Position x="500.76752" z="240.11797"/>
+			<Orientation y="-0.76092"/>
 		</Entity>
-		<Entity uid="141">
+		<Entity uid="233">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="465.83402" z="246.61536"/>
-			<Orientation y="2.35621"/>
+			<Position x="502.27762" z="238.65262"/>
+			<Orientation y="-0.59543"/>
 		</Entity>
-		<Entity uid="142">
+		<Entity uid="234">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="467.17615" z="247.39534"/>
-			<Orientation y="2.35621"/>
+			<Position x="503.75345" z="237.25564"/>
+			<Orientation y="-0.79589"/>
 		</Entity>
-		<Entity uid="143">
+		<Entity uid="235">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="468.63279" z="248.30515"/>
-			<Orientation y="2.35621"/>
+			<Position x="496.40522" z="241.449"/>
+			<Orientation y="-0.89475"/>
 		</Entity>
-		<Entity uid="144">
+		<Entity uid="236">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="470.63971" z="249.46102"/>
-			<Orientation y="2.35621"/>
+			<Position x="495.2689" z="240.11797"/>
+			<Orientation y="-0.96447"/>
 		</Entity>
-		<Entity uid="145">
+		<Entity uid="237">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="473.1344" z="248.1995"/>
-			<Orientation y="-2.00011"/>
+			<Position x="493.8076" z="238.86451"/>
+			<Orientation y="-0.99656"/>
 		</Entity>
-		<Entity uid="146">
+		<Entity uid="238">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="471.50501" z="247.39518"/>
-			<Orientation y="2.35621"/>
+			<Position x="492.43241" z="237.31197"/>
+			<Orientation y="-0.60605"/>
 		</Entity>
-		<Entity uid="147">
+		<Entity uid="239">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="470.38752" z="246.20247"/>
-			<Orientation y="2.35621"/>
+			<Position x="490.87507" z="235.89693"/>
+			<Orientation y="-0.78646"/>
 		</Entity>
-		<Entity uid="148">
+		<Entity uid="240">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="469.46454" z="245.1476"/>
-			<Orientation y="2.35621"/>
+			<Position x="497.92426" z="239.80846"/>
+			<Orientation y="-0.74273"/>
 		</Entity>
-		<Entity uid="149">
+		<Entity uid="241">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="468.14908" z="244.06423"/>
-			<Orientation y="2.35621"/>
+			<Position x="499.33136" z="238.69471"/>
+			<Orientation y="-0.84737"/>
 		</Entity>
-		<Entity uid="150">
+		<Entity uid="242">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="467.23374" z="243.0173"/>
-			<Orientation y="-2.32226"/>
+			<Position x="500.83042" z="237.28977"/>
+			<Orientation y="-0.69228"/>
 		</Entity>
-		<Entity uid="151">
+		<Entity uid="243">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="465.49115" z="241.44268"/>
-			<Orientation y="2.35621"/>
+			<Position x="502.26053" z="236.03301"/>
+			<Orientation y="-0.6809"/>
 		</Entity>
-		<Entity uid="152">
+		<Entity uid="244">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="468.64945" z="240.04738"/>
-			<Orientation y="2.35621"/>
+			<Position x="496.7906" z="238.40661"/>
+			<Orientation y="-0.67606"/>
 		</Entity>
-		<Entity uid="153">
+		<Entity uid="245">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="470.49152" z="241.92965"/>
-			<Orientation y="2.35621"/>
+			<Position x="497.97464" z="237.18789"/>
+			<Orientation y="-0.73378"/>
 		</Entity>
-		<Entity uid="154">
+		<Entity uid="246">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="471.27866" z="243.15482"/>
-			<Orientation y="2.35621"/>
+			<Position x="499.34421" z="235.87295"/>
+			<Orientation y="-0.64982"/>
 		</Entity>
-		<Entity uid="155">
+		<Entity uid="247">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="472.31473" z="244.28878"/>
-			<Orientation y="2.35621"/>
+			<Position x="500.80253" z="234.57412"/>
+			<Orientation y="-0.73957"/>
 		</Entity>
-		<Entity uid="156">
+		<Entity uid="248">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="473.0351" z="245.44021"/>
-			<Orientation y="2.35621"/>
+			<Position x="495.05781" z="236.95197"/>
+			<Orientation y="-0.72434"/>
 		</Entity>
-		<Entity uid="157">
+		<Entity uid="249">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="474.01441" z="246.97103"/>
-			<Orientation y="2.35621"/>
+			<Position x="496.49228" z="235.80925"/>
+			<Orientation y="-0.7195"/>
 		</Entity>
-		<Entity uid="158">
+		<Entity uid="250">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="475.46665" z="248.07474"/>
-			<Orientation y="2.35621"/>
+			<Position x="497.98011" z="234.5741"/>
+			<Orientation y="-0.53003"/>
 		</Entity>
-		<Entity uid="159">
+		<Entity uid="251">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="478.20035" z="247.15687"/>
-			<Orientation y="2.35621"/>
+			<Position x="499.26951" z="233.07136"/>
+			<Orientation y="-0.63877"/>
 		</Entity>
-		<Entity uid="160">
+		<Entity uid="252">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="476.8313" z="245.28257"/>
-			<Orientation y="2.35621"/>
+			<Position x="493.76221" z="235.80925"/>
+			<Orientation y="-0.71755"/>
 		</Entity>
-		<Entity uid="161">
+		<Entity uid="253">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="475.91053" z="244.03896"/>
-			<Orientation y="2.35621"/>
+			<Position x="495.07682" z="234.42472"/>
+			<Orientation y="-0.82045"/>
 		</Entity>
-		<Entity uid="162">
+		<Entity uid="254">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="475.01304" z="242.49326"/>
-			<Orientation y="-2.41488"/>
+			<Position x="496.53702" z="233.12714"/>
+			<Orientation y="-0.6079"/>
 		</Entity>
-		<Entity uid="163">
+		<Entity uid="255">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="473.89683" z="241.36084"/>
-			<Orientation y="-2.50431"/>
+			<Position x="497.95417" z="231.64779"/>
+			<Orientation y="-0.6076"/>
 		</Entity>
-		<Entity uid="164">
+		<Entity uid="256">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="472.16407" z="239.4932"/>
-			<Orientation y="-2.34655"/>
+			<Position x="492.25019" z="234.42472"/>
+			<Orientation y="-0.5077"/>
 		</Entity>
-		<Entity uid="165">
+		<Entity uid="257">
 			<Template>units/mace_argyraspis</Template>
 			<Player>1</Player>
-			<Position x="470.94471" z="238.32534"/>
-			<Orientation y="-2.26937"/>
+			<Position x="493.57731" z="232.98798"/>
+			<Orientation y="-0.64225"/>
 		</Entity>
-		<Entity uid="166">
+		<Entity uid="258">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="495.09736" z="231.69965"/>
+			<Orientation y="-0.41665"/>
+		</Entity>
+		<Entity uid="259">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="496.57776" z="230.32212"/>
+			<Orientation y="-0.59893"/>
+		</Entity>
+		<Entity uid="260">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="498.0493" z="228.79319"/>
+			<Orientation y="-0.73491"/>
+		</Entity>
+		<Entity uid="261">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="499.68928" z="229.80164"/>
+			<Orientation y="-0.62381"/>
+		</Entity>
+		<Entity uid="262">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="500.83832" z="231.30158"/>
+			<Orientation y="-0.66208"/>
+		</Entity>
+		<Entity uid="263">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="502.34125" z="232.71076"/>
+			<Orientation y="-0.7395"/>
+		</Entity>
+		<Entity uid="264">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="503.74711" z="233.92833"/>
+			<Orientation y="-0.60355"/>
+		</Entity>
+		<Entity uid="265">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="505.01401" z="235.59617"/>
+			<Orientation y="-0.67551"/>
+		</Entity>
+		<Entity uid="267">
 			<Template>other/thebes_sacred_band_hoplitai</Template>
 			<Player>1</Player>
-			<Position x="483.54917" z="254.0258"/>
-			<Orientation y="0.41382"/>
+			<Position x="483.8177" z="228.72248"/>
+			<Orientation y="-0.81658"/>
 		</Entity>
-		<Entity uid="167">
+		<Entity uid="268">
 			<Template>other/thebes_sacred_band_hoplitai</Template>
 			<Player>1</Player>
-			<Position x="484.75095" z="255.5953"/>
+			<Position x="482.41654" z="227.35621"/>
+			<Orientation y="-0.5589"/>
+		</Entity>
+		<Entity uid="269">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="481.12357" z="225.99297"/>
+			<Orientation y="-0.68026"/>
+		</Entity>
+		<Entity uid="270">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="479.60102" z="224.63578"/>
+			<Orientation y="-0.90281"/>
+		</Entity>
+		<Entity uid="271">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="478.16843" z="223.28736"/>
+			<Orientation y="-0.62682"/>
+		</Entity>
+		<Entity uid="272">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="476.82337" z="221.9502"/>
+			<Orientation y="-0.75345"/>
+		</Entity>
+		<Entity uid="273">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="475.39042" z="220.15552"/>
+			<Orientation y="-0.56357"/>
+		</Entity>
+		<Entity uid="274">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="485.2215" z="227.19597"/>
+			<Orientation y="-0.63794"/>
+		</Entity>
+		<Entity uid="275">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="486.66453" z="225.99297"/>
+			<Orientation y="-0.705"/>
+		</Entity>
+		<Entity uid="276">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="487.93036" z="224.63578"/>
+			<Orientation y="-0.70064"/>
+		</Entity>
+		<Entity uid="278">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="483.82367" z="225.89045"/>
+			<Orientation y="-0.59836"/>
+		</Entity>
+		<Entity uid="279">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="485.30817" z="224.63578"/>
+			<Orientation y="-0.72713"/>
+		</Entity>
+		<Entity uid="280">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="486.69123" z="222.95922"/>
+			<Orientation y="-0.76604"/>
+		</Entity>
+		<Entity uid="281">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="489.46363" z="223.09943"/>
+			<Orientation y="-0.42792"/>
+		</Entity>
+		<Entity uid="282">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="488.10517" z="221.81516"/>
+			<Orientation y="-0.62031"/>
+		</Entity>
+		<Entity uid="283">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="482.55344" z="224.4885"/>
+			<Orientation y="-0.63666"/>
+		</Entity>
+		<Entity uid="284">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="483.76771" z="223.05262"/>
+			<Orientation y="-0.45435"/>
+		</Entity>
+		<Entity uid="285">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="485.17292" z="221.68073"/>
+			<Orientation y="-0.58947"/>
+		</Entity>
+		<Entity uid="286">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="486.60438" z="220.28322"/>
+			<Orientation y="-0.78127"/>
+		</Entity>
+		<Entity uid="287">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="480.98548" z="222.95922"/>
+			<Orientation y="-0.71618"/>
+		</Entity>
+		<Entity uid="288">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="482.40391" z="221.68073"/>
+			<Orientation y="-0.6965"/>
+		</Entity>
+		<Entity uid="289">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="483.8039" z="220.28322"/>
+			<Orientation y="-0.55237"/>
+		</Entity>
+		<Entity uid="290">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="485.25422" z="218.90842"/>
+			<Orientation y="-0.85135"/>
+		</Entity>
+		<Entity uid="291">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="479.5849" z="221.72547"/>
+			<Orientation y="-0.71569"/>
+		</Entity>
+		<Entity uid="292">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="481.00376" z="220.41147"/>
+			<Orientation y="-0.6868"/>
+		</Entity>
+		<Entity uid="293">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="482.33222" z="218.90842"/>
+			<Orientation y="-0.72744"/>
+		</Entity>
+		<Entity uid="294">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="483.82047" z="217.4415"/>
+			<Orientation y="-0.74321"/>
+		</Entity>
+		<Entity uid="295">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="478.24576" z="219.85972"/>
+			<Orientation y="-0.59543"/>
+		</Entity>
+		<Entity uid="296">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="479.6034" z="218.62504"/>
+			<Orientation y="-0.69977"/>
+		</Entity>
+		<Entity uid="297">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="480.92774" z="217.55764"/>
+			<Orientation y="-0.67626"/>
+		</Entity>
+		<Entity uid="298">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="482.32688" z="216.12124"/>
+			<Orientation y="-0.63428"/>
+		</Entity>
+		<Entity uid="299">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="477.16623" z="218.54458"/>
+			<Orientation y="-0.7291"/>
+		</Entity>
+		<Entity uid="300">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="478.19413" z="217.4415"/>
+			<Orientation y="-0.63262"/>
+		</Entity>
+		<Entity uid="301">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="479.7706" z="216.04767"/>
+			<Orientation y="-0.62678"/>
+		</Entity>
+		<Entity uid="302">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="480.98862" z="214.68665"/>
+			<Orientation y="-0.78496"/>
+		</Entity>
+		<Entity uid="303">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="423.50312" z="299.52503"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="168">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="485.7125" z="256.19288"/>
+		<Entity uid="304">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="424.6048" z="300.8678"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="169">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="487.62946" z="257.55112"/>
+		<Entity uid="305">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="426.32761" z="302.26771"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="170">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="488.85285" z="258.53571"/>
-			<Orientation y="0.87021"/>
-		</Entity>
-		<Entity uid="171">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="489.99692" z="259.55716"/>
+		<Entity uid="306">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="427.21171" z="303.57963"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="172">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="491.66498" z="260.70591"/>
+		<Entity uid="307">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="428.1962" z="304.73829"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="173">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="494.84983" z="259.7529"/>
+		<Entity uid="308">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="429.29206" z="306.30985"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="174">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="493.18674" z="259.13257"/>
-			<Orientation y="-2.42571"/>
-		</Entity>
-		<Entity uid="175">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="491.87708" z="257.49823"/>
+		<Entity uid="309">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="430.67893" z="307.2873"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="176">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="490.75355" z="256.20682"/>
-			<Orientation y="-2.6851"/>
-		</Entity>
-		<Entity uid="177">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="489.62494" z="253.92968"/>
-			<Orientation y="-2.33521"/>
-		</Entity>
-		<Entity uid="178">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="487.72303" z="252.51105"/>
-			<Orientation y="-2.32856"/>
-		</Entity>
-		<Entity uid="179">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="486.30994" z="251.09939"/>
-			<Orientation y="-2.77533"/>
-		</Entity>
-		<Entity uid="180">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="490.82676" z="249.32395"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="181">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="491.70615" z="251.03287"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="182">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="492.4691" z="252.78191"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="183">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="493.17228" z="254.2995"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="184">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="493.81669" z="255.54204"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="185">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="494.94523" z="256.82969"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="186">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="496.23838" z="258.85923"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="187">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="499.2223" z="258.22037"/>
-			<Orientation y="-2.41889"/>
-		</Entity>
-		<Entity uid="188">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="497.5311" z="255.96572"/>
-			<Orientation y="-2.75725"/>
-		</Entity>
-		<Entity uid="189">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="497.0091" z="254.5348"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="190">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="496.65961" z="253.63736"/>
-			<Orientation y="-2.63976"/>
-		</Entity>
-		<Entity uid="191">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="495.38944" z="251.45202"/>
-			<Orientation y="-2.57526"/>
-		</Entity>
-		<Entity uid="192">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="494.48148" z="250.01224"/>
-			<Orientation y="-2.556"/>
-		</Entity>
-		<Entity uid="193">
-			<Template>other/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="493.57087" z="248.69553"/>
-			<Orientation y="-2.70752"/>
 		</Entity>
 	</Entities>
 	<Paths/>

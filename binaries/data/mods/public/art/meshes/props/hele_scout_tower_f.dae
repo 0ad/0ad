@@ -6,14 +6,14 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-11-17T20:35:35Z</created>
-    <modified>2010-11-17T20:35:35Z</modified>
+    <created>2010-12-01T08:49:27Z</created>
+    <modified>2010-12-01T08:49:27Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__314-image" name="Map__314">
@@ -367,9 +367,9 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Mesh_002" name="Mesh_002">
-        <matrix sid="matrix">0.000000 0.490040 -0.000000 70.275314 0.000000 0.000000 0.490040 0.000000 0.490040 -0.000000 0.000000 -19.800491 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">-0.000000 0.490040 0.000000 70.275314 -0.490040 -0.000000 0.000000 19.800491 0.000000 0.000000 0.490040 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
         <node id="scout_tower_fancy" name="scout_tower_fancy">
-          <matrix sid="matrix">1.000000 -0.000000 0.000000 48.132504 0.000000 1.000000 -0.000000 -145.711258 0.000000 0.000000 1.000000 2.373142 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">1.000000 0.000000 0.000000 48.132504 0.000000 1.000000 0.000000 -145.708145 0.000000 0.000000 1.000000 2.373142 0.000000 0.000000 0.000000 1.000000</matrix>
           <instance_geometry url="#scout_tower_fancy-lib">
             <bind_material>
               <technique_common>

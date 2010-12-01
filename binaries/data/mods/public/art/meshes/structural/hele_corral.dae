@@ -6,14 +6,14 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-11-29T13:40:35Z</created>
-    <modified>2010-11-29T13:40:35Z</modified>
+    <created>2010-12-01T09:09:48Z</created>
+    <modified>2010-12-01T09:09:48Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__293-image" name="Map__293">
@@ -2422,7 +2422,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="default02" name="default02">
-        <matrix sid="matrix">0.000000 1.000000 -0.000000 -0.255947 0.000000 0.000000 1.000000 1.777598 1.000000 -0.000000 0.000000 3.037912 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">0.000000 1.000000 0.000000 -0.246197 -1.000000 0.000000 0.000000 -3.187758 0.000000 0.000000 1.000000 1.777598 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#default02-lib">
           <bind_material>
             <technique_common>
