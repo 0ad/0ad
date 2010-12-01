@@ -12,6 +12,11 @@ const SDLK_LALT = 308;
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
 
+const ACTION_NONE = 0;
+const ACTION_GARRISON = 1;
+const ACTION_REPAIR = 2;
+var preSelectedAction = ACTION_NONE;
+
 var INPUT_NORMAL = 0;
 var INPUT_SELECTING = 1;
 var INPUT_BANDBOXING = 2;
@@ -19,6 +24,7 @@ var INPUT_BUILDING_PLACEMENT = 3;
 var INPUT_BUILDING_CLICK = 4;
 var INPUT_BUILDING_DRAG = 5;
 var INPUT_BATCHTRAINING = 6;
+var INPUT_PRESELECTEDACTION = 7;
 
 var inputState = INPUT_NORMAL;
 
@@ -43,15 +49,18 @@ var prevClickedEntity = 0;
 
 function updateCursor()
 {
-	if (!mouseIsOverObject && inputState == INPUT_NORMAL)
+	if (!mouseIsOverObject)
 	{
 		var action = determineAction(mouseX, mouseY);
-		if (action)
+		if (inputState == INPUT_NORMAL || inputState == INPUT_PRESELECTEDACTION)
 		{
-			if (action.cursor)
+			if (action)
 			{
-				Engine.SetCursor(action.cursor);
-				return;
+				if (action.cursor)
+				{
+					Engine.SetCursor(action.cursor);
+					return;
+				}
 			}
 		}
 	}
@@ -70,6 +79,109 @@ function findGatherType(gatherer, supply)
 	return undefined;
 }
 
+function getActionInfo(action, target)
+{
+	var selection = g_Selection.toList();
+	
+	// If the selection doesn't exist, no action
+	var entState = GetEntityState(selection[0]);
+	if (!entState)
+		return {"possible": false};
+
+	// If the selection isn't friendly units, no action
+	var player = Engine.GetPlayerID();
+	if (entState.player != player && !g_DevSettings.controlAll)
+		return {"possible": false};
+
+	// Work out whether the selection can have rally points
+	var haveRallyPoints = selection.every(function(ent) {
+		var entState = GetEntityState(ent);
+		return entState && entState.rallyPoint;
+	});
+
+
+	
+	if (!target)
+	{
+		if (action == "set-rallypoint" && haveRallyPoints)
+			return {"possible": true};
+		else if (action == "move")
+			return {"possible": true};
+		else
+			return {"possible": false};
+	}
+
+	if (haveRallyPoints && selection.indexOf(target) != -1 && action == "unset-rallypoint")
+		return {"possible": true};
+		
+	// Look at the first targeted entity
+	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
+	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
+	var targetState = GetEntityState(target);
+
+	// If we selected buildings with rally points, and then click on one of those selected
+	// buildings, we should remove the rally point
+	//if (haveRallyPoints && selection.indexOf(target) != -1)
+	//	return {"type": "unset-rallypoint"};
+
+	// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
+	// Check if any entities in the selection can gather the requested resource,
+	// can return to the dropsite, can build the foundation, or can attack the enemy
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	
+	for each (var entityID in selection)
+	{
+		var entState = GetEntityState(entityID);
+		if (!entState)
+			continue;
+		// Get entity owner diplomacy array
+		var diplomacy = simState.players[entState.player].diplomacy;
+
+		var playerOwned = ((targetState.player == entState.player)? true : false);
+		var enemyOwned = ((targetState.player != entState.player && targetState.player && diplomacy[targetState.player - 1] < 0)? true : false);
+		var gaiaOwned = ((targetState.player == 0)? true : false);
+		
+		// Find the resource type we're carrying, if any
+		var carriedType = undefined;
+		if (entState.resourceCarrying && entState.resourceCarrying.length)
+			carriedType = entState.resourceCarrying[0].type;
+		switch (action)
+		{
+		case "garrison":
+			if (isUnit(entState) && targetState.garrisonHolder && playerOwned)
+				return {"possible": true};
+			break;
+		case "gather":
+			if (targetState.resourceSupply && (playerOwned || gaiaOwned))
+			{
+				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+				if (resource)
+					return {"possible": true, "cursor": "action-gather-" + resource};
+			}
+			break;
+		case "returnresource":
+			if (targetState.resourceDropsite && playerOwned && carriedType && targetState.resourceDropsite.types.indexOf(carriedType) != -1)
+				return {"possible": true, "cursor": "action-return-" + carriedType};
+			break;
+		case "build":
+			if (targetState.foundation && entState.buildEntities && playerOwned)
+				return {"possible": true};
+			break;
+		case "repair":
+			if (entState.buildEntities && targetState.needsRepair && playerOwned)
+				return {"possible": true};
+			break;
+		case "attack":
+			if (entState.attack && (enemyOwned || gaiaOwned))
+				return {"possible": true};
+		}
+	}
+	if (action == "move")
+		return {"possible": true};
+	else
+		return {"possible": false};
+}
+
 /**
  * Determine the context-sensitive action that should be performed when the mouse is at (x,y)
  */
@@ -79,8 +191,11 @@ function determineAction(x, y, fromMinimap)
 
 	// No action if there's no selection
 	if (!selection.length)
+	{
+		preSelectedAction = ACTION_NONE;
 		return undefined;
-
+	}
+	
 	// If the selection doesn't exist, no action
 	var entState = GetEntityState(selection[0]);
 	if (!entState)
@@ -98,84 +213,64 @@ function determineAction(x, y, fromMinimap)
 	});
 
 	var targets = [];
+	var target = undefined;
+	var type = "none";
+	var cursor = "";
+	var targetState = undefined;
 	if (!fromMinimap)
 		targets = Engine.PickEntitiesAtPoint(x, y);
 
-	// If there's a target unit
 	if (targets.length)
 	{
-		// Look at the first targeted entity
-		// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
-		// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
-		var targetState = GetEntityState(targets[0]);
-
-		// If we selected buildings with rally points, and then click on one of those selected
-		// buildings, we should remove the rally point
-		if (haveRallyPoints && selection.indexOf(targets[0]) != -1)
-			return {"type": "unset-rallypoint"};
-
-		// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
-		// Check if any entities in the selection can gather the requested resource,
-		// can return to the dropsite, can build the foundation, or can attack the enemy
-		var simState = Engine.GuiInterfaceCall("GetSimulationState");
-		
-		for each (var entityID in selection)
-		{
-			var entState = GetEntityState(entityID);
-			if (!entState)
-				continue;
-			
-			// Get entity owner diplomacy array
-			var diplomacy = simState.players[entState.player].diplomacy;
-
-			var playerOwned = ((targetState.player == entState.player)? true : false);
-			var enemyOwned = ((targetState.player != entState.player && targetState.player && diplomacy[targetState.player - 1] < 0)? true : false);
-			var gaiaOwned = ((targetState.player == 0)? true : false);
-
-			// Find the resource type we're carrying, if any
-			var carriedType = undefined;
-			if (entState.resourceCarrying && entState.resourceCarrying.length)
-				carriedType = entState.resourceCarrying[0].type;
-			
-			if (targetState.garrisonHolder && playerOwned && Engine.HotkeyIsPressed("session.garrison"))
-			{
-				return {"type": "garrison", "cursor": "action-garrison", "target": targets[0]};
-			}
-			else if (targetState.resourceSupply && (playerOwned || gaiaOwned))
-			{
-				// If the target is a resource and we have the right kind of resource gatherers selected, then gather
-				// If the target is a foundation and we have builders selected, then build (or repair)
-				// If the target is an enemy, then attack
-				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
-				if (resource)
-					return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
-			}
-			else if (targetState.resourceDropsite && playerOwned && carriedType &&
-				targetState.resourceDropsite.types.indexOf(carriedType) != -1)
-			{
-				return {"type": "returnresource", "cursor": "action-return-"+carriedType, "target": targets[0]};
-			}
-			else if (targetState.foundation && entState.buildEntities && playerOwned)
-			{
-				return {"type": "build", "cursor": "action-build", "target": targets[0]};
-			}
-			else if (entState.buildEntities && targetState.needsRepair && playerOwned)
-			{
-				return {"type": "build", "cursor": "action-repair", "target": targets[0]};
-			}
-			else if (entState.attack && (enemyOwned || gaiaOwned))
-			{	// TODO: Decide how we want to treat gaia
-				return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
-			}
-		}
+		target = targets[0];
 	}
 
-	// If we don't do anything more specific:
-	// If all selected entities are buildings, set rally points, else walk
-	if (haveRallyPoints)
-		return {"type": "set-rallypoint"};
+	if (preSelectedAction != ACTION_NONE)
+	{
+		switch (preSelectedAction)
+		{
+		case ACTION_GARRISON:
+			if (getActionInfo("garrison", target).possible)
+				return {"type": "garrison", "cursor": "action-garrison", "target": target};
+			else
+				return 	{"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
+			break;
+		case ACTION_REPAIR:
+			if (getActionInfo("repair", target).possible)
+				return {"type": "repair", "cursor": "action-repair", "target": target};
+			else
+				return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};	
+			break;
+		}
+	}
+	else if (Engine.HotkeyIsPressed("session.garrison"))
+	{
+		if (getActionInfo("garrison", target).possible)
+			return {"type": "garrison", "cursor": "action-garrison", "target": target};
+		else
+			return 	{"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
+	}
 	else
-		return {"type": "move"};
+	{
+		var actionInfo = undefined;
+		if ((actionInfo = getActionInfo("gather", target)).possible)
+			return {"type": "gather", "cursor": actionInfo.cursor, "target": target};
+		else if ((actionInfo = getActionInfo("returnresource", target)).possible)
+			return {"type": "returnresource", "cursor": actionInfo.cursor, "target": target};
+		else if (getActionInfo("build", target).possible)
+			return {"type": "build", "cursor": "action-build", "target": target};	
+		else if (getActionInfo("repair", target).possible)
+			return {"type": "build", "cursor": "action-repair", "target": target};
+		else if (getActionInfo("attack", target).possible)
+			return {"type": "attack", "cursor": "action-attack", "target": target};
+		else if(getActionInfo("set-rallypoint", target).possible)
+			return {"type": "set-rallypoint"};
+		else if(getActionInfo("unset-rallypoint", target).possible)
+				return {"type": "unset-rallypoint"};
+		else if (getActionInfo("move", target).possible)
+			return {"type": "move"};
+	}
+	return {"type": type, "cursor": cursor, "target": target};
 }
 
 
@@ -502,75 +597,32 @@ function handleInputAfterGui(ev)
 				var action = determineAction(ev.x, ev.y);
 				if (!action)
 					break;
-
-				var selection = g_Selection.toList();
-
-				// If shift is down, add the order to the unit's order queue instead
-				// of running it immediately
-				var queued = Engine.HotkeyIsPressed("session.queue");
-
-				switch (action.type)
-				{
-				case "move":
-					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-					Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
-					Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
-					return true;
-
-				case "attack":
-					Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
-					Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
-					return true;
-
-				case "build": // (same command as repair)
-				case "repair":
-					Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "queued": queued});
-					Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
-					return true;
-
-				case "gather":
-					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
-					Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
-					return true;
-
-				case "returnresource":
-					Engine.PostNetworkCommand({"type": "returnresource", "entities": selection, "target": action.target, "queued": queued});
-					Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
-					return true;
-
-				case "garrison":
-					Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
-					//Need to play some sound here??
-					return true;
-					
-				case "set-rallypoint":
-					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-					Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
-					// Display rally point at the new coordinates, to avoid display lag
-					Engine.GuiInterfaceCall("DisplayRallyPoint", {
-						"entities": selection,
-						"x": target.x,
-						"z": target.z
-					});
-					return true;
-
-				case "unset-rallypoint":
-					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-					Engine.PostNetworkCommand({"type": "unset-rallypoint", "entities": selection});
-					// Remove displayed rally point
-					Engine.GuiInterfaceCall("DisplayRallyPoint", {
-						"entities": []
-					});
-					return true;
-
-				default:
-					error("Invalid action.type "+action.type);
-				}
+				return doAction(action, ev);
 			}
 			break;
 		}
 		break;
-
+	case INPUT_PRESELECTEDACTION:
+		switch (ev.type)
+		{
+		case "mousebuttondown":
+			if (ev.button == SDL_BUTTON_LEFT && preSelectedAction != ACTION_NONE)
+			{
+				var action = determineAction(ev.x, ev.y);
+				if (!action)
+					break;
+				preSelectedAction = ACTION_NONE;
+				inputState = INPUT_NORMAL;
+				return doAction(action, ev);
+			}
+			else if (ev.button == SDL_BUTTON_RIGHT && preSelectedAction != ACTION_NONE)
+			{
+				preSelectedAction = ACTION_NONE;
+				inputState = INPUT_NORMAL;
+				break;
+			}
+		}
+		break;
 	case INPUT_SELECTING:
 		switch (ev.type)
 		{
@@ -725,6 +777,77 @@ function handleInputAfterGui(ev)
 	return false;
 }
 
+function doAction(action, ev)
+{
+	var selection = g_Selection.toList();
+
+	// If shift is down, add the order to the unit's order queue instead
+	// of running it immediately
+	var queued = Engine.HotkeyIsPressed("session.queue");
+
+	switch (action.type)
+	{
+	case "move":
+		var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+		Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
+		return true;
+
+	case "attack":
+		Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
+		return true;
+
+	case "build": // (same command as repair)
+	case "repair":
+		Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
+		return true;
+
+	case "gather":
+		Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
+		return true;
+
+	case "returnresource":
+		Engine.PostNetworkCommand({"type": "returnresource", "entities": selection, "target": action.target, "queued": queued});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
+		return true;
+
+	case "garrison":
+		Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
+		//Need to play some sound here??
+		return true;
+		
+	case "set-rallypoint":
+		var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
+		// Display rally point at the new coordinates, to avoid display lag
+		Engine.GuiInterfaceCall("DisplayRallyPoint", {
+			"entities": selection,
+			"x": target.x,
+			"z": target.z
+		});
+		return true;
+
+	case "unset-rallypoint":
+		var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+		Engine.PostNetworkCommand({"type": "unset-rallypoint", "entities": selection});
+		// Remove displayed rally point
+		Engine.GuiInterfaceCall("DisplayRallyPoint", {
+			"entities": []
+		});
+		return true;
+		
+	case "none":
+		return true;
+		
+	default:
+		error("Invalid action.type "+action.type);
+		return false;
+	}
+}
+
 function handleMinimapEvent(target)
 {
 	// Partly duplicated from handleInputAfterGui(), but with the input being
@@ -872,6 +995,14 @@ function performCommand(entity, commandName)
 
 					g_SessionDialog.open("Delete", message, null, 340, 160, deleteFunction);
 				}
+				break;
+			case "garrison":
+				inputState = INPUT_PRESELECTEDACTION;
+				preSelectedAction = ACTION_GARRISON;
+				break;
+			case "repair":
+				inputState = INPUT_PRESELECTEDACTION;
+				preSelectedAction = ACTION_REPAIR;
 				break;
 			case "unload-all":
 				unloadAll(entity);

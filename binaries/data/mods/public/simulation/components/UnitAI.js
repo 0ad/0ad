@@ -234,6 +234,12 @@ var UnitFsmSpec = {
 			cmpFormation.Disband();
 		},
 
+		"Order.Garrison": function(msg) {
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
+			cmpFormation.Disband();
+		},
+		
 		"IDLE": {
 		},
 
@@ -1175,6 +1181,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		case "Gather":
 		case "ReturnResource":
 		case "Repair":
+		case "Garrison":
 			// Find the target unit's position
 			var cmpTargetPosition = Engine.QueryInterface(order.data.target, IID_Position);
 			if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())

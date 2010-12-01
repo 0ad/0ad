@@ -175,15 +175,9 @@ function ProcessCommand(player, cmd)
 		var targetCmpOwnership = Engine.QueryInterface(cmd.target, IID_Ownership);
 		if (!targetCmpOwnership || targetCmpOwnership.GetOwner() != player)
 			break;
-		for each (var ent in cmd.entities)
-		{
-			var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-			if (!cmpOwnership || cmpOwnership.GetOwner() != player)
-				break;
-			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
-				cmpUnitAI.Garrison(cmd.target);
-		}
+		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		if (cmpUnitAI)
+			cmpUnitAI.Garrison(cmd.target);
 		break;
 		
 	case "unload":

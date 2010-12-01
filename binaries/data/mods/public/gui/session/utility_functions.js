@@ -143,9 +143,7 @@ function isUnit(entState)
 	{
 		var classes = entState.identity.classes;
 		if (classes && classes.length)
-			for (var i = 0; i < classes.length; i++)
-				if (classes[i] == "Unit")
-					return true;
+			return (classes.indexOf("Unit") != -1);
 	}
 	return false;
 }
@@ -156,9 +154,7 @@ function isAnimal(entState)
 	{
 		var classes = entState.identity.classes;
 		if (classes && classes.length)
-		for (var i = 0; i < classes.length; i++)
-			if (classes[i] == "Animal")
-				return true;
+			return (classes.indexOf("Animal") != -1);
 	}
 	return false;
 }
@@ -169,9 +165,7 @@ function isStructure(entState)
 	{
 		var classes = entState.identity.classes;
 		if (classes && classes.length)
-		for (var i = 0; i < classes.length; i++)
-			if (classes[i] == "Structure")
-				return true;
+			return (classes.indexOf("Structure") != -1);
 	}
 	return false;
 }
@@ -182,9 +176,7 @@ function isDefensive(entState)
 	{
 		var classes = entState.identity.classes;
 		if (classes && classes.length)
-		for (var i = 0; i < classes.length; i++)
-			if (classes[i] == "Defensive")
-				return true;
+			return (classes.indexOf("Defensive") != -1);
 	}
 	return false;
 }
@@ -259,6 +251,10 @@ function getCommandImage(commandName)
 		return "kill_small.png";
 	case "unload-all":
 		return "garrison.png";
+	case "garrison":
+		return "garrison.png";
+	case "repair":
+		return "repair.png";
 	default:
 		return "";
 	}
@@ -290,6 +286,10 @@ function getEntityCommandsList(entState)
 	if (entState.garrisonHolder)
 		commands.push("unload-all");
 	commands.push("delete");
+	if (isUnit(entState))
+		commands.push("garrison");
+	if (entState.buildEntities)
+		commands.push("repair");
 	return commands;
 }
 
