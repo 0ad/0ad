@@ -1,3 +1,35 @@
+<<<<<<< .mine
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <float/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/hele_tric.dae</mesh>
+      <texture>structural/hele_tric_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="sail">
+      <props>
+        <prop actor="props/structures/hellenes/trireme_cor_mast.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/trireme_cor_oars.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="no-sail">
+      <props>
+        <prop actor="props/structures/hellenes/trireme_cor_oars.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>=======
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
@@ -14,3 +46,4 @@
   </group>
   <material>player_trans.xml</material>
 </actor>
+>>>>>>> .r7157
