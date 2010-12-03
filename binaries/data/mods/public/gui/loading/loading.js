@@ -12,39 +12,33 @@ function init(data)
 	setCursor("cursor-wait");
 
 	// Get tip image and corresponding tip text
-	var sprite = "";
-	var tipText = "";
-	var tipImageLoadingArray = buildDirEntList("art/textures/ui/loading/tips/", "*.png", false);
 	var tipTextLoadingArray = buildDirEntList("gui/text/tips/", "*.txt", false);
-	
-	if (tipImageLoadingArray.length == 0)
-		error("Failed to find any matching tip textures for the loading screen.");
-	else if (tipTextLoadingArray.length == 0)
-		error("Failed to find any matching tip text files for the loading screen.");
-	else if (tipImageLoadingArray.length != tipTextLoadingArray.length)
-		error("The there are different amounts of tip images and tip text files.");
-	else
-	{
-		var randomIndex = getRandom (0, tipImageLoadingArray.length-1);
+	var tipTextFilePath = tipTextLoadingArray[getRandom (0, tipTextLoadingArray.length-1)];
+	var fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/")+1).replace(".txt", ".png");
+	var tipImageFilePath = "art/textures/ui/loading/tips/" + fileName;
 
-		sprite = "stretched:" + tipImageLoadingArray[randomIndex];
+	if (tipTextLoadingArray.length > 0)
+	{
+		// Set tip text
+		var tipText = readFile(tipTextFilePath);
+		if (tipText)
+		{
+			var index = tipText.indexOf("\n");
+			tipTextTitle = tipText.substring(0, index);
+			tipTextMessage = tipText.substring(index);
+			getGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
+			getGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
+		}
+
+		// Set tip image
+		var sprite = "stretched:" + tipImageFilePath;
 		sprite = sprite.replace("art/textures/ui/", "");
 		sprite = sprite.replace(".cached.dds", ""); // cope with pre-cached textures
-		
-		tipText = readFile(tipTextLoadingArray[randomIndex]);
+		getGUIObjectByName("tipImage").sprite = sprite? sprite : "";
 	}
-
-	// Set tip image
-	getGUIObjectByName("tipImage").sprite = sprite;
-
-	// Set tip text
-	if (tipText)
+	else
 	{
-		var index = tipText.indexOf("\n");
-		tipTextTitle = tipText.substring(0, index);
-		tipTextMessage = tipText.substring(index);
-		getGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
-		getGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
+		error("Failed to find any matching tip textures for the loading screen.")
 	}
 
 	// janwas: main loop now sets progress / description, but that won't
