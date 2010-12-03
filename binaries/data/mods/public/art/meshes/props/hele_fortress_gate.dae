@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-12-03T14:07:53Z</created>
+    <modified>2010-12-03T14:07:53Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__327-image" name="Map__327">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_gate.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_15___Default" name="_15___Default">
+      <instance_effect url="#_15___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_15___Default-fx" name="_15___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__327-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="fortress_door-lib" name="fortress_doorMesh">
+      <mesh>
+        <source id="fortress_door-lib-Position">
+          <float_array id="fortress_door-lib-Position-array" count="48">
+-4.342054 -3.629184 -0.321169
+-4.342054 -2.189621 -0.321169
+-4.341949 -2.189621 -3.458152
+-4.341949 -3.629185 -3.458152
+-4.186504 -3.629184 -0.321169
+-4.186504 -2.189621 -0.321169
+-4.186503 -2.189621 -3.458152
+-4.186503 -3.629185 -3.458152
+-4.187882 -0.750058 -0.321169
+-4.187882 -2.189621 -0.321169
+-4.187881 -2.189621 -3.458152
+-4.187881 -0.750058 -3.458152
+-4.343432 -0.750058 -0.321169
+-4.343432 -2.189621 -0.321169
+-4.343328 -0.750058 -3.458152
+-4.343328 -2.189621 -3.458152
+</float_array>
+          <technique_common>
+            <accessor source="#fortress_door-lib-Position-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fortress_door-lib-Normal0">
+          <float_array id="fortress_door-lib-Normal0-array" count="144">
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+-1.000000 0.000000 -0.000033
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#fortress_door-lib-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="fortress_door-lib-UV0">
+          <float_array id="fortress_door-lib-UV0-array" count="48">
+0.076488 0.926486
+0.498997 0.926486
+0.498997 0.005785
+0.076488 0.005785
+0.009844 0.005491
+0.494063 0.005491
+0.494063 0.072635
+0.009844 0.072635
+0.000000 0.500000
+1.000000 0.000000
+0.000000 0.000000
+1.000000 0.500000
+0.918701 0.918255
+0.500776 0.918255
+0.500776 0.007545
+0.918701 0.007545
+0.021202 0.913999
+0.501650 0.913999
+0.501650 0.871606
+0.021202 0.871606
+0.329240 0.924087
+0.329240 -0.001237
+0.267538 0.924087
+0.267538 -0.001237
+</float_array>
+          <technique_common>
+            <accessor source="#fortress_door-lib-UV0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="fortress_door-lib-Vertex">
+          <input semantic="POSITION" source="#fortress_door-lib-Position"/>
+        </vertices>
+        <polygons material="_15___Default" count="16">
+          <input semantic="VERTEX" offset="0" source="#fortress_door-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#fortress_door-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#fortress_door-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>0 3 0 2 4 2 3 5 3</p>
+          <p>1 6 4 0 7 5 4 8 6</p>
+          <p>1 9 4 4 10 6 5 11 7</p>
+          <p>3 12 8 6 13 9 2 14 10</p>
+          <p>3 15 8 7 16 11 6 17 9</p>
+          <p>5 18 1 4 19 0 7 20 3</p>
+          <p>5 21 1 7 22 3 6 23 2</p>
+          <p>8 24 12 9 25 13 10 26 14</p>
+          <p>8 27 12 10 28 14 11 29 15</p>
+          <p>12 30 16 13 31 17 9 32 18</p>
+          <p>12 33 16 9 34 18 8 35 19</p>
+          <p>14 36 15 15 37 14 13 38 13</p>
+          <p>14 39 15 13 40 13 12 41 12</p>
+          <p>13 42 20 15 43 21 9 44 22</p>
+          <p>15 45 21 10 46 23 9 47 22</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="fortress_door" name="fortress_door">
+        <matrix sid="matrix">2.959987 0.000000 0.000000 0.325675 0.000000 2.959987 0.000000 4.524503 0.000000 0.000000 2.959987 10.093350 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#fortress_door-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_15___Default" target="#_15___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
