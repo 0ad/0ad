@@ -13,14 +13,13 @@ function init(data)
 
 	// Get tip image and corresponding tip text
 	var tipTextLoadingArray = buildDirEntList("gui/text/tips/", "*.txt", false);
-	var tipTextFilePath = tipTextLoadingArray[getRandom (0, tipTextLoadingArray.length-1)];
-	var fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/")+1).replace(".txt", ".png");
-	var tipImageFilePath = "art/textures/ui/loading/tips/" + fileName;
 
 	if (tipTextLoadingArray.length > 0)
 	{
 		// Set tip text
+		var tipTextFilePath = tipTextLoadingArray[getRandom (0, tipTextLoadingArray.length-1)];
 		var tipText = readFile(tipTextFilePath);
+		
 		if (tipText)
 		{
 			var index = tipText.indexOf("\n");
@@ -31,14 +30,14 @@ function init(data)
 		}
 
 		// Set tip image
+		var fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/")+1).replace(".txt", ".png");
+		var tipImageFilePath = "loading/tips/" + fileName;
 		var sprite = "stretched:" + tipImageFilePath;
-		sprite = sprite.replace("art/textures/ui/", "");
-		sprite = sprite.replace(".cached.dds", ""); // cope with pre-cached textures
 		getGUIObjectByName("tipImage").sprite = sprite? sprite : "";
 	}
 	else
 	{
-		error("Failed to find any matching tip textures for the loading screen.")
+		error("Failed to find any matching tips for the loading screen.")
 	}
 
 	// janwas: main loop now sets progress / description, but that won't
