@@ -149,7 +149,16 @@ function getActionInfo(action, target)
 		{
 		case "garrison":
 			if (isUnit(entState) && targetState.garrisonHolder && playerOwned)
-				return {"possible": true};
+			{
+				var allowedClasses = targetState.garrisonHolder.allowedClasses;
+				for each (var unitClass in entState.identity.classes)
+				{
+					if (allowedClasses.indexOf(unitClass) != -1)
+					{
+						return {"possible": true};
+					}
+				}
+			}
 			break;
 		case "gather":
 			if (targetState.resourceSupply && (playerOwned || gaiaOwned))
