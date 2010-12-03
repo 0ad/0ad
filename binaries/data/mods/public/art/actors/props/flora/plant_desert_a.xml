@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="2" name="plant desert 01 (Large spikey)">
+      <mesh>gaia/plant_desert_01.dae</mesh>
+      <texture>gaia/bush_desert_a.dds</texture>
+    </variant>
+    <variant frequency="4" name="plant desert 02 (Small spikey)">
+      <mesh>gaia/plant_desert_02.dae</mesh>
+      <texture>gaia/bush_desert_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant desert 01 (Large green)">
+      <mesh>gaia/plant_desert_01.dae</mesh>
+      <texture>gaia/bush_desert_b.dds</texture>
+    </variant>
+    <variant frequency="2" name="plant desert 02 (Small green)">
+      <mesh>gaia/plant_desert_02.dae</mesh>
+      <texture>gaia/bush_desert_b.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
