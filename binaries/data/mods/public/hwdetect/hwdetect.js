@@ -34,11 +34,22 @@ and driver bugs based on experience of particular system configurations.
 
 function RunDetection(settings)
 {
+	// This function should have no side effects, it should just
+	// set these output properties:
+
+
 	// List of warning strings to display to the user
+	// in an ugly GUI dialog box
+	var dialog_warnings = [];
+
+	// List of warning strings to log
 	var warnings = [];
+
+	var disable_audio = undefined;
 
 	// TODO: add some mechanism for setting config values
 	// (overriding default.cfg, but overridden by local.cfg)
+
 
 
 	// Extract all the settings we might use from the argument:
@@ -84,11 +95,22 @@ function RunDetection(settings)
 	//   "Fixed a race condition in OpenGL that could cause crashes with multithreaded applications."
 	if (os_unix && gl_version.match(/NVIDIA 260\.19\.(0[0-9]|1[0-9]|20)$/))
 	{
-		warnings.push("You are using 260.19.* series NVIDIA drivers, which may crash the game. Please upgrade to 260.19.21 or later.");
+		dialog_warnings.push("You are using 260.19.* series NVIDIA drivers, which may crash the game. Please upgrade to 260.19.21 or later.");
+	}
+
+	// http://trac.wildfiregames.com/ticket/685
+	if (os_macosx)
+	{
+		warnings.push("Audio has been disabled, due to problems with OpenAL on OS X.");
+		disable_audio = true;
 	}
 
 
-	return { "warnings": warnings };
+	return {
+		"dialog_warnings": dialog_warnings,
+		"warnings": warnings,
+		"disable_audio": disable_audio,
+	};
 }
 
 global.RunHardwareDetection = function(settings)
@@ -99,9 +121,15 @@ global.RunHardwareDetection = function(settings)
 
 	//print(uneval(output)+"\n");
 
-	if (output.warnings.length)
+	for (var i = 0; i < output.warnings.length; ++i)
+		warn(output.warnings[i]);
+
+	if (output.dialog_warnings.length)
 	{
-		var msg = output.warnings.join("\n\n");
+		var msg = output.dialog_warnings.join("\n\n");
 		Engine.DisplayErrorDialog(msg);
 	}
+
+	if (output.disable_audio !== undefined)
+		Engine.SetDisableAudio(output.disable_audio);
 };

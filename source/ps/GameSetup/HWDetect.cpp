@@ -28,10 +28,18 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/VideoMode.h"
+#include "ps/GameSetup/Config.h"
+
+void SetDisableAudio(void* UNUSED(cbdata), bool disabled)
+{
+	g_DisableAudio = disabled;
+}
 
 void RunHardwareDetection()
 {
 	ScriptInterface& scriptInterface = g_ScriptingHost.GetScriptInterface();
+
+	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
 
 	// Load the detection script:
 
