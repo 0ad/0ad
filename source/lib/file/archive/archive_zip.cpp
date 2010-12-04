@@ -527,10 +527,10 @@ PIArchiveReader CreateArchiveReader_Zip(const fs::wpath& archivePathname)
 class ArchiveWriter_Zip : public IArchiveWriter
 {
 public:
-	ArchiveWriter_Zip(const fs::wpath& archivePathname)
+	ArchiveWriter_Zip(const fs::wpath& archivePathname, bool noDeflate)
 		: m_file(new File(archivePathname, 'w')), m_fileSize(0)
 		, m_unalignedWriter(new UnalignedWriter(m_file, 0))
-		, m_numEntries(0)
+		, m_numEntries(0), m_noDeflate(noDeflate)
 	{
 		THROW_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
 	}
@@ -585,7 +585,7 @@ public:
 		// choose method and the corresponding codec
 		ZipMethod method;
 		PICodec codec;
-		if(IsFileTypeIncompressible(pathname))
+		if(m_noDeflate || IsFileTypeIncompressible(pathname))
 		{
 			method = ZIP_METHOD_NONE;
 			codec = CreateCodec_ZLibNone();
@@ -665,9 +665,11 @@ private:
 
 	Pool m_cdfhPool;
 	size_t m_numEntries;
+
+	bool m_noDeflate;
 };
 
-PIArchiveWriter CreateArchiveWriter_Zip(const fs::wpath& archivePathname)
+PIArchiveWriter CreateArchiveWriter_Zip(const fs::wpath& archivePathname, bool noDeflate)
 {
-	return PIArchiveWriter(new ArchiveWriter_Zip(archivePathname));
+	return PIArchiveWriter(new ArchiveWriter_Zip(archivePathname, noDeflate));
 }

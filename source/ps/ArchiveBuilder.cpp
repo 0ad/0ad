@@ -65,7 +65,14 @@ void CArchiveBuilder::AddBaseMod(const fs::wpath& mod)
 
 void CArchiveBuilder::Build(const fs::wpath& archive)
 {
-	PIArchiveWriter writer = CreateArchiveWriter_Zip(archive);
+	// Disable zip compression because it significantly hurts download size
+	// for releases (which re-compress all files with better compression
+	// algorithms) - it's probably most important currently to optimise for
+	// download size rather than install size or startup performance.
+	// (See http://trac.wildfiregames.com/ticket/671)
+	const bool noDeflate = true;
+
+	PIArchiveWriter writer = CreateArchiveWriter_Zip(archive, noDeflate);
 
 	// Use CTextureManager instead of CTextureConverter directly,
 	// so it can deal with all the loading of settings.xml files
