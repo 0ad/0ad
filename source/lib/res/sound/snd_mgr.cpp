@@ -1431,7 +1431,7 @@ static void list_add(VSrc* vs)
  * @param end_idx if not the default value of 0, stop before that entry.
  */
 template<class Func>
-static void list_foreach(const Func& callback, size_t skip = 0, size_t end_idx = 0)
+static void list_foreach(Func callback, size_t skip = 0, size_t end_idx = 0)
 {
 	const VSrcIt begin = vsrcs.begin() + skip;
 	const VSrcIt end = end_idx? begin+end_idx : vsrcs.end();
