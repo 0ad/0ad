@@ -41,7 +41,6 @@ typedef xmlDoc* xmlDocPtr;
 
 class CXeromyces : public XMBFile
 {
-	friend class TestXeromyces;
 	friend class TestXeroXMB;
 public:
 	/**
@@ -54,6 +53,11 @@ public:
 	 */
 	PSRETURN LoadString(const char* xml);
 
+	/**
+	 * Convert the given XML file into an XMB in the archive cache.
+	 * Returns the XMB path in @p archiveCachePath.
+	 * Returns false on error.
+	 */
 	bool GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, VfsPath& archiveCachePath);
 
 	/**

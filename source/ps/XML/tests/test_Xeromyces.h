@@ -34,21 +34,6 @@ public:
 		CXeromyces::Terminate();
 	}
 
-	void test_paths()
-	{
-		PIVFS vfs = CreateVfs(20*MiB);
-
-		TS_ASSERT_OK(vfs->Mount(L"", DataDir()/L"mods/_test.xero", VFS_MOUNT_MUST_EXIST));
-
-		VfsPath xmbPath;
-
-		CXeromyces::GetXMBPath(vfs, L"test1.xml", L"test1.xmb", xmbPath);
-		TS_ASSERT_WSTR_EQUALS(xmbPath.string(), L"cache/mods/_test.xero/xmb/test1.xmb");
-
-		CXeromyces::GetXMBPath(vfs, L"a/b/test1.xml", L"a/b/test1.xmb", xmbPath);
-		TS_ASSERT_WSTR_EQUALS(xmbPath.string(), L"cache/mods/_test.xero/xmb/a/b/test1.xmb");
-	}
-
 	// TODO: Should test the reading/parsing/writing code,
 	// and parse error handling
 
