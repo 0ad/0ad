@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ ERROR_TYPE(Xeromyces, XMLParseError);
 #include "lib/file/vfs/vfs.h"
 
 class WriteBuffer;
-
+class MD5;
 
 typedef struct _xmlDoc xmlDoc;
 typedef xmlDoc* xmlDocPtr;
@@ -44,23 +44,33 @@ class CXeromyces : public XMBFile
 	friend class TestXeromyces;
 	friend class TestXeroXMB;
 public:
-	// Load from an XML file (with invisible XMB caching).
+	/**
+	 * Load from an XML file (with invisible XMB caching).
+	 */
 	PSRETURN Load(const PIVFS& vfs, const VfsPath& filename);
 
-	// Load from an in-memory XML string (with no caching)
+	/**
+	 * Load from an in-memory XML string (with no caching).
+	 */
 	PSRETURN LoadString(const char* xml);
 
-	// Call once when initialising the program, to load libxml2.
-	// This should be run in the main thread, before any thread
-	// uses libxml2.
+	bool GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, VfsPath& archiveCachePath);
+
+	/**
+	 * Call once when initialising the program, to load libxml2.
+	 * This should be run in the main thread, before any thread uses libxml2.
+	 */
 	static void Startup();
-	// Call once when shutting down the program, to unload libxml2.
+
+	/**
+	 * Call once when shutting down the program, to unload libxml2.
+	 */
 	static void Terminate();
 
 private:
+	void PrepareCacheKey(MD5& hash, u32& version);
 
-	// Find out write location of the XMB file corresponding to xmlFilename
-	static void GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath);
+	PSRETURN ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath);
 
 	bool ReadXMBFile(const PIVFS& vfs, const VfsPath& filename);
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,13 +23,13 @@
 #include <stack>
 #include <algorithm>
 
+#include "maths/MD5.h"
+#include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "Xeromyces.h"
 
 #include <libxml/parser.h>
-
-#define LOG_CATEGORY L"xml"
 
 static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 {
@@ -38,7 +38,7 @@ static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 	if (message.length() > 0 && message[message.length()-1] == '\n')
 		message.erase(message.length()-1);
 
-	LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Parse %ls: %hs:%d: %hs",
+	LOGERROR(L"CXeromyces: Parse %ls: %hs:%d: %hs",
 		error->level == XML_ERR_WARNING ? L"warning" : L"error",
 		error->file, error->line, message.c_str());
 	// TODO: The (non-fatal) warnings and errors don't get stored in the XMB,
@@ -62,104 +62,71 @@ void CXeromyces::Terminate()
 	g_XeromycesStarted = false;
 }
 
-
-// Find out write location of the XMB file corresponding to xmlFilename
-void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath)
+void CXeromyces::PrepareCacheKey(MD5& hash, u32& version)
 {
-	// rationale:
-	// - it is necessary to write out XMB files into a subdirectory
-	//   corresponding to the mod from which the XML file is taken.
-	//   this avoids confusion when multiple mods are active -
-	//   their XMB files' VFS filename would otherwise be indistinguishable.
-	// - we group files in the cache/ mount point first by mod, and only
-	//   then XMB. this is so that all output files for a given mod can
-	//   easily be deleted. the operation of deleting all old/unused
-	//   XMB files requires a program anyway (to find out which are no
-	//   longer needed), so it's not a problem that XMB files reside in
-	//   a subdirectory (which would make manually deleting all harder).
+	// We don't have anything special to add into the hash
+	UNUSED2(hash);
 
-	// get real path of XML file (e.g. mods/official/entities/...)
-	fs::wpath XMBRealPath_;
-	vfs->GetRealPath(xmlFilename, XMBRealPath_);
-	wchar_t XMBRealPath[PATH_MAX];
-	wcscpy_s(XMBRealPath, ARRAY_SIZE(XMBRealPath), XMBRealPath_.string().c_str());
-
-	// extract mod name from that
-	const wchar_t* modPath = wcsstr(XMBRealPath, L"mods/");
-	debug_assert(modPath != 0);
-	wchar_t modName[PATH_MAX];
-	// .. NOTE: can't use %ls, of course (keeps going beyond '/')
-	int matches = swscanf(modPath, L"mods/%l[^/]", modName);
-	debug_assert(matches == 1);
-
-	// build full name: cache, then mod name, XMB subdir, original XMB path
-	xmbActualPath = VfsPath(L"cache/mods") / modName / L"xmb" / xmbFilename;
+	// Arbitrary version number - change this if we update the code and
+	// need to invalidate old users' caches
+	version = 1;
 }
 
 PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 {
 	debug_assert(g_XeromycesStarted);
 
-	// Make sure the .xml actually exists
-	if (! FileExists(vfs, filename))
-	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to find XML file %ls", filename.string().c_str());
-		return PSRETURN_Xeromyces_XMLOpenFailed;
-	}
-
-	// Get some data about the .xml file
-	FileInfo fileInfo;
-	if (vfs->GetFileInfo(filename, &fileInfo) < 0)
-	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to stat XML file %ls", filename.string().c_str());
-		return PSRETURN_Xeromyces_XMLOpenFailed;
-	}
-
-
-	/*
-	XMBs are stored with a unique name, where the name is generated from
-	characteristics of the XML file. If a file already exists with the
-	generated name, it is assumed that that file is a valid conversion of
-	the XML, and so it's loaded. Otherwise, the XMB is created with that
-	filename.
-
-	This means it's never necessary to overwrite existing XMB files; since
-	the XMBs are often in archives, it's not easy to rewrite those files,
-	and it's not possible to switch to using a loose file because the VFS
-	has already decided that file is inside an archive. So each XMB is given
-	a unique name, and old ones are somehow purged.
-	*/
-
-
-	// Generate the filename for the xmb:
-	//     <xml filename>_<mtime><size><format version>.xmb
-	// with mtime/size as 8-digit hex, where mtime's lowest bit is
-	// zeroed because zip files only have 2 second resolution.
-	const int suffixLength = 22;
-	wchar_t suffix[suffixLength+1];
-	int printed = swprintf_s(suffix, ARRAY_SIZE(suffix), L"_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
-	debug_assert(printed == suffixLength);
-	VfsPath xmbFilename = change_extension(filename, suffix);
+	CCacheLoader cacheLoader(vfs, L".xmb");
+	MD5 hash;
+	u32 version;
+	PrepareCacheKey(hash, version);
 
 	VfsPath xmbPath;
-	GetXMBPath(vfs, filename, xmbFilename, xmbPath);
+	LibError ret = cacheLoader.TryLoadingCached(filename, MD5(), version, xmbPath);
 
-	// If the file exists, use it
-	if (FileExists(vfs, xmbPath))
+	if (ret == INFO::OK)
 	{
+		// Found a cached XMB - load it
 		if (ReadXMBFile(vfs, xmbPath))
 			return PSRETURN_OK;
-		// (no longer return PSRETURN_Xeromyces_XMLOpenFailed here because
-		// failure legitimately happens due to partially-written XMB files.)
+		// If this fails then we'll continue and (re)create the loose cache -
+		// this failure legitimately happens due to partially-written XMB files.
+	}
+	else if (ret == INFO::SKIPPED)
+	{
+		// No cached version was found - we'll need to create it
+	}
+	else
+	{
+		debug_assert(ret < 0);
+
+		// No source file or archive cache was found, so we can't load the
+		// XML file at all
+		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
-	
-	// XMB isn't up to date with the XML, so rebuild it:
+	// XMB isn't up to date with the XML, so rebuild it
+	return ConvertFile(vfs, filename, xmbPath);
+}
 
+bool CXeromyces::GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, VfsPath& archiveCachePath)
+{
+	CCacheLoader cacheLoader(vfs, L".xmb");
+	MD5 hash;
+	u32 version;
+	PrepareCacheKey(hash, version);
+
+	archiveCachePath = cacheLoader.ArchiveCachePath(sourcePath);
+
+	return (ConvertFile(vfs, sourcePath, L"cache"/archiveCachePath) == PSRETURN_OK);
+}
+
+PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath)
+{
 	CVFSFile input;
 	if (input.Load(vfs, filename))
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to open XML file %ls", filename.string().c_str());
+		LOGERROR(L"CXeromyces: Failed to open XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -168,7 +135,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 		filename8.c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to parse XML file %ls", filename.string().c_str());
+		LOGERROR(L"CXeromyces: Failed to parse XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLParseError;
 	}
 
@@ -215,7 +182,7 @@ PSRETURN CXeromyces::LoadString(const char* xml)
 	xmlDocPtr doc = xmlReadMemory(xml, (int)strlen(xml), "", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to parse XML string");
+		LOGERROR(L"CXeromyces: Failed to parse XML string");
 		return PSRETURN_Xeromyces_XMLParseError;
 	}
 

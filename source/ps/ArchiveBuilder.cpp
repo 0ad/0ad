@@ -23,6 +23,7 @@
 #include "lib/path_util.h"
 #include "lib/tex/tex_codec.h"
 #include "lib/file/archive/archive_zip.h"
+#include "ps/XML/Xeromyces.h"
 
 // Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
 #if MSC_VERSION
@@ -70,6 +71,8 @@ void CArchiveBuilder::Build(const fs::wpath& archive)
 	// so it can deal with all the loading of settings.xml files
 	CTextureManager texman(m_VFS, true, true);
 
+	CXeromyces xero;
+
 	for (size_t i = 0; i < m_Files.size(); ++i)
 	{
 		LibError ret;
@@ -96,12 +99,30 @@ void CArchiveBuilder::Build(const fs::wpath& archive)
 			debug_assert(ret == INFO::OK);
 
 			writer->AddFile(cachedRealPath, cachedPath.string());
+
+			// We don't want to store the original file too (since it's a
+			// large waste of space), so skip to the next file
+			continue;
 		}
-		// TODO: should cache XML->XMB and DAE->PMD and DAE->PSA conversions too
-		else
+
+		// TODO: should cache DAE->PMD and DAE->PSA conversions too
+
+		debug_printf(L"Adding %ls\n", realPath.string().c_str());
+		writer->AddFile(realPath, m_Files[i].string());
+
+		// Also cache XMB versions of all XML files
+		if (fs::extension(m_Files[i]) == L".xml")
 		{
-			debug_printf(L"Adding %ls\n", realPath.string().c_str());
-			writer->AddFile(realPath, m_Files[i].string());
+			VfsPath cachedPath;
+			debug_printf(L"Converting XML file %ls\n", realPath.string().c_str());
+			bool ok = xero.GenerateCachedXMB(m_VFS, m_Files[i], cachedPath);
+			debug_assert(ok);
+
+			fs::wpath cachedRealPath;
+			ret = m_VFS->GetRealPath(L"cache"/cachedPath, cachedRealPath);
+			debug_assert(ret == INFO::OK);
+
+			writer->AddFile(cachedRealPath, cachedPath.string());
 		}
 	}
 }

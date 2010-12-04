@@ -26,6 +26,7 @@
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/timer.h"
 #include "maths/MD5.h"
+#include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
@@ -70,8 +71,9 @@ class CTextureManagerImpl
 {
 	friend class CTexture;
 public:
-	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL)
-		: m_VFS(vfs), m_DisableGL(disableGL), m_TextureConverter(vfs, highQuality), m_DefaultHandle(0), m_ErrorHandle(0)
+	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL) :
+		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_DisableGL(disableGL), m_TextureConverter(vfs, highQuality),
+		m_DefaultHandle(0), m_ErrorHandle(0)
 	{
 		// Initialise some textures that will always be available,
 		// without needing to load any files
@@ -220,47 +222,18 @@ public:
 	}
 
 	/**
-	 * Determines whether we can safely use the archived cache file, or need to
-	 * re-convert the source file.
+	 * Set up some parameters for the loose cache filename code.
 	 */
-	bool CanUseArchiveCache(const VfsPath& sourcePath, const VfsPath& archiveCachePath)
+	void PrepareCacheKey(const CTexturePtr& texture, MD5& hash, u32& version)
 	{
-		// We want to use the archive cache whenever possible,
-		// unless it's superseded by a source file that the user has edited
+		// Hash the settings, so we won't use an old loose cache file if the
+		// settings have changed
+		CTextureConverter::Settings settings = GetConverterSettings(texture);
+		settings.Hash(hash);
 
-		size_t sourcePriority = 0;
-		size_t archiveCachePriority = 0;
-
-		bool sourceExists = (m_VFS->GetFilePriority(sourcePath, &sourcePriority) >= 0);
-		bool archiveCacheExists = (m_VFS->GetFilePriority(archiveCachePath, &archiveCachePriority) >= 0);
-
-		// Can't use it if there's no cache
-		if (!archiveCacheExists)
-			return false;
-
-		// Must use the cache if there's no source
-		if (!sourceExists)
-			return true;
-
-		// If source file is from a higher-priority mod than archive cache,
-		// don't use the old cache
-		if (archiveCachePriority < sourcePriority)
-			return false;
-
-		// If source file is more recent than the archive cache (i.e. the user has edited it),
-		// don't use the old cache
-		FileInfo sourceInfo, archiveCacheInfo;
-		if (m_VFS->GetFileInfo(sourcePath, &sourceInfo) >= 0 &&
-		    m_VFS->GetFileInfo(archiveCachePath, &archiveCacheInfo) >= 0)
-		{
-			const double howMuchNewer = difftime(sourceInfo.MTime(), archiveCacheInfo.MTime());
-			const double threshold = 2.0;	// FAT timestamp resolution [seconds]
-			if (howMuchNewer > threshold)
-				return false;
-		}
-
-		// Otherwise we can use the cache
-		return true;
+		// Arbitrary version number - change this if we update the code and
+		// need to invalidate old users' caches
+		version = 1;
 	}
 
 	/**
@@ -270,91 +243,33 @@ public:
 	 */
 	bool TryLoadingCached(const CTexturePtr& texture)
 	{
-		VfsPath sourcePath = texture->m_Properties.m_Path;
-		VfsPath sourceDir = sourcePath.branch_path();
-		std::wstring sourceName = sourcePath.leaf();
-		VfsPath archiveCachePath = sourceDir / (sourceName + L".cached.dds");
+		MD5 hash;
+		u32 version;
+		PrepareCacheKey(texture, hash, version);
 
-		// Try the archive cache file first
-		if (CanUseArchiveCache(sourcePath, archiveCachePath))
+		VfsPath loadPath;
+		LibError ret = m_CacheLoader.TryLoadingCached(texture->m_Properties.m_Path, hash, version, loadPath);
+
+		if (ret == INFO::OK)
 		{
-			LoadTexture(texture, archiveCachePath);
+			// Found a cached texture - load it
+			LoadTexture(texture, loadPath);
 			return true;
 		}
-
-		// Fail if no source or archive cache
-		if (m_VFS->GetFileInfo(sourcePath, NULL) < 0)
+		else if (ret == INFO::SKIPPED)
 		{
-			LOGERROR(L"Texture failed to find source file: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			// No cached version was found - we'll need to create it
+			return false;
+		}
+		else
+		{
+			debug_assert(ret < 0);
 
+			// No source file or archive cache was found, so we can't load the
+			// real texture at all - return the error texture instead
 			texture->SetHandle(m_ErrorHandle);
 			return true;
 		}
-
-		// Look for loose cache of source file
-
-		VfsPath looseCachePath = LooseCachePath(texture);
-
-		// If the loose cache file exists, use it
-		if (m_VFS->GetFileInfo(looseCachePath, NULL) >= 0)
-		{
-			LoadTexture(texture, looseCachePath);
-			return true;
-		}
-
-		// No cache - we'll need to regenerate it
-
-		return false;
-	}
-
-	/**
-	 * Returns the pathname for storing a loose cache file, based on the size/mtime of
-	 * the source file and the conversion settings. The source file must already exist.
-	 *
-	 * TODO: this code should probably be shared with other cached data (XMB files etc).
-	 */
-	VfsPath LooseCachePath(const CTexturePtr& texture)
-	{
-		VfsPath sourcePath = texture->m_Properties.m_Path;
-
-		FileInfo fileInfo;
-		if (m_VFS->GetFileInfo(sourcePath, &fileInfo) < 0)
-		{
-			debug_warn(L"source file disappeared"); // this should never happen
-			return VfsPath();
-		}
-
-		u64 mtime = (u64)fileInfo.MTime() & ~1; // skip lowest bit, since zip and FAT don't preserve it
-		u64 size = (u64)fileInfo.Size();
-
-		u32 version = 1; // change this if we update the code and need to invalidate old users' caches
-
-		// Construct a hash of the file data and settings.
-
-		CTextureConverter::Settings settings = GetConverterSettings(texture);
-
-		MD5 hash;
-		hash.Update((const u8*)&mtime, sizeof(mtime));
-		hash.Update((const u8*)&size, sizeof(size));
-		hash.Update((const u8*)&version, sizeof(version));
-		settings.Hash(hash);
-		// these are local cached files, so we don't care about endianness etc
-
-		// Use a short prefix of the full hash (we don't need high collision-resistance),
-		// converted to hex
-		u8 digest[MD5::DIGESTSIZE];
-		hash.Final(digest);
-		std::wstringstream digestPrefix;
-		digestPrefix << std::hex;
-		for (size_t i = 0; i < 8; ++i)
-			digestPrefix << std::setfill(L'0') << std::setw(2) << (int)digest[i];
-
-		// Construct the final path
-		VfsPath sourceDir = sourcePath.branch_path();
-		std::wstring sourceName = sourcePath.leaf();
-		return L"cache" / sourceDir / (sourceName + L"." + digestPrefix.str() + L".dds");
-
-		// TODO: we should probably include the mod name, once that's possible (http://trac.wildfiregames.com/ticket/564)
 	}
 
 	/**
@@ -364,7 +279,11 @@ public:
 	void ConvertTexture(const CTexturePtr& texture)
 	{
 		VfsPath sourcePath = texture->m_Properties.m_Path;
-		VfsPath looseCachePath = LooseCachePath(texture);
+
+		MD5 hash;
+		u32 version;
+		PrepareCacheKey(texture, hash, version);
+		VfsPath looseCachePath = m_CacheLoader.LooseCachePath(sourcePath, hash, version);
 
 //		LOGWARNING(L"Converting texture \"%ls\"", srcPath.string().c_str());
 
@@ -375,16 +294,11 @@ public:
 
 	bool GenerateCachedTexture(const VfsPath& sourcePath, VfsPath& archiveCachePath)
 	{
-		VfsPath sourceDir = sourcePath.branch_path();
-		std::wstring sourceName = sourcePath.leaf();
-		archiveCachePath = sourceDir / (sourceName + L".cached.dds");
+		archiveCachePath = m_CacheLoader.ArchiveCachePath(sourcePath);
 
 		CTextureProperties textureProps(sourcePath);
 		CTexturePtr texture = CreateTexture(textureProps);
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
-
-		// TODO: we ought to use a higher-quality compression mode here
-		// (since we don't care about performance)
 
 		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, L"cache"/archiveCachePath, settings))
 			return false;
@@ -537,7 +451,7 @@ public:
 		m_SettingsFiles.erase(path);
 
 		// Find all textures using this file
-		std::map<VfsPath, std::set<boost::weak_ptr<CTexture> > >::iterator files = m_HotloadFiles.find(path);
+		HotloadFilesMap::iterator files = m_HotloadFiles.find(path);
 		if (files != m_HotloadFiles.end())
 		{
 			// Flag all textures using this file as needing reloading
@@ -556,6 +470,7 @@ public:
 
 private:
 	PIVFS m_VFS;
+	CCacheLoader m_CacheLoader;
 	bool m_DisableGL;
 	CTextureConverter m_TextureConverter;
 
@@ -570,7 +485,8 @@ private:
 
 	// Store the set of textures that need to be reloaded when the given file
 	// (a source file or settings.xml) is modified
-	std::map<VfsPath, std::set<boost::weak_ptr<CTexture> > > m_HotloadFiles;
+	typedef std::map<VfsPath, std::set<boost::weak_ptr<CTexture> > > HotloadFilesMap;
+	HotloadFilesMap m_HotloadFiles;
 
 	// Cache for the conversion settings files
 	typedef std::map<VfsPath, shared_ptr<CTextureConverter::SettingsFile> > SettingsFilesMap;
