@@ -53,6 +53,17 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 	fprintf(stderr, "%ls: %ls\n", caption, msg); // must not use fwprintf, since stderr is byte-oriented
 }
 
+#if OS_MACOSX
+static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
+{
+	// TODO: implement this, in a way that doesn't rely on X11
+	// and doesn't occasionally cause crazy errors like
+	// "The process has forked and you cannot use this
+	// CoreFoundation functionality safely. You MUST exec()."
+
+	return ER_NOT_IMPLEMENTED;
+}
+#else
 static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
 {
 	// We'll run xmessage via fork/exec.
@@ -177,6 +188,7 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 	// Unexpected return value - fall back to the non-GUI prompt
 	return ER_NOT_IMPLEMENTED;
 }
+#endif
 
 ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 {
