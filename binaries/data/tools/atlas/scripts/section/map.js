@@ -8,7 +8,7 @@ function setupSimTest(window)
 		if (state == 'inactive')
 		{
 			Atlas.Message.SimStateSave('default');
-			Atlas.Message.GuiSwitchPage('page_session_new.xml');
+			Atlas.Message.GuiSwitchPage('page_session.xml');
 		}
 		Atlas.Message.SimPlay(newSpeed);
 		state = 'playing';
