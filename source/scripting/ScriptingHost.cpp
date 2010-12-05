@@ -27,8 +27,6 @@
 #include "ps/Filesystem.h"
 #include "scriptinterface/ScriptInterface.h"
 
-#define LOG_CATEGORY L"scriptinghost"
-
 ScriptingHost::ScriptingHost()
 {
 	m_ScriptInterface = new ScriptInterface("Engine", "GUI");

@@ -71,8 +71,6 @@ that of Atlas depending on commandline parameters.
 #include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
 
-#define LOG_CATEGORY L"main"
-
 extern bool g_GameRestarted;
 
 void kill_mainloop();

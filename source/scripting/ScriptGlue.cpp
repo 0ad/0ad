@@ -54,8 +54,6 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
-#define LOG_CATEGORY L"script"
-
 // rationale: the function table is now at the end of the source file to
 // avoid the need for forward declarations for every function.
 

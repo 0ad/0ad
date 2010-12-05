@@ -46,7 +46,6 @@
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 
-#define LOG_CATEGORY L"editor"
 
 namespace AtlasMessage {
 
@@ -234,7 +233,7 @@ BEGIN_COMMAND(SetObjectSettings)
 	}
 
 private:
-	void Set(player_id_t player, const std::set<CStr>& selections)
+	void Set(player_id_t player, const std::set<CStr>& UNUSED(selections))
 	{
 		View* view = View::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();

@@ -23,7 +23,6 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
-#define LOG_CATEGORY L"graphics"
 
 #include <map>
 #include <string>

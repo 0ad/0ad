@@ -37,9 +37,6 @@
 #include "renderer/VertexArray.h"
 
 
-#define LOG_CATEGORY L"graphics"
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // FixedFunctionModelRenderer implementation
 

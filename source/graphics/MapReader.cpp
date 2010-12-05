@@ -44,8 +44,6 @@
 
 #include <boost/algorithm/string/predicate.hpp>
 
-#define LOG_CATEGORY L"graphics"
-
 
 CMapReader::CMapReader()
 	: xml_reader(0), m_PatchesPerSide(0)

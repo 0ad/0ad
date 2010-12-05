@@ -39,8 +39,6 @@
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
-#define LOG_CATEGORY L"Console"
-
 CConsole* g_Console = 0;
 
 CConsole::CConsole()

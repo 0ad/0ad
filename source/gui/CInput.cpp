@@ -34,8 +34,6 @@ CInput
 #include "ps/CLogger.h"
 #include "ps/Globals.h"
 
-#define LOG_CATEGORY L"gui"
-
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
