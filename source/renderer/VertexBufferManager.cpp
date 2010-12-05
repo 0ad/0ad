@@ -25,7 +25,6 @@
 #include "VertexBufferManager.h"
 #include "ps/CLogger.h"
 
-#define LOG_CATEGORY L"graphics"
 
 // janwas 2004-06-14: added dtor
 
@@ -74,7 +73,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 	
 	if (!result)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Failed to create VBOs (%lu*%lu)", (unsigned long)vertexSize, (unsigned long)numVertices);
+		LOGERROR(L"Failed to create VBOs (%lu*%lu)", (unsigned long)vertexSize, (unsigned long)numVertices);
 	}
 
 	return result;

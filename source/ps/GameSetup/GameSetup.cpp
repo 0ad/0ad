@@ -110,8 +110,6 @@ ERROR_TYPE(System, SDLInitFailed);
 ERROR_TYPE(System, VmodeFailed);
 ERROR_TYPE(System, RequiredExtensionsMissing);
 
-#define LOG_CATEGORY L"gamesetup"
-
 bool g_DoRenderGui = true;
 bool g_DoRenderLogger = true;
 bool g_DoRenderCursor = true;
@@ -615,7 +613,7 @@ static void InitSDL()
 {
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"SDL library initialization failed: %hs", SDL_GetError());
+		LOGERROR(L"SDL library initialization failed: %hs", SDL_GetError());
 		throw PSERROR_System_SDLInitFailed();
 	}
 	atexit(SDL_Quit);

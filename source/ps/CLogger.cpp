@@ -211,37 +211,6 @@ void CLogger::WriteWarning(const wchar_t* message)
 	PushRenderMessage(Warning, message);
 }
 
-// Sends the message to the appropriate piece of code
-// -- This function has not been removed because the build would break.
-void CLogger::LogUsingMethod(ELogMethod method, const wchar_t* message)
-{
-	if (method == Normal)
-		WriteMessage(message);
-	else if (method == Error)
-		WriteError(message);
-	else if (method == Warning)
-		WriteWarning(message);
-	else
-		WriteMessage(message);
-}
-
-// -- This function has not been removed because the build would break.
-void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
-{
-	va_list argp;
-	wchar_t buffer[BUFFER_SIZE] = {0};
-	
-	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
-	{
-		// Buffer too small - ensure the string is nicely terminated
-		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
-	}
-	va_end(argp);
-
-	LogUsingMethod(method, buffer);
-}
-
 void CLogger::LogMessage(const wchar_t* fmt, ...)
 {
 	va_list argp;

@@ -62,8 +62,6 @@
 #include "renderer/TransparencyRenderer.h"
 #include "renderer/WaterManager.h"
 
-#define LOG_CATEGORY L"graphics"
-
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRendererStatsTable - Profile display of rendering stats
@@ -555,11 +553,11 @@ bool CRenderer::Open(int width, int height)
 
 	GLint bits;
 	glGetIntegerv(GL_DEPTH_BITS,&bits);
-	LOG(CLogger::Normal,  LOG_CATEGORY, L"CRenderer::Open: depth bits %d",bits);
+	LOGMESSAGE(L"CRenderer::Open: depth bits %d",bits);
 	glGetIntegerv(GL_STENCIL_BITS,&bits);
-	LOG(CLogger::Normal,  LOG_CATEGORY, L"CRenderer::Open: stencil bits %d",bits);
+	LOGMESSAGE(L"CRenderer::Open: stencil bits %d",bits);
 	glGetIntegerv(GL_ALPHA_BITS,&bits);
-	LOG(CLogger::Normal,  LOG_CATEGORY, L"CRenderer::Open: alpha bits %d",bits);
+	LOGMESSAGE(L"CRenderer::Open: alpha bits %d",bits);
 
 	// Validate the currently selected render path
 	SetRenderPath(m_Options.m_RenderPath);
@@ -687,7 +685,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	{
 		if (!m->CanUseRenderPathVertexShader())
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, L"Falling back to fixed function\n");
+			LOGWARNING(L"Falling back to fixed function\n");
 			rp = RP_FIXED;
 		}
 	}
@@ -715,7 +713,7 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(const CStr& name)
 	if (name == "default")
 		return RP_DEFAULT;
 
-	LOG(CLogger::Warning, LOG_CATEGORY, L"Unknown render path name '%hs', assuming 'default'", name.c_str());
+	LOGWARNING(L"Unknown render path name '%hs', assuming 'default'", name.c_str());
 	return RP_DEFAULT;
 }
 
@@ -730,7 +728,7 @@ void CRenderer::SetFastPlayerColor(bool fast)
 	{
 		if (!FastPlayerColorRender::IsAvailable())
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, L"Falling back to slower player color rendering.");
+			LOGWARNING(L"Falling back to slower player color rendering.");
 			m_FastPlayerColor = false;
 		}
 	}
@@ -1327,7 +1325,7 @@ void CRenderer::EndFrame()
 
 	static bool once=false;
 	if (!once && glGetError()) {
-		LOG(CLogger::Error, LOG_CATEGORY, L"CRenderer::EndFrame: GL errors occurred");
+		LOGERROR(L"CRenderer::EndFrame: GL errors occurred");
 		once=true;
 	}
 }

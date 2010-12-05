@@ -40,9 +40,6 @@
 extern PIVFS vfs;
 
 
-#define LOG_CATEGORY L"shaders"
-
-
 ERROR_ASSOCIATE(ERR::SHDR_CREATE, L"Shader creation failed", -1);
 ERROR_ASSOCIATE(ERR::SHDR_COMPILE, L"Shader compile failed", -1);
 ERROR_ASSOCIATE(ERR::SHDR_NO_SHADER, L"Invalid shader reference", -1);
@@ -288,7 +285,7 @@ static LibError do_load_shader(
 
 	if (Type.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Missing attribute \"type\" in element \"Shader\".", pathname.string().c_str());
+		LOGERROR(L"%ls: Missing attribute \"type\" in element \"Shader\".", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -296,7 +293,7 @@ static LibError do_load_shader(
 	
 	if (!shadertype)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname.string().c_str(), Type.c_str());
+		LOGERROR(L"%ls: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname.string().c_str(), Type.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -304,7 +301,7 @@ static LibError do_load_shader(
 	
 	if (pathnameShader.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Missing shader name.", pathname.string().c_str());
+		LOGERROR(L"%ls: Missing shader name.", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
@@ -359,7 +356,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 
 	if (Root.GetNodeName() != el_program)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: XML root was not \"Program\".", pathname.string().c_str());
+		LOGERROR(L"%ls: XML root was not \"Program\".", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -380,7 +377,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 				
 				if (Shader.GetNodeName() != el_shader)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Only \"Shader\" may be child of \"Shaders\".", pathname.string().c_str());
+					LOGERROR(L"%ls: Only \"Shader\" may be child of \"Shaders\".", pathname.string().c_str());
 					WARN_RETURN(ERR::CORRUPTED);
 				}
 				
@@ -389,7 +386,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 		}
 		else
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, L"%ls: Unknown child of \"Program\".", pathname.string().c_str());
+			LOGWARNING(L"%ls: Unknown child of \"Program\".", pathname.string().c_str());
 		}
 	}
 

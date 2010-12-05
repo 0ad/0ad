@@ -29,7 +29,6 @@
 #include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 
-#define LOG_CATEGORY L"gui"
 
 using namespace GUIRenderer;
 
@@ -108,7 +107,7 @@ public:
 		// Otherwise, complain.
 		else
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, L"add_color effect has some components above 127 and some below -127 - colours will be clamped");
+			LOGWARNING(L"add_color effect has some components above 127 and some below -127 - colours will be clamped");
 			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
 			m_Method = ADD_SIGNED;
 		}
@@ -188,7 +187,7 @@ public:
 				;
 			else
 				// Oops - trying to multiply by >4
-				LOG(CLogger::Warning, LOG_CATEGORY, L"multiply_color effect has a component >1020 - colours will be clamped");
+				LOGWARNING(L"multiply_color effect has a component >1020 - colours will be clamped");
 
 			m_Color = CColor(c.r/4.f, c.g/4.f, c.b/4.f, c.a);
 			m_Scale = 4;
@@ -426,7 +425,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		else
 		{
 			// Otherwise, just complain and give up:
-			LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use a sprite that doesn't exist (\"%hs\").", SpriteName.c_str());
+			LOGERROR(L"Trying to use a sprite that doesn't exist (\"%hs\").", SpriteName.c_str());
 			return;
 		}
 	}

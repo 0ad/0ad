@@ -27,8 +27,6 @@ GUI text
 #include "ps/Parser.h"
 #include <algorithm>
 
-#define LOG_CATEGORY L"gui"
-
 #include "ps/Font.h"
 
 
@@ -111,7 +109,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				}
 				else if (pObject)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use an [imgleft]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+					LOGERROR(L"Trying to use an [imgleft]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
 				}
 			}
 			else
@@ -124,7 +122,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				}
 				else if (pObject)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use an [imgright]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+					LOGERROR(L"Trying to use an [imgright]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
 				}
 			}
 			else
@@ -166,7 +164,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 							CSize displacement;
 							// Parse the value
 							if (!GUI<CSize>::ParseString(CStrW(tagAttrib.value), displacement))
-								LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing 'displace' value for tag [ICON]");
+								LOGERROR(L"Error parsing 'displace' value for tag [ICON]");
 							else
 								SpriteCall.m_Area += displacement;
 
@@ -195,7 +193,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				}
 				else if (pObject)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use an [icon]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+					LOGERROR(L"Trying to use an [icon]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
 				}
 			}
 		}
@@ -224,7 +222,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					if (!GUI<CColor>::ParseString(CStrW(it2->m_TagValue), TextCall.m_Color))
 					{
 						if (pObject)
-							LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing the value of a [color]-tag in GUI text when reading object \"%hs\".", pObject->GetPresentableName().c_str());
+							LOGERROR(L"Error parsing the value of a [color]-tag in GUI text when reading object \"%hs\".", pObject->GetPresentableName().c_str());
 					}
 				}
 				else
@@ -600,15 +598,15 @@ void CGUIString::SetValue(const CStrW& str)
 #if 0
 	for (int i=0; i<(int)m_Words.size(); ++i)
 	{
-		LOG(CLogger::Normal,  LOG_CATEGORY, L"m_Words[%d] = %d", i, m_Words[i]);
+		LOGMESSAGE(L"m_Words[%d] = %d", i, m_Words[i]);
 	}
 
 	for (int i=0; i<(int)m_TextChunks.size(); ++i)
 	{
-		LOG(CLogger::Normal,  LOG_CATEGORY, L"m_TextChunk[%d] = [%d,%d]", i, m_TextChunks[i].m_From, m_TextChunks[i].m_To);
+		LOGMESSAGE(L"m_TextChunk[%d] = [%d,%d]", i, m_TextChunks[i].m_From, m_TextChunks[i].m_To);
 		for (int j=0; j<(int)m_TextChunks[i].m_Tags.size(); ++j)
 		{
-			LOG(CLogger::Normal,  LOG_CATEGORY, L"--Tag: %d \"%hs\"", (int)m_TextChunks[i].m_Tags[j].m_TagType, m_TextChunks[i].m_Tags[j].m_TagValue.c_str());
+			LOGMESSAGE(L"--Tag: %d \"%hs\"", (int)m_TextChunks[i].m_Tags[j].m_TagType, m_TextChunks[i].m_Tags[j].m_TagValue.c_str());
 		}
 	}
 #endif

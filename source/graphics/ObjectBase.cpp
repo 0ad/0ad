@@ -30,7 +30,6 @@
 #include "lib/rand.h"
 #include "maths/MathUtil.h"
 
-#define LOG_CATEGORY L"graphics"
 
 CObjectBase::CObjectBase(CObjectManager& objectManager)
 : m_ObjectManager(objectManager)
@@ -77,7 +76,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 	if (root.GetNodeName() != el_actor)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Invalid actor format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR(L"Invalid actor format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 
@@ -206,7 +205,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 			if (currentGroup->size() == 0)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, L"Actor group has zero variants ('%ls')", pathname.string().c_str());
+				LOGERROR(L"Actor group has zero variants ('%ls')", pathname.string().c_str());
 			}
 
 			++currentGroup;

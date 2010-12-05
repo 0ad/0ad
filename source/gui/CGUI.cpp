@@ -64,7 +64,6 @@ CGUI
 
 const double SELECT_DBLCLICK_RATE = 0.5;
 #include "ps/CLogger.h"
-#define LOG_CATEGORY L"gui"
 
 void CGUI::ScriptingInit()
 {
@@ -1084,7 +1083,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, std::set<VfsPath>& Paths)
 	}
 	catch (PSERROR_GUI& e)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Errors loading GUI file %ls (%d)", Filename.string().c_str(), e.getCode());
+		LOGERROR(L"Errors loading GUI file %ls (%d)", Filename.string().c_str(), e.getCode());
 		return;
 	}
 }

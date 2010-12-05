@@ -24,8 +24,8 @@ class TestCLogger : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		logger->Log(CLogger::Normal, L"", L"Test 1");
-		logger->Log(CLogger::Normal, L"", L"Test 2");
+		logger->LogMessage(L"Test 1");
+		logger->LogMessage(L"Test 2");
 
 		ParseOutput();
 
@@ -46,15 +46,15 @@ public:
 		std::string clipped (buflen-4, '*');
 		clipped += "...";
 
-		logger->Log(CLogger::Normal, L"", L"%hs", msg0.c_str());
-		logger->Log(CLogger::Normal, L"", L"%hs", msg1.c_str());
-		logger->Log(CLogger::Normal, L"", L"%hs", msg2.c_str());
-		logger->Log(CLogger::Normal, L"", L"%hs", msg3.c_str());
-
 		logger->LogMessage(L"%hs", msg0.c_str());
 		logger->LogMessage(L"%hs", msg1.c_str());
 		logger->LogMessage(L"%hs", msg2.c_str());
 		logger->LogMessage(L"%hs", msg3.c_str());
+
+		logger->LogMessageRender(L"%hs", msg0.c_str());
+		logger->LogMessageRender(L"%hs", msg1.c_str());
+		logger->LogMessageRender(L"%hs", msg2.c_str());
+		logger->LogMessageRender(L"%hs", msg3.c_str());
 
 		logger->LogWarning(L"%hs", msg0.c_str());
 		logger->LogWarning(L"%hs", msg1.c_str());

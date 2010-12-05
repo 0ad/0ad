@@ -40,7 +40,6 @@
 
 #include <boost/algorithm/string.hpp>
 
-#define LOG_CATEGORY L"graphics"
 
 CTerrainTextureManager::CTerrainTextureManager():
 	m_LastGroupIndex(0)
@@ -83,7 +82,7 @@ CTerrainTextureEntry* CTerrainTextureManager::FindTexture(const CStr& tag_)
 			return m_TextureEntries[i];
 	}
 
-	LOG(CLogger::Warning, LOG_CATEGORY, L"CTerrainTextureManager: Couldn't find terrain %hs", tag.c_str());
+	LOGWARNING(L"CTerrainTextureManager: Couldn't find terrain %hs", tag.c_str());
 	return 0;
 }
 
@@ -151,7 +150,7 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 		{
 			myprops = GetPropertiesFromFile(props, pathnameXML);
 			if (myprops)
-				LOG(CLogger::Normal,  LOG_CATEGORY, L"CTerrainTextureManager: Successfully loaded override xml %ls for texture %ls", pathnameXML.string().c_str(), pathnames[i].string().c_str());
+				LOGMESSAGE(L"CTerrainTextureManager: Successfully loaded override xml %ls for texture %ls", pathnameXML.string().c_str(), pathnames[i].string().c_str());
 		}
 
 		// Error or non-existant xml file -> use parent props
@@ -164,7 +163,7 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 
 void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const VfsPath& path)
 {
-	//LOG(CLogger::Normal,  LOG_CATEGORY, L"CTextureManager::RecurseDirectory(%ls)", path.string().c_str());
+	//LOGMESSAGE(L"CTextureManager::RecurseDirectory(%ls)", path.string().c_str());
 
 	CTerrainPropertiesPtr props;
 
@@ -176,7 +175,7 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
 	{
-		LOG(CLogger::Normal, LOG_CATEGORY, L"CTerrainTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.string().c_str());
+		LOGMESSAGE(L"CTerrainTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.string().c_str());
 		props = parentProps;
 	}
 

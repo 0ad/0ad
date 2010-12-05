@@ -36,8 +36,6 @@
 #include "ps/Filesystem.h"
 
 
-#define LOG_CATEGORY L"audio"
-
 static const bool DISABLE_INTENSITY = true; // disable for now since it's broken
 
 void CSoundGroup::SetGain(float gain)
@@ -123,7 +121,7 @@ static void HandleError(const std::wstring& message, const VfsPath& pathname, Li
 {
 	if(err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOG(CLogger::Error, LOG_CATEGORY, L"%ls: pathname=%ls, error=%ld", message.c_str(), pathname.string().c_str(), err);
+	LOGERROR(L"%ls: pathname=%ls, error=%ld", message.c_str(), pathname.string().c_str(), err);
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position)
@@ -266,7 +264,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 
 	if (root.GetNodeName() != el_soundgroup)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Invalid SoundGroup format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR(L"Invalid SoundGroup format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 	

@@ -29,7 +29,6 @@
 #include "ps/CLogger.h"
 #include "ps/FileIo.h"
 
-#define LOG_CATEGORY L"graphics"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager constructor
@@ -66,7 +65,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 
 	if (psaFilename.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Could not load animation '%ls'", pathname.string().c_str());
+		LOGERROR(L"Could not load animation '%ls'", pathname.string().c_str());
 		def = NULL;
 	}
 	else
@@ -82,9 +81,9 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 	}
 
 	if (def)
-		LOG(CLogger::Normal,  LOG_CATEGORY, L"CSkeletonAnimManager::GetAnimation(%ls): Loaded successfully", pathname.string().c_str());
+		LOGMESSAGE(L"CSkeletonAnimManager::GetAnimation(%ls): Loaded successfully", pathname.string().c_str());
 	else
-		LOG(CLogger::Error, LOG_CATEGORY, L"CSkeletonAnimManager::GetAnimation(%ls): Failed loading, marked file as bad", pathname.string().c_str());
+		LOGERROR(L"CSkeletonAnimManager::GetAnimation(%ls): Failed loading, marked file as bad", pathname.string().c_str());
 
 	// Add to map
 	m_Animations[name] = def; // NULL if failed to load - we won't try loading it again

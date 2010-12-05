@@ -41,8 +41,6 @@
 #include "graphics/LightEnv.h"
 #include "graphics/TextureManager.h"
 
-#define LOG_CATEGORY L"graphics"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // SkyManager implementation
@@ -111,7 +109,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	DirectoryNames subdirectories;
 	if(g_VFS->GetDirectoryEntries(path, 0, &subdirectories) < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Error opening directory '%ls'", path.string().c_str());
+		LOGERROR(L"Error opening directory '%ls'", path.string().c_str());
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
 	}
 

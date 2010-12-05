@@ -28,10 +28,6 @@
 class CLogger;
 extern CLogger* g_Logger;
 
-#define LOG (g_Logger->Log)
-
-// Should become LOG_MESSAGE but this can only be changed once the LOG function is removed
-// from all of the files. LOG_INFO, LOG_WARNING and LOG_ERROR are currently existing macros.
 
 #define LOGMESSAGE g_Logger->LogMessage
 #define LOGMESSAGERENDER g_Logger->LogMessageRender
@@ -72,10 +68,6 @@ public:
 	void WriteError  (const wchar_t* message);
 	void WriteWarning(const wchar_t* message);
 	
-	// Function to log stuff to file
-	// -- This function has not been removed because the build would break.
-	void Log(ELogMethod method, const wchar_t* category, const wchar_t* fmt, ...) WPRINTF_ARGS(4);
-
 	// Functions to write a message, warning or error to file.
 	void LogMessage(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
 	void LogMessageRender(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
@@ -87,9 +79,6 @@ public:
 	
 private:
 	void Init();
-
-	// -- This function has not been removed because the build would break.
-	void LogUsingMethod(ELogMethod method, const wchar_t* message);
 
 	void PushRenderMessage(ELogMethod method, const wchar_t* message);
 

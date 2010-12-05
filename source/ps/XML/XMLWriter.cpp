@@ -25,8 +25,6 @@
 #include "lib/sysdep/cpu.h"
 #include "maths/Fixed.h"
 
-#define LOG_CATEGORY L"xml"
-
 
 // TODO (maybe): Write to the file frequently, instead of buffering
 // the entire file, so that large files get written faster.
@@ -101,7 +99,7 @@ bool XMLWriter_File::StoreVFS(const PIVFS& vfs, const VfsPath& pathname)
 	LibError ret = vfs->CreateFile(pathname, data, size);
 	if (ret < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Error saving XML data through VFS: %ld", ret);
+		LOGERROR(L"Error saving XML data through VFS: %ld", ret);
 		return false;
 	}
 	return true;

@@ -29,7 +29,6 @@ IGUIObject
 #include "scriptinterface/ScriptInterface.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY L"gui"
 
 extern int g_xres, g_yres;
 
@@ -583,7 +582,7 @@ bool IGUIObject::IsRootObject() const
 
 PSRETURN IGUIObject::LogInvalidSettings(const CStr8 &Setting) const
 {
-	LOG(CLogger::Warning, LOG_CATEGORY, L"IGUIObject: setting %hs was not found on an object", 
+	LOGWARNING(L"IGUIObject: setting %hs was not found on an object", 
 		Setting.c_str());
 	return PSRETURN_GUI_InvalidSetting;
 }

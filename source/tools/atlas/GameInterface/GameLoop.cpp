@@ -215,7 +215,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 					debug_warn(L"Unrecognised message");
 					// CLogger might not be initialised, but this error will be sent
 					// to the debug output window anyway so people can still see it
-					LOG(CLogger::Error, L"atlas", L"Unrecognised message (%hs)", name.c_str());
+					LOGERROR(L"Unrecognised message (%hs)", name.c_str());
 				}
 
 				if (msg->GetType() == IMessage::Query)
