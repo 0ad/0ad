@@ -181,7 +181,7 @@ function getActionInfo(action, target)
 				return {"possible": true};
 			break;
 		case "attack":
-			if (entState.attack && (enemyOwned || gaiaOwned))
+			if (entState.attack && (enemyOwned || (gaiaOwned && !targetState.resourceSupply)))
 				return {"possible": true};
 		}
 	}
