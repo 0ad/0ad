@@ -114,6 +114,7 @@ ERROR_TYPE(System, RequiredExtensionsMissing);
 
 bool g_DoRenderGui = true;
 bool g_DoRenderLogger = true;
+bool g_DoRenderCursor = true;
 
 static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
@@ -273,15 +274,18 @@ void Render()
 	ogl_WarnIfError();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	CStrW cursorName = g_CursorName;
-	if (cursorName.empty())
+	if (g_DoRenderCursor)
 	{
-		cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y);
-	}
-	else
-	{
-		if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y) < 0)
-			LOGWARNING(L"Failed to draw cursor '%ls'", cursorName.c_str());
+		CStrW cursorName = g_CursorName;
+		if (cursorName.empty())
+		{
+			cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y);
+		}
+		else
+		{
+			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y) < 0)
+				LOGWARNING(L"Failed to draw cursor '%ls'", cursorName.c_str());
+		}
 	}
 
 	// restore
@@ -882,6 +886,11 @@ void RenderGui(bool RenderingState)
 void RenderLogger(bool RenderingState)
 {
 	g_DoRenderLogger = RenderingState;
+}
+
+void RenderCursor(bool RenderingState)
+{
+	g_DoRenderCursor = RenderingState;
 }
 
 static bool Autostart(const CmdLineArgs& args)

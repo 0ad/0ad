@@ -90,6 +90,18 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 {
 	switch(ev->ev.type)
 	{
+	case SDL_ACTIVEEVENT:
+		if (ev->ev.active.state == SDL_APPMOUSEFOCUS)
+		{
+			// Tell renderer not to render cursor if mouse focus is lost
+			//	this restores system cursor, until/if focus is regained
+			if (!ev->ev.active.gain)
+				RenderCursor(false);
+			else
+				RenderCursor(true);
+		}
+		break;
+
 	case SDL_QUIT:
 		kill_mainloop();
 		break;
