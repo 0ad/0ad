@@ -66,7 +66,7 @@
 
 		<!-- Menu -->
 		<object hotkey="menu.toggle">
-			<action on="Press">toggleMenu();</action>
+			<action on="Press">openMenuDialog();</action>
 		</object>
 
 		<!-- Pause -->
