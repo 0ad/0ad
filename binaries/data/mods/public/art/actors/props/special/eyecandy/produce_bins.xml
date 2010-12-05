@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="2" name="produce bins a">
+      <mesh>props/produce_bins_a.dae</mesh>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+    <variant frequency="1" name="produce bins b">
+      <mesh>props/produce_bins_b.dae</mesh>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+</actor>
