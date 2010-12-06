@@ -81,9 +81,8 @@ function init(attribs)
 	mapTypes.list_data = ["scenario"];
 	
 	// Setup map filters - will appear in order they are added
-	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["demo", "test"]); });
+	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["demo", "hidden"]); });
 	addFilter("Demo Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["demo"]); });
-	addFilter("Test Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["test"]); });
 	addFilter("Old Maps", function(settings) { return !settings; });
 	addFilter("All Maps", function(settings) { return true; });
 	
