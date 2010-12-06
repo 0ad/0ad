@@ -66,11 +66,12 @@ public:
 
 	/**
 	 * Advance the simulation by a certain time. If this brings us past the current
-	 * turn length, the next turn is processed and the function returns true.
+	 * turn length, the next turns are processed and the function returns true.
 	 * Otherwise, nothing happens and it returns false.
 	 * @param frameLength length of the previous frame in seconds
+	 * @param maxTurns maximum number of turns to simulate at once
 	 */
-	bool Update(float frameLength);
+	bool Update(float frameLength, size_t maxTurns);
 
 	/**
 	 * Advance the graphics by a certain time.
@@ -98,6 +99,18 @@ public:
 	 * This allows Update to progress to that turn.
 	 */
 	void FinishedAllCommands(u32 turn, u32 turnLength);
+
+	/**
+	 * Enables the recording of state snapshots every @p numTurns,
+	 * which can be jumped back to via RewindTimeWarp().
+	 * If @p numTurns is 0 then recording is disabled.
+	 */
+	void EnableTimeWarpRecording(size_t numTurns);
+
+	/**
+	 * Jumps back to the latest recorded state snapshot (if any).
+	 */
+	void RewindTimeWarp();
 
 protected:
 	/**
@@ -138,6 +151,10 @@ protected:
 	bool m_HasSyncError;
 
 	IReplayLogger& m_Replay;
+
+private:
+	size_t m_TimeWarpNumTurns; // 0 if disabled
+	std::list<std::string> m_TimeWarpStates;
 };
 
 /**

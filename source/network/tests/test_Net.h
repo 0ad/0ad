@@ -186,13 +186,13 @@ public:
 		}
 
 		wait(clients, 100);
-		client1Game.GetTurnManager()->Update(1.0f);
-		client2Game.GetTurnManager()->Update(1.0f);
-		client3Game.GetTurnManager()->Update(1.0f);
+		client1Game.GetTurnManager()->Update(1.0f, 1);
+		client2Game.GetTurnManager()->Update(1.0f, 1);
+		client3Game.GetTurnManager()->Update(1.0f, 1);
 		wait(clients, 100);
-		client1Game.GetTurnManager()->Update(1.0f);
-		client2Game.GetTurnManager()->Update(1.0f);
-		client3Game.GetTurnManager()->Update(1.0f);
+		client1Game.GetTurnManager()->Update(1.0f, 1);
+		client2Game.GetTurnManager()->Update(1.0f, 1);
+		client3Game.GetTurnManager()->Update(1.0f, 1);
 		wait(clients, 100);
 	}
 };

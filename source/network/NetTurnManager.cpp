@@ -73,7 +73,7 @@ void CNetTurnManager::SetPlayerID(int playerId)
 	m_PlayerId = playerId;
 }
 
-bool CNetTurnManager::Update(float frameLength)
+bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 {
 	m_DeltaTime += frameLength;
 
@@ -84,11 +84,45 @@ bool CNetTurnManager::Update(float frameLength)
 	NETTURN_LOG((L"Update current=%d ready=%d\n", m_CurrentTurn, m_ReadyTurn));
 
 	// Check that the next turn is ready for execution
-	if (m_ReadyTurn > m_CurrentTurn)
+	if (m_ReadyTurn <= m_CurrentTurn)
 	{
+		// Oops, we wanted to start the next turn but it's not ready yet -
+		// there must be too much network lag.
+		// TODO: complain to the user.
+		// TODO: send feedback to the server to increase the turn length.
+
+		// Reset the next-turn timer to 0 so we try again next update but
+		// so we don't rush to catch up in subsequent turns.
+		// TODO: we should do clever rate adjustment instead of just pausing like this.
+		m_DeltaTime = 0;
+
+		return false;
+	}
+
+	maxTurns = std::max((size_t)1, maxTurns); // always do at least one turn
+
+	for (size_t i = 0; i < maxTurns; ++i)
+	{
+		// Check that we've reached the i'th next turn
+		if (m_DeltaTime < 0)
+			break;
+
+		// Check that the i'th next turn is still ready
+		if (m_ReadyTurn <= m_CurrentTurn)
+			break;
+
 		NotifyFinishedOwnCommands(m_CurrentTurn + COMMAND_DELAY);
 
 		m_CurrentTurn += 1; // increase the turn number now, so Update can send new commands for a subsequent turn
+
+		// Save the current state for rewinding, if enabled
+		if (m_TimeWarpNumTurns && (m_CurrentTurn % m_TimeWarpNumTurns) == 0)
+		{
+			PROFILE("time warp serialization");
+			std::stringstream stream;
+			m_Simulation2.SerializeState(stream);
+			m_TimeWarpStates.push_back(stream.str());
+		}
 
 		// Put all the client commands into a single list, in a globally consistent order
 		std::vector<SimulationCommand> commands;
@@ -109,23 +143,9 @@ bool CNetTurnManager::Update(float frameLength)
 
 		// Set the time for the next turn update
 		m_DeltaTime -= m_TurnLength / 1000.f;
-
-		return true;
 	}
-	else
-	{
-		// Oops, we wanted to start the next turn but it's not ready yet -
-		// there must be too much network lag.
-		// TODO: complain to the user.
-		// TODO: send feedback to the server to increase the turn length.
 
-		// Reset the next-turn timer to 0 so we try again next update but
-		// so we don't rush to catch up in subsequent turns.
-		// TODO: we should do clever rate adjustment instead of just pausing like this.
-		m_DeltaTime = 0;
-
-		return false;
-	}
+	return true;
 }
 
 void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
@@ -186,6 +206,34 @@ void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
 	m_ReadyTurn = turn;
 	m_TurnLength = turnLength;
 }
+
+void CNetTurnManager::EnableTimeWarpRecording(size_t numTurns)
+{
+	m_TimeWarpStates.clear();
+	m_TimeWarpNumTurns = numTurns;
+}
+
+void CNetTurnManager::RewindTimeWarp()
+{
+	if (m_TimeWarpStates.empty())
+		return;
+
+	std::stringstream stream(m_TimeWarpStates.back());
+	m_Simulation2.DeserializeState(stream);
+	m_TimeWarpStates.pop_back();
+
+	// Reset the turn manager state, so we won't execute stray commands and
+	// won't do the next snapshot until the appropriate time.
+	// (Ideally we ought to serialise the turn manager state and restore it
+	// here, but this is simpler for now.)
+	m_CurrentTurn = 0;
+	m_ReadyTurn = 1;
+	m_DeltaTime = 0;
+	size_t queuedCommandsSize = m_QueuedCommands.size();
+	m_QueuedCommands.clear();
+	m_QueuedCommands.resize(queuedCommandsSize);
+}
+
 
 
 CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay) :

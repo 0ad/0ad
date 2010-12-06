@@ -577,6 +577,17 @@ function handleInputBeforeGui(ev, hoveredObject)
 
 function handleInputAfterGui(ev)
 {
+	// Handle the time-warp testing features, restricted to single-player
+	if (!g_IsNetworked && getGUIObjectByName("devTimeWarp").checked)
+	{
+		if (ev.type == "hotkeydown" && ev.hotkey == "timewarp.fastforward")
+			Engine.SetSimRate(20.0);
+		else if (ev.type == "hotkeyup" && ev.hotkey == "timewarp.fastforward")
+			Engine.SetSimRate(1.0);
+		else if (ev.type == "hotkeyup" && ev.hotkey == "timewarp.rewind")
+			Engine.RewindTimeWarp();
+	}
+
 	// State-machine processing:
 
 	switch (inputState)

@@ -386,6 +386,16 @@ void DumpSimState(void* UNUSED(cbdata))
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
 
+void EnableTimeWarpRecording(void* UNUSED(cbdata), unsigned int numTurns)
+{
+	g_Game->GetTurnManager()->EnableTimeWarpRecording(numTurns);
+}
+
+void RewindTimeWarp(void* UNUSED(cbdata))
+{
+	g_Game->GetTurnManager()->RewindTimeWarp();
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -438,4 +448,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
+	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
+	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
 }

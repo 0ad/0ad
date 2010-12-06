@@ -98,7 +98,7 @@
 		/>
 
 		<!-- Dev/cheat commands -->
-		<object name="devCommands" size="100%-156 72 100%-16 200" type="image" sprite="devCommandsBackground"
+		<object name="devCommands" size="100%-156 72 100%-16 216" type="image" sprite="devCommandsBackground"
 				hidden="true" hotkey="session.devcommands.toggle">
 			<action on="Press">
 				toggleDeveloperOverlay();
@@ -138,6 +138,11 @@
 			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Reveal map</object>
 			<object size="100%-16 112 100% 128" type="checkbox" style="wheatCrossBox">
 				<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
+			</object>
+
+			<object size="0 128 100%-18 144" type="text" style="devCommandsText">Enable time warp</object>
+			<object size="100%-16 128 100% 144" type="checkbox" name="devTimeWarp" style="wheatCrossBox">
+				<action on="Press">Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
 			</object>
 		</object>
 

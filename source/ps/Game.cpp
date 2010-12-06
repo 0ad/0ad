@@ -229,8 +229,14 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	bool ok = true;
 	if (deltaTime)
 	{
+		// At the normal sim rate, we currently want to render at least one
+		// frame per simulation turn, so let maxTurns be 1. But for fast-forward
+		// sim rates we want to allow more, so it's not bounded by framerate,
+		// so just use the sim rate itself as the number of turns per frame.
+		size_t maxTurns = (size_t)m_SimRate;
+
 		PROFILE("update");
-		if (m_TurnManager->Update(deltaTime))
+		if (m_TurnManager->Update(deltaTime, maxTurns))
 			g_GUI->SendEventToAll("SimulationUpdate");
 	}
 
