@@ -4,10 +4,10 @@
     <Civ>celt</Civ>
     <SpecificName>Hut</SpecificName>
     <History>This is a small round Celtic hut.</History>
-	<Tooltip>Add +5 to Population Cap.</Tooltip>
+	<Tooltip>Add +2 to Population Cap.</Tooltip>
   </Identity>
   <Cost>
-    <PopulationBonus>5</PopulationBonus>
+    <PopulationBonus>2</PopulationBonus>
     <Resources>
       <food>0</food>
       <wood>50</wood>
@@ -28,9 +28,6 @@
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>
-  <ResourceDropsite>
-    <Types>food wood stone metal</Types>
-  </ResourceDropsite>
   <VisualActor>
     <Actor>structures/celts/hut.xml</Actor>
   </VisualActor>

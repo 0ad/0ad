@@ -5,7 +5,8 @@
   <group>
     <variant frequency="100" name="rowboat">
       <mesh>structural/celt_rowboat.dae</mesh>
-      <texture>structural/celt_ship.png</texture>
+      <texture>structural/iber_ship.dds</texture>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

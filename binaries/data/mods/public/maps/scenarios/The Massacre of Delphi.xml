@@ -23,19 +23,20 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="143.78" y="92.2436" z="462.256"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="151.353" y="128.398" z="409.101"/>
+		<Rotation angle="0.0125916"/>
+		<Declination angle="0.508201"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"The Massacre of Delphi",
-  "Description":"The Celts invade Greece. Fight through the central valley or cut through the rich highlands in order to secure the lands around Delphi!",
-  "PlayerData":[{
-      "Civ":"celt"
+  "Name": "The Massacre of Delphi",
+  "Description": "The Celts invade Greece. Fight through the central valley or cut through the rich highlands in order to secure the lands around Delphi!",
+  "PlayerData": [
+    {
+      "Civ": "celt"
     },
     {
-      "Civ":"hele"
+      "Civ": "hele"
     }
   ]
 }
@@ -4969,12 +4970,6 @@
 			<Position x="419.23615" z="215.81366"/>
 			<Orientation y="2.29683"/>
 		</Entity>
-		<Entity uid="1115">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="437.28827" z="225.07372"/>
-			<Orientation y="0.8041"/>
-		</Entity>
 		<Entity uid="1116">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -5035,23 +5030,11 @@
 			<Position x="402.32245" z="292.86243"/>
 			<Orientation y="0.78928"/>
 		</Entity>
-		<Entity uid="1128">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="393.47986" z="284.10593"/>
-			<Orientation y="0.81215"/>
-		</Entity>
 		<Entity uid="1129">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
 			<Position x="383.98243" z="250.90143"/>
 			<Orientation y="2.37717"/>
-		</Entity>
-		<Entity uid="1130">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="393.35523" z="242.29674"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1131">
 			<Template>other/fence_long</Template>
@@ -5075,12 +5058,6 @@
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
 			<Position x="452.49677" z="297.25931"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1135">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="461.61866" z="288.52543"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1136">
@@ -5113,12 +5090,6 @@
 			<Position x="503.75959" z="273.63807"/>
 			<Orientation y="0.7053"/>
 		</Entity>
-		<Entity uid="1141">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="511.59925" z="282.54538"/>
-			<Orientation y="0.69944"/>
-		</Entity>
 		<Entity uid="1142">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -5129,12 +5100,6 @@
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
 			<Position x="507.87818" z="323.42017"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1144">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="499.1135" z="332.37543"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1145">
@@ -5167,12 +5132,6 @@
 			<Position x="456.76151" z="350.3219"/>
 			<Orientation y="0.71868"/>
 		</Entity>
-		<Entity uid="1150">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="449.10288" z="341.84162"/>
-			<Orientation y="0.65743"/>
-		</Entity>
 		<Entity uid="1151">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -5196,12 +5155,6 @@
 			<Player>0</Player>
 			<Position x="385.19996" z="276.67972"/>
 			<Orientation y="-2.32158"/>
-		</Entity>
-		<Entity uid="1158">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="439.73444" z="269.30503"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1162">
 			<Template>other/fence_long</Template>
@@ -10761,7 +10714,7 @@
 		</Entity>
 		<Entity uid="2277">
 			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
-			<Position x="501.2891" z="331.38605"/>
+			<Position x="502.35904" z="332.32056"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2278">
@@ -11287,12 +11240,6 @@
 			<Position x="224.51738" z="486.3054"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2396">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="233.57773" z="477.14051"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2397">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -11321,12 +11268,6 @@
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
 			<Position x="260.17884" z="521.45154"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2402">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="269.11808" z="512.42701"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2403">
@@ -11359,12 +11300,6 @@
 			<Position x="197.36854" z="472.70643"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2408">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="206.32836" z="463.76276"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2409">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -11395,12 +11330,6 @@
 			<Position x="162.95237" z="435.57435"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2414">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="171.56585" z="426.82941"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2415">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -11424,12 +11353,6 @@
 			<Player>0</Player>
 			<Position x="206.1737" z="401.84034"/>
 			<Orientation y="0.78876"/>
-		</Entity>
-		<Entity uid="2419">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="214.17269" z="410.8665"/>
-			<Orientation y="0.7073"/>
 		</Entity>
 		<Entity uid="2420">
 			<Template>other/fence_long</Template>
@@ -11455,12 +11378,6 @@
 			<Position x="162.79941" z="463.48935"/>
 			<Orientation y="0.79609"/>
 		</Entity>
-		<Entity uid="2424">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="171.80715" z="471.97895"/>
-			<Orientation y="0.77762"/>
-		</Entity>
 		<Entity uid="2425">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -11479,12 +11396,6 @@
 			<Position x="222.12455" z="514.58869"/>
 			<Orientation y="0.79583"/>
 		</Entity>
-		<Entity uid="2428">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="231.33455" z="523.53028"/>
-			<Orientation y="0.85102"/>
-		</Entity>
 		<Entity uid="2429">
 			<Template>other/fence_long</Template>
 			<Player>0</Player>
@@ -11496,12 +11407,6 @@
 			<Player>0</Player>
 			<Position x="296.84412" z="474.99097"/>
 			<Orientation y="0.80294"/>
-		</Entity>
-		<Entity uid="2431">
-			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="288.4029" z="467.52283"/>
-			<Orientation y="0.78922"/>
 		</Entity>
 		<Entity uid="2432">
 			<Template>other/fence_long</Template>
@@ -11584,7 +11489,7 @@
 		<Entity uid="2445">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="218.50605" z="410.78226"/>
+			<Position x="222.99856" z="413.07291"/>
 			<Orientation y="0.7691"/>
 		</Entity>
 		<Entity uid="2446">
@@ -16667,61 +16572,61 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3377">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="137.2194" z="583.54969"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3378">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="136.1622" z="581.76038"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3379">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="134.71973" z="580.3125"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3380">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="133.25222" z="578.27088"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3381">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="131.77521" z="576.57837"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3382">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="129.5359" z="578.61963"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3383">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="131.35792" z="580.4178"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3384">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="132.81705" z="582.42298"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3385">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="133.95095" z="584.01716"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3386">
-			<Template>other/celt_fanatic</Template>
+			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="135.39594" z="585.9264"/>
 			<Orientation y="2.35621"/>
