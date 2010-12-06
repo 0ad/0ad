@@ -17,70 +17,38 @@ function getRandom(randomMin, randomMax)
 
 // ====================================================================
 
-function parseDelimiterString (parseString, delimiter) 
-{ 
-	// Seeks through the delimiters in a string and populates the elements of an array with fields found between them. 
-
-	// Declare local variables. 
-	var parseLoop = 0; 
-	var parseElement = 0; 
-	var seekDelimiter = 0; 
-	var parseArray = new Array(); 
-
-	// While we're still within the bounds of the string, 
-	while (parseLoop <= parseString.length) 
-	{ 
-		// Seek until we find a delimiter. 
-		seekDelimiter = parseLoop; 
-		while (parseString[seekDelimiter] != delimiter && seekDelimiter <= parseString.length) 
-			seekDelimiter++; 
-
-		// If we found a delimiter within the string, 
-		if (seekDelimiter != parseString.length) 
-		{ 
-			// Store sub-string between start point and delimiter in array element. 
-			parseArray[parseElement] = parseString.substring(parseLoop, seekDelimiter); 
-			parseElement++; 
-		} 
-
-		// Move to after delimiter position for next seek. 
-		parseLoop = seekDelimiter+1; 
-	} 
-
-	// Store length of array. 
-	parseArray.length = parseElement; 
-
-	return parseArray; 
-}
-
-// ====================================================================
-
-// Get list of XML files in pathname excepting those starting with _
+// Get list of XML files in pathname with recursion, excepting those starting with _
 function getXMLFileList(pathname)
 {
-	var files = buildDirEntList(pathname, "*.xml", false);
+	var files = buildDirEntList(pathname, "*.xml", true);
 
-	// Remove the path and extension from each name, since we just want the filename      
-	files = [ n.substring(pathname.length, n.length-4) for each (n in files) ];
+	var result = [];
+	
+	// Get only subpath from filename and discard extension
+	for (var i = 0; i < files.length; ++i)
+	{
+		var file = files[i];
+		file = file.substring(pathname.length, file.length-4);
 
-	// Remove any files starting with "_" (these are for special maps used by the engine/editor)
-	files = [ n for each (n in files) if (n[0] != "_") ];
+		// Split path into directories so we can check for beginning _ character
+		var tokens = file.split("/");
+		
+		if (tokens[tokens.length-1][0] != "_")
+			result.push(file);
+	}
 
-	return files;
+	return result;
 }
 
 // ====================================================================
 
-// Get list of JSON files in pathname excepting those starting with _
+// Get list of JSON files in pathname
 function getJSONFileList(pathname)
 {
 	var files = buildDirEntList(pathname, "*.json", false);
 
 	// Remove the path and extension from each name, since we just want the filename      
 	files = [ n.substring(pathname.length, n.length-5) for each (n in files) ];
-
-	// Remove any files starting with "_" (these are for special maps used by the engine/editor)
-	files = [ n for each (n in files) if (n[0] != "_") ];
 
 	return files;
 }
@@ -149,18 +117,6 @@ function escapeText(text)
 	return out.substr(0, 255);
 	
 }
-
-// ====================================================================
-
-function addArrayElement(Array) 
-{ 
-	// Adds an element to an array, updates its given index, and returns the index of the element. 
-
-	Array[Array.last] = new Object(); 
-	Array.last++; 
-
-	return (Array.last - 1); 
-} 
 
 // ====================================================================
 

@@ -29,8 +29,7 @@
 		<!-- Map selection -->
 
 		<object size="0 0 250 100%">
-			<object name="mapSelectionHeading" type="text" text_valign="center" size="0 0 100% 30" font="serif-bold-16">Match Type</object>
-				
+			<object name="mapTypeHeading" type="text" text_valign="center" size="0 0 100% 30" font="serif-bold-16">Match Type:</object>
 			<object name="mapTypeSelection"
 				type="dropdown"
 				style="wheatDropDown"
@@ -39,19 +38,29 @@
 				tooltip="Select a map type.">
 				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
 			</object>
+			
+			<object name="mapFilterHeading" type="text" text_valign="center" size="0 34 100% 64" font="serif-bold-14">Map Filter:</object>
+			<object name="mapFilterSelection"
+				type="dropdown"
+				style="wheatDropDown"
+				size="100 34 100% 64"
+				tooltip_style="onscreenToolTip"
+				tooltip="Select a map filter.">
+				<action on="SelectionChange">selectMapFilter(this.list[this.selected]);</action>
+			</object>
 		  
 			<object name="mapSelection"
 				style="wheatList"
 				type="list"
-				size="0 36 100% 100%-200"
+				size="0 70 100% 100%-200"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map to play on.">
 				<action on="SelectionChange">selectMap(this.list_data[this.selected]);</action>
 			</object>
 			
 			<object type="image" style="indentedPanel" size="0 100%-190 100% 100%">
-				<object name="mapInfoName" type="text" size="0 0 100% 30" font="serif-bold-18">[Map name]</object>
-				<object name="mapInfoDescription" type="text" size="0 24 100% 100%" font="serif-13">[Description]</object>
+				<object name="mapInfoName" type="text" size="0 0 100% 30" font="serif-bold-18"/>
+				<object name="mapInfoDescription" type="text" size="0 24 100% 100%" font="serif-13"/>
 			</object>
 	
 		</object>

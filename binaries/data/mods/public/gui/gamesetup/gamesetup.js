@@ -42,6 +42,8 @@ var g_ChatMessages = [];
 var g_MapData = {};
 var g_CivData = {};
 
+var g_MapFilters = [];
+	
 
 function init(attribs)
 {
@@ -78,6 +80,18 @@ function init(attribs)
 	mapTypes.list = ["Scenario"];	// TODO: May offer saved game type for multiplayer games?
 	mapTypes.list_data = ["scenario"];
 	
+	// Setup map filters - will appear in order they are added
+	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["demo", "test"]); });
+	addFilter("Demo Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["demo"]); });
+	addFilter("Test Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["test"]); });
+	addFilter("Old Maps", function(settings) { return !settings; });
+	addFilter("All Maps", function(settings) { return true; });
+	
+	//Populate map filters dropdown
+	var mapFilters = getGUIObjectByName("mapFilterSelection");
+	mapFilters.list = getFilters();
+	g_GameAttributes.mapFilter = "Default";
+	
 	// Setup controls for host only
 	if (g_IsController)
 	{
@@ -89,6 +103,7 @@ function init(attribs)
 			g_GameAttributes.map = "Gold_Rush";	
 		
 		mapTypes.selected = 0;
+		mapFilters.selected = 0;
 		
 		initMapNameList();
 		
@@ -146,7 +161,8 @@ function init(attribs)
 	{
 		// If we're a network client, disable all the map controls
 		// TODO: make them look visually disabled so it's obvious why they don't work
-		getGUIObjectByName("mapTypeSelection").enabled = false;
+		getGUIObjectByName("mapTypeSelection").hidden = true;
+		getGUIObjectByName("mapFilterSelection").hidden = true;
 		getGUIObjectByName("mapSelection").enabled = false;
 		
 		// Disable player and game options controls
@@ -359,12 +375,17 @@ function initMapNameList()
 		return;
 	}
 
-	// Cache map data
-	for (var file in mapFiles)
-		loadMapData(mapFiles[file]);
-
-	var mapList = [ { "name": getMapDisplayName(file), "file": file } for each (file in mapFiles) ];
-
+	// Apply map filter, if any defined
+	var mapList = [];
+	for (var i = 0; i < mapFiles.length; ++i)
+	{
+		var file = mapFiles[i];
+		var mapData = loadMapData(file);
+				
+		if (g_GameAttributes.mapFilter && mapData && testFilter(g_GameAttributes.mapFilter, mapData.settings))
+			mapList.push({ "name": getMapDisplayName(file), "file": file });
+	}
+	
 	// Alphabetically sort the list, ignoring case
 	mapList.sort(sortNameIgnoreCase);
 
@@ -373,8 +394,8 @@ function initMapNameList()
 
 	// Select the default map
 	var selected = mapListFiles.indexOf(g_GameAttributes.map);
-	// Default to the first element if we can't find the one we searched for
-	if (selected == -1)
+	// Default to the first element if list is not empty and we can't find the one we searched for
+	if (selected == -1 && mapList.length)
 		selected = 0;
 
 	// Update the list control
@@ -385,6 +406,9 @@ function initMapNameList()
 
 function loadMapData(name)
 {
+	if (!name)
+		return undefined;
+	
 	if (!g_MapData[name])
 	{
 		switch (g_GameAttributes.mapType)
@@ -469,6 +493,26 @@ function selectMapType(type)
 		onGameAttributesChange();
 }
 
+function selectMapFilter(filterName)
+{
+	// Avoid recursion
+	if (g_IsInGuiUpdate)
+		return;
+
+	// Network clients can't change map filter
+	if (g_IsNetworked && !g_IsController)
+		return;
+	
+	g_GameAttributes.mapFilter = filterName;
+	
+	initMapNameList();
+
+	if (g_IsNetworked)
+		Engine.SetNetworkGameAttributes(g_GameAttributes);
+	else
+		onGameAttributesChange();
+}
+
 // Called when the user selects a map from the list
 function selectMap(name)
 {
@@ -478,6 +522,10 @@ function selectMap(name)
 
 	// Network clients can't change map
 	if (g_IsNetworked && !g_IsController)
+		return;
+	
+	// Return if we have no map
+	if (!name)
 		return;
 
 	g_GameAttributes.map = name;
@@ -543,12 +591,14 @@ function onGameAttributesChange()
 	// Update some controls for clients
 	if (!g_IsController)
 	{
-		var mapTypeSelectionBox = getGUIObjectByName("mapTypeSelection");
-		var mapTypeIdx = mapTypeSelectionBox.list_data.indexOf(g_GameAttributes.mapType);
-		mapTypeSelectionBox.selected = mapTypeIdx;
+		var mapFilterHeading = getGUIObjectByName("mapFilterHeading");
+		mapFilterHeading.caption = "Map Filter: "+g_GameAttributes.mapFilter;
+		var mapTypeSelection = getGUIObjectByName("mapTypeSelection");
+		var mapTypeHeading = getGUIObjectByName("mapTypeHeading");
+		var idx = mapTypeSelection.list_data.indexOf(g_GameAttributes.mapType);
+		mapTypeHeading.caption = "Match Type: "+mapTypeSelection.list[idx];
 		var mapSelectionBox = getGUIObjectByName("mapSelection");
-		var mapIdx = mapSelectionBox.list_data.indexOf(mapName);
-		mapSelectionBox.selected = mapIdx;
+		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 		
 		initMapNameList();
 		
@@ -577,6 +627,7 @@ function onGameAttributesChange()
 		// Show options for host/controller
 		if (g_IsController)
 		{
+			getGUIObjectByName("numPlayersSelection").selected = g_NumPlayers - 1;
 			numPlayersBox.hidden = false;
 			mapSize.hidden = false;
 			revealMap.hidden = false;
@@ -835,4 +886,79 @@ function addChatMessage(msg)
 	g_ChatMessages.push(formatted);
 
 	getGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+}
+
+
+// Basic map filters API
+
+// Add a new map list filter
+function addFilter(name, filterFunc)
+{
+	if (filterFunc instanceof Object)
+	{	// Basic validity test
+		var newFilter = {};
+		newFilter.name = name;
+		newFilter.filter = filterFunc;
+		
+		g_MapFilters.push(newFilter);
+	}
+	else
+	{
+		error("Invalid map filter: "+name);
+	}
+}
+
+// Get array of map filter names
+function getFilters()
+{
+	var filters = [];
+	for (var i = 0; i < g_MapFilters.length; ++i)
+	{
+		filters.push(g_MapFilters[i].name);
+	}
+	
+	return filters;
+}
+
+// Test map filter on given map settings object
+function testFilter(name, mapSettings)
+{
+	for (var i = 0; i < g_MapFilters.length; ++i)
+	{
+		if (g_MapFilters[i].name == name)
+		{	// Found filter
+			return g_MapFilters[i].filter(mapSettings);
+		}
+	}
+	
+	error("Invalid map filter: "+name);
+	return false;
+}
+
+// Test an array of keywords against a match array using AND logic
+function keywordTestAND(keywords, matches)
+{
+	if (!keywords || !matches)
+		return false;
+	
+	for (var m = 0; m < matches.length; ++m)
+	{	// Fail on not match
+		if (keywords.indexOf(matches[m]) == -1)
+			return false;
+	}
+	return true;
+}
+
+// Test an array of keywords against a match array using OR logic
+function keywordTestOR(keywords, matches)
+{
+	if (!keywords || !matches)
+		return false;
+	
+	for (var m = 0; m < matches.length; ++m)
+	{	// Success on match
+		if (keywords.indexOf(matches[m]) != -1)
+			return true;
+	}
+	return false;
 }
