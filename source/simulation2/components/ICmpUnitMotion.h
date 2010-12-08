@@ -37,8 +37,8 @@ public:
 
 	/**
 	 * Attempt to walk into range of a to a given point, or as close as possible.
-	 * If the unit cannot move anywhere at all, or if there is some other error, then
-	 * returns false.
+	 * If the unit is already in range, or cannot move anywhere at all, or if there is
+	 * some other error, then returns false.
 	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
 	 * and sends another MotionChanged after finishing moving.
 	 */

@@ -426,7 +426,7 @@ var UnitFsmSpec = {
 
 		"GATHER": {
 			"APPROACHING": {
-				"enter": function () {
+				"enter": function() {
 					this.SelectAnimation("move");
 				},
 
@@ -443,8 +443,10 @@ var UnitFsmSpec = {
 						if (this.FinishOrder())
 							return;
 
-						// Try to find another nearby target of the same type
-						var nearby = this.FindNearbyResource(oldType, oldTarget);
+						// Try to find another nearby target of the same specific type
+						var nearby = this.FindNearbyResource(function (ent, type) {
+							return (ent != oldTarget && type.specific == oldType.specific);
+						});
 						if (nearby)
 						{
 							this.Gather(nearby, true);
@@ -464,9 +466,18 @@ var UnitFsmSpec = {
 
 			"GATHERING": {
 				"enter": function() {
-					var typename = "gather_" + this.order.data.type.specific;
-					this.SelectAnimation(typename, false, 1.0, typename);
 					this.StartTimer(1000, 1000);
+
+					// We want to start the gather animation as soon as possible,
+					// but only if we're actually at the target and it's still alive
+					// (else it'll look like we're chopping empty air).
+					// (If it's not alive, the Timer handler will deal with sending us
+					// off to a different target.)
+					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					{
+						var typename = "gather_" + this.order.data.type.specific;
+						this.SelectAnimation(typename, false, 1.0, typename);
+					}
 				},
 
 				"leave": function() {
@@ -500,61 +511,77 @@ var UnitFsmSpec = {
 						// return to the nearest dropsite
 						if (status.filled)
 						{
-							var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-
-							// Find dropsites owned by this unit's player
-							var players = [];
-							var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-							if (cmpOwnership)
-								players.push(cmpOwnership.GetOwner());
-
-							var dropsites = cmpRangeManager.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
-
-							// Try to find the first (nearest) dropsite which supports this resource type
-							for each (var dropsite in dropsites)
+							var nearby = this.FindNearestDropsite(this.order.data.type.generic);
+							if (nearby)
 							{
-								var cmpDropsite = Engine.QueryInterface(dropsite, IID_ResourceDropsite);
-								if (!cmpDropsite.AcceptsType(this.order.data.type.generic))
-									continue;
-
-								// This dropsite is okay - return our resources to it
-								this.PushOrderFront("ReturnResource", { "target": dropsite });
+								// (Keep this Gather order on the stack so we'll
+								// continue gathering after returning)
+								this.PushOrderFront("ReturnResource", { "target": nearby });
 								return;
 							}
 
-							// Oh no, couldn't find any drop sites.
-							// Give up and stand here like a lemon.
+							// Oh no, couldn't find any drop sites. Give up on gathering.
+							this.FinishOrder();
 						}
 					}
 					else
 					{
-						// Try to follow it
+						// Try to follow the target
 						if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
 						{
 							this.SetNextState("APPROACHING");
+							return;
 						}
-						else
+
+						// Can't reach the target, or it doesn't exist any more
+
+						// We want to carry on gathering resources in the same area as
+						// the old one. So try to get close to the old resource's
+						// last known position
+
+						var maxRange = 8; // get close but not too close
+						if (this.order.data.lastPos &&
+							this.MoveToPointRange(this.order.data.lastPos.x, this.order.data.lastPos.z,
+								0, maxRange))
 						{
-							// Save the current order's type in case we need it later
-							var oldType = this.order.data.type;
-
-							// Can't reach it, or it doesn't exist any more - give up on this order
-							if (this.FinishOrder())
-								return;
-
-							// No remaining orders - pick a useful default behaviour
-
-							// Try to find a nearby target of the same type
-
-							var nearby = this.FindNearbyResource(oldType);
-							if (nearby)
-							{
-								this.Gather(nearby, true);
-								return;
-							}
-
-							// Nothing else to gather - just give up
+							this.SetNextState("APPROACHING");
+							return;
 						}
+
+						// We're already in range, or can't get anywhere near it.
+
+						// Save the current order's type in case we need it later
+						var oldType = this.order.data.type;
+
+						// Give up on this order and try our next queued order
+						if (this.FinishOrder())
+							return;
+
+						// No remaining orders - pick a useful default behaviour
+
+						// Try to find a new resource of the same specific type near our current position:
+
+						var nearby = this.FindNearbyResource(function (ent, type) {
+							return (type.specific == oldType.specific);
+						});
+						if (nearby)
+						{
+							this.Gather(nearby, true);
+							return;
+						}
+
+						// Nothing else to gather - if we're carrying anything then we should
+						// drop it off, and if not then we might as well head to the dropsite
+						// anyway because that's a nice enough place to congregate and idle
+
+						var nearby = this.FindNearestDropsite(oldType.generic);
+						if (nearby)
+						{
+							this.PushOrderFront("ReturnResource", { "target": nearby });
+							return;
+						}
+
+						// No dropsites - just give up
 					}
 				},
 			},
@@ -567,33 +594,62 @@ var UnitFsmSpec = {
 					// Work out what we're carrying, in order to select an appropriate animation
 					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 					var type = cmpResourceGatherer.GetLastCarriedType();
-					var typename = "carry_" + type.generic;
-
-					// Special case for meat
-					if (type.specific == "meat")
-						typename = "carry_" + type.specific;
-
-					this.SelectAnimation(typename, false, this.GetWalkSpeed());
-				},
-
-				"MoveCompleted": function() {
-					var cmpResourceDropsite = Engine.QueryInterface(this.order.data.target, IID_ResourceDropsite);
-					if (cmpResourceDropsite)
+					if (type)
 					{
-						// TODO: check the dropsite really is in range
-						// (we didn't get stopped before reaching it)
+						var typename = "carry_" + type.generic;
 
-						var dropsiteTypes = cmpResourceDropsite.GetTypes();
+						// Special case for meat
+						if (type.specific == "meat")
+							typename = "carry_" + type.specific;
 
-						var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-						cmpResourceGatherer.CommitResources(dropsiteTypes);
+						this.SelectAnimation(typename, false, this.GetWalkSpeed());
 					}
 					else
 					{
-						// The dropsite was destroyed or something.
-						// TODO: We ought to look for a new one, probably.
+						// We're returning empty-handed
+						this.SelectAnimation("move");
+					}
+				},
+
+				"MoveCompleted": function() {
+					// Switch back to idle animation to guarantee we won't
+					// get stuck with the carry animation after stopping moving
+					this.SelectAnimation("idle");
+
+					// Check the dropsite really is in range
+					// (we didn't get stopped before reaching it)
+					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					{
+						var cmpResourceDropsite = Engine.QueryInterface(this.order.data.target, IID_ResourceDropsite);
+						if (cmpResourceDropsite)
+						{
+							// Dump any resources we can
+							var dropsiteTypes = cmpResourceDropsite.GetTypes();
+
+							var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+							cmpResourceGatherer.CommitResources(dropsiteTypes);
+
+							// Our next order should always be a Gather,
+							// so just switch back to that order
+							this.FinishOrder();
+							return;
+						}
 					}
 
+					// The dropsite was destroyed, or we couldn't reach it.
+					// Look for a new one.
+
+					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					var genericType = cmpResourceGatherer.GetMainCarryingType();
+					var nearby = this.FindNearestDropsite(genericType);
+					if (nearby)
+					{
+						this.FinishOrder();
+						this.PushOrderFront("ReturnResource", { "target": nearby });
+						return;
+					}
+
+					// Oh no, couldn't find any drop sites. Give up on returning.
 					this.FinishOrder();
 				},
 			},
@@ -651,11 +707,26 @@ var UnitFsmSpec = {
 				if (this.CanGather(msg.data.newentity))
 				{
 					this.Gather(msg.data.newentity, true);
+					return;
 				}
-				else
+
+				// If this building was e.g. a farmstead, we should look for nearby
+				// resources we can gather
+				var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
+				if (cmpResourceDropsite)
 				{
-					// TODO: look for a nearby foundation to help with
+					var types = cmpResourceDropsite.GetTypes();
+					var nearby = this.FindNearbyResource(function (ent, type) {
+						return (types.indexOf(type.generic) != -1);
+					});
+					if (nearby)
+					{
+						this.Gather(nearby, true);
+						return;
+					}
 				}
+
+				// TODO: look for a nearby foundation to help with
 			},
 		},
 
@@ -860,15 +931,25 @@ UnitAI.prototype.TimerHandler = function(data, lateness)
 	UnitFsm.ProcessMessage(this, {"type": "Timer", "data": data, "lateness": lateness});
 };
 
+/**
+ * Set up the UnitAI timer to run after 'offset' msecs, and then
+ * every 'repeat' msecs until StopTimer is called. A "Timer" message
+ * will be sent each time the timer runs.
+ */
 UnitAI.prototype.StartTimer = function(offset, repeat)
 {
 	if (this.timer)
 		error("Called StartTimer when there's already an active timer");
 
+	var data = { "timerRepeat": repeat };
+
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, { "timerRepeat": repeat });
+	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, data);
 };
 
+/**
+ * Stop the current UnitAI timer.
+ */
 UnitAI.prototype.StopTimer = function()
 {
 	if (!this.timer)
@@ -955,13 +1036,12 @@ UnitAI.prototype.MustKillGatherTarget = function(ent)
 };
 
 /**
- * Returns the entity ID of the nearest resource supply of the given
- * type, excluding the one with ID 'exclude',
- * or undefined if none can be found.
+ * Returns the entity ID of the nearest resource supply where the given
+ * filter returns true, or undefined if none can be found.
  * TODO: extend this to exclude resources that already have lots of
  * gatherers.
  */
-UnitAI.prototype.FindNearbyResource = function(requestedType, exclude)
+UnitAI.prototype.FindNearbyResource = function(filter)
 {
 	var range = 64; // TODO: what's a sensible number?
 
@@ -976,13 +1056,36 @@ UnitAI.prototype.FindNearbyResource = function(requestedType, exclude)
 	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
 	for each (var ent in nearby)
 	{
-		if (ent == exclude)
-			continue;
-
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
-		if (type.specific == requestedType.specific)
+		if (filter(ent, type))
 			return ent;
+	}
+
+	return undefined;
+};
+
+/**
+ * Returns the entity ID of the nearest resource dropsite that accepts
+ * the given type, or undefined if none can be found.
+ */
+UnitAI.prototype.FindNearestDropsite = function(genericType)
+{
+	// Find dropsites owned by this unit's player
+	var players = [];
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership)
+		players.push(cmpOwnership.GetOwner());
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = rangeMan.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
+	for each (var ent in nearby)
+	{
+		var cmpDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
+		if (!cmpDropsite.AcceptsType(genericType))
+			continue;
+
+		return ent;
 	}
 
 	return undefined;
@@ -1064,6 +1167,12 @@ UnitAI.prototype.MoveToPoint = function(x, z)
 {
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.MoveToPointRange(x, z, 0, 0);
+};
+
+UnitAI.prototype.MoveToPointRange = function(x, z, rangeMin, rangeMax)
+{
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToPointRange(x, z, rangeMin, rangeMax);
 };
 
 UnitAI.prototype.MoveToTarget = function(target)
@@ -1260,7 +1369,16 @@ UnitAI.prototype.Gather = function(target, queued)
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 	var type = cmpResourceSupply.GetType();
 
-	this.AddOrder("Gather", { "target": target, "type": type }, queued);
+	// Remember the position of our target, if any, in case it disappears
+	// later and we want to head to its last known position
+	// (TODO: if the target moves a lot (e.g. it's an animal), maybe we
+	// need to update this lastPos regularly rather than just here?)
+	var lastPos = undefined;
+	var cmpPosition = Engine.QueryInterface(target, IID_Position);
+	if (cmpPosition && cmpPosition.IsInWorld())
+		lastPos = cmpPosition.GetPosition();
+
+	this.AddOrder("Gather", { "target": target, "type": type, "lastPos": lastPos }, queued);
 };
 
 UnitAI.prototype.ReturnResource = function(target, queued)

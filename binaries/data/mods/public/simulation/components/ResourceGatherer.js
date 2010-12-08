@@ -58,7 +58,7 @@ ResourceGatherer.prototype.Schema =
 
 ResourceGatherer.prototype.Init = function()
 {
-	this.carrying = {}; // { type: integer amount currently carried }
+	this.carrying = {}; // { generic type: integer amount currently carried }
 	// (Note that this component supports carrying multiple types of resources,
 	// each with an independent capacity, but the rest of the game currently
 	// ensures and assumes we'll only be carrying one type at once)
@@ -86,7 +86,7 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
 };
 
 /**
- * Returns the type of one particular resource this unit is
+ * Returns the generic type of one particular resource this unit is
  * currently carrying, or undefined if none.
  */
 ResourceGatherer.prototype.GetMainCarryingType = function()
@@ -99,12 +99,16 @@ ResourceGatherer.prototype.GetMainCarryingType = function()
 };
 
 /**
- * Returns the exact resource type we last picked up, in the form
+ * Returns the exact resource type we last picked up, as long as
+ * we're still carrying something similar enough, in the form
  * { generic, specific }
  */
 ResourceGatherer.prototype.GetLastCarriedType = function()
 {
-	return this.lastCarriedType;
+	if (this.lastCarriedType.generic in this.carrying)
+		return this.lastCarriedType;
+	else
+		return undefined;
 };
 
 ResourceGatherer.prototype.GetGatherRates = function()
