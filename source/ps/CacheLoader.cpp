@@ -22,6 +22,8 @@
 #include "ps/CLogger.h"
 #include "maths/MD5.h"
 
+#include <iomanip>
+
 CCacheLoader::CCacheLoader(PIVFS vfs, const std::wstring& fileExtension) :
 	m_VFS(vfs), m_FileExtension(fileExtension)
 {

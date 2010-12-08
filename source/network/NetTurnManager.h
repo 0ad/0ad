@@ -20,6 +20,7 @@
 
 #include "simulation2/helpers/SimulationCommand.h"
 
+#include <list>
 #include <map>
 
 class CNetServerWorker;
