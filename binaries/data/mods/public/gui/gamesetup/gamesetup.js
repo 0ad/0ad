@@ -636,18 +636,18 @@ function onGameAttributesChange()
 			mapSizeText.caption = "Map size:";
 			mapSize.selected = sizeIdx;
 			revealMapText.caption = "Reveal map:";
-			revealMap.checked = g_GameAttributes.settings.RevealMap ? true : false;
+			revealMap.checked = (g_GameAttributes.settings.RevealMap ? true : false);
 			victoryConditionText.caption = "Victory condition:";
 			victoryCondition.selected = victoryCondition.list_data.indexOf(g_GameAttributes.settings.GameType);
 			lockTeamsText.caption = "Teams locked:";
-			lockTeams.checked =  g_GameAttributes.settings.LockTeams ? true : false;
+			lockTeams.checked =  (g_GameAttributes.settings.LockTeams === undefined || g_GameAttributes.settings.LockTeams ? true : false);
 		}
 		else
 		{
-			mapSizeText.caption = "Map size: " + (mapSize.list[sizeIdx] !== undefined ? mapSize.list[sizeIdx] : "n/a");
+			mapSizeText.caption = "Map size: " + (mapSize.list[sizeIdx] !== undefined ? mapSize.list[sizeIdx] : "Default");
 			revealMapText.caption = "Reveal map: " + (g_GameAttributes.settings.RevealMap ? "Yes" : "No");
 			victoryConditionText.caption = "Victory condition: " + (g_GameAttributes.settings.GameType && g_GameAttributes.settings.GameType == "endless"  ?  "None" : "Conquest");
-			lockTeamsText.caption = "Teams locked: " + (g_GameAttributes.settings.LockTeams ? "Yes" : "No");
+			lockTeamsText.caption = "Teams locked: " + (g_GameAttributes.settings.LockTeams === undefined || g_GameAttributes.settings.LockTeams ? "Yes" : "No");
 		}
 		
 		break;
@@ -661,10 +661,10 @@ function onGameAttributesChange()
 		victoryCondition.hidden = true;
 		lockTeams.hidden = true;
 		
-		mapSizeText.caption = "Map size: n/a";
+		mapSizeText.caption = "Map size: Default";
 		revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
 		victoryConditionText.caption = "Victory condition: " + (mapSettings.GameType && mapSettings.GameType == "endless"  ?  "None" : "Conquest");
-		lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams ? "Yes" : "No");
+		lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams  ? "Yes" : "No");
 		
 		break;
 		
