@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-12-08T21:19:34Z</created>
+    <modified>2010-12-08T21:19:34Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__298-image" name="Map__298">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\wood_c.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_09___Default" name="_09___Default">
+      <instance_effect url="#_09___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_09___Default-fx" name="_09___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__298-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="bolt_projectile-lib" name="bolt_projectileMesh">
+      <mesh>
+        <source id="bolt_projectile-lib-Position">
+          <float_array id="bolt_projectile-lib-Position-array" count="36">
+0.000000 0.001144 -0.188904
+0.426411 0.000000 0.000000
+0.131768 0.405541 0.000000
+-0.344973 0.250638 0.000000
+-0.344973 -0.250638 0.000000
+0.131768 -0.405541 0.000000
+0.426411 0.000000 3.142340
+0.131768 0.405541 3.142340
+-0.344973 0.250638 3.142340
+-0.344973 -0.250638 3.142340
+0.131768 -0.405541 3.142340
+0.000000 0.000000 4.786719
+</float_array>
+          <technique_common>
+            <accessor source="#bolt_projectile-lib-Position-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bolt_projectile-lib-Normal0">
+          <float_array id="bolt_projectile-lib-Normal0-array" count="180">
+-0.000000 0.001257 -0.999999
+0.125506 0.386018 -0.913914
+0.405042 -0.000249 -0.914298
+-0.000000 0.001257 -0.999999
+-0.328237 0.238229 -0.914061
+0.125506 0.386018 -0.913914
+-0.000000 0.001257 -0.999999
+-0.327136 -0.237927 -0.914534
+-0.328237 0.238229 -0.914061
+-0.000000 0.001257 -0.999999
+0.124826 -0.384422 -0.914680
+-0.327136 -0.237927 -0.914534
+-0.000000 0.001257 -0.999999
+0.405042 -0.000249 -0.914298
+0.124826 -0.384422 -0.914680
+1.000000 -0.000000 0.000000
+0.309017 0.951057 0.000000
+1.000000 0.000000 0.000000
+1.000000 -0.000000 0.000000
+0.309017 0.951056 0.000000
+0.309017 0.951057 0.000000
+0.309017 0.951056 0.000000
+-0.809017 0.587785 0.000000
+0.309017 0.951057 0.000000
+0.309017 0.951056 0.000000
+-0.809017 0.587785 0.000000
+-0.809017 0.587785 0.000000
+-0.809017 0.587785 0.000000
+-0.809017 -0.587785 0.000000
+-0.809017 0.587785 0.000000
+-0.809017 0.587785 0.000000
+-0.809017 -0.587785 0.000000
+-0.809017 -0.587785 0.000000
+-0.809017 -0.587785 0.000000
+0.309017 -0.951056 0.000000
+-0.809017 -0.587785 0.000000
+-0.809017 -0.587785 0.000000
+0.309017 -0.951056 0.000000
+0.309017 -0.951056 0.000000
+0.309017 -0.951056 0.000000
+1.000000 0.000000 0.000000
+0.309017 -0.951056 0.000000
+0.309017 -0.951056 0.000000
+1.000000 -0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 -0.000000 1.000000
+0.967984 0.000000 0.251012
+0.299123 0.920607 0.251012
+0.000000 -0.000000 1.000000
+0.299123 0.920607 0.251012
+-0.783116 0.568967 0.251012
+0.000000 -0.000000 1.000000
+-0.783116 0.568967 0.251012
+-0.783115 -0.568967 0.251012
+0.000000 -0.000000 1.000000
+-0.783115 -0.568967 0.251012
+0.299124 -0.920607 0.251012
+0.000000 -0.000000 1.000000
+0.299124 -0.920607 0.251012
+0.967984 0.000000 0.251012
+</float_array>
+          <technique_common>
+            <accessor source="#bolt_projectile-lib-Normal0-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bolt_projectile-lib-UV0">
+          <float_array id="bolt_projectile-lib-UV0-array" count="44">
+0.413695 0.115617
+0.381516 0.221487
+0.309563 0.115617
+0.497939 0.181049
+0.497939 0.050186
+0.381516 0.009747
+0.664105 0.431698
+0.953941 0.989532
+0.662356 0.989273
+0.955690 0.431958
+0.842555 0.989842
+0.758728 0.241707
+0.844303 0.432267
+0.482129 0.989773
+0.483877 0.432198
+0.732742 0.340159
+0.661647 0.248626
+0.724714 0.147531
+0.834787 0.176583
+0.839749 0.295634
+0.370760 0.989421
+0.372508 0.431847
+</float_array>
+          <technique_common>
+            <accessor source="#bolt_projectile-lib-UV0-array" count="22" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="bolt_projectile-lib-Vertex">
+          <input semantic="POSITION" source="#bolt_projectile-lib-Position"/>
+        </vertices>
+        <polygons material="_09___Default" count="20">
+          <input semantic="VERTEX" offset="0" source="#bolt_projectile-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#bolt_projectile-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#bolt_projectile-lib-UV0"/>
+          <p>0 0 0 2 1 1 1 2 2</p>
+          <p>0 3 0 3 4 3 2 5 1</p>
+          <p>0 6 0 4 7 4 3 8 3</p>
+          <p>0 9 0 5 10 5 4 11 4</p>
+          <p>0 12 0 1 13 2 5 14 5</p>
+          <p>1 15 6 7 16 7 6 17 8</p>
+          <p>1 18 6 2 19 9 7 20 7</p>
+          <p>2 21 9 8 22 10 7 23 7</p>
+          <p>2 24 9 3 25 12 8 26 10</p>
+          <p>3 27 12 9 28 13 8 29 10</p>
+          <p>3 30 12 4 31 14 9 32 13</p>
+          <p>4 33 14 10 34 20 9 35 13</p>
+          <p>4 36 14 5 37 21 10 38 20</p>
+          <p>5 39 21 6 40 8 10 41 20</p>
+          <p>5 42 21 1 43 6 6 44 8</p>
+          <p>11 45 11 6 46 15 7 47 16</p>
+          <p>11 48 11 7 49 16 8 50 17</p>
+          <p>11 51 11 8 52 17 9 53 18</p>
+          <p>11 54 11 9 55 18 10 56 19</p>
+          <p>11 57 11 10 58 19 6 59 15</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="bolt_projectile" name="bolt_projectile">
+        <matrix sid="matrix">0.408834 0.000000 0.000000 0.000000 0.000000 0.408842 0.000179 0.000000 0.000000 -0.000124 0.588317 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#bolt_projectile-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_09___Default" target="#_09___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
