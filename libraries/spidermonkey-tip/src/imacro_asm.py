@@ -456,7 +456,7 @@ def assemble(filename, outfile):
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 3:
-        print "usage: python imacro_asm.py infile.jsasm outfile.c.out"
+        print("usage: python imacro_asm.py infile.jsasm outfile.c.out")
         sys.exit(1)
 
     f = open(sys.argv[2], 'w')
