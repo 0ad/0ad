@@ -123,6 +123,7 @@ GarrisonHolder.prototype.Garrison = function(entity)
 		this.entities.push(entity);
 		this.spaceOccupied += 1;
 		cmpPosition.MoveOutOfWorld();
+		this.UpdateVisual();
 		return true;
 	}
 	else
@@ -140,6 +141,7 @@ GarrisonHolder.prototype.Unload = function(entity)
 	var entityIndex = this.entities.indexOf(entity);
 	this.spaceOccupied -= 1;
 	this.entities.splice(entityIndex, 1);
+	this.UpdateVisual();
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	var pos = cmpFootprint.PickSpawnPoint(entity);
 	if (pos.y < 0)
@@ -209,6 +211,24 @@ GarrisonHolder.prototype.UnloadAll = function()
 	{
 		this.Unload(entity);
 	}
+};
+
+/**
+ * Updates the actor's settings to display the garrison flag prop (if any).
+ */
+GarrisonHolder.prototype.UpdateVisual = function()
+{
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (!cmpVisual)
+		return;
+
+	// TODO: ought to extend ICmpVisual to let us just select variant
+	// keywords without changing the animation too
+
+	if (this.entities.length)
+		cmpVisual.SelectAnimation("garrisoned", false, 1.0, "");
+	else
+		cmpVisual.SelectAnimation("idle", false, 1.0, "");
 };
 
 /**
