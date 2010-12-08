@@ -82,6 +82,9 @@ EntityGroups.prototype.getTemplateNames = function()
 	var templateNames = [];
 	for (var templateName in this.groups)
 		templateNames.push(templateName);
+	//Preserve order even when shuffling units around
+	//Can be optimized by moving the sorting elsewhere
+	templateNames.sort();
 	return templateNames;
 };
 

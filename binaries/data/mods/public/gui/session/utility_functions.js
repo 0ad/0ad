@@ -250,7 +250,7 @@ function getCommandImage(commandName)
 	case "delete":
 		return "kill_small.png";
 	case "unload-all":
-		return "garrison.png";
+		return "garrison-out.png";
 	case "garrison":
 		return "garrison.png";
 	case "repair":

@@ -123,25 +123,21 @@ GarrisonHolder.prototype.Garrison = function(entity)
 		this.entities.push(entity);
 		this.spaceOccupied += 1;
 		cmpPosition.MoveOutOfWorld();
-		this.UpdateVisual();
+		this.UpdateGarrisonFlag();
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 };
 
 /**
- * Unload units from the garrisoning entity
+ * Simply eject the unit from the garrisoning entity without
+ * moving it
  */
-GarrisonHolder.prototype.Unload = function(entity)
+GarrisonHolder.prototype.Eject = function(entity)
 {
-	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	var entityIndex = this.entities.indexOf(entity);
 	this.spaceOccupied -= 1;
 	this.entities.splice(entityIndex, 1);
-	this.UpdateVisual();
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	var pos = cmpFootprint.PickSpawnPoint(entity);
 	if (pos.y < 0)
@@ -156,22 +152,58 @@ GarrisonHolder.prototype.Unload = function(entity)
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);
 	// TODO: what direction should they face in?
+}
 
-	// If a rally point is set, walk towards it
-	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
-	if (cmpUnitAI && cmpRallyPoint)
+/**
+ * Order entities to walk to the Rally Point
+ */
+GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
+	if (cmpRallyPoint)
 	{
 		var rallyPos = cmpRallyPoint.GetPosition();
 		if (rallyPos)
 		{
-			cmpUnitAI.Walk(rallyPos.x, rallyPos.z, false);
-		}
-		else
-		{
-			//Reset state. This needs to be done since they were walking before being moved
-			//out of the world
+			ProcessCommand(cmpOwnership.GetOwner(), {
+				"type": "walk",
+				"entities": entities,
+				"x": rallyPos.x,
+				"z": rallyPos.z,
+				"queued": false
+			});
 		}
 	}
+}
+
+/**
+ * Unload units from the garrisoning entity and order them
+ * to move to the Rally Point
+ */
+GarrisonHolder.prototype.Unload = function(entity)
+{
+	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
+	this.Eject(entity);
+	this.OrderWalkToRallyPoint([entity]);
+	this.UpdateGarrisonFlag();
+};
+
+/**
+ * Unload all units from the entity
+ */
+GarrisonHolder.prototype.UnloadAll = function()
+{
+	//The entities list is saved to a temporary variable
+	//because during each loop an element is removed
+	//from the list
+	var entities = this.entities.splice(0);
+	for each (var entity in entities)
+	{
+		this.Eject(entity);
+	}
+	this.OrderWalkToRallyPoint(entities);
+	this.UpdateGarrisonFlag();
 };
 
 /**
@@ -196,39 +228,6 @@ GarrisonHolder.prototype.HasEnoughHealth = function()
 	var maxHitpoints = cmpHealth.GetMaxHitpoints();
 	var ejectHitpoints = parseInt(parseFloat(this.template.EjectHealth) * maxHitpoints);
 	return hitpoints > ejectHitpoints; 
-};
-
-/**
- * Unload all units from the entity
- */
-GarrisonHolder.prototype.UnloadAll = function()
-{
-	//The entities list is saved to a temporary variable
-	//because during each loop an element is removed
-	//from the list
-	var entities = this.entities.splice(0);
-	for each (var entity in entities)
-	{
-		this.Unload(entity);
-	}
-};
-
-/**
- * Updates the actor's settings to display the garrison flag prop (if any).
- */
-GarrisonHolder.prototype.UpdateVisual = function()
-{
-	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-	if (!cmpVisual)
-		return;
-
-	// TODO: ought to extend ICmpVisual to let us just select variant
-	// keywords without changing the animation too
-
-	if (this.entities.length)
-		cmpVisual.SelectAnimation("garrisoned", false, 1.0, "");
-	else
-		cmpVisual.SelectAnimation("idle", false, 1.0, "");
 };
 
 /**
@@ -257,6 +256,20 @@ GarrisonHolder.prototype.HealTimeout = function(data)
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
 	}
 };
+
+GarrisonHolder.prototype.UpdateGarrisonFlag = function()
+{
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (!cmpVisual)
+		return;
+	cmpVisual.SelectAnimation("garrisoned", true, 0, "");
+	// TODO: ought to extend ICmpVisual to let us just select variant
+	// keywords without changing the animation too
+	if (this.entities.length)
+		cmpVisual.SelectAnimation("garrisoned", false, 1.0, "");
+	else
+		cmpVisual.SelectAnimation("idle", false, 1.0, "");
+}
 
 GarrisonHolder.prototype.OnOwnershipChanged = function(msg)
 {
