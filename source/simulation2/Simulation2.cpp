@@ -234,6 +234,9 @@ void CSimulation2Impl::Interpolate(float frameLength, float frameOffset)
 
 	CMessageInterpolate msg(frameLength, frameOffset);
 	m_ComponentManager.BroadcastMessage(msg);
+
+	// Clean up any entities destroyed during interpolate (e.g. local corpses)
+	m_ComponentManager.FlushDestroyedComponents();
 }
 
 void CSimulation2Impl::DumpState()
