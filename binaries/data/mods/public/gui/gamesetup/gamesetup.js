@@ -95,11 +95,11 @@ function init(attribs)
 	if (g_IsController)
 	{
 		// Set a default map
-		// TODO: This could be remembered from the last session
+		// TODO: This should be remembered from the last session
 		if (attribs.type == "offline")
-			g_GameAttributes.map = "The Massacre of Delphi";
+			g_GameAttributes.map = "Miletus";
 		else
-			g_GameAttributes.map = "Gold_Rush";	
+			g_GameAttributes.map = "Median Oasis";
 		
 		mapTypes.selected = 0;
 		mapFilters.selected = 0;

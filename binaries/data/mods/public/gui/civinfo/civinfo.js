@@ -23,10 +23,10 @@ function initCivNameList()
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
 	// Set civ control
-	var object = getGUIObjectByName("civSelection");
-	object.list = civListNames;
-	object.list_data = civListCodes;
-	object.selected = 0;
+	var civSelection = getGUIObjectByName("civSelection");
+	civSelection.list = civListNames;
+	civSelection.list_data = civListCodes;
+	civSelection.selected = 0;
 }
 
 // Function to make first char of string big
