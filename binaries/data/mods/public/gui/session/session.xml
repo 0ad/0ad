@@ -33,9 +33,9 @@
 		<!-- ALPHA LABELS (alpha, build time, revision) -->
 		<!-- ================================  ================================ -->
 		
-		<!-- Displays Alpha name and number (Alpha 2 Bellerophon) -->
+		<!-- Displays Alpha name and number -->
 		<object size="100%-200 32 100% 52" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white" ghost="true">
-			<action on="Load"><![CDATA[this.caption = "ALPHA II : Bellerophon";]]></action>
+			ALPHA III : Cerberus
 		</object>
 
 		<!-- Displays build date and revision number-->
