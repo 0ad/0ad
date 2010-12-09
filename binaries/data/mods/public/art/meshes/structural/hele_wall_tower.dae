@@ -6,17 +6,17 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-09-07T00:19:54Z</created>
-    <modified>2010-09-07T00:19:54Z</modified>
+    <created>2010-12-08T23:52:21Z</created>
+    <modified>2010-12-08T23:52:21Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__1-image" name="Map__1">
+    <image id="Map__293-image" name="Map__293">
       <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct_b.dds</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__1-image" texcoord="CHANNEL0">
+              <texture texture="Map__293-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="default-lib" name="defaultMesh">
+    <geometry id="default_Pivot-lib" name="default_PivotMesh">
       <mesh>
-        <source id="default-lib-Position">
-          <float_array id="default-lib-Position-array" count="456">
+        <source id="default_Pivot-lib-Position">
+          <float_array id="default_Pivot-lib-Position-array" count="456">
 1.176895 1.033288 2.694803
 1.176895 1.033288 2.595361
 1.176895 -1.320432 2.595361
@@ -229,15 +229,15 @@
 0.442514 0.855719 -1.472684
 </float_array>
           <technique_common>
-            <accessor source="#default-lib-Position-array" count="152" stride="3">
+            <accessor source="#default_Pivot-lib-Position-array" count="152" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="default-lib-Normal0">
-          <float_array id="default-lib-Normal0-array" count="1566">
+        <source id="default_Pivot-lib-Normal0">
+          <float_array id="default_Pivot-lib-Normal0-array" count="1566">
 0.000000 -1.000000 0.000000
 0.000000 -1.000000 0.000000
 0.000000 -1.000000 0.000000
@@ -610,9 +610,9 @@
 -0.002839 -0.999996 0.000664
 -0.002839 -0.999996 0.000664
 -0.002839 -0.999996 0.000664
-0.001729 0.999999 -0.000000
-0.001729 0.999998 -0.000000
-0.001729 0.999999 -0.000000
+0.001729 0.999999 0.000000
+0.001729 0.999998 0.000000
+0.001729 0.999999 0.000000
 -0.004347 0.999989 -0.001855
 -0.004347 0.999989 -0.001855
 -0.004347 0.999989 -0.001855
@@ -682,12 +682,12 @@
 1.000000 0.000000 0.000000
 1.000000 0.000000 0.000000
 1.000000 0.000000 0.000000
--0.000001 1.000000 -0.000000
--0.000001 1.000000 -0.000000
--0.000001 1.000000 -0.000000
--0.000001 1.000000 -0.000000
--0.000001 1.000000 -0.000000
--0.000001 1.000000 -0.000000
+-0.000001 1.000000 0.000000
+-0.000001 1.000000 0.000000
+-0.000001 1.000000 0.000000
+-0.000001 1.000000 0.000000
+-0.000001 1.000000 0.000000
+-0.000001 1.000000 0.000000
 0.000000 1.000000 0.000000
 0.000000 1.000000 0.000000
 0.000000 1.000000 0.000000
@@ -762,15 +762,15 @@
 0.707107 0.707107 0.000000
 </float_array>
           <technique_common>
-            <accessor source="#default-lib-Normal0-array" count="522" stride="3">
+            <accessor source="#default_Pivot-lib-Normal0-array" count="522" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="default-lib-UV0">
-          <float_array id="default-lib-UV0-array" count="200">
+        <source id="default_Pivot-lib-UV0">
+          <float_array id="default_Pivot-lib-UV0-array" count="200">
 0.639852 0.635622
 0.639852 0.620521
 0.939453 0.620521
@@ -873,19 +873,19 @@
 0.168945 0.657591
 </float_array>
           <technique_common>
-            <accessor source="#default-lib-UV0-array" count="100" stride="2">
+            <accessor source="#default_Pivot-lib-UV0-array" count="100" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="default-lib-Vertex">
-          <input semantic="POSITION" source="#default-lib-Position"/>
+        <vertices id="default_Pivot-lib-Vertex">
+          <input semantic="POSITION" source="#default_Pivot-lib-Position"/>
         </vertices>
         <polygons material="_07___Default" count="174">
-          <input semantic="VERTEX" offset="0" source="#default-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#default-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#default-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#default_Pivot-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#default_Pivot-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#default_Pivot-lib-UV0"/>
           <p>90 0 0 3 1 1 2 2 2</p>
           <p>90 3 0 2 4 2 91 5 3</p>
           <p>88 6 0 4 7 1 3 8 2</p>
@@ -1066,19 +1066,17 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="default" name="default">
-        <scale sid="scale">3.146209 3.146209 3.146209</scale>
-        <node id="default-Pivot" name="default-Pivot">
-          <translate>-0.000035 0.143572 3.167185</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#default-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__1-Material" target="#Map__1-Material"/>
-                <instance_material symbol="_07___Default" target="#_07___Default"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
+      <node id="default_Pivot" name="default_Pivot">
+        <matrix sid="matrix">3.146209 0.000000 0.000000 -0.004725 0.000000 0.000000 3.146209 9.963042 0.000000 -3.146209 0.000000 -0.448122 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#default_Pivot-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_07___Default" target="#_07___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">0.317843 0.000000 0.000000 -1.047658 0.000000 -0.000355 -0.317843 -1.178288 0.000000 0.317843 -0.000355 2.665399 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>
