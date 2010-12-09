@@ -524,6 +524,7 @@ function setup_all_libs ()
 		"lib/file/common",
 		"lib/file/io",
 		"lib/file/vfs",
+		"lib/pch",
 		"lib/posix",
 		"lib/res",
 		"lib/res/graphics",

@@ -89,12 +89,12 @@ static const wchar_t* FindWindowName(const CmdLineArgs& UNUSED(args))
 	// (This is a bit pointless - there's no choice since we've deleted the ActorViewer)
 }
 
-static ErrorReaction AtlasDisplayError(const wchar_t* text, size_t flags)
+static ErrorReactionInternal AtlasDisplayError(const wchar_t* text, size_t flags)
 {
 	// TODO: after Atlas has been unloaded, don't do this
 	Atlas_DisplayError(text, flags);
 
-	return ER_CONTINUE;
+	return ERI_CONTINUE;
 }
 
 static void RendererIncrementalLoad()

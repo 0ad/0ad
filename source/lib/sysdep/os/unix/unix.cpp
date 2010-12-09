@@ -54,17 +54,17 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 }
 
 #if OS_MACOSX
-static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
+static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
 {
 	// TODO: implement this, in a way that doesn't rely on X11
 	// and doesn't occasionally cause crazy errors like
 	// "The process has forked and you cannot use this
 	// CoreFoundation functionality safely. You MUST exec()."
 
-	return ER_NOT_IMPLEMENTED;
+	return ERI_NOT_IMPLEMENTED;
 }
 #else
-static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
+static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
 {
 	// We'll run xmessage via fork/exec.
 	// To avoid bad interaction between fork and pthreads, the child process
@@ -112,7 +112,7 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 
 	pid_t cpid = fork();
 	if(cpid == -1)
-		return ER_NOT_IMPLEMENTED;
+		return ERI_NOT_IMPLEMENTED;
 
 	if(cpid == 0)
 	{
@@ -153,7 +153,7 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 
 	// If it didn't exist successfully, fall back to the non-GUI prompt
 	if(!WIFEXITED(status))
-		return ER_NOT_IMPLEMENTED;
+		return ERI_NOT_IMPLEMENTED;
 
 	switch(WEXITSTATUS(status))
 	{
@@ -163,34 +163,34 @@ static ErrorReaction try_gui_display_error(const wchar_t* text, bool manual_brea
 
 	case 102: // Break
 		if(manual_break)
-			return ER_BREAK;
+			return ERI_BREAK;
 		debug_break();
-		return ER_CONTINUE;
+		return ERI_CONTINUE;
 
 	case 100: // Continue
 		if(!no_continue)
-			return ER_CONTINUE;
+			return ERI_CONTINUE;
 		// continue isn't allowed, so this was invalid input.
-		return ER_NOT_IMPLEMENTED;
+		return ERI_NOT_IMPLEMENTED;
 
 	case 101: // Suppress
 		if(allow_suppress)
-			return ER_SUPPRESS;
+			return ERI_SUPPRESS;
 		// suppress isn't allowed, so this was invalid input.
-		return ER_NOT_IMPLEMENTED;
+		return ERI_NOT_IMPLEMENTED;
 
 	case 104: // Exit
 		abort();
-		return ER_EXIT;	// placebo; never reached
+		return ERI_EXIT;	// placebo; never reached
 
 	}
 
 	// Unexpected return value - fall back to the non-GUI prompt
-	return ER_NOT_IMPLEMENTED;
+	return ERI_NOT_IMPLEMENTED;
 }
 #endif
 
-ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
+ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 {
 	printf("%ls\n\n", text);
 
@@ -199,8 +199,8 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 	const bool no_continue    = (flags & DE_NO_CONTINUE   ) != 0;
 
 	// Try the GUI prompt if possible
-	ErrorReaction ret = try_gui_display_error(text, manual_break, allow_suppress, no_continue);
-	if (ret != ER_NOT_IMPLEMENTED)
+	ErrorReactionInternal ret = try_gui_display_error(text, manual_break, allow_suppress, no_continue);
+	if (ret != ERI_NOT_IMPLEMENTED)
 		return ret;
 
 	// Otherwise fall back to the terminal-based input
@@ -227,24 +227,24 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 
 		case 'b': case 'B':
 			if(manual_break)
-				return ER_BREAK;
+				return ERI_BREAK;
 			debug_break();
-			return ER_CONTINUE;
+			return ERI_CONTINUE;
 
 		case 'c': case 'C':
 			if(!no_continue)
-				return ER_CONTINUE;
+				return ERI_CONTINUE;
 			// continue isn't allowed, so this was invalid input. loop again.
 			break;
 		case 's': case 'S':
 			if(allow_suppress)
-				return ER_SUPPRESS;
+				return ERI_SUPPRESS;
 			// suppress isn't allowed, so this was invalid input. loop again.
 			break;
 
 		case 'e': case 'E':
 			abort();
-			return ER_EXIT;	// placebo; never reached
+			return ERI_EXIT;	// placebo; never reached
 		}
 	}
 }

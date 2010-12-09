@@ -27,7 +27,7 @@
 #ifndef INCLUDED_SYSDEP
 #define INCLUDED_SYSDEP
 
-#include "lib/debug.h"	// ErrorReaction
+#include "lib/debug.h"	// ErrorReactionInternal
 
 #include <cstdarg>	// needed for sys_vswprintf
 
@@ -52,12 +52,12 @@ extern void sys_display_msg(const wchar_t* caption, const wchar_t* msg);
  *
  * @param text to display (practically unlimited length)
  * @param flags: see DebugDisplayErrorFlags.
- * @return ErrorReaction (except ER_EXIT, which is acted on immediately)
+ * @return ErrorReactionInternal (except ERI_EXIT, which is acted on immediately)
  *
  * called from debug_DisplayError unless overridden by means of
  * ah_display_error.
  **/
-extern ErrorReaction sys_display_error(const wchar_t* text, size_t flags);
+extern ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags);
 
 
 //

@@ -407,7 +407,7 @@ static size_t ChooseCacheSize()
 }
 #endif
 
-ErrorReaction psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
+ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
 {
 	// If we're fullscreen, then sometimes (at least on some particular drivers on Linux)
 	// displaying the error dialog hangs the desktop since the dialog box is behind the
@@ -425,7 +425,7 @@ ErrorReaction psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
 	}
 
 	// We don't actually implement the error display here, so return appropriately
-	return ER_NOT_IMPLEMENTED;
+	return ERI_NOT_IMPLEMENTED;
 }
 
 static void InitVfs(const CmdLineArgs& args)

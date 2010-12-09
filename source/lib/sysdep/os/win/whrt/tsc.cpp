@@ -99,6 +99,9 @@ static bool IsThrottlingPossible()
 				return true;
 		}
 		break;
+
+	default:
+		break;
 	}
 #endif
 

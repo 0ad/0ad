@@ -27,6 +27,9 @@
 #include "lib/sysdep/compiler.h"	// ICC_VERSION
 #include "lib/sysdep/arch.h"	// ARCH_IA32
 
+#if MSC_VERSION
+# pragma warning(disable:4710) // function not inlined
+#endif
 #if ICC_VERSION
 # pragma warning(push)
 # pragma warning(disable:82)	// storage class is not first

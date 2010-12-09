@@ -820,6 +820,10 @@ static LibError InitIdentifierString()
 					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Intel Pentium III");
 			}
 			break;
+
+		default:
+			strcpy_s(identifierString, ARRAY_SIZE(identifierString), "Unknown, non-Intel/AMD");
+			break;
 		}
 	}
 	// identifierString already holds a valid brand string; pretty it up.

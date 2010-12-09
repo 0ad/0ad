@@ -62,6 +62,9 @@ static size_t MaxCoresPerPackage()
 		if(x86_x64_cpuid(&regs))
 			maxCoresPerPackage = bits(regs.ecx, 0, 7)+1;
 		break;
+
+	default:
+		break;
 	}
 
 	return maxCoresPerPackage;

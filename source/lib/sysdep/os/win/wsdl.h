@@ -88,25 +88,31 @@ LIB_API void* SDL_GL_GetProcAddress(const char*);
 
 LIB_API void SDL_GL_SwapBuffers();
 
+LIB_API int SDL_SetGamma(float r, float g, float b);
+
 
 //
-// threads / sync
+// semaphores
 //
 
 typedef void SDL_sem;
-typedef void SDL_Thread;
-
-LIB_API u32 SDL_GetTicks();
-LIB_API void SDL_Delay(u32 ms);
-
 LIB_API SDL_sem* SDL_CreateSemaphore(int cnt);
 LIB_API void SDL_DestroySemaphore(SDL_sem*);
 LIB_API int SDL_SemPost(SDL_sem*);
 LIB_API int SDL_SemWait(SDL_sem* sem);
 
-LIB_API SDL_Thread* SDL_CreateThread(int (*)(void*), void*);
-LIB_API int SDL_KillThread(SDL_Thread*);
 
+//
+// time
+//
+
+LIB_API u32 SDL_GetTicks();
+LIB_API void SDL_Delay(u32 ms);
+
+
+//
+// mouse
+//
 
 LIB_API void SDL_WarpMouse(int, int);
 
@@ -118,8 +124,19 @@ enum ShowCursorToggle
 };
 LIB_API int SDL_ShowCursor(int toggle);
 
+LIB_API Uint8 SDL_GetMouseState(int* x, int* y);
 
-LIB_API int SDL_SetGamma(float r, float g, float b);
+
+//
+// keyboard
+//
+
+// from real SDL, but they're ignored anyway
+#define SDL_DEFAULT_REPEAT_DELAY	500
+#define SDL_DEFAULT_REPEAT_INTERVAL	30
+#define SDL_EnableKeyRepeat(delay, interval)
+
+LIB_API Uint8* SDL_GetKeyState(int* num_keys);
 
 
 //
@@ -286,16 +303,7 @@ LIB_API SDL_GrabMode SDL_WM_GrabInput(SDL_GrabMode mode);
 
 #define SDL_GetError() ""
 
-// from real SDL, but they're ignored anyway
-#define SDL_DEFAULT_REPEAT_DELAY	500
-#define SDL_DEFAULT_REPEAT_INTERVAL	30
-#define SDL_EnableKeyRepeat(delay, interval)
-
-
 LIB_API void SDL_WM_SetCaption(const char *title, const char *icon);
-
-LIB_API Uint8* SDL_GetKeyState(int* num_keys);
-LIB_API Uint8 SDL_GetMouseState(int* x, int* y);
 
 LIB_API Uint8 SDL_GetAppState();
 

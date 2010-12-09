@@ -365,39 +365,42 @@ static bool ShouldSuppressError(atomic_bool* suppress)
 	return false;
 }
 
-static ErrorReaction CallDisplayError(const wchar_t* text, size_t flags)
+static ErrorReactionInternal CallDisplayError(const wchar_t* text, size_t flags)
 {
 	// first try app hook implementation
-	ErrorReaction er = ah_display_error(text, flags);
+	ErrorReactionInternal er = ah_display_error(text, flags);
 	// .. it's only a stub: default to normal implementation
-	if(er == ER_NOT_IMPLEMENTED)
+	if(er == ERI_NOT_IMPLEMENTED)
 		er = sys_display_error(text, flags);
 
 	return er;
 }
 
-static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, atomic_bool* suppress)
+static ErrorReaction PerformErrorReaction(ErrorReactionInternal er, size_t flags, atomic_bool* suppress)
 {
 	const bool shouldHandleBreak = (flags & DE_MANUAL_BREAK) == 0;
 
 	switch(er)
 	{
-	case ER_BREAK:
+	case ERI_CONTINUE:
+		return ER_CONTINUE;
+
+	case ERI_BREAK:
 		// handle "break" request unless the caller wants to (doing so here
 		// instead of within the dlgproc yields a correct call stack)
 		if(shouldHandleBreak)
 		{
 			debug_break();
-			er = ER_CONTINUE;
+			return ER_CONTINUE;
 		}
-		break;
+		else
+			return ER_BREAK;
 
-	case ER_SUPPRESS:
+	case ERI_SUPPRESS:
 		(void)cpu_CAS(suppress, 0, DEBUG_SUPPRESS);
-		er = ER_CONTINUE;
-		break;
+		return ER_CONTINUE;
 
-	case ER_EXIT:
+	case ERI_EXIT:
 		isExiting = 1;	// see declaration
 		COMPILER_FENCE;
 
@@ -408,9 +411,12 @@ static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, atomic
 #endif
 
 		exit(EXIT_FAILURE);
-	}
 
-	return er;
+	case ERI_NOT_IMPLEMENTED:
+	default:
+		debug_break();	// not expected to be reached
+		return ER_CONTINUE;
+	}
 }
 
 ErrorReaction debug_DisplayError(const wchar_t* description,
@@ -434,7 +440,7 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 	{
 		// in non-debug-info mode, simply display the given description
 		// and then return immediately
-		ErrorReaction er = CallDisplayError(description, flags);
+		ErrorReactionInternal er = CallDisplayError(description, flags);
 		return PerformErrorReaction(er, flags, suppress);
 	}
 
@@ -456,7 +462,7 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 	const wchar_t* text = debug_BuildErrorMessage(description, filename, line, func, context, lastFuncToSkip, &emm);
 
 	(void)debug_WriteCrashlog(text);
-	ErrorReaction er = CallDisplayError(text, flags);
+	ErrorReactionInternal er = CallDisplayError(text, flags);
 
 	// note: debug_break-ing here to make sure the app doesn't continue
 	// running is no longer necessary. debug_DisplayError now determines our

@@ -64,7 +64,10 @@ static bool fullscreen;
 static bool is_quitting;
 
 static HWND g_hWnd = (HWND)INVALID_HANDLE_VALUE;
-static HDC g_hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
+
+// usable at any time (required by SDL_SetGamma); this is made
+// mostly safe via CS_OWNDC.
+static HDC g_hDC = (HDC)INVALID_HANDLE_VALUE;
 
 
 //----------------------------------------------------------------------------
@@ -78,13 +81,13 @@ public:
 	{
 	}
 
-	bool Change(float gamma_r, float gamma_g, float gamma_b)
+	bool Change(HDC hDC, float gamma_r, float gamma_g, float gamma_b)
 	{
 		// get current ramp (once) so we can later restore it.
 		if(!m_hasChanged)
 		{
-			debug_assert(wutil_IsValidHandle(g_hDC));
-			if(!GetDeviceGammaRamp(g_hDC, m_original))
+			debug_assert(wutil_IsValidHandle(hDC));
+			if(!GetDeviceGammaRamp(hDC, m_original))
 				return false;
 		}
 
@@ -165,7 +168,7 @@ static GammaRamp gammaRamp;
 // note: any component gamma = 0 is assumed to be identity.
 int SDL_SetGamma(float r, float g, float b)
 {
-	return gammaRamp.Change(r, g, b)? 0 : -1;
+	return gammaRamp.Change(g_hDC, r, g, b)? 0 : -1;
 }
 
 
@@ -213,7 +216,7 @@ static void wnd_UpdateWindowDimensions(DWORD windowStyle, int& w, int& h)
 }
 
 
-static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+static LRESULT CALLBACK OnMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 static HWND wnd_CreateWindow(int w, int h)
 {
@@ -227,14 +230,15 @@ static HWND wnd_CreateWindow(int w, int h)
 	// register window class
 	WNDCLASSW wc;
 	memset(&wc, 0, sizeof(wc));
-	wc.style = 0;
-	wc.lpfnWndProc = wndproc;
+	// no CS_VREDRAW and CS_HREDRAW - avoids redrawing when resized.
+	wc.style = CS_OWNDC;	// (see g_hDC definition)
+	wc.lpfnWndProc = OnMessage;
 	wc.lpszClassName = L"WSDL";
 	wc.hInstance = hInst;
 	ATOM class_atom = RegisterClassW(&wc);
 	if(!class_atom)
 	{
-		debug_assert(0);	// SDL_SetVideoMode: RegisterClass failed
+		debug_assert(0);	// RegisterClassW failed
 		return 0;
 	}
 
@@ -267,6 +271,10 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 
 	case SDL_GL_SWAP_CONTROL:
 		vsyncEnabled = value;
+		break;
+
+	case SDL_GL_DOUBLEBUFFER:
+		// (always enabled)
 		break;
 	}
 
@@ -1122,8 +1130,8 @@ static BOOL OnEraseBkgnd(HWND UNUSED(hWnd), HDC UNUSED(hDC))
 	ev.type = SDL_VIDEOEXPOSE;
 	QueueEvent(ev);
 
-	// indicate we erased the background; PAINTSTRUCT.fErase will
-	// later be FALSE.
+	// prevent GDI from erasing the background by claiming we did so.
+	// PAINTSTRUCT.fErase will later be FALSE.
 	return TRUE;
 }
 
@@ -1132,9 +1140,10 @@ static BOOL OnEraseBkgnd(HWND UNUSED(hWnd), HDC UNUSED(hDC))
 
 static LRESULT OnPaint(HWND hWnd)
 {
-	PAINTSTRUCT ps;
-	BeginPaint(hWnd, &ps);
-	EndPaint(hWnd, &ps);
+	// BeginPaint/EndPaint is unnecessary (see http://opengl.czweb.org/ch04/082-084.html)
+	// however, we at least need to validate the window to prevent
+	// continuous WM_PAINT messages.
+	ValidateRect(hWnd, 0);
 	return 0;
 }
 
@@ -1186,7 +1195,7 @@ static DefWindowProcDisposition OnSysCommand(WPARAM wParam)
 }
 
 
-static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+static LRESULT CALLBACK OnMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(is_quitting)
 		return DefWindowProcW(hWnd, uMsg, wParam, lParam);
@@ -1354,30 +1363,6 @@ int SDL_SemWait(SDL_sem* sem)
 {
 	HANDLE h = HANDLE_from_sem(sem);
 	return WaitForSingleObject(h, INFINITE);
-}
-
-
-// threads
-// users don't need to allocate SDL_Thread variables, so type = void
-// API returns SDL_Thread*, which is the HANDLE value itself.
-//
-// we go through hoops to avoid type cast warnings;
-// a simple union { pthread_t; SDL_Thread* } yields "uninitialized"
-// warnings in VC2005, so we coerce values directly.
-cassert(sizeof(pthread_t) == sizeof(SDL_Thread*));
-
-SDL_Thread* SDL_CreateThread(int (*func)(void*), void* param)
-{
-	pthread_t thread = 0;
-	if(pthread_create(&thread, 0, (void* (*)(void*))func, param) < 0)
-		return 0;
-	return *(SDL_Thread**)&thread;
-}
-
-int SDL_KillThread(SDL_Thread* thread)
-{
-	pthread_cancel(*(pthread_t*)&thread);
-	return 0;
 }
 
 

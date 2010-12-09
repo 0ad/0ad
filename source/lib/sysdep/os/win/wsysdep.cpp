@@ -31,6 +31,7 @@
 #include <shlobj.h>	// pick_dir
 #include <shellapi.h>	// open_url
 #include <Wincrypt.h>
+#include <WindowsX.h>	// message crackers
 
 #include "lib/sysdep/clipboard.h"
 #include "lib/sysdep/os/win/error_dialog.h"
@@ -53,26 +54,32 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 // "program error" dialog (triggered by debug_assert and exception)
 //-----------------------------------------------------------------------------
 
-// support for resizing the dialog / its controls
-// (have to do this manually - grr)
+// support for resizing the dialog / its controls (must be done manually)
 
-static POINTS dlg_client_origin;
-static POINTS dlg_prev_client_size;
+static POINTS dlg_clientOrigin;
+static POINTS dlg_prevClientSize;
+
+static void dlg_OnMove(HWND UNUSED(hDlg), int x, int y)
+{
+	dlg_clientOrigin.x = x;
+	dlg_clientOrigin.y = y;
+}
+
 
 static const size_t ANCHOR_LEFT   = 0x01;
 static const size_t ANCHOR_RIGHT  = 0x02;
 static const size_t ANCHOR_TOP    = 0x04;
 static const size_t ANCHOR_BOTTOM = 0x08;
-static const size_t ANCHOR_ALL    = 0x0f;
+static const size_t ANCHOR_ALL    = 0x0F;
 
-static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, size_t anchors)
+static void dlg_ResizeControl(HWND hDlg, int dlgItem, int dx, int dy, size_t anchors)
 {
-	HWND hControl = GetDlgItem(hDlg, dlg_item);
+	HWND hControl = GetDlgItem(hDlg, dlgItem);
 	RECT r;
 	GetWindowRect(hControl, &r);
 
 	int w = r.right - r.left, h = r.bottom - r.top;
-	int x = r.left - dlg_client_origin.x, y = r.top - dlg_client_origin.y;
+	int x = r.left - dlg_clientOrigin.x, y = r.top - dlg_clientOrigin.y;
 
 	if(anchors & ANCHOR_RIGHT)
 	{
@@ -98,36 +105,44 @@ static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, size_t an
 }
 
 
-static void dlg_resize(HWND hDlg, WPARAM wParam, LPARAM lParam)
+static void dlg_OnSize(HWND hDlg, UINT state, int clientSizeX, int clientSizeY)
 {
 	// 'minimize' was clicked. we need to ignore this, otherwise
 	// dx/dy would reduce some control positions to less than 0.
 	// since Windows clips them, we wouldn't later be able to
 	// reconstruct the previous values when 'restoring'.
-	if(wParam == SIZE_MINIMIZED)
+	if(state == SIZE_MINIMIZED)
 		return;
 
-	// first call for this dialog instance. WM_MOVE hasn't been sent yet,
-	// so dlg_client_origin are invalid => must not call resize_control().
-	// we need to set dlg_prev_client_size for the next call before exiting.
-	bool first_call = (dlg_prev_client_size.y == 0);
+	// NB: origin might legitimately be 0, but we know it is invalid
+	// on the first call to this function, where dlg_prevClientSize is 0.
+	const bool isOriginValid = (dlg_prevClientSize.y != 0);
 
-	POINTS dlg_client_size = MAKEPOINTS(lParam);
-	int dx = dlg_client_size.x - dlg_prev_client_size.x;
-	int dy = dlg_client_size.y - dlg_prev_client_size.y;
-	dlg_prev_client_size = dlg_client_size;
+	const int dx = clientSizeX - dlg_prevClientSize.x;
+	const int dy = clientSizeY - dlg_prevClientSize.y;
+	dlg_prevClientSize.x = clientSizeX;
+	dlg_prevClientSize.y = clientSizeY;
 
-	if(first_call)
+	if(!isOriginValid)	// must not call dlg_ResizeControl
 		return;
 
-	dlg_resize_control(hDlg, IDC_CONTINUE, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	dlg_resize_control(hDlg, IDC_SUPPRESS, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	dlg_resize_control(hDlg, IDC_BREAK   , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	dlg_resize_control(hDlg, IDC_EXIT    , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
-	dlg_resize_control(hDlg, IDC_COPY    , dx,dy, ANCHOR_RIGHT|ANCHOR_BOTTOM);
-	dlg_resize_control(hDlg, IDC_EDIT1   , dx,dy, ANCHOR_ALL);
+	dlg_ResizeControl(hDlg, IDC_CONTINUE, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_ResizeControl(hDlg, IDC_SUPPRESS, dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_ResizeControl(hDlg, IDC_BREAK   , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_ResizeControl(hDlg, IDC_EXIT    , dx,dy, ANCHOR_LEFT|ANCHOR_BOTTOM);
+	dlg_ResizeControl(hDlg, IDC_COPY    , dx,dy, ANCHOR_RIGHT|ANCHOR_BOTTOM);
+	dlg_ResizeControl(hDlg, IDC_EDIT1   , dx,dy, ANCHOR_ALL);
 }
 
+
+static void dlg_OnGetMinMaxInfo(HWND UNUSED(hDlg), LPMINMAXINFO mmi)
+{
+	// we must make sure resize_control will never set negative coords -
+	// Windows would clip them, and its real position would be lost.
+	// restrict to a reasonable and good looking minimum size [pixels].
+	mmi->ptMinTrackSize.x = 407;
+	mmi->ptMinTrackSize.y = 159;	// determined experimentally
+}
 
 
 struct DialogParams
@@ -136,109 +151,108 @@ struct DialogParams
 	size_t flags;
 };
 
-
-static INT_PTR CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
+static BOOL dlg_OnInitDialog(HWND hDlg, HWND UNUSED(hWndFocus), LPARAM lParam)
 {
-	switch(msg)
+	const DialogParams* params = (const DialogParams*)lParam;
+	HWND hWnd;
+
+	// need to reset for new instance of dialog
+	dlg_clientOrigin.x = dlg_clientOrigin.y = 0;
+	dlg_prevClientSize.x = dlg_prevClientSize.y = 0;
+
+	if(!(params->flags & DE_ALLOW_SUPPRESS))
 	{
-	case WM_INITDIALOG:
-		{
-			const DialogParams* params = (const DialogParams*)lParam;
-			HWND hWnd;
+		hWnd = GetDlgItem(hDlg, IDC_SUPPRESS);
+		EnableWindow(hWnd, FALSE);
+	}
 
-			// need to reset for new instance of dialog
-			dlg_client_origin.x = dlg_client_origin.y = 0;
-			dlg_prev_client_size.x = dlg_prev_client_size.y = 0;
+	// set fixed font for readability
+	hWnd = GetDlgItem(hDlg, IDC_EDIT1);
+	HGDIOBJ hObj = (HGDIOBJ)GetStockObject(SYSTEM_FIXED_FONT);
+	LPARAM redraw = FALSE;
+	SendMessage(hWnd, WM_SETFONT, (WPARAM)hObj, redraw);
 
-			if(!(params->flags & DE_ALLOW_SUPPRESS))
-			{
-				hWnd = GetDlgItem(hDlg, IDC_SUPPRESS);
-				EnableWindow(hWnd, FALSE);
-			}
+	SetDlgItemTextW(hDlg, IDC_EDIT1, params->text);
+	return TRUE;	// set default keyboard focus
+}
 
-			// set fixed font for readability
-			hWnd = GetDlgItem(hDlg, IDC_EDIT1);
-			HGDIOBJ hObj = (HGDIOBJ)GetStockObject(SYSTEM_FIXED_FONT);
-			LPARAM redraw = FALSE;
-			SendMessage(hWnd, WM_SETFONT, (WPARAM)hObj, redraw);
 
-			SetDlgItemTextW(hDlg, IDC_EDIT1, params->text);
-			return TRUE;	// set default keyboard focus
-		}
-
-	case WM_SYSCOMMAND:
-		// close dialog if [X] is clicked (doesn't happen automatically)
-		// note: lower 4 bits are reserved
-		if((wParam & 0xFFF0) == SC_CLOSE)
-		{
-			EndDialog(hDlg, 0);
-			return 0;	// processed
-		}
+static void dlg_OnCommand(HWND hDlg, int id, HWND UNUSED(hWndCtl), UINT UNUSED(codeNotify))
+{
+	switch(id)
+	{
+	case IDC_COPY:
+	{
+		std::vector<wchar_t> buf(128*KiB);	// (too big for stack)
+		GetDlgItemTextW(hDlg, IDC_EDIT1, &buf[0], (int)buf.size());
+		sys_clipboard_set(&buf[0]);
 		break;
+	}
 
-		// return 0 if processed, otherwise break
-	case WM_COMMAND:
-		switch(wParam)
-		{
-		case IDC_COPY:
-			{
-				// note: allocating on the stack would be easier+safer,
-				// but this is too big.
-				const size_t max_chars = 128*KiB;
-				wchar_t* buf = new wchar_t[max_chars];
-				GetDlgItemTextW(hDlg, IDC_EDIT1, buf, max_chars);
-				sys_clipboard_set(buf);
-				delete[] buf;
-				return 0;
-			}
-
-		case IDC_CONTINUE:
-			EndDialog(hDlg, ER_CONTINUE);
-			return 0;
-		case IDC_SUPPRESS:
-			EndDialog(hDlg, ER_SUPPRESS);
-			return 0;
-		case IDC_BREAK:
-			EndDialog(hDlg, ER_BREAK);
-			return 0;
-		case IDC_EXIT:
-			EndDialog(hDlg, ER_EXIT);
-			return 0;
-
-		default:
-			break;
-		}
+	case IDC_CONTINUE:
+		EndDialog(hDlg, ERI_CONTINUE);
 		break;
-
-	case WM_MOVE:
-		dlg_client_origin = MAKEPOINTS(lParam);
+	case IDC_SUPPRESS:
+		EndDialog(hDlg, ERI_SUPPRESS);
 		break;
-
-	case WM_GETMINMAXINFO:
-		{
-			// we must make sure resize_control will never set negative coords -
-			// Windows would clip them, and its real position would be lost.
-			// restrict to a reasonable and good looking minimum size [pixels].
-			MINMAXINFO* mmi = (MINMAXINFO*)lParam;
-			mmi->ptMinTrackSize.x = 407;
-			mmi->ptMinTrackSize.y = 159;	// determined experimentally
-			return 0;
-		}
-
-	case WM_SIZE:
-		dlg_resize(hDlg, wParam, lParam);
+	case IDC_BREAK:
+		EndDialog(hDlg, ERI_BREAK);
+		break;
+	case IDC_EXIT:
+		EndDialog(hDlg, ERI_EXIT);
 		break;
 
 	default:
 		break;
 	}
-
-	// we didn't process the message; caller will perform default action.
-	return FALSE;
 }
 
 
-ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
+static void dlg_OnSysCommand(HWND hDlg, UINT cmd, int UNUSED(x), int UNUSED(y))
+{
+	switch(cmd & 0xFFF0)	// NB: lower 4 bits are reserved
+	{
+	// [X] clicked -> close dialog (doesn't happen automatically)
+	case SC_CLOSE:
+		EndDialog(hDlg, 0);
+		break;
+
+	default:
+		break;
+	}
+}
+
+
+static INT_PTR CALLBACK dlg_OnMessage(HWND hDlg, unsigned int msg, WPARAM wParam, LPARAM lParam)
+{
+	switch(msg)
+	{
+	case WM_INITDIALOG:
+		return HANDLE_WM_INITDIALOG(hDlg, wParam, lParam, dlg_OnInitDialog);
+
+	case WM_SYSCOMMAND:
+		return HANDLE_WM_SYSCOMMAND(hDlg, wParam, lParam, dlg_OnSysCommand);
+
+	case WM_COMMAND:
+		return HANDLE_WM_COMMAND(hDlg, wParam, lParam, dlg_OnCommand);
+
+	case WM_MOVE:
+		return HANDLE_WM_MOVE(hDlg, wParam, lParam, dlg_OnMove);
+
+	case WM_GETMINMAXINFO:
+		return HANDLE_WM_GETMINMAXINFO(hDlg, wParam, lParam, dlg_OnGetMinMaxInfo);
+
+	case WM_SIZE:
+		return HANDLE_WM_SIZE(hDlg, wParam, lParam, dlg_OnSize);
+
+	default:
+		// we didn't process the message; caller will perform default action.
+		return FALSE;
+	}
+}
+
+
+ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 {
 	// note: other threads might still be running, crash and take down the
 	// process before we have a chance to display this error message.
@@ -258,7 +272,7 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 	// - by passing hWnd=0, we check all windows belonging to the current
 	//   thread. there is no reason to use hWndParent below.
 	MSG msg;
-	BOOL quit_pending = PeekMessage(&msg, 0, WM_QUIT, WM_QUIT, PM_REMOVE);
+	const BOOL isQuitPending = PeekMessage(&msg, 0, WM_QUIT, WM_QUIT, PM_REMOVE);
 
 	const HINSTANCE hInstance = wutil_LibModuleHandle();
 	LPCWSTR lpTemplateName = MAKEINTRESOURCEW(IDD_DIALOG1);
@@ -269,18 +283,18 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 	// we've managed to show the dialog).
 	const HWND hWndParent = wutil_AppWindow();
 
-	INT_PTR ret = DialogBoxParamW(hInstance, lpTemplateName, hWndParent, error_dialog_proc, (LPARAM)&params);
+	INT_PTR ret = DialogBoxParamW(hInstance, lpTemplateName, hWndParent, dlg_OnMessage, (LPARAM)&params);
 
-	if(quit_pending)
+	if(isQuitPending)
 		PostQuitMessage((int)msg.wParam);
 
-	// failed; warn user and make sure we return an ErrorReaction.
+	// failed; warn user and make sure we return an ErrorReactionInternal.
 	if(ret == 0 || ret == -1)
 	{
 		debug_DisplayMessage(L"Error", L"Unable to display detailed error dialog.");
-		return ER_CONTINUE;
+		return ERI_CONTINUE;
 	}
-	return (ErrorReaction)ret;
+	return (ErrorReactionInternal)ret;
 }
 
 

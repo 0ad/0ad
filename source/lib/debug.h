@@ -128,7 +128,8 @@ typedef volatile intptr_t atomic_bool;
 const atomic_bool DEBUG_SUPPRESS = 0xAB;
 
 /**
- * choices offered by the shared error dialog
+ * choices offered by the error dialog that are returned
+ * by debug_DisplayError.
  **/
 enum ErrorReaction
 {
@@ -144,28 +145,37 @@ enum ErrorReaction
 	 * only returned if DE_MANUAL_BREAK was passed; otherwise,
 	 * debug_DisplayError will trigger a breakpoint itself.
 	 **/
-	ER_BREAK,
+	ER_BREAK
+};
+
+/**
+ * all choices offered by the error dialog. those not defined in
+ * ErrorReaction are acted upon by debug_DisplayError and
+ * never returned to callers.
+ * (this separation avoids enumerator-not-handled warnings)
+ **/
+enum ErrorReactionInternal
+{
+	ERI_CONTINUE = ER_CONTINUE,
+	ERI_BREAK = ER_BREAK,
 
 	/**
 	 * ignore and do not report again.
 	 * note: non-persistent; only applicable during this program run.
-	 * acted on by debug_DisplayError; never returned to caller.
 	 **/
-	ER_SUPPRESS,
+	ERI_SUPPRESS,
 
 	/**
 	 * exit the program immediately.
-	 * acted on by debug_DisplayError; never returned to caller.
 	 **/
-	ER_EXIT,
+	ERI_EXIT,
 
 	/**
 	 * special return value for the display_error app hook stub to indicate
 	 * that it has done nothing and that the normal sys_display_error
 	 * implementation should be called instead.
-	 * acted on by debug_DisplayError; never returned to caller.
 	 **/
-	ER_NOT_IMPLEMENTED
+	ERI_NOT_IMPLEMENTED
 };
 
 /**
@@ -281,12 +291,13 @@ STMT(\
 	static atomic_bool suppress__;\
 	if(!(expr))\
 	{\
-	switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
+		switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 		{\
-		case ER_BREAK:\
-			debug_break();\
+		case ER_CONTINUE:\
 			break;\
+		case ER_BREAK:\
 		default:\
+			debug_break();\
 			break;\
 		}\
 	}\
@@ -310,10 +321,11 @@ STMT(\
 	static atomic_bool suppress__;\
 	switch(debug_OnAssertionFailure(expr, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 	{\
-	case ER_BREAK:\
-		debug_break();\
+	case ER_CONTINUE:\
 		break;\
+	case ER_BREAK:\
 	default:\
+		debug_break();\
 		break;\
 	}\
 )
@@ -329,10 +341,11 @@ STMT(\
 	static atomic_bool suppress__;\
 	switch(debug_OnError(err, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 	{\
-	case ER_BREAK:\
-		debug_break();\
+	case ER_CONTINUE:\
 		break;\
+	case ER_BREAK:\
 	default:\
+		debug_break();\
 		break;\
 	}\
 )

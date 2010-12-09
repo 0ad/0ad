@@ -22,7 +22,7 @@
 
 /*
  * precompiled header. must be the first non-comment part of every
- * source file (VC6..8 requirement).
+ * source file (VC++ requirement).
  */
 
 // some libraries have only a small number of source files, and the
@@ -36,43 +36,19 @@
 # define MINIMAL_PCH 0
 #endif
 
-#define _SECURE_SCL 0
-
 #include "lib/config.h"	// CONFIG_ENABLE_PCH
 #include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH
 #include "lib/sysdep/os.h"	// (must come before posix_types.h)
 
-// disable some common and annoying warnings
-// (done as soon as possible so that headers below are covered)
-#if MSC_VERSION
-// .. temporarily disabled W4 (unimportant but ought to be fixed)
-# pragma warning(disable:4201)	// nameless struct (Matrix3D)
-# pragma warning(disable:4244)	// conversion from uintN to uint8
-// .. permanently disabled W4
-# pragma warning(disable:4103)	// alignment changed after including header (boost has #pragma pack/pop in separate headers)
-# pragma warning(disable:4127)	// conditional expression is constant; rationale: see STMT in lib.h.
-# pragma warning(disable:4996)	// function is deprecated
-# pragma warning(disable:4786)	// identifier truncated to 255 chars
-# pragma warning(disable:4351)	// yes, default init of array entries is desired
-# pragma warning(disable:4355)	// 'this' used in base member initializer list
-# pragma warning(disable:4718)	// recursive call has no side effects, deleting
-// .. disabled only for the precompiled headers
-# pragma warning(disable:4702)	// unreachable code (frequent in STL)
-// .. VS2005 code analysis (very frequent ones)
-# if MSC_VERSION >= 1400
-#  pragma warning(disable:6011)	// dereferencing NULL pointer
-#  pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
-# endif
-# if ICC_VERSION
-#  pragma warning(disable:383)	// value copied to temporary, reference to temporary used
-#  pragma warning(disable:981)	// operands are evaluted in unspecified order
-#  pragma warning(disable:1418)	// external function definition with no prior declaration (raised for all non-static function templates)
-#  pragma warning(disable:1572)	// floating-point equality and inequality comparisons are unreliable
-#  pragma warning(disable:1786)	// function is deprecated (disabling 4996 isn't sufficient)
-#  pragma warning(disable:1684)	// conversion from pointer to same-sized integral type
-#  pragma warning(disable:2415)	// variable of static storage duration was declared but never referenced (raised by Boost)
-# endif
+// must come before any STL headers are included
+#if MSC_VERSION && defined(NDEBUG)
+# define _SECURE_SCL 0
 #endif
+
+// disable some common and annoying warnings
+// must come after compiler.h, but as soon as possible so that
+// headers below are covered
+#include "lib/pch/pch_warnings.h"
 
 #if ICC_VERSION
 #include <mathimf.h>	// (must come before <cmath> or <math.h> (replaces them))
@@ -96,38 +72,7 @@ long double __cdecl abs(long double x);	// required for Eigen
 #include "lib/lib.h"
 #include "lib/secure_crt.h"
 
-#include "lib/external_libraries/suppress_boost_warnings.h"
-
-// Boost
-// .. if this package isn't going to be statically linked, we're better off
-// using Boost via DLL. (otherwise, we would have to ensure the exact same
-// compiler is used, which is a pain because MSC8, MSC9 and ICC 10 are in use)
-#ifndef LIB_STATIC_LINK
-# define BOOST_ALL_DYN_LINK
-#endif
-
-// the following boost libraries have been included in TR1 and are
-// thus deemed usable:
-#define BOOST_FILESYSTEM_VERSION 2
-#include <boost/filesystem.hpp>
-namespace fs = boost::filesystem;
-#include <boost/shared_ptr.hpp>
-using boost::shared_ptr;
-
-// (these ones are used more rarely, so we don't enable them in minimal configurations)
-#if !MINIMAL_PCH
-#include <boost/array.hpp>
-using boost::array;
-
-#include <boost/mem_fn.hpp>
-using boost::mem_fn;
-
-#include <boost/function.hpp>
-using boost::function;
-
-#include <boost/bind.hpp>
-using boost::bind;
-#endif // !MINIMAL_PCH
+#include "lib/pch/pch_boost.h"
 
 // (must come after boost and common lib headers, but before re-enabling
 // warnings to avoid boost spew)
@@ -149,86 +94,7 @@ using boost::bind;
 // anything placed here won't need to be compiled in each translation unit,
 // but will cause a complete rebuild if they change.
 
-#if !MINIMAL_PCH
-// all new-form C library headers
-#include <cassert>
-#include <cctype>
-#include <cerrno>
-#include <cfloat>
-//#include <ciso646> // defines e.g. "and" to "&". unnecessary and causes trouble with asm.
-#include <climits>
-#include <clocale>
-#include <cmath>
-//#include <csetjmp>	// incompatible with libpng on Debian/Ubuntu
-#include <csignal>
-#include <cstdarg>
-#include <cstddef>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <cwchar>
-#include <cwctype>
-#endif // !MINIMAL_PCH
-
-#if MINIMAL_PCH < 2
-// common C++98 STL headers
-#include <algorithm>
-#include <vector>
-#endif
-
-#if MINIMAL_PCH < 3
-// all other C++98 STL headers
-#include <deque>
-#include <functional>
-#include <iterator>
-#include <list>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <stack>
-#include <utility>
-#endif
-
-#if !MINIMAL_PCH
-// all other C++98 headers
-#include <bitset>
-#include <complex>
-#include <exception>
-#include <fstream>
-#include <iomanip>
-#include <ios>
-#include <iosfwd>
-#include <iostream>
-#include <istream>
-#include <limits>
-#include <locale>
-#include <new>
-#include <ostream>
-#include <sstream>
-#include <stdexcept>
-#include <streambuf>
-#include <string>
-#include <sstream>
-#include <typeinfo>
-#include <valarray>
-#endif // !MINIMAL_PCH
-
-#if !MINIMAL_PCH
-// STL extensions
-#if GCC_VERSION >= 402 // (see comment in stl.h about GCC versions)
-# include <tr1/unordered_map>
-# include <tr1/unordered_set>
-#elif GCC_VERSION
-# include <ext/hash_map>
-# include <ext/hash_set>
-#else
-# include <hash_map>
-# include <hash_set>
-#endif
-#endif // !MINIMAL_PCH
+#include "lib/pch/pch_stdlib.h"
 
 #endif // #if CONFIG_ENABLE_PCH && HAVE_PCH
 

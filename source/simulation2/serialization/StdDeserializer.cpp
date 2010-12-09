@@ -25,6 +25,9 @@
 
 #include "js/jsapi.h"
 
+#include "lib/byte_order.h"
+
+
 CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istream& stream) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream)
 {
