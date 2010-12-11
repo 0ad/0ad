@@ -6,6 +6,9 @@
     <Classes datatype="tokens">Village</Classes>
     <Icon>structures/gate.png</Icon>
   </Identity>
+  <BuildRestrictions>
+    <Category>Wall</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>30</BuildTime>
     <Resources>

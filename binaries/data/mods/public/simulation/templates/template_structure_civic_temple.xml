@@ -6,6 +6,9 @@
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/temple.png</Icon>
   </Identity>
+  <BuildRestrictions>
+    <Category>Temple</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>200</BuildTime>

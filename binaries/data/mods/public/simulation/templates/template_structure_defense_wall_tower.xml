@@ -6,6 +6,9 @@
     <Classes datatype="tokens">Village Defensive</Classes>
     <Icon>structures/tower.png</Icon>
   </Identity>
+  <BuildRestrictions>
+    <Category>Wall</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>25</BuildTime>
     <Resources>

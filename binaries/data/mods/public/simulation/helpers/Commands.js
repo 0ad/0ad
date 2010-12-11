@@ -105,6 +105,14 @@ function ProcessCommand(player, cmd)
 			break;
 		}
 
+		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+		var cmpBuildLimits = Engine.QueryInterface(playerEnt, IID_BuildLimits);
+		if (!cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
+		{
+			Engine.DestroyEntity(ent);
+			break;
+		}
+		
 		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
 		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 		{
@@ -112,7 +120,7 @@ function ProcessCommand(player, cmd)
 			Engine.DestroyEntity(ent);
 			break;
 		}
-
+		
 		// Make it owned by the current player
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		cmpOwnership.SetOwner(player);

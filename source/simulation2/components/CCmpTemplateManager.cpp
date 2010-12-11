@@ -473,6 +473,7 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("VisualActor");
 	permittedComponentTypes.insert("Identity");
+	permittedComponentTypes.insert("BuildRestrictions");
 	permittedComponentTypes.insert("Obstruction");
 	permittedComponentTypes.insert("Selectable");
 	permittedComponentTypes.insert("Footprint");

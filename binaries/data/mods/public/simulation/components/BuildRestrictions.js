@@ -13,22 +13,26 @@ BuildRestrictions.prototype.Schema =
 			"<value>allied</value>" +
 		"</choice>" +
 	"</element>" +
-	"<optional>" +
-		"<element name='Category'>" +
-			"<choice>" +
-				"<value>CivilCentre</value>" +
-				"<value>House</value>" +
-				"<value>ScoutTower</value>" +
-				"<value>Farmstead</value>" +
-				"<value>Market</value>" +
-				"<value>Barracks</value>" +
-				"<value>Dock</value>" +
-				"<value>Fortress</value>" +
-				"<value>Field</value>" +
-				"<value>Special</value>" +
-			"</choice>" +
-		"</element>" +
-	"</optional>";
+	"<element name='Category'>" +
+		"<choice>" +
+			"<value>CivilCentre</value>" +
+			"<value>House</value>" +
+			"<value>ScoutTower</value>" +
+			"<value>Farmstead</value>" +
+			"<value>Market</value>" +
+			"<value>Barracks</value>" +
+			"<value>Dock</value>" +
+			"<value>Fortress</value>" +
+			"<value>Field</value>" +
+			"<value>Temple</value>" +
+			"<value>Wall</value>" +
+			"<value>Fence</value>" +
+			"<value>Mill</value>" +
+			"<value>Stoa</value>" +
+			"<value>Resource</value>" +
+			"<value>Special</value>" +
+		"</choice>" +
+	"</element>";
 	// TODO: add phases, prerequisites, etc
 
 /*
@@ -43,5 +47,28 @@ BuildRestrictions.prototype.Schema =
  * and orientations of new construction work (e.g. civ centers must be on settlements,
  * docks must be on shores), which affects the UI and the build permissions
  */
+
+BuildRestrictions.prototype.OnOwnershipChanged = function(msg)
+{
+	if (this.template.Category)
+	{
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		if (msg.from != -1)
+		{
+			var fromPlayerBuildLimits = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.from), IID_BuildLimits);
+			fromPlayerBuildLimits.DecrementCount(this.template.Category);
+		}
+		if (msg.to != -1)
+		{
+			var toPlayerBuildLimits = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.to), IID_BuildLimits);
+			toPlayerBuildLimits.IncrementCount(this.template.Category);	
+		}
+	}
+};
+
+BuildRestrictions.prototype.GetCategory = function()
+{
+	return this.template.Category;
+};
 
 Engine.RegisterComponentType(IID_BuildRestrictions, "BuildRestrictions", BuildRestrictions);
