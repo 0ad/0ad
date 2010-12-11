@@ -140,6 +140,9 @@ void CNetClientSession::Poll()
 
 			break;
 		}
+
+		case ENET_EVENT_TYPE_NONE:
+			break;
 		}
 	}
 

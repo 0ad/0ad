@@ -332,6 +332,9 @@ bool CNetServerWorker::RunStep()
 
 		break;
 	}
+
+	case ENET_EVENT_TYPE_NONE:
+		break;
 	}
 
 	return true;
