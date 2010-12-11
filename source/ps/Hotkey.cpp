@@ -178,7 +178,11 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
+#if SDL_VERSION_ATLEAST(1, 2, 13)
 		if ((int)ev->ev.button.button <= SDL_BUTTON_X2)
+#else
+		if ((int)ev->ev.button.button <= SDL_BUTTON_WHEELDOWN)
+#endif
 		{
 			keycode = SDLK_LAST + (int)ev->ev.button.button;
 			break;
