@@ -38,7 +38,7 @@
 //# pragma warning(default:4263) // member function does not override any base class virtual member function (happens in GUI)
 # pragma warning(default:4265)   // class has virtual functions, but destructor is not virtual
 # pragma warning(default:4296)   // [unsigned comparison vs. 0 =>] expression is always false
-# pragma warning(default:4545 4546 4547 4548 4549) // ill-formed comma expressions
+# pragma warning(default:4545 4546 4547 4549) // ill-formed comma expressions; exclude 4548 since _SECURE_SCL triggers it frequently
 //# pragma warning(default:4555) // expression has no effect (triggered by STL unused)
 # pragma warning(default:4557)   // __assume contains effect
 //# pragma warning(default:4619) // #pragma warning: there is no [such] warning number (false alarms in STL)

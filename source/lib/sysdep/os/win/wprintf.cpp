@@ -88,6 +88,7 @@ enum
 
 struct FormatChunk
 {
+	virtual ~FormatChunk() { }
 	virtual int ChunkType() = 0; // 0 = FormatSpecification, 1 = FormatString
 };
 

@@ -307,4 +307,7 @@ LIB_API void SDL_WM_SetCaption(const char *title, const char *icon);
 
 LIB_API Uint8 SDL_GetAppState();
 
+// Pretend that we always implement the latest version of SDL
+#define SDL_VERSION_ATLEAST(X, Y, Z) 1
+
 #endif	// #ifndef INCLUDED_WSDL
