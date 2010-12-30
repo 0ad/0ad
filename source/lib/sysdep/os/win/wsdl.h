@@ -45,6 +45,7 @@ typedef u32 Uint32;
 #define SDL_INIT_NOPARACHUTE 0
 
 LIB_API int SDL_Init(Uint32 flags);
+LIB_API int SDL_InitSubSystem(Uint32 flags);
 
 LIB_API void SDL_Quit();
 
@@ -148,6 +149,7 @@ LIB_API Uint8* SDL_GetKeyState(int* num_keys);
 typedef void* SDL_Joystick;
 int SDL_NumJoysticks();
 int SDL_JoystickEventState(int state);
+const char* SDL_JoystickName(int device_index);
 SDL_Joystick* SDL_JoystickOpen(int device_index);
 int SDL_JoystickNumAxes(SDL_Joystick* joystick);
 Sint16 SDL_JoystickGetAxis(SDL_Joystick* joystick, int axis);

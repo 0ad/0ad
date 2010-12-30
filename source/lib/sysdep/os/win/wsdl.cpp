@@ -697,6 +697,11 @@ int SDL_JoystickEventState(int UNUSED(state))
 	return 0;
 }
 
+const char* SDL_JoystickName(int UNUSED(device_index))
+{
+	return NULL;
+}
+
 SDL_Joystick* SDL_JoystickOpen(int UNUSED(device_index))
 {
 	return NULL;
@@ -1454,6 +1459,11 @@ static void Shutdown()
 int SDL_Init(Uint32 UNUSED(flags))
 {
 	return (ModuleInit(&initState, Init) < 0)? -1 : 0;
+}
+
+int SDL_InitSubSystem(Uint32 UNUSED(flags))
+{
+	return 0;
 }
 
 void SDL_Quit()
