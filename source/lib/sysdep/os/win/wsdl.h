@@ -33,6 +33,7 @@
 
 typedef u8  Uint8;
 typedef u16 Uint16;
+typedef i16 Sint16;
 typedef u32 Uint32;
 
 
@@ -40,6 +41,7 @@ typedef u32 Uint32;
 #define SDL_INIT_VIDEO 0
 #define SDL_INIT_AUDIO 0
 #define SDL_INIT_TIMER 0
+#define SDL_INIT_JOYSTICK 0
 #define SDL_INIT_NOPARACHUTE 0
 
 LIB_API int SDL_Init(Uint32 flags);
@@ -137,6 +139,18 @@ LIB_API Uint8 SDL_GetMouseState(int* x, int* y);
 #define SDL_EnableKeyRepeat(delay, interval)
 
 LIB_API Uint8* SDL_GetKeyState(int* num_keys);
+
+
+//
+// joystick
+//
+
+typedef void* SDL_Joystick;
+int SDL_NumJoysticks();
+int SDL_JoystickEventState(int state);
+SDL_Joystick* SDL_JoystickOpen(int device_index);
+int SDL_JoystickNumAxes(SDL_Joystick* joystick);
+Sint16 SDL_JoystickGetAxis(SDL_Joystick* joystick, int axis);
 
 
 //

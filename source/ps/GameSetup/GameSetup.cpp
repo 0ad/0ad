@@ -44,6 +44,7 @@
 #include "ps/Game.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
+#include "ps/Joystick.h"
 #include "ps/Loader.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
@@ -527,6 +528,8 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 static void InitInput()
 {
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+
+	g_Joystick.Initialise();
 
 	// register input handlers
 	// This stack is constructed so the first added, will be the last

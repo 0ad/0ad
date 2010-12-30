@@ -685,6 +685,35 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 
 
 //----------------------------------------------------------------------------
+// joystick
+
+int SDL_NumJoysticks()
+{
+	return 0;
+}
+
+int SDL_JoystickEventState(int UNUSED(state))
+{
+	return 0;
+}
+
+SDL_Joystick* SDL_JoystickOpen(int UNUSED(device_index))
+{
+	return NULL;
+}
+
+int SDL_JoystickNumAxes(SDL_Joystick* UNUSED(joystick))
+{
+	return 0;
+}
+
+Sint16 SDL_JoystickGetAxis(SDL_Joystick* UNUSED(joystick), int UNUSED(axis))
+{
+	return 0;
+}
+
+
+//----------------------------------------------------------------------------
 // app activation
 
 enum SdlActivationType { LOSE = 0, GAIN = 1 };

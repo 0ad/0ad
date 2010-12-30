@@ -42,6 +42,7 @@
 #include "ps/Game.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
+#include "ps/Joystick.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
 #include "ps/Profile.h"
@@ -176,6 +177,12 @@ public:
 		ViewZoomMin(0),
 		ViewZoomMax(0),
 		ViewZoomDefault(0),
+		JoystickPanX(-1),
+		JoystickPanY(-1),
+		JoystickRotateX(-1),
+		JoystickRotateY(-1),
+		JoystickZoomIn(-1),
+		JoystickZoomOut(-1),
 
 		PosX(0, 0, 0.01f),
 		PosY(0, 0, 0.01f),
@@ -264,6 +271,12 @@ public:
 	float ViewZoomMin;
 	float ViewZoomMax;
 	float ViewZoomDefault;
+	int JoystickPanX;
+	int JoystickPanY;
+	int JoystickRotateX;
+	int JoystickRotateY;
+	int JoystickZoomIn;
+	int JoystickZoomOut;
 
 	////////////////////////////////////////
 	// Camera Controls State
@@ -374,6 +387,13 @@ int CGameView::Initialize()
 	CFG_GET_SYS_VAL("view.zoom.min", Float, m->ViewZoomMin);
 	CFG_GET_SYS_VAL("view.zoom.max", Float, m->ViewZoomMax);
 	CFG_GET_SYS_VAL("view.zoom.default", Float, m->ViewZoomDefault);
+
+	CFG_GET_SYS_VAL("joystick.camera.pan.x", Int, m->JoystickPanX);
+	CFG_GET_SYS_VAL("joystick.camera.pan.y", Int, m->JoystickPanY);
+	CFG_GET_SYS_VAL("joystick.camera.rotate.x", Int, m->JoystickRotateX);
+	CFG_GET_SYS_VAL("joystick.camera.rotate.y", Int, m->JoystickRotateY);
+	CFG_GET_SYS_VAL("joystick.camera.zoom.in", Int, m->JoystickZoomIn);
+	CFG_GET_SYS_VAL("joystick.camera.zoom.out", Int, m->JoystickZoomOut);
 
 	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosX.m_Smoothness);
 	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosY.m_Smoothness);
@@ -646,6 +666,22 @@ void CGameView::Update(float DeltaTime)
 		moveForward += m->ViewScrollSpeed * DeltaTime;
 	if (HotkeyIsPressed("camera.down"))
 		moveForward -= m->ViewScrollSpeed * DeltaTime;
+
+	if (g_Joystick.IsEnabled())
+	{
+		// This could all be improved with extra speed and sensitivity settings
+		// (maybe use pow to allow finer control?), and inversion settings
+
+		moveRightward += g_Joystick.GetAxisValue(m->JoystickPanX) * m->ViewScrollSpeed * DeltaTime;
+		moveForward -= g_Joystick.GetAxisValue(m->JoystickPanY) * m->ViewScrollSpeed * DeltaTime;
+
+		m->RotateX.AddSmoothly(g_Joystick.GetAxisValue(m->JoystickRotateX) * m->ViewRotateXSpeed * DeltaTime);
+		m->RotateY.AddSmoothly(-g_Joystick.GetAxisValue(m->JoystickRotateY) * m->ViewRotateYSpeed * DeltaTime);
+
+		// Use a +1 bias for zoom because I want this to work with trigger buttons that default to -1
+		m->Zoom.AddSmoothly((g_Joystick.GetAxisValue(m->JoystickZoomIn) + 1.0f) / 2.0f * m->ViewZoomSpeed * DeltaTime);
+		m->Zoom.AddSmoothly(-(g_Joystick.GetAxisValue(m->JoystickZoomOut) + 1.0f) / 2.0f * m->ViewZoomSpeed * DeltaTime);
+	}
 
 	if (moveRightward || moveForward)
 	{
