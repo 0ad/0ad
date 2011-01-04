@@ -65,6 +65,14 @@ extern ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags
 //
 
 /**
+ * @return a wide string conversion of the platform's encoding of main's argv.
+ *
+ * (NB: wseh.cpp defines a wmain that converts argv to UTF-8 and calls main(),
+ * but only if LIB_STATIC_LINK)
+ **/
+LIB_API std::wstring sys_WideFromArgv(const char* argv_i);
+
+/**
  * sys_vswprintf: doesn't quite follow the standard for vswprintf, but works
  * better across compilers:
  * - handles positional parameters and %lld
@@ -158,7 +166,7 @@ extern size_t sys_max_sector_size();
  * this should only be used with small numbers of bytes, to avoid
  * hogging the system's entropy.
  **/
-extern LibError sys_generate_random_bytes(u8* buf, size_t count);
+LIB_API LibError sys_generate_random_bytes(u8* buf, size_t count);
 
 /**
  * directory separation character

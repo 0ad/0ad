@@ -71,4 +71,9 @@
 #  define CONFIG_DEHYDRA 0
 #endif
 
+// include Boost filesystem and shared_ptr in PCH?
+#ifndef CONFIG_ENABLE_BOOST
+#  define CONFIG_ENABLE_BOOST 1
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG

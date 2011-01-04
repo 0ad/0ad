@@ -118,6 +118,16 @@
 #endif
 
 
+// (at least rudimentary) support for C++0x
+#ifndef HAVE_CPP0X
+# if defined(__GXX_EXPERIMENTAL_CPP0X__) || MSC_VERSION >= 1600 || ICC_VERSION >= 1200
+#  define HAVE_CPP0X 1
+# else
+#  define HAVE_CPP0X 0
+# endif
+#endif
+
+
 // C99-like restrict (non-standard in C++, but widely supported in various forms).
 //
 // May be used on pointers. May also be used on member functions to indicate

@@ -44,6 +44,23 @@
 #endif
 
 
+std::wstring sys_WideFromArgv(const char* argv_i)
+{
+	// NB: despite http://cbloomrants.blogspot.com/2008/06/06-14-08-1.html,
+	// WinXP x64 EN cmd.exe (chcp reports 437) encodes argv u-umlaut
+	// (entered manually or via auto-complete) via cp1252. the same applies
+	// to WinXP SP2 DE (where chcp reports 850).
+	const UINT cp = CP_ACP;
+	const DWORD flags = MB_PRECOMPOSED|MB_ERR_INVALID_CHARS;
+	const int inputSize = -1;	// null-terminated
+	wchar_t buf[MAX_PATH] = {'\0'};
+	// NB: avoid mbstowcs because it may specify another locale
+	const int ret = MultiByteToWideChar(cp, flags, argv_i, inputSize, buf, ARRAY_SIZE(buf));
+	debug_assert(ret != 0);
+	return std::wstring(buf);
+}
+
+
 void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 {
 	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION|MB_TASKMODAL|MB_SETFOREGROUND);
@@ -61,8 +78,8 @@ static POINTS dlg_prevClientSize;
 
 static void dlg_OnMove(HWND UNUSED(hDlg), int x, int y)
 {
-	dlg_clientOrigin.x = x;
-	dlg_clientOrigin.y = y;
+	dlg_clientOrigin.x = (short)x;
+	dlg_clientOrigin.y = (short)y;
 }
 
 
@@ -120,8 +137,8 @@ static void dlg_OnSize(HWND hDlg, UINT state, int clientSizeX, int clientSizeY)
 
 	const int dx = clientSizeX - dlg_prevClientSize.x;
 	const int dy = clientSizeY - dlg_prevClientSize.y;
-	dlg_prevClientSize.x = clientSizeX;
-	dlg_prevClientSize.y = clientSizeY;
+	dlg_prevClientSize.x = (short)clientSizeX;
+	dlg_prevClientSize.y = (short)clientSizeY;
 
 	if(!isOriginValid)	// must not call dlg_ResizeControl
 		return;

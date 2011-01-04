@@ -48,6 +48,9 @@
 // disable some common and annoying warnings
 // must come after compiler.h, but as soon as possible so that
 // headers below are covered
+#if MSC_VERSION
+# pragma warning(push)
+#endif
 #include "lib/pch/pch_warnings.h"
 
 #if ICC_VERSION
@@ -72,7 +75,15 @@ long double __cdecl abs(long double x);	// required for Eigen
 #include "lib/lib.h"
 #include "lib/secure_crt.h"
 
-#include "lib/pch/pch_boost.h"
+#if CONFIG_ENABLE_BOOST
+# include "lib/pch/pch_boost.h"
+#elif HAVE_CPP0X
+#include <memory>
+using std::shared_ptr;
+#else
+#include <memory>
+using std::tr1::shared_ptr;
+#endif
 
 // (must come after boost and common lib headers, but before re-enabling
 // warnings to avoid boost spew)
@@ -99,9 +110,6 @@ long double __cdecl abs(long double x);	// required for Eigen
 #endif // #if CONFIG_ENABLE_PCH && HAVE_PCH
 
 // restore temporarily-disabled warnings
-#if ICC_VERSION
-# pragma warning(pop)
-#endif
 #if MSC_VERSION
-# pragma warning(default:4702)
+# pragma warning(pop)
 #endif

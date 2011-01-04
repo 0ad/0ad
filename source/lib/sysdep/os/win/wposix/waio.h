@@ -111,7 +111,7 @@ extern int aio_suspend(const struct aiocb* const[], int, const struct timespec*)
 extern int aio_write(struct aiocb*);
 extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
 
-// for use by wposix_wchar's wopen/wclose:
+// for use by wfilesystem's wopen/wclose:
 
 // (re)open file in asynchronous mode and associate handle with fd.
 // (this works because the files default to DENY_NONE sharing)

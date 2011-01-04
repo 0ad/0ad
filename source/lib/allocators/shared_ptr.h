@@ -35,7 +35,7 @@ struct DummyDeleter
 };
 
 template<class T>
-shared_ptr<T> DummySharedPtr(T* ptr)
+inline shared_ptr<T> DummySharedPtr(T* ptr)
 {
 	return shared_ptr<T>(ptr, DummyDeleter());
 }
@@ -71,7 +71,7 @@ struct AlignedDeleter
 };
 
 template<class T>
-shared_ptr<T> AllocateAligned(size_t size)
+inline shared_ptr<T> AllocateAligned(size_t size)
 {
 	return shared_ptr<T>((T*)rtl_AllocateAligned(size, x86_x64_L2CacheLineSize()), AlignedDeleter());
 }

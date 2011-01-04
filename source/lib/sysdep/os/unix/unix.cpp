@@ -45,6 +45,13 @@
 #define URL_OPEN_COMMAND "xdg-open"
 #endif
 
+
+std::wstring sys_WideFromArgv(const char* argv_i)
+{
+	// argv is usually UTF-8 on Linux, unsure about OS X..
+	return wstring_from_utf8(argv_i);
+}
+
 // these are basic POSIX-compatible backends for the sysdep.h functions.
 // Win32 has better versions which override these.
 

@@ -37,7 +37,7 @@
  * - n must be in [0, CHAR_BIT*sizeof(T)), else the result is undefined!
  **/
 template<typename T>
-T Bit(size_t n)
+inline T Bit(size_t n)
 {
 	const T one = T(1);
 	return (T)(one << n);
@@ -51,7 +51,7 @@ T Bit(size_t n)
 #define BIT(n) (1u << (n))
 
 template<typename T>
-bool IsBitSet(T value, size_t index)
+inline bool IsBitSet(T value, size_t index)
 {
 	const T bit = Bit<T>(index);
 	return (value & bit) != 0;
@@ -69,7 +69,7 @@ bool IsBitSet(T value, size_t index)
  * @param numBits Number of bits in mask.
  **/
 template<typename T>
-T bit_mask(size_t numBits)
+inline T bit_mask(size_t numBits)
 {
 	const T bitsInT = sizeof(T)*CHAR_BIT;
 	const T allBits = (T)~T(0);
@@ -125,7 +125,7 @@ inline T SetBitsTo(T num, size_t lo_idx, size_t hi_idx, size_t value)
  * @return number of 1-bits in mask
  **/
 template<typename T>
-size_t PopulationCount(T mask)
+inline size_t PopulationCount(T mask)
 {
 	// note: a more complex but probably faster method is given at
 	// http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel
@@ -173,7 +173,7 @@ inline T ClearLeastSignificantBit(T x)
  * zero if the input is zero.
  **/
 template<typename T>
-size_t ceil_log2(T x)
+inline size_t ceil_log2(T x)
 {
 	T bit = 1;
 	size_t log = 0;
@@ -200,7 +200,7 @@ extern int floor_log2(const float x);
  * round up to next larger power of two.
  **/
 template<typename T>
-T round_up_to_pow2(T x)
+inline T round_up_to_pow2(T x)
 {
 	return T(1) << ceil_log2(x);
 }
@@ -212,7 +212,7 @@ T round_up_to_pow2(T x)
  * @param multiple Must be a power of two.
  **/
 template<typename T>
-T round_up(T n, T multiple)
+inline T round_up(T n, T multiple)
 {
 	debug_assert(is_pow2(multiple));
 	const T result = (n + multiple-1) & ~(multiple-1);
@@ -221,7 +221,7 @@ T round_up(T n, T multiple)
 }
 
 template<typename T>
-T round_down(T n, T multiple)
+inline T round_down(T n, T multiple)
 {
 	debug_assert(is_pow2(multiple));
 	const T result = n & ~(multiple-1);
@@ -231,14 +231,14 @@ T round_down(T n, T multiple)
 
 
 template<typename T>
-bool IsAligned(T t, uintptr_t multiple)
+inline bool IsAligned(T t, uintptr_t multiple)
 {
 	return ((uintptr_t)t % multiple) == 0;
 }
 
 
 template<typename T>
-T MaxPowerOfTwoDivisor(T value)
+inline T MaxPowerOfTwoDivisor(T value)
 {
 	debug_assert(value != T(0));
 
@@ -251,6 +251,5 @@ T MaxPowerOfTwoDivisor(T value)
 	debug_assert(0);	// unreachable (!= 0 => there is a set bit)
 	return 0;
 }
-
 
 #endif	// #ifndef INCLUDED_BITS

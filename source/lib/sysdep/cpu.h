@@ -77,7 +77,7 @@ LIB_API bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue);
  * casting in user code.
  **/
 template<typename T>
-bool cpu_CAS(volatile T* location, T expected, T new_value)
+inline bool cpu_CAS(volatile T* location, T expected, T new_value)
 {
 	return cpu_CAS((volatile intptr_t*)location, (intptr_t)expected, (intptr_t)new_value);
 }

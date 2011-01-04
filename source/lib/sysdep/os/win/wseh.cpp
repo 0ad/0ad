@@ -361,18 +361,19 @@ EXTERN_C int main(int argc, char* argv[]);
 // required because main's argv is in a non-UTF8 encoding
 int wmain(int argc, wchar_t* argv[])
 {
-	char** utf8_argv = new char*[argc];
+	if(argc == 0)
+		return EXIT_FAILURE;	// ensure &utf8_argv[0] is safe
+	std::vector<char*> utf8_argv(argc);
 	for(int i = 0; i < argc; i++)
 	{
 		std::string utf8 = utf8_from_wstring(argv[i]);
 		utf8_argv[i] = strdup(utf8.c_str());
 	}
 
-	const int ret = main(argc, utf8_argv);
+	const int ret = main(argc, &utf8_argv[0]);
 
 	for(int i = 0; i < argc; i++)
 		free(utf8_argv[i]);
-	delete[] utf8_argv;
 	return ret;
 }
 
