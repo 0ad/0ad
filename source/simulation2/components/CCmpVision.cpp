@@ -20,7 +20,7 @@
 #include "simulation2/system/Component.h"
 #include "ICmpVision.h"
 
-class CCmpVision: public ICmpVision
+class CCmpVision : public ICmpVision
 {
 public:
 	static void ClassInit(CComponentManager& UNUSED(componentManager))

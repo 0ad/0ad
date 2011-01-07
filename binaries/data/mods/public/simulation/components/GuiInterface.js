@@ -1,7 +1,4 @@
-function GuiInterface()
-{
-	this.notifications = [];
-}
+function GuiInterface() {}
 
 GuiInterface.prototype.Schema =
 	"<a:component type='system'/><empty/>";
@@ -15,6 +12,7 @@ GuiInterface.prototype.Init = function()
 {
 	this.placementEntity = undefined; // = undefined or [templateName, entityID]
 	this.rallyPoints = undefined;
+	this.notifications = [];
 };
 
 /**
