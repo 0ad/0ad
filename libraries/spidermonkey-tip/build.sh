@@ -30,6 +30,14 @@ then
   CONF_OPTS="${CONF_OPTS} --enable-valgrind"
 fi
 
+# We need to be able to override CHOST in case it is 32bit userland on 64bit kernel
+CONF_OPTS="${CONF_OPTS} \
+  ${CBUILD:+--build=${CBUILD}} \
+  ${CHOST:+--host=${CHOST}} \
+  ${CTARGET:+--target=${CTARGET}}"
+
+echo "SpiderMonkey build options: ${CONF_OPTS}"
+
 cd src
 
 # autoconf-2.13   # this generates ./configure, which we've added to SVN instead
@@ -48,7 +56,7 @@ cd ..
 perl -i.bak -pe 's/^(LIBRARY_NAME\s+= mozjs).*/$1-ps-release/' Makefile.in
 mkdir -p build-release
 cd build-release
-../configure ${CONF_OPTS} #--enable-debug-symbols
+../configure ${CONF_OPTS} # --enable-gczeal --enable-debug-symbols
 make ${MAKE_OPTS}
 cd ..
 
