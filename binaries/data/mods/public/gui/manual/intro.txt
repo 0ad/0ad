@@ -2,6 +2,8 @@
 [font="serif-14"]
 Thank you for installing 0 A.D.! This page will give a brief overview of the features available in this incomplete, under-development, alpha version of the game.
 
+[font="serif-12"]Use the "X" button in the top-right corner of this window to close it. Or click the "Close" button below.
+
 [font="serif-bold-16"]Graphics settings
 [font="serif-14"]You can switch between fullscreen and windowed mode by pressing Alt+Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the configuration file: look for binaries/data/config/default.cfg in the location where the game is installed, which gives instructions for editing, and try disabling the "fancywater" and "shadows" options.
 
@@ -15,9 +17,6 @@ Basic controls:
 • Arrow keys or WASD keys to move the camera.
 • Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera.
 • Mouse wheel, or "+" and "-" keys, to zoom.
-• F2 to save a screenshot (into %appdata%\0ad\screenshots\ on Windows, and ~/.local/share/0ad/screenshots/ on Unix).
-• Shift+F2 to save a very high-resolution screenshot.
-• F11 to view the built-in performance profiler.
 
 [font="serif-bold-16"]Modes
 [font="serif-14"]The main menu gives access to two game modes:
@@ -37,4 +36,58 @@ Next, you can use the drop-down lists in the player list to select who controls 
 
 When you are ready to start, click the "Start game" button.
 
-Use the "X" button in the top-right corner of this window to close it.
+[font="serif-bold-16"]Hotkeys:
+[font="serif-bold-14"]Always
+[font="serif-14"]Alt+F4: Close the game, without confirmation
+F9: Show/hide console
+Shift + F: Show/hide frame counter (FPS)
+F11: Enable/disable real-time performance profiler (toggles through the displays of information)
+Shift+F11: Save current profiler data to "logs/profile.txt"
+F2: Take screenshot (in .png format, saved to %appdata%/0ad\data\screenshots on Windows)
+Shift+F2: Take huge screenshot (6400px*4800px, in .bmp format, saved to %appdata%/0ad\data\screenshots on Windows)
+
+[font="serif-bold-14"]In Game
+[font="serif-14"]Alt + Enter: Toggle between fullscreen and windowed
+Double Left Click: Select all of your units of the same kind on the screen
+Triple Left Click: Select all of your units of the same kind on the entire map
+F10: Open/close menu
+ESC: Close all dialogs (chat, menu)
+Enter/return:Open/send chat
+Pause: Pause/unpause the game
+Delete: Delete currently selected unit/units/building/buildings
+
+[font="serif-bold-14"]Modify mouse action
+[font="serif-14"]Ctrl + Right Click on building: Garrison
+Shift + Right Click: Queue the move/build/gather/etc order
+Shift + Left click when training unit/s: Add units in batches of five
+Shift + Left Click or Left Drag over unit on map: Add unit to selection
+Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection
+Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
+
+[font="serif-bold-14"]Overlays
+[font="serif-14"]G: Hide/show the GUI
+Shift+D: Show/hide developer overlay (with developer options)
+
+[font="serif-bold-14"]Camera manipulation
+[font="serif-14"]W or [up]: Pan screen up
+S or [down]: Pan screen down
+A or [left]: Pan screen left
+D or [right]: Pan screen right
+Ctrl + W or [up]: Rotate camera to look upward
+Ctrl + S or [down]: Rotate camera to look downward
+Ctrl + A or [left]: Rotate camera clockwise around terrain
+Ctrl + D or [right]: Rotate camera anticlockwise around terrain
+Q: Rotate camera clockwise around terrain
+E: Rotate camera anticlockwise around terrain
+Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain
+Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain
+F: Follow the selected unit (move the camera to stop the camera from following the unit/s)
+H: Reset camera zoom/orientation
++: Zoom in (keep pressed for continuous zoom)
+-: Zoom out (keep pressed for continuous zoom)
+Alt+W: Toggle through wireframe modes
+Middle Mouse Button or / (ForwardSlash): Keep pressed and move the mouse to pan
+
+[font="serif-bold-14"]During Building Placement
+[font="serif-14"][: Rotate building 15 degrees counter-clockwise
+]: Rotate building 15 degrees clockwise
