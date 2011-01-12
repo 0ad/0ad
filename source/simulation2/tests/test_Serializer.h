@@ -361,6 +361,11 @@ public:
 		helper_script_roundtrip("Number with props", "var n=new Number('2.0'); n.foo='bar'; n", "(new Number(2))");
 	}
 
+	void test_script_nonfinite()
+	{
+		helper_script_roundtrip("nonfinite", "[0, Infinity, -Infinity, NaN, -1/Infinity]", "[0, Infinity, -Infinity, NaN, -0]");
+	}
+
 	void test_script_property_order()
 	{
 		helper_script_roundtrip("prop order 1", "var x={}; x.a=1; x.f=2; x.b=7; x.d=3; x", "({a:1, f:2, b:7, d:3})");
