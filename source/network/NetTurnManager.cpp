@@ -57,7 +57,8 @@ static std::string Hexify(const std::string& s)
 
 CNetTurnManager::CNetTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay) :
 	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength), m_DeltaTime(0),
-	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false), m_Replay(replay)
+	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false), m_Replay(replay),
+	m_TimeWarpNumTurns(0)
 {
 	// When we are on turn n, we schedule new commands for n+2.
 	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).
