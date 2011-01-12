@@ -15,17 +15,31 @@ function handleNotifications()
 {
 	var notification = Engine.GuiInterfaceCall("GetNextNotification");
 
-	if (notification && notification.player ==  Engine.GetPlayerID())
+	if (!notification)
+		return;
+
+	// Handle chat notifications specially
+	if (notification.type == "chat")
 	{
-		var timerExpiredFunction = function () { removeOldNotifications(); }
+		addChatMessage({
+			"type": "message",
+			"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
+			"text": notification.message
+		});
+	}
+	else
+	{
+		// Only display notifications directed to this player
+		if (notification.player == Engine.GetPlayerID())
+		{
+			notifications.push(notification);
+			notificationsTimers.push(setTimeout(removeOldNotifications, NOTIFICATION_TIMEOUT));
 
-		notifications.push(notification);
-		notificationsTimers.push(setTimeout(timerExpiredFunction, NOTIFICATION_TIMEOUT));
-
-		if (notifications.length > MAX_NUM_NOTIFICATION_LINES)
-			removeOldNotifications();
-		else
-			displayNotifications();
+			if (notifications.length > MAX_NUM_NOTIFICATION_LINES)
+				removeOldNotifications();
+			else
+				displayNotifications();
+		}
 	}
 }
 
@@ -144,9 +158,19 @@ function submitChatInput()
 
 function addChatMessage(msg)
 {
-	var n = g_PlayerAssignments[msg.guid].player;
-	var playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-	var username = escapeText(g_PlayerAssignments[msg.guid].name);
+	var playerColor, username;
+	if (g_PlayerAssignments[msg.guid])
+	{
+		var n = g_PlayerAssignments[msg.guid].player;
+		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
+		username = escapeText(g_PlayerAssignments[msg.guid].name);
+	}
+	else
+	{
+		playerColor = "255 255 255";
+		username = "Unknown player";
+	}
+
 	var message = escapeText(msg.text);
 	
 	var formatted;
@@ -165,10 +189,8 @@ function addChatMessage(msg)
 		return;
 	}
 
-	var timerExpiredFunction = function () { removeOldChatMessages(); }
-	
 	chatMessages.push(formatted);
-	chatTimers.push(setTimeout(timerExpiredFunction, CHAT_TIMEOUT));
+	chatTimers.push(setTimeout(removeOldChatMessages, CHAT_TIMEOUT));
 
 	if (chatMessages.length > MAX_NUM_CHAT_LINES)
 		removeOldChatMessages();

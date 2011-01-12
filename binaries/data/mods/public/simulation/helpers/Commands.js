@@ -11,6 +11,11 @@ function ProcessCommand(player, cmd)
 		print(cmd.message);
 		break;
 
+	case "chat":
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": cmd.message});
+		break;
+
 	case "reveal-map":
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		cmpRangeManager.SetLosRevealAll(cmd.enable);
@@ -139,18 +144,20 @@ function ProcessCommand(player, cmd)
 
 		break;
 	
-	case "delete-entity":
-		// Verify the player owns the unit
-		var cmpOwnership = Engine.QueryInterface(cmd.entity, IID_Ownership);
-		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
-			break;
-		
-		var cmpHealth = Engine.QueryInterface(cmd.entity, IID_Health);
-		if (cmpHealth)
-			cmpHealth.Kill();
-		else
-			Engine.DestroyEntity(cmd.entity);
+	case "delete-entities":
+		for each (var ent in cmd.entities)
+		{
+			// Verify the player owns the unit
+			var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+			if (!cmpOwnership || cmpOwnership.GetOwner() != player)
+				continue;
 
+			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
+			if (cmpHealth)
+				cmpHealth.Kill();
+			else
+				Engine.DestroyEntity(ent);
+		}
 		break;
 
 	case "set-rallypoint":

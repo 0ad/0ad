@@ -1007,10 +1007,9 @@ function performCommand(entity, commandName)
 				{
 					var message = "Are you sure you want to\ndelete the selected units?";
 
-					var deleteFunction = deleteFunction = function ()
+					var deleteFunction = function ()
 					{ 
-						for each (var ent in selection)
-							Engine.PostNetworkCommand({"type": "delete-entity", "entity": ent});
+						Engine.PostNetworkCommand({"type": "delete-entities", "entities": selection});
 					};
 
 					g_SessionDialog.open("Delete", message, null, 340, 160, deleteFunction);
