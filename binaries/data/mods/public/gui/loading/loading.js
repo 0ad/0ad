@@ -57,7 +57,7 @@ function init(data)
 			break;
 
 		default:
-			error("Unkown map type: " + data.attribs.mapType);
+			error("Unknown map type: " + data.attribs.mapType);
 		}
 	}
 
