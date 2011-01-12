@@ -27,12 +27,13 @@ CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, jsv
 {
 	// Cache the property detection for efficiency
 	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance.get(), "Serialize");
+	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance.get(), "Deserialize");
 }
 
 void CComponentTypeScript::Init(const CSimContext& UNUSED(context), const CParamNode& paramNode, entity_id_t ent)
 {
-	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true);
-	m_ScriptInterface.SetProperty(m_Instance.get(), "template", paramNode, true);
+	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true, false);
+	m_ScriptInterface.SetProperty(m_Instance.get(), "template", paramNode, true, false);
 	m_ScriptInterface.CallFunctionVoid(m_Instance.get(), "Init");
 }
 
@@ -57,7 +58,7 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 	// serialized instead of the component itself
 	if (m_HasCustomSerialize)
 	{
-		CScriptValRooted val;
+		CScriptVal val;
 		if (!m_ScriptInterface.CallFunction(m_Instance.get(), "Serialize", val))
 			LOGERROR(L"Script Serialize call failed");
 		serialize.ScriptVal("object", val);
@@ -70,12 +71,22 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 
 void CComponentTypeScript::Deserialize(const CSimContext& UNUSED(context), const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent)
 {
-	// TODO: maybe we want to allow a script Deserialize() function, to mirror the Serialize() above
+	// Support a custom "Deserialize" function, to which we pass the deserialized data
+	// instead of automatically adding the deserialized properties onto the object
+	if (m_HasCustomDeserialize)
+	{
+		CScriptVal val;
+		deserialize.ScriptVal("object", val);
+		if (!m_ScriptInterface.CallFunctionVoid(m_Instance.get(), "Deserialize", val))
+			LOGERROR(L"Script Deserialize call failed");
+	}
+	else
+	{
+		// Use ScriptObjectAppend so we don't lose the carefully-constructed
+		// prototype/parent of this object
+		deserialize.ScriptObjectAppend("object", m_Instance.getRef());
+	}
 
-	// Use ScriptObjectAppend so we don't lose the carefully-constructed
-	// prototype/parent of this object
-	deserialize.ScriptObjectAppend("object", m_Instance.getRef());
-
-	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true);
-	m_ScriptInterface.SetProperty(m_Instance.get(), "template", paramNode, true);
+	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true, false);
+	m_ScriptInterface.SetProperty(m_Instance.get(), "template", paramNode, true, false);
 }

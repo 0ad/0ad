@@ -9,12 +9,12 @@ function LoadPlayerSettings(settings)
 	// Default settings
 	if (!settings)
 		settings = {};
-	
+
 	// Get default player data
 	var rawData = Engine.ReadJSONFile("player_defaults.json");
 	if (!(rawData && rawData.PlayerData))
 		error("Error reading player default data: player_defaults.json");
-			
+
 	var playerDefaults = rawData.PlayerData;
 	
 	// default number of players

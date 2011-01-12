@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "Entity.h"
 #include "Components.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "simulation2/helpers/Player.h"
 
 #include <boost/random/linear_congruential.hpp>
 
@@ -228,7 +229,7 @@ private:
 	static CScriptVal Script_ReadJSONFile(void* cbdata, std::string fileName);
 
 	CMessage* ConstructMessage(int mtid, CScriptVal data);
-	void SendGlobalMessage(const CMessage& msg) const;
+	void SendGlobalMessage(entity_id_t ent, const CMessage& msg) const;
 
 	ComponentTypeId GetScriptWrapper(InterfaceId iid);
 

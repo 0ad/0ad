@@ -194,6 +194,17 @@ public:
 	void ToXML(std::wostream& strm) const;
 
 	/**
+	 * Returns a jsval representation of this node and its children.
+	 * If @p cacheValue is true, then the same jsval will be returned each time
+	 * this is called (regardless of whether you passed the same @p cx - be careful
+	 * to only use the cache in one context).
+	 * When caching, the lifetime of @p cx must be longer than the lifetime of this node.
+	 * The cache will be reset if *this* node is modified (e.g. by LoadXML),
+	 * but *not* if any child nodes are modified (so don't do that).
+	 */
+	jsval ToJSVal(JSContext* cx, bool cacheValue) const;
+
+	/**
 	 * Returns the names/nodes of the children of this node, ordered by name
 	 */
 	const ChildrenMap& GetChildren() const;
@@ -204,29 +215,20 @@ public:
 	 */
 	static std::wstring EscapeXMLString(const std::wstring& str);
 
-	/**
-	 * Stores the given script representation of this node, for use in cached conversions.
-	 * This must only be called once.
-	 * This will be reset to JSVAL_VOID if *this* node is modified (e.g. by LoadXML),
-	 * but *not* if any child nodes are modified (so don't do that).
-	 * The lifetime of the script context associated with the value must be longer
-	 * than the lifetime of this node.
-	 */
-	void SetScriptVal(CScriptValRooted val) const;
-
-	/**
-	 * Returns the value saved by SetScriptVal, or the default (JSVAL_VOID) if none was set.
-	 */
-	CScriptValRooted GetScriptVal() const;
-
 private:
 	void ApplyLayer(const XMBFile& xmb, const XMBElement& element);
 
 	void ResetScriptVal();
 
+	jsval ConstructJSVal(JSContext* cx) const;
+
 	std::wstring m_Value;
 	ChildrenMap m_Childs;
 	bool m_IsOk;
+
+	/**
+	 * Caches the ToJSVal script representation of this node.
+	 */
 	mutable CScriptValRooted m_ScriptVal;
 };
 

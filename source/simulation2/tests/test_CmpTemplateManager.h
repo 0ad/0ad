@@ -239,12 +239,12 @@ public:
 		CmpPtr<ICmpTemplateManager> cmpTempMan(sim, SYSTEM_ENTITY);
 		TS_ASSERT(!cmpTempMan.null());
 
-		std::vector<std::wstring> templates = cmpTempMan->FindAllTemplates();
+		std::vector<std::string> templates = cmpTempMan->FindAllTemplates(true);
 		for (size_t i = 0; i < templates.size(); ++i)
 		{
-			std::wstring name = templates[i];
-			printf("# %ls\n", name.c_str());
-			const CParamNode* p = cmpTempMan->GetTemplate(CStr8(name));
+			std::string name = templates[i];
+			printf("# %s\n", name.c_str());
+			const CParamNode* p = cmpTempMan->GetTemplate(name);
 			TS_ASSERT(p != NULL);
 		}
 	}

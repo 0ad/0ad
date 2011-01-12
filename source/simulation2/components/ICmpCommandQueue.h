@@ -40,7 +40,7 @@ public:
 	/**
 	 * Pushes a new command onto the local queue. @p cmd does not need to be rooted.
 	 */
-	virtual void PushLocalCommand(int player, CScriptVal cmd) = 0;
+	virtual void PushLocalCommand(player_id_t player, CScriptVal cmd) = 0;
 
 	/**
 	 * Send a command associated with the current player to the networking system.

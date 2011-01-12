@@ -9,7 +9,6 @@ function LoadMapSettings(settings)
 	if (!settings)
 		settings = {};
 	
-	
 	if (settings.DefaultStance)
 	{
 		for each (var ent in Engine.GetEntitiesWithInterface(IID_UnitAI))

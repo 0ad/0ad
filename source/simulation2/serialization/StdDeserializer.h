@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,8 @@ public:
 	virtual void ScriptVal(const char* name, CScriptValRooted& out);
 	virtual void ScriptObjectAppend(const char* name, jsval& obj);
 	virtual void ScriptString(const char* name, JSString*& out);
+
+	virtual std::istream& GetStream();
 
 protected:
 	virtual void Get(u8* data, size_t len);

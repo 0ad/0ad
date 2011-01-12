@@ -61,67 +61,15 @@ template<> jsval ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, IComponent
 	return OBJECT_TO_JSVAL(obj);
 }
 
-static jsval ConvertCParamNode(JSContext* cx, CParamNode const& val)
+template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode const& val)
 {
-	const std::map<std::string, CParamNode>& children = val.GetChildren();
-	if (children.empty())
-	{
-		// Empty node - map to undefined
-		if (val.ToString().empty())
-			return JSVAL_VOID;
-
-		// Just a string
-		utf16string text(val.ToString().begin(), val.ToString().end());
-		JSString* str = JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length());
-		if (str)
-			return STRING_TO_JSVAL(str);
-		// TODO: report error
-		return JSVAL_VOID;
-	}
-
-	// Got child nodes - convert this node into a hash-table-style object:
-
-	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
-	if (!obj)
-		return JSVAL_VOID; // TODO: report error
-	CScriptValRooted objRoot(cx, OBJECT_TO_JSVAL(obj));
-
-	for (std::map<std::string, CParamNode>::const_iterator it = children.begin(); it != children.end(); ++it)
-	{
-		jsval childVal = ConvertCParamNode(cx, it->second);
-		if (!JS_SetProperty(cx, obj, it->first.c_str(), &childVal))
-			return JSVAL_VOID; // TODO: report error
-	}
-
-	// If the node has a string too, add that as an extra property
-	if (!val.ToString().empty())
-	{
-		utf16string text(val.ToString().begin(), val.ToString().end());
-		JSString* str = JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length());
-		if (!str)
-			return JSVAL_VOID; // TODO: report error
-		jsval childVal = STRING_TO_JSVAL(str);
-		if (!JS_SetProperty(cx, obj, "_string", &childVal))
-			return JSVAL_VOID; // TODO: report error
-	}
+	jsval rval = val.ToJSVal(cx, true);
 
 	// Prevent modifications to the object, so that it's safe to share between
 	// components and to reconstruct on deserialization
-	//JS_SealObject(cx, obj, JS_TRUE);
-	// TODO: need to re-enable this when it works safely (e.g. it doesn't seal the
-	// global object too (via the parent chain))
+	if (JSVAL_IS_OBJECT(rval))
+		JS_DeepFreezeObject(cx, JSVAL_TO_OBJECT(rval));
 
-	return OBJECT_TO_JSVAL(obj);
-}
-
-template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode const& val)
-{
-	// If there's a cached value, then return it
-	if (!JSVAL_IS_VOID(val.GetScriptVal().get()))
-		return val.GetScriptVal().get();
-
-	jsval rval = ConvertCParamNode(cx, val);
-	val.SetScriptVal(CScriptValRooted(cx, rval));
 	return rval;
 }
 

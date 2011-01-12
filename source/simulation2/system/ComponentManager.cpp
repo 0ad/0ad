@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,8 +23,8 @@
 #include "ParamNode.h"
 #include "SimContext.h"
 
-#include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -582,7 +582,7 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 	jsval obj = JSVAL_NULL;
 	if (ct.type == CT_Script)
 	{
-		obj = m_ScriptInterface.CallConstructor(ct.ctor.get());
+		obj = m_ScriptInterface.CallConstructor(ct.ctor.get(), JSVAL_VOID);
 		if (JSVAL_IS_VOID(obj))
 		{
 			LOGERROR(L"Script component constructor failed");
@@ -748,17 +748,19 @@ void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg) const
 		std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
 		for (; ctit != it->second.end(); ++ctit)
 		{
+			// Find the component instances of this type (if any)
 			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(*ctit);
 			if (emap == m_ComponentsByTypeId.end())
 				continue;
 
+			// Send the message to all of them
 			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.find(ent);
 			if (eit != emap->second.end())
 				eit->second->HandleMessage(m_SimContext, msg, false);
 		}
 	}
 
-	SendGlobalMessage(msg);
+	SendGlobalMessage(ent, msg);
 }
 
 void CComponentManager::BroadcastMessage(const CMessage& msg) const
@@ -771,20 +773,22 @@ void CComponentManager::BroadcastMessage(const CMessage& msg) const
 		std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
 		for (; ctit != it->second.end(); ++ctit)
 		{
+			// Find the component instances of this type (if any)
 			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(*ctit);
 			if (emap == m_ComponentsByTypeId.end())
 				continue;
 
+			// Send the message to all of them
 			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.begin();
 			for (; eit != emap->second.end(); ++eit)
 				eit->second->HandleMessage(m_SimContext, msg, false);
 		}
 	}
 
-	SendGlobalMessage(msg);
+	SendGlobalMessage(INVALID_ENTITY, msg);
 }
 
-void CComponentManager::SendGlobalMessage(const CMessage& msg) const
+void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg) const
 {
 	// (Common functionality for PostMessage and BroadcastMessage)
 
@@ -796,10 +800,22 @@ void CComponentManager::SendGlobalMessage(const CMessage& msg) const
 		std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
 		for (; ctit != it->second.end(); ++ctit)
 		{
+			// Special case: Messages for non-local entities shouldn't be sent to script
+			// components that subscribed globally, so that we don't have to worry about
+			// them accidentally picking up non-network-synchronised data.
+			if (ENTITY_IS_LOCAL(ent))
+			{
+				std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(*ctit);
+				if (it != m_ComponentTypesById.end() && it->second.type == CT_Script)
+					continue;
+			}
+
+			// Find the component instances of this type (if any)
 			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(*ctit);
 			if (emap == m_ComponentsByTypeId.end())
 				continue;
 
+			// Send the message to all of them
 			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.begin();
 			for (; eit != emap->second.end(); ++eit)
 				eit->second->HandleMessage(m_SimContext, msg, true);
@@ -875,7 +891,6 @@ std::string CComponentManager::GenerateSchema()
 
 	schema += "</grammar>";
 
-	// TODO: pretty-print
 	return schema;
 }
 
@@ -883,26 +898,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string file
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	VfsPath path = VfsPath(L"simulation/data/" + CStrW(fileName));
-	
-	if (!FileExists(g_VFS, path))
-	{
-		LOGERROR(L"File 'simulation/data/%hs' does not exist", fileName.c_str());
-		return CScriptVal();
-	}
+	std::wstring path = L"simulation/data/" + CStrW(fileName);
 
-	CVFSFile file;
-
-	PSRETURN ret = file.Load(g_VFS, path);
-
-	if (ret != PSRETURN_OK)
-	{
-		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
-		return CScriptVal();
-	}
-
-	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // assume it's UTF-8
-
-	return (componentManager->m_ScriptInterface.ParseJSON(content)).get();
-
+	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }

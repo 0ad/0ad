@@ -489,7 +489,7 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 1+10+100+1000);
 	}
 
-	void TODO_test_script_template_readonly()
+	void test_script_template_readonly()
 	{
 		CSimContext context;
 		CComponentManager man(context);

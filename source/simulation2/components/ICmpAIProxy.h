@@ -15,21 +15,21 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_ICMPAIPROXY
+#define INCLUDED_ICMPAIPROXY
 
-#include "StdSerializer.h"
+#include "simulation2/system/Interface.h"
 
-CStdSerializerImpl::CStdSerializerImpl(std::ostream& stream) :
-	m_Stream(stream)
+class ICmpAIProxy : public IComponent
 {
-}
+public:
+	/**
+	 * Returns a script object that represents the current entity state,
+	 * to be passed to AI scripts.
+	 */
+	virtual CScriptVal GetRepresentation() = 0;
 
-CStdSerializer::CStdSerializer(ScriptInterface& scriptInterface, std::ostream& stream) :
-	CBinarySerializer<CStdSerializerImpl>(scriptInterface, stream)
-{
-}
+	DECLARE_INTERFACE_TYPE(AIProxy)
+};
 
-std::ostream& CStdSerializer::GetStream()
-{
-	return m_Impl.GetStream();
-}
+#endif // INCLUDED_ICMPAIPROXY

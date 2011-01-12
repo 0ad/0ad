@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,23 +15,18 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * File        : Game.h
- * Project     : engine
- * Description : Contains the CGame Class which is a representation of the game itself.
- *
- **/
 #ifndef INCLUDED_GAME
 #define INCLUDED_GAME
 
 #include "ps/Errors.h"
 #include <vector>
 
+#include "scriptinterface/ScriptVal.h"
+
 class CWorld;
 class CSimulation2;
 class CGameView;
 class CNetTurnManager;
-class CScriptValRooted;
 class IReplayLogger;
 struct CColor;
 
@@ -159,6 +154,7 @@ public:
 private:
 	void RegisterInit(const CScriptValRooted& attribs);
 	IReplayLogger* m_ReplayLogger;
+	CScriptValRooted m_RegisteredAttribs;
 };
 
 extern CGame *g_Game;

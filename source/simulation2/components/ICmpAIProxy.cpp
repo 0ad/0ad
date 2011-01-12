@@ -17,19 +17,23 @@
 
 #include "precompiled.h"
 
-#include "StdSerializer.h"
+#include "ICmpAIProxy.h"
 
-CStdSerializerImpl::CStdSerializerImpl(std::ostream& stream) :
-	m_Stream(stream)
-{
-}
+#include "simulation2/system/InterfaceScripted.h"
+#include "simulation2/scripting/ScriptComponent.h"
 
-CStdSerializer::CStdSerializer(ScriptInterface& scriptInterface, std::ostream& stream) :
-	CBinarySerializer<CStdSerializerImpl>(scriptInterface, stream)
-{
-}
+BEGIN_INTERFACE_WRAPPER(AIProxy)
+END_INTERFACE_WRAPPER(AIProxy)
 
-std::ostream& CStdSerializer::GetStream()
+class CCmpAIProxyScripted : public ICmpAIProxy
 {
-	return m_Impl.GetStream();
-}
+public:
+	DEFAULT_SCRIPT_WRAPPER(AIProxyScripted)
+
+	virtual CScriptVal GetRepresentation()
+	{
+		return m_Script.Call<CScriptVal> ("GetRepresentation");
+	}
+};
+
+REGISTER_COMPONENT_SCRIPT_WRAPPER(AIProxyScripted)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,12 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * File        : Game.cpp
- * Project     : engine
- * Description : Contains the CGame Class implementation.
- *
- **/
 #include "precompiled.h"
 
 #include "Game.h"
@@ -78,11 +72,6 @@ CGame::CGame(bool disableGraphics):
 	m_TurnManager = new CNetLocalTurnManager(*m_Simulation2, GetReplayLogger()); // this will get replaced if we're a net server/client
 
 	m_Simulation2->LoadDefaultScripts();
-	m_Simulation2->ResetState();
-
-	// TODO: If this function is even needed now, get initData
-	CScriptVal initData;
-	m_Simulation2->InitGame(initData);
 }
 
 /**
@@ -91,6 +80,9 @@ CGame::CGame(bool disableGraphics):
  **/
 CGame::~CGame()
 {
+	// Clear rooted value before destroying its context
+	m_RegisteredAttribs = CScriptValRooted();
+
 	// Again, the in-game call tree is going to be different to the main menu one.
 	if (CProfileManager::IsInitialised())
 		g_Profiler.StructuralReset();
@@ -121,6 +113,8 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
  **/
 void CGame::RegisterInit(const CScriptValRooted& attribs)
 {
+	m_RegisteredAttribs = attribs; // save the attributes for ReallyStartGame
+
 	std::string mapType;
 	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "mapType", mapType);
 
@@ -147,7 +141,6 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
 		// TODO: Coming in another patch
 	}
 
-
 	LDR_EndRegistering();
 }
 
@@ -158,6 +151,10 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
  **/
 PSRETURN CGame::ReallyStartGame()
 {
+	CScriptVal settings;
+	m_Simulation2->GetScriptInterface().GetProperty(m_RegisteredAttribs.get(), "settings", settings);
+	m_Simulation2->InitGame(settings);
+
 	// Call the reallyStartGame GUI function, but only if it exists
 	if (g_GUI && g_GUI->HasPages())
 	{

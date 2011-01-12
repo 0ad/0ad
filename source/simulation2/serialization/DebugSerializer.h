@@ -39,6 +39,7 @@ public:
 	void Dedent(int spaces);
 
 	virtual bool IsDebug() const;
+	virtual std::ostream& GetStream();
 
 protected:
 	virtual void PutNumber(const char* name, uint8_t value);

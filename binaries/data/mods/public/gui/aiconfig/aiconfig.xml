@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script file="gui/aiconfig/aiconfig.js"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" sprite="bkTranslucent"/>
+
+	<object type="image" style="wheatWindow" size="50%-250 50%-100 50%+250 50%+100">
+
+		<object style="wheatWindowTitleBar" type="text">AI configuration</object>
+
+		<object type="button" style="wheatExit" tooltip_style="snToolTip">
+			<action on="Press"><![CDATA[
+				Engine.PopGuiPage();
+			]]></action>
+		</object>
+
+		<object size="25 10 100%-25 40">
+			<object
+				type="text"
+				font="serif-bold-18"
+				text_align="right"
+				size="0 0 100 100%">
+				AI Player
+			</object>
+
+			<object name="aiSelection" type="dropdown" style="wheatDropDown" size="110 0 310 30">
+				<action on="SelectionChange">selectAI(this.selected);</action>
+			</object>
+		</object>
+
+		<object size="25 50 100%-25 65%-5">
+
+			<object name="aiDescription" type="text" size="0 0 100% 100%"/>
+
+			<!-- TODO: we might want to add things like difficulty controls into here -->
+
+		</object>
+
+		<object type="button" style="wheatButton" size="100%-203 100%-33 100%-103 100%-3">
+			OK
+			<action on="Press"><![CDATA[
+				returnAI();
+				Engine.PopGuiPage();
+			]]></action>
+		</object>
+
+		<object type="button" style="wheatButton" size="100%-103 100%-33 100%-3 100%-3">
+			Cancel
+			<action on="Press"><![CDATA[
+				Engine.PopGuiPage();
+			]]></action>
+		</object>
+
+	</object>
+
+</objects>

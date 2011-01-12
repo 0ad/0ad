@@ -59,7 +59,7 @@ public:
 		CSimulation2 sim(NULL, &m_Terrain);
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/addentity/"));
 
-		sim.ResetState(true);
+		sim.ResetState(true, true);
 
 		entity_id_t ent1 = sim.AddEntity(L"test1");
 		TS_ASSERT_EQUALS(ent1, (u32)2);
@@ -79,7 +79,7 @@ public:
 		CSimulation2 sim(NULL, &m_Terrain);
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/addentity/"));
 
-		sim.ResetState(true);
+		sim.ResetState(true, true);
 
 		entity_id_t ent1 = sim.AddEntity(L"test1");
 		entity_id_t ent2 = sim.AddEntity(L"test1");
@@ -136,7 +136,7 @@ public:
 		TS_ASSERT_OK(g_VFS->Invalidate(L"simulation/components/hotload/hotload.js"));
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/hotload/"));
 
-		sim.ResetState(true);
+		sim.ResetState(true, true);
 
 		entity_id_t ent = sim.AddEntity(L"hotload");
 

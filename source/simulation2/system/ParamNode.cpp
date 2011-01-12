@@ -283,15 +283,63 @@ void CParamNode::ToXML(std::wostream& strm) const
 	}
 }
 
-void CParamNode::SetScriptVal(CScriptValRooted val) const
+jsval CParamNode::ToJSVal(JSContext* cx, bool cacheValue) const
 {
-	debug_assert(JSVAL_IS_VOID(m_ScriptVal.get()));
-	m_ScriptVal = val;
+	if (cacheValue && !m_ScriptVal.uninitialised())
+		return m_ScriptVal.get();
+
+	jsval val = ConstructJSVal(cx);
+
+	if (cacheValue)
+		m_ScriptVal = CScriptValRooted(cx, val);
+
+	return val;
 }
 
-CScriptValRooted CParamNode::GetScriptVal() const
+jsval CParamNode::ConstructJSVal(JSContext* cx) const
 {
-	return m_ScriptVal;
+	if (m_Childs.empty())
+	{
+		// Empty node - map to undefined
+		if (m_Value.empty())
+			return JSVAL_VOID;
+
+		// Just a string
+		utf16string text(m_Value.begin(), m_Value.end());
+		JSString* str = JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length());
+		if (str)
+			return STRING_TO_JSVAL(str);
+		// TODO: report error
+		return JSVAL_VOID;
+	}
+
+	// Got child nodes - convert this node into a hash-table-style object:
+
+	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	if (!obj)
+		return JSVAL_VOID; // TODO: report error
+	CScriptValRooted objRoot(cx, OBJECT_TO_JSVAL(obj));
+
+	for (std::map<std::string, CParamNode>::const_iterator it = m_Childs.begin(); it != m_Childs.end(); ++it)
+	{
+		jsval childVal = it->second.ConstructJSVal(cx);
+		if (!JS_SetProperty(cx, obj, it->first.c_str(), &childVal))
+			return JSVAL_VOID; // TODO: report error
+	}
+
+	// If the node has a string too, add that as an extra property
+	if (!m_Value.empty())
+	{
+		utf16string text(m_Value.begin(), m_Value.end());
+		JSString* str = JS_InternUCStringN(cx, reinterpret_cast<const jschar*>(text.data()), text.length());
+		if (!str)
+			return JSVAL_VOID; // TODO: report error
+		jsval childVal = STRING_TO_JSVAL(str);
+		if (!JS_SetProperty(cx, obj, "_string", &childVal))
+			return JSVAL_VOID; // TODO: report error
+	}
+
+	return OBJECT_TO_JSVAL(obj);
 }
 
 void CParamNode::ResetScriptVal()

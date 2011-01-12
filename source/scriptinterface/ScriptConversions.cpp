@@ -244,27 +244,20 @@ template<typename T> static bool FromJSVal_vector(JSContext* cx, jsval v, std::v
 	return true;
 }
 
-template<> jsval ScriptInterface::ToJSVal<std::vector<int> >(JSContext* cx, const std::vector<int>& val)
-{
-	return ToJSVal_vector(cx, val);
-}
+// Instantiate various vector types:
 
-template<> jsval ScriptInterface::ToJSVal<std::vector<u32> >(JSContext* cx, const std::vector<u32>& val)
-{
-	return ToJSVal_vector(cx, val);
-}
+#define VECTOR(T) \
+	template<> jsval ScriptInterface::ToJSVal<std::vector<T> >(JSContext* cx, const std::vector<T>& val) \
+	{ \
+		return ToJSVal_vector(cx, val); \
+	} \
+	template<> bool ScriptInterface::FromJSVal<std::vector<T> >(JSContext* cx, jsval v, std::vector<T>& out) \
+	{ \
+		return FromJSVal_vector(cx, v, out); \
+	}
 
-template<> jsval ScriptInterface::ToJSVal<std::vector<std::wstring> >(JSContext* cx, const std::vector<std::wstring>& val)
-{
-	return ToJSVal_vector(cx, val);
-}
-
-template<> bool ScriptInterface::FromJSVal<std::vector<int> >(JSContext* cx, jsval v, std::vector<int>& out)
-{
-	return FromJSVal_vector(cx, v, out);
-}
-
-template<> bool ScriptInterface::FromJSVal<std::vector<u32> >(JSContext* cx, jsval v, std::vector<u32>& out)
-{
-	return FromJSVal_vector(cx, v, out);
-}
+VECTOR(int)
+VECTOR(u32)
+VECTOR(std::string)
+VECTOR(std::wstring)
+VECTOR(CScriptValRooted)

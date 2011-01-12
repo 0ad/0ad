@@ -32,7 +32,15 @@ public:
 	CScriptVal() : m_Val(JSVAL_VOID) { }
 	CScriptVal(jsval val) : m_Val(val) { }
 
+	/**
+	 * Returns the current value.
+	 */
 	const jsval& get() const { return m_Val; }
+
+	/**
+	 * Returns whether the value is JSVAL_VOID.
+	 */
+	bool undefined() const { return JSVAL_IS_VOID(m_Val); }
 
 private:
 	jsval m_Val;

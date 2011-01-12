@@ -24,6 +24,7 @@
 #include "lib/debug.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/utf16string.h"
 
@@ -402,7 +403,7 @@ AutoGCRooter* ScriptInterface::ReplaceAutoGCRooter(AutoGCRooter* rooter)
 }
 
 
-jsval ScriptInterface::CallConstructor(jsval ctor)
+jsval ScriptInterface::CallConstructor(jsval ctor, jsval arg)
 {
 	if (!JSVAL_IS_OBJECT(ctor))
 	{
@@ -410,7 +411,43 @@ jsval ScriptInterface::CallConstructor(jsval ctor)
 		return JSVAL_VOID;
 	}
 
-	return OBJECT_TO_JSVAL(JS_New(m->m_cx, JSVAL_TO_OBJECT(ctor), 0, NULL));
+	return OBJECT_TO_JSVAL(JS_New(m->m_cx, JSVAL_TO_OBJECT(ctor), 1, &arg));
+}
+
+jsval ScriptInterface::NewObjectFromConstructor(jsval ctor)
+{
+	// Get the constructor's prototype
+	// (Can't use JS_GetPrototype, since we want .prototype not .__proto__)
+	jsval protoVal;
+	if (!JS_GetProperty(m->m_cx, JSVAL_TO_OBJECT(ctor), "prototype", &protoVal))
+	{
+		LOGERROR(L"NewObjectFromConstructor: can't get prototype");
+		return JSVAL_VOID;
+	}
+
+	if (!JSVAL_IS_OBJECT(protoVal))
+	{
+		LOGERROR(L"NewObjectFromConstructor: prototype is not an object");
+		return JSVAL_VOID;
+	}
+
+	JSObject* proto = JSVAL_TO_OBJECT(protoVal);
+	JSObject* parent = JS_GetParent(m->m_cx, JSVAL_TO_OBJECT(ctor));
+	// TODO: rooting?
+	if (!proto || !parent)
+	{
+		LOGERROR(L"NewObjectFromConstructor: null proto/parent");
+		return JSVAL_VOID;
+	}
+
+	JSObject* obj = JS_NewObject(m->m_cx, NULL, proto, parent);
+	if (!obj)
+	{
+		LOGERROR(L"NewObjectFromConstructor: object creation failed");
+		return JSVAL_VOID;
+	}
+
+	return OBJECT_TO_JSVAL(obj);
 }
 
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name)
@@ -465,19 +502,36 @@ bool ScriptInterface::SetGlobal_(const char* name, jsval value, bool replace)
 	return ok ? true : false;
 }
 
-bool ScriptInterface::SetProperty_(jsval obj, const char* name, jsval value, bool constant)
+bool ScriptInterface::SetProperty_(jsval obj, const char* name, jsval value, bool constant, bool enumerate)
 {
-	uintN attrs;
+	uintN attrs = 0;
 	if (constant)
-		attrs = JSPROP_READONLY | JSPROP_PERMANENT;
-	else
-		attrs = JSPROP_ENUMERATE;
+		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
+	if (enumerate)
+		attrs |= JSPROP_ENUMERATE;
 
 	if (! JSVAL_IS_OBJECT(obj))
 		return false;
 	JSObject* object = JSVAL_TO_OBJECT(obj);
 
 	if (! JS_DefineProperty(m->m_cx, object, name, value, NULL, NULL, attrs))
+		return false;
+	return true;
+}
+
+bool ScriptInterface::SetPropertyInt_(jsval obj, int name, jsval value, bool constant, bool enumerate)
+{
+	uintN attrs = 0;
+	if (constant)
+		attrs |= JSPROP_READONLY | JSPROP_PERMANENT;
+	if (enumerate)
+		attrs |= JSPROP_ENUMERATE;
+
+	if (! JSVAL_IS_OBJECT(obj))
+		return false;
+	JSObject* object = JSVAL_TO_OBJECT(obj);
+
+	if (! JS_DefinePropertyById(m->m_cx, object, INT_TO_JSID(name), value, NULL, NULL, attrs))
 		return false;
 	return true;
 }
@@ -552,6 +606,17 @@ bool ScriptInterface::SetPrototype(jsval obj, jsval proto)
 	return JS_SetPrototype(m->m_cx, JSVAL_TO_OBJECT(obj), JSVAL_TO_OBJECT(proto)) ? true : false;
 }
 
+bool ScriptInterface::FreezeObject(jsval obj, bool deep)
+{
+	if (!JSVAL_IS_OBJECT(obj))
+		return false;
+
+	if (deep)
+		return JS_DeepFreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj));
+	else
+		return JS_FreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj));
+}
+
 bool ScriptInterface::LoadScript(const std::wstring& filename, const std::wstring& code)
 {
 	std::string fnAscii(filename.begin(), filename.end());
@@ -571,6 +636,41 @@ bool ScriptInterface::LoadScript(const std::wstring& filename, const std::wstrin
 
 	return ok ? true : false;
 }
+
+bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
+{
+	if (!FileExists(g_VFS, path))
+	{
+		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
+		return false;
+	}
+
+	CVFSFile file;
+
+	PSRETURN ret = file.Load(g_VFS, path);
+
+	if (ret != PSRETURN_OK)
+	{
+		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		return false;
+	}
+
+	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
+	std::wstring code = wstring_from_utf8(content);
+
+	std::string fnAscii(path.string().begin(), path.string().end());
+
+	// Compile the code in strict mode, to encourage better coding practices and
+	// to possibly help SpiderMonkey with optimisations
+	std::wstring codeStrict = L"\"use strict\";\n" + code;
+	utf16string codeUtf16(codeStrict.begin(), codeStrict.end());
+	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
+
+	jsval rval;
+	JSBool ok = JS_EvaluateUCScript(m->m_cx, m->m_glob, reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()), fnAscii.c_str(), lineNo, &rval);
+	return ok ? true : false;
+}
+
 
 bool ScriptInterface::Eval(const char* code)
 {
@@ -633,6 +733,29 @@ CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
 	// TODO: we could do more efficient string conversion
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
 	return ParseJSON(utf16string(attrsW.begin(), attrsW.end()));
+}
+
+CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
+{
+	if (!FileExists(g_VFS, path))
+	{
+		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
+		return CScriptValRooted();
+	}
+
+	CVFSFile file;
+
+	PSRETURN ret = file.Load(g_VFS, path);
+
+	if (ret != PSRETURN_OK)
+	{
+		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		return CScriptValRooted();
+	}
+
+	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // assume it's UTF-8
+
+	return ParseJSON(content);
 }
 
 struct Stringifier

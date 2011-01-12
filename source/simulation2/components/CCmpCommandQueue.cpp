@@ -75,7 +75,7 @@ public:
 		}
 	}
 
-	virtual void PushLocalCommand(int player, CScriptVal cmd)
+	virtual void PushLocalCommand(player_id_t player, CScriptVal cmd)
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 

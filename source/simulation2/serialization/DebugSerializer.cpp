@@ -165,3 +165,8 @@ bool CDebugSerializer::IsDebug() const
 {
 	return true;
 }
+
+std::ostream& CDebugSerializer::GetStream()
+{
+	return m_Stream;
+}

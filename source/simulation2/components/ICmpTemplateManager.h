@@ -89,7 +89,7 @@ public:
 	 * (This includes "actor|foo" etc names).
 	 * Intended for use by the map editor. This is likely to be quite slow.
 	 */
-	virtual std::vector<std::wstring> FindAllTemplates() = 0;
+	virtual std::vector<std::string> FindAllTemplates(bool includeActors) = 0;
 
 	/**
 	 * Permanently disable XML validation (intended solely for test cases).

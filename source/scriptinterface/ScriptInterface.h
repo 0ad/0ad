@@ -27,6 +27,7 @@
 
 #include "js/jsapi.h"
 
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/Profile.h"
 #include "ps/utf16string.h"
 
@@ -85,11 +86,17 @@ public:
 	void ReplaceNondeterministicFunctions(boost::rand48& rng);
 
 	/**
-	 * Call a constructor function, roughly equivalent to JS "new ctor".
-	 *
-	 * @return The new object; or 0 on failure, and logs an error message
+	 * Call a constructor function, equivalent to JS "new ctor(arg)".
+	 * @return The new object; or JSVAL_VOID on failure, and logs an error message
 	 */
-	jsval CallConstructor(jsval ctor);
+	jsval CallConstructor(jsval ctor, jsval arg);
+
+	/**
+	 * Create an object as with CallConstructor except don't actually execute the
+	 * constructor function.
+	 * @return The new object; or JSVAL_VOID on failure, and logs an error message
+	 */
+	jsval NewObjectFromConstructor(jsval ctor);
 
 	/**
 	 * Call the named property on the given object, with void return type and 0 arguments
@@ -138,6 +145,12 @@ public:
 	template<typename T0, typename T1, typename T2, typename R>
 	bool CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, R& ret);
 
+	/**
+	 * Call the named property on the given object, with return type R and 4 arguments
+	 */
+	template<typename T0, typename T1, typename T2, typename T3, typename R>
+	bool CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, const T3& a3, R& ret);
+
 	jsval GetGlobalObject();
 
 	JSClass* GetGlobalClass();
@@ -155,7 +168,14 @@ public:
 	 * Optionally makes it {ReadOnly, DontDelete, DontEnum}.
 	 */
 	template<typename T>
-	bool SetProperty(jsval obj, const char* name, const T& value, bool constant);
+	bool SetProperty(jsval obj, const char* name, const T& value, bool constant, bool enumerate = true);
+
+	/**
+	 * Set the integer-named property on the given object.
+	 * Optionally makes it {ReadOnly, DontDelete, DontEnum}.
+	 */
+	template<typename T>
+	bool SetPropertyInt(jsval obj, int name, const T& value, bool constant, bool enumerate = true);
 
 	template<typename T>
 	bool GetProperty(jsval obj, const char* name, T& out);
@@ -165,6 +185,8 @@ public:
 	bool EnumeratePropertyNamesWithPrefix(jsval obj, const char* prefix, std::vector<std::string>& out);
 
 	bool SetPrototype(jsval obj, jsval proto);
+
+	bool FreezeObject(jsval obj, bool deep);
 
 	bool Eval(const char* code);
 
@@ -181,6 +203,11 @@ public:
 	 * Parse a UTF-8-encoded JSON string. Returns the undefined value on error.
 	 */
 	CScriptValRooted ParseJSON(const std::string& string_utf8);
+
+	/**
+	 * Read a JSON file. Returns the undefined value on error.
+	 */
+	CScriptValRooted ReadJSONFile(const VfsPath& path);
 
 	/**
 	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.
@@ -201,6 +228,12 @@ public:
 	 * @return true on successful compilation and execution; false otherwise
 	 */
 	bool LoadScript(const std::wstring& filename, const std::wstring& code);
+
+	/**
+	 * Load and execute the given script in the global scope.
+	 * @return true on successful compilation and execution; false otherwise
+	 */
+	bool LoadGlobalScriptFile(const VfsPath& path);
 
 	/**
 	 * Construct a new value (usable in this ScriptInterface's context) by cloning
@@ -235,7 +268,8 @@ private:
 	bool Eval_(const char* code, jsval& ret);
 	bool Eval_(const wchar_t* code, jsval& ret);
 	bool SetGlobal_(const char* name, jsval value, bool replace);
-	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly);
+	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly, bool enumerate);
+	bool SetPropertyInt_(jsval obj, int name, jsval value, bool readonly, bool enumerate);
 	bool GetProperty_(jsval obj, const char* name, jsval& value);
 	static bool IsExceptionPending(JSContext* cx);
 	static JSClass* GetClass(JSContext* cx, JSObject* obj);
@@ -344,6 +378,21 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 	return FromJSVal(GetContext(), jsRet, ret);
 }
 
+template<typename T0, typename T1, typename T2, typename T3, typename R>
+bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, const T3& a3, R& ret)
+{
+	jsval jsRet;
+	jsval argv[4];
+	argv[0] = ToJSVal(GetContext(), a0);
+	argv[1] = ToJSVal(GetContext(), a1);
+	argv[2] = ToJSVal(GetContext(), a2);
+	argv[3] = ToJSVal(GetContext(), a3);
+	bool ok = CallFunction_(val, name, 4, argv, jsRet);
+	if (!ok)
+		return false;
+	return FromJSVal(GetContext(), jsRet, ret);
+}
+
 template<typename T>
 bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
 {
@@ -351,9 +400,15 @@ bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
 }
 
 template<typename T>
-bool ScriptInterface::SetProperty(jsval obj, const char* name, const T& value, bool readonly)
+bool ScriptInterface::SetProperty(jsval obj, const char* name, const T& value, bool readonly, bool enumerate)
 {
-	return SetProperty_(obj, name, ToJSVal(GetContext(), value), readonly);
+	return SetProperty_(obj, name, ToJSVal(GetContext(), value), readonly, enumerate);
+}
+
+template<typename T>
+bool ScriptInterface::SetPropertyInt(jsval obj, int name, const T& value, bool readonly, bool enumerate)
+{
+	return SetPropertyInt_(obj, name, ToJSVal(GetContext(), value), readonly, enumerate);
 }
 
 template<typename T>

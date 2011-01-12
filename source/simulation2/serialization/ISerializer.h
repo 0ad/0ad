@@ -238,6 +238,13 @@ public:
 	 */
 	virtual bool IsDebug() const;
 
+	/**
+	 * Returns a stream which can be used to serialize data directly.
+	 * (This is particularly useful for chaining multiple serializers
+	 * together.)
+	 */
+	virtual std::ostream& GetStream() = 0;
+
 protected:
 	virtual void PutNumber(const char* name, uint8_t value) = 0;
 	virtual void PutNumber(const char* name, int8_t value) = 0;

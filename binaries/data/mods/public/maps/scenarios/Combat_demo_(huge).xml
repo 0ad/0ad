@@ -4,9 +4,6 @@
 	<Terrain patches="9" texture="blackness" priority="0" height="16384"/>
 	<Script><![CDATA[//
 
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var entityTemplates = cmpTemplateManager.FindAllTemplates();
-
 	var patches = 9;
 
 	function createBlock(template, owner, angle, x0, z0, cols, rows, colspacing, rowspacing)

@@ -76,6 +76,7 @@ private:
 	ScriptInterface& m_ScriptInterface;
 	CScriptValRooted m_Instance;
 	bool m_HasCustomSerialize;
+	bool m_HasCustomDeserialize;
 
 	NONCOPYABLE(CComponentTypeScript);
 };

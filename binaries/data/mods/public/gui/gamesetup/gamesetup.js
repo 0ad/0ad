@@ -1,5 +1,5 @@
 // Name displayed for unassigned player slots
-const NAME_UNASSIGNED = "[color=\"90 90 90 255\"][unassigned]";
+const NAME_UNASSIGNED = "[color=\"90 90 90 255\"][Computer AI]";
 
 // Is this is a networked game, or offline
 var g_IsNetworked;
@@ -24,6 +24,7 @@ var g_GameAttributes = {
 		BaseTerrain: "grass1_spring",
 		BaseHeight: 0,
 		PlayerData: [],
+		AIs: [], // indexed by player ID; values are AI id strings
 		RevealMap: false,
 		LockTeams: false,
 		GameType: "conquest"
@@ -35,6 +36,8 @@ var g_MaxPlayers = 8;
 
 // Number of players for currently selected map
 var g_NumPlayers = 0;
+
+var g_AIs = [];
 
 var g_ChatMessages = [];
 
@@ -64,7 +67,10 @@ function init(attribs)
 	default:
 		error("Unexpected 'type' in gamesetup init: "+attribs.type);
 	}
-	
+
+	// Load AI list
+	g_AIs = Engine.GetAIs();
+
 	// Get default player data - remove gaia
 	var pDefs = initPlayerDefaults();
 	pDefs.shift();
@@ -86,7 +92,7 @@ function init(attribs)
 	addFilter("Old Maps", function(settings) { return !settings; });
 	addFilter("All Maps", function(settings) { return true; });
 	
-	//Populate map filters dropdown
+	// Populate map filters dropdown
 	var mapFilters = getGUIObjectByName("mapFilterSelection");
 	mapFilters.list = getFilters();
 	g_GameAttributes.mapFilter = "Default";
@@ -697,7 +703,7 @@ function onGameAttributesChange()
 			var pTeam = getGUIObjectByName("playerTeam["+i+"]");
 			var pTeamText = getGUIObjectByName("playerTeamText["+i+"]");
 			var pColor = getGUIObjectByName("playerColour["+i+"]");
-			
+
 			// Player data / defaults
 			var pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
 			var pDefs = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[i] : {};
@@ -705,7 +711,7 @@ function onGameAttributesChange()
 			// Common to all game types
 			var color = iColorToString(getSetting(pData, pDefs, "Colour"));
 			pColor.sprite = "colour:"+color+" 100";
-			pName.caption =  getSetting(pData, pDefs, "Name");
+			pName.caption = getSetting(pData, pDefs, "Name");
 			
 			var team = getSetting(pData, pDefs, "Team");
 			var civ = getSetting(pData, pDefs, "Civ");
@@ -766,7 +772,7 @@ function launchGame()
 		}
 		// Remove extra player data
 		g_GameAttributes.settings.PlayerData = g_GameAttributes.settings.PlayerData.slice(0, g_NumPlayers);
-		
+
 		Engine.StartGame(g_GameAttributes, playerID);
 		Engine.SwitchGuiPage("page_loading.xml", {
 			"attribs": g_GameAttributes, 
@@ -797,13 +803,39 @@ function updatePlayerList()
 
 	for (var i = 0; i < g_MaxPlayers; ++i)
 	{
+		let playerID = i+1;
+
+		var selection = (assignments[playerID] || 0);
+
+		// If no human is assigned, show the AI config button
+		var configButton = getGUIObjectByName("playerConfig["+i+"]");
+		if (selection == 0 && g_IsController)
+		{
+			configButton.hidden = false;
+			configButton.onpress = function()
+			{
+				Engine.PushGuiPage("page_aiconfig.xml", {
+					ais: g_AIs,
+					id: g_GameAttributes.settings.AIs[playerID],
+					callback: function(ai) {
+						if (ai.id == "")
+							delete g_GameAttributes.settings.AIs[playerID];
+						else
+							g_GameAttributes.settings.AIs[playerID] = ai.id;
+					}
+				});
+			};
+		}
+		else
+		{
+			configButton.hidden = true;
+		}
+
 		var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
 		assignBox.list = hostNameList;
-		var selection = (assignments[i+1] || 0);
 		if (assignBox.selected != selection)
 			assignBox.selected = selection;
 
-		let playerID = i+1;
 		if (g_IsNetworked && g_IsController)
 		{
 			assignBox.onselectionchange = function ()

@@ -22,7 +22,7 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(CommandQueue)
-DEFINE_INTERFACE_METHOD_2("PushLocalCommand", void, ICmpCommandQueue, PushLocalCommand, int, CScriptVal)
+DEFINE_INTERFACE_METHOD_2("PushLocalCommand", void, ICmpCommandQueue, PushLocalCommand, player_id_t, CScriptVal)
 DEFINE_INTERFACE_METHOD_1("PostNetworkCommand", void, ICmpCommandQueue, PostNetworkCommand, CScriptVal)
 // Excluded: FlushTurn (doesn't make sense for scripts to call it)
 END_INTERFACE_WRAPPER(CommandQueue)

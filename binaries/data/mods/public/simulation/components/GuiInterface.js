@@ -5,7 +5,14 @@ GuiInterface.prototype.Schema =
 
 GuiInterface.prototype.Serialize = function()
 {
+	// This component isn't network-synchronised so we mustn't serialise
+	// its non-deterministic data. Instead just return an empty object.
 	return {};
+};
+
+GuiInterface.prototype.Deserialize = function(obj)
+{
+	this.Init();
 };
 
 GuiInterface.prototype.Init = function()
@@ -15,10 +22,15 @@ GuiInterface.prototype.Init = function()
 	this.notifications = [];
 };
 
-/**
- * All of the functions defined below are called via Engine.GuiInterfaceCall(name, arg) from GUI scripts, and executed here with arguments (player, arg)
-*/
+/*
+ * All of the functions defined below are called via Engine.GuiInterfaceCall(name, arg)
+ * from GUI scripts, and executed here with arguments (player, arg).
+ */
 
+/**
+ * Returns global information about the current game state.
+ * This is used by the GUI and also by AI scripts.
+ */
 GuiInterface.prototype.GetSimulationState = function(player)
 {
 	var ret = {

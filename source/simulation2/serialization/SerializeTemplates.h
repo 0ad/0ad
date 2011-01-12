@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
  * @file
  * Helper templates for serializing/deserializing common objects.
  */
+
+#include "simulation2/components/ICmpPathfinder.h"
 
 template<typename ELEM>
 struct SerializeVector
@@ -109,6 +111,19 @@ struct SerializeU32_Unbounded
 	void operator()(IDeserializer& deserialize, const char* name, u32& value)
 	{
 		deserialize.NumberU32_Unbounded(name, value);
+	}
+};
+
+struct SerializeScriptVal
+{
+	void operator()(ISerializer& serialize, const char* name, CScriptValRooted value)
+	{
+		serialize.ScriptVal(name, value);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, CScriptValRooted& value)
+	{
+		deserialize.ScriptVal(name, value);
 	}
 };
 

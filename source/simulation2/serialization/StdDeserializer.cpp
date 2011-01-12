@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,6 +43,11 @@ void CStdDeserializer::Get(u8* data, size_t len)
 	m_Stream.read((char*)data, (std::streamsize)len);
 	if (!m_Stream.good()) // hit eof before len, or other errors
 		throw PSERROR_Deserialize_ReadFailed();
+}
+
+std::istream& CStdDeserializer::GetStream()
+{
+	return m_Stream;
 }
 
 void CStdDeserializer::AddScriptBackref(JSObject* obj)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -914,6 +914,32 @@ static bool Autostart(const CmdLineArgs& args)
 	scriptInterface.Eval("({})", attrs);
 	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
 	scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap), false);
+
+	// Set attrs.settings = { AIs: [...] }:
+
+	/*
+	 * Handle command-line options for AI:
+	 *  -autostart-ai=1:dummybot -autostart-ai=2:dummybot        -- adds the dummybot AI to players 1 and 2
+	 */
+	CScriptValRooted ais;
+	scriptInterface.Eval("([])", ais);
+	if (args.Has("autostart-ai"))
+	{
+		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
+		for (size_t i = 0; i < aiArgs.size(); ++i)
+		{
+			int player = aiArgs[i].BeforeFirst(":").ToInt();
+			CStr name = aiArgs[i].AfterFirst(":");
+			scriptInterface.SetPropertyInt(ais.get(), player, std::string(name), false);
+		}
+	}
+
+	CScriptValRooted settings;
+	scriptInterface.Eval("({})", settings);
+	scriptInterface.SetProperty(settings.get(), "AIs", ais, false);
+	scriptInterface.SetProperty(attrs.get(), "settings", settings, false);
+
+
 
 	CScriptValRooted mpInitData;
 	g_GUI->GetScriptInterface().Eval("({isNetworked:true, playerAssignments:{}})", mpInitData);

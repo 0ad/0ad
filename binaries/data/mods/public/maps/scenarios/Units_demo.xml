@@ -5,7 +5,7 @@
 	<Script><![CDATA[//
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var entityTemplates = cmpTemplateManager.FindAllTemplates();
+	var entityTemplates = cmpTemplateManager.FindAllTemplates(true);
 
 	var patches = 12;
 	var x0 = 20, z0 = 20, x1 = patches*16*4-20;

@@ -80,20 +80,22 @@ QUERYHANDLER(GetObjectsList)
 	CmpPtr<ICmpTemplateManager> cmp(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	if (!cmp.null())
 	{
-		std::vector<std::wstring> names = cmp->FindAllTemplates();
+		std::vector<std::string> names = cmp->FindAllTemplates(true);
 
-		for (std::vector<std::wstring>::iterator it = names.begin(); it != names.end(); ++it)
+		for (std::vector<std::string>::iterator it = names.begin(); it != names.end(); ++it)
 		{
+			std::wstring name(it->begin(), it->end());
+
 			sObjectsListItem e;
-			e.id = *it;
-			if (it->substr(0, 6) == L"actor|")
+			e.id = name;
+			if (name.substr(0, 6) == L"actor|")
 			{
-				e.name = it->substr(6);
+				e.name = name.substr(6);
 				e.type = 1;
 			}
 			else
 			{
-				e.name = *it;
+				e.name = name;
 				e.type = 0;
 			}
 			objects.push_back(e);

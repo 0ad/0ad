@@ -19,13 +19,14 @@
 #define INCLUDED_SIMULATIONCOMMAND
 
 #include "scriptinterface/ScriptVal.h"
+#include "simulation2/helpers/Player.h"
 
 /**
  * Simulation command, typically received over the network in multiplayer games.
  */
 struct SimulationCommand
 {
-	int player;
+	player_id_t player;
 	CScriptValRooted data;
 };
 

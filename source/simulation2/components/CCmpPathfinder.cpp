@@ -56,7 +56,7 @@ void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& 
 	// we can't use the real paramNode (it won't get handled properly when deserializing),
 	// so load the data from a special XML file.
 	CParamNode externalParamNode;
-	CParamNode::LoadXML(externalParamNode, L"simulation/templates/special/pathfinder.xml");
+	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml");
 
 
 	const CParamNode::ChildrenMap& passClasses = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses").GetChildren();

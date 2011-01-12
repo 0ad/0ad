@@ -103,8 +103,12 @@
 						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
 						<object name="playerName[n]" type="text" text_align="right" text_valign="center" size="0 0 100 100%"/>
 						<object name="playerAssignment[n]" type="dropdown" style="wheatDropDown" size="100 2 250 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player"/>
+						<object name="playerConfig[n]" type="button" style="wheatButton" size="251 6 264 24"
+							tooltip_style="onscreenToolTip"
+							tooltip="Configure AI settings"
+						>c</object>
 						<object name="playerCiv[n]" type="dropdown" style="wheatDropDown" size="265 2 395 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's civilization"/>
-						<object name="playerCivText[n]" type="text" text_align="center" text_valign="center" size="250 0 400 100%"/>
+						<object name="playerCivText[n]" type="text" text_align="center" text_valign="center" size="265 0 395 100%"/>
 						<object name="playerTeam[n]" type="dropdown" style="wheatDropDown" size="415 2 485 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's team"/>
 						<object name="playerTeamText[n]" type="text" text_align="center" text_valign="center" size="415 0 485 100%"/>
 					</object>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,26 @@
 #include "lib/allocators/pool.h"
 
 #include <map>
+
+/**
+ * Wrapper for redirecting ostream writes to CBinarySerializer's impl
+ */
+template<typename T>
+class CSerializerStreamBuf : public std::streambuf
+{
+	T& m_SerializerImpl;
+public:
+	CSerializerStreamBuf(T& impl) :
+		m_SerializerImpl(impl)
+	{
+	}
+
+	std::streamsize xsputn(const char* s, std::streamsize n)
+	{
+		m_SerializerImpl.Put("stream", reinterpret_cast<const u8*> (s), n);
+		return n;
+	}
+};
 
 /**
  * PutScriptVal implementation details.
@@ -64,14 +84,18 @@ class CBinarySerializer : public ISerializer
 	NONCOPYABLE(CBinarySerializer);
 public:
 	CBinarySerializer(ScriptInterface& scriptInterface) :
-		m_ScriptImpl(new CBinarySerializerScriptImpl(scriptInterface, *this))
+		m_ScriptImpl(new CBinarySerializerScriptImpl(scriptInterface, *this)),
+		m_RawStreamBuf(m_Impl),
+		m_RawStream(&m_RawStreamBuf)
 	{
 	}
 
 	template <typename A>
 	CBinarySerializer(ScriptInterface& scriptInterface, A& a) :
 		m_ScriptImpl(new CBinarySerializerScriptImpl(scriptInterface, *this)),
-		m_Impl(a)
+		m_Impl(a),
+		m_RawStreamBuf(m_Impl),
+		m_RawStream(&m_RawStreamBuf)
 	{
 	}
 
@@ -147,11 +171,19 @@ protected:
 		m_Impl.Put(name, data, len);
 	}
 
+	virtual std::ostream& GetStream()
+	{
+		return m_RawStream;
+	}
+
 protected:
 	T m_Impl;
 
 private:
 	std::auto_ptr<CBinarySerializerScriptImpl> m_ScriptImpl;
+
+	CSerializerStreamBuf<T> m_RawStreamBuf;
+	std::ostream m_RawStream;
 };
 
 #endif // INCLUDED_BINARYSERIALIZER

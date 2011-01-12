@@ -119,6 +119,17 @@ function getPlayerData(playerAssignments)
 	return players;
 }
 
+function findGuidForPlayerID(playerAssignments, player)
+{
+	for (var playerGuid in playerAssignments)
+	{
+		var playerAssignment = playerAssignments[playerGuid];
+		if (playerAssignment.player == player)
+			return playerGuid;
+	}
+	return undefined;
+}
+
 // Update player data when a host has connected
 function updatePlayerDataAdd(players, hostGuid, playerAssignment)
 {

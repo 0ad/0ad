@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,8 +23,9 @@
 #include "simulation2/system/ComponentManager.h"
 #include "simulation2/system/ParamNode.h"
 #include "simulation2/system/SimContext.h"
-#include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 
 #include "lib/file/file_system_util.h"
 #include "lib/utf8.h"
@@ -55,8 +56,6 @@ public:
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
 //		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
-
-		// (can't call ResetState here since the scripts haven't been loaded yet)
 	}
 
 	~CSimulation2Impl()
@@ -64,7 +63,7 @@ public:
 		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
 
-	void ResetState(bool skipScriptedComponents)
+	void ResetState(bool skipScriptedComponents, bool skipAI)
 	{
 		m_ComponentManager.ResetState();
 
@@ -87,6 +86,11 @@ public:
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_WaterManager, noParam);
 
+		if (!skipAI)
+		{
+			m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_AIManager, noParam);
+		}
+
 		// Add scripted system components:
 		if (!skipScriptedComponents)
 		{
@@ -96,10 +100,11 @@ public:
 				LOGERROR(L"Can't find component type " L##name); \
 			m_ComponentManager.AddComponent(SYSTEM_ENTITY, cid, noParam)
 
+			LOAD_SCRIPTED_COMPONENT("AIInterface");
+			LOAD_SCRIPTED_COMPONENT("EndGameManager");
 			LOAD_SCRIPTED_COMPONENT("GuiInterface");
 			LOAD_SCRIPTED_COMPONENT("PlayerManager");
 			LOAD_SCRIPTED_COMPONENT("Timer");
-			LOAD_SCRIPTED_COMPONENT("EndGameManager");
 
 #undef LOAD_SCRIPTED_COMPONENT
 		}
@@ -186,6 +191,11 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	if (!cmpPathfinder.null())
 		cmpPathfinder->FinishAsyncRequests();
 
+	// Push AI commands onto the queue before we use them
+	CmpPtr<ICmpAIManager> cmpAIManager(m_SimContext, SYSTEM_ENTITY);
+	if (!cmpAIManager.null())
+		cmpAIManager->PushCommands();
+
 	CmpPtr<ICmpCommandQueue> cmpCommandQueue(m_SimContext, SYSTEM_ENTITY);
 	if (!cmpCommandQueue.null())
 		cmpCommandQueue->FlushTurn(commands);
@@ -222,6 +232,10 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 	if (m_EnableOOSLog)
 		DumpState();
+
+	// Start computing AI for the next turn
+	if (!cmpAIManager.null())
+		cmpAIManager->StartComputation();
 
 	++m_TurnNumber;
 
@@ -429,9 +443,9 @@ LibError CSimulation2::ReloadChangedFile(const VfsPath& path)
 	return m->ReloadChangedFile(path);
 }
 
-void CSimulation2::ResetState(bool skipGui)
+void CSimulation2::ResetState(bool skipScriptedComponents, bool skipAI)
 {
-	m->ResetState(skipGui);
+	m->ResetState(skipScriptedComponents, skipAI);
 }
 
 bool CSimulation2::ComputeStateHash(std::string& outHash)

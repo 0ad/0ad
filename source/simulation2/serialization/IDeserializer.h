@@ -67,6 +67,13 @@ public:
 	// Features for simulation-state serialisation:
 	virtual int GetVersion() const;
 
+	/**
+	 * Returns a stream which can be used to deserialize data directly.
+	 * (This is particularly useful for chaining multiple deserializers
+	 * together.)
+	 */
+	virtual std::istream& GetStream() = 0;
+
 protected:
 	virtual void ReadString(std::string& out);
 

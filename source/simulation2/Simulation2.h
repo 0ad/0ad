@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -115,8 +115,11 @@ public:
 	 * before any methods that depend on the simulation state.
 	 * @param skipScriptedComponents don't load the scripted system components
 	 *   (this is intended for use by test cases that don't mount all of VFS)
+	 * @param skipAI don't initialise the AI system
+	 *   (this is intended for use by test cases that don't want all entity
+	 *   templates loaded automatically)
 	 */
-	void ResetState(bool skipScriptedComponents = false);
+	void ResetState(bool skipScriptedComponents = false, bool skipAI = false);
 
 	/**
 	 * Initialise a new game, based on some script data. (Called on CGame instantiation)

@@ -57,6 +57,15 @@ COMPONENT(UnknownScript)
 
 // In alphabetical order:
 
+INTERFACE(AIInterface)
+COMPONENT(AIInterfaceScripted)
+
+INTERFACE(AIManager)
+COMPONENT(AIManager)
+
+INTERFACE(AIProxy)
+COMPONENT(AIProxyScripted)
+
 INTERFACE(CommandQueue)
 COMPONENT(CommandQueue)
 

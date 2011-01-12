@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,11 @@ public:
 		m_Stream.write((const char*)data, (std::streamsize)len);
 	}
 
+	std::ostream& GetStream()
+	{
+		return m_Stream;
+	}
+
 private:
 	std::ostream& m_Stream;
 };
@@ -48,6 +53,8 @@ class CStdSerializer : public CBinarySerializer<CStdSerializerImpl>
 {
 public:
 	CStdSerializer(ScriptInterface& scriptInterface, std::ostream& stream);
+
+	virtual std::ostream& GetStream();
 };
 
 #endif // INCLUDED_STDSERIALIZER

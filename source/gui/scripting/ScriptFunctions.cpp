@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,7 @@
 #include "ps/GameSetup/Config.h"
 
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -280,6 +281,13 @@ void SendNetworkChat(void* UNUSED(cbdata), std::wstring message)
 	g_NetClient->SendChatMessage(message);
 }
 
+std::vector<CScriptValRooted> GetAIs(void* cbdata)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	return ICmpAIManager::GetAIs(guiManager->GetScriptInterface());
+}
+
 void OpenURL(void* UNUSED(cbdata), std::string url)
 {
 	sys_open_url(url);
@@ -426,6 +434,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, CScriptVal, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
 	scriptInterface.RegisterFunction<void, int, std::string, &AssignNetworkPlayer>("AssignNetworkPlayer");
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
+	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetAIs>("GetAIs");
 
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");

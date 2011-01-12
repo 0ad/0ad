@@ -129,7 +129,7 @@ public:
 
 	virtual std::string GetCurrentTemplateName(entity_id_t ent);
 
-	virtual std::vector<std::wstring> FindAllTemplates();
+	virtual std::vector<std::string> FindAllTemplates(bool includeActors);
 
 	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(std::string templateName);
 
@@ -360,7 +360,7 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 
 static LibError AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
-	std::vector<std::wstring>& templates = *(std::vector<std::wstring>*)cbData;
+	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 
 	// Strip the .xml extension
 	VfsPath pathstem = change_extension(pathname, L"");
@@ -371,28 +371,28 @@ static LibError AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(f
 	if (name.substr(0, 9) == L"template_")
 		return INFO::OK;
 
-	templates.push_back(name);
+	templates.push_back(std::string(name.begin(), name.end()));
 	return INFO::OK;
 }
 
 static LibError AddActorToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
-	std::vector<std::wstring>& templates = *(std::vector<std::wstring>*)cbData;
+	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 
 	// Strip the root from the path
 	std::wstring name = pathname.string().substr(ARRAY_SIZE(ACTOR_ROOT)-1);
 
-	templates.push_back(L"actor|" + name);
+	templates.push_back("actor|" + std::string(name.begin(), name.end()));
 	return INFO::OK;
 }
 
-std::vector<std::wstring> CCmpTemplateManager::FindAllTemplates()
+std::vector<std::string> CCmpTemplateManager::FindAllTemplates(bool includeActors)
 {
 	// TODO: eventually this should probably read all the template files and look for flags to
 	// determine which should be displayed in the editor (and in what categories etc); for now we'll
 	// just return all the files
 
-	std::vector<std::wstring> templates;
+	std::vector<std::string> templates;
 
 	LibError ok;
 
@@ -400,9 +400,12 @@ std::vector<std::wstring> CCmpTemplateManager::FindAllTemplates()
 	ok = fs_util::ForEachFile(g_VFS, TEMPLATE_ROOT, AddToTemplates, (uintptr_t)&templates, L"*.xml", fs_util::DIR_RECURSIVE);
 	WARN_ERR(ok);
 
-	// Add all the actors too
-	ok = fs_util::ForEachFile(g_VFS, ACTOR_ROOT, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", fs_util::DIR_RECURSIVE);
-	WARN_ERR(ok);
+	if (includeActors)
+	{
+		// Add all the actors too
+		ok = fs_util::ForEachFile(g_VFS, ACTOR_ROOT, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", fs_util::DIR_RECURSIVE);
+		WARN_ERR(ok);
+	}
 
 	return templates;
 }
