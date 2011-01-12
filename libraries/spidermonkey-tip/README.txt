@@ -9,6 +9,7 @@ revision a4ed852d402a
 plus the patch https://bug610228.bugzilla.mozilla.org/attachment.cgi?id=489277
 plus the patch https://bug613089.bugzilla.mozilla.org/attachment.cgi?id=491381
 plus the patch https://bug617596.bugzilla.mozilla.org/attachment.cgi?id=496149
+plus the patch https://bug609024.bugzilla.mozilla.org/attachment.cgi?id=491526
 
 The game must be compiled with precisely this version, and must not use a
 standard system-provided version of the library, since SpiderMonkey does not
