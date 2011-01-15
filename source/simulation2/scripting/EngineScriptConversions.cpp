@@ -192,3 +192,18 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, jsval 
 
 	return true;
 }
+
+template<> jsval ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, const CFixedVector2D& val)
+{
+	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	if (!obj)
+		return JSVAL_VOID;
+
+	jsval x = ToJSVal(cx, val.X);
+	jsval y = ToJSVal(cx, val.Y);
+
+	JS_SetProperty(cx, obj, "x", &x);
+	JS_SetProperty(cx, obj, "y", &y);
+
+	return OBJECT_TO_JSVAL(obj);
+}

@@ -29,7 +29,7 @@ class TestScriptInterface : public CxxTest::TestSuite
 public:
 	void test_loadscript_basic()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
 		TS_ASSERT(script.LoadScript(L"test.js", L"var x = 1+1;"));
 		TS_ASSERT_WSTR_NOT_CONTAINS(logger.GetOutput(), L"JavaScript error");
@@ -38,7 +38,7 @@ public:
 
 	void test_loadscript_error()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", L"1+"));
 		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript error: test.js line 1\nSyntaxError: syntax error");
@@ -46,7 +46,7 @@ public:
 
 	void test_loadscript_strict_warning()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
 		TS_ASSERT(script.LoadScript(L"test.js", L"1+1;"));
 		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript warning: test.js line 1\nuseless expression");
@@ -54,7 +54,7 @@ public:
 
 	void test_loadscript_strict_error()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", L"with(1){}"));
 		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
@@ -62,8 +62,8 @@ public:
 
 	void test_clone_basic()
 	{
-		ScriptInterface script1("Test");
-		ScriptInterface script2("Test");
+		ScriptInterface script1("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script2("Test", "Test", ScriptInterface::CreateRuntime());
 
 		CScriptVal obj1;
 		TS_ASSERT(script1.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", obj1));
@@ -79,8 +79,8 @@ public:
 	{
 		// The tests should be run with JS_SetGCZeal so this can try to find GC bugs
 
-		ScriptInterface script1("Test");
-		ScriptInterface script2("Test");
+		ScriptInterface script1("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script2("Test", "Test", ScriptInterface::CreateRuntime());
 
 		CScriptVal obj1;
 		TS_ASSERT(script1.Eval("var s = '?'; var v = ({get x() { return 123 }, 'y': {'w':{get z() { delete v.y; delete v.n; v = null; s += s; return 4 }}}, 'n': 100}); v", obj1));
@@ -94,8 +94,8 @@ public:
 
 	void test_clone_cyclic()
 	{
-		ScriptInterface script1("Test");
-		ScriptInterface script2("Test");
+		ScriptInterface script1("Test", "Test", ScriptInterface::CreateRuntime());
+		ScriptInterface script2("Test", "Test", ScriptInterface::CreateRuntime());
 
 		CScriptVal obj1;
 		TS_ASSERT(script1.Eval("var x = []; x[0] = x; ({'a': x, 'b': x})", obj1));
@@ -109,7 +109,7 @@ public:
 
 	void test_random()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 
 		double d1, d2;
 		TS_ASSERT(script.Eval("Math.random()", d1));
@@ -129,7 +129,7 @@ public:
 
 	void test_json()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 
 		std::string input = "({'x':1,'z':[2,'3\\u263A\\ud800'],\"y\":true})";
 		CScriptValRooted val;

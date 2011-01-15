@@ -24,7 +24,6 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "simulation2/components/ICmpAIInterface.h"
-#include "simulation2/components/ICmpAIProxy.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/serialization/DebugSerializer.h"
@@ -50,6 +49,8 @@
  * will block until it's actually completed, so the rest of the engine should avoid
  * reading it for as long as possible.
  *
+ * JS values are passed between the game and AI threads using ScriptInterface::StructuredClone.
+ *
  * TODO: actually the thread isn't implemented yet, because performance hasn't been
  * sufficiently problematic to justify the complexity yet, but the CAIWorker interface
  * is designed to hopefully support threading when we want it.
@@ -58,37 +59,157 @@
 class CAIWorker
 {
 private:
-	struct SAIPlayer
+	class CAIPlayer
 	{
-		std::wstring aiName;
-		player_id_t player;
-		CScriptValRooted obj;
-	};
+		NONCOPYABLE(CAIPlayer);
+	public:
+		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player,
+				const shared_ptr<ScriptRuntime>& runtime, boost::rand48& rng) :
+			m_Worker(worker), m_AIName(aiName), m_Player(player), m_ScriptInterface("Engine", "AI", runtime)
+		{
+			m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
-	struct SCommands
-	{
-		player_id_t player;
-		std::vector<CScriptValRooted> commands;
+			m_ScriptInterface.ReplaceNondeterministicFunctions(rng);
+
+			m_ScriptInterface.RegisterFunction<void, std::wstring, CAIPlayer::IncludeModule>("IncludeModule");
+			m_ScriptInterface.RegisterFunction<void, CScriptValRooted, CAIPlayer::PostCommand>("PostCommand");
+		}
+
+		~CAIPlayer()
+		{
+			// Clean up rooted objects before destroying their script context
+			m_Obj = CScriptValRooted();
+		}
+
+		static void IncludeModule(void* cbdata, std::wstring name)
+		{
+			CAIPlayer* self = static_cast<CAIPlayer*> (cbdata);
+
+			self->LoadScripts(name);
+		}
+
+		static void PostCommand(void* cbdata, CScriptValRooted cmd)
+		{
+			CAIPlayer* self = static_cast<CAIPlayer*> (cbdata);
+
+			self->m_Commands.push_back(self->m_ScriptInterface.WriteStructuredClone(cmd.get()));
+		}
+
+		bool LoadScripts(const std::wstring& moduleName)
+		{
+			// Ignore modules that are already loaded
+			if (m_LoadedModules.find(moduleName) != m_LoadedModules.end())
+				return true;
+
+			// Mark this as loaded, to prevent it recursively loading itself
+			m_LoadedModules.insert(moduleName);
+
+			// Load and execute *.js
+			VfsPaths pathnames;
+			fs_util::GetPathnames(g_VFS, L"simulation/ai/" + moduleName + L"/", L"*.js", pathnames);
+			for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+			{
+				if (!m_ScriptInterface.LoadGlobalScriptFile(*it))
+				{
+					LOGERROR(L"Failed to load script %ls", it->string().c_str());
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		bool Initialise(bool callConstructor)
+		{
+			if (!LoadScripts(m_AIName))
+				return false;
+
+			std::wstring path = L"simulation/ai/" + m_AIName + L"/data.json";
+			CScriptValRooted metadata = m_Worker.LoadMetadata(path);
+			if (metadata.uninitialised())
+			{
+				LOGERROR(L"Failed to create AI player: can't find %ls", path.c_str());
+				return false;
+			}
+
+			// Get the constructor name from the metadata
+			std::string constructor;
+			if (!m_ScriptInterface.GetProperty(metadata.get(), "constructor", constructor))
+			{
+				LOGERROR(L"Failed to create AI player: %ls: missing 'constructor'", path.c_str());
+				return false;
+			}
+
+			// Get the constructor function from the loaded scripts
+			CScriptVal ctor;
+			if (!m_ScriptInterface.GetProperty(m_ScriptInterface.GetGlobalObject(), constructor.c_str(), ctor)
+				|| ctor.undefined())
+			{
+				LOGERROR(L"Failed to create AI player: %ls: can't find constructor '%hs'", path.c_str(), constructor.c_str());
+				return false;
+			}
+
+			CScriptVal obj;
+
+			if (callConstructor)
+			{
+				// Set up the data to pass as the constructor argument
+				CScriptVal settings;
+				m_ScriptInterface.Eval(L"({})", settings);
+				m_ScriptInterface.SetProperty(settings.get(), "player", m_Player, false);
+				m_ScriptInterface.SetProperty(settings.get(), "templates", m_Worker.m_EntityTemplates, false);
+
+				obj = m_ScriptInterface.CallConstructor(ctor.get(), settings.get());
+			}
+			else
+			{
+				// For deserialization, we want to create the object with the correct prototype
+				// but don't want to actually run the constructor again
+				obj = m_ScriptInterface.NewObjectFromConstructor(ctor.get());
+			}
+
+			if (obj.undefined())
+			{
+				LOGERROR(L"Failed to create AI player: %ls: error calling constructor '%hs'", path.c_str(), constructor.c_str());
+				return false;
+			}
+
+			m_Obj = CScriptValRooted(m_ScriptInterface.GetContext(), obj);
+			return true;
+		}
+
+		void Run(CScriptVal state)
+		{
+			m_Commands.clear();
+			m_ScriptInterface.CallFunctionVoid(m_Obj.get(), "HandleMessage", state);
+		}
+
+		CAIWorker& m_Worker;
+		std::wstring m_AIName;
+		player_id_t m_Player;
+
+		ScriptInterface m_ScriptInterface;
+		CScriptValRooted m_Obj;
+		std::vector<shared_ptr<ScriptInterface::StructuredClone> > m_Commands;
+		std::set<std::wstring> m_LoadedModules;
 	};
 
 public:
-	struct SReturnedCommands
+	struct SCommandSets
 	{
 		player_id_t player;
-		std::vector<std::string> commands;
+		std::vector<shared_ptr<ScriptInterface::StructuredClone> > commands;
 	};
 
 	CAIWorker() :
-		m_ScriptInterface("Engine", "AI"),
-		m_CommandsComputed(true),
-		m_CurrentlyComputingPlayer(-1)
+		m_ScriptRuntime(ScriptInterface::CreateRuntime()),
+		m_ScriptInterface("Engine", "AI", m_ScriptRuntime),
+		m_CommandsComputed(true)
 	{
 		m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
 		// TODO: ought to seed the RNG (in a network-synchronised way) before we use it
 		m_ScriptInterface.ReplaceNondeterministicFunctions(m_RNG);
-
-		m_ScriptInterface.RegisterFunction<void, CScriptValRooted, CAIWorker::PostCommand>("PostCommand");
 	}
 
 	~CAIWorker()
@@ -97,70 +218,20 @@ public:
 		m_EntityTemplates = CScriptValRooted();
 		m_PlayerMetadata.clear();
 		m_Players.clear();
-		m_Commands.clear();
 	}
 
 	bool AddPlayer(const std::wstring& aiName, player_id_t player, bool callConstructor)
 	{
-		std::wstring path = L"simulation/ai/" + aiName + L"/data.json";
-		CScriptValRooted metadata = LoadPlayerFiles(aiName, path);
-		if (metadata.uninitialised())
-		{
-			LOGERROR(L"Failed to create AI player: can't find %ls", path.c_str());
+		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, m_ScriptRuntime, m_RNG));
+		if (!ai->Initialise(callConstructor))
 			return false;
-		}
 
-		// Get the constructor name from the metadata
-		std::string constructor;
-		if (!m_ScriptInterface.GetProperty(metadata.get(), "constructor", constructor))
-		{
-			LOGERROR(L"Failed to create AI player: %ls: missing 'constructor'", path.c_str());
-			return false;
-		}
-
-		// Get the constructor function from the loaded scripts
-		CScriptVal ctor;
-		if (!m_ScriptInterface.GetProperty(m_ScriptInterface.GetGlobalObject(), constructor.c_str(), ctor)
-			|| ctor.undefined())
-		{
-			LOGERROR(L"Failed to create AI player: %ls: can't find constructor '%hs'", path.c_str(), constructor.c_str());
-			return false;
-		}
-
-		CScriptVal obj;
-
-		if (callConstructor)
-		{
-			// Set up the data to pass as the constructor argument
-			CScriptVal settings;
-			m_ScriptInterface.Eval(L"({})", settings);
-			m_ScriptInterface.SetProperty(settings.get(), "player", player, false);
-			m_ScriptInterface.SetProperty(settings.get(), "templates", m_EntityTemplates, false);
-
-			obj = m_ScriptInterface.CallConstructor(ctor.get(), settings.get());
-		}
-		else
-		{
-			// For deserialization, we want to create the object with the correct prototype
-			// but don't want to actually run the constructor again
-			obj = m_ScriptInterface.NewObjectFromConstructor(ctor.get());
-		}
-
-		if (obj.undefined())
-		{
-			LOGERROR(L"Failed to create AI player: %ls: error calling constructor '%hs'", path.c_str(), constructor.c_str());
-			return false;
-		}
-
-		SAIPlayer ai;
-		ai.aiName = aiName;
-		ai.player = player;
-		ai.obj = CScriptValRooted(m_ScriptInterface.GetContext(), obj);
 		m_Players.push_back(ai);
+
 		return true;
 	}
 
-	void StartComputation(const std::string& gameState)
+	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState)
 	{
 		debug_assert(m_CommandsComputed);
 
@@ -178,26 +249,16 @@ public:
 		}
 	}
 
-	void GetCommands(std::vector<SReturnedCommands>& commands)
+	void GetCommands(std::vector<SCommandSets>& commands)
 	{
 		WaitToFinishComputation();
 
 		commands.clear();
-		commands.resize(m_Commands.size());
-		for (size_t i = 0; i < m_Commands.size(); ++i)
+		commands.resize(m_Players.size());
+		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
-			commands[i].player = m_Commands[i].player;
-			commands[i].commands.resize(m_Commands[i].commands.size());
-			for (size_t j = 0; j < m_Commands[i].commands.size(); ++j)
-			{
-				// Serialize the returned command, so that it's safe to transfer
-				// across threads (in the future when we actually run AI in a
-				// background thread)
-				std::stringstream stream;
-				CStdSerializer serializer(m_ScriptInterface, stream);
-				serializer.ScriptVal("command", m_Commands[i].commands[j]);
-				commands[i].commands[j] = stream.str();
-			}
+			commands[i].player = m_Players[i]->m_Player;
+			commands[i].commands = m_Players[i]->m_Commands;
 		}
 	}
 
@@ -239,17 +300,16 @@ public:
 
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
-			serializer.String("name", m_Players[i].aiName, 0, 256);
-			serializer.NumberI32_Unbounded("player", m_Players[i].player);
-			serializer.ScriptVal("data", m_Players[i].obj);
-		}
+			serializer.String("name", m_Players[i]->m_AIName, 0, 256);
+			serializer.NumberI32_Unbounded("player", m_Players[i]->m_Player);
+			serializer.ScriptVal("data", m_Players[i]->m_Obj);
 
-		serializer.NumberU32_Unbounded("num ai commands", m_Commands.size());
-
-		for (size_t i = 0; i < m_Commands.size(); ++i)
-		{
-			serializer.NumberI32_Unbounded("player", m_Commands[i].player);
-			SerializeVector<SerializeScriptVal>()(serializer, "commands", m_Commands[i].commands);
+			serializer.NumberU32_Unbounded("num commands", m_Players[i]->m_Commands.size());
+			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
+			{
+				CScriptVal val = m_ScriptInterface.ReadStructuredClone(m_Players[i]->m_Commands[j]);
+				serializer.ScriptVal("command", val);
+			}
 		}
 	}
 
@@ -261,7 +321,6 @@ public:
 
 		m_PlayerMetadata.clear();
 		m_Players.clear();
-		m_Commands.clear();
 
 		uint32_t numAis;
 		deserializer.NumberU32_Unbounded("num ais", numAis);
@@ -277,37 +336,27 @@ public:
 
 			// Use ScriptObjectAppend so we don't lose the carefully-constructed
 			// prototype/parent of this object
-			deserializer.ScriptObjectAppend("data", m_Players.back().obj.getRef());
-		}
+			deserializer.ScriptObjectAppend("data", m_Players.back()->m_Obj.getRef());
 
-		uint32_t numCommands;
-		deserializer.NumberU32_Unbounded("num ai commands", numCommands);
-
-		m_Commands.resize(numCommands);
-		for (size_t i = 0; i < numCommands; ++i)
-		{
-			deserializer.NumberI32_Unbounded("player", m_Commands[i].player);
-			SerializeVector<SerializeScriptVal>()(deserializer, "commands", m_Commands[i].commands);
+			uint32_t numCommands;
+			deserializer.NumberU32_Unbounded("num commands", numCommands);
+			m_Players.back()->m_Commands.reserve(numCommands);
+			for (size_t j = 0; j < numCommands; ++j)
+			{
+				CScriptVal val;
+				deserializer.ScriptVal("command", val);
+				m_Players.back()->m_Commands.push_back(m_ScriptInterface.WriteStructuredClone(val.get()));
+			}
 		}
 	}
 
 private:
-	CScriptValRooted LoadPlayerFiles(const std::wstring& aiName, const std::wstring& path)
+	CScriptValRooted LoadMetadata(const std::wstring& path)
 	{
 		if (m_PlayerMetadata.find(path) == m_PlayerMetadata.end())
 		{
 			// Load and cache the AI player metadata
 			m_PlayerMetadata[path] = m_ScriptInterface.ReadJSONFile(path);
-
-			// TODO: includes
-
-			// Load and execute *.js
-			VfsPaths pathnames;
-			fs_util::GetPathnames(g_VFS, L"simulation/ai/" + aiName + L"/", L"*.js", pathnames);
-			for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
-			{
-				m_ScriptInterface.LoadGlobalScriptFile(*it);
-			}
 		}
 
 		return m_PlayerMetadata[path];
@@ -317,55 +366,30 @@ private:
 	{
 		PROFILE("AI compute");
 
-		m_Commands.clear();
-
 		// Deserialize the game state, to pass to the AI's HandleMessage
-		CScriptVal state;
+		CScriptVal state = m_ScriptInterface.ReadStructuredClone(m_GameState);
 
-		{
-//			TIMER(L"deserialize AI game state");
-			std::stringstream stream(m_GameState);
-			CStdDeserializer deserializer(m_ScriptInterface, stream);
-			deserializer.ScriptVal("state", state);
-		}
-
-		m_ScriptInterface.FreezeObject(state.get(), true);
-
-		m_Commands.resize(m_Players.size());
+		// It would be nice to do
+		//   m_ScriptInterface.FreezeObject(state.get(), true);
+		// to prevent AI scripts accidentally modifying the state and
+		// affecting other AI scripts they share it with. But the performance
+		// cost is far too high, so we won't do that.
 
 		for (size_t i = 0; i < m_Players.size(); ++i)
-		{
-			m_Commands[i].player = m_Players[i].player;
-
-			m_CurrentlyComputingPlayer = i;
-			m_ScriptInterface.CallFunctionVoid(m_Players[i].obj.get(), "HandleMessage", state);
-			// (This script will probably call PostCommand)
-		}
-
-		m_CurrentlyComputingPlayer = -1;
+			m_Players[i]->Run(state);
 	}
 
-	static void PostCommand(void* cbdata, CScriptValRooted cmd)
-	{
-		CAIWorker* self = static_cast<CAIWorker*> (cbdata);
-
-		debug_assert(self->m_CurrentlyComputingPlayer >= 0); // called outside of PerformComputation somehow
-
-		self->m_Commands[self->m_CurrentlyComputingPlayer].commands.push_back(cmd);
-	}
-
+	shared_ptr<ScriptRuntime> m_ScriptRuntime;
 	ScriptInterface m_ScriptInterface;
 	boost::rand48 m_RNG;
 
 	CScriptValRooted m_EntityTemplates;
 	std::map<std::wstring, CScriptValRooted> m_PlayerMetadata;
-	std::vector<SAIPlayer> m_Players;
+	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
 
-	std::string m_GameState;
+	shared_ptr<ScriptInterface::StructuredClone> m_GameState;
 
 	bool m_CommandsComputed;
-	std::vector<SCommands> m_Commands;
-	int m_CurrentlyComputingPlayer; // used so PostCommand knows what player the command is for
 };
 
 
@@ -424,45 +448,17 @@ public:
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSimContext(), SYSTEM_ENTITY);
 		debug_assert(!cmpAIInterface.null());
 
-		// Get most of the game state from AIInterface
+		// Get the game state from AIInterface
 		CScriptVal state = cmpAIInterface->GetRepresentation();
 
-		// Get entity state from each entity:
-
-		CScriptVal entities;
-		scriptInterface.Eval(L"({})", entities);
-
-		const std::map<entity_id_t, IComponent*>& ents = GetSimContext().GetComponentManager().GetEntitiesWithInterface(IID_AIProxy);
-
-		for (std::map<entity_id_t, IComponent*>::const_iterator it = ents.begin(); it != ents.end(); ++it)
-		{
-			// Skip local entities
-			if (ENTITY_IS_LOCAL(it->first))
-				continue;
-
-			CScriptVal rep = static_cast<ICmpAIProxy*>(it->second)->GetRepresentation();
-
-			scriptInterface.SetPropertyInt(entities.get(), it->first, rep, true);
-		}
-
-		// Add the entities state into the object returned by AIInterface
-		scriptInterface.SetProperty(state.get(), "entities", entities, true);
-
-		// Serialize the state representation, so that it's safe to transfer
-		// across threads (in the future when we actually run AI in a
-		// background thread)
-		std::stringstream stream;
-		CStdSerializer serializer(scriptInterface, stream);
-		serializer.ScriptVal("state", state);
-
-		m_Worker.StartComputation(stream.str());
+		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()));
 	}
 
 	virtual void PushCommands()
 	{
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 
-		std::vector<CAIWorker::SReturnedCommands> commands;
+		std::vector<CAIWorker::SCommandSets> commands;
 		m_Worker.GetCommands(commands);
 
 		CmpPtr<ICmpCommandQueue> cmpCommandQueue(GetSimContext(), SYSTEM_ENTITY);
@@ -473,11 +469,8 @@ public:
 		{
 			for (size_t j = 0; j < commands[i].commands.size(); ++j)
 			{
-				std::stringstream stream(commands[i].commands[j]);
-				CStdDeserializer deserializer(scriptInterface, stream);
-				CScriptVal cmd;
-				deserializer.ScriptVal("command", cmd);
-				cmpCommandQueue->PushLocalCommand(commands[i].player, cmd);
+				cmpCommandQueue->PushLocalCommand(commands[i].player,
+					scriptInterface.ReadStructuredClone(commands[i].commands[j]));
 			}
 		}
 	}

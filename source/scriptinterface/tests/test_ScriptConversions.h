@@ -30,7 +30,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	template <typename T>
 	void convert_to(const T& value, const std::string& expected)
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
 
 		jsval v1 = ScriptInterface::ToJSVal(cx, value);
@@ -46,7 +46,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 	template <typename T>
 	void roundtrip(const T& value, const char* expected)
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
 
 		jsval v1 = ScriptInterface::ToJSVal(cx, value);
@@ -121,7 +121,7 @@ public:
 
 	void test_integers()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
 
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 0)));
@@ -144,7 +144,7 @@ public:
 		roundtrip<float>(-INFINITY, "-Infinity");
 		convert_to<float>(NAN, "NaN"); // can't use roundtrip since nan != nan
 
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
 
 		float f = 0;

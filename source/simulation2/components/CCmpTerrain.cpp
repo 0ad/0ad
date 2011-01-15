@@ -69,6 +69,8 @@ public:
 
 	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z)
 	{
+		// TODO: this can crash if the terrain heightmap isn't initialised yet
+
 		return m_Terrain->GetExactGroundLevelFixed(x, z);
 	}
 

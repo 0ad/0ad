@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,18 +48,94 @@ const int STACK_CHUNK_SIZE = 8192;
 
 ////////////////////////////////////////////////////////////////
 
+class ScriptRuntime
+{
+public:
+	ScriptRuntime() :
+		m_rooter(NULL)
+	{
+		m_rt = JS_NewRuntime(RUNTIME_SIZE);
+		debug_assert(m_rt); // TODO: error handling
+
+#if ENABLE_SCRIPT_PROFILING
+		// Profiler isn't thread-safe, so only enable this on the main thread
+		if (ThreadUtil::IsMainThread())
+		{
+			if (CProfileManager::IsInitialised())
+			{
+				JS_SetExecuteHook(m_rt, jshook_script, this);
+				JS_SetCallHook(m_rt, jshook_function, this);
+			}
+		}
+#endif
+
+		JS_SetExtraGCRoots(m_rt, jshook_trace, this);
+	}
+
+	~ScriptRuntime()
+	{
+		JS_DestroyRuntime(m_rt);
+	}
+
+	JSRuntime* m_rt;
+	AutoGCRooter* m_rooter;
+
+private:
+
+#if ENABLE_SCRIPT_PROFILING
+	static void* jshook_script(JSContext* UNUSED(cx), JSStackFrame* UNUSED(fp), JSBool before, JSBool* UNUSED(ok), void* closure)
+	{
+		if (before)
+			g_Profiler.StartScript("script invocation");
+		else
+			g_Profiler.Stop();
+
+		return closure;
+	}
+
+	static void* jshook_function(JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure)
+	{
+		JSFunction* fn = JS_GetFrameFunction(cx, fp);
+		if (before)
+		{
+			if (fn)
+				g_Profiler.StartScript(JS_GetFunctionName(fn));
+			else
+				g_Profiler.StartScript("function invocation");
+		}
+		else
+			g_Profiler.Stop();
+
+		return closure;
+	}
+#endif
+
+	static void jshook_trace(JSTracer* trc, void* data)
+	{
+		ScriptRuntime* m = static_cast<ScriptRuntime*>(data);
+
+		if (m->m_rooter)
+			m->m_rooter->Trace(trc);
+	}
+};
+
+shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime()
+{
+	return shared_ptr<ScriptRuntime>(new ScriptRuntime);
+}
+
+////////////////////////////////////////////////////////////////
+
 struct ScriptInterface_impl
 {
-	ScriptInterface_impl(const char* nativeScopeName, JSContext* cx);
+	ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime);
 	~ScriptInterface_impl();
 	void Register(const char* name, JSNative fptr, uintN nargs);
 
-	JSRuntime* m_rt; // NULL if m_cx is shared; non-NULL if we own m_cx
+	shared_ptr<ScriptRuntime> m_runtime;
 	JSContext* m_cx;
 	JSObject* m_glob; // global scope object
 	JSObject* m_nativeScope; // native function scope object
-
-	AutoGCRooter* m_rooter;
 };
 
 namespace
@@ -202,103 +278,41 @@ JSBool Math_random(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 
 } // anonymous namespace
 
-#if ENABLE_SCRIPT_PROFILING
-static void* jshook_script(JSContext* UNUSED(cx), JSStackFrame* UNUSED(fp), JSBool before, JSBool* UNUSED(ok), void* closure)
-{
-	if (before)
-		g_Profiler.StartScript("script invocation");
-	else
-		g_Profiler.Stop();
-
-	return closure;
-}
-
-static void* jshook_function(JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure)
-{
-	JSFunction* fn = JS_GetFrameFunction(cx, fp);
-	if (before)
-	{
-		if (fn)
-			g_Profiler.StartScript(JS_GetFunctionName(fn));
-		else
-			g_Profiler.StartScript("function invocation");
-	}
-	else
-		g_Profiler.Stop();
-
-	return closure;
-}
-#endif
-
-void jshook_trace(JSTracer* trc, void* data)
-{
-	ScriptInterface_impl* m = static_cast<ScriptInterface_impl*>(data);
-
-	if (m->m_rooter)
-		m->m_rooter->Trace(trc);
-}
-
-ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContext* cx) :
-	m_rooter(NULL)
+ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime) :
+	m_runtime(runtime)
 {
 	JSBool ok;
 
-	if (cx)
-	{
-		m_rt = NULL;
-		m_cx = cx;
-		m_glob = JS_GetGlobalObject(m_cx);
-	}
-	else
-	{
-		m_rt = JS_NewRuntime(RUNTIME_SIZE);
-		debug_assert(m_rt); // TODO: error handling
+	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
+	debug_assert(m_cx);
 
-#if ENABLE_SCRIPT_PROFILING
-		// Profiler isn't thread-safe, so only enable this on the main thread
-		if (ThreadUtil::IsMainThread())
-		{
-			if (CProfileManager::IsInitialised())
-			{
-				JS_SetExecuteHook(m_rt, jshook_script, this);
-				JS_SetCallHook(m_rt, jshook_function, this);
-			}
-		}
-#endif
+	// For GC debugging:
+	// JS_SetGCZeal(m_cx, 2);
 
-		m_cx = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
-		debug_assert(m_cx);
+	JS_SetContextPrivate(m_cx, NULL);
 
-		// For GC debugging:
-		// JS_SetGCZeal(m_cx, 2);
+	JS_SetErrorReporter(m_cx, ErrorReporter);
 
-		JS_SetContextPrivate(m_cx, NULL);
+	JS_SetOptions(m_cx, JSOPTION_STRICT // "warn on dubious practice"
+			| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
+			| JSOPTION_VAROBJFIX // "recommended" (fixes variable scoping)
 
-		JS_SetErrorReporter(m_cx, ErrorReporter);
+			// Enable all the JIT features:
+//			| JSOPTION_JIT
+//			| JSOPTION_METHODJIT
+//			| JSOPTION_PROFILING
+	);
 
-		JS_SetOptions(m_cx, JSOPTION_STRICT // "warn on dubious practice"
-				| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
-				| JSOPTION_VAROBJFIX // "recommended" (fixes variable scoping)
+	JS_SetVersion(m_cx, JSVERSION_LATEST);
 
-				// Enable all the JIT features:
-//				| JSOPTION_JIT
-//				| JSOPTION_METHODJIT
-//				| JSOPTION_PROFILING
-		);
+	// Threadsafe SpiderMonkey requires that we have a request before doing anything much
+	JS_BeginRequest(m_cx);
 
-		JS_SetVersion(m_cx, JSVERSION_LATEST);
+	m_glob = JS_NewGlobalObject(m_cx, &global_class);
+	ok = JS_InitStandardClasses(m_cx, m_glob);
 
-		JS_SetExtraGCRoots(m_rt, jshook_trace, this);
-
-		// Threadsafe SpiderMonkey requires that we have a request before doing anything much
-		JS_BeginRequest(m_cx);
-
-		m_glob = JS_NewGlobalObject(m_cx, &global_class);
-		ok = JS_InitStandardClasses(m_cx, m_glob);
-
-		JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
-				| JSPROP_PERMANENT);
-	}
+	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
+			| JSPROP_PERMANENT);
 
 	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
@@ -311,12 +325,8 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, JSContex
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
-	if (m_rt) // if we own the context:
-	{
-		JS_EndRequest(m_cx);
-		JS_DestroyContext(m_cx);
-		JS_DestroyRuntime(m_rt);
-	}
+	JS_EndRequest(m_cx);
+	JS_DestroyContext(m_cx);
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
@@ -324,8 +334,8 @@ void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs
 	JS_DefineFunction(m_cx, m_nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 }
 
-ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName) :
-	m(new ScriptInterface_impl(nativeScopeName, NULL))
+ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime) :
+	m(new ScriptInterface_impl(nativeScopeName, runtime))
 {
 	// Profiler stats table isn't thread-safe, so only enable this on the main thread
 	if (ThreadUtil::IsMainThread())
@@ -391,14 +401,13 @@ JSContext* ScriptInterface::GetContext() const
 
 JSRuntime* ScriptInterface::GetRuntime() const
 {
-	return m->m_rt;
+	return m->m_runtime->m_rt;
 }
 
 AutoGCRooter* ScriptInterface::ReplaceAutoGCRooter(AutoGCRooter* rooter)
 {
-	debug_assert(m->m_rt); // this class must own the runtime, else the rooter won't work
-	AutoGCRooter* ret = m->m_rooter;
-	m->m_rooter = rooter;
+	AutoGCRooter* ret = m->m_runtime->m_rooter;
+	m->m_runtime->m_rooter = rooter;
 	return ret;
 }
 
@@ -821,9 +830,9 @@ void ScriptInterface::DumpHeap()
 #ifdef DEBUG
 	JS_DumpHeap(m->m_cx, stderr, NULL, 0, NULL, (size_t)-1, NULL);
 #endif
-	fprintf(stderr, "# Bytes allocated: %d\n", JS_GetGCParameter(m->m_rt, JSGC_BYTES));
+	fprintf(stderr, "# Bytes allocated: %d\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
 	JS_GC(m->m_cx);
-	fprintf(stderr, "# Bytes allocated after GC: %d\n", JS_GetGCParameter(m->m_rt, JSGC_BYTES));
+	fprintf(stderr, "# Bytes allocated after GC: %d\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
 }
 
 void ScriptInterface::MaybeGC()
@@ -947,4 +956,37 @@ jsval ScriptInterface::CloneValueFromOtherContext(ScriptInterface& otherContext,
 
 	ValueCloner cloner(otherContext, *this);
 	return cloner.GetOrClone(val);
+}
+
+ScriptInterface::StructuredClone::StructuredClone() :
+	m_Data(NULL), m_Size(0)
+{
+}
+
+ScriptInterface::StructuredClone::~StructuredClone()
+{
+	if (m_Data)
+		js_free(m_Data);
+}
+
+shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(jsval v)
+{
+	uint64* data = NULL;
+	size_t nbytes = 0;
+	if (!JS_WriteStructuredClone(m->m_cx, v, &data, &nbytes))
+		return shared_ptr<StructuredClone>();
+	// TODO: should we have better error handling?
+	// Currently we'll probably continue and then crash in ReadStructuredClone
+
+	shared_ptr<StructuredClone> ret (new StructuredClone);
+	ret->m_Data = data;
+	ret->m_Size = nbytes;
+	return ret;
+}
+
+jsval ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr)
+{
+	jsval ret = JSVAL_VOID;
+	JS_ReadStructuredClone(m->m_cx, ptr->m_Data, ptr->m_Size, &ret);
+	return ret;
 }

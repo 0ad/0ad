@@ -22,7 +22,7 @@ GarrisonHolder.prototype.Schema =
  */
 GarrisonHolder.prototype.Init = function()
 {
-	//Garrisoned Units
+	// Garrisoned Units
 	this.entities = [];
 	this.spaceOccupied = 0;
 	this.timer = undefined;

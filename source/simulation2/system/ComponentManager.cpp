@@ -52,7 +52,8 @@ public:
 };
 
 CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFunctions) :
-	m_NextScriptComponentTypeId(CID__LastNative), m_ScriptInterface("Engine", "Simulation"),
+	m_NextScriptComponentTypeId(CID__LastNative),
+	m_ScriptInterface("Engine", "Simulation", ScriptInterface::CreateRuntime()),
 	m_SimContext(context), m_CurrentlyHotloading(false)
 {
 	context.SetComponentManager(this);
@@ -72,6 +73,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 		m_ScriptInterface.RegisterFunction<void, std::string, CScriptVal, CComponentManager::Script_RegisterGlobal> ("RegisterGlobal");
 		m_ScriptInterface.RegisterFunction<IComponent*, int, int, CComponentManager::Script_QueryInterface> ("QueryInterface");
 		m_ScriptInterface.RegisterFunction<std::vector<int>, int, CComponentManager::Script_GetEntitiesWithInterface> ("GetEntitiesWithInterface");
+		m_ScriptInterface.RegisterFunction<std::vector<IComponent*>, int, CComponentManager::Script_GetComponentsWithInterface> ("GetComponentsWithInterface");
 		m_ScriptInterface.RegisterFunction<void, int, int, CScriptVal, CComponentManager::Script_PostMessage> ("PostMessage");
 		m_ScriptInterface.RegisterFunction<void, int, CScriptVal, CComponentManager::Script_BroadcastMessage> ("BroadcastMessage");
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
@@ -349,7 +351,18 @@ std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(void* cbdata
 	std::vector<int> ret;
 	const std::map<entity_id_t, IComponent*>& ents = componentManager->GetEntitiesWithInterface(iid);
 	for (std::map<entity_id_t, IComponent*>::const_iterator it = ents.begin(); it != ents.end(); ++it)
-		ret.push_back(it->first);
+		ret.push_back(it->first); // TODO: maybe we should exclude local entities
+	return ret;
+}
+
+std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(void* cbdata, int iid)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	std::vector<IComponent*> ret;
+	const std::map<entity_id_t, IComponent*>& ents = componentManager->GetEntitiesWithInterface(iid);
+	for (std::map<entity_id_t, IComponent*>::const_iterator it = ents.begin(); it != ents.end(); ++it)
+		ret.push_back(it->second); // TODO: maybe we should exclude local entities
 	return ret;
 }
 

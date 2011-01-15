@@ -189,7 +189,7 @@ void CReplayPlayer::Replay()
 //			std::string hash;
 //			bool ok = game.GetSimulation2()->ComputeStateHash(hash);
 //			debug_assert(ok);
-//			debug_printf(L"%hs\n", Hexify(hash).c_str());
+//			debug_printf(L"%hs", Hexify(hash).c_str());
 
 			debug_printf(L"\n");
 

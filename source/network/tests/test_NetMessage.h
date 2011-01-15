@@ -26,7 +26,7 @@ class TestNetMessage : public CxxTest::TestSuite
 public:
 	void test_sim()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		CScriptValRooted val;
 		script.Eval("[4]", val);
 		CSimulationMessage msg(script, 1, 2, 3, val.get());

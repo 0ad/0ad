@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,6 +48,8 @@ namespace boost { class rand48; }
 
 struct ScriptInterface_impl;
 
+class ScriptRuntime;
+
 /**
  * Abstraction around a SpiderMonkey JSContext.
  *
@@ -61,13 +63,19 @@ class ScriptInterface
 public:
 
 	/**
+	 * Returns a runtime, which can used to initialise any number of
+	 * ScriptInterfaces contexts. Values created in one context may be used
+	 * in any other context from the same runtime (but not any other runtime).
+	 * Each runtime should only ever be used on a single thread.
+	 */
+	static shared_ptr<ScriptRuntime> CreateRuntime();
+
+	/**
 	 * Constructor.
 	 * @param nativeScopeName Name of global object that functions (via RegisterFunction) will
 	 *   be placed into, as a scoping mechanism; typically "Engine"
-	 * @param cx NULL if the object should create and manage its own context; otherwise
-	 *   an existing context which it will share
 	 */
-	ScriptInterface(const char* nativeScopeName, const char* debugName = "Unknown");
+	ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime);
 
 	~ScriptInterface();
 
@@ -262,6 +270,26 @@ public:
 	void DumpHeap();
 
 	void MaybeGC();
+
+	/**
+	 * Structured clones are a way to serialize 'simple' JS values into a buffer
+	 * that can safely be passed between contexts and runtimes and threads.
+	 * A StructuredClone can be stored and read multiple times if desired.
+	 * We wrap them in shared_ptr so memory management is automatic and
+	 * thread-safe.
+	 */
+	class StructuredClone
+	{
+		NONCOPYABLE(StructuredClone);
+	public:
+		StructuredClone();
+		~StructuredClone();
+		uint64* m_Data;
+		size_t m_Size;
+	};
+
+	shared_ptr<StructuredClone> WriteStructuredClone(jsval v);
+	jsval ReadStructuredClone(const shared_ptr<StructuredClone>& ptr);
 
 private:
 	bool CallFunction_(jsval val, const char* name, size_t argc, jsval* argv, jsval& ret);

@@ -172,14 +172,26 @@ CMessage* CMessageOwnershipChanged::FromJSVal(ScriptInterface& scriptInterface, 
 
 ////////////////////////////////
 
-jsval CMessagePositionChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+jsval CMessagePositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
-	return JSVAL_VOID;
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(entity);
+	SET_MSG_PROPERTY(inWorld);
+	SET_MSG_PROPERTY(x);
+	SET_MSG_PROPERTY(z);
+	SET_MSG_PROPERTY(a);
+	return OBJECT_TO_JSVAL(obj);
 }
 
-CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
-	return NULL;
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(entity_id_t, entity);
+	GET_MSG_PROPERTY(bool, inWorld);
+	GET_MSG_PROPERTY(entity_pos_t, x);
+	GET_MSG_PROPERTY(entity_pos_t, z);
+	GET_MSG_PROPERTY(entity_angle_t, a);
+	return new CMessagePositionChanged(entity, inWorld, x, z, a);
 }
 
 ////////////////////////////////

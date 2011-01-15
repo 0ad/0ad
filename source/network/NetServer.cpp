@@ -179,7 +179,7 @@ void CNetServerWorker::Run()
 {
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
-	m_ScriptInterface = new ScriptInterface("Engine", "Net server");
+	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime());
 
 	while (true)
 	{

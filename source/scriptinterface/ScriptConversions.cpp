@@ -261,3 +261,9 @@ VECTOR(u32)
 VECTOR(std::string)
 VECTOR(std::wstring)
 VECTOR(CScriptValRooted)
+
+class IComponent;
+template<> jsval ScriptInterface::ToJSVal<std::vector<IComponent*> >(JSContext* cx, const std::vector<IComponent*>& val)
+{
+	return ToJSVal_vector(cx, val);
+}

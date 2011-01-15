@@ -40,7 +40,7 @@ public:
 	/**
 	 * Returns whether the value is JSVAL_VOID.
 	 */
-	bool undefined() const { return JSVAL_IS_VOID(m_Val); }
+	bool undefined() const { return JSVAL_IS_VOID(m_Val) ? true : false; }
 
 private:
 	jsval m_Val;

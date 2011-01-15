@@ -27,7 +27,7 @@ class TestScriptVal : public CxxTest::TestSuite
 public:
 	void test_rooting()
 	{
-		ScriptInterface script("Test");
+		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		JSContext* cx = script.GetContext();
 
 		JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);

@@ -21,6 +21,15 @@ AIInterface.prototype.GetRepresentation = function()
 	// Reset the event list for the next turn
 	this.events = [];
 
+	// Add entity representations
+	state.entities = {};
+	for each (var proxy in Engine.GetComponentsWithInterface(IID_AIProxy))
+	{
+		var rep = proxy.GetRepresentation();
+		if (rep !== null)
+			state.entities[proxy.entity] = rep;
+	}
+
 	return state;
 };
 
