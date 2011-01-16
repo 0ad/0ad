@@ -79,7 +79,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		m_Active = true;
 
@@ -101,7 +101,7 @@ public:
 		}
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -129,14 +129,14 @@ public:
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		SerializeCommon(deserialize);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
@@ -169,10 +169,10 @@ public:
 				break;
 
 			// Find the new player's colour
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(context, SYSTEM_ENTITY);
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
 			if (cmpPlayerManager.null())
 				break;
-			CmpPtr<ICmpPlayer> cmpPlayer(context, cmpPlayerManager->GetPlayerByID(msgData.to));
+			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
 			if (cmpPlayer.null())
 				break;
 			CColor colour = cmpPlayer->GetColour();

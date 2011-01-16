@@ -448,7 +448,7 @@ void CComponentManager::ResetState()
 		std::map<entity_id_t, IComponent*>::iterator eit = iit->second.begin();
 		for (; eit != iit->second.end(); ++eit)
 		{
-			eit->second->Deinit(m_SimContext);
+			eit->second->Deinit();
 			m_ComponentTypesById[iit->first].dealloc(eit->second);
 		}
 	}
@@ -567,7 +567,7 @@ bool CComponentManager::AddComponent(entity_id_t ent, ComponentTypeId cid, const
 	if (!component)
 		return false;
 
-	component->Init(m_SimContext, paramNode);
+	component->Init(paramNode);
 	return true;
 }
 
@@ -704,7 +704,7 @@ void CComponentManager::FlushDestroyedComponents()
 			std::map<entity_id_t, IComponent*>::iterator eit = iit->second.find(ent);
 			if (eit != iit->second.end())
 			{
-				eit->second->Deinit(m_SimContext);
+				eit->second->Deinit();
 				m_ComponentTypesById[iit->first].dealloc(eit->second);
 				iit->second.erase(ent);
 			}
@@ -769,7 +769,7 @@ void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg) const
 			// Send the message to all of them
 			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.find(ent);
 			if (eit != emap->second.end())
-				eit->second->HandleMessage(m_SimContext, msg, false);
+				eit->second->HandleMessage(msg, false);
 		}
 	}
 
@@ -794,7 +794,7 @@ void CComponentManager::BroadcastMessage(const CMessage& msg) const
 			// Send the message to all of them
 			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.begin();
 			for (; eit != emap->second.end(); ++eit)
-				eit->second->HandleMessage(m_SimContext, msg, false);
+				eit->second->HandleMessage(msg, false);
 		}
 	}
 
@@ -831,7 +831,7 @@ void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg) 
 			// Send the message to all of them
 			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.begin();
 			for (; eit != emap->second.end(); ++eit)
-				eit->second->HandleMessage(m_SimContext, msg, true);
+				eit->second->HandleMessage(msg, true);
 		}
 	}
 }

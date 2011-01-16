@@ -194,15 +194,15 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode);
+	virtual void Init(const CParamNode& paramNode);
 
-	virtual void Deinit(const CSimContext& context);
+	virtual void Deinit();
 
 	virtual void Serialize(ISerializer& serialize);
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize);
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize);
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool global);
+	virtual void HandleMessage(const CMessage& msg, bool global);
 
 	virtual u8 GetPassabilityClass(const std::string& name);
 
@@ -257,7 +257,7 @@ public:
 	 */
 	void UpdateGrid();
 
-	void RenderSubmit(const CSimContext& context, SceneCollector& collector);
+	void RenderSubmit(SceneCollector& collector);
 };
 
 #endif // INCLUDED_CCMPPATHFINDER_COMMON

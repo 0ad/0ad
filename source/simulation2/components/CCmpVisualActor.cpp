@@ -94,11 +94,11 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		m_Unit = NULL;
 
-		if (!context.HasUnitManager())
+		if (!GetSimContext().HasUnitManager())
 			return; // do nothing if graphics are disabled
 
 		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
@@ -111,7 +111,7 @@ public:
 		m_R = m_G = m_B = fixed::FromInt(1);
 
 		std::set<CStr> selections;
-		m_Unit = context.GetUnitManager().CreateUnit(m_ActorName, selections);
+		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, selections);
 		if (!m_Unit)
 		{
 			// The error will have already been logged
@@ -123,11 +123,11 @@ public:
 		SelectAnimation("idle", false, 0.f, L"");
 	}
 
-	virtual void Deinit(const CSimContext& context)
+	virtual void Deinit()
 	{
 		if (m_Unit)
 		{
-			context.GetUnitManager().DeleteUnit(m_Unit);
+			GetSimContext().GetUnitManager().DeleteUnit(m_Unit);
 			m_Unit = NULL;
 		}
 	}
@@ -155,16 +155,16 @@ public:
 		serialize.NumberFixed_Unbounded("b", m_B);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		deserialize.NumberFixed_Unbounded("r", m_R);
 		deserialize.NumberFixed_Unbounded("g", m_G);
 		deserialize.NumberFixed_Unbounded("b", m_B);
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		// Quick exit for running in non-graphical mode
 		if (m_Unit == NULL)

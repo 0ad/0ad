@@ -46,16 +46,16 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_DisableValidation = false;
 
-		m_Validator.LoadGrammar(context.GetComponentManager().GenerateSchema());
+		m_Validator.LoadGrammar(GetSimContext().GetComponentManager().GenerateSchema());
 		// TODO: handle errors loading the grammar here?
 		// TODO: support hotloading changes to the grammar
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -84,9 +84,9 @@ public:
 		// template data before other components (like the tech components) have been deserialized
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		u32 numEntities;
 		deserialize.NumberU32_Unbounded("num entities", numEntities);
@@ -100,7 +100,7 @@ public:
 		}
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

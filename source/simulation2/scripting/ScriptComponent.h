@@ -38,12 +38,12 @@ public:
 
 	jsval GetInstance() const { return m_Instance.get(); }
 
-	void Init(const CSimContext& context, const CParamNode& paramNode, entity_id_t ent);
-	void Deinit(const CSimContext& context);
-	void HandleMessage(const CSimContext& context, const CMessage& msg, bool global);
+	void Init(const CParamNode& paramNode, entity_id_t ent);
+	void Deinit();
+	void HandleMessage(const CMessage& msg, bool global);
 
 	void Serialize(ISerializer& serialize);
-	void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent);
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent);
 
 	// Use Boost.PP to define:
 	//   template<typename R> R Call(const char* funcname);

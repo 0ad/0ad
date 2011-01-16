@@ -134,7 +134,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_DebugOverlayEnabled = false;
 		m_DebugOverlayDirty = true;
@@ -153,7 +153,7 @@ public:
 		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -184,21 +184,21 @@ public:
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		SerializeCommon(deserialize);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
 		case MT_RenderSubmit:
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(context, msgData.collector);
+			RenderSubmit(msgData.collector);
 			break;
 		}
 		}
@@ -408,7 +408,7 @@ public:
 			m_DebugOverlayLines.clear();
 	}
 
-	void RenderSubmit(const CSimContext& context, SceneCollector& collector);
+	void RenderSubmit(SceneCollector& collector);
 
 private:
 	// To support lazy updates of grid rasterisations of obstruction data,
@@ -773,7 +773,7 @@ bool CCmpObstructionManager::FindMostImportantObstruction(const IObstructionTest
 	return false;
 }
 
-void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneCollector& collector)
+void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 {
 	if (!m_DebugOverlayEnabled)
 		return;
@@ -789,7 +789,7 @@ void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneColle
 
 		m_DebugOverlayLines.push_back(SOverlayLine());
 		m_DebugOverlayLines.back().m_Color = boundsColour;
-		SimRender::ConstructSquareOnGround(context,
+		SimRender::ConstructSquareOnGround(GetSimContext(),
 				(m_WorldX0+m_WorldX1).ToFloat()/2.f, (m_WorldZ0+m_WorldZ1).ToFloat()/2.f,
 				(m_WorldX1-m_WorldX0).ToFloat(), (m_WorldZ1-m_WorldZ0).ToFloat(),
 				0, m_DebugOverlayLines.back(), true);
@@ -798,7 +798,7 @@ void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneColle
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
 			m_DebugOverlayLines.back().m_Color = (it->second.moving ? movingColour : defaultColour);
-			SimRender::ConstructSquareOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat()*2, it->second.r.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
+			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat()*2, it->second.r.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
 		}
 
 		for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
@@ -806,7 +806,7 @@ void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneColle
 			m_DebugOverlayLines.push_back(SOverlayLine());
 			m_DebugOverlayLines.back().m_Color = defaultColour;
 			float a = atan2(it->second.v.X.ToFloat(), it->second.v.Y.ToFloat());
-			SimRender::ConstructSquareOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.hw.ToFloat()*2, it->second.hh.ToFloat()*2, a, m_DebugOverlayLines.back(), true);
+			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.hw.ToFloat()*2, it->second.hh.ToFloat()*2, a, m_DebugOverlayLines.back(), true);
 		}
 
 		m_DebugOverlayDirty = false;

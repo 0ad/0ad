@@ -96,7 +96,7 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		std::wstring anchor = paramNode.GetChild("Anchor").ToString();
 		if (anchor == L"pitch")
@@ -117,7 +117,7 @@ public:
 		m_InterpolatedRotY = 0;
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -152,9 +152,9 @@ public:
 		}
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		deserialize.Bool("in world", m_InWorld);
 		if (m_InWorld)
@@ -363,7 +363,7 @@ public:
 		return mXZ;
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

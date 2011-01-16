@@ -408,12 +408,12 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		LoadEntityTemplates();
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -427,9 +427,9 @@ public:
 		m_Worker.Serialize(serialize.GetStream(), serialize.IsDebug());
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		m_Worker.Deserialize(deserialize.GetStream());
 	}

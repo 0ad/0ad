@@ -209,7 +209,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_QueryNext = 1;
 
@@ -227,7 +227,7 @@ public:
 		m_TerrainVerticesPerSide = 0;
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -256,9 +256,9 @@ public:
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		SerializeCommon(deserialize);
 
@@ -266,7 +266,7 @@ public:
 		ResetDerivedData();
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

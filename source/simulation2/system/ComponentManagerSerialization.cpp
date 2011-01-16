@@ -277,9 +277,9 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 
 			// Deserialize, with the appropriate template for this component
 			if (entTemplate)
-				component->Deserialize(m_SimContext, entTemplate->GetChild(ctname.c_str()), deserializer);
+				component->Deserialize(entTemplate->GetChild(ctname.c_str()), deserializer);
 			else
-				component->Deserialize(m_SimContext, noParam, deserializer);
+				component->Deserialize(noParam, deserializer);
 
 			// If this was the template manager, remember it so we can use it when
 			// deserializing any further non-system entities

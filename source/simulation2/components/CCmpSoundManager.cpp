@@ -42,11 +42,11 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 		for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
 			delete it->second;
@@ -59,12 +59,12 @@ public:
 		// (If we add music support in here then we might want to save the music state, though)
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

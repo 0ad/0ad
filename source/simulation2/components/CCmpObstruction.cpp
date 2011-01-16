@@ -83,7 +83,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		if (paramNode.GetChild("Unit").IsOk())
 		{
@@ -107,7 +107,7 @@ public:
 		m_ControlGroup = GetEntityId();
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -124,14 +124,14 @@ public:
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		SerializeCommon(deserialize);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
@@ -145,7 +145,7 @@ public:
 			if (!data.inWorld && !m_Tag.valid())
 				break; // nothing needs to change
 
-			CmpPtr<ICmpObstructionManager> cmpObstructionManager(context, SYSTEM_ENTITY);
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 			if (cmpObstructionManager.null())
 				break;
 
@@ -172,7 +172,7 @@ public:
 		{
 			if (m_Tag.valid())
 			{
-				CmpPtr<ICmpObstructionManager> cmpObstructionManager(context, SYSTEM_ENTITY);
+				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 				if (cmpObstructionManager.null())
 					break;
 

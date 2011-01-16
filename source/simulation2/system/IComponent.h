@@ -37,10 +37,10 @@ public:
 
 	static std::string GetSchema();
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode) = 0;
-	virtual void Deinit(const CSimContext& context) = 0;
+	virtual void Init(const CParamNode& paramNode) = 0;
+	virtual void Deinit() = 0;
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool global);
+	virtual void HandleMessage(const CMessage& msg, bool global);
 
 	entity_id_t GetEntityId() const { return m_EntityId; }
 	void SetEntityId(entity_id_t ent) { m_EntityId = ent; }
@@ -50,7 +50,7 @@ public:
 
 	static u8 GetSerializationVersion() { return 0; }
 	virtual void Serialize(ISerializer& serialize) = 0;
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize) = 0;
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) = 0;
 
 	virtual JSClass* GetJSClass() const;
 	virtual jsval GetJSInstance() const;

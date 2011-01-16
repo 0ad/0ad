@@ -79,7 +79,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		m_Active = !paramNode.GetChild("Inactive").IsOk();
 		m_DelayTime = paramNode.GetChild("DelayTime").ToFixed().ToFloat();
@@ -97,7 +97,7 @@ public:
 		}
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -106,12 +106,12 @@ public:
 		// This component isn't network-synchronised, so don't serialize anything
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

@@ -42,12 +42,12 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
-		m_Terrain = &context.GetTerrain();
+		m_Terrain = &GetSimContext().GetTerrain();
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -55,9 +55,9 @@ public:
 	{
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 	}
 
 	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z)

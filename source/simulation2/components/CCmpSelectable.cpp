@@ -60,11 +60,11 @@ public:
 			"<empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -74,11 +74,11 @@ public:
 		// reconstructed by the GUI soon enough, I think)
 	}
 
-	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& UNUSED(deserialize))
 	{
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
@@ -87,7 +87,7 @@ public:
 			if (m_Overlay.m_Color.a > 0)
 			{
 				float offset = static_cast<const CMessageInterpolate&> (msg).offset;
-				ConstructShape(context, offset);
+				ConstructShape(offset);
 			}
 			break;
 		}
@@ -119,9 +119,9 @@ public:
 		// TODO: it'd be nice to fade smoothly (but quickly) from transparent to solid
 	}
 
-	void ConstructShape(const CSimContext& context, float frameOffset)
+	void ConstructShape(float frameOffset)
 	{
-		CmpPtr<ICmpPosition> cmpPosition(context, GetEntityId());
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null())
 			return;
 
@@ -131,11 +131,11 @@ public:
 		float x, z, rotY;
 		cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
-		CmpPtr<ICmpFootprint> cmpFootprint(context, GetEntityId());
+		CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
 		if (cmpFootprint.null())
 		{
 			// Default (this probably shouldn't happen) - just render an arbitrary-sized circle
-			SimRender::ConstructCircleOnGround(context, x, z, 2.f, m_Overlay, cmpPosition->IsFloating());
+			SimRender::ConstructCircleOnGround(GetSimContext(), x, z, 2.f, m_Overlay, cmpPosition->IsFloating());
 		}
 		else
 		{
@@ -144,9 +144,9 @@ public:
 			cmpFootprint->GetShape(shape, size0, size1, height);
 
 			if (shape == ICmpFootprint::SQUARE)
-				SimRender::ConstructSquareOnGround(context, x, z, size0.ToFloat(), size1.ToFloat(), rotY, m_Overlay, cmpPosition->IsFloating());
+				SimRender::ConstructSquareOnGround(GetSimContext(), x, z, size0.ToFloat(), size1.ToFloat(), rotY, m_Overlay, cmpPosition->IsFloating());
 			else
-				SimRender::ConstructCircleOnGround(context, x, z, size0.ToFloat(), m_Overlay, cmpPosition->IsFloating());
+				SimRender::ConstructCircleOnGround(GetSimContext(), x, z, size0.ToFloat(), m_Overlay, cmpPosition->IsFloating());
 		}
 	}
 

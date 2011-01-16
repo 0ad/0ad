@@ -270,7 +270,7 @@ public:
 	 * TODO: the running/charging thing needs to be designed and implemented
 	 */
 
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		m_FormationController = paramNode.GetChild("FormationController").ToBool();
 
@@ -286,14 +286,14 @@ public:
 			m_RunSpeed = m_WalkSpeed;
 		}
 
-		CmpPtr<ICmpPathfinder> cmpPathfinder(context, SYSTEM_ENTITY);
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpPathfinder.null())
 		{
 			m_PassClass = cmpPathfinder->GetPassabilityClass(paramNode.GetChild("PassabilityClass").ToASCIIString());
 			m_CostClass = cmpPathfinder->GetCostClass(paramNode.GetChild("CostClass").ToASCIIString());
 		}
 
-		CmpPtr<ICmpObstruction> cmpObstruction(context, GetEntityId());
+		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), GetEntityId());
 		if (!cmpObstruction.null())
 			m_Radius = cmpObstruction->GetUnitRadius();
 
@@ -309,7 +309,7 @@ public:
 		m_DebugOverlayEnabled = false;
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -344,14 +344,14 @@ public:
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 
 		SerializeCommon(deserialize);
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

@@ -40,7 +40,7 @@ const int DEFAULT_MOVE_COST = 256;
 
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
-void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 {
 	m_MapSize = 0;
 	m_Grid = NULL;
@@ -125,7 +125,7 @@ void CCmpPathfinder::Init(const CSimContext& UNUSED(context), const CParamNode& 
 	}
 }
 
-void CCmpPathfinder::Deinit(const CSimContext& UNUSED(context))
+void CCmpPathfinder::Deinit()
 {
 	SetDebugOverlay(false); // cleans up memory
 	ResetDebugPath();
@@ -174,23 +174,23 @@ void CCmpPathfinder::Serialize(ISerializer& serialize)
 	serialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
 }
 
-void CCmpPathfinder::Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+void CCmpPathfinder::Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 {
-	Init(context, paramNode);
+	Init(paramNode);
 
 	SerializeVector<SerializeLongRequest>()(deserialize, "long requests", m_AsyncLongPathRequests);
 	SerializeVector<SerializeShortRequest>()(deserialize, "short requests", m_AsyncShortPathRequests);
 	deserialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
 }
 
-void CCmpPathfinder::HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 {
 	switch (msg.GetType())
 	{
 	case MT_RenderSubmit:
 	{
 		const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-		RenderSubmit(context, msgData.collector);
+		RenderSubmit(msgData.collector);
 		break;
 	}
 	case MT_TerrainChanged:
@@ -202,7 +202,7 @@ void CCmpPathfinder::HandleMessage(const CSimContext& context, const CMessage& m
 	}
 }
 
-void CCmpPathfinder::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector)
+void CCmpPathfinder::RenderSubmit(SceneCollector& collector)
 {
 	for (size_t i = 0; i < m_DebugOverlayShortPathLines.size(); ++i)
 		collector.Submit(&m_DebugOverlayShortPathLines[i]);

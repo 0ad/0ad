@@ -29,7 +29,7 @@ std::string IComponent::GetSchema()
 	return "<empty/>";
 }
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
+void IComponent::HandleMessage(const CMessage& UNUSED(msg), bool UNUSED(global))
 {
 }
 

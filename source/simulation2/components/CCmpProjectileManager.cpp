@@ -54,11 +54,11 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -69,25 +69,25 @@ public:
 		// (That means projectiles will vanish if you save/load - is that okay?)
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
 		case MT_Interpolate:
 		{
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
-			Interpolate(context, msgData.frameTime, msgData.offset);
+			Interpolate(msgData.frameTime, msgData.offset);
 			break;
 		}
 		case MT_RenderSubmit:
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(context, msgData.collector, msgData.frustum, msgData.culling);
+			RenderSubmit(msgData.collector, msgData.frustum, msgData.culling);
 			break;
 		}
 		}
@@ -119,11 +119,11 @@ private:
 
 	void LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, fixed speed, fixed gravity);
 
-	void AdvanceProjectile(const CSimContext& context, Projectile& projectile, float dt, float frameOffset);
+	void AdvanceProjectile(Projectile& projectile, float dt, float frameOffset);
 
-	void Interpolate(const CSimContext& context, float frameTime, float frameOffset);
+	void Interpolate(float frameTime, float frameOffset);
 
-	void RenderSubmit(const CSimContext& context, SceneCollector& collector, const CFrustum& frustum, bool culling);
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
 
 REGISTER_COMPONENT_TYPE(ProjectileManager)
@@ -199,7 +199,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	m_Projectiles.push_back(projectile);
 }
 
-void CCmpProjectileManager::AdvanceProjectile(const CSimContext& context, Projectile& projectile, float dt, float frameOffset)
+void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, float frameOffset)
 {
 	// Do nothing if we've already reached the target
 	if (projectile.timeLeft <= 0)
@@ -212,7 +212,7 @@ void CCmpProjectileManager::AdvanceProjectile(const CSimContext& context, Projec
 	// Track the target entity (if there is one, and it's still alive)
 	if (projectile.targetEnt != INVALID_ENTITY)
 	{
-		CmpPtr<ICmpPosition> targetPos(context, projectile.targetEnt);
+		CmpPtr<ICmpPosition> targetPos(GetSimContext(), projectile.targetEnt);
 		if (!targetPos.null())
 		{
 			CMatrix3D t = targetPos->GetInterpolatedTransform(frameOffset, false);
@@ -271,11 +271,11 @@ void CCmpProjectileManager::AdvanceProjectile(const CSimContext& context, Projec
 	projectile.unit->GetModel().SetTransform(transform);
 }
 
-void CCmpProjectileManager::Interpolate(const CSimContext& context, float frameTime, float frameOffset)
+void CCmpProjectileManager::Interpolate(float frameTime, float frameOffset)
 {
 	for (size_t i = 0; i < m_Projectiles.size(); ++i)
 	{
-		AdvanceProjectile(context, m_Projectiles[i], frameTime, frameOffset);
+		AdvanceProjectile(m_Projectiles[i], frameTime, frameOffset);
 	}
 
 	// Remove the ones that have reached their target
@@ -304,7 +304,7 @@ void CCmpProjectileManager::Interpolate(const CSimContext& context, float frameT
 	}
 }
 
-void CCmpProjectileManager::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector, const CFrustum& frustum, bool culling)
+void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
 	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
 	int player = GetSimContext().GetCurrentDisplayedPlayer();

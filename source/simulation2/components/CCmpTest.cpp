@@ -41,7 +41,7 @@ public:
 		return "<a:component type='test'/><ref name='anything'/>";
 	}
 
-	virtual void Init(const CSimContext&, const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		if (paramNode.GetChild("x").IsOk())
 			m_x = paramNode.GetChild("x").ToInt();
@@ -49,7 +49,7 @@ public:
 			m_x = 11000;
 	}
 
-	virtual void Deinit(const CSimContext&)
+	virtual void Deinit()
 	{
 	}
 
@@ -58,7 +58,7 @@ public:
 		serialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
 		deserialize.NumberI32_Unbounded("x", m_x);
 	}
@@ -68,7 +68,7 @@ public:
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
@@ -105,12 +105,12 @@ public:
 		return "<a:component type='test'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext&, const CParamNode&)
+	virtual void Init(const CParamNode&)
 	{
 		m_x = 12000;
 	}
 
-	virtual void Deinit(const CSimContext&)
+	virtual void Deinit()
 	{
 	}
 
@@ -119,7 +119,7 @@ public:
 		serialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
 		deserialize.NumberI32_Unbounded("x", m_x);
 	}
@@ -129,7 +129,7 @@ public:
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
@@ -166,12 +166,12 @@ public:
 		return "<a:component type='test'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext&, const CParamNode&)
+	virtual void Init(const CParamNode&)
 	{
 		m_x = 21000;
 	}
 
-	virtual void Deinit(const CSimContext&)
+	virtual void Deinit()
 	{
 	}
 
@@ -180,7 +180,7 @@ public:
 		serialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
 		deserialize.NumberI32_Unbounded("x", m_x);
 	}
@@ -190,7 +190,7 @@ public:
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

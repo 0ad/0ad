@@ -30,19 +30,19 @@ CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, jsv
 	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance.get(), "Deserialize");
 }
 
-void CComponentTypeScript::Init(const CSimContext& UNUSED(context), const CParamNode& paramNode, entity_id_t ent)
+void CComponentTypeScript::Init(const CParamNode& paramNode, entity_id_t ent)
 {
 	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true, false);
 	m_ScriptInterface.SetProperty(m_Instance.get(), "template", paramNode, true, false);
 	m_ScriptInterface.CallFunctionVoid(m_Instance.get(), "Init");
 }
 
-void CComponentTypeScript::Deinit(const CSimContext& UNUSED(context))
+void CComponentTypeScript::Deinit()
 {
 	m_ScriptInterface.CallFunctionVoid(m_Instance.get(), "Deinit");
 }
 
-void CComponentTypeScript::HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool global)
+void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 {
 	const char* name = global ? msg.GetScriptGlobalHandlerName() : msg.GetScriptHandlerName();
 
@@ -69,7 +69,7 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 	}
 }
 
-void CComponentTypeScript::Deserialize(const CSimContext& UNUSED(context), const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent)
+void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent)
 {
 	// Support a custom "Deserialize" function, to which we pass the deserialized data
 	// instead of automatically adding the deserialized properties onto the object

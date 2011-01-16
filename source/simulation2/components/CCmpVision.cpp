@@ -49,14 +49,14 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
+	virtual void Init(const CParamNode& paramNode)
 	{
 		m_Range = paramNode.GetChild("Range").ToFixed();
 		m_RetainInFog = paramNode.GetChild("RetainInFog").ToBool();
 		m_AlwaysVisible = paramNode.GetChild("AlwaysVisible").ToBool();
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -65,9 +65,9 @@ public:
 		// No dynamic state to serialize
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 	}
 
 	virtual entity_pos_t GetRange()

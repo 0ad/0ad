@@ -60,25 +60,25 @@
 	{ \
 		return "<a:component type='script-wrapper'/><empty/>"; \
 	} \
-	virtual void Init(const CSimContext& context, const CParamNode& paramNode) \
+	virtual void Init(const CParamNode& paramNode) \
 	{ \
-		m_Script.Init(context, paramNode, GetEntityId()); \
+		m_Script.Init(paramNode, GetEntityId()); \
 	} \
-	virtual void Deinit(const CSimContext& context) \
+	virtual void Deinit() \
 	{ \
-		m_Script.Deinit(context); \
+		m_Script.Deinit(); \
 	} \
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool global) \
+	virtual void HandleMessage(const CMessage& msg, bool global) \
 	{ \
-		m_Script.HandleMessage(context, msg, global); \
+		m_Script.HandleMessage(msg, global); \
 	} \
 	virtual void Serialize(ISerializer& serialize) \
 	{ \
 		m_Script.Serialize(serialize); \
 	} \
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize) \
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) \
 	{ \
-		m_Script.Deserialize(context, paramNode, deserialize, GetEntityId()); \
+		m_Script.Deserialize(paramNode, deserialize, GetEntityId()); \
 	} \
 	virtual jsval GetJSInstance() const \
 	{ \
@@ -89,16 +89,16 @@
 	public:
 
 #define DEFAULT_MOCK_COMPONENT() \
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode)) \
+	virtual void Init(const CParamNode& UNUSED(paramNode)) \
 	{ \
 	} \
-	virtual void Deinit(const CSimContext& UNUSED(context)) \
+	virtual void Deinit() \
 	{ \
 	} \
 	virtual void Serialize(ISerializer& UNUSED(serialize)) \
 	{ \
 	} \
-	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& UNUSED(deserialize)) \
+	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& UNUSED(deserialize)) \
 	{ \
 	} \
 

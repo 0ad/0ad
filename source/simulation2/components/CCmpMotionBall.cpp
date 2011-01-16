@@ -43,13 +43,13 @@ public:
 		return "<a:component type='test'/><ref name='anything'/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_SpeedX = 0;
 		m_SpeedZ = 0;
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -59,32 +59,32 @@ public:
 		serialize.NumberFloat_Unbounded("speed z", m_SpeedZ);
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
-		Init(context, paramNode);
+		Init(paramNode);
 		deserialize.NumberFloat_Unbounded("speed x", m_SpeedX);
 		deserialize.NumberFloat_Unbounded("speed z", m_SpeedZ);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
 		case MT_Update:
 		{
 			fixed dt = static_cast<const CMessageUpdate&> (msg).turnLength;
-			Move(context, dt);
+			Move(dt);
 			break;
 		}
 		}
 	}
 
-	void Move(const CSimContext& context, fixed dt);
+	void Move(fixed dt);
 };
 
-void CCmpMotionBall::Move(const CSimContext& context, fixed dt)
+void CCmpMotionBall::Move(fixed dt)
 {
-	CmpPtr<ICmpPosition> cmpPosition(context, GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (cmpPosition.null())
 		return;
 
@@ -95,7 +95,7 @@ void CCmpMotionBall::Move(const CSimContext& context, fixed dt)
 	float z = pos.Z.ToFloat();
 
 	CVector3D normal;
-	context.GetTerrain().CalcNormal(x / CELL_SIZE, z / CELL_SIZE, normal);
+	GetSimContext().GetTerrain().CalcNormal(x / CELL_SIZE, z / CELL_SIZE, normal);
 	// Flatten the vector, to get the downhill force
 	float g = 10.f;
 	CVector3D force(g * normal.X, 0.f, g * normal.Z);

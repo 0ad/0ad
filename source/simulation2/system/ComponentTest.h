@@ -91,7 +91,7 @@ public:
 
 	void HandleMessage(IComponent* cmp, const CMessage& msg, bool global)
 	{
-		cmp->HandleMessage(m_Context, msg, global);
+		cmp->HandleMessage(msg, global);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public:
 		CStdDeserializer stdde2(test2.GetScriptInterface(), stdstr1);
 
 		IComponent* cmp2 = test2.m_ComponentManager.ConstructComponent(ent, m_Cid);
-		cmp2->Deserialize(test2.m_Context, m_Param.GetChild("test"), stdde2);
+		cmp2->Deserialize(m_Param.GetChild("test"), stdde2);
 
 		TS_ASSERT(stdstr1.peek() == EOF); // Deserialize must read whole stream
 

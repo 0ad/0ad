@@ -40,11 +40,11 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 	}
 
-	virtual void Deinit(const CSimContext& UNUSED(context))
+	virtual void Deinit()
 	{
 	}
 
@@ -58,19 +58,17 @@ public:
 		}
 	}
 
-	virtual void Deserialize(const CSimContext& context, const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		JSContext* cx = context.GetScriptInterface().GetContext();
-
 		u32 numCmds;
 		deserialize.NumberU32_Unbounded("num commands", numCmds);
 		for (size_t i = 0; i < numCmds; ++i)
 		{
 			i32 player;
-			jsval data;
+			CScriptValRooted data;
 			deserialize.NumberI32_Unbounded("player", player);
 			deserialize.ScriptVal("data", data);
-			SimulationCommand c = { player, CScriptValRooted(cx, data) };
+			SimulationCommand c = { player, data };
 			m_LocalQueue.push_back(c);
 		}
 	}
