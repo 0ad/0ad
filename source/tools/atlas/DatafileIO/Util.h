@@ -15,8 +15,12 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_UTIL
+#define INCLUDED_UTIL
+
 #include <string>
 #include <cassert>
+#include <stdint.h>
 
 #ifndef C_ASSERT
 #define C_ASSERT(e) typedef char __C_ASSERT__[(e)?1:-1]
@@ -56,3 +60,5 @@ namespace DatafileIO
 	utf16string wtoutf16(const std::wstring &str);
 #endif
 }
+
+#endif // INCLUDED_UTIL

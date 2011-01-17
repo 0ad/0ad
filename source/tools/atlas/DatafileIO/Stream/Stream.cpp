@@ -21,6 +21,7 @@
 
 #include <cassert>
 #include <string>
+#include <memory.h>
 
 using namespace DatafileIO;
 

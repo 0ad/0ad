@@ -25,6 +25,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <memory.h>
 
 using namespace DatafileIO;
 
@@ -95,7 +96,8 @@ Maybel33tInputStream::Maybel33tInputStream(SeekableInputStream* stream)
 	size_t bytes = stream->Read(head, 8);
 	if (bytes == 8 && strncmp(head, "l33t", 4) == 0)
 	{
-		size_t uncompressedSize = *(uint32_t*) &head[4];
+		uint32_t uncompressedSize;
+		memcpy(&uncompressedSize, &head[4], 4);
 
 		void* buffer;
 		size_t size;

@@ -26,6 +26,7 @@ namespace DatafileIO
 		// 'Release' provides common buffer-release mechanisms, called
 		// when this stream is destroyed
 		struct Releaser {
+			virtual ~Releaser() {}
 			virtual void release(char* buffer) = 0;
 		};
 		struct Releaser_None : public Releaser {

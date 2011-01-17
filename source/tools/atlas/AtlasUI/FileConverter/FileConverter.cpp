@@ -202,7 +202,7 @@ bool ConvertFiles(const wxArrayString& files, wxWindow* parent)
 			int ret = wxMessageBox(wxString::Format(_("Output file already exists: %s\nOverwrite file?"), targetFilename.c_str()), _("Overwrite?"), wxYES_NO|wxCANCEL);
 			if (ret == wxCANCEL) return false;
 			else if (ret == wxNO) continue;
-			else /* carry on converting */;
+			else { /* carry on converting */ }
 		}
 #endif
 

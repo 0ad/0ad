@@ -836,6 +836,7 @@ function setup_atlas_packages()
 		tinsert(atlas_src, "ArchiveViewer")
 		tinsert(atlas_src, "FileConverter")
 		tinsert(atlas_extra_links, "DatafileIO")
+		tinsert(atlas_extra_links, "xerces-c")
 	end
 
 	setup_atlas_package("AtlasUI", "dll", atlas_src,

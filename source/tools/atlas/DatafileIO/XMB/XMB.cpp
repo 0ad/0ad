@@ -525,13 +525,17 @@ class XeroBinInputStream : public BinInputStream
 {
 public:
 	XeroBinInputStream(InputStream& stream) : m_stream(stream) {}
-	virtual unsigned int curPos () const
+	virtual XMLFilePos curPos () const
 	{
 		return m_stream.Tell();
 	}
-	virtual unsigned int readBytes (XMLByte *const toFill, const unsigned int maxToRead)
+	virtual XMLSize_t readBytes (XMLByte *const toFill, const XMLSize_t maxToRead)
 	{
 		return (unsigned int)m_stream.Read(toFill, (unsigned int)maxToRead);
+	}
+	virtual const XMLCh* getContentType() const
+	{
+		return NULL;
 	}
 private:
 	InputStream& m_stream;

@@ -58,7 +58,9 @@ static void LoadDXT(int dxtType, unsigned char* oldData);
 static void SaveDXT(int dxtType); // saves the currently bound image
 static void SwizzleAGBR();
 #endif
+#ifdef USE_HACKED_DEVIL
 static void ToggleOrigin(); // urgh
+#endif
 
 bool DDTFile::Read(FileType type)
 {
@@ -170,7 +172,9 @@ bool DDTFile::Read(FileType type)
 			break;
 		}
 
+#ifdef USE_HACKED_DEVIL
 		ToggleOrigin(); // use this instead of iluFlip because we don't want to change the actual data
+#endif
 	}
 
 	else if (type == TGA)
@@ -241,7 +245,7 @@ struct ILOutputStream
 	{
 		return (void*)-1;
 	}
-	static ILvoid ILAPIENTRY Close(ILHANDLE)
+	static void ILAPIENTRY Close(ILHANDLE)
 	{
 	}
 	static ILint ILAPIENTRY Putc(ILubyte c, ILHANDLE)
@@ -271,9 +275,8 @@ extern "C" {
 	extern ILboolean ilSaveTargaF(ILHANDLE File);
 		// because DevIL doesn't want to write to things that aren't
 		// really files, so we have to use its internal writing functions
-	extern ILvoid iSetOutputFile(ILHANDLE File);
+	extern void iSetOutputFile(ILHANDLE File);
 }
-static void ToggleOrigin(); // urgh
 
 bool DDTFile::SaveFile(OutputStream& stream, FileType outputType)
 {
@@ -398,6 +401,7 @@ bool DDTFile::SaveFile(OutputStream& stream, FileType outputType)
 
 
 // Evilness:
+#ifdef USE_HACKED_DEVIL
 #include "IL/devil_internal_exports.h"
 extern "C"
 {
@@ -412,6 +416,7 @@ static void ToggleOrigin()
 {
 	iCurImage->Origin = (iCurImage->Origin == IL_ORIGIN_UPPER_LEFT ? IL_ORIGIN_LOWER_LEFT : IL_ORIGIN_UPPER_LEFT);
 }
+#endif
 
 #ifdef USE_DEVIL_DXT
 extern "C"
