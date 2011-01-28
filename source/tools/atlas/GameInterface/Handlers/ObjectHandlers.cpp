@@ -416,7 +416,6 @@ QUERYHANDLER(PickObject)
 		// Get screen coordinates of the point on the ground underneath the
 		// object's model-centre, so that callers know the offset to use when
 		// working out the screen coordinates to move the object to.
-		// (TODO: http://trac.wildfiregames.com/ticket/99)
 		
 		CVector3D centre = target->GetModel().GetTransform().GetTranslation();
 

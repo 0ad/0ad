@@ -28,6 +28,7 @@
 #include "graphics/Terrain.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
+#include "maths/Vector4D.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
@@ -192,10 +193,10 @@ void CCamera::GetScreenCoordinates(const CVector3D& world, float& x, float& y) c
 	m_Orientation.GetInverse(transform);
 	transform.Concatenate(m_ProjMat);
 
-	CVector3D screenspace = transform.Transform(world);
+	CVector4D screenspace = transform.Transform(CVector4D(world.X, world.Y, world.Z, 1.0f));
 
-	x = screenspace.X / screenspace.Z;
-	y = screenspace.Y / screenspace.Z;
+	x = screenspace.m_X / screenspace.m_W;
+	y = screenspace.m_Y / screenspace.m_W;
 	x = (x + 1) * 0.5f * g_Renderer.GetWidth();
 	y = (1 - y) * 0.5f * g_Renderer.GetHeight();
 }
