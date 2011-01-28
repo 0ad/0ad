@@ -202,7 +202,7 @@ DWORD_PTR wcpu_AffinityFromProcessorMask(DWORD_PTR processAffinity, uintptr_t pr
 	{
 		if(IsBitSet(processAffinity, processorNumber))
 		{
-			++processor;	// now corresponds to processorNumber
+			++processor;	// index among the affinity's set bits
 
 			if(IsBitSet(processorMask, processor))
 				affinity |= DWORD_PTR(1) << processorNumber;
@@ -236,8 +236,6 @@ uintptr_t wcpu_ProcessorMaskFromAffinity(DWORD_PTR processAffinity, DWORD_PTR af
 
 static void VerifyRunningOnCorrectProcessors(DWORD_PTR affinity)
 {
-	// note: we don't need to expose this to callers because the
-	// higher-level code ensures processor == omp_get_thread_num().
 	DWORD currentProcessor;
 
 	// note: NtGetCurrentProcessorNumber and RtlGetCurrentProcessorNumber aren't

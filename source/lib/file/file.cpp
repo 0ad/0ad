@@ -61,7 +61,7 @@ LibError Open(const fs::wpath& pathname, wchar_t accessType, int& fd)
 	const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;	// 0644
 	fd = wopen(pathname.string().c_str(), oflag, mode);
 	if(fd < 0)
-		return LibError_from_errno();
+		return LibError_from_errno(false);
 
 	stats_open();
 	return INFO::OK;
@@ -70,10 +70,10 @@ LibError Open(const fs::wpath& pathname, wchar_t accessType, int& fd)
 
 void Close(int& fd)
 {
-	if(fd)
+	if(fd >= 0)
 	{
 		wclose(fd);
-		fd = 0;
+		fd = -1;
 	}
 }
 

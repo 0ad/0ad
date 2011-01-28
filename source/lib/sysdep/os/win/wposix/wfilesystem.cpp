@@ -345,11 +345,11 @@ int wopen(const wchar_t* pathname, int oflag, mode_t mode_arg)
 	if(ret != 0)
 	{
 		errno = ret;
-		WARN_ERR(LibError_from_errno());
-		return -1;
+		return -1;	// NOWARN
 	}
 
-	WARN_ERR(waio_reopen(fd, pathname, oflag));
+	if(waio_reopen(fd, pathname, oflag) != INFO::OK)
+		return -1;
 
 	// CRT doesn't like more than 255 files open.
 	// warn now, so that we notice why so many are open.

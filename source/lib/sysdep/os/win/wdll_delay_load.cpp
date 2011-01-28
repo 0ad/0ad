@@ -460,8 +460,7 @@ static void UnloadAllDlls()
 			::FreeLibrary(hmod);
 			*phmod = NULL;
 
-			delete reinterpret_cast<ULI*> (pui);
-				// changes __puiHead!
+			delete (ULI*)pui; // changes __puiHead!
 		}
 }
 

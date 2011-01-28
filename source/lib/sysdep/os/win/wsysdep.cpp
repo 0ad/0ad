@@ -454,18 +454,18 @@ LibError sys_open_url(const std::string& url)
 	WARN_RETURN(ERR::FAIL);
 }
 
-LibError sys_generate_random_bytes(u8* buf, size_t count)
+LibError sys_generate_random_bytes(u8* buffer, size_t size)
 {
-	HCRYPTPROV hCryptProv;
+	HCRYPTPROV hCryptProv = 0;
+	if(!CryptAcquireContext(&hCryptProv, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT))
+		return LibError_from_GLE();
 
-	if(!CryptAcquireContext(&hCryptProv, NULL, NULL, PROV_RSA_FULL, 0))
-		WARN_RETURN(ERR::FAIL);
+	memset(buffer, 0, size);
+	if(!CryptGenRandom(hCryptProv, (DWORD)size, (BYTE*)buffer))
+		return LibError_from_GLE();
 
-	if(!CryptGenRandom(hCryptProv, (DWORD)count, buf))
-		WARN_RETURN(ERR::FAIL);
-
-	if (!CryptReleaseContext(hCryptProv, 0))
-		WARN_RETURN(ERR::FAIL);
+	if(!CryptReleaseContext(hCryptProv, 0))
+		return LibError_from_GLE();
 
 	return INFO::OK;
 }

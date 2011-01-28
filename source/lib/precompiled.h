@@ -48,9 +48,6 @@
 // disable some common and annoying warnings
 // must come after compiler.h, but as soon as possible so that
 // headers below are covered
-#if MSC_VERSION
-# pragma warning(push)
-#endif
 #include "lib/pch/pch_warnings.h"
 
 #if ICC_VERSION
@@ -108,8 +105,3 @@ using std::tr1::shared_ptr;
 #include "lib/pch/pch_stdlib.h"
 
 #endif // #if CONFIG_ENABLE_PCH && HAVE_PCH
-
-// restore temporarily-disabled warnings
-#if MSC_VERSION
-# pragma warning(pop)
-#endif

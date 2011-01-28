@@ -177,26 +177,41 @@ const u8* ApicIds()
 }
 
 
-// (if maxValues == 1, the field is zero-width and thus zero)
-static size_t ApicField(size_t apicId, size_t indexOfLowestBit, size_t maxValues)
+size_t ProcessorFromApicId(size_t apicId)
 {
-	const size_t numBits = ceil_log2(maxValues);
-	const size_t mask = bit_mask<size_t>(numBits);
-	return (apicId >> indexOfLowestBit) & mask;
+	const u8* apicIds = ApicIds();
+	const u8* end = apicIds + os_cpu_NumProcessors();
+	const u8* pos = std::find(apicIds, end, apicId);
+	if(pos == end)
+	{
+		debug_assert(0);
+		return 0;
+	}
+	return pos - apicIds;	// index
 }
+
+
+struct ApicField	// POD
+{
+	size_t operator()(size_t bits) const
+	{
+		return (bits >> shift) & mask;
+	}
+
+	size_t mask;	// zero for zero-width fields
+	size_t shift;
+};
 
 
 //-----------------------------------------------------------------------------
 // CPU topology interface
 
+
 struct CpuTopology	// POD
 {
-	size_t maxLogicalPerCore;
-	size_t maxCoresPerPackage;
-
-	size_t logicalOffset;
-	size_t coreOffset;
-	size_t packageOffset;
+	ApicField logical;
+	ApicField core;
+	ApicField package;
 
 	// how many are actually enabled
 	size_t logicalPerCore;
@@ -208,33 +223,42 @@ static ModuleInitState cpuInitState;
 
 static LibError InitCpuTopology()
 {
-	cpuTopology.maxLogicalPerCore = MaxLogicalPerCore();
-	cpuTopology.maxCoresPerPackage = MaxCoresPerPackage();
+	const size_t maxLogicalPerCore = MaxLogicalPerCore();
+	const size_t maxCoresPerPackage = MaxCoresPerPackage();
+	const size_t maxPackages = 256;	// "enough"
 
-	cpuTopology.logicalOffset = 0;
-	cpuTopology.coreOffset    = ceil_log2(cpuTopology.maxLogicalPerCore);
-	cpuTopology.packageOffset = cpuTopology.coreOffset + ceil_log2(cpuTopology.maxCoresPerPackage);
+	const size_t logicalWidth = ceil_log2(maxLogicalPerCore);
+	const size_t coreWidth    = ceil_log2(maxCoresPerPackage);
+	const size_t packageWidth = ceil_log2(maxPackages);
+
+	cpuTopology.logical.mask = bit_mask<size_t>(logicalWidth);
+	cpuTopology.core.mask    = bit_mask<size_t>(coreWidth);
+	cpuTopology.package.mask = bit_mask<size_t>(packageWidth);
+
+	cpuTopology.logical.shift = 0;
+	cpuTopology.core.shift    = logicalWidth;
+	cpuTopology.package.shift = logicalWidth + coreWidth;
 
 	const u8* apicIds = ApicIds();
 	if(apicIds)
 	{
 		struct NumUniqueValuesInField
 		{
-			size_t operator()(const u8* apicIds, size_t indexOfLowestBit, size_t numValues) const
+			size_t operator()(const u8* apicIds, const ApicField& apicField) const
 			{
 				std::set<size_t> values;
 				for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 				{
-					const size_t value = ApicField(apicIds[processor], indexOfLowestBit, numValues);
+					const size_t value = apicField(apicIds[processor]);
 					values.insert(value);
 				}
 				return values.size();
 			}
 		};
 
-		cpuTopology.logicalPerCore  = NumUniqueValuesInField()(apicIds, cpuTopology.logicalOffset, cpuTopology.maxLogicalPerCore);
-		cpuTopology.coresPerPackage = NumUniqueValuesInField()(apicIds, cpuTopology.coreOffset,    cpuTopology.maxCoresPerPackage);
-		cpuTopology.numPackages     = NumUniqueValuesInField()(apicIds, cpuTopology.packageOffset, 256);
+		cpuTopology.logicalPerCore  = NumUniqueValuesInField()(apicIds, cpuTopology.logical);
+		cpuTopology.coresPerPackage = NumUniqueValuesInField()(apicIds, cpuTopology.core);
+		cpuTopology.numPackages     = NumUniqueValuesInField()(apicIds, cpuTopology.package);
 	}
 	else // the processor lacks an xAPIC, or the IDs are invalid
 	{
@@ -254,20 +278,20 @@ static LibError InitCpuTopology()
 		// we can't differentiate between cores and logical processors.
 		// since the former are less likely to be disabled, we seek the
 		// maximum feasible number of cores and minimal number of packages:
-		const size_t minPackages = MinPackages()(cpuTopology.maxCoresPerPackage, cpuTopology.maxLogicalPerCore);
+		const size_t minPackages = MinPackages()(maxCoresPerPackage, maxLogicalPerCore);
 		const size_t numProcessors = os_cpu_NumProcessors();
 		for(size_t numPackages = minPackages; numPackages <= numProcessors; numPackages++)
 		{
 			if(numProcessors % numPackages != 0)
 				continue;
 			const size_t logicalPerPackage = numProcessors / numPackages;
-			const size_t minCoresPerPackage = DivideRoundUp(logicalPerPackage, cpuTopology.maxLogicalPerCore);
-			for(size_t coresPerPackage = cpuTopology.maxCoresPerPackage; coresPerPackage >= minCoresPerPackage; coresPerPackage--)
+			const size_t minCoresPerPackage = DivideRoundUp(logicalPerPackage, maxLogicalPerCore);
+			for(size_t coresPerPackage = maxCoresPerPackage; coresPerPackage >= minCoresPerPackage; coresPerPackage--)
 			{
 				if(logicalPerPackage % coresPerPackage != 0)
 					continue;
 				const size_t logicalPerCore = logicalPerPackage / coresPerPackage;
-				if(logicalPerCore <= cpuTopology.maxLogicalPerCore)
+				if(logicalPerCore <= maxLogicalPerCore)
 				{
 					debug_assert(numProcessors == numPackages*coresPerPackage*logicalPerCore);
 					cpuTopology.logicalPerCore = logicalPerCore;
@@ -305,19 +329,37 @@ size_t cpu_topology_LogicalPerCore()
 size_t cpu_topology_LogicalFromApicId(size_t apicId)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
-	return ApicField(apicId, cpuTopology.logicalOffset, cpuTopology.maxLogicalPerCore);
+	return cpuTopology.logical(apicId);
 }
 
 size_t cpu_topology_CoreFromApicId(size_t apicId)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
-	return ApicField(apicId, cpuTopology.coreOffset, cpuTopology.maxCoresPerPackage);
+	return cpuTopology.core(apicId);
 }
 
 size_t cpu_topology_PackageFromApicId(size_t apicId)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
-	return ApicField(apicId, cpuTopology.packageOffset, 256);
+	return cpuTopology.package(apicId);
+}
+
+size_t cpu_topology_ApicId(size_t idxLogical, size_t idxCore, size_t idxPackage)
+{
+	ModuleInit(&cpuInitState, InitCpuTopology);
+
+	size_t apicId = 0;
+
+	debug_assert(idxPackage <= cpuTopology.package.mask);
+	apicId |= idxPackage << cpuTopology.package.shift;
+
+	debug_assert(idxCore <= cpuTopology.core.mask);
+	apicId |= idxCore << cpuTopology.core.shift;
+
+	debug_assert(idxLogical <= cpuTopology.logical.mask);
+	apicId |= idxLogical << cpuTopology.logical.shift;
+
+	return apicId;
 }
 
 

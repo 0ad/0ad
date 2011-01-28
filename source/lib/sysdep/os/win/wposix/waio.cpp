@@ -150,7 +150,7 @@ LibError waio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 		return INFO::SKIPPED;
 
 	// open file
-	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
+	const DWORD flags = FILE_ATTRIBUTE_NORMAL|FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN|FILE_FLAG_WRITE_THROUGH;
 	const HANDLE hFile = CreateFileW(pathname, access, share, 0, create, flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		return LibError_from_GLE();

@@ -36,6 +36,8 @@
  **/
 LIB_API const u8* ApicIds();
 
+LIB_API size_t ProcessorFromApicId(size_t apicId);
+
 
 //-----------------------------------------------------------------------------
 // cpu
@@ -65,9 +67,11 @@ LIB_API size_t cpu_topology_CoresPerPackage();
 LIB_API size_t cpu_topology_LogicalPerCore();
 
 
-LIB_API size_t cpu_topology_LogicalFromApicId(size_t apicId);
-LIB_API size_t cpu_topology_CoreFromApicId(size_t apicId);
 LIB_API size_t cpu_topology_PackageFromApicId(size_t apicId);
+LIB_API size_t cpu_topology_CoreFromApicId(size_t apicId);
+LIB_API size_t cpu_topology_LogicalFromApicId(size_t apicId);
+
+LIB_API size_t cpu_topology_ApicId(size_t idxPackage, size_t idxCore, size_t idxLogical);
 
 
 //-----------------------------------------------------------------------------
