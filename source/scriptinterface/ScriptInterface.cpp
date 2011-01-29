@@ -621,9 +621,9 @@ bool ScriptInterface::FreezeObject(jsval obj, bool deep)
 		return false;
 
 	if (deep)
-		return JS_DeepFreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj));
+		return JS_DeepFreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj)) ? true : false;
 	else
-		return JS_FreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj));
+		return JS_FreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj)) ? true : false;
 }
 
 bool ScriptInterface::LoadScript(const std::wstring& filename, const std::wstring& code)
@@ -959,14 +959,14 @@ jsval ScriptInterface::CloneValueFromOtherContext(ScriptInterface& otherContext,
 }
 
 ScriptInterface::StructuredClone::StructuredClone() :
-	m_Data(NULL), m_Size(0)
+	m_Context(NULL), m_Data(NULL), m_Size(0)
 {
 }
 
 ScriptInterface::StructuredClone::~StructuredClone()
 {
 	if (m_Data)
-		js_free(m_Data);
+		JS_free(m_Context, m_Data);
 }
 
 shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(jsval v)
@@ -979,6 +979,7 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 	// Currently we'll probably continue and then crash in ReadStructuredClone
 
 	shared_ptr<StructuredClone> ret (new StructuredClone);
+	ret->m_Context = m->m_cx;
 	ret->m_Data = data;
 	ret->m_Size = nbytes;
 	return ret;

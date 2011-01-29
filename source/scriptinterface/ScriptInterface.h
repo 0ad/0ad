@@ -284,6 +284,7 @@ public:
 	public:
 		StructuredClone();
 		~StructuredClone();
+		JSContext* m_Context;
 		uint64* m_Data;
 		size_t m_Size;
 	};
