@@ -155,13 +155,9 @@ BEGIN_COMMAND(PaintTerrain)
 
 		void UpdatePriority(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priorityScale, ssize_t& priority)
 		{
-			// Ignore out-of-bounds tiles
-			if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
-				return;
-
 			CMiniPatch* tile = m_Terrain->GetTile(x, y);
 			if (!tile)
-				return;
+				return; // tile was out-of-bounds
 
 			// If this tile matches the current texture, we just want to match its
 			// priority; otherwise we want to exceed its priority
