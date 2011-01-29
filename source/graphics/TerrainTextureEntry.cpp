@@ -51,7 +51,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const Vf
 	for (;it!=m_Groups.end();++it)
 		(*it)->AddTerrain(this);
 	
-	m_Tag = fs::basename(path);
+	m_Tag = CStr(CStrW(fs::basename(path)));
 }
 
 CTerrainTextureEntry::~CTerrainTextureEntry()

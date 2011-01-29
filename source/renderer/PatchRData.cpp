@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,25 +17,28 @@
 
 #include "precompiled.h"
 
-
 #include <set>
 #include <algorithm>
-#include "ps/Pyrogenesis.h"
+
+#include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
-#include "Renderer.h"
-#include "renderer/PatchRData.h"
-#include "AlphaMapCalculator.h"
-#include "ps/CLogger.h"
-#include "ps/Profile.h"
-#include "ps/Game.h"
-#include "ps/World.h"
-#include "maths/MathUtil.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "lib/res/graphics/unifont.h"
+#include "maths/MathUtil.h"
+#include "ps/CLogger.h"
+#include "ps/Game.h"
+#include "ps/Profile.h"
+#include "ps/Pyrogenesis.h"
+#include "ps/World.h"
+#include "ps/GameSetup/Config.h"
+#include "renderer/AlphaMapCalculator.h"
+#include "renderer/PatchRData.h"
+#include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpRangeManager.h"
 
-const ssize_t BlendOffsets[8][2] = {
+const ssize_t BlendOffsets[9][2] = {
 	{  0, -1 },
 	{ -1, -1 },
 	{ -1,  0 },
@@ -43,12 +46,9 @@ const ssize_t BlendOffsets[8][2] = {
 	{  0,  1 },
 	{  1,  1 },
 	{  1,  0 },
-	{  1, -1 }
+	{  1, -1 },
+	{  0,  0 }
 };
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
@@ -69,15 +69,6 @@ CPatchRData::~CPatchRData()
 	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
 }
 
-
-static CTerrainTextureEntry* GetTerrainTileTexture(CTerrain* terrain, ssize_t gx, ssize_t gz)
-{
-	CMiniPatch* mp = terrain->GetTile(gx, gz);
-	if (!mp)
-		return 0;
-	return mp->GetTextureEntry();
-}
-
 const float uvFactor = 0.125f / sqrt(2.f);
 static void CalculateUV(float uv[2], ssize_t x, ssize_t z)
 {
@@ -86,9 +77,60 @@ static void CalculateUV(float uv[2], ssize_t x, ssize_t z)
 	uv[1] = (-x-z)*uvFactor;
 }
 
-struct STmpSplat {
+/**
+ * Represents a blend for a single tile, texture and shape.
+ */
+struct STileBlend
+{
 	CTerrainTextureEntry* m_Texture;
-	u16 m_Indices[4];
+	int m_Priority;
+	u16 m_TileMask; // bit n set if this blend contains neighbour tile BlendOffsets[n]
+
+	struct DecreasingPriority
+	{
+		bool operator()(const STileBlend& a, const STileBlend& b) const
+		{
+			if (a.m_Priority > b.m_Priority)
+				return true;
+			if (a.m_Priority < b.m_Priority)
+				return false;
+			if (a.m_Texture && b.m_Texture)
+				return a.m_Texture->GetTag() > b.m_Texture->GetTag();
+			return false;
+		}
+	};
+
+	struct CurrentTile
+	{
+		bool operator()(const STileBlend& a) const
+		{
+			return a.m_TileMask & (1 << 8);
+		}
+	};
+};
+
+/**
+ * Represents the ordered collection of blends drawn on a particular tile.
+ */
+struct STileBlendStack
+{
+	u8 i, j;
+	std::vector<STileBlend> blends; // back of vector is lowest-priority texture
+};
+
+/**
+ * Represents a batched collection of blends using the same texture.
+ */
+struct SBlendLayer
+{
+	struct Tile
+	{
+		u8 i, j;
+		u8 shape;
+	};
+
+	CTerrainTextureEntry* m_Texture;
+	std::vector<Tile> m_Tiles;
 };
 
 void CPatchRData::BuildBlends()
@@ -98,198 +140,258 @@ void CPatchRData::BuildBlends()
 	m_BlendVertices.clear();
 	m_BlendVertexIndices.clear();
 
-	CTerrain* terrain=m_Patch->m_Parent;
+	CTerrain* terrain = m_Patch->m_Parent;
 
-	// temporary list of splats
-	std::vector<STmpSplat> splats;
-	// set of textures used for splats
-	std::set<CTerrainTextureEntry*> splatTextures;
+	std::vector<STileBlendStack> blendStacks;
+	blendStacks.reserve(PATCH_SIZE*PATCH_SIZE);
 
-	// for each tile in patch ..
-	for (ssize_t j=0;j<PATCH_SIZE;j++) {
-		for (ssize_t i=0;i<PATCH_SIZE;i++) {
-			CMiniPatch* mp=&m_Patch->m_MiniPatches[j][i];
+	// For each tile in patch ..
+	for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+	{
+		for (ssize_t i = 0; i < PATCH_SIZE; ++i)
+		{
 			ssize_t gx = m_Patch->m_X * PATCH_SIZE + i;
 			ssize_t gz = m_Patch->m_Z * PATCH_SIZE + j;
 
-			// build list of textures of higher priority than current tile that are used by neighbouring tiles
-			std::vector<STex> neighbourTextures;
-			for (int m=-1;m<=1;m++) {
-				for (int k=-1;k<=1;k++) {
-					CMiniPatch* nmp=terrain->GetTile(gx+k,gz+m);
-					if (nmp && nmp->GetTextureEntry() != mp->GetTextureEntry()) {
-						if (nmp->GetPriority() > mp->GetPriority() || (nmp->GetPriority() == mp->GetPriority() && nmp->GetTextureEntry() > mp->GetTextureEntry())) {
-							STex tex;
-							tex.m_Texture=nmp->GetTextureEntry();
-							tex.m_Priority=nmp->GetPriority();
-							if (std::find(neighbourTextures.begin(),neighbourTextures.end(),tex)==neighbourTextures.end()) {
-								neighbourTextures.push_back(tex);
-							}
-						}
-					}
-				}
+			std::vector<STileBlend> blends;
+			blends.reserve(9);
+
+			// Compute a blend for every tile in the 3x3 square around this tile
+			for (size_t n = 0; n < 9; ++n)
+			{
+				ssize_t ox = gx + BlendOffsets[n][1];
+				ssize_t oz = gz + BlendOffsets[n][0];
+
+				CMiniPatch* nmp = terrain->GetTile(ox, oz);
+				if (!nmp)
+					continue;
+
+				STileBlend blend;
+				blend.m_Texture = nmp->GetTextureEntry();
+				blend.m_Priority = nmp->GetPriority();
+				blend.m_TileMask = 1 << n;
+				blends.push_back(blend);
 			}
-			if (neighbourTextures.size()>0) {
-				// sort textures from lowest to highest priority
-				std::sort(neighbourTextures.begin(),neighbourTextures.end());
 
-				// for each of the neighbouring textures ..
-				size_t count=neighbourTextures.size();
-				for (size_t k=0;k<count;++k) {
+			// Sort the blends, highest priority first
+			std::sort(blends.begin(), blends.end(), STileBlend::DecreasingPriority());
 
-					// now build the grid of blends dependent on whether the tile adjacent to the current tile
-					// uses the current neighbour texture
-					BlendShape8 shape;
-					for (size_t m=0;m<8;m++) {
-						ssize_t ox=gx+BlendOffsets[m][1];
-						ssize_t oz=gz+BlendOffsets[m][0];
+			STileBlendStack blendStack;
+			blendStack.i = i;
+			blendStack.j = j;
 
-						// get texture on adjacent tile
-						CTerrainTextureEntry* atex=GetTerrainTileTexture(terrain,ox,oz);
-						// fill 0/1 into shape array
-						shape[m]=(atex==neighbourTextures[k].m_Texture) ? 0 : 1;
-					}
+			// Put the blends into the tile's stack, merging any adjacent blends with the same texture
+			for (size_t k = 0; k < blends.size(); ++k)
+			{
+				if (!blendStack.blends.empty() && blendStack.blends.back().m_Texture == blends[k].m_Texture)
+					blendStack.blends.back().m_TileMask |= blends[k].m_TileMask;
+				else
+					blendStack.blends.push_back(blends[k]);
+			}
 
-					// calculate the required alphamap and the required rotation of the alphamap from blendshape
-					unsigned int alphamapflags;
-					int alphamap=CAlphaMapCalculator::Calculate(shape,alphamapflags);
+			// Remove blends that are after (i.e. lower priority than) the current tile
+			// (including the current tile), since we don't want to render them on top of
+			// the tile's base texture
+			blendStack.blends.erase(
+				std::find_if(blendStack.blends.begin(), blendStack.blends.end(), STileBlend::CurrentTile()),
+				blendStack.blends.end());
 
-					// now actually render the blend tile (if we need one)
-					if (alphamap!=-1) {
-						float u0=g_Renderer.m_AlphaMapCoords[alphamap].u0;
-						float u1=g_Renderer.m_AlphaMapCoords[alphamap].u1;
-						float v0=g_Renderer.m_AlphaMapCoords[alphamap].v0;
-						float v1=g_Renderer.m_AlphaMapCoords[alphamap].v1;
-						if (alphamapflags & BLENDMAP_FLIPU) {
-							// flip u
-							float t=u0;
-							u0=u1;
-							u1=t;
-						}
+			blendStacks.push_back(blendStack);
+		}
+	}
 
-						if (alphamapflags & BLENDMAP_FLIPV) {
-							// flip v
-							float t=v0;
-							v0=v1;
-							v1=t;
-						}
+	// Given the blend stack per tile, we want to batch together as many blends as possible.
+	// Group them into a series of layers (each of which has a single texture):
 
-						int base=0;
-						if (alphamapflags & BLENDMAP_ROTATE90) {
-							// rotate 1
-							base=1;
-						} else if (alphamapflags & BLENDMAP_ROTATE180) {
-							// rotate 2
-							base=2;
-						} else if (alphamapflags & BLENDMAP_ROTATE270) {
-							// rotate 3
-							base=3;
-						}
+	std::vector<SBlendLayer> blendLayers;
 
-						SBlendVertex vtx[4];
-						vtx[(base+0)%4].m_AlphaUVs[0]=u0;
-						vtx[(base+0)%4].m_AlphaUVs[1]=v0;
-						vtx[(base+1)%4].m_AlphaUVs[0]=u1;
-						vtx[(base+1)%4].m_AlphaUVs[1]=v0;
-						vtx[(base+2)%4].m_AlphaUVs[0]=u1;
-						vtx[(base+2)%4].m_AlphaUVs[1]=v1;
-						vtx[(base+3)%4].m_AlphaUVs[0]=u0;
-						vtx[(base+3)%4].m_AlphaUVs[1]=v1;
+	while (true)
+	{
+		if (!blendLayers.empty())
+		{
+			// Try to grab as many tiles as possible that match our current layer,
+			// from off the blend stacks of all the tiles
 
-						ssize_t vsize=PATCH_SIZE+1;
+			CTerrainTextureEntry* tex = blendLayers.back().m_Texture;
 
-						SBlendVertex dst;
-						const size_t vindex=m_BlendVertices.size();
-
-						const SBaseVertex& vtx0=m_Vertices[(j*vsize)+i];
-						CalculateUV(dst.m_UVs, gx, gz);
-						dst.m_AlphaUVs[0]=vtx[0].m_AlphaUVs[0];
-						dst.m_AlphaUVs[1]=vtx[0].m_AlphaUVs[1];
-						dst.m_LOSColor=vtx0.m_LOSColor;
-						dst.m_Position=vtx0.m_Position;
-						m_BlendVertices.push_back(dst);
-						m_BlendVertexIndices.push_back((j*vsize)+i);
-
-						const SBaseVertex& vtx1=m_Vertices[(j*vsize)+i+1];
-						CalculateUV(dst.m_UVs, gx+1, gz);
-						dst.m_AlphaUVs[0]=vtx[1].m_AlphaUVs[0];
-						dst.m_AlphaUVs[1]=vtx[1].m_AlphaUVs[1];
-						dst.m_LOSColor=vtx1.m_LOSColor;
-						dst.m_Position=vtx1.m_Position;
-						m_BlendVertices.push_back(dst);
-						m_BlendVertexIndices.push_back((j*vsize)+i+1);
-
-						const SBaseVertex& vtx2=m_Vertices[((j+1)*vsize)+i+1];
-						CalculateUV(dst.m_UVs, gx+1, gz+1);
-						dst.m_AlphaUVs[0]=vtx[2].m_AlphaUVs[0];
-						dst.m_AlphaUVs[1]=vtx[2].m_AlphaUVs[1];
-						dst.m_LOSColor=vtx2.m_LOSColor;
-						dst.m_Position=vtx2.m_Position;
-						m_BlendVertices.push_back(dst);
-						m_BlendVertexIndices.push_back(((j+1)*vsize)+i+1);
-
-						const SBaseVertex& vtx3=m_Vertices[((j+1)*vsize)+i];
-						CalculateUV(dst.m_UVs, gx, gz+1);
-						dst.m_AlphaUVs[0]=vtx[3].m_AlphaUVs[0];
-						dst.m_AlphaUVs[1]=vtx[3].m_AlphaUVs[1];
-						dst.m_LOSColor=vtx3.m_LOSColor;
-						dst.m_Position=vtx3.m_Position;
-						m_BlendVertices.push_back(dst);
-						m_BlendVertexIndices.push_back(((j+1)*vsize)+i);
-
-						// build a splat for this quad
-						STmpSplat splat;
-						splat.m_Texture=neighbourTextures[k].m_Texture;
-						splat.m_Indices[0]=(u16)(vindex);
-						splat.m_Indices[1]=(u16)(vindex+1);
-						splat.m_Indices[2]=(u16)(vindex+2);
-						splat.m_Indices[3]=(u16)(vindex+3);
-						splats.push_back(splat);
-
-						// add this texture to set of unique splat textures
-						splatTextures.insert(splat.m_Texture);
-					}
+			for (size_t k = 0; k < blendStacks.size(); ++k)
+			{
+				if (!blendStacks[k].blends.empty() && blendStacks[k].blends.back().m_Texture == tex)
+				{
+					SBlendLayer::Tile t = { blendStacks[k].i, blendStacks[k].j, blendStacks[k].blends.back().m_TileMask };
+					blendLayers.back().m_Tiles.push_back(t);
+					blendStacks[k].blends.pop_back();
 				}
+				// (We've already merged adjacent entries of the same texture in each stack,
+				// so we don't need to bother looping to check the next entry in this stack again)
+			}
+		}
+
+		// We've grabbed as many tiles as possible; now we need to start a new layer.
+		// The new layer's texture could come from the back of any non-empty stack;
+		// choose the longest stack as a heuristic to reduce the number of layers
+		CTerrainTextureEntry* bestTex = NULL;
+		size_t bestStackSize = 0;
+
+		for (size_t k = 0; k < blendStacks.size(); ++k)
+		{
+			if (blendStacks[k].blends.size() > bestStackSize)
+			{
+				bestStackSize = blendStacks[k].blends.size();
+				bestTex = blendStacks[k].blends.back().m_Texture;
+			}
+		}
+
+		// If all our stacks were empty, we're done
+		if (bestStackSize == 0)
+			break;
+
+		// Otherwise add the new layer, then loop back and start filling it in
+
+		SBlendLayer layer;
+		layer.m_Texture = bestTex;
+		blendLayers.push_back(layer);
+	}
+
+	// Now build outgoing splats
+	m_BlendSplats.resize(blendLayers.size());
+
+	for (size_t k = 0; k < blendLayers.size(); ++k)
+	{
+		SSplat& splat = m_BlendSplats[k];
+		splat.m_IndexStart = m_BlendIndices.size();
+		splat.m_Texture = blendLayers[k].m_Texture;
+
+		for (size_t t = 0; t < blendLayers[k].m_Tiles.size(); ++t)
+		{
+			SBlendLayer::Tile& tile = blendLayers[k].m_Tiles[t];
+
+			ssize_t index = AddBlend(tile.i, tile.j, tile.shape);
+
+			if (index != -1)
+			{
+				// (These indices will get incremented by the VB base offset later)
+				m_BlendIndices.push_back(index + 0);
+				m_BlendIndices.push_back(index + 1);
+				m_BlendIndices.push_back(index + 2);
+				m_BlendIndices.push_back(index + 3);
+				splat.m_IndexCount += 4;
 			}
 		}
 	}
 
-	// build vertex data
-	if (m_VBBlends) {
-		// release existing vertex buffer chunk
+	// Release existing vertex buffer chunk
+	if (m_VBBlends)
+	{
 		g_VBMan.Release(m_VBBlends);
-		m_VBBlends=0;
+		m_VBBlends = 0;
 	}
-	if (m_BlendVertices.size()) {
-		m_VBBlends=g_VBMan.Allocate(sizeof(SBlendVertex),m_BlendVertices.size(),true);
-		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
 
-		// now build outgoing splats
-		m_BlendSplats.resize(splatTextures.size());
-		size_t splatCount=0;
+	if (m_BlendVertices.size())
+	{
+		// Construct vertex buffer
+
+		m_VBBlends = g_VBMan.Allocate(sizeof(SBlendVertex), m_BlendVertices.size(), true);
+		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends, &m_BlendVertices[0]);
 
 		debug_assert(m_VBBlends->m_Index < 65536);
 		unsigned short base = (unsigned short)m_VBBlends->m_Index;
-		std::set<CTerrainTextureEntry*>::iterator iter=splatTextures.begin();
-		for (;iter!=splatTextures.end();++iter) {
-			CTerrainTextureEntry* tex=*iter;
 
-			SSplat& splat=m_BlendSplats[splatCount];
-			splat.m_IndexStart=m_BlendIndices.size();
-			splat.m_Texture=tex;
-
-			for (size_t k=0;k<splats.size();k++) {
-				if (splats[k].m_Texture==tex) {
-					m_BlendIndices.push_back(splats[k].m_Indices[0]+base);
-					m_BlendIndices.push_back(splats[k].m_Indices[1]+base);
-					m_BlendIndices.push_back(splats[k].m_Indices[2]+base);
-					m_BlendIndices.push_back(splats[k].m_Indices[3]+base);
-					splat.m_IndexCount+=4;
-				}
-			}
-			splatCount++;
-		}
+		// Update the indices to include the base offset
+		for (size_t k = 0; k < m_BlendIndices.size(); ++k)
+			m_BlendIndices[k] += base;
 	}
+}
+
+ssize_t CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
+{
+	ssize_t gx = m_Patch->m_X * PATCH_SIZE + i;
+	ssize_t gz = m_Patch->m_Z * PATCH_SIZE + j;
+
+	// uses the current neighbour texture
+	BlendShape8 shape8;
+	for (size_t m = 0; m < 8; ++m)
+		shape8[m] = (shape & (1 << m)) ? 0 : 1;
+
+	// calculate the required alphamap and the required rotation of the alphamap from blendshape
+	unsigned int alphamapflags;
+	int alphamap = CAlphaMapCalculator::Calculate(shape8, alphamapflags);
+
+	// now actually render the blend tile (if we need one)
+	if (alphamap == -1)
+		return -1;
+
+	float u0 = g_Renderer.m_AlphaMapCoords[alphamap].u0;
+	float u1 = g_Renderer.m_AlphaMapCoords[alphamap].u1;
+	float v0 = g_Renderer.m_AlphaMapCoords[alphamap].v0;
+	float v1 = g_Renderer.m_AlphaMapCoords[alphamap].v1;
+
+	if (alphamapflags & BLENDMAP_FLIPU)
+		std::swap(u0, u1);
+
+	if (alphamapflags & BLENDMAP_FLIPV)
+		std::swap(v0, v1);
+
+	int base = 0;
+	if (alphamapflags & BLENDMAP_ROTATE90)
+		base = 1;
+	else if (alphamapflags & BLENDMAP_ROTATE180)
+		base = 2;
+	else if (alphamapflags & BLENDMAP_ROTATE270)
+		base = 3;
+
+	SBlendVertex vtx[4];
+	vtx[(base + 0) % 4].m_AlphaUVs[0] = u0;
+	vtx[(base + 0) % 4].m_AlphaUVs[1] = v0;
+	vtx[(base + 1) % 4].m_AlphaUVs[0] = u1;
+	vtx[(base + 1) % 4].m_AlphaUVs[1] = v0;
+	vtx[(base + 2) % 4].m_AlphaUVs[0] = u1;
+	vtx[(base + 2) % 4].m_AlphaUVs[1] = v1;
+	vtx[(base + 3) % 4].m_AlphaUVs[0] = u0;
+	vtx[(base + 3) % 4].m_AlphaUVs[1] = v1;
+
+	ssize_t vsize = PATCH_SIZE + 1;
+
+	SBlendVertex dst;
+	const size_t vindex = m_BlendVertices.size();
+
+	const SBaseVertex& vtx0 = m_Vertices[(j * vsize) + i];
+	CalculateUV(dst.m_UVs, gx, gz);
+	dst.m_AlphaUVs[0] = vtx[0].m_AlphaUVs[0];
+	dst.m_AlphaUVs[1] = vtx[0].m_AlphaUVs[1];
+	dst.m_LOSColor = vtx0.m_LOSColor;
+	dst.m_Position = vtx0.m_Position;
+	m_BlendVertices.push_back(dst);
+	m_BlendVertexIndices.push_back((j * vsize) + i);
+
+	const SBaseVertex& vtx1 = m_Vertices[(j * vsize) + i + 1];
+	CalculateUV(dst.m_UVs, gx + 1, gz);
+	dst.m_AlphaUVs[0] = vtx[1].m_AlphaUVs[0];
+	dst.m_AlphaUVs[1] = vtx[1].m_AlphaUVs[1];
+	dst.m_LOSColor = vtx1.m_LOSColor;
+	dst.m_Position = vtx1.m_Position;
+	m_BlendVertices.push_back(dst);
+	m_BlendVertexIndices.push_back((j * vsize) + i + 1);
+
+	const SBaseVertex& vtx2 = m_Vertices[((j + 1) * vsize) + i + 1];
+	CalculateUV(dst.m_UVs, gx + 1, gz + 1);
+	dst.m_AlphaUVs[0] = vtx[2].m_AlphaUVs[0];
+	dst.m_AlphaUVs[1] = vtx[2].m_AlphaUVs[1];
+	dst.m_LOSColor = vtx2.m_LOSColor;
+	dst.m_Position = vtx2.m_Position;
+	m_BlendVertices.push_back(dst);
+	m_BlendVertexIndices.push_back(((j + 1) * vsize) + i + 1);
+
+	const SBaseVertex& vtx3 = m_Vertices[((j + 1) * vsize) + i];
+	CalculateUV(dst.m_UVs, gx, gz + 1);
+	dst.m_AlphaUVs[0] = vtx[3].m_AlphaUVs[0];
+	dst.m_AlphaUVs[1] = vtx[3].m_AlphaUVs[1];
+	dst.m_LOSColor = vtx3.m_LOSColor;
+	dst.m_Position = vtx3.m_Position;
+	m_BlendVertices.push_back(dst);
+	m_BlendVertexIndices.push_back(((j + 1) * vsize) + i);
+
+	return vindex;
 }
 
 void CPatchRData::BuildIndices()
@@ -559,7 +661,8 @@ void CPatchRData::RenderBlends()
 {
 	debug_assert(m_UpdateFlags==0);
 
-	if (m_BlendVertices.size()==0) return;
+	if (m_BlendVertices.empty())
+		return;
 
 	u8* base=m_VBBlends->m_Owner->Bind();
 
@@ -628,4 +731,39 @@ void CPatchRData::RenderOutline()
 		glVertex3fv(&m_Vertices[(vsize*(vsize-1))-((i+1)*vsize)].m_Position.X);
 	}
 	glEnd();
+}
+
+void CPatchRData::RenderPriorities()
+{
+	CTerrain* terrain = m_Patch->m_Parent;
+	CCamera* camera = g_Game->GetView()->GetCamera();
+
+	for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+	{
+		for (ssize_t i = 0; i < PATCH_SIZE; ++i)
+		{
+			ssize_t gx = m_Patch->m_X * PATCH_SIZE + i;
+			ssize_t gz = m_Patch->m_Z * PATCH_SIZE + j;
+
+			CVector3D pos;
+			terrain->CalcPosition(gx, gz, pos);
+
+			// Move a bit towards the center of the tile
+			pos.X += CELL_SIZE/4.f;
+			pos.Z += CELL_SIZE/4.f;
+
+			float x, y;
+			camera->GetScreenCoordinates(pos, x, y);
+
+			glPushMatrix();
+			glTranslatef(x, g_yres - y, 0.f);
+
+			// Draw the text upside-down, because it's aligned with
+			// the GUI (which uses the top-left as (0,0))
+			glScalef(1.0f, -1.0f, 1.0f);
+
+			glwprintf(L"%d", m_Patch->m_MiniPatches[j][i].Priority);
+			glPopMatrix();
+		}
+	}
 }

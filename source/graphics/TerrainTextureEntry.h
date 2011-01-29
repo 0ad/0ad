@@ -40,7 +40,7 @@ public:
 
 private:
 	// Tag = file name stripped of path and extension (grass_dark_1)
-	CStrW m_Tag;
+	CStr m_Tag;
 	
 	// The property sheet used by this texture
 	CTerrainPropertiesPtr m_pProperties;

@@ -229,6 +229,8 @@ void Render()
 
 	ogl_WarnIfError();
 
+	g_Renderer.RenderTextOverlays();
+
 	// Temp GUI message GeeTODO
 	PROFILE_START("render gui");
 	if(g_DoRenderGui) g_GUI->Draw();

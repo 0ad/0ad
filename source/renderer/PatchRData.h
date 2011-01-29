@@ -41,6 +41,7 @@ public:
 	void RenderBlends();
 	void RenderOutline();
 	void RenderStreams(int streamflags, bool losColor);
+	void RenderPriorities();
 
 private:
 	struct SSplat {
@@ -85,6 +86,8 @@ private:
 
 	// build this renderdata object
 	void Build();
+
+	ssize_t AddBlend(u16 i, u16 j, u8 shape);
 
 	void BuildBlends();
 	void BuildIndices();

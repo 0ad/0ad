@@ -269,7 +269,15 @@ function init(window, bottomWindow)
 			Atlas.Message.SetViewParamS(Atlas.RenderView.GAME, "passability", evt.string);
 	};
 	
-	
+	visualiseSettingsSizer.add(new wxStaticText(window, -1, 'Priorities'), 0, wxAlignment.RIGHT);
+	var passabilityClasses = Atlas.Message.GetTerrainPassabilityClasses().classnames;
+	var priorityCheckbox = new wxCheckBox(window, -1, "");
+	visualiseSettingsSizer.add(priorityCheckbox);
+	priorityCheckbox.onCheckBox = function (evt) {
+		Atlas.Message.SetViewParamB(Atlas.RenderView.GAME, "priorities", evt.checked);
+	};
+
+
 	var terrainGroups = Atlas.Message.GetTerrainGroups();
 	var nb = new wxNotebook(bottomWindow, -1);
 	bottomWindow.sizer = new wxBoxSizer(wxOrientation.VERTICAL);

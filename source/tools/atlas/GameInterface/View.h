@@ -79,6 +79,7 @@ public:
 	virtual CSimulation2* GetSimulation2();
 	virtual bool WantsHighFramerate();
 
+	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
 	void SetSpeedMultiplier(float speed);

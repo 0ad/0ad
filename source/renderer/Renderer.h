@@ -216,20 +216,12 @@ public:
 	 */
 	void RenderScene(Scene* scene);
 
-	// basic primitive rendering operations in 2 and 3D; handy for debugging stuff, but also useful in
-	// editor tools (eg for highlighting specific terrain patches)
-	// note:
-	//		* all 3D vertices specified in world space
-	//		* primitive operations rendered immediatedly, never batched
-	//		* primitives rendered in current material (set via SetMaterial)
-// 	void RenderLine(const SVertex2D* vertices);
-// 	void RenderLineLoop(int len,const SVertex2D* vertices);
-// 	void RenderTri(const SVertex2D* vertices);
-// 	void RenderQuad(const SVertex2D* vertices);
-// 	void RenderLine(const SVertex3D* vertices);
-// 	void RenderLineLoop(int len,const SVertex3D* vertices);
-// 	void RenderTri(const SVertex3D* vertices);
-// 	void RenderQuad(const SVertex3D* vertices);
+	/**
+	 * Render text overlays on top of the scene.
+	 * Assumes the caller has set up the GL environment for orthographic rendering
+	 * with texturing and blending.
+	 */
+	void RenderTextOverlays();
 
 	// set the current lighting environment; (note: the passed pointer is just copied to a variable within the renderer,
 	// so the lightenv passed must be scoped such that it is not destructed until after the renderer is no longer rendering)
@@ -246,6 +238,9 @@ public:
 	void SetModelRenderMode(ERenderMode mode) { m_ModelRenderMode=mode; }
 	// get the mode to render subsequent models
 	ERenderMode GetModelRenderMode() const { return m_ModelRenderMode; }
+
+	// debugging
+	void SetDisplayTerrainPriorities(bool enabled) { m_DisplayTerrainPriorities = enabled; }
 
 	// bind a GL texture object to active unit
 	void BindTexture(int unit,GLuint tex);
@@ -365,6 +360,9 @@ protected:
 	// enable oblique frustum clipping with the given clip plane
 	void SetObliqueFrustumClipping(const CVector4D& clipPlane, int sign);
 
+	// hotloading
+	static LibError ReloadChangedFileCB(void* param, const VfsPath& path);
+
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions
 	CRendererInternals* m;
@@ -452,6 +450,11 @@ protected:
 	 * Disable copying of shadow data into the shadow texture (when EXT_fbo is not available)
 	 */
 	bool m_DisableCopyShadow;
+
+	/**
+	 * Enable rendering of terrain tile priority text overlay, for debugging.
+	 */
+	bool m_DisplayTerrainPriorities;
 
 public:
 	/**

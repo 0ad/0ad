@@ -111,6 +111,11 @@ public:
 	 */
 	void RenderWater();
 
+	/**
+	 * Render priority text for all submitted patches, for debugging.
+	 */
+	void RenderPriorities();
+
 private:
 	TerrainRendererInternals* m;
 };

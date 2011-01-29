@@ -124,21 +124,12 @@ protected:
 	 * Draw an outlined quad on top of the given tile.
 	 */
 	void RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
-
 	
 public:
 	/**
 	 * Draw all TerrainOverlay objects that exist.
 	 */
 	static void RenderOverlays();
-
-#if 0
-	/**
-	 * Kai: added function to draw out line segments for triangulation
-	 */
-	static void RenderEntityEdges();
-#endif
-
 
 private:
 	/// Copying not allowed.

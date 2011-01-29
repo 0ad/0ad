@@ -32,6 +32,7 @@
 
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
+#include "ps/Font.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
@@ -654,4 +655,20 @@ void TerrainRenderer::RenderWater()
 	glMatrixMode(GL_MODELVIEW);
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
+}
+
+void TerrainRenderer::RenderPriorities()
+{
+	PROFILE("render priorities");
+
+	CFont font(L"mono-stroke-10");
+	font.Bind();
+
+	glColor3f(1, 1, 0);
+
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+	{
+		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
+		patchdata->RenderPriorities();
+	}
 }

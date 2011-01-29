@@ -240,6 +240,12 @@ void ViewGame::Render()
 	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
 }
 
+void ViewGame::SetParam(const std::wstring& name, bool value)
+{
+	if (name == L"priorities")
+		g_Renderer.SetDisplayTerrainPriorities(value);
+}
+
 void ViewGame::SetParam(const std::wstring& name, const std::wstring& value)
 {
 	if (name == L"passability")

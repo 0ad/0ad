@@ -39,8 +39,10 @@ struct Brush
 
 	float Get(ssize_t x, ssize_t y) const
 	{
-		debug_assert(x >= 0 && x < m_W && y >= 0 && y < m_H);
-		return m_Data[x + y*m_W];
+		if (x >= 0 && x < m_W && y >= 0 && y < m_H)
+			return m_Data[x + y*m_W];
+		else
+			return 0.f;
 	}
 
 	ssize_t m_W, m_H;

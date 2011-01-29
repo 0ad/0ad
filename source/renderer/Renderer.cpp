@@ -25,9 +25,13 @@
 #include <map>
 #include <set>
 #include <algorithm>
+
+#include <boost/algorithm/string.hpp>
+
+#include "Renderer.h"
+
 #include "lib/bits.h"	// is_pow2
 #include "lib/res/graphics/ogl_tex.h"
-#include "Renderer.h"
 #include "maths/Matrix3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
@@ -358,6 +362,7 @@ CRenderer::CRenderer()
 	m_SortAllTransparent = false;
 	m_DisplayFrustum = false;
 	m_DisableCopyShadow = false;
+	m_DisplayTerrainPriorities = false;
 	m_FastPlayerColor = true;
 	m_SkipSubmit = false;
 	m_RenderTerritories = true;
@@ -387,12 +392,16 @@ CRenderer::CRenderer()
 	AddLocalProperty(L"waterShininess", &m->waterManager.m_Shininess, false);
 	AddLocalProperty(L"waterSpecularStrength", &m->waterManager.m_SpecularStrength, false);
 	AddLocalProperty(L"waterWaviness", &m->waterManager.m_Waviness, false);
+
+	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer destructor
 CRenderer::~CRenderer()
 {
+	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
+
 	// model rendering
 	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
 	{
@@ -1302,7 +1311,12 @@ void CRenderer::RenderSubmissions()
 	m->overlayRenderer.RenderForegroundOverlays(m_ViewCamera);
 	PROFILE_END("render fg overlays");
 	ogl_WarnIfError();
+}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// EndFrame: signal frame end
+void CRenderer::EndFrame()
+{
 	// empty lists
 	m->terrainRenderer->EndFrame();
 	m->overlayRenderer.EndFrame();
@@ -1315,18 +1329,12 @@ void CRenderer::RenderSubmissions()
 	if (m->Model.Player != m->Model.PlayerInstancing)
 		m->Model.PlayerInstancing->EndFrame();
 	m->Model.Transp->EndFrame();
-}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// EndFrame: signal frame end
-void CRenderer::EndFrame()
-{
 	ogl_tex_bind(0, 0);
 
-	static bool once=false;
-	if (!once && glGetError()) {
-		LOGERROR(L"CRenderer::EndFrame: GL errors occurred");
-		once=true;
+	if (glGetError())
+	{
+		ONCE(LOGERROR(L"CRenderer::EndFrame: GL errors occurred"));
 	}
 }
 
@@ -1353,6 +1361,18 @@ void CRenderer::DisplayFrustum()
 
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Text overlay rendering
+void CRenderer::RenderTextOverlays()
+{
+	PROFILE("render text overlays");
+
+	if (m_DisplayTerrainPriorities)
+		m->terrainRenderer->RenderPriorities();
+
+	ogl_WarnIfError();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1479,22 +1499,22 @@ int CRenderer::LoadAlphaMaps()
 	// load all textures and store Handle in array
 	//
 	Handle textures[NumAlphaMaps] = {0};
-	VfsPath path(L"art/textures/terrain/alphamaps/special");
+	VfsPath path(L"art/textures/terrain/alphamaps/standard");
 	const wchar_t* fnames[NumAlphaMaps] = {
-		L"blendcircle.dds",
-		L"blendlshape.dds",
-		L"blendedge.dds",
-		L"blendedgecorner.dds",
-		L"blendedgetwocorners.dds",
-		L"blendfourcorners.dds",
-		L"blendtwooppositecorners.dds",
-		L"blendlshapecorner.dds",
-		L"blendtwocorners.dds",
-		L"blendcorner.dds",
-		L"blendtwoedges.dds",
-		L"blendthreecorners.dds",
-		L"blendushape.dds",
-		L"blendbad.dds"
+		L"blendcircle.png",
+		L"blendlshape.png",
+		L"blendedge.png",
+		L"blendedgecorner.png",
+		L"blendedgetwocorners.png",
+		L"blendfourcorners.png",
+		L"blendtwooppositecorners.png",
+		L"blendlshapecorner.png",
+		L"blendtwocorners.png",
+		L"blendcorner.png",
+		L"blendtwoedges.png",
+		L"blendthreecorners.png",
+		L"blendushape.png",
+		L"blendbad.png"
 	};
 	size_t base = 0;	// texture width/height (see below)
 	// for convenience, we require all alpha maps to be of the same BPP
@@ -1506,13 +1526,6 @@ int CRenderer::LoadAlphaMaps()
 		// we cache the composite.
 		textures[i] = ogl_tex_load(g_VFS, path/fnames[i]);
 		RETURN_ERR(textures[i]);
-
-// quick hack: we require plain RGB(A) format, so convert to that.
-// ideally the texture would be in uncompressed form; then this wouldn't
-// be necessary.
-size_t flags;
-ogl_tex_get_format(textures[i], &flags, 0);
-ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
@@ -1601,6 +1614,23 @@ void CRenderer::UnloadAlphaMaps()
 }
 
 
+
+LibError CRenderer::ReloadChangedFileCB(void* param, const VfsPath& path)
+{
+	CRenderer* renderer = static_cast<CRenderer*>(param);
+
+	// If an alpha map changed, and we already loaded them, then reload them
+	if (boost::algorithm::starts_with(path.string(), L"art/textures/terrain/alphamaps/"))
+	{
+		if (renderer->m_hCompositeAlphaMap)
+		{
+			renderer->UnloadAlphaMaps();
+			renderer->LoadAlphaMaps();
+		}
+	}
+
+	return INFO::OK;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Scripting Interface

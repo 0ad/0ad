@@ -153,25 +153,31 @@ BEGIN_COMMAND(PaintTerrain)
 			m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 		}
 
+		void UpdatePriority(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priorityScale, ssize_t& priority)
+		{
+			// Ignore out-of-bounds tiles
+			if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
+				return;
+
+			CMiniPatch* tile = m_Terrain->GetTile(x, y);
+			if (!tile)
+				return;
+
+			// If this tile matches the current texture, we just want to match its
+			// priority; otherwise we want to exceed its priority
+			if (tile->GetTextureEntry() == tex)
+				priority = std::max(priority, tile->GetPriority()*priorityScale);
+			else
+				priority = std::max(priority, tile->GetPriority()*priorityScale + 1);
+		}
+
 		void PaintTile(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priority)
 		{
 			// Ignore out-of-bounds tiles
 			if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
 				return;
 
-			// Priority system: If the new tile should have a high priority,
-			// set it to one plus the maximum priority of all surrounding tiles
-			// (so that it's definitely the highest).
-			// Similar for low priority.
-			ssize_t greatest = 0;
-			ssize_t scale = (priority == ePaintTerrainPriority::HIGH ? +1 : -1);
-			CMiniPatch* tile;
-#define TILE(dx, dy) tile = m_Terrain->GetTile(x dx, y dy); if (tile && tile->GetPriority()*scale > greatest) greatest = tile->GetPriority()*scale;
-			TILE(-1, -1) TILE(+0, -1) TILE(+1, -1)
-			TILE(-1, +0)              TILE(+1, +0)
-			TILE(-1, +1) TILE(+0, +1) TILE(+1, +1)
-#undef TILE
-			set(x,y, TerrainTile(tex, (greatest+1)*scale));
+			set(x,y, TerrainTile(tex, priority));
 		}
 
 	protected:
@@ -223,12 +229,28 @@ BEGIN_COMMAND(PaintTerrain)
 			return;
 		}
 
+		// Priority system: If the new tile should have a high priority,
+		// set it to one plus the maximum priority of all surrounding tiles
+		// that aren't included in the brush (so that it's definitely the highest).
+		// Similar for low priority.
+		ssize_t priorityScale = (msg->priority == ePaintTerrainPriority::HIGH ? +1 : -1);
+		ssize_t priority = 0;
+
+		for (ssize_t dy = -1; dy < g_CurrentBrush.m_H+1; ++dy)
+		{
+			for (ssize_t dx = -1; dx < g_CurrentBrush.m_W+1; ++dx)
+			{
+				if (!(g_CurrentBrush.Get(dx, dy) > 0.5f)) // ignore tiles that will be painted over
+					m_TerrainDelta.UpdatePriority(x0+dx, y0+dy, texentry, priorityScale, priority);
+			}
+		}
+
 		for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
 		{
 			for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				if (g_CurrentBrush.Get(dx, dy) > 0.5f) // TODO: proper solid brushes
-					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texentry, msg->priority);
+					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texentry, priority*priorityScale);
 			}
 		}
 
