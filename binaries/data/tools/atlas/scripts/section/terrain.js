@@ -270,7 +270,6 @@ function init(window, bottomWindow)
 	};
 	
 	visualiseSettingsSizer.add(new wxStaticText(window, -1, 'Priorities'), 0, wxAlignment.RIGHT);
-	var passabilityClasses = Atlas.Message.GetTerrainPassabilityClasses().classnames;
 	var priorityCheckbox = new wxCheckBox(window, -1, "");
 	visualiseSettingsSizer.add(priorityCheckbox);
 	priorityCheckbox.onCheckBox = function (evt) {
