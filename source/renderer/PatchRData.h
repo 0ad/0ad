@@ -87,7 +87,7 @@ private:
 	// build this renderdata object
 	void Build();
 
-	ssize_t AddBlend(u16 i, u16 j, u8 shape);
+	void AddBlend(u16 i, u16 j, u8 shape);
 
 	void BuildBlends();
 	void BuildIndices();
@@ -120,9 +120,6 @@ private:
 	// remembers the index in the m_Vertices array of each blend vertex, so that we can
 	// properly update its color for fog of war and shroud of darkness
 	std::vector<size_t> m_BlendVertexIndices;
-
-	// indices into blend vertices for the blend splats
-	std::vector<unsigned short> m_BlendIndices;
 
 	// splats used in blend pass
 	std::vector<SSplat> m_BlendSplats;

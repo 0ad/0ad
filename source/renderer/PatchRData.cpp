@@ -135,7 +135,6 @@ struct SBlendLayer
 
 void CPatchRData::BuildBlends()
 {
-	m_BlendIndices.clear();
 	m_BlendSplats.clear();
 	m_BlendVertices.clear();
 	m_BlendVertexIndices.clear();
@@ -259,25 +258,16 @@ void CPatchRData::BuildBlends()
 	for (size_t k = 0; k < blendLayers.size(); ++k)
 	{
 		SSplat& splat = m_BlendSplats[k];
-		splat.m_IndexStart = m_BlendIndices.size();
+		splat.m_IndexStart = m_BlendVertices.size();
 		splat.m_Texture = blendLayers[k].m_Texture;
 
 		for (size_t t = 0; t < blendLayers[k].m_Tiles.size(); ++t)
 		{
 			SBlendLayer::Tile& tile = blendLayers[k].m_Tiles[t];
-
-			ssize_t index = AddBlend(tile.i, tile.j, tile.shape);
-
-			if (index != -1)
-			{
-				// (These indices will get incremented by the VB base offset later)
-				m_BlendIndices.push_back(index + 0);
-				m_BlendIndices.push_back(index + 1);
-				m_BlendIndices.push_back(index + 2);
-				m_BlendIndices.push_back(index + 3);
-				splat.m_IndexCount += 4;
-			}
+			AddBlend(tile.i, tile.j, tile.shape);
 		}
+
+		splat.m_IndexCount = m_BlendVertices.size() - splat.m_IndexStart;
 	}
 
 	// Release existing vertex buffer chunk
@@ -298,12 +288,12 @@ void CPatchRData::BuildBlends()
 		unsigned short base = (unsigned short)m_VBBlends->m_Index;
 
 		// Update the indices to include the base offset
-		for (size_t k = 0; k < m_BlendIndices.size(); ++k)
-			m_BlendIndices[k] += base;
+		for (size_t k = 0; k < m_BlendSplats.size(); ++k)
+			m_BlendSplats[k].m_IndexStart += base;
 	}
 }
 
-ssize_t CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
+void CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
 {
 	ssize_t gx = m_Patch->m_X * PATCH_SIZE + i;
 	ssize_t gz = m_Patch->m_Z * PATCH_SIZE + j;
@@ -319,7 +309,7 @@ ssize_t CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
 
 	// now actually render the blend tile (if we need one)
 	if (alphamap == -1)
-		return -1;
+		return;
 
 	float u0 = g_Renderer.m_AlphaMapCoords[alphamap].u0;
 	float u1 = g_Renderer.m_AlphaMapCoords[alphamap].u1;
@@ -353,7 +343,6 @@ ssize_t CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
 	ssize_t vsize = PATCH_SIZE + 1;
 
 	SBlendVertex dst;
-	const size_t vindex = m_BlendVertices.size();
 
 	const SBaseVertex& vtx0 = m_Vertices[(j * vsize) + i];
 	CalculateUV(dst.m_UVs, gx, gz);
@@ -390,8 +379,6 @@ ssize_t CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
 	dst.m_Position = vtx3.m_Position;
 	m_BlendVertices.push_back(dst);
 	m_BlendVertexIndices.push_back(((j + 1) * vsize) + i);
-
-	return vindex;
 }
 
 void CPatchRData::BuildIndices()
@@ -690,8 +677,10 @@ void CPatchRData::RenderBlends()
 			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
 
 		if (!g_Renderer.m_SkipSubmit) {
-			glDrawElements(GL_QUADS, (GLsizei)splat.m_IndexCount,
-				GL_UNSIGNED_SHORT, &m_BlendIndices[splat.m_IndexStart]);
+			// Since every blend vertex likely has distinct UV even if they
+			// share positions, there's no value in using indexed arrays, so
+			// we just use DrawArrays instead of DrawElements
+			glDrawArrays(GL_QUADS, (GLint)splat.m_IndexStart, (GLsizei)splat.m_IndexCount);
 		}
 
 		// bump stats
