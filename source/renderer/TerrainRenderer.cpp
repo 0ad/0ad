@@ -135,7 +135,7 @@ void TerrainRenderer::PrepareForRendering()
 // Clear submissions lists
 void TerrainRenderer::EndFrame()
 {
-	debug_assert(m->phase == Phase_Render);
+	debug_assert(m->phase == Phase_Render || m->phase == Phase_Submit);
 
 	m->visiblePatches.clear();
 
@@ -396,6 +396,8 @@ void TerrainRenderer::RenderPatches()
 // Render outlines of submitted patches as lines
 void TerrainRenderer::RenderOutlines()
 {
+	debug_assert(m->phase == Phase_Render);
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
@@ -660,6 +662,8 @@ void TerrainRenderer::RenderWater()
 void TerrainRenderer::RenderPriorities()
 {
 	PROFILE("render priorities");
+
+	debug_assert(m->phase == Phase_Render);
 
 	CFont font(L"mono-stroke-10");
 	font.Bind();
