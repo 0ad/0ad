@@ -77,6 +77,8 @@ void RunHardwareDetection()
 	const char* exts = ogl_ExtensionString();
 	if (!exts) exts = "";
 	scriptInterface.SetProperty(settings.get(), "gl_extensions", std::string(exts), false);
+	scriptInterface.SetProperty(settings.get(), "gl_max_tex_size", (int)ogl_max_tex_size, false);
+	scriptInterface.SetProperty(settings.get(), "gl_max_tex_units", (int)ogl_max_tex_units, false);
 
 	scriptInterface.SetProperty(settings.get(), "video_xres", g_VideoMode.GetXRes(), false);
 	scriptInterface.SetProperty(settings.get(), "video_yres", g_VideoMode.GetYRes(), false);
