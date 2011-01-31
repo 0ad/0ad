@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super_cavalry">
+  <Identity>
+    <GenericName>Super Cavalry Spearman</GenericName>
+  </Identity>
+  <Cost>
+    <BuildTime>16</BuildTime>
+    <Resources>
+      <wood>80</wood>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>160</Max>
+  </Health>
+  <Armour>
+    <Hack>9.0</Hack>
+    <Pierce>11.0</Pierce>
+    <Crush>8.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>23.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>69.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
+</Entity>
