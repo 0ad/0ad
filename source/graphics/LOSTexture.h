@@ -17,9 +17,8 @@
 
 #include "lib/ogl.h"
 
+#include "maths/Matrix3D.h"
 #include "simulation2/components/ICmpRangeManager.h"
-
-class CMatrix3D;
 
 /**
  * Maintains the LOS (fog-of-war / shroud-of-darkness) texture, used for
@@ -50,17 +49,17 @@ public:
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) LOS texture
-	 * coordinates.
+	 * coordinates, in the form expected by glLoadMatrixf.
 	 * This must only be called after BindTexture.
 	 */
-	CMatrix3D GetTextureMatrix();
+	const float* GetTextureMatrix();
 
 	/**
 	 * Returns a matrix to map (0,0)-(1,1) texture coordinates onto LOS texture
-	 * coordinates.
+	 * coordinates, in the form expected by glLoadMatrixf.
 	 * This must only be called after BindTexture.
 	 */
-	CMatrix3D GetMinimapTextureMatrix();
+	const float* GetMinimapTextureMatrix();
 
 private:
 	void ConstructTexture(int unit);
@@ -75,4 +74,7 @@ private:
 
 	ssize_t m_MapSize; // vertexes per side
 	GLsizei m_TextureSize; // texels per side
+
+	CMatrix3D m_TextureMatrix;
+	CMatrix3D m_MinimapTextureMatrix;
 };

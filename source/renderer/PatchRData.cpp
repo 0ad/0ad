@@ -104,7 +104,7 @@ struct STileBlend
 	{
 		bool operator()(const STileBlend& a) const
 		{
-			return a.m_TileMask & (1 << 8);
+			return (a.m_TileMask & (1 << 8)) != 0;
 		}
 	};
 };

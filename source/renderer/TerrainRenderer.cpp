@@ -265,7 +265,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		streamflags |= STREAM_POSTOUV1;
 
 		glMatrixMode(GL_TEXTURE);
-		glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+		glLoadMatrixf(losTexture.GetTextureMatrix());
 		glMatrixMode(GL_MODELVIEW);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -340,7 +340,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			streamflags |= STREAM_POSTOUV3;
 
 			glMatrixMode(GL_TEXTURE);
-			glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+			glLoadMatrixf(losTexture.GetTextureMatrix());
 			glMatrixMode(GL_MODELVIEW);
 
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -385,7 +385,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			streamflags |= STREAM_POSTOUV2;
 
 			glMatrixMode(GL_TEXTURE);
-			glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+			glLoadMatrixf(losTexture.GetTextureMatrix());
 			glMatrixMode(GL_MODELVIEW);
 
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -566,7 +566,7 @@ void TerrainRenderer::RenderWater()
 		pglClientActiveTextureARB(GL_TEXTURE1);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-		glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+		glLoadMatrixf(losTexture.GetTextureMatrix());
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
@@ -638,7 +638,7 @@ void TerrainRenderer::RenderWater()
 		pglUniform4fARB( translation, tx, ty, 0, 0 );
 		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
 		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
-		pglUniformMatrix4fvARB( losMatrix, 1, false, &losTexture.GetTextureMatrix()._11 );
+		pglUniformMatrix4fvARB( losMatrix, 1, false, losTexture.GetTextureMatrix() );
 		pglUniform1iARB( normalMap, 0 );		// texture unit 0
 		pglUniform1iARB( reflectionMap, 1 );	// texture unit 1
 		pglUniform1iARB( refractionMap, 2 );	// texture unit 2

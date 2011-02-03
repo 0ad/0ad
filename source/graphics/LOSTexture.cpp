@@ -77,42 +77,16 @@ void CLOSTexture::BindTexture(int unit)
 	g_Renderer.BindTexture(unit, m_Texture);
 }
 
-CMatrix3D CLOSTexture::GetTextureMatrix()
+const float* CLOSTexture::GetTextureMatrix()
 {
-	debug_assert(m_MapSize);
-
-	// We want to map
-	//   world pos (0, y, 0)  (i.e. first vertex)
-	//     onto texcoord (0.5/texsize, 0.5/texsize)  (i.e. middle of first texel);
-	//   world pos ((mapsize-1)*cellsize, y, (mapsize-1)*cellsize)  (i.e. last vertex)
-	//     onto texcoord ((mapsize-0.5) / texsize, (mapsize-0.5) / texsize)  (i.e. middle of last texel)
-	// so construct an appropriate matrix:
-
-	float s = (m_MapSize-1) / (float)(m_TextureSize * (m_MapSize-1) * CELL_SIZE);
-	float t = 0.5f / m_TextureSize;
-	CMatrix3D m;
-	m.SetZero();
-	m._11 = s;
-	m._23 = s;
-	m._14 = t;
-	m._24 = t;
-	m._44 = 1;
-	return m;
+	debug_assert(!m_Dirty);
+	return &m_TextureMatrix._11;
 }
 
-CMatrix3D CLOSTexture::GetMinimapTextureMatrix()
+const float* CLOSTexture::GetMinimapTextureMatrix()
 {
-	debug_assert(m_MapSize);
-
-	// We want to map UV (0,0)-(1,1) onto (0,0)-(mapsize/texsize, mapsize/texsize)
-
-	float s = m_MapSize / (float)m_TextureSize;
-	CMatrix3D m;
-	m.SetZero();
-	m._11 = s;
-	m._22 = s;
-	m._44 = 1;
-	return m;
+	debug_assert(!m_Dirty);
+	return &m_MinimapTextureMatrix._11;
 }
 
 void CLOSTexture::ConstructTexture(int unit)
@@ -128,6 +102,33 @@ void CLOSTexture::ConstructTexture(int unit)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	{
+		// Texture matrix: We want to map
+		//   world pos (0, y, 0)  (i.e. first vertex)
+		//     onto texcoord (0.5/texsize, 0.5/texsize)  (i.e. middle of first texel);
+		//   world pos ((mapsize-1)*cellsize, y, (mapsize-1)*cellsize)  (i.e. last vertex)
+		//     onto texcoord ((mapsize-0.5) / texsize, (mapsize-0.5) / texsize)  (i.e. middle of last texel)
+
+		float s = (m_MapSize-1) / (float)(m_TextureSize * (m_MapSize-1) * CELL_SIZE);
+		float t = 0.5f / m_TextureSize;
+		m_TextureMatrix.SetZero();
+		m_TextureMatrix._11 = s;
+		m_TextureMatrix._23 = s;
+		m_TextureMatrix._14 = t;
+		m_TextureMatrix._24 = t;
+		m_TextureMatrix._44 = 1;
+	}
+
+	{
+		// Minimap matrix: We want to map UV (0,0)-(1,1) onto (0,0)-(mapsize/texsize, mapsize/texsize)
+
+		float s = m_MapSize / (float)m_TextureSize;
+		m_MinimapTextureMatrix.SetZero();
+		m_MinimapTextureMatrix._11 = s;
+		m_MinimapTextureMatrix._22 = s;
+		m_MinimapTextureMatrix._44 = 1;
+	}
 }
 
 void CLOSTexture::RecomputeTexture(int unit)

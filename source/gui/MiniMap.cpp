@@ -375,7 +375,7 @@ void CMiniMap::Draw()
 	glColor3f(0.0f, 0.0f, 0.0f);
 
 	glMatrixMode(GL_TEXTURE);
-	glLoadMatrixf(&losTexture.GetMinimapTextureMatrix()._11);
+	glLoadMatrixf(losTexture.GetMinimapTextureMatrix());
 	glMatrixMode(GL_MODELVIEW);
 
 	DrawTexture(1.0f, angle, x, y, x2, y2, z);
