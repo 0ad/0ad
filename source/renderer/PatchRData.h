@@ -41,6 +41,7 @@ public:
 	void RenderBlends();
 	void RenderOutline();
 	void RenderStreams(int streamflags);
+	void RenderSides();
 	void RenderPriorities();
 
 private:
@@ -64,6 +65,11 @@ private:
 		float m_UVs[2];
 	};
 
+	struct SSideVertex {
+		// vertex position
+		CVector3D m_Position;
+	};
+
 	struct SBlendVertex {
 		// vertex position
 		CVector3D m_Position;
@@ -81,12 +87,18 @@ private:
 	void BuildBlends();
 	void BuildIndices();
 	void BuildVertices();
+	void BuildSides();
+
+	void BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags side);
 
 	// owner patch
 	CPatch* m_Patch;
 
 	// vertex buffer handle for base vertices
 	CVertexBuffer::VBChunk* m_VBBase;
+
+	// vertex buffer handle for side vertices
+	CVertexBuffer::VBChunk* m_VBSides;
 
 	// vertex buffer handle for blend vertices
 	CVertexBuffer::VBChunk* m_VBBlends;

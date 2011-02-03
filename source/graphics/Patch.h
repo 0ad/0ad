@@ -33,17 +33,14 @@ class CTerrain;
 // PATCH_SIZE: number of tiles in each patch
 const ssize_t PATCH_SIZE = 16;
 
-/// neighbor IDs for CPatch
-enum CPatchNeighbors
+// Flags for whether the patch should be drawn with a solid plane
+// on each side
+enum CPatchSideFlags
 {
-	CPATCH_NEIGHTBOR_LEFT_TOP     = 0,
-	CPATCH_NEIGHTBOR_TOP          = 1,
-	CPATCH_NEIGHTBOR_RIGHT_TOP    = 2,
-	CPATCH_NEIGHTBOR_LEFT         = 3,
-	CPATCH_NEIGHTBOR_RIGHT        = 4,
-	CPATCH_NEIGHTBOR_LEFT_BOTTOM  = 5,
-	CPATCH_NEIGHTBOR_BOTTOM       = 6,
-	CPATCH_NEIGHTBOR_RIGHT_BOTTOM = 7
+	CPATCH_SIDE_NEGX = (1 << 0),
+	CPATCH_SIDE_POSX = (1 << 1),
+	CPATCH_SIDE_NEGZ = (1 << 2),
+	CPATCH_SIDE_POSZ = (1 << 3),
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -75,6 +72,8 @@ public:
 	// draw state...
 	void setDrawState(bool value) { m_bWillBeDrawn = value; };
 	bool getDrawState() { return m_bWillBeDrawn; };
+
+	int GetSideFlags();
 };
 
 

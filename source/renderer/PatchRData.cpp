@@ -35,8 +35,9 @@
 #include "renderer/AlphaMapCalculator.h"
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
+#include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
-#include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpWaterManager.h"
 
 const ssize_t BlendOffsets[9][2] = {
 	{  0, -1 },
@@ -52,7 +53,8 @@ const ssize_t BlendOffsets[9][2] = {
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
-CPatchRData::CPatchRData(CPatch* patch) : m_Patch(patch), m_VBBase(0), m_VBBlends(0), m_Vertices(0)
+CPatchRData::CPatchRData(CPatch* patch) :
+	m_Patch(patch), m_VBBase(0), m_VBSides(0), m_VBBlends(0), m_Vertices(0)
 {
 	debug_assert(patch);
 	Build();
@@ -66,6 +68,7 @@ CPatchRData::~CPatchRData()
 	delete[] m_Vertices;
 	// release vertex buffer chunks
 	if (m_VBBase) g_VBMan.Release(m_VBBase);
+	if (m_VBSides) g_VBMan.Release(m_VBSides);
 	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
 }
 
@@ -427,8 +430,6 @@ void CPatchRData::BuildVertices()
 {
 	// create both vertices and lighting colors
 
-	CVector3D normal;
-
 	// number of vertices in each direction in each patch
 	ssize_t vsize=PATCH_SIZE+1;
 
@@ -459,6 +460,7 @@ void CPatchRData::BuildVertices()
 			// Calculate diffuse lighting for this vertex
 			// Ambient is added by the lighting pass (since ambient is the same
 			// for all vertices, it need not be stored in the vertex structure)
+			CVector3D normal;
 			terrain->CalcNormal(ix,iz,normal);
 
 			RGBColor diffuse;
@@ -474,9 +476,89 @@ void CPatchRData::BuildVertices()
 	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
 }
 
+void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags side)
+{
+	ssize_t vsize = PATCH_SIZE + 1;
+	CTerrain* terrain = m_Patch->m_Parent;
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+
+	for (ssize_t k = 0; k < vsize; k++)
+	{
+		ssize_t gx = m_Patch->m_X * PATCH_SIZE;
+		ssize_t gz = m_Patch->m_Z * PATCH_SIZE;
+		switch (side)
+		{
+		case CPATCH_SIDE_NEGX: gz += k; break;
+		case CPATCH_SIDE_POSX: gx += PATCH_SIZE; gz += PATCH_SIZE-k; break;
+		case CPATCH_SIDE_NEGZ: gx += PATCH_SIZE-k; break;
+		case CPATCH_SIDE_POSZ: gz += PATCH_SIZE; gx += k; break;
+		}
+
+		CVector3D pos;
+		terrain->CalcPosition(gx, gz, pos);
+
+		// Clamp the height to the water level
+		float waterHeight = 0.f;
+		if (!cmpWaterManager.null())
+			waterHeight = cmpWaterManager->GetExactWaterLevel(pos.X, pos.Z);
+		pos.Y = std::max(pos.Y, waterHeight);
+
+		SSideVertex v0, v1;
+		v0.m_Position = pos;
+		v1.m_Position = pos;
+		v1.m_Position.Y = 0;
+
+		// If this is the start of this tristrip, but we've already got a partial
+		// tristrip, and a couple of degenerate triangles to join the strips properly
+		if (k == 0 && !vertices.empty())
+		{
+			vertices.push_back(vertices.back());
+			vertices.push_back(v1);
+		}
+
+		// Now add the new triangles
+		vertices.push_back(v1);
+		vertices.push_back(v0);
+	}
+}
+
+void CPatchRData::BuildSides()
+{
+	std::vector<SSideVertex> sideVertices;
+
+	int sideFlags = m_Patch->GetSideFlags();
+
+	// If no sides are enabled, we don't need to do anything
+	if (!sideFlags)
+		return;
+
+	// For each side, generate a tristrip by adding a vertex at ground/water
+	// level and a vertex underneath at height 0.
+
+	if (sideFlags & CPATCH_SIDE_NEGX)
+		BuildSide(sideVertices, CPATCH_SIDE_NEGX);
+
+	if (sideFlags & CPATCH_SIDE_POSX)
+		BuildSide(sideVertices, CPATCH_SIDE_POSX);
+
+	if (sideFlags & CPATCH_SIDE_NEGZ)
+		BuildSide(sideVertices, CPATCH_SIDE_NEGZ);
+
+	if (sideFlags & CPATCH_SIDE_POSZ)
+		BuildSide(sideVertices, CPATCH_SIDE_POSZ);
+
+	if (sideVertices.empty())
+		return;
+
+	if (!m_VBSides)
+		m_VBSides = g_VBMan.Allocate(sizeof(SSideVertex), sideVertices.size(), true);
+	m_VBSides->m_Owner->UpdateChunkVertices(m_VBSides, &sideVertices[0]);
+}
+
 void CPatchRData::Build()
 {
 	BuildVertices();
+	BuildSides();
 	BuildIndices();
 	BuildBlends();
 }
@@ -488,6 +570,7 @@ void CPatchRData::Update()
 		// than everything; it's complicated slightly because the blends are dependent
 		// on both vertex and index data
 		BuildVertices();
+		BuildSides();
 		BuildIndices();
 		BuildBlends();
 
@@ -657,6 +740,29 @@ void CPatchRData::RenderOutline()
 		glVertex3fv(&m_Vertices[(vsize*(vsize-1))-((i+1)*vsize)].m_Position.X);
 	}
 	glEnd();
+}
+
+void CPatchRData::RenderSides()
+{
+	debug_assert(m_UpdateFlags==0);
+
+	if (!m_VBSides)
+		return;
+
+	SSideVertex *base = (SSideVertex *)m_VBSides->m_Owner->Bind();
+
+	// setup data pointers
+	GLsizei stride = sizeof(SSideVertex);
+	glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+
+	if (!g_Renderer.m_SkipSubmit)
+		glDrawArrays(GL_TRIANGLE_STRIP, m_VBSides->m_Index, (GLsizei)m_VBSides->m_Count);
+
+	// bump stats
+	g_Renderer.m_Stats.m_DrawCalls++;
+	g_Renderer.m_Stats.m_TerrainTris += m_VBSides->m_Count - 2;
+
+	CVertexBuffer::Unbind();
 }
 
 void CPatchRData::RenderPriorities()

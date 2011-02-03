@@ -155,8 +155,17 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 {
 	debug_assert(m->phase == Phase_Render);
 
-	// switch on required client states
+	// render the solid black sides of the map first
+	g_Renderer.BindTexture(0, 0);
 	glEnableClientState(GL_VERTEX_ARRAY);
+	glColor3f(0, 0, 0);
+	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
+	{
+		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
+		patchdata->RenderSides();
+	}
+
+	// switch on required client states
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	// render everything fullbright

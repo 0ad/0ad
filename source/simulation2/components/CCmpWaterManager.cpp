@@ -20,6 +20,8 @@
 #include "simulation2/system/Component.h"
 #include "ICmpWaterManager.h"
 
+#include "graphics/RenderableObject.h"
+#include "graphics/Terrain.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 
@@ -80,6 +82,9 @@ public:
 	virtual void SetWaterLevel(entity_pos_t h)
 	{
 		m_WaterHeight = h;
+
+		// Tell the terrain it'll need to recompute its cached render data
+		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 	}
 
 	virtual entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z))

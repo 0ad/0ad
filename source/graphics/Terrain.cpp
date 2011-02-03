@@ -25,7 +25,6 @@
 #include "lib/sysdep/cpu.h"
 
 #include "renderer/Renderer.h"
-#include "renderer/WaterManager.h"
 
 #include "TerrainProperties.h"
 #include "TerrainTextureEntry.h"

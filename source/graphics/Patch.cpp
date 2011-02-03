@@ -68,4 +68,23 @@ void CPatch::CalcBounds()
 			m_Bounds+=pos;
 		}
 	}
+
+	// If this a side patch, the sides go down to height 0, so add them
+	// into the bounds
+	if (GetSideFlags())
+		m_Bounds[0].Y = std::min(m_Bounds[0].Y, 0.f);
+}
+
+int CPatch::GetSideFlags()
+{
+	int flags = 0;
+	if (m_X == 0)
+		flags |= CPATCH_SIDE_NEGX;
+	if (m_Z == 0)
+		flags |= CPATCH_SIDE_NEGZ;
+	if (m_X == m_Parent->GetPatchesPerSide()-1)
+		flags |= CPATCH_SIDE_POSX;
+	if (m_Z == m_Parent->GetPatchesPerSide()-1)
+		flags |= CPATCH_SIDE_POSZ;
+	return flags;
 }
