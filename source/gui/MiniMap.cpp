@@ -31,7 +31,6 @@
 #include "lib/external_libraries/sdl.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
-#include "lib/sysdep/cpu.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"

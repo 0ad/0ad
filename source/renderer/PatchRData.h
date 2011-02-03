@@ -73,13 +73,6 @@ private:
 		float m_AlphaUVs[2];
 	};
 
-	struct STex {
-		bool operator==(const STex& rhs) const { return m_Texture==rhs.m_Texture; }
-		bool operator<(const STex& rhs) const { return m_Priority<rhs.m_Priority; }
-		CTerrainTextureEntry* m_Texture;
-		int m_Priority;
-	};
-
 	// build this renderdata object
 	void Build();
 
