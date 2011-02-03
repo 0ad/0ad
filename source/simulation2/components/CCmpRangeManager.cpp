@@ -882,6 +882,7 @@ public:
 	 */
 	inline bool LosIsOffWorld(ssize_t i, ssize_t j)
 	{
+		// WARNING: CCmpObstructionManager::Rasterise needs to be kept in sync with this
 		const ssize_t edgeSize = 3; // number of vertexes around the edge that will be off-world
 
 		if (m_LosCircular)

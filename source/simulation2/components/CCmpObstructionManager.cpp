@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -653,24 +653,9 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 	}
 
 	// Any tiles outside or very near the edge of the map are impassable
-	{
-		u16 i0, j0, i1, j1;
-		NearestTile(m_WorldX0, m_WorldZ0, i0, j0, grid.m_W, grid.m_H);
-		NearestTile(m_WorldX1, m_WorldZ1, i1, j1, grid.m_W, grid.m_H);
 
-		for (u16 j = 0; j < grid.m_H; ++j)
-			for (u16 i = 0; i <= i0; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
-		for (u16 j = 0; j < grid.m_H; ++j)
-			for (u16 i = i1; i < grid.m_W; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
-		for (u16 j = 0; j <= j0; ++j)
-			for (u16 i = i0; i <= i1; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
-		for (u16 j = j1; j < grid.m_H; ++j)
-			for (u16 i = i0; i <= i1; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
-	}
+	// WARNING: CCmpRangeManager::LosIsOffWorld needs to be kept in sync with this
+	const ssize_t edgeSize = 3; // number of tiles around the edge that will be off-world
 
 	if (m_PassabilityCircular)
 	{
@@ -680,18 +665,37 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 			{
 				// Based on CCmpRangeManager::LosIsOffWorld
 				// but tweaked since it's tile-based instead.
+				// (We double all the values so we can handle half-tile coordinates.)
 				// This needs to be slightly tighter than the LOS circle,
 				// else units might get themselves lost in the SoD around the edge.
 
 				ssize_t dist2 = (i*2 + 1 - grid.m_W)*(i*2 + 1 - grid.m_W)
 						+ (j*2 + 1 - grid.m_H)*(j*2 + 1 - grid.m_H);
 
-				if (dist2 >= (grid.m_W-2)*(grid.m_H-2))
+				if (dist2 >= (grid.m_W - 2*edgeSize) * (grid.m_H - 2*edgeSize))
 					grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
 			}
 		}
 	}
+	else
+	{
+		u16 i0, j0, i1, j1;
+		NearestTile(m_WorldX0, m_WorldZ0, i0, j0, grid.m_W, grid.m_H);
+		NearestTile(m_WorldX1, m_WorldZ1, i1, j1, grid.m_W, grid.m_H);
 
+		for (u16 j = 0; j < grid.m_H; ++j)
+			for (u16 i = 0; i < i0+edgeSize; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+		for (u16 j = 0; j < grid.m_H; ++j)
+			for (u16 i = i1-edgeSize+1; i < grid.m_W; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+		for (u16 j = 0; j < j0+edgeSize; ++j)
+			for (u16 i = i0+edgeSize; i < i1-edgeSize+1; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+		for (u16 j = j1-edgeSize+1; j < grid.m_H; ++j)
+			for (u16 i = i0+edgeSize; i < i1-edgeSize+1; ++i)
+				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+	}
 
 	return true;
 }
