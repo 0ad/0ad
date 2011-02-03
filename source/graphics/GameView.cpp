@@ -24,6 +24,7 @@
 #include "graphics/ColladaManager.h"
 #include "graphics/HFTracer.h"
 #include "graphics/LightEnv.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
@@ -198,6 +199,7 @@ public:
 	CMeshManager MeshManager;
 	CSkeletonAnimManager SkeletonAnimManager;
 	CObjectManager ObjectManager;
+	CLOSTexture LOSTexture;
 
 	/**
 	 * this camera controls the eye position when rendering
@@ -354,12 +356,10 @@ CCinemaManager* CGameView::GetCinema()
 	return &m->TrackManager;
 };
 
-/*
-void CGameView::AttachToUnit(CEntity* target)
+CLOSTexture& CGameView::GetLOSTexture()
 {
-	m->UnitAttach = target;
+	return m->LOSTexture;
 }
-*/
 
 
 void CGameViewImpl::ScriptingInit()

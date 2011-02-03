@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "MiniMap.h"
 
 #include "graphics/GameView.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/MiniPatch.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
@@ -39,7 +40,6 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
-#include "simulation2/components/ICmpRangeManager.h"
 
 bool g_GameRestarted = false;
 
@@ -51,9 +51,8 @@ static unsigned int ScaleColor(unsigned int color, float x)
 	return (0xff000000 | r | g<<8 | b<<16);
 }
 
-CMiniMap::CMiniMap()
-	: m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0),
-	m_LOSTexture(0), m_TerrainDirty(true)
+CMiniMap::CMiniMap() :
+	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_bool,		"circular");
@@ -61,8 +60,6 @@ CMiniMap::CMiniMap()
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;
 	m_Hovering = false;
-
-	m_LOSScale = 2;
 }
 
 CMiniMap::~CMiniMap()
@@ -279,9 +276,7 @@ void CMiniMap::Draw()
 	m_Width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = m_Terrain->GetVerticesPerSide();
-	m_LOSMapSize = (m_MapSize + m_LOSScale - 1) / m_LOSScale; // divide and round upwards
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
-	m_LOSTextureSize = (GLsizei)round_up_to_pow2((size_t)m_LOSMapSize);
 
 	if(!m_TerrainTexture || g_GameRestarted)
 		CreateTextures();
@@ -298,16 +293,12 @@ void CMiniMap::Draw()
 
 		if(m_TerrainDirty)
 			RebuildTerrainTexture();
-
-		RebuildLOSTexture();
 	}
 
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 	const float z = GetBufferedZ();
 	const float texCoordMax = (float)(m_MapSize - 1) / (float)m_TextureSize;
-	const float losTexCoordMax = (float)(m_LOSMapSize - 1) / (float)m_LOSTextureSize;
-
 	const float angle = GetAngle();
 
 	// Draw the main textured quad
@@ -371,20 +362,29 @@ void CMiniMap::Draw()
 	*/
 
 	// Draw the LOS quad in black, using alpha values from the LOS texture
-	g_Renderer.BindTexture(0, m_LOSTexture);
+	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+	losTexture.BindTexture(0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glColor3f(0.0f, 0.0f, 0.0f);
-	DrawTexture(losTexCoordMax, angle, x, y, x2, y2, z);
+
+	glMatrixMode(GL_TEXTURE);
+	glLoadMatrixf(&losTexture.GetMinimapTextureMatrix()._11);
+	glMatrixMode(GL_MODELVIEW);
+
+	DrawTexture(1.0f, angle, x, y, x2, y2, z);
+
+	glMatrixMode(GL_TEXTURE);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+
 	glDisable(GL_BLEND);
 
 	// Set up the matrix for drawing points and lines
@@ -463,22 +463,11 @@ void CMiniMap::CreateTextures()
 	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);
-
-	// Create LOS texture
-	glGenTextures(1, &m_LOSTexture);
-	g_Renderer.BindTexture(0, m_LOSTexture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_LOSTextureSize, m_LOSTextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
-	m_LOSData.resize(m_LOSMapSize * m_LOSMapSize);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
 
 	// Rebuild and upload both of them
 	RebuildTerrainTexture();
-	RebuildLOSTexture();
 }
 
 
@@ -539,44 +528,6 @@ void CMiniMap::RebuildTerrainTexture()
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize - 1, m_MapSize - 1, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_TerrainData);
 }
 
-
-void CMiniMap::RebuildLOSTexture()
-{
-	PROFILE("rebuild minimap: los");
-
-	ssize_t w = m_MapSize;
-	ssize_t h = m_MapSize;
-
-	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	if (cmpRangeManager.null() || cmpRangeManager->GetLosRevealAll(g_Game->GetPlayerID()))
-	{
-		memset(&m_LOSData[0], 0, m_LOSData.size());
-	}
-	else
-	{
-		ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
-
-		u8 *dataPtr = &m_LOSData[0];
-
-		for (ssize_t j = 0; j < h; j += m_LOSScale)
-		{
-			for (ssize_t i = 0; i < w; i += m_LOSScale)
-			{
-				if (los.IsVisible(i, j))
-					*dataPtr++ = 0;
-				else if (los.IsExplored(i, j))
-					*dataPtr++ = 76;
-				else
-					*dataPtr++ = 255;
-			}
-		}
-	}
-
-	// Upload the texture
-	g_Renderer.BindTexture(0, m_LOSTexture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_LOSMapSize, m_LOSMapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &m_LOSData[0]);
-}
-
 void CMiniMap::Destroy()
 {
 	if(m_TerrainTexture)
@@ -585,11 +536,6 @@ void CMiniMap::Destroy()
 		m_TerrainTexture = 0;
 	}
 
-	if(m_LOSTexture)
-	{
-		glDeleteTextures(1, &m_LOSTexture);
-		m_LOSTexture = 0;
-	}
-
-	delete[] m_TerrainData; m_TerrainData = 0;
+	delete[] m_TerrainData;
+	m_TerrainData = 0;
 }

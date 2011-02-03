@@ -882,6 +882,8 @@ public:
 	 */
 	inline bool LosIsOffWorld(ssize_t i, ssize_t j)
 	{
+		const ssize_t edgeSize = 3; // number of vertexes around the edge that will be off-world
+
 		if (m_LosCircular)
 		{
 			// With a circular map, vertex is off-world if hypot(i - size/2, j - size/2) >= size/2:
@@ -889,13 +891,19 @@ public:
 			ssize_t dist2 = (i - m_TerrainVerticesPerSide/2)*(i - m_TerrainVerticesPerSide/2)
 					+ (j - m_TerrainVerticesPerSide/2)*(j - m_TerrainVerticesPerSide/2);
 
-			if (dist2 >= (m_TerrainVerticesPerSide/2)*(m_TerrainVerticesPerSide/2))
-				return true;
+			ssize_t r = m_TerrainVerticesPerSide/2 - edgeSize + 1;
+				// subtract a bit from the radius to ensure nice
+				// SoD blurring around the edges of the map
+
+			return (dist2 >= r*r);
 		}
+		else
+		{
+			// With a square map, the outermost edge of the map should be off-world,
+			// so the SoD texture blends out nicely
 
-		// With a square map, nothing is off-world
-
-		return false;
+			return (i < edgeSize || j < edgeSize || i >= m_TerrainVerticesPerSide-edgeSize || j >= m_TerrainVerticesPerSide-edgeSize);
+		}
 	}
 
 	/**

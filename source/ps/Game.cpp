@@ -20,6 +20,7 @@
 #include "Game.h"
 
 #include "graphics/GameView.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
 #include "network/NetClient.h"
@@ -234,7 +235,10 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 
 		PROFILE("update");
 		if (m_TurnManager->Update(deltaTime, maxTurns))
+		{
 			g_GUI->SendEventToAll("SimulationUpdate");
+			GetView()->GetLOSTexture().MakeDirty();
+		}
 	}
 
 	if (doInterpolate)

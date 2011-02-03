@@ -31,6 +31,7 @@ class CGame;
 class CObjectManager;
 class CCamera;
 class CCinemaManager;
+class CLOSTexture;
 class CVector3D;
 struct SViewPort;
 
@@ -90,6 +91,7 @@ public:
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();
+	CLOSTexture& GetLOSTexture();
 
 	JSObject* GetScript();
 	static void ScriptingInit();

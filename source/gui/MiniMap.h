@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,9 +40,6 @@ protected:
     // rebuild the terrain texture map
     void RebuildTerrainTexture();
 
-    // rebuild the LOS map
-    void RebuildLOSTexture();
-
     // destroy and free any memory and textures
     void Destroy();
 
@@ -61,15 +58,9 @@ protected:
 
     // minimap texture handles
     GLuint m_TerrainTexture;
-    GLuint m_LOSTexture;
-    
-    // number of vertexes per LOS-texture texel
-    u8 m_LOSScale;
-    ssize_t m_LOSMapSize;
 
     // texture data
     u32* m_TerrainData;
-    std::vector<u8> m_LOSData;
 
     // whether we need to regenerate the terrain texture
     bool m_TerrainDirty;
@@ -81,7 +72,6 @@ protected:
 
     // texture size
     GLsizei m_TextureSize;
-    GLsizei m_LOSTextureSize;
 
 	void DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z);
 

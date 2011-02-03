@@ -169,9 +169,10 @@ public:
 	{
 	private:
 		friend class CCmpRangeManager;
+		friend class TestLOSTexture;
 
 		CLosQuerier(int player, const std::vector<u32>& data, ssize_t verticesPerSide) :
-			m_Data(data), m_VerticesPerSide(verticesPerSide)
+			m_Data(&data[0]), m_VerticesPerSide(verticesPerSide)
 		{
 			if (player > 0 && player <= 16)
 				m_PlayerMask = LOS_MASK << (2*(player-1));
@@ -192,7 +193,7 @@ public:
 			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check high bit of each bit-pair
-			if ((m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0xAAAAAAAAu)
+			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0xAAAAAAAAu)
 				return true;
 			else
 				return false;
@@ -208,7 +209,7 @@ public:
 			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check low bit of each bit-pair
-			if ((m_Data.at(j*m_VerticesPerSide + i) & m_PlayerMask) & 0x55555555u)
+			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0x55555555u)
 				return true;
 			else
 				return false;
@@ -216,7 +217,7 @@ public:
 
 	private:
 		u32 m_PlayerMask;
-		const std::vector<u32>& m_Data;
+		const u32* m_Data;
 		ssize_t m_VerticesPerSide;
 	};
 

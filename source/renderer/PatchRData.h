@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,10 +37,10 @@ public:
 	~CPatchRData();
 
 	void Update();
-	void RenderBase(bool losColor);
+	void RenderBase();
 	void RenderBlends();
 	void RenderOutline();
-	void RenderStreams(int streamflags, bool losColor);
+	void RenderStreams(int streamflags);
 	void RenderPriorities();
 
 private:
@@ -62,15 +62,11 @@ private:
 		SColor4ub m_DiffuseColor;
 		// vertex uvs for base texture
 		float m_UVs[2];
-		// color modulation from LOS
-		SColor4ub m_LOSColor;
 	};
 
 	struct SBlendVertex {
 		// vertex position
 		CVector3D m_Position;
-		// color modulation from LOS
-		SColor4ub m_LOSColor;
 		// vertex uvs for base texture
 		float m_UVs[2];
 		// vertex uvs for alpha texture
@@ -108,18 +104,11 @@ private:
 	// indices into base vertices for the base splats
 	std::vector<unsigned short> m_Indices;
 
-	// indices into base vertices for the shadow map pass
-	std::vector<unsigned short> m_ShadowMapIndices;
-
 	// list of base splats to apply to this patch
 	std::vector<SSplat> m_Splats;
 
 	// vertices to use for blending transition texture passes
 	std::vector<SBlendVertex> m_BlendVertices;
-
-	// remembers the index in the m_Vertices array of each blend vertex, so that we can
-	// properly update its color for fog of war and shroud of darkness
-	std::vector<size_t> m_BlendVertexIndices;
 
 	// splats used in blend pass
 	std::vector<SSplat> m_BlendSplats;

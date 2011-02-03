@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -434,11 +434,12 @@ CRenderer::~CRenderer()
 void CRenderer::EnumCaps()
 {
 	// assume support for nothing
-	m_Caps.m_VBO=false;
-	m_Caps.m_TextureBorderClamp=false;
-	m_Caps.m_GenerateMipmaps=false;
-	m_Caps.m_VertexShader=false;
-	m_Caps.m_FragmentShader=false;
+	m_Caps.m_VBO = false;
+	m_Caps.m_TextureBorderClamp = false;
+	m_Caps.m_GenerateMipmaps = false;
+	m_Caps.m_VertexShader = false;
+	m_Caps.m_FragmentShader = false;
+	m_Caps.m_Shadows = false;
 	m_Caps.m_DepthTextureShadows = false;
 	m_Caps.m_FramebufferObject = false;
 
@@ -448,18 +449,30 @@ void CRenderer::EnumCaps()
 			m_Caps.m_VBO=true;
 		}
 	}
+
 	if (ogl_HaveExtension("GL_ARB_texture_border_clamp")) {
 		m_Caps.m_TextureBorderClamp=true;
 	}
+
 	if (ogl_HaveExtension("GL_SGIS_generate_mipmap")) {
 		m_Caps.m_GenerateMipmaps=true;
 	}
+
 	if (0 == ogl_HaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", NULL))
 	{
 		if (ogl_HaveExtension("GL_ARB_vertex_shader"))
 			m_Caps.m_VertexShader=true;
 		if (ogl_HaveExtension("GL_ARB_fragment_shader"))
 			m_Caps.m_FragmentShader=true;
+	}
+
+	if (ogl_max_tex_units >= 3)
+	{
+		// To render shadows plus fog-of-war in a single lighting pass (see
+		// TerrainRenderer.cpp) we need >= 3 TMUs. Only really ancient hardware
+		// doesn't support that, so instead of implementing a compatible fallback
+		// we'll just disable shadows entirely unless there's enough TMUs.
+		m_Caps.m_Shadows = true;
 	}
 
 	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", NULL)) {
@@ -470,6 +483,7 @@ void CRenderer::EnumCaps()
 		if (ogl_max_tex_units >= 4)
 			m_Caps.m_DepthTextureShadows = true;
 	}
+
 	if (!m_Options.m_NoFramebufferObject)
 	{
 		if (ogl_HaveExtension("GL_EXT_framebuffer_object"))
@@ -764,7 +778,7 @@ void CRenderer::BeginFrame()
 	// choose model renderers for this frame
 	int vertexType;
 
-	if (m_Options.m_Shadows && m->shadow->GetUseDepthTexture())
+	if (m_Caps.m_Shadows && m_Options.m_Shadows && m->shadow->GetUseDepthTexture())
 	{
 		vertexType = OnlyDiffuse;
 		m->Model.ModNormal = m->Model.ModPlainLit;
@@ -884,7 +898,7 @@ void CRenderer::RenderPatches()
 	}
 
 	// render all the patches, including blend pass
-	m->terrainRenderer->RenderTerrain(m_Options.m_Shadows ? m->shadow : 0);
+	m->terrainRenderer->RenderTerrain((m_Caps.m_Shadows && m_Options.m_Shadows) ? m->shadow : 0);
 
 	if (m_TerrainRenderMode==WIREFRAME) {
 		// switch wireframe off again
@@ -1224,7 +1238,7 @@ void CRenderer::RenderSubmissions()
 	m->overlayRenderer.PrepareForRendering();
 	PROFILE_END("prepare overlays");
 
-	if (m_Options.m_Shadows)
+	if (m_Caps.m_Shadows && m_Options.m_Shadows)
 	{
 		RenderShadowMap();
 	}

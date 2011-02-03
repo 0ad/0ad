@@ -137,7 +137,6 @@ void CPatchRData::BuildBlends()
 {
 	m_BlendSplats.clear();
 	m_BlendVertices.clear();
-	m_BlendVertexIndices.clear();
 
 	CTerrain* terrain = m_Patch->m_Parent;
 
@@ -348,37 +347,29 @@ void CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
 	CalculateUV(dst.m_UVs, gx, gz);
 	dst.m_AlphaUVs[0] = vtx[0].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[0].m_AlphaUVs[1];
-	dst.m_LOSColor = vtx0.m_LOSColor;
 	dst.m_Position = vtx0.m_Position;
 	m_BlendVertices.push_back(dst);
-	m_BlendVertexIndices.push_back((j * vsize) + i);
 
 	const SBaseVertex& vtx1 = m_Vertices[(j * vsize) + i + 1];
 	CalculateUV(dst.m_UVs, gx + 1, gz);
 	dst.m_AlphaUVs[0] = vtx[1].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[1].m_AlphaUVs[1];
-	dst.m_LOSColor = vtx1.m_LOSColor;
 	dst.m_Position = vtx1.m_Position;
 	m_BlendVertices.push_back(dst);
-	m_BlendVertexIndices.push_back((j * vsize) + i + 1);
 
 	const SBaseVertex& vtx2 = m_Vertices[((j + 1) * vsize) + i + 1];
 	CalculateUV(dst.m_UVs, gx + 1, gz + 1);
 	dst.m_AlphaUVs[0] = vtx[2].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[2].m_AlphaUVs[1];
-	dst.m_LOSColor = vtx2.m_LOSColor;
 	dst.m_Position = vtx2.m_Position;
 	m_BlendVertices.push_back(dst);
-	m_BlendVertexIndices.push_back(((j + 1) * vsize) + i + 1);
 
 	const SBaseVertex& vtx3 = m_Vertices[((j + 1) * vsize) + i];
 	CalculateUV(dst.m_UVs, gx, gz + 1);
 	dst.m_AlphaUVs[0] = vtx[3].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[3].m_AlphaUVs[1];
-	dst.m_LOSColor = vtx3.m_LOSColor;
 	dst.m_Position = vtx3.m_Position;
 	m_BlendVertices.push_back(dst);
-	m_BlendVertexIndices.push_back(((j + 1) * vsize) + i);
 }
 
 void CPatchRData::BuildIndices()
@@ -391,7 +382,6 @@ void CPatchRData::BuildIndices()
 
 	// release existing indices and bins
 	m_Indices.clear();
-	m_ShadowMapIndices.clear();
 	m_Splats.clear();
 
 	// build grid of textures on this patch and boundaries of adjacent patches
@@ -430,16 +420,6 @@ void CPatchRData::BuildIndices()
 		}
 		splat.m_IndexCount=m_Indices.size()-splat.m_IndexStart;
 	}
-
-	// build indices for the shadow map pass
-	for (ssize_t j=0;j<PATCH_SIZE;j++) {
-		for (ssize_t i=0;i<PATCH_SIZE;i++) {
-			m_ShadowMapIndices.push_back(u16(((j+0)*vsize+(i+0))+base));
-			m_ShadowMapIndices.push_back(u16(((j+0)*vsize+(i+1))+base));
-			m_ShadowMapIndices.push_back(u16(((j+1)*vsize+(i+1))+base));
-			m_ShadowMapIndices.push_back(u16(((j+1)*vsize+(i+0))+base));
-		}
-	}
 }
 
 
@@ -474,7 +454,6 @@ void CPatchRData::BuildVertices()
 
 			// calculate vertex data
 			terrain->CalcPosition(ix,iz,vertices[v].m_Position);
-			vertices[v].m_LOSColor = SColor4ub(0, 0, 0, 0);	// will be set to the proper value in Update()
 			CalculateUV(vertices[v].m_UVs, ix, iz);
 
 			// Calculate diffuse lighting for this vertex
@@ -514,81 +493,19 @@ void CPatchRData::Update()
 
 		m_UpdateFlags=0;
 	}
-
-	// Update vertex colors, which are affected by LOS
-
-	ssize_t px=m_Patch->m_X;
-	ssize_t pz=m_Patch->m_Z;
-
-	CTerrain* terrain=m_Patch->m_Parent;
-	ssize_t vsize=PATCH_SIZE+1;
-	SColor4ub baseColour = terrain->GetBaseColour();
-
-	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	if (cmpRangeManager.null())
-	{
-		for (ssize_t j = 0; j < vsize; ++j)
-		{
-			for (ssize_t i = 0; i < vsize; ++i)
-			{
-				ssize_t v = (j*vsize)+i;
-				m_Vertices[v].m_LOSColor = baseColour;
-			}
-		}
-	}
-	else
-	{
-		ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
-
-		// this is very similar to BuildVertices(), but just for color
-		for (ssize_t j = 0; j < vsize; j++)
-		{
-			for (ssize_t i = 0; i < vsize; i++)
-			{
-				ssize_t ix = px * PATCH_SIZE + i;
-				ssize_t iz = pz * PATCH_SIZE + j;
-				ssize_t v = (j * vsize) + i;
-
-				SColor4ub losMod;
-				if (los.IsVisible(ix, iz))
-					losMod = baseColour;
-				else if (los.IsExplored(ix, iz))
-					losMod = SColor4ub(178, 178, 178, 255);
-				else
-					losMod = SColor4ub(0, 0, 0, 255);
-
-				m_Vertices[v].m_LOSColor = losMod;
-			}
-		}
-	}
-
-	// upload base vertices into their vertex buffer
-	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
-
-	// update blend colors by copying them from vertex colors
-	for(size_t i=0; i<m_BlendVertices.size(); i++)
-	{
-		m_BlendVertices[i].m_LOSColor = m_Vertices[m_BlendVertexIndices[i]].m_LOSColor;
-	}
-
-	// upload blend vertices into their vertex buffer too
-	if(m_BlendVertices.size())
-	{
-		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends,&m_BlendVertices[0]);
-	}
 }
 
-void CPatchRData::RenderBase(bool losColor)
+void CPatchRData::RenderBase()
 {
 	debug_assert(m_UpdateFlags==0);
 
 	SBaseVertex *base=(SBaseVertex *)m_VBBase->m_Owner->Bind();
 
 	// setup data pointers
-	GLsizei stride=sizeof(SBaseVertex);
-	glVertexPointer(3,GL_FLOAT,stride,&base->m_Position[0]);
-	glColorPointer(4,GL_UNSIGNED_BYTE,stride,losColor ? &base->m_LOSColor : &base->m_DiffuseColor);
-	glTexCoordPointer(2,GL_FLOAT,stride,&base->m_UVs[0]);
+	GLsizei stride = sizeof(SBaseVertex);
+	glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+	glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
+	glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs[0]);
 
 	// render each splat
 	for (size_t i=0;i<m_Splats.size();i++) {
@@ -612,23 +529,44 @@ void CPatchRData::RenderBase(bool losColor)
 	CVertexBuffer::Unbind();
 }
 
-void CPatchRData::RenderStreams(int streamflags, bool losColor)
+void CPatchRData::RenderStreams(int streamflags)
 {
 	debug_assert(m_UpdateFlags==0);
 
 	SBaseVertex* base=(SBaseVertex *)m_VBBase->m_Owner->Bind();
 
 	// setup data pointers
-	GLsizei stride=sizeof(SBaseVertex);
+	GLsizei stride = sizeof(SBaseVertex);
 	glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
-	if (streamflags & STREAM_UV0) {
+	if (streamflags & STREAM_UV0)
+	{
 		glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs);
-	} else if (streamflags & STREAM_POSTOUV0) {
+	}
+	else if (streamflags & STREAM_POSTOUV0)
+	{
 		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+	}
+	if (streamflags & STREAM_POSTOUV1)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
+	if (streamflags & STREAM_POSTOUV2)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE2);
+		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
+	if (streamflags & STREAM_POSTOUV3)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE3);
+		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+		pglClientActiveTextureARB(GL_TEXTURE0);
 	}
 	if (streamflags & STREAM_COLOR)
 	{
-		glColorPointer(4,GL_UNSIGNED_BYTE,stride,losColor ? &base->m_LOSColor : &base->m_DiffuseColor);
+		glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
 	}
 
 	// render all base splats at once
@@ -660,7 +598,6 @@ void CPatchRData::RenderBlends()
 	// invalid - see http://gcc.gnu.org/ml/gcc/2003-11/msg00281.html - but it
 	// doesn't seem to be worth changing this code since it works anyway.))
 	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
-	glColorPointer(4,GL_UNSIGNED_BYTE,stride,base+offsetof(SBlendVertex,m_LOSColor));
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_UVs[0]));

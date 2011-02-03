@@ -65,6 +65,7 @@ FUNC2(void, glDrawRangeElementsEXT, glDrawRangeElements, "1.2", (GLenum, GLuint,
 
 // GL_ARB_multitexture / GL1.3:
 FUNC2(void, glMultiTexCoord2fARB, glMultiTexCoord2f, "1.3", (int, float, float))
+FUNC2(void, glMultiTexCoord3fARB, glMultiTexCoord3f, "1.3", (int, float, float, float))
 FUNC2(void, glActiveTextureARB, glActiveTexture, "1.3", (int))
 FUNC2(void, glClientActiveTextureARB, glClientActiveTexture, "1.3", (int))
 

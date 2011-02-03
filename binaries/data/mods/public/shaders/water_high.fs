@@ -5,6 +5,7 @@ uniform vec3 cameraPos;
 uniform sampler2D normalMap;
 uniform sampler2D reflectionMap;
 uniform sampler2D refractionMap;
+uniform sampler2D losMap;
 uniform float shininess;		// Blinn-Phong specular strength
 uniform float specularStrength;	// Scaling for specular reflection (specular color is (this,this,this))
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
@@ -17,7 +18,6 @@ uniform float reflectionTintStrength;	// Strength of reflection tint (how much o
 varying vec3 worldPos;
 varying float w;
 varying float waterDepth;
-varying float losMod;
 
 void main()
 {
@@ -28,7 +28,8 @@ void main()
 	float t;				// Temporary variable
 	vec2 reflCoords, refrCoords;
 	vec3 reflColor, refrColor, specular;
-	
+	float losMod;
+
 	n = normalize(texture2D(normalMap, gl_TexCoord[0].st).xzy - vec3(0.5, 0.5, 0.5));
 	l = -sunDir;
 	v = normalize(cameraPos - worldPos);
@@ -55,7 +56,9 @@ void main()
 					myMurkiness);
 	
 	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularStrength;
-	
+
+	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
+
 	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel) * losMod;
 	
 	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it

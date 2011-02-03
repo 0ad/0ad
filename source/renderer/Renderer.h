@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,15 +47,18 @@ class CTextureManager;
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 
 // stream flags
-#define STREAM_POS 0x01
-#define STREAM_NORMAL 0x02
-#define STREAM_COLOR 0x04
-#define STREAM_UV0 0x08
-#define STREAM_UV1 0x10
-#define STREAM_UV2 0x20
-#define STREAM_UV3 0x40
-#define STREAM_POSTOUV0 0x80
-#define STREAM_TEXGENTOUV1 0x100
+#define STREAM_POS (1 << 0)
+#define STREAM_NORMAL (1 << 1)
+#define STREAM_COLOR (1 << 2)
+#define STREAM_UV0 (1 << 3)
+#define STREAM_UV1 (1 << 4)
+#define STREAM_UV2 (1 << 5)
+#define STREAM_UV3 (1 << 6)
+#define STREAM_POSTOUV0 (1 << 7)
+#define STREAM_POSTOUV1 (1 << 8)
+#define STREAM_POSTOUV2 (1 << 9)
+#define STREAM_POSTOUV3 (1 << 10)
+#define STREAM_TEXGENTOUV1 (1 << 11)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SVertex3D: simple 3D vertex declaration
@@ -152,6 +155,7 @@ public:
 		bool m_GenerateMipmaps;
 		bool m_VertexShader;
 		bool m_FragmentShader;
+		bool m_Shadows;
 		bool m_DepthTextureShadows;
 		bool m_FramebufferObject;
 	};

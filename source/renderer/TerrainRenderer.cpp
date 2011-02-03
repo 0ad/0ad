@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 
 #include "graphics/Camera.h"
 #include "graphics/LightEnv.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "graphics/GameView.h"
@@ -36,9 +37,6 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
-
-#include "simulation2/Simulation2.h"
-#include "simulation2/components/ICmpRangeManager.h"
 
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
@@ -159,7 +157,6 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 
 	// switch on required client states
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	
 	// render everything fullbright
@@ -167,11 +164,9 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	pglActiveTextureARB(GL_TEXTURE0);
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 
 	// Set alpha to 1.0
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
@@ -183,7 +178,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderBase(true); // with LOS color
+		patchdata->RenderBase();
 	}
 	
 	// render blends
@@ -225,6 +220,9 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	// Now apply lighting
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
+	pglClientActiveTextureARB(GL_TEXTURE0);
+	glEnableClientState(GL_COLOR_ARRAY); // diffuse lighting colours
+
 	glBlendFunc(GL_DST_COLOR, GL_ZERO);
 
 	// GL_TEXTURE_ENV_COLOR requires four floats, so we shouldn't use the RGBColor directly
@@ -234,6 +232,10 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		lightEnv.m_TerrainAmbientColor.Z,
 		1.f
 	};
+
+	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+
+	int streamflags = STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0;
 	
 	if (!shadow)
 	{
@@ -244,7 +246,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		// so assume that's still valid to use.
 		// (TODO: That's a bit of an ugly hack.)
 
-		// Shadow rendering disabled: Ambient + Diffuse
+		// Shadow rendering disabled: (Ambient + Diffuse) * LOS
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_ADD);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
@@ -256,7 +258,25 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, terrainAmbientColor);
-		
+
+		losTexture.BindTexture(1);
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		streamflags |= STREAM_POSTOUV1;
+
+		glMatrixMode(GL_TEXTURE);
+		glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+		glMatrixMode(GL_MODELVIEW);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	}
 	else
 	{
@@ -271,7 +291,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 
 		if (shadow->GetUseDepthTexture())
 		{
-			// Ambient + ShTranslucency * Diffuse * (1 - Shadow) + Diffuse * Shadow
+			// (Ambient + ShTranslucency * Diffuse * (1 - Shadow) + Diffuse * Shadow) * LOS
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR);
@@ -313,11 +333,29 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, terrainAmbientColor);
-			
+
+			losTexture.BindTexture(3);
+			pglClientActiveTextureARB(GL_TEXTURE3);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			streamflags |= STREAM_POSTOUV3;
+
+			glMatrixMode(GL_TEXTURE);
+			glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+			glMatrixMode(GL_MODELVIEW);
+
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 		}
 		else
 		{
-			// Ambient + Diffuse * Shadow
+			// (Ambient + Diffuse * Shadow) * LOS
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
@@ -341,6 +379,24 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 
 			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, terrainAmbientColor);
 			
+			losTexture.BindTexture(2);
+			pglClientActiveTextureARB(GL_TEXTURE2);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			streamflags |= STREAM_POSTOUV2;
+
+			glMatrixMode(GL_TEXTURE);
+			glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+			glMatrixMode(GL_MODELVIEW);
+
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 		}
 	}
 
@@ -350,25 +406,52 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0, false);
+		patchdata->RenderStreams(streamflags);
 	}
-	
+
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 
 	// restore OpenGL state
-	if (shadow)
+	g_Renderer.BindTexture(1, 0);
+	if (!shadow)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		glMatrixMode(GL_TEXTURE);
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+	}
+	else
 	{
 		if (shadow->GetUseDepthTexture())
-			g_Renderer.BindTexture(2,0);
+		{
+			g_Renderer.BindTexture(2, 0);
+			g_Renderer.BindTexture(3, 0);
+
+			pglClientActiveTextureARB(GL_TEXTURE3);
+			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+			glMatrixMode(GL_TEXTURE);
+			glLoadIdentity();
+			glMatrixMode(GL_MODELVIEW);
+		}
+		else
+		{
+			g_Renderer.BindTexture(2, 0);
+
+			pglClientActiveTextureARB(GL_TEXTURE2);
+			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+			glMatrixMode(GL_TEXTURE);
+			glLoadIdentity();
+			glMatrixMode(GL_MODELVIEW);
+		}
 	}
-	g_Renderer.BindTexture(1,0);
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	pglActiveTextureARB(GL_TEXTURE0);
 	glDepthMask(1);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_BLEND);
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -386,7 +469,7 @@ void TerrainRenderer::RenderPatches()
 	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderStreams(STREAM_POS, true);
+		patchdata->RenderStreams(STREAM_POS);
 	}
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
@@ -435,9 +518,7 @@ void TerrainRenderer::RenderWater()
 	}
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
-	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	debug_assert(!cmpRangeManager.null());
-	ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
+	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -479,6 +560,23 @@ void TerrainRenderer::RenderWater()
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+		// Multiply by LOS texture
+		losTexture.BindTexture(1);
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 	}
 
 	// Set the proper LOD bias
@@ -488,7 +586,6 @@ void TerrainRenderer::RenderWater()
 	CVector3D camPos = camera.m_Orientation.GetTranslation();
 
 	GLint vertexDepth = 0;	// water depth attribute, if using fancy water
-	GLint losMultiplier = 0;	// LOS multiplier, if using fancy water
 
 	if(fancy)
 	{
@@ -499,6 +596,8 @@ void TerrainRenderer::RenderWater()
 		pglActiveTextureARB( GL_TEXTURE2_ARB );
 		glEnable( GL_TEXTURE_2D );
 		glBindTexture( GL_TEXTURE_2D, WaterMgr->m_RefractionTexture );
+
+		losTexture.BindTexture(3);
 
 		// Bind water shader and set arguments
 		ogl_program_use( m->fancyWaterShader );
@@ -518,9 +617,11 @@ void TerrainRenderer::RenderWater()
 		GLint translation = ogl_program_get_uniform_location( m->fancyWaterShader, "translation" );
 		GLint reflectionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMatrix" );
 		GLint refractionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMatrix" );
+		GLint losMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "losMatrix" );
 		GLint normalMap = ogl_program_get_uniform_location( m->fancyWaterShader, "normalMap" );
 		GLint reflectionMap = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMap" );
 		GLint refractionMap = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMap" );
+		GLint losMap = ogl_program_get_uniform_location( m->fancyWaterShader, "losMap" );
 
 		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 		pglUniform3fvARB( ambient, 1, &lightEnv.m_TerrainAmbientColor.X );
@@ -537,13 +638,14 @@ void TerrainRenderer::RenderWater()
 		pglUniform4fARB( translation, tx, ty, 0, 0 );
 		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
 		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
+		pglUniformMatrix4fvARB( losMatrix, 1, false, &losTexture.GetTextureMatrix()._11 );
 		pglUniform1iARB( normalMap, 0 );		// texture unit 0
 		pglUniform1iARB( reflectionMap, 1 );	// texture unit 1
 		pglUniform1iARB( refractionMap, 2 );	// texture unit 2
+		pglUniform1iARB( losMap, 3 );			// texture unit 3
 		pglUniform3fvARB( cameraPos, 1, &camPos.X );
 
 		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
-		losMultiplier = ogl_program_get_attrib_location( m->fancyWaterShader, "losMultiplier" );
 	}
 	
 	float repeatPeriod = (fancy ? WaterMgr->m_RepeatPeriod : 16.0f);
@@ -589,18 +691,9 @@ void TerrainRenderer::RenderWater()
 
 					float terrainHeight = terrain->GetVertexGroundLevel(ix, iz);
 
-					float losMod;
-					if (los.IsVisible(ix, iz))
-						losMod = 1.0f;
-					else if (los.IsExplored(ix, iz))
-						losMod = 0.7f;
-					else
-						losMod = 0.0f;
-
 					if (fancy)
 					{
 						pglVertexAttrib1fARB(vertexDepth, WaterMgr->m_WaterHeight - terrainHeight);
-						pglVertexAttrib1fARB(losMultiplier, losMod);
 						pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
 						glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
 					}
@@ -616,11 +709,12 @@ void TerrainRenderer::RenderWater()
 						// Invert and set boundaries
 						FresnelScalar = 1.f - (FresnelScalar * 0.6);
 
-						glColor4f(WaterMgr->m_WaterColor.r*losMod,
-						          WaterMgr->m_WaterColor.g*losMod,
-						          WaterMgr->m_WaterColor.b*losMod,
+						glColor4f(WaterMgr->m_WaterColor.r,
+						          WaterMgr->m_WaterColor.g,
+						          WaterMgr->m_WaterColor.b,
 						          alpha * FresnelScalar);
 						pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
+						pglMultiTexCoord3fARB(GL_TEXTURE1, vertX, WaterMgr->m_WaterHeight, vertZ);
 						glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
 					}
 
@@ -630,25 +724,30 @@ void TerrainRenderer::RenderWater()
 	}
 	glEnd();
 
-	if(fancy)
+	if (fancy)
 	{
-		// Unbind the refraction/reflection textures and the shader
+		// Unbind the LOS/refraction/reflection textures and the shader
 
-		pglActiveTextureARB( GL_TEXTURE1_ARB );
-		glBindTexture( GL_TEXTURE_2D, 0 );
-		glDisable( GL_TEXTURE_2D );
+		g_Renderer.BindTexture(3, 0);
+		g_Renderer.BindTexture(2, 0);
+		g_Renderer.BindTexture(1, 0);
 
-		pglActiveTextureARB( GL_TEXTURE2_ARB );
-		glBindTexture( GL_TEXTURE_2D, 0 );
-		glDisable( GL_TEXTURE_2D );
-		
-		pglActiveTextureARB( GL_TEXTURE0_ARB );
+		pglActiveTextureARB(GL_TEXTURE0_ARB);
 
-		ogl_program_use( 0 );
+		ogl_program_use(0);
 	}
 
-	if(!fancy)
+	if (!fancy)
 	{
+		g_Renderer.BindTexture(1, 0);
+		pglClientActiveTextureARB(GL_TEXTURE1_ARB);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glLoadIdentity();
+
+		pglActiveTextureARB(GL_TEXTURE0_ARB);
+		pglClientActiveTextureARB(GL_TEXTURE0_ARB);
+
 		// Clean up the texture matrix and blend mode
 		glLoadIdentity();
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
