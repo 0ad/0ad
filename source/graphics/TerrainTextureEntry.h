@@ -68,8 +68,8 @@ public:
 	CStr GetTag() const
 	{ return m_Tag; }
 	
-	CTerrainPropertiesPtr GetProperties() const
-	{ return m_pProperties; }
+	const CTerrainProperties& GetProperties() const
+	{ return *m_pProperties; }
 	
 	// Get texture handle, load texture if not loaded.
 	const CTexturePtr& GetTexture() {

@@ -194,7 +194,8 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 
 int CTerrainTextureManager::LoadTerrainTextures()
 {
-	RecurseDirectory(CTerrainPropertiesPtr(), L"art/textures/terrain/types/");
+	CTerrainPropertiesPtr rootProps(new CTerrainProperties(CTerrainPropertiesPtr()));
+	RecurseDirectory(rootProps, L"art/textures/terrain/types/");
 	return 0;
 }
 

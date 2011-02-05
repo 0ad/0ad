@@ -98,7 +98,7 @@ CStr8 CTerrain::GetMovementClass(ssize_t i, ssize_t j) const
 {
 	CMiniPatch* tile = GetTile(i, j);
 	if (tile && tile->GetTextureEntry())
-		return tile->GetTextureEntry()->GetProperties()->GetMovementClass();
+		return tile->GetTextureEntry()->GetProperties().GetMovementClass();
 
 	return "default";
 }

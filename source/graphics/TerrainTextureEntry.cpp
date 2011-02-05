@@ -33,6 +33,8 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const Vf
 	m_BaseColor(0),
 	m_BaseColorValid(false)
 {
+	debug_assert(props);
+
 	CTextureProperties texture(path);
 	texture.SetWrap(GL_REPEAT);
 
