@@ -310,6 +310,13 @@ var UnitFsmSpec = {
 				// get stuck with an incorrect animation
 				this.SelectAnimation("idle");
 
+				// The GUI and AI want to know when a unit is idle, but we don't
+				// want to send frequent spurious messages if the unit's only
+				// idle for an instant and will quickly go off and do something else.
+				// So we'll set a timer here and only report the idle event if we
+				// remain idle
+				this.StartTimer(1000);
+
 				// If we entered the idle state we must have nothing better to do,
 				// so immediately check whether there's anybody nearby to attack.
 				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
@@ -328,6 +335,14 @@ var UnitFsmSpec = {
 			"leave": function() {
 				var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 				rangeMan.DisableActiveQuery(this.losRangeQuery);
+
+				this.StopTimer();
+
+				if (this.isIdle)
+				{
+					this.isIdle = false;
+					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
+				}
 			},
 
 			"LosRangeUpdate": function(msg) {
@@ -335,6 +350,14 @@ var UnitFsmSpec = {
 				{
 					// Start attacking one of the newly-seen enemy (if any)
 					this.AttackVisibleEntity(msg.data.added);
+				}
+			},
+
+			"Timer": function(msg) {
+				if (!this.isIdle)
+				{
+					this.isIdle = true;
+					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
 			},
 		},
@@ -774,6 +797,7 @@ UnitAI.prototype.Init = function()
 	this.orderQueue = []; // current order is at the front of the list
 	this.order = undefined; // always == this.orderQueue[0]
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
+	this.isIdle = false;
 
 	this.SetStance("aggressive");
 };
@@ -781,6 +805,11 @@ UnitAI.prototype.Init = function()
 UnitAI.prototype.IsFormationController = function()
 {
 	return (this.template.FormationController == "true");
+};
+
+UnitAI.prototype.IsIdle = function()
+{
+	return this.isIdle;
 };
 
 UnitAI.prototype.OnCreate = function()
@@ -925,8 +954,15 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 UnitAI.prototype.TimerHandler = function(data, lateness)
 {
 	// Reset the timer
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", data.timerRepeat - lateness, data);
+	if (data.timerRepeat === undefined)
+	{
+		this.timer = undefined;
+	}
+	else
+	{
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", data.timerRepeat - lateness, data);
+	}
 
 	UnitFsm.ProcessMessage(this, {"type": "Timer", "data": data, "lateness": lateness});
 };

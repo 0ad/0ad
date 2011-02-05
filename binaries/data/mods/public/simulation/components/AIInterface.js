@@ -33,35 +33,13 @@ AIInterface.prototype.GetRepresentation = function()
 	return state;
 };
 
-// Set up a load of event handlers to capture interesting things going on
-// in the world, which we will report to AI:
-// (This shouldn't include extremely high-frequency events, like PositionChanged,
-// because that would be very expensive and AI will rarely care about all those
-// events.)
+// AIProxy sets up a load of event handlers to capture interesting things going on
+// in the world, which we will report to AI. Handle those, and add a few more handlers
+// for events that AIProxy won't capture.
 
-AIInterface.prototype.OnGlobalCreate = function(msg)
+AIInterface.prototype.PushEvent = function(type, msg)
 {
-	this.events.push({"type": "Create", "msg": msg});
-};
-
-AIInterface.prototype.OnGlobalDestroy = function(msg)
-{
-	this.events.push({"type": "Destroy", "msg": msg});
-};
-
-AIInterface.prototype.OnGlobalOwnershipChanged = function(msg)
-{
-	this.events.push({"type": "OwnershipChanged", "msg": msg});
-};
-
-AIInterface.prototype.OnGlobalAttacked = function(msg)
-{
-	this.events.push({"type": "Attacked", "msg": msg});
-};
-
-AIInterface.prototype.OnGlobalConstructionFinished = function(msg)
-{
-	this.events.push({"type": "ConstructionFinished", "msg": msg});
+	this.events.push({"type": type, "msg": msg});
 };
 
 AIInterface.prototype.OnGlobalPlayerDefeated = function(msg)

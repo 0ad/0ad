@@ -50,7 +50,7 @@ TrainingQueue.prototype.GetEntitiesList = function()
 	return string.split(/\s+/);
 };
 
-TrainingQueue.prototype.AddBatch = function(templateName, count)
+TrainingQueue.prototype.AddBatch = function(templateName, count, metadata)
 {
 	// TODO: there should probably be a limit on the number of queued batches
 	// TODO: there should be a way for the GUI to determine whether it's going
@@ -88,12 +88,14 @@ TrainingQueue.prototype.AddBatch = function(templateName, count)
 			"player": cmpPlayer.GetPlayerID(),
 			"template": templateName,
 			"count": count,
+			"metadata": metadata,
 			"resources": costs,
 			"population": population,
 			"trainingStarted": false,
 			"timeTotal": time*1000,
 			"timeRemaining": time*1000,
 		});
+		Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
 
 		// If this is the first item in the queue, start the timer
 		if (!this.timer)
@@ -132,6 +134,8 @@ TrainingQueue.prototype.RemoveBatch = function(id)
 		// Remove from the queue
 		// (We don't need to remove the timer - it'll expire if it discovers the queue is empty)
 		this.queue.splice(i, 1);
+		Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
+
 		return;
 	}
 };
@@ -146,6 +150,7 @@ TrainingQueue.prototype.GetQueue = function()
 			"template": item.template,
 			"count": item.count,
 			"progress": 1-(item.timeRemaining/item.timeTotal),
+			"metadata": item.metadata,
 		});
 	}
 	return out;
@@ -192,7 +197,7 @@ TrainingQueue.prototype.OnDestroy = function()
 };
 
 
-TrainingQueue.prototype.SpawnUnits = function(templateName, count)
+TrainingQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 {
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -247,6 +252,8 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count)
 			});
 		}
 	}
+
+	Engine.PostMessage(this.entity, MT_TrainingFinished, { "entities": ents, "metadata": metadata });
 };
 
 TrainingQueue.prototype.ProgressTimeout = function(data)
@@ -291,8 +298,9 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 		// This item is finished now
 		time -= item.timeRemaining;
 		cmpPlayer.UnReservePopulationSlots(item.population);
-		this.SpawnUnits(item.template, item.count);
+		this.SpawnUnits(item.template, item.count, item.metadata);
 		this.queue.shift();
+		Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
 	}
 
 	// If the queue's empty, delete the timer, else repeat it

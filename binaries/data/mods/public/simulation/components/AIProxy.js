@@ -58,6 +58,8 @@ AIProxy.prototype.GetRepresentation = function()
 	return ret;
 };
 
+// AI representation-updating event handlers:
+
 AIProxy.prototype.OnPositionChanged = function(msg)
 {
 	if (!this.changes)
@@ -84,6 +86,23 @@ AIProxy.prototype.OnOwnershipChanged = function(msg)
 
 	this.changes.owner = msg.to;
 };
+
+AIProxy.prototype.OnUnitIdleChanged = function(msg)
+{
+	if (!this.changes)
+		this.changes = {};
+
+	this.changes.idle = msg.idle;
+};
+
+AIProxy.prototype.OnTrainingQueueChanged = function(msg)
+{
+	if (!this.changes)
+		this.changes = {};
+
+	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);
+	this.changes.trainingQueue = cmpTrainingQueue.GetQueue();
+}
 
 // TODO: event handlers for all the other things
 
@@ -127,9 +146,17 @@ AIProxy.prototype.GetFullRepresentation = function()
 		ret.owner = cmpOwnership.GetOwner();
 	}
 
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (cmpUnitAI)
+	{
+		// Updated by OnUnitIdleChanged
+		ret.idle = cmpUnitAI.IsIdle();
+	}
+
 	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);
 	if (cmpTrainingQueue)
 	{
+		// Updated by OnTrainingQueueChanged
 		ret.trainingQueue = cmpTrainingQueue.GetQueue();
 	}
 
@@ -158,6 +185,43 @@ AIProxy.prototype.GetFullRepresentation = function()
 	}
 
 	return ret;
+};
+
+// AI event handlers:
+// (These are passed directly as events to the AI scripts, rather than updating
+// our proxy representation.)
+// (This shouldn't include extremely high-frequency events, like PositionChanged,
+// because that would be very expensive and AI will rarely care about all those
+// events.)
+
+AIProxy.prototype.OnCreate = function(msg)
+{
+	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	cmpAIInterface.PushEvent("Create", msg);
+};
+
+AIProxy.prototype.OnDestroy = function(msg)
+{
+	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	cmpAIInterface.PushEvent("Destroy", msg);
+};
+
+AIProxy.prototype.OnAttacked = function(msg)
+{
+	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	cmpAIInterface.PushEvent("Attacked", msg);
+};
+
+AIProxy.prototype.OnConstructionFinished = function(msg)
+{
+	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	cmpAIInterface.PushEvent("ConstructionFinished", msg);
+};
+
+AIProxy.prototype.OnTrainingFinished = function(msg)
+{
+	var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+	cmpAIInterface.PushEvent("TrainingFinished", msg);
 };
 
 Engine.RegisterComponentType(IID_AIProxy, "AIProxy", AIProxy);

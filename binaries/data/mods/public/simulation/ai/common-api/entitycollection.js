@@ -2,14 +2,32 @@ function EntityCollection(baseAI, entities)
 {
 	this._ai = baseAI;
 	this._entities = entities;
+
+	var length = 0;
+	for (var id in entities)
+		++length;
+	this.length = length;
 }
 
-EntityCollection.prototype.ToIdArray = function()
+EntityCollection.prototype.toIdArray = function()
 {
 	var ret = [];
 	for (var id in this._entities)
 		ret.push(+id);
 	return ret;
+};
+
+EntityCollection.prototype.toEntityArray = function()
+{
+	var ret = [];
+	for each (var ent in this._entities)
+		ret.push(new Entity(this._ai, ent));
+	return ret;
+};
+
+EntityCollection.prototype.toString = function()
+{
+	return "[EntityCollection " + this.toEntityArray().join(" ") + "]";
 };
 
 EntityCollection.prototype.filter = function(callback, thisp)
@@ -25,14 +43,25 @@ EntityCollection.prototype.filter = function(callback, thisp)
 	return new EntityCollection(this._ai, ret);
 };
 
+EntityCollection.prototype.forEach = function(callback, thisp)
+{
+	for (var id in this._entities)
+	{
+		var ent = this._entities[id];
+		var val = new Entity(this._ai, ent);
+		callback.call(thisp, val, id, this);
+	}
+	return this;
+};
+
 EntityCollection.prototype.move = function(x, z)
 {
-	Engine.PostCommand({"type": "walk", "entities": this.ToIdArray(), "x": x, "z": z, "queued": false});
+	Engine.PostCommand({"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": false});
 	return this;
 };
 
 EntityCollection.prototype.destroy = function()
 {
-	Engine.PostCommand({"type": "delete-entities", "entities": this.ToIdArray()});
+	Engine.PostCommand({"type": "delete-entities", "entities": this.toIdArray()});
 	return this;
 };

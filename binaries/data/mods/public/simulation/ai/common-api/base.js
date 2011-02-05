@@ -6,6 +6,8 @@ function BaseAI(settings)
 	// Make some properties non-enumerable, so they won't be serialised
 	Object.defineProperty(this, "_player", {value: settings.player, enumerable: false});
 	Object.defineProperty(this, "_templates", {value: settings.templates, enumerable: false});
+
+	this._entityMetadata = {};
 }
 
 BaseAI.prototype.HandleMessage = function(state)
@@ -15,24 +17,41 @@ BaseAI.prototype.HandleMessage = function(state)
 	else
 		this.ApplyEntitiesDelta(state);
 
-//print("### "+uneval(state)+"\n\n");
-//print("@@@ "+uneval(this._rawEntities)+"\n\n");
-
 	this.entities = new EntityCollection(this, this._rawEntities);
+	this.player = this._player;
+	this.playerData = state.players[this._player];
+	this.templates = this._templates;
+	this.timeElapsed = state.timeElapsed;
 
 	this.OnUpdate();
 
 	// Clean up temporary properties, so they don't disturb the serializer
 	delete this.entities;
+	delete this.player;
+	delete this.playerData;
+	delete this.templates;
+	delete this.timeElapsed;
 };
 
 BaseAI.prototype.ApplyEntitiesDelta = function(state)
 {
 	for each (var evt in state.events)
 	{
-		if (evt.type == "Destroy")
+		if (evt.type == "Create")
+		{
+			this._rawEntities[evt.msg.entity] = {};
+		}
+		else if (evt.type == "Destroy")
 		{
 			delete this._rawEntities[evt.msg.entity];
+			delete this._entityMetadata[evt.msg.entity];
+		}
+		else if (evt.type == "TrainingFinished")
+		{
+			for each (var ent in evt.msg.entities)
+			{
+				this._entityMetadata[ent] = evt.msg.metadata;
+			}
 		}
 	}
 

@@ -21,7 +21,7 @@ ScaredyBotAI.prototype.OnUpdate = function()
 	{
 		this.chat("I quake in my boots! My troops cannot hope to survive against a power such as yours.");
 
-		this.entities.filter(function(ent) { return ent.isOwn; }).destroy();
+		this.entities.filter(function(ent) { return ent.isOwn(); }).destroy();
 	}
 
 	this.turn++;

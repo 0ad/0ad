@@ -488,6 +488,7 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	permittedComponentTypes.insert("Cost");
 	permittedComponentTypes.insert("Sound");
 	permittedComponentTypes.insert("Vision");
+	permittedComponentTypes.insert("AIProxy");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
