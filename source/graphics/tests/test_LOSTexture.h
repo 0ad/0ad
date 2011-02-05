@@ -50,7 +50,7 @@ public:
 //		for (size_t i = 0; i < losData.size(); ++i)
 //			printf("%s %3d", i % (size_t)sqrt(losData.size()) ? "" : "\n", losData[i]);
 
-		TS_ASSERT_EQUALS(losData[0], 91);
+		TS_ASSERT_EQUALS(losData[0], 104);
 	}
 
 	void test_perf_DISABLED()

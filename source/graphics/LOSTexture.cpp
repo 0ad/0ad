@@ -33,19 +33,19 @@
 The LOS bitmap is computed with one value per map vertex, based on
 CCmpRangeManager's visibility information.
 
-The bitmap is then blurred using an NxN box filter (i.e. convolution
-with (1 1 1; 1 1 1; 1 1 1) etc). To implement the blur efficiently without
-using extra memory for a second copy of the bitmap, we generate the bitmap
-with (N-1)/2 pixels of padding on each side, then the blur shifts the
-image back into the corner.
+The bitmap is then blurred using an NxN filter (in particular a
+7-tap Binomial filter as an efficient integral approximation of a Gaussian).
+To implement the blur efficiently without using extra memory for a second copy
+of the bitmap, we generate the bitmap with (N-1)/2 pixels of padding on each side,
+then the blur shifts the image back into the corner.
 
 The blurred bitmap is then uploaded into a GL texture for use by the renderer.
 
 */
 
 
-// Blur with a NxN box filter, where N = g_BlurSize must be an odd number.
-static const size_t g_BlurSize = 5;
+// Blur with a NxN filter, where N = g_BlurSize must be an odd number.
+static const size_t g_BlurSize = 7;
 
 CLOSTexture::CLOSTexture() :
 	m_Dirty(true), m_Texture(0), m_MapSize(0), m_TextureSize(0)
@@ -200,25 +200,18 @@ void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData,
 
 	for (size_t j = g_BlurSize/2; j < h + g_BlurSize/2; ++j)
 	{
-		u32 accum = 0; // sum of values in the sliding Nx1 window
-
-		// Initialise the filter window for the first output pixel
-		// (Start i at the first of the non-padding pixels, since the
-		// padding was set to 0)
-		for (size_t i = g_BlurSize/2; i < g_BlurSize-1; ++i)
-			accum += losData[i+j*rowSize];
-
-		// For each pixel, update the sliding window and store the average
-		// of the window's sum
 		for (size_t i = 0; i < w; ++i)
 		{
-			accum += losData[i+g_BlurSize-1+j*rowSize];
-
-			u8 old = losData[i+j*rowSize];
-
-			losData[i+j*rowSize] = accum / g_BlurSize;
-
-			accum -= old;
+			u8* d = &losData[i+j*rowSize];
+			*d = (
+				1*d[0] +
+				6*d[1] +
+				15*d[2] +
+				20*d[3] +
+				15*d[4] +
+				6*d[5] +
+				1*d[6]
+			) / 64;
 		}
 	}
 
@@ -226,20 +219,18 @@ void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData,
 
 	for (size_t i = 0; i < w; ++i)
 	{
-		u32 accum = 0;
-
-		for (size_t j = g_BlurSize/2; j < g_BlurSize-1; ++j)
-			accum += losData[i+j*rowSize];
-
 		for (size_t j = 0; j < h; ++j)
 		{
-			accum += losData[i+(j+g_BlurSize-1)*rowSize];
-
-			u8 old = losData[i+j*rowSize];
-
-			losData[i+j*rowSize] = accum / g_BlurSize;
-
-			accum -= old;
+			u8* d = &losData[i+j*rowSize];
+			*d = (
+				1*d[0*rowSize] +
+				6*d[1*rowSize] +
+				15*d[2*rowSize] +
+				20*d[3*rowSize] +
+				15*d[4*rowSize] +
+				6*d[5*rowSize] +
+				1*d[6*rowSize]
+			) / 64;
 		}
 	}
 }
