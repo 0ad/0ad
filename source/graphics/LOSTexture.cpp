@@ -217,9 +217,9 @@ void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData,
 
 	// Vertical blur:
 
-	for (size_t i = 0; i < w; ++i)
+	for (size_t j = 0; j < h; ++j)
 	{
-		for (size_t j = 0; j < h; ++j)
+		for (size_t i = 0; i < w; ++i)
 		{
 			u8* d = &losData[i+j*rowSize];
 			*d = (
