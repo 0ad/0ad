@@ -48,4 +48,12 @@
   <Vision>
     <Range>120</Range>
   </Vision>
+  <Sound>
+    <SoundGroups>
+      <select>actor/ship/ship_select.xml</select>
+      <order_walk>actor/ship/ship_move.xml</order_walk>
+      <order_attack>actor/ship/ship_move.xml</order_attack>
+      <order_gather>actor/ship/ship_move.xml</order_gather>
+    </SoundGroups>
+  </Sound>
 </Entity>
