@@ -7285,6 +7285,9 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">0.337839 0.000000 0.000000 0.128017 0.000000 0.337839 0.000000 6.779472 0.000000 0.000000 0.337839 1.891668 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
         <node id="prop_garrisoned" name="prop_garrisoned">
           <matrix sid="matrix">0.337839 0.000000 0.000000 0.128017 0.000000 0.337839 0.000000 6.779472 0.000000 0.000000 0.337839 1.891668 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
