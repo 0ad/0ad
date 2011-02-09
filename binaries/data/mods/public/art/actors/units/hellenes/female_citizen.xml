@@ -12,12 +12,12 @@
         <animation file="female/f_walk_01.dae" name="carry_wood" speed="30"/>
         <animation file="female/f_walk_01.dae" name="carry_stone" speed="30"/>
         <animation file="female/f_walk_01.dae" name="carry_metal" speed="30"/>
-        <animation file="female/f_lumber_01.dae" name="gather_tree" speed="50"/>
+        <animation event="0.4" file="female/f_lumber_01.dae" name="gather_tree" speed="50"/>
         <animation file="female/f_farm_01.dae" name="gather_grain" speed="75"/>
         <animation file="female/f_gather_01.dae" name="gather_fruit" speed="25"/>
         <animation file="female/f_gather_01.dae" name="gather_meat" speed="25"/>
-        <animation file="female/f_mine_01.dae" name="gather_rock" speed="140"/>
-        <animation file="female/f_mine_01.dae" name="gather_ore" speed="140"/>
+        <animation event="0.4" file="female/f_mine_01.dae" name="gather_rock" speed="140"/>
+        <animation event="0.4" file="female/f_mine_01.dae" name="gather_ore" speed="140"/>
         <animation file="female/f_mine_01.dae" name="gather_ruins" speed="140"/>
         <animation file="female/f_build_01.dae" name="Build" speed="40"/>
         <animation file="female/f_death_01.dae" name="Death" speed="120"/>
