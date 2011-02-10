@@ -4,12 +4,13 @@
  */
 var GameState = Class({
 
-	_init: function(timeElapsed, templates, entities, playerData)
+	_init: function(ai)
 	{
-		this.timeElapsed = timeElapsed;
-		this.templates = templates;
-		this.entities = entities;
-		this.playerData = playerData;
+		this.ai = ai;
+		this.timeElapsed = ai.timeElapsed;
+		this.templates = ai.templates;
+		this.entities = ai.entities;
+		this.playerData = ai.playerData;
 	},
 
 	getTimeElapsed: function()
@@ -24,9 +25,26 @@ var GameState = Class({
 		return new EntityTemplate(this.templates[type]);
 	},
 
+	applyCiv: function(str)
+	{
+		return str.replace(/\{civ\}/g, this.playerData.civ);
+	},
+
 	getResources: function()
 	{
 		return new Resources(this.playerData.resourceCounts);
+	},
+
+	getMap: function()
+	{
+		return this.ai.map;
+	},
+
+	getPassabilityClassMask: function(name)
+	{
+		if (!(name in this.ai.passabilityClasses))
+			error("Tried to use invalid passability class name '"+name+"'");
+		return this.ai.passabilityClasses[name];
 	},
 
 	getOwnEntities: function()
@@ -34,12 +52,25 @@ var GameState = Class({
 		return this.entities.filter(function(ent) { return ent.isOwn(); });
 	},
 
-	countEntitiesAndQueuedWithType: function(type)
+	countEntitiesWithType: function(type)
 	{
 		var count = 0;
 		this.getOwnEntities().forEach(function(ent) {
+			var t = ent.templateName();
+			if (t == type)
+				++count;
+		});
+		return count;
+	},
 
-			if (ent.templateName() == type)
+	countEntitiesAndQueuedWithType: function(type)
+	{
+		var foundationType = "foundation|" + type;
+		var count = 0;
+		this.getOwnEntities().forEach(function(ent) {
+
+			var t = ent.templateName();
+			if (t == type || t == foundationType)
 				++count;
 
 			var queue = ent.trainingQueue();
@@ -99,7 +130,29 @@ var GameState = Class({
 		});
 	},
 
-	findResourceSupplies: function(gameState)
+	/**
+	 * Find units that are capable of constructing the given building type.
+	 */
+	findBuilders: function(template)
+	{
+		return this.getOwnEntities().filter(function(ent) {
+
+			var buildable = ent.buildableEntities();
+			if (!buildable || buildable.indexOf(template) == -1)
+				return false;
+
+			return true;
+		});
+	},
+
+	findFoundations: function(template)
+	{
+		return this.getOwnEntities().filter(function(ent) {
+			return (typeof ent.foundationProgress() !== "undefined");
+		});
+	},
+
+	findResourceSupplies: function()
 	{
 		var supplies = {};
 		this.entities.forEach(function(ent) {
@@ -122,5 +175,4 @@ var GameState = Class({
 		});
 		return supplies;
 	},
-
 });

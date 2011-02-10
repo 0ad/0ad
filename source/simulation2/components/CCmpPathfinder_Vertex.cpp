@@ -333,7 +333,9 @@ struct TileEdge
 	enum { TOP, BOTTOM, LEFT, RIGHT } dir;
 };
 
-static void AddTerrainEdges(std::vector<Edge>& edgesAA, std::vector<Vertex>& vertexes, u16 i0, u16 j0, u16 i1, u16 j1, fixed r, u8 passClass, const Grid<TerrainTile>& terrain)
+static void AddTerrainEdges(std::vector<Edge>& edgesAA, std::vector<Vertex>& vertexes,
+	u16 i0, u16 j0, u16 i1, u16 j1, fixed r,
+	ICmpPathfinder::pass_class_t passClass, const Grid<TerrainTile>& terrain)
 {
 	PROFILE("AddTerrainEdges");
 
@@ -491,7 +493,9 @@ struct EdgeSort
 	}
 };
 
-void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& path)
+void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
+	entity_pos_t x0, entity_pos_t z0, entity_pos_t r,
+	entity_pos_t range, const Goal& goal, pass_class_t passClass, Path& path)
 {
 	UpdateGrid(); // TODO: only need to bother updating if the terrain changed
 
@@ -846,7 +850,9 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter, enti
 	PROFILE_END("A*");
 }
 
-bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u8 passClass)
+bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
+	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
+	pass_class_t passClass)
 {
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 	if (cmpObstructionManager.null())

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -125,11 +125,11 @@ QUERYHANDLER(GetTerrainPassabilityClasses)
 	CmpPtr<ICmpPathfinder> cmpPathfinder(*View::GetView_Game()->GetSimulation2(), SYSTEM_ENTITY);
 	if (!cmpPathfinder.null())
 	{
-		std::vector<std::string> names = cmpPathfinder->GetPassabilityClasses();
+		std::map<std::string, ICmpPathfinder::pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
 
 		std::vector<std::wstring> classnames;
-		for (std::vector<std::string>::iterator it = names.begin(); it != names.end(); ++it)
-			classnames.push_back(CStrW(*it));
+		for (std::map<std::string, ICmpPathfinder::pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
+			classnames.push_back(CStrW(it->first));
 		msg->classnames = classnames;
 	}
 }

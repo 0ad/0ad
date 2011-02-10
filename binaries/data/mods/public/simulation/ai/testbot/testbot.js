@@ -25,8 +25,6 @@
 /*
  * Lots of things we should fix:
  *
- *  * Construct buildings (houses, farms, barracks)
- *  * Play as non-hele civs
  *  * Find entities with no assigned role, and give them something to do
  *  * Keep some units back for defence
  *  * Consistent terminology (type vs template etc)
@@ -50,6 +48,7 @@ function TestBotAI(settings)
 
 	this.planGroups = {
 		economyPersonnel: new PlanGroup(),
+		economyConstruction: new PlanGroup(),
 		militaryPersonnel: new PlanGroup(),
 	};
 }
@@ -99,7 +98,7 @@ TestBotAI.prototype.OnUpdate = function()
 	// Run the update every n turns, offset depending on player ID to balance the load
 	if ((this.turn + this.player) % 4 == 0)
 	{
-		var gameState = new GameState(this.timeElapsed, this.templates, this.entities, this.playerData);
+		var gameState = new GameState(this);
 
 		// Find the resources we have this turn that haven't already
 		// been allocated to an escrow account.

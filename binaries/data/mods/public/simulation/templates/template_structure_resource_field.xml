@@ -40,7 +40,9 @@
     <Height>2.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="12.0" depth="12.0"/>
+    <Static width="18.0" depth="18.0"/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
   </Obstruction>
   <Vision>
     <Range>28</Range>

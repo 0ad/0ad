@@ -39,7 +39,7 @@ var PlanGroup = Class({
 		var plans = this.plans.filter(function(p) { return p.plan.canExecute(gameState); });
 
 		// Sort by decreasing priority
-		plans.sort(function(a, b) { return a.priority > b.priority; });
+		plans.sort(function(a, b) { return b.priority - a.priority; });
 
 		// Execute as many plans as we can afford
 		while (plans.length && this.escrow.canAfford(plans[0].plan.getCost()))

@@ -121,6 +121,18 @@ protected:
 		m_Impl.Put(name, (const u8*)&value, sizeof(int8_t));
 	}
 
+	virtual void PutNumber(const char* name, uint16_t value)
+	{
+		uint16_t v = to_le16(value);
+		m_Impl.Put(name, (const u8*)&v, sizeof(uint16_t));
+	}
+
+	virtual void PutNumber(const char* name, int16_t value)
+	{
+		int16_t v = (i16)to_le16((u16)value);
+		m_Impl.Put(name, (const u8*)&v, sizeof(int16_t));
+	}
+
 	virtual void PutNumber(const char* name, uint32_t value)
 	{
 		uint32_t v = to_le32(value);

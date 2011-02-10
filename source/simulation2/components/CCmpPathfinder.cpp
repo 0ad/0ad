@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	{
 		std::string name = it->first;
 		debug_assert((int)m_PassClasses.size() <= PASS_CLASS_BITS);
-		u8 mask = (u8)(1u << (m_PassClasses.size() + 1));
+		pass_class_t mask = (pass_class_t)(1u << (m_PassClasses.size() + 2));
 		m_PassClasses.push_back(PathfinderPassability(mask, it->second));
 		m_PassClassMasks[name] = mask;
 	}
@@ -82,7 +82,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 		for (CParamNode::ChildrenMap::const_iterator it = moveClasses.begin(); it != moveClasses.end(); ++it)
 		{
 			std::string terrainClassName = it->first;
-			m_TerrainCostClassTags[terrainClassName] = COST_CLASS_TAG(i);
+			m_TerrainCostClassTags[terrainClassName] = (cost_class_t)i;
 			++i;
 
 			const CParamNode::ChildrenMap& unitClasses = it->second.GetChild("UnitClasses").GetChildren();
@@ -97,7 +97,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 		size_t i = 0;
 		for (std::set<std::string>::const_iterator nit = unitClassNames.begin(); nit != unitClassNames.end(); ++nit)
 		{
-			m_UnitCostClassTags[*nit] = (u8)i;
+			m_UnitCostClassTags[*nit] = (cost_class_t)i;
 			++i;
 
 			std::vector<u32> costs;
@@ -143,7 +143,7 @@ struct SerializeLongRequest
 		serialize.NumberFixed_Unbounded("x0", value.x0);
 		serialize.NumberFixed_Unbounded("z0", value.z0);
 		SerializeGoal()(serialize, "goal", value.goal);
-		serialize.NumberU8_Unbounded("pass class", value.passClass);
+		serialize.NumberU16_Unbounded("pass class", value.passClass);
 		serialize.NumberU8_Unbounded("cost class", value.costClass);
 		serialize.NumberU32_Unbounded("notify", value.notify);
 	}
@@ -160,7 +160,7 @@ struct SerializeShortRequest
 		serialize.NumberFixed_Unbounded("r", value.r);
 		serialize.NumberFixed_Unbounded("range", value.range);
 		SerializeGoal()(serialize, "goal", value.goal);
-		serialize.NumberU8_Unbounded("pass class", value.passClass);
+		serialize.NumberU16_Unbounded("pass class", value.passClass);
 		serialize.Bool("avoid moving units", value.avoidMovingUnits);
 		serialize.NumberU32_Unbounded("group", value.group);
 		serialize.NumberU32_Unbounded("notify", value.notify);
@@ -219,7 +219,7 @@ fixed CCmpPathfinder::GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 cost
 	return m_MoveSpeeds.at(costClass).at(GET_COST_CLASS(tileTag));
 }
 
-u8 CCmpPathfinder::GetPassabilityClass(const std::string& name)
+ICmpPathfinder::pass_class_t CCmpPathfinder::GetPassabilityClass(const std::string& name)
 {
 	if (m_PassClassMasks.find(name) == m_PassClassMasks.end())
 	{
@@ -230,15 +230,12 @@ u8 CCmpPathfinder::GetPassabilityClass(const std::string& name)
 	return m_PassClassMasks[name];
 }
 
-std::vector<std::string> CCmpPathfinder::GetPassabilityClasses()
+std::map<std::string, ICmpPathfinder::pass_class_t> CCmpPathfinder::GetPassabilityClasses()
 {
-	std::vector<std::string> classes;
-	for (std::map<std::string, u8>::iterator it = m_PassClassMasks.begin(); it != m_PassClassMasks.end(); ++it)
-		classes.push_back(it->first);
-	return classes;
+	return m_PassClassMasks;
 }
 
-u8 CCmpPathfinder::GetCostClass(const std::string& name)
+ICmpPathfinder::cost_class_t CCmpPathfinder::GetCostClass(const std::string& name)
 {
 	if (m_UnitCostClassTags.find(name) == m_UnitCostClassTags.end())
 	{
@@ -272,6 +269,12 @@ fixed CCmpPathfinder::DistanceToGoal(CFixedVector2D pos, const CCmpPathfinder::G
 	}
 }
 
+const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
+{
+	UpdateGrid();
+	return *m_Grid;
+}
+
 void CCmpPathfinder::UpdateGrid()
 {
 	PROFILE("UpdateGrid");
@@ -297,6 +300,7 @@ void CCmpPathfinder::UpdateGrid()
 	{
 		// Obstructions or terrain changed - we need to recompute passability
 		// TODO: only bother recomputing the region that has actually changed
+		// TODO: if only obstructions changed, don't recompute the terrain masks
 
 		for (u16 j = 0; j < m_MapSize; ++j)
 		{
@@ -319,27 +323,30 @@ void CCmpPathfinder::UpdateGrid()
 
 				fixed slope = terrain.GetSlopeFixed(i, j);
 
-				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED)
+				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED_PATHFINDING)
 					t |= 1;
+
+				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED_FOUNDATION)
+					t |= 2;
 
 				if (obstruct & ICmpObstructionManager::TILE_OUTOFBOUNDS)
 				{
 					// If out of bounds, nobody is allowed to pass
 					for (size_t n = 0; n < m_PassClasses.size(); ++n)
-						t |= (m_PassClasses[n].m_Mask & ~1);
+						t |= m_PassClasses[n].m_Mask;
 				}
 				else
 				{
 					for (size_t n = 0; n < m_PassClasses.size(); ++n)
 					{
 						if (!m_PassClasses[n].IsPassable(depth, slope))
-							t |= (m_PassClasses[n].m_Mask & ~1);
+							t |= m_PassClasses[n].m_Mask;
 					}
 				}
 
 				std::string moveClass = terrain.GetMovementClass(i, j);
 				if (m_TerrainCostClassTags.find(moveClass) != m_TerrainCostClassTags.end())
-					t |= m_TerrainCostClassTags[moveClass];
+					t |= COST_CLASS_MASK(m_TerrainCostClassTags[moveClass]);
 
 				m_Grid->set(i, j, t);
 			}
@@ -353,14 +360,14 @@ void CCmpPathfinder::UpdateGrid()
 
 // Async path requests:
 
-u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, entity_id_t notify)
+u32 CCmpPathfinder::ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass, entity_id_t notify)
 {
 	AsyncLongPathRequest req = { m_NextAsyncTicket++, x0, z0, goal, passClass, costClass, notify };
 	m_AsyncLongPathRequests.push_back(req);
 	return req.ticket;
 }
 
-u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify)
+u32 CCmpPathfinder::ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify)
 {
 	AsyncShortPathRequest req = { m_NextAsyncTicket++, x0, z0, r, range, goal, passClass, avoidMovingUnits, group, notify };
 	m_AsyncShortPathRequests.push_back(req);
@@ -394,7 +401,7 @@ void CCmpPathfinder::FinishAsyncRequests()
 	{
 		const AsyncShortPathRequest& req = shortRequests[i];
 		Path path;
-		ControlGroupObstructionFilter filter(req.avoidMovingUnits, req.group);
+		ControlGroupMovementObstructionFilter filter(req.avoidMovingUnits, req.group);
 		ComputeShortPath(filter, req.x0, req.z0, req.r, req.range, req.goal, req.passClass, path);
 		CMessagePathResult msg(req.ticket, path);
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);

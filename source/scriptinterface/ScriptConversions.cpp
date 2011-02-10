@@ -25,6 +25,10 @@
 
 #include "js/jsapi.h"
 
+#define signbit std::signbit
+#include "js/jstypedarray.h"
+#undef signbit
+
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
 
 // Implicit type conversions often hide bugs, so warn about them
@@ -146,6 +150,11 @@ template<> jsval ScriptInterface::ToJSVal<i32>(JSContext* UNUSED(cx), const i32&
 	return INT_TO_JSVAL(val);
 }
 
+template<> jsval ScriptInterface::ToJSVal<u16>(JSContext* UNUSED(cx), const u16& val)
+{
+	return INT_TO_JSVAL(val);
+}
+
 template<> jsval ScriptInterface::ToJSVal<u32>(JSContext* cx, const u32& val)
 {
 	if (val <= JSVAL_INT_MAX)
@@ -225,7 +234,7 @@ template<typename T> static jsval ToJSVal_vector(JSContext* cx, const std::vecto
 template<typename T> static bool FromJSVal_vector(JSContext* cx, jsval v, std::vector<T>& out)
 {
 	JSObject* obj;
-	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL || !JS_IsArrayObject(cx, obj))
+	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL || !(JS_IsArrayObject(cx, obj) || js_IsTypedArray(obj)))
 		FAIL("Argument must be an array");
 	jsuint length;
 	if (!JS_GetArrayLength(cx, obj, &length))

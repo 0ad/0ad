@@ -194,7 +194,7 @@ const wchar_t* ErrorString(int err)
 // write the specified texture to disk.
 // note: <t> cannot be made const because the image may have to be
 // transformed to write it out in the format determined by <fn>'s extension.
-static LibError tex_write(Tex* t, const VfsPath& filename)
+LibError tex_write(Tex* t, const VfsPath& filename)
 {
 	const std::wstring extension = fs::extension(filename);
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -136,6 +136,8 @@ public:
 	 */
 	void NumberU8(const char* name, uint8_t value, uint8_t lower, uint8_t upper);
 	void NumberI8(const char* name, int8_t value, int8_t lower, int8_t upper);
+	void NumberU16(const char* name, uint16_t value, uint16_t lower, uint16_t upper); ///< @copydoc NumberU8
+	void NumberI16(const char* name, int16_t value, int16_t lower, int16_t upper); ///< @copydoc NumberU8
 	void NumberU32(const char* name, uint32_t value, uint32_t lower, uint32_t upper); ///< @copydoc NumberU8
 	void NumberI32(const char* name, int32_t value, int32_t lower, int32_t upper); ///< @copydoc NumberU8
 
@@ -152,6 +154,16 @@ public:
 	}
 
 	void NumberI8_Unbounded(const char* name, int8_t value) ///@copydoc NumberU8_Unbounded()
+	{
+		PutNumber(name, value);
+	}
+
+	void NumberU16_Unbounded(const char* name, uint16_t value) ///@copydoc NumberU8_Unbounded()
+	{
+		PutNumber(name, value);
+	}
+
+	void NumberI16_Unbounded(const char* name, int16_t value) ///@copydoc NumberU8_Unbounded()
 	{
 		PutNumber(name, value);
 	}
@@ -248,6 +260,8 @@ public:
 protected:
 	virtual void PutNumber(const char* name, uint8_t value) = 0;
 	virtual void PutNumber(const char* name, int8_t value) = 0;
+	virtual void PutNumber(const char* name, uint16_t value) = 0;
+	virtual void PutNumber(const char* name, int16_t value) = 0;
 	virtual void PutNumber(const char* name, uint32_t value) = 0;
 	virtual void PutNumber(const char* name, int32_t value) = 0;
 	virtual void PutNumber(const char* name, float value) = 0;

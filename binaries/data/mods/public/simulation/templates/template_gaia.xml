@@ -15,4 +15,11 @@
     <HeightOffset>5.0</HeightOffset>
   </StatusBars>
   <OverlayRenderer/>
+  <Obstruction>
+    <Active>true</Active>
+    <BlockMovement>true</BlockMovement>
+    <BlockPathfinding>true</BlockPathfinding>
+    <BlockFoundation>true</BlockFoundation>
+    <BlockConstruction>true</BlockConstruction>
+  </Obstruction>
 </Entity>

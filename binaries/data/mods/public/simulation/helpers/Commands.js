@@ -65,6 +65,19 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "construct":
+		// Message structure:
+		// {
+		//   "type": "construct",
+		//   "entities": [...],
+		//   "template": "...",
+		//   "x": ...,
+		//   "z": ...,
+		//   "angle": ...,
+		//   "autorepair": true, // whether to automatically start constructing/repairing the new foundation
+		//   "autocontinue": true, // whether to automatically gather/build/etc after finishing this
+		//   "queued": true,
+		// }
+
 		/*
 		 * Construction process:
 		 *  . Take resources away immediately.
@@ -90,9 +103,10 @@ function ProcessCommand(player, cmd)
 
 		// Check whether it's obstructed by other entities
 		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
-		if (cmpObstruction && cmpObstruction.CheckCollisions())
+		if (cmpObstruction && cmpObstruction.CheckFoundationCollisions())
 		{
 			// TODO: report error to player (the building site was obstructed)
+			print("Building site was obstructed\n");
 
 			// Remove the foundation because the construction was aborted
 			Engine.DestroyEntity(ent);
@@ -100,15 +114,22 @@ function ProcessCommand(player, cmd)
 			break;
 		}
 
+		/* TODO: the AI isn't smart enough to explore before building, so we'll
+		 * just disable the requirement that the location is visible. Should we
+		 * fix that, or let players build in fog too, or something?
+
 		// Check whether it's in a visible region
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
 		if (!visible)
 		{
 			// TODO: report error to player (the building site was not visible)
+			print("Building site was not visible\n");
+
 			Engine.DestroyEntity(ent);
 			break;
 		}
+		*/
 
 		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
 		var cmpBuildLimits = Engine.QueryInterface(playerEnt, IID_BuildLimits);
@@ -135,12 +156,15 @@ function ProcessCommand(player, cmd)
 		cmpFoundation.InitialiseConstruction(player, cmd.template);
 
 		// Tell the units to start building this new entity
-		ProcessCommand(player, {
-			"type": "repair",
-			"entities": cmd.entities,
-			"target": ent,
-			"queued": cmd.queued
-		});
+		if (cmd.autorepair)
+		{
+			ProcessCommand(player, {
+				"type": "repair",
+				"entities": cmd.entities,
+				"target": ent,
+				"queued": cmd.queued
+			});
+		}
 
 		break;
 	

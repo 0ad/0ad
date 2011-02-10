@@ -18,11 +18,17 @@
 #ifndef PS_UTIL_H
 #define PS_UTIL_H
 
+#include "lib/file/vfs/vfs_path.h"
+
+struct Tex;
+
 extern void WriteSystemInfo();
 
 extern const wchar_t* ErrorString(int err);
 
 extern void WriteScreenshot(const std::wstring& extension);
 extern void WriteBigScreenshot(const std::wstring& extension, int tiles);
+
+extern LibError tex_write(Tex* t, const VfsPath& filename);
 
 #endif // PS_UTIL_H

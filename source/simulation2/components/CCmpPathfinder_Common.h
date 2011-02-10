@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,6 +62,8 @@ struct PathfindTile;
  *
  * We use a separate bit to indicate building obstructions (instead of folding it into
  * the class passabilities) so that it can be ignored when doing the accurate short paths.
+ * We use another bit to indicate tiles near obstructions that block construction,
+ * for the AI to plan safe building spots.
  *
  * To handle movement costs, we have an arbitrary number of unit cost classes (e.g. "infantry", "camel"),
  * and a small number of terrain cost classes (e.g. "grass", "steep grass", "road", "sand"),
@@ -69,8 +71,7 @@ struct PathfindTile;
  * We need log2(|terrain cost classes|) bits per tile to represent costs.
  *
  * We could have one passability bitmap per class, and another array for cost classes,
- * but instead (for no particular reason) we'll pack them all into a single u8 array.
- * Space is a bit tight so maybe this should be changed to a u16 in the future.
+ * but instead (for no particular reason) we'll pack them all into a single u16 array.
  *
  * We handle dynamic updates currently by recomputing the entire array, which is stupid;
  * it should only bother updating the region that has changed.
@@ -78,7 +79,7 @@ struct PathfindTile;
 class PathfinderPassability
 {
 public:
-	PathfinderPassability(u8 mask, const CParamNode& node) :
+	PathfinderPassability(ICmpPathfinder::pass_class_t mask, const CParamNode& node) :
 		m_Mask(mask)
 	{
 		if (node.GetChild("MinWaterDepth").IsOk())
@@ -102,20 +103,25 @@ public:
 		return ((m_MinDepth <= waterdepth && waterdepth <= m_MaxDepth) && (steepness < m_MaxSlope));
 	}
 
-	u8 m_Mask;
+	ICmpPathfinder::pass_class_t m_Mask;
 private:
 	fixed m_MinDepth;
 	fixed m_MaxDepth;
 	fixed m_MaxSlope;
 };
 
-typedef u8 TerrainTile; // 1 bit for obstructions, PASS_CLASS_BITS for terrain passability, COST_CLASS_BITS for movement costs
-const int PASS_CLASS_BITS = 4;
-const int COST_CLASS_BITS = 8 - (PASS_CLASS_BITS + 1);
+typedef u16 TerrainTile;
+// 1 bit for pathfinding obstructions,
+// 1 bit for construction obstructions (used by AI),
+// PASS_CLASS_BITS for terrain passability (allowing PASS_CLASS_BITS classes),
+// COST_CLASS_BITS for movement costs (allowing 2^COST_CLASS_BITS classes)
+
+const int PASS_CLASS_BITS = 10;
+const int COST_CLASS_BITS = 16 - (PASS_CLASS_BITS + 2);
 #define IS_TERRAIN_PASSABLE(item, classmask) (((item) & (classmask)) == 0)
 #define IS_PASSABLE(item, classmask) (((item) & ((classmask) | 1)) == 0)
-#define GET_COST_CLASS(item) ((item) >> (PASS_CLASS_BITS + 1))
-#define COST_CLASS_TAG(id) ( (u8) ((id) << (PASS_CLASS_BITS + 1)) )
+#define GET_COST_CLASS(item) ((item) >> (PASS_CLASS_BITS + 2))
+#define COST_CLASS_MASK(id) ( (TerrainTile) ((id) << (PASS_CLASS_BITS + 2)) )
 
 struct AsyncLongPathRequest
 {
@@ -123,8 +129,8 @@ struct AsyncLongPathRequest
 	entity_pos_t x0;
 	entity_pos_t z0;
 	ICmpPathfinder::Goal goal;
-	u8 passClass;
-	u8 costClass;
+	ICmpPathfinder::pass_class_t passClass;
+	ICmpPathfinder::cost_class_t costClass;
 	entity_id_t notify;
 };
 
@@ -136,7 +142,7 @@ struct AsyncShortPathRequest
 	entity_pos_t r;
 	entity_pos_t range;
 	ICmpPathfinder::Goal goal;
-	u8 passClass;
+	ICmpPathfinder::pass_class_t passClass;
 	bool avoidMovingUnits;
 	entity_id_t group;
 	entity_id_t notify;
@@ -159,11 +165,11 @@ public:
 
 	// Template state:
 
-	std::map<std::string, u8> m_PassClassMasks;
+	std::map<std::string, pass_class_t> m_PassClassMasks;
 	std::vector<PathfinderPassability> m_PassClasses;
 
-	std::map<std::string, u8> m_TerrainCostClassTags;
-	std::map<std::string, u8> m_UnitCostClassTags;
+	std::map<std::string, cost_class_t> m_TerrainCostClassTags;
+	std::map<std::string, cost_class_t> m_UnitCostClassTags;
 	std::vector<std::vector<u32> > m_MoveCosts; // costs[unitClass][terrainClass]
 	std::vector<std::vector<fixed> > m_MoveSpeeds; // speeds[unitClass][terrainClass]
 
@@ -185,7 +191,7 @@ public:
 	u32 m_DebugSteps;
 	Path* m_DebugPath;
 	PathfinderOverlay* m_DebugOverlay;
-	u8 m_DebugPassClass;
+	pass_class_t m_DebugPassClass;
 
 	std::vector<SOverlayLine> m_DebugOverlayShortPathLines;
 
@@ -204,31 +210,33 @@ public:
 
 	virtual void HandleMessage(const CMessage& msg, bool global);
 
-	virtual u8 GetPassabilityClass(const std::string& name);
+	virtual pass_class_t GetPassabilityClass(const std::string& name);
 
-	virtual std::vector<std::string> GetPassabilityClasses();
+	virtual std::map<std::string, pass_class_t> GetPassabilityClasses();
 
-	virtual u8 GetCostClass(const std::string& name);
+	virtual cost_class_t GetCostClass(const std::string& name);
 
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& ret);
+	virtual const Grid<u16>& GetPassabilityGrid();
 
-	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, entity_id_t notify);
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass, Path& ret);
 
-	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& ret);
+	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass, entity_id_t notify);
 
-	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify);
+	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, pass_class_t passClass, Path& ret);
 
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass);
+	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify);
+
+	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass);
 
 	virtual void ResetDebugPath();
 
 	virtual void SetDebugOverlay(bool enabled);
 
-	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass);
+	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, cost_class_t costClass);
 
 	virtual CFixedVector2D GetNearestPointOnGoal(CFixedVector2D pos, const Goal& goal);
 
-	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u8 passClass);
+	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass);
 
 	virtual void FinishAsyncRequests();
 

@@ -17,6 +17,11 @@
   </Footprint>
   <Obstruction>
     <Static width="32.0" depth="32.0"/>
+    <Active>true</Active>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>true</BlockFoundation>
+    <BlockConstruction>true</BlockConstruction>
   </Obstruction>
   <Vision>
     <Range>0</Range>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -527,7 +527,7 @@ private:
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
 	 */
-	ControlGroupObstructionFilter GetObstructionFilter(bool forceAvoidMovingUnits = false);
+	ControlGroupMovementObstructionFilter GetObstructionFilter(bool forceAvoidMovingUnits = false);
 
 	/**
 	 * Start moving to the given goal, from our current position 'from'.
@@ -1045,7 +1045,7 @@ void CCmpUnitMotion::FaceTowardsPoint(CFixedVector2D pos, entity_pos_t x, entity
 	}
 }
 
-ControlGroupObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool forceAvoidMovingUnits)
+ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool forceAvoidMovingUnits)
 {
 	entity_id_t group;
 	if (IsFormationMember())
@@ -1053,7 +1053,7 @@ ControlGroupObstructionFilter CCmpUnitMotion::GetObstructionFilter(bool forceAvo
 	else
 		group = GetEntityId();
 
-	return ControlGroupObstructionFilter(forceAvoidMovingUnits || ShouldAvoidMovingUnits(), group);
+	return ControlGroupMovementObstructionFilter(forceAvoidMovingUnits || ShouldAvoidMovingUnits(), group);
 }
 
 
@@ -1273,11 +1273,11 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	if (cmpObstructionManager.null())
 		return false;
 
-	ICmpObstructionManager::tag_t tag;
-
+	bool hasObstruction = false;
+	ICmpObstructionManager::ObstructionSquare obstruction;
 	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
 	if (!cmpObstruction.null())
-		tag = cmpObstruction->GetObstruction();
+		hasObstruction = cmpObstruction->GetObstructionSquare(obstruction);
 
 	/*
 	 * If we're starting outside the maxRange, we need to move closer in.
@@ -1304,10 +1304,8 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	 * (Those units should set minRange to 0 so they'll never be considered *too* close.)
 	 */
 
-	if (tag.valid())
+	if (hasObstruction)
 	{
-		ICmpObstructionManager::ObstructionSquare obstruction = cmpObstructionManager->GetObstruction(tag);
-
 		CFixedVector2D halfSize(obstruction.hw, obstruction.hh);
 		ICmpPathfinder::Goal goal;
 		goal.x = obstruction.x;
@@ -1420,18 +1418,16 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 	if (cmpObstructionManager.null())
 		return false;
 
-	ICmpObstructionManager::tag_t tag;
-
+	bool hasObstruction = false;
+	ICmpObstructionManager::ObstructionSquare obstruction;
 	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), target);
 	if (!cmpObstruction.null())
-		tag = cmpObstruction->GetObstruction();
+		hasObstruction = cmpObstruction->GetObstructionSquare(obstruction);
 
 	entity_pos_t distance;
 
-	if (tag.valid())
+	if (hasObstruction)
 	{
-		ICmpObstructionManager::ObstructionSquare obstruction = cmpObstructionManager->GetObstruction(tag);
-
 		CFixedVector2D halfSize(obstruction.hw, obstruction.hh);
 		entity_pos_t distance = Geometry::DistanceToSquare(pos - CFixedVector2D(obstruction.x, obstruction.z), obstruction.u, obstruction.v, halfSize);
 

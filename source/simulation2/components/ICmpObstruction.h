@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,13 +32,25 @@ public:
 
 	virtual ICmpObstructionManager::tag_t GetObstruction() = 0;
 
+	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) = 0;
+
 	virtual entity_pos_t GetUnitRadius() = 0;
 
 	/**
-	 * Test whether this entity's footprint is colliding with any other's.
+	 * Test whether this entity is colliding with any obstruction that are set to
+	 * block the creation of foundations.
 	 * @return true if there is a collision
 	 */
-	virtual bool CheckCollisions() = 0;
+	virtual bool CheckFoundationCollisions() = 0;
+
+	/**
+	 * Returns a list of entities that are colliding with this entity, and that
+	 * are set to block construction.
+	 * @return true if there is a collision
+	 */
+	virtual std::vector<entity_id_t> GetConstructionCollisions() = 0;
+
+	virtual void SetActive(bool active) = 0;
 
 	virtual void SetMovingFlag(bool enabled) = 0;
 

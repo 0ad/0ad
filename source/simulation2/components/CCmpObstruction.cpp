@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,10 +48,11 @@ public:
 	} m_Type;
 	entity_pos_t m_Size0; // radius or width
 	entity_pos_t m_Size1; // radius or depth
-	bool m_Active; // whether the obstruction is obstructing or just an inactive placeholder
+	u8 m_Flags;
 
 	// Dynamic state:
 
+	bool m_Active; // whether the obstruction is obstructing or just an inactive placeholder
 	bool m_Moving;
 	entity_id_t m_ControlGroup;
 	ICmpObstructionManager::tag_t m_Tag;
@@ -60,7 +61,7 @@ public:
 	{
 		return
 			"<a:example/>"
-			"<a:help>Causes this entity's footprint to obstruct the motion of other units.</a:help>"
+			"<a:help>Causes this entity to obstruct the motion of other units.</a:help>"
 			"<choice>"
 				"<element name='Static'>"
 					"<attribute name='width'>"
@@ -76,11 +77,21 @@ public:
 					"</attribute>"
 				"</element>"
 			"</choice>"
-			"<optional>"
-				"<element name='Inactive' a:help='If this element is present, this entity will be ignored in collision tests by other units but can still perform its own collision tests'>"
-					"<empty/>"
-				"</element>"
-			"</optional>";
+			"<element name='Active' a:help='If false, this entity will be ignored in collision tests by other units but can still perform its own collision tests'>"
+				"<data type='boolean'/>"
+			"</element>"
+			"<element name='BlockMovement' a:help='Whether units should be allowed to walk through this entity'>"
+				"<data type='boolean'/>"
+			"</element>"
+			"<element name='BlockPathfinding' a:help='Whether the long-distance pathfinder should avoid paths through this entity. This should only be set for large stationary obstructions'>"
+				"<data type='boolean'/>"
+			"</element>"
+			"<element name='BlockFoundation' a:help='Whether players should be unable to place building foundations on top of this entity. If true, BlockConstruction should be true too'>"
+				"<data type='boolean'/>"
+			"</element>"
+			"<element name='BlockConstruction' a:help='Whether players should be unable to begin constructing buildings placed on top of this entity'>"
+				"<data type='boolean'/>"
+			"</element>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
@@ -97,10 +108,17 @@ public:
 			m_Size1 = paramNode.GetChild("Static").GetChild("@depth").ToFixed();
 		}
 
-		if (paramNode.GetChild("Inactive").IsOk())
-			m_Active = false;
-		else
-			m_Active = true;
+		m_Flags = 0;
+		if (paramNode.GetChild("BlockMovement").ToBool())
+			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
+		if (paramNode.GetChild("BlockPathfinding").ToBool())
+			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
+		if (paramNode.GetChild("BlockFoundation").ToBool())
+			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_FOUNDATION;
+		if (paramNode.GetChild("BlockConstruction").ToBool())
+			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
+
+		m_Active = paramNode.GetChild("Active").ToBool();
 
 		m_Tag = ICmpObstructionManager::tag_t();
 		m_Moving = false;
@@ -114,6 +132,7 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
+		serialize.Bool("active", m_Active);
 		serialize.Bool("moving", m_Moving);
 		serialize.NumberU32_Unbounded("control group", m_ControlGroup);
 		serialize.NumberU32_Unbounded("tag", m_Tag.n);
@@ -147,7 +166,7 @@ public:
 
 			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 			if (cmpObstructionManager.null())
-				break;
+				break; // error
 
 			if (data.inWorld && m_Tag.valid())
 			{
@@ -157,9 +176,11 @@ public:
 			{
 				// Need to create a new pathfinder shape:
 				if (m_Type == STATIC)
-					m_Tag = cmpObstructionManager->AddStaticShape(data.x, data.z, data.a, m_Size0, m_Size1);
+					m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
+						data.x, data.z, data.a, m_Size0, m_Size1, m_Flags);
 				else
-					m_Tag = cmpObstructionManager->AddUnitShape(data.x, data.z, m_Size0, m_Moving, m_ControlGroup);
+					m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
+						data.x, data.z, m_Size0, m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0), m_ControlGroup);
 			}
 			else if (!data.inWorld && m_Tag.valid())
 			{
@@ -174,7 +195,7 @@ public:
 			{
 				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 				if (cmpObstructionManager.null())
-					break;
+					break; // error
 
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = ICmpObstructionManager::tag_t();
@@ -184,9 +205,76 @@ public:
 		}
 	}
 
+	virtual void SetActive(bool active)
+	{
+		if (active && !m_Active)
+		{
+			m_Active = true;
+
+			// Construct the obstruction shape
+
+			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+			if (cmpObstructionManager.null())
+				return; // error
+
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+			if (cmpPosition.null())
+				return; // error
+
+			if (!cmpPosition->IsInWorld())
+				return; // don't need an obstruction
+
+			CFixedVector2D pos = cmpPosition->GetPosition2D();
+			if (m_Type == STATIC)
+				m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
+					pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, m_Flags);
+			else
+				m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
+					pos.X, pos.Y, m_Size0, m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0), m_ControlGroup);
+		}
+		else if (!active && m_Active)
+		{
+			m_Active = false;
+
+			// Delete the obstruction shape
+
+			if (m_Tag.valid())
+			{
+				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+				if (cmpObstructionManager.null())
+					return; // error
+
+				cmpObstructionManager->RemoveShape(m_Tag);
+				m_Tag = ICmpObstructionManager::tag_t();
+			}
+		}
+		// else we didn't change the active status
+	}
+
 	virtual ICmpObstructionManager::tag_t GetObstruction()
 	{
 		return m_Tag;
+	}
+
+	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out)
+	{
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		if (cmpPosition.null())
+			return false; // error
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpObstructionManager.null())
+			return false; // error
+
+		if (!cmpPosition->IsInWorld())
+			return false; // no obstruction square
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+		if (m_Type == STATIC)
+			out = cmpObstructionManager->GetStaticShapeObstruction(pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
+		else
+			out = cmpObstructionManager->GetUnitShapeObstruction(pos.X, pos.Y, m_Size0);
+		return true;
 	}
 
 	virtual entity_pos_t GetUnitRadius()
@@ -197,22 +285,56 @@ public:
 			return entity_pos_t::Zero();
 	}
 
-	virtual bool CheckCollisions()
+	virtual bool CheckFoundationCollisions()
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null())
-			return false;
+			return false; // error
+
+		if (!cmpPosition->IsInWorld())
+			return false; // no obstruction
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpObstructionManager.null())
+			return false; // error
 
-		SkipTagObstructionFilter filter(m_Tag); // ignore collisions with self
+		// Ignore collisions with self, or with non-foundation-blocking obstructions
+		SkipTagFlagsObstructionFilter filter(m_Tag, ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
 
 		if (m_Type == STATIC)
-			return cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
+			return cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL);
 		else
-			return cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0);
+			return cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, NULL);
+	}
+
+	virtual std::vector<entity_id_t> GetConstructionCollisions()
+	{
+		std::vector<entity_id_t> ret;
+
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		if (cmpPosition.null())
+			return ret; // error
+
+		if (!cmpPosition->IsInWorld())
+			return ret; // no obstruction
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpObstructionManager.null())
+			return ret; // error
+
+		// Ignore collisions with self, or with non-construction-blocking obstructions
+		SkipTagFlagsObstructionFilter filter(m_Tag, ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION);
+
+		if (m_Type == STATIC)
+			cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, &ret);
+		else
+			cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, &ret);
+
+		return ret;
 	}
 
 	virtual void SetMovingFlag(bool enabled)

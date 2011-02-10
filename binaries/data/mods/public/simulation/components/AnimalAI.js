@@ -67,6 +67,13 @@ var AnimalFsmSpec = {
 			this.PlaySound("panic");
 		},
 
+		"LeaveFoundation": function(msg) {
+			// Run away from the foundation
+			this.MoveAwayFrom(msg.target, +this.template.FleeDistance);
+			this.SetNextState("FLEEING");
+			this.PlaySound("panic");
+		},
+
 		"ROAMING": {
 			"enter": function() {
 				// Walk in a random direction
@@ -134,6 +141,12 @@ var AnimalFsmSpec = {
 			// Do nothing, just let them kill us
 		},
 	
+		"LeaveFoundation": function(msg) {
+			// Walk away from the foundation
+			this.MoveAwayFrom(msg.target, 4);
+			this.SetNextState("FLEEING");
+		},
+
 		"ROAMING": {
 			"enter": function() {
 				// Walk in a random direction
@@ -171,6 +184,16 @@ var AnimalFsmSpec = {
 			"MoveCompleted": function() { },
 
 			"Timer": function(msg) {
+				this.SetNextState("ROAMING");
+			},
+		},
+
+		"FLEEING": {
+			"enter": function() {
+				this.SelectAnimation("walk", false, this.GetWalkSpeed());
+			},
+
+			"MoveCompleted": function() {
 				this.SetNextState("ROAMING");
 			},
 		},
@@ -234,6 +257,11 @@ AnimalAI.prototype.OnHealthChanged = function(msg)
 AnimalAI.prototype.TimerHandler = function(data, lateness)
 {
 	AnimalFsm.ProcessMessage(this, {"type": "Timer", "data": data, "lateness": lateness});
+};
+
+AnimalAI.prototype.LeaveFoundation = function(target)
+{
+	AnimalFsm.ProcessMessage(this, {"type": "LeaveFoundation", "target": target});
 };
 
 // Functions to be called by the FSM:

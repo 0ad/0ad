@@ -412,7 +412,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 
 		// Check whether it's obstructed by other entities
 		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
-		var colliding = (cmpObstruction && cmpObstruction.CheckCollisions());
+		var colliding = (cmpObstruction && cmpObstruction.CheckFoundationCollisions());
 
 		// Check whether it's in a visible region
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);

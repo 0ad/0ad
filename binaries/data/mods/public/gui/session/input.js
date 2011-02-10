@@ -313,6 +313,8 @@ function tryPlaceBuilding(queued)
 		"z": placementPosition.z,
 		"angle": placementAngle,
 		"entities": selection,
+		"autorepair": true,
+		"autocontinue": true,
 		"queued": queued
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });

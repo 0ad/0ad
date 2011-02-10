@@ -2,11 +2,11 @@ var UnitTrainingPlan = Class({
 
 	_init: function(gameState, type, amount, metadata)
 	{
-		this.type = type;
+		this.type = gameState.applyCiv(type);
 		this.amount = amount;
 		this.metadata = metadata;
 
-		this.cost = new Resources(gameState.getTemplate(type).cost());
+		this.cost = new Resources(gameState.getTemplate(this.type).cost());
 		this.cost.multiply(amount); // (assume no batch discount)
 	},
 

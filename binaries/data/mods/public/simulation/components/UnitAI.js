@@ -59,6 +59,13 @@ var UnitFsmSpec = {
 		this.SetNextState("FORMATIONMEMBER.WALKING");
 	},
 
+	// Special orders:
+	// (these will be overridden by various states)
+
+	"Order.LeaveFoundation": function(msg) {
+		// Default behaviour is to ignore the order since we're busy
+		this.FinishOrder();
+	},
 
 	// Individual orders:
 	// (these will switch the unit out of formation mode)
@@ -360,6 +367,25 @@ var UnitFsmSpec = {
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
 			},
+
+			// Override the LeaveFoundation order since we're not doing
+			// anything more important
+			"Order.LeaveFoundation": function(msg) {
+				// Move a tile outside the building
+				var range = 4;
+				var ok = this.MoveToTargetRangeExplicit(this.order.data.target, range, range);
+				if (ok)
+				{
+					// We've started walking to the given point
+					this.SetNextState("INDIVIDUAL.WALKING");
+				}
+				else
+				{
+					// We are already at the target, or can't move at all
+					this.FinishOrder();
+				}
+			},
+
 		},
 
 		"WALKING": {
@@ -718,12 +744,20 @@ var UnitFsmSpec = {
 				if (msg.data.entity != this.order.data.target)
 					return; // ignore other buildings
 
+				// Save the current order's data in case we need it later
+				var oldAutocontinue = this.order.data.autocontinue;
+
 				// We finished building it.
 				// Switch to the next order (if any)
 				if (this.FinishOrder())
 					return;
 
 				// No remaining orders - pick a useful default behaviour
+
+				// If autocontinue explicitly disabled (e.g. by AI) then
+				// do nothing automatically
+				if (!oldAutocontinue)
+					return;
 
 				// If this building was e.g. a farm, we should start gathering from it
 				// if we are capable of doing so
@@ -1226,6 +1260,12 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 	return cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
+UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
+{
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.MoveToTargetRange(target, min, max);
+};
+
 UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 {
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
@@ -1322,6 +1362,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 			break; // and continue the loop
 
 		case "WalkToTarget":
+		case "LeaveFoundation":
 		case "Attack":
 		case "Gather":
 		case "ReturnResource":
@@ -1368,6 +1409,15 @@ UnitAI.prototype.Walk = function(x, z, queued)
 UnitAI.prototype.WalkToTarget = function(target, queued)
 {
 	this.AddOrder("WalkToTarget", { "target": target }, queued);
+};
+
+UnitAI.prototype.LeaveFoundation = function(target)
+{
+	// TODO: we should verify this is a friendly foundation, otherwise
+	// there's no reason we should let them build here
+
+	var queued = true;
+	this.AddOrder("LeaveFoundation", { "target": target }, queued);
 };
 
 UnitAI.prototype.Attack = function(target, queued)

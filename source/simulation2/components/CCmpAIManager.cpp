@@ -20,12 +20,17 @@
 #include "simulation2/system/Component.h"
 #include "ICmpAIManager.h"
 
+#include "graphics/Terrain.h"
 #include "lib/timer.h"
+#include "lib/tex/tex.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Util.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
+#include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/serialization/DebugSerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
 #include "simulation2/serialization/StdSerializer.h"
@@ -73,6 +78,8 @@ private:
 
 			m_ScriptInterface.RegisterFunction<void, std::wstring, CAIPlayer::IncludeModule>("IncludeModule");
 			m_ScriptInterface.RegisterFunction<void, CScriptValRooted, CAIPlayer::PostCommand>("PostCommand");
+
+			m_ScriptInterface.RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIPlayer::DumpImage>("DumpImage");
 		}
 
 		~CAIPlayer()
@@ -93,6 +100,45 @@ private:
 			CAIPlayer* self = static_cast<CAIPlayer*> (cbdata);
 
 			self->m_Commands.push_back(self->m_ScriptInterface.WriteStructuredClone(cmd.get()));
+		}
+
+		/**
+		 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
+		 */
+		static void DumpImage(void* UNUSED(cbdata), std::wstring name, std::vector<u32> data, u32 w, u32 h, u32 max)
+		{
+			// TODO: this is totally not threadsafe.
+
+			VfsPath filename = L"screenshots/aidump/" + name;
+
+			if (data.size() != w*h)
+			{
+				debug_warn(L"DumpImage: data size doesn't match w*h");
+				return;
+			}
+
+			if (max == 0)
+			{
+				debug_warn(L"DumpImage: max must not be 0");
+				return;
+			}
+
+			const size_t bpp = 8;
+			int flags = TEX_BOTTOM_UP|TEX_GREY;
+
+			const size_t img_size = w * h * bpp/8;
+			const size_t hdr_size = tex_hdr_size(filename);
+			shared_ptr<u8> buf = io_Allocate(hdr_size+img_size);
+			Tex t;
+			if (tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
+				return;
+
+			u8* img = buf.get() + hdr_size;
+			for (size_t i = 0; i < data.size(); ++i)
+				img[i] = (data[i] * 255) / max;
+
+			tex_write(&t, filename);
+			tex_free(&t);
 		}
 
 		bool LoadScripts(const std::wstring& moduleName)
@@ -451,6 +497,10 @@ public:
 		// Get the game state from AIInterface
 		CScriptVal state = cmpAIInterface->GetRepresentation();
 
+		LoadTerrainData(state);
+
+		LoadPathfinderClasses(state);
+
 		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()));
 	}
 
@@ -496,6 +546,40 @@ private:
 		}
 
 		m_Worker.LoadEntityTemplates(templates);
+	}
+
+	void LoadTerrainData(CScriptVal state)
+	{
+		PROFILE("LoadTerrainData");
+
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpPathfinder.null())
+			return;
+
+		const Grid<u16>& grid = cmpPathfinder->GetPassabilityGrid();
+
+		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		scriptInterface.SetProperty(state.get(), "map", grid, true);
+		// (If this is slow, maybe we should only bother uploading the data
+		// if it's changed since last turn)
+	}
+
+	void LoadPathfinderClasses(CScriptVal state)
+	{
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpPathfinder.null())
+			return;
+
+		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+
+		CScriptVal classesVal;
+		scriptInterface.Eval("({ pathfinderObstruction: 1, foundationObstruction: 2 })", classesVal);
+
+		std::map<std::string, ICmpPathfinder::pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
+		for (std::map<std::string, ICmpPathfinder::pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
+			scriptInterface.SetProperty(classesVal.get(), it->first.c_str(), it->second, true);
+
+		scriptInterface.SetProperty(state.get(), "passabilityClasses", classesVal, true);
 	}
 
 	CAIWorker m_Worker;

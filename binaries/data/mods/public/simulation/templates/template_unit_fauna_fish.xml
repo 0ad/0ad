@@ -10,10 +10,12 @@
   </Footprint>
   <Obstruction>
     <Unit radius="0.1"/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
   </Obstruction>
   <Position>
-	<Altitude>-4.0</Altitude>
-	<Floating>true</Floating>
+    <Altitude>-4.0</Altitude>
+    <Floating>true</Floating>
   </Position>
   <UnitMotion disable=""/>
   <AnimalAI disable=""/>

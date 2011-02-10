@@ -77,6 +77,11 @@
   </Footprint>
   <Obstruction>
     <Unit radius="0.8"/>
+    <Active>true</Active>
+    <BlockMovement>true</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
+    <BlockConstruction>true</BlockConstruction>
   </Obstruction>
   <Vision>
     <Range>24</Range>

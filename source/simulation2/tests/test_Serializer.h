@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,7 +48,10 @@ class TestSerializer : public CxxTest::TestSuite
 public:
 	void serialize_types(ISerializer& serialize)
 	{
-		serialize.NumberU8_Unbounded("u8", 255);
+		serialize.NumberI8_Unbounded("i8", (signed char)-123);
+		serialize.NumberU8_Unbounded("u8", (unsigned char)255);
+		serialize.NumberI16_Unbounded("i16", -12345);
+		serialize.NumberU16_Unbounded("u16", 56789);
 		serialize.NumberI32_Unbounded("i32", -123);
 		serialize.NumberU32_Unbounded("u32", (unsigned)-123);
 		serialize.NumberFloat_Unbounded("float", 1e+30f);
@@ -122,7 +125,10 @@ public:
 
 		TS_ASSERT_STR_EQUALS(stream.str(),
 				"# comment\n"
+				"i8: -123\n"
 				"u8: 255\n"
+				"i16: -12345\n"
+				"u16: 56789\n"
 				"i32: -123\n"
 				"u32: 4294967173\n"
 				"float: 1e+30\n"
@@ -173,7 +179,10 @@ public:
 		serialize_types(serialize);
 
 		CStdDeserializer deserialize(script, stream);
+		int8_t i8v;
 		uint8_t u8v;
+		int16_t i16v;
+		uint16_t u16v;
 		int32_t i32v;
 		uint32_t u32v;
 		float flt;
@@ -184,8 +193,14 @@ public:
 		std::wstring wstr;
 		u8 cbuf[256];
 
+		deserialize.NumberI8_Unbounded("i8", i8v);
+		TS_ASSERT_EQUALS(i8v, -123);
 		deserialize.NumberU8_Unbounded("u8", u8v);
 		TS_ASSERT_EQUALS(u8v, 255);
+		deserialize.NumberI16_Unbounded("i16", i16v);
+		TS_ASSERT_EQUALS(i16v, -12345);
+		deserialize.NumberU16_Unbounded("u16", u16v);
+		TS_ASSERT_EQUALS(u16v, 56789);
 		deserialize.NumberI32_Unbounded("i32", i32v);
 		TS_ASSERT_EQUALS(i32v, -123);
 		deserialize.NumberU32_Unbounded("u32", u32v);

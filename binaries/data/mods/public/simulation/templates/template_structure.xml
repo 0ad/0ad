@@ -61,4 +61,11 @@
     <DefaultArrowCount>0</DefaultArrowCount>
     <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
   </BuildingAI>
+  <Obstruction>
+    <Active>true</Active>
+    <BlockMovement>true</BlockMovement>
+    <BlockPathfinding>true</BlockPathfinding>
+    <BlockFoundation>true</BlockFoundation>
+    <BlockConstruction>true</BlockConstruction>
+  </Obstruction>
 </Entity>

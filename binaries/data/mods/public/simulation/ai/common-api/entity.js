@@ -38,6 +38,26 @@ var EntityTemplate = Class({
 		return ret;
 	},
 
+	/**
+	 * Returns the radius of a circle surrounding this entity's
+	 * obstruction shape, or undefined if no obstruction.
+	 */
+	obstructionRadius: function() {
+		if (!this._template.Obstruction)
+			return undefined;
+
+		if (this._template.Obstruction.Static)
+		{
+			var w = +this._template.Obstruction.Static["@width"];
+			var h = +this._template.Obstruction.Static["@depth"];
+			return Math.sqrt(w*w + h*h) / 2;
+		}
+
+		if (this._template.Obstruction.Unit)
+			return +this._template.Obstruction.Unit["@radius"];
+
+		return 0; // this should never happen
+	},
 
 	maxHitpoints: function() { return this._template.Health.Max; },
 	isHealable: function() { return this._template.Health.Healable === "true"; },
@@ -103,12 +123,13 @@ var EntityTemplate = Class({
 });
 
 
+
 var Entity = Class({
 	_super: EntityTemplate,
 
 	_init: function(baseAI, entity)
 	{
-		this._super.call(this, baseAI._templates[entity.template]);
+		this._super.call(this, baseAI.GetTemplate(entity.template));
 
 		this._ai = baseAI;
 		this._templateName = entity.template;
@@ -134,7 +155,7 @@ var Entity = Class({
 	 */
 	getMetadata: function(id) {
 		var metadata = this._ai._entityMetadata[this.id()];
-		if (!metadata)
+		if (!metadata || !(id in metadata))
 			return undefined;
 		return metadata[id];
 	},
@@ -179,7 +200,11 @@ var Entity = Class({
 		return queue.length;
 	},
 
-	foundationProgress: function() { return this._entity.foundationProgress; },
+	foundationProgress: function() {
+		if (typeof this._entity.foundationProgress === "undefined")
+			return undefined;
+		return this._entity.foundationProgress;
+	},
 
 	owner: function() {
 		return this._entity.owner;
@@ -216,6 +241,11 @@ var Entity = Class({
 		return this;
 	},
 
+	repair: function(target) {
+		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "queued": false});
+		return this;
+	},
+
 	destroy: function() {
 		Engine.PostCommand({"type": "delete-entities", "entities": [this.id()]});
 		return this;
@@ -241,6 +271,24 @@ var Entity = Class({
 			"template": type,
 			"count": count,
 			"metadata": metadata
+		});
+		return this;
+	},
+
+	construct: function(template, x, z, angle) {
+		// TODO: verify this unit can construct this, just for internal
+		// sanity-checking and error reporting
+
+		Engine.PostCommand({
+			"type": "construct",
+			"entities": [this.id()],
+			"template": template,
+			"x": x,
+			"z": z,
+			"angle": angle,
+			"autorepair": false,
+			"autocontinue": false,
+			"queued": false
 		});
 		return this;
 	},

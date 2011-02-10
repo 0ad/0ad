@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,6 +68,18 @@ public:
 	};
 
 	/**
+	 * Boolean flags affecting the obstruction behaviour of a shape.
+	 */
+	enum EFlags
+	{
+		FLAG_BLOCK_MOVEMENT     = (1 << 0), // prevents units moving through this shape
+		FLAG_BLOCK_FOUNDATION   = (1 << 1), // prevents foundations being placed on this shape
+		FLAG_BLOCK_CONSTRUCTION = (1 << 2), // prevents buildings being constructed on this shape
+		FLAG_BLOCK_PATHFINDING  = (1 << 3), // prevents the tile pathfinder choosing paths through this shape
+		FLAG_MOVING             = (1 << 4)  // indicates this unit is currently moving
+	};
+
+	/**
 	 * Set the bounds of the world.
 	 * Any point outside the bounds is considered obstructed.
 	 * @param x0,z0,x1,z1 Coordinates of the corners of the world
@@ -76,24 +88,28 @@ public:
 
 	/**
 	 * Register a static shape.
+	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
 	 * @param x X coordinate of center, in world space
 	 * @param z Z coordinate of center, in world space
 	 * @param a angle of rotation (clockwise from +Z direction)
 	 * @param w width (size along X axis)
 	 * @param h height (size along Z axis)
+	 * @param flags a set of EFlags values
 	 * @return a valid tag for manipulating the shape
 	 */
-	virtual tag_t AddStaticShape(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) = 0;
+	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, u8 flags) = 0;
 
 	/**
 	 * Register a unit shape.
+	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
 	 * @param x X coordinate of center, in world space
 	 * @param z Z coordinate of center, in world space
 	 * @param r radius (half the unit's width/height)
+	 * @param flags a set of EFlags values
 	 * @param moving whether the unit is currently moving through the world or is stationary
 	 * @return a valid tag for manipulating the shape
 	 */
-	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_angle_t r, bool moving, entity_id_t group) = 0;
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t r, u8 flags, entity_id_t group) = 0;
 
 	/**
 	 * Adjust the position and angle of an existing shape.
@@ -146,9 +162,12 @@ public:
 	 * @param a angle of rotation (clockwise from +Z direction)
 	 * @param w width (size along X axis)
 	 * @param h height (size along Z axis)
+	 * @param out if non-NULL, all colliding shapes' entities will be added to this list
 	 * @return true if there is a collision
 	 */
-	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h) = 0;
+	virtual bool TestStaticShape(const IObstructionTestFilter& filter,
+		entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h,
+		std::vector<entity_id_t>* out) = 0;
 
 	/**
 	 * Collision test a unit shape against the current set of shapes.
@@ -156,22 +175,27 @@ public:
 	 * @param x X coordinate of center
 	 * @param z Z coordinate of center
 	 * @param r radius (half the unit's width/height)
+	 * @param out if non-NULL, all colliding shapes' entities will be added to this list
 	 * @return true if there is a collision
 	 */
-	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
+	virtual bool TestUnitShape(const IObstructionTestFilter& filter,
+		entity_pos_t x, entity_pos_t z, entity_pos_t r,
+		std::vector<entity_id_t>* out) = 0;
 
 	/**
 	 * Bit-flags for Rasterise.
 	 */
 	enum TileObstruction
 	{
-		TILE_OBSTRUCTED = 1,
-		TILE_OUTOFBOUNDS = 2
+		TILE_OBSTRUCTED_PATHFINDING = (1 << 0), // set if the tile pathfinder should consider this tile blocked
+		TILE_OBSTRUCTED_FOUNDATION = (1 << 1), // set if the AI foundation placement algorithm should consider this tile blocked
+		TILE_OUTOFBOUNDS = (1 << 2) // set if this tile is outside the world boundaries
 	};
 
 	/**
 	 * Convert the current set of shapes onto a grid.
-	 * Tiles that are partially or completely intersected by a shape will have TILE_OBSTRUCTED set;
+	 * Tiles that are intersected by a pathfind-blocking shape will have TILE_OBSTRUCTED_PATHFINDING set;
+	 * tiles that are intersected by a foundation-blocking shape will also have TILE_OBSTRUCTED_FOUNDATION;
 	 * tiles that are outside the world bounds will also have TILE_OUTOFBOUNDS;
 	 * others will be set to 0.
 	 * This is very cheap if the grid has been rasterised before and the set of shapes has not changed.
@@ -215,6 +239,10 @@ public:
 	 */
 	virtual ObstructionSquare GetObstruction(tag_t tag) = 0;
 
+	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
+
+	virtual ObstructionSquare GetStaticShapeObstruction(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) = 0;
+
 	/**
 	 * Set the passability to be restricted to a circular map.
 	 */
@@ -240,10 +268,10 @@ public:
 	 * Return true if the shape should be counted for collisions.
 	 * This is called for all shapes that would collide, and also for some that wouldn't.
 	 * @param tag tag of shape being tested
-	 * @param moving whether the shape is a moving unit
+	 * @param flags set of EFlags for the shape
 	 * @param group the control group (typically the shape's unit, or the unit's formation controller, or 0)
 	 */
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool moving, entity_id_t group) const = 0;
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, u8 flags, entity_id_t group) const = 0;
 };
 
 /**
@@ -252,7 +280,7 @@ public:
 class NullObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool UNUSED(moving), entity_id_t UNUSED(group)) const
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), u8 UNUSED(flags), entity_id_t UNUSED(group)) const
 	{
 		return true;
 	}
@@ -264,31 +292,34 @@ public:
 class StationaryObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool moving, entity_id_t UNUSED(group)) const
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), u8 flags, entity_id_t UNUSED(group)) const
 	{
-		return !moving;
+		return !(flags & ICmpObstructionManager::FLAG_MOVING);
 	}
 };
 
 /**
  * Obstruction test filter that reject shapes in a given control group,
- * and optionally rejects moving shapes.
+ * and optionally rejects moving shapes,
+ * and rejects shapes that don't block unit movement.
  */
-class ControlGroupObstructionFilter : public IObstructionTestFilter
+class ControlGroupMovementObstructionFilter : public IObstructionTestFilter
 {
 	bool m_AvoidMoving;
 	entity_id_t m_Group;
 public:
-	ControlGroupObstructionFilter(bool avoidMoving, entity_id_t group) :
+	ControlGroupMovementObstructionFilter(bool avoidMoving, entity_id_t group) :
 		m_AvoidMoving(avoidMoving), m_Group(group)
 	{
 	}
 
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), bool moving, entity_id_t group) const
+	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), u8 flags, entity_id_t group) const
 	{
 		if (group == m_Group)
 			return false;
-		if (moving && !m_AvoidMoving)
+		if (!(flags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT))
+			return false;
+		if ((flags & ICmpObstructionManager::FLAG_MOVING) && !m_AvoidMoving)
 			return false;
 		return true;
 	}
@@ -305,9 +336,27 @@ public:
 	{
 	}
 
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, bool UNUSED(moving), entity_id_t UNUSED(group)) const
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, u8 UNUSED(flags), entity_id_t UNUSED(group)) const
 	{
 		return tag.n != m_Tag.n;
+	}
+};
+
+/**
+ * Obstruction test filter that rejects a specific shape, and requires the given flags.
+ */
+class SkipTagFlagsObstructionFilter : public IObstructionTestFilter
+{
+	ICmpObstructionManager::tag_t m_Tag;
+	u8 m_Mask;
+public:
+	SkipTagFlagsObstructionFilter(ICmpObstructionManager::tag_t tag, u8 mask) : m_Tag(tag), m_Mask(mask)
+	{
+	}
+
+	virtual bool Allowed(ICmpObstructionManager::tag_t tag, u8 flags, entity_id_t UNUSED(group)) const
+	{
+		return (tag.n != m_Tag.n && (flags & m_Mask) != 0);
 	}
 };
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 
 BEGIN_INTERFACE_WRAPPER(Obstruction)
 DEFINE_INTERFACE_METHOD_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
-DEFINE_INTERFACE_METHOD_0("CheckCollisions", bool, ICmpObstruction, CheckCollisions)
+DEFINE_INTERFACE_METHOD_0("CheckFoundationCollisions", bool, ICmpObstruction, CheckFoundationCollisions)
+DEFINE_INTERFACE_METHOD_0("GetConstructionCollisions", std::vector<entity_id_t>, ICmpObstruction, GetConstructionCollisions)
+DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)
 DEFINE_INTERFACE_METHOD_1("SetControlGroup", void, ICmpObstruction, SetControlGroup, entity_id_t)
 END_INTERFACE_WRAPPER(Obstruction)

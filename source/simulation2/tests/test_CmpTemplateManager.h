@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,10 @@ public:
 		TS_ASSERT(previewobstruct != NULL);
 		TS_ASSERT_WSTR_EQUALS(previewobstruct->ToXML(),
 				L"<Footprint><Circle radius=\"4\"></Circle><Height>1.0</Height></Footprint>"
-				L"<Obstruction><Inactive></Inactive><Unit radius=\"4\"></Unit></Obstruction>"
+				L"<Obstruction>"
+					L"<Active>false</Active><BlockConstruction>true</BlockConstruction><BlockFoundation>false</BlockFoundation>"
+					L"<BlockMovement>true</BlockMovement><BlockPathfinding>false</BlockPathfinding><Unit radius=\"4\"></Unit>"
+				L"</Obstruction>"
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
 				L"<VisualActor><Actor>example</Actor></VisualActor>");

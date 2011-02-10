@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,36 +27,74 @@ IDeserializer::~IDeserializer()
 {
 }
 
-template<typename T>
-T IDeserializer::Number_(T lower, T upper)
+void IDeserializer::NumberU8(const char* UNUSED(name), uint8_t& out, uint8_t lower, uint8_t upper)
 {
-	T value;
-	Get((u8*)&value, sizeof(T));
+	uint8_t value;
+	Get((u8*)&value, sizeof(uint8_t));
 
 	if (!(lower <= value && value <= upper))
 		throw PSERROR_Deserialize_OutOfBounds();
 
-	return value;
-}
-
-void IDeserializer::NumberU8(const char* UNUSED(name), uint8_t& out, uint8_t lower, uint8_t upper)
-{
-	out = Number_(lower, upper);
+	out = value;
 }
 
 void IDeserializer::NumberI8(const char* UNUSED(name), int8_t& out, int8_t lower, int8_t upper)
 {
-	out = Number_(lower, upper);
+	int8_t value;
+	Get((u8*)&value, sizeof(uint8_t));
+
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Deserialize_OutOfBounds();
+
+	out = value;
+}
+
+void IDeserializer::NumberU16(const char* UNUSED(name), uint16_t& out, uint16_t lower, uint16_t upper)
+{
+	uint16_t value;
+	Get((u8*)&value, sizeof(uint16_t));
+	value = to_le16(value);
+
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Deserialize_OutOfBounds();
+
+	out = value;
+}
+
+void IDeserializer::NumberI16(const char* UNUSED(name), int16_t& out, int16_t lower, int16_t upper)
+{
+	int16_t value;
+	Get((u8*)&value, sizeof(uint16_t));
+	value = (i16)to_le16((u16)value);
+
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Deserialize_OutOfBounds();
+
+	out = value;
 }
 
 void IDeserializer::NumberU32(const char* UNUSED(name), uint32_t& out, uint32_t lower, uint32_t upper)
 {
-	out = to_le32(Number_(lower, upper));
+	uint32_t value;
+	Get((u8*)&value, sizeof(uint32_t));
+	value = to_le32(value);
+
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Deserialize_OutOfBounds();
+
+	out = value;
 }
 
 void IDeserializer::NumberI32(const char* UNUSED(name), int32_t& out, int32_t lower, int32_t upper)
 {
-	out = (i32)to_le32((u32)Number_(lower, upper));
+	int32_t value;
+	Get((u8*)&value, sizeof(uint32_t));
+	value = (i32)to_le32((u32)value);
+
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Deserialize_OutOfBounds();
+
+	out = value;
 }
 
 void IDeserializer::NumberU8_Unbounded(const char* UNUSED(name), uint8_t& out)
@@ -67,6 +105,20 @@ void IDeserializer::NumberU8_Unbounded(const char* UNUSED(name), uint8_t& out)
 void IDeserializer::NumberI8_Unbounded(const char* UNUSED(name), int8_t& out)
 {
 	Get((u8*)&out, sizeof(int8_t));
+}
+
+void IDeserializer::NumberU16_Unbounded(const char* UNUSED(name), uint16_t& out)
+{
+	uint16_t value;
+	Get((u8*)&value, sizeof(uint16_t));
+	out = to_le16(value);
+}
+
+void IDeserializer::NumberI16_Unbounded(const char* UNUSED(name), int16_t& out)
+{
+	int16_t value;
+	Get((u8*)&value, sizeof(int16_t));
+	out = (i16)to_le16((u16)value);
 }
 
 void IDeserializer::NumberU32_Unbounded(const char* UNUSED(name), uint32_t& out)

@@ -12,9 +12,9 @@ var MilitaryAttackManager = Class({
 	{
 		this.targetSquadSize = 10;
 		this.squadTypes = [
-			"units/hele_infantry_spearman_b",
-			"units/hele_infantry_javelinist_b",
-			"units/hele_infantry_archer_b",
+			"units/{civ}_infantry_spearman_b",
+			"units/{civ}_infantry_javelinist_b",
+//			"units/{civ}_infantry_archer_b", // TODO: should only include this if hele
 		];
 	},
 
@@ -31,6 +31,9 @@ var MilitaryAttackManager = Class({
 
 		// Sort by increasing count
 		types.sort(function (a, b) { return a[1] - b[1]; });
+
+		// TODO: we shouldn't return units that we don't have any
+		// buildings capable of training
 
 		return types[0][0];
 	},

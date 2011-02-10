@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,10 +25,15 @@
 #include "ps/CLogger.h"
 #include "ps/Overlay.h"
 #include "ps/utf16string.h"
+#include "simulation2/helpers/Grid.h"
 #include "simulation2/system/IComponent.h"
 #include "simulation2/system/ParamNode.h"
 
 #include "js/jsapi.h"
+
+#define signbit std::signbit
+#include "js/jstypedarray.h"
+#undef signbit
 
 template<> jsval ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, IComponent* const& val)
 {
@@ -204,6 +209,33 @@ template<> jsval ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, const C
 
 	JS_SetProperty(cx, obj, "x", &x);
 	JS_SetProperty(cx, obj, "y", &y);
+
+	return OBJECT_TO_JSVAL(obj);
+}
+
+template<> jsval ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, const Grid<u16>& val)
+{
+	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	if (!obj)
+		return JSVAL_VOID;
+
+	size_t len = val.m_W * val.m_H;
+	JSObject *darray = js_CreateTypedArray(cx, js::TypedArray::TYPE_UINT16, len);
+	if (!darray)
+		return JSVAL_VOID;
+
+	js::TypedArray *tdest = js::TypedArray::fromJSObject(darray);
+	debug_assert(tdest->byteLength == len*sizeof(u16));
+
+	memcpy(tdest->data, val.m_Data, tdest->byteLength);
+
+	jsval w = ToJSVal(cx, val.m_W);
+	jsval h = ToJSVal(cx, val.m_H);
+	jsval data = OBJECT_TO_JSVAL(darray);
+
+	JS_SetProperty(cx, obj, "width", &w);
+	JS_SetProperty(cx, obj, "height", &h);
+	JS_SetProperty(cx, obj, "data", &data);
 
 	return OBJECT_TO_JSVAL(obj);
 }

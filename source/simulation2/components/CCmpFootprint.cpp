@@ -168,7 +168,7 @@ public:
 				CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Y + c.Multiply(radius));
 
 				SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-				if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, spawnedRadius))
+				if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, spawnedRadius, NULL))
 					return pos; // this position is okay, so return it
 			}
 		}
@@ -216,7 +216,7 @@ public:
 					CFixedVector2D pos (center + dir*i);
 
 					SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-					if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, spawnedRadius))
+					if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, spawnedRadius, NULL))
 						return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
 				}
 			}

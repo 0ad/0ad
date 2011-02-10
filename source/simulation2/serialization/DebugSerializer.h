@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,6 +44,8 @@ public:
 protected:
 	virtual void PutNumber(const char* name, uint8_t value);
 	virtual void PutNumber(const char* name, int8_t value);
+	virtual void PutNumber(const char* name, uint16_t value);
+	virtual void PutNumber(const char* name, int16_t value);
 	virtual void PutNumber(const char* name, uint32_t value);
 	virtual void PutNumber(const char* name, int32_t value);
 	virtual void PutNumber(const char* name, float value);

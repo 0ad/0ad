@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -111,7 +111,7 @@ public:
 			fixed x = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
 			fixed z = fixed::FromFloat(1.5f*range.ToFloat() * rand()/(float)RAND_MAX);
 //			printf("# %f %f\n", x.ToFloat(), z.ToFloat());
-			cmpObstructionMan->AddUnitShape(x, z, fixed::FromInt(2), false, INVALID_ENTITY);
+			cmpObstructionMan->AddUnitShape(INVALID_ENTITY, x, z, fixed::FromInt(2), 0, INVALID_ENTITY);
 		}
 
 		NullObstructionFilter filter;

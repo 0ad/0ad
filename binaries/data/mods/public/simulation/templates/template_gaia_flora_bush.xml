@@ -9,5 +9,7 @@
   </Footprint>
   <Obstruction>
     <Unit radius="1.0"/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
   </Obstruction>
 </Entity>

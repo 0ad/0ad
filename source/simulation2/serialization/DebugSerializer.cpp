@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,6 +88,16 @@ void CDebugSerializer::PutNumber(const char* name, uint8_t value)
 void CDebugSerializer::PutNumber(const char* name, int8_t value)
 {
 	m_Stream << INDENT << name << ": " << (int)value << "\n";
+}
+
+void CDebugSerializer::PutNumber(const char* name, uint16_t value)
+{
+	m_Stream << INDENT << name << ": " << value << "\n";
+}
+
+void CDebugSerializer::PutNumber(const char* name, int16_t value)
+{
+	m_Stream << INDENT << name << ": " << value << "\n";
 }
 
 void CDebugSerializer::PutNumber(const char* name, uint32_t value)

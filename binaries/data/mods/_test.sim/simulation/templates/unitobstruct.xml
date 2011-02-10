@@ -16,5 +16,10 @@
     </Footprint>
     <Obstruction>
         <Unit radius="4"/>
+        <Active>true</Active>
+        <BlockMovement>true</BlockMovement>
+        <BlockPathfinding>false</BlockPathfinding>
+        <BlockFoundation>false</BlockFoundation>
+        <BlockConstruction>true</BlockConstruction>
     </Obstruction>
 </Entity>

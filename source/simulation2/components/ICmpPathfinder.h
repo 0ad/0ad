@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,8 @@
 
 class IObstructionTestFilter;
 
+template<typename T> class Grid;
+
 /**
  * Pathfinder algorithms.
  *
@@ -44,6 +46,9 @@ class IObstructionTestFilter;
 class ICmpPathfinder : public IComponent
 {
 public:
+	typedef u16 pass_class_t;
+	typedef u8 cost_class_t;
+
 	struct Goal
 	{
 		enum Type {
@@ -71,28 +76,30 @@ public:
 	};
 
 	/**
-	 * Get the list of all known passability class names.
+	 * Get the list of all known passability classes.
 	 */
-	virtual std::vector<std::string> GetPassabilityClasses() = 0;
+	virtual std::map<std::string, pass_class_t> GetPassabilityClasses() = 0;
 
 	/**
 	 * Get the tag for a given passability class name.
 	 * Logs an error and returns something acceptable if the name is unrecognised.
 	 */
-	virtual u8 GetPassabilityClass(const std::string& name) = 0;
+	virtual pass_class_t GetPassabilityClass(const std::string& name) = 0;
 
 	/**
 	 * Get the tag for a given movement cost class name.
 	 * Logs an error and returns something acceptable if the name is unrecognised.
 	 */
-	virtual u8 GetCostClass(const std::string& name) = 0;
+	virtual cost_class_t GetCostClass(const std::string& name) = 0;
+
+	virtual const Grid<u16>& GetPassabilityGrid() = 0;
 
 	/**
 	 * Compute a tile-based path from the given point to the goal, and return the set of waypoints.
 	 * The waypoints correspond to the centers of horizontally/vertically adjacent tiles
 	 * along the path.
 	 */
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& ret) = 0;
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass, Path& ret) = 0;
 
 	/**
 	 * Asynchronous version of ComputePath.
@@ -100,12 +107,12 @@ public:
 	 * Returns a unique non-zero number, which will match the 'ticket' in the result,
 	 * so callers can recognise each individual request they make.
 	 */
-	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, entity_id_t notify) = 0;
+	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass, entity_id_t notify) = 0;
 
 	/**
 	 * If the debug overlay is enabled, render the path that will computed by ComputePath.
 	 */
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass) = 0;
+	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass) = 0;
 
 	/**
 	 * Compute a precise path from the given point to the goal, and return the set of waypoints.
@@ -113,7 +120,7 @@ public:
 	 * a unit of radius 'r' will be able to follow the path with no collisions.
 	 * The path is restricted to a box of radius 'range' from the starting point.
 	 */
-	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, Path& ret) = 0;
+	virtual void ComputeShortPath(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, pass_class_t passClass, Path& ret) = 0;
 
 	/**
 	 * Asynchronous version of ComputeShortPath (using ControlGroupObstructionFilter).
@@ -121,13 +128,13 @@ public:
 	 * Returns a unique non-zero number, which will match the 'ticket' in the result,
 	 * so callers can recognise each individual request they make.
 	 */
-	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, u8 passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify) = 0;
+	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t r, entity_pos_t range, const Goal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t group, entity_id_t notify) = 0;
 
 	/**
 	 * Find the speed factor (typically around 1.0) for a unit of the given cost class
 	 * at the given position.
 	 */
-	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, u8 costClass) = 0;
+	virtual fixed GetMovementSpeed(entity_pos_t x0, entity_pos_t z0, cost_class_t costClass) = 0;
 
 	/**
 	 * Returns the coordinates of the point on the goal that is closest to pos in a straight line.
@@ -139,7 +146,7 @@ public:
 	 * or impassable terrain.
 	 * Returns true if the movement is okay.
 	 */
-	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u8 passClass) = 0;
+	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass) = 0;
 
 	/**
 	 * Toggle the storage and rendering of debug info.

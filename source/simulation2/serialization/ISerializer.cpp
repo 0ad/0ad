@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,20 @@ void ISerializer::NumberU8(const char* name, uint8_t value, uint8_t lower, uint8
 }
 
 void ISerializer::NumberI8(const char* name, int8_t value, int8_t lower, int8_t upper)
+{
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Serialize_OutOfBounds();
+	PutNumber(name, value);
+}
+
+void ISerializer::NumberU16(const char* name, uint16_t value, uint16_t lower, uint16_t upper)
+{
+	if (!(lower <= value && value <= upper))
+		throw PSERROR_Serialize_OutOfBounds();
+	PutNumber(name, value);
+}
+
+void ISerializer::NumberI16(const char* name, int16_t value, int16_t lower, int16_t upper)
 {
 	if (!(lower <= value && value <= upper))
 		throw PSERROR_Serialize_OutOfBounds();

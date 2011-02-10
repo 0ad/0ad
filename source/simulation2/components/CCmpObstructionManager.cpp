@@ -48,9 +48,10 @@
  */
 struct UnitShape
 {
+	entity_id_t entity;
 	entity_pos_t x, z;
 	entity_pos_t r; // radius of circle, or half width of square
-	bool moving; // whether it's currently mobile (and should be generally ignored when pathing)
+	u8 flags;
 	entity_id_t group; // control group (typically the owner entity, or a formation controller entity) (units ignore collisions with others in the same group)
 };
 
@@ -59,9 +60,11 @@ struct UnitShape
  */
 struct StaticShape
 {
+	entity_id_t entity;
 	entity_pos_t x, z; // world-space coordinates
 	CFixedVector2D u, v; // orthogonal unit vectors - axes of local coordinate space
 	entity_pos_t hw, hh; // half width/height in local coordinate space
+	u8 flags;
 };
 
 /**
@@ -72,10 +75,11 @@ struct SerializeUnitShape
 	template<typename S>
 	void operator()(S& serialize, const char* UNUSED(name), UnitShape& value)
 	{
+		serialize.NumberU32_Unbounded("entity", value.entity);
 		serialize.NumberFixed_Unbounded("x", value.x);
 		serialize.NumberFixed_Unbounded("z", value.z);
 		serialize.NumberFixed_Unbounded("r", value.r);
-		serialize.Bool("moving", value.moving);
+		serialize.NumberU8_Unbounded("flags", value.flags);
 		serialize.NumberU32_Unbounded("group", value.group);
 	}
 };
@@ -88,6 +92,7 @@ struct SerializeStaticShape
 	template<typename S>
 	void operator()(S& serialize, const char* UNUSED(name), StaticShape& value)
 	{
+		serialize.NumberU32_Unbounded("entity", value.entity);
 		serialize.NumberFixed_Unbounded("x", value.x);
 		serialize.NumberFixed_Unbounded("z", value.z);
 		serialize.NumberFixed_Unbounded("u.x", value.u.X);
@@ -96,6 +101,7 @@ struct SerializeStaticShape
 		serialize.NumberFixed_Unbounded("v.y", value.v.Y);
 		serialize.NumberFixed_Unbounded("hw", value.hw);
 		serialize.NumberFixed_Unbounded("hh", value.hh);
+		serialize.NumberU8_Unbounded("flags", value.flags);
 	}
 };
 
@@ -239,9 +245,9 @@ public:
 		}
 	}
 
-	virtual tag_t AddUnitShape(entity_pos_t x, entity_pos_t z, entity_pos_t r, bool moving, entity_id_t group)
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t r, u8 flags, entity_id_t group)
 	{
-		UnitShape shape = { x, z, r, moving, group };
+		UnitShape shape = { ent, x, z, r, flags, group };
 		size_t id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
 		MakeDirtyUnits();
@@ -251,14 +257,14 @@ public:
 		return UNIT_INDEX_TO_TAG(id);
 	}
 
-	virtual tag_t AddStaticShape(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h)
+	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, u8 flags)
 	{
 		fixed s, c;
 		sincos_approx(a, s, c);
 		CFixedVector2D u(c, -s);
 		CFixedVector2D v(s, c);
 
-		StaticShape shape = { x, z, u, v, w/2, h/2 };
+		StaticShape shape = { ent, x, z, u, v, w/2, h/2, flags };
 		size_t id = m_StaticShapeNext++;
 		m_StaticShapes[id] = shape;
 		MakeDirty();
@@ -268,6 +274,25 @@ public:
 		m_StaticSubdivision.Add(id, center - bbHalfSize, center + bbHalfSize);
 
 		return STATIC_INDEX_TO_TAG(id);
+	}
+
+	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t r)
+	{
+		CFixedVector2D u(entity_pos_t::FromInt(1), entity_pos_t::Zero());
+		CFixedVector2D v(entity_pos_t::Zero(), entity_pos_t::FromInt(1));
+		ObstructionSquare o = { x, z, u, v, r, r };
+		return o;
+	}
+
+	virtual ObstructionSquare GetStaticShapeObstruction(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h)
+	{
+		fixed s, c;
+		sincos_approx(a, s, c);
+		CFixedVector2D u(c, -s);
+		CFixedVector2D v(s, c);
+
+		ObstructionSquare o = { x, z, u, v, w/2, h/2 };
+		return o;
 	}
 
 	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a)
@@ -322,7 +347,11 @@ public:
 		if (TAG_IS_UNIT(tag))
 		{
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
-			shape.moving = moving;
+			if (moving)
+				shape.flags |= FLAG_MOVING;
+			else
+				shape.flags &= ~FLAG_MOVING;
+
 			MakeDirtyUnits();
 		}
 	}
@@ -387,8 +416,8 @@ public:
 	}
 
 	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r);
-	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h);
-	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r);
+	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out);
+	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out);
 
 	virtual bool Rasterise(Grid<u8>& grid);
 	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares);
@@ -481,7 +510,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		debug_assert(it != m_UnitShapes.end());
 
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
@@ -496,7 +525,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		debug_assert(it != m_StaticShapes.end());
 
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
@@ -508,11 +537,16 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 	return false;
 }
 
-bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h)
+bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filter,
+	entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h,
+	std::vector<entity_id_t>* out)
 {
 	PROFILE("TestStaticShape");
 
 	// TODO: should use the subdivision stuff here, if performance is non-negligible
+
+	if (out)
+		out->clear();
 
 	fixed s, c;
 	sincos_approx(a, s, c);
@@ -526,34 +560,54 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 		!IsInWorld(center + u.Multiply(halfSize.X) - v.Multiply(halfSize.Y)) ||
 		!IsInWorld(center - u.Multiply(halfSize.X) + v.Multiply(halfSize.Y)) ||
 		!IsInWorld(center - u.Multiply(halfSize.X) - v.Multiply(halfSize.Y)))
-		return true;
+	{
+		if (out)
+			out->push_back(INVALID_ENTITY); // no entity ID, so just push an arbitrary marker
+		else
+			return true;
+	}
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
 
 		if (Geometry::PointIsInSquare(center1 - center, u, v, CFixedVector2D(halfSize.X + it->second.r, halfSize.Y + it->second.r)))
-			return true;
+		{
+			if (out)
+				out->push_back(it->second.entity);
+			else
+				return true;
+		}
 	}
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
 		CFixedVector2D halfSize1(it->second.hw, it->second.hh);
 		if (Geometry::TestSquareSquare(center, u, v, halfSize, center1, it->second.u, it->second.v, halfSize1))
-			return true;
+		{
+			if (out)
+				out->push_back(it->second.entity);
+			else
+				return true;
+		}
 	}
 
-	return false;
+	if (out)
+		return !out->empty(); // collided if the list isn't empty
+	else
+		return false; // didn't collide, if we got this far
 }
 
-bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r)
+bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
+	entity_pos_t x, entity_pos_t z, entity_pos_t r,
+	std::vector<entity_id_t>* out)
 {
 	PROFILE("TestUnitShape");
 
@@ -561,31 +615,51 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 
 	// Check that the shape is within the world
 	if (!IsInWorld(x, z, r))
-		return true;
+	{
+		if (out)
+			out->push_back(INVALID_ENTITY); // no entity ID, so just push an arbitrary marker
+		else
+			return true;
+	}
 
 	CFixedVector2D center(x, z);
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
 			continue;
 
 		entity_pos_t r1 = it->second.r;
 
 		if (!(it->second.x + r1 < x - r || it->second.x - r1 > x + r || it->second.z + r1 < z - r || it->second.z - r1 > z + r))
-			return true;
+		{
+			if (out)
+				out->push_back(it->second.entity);
+			else
+				return true;
+		}
 	}
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
 		if (Geometry::PointIsInSquare(center1 - center, it->second.u, it->second.v, CFixedVector2D(it->second.hw + r, it->second.hh + r)))
-			return true;
+		{
+			if (out)
+				out->push_back(it->second.entity);
+			else
+				return true;
+
+		}
 	}
-	return false;
+
+	if (out)
+		return !out->empty(); // collided if the list isn't empty
+	else
+		return false; // didn't collide, if we got this far
 }
 
 /**
@@ -621,34 +695,92 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 
 	grid.reset();
 
+	// For tile-based pathfinding:
+	// Since we only count tiles whose centers are inside the square,
+	// we maybe want to expand the square a bit so we're less likely to think there's
+	// free space between buildings when there isn't. But this is just a random guess
+	// and needs to be tweaked until everything works nicely.
+	//entity_pos_t expandPathfinding = entity_pos_t::FromInt(CELL_SIZE / 2);
+	// Actually that's bad because units get stuck when the A* pathfinder thinks they're
+	// blocked on all sides, so it's better to underestimate
+	entity_pos_t expandPathfinding = entity_pos_t::FromInt(0);
+
+	// For AI building foundation planning, we want to definitely block all
+	// potentially-obstructed tiles (so we don't blindly build on top of an obstruction),
+	// so we need to expand by at least 1/sqrt(2) of a tile
+	entity_pos_t expandFoundation = (entity_pos_t::FromInt(CELL_SIZE) * 3) / 4;
+
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
 		CFixedVector2D center(it->second.x, it->second.z);
 
-		// Since we only count tiles whose centers are inside the square,
-		// we maybe want to expand the square a bit so we're less likely to think there's
-		// free space between buildings when there isn't. But this is just a random guess
-		// and needs to be tweaked until everything works nicely.
-		//entity_pos_t expand = entity_pos_t::FromInt(CELL_SIZE / 2);
-		// Actually that's bad because units get stuck when the A* pathfinder thinks they're
-		// blocked on all sides, so it's better to underestimate
-		entity_pos_t expand = entity_pos_t::FromInt(0);
-
-		CFixedVector2D halfSize(it->second.hw + expand, it->second.hh + expand);
-		CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(it->second.u, it->second.v, halfSize);
-
-		u16 i0, j0, i1, j1;
-		NearestTile(center.X - halfBound.X, center.Y - halfBound.Y, i0, j0, grid.m_W, grid.m_H);
-		NearestTile(center.X + halfBound.X, center.Y + halfBound.Y, i1, j1, grid.m_W, grid.m_H);
-		for (u16 j = j0; j <= j1; ++j)
+		if (it->second.flags & FLAG_BLOCK_PATHFINDING)
 		{
-			for (u16 i = i0; i <= i1; ++i)
+			CFixedVector2D halfSize(it->second.hw + expandPathfinding, it->second.hh + expandPathfinding);
+			CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(it->second.u, it->second.v, halfSize);
+
+			u16 i0, j0, i1, j1;
+			NearestTile(center.X - halfBound.X, center.Y - halfBound.Y, i0, j0, grid.m_W, grid.m_H);
+			NearestTile(center.X + halfBound.X, center.Y + halfBound.Y, i1, j1, grid.m_W, grid.m_H);
+			for (u16 j = j0; j <= j1; ++j)
 			{
-				entity_pos_t x, z;
-				TileCenter(i, j, x, z);
-				if (Geometry::PointIsInSquare(CFixedVector2D(x, z) - center, it->second.u, it->second.v, halfSize))
-					grid.set(i, j, TILE_OBSTRUCTED);
+				for (u16 i = i0; i <= i1; ++i)
+				{
+					entity_pos_t x, z;
+					TileCenter(i, j, x, z);
+					if (Geometry::PointIsInSquare(CFixedVector2D(x, z) - center, it->second.u, it->second.v, halfSize))
+						grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_PATHFINDING);
+				}
 			}
+		}
+
+		if (it->second.flags & FLAG_BLOCK_FOUNDATION)
+		{
+			CFixedVector2D halfSize(it->second.hw + expandFoundation, it->second.hh + expandFoundation);
+			CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(it->second.u, it->second.v, halfSize);
+
+			u16 i0, j0, i1, j1;
+			NearestTile(center.X - halfBound.X, center.Y - halfBound.Y, i0, j0, grid.m_W, grid.m_H);
+			NearestTile(center.X + halfBound.X, center.Y + halfBound.Y, i1, j1, grid.m_W, grid.m_H);
+			for (u16 j = j0; j <= j1; ++j)
+			{
+				for (u16 i = i0; i <= i1; ++i)
+				{
+					entity_pos_t x, z;
+					TileCenter(i, j, x, z);
+					if (Geometry::PointIsInSquare(CFixedVector2D(x, z) - center, it->second.u, it->second.v, halfSize))
+						grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_FOUNDATION);
+				}
+			}
+		}
+	}
+
+	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
+	{
+		CFixedVector2D center(it->second.x, it->second.z);
+
+		if (it->second.flags & FLAG_BLOCK_PATHFINDING)
+		{
+			entity_pos_t r = it->second.r + expandPathfinding;
+
+			u16 i0, j0, i1, j1;
+			NearestTile(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
+			NearestTile(center.X + r, center.Y + r, i1, j1, grid.m_W, grid.m_H);
+			for (u16 j = j0; j <= j1; ++j)
+				for (u16 i = i0; i <= i1; ++i)
+					grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_PATHFINDING);
+		}
+
+		if (it->second.flags & FLAG_BLOCK_FOUNDATION)
+		{
+			entity_pos_t r = it->second.r + expandFoundation;
+
+			u16 i0, j0, i1, j1;
+			NearestTile(center.X - r, center.Y - r, i0, j0, grid.m_W, grid.m_H);
+			NearestTile(center.X + r, center.Y + r, i1, j1, grid.m_W, grid.m_H);
+			for (u16 j = j0; j <= j1; ++j)
+				for (u16 i = i0; i <= i1; ++i)
+					grid.set(i, j, grid.get(i, j) | TILE_OBSTRUCTED_FOUNDATION);
 		}
 	}
 
@@ -656,6 +788,8 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 
 	// WARNING: CCmpRangeManager::LosIsOffWorld needs to be kept in sync with this
 	const ssize_t edgeSize = 3; // number of tiles around the edge that will be off-world
+
+	u8 edgeFlags = TILE_OBSTRUCTED_PATHFINDING | TILE_OBSTRUCTED_FOUNDATION | TILE_OUTOFBOUNDS;
 
 	if (m_PassabilityCircular)
 	{
@@ -673,7 +807,7 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 						+ (j*2 + 1 - grid.m_H)*(j*2 + 1 - grid.m_H);
 
 				if (dist2 >= (grid.m_W - 2*edgeSize) * (grid.m_H - 2*edgeSize))
-					grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+					grid.set(i, j, edgeFlags);
 			}
 		}
 	}
@@ -685,16 +819,16 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 
 		for (u16 j = 0; j < grid.m_H; ++j)
 			for (u16 i = 0; i < i0+edgeSize; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+				grid.set(i, j, edgeFlags);
 		for (u16 j = 0; j < grid.m_H; ++j)
 			for (u16 i = i1-edgeSize+1; i < grid.m_W; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+				grid.set(i, j, edgeFlags);
 		for (u16 j = 0; j < j0+edgeSize; ++j)
 			for (u16 i = i0+edgeSize; i < i1-edgeSize+1; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+				grid.set(i, j, edgeFlags);
 		for (u16 j = j1-edgeSize+1; j < grid.m_H; ++j)
 			for (u16 i = i0+edgeSize; i < i1-edgeSize+1; ++i)
-				grid.set(i, j, TILE_OBSTRUCTED | TILE_OUTOFBOUNDS);
+				grid.set(i, j, edgeFlags);
 	}
 
 	return true;
@@ -712,7 +846,7 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		debug_assert(it != m_UnitShapes.end());
 
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.moving, it->second.group))
+		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
 			continue;
 
 		entity_pos_t r = it->second.r;
@@ -733,7 +867,7 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		debug_assert(it != m_StaticShapes.end());
 
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), false, INVALID_ENTITY))
+		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
 			continue;
 
 		entity_pos_t r = it->second.hw + it->second.hh; // overestimate the max dist of an edge from the center
@@ -801,7 +935,7 @@ void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 		for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
-			m_DebugOverlayLines.back().m_Color = (it->second.moving ? movingColour : defaultColour);
+			m_DebugOverlayLines.back().m_Color = ((it->second.flags & FLAG_MOVING) ? movingColour : defaultColour);
 			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat()*2, it->second.r.ToFloat()*2, 0, m_DebugOverlayLines.back(), true);
 		}
 

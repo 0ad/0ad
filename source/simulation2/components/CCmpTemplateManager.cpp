@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -450,7 +450,7 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	// Disable the Obstruction component (if there is one) so it doesn't affect pathfinding
 	// (but can still be used for testing this entity for collisions against others)
 	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Inactive/></Obstruction></Entity>");
+		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>false</Active></Obstruction></Entity>");
 
 	if (!corpse)
 	{
@@ -493,9 +493,6 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	CParamNode::LoadXMLString(out, "<Entity/>");
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
 
-	// TODO: the foundation shouldn't be considered an obstruction by default, until construction has
-	// really started, to prevent players abusing it to block their opponents
-
 	// Switch the actor to foundation mode
 	CParamNode::LoadXMLString(out, "<Entity><VisualActor><Foundation/></VisualActor></Entity>");
 
@@ -504,6 +501,10 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 
 	// Initialise health to 1
 	CParamNode::LoadXMLString(out, "<Entity><Health><Initial>1</Initial></Health></Entity>");
+
+	// Disable the default obstruction status
+	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
+		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>false</Active></Obstruction></Entity>");
 
 	// Don't provide population bonuses yet (but still do take up population cost)
 	if (out.GetChild("Entity").GetChild("Cost").IsOk())

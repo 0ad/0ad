@@ -153,7 +153,7 @@ void CCmpPathfinder::SetDebugOverlay(bool enabled)
 	}
 }
 
-void CCmpPathfinder::SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass)
+void CCmpPathfinder::SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass)
 {
 	if (!m_DebugOverlay)
 		return;
@@ -185,7 +185,7 @@ struct PathfinderState
 	u16 iGoal, jGoal; // goal tile
 	u16 rGoal; // radius of goal (around tile center)
 
-	u8 passClass;
+	ICmpPathfinder::pass_class_t passClass;
 	std::vector<u32> moveCosts;
 
 	PriorityQueue open;
@@ -357,7 +357,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 #endif
 }
 
-void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, u8 passClass, u8 costClass, Path& path)
+void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, pass_class_t passClass, cost_class_t costClass, Path& path)
 {
 	UpdateGrid();
 

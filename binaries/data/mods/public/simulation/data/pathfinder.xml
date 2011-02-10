@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pathfinder>
+
   <PassabilityClasses>
+
+    <!-- Unit pathfinding classes: -->
     <default>
       <MaxWaterDepth>2</MaxWaterDepth>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
@@ -8,6 +11,12 @@
     <ship>
       <MinWaterDepth>1</MinWaterDepth>
     </ship>
+    <!-- Building construction classes: -->
+    <building-land>
+      <MaxWaterDepth>0</MaxWaterDepth>
+      <MaxTerrainSlope>1.0</MaxTerrainSlope>
+    </building-land>
+
   </PassabilityClasses>
   
   <!--

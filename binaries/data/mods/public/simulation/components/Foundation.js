@@ -5,6 +5,13 @@ Foundation.prototype.Schema =
 
 Foundation.prototype.Init = function()
 {
+	// Foundations are initially 'uncommitted' and do not block unit movement at all
+	// (to prevent players exploiting free foundations to confuse enemy units).
+	// The first builder to reach the uncommitted foundation will tell friendly units
+	// and animals to move out of the way, then will commit the foundation and enable
+	// its obstruction once there's nothing in the way.
+	this.committed = false;
+
 	this.buildProgress = 0.0; // 0 <= progress <= 1
 };
 
@@ -62,6 +69,46 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// this won't happen much)
 	if (this.buildProgress == 1.0)
 		return;
+
+	// Handle the initial 'committing' of the foundation
+	if (!this.committed)
+	{
+		var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+		if (cmpObstruction)
+		{
+			// If there's any units in the way, ask them to move away
+			// and return early from this method.
+			// Otherwise enable this obstruction so it blocks any further
+			// units, and continue building.
+
+			var collisions = cmpObstruction.GetConstructionCollisions();
+			if (collisions.length)
+			{
+				for each (var ent in collisions)
+				{
+					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+					if (cmpUnitAI)
+						cmpUnitAI.LeaveFoundation(this.entity);
+
+					var cmpAnimalAI = Engine.QueryInterface(ent, IID_AnimalAI);
+					if (cmpAnimalAI)
+						cmpAnimalAI.LeaveFoundation(this.entity);
+
+					// TODO: What if an obstruction has no UnitAI/AnimalAI?
+				}
+
+				// TODO: maybe we should tell the builder to use a special
+				// animation to indicate they're waiting for people to get
+				// out the way
+
+				return;
+			}
+
+			cmpObstruction.SetActive(true);
+		}
+
+		this.committed = true;
+	}
 
 	// Calculate the amount of progress that will be added (where 1.0 = completion)
 	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);

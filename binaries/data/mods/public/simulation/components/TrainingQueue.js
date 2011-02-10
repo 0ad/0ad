@@ -253,7 +253,11 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		}
 	}
 
-	Engine.PostMessage(this.entity, MT_TrainingFinished, { "entities": ents, "metadata": metadata });
+	Engine.PostMessage(this.entity, MT_TrainingFinished, {
+		"entities": ents,
+		"owner": cmpOwnership.GetOwner(),
+		"metadata": metadata,
+	});
 };
 
 TrainingQueue.prototype.ProgressTimeout = function(data)

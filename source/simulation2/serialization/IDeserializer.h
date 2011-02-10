@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,10 +38,14 @@ public:
 
 	virtual void NumberU8(const char* name, uint8_t& out, uint8_t lower, uint8_t upper);
 	virtual void NumberI8(const char* name, int8_t& out, int8_t lower, int8_t upper);
+	virtual void NumberU16(const char* name, uint16_t& out, uint16_t lower, uint16_t upper);
+	virtual void NumberI16(const char* name, int16_t& out, int16_t lower, int16_t upper);
 	virtual void NumberU32(const char* name, uint32_t& out, uint32_t lower, uint32_t upper);
 	virtual void NumberI32(const char* name, int32_t& out, int32_t lower, int32_t upper);
 	virtual void NumberU8_Unbounded(const char* name, uint8_t& out);
 	virtual void NumberI8_Unbounded(const char* name, int8_t& out);
+	virtual void NumberU16_Unbounded(const char* name, uint16_t& out);
+	virtual void NumberI16_Unbounded(const char* name, int16_t& out);
 	virtual void NumberU32_Unbounded(const char* name, uint32_t& out);
 	virtual void NumberI32_Unbounded(const char* name, int32_t& out);
 	virtual void NumberFloat_Unbounded(const char* name, float& out);
@@ -78,10 +82,6 @@ protected:
 	virtual void ReadString(std::string& out);
 
 	virtual void Get(u8* data, size_t len) = 0;
-
-private:
-	// Helper function for bounded number types
-	template<typename T> T Number_(T lower, T upper);
 };
 
 #endif // INCLUDED_IDESERIALIZER
