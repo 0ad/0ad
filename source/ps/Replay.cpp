@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,8 +53,19 @@ static std::string Hexify(const std::string& s)
 CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface)
 {
+	// Construct the directory name based on the PID, to be relatively unique.
+	// Append "-1", "-2" etc if we run multiple matches in a single session,
+	// to avoid accidentally overwriting earlier logs.
+
 	std::wstringstream name;
-	name << L"sim_log/" << getpid() << L"/commands.txt";
+	name << L"sim_log/" << getpid();
+
+	static int run = -1;
+	if (++run)
+		name << "-" << run;
+
+	name << L"/commands.txt";
+
 	fs::wpath path (psLogDir()/name.str());
 	CreateDirectories(path.branch_path(), 0700);
 	m_Stream = new std::ofstream(path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
