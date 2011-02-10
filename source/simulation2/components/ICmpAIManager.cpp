@@ -33,6 +33,8 @@ END_INTERFACE_WRAPPER(AIManager)
 
 struct GetAIsHelper
 {
+	NONCOPYABLE(GetAIsHelper);
+public:
 	GetAIsHelper(ScriptInterface& scriptInterface) :
 		m_ScriptInterface(scriptInterface)
 	{
