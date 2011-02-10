@@ -822,7 +822,7 @@ function doAction(action, ev)
 
 	case "build": // (same command as repair)
 	case "repair":
-		Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "queued": queued});
+		Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "autocontinue": true, "queued": queued});
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 		return true;
 

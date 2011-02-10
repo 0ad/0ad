@@ -373,7 +373,7 @@ var UnitFsmSpec = {
 			"Order.LeaveFoundation": function(msg) {
 				// Move a tile outside the building
 				var range = 4;
-				var ok = this.MoveToTargetRangeExplicit(this.order.data.target, range, range);
+				var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
 				if (ok)
 				{
 					// We've started walking to the given point
@@ -785,6 +785,25 @@ var UnitFsmSpec = {
 
 				// TODO: look for a nearby foundation to help with
 			},
+
+			// Override the LeaveFoundation order since we don't want to be
+			// accidentally blocking our own building
+			"Order.LeaveFoundation": function(msg) {
+				// Move a tile outside the building
+				var range = 4;
+				var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
+				if (ok)
+				{
+					// We've started walking to the given point
+					this.SetNextState("INDIVIDUAL.WALKING");
+				}
+				else
+				{
+					// We are already at the target, or can't move at all
+					this.FinishOrder();
+				}
+			},
+
 		},
 
 		"GARRISON": {
@@ -1416,8 +1435,7 @@ UnitAI.prototype.LeaveFoundation = function(target)
 	// TODO: we should verify this is a friendly foundation, otherwise
 	// there's no reason we should let them build here
 
-	var queued = true;
-	this.AddOrder("LeaveFoundation", { "target": target }, queued);
+	this.PushOrderFront("LeaveFoundation", { "target": target });
 };
 
 UnitAI.prototype.Attack = function(target, queued)
@@ -1478,7 +1496,7 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 	this.AddOrder("ReturnResource", { "target": target }, queued);
 };
 
-UnitAI.prototype.Repair = function(target, queued)
+UnitAI.prototype.Repair = function(target, autocontinue, queued)
 {
 	if (!this.CanRepair(target))
 	{
@@ -1486,7 +1504,7 @@ UnitAI.prototype.Repair = function(target, queued)
 		return;
 	}
 
-	this.AddOrder("Repair", { "target": target }, queued);
+	this.AddOrder("Repair", { "target": target, "autocontinue": autocontinue }, queued);
 };
 
 UnitAI.prototype.SetStance = function(stance)

@@ -37,7 +37,7 @@ function ProcessCommand(player, cmd)
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
 		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
 		if (cmpUnitAI)
-			cmpUnitAI.Repair(cmd.target, cmd.queued);
+			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		break;
 
 	case "gather":
@@ -162,6 +162,7 @@ function ProcessCommand(player, cmd)
 				"type": "repair",
 				"entities": cmd.entities,
 				"target": ent,
+				"autocontinue": cmd.autocontinue,
 				"queued": cmd.queued
 			});
 		}

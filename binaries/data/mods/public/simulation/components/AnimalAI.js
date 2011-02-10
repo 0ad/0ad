@@ -56,6 +56,14 @@ var AnimalFsmSpec = {
 		"Attacked": function(msg) {
 			// Do nothing, because we're dead already
 		},
+
+		"LeaveFoundation": function(msg) {
+			// We can't walk away from the foundation (since we're dead),
+			// but we mustn't block its construction (since the builders would get stuck),
+			// and we don't want to trick gatherers into trying to reach us when
+			// we're stuck in the middle of a building, so just delete our corpse.
+			Engine.DestroyEntity(this.entity);
+		},
 	},
 
 	"SKITTISH": {
