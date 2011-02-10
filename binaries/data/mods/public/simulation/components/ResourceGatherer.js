@@ -105,7 +105,7 @@ ResourceGatherer.prototype.GetMainCarryingType = function()
  */
 ResourceGatherer.prototype.GetLastCarriedType = function()
 {
-	if (this.lastCarriedType.generic in this.carrying)
+	if (this.lastCarriedType && this.lastCarriedType.generic in this.carrying)
 		return this.lastCarriedType;
 	else
 		return undefined;
