@@ -58,4 +58,18 @@
   <Obstruction>
     <Unit radius="1.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>voice/celts/civ/civ_dog_bark.xml</select>
+      <order_walk>voice/celts/civ/civ_dog_move.xml</order_walk>
+      <order_attack>voice/celts/civ/civ_dog_move.xml</order_attack>
+      <order_gather>voice/celts/civ/civ_dog_move.xml</order_gather>
+      <order_repair>voice/celts/civ/civ_dog_move.xml</order_repair>
+      <walk>actor/mounted/movement/walk.xml</walk>
+      <run>actor/mounted/movement/walk.xml</run>
+      <attack>attack/weapon/sword.xml</attack>
+      <death>actor/fauna/death/death_animal_gen.xml</death>
+      <trained>interface/alarm/alarm_create_cav.xml</trained>
+    </SoundGroups>
+  </Sound>
 </Entity>
