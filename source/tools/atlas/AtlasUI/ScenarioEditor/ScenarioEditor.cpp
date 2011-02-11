@@ -160,6 +160,12 @@ private:
 			return;
 		}
 
+		if (evt.GetKeyCode() == 'c')
+		{
+			POST_MESSAGE(CameraReset, ());
+			return;
+		}
+
 		int dir = 0;
 		if (evt.GetKeyCode() == '-' || evt.GetKeyCode() == '_')
 			dir = -1;
@@ -302,6 +308,7 @@ enum
 	ID_MessageTrace,
 	ID_Screenshot,
 	ID_JavaScript,
+	ID_CameraReset,
 
 	ID_Toolbar // must be last in the list
 };
@@ -324,6 +331,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
 	EVT_MENU(ID_Screenshot, ScenarioEditor::OnScreenshot)
 	EVT_MENU(ID_JavaScript, ScenarioEditor::OnJavaScript)
+	EVT_MENU(ID_CameraReset, ScenarioEditor::OnCameraReset)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
@@ -469,6 +477,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		menuMisc->AppendCheckItem(ID_MessageTrace, _("Message debug trace"));
 		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
 		menuMisc->Append(ID_JavaScript, _("&JS console"));
+		menuMisc->Append(ID_CameraReset, _("&Reset camera"));
 	}
 
 	m_FileHistory.Load(*wxConfigBase::Get());
@@ -752,6 +761,11 @@ void ScenarioEditor::OnJavaScript(wxCommandEvent& WXUNUSED(event))
 	if (cmd.IsEmpty())
 		return;
 	POST_MESSAGE(JavaScript, (cmd.c_str()));
+}
+
+void ScenarioEditor::OnCameraReset(wxCommandEvent& WXUNUSED(event))
+{
+	POST_MESSAGE(CameraReset, ());
 }
 
 //////////////////////////////////////////////////////////////////////////

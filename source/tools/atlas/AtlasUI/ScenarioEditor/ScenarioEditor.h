@@ -50,6 +50,7 @@ public:
 	void OnScreenshot(wxCommandEvent& event);
 	void OnMediaPlayer(wxCommandEvent& event);
 	void OnJavaScript(wxCommandEvent& event);
+	void OnCameraReset(wxCommandEvent& event);
 
 	void OpenFile(const wxString& name);
 

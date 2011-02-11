@@ -28,10 +28,37 @@
 #include "graphics/GameView.h"
 #include "graphics/CinemaTrack.h"
 
+#include "ps/World.h"
+#include "graphics/Terrain.h"
+
 #include <assert.h>
 
 namespace AtlasMessage {
 
+MESSAGEHANDLER(CameraReset)
+{
+	if (g_Game->GetView()->GetCinema()->IsPlaying())
+		return;
+
+	CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
+
+	CVector3D target;
+	if (!g_Game->GetWorld()->GetTerrain()->IsOnMap(focus.X, focus.Z))
+	{
+		target = CVector3D(
+			g_Game->GetWorld()->GetTerrain()->GetMaxX()/2.f,
+			focus.Y,
+			g_Game->GetWorld()->GetTerrain()->GetMaxZ()/2.f);
+	}
+	else
+	{
+		target = focus;
+	}
+
+	g_Game->GetView()->ResetCameraTarget(target);
+
+	UNUSED2(msg);
+}
 
 MESSAGEHANDLER(ScrollConstant)
 {

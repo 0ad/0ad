@@ -320,6 +320,8 @@ MESSAGE(LookAt,
 		((Position, target))
 		);
 
+MESSAGE(CameraReset, );
+
 //////////////////////////////////////////////////////////////////////////
 
 #ifndef MESSAGES_SKIP_STRUCTS
