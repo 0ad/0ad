@@ -23,6 +23,7 @@
 #include "ps/CLogger.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpRangeManager.h"
 #include "sound/SoundGroup.h"
 
 class CCmpSoundManager : public ICmpSoundManager
@@ -108,17 +109,24 @@ public:
 		if (!group)
 			return;
 
-		// Find the source's position, if possible
-		// (TODO: we should do something more sensible if there's no position available)
-		CVector3D sourcePos(0, 0, 0);
-		if (source != INVALID_ENTITY)
-		{
-			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
-			if (!cmpPosition.null() && cmpPosition->IsInWorld())
-				sourcePos = CVector3D(cmpPosition->GetPosition());
-		}
+		// Only play the sound if the entity is visible
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		ICmpRangeManager::ELosVisibility m_Visibility = cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer());
 
-		group->PlayNext(sourcePos);
+		if (m_Visibility == ICmpRangeManager::VIS_VISIBLE)
+		{
+			// Find the source's position, if possible
+			// (TODO: we should do something more sensible if there's no position available)
+			CVector3D sourcePos(0, 0, 0);
+			if (source != INVALID_ENTITY)
+			{
+				CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), source);
+				if (!cmpPosition.null() && cmpPosition->IsInWorld())
+					sourcePos = CVector3D(cmpPosition->GetPosition());
+			}
+
+			group->PlayNext(sourcePos);
+		}
 	}
 };
 
