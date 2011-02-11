@@ -31,7 +31,7 @@ var inputState = INPUT_NORMAL;
 var defaultPlacementAngle = Math.PI*3/4;
 var placementAngle;
 var placementPosition;
-var placementEntity;
+var placementEntity = undefined;
 
 var mouseX = 0;
 var mouseY = 0;
@@ -66,6 +66,22 @@ function updateCursor()
 	}
 
 	Engine.SetCursor("arrow-default");
+}
+
+function updateBuildingPlacementPreview()
+{
+	// The preview should be recomputed every turn, so that it responds
+	// to obstructions/fog/etc moving underneath it
+
+	if (placementEntity)
+	{
+		Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+			"template": placementEntity,
+			"x": placementPosition.x,
+			"z": placementPosition.z,
+			"angle": placementAngle
+		});
+	}
 }
 
 function findGatherType(gatherer, supply)
@@ -319,6 +335,8 @@ function tryPlaceBuilding(queued)
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 
+	placementEntity = undefined;
+
 	return true;
 }
 
@@ -494,6 +512,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			{
 				// Cancel building
 				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+				placementEntity = undefined;
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -554,6 +573,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			{
 				// Cancel building
 				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+				placementEntity = undefined;
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -760,6 +780,7 @@ function handleInputAfterGui(ev)
 			{
 				// Cancel building
 				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+				placementEntity = undefined;
 				inputState = INPUT_NORMAL;
 				return true;
 			}

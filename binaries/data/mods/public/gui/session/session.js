@@ -205,6 +205,7 @@ function onSimulationUpdate()
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
+	updateBuildingPlacementPreview();
 }
 
 function updateMinimap(simState)
