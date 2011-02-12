@@ -709,6 +709,61 @@ void Shutdown(int UNUSED(flags))
 	TIMER_END(L"shutdown misc");
 }
 
+#if OS_UNIX
+void SetDefaultIfLocaleInvalid()
+{
+	// On misconfigured systems with incorrect locale settings, we'll die
+	// with a C++ exception when some code tries to use locales.
+	// To avoid death, we'll detect the problem here and warn the user and
+	// reset to the default C locale.
+
+
+	// For informing the user of the problem, use the list of env vars that
+	// glibc setlocale looks at. (LC_ALL is checked first, and LANG last.)
+	const char* const LocaleEnvVars[] = {
+		"LC_ALL",
+		"LC_COLLATE",
+		"LC_CTYPE",
+		"LC_MONETARY",
+		"LC_NUMERIC",
+		"LC_TIME",
+		"LC_MESSAGES",
+		"LANG"
+	};
+
+	try
+	{
+		// this constructor is similar to setlocale(LC_ALL, ""),
+		// but instead of returning NULL, it throws runtime_error
+		// when the first locale env variable found contains an invalid value
+		std::locale::locale("");
+	}
+	catch (std::runtime_error&)
+	{
+		LOGWARNING(L"Invalid locale settings");
+
+		for (size_t i = 0; i < ARRAY_SIZE(LocaleEnvVars); i++)
+		{
+			if (char* envval = getenv(LocaleEnvVars[i]))
+				LOGWARNING(L"  %hs=\"%hs\"", LocaleEnvVars[i], envval);
+			else
+				LOGWARNING(L"  %hs=\"(unset)\"", LocaleEnvVars[i]);
+		}
+
+		// We should set LC_ALL since it overrides LANG
+		if (setenv("LC_ALL", std::locale::classic().name().c_str(), 1))
+			debug_warn(L"Invalid locale settings, and unable to set LC_ALL env variable.");
+		else
+			LOGWARNING(L"Setting LC_ALL env variable to: %hs", getenv("LC_ALL"));
+	}
+}
+#else
+void SetDefaultIfLocaleInvalid()
+{
+	// Do nothing on Windows
+}
+#endif
+
 void EarlyInit()
 {
 	// If you ever want to catch a particular allocation:
@@ -720,6 +775,8 @@ void EarlyInit()
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add(L"TIMER");
 	debug_filter_add(L"HRT");
+
+	SetDefaultIfLocaleInvalid();
 
 	cpu_ConfigureFloatingPoint();
 
