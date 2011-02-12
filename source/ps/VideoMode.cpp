@@ -142,6 +142,15 @@ bool CVideoMode::InitSDL()
 		h = DEFAULT_WINDOW_H;
 	}
 
+	if (!m_ConfigFullscreen)
+	{
+		// Limit the window to the screen size (if known)
+		if (m_PreferredW)
+			w = std::min(w, m_PreferredW);
+		if (m_PreferredH)
+			h = std::min(h, m_PreferredH);
+	}
+
 	int bpp = GetBestBPP();
 
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
