@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="siege ram">
+      <mesh>structural/celt_siege_ram.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/siege_ram_shields.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/celt_siege_ram.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

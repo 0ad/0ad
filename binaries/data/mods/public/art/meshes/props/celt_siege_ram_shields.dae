@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+			<authoring_tool>Blender v:249 - Illusoft Collada Exporter v:0.3.162</authoring_tool>
+			<comments></comments>
+			<copyright></copyright>
+			<source_data>file://C:/Models/0ADSiegeRam/0ADSiegeRam14export.blend</source_data>
+		</contributor>
+		<created>2011-02-02T00:18:52.843000</created>
+		<modified>2011-02-02T00:18:52.843000</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="celt_prop_1_dds-fx" name="celt_prop_1_dds-fx">
+			<profile_COMMON>
+				<newparam sid="celt_prop_1_dds-surface">
+					<surface type="2D">
+						<init_from>celt_prop_1_dds-img</init_from>
+						<format>A8R8G8B8</format>
+					</surface>
+				</newparam>
+				<newparam sid="celt_prop_1_dds-sampler">
+					<sampler2D>
+						<source>celt_prop_1_dds-surface</source>
+						<minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+						<magfilter>LINEAR</magfilter>
+					</sampler2D>
+				</newparam>
+				<technique sid="blender">
+					<lambert>
+						<diffuse>
+							<texture texcoord="CHANNEL1" texture="celt_prop_1_dds-sampler"/>
+						</diffuse>
+					</lambert>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_images>
+		<image id="celt_prop_1_dds-img" name="celt_prop_1_dds-img">
+			<init_from>celt_prop_1.dds</init_from>
+		</image>
+	</library_images>
+	<library_materials>
+		<material id="celt_prop_1_dds" name="celt_prop_1_dds">
+			<instance_effect url="#celt_prop_1_dds-fx"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="Plane_001" name="Plane_001">
+			<mesh>
+				<source id="Plane_001-Position">
+					<float_array count="162" id="Plane_001-Position-array">1.70228 -4.19626 3.03954 2.10654 -4.19626 2.57968 2.06722 -4.19626 1.96865 1.60735 -4.19626 1.56439 0.99632 -4.19626 1.60371 0.59206 -4.19626 2.06358 0.63138 -4.19626 2.67461 1.09125 -4.19626 3.07887 1.34930 -4.43447 2.32163 -1.31133 -4.43447 2.32163 -1.70303 -4.19626 3.01918 -2.08155 -4.19626 2.53790 -2.00888 -4.19626 1.92993 -1.52760 -4.19626 1.55141 -0.91964 -4.19626 1.62408 -0.54112 -4.19626 2.10536 -0.61379 -4.19626 2.71333 -1.09507 -4.19626 3.09184 2.88194 -1.89702 3.67783 2.88194 -1.87763 2.07783 2.88194 -2.75425 2.07783 2.88194 -2.77289 3.67783 2.75752 -2.60644 0.88048 2.75752 -1.85800 0.88048 3.01071 -1.07972 1.66194 3.01071 -1.64684 1.66194 2.88194 -1.87715 3.78162 2.92338 -1.81015 2.56923 2.92338 -1.14589 2.56923 2.88194 -0.99098 3.78161 -3.00501 -2.28396 3.78161 -3.00501 -2.27022 2.56923 -3.06823 -2.93448 2.56923 -3.00501 -3.17013 3.78162 -3.02600 -2.77117 1.66194 -3.02600 -2.20405 1.66194 -3.02600 -1.13047 0.88048 -2.92366 -1.87891 0.88048 -3.02600 -2.04536 3.67783 -2.92366 -2.02672 2.07783 -3.02600 -1.15010 2.07783 -3.02600 -1.16950 3.67783 -2.92337 -0.41053 3.77785 -2.97374 -0.73902 2.43066 -2.92337 -0.75462 3.78325 -2.96101 -3.54253 3.78325 -3.08549 -3.27688 2.49038 -2.96101 -3.19844 3.77785 2.96098 -0.75462 3.78325 2.91062 -0.73902 2.43066 2.96098 -0.41053 3.77785 3.04111 -3.16176 3.78532 2.86532 -3.44136 2.71234 2.96098 -3.69052 3.78325</float_array>
+					<technique_common>
+						<accessor count="54" source="#Plane_001-Position-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Plane_001-Normals">
+					<float_array count="108" id="Plane_001-Normals-array">0.23039 -0.95179 0.20253 0.30613 -0.95179 -0.01970 0.20253 -0.95179 -0.23039 -0.01970 -0.95179 -0.30613 -0.23039 -0.95179 -0.20253 -0.30613 -0.95179 0.01970 -0.20253 -0.95179 0.23040 0.01970 -0.95179 0.30613 -0.03641 -0.95179 0.30459 -0.24112 -0.95179 0.18964 -0.30459 -0.95179 -0.03641 -0.18964 -0.95179 -0.24112 0.03641 -0.95179 -0.30459 0.24112 -0.95179 -0.18964 0.30459 -0.95179 0.03641 0.18964 -0.95179 0.24112 -0.99931 0.00058 0.03722 -0.99537 0.00151 0.09615 0.99931 -0.00058 -0.03722 0.98138 -0.14824 -0.12216 -0.99796 -0.00000 -0.06383 -0.99325 -0.11595 -0.00141 -0.99078 -0.13547 -0.00222 -0.99315 -0.11594 -0.01431 -0.99973 0.00000 0.02313 -0.99507 0.09471 -0.02927 -0.99864 0.00000 0.05208 -0.99550 0.09475 0.00107 0.99942 0.00000 0.03416 0.99942 0.00000 0.03416 0.99540 -0.00000 0.09581 0.99540 0.00000 0.09581 0.99464 0.00000 -0.10336 0.99464 -0.00000 -0.10336 1.00000 0.00000 0.00000 1.00000 0.00000 0.00000</float_array>
+					<technique_common>
+						<accessor count="36" source="#Plane_001-Normals-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Plane_001-UV">
+					<float_array count="216" id="Plane_001-UV-array">0.18823 0.17348 0.17446 0.20672 0.14122 0.17348 0.14122 0.17348 0.17446 0.14025 0.18823 0.17348 0.14122 0.17348 0.14122 0.12648 0.17446 0.14025 0.14122 0.17348 0.10799 0.14025 0.14122 0.12648 0.14122 0.17348 0.09422 0.17348 0.10799 0.14025 0.14122 0.17348 0.10799 0.20672 0.09422 0.17348 0.14122 0.17348 0.14122 0.22049 0.10799 0.20672 0.14122 0.17348 0.17446 0.20672 0.14122 0.22049 0.04715 0.35365 0.08038 0.38689 0.04715 0.40065 0.04715 0.35365 0.04715 0.40065 0.01391 0.38689 0.04715 0.35365 0.01391 0.38689 0.00014 0.35365 0.04715 0.35365 0.00014 0.35365 0.01391 0.32041 0.04715 0.35365 0.01391 0.32041 0.04715 0.30665 0.04715 0.35365 0.04715 0.30665 0.08038 0.32041 0.04715 0.35365 0.08038 0.32041 0.09415 0.35365 0.04715 0.35365 0.09415 0.35365 0.08038 0.38689 0.70900 0.61723 0.65351 0.37943 0.64844 0.61818 0.70608 0.65519 0.69333 0.44594 0.65015 0.65607 0.70900 0.61723 0.64844 0.61818 0.65351 0.37943 0.71269 0.54809 0.65235 0.54786 0.68078 0.42566 0.64734 0.37157 0.64734 0.49210 0.70854 0.49210 0.64734 0.37157 0.70854 0.49210 0.70854 0.37157 0.70854 0.37157 0.70854 0.28137 0.64734 0.28137 0.70854 0.37157 0.64734 0.28137 0.64734 0.37157 0.70854 0.37157 0.70854 0.28137 0.64734 0.28137 0.70854 0.37157 0.64734 0.28137 0.64734 0.37157 0.64734 0.37157 0.64734 0.49210 0.70854 0.49210 0.64734 0.37157 0.70854 0.49210 0.70854 0.37157 0.64734 0.37157 0.70854 0.37157 0.64734 0.49210 0.70854 0.37157 0.70854 0.49210 0.64734 0.49210 0.70854 0.37157 0.64734 0.37157 0.64734 0.28137 0.70854 0.37157 0.64734 0.28137 0.70854 0.28137 0.70854 0.37157 0.64734 0.37157 0.64734 0.28137 0.70854 0.37157 0.64734 0.28137 0.70854 0.28137 0.64734 0.37157 0.70854 0.37157 0.70854 0.49210 0.64734 0.37157 0.70854 0.49210 0.64734 0.49210</float_array>
+					<technique_common>
+						<accessor count="108" source="#Plane_001-UV-array" stride="2">
+							<param type="float" name="S"></param>
+							<param type="float" name="T"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="Plane_001-Vertex">
+					<input semantic="POSITION" source="#Plane_001-Position"/>
+				</vertices>
+				<triangles count="36" material="celt_prop_1_dds">
+					<input offset="0" semantic="VERTEX" source="#Plane_001-Vertex"/>
+					<input offset="1" semantic="NORMAL" source="#Plane_001-Normals"/>
+					<input offset="2" semantic="TEXCOORD" source="#Plane_001-UV"/>
+					<p>1 0 0 0 0 1 8 0 2 8 1 3 2 1 4 1 1 5 8 2 6 3 2 7 2 2 8 8 3 9 4 3 10 3 3 11 8 4 12 5 4 13 4 4 14 8 5 15 6 5 16 5 5 17 8 6 18 7 6 19 6 6 20 8 7 21 0 7 22 7 7 23 9 8 24 17 8 25 10 8 26 9 9 27 10 9 28 11 9 29 9 10 30 11 10 31 12 10 32 9 11 33 12 11 34 13 11 35 9 12 36 13 12 37 14 12 38 9 13 39 14 13 40 15 13 41 9 14 42 15 14 43 16 14 44 9 15 45 16 15 46 17 15 47 42 16 48 43 16 49 44 16 50 47 17 51 46 17 52 45 17 53 50 18 54 48 18 55 49 18 56 51 19 57 53 19 58 52 19 59 39 20 60 38 20 61 41 20 62 39 21 63 41 21 64 40 21 65 40 22 66 36 22 67 37 22 68 40 23 69 37 23 70 39 23 71 31 24 72 35 24 73 34 24 74 31 25 75 34 25 76 32 25 77 32 26 78 33 26 79 30 26 80 32 27 81 30 27 82 31 27 83 27 28 84 28 28 85 26 28 86 28 29 87 29 29 88 26 29 89 28 30 90 27 30 91 25 30 92 28 31 93 25 31 94 24 31 95 19 32 96 20 32 97 22 32 98 19 33 99 22 33 100 23 33 101 20 34 102 19 34 103 18 34 104 20 35 105 18 35 106 21 35 107</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="Scene" name="Scene">
+			<node layer="L1" id="Plane" name="Plane">
+				<matrix>
+					1.0 0.0 0.0 0.0 
+					0.0 1.0 0.0 0.0 
+					0.0 0.0 1.0 0.0 
+					0.0 0.0 0.0 1.0 
+				</matrix>
+				<instance_geometry url="#Plane_001">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="celt_prop_1_dds" target="#celt_prop_1_dds">
+								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
+							</instance_material>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#Scene"/>
+	</scene>
+</COLLADA>
