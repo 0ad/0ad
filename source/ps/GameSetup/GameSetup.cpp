@@ -736,7 +736,7 @@ void SetDefaultIfLocaleInvalid()
 		// this constructor is similar to setlocale(LC_ALL, ""),
 		// but instead of returning NULL, it throws runtime_error
 		// when the first locale env variable found contains an invalid value
-		std::locale::locale("");
+		std::locale("");
 	}
 	catch (std::runtime_error&)
 	{
