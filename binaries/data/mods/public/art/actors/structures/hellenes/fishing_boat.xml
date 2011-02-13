@@ -3,8 +3,21 @@
   <castshadow/>
   <float/>
   <group>
-    <variant name="Greek and Roman Fishing Boat">
+    <variant frequency="1" name="Greek Fishing Boata">
       <mesh>structural/hele_fishing_boat.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+      </props>
+      <texture>structural/hele_fishing_boat.dds</texture>
+    </variant>
+	<variant frequency="1" name="Greek Fishing Boatb">
+      <mesh>structural/hele_fishing_boat.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
+        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
+		<prop actor="props/units/heads/hele_straw.xml" attachpoint="head"/>
+      </props>
       <texture>structural/hele_fishing_boat.dds</texture>
     </variant>
   </group>
