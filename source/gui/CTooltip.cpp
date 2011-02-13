@@ -124,7 +124,8 @@ void CTooltip::SetupText()
 		size.pixel.bottom -= size.pixel.top, size.pixel.top = 0.f;
 	else if (size.pixel.bottom > screenh)
 		size.pixel.top -= (size.pixel.bottom-screenh), size.pixel.bottom = screenh;
-	else if (size.pixel.left < 0.f)
+
+	if (size.pixel.left < 0.f)
 		size.pixel.right -= size.pixel.left, size.pixel.left = 0.f;
 	else if (size.pixel.right > screenw)
 		size.pixel.left -= (size.pixel.right-screenw), size.pixel.right = screenw;
