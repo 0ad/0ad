@@ -93,7 +93,7 @@ void CArchiveBuilder::Build(const fs::wpath& archive)
 			tex_is_known_extension(m_Files[i]) &&
 			// Skip some subdirectories where the engine doesn't use CTextureManager yet:
 			!boost::algorithm::starts_with(m_Files[i].string(), L"art/textures/cursors/") &&
-			!boost::algorithm::starts_with(m_Files[i].string(), L"art/textures/terrain/alphamaps/special/")
+			!boost::algorithm::starts_with(m_Files[i].string(), L"art/textures/terrain/alphamaps/")
 		)
 		{
 			VfsPath cachedPath;
