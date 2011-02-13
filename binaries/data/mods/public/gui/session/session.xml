@@ -586,7 +586,7 @@
 
 				<object size="0 0 100% 100%">
 					<repeat count="24">
-						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTip">
+						<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 							<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 						</object>
 					</repeat>
@@ -598,7 +598,7 @@
 				size="0 100%-56 100% 100%"
 				type="text"
 			>
-				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTip"
+				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTipBottom"
 					 cell_id="4" tooltip="Stances"/>
 
 				[stance commands]
@@ -609,7 +609,7 @@
 				size="0 100%-56 100% 100%"
 				type="text"
 			>
-				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTip"
+				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTipBottom"
 					 cell_id="1" tooltip="Research"/>
 
 				[research commands]
@@ -623,7 +623,7 @@
 
 				<object size="0 0 100% 100%">
 					<repeat count="24">
-						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTip">
+						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 						</object>
 					</repeat>
