@@ -400,6 +400,12 @@ int wrmdir(const wchar_t* path)
 }
 
 
+int wrename(const wchar_t* pathnameOld, const wchar_t* pathnameNew)
+{
+	return _wrename(pathnameOld, pathnameNew);
+}
+
+
 wchar_t* wrealpath(const wchar_t* pathname, wchar_t* resolved)
 {
 	if(!GetFullPathNameW(pathname, PATH_MAX, resolved, 0))

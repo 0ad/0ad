@@ -86,4 +86,60 @@ Path AddSlash(const Path& path)
 LIB_API fs::wpath wpath_from_path(const fs::path& pathname);
 LIB_API fs::path path_from_wpath(const fs::wpath& pathname);
 
+
+static inline std::wstring Path(const std::wstring& pathname)
+{
+	size_t n = pathname.find_last_of('/');
+	if(n == std::wstring::npos)
+	{
+		n = pathname.find_last_of('\\');
+		if(n == std::wstring::npos)
+			return L"";
+	}
+	return pathname.substr(0, n);
+}
+
+static inline std::wstring Filename(const std::wstring& pathname)
+{
+	size_t n = pathname.find_last_of('/');
+	if(n == std::wstring::npos)
+	{
+		n = pathname.find_last_of('\\');
+		if(n == std::wstring::npos)
+			return pathname;
+	}
+	return pathname.substr(n+1);
+}
+
+
+static inline std::wstring Basename(const std::wstring& filename)
+{
+	const size_t n = filename.find_last_of('.');
+	if(n == std::wstring::npos)
+		return filename;
+	return filename.substr(0, n);
+}
+
+static inline std::wstring Extension(const std::wstring& filename)
+{
+	const size_t n = filename.find_last_of('.');
+	if(n == std::wstring::npos)
+		return std::wstring();
+	return filename.substr(n);
+}
+
+static inline std::wstring Join(const std::wstring& path1, const std::wstring& path2)
+{
+	std::wstring ret = path1;
+	if(!path1.empty() && path1.back() != '/' && path1.back() != '\\')
+		ret += '/';
+	ret += path2;
+	return ret;
+}
+
+static inline std::wstring ChangeExtension(const std::wstring& pathname, const std::wstring& extension)
+{
+	return Join(Path(pathname), Basename(Filename(pathname))+extension);
+}
+
 #endif	// #ifndef INCLUDED_PATH_UTIL

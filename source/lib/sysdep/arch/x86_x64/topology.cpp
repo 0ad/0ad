@@ -348,17 +348,24 @@ size_t cpu_topology_ApicId(size_t idxLogical, size_t idxCore, size_t idxPackage)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 
-	size_t apicId = 0;
+	// NB: APIC IDs aren't guaranteed to be contiguous;
+	// quad-core E5630 CPUs report 4-bit core IDs 0, 1, 6, 7.
+	// we therefore compute an index into the sorted ApicIds array.
 
-	debug_assert(idxPackage <= cpuTopology.package.mask);
-	apicId |= idxPackage << cpuTopology.package.shift;
+	size_t idx = 0;
+	debug_assert(idxPackage < cpuTopology.numPackages);
+	idx += idxPackage;
 
-	debug_assert(idxCore <= cpuTopology.core.mask);
-	apicId |= idxCore << cpuTopology.core.shift;
+	idx *= cpuTopology.coresPerPackage;
+	debug_assert(idxCore < cpuTopology.coresPerPackage);
+	idx += idxCore;
 
-	debug_assert(idxLogical <= cpuTopology.logical.mask);
-	apicId |= idxLogical << cpuTopology.logical.shift;
+	idx *= cpuTopology.logicalPerCore;
+	debug_assert(idxLogical < cpuTopology.logicalPerCore);
+	idx += idxLogical;
 
+	debug_assert(idx < os_cpu_NumProcessors());
+	const size_t apicId = ApicIds()[idx];
 	return apicId;
 }
 

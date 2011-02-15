@@ -259,7 +259,9 @@ static void VerifyRunningOnCorrectProcessors(DWORD_PTR affinity)
 
 uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 {
-	debug_assert((processorMask >> os_cpu_NumProcessors()) == 0);
+	const size_t numProcessors = os_cpu_NumProcessors();
+	// (avoid undefined result when right shift count >= number of bits)
+	debug_assert(numProcessors == sizeof(processorMask)*CHAR_BIT || (processorMask >> numProcessors) == 0);
 
 	DWORD_PTR processAffinity, systemAffinity;
 	const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);

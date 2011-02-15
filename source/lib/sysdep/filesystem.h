@@ -91,6 +91,13 @@ LIB_API int wrmdir(const wchar_t* path);
 
 
 //
+// stdio.h
+//
+
+LIB_API int wrename(const wchar_t* pathnameOld, const wchar_t* pathnameNew);
+
+
+//
 // stdlib.h
 //
 

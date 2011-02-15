@@ -105,6 +105,13 @@ int wrmdir(const wchar_t* path)
 	return rmdir(path_c.string().c_str());
 }
 
+int wrename(const wchar_t* pathnameOld, const wchar_t* pathnameNew)
+{
+	fs::path pathnameOld_c(path_from_wpath(pathnameOld));
+	fs::path pathnameNew_c(path_from_wpath(pathnameNew));
+	return rename(pathnameOld_c.string().c_str(), pathnameNew_c.string().c_str());
+}
+
 wchar_t* wrealpath(const wchar_t* pathname, wchar_t* resolved)
 {
 	char resolved_buf[PATH_MAX];
