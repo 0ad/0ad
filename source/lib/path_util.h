@@ -131,7 +131,7 @@ static inline std::wstring Extension(const std::wstring& filename)
 static inline std::wstring Join(const std::wstring& path1, const std::wstring& path2)
 {
 	std::wstring ret = path1;
-	if(!path1.empty() && path1.back() != '/' && path1.back() != '\\')
+	if(!path1.empty() && path1[path1.length()-1] != '/' && path1[path1.length()-1] != '\\')
 		ret += '/';
 	ret += path2;
 	return ret;
