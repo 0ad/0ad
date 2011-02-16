@@ -78,7 +78,7 @@ const std::vector<ProfileColumn>& CNetStatsTable::GetColumns()
 		CScopeLock lock(m_Mutex);
 
 		for (size_t i = 0; i < m_LatchedData.size(); ++i)
-			m_ColumnDescriptions.push_back(ProfileColumn("Peer "+CStr((unsigned long)i), 80));
+			m_ColumnDescriptions.push_back(ProfileColumn("Peer "+CStr(i), 80));
 	}
 	return m_ColumnDescriptions;
 }

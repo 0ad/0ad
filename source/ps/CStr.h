@@ -167,48 +167,13 @@ public:
 		CStrW FromUTF8() const;
 	#endif
 
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param int Number integer to be used for initialization
-	 **/
-	CStr(int Number);
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param unsigned int Number unsigned integer to be used for initialization
-	 **/
-	CStr(unsigned int Number);
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param long Number long to be used for initialization
-	 **/
-	CStr(long Number);
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param unsigned long Number unsigned long to be used for initialization
-	 **/
-	CStr(unsigned long Number);
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param float Number float to be used for initialization
-	 **/
+	// Construct from string representation of number
+	CStr(i32 Number);
+	CStr(u32 Number);
+	CStr(i64 Number);
+	CStr(u64 Number);
 	CStr(float Number);
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param double Number double to be used for initialization
-	 **/
 	CStr(double Number);
-
-	/**
-	 * Destructor
-	 *
-	 **/
-	//~CStr() {};
 
 	// Conversions:
 
@@ -436,49 +401,6 @@ public:
 	CStr Pad(PS_TRIM_MODE Mode, size_t Length) const;
 
 	// Overloaded operations
-
-	/**
-	 * Set the CStr equal to an integer.
-	 *
-	 * @param int Number integer to convert to a CStr.
-	 * @return CStr
-	 **/
-	CStr& operator=(int Number);
-	/**
-	 * Set the CStr equal to a long.
-	 *
-	 * @param long Number long to convert to a CStr.
-	 * @return CStr
-	 **/
-	CStr& operator=(long Number);
-	/**
-	 * Set the CStr equal to an unsigned integer.
-	 *
-	 * @param unsigned int Number unsigned int to convert to a CStr.
-	 * @return CStr
-	 **/
-	CStr& operator=(unsigned int Number);
-	/**
-	 * Set the CStr equal to an unsigned long.
-	 *
-	 * @param unsigned long Number unsigned long to convert to a CStr.
-	 * @return CStr
-	 **/
-	CStr& operator=(unsigned long Number);
-	/**
-	 * Set the CStr equal to a float.
-	 *
-	 * @param float Number float to convert to a CStr.
-	 * @return CStr
-	 **/
-	CStr& operator=(float Number);
-	/**
-	 * Set the CStr equal to a double.
-	 *
-	 * @param double Number double to convert to a CStr.
-	 * @return CStr
-	 **/
-	CStr& operator=(double Number);
 
 	CStr  operator+(const CStr& Str);
 	CStr  operator+(const tchar* Str);

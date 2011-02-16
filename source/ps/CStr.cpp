@@ -101,20 +101,12 @@ CStr CStr::Repeat(const CStr& String, size_t Reps)
 		std::tstringstream ss;		\
 		ss << Number;				\
 		ss >> *this;				\
-	}								\
-									\
-	CStr& CStr::operator=(T Number)	\
-	{								\
-		std::tstringstream ss;		\
-		ss << Number;				\
-		ss >> *this;				\
-		return *this;				\
 	}
 
-NUM_TYPE(int)
-NUM_TYPE(long)
-NUM_TYPE(unsigned int)
-NUM_TYPE(unsigned long)
+NUM_TYPE(i32)
+NUM_TYPE(i64)
+NUM_TYPE(u32)
+NUM_TYPE(u64)
 NUM_TYPE(float)
 NUM_TYPE(double)
 
