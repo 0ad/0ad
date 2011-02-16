@@ -136,6 +136,11 @@ extern_lib_defs = {
 		unix_names = { "avcodec", "avformat", "avutil" },
 		dbg_suffix = "",
 	},
+	libcurl = {
+		win_names  = { "curllib" },
+		unix_names = { "curl" },
+		dbg_suffix = "",
+	},
 	libjpg = {
 		win_names  = { "jpeg-6b" },
 		unix_names = { "jpeg" },
