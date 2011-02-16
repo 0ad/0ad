@@ -52,6 +52,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
+#include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -359,6 +360,8 @@ static void Frame()
 	if (g_NetClient)
 		g_NetClient->Flush();
 	PROFILE_END("network flush");
+
+	g_UserReporter.Update();
 
 	PROFILE_START( "update console" );
 	g_Console->Update(TimeSinceLastFrame);

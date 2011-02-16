@@ -17,6 +17,11 @@
 		sprite="pgBackground"
 		aspectratio="1.333333"
 	>
+
+		<action on="Tick">
+			onTick();
+		</action>
+
 		<!--
 		==========================================
 		- MAIN MENU - PRE-RELEASE WARNING
@@ -33,7 +38,7 @@
 Warning: This is an early development version of the game and many features have not been added yet, but we hope this gives you a glimpse of the game’s vision.
 
 Watch for updates or get involved in the development: http://wildfiregames.com/0ad/
-		</object>		
+		</object>
 
 		<!--
 		==========================================
@@ -57,11 +62,11 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 		==========================================
 		-->
 		
-			<object size="100%-400 0 100% 30">
+		<object size="100%-400 0 100% 30">
 			<object type="button" style="wheatButton" size="0 0 100 30">
 				Manual
 				<action on="Press"><![CDATA[
-					Engine.PushGuiPage("page_manual.xml");
+					Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
 				]]></action>
 			</object>
 
@@ -268,6 +273,87 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 				"to learn more about [icon=iconProduct] A.D., participate in the community, meet the developers, and learn how to become a part of development yourself.\n\n", "About [icon=iconProduct] A.D.", 2, [], []);
 			]]></action>
 		</object>
+
+		<!--
+		==========================================
+		- MAIN MENU - USER REPORT
+		==========================================
+		-->
+
+		<object
+			name="userReportDisabled"
+			size="4 300 400 460"
+			type="image"
+			style="userReportPanel"
+		>
+			<object
+				type="text"
+				style="userReportText"
+>[font="serif-bold-16"]Help improve 0 A.D.![/font]
+
+You can automatically send us anonymous feedback that will help us to improve performance and compatibility and to fix bugs.
+			</object>
+			<object type="button" style="wheatButton" size="4 100%-44 180 100%-4">
+				[font="serif-bold-16"]Enable feedback
+				<action on="Press">Engine.SetUserReportEnabled(true);</action>
+			</object>
+			<object type="button" style="wheatButton" size="100%-150 100%-35 100%-4 100%-4">
+				Technical details
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+			</object>
+		</object>
+
+		<object
+			name="userReportEnabled"
+			size="4 300 400 550"
+			type="image"
+			style="userReportPanel"
+		>
+			<object
+				name="userReportEnabledText"
+				type="text"
+				style="userReportText"
+>[font="serif-bold-16"]Thank you for helping improve 0 A.D.![/font]
+
+Anonymous feedback is currently enabled.
+Status: $status.</object>
+			<!--
+				 Put the rest of the text in a separate box, so that
+				 very long $status messages don't mess up the layout
+				 quite so badly:
+			-->
+			<object
+				type="text"
+				style="userReportText"
+				size="0 90 100% 100%"
+>If you want to send a message to the developers, you can enter one here:
+			</object>
+
+			<object
+				name="userReportMessageInput"
+				size="2 130 100%-66 190"
+				type="input"
+				style="wheatInput"
+				multiline="true"
+				scrollbar="true"
+				scrollbar_style="wheatScrollBar"
+			/>
+
+			<object size="100%-65 160 100%-1 193" type="button" style="wheatButton">
+				Send
+				<action on="Press">submitUserReportMessage();</action>
+			</object>
+
+			<object type="button" style="wheatButton" size="4 100%-35 150 100%-4">
+				Disable feedback
+				<action on="Press">Engine.SetUserReportEnabled(false);</action>
+			</object>
+			<object type="button" style="wheatButton" size="100%-150 100%-35 100%-4 100%-4">
+				Technical details
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+			</object>
+		</object>
+
 	</object>
 
 	<!--

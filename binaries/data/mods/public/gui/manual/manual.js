@@ -1,4 +1,4 @@
-function init()
+function init(data)
 {
-	getGUIObjectByName("mainText").caption = readFile("gui/manual/intro.txt");
+	getGUIObjectByName("mainText").caption = readFile("gui/manual/" + data.page + ".txt");
 }

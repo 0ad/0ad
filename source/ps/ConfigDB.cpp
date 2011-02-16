@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,8 +30,7 @@
 
 typedef std::map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
-CStrW CConfigDB::m_ConfigFile[CFG_LAST];
-bool CConfigDB::m_UseVFS[CFG_LAST];
+VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
 
 #define GET_NS_PRIVATE(cx, obj) (EConfigNamespace)((intptr_t)JS_GetPrivate(cx, obj) >> 1)
 
@@ -110,18 +109,14 @@ namespace ConfigNamespace_JS
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 		
-		if (argc != 2)
-			return JS_FALSE;
-
-		bool useVFS;
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], useVFS))
+		if (argc != 1)
 			return JS_FALSE;
 
 		std::wstring path;
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[1], path))
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
 			return JS_FALSE;
 
-		bool res = g_ConfigDB.WriteFile(cfgNs, useVFS, path);
+		bool res = g_ConfigDB.WriteFile(cfgNs, path);
 
 		JS_SET_RVAL(cx, vp, BOOLEAN_TO_JSVAL(res));
 		return JS_TRUE;
@@ -147,18 +142,14 @@ namespace ConfigNamespace_JS
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
-		if (argc != 2)
-			return JS_FALSE;
-
-		bool useVFS;
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], useVFS))
+		if (argc != 1)
 			return JS_FALSE;
 
 		std::wstring path;
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[1], path))
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
 			return JS_FALSE;
 
-		g_ConfigDB.SetConfigFile(cfgNs, useVFS, path);
+		g_ConfigDB.SetConfigFile(cfgNs, path);
 
 		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
@@ -297,7 +288,7 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 	return &(it->second[0]);
 }
 
-void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, const CStrW& path)
+void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 {
 	if (ns < 0 || ns >= CFG_LAST)
 	{
@@ -306,11 +297,16 @@ void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, const CStrW& pat
 	}
 	
 	m_ConfigFile[ns]=path;
-	m_UseVFS[ns]=useVFS;
 }
 
 bool CConfigDB::Reload(EConfigNamespace ns)
 {
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn(L"CConfigDB: Invalid ns value");
+		return false;
+	}
+
 	// Set up CParser
 	CParser parser;
 	CParserLine parserLine;
@@ -323,16 +319,16 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		// Handle missing files quietly
 		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) < 0)
 		{
-			LOGMESSAGE(L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].c_str());
+			LOGMESSAGE(L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].string().c_str());
 			return false;
 		}
 		else
 		{
-			LOGMESSAGE(L"Loading config file \"%ls\"", m_ConfigFile[ns].c_str());
+			LOGMESSAGE(L"Loading config file \"%ls\"", m_ConfigFile[ns].string().c_str());
 			LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 			if (ret != INFO::OK)
 			{
-				LOGERROR(L"CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %ld", m_ConfigFile[ns].c_str(), ret);
+				LOGERROR(L"CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %ld", m_ConfigFile[ns].string().c_str(), ret);
 				return false;
 			}
 		}
@@ -388,10 +384,19 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	return true;
 }
 
-bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path)
+bool CConfigDB::WriteFile(EConfigNamespace ns)
 {
-	debug_assert(useVFS);
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn(L"CConfigDB: Invalid ns value");
+		return false;
+	}
 
+	return WriteFile(ns, m_ConfigFile[ns]);
+}
+
+bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
+{
 	if (ns < 0 || ns >= CFG_LAST)
 	{
 		debug_warn(L"CConfigDB: Invalid ns value");
@@ -410,7 +415,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path)
 	LibError ret = g_VFS->CreateFile(path, buf, len);
 	if(ret < 0)
 	{
-		LOGERROR(L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.c_str(), (int)ret);
+		LOGERROR(L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.string().c_str(), (int)ret);
 		return false;
 	}
 

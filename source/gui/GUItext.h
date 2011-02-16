@@ -295,6 +295,11 @@ public:
 	const CStrW& GetRawString() const { return m_RawString; }
 
 	/**
+	 * Get String, with tags
+	 */
+	const CStrW& GetOriginalString() const { return m_OriginalString; }
+
+	/**
 	 * Generate Text Call from specified range. The range
 	 * must span only within ONE TextChunk though. Otherwise
 	 * it can't be fit into a single Text Call
@@ -333,6 +338,11 @@ private:
 	 * The full raw string. Stripped of tags.
 	 */
 	CStrW m_RawString;
+
+	/**
+	 * The original string value passed to SetValue.
+	 */
+	CStrW m_OriginalString;
 };
 
 #endif

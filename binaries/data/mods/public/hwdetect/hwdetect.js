@@ -68,10 +68,10 @@ function RunDetection(settings)
 	var gfx_mem = settings.gfx_mem;
 
 	// Values from glGetString
-	var gl_vendor = settings.gl_vendor;
-	var gl_renderer = settings.gl_renderer;
-	var gl_version = settings.gl_version;
-	var gl_extensions = settings.gl_extensions.split(" "); // split on spaces
+	var GL_VENDOR = settings.GL_VENDOR;
+	var GL_RENDERER = settings.GL_RENDERER;
+	var GL_VERSION = settings.GL_VERSION;
+	var GL_EXTENSIONS = settings.GL_EXTENSIONS.split(" "); // split on spaces
 
 	var video_xres = settings.video_xres;
 	var video_yres = settings.video_yres;
@@ -93,7 +93,7 @@ function RunDetection(settings)
 	// http://www.wildfiregames.com/forum/index.php?showtopic=13668
 	// Fixed in 260.19.21:
 	//   "Fixed a race condition in OpenGL that could cause crashes with multithreaded applications."
-	if (os_unix && gl_version.match(/NVIDIA 260\.19\.(0[0-9]|1[0-9]|20)$/))
+	if (os_unix && GL_VERSION.match(/NVIDIA 260\.19\.(0[0-9]|1[0-9]|20)$/))
 	{
 		dialog_warnings.push("You are using 260.19.* series NVIDIA drivers, which may crash the game. Please upgrade to 260.19.21 or later.");
 	}

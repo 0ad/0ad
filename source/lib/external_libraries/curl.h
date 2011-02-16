@@ -27,6 +27,8 @@
 #ifndef INCLUDED_CURL
 #define INCLUDED_CURL
 
+#if OS_WIN
+
 // curl.h wants to include winsock2.h which causes conflicts.
 // provide some required definitions from winsock.h, then pretend
 // we already included winsock.h
@@ -42,6 +44,8 @@ struct sockaddr
 struct fd_set;
 
 #define _WINSOCKAPI_	// winsock.h include guard
+
+#endif	// OS_WIN
 
 #include <curl/curl.h>
 

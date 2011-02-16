@@ -318,6 +318,8 @@ bool CGUIString::TextChunk::Tag::SetTagType(const CStr& tagtype)
 
 void CGUIString::SetValue(const CStrW& str)
 {
+	m_OriginalString = str;
+
 	// clear
 	m_TextChunks.clear();
 	m_Words.clear();

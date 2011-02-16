@@ -467,6 +467,7 @@ function setup_all_libs ()
 		"zlib",
 		"boost",
 		"enet",
+		"libcurl",
 	}
 	setup_static_lib_package("engine", source_dirs, extern_libs, {})
 
@@ -613,6 +614,7 @@ used_extern_libs = {
 	"cxxtest",
 	"comsuppw",
 	"enet",
+	"libcurl",
 
 	"valgrind",
 

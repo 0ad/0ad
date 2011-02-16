@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@
 // (these variables are documented in the header.)
 
 CStrW g_CursorName = L"test";
-CStr g_ActiveProfile = "default";
 
 bool g_NoGLS3TC = false;
 bool g_NoGLAutoMipmap = false;
@@ -63,32 +62,12 @@ CStr g_AutostartMap = "";
 
 
 //----------------------------------------------------------------------------
-// config and profile
+// config
 //----------------------------------------------------------------------------
-
-static void LoadProfile( const CStr& profile )
-{
-	VfsPath path = VfsPath(L"config/profiles") / wstring_from_utf8(profile);
-
-	VfsPath configFilename = path / L"settings/user.cfg";
-	g_ConfigDB.SetConfigFile(CFG_USER, true, configFilename.string().c_str());
-	g_ConfigDB.Reload(CFG_USER);
-
-	int max_history_lines = 200;
-	CFG_GET_USER_VAL("console.history.size", Int, max_history_lines);
-	g_Console->UseHistoryFile(path / L"settings/history", max_history_lines);
-}
-
 
 // Fill in the globals from the config files.
 static void LoadGlobals()
 {
-	CFG_GET_SYS_VAL("profile", String, g_ActiveProfile);
-
-	// Now load the profile before trying to retrieve the values of the rest of these.
-
-	LoadProfile( g_ActiveProfile );
-
 	CFG_GET_USER_VAL("vsync", Bool, g_VSync);
 
 	CFG_GET_USER_VAL("nos3tc", Bool, g_NoGLS3TC);
@@ -180,18 +159,26 @@ void CONFIG_Init(const CmdLineArgs& args)
 	new CConfigDB;
 
 	// Load the global, default config file
-	g_ConfigDB.SetConfigFile(CFG_DEFAULT, false, L"config/default.cfg");
+	g_ConfigDB.SetConfigFile(CFG_DEFAULT, L"config/default.cfg");
 	g_ConfigDB.Reload(CFG_DEFAULT);	// 216ms
 	// Try loading the local system config file (which doesn't exist by
 	// default) - this is designed as a way of letting developers edit the
 	// system config without accidentally committing their changes back to SVN.
-	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, L"config/local.cfg");
+	g_ConfigDB.SetConfigFile(CFG_SYSTEM, L"config/local.cfg");
 	g_ConfigDB.Reload(CFG_SYSTEM);
 
-	g_ConfigDB.SetConfigFile(CFG_MOD, true, L"config/mod.cfg");
+	g_ConfigDB.SetConfigFile(CFG_USER, L"config/user.cfg");
+	g_ConfigDB.Reload(CFG_USER);
+
+	g_ConfigDB.SetConfigFile(CFG_MOD, L"config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
 
 	ProcessCommandLineArgs(args);
+
+	// Initialise console history file
+	int max_history_lines = 200;
+	CFG_GET_USER_VAL("console.history.size", Int, max_history_lines);
+	g_Console->UseHistoryFile(L"config/console.txt", max_history_lines);
 
 	// Collect information from system.cfg, the profile file,
 	// and any command-line overrides to fill in the globals.

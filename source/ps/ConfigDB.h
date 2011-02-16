@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,6 +54,8 @@
 #include "CStr.h"
 #include "Singleton.h"
 
+#include "lib/file/vfs/vfs_path.h"
+
 // Namespace priorities: User supersedes mod supersedes system.
 //						 Command-line arguments override everything.
 
@@ -75,8 +77,7 @@ typedef std::vector<CParserValue> CConfigValueSet;
 class CConfigDB: public Singleton<CConfigDB>
 {
 	static std::map <CStr, CConfigValueSet> m_Map[];
-	static CStrW m_ConfigFile[];
-	static bool m_UseVFS[];
+	static VfsPath m_ConfigFile[];
 
 public:
 	// NOTE: Construct the Singleton Object *after* JavaScript init, so that
@@ -123,11 +124,8 @@ public:
 	 * the Reload() method if you want to read the config file at the same time.
 	 *
 	 * 'path': The path to the config file.
-	 *		VFS: relative to VFS root
-	 *		non-VFS: relative to current working directory (binaries/data/)
-	 * 'useVFS': true if the path is a VFS path, false if it is a real path
 	 */
-	void SetConfigFile(EConfigNamespace ns, bool useVFS, const CStrW& path);
+	void SetConfigFile(EConfigNamespace ns, const VfsPath& path);
 	
 	/**
 	 * Reload the config file associated with the specified config namespace
@@ -147,7 +145,17 @@ public:
 	 *	true:	if the config namespace was successfully written to the file
 	 *	false:	if an error occurred
 	 */
-	bool WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path);
+	bool WriteFile(EConfigNamespace ns, const VfsPath& path);
+
+	/**
+	 * Write the current state of the specified config namespace to the file
+	 * it was originally loaded from.
+	 *
+	 * Returns:
+	 *	true:	if the config namespace was successfully written to the file
+	 *	false:	if an error occurred
+	 */
+	bool WriteFile(EConfigNamespace ns);
 };
 
 

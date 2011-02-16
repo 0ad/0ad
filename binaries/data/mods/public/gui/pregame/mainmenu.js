@@ -1,8 +1,74 @@
+var userReportEnabledText; // contains the original version with "$status" placeholder
+
 function init()
 {
 	global.curr_music = newRandomSound("music", "menu");
 	if (global.curr_music)
 		global.curr_music.loop();
+
+	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
+}
+
+function submitUserReportMessage()
+{
+	var input = getGUIObjectByName("userReportMessageInput");
+	var msg = input.caption;
+	if (msg.length)
+		Engine.SubmitUserReport("message", 1, msg);
+	input.caption = "";
+}
+
+function formatUserReportStatus(status)
+{
+	var d = status.split(/:/, 3);
+
+	if (d[0] == "disabled")
+		return "disabled";
+
+	if (d[0] == "connecting")
+		return "connecting to server";
+
+	if (d[0] == "sending")
+	{
+		var done = d[1];
+		return "uploading (" + Math.floor(100*done) + "%)";
+	}
+
+	if (d[0] == "completed")
+	{
+		var httpCode = d[1];
+		if (httpCode == 200)
+			return "upload succeeded";
+		else
+			return "upload failed (" + httpCode + ")";
+	}
+
+	if (d[0] == "failed")
+	{
+		var errCode = d[1];
+		var errMessage = d[2];
+		return "upload failed (" + errMessage + ")";
+	}
+
+	return "unknown";
+}
+
+function onTick()
+{
+	if (Engine.IsUserReportEnabled())
+	{
+		getGUIObjectByName("userReportDisabled").hidden = true;
+		getGUIObjectByName("userReportEnabled").hidden = false;
+
+		getGUIObjectByName("userReportEnabledText").caption =
+			userReportEnabledText.replace(/\$status/,
+				formatUserReportStatus(Engine.GetUserReportStatus()));
+	}
+	else
+	{
+		getGUIObjectByName("userReportDisabled").hidden = false;
+		getGUIObjectByName("userReportEnabled").hidden = true;
+	}
 }
 
 // Helper function that enables the dark background mask, then reveals a given subwindow object.

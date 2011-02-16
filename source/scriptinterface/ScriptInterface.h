@@ -176,14 +176,14 @@ public:
 	 * Optionally makes it {ReadOnly, DontDelete, DontEnum}.
 	 */
 	template<typename T>
-	bool SetProperty(jsval obj, const char* name, const T& value, bool constant, bool enumerate = true);
+	bool SetProperty(jsval obj, const char* name, const T& value, bool constant = false, bool enumerate = true);
 
 	/**
 	 * Set the integer-named property on the given object.
 	 * Optionally makes it {ReadOnly, DontDelete, DontEnum}.
 	 */
 	template<typename T>
-	bool SetPropertyInt(jsval obj, int name, const T& value, bool constant, bool enumerate = true);
+	bool SetPropertyInt(jsval obj, int name, const T& value, bool constant = false, bool enumerate = true);
 
 	template<typename T>
 	bool GetProperty(jsval obj, const char* name, T& out);

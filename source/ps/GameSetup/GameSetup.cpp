@@ -49,6 +49,7 @@
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
+#include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
@@ -672,6 +673,10 @@ void Shutdown(int UNUSED(flags))
 
 	g_VideoMode.Shutdown();
 
+	TIMER_BEGIN(L"shutdown UserReporter");
+	g_UserReporter.Deinitialize();
+	TIMER_END(L"shutdown UserReporter");
+
 	TIMER_BEGIN(L"shutdown ScriptingHost");
 	delete &g_ScriptingHost;
 	TIMER_END(L"shutdown ScriptingHost");
@@ -848,6 +853,9 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
+
+	if (!g_Quickstart)
+		g_UserReporter.Initialize(); // after config
 }
 
 void InitGraphics(const CmdLineArgs& args, int flags)

@@ -203,7 +203,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 			{
 				CGUIString value;
 				GUI<CGUIString>::GetSetting(e, propName, value);
-				*vp = ScriptInterface::ToJSVal(cx, value.GetRawString());
+				*vp = ScriptInterface::ToJSVal(cx, value.GetOriginalString());
 				break;
 			}
 
@@ -273,7 +273,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 				
 				for (size_t i = 0; i < value.m_Items.size(); ++i)
 				{
-					jsval val = ScriptInterface::ToJSVal(cx, value.m_Items[i].GetRawString());
+					jsval val = ScriptInterface::ToJSVal(cx, value.m_Items[i].GetOriginalString());
 					JS_SetElement(cx, obj, (jsint)i, &val);
 				}
 

@@ -24,6 +24,7 @@
 #include "graphics/MapReader.h"
 #include "gui/GUIManager.h"
 #include "lib/timer.h"
+#include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
 #include "maths/FixedVector3D.h"
 #include "network/NetClient.h"
@@ -36,6 +37,7 @@
 #include "ps/Hotkey.h"
 #include "ps/Overlay.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
 
@@ -342,6 +344,29 @@ void DisplayErrorDialog(void* UNUSED(cbdata), std::wstring msg)
 }
 
 
+
+bool IsUserReportEnabled(void* UNUSED(cbdata))
+{
+	return g_UserReporter.IsReportingEnabled();
+}
+
+void SetUserReportEnabled(void* UNUSED(cbdata), bool enabled)
+{
+	g_UserReporter.SetReportingEnabled(enabled);
+}
+
+std::string GetUserReportStatus(void* UNUSED(cbdata))
+{
+	return g_UserReporter.GetStatus();
+}
+
+void SubmitUserReport(void* UNUSED(cbdata), std::string type, int version, std::wstring data)
+{
+	g_UserReporter.SubmitReport(type.c_str(), version, utf8_from_wstring(data));
+}
+
+
+
 void SetSimRate(void* UNUSED(cbdata), float rate)
 {
 	g_Game->SetSimRate(rate);
@@ -448,6 +473,12 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
+
+	// User report functions
+	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");
+	scriptInterface.RegisterFunction<void, bool, &SetUserReportEnabled>("SetUserReportEnabled");
+	scriptInterface.RegisterFunction<std::string, &GetUserReportStatus>("GetUserReportStatus");
+	scriptInterface.RegisterFunction<void, std::string, int, std::wstring, &SubmitUserReport>("SubmitUserReport");
 
 	// Development/debugging functions
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
