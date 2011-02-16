@@ -93,7 +93,6 @@ class CRenderer :
 public:
 	// various enumerations and renderer related constants
 	enum { NumAlphaMaps=14 };
-	enum { MaxTextureUnits=16 };
 	enum Option {
 		OPT_NOVBO,
 		OPT_NOFRAMEBUFFEROBJECT,
@@ -151,8 +150,6 @@ public:
 
 	struct Caps {
 		bool m_VBO;
-		bool m_TextureBorderClamp;
-		bool m_GenerateMipmaps;
 		bool m_VertexShader;
 		bool m_FragmentShader;
 		bool m_Shadows;
@@ -174,10 +171,7 @@ public:
 	// set/get boolean renderer option
 	void SetOptionBool(enum Option opt,bool value);
 	bool GetOptionBool(enum Option opt) const;
-	// set/get RGBA color renderer option
-// 	void SetOptionColor(enum Option opt,const RGBAColor& value);
 	void SetOptionFloat(enum Option opt, float val);
-// 	const RGBAColor& GetOptionColor(enum Option opt) const;
 	void SetRenderPath(RenderPath rp);
 	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }
 	static CStr GetRenderPathName(RenderPath rp);
@@ -197,9 +191,6 @@ public:
 
 	// set color used to clear screen in BeginFrame()
 	void SetClearColor(SColor4ub color);
-
-	// return current frame counter
-	int GetFrameCounter() const { return m_FrameCounter; }
 
 	/**
 	 * Set up the camera used for rendering the next scene; this includes
@@ -374,8 +365,6 @@ protected:
 	int m_Width;
 	// view height
 	int m_Height;
-	// frame counter
-	int m_FrameCounter;
 	// current terrain rendering mode
 	ERenderMode m_TerrainRenderMode;
 	// current model rendering mode
@@ -411,8 +400,6 @@ protected:
 	void EnumCaps();
 	// per-frame renderer stats
 	Stats m_Stats;
-	// active textures on each unit
-	GLuint m_ActiveTextures[MaxTextureUnits];
 
 	// Additional state that is only available when the vertex shader
 	// render path is used (according to m_Options.m_RenderPath)
@@ -486,12 +473,6 @@ public:
 	 * Can be accessed via JS as renderer.skipSubmit
 	 */
 	bool m_SkipSubmit;
-
-	/**
-	 * m_RenderTerritories: 
-	 * Turn territory boundary rendering on or off.
-	 */
-	bool m_RenderTerritories;
 };
 
 

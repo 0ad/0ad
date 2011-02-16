@@ -354,7 +354,6 @@ CRenderer::CRenderer()
 
 	m_Width=0;
 	m_Height=0;
-	m_FrameCounter=0;
 	m_TerrainRenderMode=SOLID;
 	m_ModelRenderMode=SOLID;
 	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
@@ -365,7 +364,6 @@ CRenderer::CRenderer()
 	m_DisplayTerrainPriorities = false;
 	m_FastPlayerColor = true;
 	m_SkipSubmit = false;
-	m_RenderTerritories = true;
 
 	m_VertexShader = 0;
 
@@ -378,9 +376,6 @@ CRenderer::CRenderer()
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
 
-	for (size_t i=0;i<MaxTextureUnits;i++) {
-		m_ActiveTextures[i]=0;
-	}
 	m_hCompositeAlphaMap = 0;
 
 	AddLocalProperty(L"shadows", &m_Options.m_Shadows, false);
@@ -435,8 +430,6 @@ void CRenderer::EnumCaps()
 {
 	// assume support for nothing
 	m_Caps.m_VBO = false;
-	m_Caps.m_TextureBorderClamp = false;
-	m_Caps.m_GenerateMipmaps = false;
 	m_Caps.m_VertexShader = false;
 	m_Caps.m_FragmentShader = false;
 	m_Caps.m_Shadows = false;
@@ -448,14 +441,6 @@ void CRenderer::EnumCaps()
 		if (ogl_HaveExtension("GL_ARB_vertex_buffer_object")) {
 			m_Caps.m_VBO=true;
 		}
-	}
-
-	if (ogl_HaveExtension("GL_ARB_texture_border_clamp")) {
-		m_Caps.m_TextureBorderClamp=true;
-	}
-
-	if (ogl_HaveExtension("GL_SGIS_generate_mipmap")) {
-		m_Caps.m_GenerateMipmaps=true;
 	}
 
 	if (0 == ogl_HaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", NULL))
@@ -642,17 +627,6 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 	return false;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-// SetOptionColor: set color renderer option
-// void CRenderer::SetOptionColor(Option UNUSED(opt),const RGBAColor& UNUSED(value))
-// {
-// //	switch (opt) {
-// //		default:
-// 			debug_warn(L"CRenderer::SetOptionColor: unknown option");
-// //			break;
-// //	}
-// }
-
 void CRenderer::SetOptionFloat(enum Option opt, float val)
 {
 	switch(opt)
@@ -665,22 +639,6 @@ void CRenderer::SetOptionFloat(enum Option opt, float val)
 		break;
 	}
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// GetOptionColor: get color renderer option
-// const RGBAColor& CRenderer::GetOptionColor(Option UNUSED(opt)) const
-// {
-// 	static const RGBAColor defaultColor(1.0f,1.0f,1.0f,1.0f);
-// 
-// //	switch (opt) {
-// //		default:
-// 			debug_warn(L"CRenderer::GetOptionColor: unknown option");
-// //			break;
-// //	}
-// 
-// 	return defaultColor;
-// }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetRenderPath: Select the preferred render path.
@@ -766,9 +724,6 @@ void CRenderer::SetFastPlayerColor(bool fast)
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
-	// bump frame counter
-	m_FrameCounter++;
-
 	if (m_VertexShader)
 		m_VertexShader->BeginFrame();
 
@@ -1262,7 +1217,7 @@ void CRenderer::RenderSubmissions()
 	RenderPatches();
 	ogl_WarnIfError();
 
-	if (g_Game && m_RenderTerritories)
+	if (g_Game)
 	{
 //		g_Game->GetWorld()->GetTerritoryManager()->RenderTerritories(); // TODO: implement in new sim system
 		ogl_WarnIfError();
@@ -1484,7 +1439,6 @@ void CRenderer::BindTexture(int unit,GLuint tex)
 	} else {
 		glDisable(GL_TEXTURE_2D);
 	}
-	m_ActiveTextures[unit]=tex;
 }
 
 static inline void CopyTriple(unsigned char* dst,const unsigned char* src)
