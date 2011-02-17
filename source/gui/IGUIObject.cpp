@@ -391,7 +391,7 @@ void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr& StyleName)
 void IGUIObject::LoadStyle(const SGUIStyle &Style)
 {
 	// Iterate settings, it won't be able to set them all probably, but that doesn't matter
-	std::map<CStr, CStr>::const_iterator cit;
+	std::map<CStr, CStrW>::const_iterator cit;
 	for (cit = Style.m_SettingsDefaults.begin(); cit != Style.m_SettingsDefaults.end(); ++cit)
 	{
 		// Try set setting in object
@@ -475,7 +475,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, Action.c_str());
 
 	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject,
-		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName, 0);
+		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName.c_str(), 0);
 
 	if (!func)
 		return; // JS will report an error message

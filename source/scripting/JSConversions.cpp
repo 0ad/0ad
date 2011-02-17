@@ -20,7 +20,6 @@
 #include "JSConversions.h"
 #include "graphics/ObjectManager.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
-#include "ps/Parser.h"
 #include "lib/sysdep/sysdep.h"	// isfinite
 #include "scriptinterface/ScriptInterface.h"
 #include <math.h>
@@ -292,31 +291,4 @@ template<> jsval ToJSVal<CStr8>( const CStr8& Native )
 template<> jsval ToJSVal<CStr8>( CStr8& Native )
 {
 	return( STRING_TO_JSVAL( JS_NewStringCopyZ( g_ScriptingHost.GetContext(), Native.c_str() ) ) );
-}
-
-// jsval
-
-template<> jsval ToJSVal<jsval_t>( const jsval_t& Native )
-{
-	return( Native.v );
-}
-
-// String->JSVal
-
-jsval JSParseString( const CStrW& Native )
-{
-	CParser stringParser;
-	stringParser.InputTaskType( "string", "_$value_" );
-	CParserLine result;
-	result.ParseString( stringParser, CStr(Native) );
-	bool boolResult;
-	float floatResult;
-
-	if( result.GetArgFloat( 0, floatResult ) )
-		return( ToJSVal( floatResult ) );
-
-	if( result.GetArgBool( 0, boolResult ) )
-		return( BOOLEAN_TO_JSVAL( boolResult ) ); 
-	
-	return( ToJSVal( Native ) );
 }

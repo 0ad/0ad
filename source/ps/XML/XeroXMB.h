@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,6 +92,9 @@ XMB_Text {
 28)	char16* Text; // null-terminated UTF16
 }
 
+TODO: since the API was changed to return UTF-8 CStrs,
+it'd make much more sense to store UTF-8 on disk too
+(plus it'd save space).
 
 */
 
@@ -103,8 +106,6 @@ XMB_Text {
 //#define XERO_USEMAP 
 
 #include <string>
-
-#include "ps/utf16string.h"
 
 #ifdef XERO_USEMAP
 # include <map>
@@ -175,7 +176,7 @@ public:
 	int GetNodeName() const;
 	XMBElementList GetChildNodes() const;
 	XMBAttributeList GetAttributes() const;
-	utf16string GetText() const;
+	CStr8 GetText() const;
 	// Returns the line number of the text within this element,
 	// or -1 if there is no text
 	int GetLineNumber() const;
@@ -216,11 +217,11 @@ private:
 struct XMBAttribute
 {
 	XMBAttribute() {}
-	XMBAttribute(int name, utf16string value)
+	XMBAttribute(int name, const CStr8& value)
 		: Name(name), Value(value) {};
 
 	int Name;
-	utf16string Value;
+	CStr8 Value; // UTF-8 encoded
 };
 
 class XMBAttributeList
@@ -230,7 +231,7 @@ public:
 		: Count(count), m_Pointer(offset), m_LastItemID(-2) {};
 
 	// Get the attribute value directly
-	utf16string GetNamedItem(const int AttributeName) const;
+	CStr8 GetNamedItem(const int AttributeName) const;
 
 	// Returns an attribute by position in the list
 	XMBAttribute Item(const int id);

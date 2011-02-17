@@ -20,14 +20,19 @@
 
 #include "ps/CStr.h"
 
-template <typename _T>
-CStr NetMessageStringConvert(const _T &arg);
-
-// String Converters
-template <typename _T>
-inline CStr NetMessageStringConvert(const _T &arg)
+static inline CStr NetMessageStringConvert(u32 arg)
 {
-	return CStr(arg);
+	return CStr::FromUInt(arg);
+}
+
+static inline CStr NetMessageStringConvert(const CStr8& arg)
+{
+	return arg;
+}
+
+static inline CStr NetMessageStringConvert(const CStrW& arg)
+{
+	return arg.ToUTF8();
 }
 
 #endif

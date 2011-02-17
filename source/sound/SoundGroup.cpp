@@ -275,89 +275,88 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 		
 		if(child_name == el_gain)
 		{
-			SetGain(CStr(child.GetText()).ToFloat());
+			SetGain(child.GetText().ToFloat());
 		}
 		else if(child_name == el_looping)
 		{
-			if(CStr(child.GetText()).ToInt() == 1)
+			if(child.GetText().ToInt() == 1)
 				SetFlag(eLoop);
 		}
 		else if(child_name == el_omnipresent)
 		{
-			if(CStr(child.GetText()).ToInt() == 1)
+			if(child.GetText().ToInt() == 1)
 				SetFlag(eOmnipresent);
 		}
 		else if(child_name == el_pitch)
 		{
-			this->m_Pitch = CStr(child.GetText()).ToFloat();
+			this->m_Pitch = child.GetText().ToFloat();
 		}
 		else if(child_name == el_priority)
 		{
-			this->m_Priority = CStr(child.GetText()).ToFloat();
+			this->m_Priority = child.GetText().ToFloat();
 		}
 		else if(child_name == el_randorder)
 		{
-			if(CStr(child.GetText()).ToInt() == 1)
+			if(child.GetText().ToInt() == 1)
 				SetFlag(eRandOrder);
 		}
 		else if(child_name == el_randgain)
 		{
-			if(CStr(child.GetText()).ToInt() == 1)
+			if(child.GetText().ToInt() == 1)
 				SetFlag(eRandGain);
 		}
 		else if(child_name == el_gainupper)
 		{
-			this->m_GainUpper = CStr(child.GetText()).ToFloat();
+			this->m_GainUpper = child.GetText().ToFloat();
 		}
 		else if(child_name == el_gainlower)
 		{
-			this->m_GainLower = CStr(child.GetText()).ToFloat();
+			this->m_GainLower = child.GetText().ToFloat();
 		}
 		else if(child_name == el_randpitch)
 		{
-			if(CStr(child.GetText()).ToInt() == 1)
+			if(child.GetText().ToInt() == 1)
 				SetFlag(eRandPitch);
 		}
 		else if(child_name == el_pitchupper)
 		{
-			this->m_PitchUpper = CStr(child.GetText()).ToFloat();
+			this->m_PitchUpper = child.GetText().ToFloat();
 		}
 		else if(child_name == el_pitchlower)
 		{
-			this->m_PitchLower = CStr(child.GetText()).ToFloat();
+			this->m_PitchLower = child.GetText().ToFloat();
 		}
 		else if(child_name == el_conegain)
 		{
-			this->m_ConeOuterGain = CStr(child.GetText()).ToFloat();
+			this->m_ConeOuterGain = child.GetText().ToFloat();
 		}
 		else if(child_name == el_coneinner)
 		{
-			this->m_ConeInnerAngle = CStr(child.GetText()).ToFloat();
+			this->m_ConeInnerAngle = child.GetText().ToFloat();
 		}
 		else if(child_name == el_coneouter)
 		{
-			this->m_ConeOuterAngle = CStr(child.GetText()).ToFloat();
+			this->m_ConeOuterAngle = child.GetText().ToFloat();
 		}
 		else if(child_name == el_sound)
 		{
-			CStrW szTemp(child.GetText());
-			this->filenames.push_back(szTemp);
+			this->filenames.push_back(child.GetText().FromUTF8());
 		}
 		else if(child_name == el_path)
 		{
-			m_filepath = CStrW(child.GetText());
+			m_filepath = child.GetText().FromUTF8();
 		}
 		else if(child_name == el_threshold)
 		{
-			m_IntensityThreshold = CStr(child.GetText()).ToFloat();
+			m_IntensityThreshold = child.GetText().ToFloat();
 		}
 		else if(child_name == el_decay)
 		{
-			m_Decay = CStr(child.GetText()).ToFloat();
+			m_Decay = child.GetText().ToFloat();
 		}
 		else if(child_name == el_replacement)
 		{
-			m_intensity_file = CStrW(child.GetText());
+			m_intensity_file = child.GetText().FromUTF8();
 		}
 	}
 

@@ -94,7 +94,7 @@ void ScriptingHost::RunScript(const VfsPath& pathname, JSObject* globalObject)
 	jsval rval;
 	JSBool ok = JS_EvaluateUCScript(m_Context, globalObject,
 		reinterpret_cast<const jschar*>(script.c_str()), (uintN)script.size(),
-		CStr(pathname.string()).c_str(), 1, &rval);
+		CStrW(pathname.string()).ToUTF8().c_str(), 1, &rval);
 
 	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();
@@ -106,7 +106,7 @@ jsval ScriptingHost::ExecuteScript(const CStrW& script, const CStrW& calledFrom,
 
 	JSBool ok = JS_EvaluateUCScript(m_Context, contextObject ? contextObject : m_GlobalObject,
 		reinterpret_cast<const jschar*>(script.utf16().c_str()), (int)script.length(),
-		CStr(calledFrom), 1, &rval);
+		calledFrom.ToUTF8().c_str(), 1, &rval);
 
 	if (!ok) return JSVAL_NULL;
 

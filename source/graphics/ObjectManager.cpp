@@ -71,9 +71,9 @@ CObjectManager::~CObjectManager()
 }
 
 
-CObjectBase* CObjectManager::FindObjectBase(const wchar_t* objectname)
+CObjectBase* CObjectManager::FindObjectBase(const CStrW& objectname)
 {
-	debug_assert(objectname[0] != '\0');
+	debug_assert(!objectname.empty());
 
 	// See if the base type has been loaded yet:
 
@@ -85,7 +85,7 @@ CObjectBase* CObjectManager::FindObjectBase(const wchar_t* objectname)
 
 	CObjectBase* obj = new CObjectBase(*this);
 
-	VfsPath pathname(VfsPath(L"art/actors/")/objectname);
+	VfsPath pathname(VfsPath(L"art/actors/")/(std::wstring)objectname);
 
 	if (obj->Load(pathname))
 	{
@@ -95,18 +95,18 @@ CObjectBase* CObjectManager::FindObjectBase(const wchar_t* objectname)
 	else
 		delete obj;
 
-	LOGERROR(L"CObjectManager::FindObjectBase(): Cannot find object '%ls'", objectname);
+	LOGERROR(L"CObjectManager::FindObjectBase(): Cannot find object '%ls'", objectname.c_str());
 
 	return 0;
 }
 
-CObjectEntry* CObjectManager::FindObject(const wchar_t* objname)
+CObjectEntry* CObjectManager::FindObject(const CStrW& objname)
 {
 	std::vector<std::set<CStr> > selections; // TODO - should this really be empty?
 	return FindObjectVariation(objname, selections);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(const wchar_t* objname, const std::vector<std::set<CStr> >& selections)
+CObjectEntry* CObjectManager::FindObjectVariation(const CStrW& objname, const std::vector<std::set<CStr> >& selections)
 {
 	CObjectBase* base = FindObjectBase(objname);
 
@@ -171,7 +171,7 @@ void CObjectManager::UnloadObjects()
 	std::for_each(
 		m_ObjectBases.begin(),
 		m_ObjectBases.end(),
-		delete_pair_2nd<CStr, CObjectBase*>
+		delete_pair_2nd<CStrW, CObjectBase*>
 	);
 	m_ObjectBases.clear();
 }

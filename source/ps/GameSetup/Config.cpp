@@ -118,7 +118,7 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 
 	if (args.Has("g"))
 	{
-		g_Gamma = (float)atof(args.Get("g"));
+		g_Gamma = args.Get("g").ToFloat();
 		if (g_Gamma == 0.0f)
 			g_Gamma = 1.0f;
 	}

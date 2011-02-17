@@ -128,12 +128,12 @@ public:
 		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"utf-8\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
 		CStrW text;
 		
-		text = xmb.GetRoot().GetText();
+		text = xmb.GetRoot().GetText().FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 2);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x1234);
 
-		text = xmb.GetRoot().GetAttributes().Item(0).Value;
+		text = xmb.GetRoot().GetAttributes().Item(0).Value.FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 2);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x1234);
@@ -144,14 +144,14 @@ public:
 		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
 		CStrW text;
 		
-		text = xmb.GetRoot().GetText();
+		text = xmb.GetRoot().GetText().FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 4);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x00E1);
 		TS_ASSERT_EQUALS(text[2], 0x0088);
 		TS_ASSERT_EQUALS(text[3], 0x00B4);
 
-		text = xmb.GetRoot().GetAttributes().Item(0).Value;
+		text = xmb.GetRoot().GetAttributes().Item(0).Value.FromUTF8();
 		TS_ASSERT_EQUALS((int)text.length(), 4);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x00E1);

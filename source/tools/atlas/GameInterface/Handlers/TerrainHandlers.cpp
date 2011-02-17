@@ -44,7 +44,7 @@ QUERYHANDLER(GetTerrainGroups)
 	const CTerrainTextureManager::TerrainGroupMap &groups = g_TexMan.GetGroups();
 	std::vector<std::wstring> groupnames;
 	for (CTerrainTextureManager::TerrainGroupMap::const_iterator it = groups.begin(); it != groups.end(); ++it)
-		groupnames.push_back(CStrW(it->first));
+		groupnames.push_back(it->first.FromUTF8());
 	msg->groupnames = groupnames;
 }
 
@@ -57,11 +57,11 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 {
 	std::vector<sTerrainGroupPreview> previews;
 
-	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupname));
+	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupname).ToUTF8());
 	for (std::vector<CTerrainTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
 	{
 		previews.push_back(sTerrainGroupPreview());
-		previews.back().name = CStrW((*it)->GetTag());
+		previews.back().name = (*it)->GetTag().FromUTF8();
 
 		std::vector<unsigned char> buf (msg->imagewidth*msg->imageheight*3);
 
@@ -129,7 +129,7 @@ QUERYHANDLER(GetTerrainPassabilityClasses)
 
 		std::vector<std::wstring> classnames;
 		for (std::map<std::string, ICmpPathfinder::pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
-			classnames.push_back(CStrW(it->first));
+			classnames.push_back(CStr(it->first).FromUTF8());
 		msg->classnames = classnames;
 	}
 }
@@ -218,7 +218,7 @@ BEGIN_COMMAND(PaintTerrain)
 		ssize_t x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
-		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture));
+		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture).ToUTF8());
 		if (! texentry)
 		{
 			debug_warn(L"Can't find texentry"); // TODO: nicer error handling

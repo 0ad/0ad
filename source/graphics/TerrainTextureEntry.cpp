@@ -53,7 +53,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const Vf
 	for (;it!=m_Groups.end();++it)
 		(*it)->AddTerrain(this);
 	
-	m_Tag = CStr(CStrW(fs::basename(path)));
+	m_Tag = CStrW(fs::basename(path)).ToUTF8();
 }
 
 CTerrainTextureEntry::~CTerrainTextureEntry()

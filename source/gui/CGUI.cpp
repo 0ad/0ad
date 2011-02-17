@@ -667,7 +667,7 @@ struct SGenerateTextImage
 };
 
 SGUIText CGUI::GenerateText(const CGUIString &string,
-							const CStr& Font, const float &Width, const float &BufferZone, 
+							const CStrW& Font, const float &Width, const float &BufferZone,
 							const IGUIObject *pObject)
 {
 	SGUIText Text; // object we're generating
@@ -1290,9 +1290,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			ManuallySetZ = true;
 
 		// Try setting the value
-		if (object->SetSetting(pFile->GetAttributeString(attr.Name), CStrW(attr.Value), true) != PSRETURN_OK)
+		if (object->SetSetting(pFile->GetAttributeString(attr.Name), attr.Value.FromUTF8(), true) != PSRETURN_OK)
 		{
-			LOGERROR(L"GUI: (object: %hs) Can't set \"%hs\" to \"%ls\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), CStrW(attr.Value).c_str());
+			LOGERROR(L"GUI: (object: %hs) Can't set \"%hs\" to \"%ls\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), attr.Value.FromUTF8().c_str());
 
 			// This is not a fatal error
 		}
@@ -1301,7 +1301,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	// Check if name isn't set, generate an internal name in that case.
 	if (!NameSet)
 	{
-		object->SetName(CStr("__internal(") + CStr(m_InternalNameNumber) + CStr(")"));
+		object->SetName("__internal(" + CStr::FromInt(m_InternalNameNumber) + ")");
 		++m_InternalNameNumber;
 	}
 
@@ -1309,7 +1309,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	if (! hotkeyTag.empty())
 		m_HotkeyObjects[hotkeyTag].push_back(object);
 
-	CStrW caption (Element.GetText());
+	CStrW caption (Element.GetText().FromUTF8());
 	if (! caption.empty())
 	{
 		// Set the setting caption to this
@@ -1344,7 +1344,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Scripted <action> element
 
 			// Check for a 'file' parameter
-			CStrW filename (child.GetAttributes().GetNamedItem(attr_file));
+			CStrW filename (child.GetAttributes().GetNamedItem(attr_file).FromUTF8());
 
 			CStr code;
 
@@ -1436,7 +1436,7 @@ void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	for (int n = 0; n < count; ++n)
 	{
 		std::vector<std::pair<CStr, CStr> > subst;
-		subst.push_back(std::make_pair(CStr("[n]"), "[" + CStr(n) + "]"));
+		subst.push_back(std::make_pair(CStr("[n]"), "[" + CStr::FromInt(n) + "]"));
 
 		XERO_ITER_EL(Element, child)
 		{
@@ -1451,7 +1451,7 @@ void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObjec
 void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths)
 {
 	// Check for a 'file' parameter
-	CStrW file (Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("file") ));
+	CStrW file (Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("file") ).FromUTF8());
 
 	// If there is a file specified, open and execute it
 	if (! file.empty())
@@ -1574,18 +1574,18 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	{
 		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name (pFile->GetAttributeString(attr.Name));
-		CStr attr_value (attr.Value);
+		CStrW attr_value (attr.Value.FromUTF8());
 
 		if (attr_name == "texture")
 		{
-			image.m_TextureName = VfsPath(L"art/textures/ui")/wstring_from_utf8(attr_value);
+			image.m_TextureName = VfsPath(L"art/textures/ui")/(std::wstring)attr_value;
 		}
 		else
 		if (attr_name == "size")
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_Size = ca;
 		}
 		else
@@ -1593,7 +1593,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_TextureSize = ca;
 		}
 		else
@@ -1601,7 +1601,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CRect rect;
 			if (!GUI<CRect>::ParseString(attr_value, rect))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_TexturePlacementInFile = rect;
 		}
 		else
@@ -1609,7 +1609,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_CellSize = size;
 		}
 		else
@@ -1617,7 +1617,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			float z_level;
 			if (!GUI<float>::ParseString(attr_value, z_level))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_DeltaZ = z_level/100.f;
 		}
 		else
@@ -1625,7 +1625,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_BackColor = color;
 		}
 		else
@@ -1633,7 +1633,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_BorderColor = color;
 		}
 		else
@@ -1641,7 +1641,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value, b))
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_Border = b;
 		}
 		else
@@ -1688,14 +1688,14 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 	{
 		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name (pFile->GetAttributeString(attr.Name));
-		CStr attr_value (attr.Value);
+		CStrW attr_value (attr.Value.FromUTF8());
 
 #define COLOR(xml, mem, alpha) \
 		if (attr_name == xml) \
 		{ \
 			CColor color; \
 			if (!GUI<int>::ParseColor(attr_value, color, alpha)) \
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str()); \
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str()); \
 			else effects.m_##mem = color; \
 		} \
 		else
@@ -1734,14 +1734,13 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	{
 		XMBAttribute attr = attributes.Item(i);
 		CStr attr_name (pFile->GetAttributeString(attr.Name));
-		CStr attr_value (attr.Value);
 
 		// The "name" setting is actually the name of the style
 		//  and not a new default
 		if (attr_name == "name")
-			name = attr_value;
+			name = attr.Value;
 		else
-			style.m_SettingsDefaults[attr_name] = attr_value;
+			style.m_SettingsDefaults[attr_name] = attr.Value.FromUTF8();
 	}
 
 	//
@@ -1778,7 +1777,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "width")
 		{
 			float f;
-			if (!GUI<float>::ParseString(attr_value, f))
+			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else
 				scrollbar.m_Width = f;
@@ -1787,7 +1786,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "minimum_bar_size")
 		{
 			float f;
-			if (!GUI<float>::ParseString(attr_value, f))
+			if (!GUI<float>::ParseString(attr_value.FromUTF8(), f))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else
 				scrollbar.m_MinimumBarSize = f;
@@ -1862,7 +1861,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "size")
 		{
 			CSize size;
-			if (!GUI<CSize>::ParseString(attr_value, size))
+			if (!GUI<CSize>::ParseString(attr_value.FromUTF8(), size))
 				LOGERROR(L"Error parsing '%hs' (\"%hs\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
 			else
 				icon.m_Size = size;
@@ -1871,7 +1870,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		if (attr_name == "cell_id")
 		{
 			int cell_id;
-			if (!GUI<int>::ParseString(attr_value, cell_id))
+			if (!GUI<int>::ParseString(attr_value.FromUTF8(), cell_id))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%hs\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
 			else
 				icon.m_CellID = cell_id;
@@ -1904,7 +1903,7 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 		}
 		else
 		{
-			object->SetSetting(attr_name, attr_value);
+			object->SetSetting(attr_name, attr_value.FromUTF8());
 		}
 	}
 

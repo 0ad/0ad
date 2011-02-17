@@ -142,7 +142,7 @@ public:
 	CScriptValRooted GetMapSettings(ScriptInterface& scriptInterface);
 
 private:
-	utf16string m_ScriptSettings;
+	CStr m_ScriptSettings;
 };
 
 #endif

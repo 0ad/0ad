@@ -64,12 +64,12 @@ public:
 
 	void UnloadObjects();
 
-	CObjectEntry* FindObject(const wchar_t* objname);
+	CObjectEntry* FindObject(const CStrW& objname);
 	void DeleteObject(CObjectEntry* entry);
 	
-	CObjectBase* FindObjectBase(const wchar_t* objname);
+	CObjectBase* FindObjectBase(const CStrW& objname);
 
-	CObjectEntry* FindObjectVariation(const wchar_t* objname, const std::vector<std::set<CStr> >& selections);
+	CObjectEntry* FindObjectVariation(const CStrW& objname, const std::vector<std::set<CStr> >& selections);
 	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections);
 
 	/**

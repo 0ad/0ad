@@ -152,7 +152,7 @@ bool CEmitter::LoadXml(const VfsPath& pathname)
 				}
 				else if( settingName == el_Texture )
 				{
-					CTextureProperties textureProps(CStrW(settingElement.GetText()));
+					CTextureProperties textureProps(settingElement.GetText().FromUTF8());
 					m_texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 				}
 				else if( settingName == el_Size )

@@ -311,7 +311,7 @@ public:
 		Init(xml_filename);
 	}
 
-	utf16string ReadScriptSettings();
+	CStr ReadScriptSettings();
 
 	// return semantics: see Loader.cpp!LoadFunc.
 	int ProgressiveRead();
@@ -404,13 +404,13 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	XMBElement ents = nodes.GetFirstNamedItem(xmb_file.GetElementID("Entities"));
 	XERO_ITER_EL(ents, ent)
 	{
-		utf16string uid = ent.GetAttributes().GetNamedItem(at_uid);
-		max_uid = std::max(max_uid, (entity_id_t)CStr(uid).ToInt());
+		CStr uid = ent.GetAttributes().GetNamedItem(at_uid);
+		max_uid = std::max(max_uid, (entity_id_t)uid.ToUInt());
 	}
 }
 
 
-utf16string CXMLReader::ReadScriptSettings()
+CStr CXMLReader::ReadScriptSettings()
 {
 	XMBElement root = xmb_file.GetRoot();
 	debug_assert(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
@@ -439,13 +439,13 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 	XERO_ITER_ATTR(parent, attr)
 	{
 		if (attr.Name == at_patches)
-			patches = CStr(attr.Value).ToInt();
+			patches = attr.Value.ToInt();
 		else if (attr.Name == at_texture)
-			texture = CStr(attr.Value);
+			texture = attr.Value;
 		else if (attr.Name == at_priority)
-			priority = CStr(attr.Value).ToInt();
+			priority = attr.Value.ToInt();
 		else if (attr.Name == at_height)
-			height = (u16)CStr(attr.Value).ToInt();
+			height = (u16)attr.Value.ToInt();
 	}
 
 	m_MapReader.m_PatchesPerSide = patches;
@@ -516,40 +516,40 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		if (element_name == el_skyset)
 		{
 			if (m_MapReader.pSkyMan)
-				m_MapReader.pSkyMan->SetSkySet(element.GetText());
+				m_MapReader.pSkyMan->SetSkySet(element.GetText().FromUTF8());
 		}
 		else if (element_name == el_suncolour)
 		{
 			m_MapReader.m_LightEnv.m_SunColor = RGBColor(
-				CStr(attrs.GetNamedItem(at_r)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_g)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_b)).ToFloat());
+				attrs.GetNamedItem(at_r).ToFloat(),
+				attrs.GetNamedItem(at_g).ToFloat(),
+				attrs.GetNamedItem(at_b).ToFloat());
 		}
 		else if (element_name == el_sunelevation)
 		{
-			m_MapReader.m_LightEnv.m_Elevation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
+			m_MapReader.m_LightEnv.m_Elevation = attrs.GetNamedItem(at_angle).ToFloat();
 		}
 		else if (element_name == el_sunrotation)
 		{
-			m_MapReader.m_LightEnv.m_Rotation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
+			m_MapReader.m_LightEnv.m_Rotation = attrs.GetNamedItem(at_angle).ToFloat();
 		}
 		else if (element_name == el_terrainambientcolour)
 		{
 			m_MapReader.m_LightEnv.m_TerrainAmbientColor = RGBColor(
-				CStr(attrs.GetNamedItem(at_r)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_g)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_b)).ToFloat());
+				attrs.GetNamedItem(at_r).ToFloat(),
+				attrs.GetNamedItem(at_g).ToFloat(),
+				attrs.GetNamedItem(at_b).ToFloat());
 		}
 		else if (element_name == el_unitsambientcolour)
 		{
 			m_MapReader.m_LightEnv.m_UnitsAmbientColor = RGBColor(
-				CStr(attrs.GetNamedItem(at_r)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_g)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_b)).ToFloat());
+				attrs.GetNamedItem(at_r).ToFloat(),
+				attrs.GetNamedItem(at_g).ToFloat(),
+				attrs.GetNamedItem(at_b).ToFloat());
 		}
 		else if (element_name == el_terrainshadowtransparency)
 		{
-			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(CStr(element.GetText()).ToFloat());
+			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(element.GetText().ToFloat());
 		}
 		else if (element_name == el_water)
 		{
@@ -563,7 +563,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					{
 						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
 						debug_assert(!cmpWaterMan.null());
-						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(CStr(waterelement.GetText())));
+						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(waterelement.GetText()));
 						continue;
 					}
 
@@ -581,16 +581,16 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					{ \
 						XMBAttributeList attrs = waterelement.GetAttributes(); \
 						out = CColor( \
-							CStr(attrs.GetNamedItem(at_r)).ToFloat(), \
-							CStr(attrs.GetNamedItem(at_g)).ToFloat(), \
-							CStr(attrs.GetNamedItem(at_b)).ToFloat(), \
+							attrs.GetNamedItem(at_r).ToFloat(), \
+							attrs.GetNamedItem(at_g).ToFloat(), \
+							attrs.GetNamedItem(at_b).ToFloat(), \
 							1.f); \
 					}
 
 #define READ_FLOAT(el, out) \
 					else if (element_name == el) \
 					{ \
-						out = CStr(waterelement.GetText()).ToFloat(); \
+						out = waterelement.GetText().ToFloat(); \
 					} \
 
 					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
@@ -639,18 +639,18 @@ void CXMLReader::ReadCamera(XMBElement parent)
 		XMBAttributeList attrs = element.GetAttributes();
 		if (element_name == el_declination)
 		{
-			declination = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
+			declination = attrs.GetNamedItem(at_angle).ToFloat();
 		}
 		else if (element_name == el_rotation)
 		{
-			rotation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
+			rotation = attrs.GetNamedItem(at_angle).ToFloat();
 		}
 		else if (element_name == el_position)
 		{
 			translation = CVector3D(
-				CStr(attrs.GetNamedItem(at_x)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_y)).ToFloat(),
-				CStr(attrs.GetNamedItem(at_z)).ToFloat());
+				attrs.GetNamedItem(at_x).ToFloat(),
+				attrs.GetNamedItem(at_y).ToFloat(),
+				attrs.GetNamedItem(at_z).ToFloat());
 		}
 		else
 			debug_warn(L"Invalid map XML data");
@@ -697,8 +697,8 @@ void CXMLReader::ReadCinema(XMBElement parent)
 		if ( elementName == el_path )
 		{
 			XMBAttributeList attrs = element.GetAttributes();
-			CStrW name( CStr(attrs.GetNamedItem(at_name)) );
-			float timescale = CStr(attrs.GetNamedItem(at_timescale)).ToFloat();
+			CStrW name(attrs.GetNamedItem(at_name).FromUTF8());
+			float timescale = attrs.GetNamedItem(at_timescale).ToFloat();
 			CCinemaData pathData;
 			pathData.m_Timescale = timescale;
 			TNSpline spline, backwardSpline;
@@ -711,10 +711,10 @@ void CXMLReader::ReadCinema(XMBElement parent)
 				//Load distortion attributes
 				if ( elementName == el_distortion )
 				{
-						pathData.m_Mode = CStr(attrs.GetNamedItem(at_mode)).ToInt();
-						pathData.m_Style = CStr(attrs.GetNamedItem(at_style)).ToInt();
-						pathData.m_Growth = CStr(attrs.GetNamedItem(at_growth)).ToInt();
-						pathData.m_Switch = CStr(attrs.GetNamedItem(at_switch)).ToInt();
+						pathData.m_Mode = attrs.GetNamedItem(at_mode).ToInt();
+						pathData.m_Style = attrs.GetNamedItem(at_style).ToInt();
+						pathData.m_Growth = attrs.GetNamedItem(at_growth).ToInt();
+						pathData.m_Switch = attrs.GetNamedItem(at_switch).ToInt();
 				}
 				
 				//Load node data used for spline
@@ -729,20 +729,20 @@ void CXMLReader::ReadCinema(XMBElement parent)
 						//Fix?:  assumes that time is last element
 						if ( elementName == el_position )
 						{
-							data.Position.X = CStr(attrs.GetNamedItem(at_x)).ToFloat();
-							data.Position.Y = CStr(attrs.GetNamedItem(at_y)).ToFloat();
-							data.Position.Z = CStr(attrs.GetNamedItem(at_z)).ToFloat();
+							data.Position.X = attrs.GetNamedItem(at_x).ToFloat();
+							data.Position.Y = attrs.GetNamedItem(at_y).ToFloat();
+							data.Position.Z = attrs.GetNamedItem(at_z).ToFloat();
 							continue;
 						}
 						else if ( elementName == el_rotation )
 						{
-							data.Rotation.X = CStr(attrs.GetNamedItem(at_x)).ToFloat();
-							data.Rotation.Y = CStr(attrs.GetNamedItem(at_y)).ToFloat();
-							data.Rotation.Z = CStr(attrs.GetNamedItem(at_z)).ToFloat();
+							data.Rotation.X = attrs.GetNamedItem(at_x).ToFloat();
+							data.Rotation.Y = attrs.GetNamedItem(at_y).ToFloat();
+							data.Rotation.Z = attrs.GetNamedItem(at_z).ToFloat();
 							continue;
 						}
 						else if ( elementName == el_time )
-							data.Distance = CStr( nodeChild.GetText() ).ToFloat();
+							data.Distance = nodeChild.GetText().ToFloat();
 						else 
 							debug_warn(L"Invalid cinematic element for node child");
 					
@@ -965,9 +965,9 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		debug_assert(entity.GetNodeName() == el_entity);
 
 		XMBAttributeList attrs = entity.GetAttributes();
-		utf16string uid = attrs.GetNamedItem(at_uid);
+		CStr uid = attrs.GetNamedItem(at_uid);
 		debug_assert(!uid.empty());
-		int EntityUid = CStr(uid).ToInt();
+		int EntityUid = uid.ToInt();
 
 		CStrW TemplateName;
 		int PlayerID = 0;
@@ -981,30 +981,30 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			// <template>
 			if (element_name == el_template)
 			{
-				TemplateName = setting.GetText();
+				TemplateName = setting.GetText().FromUTF8();
 			}
 			// <player>
 			else if (element_name == el_player)
 			{
-				PlayerID = CStr(setting.GetText()).ToInt();
+				PlayerID = setting.GetText().ToInt();
 			}
 			// <position>
 			else if (element_name == el_position)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
 				Position = CFixedVector3D(
-					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
+					fixed::FromString(attrs.GetNamedItem(at_x)),
+					fixed::FromString(attrs.GetNamedItem(at_y)),
+					fixed::FromString(attrs.GetNamedItem(at_z)));
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
 				Orientation = CFixedVector3D(
-					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
+					fixed::FromString(attrs.GetNamedItem(at_x)),
+					fixed::FromString(attrs.GetNamedItem(at_y)),
+					fixed::FromString(attrs.GetNamedItem(at_z)));
 				// TODO: what happens if some attributes are missing?
 			}
 			else
@@ -1072,27 +1072,27 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 			// <template>
 			if (element_name == el_template)
 			{
-				TemplateName = setting.GetText();
+				TemplateName = setting.GetText().FromUTF8();
 			}
 			// <player>
 			else if (element_name == el_player)
 			{
-				PlayerID = CStr(setting.GetText()).ToInt();
+				PlayerID = setting.GetText().ToInt();
 			}
 			// <position>
 			else if (element_name == el_position)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
 				Position = CFixedVector3D(
-					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
+					fixed::FromString(attrs.GetNamedItem(at_x)),
+					fixed::FromString(attrs.GetNamedItem(at_y)),
+					fixed::FromString(attrs.GetNamedItem(at_z)));
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
-				Orientation = fixed::FromString(CStr(attrs.GetNamedItem(at_angle)));
+				Orientation = fixed::FromString(attrs.GetNamedItem(at_angle));
 			}
 			else
 				debug_warn(L"Invalid map XML data");
@@ -1170,22 +1170,22 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 			// <actor>
 			if (element_name == el_actor)
 			{
-				ActorName = setting.GetText();
+				ActorName = setting.GetText().FromUTF8();
 			}
 			// <position>
 			else if (element_name == el_position)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
 				Position = CFixedVector3D(
-					fixed::FromString(CStr(attrs.GetNamedItem(at_x))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_y))),
-					fixed::FromString(CStr(attrs.GetNamedItem(at_z))));
+					fixed::FromString(attrs.GetNamedItem(at_x)),
+					fixed::FromString(attrs.GetNamedItem(at_y)),
+					fixed::FromString(attrs.GetNamedItem(at_z)));
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
 				XMBAttributeList attrs = setting.GetAttributes();
-				Orientation = fixed::FromString(CStr(attrs.GetNamedItem(at_angle)));
+				Orientation = fixed::FromString(attrs.GetNamedItem(at_angle));
 			}
 			else
 				debug_warn(L"Invalid map XML data");
@@ -1268,11 +1268,11 @@ int CXMLReader::ProgressiveRead()
 		}
 		else if (name == "Script")
 		{
-			m_MapReader.pSimulation2->SetStartupScript(CStrW(node.GetText()));
+			m_MapReader.pSimulation2->SetStartupScript(node.GetText().FromUTF8());
 		}
 		else
 		{
-			debug_printf(L"Invalid XML element in map file: %ls\n", CStrW(name).c_str());
+			debug_printf(L"Invalid XML element in map file: %hs\n", name.c_str());
 			debug_warn(L"Invalid map XML data");
 		}
 

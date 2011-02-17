@@ -97,7 +97,7 @@ bool DllLoader::LoadDLL()
 		const int flags = RTLD_LOCAL|RTLD_NOW;
 
 		CStr filename = GenerateFilename(m_Name, primarySuffix);
-		m_Handle = dlopen(filename, flags);
+		m_Handle = dlopen(filename.c_str(), flags);
 
 		char* primaryError = NULL;
 
@@ -110,7 +110,7 @@ bool DllLoader::LoadDLL()
 
 			// Try to open the other debug/release version
 			filename = GenerateFilename(m_Name, secondarySuffix);
-			m_Handle = dlopen(filename, flags);
+			m_Handle = dlopen(filename.c_str(), flags);
 		}
 
 		// open still failed; report the first error

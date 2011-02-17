@@ -89,7 +89,7 @@ CFixed_15_16 CFixed_15_16::FromString(const CStr8& s)
 template<>
 CFixed_15_16 CFixed_15_16::FromString(const CStrW& s)
 {
-	return FromString(CStr8(s));
+	return FromString(s.ToUTF8());
 }
 
 template<>

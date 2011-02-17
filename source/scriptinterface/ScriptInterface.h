@@ -203,11 +203,6 @@ public:
 	std::wstring ToString(jsval obj);
 
 	/**
-	 * Parse a JSON string. Returns the undefined value on error.
-	 */
-	CScriptValRooted ParseJSON(const utf16string& string);
-
-	/**
 	 * Parse a UTF-8-encoded JSON string. Returns the undefined value on error.
 	 */
 	CScriptValRooted ParseJSON(const std::string& string_utf8);

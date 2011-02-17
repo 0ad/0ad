@@ -166,7 +166,7 @@ public:
 	/**
 	 * Returns the content of this node as an 8-bit string
 	 */
-	const std::string ToASCIIString() const;
+	const std::string ToUTF8() const;
 
 	/**
 	 * Parses the content of this node as an integer

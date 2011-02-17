@@ -78,7 +78,7 @@ const std::vector<ProfileColumn>& CNetStatsTable::GetColumns()
 		CScopeLock lock(m_Mutex);
 
 		for (size_t i = 0; i < m_LatchedData.size(); ++i)
-			m_ColumnDescriptions.push_back(ProfileColumn("Peer "+CStr(i), 80));
+			m_ColumnDescriptions.push_back(ProfileColumn("Peer "+CStr::FromUInt(i), 80));
 	}
 	return m_ColumnDescriptions;
 }
@@ -95,7 +95,7 @@ CStr CNetStatsTable::GetCellText(size_t row, size_t col)
 	#define ROW(id, title, member) \
 	case id: \
 		if (col == 0) return title; \
-		if (m_Peer) return CStr(m_Peer->member); \
+		if (m_Peer) return CStr::FromUInt(m_Peer->member); \
 		return "???"
 
 	switch(row)
@@ -129,7 +129,7 @@ void CNetStatsTable::LatchHostState(const ENetHost* host)
 	CScopeLock lock(m_Mutex);
 
 #define ROW(id, title, member) \
-	m_LatchedData[i].push_back(CStr(host->peers[i].member));
+	m_LatchedData[i].push_back(CStr::FromUInt(host->peers[i].member));
 
 	m_LatchedData.clear();
 	m_LatchedData.resize(host->peerCount);

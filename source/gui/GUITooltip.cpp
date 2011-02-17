@@ -181,17 +181,17 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 	}
 
 	// Retrieve object's 'tooltip' setting
-	CStr text;
+	CStrW text;
 	if (m_IsIconTooltip)
 	{
 		// Use icon tooltip property
-		if (GUI<CStr>::GetSetting(obj, "_icon_tooltip", text) != PSRETURN_OK)
+		if (GUI<CStrW>::GetSetting(obj, "_icon_tooltip", text) != PSRETURN_OK)
 			debug_warn(L"Failed to retrieve icon tooltip text"); // shouldn't fail
 	}
 	else
 	{
 		// Use normal tooltip property
-		if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
+		if (GUI<CStrW>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
 			debug_warn(L"Failed to retrieve tooltip text"); // shouldn't fail
 	}
 

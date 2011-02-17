@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,9 +39,6 @@
 
 
 // Only include these function definitions in the first instance of CStr.cpp:
-
-CStrW::CStrW(const CStr8 &asciStr) : std::wstring(asciStr.begin(), asciStr.end()) {}
-CStr8::CStr8(const CStrW& wideStr) : std:: string(wideStr.begin(), wideStr.end()) {}
 
 /**
  * Convert CStr to UTF-8
@@ -93,24 +90,35 @@ CStr CStr::Repeat(const CStr& String, size_t Reps)
 	return ret;
 }
 
-// Construction and assignment from numbers:
+// Construction from numbers:
 
-#define NUM_TYPE(T) \
-	CStr::CStr(T Number)			\
-	{								\
-		std::tstringstream ss;		\
-		ss << Number;				\
-		ss >> *this;				\
-	}
+CStr CStr::FromInt(int n)
+{
+	std::tstringstream ss;
+	ss << n;
+	return ss.str();
+}
 
-NUM_TYPE(i32)
-NUM_TYPE(i64)
-NUM_TYPE(u32)
-NUM_TYPE(u64)
-NUM_TYPE(float)
-NUM_TYPE(double)
+CStr CStr::FromUInt(unsigned int n)
+{
+	std::tstringstream ss;
+	ss << n;
+	return ss.str();
+}
 
-#undef NUM_TYPE
+CStr CStr::FromInt64(i64 n)
+{
+	std::tstringstream ss;
+	ss << n;
+	return ss.str();
+}
+
+CStr CStr::FromDouble(double n)
+{
+	std::tstringstream ss;
+	ss << n;
+	return ss.str();
+}
 
 // Conversion to numbers:
 
@@ -420,42 +428,6 @@ CStr CStr::Pad(PS_TRIM_MODE Mode, size_t Length) const
 
 	return std::tstring(Left, _T(' ')) + *this + std::tstring(Right, _T(' '));
 }
-
-// Concatenation:
-
-CStr CStr::operator+(const CStr& Str)
-{
-	CStr tmp(*this);
-	tmp += Str;
-	return tmp;
-}
-
-CStr CStr::operator+(const tchar* Str)
-{
-	CStr tmp(*this);
-	tmp += Str;
-	return tmp;
-}
-
-// Joining ASCII and Unicode strings:
-#ifndef _UNICODE
-CStr8 CStr::operator+(const CStrW& Str)
-{
-	return std::operator+(*this, CStr8(Str));
-}
-#else
-CStrW CStr::operator+(const CStr8& Str)
-{
-	return std::operator+(*this, CStrW(Str));
-}
-#endif
-
-
-CStr::operator const tchar*() const
-{
-	return c_str();
-}
-
 
 size_t CStr::GetHashCode() const
 {

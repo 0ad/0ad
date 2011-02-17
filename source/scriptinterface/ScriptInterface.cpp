@@ -712,8 +712,11 @@ std::wstring ScriptInterface::ToString(jsval obj)
 	return source;
 }
 
-CScriptValRooted ScriptInterface::ParseJSON(const utf16string& string)
+CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
 {
+	std::wstring attrsW = wstring_from_utf8(string_utf8);
+	utf16string string(attrsW.begin(), attrsW.end());
+
 	jsval vp;
 	JSONParser* parser = JS_BeginJSONParse(m->m_cx, &vp);
 	if (!parser)
@@ -735,13 +738,6 @@ CScriptValRooted ScriptInterface::ParseJSON(const utf16string& string)
 	}
 
 	return CScriptValRooted(m->m_cx, vp);
-}
-
-CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
-{
-	// TODO: we could do more efficient string conversion
-	std::wstring attrsW = wstring_from_utf8(string_utf8);
-	return ParseJSON(utf16string(attrsW.begin(), attrsW.end()));
 }
 
 CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)

@@ -26,6 +26,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
@@ -644,7 +645,7 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 
 	// TODO: should assert that ent doesn't exist
 
-	const CParamNode* tmpl = tempMan->LoadTemplate(ent, CStr8(templateName), -1);
+	const CParamNode* tmpl = tempMan->LoadTemplate(ent, utf8_from_wstring(templateName), -1);
 	if (!tmpl)
 		return INVALID_ENTITY; // LoadTemplate will have reported the error
 
@@ -911,7 +912,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string file
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	std::wstring path = L"simulation/data/" + CStrW(fileName);
+	std::wstring path = L"simulation/data/" + wstring_from_utf8(fileName);
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }

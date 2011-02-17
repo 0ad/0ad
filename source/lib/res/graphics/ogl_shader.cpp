@@ -165,8 +165,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const PIVFS& vfs, const VfsP
 	{
 		char* infolog = new char[log_length];
 		pglGetShaderInfoLog(shdr->id, log_length, 0, infolog);
-		CStrW infologw(infolog);
-		debug_printf(L"Compile log for shader %ls (type %ls):\n%ls", pathname.string().c_str(), type.c_str(), infologw.c_str());
+		debug_printf(L"Compile log for shader %ls (type %ls):\n%hs", pathname.string().c_str(), type.c_str(), infolog);
 		delete[] infolog;
 	}
 
@@ -305,7 +304,7 @@ static LibError do_load_shader(
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
-	Handle hshader = ogl_shader_load(g_VFS, CStrW(pathnameShader), shadertype);
+	Handle hshader = ogl_shader_load(g_VFS, pathnameShader.FromUTF8(), shadertype);
 	RETURN_ERR(hshader);
 
 	ogl_shader_attach(p->id, hshader);
@@ -404,8 +403,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 	{
 		char* infolog = new char[log_length];
 		pglGetProgramInfoLog(p->id, log_length, 0, infolog);
-		CStrW infologw(infolog);
-		debug_printf(L"Linker log for %ls:\n%ls\n", pathname.string().c_str(), infologw.c_str());
+		debug_printf(L"Linker log for %ls:\n%hs\n", pathname.string().c_str(), infolog);
 		delete[] infolog;
 	}
 

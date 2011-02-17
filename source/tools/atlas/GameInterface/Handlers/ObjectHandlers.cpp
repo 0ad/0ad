@@ -218,7 +218,7 @@ BEGIN_COMMAND(SetObjectSettings)
 		std::vector<std::wstring> selections = *settings.selections;
 		for (std::vector<std::wstring>::iterator it = selections.begin(); it != selections.end(); ++it)
 		{
-			m_SelectionsNew.insert(CStr(*it));
+			m_SelectionsNew.insert(CStrW(*it).ToUTF8());
 		}
 
 		Redo();
@@ -547,7 +547,7 @@ BEGIN_COMMAND(DeleteObject)
 {
 	// Saved copy of the important aspects of a unit, to allow undo
 	entity_id_t m_EntityID;
-	std::string m_TemplateName;
+	CStr m_TemplateName;
 	int32_t m_Owner;
 	CFixedVector3D m_Pos;
 	CFixedVector3D m_Rot;
@@ -589,7 +589,7 @@ BEGIN_COMMAND(DeleteObject)
 	void Undo()
 	{
 		CSimulation2& sim = *g_Game->GetSimulation2();
-		entity_id_t ent = sim.AddEntity(CStrW(m_TemplateName), m_EntityID);
+		entity_id_t ent = sim.AddEntity(m_TemplateName.FromUTF8(), m_EntityID);
 		if (ent == INVALID_ENTITY)
 			LOGERROR(L"Failed to load entity template '%hs'", m_TemplateName.c_str());
 		else

@@ -124,10 +124,10 @@ bool CObjectBase::Load(const VfsPath& pathname)
 				XERO_ITER_ATTR(variant, attr)
 				{
 					if (attr.Name == at_name)
-						currentVariant->m_VariantName = CStr(attr.Value).LowerCase();
+						currentVariant->m_VariantName = attr.Value.LowerCase();
 
 					else if (attr.Name == at_frequency)
-						currentVariant->m_Frequency = CStr(attr.Value).ToInt();
+						currentVariant->m_Frequency = attr.Value.ToInt();
 				}
 
 
@@ -136,10 +136,10 @@ bool CObjectBase::Load(const VfsPath& pathname)
 					int option_name = option.GetNodeName();
 
 					if (option_name == el_mesh)
-						currentVariant->m_ModelFilename = VfsPath(L"art/meshes")/(std::wstring)CStrW(option.GetText());
+						currentVariant->m_ModelFilename = VfsPath(L"art/meshes")/(std::wstring)option.GetText().FromUTF8();
 
 					else if (option_name == el_texture)
-						currentVariant->m_TextureFilename = VfsPath(L"art/textures/skins")/(std::wstring)CStrW(option.GetText());
+						currentVariant->m_TextureFilename = VfsPath(L"art/textures/skins")/(std::wstring)option.GetText().FromUTF8();
 
 					else if (option_name == el_colour)
 						currentVariant->m_Color = option.GetText();
@@ -159,21 +159,21 @@ bool CObjectBase::Load(const VfsPath& pathname)
 								}
 								else if (ae.Name == at_file)
 								{
-									anim.m_FileName = VfsPath(L"art/animation")/(std::wstring)CStrW(ae.Value);
+									anim.m_FileName = VfsPath(L"art/animation")/(std::wstring)ae.Value.FromUTF8();
 								}
 								else if (ae.Name == at_speed)
 								{
-									anim.m_Speed = CStr(ae.Value).ToInt() / 100.f;
+									anim.m_Speed = ae.Value.ToInt() / 100.f;
 									if (anim.m_Speed <= 0.0) anim.m_Speed = 1.0f;
 								}
 								else if (ae.Name == at_event)
 								{
-									float pos = CStr(ae.Value).ToFloat();
+									float pos = ae.Value.ToFloat();
 									anim.m_ActionPos = clamp(pos, 0.f, 1.f);
 								}
 								else if (ae.Name == at_load)
 								{
-									float pos = CStr(ae.Value).ToFloat();
+									float pos = ae.Value.ToFloat();
 									anim.m_ActionPos2 = clamp(pos, 0.f, 1.f);
 								}
 							}
@@ -193,7 +193,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 								if (pe.Name == at_attachpoint)
 									prop.m_PropPointName = pe.Value;
 								else if (pe.Name == at_actor)
-									prop.m_ModelName = CStrW(pe.Value);
+									prop.m_ModelName = pe.Value.FromUTF8();
 							}
 							currentVariant->m_Props.push_back(prop);
 						}
@@ -220,7 +220,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 		}
 		else if (child_name == el_material)
 		{
-			m_Material = VfsPath(L"art/materials")/(std::wstring)CStrW(child.GetText());
+			m_Material = VfsPath(L"art/materials")/(std::wstring)child.GetText().FromUTF8();
 		}
 	}
 

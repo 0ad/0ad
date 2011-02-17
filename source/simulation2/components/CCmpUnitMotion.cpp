@@ -289,8 +289,8 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpPathfinder.null())
 		{
-			m_PassClass = cmpPathfinder->GetPassabilityClass(paramNode.GetChild("PassabilityClass").ToASCIIString());
-			m_CostClass = cmpPathfinder->GetCostClass(paramNode.GetChild("CostClass").ToASCIIString());
+			m_PassClass = cmpPathfinder->GetPassabilityClass(paramNode.GetChild("PassabilityClass").ToUTF8());
+			m_CostClass = cmpPathfinder->GetCostClass(paramNode.GetChild("CostClass").ToUTF8());
 		}
 
 		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), GetEntityId());

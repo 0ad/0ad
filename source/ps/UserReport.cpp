@@ -338,7 +338,7 @@ private:
 		{
 			long code = -1;
 			curl_easy_getinfo(m_Curl, CURLINFO_RESPONSE_CODE, &code);
-			SetStatus("completed:" + CStr(code));
+			SetStatus("completed:" + CStr::FromInt(code));
 
 			// Check for success code
 			if (code == 200)
@@ -356,7 +356,7 @@ private:
 		}
 		else
 		{
-			SetStatus("failed:" + CStr(err) + ":" + m_ErrorBuffer);
+			SetStatus("failed:" + CStr::FromInt(err) + ":" + m_ErrorBuffer);
 		}
 
 		// We got an unhandled return code or a connection failure;
@@ -381,12 +381,12 @@ private:
 		r += "user_id=";
 		AppendEscaped(r, m_UserID);
 
-		r += "&time=" + CStr(report.m_Time);
+		r += "&time=" + CStr::FromInt64(report.m_Time);
 
 		r += "&type=";
 		AppendEscaped(r, report.m_Type);
 
-		r += "&version=" + CStr(report.m_Version);
+		r += "&version=" + CStr::FromInt(report.m_Version);
 
 		r += "&data=";
 		AppendEscaped(r, report.m_Data);
@@ -441,7 +441,7 @@ private:
 		memcpy(bufptr, &self->m_RequestData[self->m_RequestDataOffset], amount);
 		self->m_RequestDataOffset += amount;
 
-		self->SetStatus("sending:" + CStr((float)self->m_RequestDataOffset / self->m_RequestData.size()));
+		self->SetStatus("sending:" + CStr::FromDouble((double)self->m_RequestDataOffset / self->m_RequestData.size()));
 
 		return amount;
 	}
@@ -525,7 +525,7 @@ bool CUserReporter::IsReportingEnabled()
 
 void CUserReporter::SetReportingEnabled(bool enabled)
 {
-	CStr val(enabled ? REPORTER_VERSION : 0);
+	CStr val = CStr::FromInt(enabled ? REPORTER_VERSION : 0);
 	g_ConfigDB.CreateValue(CFG_USER, "userreport.enabledversion")->m_String = val;
 	g_ConfigDB.WriteFile(CFG_USER);
 

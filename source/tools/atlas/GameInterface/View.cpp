@@ -250,7 +250,7 @@ void ViewGame::SetParam(const std::wstring& name, const std::wstring& value)
 {
 	if (name == L"passability")
 	{
-		m_DisplayPassability = CStr(value);
+		m_DisplayPassability = CStrW(value).ToUTF8();
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionMan(*GetSimulation2(), SYSTEM_ENTITY);
 		if (!cmpObstructionMan.null())

@@ -190,41 +190,4 @@ template<> bool ToPrimitive<CStr8>( JSContext* cx, jsval v, CStr8& Storage );
 template<> jsval ToJSVal<CStr8>( const CStr8& Native );
 template<> jsval ToJSVal<CStr8>( CStr8& Native );
 
-// jsval
-
-// Don't want to just use jsval directly, because it's equivalent to long and
-// can cause conflicts or confusion. So create a simple wrapper class for it,
-// so it's a real distinguishable type.
-struct jsval_t
-{
-	jsval v;
-	jsval_t(jsval v) : v(v) {}
-};
-template<> jsval ToJSVal<jsval_t>( const jsval_t& Native );
-
-// Intelligent CStrW->JSVal conversion
-
-jsval JSParseString( const CStrW& String );
-
-/* MT: Maybe:
-#define JSCOPY_CAST( For, Use ) \
-	template<> bool ToPrimitive<For>( JSContext* cx, jsval v, For& Storage ) \
-	{ \
-		Use temp; \
-		if( !ToPrimitive<Use>( cx, v, temp ) ) \
-			return( false ); \
-		Storage = (For)temp; \
-	} \
-	template<> jsval ToJSVal<For>( const For& Native ) \
-	{ \
-		Use temp = (Use)Native; \
-		return( ToJSVal<Use>( temp ) ); \
-	} \
-	template<> jsval ToJSVal<For>( For& Native ) \
-	{ \
-		Use temp = (Use)Native; \
-		return( ToJSVal<Use>( temp ) ); \
-	}
-*/
-
 #endif

@@ -131,7 +131,7 @@ CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& 
 			{
 				if (attr.Name == at_pattern)
 				{
-					p.pattern = CStrW(attr.Value);
+					p.pattern = attr.Value.FromUTF8();
 				}
 				else if (attr.Name == at_format)
 				{

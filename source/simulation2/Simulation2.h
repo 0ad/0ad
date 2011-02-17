@@ -24,7 +24,6 @@
 #include "scriptinterface/ScriptVal.h"
 
 #include "lib/file/vfs/vfs_path.h"
-#include "ps/utf16string.h"
 
 #include <map>
 
@@ -87,10 +86,10 @@ public:
 	const std::wstring& GetStartupScript();
 
 	/**
-	 * Set the initial map settings (as a JSON string), which will be used
-	 * to set up the simulation state.
+	 * Set the initial map settings (as a UTF-8-encoded JSON string),
+	 * which will be used to set up the simulation state.
 	 */
-	void SetMapSettings(const utf16string& settings);
+	void SetMapSettings(const std::string& settings);
 
 	/**
 	 * Set the initial map settings, which will be used

@@ -111,7 +111,7 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 			CParserLine parserLine;
 			parser.InputTaskType("GroupList", "<_$value_,>_$value_");
 			
-			if (!parserLine.ParseString(parser, CStr(attr.Value)))
+			if (!parserLine.ParseString(parser, attr.Value))
 				continue;
 			m_Groups.clear();
 			for (size_t i=0;i<parserLine.GetArgCount();i++)
@@ -126,7 +126,7 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 		else if (attr.Name == attr_mmap)
 		{
 			CColor col;
-			if (!col.ParseString(CStr(attr.Value), 255))
+			if (!col.ParseString(attr.Value, 255))
 				continue;
 			
 			// m_BaseColor is BGRA
@@ -139,7 +139,7 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 		}
 		else if (attr.Name == attr_movementclass)
 		{
-			m_MovementClass = CStr(attr.Value);
+			m_MovementClass = attr.Value;
 		}
 	}
 }

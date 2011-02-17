@@ -69,7 +69,7 @@ static LibError BuildDirEntListCB(const VfsPath& pathname, const FileInfo& UNUSE
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
-	jsval val = ToJSVal( CStr(pathname.string()) );
+	jsval val = ToJSVal( CStrW(pathname.string()) );
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, &val);
 	return INFO::CB_CONTINUE;
 }
@@ -93,8 +93,8 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 
 	JSU_REQUIRE_MIN_PARAMS(1);
 
-	CStr path;
-	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], path))
+	CStrW path;
+	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], path))
 		return JS_FALSE;
 
 	CStrW filter_str = L"";
@@ -120,7 +120,7 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
-	fs_util::ForEachFile(g_VFS, CStrW(path), BuildDirEntListCB, (uintptr_t)&state, filter, flags);
+	fs_util::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(state.filename_array));
 	return JS_TRUE;
@@ -135,12 +135,12 @@ JSBool JSI_VFS::GetFileMTime(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_MIN_PARAMS(1);
 
-	CStr filename;
-	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+	CStrW filename;
+	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
 	FileInfo fileInfo;
-	LibError err = g_VFS->GetFileInfo(CStrW(filename), &fileInfo);
+	LibError err = g_VFS->GetFileInfo(filename, &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
 	JS_SET_RVAL(cx, vp, ToJSVal((double)fileInfo.MTime()));
@@ -156,12 +156,12 @@ JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_MIN_PARAMS(1);
 
-	CStr filename;
-	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+	CStrW filename;
+	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
 	FileInfo fileInfo;
-	LibError err = g_VFS->GetFileInfo(CStrW(filename), &fileInfo);
+	LibError err = g_VFS->GetFileInfo(filename, &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
 	JS_SET_RVAL(cx, vp, ToJSVal( (unsigned)fileInfo.Size() ));
@@ -177,13 +177,13 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_MIN_PARAMS(1);
 
-	CStr filename;
-	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+	CStrW filename;
+	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
 	shared_ptr<u8> buf;
 	size_t size;
-	LibError err = g_VFS->LoadFile(CStrW(filename), buf, size);
+	LibError err = g_VFS->LoadFile(filename, buf, size);
 	JS_CHECK_FILE_ERR( err );
 
 	CStr contents((const char*)buf.get(), size);
@@ -205,8 +205,8 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 {
 	JSU_REQUIRE_MIN_PARAMS(1);
 
-	CStr filename;
-	if (!ToPrimitive<CStr> (cx, JS_ARGV(cx, vp)[0], filename))
+	CStrW filename;
+	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
 		return (JS_FALSE);
 
 	//
@@ -215,7 +215,7 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 
 	shared_ptr<u8> buf;
 	size_t size;
-	LibError err = g_VFS->LoadFile(CStrW(filename), buf, size);
+	LibError err = g_VFS->LoadFile(filename, buf, size);
 	JS_CHECK_FILE_ERR( err );
 
 	CStr contents((const char*)buf.get(), size);

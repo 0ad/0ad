@@ -319,7 +319,7 @@ bool CNetServerWorker::RunStep()
 			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, GetScriptInterface());
 			if (msg)
 			{
-				LOGMESSAGE(L"Net server: Received message %ls of size %lu from %hs", CStrW(msg->ToString()).c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
+				LOGMESSAGE(L"Net server: Received message %hs of size %lu from %hs", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
 
 				HandleMessageReceive(msg, session);
 
@@ -710,7 +710,7 @@ CStrW CNetServerWorker::DeduplicatePlayerName(const CStrW& original)
 		if (unique)
 			return name;
 
-		name = original + L" (" + CStrW(id++) + L")";
+		name = original + L" (" + CStrW::FromUInt(id++) + L")";
 	}
 }
 

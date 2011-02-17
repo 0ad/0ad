@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -193,13 +193,13 @@ XMBAttributeList XMBElement::GetAttributes() const
 	);
 }
 
-utf16string XMBElement::GetText() const
+CStr8 XMBElement::GetText() const
 {
 	// Return empty string if there's no text
 	if (m_Pointer == NULL || *(int*)(m_Pointer + 20) == 0)
-		return utf16string();
-	else
-		return utf16string((utf16_t*)(m_Pointer + 28));
+		return CStr8();
+
+	return CStrW(utf16string((utf16_t*)(m_Pointer + 28))).ToUTF8();
 }
 
 int XMBElement::GetLineNumber() const
@@ -256,7 +256,7 @@ XMBElement XMBElementList::Item(const int id)
 	return XMBElement(Pos);
 }
 
-utf16string XMBAttributeList::GetNamedItem(const int AttributeName) const
+CStr8 XMBAttributeList::GetNamedItem(const int AttributeName) const
 {
 	const char* Pos = m_Pointer;
 
@@ -265,12 +265,12 @@ utf16string XMBAttributeList::GetNamedItem(const int AttributeName) const
 	for (int i = 0; i < Count; ++i)
 	{
 		if (*(int*)Pos == AttributeName)
-			return utf16string((utf16_t*)(Pos+8));
+			return CStrW(utf16string((utf16_t*)(Pos+8))).ToUTF8();
 		Pos += 8 + *(int*)(Pos+4); // Skip over the string
 	}
 
 	// Can't find attribute
-	return utf16string();
+	return CStr8();
 }
 
 XMBAttribute XMBAttributeList::Item(const int id)
@@ -297,5 +297,5 @@ XMBAttribute XMBAttributeList::Item(const int id)
 	m_LastItemID = id;
 	m_LastPointer = Pos;
 
-	return XMBAttribute(*(int*)Pos, utf16string( (const utf16_t*)(Pos+8) ));
+	return XMBAttribute(*(int*)Pos, CStrW(utf16string( (const utf16_t*)(Pos+8) )).ToUTF8());
 }

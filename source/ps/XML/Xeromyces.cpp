@@ -130,7 +130,7 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
-	CStr8 filename8(filename.string());
+	CStr8 filename8(CStrW(filename.string()).ToUTF8());
 	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), (int)input.GetBufferSize(),
 		filename8.c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)

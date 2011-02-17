@@ -73,7 +73,7 @@ MessagePasserImpl::~MessagePasserImpl()
 	{
 		// Clean up
 		sem_close(m_Semaphore);
-		sem_unlink(m_SemaphoreName);
+		sem_unlink(m_SemaphoreName.c_str());
 	}
 }
 

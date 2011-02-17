@@ -199,7 +199,7 @@ XMLWriter_Element::XMLWriter_Element(XMLWriter_File& file, const char* name)
 
 XMLWriter_Element::~XMLWriter_Element()
 {
-	m_File->ElementEnd(m_Name, m_Type);
+	m_File->ElementEnd(m_Name.c_str(), m_Type);
 }
 
 
@@ -277,15 +277,30 @@ template <> void XMLWriter_File::ElementAttribute<fixed>(const char* name, const
 	ElementAttribute(name, value.ToString().c_str(), newelement);
 }
 
-// Use CStr's conversion for most types:
-#define TYPE2(ID_T, ARG_T) \
-template <> void XMLWriter_File::ElementAttribute<ID_T>(const char* name, ARG_T value, bool newelement) \
-{ \
-	ElementAttribute(name, CStr(value).c_str(), newelement); \
+template <> void XMLWriter_File::ElementAttribute<int>(const char* name, const int& value, bool newelement)
+{
+	std::stringstream ss;
+	ss << value;
+	ElementAttribute(name, ss.str().c_str(), newelement);
 }
-#define TYPE(T) TYPE2(T, const T &)
 
-TYPE(int)
-TYPE(unsigned int)
-TYPE(float)
-TYPE(double)
+template <> void XMLWriter_File::ElementAttribute<unsigned int>(const char* name, const unsigned int& value, bool newelement)
+{
+	std::stringstream ss;
+	ss << value;
+	ElementAttribute(name, ss.str().c_str(), newelement);
+}
+
+template <> void XMLWriter_File::ElementAttribute<float>(const char* name, const float& value, bool newelement)
+{
+	std::stringstream ss;
+	ss << value;
+	ElementAttribute(name, ss.str().c_str(), newelement);
+}
+
+template <> void XMLWriter_File::ElementAttribute<double>(const char* name, const double& value, bool newelement)
+{
+	std::stringstream ss;
+	ss << value;
+	ElementAttribute(name, ss.str().c_str(), newelement);
+}

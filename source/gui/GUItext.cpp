@@ -44,7 +44,7 @@ void CGUIString::SFeedback::Reset()
 }
 
 void CGUIString::GenerateTextCall(SFeedback &Feedback,
-								  const CStr& DefaultFont,
+								  const CStrW& DefaultFont,
 								  const int &from, const int &to,
 								  const bool FirstLine,
 								  const IGUIObject *pObject) const
@@ -163,7 +163,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 						{	//Displace the sprite
 							CSize displacement;
 							// Parse the value
-							if (!GUI<CSize>::ParseString(CStrW(tagAttrib.value), displacement))
+							if (!GUI<CSize>::ParseString(CStr(tagAttrib.value).FromUTF8(), displacement))
 								LOGERROR(L"Error parsing 'displace' value for tag [ICON]");
 							else
 								SpriteCall.m_Area += displacement;
@@ -171,11 +171,11 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 						}
 						else if(tagAttrib.attrib == "tooltip")
 						{
-							SpriteCall.m_Tooltip = CStrW(tagAttrib.value);
+							SpriteCall.m_Tooltip = CStr(tagAttrib.value).FromUTF8();
 						}
 						else if(tagAttrib.attrib == "tooltip_style")
 						{
-							SpriteCall.m_TooltipStyle = CStrW(tagAttrib.value);
+							SpriteCall.m_TooltipStyle = CStr(tagAttrib.value).FromUTF8();
 						}
 					}
 
@@ -219,7 +219,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					TextCall.m_UseCustomColor = true;
 					
 					// Try parsing the color std::string
-					if (!GUI<CColor>::ParseString(CStrW(it2->m_TagValue), TextCall.m_Color))
+					if (!GUI<CColor>::ParseString(CStr(it2->m_TagValue).FromUTF8(), TextCall.m_Color))
 					{
 						if (pObject)
 							LOGERROR(L"Error parsing the value of a [color]-tag in GUI text when reading object \"%hs\".", pObject->GetPresentableName().c_str());
@@ -229,7 +229,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				if (it2->m_TagType == CGUIString::TextChunk::Tag::TAG_FONT)
 				{
 					// TODO Gee: (2004-08-15) Check if Font exists?
-					TextCall.m_Font = CStrW(it2->m_TagValue);
+					TextCall.m_Font = CStr(it2->m_TagValue).FromUTF8();
 				}
 			}
 
@@ -385,10 +385,10 @@ void CGUIString::SetValue(const CStrW& str)
 				// Okay we've found a TagStart and TagEnd, positioned
 				//  at pos and pos_right. Now let's extract the
 				//  interior and try parsing.
-				CStr tagstr (str.substr(curpos+1, pos_right-curpos-1));
+				CStrW tagstr (str.substr(curpos+1, pos_right-curpos-1));
 
 				CParserLine Line;
-				Line.ParseString(Parser, (const char*)tagstr);
+				Line.ParseString(Parser, tagstr.ToUTF8());
 
 				// Set to true if the tag is just text.
 				bool justtext = false;

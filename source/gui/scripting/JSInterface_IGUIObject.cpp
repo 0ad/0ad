@@ -111,7 +111,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 	// Also handle "name" specially
 	else if (propName == "name")
 	{
-		*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, e->GetName()));
+		*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, e->GetName().c_str()));
 		return JS_TRUE;
 	}
 	// Handle all other properties

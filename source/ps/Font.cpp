@@ -29,20 +29,20 @@
 
 const wchar_t* DefaultFont = L"sans-10";
 
-CFont::CFont(const wchar_t* name)
+CFont::CFont(const CStrW& name)
 {
 	// TODO perhaps: cache the resultant filename (or Handle) for each
 	// font name; but it's nice to allow run-time alteration of the fonts
 
 	std::string fontFilename;
 
-	CStrW fontName = L"font."; fontName += name;
+	CStr fontName = "font." + name.ToUTF8();
 
 	// See if the config value can be loaded
 	CConfigValue* fontFilenameVar = g_ConfigDB.GetValue(CFG_USER, fontName);
 	if (fontFilenameVar && fontFilenameVar->GetString(fontFilename))
 	{
-		h = unifont_load(g_VFS, CStrW(fontFilename));
+		h = unifont_load(g_VFS, CStr(fontFilename).FromUTF8());
 	}
 	else
 	{
@@ -54,7 +54,7 @@ CFont::CFont(const wchar_t* name)
 			return;
 
 		// Not found as a font -- give up and use the default.
-		LOGERROR(L"Failed to find font '%ls'", name);
+		LOGERROR(L"Failed to find font '%ls'", name.c_str());
 		h = unifont_load(g_VFS, DefaultFont);
 		// Assume this worked
 	}
@@ -87,5 +87,5 @@ int CFont::GetCharacterWidth(wchar_t c)
 
 void CFont::CalculateStringSize(const CStrW& string, int& width, int& height)
 {
-	unifont_stringsize(h, (const wchar_t*)string, width, height);
+	unifont_stringsize(h, string.c_str(), width, height);
 }

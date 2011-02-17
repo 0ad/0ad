@@ -531,7 +531,7 @@ void CConsole::InsertMessageRaw(const CStrW& message)
 
 	//Insert newlines to wraparound text where needed
 	CStrW wrapAround(message);
-	CStrW newline(L'\n');
+	CStrW newline(L"\n");
 	size_t oldNewline=0;
 	size_t distance;
 	

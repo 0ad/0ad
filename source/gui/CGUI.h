@@ -73,7 +73,7 @@ ERROR_TYPE(GUI, JSOpenFailed);
 struct SGUIStyle
 {
 	// A list of defaults for 
-	std::map<CStr, CStr> m_SettingsDefaults;
+	std::map<CStr, CStrW> m_SettingsDefaults;
 };
 
 struct JSObject; // The GUI stores a JSObject*, so needs to know that JSObject exists
@@ -251,7 +251,7 @@ public:
 	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails, 
 	 *		  and we need to be able to output which object the error occured in to aid the user. 
 	 */
-	SGUIText GenerateText(const CGUIString &Text, const CStr& Font, 
+	SGUIText GenerateText(const CGUIString &Text, const CStrW& Font,
 						  const float &Width, const float &BufferZone,
 						  const IGUIObject *pObject=NULL);
 

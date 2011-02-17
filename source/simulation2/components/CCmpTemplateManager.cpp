@@ -202,7 +202,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 	{
 		// Compute validity, if it's not computed before
 		if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
-			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(CStrW(templateName), m_TemplateFileData[templateName].ToXML());
+			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(wstring_from_utf8(templateName), m_TemplateFileData[templateName].ToXML());
 		// Refuse to return invalid templates
 		if (!m_TemplateSchemaValidity[templateName])
 			return NULL;
@@ -302,18 +302,16 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 
 	// Normal case: templateName is an XML file:
 
-	VfsPath path = VfsPath(TEMPLATE_ROOT) / (std::wstring)CStrW(templateName + ".xml");
+	VfsPath path = VfsPath(TEMPLATE_ROOT) / wstring_from_utf8(templateName + ".xml");
 	CXeromyces xero;
 	PSRETURN ok = xero.Load(g_VFS, path);
 	if (ok != PSRETURN_OK)
 		return false; // (Xeromyces already logged an error with the full filename)
 
 	int attr_parent = xero.GetAttributeID("parent");
-	utf16string parentStr = xero.GetRoot().GetAttributes().GetNamedItem(attr_parent);
-	if (!parentStr.empty())
+	CStr parentName = xero.GetRoot().GetAttributes().GetNamedItem(attr_parent);
+	if (!parentName.empty())
 	{
-		std::string parentName(parentStr.begin(), parentStr.end());
-
 		// To prevent needless complexity in template design, we don't allow |-separated strings as parents
 		if (parentName.find('|') != parentName.npos)
 		{
@@ -342,7 +340,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 
 void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, CParamNode& out)
 {
-	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(CStrW(actorName)));
+	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(wstring_from_utf8(actorName)));
 	std::string xml = "<?xml version='1.0' encoding='utf-8'?>"
 		"<Entity>"
 		"<Position>"

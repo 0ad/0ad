@@ -448,7 +448,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				if (m_iBufferPos == (int)pCaption->length())
 					*pCaption += cooked;
 				else
-					*pCaption = pCaption->Left(m_iBufferPos) + CStrW(cooked) + 
+					*pCaption = pCaption->Left(m_iBufferPos) + cooked +
 								pCaption->Right((long) pCaption->length()-m_iBufferPos);
 
 				UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
@@ -1182,8 +1182,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		std::list<SRow>::iterator temp_it = destroy_row_to;
 		--temp_it;
 
-		CStr c_caption1(caption.substr(destroy_row_from->m_ListStart, (temp_it->m_ListStart + temp_it->m_ListOfX.size()) -destroy_row_from->m_ListStart));
-
 		m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
 		
 		// If there has been a change in number of characters
@@ -1223,8 +1221,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			if (i==to-1 && to != (int)caption.length())
 				break; // it will be added outside
 			
-			CStr c_caption1(caption.substr(row.m_ListStart, row.m_ListOfX.size()));
-
 			current_line = m_CharacterPositions.insert( current_line, row );
 			++current_line;
 
@@ -1266,7 +1262,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				//  both before and after that character, being on different
 				//  rows. With automatic word-wrapping, that is not possible. Which
 				//  is intuitively correct.
-				CStr c_caption1(caption.substr(row.m_ListStart, row.m_ListOfX.size()));
 
 				current_line = m_CharacterPositions.insert( current_line, row );
 				++current_line;
@@ -1390,8 +1385,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				copy = *temp;
 
 				m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
-
-				CStr c_caption(caption.substr(from, to-from));
 			}
 			// else, the for loop will end naturally.
 		}

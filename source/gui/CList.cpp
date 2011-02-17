@@ -430,7 +430,7 @@ bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 
 	if (child.GetNodeName() == elmt_item)
 	{
-		AddItem(CStrW(child.GetText()), CStrW(child.GetText()));
+		AddItem(child.GetText().FromUTF8(), child.GetText().FromUTF8());
 		
 		return true;
 	}

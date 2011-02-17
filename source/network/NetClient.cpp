@@ -161,7 +161,7 @@ void CNetClient::PostPlayerAssignmentsToScript()
 		GetScriptInterface().Eval("({})", host);
 		GetScriptInterface().SetProperty(host.get(), "name", std::wstring(it->second.m_Name), false);
 		GetScriptInterface().SetProperty(host.get(), "player", it->second.m_PlayerID, false);
-		GetScriptInterface().SetProperty(hosts.get(), it->first, host, false);
+		GetScriptInterface().SetProperty(hosts.get(), it->first.c_str(), host, false);
 	}
 
 	PushGuiMessage(msg);

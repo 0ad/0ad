@@ -154,7 +154,7 @@ public:
 	 * @param actionpos2 offset of 'action2' event, in range [0, 1]
 	 * @return new animation, or NULL on error
 	 */
-	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const char* name, float speed, float actionpos, float actionpos2);
+	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2);
 
 	/**
 	 * Add a prop to the model on the given point.

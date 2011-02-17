@@ -409,7 +409,7 @@ const std::wstring& CSimulation2::GetStartupScript()
 	return m->m_StartupScript;
 }
 
-void CSimulation2::SetMapSettings(const utf16string& settings)
+void CSimulation2::SetMapSettings(const std::string& settings)
 {
 	m->m_MapSettings = m->m_ComponentManager.GetScriptInterface().ParseJSON(settings);
 }

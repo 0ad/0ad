@@ -197,7 +197,7 @@ void Render()
 	CStr skystring = "255 0 255";
 	CFG_GET_USER_VAL("skycolor", String, skystring);
 	CColor skycol;
-	GUI<CColor>::ParseString(skystring, skycol);
+	GUI<CColor>::ParseString(skystring.FromUTF8(), skycol);
 	g_Renderer.SetClearColor(skycol.AsSColor4ub());
 
 	// start new frame

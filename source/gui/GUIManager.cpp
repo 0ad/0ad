@@ -142,7 +142,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 			continue;
 		}
 
-		CStrW name (node.GetText());
+		CStrW name (node.GetText().FromUTF8());
 		TIMER(name.c_str());
 		VfsPath path (VfsPath(L"gui")/name.c_str());
 		page.gui->LoadXmlFile(path, page.inputs);

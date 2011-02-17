@@ -189,7 +189,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 
 	if (needsAnimReload)
 	{
-		CStr anim = CStr(animation).LowerCase();
+		CStr anim = animation.ToUTF8().LowerCase();
 
 		// Emulate the typical simulation animation behaviour
 		float speed;
@@ -219,7 +219,8 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			speed = 1.f; // speed will be ignored if we have a repeattime
 			m.CurrentSpeed = 0.f;
 
-			CStr code = "var cmp = Engine.QueryInterface("+CStr(m.Entity)+", IID_Attack); if (cmp) cmp.GetTimers(cmp.GetBestAttack()).repeat; else 0;";
+			CStr code = "var cmp = Engine.QueryInterface("+CStr::FromUInt(m.Entity)+", IID_Attack); " +
+				"if (cmp) cmp.GetTimers(cmp.GetBestAttack()).repeat; else 0;";
 			m.Simulation2.GetScriptInterface().Eval(code.c_str(), repeattime);
 		}
 		else
@@ -240,7 +241,8 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		std::wstring soundgroup;
 		if (!sound.empty())
 		{
-			CStr code = "var cmp = Engine.QueryInterface("+CStr(m.Entity)+", IID_Sound); if (cmp) cmp.GetSoundGroup('"+sound+"'); else '';";
+			CStr code = "var cmp = Engine.QueryInterface("+CStr::FromUInt(m.Entity)+", IID_Sound); " +
+				"if (cmp) cmp.GetSoundGroup('"+sound+"'); else '';";
 			m.Simulation2.GetScriptInterface().Eval(code.c_str(), soundgroup);
 		}
 

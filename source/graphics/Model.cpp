@@ -211,7 +211,7 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const char* name, float speed, float actionpos, float actionpos2)
+CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2)
 {
 	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(pathname);
 	if (!def)

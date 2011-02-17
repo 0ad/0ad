@@ -180,7 +180,7 @@ void JSI_Sound::ScriptingInit()
 
 CStr JSI_Sound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	return "[object Sound: " + (m_Handle ? CStr(h_filename(m_Handle).string()) : "(null)") + "]";
+	return "[object Sound: " + (m_Handle ? CStrW(h_filename(m_Handle).string()).ToUTF8() : "(null)") + "]";
 }
 
 JSBool JSI_Sound::Construct(JSContext* cx, uintN argc, jsval* vp)

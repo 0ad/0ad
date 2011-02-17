@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,27 +21,6 @@
  * Description : Contains CStr class which is a versatile class for making string use easy.
  *			   : The class implements a series of string manipulation/formatting functions.
  **/
-/*
-Examples:
-	Generic text mapping is simply the ability to compile the final game in both UNICODE and ANSI.
-	These are the ways in which we deal with strings.
-	UNICODE uses 16 bits per character, whereas ANSI uses the traditional 8 bit character.
-	In order to use both, most of the standard library functions come in T form.
-	The following shows several examples of traditional ANSI vs UNICODE.
-		// ANSI
-		LPCSTR str = "M_PI";
-		printf( "%s = %fn", str, 3.1459f );
-
-		// UNICODE
-		LPCWSTR str = L"M_PI";
-		wprintf( L"%ls = %fn", str, 3.1459f );
-*/
-
-// history:
-// 2004-05-19 Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
-// 2004-06-18 janwas: replaced conversion buffer with stringstream
-// 2004-10-31 Philip: Changed to inherit from std::[w]string
-// 2007-01-26 greybeard(joe@wildfiregames.com): added comments for doc generation
 
 #ifndef INCLUDED_CSTR
 #define INCLUDED_CSTR
@@ -84,52 +63,13 @@ class CStrW;
  **/
 class CStr: public std::tstring
 {
-	// The two variations must be friends with each other
-#ifdef _UNICODE
-	friend class CStr8;
-#else
-	friend class CStrW;
-#endif
-
 public:
 
 	// CONSTRUCTORS
 
-	/**
-	 * Constructor
-	 *
-	 **/
 	CStr() {}
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param const CStr & String reference to another CStr object to be used for initialization
-	 **/
-	CStr(const CStr& String) : std::tstring(String) {}
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param const tchar * String pointer to an array of tchar to be used for initialization
-	 **/
 	CStr(const tchar* String) : std::tstring(String) {}
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param const tchar * String pointer to first tchar to be used for initialization
-	 * @param size_t Length number of tchar to be used from first tchar
-	 **/
 	CStr(const tchar* String, size_t Length) : std::tstring(String, Length) {}
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param const tchar Char tchar to be used for initialization
-	 **/
-	CStr(tchar Char) : std::tstring(1, Char) {} // std::string's constructor is (repeats, chr)
-	/**
-	 * Alternate Constructor
-	 *
-	 * @param std::tstring String reference to basic string object to be used for inititalization
-	 **/
 	CStr(const std::tstring& String) : std::tstring(String) {}
 
 	/**
@@ -143,20 +83,10 @@ public:
 
 	/**
 	 * Construction from utf16strings.
-	 * allowed on MSVC as of 2006-02-03 because utf16string is
-	 * now distinct from CStrW.
 	 *
 	 * @param utf16string String utf16string to be used for initialization.
 	 **/
-	CStr(const utf16string& String) : std::tstring(String.begin(), String.end()) {}
-
-	// Transparent CStrW/8 conversion. Non-ASCII characters are not
-	// handled correctly.
-	#ifndef _UNICODE
-		CStr8(const CStrW& wideStr);
-	#else
-		CStrW(const CStr8& asciiStr);
-	#endif
+	explicit CStr(const utf16string& String) : std::tstring(String.begin(), String.end()) {}
 
 	// Conversion to/from UTF-8, encoded in a CStr8.
 	// Invalid bytes/characters (e.g. broken UTF-8, and Unicode characters
@@ -167,15 +97,12 @@ public:
 		CStrW FromUTF8() const;
 	#endif
 
-	// Construct from string representation of number
-	CStr(i32 Number);
-	CStr(u32 Number);
-	CStr(i64 Number);
-	CStr(u64 Number);
-	CStr(float Number);
-	CStr(double Number);
-
 	// Conversions:
+
+	static CStr FromInt(int n);
+	static CStr FromUInt(unsigned int n);
+	static CStr FromInt64(i64 n);
+	static CStr FromDouble(double n);
 
 	/**
 	 * Return CStr as Integer.
@@ -399,21 +326,6 @@ public:
 	 * @return CStr copy of padded CStr.
 	 **/
 	CStr Pad(PS_TRIM_MODE Mode, size_t Length) const;
-
-	// Overloaded operations
-
-	CStr  operator+(const CStr& Str);
-	CStr  operator+(const tchar* Str);
-#ifndef _UNICODE
-	CStr8 operator+(const CStrW& Str);
-#else
-	CStrW operator+(const CStr8& Str);
-#endif
-
-	operator const tchar*() const;
-
-	tchar& operator[](size_t n)	{ return this->std::tstring::operator[](n); }
-	tchar& operator[](int n)	{ return this->std::tstring::operator[](n); }
 
 	// Conversion to utf16string
 	utf16string utf16() const { return utf16string(begin(), end()); }

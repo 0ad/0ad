@@ -152,7 +152,7 @@ CStr CSimulationMessage::ToString() const
 
 	std::stringstream stream;
 	stream << "CSimulationMessage { m_Client: " << m_Client << ", m_Player: " << m_Player << ", m_Turn: " << m_Turn << ", m_Data: " << source << " }";
-	return stream.str();
+	return CStr(stream.str());
 }
 
 
@@ -201,5 +201,5 @@ CStr CGameSetupMessage::ToString() const
 
 	std::stringstream stream;
 	stream << "CGameSetupMessage { m_Data: " << source << " }";
-	return stream.str();
+	return CStr(stream.str());
 }

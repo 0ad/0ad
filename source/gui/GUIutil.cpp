@@ -63,10 +63,8 @@ bool __ParseString<CRect>(const CStrW& Value, CRect &Output)
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_$value_$value_$value_$value_"));
 
-	std::string str = CStr(Value);
-
 	CParserLine line;
-	line.ParseString(parser, str);
+	line.ParseString(parser, Value.ToUTF8());
 	if (!line.m_ParseOK)
 	{
 		// Parsing failed
@@ -90,7 +88,7 @@ bool __ParseString<CRect>(const CStrW& Value, CRect &Output)
 template <>
 bool __ParseString<CClientArea>(const CStrW& Value, CClientArea &Output)
 {
-	return Output.SetClientArea(Value);
+	return Output.SetClientArea(Value.ToUTF8());
 }
 
 template <>
@@ -99,10 +97,10 @@ bool GUI<int>::ParseColor(const CStrW& Value, CColor &Output, float DefaultAlpha
 	// First, check our database in g_GUI for pre-defined colors
 	//  If we find anything, we'll ignore DefaultAlpha
 	// If it fails, it won't do anything with Output
-	if (g_GUI->GetPreDefinedColor(Value, Output))
+	if (g_GUI->GetPreDefinedColor(Value.ToUTF8(), Output))
 		return true;
 
-	return Output.ParseString(Value, DefaultAlpha);
+	return Output.ParseString(Value.ToUTF8(), DefaultAlpha);
 }
 
 
@@ -111,10 +109,10 @@ bool __ParseString<CColor>(const CStrW& Value, CColor &Output)
 {
 	// First, check our database in g_GUI for pre-defined colors
 	// If it fails, it won't do anything with Output
-	if (g_GUI->GetPreDefinedColor(Value, Output))
+	if (g_GUI->GetPreDefinedColor(Value.ToUTF8(), Output))
 		return true;
 
-	return Output.ParseString(Value, 255.f);
+	return Output.ParseString(Value.ToUTF8(), 255.f);
 }
 
 template <>
@@ -123,10 +121,8 @@ bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_$value_$value_"));
 
-	std::string str = CStr(Value);
-
 	CParserLine line;
-	line.ParseString(parser, str);
+	line.ParseString(parser, Value.ToUTF8());
 	if (!line.m_ParseOK)
 	{
 		// Parsing failed
@@ -161,7 +157,7 @@ bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
 	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_"));
 
 	CParserLine line;
-	line.ParseString(parser, CStr(Value));
+	line.ParseString(parser, Value.ToUTF8());
 	if (!line.m_ParseOK)
 		return false;
 
@@ -224,7 +220,7 @@ template <>
 bool __ParseString<CStr>(const CStrW& Value, CStr& Output)
 {
 	// Do very little.
-	Output = Value;
+	Output = Value.ToUTF8();
 	return true;
 }
 
@@ -240,7 +236,7 @@ bool __ParseString<CStrW>(const CStrW& Value, CStrW& Output)
 template <>
 bool __ParseString<CGUISpriteInstance>(const CStrW& Value, CGUISpriteInstance &Output)
 {
-	Output = Value;
+	Output = CGUISpriteInstance(Value.ToUTF8());
 	return true;
 }
 

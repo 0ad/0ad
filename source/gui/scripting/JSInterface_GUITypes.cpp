@@ -97,9 +97,9 @@ JSBool JSI_GUISize::construct(JSContext* cx, uintN argc, jsval* vp)
 CStr ToPercentString(double pix, double per)
 {
 	if (per == 0)
-		return CStr(pix);
+		return CStr::FromDouble(pix);
 	else
-		return CStr(per)+CStr("%")+( pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr(pix) : CStr(pix) );
+		return CStr::FromDouble(per)+"%"+( pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr::FromDouble(pix) : CStr::FromDouble(pix) );
 }
 
 JSBool JSI_GUISize::toString(JSContext* cx, uintN argc, jsval* vp)

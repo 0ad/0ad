@@ -85,7 +85,7 @@ void CFilePacker::PackString(const CStr& str)
 {
 	const size_t length = str.length();
 	PackSize(length);
-	PackRaw((const char*)str, length);
+	PackRaw(str.c_str(), length);
 }
 
 

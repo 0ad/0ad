@@ -19,6 +19,7 @@
 
 #include "ParamNode.h"
 
+#include "lib/utf8.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
@@ -74,7 +75,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	ResetScriptVal();
 
 	std::string name = xmb.GetElementString(element.GetNodeName()); // TODO: is GetElementString inefficient?
-	utf16string value = element.GetText();
+	CStrW value = element.GetText().FromUTF8();
 
 	bool hasSetValue = false;
 
@@ -98,13 +99,12 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 			else if (attr.Name == at_datatype && std::wstring(attr.Value.begin(), attr.Value.end()) == L"tokens")
 			{
 				CParamNode& node = m_Childs[name];
-				std::wstring newValue(value.begin(), value.end());
 
 				// Split into tokens
 				std::vector<std::wstring> oldTokens;
 				std::vector<std::wstring> newTokens;
 				boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space());
-				boost::algorithm::split(newTokens, newValue, boost::algorithm::is_space());
+				boost::algorithm::split(newTokens, value, boost::algorithm::is_space());
 
 				// Delete empty tokens
 				oldTokens.erase(std::remove_if(oldTokens.begin(), oldTokens.end(), std::mem_fun_ref(&std::wstring::empty)), oldTokens.end());
@@ -131,7 +131,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	// Add this element as a child node
 	CParamNode& node = m_Childs[name];
 	if (!hasSetValue)
-		node.m_Value = std::wstring(value.begin(), value.end());
+		node.m_Value = value;
 
 	// Recurse through the element's children
 	XERO_ITER_EL(element, child)
@@ -146,8 +146,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 		if (attr.Name == at_replace) continue;
 		// Add any others
 		std::string attrName = xmb.GetAttributeString(attr.Name);
-		std::wstring attrValue(attr.Value.begin(), attr.Value.end());
-		node.m_Childs["@" + attrName].m_Value = attrValue;
+		node.m_Childs["@" + attrName].m_Value = attr.Value.FromUTF8();
 	}
 }
 
@@ -184,9 +183,9 @@ const std::wstring& CParamNode::ToString() const
 	return m_Value;
 }
 
-const std::string CParamNode::ToASCIIString() const
+const std::string CParamNode::ToUTF8() const
 {
-	return CStr8(m_Value);
+	return utf8_from_wstring(m_Value);
 }
 
 int CParamNode::ToInt() const

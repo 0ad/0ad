@@ -318,7 +318,7 @@ public:
 	 *		  it avoids duplicates.
 	 */
 	void GenerateTextCall(SFeedback &Feedback,
-						  const CStr& DefaultFont,
+						  const CStrW& DefaultFont,
 						  const int &from, const int &to,
 						  const bool FirstLine,
 						  const IGUIObject *pObject=NULL) const;
