@@ -95,8 +95,10 @@ protected:
 	 */
 	virtual InReaction ManuallyHandleEvent(const SDL_Event_* ev);
 
-//    void InsertMessage(const wchar_t* szMessage, ...);
-//	void InsertChar(const int szChar, const wchar_t cooked);
+	/**
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	virtual void UpdateCachedSize();
 
 	/**
 	 * Draws the Text

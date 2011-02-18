@@ -485,10 +485,10 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 			 Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
 		{		
-			GetScrollBar(0).SetX( m_CachedActualSize.right );
-			GetScrollBar(0).SetY( m_CachedActualSize.top );
-			GetScrollBar(0).SetZ( GetBufferedZ() );
-			GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
+			GetScrollBar(0).SetX(m_CachedActualSize.right);
+			GetScrollBar(0).SetY(m_CachedActualSize.top);
+			GetScrollBar(0).SetZ(GetBufferedZ());
+			GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
 		}
 
 		// Update scrollbar
@@ -497,7 +497,7 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 			CStr scrollbar_style;
 			GUI<CStr>::GetSetting(this, Message.value, scrollbar_style);
 
-			GetScrollBar(0).SetScrollBarStyle( scrollbar_style );
+			GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
 		}
 
 		if (Message.value == CStr("size") || 
@@ -630,6 +630,24 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 
 	default:
 		break;
+	}
+}
+
+void CInput::UpdateCachedSize()
+{
+	// If an ancestor's size changed, this will let us intercept the change and
+	// update our scrollbar positions
+
+	IGUIObject::UpdateCachedSize();
+
+	bool scrollbar;
+	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	if (scrollbar)
+	{
+		GetScrollBar(0).SetX(m_CachedActualSize.right);
+		GetScrollBar(0).SetY(m_CachedActualSize.top);
+		GetScrollBar(0).SetZ(GetBufferedZ());
+		GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	}
 }
 
@@ -1400,15 +1418,15 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	}
 
 	// add the final row (even if empty)
-	m_CharacterPositions.insert( current_line, row );
+	m_CharacterPositions.insert(current_line, row);
 
 	bool scrollbar;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 	// Update scollbar
 	if (scrollbar)
 	{
-		GetScrollBar(0).SetScrollRange( m_CharacterPositions.size() * font.GetLineSpacing() + buffer_zone*2.f );
-		GetScrollBar(0).SetScrollSpace( m_CachedActualSize.GetHeight() );
+		GetScrollBar(0).SetScrollRange(m_CharacterPositions.size() * font.GetLineSpacing() + buffer_zone*2.f);
+		GetScrollBar(0).SetScrollSpace(m_CachedActualSize.GetHeight());
 	}
 }
 

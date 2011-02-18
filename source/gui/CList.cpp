@@ -154,9 +154,6 @@ void CList::HandleMessage(const SGUIMessage &Message)
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:
-		bool scrollbar;
-		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-
 		if (Message.value == "list")
 		{
 			SetupText();
