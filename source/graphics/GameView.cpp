@@ -59,7 +59,7 @@
 extern int g_xres, g_yres;
 
 const float CGameView::defaultFOV = DEGTORAD(20.f);
-const float CGameView::defaultNear = 4.f;
+const float CGameView::defaultNear = 16.f;
 const float CGameView::defaultFar = 4096.f;
 const float CGameView::defaultCullFOV = CGameView::defaultFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum
 const float CGameView::cameraPivotMargin = -20.0f;
