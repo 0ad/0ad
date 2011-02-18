@@ -52,7 +52,7 @@ CInput::CInput() : m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(fals
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_selectarea");
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CColor,				"textcolor_selected");
-	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
 	// Add scroll-bar

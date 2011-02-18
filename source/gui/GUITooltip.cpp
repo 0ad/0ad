@@ -90,8 +90,8 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 		if (GUI<CStr>::GetSetting(obj, "_icon_tooltip_style", style) == PSRETURN_OK)
 		{
 			// Check if icon tooltip text exists
-			CStr text;
-			if (GUI<CStr>::GetSetting(obj, "_icon_tooltip", text) == PSRETURN_OK)
+			CStrW text;
+			if (GUI<CStrW>::GetSetting(obj, "_icon_tooltip", text) == PSRETURN_OK)
 			{
 				if (text.empty())
 				{
@@ -113,8 +113,8 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 	else if (obj && obj->SettingExists("tooltip_style")
 		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PSRETURN_OK)
 	{
-		CStr text;
-		if (GUI<CStr>::GetSetting(obj, "tooltip", text) == PSRETURN_OK)
+		CStrW text;
+		if (GUI<CStrW>::GetSetting(obj, "tooltip", text) == PSRETURN_OK)
 		{
 			if (text.empty())
 			{

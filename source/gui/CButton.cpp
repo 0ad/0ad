@@ -45,7 +45,7 @@ CButton::CButton()
 	AddSetting(GUIST_CColor,				"textcolor_over");
 	AddSetting(GUIST_CColor,				"textcolor_pressed");
 	AddSetting(GUIST_CColor,				"textcolor_disabled");
-	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
 	// Add text

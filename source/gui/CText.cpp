@@ -44,11 +44,11 @@ CText::CText()
 	AddSetting(GUIST_EAlign,				"text_align");
 	AddSetting(GUIST_EVAlign,				"text_valign");
 	AddSetting(GUIST_CColor,				"textcolor");
-	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
-	//Private settings
-	AddSetting(GUIST_CStr,					"_icon_tooltip");
+	// Private settings
+	AddSetting(GUIST_CStrW,					"_icon_tooltip");
 	AddSetting(GUIST_CStr,					"_icon_tooltip_style");
 
 	//GUI<bool>::SetSetting(this, "ghost", true);

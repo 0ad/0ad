@@ -47,7 +47,7 @@ CList::CList()
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CColor,				"textcolor_selected");
 	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
-	AddSetting(GUIST_CStr,					"tooltip");
+	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 	// Each list item has both a name (in 'list') and an associated data string (in 'list_data')
 	AddSetting(GUIST_CGUIList,				"list");

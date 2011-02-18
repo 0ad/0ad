@@ -55,7 +55,7 @@ CMiniMap::CMiniMap() :
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_bool,		"circular");
-	AddSetting(GUIST_CStr,		"tooltip");
+	AddSetting(GUIST_CStrW,		"tooltip");
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;
 	m_Hovering = false;
