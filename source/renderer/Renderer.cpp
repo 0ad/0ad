@@ -820,21 +820,30 @@ void CRenderer::RenderShadowMap()
 	glCullFace(GL_FRONT);
 
 	if (m->shadow->GetUseDepthTexture())
+	{
+		PROFILE("render patches");
 		m->terrainRenderer->RenderPatches();
+	}
 
 	glCullFace(GL_BACK);
 
 	// Render models that aren't closed
 	glDisable(GL_CULL_FACE);
 
-	m->Model.Normal->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	if (m->Model.Normal != m->Model.NormalInstancing)
-		m->Model.NormalInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	m->Model.Player->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
-	if (m->Model.Player != m->Model.PlayerInstancing)
-		m->Model.PlayerInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	{
+		PROFILE("render models");
+		m->Model.Normal->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+		if (m->Model.Normal != m->Model.NormalInstancing)
+			m->Model.NormalInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+		m->Model.Player->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+		if (m->Model.Player != m->Model.PlayerInstancing)
+			m->Model.PlayerInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+	}
 
-	m->Model.Transp->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
+	{
+		PROFILE("render transparent models");
+		m->Model.Transp->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
+	}
 
 	glEnable(GL_CULL_FACE);
 

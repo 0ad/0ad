@@ -24,6 +24,7 @@
 #include "lib/bits.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 #include "graphics/LightEnv.h"
 
@@ -337,8 +338,6 @@ void ShadowMapInternals::CreateTexture()
 	glGenTextures(1, &Texture);
 	g_Renderer.BindTexture(0, Texture);
 
-	int size = Width*Height;
-
 	if (UseDepthTexture)
 	{
 		GLenum format;
@@ -351,11 +350,7 @@ void ShadowMapInternals::CreateTexture()
 		default: format = GL_DEPTH_COMPONENT; break;
 		}
 
-		float* buf = new float[size];
-		for (int i = 0; i < size; i++)
-			buf[i] = 1.0;
-		glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, buf);
-		delete[] buf;
+		glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
@@ -363,11 +358,7 @@ void ShadowMapInternals::CreateTexture()
 	}
 	else
 	{
-		u32* buf = new u32[size];
-		for (int i = 0; i < size; i++)
-			buf[i] = 0x00ffffff;
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE8, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buf);
-		delete[] buf;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE8, Width, Height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, NULL);
 	}
 
 	// set texture parameters
@@ -418,6 +409,7 @@ void ShadowMap::BeginRender()
 
 	if (m->Framebuffer)
 	{
+		PROFILE("bind framebuffer");
 		glBindTexture(GL_TEXTURE_2D, 0);
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m->Framebuffer);
 	}
@@ -425,11 +417,13 @@ void ShadowMap::BeginRender()
 	// clear buffers
 	if (m->UseDepthTexture)
 	{
+		PROFILE("clear depth texture");
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glColorMask(0,0,0,0);
 	}
 	else
 	{
+		PROFILE("clear shadow texture");
 		glClearColor(1,1,1,0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
@@ -459,12 +453,14 @@ void ShadowMap::EndRender()
 	// copy result into shadow map texture
 	if (m->Framebuffer)
 	{
+		PROFILE("unbind framebuffer");
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	}
 	else
 	{
 		if (!g_Renderer.GetDisableCopyShadow())
 		{
+			PROFILE("copy shadow texture");
 			g_Renderer.BindTexture(0, m->Texture);
 			glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, m->EffectiveWidth, m->EffectiveHeight);
 		}
