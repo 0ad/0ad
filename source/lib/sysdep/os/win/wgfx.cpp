@@ -28,7 +28,7 @@
 #include "lib/sysdep/gfx.h"
 
 #include "lib/sysdep/os/win/wdll_ver.h"
-#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wmi.h"
 
 #if MSC_VERSION
@@ -132,7 +132,11 @@ static LibError win_get_gfx_drv_ver()
 		DWORD set_name_len = ARRAY_SIZE(set_name);
 		const LONG err = RegEnumKeyExW(hkOglDrivers, i, set_name, &set_name_len, 0, 0,0, 0);
 		if(err == ERROR_NO_MORE_ITEMS)
+		{
+			if(i == 0)
+				return ERR::NO_SYS;	// NOWARN (ATI and NVidia don't create sub-keys on Windows 7)
 			break;
+		}
 		debug_assert(err == ERROR_SUCCESS);
 
 		HKEY hkSet;
@@ -170,13 +174,59 @@ static LibError win_get_gfx_drv_ver()
 }
 
 
+static wchar_t* GfxDriverName()
+{
+	if(!wcsncmp(gfx_card, L"NVIDIA", 6))
+	{
+		if(wutil_IsWow64())
+		{
+#if ARCH_AMD64
+			return L"nvoglv64.dll";
+#else
+			return L"nvoglv32.dll";
+#endif
+		}
+		else
+			return L"nvoglnt.dll";
+	}
+	else if(!wcsncmp(gfx_card, L"ATI", 3))
+	{
+		return L"atioglxx.dll";
+	}
+	else if(!wcsncmp(gfx_card, L"Intel", 5))
+	{
+		return L"igxpdv32.dll";
+	}
+	else
+	{
+		return 0;	// unknown
+	}
+}
+
+
 LibError win_get_gfx_info()
 {
-	LibError err1 = win_get_gfx_card();
-	LibError err2 = win_get_gfx_drv_ver();
+	LibError errCard = win_get_gfx_card();
+	LibError errDriver = win_get_gfx_drv_ver();
+
+	// if we know the card but not driver (this happens on Windows 7), we can retrieve the version of known DLLs
+	if(errCard == INFO::OK && errDriver != INFO::OK)
+	{
+		const wchar_t* driverName = GfxDriverName();
+		if(driverName)
+		{
+			std::wstring versionList;
+			wdll_ver_Append(driverName, versionList);
+			const size_t idxL = versionList.find_first_of('(');
+			const size_t idxR = versionList.find_last_of(')');
+			debug_assert(idxL != std::wstring::npos && idxR != std::wstring::npos);
+			wcsncpy_s(gfx_drv_ver, versionList.c_str()+idxL+1, idxR-idxL-1);
+			errDriver = INFO::OK;
+		}
+	}
 
 	// don't exit before trying both
-	RETURN_ERR(err1);
-	RETURN_ERR(err2);
+	RETURN_ERR(errCard);
+	RETURN_ERR(errDriver);
 	return INFO::OK;
 }
