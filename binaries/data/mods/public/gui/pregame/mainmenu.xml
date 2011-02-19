@@ -125,7 +125,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			size="51.8554688% 22.9166667% 68.359375% 43.2291667%"
 			sprite_over="pgSinglePlayerOver"
 			sprite_disabled="pgSinglePlayerDisabled"
-			tooltip="Click here to start a new single player game. (A computer opponent is available for testing purposes, but cannot actually play the game.)"
+			tooltip="Click here to start a new single player game. (A very basic computer opponent is available for testing purposes.)"
 		>
 			<action on="Press"><![CDATA[
 				// Open Session Setup window.
@@ -291,7 +291,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 				style="userReportText"
 >[font="serif-bold-16"]Help improve 0 A.D.![/font]
 
-You can automatically send us anonymous feedback that will help us fix bugs improve performance and compatibility.
+You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.
 			</object>
 			<object type="button" style="wheatButton" size="4 100%-36 150 100%-4">
 				[font="serif-bold-16"]Enable feedback
