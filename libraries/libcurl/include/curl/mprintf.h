@@ -20,7 +20,6 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  *
- * $Id: mprintf.h,v 1.16 2008-05-20 10:21:50 patrickm Exp $
  ***************************************************************************/
 
 #include <stdarg.h>

@@ -137,9 +137,8 @@ extern_lib_defs = {
 		dbg_suffix = "",
 	},
 	libcurl = {
-		win_names  = { "curllib" },
+		win_names  = { "libcurl" },
 		unix_names = { "curl" },
-		dbg_suffix = "",
 	},
 	libjpg = {
 		win_names  = { "jpeg-6b" },
