@@ -1035,7 +1035,7 @@ bool CGUI::GetPreDefinedColor(const CStr& name, CColor &Output)
 /**
  * @callgraph
  */
-void CGUI::LoadXmlFile(const VfsPath& Filename, std::set<VfsPath>& Paths)
+void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& Paths)
 {
 	Paths.insert(Filename);
 
@@ -1092,7 +1092,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, std::set<VfsPath>& Paths)
 //	XML Reading Xeromyces Specific Sub-Routines
 //===================================================================
 
-void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths)
+void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths)
 {
 	int el_script = pFile->GetElementID("script");
 
@@ -1182,7 +1182,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 	}
 }
 
-void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, std::set<VfsPath>& Paths)
+void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths)
 {
 	debug_assert(pParent);
 	int i;
@@ -1422,7 +1422,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 }
 
-void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths)
+void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, boost::unordered_set<VfsPath>& Paths)
 {
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
@@ -1448,7 +1448,7 @@ void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 }
 
-void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths)
+void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths)
 {
 	// Check for a 'file' parameter
 	CStrW file (Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("file") ).FromUTF8());

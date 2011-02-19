@@ -23,6 +23,8 @@
 #ifndef INCLUDED_VFS_PATH
 #define INCLUDED_VFS_PATH
 
+#include <boost/functional/hash.hpp>
+
 struct VfsPathTraits;
 
 /**
@@ -42,6 +44,8 @@ struct VfsPathTraits;
 typedef fs::basic_path<std::wstring, VfsPathTraits> VfsPath;
 
 typedef std::vector<VfsPath> VfsPaths;
+
+std::size_t hash_value(VfsPath const& b);
 
 struct VfsPathTraits
 {

@@ -121,6 +121,8 @@ class CTextureProperties
 {
 	friend class CTextureManagerImpl;
 	friend struct TextureCacheCmp;
+	friend struct TPequal_to;
+	friend struct TPhash;
 
 public:
 	/**
@@ -180,6 +182,8 @@ class CTexture
 {
 	friend class CTextureManagerImpl;
 	friend struct TextureCacheCmp;
+	friend struct TPequal_to;
+	friend struct TPhash;
 
 	// Only the texture manager can create these
 	explicit CTexture(Handle handle, const CTextureProperties& props, CTextureManagerImpl* textureManager);
@@ -187,6 +191,7 @@ class CTexture
 	NONCOPYABLE(CTexture);
 
 public:
+
 	~CTexture();
 
 	/**

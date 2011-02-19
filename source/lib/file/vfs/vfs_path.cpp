@@ -22,3 +22,13 @@
 
 #include "precompiled.h"
 #include "lib/file/vfs/vfs_path.h"
+
+#include <iostream>
+#include <string>
+
+std::size_t hash_value(VfsPath const& b)
+{
+	boost::hash<std::wstring> hasher;
+	return hasher(b.string());
+}
+

@@ -18,6 +18,8 @@
 #ifndef INCLUDED_GUIMANAGER
 #define INCLUDED_GUIMANAGER
 
+#include <boost/unordered_set.hpp>
+
 #include "lib/input.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
@@ -136,7 +138,7 @@ private:
 	struct SGUIPage
 	{
 		CStrW name;
-		std::set<VfsPath> inputs; // for hotloading
+		boost::unordered_set<VfsPath> inputs; // for hotloading
 
 		JSContext* cx;
 		CScriptValRooted initData; // data to be passed to the init() function

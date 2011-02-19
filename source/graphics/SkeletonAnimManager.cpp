@@ -41,7 +41,7 @@ CSkeletonAnimManager::CSkeletonAnimManager(CColladaManager& colladaManager)
 // CSkeletonAnimManager destructor
 CSkeletonAnimManager::~CSkeletonAnimManager()
 {
-	typedef std::map<VfsPath,CSkeletonAnimDef*>::iterator Iter;
+	typedef boost::unordered_map<VfsPath,CSkeletonAnimDef*>::iterator Iter;
 	for (Iter i = m_Animations.begin(); i != m_Animations.end(); ++i)
 		delete i->second;
 }
@@ -54,7 +54,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 	VfsPath name = fs::change_extension(pathname, L"");
 
 	// Find if it's already been loaded
-	std::map<VfsPath, CSkeletonAnimDef*>::iterator iter = m_Animations.find(name);
+	boost::unordered_map<VfsPath, CSkeletonAnimDef*>::iterator iter = m_Animations.find(name);
 	if (iter != m_Animations.end())
 		return iter->second;
 

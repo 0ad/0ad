@@ -31,41 +31,43 @@
 #include "ps/Filesystem.h"
 
 #include <iomanip>
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
+#include <boost/functional/hash.hpp>
 
-// Comparison functor that operates over texture properties, or
-// over the properties of a CTexturePtr (ignoring the mutable state like Handle).
-struct TextureCacheCmp
+struct TPhash
+	 : std::unary_function<CTextureProperties, std::size_t>,
+	 std::unary_function<CTexturePtr, std::size_t>
 {
-	bool operator()(const CTexturePtr& a, const CTexturePtr& b) const
+	std::size_t operator()(CTextureProperties const& a) const
+	{
+		std::size_t seed = 0;
+		boost::hash_combine(seed, a.m_Path.string());
+		boost::hash_combine(seed, a.m_Filter);
+		boost::hash_combine(seed, a.m_Wrap);
+		boost::hash_combine(seed, a.m_Aniso);
+		return seed;
+	}
+	std::size_t operator()(CTexturePtr const& a) const
+	{
+		return (*this)(a->m_Properties);
+	}
+};
+struct TPequal_to
+	: std::binary_function<CTextureProperties, CTextureProperties, bool>,
+	std::binary_function<CTexturePtr, CTexturePtr, bool>
+{	
+	bool operator()(CTextureProperties const& a, CTextureProperties const& b) const
+	{
+		return a.m_Path == b.m_Path && a.m_Filter == b.m_Filter
+			&& a.m_Wrap == b.m_Wrap && a.m_Aniso == b.m_Aniso;
+	}
+	bool operator()(CTexturePtr const& a, CTexturePtr const& b) const
 	{
 		return (*this)(a->m_Properties, b->m_Properties);
 	}
-
-	bool operator()(const CTextureProperties& a, const CTextureProperties& b) const
-	{
-		if (a.m_Path < b.m_Path)
-			return true;
-		if (b.m_Path < a.m_Path)
-			return false;
-
-		if (a.m_Filter < b.m_Filter)
-			return true;
-		if (b.m_Filter < a.m_Filter)
-			return false;
-
-		if (a.m_Wrap < b.m_Wrap)
-			return true;
-		if (b.m_Wrap < a.m_Wrap)
-			return false;
-
-		if (a.m_Aniso < b.m_Aniso)
-			return true;
-		if (b.m_Aniso < a.m_Aniso)
-			return false;
-
-		return false;
-	}
 };
+
 
 class CTextureManagerImpl
 {
@@ -479,20 +481,19 @@ private:
 	CTexturePtr m_ErrorTexture;
 
 	// Cache of all loaded textures
-	typedef std::set<CTexturePtr, TextureCacheCmp> TextureCache;
+	typedef boost::unordered_set<CTexturePtr, TPhash, TPequal_to > TextureCache;
 	TextureCache m_TextureCache;
 	// TODO: we ought to expire unused textures from the cache eventually
 
 	// Store the set of textures that need to be reloaded when the given file
 	// (a source file or settings.xml) is modified
-	typedef std::map<VfsPath, std::set<boost::weak_ptr<CTexture> > > HotloadFilesMap;
+	typedef boost::unordered_map<VfsPath, std::set<boost::weak_ptr<CTexture> > > HotloadFilesMap;
 	HotloadFilesMap m_HotloadFiles;
 
 	// Cache for the conversion settings files
-	typedef std::map<VfsPath, shared_ptr<CTextureConverter::SettingsFile> > SettingsFilesMap;
+	typedef boost::unordered_map<VfsPath, shared_ptr<CTextureConverter::SettingsFile> > SettingsFilesMap;
 	SettingsFilesMap m_SettingsFiles;
 };
-
 
 CTexture::CTexture(Handle handle, const CTextureProperties& props, CTextureManagerImpl* textureManager) :
 	m_Handle(handle), m_BaseColour(0), m_State(UNLOADED), m_Properties(props), m_TextureManager(textureManager)

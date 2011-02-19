@@ -32,6 +32,7 @@
 #include <list>
 #include <map>
 #include <queue> // std::priority_queue
+#include <boost/unordered_map.hpp>
 
 /*
 Cache for items of variable size and value/"cost".
@@ -306,10 +307,7 @@ again:
 	}
 
 protected:
-	// note: hash_map is probably better in terms of locality
-	// (relevant when iterating over all items in remove_least_valuable),
-	// but would require a hash comparator for VfsPath.
-	class Map : public std::map<Key, Entry>
+	class Map : public boost::unordered_map<Key, Entry>
 	{
 	public:
 		static Entry& entry_from_it(typename Map::iterator it) { return it->second; }

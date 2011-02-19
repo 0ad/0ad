@@ -47,7 +47,7 @@ CGUI
 
 #include "ps/XML/Xeromyces.h"
 
-#include <set>
+#include <boost/unordered_set.hpp>
 
 //--------------------------------------------------------
 //  Macros
@@ -182,7 +182,7 @@ public:
 	 * @param Filename Name of file
 	 * @param Paths Set of paths; all XML and JS files loaded will be added to this
 	 */
-	void LoadXmlFile(const VfsPath& Filename, std::set<VfsPath>& Paths);
+	void LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Checks if object exists and return true or false accordingly
@@ -387,7 +387,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths);
+	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the root element \<sprites\> (the DOMElement).
@@ -446,14 +446,14 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, std::set<VfsPath>& Paths);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element \<repeat\>, which repeats its child \<object\>s
 	 * 'count' times, replacing the string "[n]" in its descendants' names
 	 * with "[0]", "[1]", etc.
 	 */
-	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths);
+	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, boost::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element \<script\> (the XMBElement) and executes
@@ -466,7 +466,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths);
+	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::unordered_set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element \<sprite\> (the XMBElement) and stores the
