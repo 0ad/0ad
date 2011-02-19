@@ -100,7 +100,12 @@ public:
 	/**
 	 * Get the current map settings as a UTF-8 JSON string.
 	 */
-	std::string GetMapSettings();
+	std::string GetMapSettingsString();
+
+	/**
+	 * Get the current map settings.
+	 */
+	CScriptVal GetMapSettings();
 
 	/**
 	 * Reload any scripts that were loaded from the given filename.

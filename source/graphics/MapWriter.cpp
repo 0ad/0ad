@@ -279,7 +279,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 		if (pSimulation2)
 		{
-			std::string settings = pSimulation2->GetMapSettings();
+			std::string settings = pSimulation2->GetMapSettingsString();
 			if (!settings.empty())
 			{
 				XML_Element("ScriptSettings");

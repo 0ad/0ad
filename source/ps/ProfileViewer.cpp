@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/graphics/unifont.h"
 #include "renderer/Renderer.h"
+#include "scriptinterface/ScriptInterface.h"
 
 extern int g_xres, g_yres;
 
@@ -429,6 +430,47 @@ namespace
 		const WriteTable& operator=(const WriteTable&);
 	};
 
+	struct DumpTable
+	{
+		ScriptInterface& scriptInterface;
+		CScriptVal root;
+		DumpTable(ScriptInterface& scriptInterface, CScriptVal root) :
+			scriptInterface(scriptInterface), root(root)
+		{
+		}
+
+		void operator() (AbstractProfileTable* table)
+		{
+			scriptInterface.SetProperty(root.get(), table->GetTitle().c_str(), DumpRows(table));
+		}
+
+		CScriptVal DumpRows(AbstractProfileTable* table)
+		{
+			CScriptVal data;
+			scriptInterface.Eval("({})", data);
+
+			const std::vector<ProfileColumn>& columns = table->GetColumns();
+
+			for (size_t r = 0; r < table->GetNumberRows(); ++r)
+			{
+				CScriptVal row;
+				scriptInterface.Eval("({})", row);
+				scriptInterface.SetProperty(data.get(), table->GetCellText(r, 0).c_str(), row);
+
+				for (size_t c = 1; c < columns.size(); ++c)
+					scriptInterface.SetProperty(row.get(), columns[c].title.c_str(), table->GetCellText(r, c));
+
+				if (table->GetChild(r))
+					scriptInterface.SetProperty(row.get(), "children", DumpRows(table->GetChild(r)));
+			}
+
+			return data;
+		}
+
+	private:
+		const DumpTable& operator=(const DumpTable&);
+	};
+
 	bool SortByName(AbstractProfileTable* a, AbstractProfileTable* b)
 	{
 		return (a->GetName() < b->GetName());
@@ -465,6 +507,18 @@ void CProfileViewer::SaveToFile()
 
 	m->outputStream << "\n\n================================================================\n";
 	m->outputStream.flush();
+}
+
+CScriptVal CProfileViewer::SaveToJS(ScriptInterface& scriptInterface)
+{
+	CScriptVal root;
+	scriptInterface.Eval("({})", root);
+
+	std::vector<AbstractProfileTable*> tables = m->rootTables;
+	sort(tables.begin(), tables.end(), SortByName);
+	for_each(tables.begin(), tables.end(), DumpTable(scriptInterface, root));
+
+	return root;
 }
 
 void CProfileViewer::ShowTable(const CStr& table)

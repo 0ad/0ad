@@ -28,7 +28,7 @@
 #include "ps/ThreadUtil.h"
 
 #define PROFILE_AMORTIZE
-#define PROFILE_AMORTIZE_FRAMES 50
+#define PROFILE_AMORTIZE_FRAMES 30
 
 class CProfileManager;
 class CProfileNodeTable;

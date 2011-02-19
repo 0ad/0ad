@@ -419,9 +419,14 @@ void CSimulation2::SetMapSettings(const CScriptValRooted& settings)
 	m->m_MapSettings = settings;
 }
 
-std::string CSimulation2::GetMapSettings()
+std::string CSimulation2::GetMapSettingsString()
 {
 	return m->m_ComponentManager.GetScriptInterface().StringifyJSON(m->m_MapSettings.get());
+}
+
+CScriptVal CSimulation2::GetMapSettings()
+{
+	return m->m_MapSettings.get();
 }
 
 void CSimulation2::LoadPlayerSettings()

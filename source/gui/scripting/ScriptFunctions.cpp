@@ -36,6 +36,7 @@
 #include "ps/Game.h"
 #include "ps/Hotkey.h"
 #include "ps/Overlay.h"
+#include "ps/ProfileViewer.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
@@ -317,6 +318,18 @@ CScriptVal LoadMapSettings(void* cbdata, std::wstring pathname)
 	return reader.GetMapSettings(guiManager->GetScriptInterface()).get();
 }
 
+CScriptVal GetMapSettings(void* cbdata)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	if (!g_Game)
+		return CScriptVal();
+
+	return guiManager->GetScriptInterface().CloneValueFromOtherContext(
+		g_Game->GetSimulation2()->GetScriptInterface(),
+		g_Game->GetSimulation2()->GetMapSettings().get());
+}
+
 /**
  * Start / stop camera following mode
  * @param entityid unit id to follow. If zero, stop following mode
@@ -343,6 +356,12 @@ void DisplayErrorDialog(void* UNUSED(cbdata), std::wstring msg)
 	debug_DisplayError(msg.c_str(), DE_NO_DEBUG_INFO, NULL, NULL, NULL, 0, NULL, NULL);
 }
 
+CScriptVal GetProfilerState(void* cbdata)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	return g_ProfileViewer.SaveToJS(guiManager->GetScriptInterface());
+}
 
 
 bool IsUserReportEnabled(void* UNUSED(cbdata))
@@ -469,10 +488,12 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapSettings>("LoadMapSettings");
+	scriptInterface.RegisterFunction<CScriptVal, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
+	scriptInterface.RegisterFunction<CScriptVal, &GetProfilerState>("GetProfilerState");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");

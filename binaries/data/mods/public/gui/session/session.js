@@ -83,6 +83,23 @@ function init(initData, hotloadData)
 	getGUIObjectByName("civIcon").sprite = "stretched:"+g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
 	
 	onSimulationUpdate();
+
+	// Report the performance after 5 seconds (when we're still near
+	// the initial camera view) and a minute (when the profiler will
+	// have settled down if framerates as very low), to give some
+	// extremely rough indications of performance
+	setTimeout(function() { reportPerformance(5); }, 5000);
+	setTimeout(function() { reportPerformance(60); }, 60000);
+}
+
+function reportPerformance(time)
+{
+	var data = {
+		time: time,
+		map: Engine.GetMapSettings().Name,
+		profiler: Engine.GetProfilerState()
+	};
+	Engine.SubmitUserReport("profile", 1, JSON.stringify(data));
 }
 
 function leaveGame()
