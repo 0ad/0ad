@@ -121,6 +121,8 @@ bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
 // keep in sync with enum x86_x64_Cap!
 static u32 caps[4];
 
+static ModuleInitState capsInitState;
+
 static LibError InitCaps()
 {
 	x86_x64_CpuidRegs regs = { 0 };
@@ -142,8 +144,7 @@ static LibError InitCaps()
 
 bool x86_x64_cap(x86_x64_Cap cap)
 {
-	static ModuleInitState initState;
-	ModuleInit(&initState, InitCaps);
+	ModuleInit(&capsInitState, InitCaps);
 
 	const size_t index = cap >> 5;
 	const size_t bit = cap & 0x1F;
@@ -153,6 +154,16 @@ bool x86_x64_cap(x86_x64_Cap cap)
 		return false;
 	}
 	return IsBitSet(caps[index], bit);
+}
+
+void x86_x64_caps(u32* d0, u32* d1, u32* d2, u32* d3)
+{
+	ModuleInit(&capsInitState, InitCaps);
+
+	*d0 = caps[0];
+	*d1 = caps[1];
+	*d2 = caps[2];
+	*d3 = caps[3];
 }
 
 

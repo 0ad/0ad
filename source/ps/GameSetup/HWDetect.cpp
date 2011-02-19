@@ -26,6 +26,7 @@
 #include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
+#include "lib/sysdep/snd.h"
 #include "lib/sysdep/os_cpu.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -90,6 +91,9 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "gfx_drv_ver", std::wstring(gfx_drv_ver));
 	scriptInterface.SetProperty(settings.get(), "gfx_mem", gfx_mem);
 
+	scriptInterface.SetProperty(settings.get(), "snd_card", std::wstring(snd_card));
+	scriptInterface.SetProperty(settings.get(), "snd_drv_ver", std::wstring(snd_drv_ver));
+
 	ReportGLLimits(scriptInterface, settings);
 
 	scriptInterface.SetProperty(settings.get(), "video_xres", g_VideoMode.GetXRes());
@@ -109,8 +113,20 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "ram_total", (int)os_cpu_MemorySize());
 	scriptInterface.SetProperty(settings.get(), "ram_free", (int)os_cpu_MemoryAvailable());
 
+#if ARCH_X86_X64
+	scriptInterface.SetProperty(settings.get(), "x86_vendor", (int)x86_x64_Vendor());
+	scriptInterface.SetProperty(settings.get(), "x86_model", (int)x86_x64_Model());
+	scriptInterface.SetProperty(settings.get(), "x86_family", (int)x86_x64_Family());
+	u32 caps0, caps1, caps2, caps3;
+	x86_x64_caps(&caps0, &caps1, &caps2, &caps3);
+	scriptInterface.SetProperty(settings.get(), "x86_caps[0]", caps0);
+	scriptInterface.SetProperty(settings.get(), "x86_caps[1]", caps1);
+	scriptInterface.SetProperty(settings.get(), "x86_caps[2]", caps2);
+	scriptInterface.SetProperty(settings.get(), "x86_caps[3]", caps3);
+#endif
+
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 1, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 2, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 
@@ -156,6 +172,20 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	if (!c) c = ""; \
 	scriptInterface.SetProperty(settings.get(), "GL_" #id, std::string(c)); \
 	}  while (false)
+
+#define VERTEXPROGRAM(id) do { \
+	GLint i = -1; \
+	pglGetProgramivARB(GL_VERTEX_PROGRAM_ARB, GL_##id, &i); \
+	ogl_WarnIfError(); \
+	scriptInterface.SetProperty(settings.get(), "GL_VERTEX_PROGRAM_ARB.GL_" #id, i); \
+	} while (false)
+
+#define FRAGMENTPROGRAM(id) do { \
+	GLint i = -1; \
+	pglGetProgramivARB(GL_FRAGMENT_PROGRAM_ARB, GL_##id, &i); \
+	ogl_WarnIfError(); \
+	scriptInterface.SetProperty(settings.get(), "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, i); \
+	} while (false)
 
 #define BOOL(id) INTEGER(id)
 
@@ -236,7 +266,8 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	if (ogl_HaveExtension("GL_ARB_fragment_shader"))
 		INTEGER(MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB);
 
-	if (ogl_HaveExtension("GL_ARB_vertex_shader") || ogl_HaveExtension("GL_ARB_fragment_shader"))
+	if (ogl_HaveExtension("GL_ARB_vertex_shader") || ogl_HaveExtension("GL_ARB_fragment_shader") ||
+		ogl_HaveExtension("GL_ARB_vertex_program") || ogl_HaveExtension("GL_ARB_fragment_program"))
 	{
 		INTEGER(MAX_TEXTURE_IMAGE_UNITS_ARB);
 		INTEGER(MAX_TEXTURE_COORDS_ARB);
@@ -255,4 +286,76 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 
 	if (ogl_HaveExtension("GL_EXT_texture_filter_anisotropic"))
 		FLOAT(MAX_TEXTURE_MAX_ANISOTROPY_EXT);
+
+	if (ogl_HaveExtension("GL_ARB_vertex_program") || ogl_HaveExtension("GL_ARB_fragment_program"))
+	{
+		INTEGER(MAX_PROGRAM_MATRICES_ARB);
+		INTEGER(MAX_PROGRAM_MATRIX_STACK_DEPTH_ARB);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_vertex_program"))
+	{
+		VERTEXPROGRAM(MAX_PROGRAM_ENV_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_LOCAL_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_INSTRUCTIONS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_TEMPORARIES_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_ATTRIBS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_ADDRESS_REGISTERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_TEMPORARIES_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_PARAMETERS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_ATTRIBS_ARB);
+		VERTEXPROGRAM(MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB);
+
+		if (ogl_HaveExtension("GL_ARB_fragment_program"))
+		{
+			// The spec seems to say these should be supported, but Mesa complains
+			// about them so let's not bother
+			/*
+			VERTEXPROGRAM(MAX_PROGRAM_ALU_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_TEX_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_TEX_INDIRECTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB);
+			VERTEXPROGRAM(MAX_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB);
+			*/
+		}
+	}
+
+	if (ogl_HaveExtension("GL_ARB_fragment_program"))
+	{
+		FRAGMENTPROGRAM(MAX_PROGRAM_ENV_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_LOCAL_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_ALU_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_TEX_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_TEX_INDIRECTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_TEMPORARIES_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_ATTRIBS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_ALU_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_TEX_INDIRECTIONS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_TEMPORARIES_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_PARAMETERS_ARB);
+		FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_ATTRIBS_ARB);
+
+		if (ogl_HaveExtension("GL_ARB_vertex_program"))
+		{
+			FRAGMENTPROGRAM(MAX_PROGRAM_ADDRESS_REGISTERS_ARB);
+			FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB);
+		}
+	}
+
+	if (ogl_HaveExtension("GL_ARB_geometry_shader4"))
+	{
+		INTEGER(MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB);
+		INTEGER(MAX_GEOMETRY_OUTPUT_VERTICES_ARB);
+		INTEGER(MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB);
+		INTEGER(MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB);
+		INTEGER(MAX_GEOMETRY_VARYING_COMPONENTS_ARB);
+		INTEGER(MAX_VERTEX_VARYING_COMPONENTS_ARB);
+	}
 }

@@ -124,6 +124,7 @@ enum x86_x64_Cap
  **/
 LIB_API bool x86_x64_cap(x86_x64_Cap cap);
 
+LIB_API void x86_x64_caps(u32* d0, u32* d1, u32* d2, u32* d3);
 
 //-----------------------------------------------------------------------------
 // cache and TLB
