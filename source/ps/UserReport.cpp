@@ -438,8 +438,11 @@ private:
 		// responsive to shutdown requests even if the network is pretty slow
 		amount = std::min((size_t)1024, amount);
 
-		memcpy(bufptr, &self->m_RequestData[self->m_RequestDataOffset], amount);
-		self->m_RequestDataOffset += amount;
+		if(amount != 0)	// (avoids invalid operator[] call where index=size)
+		{
+			memcpy(bufptr, &self->m_RequestData[self->m_RequestDataOffset], amount);
+			self->m_RequestDataOffset += amount;
+		}
 
 		self->SetStatus("sending:" + CStr::FromDouble((double)self->m_RequestDataOffset / self->m_RequestData.size()));
 

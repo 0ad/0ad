@@ -45,8 +45,6 @@
 static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out_ver, size_t out_ver_len)
 {
 	WinScopedPreserveLastError s;	// GetFileVersion*, Ver*
-	WinScopedDisableWow64Redirection noRedirect;
-
 	const std::wstring modulePathname = modulePathname_.string();
 
 	// determine size of and allocate memory for version information.
@@ -58,7 +56,7 @@ static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out
 		// (necessary since GetFileVersionInfoSize doesn't SetLastError)
 		HMODULE hModule = LoadLibraryExW(modulePathname.c_str(), 0, LOAD_LIBRARY_AS_DATAFILE);
 		if(!hModule)
-			WARN_RETURN(ERR::FAIL);	// file not found
+			return ERR::FAIL;	// NOWARN (file not found - due to FS redirection?)
 		FreeLibrary(hModule);
 		return ERR::NOT_SUPPORTED;	// NOWARN (module apparently lacks version information)
 	}
@@ -98,11 +96,15 @@ void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list)
 		modulePathname = fs::change_extension(modulePathname, L".dll");
 	const std::wstring moduleName(modulePathname.leaf());
 
-	// read file version.
-	// (note: we can ignore the return value since the default
-	// text has already been set)
+	// read file version. try this with and without FS redirection since
+	// pathname might assume both.
 	wchar_t versionString[500] = L"unknown";	// enclosed in () below
-	(void)ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString));
+	if(ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString)) != INFO::OK)
+	{
+		WinScopedDisableWow64Redirection s;
+		// if this still fails, we'll at least write the default "unknown" version.
+		(void)ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString));
+	}
 
 	if(!list.empty())
 		list += L", ";
