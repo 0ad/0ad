@@ -111,6 +111,8 @@ it'd make much more sense to store UTF-8 on disk too
 # include <map>
 #endif
 
+#include "ps/CStr.h"
+
 // File headers, to make sure it doesn't try loading anything other than an XMB
 extern const char* HeaderMagicStr;
 extern const char* UnfinishedHeaderMagicStr;
