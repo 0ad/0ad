@@ -23,16 +23,13 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/wutsname.h"
 
-#include "lib/utf8.h"
-#include "lib/sysdep/os/win/wversion.h"
-
-#include "lib/sysdep/os/win/wposix/wposix_internal.h"
+#include "lib/sysdep/os/win/wutil.h"	// WinScopedPreserveLastError
+#include "lib/sysdep/os/win/wversion.h"	// wversion_Family
 
 
 int uname(struct utsname* un)
 {
-	static OSVERSIONINFOW vi;
-	vi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOW);
+	OSVERSIONINFOW vi = { sizeof(OSVERSIONINFOW) };
 	GetVersionExW(&vi);
 
 	// OS implementation name
@@ -43,22 +40,21 @@ int uname(struct utsname* un)
 	int sp;
 	if(swscanf_s(vs, L"Service Pack %d", &sp) == 1)
 		sprintf_s(un->release, ARRAY_SIZE(un->release), "SP %d", sp);
+	else
+		un->release[0] = '\0';
 
 	// version
 	sprintf_s(un->version, ARRAY_SIZE(un->version), "%ls.%lu", wversion_String(), vi.dwBuildNumber & 0xFFFF);
 
 	// node name
-	DWORD buf_size = sizeof(un->nodename);
-	DWORD last_err = GetLastError();
-	BOOL ok = GetComputerNameA(un->nodename, &buf_size);
-	// GetComputerName sets last error even on success - suppress.
-	if(ok)
-		SetLastError(last_err);
-	else
-		debug_assert(0);	// GetComputerName failed
+	{
+		WinScopedPreserveLastError s;	// GetComputerName
+		DWORD bufSize = sizeof(un->nodename);
+		WARN_IF_FALSE(GetComputerNameA(un->nodename, &bufSize));
+	}
 
 	// hardware type
-	static SYSTEM_INFO si;
+	SYSTEM_INFO si;
 	GetSystemInfo(&si);
 	if(si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
 		strcpy_s(un->machine, ARRAY_SIZE(un->machine), "AMD64");

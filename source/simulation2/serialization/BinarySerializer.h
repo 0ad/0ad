@@ -33,6 +33,7 @@
 template<typename T>
 class CSerializerStreamBuf : public std::streambuf
 {
+	NONCOPYABLE(CSerializerStreamBuf);
 	T& m_SerializerImpl;
 public:
 	CSerializerStreamBuf(T& impl) :

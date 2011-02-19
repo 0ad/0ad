@@ -50,14 +50,24 @@ typedef void VOID;
 typedef void* LPVOID;
 typedef int BOOL;
 typedef unsigned short USHORT;
+typedef int INT;
 typedef unsigned int UINT;
+typedef long LONG;
 typedef unsigned long DWORD;
 typedef int INT32;
 typedef __int64 INT64;
 typedef float FLOAT;
+typedef char CHAR;
 typedef const char* LPCSTR;
 typedef void* HANDLE;
 typedef int (*PROC)();
+struct RECT
+{
+	LONG left;
+	LONG top;
+	LONG right;
+	LONG bottom;
+};
 #define DECLARE_HANDLE(name) typedef HANDLE name
 DECLARE_HANDLE(HDC);
 DECLARE_HANDLE(HGLRC);
