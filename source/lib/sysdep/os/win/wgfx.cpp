@@ -93,12 +93,8 @@ static LibError win_get_gfx_card()
 
 
 // note: this implementation doesn't require OpenGL to be initialized.
-static LibError win_get_gfx_drv_ver()
+static LibError AppendDriverVersionsFromRegistry(std::wstring& versionList)
 {
-	// don't overwrite existing information
-	if(gfx_drv_ver[0] != '\0')
-		return INFO::SKIPPED;
-
 	// rationale:
 	// - we could easily determine the 2d driver via EnumDisplaySettings,
 	//   but we want to query the actual OpenGL driver. see
@@ -116,21 +112,19 @@ static LibError win_get_gfx_drv_ver()
 	//   gfx_card which one is correct; we thus avoid driver-specific
 	//   name checks and reporting incorrectly.
 
-	DWORD i;
-	wchar_t drv_name[MAX_PATH+1];
-	std::wstring versionList;
+	wchar_t dllName[MAX_PATH+1];
 
-	HKEY hkOglDrivers;
+	HKEY hkDrivers;
 	const wchar_t* key = L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
-	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkOglDrivers) != 0)
+	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkDrivers) != 0)
 		WARN_RETURN(ERR::FAIL);
 
-	// for each subkey (i.e. set of installed OpenGL drivers):
-	for(i = 0; ; i++)
+	// for each subkey (i.e. installed OpenGL driver):
+	for(DWORD i = 0; ; i++)
 	{
-		wchar_t set_name[32];
-		DWORD set_name_len = ARRAY_SIZE(set_name);
-		const LONG err = RegEnumKeyExW(hkOglDrivers, i, set_name, &set_name_len, 0, 0,0, 0);
+		wchar_t driverName[32];
+		DWORD driverNameLength = ARRAY_SIZE(driverName);
+		const LONG err = RegEnumKeyExW(hkDrivers, i, driverName, &driverNameLength, 0, 0, 0, 0);
 		if(err == ERROR_NO_MORE_ITEMS)
 		{
 			if(i == 0)
@@ -139,42 +133,41 @@ static LibError win_get_gfx_drv_ver()
 		}
 		debug_assert(err == ERROR_SUCCESS);
 
-		HKEY hkSet;
-		if(RegOpenKeyExW(hkOglDrivers, set_name, 0, KEY_QUERY_VALUE, &hkSet) == 0)
+		HKEY hkDriver;
+		if(RegOpenKeyExW(hkDrivers, driverName, 0, KEY_QUERY_VALUE, &hkDriver) == 0)
 		{
-			DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
-			if(RegQueryValueExW(hkSet, L"Dll", 0, 0, (LPBYTE)drv_name, &drv_name_len) == 0)
-				wdll_ver_Append(drv_name, versionList);
+			DWORD dllNameLength = ARRAY_SIZE(dllName)-5;	// for ".dll"
+			if(RegQueryValueExW(hkDriver, L"Dll", 0, 0, (LPBYTE)dllName, &dllNameLength) == 0)
+				wdll_ver_Append(dllName, versionList);
 
-			RegCloseKey(hkSet);
+			RegCloseKey(hkDriver);
 		}
 	}
 
 	// for each value:
 	// (some old drivers, e.g. S3 Super Savage, store their ICD name in a
 	// single REG_SZ value. we therefore include those as well.)
-	for(i = 0; ; i++)
+	for(DWORD i = 0; ; i++)
 	{
-		wchar_t value_name[100];	// we don't need this, but RegEnumValue fails otherwise.
-		DWORD value_name_len = ARRAY_SIZE(value_name);
+		wchar_t name[100];	// we don't need this, but RegEnumValue fails otherwise.
+		DWORD nameLength = ARRAY_SIZE(name);
 		DWORD type;
-		DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
-		const DWORD err = RegEnumValueW(hkOglDrivers, i, value_name, &value_name_len, 0, &type, (LPBYTE)drv_name, &drv_name_len);
+		DWORD dllNameLength = ARRAY_SIZE(dllName)-5;	// for ".dll"
+		const DWORD err = RegEnumValueW(hkDrivers, i, name, &nameLength, 0, &type, (LPBYTE)dllName, &dllNameLength);
 		if(err == ERROR_NO_MORE_ITEMS)
 			break;
 		debug_assert(err == ERROR_SUCCESS);
 		if(type == REG_SZ)
-			wdll_ver_Append(drv_name, versionList);
+			wdll_ver_Append(dllName, versionList);
 	}
 
-	RegCloseKey(hkOglDrivers);
+	RegCloseKey(hkDrivers);
 
-	wcscpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
 	return INFO::OK;
 }
 
 
-static wchar_t* GfxDriverName()
+static wchar_t* DllName()
 {
 	if(!wcsncmp(gfx_card, L"NVIDIA", 6))
 	{
@@ -204,29 +197,27 @@ static wchar_t* GfxDriverName()
 }
 
 
+static LibError AppendDriverVersionsFromDLL(std::wstring& versionList)
+{
+	const wchar_t* dllName = DllName();
+	if(!dllName)
+		WARN_RETURN(ERR::NOT_IMPLEMENTED);
+	wdll_ver_Append(dllName, versionList);
+	return INFO::OK;
+}
+
+
 LibError win_get_gfx_info()
 {
-	LibError errCard = win_get_gfx_card();
-	LibError errDriver = win_get_gfx_drv_ver();
+	LibError err = win_get_gfx_card();
 
-	// if we know the card but not driver (this happens on Windows 7), we can retrieve the version of known DLLs
-	if(errCard == INFO::OK && errDriver != INFO::OK)
+	std::wstring versionList;
+	if(AppendDriverVersionsFromRegistry(versionList) != INFO::OK)	// (fails on Windows 7)
 	{
-		const wchar_t* driverName = GfxDriverName();
-		if(driverName)
-		{
-			std::wstring versionList;
-			wdll_ver_Append(driverName, versionList);
-			const size_t idxL = versionList.find_first_of('(');
-			const size_t idxR = versionList.find_last_of(')');
-			debug_assert(idxL != std::wstring::npos && idxR != std::wstring::npos);
-			wcsncpy_s(gfx_drv_ver, versionList.c_str()+idxL+1, idxR-idxL-1);
-			errDriver = INFO::OK;
-		}
+		if(AppendDriverVersionsFromDLL(versionList) != INFO::OK)
+			versionList = L"(unknown)";
 	}
+	wcscpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
 
-	// don't exit before trying both
-	RETURN_ERR(errCard);
-	RETURN_ERR(errDriver);
-	return INFO::OK;
+	return err;
 }
