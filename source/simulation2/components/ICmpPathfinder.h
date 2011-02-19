@@ -24,6 +24,7 @@
 
 #include "maths/FixedVector2D.h"
 
+#include <map>
 #include <vector>
 
 class IObstructionTestFilter;
