@@ -220,8 +220,7 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	STRING(EXTENSIONS);
 	INTEGER(MAX_LIGHTS);
 	INTEGER(MAX_CLIP_PLANES);
-	if (ogl_HaveExtension("GL_ARB_imaging")) // only in imaging subset
-		INTEGER(MAX_COLOR_MATRIX_STACK_DEPTH);
+	// Skip MAX_COLOR_MATRIX_STACK_DEPTH (only in imaging subset)
 	INTEGER(MAX_MODELVIEW_STACK_DEPTH);
 	INTEGER(MAX_PROJECTION_STACK_DEPTH);
 	INTEGER(MAX_TEXTURE_STACK_DEPTH);
@@ -247,7 +246,7 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	FLOAT2(ALIASED_LINE_WIDTH_RANGE);
 	FLOAT2(SMOOTH_LINE_WIDTH_RANGE);
 	FLOAT(SMOOTH_LINE_WIDTH_GRANULARITY);
-	// Skip MAX_CONVOLUTION_WIDTH, MAX_CONVOLUTION_HEIGHT since they'd need GetConvolutionParameteriv
+	// Skip MAX_CONVOLUTION_WIDTH, MAX_CONVOLUTION_HEIGHT (only in imaging subset)
 	INTEGER(MAX_ELEMENTS_INDICES);
 	INTEGER(MAX_ELEMENTS_VERTICES);
 	INTEGER(MAX_TEXTURE_UNITS);
@@ -365,8 +364,8 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 
 		if (ogl_HaveExtension("GL_ARB_fragment_program"))
 		{
-			// The spec seems to say these should be supported, but Mesa complains
-			// about them so let's not bother
+			// The spec seems to say these should be supported, but
+			// Mesa complains about them so let's not bother
 			/*
 			VERTEXPROGRAM(MAX_PROGRAM_ALU_INSTRUCTIONS_ARB);
 			VERTEXPROGRAM(MAX_PROGRAM_TEX_INSTRUCTIONS_ARB);
@@ -399,8 +398,12 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 
 		if (ogl_HaveExtension("GL_ARB_vertex_program"))
 		{
+			// The spec seems to say these should be supported, but
+			// Intel drivers on Windows complain about them so let's not bother
+			/*
 			FRAGMENTPROGRAM(MAX_PROGRAM_ADDRESS_REGISTERS_ARB);
 			FRAGMENTPROGRAM(MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB);
+			*/
 		}
 	}
 
