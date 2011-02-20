@@ -26,8 +26,12 @@
 #include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
-#include "lib/sysdep/snd.h"
+#include "lib/sysdep/numa.h"
 #include "lib/sysdep/os_cpu.h"
+#include "lib/sysdep/snd.h"
+#if ARCH_X86_X64
+# include "lib/sysdep/arch/x86_x64/topology.h"
+#endif
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/UserReport.h"
@@ -86,6 +90,9 @@ void RunHardwareDetection()
 #endif
 	scriptInterface.SetProperty(settings.get(), "build_datetime", std::string(__DATE__ " " __TIME__));
 	scriptInterface.SetProperty(settings.get(), "build_revision", std::wstring(svn_revision));
+	scriptInterface.SetProperty(settings.get(), "build_msc", (int)MSC_VERSION);
+	scriptInterface.SetProperty(settings.get(), "build_icc", (int)ICC_VERSION);
+	scriptInterface.SetProperty(settings.get(), "build_gcc", (int)GCC_VERSION);
 
 	scriptInterface.SetProperty(settings.get(), "gfx_card", std::wstring(gfx_card));
 	scriptInterface.SetProperty(settings.get(), "gfx_drv_ver", std::wstring(gfx_drv_ver));
@@ -109,6 +116,19 @@ void RunHardwareDetection()
 
 	scriptInterface.SetProperty(settings.get(), "cpu_identifier", std::string(cpu_IdentifierString()));
 	scriptInterface.SetProperty(settings.get(), "cpu_frequency", os_cpu_ClockFrequency());
+	scriptInterface.SetProperty(settings.get(), "cpu_pagesize", os_cpu_PageSize());
+	scriptInterface.SetProperty(settings.get(), "cpu_largepagesize", os_cpu_LargePageSize());
+	scriptInterface.SetProperty(settings.get(), "cpu_numprocs", os_cpu_NumProcessors());
+#if ARCH_X86_X64
+	scriptInterface.SetProperty(settings.get(), "cpu_numpackages", cpu_topology_NumPackages());
+	scriptInterface.SetProperty(settings.get(), "cpu_coresperpackage", cpu_topology_CoresPerPackage());
+	scriptInterface.SetProperty(settings.get(), "cpu_logicalpercore", cpu_topology_LogicalPerCore());
+	scriptInterface.SetProperty(settings.get(), "cpu_numcaches", cache_topology_NumCaches());
+#endif
+
+	scriptInterface.SetProperty(settings.get(), "numa_numnodes", numa_NumNodes());
+	scriptInterface.SetProperty(settings.get(), "numa_factor", numa_Factor());
+	scriptInterface.SetProperty(settings.get(), "numa_interleaved", numa_IsMemoryInterleaved());
 
 	scriptInterface.SetProperty(settings.get(), "ram_total", (int)os_cpu_MemorySize());
 	scriptInterface.SetProperty(settings.get(), "ram_free", (int)os_cpu_MemoryAvailable());
@@ -117,6 +137,8 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "x86_vendor", (int)x86_x64_Vendor());
 	scriptInterface.SetProperty(settings.get(), "x86_model", (int)x86_x64_Model());
 	scriptInterface.SetProperty(settings.get(), "x86_family", (int)x86_x64_Family());
+	scriptInterface.SetProperty(settings.get(), "x86_l1line", (int)x86_x64_L1CacheLineSize());
+	scriptInterface.SetProperty(settings.get(), "x86_l2line", (int)x86_x64_L2CacheLineSize());
 	u32 caps0, caps1, caps2, caps3;
 	x86_x64_caps(&caps0, &caps1, &caps2, &caps3);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[0]", caps0);
@@ -126,7 +148,7 @@ void RunHardwareDetection()
 #endif
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 2, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 3, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 
@@ -276,7 +298,13 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	if (ogl_HaveExtension("GL_ARB_draw_buffers"))
 		INTEGER(MAX_DRAW_BUFFERS_ARB);
 
-	// Other interesting extensions:
+	// Core OpenGL 3.0:
+
+	if (ogl_HaveExtension("GL_EXT_gpu_shader4"))
+	{
+		INTEGER(MIN_PROGRAM_TEXEL_OFFSET);
+		INTEGER(MAX_PROGRAM_TEXEL_OFFSET);
+	}
 
 	if (ogl_HaveExtension("GL_EXT_framebuffer_object"))
 	{
@@ -284,8 +312,35 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 		INTEGER(MAX_RENDERBUFFER_SIZE_EXT);
 	}
 
+	if (ogl_HaveExtension("GL_EXT_framebuffer_multisample"))
+	{
+		INTEGER(MAX_SAMPLES_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_EXT_texture_array"))
+	{
+		INTEGER(MAX_ARRAY_TEXTURE_LAYERS_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_EXT_transform_feedback"))
+	{
+		INTEGER(MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT);
+		INTEGER(MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT);
+		INTEGER(MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_EXT);
+	}
+
+
+	// Other interesting extensions:
+
 	if (ogl_HaveExtension("GL_EXT_texture_filter_anisotropic"))
+	{
 		FLOAT(MAX_TEXTURE_MAX_ANISOTROPY_EXT);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_texture_rectangle"))
+	{
+		INTEGER(MAX_RECTANGLE_TEXTURE_SIZE_ARB);
+	}
 
 	if (ogl_HaveExtension("GL_ARB_vertex_program") || ogl_HaveExtension("GL_ARB_fragment_program"))
 	{
