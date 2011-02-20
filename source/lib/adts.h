@@ -30,6 +30,7 @@
 #include "lib/fnv_hash.h"
 #include "lib/bits.h"
 
+#include <string.h>	// strcmp
 
 //-----------------------------------------------------------------------------
 // dynamic (grow-able) hash table
@@ -291,8 +292,8 @@ public:
 	RingBuf() : data() { clear(); }
 	void clear() { size_ = 0; head = 0; tail = n-1; }
 
-	size_t size() { return size_; }
-	bool empty() { return size_ == 0; }
+	size_t size() const { return size_; }
+	bool empty() const { return size_ == 0; }
 
 	const T& operator[](int ofs) const
 	{
