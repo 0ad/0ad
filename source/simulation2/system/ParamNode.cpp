@@ -317,7 +317,6 @@ jsval CParamNode::ConstructJSVal(JSContext* cx) const
 	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (!obj)
 		return JSVAL_VOID; // TODO: report error
-	CScriptValRooted objRoot(cx, OBJECT_TO_JSVAL(obj));
 
 	for (std::map<std::string, CParamNode>::const_iterator it = m_Childs.begin(); it != m_Childs.end(); ++it)
 	{
