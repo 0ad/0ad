@@ -3,10 +3,23 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="ship mesh">
+    <variant frequency="1" name="ship mesh a">
       <mesh>structural/celt_merchant.dae</mesh>
       <props>
         <prop actor="props/structures/celts/merchant_sail.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="front"/>
+        <prop actor="props/special/eyecandy/basket_hele_a.xml" attachpoint="back"/>
+        <prop actor="props/special/eyecandy/vase_hele_a.xml" attachpoint="backb"/>
+      </props>
+      <texture>structural/celt_ship.png</texture>
+    </variant>
+    <variant frequency="1" name="ship mesh b">
+      <mesh>structural/celt_merchant.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/merchant_sail.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/anvil.xml" attachpoint="front"/>
+        <prop actor="props/special/eyecandy/vase_hele_a.xml" attachpoint="back"/>
+        <prop actor="props/special/eyecandy/wood_sm_pile_b.xml" attachpoint="backb"/>
       </props>
       <texture>structural/celt_ship.png</texture>
     </variant>
