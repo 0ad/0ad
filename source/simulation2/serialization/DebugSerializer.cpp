@@ -149,12 +149,9 @@ void CDebugSerializer::PutString(const char* name, const std::string& value)
 
 void CDebugSerializer::PutScriptVal(const char* name, jsval value)
 {
-	std::wstring source = m_ScriptInterface.ToString(value);
+	std::string source = m_ScriptInterface.StringifyJSON(value, true);
 
-	LibError err; // silently ignore encoding errors
-	std::string sourcea = utf8_from_wstring(source, &err);
-
-	m_Stream << INDENT << name << ": " << sourcea << "\n";
+	m_Stream << INDENT << name << ": " << source << "\n";
 }
 
 void CDebugSerializer::PutRaw(const char* name, const u8* data, size_t len)
