@@ -59,7 +59,7 @@ extern "C"
 
 
 static const char* exts = NULL;
-static bool have_20, have_14, have_13, have_12;
+static bool have_30, have_21, have_20, have_15, have_14, have_13, have_12;
 
 
 // return a C string of unspecified length containing a space-separated
@@ -84,14 +84,50 @@ static bool isImplementedInCore(const char* ext)
 	if(!strcmp(ext, #known_ext))\
 		return true;
 
+	if(have_30)
+	{
+		MATCH(GL_EXT_gpu_shader4);
+		MATCH(GL_NV_conditional_render);
+		MATCH(GL_ARB_color_buffer_float);
+		MATCH(GL_ARB_depth_buffer_float);
+		MATCH(GL_ARB_texture_float);
+		MATCH(GL_EXT_packed_float);
+		MATCH(GL_EXT_texture_shared_exponent);
+		MATCH(GL_EXT_framebuffer_object);
+		MATCH(GL_NV_half_float);
+		MATCH(GL_ARB_half_float_pixel);
+		MATCH(GL_EXT_framebuffer_multisample);
+		MATCH(GL_EXT_framebuffer_blit);
+		MATCH(GL_EXT_texture_integer);
+		MATCH(GL_EXT_texture_array);
+		MATCH(GL_EXT_packed_depth_stencil);
+		MATCH(GL_EXT_draw_buffers2);
+		MATCH(GL_EXT_texture_compression_rgtc);
+		MATCH(GL_EXT_transform_feedback);
+		MATCH(GL_APPLE_vertex_array_object);
+		MATCH(GL_EXT_framebuffer_sRGB);
+	}
+	if(have_21)
+	{
+		MATCH(GL_ARB_pixel_buffer_object);
+		MATCH(GL_EXT_texture_sRGB);
+	}
 	if(have_20)
 	{
 		MATCH(GL_ARB_shader_objects);
 		MATCH(GL_ARB_vertex_shader);
 		MATCH(GL_ARB_fragment_shader);
+		MATCH(GL_ARB_shading_language_100);
 		MATCH(GL_ARB_draw_buffers);
 		MATCH(GL_ARB_texture_non_power_of_two);
 		MATCH(GL_ARB_point_sprite);
+		MATCH(GL_EXT_blend_equation_separate);
+	}
+	if(have_15)
+	{
+		MATCH(GL_ARB_vertex_bffer_object);
+		MATCH(GL_ARB_occlusion_query);
+		MATCH(GL_EXT_shadow_funcs);
 	}
 	if(have_14)
 	{
@@ -426,7 +462,10 @@ void ogl_Init()
 	have_12 = ogl_HaveVersion("1.2");
 	have_13 = ogl_HaveVersion("1.3");
 	have_14 = ogl_HaveVersion("1.4");
+	have_15 = ogl_HaveVersion("1.5");
 	have_20 = ogl_HaveVersion("2.0");
+	have_21 = ogl_HaveVersion("2.1");
+	have_30 = ogl_HaveVersion("3.0");
 
 	importExtensionFunctions();
 
