@@ -689,26 +689,26 @@ static bool isUnprintableChar(SDL_keysym key)
 
 InReaction conInputHandler(const SDL_Event_* ev)
 {
-	if( ev->ev.type == SDL_HOTKEYDOWN )
+	if (ev->ev.type == SDL_HOTKEYDOWN)
 	{
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
 
-		if( hotkey == "console.toggle" )
+		if (hotkey == "console.toggle")
 		{
 			g_Console->ToggleVisible();
 			return IN_HANDLED;
 		}
-		else if( hotkey == "console.copy" )
+		else if (g_Console->IsActive() && hotkey == "console.copy")
 		{
-			sys_clipboard_set( g_Console->GetBuffer() );
+			sys_clipboard_set(g_Console->GetBuffer());
 			return IN_HANDLED;
 		}
-		else if( hotkey == "console.paste" )
+		else if (g_Console->IsActive() && hotkey == "console.paste")
 		{
 			wchar_t* text = sys_clipboard_get();
-			if(text)
+			if (text)
 			{
-				for(wchar_t* c = text; *c; c++)
+				for (wchar_t* c = text; *c; c++)
 					g_Console->InsertChar(0, *c);
 
 				sys_clipboard_free(text);
@@ -717,19 +717,22 @@ InReaction conInputHandler(const SDL_Event_* ev)
 		}
 	}
 
-	if( ev->ev.type != SDL_KEYDOWN)
+	if (!g_Console->IsActive())
+		return IN_PASS;
+
+	if (ev->ev.type != SDL_KEYDOWN)
 		return IN_PASS;
 
 	SDLKey sym = ev->ev.key.keysym.sym;
 
-	if(!g_Console->IsActive())
-		return IN_PASS;
-
 	// Stop unprintable characters (ctrl+, alt+ and escape),
 	// also prevent ` and/or ~ appearing in console every time it's toggled.
-	if( !isUnprintableChar(ev->ev.key.keysym) &&
-		!HotkeyIsPressed("console.toggle") )
-		g_Console->InsertChar(sym, (wchar_t)ev->ev.key.keysym.unicode );
+	if (!isUnprintableChar(ev->ev.key.keysym) &&
+		!HotkeyIsPressed("console.toggle"))
+	{
+		g_Console->InsertChar(sym, (wchar_t)ev->ev.key.keysym.unicode);
+		return IN_HANDLED;
+	}
 
 	return IN_PASS;
 }

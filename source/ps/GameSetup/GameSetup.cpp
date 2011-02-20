@@ -543,9 +543,9 @@ static void InitInput()
 	//  processed.
 	in_add_handler(game_view_handler);
 
-	in_add_handler(conInputHandler);
-
 	in_add_handler(CProfileViewer::InputThunk);
+
+	in_add_handler(conInputHandler);
 
 	in_add_handler(HotkeyInputHandler);
 

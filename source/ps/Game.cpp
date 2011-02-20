@@ -236,6 +236,7 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 		PROFILE("update");
 		if (m_TurnManager->Update(deltaTime, maxTurns))
 		{
+			g_Profiler.Turn();
 			g_GUI->SendEventToAll("SimulationUpdate");
 			GetView()->GetLOSTexture().MakeDirty();
 		}

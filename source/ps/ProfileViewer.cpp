@@ -278,10 +278,10 @@ InReaction CProfileViewer::Input(const SDL_Event_* ev)
 		if (!m->profileVisible)
 			break;
 
-		int k = ev->ev.key.keysym.sym - SDLK_0;
-		if (k >= 0 && k <= 9)
+		u16 k = ev->ev.key.keysym.unicode;
+		if (k >= '0' && k <= '9')
 		{
-			m->NavigateTree(k);
+			m->NavigateTree(k - '0');
 			return IN_HANDLED;
 		}
 		break;

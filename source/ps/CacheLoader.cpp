@@ -70,15 +70,16 @@ bool CCacheLoader::CanUseArchiveCache(const VfsPath& sourcePath, const VfsPath& 
 	// We want to use the archive cache whenever possible,
 	// unless it's superseded by a source file that the user has edited
 
-	size_t sourcePriority = 0;
 	size_t archiveCachePriority = 0;
+	size_t sourcePriority = 0;
 
-	bool sourceExists = (m_VFS->GetFilePriority(sourcePath, &sourcePriority) >= 0);
 	bool archiveCacheExists = (m_VFS->GetFilePriority(archiveCachePath, &archiveCachePriority) >= 0);
 
 	// Can't use it if there's no cache
 	if (!archiveCacheExists)
 		return false;
+
+	bool sourceExists = (m_VFS->GetFilePriority(sourcePath, &sourcePriority) >= 0);
 
 	// Must use the cache if there's no source
 	if (!sourceExists)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,12 +23,13 @@
 #define INCLUDED_PROFILE
 
 #include <vector>
-#include <map>
-#include "Singleton.h"
+
+#include "lib/adts.h"
+#include "ps/Singleton.h"
 #include "ps/ThreadUtil.h"
 
-#define PROFILE_AMORTIZE
 #define PROFILE_AMORTIZE_FRAMES 30
+#define PROFILE_AMORTIZE_TURNS 1
 
 class CProfileManager;
 class CProfileNodeTable;
@@ -43,29 +44,20 @@ class CProfileNode
 	
 	const char* name;
 
-	int calls_total;
 	int calls_frame_current;
-#ifdef PROFILE_AMORTIZE
-	int calls_frame_buffer[PROFILE_AMORTIZE_FRAMES];
-	int* calls_frame_last;
-	float calls_frame_amortized;
-#else
-	int calls_frame_last;
-#endif
+	int calls_turn_current;
+	RingBuf<int, PROFILE_AMORTIZE_FRAMES> calls_per_frame;
+	RingBuf<int, PROFILE_AMORTIZE_TURNS> calls_per_turn;
 
-	double time_total;
 	double time_frame_current;
-#ifdef PROFILE_AMORTIZE
-	double time_frame_buffer[PROFILE_AMORTIZE_FRAMES];
-	double* time_frame_last;
-	double time_frame_amortized;
-#else
-	double time_frame_last;
-#endif
+	double time_turn_current;
+	RingBuf<double, PROFILE_AMORTIZE_FRAMES> time_per_frame;
+	RingBuf<double, PROFILE_AMORTIZE_TURNS> time_per_turn;
 
-	long mallocs_total;
 	long mallocs_frame_current;
-	long mallocs_frame_last;
+	long mallocs_turn_current;
+	RingBuf<long, PROFILE_AMORTIZE_FRAMES> mallocs_per_frame;
+	RingBuf<long, PROFILE_AMORTIZE_TURNS> mallocs_per_turn;
 
 	double start;
 	long start_mallocs;
@@ -83,18 +75,14 @@ public:
 	CProfileNode( const char* name, CProfileNode* parent );
 	~CProfileNode();
 
-	const char* GetName() const { return( name ); }
-	int GetCalls() const { return( calls_total ); }
-	double GetTime() const { return( time_total ); }
+	const char* GetName() const { return name; }
 
-#ifdef PROFILE_AMORTIZE
-	float GetFrameCalls() const { return( calls_frame_amortized / PROFILE_AMORTIZE_FRAMES ); }
-	double GetFrameTime() const { return( time_frame_amortized / PROFILE_AMORTIZE_FRAMES ); }
-#else
-	int GetFrameCalls() const { return( calls_frame_last ); }
-	double GetFrameTime() const { return( time_frame_last ); }
-#endif
-	long GetFrameMallocs() const { return( mallocs_frame_last ); }
+	double GetFrameCalls() const;
+	double GetFrameTime() const;
+	double GetTurnCalls() const;
+	double GetTurnTime() const;
+	double GetFrameMallocs() const;
+	double GetTurnMallocs() const;
 
 	const CProfileNode* GetChild( const char* name ) const;
 	const CProfileNode* GetScriptChild( const char* name ) const;
@@ -111,6 +99,8 @@ public:
 	void Reset();
 	// Resets frame timings for this node and all its children
 	void Frame();
+	// Resets turn timings for this node and all its children
+	void Turn();
 	// Enters the node
 	void Call();
 	// Leaves the node. Returns true if the node has actually been left
@@ -125,7 +115,6 @@ class CProfileManager : public Singleton<CProfileManager>
 	double frame_start;
 	long start_mallocs;
 	long frame_start_mallocs;
-	std::map<CStr8, const char*> m_internedStrings;
 
 public:
 	CProfileManager();
@@ -142,10 +131,11 @@ public:
 	void Reset();
 	// Resets frame timing information
 	void Frame();
+	// Resets turn timing information
+	// (Must not be called before Frame)
+	void Turn();
 	// Resets absolutely everything
 	void StructuralReset();
-
-	const char* InternString( const CStr8& intern );
 
 	inline const CProfileNode* GetCurrent() { return( current ); }
 	inline const CProfileNode* GetRoot() { return( root ); }

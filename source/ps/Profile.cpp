@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,11 +74,12 @@ private:
 		ColumnDescription()
 		{
 			columns.push_back(ProfileColumn("Name", 230));
-			columns.push_back(ProfileColumn("calls/frame", 100));
-			columns.push_back(ProfileColumn("msec/frame", 100));
-			columns.push_back(ProfileColumn("%/frame", 100));
-			columns.push_back(ProfileColumn("%/parent", 100));
-			columns.push_back(ProfileColumn("mem allocs", 100));
+			columns.push_back(ProfileColumn("calls/frame", 80));
+			columns.push_back(ProfileColumn("msec/frame", 80));
+			columns.push_back(ProfileColumn("mallocs/frame", 120));
+			columns.push_back(ProfileColumn("calls/turn", 80));
+			columns.push_back(ProfileColumn("msec/turn", 80));
+			columns.push_back(ProfileColumn("mallocs/turn", 80));
 		}
 	};
 	
@@ -149,30 +150,38 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 			return "unlogged";
 		else if (col == 1)
 			return "";
+		else if (col == 4)
+			return "";
 		
-		float unlogged = node->GetFrameTime();
-		long unlogged_mallocs = node->GetFrameMallocs();
+		double unlogged_time_frame = node->GetFrameTime();
+		double unlogged_time_turn = node->GetTurnTime();
+		double unlogged_mallocs_frame = node->GetFrameMallocs();
+		double unlogged_mallocs_turn = node->GetTurnMallocs();
 		CProfileNode::const_profile_iterator it;
 
 		for (it = node->GetChildren()->begin(); it != node->GetChildren()->end(); ++it)
 		{
-			unlogged -= (*it)->GetFrameTime();
-			unlogged_mallocs -= (*it)->GetFrameMallocs();
+			unlogged_time_frame -= (*it)->GetFrameTime();
+			unlogged_time_turn -= (*it)->GetTurnTime();
+			unlogged_mallocs_frame -= (*it)->GetFrameMallocs();
+			unlogged_mallocs_turn -= (*it)->GetTurnMallocs();
 		}
 		for (it = node->GetScriptChildren()->begin(); it != node->GetScriptChildren()->end(); ++it)
 		{
-			unlogged -= (*it)->GetFrameTime();
-			unlogged_mallocs -= (*it)->GetFrameMallocs();
+			unlogged_time_frame -= (*it)->GetFrameTime();
+			unlogged_time_turn -= (*it)->GetTurnTime();
+			unlogged_mallocs_frame -= (*it)->GetFrameMallocs();
+			unlogged_mallocs_turn -= (*it)->GetTurnMallocs();
 		}
 		
 		if (col == 2)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", unlogged * 1000.0f);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", unlogged_time_frame * 1000.0f);
 		else if (col == 3)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
-		else if (col == 4)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
+			sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", unlogged_mallocs_frame);
 		else if (col == 5)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%ld", unlogged_mallocs);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", unlogged_time_turn * 1000.f);
+		else if (col == 6)
+			sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", unlogged_mallocs_turn);
 		
 		return CStr(buf);
 	}
@@ -184,23 +193,22 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		return child->GetName();
 		
 	case 1:
-#ifdef PROFILE_AMORTIZE
-		sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", child->GetFrameCalls());
-#else
-		sprintf_s(buf, ARRAY_SIZE(buf), "%d", child->GetFrameCalls());
-#endif
+		sprintf_s(buf, ARRAY_SIZE(buf), "%5.1f", child->GetFrameCalls());
 		break;
 	case 2:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", child->GetFrameTime() * 1000.0f);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", child->GetFrameTime() * 1000.0f);
 		break;
 	case 3:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetFrameTime() * 100.0 / g_Profiler.GetRoot()->GetFrameTime());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", child->GetFrameMallocs());
 		break;
 	case 4:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetFrameTime() * 100.0 / node->GetFrameTime());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%5.1f", child->GetTurnCalls());
 		break;
 	case 5:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%ld", child->GetFrameMallocs());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", child->GetTurnTime() * 1000.0f);
+		break;
+	case 6:
+		sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", child->GetTurnMallocs());
 		break;
 	}
 	return CStr(buf);
@@ -265,6 +273,44 @@ CProfileNode::~CProfileNode()
 	delete display_table;
 }
 
+template<typename T>
+static double average(const T& collection)
+{
+	if (collection.empty())
+		return 0.0;
+	return std::accumulate(collection.begin(), collection.end(), 0.0) / collection.size();
+}
+
+double CProfileNode::GetFrameCalls() const
+{
+	return average(calls_per_frame);
+}
+
+double CProfileNode::GetFrameTime() const
+{
+	return average(time_per_frame);
+}
+
+double CProfileNode::GetTurnCalls() const
+{
+	return average(calls_per_turn);
+}
+
+double CProfileNode::GetTurnTime() const
+{
+	return average(time_per_turn);
+}
+
+double CProfileNode::GetFrameMallocs() const
+{
+	return average(mallocs_per_frame);
+}
+
+double CProfileNode::GetTurnMallocs() const
+{
+	return average(mallocs_per_turn);
+}
+
 const CProfileNode* CProfileNode::GetChild( const char* childName ) const
 {
 	const_profile_iterator it;
@@ -316,73 +362,60 @@ bool CProfileNode::CanExpand()
 
 void CProfileNode::Reset()
 {
-	calls_total = 0;
+	calls_per_frame.clear();
+	calls_per_turn.clear();
 	calls_frame_current = 0;
-#ifdef PROFILE_AMORTIZE
-	int i;
-	for( i = 0; i < PROFILE_AMORTIZE_FRAMES; i++ )
-	{
-		calls_frame_buffer[i] = 0;
-		time_frame_buffer[i] = 0.0;
-	}
-	calls_frame_last = calls_frame_buffer;
-	calls_frame_amortized = 0.0f;
-#else
-	calls_frame_last = 0;
-#endif
+	calls_turn_current = 0;
 
-	time_total = 0.0;
+	time_per_frame.clear();
+	time_per_turn.clear();
 	time_frame_current = 0.0;
-#ifdef PROFILE_AMORTIZE
-	time_frame_last = time_frame_buffer;
-	time_frame_amortized = 0.0;
-#else
-	time_frame_last = 0.0;
-#endif
+	time_turn_current = 0.0;
 
-	mallocs_total = 0;
+	mallocs_per_frame.clear();
+	mallocs_per_turn.clear();
 	mallocs_frame_current = 0;
-	mallocs_frame_last = 0;
+	mallocs_turn_current = 0;
 
 	profile_iterator it;
-	for( it = children.begin(); it != children.end(); it++ )
+	for (it = children.begin(); it != children.end(); ++it)
 		(*it)->Reset();
-	for( it = script_children.begin(); it != script_children.end(); it++ )
+	for (it = script_children.begin(); it != script_children.end(); ++it)
 		(*it)->Reset();
 }
 
 void CProfileNode::Frame()
 {
-	calls_total += calls_frame_current;
-	time_total += time_frame_current;
-	mallocs_total += mallocs_frame_current;
-
-#ifdef PROFILE_AMORTIZE
-	calls_frame_amortized -= *calls_frame_last;
-	*calls_frame_last = calls_frame_current;
-	calls_frame_amortized += calls_frame_current;
-	time_frame_amortized -= *time_frame_last;
-	*time_frame_last = time_frame_current;
-	time_frame_amortized += time_frame_current;
-	if( ++calls_frame_last == ( calls_frame_buffer + PROFILE_AMORTIZE_FRAMES ) )
-		calls_frame_last = calls_frame_buffer;
-	if( ++time_frame_last == ( time_frame_buffer + PROFILE_AMORTIZE_FRAMES ) )
-		time_frame_last = time_frame_buffer;
-#else
-	calls_frame_last = calls_frame_current;
-	time_frame_last = time_frame_current;
-#endif
-	mallocs_frame_last = mallocs_frame_current;
+	calls_per_frame.push_back(calls_frame_current);
+	time_per_frame.push_back(time_frame_current);
+	mallocs_per_frame.push_back(mallocs_frame_current);
 
 	calls_frame_current = 0;
 	time_frame_current = 0.0;
 	mallocs_frame_current = 0;
 	
 	profile_iterator it;
-	for( it = children.begin(); it != children.end(); it++ )
+	for (it = children.begin(); it != children.end(); ++it)
 		(*it)->Frame();
-	for( it = script_children.begin(); it != script_children.end(); it++ )
+	for (it = script_children.begin(); it != script_children.end(); ++it)
 		(*it)->Frame();
+}
+
+void CProfileNode::Turn()
+{
+	calls_per_turn.push_back(calls_turn_current);
+	time_per_turn.push_back(time_turn_current);
+	mallocs_per_turn.push_back(mallocs_turn_current);
+
+	calls_turn_current = 0;
+	time_turn_current = 0.0;
+	mallocs_turn_current = 0;
+
+	profile_iterator it;
+	for (it = children.begin(); it != children.end(); ++it)
+		(*it)->Turn();
+	for (it = script_children.begin(); it != script_children.end(); ++it)
+		(*it)->Turn();
 }
 
 // TODO: these should probably only count allocations that occur in the thread being profiled
@@ -562,6 +595,7 @@ static long get_memory_alloc_count()
 void CProfileNode::Call()
 {
 	calls_frame_current++;
+	calls_turn_current++;
 	if( recursion++ == 0 )
 	{
 		start = timer_Time();
@@ -571,32 +605,29 @@ void CProfileNode::Call()
 
 bool CProfileNode::Return()
 {
-	if( !parent ) return( false );
+	if (--recursion != 0)
+		return false;
 
-	if( ( --recursion == 0 ) && ( calls_frame_current != 0 ) )
-	{
-		time_frame_current += ( timer_Time() - start );
-		mallocs_frame_current += ( get_memory_alloc_count() - start_mallocs );
-	}
-	return( recursion == 0 );
+	double now = timer_Time();
+	long allocs = get_memory_alloc_count();
+	time_frame_current += (now - start);
+	time_turn_current += (now - start);
+	mallocs_frame_current += (allocs - start_mallocs);
+	mallocs_turn_current += (allocs - start_mallocs);
+	return true;
 }
 
-CProfileManager::CProfileManager()
+CProfileManager::CProfileManager() :
+	root(NULL)
 {
-	root = new CProfileNode( "root", NULL );
-	current = root;
+	StructuralReset();
 	frame_start = 0.0;
 	frame_start_mallocs = 0;
-	g_ProfileViewer.AddRootTable(root->display_table);
 }
 
 CProfileManager::~CProfileManager()
 {
-	std::map<CStr8, const char*>::iterator it;
-	for( it = m_internedStrings.begin(); it != m_internedStrings.end(); it++ )
-		delete[]( it->second );
-
-	delete( root );
+	delete root;
 }
 
 void CProfileManager::Start( const char* name )
@@ -611,20 +642,6 @@ void CProfileManager::StartScript( const char* name )
 	if( name != current->GetName() )
 		current = current->GetScriptChild( name );
 	current->Call();
-}
-
-const char* CProfileManager::InternString( const CStr8& intern )
-{
-	std::map<CStr8, const char*>::iterator it = m_internedStrings.find( intern );
-	if( it != m_internedStrings.end() )
-		return( it->second );
-	
-	size_t length = intern.length();
-	char* data = new char[length + 1];
-	strcpy( data, intern.c_str() );
-	data[length] = 0;
-	m_internedStrings.insert( std::pair<CStr8, const char*>( intern, data ) );	
-	return( data );
 }
 
 void CProfileManager::Stop()
@@ -644,18 +661,26 @@ void CProfileManager::Frame()
 {
 	ONCE(alloc_hook_initialize());
 	
-	root->time_frame_current = ( timer_Time() - frame_start );
-	root->mallocs_frame_current = ( get_memory_alloc_count() - frame_start_mallocs );
+	// Fake a return/call to update the root's stats
+	root->Return();
+	root->Call();
+
 	root->Frame();
 	
 	frame_start = timer_Time();
 	frame_start_mallocs = get_memory_alloc_count();
 }
 
+void CProfileManager::Turn()
+{
+	root->Turn();
+}
+
 void CProfileManager::StructuralReset()
 {
-	delete( root );
-	root = new CProfileNode( "root", NULL );
+	delete root;
+	root = new CProfileNode("root", NULL);
+	root->Call();
 	current = root;
 	g_ProfileViewer.AddRootTable(root->display_table, true);
 }

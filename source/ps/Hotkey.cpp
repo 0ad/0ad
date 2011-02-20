@@ -233,17 +233,12 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	if( g_HotkeyMap.find(keycode) == g_HotkeyMap.end() )
 		return( IN_PASS );
 
-	// Inhibit the dispatch of hotkey events caused by printable or control keys
-	// while the console is up. (But allow multiple-key - 'Ctrl+F' events, and whatever
-	// key toggles the console.)
+	// Inhibit the dispatch of hotkey events caused by real keys (not fake mouse button
+	// events) while the console is up.
 
 	bool consoleCapture = false;
 
-	if( g_Console->IsActive() && ( 
-	    ( keycode == 8 ) || ( keycode == 9 ) || ( keycode == 13 ) || /* Editing */
-		( ( keycode >= 32 ) && ( keycode < 273 ) ) ||				 /* Printable (<128), 'World' (<256) */
-		( ( keycode >= 273 ) && ( keycode < 282 ) &&				 /* Numeric keypad (<273), navigation */
-		  ( keycode != SDLK_INSERT ) ) ) )							 /* keys (<282) except insert */
+	if( g_Console->IsActive() && keycode < SDLK_LAST )
 		consoleCapture = true;
 
 	// Here's an interesting bit:
@@ -273,7 +268,6 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		// Check to see if all auxiliary keys are down
 		
 		bool accept = true;
-		bool isCapturable = true;
 
 		for( std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
 		{
@@ -291,16 +285,9 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 			{
 				if( unified[itKey->code - UNIFIED_SHIFT] != rqdState ) accept = false;
 			}
-
-			// If this event requires a multiple keypress (with the exception
-			// of shift+key combinations) the console won't inhibit it.
-			if( rqdState && ( itKey->code != SDLK_RSHIFT ) && ( itKey->code != SDLK_LSHIFT ) )
-				isCapturable = false;
 		}
 
-		if( it->name == "console.toggle" ) isCapturable = false; // Because that would be silly.
-
-		if( accept && !( isCapturable && consoleCapture ) )
+		if( accept && !( consoleCapture && it->name != "console.toggle" ) )
 		{
 			// Tentatively set status to un-pressed, since it may be overridden by
 			// a closer match. (The closest matches will be set to pressed later.)
