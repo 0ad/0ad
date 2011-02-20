@@ -125,6 +125,8 @@ public:
 
 	virtual const CParamNode* GetTemplate(std::string templateName);
 
+	virtual const CParamNode* GetTemplateWithoutValidation(std::string templateName);
+
 	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent);
 
 	virtual std::string GetCurrentTemplateName(entity_id_t ent);
@@ -215,6 +217,22 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 		LOGERROR(L"Invalid root element in entity template '%hs'", templateName.c_str());
 		return NULL;
 	}
+
+	return &templateRoot;
+}
+
+const CParamNode* CCmpTemplateManager::GetTemplateWithoutValidation(std::string templateName)
+{
+	// Load the template if necessary
+	if (!LoadTemplateFile(templateName, 0))
+	{
+		LOGERROR(L"Failed to load entity template '%hs'", templateName.c_str());
+		return NULL;
+	}
+
+	const CParamNode& templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
+	if (!templateRoot.IsOk())
+		return NULL;
 
 	return &templateRoot;
 }

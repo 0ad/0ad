@@ -540,7 +540,7 @@ private:
 
 		for (size_t i = 0; i < templateNames.size(); ++i)
 		{
-			const CParamNode* node = cmpTemplateManager->GetTemplate(templateNames[i]);
+			const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(templateNames[i]);
 			if (node)
 				templates.push_back(std::make_pair(templateNames[i], node));
 		}

@@ -67,6 +67,14 @@ public:
 	virtual const CParamNode* GetTemplate(std::string templateName) = 0;
 
 	/**
+	 * Like GetTemplate, except without doing the XML validation (so it's faster but
+	 * may return invalid templates).
+	 *
+	 * @return NULL on error
+	 */
+	virtual const CParamNode* GetTemplateWithoutValidation(std::string templateName) = 0;
+
+	/**
 	 * Returns the template most recently specified for the entity 'ent'.
 	 * Used during deserialization.
 	 *
