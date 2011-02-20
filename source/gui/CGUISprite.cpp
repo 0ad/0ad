@@ -50,12 +50,12 @@ CGUISpriteInstance::CGUISpriteInstance()
 }
 
 CGUISpriteInstance::CGUISpriteInstance(const CStr& SpriteName)
-: m_SpriteName(SpriteName)
+	: m_SpriteName(SpriteName), m_CachedCellID(-1)
 {
 }
 
 CGUISpriteInstance::CGUISpriteInstance(const CGUISpriteInstance &Sprite)
-: m_SpriteName(Sprite.m_SpriteName)
+	: m_SpriteName(Sprite.m_SpriteName), m_CachedCellID(-1)
 {
 }
 
