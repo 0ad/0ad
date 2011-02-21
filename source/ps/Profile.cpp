@@ -626,9 +626,9 @@ bool CProfileNode::Return()
 }
 
 CProfileManager::CProfileManager() :
-	root(NULL)
+	root(NULL), current(NULL), needs_structural_reset(false)
 {
-	StructuralReset();
+	PerformStructuralReset();
 }
 
 CProfileManager::~CProfileManager()
@@ -652,12 +652,8 @@ void CProfileManager::StartScript( const char* name )
 
 void CProfileManager::Stop()
 {
-	if( current->Return() )
-	{
-		// (jw: for reasons unknown, current == root when called from main.cpp:293)
-		if(current != root)
-			current = current->GetParent();
-	}
+	if (current->Return())
+		current = current->GetParent();
 }
 
 void CProfileManager::Reset()
@@ -668,6 +664,12 @@ void CProfileManager::Reset()
 void CProfileManager::Frame()
 {
 	ONCE(alloc_hook_initialize());
+
+	if (needs_structural_reset)
+	{
+		PerformStructuralReset();
+		needs_structural_reset = false;
+	}
 
 	root->time_frame_current += (timer_Time() - root->start);
 	root->mallocs_frame_current += (get_memory_alloc_count() - root->start_mallocs);
@@ -684,6 +686,16 @@ void CProfileManager::Turn()
 }
 
 void CProfileManager::StructuralReset()
+{
+	// We can't immediately perform the reset, because we're probably already
+	// nested inside the profile tree and it will get very confused if we delete
+	// the tree when we're not currently at the root.
+	// So just set a flag to perform the reset at the end of the frame.
+
+	needs_structural_reset = true;
+}
+
+void CProfileManager::PerformStructuralReset()
 {
 	delete root;
 	root = new CProfileNode("root", NULL);

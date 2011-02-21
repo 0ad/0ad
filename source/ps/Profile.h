@@ -67,7 +67,7 @@ class CProfileNode
 	std::vector<CProfileNode*> children;
 	std::vector<CProfileNode*> script_children;
 	CProfileNodeTable* display_table;
-	
+
 public:
 	typedef std::vector<CProfileNode*>::iterator profile_iterator;
 	typedef std::vector<CProfileNode*>::const_iterator const_profile_iterator;
@@ -112,6 +112,10 @@ class CProfileManager : public Singleton<CProfileManager>
 	CProfileNode* root;
 	CProfileNode* current;
 
+	bool needs_structural_reset;
+
+	void PerformStructuralReset();
+
 public:
 	CProfileManager();
 	~CProfileManager();
@@ -130,7 +134,7 @@ public:
 	// Resets turn timing information
 	// (Must not be called before Frame)
 	void Turn();
-	// Resets absolutely everything
+	// Resets absolutely everything, at the end of this frame
 	void StructuralReset();
 
 	inline const CProfileNode* GetCurrent() { return( current ); }
