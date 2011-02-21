@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,15 +32,18 @@
 #include <shellapi.h>	// open_url
 #include <Wincrypt.h>
 #include <WindowsX.h>	// message crackers
+#include <winhttp.h>
 
 #include "lib/sysdep/clipboard.h"
 #include "lib/sysdep/os/win/error_dialog.h"
 #include "lib/sysdep/os/win/wutil.h"
 
+#include <boost/algorithm/string.hpp>
 
 
 #if MSC_VERSION
 #pragma comment(lib, "shell32.lib")	// for sys_pick_directory SH* calls
+#pragma comment(lib, "winhttp.lib")
 #endif
 
 
@@ -468,4 +471,113 @@ LibError sys_generate_random_bytes(u8* buffer, size_t size)
 		return LibError_from_GLE();
 
 	return INFO::OK;
+}
+
+/*
+ * Given a string of the form
+ *   "example.com:80"
+ * or
+ *   "ftp=ftp.example.com:80;http=example.com:80;https=example.com:80"
+ * separated by semicolons or whitespace,
+ * return the string "example.com:80".
+ */
+static std::wstring parse_proxy(const std::wstring& input)
+{
+	if(input.find('=') == input.npos)
+		return input;
+
+	std::vector<std::wstring> parts;
+	split(parts, input, boost::algorithm::is_any_of("; \t\r\n"), boost::algorithm::token_compress_on);
+	
+	for(size_t i = 0; i < parts.size(); ++i)
+		if(boost::algorithm::starts_with(parts[i], "http="))
+			return parts[i].substr(5);
+	
+	// If we got this far, proxies were only set for non-HTTP protocols
+	return L"";
+}
+
+LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy)
+{
+	WINHTTP_AUTOPROXY_OPTIONS autoProxyOptions;
+	memset(&autoProxyOptions, 0, sizeof(autoProxyOptions));
+	autoProxyOptions.dwFlags = WINHTTP_AUTOPROXY_AUTO_DETECT;
+	autoProxyOptions.dwAutoDetectFlags = WINHTTP_AUTO_DETECT_TYPE_DHCP | WINHTTP_AUTO_DETECT_TYPE_DNS_A;
+	autoProxyOptions.fAutoLogonIfChallenged = TRUE;
+
+	WINHTTP_PROXY_INFO proxyInfo;
+	memset(&proxyInfo, 0, sizeof(proxyInfo));
+
+	WINHTTP_CURRENT_USER_IE_PROXY_CONFIG ieConfig;
+	memset(&ieConfig, 0, sizeof(ieConfig));
+
+	HINTERNET hSession = NULL;
+
+	LibError err = INFO::SKIPPED;
+
+	bool useAutoDetect;
+
+	if(WinHttpGetIEProxyConfigForCurrentUser(&ieConfig))
+	{
+		if(ieConfig.lpszAutoConfigUrl)
+		{
+			// Use explicit auto-config script if specified
+			useAutoDetect = true;
+			autoProxyOptions.dwFlags |= WINHTTP_AUTOPROXY_CONFIG_URL;
+			autoProxyOptions.lpszAutoConfigUrl = ieConfig.lpszAutoConfigUrl;
+		}
+		else
+		{
+			// Use auto-discovery if enabled
+			useAutoDetect = (ieConfig.fAutoDetect == TRUE);
+		}
+	}
+	else
+	{
+		// Can't find IE config settings - fall back to auto-discovery
+		useAutoDetect = true;
+	}
+
+	if(useAutoDetect)
+	{
+		hSession = WinHttpOpen(NULL, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
+			WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
+
+		if(hSession && WinHttpGetProxyForUrl(hSession, url.c_str(), &autoProxyOptions, &proxyInfo))
+		{
+			proxy = parse_proxy(proxyInfo.lpszProxy);
+			if(!proxy.empty())
+			{
+				err = INFO::OK;
+				goto done;
+			}
+		}
+	}
+
+	// No valid auto-config; try explicit proxy instead
+	if(ieConfig.lpszProxy)
+	{
+		proxy = parse_proxy(ieConfig.lpszProxy);
+		if(!proxy.empty())
+		{
+			err = INFO::OK;
+			goto done;
+		}
+	}
+
+done:
+	if(ieConfig.lpszProxy)
+		GlobalFree(ieConfig.lpszProxy);
+	if(ieConfig.lpszProxyBypass)
+		GlobalFree(ieConfig.lpszProxyBypass);
+	if(ieConfig.lpszAutoConfigUrl)
+		GlobalFree(ieConfig.lpszAutoConfigUrl);
+	if(proxyInfo.lpszProxy)
+		GlobalFree(proxyInfo.lpszProxy);
+	if(proxyInfo.lpszProxyBypass)
+		GlobalFree(proxyInfo.lpszProxyBypass);
+	if(hSession)
+		WinHttpCloseHandle(hSession);
+
+	return err;
 }

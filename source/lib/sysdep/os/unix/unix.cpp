@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -391,6 +391,11 @@ LibError sys_generate_random_bytes(u8* buf, size_t count)
 	fclose(f);
 
 	return INFO::OK;
+}
+
+LibError sys_get_proxy_config(const std::string& UNUSED(url), std::string& UNUSED(proxy))
+{
+	return INFO::SKIPPED;
 }
 
 LibError sys_open_url(const std::string& url)

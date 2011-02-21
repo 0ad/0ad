@@ -169,6 +169,15 @@ extern size_t sys_max_sector_size();
 LIB_API LibError sys_generate_random_bytes(u8* buf, size_t count);
 
 /**
+ * get the proxy address for accessing the given HTTP URL.
+ *
+ * this may be very slow (tens of seconds).
+ *
+ * @return INFO::OK on success; INFO::SKIPPED if no proxy found.
+ **/
+LIB_API LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy);
+
+/**
  * directory separation character
  **/
 #if OS_WIN

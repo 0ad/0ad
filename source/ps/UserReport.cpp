@@ -20,6 +20,7 @@
 #include "UserReport.h"
 
 #include "lib/timer.h"
+#include "lib/utf8.h"
 #include "lib/external_libraries/curl.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/external_libraries/zlib.h"
@@ -82,7 +83,7 @@ class CUserReporterWorker
 {
 public:
 	CUserReporterWorker(const std::string& userID, const std::string& url) :
-		m_UserID(userID), m_Enabled(false), m_Shutdown(false), m_Status("disabled"),
+		m_URL(url), m_UserID(userID), m_Enabled(false), m_Shutdown(false), m_Status("disabled"),
 		m_PauseUntilTime(timer_Time()), m_LastUpdateTime(timer_Time())
 	{
 		// Set up libcurl:
@@ -237,6 +238,15 @@ private:
 
 	void Run()
 	{
+		// Set libcurl's proxy configuration
+		// (This has to be done in the thread because it's potentially very slow)
+		SetStatus("proxy");
+		std::wstring proxy;
+		if (sys_get_proxy_config(wstring_from_utf8(m_URL), proxy) == INFO::OK)
+			curl_easy_setopt(m_Curl, CURLOPT_PROXY, utf8_from_wstring(proxy).c_str());
+
+		SetStatus("waiting");
+
 		/*
 		 * We use a semaphore to let the thread be woken up when it has
 		 * work to do. Various actions from the main thread can wake it:
@@ -463,6 +473,7 @@ private:
 	std::string m_Status;
 
 	// Initialised in constructor by main thread; otherwise used only by worker thread:
+	std::string m_URL;
 	std::string m_UserID;
 	CURL* m_Curl;
 	curl_slist* m_Headers;
