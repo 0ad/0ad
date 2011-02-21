@@ -74,6 +74,19 @@ void CNetTurnManager::SetPlayerID(int playerId)
 	m_PlayerId = playerId;
 }
 
+bool CNetTurnManager::WillUpdate(float frameLength)
+{
+	// Keep this in sync with the return value of Update()
+
+	if (m_DeltaTime + frameLength < 0)
+		return false;
+
+	if (m_ReadyTurn <= m_CurrentTurn)
+		return false;
+
+	return true;
+}
+
 bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 {
 	m_DeltaTime += frameLength;

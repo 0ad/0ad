@@ -174,6 +174,14 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 			unlogged_mallocs_turn -= (*it)->GetTurnMallocs();
 		}
 		
+		// The root node can't easily count per-turn values (since Turn isn't called until
+		// halfway though a frame), so just reset them the zero to prevent weird displays
+		if (!node->GetParent())
+		{
+			unlogged_time_turn = 0.0;
+			unlogged_mallocs_turn = 0.0;
+		}
+
 		if (col == 2)
 			sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", unlogged_time_frame * 1000.0f);
 		else if (col == 3)
@@ -596,7 +604,7 @@ void CProfileNode::Call()
 {
 	calls_frame_current++;
 	calls_turn_current++;
-	if( recursion++ == 0 )
+	if (recursion++ == 0)
 	{
 		start = timer_Time();
 		start_mallocs = get_memory_alloc_count();
@@ -621,8 +629,6 @@ CProfileManager::CProfileManager() :
 	root(NULL)
 {
 	StructuralReset();
-	frame_start = 0.0;
-	frame_start_mallocs = 0;
 }
 
 CProfileManager::~CProfileManager()
@@ -653,22 +659,19 @@ void CProfileManager::Stop()
 void CProfileManager::Reset()
 {
 	root->Reset();
-	start = frame_start = timer_Time();
-	start_mallocs = frame_start_mallocs = get_memory_alloc_count();
 }
 
 void CProfileManager::Frame()
 {
 	ONCE(alloc_hook_initialize());
-	
-	// Fake a return/call to update the root's stats
-	root->Return();
-	root->Call();
+
+	root->time_frame_current += (timer_Time() - root->start);
+	root->mallocs_frame_current += (get_memory_alloc_count() - root->start_mallocs);
 
 	root->Frame();
-	
-	frame_start = timer_Time();
-	frame_start_mallocs = get_memory_alloc_count();
+
+	root->start = timer_Time();
+	root->start_mallocs = get_memory_alloc_count();
 }
 
 void CProfileManager::Turn()

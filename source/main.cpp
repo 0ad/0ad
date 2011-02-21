@@ -259,6 +259,7 @@ static void Frame()
 	// debugging easier.
 	if( !g_NetClient && !g_app_has_focus )
 	{
+		PROFILE("non-focus delay");
 		need_update = false;
 		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
 		SDL_Delay(10);
@@ -323,12 +324,9 @@ static void Frame()
 
 	ogl_WarnIfError();
 
-	PROFILE_START( "game logic" );
 	if (g_Game && g_Game->IsGameStarted() && need_update)
 	{
-		PROFILE_START( "simulation update" );
 		g_Game->Update(TimeSinceLastFrame);
-		PROFILE_END( "simulation update" );
 
 		PROFILE_START( "camera update" );
 		g_Game->GetView()->Update(float(TimeSinceLastFrame));
@@ -353,7 +351,6 @@ static void Frame()
 		if(snd_update(0, 0, 0) < 0)
 			debug_printf(L"snd_update (pos=0 version) failed\n");
 	}
-	PROFILE_END( "game logic" );
 
 	// Immediately flush any messages produced by simulation code
 	PROFILE_START("network flush");
@@ -363,9 +360,7 @@ static void Frame()
 
 	g_UserReporter.Update();
 
-	PROFILE_START( "update console" );
 	g_Console->Update(TimeSinceLastFrame);
-	PROFILE_END( "update console" );
 
 	PROFILE_START("render");
 	ogl_WarnIfError();

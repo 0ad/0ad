@@ -111,10 +111,6 @@ class CProfileManager : public Singleton<CProfileManager>
 {
 	CProfileNode* root;
 	CProfileNode* current;
-	double start;
-	double frame_start;
-	long start_mallocs;
-	long frame_start_mallocs;
 
 public:
 	CProfileManager();

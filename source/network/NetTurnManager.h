@@ -75,6 +75,12 @@ public:
 	bool Update(float frameLength, size_t maxTurns);
 
 	/**
+	 * Returns whether Update(frameLength, ...) will process at least one new turn.
+	 * @param frameLength length of the previous frame in seconds
+	 */
+	bool WillUpdate(float frameLength);
+
+	/**
 	 * Advance the graphics by a certain time.
 	 * @param frameLength length of the previous frame in seconds
 	 */

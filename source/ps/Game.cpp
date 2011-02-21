@@ -227,16 +227,20 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	bool ok = true;
 	if (deltaTime)
 	{
+		// To avoid confusing the profiler, we need to trigger the new turn
+		// while we're not nested inside any PROFILE blocks
+		if (m_TurnManager->WillUpdate(deltaTime))
+			g_Profiler.Turn();
+
 		// At the normal sim rate, we currently want to render at least one
 		// frame per simulation turn, so let maxTurns be 1. But for fast-forward
 		// sim rates we want to allow more, so it's not bounded by framerate,
 		// so just use the sim rate itself as the number of turns per frame.
 		size_t maxTurns = (size_t)m_SimRate;
 
-		PROFILE("update");
+		PROFILE("simulation update");
 		if (m_TurnManager->Update(deltaTime, maxTurns))
 		{
-			g_Profiler.Turn();
 			g_GUI->SendEventToAll("SimulationUpdate");
 			GetView()->GetLOSTexture().MakeDirty();
 		}

@@ -34,6 +34,10 @@
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <boost/random/linear_congruential.hpp>
 #include <boost/random/uniform_real.hpp>
+#include <boost/flyweight.hpp>
+#include <boost/flyweight/key_value.hpp>
+#include <boost/flyweight/no_locking.hpp>
+#include <boost/flyweight/no_tracking.hpp>
 
 #include "valgrind.h"
 
@@ -93,18 +97,104 @@ private:
 		return closure;
 	}
 
+	// To profile scripts usefully, we use a call hook that's called on every enter/exit,
+	// and need to find the function name. But most functions are anonymous so we make do
+	// with filename plus line number instead.
+	// Computing the names is fairly expensive, and we need to return an interned char*
+	// for the profiler to hold a copy of, so we use boost::flyweight to construct interned
+	// strings per call location.
+
+	// Identifies a location in a script
+	struct ScriptLocation
+	{
+		JSContext* cx;
+		JSScript* script;
+		jsbytecode* pc;
+
+		bool operator==(const ScriptLocation& b) const
+		{
+			return cx == b.cx && script == b.script && pc == b.pc;
+		}
+
+		friend std::size_t hash_value(const ScriptLocation& loc)
+		{
+			std::size_t seed = 0;
+			boost::hash_combine(seed, loc.cx);
+			boost::hash_combine(seed, loc.script);
+			boost::hash_combine(seed, loc.pc);
+			return seed;
+		}
+	};
+
+	// Computes and stores the name of a location in a script
+	struct ScriptLocationName
+	{
+		ScriptLocationName(const ScriptLocation& loc)
+		{
+			JSContext* cx = loc.cx;
+			JSScript* script = loc.script;
+			jsbytecode* pc = loc.pc;
+
+			std::string filename = JS_GetScriptFilename(cx, script);
+			size_t slash = filename.rfind('/');
+			if (slash != filename.npos)
+				filename = filename.substr(slash+1);
+
+			uintN line = JS_PCToLineNumber(cx, script, pc);
+
+			std::stringstream ss;
+			ss << "(" << filename << ":" << line << ")";
+			name = ss.str();
+		}
+
+		std::string name;
+	};
+
+	// Flyweight types (with no_locking because the call hooks are only used in the
+	// main thread, and no_tracking because we mustn't delete values the profiler is
+	// using and it's not going to waste much memory)
+	typedef boost::flyweight<
+		std::string,
+		boost::flyweights::no_tracking,
+		boost::flyweights::no_locking
+	> StringFlyweight;
+	typedef boost::flyweight<
+		boost::flyweights::key_value<ScriptLocation, ScriptLocationName>,
+		boost::flyweights::no_tracking,
+		boost::flyweights::no_locking
+	> LocFlyweight;
+
 	static void* jshook_function(JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure)
 	{
-		JSFunction* fn = JS_GetFrameFunction(cx, fp);
-		if (before)
+		if (!before)
 		{
-			if (fn)
-				g_Profiler.StartScript(JS_GetFunctionName(fn));
-			else
-				g_Profiler.StartScript("function invocation");
-		}
-		else
 			g_Profiler.Stop();
+			return closure;
+		}
+
+		JSFunction* fn = JS_GetFrameFunction(cx, fp);
+		if (!fn)
+		{
+			g_Profiler.StartScript("(function)");
+			return closure;
+		}
+
+		// Try to get the name of non-anonymous functions
+		JSString* name = JS_GetFunctionId(fn);
+		if (name)
+		{
+			char* chars = JS_EncodeString(cx, name);
+			if (chars)
+			{
+				g_Profiler.StartScript(StringFlyweight(chars).get().c_str());
+				JS_free(cx, chars);
+				return closure;
+			}
+		}
+
+		// No name - compute from the location instead
+		ScriptLocation loc = { cx, JS_GetFrameScript(cx, fp), JS_GetFramePC(cx, fp) };
+		g_Profiler.StartScript(LocFlyweight(loc).get().name.c_str());
 
 		return closure;
 	}
