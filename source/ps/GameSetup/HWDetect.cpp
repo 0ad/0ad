@@ -45,6 +45,45 @@ void SetDisableAudio(void* UNUSED(cbdata), bool disabled)
 
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings);
 
+#if ARCH_X86_X64
+CScriptVal ConvertCaches(ScriptInterface& scriptInterface, const x86_x64_Caches* caches)
+{
+	CScriptVal ret;
+	scriptInterface.Eval("[]", ret);
+	for (size_t i = 0; i < caches->numLevels; ++i)
+	{
+		CScriptVal cache;
+		scriptInterface.Eval("({})", cache);
+		scriptInterface.SetProperty(cache.get(), "type", (int)caches->levels[i].type);
+		scriptInterface.SetProperty(cache.get(), "level", caches->levels[i].level);
+		scriptInterface.SetProperty(cache.get(), "associativity", caches->levels[i].associativity);
+		scriptInterface.SetProperty(cache.get(), "linesize", caches->levels[i].lineSize);
+		scriptInterface.SetProperty(cache.get(), "sharedby", caches->levels[i].sharedBy);
+		scriptInterface.SetProperty(cache.get(), "totalsize", caches->levels[i].totalSize);
+		scriptInterface.SetPropertyInt(ret.get(), i, cache);
+	}
+	return ret;
+}
+
+CScriptVal ConvertTLBs(ScriptInterface& scriptInterface, const x86_x64_TLBs* tlbs)
+{
+	CScriptVal ret;
+	scriptInterface.Eval("[]", ret);
+	for (size_t i = 0; i < tlbs->numLevels; ++i)
+	{
+		CScriptVal tlb;
+		scriptInterface.Eval("({})", tlb);
+		scriptInterface.SetProperty(tlb.get(), "type", (int)tlbs->levels[i].type);
+		scriptInterface.SetProperty(tlb.get(), "level", tlbs->levels[i].level);
+		scriptInterface.SetProperty(tlb.get(), "associativity", tlbs->levels[i].associativity);
+		scriptInterface.SetProperty(tlb.get(), "pagesize", tlbs->levels[i].pageSize);
+		scriptInterface.SetProperty(tlb.get(), "entries", tlbs->levels[i].entries);
+		scriptInterface.SetPropertyInt(ret.get(), i, tlb);
+	}
+	return ret;
+}
+#endif
+
 void RunHardwareDetection()
 {
 	TIMER(L"RunHardwareDetection");
@@ -114,6 +153,17 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "uname_version", std::string(un.version));
 	scriptInterface.SetProperty(settings.get(), "uname_machine", std::string(un.machine));
 
+#if OS_LINUX
+	{
+		std::ifstream ifs("/etc/lsb-release");
+		if (ifs.good())
+		{
+			std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+			scriptInterface.SetProperty(settings.get(), "linux_release", str);
+		}
+	}
+#endif
+
 	scriptInterface.SetProperty(settings.get(), "cpu_identifier", std::string(cpu_IdentifierString()));
 	scriptInterface.SetProperty(settings.get(), "cpu_frequency", os_cpu_ClockFrequency());
 	scriptInterface.SetProperty(settings.get(), "cpu_pagesize", os_cpu_PageSize());
@@ -137,24 +187,48 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "x86_vendor", (int)x86_x64_Vendor());
 	scriptInterface.SetProperty(settings.get(), "x86_model", (int)x86_x64_Model());
 	scriptInterface.SetProperty(settings.get(), "x86_family", (int)x86_x64_Family());
-	scriptInterface.SetProperty(settings.get(), "x86_l1line", (int)x86_x64_L1CacheLineSize());
-	scriptInterface.SetProperty(settings.get(), "x86_l2line", (int)x86_x64_L2CacheLineSize());
+
 	u32 caps0, caps1, caps2, caps3;
 	x86_x64_caps(&caps0, &caps1, &caps2, &caps3);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[0]", caps0);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[1]", caps1);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[2]", caps2);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[3]", caps3);
+
+	scriptInterface.SetProperty(settings.get(), "x86_icaches", ConvertCaches(scriptInterface, x86_x64_ICaches()));
+	scriptInterface.SetProperty(settings.get(), "x86_dcaches", ConvertCaches(scriptInterface, x86_x64_DCaches()));
+	scriptInterface.SetProperty(settings.get(), "x86_itlbs", ConvertTLBs(scriptInterface, x86_x64_ITLBs()));
+	scriptInterface.SetProperty(settings.get(), "x86_dtlbs", ConvertTLBs(scriptInterface, x86_x64_DTLBs()));
 #endif
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 3, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 4, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 
 	scriptInterface.CallFunctionVoid(scriptInterface.GetGlobalObject(), "RunHardwareDetection", settings);
 }
 
+// We use some constants that aren't provided by glext.h on some old systems.
+// Define all the necessary ones that are missing from GL_GLEXT_VERSION 39 (Mesa 7.0)
+// since that's probably an old enough baseline:
+#ifndef GL_VERSION_3_0
+# define GL_MIN_PROGRAM_TEXEL_OFFSET 0x8904
+# define GL_MAX_PROGRAM_TEXEL_OFFSET 0x8905
+#endif
+#ifndef GL_EXT_transform_feedback
+# define GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT 0x8C8A
+# define GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT 0x8C8B
+# define GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_EXT 0x8C80
+#endif
+#ifndef GL_ARB_geometry_shader4
+# define GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB 0x8C29
+# define GL_MAX_GEOMETRY_VARYING_COMPONENTS_ARB 0x8DDD
+# define GL_MAX_VERTEX_VARYING_COMPONENTS_ARB 0x8DDE
+# define GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB 0x8DDF
+# define GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB 0x8DE0
+# define GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB 0x8DE1
+#endif
 
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings)
 {
@@ -301,7 +375,7 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 
 	if (ogl_HaveExtension("GL_EXT_gpu_shader4"))
 	{
-		INTEGER(MIN_PROGRAM_TEXEL_OFFSET);
+		INTEGER(MIN_PROGRAM_TEXEL_OFFSET); // no _EXT version of these in glext.h
 		INTEGER(MAX_PROGRAM_TEXEL_OFFSET);
 	}
 
