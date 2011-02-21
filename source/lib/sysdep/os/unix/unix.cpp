@@ -378,7 +378,7 @@ LibError sys_generate_random_bytes(u8* buf, size_t count)
 	FILE* f = fopen("/dev/urandom", "rb");
 	if (!f)
 		WARN_RETURN(ERR::FAIL);
-	
+
 	while (count)
 	{
 		size_t numread = fread(buf, 1, count, f);
@@ -393,7 +393,7 @@ LibError sys_generate_random_bytes(u8* buf, size_t count)
 	return INFO::OK;
 }
 
-LibError sys_get_proxy_config(const std::string& UNUSED(url), std::string& UNUSED(proxy))
+LibError sys_get_proxy_config(const std::wstring& UNUSED(url), std::wstring& UNUSED(proxy))
 {
 	return INFO::SKIPPED;
 }
