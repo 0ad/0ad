@@ -128,7 +128,10 @@ static LibError AppendDriverVersionsFromRegistry(std::wstring& versionList)
 		if(err == ERROR_NO_MORE_ITEMS)
 		{
 			if(i == 0)
+			{
+				RegCloseKey(hkDrivers);
 				return ERR::NO_SYS;	// NOWARN (ATI and NVidia don't create sub-keys on Windows 7)
+			}
 			break;
 		}
 		debug_assert(err == ERROR_SUCCESS);
