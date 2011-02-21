@@ -653,7 +653,11 @@ void CProfileManager::StartScript( const char* name )
 void CProfileManager::Stop()
 {
 	if( current->Return() )
-		current = current->GetParent();
+	{
+		// (jw: for reasons unknown, current == root when called from main.cpp:293)
+		if(current != root)
+			current = current->GetParent();
+	}
 }
 
 void CProfileManager::Reset()
