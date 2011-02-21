@@ -6,6 +6,8 @@ var GameState = Class({
 
 	_init: function(ai)
 	{
+		MemoizeInit(this);
+
 		this.ai = ai;
 		this.timeElapsed = ai.timeElapsed;
 		this.templates = ai.templates;
@@ -47,10 +49,17 @@ var GameState = Class({
 		return this.ai.passabilityClasses[name];
 	},
 
-	getOwnEntities: function()
+	getOwnEntities: Memoize('getOwnEntities', function()
 	{
 		return this.entities.filter(function(ent) { return ent.isOwn(); });
-	},
+	}),
+
+	getOwnEntitiesWithRole: Memoize('getOwnEntitiesWithRole', function(role)
+	{
+		return this.getOwnEntities().filter(function(ent) {
+			return (ent.getMetadata("role") === role);
+		});
+	}),
 
 	countEntitiesWithType: function(type)
 	{

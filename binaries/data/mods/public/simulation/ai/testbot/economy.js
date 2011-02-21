@@ -82,8 +82,8 @@ var EconomyManager = Class({
 		for (var type in this.gatherWeights)
 			numGatherers[type] = 0;
 
-		gameState.getOwnEntities().forEach(function(ent) {
-			if (ent.getMetadata("role") === "worker" && ent.getMetadata("subrole") === "gatherer")
+		gameState.getOwnEntitiesWithRole("worker").forEach(function(ent) {
+			if (ent.getMetadata("subrole") === "gatherer")
 				numGatherers[ent.getMetadata("gather-type")] += 1;
 		});
 
@@ -111,8 +111,8 @@ var EconomyManager = Class({
 		// later we could add some timer that redistributes workers based on
 		// resource demand.
 
-		var idleWorkers = gameState.getOwnEntities().filter(function(ent) {
-			return (ent.getMetadata("role") === "worker" && ent.isIdle());
+		var idleWorkers = gameState.getOwnEntitiesWithRole("worker").filter(function(ent) {
+			return ent.isIdle();
 		});
 
 		if (idleWorkers.length)
@@ -166,9 +166,7 @@ var EconomyManager = Class({
 		if (!foundations.length)
 			return;
 
-		var workers = gameState.getOwnEntities().filter(function(ent) {
-			return (ent.getMetadata("role") === "worker");
-		});
+		var workers = gameState.getOwnEntitiesWithRole("worker");
 
 		var builderWorkers = workers.filter(function(ent) {
 			return (ent.getMetadata("subrole") === "builder");

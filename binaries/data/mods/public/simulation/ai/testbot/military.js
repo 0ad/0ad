@@ -52,9 +52,7 @@ var MilitaryAttackManager = Class({
 		);
 
 		// Find the units ready to join the attack
-		var pending = gameState.entities.filter(function(ent) {
-			return (ent.getMetadata("role") === "attack-pending");
-		});
+		var pending = gameState.getOwnEntitiesWithRole("attack-pending");
 
 		// If we have enough units yet, start the attack
 		if (pending.length >= this.targetSquadSize)
