@@ -73,7 +73,14 @@ static void def_translate_free(const wchar_t* UNUSED(text))
 
 static void def_log(const wchar_t* text)
 {
+#if ICC_VERSION
+#pragma warning(push)
+#pragma warning(disable:181)    // "invalid printf conversion" - but wchar_t* and %ls are legit
+#endif
 	printf("%ls", text); // must not use wprintf, since stdout on Unix is byte-oriented
+#if ICC_VERSION
+#pragma warning(pop)
+#endif
 }
 
 

@@ -30,6 +30,7 @@
 
 #include <cassert>
 
+#define BOOST_MULTI_INDEX_DISABLE_SERIALIZATION
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <boost/random/linear_congruential.hpp>

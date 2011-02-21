@@ -111,7 +111,7 @@ FUNC(void, glGetFramebufferAttachmentParameterivEXT, (GLenum target, GLenum atta
 FUNC(void, glGenerateMipmapEXT, (GLenum target))
 
 // GL_ARB_vertex_program, GL_ARB_fragment_program
-FUNC(void, glGetProgramivARB, (GLenum target, GLenum pname, GLint *params));
+FUNC(void, glGetProgramivARB, (GLenum target, GLenum pname, GLint *params))
 
 // GL_ARB_shader_objects
 // (NOTE: Many of these have "Object" in their ARB names, but "Program" or "Shader" in their core names.
