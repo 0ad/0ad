@@ -164,13 +164,6 @@ template<> jsval ScriptInterface::ToJSVal<u32>(JSContext* cx, const u32& val)
 	return rval;
 }
 
-template<> jsval ScriptInterface::ToJSVal<u64>(JSContext* cx, const u64& val)
-{
-	jsval rval = JSVAL_VOID;
-	JS_NewNumberValue(cx, (double)val, &rval); // ignore return value
-	return rval;
-}
-
 // NOTE: we can't define a jsval specialisation, because that conflicts with integer types
 template<> jsval ScriptInterface::ToJSVal<CScriptVal>(JSContext* UNUSED(cx), const CScriptVal& val)
 {

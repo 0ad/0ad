@@ -54,12 +54,12 @@ CScriptVal ConvertCaches(ScriptInterface& scriptInterface, const x86_x64_Caches*
 	{
 		CScriptVal cache;
 		scriptInterface.Eval("({})", cache);
-		scriptInterface.SetProperty(cache.get(), "type", (int)caches->levels[i].type);
-		scriptInterface.SetProperty(cache.get(), "level", caches->levels[i].level);
-		scriptInterface.SetProperty(cache.get(), "associativity", caches->levels[i].associativity);
-		scriptInterface.SetProperty(cache.get(), "linesize", caches->levels[i].lineSize);
-		scriptInterface.SetProperty(cache.get(), "sharedby", caches->levels[i].sharedBy);
-		scriptInterface.SetProperty(cache.get(), "totalsize", caches->levels[i].totalSize);
+		scriptInterface.SetProperty(cache.get(), "type", (u32)caches->levels[i].type);
+		scriptInterface.SetProperty(cache.get(), "level", (u32)caches->levels[i].level);
+		scriptInterface.SetProperty(cache.get(), "associativity", (u32)caches->levels[i].associativity);
+		scriptInterface.SetProperty(cache.get(), "linesize", (u32)caches->levels[i].lineSize);
+		scriptInterface.SetProperty(cache.get(), "sharedby", (u32)caches->levels[i].sharedBy);
+		scriptInterface.SetProperty(cache.get(), "totalsize", (u32)caches->levels[i].totalSize);
 		scriptInterface.SetPropertyInt(ret.get(), i, cache);
 	}
 	return ret;
@@ -73,11 +73,11 @@ CScriptVal ConvertTLBs(ScriptInterface& scriptInterface, const x86_x64_TLBs* tlb
 	{
 		CScriptVal tlb;
 		scriptInterface.Eval("({})", tlb);
-		scriptInterface.SetProperty(tlb.get(), "type", (int)tlbs->levels[i].type);
-		scriptInterface.SetProperty(tlb.get(), "level", tlbs->levels[i].level);
-		scriptInterface.SetProperty(tlb.get(), "associativity", tlbs->levels[i].associativity);
-		scriptInterface.SetProperty(tlb.get(), "pagesize", tlbs->levels[i].pageSize);
-		scriptInterface.SetProperty(tlb.get(), "entries", tlbs->levels[i].entries);
+		scriptInterface.SetProperty(tlb.get(), "type", (u32)tlbs->levels[i].type);
+		scriptInterface.SetProperty(tlb.get(), "level", (u32)tlbs->levels[i].level);
+		scriptInterface.SetProperty(tlb.get(), "associativity", (u32)tlbs->levels[i].associativity);
+		scriptInterface.SetProperty(tlb.get(), "pagesize", (u32)tlbs->levels[i].pageSize);
+		scriptInterface.SetProperty(tlb.get(), "entries", (u32)tlbs->levels[i].entries);
 		scriptInterface.SetPropertyInt(ret.get(), i, tlb);
 	}
 	return ret;
@@ -166,27 +166,27 @@ void RunHardwareDetection()
 
 	scriptInterface.SetProperty(settings.get(), "cpu_identifier", std::string(cpu_IdentifierString()));
 	scriptInterface.SetProperty(settings.get(), "cpu_frequency", os_cpu_ClockFrequency());
-	scriptInterface.SetProperty(settings.get(), "cpu_pagesize", os_cpu_PageSize());
-	scriptInterface.SetProperty(settings.get(), "cpu_largepagesize", os_cpu_LargePageSize());
-	scriptInterface.SetProperty(settings.get(), "cpu_numprocs", os_cpu_NumProcessors());
+	scriptInterface.SetProperty(settings.get(), "cpu_pagesize", (u32)os_cpu_PageSize());
+	scriptInterface.SetProperty(settings.get(), "cpu_largepagesize", (u32)os_cpu_LargePageSize());
+	scriptInterface.SetProperty(settings.get(), "cpu_numprocs", (u32)os_cpu_NumProcessors());
 #if ARCH_X86_X64
-	scriptInterface.SetProperty(settings.get(), "cpu_numpackages", cpu_topology_NumPackages());
-	scriptInterface.SetProperty(settings.get(), "cpu_coresperpackage", cpu_topology_CoresPerPackage());
-	scriptInterface.SetProperty(settings.get(), "cpu_logicalpercore", cpu_topology_LogicalPerCore());
-	scriptInterface.SetProperty(settings.get(), "cpu_numcaches", cache_topology_NumCaches());
+	scriptInterface.SetProperty(settings.get(), "cpu_numpackages", (u32)cpu_topology_NumPackages());
+	scriptInterface.SetProperty(settings.get(), "cpu_coresperpackage", (u32)cpu_topology_CoresPerPackage());
+	scriptInterface.SetProperty(settings.get(), "cpu_logicalpercore", (u32)cpu_topology_LogicalPerCore());
+	scriptInterface.SetProperty(settings.get(), "cpu_numcaches", (u32)cache_topology_NumCaches());
 #endif
 
-	scriptInterface.SetProperty(settings.get(), "numa_numnodes", numa_NumNodes());
+	scriptInterface.SetProperty(settings.get(), "numa_numnodes", (u32)numa_NumNodes());
 	scriptInterface.SetProperty(settings.get(), "numa_factor", numa_Factor());
 	scriptInterface.SetProperty(settings.get(), "numa_interleaved", numa_IsMemoryInterleaved());
 
-	scriptInterface.SetProperty(settings.get(), "ram_total", (int)os_cpu_MemorySize());
-	scriptInterface.SetProperty(settings.get(), "ram_free", (int)os_cpu_MemoryAvailable());
+	scriptInterface.SetProperty(settings.get(), "ram_total", (u32)os_cpu_MemorySize());
+	scriptInterface.SetProperty(settings.get(), "ram_free", (u32)os_cpu_MemoryAvailable());
 
 #if ARCH_X86_X64
-	scriptInterface.SetProperty(settings.get(), "x86_vendor", (int)x86_x64_Vendor());
-	scriptInterface.SetProperty(settings.get(), "x86_model", (int)x86_x64_Model());
-	scriptInterface.SetProperty(settings.get(), "x86_family", (int)x86_x64_Family());
+	scriptInterface.SetProperty(settings.get(), "x86_vendor", (u32)x86_x64_Vendor());
+	scriptInterface.SetProperty(settings.get(), "x86_model", (u32)x86_x64_Model());
+	scriptInterface.SetProperty(settings.get(), "x86_family", (u32)x86_x64_Family());
 
 	u32 caps0, caps1, caps2, caps3;
 	x86_x64_caps(&caps0, &caps1, &caps2, &caps3);
