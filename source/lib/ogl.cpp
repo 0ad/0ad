@@ -125,7 +125,7 @@ static bool isImplementedInCore(const char* ext)
 	}
 	if(have_15)
 	{
-		MATCH(GL_ARB_vertex_bffer_object);
+		MATCH(GL_ARB_vertex_buffer_object);
 		MATCH(GL_ARB_occlusion_query);
 		MATCH(GL_EXT_shadow_funcs);
 	}
