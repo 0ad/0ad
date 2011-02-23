@@ -781,11 +781,11 @@ void EarlyInit()
 	debug_filter_add(L"TIMER");
 	debug_filter_add(L"HRT");
 
-	SetDefaultIfLocaleInvalid();
-
 	cpu_ConfigureFloatingPoint();
 
 	timer_LatchStartTime();
+
+	SetDefaultIfLocaleInvalid();
 
 	// Because we do GL calls from a secondary thread, Xlib needs to
 	// be told to support multiple threads safely.
