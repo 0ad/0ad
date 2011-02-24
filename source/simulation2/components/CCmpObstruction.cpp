@@ -48,7 +48,7 @@ public:
 	} m_Type;
 	entity_pos_t m_Size0; // radius or width
 	entity_pos_t m_Size1; // radius or depth
-	u8 m_Flags;
+	u8 m_TemplateFlags;
 
 	// Dynamic state:
 
@@ -56,6 +56,7 @@ public:
 	bool m_Moving;
 	entity_id_t m_ControlGroup;
 	ICmpObstructionManager::tag_t m_Tag;
+	u8 m_Flags;
 
 	static std::string GetSchema()
 	{
@@ -91,6 +92,12 @@ public:
 			"</element>"
 			"<element name='BlockConstruction' a:help='Whether players should be unable to begin constructing buildings placed on top of this entity'>"
 				"<data type='boolean'/>"
+			"</element>"
+			"<element name='DisableBlockMovement' a:help='If true, BlockMovement will be overridden and treated as false. (This is a special case to handle foundations)'>"
+				"<data type='boolean'/>"
+			"</element>"
+			"<element name='DisableBlockPathfinding' a:help='If true, BlockPathfinding will be overridden and treated as false. (This is a special case to handle foundations)'>"
+				"<data type='boolean'/>"
 			"</element>";
 	}
 
@@ -108,15 +115,21 @@ public:
 			m_Size1 = paramNode.GetChild("Static").GetChild("@depth").ToFixed();
 		}
 
-		m_Flags = 0;
+		m_TemplateFlags = 0;
 		if (paramNode.GetChild("BlockMovement").ToBool())
-			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
+			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
 		if (paramNode.GetChild("BlockPathfinding").ToBool())
-			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
+			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
 		if (paramNode.GetChild("BlockFoundation").ToBool())
-			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_FOUNDATION;
+			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_FOUNDATION;
 		if (paramNode.GetChild("BlockConstruction").ToBool())
-			m_Flags |= ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
+			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION;
+
+		m_Flags = m_TemplateFlags;
+		if (paramNode.GetChild("DisableBlockMovement").ToBool())
+			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
+		if (paramNode.GetChild("DisableBlockPathfinding").ToBool())
+			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
 
 		m_Active = paramNode.GetChild("Active").ToBool();
 
@@ -136,6 +149,7 @@ public:
 		serialize.Bool("moving", m_Moving);
 		serialize.NumberU32_Unbounded("control group", m_ControlGroup);
 		serialize.NumberU32_Unbounded("tag", m_Tag.n);
+		serialize.NumberU8_Unbounded("flags", m_Flags);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -249,6 +263,30 @@ public:
 			}
 		}
 		// else we didn't change the active status
+	}
+
+	virtual void SetDisableBlockMovementPathfinding(bool disabled)
+	{
+		if (disabled)
+		{
+			// Remove the blocking flags
+			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
+			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
+		}
+		else
+		{
+			// Add the blocking flags if the template had enabled them
+			m_Flags |= (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
+			m_Flags |= (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
+		}
+
+		// Reset the shape with the new flags (kind of inefficiently - we
+		// should have a ICmpObstructionManager::SetFlags function or something)
+		if (m_Active)
+		{
+			SetActive(false);
+			SetActive(true);
+		}
 	}
 
 	virtual ICmpObstructionManager::tag_t GetObstruction()

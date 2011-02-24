@@ -104,7 +104,11 @@ Foundation.prototype.Build = function(builderEnt, work)
 				return;
 			}
 
-			cmpObstruction.SetActive(true);
+			// The obstruction always blocks new foundations/construction,
+			// but we've temporarily allowed units to walk all over it
+			// (via CCmpTemplateManager). Now we need to remove that temporary
+			// blocker-disabling, so that we'll perform standard unit blocking instead.
+			cmpObstruction.SetDisableBlockMovementPathfinding(false);
 		}
 
 		this.committed = true;

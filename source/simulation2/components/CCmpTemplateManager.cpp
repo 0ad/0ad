@@ -518,9 +518,9 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	// Initialise health to 1
 	CParamNode::LoadXMLString(out, "<Entity><Health><Initial>1</Initial></Health></Entity>");
 
-	// Disable the default obstruction status
+	// Foundations shouldn't initially block unit movement
 	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>false</Active></Obstruction></Entity>");
+		CParamNode::LoadXMLString(out, "<Entity><Obstruction><DisableBlockMovement>true</DisableBlockMovement><DisableBlockPathfinding>true</DisableBlockPathfinding></Obstruction></Entity>");
 
 	// Don't provide population bonuses yet (but still do take up population cost)
 	if (out.GetChild("Entity").GetChild("Cost").IsOk())

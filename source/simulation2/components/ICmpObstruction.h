@@ -54,6 +54,8 @@ public:
 
 	virtual void SetMovingFlag(bool enabled) = 0;
 
+	virtual void SetDisableBlockMovementPathfinding(bool disabled) = 0;
+
 	/**
 	 * Change the control group that the entity belongs to.
 	 * Control groups are used to let units ignore collisions with other units from
