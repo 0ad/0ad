@@ -31,6 +31,7 @@
 
 #include "lib/timer.h"
 
+#if FILE_STATS_ENABLED
 
 // vfs
 static size_t vfs_files;
@@ -342,3 +343,5 @@ void file_stats_dump()
 		(unsigned long)ab_connection_attempts, (unsigned long)ab_repeated_connections, (unsigned long)(ab_connection_attempts-ab_repeated_connections)
 	);
 }
+
+#endif	// FILE_STATS_ENABLED

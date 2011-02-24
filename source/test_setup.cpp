@@ -33,6 +33,7 @@
 #include "lib/sysdep/os/win/wdbg_heap.h"
 #endif
 
+#include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -64,7 +65,20 @@ class LeakReporter : public CxxTest::GlobalFixture
 
 };
 
+class TimerSetup : public CxxTest::GlobalFixture
+{
+	virtual bool setUpWorld()
+	{
+		// Timer must be initialised, else things will break when tests do IO
+		timer_LatchStartTime();
+
+		return true;
+	}
+
+};
+
 static LeakReporter leakReporter;
+static TimerSetup timerSetup;
 
 // Definition of functions from lib/self_test.h
 

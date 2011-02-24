@@ -88,7 +88,9 @@ VfsFile* VfsDirectory::AddFile(const VfsFile& file)
 			previousFile = newFile;
 	}
 	else
+	{
 		stats_vfs_file_add(file.Size());
+	}
 
 	return &(*ret.first).second;
 }

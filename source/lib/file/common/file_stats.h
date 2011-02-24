@@ -27,7 +27,7 @@
 #ifndef INCLUDED_FILE_STATS
 #define INCLUDED_FILE_STATS
 
-#define FILE_STATS_ENABLED 1
+#define FILE_STATS_ENABLED 0
 
 
 enum FileIOImplentation { FI_LOWIO, FI_AIO, FI_BCACHE, FI_MAX_IDX };
@@ -106,7 +106,7 @@ class ScopedIoMonitor
 public:
 	ScopedIoMonitor() {}
 	~ScopedIoMonitor() {}
-	void NotifyOfSuccess(FileIOImplentation fi, wchar_t mode, off_t size) {}
+	void NotifyOfSuccess(FileIOImplentation UNUSED(fi), wchar_t UNUSED(mode), off_t UNUSED(size)) {}
 };
 #define stats_io_check_seek(blockId)
 #define stats_cb_start()

@@ -263,6 +263,8 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 	jsval excn;
 	if (JS_GetPendingException(cx, &excn) && JSVAL_IS_OBJECT(excn))
 	{
+		// TODO: this violates the docs ("The error reporter callback must not reenter the JSAPI.")
+
 		jsval rval;
 		const char dumpStack[] = "this.stack.trimRight().replace(/^/mg, '  ')"; // indent each line
 		if (JS_EvaluateScript(cx, JSVAL_TO_OBJECT(excn), dumpStack, ARRAY_SIZE(dumpStack)-1, "(eval)", 1, &rval))
@@ -794,15 +796,6 @@ bool ScriptInterface::Eval_(const wchar_t* code, jsval& rval)
 	return ok ? true : false;
 }
 
-std::wstring ScriptInterface::ToString(jsval obj)
-{
-	if (JSVAL_IS_VOID(obj))
-		return L"(void 0)";
-	std::wstring source = L"(error)";
-	CallFunction(obj, "toSource", source);
-	return source;
-}
-
 CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
 {
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
@@ -869,6 +862,18 @@ struct Stringifier
 	std::stringstream stream;
 };
 
+struct StringifierW
+{
+	static JSBool callback(const jschar* buf, uint32 len, void* data)
+	{
+		utf16string str(buf, buf+len);
+		static_cast<StringifierW*>(data)->stream << std::wstring(str.begin(), str.end());
+		return JS_TRUE;
+	}
+
+	std::wstringstream stream;
+};
+
 std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
 {
 	Stringifier str;
@@ -879,6 +884,40 @@ std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
 	}
 
 	return str.stream.str();
+}
+
+std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
+{
+	if (JSVAL_IS_VOID(obj))
+		return L"(void 0)";
+
+	// Try to stringify as JSON if possible
+	// (TODO: this is maybe a bad idea since it'll drop 'undefined' values silently)
+	if (pretty)
+	{
+		StringifierW str;
+
+		// Temporary disable the error reporter, so we don't print complaints about cyclic values
+		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
+
+		bool ok = JS_Stringify(m->m_cx, &obj, NULL, INT_TO_JSVAL(2), &StringifierW::callback, &str);
+
+		// Restore error reporter
+		JS_SetErrorReporter(m->m_cx, er);
+
+		if (ok)
+			return str.stream.str();
+
+		// Clear the exception set when Stringify failed
+		JS_ClearPendingException(m->m_cx);
+	}
+
+	// Caller didn't want pretty output, or JSON conversion failed (e.g. due to cycles),
+	// so fall back to obj.toSource()
+
+	std::wstring source = L"(error)";
+	CallFunction(obj, "toSource", source);
+	return source;
 }
 
 void ScriptInterface::ReportError(const char* msg)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -660,11 +660,26 @@ public:
 				"entities:\n"
 				"- id: 1\n"
 				"  TestScript1_values:\n"
-				"    object: ({x:1234, str:\"this is a string\", things:{a:1, b:\"2\", c:[3, \"4\", [5, []]]}})\n"
+				"    object: {\n"
+				"  \"x\": 1234,\n"
+				"  \"str\": \"this is a string\",\n"
+				"  \"things\": {\n"
+				"    \"a\": 1,\n"
+				"    \"b\": \"2\",\n"
+				"    \"c\": [\n"
+				"      3,\n"
+				"      \"4\",\n"
+				"      [\n"
+				"        5,\n"
+				"        []\n"
+				"      ]\n"
+				"    ]\n"
+				"  }\n"
+				"}\n"
 				"\n"
 				"- id: 2\n"
 				"  TestScript1_entity:\n"
-				"    object: ({})\n"
+				"    object: {}\n"
 				"\n"
 				"- id: 3\n"
 				"  TestScript1_nontree:\n"
@@ -672,7 +687,9 @@ public:
 				"\n"
 				"- id: 4\n"
 				"  TestScript1_custom:\n"
-				"    object: ({c:1})\n"
+				"    object: {\n"
+				"  \"c\": 1\n"
+				"}\n"
 				"\n"
 		);
 

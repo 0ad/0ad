@@ -200,7 +200,7 @@ public:
 
 	template<typename T, typename CHAR> bool Eval(const CHAR* code, T& out);
 
-	std::wstring ToString(jsval obj);
+	std::wstring ToString(jsval obj, bool pretty = false);
 
 	/**
 	 * Parse a UTF-8-encoded JSON string. Returns the undefined value on error.

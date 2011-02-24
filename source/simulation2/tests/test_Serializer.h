@@ -273,7 +273,20 @@ public:
 			std::stringstream stream;
 			CDebugSerializer serialize(script, stream);
 			serialize.ScriptVal("script", obj);
-			TS_ASSERT_STR_EQUALS(stream.str(), "script: ({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})\n");
+			TS_ASSERT_STR_EQUALS(stream.str(),
+					"script: {\n"
+					"  \"x\": 123,\n"
+					"  \"y\": [\n"
+					"    1,\n"
+					"    1.5,\n"
+					"    \"2\",\n"
+					"    \"test\",\n"
+					"    null,\n"
+					"    null,\n"
+					"    true,\n"
+					"    false\n"
+					"  ]\n"
+					"}\n");
 		}
 
 		{
