@@ -29,8 +29,8 @@ var INPUT_PRESELECTEDACTION = 7;
 var inputState = INPUT_NORMAL;
 
 var defaultPlacementAngle = Math.PI*3/4;
-var placementAngle;
-var placementPosition;
+var placementAngle = undefined;
+var placementPosition = undefined;
 var placementEntity = undefined;
 
 var mouseX = 0;
@@ -73,7 +73,7 @@ function updateBuildingPlacementPreview()
 	// The preview should be recomputed every turn, so that it responds
 	// to obstructions/fog/etc moving underneath it
 
-	if (placementEntity)
+	if (placementEntity && placementPosition)
 	{
 		Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
 			"template": placementEntity,
@@ -82,6 +82,14 @@ function updateBuildingPlacementPreview()
 			"angle": placementAngle
 		});
 	}
+}
+
+function resetPlacementEntity()
+{
+	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+	placementEntity = undefined;
+	placementPosition = undefined;
+	placementAngle = undefined;
 }
 
 function findGatherType(gatherer, supply)
@@ -318,9 +326,6 @@ function tryPlaceBuilding(queued)
 		return false;
 	}
 
-	// Remove the preview
-	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-
 	// Start the construction
 	Engine.PostNetworkCommand({
 		"type": "construct",
@@ -335,7 +340,7 @@ function tryPlaceBuilding(queued)
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 
-	placementEntity = undefined;
+	resetPlacementEntity();
 
 	return true;
 }
@@ -511,8 +516,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel building
-				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-				placementEntity = undefined;
+				resetPlacementEntity();
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -572,8 +576,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel building
-				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-				placementEntity = undefined;
+				resetPlacementEntity();
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -779,8 +782,7 @@ function handleInputAfterGui(ev)
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel building
-				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-				placementEntity = undefined;
+				resetPlacementEntity();
 				inputState = INPUT_NORMAL;
 				return true;
 			}
