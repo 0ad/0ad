@@ -180,7 +180,9 @@ private:
 		}
 		else
 		{
-			POST_MESSAGE(GuiCharEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey()));
+			// Slight hack: Only pass 'normal' keys; special keys will generate a KeyDown/KeyUp event instead
+			if (evt.GetKeyCode() < 256)
+				POST_MESSAGE(GuiCharEvent, (GetSDLKeyFromWxKeyCode(evt.GetKeyCode()), evt.GetUnicodeKey()));
 
 			evt.Skip();
 		}
