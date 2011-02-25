@@ -109,7 +109,7 @@ void CFileUnpacker::Read(const VfsPath& filename, const char magic[4])
 	// since this (unfortunately) happens so often, we perform a separate
 	// check and "just" raise an exception for the caller to handle.
 	// (this is nicer than somehow squelching internal VFS error reporting)
-	if(!FileExists(filename))
+	if(!VfsFileExists(filename))
 		throw PSERROR_File_OpenFailed();
 
 	// load the whole thing into memory

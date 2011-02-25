@@ -204,7 +204,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	// be "psa" too.)
 
 	VfsPath dae(fs::change_extension(pathnameNoExtension, L".dae"));
-	if (! FileExists(dae))
+	if (! VfsFileExists(dae))
 	{
 		// No .dae - got to use the .pmd, assuming there is one
 		return fs::change_extension(pathnameNoExtension, extn);
@@ -252,7 +252,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	cachedPmdVfsPath = fs::change_extension(cachedPmdVfsPath, extension);
 
 	// If it's not in the cache, we'll have to create it first
-	if (! FileExists(cachedPmdVfsPath))
+	if (! VfsFileExists(cachedPmdVfsPath))
 	{
 		if (! m->Convert(dae, cachedPmdVfsPath, type))
 			return L""; // failed to convert

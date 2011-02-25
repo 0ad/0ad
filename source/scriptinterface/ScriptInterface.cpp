@@ -741,7 +741,7 @@ bool ScriptInterface::LoadScript(const std::wstring& filename, const std::wstrin
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 {
-	if (!FileExists(g_VFS, path))
+	if (!VfsFileExists(g_VFS, path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
 		return false;
@@ -826,7 +826,7 @@ CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
 
 CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 {
-	if (!FileExists(g_VFS, path))
+	if (!VfsFileExists(g_VFS, path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
 		return CScriptValRooted();
@@ -900,7 +900,7 @@ std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
 		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
 
-		bool ok = JS_Stringify(m->m_cx, &obj, NULL, INT_TO_JSVAL(2), &StringifierW::callback, &str);
+		bool ok = JS_Stringify(m->m_cx, &obj, NULL, INT_TO_JSVAL(2), &StringifierW::callback, &str) == JS_TRUE;
 
 		// Restore error reporter
 		JS_SetErrorReporter(m->m_cx, er);

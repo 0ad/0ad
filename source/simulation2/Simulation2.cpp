@@ -167,7 +167,7 @@ LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 
 	// If the file doesn't exist (e.g. it was deleted), don't bother loading it since that'll give an error message.
 	// (Also don't bother trying to 'unload' it from the component manager, because that's not possible)
-	if (!FileExists(path))
+	if (!VfsFileExists(path))
 		return INFO::OK;
 
 	LOGMESSAGE(L"Reloading simulation script '%ls'", filename.c_str());

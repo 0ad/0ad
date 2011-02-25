@@ -146,7 +146,7 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 		VfsPath pathnameXML = fs::change_extension(pathnames[i], L".xml");
 		CTerrainPropertiesPtr myprops;
 		// Has XML file -> attempt to load properties
-		if (FileExists(pathnameXML))
+		if (VfsFileExists(pathnameXML))
 		{
 			myprops = GetPropertiesFromFile(props, pathnameXML);
 			if (myprops)
@@ -169,7 +169,7 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 
 	// Load terrains.xml first, if it exists
 	VfsPath pathname = path/L"terrains.xml"; 
-	if (FileExists(pathname))
+	if (VfsFileExists(pathname))
 		props = GetPropertiesFromFile(parentProps, pathname);
 	
 	// No terrains.xml, or read failures -> use parent props (i.e. 

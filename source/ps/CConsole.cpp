@@ -615,7 +615,7 @@ void CConsole::LoadHistory()
 	// just don't load anything in that case.
 
 	// do this before LoadFile to avoid an error message if file not found.
-	if (!FileExists(m_sHistoryFile))
+	if (!VfsFileExists(m_sHistoryFile))
 		return;
 
 	shared_ptr<u8> buf; size_t buflen;

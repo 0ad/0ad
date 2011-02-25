@@ -77,7 +77,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	// mostly-empty .pmp file, so we let the XML file specify basic terrain instead.
 	// If there's an .xml file and no .pmp, then we're probably in this XML-only mode
 	only_xml = false;
-	if (!FileExists(pathname) && FileExists(filename_xml))
+	if (!VfsFileExists(pathname) && VfsFileExists(filename_xml))
 	{
 		only_xml = true;
 	}
