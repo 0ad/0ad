@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,6 +46,7 @@ function RunDetection(settings)
 	var warnings = [];
 
 	var disable_audio = undefined;
+	var disable_s3tc = undefined;
 
 	// TODO: add some mechanism for setting config values
 	// (overriding default.cfg, but overridden by local.cfg)
@@ -54,7 +55,8 @@ function RunDetection(settings)
 
 	// Extract all the settings we might use from the argument:
 	// (This is less error-prone than referring to "settings.foo" directly
-	// since typos will be caught)
+	// since typos in the matching code will be caught as references to
+	// undefined variables.)
 
 	// OS flags (0 or 1)
 	var os_unix = settings.os_unix;
@@ -71,22 +73,7 @@ function RunDetection(settings)
 	var GL_VENDOR = settings.GL_VENDOR;
 	var GL_RENDERER = settings.GL_RENDERER;
 	var GL_VERSION = settings.GL_VERSION;
-	var GL_EXTENSIONS = settings.GL_EXTENSIONS.split(" "); // split on spaces
-
-	var video_xres = settings.video_xres;
-	var video_yres = settings.video_yres;
-	var video_bpp = settings.video_bpp;
-
-	var uname_sysname = settings.uname_sysname;
-	var uname_release = settings.uname_release;
-	var uname_version = settings.uname_version;
-	var uname_machine = settings.uname_machine;
-
-	var cpu_identifier = settings.cpu_identifier;
-	var cpu_frequency = settings.cpu_frequency; // -1 if unknown
-
-	var ram_total = settings.ram_total; // megabytes
-	var ram_free = settings.ram_free; // megabytes
+	var GL_EXTENSIONS = settings.GL_EXTENSIONS.split(" ");
 
 
 	// NVIDIA 260.19.* UNIX drivers cause random crashes soon after startup.
@@ -105,11 +92,19 @@ function RunDetection(settings)
 		disable_audio = true;
 	}
 
+	// http://trac.wildfiregames.com/ticket/684
+	// https://bugs.freedesktop.org/show_bug.cgi?id=24047
+	// R600 drivers will advertise support for S3TC but not actually support it,
+	// and will draw everything in grey instead, so forcibly disable S3TC.
+	// (We should add a version check once there's a version that does support it properly.)
+	if (os_unix && GL_RENDERER.match(/^Mesa DRI R600/))
+		disable_s3tc = true;
 
 	return {
 		"dialog_warnings": dialog_warnings,
 		"warnings": warnings,
 		"disable_audio": disable_audio,
+		"disable_s3tc": disable_s3tc,
 	};
 }
 
@@ -132,4 +127,7 @@ global.RunHardwareDetection = function(settings)
 
 	if (output.disable_audio !== undefined)
 		Engine.SetDisableAudio(output.disable_audio);
+
+	if (output.disable_s3tc !== undefined)
+		Engine.SetDisableS3TC(output.disable_s3tc);
 };

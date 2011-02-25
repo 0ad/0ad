@@ -24,6 +24,7 @@
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
+#include "lib/res/graphics/ogl_tex.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/numa.h"
@@ -37,11 +38,6 @@
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/Config.h"
-
-void SetDisableAudio(void* UNUSED(cbdata), bool disabled)
-{
-	g_DisableAudio = disabled;
-}
 
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings);
 
@@ -84,6 +80,18 @@ CScriptVal ConvertTLBs(ScriptInterface& scriptInterface, const x86_x64_TLBs* tlb
 }
 #endif
 
+
+
+void SetDisableAudio(void* UNUSED(cbdata), bool disabled)
+{
+	g_DisableAudio = disabled;
+}
+
+void SetDisableS3TC(void* UNUSED(cbdata), bool disabled)
+{
+	ogl_tex_override(OGL_TEX_S3TC, disabled ? OGL_TEX_DISABLE : OGL_TEX_ENABLE);
+}
+
 void RunHardwareDetection()
 {
 	TIMER(L"RunHardwareDetection");
@@ -91,6 +99,7 @@ void RunHardwareDetection()
 	ScriptInterface& scriptInterface = g_ScriptingHost.GetScriptInterface();
 
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
+	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
 
 	// Load the detection script:
 
