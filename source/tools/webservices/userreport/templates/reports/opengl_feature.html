@@ -1,0 +1,121 @@
+{% extends "reports/base.html" %}
+{% load report_tags %}
+{% load cycle %}
+
+{% block css %}
+ul {
+    margin: 0;
+}
+
+.support-status .r {
+    font-weight: bold;
+}
+
+.support-status ul {
+    margin: 0;
+    padding: 0;
+}
+
+.support-status li {
+    list-style: none;
+}
+
+tr.head {
+    background: #ddd;
+}
+
+tr.data:hover {
+    background: #ddd;
+}
+{% endblock %}
+
+{% block title %}
+OpenGL capabilities report: {{ feature }}
+{% endblock %}
+
+{% block heading %}
+OpenGL capabilities report: {{ feature }}
+{% endblock %}
+
+{% block content %}
+
+<p>(<a href="{% url userreport.views.report_opengl_index %}">Back to index page.</a>)</p>
+
+{% if is_extension %}
+
+<p><a href="{{ feature|glext_spec_link }}">View specification for {{ feature }}.</a></p>
+
+  <table class=support-status>
+
+    <tr>
+      <td colspan=4><h2>Supported by:</h2>
+
+    <tr class=head>
+      <th>Vendor
+      <th>Renderer
+      <th>OS
+      <th>Driver versions
+
+{% for device in values.true|sorteddeviceitems %}
+<tr class="data{% safe_cycle '' ' alt'%}">
+<td>{{ device.0.vendor }}
+<td class=r><a href="{% url userreport.views.report_opengl_device device.0.renderer %}">{{ device.0.renderer }}</a>
+<td>{{ device.0.os }}
+<td><ul>
+{% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
+</ul>
+{% endfor %}
+
+    <tr>
+      <td colspan=4><h2>Not supported by:</h2>
+
+    <tr class=head>
+      <th>Vendor
+      <th>Renderer
+      <th>OS
+      <th>Driver versions
+
+{% for device in values.false|sorteddeviceitems %}
+<tr class="data{% safe_cycle '' ' alt'%}">
+<td>{{ device.0.vendor }}
+<td class=r><a href="{% url userreport.views.report_opengl_device device.0.renderer %}">{{ device.0.renderer }}</a>
+<td>{{ device.0.os }}
+<td><ul>
+{% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
+</ul>
+{% endfor %}
+
+  </table>
+
+{% else %}
+
+  <table class=support-status>
+
+  {% for val in values.keys|sortreversed %}
+
+    <tr>
+      <td colspan=4><h2>Value: {{ val|default_if_none:"Unsupported/unknown" }}</h2>
+
+    <tr class=head>
+      <th>Vendor
+      <th>Renderer
+      <th>OS
+      <th>Driver versions
+
+{% for device in values|dictget:val|sorteddeviceitems %}
+<tr class="data{% safe_cycle '' ' alt'%}">
+<td>{{ device.0.vendor }}
+<td class=r><a href="{% url userreport.views.report_opengl_device device.0.renderer %}">{{ device.0.renderer }}</a>
+<td>{{ device.0.os }}
+<td><ul>
+{% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
+</ul>
+{% endfor %}
+
+  {% endfor %}
+
+  </table>
+
+{% endif %}
+
+{% endblock %}

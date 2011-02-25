@@ -1,0 +1,31 @@
+{% extends "reports/base.html" %}
+{% load report_tags %}
+
+{% block css %}
+td.rawdata {
+    white-space: pre;
+}
+{% endblock %}
+
+{% block title %}
+User {{ user }}
+{% endblock %}
+
+{% block heading %}
+All reports from user {{ user }}
+{% endblock %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Received
+    <th>Type
+    <th>Raw data
+{% for report in report_page.object_list %}
+  <tr {% cycle 'class=alt' '' %}>
+    <td>{{ report.upload_date|date:"Y-m-d" }}&nbsp;{{ report.upload_date|date:"H:i:s" }}
+    <td>{{ report.data_type }}&nbsp;(v{{ report.data_version }})
+    <td class=rawdata>{{ report.data|prettify_json }}
+{% endfor %}
+</table>
+{% endblock %}

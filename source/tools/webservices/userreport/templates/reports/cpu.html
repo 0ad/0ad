@@ -1,0 +1,52 @@
+{% extends "reports/base.html" %}
+{% load report_tags %}
+
+{% block css %}
+table.profile td {
+    line-height: inherit;
+    border-bottom: inherit;
+    padding: 0 1em 0 0.5em;
+}
+.treemarker {
+    color: #666;
+    font-family: monospace;
+    white-space: pre;
+}
+{% endblock %}
+
+{% block title %}
+CPU capabilities report
+{% endblock %}
+
+{% block heading %}
+CPU capabilities
+{% endblock %}
+
+{% block content %}
+<p>Based on data submitted by players of <a href="http://wildfiregames.com/0ad/">0 A.D.</a></p>
+
+<p>See the <a href="{% url userreport.views.index %}">index page</a> for more stuff.</p>
+
+<table>
+  <tr>
+    <th>OS
+    <th>Identifier
+    <th><abbr title="Vendor/Model/Family">V/M/F</abbr>
+    <th>Freq
+    <th><abbr title="Num packages &times; cores per package &times; logical processors per core = number of processors">Num procs</abbr>
+    <th>Caches (data/instruction/unified)
+    <th>TLBs
+    <th>Feature bits
+{% for cpu,users in cpus|sortedcpuitems %}
+  <tr {% cycle 'class=alt' '' %}>
+    <td>{{ cpu.os }}
+    <td><nobr>{{ cpu.cpu_identifier }}</nobr>
+    <td>{{ cpu.x86_vendor }}/{{ cpu.x86_model }}/{{ cpu.x86_family }}
+    <td>{% if cpu.cpu_frequency = -1 %}?{% else %}{{ cpu.cpu_frequency|cpufreqformat }}{% endif %}
+    <td>{{ cpu.cpu_numpackages }}&times;{{ cpu.cpu_coresperpackage }}&times;{{ cpu.cpu_logicalpercore }}&nbsp;=&nbsp;{{ cpu.cpu_numprocs }}
+    <td><nobr>{{ cpu.caches|join:"<br>" }}</nobr>
+    <td><nobr>{{ cpu.tlbs|join:"<br>" }}</nobr>
+    <td>{% for cap in cpu.caps|sort %}{% if cap in x86_cap_descs %}<abbr title="{{ x86_cap_descs|dictget:cap }}">{{ cap }}</abbr>{% else %}{{ cap }}{% endif %} {% endfor %}
+{% endfor %}
+</table>
+{% endblock %}

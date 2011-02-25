@@ -1,0 +1,28 @@
+This has been tested with Django 1.3 Beta 1.
+
+To set up the database, run commands like:
+
+  In MySQL:
+    create database wfgservices character set utf8;
+    grant create,alter,index,select,insert,update,delete on wfgservices.* to 'wfgservices'@'localhost' identified by '[PASSWORD]';
+  In shell:
+    python manage.py syncdb
+
+Copy settings_local.EXAMPLE.py to settings_local.py and fill in the details.
+
+Set up Apache with some options kind of like:
+
+    WSGIScriptAlias / /var/www/wherever/django.wsgi
+    <Location />
+        SetOutputFilter DEFLATE
+        Options None
+    </Location>
+    <Location /private>
+        AuthType Basic
+        AuthName "WFG login"
+        AuthUserFile ...
+        Require valid-user
+    </Location>
+    Alias /static/admin/ /usr/lib/python2.5/site-packages/django/contrib/admin/media/
+    Alias /robots.txt /var/www/wherever/robots.txt
+    Alias /favicon.ico /var/www/wherever/favicon.ico

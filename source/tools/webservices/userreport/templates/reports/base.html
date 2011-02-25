@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>{% block title %}Report{% endblock %}</title>
+<style>
+body {
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    border-color: #ccc;
+}
+
+td, th {
+    line-height: 13px;
+    border-bottom: 1px solid #eee;
+    padding: 5px;
+}
+
+td {
+    font-size: 11px;
+    line-height: 13px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+th {
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: bottom;
+    text-align: left;
+}
+
+tr.alt {
+    background: #f6f6f6;
+}
+{% block css %}{% endblock %}
+</style>
+
+<h1>{% block heading %}Report{% endblock %}</h1>
+
+{% block content %}{% endblock %}
+
+{% if report_page %}{% if report_page.has_previous or report_page.has_next %}
+<div class="pagination">
+    <span class="step-links">
+        {% if report_page.has_previous %}
+            <a href="?page={{ report_page.previous_page_number }}" rel="prev">[previous]</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ report_page.number }} of {{ report_page.paginator.num_pages }}
+        </span>
+
+        {% if report_page.has_next %}
+            <a href="?page={{ report_page.next_page_number }}" rel="next">[next]</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}{% endif %}

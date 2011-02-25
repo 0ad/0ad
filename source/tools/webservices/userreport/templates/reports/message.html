@@ -1,0 +1,16 @@
+{% extends "reports/base.html" %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Received
+    <th>User
+    <th>Message
+{% for report in report_page.object_list %}
+  <tr {% cycle 'class=alt' '' %}>
+    <td>{{ report.upload_date|date:"Y-m-d" }}&nbsp;{{ report.upload_date|date:"H:i:s" }}
+    <td><a href="{% url userreport.views_private.report_user report.user_id_hash %}"><abbr title="{{ report.user_id_hash }}">{{ report.user_id_hash|slice:"0:8" }}</abbr></a>
+    <td>{{ report.data }}
+{% endfor %}
+</table>
+{% endblock %}

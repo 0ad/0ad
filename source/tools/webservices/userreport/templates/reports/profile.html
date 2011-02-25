@@ -1,0 +1,41 @@
+{% extends "reports/base.html" %}
+{% load report_tags %}
+
+{% block css %}
+table.profile td {
+    line-height: inherit;
+    border-bottom: inherit;
+    padding: 0 1em 0 0.5em;
+}
+.treemarker {
+    color: #666;
+    font-family: monospace;
+    white-space: pre;
+}
+{% endblock %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Received
+    <th>User
+    <th>Profiler
+{% for report in report_page.object_list %}
+{% with json=report.data_json %}
+  <tr {% cycle 'class=alt' '' %}>
+    <td>{{ report.upload_date|date:"Y-m-d" }}&nbsp;{{ report.upload_date|date:"H:i:s" }}
+    <td><a href="{% url userreport.views_private.report_user report.user_id_hash %}"><abbr title="{{ report.user_id_hash }}">{{ report.user_id_hash|slice:"0:8" }}</abbr></a>
+    <td>
+<p>Time: {{ json.time }}
+<p>Map: {{ json.map }}
+{% for name,table in json.profiler.items %}
+<h3>{{ name }}</h3>
+<table class="profile">
+{{ table|format_profile }}
+</table>
+{% endfor %}
+
+{% endwith %}
+{% endfor %}
+</table>
+{% endblock %}

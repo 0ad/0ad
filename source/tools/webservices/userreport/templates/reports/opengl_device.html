@@ -1,0 +1,94 @@
+{% extends "reports/base.html" %}
+{% load report_tags %}
+{% load cycle %}
+
+{% block css %}
+th.alt, td.alt { background: #f6f6f6; }
+td.true { background: #3f3; }
+td.false { background: #f33; }
+td.true.alt { background: #2e2; }
+td.false.alt { background: #e22; }
+
+.device-status ul {
+    margin: 0;
+    padding: 0;
+}
+
+.device-status li {
+    list-style: none;
+}
+{% endblock %}
+
+{% block title %}
+OpenGL capabilities report: {{ selected|join:' vs. ' }}
+{% endblock %}
+
+{% block heading %}
+OpenGL capabilities report
+{% endblock %}
+
+{% block content %}
+
+<p>(<a href="{% url userreport.views.report_opengl_index %}">Back to index page.</a>)</p>
+
+<p>The table here shows the features reported for the following devices:</p>
+<ul>
+{% for device in selected %}<li>{{ device }}{% endfor %}
+</ul>
+<p>Different driver versions may have different feature sets,
+and we may have conflicting reports from the same driver version.
+There is a column for each distinct set of reported features.</p>
+
+<p>Green cells indicate supported extensions; red cells indicate non-supported extensions.</p>
+
+<table class=device-status>
+  <tr>
+    <td>
+
+{% for ext in all_exts %}
+
+  {% if not forloop.counter0|mod:30 %}
+    <tr><td>
+    {% for device in devices %}
+      <th{% safe_cycle ' class=alt' '' %}>
+        {{ device.0.renderer }} ({{ device.0.os }}):
+        <ul>{% for driver in device.1 %}<li>{{ driver }}{% endfor %}</ul>
+    {% endfor %}
+  {% endif %}
+
+  <tr title="{{ ext }}">
+    <th><nobr><a href="{% url userreport.views.report_opengl_feature ext %}">{{ ext }}</a> <a href="{{ ext|glext_spec_link }}">(spec)</a></nobr>
+    {% for device in devices %}
+      <td class="{% if ext in device.2.1 %}true{% else %}false{% endif %}{% safe_cycle ' alt' '' %}">
+    {% endfor %}
+{% endfor %}
+
+{% for limit in all_limits %}
+  {% if not forloop.counter|mod:30 %}
+    <tr><td>
+    {% for device in devices %}
+      <th{% safe_cycle ' class=alt' '' %}>
+        {{ device.0.renderer }} ({{ device.0.os }}):
+        <ul>{% for driver in device.1 %}<li>{{ driver }}{% endfor %}</ul>
+    {% endfor %}
+  {% endif %}
+
+  <tr title="{{ limit }}">
+    <th><nobr><a href="{% url userreport.views.report_opengl_feature limit %}">{{ limit|prettify_gl_title }}</a></nobr>
+    {% for device in devices %}
+      <td{% safe_cycle ' class=alt' '' %}>{{ device.2.0|dictget:limit }}
+    {% endfor %}
+{% endfor %}
+</table>
+
+<h2>Compare with other devices</h2>
+<form action="{% url userreport.views.report_opengl_device_compare %}" method=get>
+<ul>
+{% for d in all_devices|sort %}
+<li><label><input name=d value="{{ d }}" type=checkbox{% if d in selected %} checked{% endif %}> {{ d }}</label>
+{% endfor %}
+</ul>
+<input type=submit value="Compare selected devices">
+</form>
+
+{% endblock %}

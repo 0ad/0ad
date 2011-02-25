@@ -1,0 +1,102 @@
+{% extends "reports/base.html" %}
+{% load report_tags %}
+
+{% block css %}
+
+.col {
+    float: left;
+}
+
+.progress {
+    font-size: 10px;
+    font-weight: bold;
+    display: inline-block;
+    background: #f99;
+    width: 40px;
+    height: 13px;
+}
+.progress .bar {
+    display: inline-block;
+    position: absolute;
+    background: #3f3;
+    height: 13px;
+    z-index: 0;
+}
+
+li:hover {
+    background: #ddd;
+}
+
+{% endblock %}
+
+{% block title %}
+OpenGL capabilities database - index
+{% endblock %}
+
+{% block heading %}
+OpenGL capabilities database
+{% endblock %}
+
+{% block content %}
+
+<script>
+function sort_by_percent(ul)
+{
+    var data = [];
+    var lis = ul.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; ++i)
+        data.push([+lis[i].getAttribute('data-supportedby'), lis[i].getAttribute('data-extname'), lis[i]]);
+    data.sort(function (a, b) { return b[0] - a[0] || (a[1] < b[1] ? -1 : b[1] < a[1] ? 1 : 0) });
+    for (var i = 0; i < data.length; ++i)
+        ul.appendChild(data[i][2]);
+}
+
+function sort_by_name(ul)
+{
+    var data = [];
+    var lis = ul.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; ++i)
+        data.push([lis[i].getAttribute('data-extname'), lis[i]]);
+    data.sort(function (a, b) { return (a[0] < b[0] ? -1 : b[0] < a[0] ? 1 : 0) });
+    for (var i = 0; i < data.length; ++i)
+        ul.appendChild(data[i][1]);
+}
+</script>
+
+<p>Based on data submitted by players of <a href="http://wildfiregames.com/0ad/">0 A.D.</a>
+<p>Browse the data here, or download as <a href="{% url userreport.views.report_opengl_json %}">JSON</a>.
+Feel free to do whatever you want with the data.</p>
+<p>See the <a href="{% url userreport.views.index %}">index page</a> for more stuff.</p>
+
+<div class=col>
+<h2>Extension support</h2>
+Sort by
+<a href="#" onclick="sort_by_percent(document.getElementById('extensions')); return false">% support</a> /
+<a href="#" onclick="sort_by_name(document.getElementById('extensions')); return false">name</a>.
+<ul id=extensions>
+{% for ext in all_exts %}
+<li data-supportedby={{ ext_devices|dictget:ext|length }} data-extname="{{ ext }}">
+<span class=progress title="Percentage of devices that support this extension"><span class=bar style="width:{% widthratio ext_devices|dictget:ext|length all_devices|length 40 %}px">{% widthratio ext_devices|dictget:ext|length all_devices|length 100 %}%</span></span>
+(<a href="{{ ext|glext_spec_link }}">spec</a>)
+<a href="{% url userreport.views.report_opengl_feature ext %}">{{ ext }}</a>
+{% endfor %}
+</ul>
+
+<h2>Implementation limits</h2>
+<ul>
+{% for limit in all_limits %}
+<li><a href="{% url userreport.views.report_opengl_feature limit %}">{{ limit }}</a>
+{% endfor %}
+</ul>
+</div>
+
+<div class=col>
+<h2>Device details</h2>
+<ul>
+{% for device in all_devices %}
+<li><a href="{% url userreport.views.report_opengl_device device %}">{{ device }}</a>
+{% endfor %}
+</ul>
+</div>
+
+{% endblock %}
