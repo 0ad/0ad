@@ -29,6 +29,7 @@
 #include "lib/byte_order.h"
 #include "tex_codec.h"
 #include "lib/bits.h"
+#include "lib/timer.h"
 
 // NOTE: the convention is bottom-up for DDS, but there's no way to tell.
 
@@ -607,8 +608,12 @@ static LibError dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da
 }
 
 
+TIMER_ADD_CLIENT(tc_dds_transform);
+
 static LibError dds_transform(Tex* t, size_t transforms)
 {
+	TIMER_ACCRUE(tc_dds_transform);
+
 	size_t mipmaps = t->flags & TEX_MIPMAPS;
 	size_t dxt = t->flags & TEX_DXT;
 	debug_assert(is_valid_dxt(dxt));

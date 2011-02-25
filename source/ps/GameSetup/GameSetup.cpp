@@ -514,17 +514,6 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, CScriptVal initData)
 
 	// GUI uses VFS, so this must come after VFS init.
 	g_GUI->SwitchPage(gui_page, initData);
-
-	// Warn nicely about missing S3TC support
-	if (!ogl_tex_has_s3tc())
-	{
-#if !(OS_WIN || OS_MACOSX)
-		bool isMesa = true;
-#else
-		bool isMesa = false;
-#endif
-		g_GUI->GetScriptInterface().CallFunctionVoid(OBJECT_TO_JSVAL(g_GUI->GetScriptObject()), "s3tcWarning", isMesa);
-	}
 }
 
 

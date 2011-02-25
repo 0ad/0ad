@@ -737,12 +737,6 @@ static void detect_gl_upload_caps()
 				ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
 		}
 	}
-
-	// warn if more-or-less essential features are missing
-	// (but don't use DEBUG_DISPLAY_ERROR; the app should check ogl_tex_has_s3tc
-	// and give friendlier error messages, since this is a common problem)
-	if(!have_s3tc)
-		debug_printf(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.\n");
 }
 
 
