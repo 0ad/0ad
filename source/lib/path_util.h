@@ -142,4 +142,18 @@ static inline std::wstring ChangeExtension(const std::wstring& pathname, const s
 	return Join(Path(pathname), Basename(Filename(pathname))+extension);
 }
 
+static inline bool FileExists(const std::wstring& pathname)
+{
+	struct stat s;
+	const bool exists = wstat(pathname.c_str(), &s) == 0;
+	return exists;
+}
+
+static inline u64 FileSize(const std::wstring& pathname)
+{
+	struct stat s;
+	debug_assert(wstat(pathname.c_str(), &s) == 0);
+	return s.st_size;
+}
+
 #endif	// #ifndef INCLUDED_PATH_UTIL

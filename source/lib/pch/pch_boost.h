@@ -2,6 +2,10 @@
 
 #include "lib/external_libraries/suppress_boost_warnings.h"
 
+#if MSC_VERSION >= 1600
+# define BOOST_HAS_STDINT_H
+#endif
+
 // Boost
 // .. if this package isn't going to be statically linked, we're better off
 // using Boost via DLL. (otherwise, we would have to ensure the exact same

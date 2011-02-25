@@ -21,7 +21,7 @@
  */
 
 /*
- * interface to various IA-32 functions (written in asm)
+ * interface to various IA-32 functions (written in assembly language)
  */
 
 #ifndef INCLUDED_IA32_ASM
@@ -68,10 +68,6 @@ extern u32 CALL_CONV ia32_asm_control87(u32 new_val, u32 mask);
 #define IA32_FP_SUBNORMAL (IA32_FP_NORMAL | IA32_FP_ZERO)
 extern size_t CALL_CONV ia32_asm_fpclassifyd(double d);
 extern size_t CALL_CONV ia32_asm_fpclassifyf(float f);
-
-/// POSIX rintf
-extern float CALL_CONV ia32_asm_rintf(float);
-extern double CALL_CONV ia32_asm_rint(double);
 
 /**
  * write the current execution state (e.g. all register values) into

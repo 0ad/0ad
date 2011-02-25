@@ -27,8 +27,8 @@
 #include "precompiled.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
-#include <string.h>
-#include <stdio.h>
+#include <cstring>
+#include <cstdio>
 #include <vector>
 #include <set>
 #include <algorithm>
@@ -40,18 +40,22 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 
-#if ARCH_AMD64
-# include "lib/sysdep/arch/amd64/amd64_asm.h"
-#else
-# include "lib/sysdep/arch/ia32/ia32_asm.h"
-#endif
-
 #if MSC_VERSION
 # include <intrin.h>	// __rdtsc
+#endif
+
+#define CPUID_INTRINSIC 0
+#if MSC_VERSION >= 1500	// __cpuidex available (allows setting ecx beforehand)
+# undef CPUID_INTRINSIC
+# define CPUID_INTRINSIC 1
 #elif GCC_VERSION
-// (no includes needed)
+// (no additional includes needed)
 #else
-# error compiler not supported
+# if ARCH_AMD64
+#  include "lib/sysdep/arch/amd64/amd64_asm.h"
+# else
+#  include "lib/sysdep/arch/ia32/ia32_asm.h"
+# endif
 #endif
 
 
@@ -68,15 +72,20 @@
 //-----------------------------------------------------------------------------
 // CPUID
 
-// note: unfortunately the MSC __cpuid intrinsic does not allow passing
-// additional inputs (e.g. ecx = count), so we need to implement this
-// in assembly for both IA-32 and AMD64.
-static void cpuid_impl(x86_x64_CpuidRegs* regs)
+static void cpuid(x86_x64_CpuidRegs* regs)
 {
-#if ARCH_AMD64
-	amd64_asm_cpuid(regs);
+#if CPUID_INTRINSIC
+	cassert(sizeof(regs->eax) == sizeof(int));
+	cassert(sizeof(*regs) == 4*sizeof(int));
+	__cpuidex((int*)regs, regs->eax, regs->ecx);
+#elif GCC_VERSION
+	__asm__ __volatile__ ("cpuid": "=a" (regs->eax), "=b" (regs->ebx), "=c" (regs->ecx), "=d" (regs->edx) : "a" (regs->eax), "c" (regs->ecx));
 #else
+# if ARCH_AMD64
+	amd64_asm_cpuid(regs);
+# else
 	ia32_asm_cpuid(regs);
+# endif
 #endif
 }
 
@@ -88,11 +97,11 @@ static LibError InitCpuid()
 	x86_x64_CpuidRegs regs = { 0 };
 
 	regs.eax = 0;
-	cpuid_impl(&regs);
+	cpuid(&regs);
 	cpuid_maxFunction = regs.eax;
 
 	regs.eax = 0x80000000;
-	cpuid_impl(&regs);
+	cpuid(&regs);
 	cpuid_maxExtendedFunction = regs.eax;
 
 	return INFO::OK;
@@ -109,7 +118,7 @@ bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
 	if(function < 0x80000000 && function > cpuid_maxFunction)
 		return false;
 
-	cpuid_impl(regs);
+	cpuid(regs);
 	return true;
 }
 
@@ -866,7 +875,7 @@ const char* cpu_IdentifierString()
 // these routines do not call ModuleInit (because some of them are
 // time-critical, e.g. cpu_Serialize) and should also avoid the
 // other x86_x64* functions and their global state.
-// in particular, use cpuid_impl instead of x86_x64_cpuid.
+// in particular, use cpuid instead of x86_x64_cpuid.
 
 u8 x86_x64_ApicId()
 {
@@ -874,7 +883,7 @@ u8 x86_x64_ApicId()
 	regs.eax = 1;
 	// note: CPUID function 1 is always supported, but only processors with
 	// an xAPIC (e.g. P4/Athlon XP) will return a nonzero ID.
-	cpuid_impl(&regs);
+	cpuid(&regs);
 	const u8 apicId = (u8)bits(regs.ebx, 24, 31);
 	return apicId;
 }
@@ -886,7 +895,7 @@ u64 x86_x64_rdtsc()
 #if GCC_VERSION
 	// GCC supports "portable" assembly for both x86 and x64
 	volatile u32 lo, hi;
-	asm volatile ("rdtsc" : "=a" (lo), "=d" (hi));
+	__asm__ __volatile__ ("rdtsc" : "=a" (lo), "=d" (hi));
 	return u64_from_u32(hi, lo);
 #endif
 }
@@ -910,7 +919,7 @@ void cpu_Serialize()
 {
 	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
-	cpuid_impl(&regs);	// CPUID serializes execution.
+	cpuid(&regs);	// CPUID serializes execution.
 }
 
 

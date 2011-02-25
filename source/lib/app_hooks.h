@@ -192,7 +192,7 @@ struct AppHooks
  * override the previous function pointer value
  * (these default to the stub hooks which are functional but basic).
  **/
-extern void app_hooks_update(AppHooks* ah);
+LIB_API void app_hooks_update(AppHooks* ah);
 
 /**
  * was the app hook changed via app_hooks_update from its default value?

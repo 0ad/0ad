@@ -32,20 +32,12 @@
 
 float rintf(float f)
 {
-#if ARCH_IA32
-	return ia32_asm_rintf(f);
-#else
 	return (float)(int)f;
-#endif
 }
 
 double rint(double d)
 {
-#if ARCH_IA32
-	return ia32_asm_rint(d);
-#else
 	return (double)(int)d;
-#endif
 }
 
 

@@ -56,11 +56,11 @@ std::wstring sys_WideFromArgv(const char* argv_i)
 	const UINT cp = CP_ACP;
 	const DWORD flags = MB_PRECOMPOSED|MB_ERR_INVALID_CHARS;
 	const int inputSize = -1;	// null-terminated
-	wchar_t buf[MAX_PATH] = {'\0'};
+	std::vector<wchar_t> buf(strlen(argv_i)+1);	// (upper bound on number of characters)
 	// NB: avoid mbstowcs because it may specify another locale
-	const int ret = MultiByteToWideChar(cp, flags, argv_i, inputSize, buf, ARRAY_SIZE(buf));
+	const int ret = MultiByteToWideChar(cp, flags, argv_i, inputSize, &buf[0], buf.size());
 	debug_assert(ret != 0);
-	return std::wstring(buf);
+	return std::wstring(&buf[0]);
 }
 
 

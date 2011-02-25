@@ -103,21 +103,6 @@ sym(ia32_asm_fpclassifyf):
 	ret
 
 
-; extern "C" float __cdecl ia32_asm_rintf(float);
-global sym(ia32_asm_rintf)
-sym(ia32_asm_rintf):
-	fld		dword [esp+4]
-	frndint
-	ret
-
-; extern "C" double __cdecl ia32_asm_rint(double);
-global sym(ia32_asm_rint)
-sym(ia32_asm_rint):
-	fld		qword [esp+4]
-	frndint
-	ret
-
-
 ;-------------------------------------------------------------------------------
 ; misc
 ;-------------------------------------------------------------------------------

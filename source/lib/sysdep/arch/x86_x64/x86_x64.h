@@ -38,6 +38,7 @@
 /**
  * registers used/returned by x86_x64_cpuid
  **/
+#pragma pack(push, 1)	// (allows casting to int*)
 struct x86_x64_CpuidRegs
 {
 	u32 eax;
@@ -45,6 +46,7 @@ struct x86_x64_CpuidRegs
 	u32 ecx;
 	u32 edx;
 };
+#pragma pack(pop)
 
 /**
  * invoke CPUID instruction.
