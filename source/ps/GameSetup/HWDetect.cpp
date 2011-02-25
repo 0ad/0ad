@@ -92,6 +92,16 @@ void SetDisableS3TC(void* UNUSED(cbdata), bool disabled)
 	ogl_tex_override(OGL_TEX_S3TC, disabled ? OGL_TEX_DISABLE : OGL_TEX_ENABLE);
 }
 
+void SetDisableShadows(void* UNUSED(cbdata), bool disabled)
+{
+	g_Shadows = !disabled;
+}
+
+void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
+{
+	g_FancyWater = !disabled;
+}
+
 void RunHardwareDetection()
 {
 	TIMER(L"RunHardwareDetection");
@@ -100,6 +110,8 @@ void RunHardwareDetection()
 
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
+	scriptInterface.RegisterFunction<void, bool, &SetDisableShadows>("SetDisableShadows");
+	scriptInterface.RegisterFunction<void, bool, &SetDisableFancyWater>("SetDisableFancyWater");
 
 	// Load the detection script:
 

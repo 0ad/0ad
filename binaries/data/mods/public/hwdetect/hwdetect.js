@@ -47,6 +47,8 @@ function RunDetection(settings)
 
 	var disable_audio = undefined;
 	var disable_s3tc = undefined;
+	var disable_shadows = undefined;
+	var disable_fancywater = undefined;
 
 	// TODO: add some mechanism for setting config values
 	// (overriding default.cfg, but overridden by local.cfg)
@@ -97,14 +99,41 @@ function RunDetection(settings)
 	// R600 drivers will advertise support for S3TC but not actually support it,
 	// and will draw everything in grey instead, so forcibly disable S3TC.
 	// (We should add a version check once there's a version that does support it properly.)
-	if (os_unix && GL_RENDERER.match(/^Mesa DRI R600/))
+	if (os_unix && GL_RENDERER.match(/^Mesa DRI R600 /))
 		disable_s3tc = true;
+
+	// http://trac.wildfiregames.com/ticket/623
+	// Shadows are reportedly very slow on various drivers:
+	//   r300 classic
+	//   Intel 945
+	// Shadows are also quite slow on some others:
+	//   Intel 4500MHD
+	// In the interests of performance, we'll disable them on lots of devices
+	if (os_unix && (
+		GL_RENDERER.match(/^Mesa DRI R300 /) ||
+		GL_RENDERER.match(/^Mesa DRI Intel\S* (915|945|965)(G|GM) /) ||
+		GL_RENDERER.match(/^Mesa DRI Mobile Intel\S* GM45 /)
+	))
+	{
+		disable_shadows = true;
+	}
+
+	// Fragment-shader water is really slow on at least some old Intel devices
+	if (os_unix && (
+		GL_RENDERER.match(/^Mesa DRI Intel\S* (915|945|965)(G|GM) /) ||
+		GL_RENDERER.match(/^Mesa DRI Mobile Intel\S* GM45 /)
+	))
+	{
+		disable_fancywater = true;
+	}
 
 	return {
 		"dialog_warnings": dialog_warnings,
 		"warnings": warnings,
 		"disable_audio": disable_audio,
 		"disable_s3tc": disable_s3tc,
+		"disable_shadows": disable_shadows,
+		"disable_fancywater": disable_fancywater,
 	};
 }
 
@@ -130,4 +159,10 @@ global.RunHardwareDetection = function(settings)
 
 	if (output.disable_s3tc !== undefined)
 		Engine.SetDisableS3TC(output.disable_s3tc);
+
+	if (output.disable_shadows !== undefined)
+		Engine.SetDisableShadows(output.disable_shadows);
+
+	if (output.disable_fancywater !== undefined)
+		Engine.SetDisableFancyWater(output.disable_fancywater);
 };
