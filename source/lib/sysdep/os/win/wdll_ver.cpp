@@ -98,7 +98,7 @@ void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list)
 
 	// read file version. try this with and without FS redirection since
 	// pathname might assume both.
-	wchar_t versionString[500] = L"unknown";	// enclosed in () below
+	wchar_t versionString[500];	// enclosed in () below
 	if(ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString)) != INFO::OK)
 	{
 		WinScopedDisableWow64Redirection s;

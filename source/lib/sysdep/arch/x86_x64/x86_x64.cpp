@@ -258,7 +258,7 @@ size_t x86_x64_Family()
 // cache
 
 static const size_t maxCacheLevels = 3;
-static x86_x64_Cache cacheStorage[maxCacheLevels*2];
+static x86_x64_Cache cacheStorage[maxCacheLevels*2];	// separate D and I hierarchies
 static x86_x64_Caches dcaches = { 0, cacheStorage };
 static x86_x64_Caches icaches = { 0, cacheStorage+maxCacheLevels };
 
@@ -433,8 +433,13 @@ static void DetectCacheAndTLB()
 		icaches.numLevels = dcaches.numLevels = 2;
 		icaches.levels[1] = dcaches.levels[1] = L2Cache(regs.ecx, X86_X64_CACHE_TYPE_UNIFIED);
 
-		icaches.numLevels = dcaches.numLevels = 3;
 		icaches.levels[2] = dcaches.levels[2] = L3Cache(regs.edx, X86_X64_CACHE_TYPE_UNIFIED);
+		// (some Athlon 64 X2 models have no L3 cache, and it's better to report only 2 levels than
+		// have L3 type == NULL)
+		if(dcaches.levels[2].type != X86_X64_CACHE_TYPE_NULL)
+		{
+			icaches.numLevels = dcaches.numLevels = 3;
+		}
 	}
 }
 
@@ -487,6 +492,7 @@ static void DetectCache_CPUID4()
 	}
 }
 
+
 static void ExtractDescriptors(u32 reg, std::vector<u8>& descriptors)
 {
 	if(IsBitSet(reg, 31))	// register contents are reserved
@@ -529,8 +535,9 @@ static const u8 F = x86_x64_fullyAssociative;
 
 #define PROPERTIES(descriptor, flags, assoc, entries) { flags, descriptor, assoc, entries }
 
-// references: [accessed 2009-01-05]
-// AP485 http://download.intel.com/design/processor/applnots/241618033.pdf
+// (we only bother with TLB descriptors because CPUID.4 is a much easier way to detect the cache)
+// references: [accessed 2011-02-26]
+// AP485 http://www.intel.com/Assets/PDF/appnote/241618.pdf
 // sandp http://www.sandpile.org/ia32/cpuid.htm
 // opsol http://src.opensolaris.org/source/xref/onnv/onnv-gate/usr/src/uts/i86pc/os/cpuid.c
 static const Properties propertyTable[] =
@@ -541,7 +548,7 @@ static const Properties propertyTable[] =
 	PROPERTIES(0x04, D|S4M, 4,   8),
 	PROPERTIES(0x05, D|S4M, 4,  32),
 	PROPERTIES(0x0B, I|S4M, 4,   4),
-	PROPERTIES(0x4F, I|S4K, F,  32),	// sandp: unknown assoc, opsol: full, AP485: unmentioned
+	PROPERTIES(0x4F, I|S4K, F,  32),	// sandp: unknown assoc, opsol: full, AP485: unspecified
 	PROPERTIES(0x50, I|S4K, F,  64),
 	PROPERTIES(0x50, I|S4M, F,  64),
 	PROPERTIES(0x50, I|S2M, F,  64),
@@ -634,7 +641,11 @@ static void DecodeDescriptor(u8 descriptor)
 
 static void DetectTLB_CPUID2()
 {
-	// TODO: ensure we are pinned to the same CPU
+	// ensure consistency by pinning to a CPU.
+	// (don't use a hard-coded mask because process affinity may be restricted)
+	const uintptr_t allProcessors = os_cpu_ProcessorMask();
+	const uintptr_t firstProcessor = allProcessors & -intptr_t(allProcessors);
+	const uintptr_t prevAffinityMask = os_cpu_SetThreadAffinityMask(firstProcessor);
 
 	// extract descriptors
 	x86_x64_CpuidRegs regs = { 0 };
@@ -655,6 +666,8 @@ static void DetectTLB_CPUID2()
 		const bool ok = x86_x64_cpuid(&regs);
 		debug_assert(ok);
 	}
+
+	os_cpu_SetThreadAffinityMask(prevAffinityMask);
 
 	for(std::vector<u8>::const_iterator it = descriptors.begin(); it != descriptors.end(); ++it)
 	{

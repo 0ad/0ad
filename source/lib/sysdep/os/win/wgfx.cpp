@@ -169,26 +169,25 @@ static LibError AppendDriverVersionsFromRegistry(std::wstring& versionList)
 	return INFO::OK;
 }
 
+#include "lib/timer.h"
 
-static LibError AppendDriverVersionsFromKnownFiles(std::wstring& versionList)
+static void AppendDriverVersionsFromKnownFiles(std::wstring& versionList)
 {
-	if(!wcsncmp(gfx_card, L"NVIDIA", 6))
-	{
-		wdll_ver_Append(L"nvoglv64.dll", versionList);
-		wdll_ver_Append(L"nvoglv32.dll", versionList);
-		wdll_ver_Append(L"nvoglnt.dll", versionList);
-	}
-	else if(!wcsncmp(gfx_card, L"ATI", 3))
-	{
-		wdll_ver_Append(L"atioglxx.dll", versionList);
-	}
-	else if(!wcsncmp(gfx_card, L"Intel", 5))
-	{
-		wdll_ver_Append(L"igxpdv32.dll", versionList);
-	}
-	else
-		return INFO::CANNOT_HANDLE;
-	return INFO::OK;
+	// (check all known file names regardless of gfx_card, which may change and
+	// defeat our parsing. this takes about 5..10 ms)
+
+	// NVidia
+	wdll_ver_Append(L"nvoglv64.dll", versionList);
+	wdll_ver_Append(L"nvoglv32.dll", versionList);
+	wdll_ver_Append(L"nvoglnt.dll", versionList);
+
+	// ATI
+	wdll_ver_Append(L"atioglxx.dll", versionList);
+
+	// Intel
+	wdll_ver_Append(L"ig4icd32.dll", versionList);
+	wdll_ver_Append(L"ig4icd64.dll", versionList);
+	wdll_ver_Append(L"iglicd32.dll", versionList);
 }
 
 
@@ -198,10 +197,9 @@ LibError win_get_gfx_info()
 
 	std::wstring versionList;
 	if(AppendDriverVersionsFromRegistry(versionList) != INFO::OK)	// (fails on Windows 7)
-	{
-		if(AppendDriverVersionsFromKnownFiles(versionList) != INFO::OK)
-			versionList = L"(unknown)";
-	}
+		AppendDriverVersionsFromKnownFiles(versionList);
+	if(versionList.empty())
+		versionList = L"(unknown)";
 	wcscpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
 
 	return err;

@@ -141,18 +141,32 @@ enum x86_x64_CacheType
 	// note: further values are "reserved"
 };
 
-const u8 x86_x64_fullyAssociative = 0xFF;
+static const u8 x86_x64_fullyAssociative = 0xFF;
 
 struct x86_x64_Cache
 {
 	/**
-	 * (used to determine if this cache is unified or disabled)
+	 * if X86_X64_CACHE_TYPE_NULL, all other values are invalid.
 	 **/
 	x86_x64_CacheType type;
+
+	/**
+	 * equal to the index within x86_x64_Caches.levels[] + 1
+	 **/
 	size_t level;
+
+	/**
+	 * = x86_x64_fullyAssociative or the actual ways of associativity
+	 **/
 	size_t associativity;
+
 	size_t lineSize;	/// [bytes]
+
+	/**
+	 * how many logical processors share this cache?
+	 **/
 	size_t sharedBy;
+
 	size_t totalSize;	/// [bytes]
 };
 
@@ -163,6 +177,9 @@ struct x86_x64_Cache
  **/
 struct x86_x64_Caches
 {
+	/**
+	 * equal to the highest value of x86_x64_Cache.level
+	 **/
 	size_t numLevels;
 	x86_x64_Cache* levels;
 };
@@ -181,7 +198,7 @@ LIB_API size_t x86_x64_L1CacheLineSize();
 LIB_API size_t x86_x64_L2CacheLineSize();
 
 /**
- * Translation Lookaside Buffer.
+ * Translation Lookaside Buffer. (documentation: see x86_x64_Cache)
  **/
 struct x86_x64_TLB
 {

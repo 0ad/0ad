@@ -107,7 +107,6 @@ LIB_API size_t os_cpu_MemoryAvailable();
 
 /**
  * restrict the current thread to a set of processors.
- * it will not be rescheduled until affinity is again changed.
  *
  * @param processorMask a bit mask of acceptable processors
  * (bit index i corresponds to processor i)
