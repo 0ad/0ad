@@ -102,8 +102,11 @@ void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list)
 	if(ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString)) != INFO::OK)
 	{
 		WinScopedDisableWow64Redirection s;
-		// if this still fails, we'll at least write the default "unknown" version.
-		(void)ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString));
+		// still failed; avoid polluting list with DLLs that don't exist
+		// (requiring callers to check for their existence beforehand would be
+		// onerous and unreliable)
+		if(ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString)) != INFO::OK)
+			return;
 	}
 
 	if(!list.empty())

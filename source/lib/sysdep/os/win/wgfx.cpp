@@ -170,42 +170,24 @@ static LibError AppendDriverVersionsFromRegistry(std::wstring& versionList)
 }
 
 
-static wchar_t* DllName()
+static LibError AppendDriverVersionsFromKnownFiles(std::wstring& versionList)
 {
 	if(!wcsncmp(gfx_card, L"NVIDIA", 6))
 	{
-		if(wutil_IsWow64())
-		{
-#if ARCH_AMD64
-			return L"nvoglv64.dll";
-#else
-			return L"nvoglv32.dll";
-#endif
-		}
-		else
-			return L"nvoglnt.dll";
+		wdll_ver_Append(L"nvoglv64.dll", versionList);
+		wdll_ver_Append(L"nvoglv32.dll", versionList);
+		wdll_ver_Append(L"nvoglnt.dll", versionList);
 	}
 	else if(!wcsncmp(gfx_card, L"ATI", 3))
 	{
-		return L"atioglxx.dll";
+		wdll_ver_Append(L"atioglxx.dll", versionList);
 	}
 	else if(!wcsncmp(gfx_card, L"Intel", 5))
 	{
-		return L"igxpdv32.dll";
+		wdll_ver_Append(L"igxpdv32.dll", versionList);
 	}
 	else
-	{
-		return 0;	// unknown
-	}
-}
-
-
-static LibError AppendDriverVersionsFromDLL(std::wstring& versionList)
-{
-	const wchar_t* dllName = DllName();
-	if(!dllName)
-		WARN_RETURN(ERR::NOT_IMPLEMENTED);
-	wdll_ver_Append(dllName, versionList);
+		return INFO::CANNOT_HANDLE;
 	return INFO::OK;
 }
 
@@ -217,7 +199,7 @@ LibError win_get_gfx_info()
 	std::wstring versionList;
 	if(AppendDriverVersionsFromRegistry(versionList) != INFO::OK)	// (fails on Windows 7)
 	{
-		if(AppendDriverVersionsFromDLL(versionList) != INFO::OK)
+		if(AppendDriverVersionsFromKnownFiles(versionList) != INFO::OK)
 			versionList = L"(unknown)";
 	}
 	wcscpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
