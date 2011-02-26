@@ -169,6 +169,12 @@ PSRETURN CGame::ReallyStartGame()
 	if (g_NetClient)
 		g_NetClient->LoadFinished();
 
+	// We need to do an initial Interpolate call to set up all the models etc,
+	// because Update might never interpolate (e.g. if the game starts paused)
+	// and we could end up rendering before having set up any models (so they'd
+	// all be invisible)
+	Interpolate(0);
+
 	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
 	m_GameStarted=true;
 
