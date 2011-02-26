@@ -223,7 +223,7 @@ void RunHardwareDetection()
 #endif
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 4, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 5, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 
