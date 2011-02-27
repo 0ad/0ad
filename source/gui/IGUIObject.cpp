@@ -516,7 +516,8 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), GetJSObject(), OBJECT_TO_JSVAL(*it->second), ARRAY_SIZE(paramData), paramData, &result);
 	if (!ok)
 	{
-		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
+		// We have no way to propagate the script exception, so just ignore it
+		// and hope the caller checks JS_IsExceptionPending
 	}
 }
 

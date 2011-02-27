@@ -578,7 +578,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 		break;
 	}
 
-	return JS_TRUE;
+	return !JS_IsExceptionPending(cx);
 }
 
 
