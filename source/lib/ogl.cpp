@@ -160,7 +160,7 @@ static bool isImplementedInCore(const char* ext)
 	}
 	if(have_12)
 	{
-		MATCH(GL_EXT_texture3d);
+		MATCH(GL_EXT_texture3D);
 		MATCH(GL_EXT_bgra);
 		MATCH(GL_EXT_packed_pixels);
 		MATCH(GL_EXT_rescale_normal);
@@ -168,6 +168,10 @@ static bool isImplementedInCore(const char* ext)
 		MATCH(GL_SGIS_texture_edge_clamp);
 		MATCH(GL_SGIS_texture_lod);
 		MATCH(GL_EXT_draw_range_elements);
+		// Skip the extensions that only affect the imaging subset
+		MATCH(GL_EXT_blend_color);
+		MATCH(GL_EXT_blend_minmax);
+		MATCH(GL_EXT_blend_subtract);
 	}
 
 #undef MATCH
