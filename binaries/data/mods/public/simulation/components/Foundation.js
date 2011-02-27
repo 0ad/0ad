@@ -90,11 +90,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 					if (cmpUnitAI)
 						cmpUnitAI.LeaveFoundation(this.entity);
 
-					var cmpAnimalAI = Engine.QueryInterface(ent, IID_AnimalAI);
-					if (cmpAnimalAI)
-						cmpAnimalAI.LeaveFoundation(this.entity);
-
-					// TODO: What if an obstruction has no UnitAI/AnimalAI?
+					// TODO: What if an obstruction has no UnitAI?
 				}
 
 				// TODO: maybe we should tell the builder to use a special

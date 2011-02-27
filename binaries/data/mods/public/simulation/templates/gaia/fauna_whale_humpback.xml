@@ -35,7 +35,7 @@
 	<Altitude>-4.0</Altitude>
 	<Floating>true</Floating>
   </Position>
-  <AnimalAI>
+  <UnitAI>
     <NaturalBehaviour>skittish</NaturalBehaviour>
     <RoamDistance>20.0</RoamDistance>
     <FleeDistance>40.0</FleeDistance>
@@ -43,7 +43,7 @@
     <RoamTimeMax>30000</RoamTimeMax>
     <FeedTimeMin>1000</FeedTimeMin>
     <FeedTimeMax>2000</FeedTimeMax>
-  </AnimalAI>
+  </UnitAI>
   <ResourceSupply>
     <KillBeforeGather>true</KillBeforeGather>
     <Amount>2000</Amount>

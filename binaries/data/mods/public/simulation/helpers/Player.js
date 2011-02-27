@@ -53,7 +53,7 @@ function LoadPlayerSettings(settings)
 				teams[team].push(i);
 		}
 	}
-	
+
 	for (var i = 0; i < numPlayers; ++i)
 	{
 		// Add player entity to engine
@@ -112,6 +112,7 @@ function LoadPlayerSettings(settings)
 			player.SetName(pDefs.Name);
 			player.SetCiv(pDefs.Civ);
 			player.SetColour(pDefs.Colour.r, pDefs.Colour.g, pDefs.Colour.b);
+			player.SetDiplomacy(diplomacy);
 		}
 		
 		// Add player to player manager

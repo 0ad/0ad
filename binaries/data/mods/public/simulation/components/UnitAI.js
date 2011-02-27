@@ -5,7 +5,38 @@ UnitAI.prototype.Schema =
 	"<a:example/>" +
 	"<element name='FormationController'>" +
 		"<data type='boolean'/>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<interleave>" +
+			"<element name='NaturalBehaviour' a:help='Behaviour of the unit in the absence of player commands (intended for animals)'>" +
+				"<choice>" +
+					"<value a:help='Will actively attack any unit it encounters, even if not threatened'>violent</value>" +
+					"<value a:help='Will attack nearby units if it feels threatened (if they linger within LOS for too long)'>aggressive</value>" +
+					"<value a:help='Will attack nearby units if attacked'>defensive</value>" +
+					"<value a:help='Will never attack units'>passive</value>" +
+					"<value a:help='Will never attack units. Will typically attempt to flee for short distances when units approach'>skittish</value>" +
+				"</choice>" +
+			"</element>" +
+			"<element name='RoamDistance'>" +
+				"<ref name='positiveDecimal'/>" +
+			"</element>" +
+			"<element name='FleeDistance'>" +
+				"<ref name='positiveDecimal'/>" +
+			"</element>" +
+			"<element name='RoamTimeMin'>" +
+				"<ref name='positiveDecimal'/>" +
+			"</element>" +
+			"<element name='RoamTimeMax'>" +
+				"<ref name='positiveDecimal'/>" +
+			"</element>" +
+			"<element name='FeedTimeMin'>" +
+				"<ref name='positiveDecimal'/>" +
+			"</element>" +
+			"<element name='FeedTimeMax'>" +
+				"<ref name='positiveDecimal'/>" +
+			"</element>"+
+		"</interleave>" +
+	"</optional>";
 
 // Very basic stance support (currently just for test maps where we don't want
 // everyone killing each other immediately after loading)
@@ -18,6 +49,7 @@ var g_Stances = {
 	},
 };
 
+// See ../helpers/FSM.js for some documentation of this FSM specification syntax
 var UnitFsmSpec = {
 
 	// Default event handlers:
@@ -44,6 +76,9 @@ var UnitFsmSpec = {
 		// ignore attacker
 	},
 
+	"HealthChanged": function(msg) {
+		// ignore
+	},
 
 	// Formation handlers:
 
@@ -53,6 +88,13 @@ var UnitFsmSpec = {
 
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
+		if (this.IsAnimal())
+		{
+			// TODO: let players move captured animals around
+			this.FinishOrder();
+			return;
+		}
+
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		cmpUnitMotion.MoveToFormationOffset(msg.data.target, msg.data.x, msg.data.z);
 
@@ -71,11 +113,25 @@ var UnitFsmSpec = {
 	// (these will switch the unit out of formation mode)
 
 	"Order.Walk": function(msg) {
+		if (this.IsAnimal())
+		{
+			// TODO: let players move captured animals around
+			this.FinishOrder();
+			return;
+		}
+
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
 		this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
 	"Order.WalkToTarget": function(msg) {
+		if (this.IsAnimal())
+		{
+			// TODO: let players move captured animals around
+			this.FinishOrder();
+			return;
+		}
+
 		var ok = this.MoveToTarget(this.order.data.target);
 		if (ok)
 		{
@@ -111,14 +167,20 @@ var UnitFsmSpec = {
 		if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
 		{
 			// We've started walking to the given point
-			this.SetNextState("INDIVIDUAL.COMBAT.APPROACHING");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.COMBAT.APPROACHING");
+			else
+				this.SetNextState("INDIVIDUAL.COMBAT.APPROACHING");
 		}
 		else
 		{
 			// We are already at the target, or can't move at all,
 			// so try attacking it from here.
 			// TODO: need better handling of the can't-reach-target case
-			this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
+			else
+				this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
 		}
 	},
 
@@ -299,6 +361,12 @@ var UnitFsmSpec = {
 	// States for entities not part of a formation:
 	"INDIVIDUAL": {
 
+		"enter": function() {
+			// Sanity-checking
+			if (this.IsAnimal())
+				error("Animal got moved into INDIVIDUAL.* state");
+		},
+
 		"Attacked": function(msg) {
 			// Default behaviour: attack back at our attacker
 			if (this.CanAttack(msg.data.attacker))
@@ -454,7 +522,7 @@ var UnitFsmSpec = {
 
 					// Can't reach it, or it doesn't exist any more - give up
 					this.FinishOrder();
-							
+
 					// TODO: see if we can switch to a new nearby enemy
 				},
 
@@ -841,6 +909,178 @@ var UnitFsmSpec = {
 		},
 
 	},
+
+	"ANIMAL": {
+
+		"HealthChanged": function(msg) {
+			// If we died (got reduced to 0 hitpoints), stop the AI and act like a corpse
+			if (msg.to == 0)
+				this.SetNextState("CORPSE");
+		},
+
+		"Attacked": function(msg) {
+			if (this.template.NaturalBehaviour == "skittish" ||
+			    this.template.NaturalBehaviour == "passive")
+			{
+				this.MoveToTargetRangeExplicit(msg.data.attacker, +this.template.FleeDistance, +this.template.FleeDistance);
+				this.SetNextState("FLEEING");
+				this.PlaySound("panic");
+			}
+			else if (this.template.NaturalBehaviour == "violent" ||
+			         this.template.NaturalBehaviour == "aggressive" ||
+			         this.template.NaturalBehaviour == "defensive")
+			{
+				if (this.CanAttack(msg.data.attacker))
+					this.ReplaceOrder("Attack", { "target": msg.data.attacker });
+			}
+		},
+
+		"Order.LeaveFoundation": function(msg) {
+			// Run away from the foundation
+			this.MoveToTargetRangeExplicit(msg.data.target, +this.template.FleeDistance, +this.template.FleeDistance);
+			this.SetNextState("FLEEING");
+			this.PlaySound("panic");
+		},
+
+		"IDLE": {
+			// (We need an IDLE state so that FinishOrder works)
+
+			"enter": function() {
+				// Start feeding immediately
+				this.SetNextState("FEEDING");
+				return true;
+			},
+		},
+
+		"CORPSE": {
+			"enter": function() {
+				this.StopMoving();
+			},
+
+			// Ignore all orders that animals might otherwise respond to
+			"Order.FormationWalk": function() { },
+			"Order.Walk": function() { },
+			"Order.WalkToTarget": function() { },
+			"Order.Attack": function() { },
+
+			"Attacked": function(msg) {
+				// Do nothing, because we're dead already
+			},
+
+			"Order.LeaveFoundation": function(msg) {
+				// We can't walk away from the foundation (since we're dead),
+				// but we mustn't block its construction (since the builders would get stuck),
+				// and we don't want to trick gatherers into trying to reach us when
+				// we're stuck in the middle of a building, so just delete our corpse.
+				Engine.DestroyEntity(this.entity);
+			},
+		},
+
+		"ROAMING": {
+			"enter": function() {
+				// Walk in a random direction
+				this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				this.MoveRandomly(+this.template.RoamDistance);
+				// Set a random timer to switch to feeding state
+				this.StartTimer(RandomInt(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
+			},
+
+			"leave": function() {
+				this.StopTimer();
+			},
+
+			"LosRangeUpdate": function(msg) {
+				if (this.template.NaturalBehaviour == "skittish")
+				{
+					if (msg.data.added.length > 0)
+					{
+						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
+						this.SetNextState("FLEEING");
+						this.PlaySound("panic");
+						return;
+					}
+				}
+				// Start attacking one of the newly-seen enemy (if any)
+				else if (this.template.NaturalBehaviour == "violent" ||
+				         this.template.NaturalBehaviour == "aggressive")
+				{
+					this.AttackVisibleEntity(msg.data.added);
+				}
+
+				// TODO: if two units enter our range together, we'll attack the
+				// first and then the second won't trigger another LosRangeUpdate
+				// so we won't notice it. Probably we should do something with
+				// ResetActiveQuery in ROAMING.enter/FEEDING.enter in order to
+				// find any units that are already in range.
+			},
+
+			"Timer": function(msg) {
+				this.SetNextState("FEEDING");
+			},
+
+			"MoveCompleted": function() {
+				this.MoveRandomly(+this.template.RoamDistance);
+			},
+		},
+
+		"FEEDING": {
+			"enter": function() {
+				// Stop and eat for a while
+				this.SelectAnimation("feeding");
+				this.StopMoving();
+				this.StartTimer(RandomInt(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
+			},
+
+			"leave": function() {
+				this.StopTimer();
+			},
+
+			"LosRangeUpdate": function(msg) {
+				if (this.template.NaturalBehaviour == "skittish")
+				{
+					if (msg.data.added.length > 0)
+					{
+						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
+						this.SetNextState("FLEEING");
+						this.PlaySound("panic");
+						return;
+					}
+				}
+				// Start attacking one of the newly-seen enemy (if any)
+				else if (this.template.NaturalBehaviour == "violent")
+				{
+					this.AttackVisibleEntity(msg.data.added);
+				}
+			},
+
+			"MoveCompleted": function() { },
+
+			"Timer": function(msg) {
+				this.SetNextState("ROAMING");
+			},
+		},
+
+		"FLEEING": {
+			"enter": function() {
+				// Run quickly
+				var speed = this.GetRunSpeed();
+				this.SelectAnimation("run", false, speed);
+				this.SetMoveSpeed(speed);
+			},
+
+			"leave": function() {
+				// Reset normal speed
+				this.SetMoveSpeed(this.GetWalkSpeed());
+			},
+
+			"MoveCompleted": function() {
+				// When we've run far enough, go back to the roaming state
+				this.SetNextState("ROAMING");
+			},
+		},
+
+		"COMBAT": "INDIVIDUAL.COMBAT", // reuse the same combat behaviour for animals
+	},
 };
 
 var UnitFsm = new FSM(UnitFsmSpec);
@@ -860,6 +1100,11 @@ UnitAI.prototype.IsFormationController = function()
 	return (this.template.FormationController == "true");
 };
 
+UnitAI.prototype.IsAnimal = function()
+{
+	return (this.template.NaturalBehaviour ? true : false);
+};
+
 UnitAI.prototype.IsIdle = function()
 {
 	return this.isIdle;
@@ -867,7 +1112,9 @@ UnitAI.prototype.IsIdle = function()
 
 UnitAI.prototype.OnCreate = function()
 {
-	if (this.IsFormationController())
+	if (this.IsAnimal())
+		UnitFsm.Init(this, "ANIMAL.FEEDING");
+	else if (this.IsFormationController())
 		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE");
 	else
 		UnitFsm.Init(this, "INDIVIDUAL.IDLE");
@@ -916,7 +1163,7 @@ UnitAI.prototype.SetupRangeQuery = function(owner)
 		// Get our diplomacy array
 		var diplomacy = player.GetDiplomacy();
 		var numPlayers = playerMan.GetNumPlayers();
-		
+
 		for (var i = 1; i < numPlayers; ++i)
 		{
 			// Exclude gaia, allies, and self
@@ -1074,6 +1321,11 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 UnitAI.prototype.OnAttacked = function(msg)
 {
 	UnitFsm.ProcessMessage(this, {"type": "Attacked", "data": msg});
+};
+
+UnitAI.prototype.OnHealthChanged = function(msg)
+{
+	UnitFsm.ProcessMessage(this, {"type": "HealthChanged", "from": msg.from, "to": msg.to});
 };
 
 UnitAI.prototype.OnRangeUpdate = function(msg)
@@ -1544,7 +1796,13 @@ UnitAI.prototype.CanGarrison = function(target)
 	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder)
 		return false;
-	
+
+	// Don't let animals garrison for now
+	// (If we want to support that, we'll need to change Order.Garrison so it
+	// doesn't move the animal into an INVIDIDUAL.* state)
+	if (this.IsAnimal())
+		return false;
+
 	return true;
 };
 
@@ -1614,5 +1872,43 @@ UnitAI.prototype.CanRepair = function(target)
 	return true;
 };
 
+//// Animal specific functions ////
+
+UnitAI.prototype.MoveRandomly = function(distance)
+{
+	// We want to walk in a random direction, but avoid getting stuck
+	// in obstacles or narrow spaces.
+	// So pick a circular range from approximately our current position,
+	// and move outwards to the nearest point on that circle, which will
+	// lead to us avoiding obstacles and moving towards free space.
+
+	// TODO: we probably ought to have a 'home' point, and drift towards
+	// that, so we don't spread out all across the whole map
+
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition)
+		return;
+
+	if (!cmpPosition.IsInWorld())
+		return;
+
+	var pos = cmpPosition.GetPosition();
+
+	var jitter = 0.5;
+
+	// Randomly adjust the range's center a bit, so we tend to prefer
+	// moving in random directions (if there's nothing in the way)
+	var tx = pos.x + (2*Math.random()-1)*jitter;
+	var tz = pos.z + (2*Math.random()-1)*jitter;
+
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	cmpMotion.MoveToPointRange(tx, tz, distance, distance);
+};
+
+UnitAI.prototype.SetMoveSpeed = function(speed)
+{
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	cmpMotion.SetSpeed(speed);
+};
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);

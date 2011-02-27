@@ -2,7 +2,16 @@
 <Entity parent="template_unit_fauna_wild">
   <Identity>
   </Identity>
-  <AnimalAI>
+  <UnitAI>
     <NaturalBehaviour>violent</NaturalBehaviour>
-  </AnimalAI>
+  </UnitAI>
+  <Attack>
+    <Melee>
+      <Hack>1.0</Hack>
+      <Pierce>1.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+  </Attack>
 </Entity>

@@ -70,6 +70,9 @@ var FsmSpec = {
 			},
 		},
 
+		// Define a new state which is an exact copy of another
+		// state that is defined elsewhere in this FSM:
+		"OTHERSUBSTATENAME": "STATENAME.SUBSTATENAME",
 	}
 
 }
@@ -143,6 +146,23 @@ function FSM(spec)
 
 	function process(fsm, node, path, handlers)
 	{
+		// Handle string references to nodes defined elsewhere in the FSM spec
+		if (typeof node === "string")
+		{
+			var refpath = node.split(".");
+			var refd = spec;
+			for each (var p in refpath)
+			{
+				refd = refd[p];
+				if (!refd)
+				{
+					error("FSM node "+path.join(".")+" referred to non-defined node "+node);
+					return {};
+				}
+			}
+			node = refd;
+		}
+
 		var state = {};
 		fsm.states[path.join(".")] = state;
 

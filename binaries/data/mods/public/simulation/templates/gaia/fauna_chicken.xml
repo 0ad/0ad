@@ -22,14 +22,14 @@
     <Circle radius="0.75"/>
     <Height>1.5</Height>
   </Footprint>
-  <AnimalAI>
+  <UnitAI>
     <RoamDistance>4.0</RoamDistance>
     <FleeDistance>12.0</FleeDistance>
     <RoamTimeMin>2000</RoamTimeMin>
     <RoamTimeMax>8000</RoamTimeMax>
     <FeedTimeMin>10000</FeedTimeMin>
     <FeedTimeMax>40000</FeedTimeMax>
-  </AnimalAI>
+  </UnitAI>
   <UnitMotion>
     <WalkSpeed>1.0</WalkSpeed>
     <Run>
