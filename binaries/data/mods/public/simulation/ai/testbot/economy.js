@@ -102,6 +102,18 @@ var EconomyManager = Class({
 		return bestType;
 	},
 
+	reassignRolelessUnits: function(gameState)
+	{
+		var roleless = gameState.getOwnEntitiesWithRole(undefined);
+
+		roleless.forEach(function(ent) {
+			if (ent.hasClass("Worker"))
+				ent.setMetadata("role", "worker");
+			else
+				ent.setMetadata("role", "unknown");
+		});
+	},
+
 	reassignIdleWorkers: function(gameState, planGroups)
 	{
 		var self = this;
@@ -197,6 +209,8 @@ var EconomyManager = Class({
 
 	update: function(gameState, planGroups)
 	{
+		this.reassignRolelessUnits(gameState);
+
 		this.buildMoreBuildings(gameState, planGroups);
 
 		this.trainMoreWorkers(gameState, planGroups);

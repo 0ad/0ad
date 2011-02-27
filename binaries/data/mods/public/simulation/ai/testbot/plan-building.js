@@ -4,11 +4,21 @@ var BuildingConstructionPlan = Class({
 	{
 		this.type = gameState.applyCiv(type);
 
-		this.cost = new Resources(gameState.getTemplate(this.type).cost());
+		var template = gameState.getTemplate(this.type);
+		if (!template)
+		{
+			this.invalidTemplate = true;
+			return;
+		}
+
+		this.cost = new Resources(template.cost());
 	},
 
 	canExecute: function(gameState)
 	{
+		if (this.invalidTemplate)
+			return false;
+
 		// TODO: verify numeric limits etc
 
 		var builders = gameState.findBuilders(this.type);

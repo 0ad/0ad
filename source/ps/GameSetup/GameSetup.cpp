@@ -968,36 +968,41 @@ static bool Autostart(const CmdLineArgs& args)
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	CScriptValRooted attrs;
 	scriptInterface.Eval("({})", attrs);
-	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
-	scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap), false);
+	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
+	scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap));
 
-	// Set attrs.settings = { AIs: [...] }:
+	// Set attrs.settings = { PlayerData: [ { AI: ... }, ... ] }:
 
 	/*
 	 * Handle command-line options for AI:
 	 *  -autostart-ai=1:dummybot -autostart-ai=2:dummybot        -- adds the dummybot AI to players 1 and 2
 	 */
-	CScriptValRooted ais;
-	scriptInterface.Eval("([])", ais);
+	CScriptVal playerData;
+	scriptInterface.Eval("([])", playerData);
 	if (args.Has("autostart-ai"))
 	{
 		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
 		for (size_t i = 0; i < aiArgs.size(); ++i)
 		{
-			int player = aiArgs[i].BeforeFirst(":").ToInt();
+			CScriptVal player;
+			scriptInterface.Eval("({})", player);
+
+			int playerID = aiArgs[i].BeforeFirst(":").ToInt();
 			CStr name = aiArgs[i].AfterFirst(":");
-			scriptInterface.SetPropertyInt(ais.get(), player, std::string(name), false);
+
+			scriptInterface.SetProperty(player.get(), "AI", std::string(name));
+			scriptInterface.SetPropertyInt(playerData.get(), playerID-1, player);
 		}
 	}
 
-	CScriptValRooted settings;
+	CScriptVal settings;
 	scriptInterface.Eval("({})", settings);
-	scriptInterface.SetProperty(settings.get(), "AIs", ais, false);
-	scriptInterface.SetProperty(attrs.get(), "settings", settings, false);
+	scriptInterface.SetProperty(settings.get(), "PlayerData", playerData);
+	scriptInterface.SetProperty(attrs.get(), "settings", settings);
 
 
 
-	CScriptValRooted mpInitData;
+	CScriptVal mpInitData;
 	g_GUI->GetScriptInterface().Eval("({isNetworked:true, playerAssignments:{}})", mpInitData);
 	g_GUI->GetScriptInterface().SetProperty(mpInitData.get(), "attribs",
 			CScriptVal(g_GUI->GetScriptInterface().CloneValueFromOtherContext(scriptInterface, attrs.get())), false);

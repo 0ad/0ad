@@ -6,12 +6,22 @@ var UnitTrainingPlan = Class({
 		this.amount = amount;
 		this.metadata = metadata;
 
-		this.cost = new Resources(gameState.getTemplate(this.type).cost());
+		var template = gameState.getTemplate(this.type);
+		if (!template)
+		{
+			this.invalidTemplate = true;
+			return;
+		}
+
+		this.cost = new Resources(template.cost());
 		this.cost.multiply(amount); // (assume no batch discount)
 	},
 
 	canExecute: function(gameState)
 	{
+		if (this.invalidTemplate)
+			return false;
+
 		// TODO: we should probably check pop caps
 
 		var trainers = gameState.findTrainers(this.type);
