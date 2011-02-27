@@ -1,6 +1,3 @@
-// Name displayed for unassigned player slots
-const NAME_UNASSIGNED = "[color=\"90 90 90 255\"][Computer AI]";
-
 // Is this is a networked game, or offline
 var g_IsNetworked;
 
@@ -24,7 +21,6 @@ var g_GameAttributes = {
 		BaseTerrain: "grass1_spring",
 		BaseHeight: 0,
 		PlayerData: [],
-		AIs: [], // indexed by player ID; values are AI id strings
 		RevealMap: false,
 		LockTeams: false,
 		GameType: "conquest"
@@ -206,11 +202,11 @@ function init(attribs)
 		team.list_data = [-1, 0, 1, 2, 3];
 		team.selected = 0;
 		
-		let playerID = i;	// declare for inner function use
+		let playerSlot = i;	// declare for inner function use
 		team.onSelectionChange = function()
 		{	// Update team
 			if (this.selected != -1)
-				g_GameAttributes.settings.PlayerData[playerID].Team = this.selected - 1;
+				g_GameAttributes.settings.PlayerData[playerSlot].Team = this.selected - 1;
 			
 			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
@@ -221,7 +217,7 @@ function init(attribs)
 		civ.onSelectionChange = function()
 		{	// Update civ
 			if (this.selected != -1)
-				g_GameAttributes.settings.PlayerData[playerID].Civ = this.list_data[this.selected];
+				g_GameAttributes.settings.PlayerData[playerSlot].Civ = this.list_data[this.selected];
 			
 			if (!g_IsInGuiUpdate)
 				onGameAttributesChange();
@@ -743,6 +739,9 @@ function onGameAttributesChange()
 	getGUIObjectByName("mapInfoDescription").caption = playerString + description;
 	
 	g_IsInGuiUpdate = false;
+
+	// Game attributes include AI settings, so update the player list
+	updatePlayerList();
 }
 
 function launchGame()
@@ -767,7 +766,7 @@ function launchGame()
 		for (var i = 0; i < g_NumPlayers; ++i)
 		{
 			var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
-			if (assignBox.selected == 1)
+			if (assignBox.list_data[assignBox.selected] == "local")
 				playerID = i+1;
 		}
 		// Remove extra player data
@@ -786,9 +785,11 @@ function updatePlayerList()
 {
 	g_IsInGuiUpdate = true;
 
-	var hostNameList = [NAME_UNASSIGNED];
-	var hostGuidList = [""];
+	var hostNameList = [];
+	var hostGuidList = [];
 	var assignments = [];
+	var aiAssignments = {};
+	var noAssignment;
 	
 	for (var guid in g_PlayerAssignments)
 	{
@@ -801,38 +802,72 @@ function updatePlayerList()
 		assignments[player] = hostID;
 	}
 
+	for each (var ai in g_AIs)
+	{
+		aiAssignments[ai.id] = hostNameList.length;
+		hostNameList.push("[color=\"90 90 90 255\"]AI: " + ai.data.name);
+		hostGuidList.push("ai:" + ai.id);
+	}
+
+	noAssignment = hostNameList.length;
+	hostNameList.push("[color=\"90 90 90 255\"]Unassigned");
+	hostGuidList.push("");
+
 	for (var i = 0; i < g_MaxPlayers; ++i)
 	{
-		let playerID = i+1;
+		let playerSlot = i;
+		let playerID = i+1; // we don't show Gaia, so first slot is ID 1
 
-		var selection = (assignments[playerID] || 0);
+		var selection = assignments[playerID];
 
-		// If no human is assigned, show the AI config button
 		var configButton = getGUIObjectByName("playerConfig["+i+"]");
-		if (selection == 0 && g_IsController)
+		configButton.hidden = true;
+
+		// If no human is assigned, look for an AI instead
+		if (selection === undefined)
 		{
-			configButton.hidden = false;
-			configButton.onpress = function()
+			var aiId = g_GameAttributes.settings.PlayerData[playerSlot].AI;
+			if (aiId)
+				selection = aiAssignments[aiId];
+			else
+				selection = noAssignment;
+
+			// Since no human is assigned, show the AI config button
+			if (g_IsController)
 			{
-				Engine.PushGuiPage("page_aiconfig.xml", {
-					ais: g_AIs,
-					id: g_GameAttributes.settings.AIs[playerID],
-					callback: function(ai) {
-						if (ai.id == "")
-							delete g_GameAttributes.settings.AIs[playerID];
-						else
-							g_GameAttributes.settings.AIs[playerID] = ai.id;
-					}
-				});
-			};
+				configButton.hidden = false;
+				configButton.onpress = function()
+				{
+					Engine.PushGuiPage("page_aiconfig.xml", {
+						ais: g_AIs,
+						id: g_GameAttributes.settings.PlayerData[playerSlot].AI,
+						callback: function(ai) {
+							g_GameAttributes.settings.PlayerData[playerSlot].AI = ai.id;
+
+							if (g_IsNetworked)
+								Engine.SetNetworkGameAttributes(g_GameAttributes);
+							else
+								updatePlayerList();
+						}
+					});
+				};
+			}
 		}
 		else
 		{
-			configButton.hidden = true;
+			// There was a human, so make sure we don't have any AI left
+			// over in their slot, if we're in charge of the attributes
+			if (g_IsController && g_GameAttributes.settings.PlayerData[playerSlot].AI != "")
+			{
+				g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
+				if (g_IsNetworked)
+					Engine.SetNetworkGameAttributes(g_GameAttributes);
+			}
 		}
 
 		var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
 		assignBox.list = hostNameList;
+		assignBox.list_data = hostGuidList;
 		if (assignBox.selected != selection)
 			assignBox.selected = selection;
 
@@ -841,7 +876,31 @@ function updatePlayerList()
 			assignBox.onselectionchange = function ()
 			{
 				if (!g_IsInGuiUpdate)
-					Engine.AssignNetworkPlayer(playerID, hostGuidList[this.selected]);
+				{
+					var guid = hostGuidList[this.selected];
+					if (guid == "")
+					{
+						// Unassign any host from this player slot
+						Engine.AssignNetworkPlayer(playerID, "");
+						// Remove AI from this player slot
+						g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
+					}
+					else if (guid.substr(0, 3) == "ai:")
+					{
+						// Unassign any host from this player slot
+						Engine.AssignNetworkPlayer(playerID, "");
+						// Set the AI for this player slot
+						g_GameAttributes.settings.PlayerData[playerSlot].AI = guid.substr(3);
+					}
+					else
+					{
+						// Reassign the host to this player slot
+						Engine.AssignNetworkPlayer(playerID, guid);
+						// Remove AI from this player slot
+						g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
+					}
+					Engine.SetNetworkGameAttributes(g_GameAttributes);
+				}
 			};
 		}
 		else if (!g_IsNetworked)
@@ -850,9 +909,24 @@ function updatePlayerList()
 			{
 				if (!g_IsInGuiUpdate)
 				{
-					// If we didn't just select "unassigned", update the selected host's ID
-					if (this.selected > 0)
-						g_PlayerAssignments[hostGuidList[this.selected]].player = playerID;
+					var guid = hostGuidList[this.selected];
+					if (guid == "")
+					{
+						// Remove AI from this player slot
+						g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
+					}
+					else if (guid.substr(0, 3) == "ai:")
+					{
+						// Set the AI for this player slot
+						g_GameAttributes.settings.PlayerData[playerSlot].AI = guid.substr(3);
+					}
+					else
+					{
+						// Update the selected host's player ID
+						g_PlayerAssignments[guid].player = playerID;
+						// Remove AI from this player slot
+						g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
+					}
 
 					updatePlayerList();
 				}

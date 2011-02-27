@@ -8,10 +8,10 @@ function InitGame(settings)
 		return;
 
 	var cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
-	for (var i = 0; i < settings.AIs.length; ++i)
+	for (var i = 0; i < settings.PlayerData.length; ++i)
 	{
-		if (settings.AIs[i])
-			cmpAIManager.AddPlayer(settings.AIs[i], i);
+		if (settings.PlayerData[i].AI != "")
+			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1);
 	}
 }
 

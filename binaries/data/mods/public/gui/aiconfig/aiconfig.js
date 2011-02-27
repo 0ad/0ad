@@ -39,5 +39,10 @@ function returnAI()
 	var idx = aiSelection.selected;
 	var id = g_AIs[idx].id;
 	var name = g_AIs[idx].data.name;
+
+	// Pop the page before calling the callback, so the callback runs
+	// in the parent GUI page's context
+	Engine.PopGuiPage();
+
 	g_Callback({"id": id, "name": name});
 }
