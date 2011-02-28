@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 template<typename T>
 class Grid
 {
+	NONCOPYABLE(Grid);
 public:
 	Grid(u16 w, u16 h) : m_W(w), m_H(h), m_DirtyID(0)
 	{
@@ -69,6 +70,75 @@ public:
 
 	u16 m_W, m_H;
 	T* m_Data;
+
+	size_t m_DirtyID; // if this is < the id maintained by ICmpObstructionManager then it needs to be updated
+};
+
+/**
+ * Similar to Grid, except optimised for sparse usage (the grid is subdivided into
+ * buckets whose contents are only initialised on demand, to save on memset cost).
+ */
+template<typename T>
+class SparseGrid
+{
+	NONCOPYABLE(SparseGrid);
+
+	enum { BucketBits = 4, BucketSize = 1 << BucketBits };
+
+	T* GetBucket(size_t i, size_t j)
+	{
+		size_t b = (j >> BucketBits) * m_BW + (i >> BucketBits);
+		if (!m_Data[b])
+		{
+			m_Data[b] = new T[BucketSize*BucketSize];
+			memset(m_Data[b], 0, BucketSize*BucketSize*sizeof(T));
+		}
+		return m_Data[b];
+	}
+
+public:
+	SparseGrid(u16 w, u16 h) : m_W(w), m_H(h), m_DirtyID(0)
+	{
+		m_BW = (m_W + BucketSize-1) >> BucketBits;
+		m_BH = (m_H + BucketSize-1) >> BucketBits;
+
+		m_Data = new T*[m_BW*m_BH];
+		memset(m_Data, 0, m_BW*m_BH*sizeof(T*));
+	}
+
+	~SparseGrid()
+	{
+		reset();
+		delete[] m_Data;
+	}
+
+	void reset()
+	{
+		for (size_t i = 0; i < (size_t)(m_BW*m_BH); ++i)
+			delete[] m_Data[i];
+
+		memset(m_Data, 0, m_BW*m_BH*sizeof(T*));
+	}
+
+	void set(size_t i, size_t j, const T& value)
+	{
+#if GRID_BOUNDS_DEBUG
+		debug_assert(i < m_W && j < m_H);
+#endif
+		GetBucket(i, j)[(j % BucketSize)*BucketSize + (i % BucketSize)] = value;
+	}
+
+	T& get(size_t i, size_t j)
+	{
+#if GRID_BOUNDS_DEBUG
+		debug_assert(i < m_W && j < m_H);
+#endif
+		return GetBucket(i, j)[(j % BucketSize)*BucketSize + (i % BucketSize)];
+	}
+
+	u16 m_W, m_H;
+	u16 m_BW, m_BH;
+	T** m_Data;
 
 	size_t m_DirtyID; // if this is < the id maintained by ICmpObstructionManager then it needs to be updated
 };

@@ -22,6 +22,9 @@
 
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
+#include "graphics/TerrainTextureManager.h"
+#include "lib/timer.h"
+#include "lib/tex/tex.h"
 #include "ps/Loader.h"
 #include "simulation2/Simulation2.h"
 
@@ -35,10 +38,19 @@ public:
 		g_VFS = CreateVfs(20 * MiB);
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir()/L"cache"));
+
+		// Need some stuff for terrain movement costs:
+		// (TODO: this ought to be independent of any graphics code)
+		tex_codec_register_all();
+		new CTerrainTextureManager;
+		g_TexMan.LoadTerrainTextures();
 	}
 
 	void tearDown()
 	{
+		delete &g_TexMan;
+		tex_codec_unregister_all();
+
 		g_VFS.reset();
 
 		CXeromyces::Terminate();
@@ -56,7 +68,7 @@ public:
 		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
 
 		LDR_BeginRegistering();
-		mapReader->LoadMap(L"maps/scenarios/Latium.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL, &sim2, -1);
+		mapReader->LoadMap(L"maps/scenarios/Median Oasis.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL, &sim2, -1);
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());
 
@@ -69,26 +81,31 @@ public:
 		entity_pos_t z0 = entity_pos_t::FromInt(495);
 		entity_pos_t x1 = entity_pos_t::FromInt(500);
 		entity_pos_t z1 = entity_pos_t::FromInt(495);
-		ICmpPathfinder::Goal goal = { x1, z1, entity_pos_t::FromInt(0), entity_pos_t::FromInt(0) };
+		ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, x1, z1 };
 
 		ICmpPathfinder::Path path;
-		cmp->ComputePath(x0, z0, goal, path);
+		cmp->ComputePath(x0, z0, goal, cmp->GetPassabilityClass("default"), cmp->GetCostClass("default"), path);
 		for (size_t i = 0; i < path.m_Waypoints.size(); ++i)
 			printf("%d: %f %f\n", (int)i, path.m_Waypoints[i].x.ToDouble(), path.m_Waypoints[i].z.ToDouble());
 #endif
 
+		double t = timer_Time();
+
 		srand(1234);
-		for (size_t j = 0; j < 2560; ++j)
+		for (size_t j = 0; j < 1024*2; ++j)
 		{
 			entity_pos_t x0 = entity_pos_t::FromInt(rand() % 512);
 			entity_pos_t z0 = entity_pos_t::FromInt(rand() % 512);
-			entity_pos_t x1 = entity_pos_t::FromInt(rand() % 512);
-			entity_pos_t z1 = entity_pos_t::FromInt(rand() % 512);
+			entity_pos_t x1 = x0 + entity_pos_t::FromInt(rand() % 64);
+			entity_pos_t z1 = z0 + entity_pos_t::FromInt(rand() % 64);
 			ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, x1, z1 };
 
 			ICmpPathfinder::Path path;
 			cmp->ComputePath(x0, z0, goal, cmp->GetPassabilityClass("default"), cmp->GetCostClass("default"), path);
 		}
+
+		t = timer_Time() - t;
+		printf("[%f]", t);
 	}
 
 	void test_performance_short_DISABLED()

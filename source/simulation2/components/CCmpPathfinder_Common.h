@@ -123,6 +123,8 @@ const int COST_CLASS_BITS = 16 - (PASS_CLASS_BITS + 2);
 #define GET_COST_CLASS(item) ((item) >> (PASS_CLASS_BITS + 2))
 #define COST_CLASS_MASK(id) ( (TerrainTile) ((id) << (PASS_CLASS_BITS + 2)) )
 
+typedef SparseGrid<PathfindTile> PathfindTileGrid;
+
 struct AsyncLongPathRequest
 {
 	u32 ticket;
@@ -187,7 +189,7 @@ public:
 	bool m_TerrainDirty; // indicates if m_Grid has been updated since terrain changed
 
 	// Debugging - output from last pathfind operation:
-	Grid<PathfindTile>* m_DebugGrid;
+	PathfindTileGrid* m_DebugGrid;
 	u32 m_DebugSteps;
 	Path* m_DebugPath;
 	PathfinderOverlay* m_DebugOverlay;

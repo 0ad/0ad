@@ -191,7 +191,7 @@ struct PathfinderState
 	PriorityQueue open;
 	// (there's no explicit closed list; it's encoded in PathfindTile)
 
-	Grid<PathfindTile>* tiles;
+	PathfindTileGrid* tiles;
 	Grid<TerrainTile>* terrain;
 
 	bool ignoreImpassable; // allows us to escape if stuck in patches of impassability
@@ -249,7 +249,7 @@ static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal)
 }
 
 // Calculate movement cost from predecessor tile pi,pj to tile i,j
-static u32 CalculateCostDelta(u16 pi, u16 pj, u16 i, u16 j, Grid<PathfindTile>* tempGrid, u32 tileCost)
+static u32 CalculateCostDelta(u16 pi, u16 pj, u16 i, u16 j, PathfindTileGrid* tempGrid, u32 tileCost)
 {
 	u32 dg = tileCost;
 
@@ -391,7 +391,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 	state.steps = 0;
 
-	state.tiles = new Grid<PathfindTile>(m_MapSize, m_MapSize);
+	state.tiles = new PathfindTileGrid(m_MapSize, m_MapSize);
 	state.terrain = m_Grid;
 
 	state.iBest = i0;
