@@ -277,8 +277,6 @@ const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
 
 void CCmpPathfinder::UpdateGrid()
 {
-	PROFILE("UpdateGrid");
-
 	// Initialise the terrain data when first needed
 	if (!m_Grid)
 	{
@@ -291,16 +289,53 @@ void CCmpPathfinder::UpdateGrid()
 		m_ObstructionGrid = new Grid<u8>(m_MapSize, m_MapSize);
 	}
 
-	CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
-
-	CTerrain& terrain = GetSimContext().GetTerrain();
-
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-	if (cmpObstructionManager->Rasterise(*m_ObstructionGrid) || m_TerrainDirty)
+
+	bool obstructionsDirty = cmpObstructionManager->Rasterise(*m_ObstructionGrid);
+
+	if (obstructionsDirty && !m_TerrainDirty)
 	{
+		PROFILE("UpdateGrid obstructions");
+
+		// Obstructions changed - we need to recompute passability
+		// Since terrain hasn't changed we only need to update the obstruction bits
+		// and can skip the rest of the data
+
+		// TODO: if ObstructionManager::SetPassabilityCircular was called at runtime
+		// (which should probably never happen, but that's not guaranteed),
+		// then TILE_OUTOFBOUNDS will change and we can't use this fast path, but
+		// currently it'll just set obstructionsDirty and we won't notice
+
+		for (u16 j = 0; j < m_MapSize; ++j)
+		{
+			for (u16 i = 0; i < m_MapSize; ++i)
+			{
+				TerrainTile& t = m_Grid->get(i, j);
+
+				u8 obstruct = m_ObstructionGrid->get(i, j);
+
+				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED_PATHFINDING)
+					t |= 1;
+				else
+					t &= ~1;
+
+				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED_FOUNDATION)
+					t |= 2;
+				else
+					t &= ~2;
+			}
+		}
+	}
+	else if (obstructionsDirty || m_TerrainDirty)
+	{
+		PROFILE("UpdateGrid full");
+
 		// Obstructions or terrain changed - we need to recompute passability
 		// TODO: only bother recomputing the region that has actually changed
-		// TODO: if only obstructions changed, don't recompute the terrain masks
+
+		CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
+
+		CTerrain& terrain = GetSimContext().GetTerrain();
 
 		for (u16 j = 0; j < m_MapSize; ++j)
 		{

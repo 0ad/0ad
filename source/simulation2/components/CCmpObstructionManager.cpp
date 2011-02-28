@@ -216,7 +216,7 @@ public:
 		m_WorldZ0 = z0;
 		m_WorldX1 = x1;
 		m_WorldZ1 = z1;
-		MakeDirty();
+		MakeDirtyAll();
 
 		// Subdivision system bounds:
 		debug_assert(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
@@ -250,7 +250,7 @@ public:
 		UnitShape shape = { ent, x, z, r, flags, group };
 		size_t id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
-		MakeDirtyUnits();
+		MakeDirtyUnit(flags);
 
 		m_UnitSubdivision.Add(id, CFixedVector2D(x - r, z - r), CFixedVector2D(x + r, z + r));
 
@@ -267,7 +267,7 @@ public:
 		StaticShape shape = { ent, x, z, u, v, w/2, h/2, flags };
 		size_t id = m_StaticShapeNext++;
 		m_StaticShapes[id] = shape;
-		MakeDirty();
+		MakeDirtyStatic(flags);
 
 		CFixedVector2D center(x, z);
 		CFixedVector2D bbHalfSize = Geometry::GetHalfBoundingBox(u, v, CFixedVector2D(w/2, h/2));
@@ -312,7 +312,7 @@ public:
 			shape.x = x;
 			shape.z = z;
 
-			MakeDirtyUnits();
+			MakeDirtyUnit(shape.flags);
 		}
 		else
 		{
@@ -336,7 +336,7 @@ public:
 			shape.u = u;
 			shape.v = v;
 
-			MakeDirty();
+			MakeDirtyStatic(shape.flags);
 		}
 	}
 
@@ -351,8 +351,6 @@ public:
 				shape.flags |= FLAG_MOVING;
 			else
 				shape.flags &= ~FLAG_MOVING;
-
-			MakeDirtyUnits();
 		}
 	}
 
@@ -364,7 +362,6 @@ public:
 		{
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
 			shape.group = group;
-			MakeDirtyUnits();
 		}
 	}
 
@@ -379,8 +376,8 @@ public:
 				CFixedVector2D(shape.x - shape.r, shape.z - shape.r),
 				CFixedVector2D(shape.x + shape.r, shape.z + shape.r));
 
+			MakeDirtyUnit(shape.flags);
 			m_UnitShapes.erase(TAG_TO_INDEX(tag));
-			MakeDirtyUnits();
 		}
 		else
 		{
@@ -390,8 +387,8 @@ public:
 			CFixedVector2D bbHalfSize = Geometry::GetHalfBoundingBox(shape.u, shape.v, CFixedVector2D(shape.hw, shape.hh));
 			m_StaticSubdivision.Remove(TAG_TO_INDEX(tag), center - bbHalfSize, center + bbHalfSize);
 
+			MakeDirtyStatic(shape.flags);
 			m_StaticShapes.erase(TAG_TO_INDEX(tag));
-			MakeDirty();
 		}
 	}
 
@@ -426,7 +423,7 @@ public:
 	virtual void SetPassabilityCircular(bool enabled)
 	{
 		m_PassabilityCircular = enabled;
-		MakeDirty();
+		MakeDirtyAll();
 	}
 
 	virtual void SetDebugOverlay(bool enabled)
@@ -448,20 +445,35 @@ private:
 
 	/**
 	 * Mark all previous Rasterise()d grids as dirty, and the debug display.
-	 * Call this when any static shapes or world bounds have changed.
+	 * Call this when the world bounds have changed.
 	 */
-	void MakeDirty()
+	void MakeDirtyAll()
 	{
 		++m_DirtyID;
 		m_DebugOverlayDirty = true;
 	}
 
 	/**
-	 * Mark the debug display as dirty.
-	 * Call this when any unit shapes (which don't affect Rasterise) have changed.
+	 * Mark all previous Rasterise()d grids as dirty, if they depend on this shape.
+	 * Call this when a static shape has changed.
 	 */
-	void MakeDirtyUnits()
+	void MakeDirtyStatic(u8 flags)
 	{
+		if (flags & (FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION))
+			++m_DirtyID;
+
+		m_DebugOverlayDirty = true;
+	}
+
+	/**
+	 * Mark all previous Rasterise()d grids as dirty, if they depend on this shape.
+	 * Call this when a unit shape has changed.
+	 */
+	void MakeDirtyUnit(u8 flags)
+	{
+		if (flags & (FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION))
+			++m_DirtyID;
+
 		m_DebugOverlayDirty = true;
 	}
 
