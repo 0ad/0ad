@@ -183,13 +183,13 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		}
 
 		if (col == 2)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", unlogged_time_frame * 1000.0f);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", unlogged_time_frame * 1000.0f);
 		else if (col == 3)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", unlogged_mallocs_frame);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", unlogged_mallocs_frame);
 		else if (col == 5)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", unlogged_time_turn * 1000.f);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", unlogged_time_turn * 1000.f);
 		else if (col == 6)
-			sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", unlogged_mallocs_turn);
+			sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", unlogged_mallocs_turn);
 		
 		return CStr(buf);
 	}
@@ -201,22 +201,22 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		return child->GetName();
 		
 	case 1:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%5.1f", child->GetFrameCalls());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetFrameCalls());
 		break;
 	case 2:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", child->GetFrameTime() * 1000.0f);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", child->GetFrameTime() * 1000.0f);
 		break;
 	case 3:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", child->GetFrameMallocs());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetFrameMallocs());
 		break;
 	case 4:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%5.1f", child->GetTurnCalls());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetTurnCalls());
 		break;
 	case 5:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%7.3f", child->GetTurnTime() * 1000.0f);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", child->GetTurnTime() * 1000.0f);
 		break;
 	case 6:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%7.1f", child->GetTurnMallocs());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetTurnMallocs());
 		break;
 	}
 	return CStr(buf);

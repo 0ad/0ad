@@ -99,7 +99,7 @@ function reportPerformance(time)
 		map: Engine.GetMapSettings().Name,
 		profiler: Engine.GetProfilerState()
 	};
-	Engine.SubmitUserReport("profile", 1, JSON.stringify(data));
+	Engine.SubmitUserReport("profile", 2, JSON.stringify(data));
 }
 
 function leaveGame()

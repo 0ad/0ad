@@ -208,8 +208,13 @@ void CProfileViewer::RenderProfile()
 	glPushMatrix();
 	for(size_t col = 0; col < columns.size(); ++col)
 	{
+		CStr text = columns[col].title;
+		int w, h;
+		font.CalculateStringSize(text.FromUTF8(), w, h);
 		glPushMatrix();
-		glwprintf(L"%hs", columns[col].title.c_str());
+		if (col > 0) // right-align all but the first column
+			glTranslatef(columns[col].width - w, 0, 0);
+		glwprintf(L"%hs", text.c_str());
 		glPopMatrix();
 		glTranslatef(columns[col].width, 0, 0);
 	}
@@ -222,6 +227,19 @@ void CProfileViewer::RenderProfile()
 	for(size_t row = 0; row < numrows; ++row)
 	{
 		glPushMatrix();
+
+		glDisable(GL_TEXTURE_2D);
+		if (row % 2)
+			glColor4ub(255, 255, 255, 16);
+		else
+			glColor4ub(0, 0, 0, 16);
+		glBegin(GL_QUADS);
+		glVertex2i(-22.f, 2.f);
+		glVertex2i(estimate_width-22.f, 2.f);
+		glVertex2i(estimate_width-22.f, 2.f-lineSpacing);
+		glVertex2i(-22.f, 2.f-lineSpacing);
+		glEnd();
+		glEnable(GL_TEXTURE_2D);
 
 		if (table->IsHighlightRow(row))
 			glColor3ub(255, 128, 128);
@@ -239,8 +257,13 @@ void CProfileViewer::RenderProfile()
 
 		for(size_t col = 0; col < columns.size(); ++col)
 		{
+			CStr text = table->GetCellText(row, col);
+			int w, h;
+			font.CalculateStringSize(text.FromUTF8(), w, h);
 			glPushMatrix();
-			glwprintf(L"%hs", table->GetCellText(row, col).c_str());
+			if (col > 0) // right-align all but the first column
+				glTranslatef(columns[col].width - w, 0, 0);
+			glwprintf(L"%hs", text.c_str());
 			glPopMatrix();
 			glTranslatef(columns[col].width, 0, 0);
 		}
@@ -441,7 +464,24 @@ namespace
 
 		void operator() (AbstractProfileTable* table)
 		{
-			scriptInterface.SetProperty(root.get(), table->GetTitle().c_str(), DumpRows(table));
+			CScriptVal t;
+			scriptInterface.Eval(L"({})", t);
+			scriptInterface.SetProperty(t.get(), "cols", DumpCols(table));
+			scriptInterface.SetProperty(t.get(), "data", DumpRows(table));
+
+			scriptInterface.SetProperty(root.get(), table->GetTitle().c_str(), t);
+		}
+
+		std::vector<std::string> DumpCols(AbstractProfileTable* table)
+		{
+			std::vector<std::string> titles;
+
+			const std::vector<ProfileColumn>& columns = table->GetColumns();
+
+			for (size_t c = 0; c < columns.size(); ++c)
+				titles.push_back(columns[c].title);
+
+			return titles;
 		}
 
 		CScriptVal DumpRows(AbstractProfileTable* table)
@@ -454,14 +494,14 @@ namespace
 			for (size_t r = 0; r < table->GetNumberRows(); ++r)
 			{
 				CScriptVal row;
-				scriptInterface.Eval("({})", row);
+				scriptInterface.Eval("([])", row);
 				scriptInterface.SetProperty(data.get(), table->GetCellText(r, 0).c_str(), row);
 
-				for (size_t c = 1; c < columns.size(); ++c)
-					scriptInterface.SetProperty(row.get(), columns[c].title.c_str(), table->GetCellText(r, c));
-
 				if (table->GetChild(r))
-					scriptInterface.SetProperty(row.get(), "children", DumpRows(table->GetChild(r)));
+					scriptInterface.SetPropertyInt(row.get(), 0, DumpRows(table->GetChild(r)));
+
+				for (size_t c = 1; c < columns.size(); ++c)
+					scriptInterface.SetPropertyInt(row.get(), c, table->GetCellText(r, c));
 			}
 
 			return data;
