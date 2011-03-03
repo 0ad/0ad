@@ -245,6 +245,28 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name)
 	return NULL;
 }	
 
+EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& name)
+{
+	if (ns < 0 || ns >= CFG_LAST)
+	{
+		debug_warn(L"CConfigDB: Invalid ns value");
+		return CFG_LAST;
+	}
+
+	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
+	if (it != m_Map[CFG_COMMAND].end())
+		return CFG_COMMAND;
+
+	for (int search_ns = ns; search_ns >= 0; search_ns--)
+	{
+		TConfigMap::iterator it = m_Map[search_ns].find(name);
+		if (it != m_Map[search_ns].end())
+			return (EConfigNamespace)search_ns;
+	}
+
+	return CFG_LAST;
+}
+
 std::vector<std::pair<CStr, CConfigValueSet> > CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)
 {
 	std::vector<std::pair<CStr, CConfigValueSet> > ret;

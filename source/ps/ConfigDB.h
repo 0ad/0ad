@@ -102,6 +102,12 @@ public:
 	CConfigValueSet *GetValues(EConfigNamespace ns, const CStr& name);
 
 	/**
+	 * Returns the namespace that the value returned by GetValues was defined in,
+	 * or CFG_LAST if it wasn't defined at all.
+	 */
+	EConfigNamespace GetValueNamespace(EConfigNamespace ns, const CStr& name);
+
+	/**
 	 * Retrieve a vector of values corresponding to settings whose names begin
 	 * with the given prefix;
 	 * will search all namespaces from system up to the specified namespace.
