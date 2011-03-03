@@ -12,7 +12,7 @@ for (var i = 0; i < graphData.length; ++i) {
         d.yaxis = 2;
 
     // Uninteresting:
-    if (d.label == "max nominal heap bytes" || d.label == "max JS_malloc bytes")
+    if (d.label == "max nominal heap bytes" || d.label == "max JS_malloc bytes" || d.label == "number of GCs" || d.label == "allocated bytes")
         continue;
 
     // Bogus data:
