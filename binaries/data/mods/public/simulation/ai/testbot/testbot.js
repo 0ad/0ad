@@ -108,11 +108,16 @@ TestBotAI.prototype.OnUpdate = function()
 		for each (var planGroup in this.planGroups)
 			remainingResources.subtract(planGroup.getEscrow());
 
+		Engine.ProfileStart("plan setup");
+
 		// Compute plans from each module
 		for each (var module in this.modules)
 			module.update(gameState, this.planGroups);
 
 //		print(uneval(this.planGroups)+"\n");
+
+		Engine.ProfileStop();
+		Engine.ProfileStart("plan execute");
 
 		// Execute as many plans as possible, and keep a record of
 		// which ones we can't afford yet
@@ -123,6 +128,8 @@ TestBotAI.prototype.OnUpdate = function()
 			if (plan)
 				unaffordablePlans.push({"group": planGroup, "priority": plan.priority, "plan": plan.plan});
 		}
+
+		Engine.ProfileStop();
 
 		this.ShareResources(remainingResources, unaffordablePlans);
 

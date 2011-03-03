@@ -351,6 +351,8 @@ public:
 				shape.flags |= FLAG_MOVING;
 			else
 				shape.flags &= ~FLAG_MOVING;
+
+			MakeDirtyDebug();
 		}
 	}
 
@@ -450,6 +452,15 @@ private:
 	void MakeDirtyAll()
 	{
 		++m_DirtyID;
+		m_DebugOverlayDirty = true;
+	}
+
+	/**
+	 * Mark the debug display as dirty.
+	 * Call this when nothing has changed except a unit's 'moving' flag.
+	 */
+	void MakeDirtyDebug()
+	{
 		m_DebugOverlayDirty = true;
 	}
 

@@ -220,7 +220,7 @@ template<> jsval ScriptInterface::ToJSVal<CStr8>(JSContext* cx, const CStr8& val
 
 template<typename T> static jsval ToJSVal_vector(JSContext* cx, const std::vector<T>& val)
 {
-	JSObject* obj = JS_NewArrayObject(cx, 0, NULL);
+	JSObject* obj = JS_NewArrayObject(cx, val.size(), NULL);
 	if (!obj)
 		return JSVAL_VOID;
 	for (size_t i = 0; i < val.size(); ++i)

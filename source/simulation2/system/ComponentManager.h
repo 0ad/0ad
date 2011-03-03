@@ -24,6 +24,7 @@
 #include "simulation2/helpers/Player.h"
 
 #include <boost/random/linear_congruential.hpp>
+#include <boost/unordered_map.hpp>
 
 #include <map>
 
@@ -180,7 +181,11 @@ public:
 
 	IComponent* QueryInterface(entity_id_t ent, InterfaceId iid) const;
 
-	const std::map<entity_id_t, IComponent*>& GetEntitiesWithInterface(InterfaceId iid) const;
+	typedef std::vector<std::pair<entity_id_t, IComponent*> > InterfaceList;
+	typedef boost::unordered_map<entity_id_t, IComponent*> InterfaceListUnordered;
+
+	InterfaceList GetEntitiesWithInterface(InterfaceId iid) const;
+	const InterfaceListUnordered& GetEntitiesWithInterfaceUnordered(InterfaceId iid) const;
 
 	/**
 	 * Send a message, targeted at a particular entity. The message will be received by any
@@ -242,7 +247,7 @@ private:
 
 	// TODO: some of these should be vectors
 	std::map<ComponentTypeId, ComponentType> m_ComponentTypesById;
-	std::map<InterfaceId, std::map<entity_id_t, IComponent*> > m_ComponentsByInterface;
+	std::vector<boost::unordered_map<entity_id_t, IComponent*> > m_ComponentsByInterface; // indexed by InterfaceId
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> > m_ComponentsByTypeId;
 	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_LocalMessageSubscriptions;
 	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_GlobalMessageSubscriptions;

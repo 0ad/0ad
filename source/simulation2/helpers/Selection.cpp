@@ -37,8 +37,8 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 
 	std::vector<std::pair<float, entity_id_t> > hits; // (dist^2, entity) pairs
 
-	const CSimulation2::InterfaceList& ents = simulation.GetEntitiesWithInterface(IID_Selectable);
-	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	const CSimulation2::InterfaceListUnordered& ents = simulation.GetEntitiesWithInterfaceUnordered(IID_Selectable);
+	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
 		entity_id_t ent = it->first;
 
@@ -91,8 +91,8 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 
 	std::vector<entity_id_t> hitEnts;
 
-	const CSimulation2::InterfaceList& ents = simulation.GetEntitiesWithInterface(IID_Selectable);
-	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	const CSimulation2::InterfaceListUnordered& ents = simulation.GetEntitiesWithInterfaceUnordered(IID_Selectable);
+	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
 		entity_id_t ent = it->first;
 

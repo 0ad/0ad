@@ -49,16 +49,28 @@ var GameState = Class({
 		return this.ai.passabilityClasses[name];
 	},
 
-	getOwnEntities: Memoize('getOwnEntities', function()
+	getOwnEntities: (function()
 	{
-		return this.entities.filter(function(ent) { return ent.isOwn(); });
+		return new EntityCollection(this.ai, this.ai._ownEntities);
 	}),
 
 	getOwnEntitiesWithRole: Memoize('getOwnEntitiesWithRole', function(role)
 	{
-		return this.getOwnEntities().filter(function(ent) {
-			return (ent.getMetadata("role") === role);
-		});
+		var metas = this.ai._entityMetadata;
+		if (role === undefined)
+			return this.getOwnEntities().filter_raw(function(ent) {
+				var metadata = metas[ent.id];
+				if (!metadata || !('role' in metadata))
+					return true;
+				return (metadata.role === undefined);
+			});
+		else
+			return this.getOwnEntities().filter_raw(function(ent) {
+				var metadata = metas[ent.id];
+				if (!metadata || !('role' in metadata))
+					return false;
+				return (metadata.role === role);
+			});
 	}),
 
 	countEntitiesWithType: function(type)

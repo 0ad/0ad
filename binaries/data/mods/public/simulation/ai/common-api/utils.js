@@ -22,3 +22,11 @@ function Memoize(funcname, func)
 		return ret;
 	};
 }
+
+function ShallowClone(obj)
+{
+	var ret = {};
+	for (var k in obj)
+		ret[k] = obj[k];
+	return ret;
+}

@@ -25,6 +25,8 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
+#include <boost/unordered_map.hpp>
+
 #include <map>
 
 class CSimulation2Impl;
@@ -170,8 +172,20 @@ public:
 	void PostMessage(entity_id_t ent, const CMessage& msg) const;
 	void BroadcastMessage(const CMessage& msg) const;
 
-	typedef std::map<entity_id_t, IComponent*> InterfaceList;
-	const InterfaceList& GetEntitiesWithInterface(int iid);
+	typedef std::vector<std::pair<entity_id_t, IComponent*> > InterfaceList;
+	typedef boost::unordered_map<entity_id_t, IComponent*> InterfaceListUnordered;
+
+	/**
+	 * Returns a list of components implementing the given interface, and their
+	 * associated entities, sorted by entity ID.
+	 */
+	InterfaceList GetEntitiesWithInterface(int iid);
+
+	/**
+	 * Returns a list of components implementing the given interface, and their
+	 * associated entities, as an unordered map.
+	 */
+	const InterfaceListUnordered& GetEntitiesWithInterfaceUnordered(int iid);
 
 	const CSimContext& GetSimContext() const;
 	ScriptInterface& GetScriptInterface() const;

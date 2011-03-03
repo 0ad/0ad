@@ -209,6 +209,8 @@ var EconomyManager = Class({
 
 	update: function(gameState, planGroups)
 	{
+		Engine.ProfileStart("economy update");
+
 		this.reassignRolelessUnits(gameState);
 
 		this.buildMoreBuildings(gameState, planGroups);
@@ -218,6 +220,8 @@ var EconomyManager = Class({
 		this.reassignIdleWorkers(gameState, planGroups);
 
 		this.assignToFoundations(gameState, planGroups);
+
+		Engine.ProfileStop();
 	},
 
 });

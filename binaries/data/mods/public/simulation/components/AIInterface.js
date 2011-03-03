@@ -6,6 +6,7 @@ AIInterface.prototype.Schema =
 AIInterface.prototype.Init = function()
 {
 	this.events = [];
+	this.changedEntities = {};
 };
 
 AIInterface.prototype.GetRepresentation = function()
@@ -22,15 +23,23 @@ AIInterface.prototype.GetRepresentation = function()
 	this.events = [];
 
 	// Add entity representations
+	Engine.ProfileStart("proxy representations");
 	state.entities = {};
-	for each (var proxy in Engine.GetComponentsWithInterface(IID_AIProxy))
+	for (var id in this.changedEntities)
 	{
-		var rep = proxy.GetRepresentation();
-		if (rep !== null)
-			state.entities[proxy.entity] = rep;
+		var aiProxy = Engine.QueryInterface(+id, IID_AIProxy);
+		if (aiProxy)
+			state.entities[id] = aiProxy.GetRepresentation();
 	}
+	this.changedEntities = {};
+	Engine.ProfileStop();
 
 	return state;
+};
+
+AIInterface.prototype.ChangedEntity = function(ent)
+{
+	this.changedEntities[ent] = 1;
 };
 
 // AIProxy sets up a load of event handlers to capture interesting things going on

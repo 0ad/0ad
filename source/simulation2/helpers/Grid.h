@@ -34,12 +34,39 @@
 template<typename T>
 class Grid
 {
-	NONCOPYABLE(Grid);
 public:
-	Grid(u16 w, u16 h) : m_W(w), m_H(h), m_DirtyID(0)
+	Grid() : m_W(0), m_H(0), m_Data(NULL), m_DirtyID(0)
 	{
-		m_Data = new T[m_W * m_H];
+	}
+
+	Grid(u16 w, u16 h) : m_W(w), m_H(h), m_Data(NULL), m_DirtyID(0)
+	{
+		if (m_W || m_H)
+			m_Data = new T[m_W * m_H];
 		reset();
+	}
+
+	Grid(const Grid& g)
+	{
+		*this = g;
+	}
+
+	Grid& operator=(const Grid& g)
+	{
+		if (this != &g)
+		{
+			m_W = g.m_W;
+			m_H = g.m_H;
+			m_DirtyID = g.m_DirtyID;
+			if (g.m_Data)
+			{
+				m_Data = new T[m_W * m_H];
+				memcpy(m_Data, g.m_Data, m_W*m_H*sizeof(T));
+			}
+			else
+				m_Data = NULL;
+		}
+		return *this;
 	}
 
 	~Grid()
@@ -49,7 +76,8 @@ public:
 
 	void reset()
 	{
-		memset(m_Data, 0, m_W*m_H*sizeof(T));
+		if (m_Data)
+			memset(m_Data, 0, m_W*m_H*sizeof(T));
 	}
 
 	void set(size_t i, size_t j, const T& value)
@@ -99,6 +127,8 @@ class SparseGrid
 public:
 	SparseGrid(u16 w, u16 h) : m_W(w), m_H(h), m_DirtyID(0)
 	{
+		debug_assert(m_W && m_H);
+
 		m_BW = (m_W + BucketSize-1) >> BucketBits;
 		m_BH = (m_H + BucketSize-1) >> BucketBits;
 

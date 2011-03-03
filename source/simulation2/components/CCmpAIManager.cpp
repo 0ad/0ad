@@ -250,6 +250,7 @@ public:
 	CAIWorker() :
 		m_ScriptRuntime(ScriptInterface::CreateRuntime()),
 		m_ScriptInterface("Engine", "AI", m_ScriptRuntime),
+		m_TurnNum(0),
 		m_CommandsComputed(true)
 	{
 		m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
@@ -277,11 +278,19 @@ public:
 		return true;
 	}
 
-	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState)
+	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& map)
 	{
 		debug_assert(m_CommandsComputed);
 
 		m_GameState = gameState;
+
+		if (map.m_DirtyID != m_GameStateMap.m_DirtyID)
+		{
+			m_GameStateMap = map;
+
+			JSContext* cx = m_ScriptInterface.GetContext();
+			m_GameStateMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, m_GameStateMap));
+		}
 
 		m_CommandsComputed = false;
 	}
@@ -410,10 +419,13 @@ private:
 
 	void PerformComputation()
 	{
-		PROFILE("AI compute");
-
 		// Deserialize the game state, to pass to the AI's HandleMessage
-		CScriptVal state = m_ScriptInterface.ReadStructuredClone(m_GameState);
+		CScriptVal state;
+		{
+			PROFILE("AI compute read state");
+			state = m_ScriptInterface.ReadStructuredClone(m_GameState);
+			m_ScriptInterface.SetProperty(state.get(), "map", m_GameStateMapVal, true);
+		}
 
 		// It would be nice to do
 		//   m_ScriptInterface.FreezeObject(state.get(), true);
@@ -421,19 +433,34 @@ private:
 		// affecting other AI scripts they share it with. But the performance
 		// cost is far too high, so we won't do that.
 
-		for (size_t i = 0; i < m_Players.size(); ++i)
-			m_Players[i]->Run(state);
+		{
+			PROFILE("AI compute scripts");
+			for (size_t i = 0; i < m_Players.size(); ++i)
+				m_Players[i]->Run(state);
+		}
+
+		// Run the GC every so often.
+		// (This isn't particularly necessary, but it makes profiling clearer
+		// since it avoids random GC delays while running other scripts)
+		if (m_TurnNum++ % 25 == 0)
+		{
+			PROFILE("AI compute GC");
+			m_ScriptInterface.MaybeGC();
+		}
 	}
 
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;
 	ScriptInterface m_ScriptInterface;
 	boost::rand48 m_RNG;
+	size_t m_TurnNum;
 
 	CScriptValRooted m_EntityTemplates;
 	std::map<std::wstring, CScriptValRooted> m_PlayerMetadata;
 	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
 
 	shared_ptr<ScriptInterface::StructuredClone> m_GameState;
+	Grid<u16> m_GameStateMap;
+	CScriptValRooted m_GameStateMapVal;
 
 	bool m_CommandsComputed;
 };
@@ -470,14 +497,17 @@ public:
 		// directly. So we'll just grab the ISerializer's stream and write to it
 		// with an independent serializer.
 
-		m_Worker.Serialize(serialize.GetStream(), serialize.IsDebug());
+		// TODO: make the serialization/deserialization actually work, and not really slowly
+//		m_Worker.Serialize(serialize.GetStream(), serialize.IsDebug());
+		UNUSED2(serialize);
 	}
 
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(paramNode);
 
-		m_Worker.Deserialize(deserialize.GetStream());
+//		m_Worker.Deserialize(deserialize.GetStream());
+		UNUSED2(deserialize);
 	}
 
 	virtual void AddPlayer(std::wstring id, player_id_t player)
@@ -497,11 +527,16 @@ public:
 		// Get the game state from AIInterface
 		CScriptVal state = cmpAIInterface->GetRepresentation();
 
-		LoadTerrainData(state);
+		// Get the map data
+		Grid<u16> dummyGrid;
+		const Grid<u16>* map = &dummyGrid;
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpPathfinder.null())
+			map = &cmpPathfinder->GetPassabilityGrid();
 
 		LoadPathfinderClasses(state);
 
-		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()));
+		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()), *map);
 	}
 
 	virtual void PushCommands()
@@ -546,22 +581,6 @@ private:
 		}
 
 		m_Worker.LoadEntityTemplates(templates);
-	}
-
-	void LoadTerrainData(CScriptVal state)
-	{
-		PROFILE("LoadTerrainData");
-
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpPathfinder.null())
-			return;
-
-		const Grid<u16>& grid = cmpPathfinder->GetPassabilityGrid();
-
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-		scriptInterface.SetProperty(state.get(), "map", grid, true);
-		// (If this is slow, maybe we should only bother uploading the data
-		// if it's changed since last turn)
 	}
 
 	void LoadPathfinderClasses(CScriptVal state)

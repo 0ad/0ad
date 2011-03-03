@@ -325,6 +325,8 @@ void CCmpPathfinder::UpdateGrid()
 					t &= ~2;
 			}
 		}
+
+		++m_Grid->m_DirtyID;
 	}
 	else if (obstructionsDirty || m_TerrainDirty)
 	{
@@ -388,6 +390,8 @@ void CCmpPathfinder::UpdateGrid()
 		}
 
 		m_TerrainDirty = false;
+
+		++m_Grid->m_DirtyID;
 	}
 }
 

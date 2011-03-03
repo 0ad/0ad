@@ -45,6 +45,8 @@ var MilitaryAttackManager = Class({
 		if (gameState.getTimeElapsed() < 60*1000)
 			return;
 
+		Engine.ProfileStart("military update");
+
 		// Continually try training new units, in batches of 5
 		planGroups.militaryPersonnel.addPlan(100,
 			new UnitTrainingPlan(gameState,
@@ -85,6 +87,8 @@ var MilitaryAttackManager = Class({
 				pending.move(targetPos[0], targetPos[1]);
 			}
 		}
+
+		Engine.ProfileStop();
 	},
 
 });

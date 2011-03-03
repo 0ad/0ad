@@ -297,7 +297,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 			// This will probably need to be changed in the future, but for now we'll
 			// just save all entities that have a position
-			const CSimulation2::InterfaceList& ents = sim.GetEntitiesWithInterface(IID_Position);
+			CSimulation2::InterfaceList ents = sim.GetEntitiesWithInterface(IID_Position);
 			for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 			{
 				entity_id_t ent = it->first;

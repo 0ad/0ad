@@ -20,6 +20,7 @@
 #include "Replay.h"
 
 #include "graphics/TerrainTextureManager.h"
+#include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/file/file_system.h"
 #include "lib/tex/tex.h"
@@ -222,6 +223,8 @@ void CReplayPlayer::Replay()
 	bool ok = game.GetSimulation2()->ComputeStateHash(hash);
 	debug_assert(ok);
 	debug_printf(L"# Final state: %hs\n", Hexify(hash).c_str());
+
+	timer_DisplayClientTotals();
 
 	// Clean up
 	delete &g_TexMan;

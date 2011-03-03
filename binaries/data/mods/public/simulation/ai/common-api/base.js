@@ -8,6 +8,8 @@ function BaseAI(settings)
 	Object.defineProperty(this, "_templates", {value: settings.templates, enumerable: false});
 	Object.defineProperty(this, "_derivedTemplates", {value: {}, enumerable: false});
 
+	this._ownEntities = {};
+
 	this._entityMetadata = {};
 }
 
@@ -51,9 +53,29 @@ BaseAI.prototype.GetTemplate = function(name)
 BaseAI.prototype.HandleMessage = function(state)
 {
 	if (!this._rawEntities)
-		this._rawEntities = state.entities;
+	{
+		// Do a (shallow) clone of all the initial entity properties (in order
+		// to copy into our own script context and minimise cross-context
+		// weirdness), and remember the entities owned by our player
+		this._rawEntities = {};
+		for (var id in state.entities)
+		{
+			var ent = state.entities[id];
+
+			this._rawEntities[id] = {};
+			for (var prop in ent)
+				this._rawEntities[id][prop] = ent[prop];
+
+			if (ent.owner === this._player)
+				this._ownEntities[id] = this._rawEntities[id];
+		}
+	}
 	else
+	{
 		this.ApplyEntitiesDelta(state);
+	}
+
+	Engine.ProfileStart("HandleMessage setup");
 
 	this.entities = new EntityCollection(this, this._rawEntities);
 	this.player = this._player;
@@ -62,6 +84,8 @@ BaseAI.prototype.HandleMessage = function(state)
 	this.timeElapsed = state.timeElapsed;
 	this.map = state.map;
 	this.passabilityClasses = state.passabilityClasses;
+
+	Engine.ProfileStop();
 
 	this.OnUpdate();
 
@@ -77,6 +101,8 @@ BaseAI.prototype.HandleMessage = function(state)
 
 BaseAI.prototype.ApplyEntitiesDelta = function(state)
 {
+	Engine.ProfileStart("ApplyEntitiesDelta");
+
 	for each (var evt in state.events)
 	{
 		if (evt.type == "Create")
@@ -87,23 +113,40 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 		{
 			delete this._rawEntities[evt.msg.entity];
 			delete this._entityMetadata[evt.msg.entity];
+			delete this._ownEntities[evt.msg.entity];
 		}
 		else if (evt.type == "TrainingFinished")
 		{
 			// Apply metadata stored in training queues, but only if they
 			// look like they were added by us
-			if (evt.msg.owner == this._player)
+			if (evt.msg.owner === this._player)
 				for each (var ent in evt.msg.entities)
-					this._entityMetadata[ent] = evt.msg.metadata;
+					this._entityMetadata[ent] = ShallowClone(evt.msg.metadata);
 		}
 	}
 
 	for (var id in state.entities)
 	{
 		var changes = state.entities[id];
+
+		if ("owner" in changes)
+		{
+			var wasOurs = (this._rawEntities[id].owner !== undefined
+				&& this._rawEntities[id].owner === this._player);
+
+			var isOurs = (changes.owner === this._player);
+
+			if (wasOurs && !isOurs)
+				delete this._ownEntities[id];
+			else if (!wasOurs && isOurs)
+				this._ownEntities[id] = this._rawEntities[id];
+		}
+
 		for (var prop in changes)
 			this._rawEntities[id][prop] = changes[prop];
 	}
+
+	Engine.ProfileStop();
 };
 
 BaseAI.prototype.OnUpdate = function(state)

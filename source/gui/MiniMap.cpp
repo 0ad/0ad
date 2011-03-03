@@ -404,7 +404,7 @@ void CMiniMap::Draw()
 	float sy = (float)m_Height / ((m_MapSize - 1) * CELL_SIZE);
 
 	CSimulation2* sim = g_Game->GetSimulation2();
-	const CSimulation2::InterfaceList& ents = sim->GetEntitiesWithInterface(IID_Minimap);
+	CSimulation2::InterfaceList ents = sim->GetEntitiesWithInterface(IID_Minimap);
 
 	std::vector<MinimapUnitVertex> vertexArray;
 	vertexArray.reserve(ents.size());

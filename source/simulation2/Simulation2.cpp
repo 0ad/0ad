@@ -337,9 +337,14 @@ void CSimulation2::BroadcastMessage(const CMessage& msg) const
 	m->m_ComponentManager.BroadcastMessage(msg);
 }
 
-const CSimulation2::InterfaceList& CSimulation2::GetEntitiesWithInterface(int iid)
+CSimulation2::InterfaceList CSimulation2::GetEntitiesWithInterface(int iid)
 {
 	return m->m_ComponentManager.GetEntitiesWithInterface(iid);
+}
+
+const CSimulation2::InterfaceListUnordered& CSimulation2::GetEntitiesWithInterfaceUnordered(int iid)
+{
+	return m->m_ComponentManager.GetEntitiesWithInterfaceUnordered(iid);
 }
 
 const CSimContext& CSimulation2::GetSimContext() const

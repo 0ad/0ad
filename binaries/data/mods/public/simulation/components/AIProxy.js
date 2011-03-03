@@ -34,6 +34,9 @@ AIProxy.prototype.Init = function()
 {
 	this.changes = null;
 	this.needsFullGet = true;
+
+	// Let the AIInterface know that we exist and that it should query us
+	this.NotifyChange();
 };
 
 AIProxy.prototype.GetRepresentation = function()
@@ -58,12 +61,22 @@ AIProxy.prototype.GetRepresentation = function()
 	return ret;
 };
 
+AIProxy.prototype.NotifyChange = function()
+{
+	if (!this.changes)
+	{
+		this.changes = {};
+
+		var cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+		cmpAIInterface.ChangedEntity(this.entity);
+	}
+};
+
 // AI representation-updating event handlers:
 
 AIProxy.prototype.OnPositionChanged = function(msg)
 {
-	if (!this.changes)
-		this.changes = {};
+	this.NotifyChange();
 
 	if (msg.inWorld)
 		this.changes.position = [msg.x, msg.z];
@@ -73,32 +86,28 @@ AIProxy.prototype.OnPositionChanged = function(msg)
 
 AIProxy.prototype.OnHealthChanged = function(msg)
 {
-	if (!this.changes)
-		this.changes = {};
+	this.NotifyChange();
 
 	this.changes.hitpoints = msg.to;
 };
 
 AIProxy.prototype.OnOwnershipChanged = function(msg)
 {
-	if (!this.changes)
-		this.changes = {};
+	this.NotifyChange();
 
 	this.changes.owner = msg.to;
 };
 
 AIProxy.prototype.OnUnitIdleChanged = function(msg)
 {
-	if (!this.changes)
-		this.changes = {};
+	this.NotifyChange();
 
 	this.changes.idle = msg.idle;
 };
 
 AIProxy.prototype.OnTrainingQueueChanged = function(msg)
 {
-	if (!this.changes)
-		this.changes = {};
+	this.NotifyChange();
 
 	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);
 	this.changes.trainingQueue = cmpTrainingQueue.GetQueue();

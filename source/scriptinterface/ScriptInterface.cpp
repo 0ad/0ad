@@ -348,6 +348,45 @@ JSBool error(JSContext* cx, uintN argc, jsval* vp)
 	return JS_TRUE;
 }
 
+JSBool ProfileStart(JSContext* cx, uintN argc, jsval* vp)
+{
+	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+	{
+		const char* name = "(ProfileStart)";
+
+		if (argc >= 1)
+		{
+			std::string str;
+			if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+				return JS_FALSE;
+
+			typedef boost::flyweight<
+				std::string,
+				boost::flyweights::no_tracking,
+				boost::flyweights::no_locking
+			> StringFlyweight;
+
+			name = StringFlyweight(str).get().c_str();
+		}
+
+		g_Profiler.StartScript(name);
+	}
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
+}
+
+JSBool ProfileStop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* vp)
+{
+	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+	{
+		g_Profiler.Stop();
+	}
+
+	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
+}
+
 // Math override functions:
 
 JSBool Math_random(JSContext* cx, uintN UNUSED(argc), jsval* vp)
@@ -386,15 +425,22 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	JS_SetErrorReporter(m_cx, ErrorReporter);
 
-	JS_SetOptions(m_cx, JSOPTION_STRICT // "warn on dubious practice"
-			| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
-			| JSOPTION_VAROBJFIX // "recommended" (fixes variable scoping)
+	uint32 options = 0;
+	options |= JSOPTION_STRICT; // "warn on dubious practice"
+	options |= JSOPTION_XML; // "ECMAScript for XML support: parse <!-- --> as a token"
+	options |= JSOPTION_VAROBJFIX; // "recommended" (fixes variable scoping)
 
-			// Enable all the JIT features:
-//			| JSOPTION_JIT
-//			| JSOPTION_METHODJIT
-//			| JSOPTION_PROFILING
-	);
+	// Enable method JIT, unless script profiling is enabled (since profiling
+	// hooks are incompatible with the JIT)
+#if !ENABLE_SCRIPT_PROFILING
+	options |= JSOPTION_METHODJIT;
+#endif
+
+	// Some other JIT flags to experiment with:
+//	options |= JSOPTION_JIT;
+//	options |= JSOPTION_PROFILING;
+
+	JS_SetOptions(m_cx, options);
 
 	JS_SetVersion(m_cx, JSVERSION_LATEST);
 
@@ -414,6 +460,9 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_DefineFunction(m_cx, m_glob, "log",   ::logmsg, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_glob, "warn",  ::warn,   1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_glob, "error", ::error,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+
+	Register("ProfileStart", ::ProfileStart, 1);
+	Register("ProfileStop", ::ProfileStop, 0);
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()

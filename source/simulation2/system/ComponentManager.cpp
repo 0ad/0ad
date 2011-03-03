@@ -97,6 +97,8 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 	m_ScriptInterface.SetGlobal("INVALID_ENTITY", (int)INVALID_ENTITY);
 	m_ScriptInterface.SetGlobal("SYSTEM_ENTITY", (int)SYSTEM_ENTITY);
 
+	m_ComponentsByInterface.resize(IID__LastNative);
+
 	ResetState();
 }
 
@@ -306,6 +308,7 @@ void CComponentManager::Script_RegisterInterface(void* cbdata, std::string name)
 	// IIDs start at 1, so size+1 is the next unused one
 	size_t id = componentManager->m_InterfaceIdsByName.size() + 1;
 	componentManager->m_InterfaceIdsByName[name] = (InterfaceId)id;
+	componentManager->m_ComponentsByInterface.resize(id+1); // add one so we can index by InterfaceId
 	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
 }
 
@@ -350,9 +353,10 @@ std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(void* cbdata
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
 	std::vector<int> ret;
-	const std::map<entity_id_t, IComponent*>& ents = componentManager->GetEntitiesWithInterface(iid);
-	for (std::map<entity_id_t, IComponent*>::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	const InterfaceListUnordered& ents = componentManager->GetEntitiesWithInterfaceUnordered(iid);
+	for (InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 		ret.push_back(it->first); // TODO: maybe we should exclude local entities
+	std::sort(ret.begin(), ret.end());
 	return ret;
 }
 
@@ -361,8 +365,8 @@ std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(vo
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
 	std::vector<IComponent*> ret;
-	const std::map<entity_id_t, IComponent*>& ents = componentManager->GetEntitiesWithInterface(iid);
-	for (std::map<entity_id_t, IComponent*>::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	InterfaceList ents = componentManager->GetEntitiesWithInterface(iid);
+	for (InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 		ret.push_back(it->second); // TODO: maybe we should exclude local entities
 	return ret;
 }
@@ -454,7 +458,10 @@ void CComponentManager::ResetState()
 		}
 	}
 
-	m_ComponentsByInterface.clear();
+	std::vector<boost::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
+	for (; ifcit != m_ComponentsByInterface.end(); ++ifcit)
+		ifcit->clear();
+
 	m_ComponentsByTypeId.clear();
 
 	m_DestructionQueue.clear();
@@ -583,7 +590,9 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 
 	const ComponentType& ct = it->second;
 
-	std::map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[ct.iid];
+	debug_assert((size_t)ct.iid < m_ComponentsByInterface.size());
+
+	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[ct.iid];
 	if (emap1.find(ent) != emap1.end())
 	{
 		LOGERROR(L"Multiple components for interface %d", ct.iid);
@@ -628,7 +637,7 @@ void CComponentManager::AddMockComponent(entity_id_t ent, InterfaceId iid, IComp
 	// Just add it into the by-interface map, not the by-component-type map,
 	// so it won't be considered for messages or deletion etc
 
-	std::map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[iid];
+	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface.at(iid);
 	if (emap1.find(ent) != emap1.end())
 		debug_warn(L"Multiple components for interface");
 	emap1.insert(std::make_pair(ent, &component));
@@ -712,25 +721,24 @@ void CComponentManager::FlushDestroyedComponents()
 		}
 
 		// Remove from m_ComponentsByInterface
-		std::map<InterfaceId, std::map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
+		std::vector<boost::unordered_map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
 		for (; ifcit != m_ComponentsByInterface.end(); ++ifcit)
 		{
-			ifcit->second.erase(ent);
+			ifcit->erase(ent);
 		}
 	}
 }
 
 IComponent* CComponentManager::QueryInterface(entity_id_t ent, InterfaceId iid) const
 {
-	std::map<InterfaceId, std::map<entity_id_t, IComponent*> >::const_iterator iit = m_ComponentsByInterface.find(iid);
-	if (iit == m_ComponentsByInterface.end())
+	if ((size_t)iid >= m_ComponentsByInterface.size())
 	{
-		// Invalid iid, or no entities implement this interface
+		// Invalid iid
 		return NULL;
 	}
 
-	std::map<entity_id_t, IComponent*>::const_iterator eit = iit->second.find(ent);
-	if (eit == iit->second.end())
+	boost::unordered_map<entity_id_t, IComponent*>::const_iterator eit = m_ComponentsByInterface[iid].find(ent);
+	if (eit == m_ComponentsByInterface[iid].end())
 	{
 		// This entity doesn't implement this interface
 		return NULL;
@@ -739,17 +747,37 @@ IComponent* CComponentManager::QueryInterface(entity_id_t ent, InterfaceId iid) 
 	return eit->second;
 }
 
-static std::map<entity_id_t, IComponent*> g_EmptyEntityMap;
-const std::map<entity_id_t, IComponent*>& CComponentManager::GetEntitiesWithInterface(InterfaceId iid) const
+CComponentManager::InterfaceList CComponentManager::GetEntitiesWithInterface(InterfaceId iid) const
 {
-	std::map<InterfaceId, std::map<entity_id_t, IComponent*> >::const_iterator iit = m_ComponentsByInterface.find(iid);
-	if (iit == m_ComponentsByInterface.end())
+	std::vector<std::pair<entity_id_t, IComponent*> > ret;
+
+	if ((size_t)iid >= m_ComponentsByInterface.size())
 	{
-		// Invalid iid, or no entities implement this interface
+		// Invalid iid
+		return ret;
+	}
+
+	ret.reserve(m_ComponentsByInterface[iid].size());
+
+	boost::unordered_map<entity_id_t, IComponent*>::const_iterator it = m_ComponentsByInterface[iid].begin();
+	for (; it != m_ComponentsByInterface[iid].end(); ++it)
+		ret.push_back(*it);
+
+	std::sort(ret.begin(), ret.end()); // lexicographic pair comparison means this'll sort by entity ID
+
+	return ret;
+}
+
+static CComponentManager::InterfaceListUnordered g_EmptyEntityMap;
+const CComponentManager::InterfaceListUnordered& CComponentManager::GetEntitiesWithInterfaceUnordered(InterfaceId iid) const
+{
+	if ((size_t)iid >= m_ComponentsByInterface.size())
+	{
+		// Invalid iid
 		return g_EmptyEntityMap;
 	}
 
-	return iit->second;
+	return m_ComponentsByInterface[iid];
 }
 
 void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg) const

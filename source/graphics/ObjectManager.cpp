@@ -188,8 +188,8 @@ LibError CObjectManager::ReloadChangedFile(const VfsPath& path)
 			// object with all correct variations, and we don't want to waste space storing it just for the
 			// rare occurrence of hotloading, so we'll tell the component (which does preserve the information)
 			// to do the reloading itself
-			const std::map<entity_id_t, IComponent*>& cmps = m_Simulation.GetEntitiesWithInterface(IID_Visual);
-			for (std::map<entity_id_t, IComponent*>::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
+			const CSimulation2::InterfaceListUnordered& cmps = m_Simulation.GetEntitiesWithInterfaceUnordered(IID_Visual);
+			for (CSimulation2::InterfaceListUnordered::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
 				static_cast<ICmpVisual*>(eit->second)->Hotload(it->first);
 		}
 	}
