@@ -19,12 +19,13 @@
 
 #include "TerrainOverlay.h"
 
-#include "ps/Overlay.h"
-#include "ps/Game.h"
-#include "ps/World.h"
 #include "graphics/Terrain.h"
-#include "maths/MathUtil.h"
 #include "lib/ogl.h"
+#include "maths/MathUtil.h"
+#include "ps/Game.h"
+#include "ps/Overlay.h"
+#include "ps/Profile.h"
+#include "ps/World.h"
 
 #include <algorithm>
 
@@ -91,6 +92,8 @@ void TerrainOverlay::RenderOverlays()
 {
 	if (g_TerrainOverlayList.size() == 0)
 		return;
+
+	PROFILE("render terrain overlays");
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

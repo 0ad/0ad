@@ -278,6 +278,7 @@ void Render()
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	if (g_DoRenderCursor)
 	{
+		PROFILE("render cursor");
 		CStrW cursorName = g_CursorName;
 		if (cursorName.empty())
 		{

@@ -724,6 +724,8 @@ void CRenderer::SetFastPlayerColor(bool fast)
 // BeginFrame: signal frame start
 void CRenderer::BeginFrame()
 {
+	PROFILE("begin frame");
+
 	if (m_VertexShader)
 		m_VertexShader->BeginFrame();
 
@@ -1178,6 +1180,8 @@ void CRenderer::RenderRefractions()
 // RenderSubmissions: force rendering of any batched objects
 void CRenderer::RenderSubmissions()
 {
+	PROFILE("render submissions");
+
 	ogl_WarnIfError();
 
 	// Set the camera
@@ -1208,8 +1212,10 @@ void CRenderer::RenderSubmissions()
 	}
 
 	// clear buffers
+	PROFILE_START("clear buffers");
 	glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	PROFILE_END("clear buffers");
 
 	ogl_WarnIfError();
 
@@ -1295,6 +1301,8 @@ void CRenderer::RenderSubmissions()
 // EndFrame: signal frame end
 void CRenderer::EndFrame()
 {
+	PROFILE("end frame");
+
 	// empty lists
 	m->terrainRenderer->EndFrame();
 	m->overlayRenderer.EndFrame();

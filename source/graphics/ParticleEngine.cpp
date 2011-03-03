@@ -24,6 +24,7 @@
 #include "ParticleEngine.h"
 
 #include "graphics/TextureManager.h"
+#include "ps/Profile.h"
 
 CParticleEngine *CParticleEngine::m_pInstance = 0;
 CParticleEngine::CParticleEngine(void)
@@ -143,6 +144,8 @@ CEmitter* CParticleEngine::FindEmitter(int ID)
 
 void CParticleEngine::UpdateEmitters()
 {
+	PROFILE("update particles");
+
 	tEmitterNode *temp = m_pHead;
 	totalParticles = 0;
 	while(temp)
@@ -182,6 +185,8 @@ void CParticleEngine::UpdateEmitters()
 
 void CParticleEngine::RenderParticles()
 {
+	PROFILE("render particles");
+
 	EnterParticleContext();
 
 	tEmitterNode *temp = m_pHead;
