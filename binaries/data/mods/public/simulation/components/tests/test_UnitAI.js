@@ -48,7 +48,7 @@ function TestFormationExiting(mode)
 	});
 
 
-	var unitAI = ConstructComponent(unit, "UnitAI", { "FormationController": "false" });
+	var unitAI = ConstructComponent(unit, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
 
 	AddMock(unit, IID_Position, {
 		GetPosition: function() { return { "x": 0, "z": 0 }; },
@@ -87,7 +87,7 @@ function TestFormationExiting(mode)
 		});
 
 	var controllerFormation = ConstructComponent(controller, "Formation");
-	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true" });
+	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
 
 	AddMock(controller, IID_Position, {
 		JumpTo: function(x, z) { this.x = x; this.z = z; },
