@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,14 @@
 #include "Terrain.h"
 #include "maths/Bound.h"
 #include "maths/Vector3D.h"
+
+// To cope well with points that are slightly off the edge of the map,
+// we act as if there's an N-tile margin around the edges of the heightfield.
+// (N shouldn't be too huge else it'll hurt performance a little when
+// RayIntersect loops through it all.)
+// CTerrain::CalcPosition implements clamp-to-edge behaviour so the tracer
+// will have that behaviour.
+static const int MARGIN_SIZE = 64;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CHFTracer constructor
@@ -121,8 +129,8 @@ bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int&
 {
 	// intersect first against bounding box
 	CBound bound;
-	bound[0]=CVector3D(0,0,0);
-	bound[1]=CVector3D(m_MapSize*m_CellSize,65535*m_HeightScale,m_MapSize*m_CellSize);
+	bound[0] = CVector3D(-MARGIN_SIZE * m_CellSize, 0, -MARGIN_SIZE * m_CellSize);
+	bound[1] = CVector3D((m_MapSize + MARGIN_SIZE) * m_CellSize, 65535 * m_HeightScale, (m_MapSize + MARGIN_SIZE) * m_CellSize);
 
 	float tmin,tmax;
 	if (!bound.RayIntersect(origin,dir,tmin,tmax)) {
@@ -145,10 +153,10 @@ bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int&
 	float invCellSize=1.0f/float(m_CellSize);
 
 	float fcx=traversalPt.X*invCellSize;
-	int cx=int(fcx);
+	int cx=(int)floor(fcx);
 
 	float fcz=traversalPt.Z*invCellSize;
-	int cz=int(fcz);
+	int cz=(int)floor(fcz);
 
 	float invdx = 1.0e20f;
 	float invdz = 1.0e20f;
@@ -160,7 +168,8 @@ bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int&
 
 	do {
 		// test current cell
-		if (cx>=0 && cx<int(m_MapSize-1) && cz>=0 && cz<int(m_MapSize-1)) {
+		if (cx >= -MARGIN_SIZE && cx < int(m_MapSize + MARGIN_SIZE - 1) && cz >= -MARGIN_SIZE && cz < int(m_MapSize + MARGIN_SIZE - 1))
+		{
 			float dist;
 
 			if (CellIntersect(cx,cz,origin,dir,dist)) {
@@ -174,14 +183,14 @@ bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int&
 		{
 			// Degenerate case: y close to zero
 			// catch travelling off the map
-			if( ( cx < 0 ) && ( sx < 0 ) )
-				return( false );
-			if( ( cx >= (int)m_MapSize ) && ( sx > 0 ) )
-				return( false );
-			if( ( cz < 0 ) && ( sz < 0 ) )
-				return( false );
-			if( ( cz >= (int)m_MapSize ) && ( sz > 0 ) )
-				return( false );
+			if ((cx < -MARGIN_SIZE) && (sx < 0))
+				return false;
+			if ((cx >= (int)(m_MapSize + MARGIN_SIZE - 1)) && (sx > 0))
+				return false;
+			if ((cz < -MARGIN_SIZE) && (sz < 0))
+				return false;
+			if ((cz >= (int)(m_MapSize + MARGIN_SIZE - 1)) && (sz > 0))
+				return false;
 		}
 
 		// get coords of current cell

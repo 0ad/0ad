@@ -83,6 +83,13 @@ void CVector3D::Normalize ()
 	Z *= scale;
 }
 
+CVector3D CVector3D::Normalized () const
+{
+	float scale = 1.0f/Length ();
+
+	return CVector3D(X * scale, Y * scale, Z * scale);
+}
+
 
 //-----------------------------------------------------------------------------
 

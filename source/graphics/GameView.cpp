@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,6 +55,7 @@
 #include "simulation/LOSManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpRangeManager.h"
 
 extern int g_xres, g_yres;
 
@@ -62,7 +63,10 @@ const float CGameView::defaultFOV = DEGTORAD(20.f);
 const float CGameView::defaultNear = 16.f;
 const float CGameView::defaultFar = 4096.f;
 const float CGameView::defaultCullFOV = CGameView::defaultFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum
-const float CGameView::cameraPivotMargin = -20.0f;
+
+// Maximum distance outside the edge of the map that the camera's
+// focus point can be moved
+static const float CAMERA_EDGE_MARGIN = 2.0f*CELL_SIZE;
 
 /**
  * A value with exponential decay towards the target value.
@@ -292,12 +296,28 @@ public:
 	static void ScriptingInit();
 };
 
-static void SetupCameraMatrix(CGameViewImpl* m, CMatrix3D* orientation)
+static void SetupCameraMatrixSmooth(CGameViewImpl* m, CMatrix3D* orientation)
 {
 	orientation->SetIdentity();
 	orientation->RotateX(m->RotateX.GetSmoothedValue());
 	orientation->RotateY(m->RotateY.GetSmoothedValue());
 	orientation->Translate(m->PosX.GetSmoothedValue(), m->PosY.GetSmoothedValue(), m->PosZ.GetSmoothedValue());
+}
+
+static void SetupCameraMatrixSmoothRot(CGameViewImpl* m, CMatrix3D* orientation)
+{
+	orientation->SetIdentity();
+	orientation->RotateX(m->RotateX.GetSmoothedValue());
+	orientation->RotateY(m->RotateY.GetSmoothedValue());
+	orientation->Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+}
+
+static void SetupCameraMatrixNonSmooth(CGameViewImpl* m, CMatrix3D* orientation)
+{
+	orientation->SetIdentity();
+	orientation->RotateX(m->RotateX.GetValue());
+	orientation->RotateY(m->RotateY.GetValue());
+	orientation->Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
 }
 
 CGameView::CGameView(CGame *pGame):
@@ -311,7 +331,7 @@ CGameView::CGameView(CGame *pGame):
 	m->ViewCamera.SetViewPort(vp);
 
 	m->ViewCamera.SetProjection(defaultNear, defaultFar, defaultFOV);
-	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
+	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 
 	m->CullCamera = m->ViewCamera;
@@ -569,11 +589,7 @@ static void ClampDistance(CGameViewImpl* m, bool smooth)
 		return;
 
 	CCamera targetCam = m->ViewCamera;
-	targetCam.m_Orientation.SetIdentity();
-	targetCam.m_Orientation.RotateX(m->RotateX.GetSmoothedValue());
-	targetCam.m_Orientation.RotateY(m->RotateY.GetSmoothedValue());
-	// Use non-smoothed position:
-	targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+	SetupCameraMatrixSmoothRot(m, &targetCam.m_Orientation);
 
 	CVector3D forwards = targetCam.m_Orientation.GetIn();
 
@@ -721,14 +737,9 @@ void CGameView::Update(float DeltaTime)
 			}
 			else
 			{
-				// move the camera after unit
-				// use smoothed values of rotation around X and Y, since we need to hold user's rotation done
-				// in this function above
+				// Move the camera to match the unit
 				CCamera targetCam = m->ViewCamera;
-				targetCam.m_Orientation.SetIdentity();
-				targetCam.m_Orientation.RotateX(m->RotateX.GetSmoothedValue());
-				targetCam.m_Orientation.RotateY(m->RotateY.GetSmoothedValue());
-				targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+				SetupCameraMatrixSmoothRot(m, &targetCam.m_Orientation);
 
 				CVector3D pivot = targetCam.GetFocus();
 				CVector3D delta = pos - pivot;
@@ -768,18 +779,35 @@ void CGameView::Update(float DeltaTime)
 	if (m->ConstrainCamera)
 	{
 		CCamera targetCam = m->ViewCamera;
-		SetupCameraMatrix(m, &targetCam.m_Orientation);
+		SetupCameraMatrixSmoothRot(m, &targetCam.m_Orientation);
 
 		CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
-		float min_x = pTerrain->GetMinX() + cameraPivotMargin;
-		float max_x = pTerrain->GetMaxX() - cameraPivotMargin;
-		float min_z = pTerrain->GetMinZ() + cameraPivotMargin;
-		float max_z = pTerrain->GetMaxZ() - cameraPivotMargin;
 
-		// Clamp so that pos+in is within the margin
-		CVector3D in = targetCam.m_Orientation.GetIn() * m->ViewZoomDefault;
-		m->PosX.ClampSmoothly(min_x - in.X, max_x - in.X);
-		m->PosZ.ClampSmoothly(min_z - in.Z, max_z - in.Z);
+		CVector3D pivot = targetCam.GetFocus();
+		CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
+
+		CVector3D desiredPivot = pivot;
+
+		CmpPtr<ICmpRangeManager> cmpRangeManager(*m->Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpRangeManager.null() && cmpRangeManager->GetLosCircular())
+		{
+			// Clamp to a circular region around the center of the map
+			float r = pTerrain->GetMaxX() / 2;
+			CVector3D center(r, desiredPivot.Y, r);
+			float dist = (desiredPivot - center).Length();
+			if (dist > r + CAMERA_EDGE_MARGIN)
+				desiredPivot = center + (desiredPivot - center).Normalized() * (r + CAMERA_EDGE_MARGIN);
+		}
+		else
+		{
+			// Clamp to the square edges of the map
+			desiredPivot.X = Clamp(desiredPivot.X, pTerrain->GetMinX() - CAMERA_EDGE_MARGIN, pTerrain->GetMaxX() + CAMERA_EDGE_MARGIN);
+			desiredPivot.Z = Clamp(desiredPivot.Z, pTerrain->GetMinZ() - CAMERA_EDGE_MARGIN, pTerrain->GetMaxZ() + CAMERA_EDGE_MARGIN);
+		}
+
+		// Update the position so that pivot is within the margin
+		m->PosX.SetValueSmoothly(desiredPivot.X + delta.X);
+		m->PosZ.SetValueSmoothly(desiredPivot.Z + delta.Z);
 	}
 
 	m->PosX.Update(DeltaTime);
@@ -789,7 +817,7 @@ void CGameView::Update(float DeltaTime)
 	// Handle rotation around the Y (vertical) axis
 	{
 		CCamera targetCam = m->ViewCamera;
-		SetupCameraMatrix(m, &targetCam.m_Orientation);
+		SetupCameraMatrixSmooth(m, &targetCam.m_Orientation);
 
 		float rotateYDelta = m->RotateY.Update(DeltaTime);
 		if (rotateYDelta)
@@ -816,7 +844,7 @@ void CGameView::Update(float DeltaTime)
 	// Handle rotation around the X (sideways, relative to camera) axis
 	{
 		CCamera targetCam = m->ViewCamera;
-		SetupCameraMatrix(m, &targetCam.m_Orientation);
+		SetupCameraMatrixSmooth(m, &targetCam.m_Orientation);
 
 		float rotateXDelta = m->RotateX.Update(DeltaTime);
 		if (rotateXDelta)
@@ -858,7 +886,7 @@ void CGameView::Update(float DeltaTime)
 	m->RotateY.Wrap(-(float)M_PI, (float)M_PI);
 
 	// Update the camera matrix
-	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
+	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 }
 
@@ -870,10 +898,7 @@ void CGameView::MoveCameraTarget(const CVector3D& target, bool minimap)
 	//  that difference to our new target)
 
 	CCamera targetCam = m->ViewCamera;
-	targetCam.m_Orientation.SetIdentity();
-	targetCam.m_Orientation.RotateX(m->RotateX.GetValue());
-	targetCam.m_Orientation.RotateY(m->RotateY.GetValue());
-	targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+	SetupCameraMatrixNonSmooth(m, &targetCam.m_Orientation);
 
 	CVector3D pivot = targetCam.GetFocus();
 	CVector3D delta = target - pivot;
@@ -906,7 +931,7 @@ void CGameView::ResetCameraTarget(const CVector3D& target)
 
 	ClampDistance(m, false);
 
-	SetupCameraMatrix(m, &m->ViewCamera.m_Orientation);
+	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 
 	// Break out of following mode so the camera really moves to the target
@@ -916,10 +941,7 @@ void CGameView::ResetCameraTarget(const CVector3D& target)
 void CGameView::ResetCameraAngleZoom()
 {
 	CCamera targetCam = m->ViewCamera;
-	targetCam.m_Orientation.SetIdentity();
-	targetCam.m_Orientation.RotateX(m->RotateX.GetValue());
-	targetCam.m_Orientation.RotateY(m->RotateY.GetValue());
-	targetCam.m_Orientation.Translate(m->PosX.GetValue(), m->PosY.GetValue(), m->PosZ.GetValue());
+	SetupCameraMatrixNonSmooth(m, &targetCam.m_Orientation);
 
 	// Compute the zoom adjustment to get us back to the default
 	CVector3D forwards = targetCam.m_Orientation.GetIn();

@@ -102,6 +102,7 @@ class CVector3D
 		float Length () const;
 		float LengthSquared () const;
 		void Normalize ();
+		CVector3D Normalized () const;
 
 		// Returns 3 element array of floats, e.g. for glVertex3fv
 		const float* GetFloatArray() const { return &X; }

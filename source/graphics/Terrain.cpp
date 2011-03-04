@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -105,13 +105,13 @@ CStr8 CTerrain::GetMovementClass(ssize_t i, ssize_t j) const
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcPosition: calculate the world space position of the vertex at (i,j)
+// If i,j is off the map, it acts as if the edges of the terrain are extended
+// outwards to infinity
 void CTerrain::CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const
 {
-	u16 height;
-	if ((size_t)i < (size_t)m_MapSize && (size_t)j < (size_t)m_MapSize) // will reject negative coordinates
-		height = m_Heightmap[j*m_MapSize + i];
-	else
-		height = 0;
+	ssize_t hi = clamp(i, (ssize_t)0, m_MapSize-1);
+	ssize_t hj = clamp(j, (ssize_t)0, m_MapSize-1);
+	u16 height = m_Heightmap[hj*m_MapSize + hi];
 	pos.X = float(i*CELL_SIZE);
 	pos.Y = float(height*HEIGHT_SCALE);
 	pos.Z = float(j*CELL_SIZE);
@@ -121,11 +121,9 @@ void CTerrain::CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const
 // CalcPositionFixed: calculate the world space position of the vertex at (i,j)
 void CTerrain::CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) const
 {
-	u16 height;
-	if ((size_t)i < (size_t)m_MapSize && (size_t)j < (size_t)m_MapSize) // will reject negative coordinates
-		height = m_Heightmap[j*m_MapSize + i];
-	else
-		height = 0;
+	ssize_t hi = clamp(i, (ssize_t)0, m_MapSize-1);
+	ssize_t hj = clamp(j, (ssize_t)0, m_MapSize-1);
+	u16 height = m_Heightmap[hj*m_MapSize + hi];
 	pos.X = fixed::FromInt(i) * (int)CELL_SIZE;
 	pos.Y = fixed::FromInt(height) / (int)HEIGHT_UNITS_PER_METRE;
 	pos.Z = fixed::FromInt(j) * (int)CELL_SIZE;

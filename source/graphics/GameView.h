@@ -46,7 +46,6 @@ public:
 	static const float defaultFOV, defaultCullFOV, defaultNear, defaultFar;
 
 private:
-	static const float cameraPivotMargin;
 	CGameViewImpl* m;
 
 	// Check whether lighting environment has changed and update vertex data if necessary
