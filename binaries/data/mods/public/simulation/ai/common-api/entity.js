@@ -120,6 +120,18 @@ var EntityTemplate = Class({
 			return undefined;
 		return this._template.GarrisonHolder.List._string.split(/\s+/);
 	},
+
+
+	/**
+	 * Returns whether this is an animal that is too difficult to hunt.
+	 * (Currently this just includes skittish animals, which are probably
+	 * too fast to chase.)
+	 */
+	isUnhuntable: function() {
+		if (!this._template.UnitAI || !this._template.UnitAI.NaturalBehaviour)
+			return false;
+		return (this._template.UnitAI.NaturalBehaviour == "skittish");
+	},
 });
 
 

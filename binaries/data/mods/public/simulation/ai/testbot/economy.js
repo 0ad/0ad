@@ -141,25 +141,32 @@ var EconomyManager = Class({
 					return;
 
 				// Pick the closest one.
-				// TODO: we should care about distance to dropsites,
+				// TODO: we should care about distance to dropsites, not (just) to the worker,
 				// and gather rates of workers
 
 				var workerPosition = ent.position();
-				var closestEntity = null;
-				var closestDist = Infinity;
+				var supplies = [];
 				resourceSupplies[type].forEach(function(supply) {
+					// Skip targets that are too hard to hunt
+					if (supply.entity.isUnhuntable())
+						return;
+
 					var dist = VectorDistance(supply.position, workerPosition);
-					if (dist < closestDist)
-					{
-						closestDist = dist;
-						closestEntity = supply.entity;
-					}
+					supplies.push({ dist: dist, entity: supply.entity });
+				});
+
+				supplies.sort(function (a, b) {
+					// Prefer smaller distances
+					if (a.dist != b.dist)
+						return a.dist - b.dist;
+
+					return false;
 				});
 
 				// Start gathering
-				if (closestEntity)
+				if (supplies.length)
 				{
-					ent.gather(closestEntity);
+					ent.gather(supplies[0].entity);
 					ent.setMetadata("subrole", "gatherer");
 					ent.setMetadata("gather-type", type);
 				}

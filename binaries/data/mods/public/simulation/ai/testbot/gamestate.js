@@ -184,10 +184,16 @@ var GameState = Class({
 			if (!amount)
 				return;
 
-			if (!supplies[type.generic])
-				supplies[type.generic] = [];
+			var reportedType;
+			if (type.generic == "treasure")
+				reportedType = type.specific;
+			else
+				reportedType = type.generic;
 
-			supplies[type.generic].push({
+			if (!supplies[reportedType])
+				supplies[reportedType] = [];
+
+			supplies[reportedType].push({
 				"entity": ent,
 				"amount": amount,
 				"type": type,

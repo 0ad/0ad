@@ -1169,6 +1169,16 @@ UnitAI.prototype.IsAnimal = function()
 	return (this.template.NaturalBehaviour ? true : false);
 };
 
+/**
+ * Returns whether this is an animal that is too difficult to hunt.
+ * (Currently this just includes skittish animals, which are probably
+ * too fast to chase.)
+ */
+UnitAI.prototype.IsUnhuntable = function()
+{
+	return (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish");
+};
+
 UnitAI.prototype.IsIdle = function()
 {
 	return this.isIdle;
@@ -1461,6 +1471,11 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
 	for each (var ent in nearby)
 	{
+		// Never automatically pick resources that are animals that are too hard to hunt
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (cmpUnitAI && cmpUnitAI.IsUnhuntable())
+			continue;
+
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
 		if (filter(ent, type))
