@@ -2,7 +2,7 @@ Engine.IncludeModule("common-api");
 
 function ScaredyBotAI(settings)
 {
-	warn("Constructing ScaredyBotAI for player "+settings.player);
+//	warn("Constructing ScaredyBotAI for player "+settings.player);
 
 	BaseAI.call(this, settings);
 

@@ -35,7 +35,7 @@
 
 function TestBotAI(settings)
 {
-	warn("Constructing TestBotAI for player "+settings.player);
+//	warn("Constructing TestBotAI for player "+settings.player);
 
 	BaseAI.call(this, settings);
 
