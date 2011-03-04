@@ -8,6 +8,8 @@
     <Type>unit</Type>
   </Minimap>
   <UnitAI>
+    <DefaultStance>aggressive</DefaultStance>
+    <FleeDistance>12.0</FleeDistance>
     <FormationController>false</FormationController>
   </UnitAI>
   <Cost>

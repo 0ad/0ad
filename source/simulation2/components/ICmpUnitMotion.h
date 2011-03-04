@@ -41,6 +41,7 @@ public:
 	 * some other error, then returns false.
 	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
 	 * and sends another MotionChanged after finishing moving.
+	 * If maxRange is negative, then the maximum range is treated as infinity.
 	 */
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 
@@ -56,6 +57,7 @@ public:
 	 * some other error, then returns false.
 	 * Otherwise, returns true and sends a MotionChanged message after starting to move,
 	 * and sends another MotionChanged after finishing moving.
+	 * If maxRange is negative, then the maximum range is treated as infinity.
 	 */
 	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
 

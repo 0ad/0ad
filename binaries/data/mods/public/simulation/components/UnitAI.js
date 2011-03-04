@@ -3,8 +3,18 @@ function UnitAI() {}
 UnitAI.prototype.Schema =
 	"<a:help>Controls the unit's movement, attacks, etc, in response to commands from the player.</a:help>" +
 	"<a:example/>" +
+	"<element name='DefaultStance'>" +
+		"<choice>" +
+			"<value>aggressive</value>" +
+			"<value>holdfire</value>" +
+			"<value>noncombat</value>" +
+		"</choice>" +
+	"</element>" +
 	"<element name='FormationController'>" +
 		"<data type='boolean'/>" +
+	"</element>" +
+	"<element name='FleeDistance'>" +
+		"<ref name='positiveDecimal'/>" +
 	"</element>" +
 	"<optional>" +
 		"<interleave>" +
@@ -18,9 +28,6 @@ UnitAI.prototype.Schema =
 				"</choice>" +
 			"</element>" +
 			"<element name='RoamDistance'>" +
-				"<ref name='positiveDecimal'/>" +
-			"</element>" +
-			"<element name='FleeDistance'>" +
 				"<ref name='positiveDecimal'/>" +
 			"</element>" +
 			"<element name='RoamTimeMin'>" +
@@ -39,13 +46,36 @@ UnitAI.prototype.Schema =
 	"</optional>";
 
 // Very basic stance support (currently just for test maps where we don't want
-// everyone killing each other immediately after loading)
+// everyone killing each other immediately after loading, and for female citizens)
+// There some targeting options:
+//   targetVisibleEnemies: anything in vision range is a viable target
+//   targetAttackers: anything that hurts us is a viable target
+// There are some response options, triggered when targets are detected:
+//   respondFlee: run away
+//   respondChase: start chasing after the enemy
+// TODO: maybe add respondStandGround, respondHoldGround (allow chasing a short distance then return),
+// targetAggressiveEnemies (don't worry about lone scouts, do worry around armies slaughtering
+// the guy standing next to you), etc.
+// TODO: even this limited version isn't implemented properly yet (e.g. it can't handle
+// dynamic stance changes).
 var g_Stances = {
 	"aggressive": {
-		attackOnSight: true,
+		targetVisibleEnemies: true,
+		targetAttackers: true,
+		respondFlee: false,
+		respondChase: true,
 	},
 	"holdfire": {
-		attackOnSight: false,
+		targetVisibleEnemies: false,
+		targetAttackers: true,
+		respondFlee: false,
+		respondChase: true,
+	},
+	"noncombat": {
+		targetVisibleEnemies: false,
+		targetAttackers: true,
+		respondFlee: true,
+		respondChase: false,
 	},
 };
 
@@ -137,6 +167,21 @@ var UnitFsmSpec = {
 		{
 			// We've started walking to the given point
 			this.SetNextState("INDIVIDUAL.WALKING");
+		}
+		else
+		{
+			// We are already at the target, or can't move at all
+			this.FinishOrder();
+		}
+	},
+
+	"Order.Flee": function(msg) {
+		// TODO: if we were attacked by a ranged unit, we need to flee much further away
+		var ok = this.MoveToTargetRangeExplicit(this.order.data.target, +this.template.FleeDistance, -1);
+		if (ok)
+		{
+			// We've started fleeing from the given target
+			this.SetNextState("INDIVIDUAL.FLEEING");
 		}
 		else
 		{
@@ -368,14 +413,9 @@ var UnitFsmSpec = {
 		},
 
 		"Attacked": function(msg) {
-			// Default behaviour: attack back at our attacker
-			if (this.CanAttack(msg.data.attacker))
+			if (this.GetStance().targetAttackers)
 			{
-				this.PushOrderFront("Attack", { "target": msg.data.attacker });
-			}
-			else
-			{
-				// TODO: If unit can't attack, run away
+				this.RespondToTargetedEntities([msg.data.attacker]);
 			}
 		},
 
@@ -399,8 +439,11 @@ var UnitFsmSpec = {
 				{
 					var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 					var ents = rangeMan.ResetActiveQuery(this.losRangeQuery);
-					if (this.GetStance().attackOnSight && this.AttackVisibleEntity(ents))
-						return true; // (abort the transition since we may have already switched state)
+					if (this.GetStance().targetVisibleEnemies)
+					{
+						if (this.RespondToTargetedEntities(ents))
+							return true; // (abort the FSM transition since we may have already switched state)
+					}
 				}
 
 				// Nobody to attack - stay in idle
@@ -421,10 +464,10 @@ var UnitFsmSpec = {
 			},
 
 			"LosRangeUpdate": function(msg) {
-				if (this.GetStance().attackOnSight)
+				if (this.GetStance().targetVisibleEnemies)
 				{
 					// Start attacking one of the newly-seen enemy (if any)
-					this.AttackVisibleEntity(msg.data.added);
+					this.RespondToTargetedEntities(msg.data.added);
 				}
 			},
 
@@ -464,6 +507,29 @@ var UnitFsmSpec = {
 			"MoveCompleted": function() {
 				this.FinishOrder();
 			},
+		},
+
+		"FLEEING": {
+			"enter": function() {
+				this.PlaySound("panic");
+
+				// Run quickly
+				var speed = this.GetRunSpeed();
+				this.SelectAnimation("move");
+				this.SetMoveSpeed(speed);
+			},
+
+			"leave": function() {
+				// Reset normal speed
+				this.SetMoveSpeed(this.GetWalkSpeed());
+			},
+
+			"MoveCompleted": function() {
+				// When we've run far enough, stop fleeing
+				this.FinishOrder();
+			},
+
+			// TODO: what if we run into more enemies while fleeing?
 		},
 
 		"COMBAT": {
@@ -924,7 +990,6 @@ var UnitFsmSpec = {
 			{
 				this.MoveToTargetRangeExplicit(msg.data.attacker, +this.template.FleeDistance, +this.template.FleeDistance);
 				this.SetNextState("FLEEING");
-				this.PlaySound("panic");
 			}
 			else if (this.template.NaturalBehaviour == "violent" ||
 			         this.template.NaturalBehaviour == "aggressive" ||
@@ -939,7 +1004,6 @@ var UnitFsmSpec = {
 			// Run away from the foundation
 			this.MoveToTargetRangeExplicit(msg.data.target, +this.template.FleeDistance, +this.template.FleeDistance);
 			this.SetNextState("FLEEING");
-			this.PlaySound("panic");
 		},
 
 		"IDLE": {
@@ -996,7 +1060,6 @@ var UnitFsmSpec = {
 					{
 						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
 						this.SetNextState("FLEEING");
-						this.PlaySound("panic");
 						return;
 					}
 				}
@@ -1042,7 +1105,6 @@ var UnitFsmSpec = {
 					{
 						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
 						this.SetNextState("FLEEING");
-						this.PlaySound("panic");
 						return;
 					}
 				}
@@ -1060,8 +1122,10 @@ var UnitFsmSpec = {
 			},
 		},
 
-		"FLEEING": {
+		"FLEEING": { // TODO: would be nice to share more of this with non-animal units
 			"enter": function() {
+				this.PlaySound("panic");
+
 				// Run quickly
 				var speed = this.GetRunSpeed();
 				this.SelectAnimation("run", false, speed);
@@ -1092,7 +1156,7 @@ UnitAI.prototype.Init = function()
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 	this.isIdle = false;
 
-	this.SetStance("aggressive");
+	this.SetStance(this.template.DefaultStance);
 };
 
 UnitAI.prototype.IsFormationController = function()
@@ -1572,6 +1636,28 @@ UnitAI.prototype.AttackVisibleEntity = function(ents)
 	return false;
 };
 
+/**
+ * Try to respond appropriately given our current stance,
+ * given a list of entities that match our stance's target criteria.
+ * Returns true if it responded.
+ */
+UnitAI.prototype.RespondToTargetedEntities = function(ents)
+{
+	if (!ents.length)
+		return false;
+
+	if (this.GetStance().respondChase)
+		return this.AttackVisibleEntity(ents);
+
+	if (this.GetStance().respondFlee)
+	{
+		this.PushOrderFront("Flee", { "target": ents[0] });
+		return true;
+	}
+
+	return false;
+};
+
 //// External interface functions ////
 
 UnitAI.prototype.SetFormationController = function(ent)
@@ -1633,6 +1719,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 			break; // and continue the loop
 
 		case "WalkToTarget":
+		case "Flee":
 		case "LeaveFoundation":
 		case "Attack":
 		case "Gather":

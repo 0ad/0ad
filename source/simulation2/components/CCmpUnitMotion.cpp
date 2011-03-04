@@ -1213,7 +1213,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 		{
 			goalDistance = minRange + g_GoalDelta;
 		}
-		else if (distance > maxRange)
+		else if (maxRange >= entity_pos_t::Zero() && distance > maxRange)
 		{
 			goalDistance = maxRange - g_GoalDelta;
 		}
@@ -1328,7 +1328,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			goal.hw = obstruction.hw + delta;
 			goal.hh = obstruction.hh + delta;
 		}
-		else if (distance < maxRange)
+		else if (maxRange < entity_pos_t::Zero() || distance < maxRange)
 		{
 			// We're already in range - no need to move anywhere
 			FaceTowardsPoint(pos, goal.x, goal.z);
@@ -1436,7 +1436,7 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 			return false;
 
 		// See if we're close enough to the target square
-		if (distance <= maxRange)
+		if (maxRange < entity_pos_t::Zero() || distance <= maxRange)
 			return true;
 
 		entity_pos_t circleRadius = halfSize.Length();
@@ -1464,7 +1464,7 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 
 		entity_pos_t distance = (pos - targetPos).Length();
 
-		if (minRange <= distance && distance <= maxRange)
+		if (minRange <= distance && (maxRange < entity_pos_t::Zero() || distance <= maxRange))
 			return true;
 
 		return false;

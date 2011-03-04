@@ -113,7 +113,6 @@ sub find_entities
         return $File::Find::prune = 1 if $_ eq '.svn';
         my $n = $File::Find::name;
         return if /~$/;
-        return if $n =~ /\/special\//;
         return unless -f $_;
         $n =~ s~\Q$vfsroot\E/(public|internal)/simulation/templates/~~;
         $n =~ s/\.xml$//;
