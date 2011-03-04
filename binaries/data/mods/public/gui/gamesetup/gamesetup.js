@@ -92,7 +92,7 @@ function init(attribs)
 	var mapFilters = getGUIObjectByName("mapFilterSelection");
 	mapFilters.list = getFilters();
 	g_GameAttributes.mapFilter = "Default";
-	
+
 	// Setup controls for host only
 	if (g_IsController)
 	{
@@ -224,7 +224,17 @@ function init(attribs)
 		};
 	}
 
-	getGUIObjectByName("chatInput").focus();
+	if (g_IsNetworked)
+	{
+		// For multiplayer, focus the chat input box by default
+		getGUIObjectByName("chatInput").focus();
+	}
+	else
+	{
+		// For single-player, focus the map list by default,
+		// to allow easy keyboard selection of maps
+		getGUIObjectByName("mapSelection").focus();
+	}
 }
 
 function cancelSetup()
