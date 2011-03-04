@@ -67,6 +67,7 @@
 				]]></action>
 			</object>
 
+			<object hidden="true"> <!-- TODO: restore this when the server name is actually used -->
 			<object type="text" size="0 80 200 110" style="wheatTextHeadBlack">
 				Server name:
 			</object>
@@ -75,6 +76,7 @@
 				<action on="Load"><![CDATA[
 					this.caption = Engine.GetDefaultPlayerName() + "'s game";
 				]]></action>
+			</object>
 			</object>
 
 			<object type="button" size="3 100%-33 103 100%-3" style="wheatButton">
