@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
+#include "ICmpTerrain.h"
 #include "ICmpVisual.h"
 #include "simulation2/MessageTypes.h"
 
@@ -111,8 +112,9 @@ private:
 		CVector3D target;
 		entity_id_t targetEnt; // INVALID_ENTITY if the target is just a point
 		float timeLeft;
-		float horizSpeed;
+		float speedFactor;
 		float gravity;
+		bool stopped;
 	};
 
 	std::vector<Projectile> m_Projectiles;
@@ -191,8 +193,9 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	CVector3D offset = projectile.target - projectile.pos;
 	float horizDistance = hypot(offset.X, offset.Z);
 
-	projectile.horizSpeed = speed.ToFloat();
-	projectile.timeLeft = horizDistance / projectile.horizSpeed;
+	projectile.speedFactor = 1.f;
+	projectile.timeLeft = horizDistance / speed.ToFloat();
+	projectile.stopped = false;
 
 	projectile.gravity = gravity.ToFloat();
 
@@ -201,30 +204,40 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 
 void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, float frameOffset)
 {
-	// Do nothing if we've already reached the target
+	// Do special processing if we've already reached the target
 	if (projectile.timeLeft <= 0)
-		return;
-
-	// Clamp dt to the remaining travel time
-	if (dt > projectile.timeLeft)
-		dt = projectile.timeLeft;
-
-	// Track the target entity (if there is one, and it's still alive)
-	if (projectile.targetEnt != INVALID_ENTITY)
 	{
-		CmpPtr<ICmpPosition> targetPos(GetSimContext(), projectile.targetEnt);
-		if (!targetPos.null())
+		if (projectile.stopped)
 		{
-			CMatrix3D t = targetPos->GetInterpolatedTransform(frameOffset, false);
-			projectile.target = t.GetTranslation();
-			projectile.target.Y += 2.f; // TODO: ought to aim towards a random point in the solid body of the target
+			projectile.timeLeft -= dt;
+			return;
+		}
+		// else continue moving the projectile
 
-			// TODO: if the unit is moving, we should probably aim a bit in front of it
-			// so we don't have to curve so much just before reaching it
+		// To prevent arrows going crazily far after missing the target,
+		// apply a bit of drag to them
+		projectile.speedFactor *= pow(1.0f - 0.4f*projectile.speedFactor, dt);
+	}
+	else
+	{
+		// Projectile hasn't reached the target yet:
+		// Track the target entity (if there is one, and it's still alive)
+		if (projectile.targetEnt != INVALID_ENTITY)
+		{
+			CmpPtr<ICmpPosition> targetPos(GetSimContext(), projectile.targetEnt);
+			if (!targetPos.null())
+			{
+				CMatrix3D t = targetPos->GetInterpolatedTransform(frameOffset, false);
+				projectile.target = t.GetTranslation();
+				projectile.target.Y += 2.f; // TODO: ought to aim towards a random point in the solid body of the target
+
+				// TODO: if the unit is moving, we should probably aim a bit in front of it
+				// so we don't have to curve so much just before reaching it
+			}
 		}
 	}
 
-	CVector3D offset = projectile.target - projectile.pos;
+	CVector3D offset = (projectile.target - projectile.pos) * projectile.speedFactor;
 
 	// Compute the vertical velocity that's needed so we travel in a ballistic curve and
 	// reach the target after timeLeft.
@@ -237,19 +250,24 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 	projectile.pos += delta;
 	projectile.timeLeft -= dt;
 
-	// If we're really close to the target now, delete the remaining time so that we don't do a little
-	// tiny numerically-imprecise movement next frame
-	if (projectile.timeLeft < 0.01f)
+	// If we've passed the target position and haven't stopped yet,
+	// carry on until we reach solid land
+	if (projectile.timeLeft <= 0)
 	{
-		projectile.timeLeft = 0;
-		// Move exactly to the target, so we hit it precisely even if
-		// the framerate is very low
-		projectile.pos = projectile.target;
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+		{
+			float h = cmpTerrain->GetExactGroundLevel(projectile.pos.X, projectile.pos.Z);
+			if (projectile.pos.Y < h)
+			{
+				projectile.pos.Y = h; // stick precisely to the terrain
+				projectile.stopped = true;
+			}
+		}
 	}
 
 	// Construct a rotation matrix so that (0,1,0) is in the direction of 'delta'
 
-	CMatrix3D transform;
 	CVector3D up(0, 1, 0);
 
 	delta.Normalize();
@@ -260,6 +278,8 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 		axis.Normalize();
 
 	float angle = acos(up.Dot(delta));
+
+	CMatrix3D transform;
 	CQuaternion quat;
 	quat.FromAxisAngle(axis, angle);
 	quat.ToMatrix(transform);
@@ -287,9 +307,7 @@ void CCmpProjectileManager::Interpolate(float frameTime, float frameOffset)
 		{
 			if (m_Projectiles[i].targetEnt == INVALID_ENTITY && m_Projectiles[i].timeLeft > -PROJECTILE_DECAY_TIME)
 			{
-				// AdvanceProjectile doesn't update timeLeft if the projectile's
-				// already finished, so just update its timer here
-				m_Projectiles[i].timeLeft -= frameTime;
+				// Keep the projectile until it exceeds the decay time
 			}
 			else
 			{
