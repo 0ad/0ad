@@ -28,7 +28,6 @@
 #include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/sysdep.h"
-#include "lib/posix/posix.h"	// rintf etc.
 
 #if OS_LINUX
 # include "mocks/dlfcn.h"
@@ -40,19 +39,6 @@
 class TestSysdep : public CxxTest::TestSuite 
 {
 public:
-	void test_round()
-	{
-		TS_ASSERT_EQUALS(rintf(0.99999f), 1.0f);
-		TS_ASSERT_EQUALS(rintf(1.0f), 1.0f);
-		TS_ASSERT_EQUALS(rintf(1.01f), 1.0f);
-		TS_ASSERT_EQUALS(rintf(5.6f), 6.0f);
-
-		TS_ASSERT_EQUALS(rint(0.99999), 1.0);
-		TS_ASSERT_EQUALS(rint(1.0), 1.0);
-		TS_ASSERT_EQUALS(rint(1.01), 1.0);
-		TS_ASSERT_EQUALS(rint(5.6), 6.0);
-	}
-
 	void test_random()
 	{
 		u64 a = 0, b = 0;

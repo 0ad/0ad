@@ -30,17 +30,6 @@
 
 #if !HAVE_C99_MATH
 
-float rintf(float f)
-{
-	return (float)(int)f;
-}
-
-double rint(double d)
-{
-	return (double)(int)d;
-}
-
-
 size_t fpclassifyd(double d)
 {
 #if ARCH_IA32
