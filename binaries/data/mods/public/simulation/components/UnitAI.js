@@ -917,7 +917,13 @@ var UnitFsmSpec = {
 					}
 				}
 
-				// TODO: look for a nearby foundation to help with
+				// Look for a nearby foundation to help with
+				var nearbyFoundation = this.FindNearbyFoundation();
+				if (nearbyFoundation)
+				{
+					this.Repair(nearbyFoundation, oldAutocontinue, true);
+					return;
+				}
 			},
 
 			// Override the LeaveFoundation order since we don't want to be
@@ -1503,6 +1509,37 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	{
 		var cmpDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
 		if (!cmpDropsite.AcceptsType(genericType))
+			continue;
+
+		return ent;
+	}
+
+	return undefined;
+};
+
+/**
+ * Returns the entity ID of the nearest building that needs to be constructed,
+ * or undefined if none can be found close enough.
+ */
+UnitAI.prototype.FindNearbyFoundation = function()
+{
+	var range = 64; // TODO: what's a sensible number?
+
+	// Find buildings owned by this unit's player
+	var players = [];
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership)
+		players.push(cmpOwnership.GetOwner());
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_Foundation);
+	for each (var ent in nearby)
+	{
+		// Skip foundations that are already complete. (This matters since
+		// we process the ConstructionFinished message before the foundation
+		// we're working on has been deleted.)
+		var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+		if (cmpFoundation.IsFinished())
 			continue;
 
 		return ent;

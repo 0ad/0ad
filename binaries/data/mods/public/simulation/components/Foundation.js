@@ -35,6 +35,11 @@ Foundation.prototype.GetBuildPercentage = function()
 	return Math.floor(this.buildProgress * 100);
 };
 
+Foundation.prototype.IsFinished = function()
+{
+	return (this.buildProgress >= 1.0);
+};
+
 Foundation.prototype.OnDestroy = function()
 {
 	// Refund a portion of the construction cost, proportional to the amount of build progress remaining
