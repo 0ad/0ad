@@ -11,14 +11,21 @@
     <Actor>structures/celts/siege_ram.xml</Actor>
   </VisualActor>
   <Cost>
-    <BuildTime>88</BuildTime>
+    <BuildTime>40</BuildTime>
     <Resources>
-      <wood>350</wood>
-      <metal>250</metal>
+      <wood>300</wood>
+      <metal>100</metal>
     </Resources>
   </Cost>
+  <Footprint replace="">
+    <Square width="6.75" depth="10.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="6.0"/>
+  </Obstruction>
   <Health>
-    <Max>880</Max>
+    <Max>400</Max>
   </Health>
   <Armour>
     <Pierce>25.0</Pierce>
@@ -27,4 +34,10 @@
   <UnitMotion>
     <WalkSpeed>6.0</WalkSpeed>
   </UnitMotion>
+  <GarrisonHolder>
+    <Max>5</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
 </Entity>
