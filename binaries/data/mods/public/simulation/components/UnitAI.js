@@ -330,7 +330,7 @@ var UnitFsmSpec = {
 		"Order.Repair": function(msg) {
 			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("Repair", [msg.data.target, false]);
+			cmpFormation.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
 			cmpFormation.Disband();
 		},
 
