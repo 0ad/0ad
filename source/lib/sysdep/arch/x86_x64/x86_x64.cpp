@@ -48,8 +48,6 @@
 #if MSC_VERSION >= 1500	// __cpuidex available (allows setting ecx beforehand)
 # undef CPUID_INTRINSIC
 # define CPUID_INTRINSIC 1
-#elif GCC_VERSION
-// (no additional includes needed)
 #else
 # if ARCH_AMD64
 #  include "lib/sysdep/arch/amd64/amd64_asm.h"
@@ -78,25 +76,6 @@ static void cpuid(x86_x64_CpuidRegs* regs)
 	cassert(sizeof(regs->eax) == sizeof(int));
 	cassert(sizeof(*regs) == 4*sizeof(int));
 	__cpuidex((int*)regs, regs->eax, regs->ecx);
-#elif GCC_VERSION
-// Need to preserve the PIC register (ebx/rbx) in case GCC is using it
-# if ARCH_AMD64
-	__asm__ __volatile__ (
-			"pushq %%rbx\n"
-			"cpuid\n"
-			"movl %%ebx, %1\n"
-			"popq %%rbx\n"
-			: "=a" (regs->eax), "=m" (regs->ebx), "=c" (regs->ecx), "=d" (regs->edx)
-			: "a" (regs->eax), "c" (regs->ecx));
-# else
-	__asm__ __volatile__ (
-			"pushl %%ebx\n"
-			"cpuid\n"
-			"movl %%ebx, %1\n"
-			"popl %%ebx\n"
-			: "=a" (regs->eax), "=m" (regs->ebx), "=c" (regs->ecx), "=d" (regs->edx)
-			: "a" (regs->eax), "c" (regs->ecx));
-# endif
 #else
 # if ARCH_AMD64
 	amd64_asm_cpuid(regs);
