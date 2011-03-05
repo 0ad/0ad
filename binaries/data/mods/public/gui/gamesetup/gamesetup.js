@@ -76,6 +76,11 @@ function initMain()
 	// Load AI list
 	g_AIs = Engine.GetAIs();
 
+	// Sort AIs by displayed name
+	g_AIs.sort(function (a, b) {
+		return a.data.name < b.data.name ? -1 : b.data.name < a.data.name ? +1 : 0;
+	});
+
 	// Get default player data - remove gaia
 	var pDefs = initPlayerDefaults();
 	pDefs.shift();
