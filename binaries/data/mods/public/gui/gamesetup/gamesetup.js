@@ -265,13 +265,15 @@ function onTick()
 		initMain();
 		g_LoadingState++;
 	}
-
-	while (true)
+	else if (g_LoadingState == 2)
 	{
-		var message = Engine.PollNetworkClient();
-		if (!message)
-			break;
-		handleNetMessage(message);
+		while (true)
+		{
+			var message = Engine.PollNetworkClient();
+			if (!message)
+				break;
+			handleNetMessage(message);
+		}
 	}
 }
 
