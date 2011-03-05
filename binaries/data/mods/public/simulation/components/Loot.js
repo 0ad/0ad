@@ -21,4 +21,6 @@ Loot.prototype.Schema =
  * TODO: this all needs to be designed and implemented
  */
 
+Loot.prototype.Serialize = null; // we have no dynamic state to save
+
 Engine.RegisterComponentType(IID_Loot, "Loot", Loot);

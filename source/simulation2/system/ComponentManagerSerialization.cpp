@@ -100,10 +100,14 @@ bool CComponentManager::DumpDebugState(std::ostream& stream)
 	return true;
 }
 
-bool CComponentManager::ComputeStateHash(std::string& outHash)
+bool CComponentManager::ComputeStateHash(std::string& outHash, bool quick)
 {
 	// Hash serialization: this includes the minimal data necessary to detect
 	// differences in the state, and ignores things like counts and names
+
+	// If 'quick' is set, this checks even fewer things, so that it will
+	// be fast enough to run every turn but will typically detect any
+	// out-of-syncs fairly soon
 
 	CHashSerializer serializer(m_ScriptInterface);
 
@@ -114,6 +118,10 @@ bool CComponentManager::ComputeStateHash(std::string& outHash)
 	{
 		// Skip component types with no components
 		if (cit->second.empty())
+			continue;
+
+		// In quick mode, only check unit positions
+		if (quick && !(cit->first == CID_Position))
 			continue;
 
 		serializer.NumberI32_Unbounded("component type id", cit->first);

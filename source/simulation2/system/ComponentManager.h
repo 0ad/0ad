@@ -207,7 +207,7 @@ public:
 	void ResetState();
 
 	// Various state serialization functions:
-	bool ComputeStateHash(std::string& outHash);
+	bool ComputeStateHash(std::string& outHash, bool quick);
 	bool DumpDebugState(std::ostream& stream);
 	// FlushDestroyedComponents must be called before SerializeState (since the destruction queue
 	// won't get serialized)

@@ -195,7 +195,7 @@ public:
 	const CSimContext& GetSimContext() const;
 	ScriptInterface& GetScriptInterface() const;
 
-	bool ComputeStateHash(std::string& outHash);
+	bool ComputeStateHash(std::string& outHash, bool quick);
 	bool DumpDebugState(std::ostream& stream);
 	bool SerializeState(std::ostream& stream);
 	bool DeserializeState(std::istream& stream);

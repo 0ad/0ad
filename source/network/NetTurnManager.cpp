@@ -176,8 +176,9 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 		return;
 	m_HasSyncError = true;
 
+	bool quick = !TurnNeedsFullHash(turn);
 	std::string hash;
-	bool ok = m_Simulation2.ComputeStateHash(hash);
+	bool ok = m_Simulation2.ComputeStateHash(hash, quick);
 	debug_assert(ok);
 
 	fs::wpath path (psLogDir()/L"oos_dump.txt");
@@ -224,6 +225,22 @@ void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
 	debug_assert(turn == m_ReadyTurn + 1);
 	m_ReadyTurn = turn;
 	m_TurnLength = turnLength;
+}
+
+bool CNetTurnManager::TurnNeedsFullHash(u32 turn)
+{
+	// Check immediately for errors caused by e.g. inconsistent game versions
+	// (The hash is computed after the first sim update, so we start at turn == 1)
+	if (turn == 1)
+		return true;
+
+	// Otherwise check the full state every ~10 seconds in multiplayer games
+	// (TODO: should probably remove this when we're reasonably sure the game
+	// isn't too buggy, since the full hash is still pretty slow)
+	if (turn % 20 == 0)
+		return true;
+
+	return false;
 }
 
 void CNetTurnManager::EnableTimeWarpRecording(size_t numTurns)
@@ -286,16 +303,17 @@ void CNetClientTurnManager::NotifyFinishedOwnCommands(u32 turn)
 
 void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 {
+	bool quick = !TurnNeedsFullHash(turn);
 	std::string hash;
 	{
 		PROFILE("state hash check");
-		bool ok = m_Simulation2.ComputeStateHash(hash);
+		bool ok = m_Simulation2.ComputeStateHash(hash, quick);
 		debug_assert(ok);
 	}
 
 	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %ls)\n", turn, Hexify(hash).c_str()));
 
-	m_Replay.Hash(hash);
+	m_Replay.Hash(hash, quick);
 
 	// Send message to the server
 	CSyncCheckMessage msg;

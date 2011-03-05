@@ -93,9 +93,12 @@ void CReplayLogger::Turn(u32 n, u32 turnLength, const std::vector<SimulationComm
 	m_Stream->flush();
 }
 
-void CReplayLogger::Hash(const std::string& hash)
+void CReplayLogger::Hash(const std::string& hash, bool quick)
 {
-	*m_Stream << "hash " << Hexify(hash) << "\n";
+	if (quick)
+		*m_Stream << "hash-quick " << Hexify(hash) << "\n";
+	else
+		*m_Stream << "hash " << Hexify(hash) << "\n";
 }
 
 ////////////////////////////////////////////////////////////////
@@ -174,17 +177,19 @@ void CReplayPlayer::Replay()
 			SimulationCommand cmd = { player, data };
 			commands.push_back(cmd);
 		}
-		else if (type == "hash")
+		else if (type == "hash" || type == "hash-quick")
 		{
 			std::string replayHash;
 			*m_Stream >> replayHash;
+
+			bool quick = (type == "hash-quick");
 
 //			if (turn >= 1300)
 //			if (turn >= 0)
 			if (turn % 100 == 0)
 			{
 				std::string hash;
-				bool ok = game.GetSimulation2()->ComputeStateHash(hash);
+				bool ok = game.GetSimulation2()->ComputeStateHash(hash, quick);
 				debug_assert(ok);
 				std::string hexHash = Hexify(hash);
 				if (hexHash == replayHash)
@@ -199,7 +204,7 @@ void CReplayPlayer::Replay()
 			commands.clear();
 
 //			std::string hash;
-//			bool ok = game.GetSimulation2()->ComputeStateHash(hash);
+//			bool ok = game.GetSimulation2()->ComputeStateHash(hash, true);
 //			debug_assert(ok);
 //			debug_printf(L"%hs", Hexify(hash).c_str());
 
@@ -220,7 +225,7 @@ void CReplayPlayer::Replay()
 	}
 
 	std::string hash;
-	bool ok = game.GetSimulation2()->ComputeStateHash(hash);
+	bool ok = game.GetSimulation2()->ComputeStateHash(hash, false);
 	debug_assert(ok);
 	debug_printf(L"# Final state: %hs\n", Hexify(hash).c_str());
 

@@ -295,7 +295,7 @@ void CSimulation2Impl::DumpState()
 
 	file << "State hash: " << std::hex;
 	std::string hashRaw;
-	m_ComponentManager.ComputeStateHash(hashRaw);
+	m_ComponentManager.ComputeStateHash(hashRaw, false);
 	for (size_t i = 0; i < hashRaw.size(); ++i)
 		file << std::setfill('0') << std::setw(2) << (int)(unsigned char)hashRaw[i];
 	file << std::dec << "\n";
@@ -493,9 +493,9 @@ void CSimulation2::ResetState(bool skipScriptedComponents, bool skipAI)
 	m->ResetState(skipScriptedComponents, skipAI);
 }
 
-bool CSimulation2::ComputeStateHash(std::string& outHash)
+bool CSimulation2::ComputeStateHash(std::string& outHash, bool quick)
 {
-	return m->m_ComponentManager.ComputeStateHash(outHash);
+	return m->m_ComponentManager.ComputeStateHash(outHash, quick);
 }
 
 bool CSimulation2::DumpDebugState(std::ostream& stream)

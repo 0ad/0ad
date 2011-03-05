@@ -23,6 +23,8 @@ Sound.prototype.Init = function()
 {
 };
 
+Sound.prototype.Serialize = null; // we have no dynamic state to save
+
 Sound.prototype.GetSoundGroup = function(name)
 {
 	return this.template.SoundGroups[name] || "";

@@ -586,7 +586,7 @@ public:
 		);
 
 		std::string hash;
-		TS_ASSERT(man.ComputeStateHash(hash));
+		TS_ASSERT(man.ComputeStateHash(hash, false));
 		TS_ASSERT_EQUALS(hash.length(), (size_t)16);
 		TS_ASSERT_SAME_DATA(hash.data(), "\x1c\x45\x2b\x20\x1f\x0c\x00\x93\x60\x78\xe2\x63\xb1\x47\x08\x19", 16);
 		// echo -en "\x05\x00\x00\x0078606\x01\0\0\0\x01\0\0\0\xf8\x2a\0\0\x02\0\0\0\xd2\x04\0\0\x04\0\0\0\x01\0\0\0\x08\x52\0\0" | openssl md5 | perl -pe 's/(..)/\\x$1/g'

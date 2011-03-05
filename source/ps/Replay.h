@@ -45,7 +45,7 @@ public:
 	/**
 	 * Optional hash of simulation state (for sync checking).
 	 */
-	virtual void Hash(const std::string& hash) = 0;
+	virtual void Hash(const std::string& hash, bool quick) = 0;
 };
 
 /**
@@ -56,7 +56,7 @@ class CDummyReplayLogger : public IReplayLogger
 public:
 	virtual void StartGame(const CScriptValRooted& UNUSED(attribs)) { }
 	virtual void Turn(u32 UNUSED(n), u32 UNUSED(turnLength), const std::vector<SimulationCommand>& UNUSED(commands)) { }
-	virtual void Hash(const std::string& UNUSED(hash)) { }
+	virtual void Hash(const std::string& UNUSED(hash), bool UNUSED(quick)) { }
 };
 
 /**
@@ -71,7 +71,7 @@ public:
 
 	virtual void StartGame(const CScriptValRooted& attribs);
 	virtual void Turn(u32 n, u32 turnLength, const std::vector<SimulationCommand>& commands);
-	virtual void Hash(const std::string& hash);
+	virtual void Hash(const std::string& hash, bool quick);
 
 private:
 	ScriptInterface& m_ScriptInterface;

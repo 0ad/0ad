@@ -37,4 +37,6 @@ Auras.prototype.Schema =
  * TODO: this all needs to be designed and implemented
  */
 
+Auras.prototype.Serialize = null; // we have no dynamic state to save
+
 Engine.RegisterComponentType(IID_Auras, "Auras", Auras);

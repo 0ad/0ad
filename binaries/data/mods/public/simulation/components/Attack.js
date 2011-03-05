@@ -73,6 +73,12 @@ Attack.prototype.Schema =
 		"</element>" +
 	"</optional>";
 
+Attack.prototype.Init = function()
+{
+};
+
+Attack.prototype.Serialize = null; // we have no dynamic state to save
+
 /**
  * Return the type of the best attack.
  * TODO: this should probably depend on range, target, etc,

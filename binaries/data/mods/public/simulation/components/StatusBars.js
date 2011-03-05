@@ -16,12 +16,15 @@ StatusBars.prototype.Init = function()
 	this.enabled = false;
 };
 
-StatusBars.prototype.Serialize = function()
+// Because this is enabled directly by the GUI and is not
+// network-synchronised (it only affects local rendering),
+// we disable serialization in order to prevent OOS errors
+StatusBars.prototype.Serialize = null;
+
+StatusBars.prototype.Deserialize = function()
 {
-	// Because this is enabled directly by the GUI and is not
-	// network-synchronised (it only affects local rendering),
-	// return a dummy value to prevent OOS errors
-	return { "enabled": false };
+	// Use default initialisation
+	this.Init();
 };
 
 StatusBars.prototype.SetEnabled = function(enabled)

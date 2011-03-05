@@ -77,6 +77,7 @@ private:
 	CScriptValRooted m_Instance;
 	bool m_HasCustomSerialize;
 	bool m_HasCustomDeserialize;
+	bool m_HasNullSerialize;
 
 	NONCOPYABLE(CComponentTypeScript);
 };

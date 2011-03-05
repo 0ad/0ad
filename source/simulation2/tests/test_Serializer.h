@@ -509,7 +509,7 @@ public:
 			std::stringstream str;
 			std::string hash;
 			sim2.SerializeState(str);
-			sim2.ComputeStateHash(hash);
+			sim2.ComputeStateHash(hash, false);
 			debug_printf(L"\n");
 			debug_printf(L"# size = %d\n", (int)str.str().length());
 			debug_printf(L"# hash = ");
@@ -524,7 +524,7 @@ public:
 		for (size_t i = 0; i < reps; ++i)
 		{
 			std::string hash;
-			sim2.ComputeStateHash(hash);
+			sim2.ComputeStateHash(hash, false);
 		}
 		CALLGRIND_STOP_INSTRUMENTATION
 		t = timer_Time() - t;

@@ -106,6 +106,8 @@ Identity.prototype.Init = function()
 {
 };
 
+Identity.prototype.Serialize = null; // we have no dynamic state to save
+
 Identity.prototype.GetCiv = function()
 {
 	return this.template.Civ;

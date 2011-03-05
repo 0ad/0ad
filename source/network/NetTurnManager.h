@@ -135,6 +135,12 @@ protected:
 	 */
 	virtual void NotifyFinishedUpdate(u32 turn) = 0;
 
+	/**
+	 * Returns whether we should compute a complete state hash for the given turn,
+	 * instead of a quick less-complete hash.
+	 */
+	bool TurnNeedsFullHash(u32 turn);
+
 	CSimulation2& m_Simulation2;
 
 	/// The turn that we have most recently executed

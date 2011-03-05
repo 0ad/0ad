@@ -21,6 +21,8 @@ Armour.prototype.Init = function()
 {
 };
 
+Armour.prototype.Serialize = null; // we have no dynamic state to save
+
 Armour.prototype.TakeDamage = function(hack, pierce, crush)
 {
 	// Adjust damage values based on armour

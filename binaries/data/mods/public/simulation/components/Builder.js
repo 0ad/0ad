@@ -22,6 +22,8 @@ Builder.prototype.Init = function()
 {
 };
 
+Builder.prototype.Serialize = null; // we have no dynamic state to save
+
 Builder.prototype.GetEntitiesList = function()
 {
 	var string = this.template.Entities._string;

@@ -28,6 +28,14 @@ CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, jsv
 	// Cache the property detection for efficiency
 	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance.get(), "Serialize");
 	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance.get(), "Deserialize");
+
+	m_HasNullSerialize = false;
+	if (m_HasCustomSerialize)
+	{
+		CScriptVal val;
+		if (m_ScriptInterface.GetProperty(m_Instance.get(), "Serialize", val) && JSVAL_IS_NULL(val.get()))
+			m_HasNullSerialize = true;
+	}
 }
 
 void CComponentTypeScript::Init(const CParamNode& paramNode, entity_id_t ent)
@@ -54,6 +62,10 @@ void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 
 void CComponentTypeScript::Serialize(ISerializer& serialize)
 {
+	// If the component set Serialize = null, then do no work here
+	if (m_HasNullSerialize)
+		return;
+
 	// Support a custom "Serialize" function, which returns a new object that will be
 	// serialized instead of the component itself
 	if (m_HasCustomSerialize)
@@ -76,15 +88,22 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 	if (m_HasCustomDeserialize)
 	{
 		CScriptVal val;
-		deserialize.ScriptVal("object", val);
+
+		// If Serialize = null, we'll still call Deserialize but with undefined argument
+		if (!m_HasNullSerialize)
+			deserialize.ScriptVal("object", val);
+
 		if (!m_ScriptInterface.CallFunctionVoid(m_Instance.get(), "Deserialize", val))
 			LOGERROR(L"Script Deserialize call failed");
 	}
 	else
 	{
-		// Use ScriptObjectAppend so we don't lose the carefully-constructed
-		// prototype/parent of this object
-		deserialize.ScriptObjectAppend("object", m_Instance.getRef());
+		if (!m_HasNullSerialize)
+		{
+			// Use ScriptObjectAppend so we don't lose the carefully-constructed
+			// prototype/parent of this object
+			deserialize.ScriptObjectAppend("object", m_Instance.getRef());
+		}
 	}
 
 	m_ScriptInterface.SetProperty(m_Instance.get(), "entity", (int)ent, true, false);
