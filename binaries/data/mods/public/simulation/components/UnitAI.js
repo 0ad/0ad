@@ -1826,6 +1826,12 @@ UnitAI.prototype.LeaveFoundation = function(target)
 	// TODO: we should verify this is a friendly foundation, otherwise
 	// there's no reason we should let them build here
 
+	// If we're already being told to leave a foundation, then
+	// ignore this new request so we don't end up being too indecisive
+	// to ever actually move anywhere
+	if (this.order && this.order.type == "LeaveFoundation")
+		return;
+
 	this.PushOrderFront("LeaveFoundation", { "target": target });
 };
 
