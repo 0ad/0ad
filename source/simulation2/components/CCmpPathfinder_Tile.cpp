@@ -414,7 +414,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 		// Hack to avoid spending ages computing giant paths, particularly when
 		// the destination is unreachable
-		if (state.steps > 10000)
+		if (state.steps > 40000)
 			break;
 
 		// If we ran out of tiles to examine, give up
