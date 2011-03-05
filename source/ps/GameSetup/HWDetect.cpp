@@ -261,6 +261,10 @@ void RunHardwareDetection()
 # define GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB 0x8DE0
 # define GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB 0x8DE1
 #endif
+// Also need some more for OS X 10.5:
+#ifndef GL_EXT_texture_array
+# define GL_MAX_ARRAY_TEXTURE_LAYERS_EXT 0x88FF
+#endif
 
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings)
 {
