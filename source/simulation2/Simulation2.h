@@ -110,6 +110,11 @@ public:
 	CScriptVal GetMapSettings();
 
 	/**
+	 * RegMemFun incremental loader function.
+	 */
+	int ProgressiveLoad();
+
+	/**
 	 * Reload any scripts that were loaded from the given filename.
 	 * (This is used to implement hotloading.)
 	 */

@@ -27,8 +27,9 @@
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 
-#include "lib/file/file_system_util.h"
+#include "lib/timer.h"
 #include "lib/utf8.h"
+#include "lib/file/file_system_util.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -118,6 +119,7 @@ public:
 		return static_cast<CSimulation2Impl*>(param)->ReloadChangedFile(path);
 	}
 
+	int ProgressiveLoad();
 	bool Update(int turnLength, const std::vector<SimulationCommand>& commands);
 	void Interpolate(float frameLength, float frameOffset);
 
@@ -175,6 +177,34 @@ LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 		return ERR::FAIL;
 
 	return INFO::OK;
+}
+
+int CSimulation2Impl::ProgressiveLoad()
+{
+	// yield after this time is reached. balances increased progress bar
+	// smoothness vs. slowing down loading.
+	const double end_time = timer_Time() + 200e-3;
+
+	int ret;
+
+	do
+	{
+		bool progressed = false;
+		int total = 0;
+		int progress = 0;
+
+		CMessageProgressiveLoad msg(&progressed, &total, &progress);
+
+		m_ComponentManager.BroadcastMessage(msg);
+
+		if (!progressed || total == 0)
+			return 0; // we have nothing left to load
+
+		ret = Clamp(100*progress / total, 1, 100);
+	}
+	while (timer_Time() < end_time);
+
+	return ret;
 }
 
 bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationCommand>& commands)
@@ -446,6 +476,11 @@ void CSimulation2::LoadMapSettings()
 
 	if (!m->m_StartupScript.empty())
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
+}
+
+int CSimulation2::ProgressiveLoad()
+{
+	return m->ProgressiveLoad();
 }
 
 LibError CSimulation2::ReloadChangedFile(const VfsPath& path)

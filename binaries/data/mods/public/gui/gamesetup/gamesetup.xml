@@ -11,7 +11,19 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="bkTranslucent"/>
 
-	<object type="image" style="wheatWindow" size="50%-400 50%-300 50%+400 50%+300">
+	<object type="image" style="wheatWindow" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
+
+		<object type="text" style="wheatWindowTitleBar">
+			Loading
+		</object>
+
+		<object type="text" text_align="center" text_valign="center">
+			Loading map data. Please wait...
+		</object>
+
+	</object>
+
+	<object type="image" style="wheatWindow" size="50%-400 50%-300 50%+400 50%+300" hidden="true" name="setupWindow">
 
 		<action on="Tick">
 			onTick();

@@ -44,6 +44,11 @@ var g_CivData = {};
 var g_MapFilters = [];
 	
 
+// To prevent the display locking up while we load the map metadata,
+// we'll start with a 'loading' message and switch to the main screen in the
+// tick handler
+var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
+
 function init(attribs)
 {
 	switch (attribs.type)
@@ -63,7 +68,11 @@ function init(attribs)
 	default:
 		error("Unexpected 'type' in gamesetup init: "+attribs.type);
 	}
+}
 
+// Called after the map data is loaded and cached
+function initMain()
+{
 	// Load AI list
 	g_AIs = Engine.GetAIs();
 
@@ -98,7 +107,7 @@ function init(attribs)
 	{
 		// Set a default map
 		// TODO: This should be remembered from the last session
-		if (attribs.type == "offline")
+		if (!g_IsNetworked)
 			g_GameAttributes.map = "Miletus";
 		else
 			g_GameAttributes.map = "Median Oasis";
@@ -244,6 +253,19 @@ function cancelSetup()
 
 function onTick()
 {
+	// First tick happens before first render, so don't load yet
+	if (g_LoadingState == 0)
+	{
+		g_LoadingState++;
+	}
+	else if (g_LoadingState == 1)
+	{
+		getGUIObjectByName("loadingWindow").hidden = true;
+		getGUIObjectByName("setupWindow").hidden = false;
+		initMain();
+		g_LoadingState++;
+	}
+
 	while (true)
 	{
 		var message = Engine.PollNetworkClient();

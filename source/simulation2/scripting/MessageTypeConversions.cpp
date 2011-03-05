@@ -120,6 +120,18 @@ CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 
 ////////////////////////////////
 
+jsval CMessageProgressiveLoad::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	return JSVAL_VOID;
+}
+
+CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return NULL;
+}
+
+////////////////////////////////
+
 jsval CMessageCreate::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();

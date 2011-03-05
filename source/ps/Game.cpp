@@ -30,6 +30,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Loader.h"
+#include "ps/LoaderThunks.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/Replay.h"
@@ -120,6 +121,8 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
 	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "mapType", mapType);
 
 	LDR_BeginRegistering();
+
+	RegMemFun(m_Simulation2, &CSimulation2::ProgressiveLoad, L"Simulation init", 1000);
 
 	// RC, 040804 - GameView needs to be initialized before World, otherwise GameView initialization
 	// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default

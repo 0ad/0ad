@@ -152,6 +152,33 @@ public:
 };
 
 /**
+ * Handle progressive loading of resources.
+ * A component that listens to this message must do the following:
+ *  - Increase *msg.total by the non-zero number of loading tasks this component can perform.
+ *  - If *msg.progressed == true, return and do nothing.
+ *  - If you've loaded everything, increase *msg.progress by the value you added to .total
+ *  - Otherwise do some loading, set *msg.progressed = true, and increase *msg.progress by a
+ *    value indicating how much progress you've made in total (0 <= p <= what you added to .total)
+ * In some situations these messages will never be sent - components must ensure they
+ * load all their data themselves before using it in that case.
+ */
+class CMessageProgressiveLoad : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(ProgressiveLoad)
+
+	CMessageProgressiveLoad(bool* progressed, int* total, int* progress) :
+		progressed(progressed), total(total), progress(progress)
+	{
+	}
+
+	bool* progressed;
+	int* total;
+	int* progress;
+};
+
+
+/**
  * This is sent immediately after a new entity's components have all been created
  * and initialised.
  */
