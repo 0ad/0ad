@@ -340,7 +340,8 @@ function tryPlaceBuilding(queued)
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 
-	resetPlacementEntity();
+	if (!queued)
+		resetPlacementEntity();
 
 	return true;
 }
