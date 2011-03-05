@@ -108,7 +108,7 @@ function initMain()
 		// Set a default map
 		// TODO: This should be remembered from the last session
 		if (!g_IsNetworked)
-			g_GameAttributes.map = "Miletus";
+			g_GameAttributes.map = "Death Canyon";
 		else
 			g_GameAttributes.map = "Median Oasis";
 		
