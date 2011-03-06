@@ -199,7 +199,10 @@ function checkPlayerState()
 		{
 			g_GameEnded = true;
 			switchMusic("win_1", 0.0);
-			Engine.PostNetworkCommand({"type": "reveal-map", "enable": true});
+			
+			if (!getGUIObjectByName("devCommandsRevealMap").checked)
+				getGUIObjectByName("devCommandsRevealMap").checked = true;
+			
 			g_SessionDialog.open("Victory", "You have won the battle!\nDo you want to leave the game now?", null, 320, 160, leaveGame);
 		}
 	}

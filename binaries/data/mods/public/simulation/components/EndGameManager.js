@@ -122,6 +122,9 @@ EndGameManager.prototype.UpdatePlayerStates = function()
 				var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
 				cmpPlayer.SetState("won");
 			}
+			
+			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+			cmpRangeManager.SetLosRevealAll(true);
 		}
 
 		break;
