@@ -286,36 +286,21 @@ LibError sys_cursor_create(size_t w, size_t h, void* bgra_img, size_t hx, size_t
 	return INFO::OK;
 }
 
-// creates an empty cursor
+// returns a dummy value representing an empty cursor
 LibError sys_cursor_create_empty(sys_cursor* cursor)
 {
-	/* bitmap for a fully transparent cursor */
-	u8 data[] = {0};
-	u8 mask[] = {0};
-
-	// size 8x1 (cursor size must be a whole number of bytes ^^)
-	// hotspot at 0,0
-	// SDL will make its own copies of data and mask
-	*cursor = SDL_CreateCursor(data, mask, 8, 1, 0, 0);
-
-	return cursor ? INFO::OK : ERR::FAIL;
+	*cursor = (void*)1; // any non-zero value, since the cursor NULL has special meaning
+	return INFO::OK;
 }
 
-SDL_Cursor *defaultCursor=NULL;
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
 LibError sys_cursor_set(sys_cursor cursor)
 {
-	// Gaah, SDL doesn't have a good API for setting the default cursor
-	// SetCursor(NULL) just /repaints/ the cursor (well, obviously! or...)
-	if(!defaultCursor)
-		defaultCursor = SDL_GetCursor();
-
-	// restore default cursor.
-	if(!cursor)
-		SDL_SetCursor(defaultCursor);
-
-	SDL_SetCursor((SDL_Cursor *)cursor);
+	if (cursor) // dummy empty cursor
+		SDL_ShowCursor(SDL_DISABLE);
+	else // restore default cursor
+		SDL_ShowCursor(SDL_ENABLE);
 
 	return INFO::OK;
 }
@@ -328,20 +313,13 @@ LibError sys_cursor_free(sys_cursor cursor)
 	if(!cursor)
 		return INFO::OK;
 
-	// if the cursor being freed is active, restore the default cursor
-	// (just for safety).
-	if (SDL_GetCursor() == (SDL_Cursor *)cursor)
-		WARN_ERR(sys_cursor_set(NULL));
-
-	SDL_FreeCursor((SDL_Cursor *)cursor);
+	SDL_ShowCursor(SDL_ENABLE);
 
 	return INFO::OK;
 }
 
 LibError sys_cursor_reset()
 {
-	defaultCursor = NULL;
-
 	return INFO::OK;
 }
 
