@@ -75,6 +75,12 @@ struct ShadowMapInternals
 	// Camera transformed into light space
 	CCamera LightspaceCamera;
 
+	// Some drivers (at least some Intel Mesa ones) appear to handle alpha testing
+	// incorrectly when the FBO has only a depth attachment.
+	// When m_ShadowAlphaFix is true, we use DummyTexture to store a useless
+	// alpha texture which is attached to the FBO as a workaround.
+	GLuint DummyTexture;
+
 	// Helper functions
 	void CalcShadowMatrices();
 	void CreateTexture();
@@ -88,6 +94,7 @@ ShadowMap::ShadowMap()
 	m = new ShadowMapInternals;
 	m->Framebuffer = 0;
 	m->Texture = 0;
+	m->DummyTexture = 0;
 	m->Width = 0;
 	m->Height = 0;
 	m->EffectiveWidth = 0;
@@ -106,6 +113,8 @@ ShadowMap::~ShadowMap()
 {
 	if (m->Texture)
 		glDeleteTextures(1, &m->Texture);
+	if (m->DummyTexture)
+		glDeleteTextures(1, &m->DummyTexture);
 	if (m->Framebuffer)
 		pglDeleteFramebuffersEXT(1, &m->Framebuffer);
 
@@ -119,10 +128,13 @@ void ShadowMap::RecreateTexture()
 {
 	if (m->Texture)
 		glDeleteTextures(1, &m->Texture);
+	if (m->DummyTexture)
+		glDeleteTextures(1, &m->DummyTexture);
 	if (m->Framebuffer)
 		pglDeleteFramebuffersEXT(1, &m->Framebuffer);
 
 	m->Texture = 0;
+	m->DummyTexture = 0;
 	m->Framebuffer = 0;
 
 	// (Texture will be constructed in next SetupFrame)
@@ -276,6 +288,11 @@ void ShadowMapInternals::CreateTexture()
 		glDeleteTextures(1, &Texture);
 		Texture = 0;
 	}
+	if (DummyTexture)
+	{
+		glDeleteTextures(1, &DummyTexture);
+		DummyTexture = 0;
+	}
 	if (Framebuffer)
 	{
 		pglDeleteFramebuffersEXT(1, &Framebuffer);
@@ -334,12 +351,23 @@ void ShadowMapInternals::CreateTexture()
 	LOGMESSAGE(L"Creating shadow texture (size %dx%d) (format = %hs)%ls",
 		Width, Height, formatname, Framebuffer ? L" (using EXT_framebuffer_object)" : L"");
 
-	// create texture object
-	glGenTextures(1, &Texture);
-	g_Renderer.BindTexture(0, Texture);
 
 	if (UseDepthTexture)
 	{
+		if (g_Renderer.m_Options.m_ShadowAlphaFix)
+		{
+			glGenTextures(1, &DummyTexture);
+			g_Renderer.BindTexture(0, DummyTexture);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, Width, Height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, NULL);
+		}
+
+		glGenTextures(1, &Texture);
+		g_Renderer.BindTexture(0, Texture);
+
 		GLenum format;
 
 		switch(DepthTextureBits)
@@ -358,6 +386,9 @@ void ShadowMapInternals::CreateTexture()
 	}
 	else
 	{
+		glGenTextures(1, &Texture);
+		g_Renderer.BindTexture(0, Texture);
+
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE8, Width, Height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, NULL);
 	}
 
@@ -375,10 +406,17 @@ void ShadowMapInternals::CreateTexture()
 		glBindTexture(GL_TEXTURE_2D, 0);
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
 
-		pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT,
-				GL_TEXTURE_2D, Texture, 0);
+		pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
 
-		glDrawBuffer(GL_NONE);
+		if (g_Renderer.m_Options.m_ShadowAlphaFix)
+		{
+			pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
+		}
+		else
+		{
+			glDrawBuffer(GL_NONE);
+		}
+
 		glReadBuffer(GL_NONE);
 
 		GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);

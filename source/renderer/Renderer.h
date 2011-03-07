@@ -146,6 +146,7 @@ public:
 		bool m_FancyWater;
 		float m_LodBias;
 		RenderPath m_RenderPath;
+		bool m_ShadowAlphaFix;
 	} m_Options;
 
 	struct Caps {
@@ -322,6 +323,8 @@ protected:
 	void JSI_SetUseDepthTexture(JSContext* ctx, jsval newval);
 	jsval JSI_GetDepthTextureBits(JSContext*);
 	void JSI_SetDepthTextureBits(JSContext* ctx, jsval newval);
+	jsval JSI_GetShadowAlphaFix(JSContext*);
+	void JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval);
 	jsval JSI_GetSky(JSContext*);
 	void JSI_SetSky(JSContext* ctx, jsval newval);
 

@@ -372,6 +372,7 @@ CRenderer::CRenderer()
 	m_Options.m_RenderPath = RP_DEFAULT;
 	m_Options.m_FancyWater = false;
 	m_Options.m_Shadows = false;
+	m_Options.m_ShadowAlphaFix = true;
 
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
@@ -1680,6 +1681,19 @@ void CRenderer::JSI_SetDepthTextureBits(JSContext* ctx, jsval newval)
 	m->shadow->SetDepthTextureBits(depthTextureBits);
 }
 
+jsval CRenderer::JSI_GetShadowAlphaFix(JSContext*)
+{
+	return ToJSVal(m_Options.m_ShadowAlphaFix);
+}
+
+void CRenderer::JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval)
+{
+	if (!ToPrimitive(ctx, newval, m_Options.m_ShadowAlphaFix))
+		return;
+
+	m->shadow->RecreateTexture();
+}
+
 jsval CRenderer::JSI_GetSky(JSContext*)
 {
 	return ToJSVal(m->skyManager.GetSkySet());
@@ -1703,6 +1717,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"shadowMapSize", &CRenderer::m_ShadowMapSize);
 	AddProperty(L"disableCopyShadow", &CRenderer::m_DisableCopyShadow);
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
+	AddProperty(L"shadowAlphaFix", &CRenderer::JSI_GetShadowAlphaFix, &CRenderer::JSI_SetShadowAlphaFix);
 	AddProperty(L"skipSubmit", &CRenderer::m_SkipSubmit);
 	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
 
