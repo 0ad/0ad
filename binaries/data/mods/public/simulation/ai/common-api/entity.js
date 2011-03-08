@@ -130,7 +130,11 @@ var EntityTemplate = Class({
 	isUnhuntable: function() {
 		if (!this._template.UnitAI || !this._template.UnitAI.NaturalBehaviour)
 			return false;
-		return (this._template.UnitAI.NaturalBehaviour == "skittish");
+
+		// return (this._template.UnitAI.NaturalBehaviour == "skittish");
+		// Actually, since the AI is currently rubbish at hunting, skip all animals
+		// that aren't really weak:
+		return this._template.Health.Max >= 10;
 	},
 });
 

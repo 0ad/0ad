@@ -1182,7 +1182,10 @@ UnitAI.prototype.IsAnimal = function()
  */
 UnitAI.prototype.IsUnhuntable = function()
 {
-	return (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish");
+	// return (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish");
+	// Actually, since the AI is currently rubbish at hunting, skip all animals
+	// that aren't really weak:
+	return this.IsAnimal() && Engine.QueryInterface(this.entity, IID_Health).GetMaxHitpoints() >= 10;
 };
 
 UnitAI.prototype.IsIdle = function()

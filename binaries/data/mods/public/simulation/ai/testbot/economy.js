@@ -75,8 +75,10 @@ var EconomyManager = Class({
 		}
 	},
 
-	pickMostNeededResource: function(gameState)
+	pickMostNeededResources: function(gameState)
 	{
+		var self = this;
+
 		// Find what resource type we're most in need of
 		var numGatherers = {};
 		for (var type in this.gatherWeights)
@@ -87,19 +89,15 @@ var EconomyManager = Class({
 				numGatherers[ent.getMetadata("gather-type")] += 1;
 		});
 
-		var bestType = "food";
-		var bestTypeVal = Infinity; // num gatherers divided by weight
-		for (var type in this.gatherWeights)
-		{
-			var v = numGatherers[type] / this.gatherWeights[type];
-			if (v < bestTypeVal)
-			{
-				bestTypeVal = v;
-				bestType = type;
-			}
-		}
+		var types = Object.keys(this.gatherWeights);
+		types.sort(function(a, b) {
+			// Prefer fewer gatherers (divided by weight)
+			var va = numGatherers[a] / self.gatherWeights[a];
+			var vb = numGatherers[b] / self.gatherWeights[b];
+			return va - vb;
+		});
 
-		return bestType;
+		return types;
 	},
 
 	reassignRolelessUnits: function(gameState)
@@ -133,43 +131,53 @@ var EconomyManager = Class({
 
 			idleWorkers.forEach(function(ent) {
 
-				var type = self.pickMostNeededResource(gameState);
-
-				// Make sure there's actually some of that type
-				// (We probably shouldn't pick impossible ones in the first place)
-				if (!resourceSupplies[type])
-					return;
-
-				// Pick the closest one.
-				// TODO: we should care about distance to dropsites, not (just) to the worker,
-				// and gather rates of workers
-
-				var workerPosition = ent.position();
-				var supplies = [];
-				resourceSupplies[type].forEach(function(supply) {
-					// Skip targets that are too hard to hunt
-					if (supply.entity.isUnhuntable())
-						return;
-
-					var dist = VectorDistance(supply.position, workerPosition);
-					supplies.push({ dist: dist, entity: supply.entity });
-				});
-
-				supplies.sort(function (a, b) {
-					// Prefer smaller distances
-					if (a.dist != b.dist)
-						return a.dist - b.dist;
-
-					return false;
-				});
-
-				// Start gathering
-				if (supplies.length)
+				var types = self.pickMostNeededResources(gameState);
+				for each (var type in types)
 				{
-					ent.gather(supplies[0].entity);
-					ent.setMetadata("subrole", "gatherer");
-					ent.setMetadata("gather-type", type);
+					// Make sure there's actually some of that type
+					if (!resourceSupplies[type])
+						continue;
+
+					// Pick the closest one.
+					// TODO: we should care about distance to dropsites, not (just) to the worker,
+					// and gather rates of workers
+
+					var workerPosition = ent.position();
+					var supplies = [];
+					resourceSupplies[type].forEach(function(supply) {
+						// Skip targets that are too hard to hunt
+						if (supply.entity.isUnhuntable())
+							return;
+
+						var dist = VectorDistance(supply.position, workerPosition);
+
+						// Skip targets that are far too far away (e.g. in the enemy base)
+						if (dist > 512)
+							return;
+
+						supplies.push({ dist: dist, entity: supply.entity });
+					});
+
+					supplies.sort(function (a, b) {
+						// Prefer smaller distances
+						if (a.dist != b.dist)
+							return a.dist - b.dist;
+
+						return false;
+					});
+
+					// Start gathering
+					if (supplies.length)
+					{
+						ent.gather(supplies[0].entity);
+						ent.setMetadata("subrole", "gatherer");
+						ent.setMetadata("gather-type", type);
+						return;
+					}
 				}
+
+				// Couldn't find any types to gather
+				ent.setMetadata("subrole", "idle");
 			});
 		}
 	},
