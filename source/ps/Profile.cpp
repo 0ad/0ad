@@ -268,8 +268,6 @@ CProfileNode::CProfileNode( const char* _name, CProfileNode* _parent )
 	parent = _parent;
 
 	display_table = new CProfileNodeTable(this);
-
-	Reset();
 }
 
 CProfileNode::~CProfileNode()
@@ -667,16 +665,16 @@ void CProfileManager::Frame()
 {
 	ONCE(alloc_hook_initialize());
 
+	root->time_frame_current += (timer_Time() - root->start);
+	root->mallocs_frame_current += (get_memory_alloc_count() - root->start_mallocs);
+
+	root->Frame();
+
 	if (needs_structural_reset)
 	{
 		PerformStructuralReset();
 		needs_structural_reset = false;
 	}
-
-	root->time_frame_current += (timer_Time() - root->start);
-	root->mallocs_frame_current += (get_memory_alloc_count() - root->start_mallocs);
-
-	root->Frame();
 
 	root->start = timer_Time();
 	root->start_mallocs = get_memory_alloc_count();
