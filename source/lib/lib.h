@@ -183,12 +183,12 @@ extern u32 u32_from_u16(u16 hi, u16 lo);	/// assemble u32 from u16
 // - separate compilation of templates via export isn't supported by
 //   most compilers.
 
-template<typename T> u32 u32_from_larger(T x)
+template<typename T> u8 u8_from_larger(T x)
 {
-	const u32 max = std::numeric_limits<u32>::max();
+	const u8 max = std::numeric_limits<u8>::max();
 	if((u64)x > (u64)max)
-		throw std::out_of_range("u32_from_larger");
-	return (u32)(x & max);
+		throw std::out_of_range("u8_from_larger");
+	return (u8)(x & max);
 }
 
 template<typename T> u16 u16_from_larger(T x)
@@ -197,6 +197,14 @@ template<typename T> u16 u16_from_larger(T x)
 	if((u64)x > (u64)max)
 		throw std::out_of_range("u16_from_larger");
 	return (u16)(x & max);
+}
+
+template<typename T> u32 u32_from_larger(T x)
+{
+	const u32 max = std::numeric_limits<u32>::max();
+	if((u64)x > (u64)max)
+		throw std::out_of_range("u32_from_larger");
+	return (u32)(x & max);
 }
 
 /// convert double to u8; verifies number is in range.

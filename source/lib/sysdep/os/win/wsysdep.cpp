@@ -47,6 +47,12 @@
 #endif
 
 
+bool sys_IsDebuggerPresent()
+{
+	return (IsDebuggerPresent() != 0);
+}
+
+
 std::wstring sys_WideFromArgv(const char* argv_i)
 {
 	// NB: despite http://cbloomrants.blogspot.com/2008/06/06-14-08-1.html,

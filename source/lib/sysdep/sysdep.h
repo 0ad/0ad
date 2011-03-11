@@ -65,6 +65,13 @@ extern ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags
 //
 
 /**
+ * @return whether a debugger is attached to the process
+ * (if so, it is safe to use debug_break; otherwise, that would
+ * raise an exception)
+ **/
+LIB_API bool sys_IsDebuggerPresent();
+
+/**
  * @return a wide string conversion of the platform's encoding of main's argv.
  *
  * (NB: wseh.cpp defines a wmain that converts argv to UTF-8 and calls main(),

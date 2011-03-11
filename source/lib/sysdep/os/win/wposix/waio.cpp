@@ -123,35 +123,59 @@ static bool IsAioPossible(int fd, bool is_com_port, int oflag)
 	return true;
 }
 
+
+static DWORD CreationDisposition(int oflag)
+{
+	if(oflag & O_CREAT)
+		return (oflag & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
+
+	if(oflag & O_TRUNC)
+		return TRUNCATE_EXISTING;
+
+	return OPEN_EXISTING;
+}
+
+
 // (re)open file in asynchronous mode and associate handle with fd.
 // (this works because the files default to DENY_NONE sharing)
 LibError waio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 {
 	WinScopedPreserveLastError s;	// CreateFile
 
-	// interpret oflag
-	DWORD access = GENERIC_READ;	// assume O_RDONLY
-	DWORD share = FILE_SHARE_READ;
-	DWORD create = OPEN_EXISTING;
-	if(oflag & O_WRONLY)
-	{
-		access = GENERIC_WRITE;
-		share = FILE_SHARE_WRITE;
-	}
-	else if(oflag & O_RDWR)
-	{
-		access |= GENERIC_WRITE;
-		share |= FILE_SHARE_WRITE;
-	}
-	if(oflag & O_CREAT)
-		create = (oflag & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
-
+	debug_assert(!(oflag & O_APPEND));	// not supported
 	if(!IsAioPossible(fd, false, oflag))
 		return INFO::SKIPPED;
 
+	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
+
+	// decode file access mode
+	DWORD access, share;
+	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
+	{
+	case O_RDONLY:
+		access = GENERIC_READ;
+		share = FILE_SHARE_READ;
+		break;
+
+	case O_WRONLY:
+		access = GENERIC_WRITE;
+		share = FILE_SHARE_WRITE;
+		flags |= FILE_FLAG_WRITE_THROUGH;
+		break;
+	
+	case O_RDWR:
+		access = GENERIC_READ|GENERIC_WRITE;
+		share = FILE_SHARE_READ|FILE_SHARE_WRITE;
+		flags |= FILE_FLAG_WRITE_THROUGH;
+		break;
+
+	default:
+		WARN_RETURN(ERR::INVALID_PARAM);
+	}
+
 	// open file
-	const DWORD flags = FILE_ATTRIBUTE_NORMAL|FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN|FILE_FLAG_WRITE_THROUGH;
-	const HANDLE hFile = CreateFileW(pathname, access, share, 0, create, flags, 0);
+	const DWORD create = CreationDisposition(oflag);
+	const HANDLE hFile = CreateFileW(pathname, access, share, 0, create, FILE_ATTRIBUTE_NORMAL|flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		return LibError_from_GLE();
 
@@ -209,6 +233,11 @@ public:
 	Impl()
 	{
 		m_hFile = INVALID_HANDLE_VALUE;
+
+		// (hEvent is initialized below and the rest in Issue(), but clear out
+		// any subsequently added fields)
+		memset(&m_overlapped, 0, sizeof(m_overlapped));
+
 		const BOOL manualReset = TRUE;
 		const BOOL initialState = FALSE;
 		m_overlapped.hEvent = CreateEvent(0, manualReset, initialState, 0);
@@ -246,7 +275,8 @@ public:
 
 	bool HasCompleted() const
 	{
-		debug_assert(m_overlapped.Internal == 0 || m_overlapped.Internal == STATUS_PENDING);
+		// NB: .Internal "was originally reserved for system use and its behavior may change".
+		// besides 0 and STATUS_PENDING, I have seen the address of a pointer to a buffer.
 		return HasOverlappedIoCompleted(&m_overlapped);
 	}
 

@@ -46,6 +46,11 @@
 #endif
 
 
+bool sys_IsDebuggerPresent()
+{
+	return false;
+}
+
 std::wstring sys_WideFromArgv(const char* argv_i)
 {
 	// argv is usually UTF-8 on Linux, unsure about OS X..

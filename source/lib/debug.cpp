@@ -39,7 +39,7 @@
 #include "lib/sysdep/sysdep.h"
 
 #if OS_WIN
-#include "lib/sysdep/os/win/wdbg_heap.h"
+# include "lib/sysdep/os/win/wdbg_heap.h"
 #endif
 
 

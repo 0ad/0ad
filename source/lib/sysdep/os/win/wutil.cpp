@@ -448,17 +448,13 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 
 #ifndef LIB_STATIC_LINK
 
-BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD UNUSED(reason), LPVOID UNUSED(reserved))
-{
-	DisableThreadLibraryCalls(hInstance);
-	return TRUE;	// success (ignored unless reason == DLL_PROCESS_ATTACH)
-}
+#include "lib/sysdep/os/win/wdll_main.h"
 
 HMODULE wutil_LibModuleHandle()
 {
 	HMODULE hModule;
 	const DWORD flags = GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT;
-	const BOOL ok = GetModuleHandleEx(flags, (LPCWSTR)&DllMain, &hModule);
+	const BOOL ok = GetModuleHandleEx(flags, (LPCWSTR)&wutil_LibModuleHandle, &hModule);
 	// (avoid debug_assert etc. because we're called from debug_DisplayError)
 	wdbg_assert(ok);
 	return hModule;

@@ -33,10 +33,6 @@
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
-#ifdef _OPENMP
-# include <omp.h>
-#endif
-
 
 uintptr_t os_cpu_ProcessorMask()
 {
