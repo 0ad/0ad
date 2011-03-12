@@ -82,32 +82,14 @@ def reverse(value):
 
 @register.filter
 def format_profile(table):
-    cols = set()
-    def extract_cols(t):
-        for name, row in t.items():
-            for n in row:
-                cols.add(n)
-            if 'children' in row:
-                extract_cols(row['children'])
-    extract_cols(table)
-    if 'children' in cols:
-        cols.remove('children')
+    cols = table['cols']
 
-    if 'msec/frame' in cols:
-        cols = ('msec/frame', 'calls/frame', '%/frame', '%/parent', 'mem allocs')
-    else:
-        cols = sorted(cols)
-
-
-    out = ['<th>']
+    out = []
     for c in cols:
         out.append(u'<th>%s' % conditional_escape(c))
 
     def handle(indents, indent, t):
-        if 'msec/frame' in cols:
-            items = [d[1] for d in sorted((-float(r.get('msec/frame', '')), (n,r)) for (n,r) in t.items())]
-        else:
-            items = sorted(t.items())
+        items = sorted(t.items())
 
         item_id = 0
         for name, row in items:
@@ -118,11 +100,13 @@ def format_profile(table):
             item_id += 1
 
             out.append(u'<tr>')
-            out.append(u'<td><span class=treemarker>%s%s─%s╴</span>%s' % (indent, (u'└' if last else u'├'), (u'┬' if 'children' in row else u'─'), conditional_escape(name)))
-            for c in cols:
-                out.append(u'<td>%s%s' % ('&nbsp;&nbsp;' * indents, conditional_escape(row.get(c, ''))))
-            if 'children' in row:
-                handle(indents+1, indent+(u'  ' if last else u'│ '), row['children'])
-    handle(0, u'', table)
+            out.append(u'<td><span class=treemarker>%s%s─%s╴</span>%s' % (indent, (u'└' if last else u'├'), (u'┬' if row[0] is not None else u'─'), conditional_escape(name)))
+            outrow = []
+            for c in range(1, len(cols)):
+                outrow.append(u'<td>%s%s' % ('  ' * indents, conditional_escape(row[c])))
+            out.append('%s</td>' % ''.join(outrow))
+            if row[0] is not None:
+                handle(indents+1, indent+(u'  ' if last else u'│ '), row[0])
+    handle(0, u'', table['data'])
 
     return mark_safe(u'\n'.join(out))

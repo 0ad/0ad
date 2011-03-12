@@ -37,16 +37,22 @@ CPU capabilities
     <th>Caches (data/instruction/unified)
     <th>TLBs
     <th>Feature bits
+    <th>NUMA
 {% for cpu,users in cpus|sortedcpuitems %}
   <tr {% cycle 'class=alt' '' %}>
     <td>{{ cpu.os }}
     <td><nobr>{{ cpu.cpu_identifier }}</nobr>
     <td>{{ cpu.x86_vendor }}/{{ cpu.x86_model }}/{{ cpu.x86_family }}
-    <td>{% if cpu.cpu_frequency = -1 %}?{% else %}{{ cpu.cpu_frequency|cpufreqformat }}{% endif %}
+    <td>{% if cpu.cpu_frequency = -1 %}{% else %}{{ cpu.cpu_frequency|cpufreqformat }}{% endif %}
     <td>{{ cpu.cpu_numpackages }}&times;{{ cpu.cpu_coresperpackage }}&times;{{ cpu.cpu_logicalpercore }}&nbsp;=&nbsp;{{ cpu.cpu_numprocs }}
     <td><nobr>{{ cpu.caches|join:"<br>" }}</nobr>
     <td><nobr>{{ cpu.tlbs|join:"<br>" }}</nobr>
     <td>{% for cap in cpu.caps|sort %}{% if cap in x86_cap_descs %}<abbr title="{{ x86_cap_descs|dictget:cap }}">{{ cap }}</abbr>{% else %}{{ cap }}{% endif %} {% endfor %}
+    <td>{% if cpu.numa_numnodes != 1 %}<nobr>
+        Nodes: {{ cpu.numa_numnodes }}<br>
+        Factor: {{ cpu.numa_factor|floatformat:3 }}<br>
+        Interleaved: {{ cpu.numa_interleaved }}
+      </nobr>{% endif %}
 {% endfor %}
 </table>
 {% endblock %}

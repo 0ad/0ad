@@ -12,10 +12,7 @@ td.false.alt { background: #e22; }
 .device-status ul {
     margin: 0;
     padding: 0;
-}
-
-.device-status li {
-    list-style: none;
+    padding-left: 2em;
 }
 {% endblock %}
 
@@ -51,7 +48,7 @@ There is a column for each distinct set of reported features.</p>
     <tr><td>
     {% for device in devices %}
       <th{% safe_cycle ' class=alt' '' %}>
-        {{ device.0.renderer }} ({{ device.0.os }}):
+        {{ device.0.device }} ({{ device.0.os }}):
         <ul>{% for driver in device.1 %}<li>{{ driver }}{% endfor %}</ul>
     {% endfor %}
   {% endif %}
@@ -68,7 +65,7 @@ There is a column for each distinct set of reported features.</p>
     <tr><td>
     {% for device in devices %}
       <th{% safe_cycle ' class=alt' '' %}>
-        {{ device.0.renderer }} ({{ device.0.os }}):
+        {{ device.0.device }} ({{ device.0.os }}):
         <ul>{% for driver in device.1 %}<li>{{ driver }}{% endfor %}</ul>
     {% endfor %}
   {% endif %}

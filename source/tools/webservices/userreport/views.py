@@ -1,5 +1,6 @@
 from userreport.models import UserReport, UserReport_hwdetect
 import userreport.x86 as x86
+import userreport.gl
 
 import hashlib
 import datetime
@@ -102,15 +103,20 @@ def report_cpu(request):
             else:
                 return '%d-way' % w
 
-        def fmt_cache(c):
+        def fmt_cache(c, t):
             types = ('?', 'D', 'I ', 'U')
-            return "L%d %s: %s (%s, shared %dx, %dB line)" % (
+            if c['type'] == 0:
+                return "(Unknown %s cache)" % t
+            return "L%d %s: %s (%s, shared %dx%s)" % (
                 c['level'], types[c['type']], fmt_size(c['totalsize']),
-                fmt_assoc(c['associativity']), c['sharedby'], c['linesize']
+                fmt_assoc(c['associativity']), c['sharedby'],
+                    ('' if c['linesize'] == 64 else ', %dB line' % c['linesize'])
             )
 
-        def fmt_tlb(c):
+        def fmt_tlb(c, t):
             types = ('?', 'D', 'I ', 'U')
+            if c['type'] == 0:
+                return "(Unknown %s TLB)" % t
             return "L%d %s: %d-entry (%s, %s page)" % (
                 c['level'], types[c['type']], c['entries'],
                 fmt_assoc(c['associativity']), fmt_size(c['pagesize'])
@@ -121,16 +127,16 @@ def report_cpu(request):
             icaches = i[:]
             caches = []
             while len(dcaches) or len(icaches):
-                if len(dcaches) and len(icaches) and dcaches[0] == icaches[0]:
-                    caches.append(cb(dcaches[0]))
+                if len(dcaches) and len(icaches) and dcaches[0] == icaches[0] and dcaches[0]['type'] == 3:
+                    caches.append(cb(dcaches[0], 'U'))
                     dcaches.pop(0)
                     icaches.pop(0)
                 else:
                     if len(dcaches):
-                        caches.append(cb(dcaches[0]))
+                        caches.append(cb(dcaches[0], 'D'))
                         dcaches.pop(0)
                     if len(icaches):
-                        caches.append(cb(icaches[0]))
+                        caches.append(cb(icaches[0], 'I'))
                         icaches.pop(0)
             return tuple(caches)
 
@@ -168,29 +174,26 @@ def report_opengl_json(request):
         exts = report.gl_extensions()
         limits = report.gl_limits()
 
-        devices.setdefault(hashabledict({'vendor': json['GL_VENDOR'], 'renderer': json['GL_RENDERER'], 'os': report.os()}), {}).setdefault((hashabledict(limits), exts), set()).add(json['gfx_drv_ver'])
+        devices.setdefault(hashabledict({'renderer': report.gl_renderer(), 'os': report.os()}), {}).setdefault((hashabledict(limits), exts), set()).add(report.gl_driver())
 
     distinct_devices = []
     for (renderer, v) in devices.items():
         for (caps, versions) in v.items():
             distinct_devices.append((renderer, sorted(versions), caps))
-    distinct_devices.sort(key = lambda x: (x[0]['vendor'], x[0]['renderer'], x[0]['os'], x))
+    distinct_devices.sort(key = lambda x: (x[0]['renderer'], x[0]['os'], x))
 
     data = []
     for r,vs,(limits,exts) in distinct_devices:
-        data.append({'device': r, 'versions': vs, 'limits': limits, 'extensions': sorted(exts)})
+        data.append({'device': r, 'drivers': vs, 'limits': limits, 'extensions': sorted(exts)})
     json = simplejson.dumps(data, indent=1, sort_keys=True)
     return HttpResponse(json, content_type = 'text/plain')
-
-def device_identifier(json):
-    return json['GL_RENDERER']
 
 def report_opengl_index(request):
     reports = get_hwdetect_reports()
 
     all_limits = set()
     all_exts = set()
-    all_devices = set()
+    all_devices = {}
     ext_devices = {}
 
     for report in reports:
@@ -198,8 +201,8 @@ def report_opengl_index(request):
         if json is None:
             continue
 
-        device = device_identifier(json)
-        all_devices.add(device)
+        device = report.gl_device_identifier()
+        all_devices.setdefault(device, set()).add(report.user_id_hash)
 
         exts = report.gl_extensions()
         all_exts |= exts
@@ -211,13 +214,13 @@ def report_opengl_index(request):
 
     all_limits = sorted(all_limits)
     all_exts = sorted(all_exts)
-    all_devices = sorted(all_devices)
 
     return render_to_response('reports/opengl_index.html', {
         'all_limits': all_limits,
         'all_exts': all_exts,
         'all_devices': all_devices,
         'ext_devices': ext_devices,
+        'ext_versions': userreport.gl.glext_versions,
     })
 
 def report_opengl_feature(request, feature):
@@ -232,6 +235,7 @@ def report_opengl_feature(request, feature):
         if json is None:
             continue
 
+        device = report.gl_device_identifier()
         exts = report.gl_extensions()
         limits = hashabledict(report.gl_limits())
 
@@ -243,7 +247,7 @@ def report_opengl_feature(request, feature):
             val = limits[feature]
         all_values.add(val)
 
-        values.setdefault(val, {}).setdefault(hashabledict({'vendor': json['GL_VENDOR'], 'renderer': json['GL_RENDERER'], 'os': report.os()}), set()).add(json['gfx_drv_ver'])
+        values.setdefault(val, {}).setdefault(hashabledict({'vendor': json['GL_VENDOR'], 'renderer': report.gl_renderer(), 'os': report.os(), 'device': device}), set()).add(report.gl_driver())
 
     if values.keys() == [None]:
         raise Http404
@@ -274,7 +278,7 @@ def report_opengl_devices(request, selected):
         if json is None:
             continue
 
-        device = device_identifier(json)
+        device = report.gl_device_identifier()
         all_devices.add(device)
         if device not in selected:
             continue
@@ -285,7 +289,7 @@ def report_opengl_devices(request, selected):
         limits = report.gl_limits()
         all_limits |= set(limits.keys())
 
-        devices.setdefault(hashabledict({'vendor': json['GL_VENDOR'], 'renderer': json['GL_RENDERER'], 'os': report.os()}), {}).setdefault((hashabledict(limits), exts), set()).add(json['gfx_drv_ver'])
+        devices.setdefault(hashabledict({'device': report.gl_device_identifier(), 'os': report.os()}), {}).setdefault((hashabledict(limits), exts), set()).add(report.gl_driver())
 
     if len(selected) == 1 and len(devices) == 0:
         raise Http404
@@ -297,7 +301,7 @@ def report_opengl_devices(request, selected):
     for (renderer, v) in devices.items():
         for (caps, versions) in v.items():
             distinct_devices.append((renderer, sorted(versions), caps))
-    distinct_devices.sort(key = lambda x: (x[0]['vendor'], x[0]['renderer'], x[0]['os'], x))
+    distinct_devices.sort(key = lambda x: (x[0]['device'], x))
 
     return render_to_response('reports/opengl_device.html', {
         'selected': selected,

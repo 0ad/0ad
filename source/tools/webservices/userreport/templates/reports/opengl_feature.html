@@ -59,7 +59,7 @@ OpenGL capabilities report: {{ feature }}
 {% for device in values.true|sorteddeviceitems %}
 <tr class="data{% safe_cycle '' ' alt'%}">
 <td>{{ device.0.vendor }}
-<td class=r><a href="{% url userreport.views.report_opengl_device device.0.renderer %}">{{ device.0.renderer }}</a>
+<td class=r><a href="{% url userreport.views.report_opengl_device device.0.device %}">{{ device.0.renderer }}</a>
 <td>{{ device.0.os }}
 <td><ul>
 {% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
@@ -78,7 +78,7 @@ OpenGL capabilities report: {{ feature }}
 {% for device in values.false|sorteddeviceitems %}
 <tr class="data{% safe_cycle '' ' alt'%}">
 <td>{{ device.0.vendor }}
-<td class=r><a href="{% url userreport.views.report_opengl_device device.0.renderer %}">{{ device.0.renderer }}</a>
+<td class=r><a href="{% url userreport.views.report_opengl_device device.0.device %}">{{ device.0.renderer }}</a>
 <td>{{ device.0.os }}
 <td><ul>
 {% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
@@ -105,7 +105,7 @@ OpenGL capabilities report: {{ feature }}
 {% for device in values|dictget:val|sorteddeviceitems %}
 <tr class="data{% safe_cycle '' ' alt'%}">
 <td>{{ device.0.vendor }}
-<td class=r><a href="{% url userreport.views.report_opengl_device device.0.renderer %}">{{ device.0.renderer }}</a>
+<td class=r><a href="{% url userreport.views.report_opengl_device device.0.device %}">{{ device.0.renderer }}</a>
 <td>{{ device.0.os }}
 <td><ul>
 {% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}

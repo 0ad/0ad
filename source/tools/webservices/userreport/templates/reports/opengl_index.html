@@ -68,6 +68,11 @@ function sort_by_name(ul)
 Feel free to do whatever you want with the data.</p>
 <p>See the <a href="{% url userreport.views.index %}">index page</a> for more stuff.</p>
 
+<p>The listed extensions are based on the GL_EXTENSIONS string:
+we don't show an extension as supported if it's not explicitly advertised,
+even if GL_VERSION is a version where that extension was folded into
+the main spec.</p>
+
 <div class=col>
 <h2>Extension support</h2>
 Sort by
@@ -79,6 +84,7 @@ Sort by
 <span class=progress title="Percentage of devices that support this extension"><span class=bar style="width:{% widthratio ext_devices|dictget:ext|length all_devices|length 40 %}px">{% widthratio ext_devices|dictget:ext|length all_devices|length 100 %}%</span></span>
 (<a href="{{ ext|glext_spec_link }}">spec</a>)
 <a href="{% url userreport.views.report_opengl_feature ext %}">{{ ext }}</a>
+{% if ext in ext_versions %}(~GL{{ ext_versions|dictget:ext }}){% endif %}
 {% endfor %}
 </ul>
 
@@ -93,8 +99,8 @@ Sort by
 <div class=col>
 <h2>Device details</h2>
 <ul>
-{% for device in all_devices %}
-<li><a href="{% url userreport.views.report_opengl_device device %}">{{ device }}</a>
+{% for device,users in all_devices|sorteditems %}
+<li><a href="{% url userreport.views.report_opengl_device device %}">{{ device }}</a> {% if 0 %}({{ users|length }} users){% endif %}
 {% endfor %}
 </ul>
 </div>

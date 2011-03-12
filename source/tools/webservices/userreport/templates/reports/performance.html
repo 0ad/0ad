@@ -1,0 +1,18 @@
+{% extends "reports/base.html" %}
+{% load report_tags %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+{{ data }}
+<hr>
+???
+
+{% for report in reports %}
+{{ report }}
+<hr>
+{% endfor %}
+
+{% endblock %}
