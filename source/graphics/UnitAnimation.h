@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,8 @@
 
 #include "ps/CStr.h"
 
+#include "simulation2/system/Entity.h"
+
 class CUnit;
 class CModel;
 class CSkeletonAnim;
@@ -37,7 +39,7 @@ public:
 	/**
 	 * Construct for a given unit, defaulting to the "idle" animation.
 	 */
-	CUnitAnimation(CUnit& unit);
+	CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* object);
 
 	/**
 	 * Start playing an animation.
@@ -52,10 +54,9 @@ public:
 	 * @param once if true then the animation freezes on its last frame; otherwise it loops
 	 * @param speed fraction of actor-defined speed to play back at (should typically be 1.0)
 	 * @param desync maximum fraction of length/speed to randomly adjust timings (or 0.0 for no desyncing)
-	 * @param keepSelection if false then the random actor variation will have the selection @p name added
 	 * @param actionSound sound group name to be played at the 'action' point in the animation, or empty string
 	 */
-	void SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& actionSound);
+	void SetAnimationState(const CStr& name, bool once, float speed, float desync, const CStrW& actionSound);
 
 	/**
 	 * Adjust the speed of the current animation, so that Update(repeatTime) will do a
@@ -82,7 +83,7 @@ public:
 	 * Regenerate internal animation state from the models in the current unit.
 	 * This should be called whenever the unit is changed externally, to keep this in sync.
 	 */
-	void ReloadUnit();
+	void ReloadUnit(CModel* model, const CObjectEntry* object);
 
 private:
 	struct SModelAnimState
@@ -99,7 +100,9 @@ private:
 
 	void AddModel(CModel* model, const CObjectEntry* object);
 
-	CUnit& m_Unit;
+	entity_id_t m_Entity;
+	CModel* m_Model;
+	const CObjectEntry* m_Object;
 	CStr m_State;
 	bool m_Looping;
 	float m_OriginalSpeed;

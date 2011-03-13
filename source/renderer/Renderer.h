@@ -303,6 +303,7 @@ protected:
 	friend struct CRendererInternals;
 	friend class CVertexBuffer;
 	friend class CPatchRData;
+	friend class CDecalRData;
 	friend class FixedFunctionModelRenderer;
 	friend class ModelRenderer;
 	friend class PolygonSortModelRenderer;
@@ -332,6 +333,7 @@ protected:
 	void Submit(CPatch* patch);
 	void Submit(SOverlayLine* overlay);
 	void Submit(SOverlaySprite* overlay);
+	void Submit(CModelDecal* decal);
 	void SubmitNonRecursive(CModel* model);
 	//END: Implementation of SceneCollector
 

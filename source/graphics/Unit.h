@@ -23,7 +23,7 @@
 #include "ps/CStr.h"
 #include "simulation2/system/Entity.h"	// entity_id_t
 
-class CModel;
+class CModelAbstract;
 class CObjectEntry;
 class CObjectManager;
 class CSkeletonAnim;
@@ -52,9 +52,9 @@ public:
 	// get unit's template object
 	const CObjectEntry& GetObject() const { return *m_Object; }
 	// get unit's model data
-	CModel& GetModel() const { return *m_Model; }
+	CModelAbstract& GetModel() const { return *m_Model; }
 
-	CUnitAnimation& GetAnimation() { return *m_Animation; }
+	CUnitAnimation* GetAnimation() { return m_Animation; }
 
 	/**
 	 * Update the model's animation.
@@ -80,7 +80,7 @@ private:
 	// object from which unit was created; never NULL
 	CObjectEntry* m_Object;
 	// object model representation; never NULL
-	CModel* m_Model;
+	CModelAbstract* m_Model;
 
 	CUnitAnimation* m_Animation;
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,6 +61,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	EL(mesh);
 	EL(texture);
 	EL(colour);
+	EL(decal);
 	AT(file);
 	AT(name);
 	AT(speed);
@@ -69,6 +70,11 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	AT(attachpoint);
 	AT(actor);
 	AT(frequency);
+	AT(width);
+	AT(depth);
+	AT(angle);
+	AT(offsetx);
+	AT(offsetz);
 	#undef AT
 	#undef EL
 
@@ -130,20 +136,33 @@ bool CObjectBase::Load(const VfsPath& pathname)
 						currentVariant->m_Frequency = attr.Value.ToInt();
 				}
 
-
 				XERO_ITER_EL(variant, option)
 				{
 					int option_name = option.GetNodeName();
 
 					if (option_name == el_mesh)
+					{
 						currentVariant->m_ModelFilename = VfsPath(L"art/meshes")/(std::wstring)option.GetText().FromUTF8();
-
+					}
 					else if (option_name == el_texture)
+					{
 						currentVariant->m_TextureFilename = VfsPath(L"art/textures/skins")/(std::wstring)option.GetText().FromUTF8();
-
+					}
+					else if (option_name == el_decal)
+					{
+						XMBAttributeList attrs = option.GetAttributes();
+						Decal decal;
+						decal.m_SizeX = attrs.GetNamedItem(at_width).ToFloat();
+						decal.m_SizeZ = attrs.GetNamedItem(at_depth).ToFloat();
+						decal.m_Angle = DEGTORAD(attrs.GetNamedItem(at_angle).ToFloat());
+						decal.m_OffsetX = attrs.GetNamedItem(at_offsetx).ToFloat();
+						decal.m_OffsetZ = attrs.GetNamedItem(at_offsetz).ToFloat();
+						currentVariant->m_Decal = decal;
+					}
 					else if (option_name == el_colour)
+					{
 						currentVariant->m_Color = option.GetText();
-
+					}
 					else if (option_name == el_animations)
 					{
 						XERO_ITER_EL(option, anim_element)
@@ -361,6 +380,9 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 
 		if (! var.m_ModelFilename.empty())
 			variation.model = var.m_ModelFilename;
+
+		if (var.m_Decal.m_SizeX && var.m_Decal.m_SizeZ)
+			variation.decal = var.m_Decal;
 
 		if (! var.m_Color.empty())
 			variation.color = var.m_Color;

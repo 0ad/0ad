@@ -33,7 +33,8 @@ class CObjectBase
 	NONCOPYABLE(CObjectBase);
 public:
 
-	struct Anim {
+	struct Anim
+	{
 		// constructor
 		Anim() : m_Speed(1.f), m_ActionPos(-1.f), m_ActionPos2(-1.f) {}
 
@@ -49,20 +50,34 @@ public:
 		float m_ActionPos2;
 	};
 
-	struct Prop {
+	struct Prop
+	{
 		// name of the prop point to attach to - "Prop01", "Prop02", "Head", "LeftHand", etc ..
 		CStr m_PropPointName;
 		// name of the model file - art/actors/props/sword.xml or whatever
 		VfsPath m_ModelName;
 	};
 
+	struct Decal
+	{
+		Decal() : m_SizeX(0.f), m_SizeZ(0.f), m_Angle(0.f), m_OffsetX(0.f), m_OffsetZ(0.f) {}
+
+		float m_SizeX;
+		float m_SizeZ;
+		float m_Angle;
+		float m_OffsetX;
+		float m_OffsetZ;
+	};
+
 	struct Variant
 	{
 		Variant() : m_Frequency(0) {}
+
 		CStr m_VariantName; // lowercase name
 		int m_Frequency;
 		VfsPath m_ModelFilename;
 		VfsPath m_TextureFilename;
+		Decal m_Decal;
 		CStr m_Color;
 
 		std::vector<Anim> m_Anims;
@@ -73,6 +88,7 @@ public:
 	{
 		VfsPath texture;
 		VfsPath model;
+		Decal decal;
 		CStr color;
 		std::multimap<CStr, Prop> props;
 		std::multimap<CStr, Anim> anims;

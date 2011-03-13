@@ -32,7 +32,10 @@ CUnit::CUnit(CObjectEntry* object, CObjectManager& objectManager,
   m_ID(INVALID_ENTITY), m_ActorSelections(actorSelections),
   m_ObjectManager(objectManager)
 {
-	m_Animation = new CUnitAnimation(*this);
+	if (m_Model->ToCModel())
+		m_Animation = new CUnitAnimation(m_ID, m_Model->ToCModel(), m_Object);
+	else
+		m_Animation = NULL;
 }
 
 CUnit::~CUnit()
@@ -63,7 +66,8 @@ CUnit* CUnit::Create(const CStrW& actorName, const std::set<CStr>& selections, C
 
 void CUnit::UpdateModel(float frameTime)
 {
-	m_Animation->Update(frameTime*1000.0f);
+	if (m_Animation)
+		m_Animation->Update(frameTime*1000.0f);
 }
 
 void CUnit::SetEntitySelection(const CStr& selection)
@@ -99,17 +103,28 @@ void CUnit::ReloadObject()
 	if (newObject && newObject != m_Object)
 	{
 		// Clone the new object's base (non-instance) model
-		CModel* newModel = newObject->m_Model->Clone();
+		CModelAbstract* newModel = newObject->m_Model->Clone();
 
 		// Copy the old instance-specific settings from the old model to the new instance
 		newModel->SetTransform(m_Model->GetTransform());
 		newModel->SetPlayerID(m_Model->GetPlayerID());
-		newModel->CopyAnimationFrom(m_Model);
+		if (newModel->ToCModel() && m_Model->ToCModel())
+			newModel->ToCModel()->CopyAnimationFrom(m_Model->ToCModel());
 
 		delete m_Model;
 		m_Model = newModel;
 		m_Object = newObject;
 
-		m_Animation->ReloadUnit(); // TODO: maybe this should try to preserve animation state?
+		if (m_Model->ToCModel())
+		{
+			if (m_Animation)
+				m_Animation->ReloadUnit(m_Model->ToCModel(), m_Object); // TODO: maybe this should try to preserve animation state?
+			else
+				m_Animation = new CUnitAnimation(m_ID, m_Model->ToCModel(), m_Object);
+		}
+		else
+		{
+			SAFE_DELETE(m_Animation);
+		}
 	}
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeGloballyToMessageType(MT_TerrainChanged);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(VisualActor)
@@ -196,6 +197,12 @@ public:
 			m_Unit->GetModel().SetPlayerID(msgData.to);
 			break;
 		}
+		case MT_TerrainChanged:
+		{
+			const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
+			m_Unit->GetModel().SetTerrainDirty(msgData.i0, msgData.j0, msgData.i1, msgData.j1);
+			break;
+		}
 		}
 	}
 
@@ -232,13 +239,17 @@ public:
 		if (!m_Unit)
 			return CVector3D();
 
-		// Ensure the prop transforms are correct
-		m_Unit->GetModel().ValidatePosition();
+		if (m_Unit->GetModel().ToCModel())
+		{
+			// Ensure the prop transforms are correct
+			m_Unit->GetModel().ValidatePosition();
 
-		CModel* ammo = m_Unit->GetModel().FindFirstAmmoProp();
-		if (!ammo)
-			return CVector3D();
-		return ammo->GetTransform().GetTranslation();
+			CModelAbstract* ammo = m_Unit->GetModel().ToCModel()->FindFirstAmmoProp();
+			if (ammo)
+				return ammo->GetTransform().GetTranslation();
+		}
+
+		return CVector3D();
 	}
 
 	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup)
@@ -257,7 +268,9 @@ public:
 		m_AnimDesync = 0.05f; // TODO: make this an argument
 		m_AnimSyncRepeatTime = 0.0f;
 
-		m_Unit->GetAnimation().SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
+		m_Unit->SetEntitySelection(m_AnimName);
+		if (m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, m_SoundGroup.c_str());
 	}
 
 	virtual void SelectMovementAnimation(float runThreshold)
@@ -267,7 +280,9 @@ public:
 
 		m_AnimRunThreshold = runThreshold;
 
-		m_Unit->GetAnimation().SetAnimationState("walk", false, 1.f, 0.f, false, L"");
+		m_Unit->SetEntitySelection("walk");
+		if (m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationState("walk", false, 1.f, 0.f, L"");
 	}
 
 	virtual void SetAnimationSyncRepeat(float repeattime)
@@ -277,7 +292,8 @@ public:
 
 		m_AnimSyncRepeatTime = repeattime;
 
-		m_Unit->GetAnimation().SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
+		if (m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
 	}
 
 	virtual void SetAnimationSyncOffset(float actiontime)
@@ -285,7 +301,8 @@ public:
 		if (!m_Unit)
 			return;
 
-		m_Unit->GetAnimation().SetAnimationSyncOffset(actiontime);
+		if (m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationSyncOffset(actiontime);
 	}
 
 	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a)
@@ -320,11 +337,14 @@ public:
 
 		m_Unit->SetID(GetEntityId());
 
-		m_Unit->GetAnimation().SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, false, m_SoundGroup.c_str());
+		m_Unit->SetEntitySelection(m_AnimName);
+		if (m_Unit->GetAnimation())
+			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, m_SoundGroup.c_str());
 
 		// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
 		if (m_AnimSyncRepeatTime != 0.0f)
-			m_Unit->GetAnimation().SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
 
 		m_Unit->GetModel().SetShadingColor(shading);
 
@@ -354,11 +374,23 @@ void CCmpVisualActor::Update(fixed turnLength)
 		float speed = cmpPosition->GetDistanceTravelled().ToFloat() / turnLength.ToFloat();
 
 		if (speed == 0.0f)
-			m_Unit->GetAnimation().SetAnimationState("idle", false, 1.f, 0.f, false, L"");
+		{
+			m_Unit->SetEntitySelection("idle");
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationState("idle", false, 1.f, 0.f, L"");
+		}
 		else if (speed < m_AnimRunThreshold)
-			m_Unit->GetAnimation().SetAnimationState("walk", false, speed, 0.f, false, L"");
+		{
+			m_Unit->SetEntitySelection("walk");
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationState("walk", false, speed, 0.f, L"");
+		}
 		else
-			m_Unit->GetAnimation().SetAnimationState("run", false, speed, 0.f, false, L"");
+		{
+			m_Unit->SetEntitySelection("run");
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationState("run", false, speed, 0.f, L"");
+		}
 	}
 }
 
@@ -398,7 +430,7 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 
 	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset, floating));
 
-	CModel& model = m_Unit->GetModel();
+	CModelAbstract& model = m_Unit->GetModel();
 
 	model.SetTransform(transform);
 	m_Unit->UpdateModel(frameTime);
@@ -423,7 +455,7 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 	if (m_Visibility == ICmpRangeManager::VIS_HIDDEN)
 		return;
 
-	CModel& model = m_Unit->GetModel();
+	CModelAbstract& model = m_Unit->GetModel();
 
 	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBounds()))
 		return;

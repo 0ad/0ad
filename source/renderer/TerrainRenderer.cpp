@@ -23,11 +23,13 @@
 #include "precompiled.h"
 
 #include "graphics/Camera.h"
+#include "graphics/Decal.h"
 #include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
 #include "graphics/GameView.h"
+#include "graphics/Model.h"
 
 #include "maths/MathUtil.h"
 
@@ -38,10 +40,12 @@
 #include "ps/Profile.h"
 #include "ps/World.h"
 
+#include "renderer/DecalRData.h"
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
 #include "renderer/TerrainRenderer.h"
+#include "renderer/VertexArray.h"
 #include "renderer/WaterManager.h"
 
 #include "lib/res/graphics/ogl_shader.h"
@@ -69,12 +73,11 @@ struct TerrainRendererInternals
 	/// Which phase (submitting or rendering patches) are we in right now?
 	Phase phase;
 
-	/**
-	 * VisiblePatches: Patches that were submitted for this frame
-	 *
-	 * @todo Merge this list with CPatchRData list
-	 */
-	std::vector<CPatch*> visiblePatches;
+	/// Patches that were submitted for this frame
+	std::vector<CPatchRData*> visiblePatches;
+
+	/// Decals that were submitted for this frame
+	std::vector<CDecalRData*> visibleDecals;
 
 	/// Fancy water shader
 	Handle fancyWaterShader;
@@ -107,7 +110,7 @@ void TerrainRenderer::Submit(CPatch* patch)
 {
 	debug_assert(m->phase == Phase_Submit);
 
-	CPatchRData* data=(CPatchRData*) patch->GetRenderData();
+	CPatchRData* data = (CPatchRData*)patch->GetRenderData();
 	if (data == 0)
 	{
 		// no renderdata for patch, create it now
@@ -116,9 +119,26 @@ void TerrainRenderer::Submit(CPatch* patch)
 	}
 	data->Update();
 
-	m->visiblePatches.push_back(patch);
+	m->visiblePatches.push_back(data);
 }
 
+///////////////////////////////////////////////////////////////////
+// Submit a decal for rendering
+void TerrainRenderer::Submit(CModelDecal* decal)
+{
+	debug_assert(m->phase == Phase_Submit);
+
+	CDecalRData* data = (CDecalRData*)decal->GetRenderData();
+	if (data == 0)
+	{
+		// no renderdata for decal, create it now
+		data = new CDecalRData(decal);
+		decal->SetRenderData(data);
+	}
+	data->Update();
+
+	m->visibleDecals.push_back(data);
+}
 
 ///////////////////////////////////////////////////////////////////
 // Prepare for rendering
@@ -136,16 +156,9 @@ void TerrainRenderer::EndFrame()
 	debug_assert(m->phase == Phase_Render || m->phase == Phase_Submit);
 
 	m->visiblePatches.clear();
+	m->visibleDecals.clear();
 
 	m->phase = Phase_Submit;
-}
-
-
-///////////////////////////////////////////////////////////////////
-// Query if patches have been submitted this frame
-bool TerrainRenderer::HaveSubmissions()
-{
-	return !m->visiblePatches.empty();
 }
 
 
@@ -155,21 +168,13 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 {
 	debug_assert(m->phase == Phase_Render);
 
-	std::vector<CPatchRData*> patchRDatas;
-	patchRDatas.reserve(m->visiblePatches.size());
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-		patchRDatas.push_back(static_cast<CPatchRData*>(m->visiblePatches[i]->GetRenderData()));
-
 	// render the solid black sides of the map first
 	g_Renderer.BindTexture(0, 0);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glColor3f(0, 0, 0);
 	PROFILE_START("render terrain sides");
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderSides();
-	}
+		m->visiblePatches[i]->RenderSides();
 	PROFILE_END("render terrain sides");
 
 	// switch on required client states
@@ -192,7 +197,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
 	
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(patchRDatas);
+	CPatchRData::RenderBases(m->visiblePatches);
 	PROFILE_END("render terrain base");
 
 	// render blends
@@ -222,12 +227,34 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(patchRDatas);
+	CPatchRData::RenderBlends(m->visiblePatches);
 	PROFILE_END("render terrain blends");
 
 	// Disable second texcoord array
 	pglClientActiveTextureARB(GL_TEXTURE1);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+
+	// Render terrain decals
+
+	g_Renderer.BindTexture(1, 0);
+	pglActiveTextureARB(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	PROFILE_START("render terrain decals");
+	for (size_t i = 0; i < m->visibleDecals.size(); ++i)
+		m->visibleDecals[i]->Render();
+	PROFILE_END("render terrain decals");
+
 
 	// Now apply lighting
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
@@ -292,14 +319,15 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	}
 	else
 	{
-		const CMatrix3D& texturematrix = shadow->GetTextureMatrix();
+		losTexture.BindTexture(1);
 
+		g_Renderer.BindTexture(0, shadow->GetTexture());
+
+		const CMatrix3D& texturematrix = shadow->GetTextureMatrix();
 		pglActiveTextureARB(GL_TEXTURE0);
 		glMatrixMode(GL_TEXTURE);
 		glLoadMatrixf(&texturematrix._11);
 		glMatrixMode(GL_MODELVIEW);
-
-		glBindTexture(GL_TEXTURE_2D, shadow->GetTexture());
 
 		if (shadow->GetUseDepthTexture())
 		{
@@ -416,7 +444,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	PROFILE_START("render terrain streams");
-	CPatchRData::RenderStreams(patchRDatas, streamflags);
+	CPatchRData::RenderStreams(m->visiblePatches, streamflags);
 	PROFILE_END("render terrain streams");
 
 	glMatrixMode(GL_TEXTURE);
@@ -475,13 +503,8 @@ void TerrainRenderer::RenderPatches()
 {
 	debug_assert(m->phase == Phase_Render);
 
-	std::vector<CPatchRData*> patchRDatas;
-	patchRDatas.reserve(m->visiblePatches.size());
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-		patchRDatas.push_back(static_cast<CPatchRData*>(m->visiblePatches[i]->GetRenderData()));
-
 	glEnableClientState(GL_VERTEX_ARRAY);
-	CPatchRData::RenderStreams(patchRDatas, STREAM_POS);
+	CPatchRData::RenderStreams(m->visiblePatches, STREAM_POS);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
@@ -493,11 +516,8 @@ void TerrainRenderer::RenderOutlines()
 	debug_assert(m->phase == Phase_Render);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
-	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderOutline();
-	}
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+		m->visiblePatches[i]->RenderOutline();
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
@@ -665,7 +685,7 @@ void TerrainRenderer::RenderWater()
 
 	for(size_t i=0; i<m->visiblePatches.size(); i++)
 	{
-		CPatch* patch = m->visiblePatches[i];
+		CPatch* patch = m->visiblePatches[i]->GetPatch();
 
 		for(ssize_t dx=0; dx<PATCH_SIZE; dx++)
 		{
@@ -781,8 +801,5 @@ void TerrainRenderer::RenderPriorities()
 	glColor3f(1, 1, 0);
 
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderPriorities();
-	}
+		m->visiblePatches[i]->RenderPriorities();
 }

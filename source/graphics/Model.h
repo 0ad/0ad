@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,10 +24,10 @@
 
 #include <vector>
 
-#include "Texture.h"
-#include "MeshManager.h"
-#include "RenderableObject.h"
-#include "Material.h"
+#include "graphics/Texture.h"
+#include "graphics/Material.h"
+#include "graphics/MeshManager.h"
+#include "graphics/ModelAbstract.h"
 #include "ps/Overlay.h"
 
 struct SPropPoint;
@@ -42,7 +42,7 @@ class CSkeletonAnimManager;
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning 
 // information for a model in game
-class CModel : public CRenderableObject
+class CModel : public CModelAbstract
 {
 	NONCOPYABLE(CModel);
 
@@ -52,7 +52,7 @@ public:
 		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
 
 		const SPropPoint* m_Point;
-		CModel* m_Model;
+		CModelAbstract* m_Model;
 		CObjectEntry* m_ObjectEntry;
 
 		bool m_Hidden; // temporarily removed from rendering
@@ -64,10 +64,16 @@ public:
 	// destructor
 	~CModel();
 
+	/// Dynamic cast
+	virtual CModel* ToCModel()
+	{
+		return this;
+	}
+
 	// setup model from given geometry
 	bool InitModel(const CModelDefPtr& modeldef);
 	// calculate the world space bounds of this model
-	void CalcBounds();
+	virtual void CalcBounds();
 	// update this model's state; 'time' is the absolute time since the start of the animation, in MS
 	void UpdateTo(float time);
 
@@ -80,18 +86,14 @@ public:
 	void SetMaterial(const CMaterial &material);
 	// set the model's player ID, recursively through props
 	void SetPlayerID(size_t id);
-	// get the model's player ID, recursively through props; initial default is (size_t)-1
-	size_t GetPlayerID();
 	// set the model's player colour
-	void SetPlayerColor(const CColor& colour);
+	virtual void SetPlayerColor(const CColor& colour);
 	// set the models mod color
-	void SetShadingColor(const CColor& colour);
+	virtual void SetShadingColor(const CColor& colour);
 	// get the model's texture
 	CTexturePtr& GetTexture() { return m_Texture; }
 	// get the model's material
 	CMaterial& GetMaterial() { return m_Material; }
-	// get the model's shading color
-	CColor GetShadingColor() { return m_ShadingColor; }
 
 	// set the given animation as the current animation on this model
 	bool SetAnimation(CSkeletonAnim* anim, bool once = false);
@@ -109,11 +111,17 @@ public:
 	int GetFlags() const { return m_Flags; }
 
 	// recurse down tree setting dirty bits
-	void SetDirtyRec(int dirtyflags) {
+	virtual void SetDirtyRec(int dirtyflags) {
 		SetDirty(dirtyflags);
 		for (size_t i=0;i<m_Props.size();i++) {
 			m_Props[i].m_Model->SetDirtyRec(dirtyflags);
 		}
+	}
+
+	virtual void SetTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
+	{
+		for (size_t i = 0; i < m_Props.size(); ++i)
+			m_Props[i].m_Model->SetTerrainDirty(i0, j0, i1, j1);
 	}
 
 	// calculate object space bounds of this model, based solely on vertex positions
@@ -123,12 +131,12 @@ public:
 
 	/**
 	 * Set transform of this object.
-	 * 
+	 *
 	 * @note In order to ensure that all child props are updated properly,
 	 * you must call ValidatePosition().
 	 */
-	void SetTransform(const CMatrix3D& transform);
-	
+	virtual void SetTransform(const CMatrix3D& transform);
+
 	/**
 	 * Return whether this is a skinned/skeletal model. If it is, Get*BoneMatrices()
 	 * will return valid non-NULL arrays.
@@ -159,13 +167,13 @@ public:
 	/**
 	 * Add a prop to the model on the given point.
 	 */
-	void AddProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry);
+	void AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry);
 
 	/**
 	 * Add a prop to the model on the given point, and treat it as the ammo prop.
 	 * The prop will be hidden by default.
 	 */
-	void AddAmmoProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry);
+	void AddAmmoProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry);
 
 	/**
 	 * Show the ammo prop (if any), and hide any other props on that prop point.
@@ -180,36 +188,30 @@ public:
 	/**
 	 * Find the first prop used for ammo, by this model or its own props.
 	 */
-	CModel* FindFirstAmmoProp();
+	CModelAbstract* FindFirstAmmoProp();
 
 	// return prop list
 	std::vector<Prop>& GetProps() { return m_Props; }
 	const std::vector<Prop>& GetProps() const { return m_Props; }
 
 	// return a clone of this model
-	CModel* Clone() const;
+	virtual CModelAbstract* Clone() const;
 
 	/**
 	 * Ensure that both the transformation and the bone
 	 * matrices are correct for this model and all its props.
 	 */
-	void ValidatePosition();
-
-private:
-	// delete anything allocated by the model
-	void ReleaseData();
+	virtual void ValidatePosition();
 
 	/**
 	 * Mark this model's position and bone matrices,
 	 * and all props' positions as invalid.
 	 */
-	void InvalidatePosition();
-	
-	/**
-	 * If non-null, m_Parent points to the model that we
-	 * are attached to.
-	 */
-	CModel* m_Parent;
+	virtual void InvalidatePosition();
+
+private:
+	// delete anything allocated by the model
+	void ReleaseData();
 
 	// object flags
 	int m_Flags;
@@ -243,16 +245,6 @@ private:
 	 * If m_AmmoPropPoint is not NULL, then the index in m_Props of the ammo prop
 	 */
 	size_t m_AmmoLoadedProp;
-
-	/**
-	 * true if both transform and and bone matrices are valid.
-	 */
-	bool m_PositionValid;
-
-	// modulating color
-	CColor m_ShadingColor;
-
-	size_t m_PlayerID;
 
 	// manager object which can load animations for us
 	CSkeletonAnimManager& m_SkeletonAnimManager;

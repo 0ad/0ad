@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@ class CPatch;
 class CMiniPatch;
 class CFixedVector3D;
 class CStr8;
+class CBound;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Terrain Constants:
@@ -133,6 +134,11 @@ public:
 	void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags);
 	// mark the entire map as dirty
 	void MakeDirty(int dirtyFlags);
+
+	/**
+	 * Returns a 3D bounding box encompassing the given vertex range (inclusive)
+	 */
+	CBound GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1);
 
 	// get the base colour for the terrain (typically pure white - other colours
 	// will interact badly with LOS - but used by the Actor Viewer tool)

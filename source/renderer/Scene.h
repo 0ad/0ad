@@ -30,6 +30,8 @@
 
 class CFrustum;
 class CModel;
+class CModelAbstract;
+class CModelDecal;
 class CPatch;
 struct SOverlayLine;
 struct SOverlaySprite;
@@ -83,6 +85,11 @@ public:
 	virtual void Submit(SOverlaySprite* overlay) = 0;
 
 	/**
+	 * Submit a terrain decal.
+	 */
+	virtual void Submit(CModelDecal* decal) = 0;
+
+	/**
 	 * Submit a model that is part of the scene,
 	 * without submitting attached models.
 	 */
@@ -95,7 +102,7 @@ public:
 	 * @note This function is implemented using SubmitNonRecursive,
 	 * so you shouldn't have to reimplement it.
 	 */
-	virtual void SubmitRecursive(CModel* model);
+	virtual void SubmitRecursive(CModelAbstract* model);
 };
 
 

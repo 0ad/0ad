@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,10 +40,11 @@ static float DesyncSpeed(float speed, float desync)
 	return speed * (1.f - desync + 2.f*desync*(rand(0, 256)/255.f));
 }
 
-CUnitAnimation::CUnitAnimation(CUnit& unit)
-: m_Unit(unit), m_State("idle"), m_Looping(true), m_Speed(1.f), m_SyncRepeatTime(0.f), m_OriginalSpeed(1.f), m_Desync(0.f)
+CUnitAnimation::CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* object)
+	: m_Entity(ent), m_State("idle"), m_Looping(true),
+	  m_Speed(1.f), m_SyncRepeatTime(0.f), m_OriginalSpeed(1.f), m_Desync(0.f)
 {
-	ReloadUnit();
+	ReloadUnit(model, object);
 }
 
 void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
@@ -70,17 +71,22 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 	const std::vector<CModel::Prop>& props = model->GetProps();
 	for (std::vector<CModel::Prop>::const_iterator it = props.begin(); it != props.end(); ++it)
 	{
-		AddModel(it->m_Model, it->m_ObjectEntry);
+		CModel* propModel = it->m_Model->ToCModel();
+		if (propModel)
+			AddModel(propModel, it->m_ObjectEntry);
 	}
 }
 
-void CUnitAnimation::ReloadUnit()
+void CUnitAnimation::ReloadUnit(CModel* model, const CObjectEntry* object)
 {
+	m_Model = model;
+	m_Object = object;
+
 	m_AnimStates.clear();
-	AddModel(&m_Unit.GetModel(), &m_Unit.GetObject());
+	AddModel(m_Model, m_Object);
 }
 
-void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& actionSound)
+void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed, float desync, const CStrW& actionSound)
 {
 	m_Looping = !once;
 	m_OriginalSpeed = speed;
@@ -94,10 +100,7 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 	{
 		m_State = name;
 
-		if (! keepSelection)
-			m_Unit.SetEntitySelection(name);
-
-		ReloadUnit();
+		ReloadUnit(m_Model, m_Object);
 	}
 }
 
@@ -179,7 +182,7 @@ void CUnitAnimation::Update(float time)
 			{
 				CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 				if (!cmpSoundManager.null())
-					cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Unit.GetID());
+					cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Entity);
 			}
 
 			it->pastActionPos = true;

@@ -543,17 +543,6 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 }
 
 
-static void MarkUpdateColorRecursive(CModel& model)
-{
-	model.SetDirty(RENDERDATA_UPDATE_COLOR);
-
-	const std::vector<CModel::Prop>& props = model.GetProps();
-	for(size_t i = 0; i < props.size(); ++i) {
-		debug_assert(props[i].m_Model);
-		MarkUpdateColorRecursive(*props[i].m_Model);
-	}
-}
-
 void CGameView::CheckLightEnv()
 {
 	if (m->CachedLightEnv == g_LightEnv)
@@ -569,9 +558,8 @@ void CGameView::CheckLightEnv()
 	pTerrain->MakeDirty(RENDERDATA_UPDATE_COLOR);
 
 	const std::vector<CUnit*>& units = m->Game->GetWorld()->GetUnitManager().GetUnits();
-	for(size_t i = 0; i < units.size(); ++i) {
-		MarkUpdateColorRecursive(units[i]->GetModel());
-	}
+	for (size_t i = 0; i < units.size(); ++i)
+		units[i]->GetModel().SetDirtyRec(RENDERDATA_UPDATE_COLOR);
 }
 
 

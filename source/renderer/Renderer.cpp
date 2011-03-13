@@ -1410,6 +1410,11 @@ void CRenderer::Submit(SOverlaySprite* overlay)
 	m->overlayRenderer.Submit(overlay);
 }
 
+void CRenderer::Submit(CModelDecal* decal)
+{
+	m->terrainRenderer->Submit(decal);
+}
+
 void CRenderer::SubmitNonRecursive(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {

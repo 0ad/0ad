@@ -337,7 +337,7 @@ void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrust
 		if (!losRevealAll && !los.IsVisible(posi, posj))
 			continue;
 
-		CModel& model = m_Projectiles[i].unit->GetModel();
+		CModelAbstract& model = m_Projectiles[i].unit->GetModel();
 
 		model.ValidatePosition();
 

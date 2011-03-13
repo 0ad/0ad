@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,14 +34,23 @@
 ///////////////////////////////////////////////////////////
 // Default implementation traverses the model recursively and uses
 // SubmitNonRecursive for the actual work.
-void SceneCollector::SubmitRecursive(CModel* model)
+void SceneCollector::SubmitRecursive(CModelAbstract* model)
 {
-	SubmitNonRecursive(model);
-
-	const std::vector<CModel::Prop>& props = model->GetProps();
-	for (size_t i = 0; i < props.size(); i++)
+	if (model->ToCModel())
 	{
-		if (!props[i].m_Hidden)
-			SubmitRecursive(props[i].m_Model);
+		SubmitNonRecursive(model->ToCModel());
+
+		const std::vector<CModel::Prop>& props = model->ToCModel()->GetProps();
+		for (size_t i = 0; i < props.size(); i++)
+		{
+			if (!props[i].m_Hidden)
+				SubmitRecursive(props[i].m_Model);
+		}
 	}
+	else if (model->ToCModelDecal())
+	{
+		Submit(model->ToCModelDecal());
+	}
+	else
+		debug_warn(L"unknown model type");
 }

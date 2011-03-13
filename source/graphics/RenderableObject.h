@@ -53,6 +53,8 @@ public:
 // some renderdata necessary for the renderer to actually render it
 class CRenderableObject
 {
+	NONCOPYABLE(CRenderableObject);
+
 public:
 	// constructor
 	CRenderableObject() : m_RenderData(0), m_BoundsValid(false) {
@@ -63,6 +65,8 @@ public:
 
 	// set object transform
 	virtual void SetTransform(const CMatrix3D& transform) {
+		if (m_Transform == transform)
+			return;
 		// store transform, calculate inverse
 		m_Transform=transform;
 		m_Transform.GetInverse(m_InvTransform);

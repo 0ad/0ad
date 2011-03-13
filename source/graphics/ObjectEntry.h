@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 #ifndef INCLUDED_OBJECTENTRY
 #define INCLUDED_OBJECTENTRY
 
-class CModel;
+class CModelAbstract;
 class CSkeletonAnim;
 class CObjectBase;
 class CObjectManager;
@@ -65,7 +65,7 @@ public:
 	std::vector<CSkeletonAnim*> GetAnimations(const CStr& animationName) const;
 
 	// corresponding model
-	CModel* m_Model;
+	CModelAbstract* m_Model;
 
 private:
 	typedef std::multimap<CStr, CSkeletonAnim*> SkeletonAnimMap;

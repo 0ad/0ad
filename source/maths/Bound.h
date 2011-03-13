@@ -80,7 +80,7 @@ public:
 	/**
 	 * Render: Render the surfaces of the bound object as polygons.
 	 */
-	void Render();
+	void Render() const;
 
 private:
 	CVector3D m_Data[2];

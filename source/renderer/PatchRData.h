@@ -45,6 +45,8 @@ public:
 	static void RenderBlends(const std::vector<CPatchRData*>& patches);
 	static void RenderStreams(const std::vector<CPatchRData*>& patches, int streamflags);
 
+	CPatch* GetPatch() { return m_Patch; }
+
 private:
 	struct SSplat {
 		SSplat() : m_Texture(0), m_IndexCount(0) {}

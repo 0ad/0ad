@@ -550,3 +550,32 @@ void CTerrain::MakeDirty(int dirtyFlags)
 		}
 	}
 }
+
+CBound CTerrain::GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
+{
+	i0 = clamp(i0, (ssize_t)0, m_MapSize-1);
+	j0 = clamp(j0, (ssize_t)0, m_MapSize-1);
+	i1 = clamp(i1, (ssize_t)0, m_MapSize-1);
+	j1 = clamp(j1, (ssize_t)0, m_MapSize-1);
+
+	u16 minH = 65535;
+	u16 maxH = 0;
+
+	for (ssize_t j = j0; j <= j1; ++j)
+	{
+		for (ssize_t i = i0; i <= i1; ++i)
+		{
+			minH = std::min(minH, m_Heightmap[j*m_MapSize + i]);
+			maxH = std::max(maxH, m_Heightmap[j*m_MapSize + i]);
+		}
+	}
+
+	CBound bound;
+	bound[0].X = (float)(i0*CELL_SIZE);
+	bound[0].Y = (float)(minH*HEIGHT_SCALE);
+	bound[0].Z = (float)(j0*CELL_SIZE);
+	bound[1].X = (float)(i1*CELL_SIZE);
+	bound[1].Y = (float)(maxH*HEIGHT_SCALE);
+	bound[1].Z = (float)(j1*CELL_SIZE);
+	return bound;
+}

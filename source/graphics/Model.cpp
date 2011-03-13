@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,10 +39,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel(CSkeletonAnimManager& skeletonAnimManager)
-	: m_Parent(NULL), m_Flags(0), m_Anim(NULL), m_AnimTime(0), 
+	: m_Flags(0), m_Anim(NULL), m_AnimTime(0),
 	m_BoneMatrices(NULL), m_InverseBindBoneMatrices(NULL),
 	m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0),
-	m_PositionValid(false), m_ShadingColor(1,1,1,1), m_PlayerID((size_t)-1),
 	m_SkeletonAnimManager(skeletonAnimManager)
 {
 }
@@ -51,23 +50,6 @@ CModel::CModel(CSkeletonAnimManager& skeletonAnimManager)
 // Destructor
 CModel::~CModel()
 {
-	// Detach us from our parent
-	if (m_Parent)
-	{
-		for(std::vector<Prop>::iterator iter = m_Parent->m_Props.begin();
-		    iter != m_Parent->m_Props.end();
-		    ++iter)
-		{
-			if (iter->m_Model == this)
-			{
-				m_Parent->m_Props.erase(iter);
-				break;
-			}
-		}
-		
-		m_Parent = 0;
-	}
-	
 	ReleaseData();
 }
 
@@ -77,12 +59,11 @@ void CModel::ReleaseData()
 {
 	delete[] m_BoneMatrices;
 	delete[] m_InverseBindBoneMatrices;
+
 	for (size_t i = 0; i < m_Props.size(); ++i)
-	{
-		m_Props[i].m_Model->m_Parent = 0;
 		delete m_Props[i].m_Model;
-	}
 	m_Props.clear();
+
 	m_pModelDef = CModelDefPtr();
 
 	m_Texture.reset();
@@ -177,7 +158,7 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 	// at the origin. The box is later re-transformed onto the object, without
 	// having to recalculate the size of the box.
 	CMatrix3D transform, oldtransform = GetTransform();
-	CModel* oldparent = m_Parent;
+	CModelAbstract* oldparent = m_Parent;
 	
 	m_Parent = 0;
 	transform.SetIdentity();
@@ -384,7 +365,7 @@ void CModel::CopyAnimationFrom(CModel* source)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
-void CModel::AddProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry)
+void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry)
 {
 	// position model according to prop point position
 	model->SetTransform(point->m_Transform);
@@ -397,7 +378,7 @@ void CModel::AddProp(const SPropPoint* point, CModel* model, CObjectEntry* objec
 	m_Props.push_back(prop);
 }
 
-void CModel::AddAmmoProp(const SPropPoint* point, CModel* model, CObjectEntry* objectentry)
+void CModel::AddAmmoProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry)
 {
 	AddProp(point, model, objectentry);
 	m_AmmoPropPoint = point;
@@ -427,16 +408,20 @@ void CModel::HideAmmoProp()
 			m_Props[i].m_Hidden = (i == m_AmmoLoadedProp);
 }
 
-CModel* CModel::FindFirstAmmoProp()
+CModelAbstract* CModel::FindFirstAmmoProp()
 {
 	if (m_AmmoPropPoint)
 		return m_Props[m_AmmoLoadedProp].m_Model;
 
 	for (size_t i = 0; i < m_Props.size(); ++i)
 	{
-		CModel* model = m_Props[i].m_Model->FindFirstAmmoProp();
-		if (model)
-			return model;
+		CModel* propModel = m_Props[i].m_Model->ToCModel();
+		if (propModel)
+		{
+			CModelAbstract* model = propModel->FindFirstAmmoProp();
+			if (model)
+				return model;
+		}
 	}
 
 	return NULL;
@@ -444,7 +429,7 @@ CModel* CModel::FindFirstAmmoProp()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Clone: return a clone of this model
-CModel* CModel::Clone() const
+CModelAbstract* CModel::Clone() const
 {
 	CModel* clone = new CModel(m_SkeletonAnimManager);
 	clone->m_ObjectBounds = m_ObjectBounds;
@@ -473,7 +458,6 @@ void CModel::SetTransform(const CMatrix3D& transform)
 {
 	// call base class to set transform on this object
 	CRenderableObject::SetTransform(transform);
-	InvalidateBounds();
 	InvalidatePosition();
 }
 
@@ -486,18 +470,13 @@ void CModel::SetMaterial(const CMaterial &material)
 
 void CModel::SetPlayerID(size_t id)
 {
-	m_PlayerID = id;
+	CModelAbstract::SetPlayerID(id);
 
 	if (id != (size_t)-1)
 		m_Material.SetPlayerColor(id);
 
 	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
 		it->m_Model->SetPlayerID(id);
-}
-
-size_t CModel::GetPlayerID()
-{
-	return m_PlayerID;
 }
 
 void CModel::SetPlayerColor(const CColor& colour)
@@ -507,7 +486,8 @@ void CModel::SetPlayerColor(const CColor& colour)
 
 void CModel::SetShadingColor(const CColor& colour)
 {
-	m_ShadingColor = colour;
+	CModelAbstract::SetShadingColor(colour);
+
 	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
 		it->m_Model->SetShadingColor(colour);
 }

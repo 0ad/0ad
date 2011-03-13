@@ -134,6 +134,14 @@ CMatrix3D& CMatrix3D::operator+=(const CMatrix3D& m)
 	return *this;
 }
 
+bool CMatrix3D::operator==(const CMatrix3D &matrix) const
+{
+	for (int i = 0; i < 16; ++i)
+		if (matrix._data[i] != _data[i])
+			return false;
+	return true;
+}
+
 //Sets the identity matrix
 void CMatrix3D::SetIdentity ()
 {

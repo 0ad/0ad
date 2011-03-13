@@ -75,6 +75,9 @@ public:
 	// matrix addition/assignment
 	CMatrix3D& operator+=(const CMatrix3D &matrix);
 
+	// equality
+	bool operator==(const CMatrix3D &matrix) const;
+
 	// set this matrix to the identity matrix
 	void SetIdentity();
 	// set this matrix to the zero matrix

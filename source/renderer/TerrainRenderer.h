@@ -52,6 +52,11 @@ public:
 	void Submit(CPatch* patch);
 
 	/**
+	 * Submit: Add a terrain decal for rendering in this frame.
+	 */
+	void Submit(CModelDecal* decal);
+
+	/**
 	 * PrepareForRendering: Prepare internal data structures like vertex
 	 * buffers for rendering.
 	 *
@@ -65,15 +70,6 @@ public:
 	 * EndFrame: Remove all patches from the list of submitted patches.
 	 */
 	void EndFrame();
-
-	/**
-	 * HaveSubmissions: Query whether any patches have been submitted
-	 * for this frame.
-	 *
-	 * @return @c true if a patch has been submitted for this frame,
-	 * @c false otherwise.
-	 */
-	bool HaveSubmissions();
 
 	/**
 	 * RenderTerrain: Render textured terrain (including blends between

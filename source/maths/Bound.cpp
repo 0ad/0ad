@@ -206,37 +206,37 @@ void CBound::IntersectFrustumConservative(const CFrustum& frustum)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Render the bounding box
-void CBound::Render()
+void CBound::Render() const
 {
 	glBegin(GL_QUADS);
-		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
-		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
+		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
+		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
+		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
+		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
 
-		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
-		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
-		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
-		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
+		glTexCoord2f(1, 0); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
+		glTexCoord2f(1, 1); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
+		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
 
-		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
-		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
+		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
+		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
 
-		glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
-		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
-		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
-		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
+		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
+		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
+		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
+		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
 
-		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
-		glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
+		glTexCoord2f(0, 0); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
+		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
+		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
+		glTexCoord2f(0, 1); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
 
-		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
-		glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
-		glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
+		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
+		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
+		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
+		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
 	glEnd();
 }

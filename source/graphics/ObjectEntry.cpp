@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,18 +18,21 @@
 #include "precompiled.h"
 
 #include "ObjectEntry.h"
-#include "ObjectManager.h"
-#include "ObjectBase.h"
-#include "Model.h"
-#include "ModelDef.h"
-#include "ps/CLogger.h"
-#include "MaterialManager.h"
-#include "MeshManager.h"
-#include "SkeletonAnim.h"
-#include "TextureManager.h"
-#include "renderer/Renderer.h"
 
+#include "graphics/Decal.h"
+#include "graphics/MaterialManager.h"
+#include "graphics/MeshManager.h"
+#include "graphics/Model.h"
+#include "graphics/ModelDef.h"
+#include "graphics/ObjectBase.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/SkeletonAnim.h"
+#include "graphics/TextureManager.h"
 #include "lib/rand.h"
+#include "ps/CLogger.h"
+#include "ps/Game.h"
+#include "ps/World.h"
+#include "renderer/Renderer.h"
 
 #include <sstream>
 
@@ -70,17 +73,31 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
 
+	if (variation.decal.m_SizeX && variation.decal.m_SizeZ)
+	{
+		CTextureProperties textureProps(m_TextureName);
+
+		// Decals should be transparent, so clamp to the border (default 0,0,0,0)
+		textureProps.SetWrap(GL_CLAMP_TO_BORDER);
+
+		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+		texture->Prefetch(); // if we've loaded this model we're probably going to render it soon, so prefetch its texture
+
+		SDecal decal(texture,
+			variation.decal.m_SizeX, variation.decal.m_SizeZ,
+			variation.decal.m_Angle, variation.decal.m_OffsetX, variation.decal.m_OffsetZ,
+			m_Base->m_Properties.m_FloatOnWater);
+		m_Model = new CModelDecal(g_Game->GetWorld()->GetTerrain(), decal);
+
+		return true;
+	}
+
 	std::vector<CObjectBase::Prop> props;
 
 	for (std::multimap<CStr, CObjectBase::Prop>::iterator it = variation.props.begin(); it != variation.props.end(); ++it)
 		props.push_back(it->second);
 
 	// Build the model:
-
-/*
-	// remember the old model so we can replace any models using it later on
-	CModelDefPtr oldmodeldef = m_Model ? m_Model->GetModelDef() : CModelDefPtr();
-*/
 
 	// try and create a model
 	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));
@@ -91,20 +108,21 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	}
 
 	// delete old model, create new 
+	CModel* model = new CModel(objectManager.GetSkeletonAnimManager());
 	delete m_Model;
-	m_Model = new CModel(objectManager.GetSkeletonAnimManager());
-	m_Model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
-	m_Model->InitModel(modeldef);
-	m_Model->SetPlayerColor(m_Color);
+	m_Model = model;
+	model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
+	model->InitModel(modeldef);
+	model->SetPlayerColor(m_Color);
 
 	CTextureProperties textureProps(m_TextureName);
 	textureProps.SetWrap(GL_CLAMP_TO_EDGE);
 	CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 	texture->Prefetch(); // if we've loaded this model we're probably going to render it soon, so prefetch its texture
-	m_Model->SetTexture(texture);
+	model->SetTexture(texture);
 
 	// calculate initial object space bounds, based on vertex positions
-	m_Model->CalcObjectBounds();
+	model->CalcObjectBounds();
 
 	// load the animations
 	for (std::multimap<CStr, CObjectBase::Anim>::iterator it = variation.anims.begin(); it != variation.anims.end(); ++it)
@@ -119,7 +137,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 		if (! it->second.m_FileName.empty())
 		{
-			CSkeletonAnim* anim = m_Model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2);
+			CSkeletonAnim* anim = model->BuildAnimation(it->second.m_FileName, name, it->second.m_Speed, it->second.m_ActionPos, it->second.m_ActionPos2);
 			if (anim)
 				m_Animations.insert(std::make_pair(name, anim));
 		}
@@ -137,12 +155,12 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		m_Animations.insert(std::make_pair("idle", anim));
 
 		// Ignore errors, since they're probably saying this is a non-animated model
-		m_Model->SetAnimation(anim);
+		model->SetAnimation(anim);
 	}
 	else
 	{
 		// start up idling
-		if (!m_Model->SetAnimation(GetRandomAnimation("idle")))
+		if (!model->SetAnimation(GetRandomAnimation("idle")))
 			LOGERROR(L"Failed to set idle animation in model \"%ls\"", m_ModelName.string().c_str());
 	}
 
@@ -184,12 +202,13 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		const SPropPoint* proppoint = modeldef->FindPropPoint(ppn.c_str());
 		if (proppoint)
 		{
-			CModel* propmodel = oe->m_Model->Clone();
+			CModelAbstract* propmodel = oe->m_Model->Clone();
 			if (isAmmo)
-				m_Model->AddAmmoProp(proppoint, propmodel, oe);
+				model->AddAmmoProp(proppoint, propmodel, oe);
 			else
-				m_Model->AddProp(proppoint, propmodel, oe);
-			propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
+				model->AddProp(proppoint, propmodel, oe);
+			if (propmodel->ToCModel())
+				propmodel->ToCModel()->SetAnimation(oe->GetRandomAnimation("idle"));
 		}
 		else
 			LOGERROR(L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
@@ -198,44 +217,9 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	// setup flags
 	if (m_Base->m_Properties.m_CastShadows)
 	{
-		m_Model->SetFlags(m_Model->GetFlags()|MODELFLAG_CASTSHADOWS);
+		model->SetFlags(model->GetFlags()|MODELFLAG_CASTSHADOWS);
 	}
 
-	// replace any units using old model to now use new model; also reprop models, if necessary
-	// FIXME, RC - ugh, doesn't recurse correctly through props
-/*	
-	// (PT: Removed this, since I'm not entirely sure what it's useful for, and it
-	//  gets a bit confusing with randomised actors)
-
-	const std::vector<CUnit*>& units = g_UnitMan.GetUnits();
-	for (size_t i = 0; i < units.size(); ++i)
-	{
-		CModel* unitmodel=units[i]->GetModel();
-		if (unitmodel->GetModelDef() == oldmodeldef)
-		{
-			unitmodel->InitModel(m_Model->GetModelDef());
-			unitmodel->SetFlags(m_Model->GetFlags());
-
-			const std::vector<CModel::Prop>& newprops = m_Model->GetProps();
-			for (size_t j = 0; j < newprops.size(); j++)
-				unitmodel->AddProp(newprops[j].m_Point, newprops[j].m_Model->Clone());
-		}
-
-		std::vector<CModel::Prop>& mdlprops = unitmodel->GetProps();
-		for (size_t j = 0; j < mdlprops.size(); j++)
-		{
-			CModel::Prop& prop = mdlprops[j];
-			if (prop.m_Model)
-			{
-				if (prop.m_Model->GetModelDef() == oldmodeldef)
-				{
-					delete prop.m_Model;
-					prop.m_Model = m_Model->Clone();
-				}
-			}
-		}
-	}
-*/
 	return true;
 }
 
