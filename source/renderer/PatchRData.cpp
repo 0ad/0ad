@@ -20,6 +20,8 @@
 #include <set>
 #include <algorithm>
 
+#include <boost/tuple/tuple.hpp>
+
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Patch.h"
@@ -54,7 +56,7 @@ const ssize_t BlendOffsets[9][2] = {
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
 CPatchRData::CPatchRData(CPatch* patch) :
-	m_Patch(patch), m_VBBase(0), m_VBBaseIndices(0), m_VBSides(0), m_VBBlends(0), m_Vertices(0)
+	m_Patch(patch), m_VBSides(0), m_VBBase(0), m_VBBaseIndices(0), m_VBBlends(0), m_VBBlendIndices(0)
 {
 	debug_assert(patch);
 	Build();
@@ -64,13 +66,12 @@ CPatchRData::CPatchRData(CPatch* patch) :
 // CPatchRData destructor
 CPatchRData::~CPatchRData()
 {
-	// delete copy of vertex data
-	delete[] m_Vertices;
 	// release vertex buffer chunks
+	if (m_VBSides) g_VBMan.Release(m_VBSides);
 	if (m_VBBase) g_VBMan.Release(m_VBBase);
 	if (m_VBBaseIndices) g_VBMan.Release(m_VBBaseIndices);
-	if (m_VBSides) g_VBMan.Release(m_VBSides);
 	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
+	if (m_VBBlendIndices) g_VBMan.Release(m_VBBlendIndices);
 }
 
 const float uvFactor = 0.125f / sqrt(2.f);
@@ -140,7 +141,9 @@ struct SBlendLayer
 void CPatchRData::BuildBlends()
 {
 	m_BlendSplats.clear();
-	m_BlendVertices.clear();
+
+	std::vector<SBlendVertex> blendVertices;
+	std::vector<u16> blendIndices;
 
 	CTerrain* terrain = m_Patch->m_Parent;
 
@@ -263,43 +266,51 @@ void CPatchRData::BuildBlends()
 	for (size_t k = 0; k < blendLayers.size(); ++k)
 	{
 		SSplat& splat = m_BlendSplats[k];
-		splat.m_IndexStart = m_BlendVertices.size();
+		splat.m_IndexStart = blendIndices.size();
 		splat.m_Texture = blendLayers[k].m_Texture;
 
 		for (size_t t = 0; t < blendLayers[k].m_Tiles.size(); ++t)
 		{
 			SBlendLayer::Tile& tile = blendLayers[k].m_Tiles[t];
-			AddBlend(tile.i, tile.j, tile.shape);
+			AddBlend(blendVertices, blendIndices, tile.i, tile.j, tile.shape);
 		}
 
-		splat.m_IndexCount = m_BlendVertices.size() - splat.m_IndexStart;
+		splat.m_IndexCount = blendIndices.size() - splat.m_IndexStart;
 	}
 
-	// Release existing vertex buffer chunk
+	// Release existing vertex buffer chunks
 	if (m_VBBlends)
 	{
 		g_VBMan.Release(m_VBBlends);
 		m_VBBlends = 0;
 	}
 
-	if (m_BlendVertices.size())
+	if (m_VBBlendIndices)
+	{
+		g_VBMan.Release(m_VBBlendIndices);
+		m_VBBlendIndices = 0;
+	}
+
+	if (blendVertices.size())
 	{
 		// Construct vertex buffer
 
-		m_VBBlends = g_VBMan.Allocate(sizeof(SBlendVertex), m_BlendVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends, &m_BlendVertices[0]);
+		m_VBBlends = g_VBMan.Allocate(sizeof(SBlendVertex), blendVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends, &blendVertices[0]);
 
-		debug_assert(m_VBBlends->m_Index < 65536);
-		unsigned short base = (unsigned short)m_VBBlends->m_Index;
+		// Update the indices to include the base offset of the vertex data
+		for (size_t k = 0; k < blendIndices.size(); ++k)
+			blendIndices[k] += m_VBBlends->m_Index;
 
-		// Update the indices to include the base offset
-		for (size_t k = 0; k < m_BlendSplats.size(); ++k)
-			m_BlendSplats[k].m_IndexStart += base;
+		m_VBBlendIndices = g_VBMan.Allocate(sizeof(u16), blendIndices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+		m_VBBlendIndices->m_Owner->UpdateChunkVertices(m_VBBlendIndices, &blendIndices[0]);
 	}
 }
 
-void CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
+void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, u16 i, u16 j, u8 shape)
 {
+	CTerrain* terrain = m_Patch->m_Parent;
+
 	ssize_t gx = m_Patch->m_X * PATCH_SIZE + i;
 	ssize_t gz = m_Patch->m_Z * PATCH_SIZE + j;
 
@@ -345,41 +356,64 @@ void CPatchRData::AddBlend(u16 i, u16 j, u8 shape)
 	vtx[(base + 3) % 4].m_AlphaUVs[0] = u0;
 	vtx[(base + 3) % 4].m_AlphaUVs[1] = v1;
 
-	ssize_t vsize = PATCH_SIZE + 1;
-
 	SBlendVertex dst;
 
-	const SBaseVertex& vtx0 = m_Vertices[(j * vsize) + i];
+	size_t index = blendVertices.size();
+
 	CalculateUV(dst.m_UVs, gx, gz);
+	terrain->CalcPosition(gx, gz, dst.m_Position);
 	dst.m_AlphaUVs[0] = vtx[0].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[0].m_AlphaUVs[1];
-	dst.m_Position = vtx0.m_Position;
-	m_BlendVertices.push_back(dst);
+	blendVertices.push_back(dst);
 
-	const SBaseVertex& vtx1 = m_Vertices[(j * vsize) + i + 1];
 	CalculateUV(dst.m_UVs, gx + 1, gz);
+	terrain->CalcPosition(gx + 1, gz, dst.m_Position);
 	dst.m_AlphaUVs[0] = vtx[1].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[1].m_AlphaUVs[1];
-	dst.m_Position = vtx1.m_Position;
-	m_BlendVertices.push_back(dst);
+	blendVertices.push_back(dst);
 
-	const SBaseVertex& vtx2 = m_Vertices[((j + 1) * vsize) + i + 1];
 	CalculateUV(dst.m_UVs, gx + 1, gz + 1);
+	terrain->CalcPosition(gx + 1, gz + 1, dst.m_Position);
 	dst.m_AlphaUVs[0] = vtx[2].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[2].m_AlphaUVs[1];
-	dst.m_Position = vtx2.m_Position;
-	m_BlendVertices.push_back(dst);
+	blendVertices.push_back(dst);
 
-	const SBaseVertex& vtx3 = m_Vertices[((j + 1) * vsize) + i];
 	CalculateUV(dst.m_UVs, gx, gz + 1);
+	terrain->CalcPosition(gx, gz + 1, dst.m_Position);
 	dst.m_AlphaUVs[0] = vtx[3].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[3].m_AlphaUVs[1];
-	dst.m_Position = vtx3.m_Position;
-	m_BlendVertices.push_back(dst);
+	blendVertices.push_back(dst);
+
+	bool dir = terrain->GetTriangulationDir(gx, gz);
+	if (dir)
+	{
+		blendIndices.push_back(index+0);
+		blendIndices.push_back(index+1);
+		blendIndices.push_back(index+3);
+
+		blendIndices.push_back(index+1);
+		blendIndices.push_back(index+2);
+		blendIndices.push_back(index+3);
+	}
+	else
+	{
+		blendIndices.push_back(index+0);
+		blendIndices.push_back(index+1);
+		blendIndices.push_back(index+2);
+
+		blendIndices.push_back(index+2);
+		blendIndices.push_back(index+3);
+		blendIndices.push_back(index+0);
+	}
 }
 
 void CPatchRData::BuildIndices()
 {
+	CTerrain* terrain = m_Patch->m_Parent;
+
+	ssize_t px = m_Patch->m_X * PATCH_SIZE;
+	ssize_t pz = m_Patch->m_Z * PATCH_SIZE;
+
 	// must have allocated some vertices before trying to build corresponding indices
 	debug_assert(m_VBBase);
 
@@ -417,13 +451,33 @@ void CPatchRData::BuildIndices()
 		splat.m_Texture=tex;
 		splat.m_IndexStart=indices.size();
 
-		for (ssize_t j=0;j<PATCH_SIZE;j++) {
-			for (ssize_t i=0;i<PATCH_SIZE;i++) {
-				if (texgrid[j][i]==tex){
-					indices.push_back(u16(((j+0)*vsize+(i+0))+base));
-					indices.push_back(u16(((j+0)*vsize+(i+1))+base));
-					indices.push_back(u16(((j+1)*vsize+(i+1))+base));
-					indices.push_back(u16(((j+1)*vsize+(i+0))+base));
+		for (ssize_t j = 0; j < PATCH_SIZE; j++)
+		{
+			for (ssize_t i = 0; i < PATCH_SIZE; i++)
+			{
+				if (texgrid[j][i] == tex)
+				{
+					bool dir = terrain->GetTriangulationDir(px+i, pz+j);
+					if (dir)
+					{
+						indices.push_back(u16(((j+0)*vsize+(i+0))+base));
+						indices.push_back(u16(((j+0)*vsize+(i+1))+base));
+						indices.push_back(u16(((j+1)*vsize+(i+0))+base));
+
+						indices.push_back(u16(((j+0)*vsize+(i+1))+base));
+						indices.push_back(u16(((j+1)*vsize+(i+1))+base));
+						indices.push_back(u16(((j+1)*vsize+(i+0))+base));
+					}
+					else
+					{
+						indices.push_back(u16(((j+0)*vsize+(i+0))+base));
+						indices.push_back(u16(((j+0)*vsize+(i+1))+base));
+						indices.push_back(u16(((j+1)*vsize+(i+1))+base));
+
+						indices.push_back(u16(((j+1)*vsize+(i+1))+base));
+						indices.push_back(u16(((j+1)*vsize+(i+0))+base));
+						indices.push_back(u16(((j+0)*vsize+(i+0))+base));
+					}
 				}
 			}
 		}
@@ -452,11 +506,8 @@ void CPatchRData::BuildVertices()
 	// number of vertices in each direction in each patch
 	ssize_t vsize=PATCH_SIZE+1;
 
-	if (!m_Vertices) {
-		m_Vertices=new SBaseVertex[vsize*vsize];
-	}
-	SBaseVertex* vertices=m_Vertices;
-
+	std::vector<SBaseVertex> vertices;
+	vertices.resize(vsize*vsize);
 
 	// get index of this patch
 	ssize_t px=m_Patch->m_X;
@@ -492,7 +543,7 @@ void CPatchRData::BuildVertices()
 	if (!m_VBBase)
 		m_VBBase = g_VBMan.Allocate(sizeof(SBaseVertex), vsize * vsize, GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 
-	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
+	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase, &vertices[0]);
 }
 
 void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags side)
@@ -597,20 +648,22 @@ void CPatchRData::Update()
 	}
 }
 
+// Types used for glMultiDrawElements batching:
+
+// Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
+typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;
+
+// Group batches by index buffer
+typedef std::map<CVertexBuffer*, BatchElements> IndexBufferBatches;
+
+// Group batches by vertex buffer
+typedef std::map<CVertexBuffer*, IndexBufferBatches> VertexBufferBatches;
+
+// Group batches by texture
+typedef std::map<CTerrainTextureEntry*, VertexBufferBatches> TextureBatches;
+
 void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 {
-	// Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
-	typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;
-
-	// Group batches by index buffer
-	typedef std::map<CVertexBuffer*, BatchElements> IndexBufferBatches;
-
-	// Group batches by vertex buffer
-	typedef std::map<CVertexBuffer*, IndexBufferBatches> VertexBufferBatches;
-
-	// Group batches by texture
-	typedef std::map<CTerrainTextureEntry*, VertexBufferBatches> TextureBatches;
-
  	TextureBatches batches;
 
  	PROFILE_START("compute batches");
@@ -658,12 +711,12 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 
 				if (!g_Renderer.m_SkipSubmit)
 				{
-					pglMultiDrawElementsEXT(GL_QUADS, &batch.first[0], GL_UNSIGNED_SHORT,
+					pglMultiDrawElementsEXT(GL_TRIANGLES, &batch.first[0], GL_UNSIGNED_SHORT,
 							(GLvoid**)&batch.second[0], batch.first.size());
 				}
 
 				g_Renderer.m_Stats.m_DrawCalls++;
-				g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 2;
+				g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
 			}
 		}
 	}
@@ -677,13 +730,6 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 struct SBlendBatch
 {
 	CTerrainTextureEntry* m_Texture;
-
-	// Each multidraw batch has a list of start vertex offsets, and a list of vertex counts
-	typedef std::pair<std::vector<GLint>, std::vector<GLsizei> > BatchElements;
-
-	// Group batches by vertex buffer
-	typedef std::map<CVertexBuffer*, BatchElements> VertexBufferBatches;
-
  	VertexBufferBatches m_Batches;
 };
 
@@ -697,7 +743,8 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
  	// to avoid heavy reallocations
  	batches.reserve(256);
 
-	std::vector<std::pair<CVertexBuffer*, std::vector<SSplat> > > blendStacks;
+ 	// Each patch has a vertex buffer, index buffer, and stack of splats
+	std::vector<boost::tuple<CVertexBuffer::VBChunk*, CVertexBuffer::VBChunk*, std::vector<SSplat> > > blendStacks;
 	blendStacks.reserve(patches.size());
 
 	// Extract all the blend splats from each patch
@@ -706,9 +753,9 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
  		CPatchRData* patch = patches[i];
  		if (!patch->m_BlendSplats.empty())
  		{
- 			blendStacks.push_back(std::make_pair(patch->m_VBBlends->m_Owner, patch->m_BlendSplats));
+ 			blendStacks.push_back(boost::make_tuple(patch->m_VBBlends, patch->m_VBBlendIndices, patch->m_BlendSplats));
  			// Reverse the splats so the first to be rendered is at the back of the list
- 			std::reverse(blendStacks.back().second.begin(), blendStacks.back().second.end());
+ 			std::reverse(blendStacks.back().get<2>().begin(), blendStacks.back().get<2>().end());
  		}
  	}
 
@@ -725,12 +772,20 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 
 			for (size_t k = 0; k < blendStacks.size(); ++k)
 			{
-				if (!blendStacks[k].second.empty() && blendStacks[k].second.back().m_Texture == tex)
+				std::vector<SSplat>& splats = blendStacks[k].get<2>();
+				if (!splats.empty() && splats.back().m_Texture == tex)
 				{
-					SBlendBatch::BatchElements& batch = batches.back().m_Batches[blendStacks[k].first];
-					batch.first.push_back(blendStacks[k].second.back().m_IndexStart);
-					batch.second.push_back(blendStacks[k].second.back().m_IndexCount);
-					blendStacks[k].second.pop_back();
+					CVertexBuffer::VBChunk* vertices = blendStacks[k].get<0>();
+					CVertexBuffer::VBChunk* indices = blendStacks[k].get<1>();
+
+					BatchElements& batch = batches.back().m_Batches[vertices->m_Owner][indices->m_Owner];
+
+					batch.first.push_back(splats.back().m_IndexCount);
+
+		 			u8* indexBase = indices->m_Owner->GetBindAddress();
+		 			batch.second.push_back(indexBase + sizeof(u16)*(indices->m_Index + splats.back().m_IndexStart));
+
+					splats.pop_back();
 				}
 			}
 		}
@@ -740,10 +795,11 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 
 		for (size_t k = 0; k < blendStacks.size(); ++k)
 		{
-			if (blendStacks[k].second.size() > bestStackSize)
+			std::vector<SSplat>& splats = blendStacks[k].get<2>();
+			if (splats.size() > bestStackSize)
 			{
-				bestStackSize = blendStacks[k].second.size();
-				bestTex = blendStacks[k].second.back().m_Texture;
+				bestStackSize = splats.size();
+				bestTex = splats.back().m_Texture;
 			}
 		}
 
@@ -766,7 +822,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 		else
 			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
 
-		for (SBlendBatch::VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
+		for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
 		{
 			// Rebind the VB only if it changed since the last batch
 			if (itv->first != lastVB)
@@ -784,17 +840,22 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 				glTexCoordPointer(2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
 			}
 
-			SBlendBatch::BatchElements& batch = itv->second;
+			for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+			{
+				it->first->Bind();
 
-			// Since every blend vertex likely has distinct UV even if they
-			// share positions, there's no value in using indexed arrays, so
-			// we just use DrawArrays instead of DrawElements
-			if (!g_Renderer.m_SkipSubmit)
-				pglMultiDrawArraysEXT(GL_QUADS, &batch.first[0], &batch.second[0], batch.first.size());
+				BatchElements& batch = it->second;
 
-			g_Renderer.m_Stats.m_DrawCalls++;
-			g_Renderer.m_Stats.m_BlendSplats++;
-			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.second.begin(), batch.second.end(), 0) / 2;
+				if (!g_Renderer.m_SkipSubmit)
+				{
+					pglMultiDrawElementsEXT(GL_TRIANGLES, &batch.first[0], GL_UNSIGNED_SHORT,
+							(GLvoid**)&batch.second[0], batch.first.size());
+				}
+
+				g_Renderer.m_Stats.m_DrawCalls++;
+				g_Renderer.m_Stats.m_BlendSplats++;
+				g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+			}
 		}
 	}
 
@@ -877,12 +938,12 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int st
 
 			if (!g_Renderer.m_SkipSubmit)
 			{
-				pglMultiDrawElementsEXT(GL_QUADS, &batch.first[0], GL_UNSIGNED_SHORT,
+				pglMultiDrawElementsEXT(GL_TRIANGLES, &batch.first[0], GL_UNSIGNED_SHORT,
 						(GLvoid**)&batch.second[0], batch.first.size());
 			}
 
 			g_Renderer.m_Stats.m_DrawCalls++;
-			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 2;
+			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
 		}
 	}
 
@@ -893,32 +954,38 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int st
 
 void CPatchRData::RenderOutline()
 {
-	size_t vsize=PATCH_SIZE+1;
+	CTerrain* terrain = m_Patch->m_Parent;
+	ssize_t gx = m_Patch->m_X * PATCH_SIZE;
+	ssize_t gz = m_Patch->m_Z * PATCH_SIZE;
 
-	glBegin(GL_LINES);
-	for (ssize_t i=0;i<PATCH_SIZE;i++) {
-		glVertex3fv(&m_Vertices[i].m_Position.X);
-		glVertex3fv(&m_Vertices[i+1].m_Position.X);
+	CVector3D pos;
+	std::vector<CVector3D> line;
+
+	ssize_t i, j;
+
+	for (i = 0, j = 0; i <= PATCH_SIZE; ++i)
+	{
+		terrain->CalcPosition(gx + i, gz + j, pos);
+		line.push_back(pos);
 	}
-	glEnd();
-	glBegin(GL_LINES);
-	for (ssize_t i=0;i<PATCH_SIZE;i++) {
-		glVertex3fv(&m_Vertices[PATCH_SIZE+(i*(PATCH_SIZE+1))].m_Position.X);
-		glVertex3fv(&m_Vertices[PATCH_SIZE+((i+1)*(PATCH_SIZE+1))].m_Position.X);
+	for (i = PATCH_SIZE, j = 1; j <= PATCH_SIZE; ++j)
+	{
+		terrain->CalcPosition(gx + i, gz + j, pos);
+		line.push_back(pos);
 	}
-	glEnd();
-	glBegin(GL_LINES);
-	for (ssize_t i=1;i<PATCH_SIZE;i++) {
-		glVertex3fv(&m_Vertices[(vsize*vsize)-i].m_Position.X);
-		glVertex3fv(&m_Vertices[(vsize*vsize)-(i+1)].m_Position.X);
+	for (i = PATCH_SIZE-1, j = PATCH_SIZE; i >= 0; --i)
+	{
+		terrain->CalcPosition(gx + i, gz + j, pos);
+		line.push_back(pos);
 	}
-	glEnd();
-	glBegin(GL_LINES);
-	for (ssize_t i=1;i<PATCH_SIZE;i++) {
-		glVertex3fv(&m_Vertices[(vsize*(vsize-1))-(i*vsize)].m_Position.X);
-		glVertex3fv(&m_Vertices[(vsize*(vsize-1))-((i+1)*vsize)].m_Position.X);
+	for (i = 0, j = PATCH_SIZE-1; j >= 0; --j)
+	{
+		terrain->CalcPosition(gx + i, gz + j, pos);
+		line.push_back(pos);
 	}
-	glEnd();
+
+	glVertexPointer(3, GL_FLOAT, sizeof(CVector3D), &line[0]);
+	glDrawArrays(GL_LINE_STRIP, 0, line.size());
 }
 
 void CPatchRData::RenderSides()

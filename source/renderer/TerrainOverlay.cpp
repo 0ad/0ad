@@ -186,12 +186,28 @@ void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden, ssize_t 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	CVector3D pos;
-	glBegin(GL_QUADS);
+	glBegin(GL_TRIANGLES);
 		glColor4fv(colour.FloatArray());
-		m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
+		if (m_Terrain->GetTriangulationDir(i, j))
+		{
+			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
+
+			m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
+		}
+		else
+		{
+			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
+
+			m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
+			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
+		}
 	glEnd();
 }
 

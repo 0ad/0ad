@@ -92,7 +92,7 @@ private:
 	// build this renderdata object
 	void Build();
 
-	void AddBlend(u16 i, u16 j, u8 shape);
+	void AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, u16 i, u16 j, u8 shape);
 
 	void BuildBlends();
 	void BuildIndices();
@@ -104,30 +104,26 @@ private:
 	// owner patch
 	CPatch* m_Patch;
 
+	// vertex buffer handle for side vertices
+	CVertexBuffer::VBChunk* m_VBSides;
+
 	// vertex buffer handle for base vertices
 	CVertexBuffer::VBChunk* m_VBBase;
 
 	// vertex buffer handle for base vertex indices
 	CVertexBuffer::VBChunk* m_VBBaseIndices;
 
-	// vertex buffer handle for side vertices
-	CVertexBuffer::VBChunk* m_VBSides;
-
 	// vertex buffer handle for blend vertices
 	CVertexBuffer::VBChunk* m_VBBlends;
 
-	// patch render vertices
-	SBaseVertex* m_Vertices;
+	// vertex buffer handle for blend vertex indices
+	CVertexBuffer::VBChunk* m_VBBlendIndices;
 
 	// list of base splats to apply to this patch
 	std::vector<SSplat> m_Splats;
 
-	// vertices to use for blending transition texture passes
-	std::vector<SBlendVertex> m_BlendVertices;
-
 	// splats used in blend pass
 	std::vector<SSplat> m_BlendSplats;
 };
-
 
 #endif

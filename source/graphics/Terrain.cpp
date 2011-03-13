@@ -330,6 +330,25 @@ fixed CTerrain::GetExactGroundLevelFixed(fixed x, fixed z) const
 	              + zf.Multiply(xf1 * h01 + xf0 * h11)) / (int)(HEIGHT_UNITS_PER_METRE / 2);
 }
 
+bool CTerrain::GetTriangulationDir(ssize_t i, ssize_t j) const
+{
+	// Clamp to size-2 so we can use the tiles (i,j)-(i+1,j+1)
+	i = clamp(i, (ssize_t)0, m_MapSize-2);
+	j = clamp(j, (ssize_t)0, m_MapSize-2);
+
+	int h00 = m_Heightmap[j*m_MapSize + i];
+	int h01 = m_Heightmap[(j+1)*m_MapSize + i];
+	int h10 = m_Heightmap[j*m_MapSize + (i+1)];
+	int h11 = m_Heightmap[(j+1)*m_MapSize + (i+1)];
+
+	// Prefer triangulating in whichever direction means the midpoint of the diagonal
+	// will be the highest. (In particular this means a diagonal edge will be straight
+	// along the top, and jagged along the bottom, which makes sense for terrain.)
+	int mid1 = h00+h11;
+	int mid2 = h01+h10;
+	return (mid1 < mid2);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Resize: resize this terrain to the given size (in patches per side)
 void CTerrain::Resize(ssize_t size)
