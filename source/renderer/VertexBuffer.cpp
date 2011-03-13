@@ -35,6 +35,13 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 {
 	size_t size = MAX_VB_SIZE_BYTES;
 
+	if (target == GL_ARRAY_BUFFER)
+	{
+		// We want to store 16-bit indices to any vertex in a buffer, so the
+		// buffer must never be bigger than vertexSize*64K bytes
+		size = std::min(size, vertexSize*65536);
+	}
+
 	// allocate raw buffer
 	if (g_Renderer.m_Caps.m_VBO)
 	{
@@ -64,13 +71,10 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 CVertexBuffer::~CVertexBuffer()
 {
 	if (m_Handle)
-	{
 		pglDeleteBuffersARB(1, &m_Handle);
-	}
-	else if (m_SysMem)
-	{
+
+	if (m_SysMem)
 		delete[] m_SysMem;
-	}
 
 	// janwas 2004-06-14: release freelist
 	typedef std::list<VBChunk*>::iterator Iter;
@@ -173,6 +177,14 @@ u8* CVertexBuffer::Bind()
 	{
 		return m_SysMem;
 	}
+}
+
+u8* CVertexBuffer::GetBindAddress()
+{
+	if (g_Renderer.m_Caps.m_VBO)
+		return (u8*)0;
+	else
+		return m_SysMem;
 }
 
 void CVertexBuffer::Unbind()

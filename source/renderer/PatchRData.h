@@ -37,12 +37,13 @@ public:
 	~CPatchRData();
 
 	void Update();
-	void RenderBase();
-	void RenderBlends();
 	void RenderOutline();
-	void RenderStreams(int streamflags);
 	void RenderSides();
 	void RenderPriorities();
+
+	static void RenderBases(const std::vector<CPatchRData*>& patches);
+	static void RenderBlends(const std::vector<CPatchRData*>& patches);
+	static void RenderStreams(const std::vector<CPatchRData*>& patches, int streamflags);
 
 private:
 	struct SSplat {
@@ -63,12 +64,18 @@ private:
 		SColor4ub m_DiffuseColor;
 		// vertex uvs for base texture
 		float m_UVs[2];
+		// add some padding since VBOs prefer power-of-two sizes
+		u32 m_Padding[2];
 	};
+	cassert(sizeof(SBaseVertex) == 32);
 
 	struct SSideVertex {
 		// vertex position
 		CVector3D m_Position;
+		// add some padding
+		u32 m_Padding[1];
 	};
+	cassert(sizeof(SSideVertex) == 16);
 
 	struct SBlendVertex {
 		// vertex position
@@ -77,7 +84,10 @@ private:
 		float m_UVs[2];
 		// vertex uvs for alpha texture
 		float m_AlphaUVs[2];
+		// add some padding
+		u32 m_Padding[1];
 	};
+	cassert(sizeof(SBlendVertex) == 32);
 
 	// build this renderdata object
 	void Build();
@@ -97,6 +107,9 @@ private:
 	// vertex buffer handle for base vertices
 	CVertexBuffer::VBChunk* m_VBBase;
 
+	// vertex buffer handle for base vertex indices
+	CVertexBuffer::VBChunk* m_VBBaseIndices;
+
 	// vertex buffer handle for side vertices
 	CVertexBuffer::VBChunk* m_VBSides;
 
@@ -105,9 +118,6 @@ private:
 
 	// patch render vertices
 	SBaseVertex* m_Vertices;
-
-	// indices into base vertices for the base splats
-	std::vector<unsigned short> m_Indices;
 
 	// list of base splats to apply to this patch
 	std::vector<SSplat> m_Splats;

@@ -155,15 +155,22 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 {
 	debug_assert(m->phase == Phase_Render);
 
+	std::vector<CPatchRData*> patchRDatas;
+	patchRDatas.reserve(m->visiblePatches.size());
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+		patchRDatas.push_back(static_cast<CPatchRData*>(m->visiblePatches[i]->GetRenderData()));
+
 	// render the solid black sides of the map first
 	g_Renderer.BindTexture(0, 0);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glColor3f(0, 0, 0);
-	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
+	PROFILE_START("render terrain sides");
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderSides();
 	}
+	PROFILE_END("render terrain sides");
 
 	// switch on required client states
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -184,12 +191,10 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	static const float one[4] = { 1.f, 1.f, 1.f, 1.f };
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
 	
-	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderBase();
-	}
-	
+	PROFILE_START("render terrain base");
+	CPatchRData::RenderBases(patchRDatas);
+	PROFILE_END("render terrain base");
+
 	// render blends
 	// switch on the composite alpha map texture
 	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
@@ -216,12 +221,10 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	glDepthMask(0);
 	
 	// render blend passes for each patch
-	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderBlends();
-	}
-	
+	PROFILE_START("render terrain blends");
+	CPatchRData::RenderBlends(patchRDatas);
+	PROFILE_END("render terrain blends");
+
 	// Disable second texcoord array
 	pglClientActiveTextureARB(GL_TEXTURE1);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -412,11 +415,9 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	pglActiveTextureARB(GL_TEXTURE0);
 	pglClientActiveTextureARB(GL_TEXTURE0);
 
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderStreams(streamflags);
-	}
+	PROFILE_START("render terrain streams");
+	CPatchRData::RenderStreams(patchRDatas, streamflags);
+	PROFILE_END("render terrain streams");
 
 	glMatrixMode(GL_TEXTURE);
 	glLoadIdentity();
@@ -474,12 +475,13 @@ void TerrainRenderer::RenderPatches()
 {
 	debug_assert(m->phase == Phase_Render);
 
+	std::vector<CPatchRData*> patchRDatas;
+	patchRDatas.reserve(m->visiblePatches.size());
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+		patchRDatas.push_back(static_cast<CPatchRData*>(m->visiblePatches[i]->GetRenderData()));
+
 	glEnableClientState(GL_VERTEX_ARRAY);
-	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
-	{
-		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
-		patchdata->RenderStreams(STREAM_POS);
-	}
+	CPatchRData::RenderStreams(patchRDatas, STREAM_POS);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 

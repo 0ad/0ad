@@ -54,7 +54,7 @@ const ssize_t BlendOffsets[9][2] = {
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
 CPatchRData::CPatchRData(CPatch* patch) :
-	m_Patch(patch), m_VBBase(0), m_VBSides(0), m_VBBlends(0), m_Vertices(0)
+	m_Patch(patch), m_VBBase(0), m_VBBaseIndices(0), m_VBSides(0), m_VBBlends(0), m_Vertices(0)
 {
 	debug_assert(patch);
 	Build();
@@ -68,6 +68,7 @@ CPatchRData::~CPatchRData()
 	delete[] m_Vertices;
 	// release vertex buffer chunks
 	if (m_VBBase) g_VBMan.Release(m_VBBase);
+	if (m_VBBaseIndices) g_VBMan.Release(m_VBBaseIndices);
 	if (m_VBSides) g_VBMan.Release(m_VBSides);
 	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
 }
@@ -203,6 +204,8 @@ void CPatchRData::BuildBlends()
 
 	// Given the blend stack per tile, we want to batch together as many blends as possible.
 	// Group them into a series of layers (each of which has a single texture):
+	// (This is effectively a topological sort / linearisation of the partial order induced
+	// by the per-tile stacks, preferring to make tiles with equal textures adjacent.)
 
 	std::vector<SBlendLayer> blendLayers;
 
@@ -383,11 +386,13 @@ void CPatchRData::BuildIndices()
 	// number of vertices in each direction in each patch
 	ssize_t vsize=PATCH_SIZE+1;
 
-	// release existing indices and bins
-	m_Indices.clear();
+	std::vector<unsigned short> indices;
+	indices.reserve(PATCH_SIZE * PATCH_SIZE * 4);
+
+	// release existing splats
 	m_Splats.clear();
 
-	// build grid of textures on this patch and boundaries of adjacent patches
+	// build grid of textures on this patch
 	std::vector<CTerrainTextureEntry*> textures;
 	CTerrainTextureEntry* texgrid[PATCH_SIZE][PATCH_SIZE];
 	for (ssize_t j=0;j<PATCH_SIZE;j++) {
@@ -404,25 +409,39 @@ void CPatchRData::BuildIndices()
 	m_Splats.resize(textures.size());
 	// build indices for base splats
 	size_t base=m_VBBase->m_Index;
+	debug_assert(base + vsize*vsize < 65536); // mustn't overflow u16 indexes
 	for (size_t i=0;i<m_Splats.size();i++) {
 		CTerrainTextureEntry* tex=textures[i];
 
 		SSplat& splat=m_Splats[i];
 		splat.m_Texture=tex;
-		splat.m_IndexStart=m_Indices.size();
+		splat.m_IndexStart=indices.size();
 
 		for (ssize_t j=0;j<PATCH_SIZE;j++) {
 			for (ssize_t i=0;i<PATCH_SIZE;i++) {
 				if (texgrid[j][i]==tex){
-					m_Indices.push_back(u16(((j+0)*vsize+(i+0))+base));
-					m_Indices.push_back(u16(((j+0)*vsize+(i+1))+base));
-					m_Indices.push_back(u16(((j+1)*vsize+(i+1))+base));
-					m_Indices.push_back(u16(((j+1)*vsize+(i+0))+base));
+					indices.push_back(u16(((j+0)*vsize+(i+0))+base));
+					indices.push_back(u16(((j+0)*vsize+(i+1))+base));
+					indices.push_back(u16(((j+1)*vsize+(i+1))+base));
+					indices.push_back(u16(((j+1)*vsize+(i+0))+base));
 				}
 			}
 		}
-		splat.m_IndexCount=m_Indices.size()-splat.m_IndexStart;
+		splat.m_IndexCount=indices.size()-splat.m_IndexStart;
 	}
+
+	// Release existing vertex buffer chunk
+	if (m_VBBaseIndices)
+	{
+		g_VBMan.Release(m_VBBaseIndices);
+		m_VBBaseIndices = 0;
+	}
+
+	debug_assert(indices.size());
+
+	// Construct vertex buffer
+	m_VBBaseIndices = g_VBMan.Allocate(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+	m_VBBaseIndices->m_Owner->UpdateChunkVertices(m_VBBaseIndices, &indices[0]);
 }
 
 
@@ -578,136 +597,296 @@ void CPatchRData::Update()
 	}
 }
 
-void CPatchRData::RenderBase()
+void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 {
-	debug_assert(m_UpdateFlags==0);
+	// Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
+	typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;
 
-	SBaseVertex *base=(SBaseVertex *)m_VBBase->m_Owner->Bind();
+	// Group batches by index buffer
+	typedef std::map<CVertexBuffer*, BatchElements> IndexBufferBatches;
 
-	// setup data pointers
-	GLsizei stride = sizeof(SBaseVertex);
-	glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-	glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-	glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs[0]);
+	// Group batches by vertex buffer
+	typedef std::map<CVertexBuffer*, IndexBufferBatches> VertexBufferBatches;
 
-	// render each splat
-	for (size_t i=0;i<m_Splats.size();i++) {
-		SSplat& splat=m_Splats[i];
+	// Group batches by texture
+	typedef std::map<CTerrainTextureEntry*, VertexBufferBatches> TextureBatches;
 
-		if (splat.m_Texture)
-			splat.m_Texture->GetTexture()->Bind();
+ 	TextureBatches batches;
+
+ 	PROFILE_START("compute batches");
+
+ 	// Collect all the patches' base splats into their appropriate batches
+ 	for (size_t i = 0; i < patches.size(); ++i)
+ 	{
+ 		CPatchRData* patch = patches[i];
+ 		for (size_t j = 0; j < patch->m_Splats.size(); ++j)
+ 		{
+ 			SSplat& splat = patch->m_Splats[j];
+
+ 			BatchElements& batch = batches[splat.m_Texture][patch->m_VBBase->m_Owner][patch->m_VBBaseIndices->m_Owner];
+
+ 			batch.first.push_back(splat.m_IndexCount);
+
+ 			u8* indexBase = patch->m_VBBaseIndices->m_Owner->GetBindAddress();
+ 			batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index + splat.m_IndexStart));
+		}
+ 	}
+
+ 	PROFILE_END("compute batches");
+
+ 	// Render each batch
+ 	for (TextureBatches::iterator itt = batches.begin(); itt != batches.end(); ++itt)
+	{
+		if (itt->first)
+			itt->first->GetTexture()->Bind();
 		else
 			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
 
-		if (!g_Renderer.m_SkipSubmit) {
-			glDrawElements(GL_QUADS, (GLsizei)splat.m_IndexCount,
-				GL_UNSIGNED_SHORT, &m_Indices[splat.m_IndexStart]);
+		for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
+		{
+			GLsizei stride = sizeof(SBaseVertex);
+			SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
+			glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+			glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
+			glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs[0]);
+
+			for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+			{
+				it->first->Bind();
+
+				BatchElements& batch = it->second;
+
+				if (!g_Renderer.m_SkipSubmit)
+				{
+					pglMultiDrawElementsEXT(GL_QUADS, &batch.first[0], GL_UNSIGNED_SHORT,
+							(GLvoid**)&batch.second[0], batch.first.size());
+				}
+
+				g_Renderer.m_Stats.m_DrawCalls++;
+				g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 2;
+			}
+		}
+	}
+
+	CVertexBuffer::Unbind();
+}
+
+/**
+ * Helper structure for RenderBlends.
+ */
+struct SBlendBatch
+{
+	CTerrainTextureEntry* m_Texture;
+
+	// Each multidraw batch has a list of start vertex offsets, and a list of vertex counts
+	typedef std::pair<std::vector<GLint>, std::vector<GLsizei> > BatchElements;
+
+	// Group batches by vertex buffer
+	typedef std::map<CVertexBuffer*, BatchElements> VertexBufferBatches;
+
+ 	VertexBufferBatches m_Batches;
+};
+
+void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
+{
+ 	std::vector<SBlendBatch> batches;
+
+ 	PROFILE_START("compute batches");
+
+ 	// Reserve an arbitrary size that's probably big enough in most cases,
+ 	// to avoid heavy reallocations
+ 	batches.reserve(256);
+
+	std::vector<std::pair<CVertexBuffer*, std::vector<SSplat> > > blendStacks;
+	blendStacks.reserve(patches.size());
+
+	// Extract all the blend splats from each patch
+ 	for (size_t i = 0; i < patches.size(); ++i)
+ 	{
+ 		CPatchRData* patch = patches[i];
+ 		if (!patch->m_BlendSplats.empty())
+ 		{
+ 			blendStacks.push_back(std::make_pair(patch->m_VBBlends->m_Owner, patch->m_BlendSplats));
+ 			// Reverse the splats so the first to be rendered is at the back of the list
+ 			std::reverse(blendStacks.back().second.begin(), blendStacks.back().second.end());
+ 		}
+ 	}
+
+ 	// Rearrange the collection of splats to be grouped by texture, preserving
+ 	// order of splats within each patch:
+ 	// (This is exactly the same algorithm used in CPatchRData::BuildBlends,
+ 	// but applied to patch-sized splats rather than to tile-sized splats;
+ 	// see that function for comments on the algorithm.)
+	while (true)
+	{
+		if (!batches.empty())
+		{
+			CTerrainTextureEntry* tex = batches.back().m_Texture;
+
+			for (size_t k = 0; k < blendStacks.size(); ++k)
+			{
+				if (!blendStacks[k].second.empty() && blendStacks[k].second.back().m_Texture == tex)
+				{
+					SBlendBatch::BatchElements& batch = batches.back().m_Batches[blendStacks[k].first];
+					batch.first.push_back(blendStacks[k].second.back().m_IndexStart);
+					batch.second.push_back(blendStacks[k].second.back().m_IndexCount);
+					blendStacks[k].second.pop_back();
+				}
+			}
 		}
 
-		// bump stats
-		g_Renderer.m_Stats.m_DrawCalls++;
-		g_Renderer.m_Stats.m_TerrainTris+=splat.m_IndexCount/2;
+		CTerrainTextureEntry* bestTex = NULL;
+		size_t bestStackSize = 0;
+
+		for (size_t k = 0; k < blendStacks.size(); ++k)
+		{
+			if (blendStacks[k].second.size() > bestStackSize)
+			{
+				bestStackSize = blendStacks[k].second.size();
+				bestTex = blendStacks[k].second.back().m_Texture;
+			}
+		}
+
+		if (bestStackSize == 0)
+			break;
+
+		SBlendBatch layer;
+		layer.m_Texture = bestTex;
+		batches.push_back(layer);
 	}
 
-	CVertexBuffer::Unbind();
-}
+ 	PROFILE_END("compute batches");
 
-void CPatchRData::RenderStreams(int streamflags)
-{
-	debug_assert(m_UpdateFlags==0);
+ 	CVertexBuffer* lastVB = NULL;
 
-	SBaseVertex* base=(SBaseVertex *)m_VBBase->m_Owner->Bind();
-
-	// setup data pointers
-	GLsizei stride = sizeof(SBaseVertex);
-	glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
-	if (streamflags & STREAM_UV0)
+ 	for (std::vector<SBlendBatch>::iterator itt = batches.begin(); itt != batches.end(); ++itt)
 	{
-		glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs);
-	}
-	else if (streamflags & STREAM_POSTOUV0)
-	{
-		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-	}
-	if (streamflags & STREAM_POSTOUV1)
-	{
-		pglClientActiveTextureARB(GL_TEXTURE1);
-		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-		pglClientActiveTextureARB(GL_TEXTURE0);
-	}
-	if (streamflags & STREAM_POSTOUV2)
-	{
-		pglClientActiveTextureARB(GL_TEXTURE2);
-		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-		pglClientActiveTextureARB(GL_TEXTURE0);
-	}
-	if (streamflags & STREAM_POSTOUV3)
-	{
-		pglClientActiveTextureARB(GL_TEXTURE3);
-		glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-		pglClientActiveTextureARB(GL_TEXTURE0);
-	}
-	if (streamflags & STREAM_COLOR)
-	{
-		glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-	}
-
-	// render all base splats at once
-	if (!g_Renderer.m_SkipSubmit) {
-		glDrawElements(GL_QUADS,(GLsizei)m_Indices.size(),GL_UNSIGNED_SHORT,&m_Indices[0]);
-	}
-
-	// bump stats
-	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_TerrainTris+=m_Indices.size()/2;
-
-	CVertexBuffer::Unbind();
-}
-
-
-void CPatchRData::RenderBlends()
-{
-	debug_assert(m_UpdateFlags==0);
-
-	if (m_BlendVertices.empty())
-		return;
-
-	u8* base=m_VBBlends->m_Owner->Bind();
-
-	// setup data pointers
-	GLsizei stride=sizeof(SBlendVertex);
-	// ((GCC warns about offsetof: SBlendVertex contains a CVector3D which has
-	// a constructor, and so is not a POD type, and so offsetof is theoretically
-	// invalid - see http://gcc.gnu.org/ml/gcc/2003-11/msg00281.html - but it
-	// doesn't seem to be worth changing this code since it works anyway.))
-	glVertexPointer(3,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_Position));
-
-	pglClientActiveTextureARB(GL_TEXTURE0);
-	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_UVs[0]));
-
-	pglClientActiveTextureARB(GL_TEXTURE1);
-	glTexCoordPointer(2,GL_FLOAT,stride,base+offsetof(SBlendVertex,m_AlphaUVs[0]));
-
-	for (size_t i=0;i<m_BlendSplats.size();i++) {
-		SSplat& splat=m_BlendSplats[i];
-
-		if (splat.m_Texture)
-			splat.m_Texture->GetTexture()->Bind();
+		if (itt->m_Texture)
+			itt->m_Texture->GetTexture()->Bind();
 		else
 			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
 
-		if (!g_Renderer.m_SkipSubmit) {
+		for (SBlendBatch::VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
+		{
+			// Rebind the VB only if it changed since the last batch
+			if (itv->first != lastVB)
+			{
+				lastVB = itv->first;
+				GLsizei stride = sizeof(SBlendVertex);
+				SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
+
+				glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+
+				pglClientActiveTextureARB(GL_TEXTURE0);
+				glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs[0]);
+
+				pglClientActiveTextureARB(GL_TEXTURE1);
+				glTexCoordPointer(2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
+			}
+
+			SBlendBatch::BatchElements& batch = itv->second;
+
 			// Since every blend vertex likely has distinct UV even if they
 			// share positions, there's no value in using indexed arrays, so
 			// we just use DrawArrays instead of DrawElements
-			glDrawArrays(GL_QUADS, (GLint)splat.m_IndexStart, (GLsizei)splat.m_IndexCount);
+			if (!g_Renderer.m_SkipSubmit)
+				pglMultiDrawArraysEXT(GL_QUADS, &batch.first[0], &batch.second[0], batch.first.size());
+
+			g_Renderer.m_Stats.m_DrawCalls++;
+			g_Renderer.m_Stats.m_BlendSplats++;
+			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.second.begin(), batch.second.end(), 0) / 2;
+		}
+	}
+
+	pglClientActiveTextureARB(GL_TEXTURE0);
+
+	CVertexBuffer::Unbind();
+}
+
+void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int streamflags)
+{
+	// Each batch has a list of index counts, and a list of pointers-to-first-indexes
+	typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;
+
+	// Group batches by index buffer
+	typedef std::map<CVertexBuffer*, BatchElements> IndexBufferBatches;
+
+	// Group batches by vertex buffer
+	typedef std::map<CVertexBuffer*, IndexBufferBatches> VertexBufferBatches;
+
+ 	VertexBufferBatches batches;
+
+ 	PROFILE_START("compute batches");
+
+ 	// Collect all the patches into their appropriate batches
+ 	for (size_t i = 0; i < patches.size(); ++i)
+ 	{
+ 		CPatchRData* patch = patches[i];
+		BatchElements& batch = batches[patch->m_VBBase->m_Owner][patch->m_VBBaseIndices->m_Owner];
+
+		batch.first.push_back(patch->m_VBBaseIndices->m_Count);
+
+		u8* indexBase = patch->m_VBBaseIndices->m_Owner->GetBindAddress();
+ 		batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index));
+ 	}
+
+ 	PROFILE_END("compute batches");
+
+ 	// Render each batch
+ 	for (VertexBufferBatches::iterator itv = batches.begin(); itv != batches.end(); ++itv)
+	{
+		GLsizei stride = sizeof(SBaseVertex);
+		SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
+
+		glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+		if (streamflags & STREAM_UV0)
+		{
+			pglClientActiveTextureARB(GL_TEXTURE0);
+			glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs);
+		}
+		if (streamflags & STREAM_POSTOUV0)
+		{
+			pglClientActiveTextureARB(GL_TEXTURE0);
+			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+		}
+		if (streamflags & STREAM_POSTOUV1)
+		{
+			pglClientActiveTextureARB(GL_TEXTURE1);
+			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+		}
+		if (streamflags & STREAM_POSTOUV2)
+		{
+			pglClientActiveTextureARB(GL_TEXTURE2);
+			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+		}
+		if (streamflags & STREAM_POSTOUV3)
+		{
+			pglClientActiveTextureARB(GL_TEXTURE3);
+			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
+		}
+		if (streamflags & STREAM_COLOR)
+		{
+			glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
 		}
 
-		// bump stats
-		g_Renderer.m_Stats.m_DrawCalls++;
-		g_Renderer.m_Stats.m_BlendSplats++;
-		g_Renderer.m_Stats.m_TerrainTris+=splat.m_IndexCount/2;
+		for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+		{
+			it->first->Bind();
+
+			BatchElements& batch = it->second;
+
+			if (!g_Renderer.m_SkipSubmit)
+			{
+				pglMultiDrawElementsEXT(GL_QUADS, &batch.first[0], GL_UNSIGNED_SHORT,
+						(GLvoid**)&batch.second[0], batch.first.size());
+			}
+
+			g_Renderer.m_Stats.m_DrawCalls++;
+			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 2;
+		}
 	}
+
+	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	CVertexBuffer::Unbind();
 }

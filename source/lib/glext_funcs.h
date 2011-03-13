@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -62,6 +62,10 @@ actually supported).
 
 // GL_EXT_draw_range_elements / GL1.2:
 FUNC2(void, glDrawRangeElementsEXT, glDrawRangeElements, "1.2", (GLenum, GLuint, GLuint, GLsizei, GLenum, GLvoid*))
+
+// GL_EXT_multi_draw_arrays / GL1.4
+FUNC2(void, glMultiDrawArraysEXT, glMultiDrawArrays, "1.4", (GLenum, GLint*, GLsizei*, GLsizei))
+FUNC2(void, glMultiDrawElementsEXT, glMultiDrawElements, "1.4", (GLenum, GLsizei*, GLenum, GLvoid**, GLsizei))
 
 // GL_ARB_multitexture / GL1.3:
 FUNC2(void, glMultiTexCoord2fARB, glMultiTexCoord2f, "1.3", (int, float, float))
