@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "lib/bits.h"
 #include "lib/ogl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
@@ -26,9 +27,10 @@
 #include "renderer/VertexBufferManager.h"
 
 
-VertexArray::VertexArray(bool dynamic)
+VertexArray::VertexArray(GLenum usage, GLenum target)
 {
-	m_Dynamic = dynamic;
+	m_Usage = usage;
+	m_Target = target;
 	m_NumVertices = 0;
 	
 	m_VB = 0;
@@ -70,7 +72,7 @@ void VertexArray::SetNumVertices(size_t num)
 // Add vertex attributes like Position, Normal, UV
 void VertexArray::AddAttribute(Attribute* attr)
 {
-	debug_assert((attr->type == GL_FLOAT || attr->type == GL_UNSIGNED_BYTE) && "Unsupported attribute type");
+	debug_assert((attr->type == GL_FLOAT || attr->type == GL_UNSIGNED_SHORT || attr->type == GL_UNSIGNED_BYTE) && "Unsupported attribute type");
 	debug_assert(attr->elems >= 1 && attr->elems <= 4);
 
 	attr->vertexArray = this;
@@ -133,6 +135,16 @@ VertexArrayIterator<SColor4ub> VertexArray::Attribute::GetIterator<SColor4ub>() 
 	return vertexArray->MakeIterator<SColor4ub>(this);
 }
 
+template<>
+VertexArrayIterator<u16> VertexArray::Attribute::GetIterator<u16>() const
+{
+	debug_assert(vertexArray);
+	debug_assert(type == GL_UNSIGNED_SHORT);
+	debug_assert(elems >= 1);
+
+	return vertexArray->MakeIterator<u16>(this);
+}
+
 
 
 static size_t RoundStride(size_t stride)
@@ -146,7 +158,7 @@ static size_t RoundStride(size_t stride)
 	if (stride <= 16)
 		return 16;
 	
-	return (stride + 31) & ~31;
+	return round_up(stride, (size_t)32);
 }
 
 // Re-layout by assigning offsets on a first-come first-serve basis,
@@ -160,7 +172,7 @@ void VertexArray::Layout()
 	
 	//debug_printf(L"Layouting VertexArray\n");
 	
-	for(int idx = (int)m_Attributes.size()-1; idx >= 0; --idx)
+	for (ssize_t idx = m_Attributes.size()-1; idx >= 0; --idx)
 	{
 		Attribute* attr = m_Attributes[idx];
 		
@@ -173,23 +185,31 @@ void VertexArray::Layout()
 		case GL_UNSIGNED_BYTE:
 			attrSize = sizeof(GLubyte);
 			break;
+		case GL_UNSIGNED_SHORT:
+			attrSize = sizeof(GLushort);
+			break;
 		case GL_FLOAT:
 			attrSize = sizeof(GLfloat);
 			break;
 		default:
 			attrSize = 0;
-			debug_warn(L"Bad AttributeInfo::Type"); break;
+			debug_warn(L"Bad Attribute::type"); break;
 		}
 
 		attrSize *= attr->elems;
 		
 		attr->offset = m_Stride;
-		m_Stride = (m_Stride + attrSize + 3) & ~3;
-	
+
+		m_Stride += attrSize;
+
+		if (m_Target == GL_ARRAY_BUFFER)
+			m_Stride = round_up(m_Stride, (size_t)4);
+
 		//debug_printf(L"%i: offset: %u\n", idx, attr->offset);
 	}
 	
-	m_Stride = RoundStride(m_Stride);
+	if (m_Target == GL_ARRAY_BUFFER)
+		m_Stride = RoundStride(m_Stride);
 	
 	//debug_printf(L"Stride: %u\n", m_Stride);
 	
@@ -205,7 +225,7 @@ void VertexArray::Upload()
 	debug_assert(m_BackingStore);
 	
 	if (!m_VB)
-		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Dynamic);
+		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Usage, m_Target);
 
 	if (!m_VB) // failed to allocate VBO
 		return;
@@ -233,3 +253,17 @@ void VertexArray::FreeBackingStore()
 	m_BackingStore = 0;
 }
 
+
+
+VertexIndexArray::VertexIndexArray(GLenum usage) :
+	VertexArray(usage, GL_ELEMENT_ARRAY_BUFFER)
+{
+	m_Attr.type = GL_UNSIGNED_SHORT;
+	m_Attr.elems = 1;
+	AddAttribute(&m_Attr);
+}
+
+VertexArrayIterator<u16> VertexIndexArray::GetIterator() const
+{
+	return m_Attr.GetIterator<u16>();
+}

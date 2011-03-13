@@ -43,7 +43,7 @@
 struct FFModelDef : public CModelDefRPrivate
 {
 	/// Indices are the same for all models, so share them
-	u16* m_Indices;
+	VertexIndexArray m_IndexArray;
 
 	/// Static per-CModelDef vertex array
 	VertexArray m_Array;
@@ -52,12 +52,11 @@ struct FFModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_UV;
 
 	FFModelDef(const CModelDefPtr& mdef);
-	~FFModelDef() { delete[] m_Indices; }
 };
 
 
 FFModelDef::FFModelDef(const CModelDefPtr& mdef)
-	: m_Array(false)
+	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -75,8 +74,11 @@ FFModelDef::FFModelDef(const CModelDefPtr& mdef)
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
 
-	m_Indices = new u16[mdef->GetNumFaces()*3];
-	ModelRenderer::BuildIndices(mdef, m_Indices);
+	m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
+	m_IndexArray.Layout();
+	ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
+	m_IndexArray.Upload();
+	m_IndexArray.FreeBackingStore();
 }
 
 
@@ -89,7 +91,7 @@ struct FFModel
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Color;
 
-	FFModel() : m_Array(true) { }
+	FFModel() : m_Array(GL_DYNAMIC_DRAW) { }
 };
 
 
@@ -267,6 +269,8 @@ void FixedFunctionModelRenderer::RenderModel(int streamflags, CModel* model, voi
 	u8* base = ffmodel->m_Array.Bind();
 	GLsizei stride = (GLsizei)ffmodel->m_Array.GetStride();
 
+	u8* indexBase = m->ffmodeldef->m_IndexArray.Bind();
+
 	glVertexPointer(3, GL_FLOAT, stride, base + ffmodel->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
 		glColorPointer(3, ffmodel->m_Color.type, stride, base + ffmodel->m_Color.offset);
@@ -284,7 +288,7 @@ void FixedFunctionModelRenderer::RenderModel(int streamflags, CModel* model, voi
 
 	if (!g_Renderer.m_SkipSubmit) {
 		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
-					   (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->ffmodeldef->m_Indices);
+					   (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
 	}
 
 	// bump stats

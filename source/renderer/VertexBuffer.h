@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,25 +30,12 @@
 // absolute maximum (bytewise) size of each GL vertex buffer object
 #define MAX_VB_SIZE_BYTES		(512*1024)
 
-template <typename T>
-struct ctor_dtor_logger;
-
 ///////////////////////////////////////////////////////////////////////////////
 // CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying 
-// some additional functionality for batching and sharing buffers between
-// multiple objects
+// some additional functionality for sharing buffers between multiple objects
 class CVertexBuffer
 {
 public:
-	// Batch: batch definition - defines indices into the VB to use when rendering,
-	// and the texture used when doing so
-	struct Batch {
-		// list of indices into the vertex buffer of primitives within the batch
-		std::vector<std::pair<size_t,u16*> > m_IndexData;
-		// texture to apply when rendering batch
-		Handle m_Texture;
-	};
-
 	// VBChunk: describes a portion of this vertex buffer
 	struct VBChunk
 	{
@@ -62,7 +49,7 @@ public:
 
 public:
 	// constructor, destructor
-	CVertexBuffer(size_t vertexSize, bool dynamic);
+	CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target);
 	~CVertexBuffer();
 
 	// bind to this buffer; return pointer to address required as parameter
@@ -72,36 +59,25 @@ public:
 	// unbind any currently-bound buffer, so glVertexPointer etc calls will not attempt to use it
 	static void Unbind();
 
-	// clear lists of all batches 
-	void ClearBatchIndices();
-
-	// add a batch to the render list for this buffer
-	void AppendBatch(VBChunk* chunk,Handle texture,size_t numIndices,u16* indices);
-
 	// update vertex data for given chunk
-	void UpdateChunkVertices(VBChunk* chunk,void* data);
-
-	// return this VBs batch list
-	const std::vector<Batch*>& GetBatches() const { return m_Batches; }
+	void UpdateChunkVertices(VBChunk* chunk, void* data);
 
 	size_t GetVertexSize() const { return m_VertexSize; }
 
-	// free memory
-	static void Shutdown();
+	size_t GetBytesReserved() const;
+	size_t GetBytesAllocated() const;
 
 protected:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager
 	
 	// try to allocate a buffer of given number of vertices (each of given size), 
 	// and with the given type - return null if no free chunks available
-	VBChunk* Allocate(size_t vertexSize,size_t numVertices,bool dynamic);
+	VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target);
 	// return given chunk to this buffer
 	void Release(VBChunk* chunk);
 	
 	
 private:	
-	// set of all possible batches that can be used by this VB
-	std::vector<Batch*> m_Batches;
 	// vertex size of this vertex buffer
 	size_t m_VertexSize;
 	// number of vertices of above size in this buffer
@@ -114,11 +90,10 @@ private:
 	GLuint m_Handle;
 	// raw system memory for systems not supporting VBOs
 	u8* m_SysMem;
-	// type of the buffer - dynamic?
-	bool m_Dynamic;
-	
-	// list of all spare batches, shared between all vbs
-	static std::vector<Batch *> m_FreeBatches;
+	// usage type of the buffer (GL_STATIC_DRAW etc)
+	GLenum m_Usage;
+	// buffer target (GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER)
+	GLenum m_Target;
 };
 
 #endif

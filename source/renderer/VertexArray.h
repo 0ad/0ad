@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -116,8 +116,6 @@ private:
 // support with hardcoded vertex structures.
 // This class chooses the vertex layout at runtime, based on the attributes
 // that are actually needed.
-// Furthermore, it stores dynamic and static attributes in different
-// vertex buffers, so that needless re-uploads of static data is avoided.
 //
 // Note that this class will not allocate any OpenGL resources until one
 // of the Upload functions is called.
@@ -126,7 +124,7 @@ class VertexArray
 public:
 	struct Attribute
 	{
-		// Data type. Currently supported: GL_FLOAT
+		// Data type. Currently supported: GL_FLOAT, GL_UNSIGNED_BYTE
 		GLenum type;
 		// How many elements per vertex (e.g. 3 for RGB, 2 for UV)
 		GLuint elems;
@@ -139,7 +137,7 @@ public:
 		Attribute() : type(0), elems(0), offset(0), vertexArray(0) { }
 	
 		// Get an iterator for the given attribute that initially points at the first vertex.
-		// Supported types T: CVector3D, CVector4D, float[], SColor3ub, SColor4ub
+		// Supported types T: CVector3D, CVector4D, float[2], SColor3ub, SColor4ub
 		// This function verifies at runtime that the requested type T matches
 		// the attribute definition passed to AddAttribute().
 		template<typename T>
@@ -147,7 +145,7 @@ public:
 	};
 	
 public:
-	VertexArray(bool dynamic);
+	VertexArray(GLenum usage, GLenum target = GL_ARRAY_BUFFER);
 	~VertexArray();
 	
 	// Set the number of vertices stored in the array
@@ -163,7 +161,7 @@ public:
 	// attributes.
 	// All vertex data is lost when a vertex array is re-layouted.
 	void Layout();
-	// (Re-)Upload the static/dynamic attributes of the vertex array.
+	// (Re-)Upload the attributes of the vertex array.
 	void Upload();
 	// Bind this array, returns the base address for calls to glVertexPointer etc.
 	u8* Bind();
@@ -182,7 +180,8 @@ private:
 		return VertexArrayIterator<T>(m_BackingStore + attr->offset, m_Stride);
 	}
 
-	bool m_Dynamic;
+	GLenum m_Usage;
+	GLenum m_Target;
 	size_t m_NumVertices;
 	std::vector<Attribute*> m_Attributes;
 
@@ -191,5 +190,21 @@ private:
 	char* m_BackingStore;
 };
 
+/**
+ * A VertexArray that is specialised to handle 16-bit array indices.
+ * Call Bind() and pass the return value to the indices parameter of
+ * glDrawElements/glDrawRangeElements/glMultiDrawElements.
+ * Use CVertexBuffer::Unbind() to unbind the array.
+ */
+class VertexIndexArray : public VertexArray
+{
+public:
+	VertexIndexArray(GLenum usage);
+
+	VertexArrayIterator<u16> GetIterator() const;
+
+private:
+	Attribute m_Attr;
+};
 
 #endif // INCLUDED_VERTEXARRAY

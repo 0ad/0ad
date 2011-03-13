@@ -54,16 +54,15 @@ struct IModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_UV;
 
 	/// Indices are the same for all models, so share them
-	u16* m_Indices;
+	VertexIndexArray m_IndexArray;
 
 
 	IModelDef(const CModelDefPtr& mdef);
-	~IModelDef() { delete[] m_Indices; }
 };
 
 
 IModelDef::IModelDef(const CModelDefPtr& mdef)
-	: m_Array(false)
+	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -92,8 +91,11 @@ IModelDef::IModelDef(const CModelDefPtr& mdef)
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
 
-	m_Indices = new u16[mdef->GetNumFaces()*3];
-	ModelRenderer::BuildIndices(mdef, m_Indices);
+	m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
+	m_IndexArray.Layout();
+	ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
+	m_IndexArray.Upload();
+	m_IndexArray.FreeBackingStore();
 }
 
 
@@ -104,6 +106,9 @@ struct InstancingModelRendererInternals
 
 	/// Previously prepared modeldef
 	IModelDef* imodeldef;
+
+	/// Index base for imodeldef
+	u8* imodeldefIndexBase;
 
 	/// If true, primary color will only contain the diffuse term
 	bool colorIsDiffuseOnly;
@@ -243,6 +248,8 @@ void InstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPt
 	u8* base = m->imodeldef->m_Array.Bind();
 	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
 
+	m->imodeldefIndexBase = m->imodeldef->m_IndexArray.Bind();
+
 	glVertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
 	{
@@ -274,7 +281,7 @@ void InstancingModelRenderer::RenderModel(int streamflags, CModel* model, void* 
 
 	if (!g_Renderer.m_SkipSubmit) {
 		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
-				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldef->m_Indices);
+				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
 	}
 
 	// bump stats

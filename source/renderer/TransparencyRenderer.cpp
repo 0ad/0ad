@@ -62,7 +62,7 @@ struct PSModelDef : public CModelDefRPrivate
 };
 
 PSModelDef::PSModelDef(const CModelDefPtr& mdef)
-	: m_Array(false)
+	: m_Array(GL_STATIC_DRAW)
 {
 	m_UV.type = GL_FLOAT;
 	m_UV.elems = 2;
@@ -113,7 +113,7 @@ struct PSModel
 };
 
 PSModel::PSModel(CModel* model)
-	: m_Model(model), m_Array(true)
+	: m_Model(model), m_Array(GL_DYNAMIC_DRAW)
 {
 	CModelDefPtr mdef = m_Model->GetModelDef();
 

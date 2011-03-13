@@ -46,18 +46,20 @@
 struct HWLModelDef : public CModelDefRPrivate
 {
 	/// Indices are the same for all models, so share them
-	u16* m_Indices;
-
+	VertexIndexArray m_IndexArray;
 
 	HWLModelDef(const CModelDefPtr& mdef);
-	~HWLModelDef() { delete[] m_Indices; }
 };
 
 
 HWLModelDef::HWLModelDef(const CModelDefPtr& mdef)
+	: m_IndexArray(GL_STATIC_DRAW)
 {
-	m_Indices = new u16[mdef->GetNumFaces()*3];
-	ModelRenderer::BuildIndices(mdef, m_Indices);
+	m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
+	m_IndexArray.Layout();
+	ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
+	m_IndexArray.Upload();
+	m_IndexArray.FreeBackingStore();
 }
 
 
@@ -73,7 +75,7 @@ struct HWLModel
 	/// UV is stored per-CModel in order to avoid space wastage due to alignment
 	VertexArray::Attribute m_UV;
 
-	HWLModel() : m_Array(true) { }
+	HWLModel() : m_Array(GL_DYNAMIC_DRAW) { }
 };
 
 
@@ -301,6 +303,8 @@ void HWLightingModelRenderer::RenderModel(int streamflags, CModel* model, void* 
 	u8* base = hwlmodel->m_Array.Bind();
 	GLsizei stride = (GLsizei)hwlmodel->m_Array.GetStride();
 
+	u8* indexBase = m->hwlmodeldef->m_IndexArray.Bind();
+
 	glVertexPointer(3, GL_FLOAT, stride, base + hwlmodel->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
 	{
@@ -319,7 +323,7 @@ void HWLightingModelRenderer::RenderModel(int streamflags, CModel* model, void* 
 
 	if (!g_Renderer.m_SkipSubmit) {
 		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
-					   (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->hwlmodeldef->m_Indices);
+					   (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
 	}
 
 	// bump stats

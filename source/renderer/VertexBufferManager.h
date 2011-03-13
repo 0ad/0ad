@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,18 +36,23 @@ public:
 	// Explicit shutdown of the vertex buffer subsystem
 	void Shutdown();
 	
-	// try to allocate a buffer of given number of vertices (each of given size), 
-	// and with the given type - return null if no free chunks available
-	CVertexBuffer::VBChunk* Allocate(size_t vertexSize,size_t numVertices,bool dynamic);
+	/**
+	 * Try to allocate a buffer of given number of vertices (each of given size),
+	 * and with the given type.
+	 * @param usage typically GL_STATIC_DRAW or GL_DYNAMIC_DRAW
+	 * @param target typically GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER
+	 * @return chunk, or NULL if no free chunks available
+	 */
+	CVertexBuffer::VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target);
 
-	// return given chunk to it's owner
+	// return given chunk to its owner
 	void Release(CVertexBuffer::VBChunk* chunk);
-
-	// empty out the batch lists of all vertex buffers
-	void ClearBatchIndices();
 
 	// return list of all buffers
 	const std::list<CVertexBuffer*>& GetBufferList() const { return m_Buffers; }
+
+	size_t GetBytesReserved();
+	size_t GetBytesAllocated();
 
 private:
 	// list of all known vertex buffers
@@ -55,6 +60,5 @@ private:
 };
 
 extern CVertexBufferManager g_VBMan;
-
 
 #endif

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,12 @@
 
 #include "precompiled.h"
 
-#include "lib/ogl.h"
 #include "VertexBufferManager.h"
+
+#include "lib/ogl.h"
 #include "ps/CLogger.h"
 
+CVertexBufferManager g_VBMan;
 
 // janwas 2004-06-14: added dtor
 
@@ -39,10 +41,9 @@ CVertexBufferManager::~CVertexBufferManager()
 void CVertexBufferManager::Shutdown()
 {
 	typedef std::list<CVertexBuffer*>::iterator Iter;
-	for (Iter iter=m_Buffers.begin();iter!=m_Buffers.end();++iter)
+	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter)
 		delete *iter;
-	
-	CVertexBuffer::Shutdown();
+	m_Buffers.clear();
 }
 
 
@@ -50,9 +51,13 @@ void CVertexBufferManager::Shutdown()
 // Allocate: try to allocate a buffer of given number of vertices (each of 
 // given size), with the given type, and using the given texture - return null 
 // if no free chunks available
-CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t numVertices, bool dynamic)
+CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target)
 {
 	CVertexBuffer::VBChunk* result=0;
+
+	debug_assert(usage == GL_STREAM_DRAW || usage == GL_STATIC_DRAW || usage == GL_DYNAMIC_DRAW);
+
+	debug_assert(target == GL_ARRAY_BUFFER || target == GL_ELEMENT_ARRAY_BUFFER);
 
 	// TODO, RC - run some sanity checks on allocation request
 
@@ -61,15 +66,15 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 	typedef std::list<CVertexBuffer*>::iterator Iter;
 	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter) {
 		CVertexBuffer* buffer = *iter;
-		result = buffer->Allocate(vertexSize, numVertices, dynamic);
+		result = buffer->Allocate(vertexSize, numVertices, usage, target);
 		if (result)
 			return result;
 	}
 
 	// got this far; need to allocate a new buffer
-	CVertexBuffer* buffer = new CVertexBuffer(vertexSize, dynamic);
+	CVertexBuffer* buffer = new CVertexBuffer(vertexSize, usage, target);
 	m_Buffers.push_front(buffer);
-	result = buffer->Allocate(vertexSize, numVertices, dynamic);
+	result = buffer->Allocate(vertexSize, numVertices, usage, target);
 	
 	if (!result)
 	{
@@ -87,13 +92,25 @@ void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)
 	chunk->m_Owner->Release(chunk);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// ClearBatchIndices: empty out the batch lists of all vertex buffers
-void CVertexBufferManager::ClearBatchIndices()
+
+size_t CVertexBufferManager::GetBytesReserved()
 {
+	size_t total = 0;
+
 	typedef std::list<CVertexBuffer*>::iterator Iter;
-	for (Iter iter=m_Buffers.begin();iter!=m_Buffers.end();++iter) {
-		CVertexBuffer* buffer=*iter;
-		buffer->ClearBatchIndices();
-	}
+	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter)
+		total += (*iter)->GetBytesReserved();
+
+	return total;
+}
+
+size_t CVertexBufferManager::GetBytesAllocated()
+{
+	size_t total = 0;
+
+	typedef std::list<CVertexBuffer*>::iterator Iter;
+	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter)
+		total += (*iter)->GetBytesAllocated();
+
+	return total;
 }

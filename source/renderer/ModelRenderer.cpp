@@ -161,7 +161,7 @@ void ModelRenderer::BuildUV(
 // Build default indices array.
 void ModelRenderer::BuildIndices(
 		const CModelDefPtr& mdef,
-		u16* Indices)
+		const VertexArrayIterator<u16>& Indices)
 {
 	size_t idxidx = 0;
 	SModelFace* faces = mdef->GetFaces();

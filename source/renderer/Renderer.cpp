@@ -64,6 +64,7 @@
 #include "renderer/TerrainOverlay.h"
 #include "renderer/TerrainRenderer.h"
 #include "renderer/TransparencyRenderer.h"
+#include "renderer/VertexBufferManager.h"
 #include "renderer/WaterManager.h"
 
 
@@ -104,6 +105,8 @@ private:
 		Row_TerrainTris,
 		Row_ModelTris,
 		Row_BlendSplats,
+		Row_VBReserved,
+		Row_VBAllocated,
 
 		// Must be last to count number of rows
 		NumberRows
@@ -173,6 +176,18 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 		if (col == 0)
 			return "# blend splats";
 		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_BlendSplats);
+		return buf;
+
+	case Row_VBReserved:
+		if (col == 0)
+			return "VB bytes reserved";
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)g_VBMan.GetBytesReserved());
+		return buf;
+
+	case Row_VBAllocated:
+		if (col == 0)
+			return "VB bytes allocated";
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)g_VBMan.GetBytesAllocated());
 		return buf;
 
 	default:

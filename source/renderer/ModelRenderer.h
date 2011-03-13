@@ -243,7 +243,7 @@ public:
 	 */
 	static void BuildIndices(
 			const CModelDefPtr& mdef,
-			u16* Indices);
+			const VertexArrayIterator<u16>& Indices);
 };
 
 

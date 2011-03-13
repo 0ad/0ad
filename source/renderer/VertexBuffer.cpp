@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  */
 
 /*
- * encapsulation of VBOs with batching and sharing
+ * encapsulation of VBOs with sharing
  */
 
 #include "precompiled.h"
@@ -28,59 +28,24 @@
 #include "VertexBufferManager.h"
 #include "ps/CLogger.h"
 
-ERROR_GROUP(Renderer);
-ERROR_TYPE(Renderer, VBOFailed);
-
-///////////////////////////////////////////////////////////////////////////////
-// shared list of all free batch objects
-std::vector<CVertexBuffer::Batch *> CVertexBuffer::m_FreeBatches;
-// NOTE: This global variable is here (as opposed to in VertexBufferManager.cpp,
-// as would be logical) to make sure that m_FreeBatches is freed in the right
-// order relative to the VertexBufferManager
-CVertexBufferManager g_VBMan;
-
-///////////////////////////////////////////////////////////////////////////////
-// Call at shutdown to free memory
-void CVertexBuffer::Shutdown()
-{
-	for(std::vector<Batch*>::iterator iter=m_FreeBatches.begin();iter!=m_FreeBatches.end();++iter)
-	{
-		delete *iter;
-	}
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 // CVertexBuffer constructor 
-CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic) 
-	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Dynamic(dynamic)
+CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
+	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Usage(usage), m_Target(target)
 {
 	size_t size = MAX_VB_SIZE_BYTES;
 
 	// allocate raw buffer
-	if (g_Renderer.m_Caps.m_VBO) {
-
-		// TODO: Detect when VBO failed, then fall back to system memory
-		// (and copy all old VBOs into there, because it needs to be
-		// consistent).
-
-		// (PT: Disabled the VBOFailed test because it's not very useful at the
-		// moment (it'll just cause the program to terminate, and I don't think
-		// it has ever helped to discover any problems, and a later ogl_WarnIfError()
-		// will tell us if there were any VBO issues anyway), and so it's a
-		// waste of time to call glGetError so frequently.)
-		// glGetError(); // clear the error state
-
+	if (g_Renderer.m_Caps.m_VBO)
+	{
 		pglGenBuffersARB(1, &m_Handle);
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, m_Handle);
-		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
-
-		pglBufferDataARB(GL_ARRAY_BUFFER_ARB, size, 0, m_Dynamic ? GL_DYNAMIC_DRAW_ARB : GL_STATIC_DRAW_ARB);
-		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
-
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-
-	} else {
-		m_SysMem=new u8[size];
+		pglBindBufferARB(m_Target, m_Handle);
+		pglBufferDataARB(m_Target, size, 0, m_Usage);
+		pglBindBufferARB(m_Target, 0);
+	}
+	else
+	{
+		m_SysMem = new u8[size];
 	}
 
 	// store max/free vertex counts
@@ -98,15 +63,18 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 // CVertexBuffer destructor
 CVertexBuffer::~CVertexBuffer()
 {
-	if (m_Handle) {
-		pglDeleteBuffersARB(1,&m_Handle);
-	} else if (m_SysMem) {
+	if (m_Handle)
+	{
+		pglDeleteBuffersARB(1, &m_Handle);
+	}
+	else if (m_SysMem)
+	{
 		delete[] m_SysMem;
 	}
 
 	// janwas 2004-06-14: release freelist
 	typedef std::list<VBChunk*>::iterator Iter;
-	for(Iter iter=m_FreeList.begin();iter!=m_FreeList.end();++iter)
+	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
 		delete *iter;
 }
 
@@ -114,13 +82,15 @@ CVertexBuffer::~CVertexBuffer()
 // Allocate: try to allocate a buffer of given number of vertices (each of 
 // given size), with the given type, and using the given texture - return null 
 // if no free chunks available
-CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize,size_t numVertices,bool dynamic)
+CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target)
 {
 	// check this is the right kind of buffer
-	if (dynamic!=m_Dynamic || vertexSize!=m_VertexSize) return 0;
+	if (usage != m_Usage || target != m_Target || vertexSize != m_VertexSize)
+		return 0;
 
 	// quick check there's enough vertices spare to allocate
-	if (numVertices>m_FreeVertices) return 0;
+	if (numVertices > m_FreeVertices)
+		return 0;
 
 	// trawl free list looking for first free chunk with enough space
 	VBChunk* chunk=0;
@@ -130,6 +100,7 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize,size_t numVert
 			chunk=*iter;
 			// remove this chunk from the free list
 			m_FreeList.erase(iter);
+			m_FreeVertices -= chunk->m_Count;
 			// no need to search further ..
 			break;
 		}
@@ -142,16 +113,17 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize,size_t numVert
 
 	// split chunk into two; - allocate a new chunk using all unused vertices in the 
 	// found chunk, and add it to the free list
-	if (chunk->m_Count > numVertices) {
-		VBChunk* newchunk=new VBChunk;
-		newchunk->m_Owner=this;
-		newchunk->m_Count=chunk->m_Count-numVertices;
-		newchunk->m_Index=chunk->m_Index+numVertices;
+	if (chunk->m_Count > numVertices)
+	{
+		VBChunk* newchunk = new VBChunk;
+		newchunk->m_Owner = this;
+		newchunk->m_Count = chunk->m_Count - numVertices;
+		newchunk->m_Index = chunk->m_Index + numVertices;
 		m_FreeList.push_front(newchunk);
+		m_FreeVertices += newchunk->m_Count;
 
-		// resize given chunk, resize total available free vertices
-		chunk->m_Count=numVertices;
-		m_FreeVertices-=numVertices;
+		// resize given chunk
+		chunk->m_Count = numVertices;
 	}
 	
 	// return found chunk
@@ -166,63 +138,22 @@ void CVertexBuffer::Release(VBChunk* chunk)
 	// TODO, RC - need to merge available chunks where possible to avoid 
 	// excessive fragmentation of vertex buffer space
 	m_FreeList.push_front(chunk);
-	m_FreeVertices+=chunk->m_Count;
+	m_FreeVertices += chunk->m_Count;
 }
-
-///////////////////////////////////////////////////////////////////////////////
-// ClearBatchIndices: clear lists of all batches 
-void CVertexBuffer::ClearBatchIndices()
-{
-	for (size_t i=0;i<m_Batches.size();i++) {
-		m_Batches[i]->m_IndexData.clear();
-		m_FreeBatches.push_back(m_Batches[i]);
-	}
-	m_Batches.clear();
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-// AppendBatch: add a batch to the render list for this buffer
-void CVertexBuffer::AppendBatch(VBChunk* UNUSED(chunk),Handle texture,size_t numIndices,u16* indices)
-{
-	// try and find a batch using this texture
-	size_t i;
-	Batch* batch=0;
-	for (i=0;i<m_Batches.size();++i) {
-		if (m_Batches[i]->m_Texture==texture) {
-			batch=m_Batches[i];
-			break;
-		}
-	}
-	if (!batch) {
-		if (m_FreeBatches.size()) {
-			batch=m_FreeBatches.back();
-			m_FreeBatches.pop_back();
-		} else {
-			batch=new Batch();
-		}
-		m_Batches.push_back(batch);
-		batch->m_Texture=texture;
-	}
-
-	// resize the chunk's batch to fit its indices
-	batch->m_IndexData.push_back(std::pair<size_t,u16*>(numIndices,indices));
-//	memcpy(&batch->m_Indices[0]+cursize,indices,sizeof(u16)*numIndices);
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // UpdateChunkVertices: update vertex data for given chunk
 void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 {
-	if (g_Renderer.m_Caps.m_VBO) {
+	if (g_Renderer.m_Caps.m_VBO)
+	{
 		debug_assert(m_Handle);
-		// glGetError(); // clear the error state
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, m_Handle);
-		pglBufferSubDataARB(GL_ARRAY_BUFFER_ARB, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-		// if (glGetError() != GL_NO_ERROR) throw PSERROR_Renderer_VBOFailed();
-	} else {
+		pglBindBufferARB(m_Target, m_Handle);
+		pglBufferSubDataARB(m_Target, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
+		pglBindBufferARB(m_Target, 0);
+	}
+	else
+	{
 		debug_assert(m_SysMem);
 		memcpy(m_SysMem + chunk->m_Index * m_VertexSize, data, chunk->m_Count * m_VertexSize);
 	}
@@ -233,20 +164,32 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 // to glVertexPointer ( + etc) calls
 u8* CVertexBuffer::Bind()
 {
-	u8* base;
-
-	if (g_Renderer.m_Caps.m_VBO) {
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB,m_Handle);
-		base=(u8*) 0;
-	} else {
-		base=(u8*) m_SysMem;
+	if (g_Renderer.m_Caps.m_VBO)
+	{
+		pglBindBufferARB(m_Target, m_Handle);
+		return (u8*)0;
 	}
-	return base;
+	else
+	{
+		return m_SysMem;
+	}
 }
 
 void CVertexBuffer::Unbind()
 {
-	if (g_Renderer.m_Caps.m_VBO) {
-		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+	if (g_Renderer.m_Caps.m_VBO)
+	{
+		pglBindBufferARB(GL_ARRAY_BUFFER, 0);
+		pglBindBufferARB(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
+}
+
+size_t CVertexBuffer::GetBytesReserved() const
+{
+	return MAX_VB_SIZE_BYTES;
+}
+
+size_t CVertexBuffer::GetBytesAllocated() const
+{
+	return (m_MaxVertices - m_FreeVertices) * m_VertexSize;
 }

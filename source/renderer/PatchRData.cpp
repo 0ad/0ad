@@ -283,7 +283,7 @@ void CPatchRData::BuildBlends()
 	{
 		// Construct vertex buffer
 
-		m_VBBlends = g_VBMan.Allocate(sizeof(SBlendVertex), m_BlendVertices.size(), true);
+		m_VBBlends = g_VBMan.Allocate(sizeof(SBlendVertex), m_BlendVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends, &m_BlendVertices[0]);
 
 		debug_assert(m_VBBlends->m_Index < 65536);
@@ -470,9 +470,9 @@ void CPatchRData::BuildVertices()
 	}
 
 	// upload to vertex buffer
-	if (!m_VBBase) {
-		m_VBBase=g_VBMan.Allocate(sizeof(SBaseVertex),vsize*vsize,true);
-	}
+	if (!m_VBBase)
+		m_VBBase = g_VBMan.Allocate(sizeof(SBaseVertex), vsize * vsize, GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+
 	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase,m_Vertices);
 }
 
@@ -551,7 +551,7 @@ void CPatchRData::BuildSides()
 		return;
 
 	if (!m_VBSides)
-		m_VBSides = g_VBMan.Allocate(sizeof(SSideVertex), sideVertices.size(), true);
+		m_VBSides = g_VBMan.Allocate(sizeof(SSideVertex), sideVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
 	m_VBSides->m_Owner->UpdateChunkVertices(m_VBSides, &sideVertices[0]);
 }
 
