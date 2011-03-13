@@ -2,7 +2,7 @@
 <actor version="1">
   <group>
     <variant name="decal_dirt_small">
-      <mesh>props/decal_struct_small.dae</mesh>
+      <decal width="20" depth="20" angle="0" offsetx="0" offsetz="0"/>
       <texture>props/decal_struct_sand_small.dds</texture>
     </variant>
   </group>
