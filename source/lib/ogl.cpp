@@ -288,24 +288,6 @@ static void GL_CALL_CONV dummy_glDrawRangeElementsEXT(GLenum mode, GLuint, GLuin
 	glDrawElements(mode, count, type, indices);
 }
 
-static void GL_CALL_CONV dummy_glMultiDrawArraysEXT(GLenum mode, GLint* first, GLsizei* count, GLsizei primcount)
-{
-	for (GLsizei i = 0; i < primcount; ++i)
-	{
-		if (count[i] > 0)
-			glDrawArrays(mode, first[i], count[i]);
-	}
-}
-
-static void GL_CALL_CONV dummy_glMultiDrawElementsEXT(GLenum mode, GLsizei* count, GLenum type, GLvoid** indices, GLsizei primcount)
-{
-	for (GLsizei i = 0; i < primcount; ++i)
-	{
-		if (count[i] > 0)
-			glDrawElements(mode, count[i], type, indices[i]);
-	}
-}
-
 static void GL_CALL_CONV dummy_glActiveTextureARB(int)
 {
 }
@@ -351,12 +333,6 @@ static void importExtensionFunctions()
 	if(!ogl_HaveExtension("GL_EXT_draw_range_elements"))
 	{
 		pglDrawRangeElementsEXT = &dummy_glDrawRangeElementsEXT;
-	}
-
-	if(!ogl_HaveExtension("GL_EXT_multi_draw_arrays"))
-	{
-		pglMultiDrawArraysEXT = &dummy_glMultiDrawArraysEXT;
-		pglMultiDrawElementsEXT = &dummy_glMultiDrawElementsEXT;
 	}
 
 	if(!ogl_HaveExtension("GL_ARB_multitexture"))

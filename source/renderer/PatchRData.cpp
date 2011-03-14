@@ -711,8 +711,11 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 
 				if (!g_Renderer.m_SkipSubmit)
 				{
-					pglMultiDrawElementsEXT(GL_TRIANGLES, &batch.first[0], GL_UNSIGNED_SHORT,
-							(GLvoid**)&batch.second[0], batch.first.size());
+					// Don't use glMultiDrawElements here since it doesn't have a significant
+					// performance impact and it suffers from various driver bugs (e.g. it breaks
+					// in Mesa 7.10 swrast with index VBOs)
+					for (size_t i = 0; i < batch.first.size(); ++i)
+						glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
 				}
 
 				g_Renderer.m_Stats.m_DrawCalls++;
@@ -848,8 +851,8 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 
 				if (!g_Renderer.m_SkipSubmit)
 				{
-					pglMultiDrawElementsEXT(GL_TRIANGLES, &batch.first[0], GL_UNSIGNED_SHORT,
-							(GLvoid**)&batch.second[0], batch.first.size());
+					for (size_t i = 0; i < batch.first.size(); ++i)
+						glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
 				}
 
 				g_Renderer.m_Stats.m_DrawCalls++;
@@ -938,8 +941,8 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int st
 
 			if (!g_Renderer.m_SkipSubmit)
 			{
-				pglMultiDrawElementsEXT(GL_TRIANGLES, &batch.first[0], GL_UNSIGNED_SHORT,
-						(GLvoid**)&batch.second[0], batch.first.size());
+				for (size_t i = 0; i < batch.first.size(); ++i)
+					glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
 			}
 
 			g_Renderer.m_Stats.m_DrawCalls++;
