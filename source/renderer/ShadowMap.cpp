@@ -106,6 +106,9 @@ ShadowMap::ShadowMap()
 	// In both cases, the default (no specified depth) is fast, so we just use
 	// that by default and hope it's alright. (Otherwise, we'd probably need to
 	// do some kind of hardware detection to work out what to use.)
+
+	// Avoid using uninitialised values in AddShadowedBound if SetupFrame wasn't called first
+	m->LightTransform.SetIdentity();
 }
 
 
