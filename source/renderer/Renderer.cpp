@@ -1386,7 +1386,8 @@ void CRenderer::SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCam
 	m_ViewCamera = viewCamera;
 	m_CullCamera = cullCamera;
 
-	m->shadow->SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
+	if (m_Caps.m_Shadows && m_Options.m_Shadows)
+		m->shadow->SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
 }
 
 
