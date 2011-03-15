@@ -122,7 +122,7 @@ CLogger::~CLogger()
 	time_t t = time(NULL);
 	struct tm* now = localtime(&t);
 	char currentDate[17];
-	sprintf_s(currentDate, ARRAY_SIZE(currentDate), "%02d %02d %04d", now->tm_mon, now->tm_mday, (1900+now->tm_year));
+	sprintf_s(currentDate, ARRAY_SIZE(currentDate), "%04d-%02d-%02d", 1900+now->tm_year, 1+now->tm_mon, now->tm_mday);
 	char currentTime[10];
 	sprintf_s(currentTime, ARRAY_SIZE(currentTime), "%02d:%02d:%02d", now->tm_hour, now->tm_min, now->tm_sec);
 
