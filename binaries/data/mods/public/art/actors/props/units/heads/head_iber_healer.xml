@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="mesh">
+      <mesh>props/head_iber_healer.dae</mesh>
+    </variant>
+  </group>
+
+   <group>
+    <variant frequency="1" name="Face-01">
+      <texture>props/head/hele_fem_b_cin.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="color-blonde">
+      <colour>232 205 123</colour>
+    </variant>
+    <variant frequency="1" name="color-red">
+      <colour>224 120 16</colour>
+    </variant>
+    <variant frequency="3" name="color-brown">
+      <colour>120 114 35</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

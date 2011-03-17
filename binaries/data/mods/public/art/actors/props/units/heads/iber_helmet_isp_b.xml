@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="helmet-05">
+      <mesh>props/helmet/iberian_05.pmd</mesh>
+      <texture>props/helmet/iber_05.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-06">
+      <mesh>props/helmet/iberian_06.pmd</mesh>
+      <texture>props/helmet/iber_06_10.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

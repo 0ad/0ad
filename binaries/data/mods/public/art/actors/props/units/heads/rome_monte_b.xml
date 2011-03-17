@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/helmet/rome_helmet_c.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="helmet-montefortino">
+      <texture>props/helmet/rome-d.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

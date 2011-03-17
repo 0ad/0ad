@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/dudette_head.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Female-Face-01">
+      <texture>props/head/misc_fem_ninja.dds</texture>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="3" name="tiara-face-c">
+      <mesh>props/head_beard_small.pmd</mesh>
+      <texture>props/head/pers_face_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="tiara-face-d">
+      <mesh>props/head_beard_small.pmd</mesh>
+      <texture>props/head/pers_face_d.dds</texture>
+    </variant>
+    <variant frequency="3" name="tiara-face-h-mouth">
+      <mesh>props/head_beard_small.pmd</mesh>
+      <texture>props/head/pers_face_h_mouth.dds</texture>
+    </variant>
+    <variant frequency="2" name="tiara-face-e">
+      <mesh>props/head_beard_small.pmd</mesh>
+      <texture>props/head/pers_face_e.dds</texture>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

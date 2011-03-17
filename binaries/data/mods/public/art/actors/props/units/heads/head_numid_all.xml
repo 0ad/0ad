@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="numidian-face-trimbeard-longhair">
+      <mesh>props/head_longhair.pmd</mesh>
+      <texture>props/head/numid_face_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="numidian-face-goatee-longhair">
+      <mesh>props/head_longhair.pmd</mesh>
+      <texture>props/head/numid_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="numidian-face-goatee">
+      <mesh>props/head_goatee.pmd</mesh>
+      <texture>props/head/numid_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="numidian-face-beard-wide">
+      <mesh>props/head_beard_wide.pmd</mesh>
+      <texture>props/head/numid_face_c.dds</texture>
+    </variant>
+  </group>
+
+</actor>

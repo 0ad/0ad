@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="face-beard-small-a">
+      <mesh>props/head_beard_small.pmd</mesh>
+      <texture>props/head/pers_face_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-small-b">
+      <mesh>props/head_beard_small.pmd</mesh>
+      <texture>props/head/pers_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-large-a">
+      <mesh>props/head_beard_large.pmd</mesh>
+      <texture>props/head/pers_face_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-large-b">
+      <mesh>props/head_beard_large.pmd</mesh>
+      <texture>props/head/pers_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-scrubby-i">
+      <mesh>props/dude_head.pmd</mesh>
+      <texture>props/head/pers_face_i.dds</texture>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

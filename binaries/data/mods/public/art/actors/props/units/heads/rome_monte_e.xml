@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base"/>
+  </group>
+
+  <group>
+    <variant frequency="3" name="plume">
+      <mesh>props/helmet/rome_helmet_g.pmd</mesh>
+    </variant>
+    <variant frequency="2" name="plume_feathers_top">
+      <mesh>props/helmet/rome_helmet_h.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="plume_feathers_all">
+      <mesh>props/helmet/rome_helmet_i.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="helmet-cross-brace">
+      <texture>props/helmet/rome-b.dds</texture>
+    </variant>
+    <variant frequency="2" name="helmet-smooth">
+      <texture>props/helmet/rome-d.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

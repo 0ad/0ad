@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="mesh">
+      <mesh>props/dude_head.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="face-1">
+      <texture>props/head/iber_adv_a_hood.dds</texture>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>
