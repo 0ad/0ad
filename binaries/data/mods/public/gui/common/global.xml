@@ -23,9 +23,10 @@
 			ghost="true"
 			hidden="true"
 			hotkey="fps.toggle"
+			sprite="colour: 0 0 0 200"
 			font="mono-stroke-10"
 			textcolor="white"
-			size="5 5 200 35"
+			size="5 35 80 55"
 			z="199"
 		>
 			<action on="Tick"><![CDATA[
