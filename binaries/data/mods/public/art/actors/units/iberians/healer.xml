@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Run" speed="40"/>
+      </animations>
+      <mesh>skeletal/m_dress_cuffs.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_iber_healer.xml" attachpoint="head"/>
+        <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="healer-outfit-1">
+      <texture>skeletal/celt_healer_2.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

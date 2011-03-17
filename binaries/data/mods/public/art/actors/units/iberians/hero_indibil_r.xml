@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="indibil-chainmail">
+      <texture>skeletal/iber_hero_indibil.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

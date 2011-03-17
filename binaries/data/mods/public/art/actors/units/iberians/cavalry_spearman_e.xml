@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
+        <animation event=".5" file="quadraped/horse_idle_a.psa" name="Melee" speed="20"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/iberians/cavalry_spearman_e_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="7" name="feet">
+      <texture>skeletal/horse_celt_feet_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="blaze">
+      <texture>skeletal/horse_celt_blaze_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="face">
+      <texture>skeletal/horse_celt_face_a.dds</texture>
+    </variant>
+    <variant frequency="7" name="star">
+      <texture>skeletal/horse_celt_star_a.dds</texture>
+    </variant>
+    <variant frequency="3" name="dapple">
+      <texture>skeletal/horse_celt_dapple_a.dds</texture>
+    </variant>
+    <variant frequency="2" name="snip">
+      <texture>skeletal/horse_celt_snip_a.dds</texture>
+    </variant>
+    <variant frequency="5" name="stripe">
+      <texture>skeletal/horse_celt_stripe_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="horse-color-black">
+      <colour>41 41 41</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-biege">
+      <colour>247 213 111</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-gray">
+      <colour>253 253 253</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-brown">
+      <colour>211 123 44</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

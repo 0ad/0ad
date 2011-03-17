@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2010-12-05T12:42:30Z</created>
+    <modified>2010-12-05T12:42:30Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__295_image-image" name="Map__295_image">
+      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\iber_struct.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material_iber_struct_dds" name="Material_iber_struct_dds">
+      <instance_effect url="#Material_iber_struct_dds-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Material_iber_struct_dds-fx" name="Material_iber_struct_dds">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.640000  0.640000 0.640000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__295_image-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.500000  0.500000 0.500000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">780.277322</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="gate_doors01-lib" name="gate_doors01Mesh">
+      <mesh>
+        <source id="gate_doors01-lib-Position">
+          <float_array id="gate_doors01-lib-Position-array" count="48">
+0.000000 -3.623738 -0.000103
+-1.400727 -3.623738 -0.000104
+-1.400727 -3.623738 2.585000
+0.000000 -3.623738 2.585000
+0.000000 -3.723738 -0.000103
+0.000000 -3.723738 2.585000
+-1.400727 -3.723738 2.585000
+-1.400727 -3.723738 -0.000104
+1.400363 -3.623738 2.585000
+-0.000363 -3.623738 2.585000
+-0.000363 -3.723738 2.585000
+1.400363 -3.723738 2.585000
+1.400363 -3.623738 -0.000104
+1.400363 -3.723738 -0.000104
+-0.000363 -3.623738 -0.000103
+-0.000363 -3.723738 -0.000103
+</float_array>
+          <technique_common>
+            <accessor source="#gate_doors01-lib-Position-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_doors01-lib-Normal0">
+          <float_array id="gate_doors01-lib-Normal0-array" count="180">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#gate_doors01-lib-Normal0-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_doors01-lib-UV0">
+          <float_array id="gate_doors01-lib-UV0-array" count="20">
+0.824000 0.561967
+0.750497 0.561967
+0.750497 0.808548
+0.824000 0.808548
+0.821015 0.808548
+0.821015 0.561967
+0.750476 0.808548
+0.750476 0.804660
+0.823991 0.804660
+0.823991 0.808548
+</float_array>
+          <technique_common>
+            <accessor source="#gate_doors01-lib-UV0-array" count="10" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="gate_doors01-lib-Vertex">
+          <input semantic="POSITION" source="#gate_doors01-lib-Position"/>
+        </vertices>
+        <polygons material="Material_iber_struct_dds" count="20">
+          <input semantic="VERTEX" offset="0" source="#gate_doors01-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#gate_doors01-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#gate_doors01-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>0 3 0 2 4 2 3 5 3</p>
+          <p>4 6 0 5 7 3 6 8 2</p>
+          <p>4 9 0 6 10 2 7 11 1</p>
+          <p>0 12 0 3 13 3 5 14 4</p>
+          <p>0 15 0 5 16 4 4 17 5</p>
+          <p>1 18 0 7 19 5 6 20 4</p>
+          <p>1 21 0 6 22 4 2 23 3</p>
+          <p>2 24 6 6 25 7 5 26 8</p>
+          <p>2 27 6 5 28 8 3 29 9</p>
+          <p>8 30 6 9 31 9 10 32 8</p>
+          <p>8 33 6 10 34 8 11 35 7</p>
+          <p>12 36 0 8 37 3 11 38 4</p>
+          <p>12 39 0 11 40 4 13 41 5</p>
+          <p>14 42 0 15 43 5 10 44 4</p>
+          <p>14 45 0 10 46 4 9 47 3</p>
+          <p>15 48 0 13 49 1 11 50 2</p>
+          <p>15 51 0 11 52 2 10 53 3</p>
+          <p>14 54 0 9 55 3 8 56 2</p>
+          <p>14 57 0 8 58 2 12 59 1</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="gate_doors01-anim" name="gate_doors01">
+      <animation>
+        <source id="gate_doors01-Matrix-animation-input">
+          <float_array id="gate_doors01-Matrix-animation-input-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#gate_doors01-Matrix-animation-input-array" count="0">
+              <param name="TIME" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_doors01-Matrix-animation-output-transform">
+          <float_array id="gate_doors01-Matrix-animation-output-transform-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#gate_doors01-Matrix-animation-output-transform-array" count="0" stride="16">
+              <param type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_doors01-Interpolations">
+          <Name_array id="gate_doors01-Interpolations-array" count="0">
+</Name_array>
+          <technique_common>
+            <accessor source="#gate_doors01-Interpolations-array" count="0">
+              <param type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <sampler id="gate_doors01-Matrix-animation-transform">
+          <input semantic="INPUT" source="#gate_doors01-Matrix-animation-input"/>
+          <input semantic="OUTPUT" source="#gate_doors01-Matrix-animation-output-transform"/>
+          <input semantic="INTERPOLATION" source="#gate_doors01-Interpolations"/>
+        </sampler>
+        <channel source="#gate_doors01-Matrix-animation-transform" target="gate_doors01/matrix"/>
+      </animation>
+    </animation>
+  </library_animations>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="gate_doors01" name="gate_doors01">
+        <matrix sid="matrix">3.781145 0.000000 0.000000 0.000000 0.000000 3.781145 0.000000 13.772688 0.000000 0.000000 3.781145 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#gate_doors01-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_iber_struct_dds" target="#Material_iber_struct_dds"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

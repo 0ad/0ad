@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Iberian Dock">
+      <mesh>structural/iber_dock.dae</mesh>
+      <props>
+        <prop actor="props/structures/iberians/dock_boat.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

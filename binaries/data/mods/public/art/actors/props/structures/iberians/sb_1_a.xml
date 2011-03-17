@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="monument_props_a">
+      <mesh>props/iber_sb_props_a.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+
+</actor>

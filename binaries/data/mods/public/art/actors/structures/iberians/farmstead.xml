@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/iber_farmstead.dae</mesh>
+      <props>
+        <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+</actor>

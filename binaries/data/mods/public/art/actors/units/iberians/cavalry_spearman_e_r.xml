@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="250"/>
+        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="250"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
+        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="250"/>
+        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="250"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/iberian_buckler_elite.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="rider-chainmail">
+      <texture>skeletal/iber_csp_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="rider-scalemail">
+      <texture>skeletal/iber_csp_e_2.dds</texture>
+    </variant>
+  </group>
+  
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

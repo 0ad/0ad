@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="House C - props 1">
+      <mesh>props/iber_house_c_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="House C - props 2">
+      <mesh>props/iber_house_c_2.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+
+</actor>

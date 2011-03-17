@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Monumento Venerado</SpecificName>
+    <Icon>structures/monument.png</Icon>
+    <Tooltip>All units within LOS of this monument will fight harder. Build limit: 1 per territory.</Tooltip>
+    <History>The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/iberians/sb_1.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="10.0" depth="10.0"/>
+  </Obstruction>
+</Entity>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/iber_infantry_swordsman_b">
+  <Promotion>
+    <Entity>iber_infantry_swordsman_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/iberians/infantry_swordsman_a.xml</Actor>
+  </VisualActor>
+</Entity>

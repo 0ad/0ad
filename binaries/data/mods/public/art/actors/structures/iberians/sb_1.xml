@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="base">
+      <mesh>structural/iber_sb_mon_1.dae</mesh>
+      <props>
+        <prop actor="props/structures/iberians/sb_1_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/sb_1_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+</actor>
