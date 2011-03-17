@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/scutum_c_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/scutum_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="shield-scutum-b">
+      <texture>props/shield/iber_oval_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-c">
+      <texture>props/shield/iber_oval_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-d">
+      <texture>props/shield/iber_oval_d.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-e">
+      <texture>props/shield/iber_oval_e.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-f">
+      <texture>props/shield/iber_oval_f.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-g">
+      <texture>props/shield/iber_oval_g.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-k">
+      <texture>props/shield/iber_oval_k.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-scutum-m">
+      <texture>props/shield/iber_oval_m.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
