@@ -1205,6 +1205,11 @@ void CRenderer::RenderSilhouettes()
 
 	float silhouetteAlpha = 0.75f;
 
+	// Silhouette blending requires an almost-universally-supported extension;
+	// fall back to non-blended if unavailable
+	if (!ogl_HaveExtension("GL_EXT_blend_color"))
+		silhouetteAlpha = 1.f;
+
 	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	glColorMask(0, 0, 0, 0);
@@ -1245,10 +1250,10 @@ void CRenderer::RenderSilhouettes()
 		// a pixel once (using the colour of whatever model happens to be drawn first).
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
-		glBlendColor(0, 0, 0, silhouetteAlpha);
+		pglBlendColorEXT(0, 0, 0, silhouetteAlpha);
 
 		glEnable(GL_STENCIL_TEST);
-		glStencilFunc(GL_NOTEQUAL, 1, -1);
+		glStencilFunc(GL_NOTEQUAL, 1, (GLuint)-1);
 		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 	}
 
@@ -1265,11 +1270,17 @@ void CRenderer::RenderSilhouettes()
 
 	// Restore state
 	glDepthFunc(GL_LEQUAL);
-	glDepthMask(1);
-	glDisable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glBlendColor(0, 0, 0, 0);
-	glDisable(GL_STENCIL_TEST);
+	if (silhouetteAlpha == 1.f)
+	{
+		glDepthMask(1);
+	}
+	else
+	{
+		glDisable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		pglBlendColorEXT(0, 0, 0, 0);
+		glDisable(GL_STENCIL_TEST);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

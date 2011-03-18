@@ -145,6 +145,12 @@ static bool isImplementedInCore(const char* ext)
 		MATCH(GL_EXT_texture_lod_bias);
 		MATCH(GL_ARB_texture_mirrored_repeat);
 		MATCH(GL_ARB_window_pos);
+
+		// These extensions were added to GL 1.2, but as part of the optional
+		// imaging subset; they're only guaranteed as of GL 1.4:
+		MATCH(GL_EXT_blend_color);
+		MATCH(GL_EXT_blend_minmax);
+		MATCH(GL_EXT_blend_subtract);
 	}
 	if(have_13)
 	{
@@ -169,9 +175,6 @@ static bool isImplementedInCore(const char* ext)
 		MATCH(GL_SGIS_texture_lod);
 		MATCH(GL_EXT_draw_range_elements);
 		// Skip the extensions that only affect the imaging subset
-		MATCH(GL_EXT_blend_color);
-		MATCH(GL_EXT_blend_minmax);
-		MATCH(GL_EXT_blend_subtract);
 	}
 
 #undef MATCH

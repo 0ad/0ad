@@ -512,6 +512,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		WX_GL_RGBA,
 		WX_GL_DOUBLEBUFFER,
 		WX_GL_DEPTH_SIZE, 24, // TODO: wx documentation doesn't say 24 is valid
+		WX_GL_STENCIL_SIZE, 8,
 		WX_GL_BUFFER_SIZE, 24, // colour bits
 		WX_GL_MIN_ALPHA, 8, // alpha bits
 		0

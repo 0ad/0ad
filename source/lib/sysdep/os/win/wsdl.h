@@ -57,6 +57,7 @@ LIB_API void SDL_Quit();
 typedef enum
 {
 	SDL_GL_DEPTH_SIZE,
+	SDL_GL_STENCIL_SIZE,
 	SDL_GL_DOUBLEBUFFER,	// ignored - always double buffered
 	SDL_GL_SWAP_CONTROL
 }

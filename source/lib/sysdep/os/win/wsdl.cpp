@@ -259,6 +259,7 @@ static HGLRC hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 
 // set via SDL_GL_SetAttribute:
 static int depthBufferBits = 24;
+static int stencilBufferBits = 0;
 static int vsyncEnabled = 1;
 
 int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
@@ -267,6 +268,10 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 	{
 	case SDL_GL_DEPTH_SIZE:
 		depthBufferBits = value;
+		break;
+
+	case SDL_GL_STENCIL_SIZE:
+		stencilBufferBits = value;
 		break;
 
 	case SDL_GL_SWAP_CONTROL:
@@ -313,7 +318,7 @@ static void video_SetPixelFormat(HDC g_hDC, int bpp)
 	}
 	const BYTE cAccumBits   = 0;
 	const BYTE cDepthBits   = (BYTE)depthBufferBits;
-	const BYTE cStencilBits = 0;
+	const BYTE cStencilBits = (BYTE)stencilBufferBits;
 	const BYTE cAuxBuffers  = 0;
 
 	PIXELFORMATDESCRIPTOR pfd =
