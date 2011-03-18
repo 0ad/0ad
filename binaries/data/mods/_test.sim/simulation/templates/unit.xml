@@ -2,6 +2,8 @@
 <Entity>
     <VisualActor>
         <Actor>example</Actor>
+        <SilhouetteDisplay>false</SilhouetteDisplay>
+        <SilhouetteOccluder>false</SilhouetteOccluder>
     </VisualActor>
     <Selectable/>
     <Position>

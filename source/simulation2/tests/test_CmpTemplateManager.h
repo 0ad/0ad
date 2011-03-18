@@ -77,14 +77,16 @@ public:
 
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
 		TS_ASSERT(actor != NULL);
-		TS_ASSERT_WSTR_EQUALS(actor->ToXML(), L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example1</Actor></VisualActor>");
+		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
+				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
+				L"<VisualActor><Actor>example1</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 
 		const CParamNode* preview = tempMan->LoadTemplate(ent2, "preview|unit", -1);
 		TS_ASSERT(preview != NULL);
 		TS_ASSERT_WSTR_EQUALS(preview->ToXML(),
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example</Actor></VisualActor>");
+				L"<VisualActor><Actor>example</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 
 		const CParamNode* previewobstruct = tempMan->LoadTemplate(ent2, "preview|unitobstruct", -1);
 		TS_ASSERT(previewobstruct != NULL);
@@ -98,14 +100,14 @@ public:
 				L"</Obstruction>"
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example</Actor></VisualActor>");
+				L"<VisualActor><Actor>example</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 
 		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, "preview|actor|example2", -1);
 		TS_ASSERT(previewactor != NULL);
 		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(),
 				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example2</Actor></VisualActor>");
+				L"<VisualActor><Actor>example2</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 	}
 
 	void test_LoadTemplate_scriptcache()
@@ -138,11 +140,11 @@ public:
 
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
 		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &actor->GetChild("VisualActor")));
-		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\"})");
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\"})");
 
 		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1", -1);
 		val = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, &foundation->GetChild("VisualActor")));
-		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", Foundation:(void 0)})");
+		TS_ASSERT_WSTR_EQUALS(man.GetScriptInterface().ToString(val.get()), L"({Actor:\"example1\", Foundation:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\"})");
 	}
 
 	void test_LoadTemplate_errors()
