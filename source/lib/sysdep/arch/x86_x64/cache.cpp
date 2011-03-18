@@ -72,7 +72,8 @@ static x86_x64_Cache L1Cache(u32 reg, x86_x64_Cache::Type type)
 	cache.associativity = bits(reg, 16, 23);
 	cache.entrySize     = bits(reg,  0,  7);
 	cache.sharedBy      = 1;
-	cache.numEntries    = bits(reg, 24, 31)*KiB / cache.entrySize;
+	if (cache.entrySize)
+		cache.numEntries = bits(reg, 24, 31)*KiB / cache.entrySize;
 	return cache;
 }
 
@@ -102,7 +103,8 @@ static x86_x64_Cache L2Cache(u32 reg, x86_x64_Cache::Type type)
 	cache.level = 2;
 	cache.entrySize  = bits(reg,  0,  7);
 	cache.sharedBy   = 1;
-	cache.numEntries = bits(reg, 16, 31)*KiB / cache.entrySize;
+	if (cache.entrySize)
+		cache.numEntries = bits(reg, 16, 31)*KiB / cache.entrySize;
 	return cache;
 }
 
@@ -111,7 +113,8 @@ static x86_x64_Cache L3Cache(u32 reg, x86_x64_Cache::Type type)
 {
 	x86_x64_Cache cache = L2Cache(reg, type);
 	cache.level = 3;
-	cache.numEntries = bits(reg, 18, 31)*512*KiB / cache.entrySize;	// (rounded down)
+	if (cache.entrySize)
+		cache.numEntries = bits(reg, 18, 31)*512*KiB / cache.entrySize;	// (rounded down)
 	return cache;
 }
 
