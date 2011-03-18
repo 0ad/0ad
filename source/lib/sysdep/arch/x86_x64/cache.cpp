@@ -587,12 +587,14 @@ static LibError DetectCacheAndTLB()
 	for(size_t i = 0; i < x86_x64_Cache::maxLevels; i++)
 	{
 		debug_assert(caches[L1D+i].type != x86_x64_Cache::kInstruction);
-		debug_assert(caches[L1D+i].level == i+1);
+		if(caches[L1D+i].type != x86_x64_Cache::kNull)
+			debug_assert(caches[L1D+i].level == i+1);
 		debug_assert(caches[L1D+i].Validate() == true);
 
 		debug_assert(caches[L1I+i].type != x86_x64_Cache::kData);
-		debug_assert(caches[L1I+i].level == i+1);
-		debug_assert(caches[L1D+i].Validate() == true);
+		if(caches[L1I+i].type != x86_x64_Cache::kNull)
+			debug_assert(caches[L1I+i].level == i+1);
+		debug_assert(caches[L1I+i].Validate() == true);
 	}
 
 	return INFO::OK;
