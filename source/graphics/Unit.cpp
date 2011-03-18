@@ -109,7 +109,13 @@ void CUnit::ReloadObject()
 		newModel->SetTransform(m_Model->GetTransform());
 		newModel->SetPlayerID(m_Model->GetPlayerID());
 		if (newModel->ToCModel() && m_Model->ToCModel())
+		{
 			newModel->ToCModel()->CopyAnimationFrom(m_Model->ToCModel());
+
+			// Copy flags that belong to this model instance (not those defined by the actor XML)
+			int instanceFlags = (MODELFLAG_SILHOUETTE_DISPLAY|MODELFLAG_SILHOUETTE_OCCLUDER) & m_Model->ToCModel()->GetFlags();
+			newModel->ToCModel()->AddFlagsRec(instanceFlags);
+		}
 
 		delete m_Model;
 		m_Model = newModel;

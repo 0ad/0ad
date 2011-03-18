@@ -19,6 +19,9 @@
 #define INCLUDED_MATERIAL
 
 #include "ps/CStr.h"
+#include "simulation2/helpers/Player.h"
+
+// FIXME: This material system is almost entirely unused and probably broken
 
 struct CColor;
 
@@ -37,15 +40,6 @@ public:
 		g = _g;
 		b = _b;
 		a = _a;
-	}
-	bool operator==(const SMaterialColor& color)
-	{
-		return (
-			r == color.r &&
-			g == color.g &&
-			b == color.b &&
-			a == color.a
-			);
 	}
 };
 
@@ -69,16 +63,18 @@ public:
 	bool UsesAlpha() { return m_Alpha; }
 
 	// Determines whether or not the model goes into the PlayerRenderer
-	bool IsPlayer() { return (m_PlayerID != PLAYER_ID_NONE); }
-	// Get the player colour (in a non-zero amount of time, so don't call it
-	// an unreasonable number of times. But it's fairly close to zero, so
-	// don't worry too much about it.)
+	bool IsPlayer() { return (m_UseTextureColor || m_UsePlayerColor); }
+
+	// Get the player colour or texture colour to be applied to this object
+	SMaterialColor GetObjectColor();
+	// Get the player colour
 	SMaterialColor GetPlayerColor();
 
-	void SetPlayerColor_PerPlayer() { m_PlayerID = PLAYER_ID_COMING_SOON; }
-	void SetPlayerColor_PerObject() { m_PlayerID = PLAYER_ID_OTHER; }
-	void SetPlayerColor(size_t id);
-	void SetPlayerColor(const CColor &colour);
+	void SetPlayerID(player_id_t id);
+	void SetTextureColor(const CColor &colour);
+
+	void SetUsePlayerColor(bool use);
+	void SetUseTextureColor(bool use);
 
 	void SetTexture(const CStr& texture);
 	void SetVertexProgram(const CStr& prog);
@@ -90,8 +86,7 @@ public:
 	void SetSpecularPower(float power);
 	void SetUsesAlpha(bool flag);
 
-	bool operator==(const CMaterial& material);
-protected:
+private:
 	// Various reflective color properties
 	SMaterialColor m_Diffuse;
 	SMaterialColor m_Ambient;
@@ -109,25 +104,13 @@ protected:
 	// Alpha required flag
 	bool m_Alpha;
 
-	// Player-colour settings.
-	// If m_PlayerID <= PLAYER_ID_LAST_VALID, the colour is retrieved from
-	//  g_Game whenever it's needed.
-	//  (It's not cached, because the player might change colour.)
-	// If m_PlayerID == PLAYER_ID_OTHER, or if player-colouring has been globally
-	//  disabled, m_TextureColor is used instead. This allows per-model colours to
-	//  be specified, instead of only a single colour per player.
-	// If m_PlayerID == PLAYER_ID_NONE, there's no player colour at all.
-	// If m_PlayerID == PLAYER_ID_COMING_SOON, it's going to be linked to a player,
-	//  but hasn't yet.
-	static const size_t PLAYER_ID_NONE = SIZE_MAX-1;
-	static const size_t PLAYER_ID_OTHER = SIZE_MAX-2;
-	static const size_t PLAYER_ID_COMING_SOON = SIZE_MAX-3;
-	static const size_t PLAYER_ID_LAST_VALID = SIZE_MAX-4;
-	size_t m_PlayerID;
+	player_id_t m_PlayerID;
 	SMaterialColor m_TextureColor; // used as an alternative to the per-player colour
+
+	bool m_UsePlayerColor;
+	bool m_UseTextureColor;
 };
 
 extern CMaterial NullMaterial;
-extern CMaterial IdentityMaterial;
 
 #endif

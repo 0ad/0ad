@@ -274,6 +274,7 @@ public:
 		// generic RenderModifiers that are supposed to be used directly
 		RenderModifierPtr ModWireframe;
 		RenderModifierPtr ModSolidColor;
+		RenderModifierPtr ModSolidPlayerColor;
 		RenderModifierPtr ModTransparentShadow;
 		RenderModifierPtr ModTransparentDepthShadow;
 
@@ -354,6 +355,20 @@ public:
 
 		const SViewPort &vp = camera.GetViewPort();
 		glViewport((GLint)vp.m_X,(GLint)vp.m_Y,(GLsizei)vp.m_Width,(GLsizei)vp.m_Height);
+	}
+
+	/**
+	 * Renders all non-transparent models with the given modifiers.
+	 */
+	void CallModelRenderers(const RenderModifierPtr& modNormal, const RenderModifierPtr& modPlayer, int flags)
+	{
+		Model.Normal->Render(modNormal, flags);
+		if (Model.Normal != Model.NormalInstancing)
+			Model.NormalInstancing->Render(modNormal, flags);
+
+		Model.Player->Render(modPlayer, flags);
+		if (Model.Player != Model.PlayerInstancing)
+			Model.PlayerInstancing->Render(modPlayer, flags);
 	}
 };
 
@@ -550,6 +565,7 @@ bool CRenderer::Open(int width, int height)
 	SetFastPlayerColor(true);
 	m->Model.ModPlayerLit = LitRenderModifierPtr(new LitPlayerColorRender);
 	m->Model.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
+	m->Model.ModSolidPlayerColor = RenderModifierPtr(new SolidPlayerColorRender);
 	m->Model.ModTransparentUnlit = RenderModifierPtr(new TransparentRenderModifier);
 	m->Model.ModTransparentLit = LitRenderModifierPtr(new LitTransparentRenderModifier);
 	m->Model.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
@@ -807,7 +823,6 @@ void CRenderer::BeginFrame()
 		m->Model.Transp = m->Model.pal_TranspFF[vertexType];
 }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetClearColor: set color used to clear screen in BeginFrame()
 void CRenderer::SetClearColor(SColor4ub color)
@@ -850,12 +865,7 @@ void CRenderer::RenderShadowMap()
 
 	{
 		PROFILE("render models");
-		m->Model.Normal->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
-		if (m->Model.Normal != m->Model.NormalInstancing)
-			m->Model.NormalInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
-		m->Model.Player->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
-		if (m->Model.Player != m->Model.PlayerInstancing)
-			m->Model.PlayerInstancing->Render(m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
+		m->CallModelRenderers(m->Model.ModSolidColor, m->Model.ModSolidColor, MODELFLAG_CASTSHADOWS);
 	}
 
 	{
@@ -928,23 +938,13 @@ void CRenderer::RenderModels()
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	}
 
-	m->Model.Normal->Render(m->Model.ModNormal, 0);
-	m->Model.Player->Render(m->Model.ModPlayer, 0);
-	if (m->Model.Normal != m->Model.NormalInstancing)
-		m->Model.NormalInstancing->Render(m->Model.ModNormal, 0);
-	if (m->Model.Player != m->Model.PlayerInstancing)
-		m->Model.PlayerInstancing->Render(m->Model.ModPlayer, 0);
+	m->CallModelRenderers(m->Model.ModNormal, m->Model.ModPlayer, 0);
 
 	if (m_ModelRenderMode==WIREFRAME) {
 		// switch wireframe off again
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	} else if (m_ModelRenderMode==EDGED_FACES) {
-		m->Model.Normal->Render(m->Model.ModWireframe, 0);
-		m->Model.Player->Render(m->Model.ModWireframe, 0);
-		if (m->Model.Normal != m->Model.NormalInstancing)
-			m->Model.NormalInstancing->Render(m->Model.ModWireframe, 0);
-		if (m->Model.Player != m->Model.PlayerInstancing)
-			m->Model.PlayerInstancing->Render(m->Model.ModWireframe, 0);
+		m->CallModelRenderers(m->Model.ModWireframe, m->Model.ModWireframe, 0);
 	}
 }
 
@@ -1096,7 +1096,7 @@ void CRenderer::RenderReflections()
 	// Make the depth buffer work backwards; there seems to be some oddness with 
 	// oblique frustum clipping and the "sign" parameter here
 	glClearDepth(0);
-	glClear(GL_DEPTH_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glDepthFunc(GL_GEQUAL);
 
 	// Render sky, terrain and models
@@ -1164,7 +1164,7 @@ void CRenderer::RenderRefractions()
 	// oblique frustum clipping and the "sign" parameter here
 	glClearDepth(0);
 	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);	// a neutral gray to blend in with shores
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glDepthFunc(GL_GEQUAL);
 
 	// Render terrain and models
@@ -1191,6 +1191,86 @@ void CRenderer::RenderRefractions()
 	glDepthFunc(GL_LEQUAL);
 }
 
+
+void CRenderer::RenderSilhouettes()
+{
+	PROFILE("render silhouettes");
+
+	// Render silhouettes of units hidden behind terrain or occluders.
+	// To avoid breaking the standard rendering of alpha-blended objects, this
+	// has to be done in a separate pass.
+	// First we render all occluders into depth, then render all units with
+	// inverted depth test so any behind an occluder will get drawn in a constant
+	// colour.
+
+	float silhouetteAlpha = 0.75f;
+
+	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+	glColorMask(0, 0, 0, 0);
+
+	// Render occluders:
+
+	{
+		PROFILE("render patches");
+		m->terrainRenderer->RenderPatches();
+	}
+
+	{
+		PROFILE("render model occluders");
+		m->CallModelRenderers(m->Model.ModSolidColor, m->Model.ModSolidColor, MODELFLAG_SILHOUETTE_OCCLUDER);
+	}
+
+	{
+		PROFILE("render transparent occluders");
+		// Reuse the depth shadow modifier to get alpha-tested rendering
+		m->Model.Transp->Render(m->Model.ModTransparentDepthShadow, MODELFLAG_SILHOUETTE_OCCLUDER);
+	}
+
+	glDepthFunc(GL_GEQUAL);
+	glColorMask(1, 1, 1, 1);
+
+	// Render more efficiently if alpha == 1
+	if (silhouetteAlpha == 1.f)
+	{
+		// Ideally we'd render objects back-to-front so nearer silhouettes would
+		// appear on top, but sorting has non-zero cost. So we'll keep the depth
+		// write enabled, to do the opposite - far objects will consistently appear
+		// on top.
+		glDepthMask(0);
+	}
+	else
+	{
+		// Since we can't sort, we'll use the stencil buffer to ensure we only draw
+		// a pixel once (using the colour of whatever model happens to be drawn first).
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
+		glBlendColor(0, 0, 0, silhouetteAlpha);
+
+		glEnable(GL_STENCIL_TEST);
+		glStencilFunc(GL_NOTEQUAL, 1, -1);
+		glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+	}
+
+	// TODO: For performance, we probably ought to do a quick raycasting check
+	// to see which units are likely blocked by occluders and not bother
+	// rendering any of the others
+
+	{
+		PROFILE("render models");
+		m->CallModelRenderers(m->Model.ModSolidPlayerColor, m->Model.ModSolidPlayerColor, MODELFLAG_SILHOUETTE_DISPLAY);
+		// (This won't render transparent objects with SILHOUETTE_DISPLAY - will
+		// we have any units that need that?)
+	}
+
+	// Restore state
+	glDepthFunc(GL_LEQUAL);
+	glDepthMask(1);
+	glDisable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendColor(0, 0, 0, 0);
+	glDisable(GL_STENCIL_TEST);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderSubmissions: force rendering of any batched objects
@@ -1241,7 +1321,7 @@ void CRenderer::RenderSubmissions()
 		RenderReflections();
 		RenderRefractions();
 		glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
 	// render submitted patches and models
@@ -1289,6 +1369,8 @@ void CRenderer::RenderSubmissions()
 		// turning the water off. On the other hand every user will have water
 		// on all the time, so it might not be worth worrying about.
 	}
+
+	RenderSilhouettes();
 
 	// Clean up texture blend mode so particles and other things render OK 
 	// (really this should be cleaned up by whoever set it)

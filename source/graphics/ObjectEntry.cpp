@@ -112,8 +112,8 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	delete m_Model;
 	m_Model = model;
 	model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
+	model->GetMaterial().SetTextureColor(m_Color);
 	model->InitModel(modeldef);
-	model->SetPlayerColor(m_Color);
 
 	CTextureProperties textureProps(m_TextureName);
 	textureProps.SetWrap(GL_CLAMP_TO_EDGE);

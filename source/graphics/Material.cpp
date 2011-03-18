@@ -24,7 +24,6 @@
 #include "ps/Overlay.h" // for CColor
 
 CMaterial NullMaterial;
-CMaterial IdentityMaterial;
 
 // Values as taken straight from the Blue Book (god bless the Blue Book)
 static SMaterialColor IdentityDiffuse(0.8f, 0.8f, 0.8f, 1.0f);
@@ -41,24 +40,11 @@ CMaterial::CMaterial()
 	m_Emissive(IdentityEmissive),
 	m_SpecularPower(0.0f),
 	m_Alpha(false),
-	m_PlayerID(PLAYER_ID_NONE),
-	m_TextureColor(BrokenColor)
+	m_PlayerID(INVALID_PLAYER),
+	m_TextureColor(BrokenColor),
+	m_UsePlayerColor(false),
+	m_UseTextureColor(false)
 {
-}
-
-bool CMaterial::operator==(const CMaterial& material)
-{
-	return(
-		m_Texture == m_Texture &&
-		m_Diffuse == material.m_Diffuse &&
-		m_Ambient == material.m_Ambient &&
-		m_Specular == material.m_Specular &&
-		m_Emissive == material.m_Emissive &&
-		m_SpecularPower == material.m_SpecularPower &&
-		m_Alpha == material.m_Alpha &&
-		m_PlayerID == material.m_PlayerID &&
-		m_TextureColor == material.m_TextureColor
-	);
 }
 
 void CMaterial::Bind()
@@ -96,31 +82,42 @@ SMaterialColor CMaterial::GetEmissive()
     return m_Emissive;
 }
 
-SMaterialColor CMaterial::GetPlayerColor()
+SMaterialColor CMaterial::GetObjectColor()
 {
-	debug_assert(m_PlayerID != PLAYER_ID_NONE);
-		// because this should never be called unless IsPlayer returned true
-
-	if (m_PlayerID == PLAYER_ID_OTHER /* TODO: or if player-colour is globally disabled */ )
+	if (m_UseTextureColor)
 		return m_TextureColor;
 
-	if (m_PlayerID <= PLAYER_ID_LAST_VALID)
-	{
-		CColor c(g_Game->GetPlayerColour(m_PlayerID));
-		return SMaterialColor(c.r, c.g, c.b, c.a);
-	}
+	debug_assert(m_UsePlayerColor);
+		// this should never be called unless IsPlayer returned true
 
-	// Oops, something failed.
-	return BrokenColor;
+	return GetPlayerColor();
 }
 
-void CMaterial::SetPlayerColor(size_t id)
+SMaterialColor CMaterial::GetPlayerColor()
 {
-	if (m_PlayerID == PLAYER_ID_COMING_SOON || m_PlayerID <= PLAYER_ID_LAST_VALID)
-		m_PlayerID = id;
+	if (m_PlayerID == -1)
+		return BrokenColor;
+
+	CColor c(g_Game->GetPlayerColour(m_PlayerID));
+	return SMaterialColor(c.r, c.g, c.b, c.a);
 }
 
-void CMaterial::SetPlayerColor(const CColor& colour)
+void CMaterial::SetPlayerID(player_id_t id)
+{
+	m_PlayerID = id;
+}
+
+void CMaterial::SetUsePlayerColor(bool use)
+{
+	m_UsePlayerColor = use;
+}
+
+void CMaterial::SetUseTextureColor(bool use)
+{
+	m_UseTextureColor = use;
+}
+
+void CMaterial::SetTextureColor(const CColor& colour)
 {
 	m_TextureColor = SMaterialColor(colour.r, colour.g, colour.b, colour.a);
 }

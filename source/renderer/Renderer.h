@@ -347,6 +347,8 @@ protected:
 	void RenderModels();
 	void RenderTransparentModels();
 
+	void RenderSilhouettes();
+
 	// shadow rendering stuff
 	void RenderShadowMap();
 

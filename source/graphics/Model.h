@@ -38,6 +38,9 @@ class CSkeletonAnimManager;
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
 #define MODELFLAG_NOLOOPANIMATION	(1<<1)
+#define MODELFLAG_SILHOUETTE_DISPLAY	(1<<2)
+#define MODELFLAG_SILHOUETTE_OCCLUDER	(1<<3)
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning 
@@ -85,9 +88,7 @@ public:
 	// set the model's material
 	void SetMaterial(const CMaterial &material);
 	// set the model's player ID, recursively through props
-	void SetPlayerID(size_t id);
-	// set the model's player colour
-	virtual void SetPlayerColor(const CColor& colour);
+	void SetPlayerID(player_id_t id);
 	// set the models mod color
 	virtual void SetShadingColor(const CColor& colour);
 	// get the model's texture
@@ -109,6 +110,8 @@ public:
 	void SetFlags(int flags) { m_Flags=flags; }
 	// get object flags
 	int GetFlags() const { return m_Flags; }
+	// add object flags, recursively through props
+	void AddFlagsRec(int flags);
 
 	// recurse down tree setting dirty bits
 	virtual void SetDirtyRec(int dirtyflags) {

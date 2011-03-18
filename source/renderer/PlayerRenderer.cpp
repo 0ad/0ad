@@ -131,7 +131,7 @@ void FastPlayerColorRender::PrepareTexture(int UNUSED(pass), CTexturePtr& textur
 void FastPlayerColorRender::PrepareModel(int UNUSED(pass), CModel* model)
 {
 	// Get the player color
-	SMaterialColor colour = model->GetMaterial().GetPlayerColor();
+	SMaterialColor colour = model->GetMaterial().GetObjectColor();
 	float* color = &colour.r; // because it's stored RGBA
 
 	// Set the texture environment color the player color
@@ -245,7 +245,7 @@ void SlowPlayerColorRender::PrepareModel(int pass, CModel* model)
 	if (pass == 1)
 	{
 		// Get the player color
-		SMaterialColor colour = model->GetMaterial().GetPlayerColor();
+		SMaterialColor colour = model->GetMaterial().GetObjectColor();
 		float* color = &colour.r; // because it's stored RGBA
 
 		// Set the texture environment color the player color
@@ -402,9 +402,45 @@ void LitPlayerColorRender::PrepareModel(int pass, CModel* model)
 	if (pass == 0)
 	{
 		// Get the player color
-		SMaterialColor colour = model->GetMaterial().GetPlayerColor();
+		SMaterialColor colour = model->GetMaterial().GetObjectColor();
 
 		// Send the player color
 		glColor3f(colour.r, colour.g, colour.b);
 	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// SolidPlayerColorRender
+
+SolidPlayerColorRender::SolidPlayerColorRender()
+{
+}
+
+SolidPlayerColorRender::~SolidPlayerColorRender()
+{
+}
+
+int SolidPlayerColorRender::BeginPass(int UNUSED(pass))
+{
+	ogl_tex_bind(0, 0);
+
+	return STREAM_POS;
+}
+
+bool SolidPlayerColorRender::EndPass(int UNUSED(pass))
+{
+	return true;
+}
+
+void SolidPlayerColorRender::PrepareTexture(int UNUSED(pass), CTexturePtr& UNUSED(texture))
+{
+}
+
+void SolidPlayerColorRender::PrepareModel(int UNUSED(pass), CModel* model)
+{
+	// Get the player color
+	SMaterialColor colour = model->GetMaterial().GetPlayerColor();
+
+	// Send the player color
+	glColor3f(colour.r, colour.g, colour.b);
 }

@@ -2,5 +2,7 @@
 <Entity parent="template_structure_gaia_settlement">
   <VisualActor>
     <Actor>structures/wrld_settlement_1.xml</Actor>
+    <SilhouetteDisplay>false</SilhouetteDisplay>
+    <SilhouetteOccluder>false</SilhouetteOccluder>
   </VisualActor>
 </Entity>

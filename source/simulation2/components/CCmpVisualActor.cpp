@@ -92,7 +92,13 @@ public:
 				"<element name='Foundation' a:help='Used internally; if present the unit will be rendered as a foundation'>"
 					"<empty/>"
 				"</element>"
-			"</optional>";
+			"</optional>"
+			"<element name='SilhouetteDisplay'>"
+				"<data type='boolean'/>"
+			"</element>"
+			"<element name='SilhouetteOccluder'>"
+				"<data type='boolean'/>"
+			"</element>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
@@ -118,6 +124,15 @@ public:
 			// The error will have already been logged
 			return;
 		}
+
+		u32 modelFlags = 0;
+		if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+			modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+		if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+			modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+
+		if (m_Unit->GetModel().ToCModel())
+			m_Unit->GetModel().ToCModel()->AddFlagsRec(modelFlags);
 
 		m_Unit->SetID(GetEntityId());
 
@@ -349,6 +364,8 @@ public:
 		m_Unit->GetModel().SetShadingColor(shading);
 
 		m_Unit->GetModel().SetPlayerID(playerID);
+
+		// TODO: should copy/reset silhouette flags
 	}
 
 private:

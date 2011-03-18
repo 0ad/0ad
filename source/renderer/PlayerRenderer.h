@@ -100,4 +100,21 @@ public:
 };
 
 
+/**
+ * Render all models using their player color without lighting.
+ */
+class SolidPlayerColorRender : public RenderModifier
+{
+public:
+	SolidPlayerColorRender();
+	~SolidPlayerColorRender();
+
+	// Implementation
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexturePtr& texture);
+	void PrepareModel(int pass, CModel* model);
+};
+
+
 #endif

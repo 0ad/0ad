@@ -20,6 +20,7 @@
 
 #include "graphics/RenderableObject.h"
 #include "ps/Overlay.h"
+#include "simulation2/helpers/Player.h"
 
 class CModel;
 class CModelDecal;
@@ -37,7 +38,7 @@ class CModelAbstract : public CRenderableObject
 public:
 	CModelAbstract() :
 		m_Parent(NULL), m_PositionValid(false),
-		m_ShadingColor(1, 1, 1, 1), m_PlayerID((size_t)-1)
+		m_ShadingColor(1, 1, 1, 1), m_PlayerID(INVALID_PLAYER)
 	{
 	}
 
@@ -76,10 +77,10 @@ public:
 	 */
 	virtual void InvalidatePosition() = 0;
 
-	virtual void SetPlayerID(size_t id) { m_PlayerID = id; }
+	virtual void SetPlayerID(player_id_t id) { m_PlayerID = id; }
 
-	// get the model's player ID; initial default is (size_t)-1
-	virtual size_t GetPlayerID() const { return m_PlayerID; }
+	// get the model's player ID; initial default is INVALID_PLAYER
+	virtual player_id_t GetPlayerID() const { return m_PlayerID; }
 
 	virtual void SetShadingColor(const CColor& colour) { m_ShadingColor = colour; }
 	virtual CColor GetShadingColor() const { return m_ShadingColor; }
@@ -90,7 +91,7 @@ public:
 	/// True if both transform and and bone matrices are valid.
 	bool m_PositionValid;
 
-	size_t m_PlayerID;
+	player_id_t m_PlayerID;
 
 	// modulating color
 	CColor m_ShadingColor;

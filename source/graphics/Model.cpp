@@ -463,25 +463,28 @@ void CModel::SetTransform(const CMatrix3D& transform)
 
 //////////////////////////////////////////////////////////////////////////
 
+void CModel::AddFlagsRec(int flags)
+{
+	m_Flags |= flags;
+	for (size_t i = 0; i < m_Props.size(); ++i)
+		if (m_Props[i].m_Model->ToCModel())
+			m_Props[i].m_Model->ToCModel()->AddFlagsRec(flags);
+}
+
 void CModel::SetMaterial(const CMaterial &material)
 {
 	m_Material = material;
 }
 
-void CModel::SetPlayerID(size_t id)
+void CModel::SetPlayerID(player_id_t id)
 {
 	CModelAbstract::SetPlayerID(id);
 
-	if (id != (size_t)-1)
-		m_Material.SetPlayerColor(id);
+	if (id != INVALID_PLAYER)
+		m_Material.SetPlayerID(id);
 
 	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
 		it->m_Model->SetPlayerID(id);
-}
-
-void CModel::SetPlayerColor(const CColor& colour)
-{
-	m_Material.SetPlayerColor(colour);
 }
 
 void CModel::SetShadingColor(const CColor& colour)

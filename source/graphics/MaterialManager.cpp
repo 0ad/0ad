@@ -271,9 +271,9 @@ CMaterial& CMaterialManager::LoadMaterial(const VfsPath& pathname)
 
 				// Determine whether the alpha is used for basic transparency or player color
 				if (temp == "playercolor")
-					material->SetPlayerColor_PerPlayer();
+					material->SetUsePlayerColor(true);
 				else if (temp == "objectcolor")
-					material->SetPlayerColor_PerObject();
+					material->SetUseTextureColor(true);
 				else
 					material->SetUsesAlpha(ParseUsage(temp));
 			}

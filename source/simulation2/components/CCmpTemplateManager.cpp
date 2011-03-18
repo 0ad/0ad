@@ -368,6 +368,8 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 		"</Position>"
 		"<VisualActor>"
 			"<Actor>" + name + "</Actor>"
+			"<SilhouetteDisplay>false</SilhouetteDisplay>"
+			"<SilhouetteOccluder>false</SilhouetteOccluder>"
 		"</VisualActor>"
 		"</Entity>";
 
@@ -479,6 +481,10 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 		// Corpses should include decay components and un-inactivate them
 		if (out.GetChild("Entity").GetChild("Decay").IsOk())
 			CParamNode::LoadXMLString(out, "<Entity><Decay><Inactive disable=''/></Decay></Entity>");
+
+		// Corpses shouldn't display silhouettes (especially since they're often half underground)
+		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
+			CParamNode::LoadXMLString(out, "<Entity><VisualActor><SilhouetteDisplay>false</SilhouetteDisplay></VisualActor></Entity>");
 	}
 }
 
