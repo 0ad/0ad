@@ -23,7 +23,7 @@
 #ifndef INCLUDED_SHARED_PTR
 #define INCLUDED_SHARED_PTR
 
-#include "lib/sysdep/arch/x86_x64/x86_x64.h"
+#include "lib/sysdep/arch/x86_x64/cache.h"
 #include "lib/sysdep/rtl.h" // rtl_AllocateAligned
 
 struct DummyDeleter
@@ -73,7 +73,7 @@ struct AlignedDeleter
 template<class T>
 inline shared_ptr<T> AllocateAligned(size_t size)
 {
-	return shared_ptr<T>((T*)rtl_AllocateAligned(size, x86_x64_L2CacheLineSize()), AlignedDeleter());
+	return shared_ptr<T>((T*)rtl_AllocateAligned(size, x86_x64_Caches(L2D)->entrySize), AlignedDeleter());
 }
 
 #endif	// #ifndef INCLUDED_SHARED_PTR

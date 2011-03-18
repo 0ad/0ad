@@ -31,6 +31,7 @@
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/snd.h"
 #if ARCH_X86_X64
+# include "lib/sysdep/arch/x86_x64/cache.h"
 # include "lib/sysdep/arch/x86_x64/topology.h"
 #endif
 #include "ps/CLogger.h"
@@ -43,38 +44,44 @@
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings);
 
 #if ARCH_X86_X64
-CScriptVal ConvertCaches(ScriptInterface& scriptInterface, const x86_x64_Caches* caches)
+CScriptVal ConvertCaches(ScriptInterface& scriptInterface, IdxCache idxCache)
 {
 	CScriptVal ret;
 	scriptInterface.Eval("[]", ret);
-	for (size_t i = 0; i < caches->numLevels; ++i)
+	for (size_t idxLevel = 0; idxLevel < x86_x64_Cache::maxLevels; ++idxLevel)
 	{
+		const x86_x64_Cache* pcache = x86_x64_Caches(idxCache+idxLevel);
+		if(pcache->type == x86_x64_Cache::kNull)
+			continue;
 		CScriptVal cache;
 		scriptInterface.Eval("({})", cache);
-		scriptInterface.SetProperty(cache.get(), "type", (u32)caches->levels[i].type);
-		scriptInterface.SetProperty(cache.get(), "level", (u32)caches->levels[i].level);
-		scriptInterface.SetProperty(cache.get(), "associativity", (u32)caches->levels[i].associativity);
-		scriptInterface.SetProperty(cache.get(), "linesize", (u32)caches->levels[i].lineSize);
-		scriptInterface.SetProperty(cache.get(), "sharedby", (u32)caches->levels[i].sharedBy);
-		scriptInterface.SetProperty(cache.get(), "totalsize", (u32)caches->levels[i].totalSize);
-		scriptInterface.SetPropertyInt(ret.get(), i, cache);
+		scriptInterface.SetProperty(cache.get(), "type", (u32)pcache->type);
+		scriptInterface.SetProperty(cache.get(), "level", (u32)pcache->level);
+		scriptInterface.SetProperty(cache.get(), "associativity", (u32)pcache->associativity);
+		scriptInterface.SetProperty(cache.get(), "linesize", (u32)pcache->entrySize);
+		scriptInterface.SetProperty(cache.get(), "sharedby", (u32)pcache->sharedBy);
+		scriptInterface.SetProperty(cache.get(), "totalsize", (u32)pcache->TotalSize());
+		scriptInterface.SetPropertyInt(ret.get(), idxLevel, cache);
 	}
 	return ret;
 }
 
-CScriptVal ConvertTLBs(ScriptInterface& scriptInterface, const x86_x64_TLBs* tlbs)
+CScriptVal ConvertTLBs(ScriptInterface& scriptInterface)
 {
 	CScriptVal ret;
 	scriptInterface.Eval("[]", ret);
-	for (size_t i = 0; i < tlbs->numLevels; ++i)
+	for(size_t i = 0; ; i++)
 	{
+		const x86_x64_Cache* ptlb = x86_x64_Caches(TLB+i);
+		if(!ptlb)
+			break;
 		CScriptVal tlb;
 		scriptInterface.Eval("({})", tlb);
-		scriptInterface.SetProperty(tlb.get(), "type", (u32)tlbs->levels[i].type);
-		scriptInterface.SetProperty(tlb.get(), "level", (u32)tlbs->levels[i].level);
-		scriptInterface.SetProperty(tlb.get(), "associativity", (u32)tlbs->levels[i].associativity);
-		scriptInterface.SetProperty(tlb.get(), "pagesize", (u32)tlbs->levels[i].pageSize);
-		scriptInterface.SetProperty(tlb.get(), "entries", (u32)tlbs->levels[i].entries);
+		scriptInterface.SetProperty(tlb.get(), "type", (u32)ptlb->type);
+		scriptInterface.SetProperty(tlb.get(), "level", (u32)ptlb->level);
+		scriptInterface.SetProperty(tlb.get(), "associativity", (u32)ptlb->associativity);
+		scriptInterface.SetProperty(tlb.get(), "pagesize", (u32)ptlb->entrySize);
+		scriptInterface.SetProperty(tlb.get(), "entries", (u32)ptlb->numEntries);
 		scriptInterface.SetPropertyInt(ret.get(), i, tlb);
 	}
 	return ret;
@@ -227,14 +234,13 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "x86_caps[2]", caps2);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[3]", caps3);
 
-	scriptInterface.SetProperty(settings.get(), "x86_icaches", ConvertCaches(scriptInterface, x86_x64_ICaches()));
-	scriptInterface.SetProperty(settings.get(), "x86_dcaches", ConvertCaches(scriptInterface, x86_x64_DCaches()));
-	scriptInterface.SetProperty(settings.get(), "x86_itlbs", ConvertTLBs(scriptInterface, x86_x64_ITLBs()));
-	scriptInterface.SetProperty(settings.get(), "x86_dtlbs", ConvertTLBs(scriptInterface, x86_x64_DTLBs()));
+	scriptInterface.SetProperty(settings.get(), "x86_icaches", ConvertCaches(scriptInterface, L1I));
+	scriptInterface.SetProperty(settings.get(), "x86_dcaches", ConvertCaches(scriptInterface, L1D));
+	scriptInterface.SetProperty(settings.get(), "x86_tlbs", ConvertTLBs(scriptInterface));
 #endif
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 5, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 6, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 

@@ -28,7 +28,7 @@
 #define ALIGNED_ALLOCATOR
 
 #include "lib/bits.h"	// round_up
-#include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_L1CacheLineSize
+#include "lib/sysdep/arch/x86_x64/cache.h"
 #include "lib/sysdep/rtl.h"	// rtl_AllocateAligned
 
 
@@ -107,7 +107,7 @@ public:
 	// allocate uninitialized storage
 	pointer allocate(size_type numElements)
 	{
-		const size_type alignment = x86_x64_L1CacheLineSize();
+		const size_type alignment = x86_x64_Caches(L1D)->entrySize;
 		const size_type elementSize = round_up(sizeof(T), alignment);
 		const size_type size = numElements * elementSize;
 		pointer p = (pointer)rtl_AllocateAligned(size, alignment);

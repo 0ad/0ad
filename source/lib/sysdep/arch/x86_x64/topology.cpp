@@ -35,6 +35,7 @@
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/numa.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
+#include "lib/sysdep/arch/x86_x64/cache.h"
 
 
 //-----------------------------------------------------------------------------
@@ -110,11 +111,7 @@ static size_t MaxLogicalPerCore()
 
 static size_t MaxLogicalPerCache()
 {
-	const x86_x64_Caches* const dcaches = x86_x64_DCaches();
-	if(dcaches->numLevels >= 2)
-		return dcaches->levels[1].sharedBy;
-	else
-		return 1;	// default
+	return x86_x64_Caches(L2D)->sharedBy;
 }
 
 
