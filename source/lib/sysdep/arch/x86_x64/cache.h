@@ -37,28 +37,76 @@ struct x86_x64_Cache	// POD (may be used before static constructors)
 
 	static const size_t maxLevels = 3;
 
-	static const size_t fullyAssociative = 0xFF;
+	static const size_t fullyAssociative = 0xFF;	// (CPUID.4 definition)
 
-	void Init()
+	/**
+	 * 1..maxLevels
+	 **/
+	size_t level;
+
+	/**
+	 * never kNull
+	 **/
+	Type type;
+
+	/**
+	 * if 0, the cache is disabled and all other values are zero
+	 **/
+	size_t numEntries;
+
+	/**
+	 * NB: cache entries are lines, TLB entries are pages
+	 **/
+	size_t entrySize;
+
+	/**
+	 * = fullyAssociative or the actual ways of associativity
+	 **/
+	size_t associativity;
+
+	/**
+	 * how many logical processors share this cache?
+	 **/
+	size_t sharedBy;
+
+	void Initialize(size_t level, Type type)
 	{
-		type = kNull;
-		level = 0;
+		this->level   = level;
+		this->type    = type;
+		numEntries    = 0;
+		entrySize     = 0;
 		associativity = 0;
-		entrySize = 0;
-		sharedBy = 0;
-		numEntries = 0;
+		sharedBy      = 0;
+
+		debug_assert(Validate());
 	}
 
 	bool Validate() const
 	{
-		if(type == kNull)
-			return true;
-
 		if(!(1 <= level && level <= maxLevels))
 			return false;
 
-		if(entrySize == 0)
+		if(type == kNull)
 			return false;
+
+		if(numEntries == 0)	// disabled
+		{
+			if(entrySize != 0)
+				return false;
+			if(associativity != 0)
+				return false;
+			if(sharedBy != 0)
+				return false;
+		}
+		else
+		{
+			if(entrySize == 0)
+				return false;
+			if(associativity == 0 || associativity > fullyAssociative)
+				return false;
+			if(sharedBy == 0)
+				return false;
+		}
 
 		return true;
 	}
@@ -67,33 +115,6 @@ struct x86_x64_Cache	// POD (may be used before static constructors)
 	{
 		return u64(numEntries)*entrySize;
 	}
-
-	/**
-	 * if kNull, all other values are invalid.
-	 **/
-	Type type;
-
-	/**
-	 * 1..maxLevels
-	 **/
-	size_t level;
-
-	/**
-	 * = fullyAssociative or the actual ways of associativity
-	 **/
-	size_t associativity;
-
-	/**
-	 * NB: cache entries are lines, TLB entries are pages
-	 **/
-	size_t entrySize;
-
-	/**
-	 * how many logical processors share this cache?
-	 **/
-	size_t sharedBy;
-
-	size_t numEntries;
 };
 
 enum IdxCache
@@ -110,7 +131,7 @@ enum IdxCache
 
 /**
  * @return 0 if idxCache >= TLB+numTLBs, otherwise a valid pointer to
- * a Cache whose type is null if not present.
+ * a Cache whose numEntries is 0 if disabled / not present.
  **/
 LIB_API const x86_x64_Cache* x86_x64_Caches(size_t idxCache);
 
