@@ -372,6 +372,7 @@ static const u8 F = x86_x64_Cache::fullyAssociative;
 // (we need to include cache descriptors because early Pentium4 don't implement CPUID.4)
 // references: [accessed 2011-02-26]
 // AP485 http://www.intel.com/Assets/PDF/appnote/241618.pdf
+// sdman http://www.intel.com/Assets/PDF/manual/253666.pdf
 // sandp http://www.sandpile.org/ia32/cpuid.htm
 // opsol http://src.opensolaris.org/source/xref/onnv/onnv-gate/usr/src/uts/i86pc/os/cpuid.c
 static const Characteristics characteristicsTable[] =
@@ -390,7 +391,7 @@ static const Characteristics characteristicsTable[] =
 	TLB  (0x0B, L1|I,   4*MiB,  4,   4),
 
 	CACHE(0x0C, L1|D,  16*KiB,  4,  32),
-	CACHE(0x0D, L1|D,  16*KiB,  4,  32),
+	CACHE(0x0D, L1|D,  16*KiB,  4,  64),	// opsol: 32B (would be redundant with 0x0C), AP485: 64B, sdman: 64B
 	CACHE(0x0E, L1|D,  24*KiB,  6,  64),
 
 	CACHE(0x21, L2|U, 256*KiB,  8,  64),
@@ -462,7 +463,9 @@ static const Characteristics characteristicsTable[] =
 	CACHE(0x72, L1|I,  32*KiB,  8,   1),
 	CACHE(0x73, L1|I,  64*KiB,  8,   1),
 
-	CACHE(0x76, L2|U,   1*MiB,  4,  64),
+	TLB  (0x76, L1|I,   4*MiB,  F,   8),	// AP485: internally inconsistent, sdman: TLB
+	TLB  (0x76, L1|I,   2*MiB,  F,   8),
+
 	CACHE(0x78, L2|U,   1*MiB,  4,  64),
 	CACHE(0x79, L2|U, 128*KiB,  8,  64),
 	CACHE(0x7A, L2|U, 256*KiB,  8,  64),
@@ -492,7 +495,7 @@ static const Characteristics characteristicsTable[] =
 	TLB  (0xC0, L1|D,   4*KiB,  4,   8),
 	TLB  (0xC0, L1|D,   4*MiB,  4,   8),
 
-	TLB  (0xCA, L2|U, 4*KiB, 4, 512),
+	TLB  (0xCA, L2|U,    4*KiB, 4, 512),
 
 	CACHE(0xD0, L3|U, 512*KiB,  4,  64),
 	CACHE(0xD1, L3|U,   1*MiB,  4,  64),
