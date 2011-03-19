@@ -230,10 +230,10 @@ static bool DetectCache()
 
 		x86_x64_Cache cache;
 		cache.Initialize(level, type);
-		cache.numEntries    = cache.associativity * partitions * sets;
 		cache.entrySize     = (size_t)bits(regs.ebx,  0, 11)+1;	// (yes, this also uses +1 encoding)
 		cache.associativity = (size_t)bits(regs.ebx, 22, 31)+1;
 		cache.sharedBy      = (size_t)bits(regs.eax, 14, 25)+1;
+		cache.numEntries    = cache.associativity * partitions * sets;
 
 		AddCache(cache);
 	}
