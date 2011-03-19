@@ -51,7 +51,7 @@ CScriptVal ConvertCaches(ScriptInterface& scriptInterface, IdxCache idxCache)
 	for (size_t idxLevel = 0; idxLevel < x86_x64_Cache::maxLevels; ++idxLevel)
 	{
 		const x86_x64_Cache* pcache = x86_x64_Caches(idxCache+idxLevel);
-		if(pcache->type == x86_x64_Cache::kNull)
+		if (pcache->type == x86_x64_Cache::kNull || pcache->numEntries == 0)
 			continue;
 		CScriptVal cache;
 		scriptInterface.Eval("({})", cache);
@@ -73,7 +73,7 @@ CScriptVal ConvertTLBs(ScriptInterface& scriptInterface)
 	for(size_t i = 0; ; i++)
 	{
 		const x86_x64_Cache* ptlb = x86_x64_Caches(TLB+i);
-		if(!ptlb)
+		if (!ptlb)
 			break;
 		CScriptVal tlb;
 		scriptInterface.Eval("({})", tlb);
