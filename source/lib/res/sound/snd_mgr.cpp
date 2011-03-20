@@ -460,54 +460,22 @@ static void al_buf_shutdown()
 // necessary in case OpenAL doesn't limit #sources (e.g. if SW mixing).
 static const size_t AL_SRC_MAX = 64;
 
-// user-set limit on how many sources may be used
-static size_t al_src_cap = AL_SRC_MAX;
+// (allow changing at runtime)
+static size_t al_src_maxNumToUse = AL_SRC_MAX;
 
-// note: to catch double-free bugs and ensure all sources are
-// released at exit, we segregate them into free and used lists.
-static intptr_t al_srcs_used[AL_SRC_MAX];
-static intptr_t al_srcs_free[AL_SRC_MAX];
+static size_t al_src_numPreallocated;
 
-// total number of sources allocated by al_src_init
-static size_t al_src_allocated;
-
-
-static void srcs_insert(volatile intptr_t* srcs, ALuint al_src)
+enum AllocationState
 {
-	for(size_t i = 0; i < al_src_allocated; i++)
-	{
-		if(cpu_CAS(&srcs[i], 0, (intptr_t)al_src))
-			return;
-	}
-	debug_assert(0);	// list full (can't happen)
-}
+	kAvailable = 0,	// (must match zero-initialization of al_srcs_allocationStates)
+	kInUse
+};
 
-static void srcs_remove(volatile intptr_t* srcs, ALuint al_src)
-{
-	for(size_t i = 0; i < al_src_allocated; i++)
-	{
-		if(cpu_CAS(&srcs[i], (intptr_t)al_src, 0))
-			return;
-	}
-	debug_assert(0);	// source not found (can't happen)
-}
-
-// @return first nonzero entry (which is then zeroed), or zero if there are none.
-static ALuint srcs_pop(volatile intptr_t* srcs)
-{
-	for(size_t i = 0; i < al_src_allocated; i++)
-	{
-retry:
-		intptr_t al_src = srcs[i];
-		COMPILER_FENCE;
-		if(!cpu_CAS(&srcs[i], al_src, 0))
-			goto retry;
-		if(al_src != 0)	// got a valid source
-			return (ALuint)al_src;
-	}
-	return 0;	// none left
-}
-
+// note: we want to catch double-free bugs and ensure all sources
+// are released at exit, but OpenAL doesn't specify an always-invalid
+// source name, so we need a separate array of AllocationState.
+static ALuint al_srcs[AL_SRC_MAX];
+static intptr_t al_srcs_allocationStates[AL_SRC_MAX];
 
 /**
  * grab as many sources as possible up to the limit.
@@ -516,7 +484,7 @@ retry:
 static void al_src_init()
 {
 	// grab as many sources as possible and count how many we get.
-	for(size_t i = 0; i < al_src_cap; i++)
+	for(size_t i = 0; i < al_src_maxNumToUse; i++)
 	{
 		ALuint al_src;
 		alGenSources(1, &al_src);
@@ -524,17 +492,17 @@ static void al_src_init()
 		if(alGetError() != AL_NO_ERROR)
 			break;
 		debug_assert(alIsSource(al_src));
-		al_srcs_free[i] = al_src;
-		al_src_allocated++;
+		al_srcs[i] = al_src;
+		al_src_numPreallocated++;
 	}
 
 	// limit user's cap to what we actually got.
 	// (in case snd_set_max_src was called before this)
-	if(al_src_cap > al_src_allocated)
-		al_src_cap = al_src_allocated;
+	if(al_src_maxNumToUse > al_src_numPreallocated)
+		al_src_maxNumToUse = al_src_numPreallocated;
 
 	// make sure we got the minimum guaranteed by OpenAL.
-	debug_assert(al_src_allocated >= 16);
+	debug_assert(al_src_numPreallocated >= 16);
 }
 
 
@@ -545,35 +513,35 @@ static void al_src_init()
  */
 static void al_src_shutdown()
 {
-	debug_assert(std::count(al_srcs_free, al_srcs_free+al_src_allocated, 0) == 0);
-	debug_assert(std::count(al_srcs_used, al_srcs_used+al_src_allocated, 0) == (ptrdiff_t)al_src_allocated);
+	for(size_t i = 0; i < al_src_numPreallocated; i++)
+		debug_assert(al_srcs_allocationStates[i] == kAvailable);
 
-	// (the srcs arrays are intptr_t to allow cpu_CAS but must be
-	// copied to ALuint for use by alDeleteSources)
-	ALuint al_srcs[AL_SRC_MAX];
-	for(size_t i = 0; i < al_src_allocated; i++)
-		al_srcs[i] = (ALuint)al_srcs_free[i];
-	
 	AL_CHECK;
-	alDeleteSources((ALsizei)al_src_allocated, al_srcs);
+	alDeleteSources((ALsizei)al_src_numPreallocated, al_srcs);
 	AL_CHECK;
 
-	al_src_allocated = 0;
+	al_src_numPreallocated = 0;
 }
 
 
 /**
  * try to allocate a source.
  *
- * @return ALuint source name, or 0 if none available
+ * @return whether a source was allocated (see al_srcs_allocationStates).
+ * @param al_src receives the new source name iff true is returned.
  */
-static ALuint al_src_alloc()
+static bool al_src_alloc(ALuint& al_src)
 {
-	ALuint al_src = srcs_pop(al_srcs_free);
-	if(!al_src)	// no more to give
-		return 0;
-	srcs_insert(al_srcs_used, al_src);
-	return al_src;
+	for(size_t i = 0; i < al_src_numPreallocated; i++)
+	{
+		if(cpu_CAS(&al_srcs_allocationStates[i], kAvailable, kInUse))
+		{
+			al_src = al_srcs[i];
+			return true;
+		}
+	}
+
+	return false;	// no more to give
 }
 
 
@@ -585,8 +553,15 @@ static ALuint al_src_alloc()
 static void al_src_free(ALuint al_src)
 {
 	debug_assert(alIsSource(al_src));
-	srcs_remove(al_srcs_used, al_src);
-	srcs_insert(al_srcs_free, al_src);
+
+	const ALuint* pos = std::find(al_srcs, al_srcs+al_src_numPreallocated, al_src);
+	if(pos != al_srcs+al_src_numPreallocated)	// found it
+	{
+		const size_t i = pos - al_srcs;
+		debug_assert(cpu_CAS(&al_srcs_allocationStates[i], kInUse, kAvailable));
+	}
+	else
+		debug_assert(0);	// al_src wasn't in al_srcs
 }
 
 
@@ -604,9 +579,9 @@ LibError snd_set_max_voices(size_t limit)
 	// valid if cap is legit (less than what we allocated in al_src_init),
 	// or if al_src_init hasn't been called yet. note: we accept anything
 	// in the second case, as al_src_init will sanity-check al_src_cap.
-	if(!al_src_allocated || limit < al_src_allocated)
+	if(!al_src_numPreallocated || limit < al_src_numPreallocated)
 	{
-		al_src_cap = limit;
+		al_src_maxNumToUse = limit;
 		return INFO::OK;
 	}
 	// user is requesting a cap higher than what we actually allocated.
@@ -1223,17 +1198,21 @@ static bool fade_is_active(FadeInfo& fi)
 
 enum VSrcFlags
 {
+	// (we can't just test if al_src is zero because that might be a
+	// valid source name!)
+	VS_HAS_AL_SRC  = 1,
+
 	// SndData has reported EOF. will close down after last buffer completes.
-	VS_EOF = 1,
+	VS_EOF         = 2,
 
 	// this VSrc was added via list_add and needs to be removed with
 	// list_remove in VSrc_dtor.
 	// not set if load fails somehow (avoids list_remove "not found" error).
-	VS_IN_LIST = 2,
+	VS_IN_LIST     = 4,
 
-	VS_SHOULD_STOP = 4,
+	VS_SHOULD_STOP = 8,
 
-	VS_ALL_FLAGS = VS_EOF|VS_IN_LIST|VS_SHOULD_STOP
+	VS_ALL_FLAGS = VS_HAS_AL_SRC|VS_EOF|VS_IN_LIST|VS_SHOULD_STOP
 };
 
 /**
@@ -1243,6 +1222,14 @@ enum VSrcFlags
  */
 struct VSrc
 {
+	bool HasSource() const
+	{
+		if((flags & VS_HAS_AL_SRC) == 0)
+			return false;
+		debug_assert(alIsSource(al_src));
+		return true;
+	}
+
 	/// handle to this VSrc, so that it can close itself.
 	Handle hvs;
 
@@ -1259,6 +1246,7 @@ struct VSrc
 	/// controls vsrc_update behavior (VSrcFlags)
 	size_t flags;
 
+	// valid iff HasSource()
 	ALuint al_src;
 
 	// priority for voice management
@@ -1426,14 +1414,12 @@ static void list_add(VSrc* vs)
 /**
  * call back for each VSrc entry in the list.
  *
- * @param cb Callback function
- * @param skip number of entries to skip (default 0)
  * @param end_idx if not the default value of 0, stop before that entry.
  */
 template<class Func>
-static void list_foreach(Func callback, size_t skip = 0, size_t end_idx = 0)
+static void list_foreach(Func callback, size_t numToSkip = 0, size_t end_idx = 0)
 {
-	const VSrcIt begin = vsrcs.begin() + skip;
+	const VSrcIt begin = vsrcs.begin() + numToSkip;
 	const VSrcIt end = end_idx? begin+end_idx : vsrcs.end();
 
 	// can't use std::for_each: some entries may have been deleted
@@ -1499,7 +1485,7 @@ struct IsNull
 
 /**
  * remove entries that were set to 0 by list_remove, so that
- * code below can grant the first al_src_cap entries a soure.
+ * code below can grant the first al_src_cap entries a source.
  */
 static void list_prune_removed()
 {
@@ -1530,9 +1516,8 @@ static LibError list_free_all()
  */
 static void vsrc_latch(VSrc* vs)
 {
-	if(!vs->al_src)
+	if(!vs->HasSource())
 		return;
-	debug_assert(alIsSource(vs->al_src));
 
 	float rolloff = 1.0f;
 	float referenceDistance = 125.0f;
@@ -1594,6 +1579,8 @@ static void vsrc_latch(VSrc* vs)
  */
 static int vsrc_deque_finished_bufs(VSrc* vs)
 {
+	debug_assert(vs->HasSource());	// (otherwise there's no sense in calling this function)
+
 	AL_CHECK;
 	int num_processed;
 	alGetSourcei(vs->al_src, AL_BUFFERS_PROCESSED, &num_processed);
@@ -1627,7 +1614,7 @@ public:
 
 	LibError operator()(VSrc* vs) const
 	{
-		if(!vs->al_src)
+		if(!vs->HasSource())
 			return INFO::OK;
 
 		FadeRet fade_ret = fade(vs->fade, time, vs->gain);
@@ -1693,15 +1680,15 @@ private:
  */
 static LibError vsrc_grant(VSrc* vs)
 {
-	// already playing - bail
-	if(vs->al_src)
+	if(vs->HasSource())	// already playing
 		return INFO::OK;
 
-	// try to alloc source. if none are available, bail -
-	// we get called in that hope that one is available by snd_play.
-	vs->al_src = al_src_alloc();
-	if(!vs->al_src)
+	// try to allocate a source. snd_play calls us in the hope that a source
+	// happens to be free, but if not, just skip the remaining steps and
+	// wait for the next update.
+	if(!al_src_alloc(vs->al_src))
 		return ERR::FAIL;	// NOWARN
+	vs->flags |= VS_HAS_AL_SRC;
 
 	// pass (user-specifiable) properties on to OpenAL.
 	vsrc_latch(vs);
@@ -1724,8 +1711,7 @@ static LibError vsrc_grant(VSrc* vs)
  */
 static LibError vsrc_reclaim(VSrc* vs)
 {
-	// don't own a source - bail.
-	if(!vs->al_src)
+	if(!vs->HasSource())
 		return ERR::FAIL;	// NOWARN
 	debug_assert(alIsSource(vs->al_src));
 
@@ -1747,12 +1733,12 @@ static LibError vsrc_reclaim(VSrc* vs)
 
 	vs->flags |= VS_SHOULD_STOP;
 
-	alSourceStop(vs->al_src);	// stops the source
+	alSourceStop(vs->al_src);
 
 	vsrc_deque_finished_bufs(vs);
-	alSourcei(vs->al_src, AL_BUFFER, AL_NONE);	// <- jan addition (fixes philip sound assertion about freeing a buf that was still queued)
+	alSourcei(vs->al_src, AL_BUFFER, AL_NONE);
 
-	alSourceRewind(vs->al_src);	// stops the source
+	alSourceRewind(vs->al_src);
 
 	al_src_free(vs->al_src);
 	return INFO::OK;
@@ -1977,7 +1963,7 @@ bool snd_is_playing(Handle hvs)
 		return false;
 
 	// 'just' finished playing
-	if(!vs->al_src)
+	if(!vs->HasSource())
 		return false;
 
 	return true;
@@ -2052,7 +2038,7 @@ static LibError vm_update()
 	// partition list; the first al_src_cap will be granted a source
 	// (if they don't have one already), after reclaiming all sources from
 	// the remainder of the VSrc list entries.
-	size_t first_unimportant = std::min((size_t)vsrcs.size(), al_src_cap);
+	size_t first_unimportant = std::min((size_t)vsrcs.size(), al_src_maxNumToUse);
 	list_foreach(reclaim, first_unimportant, 0);
 	list_foreach(vsrc_grant, 0, first_unimportant);
 
