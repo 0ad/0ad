@@ -537,7 +537,7 @@ enum DescriptorFlags
 	SKIP_CACHE_DESCRIPTORS = 1,
 	NO_LAST_LEVEL_CACHE    = 2,
 	PREFETCH64             = 64,
-	PREFETCH128            = 128,
+	PREFETCH128            = 128
 };
 
 static bool HandleSpecialDescriptor(Descriptor descriptor, size_t& descriptorFlags)
