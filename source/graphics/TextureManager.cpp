@@ -53,6 +53,7 @@ struct TPhash
 		return (*this)(a->m_Properties);
 	}
 };
+
 struct TPequal_to
 	: std::binary_function<CTextureProperties, CTextureProperties, bool>,
 	std::binary_function<CTexturePtr, CTexturePtr, bool>

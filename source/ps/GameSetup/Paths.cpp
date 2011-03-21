@@ -37,7 +37,7 @@ Paths::Paths(const CmdLineArgs& args)
 	m_rdata = Path::Join(m_root, "data/");
 #endif
 
-	const wchar_t* subdirectoryName = args.Has("writableRoot")? 0 : L"0ad";
+	const char* subdirectoryName = args.Has("writableRoot")? 0 : "0ad";
 
 	// everything is a subdirectory of the root
 	if(!subdirectoryName)
@@ -59,9 +59,9 @@ Paths::Paths(const CmdLineArgs& args)
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
 		const NativePath home(wstring_from_utf8(envHome));
-		const NativePath xdgData = XDG_Path("XDG_DATA_HOME", home, Path::Join(home, ".local/share/"), subdirectoryName));
-		const NativePath xdgConfig = XDG_Path("XDG_CONFIG_HOME", home, Path::Join(home, ".config/"), subdirectoryName));
-		const NativePath xdgCache = XDG_Path("XDG_CACHE_HOME", home, Path::Join(home, ".cache/"), subdirectoryName));
+		const NativePath xdgData = Path::Join(XDG_Path("XDG_DATA_HOME", home, Path::Join(home, ".local/share/")), subdirectoryName);
+		const NativePath xdgConfig = Path::Join(XDG_Path("XDG_CONFIG_HOME", home, Path::Join(home, ".config/")), subdirectoryName);
+		const NativePath xdgCache = Path::Join(XDG_Path("XDG_CACHE_HOME", home, Path::Join(home, ".cache/")), subdirectoryName);
 		m_data = Path::AddSlash(xdgData);
 		m_cache = Path::AddSlash(xdgCache);
 		m_config = Path::AddSlash(Path::Join(xdgConfig, "config"));

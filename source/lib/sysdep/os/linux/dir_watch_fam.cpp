@@ -237,7 +237,7 @@ LibError dir_watch_Poll(DirWatchNotifications& notifications)
 			continue;
 		}
 		DirWatch* dirWatch = (DirWatch*)polled_notifications[i].userdata;
-		NativePath pathname = Path::Join(dirWatch->path, polled_notifications[i].filename);
+		NativePath pathname = Path::Join(dirWatch->path, NativePathFromString(polled_notifications[i].filename));
 		notifications.push_back(DirWatchNotification(pathname, type));
 	}
 

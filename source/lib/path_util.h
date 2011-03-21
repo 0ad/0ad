@@ -76,8 +76,8 @@ namespace Path {
 template<class Path_t>
 static inline bool IsDirectory(const Path_t& pathname)
 {
-	if(pathname.empty())	// (ensure back() is safe)
-		return false;	// (the VFS root directory is represented as an empty string)
+	if(pathname.empty())	// (ensure length()-1 is safe)
+		return true;	// (the VFS root directory is represented as an empty string)
 
 	// note: ideally, path strings would only contain '/' or even SYS_DIR_SEP.
 	// however, windows-specific code (e.g. the sound driver detection)
@@ -86,7 +86,7 @@ static inline bool IsDirectory(const Path_t& pathname)
 	// also, the self-tests verify correct operation of such strings.
 	// it would be error-prone to only test the platform's separator
 	// strings there. hence, we allow all separators here.
-	return pathname.back() == '/' || pathname.back() == '\\';
+	return pathname[pathname.length()-1] == '/' || pathname[pathname.length()-1] == '\\';
 }
 
 template<class Path_t>

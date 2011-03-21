@@ -278,7 +278,7 @@ JSBool GetBuildTimestamp(JSContext* cx, uintN argc, jsval* vp)
 void DumpHeap(const char* basename, int idx, JSContext* cx)
 {
 	char filename[64];
-	sprintf_s(filename, ARRAY_SIZE(filename), "%hs.%03d.txt", basename, idx);
+	sprintf_s(filename, ARRAY_SIZE(filename), "%s.%03d.txt", basename, idx);
 	NativePath pathname = Path::Join(psLogDir(), filename);
 #if OS_WIN
 	FILE* f = _wfopen(pathname.c_str(), L"w");
