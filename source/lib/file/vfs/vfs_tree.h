@@ -36,9 +36,9 @@
 class VfsFile
 {
 public:
-	VfsFile(const std::wstring& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& provider);
+	VfsFile(const NativePath& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& provider);
 
-	const std::wstring& Name() const
+	const NativePath& Name() const
 	{
 		return m_name;
 	}
@@ -64,7 +64,7 @@ public:
 	}
 
 private:
-	std::wstring m_name;
+	NativePath m_name;
 	size_t m_size;
 	time_t m_mtime;
 
@@ -77,8 +77,8 @@ private:
 class VfsDirectory
 {
 public:
-	typedef std::map<std::wstring, VfsFile> VfsFiles;
-	typedef std::map<std::wstring, VfsDirectory> VfsSubdirectories;
+	typedef std::map<NativePath, VfsFile> VfsFiles;
+	typedef std::map<NativePath, VfsDirectory> VfsSubdirectories;
 
 	VfsDirectory();
 
@@ -90,19 +90,19 @@ public:
 	/**
 	 * @return address of existing or newly inserted subdirectory.
 	 **/
-	VfsDirectory* AddSubdirectory(const std::wstring& name);
+	VfsDirectory* AddSubdirectory(const NativePath& name);
 
 	/**
 	 * @return file with the given name.
 	 * (note: non-const to allow changes to the file)
 	 **/
-	VfsFile* GetFile(const std::wstring& name);
+	VfsFile* GetFile(const NativePath& name);
 
 	/**
 	 * @return subdirectory with the given name.
 	 * (note: non-const to allow changes to the subdirectory)
 	 **/
-	VfsDirectory* GetSubdirectory(const std::wstring& name);
+	VfsDirectory* GetSubdirectory(const NativePath& name);
 
 	// note: exposing only iterators wouldn't enable callers to reserve space.
 
@@ -137,7 +137,7 @@ public:
 	 * indicate that a file has changed; ensure its new version supersedes
 	 * the old by removing it and marking the directory for re-population.
 	 **/
-	void Invalidate(const std::wstring& name);
+	void Invalidate(const NativePath& name);
 
 	/**
 	 * empty file and subdirectory lists (e.g. when rebuilding VFS).

@@ -1083,7 +1083,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 	}
 	catch (PSERROR_GUI& e)
 	{
-		LOGERROR(L"Errors loading GUI file %ls (%d)", Filename.string().c_str(), e.getCode());
+		LOGERROR(L"Errors loading GUI file %ls (%d)", Filename.c_str(), e.getCode());
 		return;
 	}
 }
@@ -1578,7 +1578,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 		if (attr_name == "texture")
 		{
-			image.m_TextureName = VfsPath(L"art/textures/ui")/(std::wstring)attr_value;
+			image.m_TextureName = Path::Join(L"art/textures/ui", attr_value);
 		}
 		else
 		if (attr_name == "size")

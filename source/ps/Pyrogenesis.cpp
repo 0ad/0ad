@@ -46,10 +46,10 @@ void psTranslateFree(const wchar_t* text)
 
 // convert contents of file <in_filename> from char to wchar_t and
 // append to <out> file.
-static void AppendAsciiFile(FILE* out, const fs::wpath& pathname)
+static void AppendAsciiFile(FILE* out, const NativePath& pathname)
 {
 	FILE* in;
-	errno_t err = _wfopen_s(&in, pathname.string().c_str(), L"rb");
+	errno_t err = _wfopen_s(&in, pathname.c_str(), L"rb");
 	if(err != 0)
 	{
 		fwprintf(out, L"(unavailable)");
@@ -77,25 +77,25 @@ void psBundleLogs(FILE* f)
 	fwprintf(f, L"SVN Revision: %ls\n\n", svn_revision);
 
 	fwprintf(f, L"System info:\n\n");
-	fs::wpath path1(psLogDir()/L"system_info.txt");
+	NativePath path1 = Path::Join(psLogDir(), L"system_info.txt");
 	AppendAsciiFile(f, path1);
 	fwprintf(f, L"\n\n====================================\n\n");
 
 	fwprintf(f, L"Main log:\n\n");
-	fs::wpath path2(psLogDir()/L"mainlog.html");
+	NativePath path2 = Path::Join(psLogDir(), L"mainlog.html");
 	AppendAsciiFile(f, path2);
 	fwprintf(f, L"\n\n====================================\n\n");
 }
 
 
-static fs::wpath logDir;
+static std::wstring logDir;
 
-void psSetLogDir(const fs::wpath& newLogDir)
+void psSetLogDir(const std::wstring& newLogDir)
 {
 	logDir = newLogDir;
 }
 
-const fs::wpath& psLogDir()
+const std::wstring& psLogDir()
 {
 	return logDir;
 }

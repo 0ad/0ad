@@ -48,7 +48,7 @@ LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filte
 	for(size_t i = 0; i < files.size(); i++)
 	{
 		if(match_wildcard(files[i].Name().c_str(), filter))
-			pathnames.push_back(path/files[i].Name());
+			pathnames.push_back(Path::Join(path, files[i].Name()));
 	}
 
 	return INFO::OK;
@@ -69,9 +69,9 @@ void SortFiles(FileInfos& files)
 }
 
 
-struct NameLess : public std::binary_function<const std::wstring, const std::wstring, bool>
+struct NameLess : public std::binary_function<const NativePath, const NativePath, bool>
 {
-	bool operator()(const std::wstring& name1, const std::wstring& name2) const
+	bool operator()(const NativePath& name1, const NativePath& name2) const
 	{
 		return wcscasecmp(name1.c_str(), name2.c_str()) < 0;
 	}
@@ -91,7 +91,7 @@ LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb,
 	// (a FIFO queue is more efficient than recursion because it uses less
 	// stack space and avoids seeks due to breadth-first traversal.)
 	std::queue<VfsPath> pendingDirectories;
-	pendingDirectories.push(AddSlash(startPath));
+	pendingDirectories.push(Path::AddSlash(startPath));
 	while(!pendingDirectories.empty())
 	{
 		const VfsPath& path = pendingDirectories.front();
@@ -104,7 +104,7 @@ LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb,
 			if(!match_wildcard(fileInfo.Name().c_str(), pattern))
 				continue;
 
-			const VfsPath pathname(path/fileInfo.Name());	// (FileInfo only stores the name)
+			const VfsPath pathname(Path::Join(path, fileInfo.Name()));	// (FileInfo only stores the name)
 			cb(pathname, fileInfo, cbData);
 		}
 
@@ -114,10 +114,10 @@ LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb,
 		for(size_t i = 0; i < subdirectoryNames.size(); i++)
 		{
 			VfsPath pathname;
-			if (path.string() == L"/") // special case for startPath == L""
-				pathname = AddSlash(VfsPath(subdirectoryNames[i]));
+			if(path == L"/") // special case for startPath == L""
+				pathname = Path::AddSlash(VfsPath(subdirectoryNames[i]));
 			else
-				pathname = AddSlash(path/subdirectoryNames[i]);
+				pathname = Path::AddSlash(Path::Join(path, subdirectoryNames[i]));
 
 			pendingDirectories.push(pathname);
 		}
@@ -137,8 +137,8 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	// add 3rd -> without this measure it would get number 1, not 3. 
 	if(nextNumber == 0)
 	{
-		const std::wstring nameFormat = pathnameFormat.leaf();
-		const VfsPath path = AddSlash(pathnameFormat.branch_path());
+		const NativePath nameFormat = Path::Filename(pathnameFormat);
+		const VfsPath path = Path::AddSlash(Path::Path(pathnameFormat));
 
 		size_t maxNumber = 0;
 		FileInfos files;
@@ -161,7 +161,7 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	do
 	{
 		wchar_t pathnameBuf[PATH_MAX];
-		swprintf_s(pathnameBuf, ARRAY_SIZE(pathnameBuf), pathnameFormat.string().c_str(), nextNumber++);
+		swprintf_s(pathnameBuf, ARRAY_SIZE(pathnameBuf), pathnameFormat.c_str(), nextNumber++);
 		nextPathname = pathnameBuf;
 	}
 	while(fs->GetFileInfo(nextPathname, 0) == INFO::OK);

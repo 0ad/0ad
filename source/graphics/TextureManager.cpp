@@ -42,7 +42,7 @@ struct TPhash
 	std::size_t operator()(CTextureProperties const& a) const
 	{
 		std::size_t seed = 0;
-		boost::hash_combine(seed, a.m_Path.string());
+		boost::hash_combine(seed, a.m_Path);
 		boost::hash_combine(seed, a.m_Filter);
 		boost::hash_combine(seed, a.m_Wrap);
 		boost::hash_combine(seed, a.m_Aniso);
@@ -170,7 +170,7 @@ public:
 		Handle h = ogl_tex_load(m_VFS, path, RES_UNIQUE);
 		if (h <= 0)
 		{
-			LOGERROR(L"Texture failed to load; \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR(L"Texture failed to load; \"%ls\"", texture->m_Properties.m_Path.c_str());
 
 			// Replace with error texture to make it obvious
 			texture->SetHandle(m_ErrorHandle);
@@ -210,7 +210,7 @@ public:
 		// Upload to GL
 		if (!m_DisableGL && ogl_tex_upload(h) < 0)
 		{
-			LOGERROR(L"Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR(L"Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.c_str());
 
 			ogl_tex_free(h);
 
@@ -287,7 +287,7 @@ public:
 		PrepareCacheKey(texture, hash, version);
 		VfsPath looseCachePath = m_CacheLoader.LooseCachePath(sourcePath, hash, version);
 
-//		LOGWARNING(L"Converting texture \"%ls\"", srcPath.string().c_str());
+//		LOGWARNING(L"Converting texture \"%ls\"", srcPath.c_str());
 
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
@@ -302,7 +302,7 @@ public:
 		CTexturePtr texture = CreateTexture(textureProps);
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
-		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, L"cache"/archiveCachePath, settings))
+		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, Path::Join(L"cache", archiveCachePath), settings))
 			return false;
 
 		while (true)
@@ -333,7 +333,7 @@ public:
 				}
 				else
 				{
-					LOGERROR(L"Texture failed to convert: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+					LOGERROR(L"Texture failed to convert: \"%ls\"", texture->m_Properties.m_Path.c_str());
 					texture->SetHandle(m_ErrorHandle);
 				}
 				texture->m_State = CTexture::LOADED;
@@ -403,18 +403,18 @@ public:
 	 */
 	CTextureConverter::Settings GetConverterSettings(const CTexturePtr& texture)
 	{
-		VfsPath srcPath = texture->m_Properties.m_Path;
+		fs::wpath srcPath = texture->m_Properties.m_Path;
 
 		std::vector<CTextureConverter::SettingsFile*> files;
 		VfsPath p;
-		for (VfsPath::iterator it = srcPath.begin(); it != srcPath.end(); ++it)
+		for (fs::wpath::iterator it = srcPath.begin(); it != srcPath.end(); ++it)
 		{
-			VfsPath settingsPath = p/L"textures.xml";
+			VfsPath settingsPath = Path::Join(p, L"textures.xml");
 			m_HotloadFiles[settingsPath].insert(texture);
 			CTextureConverter::SettingsFile* f = GetSettingsFile(settingsPath);
 			if (f)
 				files.push_back(f);
-			p /= *it;
+			p = Path::Join(p, *it);
 		}
 		return m_TextureConverter.ComputeSettings(srcPath.leaf(), files);
 	}

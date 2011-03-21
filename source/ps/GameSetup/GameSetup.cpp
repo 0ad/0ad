@@ -439,7 +439,7 @@ static void InitVfs(const CmdLineArgs& args)
 
 	const Paths paths(args);
 
-	fs::wpath logs(paths.Logs());
+	NativePath logs(paths.Logs());
 	CreateDirectories(logs, 0700);
 
 	psSetLogDir(logs);
@@ -454,8 +454,8 @@ static void InitVfs(const CmdLineArgs& args)
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount(L"screenshots/", paths.Data()/L"screenshots/");
-	const fs::wpath readonlyConfig = paths.RData()/L"config/";
+	g_VFS->Mount(L"screenshots/", Path::Join(paths.Data(), L"screenshots/"));
+	const NativePath readonlyConfig = Path::Join(paths.RData(), L"config/");
 	g_VFS->Mount(L"config/", readonlyConfig);
 	if(readonlyConfig != paths.Config())
 		g_VFS->Mount(L"config/", paths.Config());
@@ -466,15 +466,15 @@ static void InitVfs(const CmdLineArgs& args)
 	if(!args.Has("onlyPublicFiles"))
 		mods.push_back("internal");
 
-	fs::wpath modArchivePath(paths.Cache()/L"mods");
-	fs::wpath modLoosePath(paths.RData()/L"mods");
+	NativePath modArchivePath = Path::Join(paths.Cache(), L"mods");
+	NativePath modLoosePath = Path::Join(paths.RData(), L"mods");
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		size_t priority = i;
 		size_t flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_MUST_EXIST;
-		std::wstring modName (wstring_from_utf8(mods[i]));
-		g_VFS->Mount(L"", AddSlash(modLoosePath/modName), flags, priority);
-		g_VFS->Mount(L"", AddSlash(modArchivePath/modName), flags, priority);
+		NativePath modName(wstring_from_utf8(mods[i]));
+		g_VFS->Mount(L"", Path::AddSlash(Path::Join(modLoosePath, modName)), flags, priority);
+		g_VFS->Mount(L"", Path::AddSlash(Path::Join(modArchivePath, modName)), flags, priority);
 	}
 
 	// note: don't bother with g_VFS->TextRepresentation - directories

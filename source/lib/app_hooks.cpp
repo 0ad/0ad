@@ -41,14 +41,14 @@ static void def_override_gl_upload_caps()
 }
 
 
-static const fs::wpath& def_get_log_dir()
+static const NativePath& def_get_log_dir()
 {
-	static fs::wpath logDir;
+	static NativePath logDir;
 	if(logDir.empty())
 	{
-		fs::wpath exePathname;
+		NativePath exePathname;
 		(void)sys_get_executable_name(exePathname);
-		logDir = exePathname.branch_path();
+		logDir = Path::Path(exePathname);
 	}
 	return logDir;
 }
@@ -153,7 +153,7 @@ void ah_override_gl_upload_caps()
 		ah.override_gl_upload_caps();
 }
 
-const fs::wpath& ah_get_log_dir()
+const NativePath& ah_get_log_dir()
 {
 	return ah.get_log_dir();
 }

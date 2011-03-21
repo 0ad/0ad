@@ -25,6 +25,7 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "lib/posix/posix_utsname.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/numa.h"

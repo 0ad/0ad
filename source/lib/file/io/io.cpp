@@ -23,6 +23,7 @@
 #include "precompiled.h"
 #include "lib/file/io/io.h"
 
+#include "lib/posix/posix_aio.h"
 #include "lib/allocators/allocators.h"	// AllocatorChecker
 #include "lib/file/file.h"
 #include "lib/file/common/file_stats.h"

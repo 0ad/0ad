@@ -32,6 +32,7 @@
 #if defined(__GLIBC__) && !defined(NDEBUG)
 //# define USE_GLIBC_MALLOC_HOOK
 # define USE_GLIBC_MALLOC_OVERRIDE
+# include <dlfcn.h>
 # include <malloc.h>
 # include "lib/sysdep/cpu.h"
 #endif

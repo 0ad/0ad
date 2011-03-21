@@ -1624,7 +1624,7 @@ int CRenderer::LoadAlphaMaps()
 	{
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
-		textures[i] = ogl_tex_load(g_VFS, path/fnames[i]);
+		textures[i] = ogl_tex_load(g_VFS, Path::Join(path, fnames[i]));
 		RETURN_ERR(textures[i]);
 
 		// get its size and make sure they are all equal.
@@ -1720,7 +1720,7 @@ LibError CRenderer::ReloadChangedFileCB(void* param, const VfsPath& path)
 	CRenderer* renderer = static_cast<CRenderer*>(param);
 
 	// If an alpha map changed, and we already loaded them, then reload them
-	if (boost::algorithm::starts_with(path.string(), L"art/textures/terrain/alphamaps/"))
+	if (boost::algorithm::starts_with(path, L"art/textures/terrain/alphamaps/"))
 	{
 		if (renderer->m_hCompositeAlphaMap)
 		{

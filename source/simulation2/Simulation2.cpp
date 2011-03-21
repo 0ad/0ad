@@ -133,7 +133,7 @@ public:
 	std::wstring m_StartupScript;
 	CScriptValRooted m_MapSettings;
 
-	std::set<std::wstring> m_LoadedScripts;
+	std::set<VfsPath> m_LoadedScripts;
 
 	uint32_t m_TurnNumber;
 
@@ -149,7 +149,7 @@ bool CSimulation2Impl::LoadScripts(const VfsPath& path)
 	bool ok = true;
 	for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 	{
-		std::wstring filename = it->string();
+		VfsPath filename = *it;
 		m_LoadedScripts.insert(filename);
 		LOGMESSAGE(L"Loading simulation script '%ls'", filename.c_str());
 		if (! m_ComponentManager.LoadScript(filename))
@@ -160,7 +160,7 @@ bool CSimulation2Impl::LoadScripts(const VfsPath& path)
 
 LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 {
-	const std::wstring& filename = path.string();
+	const VfsPath& filename = path;
 
 	// Ignore if this file wasn't loaded as a script
 	// (TODO: Maybe we ought to load in any new .js files that are created in the right directories)
@@ -289,9 +289,9 @@ void CSimulation2Impl::DumpState()
 
 	std::wstringstream name;
 	name << L"sim_log/" << getpid() << L"/" << std::setw(5) << std::setfill(L'0') << m_TurnNumber << L".txt";
-	fs::wpath path (psLogDir()/name.str());
-	CreateDirectories(path.branch_path(), 0700);
-	std::ofstream file (path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	NativePath path = Path::Join(psLogDir(), name.str());
+	CreateDirectories(Path::Path(path), 0700);
+	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	file << "State hash: " << std::hex;
 	std::string hashRaw;
@@ -304,7 +304,7 @@ void CSimulation2Impl::DumpState()
 
 	m_ComponentManager.DumpDebugState(file);
 
-	std::ofstream binfile (change_extension(path, L".dat").external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
+	std::ofstream binfile (StringFromNativePath(Path::ChangeExtension(path, L".dat")).c_str(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
 	m_ComponentManager.SerializeState(binfile);
 }
 

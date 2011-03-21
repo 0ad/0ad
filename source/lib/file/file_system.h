@@ -23,6 +23,10 @@
 #ifndef INCLUDED_FILE_SYSTEM
 #define INCLUDED_FILE_SYSTEM
 
+#include "lib/native_path.h"
+#include "lib/posix/posix_filesystem.h"
+
+// (bundling size and mtime avoids a second expensive call to stat())
 class FileInfo
 {
 public:
@@ -30,47 +34,43 @@ public:
 	{
 	}
 
-	FileInfo(const std::wstring& name, off_t size, time_t mtime)
-		: m_name(name), m_size(size), m_mtime(mtime)
+	FileInfo(const NativePath& name, off_t size, time_t mtime)
+		: name(name), size(size), mtime(mtime)
 	{
 	}
 
-	const std::wstring& Name() const
+	const NativePath& Name() const
 	{
-		return m_name;
+		return name;
 	}
 
 	off_t Size() const
 	{
-		return m_size;
+		return size;
 	}
 
 	time_t MTime() const
 	{
-		return m_mtime;
+		return mtime;
 	}
 
 private:
-	std::wstring m_name;
-	off_t m_size;
-	time_t m_mtime;
+	NativePath name;
+	off_t size;
+	time_t mtime;
 };
 
-extern LibError GetFileInfo(const fs::wpath& pathname, FileInfo* fileInfo);
+extern LibError GetFileInfo(const NativePath& pathname, FileInfo* fileInfo);
 
 typedef std::vector<FileInfo> FileInfos;
-typedef std::vector<std::wstring> DirectoryNames;
+typedef std::vector<NativePath> DirectoryNames;
 
-// jw 2007-12-20: we'd love to replace this with boost::filesystem,
-// but basic_directory_iterator does not yet cache file_size and
-// last_write_time in file_status. (they each entail a stat() call,
-// which is unacceptably slow.)
-extern LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryNames* subdirectoryNames);
+extern LibError GetDirectoryEntries(const NativePath& path, FileInfos* files, DirectoryNames* subdirectoryNames);
 
-// same as fs::create_directories, except that mkdir is invoked with
+// same as boost::filesystem::create_directories, except that mkdir is invoked with
 // <mode> instead of 0755.
-extern LibError CreateDirectories(const fs::wpath& path, mode_t mode);
+extern LibError CreateDirectories(const NativePath& path, mode_t mode);
 
-extern LibError DeleteDirectory(const fs::wpath& dirPath);
+extern LibError DeleteDirectory(const NativePath& dirPath);
 
 #endif	// #ifndef INCLUDED_FILE_SYSTEM

@@ -118,7 +118,7 @@ bool CXeromyces::GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, 
 
 	archiveCachePath = cacheLoader.ArchiveCachePath(sourcePath);
 
-	return (ConvertFile(vfs, sourcePath, L"cache"/archiveCachePath) == PSRETURN_OK);
+	return (ConvertFile(vfs, sourcePath, Path::Join(L"cache", archiveCachePath)) == PSRETURN_OK);
 }
 
 PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath)
@@ -126,16 +126,16 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 	CVFSFile input;
 	if (input.Load(vfs, filename))
 	{
-		LOGERROR(L"CXeromyces: Failed to open XML file %ls", filename.string().c_str());
+		LOGERROR(L"CXeromyces: Failed to open XML file %ls", filename.c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
-	CStr8 filename8(CStrW(filename.string()).ToUTF8());
+	CStr8 filename8(CStrW(filename).ToUTF8());
 	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), (int)input.GetBufferSize(),
 		filename8.c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
-		LOGERROR(L"CXeromyces: Failed to parse XML file %ls", filename.string().c_str());
+		LOGERROR(L"CXeromyces: Failed to parse XML file %ls", filename.c_str());
 		return PSRETURN_Xeromyces_XMLParseError;
 	}
 

@@ -29,7 +29,7 @@
 
 #include "lib/file/archive/archive.h"
 
-LIB_API PIArchiveReader CreateArchiveReader_Zip(const fs::wpath& archivePathname);
-LIB_API PIArchiveWriter CreateArchiveWriter_Zip(const fs::wpath& archivePathname, bool noDeflate);
+LIB_API PIArchiveReader CreateArchiveReader_Zip(const NativePath& archivePathname);
+LIB_API PIArchiveWriter CreateArchiveWriter_Zip(const NativePath& archivePathname, bool noDeflate);
 
 #endif	// #ifndef INCLUDED_ARCHIVE_ZIP

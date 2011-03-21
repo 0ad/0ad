@@ -21,9 +21,9 @@
  */
 
 #include "precompiled.h"
-#include "lib/sysdep/os/win/wposix/wfilesystem.h"
+#include "lib/posix/posix_filesystem.h"	// includes wfilesystem.h
 
-#include "lib/allocators/allocators.h"		// single_calloc
+#include "lib/allocators/allocators.h"	// single_calloc
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 #include "lib/sysdep/os/win/wposix/waio.h"
 #include "lib/sysdep/os/win/wposix/wtime_internal.h"	// wtime_utc_filetime_to_time_t

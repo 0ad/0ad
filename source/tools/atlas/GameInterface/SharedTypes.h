@@ -202,7 +202,7 @@ struct sTrigger
 	Shareable<bool> active;
 
 	sTrigger() : timeValue(0), maxRuns(-1), active(0) {}
-	sTrigger(std::wstring _name) : name(_name), timeValue(0), maxRuns(0), active(true) {}
+	sTrigger(const std::wstring& _name) : name(_name), timeValue(0), maxRuns(0), active(true) {}
 	bool operator== (const sTrigger& trigger)
 	{
 		return (*name == *trigger.name);
@@ -222,7 +222,7 @@ struct sTriggerGroup
 	Shareable< std::vector<sTrigger> > triggers;
 	
 	sTriggerGroup() { }
-	sTriggerGroup(std::wstring _name) : name(_name) { }
+	sTriggerGroup(const std::wstring& _name) : name(_name) { }
 
 	bool operator== (const sTriggerGroup& group) const
 	{

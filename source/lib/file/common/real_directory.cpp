@@ -28,7 +28,7 @@
 #include "lib/file/io/io.h"
 
 
-RealDirectory::RealDirectory(const fs::wpath& path, size_t priority, size_t flags)
+RealDirectory::RealDirectory(const NativePath& path, size_t priority, size_t flags)
 	: m_path(path), m_priority(priority), m_flags(flags)
 {
 }
@@ -46,9 +46,9 @@ RealDirectory::RealDirectory(const fs::wpath& path, size_t priority, size_t flag
 }
 
 
-/*virtual*/ LibError RealDirectory::Load(const std::wstring& name, const shared_ptr<u8>& buf, size_t size) const
+/*virtual*/ LibError RealDirectory::Load(const NativePath& name, const shared_ptr<u8>& buf, size_t size) const
 {
-	const fs::wpath pathname(m_path/name);
+	const NativePath pathname = Path::Join(m_path, name);
 
 	PFile file(new File);
 	RETURN_ERR(file->Open(pathname, 'r'));
@@ -58,9 +58,9 @@ RealDirectory::RealDirectory(const fs::wpath& path, size_t priority, size_t flag
 }
 
 
-LibError RealDirectory::Store(const std::wstring& name, const shared_ptr<u8>& fileContents, size_t size)
+LibError RealDirectory::Store(const NativePath& name, const shared_ptr<u8>& fileContents, size_t size)
 {
-	const fs::wpath pathname(m_path/name);
+	const NativePath pathname = Path::Join(m_path, name);
 
 	{
 		PFile file(new File);
@@ -72,7 +72,7 @@ LibError RealDirectory::Store(const std::wstring& name, const shared_ptr<u8>& fi
 	// length. ftruncate can't be used because Windows' FILE_FLAG_NO_BUFFERING
 	// only allows resizing to sector boundaries, so the file must first
 	// be closed.
-	wtruncate(pathname.string().c_str(), size);
+	wtruncate(pathname.c_str(), size);
 
 	return INFO::OK;
 }
@@ -85,8 +85,8 @@ void RealDirectory::Watch()
 }
 
 
-PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::wstring& subdirectoryName)
+PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const NativePath& subdirectoryName)
 {
-	const fs::wpath path = AddSlash(realDirectory->Path()/subdirectoryName);
+	const NativePath path = Path::AddSlash(Path::Join(realDirectory->Path(), subdirectoryName));
 	return PRealDirectory(new RealDirectory(path, realDirectory->Priority(), realDirectory->Flags()));
 }

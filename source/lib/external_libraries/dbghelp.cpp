@@ -24,6 +24,7 @@
 
 #if OS_WIN
 
+#include "lib/path_util.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/external_libraries/dbghelp.h"
 
@@ -42,8 +43,8 @@ void dbghelp_ImportFunctions()
 	// application loaded.") and then the system directory, whose
 	// dbghelp.dll is too old. we therefore specify the full path
 	// to our executable directory, which contains a newer dbghelp.dll.
-	const fs::wpath pathname = wutil_DetectExecutablePath()/L"dbghelp.dll";
-	HMODULE hDbghelp = LoadLibraryW(pathname.string().c_str());
+	const NativePath pathname = Path::Join(wutil_DetectExecutablePath(), L"dbghelp.dll");
+	HMODULE hDbghelp = LoadLibraryW(pathname.c_str());
 	debug_assert(hDbghelp);
 #define FUNC(ret, name, params) p##name = (ret (__stdcall*) params)GetProcAddress(hDbghelp, #name);
 #include "lib/external_libraries/dbghelp_funcs.h"

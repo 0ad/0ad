@@ -27,6 +27,8 @@
 #ifndef INCLUDED_DIR_WATCH
 #define INCLUDED_DIR_WATCH
 
+#include "lib/path_util.h"
+
 struct DirWatch;
 typedef shared_ptr<DirWatch> PDirWatch;
 
@@ -47,7 +49,7 @@ typedef shared_ptr<DirWatch> PDirWatch;
  * convenient to store PDirWatch there instead of creating a second
  * tree structure here.
  **/
-LIB_API LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch);
+LIB_API LibError dir_watch_Add(const NativePath& path, PDirWatch& dirWatch);
 
 class DirWatchNotification
 {
@@ -59,24 +61,24 @@ public:
 		Changed
 	};
 
-	DirWatchNotification(const fs::wpath& pathname, EType type)
-		: m_pathname(pathname), m_type(type)
+	DirWatchNotification(const NativePath& pathname, EType type)
+		: pathname(pathname), type(type)
 	{
 	}
 
-	const fs::wpath& Pathname() const
+	const NativePath& Pathname() const
 	{
-		return m_pathname;
+		return pathname;
 	}
 
 	EType Type() const
 	{
-		return m_type;
+		return type;
 	}
 
 private:
-	fs::wpath m_pathname;
-	EType m_type;
+	NativePath pathname;
+	EType type;
 };
 
 typedef std::vector<DirWatchNotification> DirWatchNotifications;

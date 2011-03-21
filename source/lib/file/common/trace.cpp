@@ -44,7 +44,7 @@
 
 //-----------------------------------------------------------------------------
 
-TraceEntry::TraceEntry(EAction action, const fs::wpath& pathname, size_t size)
+TraceEntry::TraceEntry(EAction action, const NativePath& pathname, size_t size)
 : m_timestamp((float)timer_Time())
 , m_action(action)
 , m_pathname(pathname)
@@ -74,7 +74,7 @@ TraceEntry::TraceEntry(const std::wstring& text)
 	stream >> dummy;
 	debug_assert(dummy == '"');
 
-	std::wstring pathname;
+	NativePath pathname;
 	std::getline(stream, pathname, L'"');
 	m_pathname = pathname;
 
@@ -90,7 +90,7 @@ std::wstring TraceEntry::EncodeAsText() const
 {
 	const wchar_t action = (wchar_t)m_action;
 	wchar_t buf[1000];
-	swprintf_s(buf, ARRAY_SIZE(buf), L"%#010f: %c \"%ls\" %lu\n", m_timestamp, action, m_pathname.string().c_str(), (unsigned long)m_size);
+	swprintf_s(buf, ARRAY_SIZE(buf), L"%#010f: %c \"%ls\" %lu\n", m_timestamp, action, m_pathname.c_str(), (unsigned long)m_size);
 	return buf;
 }
 
@@ -105,20 +105,20 @@ public:
 
 	}
 
-	virtual void NotifyLoad(const fs::wpath& UNUSED(pathname), size_t UNUSED(size))
+	virtual void NotifyLoad(const NativePath& UNUSED(pathname), size_t UNUSED(size))
 	{
 	}
 
-	virtual void NotifyStore(const fs::wpath& UNUSED(pathname), size_t UNUSED(size))
+	virtual void NotifyStore(const NativePath& UNUSED(pathname), size_t UNUSED(size))
 	{
 	}
 
-	virtual LibError Load(const fs::wpath& UNUSED(pathname))
+	virtual LibError Load(const NativePath& UNUSED(pathname))
 	{
 		return INFO::OK;
 	}
 
-	virtual LibError Store(const fs::wpath& UNUSED(pathname)) const
+	virtual LibError Store(const NativePath& UNUSED(pathname)) const
 	{
 		return INFO::OK;
 	}
@@ -156,23 +156,23 @@ public:
 		(void)pool_destroy(&m_pool);
 	}
 
-	virtual void NotifyLoad(const fs::wpath& pathname, size_t size)
+	virtual void NotifyLoad(const NativePath& pathname, size_t size)
 	{
 		new(Allocate()) TraceEntry(TraceEntry::Load, pathname, size);
 	}
 
-	virtual void NotifyStore(const fs::wpath& pathname, size_t size)
+	virtual void NotifyStore(const NativePath& pathname, size_t size)
 	{
 		new(Allocate()) TraceEntry(TraceEntry::Store, pathname, size);
 	}
 
-	virtual LibError Load(const fs::wpath& pathname)
+	virtual LibError Load(const NativePath& pathname)
 	{
 		pool_free_all(&m_pool);
 
 		errno = 0;
 		FILE* file;
-		errno_t err = _wfopen_s(&file, pathname.string().c_str(), L"rt");
+		errno_t err = _wfopen_s(&file, pathname.c_str(), L"rt");
 		if(err != 0)
 			return LibError_from_errno();
 
@@ -188,11 +188,11 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError Store(const fs::wpath& pathname) const
+	virtual LibError Store(const NativePath& pathname) const
 	{
 		errno = 0;
 		FILE* file;
-		errno_t err = _wfopen_s(&file, pathname.string().c_str(), L"at");
+		errno_t err = _wfopen_s(&file, pathname.c_str(), L"at");
 		if(err != 0)
 			return LibError_from_errno();
 		for(size_t i = 0; i < NumEntries(); i++)

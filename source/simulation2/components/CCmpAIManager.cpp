@@ -159,7 +159,7 @@ private:
 			{
 				if (!m_ScriptInterface.LoadGlobalScriptFile(*it))
 				{
-					LOGERROR(L"Failed to load script %ls", it->string().c_str());
+					LOGERROR(L"Failed to load script %ls", it->c_str());
 					return false;
 				}
 			}
@@ -172,7 +172,7 @@ private:
 			if (!LoadScripts(m_AIName))
 				return false;
 
-			std::wstring path = L"simulation/ai/" + m_AIName + L"/data.json";
+			NativePath path = L"simulation/ai/" + m_AIName + L"/data.json";
 			CScriptValRooted metadata = m_Worker.LoadMetadata(path);
 			if (metadata.uninitialised())
 			{
@@ -408,7 +408,7 @@ public:
 	}
 
 private:
-	CScriptValRooted LoadMetadata(const std::wstring& path)
+	CScriptValRooted LoadMetadata(const NativePath& path)
 	{
 		if (m_PlayerMetadata.find(path) == m_PlayerMetadata.end())
 		{

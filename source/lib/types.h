@@ -29,7 +29,7 @@
 
 #include "lib/posix/posix_types.h"
 
-// defines instead of typedefs so we can #undef conflicting decls
+// defines instead of typedefs so we can #undef in case of conflicts
 
 #define i8 int8_t
 #define i16 int16_t
@@ -40,14 +40,5 @@
 #define u16 uint16_t
 #define u32 uint32_t
 #define u64 uint64_t
-
-
-// the standard only guarantees 16 bits.
-// we use this for memory offsets and ranges, so it better be big enough.
-//#ifdef SIZE_MAX
-//# if SIZE_MAX < 0xFFFFFFFF
-//#  error "check size_t and SIZE_MAX - too small?"
-//# endif
-//#endif
 
 #endif // #ifndef INCLUDED_TYPES

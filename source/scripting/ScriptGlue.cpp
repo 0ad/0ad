@@ -279,8 +279,8 @@ void DumpHeap(const char* name, int idx, JSContext* cx)
 {
 	wchar_t buf[64];
 	swprintf_s(buf, ARRAY_SIZE(buf), L"%hs.%03d.txt", name, idx);
-	fs::wpath path(psLogDir()/buf);
-	FILE* f = fopen(utf8_from_wstring(path.string()).c_str(), "w");
+	NativePath path = Path::Join(psLogDir(), buf);
+	FILE* f = fopen(utf8_from_wstring(path).c_str(), "w");
 	debug_assert(f);
 	JS_DumpHeap(cx, f, NULL, 0, NULL, (size_t)-1, NULL);
 	fclose(f);

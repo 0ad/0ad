@@ -98,7 +98,7 @@ public:
 		m_SpriteOffsets.clear();
 	}
 
-	virtual void AddSprite(std::wstring textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D position)
+	virtual void AddSprite(NativePath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D position)
 	{
 		CTextureProperties textureProps(textureName);
 

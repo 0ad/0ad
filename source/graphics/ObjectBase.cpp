@@ -90,7 +90,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	m_VariantGroups.clear();
 
 	m_Pathname = pathname;
-	m_ShortName = fs::basename(pathname);
+	m_ShortName = Path::Basename(pathname);
 
 
 	// Set up the vector<vector<T>> m_Variants to contain the right number
@@ -142,11 +142,11 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 					if (option_name == el_mesh)
 					{
-						currentVariant->m_ModelFilename = VfsPath(L"art/meshes")/(std::wstring)option.GetText().FromUTF8();
+						currentVariant->m_ModelFilename = Path::Join(L"art/meshes", option.GetText().FromUTF8());
 					}
 					else if (option_name == el_texture)
 					{
-						currentVariant->m_TextureFilename = VfsPath(L"art/textures/skins")/(std::wstring)option.GetText().FromUTF8();
+						currentVariant->m_TextureFilename = Path::Join(L"art/textures/skins", option.GetText().FromUTF8());
 					}
 					else if (option_name == el_decal)
 					{
@@ -178,7 +178,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 								}
 								else if (ae.Name == at_file)
 								{
-									anim.m_FileName = VfsPath(L"art/animation")/(std::wstring)ae.Value.FromUTF8();
+									anim.m_FileName = Path::Join(L"art/animation", ae.Value.FromUTF8());
 								}
 								else if (ae.Name == at_speed)
 								{
@@ -224,7 +224,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 			if (currentGroup->size() == 0)
 			{
-				LOGERROR(L"Actor group has zero variants ('%ls')", pathname.string().c_str());
+				LOGERROR(L"Actor group has zero variants ('%ls')", pathname.c_str());
 			}
 
 			++currentGroup;
@@ -239,7 +239,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 		}
 		else if (child_name == el_material)
 		{
-			m_Material = VfsPath(L"art/materials")/(std::wstring)child.GetText().FromUTF8();
+			m_Material = Path::Join(L"art/materials", child.GetText().FromUTF8());
 		}
 	}
 
@@ -325,7 +325,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 			// and then insert the new ones:
 			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				if (! it->m_ModelName.empty())
-					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName.string()));
+					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
 		}
 	}
 
@@ -508,7 +508,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 			// and then insert the new ones:
 			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				if (! it->m_ModelName.empty())
-					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName.string()));
+					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
 		}
 	}
 
@@ -589,7 +589,7 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 				{
 					if (! props[k].m_ModelName.empty())
 					{
-						CObjectBase* prop = m_ObjectManager.FindObjectBase(props[k].m_ModelName.string().c_str());
+						CObjectBase* prop = m_ObjectManager.FindObjectBase(props[k].m_ModelName.c_str());
 						if (prop)
 							objectsQueue.push(prop);
 					}

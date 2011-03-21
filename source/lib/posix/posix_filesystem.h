@@ -20,6 +20,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include <fcntl.h>	// O_CREAT etc.
+
 #if OS_WIN
 # include "lib/sysdep/os/win/wposix/wfilesystem.h"
 #else
@@ -30,4 +32,4 @@
 
 #include "lib/posix/posix_errno.h"	// for user convenience
 
-#include "lib/sysdep/filesystem.h"
+#include "lib/sysdep/filesystem.h"	// wchar_t API

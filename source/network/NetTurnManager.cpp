@@ -23,6 +23,7 @@
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
 
+#include "lib/path_util.h"
 #include "gui/GUIManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Profile.h"
@@ -181,8 +182,8 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	bool ok = m_Simulation2.ComputeStateHash(hash, quick);
 	debug_assert(ok);
 
-	fs::wpath path (psLogDir()/L"oos_dump.txt");
-	std::ofstream file (path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	NativePath path = Path::Join(psLogDir(), L"oos_dump.txt");
+	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	m_Simulation2.DumpDebugState(file);
 	file.close();
 

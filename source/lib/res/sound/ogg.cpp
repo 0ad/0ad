@@ -5,6 +5,7 @@
 #include "lib/external_libraries/vorbis.h"
 
 #include "lib/byte_order.h"
+#include "lib/path_util.h"
 #include "lib/file/file.h"
 
 
@@ -51,7 +52,7 @@ class VorbisFileAdapter
 public:
 	VorbisFileAdapter(const PFile& openedFile)
 		: file(openedFile)
-		, size(fs::file_size(openedFile->Pathname()))
+		, size(FileSize(openedFile->Pathname()))
 		, offset(0)
 	{
 	}
@@ -257,7 +258,7 @@ private:
 
 //-----------------------------------------------------------------------------
 
-LibError OpenOggStream(const fs::wpath& pathname, OggStreamPtr& stream)
+LibError OpenOggStream(const NativePath& pathname, OggStreamPtr& stream)
 {
 	PFile file(new File);
     RETURN_ERR(file->Open(pathname, L'r'));

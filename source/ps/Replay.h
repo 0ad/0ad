@@ -87,7 +87,7 @@ public:
 	CReplayPlayer();
 	~CReplayPlayer();
 
-	void Load(const fs::path& path);
+	void Load(const std::string& path);
 	void Replay();
 
 private:

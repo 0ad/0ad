@@ -53,13 +53,13 @@ void UnregisterFileReloadFunc(FileReloadFunc func, void* obj)
 static bool CanIgnore(const DirWatchNotification& notification)
 {
 	// ignore directories
-	const fs::wpath& pathname = notification.Pathname();
-	if(pathname.leaf() == L".")
+	const NativePath& pathname = notification.Pathname();
+	if(Path::Filename(pathname).empty())
 		return true;
 
 	// ignore uninteresting file types (e.g. temp files, or the
 	// hundreds of XMB files that are generated from XML)
-	const std::wstring extension = fs::extension(pathname);
+	const std::wstring extension = Path::Extension(pathname);
 	const wchar_t* extensionsToIgnore[] = { L".xmb", L".tmp" };
 	for(size_t i = 0; i < ARRAY_SIZE(extensionsToIgnore); i++)
 	{
@@ -116,7 +116,7 @@ PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename)
 	LibError ret = vfs->LoadFile(filename, m_Buffer, m_BufferSize);
 	if (ret != INFO::OK)
 	{
-		LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %ld)", filename.string().c_str(), ret);
+		LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %ld)", filename.c_str(), ret);
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 

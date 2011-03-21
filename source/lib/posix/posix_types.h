@@ -32,16 +32,18 @@
 // included from lib/types.h in place of posix.h; this helps avoid conflicts
 // due to incompatible winsock definitions.
 
+#include "lib/sysdep/os.h"	// OS_WIN
+
 // (must come before any system headers because it fixes off_t)
 #if OS_WIN
 # include "lib/sysdep/os/win/wposix/wposix_types.h"
 #else
 
-#include <math.h>
-#include <wchar.h>
-#include <sys/types.h>
-#include <stddef.h>
-#include <limits.h>
+# include <math.h>
+# include <wchar.h>
+# include <sys/types.h>
+# include <stddef.h>
+# include <limits.h>
 
 // unix/linux/glibc/gcc says that this macro has to be defined when including
 // stdint.h from C++ for stdint.h to define SIZE_MAX and friends
@@ -55,7 +57,7 @@
 #  define SIZE_MAX ((size_t)-1)
 # endif
 
-#include <unistd.h>
+# include <unistd.h>
 
 #endif	// #if !OS_WIN
 

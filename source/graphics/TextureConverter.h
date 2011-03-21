@@ -19,6 +19,7 @@
 #define INCLUDED_TEXTURECONVERTER
 
 #include "lib/file/vfs/vfs.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/external_libraries/sdl.h"
 
 #include "TextureManager.h"

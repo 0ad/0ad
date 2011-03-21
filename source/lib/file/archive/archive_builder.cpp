@@ -566,7 +566,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 
 	// get next not-yet-existing archive filename.
 	static NextNumberedFilenameState archive_nfi;
-	dir_NextNumberedFilename(&fsPosix, archive_fn_fmt, &archive_nfi, archive_fn);
+	dir_NextNumberedPath::Filename(&fsPosix, archive_fn_fmt, &archive_nfi, archive_fn);
 
 	// get list of existing archives in root dir.
 	// note: this is needed by should_rebuild_main_archive and later in
@@ -674,7 +674,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 	char mini_archive_fn[PATH_MAX];
 	static NextNumberedFilenameState nfi;
 	Filesystem_Posix fsPosix;
-	dir_NextNumberedFilename(&fsPosix, mini_archive_fn_fmt, &nfi, mini_archive_fn);
+	dir_NextNumberedPath::Filename(&fsPosix, mini_archive_fn_fmt, &nfi, mini_archive_fn);
 
 	RETURN_ERR(archive_build(mini_archive_fn, V_fns));
 	delete[] V_fns;

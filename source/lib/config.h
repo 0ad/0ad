@@ -36,7 +36,7 @@
 //   causing a warning if the tested macro is undefined.
 // - allow override via compiler settings by checking #ifndef.
 
-// pre-compiled headers
+// precompiled headers
 #ifndef CONFIG_ENABLE_PCH
 # define CONFIG_ENABLE_PCH 1	// improve build performance
 #endif
@@ -68,12 +68,12 @@
 
 // static type checking with Dehydra
 #ifndef CONFIG_DEHYDRA
-#  define CONFIG_DEHYDRA 0
+# define CONFIG_DEHYDRA 0
 #endif
 
-// include Boost filesystem and shared_ptr in PCH?
+// allow the use of Boost? (affects PCH and several individual modules)
 #ifndef CONFIG_ENABLE_BOOST
-#  define CONFIG_ENABLE_BOOST 1
+# define CONFIG_ENABLE_BOOST 1
 #endif
 
 #endif	// #ifndef INCLUDED_CONFIG

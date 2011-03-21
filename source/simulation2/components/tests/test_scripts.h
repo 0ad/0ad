@@ -25,7 +25,7 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST); // ignore directory-not-found errors
+		g_VFS->Mount(L"", Path::Join(DataDir(), L"mods/public"), VFS_MOUNT_MUST_EXIST); // ignore directory-not-found errors
 		CXeromyces::Startup();
 	}
 
@@ -37,7 +37,7 @@ public:
 
 	static void load_script(ScriptInterface& scriptInterface, const VfsPath& path)
 	{
-		std::wstring name = path.external_file_string();
+		std::wstring name = path;
 		CVFSFile file;
 		TS_ASSERT_EQUALS(file.Load(g_VFS, path), PSRETURN_OK);
 		CStr content = file.GetAsString();
@@ -45,13 +45,13 @@ public:
 		TSM_ASSERT(L"Running script "+name, scriptInterface.LoadScript(name, wcontent));
 	}
 
-	static void Script_LoadComponentScript(void* cbdata, std::wstring name)
+	static void Script_LoadComponentScript(void* cbdata, VfsPath name)
 	{
 		CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 		TS_ASSERT(componentManager->LoadScript(L"simulation/components/"+name));
 	}
 
-	static void Script_LoadHelperScript(void* cbdata, std::wstring name)
+	static void Script_LoadHelperScript(void* cbdata, VfsPath name)
 	{
 		CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 		TS_ASSERT(componentManager->LoadScript(L"simulation/helpers/"+name));
@@ -74,8 +74,8 @@ public:
 
 			ScriptTestSetup(componentManager.GetScriptInterface());
 
-			componentManager.GetScriptInterface().RegisterFunction<void, std::wstring, Script_LoadComponentScript> ("LoadComponentScript");
-			componentManager.GetScriptInterface().RegisterFunction<void, std::wstring, Script_LoadHelperScript> ("LoadHelperScript");
+			componentManager.GetScriptInterface().RegisterFunction<void, VfsPath, Script_LoadComponentScript> ("LoadComponentScript");
+			componentManager.GetScriptInterface().RegisterFunction<void, VfsPath, Script_LoadHelperScript> ("LoadHelperScript");
 
 			componentManager.LoadComponentTypes();
 

@@ -52,7 +52,7 @@ std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCam
  * If @p onScreenOnly then only entities visible on the screen will be selected,
  * else all entities visible in the world will be selected.
  */
-std::vector<entity_id_t> PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, std::string templateName, int owner, bool onScreenOnly);
+std::vector<entity_id_t> PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, int owner, bool onScreenOnly);
 
 } // namespace
 

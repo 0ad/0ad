@@ -203,11 +203,11 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	// (TODO: the comments and variable names say "pmd" but actually they can
 	// be "psa" too.)
 
-	VfsPath dae(fs::change_extension(pathnameNoExtension, L".dae"));
+	VfsPath dae(Path::ChangeExtension(pathnameNoExtension, L".dae"));
 	if (! VfsFileExists(dae))
 	{
 		// No .dae - got to use the .pmd, assuming there is one
-		return fs::change_extension(pathnameNoExtension, extn);
+		return Path::ChangeExtension(pathnameNoExtension, extn);
 	}
 
 	// There is a .dae - see if there's an up-to-date cached copy
@@ -216,7 +216,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	if (g_VFS->GetFileInfo(dae, &fileInfo) < 0)
 	{
 		// This shouldn't occur for any sensible reasons
-		LOGERROR(L"Failed to stat DAE file '%ls'", dae.string().c_str());
+		LOGERROR(L"Failed to stat DAE file '%ls'", dae.c_str());
 		return VfsPath();
 	}
 
@@ -240,16 +240,16 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	extension += extn;
 
 	// realDaePath_ is "[..]/mods/whatever/art/meshes/whatever.dae"
-	fs::wpath realDaePath_;
+	std::wstring realDaePath_;
 	LibError ret = g_VFS->GetRealPath(dae, realDaePath_);
 	debug_assert(ret == INFO::OK);
 	wchar_t realDaeBuf[PATH_MAX];
-	wcscpy_s(realDaeBuf, ARRAY_SIZE(realDaeBuf), realDaePath_.string().c_str());
+	wcscpy_s(realDaeBuf, ARRAY_SIZE(realDaeBuf), realDaePath_.c_str());
 	const wchar_t* realDaePath = wcsstr(realDaeBuf, L"mods/");
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
-	VfsPath cachedPmdVfsPath = VfsPath(L"cache/") / realDaePath;
-	cachedPmdVfsPath = fs::change_extension(cachedPmdVfsPath, extension);
+	VfsPath cachedPmdVfsPath = Path::Join(L"cache/", realDaePath);
+	cachedPmdVfsPath = Path::ChangeExtension(cachedPmdVfsPath, extension);
 
 	// If it's not in the cache, we'll have to create it first
 	if (! VfsFileExists(cachedPmdVfsPath))

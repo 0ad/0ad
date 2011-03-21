@@ -38,7 +38,9 @@
 #include "lib/sysdep/os/win/error_dialog.h"
 #include "lib/sysdep/os/win/wutil.h"
 
-#include <boost/algorithm/string.hpp>
+#if CONFIG_ENABLE_BOOST
+# include <boost/algorithm/string.hpp>
+#endif
 
 
 #if MSC_VERSION
@@ -361,7 +363,7 @@ LibError sys_error_description_r(int user_err, wchar_t* buf, size_t max_chars)
 }
 
 
-LibError sys_get_module_filename(void* addr, fs::wpath& pathname)
+LibError sys_get_module_filename(void* addr, NativePath& pathname)
 {
 	MEMORY_BASIC_INFORMATION mbi;
 	const SIZE_T bytesWritten = VirtualQuery(addr, &mbi, sizeof(mbi));
@@ -380,7 +382,7 @@ LibError sys_get_module_filename(void* addr, fs::wpath& pathname)
 }
 
 
-LibError sys_get_executable_name(fs::wpath& pathname)
+LibError sys_get_executable_name(NativePath& pathname)
 {
 	wchar_t pathnameBuf[MAX_PATH+1];
 	const DWORD charsWritten = GetModuleFileNameW(0, pathnameBuf, (DWORD)ARRAY_SIZE(pathnameBuf));
@@ -391,6 +393,7 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 	return INFO::OK;
 }
 
+
 std::wstring sys_get_user_name()
 {
 	wchar_t usernameBuf[256];
@@ -399,6 +402,7 @@ std::wstring sys_get_user_name()
 		return L"";
 	return usernameBuf;
 }
+
 
 // callback for shell directory picker: used to set starting directory
 // (for user convenience).
@@ -414,15 +418,14 @@ static int CALLBACK BrowseCallback(HWND hWnd, unsigned int msg, LPARAM UNUSED(lP
 	return 0;
 }
 
-LibError sys_pick_directory(fs::wpath& path)
+LibError sys_pick_directory(NativePath& path)
 {
 	// (must not use multi-threaded apartment due to BIF_NEWDIALOGSTYLE)
 	const HRESULT hr = CoInitialize(0);
 	debug_assert(hr == S_OK || hr == S_FALSE);	// S_FALSE == already initialized
 
-	// the above BFFM_SETSELECTIONW can't deal with '/' separators,
-	// which is what string() returns.
-	const std::wstring initialPath = path.external_directory_string();
+	// NB: BFFM_SETSELECTIONW can't deal with '/' separators
+	const NativePath initialPath = path;
 
 	// note: bi.pszDisplayName isn't the full path, so it isn't of any use.
 	BROWSEINFOW bi;
@@ -454,6 +457,7 @@ LibError sys_pick_directory(fs::wpath& path)
 	return LibError_from_GLE();
 }
 
+
 LibError sys_open_url(const std::string& url)
 {
 	HINSTANCE r = ShellExecuteA(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
@@ -462,6 +466,7 @@ LibError sys_open_url(const std::string& url)
 
 	WARN_RETURN(ERR::FAIL);
 }
+
 
 LibError sys_generate_random_bytes(u8* buffer, size_t size)
 {
@@ -478,6 +483,9 @@ LibError sys_generate_random_bytes(u8* buffer, size_t size)
 
 	return INFO::OK;
 }
+
+
+#if CONFIG_ENABLE_BOOST
 
 /*
  * Given a string of the form
@@ -587,3 +595,5 @@ done:
 
 	return err;
 }
+
+#endif

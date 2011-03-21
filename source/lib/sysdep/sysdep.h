@@ -28,6 +28,7 @@
 #define INCLUDED_SYSDEP
 
 #include "lib/debug.h"	// ErrorReactionInternal
+#include "lib/native_path.h"
 
 #include <cstdarg>	// needed for sys_vswprintf
 
@@ -110,7 +111,7 @@ extern LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
  *
  * note: this is useful for handling exceptions in other modules.
  **/
-LibError sys_get_module_filename(void* addr, fs::wpath& pathname);
+LibError sys_get_module_filename(void* addr, NativePath& pathname);
 
 /**
  * Get path to the current executable.
@@ -120,7 +121,7 @@ LibError sys_get_module_filename(void* addr, fs::wpath& pathname);
  *
  * this is useful for determining installation directory, e.g. for VFS.
  **/
-LIB_API LibError sys_get_executable_name(fs::wpath& pathname);
+LIB_API LibError sys_get_executable_name(NativePath& pathname);
 
 /**
  * Get the current user's login name.
@@ -136,7 +137,7 @@ extern std::wstring sys_get_user_name();
  *		  faster browsing. if INFO::OK is returned, it receives
  *		  chosen directory path.
  **/
-extern LibError sys_pick_directory(fs::wpath& path);
+extern LibError sys_pick_directory(NativePath& path);
 
 /**
  * Open the user's default web browser to the given URL.

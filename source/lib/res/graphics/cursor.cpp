@@ -32,6 +32,7 @@
 #include <sstream>
 
 #include "lib/ogl.h"
+#include "lib/path_util.h"
 #include "lib/sysdep/cursor.h"
 #include "ogl_tex.h"
 #include "lib/res/h_mgr.h"
@@ -188,20 +189,20 @@ static void Cursor_dtor(Cursor* c)
 static LibError Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Handle)
 {
 	const VfsPath path(L"art/textures/cursors");
-	const VfsPath pathname(path/name);
+	const VfsPath pathname(Path::Join(path, name));
 
 	// read pixel offset of the cursor's hotspot [the bit of it that's
 	// drawn at (g_mouse_x,g_mouse_y)] from file.
 	int hotspotx = 0, hotspoty = 0;
 	{
-		const VfsPath pathnameHotspot = fs::change_extension(pathname, L".txt");
+		const VfsPath pathnameHotspot = Path::ChangeExtension(pathname, L".txt");
 		shared_ptr<u8> buf; size_t size;
 		RETURN_ERR(vfs->LoadFile(pathnameHotspot, buf, size));
 		std::wstringstream s(std::wstring((const wchar_t*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
 	}
 
-	const VfsPath pathnameImage = fs::change_extension(pathname, L".png");
+	const VfsPath pathnameImage = Path::ChangeExtension(pathname, L".png");
 
 	// try loading as system cursor (2d, hardware accelerated)
 	if(load_sys_cursor(vfs, pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)

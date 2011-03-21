@@ -517,7 +517,7 @@ Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags)
 // is still in memory; otherwise, a negative error code.
 Handle ogl_tex_find(const VfsPath& pathname)
 {
-	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
+	const uintptr_t key = fnv_hash(pathname.c_str(), pathname.length()*sizeof(pathname[0]));
 	return h_find(H_OglTex, key);
 }
 

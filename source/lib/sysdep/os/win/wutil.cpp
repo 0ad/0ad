@@ -30,6 +30,7 @@
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
+#include "lib/path_util.h"
 #include "lib/file/file.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/posix/posix.h"
@@ -266,31 +267,30 @@ bool wutil_HasCommandLineArgument(const wchar_t* arg)
 //-----------------------------------------------------------------------------
 // directories
 
-fs::wpath wutil_DetectExecutablePath()
+NativePath wutil_DetectExecutablePath()
 {
-	wchar_t buf[MAX_PATH+1] = {0};
-	const DWORD len = GetModuleFileNameW(GetModuleHandle(0), buf, MAX_PATH);
+	wchar_t modulePathname[MAX_PATH+1] = {0};
+	const DWORD len = GetModuleFileNameW(GetModuleHandle(0), modulePathname, MAX_PATH);
 	debug_assert(len != 0);
-	const fs::wpath modulePathname(buf);
-	return modulePathname.branch_path();
+	return Path::Path(modulePathname);
 }
 
 // (NB: wutil_Init is called before static ctors => use placement new)
-static fs::wpath* systemPath;
-static fs::wpath* executablePath;
-static fs::wpath* appdataPath;
+static NativePath* systemPath;
+static NativePath* executablePath;
+static NativePath* appdataPath;
 
-const fs::wpath& wutil_SystemPath()
+const NativePath& wutil_SystemPath()
 {
 	return *systemPath;
 }
 
-const fs::wpath& wutil_ExecutablePath()
+const NativePath& wutil_ExecutablePath()
 {
 	return *executablePath;
 }
 
-const fs::wpath& wutil_AppdataPath()
+const NativePath& wutil_AppdataPath()
 {
 	return *appdataPath;
 }
@@ -305,11 +305,11 @@ static void GetDirectories()
 	{
 		const UINT charsWritten = GetSystemDirectoryW(path, MAX_PATH);
 		debug_assert(charsWritten != 0);
-		systemPath = new(wutil_Allocate(sizeof(fs::wpath))) fs::wpath(path);
+		systemPath = new(wutil_Allocate(sizeof(NativePath))) NativePath(path);
 	}
 
 	// executable's directory
-	executablePath = new(wutil_Allocate(sizeof(fs::wpath))) fs::wpath(wutil_DetectExecutablePath());
+	executablePath = new(wutil_Allocate(sizeof(NativePath))) NativePath(wutil_DetectExecutablePath());
 
 	// application data
 	{
@@ -317,18 +317,18 @@ static void GetDirectories()
 		HANDLE token = 0;
 		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
 		debug_assert(SUCCEEDED(ret));
-		appdataPath = new(wutil_Allocate(sizeof(fs::wpath))) fs::wpath(path);
+		appdataPath = new(wutil_Allocate(sizeof(NativePath))) NativePath(path);
 	}
 }
 
 
 static void FreeDirectories()
 {
-	systemPath->~basic_path();
+	systemPath->~NativePath();
 	wutil_Free(systemPath);
-	executablePath->~basic_path();
+	executablePath->~NativePath();
 	wutil_Free(executablePath);
-	appdataPath->~basic_path();
+	appdataPath->~NativePath();
 	wutil_Free(appdataPath);
 }
 

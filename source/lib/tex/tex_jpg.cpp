@@ -573,7 +573,7 @@ static bool jpg_is_hdr(const u8* file)
 }
 
 
-static bool jpg_is_ext(const std::wstring& extension)
+static bool jpg_is_ext(const NativePath& extension)
 {
 	return !wcscasecmp(extension.c_str(), L".jpg") || !wcscasecmp(extension.c_str(), L".jpeg");
 }

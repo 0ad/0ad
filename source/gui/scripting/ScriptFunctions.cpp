@@ -306,7 +306,7 @@ bool AtlasIsAvailable(void* UNUSED(cbdata))
 	return ATLAS_IsAvailable();
 }
 
-CScriptVal LoadMapSettings(void* cbdata, std::wstring pathname)
+CScriptVal LoadMapSettings(void* cbdata, VfsPath pathname)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
@@ -433,8 +433,8 @@ void ForceGC(void* cbdata)
 
 void DumpSimState(void* UNUSED(cbdata))
 {
-	fs::wpath path (psLogDir()/L"sim_dump.txt");
-	std::ofstream file (path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	NativePath path = Path::Join(psLogDir(), L"sim_dump.txt");
+	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
 
@@ -487,7 +487,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
-	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &LoadMapSettings>("LoadMapSettings");
+	scriptInterface.RegisterFunction<CScriptVal, VfsPath, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<CScriptVal, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");

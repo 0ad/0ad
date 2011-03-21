@@ -487,8 +487,8 @@ public:
 		CXeromyces::Startup();
 
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache/", DataDir()/L"cache"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), L"mods/public"), VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache/", Path::Join(DataDir(), L"cache")));
 
 		CTerrain terrain;
 

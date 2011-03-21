@@ -39,10 +39,10 @@ struct WDIR
 	wdirent ent;
 };
 
-WDIR* wopendir(const wchar_t* path)
+WDIR* wopendir(const wchar_t* wpath)
 {
-	fs::path path_c(path_from_wpath(path));
-	DIR* d = opendir(path_c.string().c_str());
+	const std::string path = StringFromNativePath(wpath);
+	DIR* d = opendir(path.c_str());
 	if(!d)
 		return 0;
 	WDIR* wd = new WDIR;
@@ -70,17 +70,17 @@ int wclosedir(WDIR* wd)
 }
 
 
-int wopen(const wchar_t* pathname, int oflag)
+int wopen(const wchar_t* wpathname, int oflag)
 {
 	debug_assert(!(oflag & O_CREAT));
-	fs::path pathname_c(path_from_wpath(pathname));
-	return open(pathname_c.string().c_str(), oflag);
+	const std::string pathname = StringFromNativePath(wpathname);
+	return open(pathname.c_str(), oflag);
 }
 
-int wopen(const wchar_t* pathname, int oflag, mode_t mode)
+int wopen(const wchar_t* wpathname, int oflag, mode_t mode)
 {
-	fs::path pathname_c(path_from_wpath(pathname));
-	return open(pathname_c.string().c_str(), oflag, mode);
+	const std::string pathname = StringFromNativePath(wpathname);
+	return open(pathname.c_str(), oflag, mode);
 }
 
 int wclose(int fd)
@@ -89,51 +89,51 @@ int wclose(int fd)
 }
 
 
-int wtruncate(const wchar_t* pathname, off_t length)
+int wtruncate(const wchar_t* wpathname, off_t length)
 {
-	fs::path pathname_c(path_from_wpath(pathname));
-	return truncate(pathname_c.string().c_str(), length);
+	const std::string pathname = StringFromNativePath(wpathname);
+	return truncate(pathname.c_str(), length);
 }
 
-int wunlink(const wchar_t* pathname)
+int wunlink(const wchar_t* wpathname)
 {
-	fs::path pathname_c(path_from_wpath(pathname));
-	return unlink(pathname_c.string().c_str());
+	const std::string pathname = StringFromNativePath(wpathname);
+	return unlink(pathname.c_str());
 }
 
-int wrmdir(const wchar_t* path)
+int wrmdir(const wchar_t* wpath)
 {
-	fs::path path_c(path_from_wpath(path));
-	return rmdir(path_c.string().c_str());
+	const std::string path = StringFromNativePath(wpath);
+	return rmdir(path.c_str());
 }
 
-int wrename(const wchar_t* pathnameOld, const wchar_t* pathnameNew)
+int wrename(const wchar_t* wpathnameOld, const wchar_t* wpathnameNew)
 {
-	fs::path pathnameOld_c(path_from_wpath(pathnameOld));
-	fs::path pathnameNew_c(path_from_wpath(pathnameNew));
-	return rename(pathnameOld_c.string().c_str(), pathnameNew_c.string().c_str());
+	const std::string pathnameOld = StringFromNativePath(wpathnameOld);
+	const std::string pathnameNew = StringFromNativePath(wpathnameNew);
+	return rename(pathnameOld.c_str(), pathnameNew.c_str());
 }
 
-wchar_t* wrealpath(const wchar_t* pathname, wchar_t* resolved)
+wchar_t* wrealpath(const wchar_t* wpathname, wchar_t* wresolved)
 {
-	char resolved_buf[PATH_MAX];
-	fs::path pathname_c(path_from_wpath(pathname));
-	const char* resolved_c = realpath(pathname_c.string().c_str(), resolved_buf);
-	if(!resolved_c)
+	char resolvedBuf[PATH_MAX];
+	const std::string pathname = StringFromNativePath(wpathname);
+	const char* resolved = realpath(pathname.c_str(), resolvedBuf);
+	if(!resolved)
 		return 0;
-	std::wstring resolved_s = wstring_from_utf8(resolved_c);
-	wcscpy_s(resolved, PATH_MAX, resolved_s.c_str());
-	return resolved;
+	NativePath nresolved = NativePathFromString(resolved);
+	wcscpy_s(wresolved, PATH_MAX, nresolved.c_str());
+	return wresolved;
 }
 
-int wstat(const wchar_t* pathname, struct stat* buf)
+int wstat(const wchar_t* wpathname, struct stat* buf)
 {
-	fs::path pathname_c(path_from_wpath(pathname));
-	return stat(pathname_c.string().c_str(), buf);
+	const std::string pathname = StringFromNativePath(wpathname);
+	return stat(pathname.c_str(), buf);
 }
 
-int wmkdir(const wchar_t* path, mode_t mode)
+int wmkdir(const wchar_t* wpath, mode_t mode)
 {
-	fs::path path_c(path_from_wpath(path));
-	return mkdir(path_c.string().c_str(), mode);
+	const std::string path = StringFromNativePath(wpath);
+	return mkdir(path.c_str(), mode);
 }

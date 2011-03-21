@@ -75,7 +75,7 @@ void SkyManager::LoadSkyTextures()
 {
 	for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); ++i)
 	{
-		VfsPath path = VfsPath(L"art/textures/skies") / std::wstring(m_SkySet) / (std::wstring(s_imageNames[i])+L".dds");
+		VfsPath path = Path::Join(L"art/textures/skies", m_SkySet, std::wstring(s_imageNames[i])+L".dds");
 
 		CTextureProperties textureProps(path);
 		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
@@ -109,7 +109,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	DirectoryNames subdirectories;
 	if(g_VFS->GetDirectoryEntries(path, 0, &subdirectories) < 0)
 	{
-		LOGERROR(L"Error opening directory '%ls'", path.string().c_str());
+		LOGERROR(L"Error opening directory '%ls'", path.c_str());
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
 	}
 

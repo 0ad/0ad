@@ -83,7 +83,7 @@ public:
 	 * @param hotload set to true if this script has been loaded before, and redefinitions of
 	 * existing components should not be considered errors
 	 */
-	bool LoadScript(const std::wstring& filename, bool hotload = false);
+	bool LoadScript(const VfsPath& filename, bool hotload = false);
 
 	void RegisterMessageType(MessageTypeId mtid, const char* name);
 

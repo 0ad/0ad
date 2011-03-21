@@ -71,7 +71,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 
 	m_CameraStartupTarget = INVALID_ENTITY;
 
-	filename_xml = fs::change_extension(pathname, L".xml");
+	filename_xml = Path::ChangeExtension(pathname, L".xml");
 
 	// In some cases (particularly tests) we don't want to bother storing a large
 	// mostly-empty .pmp file, so we let the XML file specify basic terrain instead.
@@ -256,7 +256,7 @@ int CMapReader::ApplyData()
 
 PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 {
-	VfsPath filename_xml = fs::change_extension(pathname, L".xml");
+	VfsPath filename_xml = Path::ChangeExtension(pathname, L".xml");
 
 	CXeromyces xmb_file;
 	if (xmb_file.Load(g_VFS, filename_xml) != PSRETURN_OK)

@@ -165,7 +165,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const PIVFS& vfs, const VfsP
 	{
 		char* infolog = new char[log_length];
 		pglGetShaderInfoLog(shdr->id, log_length, 0, infolog);
-		debug_printf(L"Compile log for shader %ls (type %ls):\n%hs", pathname.string().c_str(), type.c_str(), infolog);
+		debug_printf(L"Compile log for shader %ls (type %ls):\n%hs", pathname.c_str(), type.c_str(), infolog);
 		delete[] infolog;
 	}
 
@@ -177,7 +177,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const PIVFS& vfs, const VfsP
 		// useful some time.
 		ogl_WarnIfError();
 	
-		debug_printf(L"Failed to compile shader %ls (type %ls)\n", pathname.string().c_str(), type.c_str());
+		debug_printf(L"Failed to compile shader %ls (type %ls)\n", pathname.c_str(), type.c_str());
 		
 		err = ERR::SHDR_COMPILE;
 		goto fail_shadercreated;
@@ -284,7 +284,7 @@ static LibError do_load_shader(
 
 	if (Type.empty())
 	{
-		LOGERROR(L"%ls: Missing attribute \"type\" in element \"Shader\".", pathname.string().c_str());
+		LOGERROR(L"%ls: Missing attribute \"type\" in element \"Shader\".", pathname.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -292,7 +292,7 @@ static LibError do_load_shader(
 	
 	if (!shadertype)
 	{
-		LOGERROR(L"%ls: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname.string().c_str(), Type.c_str());
+		LOGERROR(L"%ls: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname.c_str(), Type.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -300,7 +300,7 @@ static LibError do_load_shader(
 	
 	if (pathnameShader.empty())
 	{
-		LOGERROR(L"%ls: Missing shader name.", pathname.string().c_str());
+		LOGERROR(L"%ls: Missing shader name.", pathname.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
@@ -355,7 +355,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 
 	if (Root.GetNodeName() != el_program)
 	{
-		LOGERROR(L"%ls: XML root was not \"Program\".", pathname.string().c_str());
+		LOGERROR(L"%ls: XML root was not \"Program\".", pathname.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -376,7 +376,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 				
 				if (Shader.GetNodeName() != el_shader)
 				{
-					LOGERROR(L"%ls: Only \"Shader\" may be child of \"Shaders\".", pathname.string().c_str());
+					LOGERROR(L"%ls: Only \"Shader\" may be child of \"Shaders\".", pathname.c_str());
 					WARN_RETURN(ERR::CORRUPTED);
 				}
 				
@@ -385,7 +385,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 		}
 		else
 		{
-			LOGWARNING(L"%ls: Unknown child of \"Program\".", pathname.string().c_str());
+			LOGWARNING(L"%ls: Unknown child of \"Program\".", pathname.c_str());
 		}
 	}
 
@@ -403,13 +403,13 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 	{
 		char* infolog = new char[log_length];
 		pglGetProgramInfoLog(p->id, log_length, 0, infolog);
-		debug_printf(L"Linker log for %ls:\n%hs\n", pathname.string().c_str(), infolog);
+		debug_printf(L"Linker log for %ls:\n%hs\n", pathname.c_str(), infolog);
 		delete[] infolog;
 	}
 
 	if (!linked)
 	{
-		debug_printf(L"Link failed for %ls\n", pathname.string().c_str());
+		debug_printf(L"Link failed for %ls\n", pathname.c_str());
 		WARN_RETURN(ERR::SHDR_LINK);
 	}
 

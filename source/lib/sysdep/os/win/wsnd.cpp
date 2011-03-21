@@ -33,35 +33,34 @@
 #include <set>
 
 #include "lib/path_util.h"
+#include "lib/file/file_system.h"
 #include "lib/sysdep/os/win/wdll_ver.h"
 #include "lib/sysdep/os/win/wversion.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wmi.h"
 
 
-static bool IsOpenAlDllName(const std::wstring& name)
+static bool IsOpenAlDllName(const NativePath& name)
 {
 	// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
-	return name.find(L"oal.dll") != std::wstring::npos || name.find(L"OpenAL") != std::wstring::npos;
+	return name.find(L"oal.dll") != NativePath::npos || name.find(L"OpenAL") != NativePath::npos;
 }
 
 // ensures each OpenAL DLL is only listed once (even if present in several
 // directories on our search path).
-typedef std::set<std::wstring> StringSet;
+typedef std::set<NativePath> StringSet;
 
 // find all OpenAL DLLs in a dir.
 // call in library search order (exe dir, then win sys dir); otherwise,
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
-static void add_oal_dlls_in_dir(const fs::wpath& path, StringSet& dlls, std::wstring& versionList)
+static void add_oal_dlls_in_dir(const NativePath& path, StringSet& dlls, VersionList& versionList)
 {
-	for(fs::wdirectory_iterator it(path); it != fs::wdirectory_iterator(); ++it)
+	FileInfos files;
+	(void)GetDirectoryEntries(path, &files, 0);
+	for(size_t i = 0; i < files.size(); i++)
 	{
-		if(!fs::is_regular(it->status()))
-			continue;
-
-		const fs::wpath& pathname = it->path();
-		const std::wstring& name = pathname.leaf();
+		const NativePath name = files[i].Name();
 		if(!IsOpenAlDllName(name))
 			continue;
 
@@ -70,7 +69,7 @@ static void add_oal_dlls_in_dir(const fs::wpath& path, StringSet& dlls, std::wst
 		if(!ret.second)	// insert failed - element already there
 			continue;
 
-		wdll_ver_Append(pathname, versionList);
+		wdll_ver_Append(Path::Join(path, name), versionList);
 	}
 }
 
@@ -87,7 +86,7 @@ static void add_oal_dlls_in_dir(const fs::wpath& path, StringSet& dlls, std::wst
 // the version info for that bogus driver path, we'll skip this code there.
 // (delay-loading dsound.dll eliminates any overhead)
 
-static fs::wpath directSoundDriverPath;
+static NativePath directSoundDriverPath;
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
@@ -100,14 +99,14 @@ static BOOL CALLBACK DirectSoundCallback(void* guid, const wchar_t* UNUSED(descr
 
 	// note: $system\\drivers is not in LoadLibrary's search list,
 	// so we have to give the full pathname.
-	directSoundDriverPath = wutil_SystemPath()/L"drivers"/module;
+	directSoundDriverPath = Path::Join(wutil_SystemPath(), L"drivers", module);
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.
 	return FALSE;
 }
 
-static const fs::wpath& GetDirectSoundDriverPath()
+static const NativePath& GetDirectSoundDriverPath()
 {
 #define DS_OK 0
 	typedef BOOL (CALLBACK* LPDSENUMCALLBACKW)(void*, const wchar_t*, const wchar_t*, void*);
@@ -133,7 +132,7 @@ LibError win_get_snd_info()
 		swprintf_s(snd_card, SND_CARD_LEN, L"%ls", wmiMap[L"ProductName"].bstrVal);
 
 	// find all DLLs related to OpenAL and retrieve their versions.
-	std::wstring versionList;
+	VersionList versionList;
 	if(wversion_Number() < WVERSION_VISTA)
 		wdll_ver_Append(GetDirectSoundDriverPath(), versionList);
 	StringSet dlls;	// ensures uniqueness

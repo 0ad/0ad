@@ -1871,8 +1871,8 @@ void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 
 	WinScopedLock lock(WDBG_SYM_CS);
 
-	fs::wpath path = ah_get_log_dir()/L"crashlog.dmp";
-	HANDLE hFile = CreateFileW(path.string().c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+	NativePath path = Path::Join(ah_get_log_dir(), L"crashlog.dmp");
+	HANDLE hFile = CreateFileW(path.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 	{
 		DEBUG_DISPLAY_ERROR(L"wdbg_sym_WriteMinidump: unable to create crashlog.dmp.");

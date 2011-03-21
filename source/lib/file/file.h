@@ -27,6 +27,10 @@
 #ifndef INCLUDED_FILE
 #define INCLUDED_FILE
 
+struct aiocb;
+
+#include "lib/native_path.h"
+
 namespace ERR
 {
 	const LibError FILE_ACCESS = -110300;
@@ -35,7 +39,7 @@ namespace ERR
 
 namespace FileImpl
 {
-	LIB_API LibError Open(const fs::wpath& pathname, wchar_t mode, int& fd);
+	LIB_API LibError Open(const NativePath& pathname, wchar_t mode, int& fd);
 	LIB_API void Close(int& fd);
 	LIB_API LibError IO(int fd, wchar_t mode, off_t ofs, u8* buf, size_t size);
 	LIB_API LibError Issue(aiocb& req, int fd, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize);
@@ -51,7 +55,7 @@ public:
 	{
 	}
 
-	LibError Open(const fs::wpath& pathname, wchar_t mode)
+	LibError Open(const NativePath& pathname, wchar_t mode)
 	{
 		RETURN_ERR(FileImpl::Open(pathname, mode, m_fd));
 		m_pathname = pathname;
@@ -64,7 +68,7 @@ public:
 		FileImpl::Close(m_fd);
 	}
 
-	File(const fs::wpath& pathname, wchar_t mode)
+	File(const NativePath& pathname, wchar_t mode)
 	{
 		(void)Open(pathname, mode);
 	}
@@ -74,7 +78,7 @@ public:
 		Close();
 	}
 
-	const fs::wpath& Pathname() const
+	const NativePath& Pathname() const
 	{
 		return m_pathname;
 	}
@@ -100,7 +104,7 @@ public:
 	}
 
 private:
-	fs::wpath m_pathname;
+	NativePath m_pathname;
 	int m_fd;
 	wchar_t m_mode;
 };

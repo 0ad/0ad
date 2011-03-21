@@ -182,8 +182,9 @@ extern bool self_test_active;
 
 
 // for convenience, to avoid having to include all of these manually
-#include "lib_errors.h"
-#include "posix/posix.h"
+#include "lib/lib_errors.h"
+#include "lib/native_path.h"
+#include "lib/posix/posix.h"
 
 #define CXXTEST_HAVE_EH
 #define CXXTEST_HAVE_STD
@@ -284,6 +285,6 @@ void ScriptTestSetup(ScriptInterface&);
 // Default game data directory
 // (TODO: game-specific functions like this probably shouldn't be inside lib/, but it's useful
 // here since lots of tests use it)
-fs::wpath DataDir(); // defined in test_setup.cpp
+NativePath DataDir(); // defined in test_setup.cpp
 
 #endif	// #ifndef INCLUDED_SELF_TEST

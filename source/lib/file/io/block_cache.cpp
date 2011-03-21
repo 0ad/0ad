@@ -28,6 +28,7 @@
 #include "lib/file/io/block_cache.h"
 
 #include "lib/config2.h"	// CONFIG2_CACHE_READ_ONLY
+#include "lib/posix/posix_mman.h"	// mprotect
 #include "lib/file/common/file_stats.h"
 #include "lib/lockfree.h"
 #include "lib/allocators/pool.h"
@@ -42,9 +43,9 @@ BlockId::BlockId()
 {
 }
 
-BlockId::BlockId(const fs::wpath& pathname, off_t ofs)
+BlockId::BlockId(const NativePath& pathname, off_t ofs)
 {
-	m_id = fnv_hash64(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
+	m_id = fnv_hash64(pathname.c_str(), pathname.length()*sizeof(pathname[0]));
 	const size_t indexBits = 16;
 	m_id <<= indexBits;
 	const off_t blockIndex = off_t(ofs / BLOCK_SIZE);

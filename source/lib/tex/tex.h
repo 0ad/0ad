@@ -290,7 +290,7 @@ extern LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
  *		  when no longer needed. Invalid unless function succeeds.
  * @return LibError
  **/
-extern LibError tex_encode(Tex* t, const std::wstring& extension, DynArray* da);
+extern LibError tex_encode(Tex* t, const NativePath& extension, DynArray* da);
 
 /**
  * store the given image data into a Tex object; this will be as if

@@ -93,7 +93,7 @@ static bool tga_is_hdr(const u8* file)
 }
 
 
-static bool tga_is_ext(const std::wstring& extension)
+static bool tga_is_ext(const NativePath& extension)
 {
 	return !wcscasecmp(extension.c_str(), L".tga");
 }

@@ -320,7 +320,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 
 	// Normal case: templateName is an XML file:
 
-	VfsPath path = VfsPath(TEMPLATE_ROOT) / wstring_from_utf8(templateName + ".xml");
+	VfsPath path = Path::Join(TEMPLATE_ROOT, wstring_from_utf8(templateName + ".xml"));
 	CXeromyces xero;
 	PSRETURN ok = xero.Load(g_VFS, path);
 	if (ok != PSRETURN_OK)
@@ -381,9 +381,9 @@ static LibError AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(f
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 
 	// Strip the .xml extension
-	VfsPath pathstem = change_extension(pathname, L"");
+	VfsPath pathstem = Path::ChangeExtension(pathname, L"");
 	// Strip the root from the path
-	std::wstring name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
+	std::wstring name = pathstem.substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
 
 	// We want to ignore template_*.xml templates, since they should never be built in the editor
 	if (name.substr(0, 9) == L"template_")
@@ -398,7 +398,7 @@ static LibError AddActorToTemplates(const VfsPath& pathname, const FileInfo& UNU
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 
 	// Strip the root from the path
-	std::wstring name = pathname.string().substr(ARRAY_SIZE(ACTOR_ROOT)-1);
+	std::wstring name = pathname.substr(ARRAY_SIZE(ACTOR_ROOT)-1);
 
 	templates.push_back("actor|" + std::string(name.begin(), name.end()));
 	return INFO::OK;

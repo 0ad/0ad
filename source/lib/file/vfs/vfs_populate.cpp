@@ -104,12 +104,12 @@ private:
 
 	LibError AddFiles(const FileInfos& files) const
 	{
-		const fs::wpath path(m_realDirectory->Path());
+		const NativePath path(m_realDirectory->Path());
 
 		for(size_t i = 0; i < files.size(); i++)
 		{
-			const fs::wpath pathname = path/files[i].Name();
-			const std::wstring extension = fs::extension(pathname);
+			const NativePath pathname = Path::Join(path, files[i].Name());
+			const NativePath extension = Path::Extension(pathname);
 			if(wcscasecmp(extension.c_str(), L".zip") == 0)
 			{
 				PIArchiveReader archiveReader = CreateArchiveReader_Zip(pathname);

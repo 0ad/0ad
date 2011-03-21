@@ -31,7 +31,7 @@
 
 #include <cstdio>
 
-LibError sys_get_executable_name(fs::wpath& pathname)
+LibError sys_get_executable_name(std::wstring& pathname)
 {
 	const char* path;
 	Dl_info dl_info;

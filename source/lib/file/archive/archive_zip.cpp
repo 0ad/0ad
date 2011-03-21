@@ -64,10 +64,10 @@ enum ZipMethod
 class LFH
 {
 public:
-	void Init(const FileInfo& fileInfo, off_t csize, ZipMethod method, u32 checksum, const fs::wpath& pathname)
+	void Init(const FileInfo& fileInfo, off_t csize, ZipMethod method, u32 checksum, const NativePath& pathname)
 	{
-		const fs::path pathname_c = path_from_wpath(pathname);
-		const size_t pathnameLength = pathname_c.string().length();
+		const std::string pathnameUTF8 = utf8_from_wstring(pathname);
+		const size_t pathnameSize = pathnameUTF8.length();
 
 		m_magic     = lfh_magic;
 		m_x1        = to_le16(0);
@@ -77,10 +77,10 @@ public:
 		m_crc       = to_le32(checksum);
 		m_csize     = to_le32(u32_from_larger(csize));
 		m_usize     = to_le32(u32_from_larger(fileInfo.Size()));
-		m_fn_len    = to_le16(u16_from_larger(pathnameLength));
+		m_fn_len    = to_le16(u16_from_larger(pathnameSize));
 		m_e_len     = to_le16(0);
 
-		memcpy((char*)this + sizeof(LFH), pathname_c.string().c_str(), pathnameLength);
+		memcpy((char*)this + sizeof(LFH), pathnameUTF8.c_str(), pathnameSize);
 	}
 
 	size_t Size() const
@@ -112,10 +112,10 @@ cassert(sizeof(LFH) == 30);
 class CDFH
 {
 public:
-	void Init(const FileInfo& fileInfo, off_t ofs, off_t csize, ZipMethod method, u32 checksum, const fs::wpath& pathname, size_t slack)
+	void Init(const FileInfo& fileInfo, off_t ofs, off_t csize, ZipMethod method, u32 checksum, const NativePath& pathname, size_t slack)
 	{
-		const fs::path pathname_c = path_from_wpath(pathname);
-		const size_t pathnameLength = pathname_c.string().length();
+		const std::string pathnameUTF8 = utf8_from_wstring(pathname);
+		const size_t pathnameLength = pathnameUTF8.length();
 
 		m_magic     = cdfh_magic;
 		m_x1        = to_le32(0);
@@ -132,14 +132,14 @@ public:
 		m_x3        = to_le32(0);
 		m_lfh_ofs   = to_le32(u32_from_larger(ofs));
 
-		memcpy((char*)this + sizeof(CDFH), pathname_c.string().c_str(), pathnameLength);
+		memcpy((char*)this + sizeof(CDFH), pathnameUTF8.c_str(), pathnameLength);
 	}
 
-	fs::wpath Pathname() const
+	NativePath Pathname() const
 	{
 		const size_t length = (size_t)read_le16(&m_fn_len);
 		const char* pathname = (const char*)this + sizeof(CDFH); // not 0-terminated!
-		return wstring_from_utf8(std::string(pathname, length));
+		return NativePathFromString(std::string(pathname, length));
 	}
 
 	off_t HeaderOffset() const
@@ -264,12 +264,12 @@ public:
 		return 'A';
 	}
 
-	virtual fs::wpath Path() const
+	virtual NativePath Path() const
 	{
 		return m_file->Pathname();
 	}
 
-	virtual LibError Load(const std::wstring& UNUSED(name), const shared_ptr<u8>& buf, size_t size) const
+	virtual LibError Load(const NativePath& UNUSED(name), const shared_ptr<u8>& buf, size_t size) const
 	{
 		AdjustOffset();
 
@@ -381,7 +381,7 @@ private:
 class ArchiveReader_Zip : public IArchiveReader
 {
 public:
-	ArchiveReader_Zip(const fs::wpath& pathname)
+	ArchiveReader_Zip(const NativePath& pathname)
 		: m_file(new File(pathname, 'r'))
 	{
 		FileInfo fileInfo;
@@ -411,10 +411,10 @@ public:
 			if(!cdfh)
 				WARN_RETURN(ERR::CORRUPTED);
 
-			const VfsPath relativePathname(cdfh->Pathname().string());	// convert from fs::wpath
-			const std::wstring name = relativePathname.leaf();
-			if(name != L".")	// ignore directories (i.e. paths ending in slash)
+			const VfsPath relativePathname(cdfh->Pathname());
+			if(relativePathname.empty() || !path_is_dir_sep(relativePathname[relativePathname.length()-1]))	// ignore directories
 			{
+				const NativePath name = Path::Filename(relativePathname);
 				FileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
 				shared_ptr<ArchiveFile_Zip> archiveFile(new ArchiveFile_Zip(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method()));
 				cb(relativePathname, fileInfo, archiveFile, cbData);
@@ -514,7 +514,7 @@ private:
 	off_t m_fileSize;
 };
 
-PIArchiveReader CreateArchiveReader_Zip(const fs::wpath& archivePathname)
+PIArchiveReader CreateArchiveReader_Zip(const NativePath& archivePathname)
 {
 	return PIArchiveReader(new ArchiveReader_Zip(archivePathname));
 }
@@ -527,7 +527,7 @@ PIArchiveReader CreateArchiveReader_Zip(const fs::wpath& archivePathname)
 class ArchiveWriter_Zip : public IArchiveWriter
 {
 public:
-	ArchiveWriter_Zip(const fs::wpath& archivePathname, bool noDeflate)
+	ArchiveWriter_Zip(const NativePath& archivePathname, bool noDeflate)
 		: m_file(new File(archivePathname, 'w')), m_fileSize(0)
 		, m_unalignedWriter(new UnalignedWriter(m_file, 0))
 		, m_numEntries(0), m_noDeflate(noDeflate)
@@ -552,19 +552,19 @@ public:
 
 		(void)pool_destroy(&m_cdfhPool);
 
-		const fs::wpath pathname = m_file->Pathname();	// for truncate()
+		const NativePath pathname = m_file->Pathname();	// (must be retrieved before resetting m_file)
 		m_file.reset();
 
 		m_fileSize += off_t(cd_size+sizeof(ECDR));
 
 		// remove padding added by UnalignedWriter
-		wtruncate(pathname.string().c_str(), m_fileSize);
+		wtruncate(pathname.c_str(), m_fileSize);
 	}
 
-	LibError AddFile(const fs::wpath& sourcepathname, const fs::wpath& pathname)
+	LibError AddFile(const NativePath& pathname, const NativePath& pathnameInArchive)
 	{
 		FileInfo fileInfo;
-		RETURN_ERR(GetFileInfo(sourcepathname, &fileInfo));
+		RETURN_ERR(GetFileInfo(pathname, &fileInfo));
 		const off_t usize = fileInfo.Size();
 		// skip 0-length files.
 		// rationale: zip.cpp needs to determine whether a CDFH entry is
@@ -578,14 +578,14 @@ public:
 			return INFO::SKIPPED;
 
 		PFile file(new File);
-		RETURN_ERR(file->Open(sourcepathname, 'r'));
+		RETURN_ERR(file->Open(pathname, 'r'));
 
-		const size_t pathnameLength = pathname.string().length();
+		const size_t pathnameLength = pathnameInArchive.length();
 
 		// choose method and the corresponding codec
 		ZipMethod method;
 		PICodec codec;
-		if(m_noDeflate || IsFileTypeIncompressible(pathname))
+		if(m_noDeflate || IsFileTypeIncompressible(pathnameInArchive))
 		{
 			method = ZIP_METHOD_NONE;
 			codec = CreateCodec_ZLibNone();
@@ -615,7 +615,7 @@ public:
 		// build LFH
 		{
 			LFH* lfh = (LFH*)buf.get();
-			lfh->Init(fileInfo, (off_t)csize, method, checksum, pathname);
+			lfh->Init(fileInfo, (off_t)csize, method, checksum, pathnameInArchive);
 		}
 
 		// append a CDFH to the central directory (in memory)
@@ -626,7 +626,7 @@ public:
 		if(!cdfh)
 			WARN_RETURN(ERR::NO_MEM);
 		const size_t slack = m_cdfhPool.da.pos - prev_pos - cdfhSize;
-		cdfh->Init(fileInfo, ofs, (off_t)csize, method, checksum, pathname, slack);
+		cdfh->Init(fileInfo, ofs, (off_t)csize, method, checksum, pathnameInArchive, slack);
 		m_numEntries++;
 
 		// write LFH, pathname and cdata to file
@@ -638,9 +638,9 @@ public:
 	}
 
 private:
-	static bool IsFileTypeIncompressible(const fs::wpath& pathname)
+	static bool IsFileTypeIncompressible(const NativePath& pathname)
 	{
-		const std::wstring extension = fs::extension(pathname);
+		const NativePath extension = Path::Extension(pathname);
 
 		// file extensions that we don't want to compress
 		static const wchar_t* incompressibleExtensions[] =
@@ -669,7 +669,7 @@ private:
 	bool m_noDeflate;
 };
 
-PIArchiveWriter CreateArchiveWriter_Zip(const fs::wpath& archivePathname, bool noDeflate)
+PIArchiveWriter CreateArchiveWriter_Zip(const NativePath& archivePathname, bool noDeflate)
 {
 	return PIArchiveWriter(new ArchiveWriter_Zip(archivePathname, noDeflate));
 }

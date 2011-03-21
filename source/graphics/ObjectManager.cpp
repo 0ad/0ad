@@ -85,7 +85,7 @@ CObjectBase* CObjectManager::FindObjectBase(const CStrW& objectname)
 
 	CObjectBase* obj = new CObjectBase(*this);
 
-	VfsPath pathname(VfsPath(L"art/actors/")/(std::wstring)objectname);
+	VfsPath pathname = Path::Join(L"art/actors/", objectname);
 
 	if (obj->Load(pathname))
 	{
@@ -123,7 +123,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 	// Look to see whether this particular variation has already been loaded
 
 	std::vector<u8> choices = base->CalculateVariationKey(selections);
-	ObjectKey key (base->m_Pathname.string(), choices);
+	ObjectKey key (base->m_Pathname, choices);
 
 	std::map<ObjectKey, CObjectEntry*>::iterator it = m_Objects.find(key);
 	if (it != m_Objects.end())

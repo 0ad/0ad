@@ -129,7 +129,7 @@ void CComponentManager::LoadComponentTypes()
 }
 
 
-bool CComponentManager::LoadScript(const std::wstring& filename, bool hotload)
+bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 {
 	m_CurrentlyHotloading = hotload;
 	CVFSFile file;
@@ -940,7 +940,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string file
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	std::wstring path = L"simulation/data/" + wstring_from_utf8(fileName);
+	NativePath path = L"simulation/data/" + wstring_from_utf8(fileName);
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }

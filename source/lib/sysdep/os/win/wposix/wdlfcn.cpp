@@ -23,6 +23,8 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/wdlfcn.h"
 
+#include "lib/utf8.h"
+#include "lib/path_util.h"
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 
 
@@ -55,8 +57,8 @@ void* dlopen(const char* so_name, int flags)
 {
 	debug_assert(!(flags & RTLD_GLOBAL));
 
-	fs::path pathname = fs::change_extension(so_name, ".dll");
-	HMODULE hModule = LoadLibraryA(pathname.string().c_str());
+	NativePath pathname = Path::ChangeExtension(wstring_from_utf8(so_name), L".dll");
+	HMODULE hModule = LoadLibraryW(pathname.c_str());
 	return void_from_HMODULE(hModule);
 }
 

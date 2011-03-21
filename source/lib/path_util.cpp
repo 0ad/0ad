@@ -129,14 +129,3 @@ const wchar_t* path_name_only(const wchar_t* path)
 		path_component_validate(name);
 	return name;
 }
-
-
-fs::wpath wpath_from_path(const fs::path& pathname)
-{
-	return wstring_from_utf8(pathname.string());
-}
-
-fs::path path_from_wpath(const fs::wpath& pathname)
-{
-	return utf8_from_wstring(pathname.string());
-}

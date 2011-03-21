@@ -27,6 +27,7 @@
 #ifndef INCLUDED_WUTIL
 #define INCLUDED_WUTIL
 
+#include "lib/native_path.h"
 #include "lib/sysdep/os/win/win.h"
 
 template<typename H>
@@ -169,11 +170,11 @@ extern bool wutil_HasCommandLineArgument(const wchar_t* arg);
 
 // used by wutil_ExecutablePath, but provided in case other code
 // needs to know this before our wutil_Init runs.
-extern fs::wpath wutil_DetectExecutablePath();
+extern NativePath wutil_DetectExecutablePath();
 
-extern const fs::wpath& wutil_SystemPath();
-extern const fs::wpath& wutil_ExecutablePath();
-extern const fs::wpath& wutil_AppdataPath();
+extern const NativePath& wutil_SystemPath();
+extern const NativePath& wutil_ExecutablePath();
+extern const NativePath& wutil_AppdataPath();
 
 
 //-----------------------------------------------------------------------------

@@ -93,7 +93,7 @@ static LibError win_get_gfx_card()
 
 
 // note: this implementation doesn't require OpenGL to be initialized.
-static LibError AppendDriverVersionsFromRegistry(std::wstring& versionList)
+static LibError AppendDriverVersionsFromRegistry(VersionList& versionList)
 {
 	// rationale:
 	// - we could easily determine the 2d driver via EnumDisplaySettings,
@@ -171,7 +171,7 @@ static LibError AppendDriverVersionsFromRegistry(std::wstring& versionList)
 
 #include "lib/timer.h"
 
-static void AppendDriverVersionsFromKnownFiles(std::wstring& versionList)
+static void AppendDriverVersionsFromKnownFiles(VersionList& versionList)
 {
 	// (check all known file names regardless of gfx_card, which may change and
 	// defeat our parsing. this takes about 5..10 ms)
@@ -195,7 +195,7 @@ LibError win_get_gfx_info()
 {
 	LibError err = win_get_gfx_card();
 
-	std::wstring versionList;
+	VersionList versionList;
 	if(AppendDriverVersionsFromRegistry(versionList) != INFO::OK)	// (fails on Windows 7)
 		AppendDriverVersionsFromKnownFiles(versionList);
 	if(versionList.empty())

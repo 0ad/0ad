@@ -50,7 +50,8 @@ public:
 		GetAIsHelper* self = (GetAIsHelper*)cbData;
 
 		// Extract the 3rd component of the path (i.e. the directory after simulation/ai/)
-		VfsPath::iterator it = pathname.begin();
+		fs::wpath components = pathname;
+		fs::wpath::iterator it = components.begin();
 		std::advance(it, 2);
 		std::wstring dirname = *it;
 

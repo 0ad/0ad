@@ -78,9 +78,9 @@ void WriteSystemInfo()
 	struct utsname un;
 	uname(&un);
 
-	fs::wpath pathname(psLogDir()/L"system_info.txt");
+	NativePath pathname = Path::Join(psLogDir(), L"system_info.txt");
 	FILE* f;
-	errno_t err = _wfopen_s(&f, pathname.string().c_str(), L"w");
+	errno_t err = _wfopen_s(&f, pathname.c_str(), L"w");
 	if(err != 0)
 		return;
 
@@ -196,7 +196,7 @@ const wchar_t* ErrorString(int err)
 // transformed to write it out in the format determined by <fn>'s extension.
 LibError tex_write(Tex* t, const VfsPath& filename)
 {
-	const std::wstring extension = fs::extension(filename);
+	const std::wstring extension = Path::Extension(filename);
 
 	DynArray da;
 	RETURN_ERR(tex_encode(t, extension, &da));
@@ -228,7 +228,7 @@ void WriteScreenshot(const std::wstring& extension)
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
 	const VfsPath basenameFormat(L"screenshots/screenshot%04d");
-	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
+	const VfsPath filenameFormat = Path::ChangeExtension(basenameFormat, extension);
 	VfsPath filename;
 	fs_util::NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
 
@@ -260,12 +260,12 @@ void WriteScreenshot(const std::wstring& extension)
 
 	if (tex_write(&t, filename) == INFO::OK)
 	{
-		fs::wpath realPath;
+		std::wstring realPath;
 		g_VFS->GetRealPath(filename, realPath);
-		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.string().c_str());
+		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.c_str());
 	}
 	else
-		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
+		LOGERROR(L"Error writing screenshot to '%ls'", filename.c_str());
 
 	tex_free(&t);
 }
@@ -281,7 +281,7 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
 	const VfsPath basenameFormat(L"screenshots/screenshot%04d");
-	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
+	const VfsPath filenameFormat = Path::ChangeExtension(basenameFormat, extension);
 	VfsPath filename;
 	fs_util::NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
 
@@ -386,12 +386,12 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 
 	if (tex_write(&t, filename) == INFO::OK)
 	{
-		fs::wpath realPath;
+		std::wstring realPath;
 		g_VFS->GetRealPath(filename, realPath);
-		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.string().c_str());
+		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.c_str());
 	}
 	else
-		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
+		LOGERROR(L"Error writing screenshot to '%ls'", filename.c_str());
 
 	tex_free(&t);
 	free(tile_data);

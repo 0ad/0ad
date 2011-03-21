@@ -27,17 +27,20 @@
 #ifndef INCLUDED_WDLL_VER
 #define INCLUDED_WDLL_VER
 
+#include "lib/native_path.h"
+
+typedef std::wstring VersionList;
+
 /**
  * Read DLL version information and append it to a string.
  *
  * @param pathname of DLL (preferably the complete path, so that we don't
  *		  inadvertently load another one on the library search path.)
  *		  If no extension is given, .dll will be appended.
- * @param list
  *
  * The text output includes the module name.
  * On failure, the version is given as "unknown".
  **/
-extern void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list);
+extern void wdll_ver_Append(const NativePath& pathname, VersionList& list);
 
 #endif	// #ifndef INCLUDED_WDLL_VER

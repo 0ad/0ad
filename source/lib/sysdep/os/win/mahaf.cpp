@@ -27,6 +27,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/mahaf.h"
 
+#include "lib/path_util.h"
 #include "lib/module_init.h"
 
 #include "lib/sysdep/os/win/wutil.h"
@@ -259,7 +260,7 @@ static void UninstallDriver()
 }
 
 
-static void StartDriver(const fs::wpath& driverPathname)
+static void StartDriver(const NativePath& driverPathname)
 {
 	const SC_HANDLE hSCM = OpenServiceControlManager();
 	if(!hSCM)
@@ -289,7 +290,7 @@ static void StartDriver(const fs::wpath& driverPathname)
 		// NB: Windows 7 seems to insist upon backslashes (i.e. external_file_string)
 		hService = CreateServiceW(hSCM, AKEN_NAME, AKEN_NAME,
 			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
-			driverPathname.external_file_string().c_str(), 0, 0, 0, startName, 0);
+			driverPathname.c_str(), 0, 0, 0, startName, 0);
 		debug_assert(hService != 0);
 	}
 
@@ -322,17 +323,17 @@ static bool Is64BitOs()
 #endif
 }
 
-static fs::wpath DriverPathname()
+static NativePath DriverPathname()
 {
-	const wchar_t* const bits = Is64BitOs()? L"64" : L"";
+	const char* const bits = Is64BitOs()? "64" : "";
 #ifdef NDEBUG
-	const wchar_t* const debug = L"";
+	const char* const debug = "";
 #else
-	const wchar_t* const debug = L"d";
+	const char* const debug = "d";
 #endif
-	wchar_t filename[PATH_MAX];
-	swprintf_s(filename, ARRAY_SIZE(filename), L"aken%ls%ls.sys", bits, debug);
-	return wutil_ExecutablePath()/filename;
+	char filename[PATH_MAX];
+	sprintf_s(filename, ARRAY_SIZE(filename), "aken%s%s.sys", bits, debug);
+	return Path::Join(wutil_ExecutablePath(), NativePathFromString(filename));
 }
 
 
@@ -344,7 +345,7 @@ static LibError Init()
 		return ERR::NOT_SUPPORTED;	// NOWARN
 
 	{
-		const fs::wpath driverPathname = DriverPathname();
+		const NativePath driverPathname = DriverPathname();
 		StartDriver(driverPathname);
 	}
 

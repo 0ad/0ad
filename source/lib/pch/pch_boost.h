@@ -1,4 +1,5 @@
-// (included from precompiled.h)
+#ifndef INCLUDED_PCH_BOOST
+#define INCLUDED_PCH_BOOST
 
 #include "lib/external_libraries/suppress_boost_warnings.h"
 
@@ -20,7 +21,6 @@
 #include <boost/filesystem.hpp>
 namespace fs = boost::filesystem;
 #include <boost/shared_ptr.hpp>
-using boost::shared_ptr;
 
 // (these ones are used more rarely, so we don't enable them in minimal configurations)
 #if !MINIMAL_PCH
@@ -36,3 +36,5 @@ using boost::function;
 #include <boost/bind.hpp>
 using boost::bind;
 #endif // !MINIMAL_PCH
+
+#endif	// #ifndef INCLUDED_PCH_BOOST

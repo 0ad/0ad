@@ -30,7 +30,7 @@ class RealDirectory : public IFileLoader
 {
 	NONCOPYABLE(RealDirectory);
 public:
-	RealDirectory(const fs::wpath& path, size_t priority, size_t flags);
+	RealDirectory(const NativePath& path, size_t priority, size_t flags);
 
 	size_t Priority() const
 	{
@@ -45,13 +45,13 @@ public:
 	// IFileLoader
 	virtual size_t Precedence() const;
 	virtual wchar_t LocationCode() const;
-	virtual fs::wpath Path() const
+	virtual NativePath Path() const
 	{
 		return m_path;
 	}
-	virtual LibError Load(const std::wstring& name, const shared_ptr<u8>& buf, size_t size) const;
+	virtual LibError Load(const NativePath& name, const shared_ptr<u8>& buf, size_t size) const;
 
-	LibError Store(const std::wstring& name, const shared_ptr<u8>& fileContents, size_t size);
+	LibError Store(const NativePath& name, const shared_ptr<u8>& fileContents, size_t size);
 
 	void Watch();
 
@@ -59,7 +59,7 @@ private:
 	// note: paths are relative to the root directory, so storing the
 	// entire path instead of just the portion relative to the mount point
 	// is not all too wasteful.
-	const fs::wpath m_path;
+	const NativePath m_path;
 
 	const size_t m_priority;
 
@@ -72,6 +72,6 @@ private:
 
 typedef shared_ptr<RealDirectory> PRealDirectory;
 
-extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::wstring& subdirectoryName);
+extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const NativePath& subdirectoryName);
 
 #endif	// #ifndef INCLUDED_REAL_DIRECTORY

@@ -572,7 +572,7 @@ Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t fl
 {
 	RETURN_ERR(type_validate(type));
 
-	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
+	const uintptr_t key = fnv_hash(pathname.c_str(), pathname.length()*sizeof(pathname[0]));
 
 	// see if we can reuse an existing handle
 	Handle h = reuse_existing_handle(key, type, flags);
@@ -622,11 +622,11 @@ static LibError h_free_idx(ssize_t idx, HDATA* hd)
 		wchar_t buf[H_STRING_LEN];
 		if(vtbl->to_string(hd->user, buf) < 0)
 			wcscpy_s(buf, ARRAY_SIZE(buf), L"(error)");
-		debug_printf(L"H_MGR| free %ls %ls accesses=%lu %ls\n", hd->type->name, hd->pathname.string().c_str(), (unsigned long)hd->num_derefs, buf);
+		debug_printf(L"H_MGR| free %ls %ls accesses=%lu %ls\n", hd->type->name, hd->pathname.c_str(), (unsigned long)hd->num_derefs, buf);
 	}
 #endif
 
-	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::wstring memory
+	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim memory
 	memset(hd, 0, sizeof(*hd));
 	new (&hd->pathname) VfsPath;	// FIXME too: necessary because otherwise it'll break if we reuse this page
 
@@ -699,7 +699,7 @@ VfsPath h_filename(const Handle h)
 // TODO: what if iterating through all handles is too slow?
 LibError h_reload(const PIVFS& vfs, const VfsPath& pathname)
 {
-	const u32 key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
+	const u32 key = fnv_hash(pathname.c_str(), pathname.length()*sizeof(pathname[0]));
 
 	// destroy (note: not free!) all handles backed by this file.
 	// do this before reloading any of them, because we don't specify reload
@@ -843,7 +843,7 @@ static void Shutdown()
 	{
 		if (pages[j])
 			for(size_t k = 0; k < hdata_per_page; ++k)
-				pages[j][k].pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::wstring memory
+				pages[j][k].pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim memory
 		free(pages[j]);
 		pages[j] = 0;
 	}

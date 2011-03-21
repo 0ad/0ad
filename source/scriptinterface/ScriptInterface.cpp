@@ -793,7 +793,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 {
 	if (!VfsFileExists(g_VFS, path))
 	{
-		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
+		LOGERROR(L"File '%ls' does not exist", path.c_str());
 		return false;
 	}
 
@@ -803,14 +803,14 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		LOGERROR(L"Failed to load file '%ls': %hs", path.c_str(), GetErrorString(ret));
 		return false;
 	}
 
 	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
 	std::wstring code = wstring_from_utf8(content);
 
-	std::string fnAscii(path.string().begin(), path.string().end());
+	std::string fnAscii(path.begin(), path.end());
 
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
@@ -878,7 +878,7 @@ CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 {
 	if (!VfsFileExists(g_VFS, path))
 	{
-		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
+		LOGERROR(L"File '%ls' does not exist", path.c_str());
 		return CScriptValRooted();
 	}
 
@@ -888,7 +888,7 @@ CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		LOGERROR(L"Failed to load file '%ls': %hs", path.c_str(), GetErrorString(ret));
 		return CScriptValRooted();
 	}
 

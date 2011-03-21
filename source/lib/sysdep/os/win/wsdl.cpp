@@ -38,8 +38,9 @@
 #include <process.h>	// _beginthreadex
 #include <WindowsX.h>	// message crackers
 
-#include "lib/posix/posix_pthread.h"
 #include "lib/module_init.h"
+#include "lib/path_util.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wmi.h"	// for SDL_GetVideoInfo
@@ -1477,20 +1478,20 @@ void SDL_Quit()
 }
 
 
-static fs::wpath GetStdoutPathname()
+static NativePath GetStdoutPathname()
 {
 	// the current directory is unreliable, so use the full path to
 	// the current executable.
 	wchar_t pathnameEXE[MAX_PATH];
 	const DWORD charsWritten = GetModuleFileNameW(0, pathnameEXE, ARRAY_SIZE(pathnameEXE));
 	debug_assert(charsWritten);
-	const fs::wpath path = fs::wpath(pathnameEXE).branch_path();
+	const NativePath path = Path::Path(pathnameEXE);
 
 	// add the EXE name to the filename to allow multiple executables
 	// with their own redirections. (we can't use wutil_ExecutablePath
 	// because it doesn't return the basename)
-	std::wstring name = fs::basename(pathnameEXE);
-	fs::wpath pathname(path/(name+L"_stdout.txt"));
+	NativePath name = Path::Basename(pathnameEXE);
+	NativePath pathname = Path::Join(path, (name+L"_stdout.txt"));
 
 	return pathname;
 }
@@ -1502,7 +1503,7 @@ static void RedirectStdout()
 	if(wutil_IsValidHandle(GetStdHandle(STD_OUTPUT_HANDLE)))
 		return;
 
-	const fs::wpath pathname = GetStdoutPathname();
+	const NativePath pathname = GetStdoutPathname();
 
  	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
  	// to prevent the OS from opening a console on startup (ugly).
@@ -1511,7 +1512,7 @@ static void RedirectStdout()
  	FILE* f = 0;
 	// (return value ignored - it indicates 'file already exists' even
 	// if f is valid)
-	(void)_wfreopen_s(&f, pathname.string().c_str(), L"wt", stdout);
+	(void)_wfreopen_s(&f, pathname.c_str(), L"wt", stdout);
 	// executable directory (probably Program Files) is read-only for
 	// non-Administrators. we can't pick another directory because
 	// ah_log_dir might not be valid until the app's init has run,

@@ -30,6 +30,7 @@
 #include <map>
 
 #include "lib/sysdep/os/win/wposix/crt_posix.h"      // correct definitions of _open() etc.
+#include "lib/posix/posix_filesystem.h"
 
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 #include "lib/sysdep/os/win/wposix/wfilesystem.h"    // mode_t

@@ -34,7 +34,7 @@ Paths::Paths(const CmdLineArgs& args)
 #ifdef INSTALLED_DATADIR
 	m_rdata = WIDEN(STRINGIZE(INSTALLED_DATADIR)) L"/";
 #else
-	m_rdata = m_root/L"data/";
+	m_rdata = Path::Join(m_root, L"data/");
 #endif
 
 	const wchar_t* subdirectoryName = args.Has("writableRoot")? 0 : L"0ad";
@@ -43,38 +43,38 @@ Paths::Paths(const CmdLineArgs& args)
 	if(!subdirectoryName)
 	{
 		m_data = m_rdata;
-		m_config = m_data/L"config/";
-		m_cache = m_data/L"cache/";
-		m_logs = m_root/L"logs/";
+		m_config = Path::Join(m_data, L"config/");
+		m_cache = Path::Join(m_data, L"cache/");
+		m_logs = Path::Join(m_root, L"logs/");
 	}
 	else
 	{
 #if OS_WIN
-		const fs::wpath appdata = AddSlash(wutil_AppdataPath()/subdirectoryName);
-		m_data = appdata/L"data/";
-		m_config = appdata/L"config/";
-		m_cache = appdata/L"cache/";
-		m_logs = appdata/L"logs/";
+		const NativePath appdata = Path::AddSlash(Path::Join(wutil_AppdataPath(), subdirectoryName));
+		m_data = Path::Join(appdata, L"data/");
+		m_config = Path::Join(appdata, L"config/");
+		m_cache = Path::Join(appdata, L"cache/");
+		m_logs = Path::Join(appdata, L"logs/");
 #else
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
-		const fs::wpath home(wstring_from_utf8(envHome));
-		const fs::wpath xdgData = XDG_Path("XDG_DATA_HOME", home, home/L".local/share/")/subdirectoryName;
-		const fs::wpath xdgConfig = XDG_Path("XDG_CONFIG_HOME", home, home/L".config/")/subdirectoryName;
-		const fs::wpath xdgCache = XDG_Path("XDG_CACHE_HOME", home, home/L".cache/")/subdirectoryName;
-		m_data = AddSlash(xdgData);
-		m_cache = AddSlash(xdgCache);
-		m_config = AddSlash(xdgConfig/L"config");
-		m_logs = AddSlash(xdgConfig/L"logs");
+		const NativePath home(wstring_from_utf8(envHome));
+		const NativePath xdgData = XDG_Path("XDG_DATA_HOME", home, Path::Join(home, L".local/share/", subdirectoryName));
+		const NativePath xdgConfig = XDG_Path("XDG_CONFIG_HOME", home, Path::Join(home, L".config/", subdirectoryName));
+		const NativePath xdgCache = XDG_Path("XDG_CACHE_HOME", home, Path::Join(home, L".cache/", subdirectoryName));
+		m_data = Path::AddSlash(xdgData);
+		m_cache = Path::AddSlash(xdgCache);
+		m_config = Path::AddSlash(Path::Join(xdgConfig, L"config"));
+		m_logs = Path::AddSlash(Path::Join(xdgConfig, L"logs"));
 #endif
 	}
 }
 
 
-/*static*/ fs::wpath Paths::Root(const std::wstring& argv0)
+/*static*/ NativePath Paths::Root(const std::wstring& argv0)
 {
 	// get full path to executable
-	fs::wpath pathname;
+	NativePath pathname;
 	// .. first try safe, but system-dependent version
 	if(sys_get_executable_name(pathname) != INFO::OK)
 	{
@@ -87,23 +87,24 @@ Paths::Paths(const CmdLineArgs& args)
 	}
 
 	// make sure it's valid
-	if(!fs::exists(pathname))
+	if(!FileExists(pathname))
 		WARN_ERR(LibError_from_errno(false));
 
+	fs::wpath components = pathname;
 	for(size_t i = 0; i < 3; i++)	// remove "system/name.exe"
-		pathname.remove_leaf();
-	return pathname;
+		components.remove_leaf();
+	return components.string();
 }
 
 
-/*static*/ fs::wpath Paths::XDG_Path(const char* envname, const fs::wpath& home, const fs::wpath& defaultPath)
+/*static*/ NativePath Paths::XDG_Path(const char* envname, const NativePath& home, const NativePath& defaultPath)
 {
 	const char* path = getenv(envname);
 	if(path)
 	{
 		if(path[0] != '/')	// relative to $HOME
-			return AddSlash(home/wstring_from_utf8(path));
-		return AddSlash(fs::wpath(wstring_from_utf8(path)));
+			return Path::AddSlash(Path::Join(home, wstring_from_utf8(path)));
+		return Path::AddSlash(wstring_from_utf8(path));
 	}
-	return AddSlash(defaultPath);
+	return Path::AddSlash(defaultPath);
 }

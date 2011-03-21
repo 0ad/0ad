@@ -27,6 +27,7 @@
 #include <fstream>
 
 #include "lib/self_test.h"
+#include "lib/path_util.h"
 #include <cxxtest/GlobalFixture.h>
 
 #if OS_WIN
@@ -91,11 +92,11 @@ bool ts_str_contains(const std::wstring& str1, const std::wstring& str2)
 // contains input files (it is assumed that developer's machines have
 // write access to those directories). note that argv0 isn't
 // available, so we use sys_get_executable_name.
-fs::wpath DataDir()
+NativePath DataDir()
 {
-	fs::wpath path;
+	NativePath path;
 	TS_ASSERT_OK(sys_get_executable_name(path));
-	return path.branch_path()/L"../data";
+	return Path::Join(Path::Path(path), L"../data");
 }
 
 // Script-based testing setup:
@@ -114,8 +115,8 @@ void ScriptTestSetup(ScriptInterface& ifc)
 
 	// Load the TS_* function definitions
 	// (We don't use VFS because tests might not have the normal VFS paths loaded)
-	fs::wpath path = DataDir()/L"tests/test_setup.js";
-	std::ifstream ifs(path.external_file_string().c_str());
+	NativePath path = Path::Join(DataDir(), L"tests/test_setup.js");
+	std::ifstream ifs(StringFromNativePath(path).c_str());
 	debug_assert(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
 	std::wstring wcontent(content.begin(), content.end());

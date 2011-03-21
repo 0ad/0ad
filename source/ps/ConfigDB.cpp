@@ -112,7 +112,7 @@ namespace ConfigNamespace_JS
 		if (argc != 1)
 			return JS_FALSE;
 
-		std::wstring path;
+		NativePath path;
 		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
 			return JS_FALSE;
 
@@ -145,7 +145,7 @@ namespace ConfigNamespace_JS
 		if (argc != 1)
 			return JS_FALSE;
 
-		std::wstring path;
+		NativePath path;
 		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
 			return JS_FALSE;
 
@@ -341,16 +341,16 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		// Handle missing files quietly
 		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) < 0)
 		{
-			LOGMESSAGE(L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].string().c_str());
+			LOGMESSAGE(L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].c_str());
 			return false;
 		}
 		else
 		{
-			LOGMESSAGE(L"Loading config file \"%ls\"", m_ConfigFile[ns].string().c_str());
+			LOGMESSAGE(L"Loading config file \"%ls\"", m_ConfigFile[ns].c_str());
 			LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 			if (ret != INFO::OK)
 			{
-				LOGERROR(L"CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %ld", m_ConfigFile[ns].string().c_str(), ret);
+				LOGERROR(L"CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %ld", m_ConfigFile[ns].c_str(), ret);
 				return false;
 			}
 		}
@@ -437,7 +437,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 	LibError ret = g_VFS->CreateFile(path, buf, len);
 	if(ret < 0)
 	{
-		LOGERROR(L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.string().c_str(), (int)ret);
+		LOGERROR(L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.c_str(), (int)ret);
 		return false;
 	}
 

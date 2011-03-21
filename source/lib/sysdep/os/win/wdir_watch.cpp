@@ -44,12 +44,12 @@ WINIT_REGISTER_MAIN_SHUTDOWN(wdir_watch_Shutdown);
 class DirHandle
 {
 public:
-	DirHandle(const fs::wpath& path)
+	DirHandle(const NativePath& path)
 	{
 		WinScopedPreserveLastError s;	// CreateFile
 		const DWORD share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;
 		const DWORD flags = FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED;
-		m_hDir = CreateFileW(path.string().c_str(), FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
+		m_hDir = CreateFileW(path.c_str(), FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
 	}
 
 	~DirHandle()
@@ -81,7 +81,7 @@ class DirWatchRequest
 {
 	NONCOPYABLE(DirWatchRequest);
 public:
-	DirWatchRequest(const fs::wpath& path)
+	DirWatchRequest(const NativePath& path)
 		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize])
 	{
 		m_ovl = (OVERLAPPED*)calloc(1, sizeof(OVERLAPPED));	// rationale for dynamic alloc: see decl
@@ -124,7 +124,7 @@ public:
 		}
 	}
 
-	const fs::wpath& Path() const
+	const NativePath& Path() const
 	{
 		return m_path;
 	}
@@ -162,12 +162,12 @@ public:
 		const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)m_data;
 		for(;;)
 		{
-			// convert name from BSTR (non-zero-terminated) to std::wstring
+			// convert name from BSTR (non-zero-terminated) to NativePath
 			cassert(sizeof(wchar_t) == sizeof(WCHAR));
 			const size_t nameChars = fni->FileNameLength / sizeof(WCHAR);
-			const std::wstring name(fni->FileName, nameChars);
+			const NativePath name(fni->FileName, nameChars);
 
-			const fs::wpath pathname(Path()/name);
+			const NativePath pathname = Path::Join(Path(), name);
 			const DirWatchNotification::EType type = TypeFromAction(fni->Action);
 			notifications.push_back(DirWatchNotification(pathname, type));
 
@@ -199,7 +199,7 @@ private:
 		}
 	}
 
-	fs::wpath m_path;
+	NativePath m_path;
 	DirHandle m_dirHandle;
 
 	// rationale:
@@ -368,9 +368,9 @@ private:
 class DirWatchManager
 {
 public:
-	LibError Add(const fs::wpath& path, PDirWatch& dirWatch)
+	LibError Add(const NativePath& path, PDirWatch& dirWatch)
 	{
-		debug_assert(path.leaf() == L".");	// must be a directory path (i.e. end in slash)
+		debug_assert(path_is_dir_sep(path.back()));	// must be a directory path
 
 		// check if this is a subdirectory of a tree that's already being
 		// watched (this is much faster than issuing a new watch; it also
@@ -378,7 +378,7 @@ public:
 		for(IntrusiveLink* link = m_sentinel.Next(); link != &m_sentinel; link = link->Next())
 		{
 			DirWatch* const existingDirWatch = (DirWatch*)(uintptr_t(link) - offsetof(DirWatch, link));
-			if(path_is_subpath(path.string().c_str(), existingDirWatch->request->Path().string().c_str()))
+			if(path_is_subpath(path.c_str(), existingDirWatch->request->Path().c_str()))
 			{
 				dirWatch.reset(new DirWatch(&m_sentinel, existingDirWatch->request));
 				return INFO::OK;
@@ -412,7 +412,7 @@ static DirWatchManager* s_dirWatchManager;
 
 //-----------------------------------------------------------------------------
 
-LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
+LibError dir_watch_Add(const NativePath& path, PDirWatch& dirWatch)
 {
 	WinScopedLock lock(WDIR_WATCH_CS);
 	return s_dirWatchManager->Add(path, dirWatch);

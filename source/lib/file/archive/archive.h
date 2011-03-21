@@ -88,10 +88,10 @@ struct IArchiveWriter
 	 * precisely because they aren't in archives, and the cache would
 	 * thrash anyway, so this is deemed acceptable.
 	 *
-	 * @param sourcepathname the path to the source file on the filesystem
-	 * @param pathname the path to use for the file inside the archive
+	 * @param pathname the actual file to add
+	 * @param pathnameInArchive the name to store in the archive
 	 **/
-	virtual LibError AddFile(const fs::wpath& sourcepathname, const fs::wpath& pathame) = 0;
+	virtual LibError AddFile(const NativePath& pathname, const NativePath& pathameInArchive) = 0;
 };
 
 typedef shared_ptr<IArchiveWriter> PIArchiveWriter;

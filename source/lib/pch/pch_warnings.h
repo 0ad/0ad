@@ -1,4 +1,5 @@
-// (included from precompiled.h)
+#ifndef INCLUDED_PCH_WARNINGS
+#define INCLUDED_PCH_WARNINGS
 
 #include "lib/sysdep/compiler.h"	// MSC_VERSION
 
@@ -49,3 +50,5 @@
 //# pragma warning(default:4619) // #pragma warning: there is no [such] warning number (false alarms in STL)
 //# pragma warning(default:4668) // not defined as a preprocessor macro, replacing with '0' (frequent in Windows)
 #endif
+
+#endif	// #ifndef INCLUDED_PCH_WARNINGS

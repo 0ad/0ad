@@ -67,15 +67,17 @@ need only be renamed (e.g. _open, _stat).
 #endif
 
 #include "lib/posix/posix_types.h"
-#include "lib/posix/posix_aio.h"
-#include "lib/posix/posix_dlfcn.h"
-#include "lib/posix/posix_filesystem.h"
-#include "lib/posix/posix_mman.h"
-#include "lib/posix/posix_pthread.h"
+
+// disabled to reduce dependencies. include them where needed.
+//#include "lib/posix/posix_aio.h"
+//#include "lib/posix/posix_dlfcn.h"
+//#include "lib/posix/posix_filesystem.h"
+//#include "lib/posix/posix_mman.h"
+//#include "lib/posix/posix_pthread.h"
 //#include "lib/posix/posix_sock.h"
 //#include "lib/posix/posix_terminal.h"
 //#include "lib/posix/posix_time.h"
-#include "lib/posix/posix_utsname.h"
+//#include "lib/posix/posix_utsname.h"
 
 
 // note: the following need only be #defined (instead of defining a

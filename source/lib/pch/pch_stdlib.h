@@ -1,4 +1,5 @@
-// (included from precompiled.h)
+#ifndef INCLUDED_PCH_STDLIB
+#define INCLUDED_PCH_STDLIB
 
 #if !MINIMAL_PCH
 // all new-form C library headers
@@ -80,3 +81,5 @@
 # include <hash_set>
 #endif
 #endif // !MINIMAL_PCH
+
+#endif	// #ifndef INCLUDED_PCH_STDLIB

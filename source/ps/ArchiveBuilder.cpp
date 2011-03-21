@@ -32,18 +32,18 @@
 
 #include <boost/algorithm/string.hpp>
 
-CArchiveBuilder::CArchiveBuilder(const fs::wpath& mod, const fs::wpath& tempdir) :
+CArchiveBuilder::CArchiveBuilder(const std::wstring& mod, const std::wstring& tempdir) :
 	m_TempDir(tempdir)
 {
 	tex_codec_register_all();
 
 	m_VFS = CreateVfs(20*MiB);
 
-	DeleteDirectory(m_TempDir/L"_archivecache"); // clean up in case the last run failed
+	DeleteDirectory(Path::Join(m_TempDir, L"_archivecache")); // clean up in case the last run failed
 
-	m_VFS->Mount(L"cache/", m_TempDir/L"_archivecache/");
+	m_VFS->Mount(L"cache/", Path::Join(m_TempDir, L"_archivecache/"));
 
-	m_VFS->Mount(L"", AddSlash(mod), VFS_MOUNT_MUST_EXIST);
+	m_VFS->Mount(L"", Path::AddSlash(mod), VFS_MOUNT_MUST_EXIST);
 
 	// Collect the list of files before loading any base mods
 	fs_util::ForEachFile(m_VFS, L"", &CollectFileCB, (uintptr_t)static_cast<void*>(this), 0, fs_util::DIR_RECURSIVE);
@@ -53,17 +53,17 @@ CArchiveBuilder::~CArchiveBuilder()
 {
 	m_VFS.reset();
 
-	DeleteDirectory(m_TempDir/L"_archivecache");
+	DeleteDirectory(Path::Join(m_TempDir, L"_archivecache"));
 
 	tex_codec_unregister_all();
 }
 
-void CArchiveBuilder::AddBaseMod(const fs::wpath& mod)
+void CArchiveBuilder::AddBaseMod(const std::wstring& mod)
 {
-	m_VFS->Mount(L"", AddSlash(mod), VFS_MOUNT_MUST_EXIST);
+	m_VFS->Mount(L"", Path::AddSlash(mod), VFS_MOUNT_MUST_EXIST);
 }
 
-void CArchiveBuilder::Build(const fs::wpath& archive)
+void CArchiveBuilder::Build(const std::wstring& archive)
 {
 	// Disable zip compression because it significantly hurts download size
 	// for releases (which re-compress all files with better compression
@@ -84,28 +84,28 @@ void CArchiveBuilder::Build(const fs::wpath& archive)
 	{
 		LibError ret;
 
-		fs::wpath realPath;
+		std::wstring realPath;
 		ret = m_VFS->GetRealPath(m_Files[i], realPath);
 		debug_assert(ret == INFO::OK);
 
 		// Compress textures and store the new cached version instead of the original
-		if (boost::algorithm::starts_with(m_Files[i].string(), L"art/textures/") &&
+		if (boost::algorithm::starts_with(m_Files[i], L"art/textures/") &&
 			tex_is_known_extension(m_Files[i]) &&
 			// Skip some subdirectories where the engine doesn't use CTextureManager yet:
-			!boost::algorithm::starts_with(m_Files[i].string(), L"art/textures/cursors/") &&
-			!boost::algorithm::starts_with(m_Files[i].string(), L"art/textures/terrain/alphamaps/")
+			!boost::algorithm::starts_with(m_Files[i], L"art/textures/cursors/") &&
+			!boost::algorithm::starts_with(m_Files[i], L"art/textures/terrain/alphamaps/")
 		)
 		{
 			VfsPath cachedPath;
-			debug_printf(L"Converting texture %ls\n", realPath.string().c_str());
+			debug_printf(L"Converting texture %ls\n", realPath.c_str());
 			bool ok = texman.GenerateCachedTexture(m_Files[i], cachedPath);
 			debug_assert(ok);
 
-			fs::wpath cachedRealPath;
-			ret = m_VFS->GetRealPath(L"cache"/cachedPath, cachedRealPath);
+			std::wstring cachedRealPath;
+			ret = m_VFS->GetRealPath(Path::Join(L"cache", cachedPath), cachedRealPath);
 			debug_assert(ret == INFO::OK);
 
-			writer->AddFile(cachedRealPath, cachedPath.string());
+			writer->AddFile(cachedRealPath, cachedPath);
 
 			// We don't want to store the original file too (since it's a
 			// large waste of space), so skip to the next file
@@ -114,22 +114,22 @@ void CArchiveBuilder::Build(const fs::wpath& archive)
 
 		// TODO: should cache DAE->PMD and DAE->PSA conversions too
 
-		debug_printf(L"Adding %ls\n", realPath.string().c_str());
-		writer->AddFile(realPath, m_Files[i].string());
+		debug_printf(L"Adding %ls\n", realPath.c_str());
+		writer->AddFile(realPath, m_Files[i]);
 
 		// Also cache XMB versions of all XML files
-		if (fs::extension(m_Files[i]) == L".xml")
+		if (Path::Extension(m_Files[i]) == L".xml")
 		{
 			VfsPath cachedPath;
-			debug_printf(L"Converting XML file %ls\n", realPath.string().c_str());
+			debug_printf(L"Converting XML file %ls\n", realPath.c_str());
 			bool ok = xero.GenerateCachedXMB(m_VFS, m_Files[i], cachedPath);
 			debug_assert(ok);
 
-			fs::wpath cachedRealPath;
-			ret = m_VFS->GetRealPath(L"cache"/cachedPath, cachedRealPath);
+			std::wstring cachedRealPath;
+			ret = m_VFS->GetRealPath(Path::Join(L"cache", cachedPath), cachedRealPath);
 			debug_assert(ret == INFO::OK);
 
-			writer->AddFile(cachedRealPath, cachedPath.string());
+			writer->AddFile(cachedRealPath, cachedPath);
 		}
 	}
 }

@@ -27,8 +27,8 @@
 #include "ps/CLogger.h"
 #include "ps/XML/RelaxNG.h"
 
-static fs::wpath MOD_PATH(DataDir()/L"mods/_test.mesh");
-static fs::wpath CACHE_PATH(DataDir()/L"_testcache");
+static NativePath MOD_PATH(Path::Join(DataDir(), L"mods/_test.mesh"));
+static NativePath CACHE_PATH(Path::Join(DataDir(), L"_testcache"));
 
 const wchar_t* srcDAE = L"collada/sphere.dae";
 const wchar_t* srcPMD = L"collada/sphere.pmd";
@@ -51,15 +51,15 @@ class TestMeshManager : public CxxTest::TestSuite
 
 		// Make sure the required directories doesn't exist when we start,
 		// in case the previous test aborted and left them full of junk
-		if(exists(MOD_PATH))
+		if(DirectoryExists(MOD_PATH))
 			DeleteDirectory(MOD_PATH);
-		if(exists(CACHE_PATH))
+		if(DirectoryExists(CACHE_PATH))
 			DeleteDirectory(CACHE_PATH);
 
 		g_VFS = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/L"tests/collada", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"collada/", Path::Join(DataDir(), L"tests/collada"), VFS_MOUNT_MUST_EXIST));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the
@@ -126,7 +126,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testPMD);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
 	}
 
 	void test_load_pmd_without_extension()
@@ -135,7 +135,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testBase);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
 	}
 
 	void test_caching()
@@ -155,7 +155,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
 	}
 
 	void test_load_dae_caching()
@@ -166,7 +166,7 @@ public:
 		VfsPath daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		VfsPath daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		TS_ASSERT(!daeName1.empty());
-		TS_ASSERT_WSTR_EQUALS(daeName1.string(), daeName2.string());
+		TS_ASSERT_WSTR_EQUALS(daeName1, daeName2);
 		// TODO: it'd be nice to test that it really isn't doing the DAE->PMD
 		// conversion a second time, but there doesn't seem to be an easy way
 		// to check that
@@ -229,7 +229,7 @@ public:
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
 
 		TS_ASSERT(v.Validate(L"doc", L"<test>2.0</test>"));
 	}

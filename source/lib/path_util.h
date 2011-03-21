@@ -37,6 +37,9 @@
 #ifndef INCLUDED_PATH_UTIL
 #define INCLUDED_PATH_UTIL
 
+#include "lib/native_path.h"
+#include "lib/posix/posix_filesystem.h"
+
 namespace ERR
 {
 	const LibError PATH_EMPTY               = -100300;
@@ -77,83 +80,98 @@ LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
 LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
 
-template<class Path>
-Path AddSlash(const Path& path)
-{
-	return (path.leaf() == L".")? path : path/L"/";
-}
+namespace Path {
 
-LIB_API fs::wpath wpath_from_path(const fs::path& pathname);
-LIB_API fs::path path_from_wpath(const fs::wpath& pathname);
-
-
-static inline std::wstring Path(const std::wstring& pathname)
+static inline NativePath Path(const NativePath& pathname)
 {
 	size_t n = pathname.find_last_of('/');
-	if(n == std::wstring::npos)
+	if(n == NativePath::npos)
 	{
 		n = pathname.find_last_of('\\');
-		if(n == std::wstring::npos)
+		if(n == NativePath::npos)
 			return L"";
 	}
 	return pathname.substr(0, n);
 }
 
-static inline std::wstring Filename(const std::wstring& pathname)
+static inline NativePath Filename(const NativePath& pathname)
 {
 	size_t n = pathname.find_last_of('/');
-	if(n == std::wstring::npos)
+	if(n == NativePath::npos)
 	{
 		n = pathname.find_last_of('\\');
-		if(n == std::wstring::npos)
+		if(n == NativePath::npos)
 			return pathname;
 	}
 	return pathname.substr(n+1);
 }
 
-
-static inline std::wstring Basename(const std::wstring& filename)
+static inline NativePath Basename(const NativePath& pathname)
 {
-	const size_t n = filename.find_last_of('.');
-	if(n == std::wstring::npos)
+	const NativePath filename = Filename(pathname);
+	const size_t idxDot = filename.find_last_of('.');
+	if(idxDot == NativePath::npos)
 		return filename;
-	return filename.substr(0, n);
+	return filename.substr(0, idxDot);
 }
 
-static inline std::wstring Extension(const std::wstring& filename)
+static inline NativePath Extension(const NativePath& pathname)
 {
-	const size_t n = filename.find_last_of('.');
-	if(n == std::wstring::npos)
-		return std::wstring();
-	return filename.substr(n);
+	const size_t idxDot = pathname.find_last_of('.');
+	if(idxDot == NativePath::npos)
+		return NativePath();
+	return pathname.substr(idxDot);
 }
 
-static inline std::wstring Join(const std::wstring& path1, const std::wstring& path2)
+static inline NativePath Join(const NativePath& path1, const NativePath& path2)
 {
-	std::wstring ret = path1;
+	NativePath ret = path1;
 	if(!path1.empty() && path1[path1.length()-1] != '/' && path1[path1.length()-1] != '\\')
 		ret += '/';
 	ret += path2;
 	return ret;
 }
 
-static inline std::wstring ChangeExtension(const std::wstring& pathname, const std::wstring& extension)
+static inline NativePath Join(const NativePath& path1, const NativePath& path2, const NativePath& path3)
+{
+	return Join(Join(path1, path2), path3);
+}
+
+static inline NativePath AddSlash(const NativePath& path)
+{
+	return (!path.empty() && path_is_dir_sep(path[path.length()-1]))? path : path+L'/';
+}
+
+static inline NativePath ChangeExtension(const NativePath& pathname, const NativePath& extension)
 {
 	return Join(Path(pathname), Basename(Filename(pathname))+extension);
 }
 
-static inline bool FileExists(const std::wstring& pathname)
+}	// namespace Path
+
+static inline bool FileExists(const NativePath& pathname)
 {
 	struct stat s;
 	const bool exists = wstat(pathname.c_str(), &s) == 0;
 	return exists;
 }
 
-static inline u64 FileSize(const std::wstring& pathname)
+static inline u64 FileSize(const NativePath& pathname)
 {
 	struct stat s;
 	debug_assert(wstat(pathname.c_str(), &s) == 0);
 	return s.st_size;
+}
+
+static inline bool DirectoryExists(const NativePath& path)
+{
+	WDIR* dir = wopendir(path.c_str());
+	if(dir)
+	{
+		wclosedir(dir);
+		return true;
+	}
+	return false;
 }
 
 #endif	// #ifndef INCLUDED_PATH_UTIL

@@ -36,9 +36,8 @@
 # define MINIMAL_PCH 0
 #endif
 
-#include "lib/config.h"	// CONFIG_ENABLE_PCH
-#include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH
-#include "lib/sysdep/os.h"	// (must come before posix_types.h)
+#include "lib/config.h"	            // CONFIG_ENABLE_BOOST, CONFIG_ENABLE_PCH
+#include "lib/sysdep/compiler.h"    // MSC_VERSION, HAVE_PCH
 
 // must come before any STL headers are included
 #if MSC_VERSION && defined(NDEBUG)
@@ -46,14 +45,12 @@
 #endif
 
 // disable some common and annoying warnings
-// must come after compiler.h, but as soon as possible so that
-// headers below are covered
+// (as soon as possible so that headers below are covered)
 #include "lib/pch/pch_warnings.h"
 
 #if ICC_VERSION
 #include <mathimf.h>	// (must come before <cmath> or <math.h> (replaces them))
 double __cdecl abs(double x);	// not declared by mathimf
-long double __cdecl abs(long double x);	// required for Eigen
 #endif
 
 
@@ -63,8 +60,8 @@ long double __cdecl abs(long double x);	// required for Eigen
 
 #include "lib/posix/posix_types.h"	// (must come before any system headers because it fixes off_t)
 #include "lib/code_annotation.h"
-#include "lib/code_generation.h"
 #include "lib/sysdep/arch.h"
+#include "lib/sysdep/os.h"
 #include "lib/sysdep/stl.h"
 #include "lib/lib_api.h"
 #include "lib/types.h"
@@ -74,11 +71,12 @@ long double __cdecl abs(long double x);	// required for Eigen
 
 #if CONFIG_ENABLE_BOOST
 # include "lib/pch/pch_boost.h"
+using boost::shared_ptr;
 #elif HAVE_CPP0X
-#include <memory>
+# include <memory>
 using std::shared_ptr;
 #else
-#include <memory>
+# include <memory>
 using std::tr1::shared_ptr;
 #endif
 

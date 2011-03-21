@@ -23,9 +23,7 @@
 #ifndef INCLUDED_VFS_PATH
 #define INCLUDED_VFS_PATH
 
-#include <boost/functional/hash.hpp>
-
-struct VfsPathTraits;
+#include "lib/path_util.h"
 
 /**
  * VFS path of the form "(dir/)*file?"
@@ -37,45 +35,9 @@ struct VfsPathTraits;
  *
  * there is no restriction on path length; when dimensioning character
  * arrays, prefer PATH_MAX.
- *
- * rationale: a distinct specialization of basic_path prevents inadvertent
- * assignment from other path types.
  **/
-typedef fs::basic_path<std::wstring, VfsPathTraits> VfsPath;
+typedef std::wstring VfsPath;
 
 typedef std::vector<VfsPath> VfsPaths;
-
-std::size_t hash_value(VfsPath const& b);
-
-struct VfsPathTraits
-{
-	typedef std::wstring internal_string_type;
-	typedef std::wstring external_string_type;
-
-	static external_string_type to_external(const VfsPath&, const internal_string_type& src)
-	{
-		return src;
-	}
-
-	static internal_string_type to_internal(const external_string_type& src)
-	{
-		return src;
-	}
-};
-
-namespace boost
-{
-#ifdef BOOST_FILESYSTEM2_NAMESPACE
-	namespace BOOST_FILESYSTEM2_NAMESPACE
-#else
-	namespace BOOST_FILESYSTEM_NAMESPACE
-#endif
-	{
-		template<> struct is_basic_path<VfsPath>
-		{
-			BOOST_STATIC_CONSTANT(bool, value = true);
-		};
-	}
-}
 
 #endif	//	#ifndef INCLUDED_VFS_PATH

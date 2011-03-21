@@ -30,6 +30,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "lib/path_util.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
 
@@ -42,10 +43,9 @@
 
 //-----------------------------------------------------------------------------
 
-static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out_ver, size_t out_ver_len)
+static LibError ReadVersionString(const NativePath& modulePathname, wchar_t* out_ver, size_t out_ver_len)
 {
 	WinScopedPreserveLastError s;	// GetFileVersion*, Ver*
-	const std::wstring modulePathname = modulePathname_.string();
 
 	// determine size of and allocate memory for version information.
 	DWORD unused;
@@ -83,7 +83,7 @@ static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out
 }
 
 
-void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list)
+void wdll_ver_Append(const NativePath& pathname, VersionList& list)
 {
 	if(pathname.empty())
 		return;	// avoid error in ReadVersionString
@@ -91,10 +91,10 @@ void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list)
 	// pathname may not have an extension (e.g. driver names from the
 	// registry). note that always appending ".dll" would be incorrect
 	// since some have ".sys" extension.
-	fs::wpath modulePathname(pathname);
-	if(fs::extension(modulePathname).empty())
-		modulePathname = fs::change_extension(modulePathname, L".dll");
-	const std::wstring moduleName(modulePathname.leaf());
+	NativePath modulePathname(pathname);
+	if(Path::Extension(modulePathname).empty())
+		modulePathname = Path::ChangeExtension(modulePathname, L".dll");
+	const NativePath moduleName(Path::Filename(modulePathname));
 
 	// read file version. try this with and without FS redirection since
 	// pathname might assume both.

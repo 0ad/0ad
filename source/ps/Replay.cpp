@@ -21,6 +21,7 @@
 
 #include "graphics/TerrainTextureManager.h"
 #include "lib/timer.h"
+#include "lib/path_util.h"
 #include "lib/utf8.h"
 #include "lib/file/file_system.h"
 #include "lib/tex/tex.h"
@@ -67,9 +68,9 @@ CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
 
 	name << L"/commands.txt";
 
-	fs::wpath path (psLogDir()/name.str());
-	CreateDirectories(path.branch_path(), 0700);
-	m_Stream = new std::ofstream(path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	NativePath path = Path::Join(psLogDir(), name.str());
+	CreateDirectories(Path::Path(path), 0700);
+	m_Stream = new std::ofstream(StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 }
 
 CReplayLogger::~CReplayLogger()
@@ -113,11 +114,11 @@ CReplayPlayer::~CReplayPlayer()
 	delete m_Stream;
 }
 
-void CReplayPlayer::Load(const fs::path& path)
+void CReplayPlayer::Load(const std::string& path)
 {
 	debug_assert(!m_Stream);
 
-	m_Stream = new std::ifstream(path.external_file_string().c_str());
+	m_Stream = new std::ifstream(path.c_str());
 	debug_assert(m_Stream->good());
 }
 

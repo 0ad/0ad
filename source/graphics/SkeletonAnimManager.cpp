@@ -51,7 +51,7 @@ CSkeletonAnimManager::~CSkeletonAnimManager()
 // doesn't refer to valid animation file
 CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 {
-	VfsPath name = fs::change_extension(pathname, L"");
+	VfsPath name = Path::ChangeExtension(pathname, L"");
 
 	// Find if it's already been loaded
 	boost::unordered_map<VfsPath, CSkeletonAnimDef*>::iterator iter = m_Animations.find(name);
@@ -65,7 +65,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 
 	if (psaFilename.empty())
 	{
-		LOGERROR(L"Could not load animation '%ls'", pathname.string().c_str());
+		LOGERROR(L"Could not load animation '%ls'", pathname.c_str());
 		def = NULL;
 	}
 	else
@@ -81,9 +81,9 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 	}
 
 	if (def)
-		LOGMESSAGE(L"CSkeletonAnimManager::GetAnimation(%ls): Loaded successfully", pathname.string().c_str());
+		LOGMESSAGE(L"CSkeletonAnimManager::GetAnimation(%ls): Loaded successfully", pathname.c_str());
 	else
-		LOGERROR(L"CSkeletonAnimManager::GetAnimation(%ls): Failed loading, marked file as bad", pathname.string().c_str());
+		LOGERROR(L"CSkeletonAnimManager::GetAnimation(%ls): Failed loading, marked file as bad", pathname.c_str());
 
 	// Add to map
 	m_Animations[name] = def; // NULL if failed to load - we won't try loading it again

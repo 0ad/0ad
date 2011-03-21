@@ -80,7 +80,7 @@ void ModelRenderer::BuildPositionAndNormals(
 		// some broken situations
 		if (numVertices && vertices[0].m_Blend.m_Bone[0] == 0xff)
 		{
-			LOGERROR(L"Model %ls is boned with unboned animation", mdef->GetName().string().c_str());
+			LOGERROR(L"Model %ls is boned with unboned animation", mdef->GetName().c_str());
 			return;
 		}
 

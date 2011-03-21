@@ -42,18 +42,18 @@ struct DirDeleter
 };
 
 // is name "." or ".."?
-static bool IsDummyDirectory(const std::wstring& name)
+static bool IsDummyDirectory(const NativePath& name)
 {
 	if(name[0] != '.')
 		return false;
 	return (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'));
 }
 
-LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
+LibError GetDirectoryEntries(const NativePath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
 {
 	// open directory
 	errno = 0;
-	WDIR* pDir = wopendir(path.string().c_str());
+	WDIR* pDir = wopendir(path.c_str());
 	if(!pDir)
 		return LibError_from_errno(false);
 	shared_ptr<WDIR> osDir(pDir, DirDeleter());
@@ -70,7 +70,7 @@ LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryN
 			return LibError_from_errno();
 		}
 
-		const std::wstring name(osEnt->d_name);
+		const NativePath name(osEnt->d_name);
 		RETURN_ERR(path_component_validate(name.c_str()));
 
 		// get file information (mode, size, mtime)
@@ -81,8 +81,8 @@ LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryN
 #else
 		// .. call regular stat().
 		errno = 0;
-		const fs::wpath pathname(path/name);
-		if(wstat(pathname.string().c_str(), &s) != 0)
+		const NativePath pathname = Path::Join(path, name);
+		if(wstat(pathname.c_str(), &s) != 0)
 			return LibError_from_errno();
 #endif
 
@@ -94,44 +94,48 @@ LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryN
 }
 
 
-LibError GetFileInfo(const fs::wpath& pathname, FileInfo* pfileInfo)
+LibError GetFileInfo(const NativePath& pathname, FileInfo* pfileInfo)
 {
 	errno = 0;
 	struct stat s;
 	memset(&s, 0, sizeof(s));
-	if(wstat(pathname.string().c_str(), &s) != 0)
+	if(wstat(pathname.c_str(), &s) != 0)
 		return LibError_from_errno();
 
-	*pfileInfo = FileInfo(pathname.leaf(), s.st_size, s.st_mtime);
+	*pfileInfo = FileInfo(Path::Filename(pathname), s.st_size, s.st_mtime);
 	return INFO::OK;
 }
 
 
-LibError CreateDirectories(const fs::wpath& path, mode_t mode)
+LibError CreateDirectories(const NativePath& path, mode_t mode)
 {
-	if(path.empty() || fs::exists(path))
+	if(path.empty())
+		return INFO::OK;
+
+	struct stat s;
+	if(wstat(path.c_str(), &s) == 0)
 	{
-		if(!path.empty() && !fs::is_directory(path))	// encountered a file
+		if(!S_ISDIR(s.st_mode))	// encountered a file
 			WARN_RETURN(ERR::FAIL);
 		return INFO::OK;
 	}
 
 	// If we were passed a path ending with '/', strip the '/' now so that
-	// we can consistently use branch_path to find parent directory names
-	if (path.leaf() == L".")
-		return CreateDirectories(path.branch_path(), mode);
+	// we can consistently use Path to find parent directory names
+	if(path_is_dir_sep(path[path.length()-1]))
+		return CreateDirectories(Path::Path(path), mode);
 
-	RETURN_ERR(CreateDirectories(path.branch_path(), mode));
+	RETURN_ERR(CreateDirectories(Path::Path(path), mode));
 
 	errno = 0;
-	if(wmkdir(path.string().c_str(), mode) != 0)
+	if(wmkdir(path.c_str(), mode) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;
 }
 
 
-LibError DeleteDirectory(const fs::wpath& path)
+LibError DeleteDirectory(const NativePath& path)
 {
 	// note: we have to recursively empty the directory before it can
 	// be deleted (required by Windows and POSIX rmdir()).
@@ -142,18 +146,18 @@ LibError DeleteDirectory(const fs::wpath& path)
 	// delete files
 	for(size_t i = 0; i < files.size(); i++)
 	{
-		const fs::wpath pathname(path/files[i].Name());
+		const NativePath pathname = Path::Join(path, files[i].Name());
 		errno = 0;
-		if(wunlink(pathname.string().c_str()) != 0)
+		if(wunlink(pathname.c_str()) != 0)
 			return LibError_from_errno();
 	}
 
 	// recurse over subdirectoryNames
 	for(size_t i = 0; i < subdirectoryNames.size(); i++)
-		RETURN_ERR(DeleteDirectory(path/subdirectoryNames[i]));
+		RETURN_ERR(DeleteDirectory(Path::Join(path, subdirectoryNames[i])));
 
 	errno = 0;
-	if(wrmdir(path.string().c_str()) != 0)
+	if(wrmdir(path.c_str()) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;

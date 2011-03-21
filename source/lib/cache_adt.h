@@ -32,7 +32,13 @@
 #include <list>
 #include <map>
 #include <queue> // std::priority_queue
-#include <boost/unordered_map.hpp>
+
+#if CONFIG_ENABLE_BOOST
+# include <boost/unordered_map.hpp>
+# define MAP boost::unordered_map
+#else
+# define MAP STL_HASH_MAP
+#endif
 
 /*
 Cache for items of variable size and value/"cost".
@@ -307,7 +313,7 @@ again:
 	}
 
 protected:
-	class Map : public boost::unordered_map<Key, Entry>
+	class Map : public MAP<Key, Entry>
 	{
 	public:
 		static Entry& entry_from_it(typename Map::iterator it) { return it->second; }

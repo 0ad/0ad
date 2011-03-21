@@ -124,8 +124,8 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 	// 'real' texture name
 	for(size_t i = 0; i < pathnames.size(); i++)
 	{
-		if(boost::algorithm::ends_with(pathnames[i].leaf(), L".cached.dds"))
-			pathnames[i] = pathnames[i].branch_path() / boost::algorithm::erase_last_copy(pathnames[i].leaf(), L".cached.dds");
+		if(boost::algorithm::ends_with(Path::Filename(pathnames[i]), L".cached.dds"))
+			pathnames[i] = Path::Join(Path::Path(pathnames[i]), boost::algorithm::erase_last_copy(Path::Filename(pathnames[i]), L".cached.dds"));
 	}
 
 	// Remove any duplicates created by the stripping
@@ -143,14 +143,14 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 		if(!tex_is_known_extension(pathnames[i]))
 			continue;
 
-		VfsPath pathnameXML = fs::change_extension(pathnames[i], L".xml");
+		VfsPath pathnameXML = Path::ChangeExtension(pathnames[i], L".xml");
 		CTerrainPropertiesPtr myprops;
 		// Has XML file -> attempt to load properties
 		if (VfsFileExists(pathnameXML))
 		{
 			myprops = GetPropertiesFromFile(props, pathnameXML);
 			if (myprops)
-				LOGMESSAGE(L"CTerrainTextureManager: Successfully loaded override xml %ls for texture %ls", pathnameXML.string().c_str(), pathnames[i].string().c_str());
+				LOGMESSAGE(L"CTerrainTextureManager: Successfully loaded override xml %ls for texture %ls", pathnameXML.c_str(), pathnames[i].c_str());
 		}
 
 		// Error or non-existant xml file -> use parent props
@@ -163,19 +163,19 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 
 void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const VfsPath& path)
 {
-	//LOGMESSAGE(L"CTextureManager::RecurseDirectory(%ls)", path.string().c_str());
+	//LOGMESSAGE(L"CTextureManager::RecurseDirectory(%ls)", path.c_str());
 
 	CTerrainPropertiesPtr props;
 
 	// Load terrains.xml first, if it exists
-	VfsPath pathname = path/L"terrains.xml"; 
+	VfsPath pathname = Path::Join(path, L"terrains.xml");
 	if (VfsFileExists(pathname))
 		props = GetPropertiesFromFile(parentProps, pathname);
 	
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
 	{
-		LOGMESSAGE(L"CTerrainTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.string().c_str());
+		LOGMESSAGE(L"CTerrainTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.c_str());
 		props = parentProps;
 	}
 
@@ -184,7 +184,7 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 	(void)g_VFS->GetDirectoryEntries(path, 0, &subdirectoryNames);
 	for (size_t i=0;i<subdirectoryNames.size();i++)
 	{
-		VfsPath subdirectoryPath = AddSlash(path/subdirectoryNames[i]);
+		VfsPath subdirectoryPath = Path::AddSlash(Path::Join(path, subdirectoryNames[i]));
 		RecurseDirectory(props, subdirectoryPath);
 	}
 

@@ -18,6 +18,7 @@
 #ifndef INCLUDED_PS_GAMESETUP_PATHS
 #define INCLUDED_PS_GAMESETUP_PATHS
 
+#include "lib/native_path.h"
 #include "CmdLineArgs.h"
 
 class Paths
@@ -25,49 +26,49 @@ class Paths
 public:
 	Paths(const CmdLineArgs& args);
 
-	const fs::wpath& Root() const
+	const NativePath& Root() const
 	{
 		return m_root;
 	}
 
-	const fs::wpath& RData() const
+	const NativePath& RData() const
 	{
 		return m_rdata;
 	}
 
-	const fs::wpath& Data() const
+	const NativePath& Data() const
 	{
 		return m_data;
 	}
 
-	const fs::wpath& Config() const
+	const NativePath& Config() const
 	{
 		return m_config;
 	}
 
-	const fs::wpath& Cache() const
+	const NativePath& Cache() const
 	{
 		return m_cache;
 	}
 
-	const fs::wpath& Logs() const
+	const NativePath& Logs() const
 	{
 		return m_logs;
 	}
 
 private:
-	static fs::wpath Root(const std::wstring& argv0);
-	static fs::wpath XDG_Path(const char* envname, const fs::wpath& home, const fs::wpath& defaultPath);
+	static NativePath Root(const std::wstring& argv0);
+	static NativePath XDG_Path(const char* envname, const NativePath& home, const NativePath& defaultPath);
 
 	// read-only directories, fixed paths relative to executable
-	fs::wpath m_root;
-	fs::wpath m_rdata;
+	NativePath m_root;
+	NativePath m_rdata;
 
 	// writable directories
-	fs::wpath m_data;
-	fs::wpath m_config;
-	fs::wpath m_cache;
-	fs::wpath m_logs;	// special-cased in single-root-folder installations
+	NativePath m_data;
+	NativePath m_config;
+	NativePath m_cache;
+	NativePath m_logs;	// special-cased in single-root-folder installations
 };
 
 #endif	// #ifndef INCLUDED_PS_GAMESETUP_PATHS

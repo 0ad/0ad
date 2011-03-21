@@ -62,7 +62,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 	// write it out
 	packer.Write(pathname);
 
-	VfsPath pathnameXML = fs::change_extension(pathname, L".xml");
+	VfsPath pathnameXML = Path::ChangeExtension(pathname, L".xml");
 	WriteXML(pathnameXML, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
 }
 

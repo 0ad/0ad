@@ -37,11 +37,11 @@
 #include "lib/timer.h"
 
 
-static LibError CreateDirectory(const fs::wpath& path)
+static LibError CreateDirectory(const NativePath& path)
 {
 	{
 		const mode_t mode = S_IRWXU; // 0700 as prescribed by XDG basedir
-		const int ret = wmkdir(path.string().c_str(), mode);
+		const int ret = wmkdir(path.c_str(), mode);
 		if(ret == 0)	// success
 			return INFO::OK;
 	}
@@ -55,7 +55,7 @@ static LibError CreateDirectory(const fs::wpath& path)
 		// but first ensure it's really a directory (otherwise, a
 		// file is "in the way" and needs to be deleted)
 		struct stat s;
-		const int ret = wstat(path.string().c_str(), &s);
+		const int ret = wstat(path.c_str(), &s);
 		debug_assert(ret == 0);	// (wmkdir said it existed)
 		debug_assert(S_ISDIR(s.st_mode));
 		return INFO::OK;
@@ -93,10 +93,14 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 	}
 
 	// for each directory component:
-	VfsPath::iterator it;	// (used outside of loop to get filename)
-	for(it = pathname.begin(); it != --pathname.end(); ++it)
+	size_t pos = 0;	// (needed outside of loop)
+	for(;;)
 	{
-		const std::wstring& subdirectoryName = *it;
+		const size_t nextSlash = pathname.find_first_of('/', pos);
+		if(nextSlash == VfsPath::npos)
+			break;
+		const NativePath subdirectoryName = pathname.substr(pos, nextSlash-pos);
+		pos = nextSlash+1;
 
 		VfsDirectory* subdirectory = directory->GetSubdirectory(subdirectoryName);
 		if(!subdirectory)
@@ -109,10 +113,10 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 		if(createMissingDirectories && !subdirectory->AssociatedDirectory())
 		{
-			fs::wpath currentPath;
+			NativePath currentPath;
 			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
 				currentPath = directory->AssociatedDirectory()->Path();
-			currentPath /= subdirectoryName;
+			currentPath = Path::Join(currentPath, subdirectoryName);
 
 			RETURN_ERR(CreateDirectory(currentPath));
 
@@ -128,8 +132,8 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 	if(pfile)
 	{
-		const std::wstring& filename = *it;
-		debug_assert(filename != L".");	// asked for file but specified directory path
+		const NativePath& filename = pathname.substr(pos);
+		debug_assert(!filename.empty());	// asked for file but specified directory path
 		*pfile = directory->GetFile(filename);
 		if(!*pfile)
 			return ERR::VFS_FILE_NOT_FOUND;	// NOWARN

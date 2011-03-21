@@ -35,6 +35,8 @@
 #ifndef INCLUDED_TRACE
 #define INCLUDED_TRACE
 
+#include "lib/native_path.h"
+
 // stores information about an IO event.
 class TraceEntry
 {
@@ -45,7 +47,7 @@ public:
 		Store = 'S'
 	};
 
-	TraceEntry(EAction action, const fs::wpath& pathname, size_t size);
+	TraceEntry(EAction action, const NativePath& pathname, size_t size);
 	TraceEntry(const std::wstring& text);
 
 	EAction Action() const
@@ -53,7 +55,7 @@ public:
 		return m_action;
 	}
 
-	const fs::wpath& Pathname() const
+	const NativePath& Pathname() const
 	{
 		return m_pathname;
 	}
@@ -76,7 +78,7 @@ private:
 
 	EAction m_action;
 
-	fs::wpath m_pathname;
+	NativePath m_pathname;
 
 	// size of file.
 	// rationale: other applications using this trace format might not
@@ -91,8 +93,8 @@ struct ITrace
 {
 	virtual ~ITrace();
 
-	virtual void NotifyLoad(const fs::wpath& pathname, size_t size) = 0;
-	virtual void NotifyStore(const fs::wpath& pathname, size_t size) = 0;
+	virtual void NotifyLoad(const NativePath& pathname, size_t size) = 0;
+	virtual void NotifyStore(const NativePath& pathname, size_t size) = 0;
 
 	/**
 	 * store all entries into a file.
@@ -103,7 +105,7 @@ struct ITrace
 	 * because storing filename strings in a binary format would be a
 	 * bit awkward.
 	 **/
-	virtual LibError Store(const fs::wpath& pathname) const = 0;
+	virtual LibError Store(const NativePath& pathname) const = 0;
 
 	/**
 	 * load entries from file.
@@ -112,7 +114,7 @@ struct ITrace
 	 *
 	 * replaces any existing entries.
 	 **/
-	virtual LibError Load(const fs::wpath& osPathname) = 0;
+	virtual LibError Load(const NativePath& osPathname) = 0;
 
 	virtual const TraceEntry* Entries() const = 0;
 	virtual size_t NumEntries() const = 0;
