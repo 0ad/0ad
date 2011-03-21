@@ -77,12 +77,12 @@ void psBundleLogs(FILE* f)
 	fwprintf(f, L"SVN Revision: %ls\n\n", svn_revision);
 
 	fwprintf(f, L"System info:\n\n");
-	NativePath path1 = Path::Join(psLogDir(), L"system_info.txt");
+	NativePath path1 = Path::Join(psLogDir(), "system_info.txt");
 	AppendAsciiFile(f, path1);
 	fwprintf(f, L"\n\n====================================\n\n");
 
 	fwprintf(f, L"Main log:\n\n");
-	NativePath path2 = Path::Join(psLogDir(), L"mainlog.html");
+	NativePath path2 = Path::Join(psLogDir(), "mainlog.html");
 	AppendAsciiFile(f, path2);
 	fwprintf(f, L"\n\n====================================\n\n");
 }

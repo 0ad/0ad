@@ -85,7 +85,7 @@ CObjectBase* CObjectManager::FindObjectBase(const CStrW& objectname)
 
 	CObjectBase* obj = new CObjectBase(*this);
 
-	VfsPath pathname = Path::Join(L"art/actors/", objectname);
+	VfsPath pathname = Path::Join("art/actors/", objectname);
 
 	if (obj->Load(pathname))
 	{

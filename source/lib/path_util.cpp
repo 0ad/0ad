@@ -38,20 +38,12 @@ ERROR_ASSOCIATE(ERR::PATH_COMPONENT_SEPARATOR, L"path component contains dir sep
 ERROR_ASSOCIATE(ERR::PATH_NOT_FOUND, L"path not found", -1);
 
 
-bool path_is_dir_sep(wchar_t c)
+static bool path_is_dir_sep(wchar_t c)
 {
-	// note: ideally path strings would only contain '/' or even SYS_DIR_SEP.
-	// however, windows-specific code (e.g. the sound driver detection)
-	// uses these routines with '\\' strings. converting them all to
-	// '/' and then back before passing to WinAPI would be annoying.
-	// also, the self-tests verify correct operation of such strings.
-	// it would be error-prone to only test the platform's separator
-	// strings there. hence, we allow all separators here.
 	if(c == '/' || c == '\\')
 		return true;
 	return false;
 }
-
 
 // is s2 a subpath of s1, or vice versa?
 // (equal counts as subpath)

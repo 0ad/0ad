@@ -248,7 +248,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	const wchar_t* realDaePath = wcsstr(realDaeBuf, L"mods/");
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
-	VfsPath cachedPmdVfsPath = Path::Join(L"cache/", realDaePath);
+	VfsPath cachedPmdVfsPath = Path::Join("cache", VfsPath(realDaePath));
 	cachedPmdVfsPath = Path::ChangeExtension(cachedPmdVfsPath, extension);
 
 	// If it's not in the cache, we'll have to create it first

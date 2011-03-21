@@ -42,8 +42,8 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), L"mods/_test.sim"), VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", Path::Join(DataDir(), L"_testcache")));
+		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), "mods/_test.sim"), VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", Path::Join(DataDir(), "_testcache")));
 		CXeromyces::Startup();
 	}
 
@@ -51,7 +51,7 @@ public:
 	{
 		CXeromyces::Terminate();
 		g_VFS.reset();
-		DeleteDirectory(Path::Join(DataDir(), L"_testcache"));
+		DeleteDirectory(Path::Join(DataDir(), "_testcache"));
 	}
 
 	void test_AddEntity()
@@ -130,7 +130,7 @@ public:
 	{
 		CSimulation2 sim(NULL, &m_Terrain);
 
-		TS_ASSERT_OK(CreateDirectories(Path::Join(DataDir(), L"mods/_test.sim/simulation/components/hotload/"), 0700));
+		TS_ASSERT_OK(CreateDirectories(Path::Join(DataDir(), "mods/_test.sim/simulation/components/hotload/"), 0700));
 
 		copyFile(L"simulation/components/test-hotload1.js", L"simulation/components/hotload/hotload.js");
 		TS_ASSERT_OK(g_VFS->Invalidate(L"simulation/components/hotload/hotload.js"));
@@ -155,7 +155,7 @@ public:
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent, IID_Test1))->GetX(), 1000);
 
-		TS_ASSERT_OK(DeleteDirectory(Path::Join(DataDir(), L"mods/_test.sim/simulation/components/hotload/")));
+		TS_ASSERT_OK(DeleteDirectory(Path::Join(DataDir(), "mods/_test.sim/simulation/components/hotload/")));
 		TS_ASSERT_OK(g_VFS->Invalidate(L"simulation/components/hotload/hotload.js"));
 
 		TS_ASSERT_OK(sim.ReloadChangedFile(L"simulation/components/hotload/hotload.js"));

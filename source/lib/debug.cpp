@@ -174,7 +174,7 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 		return ERR::REENTERED;	// NOWARN
 
 	FILE* f;
-	NativePath pathname = Path::Join(ah_get_log_dir(), L"crashlog.txt");
+	NativePath pathname = Path::Join(ah_get_log_dir(), "crashlog.txt");
 	errno_t err = _wfopen_s(&f, pathname.c_str(), L"w");
 	if(err != 0)
 	{

@@ -28,7 +28,6 @@
 #include <string>
 
 #include "lib/path_util.h"
-#include "lib/utf8.h"	// wstring_from_utf8
 #include "lib/posix/posix_filesystem.h"
 
 
@@ -122,7 +121,7 @@ LibError CreateDirectories(const NativePath& path, mode_t mode)
 
 	// If we were passed a path ending with '/', strip the '/' now so that
 	// we can consistently use Path to find parent directory names
-	if(path_is_dir_sep(path[path.length()-1]))
+	if(Path::IsDirectory(path))
 		return CreateDirectories(Path::Path(path), mode);
 
 	RETURN_ERR(CreateDirectories(Path::Path(path), mode));

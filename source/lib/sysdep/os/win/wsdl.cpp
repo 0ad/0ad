@@ -1485,14 +1485,11 @@ static NativePath GetStdoutPathname()
 	wchar_t pathnameEXE[MAX_PATH];
 	const DWORD charsWritten = GetModuleFileNameW(0, pathnameEXE, ARRAY_SIZE(pathnameEXE));
 	debug_assert(charsWritten);
-	const NativePath path = Path::Path(pathnameEXE);
 
 	// add the EXE name to the filename to allow multiple executables
 	// with their own redirections. (we can't use wutil_ExecutablePath
 	// because it doesn't return the basename)
-	NativePath name = Path::Basename(pathnameEXE);
-	NativePath pathname = Path::Join(path, (name+L"_stdout.txt"));
-
+	NativePath pathname = Path::ChangeExtension(NativePath(pathnameEXE), L"_stdout.txt");
 	return pathname;
 }
 

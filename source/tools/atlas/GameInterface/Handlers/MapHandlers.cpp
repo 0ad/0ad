@@ -100,7 +100,7 @@ MESSAGEHANDLER(LoadMap)
 MESSAGEHANDLER(SaveMap)
 {
 	CMapWriter writer;
-	const VfsPath pathname = Path::Join(L"maps/scenarios/", *msg->filename);
+	const VfsPath pathname = Path::Join("maps/scenarios", *msg->filename);
 	writer.SaveMap(pathname,
 		g_Game->GetWorld()->GetTerrain(),
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),

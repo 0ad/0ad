@@ -70,7 +70,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 	// Load the map, if one was specified
 	if (mapFile.length())
 	{
-		VfsPath mapfilename(Path::Join(L"maps/scenarios/", mapFile + L".pmp"));
+		VfsPath mapfilename(Path::Join("maps/scenarios", NativePath(mapFile + L".pmp")));
 		CMapReader* reader = 0;
 
 		try

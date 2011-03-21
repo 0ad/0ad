@@ -25,7 +25,7 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		g_VFS->Mount(L"", Path::Join(DataDir(), L"mods/public"), VFS_MOUNT_MUST_EXIST); // ignore directory-not-found errors
+		g_VFS->Mount(L"", Path::Join(DataDir(), "mods/public"), VFS_MOUNT_MUST_EXIST); // ignore directory-not-found errors
 		CXeromyces::Startup();
 	}
 

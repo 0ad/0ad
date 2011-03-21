@@ -96,7 +96,7 @@ NativePath DataDir()
 {
 	NativePath path;
 	TS_ASSERT_OK(sys_get_executable_name(path));
-	return Path::Join(Path::Path(path), L"../data");
+	return Path::Join(Path::Path(path), "../data");
 }
 
 // Script-based testing setup:
@@ -115,7 +115,7 @@ void ScriptTestSetup(ScriptInterface& ifc)
 
 	// Load the TS_* function definitions
 	// (We don't use VFS because tests might not have the normal VFS paths loaded)
-	NativePath path = Path::Join(DataDir(), L"tests/test_setup.js");
+	NativePath path = Path::Join(DataDir(), "tests/test_setup.js");
 	std::ifstream ifs(StringFromNativePath(path).c_str());
 	debug_assert(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());

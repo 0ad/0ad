@@ -118,7 +118,7 @@ bool CXeromyces::GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, 
 
 	archiveCachePath = cacheLoader.ArchiveCachePath(sourcePath);
 
-	return (ConvertFile(vfs, sourcePath, Path::Join(L"cache", archiveCachePath)) == PSRETURN_OK);
+	return (ConvertFile(vfs, sourcePath, Path::Join("cache", archiveCachePath)) == PSRETURN_OK);
 }
 
 PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath)

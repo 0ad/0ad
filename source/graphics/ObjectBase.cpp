@@ -142,11 +142,11 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 					if (option_name == el_mesh)
 					{
-						currentVariant->m_ModelFilename = Path::Join(L"art/meshes", option.GetText().FromUTF8());
+						currentVariant->m_ModelFilename = Path::Join("art/meshes", option.GetText().FromUTF8());
 					}
 					else if (option_name == el_texture)
 					{
-						currentVariant->m_TextureFilename = Path::Join(L"art/textures/skins", option.GetText().FromUTF8());
+						currentVariant->m_TextureFilename = Path::Join("art/textures/skins", option.GetText().FromUTF8());
 					}
 					else if (option_name == el_decal)
 					{
@@ -178,7 +178,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 								}
 								else if (ae.Name == at_file)
 								{
-									anim.m_FileName = Path::Join(L"art/animation", ae.Value.FromUTF8());
+									anim.m_FileName = Path::Join("art/animation", ae.Value.FromUTF8());
 								}
 								else if (ae.Name == at_speed)
 								{
@@ -239,7 +239,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 		}
 		else if (child_name == el_material)
 		{
-			m_Material = Path::Join(L"art/materials", child.GetText().FromUTF8());
+			m_Material = Path::Join("art/materials", child.GetText().FromUTF8());
 		}
 	}
 

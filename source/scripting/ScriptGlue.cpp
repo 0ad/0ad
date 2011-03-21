@@ -275,12 +275,17 @@ JSBool GetBuildTimestamp(JSContext* cx, uintN argc, jsval* vp)
 }
 
 #ifdef DEBUG
-void DumpHeap(const char* name, int idx, JSContext* cx)
+void DumpHeap(const char* basename, int idx, JSContext* cx)
 {
-	wchar_t buf[64];
-	swprintf_s(buf, ARRAY_SIZE(buf), L"%hs.%03d.txt", name, idx);
-	NativePath path = Path::Join(psLogDir(), buf);
-	FILE* f = fopen(utf8_from_wstring(path).c_str(), "w");
+	char filename[64];
+	sprintf_s(filename, ARRAY_SIZE(filename), "%hs.%03d.txt", basename, idx);
+	NativePath pathname = Path::Join(psLogDir(), filename);
+#if OS_WIN
+	FILE* f = _wfopen(pathname.c_str(), L"w");
+#else
+	std::string pathname8 = StringFromNativePath(pathname);
+	FILE* f = fopen(pathname8.c_str(), "w");
+#endif
 	debug_assert(f);
 	JS_DumpHeap(cx, f, NULL, 0, NULL, (size_t)-1, NULL);
 	fclose(f);

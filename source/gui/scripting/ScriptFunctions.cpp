@@ -433,7 +433,7 @@ void ForceGC(void* cbdata)
 
 void DumpSimState(void* UNUSED(cbdata))
 {
-	NativePath path = Path::Join(psLogDir(), L"sim_dump.txt");
+	NativePath path = Path::Join(psLogDir(), "sim_dump.txt");
 	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }

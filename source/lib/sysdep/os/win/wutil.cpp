@@ -272,7 +272,7 @@ NativePath wutil_DetectExecutablePath()
 	wchar_t modulePathname[MAX_PATH+1] = {0};
 	const DWORD len = GetModuleFileNameW(GetModuleHandle(0), modulePathname, MAX_PATH);
 	debug_assert(len != 0);
-	return Path::Path(modulePathname);
+	return Path::Path(NativePath(modulePathname));
 }
 
 // (NB: wutil_Init is called before static ctors => use placement new)

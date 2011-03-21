@@ -34,7 +34,7 @@ Paths::Paths(const CmdLineArgs& args)
 #ifdef INSTALLED_DATADIR
 	m_rdata = WIDEN(STRINGIZE(INSTALLED_DATADIR)) L"/";
 #else
-	m_rdata = Path::Join(m_root, L"data/");
+	m_rdata = Path::Join(m_root, "data/");
 #endif
 
 	const wchar_t* subdirectoryName = args.Has("writableRoot")? 0 : L"0ad";
@@ -43,29 +43,29 @@ Paths::Paths(const CmdLineArgs& args)
 	if(!subdirectoryName)
 	{
 		m_data = m_rdata;
-		m_config = Path::Join(m_data, L"config/");
-		m_cache = Path::Join(m_data, L"cache/");
-		m_logs = Path::Join(m_root, L"logs/");
+		m_config = Path::Join(m_data, "config/");
+		m_cache = Path::Join(m_data, "cache/");
+		m_logs = Path::Join(m_root, "logs/");
 	}
 	else
 	{
 #if OS_WIN
-		const NativePath appdata = Path::AddSlash(Path::Join(wutil_AppdataPath(), subdirectoryName));
-		m_data = Path::Join(appdata, L"data/");
-		m_config = Path::Join(appdata, L"config/");
-		m_cache = Path::Join(appdata, L"cache/");
-		m_logs = Path::Join(appdata, L"logs/");
+		const NativePath appdata = Path::AddSlash(Path::Join(wutil_AppdataPath(), NativePath(subdirectoryName)));
+		m_data = Path::Join(appdata, "data/");
+		m_config = Path::Join(appdata, "config/");
+		m_cache = Path::Join(appdata, "cache/");
+		m_logs = Path::Join(appdata, "logs/");
 #else
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
 		const NativePath home(wstring_from_utf8(envHome));
-		const NativePath xdgData = XDG_Path("XDG_DATA_HOME", home, Path::Join(home, L".local/share/", subdirectoryName));
-		const NativePath xdgConfig = XDG_Path("XDG_CONFIG_HOME", home, Path::Join(home, L".config/", subdirectoryName));
-		const NativePath xdgCache = XDG_Path("XDG_CACHE_HOME", home, Path::Join(home, L".cache/", subdirectoryName));
+		const NativePath xdgData = XDG_Path("XDG_DATA_HOME", home, Path::Join(home, ".local/share/"), subdirectoryName));
+		const NativePath xdgConfig = XDG_Path("XDG_CONFIG_HOME", home, Path::Join(home, ".config/"), subdirectoryName));
+		const NativePath xdgCache = XDG_Path("XDG_CACHE_HOME", home, Path::Join(home, ".cache/"), subdirectoryName));
 		m_data = Path::AddSlash(xdgData);
 		m_cache = Path::AddSlash(xdgCache);
-		m_config = Path::AddSlash(Path::Join(xdgConfig, L"config"));
-		m_logs = Path::AddSlash(Path::Join(xdgConfig, L"logs"));
+		m_config = Path::AddSlash(Path::Join(xdgConfig, "config"));
+		m_logs = Path::AddSlash(Path::Join(xdgConfig, "logs"));
 #endif
 	}
 }
@@ -103,8 +103,8 @@ Paths::Paths(const CmdLineArgs& args)
 	if(path)
 	{
 		if(path[0] != '/')	// relative to $HOME
-			return Path::AddSlash(Path::Join(home, wstring_from_utf8(path)));
-		return Path::AddSlash(wstring_from_utf8(path));
+			return Path::AddSlash(Path::Join(home, path));
+		return Path::AddSlash(NativePathFromString(path));
 	}
 	return Path::AddSlash(defaultPath);
 }

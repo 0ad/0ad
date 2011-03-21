@@ -940,7 +940,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string file
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	NativePath path = L"simulation/data/" + wstring_from_utf8(fileName);
+	NativePath path = Path::Join("simulation/data", NativePathFromString(fileName));
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }

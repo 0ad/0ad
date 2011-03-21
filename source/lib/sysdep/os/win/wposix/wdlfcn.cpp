@@ -57,7 +57,7 @@ void* dlopen(const char* so_name, int flags)
 {
 	debug_assert(!(flags & RTLD_GLOBAL));
 
-	NativePath pathname = Path::ChangeExtension(wstring_from_utf8(so_name), L".dll");
+	NativePath pathname = Path::ChangeExtension(NativePathFromString(so_name), L".dll");
 	HMODULE hModule = LoadLibraryW(pathname.c_str());
 	return void_from_HMODULE(hModule);
 }

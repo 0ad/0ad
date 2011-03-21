@@ -78,7 +78,7 @@ void WriteSystemInfo()
 	struct utsname un;
 	uname(&un);
 
-	NativePath pathname = Path::Join(psLogDir(), L"system_info.txt");
+	NativePath pathname = Path::Join(psLogDir(), "system_info.txt");
 	FILE* f;
 	errno_t err = _wfopen_s(&f, pathname.c_str(), L"w");
 	if(err != 0)

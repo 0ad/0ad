@@ -289,7 +289,7 @@ void CSimulation2Impl::DumpState()
 
 	std::wstringstream name;
 	name << L"sim_log/" << getpid() << L"/" << std::setw(5) << std::setfill(L'0') << m_TurnNumber << L".txt";
-	NativePath path = Path::Join(psLogDir(), name.str());
+	NativePath path = Path::Join(psLogDir(), NativePath(name.str()));
 	CreateDirectories(Path::Path(path), 0700);
 	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 

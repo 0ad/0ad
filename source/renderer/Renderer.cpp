@@ -1624,7 +1624,7 @@ int CRenderer::LoadAlphaMaps()
 	{
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
-		textures[i] = ogl_tex_load(g_VFS, Path::Join(path, fnames[i]));
+		textures[i] = ogl_tex_load(g_VFS, Path::Join(path, VfsPath(fnames[i])));
 		RETURN_ERR(textures[i]);
 
 		// get its size and make sure they are all equal.

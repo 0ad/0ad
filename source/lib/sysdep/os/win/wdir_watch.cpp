@@ -370,7 +370,7 @@ class DirWatchManager
 public:
 	LibError Add(const NativePath& path, PDirWatch& dirWatch)
 	{
-		debug_assert(path_is_dir_sep(path.back()));	// must be a directory path
+		debug_assert(Path::IsDirectory(path));
 
 		// check if this is a subdirectory of a tree that's already being
 		// watched (this is much faster than issuing a new watch; it also

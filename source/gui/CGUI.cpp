@@ -1578,7 +1578,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 		if (attr_name == "texture")
 		{
-			image.m_TextureName = Path::Join(L"art/textures/ui", attr_value);
+			image.m_TextureName = Path::Join("art/textures/ui", attr_value);
 		}
 		else
 		if (attr_name == "size")

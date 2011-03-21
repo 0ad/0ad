@@ -30,9 +30,9 @@
 #include <time.h>
 #include <limits>
 
+#include "lib/utf8.h"
 #include "lib/bits.h"
 #include "lib/byte_order.h"
-#include "lib/utf8.h"	// wstring_from_utf8
 #include "lib/fat_time.h"
 #include "lib/path_util.h"
 #include "lib/allocators/pool.h"
@@ -412,7 +412,7 @@ public:
 				WARN_RETURN(ERR::CORRUPTED);
 
 			const VfsPath relativePathname(cdfh->Pathname());
-			if(relativePathname.empty() || !path_is_dir_sep(relativePathname[relativePathname.length()-1]))	// ignore directories
+			if(!Path::IsDirectory(relativePathname))
 			{
 				const NativePath name = Path::Filename(relativePathname);
 				FileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());

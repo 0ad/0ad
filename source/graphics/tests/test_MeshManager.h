@@ -27,8 +27,8 @@
 #include "ps/CLogger.h"
 #include "ps/XML/RelaxNG.h"
 
-static NativePath MOD_PATH(Path::Join(DataDir(), L"mods/_test.mesh"));
-static NativePath CACHE_PATH(Path::Join(DataDir(), L"_testcache"));
+static NativePath MOD_PATH(Path::Join(DataDir(), "mods/_test.mesh"));
+static NativePath CACHE_PATH(Path::Join(DataDir(), "_testcache"));
 
 const wchar_t* srcDAE = L"collada/sphere.dae";
 const wchar_t* srcPMD = L"collada/sphere.pmd";
@@ -59,7 +59,7 @@ class TestMeshManager : public CxxTest::TestSuite
 		g_VFS = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount(L"collada/", Path::Join(DataDir(), L"tests/collada"), VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"collada/", Path::Join(DataDir(), "tests/collada"), VFS_MOUNT_MUST_EXIST));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the

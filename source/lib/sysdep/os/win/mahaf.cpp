@@ -333,7 +333,7 @@ static NativePath DriverPathname()
 #endif
 	char filename[PATH_MAX];
 	sprintf_s(filename, ARRAY_SIZE(filename), "aken%s%s.sys", bits, debug);
-	return Path::Join(wutil_ExecutablePath(), NativePathFromString(filename));
+	return Path::Join(wutil_ExecutablePath(), filename);
 }
 
 

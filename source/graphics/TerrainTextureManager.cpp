@@ -168,7 +168,7 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 	CTerrainPropertiesPtr props;
 
 	// Load terrains.xml first, if it exists
-	VfsPath pathname = Path::Join(path, L"terrains.xml");
+	VfsPath pathname = Path::Join(path, "terrains.xml");
 	if (VfsFileExists(pathname))
 		props = GetPropertiesFromFile(parentProps, pathname);
 	

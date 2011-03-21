@@ -99,7 +99,7 @@ static BOOL CALLBACK DirectSoundCallback(void* guid, const wchar_t* UNUSED(descr
 
 	// note: $system\\drivers is not in LoadLibrary's search list,
 	// so we have to give the full pathname.
-	directSoundDriverPath = Path::Join(wutil_SystemPath(), L"drivers", module);
+	directSoundDriverPath = Path::Join(Path::Join(wutil_SystemPath(), "drivers"), NativePath(module));
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.

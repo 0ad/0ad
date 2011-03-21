@@ -55,14 +55,6 @@ namespace ERR
 LIB_API LibError path_component_validate(const wchar_t* name);
 
 /**
- * is the given character a path separator character?
- *
- * @param c character to test
- * @return bool
- **/
-LIB_API bool path_is_dir_sep(wchar_t c);
-
-/**
  * is s2 a subpath of s1, or vice versa? (equal counts as subpath)
  *
  * @param s1, s2 comparand strings
@@ -79,72 +71,106 @@ LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
  **/
 LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
-
 namespace Path {
 
-static inline NativePath Path(const NativePath& pathname)
+template<class Path_t>
+static inline bool IsDirectory(const Path_t& pathname)
+{
+	if(pathname.empty())	// (ensure back() is safe)
+		return false;	// (the VFS root directory is represented as an empty string)
+
+	// note: ideally, path strings would only contain '/' or even SYS_DIR_SEP.
+	// however, windows-specific code (e.g. the sound driver detection)
+	// uses these routines with '\\' strings. converting them all to
+	// '/' and then back before passing to OS functions would be annoying.
+	// also, the self-tests verify correct operation of such strings.
+	// it would be error-prone to only test the platform's separator
+	// strings there. hence, we allow all separators here.
+	return pathname.back() == '/' || pathname.back() == '\\';
+}
+
+template<class Path_t>
+static inline Path_t Path(const Path_t& pathname)
 {
 	size_t n = pathname.find_last_of('/');
-	if(n == NativePath::npos)
+	if(n == Path_t::npos)
 	{
 		n = pathname.find_last_of('\\');
-		if(n == NativePath::npos)
+		if(n == Path_t::npos)
 			return L"";
 	}
 	return pathname.substr(0, n);
 }
 
-static inline NativePath Filename(const NativePath& pathname)
+template<class Path_t>
+static inline Path_t Filename(const Path_t& pathname)
 {
 	size_t n = pathname.find_last_of('/');
-	if(n == NativePath::npos)
+	if(n == Path_t::npos)
 	{
 		n = pathname.find_last_of('\\');
-		if(n == NativePath::npos)
+		if(n == Path_t::npos)
 			return pathname;
 	}
 	return pathname.substr(n+1);
 }
 
-static inline NativePath Basename(const NativePath& pathname)
+template<class Path_t>
+static inline Path_t Basename(const Path_t& pathname)
 {
-	const NativePath filename = Filename(pathname);
+	const Path_t filename = Filename(pathname);
 	const size_t idxDot = filename.find_last_of('.');
-	if(idxDot == NativePath::npos)
+	if(idxDot == Path_t::npos)
 		return filename;
 	return filename.substr(0, idxDot);
 }
 
-static inline NativePath Extension(const NativePath& pathname)
+template<class Path_t>
+static inline std::wstring Extension(const Path_t& pathname)
 {
 	const size_t idxDot = pathname.find_last_of('.');
-	if(idxDot == NativePath::npos)
-		return NativePath();
+	if(idxDot == Path_t::npos)
+		return Path_t();
 	return pathname.substr(idxDot);
 }
 
-static inline NativePath Join(const NativePath& path1, const NativePath& path2)
+static inline std::wstring JoinPathStrings(const std::wstring& path1, const std::wstring& path2)
 {
-	NativePath ret = path1;
-	if(!path1.empty() && path1[path1.length()-1] != '/' && path1[path1.length()-1] != '\\')
+	std::wstring ret = path1;
+	if(!IsDirectory(path1))
 		ret += '/';
 	ret += path2;
 	return ret;
 }
 
-static inline NativePath Join(const NativePath& path1, const NativePath& path2, const NativePath& path3)
+template<class Path_t>
+static inline Path_t Join(const Path_t& path1, const Path_t& path2)
 {
-	return Join(Join(path1, path2), path3);
+	return JoinPathStrings(path1, path2);
 }
 
-static inline NativePath AddSlash(const NativePath& path)
+template<class Path_t>
+static inline Path_t Join(const Path_t& path1, const char* literal)
 {
-	return (!path.empty() && path_is_dir_sep(path[path.length()-1]))? path : path+L'/';
+	return JoinPathStrings(path1, NativePathFromString(literal));
 }
 
-static inline NativePath ChangeExtension(const NativePath& pathname, const NativePath& extension)
+template<class Path_t>
+static inline Path_t Join(const char* literal, const Path_t& path2)
 {
-	return Join(Path(pathname), Basename(Filename(pathname))+extension);
+	return JoinPathStrings(NativePathFromString(literal), path2);
+}
+
+template<class Path_t>
+static inline Path_t AddSlash(const Path_t& path)
+{
+	return IsDirectory(path)? path : path+L'/';
+}
+
+template<class Path_t>
+static inline Path_t ChangeExtension(const Path_t& pathname, const std::wstring& extension)
+{
+	return Join(Path(pathname), Basename(pathname)+extension);
 }
 
 }	// namespace Path

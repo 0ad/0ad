@@ -57,7 +57,7 @@ struct wdirent* wreaddir(WDIR* wd)
 	dirent* ent = readdir(wd->d);
 	if(!ent)
 		return 0;
-	std::wstring name = wstring_from_utf8(ent->d_name);
+	NativePath name = NativePathFromString(ent->d_name);
 	wcscpy_s(wd->name, ARRAY_SIZE(wd->name), name.c_str());
 	return &wd->ent;
 }

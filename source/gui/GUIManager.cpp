@@ -115,7 +115,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	page.gui.reset(new CGUI());
 	page.gui->Initialize();
 
-	VfsPath path = Path::Join(L"gui", page.name.c_str());
+	VfsPath path = Path::Join("gui", VfsPath(page.name.c_str()));
 	page.inputs.insert(path);
 
 	CXeromyces xero;
@@ -144,7 +144,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 		CStrW name (node.GetText().FromUTF8());
 		TIMER(name.c_str());
-		VfsPath path = Path::Join(L"gui", name.c_str());
+		VfsPath path = Path::Join("gui", VfsPath(name.c_str()));
 		page.gui->LoadXmlFile(path, page.inputs);
 	}
 

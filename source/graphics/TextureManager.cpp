@@ -302,7 +302,7 @@ public:
 		CTexturePtr texture = CreateTexture(textureProps);
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
-		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, Path::Join(L"cache", archiveCachePath), settings))
+		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, Path::Join("cache", archiveCachePath), settings))
 			return false;
 
 		while (true)
@@ -409,7 +409,7 @@ public:
 		VfsPath p;
 		for (fs::wpath::iterator it = srcPath.begin(); it != srcPath.end(); ++it)
 		{
-			VfsPath settingsPath = Path::Join(p, L"textures.xml");
+			VfsPath settingsPath = Path::Join(p, "textures.xml");
 			m_HotloadFiles[settingsPath].insert(texture);
 			CTextureConverter::SettingsFile* f = GetSettingsFile(settingsPath);
 			if (f)

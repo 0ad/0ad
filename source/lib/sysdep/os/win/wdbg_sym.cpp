@@ -1871,7 +1871,7 @@ void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 
 	WinScopedLock lock(WDBG_SYM_CS);
 
-	NativePath path = Path::Join(ah_get_log_dir(), L"crashlog.dmp");
+	NativePath path = Path::Join(ah_get_log_dir(), "crashlog.dmp");
 	HANDLE hFile = CreateFileW(path.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 	{

@@ -78,7 +78,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 
-LibError sys_get_executable_name(std::wstring& pathname)
+LibError sys_get_executable_name(NativePath& pathname)
 {
 	static char name[PATH_MAX];
 	static bool init = false;
@@ -102,7 +102,7 @@ LibError sys_get_executable_name(std::wstring& pathname)
 		debug_printf(L"app bundle name: %hs\n", name);
 	}
 	
-	pathname = wstring_from_utf8(name);
+	pathname = NativePathFromString(name);
 	
 	return INFO::OK;
 }

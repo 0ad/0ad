@@ -320,7 +320,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 
 	// Normal case: templateName is an XML file:
 
-	VfsPath path = Path::Join(TEMPLATE_ROOT, wstring_from_utf8(templateName + ".xml"));
+	VfsPath path = Path::Join(VfsPath(TEMPLATE_ROOT), NativePathFromString(templateName + ".xml"));
 	CXeromyces xero;
 	PSRETURN ok = xero.Load(g_VFS, path);
 	if (ok != PSRETURN_OK)

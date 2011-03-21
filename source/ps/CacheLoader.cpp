@@ -109,10 +109,7 @@ bool CCacheLoader::CanUseArchiveCache(const VfsPath& sourcePath, const VfsPath& 
 
 VfsPath CCacheLoader::ArchiveCachePath(const VfsPath& sourcePath)
 {
-	VfsPath sourceDir = Path::Path(sourcePath);
-	std::wstring sourceName = Path::Filename(sourcePath);
-
-	return Path::Join(sourceDir, sourceName + L".cached" + m_FileExtension);
+	return Path::ChangeExtension(sourcePath, Path::Extension(sourcePath) + L".cached" + m_FileExtension);
 }
 
 VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initialHash, u32 version)
@@ -145,9 +142,7 @@ VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initi
 		digestPrefix << std::setfill(L'0') << std::setw(2) << (int)digest[i];
 
 	// Construct the final path
-	VfsPath sourceDir = Path::Path(sourcePath);
-	std::wstring sourceName = Path::Filename(sourcePath);
-	return Path::Join(L"cache", sourceDir, sourceName + L"." + digestPrefix.str() + m_FileExtension);
+	return Path::Join("cache", Path::ChangeExtension(sourcePath, std::wstring(L".") + digestPrefix.str() + m_FileExtension));
 
 	// TODO: we should probably include the mod name, once that's possible (http://trac.wildfiregames.com/ticket/564)
 }

@@ -31,7 +31,7 @@
 
 #include <cstdio>
 
-LibError sys_get_executable_name(std::wstring& pathname)
+LibError sys_get_executable_name(NativePath& pathname)
 {
 	const char* path;
 	Dl_info dl_info;
@@ -53,7 +53,7 @@ LibError sys_get_executable_name(std::wstring& pathname)
 		char* resolved = realpath(path, resolvedBuf);
 		if (!resolved)
 			return ERR::FAIL;
-		pathname = wstring_from_utf8(resolved);
+		pathname = NativePathFromString(resolved);
 		return INFO::OK;
 	}
 
@@ -72,7 +72,7 @@ LibError sys_get_executable_name(std::wstring& pathname)
 		char* resolved = realpath(absolute, resolvedBuf);
 		if (!resolved)
 			return ERR::NO_SYS;
-		pathname = wstring_from_utf8(resolved);
+		pathname = NativePathFromString(resolved);
 		return INFO::OK;
 	}
 

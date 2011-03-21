@@ -39,9 +39,9 @@ CArchiveBuilder::CArchiveBuilder(const std::wstring& mod, const std::wstring& te
 
 	m_VFS = CreateVfs(20*MiB);
 
-	DeleteDirectory(Path::Join(m_TempDir, L"_archivecache")); // clean up in case the last run failed
+	DeleteDirectory(Path::Join(m_TempDir, "_archivecache")); // clean up in case the last run failed
 
-	m_VFS->Mount(L"cache/", Path::Join(m_TempDir, L"_archivecache/"));
+	m_VFS->Mount(L"cache/", Path::Join(m_TempDir, "_archivecache/"));
 
 	m_VFS->Mount(L"", Path::AddSlash(mod), VFS_MOUNT_MUST_EXIST);
 
@@ -53,7 +53,7 @@ CArchiveBuilder::~CArchiveBuilder()
 {
 	m_VFS.reset();
 
-	DeleteDirectory(Path::Join(m_TempDir, L"_archivecache"));
+	DeleteDirectory(Path::Join(m_TempDir, "_archivecache"));
 
 	tex_codec_unregister_all();
 }
@@ -102,7 +102,7 @@ void CArchiveBuilder::Build(const std::wstring& archive)
 			debug_assert(ok);
 
 			std::wstring cachedRealPath;
-			ret = m_VFS->GetRealPath(Path::Join(L"cache", cachedPath), cachedRealPath);
+			ret = m_VFS->GetRealPath(Path::Join("cache", cachedPath), cachedRealPath);
 			debug_assert(ret == INFO::OK);
 
 			writer->AddFile(cachedRealPath, cachedPath);
@@ -126,7 +126,7 @@ void CArchiveBuilder::Build(const std::wstring& archive)
 			debug_assert(ok);
 
 			std::wstring cachedRealPath;
-			ret = m_VFS->GetRealPath(Path::Join(L"cache", cachedPath), cachedRealPath);
+			ret = m_VFS->GetRealPath(Path::Join("cache", cachedPath), cachedRealPath);
 			debug_assert(ret == INFO::OK);
 
 			writer->AddFile(cachedRealPath, cachedPath);

@@ -454,8 +454,8 @@ static void InitVfs(const CmdLineArgs& args)
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount(L"screenshots/", Path::Join(paths.Data(), L"screenshots/"));
-	const NativePath readonlyConfig = Path::Join(paths.RData(), L"config/");
+	g_VFS->Mount(L"screenshots/", Path::Join(paths.Data(), "screenshots/"));
+	const NativePath readonlyConfig = Path::Join(paths.RData(), "config/");
 	g_VFS->Mount(L"config/", readonlyConfig);
 	if(readonlyConfig != paths.Config())
 		g_VFS->Mount(L"config/", paths.Config());
@@ -466,8 +466,8 @@ static void InitVfs(const CmdLineArgs& args)
 	if(!args.Has("onlyPublicFiles"))
 		mods.push_back("internal");
 
-	NativePath modArchivePath = Path::Join(paths.Cache(), L"mods");
-	NativePath modLoosePath = Path::Join(paths.RData(), L"mods");
+	NativePath modArchivePath = Path::Join(paths.Cache(), "mods");
+	NativePath modLoosePath = Path::Join(paths.RData(), "mods");
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		size_t priority = i;

@@ -37,8 +37,8 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), L"mods/_test.sim"), VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", Path::Join(DataDir(), L"_testcache")));
+		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), "mods/_test.sim"), VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", Path::Join(DataDir(), "_testcache")));
 		CXeromyces::Startup();
 	}
 
@@ -46,7 +46,7 @@ public:
 	{
 		CXeromyces::Terminate();
 		g_VFS.reset();
-		DeleteDirectory(Path::Join(DataDir(), L"_testcache"));
+		DeleteDirectory(Path::Join(DataDir(), "_testcache"));
 	}
 
 	void test_LoadTemplate()
@@ -223,8 +223,8 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), L"mods/public"), VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", Path::Join(DataDir(), L"_testcache")));
+		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), "mods/public"), VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", Path::Join(DataDir(), "_testcache")));
 		CXeromyces::Startup();
 	}
 
@@ -232,7 +232,7 @@ public:
 	{
 		CXeromyces::Terminate();
 		g_VFS.reset();
-		DeleteDirectory(Path::Join(DataDir(), L"_testcache"));
+		DeleteDirectory(Path::Join(DataDir(), "_testcache"));
 	}
 
 	// This just attempts loading every public entity, to check there's no validation errors
