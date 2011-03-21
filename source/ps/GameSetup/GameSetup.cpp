@@ -22,7 +22,6 @@
 #include "lib/lockfree.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/res/h_mgr.h"
@@ -472,7 +471,7 @@ static void InitVfs(const CmdLineArgs& args)
 	{
 		size_t priority = i;
 		size_t flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_MUST_EXIST;
-		NativePath modName(wstring_from_utf8(mods[i]));
+		NativePath modName(NativePathFromString(mods[i]));
 		g_VFS->Mount(L"", Path::AddSlash(Path::Join(modLoosePath, modName)), flags, priority);
 		g_VFS->Mount(L"", Path::AddSlash(Path::Join(modArchivePath, modName)), flags, priority);
 	}

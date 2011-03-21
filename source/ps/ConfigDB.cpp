@@ -112,7 +112,7 @@ namespace ConfigNamespace_JS
 		if (argc != 1)
 			return JS_FALSE;
 
-		NativePath path;
+		VfsPath path;
 		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
 			return JS_FALSE;
 
@@ -145,7 +145,7 @@ namespace ConfigNamespace_JS
 		if (argc != 1)
 			return JS_FALSE;
 
-		NativePath path;
+		VfsPath path;
 		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], path))
 			return JS_FALSE;
 

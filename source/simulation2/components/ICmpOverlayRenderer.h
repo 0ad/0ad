@@ -18,12 +18,11 @@
 #ifndef INCLUDED_ICMPOVERLAYRENDERER
 #define INCLUDED_ICMPOVERLAYRENDERER
 
-#include "lib/native_path.h"
-
 #include "simulation2/system/Interface.h"
 
 #include "simulation2/helpers/Position.h"
 
+#include "lib/file/vfs/vfs_path.h"
 #include "maths/FixedVector2D.h"
 #include "maths/FixedVector3D.h"
 
@@ -50,7 +49,7 @@ public:
 	 *        relative to the sprite position.
 	 * @param offset world-space offset of sprite position from the entity's base position.
 	 */
-	virtual void AddSprite(NativePath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D offset) = 0;
+	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D offset) = 0;
 
 	DECLARE_INTERFACE_TYPE(OverlayRenderer)
 };

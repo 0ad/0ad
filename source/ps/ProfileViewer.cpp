@@ -32,7 +32,6 @@
 #include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
-#include "lib/utf8.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/graphics/unifont.h"
 #include "renderer/Renderer.h"
@@ -527,7 +526,7 @@ void CProfileViewer::SaveToFile()
 		// Open the file. (It will be closed when the CProfileViewer
 		// destructor is called.)
 		NativePath path = Path::Join(psLogDir(), "profile.txt");
-		m->outputStream.open(utf8_from_wstring(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+		m->outputStream.open(StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 		if (m->outputStream.fail())
 		{

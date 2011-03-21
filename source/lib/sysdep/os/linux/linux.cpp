@@ -22,7 +22,6 @@
 
 #include "precompiled.h"
 
-#include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
 
 #define GNU_SOURCE

@@ -57,7 +57,7 @@ public:
 	}
 
 private:
-	static NativePath Root(const std::wstring& argv0);
+	static NativePath Root(const NativePath& argv0);
 	static NativePath XDG_Path(const char* envname, const NativePath& home, const NativePath& defaultPath);
 
 	// read-only directories, fixed paths relative to executable

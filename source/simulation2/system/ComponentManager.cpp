@@ -80,7 +80,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
-		m_ScriptInterface.RegisterFunction<CScriptVal, std::string, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
+		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
 	}
 
 	// Define MT_*, IID_* as script globals, and store their names
@@ -936,11 +936,11 @@ std::string CComponentManager::GenerateSchema()
 	return schema;
 }
 
-CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::string fileName)
+CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::wstring fileName)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	NativePath path = Path::Join("simulation/data", NativePathFromString(fileName));
+	VfsPath path = Path::Join("simulation/data", fileName);
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }

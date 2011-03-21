@@ -19,7 +19,6 @@
 #include "Paths.h"
 
 #include "lib/path_util.h"
-#include "lib/utf8.h"
 #include "lib/sysdep/filesystem.h"	// wrealpath
 #include "lib/sysdep/sysdep.h"	// sys_get_executable_name
 #if OS_WIN
@@ -29,7 +28,7 @@
 
 Paths::Paths(const CmdLineArgs& args)
 {
-	m_root = Root(wstring_from_utf8(args.GetArg0()));
+	m_root = Root(NativePathFromString(args.GetArg0()));
 
 #ifdef INSTALLED_DATADIR
 	m_rdata = WIDEN(STRINGIZE(INSTALLED_DATADIR)) L"/";
@@ -50,7 +49,7 @@ Paths::Paths(const CmdLineArgs& args)
 	else
 	{
 #if OS_WIN
-		const NativePath appdata = Path::AddSlash(Path::Join(wutil_AppdataPath(), NativePath(subdirectoryName)));
+		const NativePath appdata = Path::AddSlash(Path::Join(wutil_AppdataPath(), subdirectoryName));
 		m_data = Path::Join(appdata, "data/");
 		m_config = Path::Join(appdata, "config/");
 		m_cache = Path::Join(appdata, "cache/");
@@ -58,7 +57,7 @@ Paths::Paths(const CmdLineArgs& args)
 #else
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
-		const NativePath home(wstring_from_utf8(envHome));
+		const NativePath home(NativePathFromString(envHome));
 		const NativePath xdgData = Path::Join(XDG_Path("XDG_DATA_HOME", home, Path::Join(home, ".local/share/")), subdirectoryName);
 		const NativePath xdgConfig = Path::Join(XDG_Path("XDG_CONFIG_HOME", home, Path::Join(home, ".config/")), subdirectoryName);
 		const NativePath xdgCache = Path::Join(XDG_Path("XDG_CACHE_HOME", home, Path::Join(home, ".cache/")), subdirectoryName);
@@ -71,7 +70,7 @@ Paths::Paths(const CmdLineArgs& args)
 }
 
 
-/*static*/ NativePath Paths::Root(const std::wstring& argv0)
+/*static*/ NativePath Paths::Root(const NativePath& argv0)
 {
 	// get full path to executable
 	NativePath pathname;
@@ -103,7 +102,7 @@ Paths::Paths(const CmdLineArgs& args)
 	if(path)
 	{
 		if(path[0] != '/')	// relative to $HOME
-			return Path::AddSlash(Path::Join(home, path));
+			return Path::AddSlash(Path::Join(home, NativePathFromString(path)));
 		return Path::AddSlash(NativePathFromString(path));
 	}
 	return Path::AddSlash(defaultPath);

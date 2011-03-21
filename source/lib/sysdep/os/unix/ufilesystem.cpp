@@ -27,7 +27,6 @@
 #include "precompiled.h"
 #include "lib/posix/posix_filesystem.h"
 
-#include "lib/utf8.h"
 #include "lib/path_util.h"
 
 #include <cstdio>

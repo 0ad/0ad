@@ -32,7 +32,7 @@
 
 #include <boost/algorithm/string.hpp>
 
-CArchiveBuilder::CArchiveBuilder(const std::wstring& mod, const std::wstring& tempdir) :
+CArchiveBuilder::CArchiveBuilder(const std::wstring& mod, const NativePath& tempdir) :
 	m_TempDir(tempdir)
 {
 	tex_codec_register_all();
@@ -58,12 +58,12 @@ CArchiveBuilder::~CArchiveBuilder()
 	tex_codec_unregister_all();
 }
 
-void CArchiveBuilder::AddBaseMod(const std::wstring& mod)
+void CArchiveBuilder::AddBaseMod(const NativePath& mod)
 {
 	m_VFS->Mount(L"", Path::AddSlash(mod), VFS_MOUNT_MUST_EXIST);
 }
 
-void CArchiveBuilder::Build(const std::wstring& archive)
+void CArchiveBuilder::Build(const NativePath& archive)
 {
 	// Disable zip compression because it significantly hurts download size
 	// for releases (which re-compress all files with better compression
@@ -84,7 +84,7 @@ void CArchiveBuilder::Build(const std::wstring& archive)
 	{
 		LibError ret;
 
-		std::wstring realPath;
+		NativePath realPath;
 		ret = m_VFS->GetRealPath(m_Files[i], realPath);
 		debug_assert(ret == INFO::OK);
 
@@ -125,7 +125,7 @@ void CArchiveBuilder::Build(const std::wstring& archive)
 			bool ok = xero.GenerateCachedXMB(m_VFS, m_Files[i], cachedPath);
 			debug_assert(ok);
 
-			std::wstring cachedRealPath;
+			NativePath cachedRealPath;
 			ret = m_VFS->GetRealPath(Path::Join("cache", cachedPath), cachedRealPath);
 			debug_assert(ret == INFO::OK);
 

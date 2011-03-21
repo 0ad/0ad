@@ -38,7 +38,6 @@ that of Atlas depending on commandline parameters.
 #include "lib/input.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/sound/snd_mgr.h"
 
@@ -457,10 +456,10 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	{
 		Paths paths(args);
 
-		NativePath mod = wstring_from_utf8(args.Get("archivebuild"));
+		NativePath mod = NativePathFromString(args.Get("archivebuild"));
 		NativePath zip;
 		if (args.Has("archivebuild-output"))
-			zip = wstring_from_utf8(args.Get("archivebuild-output"));
+			zip = NativePathFromString(args.Get("archivebuild-output"));
 		else
 			zip = Path::Filename(mod)+L".zip";
 

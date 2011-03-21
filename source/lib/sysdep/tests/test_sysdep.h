@@ -55,10 +55,10 @@ public:
 		// one that's running this test code)
 		TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
 		// Check it's absolute
-		TSM_ASSERT(NativePath(L"Path: ")+path, path_is_absolute(path.c_str()));
+		TSM_ASSERT(L"Path: "+path, path_is_absolute(path.c_str()));
 		// Check the file exists
 		struct stat s;
-		TSM_ASSERT_EQUALS(NativePath(L"Path: ")+path, wstat(path.c_str(), &s), 0);
+		TSM_ASSERT_EQUALS(L"Path: "+path, wstat(path.c_str(), &s), 0);
 
 		// Do some platform-specific tests, based on the
 		// implementations of sys_get_executable_name:

@@ -54,7 +54,7 @@ static bool CanIgnore(const DirWatchNotification& notification)
 {
 	// ignore directories
 	const NativePath& pathname = notification.Pathname();
-	if(Path::Filename(pathname).empty())
+	if(Path::IsDirectory(pathname))
 		return true;
 
 	// ignore uninteresting file types (e.g. temp files, or the

@@ -76,10 +76,10 @@ const char* html_header1 = "</h2>\n";
 CLogger::CLogger()
 {
 	NativePath mainlogPath(Path::Join(psLogDir(), "mainlog.html"));
-	m_MainLog = new std::ofstream(utf8_from_wstring(mainlogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
+	m_MainLog = new std::ofstream(StringFromNativePath(mainlogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	NativePath interestinglogPath(Path::Join(psLogDir(), "interestinglog.html"));
-	m_InterestingLog = new std::ofstream(utf8_from_wstring(interestinglogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
+	m_InterestingLog = new std::ofstream(StringFromNativePath(interestinglogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;
 	m_UseDebugPrintf = true;

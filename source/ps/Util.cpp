@@ -260,7 +260,7 @@ void WriteScreenshot(const std::wstring& extension)
 
 	if (tex_write(&t, filename) == INFO::OK)
 	{
-		std::wstring realPath;
+		NativePath realPath;
 		g_VFS->GetRealPath(filename, realPath);
 		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.c_str());
 	}
@@ -386,7 +386,7 @@ void WriteBigScreenshot(const std::wstring& extension, int tiles)
 
 	if (tex_write(&t, filename) == INFO::OK)
 	{
-		std::wstring realPath;
+		NativePath realPath;
 		g_VFS->GetRealPath(filename, realPath);
 		LOGMESSAGERENDER(L"Screenshot written to '%ls'", realPath.c_str());
 	}

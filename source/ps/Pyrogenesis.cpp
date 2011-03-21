@@ -88,14 +88,14 @@ void psBundleLogs(FILE* f)
 }
 
 
-static std::wstring logDir;
+static NativePath logDir;
 
-void psSetLogDir(const std::wstring& newLogDir)
+void psSetLogDir(const NativePath& newLogDir)
 {
 	logDir = newLogDir;
 }
 
-const std::wstring& psLogDir()
+const NativePath& psLogDir()
 {
 	return logDir;
 }

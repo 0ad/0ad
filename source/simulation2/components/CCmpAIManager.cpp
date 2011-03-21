@@ -408,7 +408,7 @@ public:
 	}
 
 private:
-	CScriptValRooted LoadMetadata(const NativePath& path)
+	CScriptValRooted LoadMetadata(const VfsPath& path)
 	{
 		if (m_PlayerMetadata.find(path) == m_PlayerMetadata.end())
 		{
@@ -457,7 +457,7 @@ private:
 	size_t m_TurnNum;
 
 	CScriptValRooted m_EntityTemplates;
-	std::map<std::wstring, CScriptValRooted> m_PlayerMetadata;
+	std::map<VfsPath, CScriptValRooted> m_PlayerMetadata;
 	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
 
 	shared_ptr<ScriptInterface::StructuredClone> m_GameState;

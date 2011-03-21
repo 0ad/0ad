@@ -24,12 +24,14 @@ Standard declarations which are included in all projects.
 #ifndef INCLUDED_PYROGENESIS
 #define INCLUDED_PYROGENESIS
 
+#include "lib/native_path.h"
+
 // overrides ah_translate. registered in GameSetup.cpp
 extern const wchar_t* psTranslate(const wchar_t* text);
 extern void psTranslateFree(const wchar_t* text);
 extern void psBundleLogs(FILE* f);
 
-extern void psSetLogDir(const std::wstring& logDir);	// set during InitVfs
-extern const std::wstring& psLogDir();	// used by AppHooks and engine code when reporting errors
+extern void psSetLogDir(const NativePath& logDir);	// set during InitVfs
+extern const NativePath& psLogDir();	// used by AppHooks and engine code when reporting errors
 
 #endif
