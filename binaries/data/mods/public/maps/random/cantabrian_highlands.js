@@ -52,6 +52,7 @@ var clDirt = createTileClass();
 var clRock = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
+var clSettlement = createTileClass();
 
 // place players
 
@@ -273,6 +274,14 @@ createObjectGroups(
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clRock, 13), 
 	 new BorderTileClassConstraint(clHill, 0, 4)],
 	3 * numPlayers, 100
+);
+
+// create settlements
+log("Creating settlements...");
+group = new SimpleGroup([new SimpleObject("gaia/special_settlement", 1,1, 0,0)], true, clSettlement);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 15, clHill, 0, clRock, 5, clSettlement, 35),
+	2 * numPlayers, 50
 );
 
 // create small decorative rocks

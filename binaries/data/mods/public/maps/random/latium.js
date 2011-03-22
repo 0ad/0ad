@@ -1,6 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
-const WATER_WIDTH = 0.2;
+const WATER_WIDTH = 0.1;
 
 // terrain textures
 const tOceanDepths = "medit_sea_depths";
@@ -9,10 +9,10 @@ const tOceanRockShallow = "medit_rocks_wet";
 const tOceanCoral = "medit_sea_coral_plants";
 const tBeachWet = "medit_sand_wet";
 const tBeachDry = "medit_sand";
-const tBeachGrass = "beach_medit_grass_50";
+const tBeachGrass = "medit_rocks_grass";
 const tBeachCliff = "cliff_medit_beach";
 const tGrassDry = ["medit_grass_field_brown", "medit_grass_field_dry", "medit_grass_field_b"];
-const tGrass = ["medit_grass_field", "medit_grass_field_a", "medit_grass_flowers"];
+const tGrass = ["medit_grass_field_dry", "medit_grass_field_brown", "medit_grass_field_b"];
 const tGrassLush = ["grass_temperate_dry_tufts", "medit_grass_flowers"];
 const tGrassShrubs = ["medit_grass_shrubs", "medit_grass_flowers"];
 const tGrassRock = ["medit_rocks_grass"];
@@ -21,7 +21,7 @@ const tDirtGrass = "medit_dirt_b";
 const tDirtCliff = "medit_cliff_italia";
 const tGrassCliff = "medit_cliff_italia_grass";
 const tCliff = ["medit_cliff_italia", "medit_cliff_italia", "medit_cliff_italia_grass"];
-const tForestFloor = "forestfloor_medit_dirt";
+const tForestFloor = "medit_grass_wild";
 
 // gaia entities
 const oBeech = "gaia/flora_tree_euro_beech";
@@ -82,6 +82,7 @@ var clStone = createTileClass();
 var clFood = createTileClass();
 var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
+var clSettlement = createTileClass();
 
 // Place players
 
@@ -431,6 +432,14 @@ for (var ix=0; ix<mapSize; ix++)
 	}
 }
 
+log("Placing settlements...");
+// create settlements
+group = new SimpleGroup([new SimpleObject("gaia/special_settlement", 1,1, 0,0)], true, clSettlement);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 5, clForest, 4, clPlayer, 25, clCliff, 4, clSettlement, 35),
+	2*numPlayers, 50
+);
+
 log("Placing straggler trees...");
 // create straggler trees
 var trees = [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine];
@@ -509,6 +518,14 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 5, clForest, 1, clCliff, 1, clPlayer, 20, clMetal, 2, clStone, 2, clFood, 8),
 	1.5 * numPlayers, 100
 );
+
+// Adjust environment
+setSkySet("sunny");
+setWaterMurkiness(0.626953);
+setWaterShininess(0.732422);
+setWaterTint(0, 0.501961, 0.501961);
+setWaterReflectionTint(0.313726, 0.376471, 0.521569);
+setWaterReflectionTintStrength(0.615234);
 
 // Export map data
 ExportMap();

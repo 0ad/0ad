@@ -31,7 +31,7 @@ function Map(size, baseHeight)
 	this.height = new Array(mapSize);
 	for (var i=0; i < mapSize; i++)
 	{
-		this.height[i] = new Array(mapSize);
+		this.height[i] = new Float32Array(mapSize);
 		for (var j=0; j < mapSize; j++)
 		{	// Initialize height map to baseHeight
 			this.height[i][j] = baseHeight;
@@ -224,8 +224,8 @@ Map.prototype.createTileClass = function()
 // Get height taking into account terrain curvature
 Map.prototype.getExactHeight = function(x, y)
 {
-	var xi = min(floor(x), this.size);
-	var yi = min(floor(y), this.size);
+	var xi = min(Math.floor(x), this.size);
+	var yi = min(Math.floor(y), this.size);
 	var xf = x - xi;
 	var yf = y - yi;
 
@@ -280,7 +280,7 @@ Map.prototype.getMapData = function()
 	{
 		for (var y=0; y < mapSize; y++)
 		{
-			var intHeight = ((this.height[x][y] + SEA_LEVEL) * 256.0 / 0.35)|0;	// floor
+			var intHeight = Math.floor((this.height[x][y] + SEA_LEVEL) * 256.0 / 0.35);
 			
 			if (intHeight > 65000)
 				intHeight = 65000;
@@ -306,11 +306,11 @@ Map.prototype.getMapData = function()
 	var patches = size/16;
 	for (var x=0; x < size; x++)
 	{
-		var patchX = floor(x/16);
+		var patchX = Math.floor(x/16);
 		var offX = x%16;
 		for (var y=0; y < size; y++)
 		{
-			var patchY = floor(y/16);
+			var patchY = Math.floor(y/16);
 			var offY = y%16;
 			tiles[(patchY*patches + patchX)*256 + (offY*16 + offX)] =
 				{ 	"texIdx1" : this.texture[x][y],

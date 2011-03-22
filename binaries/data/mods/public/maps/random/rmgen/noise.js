@@ -20,7 +20,7 @@ function modPos(num, m)
 
 function Noise2D(freq)
 {
-	freq = floor(freq);
+	freq = Math.floor(freq);
 	this.freq = freq;
 	this.grads = new Array(freq);
 	
@@ -41,8 +41,8 @@ Noise2D.prototype.get = function(x, y)
 	x *= this.freq;
 	y *= this.freq;
 	
-	var ix = modPos(floor(x), this.freq);
-	var iy = modPos(floor(y), this.freq);
+	var ix = modPos(Math.floor(x), this.freq);
+	var iy = modPos(Math.floor(y), this.freq);
 	
 	var fx = x - ix;
 	var fy = y - iy;
@@ -68,8 +68,8 @@ Noise2D.prototype.get = function(x, y)
 
 function Noise3D(freq, vfreq)
 {
-	freq = floor(freq);
-	vfreq = floor(vfreq);
+	freq = Math.floor(freq);
+	vfreq = Math.floor(vfreq);
 	this.freq = freq;
 	this.vfreq = vfreq;
 	this.grads = new Array(freq);
@@ -103,9 +103,9 @@ Noise3D.prototype.get = function(x, y, z)
 	y *= this.freq;
 	z *= this.vfreq;
 	
-	var ix =modPos(floor(x), this.freq);
-	var iy = modPos(floor(y), this.freq);
-	var iz = modPos(floor(z), this.vfreq);
+	var ix =modPos(Math.floor(x), this.freq);
+	var iy = modPos(Math.floor(y), this.freq);
+	var iz = modPos(Math.floor(z), this.vfreq);
 	
 	var fx = x - ix;
 	var fy = y - iy;

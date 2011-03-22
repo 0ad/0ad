@@ -1,23 +1,23 @@
 var g_Map;
 
 var g_Environment = {
-	SkySet: "cirrus",
-	SunColour: {r: 1.47461, g: 1.47461, b: 1.47461},
-	SunElevation: 0.951868,
-	SunRotation: -0.532844,
-	TerrainAmbientColour: {r: 0.337255, g: 0.403922, b: 0.466667},
+	SkySet: "default",
+	SunColour: {r: 1.5, g: 1.5, b: 1.5},
+	SunElevation: 0.785398,
+	SunRotation: 5.49779,
+	TerrainAmbientColour: {r: 0.313726, g: 0.376471, b: 0.521569},
 	UnitsAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961},
 	Water: {
 		WaterBody: {
 			Type: "default",
-			Colour: {r: 0.294118, g: 0.34902, b: 0.694118},
-			Height: 17.6262,
+			Colour: {r: 0.3, g: 0.35, b: 0.7},
+			Height: 5,
 			Shininess: 150,
 			Waviness: 8,
-			Murkiness: 0.458008,
-			Tint: {r: 0.447059, g: 0.411765, b: 0.321569},
-			ReflectionTint: {r: 0.619608, g: 0.584314, b: 0.47451},
-			ReflectionTintStrength: 0.298828
+			Murkiness: 0.45,
+			Tint: {r: 0.28, g: 0.3, b: 0.59},
+			ReflectionTint: {r: 0.28, g: 0.3, b: 0.59},
+			ReflectionTintStrength: 0.0
 		}
 	}
 };

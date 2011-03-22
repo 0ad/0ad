@@ -266,7 +266,7 @@ function getCivCode(player)
 
 function getHeight(x, y)
 {
-	g_Map.getHeight(x, y);
+	return g_Map.getHeight(x, y);
 }
 
 function setHeight(x, y, height)
