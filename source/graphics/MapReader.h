@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,6 +81,25 @@ private:
 
 	// clean up everything used during delayed load
 	int DelayLoadFinished();
+	
+	// Copy random map settings over to sim
+	int LoadRMSettings();
+
+	// Generate random map
+	int GenerateMap();
+
+	// Parse script data into terrain
+	int ParseTerrain();
+
+	// Parse script data into entities
+	int ParseEntities();
+
+	// Parse script data into environment
+	int ParseEnvironment();
+
+	// Parse script data into camera
+	int ParseCamera();
+
 
 	// size of map 
 	ssize_t m_PatchesPerSide;
@@ -94,6 +113,11 @@ private:
 	CLightEnv m_LightEnv;
 	// startup script
 	CStrW m_Script;
+
+	// random map data
+	CStrW m_ScriptFile;
+	CScriptValRooted m_ScriptSettings;
+	CScriptValRooted m_MapData;
 
 	// state latched by LoadMap and held until DelayedLoadFinished
 	CFileUnpacker unpacker;

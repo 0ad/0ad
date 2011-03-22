@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,28 +15,20 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_MAPIO
-#define INCLUDED_MAPIO
+#ifndef INCLUDED_ENTITY
+#define INCLUDED_ENTITY
 
-class CMapIO 
+// Struct for parsing random map data
+struct Entity
 {
-public:
-	// current file version given to saved maps 
-	enum { FILE_VERSION = 5 };
-	// supported file read version - file with version less than this will be reject
-	enum { FILE_READ_VERSION = 5 };
-
-#pragma pack(push, 1)
-	// description of a tile for I/O purposes
-	struct STileDesc {
-		// index into the texture array of first texture on tile
-		u16 m_Tex1Index;
-		// index into the texture array of second texture; (0xFFFF) if none
-		u16 m_Tex2Index;
-		// priority
-		u32 m_Priority;
-	};
-#pragma pack(pop)
+	std::wstring templateName;
+	u16 entityID;
+	u16 playerID;
+	float positionX;
+	float positionZ;
+	float orientationY;
+	bool isActor;
 };
+
 
 #endif

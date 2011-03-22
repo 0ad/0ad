@@ -134,15 +134,15 @@
 		<object name="gameOptionsBox" size="260 100%-260 100% 100%-190">
 			<object size="2 2 100% 50%-2">	<!-- Top row -->
 				<object name="mapSizeText" size="0 0 175 100%" type="text">Map size:</object>
-				<object name="mapSize" size="75 -2 175 100%-6" type="dropdown" style="wheatDropDown" hidden="true"/>
+				<object name="mapSize" size="75 -2 175 100%-6" type="dropdown" style="wheatDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size (larger may reduce performance)"/>
 				<object name="victoryConditionText" size="195 0 450 100%" type="text">Victory condition:</object>
-				<object name="victoryCondition" size="325 -2 450 100%-6" type="dropdown" style="wheatDropDown" hidden="true"/>
+				<object name="victoryCondition" size="325 -2 450 100%-6" type="dropdown" style="wheatDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select victory condition"/>
 			</object>
 			<object size="2 50%+2 100% 100%"> 	<!-- Bottom row -->
 				<object name="revealMapText" size="0 0 120 100%" type="text">Reveal map:</object>
-				<object name="revealMap" size="100 2 120 100%" type="checkbox" style="wheatCrossBox" hidden="true"/>
-				<object name="lockTeamsText" size="195 0 450 100%" type="text">Teams locked:</object>
-				<object name="lockTeams" size="260 2 280 100%" type="checkbox" style="wheatCrossBox" hidden="true"/>
+				<object name="revealMap" size="120 2 140 100%" type="checkbox" style="wheatCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map"/>
+				<object name="lockTeamsText" size="195 0 350 100%" type="text">Teams locked:</object>
+				<object name="lockTeams" size="350 2 370 100%" type="checkbox" style="wheatCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams"/>
 			</object>
 		</object>
 		

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,9 @@
 
 #include "ScriptInterface.h"
 
+#include "graphics/Color.h"
+#include "graphics/Entity.h"
+#include "graphics/MapIO.h"
 #include "ps/utf16string.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
@@ -84,6 +87,16 @@ template<> bool ScriptInterface::FromJSVal<u32>(JSContext* cx, jsval v, u32& out
 	return true;
 }
 
+template<> bool ScriptInterface::FromJSVal<u16>(JSContext* cx, jsval v, u16& out)
+{
+	uint16 ret;
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v), v);
+	if (!JS_ValueToUint16(cx, v, &ret))
+		return false;
+	out = ret;
+	return true;
+}
+
 // NOTE: we can't define a jsval specialisation, because that conflicts with integer types
 template<> bool ScriptInterface::FromJSVal<CScriptVal>(JSContext* UNUSED(cx), jsval v, CScriptVal& out)
 {
@@ -119,6 +132,69 @@ template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, 
 		FAIL("JS_EncodeString failed"); // out of memory
 	out = std::string(ch, ch + JS_GetStringLength(ret));
 	JS_free(cx, ch);
+	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<Entity>(JSContext* cx, jsval v, Entity& out)
+{
+	JSObject* obj;
+	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
+		FAIL("Argument must be an object");
+
+	jsval name, id, player, x, z, orient, actor;
+
+	if(!JS_GetProperty(cx, obj, "isActor", &actor) || !FromJSVal(cx, actor, out.isActor))
+		FAIL("Failed to read Entity.isActor property");
+
+	if (!out.isActor)
+		if(!JS_GetProperty(cx, obj, "player", &player) || !FromJSVal(cx, player, out.playerID))
+			FAIL("Failed to read Entity.player property");
+	
+	if (!JS_GetProperty(cx, obj, "name", &name) || !FromJSVal(cx, name, out.templateName))
+		FAIL("Failed to read Entity.name property");
+	if (!JS_GetProperty(cx, obj, "id", &id) || !FromJSVal(cx, id, out.entityID))
+		FAIL("Failed to read Entity.id property");
+	if (!JS_GetProperty(cx, obj, "x", &x) || !FromJSVal(cx, x, out.positionX))
+		FAIL("Failed to read Entity.x property");
+	if (!JS_GetProperty(cx, obj, "y", &z) || !FromJSVal(cx, z, out.positionZ))
+		FAIL("Failed to read Entity.y property");
+	if (!JS_GetProperty(cx, obj, "orientation", &orient) || !FromJSVal(cx, orient, out.orientationY))
+		FAIL("Failed to read Entity.orientation property");
+
+	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<RGBColor>(JSContext* cx, jsval v, RGBColor& out)
+{
+	JSObject* obj;
+	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
+		FAIL("Argument must be an object");
+
+	jsval r, g, b;
+	if (!JS_GetProperty(cx, obj, "r", &r) || !FromJSVal(cx, r, out.X))
+		FAIL("Failed to read RGBColor.r property");
+	if (!JS_GetProperty(cx, obj, "g", &g) || !FromJSVal(cx, g, out.Y))
+		FAIL("Failed to read RGBColor.g property");
+	if (!JS_GetProperty(cx, obj, "b", &b) || !FromJSVal(cx, b, out.Z))
+		FAIL("Failed to read RGBColor.b property");
+	
+	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<CMapIO::STileDesc>(JSContext* cx, jsval v, CMapIO::STileDesc& out)
+{
+	JSObject* obj;
+	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
+		FAIL("Argument must be an object");
+
+	jsval texIdx1, texIdx2, priority;
+	if (!JS_GetProperty(cx, obj, "texIdx1", &texIdx1) || !FromJSVal(cx, texIdx1, out.m_Tex1Index))
+		FAIL("Failed to read CMapIO::STileDesc.m_Tex1Index property");
+	if (!JS_GetProperty(cx, obj, "texIdx2", &texIdx2) || !FromJSVal(cx, texIdx2, out.m_Tex2Index))
+		FAIL("Failed to read CMapIO::STileDesc.m_Tex2Index property");
+	if (!JS_GetProperty(cx, obj, "priority", &priority) || !FromJSVal(cx, priority, out.m_Priority))
+		FAIL("Failed to read CMapIO::STileDesc.m_Priority property");
+	
 	return true;
 }
 
@@ -267,12 +343,24 @@ template<typename T> static bool FromJSVal_vector(JSContext* cx, jsval v, std::v
 
 VECTOR(int)
 VECTOR(u32)
+VECTOR(u16)
 VECTOR(std::string)
 VECTOR(std::wstring)
 VECTOR(CScriptValRooted)
+
 
 class IComponent;
 template<> jsval ScriptInterface::ToJSVal<std::vector<IComponent*> >(JSContext* cx, const std::vector<IComponent*>& val)
 {
 	return ToJSVal_vector(cx, val);
+}
+
+template<> bool ScriptInterface::FromJSVal<std::vector<Entity> >(JSContext* cx, jsval v, std::vector<Entity>& out)
+{
+	return FromJSVal_vector(cx, v, out);
+}
+
+template<> bool ScriptInterface::FromJSVal<std::vector<CMapIO::STileDesc> >(JSContext* cx, jsval v, std::vector<CMapIO::STileDesc>& out)
+{
+	return FromJSVal_vector(cx, v, out);
 }

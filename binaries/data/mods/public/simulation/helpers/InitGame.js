@@ -10,7 +10,7 @@ function InitGame(settings)
 	var cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (var i = 0; i < settings.PlayerData.length; ++i)
 	{
-		if (settings.PlayerData[i] && settings.PlayerData[i].AI != "")
+		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1);
 	}
 }

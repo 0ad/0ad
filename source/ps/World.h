@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #define INCLUDED_WORLD
 
 #include "ps/Errors.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #ifndef ERROR_GROUP_GAME_DEFINED
 #define ERROR_GROUP_GAME_DEFINED
@@ -73,6 +74,11 @@ public:
 	Initialize the World - load the map and all objects
 	*/
 	void RegisterInit(const CStrW& mapFile, int playerID);
+
+	/*
+	Initialize the World - generate and load the random map
+	*/
+	void RegisterInitRMS(const CStrW& scriptFile, const CScriptValRooted& settings, int playerID);
 
 	/**
 	 * Get the pointer to the terrain object.

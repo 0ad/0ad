@@ -142,7 +142,14 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
 	}
 	else if (mapType == "random")
 	{
-		// TODO: Coming in another patch
+		// Load random map attributes
+		std::wstring scriptFile;
+		CScriptValRooted settings;
+
+		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "script", scriptFile);
+		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "settings", settings);
+
+		m_World->RegisterInitRMS(scriptFile, settings, m_PlayerID);
 	}
 
 	LDR_EndRegistering();

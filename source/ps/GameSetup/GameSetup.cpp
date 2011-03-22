@@ -957,28 +957,62 @@ static bool Autostart(const CmdLineArgs& args)
 	 *  -autostart=mapname   -- single-player
 	 *  -autostart=mapname -autostart-playername=Player -autostart-host -autostart-players=2        -- multiplayer host, wait for 2 players
 	 *  -autostart=mapname -autostart-playername=Player -autostart-client -autostart-ip=127.0.0.1   -- multiplayer client, connect to 127.0.0.1
+	 *	-autostart=scriptname -autostart-random
 	 */
 
-	CStr autostartMap = args.Get("autostart");
-	if (autostartMap.empty())
+	CStr autoStartName = args.Get("autostart");
+	if (autoStartName.empty())
 		return false;
 
 	g_Game = new CGame();
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+
 	CScriptValRooted attrs;
 	scriptInterface.Eval("({})", attrs);
-	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
-	scriptInterface.SetProperty(attrs.get(), "map", std::string(autostartMap));
+	CScriptVal settings;
+	scriptInterface.Eval("({})", settings);
+	CScriptVal playerData;
+	scriptInterface.Eval("([])", playerData);
 
-	// Set attrs.settings = { PlayerData: [ { AI: ... }, ... ] }:
+	// Set different attributes for random or scenario game
+	if (args.Has("autostart-random"))
+	{
+		scriptInterface.SetProperty(attrs.get(), "script", std::string(autoStartName), false);	// RMS name
+		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"), false);
+
+		// For random map, there are special settings
+		// TODO: Get these from command line - using defaults for now
+		scriptInterface.SetProperty(settings.get(), "Size", 16);									// Random map size (in patches)
+		scriptInterface.SetProperty(settings.get(), "Seed", 0);										// Random seed
+		scriptInterface.SetProperty(settings.get(), "BaseTerrain", std::string("grass1_spring"));	// Base terrain texture
+		scriptInterface.SetProperty(settings.get(), "BaseHeight", 0);								// Base terrain height
+
+		// Define players
+		// TODO: Get these from command line - using defaults for now
+		size_t numPlayers = 2;
+		for (size_t i = 0; i < numPlayers; ++i)
+		{
+			CScriptVal player;
+			scriptInterface.Eval("({})", player);
+
+			scriptInterface.SetProperty(player.get(), "Civ", std::string("hele"));
+			scriptInterface.SetPropertyInt(playerData.get(), i, player);
+		}
+	}
+	else
+	{
+		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName), false);
+		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
+	}
+
+	// Set player data for AIs
+	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }:
 
 	/*
 	 * Handle command-line options for AI:
 	 *  -autostart-ai=1:dummybot -autostart-ai=2:dummybot        -- adds the dummybot AI to players 1 and 2
 	 */
-	CScriptVal playerData;
-	scriptInterface.Eval("([])", playerData);
 	if (args.Has("autostart-ai"))
 	{
 		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
@@ -995,12 +1029,11 @@ static bool Autostart(const CmdLineArgs& args)
 		}
 	}
 
-	CScriptVal settings;
-	scriptInterface.Eval("({})", settings);
+	// Add player data to map settings
 	scriptInterface.SetProperty(settings.get(), "PlayerData", playerData);
+
+	// Add map settings to game attributes
 	scriptInterface.SetProperty(attrs.get(), "settings", settings);
-
-
 
 	CScriptVal mpInitData;
 	g_GUI->GetScriptInterface().Eval("({isNetworked:true, playerAssignments:{}})", mpInitData);

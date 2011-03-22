@@ -43,8 +43,7 @@
 
 #include "valgrind.h"
 
-const int RUNTIME_SIZE = 16 * 1024 * 1024; // TODO: how much memory is needed?
-const int STACK_CHUNK_SIZE = 8192;
+#define STACK_CHUNK_SIZE 8192
 
 #if ENABLE_SCRIPT_PROFILING
 # define signbit std::signbit
@@ -57,10 +56,10 @@ const int STACK_CHUNK_SIZE = 8192;
 class ScriptRuntime
 {
 public:
-	ScriptRuntime() :
+	ScriptRuntime(int runtimeSize) :
 		m_rooter(NULL)
 	{
-		m_rt = JS_NewRuntime(RUNTIME_SIZE);
+		m_rt = JS_NewRuntime(runtimeSize);
 		debug_assert(m_rt); // TODO: error handling
 
 #if ENABLE_SCRIPT_PROFILING
@@ -211,9 +210,9 @@ private:
 	}
 };
 
-shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime()
+shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(int runtimeSize)
 {
-	return shared_ptr<ScriptRuntime>(new ScriptRuntime);
+	return shared_ptr<ScriptRuntime>(new ScriptRuntime(runtimeSize));
 }
 
 ////////////////////////////////////////////////////////////////
@@ -438,8 +437,8 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 #endif
 
 	// Some other JIT flags to experiment with:
-//	options |= JSOPTION_JIT;
-//	options |= JSOPTION_PROFILING;
+	options |= JSOPTION_JIT;
+	options |= JSOPTION_PROFILING;
 
 	JS_SetOptions(m_cx, options);
 

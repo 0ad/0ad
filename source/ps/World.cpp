@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,6 +93,32 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 		}
 	}
 }
+
+void CWorld::RegisterInitRMS(const CStrW& scriptFile, const CScriptValRooted& settings, int playerID)
+{
+	// If scriptFile is empty, a blank map will be generated using settings (no RMS run)
+	CMapReader* reader = 0;
+
+	try
+	{
+		reader = new CMapReader;
+		CTriggerManager* pTriggerManager = NULL;
+		reader->LoadRandomMap(scriptFile, settings, m_Terrain,
+			CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
+			CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
+			&g_LightEnv, m_pGame->GetView(),
+			m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
+			pTriggerManager, m_pGame->GetSimulation2(), playerID);
+			// fails immediately, or registers for delay loading
+	}
+	catch (PSERROR_File& err)
+	{
+		delete reader;
+		LOGERROR(L"Failed to generate random map %ls: %hs", scriptFile.c_str(), err.what());
+		throw PSERROR_Game_World_MapLoadFailed();
+	}
+}
+
 
 /**
  * Destructor.

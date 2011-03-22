@@ -40,6 +40,10 @@ namespace boost { class rand48; }
 // but as large as necessary for all wrapped functions)
 #define SCRIPT_INTERFACE_MAX_ARGS 6
 
+// TODO: what's a good default?
+#define DEFAULT_RUNTIME_SIZE 16 * 1024 * 1024
+
+
 #ifdef NDEBUG
 #define ENABLE_SCRIPT_PROFILING 0
 #else
@@ -67,8 +71,9 @@ public:
 	 * ScriptInterfaces contexts. Values created in one context may be used
 	 * in any other context from the same runtime (but not any other runtime).
 	 * Each runtime should only ever be used on a single thread.
+	 * @param runtimeSize Maximum size in bytes of the new runtime
 	 */
-	static shared_ptr<ScriptRuntime> CreateRuntime();
+	static shared_ptr<ScriptRuntime> CreateRuntime(int runtimeSize = DEFAULT_RUNTIME_SIZE);
 
 	/**
 	 * Constructor.
