@@ -548,7 +548,7 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 			SModel* smdl = *it;
 			CModel* mdl = smdl->GetModel();
 
-			if (flags & !(mdl->GetFlags() & flags))
+			if (flags && !(mdl->GetFlags() & flags))
 				continue;
 
 			debug_assert(smdl->GetKey() == m);
