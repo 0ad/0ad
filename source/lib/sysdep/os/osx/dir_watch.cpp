@@ -25,7 +25,7 @@
 
 // stub implementations
 
-LibError dir_watch_Add(const fs::wpath& UNUSED(path), PDirWatch& UNUSED(dirWatch))
+LibError dir_watch_Add(const NativePath& UNUSED(path), PDirWatch& UNUSED(dirWatch))
 {
 	return INFO::OK;
 }

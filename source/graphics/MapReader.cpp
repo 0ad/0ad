@@ -1099,21 +1099,20 @@ int CMapReader::ParseTerrain()
 
 #define GET_TERRAIN_PROPERTY(prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(m_MapData.get(), #prop, out))\
-		LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);\
+		LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);
 
-	size_t size;
+	int size;
 	GET_TERRAIN_PROPERTY(size, size)
 
 	m_PatchesPerSide = size / PATCH_SIZE;
-	
+
 	// flat heightmap of u16 data
 	GET_TERRAIN_PROPERTY(height, m_Heightmap)
 
 	// load textures
-	GET_TERRAIN_PROPERTY(numTextures, num_terrain_tex)
-
 	std::vector<std::string> textureNames;
 	GET_TERRAIN_PROPERTY(textureNames, textureNames)
+	num_terrain_tex = textureNames.size();
 
 	while (cur_terrain_tex < num_terrain_tex)
 	{

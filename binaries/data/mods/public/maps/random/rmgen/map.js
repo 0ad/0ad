@@ -299,7 +299,6 @@ Map.prototype.getMapData = function()
 		textureNames.push(name);
 	
 	data["textureNames"] = textureNames;
-	data["numTextures"] = textureNames.length;
 	
 	//  Convert 2D tile data to flat array, reodering into patches as expected by MapReader
 	var tiles = new Array(size*size);
