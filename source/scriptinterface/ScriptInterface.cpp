@@ -770,15 +770,16 @@ bool ScriptInterface::FreezeObject(jsval obj, bool deep)
 
 bool ScriptInterface::LoadScript(const VfsPath& filename, const std::wstring& code)
 {
-	std::string fnAscii = utf8_from_wstring(filename.string());
-
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
 	std::wstring codeStrict = L"\"use strict\";\n" + code;
 	utf16string codeUtf16(codeStrict.begin(), codeStrict.end());
 	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
 
-	JSFunction* func = JS_CompileUCFunction(m->m_cx, NULL, NULL, 0, NULL, reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()), fnAscii.c_str(), lineNo);
+	JSFunction* func = JS_CompileUCFunction(m->m_cx, NULL, NULL, 0, NULL,
+			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()),
+			utf8_from_wstring(filename.string()).c_str(), lineNo);
+
 	if (!func)
 		return false;
 
@@ -809,8 +810,6 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
 	std::wstring code = wstring_from_utf8(content);
 
-	std::string fnAscii = utf8_from_wstring(path.string());
-
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
 	std::wstring codeStrict = L"\"use strict\";\n" + code;
@@ -818,7 +817,10 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
 
 	jsval rval;
-	JSBool ok = JS_EvaluateUCScript(m->m_cx, m->m_glob, reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()), fnAscii.c_str(), lineNo, &rval);
+	JSBool ok = JS_EvaluateUCScript(m->m_cx, m->m_glob,
+			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()),
+			utf8_from_wstring(path.string()).c_str(), lineNo, &rval);
+
 	return ok ? true : false;
 }
 

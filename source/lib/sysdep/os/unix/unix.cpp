@@ -410,3 +410,8 @@ LibError sys_open_url(const std::string& url)
 		return INFO::OK;
 	}
 }
+
+FILE* sys_OpenFile(const OsPath& pathname, const char* mode)
+{
+	return fopen(OsString(pathname).c_str(), mode);
+}

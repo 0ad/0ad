@@ -589,16 +589,6 @@ LibError debug_stl_get_container_info(const wchar_t* type_name, const u8* p, siz
 	// doing so is lots of work for little gain.)
 	CONTAINER(queue, L"std::queue<*,std::deque<*> >")
 	CONTAINER(stack, L"std::stack<*,std::deque<*> >")
-	// nonstandard containers (will probably be part of C++0x)
-#if HAVE_STL_HASH
-	CONTAINER(hash_map, WIDEN(STRINGIZE(STL_HASH_MAP)) L"<*>")
-	CONTAINER(hash_multimap, WIDEN(STRINGIZE(STL_HASH_MULTIMAP)) L"<*>")
-	CONTAINER(hash_set, WIDEN(STRINGIZE(STL_HASH_SET)) L"<*>")
-	CONTAINER(hash_multiset, WIDEN(STRINGIZE(STL_HASH_MULTISET)) L"<*>")
-#endif
-#if HAVE_STL_SLIST
-	CONTAINER(slist, WIDEN(STRINGIZE(STL_SLIST)) L"<*>")
-#endif
 
 	// note: do not raise warnings - these can happen for new
 	// STL classes or if the debuggee's memory is corrupted.

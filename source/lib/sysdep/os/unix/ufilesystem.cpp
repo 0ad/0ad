@@ -55,7 +55,7 @@ struct wdirent* wreaddir(WDIR* wd)
 	dirent* ent = readdir(wd->d);
 	if(!ent)
 		return 0;
-	wcscpy_s(wd->name, ARRAY_SIZE(wd->name), ent->d_name);
+	wcscpy_s(wd->name, ARRAY_SIZE(wd->name), OsPath(ent->d_name).string().c_str());
 	return &wd->ent;
 }
 
@@ -104,7 +104,7 @@ int wrename(const OsPath& pathnameOld, const OsPath& pathnameNew)
 	return rename(OsString(pathnameOld).c_str(), OsString(pathnameNew).c_str());
 }
 
-OsPath realpath(const OsPath& pathname)
+OsPath wrealpath(const OsPath& pathname)
 {
 	char resolvedBuf[PATH_MAX];
 	const char* resolved = realpath(OsString(pathname).c_str(), resolvedBuf);

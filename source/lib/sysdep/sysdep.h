@@ -182,6 +182,9 @@ LIB_API LibError sys_generate_random_bytes(u8* buf, size_t count);
  **/
 LIB_API LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy);
 
+/**
+ * open a file like with fopen (but taking an OsPath argument).
+ */
 LIB_API FILE* sys_OpenFile(const OsPath& pathname, const char* mode);
 
 /**

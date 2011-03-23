@@ -90,7 +90,7 @@ void CArchiveBuilder::Build(const OsPath& archive)
 
 		// Compress textures and store the new cached version instead of the original
 		if (boost::algorithm::starts_with(path.string(), L"art/textures/") &&
-			tex_is_known_extension(m_Files[i]) &&
+			tex_is_known_extension(path) &&
 			// Skip some subdirectories where the engine doesn't use CTextureManager yet:
 			!boost::algorithm::starts_with(path.string(), L"art/textures/cursors/") &&
 			!boost::algorithm::starts_with(path.string(), L"art/textures/terrain/alphamaps/")
@@ -118,7 +118,7 @@ void CArchiveBuilder::Build(const OsPath& archive)
 		writer->AddFile(realPath, path);
 
 		// Also cache XMB versions of all XML files
-		if (m_Files[i].Extension() == L".xml")
+		if (path.Extension() == L".xml")
 		{
 			VfsPath cachedPath;
 			debug_printf(L"Converting XML file %ls\n", realPath.string().c_str());

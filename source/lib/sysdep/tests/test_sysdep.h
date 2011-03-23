@@ -99,9 +99,8 @@ public:
 		for (size_t i = 0; i < ARRAY_SIZE(files); ++i)
 		{
 			std::string name = rootstr + files[i];
-			FILE* f;
-			errno_t err = fopen_s(&f, name.c_str(), "w");
-			TS_ASSERT_EQUALS(err, 0);
+			FILE* f = fopen(name.c_str(), "w");
+			TS_ASSERT(f);
 			fclose(f);
 		}
 

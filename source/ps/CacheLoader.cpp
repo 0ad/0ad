@@ -141,7 +141,7 @@ VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initi
 		digestPrefix << std::setfill(L'0') << std::setw(2) << (int)digest[i];
 
 	// Construct the final path
-	return VfsPath("cache") /sourcePath.ChangeExtension(sourcePath.Extension().string() + L"." + digestPrefix.str() + m_FileExtension);
+	return VfsPath("cache") / sourcePath.ChangeExtension(sourcePath.Extension().string() + L"." + digestPrefix.str() + m_FileExtension);
 
 	// TODO: we should probably include the mod name, once that's possible (http://trac.wildfiregames.com/ticket/564)
 }

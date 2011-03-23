@@ -70,7 +70,7 @@ static const LibErrorAssociation* AssociationFromLibError(LibError err)
 	return 0;
 }
 
-static const LibErrorAssociation* AssociationFromErrno(errno_t errno_equivalent)
+static const LibErrorAssociation* AssociationFromErrno(int errno_equivalent)
 {
 	for(const LibErrorAssociation* lea = associations; lea; lea = lea->next)
 	{

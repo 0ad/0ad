@@ -123,7 +123,7 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v,
 template<> bool ScriptInterface::FromJSVal<Path>(JSContext* cx, jsval v, Path& out)
 {
 	std::wstring string;
-	if(!FromJSVal(cx, v, string))
+	if (!FromJSVal(cx, v, string))
 		return false;
 	out = string;
 	return true;

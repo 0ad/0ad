@@ -75,7 +75,7 @@ void SkyManager::LoadSkyTextures()
 {
 	for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); ++i)
 	{
-		VfsPath path = VfsPath("art/textures/skies") / m_SkySet /  (Path::String(s_imageNames[i])+L".dds");
+		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(s_imageNames[i])+L".dds");
 
 		CTextureProperties textureProps(path);
 		textureProps.SetWrap(GL_CLAMP_TO_EDGE);

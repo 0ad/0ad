@@ -41,6 +41,8 @@
 # include "boost/functional/hash.hpp"
 #endif
 
+#include <cstring>
+
 namespace ERR
 {
 	const LibError PATH_CHARACTER_ILLEGAL   = -100300;

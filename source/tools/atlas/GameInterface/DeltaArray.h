@@ -44,7 +44,7 @@ private:
 	}
 
 	// TODO: more efficient representation
-	typedef boost::unordered_map<std::pair<ssize_t, ssize_t>, std::pair<T, T>> Data; // map of <x,y> -> <old_val, new_val>
+	typedef boost::unordered_map<std::pair<ssize_t, ssize_t>, std::pair<T, T> > Data; // map of <x,y> -> <old_val, new_val>
 	Data m_Data;
 };
 
