@@ -1203,7 +1203,7 @@ int CMapReader::ParseEnvironment()
 
 #define GET_ENVIRONMENT_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
-		LOGWARNING(L"CMapReader::ParseEnvironment() failed to get '%hs' property", #prop);\
+		LOGWARNING(L"CMapReader::ParseEnvironment() failed to get '%hs' property", #prop);
 
 	CScriptValRooted envObj;
 	GET_ENVIRONMENT_PROPERTY(m_MapData.get(), Environment, envObj)
@@ -1281,7 +1281,7 @@ int CMapReader::ParseCamera()
 
 #define GET_CAMERA_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
-		LOGWARNING(L"CMapReader::ParseCamera() failed to get '%hs' property", #prop);\
+		LOGWARNING(L"CMapReader::ParseCamera() failed to get '%hs' property", #prop);
 
 	CScriptValRooted cameraObj;
 	GET_CAMERA_PROPERTY(m_MapData.get(), Camera, cameraObj)

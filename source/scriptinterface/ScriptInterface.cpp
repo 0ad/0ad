@@ -434,11 +434,11 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	// hooks are incompatible with the JIT)
 #if !ENABLE_SCRIPT_PROFILING
 	options |= JSOPTION_METHODJIT;
-#endif
 
 	// Some other JIT flags to experiment with:
 	options |= JSOPTION_JIT;
 	options |= JSOPTION_PROFILING;
+#endif
 
 	JS_SetOptions(m_cx, options);
 
