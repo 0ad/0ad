@@ -170,11 +170,11 @@ extern bool wutil_HasCommandLineArgument(const wchar_t* arg);
 
 // used by wutil_ExecutablePath, but provided in case other code
 // needs to know this before our wutil_Init runs.
-extern NativePath wutil_DetectExecutablePath();
+extern OsPath wutil_DetectExecutablePath();
 
-extern const NativePath& wutil_SystemPath();
-extern const NativePath& wutil_ExecutablePath();
-extern const NativePath& wutil_AppdataPath();
+extern const OsPath& wutil_SystemPath();
+extern const OsPath& wutil_ExecutablePath();
+extern const OsPath& wutil_AppdataPath();
 
 
 //-----------------------------------------------------------------------------

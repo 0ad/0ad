@@ -77,32 +77,6 @@ bool path_is_subpath(const wchar_t* s1, const wchar_t* s2)
 }
 
 
-// if name is invalid, return a descriptive error code, otherwise INFO::OK.
-// (name is a path component, i.e. that between directory separators)
-LibError path_component_validate(const wchar_t* name)
-{
-	// disallow empty strings
-	if(*name == '\0')
-		WARN_RETURN(ERR::PATH_EMPTY);
-
-	for(;;)
-	{
-		const int c = *name++;
-
-		// disallow *any* dir separators (regardless of which
-		// platform we're on).
-		if(c == '\\' || c == ':' || c == '/')
-			WARN_RETURN(ERR::PATH_COMPONENT_SEPARATOR);
-
-		// end of string, no errors encountered
-		if(c == '\0')
-			break;
-	}
-
-	return INFO::OK;
-}
-
-
 //-----------------------------------------------------------------------------
 
 // return pointer to the name component within path (i.e. skips over all
@@ -117,7 +91,5 @@ const wchar_t* path_name_only(const wchar_t* path)
 
 	// return name, i.e. component after the last slash
 	const wchar_t* name = std::max(slash1, slash2)+1;
-	if(name[0] != '\0')	// else path_component_validate would complain
-		path_component_validate(name);
 	return name;
 }

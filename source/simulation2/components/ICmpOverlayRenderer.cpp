@@ -23,5 +23,5 @@
 
 BEGIN_INTERFACE_WRAPPER(OverlayRenderer)
 DEFINE_INTERFACE_METHOD_0("Reset", void, ICmpOverlayRenderer, Reset)
-DEFINE_INTERFACE_METHOD_4("AddSprite", void, ICmpOverlayRenderer, AddSprite, std::wstring, CFixedVector2D, CFixedVector2D, CFixedVector3D)
+DEFINE_INTERFACE_METHOD_4("AddSprite", void, ICmpOverlayRenderer, AddSprite, VfsPath, CFixedVector2D, CFixedVector2D, CFixedVector3D)
 END_INTERFACE_WRAPPER(OverlayRenderer)

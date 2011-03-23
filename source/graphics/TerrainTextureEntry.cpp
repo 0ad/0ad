@@ -19,6 +19,7 @@
 
 #include <map>
 
+#include "lib/utf8.h"
 #include "lib/ogl.h"
 #include "lib/path_util.h"
 #include "lib/res/graphics/ogl_tex.h"
@@ -54,7 +55,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const Vf
 	for (;it!=m_Groups.end();++it)
 		(*it)->AddTerrain(this);
 	
-	m_Tag = CStrW(Path::Basename(path)).ToUTF8();
+	m_Tag = utf8_from_wstring(path.Basename().string());
 }
 
 CTerrainTextureEntry::~CTerrainTextureEntry()

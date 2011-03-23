@@ -38,7 +38,7 @@ ERROR_ASSOCIATE(ERR::IO, L"Error during IO", EIO);
 
 namespace FileImpl {
 
-LibError Open(const NativePath& pathname, wchar_t accessType, int& fd)
+LibError Open(const OsPath& pathname, wchar_t accessType, int& fd)
 {
 	int oflag = 0;
 	switch(accessType)
@@ -61,7 +61,7 @@ LibError Open(const NativePath& pathname, wchar_t accessType, int& fd)
 	// prevent exploits by disallowing writes to our files by other users.
 	// note that the system-wide installed cache is read-only.
 	const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;	// 0644
-	fd = wopen(pathname.c_str(), oflag, mode);
+	fd = wopen(pathname, oflag, mode);
 	if(fd < 0)
 		return LibError_from_errno(false);
 

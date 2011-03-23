@@ -182,8 +182,8 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	bool ok = m_Simulation2.ComputeStateHash(hash, quick);
 	debug_assert(ok);
 
-	NativePath path = Path::Join(psLogDir(), "oos_dump.txt");
-	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+	OsPath path = psLogDir()/"oos_dump.txt";
+	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	m_Simulation2.DumpDebugState(file);
 	file.close();
 

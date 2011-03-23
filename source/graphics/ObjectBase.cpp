@@ -90,7 +90,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	m_VariantGroups.clear();
 
 	m_Pathname = pathname;
-	m_ShortName = Path::Basename(pathname);
+	m_ShortName = pathname.Basename().string();
 
 
 	// Set up the vector<vector<T>> m_Variants to contain the right number
@@ -142,11 +142,11 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 					if (option_name == el_mesh)
 					{
-						currentVariant->m_ModelFilename = Path::Join("art/meshes", option.GetText().FromUTF8());
+						currentVariant->m_ModelFilename = VfsPath("art/meshes") / option.GetText().FromUTF8();
 					}
 					else if (option_name == el_texture)
 					{
-						currentVariant->m_TextureFilename = Path::Join("art/textures/skins", option.GetText().FromUTF8());
+						currentVariant->m_TextureFilename = VfsPath("art/textures/skins") / option.GetText().FromUTF8();
 					}
 					else if (option_name == el_decal)
 					{
@@ -178,7 +178,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 								}
 								else if (ae.Name == at_file)
 								{
-									anim.m_FileName = Path::Join("art/animation", ae.Value.FromUTF8());
+									anim.m_FileName = VfsPath("art/animation") / ae.Value.FromUTF8();
 								}
 								else if (ae.Name == at_speed)
 								{
@@ -224,7 +224,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 			if (currentGroup->size() == 0)
 			{
-				LOGERROR(L"Actor group has zero variants ('%ls')", pathname.c_str());
+				LOGERROR(L"Actor group has zero variants ('%ls')", pathname.string().c_str());
 			}
 
 			++currentGroup;
@@ -239,7 +239,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 		}
 		else if (child_name == el_material)
 		{
-			m_Material = Path::Join("art/materials", child.GetText().FromUTF8());
+			m_Material = VfsPath("art/materials") / child.GetText().FromUTF8();
 		}
 	}
 

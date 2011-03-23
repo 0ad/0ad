@@ -24,7 +24,7 @@
 #include "lib/file/vfs/vfs.h"
 
 #include "lib/allocators/shared_ptr.h"
-#include "lib/path_util.h"
+#include "lib/file/file_system_util.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/file/common/trace.h"
 #include "lib/file/archive/archive.h"
@@ -47,9 +47,9 @@ public:
 	{
 	}
 
-	virtual LibError Mount(const VfsPath& mountPoint, const NativePath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
+	virtual LibError Mount(const VfsPath& mountPoint, const OsPath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
-		if(!DirectoryExists(path))
+		if(!fs_util::DirectoryExists(path))
 		{
 			if(flags & VFS_MOUNT_MUST_EXIST)
 				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN
@@ -119,7 +119,7 @@ public:
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
 		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
-		const NativePath name = Path::Filename(pathname);
+		const OsPath name = pathname.Filename();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 
 		// wipe out any cached blocks. this is necessary to cover the (rare) case
@@ -129,7 +129,7 @@ public:
 		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
 		directory->AddFile(file);
 
-		m_trace->NotifyStore(pathname.c_str(), size);
+		m_trace->NotifyStore(pathname, size);
 		return INFO::OK;
 	}
 
@@ -163,7 +163,7 @@ public:
 
 		stats_io_user_request(size);
 		stats_cache(isCacheHit? CR_HIT : CR_MISS, size);
-		m_trace->NotifyLoad(pathname.c_str(), size);
+		m_trace->NotifyLoad(pathname, size);
 
 		return INFO::OK;
 	}
@@ -176,20 +176,20 @@ public:
 		return textRepresentation;
 	}
 
-	virtual LibError GetRealPath(const VfsPath& pathname, NativePath& realPathname)
+	virtual LibError GetRealPath(const VfsPath& pathname, OsPath& realPathname)
 	{
 		VfsDirectory* directory; VfsFile* file;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
-		realPathname = Path::Join(file->Loader()->Path(), Path::Filename(pathname));
+		realPathname = file->Loader()->Path() / pathname.Filename();
 		return INFO::OK;
 	}
 
-	virtual LibError GetVirtualPath(const NativePath& realPathname, VfsPath& pathname)
+	virtual LibError GetVirtualPath(const OsPath& realPathname, VfsPath& pathname)
 	{
-		const NativePath realPath = Path::AddSlash(Path::Path(realPathname));
+		const OsPath realPath = realPathname.Parent()/"";
 		VfsPath path;
 		RETURN_ERR(FindRealPathR(realPath, m_rootDirectory, L"", path));
-		pathname = Path::Join(path, Path::Filename(realPathname));
+		pathname = path / realPathname.Filename();
 		return INFO::OK;
 	}
 
@@ -199,7 +199,7 @@ public:
 
 		VfsDirectory* directory;
 		RETURN_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
-		const NativePath name = Path::Filename(pathname);
+		const OsPath name = pathname.Filename();
 		directory->Invalidate(name);
 
 		return INFO::OK;
@@ -211,7 +211,7 @@ public:
 	}
 
 private:
-	LibError FindRealPathR(const NativePath& realPath, const VfsDirectory& directory, const VfsPath& curPath, VfsPath& path)
+	LibError FindRealPathR(const OsPath& realPath, const VfsDirectory& directory, const VfsPath& curPath, VfsPath& path)
 	{
 		PRealDirectory realDirectory = directory.AssociatedDirectory();
 		if(realDirectory && realDirectory->Path() == realPath)
@@ -223,9 +223,9 @@ private:
 		const VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
 		for(VfsDirectory::VfsSubdirectories::const_iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
 		{
-			const NativePath& subdirectoryName = it->first;
+			const OsPath& subdirectoryName = it->first;
 			const VfsDirectory& subdirectory = it->second;
-			LibError ret = FindRealPathR(realPath, subdirectory, Path::AddSlash(Path::Join(curPath, subdirectoryName)), path);
+			LibError ret = FindRealPathR(realPath, subdirectory, curPath / subdirectoryName/"", path);
 			if(ret == INFO::OK)
 				return INFO::OK;
 		}

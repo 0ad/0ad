@@ -183,9 +183,9 @@ static bool png_is_hdr(const u8* file)
 }
 
 
-static bool png_is_ext(const NativePath& extension)
+static bool png_is_ext(const OsPath& extension)
 {
-	return !wcscasecmp(extension.c_str(), L".png");
+	return extension == L".png";
 }
 
 

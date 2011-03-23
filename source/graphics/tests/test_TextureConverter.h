@@ -32,11 +32,11 @@ public:
 
 	void setUp()
 	{
-		DeleteDirectory(Path::Join(DataDir(), "_testcache")); // clean up in case the last test run failed
+		DeleteDirectory(DataDir()/"_testcache"); // clean up in case the last test run failed
 
 		m_VFS = CreateVfs(20*MiB);
-		TS_ASSERT_OK(m_VFS->Mount(L"", Path::Join(DataDir(), "mods/_test.tex"), VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(m_VFS->Mount(L"cache/", Path::Join(DataDir(), "_testcache")));
+		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir()/"mods/_test.tex", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir()/"_testcache"));
 
 		tex_codec_register_all();
 	}
@@ -46,7 +46,7 @@ public:
 		tex_codec_unregister_all();
 
 		m_VFS.reset();
-		DeleteDirectory(Path::Join(DataDir(), "_testcache"));
+		DeleteDirectory(DataDir()/"_testcache");
 	}
 
 	void test_convert_quality()

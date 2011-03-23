@@ -525,8 +525,8 @@ void CProfileViewer::SaveToFile()
 	{
 		// Open the file. (It will be closed when the CProfileViewer
 		// destructor is called.)
-		NativePath path = Path::Join(psLogDir(), "profile.txt");
-		m->outputStream.open(StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+		OsPath path = psLogDir()/"profile.txt";
+		m->outputStream.open(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 		if (m->outputStream.fail())
 		{

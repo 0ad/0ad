@@ -69,7 +69,7 @@ static LibError BuildDirEntListCB(const VfsPath& pathname, const FileInfo& UNUSE
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
-	jsval val = ToJSVal( CStrW(pathname) );
+	jsval val = ToJSVal( CStrW(pathname.string()) );
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, &val);
 	return INFO::CB_CONTINUE;
 }

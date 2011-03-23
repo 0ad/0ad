@@ -117,7 +117,7 @@ extern void ah_override_gl_upload_caps();
  *
  * @return path ending with directory separator (e.g. '/').
  **/
-extern const NativePath& ah_get_log_dir();
+extern const OsPath& ah_get_log_dir();
 
 /**
  * gather all app-related logs/information and write it to file.
@@ -179,7 +179,7 @@ extern ErrorReactionInternal ah_display_error(const wchar_t* text, size_t flags)
 struct AppHooks
 {
 	void (*override_gl_upload_caps)();
-	const NativePath& (*get_log_dir)();
+	const OsPath& (*get_log_dir)();
 	void (*bundle_logs)(FILE* f);
 	const wchar_t* (*translate)(const wchar_t* text);
 	void (*translate_free)(const wchar_t* text);

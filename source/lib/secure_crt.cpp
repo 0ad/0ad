@@ -257,33 +257,6 @@ int tsprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
 	return len;
 }
 
-
-// note: there is no portable wfopen, so we need separate implementations
-// of tfopen_s. (the Unicode version just converts to UTF8)
-#if defined(WSECURE_CRT)
-
-errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode)
-{
-	*pfile = NULL;
-	const std::string filename_c = utf8_from_wstring(filename);
-	const std::string mode_c = utf8_from_wstring(mode);
-	return fopen_s(pfile, filename_c.c_str(), mode_c.c_str());
-}
-
-#else
-
-errno_t fopen_s(FILE** pfile, const char* filename, const char* mode)
-{
-	*pfile = NULL;
-	FILE* file = fopen(filename, mode);
-	if(!file)
-		return ENOENT;
-	*pfile = file;
-	return 0;
-}
-
-#endif
-
 #endif // #if EMULATE_SECURE_CRT
 
 #undef tchar

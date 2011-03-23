@@ -26,49 +26,49 @@ class Paths
 public:
 	Paths(const CmdLineArgs& args);
 
-	const NativePath& Root() const
+	const OsPath& Root() const
 	{
 		return m_root;
 	}
 
-	const NativePath& RData() const
+	const OsPath& RData() const
 	{
 		return m_rdata;
 	}
 
-	const NativePath& Data() const
+	const OsPath& Data() const
 	{
 		return m_data;
 	}
 
-	const NativePath& Config() const
+	const OsPath& Config() const
 	{
 		return m_config;
 	}
 
-	const NativePath& Cache() const
+	const OsPath& Cache() const
 	{
 		return m_cache;
 	}
 
-	const NativePath& Logs() const
+	const OsPath& Logs() const
 	{
 		return m_logs;
 	}
 
 private:
-	static NativePath Root(const NativePath& argv0);
-	static NativePath XDG_Path(const char* envname, const NativePath& home, const NativePath& defaultPath);
+	static OsPath Root(const OsPath& argv0);
+	static OsPath XDG_Path(const char* envname, const OsPath& home, const OsPath& defaultPath);
 
 	// read-only directories, fixed paths relative to executable
-	NativePath m_root;
-	NativePath m_rdata;
+	OsPath m_root;
+	OsPath m_rdata;
 
 	// writable directories
-	NativePath m_data;
-	NativePath m_config;
-	NativePath m_cache;
-	NativePath m_logs;	// special-cased in single-root-folder installations
+	OsPath m_data;
+	OsPath m_config;
+	OsPath m_cache;
+	OsPath m_logs;	// special-cased in single-root-folder installations
 };
 
 #endif	// #ifndef INCLUDED_PS_GAMESETUP_PATHS

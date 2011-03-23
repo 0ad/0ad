@@ -41,6 +41,6 @@ typedef std::wstring VersionList;
  * The text output includes the module name.
  * On failure, the version is given as "unknown".
  **/
-extern void wdll_ver_Append(const NativePath& pathname, VersionList& list);
+extern void wdll_ver_Append(const OsPath& pathname, VersionList& list);
 
 #endif	// #ifndef INCLUDED_WDLL_VER

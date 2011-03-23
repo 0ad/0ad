@@ -1478,7 +1478,7 @@ void SDL_Quit()
 }
 
 
-static NativePath GetStdoutPathname()
+static OsPath GetStdoutPathname()
 {
 	// the current directory is unreliable, so use the full path to
 	// the current executable.
@@ -1489,7 +1489,7 @@ static NativePath GetStdoutPathname()
 	// add the EXE name to the filename to allow multiple executables
 	// with their own redirections. (we can't use wutil_ExecutablePath
 	// because it doesn't return the basename)
-	NativePath pathname = Path::ChangeExtension(NativePath(pathnameEXE), L"_stdout.txt");
+	OsPath pathname = OsPath(pathnameEXE).ChangeExtension(L"_stdout.txt");
 	return pathname;
 }
 
@@ -1500,7 +1500,7 @@ static void RedirectStdout()
 	if(wutil_IsValidHandle(GetStdHandle(STD_OUTPUT_HANDLE)))
 		return;
 
-	const NativePath pathname = GetStdoutPathname();
+	const OsPath pathname = GetStdoutPathname();
 
  	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
  	// to prevent the OS from opening a console on startup (ugly).
@@ -1509,7 +1509,7 @@ static void RedirectStdout()
  	FILE* f = 0;
 	// (return value ignored - it indicates 'file already exists' even
 	// if f is valid)
-	(void)_wfreopen_s(&f, pathname.c_str(), L"wt", stdout);
+	(void)_wfreopen_s(&f, OsString(pathname).c_str(), L"wt", stdout);
 	// executable directory (probably Program Files) is read-only for
 	// non-Administrators. we can't pick another directory because
 	// ah_log_dir might not be valid until the app's init has run,

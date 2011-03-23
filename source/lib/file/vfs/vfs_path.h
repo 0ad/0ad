@@ -36,7 +36,8 @@
  * there is no restriction on path length; when dimensioning character
  * arrays, prefer PATH_MAX.
  **/
-typedef std::wstring VfsPath;
+
+typedef Path VfsPath;
 
 typedef std::vector<VfsPath> VfsPaths;
 

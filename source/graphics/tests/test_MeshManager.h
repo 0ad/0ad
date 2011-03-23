@@ -17,6 +17,7 @@
 
 #include "lib/self_test.h"
 
+#include "lib/file/file_system_util.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
 
@@ -27,17 +28,17 @@
 #include "ps/CLogger.h"
 #include "ps/XML/RelaxNG.h"
 
-static NativePath MOD_PATH(Path::Join(DataDir(), "mods/_test.mesh"));
-static NativePath CACHE_PATH(Path::Join(DataDir(), "_testcache"));
+static OsPath MOD_PATH(DataDir()/"mods/_test.mesh");
+static OsPath CACHE_PATH(DataDir()/"_testcache");
 
-const wchar_t* srcDAE = L"collada/sphere.dae";
-const wchar_t* srcPMD = L"collada/sphere.pmd";
-const wchar_t* testDAE = L"art/skeletons/test.dae";
-const wchar_t* testPMD = L"art/skeletons/test.pmd";
-const wchar_t* testBase = L"art/skeletons/test";
+const OsPath srcDAE(L"collada/sphere.dae");
+const OsPath srcPMD(L"collada/sphere.pmd");
+const OsPath testDAE(L"art/skeletons/test.dae");
+const OsPath testPMD(L"art/skeletons/test.pmd");
+const OsPath testBase(L"art/skeletons/test");
 
-const wchar_t* srcSkeletonDefs = L"collada/skeletons.xml";
-const wchar_t* testSkeletonDefs = L"art/skeletons/skeletons.xml";
+const OsPath srcSkeletonDefs(L"collada/skeletons.xml");
+const OsPath testSkeletonDefs(L"art/skeletons/skeletons.xml");
 
 extern PIVFS g_VFS;
 
@@ -51,15 +52,15 @@ class TestMeshManager : public CxxTest::TestSuite
 
 		// Make sure the required directories doesn't exist when we start,
 		// in case the previous test aborted and left them full of junk
-		if(DirectoryExists(MOD_PATH))
+		if(fs_util::DirectoryExists(MOD_PATH))
 			DeleteDirectory(MOD_PATH);
-		if(DirectoryExists(CACHE_PATH))
+		if(fs_util::DirectoryExists(CACHE_PATH))
 			DeleteDirectory(CACHE_PATH);
 
 		g_VFS = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount(L"collada/", Path::Join(DataDir(), "tests/collada"), VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/"tests/collada", VFS_MOUNT_MUST_EXIST));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the
@@ -126,7 +127,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testPMD);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
+		if (modeldef) TS_ASSERT_PATH_EQUALS(modeldef->GetName(), testBase);
 	}
 
 	void test_load_pmd_without_extension()
@@ -135,7 +136,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testBase);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
+		if (modeldef) TS_ASSERT_PATH_EQUALS(modeldef->GetName(), testBase);
 	}
 
 	void test_caching()
@@ -155,7 +156,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
+		if (modeldef) TS_ASSERT_PATH_EQUALS(modeldef->GetName(), testBase);
 	}
 
 	void test_load_dae_caching()
@@ -166,7 +167,7 @@ public:
 		VfsPath daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		VfsPath daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		TS_ASSERT(!daeName1.empty());
-		TS_ASSERT_WSTR_EQUALS(daeName1, daeName2);
+		TS_ASSERT_PATH_EQUALS(daeName1, daeName2);
 		// TODO: it'd be nice to test that it really isn't doing the DAE->PMD
 		// conversion a second time, but there doesn't seem to be an easy way
 		// to check that
@@ -229,7 +230,7 @@ public:
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName(), testBase);
+		if (modeldef) TS_ASSERT_PATH_EQUALS(modeldef->GetName(), testBase);
 
 		TS_ASSERT(v.Validate(L"doc", L"<test>2.0</test>"));
 	}

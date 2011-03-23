@@ -34,14 +34,13 @@
 struct WDIR
 {
 	DIR* d;
-	wchar_t name[300];
+	wchar_t name[PATH_MAX];
 	wdirent ent;
 };
 
-WDIR* wopendir(const wchar_t* wpath)
+WDIR* wopendir(const OsPath& path)
 {
-	const std::string path = StringFromNativePath(wpath);
-	DIR* d = opendir(path.c_str());
+	DIR* d = opendir(OsString(path).c_str());
 	if(!d)
 		return 0;
 	WDIR* wd = new WDIR;
@@ -56,8 +55,7 @@ struct wdirent* wreaddir(WDIR* wd)
 	dirent* ent = readdir(wd->d);
 	if(!ent)
 		return 0;
-	NativePath name = NativePathFromString(ent->d_name);
-	wcscpy_s(wd->name, ARRAY_SIZE(wd->name), name.c_str());
+	wcscpy_s(wd->name, ARRAY_SIZE(wd->name), ent->d_name);
 	return &wd->ent;
 }
 
@@ -69,17 +67,15 @@ int wclosedir(WDIR* wd)
 }
 
 
-int wopen(const wchar_t* wpathname, int oflag)
+int wopen(const OsPath& pathname, int oflag)
 {
 	debug_assert(!(oflag & O_CREAT));
-	const std::string pathname = StringFromNativePath(wpathname);
-	return open(pathname.c_str(), oflag);
+	return open(OsString(pathname).c_str(), oflag);
 }
 
-int wopen(const wchar_t* wpathname, int oflag, mode_t mode)
+int wopen(const OsPath& pathname, int oflag, mode_t mode)
 {
-	const std::string pathname = StringFromNativePath(wpathname);
-	return open(pathname.c_str(), oflag, mode);
+	return open(OsString(pathname).c_str(), oflag, mode);
 }
 
 int wclose(int fd)
@@ -88,51 +84,41 @@ int wclose(int fd)
 }
 
 
-int wtruncate(const wchar_t* wpathname, off_t length)
+int wtruncate(const OsPath& pathname, off_t length)
 {
-	const std::string pathname = StringFromNativePath(wpathname);
-	return truncate(pathname.c_str(), length);
+	return truncate(OsString(pathname).c_str(), length);
 }
 
-int wunlink(const wchar_t* wpathname)
+int wunlink(const OsPath& pathname)
 {
-	const std::string pathname = StringFromNativePath(wpathname);
-	return unlink(pathname.c_str());
+	return unlink(OsString(pathname).c_str());
 }
 
-int wrmdir(const wchar_t* wpath)
+int wrmdir(const OsPath& path)
 {
-	const std::string path = StringFromNativePath(wpath);
-	return rmdir(path.c_str());
+	return rmdir(OsString(path).c_str());
 }
 
-int wrename(const wchar_t* wpathnameOld, const wchar_t* wpathnameNew)
+int wrename(const OsPath& pathnameOld, const OsPath& pathnameNew)
 {
-	const std::string pathnameOld = StringFromNativePath(wpathnameOld);
-	const std::string pathnameNew = StringFromNativePath(wpathnameNew);
-	return rename(pathnameOld.c_str(), pathnameNew.c_str());
+	return rename(OsString(pathnameOld).c_str(), OsString(pathnameNew).c_str());
 }
 
-wchar_t* wrealpath(const wchar_t* wpathname, wchar_t* wresolved)
+OsPath realpath(const OsPath& pathname)
 {
 	char resolvedBuf[PATH_MAX];
-	const std::string pathname = StringFromNativePath(wpathname);
-	const char* resolved = realpath(pathname.c_str(), resolvedBuf);
+	const char* resolved = realpath(OsString(pathname).c_str(), resolvedBuf);
 	if(!resolved)
-		return 0;
-	NativePath nresolved = NativePathFromString(resolved);
-	wcscpy_s(wresolved, PATH_MAX, nresolved.c_str());
-	return wresolved;
+		return OsPath();
+	return resolved;
 }
 
-int wstat(const wchar_t* wpathname, struct stat* buf)
+int wstat(const OsPath& pathname, struct stat* buf)
 {
-	const std::string pathname = StringFromNativePath(wpathname);
-	return stat(pathname.c_str(), buf);
+	return stat(OsString(pathname).c_str(), buf);
 }
 
-int wmkdir(const wchar_t* wpath, mode_t mode)
+int wmkdir(const OsPath& path, mode_t mode)
 {
-	const std::string path = StringFromNativePath(wpath);
-	return mkdir(path.c_str(), mode);
+	return mkdir(OsString(path).c_str(), mode);
 }

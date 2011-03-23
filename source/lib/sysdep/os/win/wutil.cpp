@@ -267,30 +267,30 @@ bool wutil_HasCommandLineArgument(const wchar_t* arg)
 //-----------------------------------------------------------------------------
 // directories
 
-NativePath wutil_DetectExecutablePath()
+OsPath wutil_DetectExecutablePath()
 {
 	wchar_t modulePathname[MAX_PATH+1] = {0};
 	const DWORD len = GetModuleFileNameW(GetModuleHandle(0), modulePathname, MAX_PATH);
 	debug_assert(len != 0);
-	return Path::Path(NativePath(modulePathname));
+	return OsPath(modulePathname).Parent();
 }
 
 // (NB: wutil_Init is called before static ctors => use placement new)
-static NativePath* systemPath;
-static NativePath* executablePath;
-static NativePath* appdataPath;
+static OsPath* systemPath;
+static OsPath* executablePath;
+static OsPath* appdataPath;
 
-const NativePath& wutil_SystemPath()
+const OsPath& wutil_SystemPath()
 {
 	return *systemPath;
 }
 
-const NativePath& wutil_ExecutablePath()
+const OsPath& wutil_ExecutablePath()
 {
 	return *executablePath;
 }
 
-const NativePath& wutil_AppdataPath()
+const OsPath& wutil_AppdataPath()
 {
 	return *appdataPath;
 }
@@ -305,11 +305,11 @@ static void GetDirectories()
 	{
 		const UINT charsWritten = GetSystemDirectoryW(path, MAX_PATH);
 		debug_assert(charsWritten != 0);
-		systemPath = new(wutil_Allocate(sizeof(NativePath))) NativePath(path);
+		systemPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
 	}
 
 	// executable's directory
-	executablePath = new(wutil_Allocate(sizeof(NativePath))) NativePath(wutil_DetectExecutablePath());
+	executablePath = new(wutil_Allocate(sizeof(OsPath))) OsPath(wutil_DetectExecutablePath());
 
 	// application data
 	{
@@ -317,18 +317,18 @@ static void GetDirectories()
 		HANDLE token = 0;
 		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
 		debug_assert(SUCCEEDED(ret));
-		appdataPath = new(wutil_Allocate(sizeof(NativePath))) NativePath(path);
+		appdataPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
 	}
 }
 
 
 static void FreeDirectories()
 {
-	systemPath->~NativePath();
+	systemPath->~OsPath();
 	wutil_Free(systemPath);
-	executablePath->~NativePath();
+	executablePath->~OsPath();
 	wutil_Free(executablePath);
-	appdataPath->~NativePath();
+	appdataPath->~OsPath();
 	wutil_Free(appdataPath);
 }
 

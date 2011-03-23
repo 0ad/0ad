@@ -28,7 +28,7 @@
 
 class TestTex : public CxxTest::TestSuite 
 {
-	void generate_encode_decode_compare(size_t w, size_t h, size_t flags, size_t bpp, const NativePath& extension)
+	void generate_encode_decode_compare(size_t w, size_t h, size_t flags, size_t bpp, const OsPath& extension)
 	{
 		// generate test data
 		const size_t size = w*h*bpp/8;

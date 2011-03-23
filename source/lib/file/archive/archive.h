@@ -91,7 +91,7 @@ struct IArchiveWriter
 	 * @param pathname the actual file to add
 	 * @param pathnameInArchive the name to store in the archive
 	 **/
-	virtual LibError AddFile(const NativePath& pathname, const NativePath& pathameInArchive) = 0;
+	virtual LibError AddFile(const OsPath& pathname, const Path& pathameInArchive) = 0;
 };
 
 typedef shared_ptr<IArchiveWriter> PIArchiveWriter;

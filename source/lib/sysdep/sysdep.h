@@ -111,7 +111,7 @@ extern LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
  *
  * note: this is useful for handling exceptions in other modules.
  **/
-LibError sys_get_module_filename(void* addr, NativePath& pathname);
+LibError sys_get_module_filename(void* addr, OsPath& pathname);
 
 /**
  * Get path to the current executable.
@@ -121,7 +121,7 @@ LibError sys_get_module_filename(void* addr, NativePath& pathname);
  *
  * this is useful for determining installation directory, e.g. for VFS.
  **/
-LIB_API LibError sys_get_executable_name(NativePath& pathname);
+LIB_API LibError sys_get_executable_name(OsPath& pathname);
 
 /**
  * Get the current user's login name.
@@ -137,7 +137,7 @@ extern std::wstring sys_get_user_name();
  *		  faster browsing. if INFO::OK is returned, it receives
  *		  chosen directory path.
  **/
-extern LibError sys_pick_directory(NativePath& path);
+extern LibError sys_pick_directory(OsPath& path);
 
 /**
  * Open the user's default web browser to the given URL.
@@ -184,6 +184,8 @@ LIB_API LibError sys_generate_random_bytes(u8* buf, size_t count);
  * @return INFO::OK on success; INFO::SKIPPED if no proxy found.
  **/
 LIB_API LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy);
+
+LIB_API FILE* sys_OpenFile(const OsPath& pathname, const char* mode);
 
 /**
  * directory separation character

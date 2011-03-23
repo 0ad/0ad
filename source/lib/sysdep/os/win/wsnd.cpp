@@ -40,27 +40,27 @@
 #include "lib/sysdep/os/win/wmi.h"
 
 
-static bool IsOpenAlDllName(const NativePath& name)
+static bool IsOpenAlDllName(const Path::String& name)
 {
 	// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
-	return name.find(L"oal.dll") != NativePath::npos || name.find(L"OpenAL") != NativePath::npos;
+	return name.find(L"oal.dll") != Path::String::npos || name.find(L"OpenAL") != Path::String::npos;
 }
 
 // ensures each OpenAL DLL is only listed once (even if present in several
 // directories on our search path).
-typedef std::set<NativePath> StringSet;
+typedef std::set<Path::String> StringSet;
 
 // find all OpenAL DLLs in a dir.
 // call in library search order (exe dir, then win sys dir); otherwise,
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
-static void add_oal_dlls_in_dir(const NativePath& path, StringSet& dlls, VersionList& versionList)
+static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls, VersionList& versionList)
 {
 	FileInfos files;
 	(void)GetDirectoryEntries(path, &files, 0);
 	for(size_t i = 0; i < files.size(); i++)
 	{
-		const NativePath name = files[i].Name();
+		const Path::String name = files[i].Name().string();
 		if(!IsOpenAlDllName(name))
 			continue;
 
@@ -69,7 +69,7 @@ static void add_oal_dlls_in_dir(const NativePath& path, StringSet& dlls, Version
 		if(!ret.second)	// insert failed - element already there
 			continue;
 
-		wdll_ver_Append(Path::Join(path, name), versionList);
+		wdll_ver_Append(path / name, versionList);
 	}
 }
 
@@ -86,7 +86,7 @@ static void add_oal_dlls_in_dir(const NativePath& path, StringSet& dlls, Version
 // the version info for that bogus driver path, we'll skip this code there.
 // (delay-loading dsound.dll eliminates any overhead)
 
-static NativePath directSoundDriverPath;
+static OsPath directSoundDriverPath;
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
@@ -99,14 +99,14 @@ static BOOL CALLBACK DirectSoundCallback(void* guid, const wchar_t* UNUSED(descr
 
 	// note: $system\\drivers is not in LoadLibrary's search list,
 	// so we have to give the full pathname.
-	directSoundDriverPath = Path::Join(Path::Join(wutil_SystemPath(), "drivers"), NativePath(module));
+	directSoundDriverPath = wutil_SystemPath()/"drivers" / module;
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.
 	return FALSE;
 }
 
-static const NativePath& GetDirectSoundDriverPath()
+static const OsPath& GetDirectSoundDriverPath()
 {
 #define DS_OK 0
 	typedef BOOL (CALLBACK* LPDSENUMCALLBACKW)(void*, const wchar_t*, const wchar_t*, void*);

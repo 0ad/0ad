@@ -30,7 +30,7 @@ class RealDirectory : public IFileLoader
 {
 	NONCOPYABLE(RealDirectory);
 public:
-	RealDirectory(const NativePath& path, size_t priority, size_t flags);
+	RealDirectory(const OsPath& path, size_t priority, size_t flags);
 
 	size_t Priority() const
 	{
@@ -45,13 +45,13 @@ public:
 	// IFileLoader
 	virtual size_t Precedence() const;
 	virtual wchar_t LocationCode() const;
-	virtual NativePath Path() const
+	virtual OsPath Path() const
 	{
 		return m_path;
 	}
-	virtual LibError Load(const NativePath& name, const shared_ptr<u8>& buf, size_t size) const;
+	virtual LibError Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const;
 
-	LibError Store(const NativePath& name, const shared_ptr<u8>& fileContents, size_t size);
+	LibError Store(const OsPath& name, const shared_ptr<u8>& fileContents, size_t size);
 
 	void Watch();
 
@@ -59,7 +59,7 @@ private:
 	// note: paths are relative to the root directory, so storing the
 	// entire path instead of just the portion relative to the mount point
 	// is not all too wasteful.
-	const NativePath m_path;
+	const OsPath m_path;
 
 	const size_t m_priority;
 
@@ -72,6 +72,6 @@ private:
 
 typedef shared_ptr<RealDirectory> PRealDirectory;
 
-extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const NativePath& subdirectoryName);
+extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const OsPath& subdirectoryName);
 
 #endif	// #ifndef INCLUDED_REAL_DIRECTORY

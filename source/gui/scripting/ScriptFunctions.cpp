@@ -312,7 +312,7 @@ CScriptVal LoadMapSettings(void* cbdata, VfsPath pathname)
 
 	CMapSummaryReader reader;
 
-	if (reader.LoadMap(VfsPath(pathname + L".xml")) != PSRETURN_OK)
+	if (reader.LoadMap(pathname.ChangeExtension(L".xml")) != PSRETURN_OK)
 		return CScriptVal();
 
 	return reader.GetMapSettings(guiManager->GetScriptInterface()).get();
@@ -433,8 +433,8 @@ void ForceGC(void* cbdata)
 
 void DumpSimState(void* UNUSED(cbdata))
 {
-	NativePath path = Path::Join(psLogDir(), "sim_dump.txt");
-	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+	OsPath path = psLogDir()/"sim_dump.txt";
+	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
 

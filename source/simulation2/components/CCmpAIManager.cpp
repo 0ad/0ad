@@ -159,7 +159,7 @@ private:
 			{
 				if (!m_ScriptInterface.LoadGlobalScriptFile(*it))
 				{
-					LOGERROR(L"Failed to load script %ls", it->c_str());
+					LOGERROR(L"Failed to load script %ls", it->string().c_str());
 					return false;
 				}
 			}
@@ -172,11 +172,11 @@ private:
 			if (!LoadScripts(m_AIName))
 				return false;
 
-			NativePath path = L"simulation/ai/" + m_AIName + L"/data.json";
+			OsPath path = L"simulation/ai/" + m_AIName + L"/data.json";
 			CScriptValRooted metadata = m_Worker.LoadMetadata(path);
 			if (metadata.uninitialised())
 			{
-				LOGERROR(L"Failed to create AI player: can't find %ls", path.c_str());
+				LOGERROR(L"Failed to create AI player: can't find %ls", path.string().c_str());
 				return false;
 			}
 
@@ -184,7 +184,7 @@ private:
 			std::string constructor;
 			if (!m_ScriptInterface.GetProperty(metadata.get(), "constructor", constructor))
 			{
-				LOGERROR(L"Failed to create AI player: %ls: missing 'constructor'", path.c_str());
+				LOGERROR(L"Failed to create AI player: %ls: missing 'constructor'", path.string().c_str());
 				return false;
 			}
 
@@ -193,7 +193,7 @@ private:
 			if (!m_ScriptInterface.GetProperty(m_ScriptInterface.GetGlobalObject(), constructor.c_str(), ctor)
 				|| ctor.undefined())
 			{
-				LOGERROR(L"Failed to create AI player: %ls: can't find constructor '%hs'", path.c_str(), constructor.c_str());
+				LOGERROR(L"Failed to create AI player: %ls: can't find constructor '%hs'", path.string().c_str(), constructor.c_str());
 				return false;
 			}
 
@@ -218,7 +218,7 @@ private:
 
 			if (obj.undefined())
 			{
-				LOGERROR(L"Failed to create AI player: %ls: error calling constructor '%hs'", path.c_str(), constructor.c_str());
+				LOGERROR(L"Failed to create AI player: %ls: error calling constructor '%hs'", path.string().c_str(), constructor.c_str());
 				return false;
 			}
 

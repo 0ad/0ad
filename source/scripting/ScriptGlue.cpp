@@ -37,6 +37,7 @@
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
+#include "lib/sysdep/sysdep.h"	// sys_OpenFile
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "network/NetServer.h"
 #include "ps/CConsole.h"
@@ -279,13 +280,8 @@ void DumpHeap(const char* basename, int idx, JSContext* cx)
 {
 	char filename[64];
 	sprintf_s(filename, ARRAY_SIZE(filename), "%s.%03d.txt", basename, idx);
-	NativePath pathname = Path::Join(psLogDir(), filename);
-#if OS_WIN
-	FILE* f = _wfopen(pathname.c_str(), L"w");
-#else
-	std::string pathname8 = StringFromNativePath(pathname);
-	FILE* f = fopen(pathname8.c_str(), "w");
-#endif
+	OsPath pathname = psLogDir() / filename;
+	FILE* f = sys_OpenFile(pathname, "w");
 	debug_assert(f);
 	JS_DumpHeap(cx, f, NULL, 0, NULL, (size_t)-1, NULL);
 	fclose(f);

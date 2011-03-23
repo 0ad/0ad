@@ -566,7 +566,7 @@ bool tex_is_known_extension(const VfsPath& pathname)
 {
 	const TexCodecVTbl* dummy;
 	// found codec for it => known extension
-	const NativePath extension = Path::Extension(pathname);
+	const OsPath extension = pathname.Extension();
 	if(tex_codec_for_filename(extension, &dummy) == INFO::OK)
 		return true;
 
@@ -699,7 +699,7 @@ size_t tex_hdr_size(const VfsPath& filename)
 {
 	const TexCodecVTbl* c;
 	
-	const NativePath extension = Path::Extension(filename);
+	const OsPath extension = filename.Extension();
 	CHECK_ERR(tex_codec_for_filename(extension, &c));
 	return c->hdr_size(0);
 }
@@ -751,7 +751,7 @@ LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
 }
 
 
-LibError tex_encode(Tex* t, const NativePath& extension, DynArray* da)
+LibError tex_encode(Tex* t, const OsPath& extension, DynArray* da)
 {
 	CHECK_TEX(t);
 	CHECK_ERR(tex_validate_plain_format(t->bpp, t->flags));

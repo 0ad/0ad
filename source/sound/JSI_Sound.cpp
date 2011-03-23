@@ -19,6 +19,7 @@
 #include "JSI_Sound.h"
 #include "maths/Vector3D.h"
 
+#include "lib/utf8.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/h_mgr.h"	// h_filename
 #include "ps/Filesystem.h"
@@ -180,7 +181,7 @@ void JSI_Sound::ScriptingInit()
 
 CStr JSI_Sound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	return "[object Sound: " + (m_Handle ? CStrW(h_filename(m_Handle)).ToUTF8() : "(null)") + "]";
+	return "[object Sound: " + (m_Handle ? utf8_from_wstring(h_filename(m_Handle).string()) : "(null)") + "]";
 }
 
 JSBool JSI_Sound::Construct(JSContext* cx, uintN argc, jsval* vp)

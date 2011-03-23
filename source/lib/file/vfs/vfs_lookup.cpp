@@ -29,7 +29,7 @@
 
 #include "lib/external_libraries/suppress_boost_warnings.h"
 
-#include "lib/path_util.h"	// path_foreach_component
+#include "lib/sysdep/filesystem.h"
 #include "lib/file/vfs/vfs.h"	// error codes
 #include "lib/file/vfs/vfs_tree.h"
 #include "lib/file/vfs/vfs_populate.h"
@@ -37,11 +37,11 @@
 #include "lib/timer.h"
 
 
-static LibError CreateDirectory(const NativePath& path)
+static LibError CreateDirectory(const OsPath& path)
 {
 	{
 		const mode_t mode = S_IRWXU; // 0700 as prescribed by XDG basedir
-		const int ret = wmkdir(path.c_str(), mode);
+		const int ret = wmkdir(path, mode);
 		if(ret == 0)	// success
 			return INFO::OK;
 	}
@@ -55,7 +55,7 @@ static LibError CreateDirectory(const NativePath& path)
 		// but first ensure it's really a directory (otherwise, a
 		// file is "in the way" and needs to be deleted)
 		struct stat s;
-		const int ret = wstat(path.c_str(), &s);
+		const int ret = wstat(path, &s);
 		debug_assert(ret == 0);	// (wmkdir said it existed)
 		debug_assert(S_ISDIR(s.st_mode));
 		return INFO::OK;
@@ -96,10 +96,10 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 	size_t pos = 0;	// (needed outside of loop)
 	for(;;)
 	{
-		const size_t nextSlash = pathname.find_first_of('/', pos);
-		if(nextSlash == VfsPath::npos)
+		const size_t nextSlash = pathname.string().find_first_of('/', pos);
+		if(nextSlash == VfsPath::String::npos)
 			break;
-		const NativePath subdirectoryName = pathname.substr(pos, nextSlash-pos);
+		const VfsPath subdirectoryName = pathname.string().substr(pos, nextSlash-pos);
 		pos = nextSlash+1;
 
 		VfsDirectory* subdirectory = directory->GetSubdirectory(subdirectoryName);
@@ -113,10 +113,10 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 		if(createMissingDirectories && !subdirectory->AssociatedDirectory())
 		{
-			NativePath currentPath;
+			OsPath currentPath;
 			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
 				currentPath = directory->AssociatedDirectory()->Path();
-			currentPath = Path::Join(currentPath, subdirectoryName);
+			currentPath = currentPath / subdirectoryName;
 
 			RETURN_ERR(CreateDirectory(currentPath));
 
@@ -132,8 +132,8 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 	if(pfile)
 	{
-		const NativePath& filename = pathname.substr(pos);
-		debug_assert(!filename.empty());	// asked for file but specified directory path
+		debug_assert(!pathname.IsDirectory());
+		const VfsPath filename = pathname.string().substr(pos);
 		*pfile = directory->GetFile(filename);
 		if(!*pfile)
 			return ERR::VFS_FILE_NOT_FOUND;	// NOWARN

@@ -27,15 +27,17 @@
 #ifndef INCLUDED_FILE_SYSTEM_UTIL
 #define INCLUDED_FILE_SYSTEM_UTIL
 
+#include "lib/native_path.h"
 #include "lib/file/vfs/vfs.h"
 
 namespace fs_util {
 
-extern void SortFiles(FileInfos& files);
-extern void SortDirectories(DirectoryNames& directories);
+extern bool DirectoryExists(const OsPath& path);
+extern bool FileExists(const OsPath& pathname);
+
+extern u64 FileSize(const OsPath& pathname);
 
 extern LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames);
-
 
 /**
  * called for files in a directory.

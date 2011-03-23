@@ -1296,7 +1296,7 @@ static LibError VSrc_reload(VSrc* vs, const PIVFS& vfs, const VfsPath& pathname,
 
 	// pathname is a definition file containing the data file name and
 	// its gain.
-	if(fs::extension(pathname) == L".txt")
+	if(pathname.Extension() == L".txt")
 	{
 		shared_ptr<u8> buf; size_t size;
 		RETURN_ERR(vfs->LoadFile(pathname, buf, size));

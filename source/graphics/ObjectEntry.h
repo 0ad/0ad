@@ -55,7 +55,7 @@ public:
 		// so we can have lots of colour variations without wasting memory on
 		// lots of objectEntries)
 
-	CStrW m_ProjectileModelName;
+	std::wstring m_ProjectileModelName;
 
 	// Returns a randomly-chosen animation matching the given name.
 	// If none is found, returns NULL.

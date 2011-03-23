@@ -43,18 +43,18 @@
 
 //-----------------------------------------------------------------------------
 
-static LibError ReadVersionString(const NativePath& modulePathname, wchar_t* out_ver, size_t out_ver_len)
+static LibError ReadVersionString(const OsPath& modulePathname, wchar_t* out_ver, size_t out_ver_len)
 {
 	WinScopedPreserveLastError s;	// GetFileVersion*, Ver*
 
 	// determine size of and allocate memory for version information.
 	DWORD unused;
-	const DWORD ver_size = GetFileVersionInfoSizeW(modulePathname.c_str(), &unused);	// [bytes]
+	const DWORD ver_size = GetFileVersionInfoSizeW(OsString(modulePathname).c_str(), &unused);	// [bytes]
 	if(!ver_size)
 	{
 		// check if the failure is due to not finding modulePathname
 		// (necessary since GetFileVersionInfoSize doesn't SetLastError)
-		HMODULE hModule = LoadLibraryExW(modulePathname.c_str(), 0, LOAD_LIBRARY_AS_DATAFILE);
+		HMODULE hModule = LoadLibraryExW(OsString(modulePathname).c_str(), 0, LOAD_LIBRARY_AS_DATAFILE);
 		if(!hModule)
 			return ERR::FAIL;	// NOWARN (file not found - due to FS redirection?)
 		FreeLibrary(hModule);
@@ -62,7 +62,7 @@ static LibError ReadVersionString(const NativePath& modulePathname, wchar_t* out
 	}
 
 	shared_ptr<u8> mem = Allocate(ver_size);
-	if(!GetFileVersionInfoW(modulePathname.c_str(), 0, ver_size, mem.get()))
+	if(!GetFileVersionInfoW(OsString(modulePathname).c_str(), 0, ver_size, mem.get()))
 		WARN_RETURN(ERR::_3);
 
 	u16* lang;	// -> 16 bit language ID, 16 bit codepage
@@ -83,7 +83,7 @@ static LibError ReadVersionString(const NativePath& modulePathname, wchar_t* out
 }
 
 
-void wdll_ver_Append(const NativePath& pathname, VersionList& list)
+void wdll_ver_Append(const OsPath& pathname, VersionList& list)
 {
 	if(pathname.empty())
 		return;	// avoid error in ReadVersionString
@@ -91,10 +91,10 @@ void wdll_ver_Append(const NativePath& pathname, VersionList& list)
 	// pathname may not have an extension (e.g. driver names from the
 	// registry). note that always appending ".dll" would be incorrect
 	// since some have ".sys" extension.
-	NativePath modulePathname(pathname);
-	if(Path::Extension(modulePathname).empty())
-		modulePathname = Path::ChangeExtension(modulePathname, L".dll");
-	const NativePath moduleName(Path::Filename(modulePathname));
+	OsPath modulePathname(pathname);
+	if(modulePathname.Extension() == "")
+		modulePathname = modulePathname.ChangeExtension(L".dll");
+	const OsPath moduleName(modulePathname.Filename());
 
 	// read file version. try this with and without FS redirection since
 	// pathname might assume both.
@@ -112,7 +112,7 @@ void wdll_ver_Append(const NativePath& pathname, VersionList& list)
 	if(!list.empty())
 		list += L", ";
 	
-	list += moduleName;
+	list += moduleName.Filename().string();
 	list += L" (";
 	list += versionString;
 	list += L")";

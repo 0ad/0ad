@@ -34,12 +34,12 @@ public:
 	{
 	}
 
-	FileInfo(const NativePath& name, off_t size, time_t mtime)
+	FileInfo(const OsPath& name, off_t size, time_t mtime)
 		: name(name), size(size), mtime(mtime)
 	{
 	}
 
-	const NativePath& Name() const
+	const OsPath& Name() const
 	{
 		return name;
 	}
@@ -55,22 +55,22 @@ public:
 	}
 
 private:
-	NativePath name;
+	OsPath name;
 	off_t size;
 	time_t mtime;
 };
 
-extern LibError GetFileInfo(const NativePath& pathname, FileInfo* fileInfo);
+extern LibError GetFileInfo(const OsPath& pathname, FileInfo* fileInfo);
 
 typedef std::vector<FileInfo> FileInfos;
-typedef std::vector<NativePath> DirectoryNames;
+typedef std::vector<OsPath> DirectoryNames;
 
-extern LibError GetDirectoryEntries(const NativePath& path, FileInfos* files, DirectoryNames* subdirectoryNames);
+extern LibError GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames);
 
 // same as boost::filesystem::create_directories, except that mkdir is invoked with
 // <mode> instead of 0755.
-extern LibError CreateDirectories(const NativePath& path, mode_t mode);
+extern LibError CreateDirectories(const OsPath& path, mode_t mode);
 
-extern LibError DeleteDirectory(const NativePath& dirPath);
+extern LibError DeleteDirectory(const OsPath& dirPath);
 
 #endif	// #ifndef INCLUDED_FILE_SYSTEM

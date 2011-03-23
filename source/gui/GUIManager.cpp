@@ -115,7 +115,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	page.gui.reset(new CGUI());
 	page.gui->Initialize();
 
-	VfsPath path = Path::Join("gui", VfsPath(page.name.c_str()));
+	VfsPath path = VfsPath("gui") / page.name;
 	page.inputs.insert(path);
 
 	CXeromyces xero;
@@ -144,7 +144,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 		CStrW name (node.GetText().FromUTF8());
 		TIMER(name.c_str());
-		VfsPath path = Path::Join("gui", VfsPath(name.c_str()));
+		VfsPath path = VfsPath("gui") / name;
 		page.gui->LoadXmlFile(path, page.inputs);
 	}
 
@@ -169,7 +169,7 @@ LibError CGUIManager::ReloadChangedFiles(const VfsPath& path)
 	{
 		if (it->inputs.count(path))
 		{
-			LOGMESSAGE(L"GUI file '%ls' changed - reloading page '%ls'", path.c_str(), it->name.c_str());
+			LOGMESSAGE(L"GUI file '%ls' changed - reloading page '%ls'", path.string().c_str(), it->name.c_str());
 			LoadPage(*it);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}

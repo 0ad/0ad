@@ -19,7 +19,7 @@ public:
 
 typedef shared_ptr<OggStream> OggStreamPtr;
 
-extern LibError OpenOggStream(const NativePath& pathname, OggStreamPtr& stream);
+extern LibError OpenOggStream(const OsPath& pathname, OggStreamPtr& stream);
 
 /**
  * A non-streaming OggStream (reading the whole file in advance)

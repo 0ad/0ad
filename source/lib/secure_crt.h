@@ -98,10 +98,6 @@ extern int vswprintf_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* fmt, v
 extern int sprintf_s(char* buf, size_t max_chars, const char* fmt, ...) PRINTF_ARGS(3);
 extern int swprintf_s(wchar_t* buf, size_t max_chars, const wchar_t* fmt, ...) WPRINTF_ARGS(3);
 
-typedef int errno_t;
-extern errno_t fopen_s(FILE** pfile, const char* filename, const char* mode);
-extern errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode);
-
 // we'd like to avoid deprecation warnings caused by scanf. selective
 // 'undeprecation' isn't possible, replacing all stdio declarations with
 // our own deprecation scheme is a lot of work, suppressing all deprecation

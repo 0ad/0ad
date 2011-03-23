@@ -437,7 +437,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
-		g_VFS->Mount(L"", Path::Join(paths.RData(), "mods/public"), VFS_MOUNT_MUST_EXIST);
+		g_VFS->Mount(L"", paths.RData()/"mods/public", VFS_MOUNT_MUST_EXIST);
 
 		{
 			CReplayPlayer replay;
@@ -456,12 +456,12 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	{
 		Paths paths(args);
 
-		NativePath mod = NativePathFromString(args.Get("archivebuild"));
-		NativePath zip;
+		OsPath mod(args.Get("archivebuild"));
+		OsPath zip;
 		if (args.Has("archivebuild-output"))
-			zip = NativePathFromString(args.Get("archivebuild-output"));
+			zip = args.Get("archivebuild-output");
 		else
-			zip = Path::Filename(mod)+L".zip";
+			zip = mod.Filename().ChangeExtension(L".zip");
 
 		CArchiveBuilder builder(mod, paths.Cache());
 		builder.Build(zip);

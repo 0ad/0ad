@@ -74,9 +74,9 @@ static bool bmp_is_hdr(const u8* file)
 }
 
 
-static bool bmp_is_ext(const NativePath& extension)
+static bool bmp_is_ext(const OsPath& extension)
 {
-	return !wcscasecmp(extension.c_str(), L".bmp");
+	return extension == L".bmp";
 }
 
 

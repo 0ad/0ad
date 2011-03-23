@@ -93,9 +93,9 @@ static bool tga_is_hdr(const u8* file)
 }
 
 
-static bool tga_is_ext(const NativePath& extension)
+static bool tga_is_ext(const OsPath& extension)
 {
-	return !wcscasecmp(extension.c_str(), L".tga");
+	return extension == L".tga";
 }
 
 

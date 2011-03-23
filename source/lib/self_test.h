@@ -266,6 +266,8 @@ namespace CxxTest
 #define TSM_ASSERT_STR_EQUALS(m, str1, str2) TSM_ASSERT_EQUALS(m, std::string(str1), std::string(str2))
 #define TS_ASSERT_WSTR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::wstring(str1), std::wstring(str2))
 #define TSM_ASSERT_WSTR_EQUALS(m, str1, str2) TSM_ASSERT_EQUALS(m, std::wstring(str1), std::wstring(str2))
+#define TS_ASSERT_PATH_EQUALS(path1, path2) TS_ASSERT_EQUALS(path1.string(), path2.string())
+#define TSM_ASSERT_PATH_EQUALS(m, path1, path2) TSM_ASSERT_EQUALS(m, path1.string(), path2.string())
 
 bool ts_str_contains(const std::wstring& str1, const std::wstring& str2); // defined in test_setup.cpp
 #define TS_ASSERT_WSTR_CONTAINS(str1, str2) TSM_ASSERT(str1, ts_str_contains(str1, str2))
@@ -285,6 +287,6 @@ void ScriptTestSetup(ScriptInterface&);
 // Default game data directory
 // (TODO: game-specific functions like this probably shouldn't be inside lib/, but it's useful
 // here since lots of tests use it)
-NativePath DataDir(); // defined in test_setup.cpp
+OsPath DataDir(); // defined in test_setup.cpp
 
 #endif	// #ifndef INCLUDED_SELF_TEST

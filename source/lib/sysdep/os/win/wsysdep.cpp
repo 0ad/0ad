@@ -363,7 +363,7 @@ LibError sys_error_description_r(int user_err, wchar_t* buf, size_t max_chars)
 }
 
 
-LibError sys_get_module_filename(void* addr, NativePath& pathname)
+LibError sys_get_module_filename(void* addr, OsPath& pathname)
 {
 	MEMORY_BASIC_INFORMATION mbi;
 	const SIZE_T bytesWritten = VirtualQuery(addr, &mbi, sizeof(mbi));
@@ -382,7 +382,7 @@ LibError sys_get_module_filename(void* addr, NativePath& pathname)
 }
 
 
-LibError sys_get_executable_name(NativePath& pathname)
+LibError sys_get_executable_name(OsPath& pathname)
 {
 	wchar_t pathnameBuf[MAX_PATH+1];
 	const DWORD charsWritten = GetModuleFileNameW(0, pathnameBuf, (DWORD)ARRAY_SIZE(pathnameBuf));
@@ -418,14 +418,11 @@ static int CALLBACK BrowseCallback(HWND hWnd, unsigned int msg, LPARAM UNUSED(lP
 	return 0;
 }
 
-LibError sys_pick_directory(NativePath& path)
+LibError sys_pick_directory(OsPath& path)
 {
 	// (must not use multi-threaded apartment due to BIF_NEWDIALOGSTYLE)
 	const HRESULT hr = CoInitialize(0);
 	debug_assert(hr == S_OK || hr == S_FALSE);	// S_FALSE == already initialized
-
-	// NB: BFFM_SETSELECTIONW can't deal with '/' separators
-	const NativePath initialPath = path;
 
 	// note: bi.pszDisplayName isn't the full path, so it isn't of any use.
 	BROWSEINFOW bi;
@@ -433,6 +430,7 @@ LibError sys_pick_directory(NativePath& path)
 	bi.ulFlags = BIF_RETURNONLYFSDIRS|BIF_NEWDIALOGSTYLE|BIF_NONEWFOLDERBUTTON;
 	// for setting starting directory:
 	bi.lpfn = (BFFCALLBACK)BrowseCallback;
+	const Path::String initialPath = OsString(path);	// NB: BFFM_SETSELECTIONW can't deal with '/' separators
 	bi.lParam = (LPARAM)initialPath.c_str();
 	const LPITEMIDLIST pidl = SHBrowseForFolderW(&bi);
 	if(!pidl)	// user canceled
@@ -597,3 +595,11 @@ done:
 }
 
 #endif
+
+FILE* sys_OpenFile(const OsPath& pathname, const char* mode)
+{
+	FILE* f = 0;
+	const std::wstring wmode(mode, mode+strlen(mode));
+	(void)_wfopen_s(&f, OsString(pathname).c_str(), wmode.c_str());
+	return f;
+}

@@ -26,8 +26,8 @@ extern void WriteSystemInfo();
 
 extern const wchar_t* ErrorString(int err);
 
-extern void WriteScreenshot(const std::wstring& extension);
-extern void WriteBigScreenshot(const std::wstring& extension, int tiles);
+extern void WriteScreenshot(const VfsPath& extension);
+extern void WriteBigScreenshot(const VfsPath& extension, int tiles);
 
 extern LibError tex_write(Tex* t, const VfsPath& filename);
 

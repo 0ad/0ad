@@ -235,7 +235,7 @@ public:
 	 * @param code JS code to execute
 	 * @return true on successful compilation and execution; false otherwise
 	 */
-	bool LoadScript(const std::wstring& filename, const std::wstring& code);
+	bool LoadScript(const VfsPath& filename, const std::wstring& code);
 
 	/**
 	 * Load and execute the given script in the global scope.

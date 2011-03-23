@@ -173,10 +173,9 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 	if(!cpu_CAS(&state, IDLE, BUSY))
 		return ERR::REENTERED;	// NOWARN
 
-	FILE* f;
-	NativePath pathname = Path::Join(ah_get_log_dir(), "crashlog.txt");
-	errno_t err = _wfopen_s(&f, pathname.c_str(), L"w");
-	if(err != 0)
+	OsPath pathname = ah_get_log_dir()/"crashlog.txt";
+	FILE* f = sys_OpenFile(pathname, "w");
+	if(!f)
 	{
 		state = FAILED;	// must come before DEBUG_DISPLAY_ERROR
 		DEBUG_DISPLAY_ERROR(L"Unable to open crashlog.txt for writing (please ensure the log directory is writable)");

@@ -120,6 +120,15 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v,
 	return true;
 }
 
+template<> bool ScriptInterface::FromJSVal<Path>(JSContext* cx, jsval v, Path& out)
+{
+	std::wstring string;
+	if(!FromJSVal(cx, v, string))
+		return false;
+	out = string;
+	return true;
+}
+
 template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, std::string& out)
 {
 	WARN_IF_NOT(JSVAL_IS_STRING(v) || JSVAL_IS_NUMBER(v), v); // allow implicit number conversions
@@ -240,6 +249,11 @@ template<> jsval ScriptInterface::ToJSVal<std::wstring>(JSContext* cx, const std
 	if (str)
 		return STRING_TO_JSVAL(str);
 	return JSVAL_VOID;
+}
+
+template<> jsval ScriptInterface::ToJSVal<Path>(JSContext* cx, const Path& val)
+{
+	return ToJSVal(cx, val.string());
 }
 
 template<> jsval ScriptInterface::ToJSVal<std::string>(JSContext* cx, const std::string& val)

@@ -40,7 +40,7 @@ CMeshManager::~CMeshManager()
 
 CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 {
-	const VfsPath name = Path::ChangeExtension(pathname, L"");
+	const VfsPath name = pathname.ChangeExtension(L"");
 
 	// Find the mesh if it's already been loaded and cached
 	mesh_map::iterator iter = m_MeshMap.find(name);
@@ -53,7 +53,7 @@ CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 
 	if (pmdFilename.empty())
 	{
-		LOGERROR(L"Could not load mesh '%ls'", pathname.c_str());
+		LOGERROR(L"Could not load mesh '%ls'", pathname.string().c_str());
 		return CModelDefPtr();
 	}
 
@@ -65,7 +65,7 @@ CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 	}
 	catch (PSERROR_File&)
 	{
-		LOGERROR(L"Could not load mesh '%ls'", pathname.c_str());
+		LOGERROR(L"Could not load mesh '%ls'", pathname.string().c_str());
 		return CModelDefPtr();
 	}
 }

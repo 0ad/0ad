@@ -68,9 +68,9 @@ CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
 
 	name << L"/commands.txt";
 
-	NativePath path = Path::Join(psLogDir(), NativePath(name.str()));
-	CreateDirectories(Path::Path(path), 0700);
-	m_Stream = new std::ofstream(StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+	OsPath path = psLogDir() / name.str();
+	CreateDirectories(path.Parent(), 0700);
+	m_Stream = new std::ofstream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 }
 
 CReplayLogger::~CReplayLogger()

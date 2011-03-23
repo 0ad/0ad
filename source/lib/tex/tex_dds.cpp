@@ -579,9 +579,9 @@ static bool dds_is_hdr(const u8* file)
 }
 
 
-static bool dds_is_ext(const NativePath& extension)
+static bool dds_is_ext(const OsPath& extension)
 {
-	return !wcscasecmp(extension.c_str(), L".dds");
+	return extension == L".dds";
 }
 
 

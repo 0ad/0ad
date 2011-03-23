@@ -96,7 +96,7 @@ struct TexCodecVTbl
 	 * @param extension (including '.')
 	 * @return bool
 	 **/
-	bool (*is_ext)(const NativePath& extension);
+	bool (*is_ext)(const OsPath& extension);
 
 	/**
 	 * return size of the file header supported by this codec.
@@ -170,7 +170,7 @@ extern int tex_codec_register(TexCodecVTbl* c);
  * called by tex_is_known_extension) if no codec indicates they can
  * handle the given extension.
  **/
-extern LibError tex_codec_for_filename(const NativePath& extension, const TexCodecVTbl** c);
+extern LibError tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c);
 
 /**
  * find codec that recognizes the header's magic field.

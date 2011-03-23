@@ -940,7 +940,7 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::wstring fil
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	VfsPath path = Path::Join("simulation/data", fileName);
+	VfsPath path = VfsPath("simulation/data") / fileName;
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }

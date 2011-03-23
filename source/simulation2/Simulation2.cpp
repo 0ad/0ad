@@ -151,7 +151,7 @@ bool CSimulation2Impl::LoadScripts(const VfsPath& path)
 	{
 		VfsPath filename = *it;
 		m_LoadedScripts.insert(filename);
-		LOGMESSAGE(L"Loading simulation script '%ls'", filename.c_str());
+		LOGMESSAGE(L"Loading simulation script '%ls'", filename.string().c_str());
 		if (! m_ComponentManager.LoadScript(filename))
 			ok = false;
 	}
@@ -172,7 +172,7 @@ LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 	if (!VfsFileExists(path))
 		return INFO::OK;
 
-	LOGMESSAGE(L"Reloading simulation script '%ls'", filename.c_str());
+	LOGMESSAGE(L"Reloading simulation script '%ls'", filename.string().c_str());
 	if (!m_ComponentManager.LoadScript(filename, true))
 		return ERR::FAIL;
 
@@ -289,9 +289,9 @@ void CSimulation2Impl::DumpState()
 
 	std::wstringstream name;
 	name << L"sim_log/" << getpid() << L"/" << std::setw(5) << std::setfill(L'0') << m_TurnNumber << L".txt";
-	NativePath path = Path::Join(psLogDir(), NativePath(name.str()));
-	CreateDirectories(Path::Path(path), 0700);
-	std::ofstream file (StringFromNativePath(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+	OsPath path = psLogDir() / name.str();
+	CreateDirectories(path.Parent(), 0700);
+	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	file << "State hash: " << std::hex;
 	std::string hashRaw;
@@ -304,7 +304,7 @@ void CSimulation2Impl::DumpState()
 
 	m_ComponentManager.DumpDebugState(file);
 
-	std::ofstream binfile (StringFromNativePath(Path::ChangeExtension(path, L".dat")).c_str(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
+	std::ofstream binfile (OsString(path.ChangeExtension(L".dat")).c_str(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
 	m_ComponentManager.SerializeState(binfile);
 }
 

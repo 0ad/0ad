@@ -70,7 +70,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 	// Load the map, if one was specified
 	if (mapFile.length())
 	{
-		VfsPath mapfilename(Path::Join("maps/scenarios", NativePath(mapFile + L".pmp")));
+		VfsPath mapfilename(VfsPath("maps/scenarios") / (mapFile + L".pmp"));
 		CMapReader* reader = 0;
 
 		try
@@ -88,7 +88,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 		catch (PSERROR_File& err)
 		{
 			delete reader;
-			LOGERROR(L"Failed to load map %ls: %hs", mapfilename.c_str(), err.what());
+			LOGERROR(L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
 			throw PSERROR_Game_World_MapLoadFailed();
 		}
 	}

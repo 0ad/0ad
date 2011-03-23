@@ -79,7 +79,7 @@ struct IVFS
 	 * if files with archive extensions are seen, their contents are added
 	 * as well.
 	 **/
-	virtual LibError Mount(const VfsPath& mountPoint, const NativePath& path, size_t flags = 0, size_t priority = 0) = 0;
+	virtual LibError Mount(const VfsPath& mountPoint, const OsPath& path, size_t flags = 0, size_t priority = 0) = 0;
 
 	/**
 	 * Retrieve information about a file (similar to POSIX stat).
@@ -151,7 +151,7 @@ struct IVFS
 	 *
 	 * this is useful for passing paths to external libraries.
 	 **/
-	virtual LibError GetRealPath(const VfsPath& pathname, NativePath& realPathname) = 0;
+	virtual LibError GetRealPath(const VfsPath& pathname, OsPath& realPathname) = 0;
 
 	/**
 	 * retrieve the VFS pathname that corresponds to a real file.
@@ -162,7 +162,7 @@ struct IVFS
 	 * number of directories; this could be accelerated by only checking
 	 * directories below a mount point with a matching real path.
 	 **/
-	virtual LibError GetVirtualPath(const NativePath& realPathname, VfsPath& pathname) = 0;
+	virtual LibError GetVirtualPath(const OsPath& realPathname, VfsPath& pathname) = 0;
 	
 	/**
 	 * indicate that a file has changed; remove its data from the cache and

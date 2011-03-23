@@ -36,7 +36,7 @@ public:
 	 * @param mod path to data/mods/foo directory, containing files for conversion
 	 * @param tempdir path to a writable directory for temporary files
 	 */
-	CArchiveBuilder(const std::wstring& mod, const NativePath& tempdir);
+	CArchiveBuilder(const OsPath& mod, const OsPath& tempdir);
 
 	~CArchiveBuilder();
 
@@ -47,20 +47,20 @@ public:
 	 * a user's mod.
 	 * @param mod path to data/mods/foo directory, containing files for loading
 	 */
-	void AddBaseMod(const NativePath& mod);
+	void AddBaseMod(const OsPath& mod);
 
 	/**
 	 * Do all the processing and packing of files into the archive.
 	 * @param archive path of .zip file to generate (will be overwritten if it exists)
 	 */
-	void Build(const NativePath& archive);
+	void Build(const OsPath& archive);
 
 private:
 	static LibError CollectFileCB(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
 
 	PIVFS m_VFS;
 	std::vector<VfsPath> m_Files;
-	NativePath m_TempDir;
+	OsPath m_TempDir;
 };
 
 #endif // INCLUDED_ARCHIVEBUILDER

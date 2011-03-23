@@ -103,7 +103,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));
 	if (!modeldef)
 	{
-		LOGERROR(L"CObjectEntry::BuildVariation(): Model %ls failed to load", m_ModelName.c_str());
+		LOGERROR(L"CObjectEntry::BuildVariation(): Model %ls failed to load", m_ModelName.string().c_str());
 		return false;
 	}
 
@@ -161,7 +161,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		// start up idling
 		if (!model->SetAnimation(GetRandomAnimation("idle")))
-			LOGERROR(L"Failed to set idle animation in model \"%ls\"", m_ModelName.c_str());
+			LOGERROR(L"Failed to set idle animation in model \"%ls\"", m_ModelName.string().c_str());
 	}
 
 	// build props - TODO, RC - need to fix up bounds here
@@ -211,7 +211,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 				propmodel->ToCModel()->SetAnimation(oe->GetRandomAnimation("idle"));
 		}
 		else
-			LOGERROR(L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.c_str(), m_Base->m_ShortName.c_str());
+			LOGERROR(L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
 	}
 
 	// setup flags

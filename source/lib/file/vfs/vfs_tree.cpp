@@ -35,7 +35,7 @@
 
 //-----------------------------------------------------------------------------
 
-VfsFile::VfsFile(const NativePath& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& loader)
+VfsFile::VfsFile(const VfsPath& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& loader)
 	: m_name(name), m_size(size), m_mtime(mtime), m_priority(priority), m_loader(loader)
 {
 }
@@ -78,7 +78,7 @@ static bool ShouldReplaceWith(const VfsFile& previousFile, const VfsFile& newFil
 
 VfsFile* VfsDirectory::AddFile(const VfsFile& file)
 {
-	std::pair<NativePath, VfsFile> value = std::make_pair(file.Name(), file);
+	std::pair<VfsPath, VfsFile> value = std::make_pair(file.Name(), file);
 	std::pair<VfsFiles::iterator, bool> ret = m_files.insert(value);
 	if(!ret.second)	// already existed
 	{
@@ -98,26 +98,26 @@ VfsFile* VfsDirectory::AddFile(const VfsFile& file)
 
 // rationale: passing in a pre-constructed VfsDirectory and copying that into
 // our map would be slower and less convenient for the caller.
-VfsDirectory* VfsDirectory::AddSubdirectory(const NativePath& name)
+VfsDirectory* VfsDirectory::AddSubdirectory(const VfsPath& name)
 {
-	std::pair<NativePath, VfsDirectory> value = std::make_pair(name, VfsDirectory());
+	std::pair<VfsPath, VfsDirectory> value = std::make_pair(name.string(), VfsDirectory());
 	std::pair<VfsSubdirectories::iterator, bool> ret = m_subdirectories.insert(value);
 	return &(*ret.first).second;
 }
 
 
-VfsFile* VfsDirectory::GetFile(const NativePath& name)
+VfsFile* VfsDirectory::GetFile(const VfsPath& name)
 {
-	VfsFiles::iterator it = m_files.find(name);
+	VfsFiles::iterator it = m_files.find(name.string());
 	if(it == m_files.end())
 		return 0;
 	return &it->second;
 }
 
 
-VfsDirectory* VfsDirectory::GetSubdirectory(const NativePath& name)
+VfsDirectory* VfsDirectory::GetSubdirectory(const VfsPath& name)
 {
-	VfsSubdirectories::iterator it = m_subdirectories.find(name);
+	VfsSubdirectories::iterator it = m_subdirectories.find(name.string());
 	if(it == m_subdirectories.end())
 		return 0;
 	return &it->second;
@@ -138,9 +138,9 @@ bool VfsDirectory::ShouldPopulate()
 }
 
 
-void VfsDirectory::Invalidate(const NativePath& name)
+void VfsDirectory::Invalidate(const VfsPath& name)
 {
-	m_files.erase(name);
+	m_files.erase(name.string());
 	m_shouldPopulate = 1;
 }
 
@@ -163,7 +163,7 @@ std::wstring FileDescription(const VfsFile& file)
 	wcsftime(timestamp, ARRAY_SIZE(timestamp), L"%a %b %d %H:%M:%S %Y", localtime(&mtime));
 
 	wchar_t buf[200];
-	swprintf_s(buf, ARRAY_SIZE(buf), L"(%c; %6lu; %ls) %ls", file.Loader()->LocationCode(), (unsigned long)file.Size(), timestamp, file.Name().c_str());
+	swprintf_s(buf, ARRAY_SIZE(buf), L"(%c; %6lu; %ls) %ls", file.Loader()->LocationCode(), (unsigned long)file.Size(), timestamp, file.Name().string().c_str());
 	return buf;
 }
 
@@ -195,10 +195,10 @@ void DirectoryDescriptionR(std::wstring& descriptions, const VfsDirectory& direc
 	const VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
 	for(VfsDirectory::VfsSubdirectories::const_iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
 	{
-		const NativePath& name = it->first;
+		const VfsPath& name = it->first;
 		const VfsDirectory& subdirectory = it->second;
 		descriptions += indentation;
-		descriptions += std::wstring(L"[") + name + L"]\n";
+		descriptions += std::wstring(L"[") + name.string() + L"]\n";
 		descriptions += FileDescriptions(subdirectory, indentLevel+1);
 
 		DirectoryDescriptionR(descriptions, subdirectory, indentLevel+1);

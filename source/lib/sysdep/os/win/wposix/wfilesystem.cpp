@@ -190,9 +190,9 @@ static inline void wdir_free(WDIR* d)
 static const DWORD hs = FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM;
 
 // make sure path exists and is a normal (according to attributes) directory.
-static bool is_normal_dir(const wchar_t* path)
+static bool is_normal_dir(const OsPath& path)
 {
-	const DWORD fa = GetFileAttributesW(path);
+	const DWORD fa = GetFileAttributesW(OsString(path).c_str());
 
 	// path not found
 	if(fa == INVALID_FILE_ATTRIBUTES)
@@ -213,7 +213,7 @@ static bool is_normal_dir(const wchar_t* path)
 }
 
 
-WDIR* wopendir(const wchar_t* path)
+WDIR* wopendir(const OsPath& path)
 {
 	if(!is_normal_dir(path))
 	{
@@ -228,16 +228,14 @@ WDIR* wopendir(const wchar_t* path)
 		return 0;
 	}
 
-	// build search path for FindFirstFileW. note: "path\\dir" only returns
-	// information about that directory; trailing slashes aren't allowed.
-	// for dir entries to be returned, we have to append "\\*".
-	wchar_t search_path[PATH_MAX];
-	swprintf_s(search_path, ARRAY_SIZE(search_path), L"%ls\\*", path);
+	// NB: c:\path only returns information about that directory; trailing
+	// slashes aren't allowed. append * to retrieve directory entries.
+	OsPath searchPath = path/"*";
 
 	// note: we could store search_path and defer FindFirstFileW until
 	// wreaddir. this way is a bit more complex but required for
 	// correctness (we must return a valid DIR iff <path> is valid).
-	d->hFind = FindFirstFileW(search_path, &d->fd);
+	d->hFind = FindFirstFileW(OsString(searchPath).c_str(), &d->fd);
 	if(d->hFind == INVALID_HANDLE_VALUE)
 	{
 		// not an error - the directory is just empty.
@@ -327,13 +325,13 @@ int wclosedir(WDIR* d)
 // fcntl.h
 //-----------------------------------------------------------------------------
 
-int wopen(const wchar_t* pathname, int oflag)
+int wopen(const OsPath& pathname, int oflag)
 {
 	debug_assert(!(oflag & O_CREAT));
-	return wopen(pathname, oflag, _S_IREAD|_S_IWRITE);
+	return wopen(OsString(pathname).c_str(), oflag, _S_IREAD|_S_IWRITE);
 }
 
-int wopen(const wchar_t* pathname, int oflag, mode_t mode_arg)
+int wopen(const OsPath& pathname, int oflag, mode_t mode_arg)
 {
 	mode_t mode = _S_IREAD|_S_IWRITE;
 	if(oflag & O_CREAT)
@@ -341,7 +339,7 @@ int wopen(const wchar_t* pathname, int oflag, mode_t mode_arg)
 
 	WinScopedPreserveLastError s;	// _wsopen_s's CreateFileW
 	int fd;
-	errno_t ret = _wsopen_s(&fd, pathname, oflag, _SH_DENYNO, mode);
+	errno_t ret = _wsopen_s(&fd, OsString(pathname).c_str(), oflag, _SH_DENYNO, mode);
 	if(ret != 0)
 	{
 		errno = ret;
@@ -376,9 +374,9 @@ int wclose(int fd)
 // unistd.h
 //-----------------------------------------------------------------------------
 
-int wtruncate(const wchar_t* pathname, off_t length)
+int wtruncate(const OsPath& pathname, off_t length)
 {
-	HANDLE hFile = CreateFileW(pathname, GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
+	HANDLE hFile = CreateFileW(OsString(pathname).c_str(), GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
 	debug_assert(hFile != INVALID_HANDLE_VALUE);
 	LARGE_INTEGER ofs; ofs.QuadPart = length;
 	WARN_IF_FALSE(SetFilePointerEx(hFile, ofs, 0, FILE_BEGIN));
@@ -388,28 +386,29 @@ int wtruncate(const wchar_t* pathname, off_t length)
 }
 
 
-int wunlink(const wchar_t* pathname)
+int wunlink(const OsPath& pathname)
 {
-	return _wunlink(pathname);
+	return _wunlink(OsString(pathname).c_str());
 }
 
 
-int wrmdir(const wchar_t* path)
+int wrmdir(const OsPath& path)
 {
-	return _wrmdir(path);
+	return _wrmdir(OsString(path).c_str());
 }
 
 
-int wrename(const wchar_t* pathnameOld, const wchar_t* pathnameNew)
+int wrename(const OsPath& pathnameOld, const OsPath& pathnameNew)
 {
-	return _wrename(pathnameOld, pathnameNew);
+	return _wrename(OsString(pathnameOld).c_str(), OsString(pathnameNew).c_str());
 }
 
 
-wchar_t* wrealpath(const wchar_t* pathname, wchar_t* resolved)
+OsPath wrealpath(const OsPath& pathname)
 {
-	if(!GetFullPathNameW(pathname, PATH_MAX, resolved, 0))
-		return 0;
+	wchar_t resolved[PATH_MAX];
+	if(!GetFullPathNameW(OsString(pathname).c_str(), PATH_MAX, resolved, 0))
+		return OsPath();
 	return resolved;
 }
 
@@ -433,9 +432,9 @@ static int ErrnoFromCreateDirectory()
 	}
 }
 
-int wmkdir(const wchar_t* path, mode_t UNUSED(mode))
+int wmkdir(const OsPath& path, mode_t UNUSED(mode))
 {
-	if(!CreateDirectoryW(path, (LPSECURITY_ATTRIBUTES)NULL))
+	if(!CreateDirectoryW(OsString(path).c_str(), (LPSECURITY_ATTRIBUTES)NULL))
 	{
 		errno = ErrnoFromCreateDirectory();
 		return -1;
@@ -445,7 +444,7 @@ int wmkdir(const wchar_t* path, mode_t UNUSED(mode))
 }
 
 
-int wstat(const wchar_t* pathname, struct stat* buf)
+int wstat(const OsPath& pathname, struct stat* buf)
 {
-	return _wstat64(pathname, buf);
+	return _wstat64(OsString(pathname).c_str(), buf);
 }

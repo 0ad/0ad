@@ -171,7 +171,7 @@ public:
 		Handle h = ogl_tex_load(m_VFS, path, RES_UNIQUE);
 		if (h <= 0)
 		{
-			LOGERROR(L"Texture failed to load; \"%ls\"", texture->m_Properties.m_Path.c_str());
+			LOGERROR(L"Texture failed to load; \"%ls\"", texture->m_Properties.m_Path.string().c_str());
 
 			// Replace with error texture to make it obvious
 			texture->SetHandle(m_ErrorHandle);
@@ -211,7 +211,7 @@ public:
 		// Upload to GL
 		if (!m_DisableGL && ogl_tex_upload(h) < 0)
 		{
-			LOGERROR(L"Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.c_str());
+			LOGERROR(L"Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
 
 			ogl_tex_free(h);
 
@@ -303,7 +303,7 @@ public:
 		CTexturePtr texture = CreateTexture(textureProps);
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
-		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, Path::Join("cache", archiveCachePath), settings))
+		if (!m_TextureConverter.ConvertTexture(texture, sourcePath, VfsPath("cache") / archiveCachePath, settings))
 			return false;
 
 		while (true)
@@ -334,7 +334,7 @@ public:
 				}
 				else
 				{
-					LOGERROR(L"Texture failed to convert: \"%ls\"", texture->m_Properties.m_Path.c_str());
+					LOGERROR(L"Texture failed to convert: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
 					texture->SetHandle(m_ErrorHandle);
 				}
 				texture->m_State = CTexture::LOADED;
@@ -404,18 +404,18 @@ public:
 	 */
 	CTextureConverter::Settings GetConverterSettings(const CTexturePtr& texture)
 	{
-		fs::wpath srcPath = texture->m_Properties.m_Path;
+		fs::wpath srcPath = texture->m_Properties.m_Path.string();
 
 		std::vector<CTextureConverter::SettingsFile*> files;
 		VfsPath p;
 		for (fs::wpath::iterator it = srcPath.begin(); it != srcPath.end(); ++it)
 		{
-			VfsPath settingsPath = Path::Join(p, "textures.xml");
+			VfsPath settingsPath = p / "textures.xml";
 			m_HotloadFiles[settingsPath].insert(texture);
 			CTextureConverter::SettingsFile* f = GetSettingsFile(settingsPath);
 			if (f)
 				files.push_back(f);
-			p = Path::Join(p, *it);
+			p = p / *it;
 		}
 		return m_TextureConverter.ComputeSettings(srcPath.leaf(), files);
 	}

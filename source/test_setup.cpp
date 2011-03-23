@@ -92,11 +92,11 @@ bool ts_str_contains(const std::wstring& str1, const std::wstring& str2)
 // contains input files (it is assumed that developer's machines have
 // write access to those directories). note that argv0 isn't
 // available, so we use sys_get_executable_name.
-NativePath DataDir()
+OsPath DataDir()
 {
-	NativePath path;
+	OsPath path;
 	TS_ASSERT_OK(sys_get_executable_name(path));
-	return Path::Join(Path::Path(path), "../data");
+	return path.Parent()/"../data";
 }
 
 // Script-based testing setup:
@@ -115,8 +115,8 @@ void ScriptTestSetup(ScriptInterface& ifc)
 
 	// Load the TS_* function definitions
 	// (We don't use VFS because tests might not have the normal VFS paths loaded)
-	NativePath path = Path::Join(DataDir(), "tests/test_setup.js");
-	std::ifstream ifs(StringFromNativePath(path).c_str());
+	OsPath path = DataDir()/"tests/test_setup.js";
+	std::ifstream ifs(OsString(path).c_str());
 	debug_assert(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
 	std::wstring wcontent(content.begin(), content.end());

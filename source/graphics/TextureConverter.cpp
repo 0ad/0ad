@@ -115,7 +115,7 @@ CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& 
 
 	if (root.GetNodeName() != el_textures)
 	{
-		LOGERROR(L"Invalid texture settings file \"%ls\" (unrecognised root element)", path.c_str());
+		LOGERROR(L"Invalid texture settings file \"%ls\" (unrecognised root element)", path.string().c_str());
 		return NULL;
 	}
 
@@ -317,14 +317,14 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	size_t fileSize;
 	if (m_VFS->LoadFile(src, file, fileSize) < 0)
 	{
-		LOGERROR(L"Failed to load texture \"%ls\"", src.c_str());
+		LOGERROR(L"Failed to load texture \"%ls\"", src.string().c_str());
 		return false;
 	}
 
 	Tex tex;
 	if (tex_decode(file, fileSize, &tex) < 0)
 	{
-		LOGERROR(L"Failed to decode texture \"%ls\"", src.c_str());
+		LOGERROR(L"Failed to decode texture \"%ls\"", src.string().c_str());
 		return false;
 	}
 
@@ -334,7 +334,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	// Convert to uncompressed BGRA with no mipmaps
 	if (tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 	{
-		LOGERROR(L"Failed to transform texture \"%ls\"", src.c_str());
+		LOGERROR(L"Failed to transform texture \"%ls\"", src.string().c_str());
 		tex_free(&tex);
 		return false;
 	}

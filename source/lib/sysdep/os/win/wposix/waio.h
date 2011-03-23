@@ -27,11 +27,11 @@
 #ifndef INCLUDED_WAIO
 #define INCLUDED_WAIO
 
+#include "lib/lib_errors.h"
+#include "lib/native_path.h"
 #include "lib/sysdep/os/win/wposix/wposix_types.h"
 
 #include "lib/sysdep/os/win/wposix/no_crt_posix.h"
-
-#include "lib/lib_errors.h"
 
 // Note: transfer buffers, offsets, and lengths must be sector-aligned
 // (we don't bother copying to an align buffer because the file cache
@@ -115,7 +115,7 @@ extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
 
 // (re)open file in asynchronous mode and associate handle with fd.
 // (this works because the files default to DENY_NONE sharing)
-extern LibError waio_reopen(int fd, const wchar_t* pathname, int oflag, ...);
+extern LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...);
 extern LibError waio_close(int fd);
 
 #endif	// #ifndef INCLUDED_WAIO

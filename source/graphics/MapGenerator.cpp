@@ -58,10 +58,10 @@ bool CMapGenerator::GenerateMap(const VfsPath& scriptFile, const CScriptValRoote
 		return false;
 
 	// Load RMS
-	LOGMESSAGE(L"Loading RMS '%ls'", scriptFile.c_str());
+	LOGMESSAGE(L"Loading RMS '%ls'", scriptFile.string().c_str());
 	if (!m_ScriptInterface.LoadGlobalScriptFile(scriptFile))
 	{
-		LOGERROR(L"Failed to load RMS '%ls'", scriptFile.c_str());
+		LOGERROR(L"Failed to load RMS '%ls'", scriptFile.string().c_str());
 		return false;
 	}
 
@@ -108,17 +108,17 @@ bool CMapGenerator::LoadScripts(const std::wstring& libraryName)
 	// Load all scripts in mapgen directory
 	if (fs_util::GetPathnames(g_VFS, path, L"*.js", pathnames) < 0)
 	{
-		LOGERROR(L"Error reading scripts in directory '%ls'", path.c_str());
+		LOGERROR(L"Error reading scripts in directory '%ls'", path.string().c_str());
 		return false;
 	}
 
 	for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 	{
-		LOGMESSAGE(L"Loading map generator script '%ls'", it->c_str());
+		LOGMESSAGE(L"Loading map generator script '%ls'", it->string().c_str());
 
 		if (!m_ScriptInterface.LoadGlobalScriptFile(*it))
 		{
-			LOGERROR(L"Failed to load script '%ls'", it->c_str());
+			LOGERROR(L"Failed to load script '%ls'", it->string().c_str());
 			return false;
 		}
 	}

@@ -39,7 +39,7 @@ namespace ERR
 
 namespace FileImpl
 {
-	LIB_API LibError Open(const NativePath& pathname, wchar_t mode, int& fd);
+	LIB_API LibError Open(const OsPath& pathname, wchar_t mode, int& fd);
 	LIB_API void Close(int& fd);
 	LIB_API LibError IO(int fd, wchar_t mode, off_t ofs, u8* buf, size_t size);
 	LIB_API LibError Issue(aiocb& req, int fd, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize);
@@ -55,7 +55,7 @@ public:
 	{
 	}
 
-	LibError Open(const NativePath& pathname, wchar_t mode)
+	LibError Open(const OsPath& pathname, wchar_t mode)
 	{
 		RETURN_ERR(FileImpl::Open(pathname, mode, m_fd));
 		m_pathname = pathname;
@@ -68,7 +68,7 @@ public:
 		FileImpl::Close(m_fd);
 	}
 
-	File(const NativePath& pathname, wchar_t mode)
+	File(const OsPath& pathname, wchar_t mode)
 	{
 		(void)Open(pathname, mode);
 	}
@@ -78,7 +78,7 @@ public:
 		Close();
 	}
 
-	const NativePath& Pathname() const
+	const OsPath& Pathname() const
 	{
 		return m_pathname;
 	}
@@ -104,7 +104,7 @@ public:
 	}
 
 private:
-	NativePath m_pathname;
+	OsPath m_pathname;
 	int m_fd;
 	wchar_t m_mode;
 };

@@ -63,7 +63,7 @@ void tex_codec_unregister_all()
 // or return ERR::TEX_UNKNOWN_FORMAT if unknown.
 // note: does not raise a warning because it is used by
 // tex_is_known_extension.
-LibError tex_codec_for_filename(const NativePath& extension, const TexCodecVTbl** c)
+LibError tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c)
 {
 	for(*c = codecs; *c; *c = (*c)->next)
 	{

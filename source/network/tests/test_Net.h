@@ -38,8 +38,8 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", Path::Join(DataDir(), "mods/public"), VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", Path::Join(DataDir(), "_testcache")));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods/public", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
 		CXeromyces::Startup();
 
 		// Need some stuff for terrain movement costs:
@@ -60,7 +60,7 @@ public:
 
 		CXeromyces::Terminate();
 		g_VFS.reset();
-		DeleteDirectory(Path::Join(DataDir(), "_testcache"));
+		DeleteDirectory(DataDir()/"_testcache");
 	}
 
 	bool clients_are_all(const std::vector<CNetClient*>& clients, uint state)

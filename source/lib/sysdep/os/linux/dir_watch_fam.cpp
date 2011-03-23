@@ -74,7 +74,7 @@ struct DirWatch
 		FAMCancelMonitor(&fc, &req);
 	}
 
-	NativePath path;
+	OsPath path;
 	int reqnum;
 };
 
@@ -155,7 +155,7 @@ static void* fam_event_loop(void*)
 	}
 }
 
-LibError dir_watch_Add(const NativePath& npath, PDirWatch& dirWatch)
+LibError dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 {
 	// init already failed; don't try again or complain
 	if(initialized == -1)
@@ -188,16 +188,15 @@ LibError dir_watch_Add(const NativePath& npath, PDirWatch& dirWatch)
 	// but it would only save tens of milliseconds of CPU time, so it's probably
 	// not worthwhile
 
-	const std::string path = StringFromNativePath(npath);
 	FAMRequest req;
-	if(FAMMonitorDirectory(&fc, path.c_str(), &req, tmpDirWatch.get()) < 0)
+	if(FAMMonitorDirectory(&fc, OsString(path).c_str(), &req, tmpDirWatch.get()) < 0)
 	{
 		debug_warn(L"res_watch_dir failed!");
 		WARN_RETURN(ERR::FAIL);	// no way of getting error code?
 	}
 
 	dirWatch.swap(tmpDirWatch);
-	dirWatch->path = npath;
+	dirWatch->path = path;
 	dirWatch->reqnum = req.reqnum;
 
 	return INFO::OK;
@@ -209,7 +208,7 @@ LibError dir_watch_Poll(DirWatchNotifications& notifications)
 {
 	if(initialized == -1)
 		return ERR::FAIL;	// NOWARN
-	if(!initialized) // XXX Fix Atlas instead of supressing the warning
+	if(!initialized) // XXX Fix Atlas instead of suppressing the warning
 		return ERR::FAIL; //WARN_RETURN(ERR::LOGIC);
 
 	std::vector<NotificationEvent> polled_notifications;
@@ -236,7 +235,7 @@ LibError dir_watch_Poll(DirWatchNotifications& notifications)
 			continue;
 		}
 		DirWatch* dirWatch = (DirWatch*)polled_notifications[i].userdata;
-		NativePath pathname = Path::Join(dirWatch->path, NativePathFromString(polled_notifications[i].filename));
+		OsPath pathname = dirWatch->path / polled_notifications[i].filename;
 		notifications.push_back(DirWatchNotification(pathname, type));
 	}
 

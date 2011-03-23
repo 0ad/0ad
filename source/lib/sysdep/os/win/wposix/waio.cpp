@@ -139,7 +139,7 @@ static DWORD CreationDisposition(int oflag)
 
 // (re)open file in asynchronous mode and associate handle with fd.
 // (this works because the files default to DENY_NONE sharing)
-LibError waio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
+LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
 {
 	WinScopedPreserveLastError s;	// CreateFile
 
@@ -176,7 +176,7 @@ LibError waio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 
 	// open file
 	const DWORD create = CreationDisposition(oflag);
-	const HANDLE hFile = CreateFileW(pathname, access, share, 0, create, FILE_ATTRIBUTE_NORMAL|flags, 0);
+	const HANDLE hFile = CreateFileW(OsString(pathname).c_str(), access, share, 0, create, FILE_ATTRIBUTE_NORMAL|flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		return LibError_from_GLE();
 

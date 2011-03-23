@@ -40,19 +40,11 @@ struct DirDeleter
 	}
 };
 
-// is name "." or ".."?
-static bool IsDummyDirectory(const NativePath& name)
-{
-	if(name[0] != '.')
-		return false;
-	return (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'));
-}
-
-LibError GetDirectoryEntries(const NativePath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
+LibError GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
 {
 	// open directory
 	errno = 0;
-	WDIR* pDir = wopendir(path.c_str());
+	WDIR* pDir = wopendir(path);
 	if(!pDir)
 		return LibError_from_errno(false);
 	shared_ptr<WDIR> osDir(pDir, DirDeleter());
@@ -69,8 +61,8 @@ LibError GetDirectoryEntries(const NativePath& path, FileInfos* files, Directory
 			return LibError_from_errno();
 		}
 
-		const NativePath name(osEnt->d_name);
-		RETURN_ERR(path_component_validate(name.c_str()));
+		const OsPath name(osEnt->d_name);
+		RETURN_ERR(name.Validate());
 
 		// get file information (mode, size, mtime)
 		struct stat s;
@@ -80,39 +72,39 @@ LibError GetDirectoryEntries(const NativePath& path, FileInfos* files, Directory
 #else
 		// .. call regular stat().
 		errno = 0;
-		const NativePath pathname = Path::Join(path, name);
-		if(wstat(pathname.c_str(), &s) != 0)
+		const OsPath pathname = path / name;
+		if(wstat(pathname, &s) != 0)
 			return LibError_from_errno();
 #endif
 
 		if(files && S_ISREG(s.st_mode))
 			files->push_back(FileInfo(name, s.st_size, s.st_mtime));
-		else if(subdirectoryNames && S_ISDIR(s.st_mode) && !IsDummyDirectory(name))
+		else if(subdirectoryNames && S_ISDIR(s.st_mode) && name != L"." && name != L"..")
 			subdirectoryNames->push_back(name);
 	}
 }
 
 
-LibError GetFileInfo(const NativePath& pathname, FileInfo* pfileInfo)
+LibError GetFileInfo(const OsPath& pathname, FileInfo* pfileInfo)
 {
 	errno = 0;
 	struct stat s;
 	memset(&s, 0, sizeof(s));
-	if(wstat(pathname.c_str(), &s) != 0)
+	if(wstat(pathname, &s) != 0)
 		return LibError_from_errno();
 
-	*pfileInfo = FileInfo(Path::Filename(pathname), s.st_size, s.st_mtime);
+	*pfileInfo = FileInfo(pathname.Filename(), s.st_size, s.st_mtime);
 	return INFO::OK;
 }
 
 
-LibError CreateDirectories(const NativePath& path, mode_t mode)
+LibError CreateDirectories(const OsPath& path, mode_t mode)
 {
 	if(path.empty())
 		return INFO::OK;
 
 	struct stat s;
-	if(wstat(path.c_str(), &s) == 0)
+	if(wstat(path, &s) == 0)
 	{
 		if(!S_ISDIR(s.st_mode))	// encountered a file
 			WARN_RETURN(ERR::FAIL);
@@ -120,21 +112,21 @@ LibError CreateDirectories(const NativePath& path, mode_t mode)
 	}
 
 	// If we were passed a path ending with '/', strip the '/' now so that
-	// we can consistently use Path to find parent directory names
-	if(Path::IsDirectory(path))
-		return CreateDirectories(Path::Path(path), mode);
+	// we can consistently use Parent to find parent directory names
+	if(path.IsDirectory())
+		return CreateDirectories(path.Parent(), mode);
 
-	RETURN_ERR(CreateDirectories(Path::Path(path), mode));
+	RETURN_ERR(CreateDirectories(path.Parent(), mode));
 
 	errno = 0;
-	if(wmkdir(path.c_str(), mode) != 0)
+	if(wmkdir(path, mode) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;
 }
 
 
-LibError DeleteDirectory(const NativePath& path)
+LibError DeleteDirectory(const OsPath& path)
 {
 	// note: we have to recursively empty the directory before it can
 	// be deleted (required by Windows and POSIX rmdir()).
@@ -145,18 +137,18 @@ LibError DeleteDirectory(const NativePath& path)
 	// delete files
 	for(size_t i = 0; i < files.size(); i++)
 	{
-		const NativePath pathname = Path::Join(path, files[i].Name());
+		const OsPath pathname = path / files[i].Name();
 		errno = 0;
-		if(wunlink(pathname.c_str()) != 0)
+		if(wunlink(pathname) != 0)
 			return LibError_from_errno();
 	}
 
 	// recurse over subdirectoryNames
 	for(size_t i = 0; i < subdirectoryNames.size(); i++)
-		RETURN_ERR(DeleteDirectory(Path::Join(path, subdirectoryNames[i])));
+		RETURN_ERR(DeleteDirectory(path / subdirectoryNames[i]));
 
 	errno = 0;
-	if(wrmdir(path.c_str()) != 0)
+	if(wrmdir(path) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;

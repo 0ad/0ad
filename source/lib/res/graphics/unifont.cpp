@@ -85,8 +85,8 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 
 	// Read font definition file into a stringstream
 	shared_ptr<u8> buf; size_t size;
-	const VfsPath fntName(basename + L".fnt");
-	RETURN_ERR(vfs->LoadFile(Path::Join(path, fntName), buf, size));	// [cumulative for 12: 36ms]
+	const VfsPath fntName(basename.ChangeExtension(L".fnt"));
+	RETURN_ERR(vfs->LoadFile(path / fntName, buf, size));	// [cumulative for 12: 36ms]
 	std::istringstream FNTStream(std::string((const char*)buf.get(), size));
 
 	int Version;
@@ -150,8 +150,8 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 
 	// Load glyph texture
 	// [cumulative for 12: 20ms]
-	const VfsPath imgName(basename + L".png");
-	Handle ht = ogl_tex_load(vfs, Path::Join(path, imgName));
+	const VfsPath imgName(basename.ChangeExtension(L".png"));
+	Handle ht = ogl_tex_load(vfs, path / imgName);
 	RETURN_ERR(ht);
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
 	// override is necessary because the GL format is chosen as LUMINANCE,
@@ -188,7 +188,7 @@ static LibError UniFont_to_string(const UniFont* f, wchar_t* buf)
 	if (f->ht) // not true if this is called after dtor (which it is)
 	{
 		const VfsPath& path = h_filename(f->ht);
-		swprintf_s(buf, H_STRING_LEN, L"Font %ls", path.c_str());
+		swprintf_s(buf, H_STRING_LEN, L"Font %ls", path.string().c_str());
 	}
 	else
 		swprintf_s(buf, H_STRING_LEN, L"Font");

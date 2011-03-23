@@ -216,7 +216,7 @@ public:
 	}
 
 private:
-	typedef Cache< VfsPath, shared_ptr<u8> > CacheType;
+	typedef Cache<VfsPath, shared_ptr<u8> > CacheType;
 	CacheType m_cache;
 
 	PAllocator m_allocator;

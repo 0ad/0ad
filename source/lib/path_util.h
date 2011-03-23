@@ -37,8 +37,9 @@
 #ifndef INCLUDED_PATH_UTIL
 #define INCLUDED_PATH_UTIL
 
-#include "lib/native_path.h"
-#include "lib/posix/posix_filesystem.h"
+#if CONFIG_ENABLE_BOOST
+# include "boost/functional/hash.hpp"
+#endif
 
 namespace ERR
 {
@@ -46,13 +47,6 @@ namespace ERR
 	const LibError PATH_COMPONENT_SEPARATOR = -100301;
 	const LibError PATH_NOT_FOUND           = -100302;
 }
-
-/**
- * check if name is valid. (see source for criteria)
- *
- * @return LibError (ERR::PATH_* or INFO::OK)
- **/
-LIB_API LibError path_component_validate(const wchar_t* name);
 
 /**
  * is s2 a subpath of s1, or vice versa? (equal counts as subpath)
@@ -63,141 +57,168 @@ LIB_API LibError path_component_validate(const wchar_t* name);
 LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
 
 /**
- * Get the name component of a path.
+ * Get the path component of a path.
  * Skips over all characters up to the last dir separator, if any.
  *
  * @param path Input path.
- * @return pointer to name component within \<path\>.
+ * @return pointer to path component within \<path\>.
  **/
 LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
-namespace Path {
 
-template<class Path_t>
-static inline bool IsDirectory(const Path_t& pathname)
+// NB: there is a need for 'generic' paths (e.g. for Trace entry / archive pathnames). 
+// converting via c_str would be inefficient, and the Os/VfsPath typedefs are hopefully
+// sufficient to avoid errors.
+class Path
 {
-	if(pathname.empty())	// (ensure length()-1 is safe)
-		return true;	// (the VFS root directory is represented as an empty string)
+public:
+	typedef std::wstring String;
 
-	// note: ideally, path strings would only contain '/' or even SYS_DIR_SEP.
-	// however, windows-specific code (e.g. the sound driver detection)
-	// uses these routines with '\\' strings. converting them all to
-	// '/' and then back before passing to OS functions would be annoying.
-	// also, the self-tests verify correct operation of such strings.
-	// it would be error-prone to only test the platform's separator
-	// strings there. hence, we allow all separators here.
-	return pathname[pathname.length()-1] == '/' || pathname[pathname.length()-1] == '\\';
-}
+	Path() {}
+	Path(const char* p)         : path(p, p+strlen(p)) {}
+	Path(const wchar_t* p)      : path(p, p+wcslen(p)) {}
+	Path(const std::string& s)  : path(s.begin(), s.end()) {}
+	Path(const std::wstring& s) : path(s) {}
 
-template<class Path_t>
-static inline Path_t Path(const Path_t& pathname)
-{
-	size_t n = pathname.find_last_of('/');
-	if(n == Path_t::npos)
+	bool empty() const
 	{
-		n = pathname.find_last_of('\\');
-		if(n == Path_t::npos)
-			return L"";
+		return path.empty();
 	}
-	return pathname.substr(0, n);
-}
 
-template<class Path_t>
-static inline Path_t Filename(const Path_t& pathname)
-{
-	size_t n = pathname.find_last_of('/');
-	if(n == Path_t::npos)
+	const String& string() const
 	{
-		n = pathname.find_last_of('\\');
-		if(n == Path_t::npos)
-			return pathname;
+		return path;
 	}
-	return pathname.substr(n+1);
-}
 
-template<class Path_t>
-static inline Path_t Basename(const Path_t& pathname)
-{
-	const Path_t filename = Filename(pathname);
-	const size_t idxDot = filename.find_last_of('.');
-	if(idxDot == Path_t::npos)
-		return filename;
-	return filename.substr(0, idxDot);
-}
-
-template<class Path_t>
-static inline std::wstring Extension(const Path_t& pathname)
-{
-	const size_t idxDot = pathname.find_last_of('.');
-	if(idxDot == Path_t::npos)
-		return Path_t();
-	return pathname.substr(idxDot);
-}
-
-static inline std::wstring JoinPathStrings(const std::wstring& path1, const std::wstring& path2)
-{
-	std::wstring ret = path1;
-	if(!IsDirectory(path1))
-		ret += '/';
-	ret += path2;
-	return ret;
-}
-
-template<class Path_t>
-static inline Path_t Join(const Path_t& path1, const Path_t& path2)
-{
-	return JoinPathStrings(path1, path2);
-}
-
-template<class Path_t>
-static inline Path_t Join(const Path_t& path1, const char* literal)
-{
-	return JoinPathStrings(path1, NativePathFromString(literal));
-}
-
-template<class Path_t>
-static inline Path_t Join(const char* literal, const Path_t& path2)
-{
-	return JoinPathStrings(NativePathFromString(literal), path2);
-}
-
-template<class Path_t>
-static inline Path_t AddSlash(const Path_t& path)
-{
-	return IsDirectory(path)? path : path+L'/';
-}
-
-template<class Path_t>
-static inline Path_t ChangeExtension(const Path_t& pathname, const std::wstring& extension)
-{
-	return Join(Path(pathname), Basename(pathname)+extension);
-}
-
-}	// namespace Path
-
-static inline bool FileExists(const NativePath& pathname)
-{
-	struct stat s;
-	const bool exists = wstat(pathname.c_str(), &s) == 0;
-	return exists;
-}
-
-static inline u64 FileSize(const NativePath& pathname)
-{
-	struct stat s;
-	debug_assert(wstat(pathname.c_str(), &s) == 0);
-	return s.st_size;
-}
-
-static inline bool DirectoryExists(const NativePath& path)
-{
-	WDIR* dir = wopendir(path.c_str());
-	if(dir)
+	bool operator<(const Path& rhs) const
 	{
-		wclosedir(dir);
-		return true;
+		return wcscasecmp(path.c_str(), rhs.path.c_str()) < 0;
 	}
-	return false;
+
+	bool operator==(const Path& rhs) const
+	{
+		return wcscasecmp(path.c_str(), rhs.path.c_str()) == 0;
+	}
+
+	bool operator!=(const Path& rhs) const
+	{
+		return !operator==(rhs);
+	}
+
+	bool IsDirectory() const
+	{
+		if(empty())	// (ensure length()-1 is safe)
+			return true;	// (the VFS root directory is represented as an empty string)
+
+		// note: ideally, path strings would only contain '/' or even SYS_DIR_SEP.
+		// however, windows-specific code (e.g. the sound driver detection)
+		// uses these routines with '\\' strings. converting them all to
+		// '/' and then back before passing to OS functions would be annoying.
+		// also, the self-tests verify correct operation of such strings.
+		// it would be error-prone to only test the platform's separators.
+		// we therefore allow all separators here.
+		return path[path.length()-1] == '/' || path[path.length()-1] == '\\';
+	}
+
+	Path Parent() const
+	{
+		size_t idxSlash = path.find_last_of('/');
+		if(idxSlash == String::npos)
+		{
+			idxSlash = path.find_last_of('\\');
+			if(idxSlash == String::npos)
+				return L"";
+		}
+		return path.substr(0, idxSlash);
+	}
+
+	Path Filename() const
+	{
+		size_t idxSlash = path.find_last_of('/');
+		if(idxSlash == String::npos)
+		{
+			idxSlash = path.find_last_of('\\');
+			if(idxSlash == String::npos)
+				return path;
+		}
+		return path.substr(idxSlash+1);
+	}
+
+	Path Basename() const
+	{
+		const Path filename = Filename();
+		const size_t idxDot = filename.string().find_last_of('.');
+		if(idxDot == String::npos)
+			return filename;
+		return filename.string().substr(0, idxDot);
+	}
+
+	// (Path return type allows callers to use our operator==)
+	Path Extension() const
+	{
+		const Path filename = Filename();
+		const size_t idxDot = filename.string().find_last_of('.');
+		if(idxDot == String::npos)
+			return Path();
+		return filename.string().substr(idxDot);
+	}
+
+	Path ChangeExtension(Path extension) const
+	{
+		return Parent() / Path(Basename().string() + extension.string());
+	}
+
+	Path operator/(Path rhs) const
+	{
+		Path ret = *this;
+		if(!ret.IsDirectory())
+			ret.path += '/';
+		ret.path += rhs.path;
+		return ret;
+	}
+
+	LibError Validate() const
+	{
+		for(size_t i = 0; i < path.length(); i++)
+		{
+		}
+
+		return INFO::OK;
+	}
+
+private:
+	String path;
+};
+
+static inline std::wostream& operator<<(std::wostream& s, const Path& path)
+{
+	s << path.string();
+	return s;
 }
+
+static inline std::wistream& operator>>(std::wistream& s, Path& path)
+{
+	Path::String string;
+	s >> string;
+	path = Path(string);
+	return s;
+}
+
+#if CONFIG_ENABLE_BOOST
+
+namespace boost {
+
+template<>
+struct hash<Path> : std::unary_function<Path, std::size_t>
+{
+	std::size_t operator()(const Path& path) const
+	{
+		return hash_value(path.string());
+	}
+};
+
+}
+
+#endif	// #if CONFIG_ENABLE_BOOST
 
 #endif	// #ifndef INCLUDED_PATH_UTIL

@@ -260,7 +260,7 @@ static void UninstallDriver()
 }
 
 
-static void StartDriver(const NativePath& driverPathname)
+static void StartDriver(const OsPath& driverPathname)
 {
 	const SC_HANDLE hSCM = OpenServiceControlManager();
 	if(!hSCM)
@@ -290,7 +290,7 @@ static void StartDriver(const NativePath& driverPathname)
 		// NB: Windows 7 seems to insist upon backslashes (i.e. external_file_string)
 		hService = CreateServiceW(hSCM, AKEN_NAME, AKEN_NAME,
 			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
-			driverPathname.c_str(), 0, 0, 0, startName, 0);
+			OsString(driverPathname).c_str(), 0, 0, 0, startName, 0);
 		debug_assert(hService != 0);
 	}
 
@@ -323,7 +323,7 @@ static bool Is64BitOs()
 #endif
 }
 
-static NativePath DriverPathname()
+static OsPath DriverPathname()
 {
 	const char* const bits = Is64BitOs()? "64" : "";
 #ifdef NDEBUG
@@ -333,7 +333,7 @@ static NativePath DriverPathname()
 #endif
 	char filename[PATH_MAX];
 	sprintf_s(filename, ARRAY_SIZE(filename), "aken%s%s.sys", bits, debug);
-	return Path::Join(wutil_ExecutablePath(), filename);
+	return wutil_ExecutablePath() / filename;
 }
 
 
@@ -345,7 +345,7 @@ static LibError Init()
 		return ERR::NOT_SUPPORTED;	// NOWARN
 
 	{
-		const NativePath driverPathname = DriverPathname();
+		const OsPath driverPathname = DriverPathname();
 		StartDriver(driverPathname);
 	}
 

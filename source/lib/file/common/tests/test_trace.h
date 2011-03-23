@@ -34,7 +34,7 @@ public:
 
 		TraceEntry t1(TraceEntry::Load, L"example.txt", 1234);
 		TS_ASSERT_EQUALS(t1.Action(), TraceEntry::Load);
-		TS_ASSERT_WSTR_EQUALS(t1.Pathname(), L"example.txt");
+		TS_ASSERT_PATH_EQUALS(t1.Pathname(), OsPath(L"example.txt"));
 		TS_ASSERT_EQUALS(t1.Size(), (size_t)1234);
 
 		buf1 = t1.EncodeAsText();
@@ -44,7 +44,7 @@ public:
 
 		TraceEntry t2(TraceEntry::Store, L"example two.txt", 16777216);
 		TS_ASSERT_EQUALS(t2.Action(), TraceEntry::Store);
-		TS_ASSERT_WSTR_EQUALS(t2.Pathname(), L"example two.txt");
+		TS_ASSERT_PATH_EQUALS(t2.Pathname(), OsPath(L"example two.txt"));
 		TS_ASSERT_EQUALS(t2.Size(), (size_t)16777216);
 
 		buf2 = t2.EncodeAsText();
@@ -52,20 +52,20 @@ public:
 
 		TraceEntry t3(buf1);
 		TS_ASSERT_EQUALS(t3.Action(), TraceEntry::Load);
-		TS_ASSERT_WSTR_EQUALS(t3.Pathname(), L"example.txt");
+		TS_ASSERT_PATH_EQUALS(t3.Pathname(), OsPath(L"example.txt"));
 		TS_ASSERT_EQUALS(t3.Size(), (size_t)1234);
 
 		TraceEntry t4(buf2);
 		TS_ASSERT_EQUALS(t4.Action(), TraceEntry::Store);
-		TS_ASSERT_WSTR_EQUALS(t4.Pathname(), L"example two.txt");
+		TS_ASSERT_PATH_EQUALS(t4.Pathname(), OsPath(L"example two.txt"));
 		TS_ASSERT_EQUALS(t4.Size(), (size_t)16777216);
 	}
 
 	void test_maxpath()
 	{
-		NativePath path1(PATH_MAX, L'x');
-		std::wstring buf1 = L"0: L \"" + path1 + L"\" 0\n";
+		OsPath path1(std::wstring(PATH_MAX, L'x'));
+		std::wstring buf1 = L"0: L \"" + path1.string() + L"\" 0\n";
 		TraceEntry t1(buf1);
-		TS_ASSERT_WSTR_EQUALS(t1.Pathname(), path1);
+		TS_ASSERT_PATH_EQUALS(t1.Pathname(), path1);
 	}
 };

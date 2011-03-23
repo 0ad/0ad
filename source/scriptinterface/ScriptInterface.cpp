@@ -768,9 +768,9 @@ bool ScriptInterface::FreezeObject(jsval obj, bool deep)
 		return JS_FreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj)) ? true : false;
 }
 
-bool ScriptInterface::LoadScript(const std::wstring& filename, const std::wstring& code)
+bool ScriptInterface::LoadScript(const VfsPath& filename, const std::wstring& code)
 {
-	std::string fnAscii(filename.begin(), filename.end());
+	std::string fnAscii = utf8_from_wstring(filename.string());
 
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
@@ -792,7 +792,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 {
 	if (!VfsFileExists(g_VFS, path))
 	{
-		LOGERROR(L"File '%ls' does not exist", path.c_str());
+		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
 		return false;
 	}
 
@@ -802,14 +802,14 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to load file '%ls': %hs", path.c_str(), GetErrorString(ret));
+		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
 		return false;
 	}
 
 	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
 	std::wstring code = wstring_from_utf8(content);
 
-	std::string fnAscii(path.begin(), path.end());
+	std::string fnAscii = utf8_from_wstring(path.string());
 
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
@@ -877,7 +877,7 @@ CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 {
 	if (!VfsFileExists(g_VFS, path))
 	{
-		LOGERROR(L"File '%ls' does not exist", path.c_str());
+		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
 		return CScriptValRooted();
 	}
 
@@ -887,7 +887,7 @@ CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to load file '%ls': %hs", path.c_str(), GetErrorString(ret));
+		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
 		return CScriptValRooted();
 	}
 

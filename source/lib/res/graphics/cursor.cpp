@@ -188,21 +188,20 @@ static void Cursor_dtor(Cursor* c)
 
 static LibError Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Handle)
 {
-	const VfsPath path(L"art/textures/cursors");
-	const VfsPath pathname(Path::Join(path, name));
+	const VfsPath pathname(VfsPath(L"art/textures/cursors") / name);
 
 	// read pixel offset of the cursor's hotspot [the bit of it that's
 	// drawn at (g_mouse_x,g_mouse_y)] from file.
 	int hotspotx = 0, hotspoty = 0;
 	{
-		const VfsPath pathnameHotspot = Path::ChangeExtension(pathname, L".txt");
+		const VfsPath pathnameHotspot = pathname.ChangeExtension(L".txt");
 		shared_ptr<u8> buf; size_t size;
 		RETURN_ERR(vfs->LoadFile(pathnameHotspot, buf, size));
 		std::wstringstream s(std::wstring((const wchar_t*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
 	}
 
-	const VfsPath pathnameImage = Path::ChangeExtension(pathname, L".png");
+	const VfsPath pathnameImage = pathname.ChangeExtension(L".png");
 
 	// try loading as system cursor (2d, hardware accelerated)
 	if(load_sys_cursor(vfs, pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)

@@ -104,13 +104,12 @@ private:
 
 	LibError AddFiles(const FileInfos& files) const
 	{
-		const NativePath path(m_realDirectory->Path());
+		const OsPath path(m_realDirectory->Path());
 
 		for(size_t i = 0; i < files.size(); i++)
 		{
-			const NativePath pathname = Path::Join(path, files[i].Name());
-			const NativePath extension = Path::Extension(pathname);
-			if(wcscasecmp(extension.c_str(), L".zip") == 0)
+			const OsPath pathname = path / files[i].Name();
+			if(pathname.Extension() == L".zip")
 			{
 				PIArchiveReader archiveReader = CreateArchiveReader_Zip(pathname);
 				RETURN_ERR(archiveReader->ReadEntries(AddArchiveFile, (uintptr_t)this));
@@ -128,7 +127,7 @@ private:
 		{
 			// skip version control directories - this avoids cluttering the
 			// VFS with hundreds of irrelevant files.
-			if(wcscasecmp(subdirectoryNames[i].c_str(), L".svn") == 0)
+			if(subdirectoryNames[i] == L".svn")
 				continue;
 
 			VfsDirectory* subdirectory = m_directory->AddSubdirectory(subdirectoryNames[i]);

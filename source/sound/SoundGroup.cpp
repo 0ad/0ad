@@ -121,7 +121,7 @@ static void HandleError(const std::wstring& message, const VfsPath& pathname, Li
 {
 	if(err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOGERROR(L"%ls: pathname=%ls, error=%ld", message.c_str(), pathname.c_str(), err);
+	LOGERROR(L"%ls: pathname=%ls, error=%ld", message.c_str(), pathname.string().c_str(), err);
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position)
@@ -131,7 +131,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		if(!snd_is_playing(m_hReplacement))
 		{
 			// load up replacement file
-			const VfsPath pathname(Path::Join(m_filepath, m_intensity_file));
+			const VfsPath pathname(m_filepath / m_intensity_file);
 			m_hReplacement = snd_open(g_VFS, pathname);
 			if(m_hReplacement < 0)
 			{
@@ -152,7 +152,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		if(TestFlag(eRandOrder))
 			m_index = (size_t)rand(0, (size_t)filenames.size());
 		// (note: previously snd_group[m_index] was used in place of hs)
-		const VfsPath pathname(Path::Join(m_filepath, filenames[m_index]));
+		const VfsPath pathname(m_filepath / filenames[m_index]);
 		Handle hs = snd_open(g_VFS, pathname);
 		if(hs < 0)
 		{

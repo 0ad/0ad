@@ -145,7 +145,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 	// Tell Atlas the location of the data directory
 	const Paths paths(args);
-	Atlas_SetDataDirectory(paths.RData().c_str());
+	Atlas_SetDataDirectory(paths.RData().string().c_str());
 
 	// Register all the handlers for message which might be passed back
 	RegisterHandlers();

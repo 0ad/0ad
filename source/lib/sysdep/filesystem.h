@@ -27,6 +27,9 @@
 #ifndef INCLUDED_FILESYSTEM
 #define INCLUDED_FILESYSTEM
 
+#include "lib/native_path.h"
+#include "lib/posix/posix_filesystem.h"	// mode_t
+
 
 //
 // dirent.h
@@ -42,7 +45,7 @@ struct wdirent
 	wchar_t* d_name;
 };
 
-extern WDIR* wopendir(const wchar_t* path);
+extern WDIR* wopendir(const OsPath& path);
 
 extern struct wdirent* wreaddir(WDIR*);
 
@@ -74,8 +77,8 @@ extern int wclosedir(WDIR*);
 #define O_NONBLOCK     0x1000000
 #endif
 
-extern int wopen(const wchar_t* pathname, int oflag);
-extern int wopen(const wchar_t* pathname, int oflag, mode_t mode);
+extern int wopen(const OsPath& pathname, int oflag);
+extern int wopen(const OsPath& pathname, int oflag, mode_t mode);
 extern int wclose(int fd);
 
 
@@ -83,33 +86,33 @@ extern int wclose(int fd);
 // unistd.h
 //
 
-LIB_API int wtruncate(const wchar_t* pathname, off_t length);
+LIB_API int wtruncate(const OsPath& pathname, off_t length);
 
-LIB_API int wunlink(const wchar_t* pathname);
+LIB_API int wunlink(const OsPath& pathname);
 
-LIB_API int wrmdir(const wchar_t* path);
+LIB_API int wrmdir(const OsPath& path);
 
 
 //
 // stdio.h
 //
 
-LIB_API int wrename(const wchar_t* pathnameOld, const wchar_t* pathnameNew);
+LIB_API int wrename(const OsPath& pathnameOld, const OsPath& pathnameNew);
 
 
 //
 // stdlib.h
 //
 
-LIB_API wchar_t* wrealpath(const wchar_t* pathname, wchar_t* resolved);
+LIB_API OsPath wrealpath(const OsPath& pathname);
 
 
 //
 // sys/stat.h
 //
 
-LIB_API int wstat(const wchar_t* pathname, struct stat* buf);
+LIB_API int wstat(const OsPath& pathname, struct stat* buf);
 
-LIB_API int wmkdir(const wchar_t* path, mode_t mode);
+LIB_API int wmkdir(const OsPath& path, mode_t mode);
 
 #endif	// #ifndef INCLUDED_FILESYSTEM

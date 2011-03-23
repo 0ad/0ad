@@ -23,43 +23,34 @@
 #ifndef INCLUDED_NATIVE_PATH
 #define INCLUDED_NATIVE_PATH
 
-#include <string>
+#include "lib/path_util.h"
 
 // rationale:
-// this is conceptually a different kind of path, not a superset of VfsPath,
-// hence NativePath instead of Path (PathUtil is a bit clunky as a
-// namespace anyway).
-// a typedef instead of wrapper class avoids the need for accessor functions
-// (e.g. boost::filesystem::string()) at the cost of somewhat diminished safety.
 // users are responsible for ensuring the path doesn't contain any forbidden
 // characters (including any code points >= 0x100 on anything but Windows)
-typedef std::wstring NativePath;
-
-static inline NativePath NativePathFromString(const std::string& string)
-{
-	return NativePath(string.begin(), string.end());
-}
+typedef Path OsPath;
 
 #if OS_WIN
 
-static inline std::wstring StringFromNativePath(const NativePath& npath)
+static inline const Path::String& OsString(const OsPath& path)
 {
-	return npath;
+	return path.string();
 }
 
 #else
 
-static inline std::string StringFromNativePath(const NativePath& npath)
+static inline std::string OsString(const OsPath& path)
 {
-	std::string string(npath.length(), '\0');
-	for(size_t i = 0; i < npath.length(); i++)
+	const Path::String& wstring = path.string();
+	std::string string(wstring.length(), '\0');
+	for(size_t i = 0; i < wstring.length(); i++)
 	{
-		debug_assert(npath[i] <= UCHAR_MAX);
-		string[i] = npath[i];
+		debug_assert(wstring[i] <= UCHAR_MAX);
+		string[i] = wstring[i];
 	}
 	return string;
 }
-
 #endif
+
 
 #endif	// #ifndef INCLUDED_NATIVE_PATH

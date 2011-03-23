@@ -41,14 +41,14 @@ static void def_override_gl_upload_caps()
 }
 
 
-static const NativePath& def_get_log_dir()
+static const OsPath& def_get_log_dir()
 {
-	static NativePath logDir;
+	static OsPath logDir;
 	if(logDir.empty())
 	{
-		NativePath exePathname;
+		OsPath exePathname;
 		(void)sys_get_executable_name(exePathname);
-		logDir = Path::Path(exePathname);
+		logDir = exePathname.Parent();
 	}
 	return logDir;
 }
@@ -153,7 +153,7 @@ void ah_override_gl_upload_caps()
 		ah.override_gl_upload_caps();
 }
 
-const NativePath& ah_get_log_dir()
+const OsPath& ah_get_log_dir()
 {
 	return ah.get_log_dir();
 }

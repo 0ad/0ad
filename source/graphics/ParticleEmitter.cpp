@@ -108,11 +108,11 @@ bool CEmitter::LoadXml(const VfsPath& pathname)
 
 	if( root.GetNodeName() != el_Emitter )
 	{
-		LOGERROR(L"CEmitter::LoadXml: XML root was not \"Emitter\" in file %ls. Load failed.", pathname.c_str() );
+		LOGERROR(L"CEmitter::LoadXml: XML root was not \"Emitter\" in file %ls. Load failed.", pathname.string().c_str() );
 		return( false );
 	}
 
-	m_tag = Path::Basename(pathname);
+	m_tag = pathname.Basename().string();
 
 	//TODO figure out if we need to use Type attribute to construct different emitter types, 
 	// probably have to move some of this code into a static factory method or out into ParticleEngine class

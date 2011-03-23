@@ -55,7 +55,7 @@ public:
 		// name of the prop point to attach to - "Prop01", "Prop02", "Head", "LeftHand", etc ..
 		CStr m_PropPointName;
 		// name of the model file - art/actors/props/sword.xml or whatever
-		VfsPath m_ModelName;
+		CStrW m_ModelName;
 	};
 
 	struct Decal

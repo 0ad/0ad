@@ -45,7 +45,7 @@ LibError CCacheLoader::TryLoadingCached(const VfsPath& sourcePath, const MD5& in
 	LibError err = m_VFS->GetFileInfo(sourcePath, NULL);
 	if (err < 0)
 	{
-		LOGERROR(L"Failed to find file: \"%ls\"", sourcePath.c_str());
+		LOGERROR(L"Failed to find file: \"%ls\"", sourcePath.string().c_str());
 		return err;
 	}
 
@@ -109,7 +109,7 @@ bool CCacheLoader::CanUseArchiveCache(const VfsPath& sourcePath, const VfsPath& 
 
 VfsPath CCacheLoader::ArchiveCachePath(const VfsPath& sourcePath)
 {
-	return Path::ChangeExtension(sourcePath, Path::Extension(sourcePath) + L".cached" + m_FileExtension);
+	return sourcePath.ChangeExtension(sourcePath.Extension().string() + L".cached" + m_FileExtension);
 }
 
 VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initialHash, u32 version)
@@ -142,7 +142,7 @@ VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initi
 		digestPrefix << std::setfill(L'0') << std::setw(2) << (int)digest[i];
 
 	// Construct the final path
-	return Path::Join("cache", Path::ChangeExtension(sourcePath, Path::Extension(sourcePath) + std::wstring(L".") + digestPrefix.str() + m_FileExtension));
+	return VfsPath("cache") /sourcePath.ChangeExtension(sourcePath.Extension().string() + L"." + digestPrefix.str() + m_FileExtension);
 
 	// TODO: we should probably include the mod name, once that's possible (http://trac.wildfiregames.com/ticket/564)
 }
