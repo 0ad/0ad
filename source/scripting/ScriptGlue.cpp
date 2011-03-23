@@ -36,7 +36,6 @@
 #include "lib/frequency_filter.h"
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"	// sys_OpenFile
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "network/NetServer.h"

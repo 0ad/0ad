@@ -28,7 +28,6 @@
 #include "simulation2/components/ICmpTemplateManager.h"
 
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "lib/file/file_system_util.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"

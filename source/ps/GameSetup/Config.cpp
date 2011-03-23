@@ -21,7 +21,6 @@
 #include "ps/CConsole.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "Config.h"
 

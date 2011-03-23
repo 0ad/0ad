@@ -32,7 +32,6 @@
 #include "graphics/Unit.h"
 #include "graphics/UnitAnimation.h"
 #include "graphics/UnitManager.h"
-#include "lib/utf8.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"

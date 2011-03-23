@@ -19,7 +19,6 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
-#include "lib/utf8.h"
 #include "ps/CLogger.h"
 
 #include <boost/random/linear_congruential.hpp>

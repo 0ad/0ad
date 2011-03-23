@@ -32,11 +32,6 @@
 
 #include "lib/secure_crt.h"
 
-#ifdef WSECURE_CRT
-#include "lib/utf8.h"
-#endif
-
-
 // we were included from wsecure_crt.cpp; skip all stuff that
 // must only be done once.
 #ifndef WSECURE_CRT

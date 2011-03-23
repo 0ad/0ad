@@ -30,8 +30,6 @@
 #include <cstring>
 #include <cerrno>
 
-#include "lib/utf8.h"
-
 ERROR_ASSOCIATE(ERR::PATH_CHARACTER_ILLEGAL, L"illegal path character", -1);
 ERROR_ASSOCIATE(ERR::PATH_CHARACTER_UNSAFE, L"unsafe path character", -1);
 ERROR_ASSOCIATE(ERR::PATH_NOT_FOUND, L"path not found", -1);

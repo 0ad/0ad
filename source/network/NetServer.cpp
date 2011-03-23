@@ -25,7 +25,6 @@
 #include "NetStats.h"
 #include "NetTurnManager.h"
 
-#include "lib/utf8.h"
 #include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"

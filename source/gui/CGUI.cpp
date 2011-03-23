@@ -50,7 +50,6 @@ CGUI
 #include "lib/input.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
 #include "ps/Overlay.h"

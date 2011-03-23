@@ -21,7 +21,6 @@
 
 #include "graphics/TerrainTextureManager.h"
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "lib/file/file_system.h"
 #include "lib/tex/tex.h"
 #include "ps/Game.h"
