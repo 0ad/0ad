@@ -92,7 +92,7 @@ log("Placing players...");
 var playerX = new Array(numPlayers+1);
 var playerY = new Array(numPlayers+1);
 
-var numLeftPlayers = floor(numPlayers/2);
+var numLeftPlayers = ceil(numPlayers/2);
 for (var i=1; i <= numLeftPlayers; i++)
 {
 	playerX[i] = 0.28 + (2*randFloat()-1)*0.01;
