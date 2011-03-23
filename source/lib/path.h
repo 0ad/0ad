@@ -43,8 +43,8 @@
 
 namespace ERR
 {
-	const LibError PATH_EMPTY               = -100300;
-	const LibError PATH_COMPONENT_SEPARATOR = -100301;
+	const LibError PATH_CHARACTER_ILLEGAL   = -100300;
+	const LibError PATH_CHARACTER_UNSAFE    = -100301;
 	const LibError PATH_NOT_FOUND           = -100302;
 }
 
@@ -177,14 +177,7 @@ public:
 		return ret;
 	}
 
-	LibError Validate() const
-	{
-		for(size_t i = 0; i < path.length(); i++)
-		{
-		}
-
-		return INFO::OK;
-	}
+	static LibError Validate(String::value_type c);
 
 private:
 	String path;

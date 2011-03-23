@@ -30,30 +30,23 @@
 
 #include <cstdio>
 
-LibError sys_get_executable_name(OsPath& pathname)
+OsPath sys_ExecutablePathname()
 {
-	const char* path;
-	Dl_info dl_info;
-
 	// Find the executable's filename
+	Dl_info dl_info;
 	memset(&dl_info, 0, sizeof(dl_info));
-	if (!T::dladdr((void *)sys_get_executable_name, &dl_info) ||
-		!dl_info.dli_fname )
-	{
-		return ERR::NO_SYS;
-	}
-	path = dl_info.dli_fname;
+	if (!T::dladdr((void *)sys_ExecutablePathname, &dl_info) || !dl_info.dli_fname)
+		return OsPath();
+	const char* path = dl_info.dli_fname;
 
 	// If this looks like an absolute path, use realpath to get the normalized
 	// path (with no '.' or '..')
 	if (path[0] == '/')
 	{
-		char resolvedBuf[PATH_MAX];
-		char* resolved = realpath(path, resolvedBuf);
-		if (!resolved)
-			return ERR::FAIL;
-		pathname = resolved;
-		return INFO::OK;
+		char resolved[PATH_MAX];
+		if (!realpath(path, resolved))
+			return OsPath();
+		return resolved;
 	}
 
 	// If this looks like a relative path, resolve against cwd and use realpath
@@ -61,22 +54,20 @@ LibError sys_get_executable_name(OsPath& pathname)
 	{
 		char cwd[PATH_MAX];
 		if (!T::getcwd(cwd, PATH_MAX))
-			return ERR::NO_SYS;
+			return OsPath();
 
 		char absolute[PATH_MAX];
 		int ret = snprintf(absolute, PATH_MAX, "%s/%s", cwd, path);
 		if (ret < 0 || ret >= PATH_MAX)
-			return ERR::NO_SYS; // path too long, or other error
-		char resolvedBuf[PATH_MAX];
-		char* resolved = realpath(absolute, resolvedBuf);
-		if (!resolved)
-			return ERR::NO_SYS;
-		pathname = resolved;
-		return INFO::OK;
+			return OsPath(); // path too long, or other error
+		char resolved[PATH_MAX];
+		if (!realpath(absolute, resolved))
+			return OsPath();
+		return resolved;
 	}
 
 	// If it's not a path at all, i.e. it's just a filename, we'd
 	// probably have to search through PATH to find it.
 	// That's complex and should be uncommon, so don't bother.
-	return ERR::NO_SYS;
+	return OsPath();
 }

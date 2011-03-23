@@ -59,27 +59,26 @@ filesystem;
 
 // called from the first filetime_to_time_t() call, not win.cpp init;
 // this means we can rely on the current directory having been set to
-// the app's directory (and therefore its appendant volume - see above).
+// the app's directory (and the corresponding volume - see above).
 static void detect_filesystem()
 {
-	wchar_t root_path[MAX_PATH] = L"c:\\";	// default in case GCD fails
-	DWORD gcd_ret = GetCurrentDirectoryW(ARRAY_SIZE(root_path), root_path);
-	debug_assert(gcd_ret != 0);
-		// if this fails, no problem - we have the default from above.
-	root_path[3] = '\0';	// cut off after "c:\"
+	const DWORD length = GetCurrentDirectoryW(0, 0);
+	debug_assert(length != 0);
+	std::wstring rootPath(length, '\0');
+	const DWORD charsWritten = GetCurrentDirectoryW(length, &rootPath[0]);
+	debug_assert(charsWritten == length-1);
 
-	wchar_t fs_name[32] = {0};
-	BOOL ret = GetVolumeInformationW(root_path, 0,0,0,0,0, fs_name, sizeof(fs_name));
-	fs_name[ARRAY_SIZE(fs_name)-1] = '\0';
+	wchar_t drive[_MAX_DRIVE];
+	debug_assert(_wsplitpath_s(&rootPath[0], drive, ARRAY_SIZE(drive), 0,0, 0,0, 0,0) == 0);
+
+	wchar_t filesystemName[MAX_PATH+1] = {0};	// mandated by GetVolumeInformationW
+	BOOL ret = GetVolumeInformationW(OsString(OsPath(drive)/"").c_str(), 0,0,0,0,0, filesystemName, ARRAY_SIZE(filesystemName));
 	debug_assert(ret != 0);
-		// if this fails, no problem - we really only care if fs is FAT,
-		// and will assume that's not the case (since fs_name != "FAT").
 
 	filesystem = FS_UNKNOWN;
-
-	if(!wcsncmp(fs_name, L"FAT", 3))	// e.g. FAT32
+	if(!wcsncmp(filesystemName, L"FAT", 3))	// e.g. FAT32
 		filesystem = FS_FAT;
-	else if(!wcscmp(fs_name, L"NTFS"))
+	else if(!wcscmp(filesystemName, L"NTFS"))
 		filesystem = FS_NTFS;
 }
 

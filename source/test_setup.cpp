@@ -90,12 +90,10 @@ bool ts_str_contains(const std::wstring& str1, const std::wstring& str2)
 // we need the (version-controlled) binaries/data directory because it
 // contains input files (it is assumed that developer's machines have
 // write access to those directories). note that argv0 isn't
-// available, so we use sys_get_executable_name.
+// available, so we use sys_ExecutablePathname.
 OsPath DataDir()
 {
-	OsPath path;
-	TS_ASSERT_OK(sys_get_executable_name(path));
-	return path.Parent()/"../data";
+	return sys_ExecutablePathname().Parent()/"../data";
 }
 
 // Script-based testing setup:

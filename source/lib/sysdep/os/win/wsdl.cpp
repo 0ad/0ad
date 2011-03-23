@@ -40,6 +40,7 @@
 
 #include "lib/module_init.h"
 #include "lib/posix/posix_pthread.h"
+#include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wmi.h"	// for SDL_GetVideoInfo
@@ -1477,21 +1478,6 @@ void SDL_Quit()
 }
 
 
-static OsPath GetStdoutPathname()
-{
-	// the current directory is unreliable, so use the full path to
-	// the current executable.
-	wchar_t pathnameEXE[MAX_PATH];
-	const DWORD charsWritten = GetModuleFileNameW(0, pathnameEXE, ARRAY_SIZE(pathnameEXE));
-	debug_assert(charsWritten);
-
-	// add the EXE name to the filename to allow multiple executables
-	// with their own redirections. (we can't use wutil_ExecutablePath
-	// because it doesn't return the basename)
-	OsPath pathname = OsPath(pathnameEXE).ChangeExtension(L"_stdout.txt");
-	return pathname;
-}
-
 static void RedirectStdout()
 {
 	// this process is apparently attached to a console, and users might be
@@ -1499,7 +1485,10 @@ static void RedirectStdout()
 	if(wutil_IsValidHandle(GetStdHandle(STD_OUTPUT_HANDLE)))
 		return;
 
-	const OsPath pathname = GetStdoutPathname();
+	// this code may be included in multiple executables sharing the same
+	// directory, so include the executable's name in the filename. use its
+	// full path since the current directory is unreliable.
+	const OsPath pathname = sys_ExecutablePathname().ChangeExtension(L"_stdout.txt");
 
  	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
  	// to prevent the OS from opening a console on startup (ugly).

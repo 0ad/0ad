@@ -78,7 +78,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 
-LibError sys_get_executable_name(OsPath& pathname)
+OsPath sys_ExecutablePathname()
 {
 	static char name[PATH_MAX];
 	static bool init = false;
@@ -88,9 +88,7 @@ LibError sys_get_executable_name(OsPath& pathname)
 		char temp[PATH_MAX];
 		u32 size = PATH_MAX;
 		if (_NSGetExecutablePath( temp, &size ))
-		{
-			return ERR::NO_SYS;
-		}
+			return OsPath();
 		realpath(temp, name);
 	}
 	
@@ -102,7 +100,5 @@ LibError sys_get_executable_name(OsPath& pathname)
 		debug_printf(L"app bundle name: %hs\n", name);
 	}
 	
-	pathname = name;
-	
-	return INFO::OK;
+	return name;
 }

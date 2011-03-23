@@ -114,14 +114,11 @@ extern LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
 LibError sys_get_module_filename(void* addr, OsPath& pathname);
 
 /**
- * Get path to the current executable.
- *
- * @param pathname Full path to executable (unchanged unless INFO::OK is returned).
- * @return LibError
+ * @return full pathname of the current executable.
  *
  * this is useful for determining installation directory, e.g. for VFS.
  **/
-LIB_API LibError sys_get_executable_name(OsPath& pathname);
+LIB_API OsPath sys_ExecutablePathname();
 
 /**
  * Get the current user's login name.

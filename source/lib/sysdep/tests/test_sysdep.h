@@ -47,13 +47,12 @@ public:
 		TS_ASSERT_DIFFERS(a, b);
 	}
 
-	void test_sys_get_executable_name()
+	void test_sys_ExecutablePathname()
 	{
-		OsPath path;
+		OsPath path = sys_ExecutablePathname();
 
 		// Try it first with the real executable (i.e. the
 		// one that's running this test code)
-		TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
 		// Check it's absolute
 		TSM_ASSERT(L"Path: "+path.string(), path_is_absolute(path.string().c_str()));
 		// Check the file exists
@@ -61,7 +60,7 @@ public:
 		TSM_ASSERT_EQUALS(L"Path: "+path.string(), wstat(path, &s), 0);
 
 		// Do some platform-specific tests, based on the
-		// implementations of sys_get_executable_name:
+		// implementations of sys_ExecutablePathname:
 
 #if OS_LINUX
 		// Since the implementation uses realpath, the tested files need to
@@ -110,39 +109,34 @@ public:
 		// Try with absolute paths
 		{
 			Mock_dladdr d(rootstr+"/example/executable");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
-			TS_ASSERT_PATH_EQUALS(path, rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 		{
 			Mock_dladdr d(rootstr+"/example/./a/b/../e/../../executable");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
-			TS_ASSERT_PATH_EQUALS(path, rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 
 		// Try with relative paths
 		{
 			Mock_dladdr d("./executable");
 			Mock_getcwd m(rootstr+"/example");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
-			TS_ASSERT_PATH_EQUALS(path, rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 		{
 			Mock_dladdr d("./executable");
 			Mock_getcwd m(rootstr+"/example/");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
-			TS_ASSERT_PATH_EQUALS(path, rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 		{
 			Mock_dladdr d("../d/../../f/executable");
 			Mock_getcwd m(rootstr+"/example/a/b/c");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
-			TS_ASSERT_PATH_EQUALS(path, rootstrw/L"example/a/f/executable");
+			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/a/f/executable");
 		}
 
 		// Try with pathless names
 		{
 			Mock_dladdr d("executable");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path), ERR::NO_SYS);
+			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), OsPath());
 		}
 
 		// Clean up the temporary files
@@ -161,7 +155,7 @@ public:
 #endif // OS_LINUX
 	}
 
-	// Mock classes for test_sys_get_executable_name
+	// Mock classes for test_sys_ExecutablePathname
 #if OS_LINUX
 	class Mock_dladdr : public T::Base_dladdr
 	{

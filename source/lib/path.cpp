@@ -32,9 +32,8 @@
 
 #include "lib/utf8.h"
 
-
-ERROR_ASSOCIATE(ERR::PATH_EMPTY, L"path is an empty string", -1);
-ERROR_ASSOCIATE(ERR::PATH_COMPONENT_SEPARATOR, L"path component contains dir separator", -1);
+ERROR_ASSOCIATE(ERR::PATH_CHARACTER_ILLEGAL, L"illegal path character", -1);
+ERROR_ASSOCIATE(ERR::PATH_CHARACTER_UNSAFE, L"unsafe path character", -1);
 ERROR_ASSOCIATE(ERR::PATH_NOT_FOUND, L"path not found", -1);
 
 
@@ -92,4 +91,34 @@ const wchar_t* path_name_only(const wchar_t* path)
 	// return name, i.e. component after the last slash
 	const wchar_t* name = std::max(slash1, slash2)+1;
 	return name;
+}
+
+
+/*static*/ LibError Path::Validate(String::value_type c)
+{
+	if(c < 32)
+		return ERR::PATH_CHARACTER_UNSAFE;
+
+#if !OS_WIN
+	if(c >= UCHAR_MAX)
+		return ERR::PATH_CHARACTER_UNSAFE;
+#endif
+
+	switch(c)
+	{
+	case '\\':
+	case '/':
+	case ':':
+	case '"':
+	case '?':
+	case '*':
+	case '<':
+	case '>':
+	case '|':
+	case '^':
+		return ERR::PATH_CHARACTER_ILLEGAL;
+
+	default:
+		return INFO::OK;
+	}
 }

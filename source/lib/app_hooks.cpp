@@ -44,11 +44,7 @@ static const OsPath& def_get_log_dir()
 {
 	static OsPath logDir;
 	if(logDir.empty())
-	{
-		OsPath exePathname;
-		(void)sys_get_executable_name(exePathname);
-		logDir = exePathname.Parent();
-	}
+		logDir = sys_ExecutablePathname().Parent();
 	return logDir;
 }
 

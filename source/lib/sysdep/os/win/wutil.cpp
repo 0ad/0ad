@@ -33,6 +33,7 @@
 #include "lib/file/file.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/posix/posix.h"
+#include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wdbg.h"	// wdbg_assert
 #include "lib/sysdep/os/win/winit.h"
@@ -266,14 +267,6 @@ bool wutil_HasCommandLineArgument(const wchar_t* arg)
 //-----------------------------------------------------------------------------
 // directories
 
-OsPath wutil_DetectExecutablePath()
-{
-	wchar_t modulePathname[MAX_PATH+1] = {0};
-	const DWORD len = GetModuleFileNameW(GetModuleHandle(0), modulePathname, MAX_PATH);
-	debug_assert(len != 0);
-	return OsPath(modulePathname).Parent();
-}
-
 // (NB: wutil_Init is called before static ctors => use placement new)
 static OsPath* systemPath;
 static OsPath* executablePath;
@@ -298,22 +291,25 @@ const OsPath& wutil_AppdataPath()
 static void GetDirectories()
 {
 	WinScopedPreserveLastError s;
-	wchar_t path[MAX_PATH+1] = {0};
 
 	// system directory
 	{
-		const UINT charsWritten = GetSystemDirectoryW(path, MAX_PATH);
-		debug_assert(charsWritten != 0);
+		const UINT length = GetSystemDirectoryW(0, 0);
+		debug_assert(length != 0);
+		std::wstring path(length, '\0');
+		const UINT charsWritten = GetSystemDirectoryW(&path[0], length);
+		debug_assert(charsWritten == length-1);
 		systemPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
 	}
 
 	// executable's directory
-	executablePath = new(wutil_Allocate(sizeof(OsPath))) OsPath(wutil_DetectExecutablePath());
+	executablePath = new(wutil_Allocate(sizeof(OsPath))) OsPath(sys_ExecutablePathname().Parent());
 
 	// application data
 	{
 		HWND hwnd = 0;	// ignored unless a dial-up connection is needed to access the folder
 		HANDLE token = 0;
+		wchar_t path[MAX_PATH];	// mandated by SHGetFolderPathW
 		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
 		debug_assert(SUCCEEDED(ret));
 		appdataPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);

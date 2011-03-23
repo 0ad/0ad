@@ -363,6 +363,19 @@ LibError sys_error_description_r(int user_err, wchar_t* buf, size_t max_chars)
 }
 
 
+static LibError GetModulePathname(HMODULE hModule, OsPath& pathname)
+{
+	wchar_t pathnameBuf[32768];	// NTFS limit
+	const DWORD length = (DWORD)ARRAY_SIZE(pathnameBuf);
+	const DWORD charsWritten = GetModuleFileNameW(hModule, pathnameBuf, length);
+	if(charsWritten == 0)	// failed
+		return LibError_from_GLE();
+	debug_assert(charsWritten < length);	// why would the above buffer ever be exceeded?
+	pathname = pathnameBuf;
+	return INFO::OK;
+}
+
+
 LibError sys_get_module_filename(void* addr, OsPath& pathname)
 {
 	MEMORY_BASIC_INFORMATION mbi;
@@ -370,27 +383,15 @@ LibError sys_get_module_filename(void* addr, OsPath& pathname)
 	if(!bytesWritten)
 		return LibError_from_GLE();
 	debug_assert(bytesWritten >= sizeof(mbi));
-	const HMODULE hModule = (HMODULE)mbi.AllocationBase;
-
-	wchar_t pathnameBuf[MAX_PATH+1];
-	const DWORD charsWritten = GetModuleFileNameW(hModule, pathnameBuf, (DWORD)ARRAY_SIZE(pathnameBuf));
-	if(charsWritten == 0)
-		return LibError_from_GLE();
-	debug_assert(charsWritten < ARRAY_SIZE(pathnameBuf));
-	pathname = pathnameBuf;
-	return INFO::OK;
+	return GetModulePathname((HMODULE)mbi.AllocationBase, pathname);
 }
 
 
-LibError sys_get_executable_name(OsPath& pathname)
+OsPath sys_ExecutablePathname()
 {
-	wchar_t pathnameBuf[MAX_PATH+1];
-	const DWORD charsWritten = GetModuleFileNameW(0, pathnameBuf, (DWORD)ARRAY_SIZE(pathnameBuf));
-	if(charsWritten == 0)
-		return LibError_from_GLE();
-	debug_assert(charsWritten < ARRAY_SIZE(pathnameBuf));
-	pathname = pathnameBuf;
-	return INFO::OK;
+	OsPath pathname;
+	debug_assert(GetModulePathname(0, pathname) == INFO::OK);
+	return pathname;
 }
 
 
@@ -437,7 +438,7 @@ LibError sys_pick_directory(OsPath& path)
 		return INFO::SKIPPED;
 
 	// translate ITEMIDLIST to string
-	wchar_t pathBuf[MAX_PATH];
+	wchar_t pathBuf[MAX_PATH];	// mandated by SHGetPathFromIDListW
 	const BOOL ok = SHGetPathFromIDListW(pidl, pathBuf);
 
 	// free the ITEMIDLIST

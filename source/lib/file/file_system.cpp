@@ -59,8 +59,9 @@ LibError GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryName
 			return LibError_from_errno();
 		}
 
+		for(size_t i = 0; osEnt->d_name[i] != '\0'; i++)
+			RETURN_ERR(Path::Validate(osEnt->d_name[i]));
 		const OsPath name(osEnt->d_name);
-		RETURN_ERR(name.Validate());
 
 		// get file information (mode, size, mtime)
 		struct stat s;

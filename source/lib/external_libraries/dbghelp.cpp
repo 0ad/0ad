@@ -24,6 +24,7 @@
 
 #if OS_WIN
 
+#include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/external_libraries/dbghelp.h"
 
@@ -42,7 +43,7 @@ void dbghelp_ImportFunctions()
 	// application loaded.") and then the system directory, whose
 	// dbghelp.dll is too old. we therefore specify the full path
 	// to our executable directory, which contains a newer dbghelp.dll.
-	const OsPath pathname = wutil_DetectExecutablePath()/"dbghelp.dll";
+	const OsPath pathname = sys_ExecutablePathname().Parent()/"dbghelp.dll";
 	HMODULE hDbghelp = LoadLibraryW(OsString(pathname).c_str());
 	debug_assert(hDbghelp);
 #define FUNC(ret, name, params) p##name = (ret (__stdcall*) params)GetProcAddress(hDbghelp, #name);

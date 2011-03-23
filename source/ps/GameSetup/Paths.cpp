@@ -73,11 +73,9 @@ Paths::Paths(const CmdLineArgs& args)
 /*static*/ OsPath Paths::Root(const OsPath& argv0)
 {
 	// get full path to executable
-	OsPath pathname;
-	// .. first try safe, but system-dependent version
-	if(sys_get_executable_name(pathname) != INFO::OK)
+	OsPath pathname = sys_ExecutablePathname();	// safe, but requires OS-specific implementation
+	if(pathname.empty())	// failed, use argv[0] instead
 	{
-		// .. failed; use argv[0]
 		errno = 0;
 		pathname = wrealpath(argv0);
 		if(pathname.empty())

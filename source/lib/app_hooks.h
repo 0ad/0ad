@@ -113,7 +113,7 @@ extern void ah_override_gl_upload_caps();
  * return path to directory into which crash dumps should be written.
  *
  * must be callable at any time - in particular, before VFS init.
- * paths are typically relative to sys_get_executable_name.
+ * paths are typically relative to sys_ExecutablePathname.
  *
  * @return path ending with directory separator (e.g. '/').
  **/
