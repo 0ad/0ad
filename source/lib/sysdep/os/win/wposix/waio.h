@@ -28,7 +28,7 @@
 #define INCLUDED_WAIO
 
 #include "lib/lib_errors.h"
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 #include "lib/sysdep/os/win/wposix/wposix_types.h"
 
 #include "lib/sysdep/os/win/wposix/no_crt_posix.h"

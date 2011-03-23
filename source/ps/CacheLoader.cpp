@@ -19,7 +19,6 @@
 
 #include "CacheLoader.h"
 
-#include "lib/path_util.h"
 #include "ps/CLogger.h"
 #include "maths/MD5.h"
 

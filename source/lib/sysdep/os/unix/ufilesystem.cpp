@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "lib/posix/posix_filesystem.h"
+#include "lib/sysdep/filesystem.h"
 
-#include "lib/path_util.h"
+#include "lib/path.h"
 
 #include <cstdio>
 

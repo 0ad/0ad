@@ -24,7 +24,7 @@ Standard declarations which are included in all projects.
 #ifndef INCLUDED_PYROGENESIS
 #define INCLUDED_PYROGENESIS
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 // overrides ah_translate. registered in GameSetup.cpp
 extern const wchar_t* psTranslate(const wchar_t* text);

@@ -33,7 +33,6 @@
 
 #include "lib/timer.h"
 #include "lib/bits.h"
-#include "lib/path_util.h"
 #include "lib/sysdep/cpu.h"
 
 #include "tex_codec.h"

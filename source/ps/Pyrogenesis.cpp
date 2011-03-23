@@ -22,7 +22,6 @@
 #include "Pyrogenesis.h"
 
 #include "lib/sysdep/sysdep.h"
-#include "lib/path_util.h"
 #include "lib/svn_revision.h"
 
 static const wchar_t* translate_no_mem = L"(no mem)";

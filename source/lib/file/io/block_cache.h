@@ -27,7 +27,7 @@
 #ifndef INCLUDED_BLOCK_CACHE
 #define INCLUDED_BLOCK_CACHE
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 /**
  * ID that uniquely identifies a block within a file

@@ -35,7 +35,7 @@
 #ifndef INCLUDED_TRACE
 #define INCLUDED_TRACE
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 // stores information about an IO event.
 class TraceEntry

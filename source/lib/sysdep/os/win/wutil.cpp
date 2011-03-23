@@ -30,7 +30,6 @@
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
-#include "lib/path_util.h"
 #include "lib/file/file.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/posix/posix.h"

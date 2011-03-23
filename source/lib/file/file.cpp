@@ -27,7 +27,7 @@
 #include "precompiled.h"
 #include "lib/file/file.h"
 
-#include "lib/posix/posix_filesystem.h"
+#include "lib/sysdep/filesystem.h"	// O_*, S_*
 #include "lib/posix/posix_aio.h"
 #include "lib/file/common/file_stats.h"
 

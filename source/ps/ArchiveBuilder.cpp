@@ -20,7 +20,6 @@
 #include "ArchiveBuilder.h"
 
 #include "graphics/TextureManager.h"
-#include "lib/path_util.h"
 #include "lib/tex/tex_codec.h"
 #include "lib/file/archive/archive_zip.h"
 #include "ps/XML/Xeromyces.h"

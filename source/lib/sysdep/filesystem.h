@@ -27,7 +27,7 @@
 #ifndef INCLUDED_FILESYSTEM
 #define INCLUDED_FILESYSTEM
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 #include "lib/posix/posix_filesystem.h"	// mode_t
 
 

@@ -30,13 +30,11 @@
 #include <map>
 
 #include "lib/sysdep/os/win/wposix/crt_posix.h"      // correct definitions of _open() etc.
-#include "lib/posix/posix_filesystem.h"
+#include "lib/sysdep/filesystem.h"	// O_NO_AIO_NP
 
+#include "lib/bits.h"	// IsAligned
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
-#include "lib/sysdep/os/win/wposix/wfilesystem.h"    // mode_t
 #include "lib/sysdep/os/win/wposix/wtime.h"          // timespec
-#include "lib/sysdep/cpu.h"
-#include "lib/bits.h"
 
 
 WINIT_REGISTER_MAIN_INIT(waio_Init);

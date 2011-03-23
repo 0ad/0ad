@@ -18,9 +18,9 @@
 #include "precompiled.h"
 #include "Paths.h"
 
-#include "lib/path_util.h"
 #include "lib/file/file_system_util.h"
 #include "lib/sysdep/sysdep.h"	// sys_get_executable_name
+#include "lib/sysdep/filesystem.h"	// wrealpath
 #if OS_WIN
 # include "lib/sysdep/os/win/wutil.h"	// wutil_AppdataPath
 #endif

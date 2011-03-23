@@ -20,10 +20,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef INCLUDED_NATIVE_PATH
-#define INCLUDED_NATIVE_PATH
+#ifndef INCLUDED_OS_PATH
+#define INCLUDED_OS_PATH
 
-#include "lib/path_util.h"
+#include "lib/path.h"
 
 // rationale:
 // users are responsible for ensuring the path doesn't contain any forbidden
@@ -53,4 +53,4 @@ static inline std::string OsString(const OsPath& path)
 #endif
 
 
-#endif	// #ifndef INCLUDED_NATIVE_PATH
+#endif	// #ifndef INCLUDED_OS_PATH

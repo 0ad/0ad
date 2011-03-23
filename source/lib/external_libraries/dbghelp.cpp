@@ -24,7 +24,6 @@
 
 #if OS_WIN
 
-#include "lib/path_util.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/external_libraries/dbghelp.h"
 

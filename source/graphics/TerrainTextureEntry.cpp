@@ -21,7 +21,6 @@
 
 #include "lib/utf8.h"
 #include "lib/ogl.h"
-#include "lib/path_util.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 #include "TerrainTextureEntry.h"

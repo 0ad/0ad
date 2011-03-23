@@ -32,7 +32,6 @@
 #include <string>
 #include <set>
 
-#include "lib/path_util.h"
 #include "lib/file/file_system.h"
 #include "lib/sysdep/os/win/wdll_ver.h"
 #include "lib/sysdep/os/win/wversion.h"

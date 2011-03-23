@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "lib/path_util.h"
+#include "lib/path.h"
 
 #include <cstring>
 #include <cerrno>

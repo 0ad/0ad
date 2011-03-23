@@ -23,8 +23,8 @@
 #ifndef INCLUDED_FILE_SYSTEM
 #define INCLUDED_FILE_SYSTEM
 
-#include "lib/native_path.h"
-#include "lib/posix/posix_filesystem.h"
+#include "lib/os_path.h"
+#include "lib/posix/posix_filesystem.h"	// mode_t
 
 // (bundling size and mtime avoids a second expensive call to stat())
 class FileInfo

@@ -31,5 +31,3 @@
 #endif
 
 #include "lib/posix/posix_errno.h"	// for user convenience
-
-#include "lib/sysdep/filesystem.h"	// wchar_t API

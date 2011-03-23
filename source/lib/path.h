@@ -21,7 +21,7 @@
  */
 
 /*
- * helper functions for path strings.
+ * Path string class, similar to boost::filesystem::basic_path.
  */
 
 // notes:
@@ -34,8 +34,8 @@
 //   native and VFS paths.
 //   when reading, both '/' and SYS_DIR_SEP are accepted; '/' is written.
 
-#ifndef INCLUDED_PATH_UTIL
-#define INCLUDED_PATH_UTIL
+#ifndef INCLUDED_PATH
+#define INCLUDED_PATH
 
 #if CONFIG_ENABLE_BOOST
 # include "boost/functional/hash.hpp"
@@ -221,4 +221,4 @@ struct hash<Path> : std::unary_function<Path, std::size_t>
 
 #endif	// #if CONFIG_ENABLE_BOOST
 
-#endif	// #ifndef INCLUDED_PATH_UTIL
+#endif	// #ifndef INCLUDED_PATH

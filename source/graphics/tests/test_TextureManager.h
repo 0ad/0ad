@@ -19,7 +19,6 @@
 
 #include "graphics/TextureManager.h"
 #include "lib/external_libraries/sdl.h"
-#include "lib/path_util.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"

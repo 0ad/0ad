@@ -28,7 +28,7 @@
 #define INCLUDED_SYSDEP
 
 #include "lib/debug.h"	// ErrorReactionInternal
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 #include <cstdarg>	// needed for sys_vswprintf
 

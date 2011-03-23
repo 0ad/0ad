@@ -27,7 +27,6 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/mahaf.h"
 
-#include "lib/path_util.h"
 #include "lib/module_init.h"
 
 #include "lib/sysdep/os/win/wutil.h"

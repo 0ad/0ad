@@ -18,7 +18,7 @@
 #ifndef INCLUDED_PS_GAMESETUP_PATHS
 #define INCLUDED_PS_GAMESETUP_PATHS
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 #include "CmdLineArgs.h"
 
 class Paths

@@ -33,7 +33,6 @@
 #include <map>
 
 #include "ogl_tex.h"
-#include "lib/path_util.h"
 #include "lib/res/h_mgr.h"
 
 struct GlyphData

@@ -23,7 +23,7 @@
 #ifndef INCLUDED_VFS_PATH
 #define INCLUDED_VFS_PATH
 
-#include "lib/path_util.h"
+#include "lib/path.h"
 
 /**
  * VFS path of the form "(dir/)*file?"

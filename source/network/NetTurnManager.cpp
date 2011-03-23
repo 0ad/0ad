@@ -23,7 +23,6 @@
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
 
-#include "lib/path_util.h"
 #include "gui/GUIManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Profile.h"

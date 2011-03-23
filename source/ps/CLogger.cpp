@@ -21,7 +21,6 @@
 #include "CConsole.h"
 #include "ConfigDB.h"
 #include "lib/ogl.h"
-#include "lib/path_util.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lib/res/graphics/unifont.h"

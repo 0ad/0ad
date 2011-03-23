@@ -27,7 +27,7 @@
 #ifndef INCLUDED_FILE_SYSTEM_UTIL
 #define INCLUDED_FILE_SYSTEM_UTIL
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 #include "lib/file/vfs/vfs.h"
 
 namespace fs_util {

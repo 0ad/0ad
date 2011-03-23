@@ -27,7 +27,6 @@
 #include "precompiled.h"
 #include "lib/file/vfs/vfs_populate.h"
 
-#include "lib/path_util.h"
 #include "lib/file/archive/archive_zip.h"
 #include "lib/file/vfs/vfs_tree.h"
 #include "lib/file/vfs/vfs_lookup.h"

@@ -23,8 +23,6 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/wdlfcn.h"
 
-#include "lib/utf8.h"
-#include "lib/path_util.h"
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 
 

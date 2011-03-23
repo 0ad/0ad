@@ -27,7 +27,7 @@
 #ifndef INCLUDED_DIR_WATCH
 #define INCLUDED_DIR_WATCH
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 struct DirWatch;
 typedef shared_ptr<DirWatch> PDirWatch;

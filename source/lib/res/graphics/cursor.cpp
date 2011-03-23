@@ -32,7 +32,6 @@
 #include <sstream>
 
 #include "lib/ogl.h"
-#include "lib/path_util.h"
 #include "lib/sysdep/cursor.h"
 #include "ogl_tex.h"
 #include "lib/res/h_mgr.h"

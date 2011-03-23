@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FILE_LOADER
 #define INCLUDED_FILE_LOADER
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 struct IFileLoader
 {

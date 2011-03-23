@@ -91,7 +91,7 @@ extern const wchar_t*, translate, (const wchar_t* text), (text), return)
 #ifndef INCLUDED_APP_HOOKS
 #define INCLUDED_APP_HOOKS
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 // trampolines for user code to call the hooks. they encapsulate
 // the details of how exactly to do this.

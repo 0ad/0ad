@@ -23,7 +23,7 @@
 #include "lib/lib.h"
 #include "lib/self_test.h"
 
-#include "lib/path_util.h"
+#include "lib/path.h"
 
 // Macros, not functions, to get proper line number reports when tests fail
 

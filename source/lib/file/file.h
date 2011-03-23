@@ -29,7 +29,7 @@
 
 struct aiocb;
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 namespace ERR
 {

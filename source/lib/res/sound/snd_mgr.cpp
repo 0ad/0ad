@@ -37,7 +37,6 @@
 #include <cstdio>
 #include <cfloat>
 
-#include "lib/path_util.h"
 #include "lib/res/h_mgr.h"
 #include "lib/file/vfs/vfs.h"
 

@@ -23,7 +23,6 @@
 #include "lib/self_test.h"
 
 #include "lib/lib.h"
-#include "lib/path_util.h"
 #include "lib/secure_crt.h"
 #include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"

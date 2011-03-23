@@ -36,7 +36,6 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/debug_stl.h"
 #include "lib/app_hooks.h"
-#include "lib/path_util.h"
 #if ARCH_IA32
 # include "lib/sysdep/arch/ia32/ia32.h"
 # include "lib/sysdep/arch/ia32/ia32_asm.h"

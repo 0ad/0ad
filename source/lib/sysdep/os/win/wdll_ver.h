@@ -27,7 +27,7 @@
 #ifndef INCLUDED_WDLL_VER
 #define INCLUDED_WDLL_VER
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 
 typedef std::wstring VersionList;
 

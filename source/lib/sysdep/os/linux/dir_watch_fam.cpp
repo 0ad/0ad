@@ -25,7 +25,6 @@
 #include <string>
 
 #include "lib/sysdep/sysdep.h"
-#include "lib/path_util.h"
 #include "lib/sysdep/dir_watch.h"
 #include "ps/CLogger.h"
 

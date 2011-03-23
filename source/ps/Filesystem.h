@@ -18,7 +18,6 @@
 #ifndef INCLUDED_PS_FILESYSTEM
 #define INCLUDED_PS_FILESYSTEM
 
-#include "lib/path_util.h"
 #include "lib/file/file.h"
 #include "lib/file/io/io.h"
 #include "lib/file/vfs/vfs.h"

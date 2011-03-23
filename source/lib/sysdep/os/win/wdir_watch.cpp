@@ -28,7 +28,7 @@
 #include "lib/sysdep/dir_watch.h"
 
 #include "lib/allocators/shared_ptr.h"
-#include "lib/path_util.h"	// path_is_subpath
+#include "lib/path.h"	// path_is_subpath
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wutil.h"

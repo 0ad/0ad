@@ -27,9 +27,7 @@
 #include <algorithm>
 #include <string>
 
-#include "lib/path_util.h"
-#include "lib/posix/posix_filesystem.h"
-
+#include "lib/sysdep/filesystem.h"
 
 struct DirDeleter
 {

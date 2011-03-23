@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "lib/posix/posix_filesystem.h"	// includes wfilesystem.h
+#include "lib/sysdep/filesystem.h"
 
 #include "lib/allocators/allocators.h"	// single_calloc
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"

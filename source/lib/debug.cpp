@@ -32,7 +32,6 @@
 #include <cstdio>
 
 #include "lib/app_hooks.h"
-#include "lib/path_util.h"
 #include "lib/allocators/allocators.h"	// page_aligned_alloc
 #include "lib/fnv_hash.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS

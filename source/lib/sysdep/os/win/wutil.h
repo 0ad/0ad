@@ -27,7 +27,7 @@
 #ifndef INCLUDED_WUTIL
 #define INCLUDED_WUTIL
 
-#include "lib/native_path.h"
+#include "lib/os_path.h"
 #include "lib/sysdep/os/win/win.h"
 
 template<typename H>
