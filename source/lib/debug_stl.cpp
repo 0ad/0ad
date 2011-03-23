@@ -470,64 +470,6 @@ struct Any_stack : public Any_deque
 };
 
 
-//
-// nonstandard containers (will probably be part of C++0x)
-//
-
-#if HAVE_STL_HASH
-
-struct Any_hash_map: public ContainerBase<STL_HASH_MAP<int,int> >
-{
-#if STL_DINKUMWARE == 405
-
-	bool IsValid(size_t el_size) const
-	{
-		Any_list* list = (Any_list*)&_List;
-		if(!list->IsValid(el_size))
-			return false;
-		return true;
-	}
-
-#endif
-};
-
-
-struct Any_hash_multimap : public Any_hash_map
-{
-};
-
-
-struct Any_hash_set: public ContainerBase<STL_HASH_SET<int> >
-{
-#if STL_DINKUMWARE == 405
-
-	bool IsValid(size_t el_size) const
-	{
-		Any_list* list = (Any_list*)&_List;
-		if(!list->IsValid(el_size))
-			return false;
-		return true;
-	}
-
-#endif
-};
-
-
-struct Any_hash_multiset : public Any_hash_set
-{
-};
-
-#endif	// HAVE_STL_HASH
-
-#if HAVE_STL_SLIST
-
-struct Any_slist: public Any_list
-{
-};
-
-#endif	// HAVE_STL_SLIST
-
-
 //-----------------------------------------------------------------------------
 
 // generic iterator - returns next element. dereferences and increments the

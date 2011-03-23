@@ -37,7 +37,7 @@
 # include <boost/unordered_map.hpp>
 # define MAP boost::unordered_map
 #else
-# define MAP STL_HASH_MAP
+# define MAP stdext::hash_map
 #endif
 
 /*

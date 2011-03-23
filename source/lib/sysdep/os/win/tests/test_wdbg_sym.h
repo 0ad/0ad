@@ -194,20 +194,6 @@ class TestWdbgSym : public CxxTest::TestSuite
 		m_int_int.insert(std::make_pair<int,int>(2, 2));
 		m_int_int.insert(std::make_pair<int,int>(3, 3));
 
-		STL_HASH_MAP<std::string, int> hm_string_int;
-		hm_string_int.insert(std::make_pair<std::string,int>("s5", 5));
-		hm_string_int.insert(std::make_pair<std::string,int>("s6", 6));
-		hm_string_int.insert(std::make_pair<std::string,int>("s7", 7));
-		STL_HASH_MAP<int, std::string> hm_int_string;
-		hm_int_string.insert(std::make_pair<int,std::string>(1, "s1"));
-		hm_int_string.insert(std::make_pair<int,std::string>(2, "s2"));
-		hm_int_string.insert(std::make_pair<int,std::string>(3, "s3"));
-		STL_HASH_MAP<int, int> hm_int_int;
-		hm_int_int.insert(std::make_pair<int,int>(1, 1));
-		hm_int_int.insert(std::make_pair<int,int>(2, 2));
-		hm_int_int.insert(std::make_pair<int,int>(3, 3));
-
-
 		std::set<uintptr_t> s_uintptr;
 		s_uintptr.insert(0x123); s_uintptr.insert(0x456);
 
@@ -221,15 +207,6 @@ class TestWdbgSym : public CxxTest::TestSuite
 		std::vector<double> v_double_empty;
 		std::queue<double> q_double_empty;
 		std::stack<double> st_double_empty;
-#if HAVE_STL_HASH
-		STL_HASH_MAP<double,double> hm_double_empty;
-		STL_HASH_MULTIMAP<double,std::wstring> hmm_double_empty;
-		STL_HASH_SET<double> hs_double_empty;
-		STL_HASH_MULTISET<double> hms_double_empty;
-#endif
-#if HAVE_STL_SLIST
-		STL_SLIST<double> sl_double_empty;
-#endif
 		std::string str_empty;
 		std::wstring wstr_empty;
 
@@ -245,15 +222,6 @@ class TestWdbgSym : public CxxTest::TestSuite
 		std::vector<double> v_double_uninit;
 		std::queue<double> q_double_uninit;
 		std::stack<double> st_double_uninit;
-#if HAVE_STL_HASH
-		STL_HASH_MAP<double,double> hm_double_uninit;
-		STL_HASH_MULTIMAP<double,std::wstring> hmm_double_uninit;
-		STL_HASH_SET<double> hs_double_uninit;
-		STL_HASH_MULTISET<double> hms_double_uninit;
-#endif
-#if HAVE_STL_SLIST
-		STL_SLIST<double> sl_double_uninit;
-#endif
 		std::string str_uninit;
 		std::wstring wstr_uninit;
 	}

@@ -16,6 +16,7 @@
  */
 
 #include "precompiled.h"
+#include <boost/unordered_set.hpp>
 #include "Technology.h"
 #include "TechnologyCollection.h"
 #include "ps/CStr.h"
@@ -31,7 +32,7 @@
 
 #define LOG_CATEGORY L"Techs"
 
-STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
+boost::unordered_set<CStr> CTechnology::m_scriptsLoaded;
 
 CTechnology::CTechnology( const CStrW& name, CPlayer* player )
 : m_Name(name), m_player(player)

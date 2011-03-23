@@ -23,6 +23,7 @@
 #ifndef INCLUDED_SCRIPTABLEOBJECT
 #define INCLUDED_SCRIPTABLEOBJECT
 
+#include <boost/unordered_map.hpp>
 #include "scripting/ScriptingHost.h"
 #include "JSConversions.h"
 
@@ -43,7 +44,7 @@ public:
 class IJSObject
 {
 public:
-	typedef STL_HASH_MAP<CStrW, IJSProperty*, CStrW_hash_compare> PropertyTable;
+	typedef boost::unordered_map<CStrW, IJSProperty*> PropertyTable;
 
 	// Property getters and setters
 	typedef jsval (IJSObject::*GetFn)( JSContext* cx );

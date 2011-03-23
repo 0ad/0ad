@@ -341,20 +341,9 @@ public:
 	const u8* Deserialize(const u8* buffer, const u8* bufferend);
 };
 
-// Hash function (for STL_HASH_MAP, etc)
-class CStr_hash_compare
+static inline size_t hash_value(const CStr& s)
 {
-public:
-	static const size_t bucket_size = 1;
-	static const size_t min_buckets = 16;
-	size_t operator() (const CStr& Key) const
-	{
-		return Key.GetHashCode();
-	}
-	bool operator() (const CStr& _Key1, const CStr& _Key2) const
-	{
-		return (_Key1 < _Key2);
-	}
-};
+	return s.GetHashCode();
+}
 
 #endif

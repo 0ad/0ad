@@ -46,7 +46,7 @@ class CTechnology : public CJSComplex<CTechnology>
 		bool isPercent;
 		Modifier(): value(0), isPercent(false) {}
 	};
-	static STL_HASH_SET<CStr, CStr_hash_compare> m_scriptsLoaded;
+	static boost::unordered_set<CStr> m_scriptsLoaded;
 
 public:
 	CTechnology(const CStrW& name, CPlayer* player);

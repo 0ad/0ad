@@ -35,20 +35,16 @@ protected:
 	virtual void setNew(ssize_t x, ssize_t y, const T& val) = 0;
 
 private:
-	struct hashfunc {
-		enum {
-			bucket_size = 4,
-			min_buckets = 8
-		};
-		size_t operator()(const std::pair<ssize_t, ssize_t>& p) const {
-			return STL_HASH_VALUE(p.first << 16) + STL_HASH_VALUE(p.second);
-		}
-		bool operator()(const std::pair<ssize_t, ssize_t>& a, const std::pair<ssize_t, ssize_t>& b) const {
-			return (a < b);
-		}
-	};
+	std::size_t hash_value(const std::pair<ssize_t, ssize_t>& p)
+	{
+		std::size_t seed = 0;
+		boost::hash_combine(seed, p.first << 16);
+		boost::hash_combine(seed, p.second);
+		return seed;
+	}
+
 	// TODO: more efficient representation
-	typedef STL_HASH_MAP<std::pair<ssize_t, ssize_t>, std::pair<T, T>, hashfunc> Data; // map of <x,y> -> <old_val, new_val>
+	typedef boost::unordered_map<std::pair<ssize_t, ssize_t>, std::pair<T, T>> Data; // map of <x,y> -> <old_val, new_val>
 	Data m_Data;
 };
 

@@ -41,6 +41,8 @@
 #ifndef INCLUDED_ENTITY
 #define INCLUDED_ENTITY
 
+#include <boost/unordered_map.hpp>
+
 #include <deque>
 #include "scripting/ScriptableComplex.h"
 #include "ps/Vector2D.h"
@@ -98,8 +100,8 @@ class CEntity : public CJSComplex<CEntity>, public IEventTarget
 	friend class CEntityManager;
 	friend class CUnit;
 
-	typedef STL_HASH_MAP<CStrW, CAura*, CStrW_hash_compare> AuraTable;
-	typedef STL_HASH_MAP<int, SEntityAction> ActionTable;
+	typedef boost::unordered_map<CStrW, CAura*> AuraTable;
+	typedef boost::unordered_map<int, SEntityAction> ActionTable;
 	typedef std::set<CAura*> AuraSet;
 
 public:

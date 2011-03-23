@@ -27,6 +27,8 @@
 #include "precompiled.h"
 #include "h_mgr.h"
 
+#include <boost/unordered_map.hpp>
+
 #include <limits.h>	// CHAR_BIT
 #include <string.h>
 #include <stdlib.h>
@@ -345,10 +347,10 @@ static LibError free_idx(ssize_t idx)
 //
 // note: there may be several RES_UNIQUE handles of the same type and key
 // (e.g. sound files - several instances of a sound definition file).
-// that wasn't forseen here, so we'll just refrain from adding to the index.
+// that wasn't foreseen here, so we'll just refrain from adding to the index.
 // that means they won't be found via h_find - no biggie.
 
-typedef STL_HASH_MULTIMAP<uintptr_t, ssize_t> Key2Idx;
+typedef boost::unordered_multimap<uintptr_t, ssize_t> Key2Idx;
 typedef Key2Idx::iterator It;
 static OverrunProtector<Key2Idx> key2idx_wrapper;
 
