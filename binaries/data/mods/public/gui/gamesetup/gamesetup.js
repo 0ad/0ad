@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
 // TODO: Move some of these into common location (other scripts may need)
-const MAP_SIZES_TEXT = ["Small", "Medium", "Large", "Huge"];
-const MAP_SIZES_DATA = [16, 20, 24, 32];
+const MAP_SIZES_TEXT = ["Tiny (2 player)", "Small (3 player)", "Medium (4 player)", "Normal (6 player)", "Large (8 player)", "Very Large", "Giant"];
+const MAP_SIZES_DATA = [8, 12, 16, 20, 24, 28, 32];
 
 // Max number of players for any map
 const MAX_PLAYERS = 8;
@@ -28,7 +28,7 @@ var g_GameAttributes = {
 	map: "",
 	mapPath: "",
 	settings: {
-		Size: 16,
+		Size: 12,
 		Seed: 0,
 		BaseTerrain: "grass1_spring",
 		BaseHeight: 0,
@@ -165,7 +165,7 @@ function initMain()
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
 		};
-		mapSize.selected = 0;
+		mapSize.selected = 1;
 		
 		getGUIObjectByName("revealMap").onPress = function()
 		{	// Update attributes so other players can see change
@@ -613,6 +613,7 @@ function selectMap(name)
 	g_GameAttributes.settings.RevealMap = getSetting(mapSettings, g_GameAttributes.settings, "RevealMap");
 	g_GameAttributes.settings.LockTeams = getSetting(mapSettings, g_GameAttributes.settings, "LockTeams");
 	g_GameAttributes.settings.GameType = getSetting(mapSettings, g_GameAttributes.settings, "GameType");
+	g_GameAttributes.settings.CircularMap = mapSettings.CircularMap;
 
 	// Reset player assignments on map change
 	if (!g_IsNetworked)

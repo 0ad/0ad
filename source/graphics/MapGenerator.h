@@ -22,6 +22,7 @@
 #include "ps/FileIo.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <boost/random/linear_congruential.hpp>
 
 class CMapGenerator
 {
@@ -29,9 +30,6 @@ class CMapGenerator
 public:
 	// constructor
 	CMapGenerator();
-
-	// destructor
-	~CMapGenerator();
 
 	// return success of map generation
 	bool GenerateMap(const VfsPath& scriptFile, const CScriptValRooted& settings);
@@ -53,6 +51,7 @@ private:
 	ScriptInterface m_ScriptInterface;
 	CScriptValRooted m_MapData;
 	std::set<std::wstring> m_LoadedLibraries;
+	boost::rand48 m_MapGenRNG;
 };
 
 #endif	//INCLUDED_MAPGENERATOR

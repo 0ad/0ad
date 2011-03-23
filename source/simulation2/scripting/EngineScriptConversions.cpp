@@ -35,6 +35,8 @@
 #include "js/jstypedarray.h"
 #undef signbit
 
+#define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
+
 template<> jsval ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, IComponent* const& val)
 {
 	if (val == NULL)
@@ -89,20 +91,20 @@ template<> jsval ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, cons
 template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, jsval v, CColor& out)
 {
 	if (!JSVAL_IS_OBJECT(v))
-		return false; // TODO: report type error
+		FAIL("jsval not an object");
+
 	JSObject* obj = JSVAL_TO_OBJECT(v);
 
 	jsval r, g, b, a;
-	if (!JS_GetProperty(cx, obj, "r", &r)) return false; // TODO: report type errors
-	if (!JS_GetProperty(cx, obj, "g", &g)) return false;
-	if (!JS_GetProperty(cx, obj, "b", &b)) return false;
-	if (!JS_GetProperty(cx, obj, "a", &a)) return false;
+	if (!JS_GetProperty(cx, obj, "r", &r) || !FromJSVal(cx, r, out.r))
+		FAIL("Failed to get property CColor.r");
+	if (!JS_GetProperty(cx, obj, "g", &g) || !FromJSVal(cx, g, out.g))
+		FAIL("Failed to get property CColor.g");
+	if (!JS_GetProperty(cx, obj, "b", &b) || !FromJSVal(cx, b, out.b))
+		FAIL("Failed to get property CColor.b");
+	if (!JS_GetProperty(cx, obj, "a", &a) || !FromJSVal(cx, a, out.a))
+		FAIL("Failed to get property CColor.a");
 	// TODO: this probably has GC bugs if a getter returns an unrooted value
-
-	if (!FromJSVal(cx, r, out.r)) return false;
-	if (!FromJSVal(cx, g, out.g)) return false;
-	if (!FromJSVal(cx, b, out.b)) return false;
-	if (!FromJSVal(cx, a, out.a)) return false;
 
 	return true;
 }

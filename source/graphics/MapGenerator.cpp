@@ -21,12 +21,10 @@
 
 #include "lib/timer.h"
 #include "ps/CLogger.h"
-#include <boost/random/linear_congruential.hpp>
+
 
 // TODO: what's a good default? perhaps based on map size
 #define RMS_RUNTIME_SIZE 96 * 1024 * 1024
-
-boost::rand48 g_MapGenRNG;
 
 
 CMapGenerator::CMapGenerator() : m_ScriptInterface("RMS", "MapGenerator", ScriptInterface::CreateRuntime(RMS_RUNTIME_SIZE))
@@ -34,17 +32,11 @@ CMapGenerator::CMapGenerator() : m_ScriptInterface("RMS", "MapGenerator", Script
 	m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
 	// Replace RNG with a seeded deterministic function
-	m_ScriptInterface.ReplaceNondeterministicFunctions(g_MapGenRNG);
+	m_ScriptInterface.ReplaceNondeterministicFunctions(m_MapGenRNG);
 
 	// functions for RMS
 	m_ScriptInterface.RegisterFunction<bool, std::wstring, CMapGenerator::LoadLibrary>("LoadLibrary");
 	m_ScriptInterface.RegisterFunction<void, CScriptValRooted, CMapGenerator::ExportMap>("ExportMap");
-}
-
-CMapGenerator::~CMapGenerator()
-{
-	// Clean up rooted objects before destroying their script context
-	m_MapData = CScriptValRooted();
 }
 
 bool CMapGenerator::GenerateMap(const VfsPath& scriptFile, const CScriptValRooted& settings)
@@ -54,12 +46,12 @@ bool CMapGenerator::GenerateMap(const VfsPath& scriptFile, const CScriptValRoote
 	// Init RNG seed
 	uint32 seed;
 	if (!m_ScriptInterface.GetProperty(settings.get(), "Seed", seed))
-	{	// No seed specfified
+	{	// No seed specified
 		LOGWARNING(L"GenerateMap: No seed value specified - using 0");
 		seed = 0;
 	}
 
-	g_MapGenRNG.seed(seed);
+	m_MapGenRNG.seed(seed);
 
 	// Copy settings to script context
 	if (!m_ScriptInterface.SetProperty(m_ScriptInterface.GetGlobalObject(), "g_MapSettings", settings))

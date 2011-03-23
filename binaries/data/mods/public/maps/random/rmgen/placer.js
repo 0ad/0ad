@@ -70,8 +70,6 @@ ClumpPlacer.prototype.place = function(constraint)
 		var S = v1;
 		
 		noise[i] = P*t*t*t + Q*t*t + R*t + S;
-		if (noise[i] > 4294967296)
-			warn("noise["+i+"] is beyond max_uint32 bounds");
 	}
 
 	var failed = 0;
@@ -249,7 +247,7 @@ SimpleObject.prototype.place = function(cx, cy, player, avoidSelf, constraint)
 function SimpleGroup(elements, avoidSelf, tileClass, x, y)
 {
 	this.elements = elements;
-	this.tileClass = (tileClass !== undefined ? getTileClass(tileClass) : null);
+	this.tileClass = (tileClass !== undefined ? getTileClass(tileClass) : undefined);
 	this.avoidSelf = (avoidSelf !== undefined ? avoidSelf : false);
 	this.x = (x !== undefined ? x : -1);
 	this.y = (y !== undefined ? y : -1);
@@ -280,7 +278,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 	{
 		g_Map.addObjects(resultObjs[i]);
 		
-		if (this.tileClass !== null)
+		if (this.tileClass !== undefined)
 		{	// Round object position to integer
 			this.tileClass.add(Math.floor(resultObjs[i].x), Math.floor(resultObjs[i].y));
 		}

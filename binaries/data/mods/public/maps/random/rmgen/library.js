@@ -15,31 +15,38 @@ const TILES_PER_PATCH = 16;
 //	Utility functions
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-function fractionToTiles(f) {
+function fractionToTiles(f)
+{
 	return getMapSize() * f;
 }
 
-function tilesToFraction(t) {
+function tilesToFraction(t)
+{
 	return t / getMapSize();
 }
 
-function fractionToSize(f) {
+function fractionToSize(f)
+{
 	return getMapSizeSqr() * f;
 }
 
-function sizeToFraction(s) {
+function sizeToFraction(s)
+{
 	return s / getMapSizeSqr();
 }
 
-function cos(x) {
+function cos(x)
+{
 	return Math.cos(x);
 }
 
-function sin(x) {
+function sin(x)
+{
 	return Math.sin(x);
 }
 
-function tan(x) {
+function tan(x)
+{
 	return Math.tan(x);
 }
 
@@ -47,35 +54,43 @@ function abs(x) {
 	return Math.abs(x);
 }
 
-function round(x) {
+function round(x)
+{
 	return Math.round(x);
 }
 
-function lerp(a, b, t) {
+function lerp(a, b, t)
+{
 	return a + (b-a) * t;
 }
 
-function sqrt(x) {
+function sqrt(x)
+{
 	return Math.sqrt(x);
 }
 
-function ceil(x) {
+function ceil(x)
+{
 	return Math.ceil(x);
 }
 
-function floor(x) {
+function floor(x)
+{
 	return Math.floor(x);
 }
 
-function max(x, y) {
+function max(x, y)
+{
 	return x > y ? x : y;
 }
 
-function min(x, y) {
+function min(x, y)
+{
 	return x < y ? x : y;
 }
 
-function println(x) {
+function println(x)
+{
 	print(x);
 	print("\n");
 }
@@ -111,46 +126,73 @@ function chooseRand()
 function createAreas(centeredPlacer, painter, constraint, num, retryFactor)
 {
 	if (retryFactor === undefined)
+	{
 		retryFactor = 10;
+	}
 	
 	var maxFail = num * retryFactor;
 	var good = 0;
 	var bad = 0;
-	var ret = [];
+	var result = [];
+	var halfSize = getMapSize()/2;
+	
 	while(good < num && bad <= maxFail)
 	{
-		centeredPlacer.x = randInt(getMapSize());
-		centeredPlacer.y = randInt(getMapSize());
-		var r = g_Map.createArea(centeredPlacer, painter, constraint);
-		if (r !== undefined)
+		if (isCircularMap())
+		{	// Polar coordinates
+			var r = halfSize * Math.sqrt(randFloat());	// uniform distribution
+			var theta = randFloat(0, 2 * PI);
+			centeredPlacer.x = Math.floor(r * Math.cos(theta)) + halfSize;
+			centeredPlacer.y = Math.floor(r * Math.sin(theta)) + halfSize;
+		}
+		else
+		{	// Rectangular coordinates
+			centeredPlacer.x = randInt(getMapSize());
+			centeredPlacer.y = randInt(getMapSize());
+		}
+			
+		var area = g_Map.createArea(centeredPlacer, painter, constraint);
+		if (area !== undefined)
 		{
 			good++;
-			ret.push(r);
+			result.push(area);
 		}
 		else
 		{
 			bad++;
 		}
 	}
-	
-	return ret;
+	return good;
 }
 
 function createObjectGroups(placer, player, constraint, num, retryFactor)
 {
 	if (retryFactor === undefined)
+	{
 		retryFactor = 10;
+	}
 	
 	var maxFail = num * retryFactor;
 	var good = 0;
 	var bad = 0;
+	var halfSize = getMapSize()/2;
 	while(good < num && bad <= maxFail)
 	{
-		placer.x = randInt(getMapSize());
-		placer.y = randInt(getMapSize());
-		var r = createObjectGroup(placer, player, constraint);
+		if (isCircularMap())
+		{	// Polar coordinates
+			var r = halfSize * Math.sqrt(randFloat());	// uniform distribution
+			var theta = randFloat(0, 2 * PI);
+			placer.x = Math.floor(r * Math.cos(theta)) + halfSize;
+			placer.y = Math.floor(r * Math.sin(theta)) + halfSize;
+		}
+		else
+		{	// Rectangular coordinates
+			placer.x = randInt(getMapSize());
+			placer.y = randInt(getMapSize());
+		}
 		
-		if (r !== undefined)
+		var result = createObjectGroup(placer, player, constraint);
+		if (result !== undefined)
 		{
 			good++;
 		}
@@ -169,7 +211,9 @@ function createTerrain(terrain)
 		var terrainList = [];
 		
 		for (var i = 0; i < terrain.length; ++i)
+		{
 			terrainList.push(createTerrain(terrain[i]));
+		}
 		
 		return new RandomTerrain(terrainList);
 	}
@@ -213,6 +257,11 @@ function placeTerrain(x, y, terrain)
 	
 }
 
+function isCircularMap()
+{
+	return (g_MapSettings.CircularMap ? true : false);
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 //	Access global map variable
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,13 +274,12 @@ function createTileClass()
 function getTileClass(id)
 {
 	// Check for valid class id
-	if (id < 1 || id > g_Map.tileClasses.length)
+	if (!g_Map.validClass(id))
 	{
-		//error("Invalid tile class id: "+id);
-		return null;
+		return undefined;
 	}
 	
-	return g_Map.tileClasses[id - 1];
+	return g_Map.tileClasses[id];
 }
 
 function createArea(placer, painter, constraint)
@@ -285,7 +333,9 @@ function addToClass(x, y, id)
 	var tileClass = getTileClass(id);
 	
 	if (tileClass !== null)
+	{
 		tileClass.add(x, y);
+	}
 }
 
 // Create a painter for the given class

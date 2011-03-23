@@ -2,9 +2,10 @@
 	"settings" : {
 		"Name" : "Cantabrian Highlands",
 		"Script" : "cantabrian_highlands.js",
-		"Description" : "Each player starts on a hill surrounded by cliffs",
+		"Description" : "Each player starts on a hill surrounded by steep cliffs",
 		"BaseTerrain" : ["medit_grass_field_a", "medit_grass_field_b"],
 		"BaseHeight" : 3,
+		"CircularMap" : true,
 		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
 	}
 }

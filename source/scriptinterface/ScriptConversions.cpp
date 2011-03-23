@@ -19,7 +19,6 @@
 
 #include "ScriptInterface.h"
 
-#include "graphics/Color.h"
 #include "graphics/Entity.h"
 #include "graphics/MapIO.h"
 #include "ps/utf16string.h"
@@ -161,23 +160,6 @@ template<> bool ScriptInterface::FromJSVal<Entity>(JSContext* cx, jsval v, Entit
 	if (!JS_GetProperty(cx, obj, "orientation", &orient) || !FromJSVal(cx, orient, out.orientationY))
 		FAIL("Failed to read Entity.orientation property");
 
-	return true;
-}
-
-template<> bool ScriptInterface::FromJSVal<RGBColor>(JSContext* cx, jsval v, RGBColor& out)
-{
-	JSObject* obj;
-	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
-		FAIL("Argument must be an object");
-
-	jsval r, g, b;
-	if (!JS_GetProperty(cx, obj, "r", &r) || !FromJSVal(cx, r, out.X))
-		FAIL("Failed to read RGBColor.r property");
-	if (!JS_GetProperty(cx, obj, "g", &g) || !FromJSVal(cx, g, out.Y))
-		FAIL("Failed to read RGBColor.g property");
-	if (!JS_GetProperty(cx, obj, "b", &b) || !FromJSVal(cx, b, out.Z))
-		FAIL("Failed to read RGBColor.b property");
-	
 	return true;
 }
 

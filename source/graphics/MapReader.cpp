@@ -53,7 +53,6 @@ CMapReader::CMapReader()
 	cur_terrain_tex = 0;	// important - resets generator state
 }
 
-
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
@@ -1218,11 +1217,20 @@ int CMapReader::ParseEnvironment()
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SkySet, skySet)
 	pSkyMan->SetSkySet(skySet);
 
-	GET_ENVIRONMENT_PROPERTY(envObj.get(), SunColour, m_LightEnv.m_SunColor)
+	CColor sunColor;
+	GET_ENVIRONMENT_PROPERTY(envObj.get(), SunColour, sunColor)
+	m_LightEnv.m_SunColor = RGBColor(sunColor.r, sunColor.g, sunColor.b);
+
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SunElevation, m_LightEnv.m_Elevation)
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SunRotation, m_LightEnv.m_Rotation)
-	GET_ENVIRONMENT_PROPERTY(envObj.get(), TerrainAmbientColour, m_LightEnv.m_TerrainAmbientColor)
-	GET_ENVIRONMENT_PROPERTY(envObj.get(), UnitsAmbientColour, m_LightEnv.m_UnitsAmbientColor)
+	
+	CColor terrainAmbientColor;
+	GET_ENVIRONMENT_PROPERTY(envObj.get(), TerrainAmbientColour, terrainAmbientColor)
+	m_LightEnv.m_TerrainAmbientColor = RGBColor(terrainAmbientColor.r, terrainAmbientColor.g, terrainAmbientColor.b);
+
+	CColor unitsAmbientColor;
+	GET_ENVIRONMENT_PROPERTY(envObj.get(), UnitsAmbientColour, unitsAmbientColor)
+	m_LightEnv.m_UnitsAmbientColor = RGBColor(unitsAmbientColor.r, unitsAmbientColor.g, unitsAmbientColor.b);
 
 	// Water properties
 	CScriptValRooted waterObj;
@@ -1246,22 +1254,12 @@ int CMapReader::ParseEnvironment()
 		// TODO: Water type not implemented
 		//GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Type, waterType)
 
-		RGBColor waterColour;
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Colour, waterColour)
-		pWaterMan->m_WaterColor = CColor(waterColour.X, waterColour.Y, waterColour.Z, 1.0f);
-
+		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Colour, pWaterMan->m_WaterColor)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Shininess, pWaterMan->m_Shininess)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Waviness, pWaterMan->m_Waviness)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Murkiness, pWaterMan->m_Murkiness)
-
-		RGBColor waterTint;
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Tint, waterTint)
-		pWaterMan->m_WaterTint = CColor(waterTint.X, waterTint.Y, waterTint.Z, 1.0f);
-
-		RGBColor reflectTint;
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), ReflectionTint, reflectTint)
-		pWaterMan->m_ReflectionTint = CColor(reflectTint.X, reflectTint.Y, reflectTint.Z, 1.0f);
-
+		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Tint, pWaterMan->m_WaterTint)
+		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), ReflectionTint, pWaterMan->m_ReflectionTint)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), ReflectionTintStrength, pWaterMan->m_ReflectionTintStrength)
 	}
 

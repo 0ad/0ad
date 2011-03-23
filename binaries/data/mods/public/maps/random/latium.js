@@ -71,6 +71,7 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+var mapArea = mapSize*mapSize;
 
 // Create classes
 
@@ -434,11 +435,11 @@ for (var ix=0; ix<mapSize; ix++)
 
 log("Placing settlements...");
 // create settlements
-group = new SimpleGroup([new SimpleObject("gaia/special_settlement", 1,1, 0,0)], true, clSettlement);
-createObjectGroups(group, 0,
-	avoidClasses(clWater, 5, clForest, 4, clPlayer, 25, clCliff, 4, clSettlement, 35),
-	2*numPlayers, 50
-);
+// group = new SimpleGroup([new SimpleObject("gaia/special_settlement", 1,1, 0,0)], true, clSettlement);
+// createObjectGroups(group, 0,
+	// avoidClasses(clWater, 5, clForest, 4, clPlayer, 25, clCliff, 4, clSettlement, 35),
+	// 2*numPlayers, 50
+// );
 
 log("Placing straggler trees...");
 // create straggler trees
@@ -448,7 +449,7 @@ for (var t in trees)
 	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
 	createObjectGroups(group, 0,
 		avoidClasses(clWater, 5, clCliff, 0, clForest, 1, clPlayer, 15),
-		mapSize*mapSize/7000, 50
+		mapArea/7000, 50
 	);
 }
 
@@ -460,7 +461,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 4, clCliff, 2, clForest, 1, clPlayer, 15),
-	mapSize*mapSize/3500, 50
+	mapArea/3500, 50
 );
 
 log("Placing bushes...");
@@ -471,7 +472,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 4, clCliff, 2),
-	mapSize*mapSize/1800, 50
+	mapArea/1800, 50
 );
 
 log("Placing rocks...");
@@ -482,7 +483,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 0, clCliff, 0),
-	mapSize*mapSize/1800, 50
+	mapArea/1800, 50
 );
 
 log("Placing stone mines...");

@@ -2,21 +2,21 @@ var g_Map;
 
 var g_Environment = {
 	SkySet: "default",
-	SunColour: {r: 1.5, g: 1.5, b: 1.5},
+	SunColour: {r: 1.5, g: 1.5, b: 1.5, a: 0},
 	SunElevation: 0.785398,
 	SunRotation: 5.49779,
-	TerrainAmbientColour: {r: 0.313726, g: 0.376471, b: 0.521569},
-	UnitsAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961},
+	TerrainAmbientColour: {r: 0.313726, g: 0.376471, b: 0.521569, a: 0},
+	UnitsAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
 	Water: {
 		WaterBody: {
 			Type: "default",
-			Colour: {r: 0.3, g: 0.35, b: 0.7},
+			Colour: {r: 0.3, g: 0.35, b: 0.7, a: 0},
 			Height: 5,
 			Shininess: 150,
 			Waviness: 8,
 			Murkiness: 0.45,
-			Tint: {r: 0.28, g: 0.3, b: 0.59},
-			ReflectionTint: {r: 0.28, g: 0.3, b: 0.59},
+			Tint: {r: 0.28, g: 0.3, b: 0.59, a: 0},
+			ReflectionTint: {r: 0.28, g: 0.3, b: 0.59, a: 0},
 			ReflectionTintStrength: 0.0
 		}
 	}

@@ -62,8 +62,9 @@ RangeOp.prototype.get = function(start, end)
 //	TileClass
 //////////////////////////////////////////////////////////////////////
 
-function TileClass(size)
+function TileClass(size, id)
 {
+	this.id = id;
 	this.size = size;
 	this.inclusionCount = new Array(size);
 	this.rangeCount = new Array(size);

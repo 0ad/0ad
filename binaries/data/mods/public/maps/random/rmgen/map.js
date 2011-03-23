@@ -216,9 +216,10 @@ Map.prototype.createObjectGroup = function(placer, player, constraint)
 
 Map.prototype.createTileClass = function()
 {
-	this.tileClasses.push(new TileClass(this.size));
+	var newID = this.tileClasses.length;
+	this.tileClasses.push(new TileClass(this.size, newID));
 	
-	return this.tileClasses.length;
+	return newID;
 };
 
 // Get height taking into account terrain curvature

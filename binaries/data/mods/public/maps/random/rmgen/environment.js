@@ -12,7 +12,7 @@ function setSkySet(set)
 // Set sun colour RGB
 function setSunColour(r, g, b)
 {
-	g_Environment.SunColour = { "r" : r, "g" : g, "b" : b};
+	g_Environment.SunColour = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 // Set sun elevation
@@ -30,13 +30,13 @@ function setSunRotation(r)
 // Set terrain ambient colour RGB (0-1)
 function setTerrainAmbientColour(r, g, b)
 {
-	g_Environment.TerrainAmbientColour = { "r" : r, "g" : g, "b" : b};
+	g_Environment.TerrainAmbientColour = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 // Set terrain ambient colour RGB (0-1)
 function setUnitsAmbientColour(r, g, b)
 {
-	g_Environment.UnitsAmbientColour = { "r" : r, "g" : g, "b" : b};
+	g_Environment.UnitsAmbientColour = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ function setUnitsAmbientColour(r, g, b)
 // Set water colour RGB (0,1)
 function setWaterColour(r, g, b)
 {
-	g_Environment.Water.WaterBody.Colour = { "r" : r, "g" : g, "b" : b};
+	g_Environment.Water.WaterBody.Colour = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 // Set water height
@@ -75,13 +75,13 @@ function setWaterMurkiness(m)
 // Set water tint RGB (0,1)
 function setWaterTint(r, g, b)
 {
-	g_Environment.Water.WaterBody.Tint = { "r" : r, "g" : g, "b" : b};
+	g_Environment.Water.WaterBody.Tint = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 // Set water reflection tint RGB (0,1)
 function setWaterReflectionTint(r, g, b)
 {
-	g_Environment.Water.WaterBody.WaterReflectionTint = { "r" : r, "g" : g, "b" : b};
+	g_Environment.Water.WaterBody.WaterReflectionTint = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
 // Set water reflection tint strength (0,1)

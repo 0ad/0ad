@@ -954,10 +954,10 @@ static bool Autostart(const CmdLineArgs& args)
 {
 	/*
 	 * Handle various command-line options, for quick testing of various features:
-	 *  -autostart=mapname   -- single-player
+	 *  -autostart=mapname																			-- single-player
 	 *  -autostart=mapname -autostart-playername=Player -autostart-host -autostart-players=2        -- multiplayer host, wait for 2 players
 	 *  -autostart=mapname -autostart-playername=Player -autostart-client -autostart-ip=127.0.0.1   -- multiplayer client, connect to 127.0.0.1
-	 *	-autostart=scriptname -autostart-random
+	 *	-autostart=scriptname -autostart-random=104													-- random map, seed 104 (default is 0, for random choose -1)
 	 */
 
 	CStr autoStartName = args.Get("autostart");
@@ -978,18 +978,34 @@ static bool Autostart(const CmdLineArgs& args)
 	// Set different attributes for random or scenario game
 	if (args.Has("autostart-random"))
 	{
+		CStr seedArg = args.Get("autostart-random");
+
+		// Default seed is 0
+		uint32 seed = 0;
+		if (!seedArg.empty())
+		{
+			if (seedArg.compare("-1") == 0)
+			{	// Random seed value
+				seed = rand();
+			}
+			else
+			{
+				seed = seedArg.ToULong();
+			}
+		}
+		
 		scriptInterface.SetProperty(attrs.get(), "script", std::string(autoStartName), false);	// RMS name
 		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"), false);
 
 		// For random map, there are special settings
 		// TODO: Get these from command line - using defaults for now
-		scriptInterface.SetProperty(settings.get(), "Size", 16);									// Random map size (in patches)
-		scriptInterface.SetProperty(settings.get(), "Seed", 0);										// Random seed
+		scriptInterface.SetProperty(settings.get(), "Size", 12);									// Random map size (in patches)
+		scriptInterface.SetProperty(settings.get(), "Seed", seed);									// Random seed
 		scriptInterface.SetProperty(settings.get(), "BaseTerrain", std::string("grass1_spring"));	// Base terrain texture
 		scriptInterface.SetProperty(settings.get(), "BaseHeight", 0);								// Base terrain height
 
 		// Define players
-		// TODO: Get these from command line - using defaults for now
+		// TODO: Get these from command line? - using defaults for now
 		size_t numPlayers = 2;
 		for (size_t i = 0; i < numPlayers; ++i)
 		{
