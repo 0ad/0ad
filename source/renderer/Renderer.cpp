@@ -1218,7 +1218,13 @@ void CRenderer::RenderSilhouettes()
 
 	{
 		PROFILE("render patches");
+
+		// To prevent units displaying silhouettes when parts of their model
+		// protrude into the ground, only occlude with the back faces of the
+		// terrain (so silhouettes will still display when behind hills)
+		glCullFace(GL_FRONT);
 		m->terrainRenderer->RenderPatches();
+		glCullFace(GL_BACK);
 	}
 
 	{
