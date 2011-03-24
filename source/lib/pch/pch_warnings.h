@@ -37,7 +37,7 @@
 # pragma warning(default:4296)   // [unsigned comparison vs. 0 =>] expression is always false
 # pragma warning(default:4545 4546 4547 4549) // ill-formed comma expressions; exclude 4548 since _SECURE_SCL triggers it frequently
 # pragma warning(default:4557)   // __assume contains effect
-# pragma warning(default:4710)   // function not inlined
+//# pragma warning(default:4710)   // function not inlined (often happens in STL)
 # pragma warning(default:4836)   // local types or unnamed types cannot be used as template arguments
 # pragma warning(default:4905)   // wide string literal cast to LPSTR
 # pragma warning(default:4906)   // string literal cast to LPWSTR

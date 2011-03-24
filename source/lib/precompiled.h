@@ -73,6 +73,7 @@ double __cdecl abs(double x);	// not declared by mathimf
 # include "lib/pch/pch_boost.h"
 using boost::shared_ptr;
 #elif HAVE_CPP0X
+# include <array>
 # include <memory>
 using std::shared_ptr;
 #else
