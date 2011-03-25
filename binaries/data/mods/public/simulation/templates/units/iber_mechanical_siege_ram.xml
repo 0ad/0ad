@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_siege_ram">
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Ariete</SpecificName>
+    <Tooltip>Siege Ram</Tooltip>
+    <History>It is not known if any of the Iberians culture tribes used rams; the unit is added to the civ roster for gameplay purposes.</History>
+    <Icon>units/celt_mechanical_siege_ram.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/iberians/siege_ram.xml</Actor>
+  </VisualActor>
+  <Cost>
+    <BuildTime>40</BuildTime>
+    <Resources>
+      <wood>300</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Square width="6.75" depth="10.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Unit radius="3.75"/>
+  </Obstruction>
+  <Health>
+    <Max>400</Max>
+  </Health>
+  <Armour>
+    <Pierce>25.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+  </UnitMotion>
+  <GarrisonHolder>
+    <Max>3</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+</Entity>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="siege ram">
+      <mesh>structural/iber_siege_ram.dae</mesh>
+      <texture>structural/iber_siege_ram.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
