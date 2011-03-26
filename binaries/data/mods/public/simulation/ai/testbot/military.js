@@ -27,7 +27,7 @@ var MilitaryAttackManager = Class({
 		// Count each type
 		var types = [];
 		for each (var t in this.squadTypes)
-			types.push([t, gameState.countEntitiesAndQueuedWithType(t)]);
+			types.push([t, gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(t))]);
 
 		// Sort by increasing count
 		types.sort(function (a, b) { return a[1] - b[1]; });
