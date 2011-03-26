@@ -1,3 +1,9 @@
+/*
+ * This source file originally came from OGRE v1.7.2 - http://www.ogre3d.org/
+ * with some tweaks as part of 0 A.D.
+ * All changes are released under the original license, as follows:
+ */
+
 /**
 -----------------------------------------------------------------------------
 This source file is part of OGRE
@@ -26,13 +32,8 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-#ifndef __OGRE_CPREPROCESSOR_H__
-#define __OGRE_CPREPROCESSOR_H__
-
-#include <string.h>
-#include <stdlib.h>
-
-namespace Ogre {
+#ifndef INCLUDED_CPREPROCESSOR
+#define INCLUDED_CPREPROCESSOR
 
 /**
  * This is a simplistic C/C++-like preprocessor.
@@ -455,6 +456,24 @@ public:
     void Define (const char *iMacroName, size_t iMacroNameLen, long iMacroValue);
 
     /**
+     * Define a macro without parameters.
+     * @param iMacroName
+     *     The name of the defined macro
+     * @param iMacroValue
+     *     The value of the defined macro
+     */
+    void Define (const char *iMacroName, const char *iMacroValue);
+
+    /**
+     * Define a numerical macro.
+     * @param iMacroName
+     *     The name of the defined macro
+     * @param iMacroValue
+     *     The value of the defined macro
+     */
+    void Define (const char *iMacroName, long iMacroValue);
+
+    /**
      * Undefine a macro.
      * @param iMacroName
      *     The name of the macro to undefine
@@ -519,6 +538,4 @@ public:
     void *ErrorData;
 };
 
-} // namespace Ogre
-
-#endif // __OGRE_CPREPROCESSOR_H__
+#endif // INCLUDED_CPREPROCESSOR

@@ -1,4 +1,10 @@
 /*
+ * This source file originally came from OGRE v1.7.2 - http://www.ogre3d.org/
+ * with some tweaks as part of 0 A.D.
+ * All changes are released under the original license, as follows:
+ */
+
+/*
 -----------------------------------------------------------------------------
 This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
@@ -26,21 +32,14 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-#include "OgreGLSLPreprocessor.h"
-#include "OgreLogManager.h"
+#include "precompiled.h"
 
-#include <ctype.h>
-#include <stdio.h>
-#include <assert.h>
+#include "Preprocessor.h"
 
-namespace Ogre {
+#include "ps/CLogger.h"
 
 // Limit max number of macro arguments to this
 #define MAX_MACRO_ARGS 16
-
-#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 && !defined( __MINGW32__ )
-	#define snprintf _snprintf
-#endif
 
 //---------------------------------------------------------------------------//
 
@@ -110,10 +109,12 @@ bool CPreprocessor::Token::GetValue (long &oValue) const
 
     long base = 10;
     if (String [i] == '0')
+    {
         if (Length > i + 1 && String [i + 1] == 'x')
             base = 16, i += 2;
         else
             base = 8;
+    }
 
     for (; i < Length; i++)
     {
@@ -229,13 +230,11 @@ static void DefaultError (void *iData, int iLine, const char *iError,
                           const char *iToken, size_t iTokenLen)
 {
     (void)iData;
-    char line [1000];
     if (iToken)
-        snprintf (line, sizeof (line), "line %d: %s: `%.*s'\n",
+    	LOGERROR(L"Preprocessor error: line %d: %hs: '%.*hs'\n",
                   iLine, iError, int (iTokenLen), iToken);
     else
-        snprintf (line, sizeof (line), "line %d: %s\n", iLine, iError);
-    LogManager::getSingleton ().logMessage (line);
+        LOGERROR(L"Preprocessor error: line %d: %hs\n", iLine, iError);
 }
 
 //---------------------------------------------------------------------------//
@@ -427,7 +426,7 @@ CPreprocessor::Token CPreprocessor::ExpandMacro (const Token &iToken)
             if (t.String)
             {
                 // Returned token should never be allocated on heap
-                assert (t.Allocated == 0);
+                debug_assert (t.Allocated == 0);
                 Source = t.String;
                 Line -= t.CountNL ();
             }
@@ -490,6 +489,7 @@ CPreprocessor::Token CPreprocessor::GetExpression (
 
     // Handle unary operators here
     if (oResult.Type == Token::TK_PUNCTUATION && oResult.Length == 1)
+    {
         if (strchr ("+-!~", oResult.String [0]))
         {
             char uop = oResult.String [0];
@@ -520,11 +520,12 @@ CPreprocessor::Token CPreprocessor::GetExpression (
                 return Token (Token::TK_ERROR);
             }
 
-            assert (op.Type == Token::TK_PUNCTUATION &&
-                    op.Length == 1 &&
-                    op.String [0] == ')');
+            debug_assert (op.Type == Token::TK_PUNCTUATION &&
+                          op.Length == 1 &&
+                          op.String [0] == ')');
             op = GetToken (true);
         }
+    }
 
     while (op.Type == Token::TK_WHITESPACE ||
            op.Type == Token::TK_NEWLINE ||
@@ -743,6 +744,7 @@ CPreprocessor::Token CPreprocessor::GetArgument (Token &oArg, bool iExpand)
              oArg.Type == Token::TK_LINECONT);
 
     if (!iExpand)
+    {
         if (oArg.Type == Token::TK_EOS)
             return oArg;
         else if (oArg.Type == Token::TK_PUNCTUATION &&
@@ -758,6 +760,7 @@ CPreprocessor::Token CPreprocessor::GetArgument (Token &oArg, bool iExpand)
             Error (Line, "Unexpected token", &oArg);
             return Token (Token::TK_ERROR);
         }
+    }
 
     uint len = oArg.Length;
     while (true)
@@ -877,6 +880,10 @@ bool CPreprocessor::HandleDefine (Token &iBody, int iLine)
         return false;
     }
 
+    bool output_enabled = ((EnableOutput & (EnableOutput + 1)) == 0);
+    if (!output_enabled)
+    	return true;
+
     Macro *m = new Macro (t);
     m->Body = iBody;
     t = cpp.GetArguments (m->NumArgs, m->Args, false);
@@ -897,7 +904,7 @@ bool CPreprocessor::HandleDefine (Token &iBody, int iLine)
 
         default:
             t.Type = Token::TK_TEXT;
-            assert (t.String + t.Length == cpp.Source);
+            debug_assert (t.String + t.Length == cpp.Source);
             t.Length = cpp.SourceEnd - t.String;
             break;
     }
@@ -1160,6 +1167,16 @@ void CPreprocessor::Define (const char *iMacroName, size_t iMacroNameLen,
     MacroList = m;
 }
 
+void CPreprocessor::Define (const char *iMacroName, const char *iMacroValue)
+{
+	Define (iMacroName, strlen(iMacroName), iMacroValue, strlen(iMacroValue));
+}
+
+void CPreprocessor::Define (const char *iMacroName, long iMacroValue)
+{
+	Define (iMacroName, strlen(iMacroName), iMacroValue);
+}
+
 bool CPreprocessor::Undef (const char *iMacroName, size_t iMacroNameLen)
 {
     Macro **cur = &MacroList;
@@ -1287,5 +1304,3 @@ char *CPreprocessor::Parse (const char *iSource, size_t iLength, size_t &oLength
     retval.Allocated = 0;
     return retval.Buffer;
 }
-
-} // namespace Ogre
