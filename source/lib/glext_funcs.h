@@ -114,7 +114,25 @@ FUNC(void, glGetFramebufferAttachmentParameterivEXT, (GLenum target, GLenum atta
 FUNC(void, glGenerateMipmapEXT, (GLenum target))
 
 // GL_ARB_vertex_program, GL_ARB_fragment_program
+FUNC(void, glProgramStringARB, (GLenum target, GLenum format, GLsizei len, const GLvoid *string))
+FUNC(void, glBindProgramARB, (GLenum target, GLuint program))
+FUNC(void, glDeleteProgramsARB, (GLsizei n, const GLuint *programs))
+FUNC(void, glGenProgramsARB, (GLsizei n, GLuint *programs))
+FUNC(void, glProgramEnvParameter4dARB, (GLenum target, GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w))
+FUNC(void, glProgramEnvParameter4dvARB, (GLenum target, GLuint index, const GLdouble *params))
+FUNC(void, glProgramEnvParameter4fARB, (GLenum target, GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w))
+FUNC(void, glProgramEnvParameter4fvARB, (GLenum target, GLuint index, const GLfloat *params))
+FUNC(void, glProgramLocalParameter4dARB, (GLenum target, GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w))
+FUNC(void, glProgramLocalParameter4dvARB, (GLenum target, GLuint index, const GLdouble *params))
+FUNC(void, glProgramLocalParameter4fARB, (GLenum target, GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w))
+FUNC(void, glProgramLocalParameter4fvARB, (GLenum target, GLuint index, const GLfloat *params))
+FUNC(void, glGetProgramEnvParameterdvARB, (GLenum target, GLuint index, GLdouble *params))
+FUNC(void, glGetProgramEnvParameterfvARB, (GLenum target, GLuint index, GLfloat *params))
+FUNC(void, glGetProgramLocalParameterdvARB, (GLenum target, GLuint index, GLdouble *params))
+FUNC(void, glGetProgramLocalParameterfvARB, (GLenum target, GLuint index, GLfloat *params))
 FUNC(void, glGetProgramivARB, (GLenum target, GLenum pname, GLint *params))
+FUNC(void, glGetProgramStringARB, (GLenum target, GLenum pname, GLvoid *string))
+FUNC(GLboolean, glIsProgramARB, (GLuint program))
 
 // GL_ARB_shader_objects
 // (NOTE: Many of these have "Object" in their ARB names, but "Program" or "Shader" in their core names.

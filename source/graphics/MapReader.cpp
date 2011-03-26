@@ -51,6 +51,9 @@ CMapReader::CMapReader()
 	: xml_reader(0), m_PatchesPerSide(0)
 {
 	cur_terrain_tex = 0;	// important - resets generator state
+
+	// Maps that don't override the default probably want the old lighting model
+	m_LightEnv.SetLightingModel("old");
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
@@ -538,6 +541,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 {
 #define EL(x) int el_##x = xmb_file.GetElementID(#x)
 #define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
+	EL(lightingmodel);
 	EL(skyset);
 	EL(suncolour);
 	EL(sunelevation);
@@ -566,7 +570,11 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 
 		XMBAttributeList attrs = element.GetAttributes();
 
-		if (element_name == el_skyset)
+		if (element_name == el_lightingmodel)
+		{
+			m_MapReader.m_LightEnv.SetLightingModel(element.GetText());
+		}
+		else if (element_name == el_skyset)
 		{
 			if (m_MapReader.pSkyMan)
 				m_MapReader.pSkyMan->SetSkySet(element.GetText().FromUTF8());
@@ -1212,6 +1220,8 @@ int CMapReader::ParseEnvironment()
 		LOGWARNING(L"CMapReader::ParseEnvironment(): Environment settings not found");
 		return 0;
 	}
+
+	m_LightEnv.SetLightingModel("standard");
 
 	std::wstring skySet;
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SkySet, skySet)

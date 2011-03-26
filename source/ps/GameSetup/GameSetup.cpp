@@ -199,15 +199,17 @@ void Render()
 	GUI<CColor>::ParseString(skystring.FromUTF8(), skycol);
 	g_Renderer.SetClearColor(skycol.AsSColor4ub());
 
+	// prepare before starting the renderer frame
+	if (g_Game && g_Game->IsGameStarted())
+		g_Game->GetView()->BeginFrame();
+
 	// start new frame
 	g_Renderer.BeginFrame();
 
 	ogl_WarnIfError();
 
 	if (g_Game && g_Game->IsGameStarted())
-	{
 		g_Game->GetView()->Render();
-	}
 
 	ogl_WarnIfError();
 

@@ -92,6 +92,14 @@ public:
 	int GetPlayerID();
 	void SetPlayerID(int playerID);
 
+	/**
+	 * Retrieving player colours from scripts is slow, so this updates an
+	 * internal cache of all players' colours.
+	 * Call this just before rendering, so it will always have the latest
+	 * colours.
+	 */
+	void CachePlayerColours();
+
 	CColor GetPlayerColour(int player) const;
 
 	/**
@@ -155,6 +163,8 @@ private:
 	void RegisterInit(const CScriptValRooted& attribs);
 	IReplayLogger* m_ReplayLogger;
 	CScriptValRooted m_RegisteredAttribs;
+
+	std::vector<CColor> m_PlayerColours;
 };
 
 extern CGame *g_Game;

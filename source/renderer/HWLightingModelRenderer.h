@@ -68,8 +68,23 @@ public:
 	 */
 	static bool IsAvailable();
 
-private:
+protected:
 	HWLightingModelRendererInternals* m;
+};
+
+/**
+ * Render animated models using a ShaderRenderModifier.
+ * This just passes through the vertex data directly; the modifier is responsible
+ * for setting any shader uniforms etc.
+ */
+class ShaderModelRenderer : public HWLightingModelRenderer
+{
+public:
+	ShaderModelRenderer();
+
+	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
+	void EndPass(int streamflags);
+	void RenderModel(int streamflags, CModel* model, void* data);
 };
 
 

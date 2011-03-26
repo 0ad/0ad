@@ -87,9 +87,6 @@ SMaterialColor CMaterial::GetObjectColor()
 	if (m_UseTextureColor)
 		return m_TextureColor;
 
-	debug_assert(m_UsePlayerColor);
-		// this should never be called unless IsPlayer returned true
-
 	return GetPlayerColor();
 }
 

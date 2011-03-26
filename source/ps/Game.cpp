@@ -279,14 +279,35 @@ void CGame::Interpolate(float frameLength)
 	m_TurnManager->Interpolate(frameLength);
 }
 
+
 static CColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
-CColor CGame::GetPlayerColour(int player) const
+
+void CGame::CachePlayerColours()
 {
+	m_PlayerColours.clear();
+
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*m_Simulation2, SYSTEM_ENTITY);
 	if (cmpPlayerManager.null())
+		return;
+
+	int numPlayers = cmpPlayerManager->GetNumPlayers();
+	m_PlayerColours.resize(numPlayers);
+
+	for (int i = 0; i < numPlayers; ++i)
+	{
+		CmpPtr<ICmpPlayer> cmpPlayer(*m_Simulation2, cmpPlayerManager->GetPlayerByID(i));
+		if (cmpPlayer.null())
+			m_PlayerColours[i] = BrokenColor;
+		else
+			m_PlayerColours[i] = cmpPlayer->GetColour();
+	}
+}
+
+
+CColor CGame::GetPlayerColour(int player) const
+{
+	if (player < 0 || player >= (int)m_PlayerColours.size())
 		return BrokenColor;
-	CmpPtr<ICmpPlayer> cmpPlayer(*m_Simulation2, cmpPlayerManager->GetPlayerByID(player));
-	if (cmpPlayer.null())
-		return BrokenColor;
-	return cmpPlayer->GetColour();
+
+	return m_PlayerColours[player];
 }

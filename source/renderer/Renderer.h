@@ -25,6 +25,7 @@
 
 #include "graphics/Camera.h"
 #include "graphics/SColor.h"
+#include "graphics/ShaderProgram.h"
 #include "lib/ogl.h"
 #include "lib/res/handle.h"
 #include "ps/Singleton.h"
@@ -42,6 +43,7 @@ class RenderPathVertexShader;
 class WaterManager;
 class SkyManager;
 class CTextureManager;
+class CShaderManager;
 
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
@@ -59,24 +61,6 @@ enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 #define STREAM_POSTOUV2 (1 << 9)
 #define STREAM_POSTOUV3 (1 << 10)
 #define STREAM_TEXGENTOUV1 (1 << 11)
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// SVertex3D: simple 3D vertex declaration
-struct SVertex3D
-{
-	float m_Position[3];
-	float m_TexCoords[2];
-	unsigned int m_Color;
-};
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// SVertex2D: simple 2D vertex declaration
-struct SVertex2D
-{
-	float m_Position[2];
-	float m_TexCoords[2];
-	unsigned int m_Color;
-};
 
 // access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()
@@ -110,7 +94,10 @@ public:
 		RP_FIXED,
 
 		// Use (GL 2.0) vertex shaders for T&L when possible.
-		RP_VERTEXSHADER
+		RP_VERTEXSHADER,
+
+		// Use new ARB/GLSL system
+		RP_SHADER
 	};
 
 	// stats class - per frame counts of number of draw calls, poly counts etc
@@ -147,10 +134,13 @@ public:
 		float m_LodBias;
 		RenderPath m_RenderPath;
 		bool m_ShadowAlphaFix;
+		bool m_ARBProgramShadow;
 	} m_Options;
 
 	struct Caps {
 		bool m_VBO;
+		bool m_ARBProgram;
+		bool m_ARBProgramShadow;
 		bool m_VertexShader;
 		bool m_FragmentShader;
 		bool m_Shadows;
@@ -192,6 +182,9 @@ public:
 
 	// set color used to clear screen in BeginFrame()
 	void SetClearColor(SColor4ub color);
+
+	// trigger a reload of shaders (when parameters they depend on have changed)
+	void MakeShadersDirty();
 
 	/**
 	 * Set up the camera used for rendering the next scene; this includes
@@ -277,6 +270,8 @@ public:
 
 	CTextureManager& GetTextureManager();
 
+	CShaderManager& GetShaderManager();
+
 	/**
 	 * SetFastPlayerColor: Tell the renderer which path to take for
 	 * player colored models. Both paths should provide the same visual
@@ -310,7 +305,9 @@ protected:
 	friend class SortModelRenderer;
 	friend class RenderPathVertexShader;
 	friend class HWLightingModelRenderer;
+	friend class ShaderModelRenderer;
 	friend class InstancingModelRenderer;
+	friend class ShaderInstancingModelRenderer;
 	friend class TerrainRenderer;
 
 	// scripting
@@ -324,6 +321,8 @@ protected:
 	void JSI_SetUseDepthTexture(JSContext* ctx, jsval newval);
 	jsval JSI_GetDepthTextureBits(JSContext*);
 	void JSI_SetDepthTextureBits(JSContext* ctx, jsval newval);
+	jsval JSI_GetShadows(JSContext*);
+	void JSI_SetShadows(JSContext* ctx, jsval newval);
 	jsval JSI_GetShadowAlphaFix(JSContext*);
 	void JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval);
 	jsval JSI_GetSky(JSContext*);
@@ -361,6 +360,8 @@ protected:
 
 	// enable oblique frustum clipping with the given clip plane
 	void SetObliqueFrustumClipping(const CVector4D& clipPlane, int sign);
+
+	void ReloadShaders();
 
 	// hotloading
 	static LibError ReloadChangedFileCB(void* param, const VfsPath& path);

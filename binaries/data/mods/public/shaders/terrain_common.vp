@@ -1,0 +1,42 @@
+!!ARBvp1.0
+PARAM sunColor = program.local[0];
+PARAM losTransform = program.local[1];
+PARAM shadowTransform[4] = { program.local[2..5] };
+
+TEMP lighting;
+
+//// Compute position and normal:
+
+ATTRIB position = vertex.position;
+
+DP4 result.position.x, state.matrix.mvp.row[0], position;
+DP4 result.position.y, state.matrix.mvp.row[1], position;
+DP4 result.position.z, state.matrix.mvp.row[2], position;
+DP4 result.position.w, state.matrix.mvp.row[3], position;
+
+//// Compute lighting:
+
+// Diffuse factor is precomputed in vertex attribute
+// Scale diffuse to allow overbrightness (since result.color will be clamped to [0, 1])
+MUL lighting, vertex.color, 0.5;
+// Apply light colour
+MUL result.color, lighting, sunColor;
+
+//// Texture coordinates:
+
+MOV result.texcoord[0], vertex.texcoord[0];
+
+#ifdef BLEND
+  MOV result.texcoord[1], vertex.texcoord[1];
+#endif
+
+#ifdef USE_SHADOW
+  DP4 result.texcoord[2].x, shadowTransform[0], position;
+  DP4 result.texcoord[2].y, shadowTransform[1], position;
+  DP4 result.texcoord[2].z, shadowTransform[2], position;
+  DP4 result.texcoord[2].w, shadowTransform[3], position;
+#endif
+
+MAD result.texcoord[3], position.xzzz, losTransform.x, losTransform.y;
+
+END

@@ -68,9 +68,24 @@ public:
 	 */
 	static bool IsAvailable();
 
-private:
+protected:
 	InstancingModelRendererInternals* m;
 };
 
+/**
+ * Render non-animated (but potentially moving) models using a ShaderRenderModifier.
+ * This just passes through the vertex data directly; the modifier is responsible
+ * for setting any shader uniforms etc (including the instancing transform).
+ */
+class ShaderInstancingModelRenderer : public InstancingModelRenderer
+{
+public:
+	ShaderInstancingModelRenderer();
+
+	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
+	void EndPass(int streamflags);
+	void PrepareModelDef(int streamflags, const CModelDefPtr& def);
+	void RenderModel(int streamflags, CModel* model, void* data);
+};
 
 #endif // INCLUDED_INSTANCINGMODELRENDERER

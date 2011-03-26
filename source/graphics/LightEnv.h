@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,8 @@
 #ifndef INCLUDED_LIGHTENV
 #define INCLUDED_LIGHTENV
 
-#include "Color.h"
+#include "graphics/Color.h"
+#include "maths/MathUtil.h"
 #include "maths/Vector3D.h"
 
 class CMapWriter;
@@ -56,10 +57,17 @@ private:
 	 * m_TerrainShadowTransparency: Fraction of diffuse light that reaches shadowed terrain.
 	 * A value of 0.0 means shadowed polygons get only ambient light, while a value of 1.0
 	 * means shadows don't have any effect at all.
+	 * TODO: probably delete this, since it's never used and always set to 0.0.
 	 */
 	float m_TerrainShadowTransparency;
 
 	CVector3D m_SunDir;
+
+	/**
+	 * A string that shaders use to determine what lighting model to implement.
+	 * Current recognised values are "old" and "standard".
+	 */
+	std::string m_LightingModel;
 
 public:
 	RGBColor m_SunColor;
@@ -73,11 +81,14 @@ public:
 	float GetRotation() const { return m_Rotation; }
 	const CVector3D& GetSunDir() const { return m_SunDir; }
 	float GetTerrainShadowTransparency() const { return m_TerrainShadowTransparency; }
+	const std::string& GetLightingModel() const { return m_LightingModel; }
 
 	void SetElevation(float f);
 	void SetRotation(float f);
 
 	void SetTerrainShadowTransparency(float f);
+
+	void SetLightingModel(const std::string& model) { m_LightingModel = model; }
 
 	/**
 	 * EvaluateTerrain: Calculate brightness of a point of the terrain with the given normal
@@ -130,12 +141,37 @@ public:
 			color = CVector3D(0,0,0);
 	}
 
+	/**
+	 * Compute the diffuse sun lighting.
+	 * If @p includeSunColor is set, the return value includes the sun color.
+	 * (If sun overbrightness is enabled, this might result in clamping).
+	 * Otherwise it returns a factor that the sun color should be multiplied by.
+	 */
+	SColor4ub EvaluateDiffuse(const CVector3D& normal, bool includeSunColor) const
+	{
+		float dot = -normal.Dot(m_SunDir);
+
+		if (dot <= 0)
+			return SColor4ub(0, 0, 0, 255);
+
+		if (includeSunColor)
+		{
+			return ConvertRGBColorTo4ub(m_SunColor * dot);
+		}
+		else
+		{
+			int c = clamp((int)(dot * 255), 0, 255);
+			return SColor4ub(c, c, c, 255);
+		}
+	}
+
 	// Comparison operators
 	bool operator==(const CLightEnv& o) const
 	{
 		return m_Elevation == o.m_Elevation &&
 			m_Rotation == o.m_Rotation &&
 			m_TerrainShadowTransparency == o.m_TerrainShadowTransparency &&
+			m_LightingModel == o.m_LightingModel &&
 			m_SunColor == o.m_SunColor &&
 			m_TerrainAmbientColor == o.m_TerrainAmbientColor &&
 			m_UnitsAmbientColor == o.m_UnitsAmbientColor;

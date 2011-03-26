@@ -31,6 +31,8 @@ public:
 
 	bool Validate(const std::wstring& filename, const std::wstring& document);
 
+	bool ValidateEncoded(const std::wstring& filename, const std::string& document);
+
 private:
 	xmlRelaxNGPtr m_Schema;
 };

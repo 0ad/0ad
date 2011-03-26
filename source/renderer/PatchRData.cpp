@@ -358,28 +358,41 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	SBlendVertex dst;
 
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	CVector3D normal;
+
+	bool includeSunColor = (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER);
+
 	size_t index = blendVertices.size();
 
 	CalculateUV(dst.m_UVs, gx, gz);
 	terrain->CalcPosition(gx, gz, dst.m_Position);
+	terrain->CalcNormal(gx, gz, normal);
+	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
 	dst.m_AlphaUVs[0] = vtx[0].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[0].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
 
 	CalculateUV(dst.m_UVs, gx + 1, gz);
 	terrain->CalcPosition(gx + 1, gz, dst.m_Position);
+	terrain->CalcNormal(gx + 1, gz, normal);
+	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
 	dst.m_AlphaUVs[0] = vtx[1].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[1].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
 
 	CalculateUV(dst.m_UVs, gx + 1, gz + 1);
 	terrain->CalcPosition(gx + 1, gz + 1, dst.m_Position);
+	terrain->CalcNormal(gx + 1, gz + 1, normal);
+	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
 	dst.m_AlphaUVs[0] = vtx[2].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[2].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
 
 	CalculateUV(dst.m_UVs, gx, gz + 1);
 	terrain->CalcPosition(gx, gz + 1, dst.m_Position);
+	terrain->CalcNormal(gx, gz + 1, normal);
+	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
 	dst.m_AlphaUVs[0] = vtx[3].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[3].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
@@ -516,6 +529,8 @@ void CPatchRData::BuildVertices()
 	CTerrain* terrain=m_Patch->m_Parent;
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
+	bool includeSunColor = (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER);
+
 	// build vertices
 	for (ssize_t j=0;j<vsize;j++) {
 		for (ssize_t i=0;i<vsize;i++) {
@@ -533,9 +548,7 @@ void CPatchRData::BuildVertices()
 			CVector3D normal;
 			terrain->CalcNormal(ix,iz,normal);
 
-			RGBColor diffuse;
-			lightEnv.EvaluateDirect(normal, diffuse);
-			vertices[v].m_DiffuseColor = ConvertRGBColorTo4ub(diffuse);
+			vertices[v].m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
 		}
 	}
 
@@ -835,6 +848,8 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 				SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
 
 				glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+
+				glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
 
 				pglClientActiveTextureARB(GL_TEXTURE0);
 				glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs[0]);

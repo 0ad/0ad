@@ -82,12 +82,12 @@ private:
 	struct SBlendVertex {
 		// vertex position
 		CVector3D m_Position;
+		// diffuse color from sunlight
+		SColor4ub m_DiffuseColor;
 		// vertex uvs for base texture
 		float m_UVs[2];
 		// vertex uvs for alpha texture
 		float m_AlphaUVs[2];
-		// add some padding
-		u32 m_Padding[1];
 	};
 	cassert(sizeof(SBlendVertex) == 32);
 

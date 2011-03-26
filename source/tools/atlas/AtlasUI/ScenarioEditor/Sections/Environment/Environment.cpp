@@ -227,6 +227,8 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	sunSizer->Add(new VariableSliderBox(this, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PIf/2, M_PIf/2), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(this, _("Sun overbrightness"), g_EnvironmentSettings.sunoverbrightness, 1.0f, 3.0f), wxSizerFlags().Expand());
 
+	sunSizer->Add(m_LightingModelList = new VariableListBox(this, _("Light model"), g_EnvironmentSettings.lightingmodel), wxSizerFlags().Expand());
+
 	m_MainSizer->Add(new LightControl(this, wxSize(150, 150), g_EnvironmentSettings));
 	m_MainSizer->Add(m_SkyList = new VariableListBox(this, _("Sky set"), g_EnvironmentSettings.skyset));
 	m_MainSizer->Add(new VariableColourBox(this, _("Sun colour"), g_EnvironmentSettings.suncolour));
@@ -247,6 +249,13 @@ void EnvironmentSidebar::OnFirstDisplay()
 	AtlasMessage::qGetEnvironmentSettings qry_env;
 	qry_env.Post();
 	g_EnvironmentSettings = qry_env.settings;
+
+
+	std::vector<std::wstring> lightingModels;
+	lightingModels.push_back(L"old");
+	lightingModels.push_back(L"standard");
+	m_LightingModelList->SetChoices(lightingModels);
+
 
 	g_EnvironmentSettings.NotifyObservers();
 	// TODO: reupdate everything when loading a new map...

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,10 +24,13 @@
 #include "lib/ogl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
-
 #include "maths/Matrix3D.h"
 
+#include "ps/Game.h"
+
+#include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/Model.h"
 #include "graphics/TextureManager.h"
 
@@ -35,7 +38,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
 
-
+#include <boost/algorithm/string.hpp>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // RenderModifier implementation
@@ -298,4 +301,83 @@ void SolidColorRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& UNU
 
 void SolidColorRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ShaderRenderModifier implementation
+
+ShaderRenderModifier::ShaderRenderModifier(const CShaderTechnique& technique) :
+	m_Technique(technique)
+{
+}
+
+ShaderRenderModifier::~ShaderRenderModifier()
+{
+}
+
+int ShaderRenderModifier::BeginPass(int pass)
+{
+	m_Technique.BeginPass(pass);
+
+	CShaderProgramPtr shader = m_Technique.GetShader(pass);
+
+	if (GetShadowMap() && shader->HasTexture("shadowTex"))
+	{
+		shader->BindTexture("shadowTex", GetShadowMap()->GetTexture());
+		shader->Uniform("shadowTransform", GetShadowMap()->GetTextureMatrix());
+	}
+
+	if (GetLightEnv())
+	{
+		shader->Uniform("ambient", GetLightEnv()->m_UnitsAmbientColor);
+		shader->Uniform("sunDir", GetLightEnv()->GetSunDir());
+		shader->Uniform("sunColor", GetLightEnv()->m_SunColor);
+	}
+
+	if (shader->HasTexture("losTex"))
+	{
+		CLOSTexture& los = g_Game->GetView()->GetLOSTexture();
+		shader->BindTexture("losTex", los.GetTexture());
+		// Don't bother sending the whole matrix, we just need two floats (scale and translation)
+		shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+	}
+
+	m_BindingInstancingTransform = shader->GetUniformBinding("instancingTransform");
+	m_BindingShadingColor = shader->GetUniformBinding("shadingColor");
+	m_BindingObjectColor = shader->GetUniformBinding("objectColor");
+	m_BindingPlayerColor = shader->GetUniformBinding("playerColor");
+
+	return shader->GetStreamFlags();
+}
+
+bool ShaderRenderModifier::EndPass(int pass)
+{
+	m_Technique.EndPass(pass);
+
+	return (pass >= m_Technique.GetNumPasses()-1);
+}
+
+void ShaderRenderModifier::PrepareTexture(int pass, CTexturePtr& texture)
+{
+	CShaderProgramPtr shader = m_Technique.GetShader(pass);
+
+	shader->BindTexture("baseTex", texture->GetHandle());
+}
+
+void ShaderRenderModifier::PrepareModel(int pass, CModel* model)
+{
+	CShaderProgramPtr shader = m_Technique.GetShader(pass);
+
+	if (m_BindingInstancingTransform.Active())
+		shader->Uniform(m_BindingInstancingTransform, model->GetTransform());
+
+	if (m_BindingShadingColor.Active())
+		shader->Uniform(m_BindingShadingColor, model->GetShadingColor());
+
+	if (m_BindingObjectColor.Active())
+		shader->Uniform(m_BindingObjectColor, model->GetMaterial().GetObjectColor());
+
+	if (m_BindingPlayerColor.Active())
+		shader->Uniform(m_BindingPlayerColor, model->GetMaterial().GetPlayerColor());
 }

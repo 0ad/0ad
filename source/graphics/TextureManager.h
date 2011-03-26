@@ -226,6 +226,11 @@ public:
 	void Bind(size_t unit = 0);
 
 	/**
+	 * Returns a ogl_tex handle, for later binding. See comments from Bind().
+	 */
+	Handle GetHandle();
+
+	/**
 	 * Attempt to load the texture data quickly, as with Bind().
 	 * Returns whether the texture data is currently loaded.
 	 */

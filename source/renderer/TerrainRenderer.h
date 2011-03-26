@@ -83,6 +83,12 @@ public:
 	void RenderTerrain(ShadowMap* shadow);
 
 	/**
+	 * Render textured terrain, as with RenderTerrain, but using shaders
+	 * instead of multitexturing.
+	 */
+	void RenderTerrainShader(ShadowMap* shadow);
+
+	/**
 	 * RenderPatches: Render all patches un-textured as polygons.
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
@@ -114,6 +120,8 @@ public:
 
 private:
 	TerrainRendererInternals* m;
+
+	void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 };
 
 #endif // INCLUDED_TERRAINRENDERER

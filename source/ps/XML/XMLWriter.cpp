@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/XML/Xeromyces.h"
 #include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
 #include "maths/Fixed.h"
@@ -110,6 +111,22 @@ const CStr& XMLWriter_File::GetOutput()
 	return m_Data;
 }
 
+
+void XMLWriter_File::XMB(const XMBFile& file)
+{
+	ElementXMB(file, file.GetRoot());
+}
+
+void XMLWriter_File::ElementXMB(const XMBFile& file, XMBElement el)
+{
+	XMLWriter_Element writer(*this, file.GetElementString(el.GetNodeName()).c_str());
+
+	XERO_ITER_ATTR(el, attr)
+		writer.Attribute(file.GetAttributeString(attr.Name).c_str(), attr.Value);
+
+	XERO_ITER_EL(el, child)
+		ElementXMB(file, child);
+}
 
 void XMLWriter_File::Comment(const char* text)
 {

@@ -345,6 +345,10 @@ struct sEnvironmentSettings
 	// (struct Colour stores as normal u8, 0..255)
 	Shareable<float> sunoverbrightness; // range 1..3
 
+	// support different lighting models ("old" for the version compatible with old scenarios,
+	// "standard" for the new normal model that supports much brighter lighting)
+	Shareable<std::wstring> lightingmodel;
+
 	Shareable<std::wstring> skyset;
 
 	Shareable<Colour> suncolour;

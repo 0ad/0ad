@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <vertex file="solid.vp">
+        <stream name="pos"/>
+    </vertex>
+
+    <fragment file="solid.fp"/>
+
+</program>

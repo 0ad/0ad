@@ -77,6 +77,17 @@ void CLOSTexture::BindTexture(int unit)
 	g_Renderer.BindTexture(unit, m_Texture);
 }
 
+GLuint CLOSTexture::GetTexture()
+{
+	if (m_Dirty)
+	{
+		RecomputeTexture(0);
+		m_Dirty = false;
+	}
+
+	return m_Texture;
+}
+
 const float* CLOSTexture::GetTextureMatrix()
 {
 	debug_assert(!m_Dirty);

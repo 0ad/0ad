@@ -40,6 +40,7 @@ private:
 
 	VertexArray m_Array;
 	VertexArray::Attribute m_Position;
+	VertexArray::Attribute m_DiffuseColor;
 	VertexArray::Attribute m_UV;
 
 	CModelDecal* m_Decal;

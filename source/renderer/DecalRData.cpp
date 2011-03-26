@@ -20,6 +20,7 @@
 #include "DecalRData.h"
 
 #include "graphics/Decal.h"
+#include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
@@ -40,6 +41,10 @@ CDecalRData::CDecalRData(CModelDecal* decal)
 	m_Position.type = GL_FLOAT;
 	m_Position.elems = 3;
 	m_Array.AddAttribute(&m_Position);
+
+	m_DiffuseColor.type = GL_UNSIGNED_BYTE;
+	m_DiffuseColor.elems = 4;
+	m_Array.AddAttribute(&m_DiffuseColor);
 
 	m_UV.type = GL_FLOAT;
 	m_UV.elems = 2;
@@ -81,9 +86,12 @@ void CDecalRData::Render()
 
 	u8* indexBase = m_IndexArray.Bind();
 
+	// TODO: make the shading color available to shader-based rendering
+	// (which uses the color array) too
 	glColor3fv(m_Decal->GetShadingColor().FloatArray());
 
 	glVertexPointer(3, GL_FLOAT, stride, base + m_Position.offset);
+	glColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_DiffuseColor.offset);
 	glTexCoordPointer(2, GL_FLOAT, stride, base + m_UV.offset);
 
 	if (!g_Renderer.m_SkipSubmit)
@@ -118,7 +126,10 @@ void CDecalRData::BuildArrays()
 	m_Array.SetNumVertices((i1-i0+1)*(j1-j0+1));
 	m_Array.Layout();
 	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
+	VertexArrayIterator<SColor4ub> DiffuseColor = m_DiffuseColor.GetIterator<SColor4ub>();
 	VertexArrayIterator<float[2]> UV = m_UV.GetIterator<float[2]>();
+
+	bool includeSunColor = (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER);
 
 	for (ssize_t j = j0; j <= j1; ++j)
 	{
@@ -132,6 +143,11 @@ void CDecalRData::BuildArrays()
 
 			*Position = pos;
 			++Position;
+
+			CVector3D normal;
+			m_Decal->m_Terrain->CalcNormal(i, j, normal);
+			*DiffuseColor = g_Renderer.GetLightEnv().EvaluateDiffuse(normal, includeSunColor);
+			++DiffuseColor;
 
 			// Map from world space back into decal texture space
 			CVector3D inv = m_Decal->GetInvTransform().Transform(pos);

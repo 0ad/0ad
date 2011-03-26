@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -289,4 +289,78 @@ void InstancingModelRenderer::RenderModel(int streamflags, CModel* model, void* 
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ShaderInstancingModelRenderer implementation
 
+ShaderInstancingModelRenderer::ShaderInstancingModelRenderer() :
+	InstancingModelRenderer(false)
+{
+}
+
+void ShaderInstancingModelRenderer::BeginPass(int streamflags, const CMatrix3D* UNUSED(texturematrix))
+{
+	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
+
+	if (streamflags & STREAM_POS)
+		glEnableClientState(GL_VERTEX_ARRAY);
+
+	if (streamflags & STREAM_NORMAL)
+		glEnableClientState(GL_NORMAL_ARRAY);
+
+	if (streamflags & STREAM_UV0)
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+void ShaderInstancingModelRenderer::EndPass(int streamflags)
+{
+	if (streamflags & STREAM_POS)
+		glDisableClientState(GL_VERTEX_ARRAY);
+
+	if (streamflags & STREAM_NORMAL)
+		glDisableClientState(GL_NORMAL_ARRAY);
+
+	if (streamflags & STREAM_UV0)
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	CVertexBuffer::Unbind();
+}
+
+void ShaderInstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
+{
+	m->imodeldef = (IModelDef*)def->GetRenderData(m);
+
+	debug_assert(m->imodeldef);
+
+	u8* base = m->imodeldef->m_Array.Bind();
+	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
+
+	m->imodeldefIndexBase = m->imodeldef->m_IndexArray.Bind();
+
+	if (streamflags & STREAM_POS)
+		glVertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
+
+	if (streamflags & STREAM_NORMAL)
+		glNormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
+
+	if (streamflags & STREAM_UV0)
+		glTexCoordPointer(2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
+}
+
+void ShaderInstancingModelRenderer::RenderModel(int UNUSED(streamflags), CModel* model, void* UNUSED(data))
+{
+	CModelDefPtr mdldef = model->GetModelDef();
+
+	// render the lot
+	size_t numFaces = mdldef->GetNumFaces();
+
+	if (!g_Renderer.m_SkipSubmit)
+	{
+		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
+				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
+	}
+
+	// bump stats
+	g_Renderer.m_Stats.m_DrawCalls++;
+	g_Renderer.m_Stats.m_ModelTris += numFaces;
+
+}

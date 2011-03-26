@@ -19,29 +19,12 @@
 #define INCLUDED_MATERIAL
 
 #include "ps/CStr.h"
+#include "ps/Overlay.h"
 #include "simulation2/helpers/Player.h"
 
 // FIXME: This material system is almost entirely unused and probably broken
 
-struct CColor;
-
-struct SMaterialColor
-{
-public:
-	float r;
-	float g;
-	float b;
-	float a;
-
-	SMaterialColor() : r(0.0f), g(0.0f), b(0.0f), a(1.0f) {}
-	SMaterialColor(float _r, float _g, float _b, float _a)
-	{
-		r = _r;
-		g = _g;
-		b = _b;
-		a = _a;
-	}
-};
+typedef CColor SMaterialColor;
 
 class CMaterial
 {

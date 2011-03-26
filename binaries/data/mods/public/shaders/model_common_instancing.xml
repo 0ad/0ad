@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <define name="USE_INSTANCING" value="1"/>
+
+    <vertex file="model_common.vp">
+        <uniform name="sunDir" loc="0" type="vec3"/>
+        <uniform name="sunColor" loc="1" type="vec3"/>
+        <uniform name="losTransform" loc="2" type="vec2"/>
+        <uniform name="shadowTransform" loc="3" type="mat4"/>
+        <uniform name="instancingTransform" loc="7" type="mat4"/>
+        <stream name="pos"/>
+        <stream name="normal"/>
+        <stream name="uv0"/>
+    </vertex>
+
+    <fragment file="model_common.fp">
+        <uniform name="baseTex" loc="0" type="sampler2D"/>
+        <uniform name="shadowTex" loc="1" type="sampler2DShadow"/>
+        <uniform name="losTex" loc="2" type="sampler2D"/>
+
+        <uniform name="objectColor" loc="0" type="vec3"/>
+        <uniform name="ambient" loc="1" type="vec3"/>
+    </fragment>
+
+</program>

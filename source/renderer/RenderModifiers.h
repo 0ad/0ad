@@ -25,6 +25,7 @@
 #define INCLUDED_RENDERMODIFIERS
 
 #include "ModelRenderer.h"
+#include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
 
 class CLightEnv;
@@ -228,6 +229,30 @@ public:
 	bool EndPass(int pass);
 	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
+};
+
+/**
+ * A RenderModifier that can be used with any CShaderTechnique.
+ * Uniforms and textures get set appropriately.
+ */
+class ShaderRenderModifier : public LitRenderModifier
+{
+public:
+	ShaderRenderModifier(const CShaderTechnique& technique);
+	~ShaderRenderModifier();
+
+	// Implementation
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexturePtr& texture);
+	void PrepareModel(int pass, CModel* model);
+
+private:
+	CShaderTechnique m_Technique;
+	CShaderProgram::Binding m_BindingInstancingTransform;
+	CShaderProgram::Binding m_BindingShadingColor;
+	CShaderProgram::Binding m_BindingObjectColor;
+	CShaderProgram::Binding m_BindingPlayerColor;
 };
 
 #endif // INCLUDED_RENDERMODIFIERS

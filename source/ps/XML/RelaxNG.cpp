@@ -59,6 +59,13 @@ bool RelaxNGValidator::LoadGrammar(const std::string& grammar)
 
 bool RelaxNGValidator::Validate(const std::wstring& filename, const std::wstring& document)
 {
+	std::string docutf8 = "<?xml version='1.0' encoding='utf-8'?>" + utf8_from_wstring(document);
+
+	return ValidateEncoded(filename, docutf8);
+}
+
+bool RelaxNGValidator::ValidateEncoded(const std::wstring& filename, const std::string& document)
+{
 	TIMER_ACCRUE(xml_validation);
 
 	if (!m_Schema)
@@ -67,9 +74,7 @@ bool RelaxNGValidator::Validate(const std::wstring& filename, const std::wstring
 		return false;
 	}
 
-	std::string docutf8 = "<?xml version='1.0' encoding='utf-8'?>" + utf8_from_wstring(document);
-
-	xmlDocPtr doc = xmlReadMemory(docutf8.c_str(), (int)docutf8.size(), utf8_from_wstring(filename).c_str(), NULL, XML_PARSE_NONET);
+	xmlDocPtr doc = xmlReadMemory(document.c_str(), (int)document.size(), utf8_from_wstring(filename).c_str(), NULL, XML_PARSE_NONET);
 	if (doc == NULL)
 	{
 		LOGERROR(L"RelaxNGValidator: Failed to parse document");

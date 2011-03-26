@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,8 +25,6 @@
 #include "lib/res/graphics/ogl_shader.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
-
-#include "ps/CLogger.h"
 
 #include "graphics/Color.h"
 #include "graphics/LightEnv.h"
@@ -81,9 +79,6 @@ struct HWLModel
 
 struct HWLightingModelRendererInternals
 {
-	/// Currently used RenderModifier
-	RenderModifierPtr modifier;
-
 	/// Previously prepared modeldef
 	HWLModelDef* hwlmodeldef;
 
@@ -331,4 +326,71 @@ void HWLightingModelRenderer::RenderModel(int streamflags, CModel* model, void* 
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ShaderModelRenderer implementation
 
+ShaderModelRenderer::ShaderModelRenderer() :
+	HWLightingModelRenderer(false)
+{
+}
+
+void ShaderModelRenderer::BeginPass(int streamflags, const CMatrix3D* UNUSED(texturematrix))
+{
+	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
+
+	if (streamflags & STREAM_POS)
+		glEnableClientState(GL_VERTEX_ARRAY);
+
+	if (streamflags & STREAM_NORMAL)
+		glEnableClientState(GL_NORMAL_ARRAY);
+
+	if (streamflags & STREAM_UV0)
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+void ShaderModelRenderer::EndPass(int streamflags)
+{
+	if (streamflags & STREAM_POS)
+		glDisableClientState(GL_VERTEX_ARRAY);
+
+	if (streamflags & STREAM_NORMAL)
+		glDisableClientState(GL_NORMAL_ARRAY);
+
+	if (streamflags & STREAM_UV0)
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	CVertexBuffer::Unbind();
+}
+
+void ShaderModelRenderer::RenderModel(int streamflags, CModel* model, void* data)
+{
+	CModelDefPtr mdldef = model->GetModelDef();
+	HWLModel* hwlmodel = (HWLModel*)data;
+
+	u8* base = hwlmodel->m_Array.Bind();
+	GLsizei stride = (GLsizei)hwlmodel->m_Array.GetStride();
+
+	u8* indexBase = m->hwlmodeldef->m_IndexArray.Bind();
+
+	if (streamflags & STREAM_POS)
+		glVertexPointer(3, GL_FLOAT, stride, base + hwlmodel->m_Position.offset);
+
+	if (streamflags & STREAM_NORMAL)
+		glNormalPointer(GL_FLOAT, stride, base + hwlmodel->m_Normal.offset);
+
+	if (streamflags & STREAM_UV0)
+		glTexCoordPointer(2, GL_FLOAT, stride, base + hwlmodel->m_UV.offset);
+
+	// render the lot
+	size_t numFaces = mdldef->GetNumFaces();
+
+	if (!g_Renderer.m_SkipSubmit)
+	{
+		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
+					   (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
+	}
+
+	// bump stats
+	g_Renderer.m_Stats.m_DrawCalls++;
+	g_Renderer.m_Stats.m_ModelTris += numFaces;
+}

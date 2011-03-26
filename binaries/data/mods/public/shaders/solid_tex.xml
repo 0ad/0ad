@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <vertex file="solid_tex.vp">
+        <stream name="pos"/>
+        <stream name="uv0"/>
+    </vertex>
+
+    <fragment file="solid_tex.fp">
+        <uniform name="baseTex" loc="0" type="sampler2D"/>
+    </fragment>
+
+</program>

@@ -78,7 +78,7 @@ public:
 	// *presentation*
 	void Update(float DeltaTime);
 
-	// Render: Render the World
+	void BeginFrame();
 	void Render();
 
 	InReaction HandleEvent(const SDL_Event_* ev);

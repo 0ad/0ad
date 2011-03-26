@@ -260,6 +260,10 @@ void ViewGame::SetParam(const std::wstring& name, const std::wstring& value)
 		if (!cmpPathfinder.null())
 			cmpPathfinder->SetDebugOverlay(!value.empty());
 	}
+	else if (name == L"renderpath")
+	{
+		g_Renderer.SetRenderPath(g_Renderer.GetRenderPathByName(CStrW(value).ToUTF8()));
+	}
 }
 
 CCamera& ViewGame::GetCamera()

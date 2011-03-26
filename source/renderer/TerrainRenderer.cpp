@@ -30,6 +30,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
+#include "graphics/ShaderManager.h"
 
 #include "maths/MathUtil.h"
 
@@ -225,6 +226,9 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	// no need to write to the depth buffer a second time
 	glDepthMask(0);
 	
+	// The decal color array contains lighting data, which we don't want in this non-shader mode
+	glDisableClientState(GL_COLOR_ARRAY);
+
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
 	CPatchRData::RenderBlends(m->visiblePatches);
@@ -485,6 +489,134 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 			glMatrixMode(GL_MODELVIEW);
 		}
 	}
+
+	pglClientActiveTextureARB(GL_TEXTURE0);
+	pglActiveTextureARB(GL_TEXTURE0);
+	glDepthMask(1);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_BLEND);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+
+///////////////////////////////////////////////////////////////////
+
+/**
+ * Set up all the uniforms for a shader pass.
+ */
+void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow)
+{
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+
+	if (shadow)
+	{
+		shader->BindTexture("shadowTex", shadow->GetTexture());
+		shader->Uniform("shadowTransform", shadow->GetTextureMatrix());
+	}
+
+	CLOSTexture& los = g_Game->GetView()->GetLOSTexture();
+	shader->BindTexture("losTex", los.GetTexture());
+	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+
+	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
+	shader->Uniform("sunColor", lightEnv.m_SunColor);
+}
+
+void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
+{
+	debug_assert(m->phase == Phase_Render);
+
+	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
+
+	typedef std::map<CStr, CStr> Defines;
+	Defines defBasic;
+	if (shadow)
+	{
+		defBasic["USE_SHADOW"] = "1";
+		if (g_Renderer.m_Caps.m_ARBProgramShadow && g_Renderer.m_Options.m_ARBProgramShadow)
+			defBasic["USE_FP_SHADOW"] = "1";
+	}
+
+	defBasic["LIGHTING_MODEL_" + g_Renderer.GetLightEnv().GetLightingModel()] = "1";
+
+	CShaderProgramPtr shaderBase(shaderManager.LoadProgram("terrain_base", defBasic));
+	CShaderProgramPtr shaderBlend(shaderManager.LoadProgram("terrain_blend", defBasic));
+	CShaderProgramPtr shaderDecal(shaderManager.LoadProgram("terrain_decal", defBasic));
+
+	// render the solid black sides of the map first
+	g_Renderer.BindTexture(0, 0);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glColor3f(0, 0, 0);
+	PROFILE_START("render terrain sides");
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+		m->visiblePatches[i]->RenderSides();
+	PROFILE_END("render terrain sides");
+
+	// switch on required client states
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY); // diffuse lighting colours
+
+	shaderBase->Bind();
+	PrepareShader(shaderBase, shadow);
+
+	PROFILE_START("render terrain base");
+	CPatchRData::RenderBases(m->visiblePatches);
+	PROFILE_END("render terrain base");
+
+	shaderBase->Unbind();
+
+	// render blends
+
+	shaderBlend->Bind();
+	PrepareShader(shaderBlend, shadow);
+
+	// switch on the composite alpha map texture
+	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
+
+	// switch on second uv set
+	pglClientActiveTextureARB(GL_TEXTURE1);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	// switch on blending
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	// no need to write to the depth buffer a second time
+	glDepthMask(0);
+
+	// render blend passes for each patch
+	PROFILE_START("render terrain blends");
+	CPatchRData::RenderBlends(m->visiblePatches);
+	PROFILE_END("render terrain blends");
+
+	// Disable second texcoord array
+	pglClientActiveTextureARB(GL_TEXTURE1);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	shaderBlend->Unbind();
+
+	// Render terrain decals
+
+	shaderDecal->Bind();
+	PrepareShader(shaderDecal, shadow);
+
+	g_Renderer.BindTexture(1, 0);
+	pglActiveTextureARB(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
+
+	PROFILE_START("render terrain decals");
+	for (size_t i = 0; i < m->visibleDecals.size(); ++i)
+		m->visibleDecals[i]->Render();
+	PROFILE_END("render terrain decals");
+
+	shaderDecal->Unbind();
+
+	// restore OpenGL state
+	g_Renderer.BindTexture(1, 0);
+	g_Renderer.BindTexture(2, 0);
+	g_Renderer.BindTexture(3, 0);
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	pglActiveTextureARB(GL_TEXTURE0);

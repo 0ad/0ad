@@ -30,6 +30,7 @@ protected:
 	virtual void OnFirstDisplay();
 
 private:
+	VariableListBox* m_LightingModelList;
 	VariableListBox* m_SkyList;
 	ObservableScopedConnection m_Conn;
 };

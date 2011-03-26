@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,6 +91,8 @@ end of XMLWriter.cpp.
 // Add a 'setting': <name>value</name>
 #define XML_Setting(name, value) xml_element_.Setting(name, value)
 
+#define XML_WriteXMB(xero) xml_file_.XMB(xero)
+
 // Create a VFS file from the XML data.
 // Returns true on success, false (and logs an error) on failure.
 #define XML_StoreVFS(vfs, pathname) xml_file_.StoreVFS(vfs, pathname)
@@ -103,6 +105,8 @@ end of XMLWriter.cpp.
 #include "ps/CStr.h"
 #include "lib/file/vfs/vfs.h"
 
+class XMBElement;
+class XMBFile;
 class XMLWriter_Element;
 
 class XMLWriter_File
@@ -114,12 +118,16 @@ public:
 
 	void Comment(const char* text);
 
+	void XMB(const XMBFile& file);
+
 	bool StoreVFS(const PIVFS& vfs, const VfsPath& pathname);
 	const CStr& GetOutput();
 
 private:
 
 	friend class XMLWriter_Element;
+
+	void ElementXMB(const XMBFile& file, XMBElement el);
 
 	void ElementStart(XMLWriter_Element* element, const char* name);
 	void ElementText(const char* text, bool cdata);

@@ -442,7 +442,7 @@ void CGameView::RegisterInit()
 }
 
 
-void CGameView::Render()
+void CGameView::BeginFrame()
 {
 	if (m->LockCullCamera == false)
 	{
@@ -462,6 +462,11 @@ void CGameView::Render()
 
 	CheckLightEnv();
 
+	m->Game->CachePlayerColours();
+}
+
+void CGameView::Render()
+{
 	g_Renderer.RenderScene(this);
 }
 
@@ -547,6 +552,9 @@ void CGameView::CheckLightEnv()
 {
 	if (m->CachedLightEnv == g_LightEnv)
 		return;
+
+	if (m->CachedLightEnv.GetLightingModel() != g_LightEnv.GetLightingModel())
+		g_Renderer.MakeShadersDirty();
 
 	m->CachedLightEnv = g_LightEnv;
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();

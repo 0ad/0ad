@@ -189,6 +189,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		{
 			XML_Element("Environment");
 
+			XML_Setting("LightingModel", pLightEnv->GetLightingModel());
 			XML_Setting("SkySet", pSkyMan->GetSkySet());
 			{
 				XML_Element("SunColour");

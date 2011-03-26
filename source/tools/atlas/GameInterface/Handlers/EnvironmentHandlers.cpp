@@ -62,6 +62,8 @@ sEnvironmentSettings GetSettings()
 	s.sunrotation = sunrotation;
 	s.sunelevation = g_LightEnv.GetElevation();
 
+	s.lightingmodel = CStr(g_LightEnv.GetLightingModel()).FromUTF8();
+
 	s.skyset = g_Renderer.GetSkyManager()->GetSkySet();
 
 	// RGBColor (CVector3D) colours
@@ -102,6 +104,8 @@ void SetSettings(const sEnvironmentSettings& s)
 
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
+
+	g_LightEnv.SetLightingModel(CStrW(*s.lightingmodel).ToUTF8());
 
 	CStrW skySet = *s.skyset;
 	if (skySet.length() == 0)

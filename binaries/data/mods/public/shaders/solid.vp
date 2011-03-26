@@ -1,0 +1,20 @@
+!!ARBvp1.0
+#ifdef USE_INSTANCING
+  PARAM instancingTransform[4] = { program.local[0..3] };
+  TEMP position;
+  DP4 position.x, instancingTransform[0], vertex.position;
+  DP4 position.y, instancingTransform[1], vertex.position;
+  DP4 position.z, instancingTransform[2], vertex.position;
+  MOV position.w, 1.0;
+#else
+  ATTRIB position = vertex.position;
+#endif
+
+DP4 result.position.x, state.matrix.mvp.row[0], position;
+DP4 result.position.y, state.matrix.mvp.row[1], position;
+DP4 result.position.z, state.matrix.mvp.row[2], position;
+DP4 result.position.w, state.matrix.mvp.row[3], position;
+
+MOV result.color, vertex.color;
+
+END

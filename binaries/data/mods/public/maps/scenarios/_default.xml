@@ -3,11 +3,12 @@
 <Scenario version="5">
 	<Terrain patches="16" texture="grass1_spring" priority="0" height="16384"/>
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>default</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunColour r="0.749020" g="0.749020" b="0.749020"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="5.49779"/>
-		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>

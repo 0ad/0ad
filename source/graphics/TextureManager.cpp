@@ -513,13 +513,18 @@ CTexture::~CTexture()
 
 void CTexture::Bind(size_t unit)
 {
+	ogl_tex_bind(GetHandle(), unit);
+}
+
+Handle CTexture::GetHandle()
+{
 	// TODO: TryLoad might call ogl_tex_upload which enables GL_TEXTURE_2D
 	// on texture unit 0, regardless of 'unit', which callers might
 	// not be expecting. Ideally that wouldn't happen.
 
 	TryLoad();
 
-	ogl_tex_bind(m_Handle, unit);
+	return m_Handle;
 }
 
 bool CTexture::TryLoad()

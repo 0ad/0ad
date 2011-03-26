@@ -51,6 +51,7 @@ public:
 	void OnMediaPlayer(wxCommandEvent& event);
 	void OnJavaScript(wxCommandEvent& event);
 	void OnCameraReset(wxCommandEvent& event);
+	void OnRenderPath(wxCommandEvent& event);
 
 	void OpenFile(const wxString& name);
 
