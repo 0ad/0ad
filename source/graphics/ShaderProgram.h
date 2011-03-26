@@ -23,7 +23,7 @@
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 
-class CColor;
+struct CColor;
 class CMatrix3D;
 class CVector3D;
 
