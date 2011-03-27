@@ -2,10 +2,10 @@ var g_Map;
 
 var g_Environment = {
 	SkySet: "default",
-	SunColour: {r: 1.5, g: 1.5, b: 1.5, a: 0},
+	SunColour: {r: 0.749020, g: 0.749020, b: 0.749020, a: 0},
 	SunElevation: 0.785398,
 	SunRotation: 5.49779,
-	TerrainAmbientColour: {r: 0.313726, g: 0.376471, b: 0.521569, a: 0},
+	TerrainAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
 	UnitsAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
 	Water: {
 		WaterBody: {

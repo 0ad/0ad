@@ -124,9 +124,13 @@ function initMain()
 		// Set a default map
 		// TODO: This should be remembered from the last session
 		if (!g_IsNetworked)
+		{
 			g_GameAttributes.map = "Death Canyon";
+		}
 		else
+		{
 			g_GameAttributes.map = "Median Oasis";
+		}
 		
 		mapTypes.selected = 0;
 		mapFilters.selected = 0;
@@ -147,10 +151,14 @@ function initMain()
 		victoryConditions.onSelectionChange = function()
 		{	// Update attributes so other players can see change
 			if (this.selected != -1)
+			{
 				g_GameAttributes.settings.GameType = this.list_data[this.selected];
+			}
 			
 			if (!g_IsInGuiUpdate)
+			{
 				updateGameAttributes();
+			}
 		};
 		victoryConditions.selected = -1;
 		
@@ -160,10 +168,14 @@ function initMain()
 		mapSize.onSelectionChange = function()
 		{	// Update attributes so other players can see change
 			if (this.selected != -1)
+			{
 				g_GameAttributes.settings.Size = this.list_data[this.selected];
+			}
 			
 			if (!g_IsInGuiUpdate)
+			{
 				updateGameAttributes();
+			}
 		};
 		mapSize.selected = 1;
 		
@@ -172,7 +184,9 @@ function initMain()
 			g_GameAttributes.settings.RevealMap = this.checked;
 			
 			if (!g_IsInGuiUpdate)
+			{
 				updateGameAttributes();
+			}
 		};
 		
 		getGUIObjectByName("lockTeams").onPress = function()
@@ -180,7 +194,9 @@ function initMain()
 			g_GameAttributes.settings.LockTeams = this.checked;
 			
 			if (!g_IsInGuiUpdate)
+			{
 				updateGameAttributes();
+			}
 		};
 	}
 	else
@@ -235,10 +251,14 @@ function initMain()
 		team.onSelectionChange = function()
 		{	// Update team
 			if (this.selected != -1)
+			{
 				g_GameAttributes.settings.PlayerData[playerSlot].Team = this.selected - 1;
+			}
 			
 			if (!g_IsInGuiUpdate)
+			{
 				updateGameAttributes();
+			}
 		};
 		
 		// Set events
@@ -246,10 +266,14 @@ function initMain()
 		civ.onSelectionChange = function()
 		{	// Update civ
 			if (this.selected != -1)
+			{
 				g_GameAttributes.settings.PlayerData[playerSlot].Civ = this.list_data[this.selected];
+			}
 			
 			if (!g_IsInGuiUpdate)
+			{
 				updateGameAttributes();
+			}
 		};
 	}
 	
@@ -289,7 +313,9 @@ function handleNetMessage(message)
 	
 	case "gamesetup":
 		if (message.data) // (the host gets undefined data on first connect, so skip that)
+		{
 			g_GameAttributes = message.data;
+		}
 
 		onGameAttributesChange();
 		break;
@@ -297,11 +323,19 @@ function handleNetMessage(message)
 	case "players":
 		// Find and report all joinings/leavings
 		for (var host in message.hosts)
+		{
 			if (! g_PlayerAssignments[host])
+			{
 				addChatMessage({ "type": "connect", "username": message.hosts[host].name });
+			}
+		}
 		for (var host in g_PlayerAssignments)
+		{
 			if (! message.hosts[host])
+			{
 				addChatMessage({ "type": "disconnect", "guid": host });
+			}
+		}
 		// Update the player list
 		g_PlayerAssignments = message.hosts;
 		updatePlayerList();
@@ -342,11 +376,15 @@ function getMapDisplayName(map)
 function getSetting(settings, defaults, property)
 {
 	if (settings && (property in settings))
+	{
 		return settings[property];
+	}
 	
 	// Use defaults
 	if (defaults && (property in defaults))
+	{
 		return defaults[property];
+	}
 	
 	return undefined;
 }
@@ -406,7 +444,9 @@ function initMapNameList()
 		var mapData = loadMapData(file);
 				
 		if (g_GameAttributes.mapFilter && mapData && testFilter(g_GameAttributes.mapFilter, mapData.settings))
+		{
 			mapList.push({ "name": getMapDisplayName(file), "file": file });
+		}
 	}
 	
 	// Alphabetically sort the list, ignoring case
@@ -419,7 +459,9 @@ function initMapNameList()
 	var selected = mapListFiles.indexOf(g_GameAttributes.map);
 	// Default to the first element if list is not empty and we can't find the one we searched for
 	if (selected == -1 && mapList.length)
+	{
 		selected = 0;
+	}
 	
 	// Update the list control
 	mapSelectionBox.list = mapListNames;
@@ -430,7 +472,9 @@ function initMapNameList()
 function loadMapData(name)
 {
 	if (!name)
+	{
 		return undefined;
+	}
 	
 	if (!g_MapData[name])
 	{
@@ -481,7 +525,9 @@ function onTick()
 		{
 			var message = Engine.PollNetworkClient();
 			if (!message)
+			{
 				break;
+			}
 			handleNetMessage(message);
 		}
 	}
@@ -492,15 +538,21 @@ function selectNumPlayers(num)
 {
 	// Avoid recursion
 	if (g_IsInGuiUpdate)
+	{
 		return;
+	}
 	
 	// Network clients can't change number of players
 	if (g_IsNetworked && !g_IsController)
+	{
 		return;
+	}
 	
 	// Only meaningful for random maps
 	if (g_GameAttributes.mapType != "random")
+	{
 		return;
+	}
 	
 	// Update player data
 	var pData = g_GameAttributes.settings.PlayerData;
@@ -522,13 +574,18 @@ function selectMapType(type)
 {
 	// Avoid recursion
 	if (g_IsInGuiUpdate)
+	{
 		return;
+	}
 
 	// Network clients can't change map type
 	if (g_IsNetworked && !g_IsController)
+	{
 		return;
+	}
 
 	g_GameAttributes.mapType = type;
+	g_GameAttributes.map = undefined;
 	
 	// Clear old map data
 	g_MapData = {};
@@ -558,11 +615,15 @@ function selectMapFilter(filterName)
 {
 	// Avoid recursion
 	if (g_IsInGuiUpdate)
+	{
 		return;
+	}
 
 	// Network clients can't change map filter
 	if (g_IsNetworked && !g_IsController)
+	{
 		return;
+	}
 	
 	g_GameAttributes.mapFilter = filterName;
 	
@@ -576,15 +637,21 @@ function selectMap(name)
 {
 	// Avoid recursion
 	if (g_IsInGuiUpdate)
+	{
 		return;
+	}
 
 	// Network clients can't change map
 	if (g_IsNetworked && !g_IsController)
+	{
 		return;
+	}
 	
 	// Return if we have no map
 	if (!name)
+	{
 		return;
+	}
 
 	g_GameAttributes.map = name;
 
@@ -629,7 +696,9 @@ function selectMap(name)
 			var player = g_PlayerAssignments[guid].player;
 
 			if (player <= MAX_PLAYERS && player > numPlayers)
+			{
 				Engine.AssignNetworkPlayer(player, "");
+			}
 		}
 	}
 	
@@ -641,6 +710,12 @@ function launchGame()
 	if (g_IsNetworked && !g_IsController)
 	{
 		error("Only host can start game");
+		return;
+	}
+	
+	// Check that we have a map
+	if (!g_GameAttributes.map)
+	{
 		return;
 	}
 	
@@ -658,7 +733,9 @@ function launchGame()
 		{
 			var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
 			if (assignBox.list_data[assignBox.selected] == "local")
+			{
 				playerID = i+1;
+			}
 		}
 		// Remove extra player data
 		g_GameAttributes.settings.PlayerData = g_GameAttributes.settings.PlayerData.slice(0, numPlayers);
@@ -836,9 +913,13 @@ function onGameAttributesChange()
 function updateGameAttributes()
 {
 	if (g_IsNetworked)
+	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
+	}
 	else 
+	{
 		onGameAttributesChange();
+	}
 }
 
 function updatePlayerList()
@@ -891,9 +972,13 @@ function updatePlayerList()
 			{
 				var aiId = g_GameAttributes.settings.PlayerData[playerSlot].AI;
 				if (aiId)
+				{
 					selection = aiAssignments[aiId];
+				}
 				else
+				{
 					selection = noAssignment;
+				}
 				
 				// Since no human is assigned, show the AI config button
 				if (g_IsController)
@@ -908,9 +993,13 @@ function updatePlayerList()
 								g_GameAttributes.settings.PlayerData[playerSlot].AI = ai.id;
 
 								if (g_IsNetworked)
+								{
 									Engine.SetNetworkGameAttributes(g_GameAttributes);
+								}
 								else
+								{
 									updatePlayerList();
+								}
 							}
 						});
 					};
@@ -924,7 +1013,9 @@ function updatePlayerList()
 				{
 					g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
 					if (g_IsNetworked)
+					{
 						Engine.SetNetworkGameAttributes(g_GameAttributes);
+					}
 				}
 			}
 			
@@ -932,7 +1023,9 @@ function updatePlayerList()
 			assignBox.list = hostNameList;
 			assignBox.list_data = hostGuidList;
 			if (assignBox.selected != selection)
+			{
 				assignBox.selected = selection;
+			}
 
 			if (g_IsNetworked && g_IsController)
 			{
@@ -1108,12 +1201,16 @@ function testFilter(name, mapSettings)
 function keywordTestAND(keywords, matches)
 {
 	if (!keywords || !matches)
+	{
 		return false;
+	}
 	
 	for (var m = 0; m < matches.length; ++m)
 	{	// Fail on not match
 		if (keywords.indexOf(matches[m]) == -1)
+		{
 			return false;
+		}
 	}
 	return true;
 }
@@ -1122,12 +1219,16 @@ function keywordTestAND(keywords, matches)
 function keywordTestOR(keywords, matches)
 {
 	if (!keywords || !matches)
+	{
 		return false;
+	}
 	
 	for (var m = 0; m < matches.length; ++m)
 	{	// Success on match
 		if (keywords.indexOf(matches[m]) != -1)
+		{
 			return true;
+		}
 	}
 	return false;
 }

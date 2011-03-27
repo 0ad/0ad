@@ -15,9 +15,10 @@ function ClumpPlacer(size, coherence, smoothness, failFraction, x, y)
 
 ClumpPlacer.prototype.place = function(constraint)
 {
+	// Preliminary bounds check
 	if (!g_Map.validT(this.x, this.y) || !constraint.allows(this.x, this.y))
 	{
-		return false;
+		return undefined;
 	}
 
 	var retVec = [];
@@ -26,7 +27,7 @@ ClumpPlacer.prototype.place = function(constraint)
 	var gotRet = new Array(size);
 	for (var i = 0; i < size; ++i)
 	{
-		gotRet[i] = new Uint8Array(size);		// bool / uint8
+		gotRet[i] = new Uint8Array(size);			// bool / uint8
 	}
 	
 	var radius = sqrt(this.size / PI);
@@ -38,10 +39,11 @@ ClumpPlacer.prototype.place = function(constraint)
 	if (ctrlPts > radius * 2 * PI)
 		ctrlPts = Math.floor(radius * 2 * PI) + 1;	
 	
-	var noise = new Float32Array(intPerim);		//float32
+	var noise = new Float32Array(intPerim);			//float32
 	var ctrlCoords = new Float32Array(ctrlPts+1);	//float32
-	var ctrlVals = new Float32Array(ctrlPts+1);	//float32
-	
+	var ctrlVals = new Float32Array(ctrlPts+1);		//float32
+
+	// Generate some interpolated noise
 	for (var i=0; i < ctrlPts; i++)
 	{
 		ctrlCoords[i] = i * perim / ctrlPts;
@@ -59,6 +61,7 @@ ClumpPlacer.prototype.place = function(constraint)
 				looped = 1;
 		}
 		
+		// Cubic interpolation of ctrlVals
 		var t = (i - ctrlCoords[c]) / ((looped ? perim : ctrlCoords[(c+1)%ctrlPts]) - ctrlCoords[c]);
 		var v0 = ctrlVals[(c+ctrlPts-1)%ctrlPts];
 		var v1 = ctrlVals[c];
@@ -123,6 +126,13 @@ function RectPlacer(x1, y1, x2, y2)
 
 RectPlacer.prototype.place = function(constraint)
 {
+	// Preliminary bounds check
+	if (!g_Map.validT(this.x1, this.y1) || !constraint.allows(this.x1, this.y1) ||
+		!g_Map.validT(this.x2, this.y2) || !constraint.allows(this.x2, this.y2))
+	{
+		return undefined;
+	}
+
 	var ret = [];
 	
 	var x2 = this.x2;
@@ -144,7 +154,6 @@ RectPlacer.prototype.place = function(constraint)
 	}
 	
 	return ret;
-	
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

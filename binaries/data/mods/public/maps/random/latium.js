@@ -10,7 +10,7 @@ const tOceanCoral = "medit_sea_coral_plants";
 const tBeachWet = "medit_sand_wet";
 const tBeachDry = "medit_sand";
 const tBeachGrass = "medit_rocks_grass";
-const tBeachCliff = "cliff_medit_beach";
+const tBeachCliff = "medit_dirt";
 const tGrassDry = ["medit_grass_field_brown", "medit_grass_field_dry", "medit_grass_field_b"];
 const tGrass = ["medit_grass_field_dry", "medit_grass_field_brown", "medit_grass_field_b"];
 const tGrassLush = ["grass_temperate_dry_tufts", "medit_grass_flowers"];
@@ -116,7 +116,7 @@ for (var i=1; i <= numPlayers; i++)
 	// create TC and starting units
 	// TODO: Get civ specific starting units
 	var civ = getCivCode(i - 1);
-	placeObject("structures/"+civ + "_civil_centre", i, ix, iy, PI*3/4);
+	placeObject(ix, iy, "structures/"+civ + "_civil_centre", i, PI*3/4);
 	var group = new SimpleGroup(
 		[new SimpleObject("units/"+civ+"_support_female_citizen", 3,3, 5,5)],
 		true, null,	ix, iy
@@ -413,7 +413,7 @@ for (var ix=0; ix<mapSize; ix++)
 				t = (maxH - minH > 1.2) ? tGrassCliff : tGrassDry;
 				if (maxH - minH < 0.5 && randFloat() < 0.03)
 				{
-					placeObject(aGrassDry, 0, ix+randFloat(), iy+randFloat(), randFloat()*2*PI);
+					placeObject(ix+randFloat(), iy+randFloat(), aGrassDry, 0, randFloat()*2*PI);
 				}
 			}
 			else if (grassNoise > 0.61)
@@ -424,7 +424,7 @@ for (var ix=0; ix<mapSize; ix++)
 			{
 				if ((maxH - minH) < 0.5 && randFloat() < 0.05)
 				{
-					placeObject(aGrass, 0, ix+randFloat(), iy+randFloat(), randFloat()*2*PI);
+					placeObject(ix+randFloat(), iy+randFloat(), aGrass, 0, randFloat()*2*PI);
 				}
 			}
 		}

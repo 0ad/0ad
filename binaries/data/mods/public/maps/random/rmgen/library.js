@@ -27,12 +27,12 @@ function tilesToFraction(t)
 
 function fractionToSize(f)
 {
-	return getMapSizeSqr() * f;
+	return getMapArea() * f;
 }
 
 function sizeToFraction(s)
 {
-	return s / getMapSizeSqr();
+	return s / getMapArea();
 }
 
 function cos(x)
@@ -162,7 +162,7 @@ function createAreas(centeredPlacer, painter, constraint, num, retryFactor)
 			bad++;
 		}
 	}
-	return good;
+	return result;
 }
 
 function createObjectGroups(placer, player, constraint, num, retryFactor)
@@ -245,7 +245,7 @@ function createSimpleTerrain(terrain)
 	}
 }
 
-function placeObject(type, player, x, y, angle)
+function placeObject(x, y, type, player, angle)
 {
 	g_Map.addObjects(new Entity(type, player, x, y, angle));
 }
@@ -297,7 +297,7 @@ function getMapSize()
 	return g_Map.size;
 }
 
-function getMapSizeSqr()
+function getMapArea()
 {
 	return g_Map.size*g_Map.size;
 }
