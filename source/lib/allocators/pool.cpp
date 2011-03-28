@@ -47,7 +47,7 @@ LibError pool_destroy(Pool* p)
 	// don't be picky and complain if the freelist isn't empty;
 	// we don't care since it's all part of the da anyway.
 	// however, zero it to prevent further allocs from succeeding.
-	p->freelist = 0;
+	p->freelist = mem_freelist_Sentinel();
 	return da_free(&p->da);
 }
 
@@ -112,7 +112,7 @@ void pool_free(Pool* p, void* el)
 
 void pool_free_all(Pool* p)
 {
-	p->freelist = 0;
+	p->freelist = mem_freelist_Sentinel();
 
 	// must be reset before da_set_size or CHECK_DA will complain.
 	p->da.pos = 0;
