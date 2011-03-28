@@ -37,7 +37,7 @@ const size_t bucketSize = 4000;
 
 LibError bucket_create(Bucket* b, size_t el_size)
 {
-	b->freelist = 0;
+	b->freelist = mem_freelist_Sentinel();
 	b->el_size = mem_RoundUpToAlignment(el_size);
 
 	// note: allocating here avoids the is-this-the-first-time check

@@ -108,3 +108,13 @@ LibError mem_Protect(u8* p, size_t size, int prot)
 	int ret = mprotect(p, size, prot);
 	return LibError_from_posix(ret);
 }
+
+
+void* mem_freelist_Sentinel()
+{
+	// sentinel storing its own address
+	static void* storageForPrevPtr;
+	void* const storageAddress = &storageForPrevPtr;
+	memcpy(&storageForPrevPtr, &storageAddress, sizeof(storageForPrevPtr));
+	return storageAddress;
+}

@@ -32,10 +32,10 @@
 
 namespace fs_util {
 
-extern bool DirectoryExists(const OsPath& path);
-extern bool FileExists(const OsPath& pathname);
+LIB_API bool DirectoryExists(const OsPath& path);
+LIB_API bool FileExists(const OsPath& pathname);
 
-extern u64 FileSize(const OsPath& pathname);
+LIB_API u64 FileSize(const OsPath& pathname);
 
 extern LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames);
 

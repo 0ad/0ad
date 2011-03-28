@@ -36,7 +36,7 @@ LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 		p->el_size = 0;
 	else
 		p->el_size = mem_RoundUpToAlignment(el_size);
-	p->freelist = 0;
+	p->freelist = mem_freelist_Sentinel();
 	RETURN_ERR(da_alloc(&p->da, max_size));
 	return INFO::OK;
 }
