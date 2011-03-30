@@ -2,12 +2,13 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.294118" g="0.4" b="0.54902"/>
-		<UnitsAmbientColour r="0.537255" g="0.513726" b="0.458824"/>
+		<SunColour r="0.796078" g="0.768627" b="0.705882"/>
+		<SunElevation angle="0.79625"/>
+		<SunRotation angle="-0.478602"/>
+		<TerrainAmbientColour r="0.419608" g="0.439216" b="0.478431"/>
+		<UnitsAmbientColour r="0.458824" g="0.443137" b="0.384314"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -23,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="678.31" y="158.592" z="636.975"/>
+		<Position x="684.149" y="171.268" z="611.577"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -33,7 +34,7 @@
   "Description": "A deep rocky canyon cutting through the desert.",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "Civ": "celt"
     },
     {
       "Civ": "hele"
@@ -43,12 +44,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="5">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="676.76697" z="781.15589"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="6">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>2</Player>
@@ -15304,42 +15299,6 @@
 			<Position x="562.64411" z="814.66321"/>
 			<Orientation y="1.72014"/>
 		</Entity>
-		<Entity uid="2969">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="685.47999" z="761.63209"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2970">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="688.3584" z="763.5105"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2971">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="691.42743" z="766.15992"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2972">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="659.82789" z="768.3722"/>
-			<Orientation y="-2.55547"/>
-		</Entity>
-		<Entity uid="2973">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="662.9441" z="763.52515"/>
-			<Orientation y="-2.51661"/>
-		</Entity>
-		<Entity uid="2974">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="665.64979" z="760.14264"/>
-			<Orientation y="-2.21378"/>
-		</Entity>
 		<Entity uid="2975">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>2</Player>
@@ -16125,6 +16084,48 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="172.75554" z="493.78525"/>
 			<Orientation y="1.1884"/>
+		</Entity>
+		<Entity uid="3131">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="669.24415" z="781.72584"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3132">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="679.86884" z="762.18555"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3133">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="682.41028" z="765.24988"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3134">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="685.555" z="767.79902"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3135">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="651.5121" z="769.02057"/>
+			<Orientation y="-2.6708"/>
+		</Entity>
+		<Entity uid="3136">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="654.21204" z="765.39808"/>
+			<Orientation y="-2.55874"/>
+		</Entity>
+		<Entity uid="3137">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="656.90186" z="761.8985"/>
+			<Orientation y="-2.65075"/>
 		</Entity>
 	</Entities>
 	<Paths/>
