@@ -2,52 +2,52 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunny</SkySet>
-		<SunColour r="1" g="1" b="1"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<LightingModel>standard</LightingModel>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="0.720588" g="0.720588" b="0.720588"/>
+		<SunElevation angle="0.877437"/>
+		<SunRotation angle="-0.730175"/>
+		<TerrainAmbientColour r="0.447059" g="0.466667" b="0.552941"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
 				<Height>16.3672</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.491211</Murkiness>
-				<Tint r="0.447059" g="0.415686" b="0.321569"/>
-				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<Murkiness>0.298828</Murkiness>
+				<Tint r="0" g="0" b="0"/>
+				<ReflectionTint r="0.501961" g="0.501961" b="0.501961"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="369.072" y="102.387" z="277.019"/>
+		<Position x="617.335" y="109.915" z="434.733"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Gold Rush",
-		"Description":"A wide-open map with a central rocky region rich in Minerals (Metal Resource). This map may be played if the other more detailed maps cause uncomfortable lag.",
-		"PlayerData":
-		[
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			}
-		]
-	}
-	]]></ScriptSettings>
+{
+  "Name": "Gold Rush",
+  "Description": "A wide-open map with a central rocky region rich in Minerals (Metal Resource). This map may be played if the other more detailed maps cause uncomfortable lag.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ]
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>gaia/geology_metal_desert_slabs</Template>
@@ -3656,7 +3656,7 @@
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="646.3501" z="603.47132"/>
-			<Orientation y="-2.21076"/>
+			<Orientation y="-1.02894"/>
 		</Entity>
 		<Entity uid="736">
 			<Template>gaia/geology_stone_desert_small</Template>
@@ -5249,7 +5249,7 @@
 		<Entity uid="1008">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="346.68882" z="616.46613"/>
+			<Position x="346.86008" z="616.1529"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1009">
