@@ -119,3 +119,8 @@ void pool_free_all(Pool* p)
 
 	da_set_size(&p->da, 0);
 }
+
+size_t pool_committed(Pool* p)
+{
+	return p->da.cur_size;
+}

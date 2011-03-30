@@ -48,6 +48,8 @@ public:
 	CPatch* GetPatch() { return m_Patch; }
 
 private:
+	friend struct SBlendStackItem;
+
 	struct SSplat {
 		SSplat() : m_Texture(0), m_IndexCount(0) {}
 

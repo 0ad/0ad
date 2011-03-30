@@ -133,6 +133,17 @@ LIB_API void pool_free(Pool* p, void* el);
  **/
 LIB_API void pool_free_all(Pool* p);
 
+/**
+ * Return the number of bytes committed in the pool's backing array.
+ *
+ * This is roughly the number of bytes allocated in this pool plus the
+ * unused freelist entries.
+ *
+ * @param p Pool*
+ * @return number of bytes
+ **/
+LIB_API size_t pool_committed(Pool* p);
+
 
 /**
  * C++ wrapper on top of pool_alloc for fixed-size allocations (determined by sizeof(T))
@@ -202,6 +213,11 @@ public:
 		if(!t)
 			throw std::bad_alloc();
 		return t;
+	}
+
+	size_t GetCommittedSize()
+	{
+		return pool_committed(&m_pool);
 	}
 
 private:

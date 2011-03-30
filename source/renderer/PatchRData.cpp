@@ -20,12 +20,11 @@
 #include <set>
 #include <algorithm>
 
-#include <boost/tuple/tuple.hpp>
-
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "lib/allocators/pool.h"
 #include "lib/res/graphics/unifont.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
@@ -663,21 +662,53 @@ void CPatchRData::Update()
 
 // Types used for glMultiDrawElements batching:
 
+// To minimise the cost of memory allocations, everything used for computing
+// batches uses a pool allocator. (All allocations are short-lived so we can
+// just throw away the whole pool at the end of each frame.)
+
+// std::map types with appropriate pool allocators and default comparison operator
+#define POOLED_BATCH_MAP(Key, Value) \
+	std::map<Key, Value, std::less<Key>, pool_allocator<std::pair<Key const, Value> > >
+
+// Equivalent to "m[k]", when it returns a pool-allocated std::map (since we can't
+// use the default constructor in that case)
+template<typename M>
+typename M::mapped_type& PooledMapGet(M& m, const typename M::key_type& k, RawPoolAllocator& pool)
+{
+	return m.insert(std::make_pair(k,
+		typename M::mapped_type(typename M::mapped_type::key_compare(), typename M::mapped_type::allocator_type(pool))
+	)).first->second;
+}
+
+// Equivalent to "m[k]", when it returns a std::pair of pool-allocated std::vectors
+template<typename M>
+typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, RawPoolAllocator& pool)
+{
+	return m.insert(std::make_pair(k, std::make_pair(
+			typename M::mapped_type::first_type(typename M::mapped_type::first_type::allocator_type(pool)),
+			typename M::mapped_type::second_type(typename M::mapped_type::second_type::allocator_type(pool))
+	))).first->second;
+}
+
+static const size_t POOL_SIZE = 4*MiB; // this should be enough for fairly huge maps
+
 // Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
-typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;
+typedef std::pair<std::vector<GLint, pool_allocator<GLint> >, std::vector<void*, pool_allocator<void*> > > BatchElements;
 
 // Group batches by index buffer
-typedef std::map<CVertexBuffer*, BatchElements> IndexBufferBatches;
+typedef POOLED_BATCH_MAP(CVertexBuffer*, BatchElements) IndexBufferBatches;
 
 // Group batches by vertex buffer
-typedef std::map<CVertexBuffer*, IndexBufferBatches> VertexBufferBatches;
+typedef POOLED_BATCH_MAP(CVertexBuffer*, IndexBufferBatches) VertexBufferBatches;
 
 // Group batches by texture
-typedef std::map<CTerrainTextureEntry*, VertexBufferBatches> TextureBatches;
+typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatches;
 
 void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 {
- 	TextureBatches batches;
+	RawPoolAllocator pool(POOL_SIZE);
+
+	TextureBatches batches (TextureBatches::key_compare(), (TextureBatches::allocator_type(pool)));
 
  	PROFILE_START("compute batches");
 
@@ -689,7 +720,13 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
  		{
  			SSplat& splat = patch->m_Splats[j];
 
- 			BatchElements& batch = batches[splat.m_Texture][patch->m_VBBase->m_Owner][patch->m_VBBaseIndices->m_Owner];
+ 			BatchElements& batch = PooledPairGet(
+				PooledMapGet(
+ 					PooledMapGet(batches, splat.m_Texture, pool),
+ 					patch->m_VBBase->m_Owner, pool
+				),
+				patch->m_VBBaseIndices->m_Owner, pool
+			);
 
  			batch.first.push_back(splat.m_IndexCount);
 
@@ -745,13 +782,38 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
  */
 struct SBlendBatch
 {
+	SBlendBatch(RawPoolAllocator& pool) :
+		m_Batches(VertexBufferBatches::key_compare(), VertexBufferBatches::allocator_type(pool))
+	{
+	}
+
 	CTerrainTextureEntry* m_Texture;
  	VertexBufferBatches m_Batches;
 };
 
+/**
+ * Helper structure for RenderBlends.
+ */
+struct SBlendStackItem
+{
+	SBlendStackItem(CVertexBuffer::VBChunk* v, CVertexBuffer::VBChunk* i,
+			const std::vector<CPatchRData::SSplat>& s, RawPoolAllocator& pool) :
+		vertices(v), indices(i), splats(s.begin(), s.end(), SplatStack::allocator_type(pool))
+	{
+	}
+
+	typedef std::vector<CPatchRData::SSplat, pool_allocator<CPatchRData::SSplat*> > SplatStack;
+	CVertexBuffer::VBChunk* vertices;
+	CVertexBuffer::VBChunk* indices;
+	SplatStack splats;
+};
+
 void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 {
- 	std::vector<SBlendBatch> batches;
+	RawPoolAllocator pool(POOL_SIZE);
+
+	typedef std::vector<SBlendBatch, pool_allocator<SBlendBatch*> > BatchesStack;
+	BatchesStack batches((BatchesStack::allocator_type(pool)));
 
  	PROFILE_START("compute batches");
 
@@ -759,8 +821,8 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
  	// to avoid heavy reallocations
  	batches.reserve(256);
 
- 	// Each patch has a vertex buffer, index buffer, and stack of splats
-	std::vector<boost::tuple<CVertexBuffer::VBChunk*, CVertexBuffer::VBChunk*, std::vector<SSplat> > > blendStacks;
+	typedef std::vector<SBlendStackItem, pool_allocator<SBlendStackItem*> > BlendStacks;
+	BlendStacks blendStacks((BlendStacks::allocator_type(pool)));
 	blendStacks.reserve(patches.size());
 
 	// Extract all the blend splats from each patch
@@ -769,9 +831,10 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
  		CPatchRData* patch = patches[i];
  		if (!patch->m_BlendSplats.empty())
  		{
- 			blendStacks.push_back(boost::make_tuple(patch->m_VBBlends, patch->m_VBBlendIndices, patch->m_BlendSplats));
+
+ 			blendStacks.push_back(SBlendStackItem(patch->m_VBBlends, patch->m_VBBlendIndices, patch->m_BlendSplats, pool));
  			// Reverse the splats so the first to be rendered is at the back of the list
- 			std::reverse(blendStacks.back().get<2>().begin(), blendStacks.back().get<2>().end());
+ 			std::reverse(blendStacks.back().splats.begin(), blendStacks.back().splats.end());
  		}
  	}
 
@@ -788,14 +851,13 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 
 			for (size_t k = 0; k < blendStacks.size(); ++k)
 			{
-				std::vector<SSplat>& splats = blendStacks[k].get<2>();
+				SBlendStackItem::SplatStack& splats = blendStacks[k].splats;
 				if (!splats.empty() && splats.back().m_Texture == tex)
 				{
-					CVertexBuffer::VBChunk* vertices = blendStacks[k].get<0>();
-					CVertexBuffer::VBChunk* indices = blendStacks[k].get<1>();
+					CVertexBuffer::VBChunk* vertices = blendStacks[k].vertices;
+					CVertexBuffer::VBChunk* indices = blendStacks[k].indices;
 
-					BatchElements& batch = batches.back().m_Batches[vertices->m_Owner][indices->m_Owner];
-
+					BatchElements& batch = PooledPairGet(PooledMapGet(batches.back().m_Batches, vertices->m_Owner, pool), indices->m_Owner, pool);
 					batch.first.push_back(splats.back().m_IndexCount);
 
 		 			u8* indexBase = indices->m_Owner->GetBindAddress();
@@ -811,7 +873,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 
 		for (size_t k = 0; k < blendStacks.size(); ++k)
 		{
-			std::vector<SSplat>& splats = blendStacks[k].get<2>();
+			SBlendStackItem::SplatStack& splats = blendStacks[k].splats;
 			if (splats.size() > bestStackSize)
 			{
 				bestStackSize = splats.size();
@@ -822,7 +884,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 		if (bestStackSize == 0)
 			break;
 
-		SBlendBatch layer;
+		SBlendBatch layer(pool);
 		layer.m_Texture = bestTex;
 		batches.push_back(layer);
 	}
@@ -831,7 +893,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 
  	CVertexBuffer* lastVB = NULL;
 
- 	for (std::vector<SBlendBatch>::iterator itt = batches.begin(); itt != batches.end(); ++itt)
+ 	for (BatchesStack::iterator itt = batches.begin(); itt != batches.end(); ++itt)
 	{
 		if (itt->m_Texture)
 			itt->m_Texture->GetTexture()->Bind();
