@@ -63,7 +63,7 @@ bool HasEnergyPerfBias()
 }
 
 
-bool HasNehalem()
+bool HasPlatformInfo()
 {
 	if(x86_x64_Vendor() != X86_X64_VENDOR_INTEL)
 		return false;
@@ -73,13 +73,49 @@ bool HasNehalem()
 
 	switch(x86_x64_Model())
 	{
-	// Nehalem (documented in 253669-035US B.4.1)
+	// Xeon 5500 / i7 (section B.4 in 253669-037US)
 	case 0x1A:	// Bloomfield, Gainstown
 	case 0x1E:	// Clarksfield, Lynnfield, Jasper Forest
 	case 0x1F:
 		return true;
 
-	// Westmere (documented in 253669-035US B.5)
+	// Xeon 7500 (section B.4.2)
+	case 0x2E:
+		return true;
+
+	// Xeon 5600 / Westmere (section B.5)
+	case 0x25:	// Clarkdale, Arrandale
+	case 0x2C:	// Gulftown
+		return true;
+
+	// Xeon 2xxx / Sandy Bridge (section B.6)
+	case 0x2A:
+	case 0x2D:
+		return true;
+
+	default:
+		return false;
+	}
+}
+
+
+bool HasUncore()
+{
+	if(x86_x64_Vendor() != X86_X64_VENDOR_INTEL)
+		return false;
+
+	if(x86_x64_Family() != 6)
+		return false;
+
+	switch(x86_x64_Model())
+	{
+	// Xeon 5500 / i7 (section B.4.1 in 253669-037US)
+	case 0x1A:	// Bloomfield, Gainstown
+	case 0x1E:	// Clarksfield, Lynnfield, Jasper Forest
+	case 0x1F:
+		return true;
+
+	// Xeon 5600 / Westmere (section B.5)
 	case 0x25:	// Clarkdale, Arrandale
 	case 0x2C:	// Gulftown
 		return true;

@@ -222,9 +222,9 @@ public:
 		// clock is subject to thermal drift and would require continual
 		// recalibration anyway.
 #if ARCH_X86_X64
-		if(MSR::IsAccessible() && MSR::HasNehalem())
+		if(MSR::IsAccessible() && MSR::HasPlatformInfo())
 		{
-			const u64 platformInfo = MSR::Read(MSR::NHM_PLATFORM_INFO);
+			const u64 platformInfo = MSR::Read(MSR::PLATFORM_INFO);
 			const u8 maxNonTurboRatio = bits(platformInfo, 8, 15);
 			return maxNonTurboRatio * 133.33e6f;
 		}

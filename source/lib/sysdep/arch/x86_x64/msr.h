@@ -44,19 +44,22 @@ enum ModelSpecificRegisters
 	IA32_PERF_GLOBAL_CTRL       = 0x38F,
 	IA32_PERF_GLOBAL_OVF_CTRL   = 0x390,
 
-	// Nehalem (requires HasNehalem)
-	NHM_PLATFORM_INFO               = 0x0CE,
-	NHM_UNCORE_PERF_GLOBAL_CTRL     = 0x391,
-	NHM_UNCORE_PERF_GLOBAL_STATUS   = 0x392,
-	NHM_UNCORE_PERF_GLOBAL_OVF_CTRL = 0x393,
-	NHM_UNCORE_PMC0                 = 0x3B0,
-	NHM_UNCORE_PERFEVTSEL0          = 0x3C0
+	// Nehalem and later
+	PLATFORM_INFO               = 0x0CE,	// requires HasPlatformInfo
+
+	// Nehalem, Westmere (requires HasUncore)
+	UNCORE_PERF_GLOBAL_CTRL     = 0x391,
+	UNCORE_PERF_GLOBAL_STATUS   = 0x392,
+	UNCORE_PERF_GLOBAL_OVF_CTRL = 0x393,
+	UNCORE_PMC0                 = 0x3B0,
+	UNCORE_PERFEVTSEL0          = 0x3C0
 };
 
 LIB_API bool IsAccessible();
 
 LIB_API bool HasEnergyPerfBias();
-LIB_API bool HasNehalem();
+LIB_API bool HasPlatformInfo();
+LIB_API bool HasUncore();
 
 LIB_API u64 Read(u64 reg);
 LIB_API void Write(u64 reg, u64 value);
