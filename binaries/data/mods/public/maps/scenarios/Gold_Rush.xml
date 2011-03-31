@@ -4,15 +4,15 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.720588" g="0.720588" b="0.720588"/>
+		<SunColour r="0.717647" g="0.717647" b="0.717647"/>
 		<SunElevation angle="0.877437"/>
 		<SunRotation angle="-0.730175"/>
-		<TerrainAmbientColour r="0.447059" g="0.466667" b="0.552941"/>
+		<TerrainAmbientColour r="0.447059" g="0.466667" b="0.54902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>16.3672</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="617.335" y="109.915" z="434.733"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="602.536" y="88.1688" z="457.183"/>
+		<Rotation angle="-0.0270421"/>
+		<Declination angle="0.493221"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -37,13 +37,13 @@
       "Civ": "hele"
     },
     {
-      "Civ": "hele"
+      "Civ": "celt"
     },
     {
       "Civ": "hele"
     },
     {
-      "Civ": "hele"
+      "Civ": "iber"
     }
   ]
 }
@@ -557,12 +557,6 @@
 			<Template>structures/hele_civil_centre</Template>
 			<Player>3</Player>
 			<Position x="144.86811" z="572.94349"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="121">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="593.07258" z="179.48743"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="122">
@@ -5336,42 +5330,6 @@
 			<Position x="131.01023" z="558.19239"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1023">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="571.34467" z="164.30056"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1024">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="572.88202" z="166.48342"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1025">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="574.70783" z="168.71029"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1026">
-			<Template>units/celt_infantry_spearman_b</Template>
-			<Player>4</Player>
-			<Position x="573.91095" z="158.2849"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1027">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>4</Player>
-			<Position x="576.97645" z="161.71488"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1028">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>4</Player>
-			<Position x="578.925" z="165.15395"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1029">
 			<Template>units/celt_infantry_spearman_e</Template>
 			<Player>2</Player>
@@ -5413,12 +5371,6 @@
 			<Player>2</Player>
 			<Position x="161.9885" z="133.70145"/>
 			<Orientation y="-2.3003"/>
-		</Entity>
-		<Entity uid="1036">
-			<Template>units/celt_cavalry_swordsman_b</Template>
-			<Player>4</Player>
-			<Position x="582.26313" z="156.95896"/>
-			<Orientation y="-2.24181"/>
 		</Entity>
 		<Entity uid="1037">
 			<Template>units/hele_cavalry_swordsman_b</Template>
@@ -5725,6 +5677,54 @@
 			<Player>0</Player>
 			<Position x="452.8751" z="464.35862"/>
 			<Orientation y="-2.91861"/>
+		</Entity>
+		<Entity uid="1115">
+			<Template>structures/iber_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="596.12922" z="180.60222"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1116">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>4</Player>
+			<Position x="585.74518" z="154.95604"/>
+			<Orientation y="-2.36593"/>
+		</Entity>
+		<Entity uid="1117">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>4</Player>
+			<Position x="581.10627" z="159.51716"/>
+			<Orientation y="-2.40026"/>
+		</Entity>
+		<Entity uid="1118">
+			<Template>units/iber_infantry_spearman_a</Template>
+			<Player>4</Player>
+			<Position x="583.06006" z="157.24119"/>
+			<Orientation y="-2.49016"/>
+		</Entity>
+		<Entity uid="1119">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="583.79694" z="165.25968"/>
+			<Orientation y="-2.26198"/>
+		</Entity>
+		<Entity uid="1120">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="586.09998" z="162.19724"/>
+			<Orientation y="-2.30901"/>
+		</Entity>
+		<Entity uid="1121">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="588.2743" z="159.93577"/>
+			<Orientation y="-2.07206"/>
+		</Entity>
+		<Entity uid="1123">
+			<Template>units/iber_cavalry_spearman_b</Template>
+			<Player>4</Player>
+			<Position x="578.65741" z="165.27851"/>
+			<Orientation y="-2.22582"/>
 		</Entity>
 	</Entities>
 	<Paths/>
