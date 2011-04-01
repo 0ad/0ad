@@ -924,6 +924,8 @@ void CGameView::ResetCameraTarget(const CVector3D& target)
 	m->PosX.SetValue(target.X - delta.X);
 	m->PosY.SetValue(target.Y - delta.Y);
 	m->PosZ.SetValue(target.Z - delta.Z);
+	m->RotateX.SetValue(DEGTORAD(m->ViewRotateXDefault));
+	m->RotateY.SetValue(DEGTORAD(m->ViewRotateYDefault));
 
 	ClampDistance(m, false);
 
