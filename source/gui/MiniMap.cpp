@@ -267,8 +267,6 @@ void CMiniMap::Draw()
 	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
 		return;
 
-	glDisable(GL_DEPTH_TEST);
-
 	// Set our globals in case they hadn't been set before
 	m_Camera      = g_Game->GetView()->GetCamera();
 	m_Terrain     = g_Game->GetWorld()->GetTerrain();
@@ -448,7 +446,6 @@ void CMiniMap::Draw()
 	// Reset everything back to normal
 	glPointSize(1.0f);
 	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_DEPTH_TEST);
 }
 
 void CMiniMap::CreateTextures()
