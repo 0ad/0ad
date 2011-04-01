@@ -387,8 +387,27 @@
 	</object> <!-- END OF TOP PANEL -->
 
 	<!-- ================================  ================================ -->
+	<!-- Idle Worker Button -->
+	<!-- ================================  ================================ -->
+	<object type="image"
+		size="50%-512 100%-240 50%-480 100%-208"
+		sprite="mapPanel"
+	>
+		<object type="button"
+			tooltip_style="sessionToolTip"
+			tooltip="Find idle worker"
+			hotkey="selection.idle"
+		>
+			<!-- TODO: should highlight the button if there's non-zero idle workers -->
+			<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
+			<action on="Press">findIdleWorker();</action>
+		</object>
+	</object>
+
+	<!-- ================================  ================================ -->
 	<!-- START of BOTTOM PANEL -->
 	<!-- ================================  ================================ -->
+
 	<object size="50%-512 100%-180 50%+512 100%">
 
 		<!-- ================================  ================================ -->

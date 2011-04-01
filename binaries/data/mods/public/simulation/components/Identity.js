@@ -133,4 +133,9 @@ Identity.prototype.GetClassesList = function()
 	}
 };
 
+Identity.prototype.HasClass = function(name)
+{
+	return this.GetClassesList().indexOf(name) != -1;
+};
+
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);

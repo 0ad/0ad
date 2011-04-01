@@ -445,6 +445,34 @@ GuiInterface.prototype.PlaySound = function(player, data)
 	PlaySound(data.name, data.entity);
 };
 
+function isIdleWorker(ent)
+{
+	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && cmpIdentity.HasClass("Worker"));
+}
+
+GuiInterface.prototype.FindIdleWorker = function(player, prevWorker)
+{
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var playerEntities = rangeMan.GetEntitiesByPlayer(player);
+
+	var firstUnit = 0;
+
+	// Find the first matching entity that is after the previous selection,
+	// so that we cycle around in a predictable order
+	for each (var ent in playerEntities)
+	{
+		if (ent > prevWorker && isIdleWorker(ent))
+			return ent;
+		else if (!firstUnit && isIdleWorker(ent))
+			firstUnit = ent;
+	}
+
+	// Nothing after the selection - just return the first entity
+	return firstUnit;
+};
+
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
 {
 	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
@@ -491,11 +519,12 @@ var exposedFunctions = {
 	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
 	"PlaySound": 1,
+	"FindIdleWorker": 1,
 
 	"SetPathfinderDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
-	"SetRangeDebugOverlay": 1
+	"SetRangeDebugOverlay": 1,
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

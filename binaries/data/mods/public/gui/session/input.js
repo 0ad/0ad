@@ -1088,6 +1088,22 @@ function setCameraFollow(entity)
 	Engine.CameraFollow(0);
 }
 
+var lastIdleWorker = 0;
+function findIdleWorker()
+{
+	lastIdleWorker = Engine.GuiInterfaceCall("FindIdleWorker", lastIdleWorker);
+	if (lastIdleWorker)
+	{
+		g_Selection.reset()
+		g_Selection.addList([lastIdleWorker]);
+		Engine.CameraFollow(lastIdleWorker);
+	}
+	else
+	{
+		// TODO: display a message or play a sound to indicate no more idle units, or something
+	}
+}
+
 function unload(garrisonHolder, entity)
 {
 	Engine.PostNetworkCommand({"type": "unload", "entity": entity, "garrisonHolder": garrisonHolder});
