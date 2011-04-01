@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,6 +80,66 @@ public:
 			TS_ASSERT(ok_oneway ^ ok_otherway);
 		}
 	}
+
+	void test_rotate()
+	{
+		CMatrix3D m;
+		srand(0);
+
+		for (int j = 0; j < 16; ++j)
+			m._data[j] = -1.0f + 2.0f*(rand()/(float)RAND_MAX);
+
+		CMatrix3D r, a, b;
+
+		a = m;
+		b = m;
+		a.RotateX(1.0f);
+		r.SetXRotation(1.0f);
+		b.Concatenate(r);
+
+		for (int x = 0; x < 4; ++x)
+			for (int y = 0; y < 4; ++y)
+				TS_ASSERT_DELTA(a(x,y), b(x,y), 0.0002f);
+
+		a = m;
+		b = m;
+		a.RotateY(1.0f);
+		r.SetYRotation(1.0f);
+		b.Concatenate(r);
+
+		for (int x = 0; x < 4; ++x)
+			for (int y = 0; y < 4; ++y)
+				TS_ASSERT_DELTA(a(x,y), b(x,y), 0.0002f);
+
+		a = m;
+		b = m;
+		a.RotateZ(1.0f);
+		r.SetZRotation(1.0f);
+		b.Concatenate(r);
+
+		for (int x = 0; x < 4; ++x)
+			for (int y = 0; y < 4; ++y)
+				TS_ASSERT_DELTA(a(x,y), b(x,y), 0.0002f);
+	}
+
+	void test_scale()
+	{
+		CMatrix3D m;
+		srand(0);
+
+		for (int j = 0; j < 16; ++j)
+			m._data[j] = -1.0f + 2.0f*(rand()/(float)RAND_MAX);
+
+		CMatrix3D s, a, b;
+
+		a = m;
+		b = m;
+		a.Scale(0.5f, 2.0f, 3.0f);
+		s.SetScaling(0.5f, 2.0f, 3.0f);
+		b.Concatenate(s);
+
+		for (int x = 0; x < 4; ++x)
+			for (int y = 0; y < 4; ++y)
+				TS_ASSERT_DELTA(a(x,y), b(x,y), 0.0002f);
+	}
 };
-
-

@@ -30,30 +30,17 @@ CMatrix3D::CMatrix3D ()
 {
 }
 
-CMatrix3D::CMatrix3D(float a11,float a12,float a13,float a14,float a21,float a22,float a23,float a24,
-			float a31,float a32,float a33,float a34,float a41,float a42,float a43,float a44)
+CMatrix3D::CMatrix3D(
+	float a11, float a12, float a13, float a14,
+	float a21, float a22, float a23, float a24,
+	float a31, float a32, float a33, float a34,
+	float a41, float a42, float a43, float a44) :
+	_11(a11), _12(a12), _13(a13), _14(a14),
+	_21(a21), _22(a22), _23(a23), _24(a24),
+	_31(a31), _32(a32), _33(a33), _34(a34),
+	_41(a41), _42(a42), _43(a43), _44(a44)
 {
-	_11=a11;
-	_12=a12;
-	_13=a13;
-	_14=a14;
-
-	_21=a21;
-	_22=a22;
-	_23=a23;
-	_24=a24;
-
-	_31=a31;
-	_32=a32;
-	_33=a33;
-	_34=a34;
-
-	_41=a41;
-	_42=a42;
-	_43=a43;
-	_44=a44;
 }
-
 
 CMatrix3D::CMatrix3D(float data[])
 {
@@ -165,8 +152,8 @@ void CMatrix3D::SetZero ()
 
 void CMatrix3D::SetXRotation (float angle)
 {
-	float Cos = cosf (angle);
-	float Sin = sinf (angle);
+	const float Cos = cosf (angle);
+	const float Sin = sinf (angle);
 	
 	_11=1.0f; _12=0.0f; _13=0.0f; _14=0.0f;
 	_21=0.0f; _22=Cos;  _23=-Sin; _24=0.0f;
@@ -176,8 +163,8 @@ void CMatrix3D::SetXRotation (float angle)
 
 void CMatrix3D::SetYRotation (float angle)
 {
-	float Cos = cosf (angle);
-	float Sin = sinf (angle);
+	const float Cos = cosf (angle);
+	const float Sin = sinf (angle);
 
 	_11=Cos;  _12=0.0f; _13=Sin;  _14=0.0f;
 	_21=0.0f; _22=1.0f; _23=0.0f; _24=0.0f;
@@ -187,8 +174,8 @@ void CMatrix3D::SetYRotation (float angle)
 
 void CMatrix3D::SetZRotation (float angle)
 {
-	float Cos = cosf (angle);
-	float Sin = sinf (angle);
+	const float Cos = cosf (angle);
+	const float Sin = sinf (angle);
 
 	_11=Cos;  _12=-Sin; _13=0.0f; _14=0.0f;
 	_21=Sin;  _22=Cos;  _23=0.0f; _24=0.0f;
@@ -201,23 +188,62 @@ void CMatrix3D::SetZRotation (float angle)
 
 void CMatrix3D::RotateX (float angle)
 {
-	CMatrix3D Temp;
-	Temp.SetXRotation (angle);
-	Concatenate(Temp);	
+	const float Cos = cosf (angle);
+	const float Sin = sinf (angle);
+	const float tmp_21 = _21;
+	const float tmp_22 = _22;
+	const float tmp_23 = _23;
+	const float tmp_24 = _24;
+
+	_21 = Cos * _21 - Sin * _31;
+	_22 = Cos * _22 - Sin * _32;
+	_23 = Cos * _23 - Sin * _33;
+	_24 = Cos * _24 - Sin * _34;
+
+	_31 = Sin * tmp_21 + Cos * _31;
+	_32 = Sin * tmp_22 + Cos * _32;
+	_33 = Sin * tmp_23 + Cos * _33;
+	_34 = Sin * tmp_24 + Cos * _34;
 }
 
 void CMatrix3D::RotateY (float angle)
 {
-	CMatrix3D Temp;
-	Temp.SetYRotation (angle);
-	Concatenate(Temp);
+	const float Cos = cosf (angle);
+	const float Sin = sinf (angle);
+	const float tmp_11 = _11;
+	const float tmp_12 = _12;
+	const float tmp_13 = _13;
+	const float tmp_14 = _14;
+
+	_11 = Cos * _11 + Sin * _31;
+	_12 = Cos * _12 + Sin * _32;
+	_13 = Cos * _13 + Sin * _33;
+	_14 = Cos * _14 + Sin * _34;
+
+	_31 = -Sin * tmp_11 + Cos * _31;
+	_32 = -Sin * tmp_12 + Cos * _32;
+	_33 = -Sin * tmp_13 + Cos * _33;
+	_34 = -Sin * tmp_14 + Cos * _34;
 }
 
 void CMatrix3D::RotateZ (float angle)
 {
-	CMatrix3D Temp;
-	Temp.SetZRotation(angle);
-	Concatenate(Temp);
+	const float Cos = cosf (angle);
+	const float Sin = sinf (angle);
+	const float tmp_11 = _11;
+	const float tmp_12 = _12;
+	const float tmp_13 = _13;
+	const float tmp_14 = _14;
+
+	_11 = Cos * _11 - Sin * _21;
+	_12 = Cos * _12 - Sin * _22;
+	_13 = Cos * _13 - Sin * _23;
+	_14 = Cos * _14 - Sin * _24;
+
+	_21 = Sin * tmp_11 + Cos * _21;
+	_22 = Sin * tmp_12 + Cos * _22;
+	_23 = Sin * tmp_13 + Cos * _23;
+	_24 = Sin * tmp_14 + Cos * _24;
 }
 
 //Sets the translation of the matrix
@@ -256,13 +282,7 @@ void CMatrix3D::Concatenate(const CMatrix3D& m)
 
 CVector3D CMatrix3D::GetTranslation() const
 {
-	CVector3D Temp;
-
-	Temp.X = _14;
-	Temp.Y = _24;
-	Temp.Z = _34;
-
-	return Temp;
+	return CVector3D(_14, _24, _34);
 }
 
 //Clears and sets the scaling of the matrix
@@ -277,75 +297,50 @@ void CMatrix3D::SetScaling (float x_scale, float y_scale, float z_scale)
 //Scales the matrix
 void CMatrix3D::Scale (float x_scale, float y_scale, float z_scale)
 {
-	CMatrix3D Temp;
-	Temp.SetScaling(x_scale,y_scale,z_scale);
-	Concatenate(Temp);
+	_11 *= x_scale;
+	_12 *= x_scale;
+	_13 *= x_scale;
+	_14 *= x_scale;
+
+	_21 *= y_scale;
+	_22 *= y_scale;
+	_23 *= y_scale;
+	_24 *= y_scale;
+
+	_31 *= z_scale;
+	_32 *= z_scale;
+	_33 *= z_scale;
+	_34 *= z_scale;
 }
 
 //Returns the transpose of the matrix. For orthonormal
 //matrices, this is the same is the inverse matrix
 CMatrix3D CMatrix3D::GetTranspose() const
 {
-	CMatrix3D result;
-
-	result._11 = _11;
-	result._21 = _12;
-	result._31 = _13;
-	result._41 = _14;
-
-	result._12 = _21;
-	result._22 = _22;
-	result._32 = _23;
-	result._42 = _24;
-
-	result._13 = _31;
-	result._23 = _32;
-	result._33 = _33;
-	result._43 = _34;
-
-	result._14 = _41;
-	result._24 = _42;
-	result._34 = _43;
-	result._44 = _44;
-
-	return result;
+	return CMatrix3D(
+		_11, _21, _31, _41,
+		_12, _22, _32, _42,
+		_13, _23, _33, _43,
+		_14, _24, _34, _44);
 }
 
 
 //Get a vector which points to the left of the matrix
-CVector3D CMatrix3D::GetLeft () const
+CVector3D CMatrix3D::GetLeft() const
 {
-	CVector3D Temp;
-
-	Temp.X = -_11;
-	Temp.Y = -_21;
-	Temp.Z = -_31;
-
-	return Temp;
+	return CVector3D(-_11, -_21, -_31);
 }
 
 //Get a vector which points up from the matrix
-CVector3D CMatrix3D::GetUp () const
+CVector3D CMatrix3D::GetUp() const
 {
-	CVector3D Temp;
-
-	Temp.X = _12;
-	Temp.Y = _22;
-	Temp.Z = _32;
-
-	return Temp;
+	return CVector3D(_12, _22, _32);
 }
 
 //Get a vector which points to front of the matrix
-CVector3D CMatrix3D::GetIn () const
+CVector3D CMatrix3D::GetIn() const
 {
-	CVector3D Temp;
-
-	Temp.X = _13;
-	Temp.Y = _23;
-	Temp.Z = _33;
-
-	return Temp;
+	return CVector3D(_13, _23, _33);
 }
 
 //Transform a vector by this matrix
@@ -412,22 +407,14 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	tmp[11] = src[9] * src[12];
 	
 	// calculate first 8 elements (cofactors)
-	dst._data[0] = tmp[0]*src[5] + tmp[3]*src[6] + tmp[4]*src[7];
-	dst._data[0] -= tmp[1]*src[5] + tmp[2]*src[6] + tmp[5]*src[7];
-	dst._data[1] = tmp[1]*src[4] + tmp[6]*src[6] + tmp[9]*src[7];
-	dst._data[1] -= tmp[0]*src[4] + tmp[7]*src[6] + tmp[8]*src[7];
-	dst._data[2] = tmp[2]*src[4] + tmp[7]*src[5] + tmp[10]*src[7];
-	dst._data[2] -= tmp[3]*src[4] + tmp[6]*src[5] + tmp[11]*src[7];
-	dst._data[3] = tmp[5]*src[4] + tmp[8]*src[5] + tmp[11]*src[6];
-	dst._data[3] -= tmp[4]*src[4] + tmp[9]*src[5] + tmp[10]*src[6];
-	dst._data[4] = tmp[1]*src[1] + tmp[2]*src[2] + tmp[5]*src[3];
-	dst._data[4] -= tmp[0]*src[1] + tmp[3]*src[2] + tmp[4]*src[3];
-	dst._data[5] = tmp[0]*src[0] + tmp[7]*src[2] + tmp[8]*src[3];
-	dst._data[5] -= tmp[1]*src[0] + tmp[6]*src[2] + tmp[9]*src[3];
-	dst._data[6] = tmp[3]*src[0] + tmp[6]*src[1] + tmp[11]*src[3];
-	dst._data[6] -= tmp[2]*src[0] + tmp[7]*src[1] + tmp[10]*src[3];
-	dst._data[7] = tmp[4]*src[0] + tmp[9]*src[1] + tmp[10]*src[2];
-	dst._data[7] -= tmp[5]*src[0] + tmp[8]*src[1] + tmp[11]*src[2];
+	dst._data[0] = (tmp[0]-tmp[1])*src[5] + (tmp[3]-tmp[2])*src[6] + (tmp[4]-tmp[5])*src[7];
+	dst._data[1] = (tmp[1]-tmp[0])*src[4] + (tmp[6]-tmp[7])*src[6] + (tmp[9]-tmp[8])*src[7];
+	dst._data[2] = (tmp[2]-tmp[3])*src[4] + (tmp[7]-tmp[6])*src[5] + (tmp[10]-tmp[11])*src[7];
+	dst._data[3] = (tmp[5]-tmp[4])*src[4] + (tmp[8]-tmp[9])*src[5] + (tmp[11]-tmp[10])*src[6];
+	dst._data[4] = (tmp[1]-tmp[0])*src[1] + (tmp[2]-tmp[3])*src[2] + (tmp[5]-tmp[4])*src[3];
+	dst._data[5] = (tmp[0]-tmp[1])*src[0] + (tmp[7]-tmp[6])*src[2] + (tmp[8]-tmp[9])*src[3];
+	dst._data[6] = (tmp[3]-tmp[2])*src[0] + (tmp[6]-tmp[7])*src[1] + (tmp[11]-tmp[10])*src[3];
+	dst._data[7] = (tmp[4]-tmp[5])*src[0] + (tmp[9]-tmp[8])*src[1] + (tmp[10]-tmp[11])*src[2];
 	
 	// calculate pairs for second 8 elements (cofactors) 
 	tmp[0] = src[2]*src[7];
@@ -444,22 +431,14 @@ void CMatrix3D::GetInverse(CMatrix3D& dst) const
 	tmp[11] = src[1]*src[4];
 
 	// calculate second 8 elements (cofactors) 
-	dst._data[8] = tmp[0]*src[13] + tmp[3]*src[14] + tmp[4]*src[15];
-	dst._data[8] -= tmp[1]*src[13] + tmp[2]*src[14] + tmp[5]*src[15];
-	dst._data[9] = tmp[1]*src[12] + tmp[6]*src[14] + tmp[9]*src[15];
-	dst._data[9] -= tmp[0]*src[12] + tmp[7]*src[14] + tmp[8]*src[15];
-	dst._data[10] = tmp[2]*src[12] + tmp[7]*src[13] + tmp[10]*src[15];
-	dst._data[10]-= tmp[3]*src[12] + tmp[6]*src[13] + tmp[11]*src[15];
-	dst._data[11] = tmp[5]*src[12] + tmp[8]*src[13] + tmp[11]*src[14];
-	dst._data[11]-= tmp[4]*src[12] + tmp[9]*src[13] + tmp[10]*src[14];
-	dst._data[12] = tmp[2]*src[10] + tmp[5]*src[11] + tmp[1]*src[9];
-	dst._data[12]-= tmp[4]*src[11] + tmp[0]*src[9] + tmp[3]*src[10];
-	dst._data[13] = tmp[8]*src[11] + tmp[0]*src[8] + tmp[7]*src[10];
-	dst._data[13]-= tmp[6]*src[10] + tmp[9]*src[11] + tmp[1]*src[8];
-	dst._data[14] = tmp[6]*src[9] + tmp[11]*src[11] + tmp[3]*src[8];
-	dst._data[14]-= tmp[10]*src[11] + tmp[2]*src[8] + tmp[7]*src[9];
-	dst._data[15] = tmp[10]*src[10] + tmp[4]*src[8] + tmp[9]*src[9];
-	dst._data[15]-= tmp[8]*src[9] + tmp[11]*src[10] + tmp[5]*src[8];
+	dst._data[8] = (tmp[0]-tmp[1])*src[13] + (tmp[3]-tmp[2])*src[14] + (tmp[4]-tmp[5])*src[15];
+	dst._data[9] = (tmp[1]-tmp[0])*src[12] + (tmp[6]-tmp[7])*src[14] + (tmp[9]-tmp[8])*src[15];
+	dst._data[10] = (tmp[2]-tmp[3])*src[12] + (tmp[7]-tmp[6])*src[13] + (tmp[10]-tmp[11])*src[15];
+	dst._data[11] = (tmp[5]-tmp[4])*src[12] + (tmp[8]-tmp[9])*src[13] + (tmp[11]-tmp[10])*src[14];
+	dst._data[12] = (tmp[2]-tmp[3])*src[10] + (tmp[5]-tmp[4])*src[11] + (tmp[1]-tmp[0])*src[9];
+	dst._data[13] = (tmp[7]-tmp[6])*src[10] + (tmp[8]-tmp[9])*src[11] + (tmp[0]-tmp[1])*src[8];
+	dst._data[14] = (tmp[6]-tmp[7])*src[9] + (tmp[11]-tmp[10])*src[11] + (tmp[3]-tmp[2])*src[8];
+	dst._data[15] = (tmp[10]-tmp[11])*src[10] + (tmp[4]-tmp[5])*src[8] + (tmp[9]-tmp[8])*src[9];
 
 	// calculate matrix inverse 
 	det=src[0]*dst._data[0]+src[1]*dst._data[1]+src[2]*dst._data[2]+src[3]*dst._data[3];

@@ -189,9 +189,7 @@ void CCamera::BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) 
 
 void CCamera::GetScreenCoordinates(const CVector3D& world, float& x, float& y) const
 {
-	CMatrix3D transform;
-	m_Orientation.GetInverse(transform);
-	transform.Concatenate(m_ProjMat);
+	CMatrix3D transform = m_ProjMat * m_Orientation.GetInverse();
 
 	CVector4D screenspace = transform.Transform(CVector4D(world.X, world.Y, world.Z, 1.0f));
 
