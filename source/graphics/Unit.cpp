@@ -44,14 +44,14 @@ CUnit::~CUnit()
 	delete m_Model;
 }
 
-CUnit* CUnit::Create(const CStrW& actorName, const std::set<CStr>& selections, CObjectManager& objectManager)
+CUnit* CUnit::Create(const CStrW& actorName, uint32_t seed, const std::set<CStr>& selections, CObjectManager& objectManager)
 {
 	CObjectBase* base = objectManager.FindObjectBase(actorName);
 
 	if (! base)
 		return NULL;
 
-	std::set<CStr> actorSelections = base->CalculateRandomVariation(selections);
+	std::set<CStr> actorSelections = base->CalculateRandomVariation(seed, selections);
 
 	std::vector<std::set<CStr> > selectionsVec;
 	selectionsVec.push_back(actorSelections);

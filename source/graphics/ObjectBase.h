@@ -28,6 +28,8 @@ class CObjectManager;
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 
+#include <boost/random/mersenne_twister.hpp>
+
 class CObjectBase
 {
 	NONCOPYABLE(CObjectBase);
@@ -106,7 +108,7 @@ public:
 	// Get a set of selection strings that are complete enough to specify an
 	// exact variation of the actor, using the initial selections wherever possible
 	// and choosing randomly where a choice is necessary. 
-	std::set<CStr> CalculateRandomVariation(const std::set<CStr>& initialSelections);
+	std::set<CStr> CalculateRandomVariation(uint32_t seed, const std::set<CStr>& initialSelections);
 
 	// Get a list of variant groups for this object, plus for all possible
 	// props. Duplicated groups are removed, if several props share the same
@@ -144,6 +146,13 @@ public:
 	VfsPath m_Material;
 
 private:
+	// A low-quality RNG like rand48 causes visible non-random patterns (particularly
+	// in large grids of the same actor with consecutive seeds, e.g. forests),
+	// so use a better one that appears to avoid those patterns
+	typedef boost::mt19937 rng_t;
+
+	std::set<CStr> CalculateRandomVariation(rng_t& rng, const std::set<CStr>& initialSelections);
+
 	std::vector< std::vector<Variant> > m_VariantGroups;
 	CObjectManager& m_ObjectManager;
 };

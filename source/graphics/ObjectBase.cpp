@@ -27,9 +27,9 @@
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "lib/timer.h"
-#include "lib/rand.h"
 #include "maths/MathUtil.h"
 
+#include <boost/random/uniform_int.hpp>
 
 CObjectBase::CObjectBase(CObjectManager& objectManager)
 : m_ObjectManager(objectManager)
@@ -411,7 +411,14 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 	return variation;
 }
 
-std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initialSelections)
+std::set<CStr> CObjectBase::CalculateRandomVariation(uint32_t seed, const std::set<CStr>& initialSelections)
+{
+	rng_t rng;
+	rng.seed(seed);
+	return CalculateRandomVariation(rng, initialSelections);
+}
+
+std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<CStr>& initialSelections)
 {
 	std::set<CStr> selections = initialSelections;
 
@@ -471,10 +478,8 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 				bool allZero = (totalFreq == 0);
 				if (allZero) totalFreq = (int)grp->size();
 
-				// Choose a random number in the interval [0..totalFreq).
-				// (It shouldn't be necessary to use a network-synchronised RNG,
-				// since actors are meant to have purely visual manifestations.)
-				int randNum = (int)rand(0, (size_t)totalFreq);
+				// Choose a random number in the interval [0..totalFreq)
+				int randNum = boost::uniform_int<>(0, totalFreq-1)(rng);
 
 				// and use that to choose one of the variants
 				for (size_t i = 0; i < grp->size(); ++i)
@@ -518,7 +523,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)
 		{
-			std::set<CStr> propSelections = prop->CalculateRandomVariation(selections);
+			std::set<CStr> propSelections = prop->CalculateRandomVariation(rng, selections);
 			// selections = union(propSelections, selections)
 			std::set<CStr> newSelections;
 			std::set_union(propSelections.begin(), propSelections.end(),

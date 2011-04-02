@@ -42,9 +42,10 @@ private:
 
 public:
 	// Attempt to create a unit with the given actor, with a set of
-	// suggested selections (with the rest being randomised).
+	// suggested selections (with the rest being randomised using the
+	// given random seed).
 	// Returns NULL on failure.
- 	static CUnit* Create(const CStrW& actorName, const std::set<CStr>& selections, CObjectManager& objectManager);
+ 	static CUnit* Create(const CStrW& actorName, uint32_t seed, const std::set<CStr>& selections, CObjectManager& objectManager);
 
 	// destructor
 	~CUnit();

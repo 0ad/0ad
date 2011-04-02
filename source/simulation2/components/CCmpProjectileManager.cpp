@@ -57,6 +57,7 @@ public:
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
+		m_ActorSeed = 0;
 	}
 
 	virtual void Deinit()
@@ -119,6 +120,8 @@ private:
 
 	std::vector<Projectile> m_Projectiles;
 
+	uint32_t m_ActorSeed;
+
 	void LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, fixed speed, fixed gravity);
 
 	void AdvanceProjectile(Projectile& projectile, float dt, float frameOffset);
@@ -151,7 +154,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	std::set<CStr> selections;
 
 	Projectile projectile;
-	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, selections);
+	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, m_ActorSeed++, selections);
 	if (!projectile.unit)
 	{
 		// The error will have already been logged

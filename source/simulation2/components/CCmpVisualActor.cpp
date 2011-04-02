@@ -117,7 +117,7 @@ public:
 		m_R = m_G = m_B = fixed::FromInt(1);
 
 		std::set<CStr> selections;
-		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, selections);
+		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
 		if (!m_Unit)
 		{
 			// The error will have already been logged
@@ -336,7 +336,7 @@ public:
 			return;
 
 		std::set<CStr> selections;
-		CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, selections);
+		CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
 
 		if (!newUnit)
 			return;
@@ -368,6 +368,11 @@ public:
 	}
 
 private:
+	int32_t GetActorSeed()
+	{
+		return GetEntityId();
+	}
+
 	void Update(fixed turnLength);
 	void Interpolate(float frameTime, float frameOffset);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
