@@ -15,6 +15,10 @@
 
 PARAM ambient = program.local[0];
 
+#ifdef DECAL
+  PARAM shadingColor = program.local[1];
+#endif
+
 TEMP tex;
 TEMP temp;
 TEMP diffuse;
@@ -57,6 +61,10 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
 TEX tex.a, fragment.texcoord[3], texture[3], 2D;
 MUL color.rgb, color, tex.a;
 
-MOV result.color.rgb, color;
+#ifdef DECAL
+  MUL result.color.rgb, color, shadingColor;
+#else
+  MOV result.color.rgb, color;
+#endif
 
 END

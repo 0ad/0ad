@@ -455,11 +455,7 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 	if (m_Visibility != ICmpRangeManager::VIS_HIDDEN)
 	{
 		model.ValidatePosition();
-
-		if (m_Visibility == ICmpRangeManager::VIS_FOGGED)
-			model.SetShadingColor(CColor(0.5f * m_R.ToFloat(), 0.5f * m_G.ToFloat(), 0.5f * m_B.ToFloat(), 1.0f));
-		else
-			model.SetShadingColor(CColor(m_R.ToFloat(), m_G.ToFloat(), m_B.ToFloat(), 1.0f));
+		model.SetShadingColor(CColor(m_R.ToFloat(), m_G.ToFloat(), m_B.ToFloat(), 1.0f));
 	}
 }
 

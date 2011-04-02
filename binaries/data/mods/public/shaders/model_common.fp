@@ -17,7 +17,8 @@
   PARAM objectColor = program.local[0];
 #endif
 
-PARAM ambient = program.local[1];
+PARAM shadingColor = program.local[1];
+PARAM ambient = program.local[2];
 
 TEMP tex;
 TEMP temp;
@@ -59,6 +60,6 @@ TEX tex, fragment.texcoord[0], texture[0], 2D;
 TEX tex.a, fragment.texcoord[2], texture[2], 2D;
 MUL color.rgb, color, tex.a;
 
-MOV result.color.rgb, color;
+MUL result.color.rgb, color, shadingColor;
 
 END

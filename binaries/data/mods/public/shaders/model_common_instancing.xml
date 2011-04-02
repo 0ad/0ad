@@ -20,7 +20,8 @@
         <uniform name="losTex" loc="2" type="sampler2D"/>
 
         <uniform name="objectColor" loc="0" type="vec3"/>
-        <uniform name="ambient" loc="1" type="vec3"/>
+        <uniform name="shadingColor" loc="1" type="vec3"/>
+        <uniform name="ambient" loc="2" type="vec3"/>
     </fragment>
 
 </program>

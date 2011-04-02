@@ -256,7 +256,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 
 	PROFILE_START("render terrain decals");
 	for (size_t i = 0; i < m->visibleDecals.size(); ++i)
-		m->visibleDecals[i]->Render();
+		m->visibleDecals[i]->Render(CShaderProgramPtr());
 	PROFILE_END("render terrain decals");
 
 
@@ -608,7 +608,7 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 
 	PROFILE_START("render terrain decals");
 	for (size_t i = 0; i < m->visibleDecals.size(); ++i)
-		m->visibleDecals[i]->Render();
+		m->visibleDecals[i]->Render(shaderDecal);
 	PROFILE_END("render terrain decals");
 
 	shaderDecal->Unbind();

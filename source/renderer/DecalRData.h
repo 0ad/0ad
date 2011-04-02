@@ -19,6 +19,7 @@
 #define INCLUDED_DECALRDATA
 
 #include "graphics/RenderableObject.h"
+#include "graphics/ShaderProgram.h"
 #include "renderer/VertexArray.h"
 
 class CModelDecal;
@@ -31,7 +32,7 @@ public:
 
 	void Update();
 
-	void Render();
+	void Render(const CShaderProgramPtr& shader);
 
 private:
 	void BuildArrays();

@@ -66,7 +66,7 @@ void CDecalRData::Update()
 	}
 }
 
-void CDecalRData::Render()
+void CDecalRData::Render(const CShaderProgramPtr& shader)
 {
 	m_Decal->m_Decal.m_Texture->Bind(0);
 
@@ -86,9 +86,10 @@ void CDecalRData::Render()
 
 	u8* indexBase = m_IndexArray.Bind();
 
-	// TODO: make the shading color available to shader-based rendering
-	// (which uses the color array) too
-	glColor3fv(m_Decal->GetShadingColor().FloatArray());
+	if (!shader)
+		glColor3fv(m_Decal->GetShadingColor().FloatArray());
+	else
+		shader->Uniform("shadingColor", m_Decal->GetShadingColor());
 
 	glVertexPointer(3, GL_FLOAT, stride, base + m_Position.offset);
 	glColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_DiffuseColor.offset);
