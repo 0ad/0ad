@@ -24,6 +24,8 @@
       </animations>
       <props>
         <prop actor="props/units/heads/dudette_head.xml" attachpoint="head"/>
+        <prop actor="particle/smoke.xml" attachpoint="head"/>
+        <prop actor="particle/flame.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
