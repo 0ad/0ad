@@ -41,6 +41,9 @@ CObjectBase::CObjectBase(CObjectManager& objectManager)
 
 bool CObjectBase::Load(const VfsPath& pathname)
 {
+	m_UsedFiles.clear();
+	m_UsedFiles.insert(pathname);
+
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
 		return false;
@@ -62,6 +65,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	EL(texture);
 	EL(colour);
 	EL(decal);
+	EL(particles);
 	AT(file);
 	AT(name);
 	AT(speed);
@@ -159,6 +163,16 @@ bool CObjectBase::Load(const VfsPath& pathname)
 						decal.m_OffsetZ = attrs.GetNamedItem(at_offsetz).ToFloat();
 						currentVariant->m_Decal = decal;
 					}
+					else if (option_name == el_particles)
+					{
+						XMBAttributeList attrs = option.GetAttributes();
+						VfsPath file = VfsPath("art/particles") / attrs.GetNamedItem(at_file).FromUTF8();
+						currentVariant->m_Particles = file;
+
+						// For particle hotloading, it's easiest to reload the entire actor,
+						// so remember the relevant particle file as a dependency for this actor
+						m_UsedFiles.insert(file);
+					}
 					else if (option_name == el_colour)
 					{
 						currentVariant->m_Color = option.GetText();
@@ -249,6 +263,11 @@ bool CObjectBase::Load(const VfsPath& pathname)
 bool CObjectBase::Reload()
 {
 	return Load(m_Pathname);
+}
+
+bool CObjectBase::UsesFile(const VfsPath& pathname)
+{
+	return m_UsedFiles.find(pathname) != m_UsedFiles.end();
 }
 
 std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CStr> >& selections)
@@ -383,6 +402,9 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 
 		if (var.m_Decal.m_SizeX && var.m_Decal.m_SizeZ)
 			variation.decal = var.m_Decal;
+
+		if (! var.m_Particles.empty())
+			variation.particles = var.m_Particles;
 
 		if (! var.m_Color.empty())
 			variation.color = var.m_Color;
@@ -530,6 +552,10 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 				selections.begin(), selections.end(),
 				std::inserter(newSelections, newSelections.begin()));
 			selections.swap(newSelections);
+
+			// Add the prop's used files to our own (recursively) so we can hotload
+			// when any prop is changed
+			m_UsedFiles.insert(prop->m_UsedFiles.begin(), prop->m_UsedFiles.end());
 		}
 	}
 

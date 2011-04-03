@@ -22,6 +22,7 @@
 
 #include "maths/Bound.h"
 #include "maths/Fixed.h"
+#include "lib/file/vfs/vfs_path.h"
 
 /**
  * The visual representation of an entity (typically an actor).
@@ -106,7 +107,7 @@ public:
 	 * If this component uses the named actor file, it should regenerate its actor
 	 * to pick up the new definitions.
 	 */
-	virtual void Hotload(const std::wstring& name) = 0;
+	virtual void Hotload(const VfsPath& name) = 0;
 
 	DECLARE_INTERFACE_TYPE(Visual)
 };

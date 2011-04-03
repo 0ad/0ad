@@ -126,10 +126,17 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 	ObjectKey key (base->m_Pathname.string(), choices);
 
 	std::map<ObjectKey, CObjectEntry*>::iterator it = m_Objects.find(key);
-	if (it != m_Objects.end())
+	if (it != m_Objects.end() && !it->second->m_Outdated)
 		return it->second;
 
 	// If it hasn't been loaded, load it now
+
+	// TODO: If there was an existing ObjectEntry, but it's outdated (due to hotloading),
+	// we'll get a memory leak when replacing its entry in m_Objects. The problem is
+	// some CUnits might still have a pointer to the old ObjectEntry so we probably can't
+	// just delete it now. Probably we need to redesign the caching/hotloading system so it
+	// makes more sense (e.g. use shared_ptr); for now I'll just leak, to avoid making the logic
+	// more complex than it is already is, since this only matters for the rare case of hotloading.
 
 	CObjectEntry* obj = new CObjectEntry(base); // TODO: type ?
 
@@ -178,9 +185,15 @@ void CObjectManager::UnloadObjects()
 
 LibError CObjectManager::ReloadChangedFile(const VfsPath& path)
 {
+	// Mark old entries as outdated so we don't reload them from the cache
+	for (std::map<ObjectKey, CObjectEntry*>::iterator it = m_Objects.begin(); it != m_Objects.end(); ++it)
+		if (it->second->m_Base->UsesFile(path))
+			it->second->m_Outdated = true;
+
+	// Reload actors that use a changed object
 	for (std::map<CStrW, CObjectBase*>::iterator it = m_ObjectBases.begin(); it != m_ObjectBases.end(); ++it)
 	{
-		if (it->second->m_Pathname == path)
+		if (it->second->UsesFile(path))
 		{
 			it->second->Reload();
 

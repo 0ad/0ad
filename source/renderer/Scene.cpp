@@ -28,7 +28,7 @@
 #include "precompiled.h"
 
 #include "graphics/Model.h"
-
+#include "graphics/ParticleEmitter.h"
 #include "renderer/Scene.h"
 
 ///////////////////////////////////////////////////////////
@@ -50,6 +50,10 @@ void SceneCollector::SubmitRecursive(CModelAbstract* model)
 	else if (model->ToCModelDecal())
 	{
 		Submit(model->ToCModelDecal());
+	}
+	else if (model->ToCModelParticleEmitter())
+	{
+		Submit(model->ToCModelParticleEmitter()->m_Emitter.get());
 	}
 	else
 		debug_warn(L"unknown model type");

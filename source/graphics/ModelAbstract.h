@@ -24,6 +24,7 @@
 
 class CModel;
 class CModelDecal;
+class CModelParticleEmitter;
 
 /**
  * Abstract base class for graphical objects that are used by units,
@@ -49,6 +50,9 @@ public:
 
 	/// Dynamic cast
 	virtual CModelDecal* ToCModelDecal() { return NULL; }
+
+	/// Dynamic cast
+	virtual CModelParticleEmitter* ToCModelParticleEmitter() { return NULL; }
 
 	// (This dynamic casting is a bit ugly, but we won't have many subclasses
 	// and this seems the easiest way to integrate with other code that wants

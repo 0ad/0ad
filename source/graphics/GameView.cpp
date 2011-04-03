@@ -475,7 +475,7 @@ void CGameView::Render()
 // Submit all objects visible in the given frustum
 void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 {
-	PROFILE_START( "submit terrain" );
+	PROFILE_START("submit terrain");
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
 	const ssize_t patchesPerSide = pTerrain->GetPatchesPerSide();
 
@@ -540,11 +540,11 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			}
 		}
 	}
-	PROFILE_END( "submit terrain" );
+	PROFILE_END("submit terrain");
 
-	PROFILE_START( "submit sim components" );
+	PROFILE_START("submit sim components");
 	m->Game->GetSimulation2()->RenderSubmit(*c, frustum, m->Culling);
-	PROFILE_END( "submit sim components" );
+	PROFILE_END("submit sim components");
 }
 
 

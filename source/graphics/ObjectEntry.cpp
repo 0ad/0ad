@@ -26,6 +26,7 @@
 #include "graphics/ModelDef.h"
 #include "graphics/ObjectBase.h"
 #include "graphics/ObjectManager.h"
+#include "graphics/ParticleManager.h"
 #include "graphics/SkeletonAnim.h"
 #include "graphics/TextureManager.h"
 #include "lib/rand.h"
@@ -37,7 +38,7 @@
 #include <sstream>
 
 CObjectEntry::CObjectEntry(CObjectBase* base) :
-	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL)
+	m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f), m_Model(NULL), m_Outdated(false)
 {
 }
 
@@ -89,6 +90,12 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			m_Base->m_Properties.m_FloatOnWater);
 		m_Model = new CModelDecal(g_Game->GetWorld()->GetTerrain(), decal);
 
+		return true;
+	}
+
+	if (!variation.particles.empty())
+	{
+		m_Model = new CModelParticleEmitter(g_Renderer.GetParticleManager().LoadEmitterType(variation.particles));
 		return true;
 	}
 

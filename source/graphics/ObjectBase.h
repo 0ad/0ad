@@ -25,6 +25,7 @@ class CObjectManager;
 #include <vector>
 #include <set>
 #include <map>
+#include <boost/unordered_set.hpp>
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 
@@ -80,6 +81,7 @@ public:
 		VfsPath m_ModelFilename;
 		VfsPath m_TextureFilename;
 		Decal m_Decal;
+		VfsPath m_Particles;
 		CStr m_Color;
 
 		std::vector<Anim> m_Anims;
@@ -91,6 +93,7 @@ public:
 		VfsPath texture;
 		VfsPath model;
 		Decal decal;
+		VfsPath particles;
 		CStr color;
 		std::multimap<CStr, Prop> props;
 		std::multimap<CStr, Anim> anims;
@@ -127,6 +130,12 @@ public:
 	 */
 	bool Reload();
 
+	/**
+	 * Returns whether this object (including any possible props)
+	 * uses the given file. (This is used for hotloading.)
+	 */
+	bool UsesFile(const VfsPath& pathname);
+
 	// filename that this was loaded from
 	VfsPath m_Pathname;
 
@@ -155,6 +164,8 @@ private:
 
 	std::vector< std::vector<Variant> > m_VariantGroups;
 	CObjectManager& m_ObjectManager;
+
+	boost::unordered_set<VfsPath> m_UsedFiles;
 };
 
 #endif

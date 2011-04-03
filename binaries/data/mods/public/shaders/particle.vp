@@ -1,0 +1,23 @@
+!!ARBvp1.0
+ATTRIB uv = vertex.texcoord[0];
+ATTRIB offset = vertex.texcoord[1];
+PARAM axis1 = state.matrix.modelview.row[0];
+PARAM axis2 = state.matrix.modelview.row[1];
+TEMP position;
+
+MAD position.xyz, axis1, offset.x, vertex.position;
+MAD position.xyz, axis1, offset.y, position;
+MAD position.xyz, axis2, offset.x, position;
+MAD position.xyz, axis2, -offset.y, position;
+MOV position.w, vertex.position.w;
+
+DP4 result.position.x, state.matrix.mvp.row[0], position;
+DP4 result.position.y, state.matrix.mvp.row[1], position;
+DP4 result.position.z, state.matrix.mvp.row[2], position;
+DP4 result.position.w, state.matrix.mvp.row[3], position;
+
+MOV result.texcoord, uv;
+
+MOV result.color, vertex.color;
+
+END

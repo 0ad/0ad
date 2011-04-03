@@ -21,6 +21,7 @@
 
 #include "graphics/GameView.h"
 #include "graphics/LOSTexture.h"
+#include "graphics/ParticleManager.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
 #include "network/NetClient.h"
@@ -35,6 +36,7 @@
 #include "ps/Profile.h"
 #include "ps/Replay.h"
 #include "ps/World.h"
+#include "renderer/Renderer.h"
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
@@ -268,6 +270,11 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 		m_TurnManager->Interpolate(deltaTime);
 	}
 	
+	// TODO: maybe we should add a CCmpParticleInterface that passes the interpolation commands
+	// etc to CParticleManager. But in the meantime just handle it explicitly here.
+	if (doInterpolate)
+		g_Renderer.GetParticleManager().Interpolate(deltaTime);
+
 	return ok;
 }
 
@@ -277,6 +284,8 @@ void CGame::Interpolate(float frameLength)
 		return;
 
 	m_TurnManager->Interpolate(frameLength);
+
+	g_Renderer.GetParticleManager().Interpolate(frameLength);
 }
 
 

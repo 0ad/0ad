@@ -44,6 +44,7 @@ class WaterManager;
 class SkyManager;
 class CTextureManager;
 class CShaderManager;
+class CParticleManager;
 
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
@@ -272,6 +273,8 @@ public:
 
 	CShaderManager& GetShaderManager();
 
+	CParticleManager& GetParticleManager();
+
 	/**
 	 * SetFastPlayerColor: Tell the renderer which path to take for
 	 * player colored models. Both paths should provide the same visual
@@ -333,6 +336,7 @@ protected:
 	void Submit(SOverlayLine* overlay);
 	void Submit(SOverlaySprite* overlay);
 	void Submit(CModelDecal* decal);
+	void Submit(CParticleEmitter* emitter);
 	void SubmitNonRecursive(CModel* model);
 	//END: Implementation of SceneCollector
 
@@ -347,6 +351,8 @@ protected:
 	void RenderTransparentModels();
 
 	void RenderSilhouettes();
+
+	void RenderParticles();
 
 	// shadow rendering stuff
 	void RenderShadowMap();

@@ -42,12 +42,11 @@
 #include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
 #include "graphics/Camera.h"
-#include "graphics/DefaultEmitter.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
-#include "graphics/ParticleEngine.h"
+#include "graphics/ParticleManager.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/ShaderTechnique.h"
 #include "graphics/Terrain.h"
@@ -58,6 +57,7 @@
 #include "renderer/InstancingModelRenderer.h"
 #include "renderer/ModelRenderer.h"
 #include "renderer/OverlayRenderer.h"
+#include "renderer/ParticleRenderer.h"
 #include "renderer/PlayerRenderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/RenderPathVertexShader.h"
@@ -248,6 +248,12 @@ public:
 	/// Overlay renderer
 	OverlayRenderer overlayRenderer;
 
+	/// Particle manager
+	CParticleManager particleManager;
+
+	/// Particle renderer
+	ParticleRenderer particleRenderer;
+
 	/// Shadow map
 	ShadowMap* shadow;
 
@@ -327,8 +333,8 @@ public:
 	} Model;
 
 
-	CRendererInternals()
-	: IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats), textureManager(g_VFS, false, false)
+	CRendererInternals() :
+		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats), textureManager(g_VFS, false, false)
 	{
 		terrainRenderer = new TerrainRenderer();
 		shadow = new ShadowMap();
@@ -496,8 +502,6 @@ CRenderer::~CRenderer()
 	// general
 	delete m_VertexShader;
 	m_VertexShader = 0;
-
-	CParticleEngine::GetInstance()->Cleanup();
 
 	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
@@ -707,11 +711,6 @@ bool CRenderer::Open(int width, int height)
 	m->Model.ModTransparentLit = LitRenderModifierPtr(new LitTransparentRenderModifier);
 	m->Model.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
-
-	// Particle engine
-	CParticleEngine::GetInstance()->InitParticleSystem();
-// 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
-// 	CParticleEngine::GetInstance()->AddEmitter(pEmitter);
 
 	// Dimensions
 	m_Width = width;
@@ -1536,6 +1535,29 @@ void CRenderer::RenderSilhouettes()
 	}
 }
 
+void CRenderer::RenderParticles()
+{
+	// Only supported in shader modes
+	if (GetRenderPath() != RP_SHADER)
+		return;
+
+	PROFILE("render particles");
+
+	m->particleRenderer.RenderParticles();
+
+	if (m_ModelRenderMode == EDGED_FACES)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		glDisable(GL_TEXTURE_2D);
+		glColor3f(0.0f, 0.5f, 0.0f);
+
+		m->particleRenderer.RenderParticles(true);
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderSubmissions: force rendering of any batched objects
 void CRenderer::RenderSubmissions()
@@ -1565,6 +1587,10 @@ void CRenderer::RenderSubmissions()
 	PROFILE_START("prepare overlays");
 	m->overlayRenderer.PrepareForRendering();
 	PROFILE_END("prepare overlays");
+
+	PROFILE_START("prepare particles");
+	m->particleRenderer.PrepareForRendering();
+	PROFILE_END("prepare particles");
 
 	if (m_Caps.m_Shadows && m_Options.m_Shadows)
 	{
@@ -1634,15 +1660,15 @@ void CRenderer::RenderSubmissions()
 		// on all the time, so it might not be worth worrying about.
 	}
 
+	// particles are transparent so render after water
+	RenderParticles();
+	ogl_WarnIfError();
+
 	RenderSilhouettes();
 
 	// Clean up texture blend mode so particles and other things render OK 
 	// (really this should be cleaned up by whoever set it)
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-	// Particle Engine Rendering.
-	CParticleEngine::GetInstance()->RenderParticles();
-	ogl_WarnIfError();
 
 	// render debug lines
 	if (m_DisplayFrustum)
@@ -1668,6 +1694,7 @@ void CRenderer::EndFrame()
 	// empty lists
 	m->terrainRenderer->EndFrame();
 	m->overlayRenderer.EndFrame();
+	m->particleRenderer.EndFrame();
 
 	// Finish model renderers
 	m->Model.Normal->EndFrame();
@@ -1762,6 +1789,11 @@ void CRenderer::Submit(CModelDecal* decal)
 	m->terrainRenderer->Submit(decal);
 }
 
+void CRenderer::Submit(CParticleEmitter* emitter)
+{
+	m->particleRenderer.Submit(emitter);
+}
+
 void CRenderer::SubmitNonRecursive(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
@@ -1805,6 +1837,8 @@ void CRenderer::RenderScene(Scene *scene)
 	CFrustum frustum = m_CullCamera.GetFrustum();
 
 	scene->EnumerateObjects(frustum, this);
+
+	m->particleManager.RenderSubmit(*this, frustum);
 
 	ogl_WarnIfError();
 
@@ -2119,4 +2153,9 @@ CTextureManager& CRenderer::GetTextureManager()
 CShaderManager& CRenderer::GetShaderManager()
 {
 	return m->shaderManager;
+}
+
+CParticleManager& CRenderer::GetParticleManager()
+{
+	return m->particleManager;
 }

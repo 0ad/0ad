@@ -32,6 +32,7 @@ class CFrustum;
 class CModel;
 class CModelAbstract;
 class CModelDecal;
+class CParticleEmitter;
 class CPatch;
 struct SOverlayLine;
 struct SOverlaySprite;
@@ -88,6 +89,11 @@ public:
 	 * Submit a terrain decal.
 	 */
 	virtual void Submit(CModelDecal* decal) = 0;
+
+	/**
+	 * Submit a particle emitter.
+	 */
+	virtual void Submit(CParticleEmitter* emitter) = 0;
 
 	/**
 	 * Submit a model that is part of the scene,

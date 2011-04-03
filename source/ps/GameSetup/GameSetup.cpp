@@ -58,7 +58,6 @@
 #include "graphics/LightEnv.h"
 #include "graphics/MapReader.h"
 #include "graphics/MaterialManager.h"
-#include "graphics/ParticleEngine.h"
 #include "graphics/TerrainTextureManager.h"
 
 #include "renderer/Renderer.h"
@@ -237,11 +236,6 @@ void Render()
 	PROFILE_START("render gui");
 	if(g_DoRenderGui) g_GUI->Draw();
 	PROFILE_END("render gui");
-
-	ogl_WarnIfError();
-
-	// Particle Engine Updating
-	CParticleEngine::GetInstance()->UpdateEmitters();
 
 	ogl_WarnIfError();
 
