@@ -18,7 +18,7 @@
 #ifndef INCLUDED_PARTICLERENDERER
 #define INCLUDED_PARTICLERENDERER
 
-struct CParticleEmitter;
+class CParticleEmitter;
 
 struct ParticleRendererInternals;
 

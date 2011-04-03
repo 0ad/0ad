@@ -131,7 +131,7 @@ void CParticleEmitter::UpdateArrayData()
 void CParticleEmitter::Bind()
 {
 	m_Type->m_Texture->Bind();
-	glBlendEquation(m_Type->m_BlendEquation);
+	pglBlendEquationEXT(m_Type->m_BlendEquation);
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }
 
@@ -145,10 +145,10 @@ void CParticleEmitter::RenderArray()
 
 	// Pass the sin/cos axis components as texcoords for no particular reason
 	// other than that they fit. (Maybe this should be glVertexAttrib* instead?)
-	glClientActiveTexture(GL_TEXTURE1);
+	pglClientActiveTextureARB(GL_TEXTURE1);
 	glTexCoordPointer(2, GL_FLOAT, stride, base + m_AttributeAxis.offset);
 
-	glClientActiveTexture(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 	glTexCoordPointer(2, GL_FLOAT, stride, base + m_AttributeUV.offset);
 
 	glColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);

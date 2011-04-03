@@ -120,9 +120,9 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 	if (!solidColor)
 		glEnableClientState(GL_COLOR_ARRAY);
 
-	glClientActiveTexture(GL_TEXTURE1);
+	pglClientActiveTextureARB(GL_TEXTURE1);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glClientActiveTexture(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	for (size_t i = 0; i < m->emitters.size(); ++i)
@@ -133,15 +133,15 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 		emitter->RenderArray();
 	}
 
-	glBlendEquation(GL_FUNC_ADD);
+	pglBlendEquationEXT(GL_FUNC_ADD);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
 
-	glClientActiveTexture(GL_TEXTURE1);
+	pglClientActiveTextureARB(GL_TEXTURE1);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glClientActiveTexture(GL_TEXTURE0);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	glDisable(GL_BLEND);

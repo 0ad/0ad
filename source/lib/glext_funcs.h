@@ -72,6 +72,9 @@ FUNC2(void, glClientActiveTextureARB, glClientActiveTexture, "1.3", (int))
 // GL_EXT_blend_color / GL1.4 (optional in 1.2):
 FUNC2(void, glBlendColorEXT, glBlendColor, "1.4", (GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha))
 
+// GL_EXT_blend_minmax / GL1.4 (optional in 1.2):
+FUNC2(void, glBlendEquationEXT, glBlendEquation, "1.4", (GLenum mode))
+
 // GL_ARB_vertex_buffer_object / GL1.5:
 FUNC2(void, glBindBufferARB, glBindBuffer, "1.5", (int target, GLuint buffer))
 FUNC2(void, glDeleteBuffersARB, glDeleteBuffers, "1.5", (GLsizei n, const GLuint* buffers))

@@ -39,6 +39,7 @@ class IParticleVar;
  */
 class CParticleEmitterType
 {
+	NONCOPYABLE(CParticleEmitterType);	// reference member
 public:
 	CParticleEmitterType(const VfsPath& path, CParticleManager& manager);
 
