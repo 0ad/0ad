@@ -24,7 +24,7 @@
 #include "smbios.h"
 
 #include "lib/bits.h"
-#include "lib/byte_order.h"
+#include "lib/byte_order.h"	// FOURCC_BE
 #include "lib/module_init.h"
 
 #if OS_WIN
@@ -70,6 +70,8 @@ static LibError GetTable(wfirmware::Table& table)
 
 #endif	// OS_WIN
 
+
+//-----------------------------------------------------------------------------
 
 // pointers to the strings (if any) at the end of an SMBIOS structure
 typedef std::vector<const char*> Strings;
@@ -149,41 +151,44 @@ public:
 		}
 	}
 
-	template<>
-	void operator()<const char*>(size_t flags, const char*& t, const char* UNUSED(name), const char* UNUSED(units))
-	{
-		u8 number;
-		operator()(flags, number, 0, 0);
-		if(number == 0)
-		{
-			t = "(unspecified)";
-			return;
-		}
-
-		if(number > strings.size())
-		{
-			debug_printf(L"SMBIOS: invalid string number %d (count=%d)\n", number, strings.size());
-			t = "(unknown)";
-			return;
-		}
-
-		if(strings[number-1] == 0)
-		{
-			t = "(null)";
-			return;
-		}
-
-		// copy to stringStorage
-		strcpy(stringStoragePos, strings[number-1]);
-		t = stringStoragePos;
-		stringStoragePos += strlen(t)+1;
-	}
-
 private:
 	const u8* data;
 	const u8* end;
 	const Strings& strings;
 };
+
+
+// C++03 14.7.3(2): "An explicit specialization shall be declared [..] in the
+// namespace of which the enclosing class [..] is a member.
+template<>
+void FieldInitializer::operator()<const char*>(size_t flags, const char*& t, const char* UNUSED(name), const char* UNUSED(units))
+{
+	u8 number;
+	operator()(flags, number, 0, 0);
+	if(number == 0)
+	{
+		t = "(unspecified)";
+		return;
+	}
+
+	if(number > strings.size())
+	{
+		debug_printf(L"SMBIOS: invalid string number %d (count=%d)\n", number, strings.size());
+		t = "(unknown)";
+		return;
+	}
+
+	if(strings[number-1] == 0)
+	{
+		t = "(null)";
+		return;
+	}
+
+	// copy to stringStorage
+	strcpy(stringStoragePos, strings[number-1]);
+	t = stringStoragePos;
+	stringStoragePos += strlen(t)+1;
+}
 
 
 //-----------------------------------------------------------------------------
@@ -294,7 +299,8 @@ static LibError InitStructures()
 	// workaround for stupid AMIBIOS that repeats the first 8 bytes
 	if(memcmp(&table[0], &table[8], 8) == 0)
 	{
-		memmove(&table[8], &table[16], 8);
+		memmove(&table[8], &table[16], table.size()-8);
+		table.resize(table.size()-8);
 		table[1] += 8;	// the first length field is 8 bytes short, too
 	}
 
