@@ -70,4 +70,14 @@
 # define CONFIG2_WSDL 1
 #endif
 
+#ifndef CONFIG2_FILE_ENABLE_AIO
+// work around a bug introduced in Linux 2.6.38
+// (http://www.wildfiregames.com/forum/index.php?showtopic=14561&view=findpost&p=217710)
+# if OS_LINUX
+#  define CONFIG2_FILE_ENABLE_AIO 0
+# else
+#  define CONFIG2_FILE_ENABLE_AIO 1
+# endif
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG2

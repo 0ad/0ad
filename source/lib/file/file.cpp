@@ -27,6 +27,7 @@
 #include "precompiled.h"
 #include "lib/file/file.h"
 
+#include "lib/config2.h"
 #include "lib/sysdep/filesystem.h"	// O_*, S_*
 #include "lib/posix/posix_aio.h"
 #include "lib/file/common/file_stats.h"
@@ -94,8 +95,12 @@ LibError IO(int fd, wchar_t accessType, off_t ofs, u8* buf, size_t size)
 		return LibError_from_errno();
 
 	const size_t totalTransferred = (size_t)ret;
+#if CONFIG2_FILE_ENABLE_AIO
+	// we won't be called from Issue, i.e. size is always the exact
+	// value without padding and can be checked.
 	if(totalTransferred != size)
 		WARN_RETURN(ERR::IO);
+#endif
 
 	monitor.NotifyOfSuccess(FI_LOWIO, accessType, totalTransferred);
 	return INFO::OK;
@@ -110,16 +115,22 @@ LibError Issue(aiocb& req, int fd, wchar_t accessType, off_t alignedOfs, u8* ali
 	req.aio_fildes     = fd;
 	req.aio_offset     = alignedOfs;
 	req.aio_nbytes     = alignedSize;
+#if CONFIG2_FILE_ENABLE_AIO
 	struct sigevent* sig = 0;	// no notification signal
 	aiocb* const reqs = &req;
 	if(lio_listio(LIO_NOWAIT, &reqs, 1, sig) != 0)
 		return LibError_from_errno();
 	return INFO::OK;
+#else
+	// quick and dirty workaround (see CONFIG2_FILE_ENABLE_AIO)
+	return IO(fd, accessType, alignedOfs, alignedBuf, alignedSize);
+#endif
 }
 
 
 LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize)
 {
+#if CONFIG2_FILE_ENABLE_AIO
 	// wait for transfer to complete.
 	while(aio_error(&req) == EINPROGRESS)
 	{
@@ -131,8 +142,11 @@ LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize)
 	if(bytesTransferred == -1)	// transfer failed
 		WARN_RETURN(ERR::IO);
 
-	alignedBuf = (u8*)req.aio_buf;	// cast from volatile void*
 	alignedSize = bytesTransferred;
+#else
+	alignedSize = req.aio_nbytes;
+#endif
+	alignedBuf = (u8*)req.aio_buf;	// cast from volatile void*
 	return INFO::OK;
 }
 
