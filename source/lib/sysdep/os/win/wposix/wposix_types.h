@@ -63,10 +63,14 @@ typedef unsigned long long uint64_t;
 
 // use VC2010's declarations in stdint.h if available, else define them ourselves:
 #if MSC_VERSION < 1600
-# define INT16_MIN -32768
 # define INT16_MAX 32767
-# define UINT16_MIN 0u
+# define INT16_MIN (-INT16_MAX-1)
 # define UINT16_MAX 65536u
+# define UINT16_MIN 0u
+# define INT32_MAX 2147483647
+# define INT32_MIN (-INT32_MAX-1)
+# define UINT32_MAX 4294967295u
+# define UINT32_MIN 0u
 #endif
 
 
