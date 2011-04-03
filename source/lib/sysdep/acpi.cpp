@@ -23,6 +23,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/acpi.h"
 
+#include "lib/byte_order.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/module_init.h"
 
@@ -30,7 +31,7 @@
 #if ENABLE_MAHAF
 # include "lib/sysdep/os/win/mahaf.h"
 #else
-# include "lib/sysdep/os/win/wacpi.h"
+# include "lib/sysdep/os/win/wfirmware.h"
 #endif
 
 #pragma pack(1)
@@ -307,14 +308,15 @@ static void AllocateAndCopyTables(const AcpiTable**& tables, size_t& numTables)
 
 	DeallocateTable(rsdt);
 #else
-	const std::vector<u32> tableIDs = wacpi_TableIDs();
+	const wfirmware::Provider provider = FOURCC_BE('A','C','P','I');
+	const wfirmware::TableIds tableIDs = wfirmware::GetTableIDs(provider);
 
 	numTables = tableIDs.size();
 	tables = new const AcpiTable*[numTables];
 
 	for(size_t i = 0; i < numTables; i++)
 	{
-		std::vector<u8> table = wacpi_GetTable(tableIDs[i]);
+		wfirmware::Table table = wfirmware::GetTable(provider, tableIDs[i]);
 		debug_assert(!table.empty());
 		tables[i] = AllocateTable(table.size());
 		memcpy((void*)tables[i], &table[0], table.size());
