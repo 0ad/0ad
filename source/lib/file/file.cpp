@@ -131,11 +131,24 @@ LibError Issue(aiocb& req, int fd, wchar_t accessType, off_t alignedOfs, u8* ali
 LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize)
 {
 #if CONFIG2_FILE_ENABLE_AIO
-	// wait for transfer to complete.
-	while(aio_error(&req) == EINPROGRESS)
+	const int err = aio_error(&req);
+	if(err == EINPROGRESS)
 	{
+SUSPEND_AGAIN:
 		aiocb* const reqs = &req;
-		aio_suspend(&reqs, 1, (timespec*)0);	// wait indefinitely
+		errno = 0;
+		const int ret = aio_suspend(&reqs, 1, (timespec*)0);	// no timeout
+		if(ret != 0)
+		{
+			if(errno == EINTR) // interrupted by signal
+				goto SUSPEND_AGAIN;
+			return LibError_from_errno();
+		}
+	}
+	else if(err != 0)
+	{
+		errno = err;
+		return LibError_from_errno();
 	}
 
 	const ssize_t bytesTransferred = aio_return(&req);
