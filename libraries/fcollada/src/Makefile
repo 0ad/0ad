@@ -230,7 +230,7 @@ all: output_dirs output/libFColladaSD.a output/libFColladaSR.a install
 output_dirs:
 	bash -c 'mkdir -p output/{debug,release,test}/{FCollada/{FCDocument,FMath,FUtils,FColladaTest/{FCTestAssetManagement,FCTestExportImport,FCTestXRef}},FColladaPlugins/FArchiveXML}'
 
-test: output/FColladaTest
+test: FCollada/FColladaTest/ output/FColladaTest
 	( cd FCollada/FColladaTest/ ; ../../output/FColladaTest )
 	cat FCollada/FColladaTest/FColladaTestLog.txt
 
