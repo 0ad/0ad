@@ -37,21 +37,25 @@ namespace SMBIOS {
 	STRUCTURE(Processor, 4)\
 	/* MemoryController (5) and MemoryModule (6) are obsolete */\
 	STRUCTURE(Cache, 7)\
-	/* PortConnector (8) is optional */\
+	STRUCTURE(PortConnector, 8)\
 	STRUCTURE(SystemSlot, 9)\
-	/* OnBoardDevices (10) is obsolete */\
+	STRUCTURE(OnBoardDevices, 10)\
 	/* OemStrings (11), SystemConfiguration (12), BiosLanguage (13), GroupAssociations (14), SystemEventLog (15) are optional */\
 	STRUCTURE(MemoryArray, 16)\
 	STRUCTURE(MemoryDevice, 17)\
 	/* MemoryError32 (18) is optional */\
 	STRUCTURE(MemoryArrayMappedAddress, 19)\
 	STRUCTURE(MemoryDeviceMappedAddress, 20)\
-	/* PointingDevice (21), PortableBattery (22), SystemReset (23), HardwareSecurity (24) are optional */\
-	/* SystemPowerControls (25), VoltageProbe (26), CoolingDevice (27), TemperatureProbe (28) are optional */\
+	/* PointingDevice (21) is optional */\
+	STRUCTURE(PortableBattery, 22)\
+	/* SystemReset (23), HardwareSecurity (24), SystemPowerControls (25) are optional */\
+	STRUCTURE(VoltageProbe, 26)\
+	STRUCTURE(CoolingDevice, 27)\
+	STRUCTURE(TemperatureProbe, 28)\
 	/* ElectricalCurrentProbe (29), OutOfBandRemoteAccess (30), BootIntegrityServices (31) are optional */\
 	STRUCTURE(SystemBoot, 32)
-	/* MemoryError64 (33), ManagementDevice (34), ManagementDeviceComponent (35), ManagementDeviceThreshold (36) are optional */\
-	/* MemoryChannel (37), IpmiDevice (38), SystemPowerSupply (39), Additional (40), OnboardDevices2 (41) are optional */\
+	/* MemoryError64 (33), ManagementDevice (34), ManagementDeviceComponent (35), ManagementDeviceThreshold (36) are optional */
+	/* MemoryChannel (37), IpmiDevice (38), SystemPowerSupply (39), Additional (40), OnboardDevices2 (41) are optional */
 	/* ManagementControllerHostInterface (42) is optional */
 
 typedef u16 Handle;
@@ -233,10 +237,10 @@ enum ChassisSecurityStatus
 
 enum ProcessorType
 {
-	PT_CENTRAL = 3,
+	PT_CPU = 3,
 	PT_MATH,
 	PT_DSP,
-	PT_VIDEO
+	PT_GPU
 };
 
 enum ProcessorStatus
@@ -425,6 +429,99 @@ enum CacheAssociativity
 
 
 //-----------------------------------------------------------------------------
+// PortConnector
+
+enum PortConnectorType
+{
+	PCT_OTHER = 0xFF,
+	PCT_NONE = 0,
+	PCT_CENTRONICS,
+	PCT_MINI_CENTRONICS,
+	PCT_PROPRIETARY,
+	PCT_DB25_MALE,
+	PCT_DB25_PIN_FEMALE,
+	PCT_DB15_PIN_MALE,
+	PCT_DB15_PIN_FEMALE,
+	PCT_DB9_PIN_MALE,
+	PCT_DB9_PIN_FEMALE,
+	PCT_RJ11,
+	PCT_RJ45,
+	PCT_MINI_SCSI,
+	PCT_MINI_DIN,
+	PCT_MICRO_DIN,
+	PCT_PS2,
+	PCT_INFRARED,
+	PCT_HP_HIL,
+	PCT_ACCESS_BUS_USB,
+	PCT_SSA_SCSI,
+	PCT_DIN8_MALE,
+	PCT_DIN8_FEMALE,
+	PCT_ON_BOARD_IDE,
+	PCT_ON_BOARD_FLOPPY,
+	PCT_DUAL_INLINE_9,
+	PCT_DUAL_INLINE_25,
+	PCT_DUAL_INLINE_50 = 0x1A,
+	PCT_DUAL_INLINE_68,
+	PCT_ON_BOARD_SOUND_INPUT_FROM_CDROM,
+	PCT_MINI_CENTRONICS_14,
+	PCT_MINI_CENTRONICS_26,
+	PCT_HEADPHONES,
+	PCT_BNC,
+	PCT_1394,
+	PCT_SAS_SATA
+	/* PC-98 omitted */
+};
+
+enum PortType
+{
+	PT_OTHER = 0xFF,
+	PT_NONE = 0,
+	PT_PARALLEL_XT_AT,
+	PT_PARALLEL_PS2,
+	PT_PARALLEL_ECP,
+	PT_PARALLEL_EPP,
+	PT_PARALLEL_ECP_EPP,
+	PT_SERIAL_XT_AT,
+	PT_SERIAL_16450,
+	PT_SERIAL_16550,
+	PT_SERIAL_16550A,
+	PT_SCSI,
+	PT_MIDI,
+	PT_JOYSTICK,
+	PT_KEYBOARD,
+	PT_MOUSE,
+	PT_SSA_SCSI,
+	PT_USB,
+	PT_1394,
+	PT_PCMCIA_TYPE_I,
+	PT_PCMCIA_TYPE_II,
+	PT_PCMCIA_TYPE_III,
+	PT_CARDBUS,
+	PT_ACCESS_BUS,
+	PT_SCSI_II,
+	PT_SCSI_WIDE,
+	PT_PC98,
+	PT_PC98_HIRESO,
+	PT_PC_H98,
+	PT_VIDEO,
+	PT_AUDIO,
+	PT_MODEM,
+	PT_NETWORK,
+	PT_SATA,
+	PT_SAS,
+	PT_8251_COMPATIBLE = 0xA0,
+	PT_8251_FIFO_COMPATIBLE
+};
+
+#define PortConnector_FIELDS\
+	FIELD(0, const char*, internalDesignator, "")\
+	FIELD(F_ENUM, PortConnectorType, internalConnectorType, "")\
+	FIELD(0, const char*, externalDesignator, "")\
+	FIELD(F_ENUM, PortConnectorType, externalConnectorType, "")\
+	FIELD(F_ENUM, PortType, portType, "")
+
+
+//-----------------------------------------------------------------------------
 // SystemSlot
 
 enum SystemSlotType
@@ -522,6 +619,29 @@ enum SystemSlotCharacteristics2
 	FIELD(F_FLAGS, u8, characteristics2, "")\
 	FIELD(0, u8, busNumber, "")\
 	FIELD(0, u8, deviceAndFunctionNumbers, "")
+
+
+//-----------------------------------------------------------------------------
+// OnBoardDevices
+
+enum OnBoardDeviceType
+{
+	OBDT_OTHER = 1,
+	OBDT_VIDEO = 3,
+	OBDT_SCSI_CONTROLLER,
+	OBDT_ETHERNET,
+	OBDT_TOKEN_RING,
+	OBDT_SOUND,
+	OBDT_PATA_CONTROLLER,
+	OBDT_SATA_CONTROLLER,
+	OBDT_SAS_CONTROLLER
+};
+
+#define OnBoardDevices_FIELDS\
+	FIELD(F_ENUM, OnBoardDeviceType, type, "")\
+	FIELD(0, const char*, description, "")\
+	FIELD(F_DERIVED, u8, isEnabled, "")\
+	/* NB: this structure could contain any number of type/description pairs, but Dell BIOS only provides 1 */
 
 
 //-----------------------------------------------------------------------------
@@ -680,7 +800,137 @@ enum MemoryDeviceTypeFlags
 	FIELD(0, u64, endAddress, "")\
 
 
-//-----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+// PortableBattery
+
+enum PortableBatteryChemistry
+{
+	PBC_LEAD_ACID = 3,
+	PBC_NICKEL_CADMIUM,
+	PBC_NICKEL_METAL_HYDRIDE,
+	PBC_LITHIUM_ION,
+	PBC_ZINC_AIR,
+	PBC_LITHIUM_POLYMER
+};
+
+#define PortableBattery_FIELDS\
+	FIELD(0, const char*, location, "")\
+	FIELD(0, const char*, manufacturer, "")\
+	FIELD(0, const char*, date, "")\
+	FIELD(0, const char*, serialNumber, "")\
+	FIELD(0, const char*, deviceName, "")\
+	FIELD(F_ENUM, PortableBatteryChemistry, chemistry, "")\
+	FIELD(0, u16, capacity, " mWh")\
+	FIELD(0, u16, voltage, " mV")\
+	FIELD(0, const char*, sbdsVersion, "")\
+	FIELD(0, u8, maxError, "%")\
+	FIELD(0, u16, sbdsSerialNumber, "")\
+	FIELD(0, u16, sbdsDate, "")\
+	FIELD(0, const char*, sbdsChemistry, "")\
+	FIELD(0, u8, capacityMultiplier, "")\
+	FIELD(0, u32, oemSpecific, "")
+
+
+//----------------------------------------------------------------------------
+// VoltageProbe
+
+enum Status
+{
+	PS_OK = 3,
+	PS_NON_CRITICAL,
+	PS_CRITICAL,
+	PS_NON_RECOVERABLE
+};
+
+enum VoltageProbeLocation
+{
+	VPL_PROCESSOR = 3,
+	VPL_DISK,
+	VPL_PERIPHERAL_BAY,
+	VPL_SYSTEM_MANAGEMENT_MODULE,
+	VPL_MOTHERBOARD,
+	VPL_MEMORY_MODULE,
+	VPL_PROCESSOR_MODULE,
+	VPL_POWER_UNIT,
+	VPL_ADD_IN_CARD
+};
+
+#define VoltageProbe_FIELDS\
+	FIELD(0, const char*, description, "")\
+	FIELD(F_INTERNAL, u8, locationAndStatus, "")\
+	FIELD(0, u16, maxValue, " mV")\
+	FIELD(0, u16, minValue, " mV")\
+	FIELD(0, u16, resolution, " x 0.1 mV")\
+	FIELD(0, u16, tolerance, " mV")\
+	FIELD(0, u16, accuracy, " x 100 ppm")\
+	FIELD(0, u32, oemDefined, "")\
+	FIELD(0, u16, nominalValue, " dDegC")\
+	FIELD(F_DERIVED, VoltageProbeLocation, location, "")\
+	FIELD(F_DERIVED, Status, status, "")
+
+
+//----------------------------------------------------------------------------
+// CoolingDevice
+
+enum CoolingDeviceType
+{
+	CDT_FAN = 3,
+	CDT_CENTRIFUGAL_BLOWER,
+	CDT_CHIP_FAN,
+	CDT_CABINET_FAN,
+	CDT_POWER_SUPPLY_FAN,
+	CDT_HEAT_PIPE,
+	CDT_INTEGRATED_REFRIGERATION,
+	CDT_ACTIVE_COOLING = 0x10,
+	CDT_PASSIVE_COOLING
+};
+
+#define CoolingDevice_FIELDS\
+	FIELD(F_HANDLE, Handle, hTemperatureProbe, "")\
+	FIELD(F_INTERNAL, u8, typeAndStatus, "")\
+	FIELD(0, u8, group, "")\
+	FIELD(0, u32, oemDefined, "")\
+	FIELD(0, u16, nominalSpeed, " rpm")\
+	FIELD(0, const char*, description, "")\
+	FIELD(F_DERIVED, CoolingDeviceType, type, "")\
+	FIELD(F_DERIVED, Status, status, "")
+
+
+//----------------------------------------------------------------------------
+// TemperatureProbe
+
+enum TemperatureProbeLocation
+{
+	TPL_PROCESSOR = 3,
+	TPL_DISK,
+	TPL_PERIPHERAL_BAY,
+	TPL_SYSTEM_MANAGEMENT_MODULE,
+	TPL_MOTHERBOARD,
+	TPL_MEMORY_MODULE,
+	TPL_PROCESSOR_MODULE,
+	TPL_POWER_UNIT,
+	TPL_ADD_IN_CARD,
+	TPL_FRONT_PANEL_BOARD,
+	TPL_BACK_PANEL_BOARD,
+	TPL_POWER_SYSTEM_BOARD,
+	TPL_DRIVE_BACK_PLANE
+};
+
+#define TemperatureProbe_FIELDS\
+	FIELD(0, const char*, description, "")\
+	FIELD(F_INTERNAL, u8, locationAndStatus, "")\
+	FIELD(0, u16, maxValue, " dDegC")\
+	FIELD(0, u16, minValue, " dDegC")\
+	FIELD(0, u16, resolution, " mDegC")\
+	FIELD(0, u16, tolerance, " dDegC")\
+	FIELD(0, u16, accuracy, " x 100 ppm")\
+	FIELD(0, u32, oemDefined, "")\
+	FIELD(0, u16, nominalValue, " dDegC")\
+	FIELD(F_DERIVED, TemperatureProbeLocation, location, "")\
+	FIELD(F_DERIVED, Status, status, "")
+
+
+//----------------------------------------------------------------------------
 // SystemBoot
 
 enum SystemBootStatus

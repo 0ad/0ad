@@ -63,7 +63,7 @@ static LibError GetTable(wfirmware::Table& table)
 	};
 	const WmiHeader* wmiHeader = (const WmiHeader*)&table[0];
 	debug_assert(table.size() == sizeof(WmiHeader) + wmiHeader->length);
-	memmove(&table[0], &table[sizeof(WmiHeader)], sizeof(WmiHeader));
+	memmove(&table[0], &table[sizeof(WmiHeader)], table.size()-sizeof(WmiHeader));
 
 	return INFO::OK;
 }
@@ -128,7 +128,7 @@ class FieldInitializer
 public:
 	FieldInitializer(const Header* header, const Strings& strings)
 		: data((const u8*)(header+1))
-		, end(data + header->length)
+		, end((const u8*)header + header->length)
 		, strings(strings)
 	{
 	}
@@ -226,6 +226,13 @@ void Fixup<Cache>(Cache& p)
 }
 
 template<>
+void Fixup<OnBoardDevices>(OnBoardDevices& p)
+{
+	p.isEnabled = (p.type & 0x80) != 0;
+	p.type = (OnBoardDeviceType)(p.type & 0x7F);
+}
+
+template<>
 void Fixup<MemoryArray>(MemoryArray& p)
 {
 	if(p.maxCapacity32 != (u32)INT32_MIN)
@@ -257,6 +264,27 @@ void Fixup<MemoryDeviceMappedAddress>(MemoryDeviceMappedAddress& p)
 		p.startAddress = u64(p.startAddress32) * KiB;
 	if(p.endAddress32 != UINT32_MAX)
 		p.endAddress = u64(p.endAddress32) * KiB;
+}
+
+template<>
+void Fixup<VoltageProbe>(VoltageProbe& p)
+{
+	p.location = (VoltageProbeLocation)bits(p.locationAndStatus, 0, 4);
+	p.status = (Status)bits(p.locationAndStatus, 5, 7);
+}
+
+template<>
+void Fixup<CoolingDevice>(CoolingDevice& p)
+{
+	p.type = (CoolingDeviceType)bits(p.typeAndStatus, 0, 4);
+	p.status = (Status)bits(p.typeAndStatus, 5, 7);
+}
+
+template<>
+void Fixup<TemperatureProbe>(TemperatureProbe& p)
+{
+	p.location = (TemperatureProbeLocation)bits(p.locationAndStatus, 0, 4);
+	p.status = (Status)bits(p.locationAndStatus, 5, 7);
 }
 
 
@@ -296,14 +324,6 @@ static LibError InitStructures()
 	return ERR::NOT_IMPLEMENTED;
 #endif
 
-	// workaround for stupid AMIBIOS that repeats the first 8 bytes
-	if(memcmp(&table[0], &table[8], 8) == 0)
-	{
-		memmove(&table[8], &table[16], table.size()-8);
-		table.resize(table.size()-8);
-		table[1] += 8;	// the first length field is 8 bytes short, too
-	}
-
 	// (instead of counting the total string size, just use the
 	// SMBIOS size - typically 1-2 KB - as an upper bound.) 
 	stringStoragePos = stringStorage = (char*)calloc(table.size(), sizeof(char));	// freed in Cleanup
@@ -334,7 +354,8 @@ static LibError InitStructures()
 			return INFO::OK;
 
 		default:
-			debug_printf(L"SMBIOS: unknown structure type %d\n", header->id);
+			if(32 < header->id && header->id < 128)	// only mention non-proprietary structures of which we are not aware
+				debug_printf(L"SMBIOS: unknown structure type %d\n", header->id);
 			break;
 		}
 
