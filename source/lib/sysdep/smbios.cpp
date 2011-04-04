@@ -201,10 +201,29 @@ void Fixup(Structure& UNUSED(structure))
 }
 
 template<>
+void Fixup<Bios>(Bios& p)
+{
+	p.size = u64(p.encodedSize+1) * 64*KiB;
+}
+
+template<>
 void Fixup<Processor>(Processor& p)
 {
-	// clear "populated" bit that interferes with the interpretation of ProcessorStatus
-	p.status = (ProcessorStatus)(p.status & ~0x40);
+	p.isPopulated = (p.status & 0x40) != 0;
+	p.status = (ProcessorStatus)bits((size_t)p.status, 0, 2);
+
+	if(p.voltage & 0x80)
+		p.voltage &= ~0x80;
+	else
+	{
+		// (arbitrarily) report the lowest supported value
+		if(IsBitSet(p.voltage, 0))
+			p.voltage = 50;
+		if(IsBitSet(p.voltage, 1))
+			p.voltage = 33;
+		if(IsBitSet(p.voltage, 2))
+			p.voltage = 29;
+	}
 }
 
 template<>
@@ -229,7 +248,7 @@ template<>
 void Fixup<OnBoardDevices>(OnBoardDevices& p)
 {
 	p.isEnabled = (p.type & 0x80) != 0;
-	p.type = (OnBoardDeviceType)(p.type & 0x7F);
+	p.type = (OnBoardDeviceType)(p.type & ~0x80);
 }
 
 template<>
@@ -291,7 +310,7 @@ void Fixup<TemperatureProbe>(TemperatureProbe& p)
 //-----------------------------------------------------------------------------
 
 template<class Structure>
-void InitStructure(Structure*& listHead, const Header* header, const Strings& strings)
+void AddStructure(const Header* header, const Strings& strings, Structure*& listHead)
 {
 	Structure* const p = (Structure*)calloc(1, sizeof(Structure));	// freed in Cleanup
 	p->header = *header;
@@ -334,8 +353,15 @@ static LibError InitStructures()
 
 	const Header* header = (const Header*)&table[0];
 	const Header* const end = (const Header*)(&table[0] + table.size());
-	while(header+1 <= end)
+	for(;;)
 	{
+		if(header+1 > end)
+		{
+			debug_printf(L"SMBIOS: table not terminated\n");
+			break;
+		}
+		if(header->id == 127)	// end
+			break;
 		if(header->length < sizeof(Header))
 			WARN_RETURN(ERR::_3);
 
@@ -344,17 +370,12 @@ static LibError InitStructures()
 
 		switch(header->id)
 		{
-#define STRUCTURE(name, id) case id: InitStructure(structures.name##_, header, strings); break;
+#define STRUCTURE(name, id) case id: AddStructure(header, strings, structures.name##_); break;
 			STRUCTURES
 #undef STRUCTURE
 
-		case 126:	// inactive
-			break;
-		case 127:	// end
-			return INFO::OK;
-
 		default:
-			if(32 < header->id && header->id < 128)	// only mention non-proprietary structures of which we are not aware
+			if(32 < header->id && header->id < 126)	// only mention non-proprietary structures of which we are not aware
 				debug_printf(L"SMBIOS: unknown structure type %d\n", header->id);
 			break;
 		}
@@ -362,7 +383,6 @@ static LibError InitStructures()
 		header = next;
 	}
 
-	debug_printf(L"SMBIOS: table not terminated\n");
 	return INFO::OK;
 }
 
@@ -374,6 +394,87 @@ const Structures* GetStructures()
 	if(ret != INFO::OK)
 		return 0;
 	return &structures;
+}
+
+
+//-----------------------------------------------------------------------------
+
+class FieldStringizer
+{
+	NONCOPYABLE(FieldStringizer);	// reference member
+public:
+	FieldStringizer(std::stringstream& ss)
+		: ss(ss)
+	{
+	}
+
+	template<typename T>
+	void operator()(size_t flags, T& t, const char* name, const char* units)
+	{
+		if(flags & F_INTERNAL)
+			return;
+
+		ss << name << ": ";
+		if(flags & (F_HEX|F_FLAGS))
+			ss << std::hex << std::uppercase;
+		else
+			ss << std::dec;
+
+		if(flags & F_HANDLE)
+		{
+			if(u64(t) == 0xFFFE || u64(t) == 0xFFFF)
+				ss << "(N/A)";
+			else
+				ss << t;
+		}
+		else if(flags & F_SIZE)
+		{
+			u64 value = (u64)t;
+			if(value > GiB)
+				ss << value/GiB << " GiB";
+			else if(value > MiB)
+				ss << value/MiB << " MiB";
+			else if(value > KiB)
+				ss << value/KiB << " KiB";
+			else
+				ss << value << " bytes";
+		}
+		else if(sizeof(t) == 1)
+			ss << (unsigned)t;
+		else
+			ss << t;
+
+		ss << units << "\n";
+	}
+
+private:
+	std::stringstream& ss;
+};
+
+
+template<class Structure>
+void StringizeStructure(const char* name, Structure* p, std::stringstream& ss)
+{
+	for(; p; p = p->next)
+	{
+		ss << "\n[" << name << "]\n";
+		FieldStringizer fieldStringizer(ss);
+		VisitFields(*p, fieldStringizer);
+	}
+}
+
+
+std::string StringizeStructures(const Structures* structures)
+{
+	if(!structures)
+		return "(null)";
+
+	std::stringstream ss;
+#define STRUCTURE(name, id) StringizeStructure(#name, structures->name##_, ss);
+	STRUCTURES
+#undef STRUCTURE
+
+	return ss.str();
 }
 
 }	// namespace SMBIOS

@@ -76,11 +76,16 @@ enum FieldFlags
 	// will display the enumerators)
 	F_ENUM     = 0x04,
 
-	// a collection of bit flags and should be displayed as such.
+	// a collection of bit flags.
 	F_FLAGS    = 0x08,
 
 	// an SMBIOS Handle (allows nicer display of `unknown' handles).
-	F_HANDLE   = 0x10
+	F_HANDLE   = 0x10,
+
+	// a number that should be displayed in hexadecimal form.
+	F_HEX      = 0x20,
+
+	F_SIZE     = 0x40
 };
 
 #if MSC_VERSION
@@ -94,11 +99,12 @@ enum FieldFlags
 #define Bios_FIELDS\
 	FIELD(0, const char*, vendor, "")\
 	FIELD(0, const char*, version, "")\
-	FIELD(0, u16, startSegment, "")\
+	FIELD(F_HEX, u16, startSegment, "")\
 	FIELD(0, const char*, releaseDate, "")\
-	FIELD(0, u8, size, " +1*64KB")\
-	FIELD(0, u64, characteristics, "")\
-	/* omit subsequent fields because we can't handle the variable-length characteristics extension */
+	FIELD(F_INTERNAL, u8, encodedSize, "")\
+	FIELD(F_HEX, u64, characteristics, "")\
+	/* omit subsequent fields because we can't handle the variable-length characteristics extension */\
+	FIELD(F_DERIVED|F_SIZE, u64, size, "")
 
 
 //-----------------------------------------------------------------------------
@@ -119,8 +125,8 @@ enum SystemWakeUpType
 	FIELD(0, const char*, productName, "")\
 	FIELD(0, const char*, version, "")\
 	FIELD(0, const char*, serialNumber, "")\
-	FIELD(0, u64, uuid0, "")\
-	FIELD(0, u64, uuid1, "")\
+	FIELD(F_HEX, u64, uuid0, "")\
+	FIELD(F_HEX, u64, uuid1, "")\
 	FIELD(F_ENUM, SystemWakeUpType, wakeUpType, "")\
 	FIELD(0, const char*, skuNumber, "")\
 	FIELD(0, const char*, family, "")
@@ -228,7 +234,7 @@ enum ChassisSecurityStatus
 	FIELD(F_ENUM, ChassisSecurityStatus, securityStatus, "")\
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, u8, height, "U")\
-	FIELD(0, u8, numPowerCords, "U")\
+	FIELD(0, u8, numPowerCords, "")\
 	/* omit subsequent fields because we can't handle the variable-length contained objects */
 
 
@@ -299,13 +305,6 @@ enum ProcessorUpgrade
 	PU_SOCKET_FM2
 };
 
-enum ProcessorVoltage	// bitfield
-{
-	PV_5   = 1,
-	PV_3_3 = 2,
-	PV_2_9 = 4
-};
-
 enum ProcessorCharacteristics // bitfield
 {
 	PC_UNKNOWN                 = 0x2,
@@ -322,12 +321,12 @@ enum ProcessorCharacteristics // bitfield
 	FIELD(F_ENUM, ProcessorType, type, "")\
 	FIELD(0, u8, family, "") /* we don't bother providing enumerators for > 200 families */\
 	FIELD(0, const char*, manufacturer, "")\
-	FIELD(0, u64, id, "")\
+	FIELD(F_HEX, u64, id, "")\
 	FIELD(0, const char*, version, "")\
-	FIELD(F_FLAGS, u8, voltage, "")\
-	FIELD(0, u16, externalClockFrequency, " Mhz")\
-	FIELD(0, u16, maxFrequency, " Mhz")\
-	FIELD(0, u16, bootFrequency, " Mhz")\
+	FIELD(0, u8, voltage, " dV")\
+	FIELD(0, u16, externalClockFrequency, " MHz")\
+	FIELD(0, u16, maxFrequency, " MHz")\
+	FIELD(0, u16, bootFrequency, " MHz")\
 	FIELD(F_ENUM, ProcessorStatus, status, "")\
 	FIELD(F_ENUM, ProcessorUpgrade, upgrade, "")\
 	FIELD(F_HANDLE, Handle, hL1, "")\
@@ -340,7 +339,8 @@ enum ProcessorCharacteristics // bitfield
 	FIELD(0, u8, enabledCores, "")\
 	FIELD(0, u8, logicalPerPackage, "")\
 	FIELD(F_FLAGS, u16, characteristics, "")\
-	FIELD(0, u16, family2, "")
+	FIELD(0, u16, family2, "")\
+	FIELD(F_DERIVED, u8, isPopulated, "")
 
 
 //-----------------------------------------------------------------------------
@@ -424,8 +424,8 @@ enum CacheAssociativity
 	FIELD(F_DERIVED, size_t, level, "") /* 1..8 */\
 	FIELD(F_DERIVED|F_ENUM, CacheLocation, location, "")\
 	FIELD(F_DERIVED|F_ENUM, CacheMode, mode, "")\
-	FIELD(F_DERIVED, size_t, maxSize, " bytes")\
-	FIELD(F_DERIVED, size_t, installedSize, " bytes")
+	FIELD(F_DERIVED|F_SIZE, size_t, maxSize, "")\
+	FIELD(F_DERIVED|F_SIZE, size_t, installedSize, "")
 
 
 //-----------------------------------------------------------------------------
@@ -685,7 +685,7 @@ enum MemoryArrayECC
 	FIELD(F_INTERNAL, u32, maxCapacity32, "")\
 	FIELD(F_HANDLE, Handle, hError, "")\
 	FIELD(0, u16, numDevices, "")\
-	FIELD(0, u64, maxCapacity, " bytes")
+	FIELD(F_SIZE, u64, maxCapacity, "")
 
 
 //-----------------------------------------------------------------------------
@@ -770,7 +770,7 @@ enum MemoryDeviceTypeFlags
 	FIELD(F_FLAGS, u8, attributes, "")\
 	FIELD(F_INTERNAL, u32, size32, "")\
 	FIELD(0, u16, configuredSpeed, " MHz")\
-	FIELD(F_DERIVED, u64, size, " bytes")
+	FIELD(F_DERIVED|F_SIZE, u64, size, "")
 
 
 //-----------------------------------------------------------------------------
@@ -781,8 +781,8 @@ enum MemoryDeviceTypeFlags
 	FIELD(F_INTERNAL, u32, endAddress32, " bits")\
 	FIELD(F_HANDLE, Handle, hMemoryArray, "")\
 	FIELD(0, u8, partitionWidth, "")\
-	FIELD(0, u64, startAddress, "")\
-	FIELD(0, u64, endAddress, "")\
+	FIELD(F_HEX, u64, startAddress, "")\
+	FIELD(F_HEX, u64, endAddress, "")\
 
 
 //-----------------------------------------------------------------------------
@@ -796,8 +796,8 @@ enum MemoryDeviceTypeFlags
 	FIELD(0, u8, partitionRowPosition, "")\
 	FIELD(0, u8, interleavePosition, "")\
 	FIELD(0, u8, interleavedDataDepth, "")\
-	FIELD(0, u64, startAddress, "")\
-	FIELD(0, u64, endAddress, "")\
+	FIELD(F_HEX, u64, startAddress, "")\
+	FIELD(F_HEX, u64, endAddress, "")\
 
 
 //----------------------------------------------------------------------------
@@ -864,7 +864,7 @@ enum VoltageProbeLocation
 	FIELD(0, u16, tolerance, " mV")\
 	FIELD(0, u16, accuracy, " x 100 ppm")\
 	FIELD(0, u32, oemDefined, "")\
-	FIELD(0, u16, nominalValue, " dDegC")\
+	FIELD(0, u16, nominalValue, " mv")\
 	FIELD(F_DERIVED, VoltageProbeLocation, location, "")\
 	FIELD(F_DERIVED, Status, status, "")
 
@@ -919,13 +919,13 @@ enum TemperatureProbeLocation
 #define TemperatureProbe_FIELDS\
 	FIELD(0, const char*, description, "")\
 	FIELD(F_INTERNAL, u8, locationAndStatus, "")\
-	FIELD(0, u16, maxValue, " dDegC")\
-	FIELD(0, u16, minValue, " dDegC")\
+	FIELD(0, i16, maxValue, " dDegC")\
+	FIELD(0, i16, minValue, " dDegC")\
 	FIELD(0, u16, resolution, " mDegC")\
 	FIELD(0, u16, tolerance, " dDegC")\
 	FIELD(0, u16, accuracy, " x 100 ppm")\
 	FIELD(0, u32, oemDefined, "")\
-	FIELD(0, u16, nominalValue, " dDegC")\
+	FIELD(0, i16, nominalValue, " dDegC")\
 	FIELD(F_DERIVED, TemperatureProbeLocation, location, "")\
 	FIELD(F_DERIVED, Status, status, "")
 
@@ -989,6 +989,7 @@ STRUCTURES
 #undef FIELD
 
 LIB_API const Structures* GetStructures();
+LIB_API std::string StringizeStructures(const Structures*);
 
 }	// namespace SMBIOS
 
