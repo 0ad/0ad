@@ -121,6 +121,14 @@ static void Cleanup()
 }
 
 
+// define function templates that invoke a Visitor for each of a structure's fields
+#define FIELD(flags, type, name, units) visitor(flags, p.name, #name, units);
+#define STRUCTURE(name, id) template<class Visitor> void VisitFields(name& p, Visitor& visitor) { name##_FIELDS }
+STRUCTURES
+#undef STRUCTURE
+#undef FIELD
+
+
 // initialize each of a structure's fields by copying from the SMBIOS data
 class FieldInitializer
 {
@@ -399,6 +407,29 @@ const Structures* GetStructures()
 
 //-----------------------------------------------------------------------------
 
+template<class Enum>
+static inline const char* EnumeratorFromValue(Enum UNUSED(value))
+{
+	return 0;
+}
+
+// define specializations of EnumeratorFromValue
+#define ENUM(enumerator, value) case value: return #enumerator;
+#define ENUMERATION(name)\
+	template<>\
+	static inline const char* EnumeratorFromValue<name>(name value)\
+	{\
+		switch(value)\
+		{\
+			name##_ENUMERATORS \
+			default: return 0;\
+		}\
+	}
+ENUMERATIONS
+#undef ENUMERATION
+#undef ENUM
+
+
 class FieldStringizer
 {
 	NONCOPYABLE(FieldStringizer);	// reference member
@@ -427,6 +458,14 @@ public:
 			else
 				ss << t;
 		}
+		else if(flags & F_ENUM)
+		{
+			const char* name = EnumeratorFromValue(t);
+			if(name)
+				ss << name;
+			else
+				ss << t;
+		}
 		else if(flags & F_SIZE)
 		{
 			u64 value = (u64)t;
@@ -439,7 +478,7 @@ public:
 			else
 				ss << value << " bytes";
 		}
-		else if(sizeof(t) == 1)
+		else if(sizeof(t) == 1)	// avoid printing as a character
 			ss << (unsigned)t;
 		else
 			ss << t;

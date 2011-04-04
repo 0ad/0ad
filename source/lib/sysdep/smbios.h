@@ -27,7 +27,7 @@ namespace SMBIOS {
 
 // to introduce another structure:
 // 1) add its name and ID here
-// 2) add a <name>_FIELDS macro defining its fields
+// 2) define a <name>_FIELDS macro specifying its fields
 // 3) (optional) add a specialization of Fixup
 #define STRUCTURES\
 	STRUCTURE(Bios, 0)\
@@ -58,7 +58,21 @@ namespace SMBIOS {
 	/* MemoryChannel (37), IpmiDevice (38), SystemPowerSupply (39), Additional (40), OnboardDevices2 (41) are optional */
 	/* ManagementControllerHostInterface (42) is optional */
 
-typedef u16 Handle;
+// to introduce another enumeration:
+// 1) add its name here
+// 2) define a <name>_ENUMERATORS macro specifying its enumerators
+#define ENUMERATIONS\
+	ENUMERATION(Status)\
+	ENUMERATION(SystemWakeUpType)\
+	ENUMERATION(BaseboardFlags)\
+	ENUMERATION(BaseboardType)\
+	ENUMERATION(ChassisType)\
+	ENUMERATION(ChassisSecurityStatus)\
+	ENUMERATION(ProcessorType)\
+	ENUMERATION(ProcessorStatus)\
+	ENUMERATION(ProcessorUpgrade)\
+	ENUMERATION(ProcessorFlags)
+
 
 // indicates a field (:= member of a structure) is:
 enum FieldFlags
@@ -88,9 +102,15 @@ enum FieldFlags
 	F_SIZE     = 0x40
 };
 
-#if MSC_VERSION
-# pragma pack(push, 1)
-#endif
+
+#pragma pack(push, 1)
+
+// shared by several structures
+#define Status_ENUMERATORS\
+	ENUM(STATUS_OK, 3)\
+	ENUM(STATUS_NON_CRITICAL, 4)\
+	ENUM(STATUS_CRITICAL, 5)\
+	ENUM(STATUS_NON_RECOVERABLE, 6)
 
 
 //-----------------------------------------------------------------------------
@@ -110,15 +130,13 @@ enum FieldFlags
 //-----------------------------------------------------------------------------
 // System
 
-enum SystemWakeUpType
-{
-	SWT_APM_TIMER = 3,
-	SWT_MODEM_RING,
-	SWT_LAN_REMOTE,
-	SWT_POWER_SWITCH,
-	SWT_PCI_PME,
-	SWT_AC_POWER_RESTORED
-};
+#define SystemWakeUpType_ENUMERATORS\
+	ENUM(SWT_APM_TIMER, 3)\
+	ENUM(SWT_MODEM_RING, 4)\
+	ENUM(SWT_LAN_REMOTE, 5)\
+	ENUM(SWT_POWER_SWITCH, 6)\
+	ENUM(SWT_PCI_PME, 7)\
+	ENUM(SWT_AC_POWER_RESTORED, 8)
 
 #define System_FIELDS\
 	FIELD(0, const char*, manufacturer, "")\
@@ -135,29 +153,25 @@ enum SystemWakeUpType
 //-----------------------------------------------------------------------------
 // Baseboard
 
-enum BaseboardFlags
-{
-	BB_IS_MOTHERBOARD    = 0x01,
-	BB_REQUIRES_DAUGHTER = 0x02,
-	BB_IS_REMOVEABLE     = 0x04,
-	BB_IS_REPLACEABLE    = 0x08,
-	BB_IS_HOT_SWAPPABLE  = 0x10
-};
+#define BaseboardFlags_ENUMERATORS\
+	ENUM(BF_IS_MOTHERBOARD, 0x01)\
+	ENUM(BF_REQUIRES_DAUGHTER, 0x02)\
+	ENUM(BF_IS_REMOVEABLE, 0x04)\
+	ENUM(BF_IS_REPLACEABLE, 0x08)\
+	ENUM(BF_IS_HOT_SWAPPABLE, 0x10)
 
-enum BaseboardType
-{
-	BB_BLADE = 3,
-	BB_SWITCH,
-	BB_SYSTEM_MANAGEMENT,
-	BB_PROCESSOR,
-	BB_IO,
-	BB_MEMORY,
-	BB_DAUGHTER,
-	BB_MOTHERBOARD,
-	BB_PROCESSOR_MEMORY,
-	BB_PROCESSOR_IO,
-	BB_INTERCONNECT,
-};
+#define BaseboardType_ENUMERATORS\
+	ENUM(BT_BLADE, 3)\
+	ENUM(BT_SWITCH, 4)\
+	ENUM(BT_SYSTEM_MANAGEMENT, 5)\
+	ENUM(BT_PROCESSOR, 6)\
+	ENUM(BT_IO, 7)\
+	ENUM(BT_MEMORY, 8)\
+	ENUM(BT_DAUGHTER, 9)\
+	ENUM(BT_MOTHERBOARD, 10)\
+	ENUM(BT_PROCESSOR_MEMORY, 11)\
+	ENUM(BT_PROCESSOR_IO, 12)\
+	ENUM(BT_INTERCONNECT, 13)
 
 #define Baseboard_FIELDS\
 	FIELD(0, const char*, manufacturer, "")\
@@ -175,52 +189,39 @@ enum BaseboardType
 //-----------------------------------------------------------------------------
 // Chassis
 
-enum ChassisType
-{
-	CT_DESKTOP = 3,
-	CT_LOW_PROFILE_DESKTOP,
-	CT_PIZZA_BOX,
-	CT_MINI_TOWER,
-	CT_TOWER,
-	CT_PORTABLE,
-	CT_LAPTOP,
-	CT_NOTEBOOK,
-	CT_HANDHELD,
-	CT_DOCKING_STATION,
-	CT_ALL_IN_ONE,
-	CT_SUBNOTEBOOK,
-	CT_SPACE_SAVING,
-	CT_LUNCHBOX,
-	CT_MAIN_SERVER,
-	CT_EXPANSION,
-	CT_SUB,
-	CT_BUS_EXPANSION,
-	CT_PERIPHERAL,
-	CT_RAID,
-	CT_RACK_MOUNT,
-	CT_SEALED_CASE,
-	CT_MULTI_SYSTEM,
-	CT_COMPACT_PCI,
-	CT_ADVANCED_TCA,
-	CT_BLADE,
-	CT_BLADE_ENCLOSURE
+#define ChassisType_ENUMERATORS\
+	ENUM(CT_DESKTOP, 3)\
+	ENUM(CT_LOW_PROFILE_DESKTOP, 4)\
+	ENUM(CT_PIZZA_BOX, 5)\
+	ENUM(CT_MINI_TOWER, 6)\
+	ENUM(CT_TOWER, 7)\
+	ENUM(CT_PORTABLE, 8)\
+	ENUM(CT_LAPTOP, 9)\
+	ENUM(CT_NOTEBOOK, 10)\
+	ENUM(CT_HANDHELD, 11)\
+	ENUM(CT_DOCKING_STATION, 12)\
+	ENUM(CT_ALL_IN_ONE, 13)\
+	ENUM(CT_SUBNOTEBOOK, 14)\
+	ENUM(CT_SPACE_SAVING, 15)\
+	ENUM(CT_LUNCHBOX, 16)\
+	ENUM(CT_MAIN_SERVER, 17)\
+	ENUM(CT_EXPANSION, 18)\
+	ENUM(CT_SUB, 19)\
+	ENUM(CT_BUS_EXPANSION, 20)\
+	ENUM(CT_PERIPHERAL, 21)\
+	ENUM(CT_RAID, 22)\
+	ENUM(CT_RACK_MOUNT, 23)\
+	ENUM(CT_SEALED_CASE, 24)\
+	ENUM(CT_MULTI_SYSTEM, 25)\
+	ENUM(CT_COMPACT_PCI, 26)\
+	ENUM(CT_ADVANCED_TCA, 27)\
+	ENUM(CT_BLADE, 28)\
+	ENUM(CT_BLADE_ENCLOSURE, 29)
 
-};
-
-enum ChassisState
-{
-	CS_SAFE = 3,
-	CS_WARNING,
-	CS_CRITICAL,
-	CS_NON_RECOVERABLE
-};
-
-enum ChassisSecurityStatus
-{
-	CSS_NONE = 3,
-	CSS_EXTERNAL_INTERFACE_LOCKED,
-	CSS_EXTERNAL_INTERFACE_ENABLED
-};
+#define ChassisSecurityStatus_ENUMERATORS\
+	ENUM(CSS_NONE, 3)\
+	ENUM(CSS_EXTERNAL_INTERFACE_LOCKED, 4)\
+	ENUM(CSS_EXTERNAL_INTERFACE_ENABLED, 5)
 
 #define Chassis_FIELDS\
 	FIELD(0, const char*, manufacturer, "")\
@@ -228,9 +229,9 @@ enum ChassisSecurityStatus
 	FIELD(0, const char*, version, "")\
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(0, const char*, assetTag, "")\
-	FIELD(F_ENUM, ChassisState, state, "")\
-	FIELD(F_ENUM, ChassisState, powerState, "")\
-	FIELD(F_ENUM, ChassisState, thermalState, "")\
+	FIELD(F_ENUM, Status, state, "")\
+	FIELD(F_ENUM, Status, powerState, "")\
+	FIELD(F_ENUM, Status, thermalState, "")\
 	FIELD(F_ENUM, ChassisSecurityStatus, securityStatus, "")\
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, u8, height, "U")\
@@ -241,80 +242,70 @@ enum ChassisSecurityStatus
 //-----------------------------------------------------------------------------
 // Processor
 
-enum ProcessorType
-{
-	PT_CPU = 3,
-	PT_MATH,
-	PT_DSP,
-	PT_GPU
-};
+#define ProcessorType_ENUMERATORS\
+	ENUM(PT_CPU, 3)\
+	ENUM(PT_MATH, 4)\
+	ENUM(PT_DSP, 5)\
+	ENUM(PT_GPU, 6)
 
-enum ProcessorStatus
-{
-	PS_UNKNOWN = 0,
-	PS_ENABLED,
-	PS_USER_DISABLED,
-	PS_POST_DISABLED,
-	PS_CPU_IDLE,
-	PS_OTHER = 7,
+#define ProcessorStatus_ENUMERATORS\
+	ENUM(PS_UNKNOWN, 0)\
+	ENUM(PS_ENABLED, 1)\
+	ENUM(PS_USER_DISABLED, 2)\
+	ENUM(PS_POST_DISABLED, 3)\
+	ENUM(PS_CPU_IDLE, 4)\
+	ENUM(PS_OTHER, 7)
 
-	// NB: we mask off 0x40 ("populated") for convenience
-};
+#define ProcessorUpgrade_ENUMERATORS\
+	ENUM(PU_DAUGHTER, 3)\
+	ENUM(PU_ZIF, 4)\
+	ENUM(PU_PIGGYBACK, 5)\
+	ENUM(PU_NONE, 6)\
+	ENUM(PU_LIF, 7)\
+	ENUM(PU_SLOT_1, 8)\
+	ENUM(PU_SLOT_2, 9)\
+	ENUM(PU_SOCKET_370, 10)\
+	ENUM(PU_SLOT_A, 11)\
+	ENUM(PU_SLOT_M, 12)\
+	ENUM(PU_SOCKET_423, 13)\
+	ENUM(PU_SOCKET_A, 14)\
+	ENUM(PU_SOCKET_478, 15)\
+	ENUM(PU_SOCKET_754, 16)\
+	ENUM(PU_SOCKET_940, 17)\
+	ENUM(PU_SOCKET_939, 18)\
+	ENUM(PU_SOCKET_604, 19)\
+	ENUM(PU_SOCKET_771, 20)\
+	ENUM(PU_SOCKET_775, 21)\
+	ENUM(PU_SOCKET_S1, 22)\
+	ENUM(PU_SOCKET_AM2, 23)\
+	ENUM(PU_SOCKET_1207, 24)\
+	ENUM(PU_SOCKET_1366, 25)\
+	ENUM(PU_SOCKET_G34, 26)\
+	ENUM(PU_SOCKET_AM3, 27)\
+	ENUM(PU_SOCKET_C32, 28)\
+	ENUM(PU_SOCKET_1156, 29)\
+	ENUM(PU_SOCKET_1567, 30)\
+	ENUM(PU_SOCKET_988A, 31)\
+	ENUM(PU_SOCKET_1288, 32)\
+	ENUM(PU_SOCKET_988B, 33)\
+	ENUM(PU_SOCKET_1023, 34)\
+	ENUM(PU_SOCKET_1224, 35)\
+	ENUM(PU_SOCKET_1155, 36)\
+	ENUM(PU_SOCKET_1356, 37)\
+	ENUM(PU_SOCKET_2011, 38)\
+	ENUM(PU_SOCKET_FS1, 39)\
+	ENUM(PU_SOCKET_FS2, 40)\
+	ENUM(PU_SOCKET_FM1, 41)\
+	ENUM(PU_SOCKET_FM2, 42)
 
-enum ProcessorUpgrade
-{
-	PU_DAUGHTER = 3,
-	PU_ZIF,
-	PU_PIGGYBACK,
-	PU_NONE,
-	PU_LIF,
-	PU_SLOT_1,
-	PU_SLOT_2,
-	PU_SOCKET_370,
-	PU_SLOT_A,
-	PU_SLOT_M,
-	PU_SOCKET_423,
-	PU_SOCKET_A,
-	PU_SOCKET_478,
-	PU_SOCKET_754,
-	PU_SOCKET_940,
-	PU_SOCKET_939,
-	PU_SOCKET_604,
-	PU_SOCKET_771,
-	PU_SOCKET_775,
-	PU_SOCKET_S1,
-	PU_SOCKET_AM2,
-	PU_SOCKET_1207,
-	PU_SOCKET_1366,
-	PU_SOCKET_G34,
-	PU_SOCKET_AM3,
-	PU_SOCKET_C32,
-	PU_SOCKET_1156,
-	PU_SOCKET_1567,
-	PU_SOCKET_988A,
-	PU_SOCKET_1288,
-	PU_SOCKET_988B,
-	PU_SOCKET_1023,
-	PU_SOCKET_1224,
-	PU_SOCKET_1155,
-	PU_SOCKET_1356,
-	PU_SOCKET_2011,
-	PU_SOCKET_FS1,
-	PU_SOCKET_FS2,
-	PU_SOCKET_FM1,
-	PU_SOCKET_FM2
-};
-
-enum ProcessorCharacteristics // bitfield
-{
-	PC_UNKNOWN                 = 0x2,
-	PC_64_BIT                  = 0x4,
-	PC_MULTI_CORE              = 0x8,	// (indicates cores are present; they might be disabled)
-	PC_HARDWARE_THREAD         = 0x10, 
-	PC_EXECUTE_PROTECTION      = 0x20,
-	PC_ENHANCED_VIRTUALIZATION = 0x40,
-	PC_POWER_CONTROL           = 0x80
-};
+#define ProcessorFlags_ENUMERATORS\
+	ENUM(PF_UNKNOWN, 0x2)\
+	ENUM(PF_64_BIT, 0x4)\
+	ENUM(PF_MULTI_CORE, 0x8)/* indicates cores are present, but they might be disabled*/\
+	ENUM(PF_HARDWARE_THREAD, 0x10)\
+	ENUM(PF_EXECUTE_PROTECTION, 0x20)\
+	ENUM(PF_ENHANCED_VIRTUALIZATION, 0x40)\
+	ENUM(PF_POWER_CONTROL, 0x80)
 
 #define Processor_FIELDS\
 	FIELD(0, const char*, socket, "")\
@@ -782,7 +773,7 @@ enum MemoryDeviceTypeFlags
 	FIELD(F_HANDLE, Handle, hMemoryArray, "")\
 	FIELD(0, u8, partitionWidth, "")\
 	FIELD(F_HEX, u64, startAddress, "")\
-	FIELD(F_HEX, u64, endAddress, "")\
+	FIELD(F_HEX, u64, endAddress, "")
 
 
 //-----------------------------------------------------------------------------
@@ -797,7 +788,7 @@ enum MemoryDeviceTypeFlags
 	FIELD(0, u8, interleavePosition, "")\
 	FIELD(0, u8, interleavedDataDepth, "")\
 	FIELD(F_HEX, u64, startAddress, "")\
-	FIELD(F_HEX, u64, endAddress, "")\
+	FIELD(F_HEX, u64, endAddress, "")
 
 
 //----------------------------------------------------------------------------
@@ -833,14 +824,6 @@ enum PortableBatteryChemistry
 
 //----------------------------------------------------------------------------
 // VoltageProbe
-
-enum Status
-{
-	PS_OK = 3,
-	PS_NON_CRITICAL,
-	PS_CRITICAL,
-	PS_NON_RECOVERABLE
-};
 
 enum VoltageProbeLocation
 {
@@ -950,10 +933,12 @@ enum SystemBootStatus
 	FIELD(F_INTERNAL, u32, reserved32, "")\
 	FIELD(F_INTERNAL, u16, reserved16, "")\
 	FIELD(F_HANDLE, Handle, hError, "")\
-	FIELD(0, u16, totalWidth, " bits")\
+	FIELD(0, u16, totalWidth, " bits")
 
 
 //-----------------------------------------------------------------------------
+
+typedef u16 Handle;
 
 struct Header
 {
@@ -961,6 +946,13 @@ struct Header
 	u8 length;
 	Handle handle;
 };
+
+// define each enumeration
+#define ENUM(enumerator, value) enumerator = value,
+#define ENUMERATION(name) enum name { name##_ENUMERATORS };
+ENUMERATIONS
+#undef ENUMERATION
+#undef ENUM
 
 // declare each structure
 #define FIELD(flags, type, name, units) type name;
@@ -977,16 +969,7 @@ struct Structures
 #undef STRUCTURE
 };
 
-#if MSC_VERSION
-# pragma pack(pop)
-#endif
-
-// define function templates that invoke a Visitor for each of a structure's fields
-#define FIELD(flags, type, name, units) visitor(flags, p.name, #name, units);
-#define STRUCTURE(name, id) template<class Visitor> void VisitFields(name& p, Visitor& visitor) { name##_FIELDS }
-STRUCTURES
-#undef STRUCTURE
-#undef FIELD
+#pragma pack(pop)
 
 LIB_API const Structures* GetStructures();
 LIB_API std::string StringizeStructures(const Structures*);
