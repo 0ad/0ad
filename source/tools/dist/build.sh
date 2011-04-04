@@ -11,10 +11,10 @@ SVNWC=~/0ad/public-trunk/
 SVNREV=`svnversion -n ${SVNWC}`
 PREFIX=0ad-r0${SVNREV}-alpha
 
-SEVENZOPTS="-mmt -mx=9"
-XZOPTS="-9"
+XZOPTS="-9 -e"
 BZ2OPTS="-9"
 GZIPOPTS="-9"
+GZIP7ZOPTS="-mx=9"
 
 # Export files with appropriate line-endings
 rm -rf export-unix
@@ -47,8 +47,10 @@ xz -kv ${XZOPTS} $PREFIX-unix-build.tar
 xz -kv ${XZOPTS} $PREFIX-unix-data.tar
 #bzip2 -kp ${BZ2OPTS} $PREFIX-unix-build.tar
 #bzip2 -kp ${BZ2OPTS} $PREFIX-unix-data.tar
-gzip -cv ${GZIPOPTS} $PREFIX-unix-build.tar > $PREFIX-unix-build.tar.gz
-gzip -cv ${GZIPOPTS} $PREFIX-unix-data.tar > $PREFIX-unix-data.tar.gz
+#gzip -cv ${GZIPOPTS} $PREFIX-unix-build.tar > $PREFIX-unix-build.tar.gz
+#gzip -cv ${GZIPOPTS} $PREFIX-unix-data.tar > $PREFIX-unix-data.tar.gz
+7z a ${GZIP7ZOPTS} $PREFIX-unix-build.tar.gz $PREFIX-unix-build.tar
+7z a ${GZIP7ZOPTS} $PREFIX-unix-data.tar.gz $PREFIX-unix-data.tar
 
 # Create Windows installer
 wine ~/.wine/drive_c/Program\ Files/NSIS/makensis.exe /nocd /dcheckoutpath=export-win32 /drevision=${SVNREV} export-win32/source/tools/dist/0ad.nsi
