@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+			<authoring_tool>Blender v:249 - Illusoft Collada Exporter v:0.3.153</authoring_tool>
+			<comments></comments>
+			<copyright></copyright>
+			<source_data>file://j:/Amish's%20Stuuf/campfire.blend</source_data>
+		</contributor>
+		<created>2011-04-04T13:00:21.263000</created>
+		<modified>2011-04-04T13:00:21.263000</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="decal_campfire_png-fx" name="decal_campfire_png-fx">
+			<profile_COMMON>
+				<newparam sid="decal_campfire_png-surface">
+					<surface type="2D">
+						<init_from>decal_campfire_png-img</init_from>
+						<format>A8R8G8B8</format>
+					</surface>
+				</newparam>
+				<newparam sid="decal_campfire_png-sampler">
+					<sampler2D>
+						<source>decal_campfire_png-surface</source>
+						<minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+						<maxfilter>LINEAR</maxfilter>
+					</sampler2D>
+				</newparam>
+				<technique sid="blender">
+					<lambert>
+						<diffuse>
+							<texture texcoord="CHANNEL1" texture="decal_campfire_png-sampler"/>
+						</diffuse>
+					</lambert>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_images>
+		<image id="decal_campfire_png-img" name="decal_campfire_png-img">
+			<init_from>j:\0ad\binaries\data\mods\public\art\textures\skins\props\decal_campfire.png</init_from>
+		</image>
+	</library_images>
+	<library_materials>
+		<material id="decal_campfire_png" name="decal_campfire_png">
+			<instance_effect url="#decal_campfire_png-fx"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="Plane-Geometry" name="Plane-Geometry">
+			<mesh>
+				<source id="Plane-Geometry-Position">
+					<float_array count="12" id="Plane-Geometry-Position-array">1.00000 1.00000 0.00000 1.00000 -1.00000 0.00000 -1.00000 -1.00000 0.00000 -1.00000 1.00000 0.00000</float_array>
+					<technique_common>
+						<accessor count="4" source="#Plane-Geometry-Position-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Plane-Geometry-Normals">
+					<float_array count="3" id="Plane-Geometry-Normals-array">0.00000 -0.00000 1.00000</float_array>
+					<technique_common>
+						<accessor count="1" source="#Plane-Geometry-Normals-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Plane-Geometry-UV">
+					<float_array count="12" id="Plane-Geometry-UV-array">0.00000 0.00000 1.00000 0.00000 1.00000 1.00000 1.00000 1.00000 0.00000 1.00000 0.00000 0.00000</float_array>
+					<technique_common>
+						<accessor count="6" source="#Plane-Geometry-UV-array" stride="2">
+							<param type="float" name="S"></param>
+							<param type="float" name="T"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="Plane-Geometry-Vertex">
+					<input semantic="POSITION" source="#Plane-Geometry-Position"/>
+				</vertices>
+				<triangles count="2" material="decal_campfire_png">
+					<input offset="0" semantic="VERTEX" source="#Plane-Geometry-Vertex"/>
+					<input offset="1" semantic="NORMAL" source="#Plane-Geometry-Normals"/>
+					<input offset="2" semantic="TEXCOORD" source="#Plane-Geometry-UV"/>
+					<p>0 0 0 3 0 1 2 0 2 2 0 3 1 0 4 0 0 5</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="Scene" name="Scene">
+			<node layer="L1" id="Plane" name="Plane">
+				<translate sid="translate">0.00000 0.00000 0.08202</translate>
+				<rotate sid="rotateZ">0 0 1 0.00000</rotate>
+				<rotate sid="rotateY">0 1 0 -0.00000</rotate>
+				<rotate sid="rotateX">1 0 0 0.00000</rotate>
+				<scale sid="scale">2.83870 2.83870 2.83870</scale>
+				<instance_geometry url="#Plane-Geometry">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="decal_campfire_png" target="#decal_campfire_png">
+								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
+							</instance_material>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#Scene"/>
+	</scene>
+</COLLADA>

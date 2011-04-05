@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="Base1">
+      <mesh>props/special/campfire.dae</mesh>
+      <props>
+        <prop actor="particle/smoke.xml" attachpoint="root"/>
+        <prop actor="particle/flame.xml" attachpoint="root"/>
+        <prop actor="props/special/campfire_decal.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/celt_struct.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
