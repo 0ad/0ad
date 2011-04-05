@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="rock">
       <mesh>props/onager_projectile.dae</mesh>
+      <props>
+        <prop actor="particle/flame.xml" attachpoint="root"/>
+      </props>
       <texture>gaia/stone_temperate_granite.dds</texture>
     </variant>
   </group>
-
 </actor>
