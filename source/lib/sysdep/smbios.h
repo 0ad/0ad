@@ -999,7 +999,7 @@ struct Header
 		name(): value((Enum)0) {}\
 		name(size_t num): value((Enum)num) {}\
 		/* (the existence of this member type indicates the field is an enum) */\
-		enum Enum { name##_ENUMERATORS } value;\
+		enum Enum { name##_ENUMERATORS sentinel } value;\
 		/* (allows generic Field comparison against numeric_limits) */\
 		operator size_t() const { return value; }\
 	};

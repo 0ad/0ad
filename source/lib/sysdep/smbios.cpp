@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "smbios.h"
+#include "lib/sysdep/smbios.h"
 
 #include "lib/bits.h"
 #include "lib/byte_order.h"	// FOURCC_BE
@@ -161,7 +161,7 @@ public:
 			return;
 		}
 
-		Read(field);	// SFINAE
+		Read(field, 0);	// SFINAE
 	}
 
 private:
@@ -177,7 +177,7 @@ private:
 	// construct from SMBIOS representations that don't match the
 	// actual type (e.g. enum)
 	template<typename Field>
-	void Read(Field& field, typename Field::T* = 0)
+	void Read(Field& field, typename Field::T*)
 	{
 		field = Field(ReadValue<typename Field::T>());
 	}
@@ -497,7 +497,7 @@ public:
 		if(flags & F_INTERNAL)
 			return;
 
-		Write(flags, field, name, units);	// SFINAE
+		Write(flags, field, name, units, 0);	// SFINAE
 	}
 
 	// special case for sizes [bytes]
@@ -559,7 +559,7 @@ private:
 
 	// enumerations and bit flags
 	template<typename Field>
-	void Write(size_t UNUSED(flags), Field& field, const char* name, const char* units, typename Field::Enum* = 0)
+	void Write(size_t UNUSED(flags), Field& field, const char* name, const char* units, typename Field::Enum*)
 	{
 		// 0 usually means "not included in structure", but some packed
 		// enumerations actually use that value. therefore, only skip this

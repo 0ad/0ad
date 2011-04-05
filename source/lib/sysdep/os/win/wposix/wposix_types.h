@@ -61,8 +61,9 @@ typedef unsigned long long uint64_t;
 // however, it's not necessary with VC7 and later, and the compiler's
 // definition squelches 'pointer-to-int truncation' warnings, so don't.
 
-// use VC2010's declarations in stdint.h if available, else define them ourselves:
-#if MSC_VERSION < 1600
+#if MSC_VERSION >= 1600
+# include <cstdint>
+#else // define them ourselves
 # define INT16_MAX 32767
 # define INT16_MIN (-INT16_MAX-1)
 # define UINT16_MAX 65536u

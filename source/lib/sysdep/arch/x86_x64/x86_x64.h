@@ -27,6 +27,8 @@
 #ifndef INCLUDED_X86_X64
 #define INCLUDED_X86_X64
 
+#include "lib/lib_api.h"
+
 #if !ARCH_X86_X64
 #error "including x86_x64.h without ARCH_X86_X64=1"
 #endif
