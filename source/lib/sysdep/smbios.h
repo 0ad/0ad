@@ -25,6 +25,49 @@
 
 namespace SMBIOS {
 
+// to introduce another enumeration:
+// 1) add its name here
+// 2) define a <name>_ENUMERATORS macro specifying its enumerators
+//    (prefer lower case to avoid conflicts with macros)
+#define ENUMERATIONS\
+	ENUMERATION(Status)\
+	ENUMERATION(ECC)\
+	ENUMERATION(SystemWakeUpType)\
+	ENUMERATION(BaseboardFlags)\
+	ENUMERATION(BaseboardType)\
+	ENUMERATION(ChassisType)\
+	ENUMERATION(ChassisSecurityStatus)\
+	ENUMERATION(ProcessorType)\
+	ENUMERATION(ProcessorStatus)\
+	ENUMERATION(ProcessorUpgrade)\
+	ENUMERATION(ProcessorFlags)\
+	ENUMERATION(CacheMode)\
+	ENUMERATION(CacheLocation)\
+	ENUMERATION(CacheConfigurationFlags)\
+	ENUMERATION(CacheFlags)\
+	ENUMERATION(CacheType)\
+	ENUMERATION(CacheAssociativity)\
+	ENUMERATION(PortConnectorType)\
+	ENUMERATION(PortType)\
+	ENUMERATION(SystemSlotType)\
+	ENUMERATION(SystemSlotBusWidth)\
+	ENUMERATION(SystemSlotUsage)\
+	ENUMERATION(SystemSlotLength)\
+	ENUMERATION(SystemSlotFlags1)\
+	ENUMERATION(SystemSlotFlags2)\
+	ENUMERATION(OnBoardDeviceType)\
+	ENUMERATION(MemoryArrayLocation)\
+	ENUMERATION(MemoryArrayUse)\
+	ENUMERATION(MemoryDeviceFormFactor)\
+	ENUMERATION(MemoryDeviceType)\
+	ENUMERATION(MemoryDeviceTypeFlags)\
+	ENUMERATION(PortableBatteryChemistry)\
+	ENUMERATION(VoltageProbeLocation)\
+	ENUMERATION(CoolingDeviceType)\
+	ENUMERATION(TemperatureProbeLocation)\
+	ENUMERATION(SystemBootStatus)
+
+
 // to introduce another structure:
 // 1) add its name and ID here
 // 2) define a <name>_FIELDS macro specifying its fields
@@ -58,21 +101,6 @@ namespace SMBIOS {
 	/* MemoryChannel (37), IpmiDevice (38), SystemPowerSupply (39), Additional (40), OnboardDevices2 (41) are optional */
 	/* ManagementControllerHostInterface (42) is optional */
 
-// to introduce another enumeration:
-// 1) add its name here
-// 2) define a <name>_ENUMERATORS macro specifying its enumerators
-#define ENUMERATIONS\
-	ENUMERATION(Status)\
-	ENUMERATION(SystemWakeUpType)\
-	ENUMERATION(BaseboardFlags)\
-	ENUMERATION(BaseboardType)\
-	ENUMERATION(ChassisType)\
-	ENUMERATION(ChassisSecurityStatus)\
-	ENUMERATION(ProcessorType)\
-	ENUMERATION(ProcessorStatus)\
-	ENUMERATION(ProcessorUpgrade)\
-	ENUMERATION(ProcessorFlags)
-
 
 // indicates a field (:= member of a structure) is:
 enum FieldFlags
@@ -93,9 +121,6 @@ enum FieldFlags
 	// a collection of bit flags.
 	F_FLAGS    = 0x08,
 
-	// an SMBIOS Handle (allows nicer display of `unknown' handles).
-	F_HANDLE   = 0x10,
-
 	// a number that should be displayed in hexadecimal form.
 	F_HEX      = 0x20,
 
@@ -107,10 +132,21 @@ enum FieldFlags
 
 // shared by several structures
 #define Status_ENUMERATORS\
-	ENUM(STATUS_OK, 3)\
-	ENUM(STATUS_NON_CRITICAL, 4)\
-	ENUM(STATUS_CRITICAL, 5)\
-	ENUM(STATUS_NON_RECOVERABLE, 6)
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(ok, 3)\
+	ENUM(noncritical, 4)\
+	ENUM(critical, 5)\
+	ENUM(nonrecoverable, 6)
+
+#define ECC_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(none, 3)\
+	ENUM(parity, 4)\
+	ENUM(single_bit, 5)\
+	ENUM(multiple_bit, 6)\
+	ENUM(crc, 7)
 
 
 //-----------------------------------------------------------------------------
@@ -131,12 +167,14 @@ enum FieldFlags
 // System
 
 #define SystemWakeUpType_ENUMERATORS\
-	ENUM(SWT_APM_TIMER, 3)\
-	ENUM(SWT_MODEM_RING, 4)\
-	ENUM(SWT_LAN_REMOTE, 5)\
-	ENUM(SWT_POWER_SWITCH, 6)\
-	ENUM(SWT_PCI_PME, 7)\
-	ENUM(SWT_AC_POWER_RESTORED, 8)
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(apm_timer, 3)\
+	ENUM(modem_ring, 4)\
+	ENUM(lan_remote, 5)\
+	ENUM(power_switch, 6)\
+	ENUM(pci_pme, 7)\
+	ENUM(ac_power_restored, 8)
 
 #define System_FIELDS\
 	FIELD(0, const char*, manufacturer, "")\
@@ -154,24 +192,26 @@ enum FieldFlags
 // Baseboard
 
 #define BaseboardFlags_ENUMERATORS\
-	ENUM(BF_IS_MOTHERBOARD, 0x01)\
-	ENUM(BF_REQUIRES_DAUGHTER, 0x02)\
-	ENUM(BF_IS_REMOVEABLE, 0x04)\
-	ENUM(BF_IS_REPLACEABLE, 0x08)\
-	ENUM(BF_IS_HOT_SWAPPABLE, 0x10)
+	ENUM(motherboard, 0x01)\
+	ENUM(requires_add_in, 0x02)\
+	ENUM(removeable, 0x04)\
+	ENUM(replaceable, 0x08)\
+	ENUM(hot_swappable, 0x10)
 
 #define BaseboardType_ENUMERATORS\
-	ENUM(BT_BLADE, 3)\
-	ENUM(BT_SWITCH, 4)\
-	ENUM(BT_SYSTEM_MANAGEMENT, 5)\
-	ENUM(BT_PROCESSOR, 6)\
-	ENUM(BT_IO, 7)\
-	ENUM(BT_MEMORY, 8)\
-	ENUM(BT_DAUGHTER, 9)\
-	ENUM(BT_MOTHERBOARD, 10)\
-	ENUM(BT_PROCESSOR_MEMORY, 11)\
-	ENUM(BT_PROCESSOR_IO, 12)\
-	ENUM(BT_INTERCONNECT, 13)
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(blade, 3)\
+	ENUM(connectivity_switch, 4)\
+	ENUM(system_management, 5)\
+	ENUM(processor, 6)\
+	ENUM(io, 7)\
+	ENUM(memory, 8)\
+	ENUM(daughter, 9)\
+	ENUM(motherboard, 10)\
+	ENUM(processor_memory, 11)\
+	ENUM(processor_io, 12)\
+	ENUM(interconnect, 13)
 
 #define Baseboard_FIELDS\
 	FIELD(0, const char*, manufacturer, "")\
@@ -181,7 +221,7 @@ enum FieldFlags
 	FIELD(0, const char*, assetTag, "")\
 	FIELD(F_FLAGS, u8, flags, "")\
 	FIELD(0, const char*, location, "")\
-	FIELD(F_HANDLE, Handle, hChassis, "")\
+	FIELD(0, Handle, hChassis, "")\
 	FIELD(F_ENUM, BaseboardType, type, "")\
 	/* omit subsequent fields because we can't handle the variable-length contained objects */
 
@@ -190,38 +230,42 @@ enum FieldFlags
 // Chassis
 
 #define ChassisType_ENUMERATORS\
-	ENUM(CT_DESKTOP, 3)\
-	ENUM(CT_LOW_PROFILE_DESKTOP, 4)\
-	ENUM(CT_PIZZA_BOX, 5)\
-	ENUM(CT_MINI_TOWER, 6)\
-	ENUM(CT_TOWER, 7)\
-	ENUM(CT_PORTABLE, 8)\
-	ENUM(CT_LAPTOP, 9)\
-	ENUM(CT_NOTEBOOK, 10)\
-	ENUM(CT_HANDHELD, 11)\
-	ENUM(CT_DOCKING_STATION, 12)\
-	ENUM(CT_ALL_IN_ONE, 13)\
-	ENUM(CT_SUBNOTEBOOK, 14)\
-	ENUM(CT_SPACE_SAVING, 15)\
-	ENUM(CT_LUNCHBOX, 16)\
-	ENUM(CT_MAIN_SERVER, 17)\
-	ENUM(CT_EXPANSION, 18)\
-	ENUM(CT_SUB, 19)\
-	ENUM(CT_BUS_EXPANSION, 20)\
-	ENUM(CT_PERIPHERAL, 21)\
-	ENUM(CT_RAID, 22)\
-	ENUM(CT_RACK_MOUNT, 23)\
-	ENUM(CT_SEALED_CASE, 24)\
-	ENUM(CT_MULTI_SYSTEM, 25)\
-	ENUM(CT_COMPACT_PCI, 26)\
-	ENUM(CT_ADVANCED_TCA, 27)\
-	ENUM(CT_BLADE, 28)\
-	ENUM(CT_BLADE_ENCLOSURE, 29)
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(desktop, 3)\
+	ENUM(low_profile_desktop, 4)\
+	ENUM(pizza_box, 5)\
+	ENUM(mini_tower, 6)\
+	ENUM(tower, 7)\
+	ENUM(portable, 8)\
+	ENUM(laptop, 9)\
+	ENUM(notebook, 10)\
+	ENUM(handheld, 11)\
+	ENUM(docking_station, 12)\
+	ENUM(all_in_one, 13)\
+	ENUM(subnotebook, 14)\
+	ENUM(space_saving, 15)\
+	ENUM(lunchbox, 16)\
+	ENUM(main_server, 17)\
+	ENUM(expansion, 18)\
+	ENUM(sub, 19)\
+	ENUM(bus_expansion, 20)\
+	ENUM(peripheral, 21)\
+	ENUM(raid, 22)\
+	ENUM(rack_mount, 23)\
+	ENUM(sealed_case, 24)\
+	ENUM(multi_system, 25)\
+	ENUM(compact_pci, 26)\
+	ENUM(advanced_tca, 27)\
+	ENUM(blade, 28)\
+	ENUM(blade_enclosure, 29)
 
 #define ChassisSecurityStatus_ENUMERATORS\
-	ENUM(CSS_NONE, 3)\
-	ENUM(CSS_EXTERNAL_INTERFACE_LOCKED, 4)\
-	ENUM(CSS_EXTERNAL_INTERFACE_ENABLED, 5)
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(none, 3)\
+	ENUM(external_interface_locked, 4)\
+	ENUM(external_interface_enabled, 5)
 
 #define Chassis_FIELDS\
 	FIELD(0, const char*, manufacturer, "")\
@@ -243,69 +287,73 @@ enum FieldFlags
 // Processor
 
 #define ProcessorType_ENUMERATORS\
-	ENUM(PT_CPU, 3)\
-	ENUM(PT_MATH, 4)\
-	ENUM(PT_DSP, 5)\
-	ENUM(PT_GPU, 6)
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(CPU, 3)\
+	ENUM(FPU, 4)\
+	ENUM(DSP, 5)\
+	ENUM(GPU, 6)
 
 #define ProcessorStatus_ENUMERATORS\
-	ENUM(PS_UNKNOWN, 0)\
-	ENUM(PS_ENABLED, 1)\
-	ENUM(PS_USER_DISABLED, 2)\
-	ENUM(PS_POST_DISABLED, 3)\
-	ENUM(PS_CPU_IDLE, 4)\
-	ENUM(PS_OTHER, 7)
+	ENUM(unknown, 0)\
+	ENUM(other, 7)\
+	ENUM(enabled, 1)\
+	ENUM(user_disabled, 2)\
+	ENUM(post_disabled, 3)\
+	ENUM(cpu_idle, 4)
 
 #define ProcessorUpgrade_ENUMERATORS\
-	ENUM(PU_DAUGHTER, 3)\
-	ENUM(PU_ZIF, 4)\
-	ENUM(PU_PIGGYBACK, 5)\
-	ENUM(PU_NONE, 6)\
-	ENUM(PU_LIF, 7)\
-	ENUM(PU_SLOT_1, 8)\
-	ENUM(PU_SLOT_2, 9)\
-	ENUM(PU_SOCKET_370, 10)\
-	ENUM(PU_SLOT_A, 11)\
-	ENUM(PU_SLOT_M, 12)\
-	ENUM(PU_SOCKET_423, 13)\
-	ENUM(PU_SOCKET_A, 14)\
-	ENUM(PU_SOCKET_478, 15)\
-	ENUM(PU_SOCKET_754, 16)\
-	ENUM(PU_SOCKET_940, 17)\
-	ENUM(PU_SOCKET_939, 18)\
-	ENUM(PU_SOCKET_604, 19)\
-	ENUM(PU_SOCKET_771, 20)\
-	ENUM(PU_SOCKET_775, 21)\
-	ENUM(PU_SOCKET_S1, 22)\
-	ENUM(PU_SOCKET_AM2, 23)\
-	ENUM(PU_SOCKET_1207, 24)\
-	ENUM(PU_SOCKET_1366, 25)\
-	ENUM(PU_SOCKET_G34, 26)\
-	ENUM(PU_SOCKET_AM3, 27)\
-	ENUM(PU_SOCKET_C32, 28)\
-	ENUM(PU_SOCKET_1156, 29)\
-	ENUM(PU_SOCKET_1567, 30)\
-	ENUM(PU_SOCKET_988A, 31)\
-	ENUM(PU_SOCKET_1288, 32)\
-	ENUM(PU_SOCKET_988B, 33)\
-	ENUM(PU_SOCKET_1023, 34)\
-	ENUM(PU_SOCKET_1224, 35)\
-	ENUM(PU_SOCKET_1155, 36)\
-	ENUM(PU_SOCKET_1356, 37)\
-	ENUM(PU_SOCKET_2011, 38)\
-	ENUM(PU_SOCKET_FS1, 39)\
-	ENUM(PU_SOCKET_FS2, 40)\
-	ENUM(PU_SOCKET_FM1, 41)\
-	ENUM(PU_SOCKET_FM2, 42)
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(daughter, 3)\
+	ENUM(zif, 4)\
+	ENUM(piggyback, 5)\
+	ENUM(none, 6)\
+	ENUM(lif, 7)\
+	ENUM(slot_1, 8)\
+	ENUM(slot_2, 9)\
+	ENUM(socket_370, 10)\
+	ENUM(slot_a, 11)\
+	ENUM(slot_m, 12)\
+	ENUM(socket_423, 13)\
+	ENUM(socket_a, 14)\
+	ENUM(socket_478, 15)\
+	ENUM(socket_754, 16)\
+	ENUM(socket_940, 17)\
+	ENUM(socket_939, 18)\
+	ENUM(socket_604, 19)\
+	ENUM(socket_771, 20)\
+	ENUM(socket_775, 21)\
+	ENUM(socket_s1, 22)\
+	ENUM(socket_am2, 23)\
+	ENUM(socket_1207, 24)\
+	ENUM(socket_1366, 25)\
+	ENUM(socket_g34, 26)\
+	ENUM(socket_am3, 27)\
+	ENUM(socket_c32, 28)\
+	ENUM(socket_1156, 29)\
+	ENUM(socket_1567, 30)\
+	ENUM(socket_988a, 31)\
+	ENUM(socket_1288, 32)\
+	ENUM(socket_988b, 33)\
+	ENUM(socket_1023, 34)\
+	ENUM(socket_1224, 35)\
+	ENUM(socket_1155, 36)\
+	ENUM(socket_1356, 37)\
+	ENUM(socket_2011, 38)\
+	ENUM(socket_fs1, 39)\
+	ENUM(socket_fs2, 40)\
+	ENUM(socket_fm1, 41)\
+	ENUM(socket_fm2, 42)
 
 #define ProcessorFlags_ENUMERATORS\
-	ENUM(PF_UNKNOWN, 0x2)\
-	ENUM(PF_64_BIT, 0x4)\
-	ENUM(PF_MULTI_CORE, 0x8)/* indicates cores are present, but they might be disabled*/\
-	ENUM(PF_HARDWARE_THREAD, 0x10)\
-	ENUM(PF_EXECUTE_PROTECTION, 0x20)\
-	ENUM(PF_ENHANCED_VIRTUALIZATION, 0x40)\
-	ENUM(PF_POWER_CONTROL, 0x80)
+	ENUM(unknown, 0x2)\
+	ENUM(x64, 0x4)\
+	ENUM(multi_core, 0x8)/* indicates cores are present, but they might be disabled*/\
+	ENUM(ht, 0x10)\
+	ENUM(execute_protection, 0x20)\
+	ENUM(enhanced_virtualization, 0x40)\
+	ENUM(power_control, 0x80)
 
 #define Processor_FIELDS\
 	FIELD(0, const char*, socket, "")\
@@ -320,9 +368,9 @@ enum FieldFlags
 	FIELD(0, u16, bootFrequency, " MHz")\
 	FIELD(F_ENUM, ProcessorStatus, status, "")\
 	FIELD(F_ENUM, ProcessorUpgrade, upgrade, "")\
-	FIELD(F_HANDLE, Handle, hL1, "")\
-	FIELD(F_HANDLE, Handle, hL2, "")\
-	FIELD(F_HANDLE, Handle, hL3, "")\
+	FIELD(0, Handle, hL1, "")\
+	FIELD(0, Handle, hL2, "")\
+	FIELD(0, Handle, hL3, "")\
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(0, const char*, assetTag, "")\
 	FIELD(0, const char*, partNumber, "")\
@@ -331,75 +379,59 @@ enum FieldFlags
 	FIELD(0, u8, logicalPerPackage, "")\
 	FIELD(F_FLAGS, u16, characteristics, "")\
 	FIELD(0, u16, family2, "")\
-	FIELD(F_DERIVED, u8, isPopulated, "")
+	FIELD(F_DERIVED, bool, populated, "")
 
 
 //-----------------------------------------------------------------------------
 // Cache
 
-enum CacheMode
-{
-	CM_WRITE_THROUGH = 0,
-	CM_WRITE_BACK,
-	CM_VARIES,
-	CM_UNKNOWN
-};
+#define CacheMode_ENUMERATORS\
+	ENUM(write_through, 0)\
+	ENUM(write_back, 1)\
+	ENUM(varies, 2)\
+	ENUM(unknown, 3)
 
-enum CacheLocation
-{
-	CL_INTERNAL = 0,
-	CL_EXTERNAL,
-	CL_RESERVED,
-	CL_UNKNOWN
-};
+#define CacheLocation_ENUMERATORS\
+	ENUM(internal, 0)\
+	ENUM(external, 1)\
+	ENUM(reserved, 2)\
+	ENUM(unknown, 3)
 
-enum CacheConfiguration
-{
-	CC_SOCKETED = 0x08,
-	CC_ENABLED  = 0x80
-};
+#define CacheConfigurationFlags_ENUMERATORS\
+	ENUM(socketed, 0x08)\
+	ENUM(enabled, 0x80)
 
-enum CacheFlags
-{
-	CF_OTHER          = 0x01,
-	CF_UNKNOWN        = 0x02,
-	CF_NON_BURST      = 0x04,
-	CF_BURST          = 0x08,
-	CF_PIPELINE_BURST = 0x10,
-	CF_SYNCHRONOUS    = 0x20,
-	CF_ASYNCHRONOUS   = 0x40
-};
+#define CacheFlags_ENUMERATORS\
+	ENUM(other, 0x01)\
+	ENUM(unknown, 0x02)\
+	ENUM(non_burst, 0x04)\
+	ENUM(burst, 0x08)\
+	ENUM(pipeline_burst, 0x10)\
+	ENUM(synchronous, 0x20)\
+	ENUM(asynchronous, 0x40)
 
-enum CacheECC
-{
-	CE_NONE = 3,
-	CE_PARITY,
-	CE_SINGLE_BIT,
-	CE_MULTIPLE_BIT
-};
+#define CacheType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(instruction, 3)\
+	ENUM(data, 4)\
+	ENUM(unified, 5)
 
-enum CacheType
-{
-	CT_INSTRUCTION = 3,
-	CT_DATA,
-	CT_UNIFIED
-};
-
-enum CacheAssociativity
-{
-	CA_DIRECT_MAPPED = 3,
-	CA_2,
-	CA_4,
-	CA_FULL,
-	CA_8,
-	CA_16,
-	CA_12,
-	CA_24,
-	CA_32,
-	CA_48,
-	CA_64,
-	CA_20
-};
+#define CacheAssociativity_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(direct_mapped, 3)\
+	ENUM(A2, 4)\
+	ENUM(A4, 5)\
+	ENUM(full, 6)\
+	ENUM(A8, 7)\
+	ENUM(A16, 8)\
+	ENUM(A12, 9)\
+	ENUM(A24, 10)\
+	ENUM(A32, 11)\
+	ENUM(A48, 12)\
+	ENUM(A64, 13)\
+	ENUM(A20, 14)
 
 #define Cache_FIELDS\
 	FIELD(0, const char*, designation, "")\
@@ -409,7 +441,7 @@ enum CacheAssociativity
 	FIELD(F_FLAGS, u16, supportedFlags, "")\
 	FIELD(F_FLAGS, u16, currentFlags, "")\
 	FIELD(0, u8, speed, " ns")\
-	FIELD(F_ENUM, CacheECC, ecc, "")\
+	FIELD(F_ENUM, ECC, ecc, "")\
 	FIELD(F_ENUM, CacheType, type, "")\
 	FIELD(F_ENUM, CacheAssociativity, associativity, "")\
 	FIELD(F_DERIVED, size_t, level, "") /* 1..8 */\
@@ -422,87 +454,87 @@ enum CacheAssociativity
 //-----------------------------------------------------------------------------
 // PortConnector
 
-enum PortConnectorType
-{
-	PCT_OTHER = 0xFF,
-	PCT_NONE = 0,
-	PCT_CENTRONICS,
-	PCT_MINI_CENTRONICS,
-	PCT_PROPRIETARY,
-	PCT_DB25_MALE,
-	PCT_DB25_PIN_FEMALE,
-	PCT_DB15_PIN_MALE,
-	PCT_DB15_PIN_FEMALE,
-	PCT_DB9_PIN_MALE,
-	PCT_DB9_PIN_FEMALE,
-	PCT_RJ11,
-	PCT_RJ45,
-	PCT_MINI_SCSI,
-	PCT_MINI_DIN,
-	PCT_MICRO_DIN,
-	PCT_PS2,
-	PCT_INFRARED,
-	PCT_HP_HIL,
-	PCT_ACCESS_BUS_USB,
-	PCT_SSA_SCSI,
-	PCT_DIN8_MALE,
-	PCT_DIN8_FEMALE,
-	PCT_ON_BOARD_IDE,
-	PCT_ON_BOARD_FLOPPY,
-	PCT_DUAL_INLINE_9,
-	PCT_DUAL_INLINE_25,
-	PCT_DUAL_INLINE_50 = 0x1A,
-	PCT_DUAL_INLINE_68,
-	PCT_ON_BOARD_SOUND_INPUT_FROM_CDROM,
-	PCT_MINI_CENTRONICS_14,
-	PCT_MINI_CENTRONICS_26,
-	PCT_HEADPHONES,
-	PCT_BNC,
-	PCT_1394,
-	PCT_SAS_SATA
-	/* PC-98 omitted */
-};
+#define PortConnectorType_ENUMERATORS\
+	ENUM(other, 255)\
+	ENUM(none, 0)\
+	ENUM(centronics, 1)\
+	ENUM(mini_centronics, 2)\
+	ENUM(proprietary, 3)\
+	ENUM(db25_male, 4)\
+	ENUM(db25_pin_female, 5)\
+	ENUM(db15_pin_male, 6)\
+	ENUM(db15_pin_female, 7)\
+	ENUM(db9_pin_male, 8)\
+	ENUM(db9_pin_female, 9)\
+	ENUM(rj11, 10)\
+	ENUM(rj45, 11)\
+	ENUM(mini_scsi, 12)\
+	ENUM(mini_din, 13)\
+	ENUM(micro_din, 14)\
+	ENUM(ps2, 15)\
+	ENUM(infrared, 16)\
+	ENUM(hp_hil, 17)\
+	ENUM(access_bus_usb, 18)\
+	ENUM(pc_ssa_scsi, 19)\
+	ENUM(din8_male, 20)\
+	ENUM(din8_female, 21)\
+	ENUM(on_board_ide, 22)\
+	ENUM(on_board_floppy, 23)\
+	ENUM(dual_inline_9, 24)\
+	ENUM(dual_inline_25, 25)\
+	ENUM(dual_inline_50, 26)\
+	ENUM(dual_inline_68, 27)\
+	ENUM(on_board_sound_input_from_cd, 28)\
+	ENUM(mini_centronics_14, 29)\
+	ENUM(mini_centronics_26, 30)\
+	ENUM(headphones, 31)\
+	ENUM(bnc, 32)\
+	ENUM(pc_firewire, 33)\
+	ENUM(sas_sata, 34)\
+	ENUM(pc_98, 160)\
+	ENUM(pc_98_hireso, 161)\
+	ENUM(pc_h98, 162)\
+	ENUM(pc_98_note, 163)\
+	ENUM(pc_98_full, 164)
 
-enum PortType
-{
-	PT_OTHER = 0xFF,
-	PT_NONE = 0,
-	PT_PARALLEL_XT_AT,
-	PT_PARALLEL_PS2,
-	PT_PARALLEL_ECP,
-	PT_PARALLEL_EPP,
-	PT_PARALLEL_ECP_EPP,
-	PT_SERIAL_XT_AT,
-	PT_SERIAL_16450,
-	PT_SERIAL_16550,
-	PT_SERIAL_16550A,
-	PT_SCSI,
-	PT_MIDI,
-	PT_JOYSTICK,
-	PT_KEYBOARD,
-	PT_MOUSE,
-	PT_SSA_SCSI,
-	PT_USB,
-	PT_1394,
-	PT_PCMCIA_TYPE_I,
-	PT_PCMCIA_TYPE_II,
-	PT_PCMCIA_TYPE_III,
-	PT_CARDBUS,
-	PT_ACCESS_BUS,
-	PT_SCSI_II,
-	PT_SCSI_WIDE,
-	PT_PC98,
-	PT_PC98_HIRESO,
-	PT_PC_H98,
-	PT_VIDEO,
-	PT_AUDIO,
-	PT_MODEM,
-	PT_NETWORK,
-	PT_SATA,
-	PT_SAS,
-	PT_8251_COMPATIBLE = 0xA0,
-	PT_8251_FIFO_COMPATIBLE
-};
+#define PortType_ENUMERATORS\
+	ENUM(other, 255)\
+	ENUM(none, 0)\
+	ENUM(parallel_xt_at, 1)\
+	ENUM(parallel_ps2, 2)\
+	ENUM(parallel_ecp, 3)\
+	ENUM(parallel_epp, 4)\
+	ENUM(parallel_ecepp, 5)\
+	ENUM(serial_xt_at, 6)\
+	ENUM(serial_16450, 7)\
+	ENUM(serial_16550, 8)\
+	ENUM(serial_16550a, 9)\
+	ENUM(scsi, 10)\
+	ENUM(midi, 11)\
+	ENUM(joystick, 12)\
+	ENUM(keyboard, 13)\
+	ENUM(mouse, 14)\
+	ENUM(ssa_scsi, 15)\
+	ENUM(usb, 16)\
+	ENUM(firewire, 17)\
+	ENUM(pcmcia_i, 18)\
+	ENUM(pcmcia_ii, 19)\
+	ENUM(pcmcia_iii, 20)\
+	ENUM(cardbus, 21)\
+	ENUM(access_bus, 22)\
+	ENUM(scsi_ii, 23)\
+	ENUM(scsi_wide, 24)\
+	ENUM(pc_98, 25)\
+	ENUM(pc_98_hireso, 26)\
+	ENUM(pc_h98, 27)\
+	ENUM(video, 28)\
+	ENUM(audio, 29)\
+	ENUM(modem, 30)\
+	ENUM(network, 31)\
+	ENUM(sata, 32)\
+	ENUM(sas, 33)\
+	ENUM(_8251_compatible, 160)\
+	ENUM(_8251_fifo_compatible, 161)
 
 #define PortConnector_FIELDS\
 	FIELD(0, const char*, internalDesignator, "")\
@@ -515,89 +547,92 @@ enum PortType
 //-----------------------------------------------------------------------------
 // SystemSlot
 
-enum SystemSlotType
-{
-	ST_ISA = 3,
-	ST_MCA,
-	ST_EISA,
-	ST_PCI,
-	ST_PCMCIA,
-	ST_VESA,
-	ST_PROPRIETARY,
-	ST_PROCESSOR,
-	ST_MEMORY_CARD,
-	ST_IO_RISER,
-	ST_NUBUS,
-	ST_PCI_66,
-	ST_AGP,
-	ST_AGP_2X,
-	ST_AGP_4X,
-	ST_PCIX,
-	ST_AGP_8X,
-	// (PC98 omitted)
-	ST_PCIE = 0xA5,
-	ST_PCIE_X1,
-	ST_PCIE_X2,
-	ST_PCIE_X4,
-	ST_PCIE_X8,
-	ST_PCIE_X16,
-	ST_PCIE2,
-	ST_PCIE2_X1,
-	ST_PCIE2_X2,
-	ST_PCIE2_X4,
-	ST_PCIE2_X8,
-	ST_PCIE2_X16,
-	ST_PCIE3,
-	ST_PCIE3_X1,
-	ST_PCIE3_X2,
-	ST_PCIE3_X4,
-	ST_PCIE3_X8,
-	ST_PCIE3_X16
-};
+#define SystemSlotType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(isa, 3)\
+	ENUM(mca, 4)\
+	ENUM(eisa, 5)\
+	ENUM(pci, 6)\
+	ENUM(pcmcia, 7)\
+	ENUM(vesa, 8)\
+	ENUM(proprietary, 9)\
+	ENUM(processor, 10)\
+	ENUM(memory_card, 11)\
+	ENUM(io_riser, 12)\
+	ENUM(nubus, 13)\
+	ENUM(pci_66, 14)\
+	ENUM(agp, 15)\
+	ENUM(agp_2x, 16)\
+	ENUM(agp_4x, 17)\
+	ENUM(pcix, 18)\
+	ENUM(agp_8x, 19)\
+	ENUM(pc_98_c20, 160)\
+	ENUM(pc_98_c24, 161)\
+	ENUM(pc_98_e, 162)\
+	ENUM(pc_98_local_bus, 163)\
+	ENUM(pc_98_card, 164)\
+	ENUM(pcie, 165)\
+	ENUM(pcie_x1, 166)\
+	ENUM(pcie_x2, 167)\
+	ENUM(pcie_x4, 168)\
+	ENUM(pcie_x8, 169)\
+	ENUM(pcie_x16, 170)\
+	ENUM(pcie2, 171)\
+	ENUM(pcie2_x1, 172)\
+	ENUM(pcie2_x2, 173)\
+	ENUM(pcie2_x4, 174)\
+	ENUM(pcie2_x8, 175)\
+	ENUM(pcie2_x16, 176)\
+	ENUM(pcie3, 177)\
+	ENUM(pcie3_x1, 178)\
+	ENUM(pcie3_x2, 179)\
+	ENUM(pcie3_x4, 180)\
+	ENUM(pcie3_x8, 181)\
+	ENUM(pcie3_x16, 182)
 
-enum SystemSlotBusWidth
-{
-	SBW_8 = 3,
-	SBW_16,
-	SBW_32,
-	SBW_64,
-	SBW_128,
-	SBW_1X,
-	SBW_2X,
-	SBW_4X,
-	SBW_8X,
-	SBW_12X,
-	SBW_16X,
-	SBW_32X,
-};
+#define SystemSlotBusWidth_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(_8, 3)\
+	ENUM(_16, 4)\
+	ENUM(_32, 5)\
+	ENUM(_64, 6)\
+	ENUM(_128, 7)\
+	ENUM(x1, 8)\
+	ENUM(x2, 9)\
+	ENUM(x4, 10)\
+	ENUM(x8, 11)\
+	ENUM(x12, 12)\
+	ENUM(x16, 13)\
+	ENUM(x32, 14)
 
-enum SystemSlotUsage
-{
-	SU_AVAILABLE = 3,
-	SU_IN_USE
-};
+#define SystemSlotUsage_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(available, 3)\
+	ENUM(in_use, 4)
 
-enum SystemSlotLength
-{
-	SL_SHORT = 3,
-	SL_LONG
-};
+#define SystemSlotLength_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(short_length, 3)\
+	ENUM(long_length, 4)
 
-enum SystemSlotCharacteristics
-{
-	SC_UNKNOWN   = 1,
-	SC_5_VOLT    = 2,
-	SC_3_3_VOLT  = 4,
-	SC_IS_SHARED = 8
-	// unused "PC card" bits omitted
-};
+#define SystemSlotFlags1_ENUMERATORS\
+	ENUM(unknown, 0x1)\
+	ENUM(v5, 0x2)\
+	ENUM(v3_3, 0x4)\
+	ENUM(shared, 0x8)\
+	ENUM(pc_card_16, 0x10)\
+	ENUM(pc_cardbus, 0x20)\
+	ENUM(pc_zoom_video, 0x40)\
+	ENUM(pc_modem_ring_resume, 0x80)
 
-enum SystemSlotCharacteristics2
-{
-	SC2_SUPPORTS_PME      = 1,
-	SC2_SUPPORTS_HOT_PLUG = 2,
-	SC2_SUPPORTS_SMBUS    = 4
-};
+#define SystemSlotFlags2_ENUMERATORS\
+	ENUM(pme, 0x1)\
+	ENUM(hot_plug, 0x2)\
+	ENUM(smbus, 0x4)\
 
 #define SystemSlot_FIELDS\
 	FIELD(0, const char*, designation, "")\
@@ -609,72 +644,67 @@ enum SystemSlotCharacteristics2
 	FIELD(F_FLAGS, u8, characteristics, "")\
 	FIELD(F_FLAGS, u8, characteristics2, "")\
 	FIELD(0, u8, busNumber, "")\
-	FIELD(0, u8, deviceAndFunctionNumbers, "")
+	FIELD(F_INTERNAL, u8, functionAndDeviceNumber, "")\
+	FIELD(F_DERIVED, u8, deviceNumber, "")\
+	FIELD(F_DERIVED, u8, functionNumber, "")
 
 
 //-----------------------------------------------------------------------------
 // OnBoardDevices
 
-enum OnBoardDeviceType
-{
-	OBDT_OTHER = 1,
-	OBDT_VIDEO = 3,
-	OBDT_SCSI_CONTROLLER,
-	OBDT_ETHERNET,
-	OBDT_TOKEN_RING,
-	OBDT_SOUND,
-	OBDT_PATA_CONTROLLER,
-	OBDT_SATA_CONTROLLER,
-	OBDT_SAS_CONTROLLER
-};
+#define OnBoardDeviceType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(video, 3)\
+	ENUM(scsi_controller, 4)\
+	ENUM(ethernet, 5)\
+	ENUM(token_ring, 6)\
+	ENUM(sound, 7)\
+	ENUM(pata_controller, 8)\
+	ENUM(sata_controller, 9)\
+	ENUM(sas_controller, 10)
 
 #define OnBoardDevices_FIELDS\
 	FIELD(F_ENUM, OnBoardDeviceType, type, "")\
 	FIELD(0, const char*, description, "")\
-	FIELD(F_DERIVED, u8, isEnabled, "")\
+	FIELD(F_DERIVED, bool, enabled, "")\
 	/* NB: this structure could contain any number of type/description pairs, but Dell BIOS only provides 1 */
 
 
 //-----------------------------------------------------------------------------
 // MemoryArray
 
-enum MemoryArrayLocation
-{
-	ML_MOTHERBOARD = 3,
-	ML_ISA_ADDON,
-	ML_EISA_ADDON,
-	ML_PCI_ADDON,
-	ML_MCA_ADDON,
-	ML_PCMCIA_ADDON,
-	ML_PROPRIETARY_ADDON,
-	ML_NUBUS
-	// (PC98 omitted)
-};
+#define MemoryArrayLocation_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(motherboard, 3)\
+	ENUM(isa_addon, 4)\
+	ENUM(eisa_addon, 5)\
+	ENUM(pci_addon, 6)\
+	ENUM(mca_addon, 7)\
+	ENUM(pcmcia_addon, 8)\
+	ENUM(proprietary_addon, 9)\
+	ENUM(nubus, 10)\
+	ENUM(pc_98_c20, 160)\
+	ENUM(pc_98_c24, 161)\
+	ENUM(pc_98_e, 162)\
+	ENUM(pc_98_local_bus, 163)
 
-enum MemoryArrayUse
-{
-	MU_SYSTEM = 3,
-	MU_VIDEO,
-	MU_FLASH,
-	MU_NVRAM,
-	MU_CACHE
-};
-
-enum MemoryArrayECC
-{
-	ME_NONE = 3,
-	ME_PARITY,
-	ME_SINGLE_BIT,
-	ME_MULTIPLE_BIT,
-	ME_CRC
-};
+#define MemoryArrayUse_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(system, 3)\
+	ENUM(video, 4)\
+	ENUM(flash, 5)\
+	ENUM(nvram, 6)\
+	ENUM(cache, 7)
 
 #define MemoryArray_FIELDS\
 	FIELD(F_ENUM, MemoryArrayLocation, location, "")\
 	FIELD(F_ENUM, MemoryArrayUse, use, "")\
-	FIELD(F_ENUM, MemoryArrayECC, ecc, "")\
+	FIELD(F_ENUM, ECC, ecc, "")\
 	FIELD(F_INTERNAL, u32, maxCapacity32, "")\
-	FIELD(F_HANDLE, Handle, hError, "")\
+	FIELD(0, Handle, hError, "")\
 	FIELD(0, u16, numDevices, "")\
 	FIELD(F_SIZE, u64, maxCapacity, "")
 
@@ -682,68 +712,66 @@ enum MemoryArrayECC
 //-----------------------------------------------------------------------------
 // MemoryDevice
 
-enum MemoryDeviceFormFactor
-{
-	MF_SIMM = 3,
-	MF_SIP,
-	MF_CHIP,
-	MF_DIP,
-	MF_ZIP,
-	MF_PROPRIETARY_CARD,
-	MF_DIMM,
-	MF_TSOP,
-	MF_ROW_OF_CHIPS,
-	MF_RIMM,
-	MF_SODIMM,
-	MF_SRIMM,
-	MF_FBDIMM
-};
+#define MemoryDeviceFormFactor_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(SIMM, 3)\
+	ENUM(SIP, 4)\
+	ENUM(chip, 5)\
+	ENUM(DIP, 6)\
+	ENUM(ZIP, 7)\
+	ENUM(proprietary_card, 8)\
+	ENUM(DIMM, 9)\
+	ENUM(TSOP, 10)\
+	ENUM(row_of_chips, 11)\
+	ENUM(RIMM, 12)\
+	ENUM(SODIMM, 13)\
+	ENUM(SRIMM, 14)\
+	ENUM(FBDIMM, 15)
 
-enum MemoryDeviceType
-{
-	MT_DRAM = 3,
-	MT_EDRAM,
-	MT_VRAM,
-	MT_SRAM,
-	MT_RAM,
-	MT_ROM,
-	MT_FLASH,
-	MT_EEPROM,
-	MT_FEPROM,
-	MT_EPROM,
-	MT_CRRAM,
-	MT_3DRAM,
-	MT_SDRAM,
-	MT_SGRAM,
-	MT_RDRAM,
-	MT_DDR,
-	MT_DDR2,
-	MT_DDR2_FBDIMM,
-	MT_DDR3 = 0x18,
-	MT_FBD2
-};
+#define MemoryDeviceType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(DRAM, 3)\
+	ENUM(EDRAM, 4)\
+	ENUM(VRAM, 5)\
+	ENUM(SRAM, 6)\
+	ENUM(RAM, 7)\
+	ENUM(ROM, 8)\
+	ENUM(FLASH, 9)\
+	ENUM(EEPROM, 10)\
+	ENUM(FEPROM, 11)\
+	ENUM(EPROM, 12)\
+	ENUM(CRRAM, 13)\
+	ENUM(_3DRAM, 14)\
+	ENUM(SDRAM, 15)\
+	ENUM(SGRAM, 16)\
+	ENUM(RDRAM, 17)\
+	ENUM(DDR, 18)\
+	ENUM(DDR2, 19)\
+	ENUM(DDR2_FBDIMM, 20)\
+	ENUM(DDR3, 24)\
+	ENUM(FBD2, 25)
 
-enum MemoryDeviceTypeFlags
-{
-	MTF_OTHER         = 0x0002,
-	MTF_UNKNOWN       = 0x0004,
-	MTF_FAST_PAGED    = 0x0008,
-	MTF_STATIC_COLUMN = 0x0010,
-	MTF_PSEUDO_STATIC = 0x0020,
-	MTF_RAMBUS        = 0x0040,
-	MTF_SYNCHRONOUS   = 0x0080,
-	MTF_CMOS          = 0x0100,
-	MTF_EDO           = 0x0200,
-	MTF_WINDOW_DRAM   = 0x0400,
-	MTF_CACHE_DRAM    = 0x0800,
-	MTF_NON_VOLATILE  = 0x1000,
-	MTF_BUFFERED      = 0x2000,
-	MTF_UNBUFFERED    = 0x4000,
-};
+#define MemoryDeviceTypeFlags_ENUMERATORS\
+	ENUM(other, 0x0002)\
+	ENUM(unknown, 0x0004)\
+	ENUM(fast_paged, 0x0008)\
+	ENUM(static_column, 0x0010)\
+	ENUM(pseudo_static, 0x0020)\
+	ENUM(rambus, 0x0040)\
+	ENUM(synchronous, 0x0080)\
+	ENUM(cmos, 0x0100)\
+	ENUM(edo, 0x0200)\
+	ENUM(window_dram, 0x0400)\
+	ENUM(cache_dram, 0x0800)\
+	ENUM(non_volatile, 0x1000)\
+	ENUM(buffered, 0x2000)\
+	ENUM(unbuffered, 0x4000)
 
 #define MemoryDevice_FIELDS\
-	FIELD(F_HANDLE, Handle, hMemoryArray, "")\
-	FIELD(F_HANDLE, Handle, hError, "")\
+	FIELD(0, Handle, hMemoryArray, "")\
+	FIELD(0, Handle, hError, "")\
 	FIELD(0, u16, totalWidth, " bits")\
 	FIELD(0, u16, dataWidth, " bits")\
 	FIELD(F_INTERNAL, u16, size16, "")\
@@ -770,7 +798,7 @@ enum MemoryDeviceTypeFlags
 #define MemoryArrayMappedAddress_FIELDS\
 	FIELD(F_INTERNAL, u32, startAddress32, " bits")\
 	FIELD(F_INTERNAL, u32, endAddress32, " bits")\
-	FIELD(F_HANDLE, Handle, hMemoryArray, "")\
+	FIELD(0, Handle, hMemoryArray, "")\
 	FIELD(0, u8, partitionWidth, "")\
 	FIELD(F_HEX, u64, startAddress, "")\
 	FIELD(F_HEX, u64, endAddress, "")
@@ -782,8 +810,8 @@ enum MemoryDeviceTypeFlags
 #define MemoryDeviceMappedAddress_FIELDS\
 	FIELD(F_INTERNAL, u32, startAddress32, " bits")\
 	FIELD(F_INTERNAL, u32, endAddress32, " bits")\
-	FIELD(F_HANDLE, Handle, hMemoryDevice, "")\
-	FIELD(F_HANDLE, Handle, hMemoryArrayMappedAddress, "")\
+	FIELD(0, Handle, hMemoryDevice, "")\
+	FIELD(0, Handle, hMemoryArrayMappedAddress, "")\
 	FIELD(0, u8, partitionRowPosition, "")\
 	FIELD(0, u8, interleavePosition, "")\
 	FIELD(0, u8, interleavedDataDepth, "")\
@@ -794,15 +822,15 @@ enum MemoryDeviceTypeFlags
 //----------------------------------------------------------------------------
 // PortableBattery
 
-enum PortableBatteryChemistry
-{
-	PBC_LEAD_ACID = 3,
-	PBC_NICKEL_CADMIUM,
-	PBC_NICKEL_METAL_HYDRIDE,
-	PBC_LITHIUM_ION,
-	PBC_ZINC_AIR,
-	PBC_LITHIUM_POLYMER
-};
+#define PortableBatteryChemistry_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(lead_acid, 3)\
+	ENUM(nickel_cadmium, 4)\
+	ENUM(nickel_metal_hydride, 5)\
+	ENUM(lithium_ion, 6)\
+	ENUM(zinc_air, 7)\
+	ENUM(lithium_polymer, 8)
 
 #define PortableBattery_FIELDS\
 	FIELD(0, const char*, location, "")\
@@ -825,18 +853,18 @@ enum PortableBatteryChemistry
 //----------------------------------------------------------------------------
 // VoltageProbe
 
-enum VoltageProbeLocation
-{
-	VPL_PROCESSOR = 3,
-	VPL_DISK,
-	VPL_PERIPHERAL_BAY,
-	VPL_SYSTEM_MANAGEMENT_MODULE,
-	VPL_MOTHERBOARD,
-	VPL_MEMORY_MODULE,
-	VPL_PROCESSOR_MODULE,
-	VPL_POWER_UNIT,
-	VPL_ADD_IN_CARD
-};
+#define VoltageProbeLocation_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(processor, 3)\
+	ENUM(disk, 4)\
+	ENUM(peripheral_bay, 5)\
+	ENUM(system_management_module, 6)\
+	ENUM(motherboard, 7)\
+	ENUM(memory_module, 8)\
+	ENUM(processor_module, 9)\
+	ENUM(power_unit, 10)\
+	ENUM(add_in_card, 11)
 
 #define VoltageProbe_FIELDS\
 	FIELD(0, const char*, description, "")\
@@ -845,7 +873,7 @@ enum VoltageProbeLocation
 	FIELD(0, u16, minValue, " mV")\
 	FIELD(0, u16, resolution, " x 0.1 mV")\
 	FIELD(0, u16, tolerance, " mV")\
-	FIELD(0, u16, accuracy, " x 100 ppm")\
+	FIELD(0, u16, accuracy, " x 0.01%")\
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, u16, nominalValue, " mv")\
 	FIELD(F_DERIVED, VoltageProbeLocation, location, "")\
@@ -855,21 +883,21 @@ enum VoltageProbeLocation
 //----------------------------------------------------------------------------
 // CoolingDevice
 
-enum CoolingDeviceType
-{
-	CDT_FAN = 3,
-	CDT_CENTRIFUGAL_BLOWER,
-	CDT_CHIP_FAN,
-	CDT_CABINET_FAN,
-	CDT_POWER_SUPPLY_FAN,
-	CDT_HEAT_PIPE,
-	CDT_INTEGRATED_REFRIGERATION,
-	CDT_ACTIVE_COOLING = 0x10,
-	CDT_PASSIVE_COOLING
-};
+#define CoolingDeviceType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(fan, 3)\
+	ENUM(centrifugal_blower, 4)\
+	ENUM(chip_fan, 5)\
+	ENUM(cabinet_fan, 6)\
+	ENUM(power_supply_fan, 7)\
+	ENUM(heat_pipe, 8)\
+	ENUM(integrated_refrigeration, 9)\
+	ENUM(active_cooling, 16)\
+	ENUM(passive_cooling, 17)
 
 #define CoolingDevice_FIELDS\
-	FIELD(F_HANDLE, Handle, hTemperatureProbe, "")\
+	FIELD(0, Handle, hTemperatureProbe, "")\
 	FIELD(F_INTERNAL, u8, typeAndStatus, "")\
 	FIELD(0, u8, group, "")\
 	FIELD(0, u32, oemDefined, "")\
@@ -882,22 +910,22 @@ enum CoolingDeviceType
 //----------------------------------------------------------------------------
 // TemperatureProbe
 
-enum TemperatureProbeLocation
-{
-	TPL_PROCESSOR = 3,
-	TPL_DISK,
-	TPL_PERIPHERAL_BAY,
-	TPL_SYSTEM_MANAGEMENT_MODULE,
-	TPL_MOTHERBOARD,
-	TPL_MEMORY_MODULE,
-	TPL_PROCESSOR_MODULE,
-	TPL_POWER_UNIT,
-	TPL_ADD_IN_CARD,
-	TPL_FRONT_PANEL_BOARD,
-	TPL_BACK_PANEL_BOARD,
-	TPL_POWER_SYSTEM_BOARD,
-	TPL_DRIVE_BACK_PLANE
-};
+#define TemperatureProbeLocation_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(processor, 3)\
+	ENUM(disk, 4)\
+	ENUM(peripheral_bay, 5)\
+	ENUM(system_management_module, 6)\
+	ENUM(motherboard, 7)\
+	ENUM(memory_module, 8)\
+	ENUM(processor_module, 9)\
+	ENUM(power_unit, 10)\
+	ENUM(add_in_card, 11)\
+	ENUM(front_panel_board, 12)\
+	ENUM(back_panel_board, 13)\
+	ENUM(power_system_board, 14)\
+	ENUM(drive_backplane, 15)
 
 #define TemperatureProbe_FIELDS\
 	FIELD(0, const char*, description, "")\
@@ -906,7 +934,7 @@ enum TemperatureProbeLocation
 	FIELD(0, i16, minValue, " dDegC")\
 	FIELD(0, u16, resolution, " mDegC")\
 	FIELD(0, u16, tolerance, " dDegC")\
-	FIELD(0, u16, accuracy, " x 100 ppm")\
+	FIELD(0, u16, accuracy, " x 0.01%")\
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, i16, nominalValue, " dDegC")\
 	FIELD(F_DERIVED, TemperatureProbeLocation, location, "")\
@@ -916,29 +944,33 @@ enum TemperatureProbeLocation
 //----------------------------------------------------------------------------
 // SystemBoot
 
-enum SystemBootStatus
-{
-	SBS_NO_ERROR = 0,
-	SBS_NO_BOOTABLE_MEDIA,
-	SBS_OS_LOAD_FAILED,
-	SBS_HARDWARE_FAILURE_FIRMWARE,
-	SBS_HARDWARE_FAILURE_OS,
-	SBS_USER_REQUESTED_BOOT,
-	SBS_SECURITY_VIOLATION,
-	SBS_PREVIOUSLY_REQUESTED_IMAGE,
-	SBS_WATCHDOG_EXPIRED
-};
+#define SystemBootStatus_ENUMERATORS\
+	ENUM(no_error, 0)\
+	ENUM(no_bootable_media, 1)\
+	ENUM(os_load_failed, 2)\
+	ENUM(hardware_failure_firmware, 3)\
+	ENUM(hardware_failure_os, 4)\
+	ENUM(user_requested_boot, 5)\
+	ENUM(security_violation, 6)\
+	ENUM(previously_requested_image, 7)\
+	ENUM(watchdog_expired, 8)
 
 #define SystemBoot_FIELDS\
 	FIELD(F_INTERNAL, u32, reserved32, "")\
 	FIELD(F_INTERNAL, u16, reserved16, "")\
-	FIELD(F_HANDLE, Handle, hError, "")\
-	FIELD(0, u16, totalWidth, " bits")
+	FIELD(F_ENUM, SystemBootStatus, status, "")\
 
 
 //-----------------------------------------------------------------------------
 
-typedef u16 Handle;
+// (can't be a typedef due to template specialization)
+struct Handle
+{
+	Handle(): value(0) {}
+	Handle(u16 value): value(value) {}
+
+	u16 value;
+};
 
 struct Header
 {
@@ -949,7 +981,14 @@ struct Header
 
 // define each enumeration
 #define ENUM(enumerator, value) enumerator = value,
-#define ENUMERATION(name) enum name { name##_ENUMERATORS };
+#define ENUMERATION(name)\
+	struct name\
+	{\
+		name(): value((Enum)0) {}\
+		name(u8 value8): value((Enum)value8) {}\
+		enum Enum { name##_ENUMERATORS } value;\
+		operator int() const { return value; }\
+	};
 ENUMERATIONS
 #undef ENUMERATION
 #undef ENUM

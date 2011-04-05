@@ -146,12 +146,12 @@ public:
 	{
 		if((flags & F_DERIVED) || data >= end)
 		{
-			t = (T)0;
+			t = T();
 			return;
 		}
 
 		if(flags & F_ENUM)
-			t = (T)*data++;
+			t = T(*data++);
 		else
 		{
 			memcpy(&t, data, sizeof(t));
@@ -168,27 +168,37 @@ private:
 
 // C++03 14.7.3(2): "An explicit specialization shall be declared [..] in the
 // namespace of which the enclosing class [..] is a member.
+
+// avoid "forcing value to bool true or false" warning
+template<>
+void FieldInitializer::operator()<bool>(size_t flags, bool& UNUSED(t), const char* UNUSED(name), const char* UNUSED(units))
+{
+	// SMBIOS doesn't specify any single booleans, so we're only called for
+	// derived fields and don't need to do anything.
+	debug_assert(flags & F_DERIVED);
+}
+
 template<>
 void FieldInitializer::operator()<const char*>(size_t flags, const char*& t, const char* UNUSED(name), const char* UNUSED(units))
 {
 	u8 number;
 	operator()(flags, number, 0, 0);
-	if(number == 0)
+	if(number == 0)	// no string given
 	{
-		t = "(unspecified)";
+		t = 0;
 		return;
 	}
 
 	if(number > strings.size())
 	{
 		debug_printf(L"SMBIOS: invalid string number %d (count=%d)\n", number, strings.size());
-		t = "(unknown)";
+		t = 0;
 		return;
 	}
 
 	if(strings[number-1] == 0)
 	{
-		t = "(null)";
+		t = 0;
 		return;
 	}
 
@@ -217,8 +227,8 @@ void Fixup<Bios>(Bios& p)
 template<>
 void Fixup<Processor>(Processor& p)
 {
-	p.isPopulated = (p.status & 0x40) != 0;
-	p.status = (ProcessorStatus)bits((size_t)p.status, 0, 2);
+	p.populated = (p.status.value & 0x40) != 0;
+	p.status = (ProcessorStatus)bits((size_t)p.status.value, 0, 2);
 
 	if(p.voltage & 0x80)
 		p.voltage &= ~0x80;
@@ -250,13 +260,21 @@ void Fixup<Cache>(Cache& p)
 	p.level = bits(p.configuration, 0, 2)+1;
 	p.location = (CacheLocation)bits(p.configuration, 5, 6);
 	p.mode = (CacheMode)bits(p.configuration, 8, 9);
+	p.configuration &= ~0x367;
+}
+
+template<>
+void Fixup<SystemSlot>(SystemSlot& p)
+{
+	p.functionNumber = bits(p.functionAndDeviceNumber, 0, 2);
+	p.deviceNumber = bits(p.functionAndDeviceNumber, 3, 7);
 }
 
 template<>
 void Fixup<OnBoardDevices>(OnBoardDevices& p)
 {
-	p.isEnabled = (p.type & 0x80) != 0;
-	p.type = (OnBoardDeviceType)(p.type & ~0x80);
+	p.enabled = (p.type.value & 0x80) != 0;
+	p.type = (OnBoardDeviceType)(p.type.value & ~0x80);
 }
 
 template<>
@@ -419,7 +437,7 @@ static inline const char* EnumeratorFromValue(Enum UNUSED(value))
 	template<>\
 	static inline const char* EnumeratorFromValue<name>(name value)\
 	{\
-		switch(value)\
+		switch(value.value)\
 		{\
 			name##_ENUMERATORS \
 			default: return 0;\
@@ -440,48 +458,47 @@ public:
 	}
 
 	template<typename T>
-	void operator()(size_t flags, T& t, const char* name, const char* units)
+	void operator()(size_t flags, T& value, const char* name, const char* units)
 	{
 		if(flags & F_INTERNAL)
 			return;
 
+		static u64 zero;
+		cassert(sizeof(value) <= sizeof(zero));
+		if((flags & F_ENUM) == 0 && memcmp(&value, &zero, sizeof(value)) == 0)
+			return;
+
+		ss << "  ";	// indent
 		ss << name << ": ";
 		if(flags & (F_HEX|F_FLAGS))
 			ss << std::hex << std::uppercase;
 		else
 			ss << std::dec;
 
-		if(flags & F_HANDLE)
+		if(flags & F_ENUM)
 		{
-			if(u64(t) == 0xFFFE || u64(t) == 0xFFFF)
-				ss << "(N/A)";
-			else
-				ss << t;
-		}
-		else if(flags & F_ENUM)
-		{
-			const char* name = EnumeratorFromValue(t);
+			const char* name = EnumeratorFromValue(value);
 			if(name)
 				ss << name;
 			else
-				ss << t;
+				ss << value;
 		}
 		else if(flags & F_SIZE)
 		{
-			u64 value = (u64)t;
-			if(value > GiB)
-				ss << value/GiB << " GiB";
-			else if(value > MiB)
-				ss << value/MiB << " MiB";
-			else if(value > KiB)
-				ss << value/KiB << " KiB";
+			u64 value64 = (u64)value;
+			if(value64 > GiB)
+				ss << value64/GiB << " GiB";
+			else if(value64 > MiB)
+				ss << value64/MiB << " MiB";
+			else if(value64 > KiB)
+				ss << value64/KiB << " KiB";
 			else
 				ss << value << " bytes";
 		}
-		else if(sizeof(t) == 1)	// avoid printing as a character
-			ss << (unsigned)t;
+		else if(sizeof(value) == 1)	// avoid printing as a character
+			ss << (unsigned)value;
 		else
-			ss << t;
+			ss << value;
 
 		ss << units << "\n";
 	}
@@ -489,6 +506,44 @@ public:
 private:
 	std::stringstream& ss;
 };
+
+template<>
+void FieldStringizer::operator()<bool>(size_t flags, bool& value, const char* name, const char* units)
+{
+	debug_assert(units[0] == '\0');	// why would this be specified?
+	if(flags & F_INTERNAL)
+		return;
+	ss << "  ";	// indent
+	ss << name << ": \"" << (value? "true" : "false") << "\"\n";
+}
+
+template<>
+void FieldStringizer::operator()<Handle>(size_t flags, Handle& handle, const char* name, const char* units)
+{
+	debug_assert(units[0] == '\0');	// why would this be specified?
+	if(flags & F_INTERNAL || handle.value == 0xFFFE || handle.value == 0xFFFF)
+		return;
+	ss << "  ";	// indent
+	ss << name << ": " << handle.value << "\n";
+}
+
+template<>
+void FieldStringizer::operator()<const char*>(size_t flags, const char*& value, const char* name, const char* units)
+{
+	debug_assert(units[0] == '\0');	// why would this be specified for strings?
+	if((flags & F_INTERNAL) || value == 0)
+		return;
+
+	// don't display useless strings
+	const ssize_t length = (ssize_t)strlen(value);
+	if(std::count(value, value+length, ' ') == length)	// all spaces
+		return;
+	if(strcmp(value, "To Be Filled By O.E.M.") == 0)
+		return;
+
+	ss << "  ";	// indent
+	ss << name << ": \"" << value << "\"\n";
+}
 
 
 template<class Structure>
