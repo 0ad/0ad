@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="684.149" y="171.268" z="611.577"/>
+		<Position x="687.266" y="139.489" z="664.303"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -16126,6 +16126,16 @@
 			<Player>1</Player>
 			<Position x="656.90186" z="761.8985"/>
 			<Orientation y="-2.65075"/>
+		</Entity>
+		<Entity uid="3138">
+			<Template>actor|particle/flame.xml</Template>
+			<Position x="664.26142" z="767.797"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3139">
+			<Template>actor|particle/smoke.xml</Template>
+			<Position x="664.37433" z="767.797"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
