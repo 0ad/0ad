@@ -20,52 +20,56 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/*
+ * provide access to System Management BIOS information
+ */
+
 #ifndef INCLUDED_SMBIOS
 #define INCLUDED_SMBIOS
 
 namespace SMBIOS {
 
 // to introduce another enumeration:
-// 1) add its name here
+// 1) add its name and underlying type here
 // 2) define a <name>_ENUMERATORS macro specifying its enumerators
 //    (prefer lower case to avoid conflicts with macros)
 #define ENUMERATIONS\
-	ENUMERATION(Status)\
-	ENUMERATION(ECC)\
-	ENUMERATION(SystemWakeUpType)\
-	ENUMERATION(BaseboardFlags)\
-	ENUMERATION(BaseboardType)\
-	ENUMERATION(ChassisType)\
-	ENUMERATION(ChassisSecurityStatus)\
-	ENUMERATION(ProcessorType)\
-	ENUMERATION(ProcessorStatus)\
-	ENUMERATION(ProcessorUpgrade)\
-	ENUMERATION(ProcessorFlags)\
-	ENUMERATION(CacheMode)\
-	ENUMERATION(CacheLocation)\
-	ENUMERATION(CacheConfigurationFlags)\
-	ENUMERATION(CacheFlags)\
-	ENUMERATION(CacheType)\
-	ENUMERATION(CacheAssociativity)\
-	ENUMERATION(PortConnectorType)\
-	ENUMERATION(PortType)\
-	ENUMERATION(SystemSlotType)\
-	ENUMERATION(SystemSlotBusWidth)\
-	ENUMERATION(SystemSlotUsage)\
-	ENUMERATION(SystemSlotLength)\
-	ENUMERATION(SystemSlotFlags1)\
-	ENUMERATION(SystemSlotFlags2)\
-	ENUMERATION(OnBoardDeviceType)\
-	ENUMERATION(MemoryArrayLocation)\
-	ENUMERATION(MemoryArrayUse)\
-	ENUMERATION(MemoryDeviceFormFactor)\
-	ENUMERATION(MemoryDeviceType)\
-	ENUMERATION(MemoryDeviceTypeFlags)\
-	ENUMERATION(PortableBatteryChemistry)\
-	ENUMERATION(VoltageProbeLocation)\
-	ENUMERATION(CoolingDeviceType)\
-	ENUMERATION(TemperatureProbeLocation)\
-	ENUMERATION(SystemBootStatus)
+	ENUMERATION(Status, u8)\
+	ENUMERATION(ECC, u8)\
+	ENUMERATION(SystemWakeUpType, u8)\
+	ENUMERATION(BaseboardFlags, u8)\
+	ENUMERATION(BaseboardType, u8)\
+	ENUMERATION(ChassisType, u8)\
+	ENUMERATION(ChassisSecurityStatus, u8)\
+	ENUMERATION(ProcessorType, u8)\
+	ENUMERATION(ProcessorStatus, u8)\
+	ENUMERATION(ProcessorUpgrade, u8)\
+	ENUMERATION(ProcessorFlags, u16)\
+	ENUMERATION(CacheMode, u8)\
+	ENUMERATION(CacheLocation, u8)\
+	ENUMERATION(CacheConfigurationFlags, u16)\
+	ENUMERATION(CacheFlags, u16)\
+	ENUMERATION(CacheType, u8)\
+	ENUMERATION(CacheAssociativity, u8)\
+	ENUMERATION(PortConnectorType, u8)\
+	ENUMERATION(PortType, u8)\
+	ENUMERATION(SystemSlotType, u8)\
+	ENUMERATION(SystemSlotBusWidth, u8)\
+	ENUMERATION(SystemSlotUsage, u8)\
+	ENUMERATION(SystemSlotLength, u8)\
+	ENUMERATION(SystemSlotFlags1, u8)\
+	ENUMERATION(SystemSlotFlags2, u8)\
+	ENUMERATION(OnBoardDeviceType, u8)\
+	ENUMERATION(MemoryArrayLocation, u8)\
+	ENUMERATION(MemoryArrayUse, u8)\
+	ENUMERATION(MemoryDeviceFormFactor, u8)\
+	ENUMERATION(MemoryDeviceType, u8)\
+	ENUMERATION(MemoryDeviceTypeFlags, u16)\
+	ENUMERATION(PortableBatteryChemistry, u8)\
+	ENUMERATION(VoltageProbeLocation, u8)\
+	ENUMERATION(CoolingDeviceType, u8)\
+	ENUMERATION(TemperatureProbeLocation, u8)\
+	ENUMERATION(SystemBootStatus, u8)
 
 
 // to introduce another structure:
@@ -102,35 +106,45 @@ namespace SMBIOS {
 	/* ManagementControllerHostInterface (42) is optional */
 
 
+//-----------------------------------------------------------------------------
+// declarations required for the fields
+
 // indicates a field (:= member of a structure) is:
 enum FieldFlags
 {
 	// computed via other fields (i.e. should not be copied from the SMBIOS data).
-	F_DERIVED  = 0x01,
+	F_DERIVED  = 1,
 
-	// not intended for use by applications (usually because it is
-	// superseded by another - possibly derived - field).
-	F_INTERNAL = 0x02,
-
-	// an enum type; we'll read an SMBIOS byte and cast it to this type.
-	// (could also be detected via is_enum, but that requires TR1/C++0x)
-	// (using enum member variables instead of the raw u8 means the debugger
-	// will display the enumerators)
-	F_ENUM     = 0x04,
-
-	// a collection of bit flags.
-	F_FLAGS    = 0x08,
+	// not intended for display / use by applications (usually because
+	// it is superseded by another - possibly derived - field).
+	F_INTERNAL = 2,
 
 	// a number that should be displayed in hexadecimal form.
-	F_HEX      = 0x20,
-
-	F_SIZE     = 0x40
+	F_HEX      = 4
 };
 
 
-#pragma pack(push, 1)
+// (wrapper classes allow special handling of certain fields via
+// template specialization and function overloads)
 
-// shared by several structures
+// size [bytes] - displayed with auto-range
+template<typename T>
+struct Size
+{
+	Size(): value(0) {}
+	Size(T value): value(value) {}
+	T value;
+};
+
+// SMBIOS structure handle - only displayed if meaningful
+struct Handle
+{
+	Handle(): value(0) {}
+	Handle(u16 value): value(value) {}
+	u16 value;
+};
+
+
 #define Status_ENUMERATORS\
 	ENUM(other, 1)\
 	ENUM(unknown, 2)\
@@ -149,6 +163,9 @@ enum FieldFlags
 	ENUM(crc, 7)
 
 
+#pragma pack(push, 1)
+
+
 //-----------------------------------------------------------------------------
 // Bios
 
@@ -160,7 +177,7 @@ enum FieldFlags
 	FIELD(F_INTERNAL, u8, encodedSize, "")\
 	FIELD(F_HEX, u64, characteristics, "")\
 	/* omit subsequent fields because we can't handle the variable-length characteristics extension */\
-	FIELD(F_DERIVED|F_SIZE, u64, size, "")
+	FIELD(F_DERIVED, Size<size_t>, size, "")
 
 
 //-----------------------------------------------------------------------------
@@ -183,7 +200,7 @@ enum FieldFlags
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(F_HEX, u64, uuid0, "")\
 	FIELD(F_HEX, u64, uuid1, "")\
-	FIELD(F_ENUM, SystemWakeUpType, wakeUpType, "")\
+	FIELD(0, SystemWakeUpType, wakeUpType, "")\
 	FIELD(0, const char*, skuNumber, "")\
 	FIELD(0, const char*, family, "")
 
@@ -219,10 +236,10 @@ enum FieldFlags
 	FIELD(0, const char*, version, "")\
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(0, const char*, assetTag, "")\
-	FIELD(F_FLAGS, u8, flags, "")\
+	FIELD(0, BaseboardFlags, flags, "")\
 	FIELD(0, const char*, location, "")\
 	FIELD(0, Handle, hChassis, "")\
-	FIELD(F_ENUM, BaseboardType, type, "")\
+	FIELD(0, BaseboardType, type, "")\
 	/* omit subsequent fields because we can't handle the variable-length contained objects */
 
 
@@ -269,14 +286,14 @@ enum FieldFlags
 
 #define Chassis_FIELDS\
 	FIELD(0, const char*, manufacturer, "")\
-	FIELD(F_ENUM, ChassisType, type, "")\
+	FIELD(0, ChassisType, type, "")\
 	FIELD(0, const char*, version, "")\
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(0, const char*, assetTag, "")\
-	FIELD(F_ENUM, Status, state, "")\
-	FIELD(F_ENUM, Status, powerState, "")\
-	FIELD(F_ENUM, Status, thermalState, "")\
-	FIELD(F_ENUM, ChassisSecurityStatus, securityStatus, "")\
+	FIELD(0, Status, state, "")\
+	FIELD(0, Status, powerState, "")\
+	FIELD(0, Status, thermalState, "")\
+	FIELD(0, ChassisSecurityStatus, securityStatus, "")\
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, u8, height, "U")\
 	FIELD(0, u8, numPowerCords, "")\
@@ -300,7 +317,7 @@ enum FieldFlags
 	ENUM(enabled, 1)\
 	ENUM(user_disabled, 2)\
 	ENUM(post_disabled, 3)\
-	ENUM(cpu_idle, 4)
+	ENUM(idle, 4)
 
 #define ProcessorUpgrade_ENUMERATORS\
 	ENUM(other, 1)\
@@ -357,7 +374,7 @@ enum FieldFlags
 
 #define Processor_FIELDS\
 	FIELD(0, const char*, socket, "")\
-	FIELD(F_ENUM, ProcessorType, type, "")\
+	FIELD(0, ProcessorType, type, "")\
 	FIELD(0, u8, family, "") /* we don't bother providing enumerators for > 200 families */\
 	FIELD(0, const char*, manufacturer, "")\
 	FIELD(F_HEX, u64, id, "")\
@@ -366,8 +383,8 @@ enum FieldFlags
 	FIELD(0, u16, externalClockFrequency, " MHz")\
 	FIELD(0, u16, maxFrequency, " MHz")\
 	FIELD(0, u16, bootFrequency, " MHz")\
-	FIELD(F_ENUM, ProcessorStatus, status, "")\
-	FIELD(F_ENUM, ProcessorUpgrade, upgrade, "")\
+	FIELD(0, ProcessorStatus, status, "")\
+	FIELD(0, ProcessorUpgrade, upgrade, "")\
 	FIELD(0, Handle, hL1, "")\
 	FIELD(0, Handle, hL2, "")\
 	FIELD(0, Handle, hL3, "")\
@@ -377,7 +394,7 @@ enum FieldFlags
 	FIELD(0, u8, coresPerPackage, "")\
 	FIELD(0, u8, enabledCores, "")\
 	FIELD(0, u8, logicalPerPackage, "")\
-	FIELD(F_FLAGS, u16, characteristics, "")\
+	FIELD(0, ProcessorFlags, flags, "")\
 	FIELD(0, u16, family2, "")\
 	FIELD(F_DERIVED, bool, populated, "")
 
@@ -435,20 +452,20 @@ enum FieldFlags
 
 #define Cache_FIELDS\
 	FIELD(0, const char*, designation, "")\
-	FIELD(F_FLAGS, u16, configuration, "")\
+	FIELD(0, CacheConfigurationFlags, configuration, "")\
 	FIELD(F_INTERNAL, u16, maxSize16, "")\
 	FIELD(F_INTERNAL, u16, installedSize16, "")\
-	FIELD(F_FLAGS, u16, supportedFlags, "")\
-	FIELD(F_FLAGS, u16, currentFlags, "")\
+	FIELD(0, CacheFlags, supportedFlags, "")\
+	FIELD(0, CacheFlags, currentFlags, "")\
 	FIELD(0, u8, speed, " ns")\
-	FIELD(F_ENUM, ECC, ecc, "")\
-	FIELD(F_ENUM, CacheType, type, "")\
-	FIELD(F_ENUM, CacheAssociativity, associativity, "")\
+	FIELD(0, ECC, ecc, "")\
+	FIELD(0, CacheType, type, "")\
+	FIELD(0, CacheAssociativity, associativity, "")\
 	FIELD(F_DERIVED, size_t, level, "") /* 1..8 */\
-	FIELD(F_DERIVED|F_ENUM, CacheLocation, location, "")\
-	FIELD(F_DERIVED|F_ENUM, CacheMode, mode, "")\
-	FIELD(F_DERIVED|F_SIZE, size_t, maxSize, "")\
-	FIELD(F_DERIVED|F_SIZE, size_t, installedSize, "")
+	FIELD(F_DERIVED, CacheLocation, location, "")\
+	FIELD(F_DERIVED, CacheMode, mode, "")\
+	FIELD(F_DERIVED, Size<u64>, maxSize, "")\
+	FIELD(F_DERIVED, Size<u64>, installedSize, "")
 
 
 //-----------------------------------------------------------------------------
@@ -538,10 +555,10 @@ enum FieldFlags
 
 #define PortConnector_FIELDS\
 	FIELD(0, const char*, internalDesignator, "")\
-	FIELD(F_ENUM, PortConnectorType, internalConnectorType, "")\
+	FIELD(0, PortConnectorType, internalConnectorType, "")\
 	FIELD(0, const char*, externalDesignator, "")\
-	FIELD(F_ENUM, PortConnectorType, externalConnectorType, "")\
-	FIELD(F_ENUM, PortType, portType, "")
+	FIELD(0, PortConnectorType, externalConnectorType, "")\
+	FIELD(0, PortType, portType, "")
 
 
 //-----------------------------------------------------------------------------
@@ -616,8 +633,8 @@ enum FieldFlags
 #define SystemSlotLength_ENUMERATORS\
 	ENUM(other, 1)\
 	ENUM(unknown, 2)\
-	ENUM(short_length, 3)\
-	ENUM(long_length, 4)
+	ENUM(_short, 3)\
+	ENUM(_long, 4)
 
 #define SystemSlotFlags1_ENUMERATORS\
 	ENUM(unknown, 0x1)\
@@ -636,13 +653,13 @@ enum FieldFlags
 
 #define SystemSlot_FIELDS\
 	FIELD(0, const char*, designation, "")\
-	FIELD(F_ENUM, SystemSlotType,     type,     "")\
-	FIELD(F_ENUM, SystemSlotBusWidth, busWidth, "")\
-	FIELD(F_ENUM, SystemSlotUsage,    usage,    "")\
-	FIELD(F_ENUM, SystemSlotLength,   length,   "")\
+	FIELD(0, SystemSlotType, type, "")\
+	FIELD(0, SystemSlotBusWidth, busWidth, "")\
+	FIELD(0, SystemSlotUsage, usage, "")\
+	FIELD(0, SystemSlotLength, length, "")\
 	FIELD(0, u16, id, "")\
-	FIELD(F_FLAGS, u8, characteristics, "")\
-	FIELD(F_FLAGS, u8, characteristics2, "")\
+	FIELD(0, SystemSlotFlags1, flags1, "")\
+	FIELD(0, SystemSlotFlags2, flags2, "")\
 	FIELD(0, u8, busNumber, "")\
 	FIELD(F_INTERNAL, u8, functionAndDeviceNumber, "")\
 	FIELD(F_DERIVED, u8, deviceNumber, "")\
@@ -665,7 +682,7 @@ enum FieldFlags
 	ENUM(sas_controller, 10)
 
 #define OnBoardDevices_FIELDS\
-	FIELD(F_ENUM, OnBoardDeviceType, type, "")\
+	FIELD(0, OnBoardDeviceType, type, "")\
 	FIELD(0, const char*, description, "")\
 	FIELD(F_DERIVED, bool, enabled, "")\
 	/* NB: this structure could contain any number of type/description pairs, but Dell BIOS only provides 1 */
@@ -700,13 +717,13 @@ enum FieldFlags
 	ENUM(cache, 7)
 
 #define MemoryArray_FIELDS\
-	FIELD(F_ENUM, MemoryArrayLocation, location, "")\
-	FIELD(F_ENUM, MemoryArrayUse, use, "")\
-	FIELD(F_ENUM, ECC, ecc, "")\
+	FIELD(0, MemoryArrayLocation, location, "")\
+	FIELD(0, MemoryArrayUse, use, "")\
+	FIELD(0, ECC, ecc, "")\
 	FIELD(F_INTERNAL, u32, maxCapacity32, "")\
 	FIELD(0, Handle, hError, "")\
 	FIELD(0, u16, numDevices, "")\
-	FIELD(F_SIZE, u64, maxCapacity, "")
+	FIELD(0, Size<u64>, maxCapacity, "")
 
 
 //-----------------------------------------------------------------------------
@@ -775,29 +792,30 @@ enum FieldFlags
 	FIELD(0, u16, totalWidth, " bits")\
 	FIELD(0, u16, dataWidth, " bits")\
 	FIELD(F_INTERNAL, u16, size16, "")\
-	FIELD(F_ENUM, MemoryDeviceFormFactor, formFactor, "")\
+	FIELD(0, MemoryDeviceFormFactor, formFactor, "")\
 	FIELD(0, u8, deviceSet, "")\
 	FIELD(0, const char*, locator, "")\
 	FIELD(0, const char*, bank, "")\
-	FIELD(F_ENUM, MemoryDeviceType, type, "")\
-	FIELD(F_FLAGS, u16, typeFlags, "")\
+	FIELD(0, MemoryDeviceType, type, "")\
+	FIELD(0, MemoryDeviceTypeFlags, typeFlags, "")\
 	FIELD(0, u16, speed, " MHz")\
 	FIELD(0, const char*, manufacturer, "")\
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(0, const char*, assetTag, "")\
 	FIELD(0, const char*, partNumber, "")\
-	FIELD(F_FLAGS, u8, attributes, "")\
+	FIELD(F_INTERNAL, u8, attributes, "")\
 	FIELD(F_INTERNAL, u32, size32, "")\
 	FIELD(0, u16, configuredSpeed, " MHz")\
-	FIELD(F_DERIVED|F_SIZE, u64, size, "")
+	FIELD(F_DERIVED, Size<u64>, size, "")\
+	FIELD(F_DERIVED, u8, rank, "")\
 
 
 //-----------------------------------------------------------------------------
 // MemoryArrayMappedAddress
 
 #define MemoryArrayMappedAddress_FIELDS\
-	FIELD(F_INTERNAL, u32, startAddress32, " bits")\
-	FIELD(F_INTERNAL, u32, endAddress32, " bits")\
+	FIELD(F_INTERNAL, u32, startAddress32, "")\
+	FIELD(F_INTERNAL, u32, endAddress32, "")\
 	FIELD(0, Handle, hMemoryArray, "")\
 	FIELD(0, u8, partitionWidth, "")\
 	FIELD(F_HEX, u64, startAddress, "")\
@@ -808,8 +826,8 @@ enum FieldFlags
 // MemoryDeviceMappedAddress
 
 #define MemoryDeviceMappedAddress_FIELDS\
-	FIELD(F_INTERNAL, u32, startAddress32, " bits")\
-	FIELD(F_INTERNAL, u32, endAddress32, " bits")\
+	FIELD(F_INTERNAL, u32, startAddress32, "")\
+	FIELD(F_INTERNAL, u32, endAddress32, "")\
 	FIELD(0, Handle, hMemoryDevice, "")\
 	FIELD(0, Handle, hMemoryArrayMappedAddress, "")\
 	FIELD(0, u8, partitionRowPosition, "")\
@@ -838,11 +856,11 @@ enum FieldFlags
 	FIELD(0, const char*, date, "")\
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(0, const char*, deviceName, "")\
-	FIELD(F_ENUM, PortableBatteryChemistry, chemistry, "")\
+	FIELD(0, PortableBatteryChemistry, chemistry, "")\
 	FIELD(0, u16, capacity, " mWh")\
 	FIELD(0, u16, voltage, " mV")\
 	FIELD(0, const char*, sbdsVersion, "")\
-	FIELD(0, u8, maxError, "%")\
+	FIELD(0, i8, maxError, "%")\
 	FIELD(0, u16, sbdsSerialNumber, "")\
 	FIELD(0, u16, sbdsDate, "")\
 	FIELD(0, const char*, sbdsChemistry, "")\
@@ -869,13 +887,13 @@ enum FieldFlags
 #define VoltageProbe_FIELDS\
 	FIELD(0, const char*, description, "")\
 	FIELD(F_INTERNAL, u8, locationAndStatus, "")\
-	FIELD(0, u16, maxValue, " mV")\
-	FIELD(0, u16, minValue, " mV")\
-	FIELD(0, u16, resolution, " x 0.1 mV")\
-	FIELD(0, u16, tolerance, " mV")\
-	FIELD(0, u16, accuracy, " x 0.01%")\
+	FIELD(0, i16, maxValue, " mV")\
+	FIELD(0, i16, minValue, " mV")\
+	FIELD(0, i16, resolution, " x 0.1 mV")\
+	FIELD(0, i16, tolerance, " mV")\
+	FIELD(0, i16, accuracy, " x 0.01%")\
 	FIELD(0, u32, oemDefined, "")\
-	FIELD(0, u16, nominalValue, " mv")\
+	FIELD(0, i16, nominalValue, " mv")\
 	FIELD(F_DERIVED, VoltageProbeLocation, location, "")\
 	FIELD(F_DERIVED, Status, status, "")
 
@@ -932,9 +950,9 @@ enum FieldFlags
 	FIELD(F_INTERNAL, u8, locationAndStatus, "")\
 	FIELD(0, i16, maxValue, " dDegC")\
 	FIELD(0, i16, minValue, " dDegC")\
-	FIELD(0, u16, resolution, " mDegC")\
-	FIELD(0, u16, tolerance, " dDegC")\
-	FIELD(0, u16, accuracy, " x 0.01%")\
+	FIELD(0, i16, resolution, " mDegC")\
+	FIELD(0, i16, tolerance, " dDegC")\
+	FIELD(0, i16, accuracy, " x 0.01%")\
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, i16, nominalValue, " dDegC")\
 	FIELD(F_DERIVED, TemperatureProbeLocation, location, "")\
@@ -958,19 +976,10 @@ enum FieldFlags
 #define SystemBoot_FIELDS\
 	FIELD(F_INTERNAL, u32, reserved32, "")\
 	FIELD(F_INTERNAL, u16, reserved16, "")\
-	FIELD(F_ENUM, SystemBootStatus, status, "")\
+	FIELD(0, SystemBootStatus, status, "")\
 
 
 //-----------------------------------------------------------------------------
-
-// (can't be a typedef due to template specialization)
-struct Handle
-{
-	Handle(): value(0) {}
-	Handle(u16 value): value(value) {}
-
-	u16 value;
-};
 
 struct Header
 {
@@ -979,15 +988,20 @@ struct Header
 	Handle handle;
 };
 
-// define each enumeration
+// define each enumeration:
 #define ENUM(enumerator, value) enumerator = value,
-#define ENUMERATION(name)\
+// (a struct wrapper allows reusing common enumerator names such as `other'.)
+#define ENUMERATION(name, type)\
 	struct name\
 	{\
+		/* (determines how much data to read from SMBIOS) */\
+		typedef type T;\
 		name(): value((Enum)0) {}\
-		name(u8 value8): value((Enum)value8) {}\
+		name(size_t num): value((Enum)num) {}\
+		/* (the existence of this member type indicates the field is an enum) */\
 		enum Enum { name##_ENUMERATORS } value;\
-		operator int() const { return value; }\
+		/* (allows generic Field comparison against numeric_limits) */\
+		operator size_t() const { return value; }\
 	};
 ENUMERATIONS
 #undef ENUMERATION
@@ -995,12 +1009,20 @@ ENUMERATIONS
 
 // declare each structure
 #define FIELD(flags, type, name, units) type name;
-#define STRUCTURE(name, id) struct name { Header header; name* next; name##_FIELDS };
+#define STRUCTURE(name, id)\
+	struct name\
+	{\
+		/* (allows searching for a structure with a given handle) */\
+		Header header;\
+		/* (defines a linked list of instances of this structure type) */\
+		name* next;\
+		name##_FIELDS\
+	};
 STRUCTURES
 #undef STRUCTURE
 #undef FIELD
 
-// declare a UDT holding pointers (freed at exit) to each structure
+// declare a struct holding pointers (freed at exit) to each structure
 struct Structures
 {
 #define STRUCTURE(name, id) name* name##_;
@@ -1010,7 +1032,23 @@ struct Structures
 
 #pragma pack(pop)
 
+
+//-----------------------------------------------------------------------------
+
+/**
+ * @return 0 on failure or a pointer to a static Structures (i.e. always
+ * valid), with its member pointers non-zero iff the SMBIOS includes the
+ * corresponding structure.
+ *
+ * thread-safe; return value should be cached (if possible) to avoid an
+ * atomic comparison.
+ **/
 LIB_API const Structures* GetStructures();
+
+/**
+ * @return a string describing all structures (omitting fields with
+ * meaningless or dummy values).
+ **/
 LIB_API std::string StringizeStructures(const Structures*);
 
 }	// namespace SMBIOS

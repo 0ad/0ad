@@ -20,6 +20,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/*
+ * provide access to System Management BIOS information
+ */
+
 #include "precompiled.h"
 #include "smbios.h"
 
@@ -35,6 +39,7 @@
 namespace SMBIOS {
 
 //-----------------------------------------------------------------------------
+// GetTable
 
 #if OS_WIN
 
@@ -72,6 +77,7 @@ static LibError GetTable(wfirmware::Table& table)
 
 
 //-----------------------------------------------------------------------------
+// strings
 
 // pointers to the strings (if any) at the end of an SMBIOS structure
 typedef std::vector<const char*> Strings;
@@ -102,14 +108,16 @@ static Strings ExtractStrings(const Header* header, const char* end, const Heade
 }
 
 
-// storage for all structures' strings
+// storage for all structures' strings (must be copied from the original
+// wfirmware table since its std::vector container cannot be stored in a
+// static variable because we may be called before _cinit)
 static char* stringStorage;
 static char* stringStoragePos;
 
 // pointers to dynamically allocated structures
 static Structures structures;
 
-static void Cleanup()
+static void Cleanup()	// called via atexit
 {
 	SAFE_FREE(stringStorage);
 	stringStoragePos = 0;
@@ -120,6 +128,9 @@ static void Cleanup()
 #undef STRUCTURE
 }
 
+
+//-----------------------------------------------------------------------------
+// FieldInitializer
 
 // define function templates that invoke a Visitor for each of a structure's fields
 #define FIELD(flags, type, name, units) visitor(flags, p.name, #name, units);
@@ -141,25 +152,42 @@ public:
 	{
 	}
 
-	template<typename T>
-	void operator()(size_t flags, T& t, const char* UNUSED(name), const char* UNUSED(units))
+	template<typename Field>
+	void operator()(size_t flags, Field& field, const char* UNUSED(name), const char* UNUSED(units))
 	{
 		if((flags & F_DERIVED) || data >= end)
 		{
-			t = T();
+			field = Field();
 			return;
 		}
 
-		if(flags & F_ENUM)
-			t = T(*data++);
-		else
-		{
-			memcpy(&t, data, sizeof(t));
-			data += sizeof(t);
-		}
+		Read(field);	// SFINAE
 	}
 
 private:
+	template<typename T>
+	T ReadValue()
+	{
+		T value;
+		memcpy(&value, data, sizeof(value));
+		data += sizeof(value);
+		return value;
+	}
+
+	// construct from SMBIOS representations that don't match the
+	// actual type (e.g. enum)
+	template<typename Field>
+	void Read(Field& field, typename Field::T* = 0)
+	{
+		field = Field(ReadValue<typename Field::T>());
+	}
+
+	template<typename Field>
+	void Read(Field& field, ...)
+	{
+		field = ReadValue<Field>();
+	}
+
 	const u8* data;
 	const u8* end;
 	const Strings& strings;
@@ -169,11 +197,11 @@ private:
 // C++03 14.7.3(2): "An explicit specialization shall be declared [..] in the
 // namespace of which the enclosing class [..] is a member.
 
-// avoid "forcing value to bool true or false" warning
+// (this specialization avoids a "forcing value to bool true or false" warning)
 template<>
 void FieldInitializer::operator()<bool>(size_t flags, bool& UNUSED(t), const char* UNUSED(name), const char* UNUSED(units))
 {
-	// SMBIOS doesn't specify any single booleans, so we're only called for
+	// SMBIOS doesn't specify any individual booleans, so we're only called for
 	// derived fields and don't need to do anything.
 	debug_assert(flags & F_DERIVED);
 }
@@ -181,24 +209,16 @@ void FieldInitializer::operator()<bool>(size_t flags, bool& UNUSED(t), const cha
 template<>
 void FieldInitializer::operator()<const char*>(size_t flags, const char*& t, const char* UNUSED(name), const char* UNUSED(units))
 {
+	t = 0;	// (allow immediate `return' when the string is found to be invalid)
+
 	u8 number;
 	operator()(flags, number, 0, 0);
 	if(number == 0)	// no string given
-	{
-		t = 0;
 		return;
-	}
 
 	if(number > strings.size())
 	{
 		debug_printf(L"SMBIOS: invalid string number %d (count=%d)\n", number, strings.size());
-		t = 0;
-		return;
-	}
-
-	if(strings[number-1] == 0)
-	{
-		t = 0;
 		return;
 	}
 
@@ -221,14 +241,14 @@ void Fixup(Structure& UNUSED(structure))
 template<>
 void Fixup<Bios>(Bios& p)
 {
-	p.size = u64(p.encodedSize+1) * 64*KiB;
+	p.size = size_t(p.encodedSize+1) * 64*KiB;
 }
 
 template<>
 void Fixup<Processor>(Processor& p)
 {
-	p.populated = (p.status.value & 0x40) != 0;
-	p.status = (ProcessorStatus)bits((size_t)p.status.value, 0, 2);
+	p.populated = (p.status & 0x40) != 0;
+	p.status = (ProcessorStatus)bits(p.status, 0, 2);
 
 	if(p.voltage & 0x80)
 		p.voltage &= ~0x80;
@@ -249,10 +269,10 @@ void Fixup<Cache>(Cache& p)
 {
 	struct DecodeSize
 	{
-		size_t operator()(u16 size) const
+		u64 operator()(u16 size) const
 		{
 			const size_t granularity = IsBitSet(size, 15)? 64*KiB : 1*KiB;
-			return size_t(bits(size, 0, 14)) * granularity;
+			return u64(bits(size, 0, 14)) * granularity;
 		}
 	};
 	p.maxSize = DecodeSize()(p.maxSize16);
@@ -260,7 +280,7 @@ void Fixup<Cache>(Cache& p)
 	p.level = bits(p.configuration, 0, 2)+1;
 	p.location = (CacheLocation)bits(p.configuration, 5, 6);
 	p.mode = (CacheMode)bits(p.configuration, 8, 9);
-	p.configuration &= ~0x367;
+	p.configuration = (CacheConfigurationFlags)(p.configuration & ~0x367);
 }
 
 template<>
@@ -274,7 +294,7 @@ template<>
 void Fixup<OnBoardDevices>(OnBoardDevices& p)
 {
 	p.enabled = (p.type.value & 0x80) != 0;
-	p.type = (OnBoardDeviceType)(p.type.value & ~0x80);
+	p.type = (OnBoardDeviceType)(p.type & ~0x80);
 }
 
 template<>
@@ -291,6 +311,7 @@ void Fixup<MemoryDevice>(MemoryDevice& p)
 		p.size = u64(bits(p.size16, 0, 14)) * (IsBitSet(p.size16, 15)? 1*KiB : 1*MiB);
 	else
 		p.size = u64(bits(p.size32, 0, 30)) * MiB;
+	p.rank = bits(p.attributes, 0, 3);
 }
 
 template<>
@@ -334,6 +355,7 @@ void Fixup<TemperatureProbe>(TemperatureProbe& p)
 
 
 //-----------------------------------------------------------------------------
+// InitStructures
 
 template<class Structure>
 void AddStructure(const Header* header, const Strings& strings, Structure*& listHead)
@@ -413,40 +435,52 @@ static LibError InitStructures()
 }
 
 
-const Structures* GetStructures()
-{
-	static ModuleInitState initState;
-	LibError ret = ModuleInit(&initState, InitStructures);
-	if(ret != INFO::OK)
-		return 0;
-	return &structures;
-}
-
-
 //-----------------------------------------------------------------------------
+// StringFromEnum
 
 template<class Enum>
-static inline const char* EnumeratorFromValue(Enum UNUSED(value))
+std::string StringFromEnum(Enum UNUSED(field))
 {
-	return 0;
+	return "(unknown enumeration)";
 }
 
-// define specializations of EnumeratorFromValue
-#define ENUM(enumerator, value) case value: return #enumerator;
-#define ENUMERATION(name)\
-	template<>\
-	inline const char* EnumeratorFromValue<name>(name value)\
+#define ENUM(enumerator, VALUE)\
+	if(field.value == VALUE) /* single bit flag or matching enumerator */\
+		return #enumerator;\
+	if(!is_pow2(VALUE)) /* these aren't bit flags */\
 	{\
-		switch(value.value)\
+		allowFlags = false;\
+		string.clear();\
+	}\
+	if(allowFlags && (field.value & (VALUE)))\
+	{\
+		if(!string.empty())\
+			string += "|";\
+		string += #enumerator;\
+	}
+#define ENUMERATION(name, type)\
+	template<>\
+	std::string StringFromEnum<name>(name field)\
+	{\
+		std::string string;\
+		bool allowFlags = true;\
+		name##_ENUMERATORS\
+		/* (don't warn about the value 0, e.g. optional fields) */\
+		if(string.empty() && field != 0)\
 		{\
-			name##_ENUMERATORS \
-			default: return 0;\
+			std::stringstream ss;\
+			ss << "(unknown " << #name << " " << field.value << ")";\
+			return ss.str();\
 		}\
+		return string;\
 	}
 ENUMERATIONS
 #undef ENUMERATION
 #undef ENUM
 
+
+//-----------------------------------------------------------------------------
+// FieldStringizer
 
 class FieldStringizer
 {
@@ -457,92 +491,177 @@ public:
 	{
 	}
 
-	template<typename T>
-	void operator()(size_t flags, T& value, const char* name, const char* units)
+	template<typename Field>
+	void operator()(size_t flags, Field& field, const char* name, const char* units)
 	{
 		if(flags & F_INTERNAL)
 			return;
 
-		static u64 zero;
-		cassert_dependent(sizeof(value) <= sizeof(zero));
-		if((flags & F_ENUM) == 0 && memcmp(&value, &zero, sizeof(value)) == 0)
+		Write(flags, field, name, units);	// SFINAE
+	}
+
+	// special case for sizes [bytes]
+	template<typename T>
+	void operator()(size_t flags, Size<T>& size, const char* name, const char* units)
+	{
+		if(flags & F_INTERNAL)
 			return;
 
-		ss << "  ";	// indent
-		ss << name << ": ";
-		if(flags & (F_HEX|F_FLAGS))
-			ss << std::hex << std::uppercase;
-		else
-			ss << std::dec;
+		const u64 value = (u64)size.value;
+		if(value == 0)
+			return;
 
-		if(flags & F_ENUM)
+		u64 divisor;
+		if(value > GiB)
 		{
-			const char* name = EnumeratorFromValue(value);
-			if(name)
-				ss << name;
-			else
-				ss << value;
+			divisor = GiB;
+			units = " GiB";
 		}
-		else if(flags & F_SIZE)
+		else if(value > MiB)
 		{
-			u64 value64 = (u64)value;
-			if(value64 > GiB)
-				ss << value64/GiB << " GiB";
-			else if(value64 > MiB)
-				ss << value64/MiB << " MiB";
-			else if(value64 > KiB)
-				ss << value64/KiB << " KiB";
-			else
-				ss << value << " bytes";
+			divisor = MiB;
+			units = " MiB";
 		}
-		else if(sizeof(value) == 1)	// avoid printing as a character
-			ss << (unsigned)value;
+		else if(value > KiB)
+		{
+			divisor = KiB;
+			units = " KiB";
+		}
 		else
-			ss << value;
+		{
+			divisor = 1;
+			units = " bytes";
+		}
 
-		ss << units << "\n";
+		WriteName(name);
+
+		// (avoid floating-point output unless division would truncate the value)
+		if(value % divisor == 0)
+			ss << (value/divisor);
+		else
+			ss << (double(value)/divisor);
+
+		WriteUnits(units);
 	}
 
 private:
+	void WriteName(const char* name)
+	{
+		ss << "  ";	// indent
+		ss << name << ": ";
+	}
+
+	void WriteUnits(const char* units)
+	{
+		ss << units;
+		ss << "\n";
+	}
+
+	// enumerations and bit flags
+	template<typename Field>
+	void Write(size_t UNUSED(flags), Field& field, const char* name, const char* units, typename Field::Enum* = 0)
+	{
+		// 0 usually means "not included in structure", but some packed
+		// enumerations actually use that value. therefore, only skip this
+		// field if it is zero AND no matching enumerator is found.
+		const std::string string = StringFromEnum(field);
+		if(string.empty())
+			return;
+
+		WriteName(name);
+		ss << StringFromEnum(field);
+		WriteUnits(units);
+	}
+
+	// all other field types
+	template<typename Field>
+	void Write(size_t flags, Field& field, const char* name, const char* units, ...)
+	{
+		// SMBIOS uses the smallest representable signed/unsigned value to
+		// indicate `unknown' (except enumerators - but those are handled in
+		// the other function overload), so skip those.
+		if(field == std::numeric_limits<Field>::min())
+			return;
+
+		WriteName(name);
+
+		if(flags & F_HEX)
+			ss << std::hex << std::uppercase;
+
+		if(sizeof(field) == 1)	// avoid printing as a character
+			ss << unsigned(field);
+		else
+			ss << field;
+
+		if(flags & F_HEX)
+			ss << std::dec;	// (revert to decimal, e.g. for displaying sizes)
+
+		WriteUnits(units);
+	}
+
 	std::stringstream& ss;
 };
 
 template<>
 void FieldStringizer::operator()<bool>(size_t flags, bool& value, const char* name, const char* units)
 {
-	debug_assert(units[0] == '\0');	// why would this be specified?
 	if(flags & F_INTERNAL)
 		return;
-	ss << "  ";	// indent
-	ss << name << ": \"" << (value? "true" : "false") << "\"\n";
+
+	WriteName(name);
+	ss << (value? "true" : "false");
+	WriteUnits(units);
 }
 
 template<>
 void FieldStringizer::operator()<Handle>(size_t flags, Handle& handle, const char* name, const char* units)
 {
-	debug_assert(units[0] == '\0');	// why would this be specified?
-	if(flags & F_INTERNAL || handle.value == 0xFFFE || handle.value == 0xFFFF)
+	if(flags & F_INTERNAL)
 		return;
-	ss << "  ";	// indent
-	ss << name << ": " << handle.value << "\n";
+
+	// don't display useless handles
+	if(handle.value == 0 || handle.value == 0xFFFE || handle.value == 0xFFFF)
+		return;
+
+	WriteName(name);
+	ss << handle.value;
+	WriteUnits(units);
 }
+
 
 template<>
 void FieldStringizer::operator()<const char*>(size_t flags, const char*& value, const char* name, const char* units)
 {
-	debug_assert(units[0] == '\0');	// why would this be specified for strings?
-	if((flags & F_INTERNAL) || value == 0)
+	if(flags & F_INTERNAL)
 		return;
 
 	// don't display useless strings
-	const ssize_t length = (ssize_t)strlen(value);
-	if(std::count(value, value+length, ' ') == length)	// all spaces
+	if(value == 0)
 		return;
-	if(strcmp(value, "To Be Filled By O.E.M.") == 0)
+	std::string string(value);
+	const size_t lastChar = string.find_last_not_of(' ');
+	if(lastChar == std::string::npos)	// nothing but spaces
+		return;
+	string.resize(lastChar+1);	// strip trailing spaces
+	if(string == "To Be Filled By O.E.M.")
 		return;
 
-	ss << "  ";	// indent
-	ss << name << ": \"" << value << "\"\n";
+	WriteName(name);
+	ss << "\"" << string << "\"";
+	WriteUnits(units);
+}
+
+
+//-----------------------------------------------------------------------------
+// public interface
+
+const Structures* GetStructures()
+{
+	static ModuleInitState initState;
+	LibError ret = ModuleInit(&initState, InitStructures);
+	if(ret != INFO::OK)
+		return 0;
+	return &structures;
 }
 
 
@@ -556,7 +675,6 @@ void StringizeStructure(const char* name, Structure* p, std::stringstream& ss)
 		VisitFields(*p, fieldStringizer);
 	}
 }
-
 
 std::string StringizeStructures(const Structures* structures)
 {
