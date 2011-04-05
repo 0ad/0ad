@@ -233,7 +233,7 @@ std::wstring StringForSeconds(double seconds)
 }
 
 
-std::wstring StringForCycles(i64 cycles)
+std::wstring StringForCycles(Cycles cycles)
 {
 	double scale = 1.0;
 	const wchar_t* unit = L" c";

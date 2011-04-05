@@ -51,12 +51,19 @@ LIB_API double timer_Time();
 LIB_API double timer_Resolution();
 
 
+// (allow using XADD (faster than CMPXCHG) in 64-bit builds without casting)
+#if ARCH_AMD64
+typedef intptr_t Cycles;
+#else
+typedef i64 Cycles;
+#endif
+
 /**
  * internal helper functions for returning an easily readable
  * string (i.e. re-scaled to appropriate units)
  **/
 LIB_API std::wstring StringForSeconds(double seconds);
-LIB_API std::wstring StringForCycles(i64 cycles);
+LIB_API std::wstring StringForCycles(Cycles cycles);
 
 
 //-----------------------------------------------------------------------------
@@ -173,9 +180,9 @@ public:
 
 	void AddDifferenceAtomic(TimerUnit t0, TimerUnit t1)
 	{
-		const i64 delta = t1.m_cycles - t0.m_cycles;
+		const Cycles delta = t1.m_cycles - t0.m_cycles;
 #if ARCH_AMD64
-		cpu_AtomicAdd((volatile intptr_t*)&m_cycles, (intptr_t)delta);
+		cpu_AtomicAdd(&m_cycles, delta);
 #elif ARCH_IA32
 retry:
 		if(!cpu_CAS64(&m_cycles, m_cycles, m_cycles+delta))
@@ -202,7 +209,7 @@ retry:
 	}
 
 private:
-	i64 m_cycles;
+	Cycles m_cycles;
 };
 
 #else
