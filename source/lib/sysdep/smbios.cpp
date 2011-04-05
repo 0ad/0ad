@@ -435,7 +435,7 @@ static inline const char* EnumeratorFromValue(Enum UNUSED(value))
 #define ENUM(enumerator, value) case value: return #enumerator;
 #define ENUMERATION(name)\
 	template<>\
-	static inline const char* EnumeratorFromValue<name>(name value)\
+	inline const char* EnumeratorFromValue<name>(name value)\
 	{\
 		switch(value.value)\
 		{\
@@ -464,7 +464,7 @@ public:
 			return;
 
 		static u64 zero;
-		cassert(sizeof(value) <= sizeof(zero));
+		cassert_dependent(sizeof(value) <= sizeof(zero));
 		if((flags & F_ENUM) == 0 && memcmp(&value, &zero, sizeof(value)) == 0)
 			return;
 

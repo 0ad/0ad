@@ -138,6 +138,14 @@ template<> struct static_assert_<true>
 /**
  * @copydoc cassert(expr)
  *
+ * This version must be used if expr uses a dependent type (e.g. depends on
+ * a template parameter).
+ **/
+#define cassert_dependent(expr) typedef typename static_assert_<(expr)>::type UID__
+
+/**
+ * @copydoc cassert(expr)
+ *
  * This version has a less helpful error message, but redefinition doesn't
  * trigger warnings.
  **/
