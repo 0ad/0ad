@@ -24,6 +24,8 @@
 
 #include "maths/FixedVector3D.h"
 
+class CTerrain;
+
 class ICmpTerrain : public IComponent
 {
 public:
@@ -32,6 +34,10 @@ public:
 	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) = 0;
 
 	virtual float GetExactGroundLevel(float x, float z) = 0;
+
+	virtual uint32_t GetVerticesPerSide() = 0;
+
+	virtual CTerrain* GetCTerrain() = 0;
 
 	/**
 	 * Call when the underlying CTerrain has been modified behind our backs.

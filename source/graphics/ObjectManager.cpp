@@ -26,6 +26,7 @@
 #include "ps/Profile.h"
 #include "ps/Filesystem.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpVisual.h"
 
 template<typename T, typename S>
@@ -155,6 +156,13 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 	return obj;
 }
 
+CTerrain* CObjectManager::GetTerrain()
+{
+	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
+	if (cmpTerrain.null())
+		return NULL;
+	return cmpTerrain->GetCTerrain();
+}
 
 void CObjectManager::DeleteObject(CObjectEntry* entry)
 {

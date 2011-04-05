@@ -30,6 +30,7 @@ class CObjectBase;
 class CObjectEntry;
 class CSkeletonAnimManager;
 class CSimulation2;
+class CTerrain;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
@@ -71,6 +72,12 @@ public:
 
 	CObjectEntry* FindObjectVariation(const CStrW& objname, const std::vector<std::set<CStr> >& selections);
 	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections);
+
+	/**
+	 * Get the terrain object that actors managed by this manager should be linked
+	 * with (primarily for the purpose of decals)
+	 */
+	CTerrain* GetTerrain();
 
 	/**
 	 * Reload any scripts that were loaded from the given filename.

@@ -20,6 +20,8 @@
 #include "maths/Matrix3D.h"
 #include "simulation2/components/ICmpRangeManager.h"
 
+class CSimulation2;
+
 /**
  * Maintains the LOS (fog-of-war / shroud-of-darkness) texture, used for
  * rendering and for the minimap.
@@ -30,7 +32,7 @@ class CLOSTexture
 	friend class TestLOSTexture;
 
 public:
-	CLOSTexture();
+	CLOSTexture(CSimulation2& simulation);
 	~CLOSTexture();
 
 	/**
@@ -74,6 +76,8 @@ private:
 
 	size_t GetBitmapSize(size_t w, size_t h);
 	void GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData, size_t w, size_t h);
+
+	CSimulation2& m_Simulation;
 
 	bool m_Dirty;
 

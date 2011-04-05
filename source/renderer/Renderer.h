@@ -204,7 +204,13 @@ public:
 	 * Render the given scene immediately.
 	 * @param scene a Scene object describing what should be rendered.
 	 */
-	void RenderScene(Scene* scene);
+	void RenderScene(Scene& scene);
+
+	/**
+	 * Return the scene that is currently being rendered.
+	 * Only valid when the renderer is in a RenderScene call.
+	 */
+	Scene& GetScene();
 
 	/**
 	 * Render text overlays on top of the scene.
@@ -397,6 +403,9 @@ protected:
 	 * @see CGameView::m_ViewCamera
 	 */
 	CCamera m_CullCamera;
+
+	// only valid inside a call to RenderScene
+	Scene* m_CurrentScene;
 
 	// color used to clear screen in BeginFrame
 	float m_ClearColor[4];

@@ -27,6 +27,7 @@
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpTerrain.h"
 
 /*
 
@@ -47,8 +48,8 @@ The blurred bitmap is then uploaded into a GL texture for use by the renderer.
 // Blur with a NxN filter, where N = g_BlurSize must be an odd number.
 static const size_t g_BlurSize = 7;
 
-CLOSTexture::CLOSTexture() :
-	m_Dirty(true), m_Texture(0), m_MapSize(0), m_TextureSize(0)
+CLOSTexture::CLOSTexture(CSimulation2& simulation) :
+	m_Simulation(simulation), m_Dirty(true), m_Texture(0), m_MapSize(0), m_TextureSize(0)
 {
 }
 
@@ -102,8 +103,12 @@ const float* CLOSTexture::GetMinimapTextureMatrix()
 
 void CLOSTexture::ConstructTexture(int unit)
 {
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	m_MapSize = terrain->GetVerticesPerSide();
+	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
+	if (cmpTerrain.null())
+		return;
+
+	m_MapSize = cmpTerrain->GetVerticesPerSide();
+
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize + g_BlurSize - 1);
 
 	glGenTextures(1, &m_Texture);
@@ -152,7 +157,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 	std::vector<u8> losData;
 	losData.resize(GetBitmapSize(m_MapSize, m_MapSize));
 
-	CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	if (cmpRangeManager.null())
 		return;
 

@@ -51,10 +51,13 @@ private:
 	// Check whether lighting environment has changed and update vertex data if necessary
 	void CheckLightEnv();
 
+public:
 	//BEGIN: Implementation of Scene
-	void EnumerateObjects(const CFrustum& frustum, SceneCollector* c);
+	virtual void EnumerateObjects(const CFrustum& frustum, SceneCollector* c);
+	virtual CLOSTexture& GetLOSTexture();
 	//END: Implementation of Scene
 
+private:
 	// InitResources(): Load all graphics resources (textures, actor objects and
 	// alpha maps) required by the game
 	//void InitResources();
@@ -90,7 +93,6 @@ public:
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();
-	CLOSTexture& GetLOSTexture();
 
 	JSObject* GetScript();
 	static void ScriptingInit();

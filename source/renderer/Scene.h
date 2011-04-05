@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@ class CModelAbstract;
 class CModelDecal;
 class CParticleEmitter;
 class CPatch;
+class CLOSTexture;
 struct SOverlayLine;
 struct SOverlaySprite;
 
@@ -57,6 +58,11 @@ public:
 	 *  that are visible.
 	 */
 	virtual void EnumerateObjects(const CFrustum& frustum, SceneCollector* c) = 0;
+
+	/**
+	 * Return the LOS texture to be used for rendering this scene.
+	 */
+	virtual CLOSTexture& GetLOSTexture() = 0;
 };
 
 

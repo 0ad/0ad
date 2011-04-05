@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,10 @@
 #include "View.h"
 
 #include "graphics/ColladaManager.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
+#include "graphics/ParticleManager.h"
 #include "graphics/Patch.h"
 #include "graphics/SkeletonAnimManager.h"
 #include "graphics/Terrain.h"
@@ -49,9 +51,16 @@ struct ActorViewerImpl : public Scene
 {
 	NONCOPYABLE(ActorViewerImpl);
 public:
-	ActorViewerImpl()
-		: Entity(INVALID_ENTITY), Terrain(), ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
-		UnitManager(), Simulation2(&UnitManager, &Terrain), ObjectManager(MeshManager, SkeletonAnimManager, Simulation2)
+	ActorViewerImpl() :
+		Entity(INVALID_ENTITY),
+		Terrain(),
+		ColladaManager(),
+		MeshManager(ColladaManager),
+		SkeletonAnimManager(ColladaManager),
+		UnitManager(),
+		Simulation2(&UnitManager, &Terrain),
+		ObjectManager(MeshManager, SkeletonAnimManager, Simulation2),
+		LOSTexture(Simulation2)
 	{
 		UnitManager.SetObjectManager(ObjectManager);
 	}
@@ -74,15 +83,26 @@ public:
 	CObjectManager ObjectManager;
 	CUnitManager UnitManager;
 	CSimulation2 Simulation2;
+	CLOSTexture LOSTexture;
 
 	// Simplistic implementation of the Scene interface
-	void EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
+	virtual void EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	{
 		if (GroundEnabled)
-			c->Submit(Terrain.GetPatch(0, 0));
+		{
+			for (ssize_t pj = 0; pj < Terrain.GetPatchesPerSide(); ++pj)
+				for (ssize_t pi = 0; pi < Terrain.GetPatchesPerSide(); ++pi)
+					c->Submit(Terrain.GetPatch(pi, pj));
+		}
 
 		Simulation2.RenderSubmit(*c, frustum, false);
 	}
+
+	virtual CLOSTexture& GetLOSTexture()
+	{
+		return LOSTexture;
+	}
+
 };
 
 ActorViewer::ActorViewer()
@@ -91,22 +111,28 @@ ActorViewer::ActorViewer()
 	m.WalkEnabled = false;
 	m.GroundEnabled = true;
 	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
-	m.Background = SColor4ub(255, 255, 255, 255);
+	m.Background = SColor4ub(0, 0, 0, 255);
 
 	// Create a tiny empty piece of terrain, just so we can put shadows
 	// on it without having to think too hard
-	m.Terrain.Initialize(1, NULL);
+	m.Terrain.Initialize(2, NULL);
 	CTerrainTextureEntry* tex = g_TexMan.FindTexture("whiteness");
 	if (tex)
 	{
-		CPatch* patch = m.Terrain.GetPatch(0, 0);
-		for (ssize_t i = 0; i < PATCH_SIZE; ++i)
+		for (ssize_t pi = 0; pi < m.Terrain.GetPatchesPerSide(); ++pi)
 		{
-			for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+			for (ssize_t pj = 0; pj < m.Terrain.GetPatchesPerSide(); ++pj)
 			{
-				CMiniPatch& mp = patch->m_MiniPatches[i][j];
-				mp.Tex = tex;
-				mp.Priority = 0;
+				CPatch* patch = m.Terrain.GetPatch(pi, pj);
+				for (ssize_t i = 0; i < PATCH_SIZE; ++i)
+				{
+					for (ssize_t j = 0; j < PATCH_SIZE; ++j)
+					{
+						CMiniPatch& mp = patch->m_MiniPatches[i][j];
+						mp.Tex = tex;
+						mp.Priority = 0;
+					}
+				}
 			}
 		}
 	}
@@ -178,7 +204,8 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		CmpPtr<ICmpPosition> cmpPosition(m.Simulation2, m.Entity);
 		if (!cmpPosition.null())
 		{
-			cmpPosition->JumpTo(entity_pos_t::FromInt(CELL_SIZE*PATCH_SIZE/2), entity_pos_t::FromInt(CELL_SIZE*PATCH_SIZE/2));
+			ssize_t c = CELL_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
+			cmpPosition->JumpTo(entity_pos_t::FromInt(c), entity_pos_t::FromInt(c));
 			cmpPosition->SetYRotation(entity_angle_t::FromFloat((float)M_PI));
 		}
 		needsAnimReload = true;
@@ -301,7 +328,7 @@ void ActorViewer::Render()
 		cmpVisual->GetBounds().GetCentre(centre);
 	else
 		centre.Y = 0.f;
-	centre.X = centre.Z = CELL_SIZE * PATCH_SIZE/2;
+	centre.X = centre.Z = CELL_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
 
 	CCamera camera = View::GetView_Actor()->GetCamera();
 	camera.m_Orientation.Translate(centre.X, centre.Y, centre.Z);
@@ -309,7 +336,7 @@ void ActorViewer::Render()
 	
 	g_Renderer.SetSceneCamera(camera, camera);
 
-	g_Renderer.RenderScene(&m);
+	g_Renderer.RenderScene(m);
 
 	// ....
 
@@ -352,6 +379,7 @@ void ActorViewer::Update(float dt)
 {
 	m.Simulation2.Update((int)(dt*1000));
 	m.Simulation2.Interpolate(dt, 0);
+	g_Renderer.GetParticleManager().Interpolate(dt);
 
 	if (m.WalkEnabled && m.CurrentSpeed)
 	{
@@ -362,8 +390,9 @@ void ActorViewer::Update(float dt)
 			float z = cmpPosition->GetPosition().Z.ToFloat();
 			z -= m.CurrentSpeed*dt;
 			// Wrap at the edges, so it doesn't run off into the horizon
-			if (z < CELL_SIZE*PATCH_SIZE * 0.4f)
-				z = CELL_SIZE*PATCH_SIZE * 0.6f;
+			ssize_t c = CELL_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
+			if (z < c - CELL_SIZE*PATCH_SIZE * 0.1f)
+				z = c + CELL_SIZE*PATCH_SIZE * 0.1f;
 			cmpPosition->JumpTo(cmpPosition->GetPosition().X, entity_pos_t::FromFloat(z));
 		}
 	}

@@ -159,6 +159,7 @@ public:
 		: Game(game),
 		ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
 		ObjectManager(MeshManager, SkeletonAnimManager, *game->GetSimulation2()),
+		LOSTexture(*game->GetSimulation2()),
 		ViewCamera(),
 		CullCamera(),
 		LockCullCamera(false),
@@ -467,7 +468,7 @@ void CGameView::BeginFrame()
 
 void CGameView::Render()
 {
-	g_Renderer.RenderScene(this);
+	g_Renderer.RenderScene(*this);
 }
 
 ///////////////////////////////////////////////////////////

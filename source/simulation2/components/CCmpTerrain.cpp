@@ -79,6 +79,16 @@ public:
 		return m_Terrain->GetExactGroundLevel(x, z);
 	}
 
+	virtual uint32_t GetVerticesPerSide()
+	{
+		return m_Terrain->GetVerticesPerSide();
+	}
+
+	virtual CTerrain* GetCTerrain()
+	{
+		return m_Terrain;
+	}
+
 	virtual void ReloadTerrain()
 	{
 		// TODO: should refactor this code to be nicer

@@ -88,7 +88,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			variation.decal.m_SizeX, variation.decal.m_SizeZ,
 			variation.decal.m_Angle, variation.decal.m_OffsetX, variation.decal.m_OffsetZ,
 			m_Base->m_Properties.m_FloatOnWater);
-		m_Model = new CModelDecal(g_Game->GetWorld()->GetTerrain(), decal);
+		m_Model = new CModelDecal(objectManager.GetTerrain(), decal);
 
 		return true;
 	}

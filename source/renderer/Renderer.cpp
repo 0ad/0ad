@@ -459,6 +459,8 @@ CRenderer::CRenderer()
 
 	m_LightEnv = NULL;
 
+	m_CurrentScene = NULL;
+
 	m_hCompositeAlphaMap = 0;
 
 	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
@@ -1832,19 +1834,28 @@ void CRenderer::SubmitNonRecursive(CModel* model)
 
 ///////////////////////////////////////////////////////////
 // Render the given scene
-void CRenderer::RenderScene(Scene *scene)
+void CRenderer::RenderScene(Scene& scene)
 {
+	m_CurrentScene = &scene;
+
 	CFrustum frustum = m_CullCamera.GetFrustum();
 
-	scene->EnumerateObjects(frustum, this);
+	scene.EnumerateObjects(frustum, this);
 
 	m->particleManager.RenderSubmit(*this, frustum);
 
 	ogl_WarnIfError();
 
 	RenderSubmissions();
+
+	m_CurrentScene = NULL;
 }
 
+Scene& CRenderer::GetScene()
+{
+	debug_assert(m_CurrentScene);
+	return *m_CurrentScene;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BindTexture: bind a GL texture object to current active unit

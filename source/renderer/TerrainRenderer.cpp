@@ -276,7 +276,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 		1.f
 	};
 
-	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
 
 	int streamflags = STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0;
 	
@@ -516,7 +516,7 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 		shader->Uniform("shadowTransform", shadow->GetTextureMatrix());
 	}
 
-	CLOSTexture& los = g_Game->GetView()->GetLOSTexture();
+	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 	shader->BindTexture("losTex", los.GetTexture());
 	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
@@ -679,9 +679,9 @@ void TerrainRenderer::RenderWater()
 			m->fancyWaterShader = h;
 		}
 	}
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain(); // TODO: stop using g_Game
 
-	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
