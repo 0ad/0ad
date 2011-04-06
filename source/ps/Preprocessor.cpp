@@ -693,7 +693,6 @@ bool CPreprocessor::GetValue (const Token &iToken, long &oValue, int iLine)
         vt = &r;
     }
 
-    Macro *m;
     switch (vt->Type)
     {
         case Token::TK_EOS:
@@ -701,8 +700,10 @@ bool CPreprocessor::GetValue (const Token &iToken, long &oValue, int iLine)
             return false;
 
         case Token::TK_KEYWORD:
+		{
             // Try to expand the macro
-            if ((m = IsDefined (*vt)) && !m->Expanding)
+			Macro *m = IsDefined (*vt);
+            if (m != NULL && !m->Expanding)
             {
                 Token x = ExpandMacro (*vt);
                 m->Expanding = true;
@@ -714,7 +715,7 @@ bool CPreprocessor::GetValue (const Token &iToken, long &oValue, int iLine)
             // Undefined macro, "expand" to 0 (mimic cpp behaviour)
             oValue = 0;
             break;
-
+		}
         case Token::TK_TEXT:
         case Token::TK_NUMBER:
             if (!vt->GetValue (oValue))
