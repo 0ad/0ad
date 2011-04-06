@@ -9,4 +9,9 @@
     <SilhouetteDisplay>false</SilhouetteDisplay>
     <SilhouetteOccluder>false</SilhouetteOccluder>
   </VisualActor>
+  <Vision>
+    <Range>0</Range>
+    <RetainInFog>true</RetainInFog>
+    <AlwaysVisible>false</AlwaysVisible>
+  </Vision>
 </Entity>
