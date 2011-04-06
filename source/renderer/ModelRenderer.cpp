@@ -106,8 +106,7 @@ void ModelRenderer::BuildPositionAndNormals(
 void ModelRenderer::BuildColor4ub(
 		CModel* model,
 		const VertexArrayIterator<CVector3D>& Normal,
-		const VertexArrayIterator<SColor4ub>& Color,
-		bool onlyDiffuse)
+		const VertexArrayIterator<SColor4ub>& Color)
 {
 	PROFILE( "lighting vertices" );
 
@@ -117,27 +116,13 @@ void ModelRenderer::BuildColor4ub(
 	CColor shadingColor = model->GetShadingColor();
 	RGBColor tempcolor;
 
-	if (onlyDiffuse)
+	for (size_t j=0; j<numVertices; j++)
 	{
-		for (size_t j=0; j<numVertices; j++)
-		{
-			lightEnv.EvaluateDirect(Normal[j], tempcolor);
-			tempcolor.X *= shadingColor.r;
-			tempcolor.Y *= shadingColor.g;
-			tempcolor.Z *= shadingColor.b;
-			Color[j] = ConvertRGBColorTo4ub(tempcolor);
-		}
-	}
-	else
-	{
-		for (size_t j=0; j<numVertices; j++)
-		{
-			lightEnv.EvaluateUnit(Normal[j], tempcolor);
-			tempcolor.X *= shadingColor.r;
-			tempcolor.Y *= shadingColor.g;
-			tempcolor.Z *= shadingColor.b;
-			Color[j] = ConvertRGBColorTo4ub(tempcolor);
-		}
+		lightEnv.EvaluateUnit(Normal[j], tempcolor);
+		tempcolor.X *= shadingColor.r;
+		tempcolor.Y *= shadingColor.g;
+		tempcolor.Z *= shadingColor.b;
+		Color[j] = ConvertRGBColorTo4ub(tempcolor);
 	}
 }
 

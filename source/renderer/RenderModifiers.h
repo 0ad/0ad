@@ -177,25 +177,6 @@ public:
 
 
 /**
- * Class PlainLitRenderModifier: Use an opaque color texture for a lit object that is shadowed
- * using a depth texture.
- * Expects the diffuse brightness in the primary color.
- */
-class PlainLitRenderModifier : public LitRenderModifier
-{
-public:
-	PlainLitRenderModifier();
-	~PlainLitRenderModifier();
-
-	// Implementation
-	int BeginPass(int pass);
-	const CMatrix3D* GetTexGenMatrix(int pass);
-	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-};
-
-
-/**
  * Class WireframeRenderModifier: RenderModifier that renders wireframe models.
  */
 class WireframeRenderModifier : public RenderModifier

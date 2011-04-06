@@ -77,14 +77,14 @@ public:
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderTerrain.
-	 *
-	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
 	 */
-	void RenderTerrain(ShadowMap* shadow);
+	void RenderTerrain();
 
 	/**
 	 * Render textured terrain, as with RenderTerrain, but using shaders
 	 * instead of multitexturing.
+	 *
+	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
 	 */
 	void RenderTerrainShader(ShadowMap* shadow);
 

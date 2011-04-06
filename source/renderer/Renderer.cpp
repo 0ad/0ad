@@ -205,13 +205,6 @@ AbstractProfileTable* CRendererStatsTable::GetChild(size_t UNUSED(row))
 ///////////////////////////////////////////////////////////////////////////////////
 // CRenderer implementation
 
-enum {
-	AmbientDiffuse = 0,
-	OnlyDiffuse,
-
-	NumVertexTypes
-};
-
 /**
  * Struct CRendererInternals: Truly hide data that is supposed to be hidden
  * in this structure so it won't even appear in header files.
@@ -269,9 +262,9 @@ public:
 
 		// "Palette" of available ModelRenderers. Do not use these directly for
 		// rendering and submission; use the aliases above instead.
-		ModelRenderer* pal_NormalFF[NumVertexTypes];
-		ModelRenderer* pal_PlayerFF[NumVertexTypes];
-		ModelRenderer* pal_TranspFF[NumVertexTypes];
+		ModelRenderer* pal_NormalFF;
+		ModelRenderer* pal_PlayerFF;
+		ModelRenderer* pal_TranspFF;
 		ModelRenderer* pal_TranspSortAll;
 
 		ModelRenderer* pal_NormalShader;
@@ -280,7 +273,7 @@ public:
 		ModelRenderer* pal_PlayerInstancingShader;
 		ModelRenderer* pal_TranspShader;
 
-		ModelVertexRendererPtr VertexFF[NumVertexTypes];
+		ModelVertexRendererPtr VertexFF;
 		ModelVertexRendererPtr VertexPolygonSort;
 		ModelVertexRendererPtr VertexRendererShader;
 		ModelVertexRendererPtr VertexInstancingShader;
@@ -304,12 +297,9 @@ public:
 		RenderModifierPtr ModTransparent;
 
 		// Palette of available RenderModifiers
-		RenderModifierPtr ModPlain;
-		LitRenderModifierPtr ModPlainLit;
+		RenderModifierPtr ModPlainUnlit;
 		RenderModifierPtr ModPlayerUnlit;
-		LitRenderModifierPtr ModPlayerLit;
 		RenderModifierPtr ModTransparentUnlit;
-		LitRenderModifierPtr ModTransparentLit;
 
 		RenderModifierPtr ModShaderSolidColor;
 		RenderModifierPtr ModShaderSolidColorInstancing;
@@ -331,12 +321,9 @@ public:
 		terrainRenderer = new TerrainRenderer();
 		shadow = new ShadowMap();
 
-		for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
-		{
-			Model.pal_NormalFF[vertexType] = 0;
-			Model.pal_PlayerFF[vertexType] = 0;
-			Model.pal_TranspFF[vertexType] = 0;
-		}
+		Model.pal_NormalFF = 0;
+		Model.pal_PlayerFF = 0;
+		Model.pal_TranspFF = 0;
 		Model.pal_TranspSortAll = 0;
 
 		Model.pal_NormalShader = 0;
@@ -359,9 +346,9 @@ public:
 	}
 
 	/**
-	* Load the OpenGL projection and modelview matrices and the viewport according
-	* to the given camera.
-	*/
+	 * Load the OpenGL projection and modelview matrices and the viewport according
+	 * to the given camera.
+	 */
 	void SetOpenGLCamera(const CCamera& camera)
 	{
 		CMatrix3D view;
@@ -455,12 +442,9 @@ CRenderer::~CRenderer()
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 
 	// model rendering
-	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
-	{
-		delete m->Model.pal_NormalFF[vertexType];
-		delete m->Model.pal_PlayerFF[vertexType];
-		delete m->Model.pal_TranspFF[vertexType];
-	}
+	delete m->Model.pal_NormalFF;
+	delete m->Model.pal_PlayerFF;
+	delete m->Model.pal_TranspFF;
 	delete m->Model.pal_TranspSortAll;
 
 	delete m->Model.pal_NormalShader;
@@ -617,18 +601,14 @@ bool CRenderer::Open(int width, int height)
 
 
 	// model rendering
-	m->Model.VertexFF[AmbientDiffuse] = ModelVertexRendererPtr(new FixedFunctionModelRenderer(false));
-	m->Model.VertexFF[OnlyDiffuse] = ModelVertexRendererPtr(new FixedFunctionModelRenderer(true));
+	m->Model.VertexFF = ModelVertexRendererPtr(new FixedFunctionModelRenderer);
 	m->Model.VertexPolygonSort = ModelVertexRendererPtr(new PolygonSortModelRenderer);
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelRenderer);
 	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer);
 
-	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
-	{
-		m->Model.pal_NormalFF[vertexType] = new BatchModelRenderer(m->Model.VertexFF[vertexType]);
-		m->Model.pal_PlayerFF[vertexType] = new BatchModelRenderer(m->Model.VertexFF[vertexType]);
-		m->Model.pal_TranspFF[vertexType] = new SortModelRenderer(m->Model.VertexFF[vertexType]);
-	}
+	m->Model.pal_NormalFF = new BatchModelRenderer(m->Model.VertexFF);
+	m->Model.pal_PlayerFF = new BatchModelRenderer(m->Model.VertexFF);
+	m->Model.pal_TranspFF = new SortModelRenderer(m->Model.VertexFF);
 
 	m->Model.pal_TranspSortAll = new SortModelRenderer(m->Model.VertexPolygonSort);
 
@@ -639,14 +619,11 @@ bool CRenderer::Open(int width, int height)
 	m->Model.pal_TranspShader = new SortModelRenderer(m->Model.VertexRendererShader);
 
 	m->Model.ModWireframe = RenderModifierPtr(new WireframeRenderModifier);
-	m->Model.ModPlain = RenderModifierPtr(new PlainRenderModifier);
-	m->Model.ModPlainLit = LitRenderModifierPtr(new PlainLitRenderModifier);
+	m->Model.ModPlainUnlit = RenderModifierPtr(new PlainRenderModifier);
 	SetFastPlayerColor(true);
-	m->Model.ModPlayerLit = LitRenderModifierPtr(new LitPlayerColorRender);
 	m->Model.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
 	m->Model.ModSolidPlayerColor = RenderModifierPtr(new SolidPlayerColorRender);
 	m->Model.ModTransparentUnlit = RenderModifierPtr(new TransparentRenderModifier);
-	m->Model.ModTransparentLit = LitRenderModifierPtr(new LitTransparentRenderModifier);
 	m->Model.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
@@ -840,7 +817,8 @@ void CRenderer::BeginFrame()
 	// zero out all the per-frame stats
 	m_Stats.Reset();
 
-	// handle the new shader-based approach
+	// choose model renderers for this frame
+
 	if (m_Options.m_RenderPath == RP_SHADER)
 	{
 		if (m->ShadersDirty)
@@ -878,55 +856,31 @@ void CRenderer::BeginFrame()
 		m->Model.PlayerInstancing = m->Model.pal_PlayerInstancingShader;
 
 		m->Model.Transp = m->Model.pal_TranspShader;
-
-		return;
-	}
-
-	// choose model renderers for this frame
-	int vertexType;
-
-	if (m_Caps.m_Shadows && m_Options.m_Shadows && m->shadow->GetUseDepthTexture())
-	{
-		vertexType = OnlyDiffuse;
-		m->Model.ModNormal = m->Model.ModPlainLit;
-		m->Model.ModNormalInstancing = m->Model.ModPlainLit;
-		m->Model.ModPlainLit->SetShadowMap(m->shadow);
-		m->Model.ModPlainLit->SetLightEnv(m_LightEnv);
-
-		m->Model.ModPlayer = m->Model.ModPlayerLit;
-		m->Model.ModPlayerInstancing = m->Model.ModPlayerLit;
-		m->Model.ModPlayerLit->SetShadowMap(m->shadow);
-		m->Model.ModPlayerLit->SetLightEnv(m_LightEnv);
-
-		m->Model.ModTransparent = m->Model.ModTransparentLit;
-		m->Model.ModTransparentLit->SetShadowMap(m->shadow);
-		m->Model.ModTransparentLit->SetLightEnv(m_LightEnv);
 	}
 	else
 	{
-		vertexType = AmbientDiffuse;
-		m->Model.ModNormal = m->Model.ModPlain;
-		m->Model.ModNormalInstancing = m->Model.ModPlain;
+		m->Model.ModNormal = m->Model.ModPlainUnlit;
+		m->Model.ModNormalInstancing = m->Model.ModPlainUnlit;
 		m->Model.ModPlayer = m->Model.ModPlayerUnlit;
 		m->Model.ModPlayerInstancing = m->Model.ModPlayerUnlit;
 		m->Model.ModTransparent = m->Model.ModTransparentUnlit;
+
+		m->Model.NormalInstancing = m->Model.pal_NormalFF;
+		m->Model.Normal = m->Model.pal_NormalFF;
+
+		m->Model.PlayerInstancing = m->Model.pal_PlayerFF;
+		m->Model.Player = m->Model.pal_PlayerFF;
+
+		m->Model.ModSolid = m->Model.ModSolidColor;
+		m->Model.ModSolidInstancing = m->Model.ModSolidColor;
+		m->Model.ModSolidPlayer = m->Model.ModSolidPlayerColor;
+		m->Model.ModSolidPlayerInstancing = m->Model.ModSolidPlayerColor;
+
+		if (m_SortAllTransparent)
+			m->Model.Transp = m->Model.pal_TranspSortAll;
+		else
+			m->Model.Transp = m->Model.pal_TranspFF;
 	}
-
-	m->Model.NormalInstancing = m->Model.pal_NormalFF[vertexType];
-	m->Model.Normal = m->Model.pal_NormalFF[vertexType];
-
-	m->Model.PlayerInstancing = m->Model.pal_PlayerFF[vertexType];
-	m->Model.Player = m->Model.pal_PlayerFF[vertexType];
-
-	m->Model.ModSolid = m->Model.ModSolidColor;
-	m->Model.ModSolidInstancing = m->Model.ModSolidColor;
-	m->Model.ModSolidPlayer = m->Model.ModSolidPlayerColor;
-	m->Model.ModSolidPlayerInstancing = m->Model.ModSolidPlayerColor;
-
-	if (m_SortAllTransparent)
-		m->Model.Transp = m->Model.pal_TranspSortAll;
-	else
-		m->Model.Transp = m->Model.pal_TranspFF[vertexType];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -1010,7 +964,7 @@ void CRenderer::RenderPatches()
 	if (GetRenderPath() == RP_SHADER)
 		m->terrainRenderer->RenderTerrainShader((m_Caps.m_Shadows && m_Options.m_Shadows) ? m->shadow : 0);
 	else
-		m->terrainRenderer->RenderTerrain((m_Caps.m_Shadows && m_Options.m_Shadows) ? m->shadow : 0);
+		m->terrainRenderer->RenderTerrain();
 
 
 	if (m_TerrainRenderMode == WIREFRAME)
@@ -1494,7 +1448,7 @@ void CRenderer::RenderSubmissions()
 	m->particleRenderer.PrepareForRendering();
 	PROFILE_END("prepare particles");
 
-	if (m_Caps.m_Shadows && m_Options.m_Shadows)
+	if (m_Caps.m_Shadows && m_Options.m_Shadows && GetRenderPath() == RP_SHADER)
 	{
 		RenderShadowMap();
 	}
@@ -1661,7 +1615,7 @@ void CRenderer::SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCam
 	m_ViewCamera = viewCamera;
 	m_CullCamera = cullCamera;
 
-	if (m_Caps.m_Shadows && m_Options.m_Shadows)
+	if (m_Caps.m_Shadows && m_Options.m_Shadows && GetRenderPath() == RP_SHADER)
 		m->shadow->SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
 }
 

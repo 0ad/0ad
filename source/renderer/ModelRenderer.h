@@ -213,14 +213,11 @@ public:
 	 * @param Color Points to the array that will receive the lit vertex color.
 	 * The array behind the iterator must large enough to hold
 	 * model->GetModelDef()->GetNumVertices() vertices.
-	 * @param onlyDiffuse if true, color will only contain the diffuse term (instead
-	 * of both ambient and diffuse)
 	 */
 	static void BuildColor4ub(
 			CModel* model,
 			const VertexArrayIterator<CVector3D>& Normal,
-			const VertexArrayIterator<SColor4ub>& Color,
-			bool onlyDiffuse);
+			const VertexArrayIterator<SColor4ub>& Color);
 
 	/**
 	 * BuildUV: Copy UV coordinates into the given vertex array.

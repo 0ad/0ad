@@ -79,28 +79,6 @@ public:
 
 
 /**
- * Class LitPlayerColorRender: Render models fully textured and lit including shadows
- * and player color.
- *
- * @note Only use a LitPlayerColorRenderer instance when depth texture based shadows
- * are supported by the OpenGL implementation (as verified by CRenderer::m_Caps::m_DepthTextureShadows).
- */
-class LitPlayerColorRender : public LitRenderModifier
-{
-public:
-	LitPlayerColorRender();
-	~LitPlayerColorRender();
-
-	// Implementation
-	int BeginPass(int pass);
-	bool EndPass(int pass);
-	const CMatrix3D* GetTexGenMatrix(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-	void PrepareModel(int pass, CModel* model);
-};
-
-
-/**
  * Render all models using their player color without lighting.
  */
 class SolidPlayerColorRender : public RenderModifier

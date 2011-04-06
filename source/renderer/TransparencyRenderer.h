@@ -111,29 +111,6 @@ public:
 
 
 /**
- * Class LitTransparentRenderModifier: Modifier for transparent models,
- * including alpha blending and shadowed lighting.
- *
- * @note Use only when depth textures are used for shadows and thus supported by the OpenGL
- * implementation.
- */
-class LitTransparentRenderModifier : public LitRenderModifier
-{
-public:
-	LitTransparentRenderModifier();
-	~LitTransparentRenderModifier();
-
-	// Implementation
-	int BeginPass(int pass);
-	bool EndPass(int pass);
-	const CMatrix3D* GetTexGenMatrix(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-	void PrepareModel(int pass, CModel* model);
-
-};
-
-
-/**
  * Class TransparentShadowRenderModifier: Use to render shadow data for
  * transparent models into a luminance map.
  */

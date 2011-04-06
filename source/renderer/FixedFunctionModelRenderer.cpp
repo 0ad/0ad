@@ -102,18 +102,14 @@ struct FixedFunctionModelRendererInternals
 
 	/// Previously prepared modeldef
 	FFModelDef* ffmodeldef;
-
-	/// If true, primary color will only contain the diffuse term
-	bool colorIsDiffuseOnly;
 };
 
 
 // Construction and Destruction
-FixedFunctionModelRenderer::FixedFunctionModelRenderer(bool colorIsDiffuseOnly)
+FixedFunctionModelRenderer::FixedFunctionModelRenderer()
 {
 	m = new FixedFunctionModelRendererInternals;
 	m->ffmodeldef = 0;
-	m->colorIsDiffuseOnly = colorIsDiffuseOnly;
 }
 
 FixedFunctionModelRenderer::~FixedFunctionModelRenderer()
@@ -173,7 +169,7 @@ void FixedFunctionModelRenderer::UpdateModelData(CModel* model, void* data, int 
 
 		VertexArrayIterator<SColor4ub> Color = ffmodel->m_Color.GetIterator<SColor4ub>();
 
-		ModelRenderer::BuildColor4ub(model, Normal, Color, m->colorIsDiffuseOnly);
+		ModelRenderer::BuildColor4ub(model, Normal, Color);
 
 		// upload everything to vertex buffer
 		ffmodel->m_Array.Upload();
