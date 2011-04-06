@@ -25,16 +25,14 @@
 
 #include "renderer/ModelVertexRenderer.h"
 
-struct HWLightingModelRendererInternals;
+struct ShaderModelRendererInternals;
 
 /**
- * Class HWLightingModelRenderer: Render animated models using vertex
- * shaders for lighting.
- *
- * @note You should verify hardware capabilities using IsAvailable
- * before creating this model renderer.
+ * Render animated models using a ShaderRenderModifier.
+ * This just passes through the vertex data directly; the modifier is responsible
+ * for setting any shader uniforms etc.
  */
-class HWLightingModelRenderer : public ModelVertexRenderer
+class ShaderModelRenderer : public ModelVertexRenderer
 {
 public:
 	/**
@@ -43,8 +41,8 @@ public:
 	 * @param colorIsDiffuseOnly if true, the primary color sent to the fragment stage
 	 * contains only the diffuse term, and not the ambient
 	 */
-	HWLightingModelRenderer(bool colorIsDiffuseOnly);
-	~HWLightingModelRenderer();
+	ShaderModelRenderer();
+	~ShaderModelRenderer();
 
 	// Implementations
 	void* CreateModelData(CModel* model);
@@ -56,35 +54,8 @@ public:
 	void PrepareModelDef(int streamflags, const CModelDefPtr& def);
 	void RenderModel(int streamflags, CModel* model, void* data);
 
-	/**
-	 * IsAvailable: Determines whether this model renderer can be used
-	 * given the OpenGL implementation specific limits.
-	 *
-	 * @note Do not attempt to construct a HWLightingModelRenderer object
-	 * when IsAvailable returns false.
-	 *
-	 * @return true if the OpenGL implementation can support this
-	 * model renderer.
-	 */
-	static bool IsAvailable();
-
 protected:
-	HWLightingModelRendererInternals* m;
-};
-
-/**
- * Render animated models using a ShaderRenderModifier.
- * This just passes through the vertex data directly; the modifier is responsible
- * for setting any shader uniforms etc.
- */
-class ShaderModelRenderer : public HWLightingModelRenderer
-{
-public:
-	ShaderModelRenderer();
-
-	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
-	void EndPass(int streamflags);
-	void RenderModel(int streamflags, CModel* model, void* data);
+	ShaderModelRendererInternals* m;
 };
 
 

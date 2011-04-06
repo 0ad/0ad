@@ -28,22 +28,14 @@
 struct InstancingModelRendererInternals;
 
 /**
- * Class InstancingModelRenderer: Render non-animated (but potentially
- * moving models) using vertex shaders and minimal state changes.
- *
- * @note You should verify hardware capabilities using IsAvailable
- * before creating this model renderer.
+ * Render non-animated (but potentially moving) models using a ShaderRenderModifier.
+ * This just passes through the vertex data directly; the modifier is responsible
+ * for setting any shader uniforms etc (including the instancing transform).
  */
 class InstancingModelRenderer : public ModelVertexRenderer
 {
 public:
-	/**
-	 * InstancingModelRenderer: Constructor.
-	 *
-	 * @param colorIsDiffuseOnly if true, the primary color sent to the fragment stage
-	 * contains only the diffuse term, and not the ambient
-	 */
-	InstancingModelRenderer(bool colorIsDiffuseOnly);
+	InstancingModelRenderer();
 	~InstancingModelRenderer();
 
 	// Implementations
@@ -56,36 +48,8 @@ public:
 	void PrepareModelDef(int streamflags, const CModelDefPtr& def);
 	void RenderModel(int streamflags, CModel* model, void* data);
 
-	/**
-	 * IsAvailable: Determines whether this model renderer can be used
-	 * given the OpenGL implementation specific limits.
-	 *
-	 * @note Do not attempt to construct a InstancingModelRenderer object
-	 * when IsAvailable returns false.
-	 *
-	 * @return true if the OpenGL implementation can support this
-	 * model renderer.
-	 */
-	static bool IsAvailable();
-
 protected:
 	InstancingModelRendererInternals* m;
-};
-
-/**
- * Render non-animated (but potentially moving) models using a ShaderRenderModifier.
- * This just passes through the vertex data directly; the modifier is responsible
- * for setting any shader uniforms etc (including the instancing transform).
- */
-class ShaderInstancingModelRenderer : public InstancingModelRenderer
-{
-public:
-	ShaderInstancingModelRenderer();
-
-	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
-	void EndPass(int streamflags);
-	void PrepareModelDef(int streamflags, const CModelDefPtr& def);
-	void RenderModel(int streamflags, CModel* model, void* data);
 };
 
 #endif // INCLUDED_INSTANCINGMODELRENDERER

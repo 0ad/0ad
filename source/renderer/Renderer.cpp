@@ -60,7 +60,6 @@
 #include "renderer/ParticleRenderer.h"
 #include "renderer/PlayerRenderer.h"
 #include "renderer/RenderModifiers.h"
-#include "renderer/RenderPathVertexShader.h"
 #include "renderer/ShadowMap.h"
 #include "renderer/SkyManager.h"
 #include "renderer/TerrainOverlay.h"
@@ -272,12 +271,7 @@ public:
 		// rendering and submission; use the aliases above instead.
 		ModelRenderer* pal_NormalFF[NumVertexTypes];
 		ModelRenderer* pal_PlayerFF[NumVertexTypes];
-		ModelRenderer* pal_NormalHWLit[NumVertexTypes];
-		ModelRenderer* pal_PlayerHWLit[NumVertexTypes];
-		ModelRenderer* pal_NormalInstancing[NumVertexTypes];
-		ModelRenderer* pal_PlayerInstancing[NumVertexTypes];
 		ModelRenderer* pal_TranspFF[NumVertexTypes];
-		ModelRenderer* pal_TranspHWLit[NumVertexTypes];
 		ModelRenderer* pal_TranspSortAll;
 
 		ModelRenderer* pal_NormalShader;
@@ -287,8 +281,6 @@ public:
 		ModelRenderer* pal_TranspShader;
 
 		ModelVertexRendererPtr VertexFF[NumVertexTypes];
-		ModelVertexRendererPtr VertexHWLit[NumVertexTypes];
-		ModelVertexRendererPtr VertexInstancing[NumVertexTypes];
 		ModelVertexRendererPtr VertexPolygonSort;
 		ModelVertexRendererPtr VertexRendererShader;
 		ModelVertexRendererPtr VertexInstancingShader;
@@ -344,11 +336,6 @@ public:
 			Model.pal_NormalFF[vertexType] = 0;
 			Model.pal_PlayerFF[vertexType] = 0;
 			Model.pal_TranspFF[vertexType] = 0;
-			Model.pal_NormalHWLit[vertexType] = 0;
-			Model.pal_PlayerHWLit[vertexType] = 0;
-			Model.pal_TranspHWLit[vertexType] = 0;
-			Model.pal_NormalInstancing[vertexType] = 0;
-			Model.pal_PlayerInstancing[vertexType] = 0;
 		}
 		Model.pal_TranspSortAll = 0;
 
@@ -369,18 +356,6 @@ public:
 	{
 		delete shadow;
 		delete terrainRenderer;
-	}
-
-	bool CanUseRenderPathVertexShader()
-	{
-		for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
-		{
-			if (!Model.pal_NormalHWLit[vertexType] ||
-			    !Model.pal_PlayerHWLit[vertexType])
-				return false;
-		}
-
-		return true;
 	}
 
 	/**
@@ -444,8 +419,6 @@ CRenderer::CRenderer()
 	m_FastPlayerColor = true;
 	m_SkipSubmit = false;
 
-	m_VertexShader = 0;
-
 	m_Options.m_NoVBO = false;
 	m_Options.m_NoFramebufferObject = false;
 	m_Options.m_RenderPath = RP_DEFAULT;
@@ -487,11 +460,6 @@ CRenderer::~CRenderer()
 		delete m->Model.pal_NormalFF[vertexType];
 		delete m->Model.pal_PlayerFF[vertexType];
 		delete m->Model.pal_TranspFF[vertexType];
-		delete m->Model.pal_NormalHWLit[vertexType];
-		delete m->Model.pal_PlayerHWLit[vertexType];
-		delete m->Model.pal_TranspHWLit[vertexType];
-		delete m->Model.pal_NormalInstancing[vertexType];
-		delete m->Model.pal_PlayerInstancing[vertexType];
 	}
 	delete m->Model.pal_TranspSortAll;
 
@@ -500,10 +468,6 @@ CRenderer::~CRenderer()
 	delete m->Model.pal_PlayerShader;
 	delete m->Model.pal_PlayerInstancingShader;
 	delete m->Model.pal_TranspShader;
-
-	// general
-	delete m_VertexShader;
-	m_VertexShader = 0;
 
 	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
@@ -651,47 +615,19 @@ bool CRenderer::Open(int width, int height)
 	EnumCaps();
 	m->shadow->SetUseDepthTexture(true);
 
-	m_VertexShader = new RenderPathVertexShader;
-	if (!m_VertexShader->Init())
-	{
-		delete m_VertexShader;
-		m_VertexShader = 0;
-	}
-
 
 	// model rendering
 	m->Model.VertexFF[AmbientDiffuse] = ModelVertexRendererPtr(new FixedFunctionModelRenderer(false));
 	m->Model.VertexFF[OnlyDiffuse] = ModelVertexRendererPtr(new FixedFunctionModelRenderer(true));
-	if (HWLightingModelRenderer::IsAvailable())
-	{
-		m->Model.VertexHWLit[AmbientDiffuse] = ModelVertexRendererPtr(new HWLightingModelRenderer(false));
-		m->Model.VertexHWLit[OnlyDiffuse] = ModelVertexRendererPtr(new HWLightingModelRenderer(true));
-	}
-	if (InstancingModelRenderer::IsAvailable())
-	{
-		m->Model.VertexInstancing[AmbientDiffuse] = ModelVertexRendererPtr(new InstancingModelRenderer(false));
-		m->Model.VertexInstancing[OnlyDiffuse] = ModelVertexRendererPtr(new InstancingModelRenderer(true));
-	}
 	m->Model.VertexPolygonSort = ModelVertexRendererPtr(new PolygonSortModelRenderer);
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelRenderer);
-	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new ShaderInstancingModelRenderer);
+	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer);
 
 	for(int vertexType = 0; vertexType < NumVertexTypes; ++vertexType)
 	{
 		m->Model.pal_NormalFF[vertexType] = new BatchModelRenderer(m->Model.VertexFF[vertexType]);
 		m->Model.pal_PlayerFF[vertexType] = new BatchModelRenderer(m->Model.VertexFF[vertexType]);
 		m->Model.pal_TranspFF[vertexType] = new SortModelRenderer(m->Model.VertexFF[vertexType]);
-		if (m->Model.VertexHWLit[vertexType])
-		{
-			m->Model.pal_NormalHWLit[vertexType] = new BatchModelRenderer(m->Model.VertexHWLit[vertexType]);
-			m->Model.pal_PlayerHWLit[vertexType] = new BatchModelRenderer(m->Model.VertexHWLit[vertexType]);
-			m->Model.pal_TranspHWLit[vertexType] = new SortModelRenderer(m->Model.VertexHWLit[vertexType]);
-		}
-		if (m->Model.VertexInstancing[vertexType])
-		{
-			m->Model.pal_NormalInstancing[vertexType] = new BatchModelRenderer(m->Model.VertexInstancing[vertexType]);
-			m->Model.pal_PlayerInstancing[vertexType] = new BatchModelRenderer(m->Model.VertexInstancing[vertexType]);
-		}
 	}
 
 	m->Model.pal_TranspSortAll = new SortModelRenderer(m->Model.VertexPolygonSort);
@@ -833,15 +769,6 @@ void CRenderer::SetRenderPath(RenderPath rp)
 			rp = RP_FIXED;
 	}
 
-	if (rp == RP_VERTEXSHADER)
-	{
-		if (!m->CanUseRenderPathVertexShader())
-		{
-			LOGWARNING(L"Falling back to fixed function\n");
-			rp = RP_FIXED;
-		}
-	}
-
 	if (rp == RP_SHADER)
 	{
 		if (!m_Caps.m_ARBProgram)
@@ -864,7 +791,6 @@ CStr CRenderer::GetRenderPathName(RenderPath rp)
 	switch(rp) {
 	case RP_DEFAULT: return "default";
 	case RP_FIXED: return "fixed";
-	case RP_VERTEXSHADER: return "vertexshader";
 	case RP_SHADER: return "shader";
 	default: return "(invalid)";
 	}
@@ -874,8 +800,6 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(const CStr& name)
 {
 	if (name == "fixed")
 		return RP_FIXED;
-	if (name == "vertexshader")
-		return RP_VERTEXSHADER;
 	if (name == "shader")
 		return RP_SHADER;
 	if (name == "default")
@@ -958,9 +882,6 @@ void CRenderer::BeginFrame()
 		return;
 	}
 
-	if (m_VertexShader)
-		m_VertexShader->BeginFrame();
-
 	// choose model renderers for this frame
 	int vertexType;
 
@@ -991,30 +912,11 @@ void CRenderer::BeginFrame()
 		m->Model.ModTransparent = m->Model.ModTransparentUnlit;
 	}
 
-	if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-	{
-		debug_assert(m->Model.pal_NormalHWLit[vertexType] != 0);
+	m->Model.NormalInstancing = m->Model.pal_NormalFF[vertexType];
+	m->Model.Normal = m->Model.pal_NormalFF[vertexType];
 
-		if (m->Model.pal_NormalInstancing)
-			m->Model.NormalInstancing = m->Model.pal_NormalInstancing[vertexType];
-		else
-			m->Model.NormalInstancing = m->Model.pal_NormalHWLit[vertexType];
-		m->Model.Normal = m->Model.pal_NormalHWLit[vertexType];
-
-		if (m->Model.pal_PlayerInstancing)
-			m->Model.PlayerInstancing = m->Model.pal_PlayerInstancing[vertexType];
-		else
-			m->Model.PlayerInstancing = m->Model.pal_PlayerHWLit[vertexType];
-		m->Model.Player = m->Model.pal_PlayerHWLit[vertexType];
-	}
-	else
-	{
-		m->Model.NormalInstancing = m->Model.pal_NormalFF[vertexType];
-		m->Model.Normal = m->Model.pal_NormalFF[vertexType];
-
-		m->Model.PlayerInstancing = m->Model.pal_PlayerFF[vertexType];
-		m->Model.Player = m->Model.pal_PlayerFF[vertexType];
-	}
+	m->Model.PlayerInstancing = m->Model.pal_PlayerFF[vertexType];
+	m->Model.Player = m->Model.pal_PlayerFF[vertexType];
 
 	m->Model.ModSolid = m->Model.ModSolidColor;
 	m->Model.ModSolidInstancing = m->Model.ModSolidColor;
@@ -1023,8 +925,6 @@ void CRenderer::BeginFrame()
 
 	if (m_SortAllTransparent)
 		m->Model.Transp = m->Model.pal_TranspSortAll;
-	else if (m_Options.m_RenderPath == RP_VERTEXSHADER)
-		m->Model.Transp = m->Model.pal_TranspHWLit[vertexType];
 	else
 		m->Model.Transp = m->Model.pal_TranspFF[vertexType];
 }

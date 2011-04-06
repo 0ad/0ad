@@ -36,7 +36,6 @@
 #include "renderer/InstancingModelRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
-#include "renderer/RenderPathVertexShader.h"
 #include "renderer/VertexArray.h"
 
 
@@ -109,33 +108,19 @@ struct InstancingModelRendererInternals
 
 	/// Index base for imodeldef
 	u8* imodeldefIndexBase;
-
-	/// If true, primary color will only contain the diffuse term
-	bool colorIsDiffuseOnly;
-
-	/// After BeginPass, this points to the instancing matrix interface
-	VS_Instancing* instancingConfig;
 };
 
 
 // Construction and Destruction
-InstancingModelRenderer::InstancingModelRenderer(bool colorIsDiffuseOnly)
+InstancingModelRenderer::InstancingModelRenderer()
 {
 	m = new InstancingModelRendererInternals;
 	m->imodeldef = 0;
-	m->colorIsDiffuseOnly = colorIsDiffuseOnly;
 }
 
 InstancingModelRenderer::~InstancingModelRenderer()
 {
 	delete m;
-}
-
-
-// Check hardware support
-bool InstancingModelRenderer::IsAvailable()
-{
-	return g_Renderer.m_VertexShader != 0;
 }
 
 
@@ -170,134 +155,7 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 
 
 // Setup one rendering pass.
-void InstancingModelRenderer::BeginPass(int streamflags, const CMatrix3D* texturematrix)
-{
-	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1)));
-
-	RenderPathVertexShader* rpvs = g_Renderer.m_VertexShader;
-
-	glEnableClientState(GL_VERTEX_ARRAY);
-
-	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	if (streamflags & STREAM_COLOR)
-	{
-		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-		VS_GlobalLight* lightConfig;
-
-		if (streamflags & STREAM_TEXGENTOUV1)
-		{
-			ogl_program_use(rpvs->m_InstancingLightP);
-			lightConfig = &rpvs->m_InstancingLightP_Light;
-			m->instancingConfig = &rpvs->m_InstancingLightP_Instancing;
-
-			rpvs->m_InstancingLightP_PosToUV1.SetMatrix(*texturematrix);
-		}
-		else
-		{
-			ogl_program_use(rpvs->m_InstancingLight);
-			lightConfig = &rpvs->m_InstancingLight_Light;
-			m->instancingConfig = &rpvs->m_InstancingLight_Instancing;
-		}
-
-		if (m->colorIsDiffuseOnly)
-			lightConfig->SetAmbient(RGBColor(0,0,0));
-		else
-			lightConfig->SetAmbient(lightEnv.m_UnitsAmbientColor);
-		lightConfig->SetSunDir(lightEnv.GetSunDir());
-		lightConfig->SetSunColor(lightEnv.m_SunColor);
-
-		glEnableClientState(GL_NORMAL_ARRAY);
-	}
-	else
-	{
-		if (streamflags & STREAM_TEXGENTOUV1)
-		{
-			ogl_program_use(rpvs->m_InstancingP);
-			m->instancingConfig = &rpvs->m_InstancingP_Instancing;
-
-			rpvs->m_InstancingP_PosToUV1.SetMatrix(*texturematrix);
-		}
-		else
-		{
-			ogl_program_use(rpvs->m_Instancing);
-			m->instancingConfig = &rpvs->m_Instancing_Instancing;
-		}
-	}
-}
-
-// Cleanup rendering pass.
-void InstancingModelRenderer::EndPass(int streamflags)
-{
-	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	if (streamflags & STREAM_COLOR) glDisableClientState(GL_NORMAL_ARRAY);
-
-	pglUseProgramObjectARB(0);
-	glDisableClientState(GL_VERTEX_ARRAY);
-
-	CVertexBuffer::Unbind();
-}
-
-
-// Prepare UV coordinates for this modeldef
-void InstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
-{
-	m->imodeldef = (IModelDef*)def->GetRenderData(m);
-
-	debug_assert(m->imodeldef);
-
-	u8* base = m->imodeldef->m_Array.Bind();
-	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
-
-	m->imodeldefIndexBase = m->imodeldef->m_IndexArray.Bind();
-
-	glVertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
-	if (streamflags & STREAM_COLOR)
-	{
-		glNormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
-	}
-	if (streamflags & STREAM_UV0)
-	{
-		glTexCoordPointer(2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
-	}
-}
-
-
-// Render one model
-void InstancingModelRenderer::RenderModel(int streamflags, CModel* model, void* UNUSED(data))
-{
-	CModelDefPtr mdldef = model->GetModelDef();
-	const CMatrix3D& mat = model->GetTransform();
-
-	if (streamflags & STREAM_COLOR)
-	{
-		CColor sc = model->GetShadingColor();
-		glColor3f(sc.r, sc.g, sc.b);
-	}
-
-	m->instancingConfig->SetMatrix(mat);
-
-	// render the lot
-	size_t numFaces = mdldef->GetNumFaces();
-
-	if (!g_Renderer.m_SkipSubmit) {
-		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
-				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
-	}
-
-	// bump stats
-	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_ModelTris += numFaces;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// ShaderInstancingModelRenderer implementation
-
-ShaderInstancingModelRenderer::ShaderInstancingModelRenderer() :
-	InstancingModelRenderer(false)
-{
-}
-
-void ShaderInstancingModelRenderer::BeginPass(int streamflags, const CMatrix3D* UNUSED(texturematrix))
+void InstancingModelRenderer::BeginPass(int streamflags, const CMatrix3D* UNUSED(texturematrix))
 {
 	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
 
@@ -311,7 +169,8 @@ void ShaderInstancingModelRenderer::BeginPass(int streamflags, const CMatrix3D* 
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
-void ShaderInstancingModelRenderer::EndPass(int streamflags)
+// Cleanup rendering pass.
+void InstancingModelRenderer::EndPass(int streamflags)
 {
 	if (streamflags & STREAM_POS)
 		glDisableClientState(GL_VERTEX_ARRAY);
@@ -325,7 +184,9 @@ void ShaderInstancingModelRenderer::EndPass(int streamflags)
 	CVertexBuffer::Unbind();
 }
 
-void ShaderInstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
+
+// Prepare UV coordinates for this modeldef
+void InstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
 {
 	m->imodeldef = (IModelDef*)def->GetRenderData(m);
 
@@ -346,7 +207,9 @@ void ShaderInstancingModelRenderer::PrepareModelDef(int streamflags, const CMode
 		glTexCoordPointer(2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
 }
 
-void ShaderInstancingModelRenderer::RenderModel(int UNUSED(streamflags), CModel* model, void* UNUSED(data))
+
+// Render one model
+void InstancingModelRenderer::RenderModel(int UNUSED(streamflags), CModel* model, void* UNUSED(data))
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 

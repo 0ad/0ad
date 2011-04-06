@@ -94,9 +94,6 @@ public:
 		// Classic fixed function.
 		RP_FIXED,
 
-		// Use (GL 2.0) vertex shaders for T&L when possible.
-		RP_VERTEXSHADER,
-
 		// Use new ARB/GLSL system
 		RP_SHADER
 	};
@@ -423,10 +420,6 @@ protected:
 	void EnumCaps();
 	// per-frame renderer stats
 	Stats m_Stats;
-
-	// Additional state that is only available when the vertex shader
-	// render path is used (according to m_Options.m_RenderPath)
-	RenderPathVertexShader* m_VertexShader;
 
 	/// If false, use a multipass fallback for player colors.
 	bool m_FastPlayerColor;
