@@ -26,6 +26,7 @@
 
 #include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
+#include "graphics/ParticleManager.h"
 #include "graphics/SColor.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
@@ -177,6 +178,13 @@ void ViewGame::Update(float frameLength)
 	{
 		// Update unit interpolation
 		g_Game->Interpolate(0.0);
+
+		// Update particles even when the game is paused, so people can see
+		// what they look like. (TODO: maybe it'd be nice if this only applied in
+		// the not-testing-game editor state, not the testing-game-but-currently-paused
+		// state. Or maybe display a static snapshot of the particles (at some time
+		// later than 0 so they're actually visible) instead of animation, or something.)
+		g_Renderer.GetParticleManager().Interpolate(frameLength);
 	}
 	else
 	{
