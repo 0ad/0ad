@@ -18,10 +18,6 @@
 #ifndef INCLUDED_GAMEVIEW
 #define INCLUDED_GAMEVIEW
 
-// needed by minimap
-extern float g_MaxZoomHeight;	//note:  Max terrain height is this minus YMinOffset
-extern float g_YMinOffset;
-
 #include "renderer/Scene.h"
 #include "simulation2/system/Entity.h"
 
