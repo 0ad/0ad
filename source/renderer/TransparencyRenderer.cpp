@@ -673,59 +673,6 @@ void TransparentRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(mo
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TransparentShadowRenderModifier implementation
-
-TransparentShadowRenderModifier::TransparentShadowRenderModifier()
-{
-}
-
-TransparentShadowRenderModifier::~TransparentShadowRenderModifier()
-{
-}
-
-int TransparentShadowRenderModifier::BeginPass(int pass)
-{
-	debug_assert(pass == 0);
-
-	glDepthMask(0);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-
-	return STREAM_POS|STREAM_UV0;
-}
-
-bool TransparentShadowRenderModifier::EndPass(int UNUSED(pass))
-{
-	glDepthMask(1);
-	glDisable(GL_BLEND);
-
-	return true;
-}
-
-void TransparentShadowRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
-{
-	texture->Bind(0);
-}
-
-void TransparentShadowRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
-{
-	// No per-model setup necessary
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // TransparentDepthShadowModifier implementation
 
 TransparentDepthShadowModifier::TransparentDepthShadowModifier()

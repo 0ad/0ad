@@ -282,7 +282,6 @@ public:
 		RenderModifierPtr ModWireframe;
 		RenderModifierPtr ModSolidColor;
 		RenderModifierPtr ModSolidPlayerColor;
-		RenderModifierPtr ModTransparentShadow;
 		RenderModifierPtr ModTransparentDepthShadow;
 
 		// RenderModifiers that are selected from the palette below
@@ -597,8 +596,6 @@ bool CRenderer::Open(int width, int height)
 	// Must query card capabilities before creating renderers that depend
 	// on card capabilities.
 	EnumCaps();
-	m->shadow->SetUseDepthTexture(true);
-
 
 	// model rendering
 	m->Model.VertexFF = ModelVertexRendererPtr(new FixedFunctionModelRenderer);
@@ -624,7 +621,6 @@ bool CRenderer::Open(int width, int height)
 	m->Model.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
 	m->Model.ModSolidPlayerColor = RenderModifierPtr(new SolidPlayerColorRender);
 	m->Model.ModTransparentUnlit = RenderModifierPtr(new TransparentRenderModifier);
-	m->Model.ModTransparentShadow = RenderModifierPtr(new TransparentShadowRenderModifier);
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
 	// Dimensions
@@ -910,10 +906,7 @@ void CRenderer::RenderShadowMap()
 	}
 	else
 	{
-		if (m->shadow->GetUseDepthTexture())
-			transparentShadows = m->Model.ModTransparentDepthShadow;
-		else
-			transparentShadows = m->Model.ModTransparentShadow;
+		transparentShadows = m->Model.ModTransparentDepthShadow;
 	}
 
 
@@ -921,7 +914,6 @@ void CRenderer::RenderShadowMap()
 	// the correct result)
 	glCullFace(GL_FRONT);
 
-	if (m->shadow->GetUseDepthTexture())
 	{
 		PROFILE("render patches");
 		m->terrainRenderer->RenderPatches();
@@ -1922,21 +1914,6 @@ void CRenderer::JSI_SetRenderPath(JSContext* ctx, jsval newval)
 	SetRenderPath(GetRenderPathByName(name));
 }
 
-jsval CRenderer::JSI_GetUseDepthTexture(JSContext*)
-{
-	return ToJSVal(m->shadow->GetUseDepthTexture());
-}
-
-void CRenderer::JSI_SetUseDepthTexture(JSContext* ctx, jsval newval)
-{
-	bool depthTexture;
-
-	if (!ToPrimitive(ctx, newval, depthTexture))
-		return;
-
-	m->shadow->SetUseDepthTexture(depthTexture);
-}
-
 jsval CRenderer::JSI_GetDepthTextureBits(JSContext*)
 {
 	return ToJSVal(m->shadow->GetDepthTextureBits());
@@ -1994,7 +1971,6 @@ void CRenderer::ScriptingInit()
 {
 	AddProperty(L"fastPlayerColor", &CRenderer::JSI_GetFastPlayerColor, &CRenderer::JSI_SetFastPlayerColor);
 	AddProperty(L"renderpath", &CRenderer::JSI_GetRenderPath, &CRenderer::JSI_SetRenderPath);
-	AddProperty(L"useDepthTexture", &CRenderer::JSI_GetUseDepthTexture, &CRenderer::JSI_SetUseDepthTexture);
 	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
 	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
 	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);

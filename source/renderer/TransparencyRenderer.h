@@ -111,23 +111,6 @@ public:
 
 
 /**
- * Class TransparentShadowRenderModifier: Use to render shadow data for
- * transparent models into a luminance map.
- */
-class TransparentShadowRenderModifier : public RenderModifier
-{
-public:
-	TransparentShadowRenderModifier();
-	~TransparentShadowRenderModifier();
-
-	// Implementation
-	int BeginPass(int pass);
-	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-	void PrepareModel(int pass, CModel* model);
-};
-
-/**
  * Class TransparentDepthShadowModifier: Use to render shadow data for
  * transparent models into a depth texture: Writes into the depth buffer,
  * color data is undefined.

@@ -323,8 +323,6 @@ protected:
 	void JSI_SetFastPlayerColor(JSContext* ctx, jsval newval);
 	jsval JSI_GetRenderPath(JSContext*);
 	void JSI_SetRenderPath(JSContext* ctx, jsval newval);
-	jsval JSI_GetUseDepthTexture(JSContext*);
-	void JSI_SetUseDepthTexture(JSContext* ctx, jsval newval);
 	jsval JSI_GetDepthTextureBits(JSContext*);
 	void JSI_SetDepthTextureBits(JSContext* ctx, jsval newval);
 	jsval JSI_GetShadows(JSContext*);

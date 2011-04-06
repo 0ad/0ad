@@ -44,9 +44,7 @@
  */
 struct ShadowMapInternals
 {
-	// whether we're using depth texture or luminance map
-	bool UseDepthTexture;
-	// bit depth for the depth texture, if used
+	// bit depth for the depth texture
 	int DepthTextureBits;
 	// if non-zero, we're using EXT_framebuffer_object for shadow rendering,
 	// and this is the framebuffer
@@ -99,7 +97,6 @@ ShadowMap::ShadowMap()
 	m->Height = 0;
 	m->EffectiveWidth = 0;
 	m->EffectiveHeight = 0;
-	m->UseDepthTexture = false;
 	m->DepthTextureBits = 0;
 	// DepthTextureBits: 24/32 are very much faster than 16, on GeForce 4 and FX;
 	// but they're very much slower on Radeon 9800.
@@ -305,7 +302,7 @@ void ShadowMapInternals::CreateTexture()
 	// Prepare FBO if available
 	// Note: luminance is not an RGB format, so a luminance texture cannot be used
 	// as a color buffer
-	if (UseDepthTexture && g_Renderer.GetCapabilities().m_FramebufferObject)
+	if (g_Renderer.GetCapabilities().m_FramebufferObject)
 	{
 		pglGenFramebuffersEXT(1, &Framebuffer);
 	}
@@ -338,62 +335,49 @@ void ShadowMapInternals::CreateTexture()
 		EffectiveHeight = std::min(Height, g_Renderer.GetHeight());
 	}
 
-	const char* formatname = "LUMINANCE";
+	const char* formatname;
 
-	if (UseDepthTexture)
+	switch(DepthTextureBits)
 	{
-		switch(DepthTextureBits)
-		{
-		case 16: formatname = "DEPTH_COMPONENT16"; break;
-		case 24: formatname = "DEPTH_COMPONENT24"; break;
-		case 32: formatname = "DEPTH_COMPONENT32"; break;
-		default: formatname = "DEPTH_COMPONENT"; break;
-		}
+	case 16: formatname = "DEPTH_COMPONENT16"; break;
+	case 24: formatname = "DEPTH_COMPONENT24"; break;
+	case 32: formatname = "DEPTH_COMPONENT32"; break;
+	default: formatname = "DEPTH_COMPONENT"; break;
 	}
 
 	LOGMESSAGE(L"Creating shadow texture (size %dx%d) (format = %hs)%ls",
 		Width, Height, formatname, Framebuffer ? L" (using EXT_framebuffer_object)" : L"");
 
 
-	if (UseDepthTexture)
+	if (g_Renderer.m_Options.m_ShadowAlphaFix)
 	{
-		if (g_Renderer.m_Options.m_ShadowAlphaFix)
-		{
-			glGenTextures(1, &DummyTexture);
-			g_Renderer.BindTexture(0, DummyTexture);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-		}
-
-		glGenTextures(1, &Texture);
-		g_Renderer.BindTexture(0, Texture);
-
-		GLenum format;
-
-		switch(DepthTextureBits)
-		{
-		case 16: format = GL_DEPTH_COMPONENT16; break;
-		case 24: format = GL_DEPTH_COMPONENT24; break;
-		case 32: format = GL_DEPTH_COMPONENT32; break;
-		default: format = GL_DEPTH_COMPONENT; break;
-		}
-
-		glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+		glGenTextures(1, &DummyTexture);
+		g_Renderer.BindTexture(0, DummyTexture);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	}
-	else
+
+	glGenTextures(1, &Texture);
+	g_Renderer.BindTexture(0, Texture);
+
+	GLenum format;
+
+	switch(DepthTextureBits)
 	{
-		glGenTextures(1, &Texture);
-		g_Renderer.BindTexture(0, Texture);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE8, Width, Height, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, NULL);
+	case 16: format = GL_DEPTH_COMPONENT16; break;
+	case 24: format = GL_DEPTH_COMPONENT24; break;
+	case 32: format = GL_DEPTH_COMPONENT32; break;
+	default: format = GL_DEPTH_COMPONENT; break;
 	}
+
+	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 
 	// set texture parameters
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -404,8 +388,6 @@ void ShadowMapInternals::CreateTexture()
 	// bind to framebuffer object
 	if (Framebuffer)
 	{
-		debug_assert(UseDepthTexture);
-
 		glBindTexture(GL_TEXTURE_2D, 0);
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
 
@@ -456,17 +438,10 @@ void ShadowMap::BeginRender()
 	}
 
 	// clear buffers
-	if (m->UseDepthTexture)
 	{
 		PROFILE("clear depth texture");
 		glClear(GL_DEPTH_BUFFER_BIT);
 		glColorMask(0,0,0,0);
-	}
-	else
-	{
-		PROFILE("clear shadow texture");
-		glClearColor(1,1,1,0);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	// setup viewport
@@ -509,10 +484,7 @@ void ShadowMap::EndRender()
 
 	glViewport(0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());
 
-	if (m->UseDepthTexture)
-	{
-		glColorMask(1,1,1,1);
-	}
+	glColorMask(1,1,1,1);
 
 	// restore matrix stack
 	glPopMatrix();
@@ -532,38 +504,6 @@ GLuint ShadowMap::GetTexture() const
 const CMatrix3D& ShadowMap::GetTextureMatrix() const
 {
 	return m->TextureMatrix;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Using depth textures vs. a simple luminance map
-bool ShadowMap::GetUseDepthTexture() const
-{
-	return m->UseDepthTexture;
-}
-
-void ShadowMap::SetUseDepthTexture(bool depthTexture)
-{
-	if (depthTexture)
-	{
-		if (!g_Renderer.GetCapabilities().m_DepthTextureShadows)
-		{
-			LOGWARNING(L"Depth textures are not supported by your graphics card/driver. Fallback to luminance map (no self-shadowing)!");
-			depthTexture = false;
-		}
-	}
-
-	if (depthTexture != m->UseDepthTexture)
-	{
-		if (m->Texture)
-		{
-			glDeleteTextures(1, &m->Texture);
-			m->Texture = 0;
-		}
-		m->Width = m->Height = 0;
-
-		m->UseDepthTexture = depthTexture;
-	}
 }
 
 
@@ -668,10 +608,7 @@ void ShadowMap::RenderDebugDisplay()
 
 	glDisable(GL_DEPTH_TEST);
 	g_Renderer.BindTexture(0, m->Texture);
-	if (m->UseDepthTexture)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-	}
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
@@ -679,10 +616,7 @@ void ShadowMap::RenderDebugDisplay()
 		glTexCoord2f(1.0f, 1.0f); glVertex2f(0.2f, 0.2f);
 		glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 0.2f);
 	glEnd();
-	if (m->UseDepthTexture)
-	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-	}
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 
 	glEnable(GL_CULL_FACE);
 
