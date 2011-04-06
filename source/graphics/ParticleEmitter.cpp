@@ -172,6 +172,11 @@ void CParticleEmitter::AddParticle(const SParticle& particle)
 	m_NextParticleIdx = (m_NextParticleIdx + 1) % m_Type->m_MaxParticles;
 }
 
+void CParticleEmitter::SetEntityVariable(const std::string& name, float value)
+{
+	m_EntityVariables[name] = value;
+}
+
 
 
 CModelParticleEmitter::CModelParticleEmitter(const CParticleEmitterTypePtr& type) :
@@ -183,6 +188,11 @@ CModelParticleEmitter::CModelParticleEmitter(const CParticleEmitterTypePtr& type
 CModelParticleEmitter::~CModelParticleEmitter()
 {
 	m_Emitter->Unattach(m_Emitter);
+}
+
+void CModelParticleEmitter::SetEntityVariable(const std::string& name, float value)
+{
+	m_Emitter->SetEntityVariable(name, value);
 }
 
 CModelAbstract* CModelParticleEmitter::Clone() const

@@ -13,6 +13,22 @@ Foundation.prototype.Init = function()
 	this.committed = false;
 
 	this.buildProgress = 0.0; // 0 <= progress <= 1
+
+	// Set up a timer so we can count the number of builders in a 1-second period.
+	// (We assume each builder only builds once per second, which is what UnitAI
+	// implements.)
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.timer = cmpTimer.SetInterval(this.entity, IID_Foundation, "UpdateTimeout", 1000, 1000, {});
+	this.recentBuilders = []; // builder entities since the last timeout
+	this.numRecentBuilders = 0; // number of builder entities as of the last timeout
+};
+
+Foundation.prototype.UpdateTimeout = function()
+{
+	this.numRecentBuilders = this.recentBuilders.length;
+	this.recentBuilders = [];
+
+	Engine.QueryInterface(this.entity, IID_Visual).SetVariable("numbuilders", this.numRecentBuilders);
 };
 
 Foundation.prototype.InitialiseConstruction = function(owner, template)
@@ -61,6 +77,10 @@ Foundation.prototype.OnDestroy = function()
 		if (scaled)
 			cmpPlayer.AddResource(r, scaled);
 	}
+
+	// Reset the timer
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	cmpTimer.CancelTimer(this.timer);
 };
 
 /**
@@ -118,6 +138,9 @@ Foundation.prototype.Build = function(builderEnt, work)
 	// Calculate the amount of progress that will be added (where 1.0 = completion)
 	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
 	var amount = work / cmpCost.GetBuildTime();
+
+	// Record this builder so we can count the total number
+	this.recentBuilders.push(builderEnt);
 
 	// TODO: implement some kind of diminishing returns for multiple builders.
 	// e.g. record the set of entities that build this, then every ~2 seconds

@@ -27,4 +27,5 @@ DEFINE_INTERFACE_METHOD_1("SelectMovementAnimation", void, ICmpVisual, SelectMov
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncRepeat", void, ICmpVisual, SetAnimationSyncRepeat, float)
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncOffset", void, ICmpVisual, SetAnimationSyncOffset, float)
 DEFINE_INTERFACE_METHOD_4("SetShadingColour", void, ICmpVisual, SetShadingColour, fixed, fixed, fixed, fixed)
+DEFINE_INTERFACE_METHOD_2("SetVariable", void, ICmpVisual, SetVariable, std::string, float)
 END_INTERFACE_WRAPPER(Visual)

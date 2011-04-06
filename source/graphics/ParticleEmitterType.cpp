@@ -32,6 +32,7 @@
 
 #include <boost/random/uniform_real.hpp>
 
+
 /**
  * Interface for particle state variables, which get evaluated for each newly
  * constructed particle.
@@ -43,9 +44,9 @@ public:
 	virtual ~IParticleVar() {}
 
 	/// Computes and returns a new value.
-	float Evaluate(CParticleEmitterType& type)
+	float Evaluate(CParticleEmitter& emitter)
 	{
-		m_LastValue = Compute(type);
+		m_LastValue = Compute(*emitter.m_Type, emitter);
 		return m_LastValue;
 	}
 
@@ -64,7 +65,7 @@ public:
 	virtual float Max(CParticleEmitterType& type) = 0;
 
 protected:
-	virtual float Compute(CParticleEmitterType& type) = 0;
+	virtual float Compute(CParticleEmitterType& type, CParticleEmitter& emitter) = 0;
 
 private:
 	float m_LastValue;
@@ -81,7 +82,7 @@ public:
 	{
 	}
 
-	virtual float Compute(CParticleEmitterType& UNUSED(type))
+	virtual float Compute(CParticleEmitterType& UNUSED(type), CParticleEmitter& UNUSED(emitter))
 	{
 		return m_Value;
 	}
@@ -106,7 +107,7 @@ public:
 	{
 	}
 
-	virtual float Compute(CParticleEmitterType& type)
+	virtual float Compute(CParticleEmitterType& type, CParticleEmitter& UNUSED(emitter))
 	{
 		return boost::uniform_real<>(m_Min, m_Max)(type.m_Manager.m_RNG);
 	}
@@ -133,7 +134,7 @@ public:
 	{
 	}
 
-	virtual float Compute(CParticleEmitterType& type)
+	virtual float Compute(CParticleEmitterType& type, CParticleEmitter& UNUSED(emitter))
 	{
 		return type.m_Variables[m_From]->LastValue();
 	}
@@ -146,6 +147,75 @@ public:
 private:
 	int m_From;
 };
+
+/**
+ * A terrible ad-hoc attempt at handling some particular variable calculation,
+ * which really needs to be cleaned up and generalised.
+ */
+class CParticleVarExpr : public IParticleVar
+{
+public:
+	CParticleVarExpr(const CStr& from, float mul, float max) :
+		m_From(from), m_Mul(mul), m_Max(max)
+	{
+	}
+
+	virtual float Compute(CParticleEmitterType& UNUSED(type), CParticleEmitter& emitter)
+	{
+		return std::min(m_Max, emitter.m_EntityVariables[m_From] * m_Mul);
+	}
+
+	virtual float Max(CParticleEmitterType& UNUSED(type))
+	{
+		return m_Max;
+	}
+
+private:
+	CStr m_From;
+	float m_Mul;
+	float m_Max;
+};
+
+
+
+/**
+ * Interface for particle effectors, which get evaluated every frame to
+ * update particles.
+ */
+class IParticleEffector
+{
+public:
+	IParticleEffector() { }
+	virtual ~IParticleEffector() {}
+
+	/// Updates all particles.
+	virtual void Evaluate(std::vector<SParticle>& particles, float dt) = 0;
+};
+
+/**
+ * Particle effector that applies a constant acceleration.
+ */
+class CParticleEffectorForce : public IParticleEffector
+{
+public:
+	CParticleEffectorForce(float x, float y, float z) :
+		m_Accel(x, y, z)
+	{
+	}
+
+	virtual void Evaluate(std::vector<SParticle>& particles, float dt)
+	{
+		CVector3D dv = m_Accel * dt;
+
+		for (size_t i = 0; i < particles.size(); ++i)
+			particles[i].velocity += dv;
+	}
+
+private:
+	CVector3D m_Accel;
+};
+
+
 
 
 CParticleEmitterType::CParticleEmitterType(const VfsPath& path, CParticleManager& manager) :
@@ -162,6 +232,9 @@ int CParticleEmitterType::GetVariableID(const std::string& name)
 {
 	if (name == "emissionrate")	return VAR_EMISSIONRATE;
 	if (name == "lifetime")		return VAR_LIFETIME;
+	if (name == "position.x")	return VAR_POSITION_X;
+	if (name == "position.y")	return VAR_POSITION_Y;
+	if (name == "position.z")	return VAR_POSITION_Z;
 	if (name == "angle")		return VAR_ANGLE;
 	if (name == "velocity.x")	return VAR_VELOCITY_X;
 	if (name == "velocity.y")	return VAR_VELOCITY_Y;
@@ -182,6 +255,9 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	m_Variables.resize(VAR__MAX);
 	m_Variables[VAR_EMISSIONRATE] = IParticleVarPtr(new CParticleVarConstant(10.f));
 	m_Variables[VAR_LIFETIME] = IParticleVarPtr(new CParticleVarConstant(3.f));
+	m_Variables[VAR_POSITION_X] = IParticleVarPtr(new CParticleVarConstant(0.f));
+	m_Variables[VAR_POSITION_Y] = IParticleVarPtr(new CParticleVarConstant(0.f));
+	m_Variables[VAR_POSITION_Z] = IParticleVarPtr(new CParticleVarConstant(0.f));
 	m_Variables[VAR_ANGLE] = IParticleVarPtr(new CParticleVarConstant(0.f));
 	m_Variables[VAR_VELOCITY_X] = IParticleVarPtr(new CParticleVarConstant(0.f));
 	m_Variables[VAR_VELOCITY_Y] = IParticleVarPtr(new CParticleVarConstant(1.f));
@@ -210,12 +286,18 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	EL(constant);
 	EL(uniform);
 	EL(copy);
+	EL(expr);
+	EL(force);
 	AT(mode);
 	AT(name);
 	AT(value);
 	AT(min);
 	AT(max);
+	AT(mul);
 	AT(from);
+	AT(x);
+	AT(y);
+	AT(z);
 #undef AT
 #undef EL
 
@@ -285,6 +367,22 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 			if (id != -1 && from != -1)
 				m_Variables[id] = IParticleVarPtr(new CParticleVarCopy(from));
 		}
+		else if (Child.GetNodeName() == el_expr)
+		{
+			int id = GetVariableID(Child.GetAttributes().GetNamedItem(at_name));
+			CStr from = Child.GetAttributes().GetNamedItem(at_from);
+			float mul = Child.GetAttributes().GetNamedItem(at_mul).ToFloat();
+			float max = Child.GetAttributes().GetNamedItem(at_max).ToFloat();
+			if (id != -1)
+				m_Variables[id] = IParticleVarPtr(new CParticleVarExpr(from, mul, max));
+		}
+		else if (Child.GetNodeName() == el_force)
+		{
+			float x = Child.GetAttributes().GetNamedItem(at_x).ToFloat();
+			float y = Child.GetAttributes().GetNamedItem(at_y).ToFloat();
+			float z = Child.GetAttributes().GetNamedItem(at_z).ToFloat();
+			m_Effectors.push_back(IParticleEffectorPtr(new CParticleEffectorForce(x, y, z)));
+		}
 	}
 
 	return true;
@@ -299,12 +397,13 @@ void CParticleEmitterType::UpdateEmitter(CParticleEmitter& emitter, float dt)
 
 	if (emitter.m_Active)
 	{
-		float emissionRate = m_Variables[VAR_EMISSIONRATE]->Evaluate(*this);
+		float emissionRate = m_Variables[VAR_EMISSIONRATE]->Evaluate(emitter);
 
 		// Find how many new particles to spawn, and accumulate any rounding errors into EmissionTimer
 		emitter.m_EmissionTimer += dt;
 		int newParticles = floor(emitter.m_EmissionTimer * emissionRate);
-		emitter.m_EmissionTimer -= newParticles / emissionRate;
+		if (newParticles) // avoid divide-by-zero if emissionRate == 0
+			emitter.m_EmissionTimer -= newParticles / emissionRate;
 
 		// If dt was very large, there's no point spawning new particles that
 		// we'll immediately overwrite, so clamp it
@@ -314,20 +413,29 @@ void CParticleEmitterType::UpdateEmitter(CParticleEmitter& emitter, float dt)
 		{
 			// Compute new particle state based on variables
 			SParticle particle;
-			particle.pos = emitter.m_Pos;
-			particle.velocity.X = m_Variables[VAR_VELOCITY_X]->Evaluate(*this);
-			particle.velocity.Y = m_Variables[VAR_VELOCITY_Y]->Evaluate(*this);
-			particle.velocity.Z = m_Variables[VAR_VELOCITY_Z]->Evaluate(*this);
-			particle.angle = m_Variables[VAR_ANGLE]->Evaluate(*this);
-			particle.angleSpeed = m_Variables[VAR_VELOCITY_ANGLE]->Evaluate(*this);
-			particle.size = m_Variables[VAR_SIZE]->Evaluate(*this);
+
+			particle.pos.X = m_Variables[VAR_POSITION_X]->Evaluate(emitter);
+			particle.pos.Y = m_Variables[VAR_POSITION_Y]->Evaluate(emitter);
+			particle.pos.Z = m_Variables[VAR_POSITION_Z]->Evaluate(emitter);
+			particle.pos += emitter.m_Pos;
+
+			particle.velocity.X = m_Variables[VAR_VELOCITY_X]->Evaluate(emitter);
+			particle.velocity.Y = m_Variables[VAR_VELOCITY_Y]->Evaluate(emitter);
+			particle.velocity.Z = m_Variables[VAR_VELOCITY_Z]->Evaluate(emitter);
+
+			particle.angle = m_Variables[VAR_ANGLE]->Evaluate(emitter);
+			particle.angleSpeed = m_Variables[VAR_VELOCITY_ANGLE]->Evaluate(emitter);
+
+			particle.size = m_Variables[VAR_SIZE]->Evaluate(emitter);
+
 			RGBColor color;
-			color.X = m_Variables[VAR_COLOR_R]->Evaluate(*this);
-			color.Y = m_Variables[VAR_COLOR_G]->Evaluate(*this);
-			color.Z = m_Variables[VAR_COLOR_B]->Evaluate(*this);
+			color.X = m_Variables[VAR_COLOR_R]->Evaluate(emitter);
+			color.Y = m_Variables[VAR_COLOR_G]->Evaluate(emitter);
+			color.Z = m_Variables[VAR_COLOR_B]->Evaluate(emitter);
 			particle.color = ConvertRGBColorTo4ub(color);
+
 			particle.age = 0.f;
-			particle.maxAge = m_Variables[VAR_LIFETIME]->Evaluate(*this);
+			particle.maxAge = m_Variables[VAR_LIFETIME]->Evaluate(emitter);
 
 			emitter.AddParticle(particle);
 		}
@@ -349,5 +457,8 @@ void CParticleEmitterType::UpdateEmitter(CParticleEmitter& emitter, float dt)
 		p.color.A = clamp((int)(a*255.f), 0, 255);
 	}
 
-	// TODO: maybe we want to add forces like gravity or wind
+	for (size_t i = 0; i < m_Effectors.size(); ++i)
+	{
+		m_Effectors[i]->Evaluate(emitter.m_Particles, dt);
+	}
 }

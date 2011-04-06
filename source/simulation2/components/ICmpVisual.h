@@ -103,6 +103,12 @@ public:
 	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a) = 0;
 
 	/**
+	 * Set an arbitrarily-named variable that the model may use to alter its appearance
+	 * (e.g. in particle emitter parameter computations).
+	 */
+	virtual void SetVariable(std::string name, float value) = 0;
+
+	/**
 	 * Called when an actor file has been modified and reloaded dynamically.
 	 * If this component uses the named actor file, it should regenerate its actor
 	 * to pick up the new definitions.

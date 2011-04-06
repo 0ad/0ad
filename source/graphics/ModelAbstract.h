@@ -70,6 +70,12 @@ public:
 	virtual void SetTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) = 0;
 
 	/**
+	 * Called when the entity tries to set some variable to affect the display of this model
+	 * and/or its child objects.
+	 */
+	virtual void SetEntityVariable(const std::string& UNUSED(name), float UNUSED(value)) { }
+
+	/**
 	 * Ensure that both the transformation and the bone
 	 * matrices are correct for this model and all its props.
 	 */

@@ -127,6 +127,12 @@ public:
 			m_Props[i].m_Model->SetTerrainDirty(i0, j0, i1, j1);
 	}
 
+	virtual void SetEntityVariable(const std::string& name, float value)
+	{
+		for (size_t i = 0; i < m_Props.size(); ++i)
+			m_Props[i].m_Model->SetEntityVariable(name, value);
+	}
+
 	// calculate object space bounds of this model, based solely on vertex positions
 	void CalcObjectBounds();
 	// calculate bounds encompassing all vertex positions for given animation 

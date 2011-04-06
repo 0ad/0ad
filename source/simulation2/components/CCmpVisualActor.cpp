@@ -327,6 +327,14 @@ public:
 		UNUSED2(a); // TODO: why is this even an argument?
 	}
 
+	virtual void SetVariable(std::string name, float value)
+	{
+		if (!m_Unit)
+			return;
+
+		m_Unit->GetModel().SetEntityVariable(name, value);
+	}
+
 	virtual void Hotload(const VfsPath& name)
 	{
 		if (!m_Unit)

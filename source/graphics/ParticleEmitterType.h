@@ -25,6 +25,7 @@
 class CParticleEmitter;
 class CParticleManager;
 class IParticleVar;
+class IParticleEffector;
 
 /**
  * Particle emitter type - stores the common state data for all emitters of that
@@ -53,6 +54,9 @@ private:
 	{
 		VAR_EMISSIONRATE,
 		VAR_LIFETIME,
+		VAR_POSITION_X,
+		VAR_POSITION_Y,
+		VAR_POSITION_Z,
 		VAR_ANGLE,
 		VAR_VELOCITY_X,
 		VAR_VELOCITY_Y,
@@ -81,6 +85,9 @@ private:
 
 	typedef shared_ptr<IParticleVar> IParticleVarPtr;
 	std::vector<IParticleVarPtr> m_Variables;
+
+	typedef shared_ptr<IParticleEffector> IParticleEffectorPtr;
+	std::vector<IParticleEffectorPtr> m_Effectors;
 
 	CParticleManager& m_Manager;
 };

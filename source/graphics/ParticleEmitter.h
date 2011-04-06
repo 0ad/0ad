@@ -107,9 +107,7 @@ public:
 	 */
 	void Unattach(const CParticleEmitterPtr& self);
 
-private:
-	friend class CParticleEmitterType;
-	friend struct EmitterHasNoParticles;
+	void SetEntityVariable(const std::string& name, float value);
 
 	CParticleEmitterTypePtr m_Type;
 
@@ -118,12 +116,15 @@ private:
 
 	CVector3D m_Pos;
 
+	std::map<std::string, float> m_EntityVariables;
+
 	std::vector<SParticle> m_Particles;
 	size_t m_NextParticleIdx;
 
 	float m_LastUpdateTime;
 	float m_EmissionTimer;
 
+private:
 	VertexArray m_VertexArray;
 	VertexArray::Attribute m_AttributePos;
 	VertexArray::Attribute m_AttributeAxis;
@@ -156,6 +157,8 @@ public:
 	virtual void SetTerrainDirty(ssize_t UNUSED(i0), ssize_t UNUSED(j0), ssize_t UNUSED(i1), ssize_t UNUSED(j1))
 	{
 	}
+
+	virtual void SetEntityVariable(const std::string& name, float value);
 
 	virtual void CalcBounds();
 	virtual void ValidatePosition();
