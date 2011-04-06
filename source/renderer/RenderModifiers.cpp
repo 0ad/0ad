@@ -43,12 +43,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // RenderModifier implementation
 
-const CMatrix3D* RenderModifier::GetTexGenMatrix(int UNUSED(pass))
-{
-	debug_warn(L"GetTexGenMatrix not implemented by a derived RenderModifier");
-	return 0;
-}
-
 void RenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 }

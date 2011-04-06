@@ -155,7 +155,7 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 
 
 // Setup one rendering pass.
-void InstancingModelRenderer::BeginPass(int streamflags, const CMatrix3D* UNUSED(texturematrix))
+void InstancingModelRenderer::BeginPass(int streamflags)
 {
 	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
 

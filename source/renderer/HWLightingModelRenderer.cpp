@@ -158,7 +158,7 @@ void ShaderModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
 
 
 // Setup one rendering pass
-void ShaderModelRenderer::BeginPass(int streamflags, const CMatrix3D* UNUSED(texturematrix))
+void ShaderModelRenderer::BeginPass(int streamflags)
 {
 	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
 

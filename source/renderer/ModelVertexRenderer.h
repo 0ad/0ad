@@ -116,11 +116,8 @@ public:
 	 * is matched by a corresponding call to EndPass.
 	 *
 	 * @param streamflags Vertex streams required by the fragment stage.
-	 * @param texturematrix if texgen is requested in streamflags, this points to the
-	 * texture matrix that must be used to transform vertex positions into texture
-	 * coordinates
 	 */
-	virtual void BeginPass(int streamflags, const CMatrix3D* texturematrix) = 0;
+	virtual void BeginPass(int streamflags) = 0;
 
 
 	/**

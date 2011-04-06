@@ -59,19 +59,6 @@ public:
 	virtual int BeginPass(int pass) = 0;
 
 	/**
-	 * GetTexGenMatrix: If BeginPass returns STREAM_TEXGENTOUVx, the caller must
-	 * call this function to query the texture matrix that will be used to transform
-	 * vertex positions into texture coordinates.
-	 *
-	 * Default implementation raises a runtime error.
-	 *
-	 * @param pass the current pass number (pass == 0 is the first pass)
-	 *
-	 * @return a pointer to the texture matrix for the given pass
-	 */
-	virtual const CMatrix3D* GetTexGenMatrix(int pass);
-
-	/**
 	 * EndPass: Cleanup OpenGL state after the given pass. This function
 	 * may indicate that additional passes are needed.
 	 *

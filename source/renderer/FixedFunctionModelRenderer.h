@@ -42,7 +42,7 @@ public:
 	void UpdateModelData(CModel* model, void* data, int updateflags);
 	void DestroyModelData(CModel* model, void* data);
 
-	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
+	void BeginPass(int streamflags);
 	void EndPass(int streamflags);
 	void PrepareModelDef(int streamflags, const CModelDefPtr& def);
 	void RenderModel(int streamflags, CModel* model, void* data);

@@ -61,7 +61,6 @@ enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 #define STREAM_POSTOUV1 (1 << 8)
 #define STREAM_POSTOUV2 (1 << 9)
 #define STREAM_POSTOUV3 (1 << 10)
-#define STREAM_TEXGENTOUV1 (1 << 11)
 
 // access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()

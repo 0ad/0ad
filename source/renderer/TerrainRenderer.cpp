@@ -278,8 +278,8 @@ void TerrainRenderer::RenderTerrain()
 
 	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
 
-	int streamflags = STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0;
-	
+	int streamflags = STREAM_POS|STREAM_COLOR;
+
 	pglActiveTextureARB(GL_TEXTURE0);
 	// We're not going to use a texture here, but we have to have a valid texture
 	// bound else the texture unit will be disabled.
@@ -287,7 +287,7 @@ void TerrainRenderer::RenderTerrain()
 	// so assume that's still valid to use.
 	// (TODO: That's a bit of an ugly hack.)
 
-	// Shadow rendering disabled: (Ambient + Diffuse) * LOS
+	// No shadows: (Ambient + Diffuse) * LOS
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_ADD);
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);

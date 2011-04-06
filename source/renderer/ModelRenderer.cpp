@@ -411,12 +411,8 @@ void BatchModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 	do
 	{
 		int streamflags = modifier->BeginPass(pass);
-		const CMatrix3D* texturematrix = 0;
 
-		if (streamflags & STREAM_TEXGENTOUV1)
-			texturematrix = modifier->GetTexGenMatrix(pass);
-
-		m->vertexRenderer->BeginPass(streamflags, texturematrix);
+		m->vertexRenderer->BeginPass(streamflags);
 
 		m->RenderAllModels(modifier, flags, pass, streamflags);
 
