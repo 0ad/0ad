@@ -39,9 +39,6 @@ extern bool g_NoGLAutoMipmap;
 // don't use VBOs. (RC: that was necessary on laptop Radeon cards)
 extern bool g_NoGLVBO;
 
-// disable FBO extension in case the driver is flaky
-extern bool g_NoGLFramebufferObject;
-
 //-----------------------------------------------------------------------------
 
 // flag to switch on shadows

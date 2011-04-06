@@ -46,8 +46,7 @@ struct ShadowMapInternals
 {
 	// bit depth for the depth texture
 	int DepthTextureBits;
-	// if non-zero, we're using EXT_framebuffer_object for shadow rendering,
-	// and this is the framebuffer
+	// the EXT_framebuffer_object framebuffer
 	GLuint Framebuffer;
 	// handle of shadow map
 	GLuint Texture;
@@ -299,13 +298,7 @@ void ShadowMapInternals::CreateTexture()
 		Framebuffer = 0;
 	}
 
-	// Prepare FBO if available
-	// Note: luminance is not an RGB format, so a luminance texture cannot be used
-	// as a color buffer
-	if (g_Renderer.GetCapabilities().m_FramebufferObject)
-	{
-		pglGenFramebuffersEXT(1, &Framebuffer);
-	}
+	pglGenFramebuffersEXT(1, &Framebuffer);
 
 	if (g_Renderer.m_ShadowMapSize != 0)
 	{
@@ -322,18 +315,9 @@ void ShadowMapInternals::CreateTexture()
 	Width = std::min(Width, (int)ogl_max_tex_size);
 	Height = std::min(Height, (int)ogl_max_tex_size);
 
-	// If we're using a framebuffer object, the whole texture is available; otherwise
-	// we're limited to the part of the screen buffer that is actually visible
-	if (Framebuffer)
-	{
-		EffectiveWidth = Width;
-		EffectiveHeight = Height;
-	}
-	else
-	{
-		EffectiveWidth = std::min(Width, g_Renderer.GetWidth());
-		EffectiveHeight = std::min(Height, g_Renderer.GetHeight());
-	}
+	// Since we're using a framebuffer object, the whole texture is available
+	EffectiveWidth = Width;
+	EffectiveHeight = Height;
 
 	const char* formatname;
 
@@ -345,8 +329,8 @@ void ShadowMapInternals::CreateTexture()
 	default: formatname = "DEPTH_COMPONENT"; break;
 	}
 
-	LOGMESSAGE(L"Creating shadow texture (size %dx%d) (format = %hs)%ls",
-		Width, Height, formatname, Framebuffer ? L" (using EXT_framebuffer_object)" : L"");
+	LOGMESSAGE(L"Creating shadow texture (size %dx%d) (format = %hs)",
+		Width, Height, formatname);
 
 
 	if (g_Renderer.m_Options.m_ShadowAlphaFix)
@@ -386,37 +370,32 @@ void ShadowMapInternals::CreateTexture()
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// bind to framebuffer object
-	if (Framebuffer)
+	glBindTexture(GL_TEXTURE_2D, 0);
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
+
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
+
+	if (g_Renderer.m_Options.m_ShadowAlphaFix)
 	{
-		glBindTexture(GL_TEXTURE_2D, 0);
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
+		pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
+	}
+	else
+	{
+		glDrawBuffer(GL_NONE);
+	}
 
-		pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture, 0);
+	glReadBuffer(GL_NONE);
 
-		if (g_Renderer.m_Options.m_ShadowAlphaFix)
-		{
-			pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture, 0);
-		}
-		else
-		{
-			glDrawBuffer(GL_NONE);
-		}
+	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
-		glReadBuffer(GL_NONE);
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
-		GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	{
+		LOGWARNING(L"Framebuffer object incomplete: %04d", status);
 
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-
-		if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
-		{
-			LOGWARNING(L"Framebuffer object incomplete: %04d", status);
-
-			pglDeleteFramebuffersEXT(1, &Framebuffer);
-			Framebuffer = 0;
-			EffectiveWidth = std::min(Width, g_Renderer.GetWidth());
-			EffectiveHeight = std::min(Height, g_Renderer.GetHeight());
-		}
+		// Disable shadow rendering (but let the user try again if they want)
+		g_Renderer.m_Options.m_Shadows = false;
 	}
 }
 
@@ -430,7 +409,6 @@ void ShadowMap::BeginRender()
 	// Calc remaining shadow matrices
 	m->CalcShadowMatrices();
 
-	if (m->Framebuffer)
 	{
 		PROFILE("bind framebuffer");
 		glBindTexture(GL_TEXTURE_2D, 0);
@@ -466,20 +444,9 @@ void ShadowMap::EndRender()
 {
 	glDisable(GL_SCISSOR_TEST);
 
-	// copy result into shadow map texture
-	if (m->Framebuffer)
 	{
 		PROFILE("unbind framebuffer");
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-	}
-	else
-	{
-		if (!g_Renderer.GetDisableCopyShadow())
-		{
-			PROFILE("copy shadow texture");
-			g_Renderer.BindTexture(0, m->Texture);
-			glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, m->EffectiveWidth, m->EffectiveHeight);
-		}
 	}
 
 	glViewport(0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());

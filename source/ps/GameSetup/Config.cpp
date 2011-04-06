@@ -32,7 +32,6 @@ CStrW g_CursorName = L"test";
 bool g_NoGLS3TC = false;
 bool g_NoGLAutoMipmap = false;
 bool g_NoGLVBO = false;
-bool g_NoGLFramebufferObject = false;
 
 bool g_Shadows = false;
 bool g_FancyWater = false;
@@ -72,7 +71,6 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("nos3tc", Bool, g_NoGLS3TC);
 	CFG_GET_USER_VAL("noautomipmap", Bool, g_NoGLAutoMipmap);
 	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
-	CFG_GET_USER_VAL("noframebufferobject", Bool, g_NoGLFramebufferObject);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
 	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);

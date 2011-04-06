@@ -406,7 +406,6 @@ CRenderer::CRenderer()
 	m_SkipSubmit = false;
 
 	m_Options.m_NoVBO = false;
-	m_Options.m_NoFramebufferObject = false;
 	m_Options.m_RenderPath = RP_DEFAULT;
 	m_Options.m_FancyWater = false;
 	m_Options.m_Shadows = false;
@@ -470,8 +469,6 @@ void CRenderer::EnumCaps()
 	m_Caps.m_VertexShader = false;
 	m_Caps.m_FragmentShader = false;
 	m_Caps.m_Shadows = false;
-	m_Caps.m_DepthTextureShadows = false;
-	m_Caps.m_FramebufferObject = false;
 
 	// now start querying extensions
 	if (!m_Options.m_NoVBO) {
@@ -495,28 +492,10 @@ void CRenderer::EnumCaps()
 			m_Caps.m_FragmentShader = true;
 	}
 
-	if (ogl_max_tex_units >= 3)
+	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", "GL_EXT_framebuffer_object", NULL))
 	{
-		// To render shadows plus fog-of-war in a single lighting pass (see
-		// TerrainRenderer.cpp) we need >= 3 TMUs. Only really ancient hardware
-		// doesn't support that, so instead of implementing a compatible fallback
-		// we'll just disable shadows entirely unless there's enough TMUs.
-		m_Caps.m_Shadows = true;
-	}
-
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", NULL)) {
-		// According to Delphi3d.net, all relevant graphics chips that support depth textures
-		// (i.e. Geforce3+, Radeon9500+, even i915) also have >= 4 TMUs, so this restriction
-		// isn't actually a restriction, and it helps with integrating depth texture
-		// shadows into rendering paths.
 		if (ogl_max_tex_units >= 4)
-			m_Caps.m_DepthTextureShadows = true;
-	}
-
-	if (!m_Options.m_NoFramebufferObject)
-	{
-		if (ogl_HaveExtension("GL_EXT_framebuffer_object"))
-			m_Caps.m_FramebufferObject = true;
+			m_Caps.m_Shadows = true;
 	}
 }
 
@@ -670,9 +649,6 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_NOVBO:
 			m_Options.m_NoVBO=value;
 			break;
-		case OPT_NOFRAMEBUFFEROBJECT:
-			m_Options.m_NoFramebufferObject=value;
-			break;
 		case OPT_SHADOWS:
 			m_Options.m_Shadows=value;
 			ReloadShaders();
@@ -693,8 +669,6 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 	switch (opt) {
 		case OPT_NOVBO:
 			return m_Options.m_NoVBO;
-		case OPT_NOFRAMEBUFFEROBJECT:
-			return m_Options.m_NoFramebufferObject;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
 		case OPT_FANCYWATER:

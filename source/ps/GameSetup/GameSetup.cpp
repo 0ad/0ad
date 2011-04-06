@@ -569,7 +569,6 @@ static void InitRenderer()
 
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
-	g_Renderer.SetOptionBool(CRenderer::OPT_NOFRAMEBUFFEROBJECT,g_NoGLFramebufferObject);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
 	g_Renderer.SetOptionBool(CRenderer::OPT_FANCYWATER,g_FancyWater);
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));

@@ -80,7 +80,6 @@ public:
 	enum { NumAlphaMaps=14 };
 	enum Option {
 		OPT_NOVBO,
-		OPT_NOFRAMEBUFFEROBJECT,
 		OPT_SHADOWS,
 		OPT_FANCYWATER,
 		OPT_LODBIAS
@@ -126,7 +125,6 @@ public:
 	// renderer options
 	struct Options {
 		bool m_NoVBO;
-		bool m_NoFramebufferObject;
 		bool m_Shadows;
 		bool m_FancyWater;
 		float m_LodBias;
@@ -142,8 +140,6 @@ public:
 		bool m_VertexShader;
 		bool m_FragmentShader;
 		bool m_Shadows;
-		bool m_DepthTextureShadows;
-		bool m_FramebufferObject;
 	};
 
 public:
