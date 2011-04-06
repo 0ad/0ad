@@ -6,5 +6,10 @@
       <mesh>structural/found_wall_med_a.dae</mesh>
       <texture>structural/foundation.dds</texture>
     </variant>
+    <variant>
+      <props>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
 </actor>
