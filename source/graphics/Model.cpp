@@ -275,8 +275,21 @@ void CModel::ValidatePosition()
 	
 		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & MODELFLAG_NOLOOPANIMATION));
 	
-		const CMatrix3D& transform=GetTransform();
-		for (size_t i=0;i<m_pModelDef->GetNumBones();i++) {
+		const CMatrix3D& transform = GetTransform();
+		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
+			m_BoneMatrices[i].Concatenate(transform);
+	}
+	else if (m_BoneMatrices)
+	{
+		// Bones but no animation - probably a buggy actor forgot to set up the animation,
+		// so just render it in its bind pose
+
+		const CMatrix3D& transform = GetTransform();
+		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
+		{
+			m_BoneMatrices[i].SetIdentity();
+			m_BoneMatrices[i].Rotate(m_pModelDef->GetBones()[i].m_Rotation);
+			m_BoneMatrices[i].Translate(m_pModelDef->GetBones()[i].m_Translation);
 			m_BoneMatrices[i].Concatenate(transform);
 		}
 	}
