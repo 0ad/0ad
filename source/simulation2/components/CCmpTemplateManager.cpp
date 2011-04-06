@@ -358,22 +358,21 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 
 void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, CParamNode& out)
 {
-	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(wstring_from_utf8(actorName)));
-	std::string xml = "<?xml version='1.0' encoding='utf-8'?>"
-		"<Entity>"
-		"<Position>"
-			"<Anchor>upright</Anchor>"
-			"<Altitude>0</Altitude>"
-			"<Floating>false</Floating>"
-		"</Position>"
-		"<VisualActor>"
-			"<Actor>" + name + "</Actor>"
-			"<SilhouetteDisplay>false</SilhouetteDisplay>"
-			"<SilhouetteOccluder>false</SilhouetteOccluder>"
-		"</VisualActor>"
-		"</Entity>";
+	// Load the base actor template if necessary
+	const char* templateName = "special/actor";
+	if (!LoadTemplateFile(templateName, 0))
+	{
+		LOGERROR(L"Failed to load entity template '%hs'", templateName);
+		return;
+	}
 
-	out.LoadXMLString(out, xml.c_str());
+	// Copy the actor template
+	out = m_TemplateFileData[templateName];
+
+	// Initialise the actor's name
+	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(wstring_from_utf8(actorName)));
+	std::string xml = "<Entity><VisualActor><Actor>" + name + "</Actor></VisualActor></Entity>";
+	CParamNode::LoadXMLString(out, xml.c_str());
 }
 
 static LibError AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
