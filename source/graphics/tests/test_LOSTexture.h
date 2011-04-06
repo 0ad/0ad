@@ -19,13 +19,15 @@
 
 #include "graphics/LOSTexture.h"
 #include "lib/timer.h"
+#include "simulation2/Simulation2.h"
 
 class TestLOSTexture : public CxxTest::TestSuite
 {
 public:
 	void test_basic()
 	{
-		CLOSTexture tex;
+		CSimulation2 sim(NULL, NULL);
+		CLOSTexture tex(sim);
 
 		const ssize_t size = 8;
 		u32 inputData[size*size] = {
@@ -55,7 +57,8 @@ public:
 
 	void test_perf_DISABLED()
 	{
-		CLOSTexture tex;
+		CSimulation2 sim(NULL, NULL);
+		CLOSTexture tex(sim);
 
 		const ssize_t size = 257;
 		std::vector<u32> inputDataVec;
