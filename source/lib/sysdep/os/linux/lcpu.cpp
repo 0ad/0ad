@@ -30,12 +30,6 @@
 #endif
 
 
-double os_cpu_ClockFrequency()
-{
-	return -1; // don't know
-}
-
-
 size_t os_cpu_NumProcessors()
 {
 	static size_t numProcessors;
@@ -88,17 +82,10 @@ size_t os_cpu_LargePageSize()
 }
 
 
-size_t os_cpu_MemorySize()
+size_t os_cpu_QueryMemorySize()
 {
-	static size_t memorySize;
-
-	if(!memorySize)
-	{
-		const uint64_t memorySizeBytes = (uint64_t)sysconf(_SC_PHYS_PAGES) * os_cpu_PageSize();
-		memorySize = size_t(memorySizeBytes / MiB);
-	}
-
-	return memorySize;
+	const uint64_t memorySize = (uint64_t)sysconf(_SC_PHYS_PAGES) * os_cpu_PageSize();
+	return size_t(memorySize / MiB);
 }
 
 

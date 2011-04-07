@@ -27,13 +27,6 @@
 
 #include <sys/sysctl.h>
 
-
-double os_cpu_ClockFrequency()
-{
-	return -1; // don't know
-}
-
-
 size_t os_cpu_NumProcessors()
 {
 	static size_t numProcessors;
@@ -82,19 +75,13 @@ size_t os_cpu_LargePageSize()
 }
 
 
-size_t os_cpu_MemorySize()
+size_t os_cpu_QueryMemorySize()
 {
-	static size_t memorySize;
-
-	if(!memorySize)
-	{
-		size_t len = sizeof(memorySize);
-		// Argh, the API doesn't seem to be const-correct
-		/*const*/ int mib[2] = { CTL_HW, HW_PHYSMEM };
-		sysctl(mib, 2, &memorySize, &len, 0, 0);
-		memorySize /= MiB;
-	}
-
+	size_t len = sizeof(memorySize);
+	// Argh, the API doesn't seem to be const-correct
+	/*const*/ int mib[2] = { CTL_HW, HW_PHYSMEM };
+	sysctl(mib, 2, &memorySize, &len, 0, 0);
+	memorySize /= MiB;
 	return memorySize;
 }
 

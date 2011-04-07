@@ -577,10 +577,10 @@ private:
 	template<typename Field>
 	void Write(size_t flags, Field& field, const char* name, const char* units, ...)
 	{
-		// SMBIOS uses the smallest representable signed/unsigned value to
-		// indicate `unknown' (except enumerators - but those are handled in
-		// the other function overload), so skip those.
-		if(field == std::numeric_limits<Field>::min())
+		// SMBIOS uses the smallest and sometimes also largest representable
+		// signed/unsigned value to indicate `unknown' (except enumerators -
+		// but those are handled in the other function overload), so skip them.
+		if(field == std::numeric_limits<Field>::min() || field == std::numeric_limits<Field>::max())
 			return;
 
 		WriteName(name);
@@ -659,7 +659,7 @@ const Structures* GetStructures()
 {
 	static ModuleInitState initState;
 	LibError ret = ModuleInit(&initState, InitStructures);
-	if(ret != INFO::OK)
+	if(ret < 0)	// failed (success is either INFO::OK or INFO::SKIPPED)
 		return 0;
 	return &structures;
 }

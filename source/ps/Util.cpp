@@ -31,6 +31,7 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/arch/x86_x64/topology.h"
+#include "lib/sysdep/smbios.h"
 #include "lib/tex/tex.h"
 #include "lib/file/io/io_align.h"	// BLOCK_SIZE
 
@@ -166,6 +167,10 @@ no_ip:
 	const char* exts = ogl_ExtensionString();
 	if (!exts) exts = "{unknown}";
 	fprintf(f, "\nOpenGL Extensions: \n%s\n", SplitExts(exts).c_str());
+
+	// System Management BIOS (even more text than OpenGL extensions)
+	std::string smbios = SMBIOS::StringizeStructures(SMBIOS::GetStructures());
+	fprintf(f, "\nSMBIOS: \n%s\n", smbios.c_str());
 
 	fclose(f);
 	f = 0;

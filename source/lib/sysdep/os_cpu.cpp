@@ -27,4 +27,55 @@
 #include "precompiled.h"
 #include "lib/sysdep/os_cpu.h"
 
+#include "lib/sysdep/smbios.h"
+
+#if OS_WIN
+# include "lib/sysdep/os/win/wcpu.h"
+#endif
+
+
 ERROR_ASSOCIATE(ERR::OS_CPU_RESTRICTED_AFFINITY, L"Cannot set desired CPU affinity", -1);
+
+
+double os_cpu_ClockFrequency()
+{
+	static double clockFrequency;
+	if(clockFrequency != 0.0)	// already initialized
+		return clockFrequency;
+
+#if OS_WIN
+	u32 freqMhz;
+	if(wcpu_ReadFrequencyFromRegistry(freqMhz) == INFO::OK)
+		return clockFrequency = freqMhz * 1e6;
+#endif
+
+	const SMBIOS::Structures* structures = SMBIOS::GetStructures();
+	if(structures->Processor_)
+		return clockFrequency = structures->Processor_->maxFrequency * 1e6;
+
+	return clockFrequency = -1.0;	// unknown
+}
+
+
+size_t os_cpu_MemorySize()
+{
+	static size_t memorySize;
+	if(memorySize != 0)	// already initialized
+		return memorySize;
+
+	memorySize = os_cpu_QueryMemorySize();
+
+	// replace with the sum of all memory devices reported by SMBIOS if
+	// that's within 10% of what the OS reported
+	{
+		const SMBIOS::Structures* structures = SMBIOS::GetStructures();
+		u64 memorySizeBytes = 0;
+		for(const SMBIOS::MemoryDevice* p = structures->MemoryDevice_; p; p = p->next)
+			memorySizeBytes += p->size;
+		const size_t memorySize2 = memorySizeBytes/MiB;
+		if(9*memorySize/10 <= memorySize2 && memorySize2 <= 11*memorySize/10)
+			memorySize = memorySize2;
+	}
+
+	return memorySize;
+}

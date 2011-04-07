@@ -134,6 +134,7 @@ struct Size
 	Size(): value(0) {}
 	Size(T value): value(value) {}
 	T value;
+	operator T() const { return value; }
 };
 
 // SMBIOS structure handle - only displayed if meaningful

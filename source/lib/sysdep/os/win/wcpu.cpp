@@ -73,7 +73,7 @@ size_t os_cpu_NumProcessors()
 
 //-----------------------------------------------------------------------------
 
-static LibError ReadFrequencyFromRegistry(DWORD& freqMhz)
+LibError wcpu_ReadFrequencyFromRegistry(u32& freqMhz)
 {
 	HKEY hKey;
 	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS)
@@ -88,22 +88,6 @@ static LibError ReadFrequencyFromRegistry(DWORD& freqMhz)
 		WARN_RETURN(ERR::FAIL);
 
 	return INFO::OK;
-}
-
-double os_cpu_ClockFrequency()
-{
-	static double clockFrequency;
-
-	if(clockFrequency == 0.0)
-	{
-		DWORD freqMhz;
-		if(ReadFrequencyFromRegistry(freqMhz) == INFO::OK)
-			clockFrequency = freqMhz * 1e6;
-		else
-			clockFrequency = -1.0;
-	}
-
-	return clockFrequency;
 }
 
 
@@ -155,27 +139,20 @@ static void GetMemoryStatus(MEMORYSTATUSEX& mse)
 	WARN_IF_FALSE(ok);
 }
 
-size_t os_cpu_MemorySize()
+size_t os_cpu_QueryMemorySize()
 {
-	static size_t memorySizeMiB;
+	MEMORYSTATUSEX mse;
+	GetMemoryStatus(mse);
+	DWORDLONG memorySize = mse.ullTotalPhys;
 
-	if(memorySizeMiB == 0)
-	{
-		MEMORYSTATUSEX mse;
-		GetMemoryStatus(mse);
-		DWORDLONG memorySize = mse.ullTotalPhys;
+	// Richter, "Programming Applications for Windows": the reported
+	// value doesn't include non-paged pool reserved during boot;
+	// it's not considered available to the kernel. (the amount is
+	// 528 KiB on a 512 MiB WinXP/Win2k machine). we'll round up
+	// to the nearest megabyte to fix this.
+	memorySize = round_up(memorySize, DWORDLONG(1*MiB));
 
-		// Richter, "Programming Applications for Windows": the reported
-		// value doesn't include non-paged pool reserved during boot;
-		// it's not considered available to the kernel. (the amount is
-		// 528 KiB on a 512 MiB WinXP/Win2k machine). we'll round up
-		// to the nearest megabyte to fix this.
-		memorySize = round_up(memorySize, DWORDLONG(1*MiB));
-
-		memorySizeMiB = size_t(memorySize / MiB);
-	}
-
-	return memorySizeMiB;
+	return size_t(memorySize / MiB);
 }
 
 size_t os_cpu_MemoryAvailable()
