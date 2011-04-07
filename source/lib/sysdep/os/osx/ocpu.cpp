@@ -77,6 +77,7 @@ size_t os_cpu_LargePageSize()
 
 size_t os_cpu_QueryMemorySize()
 {
+	size_t memorySize = 0;
 	size_t len = sizeof(memorySize);
 	// Argh, the API doesn't seem to be const-correct
 	/*const*/ int mib[2] = { CTL_HW, HW_PHYSMEM };
