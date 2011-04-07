@@ -93,8 +93,6 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) con
 {
 	// closest object found so far
 	CUnit* hit = 0;
-	// distance to closest object found so far
-	float dist = FLT_MAX;
 	// closest approach offset (easier to pick small stuff in forests than standard ScEd style selection)
 	float minrel = FLT_MAX;
 
@@ -115,7 +113,6 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) con
 			float rel = offset.Length();
 			if (rel < minrel) {
 				hit = unit;
-				dist = tmin;
 				minrel = rel;
 			}
 		}

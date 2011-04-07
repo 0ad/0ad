@@ -449,6 +449,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	m_glob = JS_NewGlobalObject(m_cx, &global_class);
 	ok = JS_InitStandardClasses(m_cx, m_glob);
+	debug_assert(ok);
 
 	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);

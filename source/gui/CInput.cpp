@@ -1078,13 +1078,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 	std::list<SRow>::iterator current_line;
 
-	// used to replace the last updated copy, because it might contain a "space"
-	//  in the end, which shouldn't be there because of word-wrapping. the only
-	//  way to know is to keep on going, but we don't want that, so we'll store
-	//  a copy.
-	SRow copy;
-	bool copy_used=false;
-
 	// Used to ... TODO
 	int check_point_row_start = -1;
 	int check_point_row_end = -1;
@@ -1394,13 +1387,9 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				//  in the coming erase.
 				current_line = destroy_row_to;
 
-				copy_used = true;
-
 				std::list<SRow>::iterator temp = destroy_row_to;
 
 				--temp;
-
-				copy = *temp;
 
 				m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
 			}

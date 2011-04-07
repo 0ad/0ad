@@ -822,9 +822,6 @@ bool CParser::InputTaskType(const std::string& strName, const std::string& strSy
 	bool Extract = false;
 	bool Error = false;
 	size_t i;
-	bool ConstructNew = false;	// If it's the first input, then don't
-								//  construct a new node, because we
-								//  we already have m_BaseNode
 
 	// Construct base node
 	TaskType.m_BaseNode = new CParserTaskTypeNode();
@@ -898,8 +895,6 @@ next	[a]		Null	[a]		<-- added NewNode
 
 				// Set to current
 				CurNode = CurNode->m_AltNode;
-
-				ConstructNew = false;
 
 				// We're done extracting for now
 				continue;
