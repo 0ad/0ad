@@ -286,8 +286,12 @@ void Fixup<Cache>(Cache& p)
 template<>
 void Fixup<SystemSlot>(SystemSlot& p)
 {
-	p.functionNumber = bits(p.functionAndDeviceNumber, 0, 2);
-	p.deviceNumber = bits(p.functionAndDeviceNumber, 3, 7);
+	// (only initialize function and device numbers if functionAndDeviceNumber is valid)
+	if(p.functionAndDeviceNumber != 0xFF)
+	{
+		p.functionNumber = bits(p.functionAndDeviceNumber, 0, 2);
+		p.deviceNumber = bits(p.functionAndDeviceNumber, 3, 7);
+	}
 }
 
 template<>

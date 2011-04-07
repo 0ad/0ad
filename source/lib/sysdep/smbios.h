@@ -661,6 +661,7 @@ struct Handle
 	FIELD(0, u16, id, "")\
 	FIELD(0, SystemSlotFlags1, flags1, "")\
 	FIELD(0, SystemSlotFlags2, flags2, "")\
+	FIELD(0, u16, segmentGroupNumber, "")\
 	FIELD(0, u8, busNumber, "")\
 	FIELD(F_INTERNAL, u8, functionAndDeviceNumber, "")\
 	FIELD(F_DERIVED, u8, deviceNumber, "")\
