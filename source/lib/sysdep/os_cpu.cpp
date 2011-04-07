@@ -50,7 +50,7 @@ double os_cpu_ClockFrequency()
 #endif
 
 	const SMBIOS::Structures* structures = SMBIOS::GetStructures();
-	if(structures && structures->Processor_)
+	if(structures->Processor_)
 		return clockFrequency = structures->Processor_->maxFrequency * 1e6;
 
 	return clockFrequency = -1.0;	// unknown
@@ -70,9 +70,8 @@ size_t os_cpu_MemorySize()
 	{
 		const SMBIOS::Structures* structures = SMBIOS::GetStructures();
 		u64 memorySizeBytes = 0;
-		if(structures)
-			for(const SMBIOS::MemoryDevice* p = structures->MemoryDevice_; p; p = p->next)
-				memorySizeBytes += p->size;
+		for(const SMBIOS::MemoryDevice* p = structures->MemoryDevice_; p; p = p->next)
+			memorySizeBytes += p->size;
 		const size_t memorySize2 = memorySizeBytes/MiB;
 		if(9*memorySize/10 <= memorySize2 && memorySize2 <= 11*memorySize/10)
 			memorySize = memorySize2;

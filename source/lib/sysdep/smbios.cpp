@@ -663,8 +663,9 @@ const Structures* GetStructures()
 {
 	static ModuleInitState initState;
 	LibError ret = ModuleInit(&initState, InitStructures);
-	if(ret < 0)	// failed (success is either INFO::OK or INFO::SKIPPED)
-		return 0;
+	// (callers have to check if member pointers are nonzero anyway, so
+	// we always return a valid pointer to simplify most use cases.)
+	UNUSED2(ret);
 	return &structures;
 }
 
@@ -682,9 +683,6 @@ void StringizeStructure(const char* name, Structure* p, std::stringstream& ss)
 
 std::string StringizeStructures(const Structures* structures)
 {
-	if(!structures)
-		return "(null)";
-
 	std::stringstream ss;
 #define STRUCTURE(name, id) StringizeStructure(#name, structures->name##_, ss);
 	STRUCTURES

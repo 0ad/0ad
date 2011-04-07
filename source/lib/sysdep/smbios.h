@@ -1038,9 +1038,9 @@ struct Structures
 //-----------------------------------------------------------------------------
 
 /**
- * @return 0 on failure or a pointer to a static Structures (i.e. always
- * valid), with its member pointers non-zero iff the SMBIOS includes the
- * corresponding structure.
+ * @return a pointer to a static Structures (i.e. always valid), with its
+ * member pointers non-zero iff SMBIOS information is available and includes
+ * the corresponding structure.
  *
  * thread-safe; return value should be cached (if possible) to avoid an
  * atomic comparison.
