@@ -786,7 +786,7 @@ void EarlyInit()
 	srand(time(NULL));	// NOTE: this rand should *not* be used for simulation!
 }
 
-static bool Autostart(const CmdLineArgs& args);
+bool Autostart(const CmdLineArgs& args);
 
 void Init(const CmdLineArgs& args, int UNUSED(flags))
 {
@@ -923,10 +923,24 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 
 	ogl_WarnIfError();
 
-	if (!Autostart(args))
+	try
 	{
-		const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
-		InitPs(setup_gui, L"page_pregame.xml", JSVAL_VOID);
+		if (!Autostart(args))
+		{
+			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
+			InitPs(setup_gui, L"page_pregame.xml", JSVAL_VOID);
+		}
+	}
+	catch (PSERROR_Game_World_MapLoadFailed e)
+	{
+		// Map Loading failed
+
+		// Start the engine so we have a GUI
+		InitPs(true, L"page_pregame.xml", JSVAL_VOID);
+
+		// Call script function to do the actual work
+		//	(delete game data, switch GUI page, show error, etc.)
+		CancelLoad(CStr(e.what()).FromUTF8());
 	}
 }
 
@@ -945,19 +959,29 @@ void RenderCursor(bool RenderingState)
 	g_DoRenderCursor = RenderingState;
 }
 
-static bool Autostart(const CmdLineArgs& args)
+bool Autostart(const CmdLineArgs& args)
 {
 	/*
 	 * Handle various command-line options, for quick testing of various features:
-	 *  -autostart=mapname																			-- single-player
-	 *  -autostart=mapname -autostart-playername=Player -autostart-host -autostart-players=2        -- multiplayer host, wait for 2 players
-	 *  -autostart=mapname -autostart-playername=Player -autostart-client -autostart-ip=127.0.0.1   -- multiplayer client, connect to 127.0.0.1
-	 *	-autostart=scriptname -autostart-random=104													-- random map, seed 104 (default is 0, for random choose -1)
+	 * -autostart=name					-- map name for scenario, or rms name for random map
+	 * -autostart-playername=name		-- multiplayer player name
+	 * -autostart-host					-- multiplayer host mode
+	 * -autostart-players=2				-- number of players
+	 * -autostart-client				-- multiplayer client mode
+	 * -autostart-ip=127.0.0.1			-- multiplayer connect to 127.0.0.1
+	 * -autostart-random=104			-- random map, optional seed value = 104 (default is 0, random is -1)
+	 * -autostart-size=12				-- random map size in patches = 12 (default is 12)
+	 *
+	 * Examples:
+	 * -autostart=Acropolis -autostart-host -autostart-players=2		-- Host game on Acropolis map, 2 players
+	 * -autostart=latium -autostart-random=-1							-- Start single player game on latium random map, random rng seed
 	 */
 
 	CStr autoStartName = args.Get("autostart");
 	if (autoStartName.empty())
+	{
 		return false;
+	}
 
 	g_Game = new CGame();
 
@@ -989,19 +1013,44 @@ static bool Autostart(const CmdLineArgs& args)
 			}
 		}
 		
-		scriptInterface.SetProperty(attrs.get(), "script", std::string(autoStartName), false);	// RMS name
-		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"), false);
+		// Random map definition will be loaded from JSON file, so we need to parse it
+		std::wstring scriptPath = L"maps/random/" + autoStartName.FromUTF8() + L".json";
+		CScriptValRooted scriptData = scriptInterface.ReadJSONFile(scriptPath);
+		if (!scriptData.undefined() && scriptInterface.GetProperty(scriptData.get(), "settings", settings))
+		{
+			// JSON loaded ok - copy script name over to game attributes
+			std::wstring scriptFile;
+			scriptInterface.GetProperty(settings.get(), "Script", scriptFile);
+			scriptInterface.SetProperty(attrs.get(), "script", scriptFile);				// RMS filename
+		}
+		else
+		{
+			// Problem with JSON file
+			CStrW msg = L"Error reading random map script \"" + scriptPath + L"\".\nCheck application log for details.";
+			throw PSERROR_Game_World_MapLoadFailed(msg.ToUTF8().c_str());
+		}
 
-		// For random map, there are special settings
-		// TODO: Get these from command line - using defaults for now
-		scriptInterface.SetProperty(settings.get(), "Size", 12);									// Random map size (in patches)
+		// Get optional map size argument (default 12)
+		uint mapSize = 12;
+		if (args.Has("autostart-size"))
+		{
+			CStr size = args.Get("autostart-size");
+			mapSize = size.ToUInt();
+		}
+
+		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
 		scriptInterface.SetProperty(settings.get(), "Seed", seed);									// Random seed
-		scriptInterface.SetProperty(settings.get(), "BaseTerrain", std::string("grass1_spring"));	// Base terrain texture
-		scriptInterface.SetProperty(settings.get(), "BaseHeight", 0);								// Base terrain height
+		scriptInterface.SetProperty(settings.get(), "Size", mapSize);								// Random map size (in patches)
 
-		// Define players
-		// TODO: Get these from command line? - using defaults for now
+		// Get optional number of players (default 2)
 		size_t numPlayers = 2;
+		if (args.Has("autostart-players"))
+		{
+			CStr num = args.Get("autostart-players");
+			numPlayers = num.ToUInt();
+		}
+
+		// Set up player data
 		for (size_t i = 0; i < numPlayers; ++i)
 		{
 			CScriptVal player;
@@ -1013,8 +1062,8 @@ static bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
-		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName), false);
-		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
+		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName));
+		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
 	}
 
 	// Set player data for AIs
@@ -1049,7 +1098,14 @@ static bool Autostart(const CmdLineArgs& args)
 	CScriptVal mpInitData;
 	g_GUI->GetScriptInterface().Eval("({isNetworked:true, playerAssignments:{}})", mpInitData);
 	g_GUI->GetScriptInterface().SetProperty(mpInitData.get(), "attribs",
-			CScriptVal(g_GUI->GetScriptInterface().CloneValueFromOtherContext(scriptInterface, attrs.get())), false);
+			CScriptVal(g_GUI->GetScriptInterface().CloneValueFromOtherContext(scriptInterface, attrs.get())));
+
+	// Get optional playername
+	CStrW userName = L"anonymous";
+	if (args.Has("autostart-playername"))
+	{
+		userName = args.Get("autostart-playername").FromUTF8();
+	}
 
 	if (args.Has("autostart-host"))
 	{
@@ -1057,7 +1113,9 @@ static bool Autostart(const CmdLineArgs& args)
 
 		size_t maxPlayers = 2;
 		if (args.Has("autostart-players"))
+		{
 			maxPlayers = args.Get("autostart-players").ToUInt();
+		}
 
 		g_NetServer = new CNetServer(maxPlayers);
 
@@ -1067,7 +1125,7 @@ static bool Autostart(const CmdLineArgs& args)
 		debug_assert(ok);
 
 		g_NetClient = new CNetClient(g_Game);
-		// TODO: player name, etc
+		g_NetClient->SetUserName(userName);
 		g_NetClient->SetupConnection("127.0.0.1");
 	}
 	else if (args.Has("autostart-client"))
@@ -1075,11 +1133,13 @@ static bool Autostart(const CmdLineArgs& args)
 		InitPs(true, L"page_loading.xml", mpInitData.get());
 
 		g_NetClient = new CNetClient(g_Game);
-		// TODO: player name, etc
+		g_NetClient->SetUserName(userName);
 
 		CStr ip = "127.0.0.1";
 		if (args.Has("autostart-ip"))
+		{
 			ip = args.Get("autostart-ip");
+		}
 
 		bool ok = g_NetClient->SetupConnection(ip);
 		debug_assert(ok);
@@ -1088,7 +1148,9 @@ static bool Autostart(const CmdLineArgs& args)
 	{
 		g_Game->SetPlayerID(1);
 		g_Game->StartGame(attrs);
+
 		LDR_NonprogressiveLoad();
+
 		PSRETURN ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 
@@ -1096,4 +1158,23 @@ static bool Autostart(const CmdLineArgs& args)
 	}
 
 	return true;
+}
+
+void CancelLoad(const CStrW& message)
+{
+	LDR_Cancel();
+
+	// Call the cancelOnError GUI function, but only if it exists
+	if (g_GUI && g_GUI->HasPages())
+	{
+		JSContext* cx = g_ScriptingHost.getContext();
+		jsval fval, rval;
+		JSBool ok = JS_GetProperty(cx, g_GUI->GetScriptObject(), "cancelOnError", &fval);
+		debug_assert(ok);
+
+		jsval msgval = ToJSVal(message);
+
+		if (ok && !JSVAL_IS_VOID(fval))
+			ok = JS_CallFunctionValue(cx, g_GUI->GetScriptObject(), fval, 1, &msgval, &rval);
+	}
 }

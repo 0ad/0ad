@@ -54,6 +54,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
+#include "ps/World.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
@@ -184,28 +185,39 @@ static int ProgressiveLoad()
 {
 	wchar_t description[100];
 	int progress_percent;
-	LibError ret = LDR_ProgressiveLoad(10e-3, description, ARRAY_SIZE(description), &progress_percent);
-	switch(ret)
+	try
 	{
-		// no load active => no-op (skip code below)
-	case INFO::OK:
-		return 0;
-		// current task didn't complete. we only care about this insofar as the
-		// load process is therefore not yet finished.
-	case ERR::TIMED_OUT:
-		break;
-		// just finished loading
-	case INFO::ALL_COMPLETE:
-		g_Game->ReallyStartGame();
-		wcscpy_s(description, ARRAY_SIZE(description), L"Game is starting..");
-		// LDR_ProgressiveLoad returns L""; set to valid text to
-		// avoid problems in converting to JSString
-		break;
-		// error!
-	default:
-		CHECK_ERR(ret);
-		// can't do this above due to legit ERR::TIMED_OUT
-		break;
+		LibError ret = LDR_ProgressiveLoad(10e-3, description, ARRAY_SIZE(description), &progress_percent);
+		switch(ret)
+		{
+			// no load active => no-op (skip code below)
+		case INFO::OK:
+			return 0;
+			// current task didn't complete. we only care about this insofar as the
+			// load process is therefore not yet finished.
+		case ERR::TIMED_OUT:
+			break;
+			// just finished loading
+		case INFO::ALL_COMPLETE:
+			g_Game->ReallyStartGame();
+			wcscpy_s(description, ARRAY_SIZE(description), L"Game is starting..");
+			// LDR_ProgressiveLoad returns L""; set to valid text to
+			// avoid problems in converting to JSString
+			break;
+			// error!
+		default:
+			CHECK_ERR(ret);
+			// can't do this above due to legit ERR::TIMED_OUT
+			break;
+		}
+	}
+	catch (PSERROR_Game_World_MapLoadFailed e)
+	{
+		// Map loading failed
+
+		// Call script function to do the actual work
+		//	(delete game data, switch GUI page, show error, etc.)
+		CancelLoad(CStr(e.what()).FromUTF8());
 	}
 
 	GUI_DisplayLoadProgress(progress_percent, description);

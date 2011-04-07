@@ -78,6 +78,12 @@ function handleNetMessage(message)
 			obj.caption = "";
 			obj.hidden = true;
 			break;
+		case "connected":
+			obj.caption = "Connected to the server.";
+			obj.hidden = false;
+		case "authenticated":
+			obj.caption = "Connection to the server has been authenticated.";
+			obj.hidden = false;
 		case "disconnected":
 			obj.caption = "Connection to the server has been lost.\n\nThe game has ended.";
 			obj.hidden = false;
@@ -119,6 +125,11 @@ function handleNetMessage(message)
 
 	case "chat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
+		break;
+		
+	// To prevent errors, ignore these message types that occur during autostart
+	case "gamesetup":
+	case "start":
 		break;
 
 	default:

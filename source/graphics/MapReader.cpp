@@ -33,6 +33,7 @@
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
+#include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
@@ -188,11 +189,10 @@ int CMapReader::UnpackMap()
 {
 	// now unpack everything into local data
 	int ret = UnpackTerrain();
-	if(ret != 0)	// failed or timed out
+	if (ret != 0)	// failed or timed out
+	{
 		return ret;
-
-	if (unpacker.GetVersion() < 4)
-		debug_warn(L"Old unsupported map version - objects and lighting will be lost");
+	}
 
 	return 0;
 }
@@ -409,8 +409,6 @@ private:
 	void ReadCinema(XMBElement parent);
 	void ReadTriggers(XMBElement parent);
 	int ReadEntities(XMBElement parent, double end_time);
-	int ReadOldEntities(XMBElement parent, double end_time);
-	int ReadNonEntities(XMBElement parent, double end_time);
 };
 
 
@@ -1046,7 +1044,6 @@ int CMapReader::ReadXML()
 	return ret;
 }
 
-
 int CMapReader::DelayLoadFinished()
 {
 	// we were dynamically allocated by CWorld::Initialize
@@ -1070,6 +1067,8 @@ int CMapReader::LoadRMSettings()
 
 int CMapReader::GenerateMap()
 {
+	TIMER(L"GenerateMap");
+
 	CMapGenerator mapGen;
 
 	VfsPath scriptPath;
@@ -1082,15 +1081,8 @@ int CMapReader::GenerateMap()
 
 	// Try to generate map
 	if (!mapGen.GenerateMap(scriptPath, scriptSettings))
-	{	// RMS failed
-		// TODO: Need to do something safe here, like cancel loading and return to main menu
-		LOGERROR(L"Map generation failed: RMS returned undefined");
-		return -1;
-	}
-
-	if (mapGen.GetMapData().undefined())
-	{
-		LOGERROR(L"undefined map data");
+	{	// RMS failed - return to main menu
+		throw PSERROR_Game_World_MapLoadFailed("Error generating random map.\nCheck application log for details.");
 	}
 
 	// Copy data from mapgen to simulator context
@@ -1102,11 +1094,14 @@ int CMapReader::GenerateMap()
 
 int CMapReader::ParseTerrain()
 {
-	// parse terrain from map data
+	TIMER(L"ParseTerrain");
 
+	// parse terrain from map data
+	//	an error here should stop the loading process
 #define GET_TERRAIN_PROPERTY(prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(m_MapData.get(), #prop, out))\
-		LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);
+		{	LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);\
+			throw PSERROR_Game_World_MapLoadFailed("Error parsing terrain data.\nCheck application log for details"); }
 
 	int size;
 	GET_TERRAIN_PROPERTY(size, size)
@@ -1151,6 +1146,8 @@ int CMapReader::ParseTerrain()
 
 int CMapReader::ParseEntities()
 {
+	TIMER(L"ParseEntities");
+
 	// parse entities from map data
 	std::vector<Entity> entities;
 

@@ -61,5 +61,6 @@ class CmdLineArgs;
 extern void Init(const CmdLineArgs& args, int flags);
 extern void InitGraphics(const CmdLineArgs& args, int flags);
 extern void Shutdown(int flags);
+extern void CancelLoad(const CStrW& message);
 
 #endif // INCLUDED_GAMESETUP

@@ -66,7 +66,10 @@ namespace
 		scriptInterface.SetProperty(attrs.get(), "map", std::wstring(mapBase), false);
 
 		g_Game->StartGame(attrs);
+
+		// TODO: Non progressive load can fail - need a decent way to handle this
 		LDR_NonprogressiveLoad();
+		
 		PSRETURN ret = g_Game->ReallyStartGame();
 		debug_assert(ret == PSRETURN_OK);
 

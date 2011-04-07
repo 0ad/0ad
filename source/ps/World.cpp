@@ -88,8 +88,8 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 		catch (PSERROR_File& err)
 		{
 			delete reader;
-			LOGERROR(L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
-			throw PSERROR_Game_World_MapLoadFailed();
+			LOGERROR(L"Failed to load scenario %ls: %hs", mapfilename.string().c_str(), err.what());
+			throw PSERROR_Game_World_MapLoadFailed("Failed to load scenario");
 		}
 	}
 }
@@ -99,24 +99,15 @@ void CWorld::RegisterInitRMS(const CStrW& scriptFile, const CScriptValRooted& se
 	// If scriptFile is empty, a blank map will be generated using settings (no RMS run)
 	CMapReader* reader = 0;
 
-	try
-	{
-		reader = new CMapReader;
-		CTriggerManager* pTriggerManager = NULL;
-		reader->LoadRandomMap(scriptFile, settings, m_Terrain,
-			CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
-			CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
-			&g_LightEnv, m_pGame->GetView(),
-			m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
-			pTriggerManager, m_pGame->GetSimulation2(), playerID);
-			// fails immediately, or registers for delay loading
-	}
-	catch (PSERROR_File& err)
-	{
-		delete reader;
-		LOGERROR(L"Failed to generate random map %ls: %hs", scriptFile.c_str(), err.what());
-		throw PSERROR_Game_World_MapLoadFailed();
-	}
+	reader = new CMapReader;
+	CTriggerManager* pTriggerManager = NULL;
+	reader->LoadRandomMap(scriptFile, settings, m_Terrain,
+		CRenderer::IsInitialised() ? g_Renderer.GetWaterManager() : NULL,
+		CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
+		&g_LightEnv, m_pGame->GetView(),
+		m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
+		pTriggerManager, m_pGame->GetSimulation2(), playerID);
+		// registers for delay loading
 }
 
 

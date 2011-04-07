@@ -2,10 +2,6 @@ var g_Data;
 
 function init(data)
 {
-	var mapName = "map";
-	if (data && data.attribs)
-		mapName = data.attribs.map;
-
 	g_Data = data;
 	
 	// Set to "hourglass" cursor.
@@ -49,11 +45,11 @@ function init(data)
 		switch (data.attribs.mapType)
 		{
 		case "scenario":
-			loadingMapName.caption = "Loading \"" + mapName + "\"";
+			loadingMapName.caption = "Loading \"" + data.attribs.map + "\"";
 			break;
 
 		case "random":
-			loadingMapName.caption = "Generating \"" + mapName + "\"";
+			loadingMapName.caption = "Generating \"" + data.attribs.script + "\"";
 			break;
 
 		default:

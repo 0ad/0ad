@@ -155,7 +155,10 @@ void CReplayPlayer::Replay()
 			CScriptValRooted attribs = game.GetSimulation2()->GetScriptInterface().ParseJSON(line);
 
 			game.StartGame(attribs);
+
+			// TODO: Non progressive load can fail - need a decent way to handle this
 			LDR_NonprogressiveLoad();
+
 			PSRETURN ret = game.ReallyStartGame();
 			debug_assert(ret == PSRETURN_OK);
 		}

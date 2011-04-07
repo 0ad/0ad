@@ -41,8 +41,6 @@ CMapGenerator::CMapGenerator() : m_ScriptInterface("RMS", "MapGenerator", Script
 
 bool CMapGenerator::GenerateMap(const VfsPath& scriptFile, const CScriptValRooted& settings)
 {
-	TIMER(L"GenerateMap");
-
 	// Init RNG seed
 	uint32 seed;
 	if (!m_ScriptInterface.GetProperty(settings.get(), "Seed", seed))
