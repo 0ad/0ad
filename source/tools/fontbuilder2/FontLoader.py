@@ -18,6 +18,12 @@ else:
 _freetype_so = ctypes.CDLL (ft_lib)
 _cairo_so = ctypes.CDLL (lc_lib)
 
+_cairo_so.cairo_ft_font_face_create_for_ft_face.restype = ctypes.c_void_p
+_cairo_so.cairo_ft_font_face_create_for_ft_face.argtypes = [ ctypes.c_void_p, ctypes.c_int ]
+_cairo_so.cairo_set_font_face.argtypes = [ ctypes.c_void_p, ctypes.c_void_p ]
+_cairo_so.cairo_font_face_status.argtypes = [ ctypes.c_void_p ]
+_cairo_so.cairo_status.argtypes = [ ctypes.c_void_p ]
+
 # initialize freetype
 _ft_lib = ctypes.c_void_p ()
 if FT_Err_Ok != _freetype_so.FT_Init_FreeType (ctypes.byref (_ft_lib)):
@@ -35,7 +41,7 @@ def create_cairo_font_face_for_file (filename, faceindex=0, loadoptions=0):
     ft_face = ctypes.c_void_p()
     cairo_ctx = cairo.Context (_surface)
     cairo_t = PycairoContext.from_address(id(cairo_ctx)).ctx
-    _cairo_so.cairo_ft_font_face_create_for_ft_face.restype = ctypes.c_void_p
+
     if FT_Err_Ok != _freetype_so.FT_New_Face (_ft_lib, filename, faceindex, ctypes.byref(ft_face)):
         raise "Error creating FreeType font face for " + filename
 
