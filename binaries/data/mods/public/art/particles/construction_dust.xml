@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <particles>
 
-    <texture>art/textures/particles/dust.png</texture>
+    <texture>art/textures/particles/dust_256a.png</texture>
     <blend mode="over"/>
 
     <expr name="emissionrate" from="numbuilders" mul="5.0" max="50.0"/>
 
-    <uniform name="lifetime" min="4.0" max="6.0"/>
+    <uniform name="lifetime" min="5.0" max="7.0"/>
 
     <uniform name="position.x" min="-8.0" max="8.0"/>
     <uniform name="position.z" min="-8.0" max="8.0"/>
@@ -14,17 +14,17 @@
 
     <uniform name="angle" min="-3.14" max="3.14"/>
 
-    <uniform name="velocity.x" min="-1.5" max="1.5"/>
-    <uniform name="velocity.y" min="4.0" max="4.5"/>
-    <uniform name="velocity.z" min="-1.5" max="1.5"/>
-    <uniform name="velocity.angle" min="-2.0" max="2.0"/>
+    <uniform name="velocity.x" min="-1.5" max="1.0"/>
+    <uniform name="velocity.y" min="2.0" max="3.5"/>
+    <uniform name="velocity.z" min="-1.5" max="1.0"/>
+    <uniform name="velocity.angle" min="-2.0" max="3.0"/>
 
-    <uniform name="size" min="2.5" max="3.5"/>
+    <uniform name="size" min="5.0" max="7.5"/>
 
     <uniform name="color.r" min="0.7" max="0.8"/>
     <uniform name="color.g" min="0.7" max="0.7"/>
     <uniform name="color.b" min="0.5" max="0.6"/>
 
-    <force y="-3"/>
+    <force y="-2.5"/>
 
 </particles>
