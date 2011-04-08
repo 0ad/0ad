@@ -62,6 +62,9 @@ public:
 
 	virtual void Deinit()
 	{
+		for (size_t i = 0; i < m_Projectiles.size(); ++i)
+			GetSimContext().GetUnitManager().DeleteUnit(m_Projectiles[i].unit);
+		m_Projectiles.clear();
 	}
 
 	virtual void Serialize(ISerializer& UNUSED(serialize))
@@ -151,16 +154,6 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 		return;
 	}
 
-	std::set<CStr> selections;
-
-	Projectile projectile;
-	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, m_ActorSeed++, selections);
-	if (!projectile.unit)
-	{
-		// The error will have already been logged
-		return;
-	}
-
 	CVector3D sourceVec(sourceVisual->GetProjectileLaunchPoint());
 	if (!sourceVec)
 	{
@@ -187,6 +180,15 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 			return;
 
 		targetVec = CVector3D(targetPos->GetPosition());
+	}
+
+	Projectile projectile;
+	std::set<CStr> selections;
+	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, m_ActorSeed++, selections);
+	if (!projectile.unit)
+	{
+		// The error will have already been logged
+		return;
 	}
 
 	projectile.pos = sourceVec;
@@ -316,6 +318,7 @@ void CCmpProjectileManager::Interpolate(float frameTime, float frameOffset)
 			{
 				// Delete in-place by swapping with the last in the list
 				std::swap(m_Projectiles[i], m_Projectiles.back());
+				GetSimContext().GetUnitManager().DeleteUnit(m_Projectiles.back().unit);
 				m_Projectiles.pop_back();
 				continue; // don't increment i
 			}
