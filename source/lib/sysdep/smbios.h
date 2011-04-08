@@ -36,6 +36,9 @@ namespace SMBIOS {
 #define ENUMERATIONS\
 	ENUMERATION(Status, u8)\
 	ENUMERATION(ECC, u8)\
+	ENUMERATION(BiosFlags, u32)\
+	ENUMERATION(BiosFlags1, u8)\
+	ENUMERATION(BiosFlags2, u8)\
 	ENUMERATION(SystemWakeUpType, u8)\
 	ENUMERATION(BaseboardFlags, u8)\
 	ENUMERATION(BaseboardType, u8)\
@@ -170,14 +173,63 @@ struct Handle
 //-----------------------------------------------------------------------------
 // Bios
 
+#define BiosFlags_ENUMERATORS\
+	ENUM(isa, 0x10)\
+	ENUM(mca, 0x20)\
+	ENUM(eisa, 0x40)\
+	ENUM(pci, 0x80)\
+	ENUM(pcmcia, 0x100)\
+	ENUM(plug_and_play, 0x200)\
+	ENUM(apm, 0x400)\
+	ENUM(upgradable, 0x800)\
+	ENUM(shadowing, 0x1000)\
+	ENUM(vl_vesa, 0x2000)\
+	ENUM(escd, 0x4000)\
+	ENUM(boot_cd, 0x8000)\
+	ENUM(selectable_boot, 0x10000)\
+	ENUM(socketed_rom, 0x20000)\
+	ENUM(boot_pcmcia, 0x40000)\
+	ENUM(edd, 0x80000)\
+	ENUM(int13a, 0x100000)\
+	ENUM(int13b, 0x200000)\
+	ENUM(int13c, 0x400000)\
+	ENUM(int13d, 0x800000)\
+	ENUM(int13e, 0x1000000)\
+	ENUM(int13f, 0x2000000)\
+	ENUM(int5, 0x4000000)\
+	ENUM(int9, 0x8000000)\
+	ENUM(int14, 0x10000000)\
+	ENUM(int17, 0x20000000)\
+	ENUM(int10, 0x40000000)\
+	ENUM(pc_98, 0x80000000)
+
+#define BiosFlags1_ENUMERATORS\
+	ENUM(acpi, 0x01)\
+	ENUM(usb_legacy, 0x02)\
+	ENUM(agp, 0x04)\
+	ENUM(boot_i2o, 0x08)\
+	ENUM(boot_ls_120, 0x10)\
+	ENUM(boot_zip_drive, 0x20)\
+	ENUM(boot_1394, 0x40)\
+	ENUM(smart_battery, 0x80)
+
+#define BiosFlags2_ENUMERATORS\
+	ENUM(bios_boot, 0x01)\
+	ENUM(function_key_boot, 0x02)\
+	ENUM(targeted_content_distribution, 0x04)\
+	ENUM(uefi, 0x08)\
+	ENUM(virtual_machine, 0x10)
+
 #define Bios_FIELDS\
 	FIELD(0, const char*, vendor, "")\
 	FIELD(0, const char*, version, "")\
 	FIELD(F_HEX, u16, startSegment, "")\
 	FIELD(0, const char*, releaseDate, "")\
 	FIELD(F_INTERNAL, u8, encodedSize, "")\
-	FIELD(F_HEX, u64, characteristics, "")\
-	/* omit subsequent fields because we can't handle the variable-length characteristics extension */\
+	FIELD(0, BiosFlags, flags, "")\
+	FIELD(F_HEX, u32, vendorFlags, "")\
+	FIELD(0, BiosFlags1, flags1, "")\
+	FIELD(0, BiosFlags2, flags2, "")\
 	FIELD(F_DERIVED, Size<size_t>, size, "")
 
 
@@ -862,7 +914,7 @@ struct Handle
 	FIELD(0, u16, capacity, " mWh")\
 	FIELD(0, u16, voltage, " mV")\
 	FIELD(0, const char*, sbdsVersion, "")\
-	FIELD(0, i8, maxError, "%")\
+	FIELD(0, u8, maxError, "%")\
 	FIELD(0, u16, sbdsSerialNumber, "")\
 	FIELD(0, u16, sbdsDate, "")\
 	FIELD(0, const char*, sbdsChemistry, "")\
