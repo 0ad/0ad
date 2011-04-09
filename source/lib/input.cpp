@@ -114,7 +114,7 @@ LibError in_record(const char* fn)
 	if(!f)
 		WARN_RETURN(ERR::FAIL);
 
-	fwrite(&game_ticks, sizeof(u32), 1, f);
+	(void)fwrite(&game_ticks, sizeof(u32), 1, f);
 
 	state = RECORD;
 
@@ -134,10 +134,10 @@ LibError in_playback(const char* fn)
 		WARN_RETURN(ERR::FAIL);
 
 	u32 rec_start_time;
-	fread(&rec_start_time, sizeof(u32), 1, f);
+	(void)fread(&rec_start_time, sizeof(u32), 1, f);
 	time_adjust = game_ticks-rec_start_time;
 
-	fread(&next_ev_time, sizeof(u32), 1, f);
+	(void)fread(&next_ev_time, sizeof(u32), 1, f);
 	next_ev_time += time_adjust;
 
 	state = PLAYBACK;
@@ -151,8 +151,8 @@ void in_dispatch_event(const SDL_Event_* ev)
 {
 	if(state == RECORD)
 	{
-		fwrite(&game_ticks, sizeof(u32), 1, f);
-		fwrite(ev, sizeof(SDL_Event_), 1, f);
+		(void)fwrite(&game_ticks, sizeof(u32), 1, f);
+		(void)fwrite(ev, sizeof(SDL_Event_), 1, f);
 	}
 
 	dispatch_ev(ev);
@@ -165,7 +165,7 @@ void in_dispatch_recorded_events()
 
 	while(state == PLAYBACK && next_ev_time <= game_ticks)
 	{
-		fread(&ev, sizeof(SDL_Event_), 1, f);
+		(void)fread(&ev, sizeof(SDL_Event_), 1, f);
 
 		// do this before dispatch_ev(),
 		// in case a handler calls in_stop() (setting f to 0)
