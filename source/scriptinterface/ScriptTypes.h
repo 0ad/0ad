@@ -36,6 +36,8 @@
 #endif
 // (we don't support XP_OS2 or XP_BEOS)
 
+#include <cstring> // required by jsutil.h
+
 #include "js/jsapi.h"
 
 #if JS_VERSION != 185
