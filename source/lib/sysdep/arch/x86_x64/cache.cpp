@@ -350,12 +350,12 @@ struct Characteristics	// POD
 
 	size_t NumEntries() const
 	{
-		return IsTLB()? smallSize : (flags & ~0xF);
+		return IsTLB()? (size_t)smallSize : (flags & ~0xF);
 	}
 
 	size_t EntrySize() const
 	{
-		return IsTLB()? (flags & ~0xF) : -smallSize;
+		return IsTLB()? (flags & ~0xF) : (size_t)(-smallSize);
 	}
 
 	u8 descriptor;
