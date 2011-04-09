@@ -51,7 +51,7 @@ static LibError GetTable(wfirmware::Table& table)
 	// (MSDN says this will be 0, but we'll retrieve it for 100% correctness.)
 	wfirmware::TableIds tableIds = wfirmware::GetTableIDs(provider);
 	if(tableIds.empty())
-		WARN_RETURN(ERR::_1);
+		return ERR::_1;	// NOWARN (happens on 32-bit XP)
 
 	table = wfirmware::GetTable(provider, tableIds[0]);
 	if(table.empty())
