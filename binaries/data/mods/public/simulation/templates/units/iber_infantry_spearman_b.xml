@@ -12,4 +12,9 @@
   <VisualActor>
     <Actor>units/iberians/infantry_spearman_b.xml</Actor>
   </VisualActor>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/iber_sb1
+    </Entities>
+  </Builder>
 </Entity>

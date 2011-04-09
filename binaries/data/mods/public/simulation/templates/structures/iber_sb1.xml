@@ -9,6 +9,7 @@
   </Identity>
   <VisualActor>
     <Actor>structures/iberians/sb_1.xml</Actor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
   <Footprint>
     <Square width="10.0" depth="10.0"/>
@@ -17,4 +18,16 @@
   <Obstruction>
     <Static width="10.0" depth="10.0"/>
   </Obstruction>
+  <Cost>
+    <BuildTime>120</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>100</stone>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>1200</Max>
+  </Health>
 </Entity>
