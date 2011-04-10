@@ -38,8 +38,8 @@ class CTerrainTextureEntry;
 class CScriptValRooted;
 class ScriptInterface;
 class CGameView;
-
 class CXMLReader;
+class CMapGenerator;
 
 class CMapReader : public CMapIO
 {
@@ -48,6 +48,8 @@ class CMapReader : public CMapIO
 public:
 	// constructor
 	CMapReader();
+	~CMapReader();
+
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 	void LoadMap(const VfsPath& pathname, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
 		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
@@ -118,6 +120,8 @@ private:
 	CStrW m_ScriptFile;
 	CScriptValRooted m_ScriptSettings;
 	CScriptValRooted m_MapData;
+
+	CMapGenerator* m_MapGen;
 
 	// state latched by LoadMap and held until DelayedLoadFinished
 	CFileUnpacker unpacker;

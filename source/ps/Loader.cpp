@@ -144,16 +144,11 @@ void LDR_EndRegistering()
 // note: no special notification will be returned by LDR_ProgressiveLoad.
 void LDR_Cancel()
 {
-	// note: calling during registering doesn't make sense - that
-	// should be an atomic sequence of begin, register [..], end.
-	debug_assert(state == LOADING);
-
 	// the queue doesn't need to be emptied now; that'll happen during the
 	// next LDR_StartRegistering. for now, it is sufficient to set the
 	// state, so that LDR_ProgressiveLoad is a no-op.
 	state = IDLE;
 }
-
 
 // helper routine for LDR_ProgressiveLoad.
 // tries to prevent starting a long task when at the end of a timeslice.
@@ -269,7 +264,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t ma
 		// .. failed; abort. loading will continue when we're called in
 		//    the next iteration of the main loop.
 		//    rationale: bail immediately instead of remembering the first
-		//    error that came up so we report can all errors that happen.
+		//    error that came up so we can report all errors that happen.
 		else if(status < 0)
 		{
 			ret = (LibError)status;

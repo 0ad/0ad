@@ -179,6 +179,8 @@ for (var i=1; i<=numPlayers; i++)
 	}
 }
 
+RMS.SetProgress(5);
+
 // create lakes
 log("Creating lakes...");
 placer = new ClumpPlacer(mapArea * 0.009, 0.8, 0.1, 0);
@@ -194,6 +196,8 @@ createAreas(
 	round(1.3 * numPlayers)
 );
 
+RMS.SetProgress(22);
+
 // create bumps
 log("Creating bumps...");
 placer = new ClumpPlacer(10, 0.3, 0.06, 0);
@@ -204,6 +208,8 @@ createAreas(
 	avoidClasses(clWater, 2, clPlayer, 0),
 	mapArea/1000
 );
+
+RMS.SetProgress(25);
 
 // create hills
 log("Creating hills...");
@@ -220,6 +226,8 @@ createAreas(
 	2 * numPlayers
 );
 
+RMS.SetProgress(30);
+
 // create forests
 log("Creating forests...");
 placer = new ClumpPlacer(mapArea * 0.002, 0.1, 0.1, 0);
@@ -233,6 +241,8 @@ createAreas(
 	avoidClasses(clPlayer, 1, clWater, 3, clForest, 10, clHill, 0),
 	6 * numPlayers
 );
+
+RMS.SetProgress(53);
 
 // create dirt patches
 log("Creating dirt patches...");
@@ -292,6 +302,8 @@ createObjectGroups(group, 0,
 	// avoidClasses(clWater, 0, clForest, 0, clPlayer, 15, clHill, 0, clRock, 5, clSettlement, 35),
 	// 2 * numPlayers, 50
 // );
+
+RMS.SetProgress(60);
 
 // create small decorative rocks
 log("Creating large decorative rocks...");
@@ -360,6 +372,8 @@ createObjectGroups(group, undefined,
 	mapArea/90
 );
 
+RMS.SetProgress(80);
+
 // create large grass tufts
 log("Creating large grass tufts...");
 group = new SimpleGroup(
@@ -369,6 +383,8 @@ createObjectGroups(group, undefined,
 	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
 	mapArea/900
 );
+
+RMS.SetProgress(87);
 
 // create bushes
 log("Creating bushes...");
@@ -386,7 +402,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aReeds, 5,10, 0,1.5, -PI/8,PI/8)]
 );
 createObjectGroups(group, undefined,
-	[new BorderTileClassConstraint(clWater, 3, 0), new StayInTileClassConstraint(clWater, 1)],
+	[new BorderTileClassConstraint(clWater, 3, 0), stayClasses(clWater, 1)],
 	10 * numPlayers, 100
 );
 

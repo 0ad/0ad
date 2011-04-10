@@ -89,7 +89,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 		{
 			delete reader;
 			LOGERROR(L"Failed to load scenario %ls: %hs", mapfilename.string().c_str(), err.what());
-			throw PSERROR_Game_World_MapLoadFailed("Failed to load scenario");
+			throw PSERROR_Game_World_MapLoadFailed("Failed to load scenario.\nCheck application log for details.");
 		}
 	}
 }

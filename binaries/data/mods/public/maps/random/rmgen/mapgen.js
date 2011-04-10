@@ -32,20 +32,19 @@ var g_Camera = {
 
 function InitMap()
 {
-	if (g_MapSettings === undefined || g_MapSettings == {})
-	{	// If settings missing, warn and use some defaults
-		warn("InitMapGen: settings missing");
-		g_MapSettings = {
-			Size : 13,
-			BaseTerrain: "grass1_spring",
-			BaseHeight: 0,
-			PlayerData : [ {}, {} ]
-		};
+	if (g_MapSettings === undefined)
+	{
+		// Should never get this far, failed settings would abort prior to loading scripts
+		error("InitMapGen: settings missing");
 	}
 	
 	// Create new map
 	log("Creating new map...");
 	var terrain = createTerrain(g_MapSettings.BaseTerrain);
+	
+	// XXX: Temporary hack to keep typed arrays from complaining about invalid arguments,
+	//		until SpiderMonkey gets upgraded
+	g_MapSettings.Size = Math.floor(g_MapSettings.Size);
 	
 	g_Map = new Map(g_MapSettings.Size * TILES_PER_PATCH, g_MapSettings.BaseHeight);
 	g_Map.initTerrain(terrain);

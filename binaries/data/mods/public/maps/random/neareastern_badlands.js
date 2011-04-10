@@ -137,6 +137,8 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,1));
 }
 
+RMS.SetProgress(5);
+
 // create patches
 log("Creating sand patches...");
 var placer = new ClumpPlacer(30, 0.2, 0.1, 0);
@@ -146,6 +148,8 @@ createAreas(placer, [painter, paintClass(clPatch)],
 	mapArea/600
 );
 
+RMS.SetProgress(24);
+
 log("Creating dirt patches...");
 placer = new ClumpPlacer(10, 0.2, 0.1, 0);
 painter = new TerrainPainter([tSand, tDirt]);
@@ -154,12 +158,16 @@ createAreas(placer, [painter, paintClass(clPatch)],
 	mapArea/600
 );
 
+RMS.SetProgress(32);
+
 // create the oasis (roughly 4% of map area)
 log("Creating oasis...");
 placer = new ClumpPlacer(mapArea * 0.04, 0.6, 0.1, 0, mapSize/2, mapSize/2);
 painter = new LayeredPainter([[tSand, pForest], tShore, tWaterDeep], [6,1]);
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -11, 5);
 createArea(placer, [painter, elevationPainter, paintClass(clForest)], null);
+
+RMS.SetProgress(51);
 
 // create hills
 log("Creating level 1 hills...");
@@ -174,6 +182,8 @@ createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill1)],
 	mapArea/3800, 100
 );
 
+RMS.SetProgress(70);
+
 log("Creating small level 1 hills...");
 placer = new ClumpPlacer(60, 0.25, 0.1, 0.3);
 terrainPainter = new LayeredPainter(
@@ -186,6 +196,8 @@ createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill1)],
 	mapArea/2800, 100
 );
 
+RMS.SetProgress(81);
+
 log("Creating level 2 hills...");
 placer = new ClumpPlacer(60, 0.2, 0.1, 0.9);
 terrainPainter = new LayeredPainter(
@@ -194,9 +206,11 @@ terrainPainter = new LayeredPainter(
 );
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1);
 createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill2)], 
-	[avoidClasses(clHill2, 1), new StayInTileClassConstraint(clHill1, 0)],
+	[avoidClasses(clHill2, 1), stayClasses(clHill1, 0)],
 	mapArea/2800, 200
 );
+
+RMS.SetProgress(91);
 
 log("Creating level 3 hills...");
 placer = new ClumpPlacer(25, 0.2, 0.1, 0.9);
@@ -206,7 +220,7 @@ terrainPainter = new LayeredPainter(
 );
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1);
 createAreas(placer, [terrainPainter, elevationPainter, paintClass(clHill3)], 
-	[avoidClasses(clHill3, 1), new StayInTileClassConstraint(clHill2, 0)],
+	[avoidClasses(clHill3, 1), stayClasses(clHill2, 0)],
 	mapArea/9000, 300
 );
 
@@ -236,6 +250,8 @@ createObjectGroups(group, 0,
 	 new BorderTileClassConstraint(clHill1, 0, 4)],
 	mapArea/4000, 100
 );
+
+RMS.SetProgress(97);
 
 // create decorative rocks for hills
 log("Creating decorative rocks...");

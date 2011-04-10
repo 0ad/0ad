@@ -18,40 +18,125 @@
 #ifndef INCLUDED_MAPGENERATOR
 #define INCLUDED_MAPGENERATOR
 
-#include "ps/CStr.h"
 #include "ps/FileIo.h"
+#include "ps/ThreadUtil.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <boost/random/linear_congruential.hpp>
 
+
+class CMapGeneratorWorker;
+
+/**
+ * Random map generator interface. Initialized by CMapReader and then checked
+ * periodically during loading, until it's finished (progress value is 0).
+ *
+ * The actual work is performed by CMapGeneratorWorker in a separate thread.
+ */
 class CMapGenerator
 {
 
 public:
-	// constructor
 	CMapGenerator();
+	~CMapGenerator();
 
-	// return success of map generation
-	bool GenerateMap(const VfsPath& scriptFile, const CScriptValRooted& settings);
+	/**
+	 * Start the map generator thread
+	 *
+	 * @param scriptFile The VFS path for the script, e.g. "maps/random/latium.js"
+	 * @param settings JSON string containing settings for the map generator
+	 */
+	void GenerateMap(const VfsPath& scriptFile, const std::string& settings);
 
-	// accessors
-	ScriptInterface& GetScriptInterface();
+	/**
+	 * Get status of the map generator thread
+	 *
+	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 when 
+	 */
+	int GetProgress();
 
-	CScriptValRooted& GetMapData();
+	/**
+	 * Get random map data, according to this format:
+	 * http://trac.wildfiregames.com/wiki/Random_Map_Generator_Internals#Dataformat
+	 *
+	 * @return StructuredClone containing map data
+	 */
+	shared_ptr<ScriptInterface::StructuredClone> GetResults();
 
-	// callbacks for script functions
-	static bool LoadLibrary(void* cbdata, std::wstring name);
+private:
+	CMapGeneratorWorker* m_Worker;
 
-	static void ExportMap(void* cbdata, CScriptValRooted data);
+};
+
+/**
+ * Random map generator worker thread.
+ * (This is run in a thread so that the GUI remains responsive while loading)
+ *
+ * Thread-safety:
+ * - Initialize and constructor/destructor must be called from the main thread.
+ * - ScriptInterface created and destroyed by thread
+ * - StructuredClone used to return JS map data - jsvals can't be used across threads/runtimes
+ */
+class CMapGeneratorWorker
+{
+public:
+	CMapGeneratorWorker();
+	~CMapGeneratorWorker();
+
+	/**
+	 * Start the map generator thread
+	 *
+	 * @param scriptFile The VFS path for the script, e.g. "maps/random/latium.js"
+	 * @param settings JSON string containing settings for the map generator
+	 */
+	void Initialize(const VfsPath& scriptFile, const std::string& settings);
+
+	/**
+	 * Get status of the map generator thread
+	 *
+	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 when 
+	 */
+	int GetProgress();
+
+	/**
+	 * Get random map data, according to this format:
+	 * http://trac.wildfiregames.com/wiki/Random_Map_Generator_Internals#Dataformat
+	 *
+	 * @return StructuredClone containing map data
+	 */
+	shared_ptr<ScriptInterface::StructuredClone> GetResults();
 	
 private:
+// Mapgen
 
+	/**
+	 * Load all scripts of the given library
+	 * 
+	 * @param libraryName String specifying name of the library (subfolder of ../maps/random/)
+	 */
 	bool LoadScripts(const std::wstring& libraryName);
 	
-	ScriptInterface m_ScriptInterface;
-	CScriptValRooted m_MapData;
+	// callbacks for script functions
+	static bool LoadLibrary(void* cbdata, std::wstring name);
+	static void ExportMap(void* cbdata, CScriptValRooted data);
+	static void SetProgress(void* cbdata, int progress);
+	static void MaybeGC(void* cbdata);
+
 	std::set<std::wstring> m_LoadedLibraries;
+	shared_ptr<ScriptInterface::StructuredClone> m_MapData;
 	boost::rand48 m_MapGenRNG;
+	int m_Progress;
+	ScriptInterface* m_ScriptInterface;
+	VfsPath m_ScriptPath;
+	std::string m_Settings;
+
+// Thread
+	static void* RunThread(void* data);
+	bool Run();
+
+	pthread_t m_WorkerThread;
+	CMutex m_WorkerMutex;
 };
+
 
 #endif	//INCLUDED_MAPGENERATOR

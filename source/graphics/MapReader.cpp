@@ -49,7 +49,7 @@
 
 
 CMapReader::CMapReader()
-	: xml_reader(0), m_PatchesPerSide(0)
+	: xml_reader(0), m_PatchesPerSide(0), m_MapGen(0)
 {
 	cur_terrain_tex = 0;	// important - resets generator state
 
@@ -161,7 +161,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& 
 	RegMemFun(this, &CMapReader::LoadPlayerSettings, L"CMapReader::LoadPlayerSettings", 50);
 
 	// load map generator with random map script
-	RegMemFun(this, &CMapReader::GenerateMap, L"CMapReader::GenerateMap", 2000);
+	RegMemFun(this, &CMapReader::GenerateMap, L"CMapReader::GenerateMap", 5000);
 
 	// parse RMS results into terrain structure
 	RegMemFun(this, &CMapReader::ParseTerrain, L"CMapReader::ParseTerrain", 500);
@@ -1037,8 +1037,7 @@ int CMapReader::ReadXML()
 	// finished or failed
 	if (ret <= 0)
 	{
-		delete xml_reader;
-		xml_reader = 0;
+		SAFE_DELETE(xml_reader);
 	}
 
 	return ret;
@@ -1067,28 +1066,54 @@ int CMapReader::LoadRMSettings()
 
 int CMapReader::GenerateMap()
 {
-	TIMER(L"GenerateMap");
+	if (!m_MapGen)
+	{
+		// Initialize map generator
+		m_MapGen = new CMapGenerator();
 
-	CMapGenerator mapGen;
+		VfsPath scriptPath;
+		
+		if (m_ScriptFile.length())
+			scriptPath = L"maps/random/"+m_ScriptFile;
 
-	VfsPath scriptPath;
-	
-	if (m_ScriptFile.length())
-		scriptPath = L"maps/random/"+m_ScriptFile;
-
-	// Copy map settings from simulator to mapgen context
-	CScriptValRooted scriptSettings(mapGen.GetScriptInterface().GetContext(), mapGen.GetScriptInterface().CloneValueFromOtherContext(pSimulation2->GetScriptInterface(), m_ScriptSettings.get()));
-
-	// Try to generate map
-	if (!mapGen.GenerateMap(scriptPath, scriptSettings))
-	{	// RMS failed - return to main menu
-		throw PSERROR_Game_World_MapLoadFailed("Error generating random map.\nCheck application log for details.");
+		// Stringify settings to pass across threads
+		std::string scriptSettings = pSimulation2->GetScriptInterface().StringifyJSON(m_ScriptSettings.get());
+		
+		// Try to generate map
+		m_MapGen->GenerateMap(scriptPath, scriptSettings);
 	}
 
-	// Copy data from mapgen to simulator context
-	m_MapData = CScriptValRooted(pSimulation2->GetScriptInterface().GetContext(), pSimulation2->GetScriptInterface().CloneValueFromOtherContext(mapGen.GetScriptInterface(), mapGen.GetMapData().get()));
+	// Check status
+	int progress = m_MapGen->GetProgress();
+	if (progress < 0)
+	{
+		// RMS failed - return to main menu
+		throw PSERROR_Game_World_MapLoadFailed("Error generating random map.\nCheck application log for details.");
+	}
+	else if (progress == 0)
+	{
+		// Finished, get results as StructuredClone object, which must be read to obtain the JS val
+		shared_ptr<ScriptInterface::StructuredClone> results = m_MapGen->GetResults();
 
-	return 0;
+		// Parse data into simulation context
+		CScriptValRooted data(pSimulation2->GetScriptInterface().GetContext(), pSimulation2->GetScriptInterface().ReadStructuredClone(results));
+		if (data.undefined())
+		{
+			// RMS failed - return to main menu
+			throw PSERROR_Game_World_MapLoadFailed("Error generating random map.\nCheck application log for details.");
+		}
+		else
+		{
+			m_MapData = data;
+		}
+	}
+	else
+	{
+		// Still working
+	}
+	
+	// return progress
+	return progress;
 };
 
 
@@ -1311,4 +1336,18 @@ int CMapReader::ParseCamera()
 	}
 
 	return 0;
+}
+
+CMapReader::~CMapReader()
+{
+	// Cleaup objects
+	if (xml_reader)
+	{
+		delete xml_reader;
+	}
+
+	if (m_MapGen)
+	{
+		delete m_MapGen;
+	}
 }

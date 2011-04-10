@@ -1026,8 +1026,8 @@ bool Autostart(const CmdLineArgs& args)
 		else
 		{
 			// Problem with JSON file
-			CStrW msg = L"Error reading random map script \"" + scriptPath + L"\".\nCheck application log for details.";
-			throw PSERROR_Game_World_MapLoadFailed(msg.ToUTF8().c_str());
+			LOGERROR(L"Error reading random map script '%ls'", scriptPath.c_str());
+			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
 		}
 
 		// Get optional map size argument (default 12)
@@ -1162,9 +1162,11 @@ bool Autostart(const CmdLineArgs& args)
 
 void CancelLoad(const CStrW& message)
 {
+	//Cancel loader
 	LDR_Cancel();
 
-	// Call the cancelOnError GUI function, but only if it exists
+	// Call the cancelOnError GUI function, defined in ..gui/common/functions_utility_error.js
+	// So all GUI pages that load games should include this script
 	if (g_GUI && g_GUI->HasPages())
 	{
 		JSContext* cx = g_ScriptingHost.getContext();
