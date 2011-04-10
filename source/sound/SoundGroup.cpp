@@ -34,6 +34,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Util.h"
 
 
 static const bool DISABLE_INTENSITY = true; // disable for now since it's broken
@@ -121,7 +122,7 @@ static void HandleError(const std::wstring& message, const VfsPath& pathname, Li
 {
 	if(err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOGERROR(L"%ls: pathname=%ls, error=%ld", message.c_str(), pathname.string().c_str(), err);
+	LOGERROR(L"%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string().c_str(), ErrorString(err));
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position)
