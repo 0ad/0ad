@@ -62,9 +62,9 @@ void* CMapGeneratorWorker::RunThread(void *data)
 	self->m_ScriptInterface = new ScriptInterface("RMS", "MapGenerator", ScriptInterface::CreateRuntime(RMS_RUNTIME_SIZE));
 
 	// Run map generation scripts
-	if (!self->Run())
+	if ((!self->Run()) || (self->m_Progress > 0))
 	{
-		// Failed: set progress to error
+		// Don't leave progress in an unknown state, if generator failed, set it to -1
 		CScopeLock lock(self->m_WorkerMutex);
 		self->m_Progress = -1;
 	}
@@ -176,7 +176,9 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 {
 	// Ignore libraries that are already loaded
 	if (m_LoadedLibraries.find(libraryName) != m_LoadedLibraries.end())
+	{
 		return true;
+	}
 
 	// Mark this as loaded, to prevent it recursively loading itself
 	m_LoadedLibraries.insert(libraryName);
@@ -185,30 +187,33 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	VfsPaths pathnames;
 
 	// Load all scripts in mapgen directory
-	if (fs_util::GetPathnames(g_VFS, path, L"*.js", pathnames) < 0)
+	LibError ret = fs_util::GetPathnames(g_VFS, path, L"*.js", pathnames);
+	if (ret == INFO::OK)
 	{
-		LOGERROR(L"Error reading scripts in directory '%ls'", path.string().c_str());
-		return false;
-	}
-
-	for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
-	{
-		LOGMESSAGE(L"Loading map generator script '%ls'", it->string().c_str());
-
-		if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
+		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 		{
-			LOGERROR(L"Failed to load script '%ls'", it->string().c_str());
-			return false;
+			LOGMESSAGE(L"Loading map generator script '%ls'", it->string().c_str());
+
+			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
+			{
+				LOGERROR(L"Failed to load script '%ls'", it->string().c_str());
+				return false;
+			}
 		}
+	}
+	else
+	{
+		// Some error reading directory
+		wchar_t error[200];
+		LOGERROR(L"Error reading scripts in directory '%ls': %hs", path.string().c_str(), error_description_r(ret, error, ARRAY_SIZE(error)));
+		return false;
 	}
 
 	return true;
 }
 
-
-
-
-
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 CMapGenerator::CMapGenerator() : m_Worker(new CMapGeneratorWorker())
 {
