@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -12,9 +10,9 @@
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_03.psa" name="melee" speed="150"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="150"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
-        <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="10"/>
-        <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="10"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="20"/>
+        <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
+        <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="30"/>
         <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_wood" speed="120"/>
@@ -26,7 +24,7 @@
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="110"/>
         <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
         <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
-		<animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -44,7 +42,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="tunic-beige">
       <texture>skeletal/iber_isw_a_1.dds</texture>
@@ -53,7 +50,6 @@
       <texture>skeletal/iber_isw_a_2.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Idle"/>
     <variant name="Melee">
@@ -111,7 +107,7 @@
         <prop attachpoint="helmet"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop attachpoint="shield"/>
         <prop attachpoint="r_hand"/>
@@ -168,7 +164,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

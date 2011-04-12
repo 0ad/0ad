@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
@@ -29,7 +27,6 @@
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
-        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="600"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
       </animations>
@@ -95,7 +92,7 @@
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop attachpoint="shield"/>
         <prop attachpoint="r_hand"/>
@@ -151,5 +148,4 @@
     </variant>
   </group>
   <material>player_trans.xml</material>
-
 </actor>

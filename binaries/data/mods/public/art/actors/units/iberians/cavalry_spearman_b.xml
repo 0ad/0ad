@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
@@ -19,7 +17,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="7" name="feet">
       <texture>skeletal/horse_celt_feet_a.dds</texture>
@@ -43,7 +40,6 @@
       <texture>skeletal/horse_celt_stripe_a.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-color-black">
       <colour>41 41 41</colour>
@@ -58,7 +54,5 @@
       <colour>211 123 44</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>
