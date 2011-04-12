@@ -2,11 +2,12 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunny</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<LightingModel>standard</LightingModel>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="0.737255" g="0.721569" b="0.662745"/>
+		<SunElevation angle="0.773126"/>
+		<SunRotation angle="-0.693359"/>
+		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.505882"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -15,17 +16,17 @@
 				<Height>20.0394</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.0566406</Murkiness>
-				<Tint r="0.611765" g="0.447059" b="0.219608"/>
-				<ReflectionTint r="0.447059" g="0.411765" b="0.321569"/>
-				<ReflectionTintStrength>0.415039</ReflectionTintStrength>
+				<Murkiness>0.503906</Murkiness>
+				<Tint r="0.8" g="0.803922" b="0.843137"/>
+				<ReflectionTint r="0.568627" g="0.517647" b="0.423529"/>
+				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="240.964" y="109.922" z="473.429"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="226.833" y="138.55" z="454.707"/>
+		<Rotation angle="-0.0101969"/>
+		<Declination angle="0.597868"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -278,8 +279,8 @@
 		<Entity uid="44">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
-			<Position x="535.417" z="688.2696"/>
-			<Orientation y="-0.31154"/>
+			<Position x="535.37183" z="688.33887"/>
+			<Orientation y="2.44843"/>
 		</Entity>
 		<Entity uid="45">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
