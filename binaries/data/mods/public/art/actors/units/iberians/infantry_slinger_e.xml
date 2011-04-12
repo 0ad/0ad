@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -23,7 +21,7 @@
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="110"/>
         <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
         <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
-		<animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -41,13 +39,11 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="tunic-quilted-beige">
       <texture>skeletal/iber_isl_e_1.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Idle"/>
     <variant name="Melee">
@@ -100,7 +96,7 @@
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop attachpoint="shield"/>
         <prop attachpoint="r_hand"/>
@@ -155,7 +151,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
