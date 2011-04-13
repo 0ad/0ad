@@ -90,9 +90,9 @@ def setup_context(width, height, face, size, renderstyle):
     ctx.set_line_join(cairo.LINE_JOIN_ROUND)
     return ctx, surface
 
-def generate_font(chars, outname, ttf, size, renderstyle):
+def generate_font(chars, outname, ttf, loadopts, size, renderstyle):
 
-    (face, indexes) = FontLoader.create_cairo_font_face_for_file(ttf)
+    (face, indexes) = FontLoader.create_cairo_font_face_for_file(ttf, 0, loadopts)
 
     (ctx, _) = setup_context(1, 1, face, size, renderstyle)
 
@@ -158,27 +158,32 @@ stroked3 = { "colour": True, "stroke": [((0, 0, 0, 1), 2.5)], "fill": [(1, 1, 1,
 
 chars = load_char_list("charset.txt")
 
+DejaVuSansMono = ("DejaVuSansMono.ttf", FontLoader.FT_LOAD_DEFAULT)
+DejaVuSans = ("DejaVuSans.ttf", FontLoader.FT_LOAD_DEFAULT)
+PagellaRegular = ("texgyrepagella-regular.otf", FontLoader.FT_LOAD_NO_HINTING)
+PagellaBold = ("texgyrepagella-bold.otf", FontLoader.FT_LOAD_NO_HINTING)
+
 fonts = (
-    ("mono-10", "DejaVuSansMono.ttf", 10, filled),
-    ("mono-stroke-10", "DejaVuSansMono.ttf", 10, stroked2),
-    ("sans-10", "DejaVuSans.ttf", 10, filled),
-    ("serif-9", "ConvertedPagella-Regular.ttf", 9, filled),
-    ("serif-12", "ConvertedPagella-Regular.ttf", 12, filled),
-    ("serif-13", "ConvertedPagella-Regular.ttf", 13, filled),
-    ("serif-14", "ConvertedPagella-Regular.ttf", 14, filled),
-    ("serif-16", "ConvertedPagella-Regular.ttf", 16, filled),
-    ("serif-bold-12", "ConvertedPagella-Bold.ttf", 12, filled),
-    ("serif-bold-13", "ConvertedPagella-Bold.ttf", 13, filled),
-    ("serif-bold-14", "ConvertedPagella-Bold.ttf", 14, filled),
-    ("serif-bold-16", "ConvertedPagella-Bold.ttf", 16, filled),
-    ("serif-bold-18", "ConvertedPagella-Bold.ttf", 18, filled),
-    ("serif-bold-20", "ConvertedPagella-Bold.ttf", 20, filled),
-    ("serif-bold-22", "ConvertedPagella-Bold.ttf", 22, filled),
-    ("serif-bold-24", "ConvertedPagella-Bold.ttf", 24, filled),
-    ("serif-stroke-14", "ConvertedPagella-Regular.ttf", 14, stroked2),
-    ("serif-bold-stroke-14", "ConvertedPagella-Bold.ttf", 14, stroked3),
+    ("mono-10", DejaVuSansMono, 10, filled),
+    ("mono-stroke-10", DejaVuSansMono, 10, stroked2),
+    ("sans-10", DejaVuSans, 10, filled),
+    ("serif-9", PagellaRegular, 9, filled),
+    ("serif-12", PagellaRegular, 12, filled),
+    ("serif-13", PagellaRegular, 13, filled),
+    ("serif-14", PagellaRegular, 14, filled),
+    ("serif-16", PagellaRegular, 16, filled),
+    ("serif-bold-12", PagellaBold, 12, filled),
+    ("serif-bold-13", PagellaBold, 13, filled),
+    ("serif-bold-14", PagellaBold, 14, filled),
+    ("serif-bold-16", PagellaBold, 16, filled),
+    ("serif-bold-18", PagellaBold, 18, filled),
+    ("serif-bold-20", PagellaBold, 20, filled),
+    ("serif-bold-22", PagellaBold, 22, filled),
+    ("serif-bold-24", PagellaBold, 24, filled),
+    ("serif-stroke-14", PagellaRegular, 14, stroked2),
+    ("serif-bold-stroke-14", PagellaBold, 14, stroked3),
 )
 
-for (name, fontname, size, style) in fonts:
+for (name, (fontname, loadopts), size, style) in fonts:
     print "%s..." % name
-    generate_font(chars, "../../../binaries/data/mods/public/fonts/%s" % name, "../../../binaries/data/tools/fontbuilder/fonts/%s" % fontname, size, style)
+    generate_font(chars, "../../../binaries/data/mods/public/fonts/%s" % name, "../../../binaries/data/tools/fontbuilder/fonts/%s" % fontname, loadopts, size, style)
