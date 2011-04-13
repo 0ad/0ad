@@ -2,52 +2,52 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.19922" g="1.19922" b="1.19922"/>
-		<SunElevation angle="0.951868"/>
-		<SunRotation angle="-0.816638"/>
-		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.576471" g="0.537255" b="0.47451"/>
+		<SunColour r="0.776471" g="0.741176" b="0.623529"/>
+		<SunElevation angle="0.825282"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.505882"/>
+		<UnitsAmbientColour r="0.521569" g="0.521569" b="0.521569"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>17.941</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>18.2557</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>1</Murkiness>
-				<Tint r="0.611765" g="0.447059" b="0.219608"/>
-				<ReflectionTint r="0.447059" g="0.415686" b="0.321569"/>
-				<ReflectionTintStrength>1</ReflectionTintStrength>
+				<Murkiness>0.355469</Murkiness>
+				<Tint r="0.568627" g="0.517647" b="0.423529"/>
+				<ReflectionTint r="0.568627" g="0.517647" b="0.423529"/>
+				<ReflectionTintStrength>0.491211</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="640.515" y="141.225" z="-98.0154"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="108.446" y="118.501" z="403.153"/>
+		<Rotation angle="0.0470279"/>
+		<Declination angle="0.529896"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Serengeti",
-		"Description":"The African serengeti has herds of animals criss crossing the plain. Mineral wealth is bountiful and wood is in full supply.",
-		"PlayerData":
-		[
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			},
-			{
-				"Civ":"hele"
-			}
-		]
-	}
-	]]></ScriptSettings>
+{
+  "Name": "Serengeti",
+  "Description": "The African serengeti has herds of animals criss crossing the plain. Mineral wealth is bountiful and wood is in full supply.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ]
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="14">
 			<Template>gaia/flora_tree_baobab</Template>
