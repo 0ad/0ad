@@ -16,7 +16,7 @@
         <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="95"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_03.psa" name="melee" speed="150"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="150"/>
-        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Walk" speed="44"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="25"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
         <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="30"/>
@@ -44,7 +44,7 @@
     <variant frequency="2" name="armour-pectoral-2">
       <texture>skeletal/iber_su_inf_2.dds</texture>
     </variant>
-    <variant frequency="3" name="armour-chainmail">
+    <variant frequency="4" name="armour-chainmail">
       <texture>skeletal/high/256_iber_su2.dds</texture>
     </variant>
   </group>
