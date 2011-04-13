@@ -5,11 +5,16 @@
     <variant frequency="1" name="foundation 2x4 a">
       <mesh>structural/found_2x4_a.dae</mesh>
     </variant>
+  </group>
+  <group>
     <variant>
       <props>
+        <prop actor="props/structures/decals/dirt_3x6.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
       </props>
     </variant>
+  </group>
+  <group>
     <variant frequency="1">
       <texture>structural/foundation.dds</texture>
     </variant>
