@@ -48,7 +48,7 @@
     <variant name="Melee">
       <props>
         <prop actor="props/units/weapons/sling.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
     </variant>
     <variant name="gather_tree">

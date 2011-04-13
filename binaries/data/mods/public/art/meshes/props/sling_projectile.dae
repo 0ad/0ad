@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.56.0 r34076</authoring_tool>
+    </contributor>
+    <created>2011-04-13T21:22:34</created>
+    <modified>2011-04-13T21:22:34</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_cameras/>
+  <library_lights/>
+  <library_images/>
+  <library_effects>
+    <effect id="_01___Default-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color>0.64 0.64 0.64 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <show_double_sided>1</show_double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="_01___Default" name="_01___Default">
+      <instance_effect url="#_01___Default-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Sphere01-lib-mesh">
+      <mesh>
+        <source id="Sphere01-lib-mesh-positions">
+          <float_array id="Sphere01-lib-mesh-positions-array" count="51">0.02446746 6.1222e-4 0.0250622 0.03475618 6.1222e-4 2.23097e-4 0.02446746 6.1222e-4 -0.024616 0.007304012 0.02423566 -0.024616 0.01048344 0.03402078 2.23099e-4 0.007304012 0.02423566 0.0250622 -0.02046692 0.01521229 0.0250622 -0.02879065 0.02125984 2.23099e-4 -0.02046692 0.01521229 -0.024616 -0.02046692 -0.01398783 -0.024616 -0.02879065 -0.02003538 2.23099e-4 -0.02046692 -0.01398783 0.0250622 -3.7165e-4 6.1222e-4 0.03535091 0.007304012 -0.0230112 0.0250622 0.01048344 -0.03279632 2.23099e-4 0.007304012 -0.0230112 -0.024616 -3.71653e-4 6.1222e-4 -0.03490471</float_array>
+          <technique_common>
+            <accessor source="#Sphere01-lib-mesh-positions-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sphere01-lib-mesh-normals">
+          <float_array id="Sphere01-lib-mesh-normals-array" count="51">0 0 -1 0.09912407 0.7423322 -0.6626484 0.7366253 0.1351054 -0.6626484 0.7366253 -0.1351054 0.6626484 0.3561205 0.6588336 0.6626484 0 0 1 -0.5165258 0.5422834 0.6626484 -0.6753441 0.3236793 -0.6626484 -0.5165258 -0.5422834 -0.6626484 -0.6753441 -0.3236793 0.6626484 0.09912407 -0.7423322 0.6626484 0.3561205 -0.6588336 -0.6626484 0.3089999 -0.9510483 0 1 0 0 -0.8090152 -0.587756 0 -0.8090152 0.587756 0 0.3089999 0.9510483 0</float_array>
+          <technique_common>
+            <accessor source="#Sphere01-lib-mesh-normals-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Sphere01-lib-mesh-map-0">
+          <float_array id="Sphere01-lib-mesh-map-0-array" count="180">0.1098408 0.1116166 0.4915383 0.03271061 0.3313874 0.3338365 0.6703683 0.6738477 0.9719787 0.5146115 0.8919148 0.8960678 0.2966463 0.8970366 0.4870966 0.6750523 0.6732534 0.8925465 0.3735934 0.08927834 0.3753867 0.3589123 0.08972668 0.3131313 0.3735934 0.08927834 0.5543612 0.2883973 0.3753867 0.3589123 0.4870966 0.6750523 0.6646829 0.6070412 0.6732534 0.8925465 0.6646829 0.6070412 0.9836975 0.6414963 0.6732534 0.8925465 0.3735934 0.08927834 0.7238035 0.07271599 0.5543612 0.2883973 0.1098408 0.1116166 0.3313874 0.3338365 0.02977693 0.4930728 0.5102172 0.9749735 0.6703683 0.6738477 0.8919148 0.8960678 0.6703683 0.6738477 0.5102172 0.9749735 0.1893402 0.8144355 0.6703683 0.6738477 0.1893402 0.8144355 0.5008777 0.5038421 0.02977693 0.4930728 0.3313874 0.3338365 0.5008777 0.5038421 0.02977693 0.4930728 0.5008777 0.5038421 0.1893402 0.8144355 0.5543612 0.2883973 0.7238035 0.07271599 0.9836975 0.2763578 0.5543612 0.2883973 0.9836975 0.2763578 0.6279783 0.4375299 0.6279783 0.4375299 0.9836975 0.2763578 0.9836975 0.6414963 0.6279783 0.4375299 0.9836975 0.6414963 0.6646829 0.6070412 0.4220919 0.5251041 0.6279783 0.4375299 0.6646829 0.6070412 0.4220919 0.5251041 0.6646829 0.6070412 0.4870966 0.6750523 0.3753867 0.3589123 0.5543612 0.2883973 0.6279783 0.4375299 0.3753867 0.3589123 0.6279783 0.4375299 0.4220919 0.5251041 0.08972668 0.3131313 0.3753867 0.3589123 0.4220919 0.5251041 0.08972668 0.3131313 0.4220919 0.5251041 0.02805805 0.6646188 0.02805805 0.6646188 0.4220919 0.5251041 0.4870966 0.6750523 0.02805805 0.6646188 0.4870966 0.6750523 0.2966463 0.8970366 0.9719787 0.5146115 0.6703683 0.6738477 0.5008777 0.5038421 0.9719787 0.5146115 0.5008777 0.5038421 0.8124154 0.1932484 0.3313874 0.3338365 0.4915383 0.03271061 0.8124154 0.1932484 0.3313874 0.3338365 0.8124154 0.1932484 0.5008777 0.5038421</float_array>
+          <technique_common>
+            <accessor source="#Sphere01-lib-mesh-map-0-array" count="90" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Sphere01-lib-mesh-vertices">
+          <input semantic="POSITION" source="#Sphere01-lib-mesh-positions"/>
+        </vertices>
+        <polylist material="_01___Default" count="30">
+          <input semantic="VERTEX" source="#Sphere01-lib-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Sphere01-lib-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Sphere01-lib-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>16 0 0 3 1 1 2 2 2 0 3 3 5 4 4 12 5 5 5 4 6 6 6 7 12 5 8 16 0 9 8 7 10 3 1 11 16 0 12 9 8 13 8 7 14 6 6 15 11 9 16 12 5 17 11 9 18 13 10 19 12 5 20 16 0 21 15 11 22 9 8 23 16 0 24 2 2 25 15 11 26 13 10 27 0 3 28 12 5 29 0 3 30 13 10 31 14 12 32 0 3 33 14 12 34 1 13 35 15 11 36 2 2 37 1 13 38 15 11 39 1 13 40 14 12 41 9 8 42 15 11 43 14 12 44 9 8 45 14 12 46 10 14 47 10 14 48 14 12 49 13 10 50 10 14 51 13 10 52 11 9 53 7 15 54 10 14 55 11 9 56 7 15 57 11 9 58 6 6 59 8 7 60 9 8 61 10 14 62 8 7 63 10 14 64 7 15 65 3 1 66 8 7 67 7 15 68 3 1 69 7 15 70 4 16 71 4 16 72 7 15 73 6 6 74 4 16 75 6 6 76 5 4 77 5 4 78 0 3 79 1 13 80 5 4 81 1 13 82 4 16 83 2 2 84 3 1 85 4 16 86 2 2 87 4 16 88 1 13 89</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations/>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Sphere01" type="NODE">
+        <translate sid="location">0 -7.38e-4 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">2.383525 2.383525 2.383525</scale>
+        <instance_geometry url="#Sphere01-lib-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_01___Default" target="#_01___Default">
+                <bind_vertex_input semantic="Sphere01-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
