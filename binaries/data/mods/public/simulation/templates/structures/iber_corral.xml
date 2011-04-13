@@ -9,6 +9,13 @@
     <Actor>structures/iberians/corral.xml</Actor>
     <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
+  <Footprint>
+    <Square width="19.0" depth="19.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="17.0" depth="17.0"/>
+  </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
       gaia/fauna_goat
