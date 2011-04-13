@@ -312,7 +312,6 @@ enum
 	ID_JavaScript,
 	ID_CameraReset,
 	ID_RenderPathFixed,
-	ID_RenderPathVertexShader,
 	ID_RenderPathShader,
 
 	ID_Toolbar // must be last in the list
@@ -338,7 +337,6 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_JavaScript, ScenarioEditor::OnJavaScript)
 	EVT_MENU(ID_CameraReset, ScenarioEditor::OnCameraReset)
 	EVT_MENU(ID_RenderPathFixed, ScenarioEditor::OnRenderPath)
-	EVT_MENU(ID_RenderPathVertexShader, ScenarioEditor::OnRenderPath)
 	EVT_MENU(ID_RenderPathShader, ScenarioEditor::OnRenderPath)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
@@ -490,8 +488,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		wxMenu *menuRP = new wxMenu;
 		menuMisc->AppendSubMenu(menuRP, _("Render &path"));
 		menuRP->Append(ID_RenderPathFixed, _("&Fixed function"));
-		menuRP->Append(ID_RenderPathVertexShader, _("&Vertex shader (old)"));
-		menuRP->Append(ID_RenderPathShader, _("&Shader (new)"));
+		menuRP->Append(ID_RenderPathShader, _("&Shader (default)"));
 	}
 
 	m_FileHistory.Load(*wxConfigBase::Get());
@@ -789,9 +786,6 @@ void ScenarioEditor::OnRenderPath(wxCommandEvent& event)
 	{
 	case ID_RenderPathFixed:
 		POST_MESSAGE(SetViewParamS, (eRenderView::GAME, L"renderpath", L"fixed"));
-		break;
-	case ID_RenderPathVertexShader:
-		POST_MESSAGE(SetViewParamS, (eRenderView::GAME, L"renderpath", L"vertexshader"));
 		break;
 	case ID_RenderPathShader:
 		POST_MESSAGE(SetViewParamS, (eRenderView::GAME, L"renderpath", L"shader"));
