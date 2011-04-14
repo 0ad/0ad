@@ -4,6 +4,9 @@
   <group>
     <variant frequency="100" name="base">
       <mesh>structural/iber_wall_turret.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
   </group>
