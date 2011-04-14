@@ -134,10 +134,10 @@ MESSAGE(ResizeScreen,
 
 QUERY(GenerateMap,
 		((std::wstring, script))				// name of script
-		((size_t, size))						// size in number of patches
-		((size_t, seed))						// seed for rng
+		((int, size))							// size in number of patches
+		((int, seed))							// seed for rng
 		((std::vector<std::wstring>, terrain))	// base terrain(s)
-		((size_t, height))						// base height
+		((int, height))							// base height
 		((std::string, playerData))				// JSON player data
 		,
 		((int, status))							// Status code, 0 for success, or < 0 for failure

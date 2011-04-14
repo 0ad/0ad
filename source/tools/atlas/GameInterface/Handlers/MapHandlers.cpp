@@ -86,10 +86,10 @@ QUERYHANDLER(GenerateMap)
 
 	CScriptValRooted settings;
 	scriptInterface.Eval("({})", settings);
-	scriptInterface.SetProperty(settings.get(), "Size", (size_t)msg->size);
-	scriptInterface.SetProperty(settings.get(), "Seed", (size_t)msg->seed);
+	scriptInterface.SetProperty(settings.get(), "Size", (int)msg->size);
+	scriptInterface.SetProperty(settings.get(), "Seed", (int)msg->seed);
 	scriptInterface.SetProperty(settings.get(), "BaseTerrain", std::vector<std::wstring>(*msg->terrain));
-	scriptInterface.SetProperty(settings.get(), "BaseHeight", (size_t)msg->height);
+	scriptInterface.SetProperty(settings.get(), "BaseHeight", (int)msg->height);
 	scriptInterface.SetProperty(settings.get(), "CircularMap", true);	// now default to circular map
 
 	CScriptValRooted pData = scriptInterface.ParseJSON(*msg->playerData);
