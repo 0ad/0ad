@@ -15,9 +15,10 @@
     </variant>
   </group>
   <group>
-    <variant name="decal">
+    <variant name="props">
       <props>
         <prop actor="props/structures/decals/gravel_savanna_3v3.xml" attachpoint="root"/>
+        <prop actor="particle/sparkle_goldmine.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
