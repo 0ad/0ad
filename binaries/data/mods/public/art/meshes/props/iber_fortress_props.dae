@@ -1,591 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
-  <asset>
-    <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
-    </contributor>
-    <created>2009-01-12T02:49:07Z</created>
-    <modified>2009-01-12T02:49:07Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
-  </asset>
-  <library_images>
-    <image id="Map__281-image" name="Map__281">
-      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\structural\iber_struct.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="Material__28" name="Material__28">
-      <instance_effect url="#Material__28-fx"/>
-    </material>
-    <material id="Material__29" name="Material__29">
-      <instance_effect url="#Material__29-fx"/>
-    </material>
-    <material id="Material__30" name="Material__30">
-      <instance_effect url="#Material__30-fx"/>
-    </material>
-    <material id="Material__31" name="Material__31">
-      <instance_effect url="#Material__31-fx"/>
-    </material>
-    <material id="Material__32" name="Material__32">
-      <instance_effect url="#Material__32-fx"/>
-    </material>
-    <material id="Material__33" name="Material__33">
-      <instance_effect url="#Material__33-fx"/>
-    </material>
-    <material id="Material__34" name="Material__34">
-      <instance_effect url="#Material__34-fx"/>
-    </material>
-    <material id="Material__35" name="Material__35">
-      <instance_effect url="#Material__35-fx"/>
-    </material>
-    <material id="Material__36" name="Material__36">
-      <instance_effect url="#Material__36-fx"/>
-    </material>
-    <material id="Material__37" name="Material__37">
-      <instance_effect url="#Material__37-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="Material__28-fx" name="Material__28">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__281-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__29-fx" name="Material__29">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__30-fx" name="Material__30">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__31-fx" name="Material__31">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__32-fx" name="Material__32">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__33-fx" name="Material__33">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__34-fx" name="Material__34">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__35-fx" name="Material__35">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__36-fx" name="Material__36">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="Material__37-fx" name="Material__37">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
-  <library_geometries>
-    <geometry id="Plane01-lib" name="Plane01Mesh">
-      <mesh>
-        <source id="Plane01-lib-Position">
-          <float_array id="Plane01-lib-Position-array" count="36">
--1.759400 7.597800 -3.538200
-1.754400 7.597800 -3.538200
-1.754400 7.597800 2.358700
--1.759400 7.597800 2.358700
--3.324200 -7.530300 -3.399200
--3.324200 -7.530300 3.538200
-3.324200 -7.530300 3.538200
-3.324200 -7.530300 -3.399200
--3.324200 -7.597800 -3.399200
-3.324200 -7.597800 -3.399200
-3.324200 -7.597800 3.538200
--3.324200 -7.597800 3.538200
-</float_array>
-          <technique_common>
-            <accessor source="#Plane01-lib-Position-array" count="12" stride="3">
-              <param name="X" type="float"/>
-              <param name="Y" type="float"/>
-              <param name="Z" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="Plane01-lib-Normal0">
-          <float_array id="Plane01-lib-Normal0-array" count="54">
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 1.000000 0.000000
-0.000000 1.000000 0.000000
-0.000000 1.000000 0.000000
-0.000000 1.000000 0.000000
-0.000000 1.000000 0.000000
-0.000000 1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-</float_array>
-          <technique_common>
-            <accessor source="#Plane01-lib-Normal0-array" count="18" stride="3">
-              <param name="X" type="float"/>
-              <param name="Y" type="float"/>
-              <param name="Z" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="Plane01-lib-UV0">
-          <float_array id="Plane01-lib-UV0-array" count="24">
-0.749620 0.564150
-0.824198 0.564150
-0.824198 0.807732
-0.749620 0.807732
-0.750404 0.559407
-0.750404 0.807732
-0.823389 0.807732
-0.823389 0.559407
-0.750151 0.563201
-0.822858 0.563201
-0.822858 0.808631
-0.750151 0.808631
-</float_array>
-          <technique_common>
-            <accessor source="#Plane01-lib-UV0-array" count="12" stride="2">
-              <param name="S" type="float"/>
-              <param name="T" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <vertices id="Plane01-lib-Vertex">
-          <input semantic="POSITION" source="#Plane01-lib-Position"/>
-        </vertices>
-        <polygons material="Material__28" count="6">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-          <p>0 0 0 1 1 1 2 2 2</p>
-          <p>0 3 0 2 4 2 3 5 3</p>
-          <p>4 6 4 5 7 5 6 8 6</p>
-          <p>4 9 4 6 10 6 7 11 7</p>
-          <p>8 12 8 9 13 9 10 14 10</p>
-          <p>8 15 8 10 16 10 11 17 11</p>
-        </polygons>
-        <polygons material="Material__29" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__30" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__31" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__32" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__33" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__34" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__35" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__36" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-        <polygons material="Material__37" count="0">
-          <input semantic="VERTEX" offset="0" source="#Plane01-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Plane01-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane01-lib-UV0"/>
-        </polygons>
-      </mesh>
-    </geometry>
-  </library_geometries>
-  <library_lights>
-    <light id="SceneAmbient-lib" name="SceneAmbientMesh">
-      <technique_common>
-        <ambient>
-          <color>0.133333 0.133333 0.133333</color>
-        </ambient>
-      </technique_common>
-    </light>
-  </library_lights>
-  <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="Plane01" name="Plane01">
-        <translate sid="translate">-0.078700 -0.357700 3.471500</translate>
-        <instance_geometry url="#Plane01-lib">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="Map__281-Material" target="#Map__281-Material"/>
-              <instance_material symbol="Material__28" target="#Material__28"/>
-              <instance_material symbol="Material__29" target="#Material__29"/>
-              <instance_material symbol="Material__30" target="#Material__30"/>
-              <instance_material symbol="Material__31" target="#Material__31"/>
-              <instance_material symbol="Material__32" target="#Material__32"/>
-              <instance_material symbol="Material__33" target="#Material__33"/>
-              <instance_material symbol="Material__34" target="#Material__34"/>
-              <instance_material symbol="Material__35" target="#Material__35"/>
-              <instance_material symbol="Material__36" target="#Material__36"/>
-              <instance_material symbol="Material__37" target="#Material__37"/>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
-      </node>
-    </visual_scene>
-  </library_visual_scenes>
-  <scene>
-    <instance_visual_scene url="#RootNode"/>
-  </scene>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+			<authoring_tool>Blender v:249 - Illusoft Collada Exporter v:0.3.153</authoring_tool>
+			<comments></comments>
+			<copyright></copyright>
+			<source_data>file://j:/Amish's%20Stuuf/0AD%20stuff/Meshes/Iberian/fortress.blend</source_data>
+		</contributor>
+		<created>2011-04-14T11:41:30.805000</created>
+		<modified>2011-04-14T11:41:30.805000</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="iber_prop_shields_dds-fx" name="iber_prop_shields_dds-fx">
+			<profile_COMMON>
+				<newparam sid="iber_prop_shields_dds-surface">
+					<surface type="2D">
+						<init_from>iber_prop_shields_dds-img</init_from>
+						<format>A8R8G8B8</format>
+					</surface>
+				</newparam>
+				<newparam sid="iber_prop_shields_dds-sampler">
+					<sampler2D>
+						<source>iber_prop_shields_dds-surface</source>
+						<minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+						<maxfilter>LINEAR</maxfilter>
+					</sampler2D>
+				</newparam>
+				<technique sid="blender">
+					<lambert>
+						<diffuse>
+							<texture texcoord="CHANNEL1" texture="iber_prop_shields_dds-sampler"/>
+						</diffuse>
+					</lambert>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_images>
+		<image id="iber_prop_shields_dds-img" name="iber_prop_shields_dds-img">
+			<init_from>j:\Amish's Stuuf\0AD stuff\Meshes\Iberian\..\..\..\..\0ad\binaries\data\mods\public\art\textures\skins\props\iber_prop_shields.dds</init_from>
+		</image>
+	</library_images>
+	<library_materials>
+		<material id="iber_prop_shields_dds" name="iber_prop_shields_dds">
+			<instance_effect url="#iber_prop_shields_dds-fx"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="Circle-Geometry" name="Circle-Geometry">
+			<mesh>
+				<source id="Circle-Geometry-Position">
+					<float_array count="195" id="Circle-Geometry-Position-array">0.00000 1.00000 0.00000 0.50000 0.86603 0.00000 0.86603 0.50000 0.00000 1.00000 -0.00000 0.00000 0.86603 -0.50000 0.00000 0.50000 -0.86603 0.00000 0.00000 -1.00000 0.00000 -0.50000 -0.86603 0.00000 -0.86603 -0.50000 0.00000 -1.00000 -0.00000 0.00000 -0.86603 0.50000 0.00000 -0.50000 0.86603 0.00000 -0.00000 -0.00000 0.29414 -0.80603 0.39315 1.00237 -1.30603 1.25674 1.30358 -1.67205 0.96826 1.07829 -1.80603 0.57419 0.77054 -1.67205 0.18012 0.46279 -1.30602 -0.10836 0.23751 -0.80602 -0.21395 0.15505 -0.30602 -0.10836 0.23751 0.06000 0.18012 0.46279 0.19397 0.57419 0.77054 0.06000 0.96826 1.07829 -0.30603 1.25674 1.30358 -0.80603 1.36233 1.38604 -18.81857 15.59012 2.95823 -18.54217 15.84728 2.60408 -18.33683 15.87574 2.12976 -18.25758 15.66787 1.66237 -18.32565 15.27937 1.32713 -18.52281 14.81434 1.21388 -18.79621 14.39738 1.35296 -19.07261 14.14022 1.70710 -19.27795 14.11176 2.18142 -19.35720 14.31963 2.64881 -19.28913 14.70813 2.98405 -19.09197 15.17315 3.09731 -18.56172 14.86557 2.25425 -3.67149 19.46101 8.21883 -3.93213 18.68215 7.57698 -3.53090 18.49747 7.84689 -3.12128 18.57815 8.15291 -2.81303 18.90258 8.41305 -2.68874 19.38384 8.55759 -2.78172 19.89296 8.54782 -3.06705 20.29354 8.38635 -3.46829 20.47823 8.11644 -3.87791 20.39755 7.81042 -4.18616 20.07311 7.55028 -4.31045 19.59186 7.40573 -4.21747 19.08273 7.41550 -24.85606 15.57568 21.58245 -24.29179 16.32812 21.13306 -24.12921 16.32162 21.62446 -24.19962 16.18283 22.11815 -24.48417 15.94893 22.48184 -24.90660 15.68259 22.61809 -25.35373 15.45518 22.49038 -25.70574 15.32763 22.13294 -25.86832 15.33412 21.64153 -25.79791 15.47291 21.14785 -25.51336 15.70681 20.78415 -25.09093 15.97315 20.64791 -24.64380 16.20057 20.77562</float_array>
+					<technique_common>
+						<accessor count="65" source="#Circle-Geometry-Position-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Circle-Geometry-Normals">
+					<float_array count="540" id="Circle-Geometry-Normals-array">0.00000 0.00000 1.00000 0.00000 0.28217 0.95935 -0.14109 0.24436 0.95935 -0.14109 0.24436 0.95935 -0.24436 0.14109 0.95935 0.00000 0.00000 1.00000 -0.24436 0.14109 0.95935 -0.28217 0.00000 0.95935 0.00000 0.00000 1.00000 -0.28217 0.00000 0.95935 -0.24436 -0.14109 0.95935 0.00000 0.00000 1.00000 -0.24436 -0.14109 0.95935 -0.14109 -0.24436 0.95935 0.00000 0.00000 1.00000 -0.14109 -0.24436 0.95935 0.00000 -0.28217 0.95935 0.00000 0.00000 1.00000 0.00000 -0.28217 0.95935 0.14109 -0.24436 0.95935 0.00000 0.00000 1.00000 0.14109 -0.24436 0.95935 0.24436 -0.14109 0.95935 0.00000 0.00000 1.00000 0.24436 -0.14109 0.95935 0.28217 0.00000 0.95935 0.00000 0.00000 1.00000 0.28217 0.00000 0.95935 0.24436 0.14109 0.95935 0.00000 0.00000 1.00000 0.24436 0.14109 0.95935 0.14109 0.24436 0.95935 0.00000 0.00000 1.00000 0.14109 0.24436 0.95935 0.00000 0.28217 0.95935 0.00000 0.00000 1.00000 0.14109 -0.39787 0.90652 0.00000 -0.36805 0.92978 0.00000 -0.61547 0.78811 0.24436 -0.47926 0.84295 0.14109 -0.39787 0.90652 0.00000 -0.61547 0.78811 0.28217 -0.59047 0.75610 0.24436 -0.47926 0.84295 0.00000 -0.61547 0.78811 0.24436 -0.70168 0.66924 0.28217 -0.59047 0.75610 0.00000 -0.61547 0.78811 0.14109 -0.78307 0.60567 0.24436 -0.70168 0.66924 0.00000 -0.61547 0.78811 0.00000 -0.81286 0.58242 0.14109 -0.78307 0.60567 0.00000 -0.61547 0.78811 -0.14109 -0.78307 0.60567 0.00000 -0.81286 0.58242 0.00000 -0.61547 0.78811 -0.24436 -0.70168 0.66924 -0.14109 -0.78307 0.60567 0.00000 -0.61547 0.78811 -0.28217 -0.59047 0.75610 -0.24436 -0.70168 0.66924 0.00000 -0.61547 0.78811 -0.24436 -0.47926 0.84295 -0.28217 -0.59047 0.75610 0.00000 -0.61547 0.78811 -0.14109 -0.39787 0.90652 -0.24436 -0.47926 0.84295 0.00000 -0.61547 0.78811 0.00000 -0.61547 0.78811 0.00000 -0.36805 0.92978 -0.14109 -0.39787 0.90652 0.83520 -0.43577 0.33540 0.79812 -0.24976 0.54827 0.72094 -0.36744 0.58751 0.72094 -0.36744 0.58751 0.66530 -0.49867 0.55556 0.83520 -0.43577 0.33540 0.66530 -0.49867 0.55556 0.64611 -0.60829 0.46095 0.83520 -0.43577 0.33540 0.64611 -0.60829 0.46095 0.66848 -0.66695 0.32905 0.83520 -0.43577 0.33540 0.66848 -0.66695 0.32905 0.72640 -0.65893 0.19523 0.83520 -0.43577 0.33540 0.72640 -0.65893 0.19523 0.80441 -0.58635 0.09528 0.83520 -0.43577 0.33540 0.80441 -0.58635 0.09528 0.88156 -0.46867 0.05603 0.83520 -0.43577 0.33540 0.88156 -0.46867 0.05603 0.93719 -0.33744 0.08798 0.83520 -0.43577 0.33540 0.93719 -0.33744 0.08798 0.95642 -0.22782 0.18259 0.83520 -0.43577 0.33540 0.95642 -0.22782 0.18259 0.93405 -0.16916 0.31449 0.83520 -0.43577 0.33540 0.93405 -0.16916 0.31449 0.87609 -0.17719 0.44832 0.83520 -0.43577 0.33540 0.87609 -0.17719 0.44832 0.79812 -0.24976 0.54827 0.83520 -0.43577 0.33540 -0.78945 -0.05817 0.61101 -0.76321 -0.20185 0.61376 -0.58440 -0.09125 0.80630 -0.75439 0.07761 0.65178 -0.78945 -0.05817 0.61101 -0.58440 -0.09125 0.80630 -0.66741 0.16913 0.72521 -0.75439 0.07761 0.65178 -0.58440 -0.09125 0.80630 -0.55181 0.19190 0.81155 -0.66741 0.16913 0.72521 -0.58440 -0.09125 0.80630 -0.43858 0.13981 0.88772 -0.55181 0.19190 0.81155 -0.58440 -0.09125 0.80630 -0.35807 0.02676 0.93329 -0.43858 0.13981 0.88772 -0.58440 -0.09125 0.80630 -0.33183 -0.11689 0.93603 -0.35807 0.02676 0.93329 -0.58440 -0.09125 0.80630 -0.36689 -0.25269 0.89526 -0.33183 -0.11689 0.93603 -0.58440 -0.09125 0.80630 -0.45390 -0.34425 0.82186 -0.36689 -0.25269 0.89526 -0.58440 -0.09125 0.80630 -0.56948 -0.36702 0.73550 -0.45390 -0.34425 0.82186 -0.58440 -0.09125 0.80630 -0.68270 -0.31489 0.65932 -0.56948 -0.36702 0.73550 -0.58440 -0.09125 0.80630 -0.58440 -0.09125 0.80630 -0.76321 -0.20185 0.61376 -0.68270 -0.31489 0.65932 0.43941 -0.78152 -0.44282 0.56560 -0.71734 -0.40678 0.48512 -0.85736 -0.17182 0.32020 -0.85669 -0.40437 0.43941 -0.78152 -0.44282 0.48512 -0.85736 -0.17182 0.23991 -0.92270 -0.30174 0.32020 -0.85669 -0.40437 0.48512 -0.85736 -0.17182 0.22004 -0.96185 -0.16242 0.23991 -0.92270 -0.30174 0.48512 -0.85736 -0.17182 0.26591 -0.96368 -0.02377 0.22004 -0.96185 -0.16242 0.48512 -0.85736 -0.17182 0.36525 -0.92770 0.07706 0.26591 -0.96368 -0.02377 0.48512 -0.85736 -0.17182 0.49144 -0.86352 0.11310 0.36525 -0.92770 0.07706 0.48512 -0.85736 -0.17182 0.61064 -0.78835 0.07465 0.49144 -0.86352 0.11310 0.48512 -0.85736 -0.17182 0.69094 -0.72234 -0.02792 0.61064 -0.78835 0.07465 0.48512 -0.85736 -0.17182 0.71081 -0.68319 -0.16724 0.69094 -0.72234 -0.02792 0.48512 -0.85736 -0.17182 0.66491 -0.68136 -0.30592 0.71081 -0.68319 -0.16724 0.48512 -0.85736 -0.17182 0.48512 -0.85736 -0.17182 0.56560 -0.71734 -0.40678 0.66491 -0.68136 -0.30592</float_array>
+					<technique_common>
+						<accessor count="180" source="#Circle-Geometry-Normals-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Circle-Geometry-UV">
+					<float_array count="360" id="Circle-Geometry-UV-array">0.75000 0.37769 0.92053 0.46296 0.81242 0.49417 0.81242 0.49417 0.68758 0.49417 0.75000 0.37769 0.68758 0.49417 0.57947 0.46296 0.75000 0.37769 0.57947 0.46296 0.51705 0.40890 0.75000 0.37769 0.51705 0.40890 0.51705 0.34648 0.75000 0.37769 0.51705 0.34648 0.57947 0.29243 0.75000 0.37769 0.57947 0.29243 0.68758 0.26122 0.75000 0.37769 0.68758 0.26122 0.81242 0.26122 0.75000 0.37769 0.81242 0.26122 0.92053 0.29243 0.75000 0.37769 0.92053 0.29243 0.98295 0.34648 0.75000 0.37769 0.98295 0.34648 0.98295 0.40890 0.75000 0.37769 0.98295 0.40890 0.92053 0.46296 0.75000 0.37769 0.98295 0.15090 0.92053 0.20496 0.75000 0.11969 0.98295 0.08848 0.98295 0.15090 0.75000 0.11969 0.92053 0.03443 0.98295 0.08848 0.75000 0.11969 0.81242 0.00322 0.92053 0.03443 0.75000 0.11969 0.68758 0.00322 0.81242 0.00322 0.75000 0.11969 0.57947 0.03443 0.68758 0.00322 0.75000 0.11969 0.51705 0.08848 0.57947 0.03443 0.75000 0.11969 0.51705 0.15090 0.51705 0.08848 0.75000 0.11969 0.57947 0.20496 0.51705 0.15090 0.75000 0.11969 0.68758 0.23617 0.57947 0.20496 0.75000 0.11969 0.81242 0.23617 0.68758 0.23617 0.75000 0.11969 0.75000 0.11969 0.92053 0.20496 0.81242 0.23617 0.75000 0.11969 0.92053 0.20496 0.81242 0.23617 0.81242 0.23617 0.68758 0.23617 0.75000 0.11969 0.68758 0.23617 0.57947 0.20496 0.75000 0.11969 0.57947 0.20496 0.51705 0.15090 0.75000 0.11969 0.51705 0.15090 0.51705 0.08848 0.75000 0.11969 0.51705 0.08848 0.57947 0.03443 0.75000 0.11969 0.57947 0.03443 0.68758 0.00322 0.75000 0.11969 0.68758 0.00322 0.81242 0.00322 0.75000 0.11969 0.81242 0.00322 0.92053 0.03443 0.75000 0.11969 0.92053 0.03443 0.98295 0.08848 0.75000 0.11969 0.98295 0.08848 0.98295 0.15090 0.75000 0.11969 0.98295 0.15090 0.92053 0.20496 0.75000 0.11969 0.98295 0.40490 0.92053 0.45896 0.75000 0.37369 0.98295 0.34248 0.98295 0.40490 0.75000 0.37369 0.92053 0.28843 0.98295 0.34248 0.75000 0.37369 0.81242 0.25722 0.92053 0.28843 0.75000 0.37369 0.68758 0.25722 0.81242 0.25722 0.75000 0.37369 0.57947 0.28843 0.68758 0.25722 0.75000 0.37369 0.51705 0.34248 0.57947 0.28843 0.75000 0.37369 0.51705 0.40490 0.51705 0.34248 0.75000 0.37369 0.57947 0.45896 0.51705 0.40490 0.75000 0.37369 0.68758 0.49017 0.57947 0.45896 0.75000 0.37369 0.81242 0.49017 0.68758 0.49017 0.75000 0.37369 0.75000 0.37369 0.92053 0.45896 0.81242 0.49017 0.99856 0.15499 0.93196 0.21267 0.75000 0.12169 0.99856 0.08839 0.99856 0.15499 0.75000 0.12169 0.93196 0.03071 0.99856 0.08839 0.75000 0.12169 0.81660 -0.00259 0.93196 0.03071 0.75000 0.12169 0.68340 -0.00259 0.81660 -0.00259 0.75000 0.12169 0.56804 0.03071 0.68340 -0.00259 0.75000 0.12169 0.50144 0.08839 0.56804 0.03071 0.75000 0.12169 0.50144 0.15499 0.50144 0.08839 0.75000 0.12169 0.56804 0.21267 0.50144 0.15499 0.75000 0.12169 0.68340 0.24597 0.56804 0.21267 0.75000 0.12169 0.81660 0.24597 0.68340 0.24597 0.75000 0.12169 0.75000 0.12169 0.93196 0.21267 0.81660 0.24597</float_array>
+					<technique_common>
+						<accessor count="180" source="#Circle-Geometry-UV-array" stride="2">
+							<param type="float" name="S"></param>
+							<param type="float" name="T"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="Circle-Geometry-Vertex">
+					<input semantic="POSITION" source="#Circle-Geometry-Position"/>
+				</vertices>
+				<triangles count="60" material="iber_prop_shields_dds">
+					<input offset="0" semantic="VERTEX" source="#Circle-Geometry-Vertex"/>
+					<input offset="1" semantic="NORMAL" source="#Circle-Geometry-Normals"/>
+					<input offset="2" semantic="TEXCOORD" source="#Circle-Geometry-UV"/>
+					<p>12 0 0 0 1 1 11 2 2 11 3 3 10 4 4 12 5 5 10 6 6 9 7 7 12 8 8 9 9 9 8 10 10 12 11 11 8 12 12 7 13 13 12 14 14 7 15 15 6 16 16 12 17 17 6 18 18 5 19 19 12 20 20 5 21 21 4 22 22 12 23 23 4 24 24 3 25 25 12 26 26 3 27 27 2 28 28 12 29 29 2 30 30 1 31 31 12 32 32 1 33 33 0 34 34 12 35 35 24 36 36 25 37 37 13 38 38 23 39 39 24 40 40 13 41 41 22 42 42 23 43 43 13 44 44 21 45 45 22 46 46 13 47 47 20 48 48 21 49 49 13 50 50 19 51 51 20 52 52 13 53 53 18 54 54 19 55 55 13 56 56 17 57 57 18 58 58 13 59 59 16 60 60 17 61 61 13 62 62 15 63 63 16 64 64 13 65 65 14 66 66 15 67 67 13 68 68 13 69 69 25 70 70 14 71 71 38 72 72 26 73 73 37 74 74 37 75 75 36 76 76 38 77 77 36 78 78 35 79 79 38 80 80 35 81 81 34 82 82 38 83 83 34 84 84 33 85 85 38 86 86 33 87 87 32 88 88 38 89 89 32 90 90 31 91 91 38 92 92 31 93 93 30 94 94 38 95 95 30 96 96 29 97 97 38 98 98 29 99 99 28 100 100 38 101 101 28 102 102 27 103 103 38 104 104 27 105 105 26 106 106 38 107 107 50 108 108 51 109 109 39 110 110 49 111 111 50 112 112 39 113 113 48 114 114 49 115 115 39 116 116 47 117 117 48 118 118 39 119 119 46 120 120 47 121 121 39 122 122 45 123 123 46 124 124 39 125 125 44 126 126 45 127 127 39 128 128 43 129 129 44 130 130 39 131 131 42 132 132 43 133 133 39 134 134 41 135 135 42 136 136 39 137 137 40 138 138 41 139 139 39 140 140 39 141 141 51 142 142 40 143 143 63 144 144 64 145 145 52 146 146 62 147 147 63 148 148 52 149 149 61 150 150 62 151 151 52 152 152 60 153 153 61 154 154 52 155 155 59 156 156 60 157 157 52 158 158 58 159 159 59 160 160 52 161 161 57 162 162 58 163 163 52 164 164 56 165 165 57 166 166 52 167 167 55 168 168 56 169 169 52 170 170 54 171 171 55 172 172 52 173 173 53 174 174 54 175 175 52 176 176 52 177 177 64 178 178 53 179 179</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="Scene" name="Scene">
+			<node layer="L1" id="Circle" name="Circle">
+				<translate sid="translate">8.82820 -11.01609 9.37446</translate>
+				<rotate sid="rotateZ">0 0 1 0.00000</rotate>
+				<rotate sid="rotateY">0 1 0 -0.00000</rotate>
+				<rotate sid="rotateX">1 0 0 -53.80878</rotate>
+				<scale sid="scale">0.79492 0.79492 0.79492</scale>
+				<instance_geometry url="#Circle-Geometry">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="iber_prop_shields_dds" target="#iber_prop_shields_dds">
+								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
+							</instance_material>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#Scene"/>
+	</scene>
 </COLLADA>
-
