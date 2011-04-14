@@ -202,6 +202,30 @@ public:
 
 	std::string GenerateSchema();
 
+	/////////////////////////////////////////////////////////////////////////////
+	// Some functions for Atlas UI to be able to access VFS data
+
+	/**
+	 * Get random map script data
+	 *
+	 * @return vector of strings containing JSON format data
+	 */
+	std::vector<std::string> GetRMSData();
+
+	/**
+	 * Get civilization data
+	 *
+	 * @return vector of strings containing JSON format data
+	 */
+	std::vector<std::string> GetCivData();
+
+	/**
+	 * Get player default data
+	 *
+	 * @return string containing JSON format data
+	 */
+	std::string GetPlayerDefaults();
+
 private:
 	CSimulation2Impl* m;
 

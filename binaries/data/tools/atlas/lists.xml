@@ -46,14 +46,24 @@
 
   <playercolours>
     <colour name="Gaia"     rgb="255 255 255"/>
-    <colour name="Player 1" rgb="111 111 207" buttontext="255 255 255"/>
-    <colour name="Player 2" rgb="207 111 111" buttontext="255 255 255"/>
-    <colour name="Player 3" rgb="111 207 111" buttontext="255 255 255"/>
-    <colour name="Player 4" rgb="207 207 111" buttontext="255 255 255"/>
-    <colour name="Player 5" rgb="111 207 207" buttontext="255 255 255"/>
-    <colour name="Player 6" rgb="207 111 207" buttontext="255 255 255"/>
-    <colour name="Player 7" rgb="207 159 111" buttontext="255 255 255"/>
-    <colour name="Player 8" rgb="159 159 159" buttontext="255 255 255"/>
+    <colour name="Player 1" rgb="80 80 200" buttontext="255 255 255"/>
+    <colour name="Player 2" rgb="150 20 20" buttontext="255 255 255"/>
+    <colour name="Player 3" rgb="50 165 5" buttontext="255 255 255"/>
+    <colour name="Player 4" rgb="230 230 75" buttontext="255 255 255"/>
+    <colour name="Player 5" rgb="50 170 170" buttontext="255 255 255"/>
+    <colour name="Player 6" rgb="160 80 200" buttontext="255 255 255"/>
+    <colour name="Player 7" rgb="230 120 20" buttontext="255 255 255"/>
+    <colour name="Player 8" rgb="64 64 64" buttontext="255 255 255"/>
   </playercolours>
+  
+  <mapsizes>
+	<size name="Tiny" patches="8"/>
+	<size name="Small" patches="12"/>
+	<size name="Medium" patches="16"/>
+	<size name="Normal" patches="20"/>
+	<size name="Large" patches="24"/>
+	<size name="Very Large" patches="28"/>
+	<size name="Giant" patches="32"/>
+  </mapsizes>
 
 </lists>

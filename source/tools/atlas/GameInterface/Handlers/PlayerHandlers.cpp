@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,13 +15,24 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../Common/Sidebar.h"
+#include "precompiled.h"
 
-class TerrainSidebar : public Sidebar
+#include "MessageHandler.h"
+
+#include "ps/Game.h"
+#include "simulation2/Simulation2.h"
+
+
+namespace AtlasMessage {
+
+QUERYHANDLER(GetCivData)
 {
-public:
-	TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
+	msg->data = g_Game->GetSimulation2()->GetCivData();
+}
 
-protected:
-	virtual void OnFirstDisplay();
-};
+QUERYHANDLER(GetPlayerDefaults)
+{
+	msg->defaults = g_Game->GetSimulation2()->GetPlayerDefaults();
+}
+
+}

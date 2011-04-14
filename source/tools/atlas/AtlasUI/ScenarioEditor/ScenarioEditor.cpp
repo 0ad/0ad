@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@
 #include "CustomControls/HighResTimer/HighResTimer.h"
 #include "CustomControls/Buttons/ToolButton.h"
 #include "CustomControls/Canvas/Canvas.h"
+#include "CustomControls/NewDialog/NewDialog.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
@@ -301,7 +302,7 @@ enum
 {
 	ID_Quit = 1,
 
-// 	ID_New,
+ 	ID_New,
 	ID_Open,
 	ID_Save,
 	ID_SaveAs,
@@ -313,6 +314,8 @@ enum
 	ID_CameraReset,
 	ID_RenderPathFixed,
 	ID_RenderPathShader,
+	ID_DumpState,
+	ID_DumpBinaryState,
 
 	ID_Toolbar // must be last in the list
 };
@@ -321,7 +324,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_CLOSE(ScenarioEditor::OnClose)
 	EVT_TIMER(wxID_ANY, ScenarioEditor::OnTimer)
 
-// 	EVT_MENU(ID_New, ScenarioEditor::OnNew)
+ 	EVT_MENU(ID_New, ScenarioEditor::OnNew)
 	EVT_MENU(ID_Open, ScenarioEditor::OnOpen)
 	EVT_MENU(ID_Save, ScenarioEditor::OnSave)
 	EVT_MENU(ID_SaveAs, ScenarioEditor::OnSaveAs)
@@ -336,6 +339,8 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Screenshot, ScenarioEditor::OnScreenshot)
 	EVT_MENU(ID_JavaScript, ScenarioEditor::OnJavaScript)
 	EVT_MENU(ID_CameraReset, ScenarioEditor::OnCameraReset)
+	EVT_MENU(ID_DumpState, ScenarioEditor::OnDumpState)
+	EVT_MENU(ID_DumpBinaryState, ScenarioEditor::OnDumpState)
 	EVT_MENU(ID_RenderPathFixed, ScenarioEditor::OnRenderPath)
 	EVT_MENU(ID_RenderPathShader, ScenarioEditor::OnRenderPath)
 
@@ -425,9 +430,35 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		wxFFile file (filename.GetFullPath());
 		wxString script;
 		if (! file.ReadAll(&script))
+		{
 			wxLogError(_("Failed to read script"));
+		}
 		GetScriptInterface().LoadScript(filename.GetFullName(), script);
 	}
+
+	// Load common scripts
+	const wxString commonPath(_T("tools/atlas/scripts/common/"));
+	wxFileName filename(commonPath, wxPATH_UNIX);
+	filename.MakeAbsolute(Datafile::GetDataDirectory());
+	wxArrayString filenames;
+	if (wxDir::GetAllFiles(filename.GetFullPath(), &filenames, _T("*.js")) > 0)
+	{
+		for (size_t i = 0; i < filenames.GetCount(); ++i)
+		{
+			wxFFile file (filenames[i]);
+			wxString script;
+			if (! file.ReadAll(&script))
+			{
+				wxLogError(_("Failed to read script"));
+			}
+			GetScriptInterface().LoadScript(filename.GetFullName(), script);
+		}
+	}
+	else
+	{
+		wxLogError(_("Failed to read common scripts directory"));
+	}
+
 
 	// Initialise things that rely on scripts
 	m_ObjectSettings.Init(AtlasMessage::eRenderView::GAME);
@@ -452,7 +483,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	wxMenu *menuFile = new wxMenu;
 	menuBar->Append(menuFile, _("&File"));
 	{
-// 		menuFile->Append(ID_New, _("&New"));
+ 		menuFile->Append(ID_New, _("&New..."));
 		menuFile->Append(ID_Open, _("&Open..."));
 		menuFile->Append(ID_Save, _("&Save"));
 		menuFile->Append(ID_SaveAs, _("Save &As..."));
@@ -484,6 +515,11 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
 		menuMisc->Append(ID_JavaScript, _("&JS console"));
 		menuMisc->Append(ID_CameraReset, _("&Reset camera"));
+
+		wxMenu *menuSS = new wxMenu;
+		menuMisc->AppendSubMenu(menuSS, _("Si&mulation state"));
+		menuSS->Append(ID_DumpState, _("&Dump to disk"));
+		menuSS->Append(ID_DumpBinaryState, _("Dump &binary to disk"));
 
 		wxMenu *menuRP = new wxMenu;
 		menuMisc->AppendSubMenu(menuRP, _("Render &path"));
@@ -554,7 +590,13 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	// Start with a blank map (so that the editor can assume there's always
 	// a valid map loaded)
-	POST_MESSAGE(GenerateMap, (9));
+	POST_MESSAGE(LoadMap, (_T("_default")));
+
+	// Wait for blank map
+	qry.Post();
+
+	// Notify UI scripts that map settings have been loaded
+	m_ScriptInterface.Eval(_T("Atlas.State.mapSettings.notifyObservers()"));
 
 	POST_MESSAGE(RenderEnable, (eRenderView::GAME));
 
@@ -640,6 +682,51 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 
 //////////////////////////////////////////////////////////////////////////
 
+void ScenarioEditor::OnNew(wxCommandEvent& WXUNUSED(event))
+{
+	NewDialog dlg(NULL, _("Create new map"), wxSize(600, 400), *this);
+
+	if(dlg.ShowModal() == wxID_OK)
+	{
+		wxBusyInfo busy(_("Creating blank map"));
+
+		// Generate new blank map
+		size_t patches = dlg.GetSelectedSize();
+		size_t height = dlg.GetBaseHeight();
+
+		// Get terrain texture
+		// TODO: Support choosing multiple textures
+		std::vector<std::wstring> textures;
+		std::wstring baseTexture(g_SelectedTexture.wc_str());
+		textures.push_back(baseTexture);
+
+		// Get player data
+		std::string pData;
+		m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings.PlayerData)"), pData);
+
+		// Generate map
+		//				Script name,	size (patches), seed,	base terrain(s),	base height,	player data
+		qGenerateMap qry(L"blank.js",	patches,		0,		textures,			height,			pData);
+		
+		// Wait for map generation to finish
+		qry.Post();
+
+		if (qry.status < 0)
+		{	// Map generation failed
+			wxMessageDialog msgDlg(NULL, _T("Random map script 'blank.js'. Loading blank map."), _T("Error"), wxICON_ERROR);
+			
+			qPing pingQry;
+			POST_MESSAGE(LoadMap, (_T("_default")));
+
+			// Wait for blank map
+			pingQry.Post();
+		}
+
+		// Notify UI scripts that map settings have been loaded
+		m_ScriptInterface.Eval(_T("Atlas.State.mapSettings.notifyObservers()"));
+	}
+}
+
 void ScenarioEditor::OpenFile(const wxString& name)
 {
 	wxBusyInfo busy(_("Loading map"));
@@ -660,6 +747,9 @@ void ScenarioEditor::OpenFile(const wxString& name)
 	// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
 	qPing qry;
 	qry.Post();
+
+	// Notify UI scripts that map settings have been loaded
+	m_ScriptInterface.Eval(_T("Atlas.State.mapSettings.notifyObservers()"));
 
 	// TODO: Make this a non-undoable command
 }
@@ -687,15 +777,25 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 
 void ScenarioEditor::OnMRUFile(wxCommandEvent& event)
 {
-	wxString file (m_FileHistory.GetHistoryFile(event.GetId() - wxID_FILE1));
-	if (file.Len())
-		OpenFile(file);
+	wxString filename(m_FileHistory.GetHistoryFile(event.GetId() - wxID_FILE1));
+	if (filename.Len())
+	{
+		OpenFile(filename);
+	}
+	else
+	{	//Remove from MRU
+		m_FileHistory.RemoveFileFromHistory(event.GetId() - wxID_FILE1);
+		wxMessageDialog msgDlg(NULL, _T("File '/mods/*/maps/scenarios/")+filename + _T("' does not exist!"), _T("Error"), wxICON_ERROR);
+		msgDlg.ShowModal();
+	}
 }
 
 void ScenarioEditor::OnSave(wxCommandEvent& event)
 {
 	if (m_OpenFilename.IsEmpty())
+	{
 		OnSaveAs(event);
+	}
 	else
 	{
 		wxBusyInfo busy(_("Saving map"));
@@ -705,11 +805,22 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 		// the preview units.)
 		m_ToolManager.SetCurrentTool(_T(""));
 
+		qPing qry;
+
+		// Save map settings
+		std::string settings;
+		if (m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings)"), settings))
+		{
+			POST_MESSAGE(SetMapSettings, (settings));
+
+			// Wait for it to finish saving
+			qry.Post();
+		}
+
 		std::wstring map = m_OpenFilename.c_str();
 		POST_MESSAGE(SaveMap, (map));
 
 		// Wait for it to finish saving
-		qPing qry;
 		qry.Post();
 	}
 }
@@ -727,6 +838,18 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 
 		m_ToolManager.SetCurrentTool(_T(""));
 
+		qPing qry;
+
+		// Save map settings
+		std::string settings;
+		if (m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings)"), settings))
+		{
+			POST_MESSAGE(SetMapSettings, (settings));
+
+			// Wait for it to finish saving
+			qry.Post();
+		}
+
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();
 		POST_MESSAGE(SaveMap, (map));
@@ -734,7 +857,6 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 		SetOpenFilename(dlg.GetFilename());
 
 		// Wait for it to finish saving
-		qPing qry;
 		qry.Post();
 	}
 }
@@ -792,6 +914,42 @@ void ScenarioEditor::OnRenderPath(wxCommandEvent& event)
 		break;
 	}
 }
+
+void ScenarioEditor::OnDumpState(wxCommandEvent& event)
+{
+	wxDateTime time = wxDateTime::Now();
+	wxString filename;
+	bool doBinary = false;
+
+	switch (event.GetId())
+	{
+	case ID_DumpState:
+		filename = wxString::Format(_T("sim-dump-%d.txt"), time.GetTicks());
+		break;
+	case ID_DumpBinaryState:
+		doBinary = true;
+		filename = wxString::Format(_T("sim-dump-%d.dat"), time.GetTicks());
+		break;
+	}
+
+	qSimStateDebugDump q(doBinary);
+	q.Post();
+
+	wxString state(std::wstring(*q.dump));
+
+	wxFFile file(filename.c_str(), _T("w"));
+	if (file.IsOpened() && !file.Error())
+	{
+		file.Write(state);
+		file.Close();
+	}
+	else
+	{
+		wxMessageDialog msgDlg(NULL, _("Error writing to file: ") + filename, _("Error"), wxICON_ERROR);
+		msgDlg.ShowModal();
+	}
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -130,9 +130,17 @@ MESSAGE(ResizeScreen,
 		);
 
 //////////////////////////////////////////////////////////////////////////
+// Messages for map panel
 
-MESSAGE(GenerateMap,
-		((int, size)) // size in number of patches
+QUERY(GenerateMap,
+		((std::wstring, script))				// name of script
+		((size_t, size))						// size in number of patches
+		((size_t, seed))						// seed for rng
+		((std::vector<std::wstring>, terrain))	// base terrain(s)
+		((size_t, height))						// base height
+		((std::string, playerData))				// JSON player data
+		,
+		((int, status))							// Status code, 0 for success, or < 0 for failure
 		);
 
 MESSAGE(LoadMap,
@@ -141,6 +149,33 @@ MESSAGE(LoadMap,
 
 MESSAGE(SaveMap,
 		((std::wstring, filename))
+		);
+
+QUERY(GetMapSettings,
+		,
+		((std::string, settings))
+		);
+
+MESSAGE(SetMapSettings,
+		((std::string, settings))
+		);
+
+QUERY(GetRMSData,
+		,
+		((std::vector<std::string>, data))
+		);
+
+//////////////////////////////////////////////////////////////////////////
+// Messages for player panel
+
+QUERY(GetCivData,
+		,
+		((std::vector<std::string>, data))
+		);
+
+QUERY(GetPlayerDefaults,
+		,
+		((std::string, defaults))
 		);
 
 //////////////////////////////////////////////////////////////////////////
@@ -193,7 +228,7 @@ MESSAGE(BrushPreview,
 
 QUERY(GetTerrainGroups,
 	  , // no inputs
-	  ((std::vector<std::wstring>, groupnames))
+	  ((std::vector<std::wstring>, groupNames))
 	  );
 
 #ifndef MESSAGES_SKIP_STRUCTS
@@ -201,24 +236,24 @@ struct sTerrainGroupPreview
 {
 	Shareable<std::wstring> name;
 	Shareable<bool> loaded;
-	Shareable<int> imagewidth;
-	Shareable<int> imageheight;
-	Shareable<std::vector<unsigned char> > imagedata; // RGB*width*height
+	Shareable<int> imageWidth;
+	Shareable<int> imageHeight;
+	Shareable<std::vector<unsigned char> > imageData; // RGB*width*height
 };
 SHAREABLE_STRUCT(sTerrainGroupPreview);
 #endif
 
 QUERY(GetTerrainGroupPreviews,
-	  ((std::wstring, groupname))
-	  ((int, imagewidth))
-	  ((int, imageheight))
+	  ((std::wstring, groupName))
+	  ((int, imageWidth))
+	  ((int, imageHeight))
 	  ,
 	  ((std::vector<sTerrainGroupPreview>, previews))
 	  );
 
 QUERY(GetTerrainPassabilityClasses,
 	  , // no inputs
-	  ((std::vector<std::wstring>, classnames))
+	  ((std::vector<std::wstring>, classNames))
 	  );
 
 //////////////////////////////////////////////////////////////////////////
@@ -247,7 +282,7 @@ struct sObjectSettings
 	// Some settings are immutable and therefore are ignored (and should be left
 	// empty) when passed from the editor to the game:
 
-	Shareable<std::vector<std::vector<std::wstring> > > variantgroups;
+	Shareable<std::vector<std::vector<std::wstring> > > variantGroups;
 };
 SHAREABLE_STRUCT(sObjectSettings);
 #endif

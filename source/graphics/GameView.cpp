@@ -52,7 +52,6 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "scripting/ScriptableObject.h"
-#include "simulation/LOSManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"

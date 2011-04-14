@@ -517,3 +517,104 @@ std::string CSimulation2::GenerateSchema()
 {
 	return m->m_ComponentManager.GenerateSchema();
 }
+
+std::vector<std::string> CSimulation2::GetRMSData()
+{
+	VfsPath path(L"maps/random/");
+	VfsPaths pathnames;
+
+	std::vector<std::string> data;
+
+	// Find all ../maps/random/*.json
+	LibError ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	if (ret == INFO::OK)
+	{
+		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		{
+			// Load JSON file
+			CVFSFile file;
+			PSRETURN ret = file.Load(g_VFS, *it);
+			if (ret != PSRETURN_OK)
+			{
+				LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+			}
+			else
+			{
+				data.push_back(std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()));
+			}
+		}
+	}
+	else
+	{
+		// Some error reading directory
+		wchar_t error[200];
+		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), error_description_r(ret, error, ARRAY_SIZE(error)));
+	}
+
+	return data;
+}
+
+std::vector<std::string> CSimulation2::GetCivData()
+{
+	VfsPath path(L"civs/");
+	VfsPaths pathnames;
+
+	std::vector<std::string> data;
+
+	// Load all JSON files in civs directory
+	LibError ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	if (ret == INFO::OK)
+	{
+		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		{
+			// Load JSON file
+			CVFSFile file;
+			PSRETURN ret = file.Load(g_VFS, *it);
+			if (ret != PSRETURN_OK)
+			{
+				LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+			}
+			else
+			{
+				data.push_back(std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()));
+			}
+		}
+	}
+	else
+	{
+		// Some error reading directory
+		wchar_t error[200];
+		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), error_description_r(ret, error, ARRAY_SIZE(error)));
+	}
+
+	// Convert from vector to array and stringify
+	return data;
+}
+
+std::string CSimulation2::GetPlayerDefaults()
+{
+	VfsPath path = VfsPath(L"simulation/data/player_defaults.json");
+
+	std::string data;
+
+	if (!VfsFileExists(g_VFS, path))
+	{
+		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
+	}
+	else
+	{
+		// Load JSON file
+		CVFSFile file;
+		PSRETURN ret = file.Load(g_VFS, path);
+		if (ret != PSRETURN_OK)
+		{
+			LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		}
+		else
+		{
+			data = std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
+		}
+	}
+
+	return data;
+}

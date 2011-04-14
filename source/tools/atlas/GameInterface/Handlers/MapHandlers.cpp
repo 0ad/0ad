@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,8 +31,6 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "simulation/LOSManager.h"
-#include "simulation/Simulation.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
@@ -55,16 +53,8 @@ namespace
 		g_Game->SetPlayerID(1);
 	}
 
-	void StartGame(const CStrW& map)
+	void StartGame(const CScriptValRooted& attrs)
 	{
-		CStrW mapBase = map.BeforeLast(L".pmp"); // strip the file extension, if any
-
-		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-		CScriptValRooted attrs;
-		scriptInterface.Eval("({})", attrs);
-		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"), false);
-		scriptInterface.SetProperty(attrs.get(), "map", std::wstring(mapBase), false);
-
 		g_Game->StartGame(attrs);
 
 		// TODO: Non progressive load can fail - need a decent way to handle this
@@ -82,22 +72,62 @@ namespace
 
 namespace AtlasMessage {
 
-MESSAGEHANDLER(GenerateMap)
+QUERYHANDLER(GenerateMap)
 {
 	InitGame();
 
-	// Load the empty default map
-	StartGame(L"_default");
+	// Random map
+	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	
+	CScriptValRooted attrs;
+	scriptInterface.Eval("({})", attrs);
+	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
+	scriptInterface.SetProperty(attrs.get(), "script", std::wstring(*msg->script));
 
-	// TODO: use msg->size somehow
-	// (e.g. load the map then resize the terrain to match it)
-	UNUSED2(msg);
+	CScriptValRooted settings;
+	scriptInterface.Eval("({})", settings);
+	scriptInterface.SetProperty(settings.get(), "Size", (size_t)msg->size);
+	scriptInterface.SetProperty(settings.get(), "Seed", (size_t)msg->seed);
+	scriptInterface.SetProperty(settings.get(), "BaseTerrain", std::vector<std::wstring>(*msg->terrain));
+	scriptInterface.SetProperty(settings.get(), "BaseHeight", (size_t)msg->height);
+	scriptInterface.SetProperty(settings.get(), "CircularMap", true);	// now default to circular map
+
+	CScriptValRooted pData = scriptInterface.ParseJSON(*msg->playerData);
+	scriptInterface.SetProperty(settings.get(), "PlayerData", pData);
+
+	scriptInterface.SetProperty(attrs.get(), "settings", settings, false);
+
+	try
+	{
+		StartGame(attrs);
+
+		msg->status = 0;
+	}
+	catch (PSERROR_Game_World_MapLoadFailed e)
+	{
+		// Cancel loading
+		LDR_Cancel();
+
+		msg->status = -1;
+	}
 }
 
 MESSAGEHANDLER(LoadMap)
 {
 	InitGame();
-	StartGame(*msg->filename);
+
+	// Scenario
+	CStrW map = *msg->filename;
+	CStrW mapBase = map.BeforeLast(L".pmp"); // strip the file extension, if any
+
+	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	
+	CScriptValRooted attrs;
+	scriptInterface.Eval("({})", attrs);
+	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
+	scriptInterface.SetProperty(attrs.get(), "map", std::wstring(mapBase));
+
+	StartGame(attrs);
 }
 
 MESSAGEHANDLER(SaveMap)
@@ -109,6 +139,21 @@ MESSAGEHANDLER(SaveMap)
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
 		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema(),
 		g_Game->GetSimulation2());
+}
+
+QUERYHANDLER(GetMapSettings)
+{
+	msg->settings = g_Game->GetSimulation2()->GetMapSettingsString();
+}
+
+MESSAGEHANDLER(SetMapSettings)
+{
+	g_Game->GetSimulation2()->SetMapSettings(*msg->settings);
+}
+
+QUERYHANDLER(GetRMSData)
+{
+	msg->data = g_Game->GetSimulation2()->GetRMSData();
 }
 
 }

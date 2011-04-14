@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -259,9 +259,13 @@ namespace
 
 	template<> struct ToJSVal<size_t>
 	{
-		static jsval Convert(JSContext* WXUNUSED(cx), const size_t& val)
+		static jsval Convert(JSContext* cx, const size_t& val)
 		{
-			return INT_TO_JSVAL(val);
+			if (val <= JSVAL_INT_MAX)
+				return INT_TO_JSVAL(val);
+			jsval rval = JSVAL_VOID;
+			JS_NewNumberValue(cx, val, &rval); // ignore return value
+			return rval;
 		}
 	};
 
@@ -292,6 +296,17 @@ namespace
 				return STRING_TO_JSVAL(str);
 			else
 				return JSVAL_VOID;
+		}
+	};
+
+	template<> struct ToJSVal<std::string>
+	{
+		static jsval Convert(JSContext* cx, const std::string& val)
+		{
+			JSString* str = JS_NewStringCopyN(cx, val.c_str(), val.length());
+			if (str)
+				return STRING_TO_JSVAL(str);
+			return JSVAL_VOID;
 		}
 	};
 
@@ -388,9 +403,9 @@ namespace
 
 			JS_DefineProperty(cx, obj, "loaded", ToJSVal<bool>::Convert(cx, val.loaded), NULL, NULL, JSPROP_ENUMERATE);
 
-			unsigned char* buf = (unsigned char*)(malloc(val.imagedata.GetSize()));
-			memcpy(buf, val.imagedata.GetBuffer(), val.imagedata.GetSize());
-			jsval bmp = wxjs::gui::Bitmap::CreateObject(cx, new wxBitmap (wxImage(val.imagewidth, val.imageheight, buf)));
+			unsigned char* buf = (unsigned char*)(malloc(val.imageData.GetSize()));
+			memcpy(buf, val.imageData.GetBuffer(), val.imageData.GetSize());
+			jsval bmp = wxjs::gui::Bitmap::CreateObject(cx, new wxBitmap (wxImage(val.imageWidth, val.imageHeight, buf)));
 			JS_DefineProperty(cx, obj, "imagedata", bmp, NULL, NULL, JSPROP_ENUMERATE);
 			
 			return OBJECT_TO_JSVAL(obj);
@@ -418,7 +433,7 @@ namespace
 			if (! obj) return JSVAL_VOID;
 			JS_DefineProperty(cx, obj, "player", ToJSVal<size_t>::Convert(cx, val.player), NULL, NULL, JSPROP_ENUMERATE);
 			JS_DefineProperty(cx, obj, "selections", ToJSVal<std::vector<std::wstring> >::Convert(cx, *val.selections), NULL, NULL, JSPROP_ENUMERATE);
-			JS_DefineProperty(cx, obj, "variantgroups", ToJSVal<std::vector<std::vector<std::wstring> > >::Convert(cx, *val.variantgroups), NULL, NULL, JSPROP_ENUMERATE);
+			JS_DefineProperty(cx, obj, "variantgroups", ToJSVal<std::vector<std::vector<std::wstring> > >::Convert(cx, *val.variantGroups), NULL, NULL, JSPROP_ENUMERATE);
 			return OBJECT_TO_JSVAL(obj);
 		}
 	};

@@ -42,10 +42,10 @@ namespace AtlasMessage {
 QUERYHANDLER(GetTerrainGroups)
 {
 	const CTerrainTextureManager::TerrainGroupMap &groups = g_TexMan.GetGroups();
-	std::vector<std::wstring> groupnames;
+	std::vector<std::wstring> groupNames;
 	for (CTerrainTextureManager::TerrainGroupMap::const_iterator it = groups.begin(); it != groups.end(); ++it)
-		groupnames.push_back(it->first.FromUTF8());
-	msg->groupnames = groupnames;
+		groupNames.push_back(it->first.FromUTF8());
+	msg->groupNames = groupNames;
 }
 
 static bool CompareTerrain(const sTerrainGroupPreview& a, const sTerrainGroupPreview& b) 
@@ -57,13 +57,13 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 {
 	std::vector<sTerrainGroupPreview> previews;
 
-	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupname).ToUTF8());
+	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupName).ToUTF8());
 	for (std::vector<CTerrainTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
 	{
 		previews.push_back(sTerrainGroupPreview());
 		previews.back().name = (*it)->GetTag().FromUTF8();
 
-		std::vector<unsigned char> buf (msg->imagewidth*msg->imageheight*3);
+		std::vector<unsigned char> buf (msg->imageWidth*msg->imageHeight*3);
 
 		// It's not good to shrink the entire texture to fit the small preview
 		// window, since it's the fine details in the texture that are
@@ -78,11 +78,11 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_WIDTH,  &w);
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_HEIGHT, &h);
 
-		if (w < msg->imagewidth || h < msg->imageheight)
+		if (w < msg->imageWidth || h < msg->imageHeight)
 		{
 			// Oops, too small to preview - just use a flat colour
 			u32 c = (*it)->GetBaseColor();
-			for (ssize_t i = 0; i < msg->imagewidth*msg->imageheight; ++i)
+			for (ssize_t i = 0; i < msg->imageWidth*msg->imageHeight; ++i)
 			{
 				buf[i*3+0] = (c>>16) & 0xff;
 				buf[i*3+1] = (c>>8) & 0xff;
@@ -97,12 +97,12 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 
 			// Extract the middle section (as a representative preview),
 			// and copy into buf
-			unsigned char* texdata_ptr = texdata + (w*(h - msg->imageheight)/2 + (w - msg->imagewidth)/2) * 3;
+			unsigned char* texdata_ptr = texdata + (w*(h - msg->imageHeight)/2 + (w - msg->imageWidth)/2) * 3;
 			unsigned char* buf_ptr = &buf[0];
-			for (ssize_t y = 0; y < msg->imageheight; ++y)
+			for (ssize_t y = 0; y < msg->imageHeight; ++y)
 			{
-				memcpy(buf_ptr, texdata_ptr, msg->imagewidth*3);
-				buf_ptr += msg->imagewidth*3;
+				memcpy(buf_ptr, texdata_ptr, msg->imageWidth*3);
+				buf_ptr += msg->imageWidth*3;
 				texdata_ptr += w*3;
 			}
 
@@ -110,9 +110,9 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 		}
 
 		previews.back().loaded = (*it)->GetTexture()->IsLoaded();
-		previews.back().imagewidth = msg->imagewidth;
-		previews.back().imageheight = msg->imageheight;
-		previews.back().imagedata = buf;
+		previews.back().imageWidth = msg->imageWidth;
+		previews.back().imageHeight = msg->imageHeight;
+		previews.back().imageData = buf;
 	}
 
 	// Sort the list alphabetically by name
@@ -127,10 +127,10 @@ QUERYHANDLER(GetTerrainPassabilityClasses)
 	{
 		std::map<std::string, ICmpPathfinder::pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
 
-		std::vector<std::wstring> classnames;
+		std::vector<std::wstring> classNames;
 		for (std::map<std::string, ICmpPathfinder::pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
-			classnames.push_back(CStr(it->first).FromUTF8());
-		msg->classnames = classnames;
+			classNames.push_back(CStr(it->first).FromUTF8());
+		msg->classNames = classNames;
 	}
 }
 

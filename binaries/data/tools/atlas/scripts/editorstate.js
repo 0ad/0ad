@@ -38,7 +38,7 @@ defaults.objectSettings.onSelectionChange = function () {
 		if (settings.player != -1)
 			this.playerID = settings.player;
 		this.actorSelections = settings.selections;
-		this.variantGroups = settings.variantgroups;
+		this.variantGroups = settings.variantGroups;
 	}
 	this.notifyObservers();
 }
