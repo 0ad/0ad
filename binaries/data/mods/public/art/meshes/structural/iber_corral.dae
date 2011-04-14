@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.56.0 r34076</authoring_tool>
     </contributor>
-    <created>2011-04-14T23:17:44</created>
-    <modified>2011-04-14T23:17:44</modified>
+    <created>2011-04-15T00:09:22</created>
+    <modified>2011-04-15T00:09:22</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -173,7 +173,7 @@
     <visual_scene id="Scene" name="Scene">
       <node id="Plane" type="NODE">
         <translate sid="location">0 0 0</translate>
-        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationZ">0 0 1 -180</rotate>
         <rotate sid="rotationY">0 1 0 0</rotate>
         <rotate sid="rotationX">1 0 0 0</rotate>
         <scale sid="scale">184.3336 184.3336 184.3336</scale>
