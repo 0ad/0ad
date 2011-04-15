@@ -4,21 +4,22 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
-        <animation file="biped/inf_staff_walk_a.dae" name="Run" speed="40"/>
+        <animation file="female/f_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="female/f_walk_01.dae" name="Walk" speed="30"/>
+        <animation file="female/f_walk_01.dae" name="Run" speed="45"/>
+        <animation file="female/f_death_01.dae" name="Death" speed="120"/>
       </animations>
-      <mesh>skeletal/m_dress_cuffs.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_iber_healer.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_pers_fem_1.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/iber_helmet_02.xml" attachpoint="helmet"/>
         <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="healer-outfit-1">
-      <texture>skeletal/celt_healer_2.dds</texture>
+    <variant frequency="1" name="Iberian healer">
+      <mesh>skeletal/f_dress.dae</mesh>
+      <texture>skeletal/iber_healer.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
