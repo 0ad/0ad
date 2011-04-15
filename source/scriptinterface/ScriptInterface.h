@@ -239,6 +239,14 @@ public:
 
 	/**
 	 * Load and execute the given script in the global scope.
+	 * @param filename Name for debugging purposes (not used to load the file)
+	 * @param code JS code to execute
+	 * @return true on successful compilation and execution; false otherwise
+	 */
+	bool LoadGlobalScript(const VfsPath& filename, const std::wstring& code);
+
+	/**
+	 * Load and execute the given script in the global scope.
 	 * @return true on successful compilation and execution; false otherwise
 	 */
 	bool LoadGlobalScriptFile(const VfsPath& path);
@@ -269,6 +277,9 @@ public:
 	 */
 	void DumpHeap();
 
+	/**
+	 * MaybeGC tries to determine whether garbage collection in cx's runtime would free up enough memory to be worth the amount of time it would take
+	 */
 	void MaybeGC();
 
 	/**

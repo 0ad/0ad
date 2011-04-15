@@ -790,6 +790,22 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::wstring& co
 	return ok ? true : false;
 }
 
+bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstring& code)
+{
+	// Compile the code in strict mode, to encourage better coding practices and
+	// to possibly help SpiderMonkey with optimisations
+	std::wstring codeStrict = L"\"use strict\";\n" + code;
+	utf16string codeUtf16(codeStrict.begin(), codeStrict.end());
+	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
+
+	jsval rval;
+	JSBool ok = JS_EvaluateUCScript(m->m_cx, m->m_glob,
+			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()),
+			utf8_from_wstring(filename.string()).c_str(), lineNo, &rval);
+
+	return ok ? true : false;
+}
+
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 {
 	debug_assert(ThreadUtil::IsMainThread()); // VFS isn't thread-safe
