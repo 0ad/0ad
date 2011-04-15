@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="108.446" y="118.501" z="403.153"/>
-		<Rotation angle="0.0470279"/>
-		<Declination angle="0.529896"/>
+		<Position x="547.038" y="117.113" z="344.641"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -37,13 +37,13 @@
       "Civ": "hele"
     },
     {
-      "Civ": "hele"
+      "Civ": "iber"
     },
     {
       "Civ": "hele"
     },
     {
-      "Civ": "hele"
+      "Civ": "celt"
     }
   ]
 }
@@ -196,26 +196,26 @@
 		<Entity uid="44">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="142.48073" z="604.69855"/>
+			<Position x="144.01232" z="599.31806"/>
 			<Orientation y="0.31579"/>
 		</Entity>
 		<Entity uid="45">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="168.20066" z="599.38178"/>
+			<Position x="165.7344" z="593.84247"/>
 			<Orientation y="-2.99253"/>
 		</Entity>
 		<Entity uid="46">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="152.58664" z="590.43781"/>
+			<Position x="149.35727" z="604.04609"/>
 			<Orientation y="0.40851"/>
 		</Entity>
 		<Entity uid="47">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="163.38068" z="589.9784"/>
-			<Orientation y="-0.13047"/>
+			<Position x="164.04162" z="583.086"/>
+			<Orientation y="1.4662"/>
 		</Entity>
 		<Entity uid="58">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -226,7 +226,7 @@
 		<Entity uid="70">
 			<Template>gaia/geology_metal_savanna_slabs</Template>
 			<Player>0</Player>
-			<Position x="178.68271" z="711.02802"/>
+			<Position x="177.30828" z="711.29133"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="71">
@@ -3019,22 +3019,10 @@
 			<Position x="105.35236" z="565.89271"/>
 			<Orientation y="2.35898"/>
 		</Entity>
-		<Entity uid="586">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="625.6673" z="125.8082"/>
-			<Orientation y="2.34911"/>
-		</Entity>
 		<Entity uid="587">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>3</Player>
 			<Position x="119.35479" z="143.41102"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="588">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="616.90827" z="596.28827"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="598">
@@ -6436,25 +6424,25 @@
 		<Entity uid="1285">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="244.46357" z="693.36298"/>
+			<Position x="247.05724" z="696.52833"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1286">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="248.7901" z="676.61475"/>
+			<Position x="252.71921" z="677.05701"/>
 			<Orientation y="-2.50681"/>
 		</Entity>
 		<Entity uid="1287">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="237.657" z="664.3473"/>
+			<Position x="232.8815" z="697.75782"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1288">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="237.66037" z="680.44495"/>
+			<Position x="253.25573" z="689.73084"/>
 			<Orientation y="3.03772"/>
 		</Entity>
 		<Entity uid="1289">
@@ -6466,25 +6454,25 @@
 		<Entity uid="1290">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="564.9933" z="133.88071"/>
+			<Position x="559.75556" z="151.71961"/>
 			<Orientation y="-2.95246"/>
 		</Entity>
 		<Entity uid="1291">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="558.9532" z="113.18094"/>
+			<Position x="554.7345" z="143.89939"/>
 			<Orientation y="0.78501"/>
 		</Entity>
 		<Entity uid="1292">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="567.95844" z="122.86094"/>
+			<Position x="561.46686" z="124.71103"/>
 			<Orientation y="-2.85947"/>
 		</Entity>
 		<Entity uid="1293">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="572.65711" z="145.84092"/>
+			<Position x="567.07728" z="152.41964"/>
 			<Orientation y="-1.30852"/>
 		</Entity>
 		<Entity uid="1294">
@@ -6520,37 +6508,37 @@
 		<Entity uid="1299">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="142.03907" z="111.59861"/>
-			<Orientation y="2.35621"/>
+			<Position x="138.17966" z="96.22266"/>
+			<Orientation y="-2.56478"/>
 		</Entity>
 		<Entity uid="1300">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="152.35317" z="109.15055"/>
+			<Position x="148.30423" z="114.93128"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1301">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="150.89008" z="93.75434"/>
-			<Orientation y="0.42145"/>
+			<Position x="147.13862" z="101.8631"/>
+			<Orientation y="2.56022"/>
 		</Entity>
 		<Entity uid="1302">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="137.52317" z="104.31916"/>
+			<Position x="127.76032" z="96.7565"/>
 			<Orientation y="-1.34476"/>
 		</Entity>
 		<Entity uid="1303">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="125.40197" z="110.37186"/>
+			<Position x="118.39603" z="102.48578"/>
 			<Orientation y="-0.67888"/>
 		</Entity>
 		<Entity uid="1304">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="74.08387" z="292.41443"/>
+			<Position x="72.25751" z="296.77826"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1305">
@@ -6562,19 +6550,19 @@
 		<Entity uid="1306">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="77.29381" z="280.31458"/>
+			<Position x="65.35917" z="296.10593"/>
 			<Orientation y="-0.16279"/>
 		</Entity>
 		<Entity uid="1307">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="70.15998" z="271.32886"/>
+			<Position x="70.58854" z="269.91572"/>
 			<Orientation y="-2.26246"/>
 		</Entity>
 		<Entity uid="1308">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="82.55445" z="262.56513"/>
+			<Position x="78.15026" z="268.52106"/>
 			<Orientation y="0.03289"/>
 		</Entity>
 		<Entity uid="1309">
@@ -6586,19 +6574,19 @@
 		<Entity uid="1310">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="658.52472" z="621.05066"/>
+			<Position x="665.16883" z="628.09253"/>
 			<Orientation y="0.63534"/>
 		</Entity>
 		<Entity uid="1311">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="668.38648" z="629.29847"/>
+			<Position x="663.47736" z="618.93866"/>
 			<Orientation y="-2.80042"/>
 		</Entity>
 		<Entity uid="1312">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="649.36396" z="622.9709"/>
+			<Position x="648.11231" z="638.31031"/>
 			<Orientation y="-0.9201"/>
 		</Entity>
 		<Entity uid="1313">
@@ -6610,13 +6598,13 @@
 		<Entity uid="1314">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="656.08375" z="469.64716"/>
+			<Position x="657.41736" z="493.68293"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1315">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="661.56092" z="485.39808"/>
+			<Position x="664.9325" z="486.17206"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1316">
@@ -7674,7 +7662,7 @@
 		</Entity>
 		<Entity uid="1526">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="655.7616" z="458.94404"/>
+			<Position x="668.81037" z="478.977"/>
 			<Orientation y="0.86937"/>
 		</Entity>
 		<Entity uid="1527">
@@ -7684,12 +7672,12 @@
 		</Entity>
 		<Entity uid="1528">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="656.3473" z="481.1521"/>
+			<Position x="649.33051" z="492.77686"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1529">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="653.654" z="482.65876"/>
+			<Position x="666.10615" z="489.48157"/>
 			<Orientation y="-1.63218"/>
 		</Entity>
 		<Entity uid="1530">
@@ -7849,7 +7837,7 @@
 		</Entity>
 		<Entity uid="1561">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="652.48572" z="627.49921"/>
+			<Position x="650.47187" z="631.51685"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1562">
@@ -7934,7 +7922,7 @@
 		</Entity>
 		<Entity uid="1578">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="650.83826" z="469.719"/>
+			<Position x="642.23993" z="480.10117"/>
 			<Orientation y="2.0529"/>
 		</Entity>
 		<Entity uid="1579">
@@ -9402,7 +9390,7 @@
 		</Entity>
 		<Entity uid="1868">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="66.4553" z="282.0705"/>
+			<Position x="61.40046" z="275.58252"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1869">
@@ -9412,12 +9400,12 @@
 		</Entity>
 		<Entity uid="1870">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="64.439" z="293.63373"/>
+			<Position x="58.68435" z="285.60962"/>
 			<Orientation y="1.12963"/>
 		</Entity>
 		<Entity uid="1871">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="70.9517" z="296.78174"/>
+			<Position x="69.13985" z="301.08161"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1872">
@@ -10207,7 +10195,7 @@
 		</Entity>
 		<Entity uid="2029">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="124.19932" z="101.7115"/>
+			<Position x="114.2828" z="98.621"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2030">
@@ -11377,7 +11365,7 @@
 		</Entity>
 		<Entity uid="2263">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="427.73896" z="279.22834"/>
+			<Position x="406.0871" z="245.01966"/>
 			<Orientation y="-0.78585"/>
 		</Entity>
 		<Entity uid="2264">
@@ -11552,12 +11540,12 @@
 		</Entity>
 		<Entity uid="2298">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="556.70112" z="123.25168"/>
+			<Position x="554.33301" z="150.22471"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2299">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="553.9438" z="127.54166"/>
+			<Position x="554.25672" z="126.05871"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2300">
@@ -12662,7 +12650,7 @@
 		</Entity>
 		<Entity uid="2520">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="71.88016" z="273.93677"/>
+			<Position x="65.8804" z="268.14444"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2521">
@@ -12672,12 +12660,12 @@
 		</Entity>
 		<Entity uid="2522">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="76.84456" z="266.48865"/>
+			<Position x="74.35233" z="260.12717"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2523">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="77.99766" z="266.8722"/>
+			<Position x="70.39715" z="276.26465"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2524">
@@ -12802,7 +12790,7 @@
 		</Entity>
 		<Entity uid="2548">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="131.78171" z="101.07624"/>
+			<Position x="119.93488" z="93.71306"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2549">
@@ -12817,7 +12805,7 @@
 		</Entity>
 		<Entity uid="2551">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="149.88862" z="90.05713"/>
+			<Position x="130.47333" z="92.48978"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2552">
@@ -12895,42 +12883,6 @@
 			<Position x="31.70598" z="89.58568"/>
 			<Orientation y="-3.02964"/>
 		</Entity>
-		<Entity uid="2570">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="648.17206" z="118.0618"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2571">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="646.06073" z="116.143"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2572">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="644.55683" z="114.02576"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2573">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="642.04554" z="111.2541"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2574">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="640.70453" z="109.27094"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2575">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="638.3415" z="106.67206"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2576">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>3</Player>
@@ -12965,90 +12917,6 @@
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="127.62496" z="121.71863"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2582">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="638.81647" z="589.8047"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2583">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="636.45423" z="586.95759"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2584">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="633.30134" z="583.94916"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2585">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="630.23804" z="580.96412"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2586">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="627.95551" z="578.83814"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2587">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="625.19172" z="576.14222"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2588">
-			<Template>units/hele_infantry_archer_b</Template>
-			<Player>4</Player>
-			<Position x="628.16102" z="571.65162"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2589">
-			<Template>units/hele_infantry_javelinist_b</Template>
-			<Player>4</Player>
-			<Position x="632.23432" z="575.94611"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2590">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>4</Player>
-			<Position x="635.86579" z="578.49268"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2591">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>4</Player>
-			<Position x="640.01581" z="583.33777"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2592">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="652.58161" z="112.50016"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2593">
-			<Template>units/hele_infantry_archer_b</Template>
-			<Player>2</Player>
-			<Position x="649.43006" z="109.80941"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2594">
-			<Template>units/hele_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="646.97815" z="107.49743"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2595">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="643.74274" z="104.22252"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2596">
@@ -13092,7 +12960,7 @@
 		</Entity>
 		<Entity uid="2615">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="147.76285" z="595.23365"/>
+			<Position x="143.78795" z="599.0879"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2616">
@@ -13102,13 +12970,13 @@
 		</Entity>
 		<Entity uid="2617">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="154.32126" z="590.91968"/>
+			<Position x="148.42893" z="604.28895"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2618">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="151.14655" z="589.8639"/>
-			<Orientation y="0.50361"/>
+			<Position x="162.41697" z="582.67377"/>
+			<Orientation y="-0.2639"/>
 		</Entity>
 		<Entity uid="2619">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
@@ -13122,12 +12990,12 @@
 		</Entity>
 		<Entity uid="2621">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="168.88569" z="598.56782"/>
+			<Position x="155.77463" z="598.68067"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2622">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="167.60291" z="602.4535"/>
+			<Position x="160.03803" z="610.64643"/>
 			<Orientation y="-2.8063"/>
 		</Entity>
 		<Entity uid="2623">
@@ -13187,7 +13055,7 @@
 		</Entity>
 		<Entity uid="2634">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="249.79207" z="675.32215"/>
+			<Position x="246.89415" z="697.58143"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2635">
@@ -13197,12 +13065,12 @@
 		</Entity>
 		<Entity uid="2636">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="234.01392" z="676.52063"/>
+			<Position x="254.22945" z="690.89313"/>
 			<Orientation y="0.7056"/>
 		</Entity>
 		<Entity uid="2637">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="241.12566" z="691.57544"/>
+			<Position x="233.01276" z="698.28852"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2638">
@@ -13242,22 +13110,22 @@
 		</Entity>
 		<Entity uid="2645">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="143.11536" z="107.67701"/>
+			<Position x="147.29302" z="102.41434"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2646">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="138.35976" z="111.36847"/>
+			<Position x="147.83744" z="115.48527"/>
 			<Orientation y="1.16318"/>
 		</Entity>
 		<Entity uid="2647">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="134.17019" z="111.74413"/>
+			<Position x="126.26317" z="96.7565"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2648">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="126.90595" z="109.50818"/>
+			<Position x="117.80436" z="103.32343"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2649">
@@ -13352,7 +13220,7 @@
 		</Entity>
 		<Entity uid="2667">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="80.04944" z="269.47822"/>
+			<Position x="77.75377" z="267.39591"/>
 			<Orientation y="2.5098"/>
 		</Entity>
 		<Entity uid="2668">
@@ -13362,7 +13230,7 @@
 		</Entity>
 		<Entity uid="2669">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="83.99097" z="262.82364"/>
+			<Position x="65.71132" z="270.68561"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2670">
@@ -13382,7 +13250,7 @@
 		</Entity>
 		<Entity uid="2673">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="65.05935" z="289.84122"/>
+			<Position x="71.2787" z="269.66053"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2674">
@@ -13502,12 +13370,12 @@
 		</Entity>
 		<Entity uid="2697">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="353.78763" z="85.96064"/>
+			<Position x="394.75608" z="252.48823"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2698">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="353.22345" z="104.14728"/>
+			<Position x="403.60135" z="256.1326"/>
 			<Orientation y="-2.63883"/>
 		</Entity>
 		<Entity uid="2699">
@@ -13547,17 +13415,17 @@
 		</Entity>
 		<Entity uid="2706">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="563.87879" z="127.75773"/>
+			<Position x="556.05011" z="147.54102"/>
 			<Orientation y="-2.20673"/>
 		</Entity>
 		<Entity uid="2707">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="553.58954" z="119.56923"/>
+			<Position x="557.7245" z="130.45402"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2708">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="554.44916" z="110.9576"/>
+			<Position x="564.39032" z="120.76223"/>
 			<Orientation y="1.1481"/>
 		</Entity>
 		<Entity uid="2709">
@@ -13567,7 +13435,7 @@
 		</Entity>
 		<Entity uid="2710">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="566.18738" z="118.50748"/>
+			<Position x="560.74177" z="122.70484"/>
 			<Orientation y="1.0065"/>
 		</Entity>
 		<Entity uid="2711">
@@ -13577,8 +13445,8 @@
 		</Entity>
 		<Entity uid="2712">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="573.34308" z="143.42624"/>
-			<Orientation y="2.35621"/>
+			<Position x="556.88013" z="149.43191"/>
+			<Orientation y="0.5638"/>
 		</Entity>
 		<Entity uid="2713">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
@@ -13592,8 +13460,8 @@
 		</Entity>
 		<Entity uid="2715">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="566.33509" z="139.27962"/>
-			<Orientation y="-2.34321"/>
+			<Position x="551.15186" z="134.43424"/>
+			<Orientation y="0.26906"/>
 		</Entity>
 		<Entity uid="2716">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
@@ -13832,22 +13700,22 @@
 		</Entity>
 		<Entity uid="2763">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="653.61811" z="456.41871"/>
+			<Position x="643.37812" z="477.64551"/>
 			<Orientation y="0.27216"/>
 		</Entity>
 		<Entity uid="2764">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="654.88611" z="462.91538"/>
+			<Position x="662.07068" z="488.01166"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2765">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="657.03406" z="471.99112"/>
+			<Position x="656.51984" z="494.20438"/>
 			<Orientation y="-0.60123"/>
 		</Entity>
 		<Entity uid="2766">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="653.73316" z="476.60218"/>
+			<Position x="643.99402" z="484.61792"/>
 			<Orientation y="-0.94382"/>
 		</Entity>
 		<Entity uid="2767">
@@ -13977,7 +13845,7 @@
 		</Entity>
 		<Entity uid="2792">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="634.16205" z="520.3924"/>
+			<Position x="652.90845" z="492.52524"/>
 			<Orientation y="1.0042"/>
 		</Entity>
 		<Entity uid="2793">
@@ -13997,17 +13865,17 @@
 		</Entity>
 		<Entity uid="2796">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="652.67945" z="628.84437"/>
+			<Position x="656.24897" z="635.59778"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2797">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="647.59742" z="623.05616"/>
+			<Position x="644.26984" z="635.86683"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2798">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="644.66138" z="628.04114"/>
+			<Position x="658.37726" z="634.52887"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2799">
@@ -14042,12 +13910,12 @@
 		</Entity>
 		<Entity uid="2805">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="670.64924" z="627.2447"/>
+			<Position x="665.8141" z="626.97693"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2806">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="670.77887" z="630.4712"/>
+			<Position x="639.38447" z="634.52887"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2807">
@@ -14057,7 +13925,7 @@
 		</Entity>
 		<Entity uid="2808">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="659.18299" z="618.46924"/>
+			<Position x="663.40992" z="618.82538"/>
 			<Orientation y="0.91218"/>
 		</Entity>
 		<Entity uid="2809">
@@ -14327,12 +14195,12 @@
 		</Entity>
 		<Entity uid="2862">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="354.67533" z="85.22017"/>
+			<Position x="389.155" z="259.84311"/>
 			<Orientation y="0.2712"/>
 		</Entity>
 		<Entity uid="2863">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="360.06629" z="105.2594"/>
+			<Position x="415.16654" z="261.34614"/>
 			<Orientation y="2.37327"/>
 		</Entity>
 		<Entity uid="2864">
@@ -14347,7 +14215,7 @@
 		</Entity>
 		<Entity uid="2866">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="449.49747" z="93.45253"/>
+			<Position x="352.124" z="109.88244"/>
 			<Orientation y="2.688"/>
 		</Entity>
 		<Entity uid="2867">
@@ -14462,7 +14330,7 @@
 		</Entity>
 		<Entity uid="2889">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="684.56434" z="605.47913"/>
+			<Position x="658.1988" z="629.47345"/>
 			<Orientation y="1.12233"/>
 		</Entity>
 		<Entity uid="2890">
@@ -14492,7 +14360,7 @@
 		</Entity>
 		<Entity uid="2895">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="663.26258" z="455.6933"/>
+			<Position x="667.11548" z="476.55042"/>
 			<Orientation y="2.61321"/>
 		</Entity>
 		<Entity uid="2896">
@@ -14633,7 +14501,7 @@
 		<Entity uid="2923">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
 			<Position x="83.33313" z="246.72062"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="0.8789"/>
 		</Entity>
 		<Entity uid="2924">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
@@ -14717,7 +14585,7 @@
 		</Entity>
 		<Entity uid="2940">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="63.19285" z="308.50278"/>
+			<Position x="68.35376" z="293.2964"/>
 			<Orientation y="1.49251"/>
 		</Entity>
 		<Entity uid="2941">
@@ -14842,13 +14710,13 @@
 		</Entity>
 		<Entity uid="2965">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="183.5815" z="705.2187"/>
+			<Position x="176.60958" z="707.68445"/>
 			<Orientation y="-0.05485"/>
 		</Entity>
 		<Entity uid="2966">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="185.69724" z="706.9856"/>
-			<Orientation y="0.33266"/>
+			<Position x="176.6191" z="705.53321"/>
+			<Orientation y="0.24688"/>
 		</Entity>
 		<Entity uid="2967">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
@@ -14857,7 +14725,7 @@
 		</Entity>
 		<Entity uid="2968">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="185.37883" z="702.0257"/>
+			<Position x="182.09148" z="713.26587"/>
 			<Orientation y="3.106"/>
 		</Entity>
 		<Entity uid="2969">
@@ -14872,7 +14740,7 @@
 		</Entity>
 		<Entity uid="2971">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="169.58065" z="710.27619"/>
+			<Position x="179.05744" z="710.32117"/>
 			<Orientation y="1.4057"/>
 		</Entity>
 		<Entity uid="2972">
@@ -15052,7 +14920,7 @@
 		</Entity>
 		<Entity uid="3007">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="90.21128" z="316.76648"/>
+			<Position x="74.89121" z="296.94703"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3008">
@@ -15092,7 +14960,7 @@
 		</Entity>
 		<Entity uid="3015">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="121.42386" z="594.72242"/>
+			<Position x="152.13662" z="580.97931"/>
 			<Orientation y="-2.67016"/>
 		</Entity>
 		<Entity uid="3016">
@@ -15209,31 +15077,31 @@
 		<Entity uid="3065">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="408.41266" z="253.90137"/>
+			<Position x="410.15122" z="249.3309"/>
 			<Orientation y="1.05503"/>
 		</Entity>
 		<Entity uid="3066">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="393.01603" z="255.39267"/>
+			<Position x="392.75623" z="252.22475"/>
 			<Orientation y="-2.45243"/>
 		</Entity>
 		<Entity uid="3067">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="415.1898" z="277.11033"/>
+			<Position x="414.62455" z="259.076"/>
 			<Orientation y="3.06737"/>
 		</Entity>
 		<Entity uid="3068">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="395.02839" z="287.83057"/>
-			<Orientation y="-2.248"/>
+			<Position x="400.79554" z="247.51577"/>
+			<Orientation y="0.1815"/>
 		</Entity>
 		<Entity uid="3069">
 			<Template>gaia/geology_stone_savanna_small</Template>
 			<Player>0</Player>
-			<Position x="390.9799" z="264.7399"/>
+			<Position x="389.87452" z="262.5836"/>
 			<Orientation y="-0.50062"/>
 		</Entity>
 		<Entity uid="3070">
@@ -15390,6 +15258,138 @@
 			<Template>gaia/flora_tree_fig</Template>
 			<Player>0</Player>
 			<Position x="222.1825" z="291.00168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3114">
+			<Template>structures/iber_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="617.34339" z="135.25237"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3115">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="641.96766" z="124.76204"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3116">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="640.25245" z="123.04984"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3117">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="638.16358" z="121.01888"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3118">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="636.31507" z="119.0389"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3119">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="634.15333" z="117.33263"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3120">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="632.02472" z="115.3338"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3121">
+			<Template>units/iber_cavalry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="650.25995" z="113.5271"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3122">
+			<Template>units/iber_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="641.86487" z="106.9763"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3123">
+			<Template>units/iber_infantry_slinger_b</Template>
+			<Player>2</Player>
+			<Position x="644.3423" z="110.37911"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3124">
+			<Template>units/iber_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="647.03669" z="112.2509"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3125">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>0</Player>
+			<Position x="613.25098" z="596.15955"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3126">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="619.9344" z="575.73176"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3127">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="622.01032" z="577.56965"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3128">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="624.0102" z="579.65723"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3129">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="625.44922" z="581.18586"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3130">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="627.21814" z="582.74683"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3131">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="628.79334" z="584.01966"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3132">
+			<Template>units/celt_infantry_spearman_b</Template>
+			<Player>4</Player>
+			<Position x="625.1537" z="569.87232"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3133">
+			<Template>units/celt_infantry_javelinist_b</Template>
+			<Player>4</Player>
+			<Position x="628.70612" z="573.01539"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3134">
+			<Template>units/celt_infantry_javelinist_b</Template>
+			<Player>4</Player>
+			<Position x="631.34437" z="575.92298"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3136">
+			<Template>units/celt_cavalry_spearman_b</Template>
+			<Player>4</Player>
+			<Position x="634.7641" z="579.16102"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
