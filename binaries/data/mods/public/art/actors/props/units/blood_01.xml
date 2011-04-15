@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <float/>
-
   <group>
-    <variant frequency="1" name="mesh">
-      <mesh>gaia/water_lillies.pmd</mesh>
+    <variant frequency="1" name="decal">
+      <decal width="3.5" depth="3.5" angle="0" offsetx="0" offsetz="0"/>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="blood-01">
       <texture>props/blood_01.dds</texture>
@@ -31,7 +27,5 @@
       <texture>props/blood_06.dds</texture>
     </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>

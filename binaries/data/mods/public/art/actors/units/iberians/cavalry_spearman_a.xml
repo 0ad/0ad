@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -19,31 +17,14 @@
       </props>
     </variant>
   </group>
-
   <group>
-    <variant frequency="7" name="feet">
-      <texture>skeletal/horse_celt_feet_a.dds</texture>
+    <variant frequency="1" name="Horse 1">
+      <texture>skeletal/horse_iber_csp_a_1.dds</texture>
     </variant>
-    <variant frequency="5" name="blaze">
-      <texture>skeletal/horse_celt_blaze_a.dds</texture>
-    </variant>
-    <variant frequency="5" name="face">
-      <texture>skeletal/horse_celt_face_a.dds</texture>
-    </variant>
-    <variant frequency="7" name="star">
-      <texture>skeletal/horse_celt_star_a.dds</texture>
-    </variant>
-    <variant frequency="3" name="dapple">
-      <texture>skeletal/horse_celt_dapple_a.dds</texture>
-    </variant>
-    <variant frequency="2" name="snip">
-      <texture>skeletal/horse_celt_snip_a.dds</texture>
-    </variant>
-    <variant frequency="5" name="stripe">
-      <texture>skeletal/horse_celt_stripe_a.dds</texture>
+    <variant frequency="1" name="Horse 2">
+      <texture>skeletal/horse_iber_csp_a_2.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-color-black">
       <colour>41 41 41</colour>
@@ -58,7 +39,5 @@
       <colour>211 123 44</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>
