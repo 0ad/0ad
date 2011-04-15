@@ -4,17 +4,17 @@
     <texture>art/textures/particles/sparkle.png</texture>
     <blend mode="add"/>
 
-    <constant name="emissionrate" value="4.0"/>
-    <uniform name="lifetime" min="0.5" max="3.0"/>
+    <constant name="emissionrate" value="5.0"/>
+    <uniform name="lifetime" min="1.0" max="3.5"/>
 
     <uniform name="position.x" min="-7.0" max="7.0"/>
     <uniform name="position.z" min="-7.0" max="7.0"/>
-    <uniform name="position.y" min="0.0" max="1.5"/>
+    <uniform name="position.y" min="0.5" max="2.0"/>
 
     <uniform name="angle" min="-3.14" max="3.14"/>
 
-    <uniform name="velocity.x" min="-1.5" max="1.0"/>
-    <uniform name="velocity.y" min="2.0" max="3.5"/>
+    <uniform name="velocity.x" min="-0.5" max="0.5"/>
+    <uniform name="velocity.y" min="0.5" max="1.5"/>
     <uniform name="velocity.z" min="-1.5" max="1.0"/>
     <uniform name="velocity.angle" min="-2.0" max="3.0"/>
 
@@ -24,6 +24,6 @@
     <uniform name="color.g" min="0.7" max="0.7"/>
     <uniform name="color.b" min="0.5" max="0.6"/>
 
-    <force y="0.35"/>
+    <force y="0.25"/>
 
 </particles>
