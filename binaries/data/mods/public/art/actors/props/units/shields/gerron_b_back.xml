@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/shield/gerron_b_b.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="back">
+      <texture>props/shield/hele_oval_a.dds</texture>
+    </variant>
+  </group>
+
+</actor>
