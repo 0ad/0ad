@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.790533" g="0.764614" b="0.669577"/>
+		<SunColour r="0.741176" g="0.701961" b="0.607843"/>
 		<SunElevation angle="0.79625"/>
 		<SunRotation angle="-0.478602"/>
 		<TerrainAmbientColour r="0.419608" g="0.439216" b="0.47451"/>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="674.8" y="165.161" z="641.959"/>
-		<Rotation angle="0.00572399"/>
-		<Declination angle="0.574818"/>
+		<Position x="375.265" y="171.443" z="48.3287"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -44,12 +44,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="6">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="373.0214" z="214.7845"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="8">
 			<Template>other/obelisk</Template>
 			<Player>1</Player>
@@ -15299,42 +15293,6 @@
 			<Position x="562.64411" z="814.66321"/>
 			<Orientation y="1.72014"/>
 		</Entity>
-		<Entity uid="2975">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="345.13392" z="227.52878"/>
-			<Orientation y="-0.47802"/>
-		</Entity>
-		<Entity uid="2976">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="348.19068" z="228.94806"/>
-			<Orientation y="-0.53014"/>
-		</Entity>
-		<Entity uid="2977">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="351.32316" z="231.87186"/>
-			<Orientation y="-0.50051"/>
-		</Entity>
-		<Entity uid="2978">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="387.21485" z="234.16422"/>
-			<Orientation y="1.22057"/>
-		</Entity>
-		<Entity uid="2979">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="390.47101" z="231.05608"/>
-			<Orientation y="0.91807"/>
-		</Entity>
-		<Entity uid="2980">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="394.25474" z="227.05605"/>
-			<Orientation y="0.97411"/>
-		</Entity>
 		<Entity uid="2981">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="458.0547" z="787.95014"/>
@@ -16136,6 +16094,48 @@
 			<Template>actor|particle/smoke.xml</Template>
 			<Position x="664.37433" z="767.797"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3140">
+			<Template>structures/iber_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="370.45865" z="217.18375"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3141">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="387.82706" z="209.78476"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3142">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="385.19965" z="206.38642"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3143">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="381.04288" z="202.6749"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3144">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="351.51771" z="207.52807"/>
+			<Orientation y="-2.46081"/>
+		</Entity>
+		<Entity uid="3145">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="354.43628" z="203.9981"/>
+			<Orientation y="-2.7701"/>
+		</Entity>
+		<Entity uid="3146">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="357.82844" z="200.9821"/>
+			<Orientation y="-2.45933"/>
 		</Entity>
 	</Entities>
 	<Paths/>
