@@ -1127,7 +1127,7 @@ int CMapReader::ParseTerrain()
 		{	LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);\
 			throw PSERROR_Game_World_MapLoadFailed("Error parsing terrain data.\nCheck application log for details"); }
 
-	size_t size;
+	u32 size;
 	GET_TERRAIN_PROPERTY(size, size)
 
 	m_PatchesPerSide = size / PATCH_SIZE;
