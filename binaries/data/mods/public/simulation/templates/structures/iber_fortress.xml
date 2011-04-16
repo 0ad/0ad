@@ -8,6 +8,13 @@
   <VisualActor>
     <Actor>structures/iberians/fortress.xml</Actor>
   </VisualActor>
+  <Footprint>
+    <Square width="29.0" depth="29.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="27.0" depth="27.0"/>
+  </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/iber_hero_caros
