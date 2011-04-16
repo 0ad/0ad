@@ -13,7 +13,7 @@ var defaults = {
 		selectedObjects: [],
 		playerID: 1,
 		actorSelections: [],
-		variantGroups: []
+		variantgroups: []
 	}
 };
 
@@ -28,7 +28,7 @@ defaults.objectSettings.onSelectionChange = function () {
 	if (! this.selectedObjects.length) {
 		// TODO: do something sensible here
 		this.actorSelections = [];
-		this.variantGroups = [];
+		this.variantgroups = [];
 	} else {
 		// TODO: Support multiple selections
 		var selection = this.selectedObjects[0];
@@ -38,7 +38,7 @@ defaults.objectSettings.onSelectionChange = function () {
 		if (settings.player != -1)
 			this.playerID = settings.player;
 		this.actorSelections = settings.selections;
-		this.variantGroups = settings.variantGroups;
+		this.variantgroups = settings.variantgroups;
 	}
 	this.notifyObservers();
 }
@@ -55,7 +55,7 @@ defaults.objectSettings.getActorVariation = function ()
 		selectionMap[s] = 1;
 
 	var variation = [];
-	GROUP: for each (var group in this.variantGroups) {
+	GROUP: for each (var group in this.variantgroups) {
 		for each (var variant in group) {
 			if (variant in selectionMap) {
 				variation.push(variant);

@@ -314,9 +314,9 @@ function init(window, bottomWindow)
 		variationControl.sizer.clear(true);
 		var settings = Atlas.State.objectSettings;
 		var variation = settings.getActorVariation();
-		for (var i = 0; i < settings.variantGroups.length; ++i) {
+		for (var i = 0; i < settings.variantgroups.length; ++i) {
 			var choice = new wxChoice(variationControl, -1, wxDefaultPosition, new wxSize(80, -1),
-				settings.variantGroups[i]);
+				settings.variantgroups[i]);
 			choice.onChoice = onVariationSelect;
 			choice.stringSelection = variation[i];
 			variationControl.sizer.add(choice, 0, wxStretch.EXPAND);
