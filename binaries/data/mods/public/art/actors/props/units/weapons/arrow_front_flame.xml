@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/weap_arrow_front.pmd</mesh>
+      <props>
+        <prop actor="particle/flame_jav.xml" attachpoint="root"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="root"/>
+      </props>
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+</actor>
