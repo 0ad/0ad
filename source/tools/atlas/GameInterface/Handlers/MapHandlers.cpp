@@ -79,22 +79,12 @@ QUERYHANDLER(GenerateMap)
 	// Random map
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	
+	CScriptValRooted settings = scriptInterface.ParseJSON(*msg->settings);
+
 	CScriptValRooted attrs;
 	scriptInterface.Eval("({})", attrs);
 	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
-	scriptInterface.SetProperty(attrs.get(), "script", std::wstring(*msg->script));
-
-	CScriptValRooted settings;
-	scriptInterface.Eval("({})", settings);
-	scriptInterface.SetProperty(settings.get(), "Size", (int)msg->size);
-	scriptInterface.SetProperty(settings.get(), "Seed", (int)msg->seed);
-	scriptInterface.SetProperty(settings.get(), "BaseTerrain", std::vector<std::wstring>(*msg->terrain));
-	scriptInterface.SetProperty(settings.get(), "BaseHeight", (int)msg->height);
-	scriptInterface.SetProperty(settings.get(), "CircularMap", true);	// now default to circular map
-
-	CScriptValRooted pData = scriptInterface.ParseJSON(*msg->playerData);
-	scriptInterface.SetProperty(settings.get(), "PlayerData", pData);
-
+	scriptInterface.SetProperty(attrs.get(), "script", std::wstring(*msg->filename));
 	scriptInterface.SetProperty(attrs.get(), "settings", settings, false);
 
 	try

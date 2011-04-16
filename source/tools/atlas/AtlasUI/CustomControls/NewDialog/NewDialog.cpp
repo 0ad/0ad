@@ -53,16 +53,16 @@ NewDialog::NewDialog(wxWindow* parent, const wxString& title, const wxSize& size
 	AtObj sizes(Datafile::ReadList("mapsizes"));
 	for (AtIter s = sizes["size"]; s.defined(); ++s)
 	{
-		if (s["@name"].defined() && s["@patches"].defined())
+		if (s["@name"].defined() && s["@tiles"].defined())
 		{
 			m_SizeArray.Add(wxString(s["@name"]));
 
-			size_t patch;
+			size_t size;
 			std::wstringstream stream;
-			stream << (std::wstring)s["@patches"];
-			stream >> patch;
+			stream << (std::wstring)s["@tiles"];
+			stream >> size;
 			
-			m_PatchesArray.push_back(patch);
+			m_TilesArray.push_back(size);
 		}
 	}
 
@@ -112,7 +112,7 @@ void NewDialog::OnHeightChange(wxSpinEvent& event)
 
 size_t NewDialog::GetSelectedSize()
 {
-	return m_PatchesArray[m_SelectedSize];
+	return m_TilesArray[m_SelectedSize];
 }
 
 size_t NewDialog::GetBaseHeight()

@@ -492,6 +492,8 @@ template jsval ScriptInterface::ToJSVal<wxMouseEvent>(JSContext*, wxMouseEvent c
 template jsval ScriptInterface::ToJSVal<int>(JSContext*, int const&);
 template jsval ScriptInterface::ToJSVal<float>(JSContext*, float const&);
 template jsval ScriptInterface::ToJSVal<std::vector<int> >(JSContext*, std::vector<int> const&);
+template jsval ScriptInterface::ToJSVal<size_t>(JSContext*, size_t const&);
+template jsval ScriptInterface::ToJSVal<std::vector<wxString> >(JSContext*, std::vector<wxString> const&);
 
 ////////////////////////////////////////////////////////////////
 

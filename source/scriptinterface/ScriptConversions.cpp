@@ -149,23 +149,18 @@ template<> bool ScriptInterface::FromJSVal<Entity>(JSContext* cx, jsval v, Entit
 	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
 		FAIL("Argument must be an object");
 
-	jsval name, id, player, x, z, orient, actor;
+	jsval name, id, player, x, z, orient;
 
-	if(!JS_GetProperty(cx, obj, "isActor", &actor) || !FromJSVal(cx, actor, out.isActor))
-		FAIL("Failed to read Entity.isActor property");
-
-	if (!out.isActor)
-		if(!JS_GetProperty(cx, obj, "player", &player) || !FromJSVal(cx, player, out.playerID))
-			FAIL("Failed to read Entity.player property");
-	
+	if(!JS_GetProperty(cx, obj, "player", &player) || !FromJSVal(cx, player, out.playerID))
+		FAIL("Failed to read Entity.player property");
 	if (!JS_GetProperty(cx, obj, "name", &name) || !FromJSVal(cx, name, out.templateName))
 		FAIL("Failed to read Entity.name property");
 	if (!JS_GetProperty(cx, obj, "id", &id) || !FromJSVal(cx, id, out.entityID))
 		FAIL("Failed to read Entity.id property");
 	if (!JS_GetProperty(cx, obj, "x", &x) || !FromJSVal(cx, x, out.positionX))
 		FAIL("Failed to read Entity.x property");
-	if (!JS_GetProperty(cx, obj, "y", &z) || !FromJSVal(cx, z, out.positionZ))
-		FAIL("Failed to read Entity.y property");
+	if (!JS_GetProperty(cx, obj, "z", &z) || !FromJSVal(cx, z, out.positionZ))
+		FAIL("Failed to read Entity.z property");
 	if (!JS_GetProperty(cx, obj, "orientation", &orient) || !FromJSVal(cx, orient, out.orientationY))
 		FAIL("Failed to read Entity.orientation property");
 
@@ -178,11 +173,9 @@ template<> bool ScriptInterface::FromJSVal<CMapIO::STileDesc>(JSContext* cx, jsv
 	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
 		FAIL("Argument must be an object");
 
-	jsval texIdx1, texIdx2, priority;
-	if (!JS_GetProperty(cx, obj, "texIdx1", &texIdx1) || !FromJSVal(cx, texIdx1, out.m_Tex1Index))
+	jsval texIdx, priority;
+	if (!JS_GetProperty(cx, obj, "idx", &texIdx) || !FromJSVal(cx, texIdx, out.m_Tex1Index))
 		FAIL("Failed to read CMapIO::STileDesc.m_Tex1Index property");
-	if (!JS_GetProperty(cx, obj, "texIdx2", &texIdx2) || !FromJSVal(cx, texIdx2, out.m_Tex2Index))
-		FAIL("Failed to read CMapIO::STileDesc.m_Tex2Index property");
 	if (!JS_GetProperty(cx, obj, "priority", &priority) || !FromJSVal(cx, priority, out.m_Priority))
 		FAIL("Failed to read CMapIO::STileDesc.m_Priority property");
 	

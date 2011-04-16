@@ -1,15 +1,21 @@
+// Constants for using SmoothElevationPainter
 const ELEVATION_SET = 0;
 const ELEVATION_MODIFY = 1;
 
 /////////////////////////////////////////////////////////////////////////////
 //	ElevationPainter
+//
+//	Class for painting elevation over an area
+//
+//	elevation: Target elevation/height to be painted
+//
 /////////////////////////////////////////////////////////////////////////////
 	
 function ElevationPainter(elevation)
 {
 	this.elevation = elevation;
 	this.DX = [0, 1, 1, 0];
-	this.DY = [0, 0, 1, 1];
+	this.DZ = [0, 0, 1, 1];
 }
 
 ElevationPainter.prototype.paint = function(area)
@@ -23,13 +29,19 @@ ElevationPainter.prototype.paint = function(area)
 		
 		for (var j=0; j < 4; j++)
 		{
-			g_Map.height[pt.x+this.DX[j]][pt.y+this.DY[j]] = elevation;
+			g_Map.height[pt.x + this.DX[j]][pt.z + this.DZ[j]] = elevation;
 		}
 	}
 };
 
 /////////////////////////////////////////////////////////////////////////////
 //	LayeredPainter
+//
+//	Class for painting multiple layered terrains over an area
+//
+// 	terrainArray: Array of terrain painter objects
+//	widths: Array of widths for each layer
+//
 /////////////////////////////////////////////////////////////////////////////
 
 function LayeredPainter(terrainArray, widths)
@@ -39,7 +51,9 @@ function LayeredPainter(terrainArray, widths)
 	
 	this.terrains = [];
 	for (var i = 0; i < terrainArray.length; ++i)
+	{
 		this.terrains.push(createTerrain(terrainArray[i]));
+	}
 	
 	this.widths = widths;
 }
@@ -63,24 +77,25 @@ LayeredPainter.prototype.paint = function(area)
 	// push edge points
 	var pts = area.points;
 	var length = pts.length;
+	var areaID = area.getID();
 	
 	for (var i=0; i < length; i++)
 	{
 		var x = pts[i].x;
-		var y = pts[i].y;
+		var z = pts[i].z;
 		
 		for (var dx=-1; dx <= 1; dx++)
 		{
 			var nx = x+dx;
-			for (var dy=-1; dy <= 1; dy++)
+			for (var dz=-1; dz <= 1; dz++)
 			{
-				var ny = y+dy;
+				var nz = z+dz;
 				
-				if (g_Map.validT(nx, ny) && g_Map.area[nx][ny] != area && !saw[nx][ny])
+				if (g_Map.validT(nx, nz) && g_Map.area[nx][nz] != areaID && !saw[nx][nz])
 				{
-					saw[nx][ny] = 1;
-					dist[nx][ny] = 0;
-					pointQ.push(new Point(nx, ny));
+					saw[nx][nz] = 1;
+					dist[nx][nz] = 0;
+					pointQ.push(new PointXZ(nx, nz));
 				}
 			}
 		}
@@ -91,11 +106,11 @@ LayeredPainter.prototype.paint = function(area)
 	{
 		var pt = pointQ.shift();	// Pop queue
 		var px = pt.x;
-		var py = pt.y;
-		var d = dist[px][py];
+		var pz = pt.z;
+		var d = dist[px][pz];
 
 		// paint if in area
-		if (g_Map.area[px][py] == area)
+		if (g_Map.area[px][pz] == areaID)
 		{
 			var w=0;
 			var i=0;
@@ -108,22 +123,22 @@ LayeredPainter.prototype.paint = function(area)
 					break;
 				}
 			}
-			this.terrains[i].place(px, py);
+			this.terrains[i].place(px, pz);
 		}
 
 		// enqueue neighbours
 		for (var dx=-1; dx<=1; dx++)
 		{
 			var nx = px+dx;
-			for (var dy=-1; dy<=1; dy++)
+			for (var dz=-1; dz<=1; dz++)
 			{
-				var ny = py+dy;
+				var nz = pz+dz;
 				
-				if (g_Map.validT(nx, ny) && g_Map.area[nx][ny] == area && !saw[nx][ny])
+				if (g_Map.validT(nx, nz) && g_Map.area[nx][nz] == areaID && !saw[nx][nz])
 				{
-					saw[nx][ny] = 1;
-					dist[nx][ny] = d+1;
-					pointQ.push(new Point(nx, ny));
+					saw[nx][nz] = 1;
+					dist[nx][nz] = d+1;
+					pointQ.push(new PointXZ(nx, nz));
 				}
 			}
 		}
@@ -132,6 +147,11 @@ LayeredPainter.prototype.paint = function(area)
 
 /////////////////////////////////////////////////////////////////////////////
 //	MultiPainter
+//
+//	Class for applying multiple painters over an area
+//
+//	painters: Array of painter objects
+//
 /////////////////////////////////////////////////////////////////////////////
 	
 function MultiPainter(painters)
@@ -149,6 +169,15 @@ MultiPainter.prototype.paint = function(area)
 
 /////////////////////////////////////////////////////////////////////////////
 //	SmoothElevationPainter
+//
+//	Class for painting elevation smoothly over an area
+//
+//	type: Type of elevation modification
+//			ELEVATION_MODIFY = relative
+//			ELEVATION_SET = absolute
+//	elevation: Target elevation/height of area
+//	blendRadius: How steep the elevation change is
+//
 /////////////////////////////////////////////////////////////////////////////
 
 function SmoothElevationPainter(type, elevation, blendRadius)
@@ -161,16 +190,9 @@ function SmoothElevationPainter(type, elevation, blendRadius)
 		error("SmoothElevationPainter: invalid type '"+type+"'");
 }
 
-SmoothElevationPainter.prototype.checkInArea = function(area, x, y)
+SmoothElevationPainter.prototype.checkInArea = function(areaID, x, z)
 {
-	if (g_Map.validT(x, y))
-	{
-		return (g_Map.area[x][y] == area);
-	}
-	else
-	{
-		return false;
-	}
+	return (g_Map.validT(x, z) && g_Map.area[x][z] == areaID);
 };
 
 SmoothElevationPainter.prototype.paint = function(area)
@@ -196,25 +218,26 @@ SmoothElevationPainter.prototype.paint = function(area)
 	}
 	
 	var length = pts.length;
+	var areaID = area.getID();
 	
 	// get a list of all points
 	for (var i=0; i < length; i++)
 	{
 		var x = pts[i].x;
-		var y = pts[i].y;
+		var z = pts[i].z;
 		
 		for (var dx=-1; dx <= 2; dx++)
 		{
 			var nx = x+dx;
-			for (var dy=-1; dy <= 2; dy++)
+			for (var dz=-1; dz <= 2; dz++)
 			{
-				var ny = y+dy;
+				var nz = z+dz;
 				
-				if (g_Map.validH(nx, ny) && !gotHeightPt[nx][ny])
+				if (g_Map.validH(nx, nz) && !gotHeightPt[nx][nz])
 				{
-					gotHeightPt[nx][ny] = 1;
-					heightPts.push(new Point(nx, ny));
-					newHeight[nx][ny] = g_Map.height[nx][ny];
+					gotHeightPt[nx][nz] = 1;
+					heightPts.push(new PointXZ(nx, nz));
+					newHeight[nx][nz] = g_Map.height[nx][nz];
 				}
 			}
 		}
@@ -223,24 +246,25 @@ SmoothElevationPainter.prototype.paint = function(area)
 	// push edge points
 	for (var i=0; i < length; i++)
 	{
-		var x = pts[i].x, y = pts[i].y;
+		var x = pts[i].x;
+		var z = pts[i].z;
 		for (var dx=-1; dx <= 2; dx++)
 		{
 			var nx = x+dx;
-			for (var dy=-1; dy <= 2; dy++)
+			for (var dz=-1; dz <= 2; dz++)
 			{
-				var ny = y+dy;
+				var nz = z+dz;
 				
-				if (g_Map.validH(nx, ny) 
-					&& !this.checkInArea(area, nx, ny)
-					&& !this.checkInArea(area, nx-1, ny)
-					&& !this.checkInArea(area, nx, ny-1)
-					&& !this.checkInArea(area, nx-1, ny-1)
-					&& !saw[nx][ny])
+				if (g_Map.validH(nx, nz) 
+					&& !this.checkInArea(areaID, nx, nz)
+					&& !this.checkInArea(areaID, nx-1, nz)
+					&& !this.checkInArea(areaID, nx, nz-1)
+					&& !this.checkInArea(areaID, nx-1, nz-1)
+					&& !saw[nx][nz])
 				{
-					saw[nx][ny]= 1;
-					dist[nx][ny] = 0;
-					pointQ.push(new Point(nx, ny));
+					saw[nx][nz]= 1;
+					dist[nx][nz] = 0;
+					pointQ.push(new PointXZ(nx, nz));
 				}
 			}
 		}
@@ -251,35 +275,35 @@ SmoothElevationPainter.prototype.paint = function(area)
 	{
 		var pt = pointQ.shift();
 		var px = pt.x;
-		var py = pt.y;
-		var d = dist[px][py];
+		var pz = pt.z;
+		var d = dist[px][pz];
 
 		// paint if in area
-		if (g_Map.validH(px, py)
-			&& (this.checkInArea(area, px, py) || this.checkInArea(area, px-1, py) 
-			|| this.checkInArea(area, px, py-1) || this.checkInArea(area, px-1, py-1)))
+		if (g_Map.validH(px, pz)
+			&& (this.checkInArea(areaID, px, pz) || this.checkInArea(areaID, px-1, pz) 
+			|| this.checkInArea(areaID, px, pz-1) || this.checkInArea(areaID, px-1, pz-1)))
 		{
 			if (d <= this.blendRadius)
 			{
 				var a = (d-1) / this.blendRadius;
 				if (this.type == ELEVATION_SET)
 				{
-					newHeight[px][py] = a*this.elevation + (1-a)*g_Map.height[px][py];
+					newHeight[px][pz] = a*this.elevation + (1-a)*g_Map.height[px][pz];
 				}
 				else
 				{	// type == MODIFY
-					newHeight[px][py] += a*this.elevation;
+					newHeight[px][pz] += a*this.elevation;
 				}
 			}
 			else
 			{	// also happens when blendRadius == 0
 				if (this.type == ELEVATION_SET)
 				{
-					newHeight[px][py] = this.elevation;
+					newHeight[px][pz] = this.elevation;
 				}
 				else
 				{	// type == MODIFY
-					newHeight[px][py] += this.elevation;
+					newHeight[px][pz] += this.elevation;
 				}
 			}
 		}
@@ -288,18 +312,18 @@ SmoothElevationPainter.prototype.paint = function(area)
 		for (var dx=-1; dx <= 1; dx++)
 		{
 			var nx = px+dx;
-			for (var dy=-1; dy <= 1; dy++)
+			for (var dz=-1; dz <= 1; dz++)
 			{
-				var ny = py+dy;
+				var nz = pz+dz;
 				
-				if (g_Map.validH(nx, ny) 
-					&& (this.checkInArea(area, nx, ny) || this.checkInArea(area, nx-1, ny) 
-						|| this.checkInArea(area, nx, ny-1) || this.checkInArea(area, nx-1, ny-1))
-					&& !saw[nx][ny])
+				if (g_Map.validH(nx, nz) 
+					&& (this.checkInArea(areaID, nx, nz) || this.checkInArea(areaID, nx-1, nz) 
+						|| this.checkInArea(areaID, nx, nz-1) || this.checkInArea(areaID, nx-1, nz-1))
+					&& !saw[nx][nz])
 				{
-					saw[nx][ny] = 1;
-					dist[nx][ny] = d+1;
-					pointQ.push(new Point(nx, ny));
+					saw[nx][nz] = 1;
+					dist[nx][nz] = d+1;
+					pointQ.push(new PointXZ(nx, nz));
 				}
 			}
 		}
@@ -312,36 +336,41 @@ SmoothElevationPainter.prototype.paint = function(area)
 	{
 		var pt = heightPts[i];
 		var px = pt.x;
-		var py = pt.y;
+		var pz = pt.z;
 		
-		if ((this.checkInArea(area, px, py) || this.checkInArea(area, px-1, py) 
-			|| this.checkInArea(area, px, py-1) || this.checkInArea(area, px-1, py-1)))
+		if ((this.checkInArea(areaID, px, pz) || this.checkInArea(areaID, px-1, pz) 
+			|| this.checkInArea(areaID, px, pz-1) || this.checkInArea(areaID, px-1, pz-1)))
 		{
-			var sum = 8 * newHeight[px][py];
+			var sum = 8 * newHeight[px][pz];
 			var count = 8;
 			
 			for (var dx=-1; dx <= 1; dx++)
 			{
 				var nx = px+dx;
-				for (var dy=-1; dy <= 1; dy++)
+				for (var dz=-1; dz <= 1; dz++)
 				{
-					var ny = py+dy;
+					var nz = pz+dz;
 					
-					if (g_Map.validH(nx, ny))
+					if (g_Map.validH(nx, nz))
 					{
-						sum += newHeight[nx][ny];
+						sum += newHeight[nx][nz];
 						count++;
 					}
 				}
 			}
 			
-			g_Map.height[px][py] = sum/count;
+			g_Map.height[px][pz] = sum/count;
 		}
 	}
 };
 
 /////////////////////////////////////////////////////////////////////////////
 //	TerrainPainter
+//
+//	Class for painting a terrain over an area
+//
+//	terrain: Terrain placer object
+//
 /////////////////////////////////////////////////////////////////////////////
 
 function TerrainPainter(terrain)
@@ -355,12 +384,17 @@ TerrainPainter.prototype.paint = function(area)
 	for (var i=0; i < length; i++)
 	{
 		var pt = area.points[i];
-		this.terrain.place(pt.x, pt.y);
+		this.terrain.place(pt.x, pt.z);
 	}
 };
 
 /////////////////////////////////////////////////////////////////////////////
 //	TileClassPainter
+//
+//	Class for painting tileClasses over an area
+//
+//	tileClass: TileClass object
+//
 /////////////////////////////////////////////////////////////////////////////
 
 function TileClassPainter(tileClass)
@@ -374,6 +408,6 @@ TileClassPainter.prototype.paint = function(area)
 	for (var i=0; i < length; i++)
 	{
 		var pt = area.points[i];
-		this.tileClass.add(pt.x, pt.y);
+		this.tileClass.add(pt.x, pt.z);
 	}
 };

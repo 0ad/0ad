@@ -970,7 +970,7 @@ bool Autostart(const CmdLineArgs& args)
 	 * -autostart-client				-- multiplayer client mode
 	 * -autostart-ip=127.0.0.1			-- multiplayer connect to 127.0.0.1
 	 * -autostart-random=104			-- random map, optional seed value = 104 (default is 0, random is -1)
-	 * -autostart-size=12				-- random map size in patches = 12 (default is 12)
+	 * -autostart-size=192				-- random map size in tiles = 192 (default is 192)
 	 *
 	 * Examples:
 	 * -autostart=Acropolis -autostart-host -autostart-players=2		-- Host game on Acropolis map, 2 players
@@ -1030,8 +1030,8 @@ bool Autostart(const CmdLineArgs& args)
 			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
 		}
 
-		// Get optional map size argument (default 12)
-		uint mapSize = 12;
+		// Get optional map size argument (default 192)
+		uint mapSize = 192;
 		if (args.Has("autostart-size"))
 		{
 			CStr size = args.Get("autostart-size");

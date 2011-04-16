@@ -395,10 +395,10 @@ function init(window)
 	boxSizer.add(10, 0);
 	// TODO: Get this data from single location (currently specified here, Atlas\lists.xml, and game setup)
 	var sizeNames = ["Tiny", "Small", "Medium", "Normal", "Large", "Very Large", "Giant"];
-	var sizePatches = [8, 12, 16, 20, 24, 28, 32];
+	var sizeTiles = [128, 192, 256, 320, 384, 448, 512];
 	var sizeChoice = new wxChoice(rmsPanel, -1, wxDefaultPosition, wxDefaultSize, sizeNames);
 	var numChoices = sizeNames.length;
-	sizeChoice.toolTip = 'Select the desired map size\n'+sizeNames[0]+' = '+sizePatches[0]+' patches, '+sizeNames[numChoices-1]+' = '+sizePatches[numChoices-1]+' patches';
+	sizeChoice.toolTip = 'Select the desired map size\n'+sizeNames[0]+' = '+sizeTiles[0]+' patches, '+sizeNames[numChoices-1]+' = '+sizeTiles[numChoices-1]+' patches';
 	sizeChoice.selection = 0;
 	boxSizer.add(sizeChoice, 1);
 	rmsSizer.add(boxSizer, 0, wxStretch.EXPAND | wxDirection.ALL, 2);
@@ -430,18 +430,14 @@ function init(window)
 						terrainArray.push(RMSData.BaseTerrain);
 					}
 					
-					// Stringify player data
-					var pDataStr = JSON.stringify(Atlas.State.mapSettings.settings.PlayerData);
+					// Complete map settings
+					Atlas.State.mapSettings.settings.Seed = Atlas.State.Seed ? Atlas.State.Seed : 0;
+					Atlas.State.mapSettings.settings.Size = sizeTiles[sizeChoice.selection];
+					Atlas.State.mapSettings.settings.BaseTerrain = terrainArray;
+					Atlas.State.mapSettings.settings.BaseHeight = RMSData.BaseHeight;
 					
 					// Generate map
-					var ret = Atlas.Message.GenerateMap(
-						RMSData.Script,
-						sizePatches[sizeChoice.selection],
-						Atlas.State.Seed ? Atlas.State.Seed : 0,
-						terrainArray,
-						RMSData.BaseHeight,
-						pDataStr
-					);
+					var ret = Atlas.Message.GenerateMap(RMSData.Script, JSON.stringify(Atlas.State.mapSettings.settings));
 					
 					// Check for error
 					if (ret.status < 0)

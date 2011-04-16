@@ -1,5 +1,8 @@
 //////////////////////////////////////////////////////////////////////
 //	RangeOp
+//
+//	Class for efficiently finding number of points within a range
+//
 //////////////////////////////////////////////////////////////////////
 
 function RangeOp(size)
@@ -60,6 +63,10 @@ RangeOp.prototype.get = function(start, end)
 
 //////////////////////////////////////////////////////////////////////
 //	TileClass
+//
+//	Class for representing terrain types and containing all the tiles
+//		within that type
+//
 //////////////////////////////////////////////////////////////////////
 
 function TileClass(size, id)
@@ -76,22 +83,22 @@ function TileClass(size, id)
 	}
 }
 
-TileClass.prototype.add = function(x, y)
+TileClass.prototype.add = function(x, z)
 {
-	if (!this.inclusionCount[x][y])
+	if (!this.inclusionCount[x][z])
 	{
-		this.rangeCount[y].add(x, 1);
+		this.rangeCount[z].add(x, 1);
 	}
 	
-	this.inclusionCount[x][y]++;
+	this.inclusionCount[x][z]++;
 };
 
-TileClass.prototype.remove = function(x, y)
+TileClass.prototype.remove = function(x, z)
 {
-	this.inclusionCount[x][y]--;
-	if(!this.inclusionCount[x][y])
+	this.inclusionCount[x][z]--;
+	if(!this.inclusionCount[x][z])
 	{
-		this.rangeCount[y].add(x, -1);
+		this.rangeCount[z].add(x, -1);
 	}
 };
 

@@ -76,19 +76,19 @@ for (var i=0; i < numPlayers; i++)
 	
 	// get the x and y in tiles
 	var fx = fractionToTiles(playerX[i]);
-	var fy = fractionToTiles(playerY[i]);
+	var fz = fractionToTiles(playerY[i]);
 	var ix = round(fx);
-	var iy = round(fy);
+	var iz = round(fz);
 
 	// calculate size based on the radius
 	var size = PI * radius * radius;
 	
 	// create the player area
-	var placer = new ClumpPlacer(size, 0.9, 0.5, 0, ix, iy);
+	var placer = new ClumpPlacer(size, 0.9, 0.5, 0, ix, iz);
 	createArea(placer, paintClass(clPlayer), null);
 	
 	// create the central road patch
-	placer = new ClumpPlacer(PI*2*2, 0.6, 0.3, 0.5, ix, iy);
+	placer = new ClumpPlacer(PI*2*2, 0.6, 0.3, 0.5, ix, iz);
 	var painter = new TerrainPainter(tDirt);
 	createArea(placer, painter, null);
 	
@@ -99,7 +99,7 @@ for (var i=0; i < numPlayers; i++)
 			new SimpleObject("structures/"+civ+"_civil_centre", 1,1, 0,0),
 			new SimpleObject("units/"+civ+"_support_female_citizen", 3,3, 5,5)
 		],
-		true, null,	ix, iy
+		true, null,	ix, iz
 	);
 	createObjectGroup(group, i+1);
 	
@@ -107,7 +107,7 @@ for (var i=0; i < numPlayers; i++)
 	var bbAngle = randFloat()*2*PI;
 	var bbDist = 10;
 	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbY = round(fy + bbDist * sin(bbAngle));
+	var bbY = round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oSheep, 5,5, 0,2)],
 		true, clBaseResource,	bbX, bbY
@@ -121,18 +121,18 @@ for (var i=0; i < numPlayers; i++)
 	}
 	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
-	var mY = round(fy + mDist * sin(mAngle));
+	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStone, 2,2, 0,3),
 		new SimpleObject(oMetal, 2,2, 0,3)],
-		true, clBaseResource,	mX, mY
+		true, clBaseResource,	mX, mZ
 	);
 	createObjectGroup(group, 0);
 	
 	// create starting straggler trees
 	group = new SimpleGroup(
 		[new SimpleObject(oTree, 2,2, 6,12)],
-		true, null,	ix, iy
+		true, null,	ix, iz
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,1));
 }

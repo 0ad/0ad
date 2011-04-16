@@ -16,6 +16,9 @@ function modPos(num, m)
 
 /////////////////////////////////////////////////////////////////////
 //	Noise2D
+//
+//	Class representing 2D noise with a given base frequency
+//
 /////////////////////////////////////////////////////////////////////
 
 function Noise2D(freq)
@@ -31,7 +34,7 @@ function Noise2D(freq)
 		{
 			var a = randFloat() * 2 * PI;
 			
-			this.grads[i][j] = new Vector2D(cos(a), sin(a));
+			this.grads[i][j] = new Vector2D(Math.cos(a), Math.sin(a));
 		}
 	}
 }
@@ -64,6 +67,9 @@ Noise2D.prototype.get = function(x, y)
 
 /////////////////////////////////////////////////////////////////////
 //	Noise3D
+//
+//	Class representing 3D noise with given base frequencies
+//
 /////////////////////////////////////////////////////////////////////
 
 function Noise3D(freq, vfreq)

@@ -1,9 +1,12 @@
 /////////////////////////////////////////////////////////////////////
 //	Vector2D
+//
+//	Class for representing and manipulating 2D vectors
+//
 /////////////////////////////////////////////////////////////////////
 
 // TODO: Type errors if v not instanceof Vector classes
-// TODO: Possible implement in C++
+// TODO: Possibly implement in C++
 
 function Vector2D(x, y)
 {
@@ -68,13 +71,16 @@ Vector2D.prototype.normalize = function()
 
 /////////////////////////////////////////////////////////////////////
 //	Vector3D
+//
+//	Class for representing and manipulating 3D vectors
+//
 /////////////////////////////////////////////////////////////////////
 
 function Vector3D(x, y, z)
 {
 	if (arguments.length == 3)
 	{
-		this.set(x, y, z);
+		this.set(x, y, y);
 	}
 	else
 	{

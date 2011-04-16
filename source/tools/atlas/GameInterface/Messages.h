@@ -133,14 +133,10 @@ MESSAGE(ResizeScreen,
 // Messages for map panel
 
 QUERY(GenerateMap,
-		((std::wstring, script))				// name of script
-		((int, size))							// size in number of patches
-		((int, seed))							// seed for rng
-		((std::vector<std::wstring>, terrain))	// base terrain(s)
-		((int, height))							// base height
-		((std::string, playerData))				// JSON player data
+		((std::wstring, filename))				// random map script filename
+		((std::string, settings))				// map settings as JSON string
 		,
-		((int, status))							// Status code, 0 for success, or < 0 for failure
+		((int, status))
 		);
 
 MESSAGE(LoadMap,

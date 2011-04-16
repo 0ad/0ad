@@ -2,7 +2,7 @@
 // Constants
 // TODO: Move some of these into common location (other scripts may need)
 const MAP_SIZES_TEXT = ["Tiny (2 player)", "Small (3 player)", "Medium (4 player)", "Normal (6 player)", "Large (8 player)", "Very Large", "Giant"];
-const MAP_SIZES_DATA = [8, 12, 16, 20, 24, 28, 32];
+const MAP_SIZES_DATA = [128, 192, 256, 320, 384, 448, 512];
 
 // Max number of players for any map
 const MAX_PLAYERS = 8;
@@ -28,7 +28,7 @@ var g_GameAttributes = {
 	map: "",
 	mapPath: "",
 	settings: {
-		Size: 12,
+		Size: 192,
 		Seed: 0,
 		BaseTerrain: "grass1_spring",
 		BaseHeight: 0,

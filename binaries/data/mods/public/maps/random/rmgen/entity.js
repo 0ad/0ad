@@ -1,22 +1,26 @@
-function Entity(name, player, x, y, angle)
+/////////////////////////////////////////////////////////////////////////////////////////
+//	Entity
+//
+//	Object for holding entity data
+//	TODO: support y position or offset (height) and full 3D rotation
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function Entity(name, player, x, z, orientation)
 {
 	// Get unique ID
 	this.id = g_Map.getEntityID();
 	this.name = name;
 	
-	// Convert from tile coords to map coords
-	this.x = x;
-	this.y = y;
+	// Tile units
+	this.tileX = x;
+	this.tileZ = z;
 	
-	if (player !== undefined)
-	{
-		this.player = player;
-		this.isActor = false;
-	}
-	else
-	{	// Actors  have no player ID
-		this.isActor = true;
-	}
+	// Map units (4.0 map units per 1.0 tile)
+	this.x = x * 4.0;
+	this.y = 0;
+	this.z = z * 4.0;
 	
-	this.orientation = (angle !== undefined ? angle : 0);
+	this.player = (player !== undefined ? player : 0);	
+	this.orientation = (orientation !== undefined ? orientation : 0);
 }

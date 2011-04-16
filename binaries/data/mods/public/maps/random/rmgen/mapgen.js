@@ -46,7 +46,7 @@ function InitMap()
 	//		until SpiderMonkey gets upgraded
 	g_MapSettings.Size = Math.floor(g_MapSettings.Size);
 	
-	g_Map = new Map(g_MapSettings.Size * TILES_PER_PATCH, g_MapSettings.BaseHeight);
+	g_Map = new Map(g_MapSettings.Size, g_MapSettings.BaseHeight);
 	g_Map.initTerrain(terrain);
 }
 
@@ -60,6 +60,9 @@ function ExportMap()
 	// Add environment and camera settings
 	g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
 	data.Environment = g_Environment;
+	
+	// Adjust default cam to roughly center of the map - useful for Atlas
+	g_Camera.Position = {x: g_MapSettings.Size*2, y: g_MapSettings.Size*2, z: -g_MapSettings.Size*2};
 	data.Camera = g_Camera;
 	
 	RMS.ExportMap(data);

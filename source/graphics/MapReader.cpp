@@ -252,9 +252,8 @@ int CMapReader::ApplyData()
 {
 	if (m_PatchesPerSide == 0)
 	{
-		debug_warn(L"Map has no terrain data");
-		return -1;
 		// we'll probably crash when trying to use this map later
+		throw PSERROR_Game_World_MapLoadFailed("Error loading map: no terrain data.\nCheck application log for details.");
 	}
 
 	if (!only_xml)
@@ -1128,7 +1127,7 @@ int CMapReader::ParseTerrain()
 		{	LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);\
 			throw PSERROR_Game_World_MapLoadFailed("Error parsing terrain data.\nCheck application log for details"); }
 
-	int size;
+	size_t size;
 	GET_TERRAIN_PROPERTY(size, size)
 
 	m_PatchesPerSide = size / PATCH_SIZE;
@@ -1153,12 +1152,24 @@ int CMapReader::ParseTerrain()
 	// build tile data
 	m_Tiles.resize(SQR(size));
 
+	// flat array of tile descriptors
 	std::vector<CMapIO::STileDesc> tileData;
 	GET_TERRAIN_PROPERTY(tileData, tileData)
 
-	for (size_t i = 0; i < tileData.size(); ++i)
+	debug_assert(SQR(size) == tileData.size());
+
+	// reorder by patches and store
+	for (size_t x = 0; x < size; ++x)
 	{
-		m_Tiles[i] = tileData[i];
+		size_t patchX = x / PATCH_SIZE;
+		size_t offX = x % PATCH_SIZE;
+		for (size_t y = 0; y < size; ++y)
+		{
+			size_t patchY = y / PATCH_SIZE;
+			size_t offY = y % PATCH_SIZE;
+			
+			m_Tiles[(patchY * m_PatchesPerSide + patchX) * SQR(PATCH_SIZE) + (offY * PATCH_SIZE + offX)] = tileData[y*size + x];
+		}
 	}
 
 	// reset generator state

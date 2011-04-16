@@ -45,7 +45,7 @@ private:
 	size_t m_BaseHeight;
 
 	wxArrayString m_SizeArray;
-	std::vector<size_t> m_PatchesArray;
+	std::vector<size_t> m_TilesArray;
 
 };
 

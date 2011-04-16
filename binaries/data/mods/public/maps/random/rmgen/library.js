@@ -9,8 +9,6 @@ const SEA_LEVEL = 20.0;
 
 const TERRAIN_SEPARATOR = "|";
 
-const TILES_PER_PATCH = 16;
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 //	Utility functions
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,14 +77,14 @@ function floor(x)
 	return Math.floor(x);
 }
 
-function max(x, y)
+function max(a, b)
 {
-	return x > y ? x : y;
+	return a > b ? a : b;
 }
 
-function min(x, y)
+function min(a, b)
 {
-	return x < y ? x : y;
+	return a < b ? a : b;
 }
 
 function println(x)
@@ -143,14 +141,14 @@ function createAreas(centeredPlacer, painter, constraint, num, retryFactor)
 			var r = halfSize * Math.sqrt(randFloat());	// uniform distribution
 			var theta = randFloat(0, 2 * PI);
 			centeredPlacer.x = Math.floor(r * Math.cos(theta)) + halfSize;
-			centeredPlacer.y = Math.floor(r * Math.sin(theta)) + halfSize;
+			centeredPlacer.z = Math.floor(r * Math.sin(theta)) + halfSize;
 		}
 		else
 		{	// Rectangular coordinates
 			centeredPlacer.x = randInt(getMapSize());
-			centeredPlacer.y = randInt(getMapSize());
+			centeredPlacer.z = randInt(getMapSize());
 		}
-			
+		
 		var area = g_Map.createArea(centeredPlacer, painter, constraint);
 		if (area !== undefined)
 		{
@@ -183,12 +181,12 @@ function createObjectGroups(placer, player, constraint, num, retryFactor)
 			var r = halfSize * Math.sqrt(randFloat());	// uniform distribution
 			var theta = randFloat(0, 2 * PI);
 			placer.x = Math.floor(r * Math.cos(theta)) + halfSize;
-			placer.y = Math.floor(r * Math.sin(theta)) + halfSize;
+			placer.z = Math.floor(r * Math.sin(theta)) + halfSize;
 		}
 		else
 		{	// Rectangular coordinates
 			placer.x = randInt(getMapSize());
-			placer.y = randInt(getMapSize());
+			placer.z = randInt(getMapSize());
 		}
 		
 		var result = createObjectGroup(placer, player, constraint);
@@ -245,15 +243,15 @@ function createSimpleTerrain(terrain)
 	}
 }
 
-function placeObject(x, y, type, player, angle)
+function placeObject(x, z, type, player, angle)
 {
-	g_Map.addObjects(new Entity(type, player, x, y, angle));
+	g_Map.addObjects(new Entity(type, player, x, z, angle));
 }
 
-function placeTerrain(x, y, terrain)
+function placeTerrain(x, z, terrain)
 {
 	// convert terrain param into terrain object
-	g_Map.placeTerrain(x, y, createTerrain(terrain));
+	g_Map.placeTerrain(x, z, createTerrain(terrain));
 	
 }
 
@@ -312,14 +310,14 @@ function getCivCode(player)
 	return g_MapSettings.PlayerData[player].Civ;
 }
 
-function getHeight(x, y)
+function getHeight(x, z)
 {
-	return g_Map.getHeight(x, y);
+	return g_Map.getHeight(x, z);
 }
 
-function setHeight(x, y, height)
+function setHeight(x, z, height)
 {
-	g_Map.setHeight(x, y, height);
+	g_Map.setHeight(x, z, height);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -328,13 +326,13 @@ function setHeight(x, y, height)
 
 
 // Add point to given class by id
-function addToClass(x, y, id)
+function addToClass(x, z, id)
 {
 	var tileClass = getTileClass(id);
 	
 	if (tileClass !== null)
 	{
-		tileClass.add(x, y);
+		tileClass.add(x, z);
 	}
 }
 

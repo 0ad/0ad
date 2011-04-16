@@ -60,7 +60,7 @@ var clSettlement = createTileClass();
 // place players
 
 var playerX = new Array(numPlayers+1);
-var playerY = new Array(numPlayers+1);
+var playerZ = new Array(numPlayers+1);
 var playerAngle = new Array(numPlayers+1);
 
 var startAngle = randFloat() * 2 * PI;
@@ -68,7 +68,7 @@ for (var i=1; i<=numPlayers; i++)
 {
 	playerAngle[i] = startAngle + i*2*PI/numPlayers;
 	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerY[i] = 0.5 + 0.35*sin(playerAngle[i]);
+	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
 }
 
 for (var i=1; i<=numPlayers; i++)
@@ -82,15 +82,15 @@ for (var i=1; i<=numPlayers; i++)
 	
 	// get the x and y in tiles
 	var fx = fractionToTiles(playerX[i]);
-	var fy = fractionToTiles(playerY[i]);
+	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
-	var iy = round(fy);
+	var iz = round(fz);
 
 	// calculate size based on the radius
 	var size = PI * radius * radius;
 	
 	// create the hill
-	var placer = new ClumpPlacer(size, 0.95, 0.6, 0, ix, iy);
+	var placer = new ClumpPlacer(size, 0.95, 0.6, 0, ix, iz);
 	var terrainPainter = new LayeredPainter(
 		[tCliff, tGrass],		// terrains
 		[cliffRadius]		// widths
@@ -106,16 +106,16 @@ for (var i=1; i<=numPlayers; i++)
 	var rampAngle = playerAngle[i] + PI + (2*randFloat()-1)*PI/8;
 	var rampDist = radius;
 	var rampX = round(fx + rampDist * cos(rampAngle));
-	var rampY = round(fy + rampDist * sin(rampAngle));
-	placer = new ClumpPlacer(100, 0.9, 0.5, 0, rampX, rampY);
+	var rampZ = round(fz + rampDist * sin(rampAngle));
+	placer = new ClumpPlacer(100, 0.9, 0.5, 0, rampX, rampZ);
 	var painter = new SmoothElevationPainter(ELEVATION_SET, elevation-6, 5);
 	createArea(placer, painter, null);
-	placer = new ClumpPlacer(75, 0.9, 0.5, 0, rampX, rampY);
+	placer = new ClumpPlacer(75, 0.9, 0.5, 0, rampX, rampZ);
 	painter = new TerrainPainter(tGrass);
 	createArea(placer, painter, null);
 	
 	// create the central dirt patch
-	placer = new ClumpPlacer(PI*3.5*3.5, 0.3, 0.1, 0, ix, iy);
+	placer = new ClumpPlacer(PI*3.5*3.5, 0.3, 0.1, 0, ix, iz);
 	painter = new LayeredPainter(
 		[tGrassDirt75, tGrassDirt50, tGrassDirt25, tDirt],		// terrains
 		[1,1,1]									// widths
@@ -126,7 +126,7 @@ for (var i=1; i<=numPlayers; i++)
 	var civ = getCivCode(i - 1);
 	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
 		[new SimpleObject("structures/"+civ+"_civil_centre", 1,1, 0,0), new SimpleObject("units/"+civ+"_support_female_citizen", 3,3, 5,5)],
-		true, null, ix, iy
+		true, null, ix, iz
 	);
 	createObjectGroup(group, i);
 	
@@ -134,10 +134,10 @@ for (var i=1; i<=numPlayers; i++)
 	var bbAngle = randFloat()*2*PI;
 	var bbDist = 9;
 	var bbX = round(fx + bbDist * cos(bbAngle));
-	var bbY = round(fy + bbDist * sin(bbAngle));
+	var bbZ = round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,2)],
-		true, clBaseResource, bbX, bbY
+		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
 	
@@ -149,18 +149,18 @@ for (var i=1; i<=numPlayers; i++)
 	}
 	var mDist = 9;
 	var mX = round(fx + mDist * cos(mAngle));
-	var mY = round(fy + mDist * sin(mAngle));
+	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStone, 2,2, 0,3),
 		new SimpleObject(oMetal, 2,2, 0,3)],
-		true, clBaseResource, mX, mY
+		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
 	
 	// create starting straggler trees
 	group = new SimpleGroup(
 		[new SimpleObject(oTree, 3,3, 8,12)],
-		true, clBaseResource, ix, iy
+		true, clBaseResource, ix, iz
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 	
@@ -170,10 +170,10 @@ for (var i=1; i<=numPlayers; i++)
 		var gAngle = randFloat()*2*PI;
 		var gDist = 6 + randInt(9);
 		var gX = round(fx + gDist * cos(gAngle));
-		var gY = round(fy + gDist * sin(gAngle));
+		var gZ = round(fz + gDist * sin(gAngle));
 		group = new SimpleGroup(
 			[new SimpleObject(aGrassShort, 3,6, 0,1, -PI/8,PI/8)],
-			false, clBaseResource, gX, gY
+			false, clBaseResource, gX, gZ
 		);
 		createObjectGroup(group, undefined);
 	}

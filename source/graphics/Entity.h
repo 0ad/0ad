@@ -27,7 +27,6 @@ struct Entity
 	float positionX;
 	float positionZ;
 	float orientationY;
-	bool isActor;
 };
 
 

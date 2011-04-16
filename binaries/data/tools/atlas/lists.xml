@@ -57,13 +57,13 @@
   </playercolours>
   
   <mapsizes>
-	<size name="Tiny" patches="8"/>
-	<size name="Small" patches="12"/>
-	<size name="Medium" patches="16"/>
-	<size name="Normal" patches="20"/>
-	<size name="Large" patches="24"/>
-	<size name="Very Large" patches="28"/>
-	<size name="Giant" patches="32"/>
+	<size name="Tiny" tiles="128"/>
+	<size name="Small" tiles="192"/>
+	<size name="Medium" tiles="256"/>
+	<size name="Normal" tiles="320"/>
+	<size name="Large" tiles="384"/>
+	<size name="Very Large" tiles="448"/>
+	<size name="Giant" tiles="512"/>
   </mapsizes>
 
 </lists>

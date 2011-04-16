@@ -90,18 +90,18 @@ var clSettlement = createTileClass();
 log("Placing players...");
 
 var playerX = new Array(numPlayers+1);
-var playerY = new Array(numPlayers+1);
+var playerZ = new Array(numPlayers+1);
 
 var numLeftPlayers = ceil(numPlayers/2);
 for (var i=1; i <= numLeftPlayers; i++)
 {
 	playerX[i] = 0.28 + (2*randFloat()-1)*0.01;
-	playerY[i] = (0.5+i-1)/numLeftPlayers + (2*randFloat()-1)*0.01;
+	playerZ[i] = (0.5+i-1)/numLeftPlayers + (2*randFloat()-1)*0.01;
 }
 for (var i=numLeftPlayers+1; i <= numPlayers; i++)
 {
 	playerX[i] = 0.72 + (2*randFloat()-1)*0.01;
-	playerY[i] = (0.5+i-numLeftPlayers-1)/numLeftPlayers + (2*randFloat()-1)*0.01;
+	playerZ[i] = (0.5+i-numLeftPlayers-1)/numLeftPlayers + (2*randFloat()-1)*0.01;
 }
 
 for (var i=1; i <= numPlayers; i++)
@@ -110,16 +110,16 @@ for (var i=1; i <= numPlayers; i++)
 	
 	// get fractional locations in tiles
 	var ix = round(fractionToTiles(playerX[i]));
-	var iy = round(fractionToTiles(playerY[i]));
-	addToClass(ix, iy, clPlayer);
+	var iz = round(fractionToTiles(playerZ[i]));
+	addToClass(ix, iz, clPlayer);
 	
 	// create TC and starting units
 	// TODO: Get civ specific starting units
 	var civ = getCivCode(i - 1);
-	placeObject(ix, iy, "structures/"+civ + "_civil_centre", i, PI*3/4);
+	placeObject(ix, iz, "structures/"+civ + "_civil_centre", i, PI*3/4);
 	var group = new SimpleGroup(
 		[new SimpleObject("units/"+civ+"_support_female_citizen", 3,3, 5,5)],
-		true, null,	ix, iy
+		true, null,	ix, iz
 	);
 	createObjectGroup(group, i);
 	
@@ -127,10 +127,10 @@ for (var i=1; i <= numPlayers; i++)
 	var bbAngle = randFloat()*2*PI;
 	var bbDist = 9;
 	var bbX = round(ix + bbDist * cos(bbAngle));
-	var bbY = round(iy + bbDist * sin(bbAngle));
+	var bbZ = round(iz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5,5, 0,2)],
-		true, clBaseResource, bbX, bbY
+		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
 	
@@ -141,44 +141,50 @@ for (var i=1; i <= numPlayers; i++)
 	}
 	var mDist = 9;
 	var mX = round(ix + mDist * cos(mAngle));
-	var mY = round(iy + mDist * sin(mAngle));
+	var mZ = round(iz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStone, 2,2, 0,3),
 		new SimpleObject(oMetal, 2,2, 0,3)],
-		true, clBaseResource, mX, mY
+		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
 	
 	// create starting straggler trees
 	group = new SimpleGroup(
 		[new SimpleObject(oPalm, 3,3, 7,10)],
-		true, clBaseResource, ix, iy
+		true, clBaseResource, ix, iz
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
 
-function distanceToPlayers(x, y)
+function distanceToPlayers(x, z)
 {
 	var r = 10000;
 	for (var i=1; i <= numPlayers; i++)
 	{
 		var dx = x - playerX[i];
-		var dy = y - playerY[i];
-		r = min(r, dx*dx + dy*dy);
+		var dz = z - playerZ[i];
+		r = min(r, dx*dx + dz*dz);
 	}
 	return sqrt(r);
 }
 
-function playerNearness(x, y)
+function playerNearness(x, z)
 {
-	var d = fractionToTiles(distanceToPlayers(x,y));
+	var d = fractionToTiles(distanceToPlayers(x,z));
 	
 	if (d < 13)
+	{
 		return 0;
+	}
 	else if (d < 19)
+	{
 		return (d-13)/(19-13);
+	}
 	else
+	{
 		return 1;
+	}
 }
 
 // Paint elevation
@@ -198,11 +204,11 @@ var noise5 = new Noise2D(11 * mapSize/128);
 
 for (var ix=0; ix<=mapSize; ix++)
 {
-	for (var iy=0; iy<=mapSize; iy++)
+	for (var iz=0; iz<=mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
-		var y = iy / (mapSize + 1.0);
-		var pn = playerNearness(x, y);
+		var z = iz / (mapSize + 1.0);
+		var pn = playerNearness(x, z);
 		
 		var h = 0;
 		var distToWater = 0;
@@ -226,7 +232,7 @@ for (var ix=0; ix<=mapSize; ix++)
 		}
 		
 		// add some base noise
-		var baseNoise = 16*noise0.get(x,y) + 8*noise1.get(x,y) + 4*noise2.get(x,y) - (16+8+4)/2;
+		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
 		if ( baseNoise < 0 ) 
 		{
 			baseNoise *= pn;
@@ -238,13 +244,13 @@ for (var ix=0; ix<=mapSize; ix++)
 		// add some higher-frequency noise on land
 		if ( oldH > 0 )
 		{
-			h += (0.4*noise2a.get(x,y) + 0.2*noise2b.get(x,y)) * min(oldH/10.0, 1.0);
+			h += (0.4*noise2a.get(x,z) + 0.2*noise2b.get(x,z)) * min(oldH/10.0, 1.0);
 		}
 		
 		// create cliff noise
 		if ( h > -10 )
 		{
-			var cliffNoise = (noise3.get(x,y) + 0.5*noise4.get(x,y)) / 1.5;
+			var cliffNoise = (noise3.get(x,z) + 0.5*noise4.get(x,z)) / 1.5;
 			if (h < 1)
 			{
 				var u = 1 - 0.3*((h-1)/-10);
@@ -254,7 +260,7 @@ for (var ix=0; ix<=mapSize; ix++)
 			if (cliffNoise > 0.6)
 			{
 				var u = 0.8 * (cliffNoise - 0.6);
-				cliffNoise += u * noise5.get(x,y);
+				cliffNoise += u * noise5.get(x,z);
 				cliffNoise /= (1 + u);
 			}
 			cliffNoise -= 0.59;
@@ -266,7 +272,7 @@ for (var ix=0; ix<=mapSize; ix++)
 		}
 		
 		// set the height
-		setHeight(ix, iy, h);
+		setHeight(ix, iz, h);
 	}
 }
 
@@ -284,17 +290,17 @@ var noise10 = new Noise2D(50 * mapSize/128);
 
 for (var ix=0; ix<mapSize; ix++)
 {
-	for (var iy=0; iy<mapSize; iy++)
+	for (var iz=0; iz<mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
-		var y = iy / (mapSize + 1.0);
-		var pn = playerNearness(x, y);
+		var z = iz / (mapSize + 1.0);
+		var pn = playerNearness(x, z);
 		
 		// get heights of surrounding vertices
-		var h00 = getHeight(ix, iy);
-		var h01 = getHeight(ix, iy+1);
-		var h10 = getHeight(ix+1, iy);
-		var h11 = getHeight(ix+1, iy+1);
+		var h00 = getHeight(ix, iz);
+		var h01 = getHeight(ix, iz+1);
+		var h10 = getHeight(ix+1, iz);
+		var h11 = getHeight(ix+1, iz+1);
 		
 		// find min and max height
 		var maxH = Math.max(h00, h01, h10, h11);
@@ -305,12 +311,12 @@ for (var ix=0; ix<mapSize; ix++)
 		if (maxH > 15)
 		{
 			var maxNx = min(ix+2, mapSize);
-			var maxNy = min(iy+2, mapSize);
+			var maxNz = min(iz+2, mapSize);
 			for (var nx=max(ix-1, 0); nx <= maxNx; nx++)
 			{
-				for (var ny=max(iy-1, 0); ny <= maxNy; ny++)
+				for (var nz=max(iz-1, 0); nz <= maxNz; nz++)
 				{
-					minAdjHeight = min(minAdjHeight, getHeight(nx, ny));
+					minAdjHeight = min(minAdjHeight, getHeight(nx, nz));
 				}
 			}
 		}
@@ -350,14 +356,14 @@ for (var ix=0; ix<mapSize; ix++)
 		
 		if (minH < 0)
 		{
-			addToClass(ix, iy, clWater);
+			addToClass(ix, iz, clWater);
 		}
 		
 		// cliffs
 		if (maxH - minH > 2.9 && minH > -7)
 		{
 			t = tCliff;
-			addToClass(ix, iy, clCliff);
+			addToClass(ix, iz, clCliff);
 		}
 		else if ((maxH - minH > 2.5 && minH > -5) || (maxH-minAdjHeight > 2.9 && minH > 0) )
 		{
@@ -368,20 +374,20 @@ for (var ix=0; ix<mapSize; ix++)
 			else
 				t = [tDirtCliff, tGrassCliff, tGrassCliff, tGrassRock, tCliff];
 			
-			addToClass(ix, iy, clCliff);
+			addToClass(ix, iz, clCliff);
 		}
 		
 		// forests
 		if (maxH - minH < 1 && minH > 1)
 		{
-			var forestNoise = (noise6.get(x,y) + 0.5*noise7.get(x,y)) / 1.5 * pn;
+			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn;
 			forestNoise -= 0.59;
 			
 			if (forestNoise > 0)
 			{
 				if (minH > 5)
 				{
-					var typeNoise = noise10.get(x,y);
+					var typeNoise = noise10.get(x,z);
 					
 					if (typeNoise < 0.43 && forestNoise < 0.05)
 						t = tPoplarForest;
@@ -390,12 +396,12 @@ for (var ix=0; ix<mapSize; ix++)
 					else
 						t = tPineForest;
 					
-					addToClass(ix, iy, clForest);
+					addToClass(ix, iz, clForest);
 				}
 				else if (minH < 3)
 				{
 					t = tPalmForest;
-					addToClass(ix, iy, clForest);
+					addToClass(ix, iz, clForest);
 				}
 			}
 		}
@@ -403,7 +409,7 @@ for (var ix=0; ix<mapSize; ix++)
 		// grass variations
 		if (t == tGrass)
 		{
-			var grassNoise = (noise8.get(x,y) + 0.6*noise9.get(x,y)) / 1.6;
+			var grassNoise = (noise8.get(x,z) + 0.6*noise9.get(x,z)) / 1.6;
 			if (grassNoise < 0.3)
 			{
 				t = (maxH - minH > 1.2) ? tDirtCliff : tDirt;
@@ -413,7 +419,7 @@ for (var ix=0; ix<mapSize; ix++)
 				t = (maxH - minH > 1.2) ? tGrassCliff : tGrassDry;
 				if (maxH - minH < 0.5 && randFloat() < 0.03)
 				{
-					placeObject(ix+randFloat(), iy+randFloat(), aGrassDry, 0, randFloat()*2*PI);
+					placeObject(ix+randFloat(), iz+randFloat(), aGrassDry, 0, randFloat()*2*PI);
 				}
 			}
 			else if (grassNoise > 0.61)
@@ -424,12 +430,12 @@ for (var ix=0; ix<mapSize; ix++)
 			{
 				if ((maxH - minH) < 0.5 && randFloat() < 0.05)
 				{
-					placeObject(ix+randFloat(), iy+randFloat(), aGrass, 0, randFloat()*2*PI);
+					placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat()*2*PI);
 				}
 			}
 		}
 		
-		placeTerrain(ix, iy, t);
+		placeTerrain(ix, iz, t);
 	}
 }
 

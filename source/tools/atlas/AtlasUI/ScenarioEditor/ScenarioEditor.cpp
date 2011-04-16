@@ -691,22 +691,26 @@ void ScenarioEditor::OnNew(wxCommandEvent& WXUNUSED(event))
 		wxBusyInfo busy(_("Creating blank map"));
 
 		// Generate new blank map
-		size_t patches = dlg.GetSelectedSize();
+		size_t tiles = dlg.GetSelectedSize();
 		size_t height = dlg.GetBaseHeight();
 
 		// Get terrain texture
 		// TODO: Support choosing multiple textures
-		std::vector<std::wstring> textures;
-		std::wstring baseTexture(g_SelectedTexture.wc_str());
-		textures.push_back(baseTexture);
+		std::vector<wxString> textures;
+		textures.push_back(g_SelectedTexture);
 
-		// Get player data
-		std::string pData;
-		m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings.PlayerData)"), pData);
+		// TODO: This seems like a nasty way to do this
+		std::string settings;
+		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.Size"), tiles);
+		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.Seed"), 0);
+		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.BaseTerrain"), textures);
+		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.BaseHeight"), height);
+		m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings)"), settings);
 
 		// Generate map
-		//				Script name,	size (patches), seed,	base terrain(s),	base height,	player data
-		qGenerateMap qry(L"blank.js",	patches,		0,		textures,			height,			pData);
+		qGenerateMap qry(L"blank.js", settings);
+
+
 		
 		// Wait for map generation to finish
 		qry.Post();
