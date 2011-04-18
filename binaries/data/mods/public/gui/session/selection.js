@@ -1,4 +1,4 @@
-const MAX_SELECTION_SIZE = 40; // Limits selection size and ensures that there will not be too many selection items in the GUI
+const MAX_SELECTION_SIZE = 64; // Limits selection size
 
 function _setHighlight(ents, alpha)
 {
