@@ -170,16 +170,20 @@ public:
 	{
 		if (CProfileManager::IsInitialised())
 		{
-			// The profiler is only safe to use on the main thread
-			debug_assert(ThreadUtil::IsMainThread());
-
-			g_Profiler.StartScript( name );
+			// The profiler is only safe to use on the main thread,
+			// but scripts get run on other threads too so we need to
+			// conditionally enable the profiler.
+			// (This usually only gets used in debug mode so performance
+			// doesn't matter much.)
+			if (ThreadUtil::IsMainThread())
+				g_Profiler.StartScript( name );
 		}
 	}
 	~CProfileSampleScript()
 	{
 		if (CProfileManager::IsInitialised())
-			g_Profiler.Stop();
+			if (ThreadUtil::IsMainThread())
+				g_Profiler.Stop();
 	}
 };
 
