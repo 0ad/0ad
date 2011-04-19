@@ -45,7 +45,7 @@
 #endif
 
 #define CPUID_INTRINSIC 0
-#if MSC_VERSION >= 1500	// __cpuidex available (allows setting ecx beforehand)
+#if MSC_VERSION > 1500 || (MSC_VERSION == 1500 && _MSC_FULL_VER >= 150030729)	// __cpuidex available on VC10+ and VC9 SP1 (allows setting ecx beforehand)
 # undef CPUID_INTRINSIC
 # define CPUID_INTRINSIC 1
 #else
