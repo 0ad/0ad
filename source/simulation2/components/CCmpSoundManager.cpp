@@ -111,9 +111,9 @@ public:
 
 		// Only play the sound if the entity is visible
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-		ICmpRangeManager::ELosVisibility m_Visibility = cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer());
+		ICmpRangeManager::ELosVisibility vis = cmpRangeManager->GetLosVisibility(source, GetSimContext().GetCurrentDisplayedPlayer());
 
-		if (m_Visibility == ICmpRangeManager::VIS_VISIBLE)
+		if (vis == ICmpRangeManager::VIS_VISIBLE)
 		{
 			// Find the source's position, if possible
 			// (TODO: we should do something more sensible if there's no position available)
