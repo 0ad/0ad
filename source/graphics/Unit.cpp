@@ -70,6 +70,13 @@ void CUnit::UpdateModel(float frameTime)
 		m_Animation->Update(frameTime*1000.0f);
 }
 
+void CUnit::SetID(entity_id_t id)
+{
+	m_ID = id;
+	if (m_Animation)
+		m_Animation->SetEntityID(id);
+}
+
 void CUnit::SetEntitySelection(const CStr& selection)
 {
 	CStr selection_lc = selection.LowerCase();

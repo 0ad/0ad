@@ -71,7 +71,7 @@ public:
 	// persistently despite saving/loading maps. Default for new units is -1; should
 	// usually be set to CUnitManager::GetNewID() after creation.
 	entity_id_t GetID() const { return m_ID; }
-	void SetID(entity_id_t id) { m_ID = id; }
+	void SetID(entity_id_t id);
 
 	const std::set<CStr>& GetActorSelections() const { return m_ActorSelections; }
 	

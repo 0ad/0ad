@@ -42,6 +42,12 @@ public:
 	CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* object);
 
 	/**
+	 * Change the entity ID associated with this animation
+	 * (currently used for playing locational sound effects).
+	 */
+	void SetEntityID(entity_id_t ent);
+
+	/**
 	 * Start playing an animation.
 	 * The unit's actor defines the available animations, and if more than one is available
 	 * then one is picked at random (with a new random choice each loop).

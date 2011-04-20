@@ -47,6 +47,11 @@ CUnitAnimation::CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* obj
 	ReloadUnit(model, object);
 }
 
+void CUnitAnimation::SetEntityID(entity_id_t ent)
+{
+	m_Entity = ent;
+}
+
 void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 {
 	SModelAnimState state;
