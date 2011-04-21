@@ -47,7 +47,7 @@
       <props>
         <prop attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile_flame.xml" attachpoint="projectile"/>
       </props>
     </variant>
