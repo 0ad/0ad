@@ -35,8 +35,8 @@ const oPalm = "gaia/flora_tree_medit_fan_palm";
 const oPine = "gaia/flora_tree_aleppo_pine";
 const oPoplar = "gaia/flora_tree_poplar";
 const oSheep = "gaia/fauna_sheep";
-const oStone = "gaia/geology_stone_greek";
-const oMetal = "gaia/geology_metal_greek";
+const oStone = "gaia/geology_stone_mediterranean";
+const oMetal = "gaia/geology_metal_mediterranean_slabs";
 
 // decorative props
 const aBushLargeDry = "actor|props/flora/bush_medit_la_dry.xml";
@@ -144,7 +144,7 @@ for (var i=1; i <= numPlayers; i++)
 	var mZ = round(iz + mDist * sin(mAngle));
 	group = new SimpleGroup(
 		[new SimpleObject(oStone, 2,2, 0,3),
-		new SimpleObject(oMetal, 2,2, 0,3)],
+		new SimpleObject(oMetal, 1,1, 0,3)],
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
@@ -503,7 +503,7 @@ createObjectGroups(group, 0,
 
 log("Placing metal mines...");
 // create metal
-group = new SimpleGroup([new SimpleObject(oMetal, 2,3, 0,2)], true, clMetal);
+group = new SimpleGroup([new SimpleObject(oMetal, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clMetal, 15, clStone, 5), 
 	 new BorderTileClassConstraint(clCliff, 0, 5)],

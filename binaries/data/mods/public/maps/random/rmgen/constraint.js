@@ -120,8 +120,8 @@ StayInTileClassConstraint.prototype.allows = function(x, z)
 //	Class representing border TileClass constraint
 //
 //	tileClassID: ID of TileClass to border
-//	distanceInside: Distance from test point to find matching TileClass
-//	distanceOutside: Distance from test point to find other TileClass	
+//	distanceInside: Distance from test point to find other TileClass
+//	distanceOutside: Distance from test point to find matching TileClass
 //
 ///////////////////////////////////////////////////////////////////////////
 function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
@@ -133,6 +133,7 @@ function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
 
 BorderTileClassConstraint.prototype.allows = function(x, z)
 {
+	//error("BTCC.allows("+x+", "+z+"): class="+this.tileClass.id+", in="+this.tileClass.countMembersInRadius(x, z, this.distanceOutside)+", out="+this.tileClass.countNonMembersInRadius(x, z, this.distanceInside));
 	return (this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0 
 		&& this.tileClass.countNonMembersInRadius(x, z, this.distanceInside) > 0);
 };

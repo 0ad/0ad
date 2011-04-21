@@ -175,9 +175,9 @@ Map.prototype.placeTerrain = function(x, z, terrain)
 	terrain.place(x, z);
 };
 
-Map.prototype.addObjects = function(obj)
+Map.prototype.addObject = function(obj)
 {
-	this.objects = this.objects.concat(obj);
+	this.objects.push(obj);
 };
 
 Map.prototype.createArea = function(placer, painter, constraint)
@@ -282,6 +282,8 @@ Map.prototype.getMapData = function()
 	}
 	data["entities"] = entities;
 	
+	log("Number of entities: "+entities.length);
+	
 	// Terrain
 	data["size"] = this.size;
 	
@@ -293,7 +295,7 @@ Map.prototype.getMapData = function()
 	{
 		for (var z = 0; z < mapSize; z++)
 		{
-			var intHeight = Math.floor((this.height[x][z] + SEA_LEVEL) * 256.0 / 0.35);
+			var intHeight = Math.floor((this.height[x][z] + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
 			
 			// Prevent under/overflow in terrain data
 			if (intHeight > 0xFFFF)

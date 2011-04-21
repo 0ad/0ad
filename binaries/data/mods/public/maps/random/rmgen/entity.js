@@ -17,9 +17,9 @@ function Entity(name, player, x, z, orientation)
 	this.tileZ = z;
 	
 	// Map units (4.0 map units per 1.0 tile)
-	this.x = x * 4.0;
+	this.x = x * CELL_SIZE
 	this.y = 0;
-	this.z = z * 4.0;
+	this.z = z * CELL_SIZE;
 	
 	this.player = (player !== undefined ? player : 0);	
 	this.orientation = (orientation !== undefined ? orientation : 0);

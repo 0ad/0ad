@@ -9,6 +9,10 @@ const SEA_LEVEL = 20.0;
 
 const TERRAIN_SEPARATOR = "|";
 
+const CELL_SIZE = 4;
+
+const HEIGHT_UNITS_PER_METRE = 732;
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 //	Utility functions
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -202,6 +206,40 @@ function createObjectGroups(placer, player, constraint, num, retryFactor)
 	return good;
 }
 
+function createObjectGroupsByAreas(placer, player, constraint, num, retryFactor, areas)
+{
+	if (retryFactor === undefined)
+	{
+		retryFactor = 10;
+	}
+	
+	var maxFail = num * retryFactor;
+	var good = 0;
+	var bad = 0;
+	var numAreas = areas.length;
+	
+	while(good < num && bad <= maxFail)
+	{
+		// Choose random point from area
+		var i = randInt(numAreas);
+		var size = areas[i].points.length;
+		var pt = areas[i].points[randInt(size)];
+		placer.x = pt.x;
+		placer.z = pt.z;
+		
+		var result = createObjectGroup(placer, player, constraint);
+		if (result !== undefined)
+		{
+			good++;
+		}
+		else
+		{
+			bad++;
+		}
+	}
+	return good;
+}
+
 function createTerrain(terrain)
 {
 	if (terrain instanceof Array)
@@ -245,7 +283,7 @@ function createSimpleTerrain(terrain)
 
 function placeObject(x, z, type, player, angle)
 {
-	g_Map.addObjects(new Entity(type, player, x, z, angle));
+	g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
 function placeTerrain(x, z, terrain)

@@ -304,7 +304,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 
 	// Try placement of objects
 	var length = this.elements.length;
-	for (var i=0; i < length; i++)
+	for (var i = 0; i < length; i++)
 	{
 		var objs = this.elements[i].place(this.x, this.z, player, this.avoidSelf, constraint);
 		if (objs === undefined)
@@ -313,7 +313,10 @@ SimpleGroup.prototype.place = function(player, constraint)
 		}
 		else
 		{
-			resultObjs = resultObjs.concat(objs);
+			for (var j = 0; j < objs.length; ++j)
+			{
+				resultObjs.push(objs[j]);
+			}
 		}
 	}
 	
@@ -321,7 +324,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 	length = resultObjs.length;
 	for (var i=0; i < length; i++)
 	{
-		g_Map.addObjects(resultObjs[i]);
+		g_Map.addObject(resultObjs[i]);
 		
 		if (this.tileClass !== undefined)
 		{	// Round object position to integer
