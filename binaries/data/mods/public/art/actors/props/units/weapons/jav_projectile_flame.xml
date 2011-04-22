@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Flaming Javelin">
-      <mesh>props/weap_jav_projectile.pmd</mesh>
+    <variant frequency="100" name="Flaming Iron Javelin">
+      <mesh>props/weap_jav_f.pmd</mesh>
       <props>
         <prop actor="particle/flame_jav.xml" attachpoint="root"/>
         <prop actor="particle/smoke_jav.xml" attachpoint="root"/>

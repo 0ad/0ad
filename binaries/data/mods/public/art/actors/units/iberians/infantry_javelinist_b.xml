@@ -33,8 +33,8 @@
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_iber_isl_b.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav_iron.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav_iron.xml" attachpoint="l_hand"/>
         <prop actor="props/units/shields/iberian_buckler_basic.xml" attachpoint="shield"/>
       </props>
       <texture>skeletal/iber_isw_b_3.dds</texture>
@@ -45,8 +45,8 @@
     <variant name="Melee">
       <props>
         <prop attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/jav_iron.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav_iron.xml" attachpoint="projectile"/>
       </props>
     </variant>
     <variant name="gather_tree">
