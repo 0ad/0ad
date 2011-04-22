@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="274.001" y="118.335" z="165.408"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "Name": "Blood Demo",
+  "Description": "Test map for blood.",
+  "Keywords": [
+    "demo"
+  ],
+  "PlayerData": [
+    {
+      "Civ": "rome"
+    },
+    {
+      "Civ": "pers"
+    }
+  ],
+  "CircularMap": true,
+  "GameType": "endless",
+  "RevealMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="259.58628" z="376.13935"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="260.98447" z="378.59739"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="263.24045" z="381.0186"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="264.59003" z="383.38984"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="266.01371" z="385.21241"/>
+			<Orientation y="0.59791"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="268.21827" z="387.47843"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="294.28241" z="397.61991"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="297.62122" z="401.61463"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="300.85679" z="405.22971"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="251.8155" z="335.511"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="256.9661" z="338.45264"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="258.96848" z="327.91718"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="260.85868" z="329.87919"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="262.24317" z="332.11387"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="302.65214" z="384.61753"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="305.44968" z="388.0475"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="307.71305" z="390.59897"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="309.75638" z="393.6128"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="271.12983" z="362.77521"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="273.2621" z="365.03293"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="275.40378" z="367.3921"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>units/pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="276.7689" z="368.44764"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
