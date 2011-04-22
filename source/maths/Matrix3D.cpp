@@ -503,3 +503,20 @@ void CMatrix3D::SetRotation(const CQuaternion& quat)
 {
 	quat.ToMatrix(*this);
 }
+
+float CMatrix3D::GetYRotation() const
+{
+	// Project the X axis vector onto the XZ plane
+	CVector3D axis = -GetLeft();
+	axis.Y = 0;
+
+	// Normalise projected vector
+
+	float len = axis.Length();
+	if (len < 0.0001f)
+		return 0.f;
+	axis *= 1.0f/len;
+
+	// Negate the return angle to match the SetYRotation convention
+	return -atan2(axis.Z, axis.X);
+}

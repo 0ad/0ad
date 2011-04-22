@@ -98,9 +98,11 @@ void CModelDecal::ValidatePosition()
 
 void CModelDecal::SetTransform(const CMatrix3D& transform)
 {
-	CMatrix3D newTransform = transform;
-	newTransform.SetYRotation(m_Decal.m_Angle);
-	newTransform.Concatenate(transform);
+	// Since decals are assumed to be horizontal and projected downwards
+	// onto the terrain, use just the Y-axis rotation and the translation
+	CMatrix3D newTransform;
+	newTransform.SetYRotation(transform.GetYRotation() + m_Decal.m_Angle);
+	newTransform.Translate(transform.GetTranslation());
 
 	CRenderableObject::SetTransform(newTransform);
 	InvalidatePosition();

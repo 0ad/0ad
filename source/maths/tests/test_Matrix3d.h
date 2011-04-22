@@ -122,6 +122,25 @@ public:
 				TS_ASSERT_DELTA(a(x,y), b(x,y), 0.0002f);
 	}
 
+	void test_getRotation()
+	{
+		CMatrix3D m;
+		srand(0);
+
+		m.SetZero();
+		TS_ASSERT_EQUALS(m.GetYRotation(), 0.f);
+
+		m.SetIdentity();
+		TS_ASSERT_EQUALS(m.GetYRotation(), 0.f);
+
+		for (int j = 0; j < 16; ++j)
+		{
+			float a = 2*M_PI*rand()/(float)RAND_MAX - M_PI;
+			m.SetYRotation(a);
+			TS_ASSERT_DELTA(m.GetYRotation(), a, 0.001f);
+		}
+	}
+
 	void test_scale()
 	{
 		CMatrix3D m;

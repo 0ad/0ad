@@ -139,6 +139,9 @@ public:
 	CVector3D GetIn() const;
 	// return a quaternion representing the matrix's rotation
 	CQuaternion GetRotation() const;
+	// return the angle of rotation around the Y axis in range [-pi,pi]
+	// (based on projecting the X axis onto the XZ plane)
+	float GetYRotation() const;
 
 	// transform a 3D vector by this matrix
 	CVector3D Transform (const CVector3D &vector) const
