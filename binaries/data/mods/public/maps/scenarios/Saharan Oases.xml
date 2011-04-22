@@ -24,31 +24,31 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="226.833" y="138.55" z="454.707"/>
-		<Rotation angle="-0.0101969"/>
-		<Declination angle="0.597868"/>
+		<Position x="226.505" y="134.2" z="455.471"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "Name": "Saharan Oases",
-  "Description": "Greeks vs. Celts! For 2 teams of 2 players. A desert biome map where each player has founded their colony at their own oasis. The rest of the map is generally wide-open and barren.",
+  "Description": "A desert biome map where each player has founded their colony at their own lush oasis. The rest of the map is generally wide-open and barren.",
   "PlayerData": [
     {
-      "Civ": "hele",
+      "Civ": "iber",
       "Resources": {
         "food": 250,
         "wood": 250,
-        "metal": 250,
+        "metal": 300,
         "stone": 250
       },
       "Team": 0
     },
     {
-      "Civ": "hele",
+      "Civ": "iber",
       "Resources": {
         "food": 250,
         "wood": 250,
-        "metal": 250,
+        "metal": 300,
         "stone": 250
       },
       "Team": 0
@@ -56,7 +56,7 @@
     {
       "Civ": "celt",
       "Resources": {
-        "food": 250,
+        "food": 300,
         "wood": 250,
         "metal": 250,
         "stone": 250
@@ -66,7 +66,7 @@
     {
       "Civ": "celt",
       "Resources": {
-        "food": 250,
+        "food": 300,
         "wood": 250,
         "metal": 250,
         "stone": 250
@@ -78,18 +78,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="11">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="226.30259" z="643.29188"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="12">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="640.89435" z="225.30958"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="13">
 			<Template>structures/celt_civil_centre</Template>
 			<Player>3</Player>
@@ -3222,42 +3210,6 @@
 			<Position x="344.01114" z="395.02063"/>
 			<Orientation y="-0.9999"/>
 		</Entity>
-		<Entity uid="538">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="235.37154" z="621.34943"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="539">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="237.49894" z="623.88135"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="540">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="239.07314" z="624.9148"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="541">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="650.01197" z="200.72995"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="542">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="652.8647" z="203.77405"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="543">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="656.69294" z="207.59908"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="544">
 			<Template>units/celt_support_female_citizen</Template>
 			<Player>3</Player>
@@ -5088,27 +5040,27 @@
 		</Entity>
 		<Entity uid="906">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="382.63563" z="1119.61805"/>
+			<Position x="356.47382" z="1050.86792"/>
 			<Orientation y="-2.16001"/>
 		</Entity>
 		<Entity uid="907">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="340.38102" z="1089.65137"/>
+			<Position x="359.15192" z="1061.2334"/>
 			<Orientation y="-2.9919"/>
 		</Entity>
 		<Entity uid="908">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="337.81324" z="1058.66297"/>
+			<Position x="349.15522" z="1053.75306"/>
 			<Orientation y="2.74462"/>
 		</Entity>
 		<Entity uid="909">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="384.88971" z="1023.67457"/>
+			<Position x="368.4351" z="1040.22132"/>
 			<Orientation y="-0.48931"/>
 		</Entity>
 		<Entity uid="910">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="367.30124" z="1054.51221"/>
+			<Position x="361.24772" z="1052.0464"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="911">
@@ -5498,7 +5450,7 @@
 		</Entity>
 		<Entity uid="988">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="303.00403" z="1038.44776"/>
+			<Position x="354.82486" z="1051.70838"/>
 			<Orientation y="-2.8426"/>
 		</Entity>
 		<Entity uid="989">
@@ -5658,19 +5610,19 @@
 		<Entity uid="1015">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="78.50065" z="636.84388"/>
-			<Orientation y="-3.00759"/>
+			<Position x="73.82786" z="625.75947"/>
+			<Orientation y="0.31524"/>
 		</Entity>
 		<Entity uid="1016">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="71.73966" z="609.14014"/>
+			<Position x="61.12755" z="621.22834"/>
 			<Orientation y="0.51301"/>
 		</Entity>
 		<Entity uid="1017">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="48.73736" z="635.73475"/>
+			<Position x="53.22329" z="632.04572"/>
 			<Orientation y="-2.00091"/>
 		</Entity>
 		<Entity uid="1018">
@@ -8294,7 +8246,7 @@
 		</Entity>
 		<Entity uid="1534">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
-			<Position x="66.3625" z="648.12012"/>
+			<Position x="66.80916" z="625.36103"/>
 			<Orientation y="-2.58124"/>
 		</Entity>
 		<Entity uid="1535">
@@ -12165,7 +12117,7 @@
 		<Entity uid="2308">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="227.58347" z="599.33606"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="0.62334"/>
 		</Entity>
 		<Entity uid="2309">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -13459,12 +13411,12 @@
 		</Entity>
 		<Entity uid="2567">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="361.71778" z="847.59363"/>
+			<Position x="393.59803" z="882.3448"/>
 			<Orientation y="-1.14658"/>
 		</Entity>
 		<Entity uid="2568">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="203.09845" z="1019.85865"/>
+			<Position x="254.85003" z="1003.22071"/>
 			<Orientation y="0.87899"/>
 		</Entity>
 		<Entity uid="2569">
@@ -13571,6 +13523,54 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="485.51667" z="1129.46058"/>
 			<Orientation y="0.79694"/>
+		</Entity>
+		<Entity uid="2590">
+			<Template>structures/iber_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="224.04911" z="641.89802"/>
+			<Orientation y="2.3644"/>
+		</Entity>
+		<Entity uid="2591">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="226.91622" z="626.42682"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2592">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="228.7507" z="628.14106"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2593">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="230.85312" z="630.40967"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2594">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="650.13428" z="204.18612"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2595">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="653.68476" z="207.4909"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2596">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="656.56629" z="210.77927"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2597">
+			<Template>structures/iber_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="643.21998" z="223.60798"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
