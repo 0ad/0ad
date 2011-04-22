@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
         <animation file="biped/inf_sword_ready_e.dae" name="idle" speed="100"/>
         <animation file="biped/inf_sword_ready_e.dae" name="idle" speed="90"/>
         <animation file="biped/inf_sword_ready_e.dae" name="idle" speed="75"/>
-        <animation file="biped/walk_spearshield.psa" name="walk" speed="120"/>
+        <animation file="biped/walk_spearshield.psa" name="walk" speed="135"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="run" speed="40"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="100"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="melee" speed="100"/>
@@ -28,7 +26,5 @@
       <texture>skeletal/rome_su4_imperial_legion.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

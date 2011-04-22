@@ -15,4 +15,10 @@
   <VisualActor>
     <Actor>units/romans/super_unit_3.xml</Actor>
   </VisualActor>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

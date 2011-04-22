@@ -1,0 +1,90 @@
+{
+	"Code": "rome",
+	"Name": "Romans",
+	"Emblem": "session/portraits/emblems/emblem_romans.png",
+	"History": "The Romans controlled the largest empire of the ancient world. Rising from a group of villages to controlling an empire stretching from southern Scotland to the Sahara Desert, Rome remained one of the strongest nations on earth for almost 800 years. Initially Rome controlled Italy, but after three wars with Carthage began to expand in all directions. At its peak, Rome's empire contained over 60 million inhabitants, one quarter of the Earth's population at that time. But this massive empire soon became too large to control and barbarians began swarming into the Empire. The 300 years before the fall of Rome in 476 A.D. were mostly spent trying to keep the ever-increasing flood of migrant barbarians back behind the Rhine and Danube rivers.",
+	"Factions":
+	[
+		{
+			"Name": "",
+			"Description": "",
+			"Technologies":
+			[
+				{
+					"Name": "Divide et Impera",
+					"History": "'Divide and conquer' was the main principle in Rome's foreign politics throughout its long history. The Romans lured enemies or neutral factions to their side by offering them certain privileges. In due period of time, friends as well as foes were subjugated.",
+					"Description": "Roman heroes and centurions can convert enemy units." 
+				}
+			],
+			"Heroes":
+			[
+				{
+					"Name": "Quinctus Fabius Maximus",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Dictator for six months during the Second Punic War. Instead of attacking the most powerful Hannibal, he started a very effective war of attrition against him." 
+				},
+				{
+					"Name": "Sulla",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Roman general and dictator (137 BC  78 BC), who never lost a battle. Distinguishing himself during the Jugurthine War, Sulla later fought in the Social War and was given command in the east against king Mithridates VI of Pontus. After the successful outcome of the war, he returned to Italy, crushed his opponents and had himself proclaimed dictator with unlimited powers. Sulla sought to restore the waning might of the Republic and wrote a new constitution, thereafter resigning from power." 
+				},
+				{
+					"Name": "Scipio Africanus",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "He was the first really successful Roman general. His campaigns in Spain and Africa helped to bring Carthage to its knees during the Second Punic War. He defeated Hannibal at the Battle of Zama in 202 BC."
+				} 
+			]
+		} 
+	],
+	"CivBonuses":
+	[
+		{
+			"Name": "Testudo Formation",
+			"History": "The Romans commonly used the Testudo or 'turtle' formation for defense: Legionaries were formed into hollow squares with twelve men on each side, standing so close together that their shields overlapped like fish scales.",
+			"Description": "Roman Legionaries can form a Testudo." 
+		},
+		{
+			"Name": "Citizenship",
+			"History": "Roman Citizenship was highly prized in the ancient world. Basic rights and privileges were afforded Roman citizens that were denied other conquered peoples. It is said that harming a Roman citizen was akin to harming Rome herself, and would cause the enire might of Rome to fall upon the perpetrator.",
+			"Description": "Any Roman Citizen Soldier unit fighting within Roman Territory gains a non-permanent 10% bonus in armor." 
+		} 
+	],
+	"TeamBonuses":
+	[
+		{
+			"Name": "Conscription",
+			"History": "",
+			"Description": "Infantry trained 20% faster." 
+		} 
+	],
+	"Structures":
+	[
+		{
+			"Name": "Entrenched Camp",
+			"Class": "",
+			"Emblem": "",
+			"History": "Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within this gate the tents of the first centuries or cohorts are pitched, and the dragons (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution. It has a turf wall, and it's surrounded by a canal filled with water whenever possible for extra defence. Many towns started up as bigger military camps to evolve to more complicated cities.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "" 
+		},
+		{
+			"Name": "Murus Latericius",
+			"Class": "",
+			"Emblem": "",
+			"History": "Turf walls built by legionaries during sieges.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "" 
+		} 
+	],
+	"StartEntities":
+	[
+	]
+}
