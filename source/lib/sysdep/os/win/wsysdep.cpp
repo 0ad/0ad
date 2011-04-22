@@ -556,7 +556,7 @@ LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy)
 		hSession = WinHttpOpen(NULL, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
 			WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
 
-		if(hSession && WinHttpGetProxyForUrl(hSession, url.c_str(), &autoProxyOptions, &proxyInfo))
+		if(hSession && WinHttpGetProxyForUrl(hSession, url.c_str(), &autoProxyOptions, &proxyInfo) && proxyInfo.lpszProxy)
 		{
 			proxy = parse_proxy(proxyInfo.lpszProxy);
 			if(!proxy.empty())
