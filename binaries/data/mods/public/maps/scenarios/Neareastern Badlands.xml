@@ -3,11 +3,11 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="0.8" g="0.776471" b="0.6"/>
-		<SunElevation angle="0.773126"/>
-		<SunRotation angle="0.908117"/>
-		<TerrainAmbientColour r="0.282353" g="0.34902" b="0.513726"/>
+		<SkySet>sunny</SkySet>
+		<SunColour r="0.931158" g="0.790074" b="0.738343"/>
+		<SunElevation angle="0.605586"/>
+		<SunRotation angle="1.53398"/>
+		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -16,17 +16,17 @@
 				<Height>20.0394</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.338867</Murkiness>
-				<Tint r="0.501961" g="1" b="1"/>
-				<ReflectionTint r="0.337255" g="0.411765" b="0.505882"/>
-				<ReflectionTintStrength>0.351563</ReflectionTintStrength>
+				<Murkiness>0.489258</Murkiness>
+				<Tint r="0.513726" g="0.984314" b="0.854902"/>
+				<ReflectionTint r="0.337255" g="0.411765" b="0.501961"/>
+				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="255.075" y="102.238" z="537.468"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="743.499" y="129.687" z="84.8658"/>
+		<Rotation angle="-0.00520349"/>
+		<Declination angle="0.511013"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -356,282 +356,6 @@
 			<Position x="755.36866" z="304.54056"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="85">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="670.01758" z="304.9384"/>
-			<Orientation y="2.56394"/>
-		</Entity>
-		<Entity uid="86">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="677.87171" z="296.3582"/>
-			<Orientation y="2.73269"/>
-		</Entity>
-		<Entity uid="87">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="682.78565" z="282.29026"/>
-			<Orientation y="-3.0818"/>
-		</Entity>
-		<Entity uid="88">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="679.71772" z="279.78425"/>
-			<Orientation y="-1.28985"/>
-		</Entity>
-		<Entity uid="89">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="663.37452" z="285.87925"/>
-			<Orientation y="-0.69332"/>
-		</Entity>
-		<Entity uid="90">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="659.09388" z="293.33973"/>
-			<Orientation y="0.4512"/>
-		</Entity>
-		<Entity uid="91">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="661.97254" z="297.86036"/>
-			<Orientation y="2.4051"/>
-		</Entity>
-		<Entity uid="92">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="669.70203" z="289.8335"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="93">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="670.27985" z="285.37833"/>
-			<Orientation y="3.07496"/>
-		</Entity>
-		<Entity uid="94">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="672.53797" z="277.63715"/>
-			<Orientation y="2.40214"/>
-		</Entity>
-		<Entity uid="95">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="677.00916" z="275.14246"/>
-			<Orientation y="-0.15326"/>
-		</Entity>
-		<Entity uid="96">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="671.47126" z="294.01359"/>
-			<Orientation y="-0.23432"/>
-		</Entity>
-		<Entity uid="97">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="670.61689" z="300.0716"/>
-			<Orientation y="1.18734"/>
-		</Entity>
-		<Entity uid="98">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="677.04297" z="302.9628"/>
-			<Orientation y="2.7229"/>
-		</Entity>
-		<Entity uid="99">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="682.91706" z="290.72971"/>
-			<Orientation y="2.51043"/>
-		</Entity>
-		<Entity uid="100">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="686.34174" z="285.88993"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="101">
-			<Template>gaia/flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="664.43866" z="280.30927"/>
-			<Orientation y="0.79412"/>
-		</Entity>
-		<Entity uid="102">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="770.16504" z="245.34765"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="103">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="767.22962" z="243.23246"/>
-			<Orientation y="-2.00173"/>
-		</Entity>
-		<Entity uid="104">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="764.94513" z="241.78064"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="105">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="764.92048" z="237.18326"/>
-			<Orientation y="3.10091"/>
-		</Entity>
-		<Entity uid="106">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="765.93787" z="232.31548"/>
-			<Orientation y="1.67367"/>
-		</Entity>
-		<Entity uid="107">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="776.98847" z="232.6686"/>
-			<Orientation y="0.13549"/>
-		</Entity>
-		<Entity uid="108">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="777.42536" z="239.08623"/>
-			<Orientation y="0.15702"/>
-		</Entity>
-		<Entity uid="109">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="778.44306" z="248.89472"/>
-			<Orientation y="0.80898"/>
-		</Entity>
-		<Entity uid="110">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="785.30561" z="250.00751"/>
-			<Orientation y="2.70614"/>
-		</Entity>
-		<Entity uid="111">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="788.74079" z="239.29877"/>
-			<Orientation y="-2.79557"/>
-		</Entity>
-		<Entity uid="112">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="784.91334" z="230.93717"/>
-			<Orientation y="-2.51125"/>
-		</Entity>
-		<Entity uid="113">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="781.8636" z="226.08242"/>
-			<Orientation y="-1.91921"/>
-		</Entity>
-		<Entity uid="114">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="772.59845" z="224.25542"/>
-			<Orientation y="-1.54513"/>
-		</Entity>
-		<Entity uid="115">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="762.63123" z="224.89213"/>
-			<Orientation y="-1.352"/>
-		</Entity>
-		<Entity uid="116">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="757.89496" z="225.63222"/>
-			<Orientation y="-1.87111"/>
-		</Entity>
-		<Entity uid="117">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="750.63105" z="223.1601"/>
-			<Orientation y="1.91623"/>
-		</Entity>
-		<Entity uid="118">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="759.09675" z="221.024"/>
-			<Orientation y="0.7311"/>
-		</Entity>
-		<Entity uid="119">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="762.23096" z="226.82715"/>
-			<Orientation y="-0.31664"/>
-		</Entity>
-		<Entity uid="120">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="758.61615" z="234.67379"/>
-			<Orientation y="-0.47945"/>
-		</Entity>
-		<Entity uid="121">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="753.97913" z="242.35567"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="122">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="759.19996" z="242.14083"/>
-			<Orientation y="2.3464"/>
-		</Entity>
-		<Entity uid="123">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="770.06342" z="230.94584"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="124">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="775.56067" z="230.47452"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="125">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="781.86329" z="230.87987"/>
-			<Orientation y="-1.97071"/>
-		</Entity>
-		<Entity uid="126">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="767.90723" z="218.80248"/>
-			<Orientation y="0.88321"/>
-		</Entity>
-		<Entity uid="127">
-			<Template>gaia/flora_tree_senegal_date_palm</Template>
-			<Player>0</Player>
-			<Position x="721.52656" z="284.54755"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="128">
-			<Template>gaia/geology_stonemine_desert_quarry</Template>
-			<Player>0</Player>
-			<Position x="679.32215" z="249.85915"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="129">
-			<Template>gaia/geology_stonemine_desert_quarry</Template>
-			<Player>0</Player>
-			<Position x="692.57514" z="232.41752"/>
-			<Orientation y="1.05475"/>
-		</Entity>
-		<Entity uid="131">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="779.27955" z="339.08344"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="132">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
@@ -739,6 +463,2640 @@
 			<Player>0</Player>
 			<Position x="693.29523" z="402.145"/>
 			<Orientation y="0.67368"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>gaia/flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="894.30652" z="252.1042"/>
+			<Orientation y="-2.85122"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>gaia/flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="914.6385" z="213.20113"/>
+			<Orientation y="-1.62343"/>
+		</Entity>
+		<Entity uid="257">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="775.81324" z="339.49842"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="258">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="671.77527" z="250.99984"/>
+			<Orientation y="1.13048"/>
+		</Entity>
+		<Entity uid="259">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="690.93946" z="233.28174"/>
+			<Orientation y="1.06402"/>
+		</Entity>
+		<Entity uid="260">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="558.52833" z="230.35978"/>
+			<Orientation y="2.74016"/>
+		</Entity>
+		<Entity uid="261">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="604.2173" z="187.21308"/>
+			<Orientation y="-1.46918"/>
+		</Entity>
+		<Entity uid="262">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="897.71314" z="347.76008"/>
+			<Orientation y="0.409"/>
+		</Entity>
+		<Entity uid="263">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="969.52216" z="433.21222"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="264">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="672.4181" z="491.6078"/>
+			<Orientation y="-1.96616"/>
+		</Entity>
+		<Entity uid="265">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="581.71839" z="661.87452"/>
+			<Orientation y="0.40831"/>
+		</Entity>
+		<Entity uid="266">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="518.1261" z="739.57013"/>
+			<Orientation y="-2.5735"/>
+		</Entity>
+		<Entity uid="267">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="409.50654" z="926.72107"/>
+			<Orientation y="-0.12182"/>
+		</Entity>
+		<Entity uid="268">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="517.14234" z="984.31043"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="269">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="721.97425" z="911.71668"/>
+			<Orientation y="0.70647"/>
+		</Entity>
+		<Entity uid="270">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="913.90864" z="730.47706"/>
+			<Orientation y="-2.51818"/>
+		</Entity>
+		<Entity uid="271">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="940.797" z="519.15168"/>
+			<Orientation y="0.62917"/>
+		</Entity>
+		<Entity uid="272">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="392.97492" z="236.02242"/>
+			<Orientation y="0.72205"/>
+		</Entity>
+		<Entity uid="273">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="311.132" z="436.30597"/>
+			<Orientation y="-2.44037"/>
+		</Entity>
+		<Entity uid="274">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="139.71596" z="557.55091"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="275">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="245.59937" z="781.14472"/>
+			<Orientation y="1.09078"/>
+		</Entity>
+		<Entity uid="276">
+			<Template>gaia/geology_stonemine_desert_badlands_quarry</Template>
+			<Player>0</Player>
+			<Position x="230.376" z="759.95582"/>
+			<Orientation y="-0.4464"/>
+		</Entity>
+		<Entity uid="277">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="515.20215" z="622.53461"/>
+			<Orientation y="0.54307"/>
+		</Entity>
+		<Entity uid="278">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="683.50495" z="925.44581"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="279">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="606.21296" z="927.04914"/>
+			<Orientation y="-1.86745"/>
+		</Entity>
+		<Entity uid="280">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="675.49787" z="603.88965"/>
+			<Orientation y="0.15139"/>
+		</Entity>
+		<Entity uid="281">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="968.72175" z="501.73069"/>
+			<Orientation y="-2.26577"/>
+		</Entity>
+		<Entity uid="282">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="751.4568" z="110.8718"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="283">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="135.56244" z="655.10956"/>
+			<Orientation y="0.00213"/>
+		</Entity>
+		<Entity uid="284">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="259.92844" z="649.55066"/>
+			<Orientation y="-2.81667"/>
+		</Entity>
+		<Entity uid="285">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="389.16614" z="542.25055"/>
+			<Orientation y="-0.3061"/>
+		</Entity>
+		<Entity uid="286">
+			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
+			<Player>0</Player>
+			<Position x="816.97254" z="622.22614"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="316">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>1</Player>
+			<Position x="756.33204" z="212.44668"/>
+			<Orientation y="0.87363"/>
+		</Entity>
+		<Entity uid="319">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>1</Player>
+			<Position x="770.70374" z="212.76775"/>
+			<Orientation y="0.74123"/>
+		</Entity>
+		<Entity uid="323">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>1</Player>
+			<Position x="790.0583" z="221.84411"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="398">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="667.76679" z="311.5287"/>
+			<Orientation y="-1.54622"/>
+		</Entity>
+		<Entity uid="399">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="659.14393" z="310.63932"/>
+			<Orientation y="-3.12777"/>
+		</Entity>
+		<Entity uid="400">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="655.6153" z="300.06849"/>
+			<Orientation y="-2.85155"/>
+		</Entity>
+		<Entity uid="401">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="653.20807" z="293.17872"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="402">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="662.3708" z="284.03431"/>
+			<Orientation y="2.77227"/>
+		</Entity>
+		<Entity uid="403">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="667.48572" z="275.82404"/>
+			<Orientation y="2.28379"/>
+		</Entity>
+		<Entity uid="404">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="671.36237" z="273.42295"/>
+			<Orientation y="1.91326"/>
+		</Entity>
+		<Entity uid="405">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="679.62104" z="272.31067"/>
+			<Orientation y="0.87746"/>
+		</Entity>
+		<Entity uid="406">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="684.80439" z="276.64747"/>
+			<Orientation y="0.00864"/>
+		</Entity>
+		<Entity uid="407">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="684.90107" z="282.44123"/>
+			<Orientation y="-0.01465"/>
+		</Entity>
+		<Entity uid="408">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="683.96204" z="293.34977"/>
+			<Orientation y="-0.4694"/>
+		</Entity>
+		<Entity uid="409">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="679.60517" z="301.10254"/>
+			<Orientation y="-0.58953"/>
+		</Entity>
+		<Entity uid="410">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="673.89441" z="308.15812"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="411">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="661.55805" z="313.4498"/>
+			<Orientation y="0.96344"/>
+		</Entity>
+		<Entity uid="412">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="654.19806" z="305.44965"/>
+			<Orientation y="-1.77627"/>
+		</Entity>
+		<Entity uid="413">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="684.41065" z="283.9487"/>
+			<Orientation y="0.87883"/>
+		</Entity>
+		<Entity uid="414">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="657.97278" z="291.55787"/>
+			<Orientation y="-2.4693"/>
+		</Entity>
+		<Entity uid="415">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="662.86884" z="306.45325"/>
+			<Orientation y="1.389"/>
+		</Entity>
+		<Entity uid="416">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="790.30378" z="249.83126"/>
+			<Orientation y="-2.53231"/>
+		</Entity>
+		<Entity uid="417">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="780.31611" z="238.94913"/>
+			<Orientation y="-1.90001"/>
+		</Entity>
+		<Entity uid="418">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="770.6803" z="237.14977"/>
+			<Orientation y="-2.0584"/>
+		</Entity>
+		<Entity uid="419">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="758.3465" z="231.33788"/>
+			<Orientation y="-2.02271"/>
+		</Entity>
+		<Entity uid="420">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="750.94654" z="228.09997"/>
+			<Orientation y="-1.85175"/>
+		</Entity>
+		<Entity uid="421">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="744.90705" z="226.57306"/>
+			<Orientation y="-2.25652"/>
+		</Entity>
+		<Entity uid="422">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="739.55378" z="221.10242"/>
+			<Orientation y="2.11796"/>
+		</Entity>
+		<Entity uid="423">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="749.89545" z="216.51162"/>
+			<Orientation y="1.62441"/>
+		</Entity>
+		<Entity uid="424">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="761.16999" z="218.12314"/>
+			<Orientation y="1.22628"/>
+		</Entity>
+		<Entity uid="425">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="769.20124" z="221.2598"/>
+			<Orientation y="1.15053"/>
+		</Entity>
+		<Entity uid="426">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="778.6537" z="226.11367"/>
+			<Orientation y="0.95673"/>
+		</Entity>
+		<Entity uid="427">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="786.95118" z="232.18476"/>
+			<Orientation y="0.9087"/>
+		</Entity>
+		<Entity uid="428">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="796.01685" z="239.80031"/>
+			<Orientation y="0.08773"/>
+		</Entity>
+		<Entity uid="429">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="797.50165" z="243.1563"/>
+			<Orientation y="-1.86748"/>
+		</Entity>
+		<Entity uid="430">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="788.56275" z="246.35029"/>
+			<Orientation y="3.13773"/>
+		</Entity>
+		<Entity uid="431">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="780.38355" z="244.39506"/>
+			<Orientation y="-2.23046"/>
+		</Entity>
+		<Entity uid="432">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="769.18812" z="237.794"/>
+			<Orientation y="-2.3185"/>
+		</Entity>
+		<Entity uid="433">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="763.57844" z="232.75948"/>
+			<Orientation y="-2.3994"/>
+		</Entity>
+		<Entity uid="434">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="769.70331" z="225.59412"/>
+			<Orientation y="1.10813"/>
+		</Entity>
+		<Entity uid="435">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="778.74927" z="220.13868"/>
+			<Orientation y="-2.38462"/>
+		</Entity>
+		<Entity uid="436">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="788.7381" z="227.73427"/>
+			<Orientation y="0.66071"/>
+		</Entity>
+		<Entity uid="437">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="796.55243" z="232.92731"/>
+			<Orientation y="-1.93686"/>
+		</Entity>
+		<Entity uid="438">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="743.97614" z="230.73188"/>
+			<Orientation y="0.64293"/>
+		</Entity>
+		<Entity uid="439">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="774.85071" z="241.3608"/>
+			<Orientation y="1.10244"/>
+		</Entity>
+		<Entity uid="440">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="784.96131" z="246.65638"/>
+			<Orientation y="-1.89631"/>
+		</Entity>
+		<Entity uid="441">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="749.69892" z="223.53171"/>
+			<Orientation y="0.63633"/>
+		</Entity>
+		<Entity uid="442">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="758.71991" z="226.60383"/>
+			<Orientation y="0.91239"/>
+		</Entity>
+		<Entity uid="443">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="768.60334" z="235.79422"/>
+			<Orientation y="0.50149"/>
+		</Entity>
+		<Entity uid="444">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="772.90381" z="239.74852"/>
+			<Orientation y="3.08597"/>
+		</Entity>
+		<Entity uid="445">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="773.99878" z="226.97219"/>
+			<Orientation y="0.51247"/>
+		</Entity>
+		<Entity uid="446">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="780.77057" z="236.09598"/>
+			<Orientation y="1.11062"/>
+		</Entity>
+		<Entity uid="447">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="786.41547" z="243.01714"/>
+			<Orientation y="0.68296"/>
+		</Entity>
+		<Entity uid="448">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="795.883" z="238.14065"/>
+			<Orientation y="0.59664"/>
+		</Entity>
+		<Entity uid="449">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="662.62049" z="302.09913"/>
+			<Orientation y="1.65873"/>
+		</Entity>
+		<Entity uid="450">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="671.7865" z="296.89805"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="451">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="673.88331" z="284.07306"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="452">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="678.62928" z="279.50583"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="453">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="677.03162" z="275.7447"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="454">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="668.14997" z="280.91236"/>
+			<Orientation y="-0.9267"/>
+		</Entity>
+		<Entity uid="455">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="661.92878" z="289.90906"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="456">
+			<Template>gaia/flora_tree_carob</Template>
+			<Player>0</Player>
+			<Position x="785.19007" z="233.34935"/>
+			<Orientation y="0.81327"/>
+		</Entity>
+		<Entity uid="457">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="708.78376" z="110.16927"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="458">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="715.11225" z="115.25686"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="459">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="720.71296" z="104.55571"/>
+			<Orientation y="0.7283"/>
+		</Entity>
+		<Entity uid="460">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="723.60077" z="111.5381"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="461">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="725.11683" z="115.18007"/>
+			<Orientation y="1.36828"/>
+		</Entity>
+		<Entity uid="462">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="729.235" z="115.96233"/>
+			<Orientation y="2.28759"/>
+		</Entity>
+		<Entity uid="463">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="733.52314" z="111.41883"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="464">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="736.60523" z="111.53394"/>
+			<Orientation y="1.17518"/>
+		</Entity>
+		<Entity uid="465">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="748.6352" z="95.60261"/>
+			<Orientation y="-3.04894"/>
+		</Entity>
+		<Entity uid="466">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="746.529" z="89.34005"/>
+			<Orientation y="-1.6329"/>
+		</Entity>
+		<Entity uid="467">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="738.83423" z="88.07996"/>
+			<Orientation y="2.81742"/>
+		</Entity>
+		<Entity uid="468">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="744.91517" z="80.79986"/>
+			<Orientation y="0.3942"/>
+		</Entity>
+		<Entity uid="469">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="747.25129" z="85.93276"/>
+			<Orientation y="1.03765"/>
+		</Entity>
+		<Entity uid="470">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="749.71058" z="89.80297"/>
+			<Orientation y="-3.09075"/>
+		</Entity>
+		<Entity uid="471">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="742.26624" z="84.1419"/>
+			<Orientation y="1.36461"/>
+		</Entity>
+		<Entity uid="472">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="717.00928" z="89.28615"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="473">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="698.36237" z="133.56672"/>
+			<Orientation y="1.12511"/>
+		</Entity>
+		<Entity uid="474">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="705.17273" z="136.48288"/>
+			<Orientation y="0.74375"/>
+		</Entity>
+		<Entity uid="475">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="707.2002" z="138.38987"/>
+			<Orientation y="1.31399"/>
+		</Entity>
+		<Entity uid="476">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="715.14533" z="137.79465"/>
+			<Orientation y="0.00605"/>
+		</Entity>
+		<Entity uid="477">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="704.1261" z="144.19031"/>
+			<Orientation y="-2.06196"/>
+		</Entity>
+		<Entity uid="478">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="713.74695" z="144.71018"/>
+			<Orientation y="1.45455"/>
+		</Entity>
+		<Entity uid="479">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="776.49988" z="117.53016"/>
+			<Orientation y="0.0476"/>
+		</Entity>
+		<Entity uid="480">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="781.34583" z="120.19118"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="481">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="784.5943" z="121.03481"/>
+			<Orientation y="1.86655"/>
+		</Entity>
+		<Entity uid="482">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="792.2281" z="120.1886"/>
+			<Orientation y="-0.06666"/>
+		</Entity>
+		<Entity uid="483">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="791.02338" z="124.22701"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="484">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="791.2483" z="125.93862"/>
+			<Orientation y="1.41713"/>
+		</Entity>
+		<Entity uid="485">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="795.45203" z="126.55074"/>
+			<Orientation y="2.9985"/>
+		</Entity>
+		<Entity uid="486">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="795.8089" z="121.57732"/>
+			<Orientation y="2.8593"/>
+		</Entity>
+		<Entity uid="487">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="797.41346" z="116.85682"/>
+			<Orientation y="2.36129"/>
+		</Entity>
+		<Entity uid="488">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="770.07654" z="112.94587"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="489">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="785.91608" z="96.51143"/>
+			<Orientation y="0.74161"/>
+		</Entity>
+		<Entity uid="490">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="792.29743" z="97.31118"/>
+			<Orientation y="-2.92922"/>
+		</Entity>
+		<Entity uid="491">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="785.4947" z="91.53936"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="492">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="782.19733" z="90.71418"/>
+			<Orientation y="-2.25196"/>
+		</Entity>
+		<Entity uid="493">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="777.25464" z="84.61123"/>
+			<Orientation y="1.83436"/>
+		</Entity>
+		<Entity uid="494">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="783.63947" z="87.30477"/>
+			<Orientation y="0.63942"/>
+		</Entity>
+		<Entity uid="495">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="789.33075" z="91.37845"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="496">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="777.2834" z="95.1537"/>
+			<Orientation y="1.68183"/>
+		</Entity>
+		<Entity uid="497">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="761.4737" z="346.15076"/>
+			<Orientation y="-0.09375"/>
+		</Entity>
+		<Entity uid="498">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="758.85718" z="354.11503"/>
+			<Orientation y="-0.92731"/>
+		</Entity>
+		<Entity uid="499">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="751.71552" z="358.31223"/>
+			<Orientation y="-2.54757"/>
+		</Entity>
+		<Entity uid="500">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="751.35291" z="349.53657"/>
+			<Orientation y="2.90658"/>
+		</Entity>
+		<Entity uid="501">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="754.27631" z="342.6042"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="502">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="760.13032" z="350.42438"/>
+			<Orientation y="1.03093"/>
+		</Entity>
+		<Entity uid="503">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="766.78028" z="408.74848"/>
+			<Orientation y="-1.98142"/>
+		</Entity>
+		<Entity uid="504">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="759.94227" z="408.44874"/>
+			<Orientation y="-2.47454"/>
+		</Entity>
+		<Entity uid="505">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="757.77765" z="407.487"/>
+			<Orientation y="-2.97434"/>
+		</Entity>
+		<Entity uid="506">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="759.80018" z="402.51276"/>
+			<Orientation y="0.86384"/>
+		</Entity>
+		<Entity uid="507">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="765.20948" z="404.85483"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="508">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="767.3614" z="404.32306"/>
+			<Orientation y="-3.01722"/>
+		</Entity>
+		<Entity uid="509">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="766.65668" z="399.47773"/>
+			<Orientation y="-2.36934"/>
+		</Entity>
+		<Entity uid="510">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="764.38685" z="398.55909"/>
+			<Orientation y="-1.86863"/>
+		</Entity>
+		<Entity uid="511">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="759.2815" z="399.42151"/>
+			<Orientation y="-2.11149"/>
+		</Entity>
+		<Entity uid="512">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="757.28199" z="399.28028"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="513">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="756.58893" z="405.47944"/>
+			<Orientation y="1.46677"/>
+		</Entity>
+		<Entity uid="514">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="586.0459" z="407.64252"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="515">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="588.39692" z="414.36655"/>
+			<Orientation y="1.95759"/>
+		</Entity>
+		<Entity uid="516">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="596.29029" z="408.91578"/>
+			<Orientation y="2.73728"/>
+		</Entity>
+		<Entity uid="517">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="607.34791" z="411.331"/>
+			<Orientation y="1.72024"/>
+		</Entity>
+		<Entity uid="518">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="613.73102" z="411.03092"/>
+			<Orientation y="2.81751"/>
+		</Entity>
+		<Entity uid="519">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="617.88691" z="407.08906"/>
+			<Orientation y="1.15925"/>
+		</Entity>
+		<Entity uid="520">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="623.8025" z="408.01063"/>
+			<Orientation y="2.05575"/>
+		</Entity>
+		<Entity uid="521">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="628.04163" z="405.90793"/>
+			<Orientation y="-3.0588"/>
+		</Entity>
+		<Entity uid="522">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="626.45844" z="402.39808"/>
+			<Orientation y="-1.71988"/>
+		</Entity>
+		<Entity uid="523">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="618.80414" z="403.48502"/>
+			<Orientation y="-1.16256"/>
+		</Entity>
+		<Entity uid="524">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="609.51771" z="406.8072"/>
+			<Orientation y="1.02915"/>
+		</Entity>
+		<Entity uid="525">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="612.71332" z="391.78327"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="526">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="613.27698" z="387.62537"/>
+			<Orientation y="1.82409"/>
+		</Entity>
+		<Entity uid="527">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="617.06073" z="386.69013"/>
+			<Orientation y="3.08153"/>
+		</Entity>
+		<Entity uid="528">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="617.50025" z="382.14667"/>
+			<Orientation y="2.89646"/>
+		</Entity>
+		<Entity uid="529">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="618.37574" z="379.83341"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="530">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="608.71174" z="374.24878"/>
+			<Orientation y="-1.90111"/>
+		</Entity>
+		<Entity uid="531">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="599.01771" z="371.99497"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="532">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="598.58765" z="371.02204"/>
+			<Orientation y="-1.8135"/>
+		</Entity>
+		<Entity uid="533">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="594.05573" z="371.85251"/>
+			<Orientation y="-0.82323"/>
+		</Entity>
+		<Entity uid="534">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="590.2016" z="376.13294"/>
+			<Orientation y="0.08797"/>
+		</Entity>
+		<Entity uid="535">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="590.47132" z="379.22773"/>
+			<Orientation y="-0.066"/>
+		</Entity>
+		<Entity uid="536">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="589.23957" z="382.43339"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="537">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="588.15503" z="385.54954"/>
+			<Orientation y="-0.01333"/>
+		</Entity>
+		<Entity uid="538">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="583.58991" z="382.22025"/>
+			<Orientation y="-3.0426"/>
+		</Entity>
+		<Entity uid="539">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="567.25824" z="372.13266"/>
+			<Orientation y="2.13657"/>
+		</Entity>
+		<Entity uid="540">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="574.55073" z="366.32392"/>
+			<Orientation y="1.72616"/>
+		</Entity>
+		<Entity uid="541">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="579.06653" z="367.07941"/>
+			<Orientation y="1.12105"/>
+		</Entity>
+		<Entity uid="542">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="581.90571" z="368.13425"/>
+			<Orientation y="-3.1381"/>
+		</Entity>
+		<Entity uid="543">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="581.76252" z="362.00306"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="544">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="582.66834" z="360.5286"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="545">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="583.43317" z="358.3347"/>
+			<Orientation y="2.58758"/>
+		</Entity>
+		<Entity uid="546">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="586.32404" z="353.96631"/>
+			<Orientation y="2.46036"/>
+		</Entity>
+		<Entity uid="547">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="588.30463" z="351.77433"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="548">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="554.81562" z="359.24183"/>
+			<Orientation y="2.96923"/>
+		</Entity>
+		<Entity uid="549">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="553.63282" z="353.17078"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="550">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="556.12195" z="350.54801"/>
+			<Orientation y="1.95284"/>
+		</Entity>
+		<Entity uid="551">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="561.84876" z="347.67414"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="552">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="561.15076" z="346.09559"/>
+			<Orientation y="-2.09656"/>
+		</Entity>
+		<Entity uid="553">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="555.32892" z="343.02106"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="554">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="560.49756" z="341.31095"/>
+			<Orientation y="1.69834"/>
+		</Entity>
+		<Entity uid="555">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="567.15131" z="340.62275"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="556">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="565.53132" z="339.19251"/>
+			<Orientation y="-1.79044"/>
+		</Entity>
+		<Entity uid="557">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="560.89325" z="336.6894"/>
+			<Orientation y="1.9141"/>
+		</Entity>
+		<Entity uid="558">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="569.27411" z="333.96903"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="559">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="571.31653" z="335.09443"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="560">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="560.9079" z="352.33881"/>
+			<Orientation y="-2.33988"/>
+		</Entity>
+		<Entity uid="561">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="551.167" z="347.2844"/>
+			<Orientation y="0.89144"/>
+		</Entity>
+		<Entity uid="562">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="570.36152" z="407.92563"/>
+			<Orientation y="-2.52138"/>
+		</Entity>
+		<Entity uid="563">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="565.85248" z="395.94648"/>
+			<Orientation y="-2.82165"/>
+		</Entity>
+		<Entity uid="564">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="563.47657" z="390.76532"/>
+			<Orientation y="-2.23246"/>
+		</Entity>
+		<Entity uid="565">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="558.1031" z="384.23362"/>
+			<Orientation y="2.44002"/>
+		</Entity>
+		<Entity uid="566">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="562.42872" z="382.00355"/>
+			<Orientation y="2.11184"/>
+		</Entity>
+		<Entity uid="567">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="565.98865" z="380.52955"/>
+			<Orientation y="1.78237"/>
+		</Entity>
+		<Entity uid="568">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="568.93702" z="379.82441"/>
+			<Orientation y="2.2745"/>
+		</Entity>
+		<Entity uid="569">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="573.68824" z="376.71848"/>
+			<Orientation y="2.10238"/>
+		</Entity>
+		<Entity uid="570">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="578.16993" z="373.75742"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="571">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="584.87574" z="377.9192"/>
+			<Orientation y="2.2644"/>
+		</Entity>
+		<Entity uid="572">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="589.57367" z="370.70435"/>
+			<Orientation y="-2.9493"/>
+		</Entity>
+		<Entity uid="573">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="588.28058" z="366.24347"/>
+			<Orientation y="2.76226"/>
+		</Entity>
+		<Entity uid="574">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="593.50544" z="359.01142"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="575">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="596.21393" z="361.38059"/>
+			<Orientation y="0.57613"/>
+		</Entity>
+		<Entity uid="576">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="599.5522" z="365.36738"/>
+			<Orientation y="2.57348"/>
+		</Entity>
+		<Entity uid="577">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="603.92994" z="359.16749"/>
+			<Orientation y="2.94867"/>
+		</Entity>
+		<Entity uid="578">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="580.97773" z="207.9532"/>
+			<Orientation y="-2.5302"/>
+		</Entity>
+		<Entity uid="579">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="576.48761" z="196.51938"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="580">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="578.0113" z="190.99093"/>
+			<Orientation y="2.4106"/>
+		</Entity>
+		<Entity uid="581">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="587.64972" z="182.28058"/>
+			<Orientation y="0.5458"/>
+		</Entity>
+		<Entity uid="582">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="586.62012" z="194.22349"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="583">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="583.59546" z="199.69407"/>
+			<Orientation y="-0.93268"/>
+		</Entity>
+		<Entity uid="584">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="577.02186" z="204.21062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="585">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="573.28296" z="209.25763"/>
+			<Orientation y="0.82844"/>
+		</Entity>
+		<Entity uid="586">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="575.6576" z="214.92827"/>
+			<Orientation y="1.3187"/>
+		</Entity>
+		<Entity uid="587">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="579.22407" z="214.10132"/>
+			<Orientation y="2.28083"/>
+		</Entity>
+		<Entity uid="588">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="584.47938" z="206.50113"/>
+			<Orientation y="2.75631"/>
+		</Entity>
+		<Entity uid="589">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="588.472" z="195.12946"/>
+			<Orientation y="2.80016"/>
+		</Entity>
+		<Entity uid="590">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="591.88099" z="185.35564"/>
+			<Orientation y="2.46998"/>
+		</Entity>
+		<Entity uid="591">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="619.09156" z="154.17432"/>
+			<Orientation y="2.1243"/>
+		</Entity>
+		<Entity uid="592">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="625.47565" z="156.17904"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="593">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="624.17634" z="153.67017"/>
+			<Orientation y="-3.13"/>
+		</Entity>
+		<Entity uid="594">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="624.94239" z="148.34971"/>
+			<Orientation y="2.35326"/>
+		</Entity>
+		<Entity uid="595">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="628.53174" z="148.09412"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="596">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="629.86158" z="153.69123"/>
+			<Orientation y="0.31328"/>
+		</Entity>
+		<Entity uid="597">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="631.844" z="160.61242"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="598">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="634.40143" z="162.9267"/>
+			<Orientation y="2.18418"/>
+		</Entity>
+		<Entity uid="599">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="637.14173" z="162.19636"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="600">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="637.60395" z="169.09665"/>
+			<Orientation y="-0.59472"/>
+		</Entity>
+		<Entity uid="601">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="633.17151" z="174.1145"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="602">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="632.79328" z="177.62607"/>
+			<Orientation y="2.22066"/>
+		</Entity>
+		<Entity uid="603">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="639.15644" z="172.38717"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="604">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="641.19306" z="170.63558"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="605">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="643.40314" z="166.45128"/>
+			<Orientation y="-2.42376"/>
+		</Entity>
+		<Entity uid="606">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="639.60218" z="161.54438"/>
+			<Orientation y="-2.49877"/>
+		</Entity>
+		<Entity uid="607">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="636.95429" z="155.81579"/>
+			<Orientation y="2.53226"/>
+		</Entity>
+		<Entity uid="608">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="643.35145" z="152.17669"/>
+			<Orientation y="0.95052"/>
+		</Entity>
+		<Entity uid="609">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="644.63147" z="158.72051"/>
+			<Orientation y="2.07831"/>
+		</Entity>
+		<Entity uid="610">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="651.82227" z="159.39542"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="611">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="649.33448" z="155.51778"/>
+			<Orientation y="-2.50017"/>
+		</Entity>
+		<Entity uid="612">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="646.40882" z="151.49482"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="613">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="647.22956" z="148.30895"/>
+			<Orientation y="1.77994"/>
+		</Entity>
+		<Entity uid="614">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="699.46033" z="138.29886"/>
+			<Orientation y="0.36129"/>
+		</Entity>
+		<Entity uid="615">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="669.57319" z="102.88918"/>
+			<Orientation y="2.4685"/>
+		</Entity>
+		<Entity uid="616">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="677.10096" z="97.3355"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="617">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="678.21698" z="98.51095"/>
+			<Orientation y="3.13491"/>
+		</Entity>
+		<Entity uid="618">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="674.7693" z="86.21521"/>
+			<Orientation y="-1.82291"/>
+		</Entity>
+		<Entity uid="619">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="671.90906" z="87.09118"/>
+			<Orientation y="-1.52504"/>
+		</Entity>
+		<Entity uid="620">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="668.33216" z="86.81226"/>
+			<Orientation y="-2.46962"/>
+		</Entity>
+		<Entity uid="621">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="664.14637" z="79.43563"/>
+			<Orientation y="2.21938"/>
+		</Entity>
+		<Entity uid="622">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="670.43354" z="77.81905"/>
+			<Orientation y="1.46578"/>
+		</Entity>
+		<Entity uid="623">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="678.0127" z="79.99381"/>
+			<Orientation y="-0.09897"/>
+		</Entity>
+		<Entity uid="624">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="678.081" z="86.65413"/>
+			<Orientation y="-0.07355"/>
+		</Entity>
+		<Entity uid="625">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="675.396" z="96.45505"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="626">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="673.68854" z="99.2934"/>
+			<Orientation y="-0.14437"/>
+		</Entity>
+		<Entity uid="627">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="627.73353" z="41.74126"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="628">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="627.60029" z="39.03832"/>
+			<Orientation y="-2.38018"/>
+		</Entity>
+		<Entity uid="629">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="624.51551" z="38.12243"/>
+			<Orientation y="-1.17782"/>
+		</Entity>
+		<Entity uid="630">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="619.62269" z="39.77291"/>
+			<Orientation y="-1.30501"/>
+		</Entity>
+		<Entity uid="631">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="612.17811" z="38.69877"/>
+			<Orientation y="-3.10015"/>
+		</Entity>
+		<Entity uid="632">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="612.2967" z="34.98684"/>
+			<Orientation y="2.54253"/>
+		</Entity>
+		<Entity uid="633">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="616.22486" z="32.34887"/>
+			<Orientation y="1.75698"/>
+		</Entity>
+		<Entity uid="634">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="623.57856" z="32.40264"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="635">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="625.74244" z="36.50927"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="636">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="629.63434" z="37.95191"/>
+			<Orientation y="2.4733"/>
+		</Entity>
+		<Entity uid="637">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="633.56043" z="34.87017"/>
+			<Orientation y="-2.84672"/>
+		</Entity>
+		<Entity uid="638">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="621.1084" z="36.58042"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="639">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="617.61512" z="29.17333"/>
+			<Orientation y="1.67537"/>
+		</Entity>
+		<Entity uid="640">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="628.86121" z="30.78733"/>
+			<Orientation y="-2.10607"/>
+		</Entity>
+		<Entity uid="641">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="567.51526" z="66.63837"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="642">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="564.50947" z="64.84441"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="643">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="564.26429" z="61.20385"/>
+			<Orientation y="-2.89837"/>
+		</Entity>
+		<Entity uid="644">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="561.70075" z="57.58587"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="645">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="560.97846" z="56.3449"/>
+			<Orientation y="1.7339"/>
+		</Entity>
+		<Entity uid="646">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="569.53162" z="63.11023"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="647">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="567.23261" z="66.91265"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="648">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="562.40564" z="66.14417"/>
+			<Orientation y="-2.22722"/>
+		</Entity>
+		<Entity uid="649">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="557.79737" z="63.50622"/>
+			<Orientation y="2.84763"/>
+		</Entity>
+		<Entity uid="650">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="561.20246" z="59.75284"/>
+			<Orientation y="1.81377"/>
+		</Entity>
+		<Entity uid="651">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="786.61963" z="374.51914"/>
+			<Orientation y="2.55663"/>
+		</Entity>
+		<Entity uid="652">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="791.04218" z="368.16102"/>
+			<Orientation y="2.72324"/>
+		</Entity>
+		<Entity uid="653">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="793.80042" z="362.64264"/>
+			<Orientation y="2.16099"/>
+		</Entity>
+		<Entity uid="654">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="825.34443" z="342.18992"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="655">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="836.38941" z="301.3407"/>
+			<Orientation y="-2.97883"/>
+		</Entity>
+		<Entity uid="656">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="845.9817" z="346.79914"/>
+			<Orientation y="-1.72016"/>
+		</Entity>
+		<Entity uid="657">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="849.33716" z="371.10923"/>
+			<Orientation y="0.05573"/>
+		</Entity>
+		<Entity uid="658">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="850.62885" z="341.44623"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="659">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="850.18805" z="347.66025"/>
+			<Orientation y="-0.92902"/>
+		</Entity>
+		<Entity uid="660">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="829.62757" z="304.51325"/>
+			<Orientation y="0.33576"/>
+		</Entity>
+		<Entity uid="661">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="840.64423" z="343.95978"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="662">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="853.74305" z="359.71125"/>
+			<Orientation y="-3.12023"/>
+		</Entity>
+		<Entity uid="663">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="858.59345" z="334.76462"/>
+			<Orientation y="-0.83461"/>
+		</Entity>
+		<Entity uid="664">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="856.66932" z="338.32172"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="665">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="863.87757" z="358.95606"/>
+			<Orientation y="2.72468"/>
+		</Entity>
+		<Entity uid="666">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="852.261" z="337.41843"/>
+			<Orientation y="1.74042"/>
+		</Entity>
+		<Entity uid="667">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="854.20704" z="332.21848"/>
+			<Orientation y="0.7598"/>
+		</Entity>
+		<Entity uid="668">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="907.2331" z="317.9087"/>
+			<Orientation y="0.85616"/>
+		</Entity>
+		<Entity uid="669">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="917.71351" z="325.23783"/>
+			<Orientation y="0.61162"/>
+		</Entity>
+		<Entity uid="670">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="921.32715" z="329.13593"/>
+			<Orientation y="2.21013"/>
+		</Entity>
+		<Entity uid="671">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="928.94031" z="317.32337"/>
+			<Orientation y="-2.16189"/>
+		</Entity>
+		<Entity uid="672">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="919.75538" z="319.3072"/>
+			<Orientation y="-1.55361"/>
+		</Entity>
+		<Entity uid="673">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="914.04078" z="320.48722"/>
+			<Orientation y="-2.47951"/>
+		</Entity>
+		<Entity uid="674">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="910.81971" z="316.76667"/>
+			<Orientation y="-2.28675"/>
+		</Entity>
+		<Entity uid="675">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="836.3216" z="307.93409"/>
+			<Orientation y="0.35306"/>
+		</Entity>
+		<Entity uid="676">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="862.09528" z="317.79657"/>
+			<Orientation y="0.4107"/>
+		</Entity>
+		<Entity uid="677">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="825.29615" z="311.16602"/>
+			<Orientation y="1.16373"/>
+		</Entity>
+		<Entity uid="678">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="844.86603" z="306.1042"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="679">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="643.77894" z="237.10424"/>
+			<Orientation y="-1.1555"/>
+		</Entity>
+		<Entity uid="680">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="747.67054" z="191.13672"/>
+			<Orientation y="2.03084"/>
+		</Entity>
+		<Entity uid="681">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="747.72303" z="175.70775"/>
+			<Orientation y="-2.20542"/>
+		</Entity>
+		<Entity uid="682">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="740.23426" z="171.3487"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="683">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="738.9828" z="159.53008"/>
+			<Orientation y="1.10468"/>
+		</Entity>
+		<Entity uid="684">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="748.75477" z="172.08002"/>
+			<Orientation y="0.35523"/>
+		</Entity>
+		<Entity uid="685">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="499.64365" z="267.10511"/>
+			<Orientation y="-2.15084"/>
+		</Entity>
+		<Entity uid="686">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="489.67823" z="264.62058"/>
+			<Orientation y="-1.23508"/>
+		</Entity>
+		<Entity uid="687">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="484.10328" z="265.35831"/>
+			<Orientation y="-1.0612"/>
+		</Entity>
+		<Entity uid="688">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="478.791" z="265.84382"/>
+			<Orientation y="-0.9891"/>
+		</Entity>
+		<Entity uid="689">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="473.70063" z="269.27704"/>
+			<Orientation y="-1.06824"/>
+		</Entity>
+		<Entity uid="690">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="458.10395" z="283.70337"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="691">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="459.57496" z="281.54926"/>
+			<Orientation y="2.81048"/>
+		</Entity>
+		<Entity uid="692">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="462.35242" z="272.94217"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="693">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="459.93604" z="269.5998"/>
+			<Orientation y="-2.5261"/>
+		</Entity>
+		<Entity uid="694">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="457.2519" z="266.86301"/>
+			<Orientation y="-3.04467"/>
+		</Entity>
+		<Entity uid="695">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="456.64597" z="260.4156"/>
+			<Orientation y="2.23037"/>
+		</Entity>
+		<Entity uid="696">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="461.01572" z="258.70746"/>
+			<Orientation y="0.62137"/>
+		</Entity>
+		<Entity uid="697">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="463.51883" z="265.8188"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="698">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="464.06711" z="291.86591"/>
+			<Orientation y="-2.95537"/>
+		</Entity>
+		<Entity uid="699">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="463.84388" z="284.5492"/>
+			<Orientation y="2.83256"/>
+		</Entity>
+		<Entity uid="700">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="465.34437" z="277.30994"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="701">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="463.13135" z="273.11701"/>
+			<Orientation y="2.5787"/>
+		</Entity>
+		<Entity uid="702">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="494.64838" z="266.94867"/>
+			<Orientation y="2.76641"/>
+		</Entity>
+		<Entity uid="703">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="493.08713" z="260.45487"/>
+			<Orientation y="-1.3688"/>
+		</Entity>
+		<Entity uid="704">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="487.8436" z="261.44446"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="705">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="484.98523" z="260.17582"/>
+			<Orientation y="2.91002"/>
+		</Entity>
+		<Entity uid="706">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="446.86448" z="304.20252"/>
+			<Orientation y="1.59867"/>
+		</Entity>
+		<Entity uid="707">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="454.66321" z="304.91883"/>
+			<Orientation y="1.19294"/>
+		</Entity>
+		<Entity uid="708">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="457.56415" z="304.05317"/>
+			<Orientation y="-2.70121"/>
+		</Entity>
+		<Entity uid="709">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="452.02585" z="295.45774"/>
+			<Orientation y="-1.75768"/>
+		</Entity>
+		<Entity uid="710">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="444.39997" z="294.29657"/>
+			<Orientation y="2.2544"/>
+		</Entity>
+		<Entity uid="711">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="448.83777" z="291.96216"/>
+			<Orientation y="1.2909"/>
+		</Entity>
+		<Entity uid="712">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="455.87247" z="293.92676"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="713">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="458.32499" z="301.5958"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="714">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="464.2577" z="302.01777"/>
+			<Orientation y="-2.75164"/>
+		</Entity>
+		<Entity uid="715">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="638.09461" z="370.92695"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="716">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="648.61072" z="360.19733"/>
+			<Orientation y="-1.62914"/>
+		</Entity>
+		<Entity uid="717">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="661.62171" z="345.7859"/>
+			<Orientation y="0.57879"/>
+		</Entity>
+		<Entity uid="718">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="647.98798" z="388.34577"/>
+			<Orientation y="3.13427"/>
+		</Entity>
+		<Entity uid="719">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="657.57117" z="372.20649"/>
+			<Orientation y="1.07338"/>
+		</Entity>
+		<Entity uid="720">
+			<Template>gaia/flora_tree_apple</Template>
+			<Player>0</Player>
+			<Position x="672.18451" z="361.9214"/>
+			<Orientation y="-2.04188"/>
+		</Entity>
+		<Entity uid="721">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="466.99207" z="486.16187"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="722">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="464.7793" z="493.40906"/>
+			<Orientation y="-1.35637"/>
+		</Entity>
+		<Entity uid="723">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="458.9903" z="496.39692"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="724">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="456.4668" z="501.2186"/>
+			<Orientation y="0.77608"/>
+		</Entity>
+		<Entity uid="725">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="460.02573" z="503.93964"/>
+			<Orientation y="2.0531"/>
+		</Entity>
+		<Entity uid="726">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="464.0781" z="501.53327"/>
+			<Orientation y="2.02497"/>
+		</Entity>
+		<Entity uid="727">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="471.77256" z="496.25092"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="728">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="474.06428" z="497.69614"/>
+			<Orientation y="1.13205"/>
+		</Entity>
+		<Entity uid="729">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="481.72858" z="496.84302"/>
+			<Orientation y="-3.0661"/>
+		</Entity>
+		<Entity uid="730">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="480.59635" z="491.19709"/>
+			<Orientation y="-2.51371"/>
+		</Entity>
+		<Entity uid="731">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="475.64161" z="489.9073"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="732">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="472.93476" z="490.2952"/>
+			<Orientation y="-2.0012"/>
+		</Entity>
+		<Entity uid="733">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="467.63581" z="489.654"/>
+			<Orientation y="2.8486"/>
+		</Entity>
+		<Entity uid="734">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="470.11478" z="484.02274"/>
+			<Orientation y="1.63262"/>
+		</Entity>
+		<Entity uid="735">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="496.33704" z="382.25129"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="736">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="499.56421" z="381.68796"/>
+			<Orientation y="3.01629"/>
+		</Entity>
+		<Entity uid="737">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="500.04136" z="376.6941"/>
+			<Orientation y="-2.97057"/>
+		</Entity>
+		<Entity uid="738">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="499.79184" z="371.23871"/>
+			<Orientation y="2.46862"/>
+		</Entity>
+		<Entity uid="739">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="505.34772" z="366.91401"/>
+			<Orientation y="2.52874"/>
+		</Entity>
+		<Entity uid="740">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="507.92786" z="362.17798"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="741">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="506.78199" z="359.80298"/>
+			<Orientation y="-2.75617"/>
+		</Entity>
+		<Entity uid="742">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="506.8285" z="357.63678"/>
+			<Orientation y="1.68265"/>
+		</Entity>
+		<Entity uid="743">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="511.17978" z="357.47168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="744">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="505.21491" z="361.91202"/>
+			<Orientation y="-1.70635"/>
+		</Entity>
+		<Entity uid="745">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="499.07798" z="362.76474"/>
+			<Orientation y="-2.17396"/>
+		</Entity>
+		<Entity uid="746">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="497.25593" z="360.99286"/>
+			<Orientation y="2.42092"/>
+		</Entity>
+		<Entity uid="747">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="499.25293" z="359.63874"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="748">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="500.14277" z="358.33042"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="749">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="500.86704" z="356.80549"/>
+			<Orientation y="-1.02823"/>
+		</Entity>
+		<Entity uid="750">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="494.77424" z="356.10264"/>
+			<Orientation y="0.43438"/>
+		</Entity>
+		<Entity uid="751">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="495.12647" z="361.80613"/>
+			<Orientation y="-0.32796"/>
+		</Entity>
+		<Entity uid="752">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="494.4375" z="364.12537"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="753">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="528.30457" z="388.17353"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="754">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="526.87098" z="384.6591"/>
+			<Orientation y="2.62891"/>
+		</Entity>
+		<Entity uid="755">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="530.5807" z="380.24646"/>
+			<Orientation y="2.86579"/>
+		</Entity>
+		<Entity uid="756">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="530.6316" z="376.6326"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="757">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="530.22114" z="372.32154"/>
+			<Orientation y="2.56064"/>
+		</Entity>
+		<Entity uid="758">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="533.41541" z="371.12031"/>
+			<Orientation y="0.24843"/>
+		</Entity>
+		<Entity uid="759">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="534.77778" z="375.14914"/>
+			<Orientation y="1.28495"/>
+		</Entity>
+		<Entity uid="760">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="538.73011" z="375.6457"/>
+			<Orientation y="3.12516"/>
+		</Entity>
+		<Entity uid="761">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="537.67902" z="370.22101"/>
+			<Orientation y="-2.68682"/>
+		</Entity>
+		<Entity uid="762">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="535.91633" z="365.47046"/>
+			<Orientation y="-2.98992"/>
+		</Entity>
+		<Entity uid="763">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="535.46637" z="362.11197"/>
+			<Orientation y="2.24686"/>
+		</Entity>
+		<Entity uid="764">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="539.47315" z="360.5235"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="765">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="533.47883" z="366.06867"/>
+			<Orientation y="-0.22268"/>
+		</Entity>
+		<Entity uid="766">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="530.35541" z="376.36414"/>
+			<Orientation y="-0.9329"/>
+		</Entity>
+		<Entity uid="767">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="524.12751" z="379.78064"/>
+			<Orientation y="2.08671"/>
+		</Entity>
+		<Entity uid="768">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="525.45948" z="389.38495"/>
+			<Orientation y="-2.43058"/>
+		</Entity>
+		<Entity uid="769">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="521.8274" z="388.12751"/>
+			<Orientation y="0.12362"/>
+		</Entity>
+		<Entity uid="770">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="470.83503" z="446.27067"/>
+			<Orientation y="2.75933"/>
+		</Entity>
+		<Entity uid="771">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="473.89118" z="437.10743"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="772">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="473.20597" z="430.96888"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="773">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="473.36875" z="426.76594"/>
+			<Orientation y="1.99631"/>
+		</Entity>
+		<Entity uid="774">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="477.85373" z="429.27036"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="775">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="479.31971" z="430.80051"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="776">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="479.64765" z="425.10499"/>
+			<Orientation y="-2.93612"/>
+		</Entity>
+		<Entity uid="777">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="478.76786" z="416.31775"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="778">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="481.01285" z="415.42725"/>
+			<Orientation y="2.23401"/>
+		</Entity>
+		<Entity uid="779">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="485.37485" z="413.2356"/>
+			<Orientation y="-2.6157"/>
+		</Entity>
+		<Entity uid="780">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="494.38456" z="440.95221"/>
+			<Orientation y="2.07058"/>
+		</Entity>
+		<Entity uid="781">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="498.76822" z="437.3177"/>
+			<Orientation y="-3.00618"/>
+		</Entity>
+		<Entity uid="782">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="497.19315" z="432.97883"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="783">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="496.38691" z="430.45765"/>
+			<Orientation y="2.57728"/>
+		</Entity>
+		<Entity uid="784">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="500.6385" z="426.76221"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="785">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="502.81675" z="426.30771"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="786">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="499.19172" z="420.95453"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="787">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="497.33979" z="420.40937"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="788">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="502.15955" z="415.45044"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="789">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="504.1146" z="417.83216"/>
+			<Orientation y="1.29685"/>
+		</Entity>
+		<Entity uid="790">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="507.88932" z="416.32197"/>
+			<Orientation y="-2.88767"/>
+		</Entity>
+		<Entity uid="791">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="503.8036" z="409.28013"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="792">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="501.3697" z="407.69312"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="793">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="501.50928" z="404.18592"/>
+			<Orientation y="2.5394"/>
+		</Entity>
+		<Entity uid="794">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="504.9072" z="401.6768"/>
+			<Orientation y="1.63262"/>
+		</Entity>
+		<Entity uid="795">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="508.31336" z="401.0188"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="796">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="508.3401" z="399.2693"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="797">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="507.80744" z="397.24744"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="798">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="509.6868" z="395.36625"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="799">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="511.17438" z="392.90677"/>
+			<Orientation y="1.77958"/>
+		</Entity>
+		<Entity uid="800">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="515.56782" z="390.10102"/>
+			<Orientation y="-2.79863"/>
+		</Entity>
+		<Entity uid="801">
+			<Template>gaia/flora_bush_badlands</Template>
+			<Player>0</Player>
+			<Position x="512.43403" z="384.3205"/>
+			<Orientation y="1.30806"/>
 		</Entity>
 	</Entities>
 	<Paths/>
