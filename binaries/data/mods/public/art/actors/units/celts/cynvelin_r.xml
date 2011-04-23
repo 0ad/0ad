@@ -7,8 +7,8 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="25"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="25"/>
         <animation file="cavalry/rider_gallop.psa" name="Run" speed="8"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="100"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="400"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="400"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_hero_cape.dae</mesh>
