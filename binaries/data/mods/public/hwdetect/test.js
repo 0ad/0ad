@@ -11,7 +11,7 @@ print("<table>");
 print("<tr>");
 print("<th>OS");
 print("<th>GL_RENDERER");
-print("<th>Disabled");
+print("<th>Output");
 print("<th>Warnings");
 
 hwdetectTestData.sort(function(a, b) {
@@ -29,9 +29,9 @@ for each (var settings in hwdetectTestData)
 	var os = (settings.os_linux ? "linux" : settings.os_macosx ? "macosx" : settings.os_win ? "win" : "???");
 
 	var disabled = [];
-	for each (var d in ["audio", "s3tc", "shadows", "fancywater"])
-		if (output["disable_"+d] !== undefined)
-			disabled.push(d+"="+output["disable_"+d])
+	for each (var d in ["disable_audio", "disable_s3tc", "disable_shadows", "disable_fancywater", "override_renderpath"])
+		if (output[d] !== undefined)
+			disabled.push(d+"="+output[d])
 
 	print("<tr>");
 	print("<td>" + os);

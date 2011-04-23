@@ -121,6 +121,12 @@ void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
 		g_FancyWater = !disabled;
 }
 
+void SetRenderPath(void* UNUSED(cbdata), std::string renderpath)
+{
+	if (!IsOverridden("fancywater"))
+		g_RenderPath = renderpath;
+}
+
 void RunHardwareDetection()
 {
 	TIMER(L"RunHardwareDetection");
@@ -131,6 +137,7 @@ void RunHardwareDetection()
 	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableShadows>("SetDisableShadows");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableFancyWater>("SetDisableFancyWater");
+	scriptInterface.RegisterFunction<void, std::string, &SetRenderPath>("SetRenderPath");
 
 	// Load the detection script:
 

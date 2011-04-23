@@ -143,6 +143,7 @@ function RunDetection(settings)
 	var disable_s3tc = undefined;
 	var disable_shadows = undefined;
 	var disable_fancywater = undefined;
+	var override_renderpath = undefined;
 
 	// TODO: add some mechanism for setting config values
 	// (overriding default.cfg, but overridden by local.cfg)
@@ -223,6 +224,14 @@ function RunDetection(settings)
 		disable_fancywater = true;
 	}
 
+	// http://trac.wildfiregames.com/ticket/780
+	// r300 classic has problems with shader mode, so fall back to non-shader
+	if (os_unix && GL_RENDERER.match(/^Mesa DRI R[123]00 /))
+	{
+		override_renderpath = "fixed";
+		warnings.push("Some graphics features are disabled, due to bugs in old graphics drivers. Upgrading to a Gallium-based driver might help.");
+	}
+
 	return {
 		"dialog_warnings": dialog_warnings,
 		"warnings": warnings,
@@ -230,6 +239,7 @@ function RunDetection(settings)
 		"disable_s3tc": disable_s3tc,
 		"disable_shadows": disable_shadows,
 		"disable_fancywater": disable_fancywater,
+		"override_renderpath": override_renderpath,
 	};
 }
 
@@ -261,4 +271,7 @@ global.RunHardwareDetection = function(settings)
 
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);
+
+	if (output.override_renderpath !== undefined)
+		Engine.SetRenderPath(output.override_renderpath);
 };
