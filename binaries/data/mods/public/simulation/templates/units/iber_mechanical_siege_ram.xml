@@ -11,7 +11,7 @@
     <Actor>structures/iberians/siege_ram.xml</Actor>
   </VisualActor>
   <Cost>
-    <BuildTime>30</BuildTime>
+    <BuildTime>25</BuildTime>
     <Resources>
       <wood>200</wood>
       <metal>100</metal>
@@ -25,14 +25,14 @@
     <Unit radius="3.75"/>
   </Obstruction>
   <Health>
-    <Max>300</Max>
+    <Max>250</Max>
   </Health>
   <Armour>
     <Pierce>20.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>7.0</WalkSpeed>
   </UnitMotion>
   <GarrisonHolder>
     <Max>3</Max>
@@ -42,10 +42,10 @@
   </GarrisonHolder>
   <Attack>
     <Melee>
-      <Crush>55.0</Crush>
+      <Crush>50.0</Crush>
     </Melee>
     <Charge>
-      <Crush>110.0</Crush>
+      <Crush>100.0</Crush>
     </Charge>
   </Attack>
 </Entity>

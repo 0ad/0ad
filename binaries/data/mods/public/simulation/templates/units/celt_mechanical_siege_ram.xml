@@ -11,9 +11,9 @@
     <Actor>structures/celts/siege_ram.xml</Actor>
   </VisualActor>
   <Cost>
-    <BuildTime>40</BuildTime>
+    <BuildTime>35</BuildTime>
     <Resources>
-      <wood>300</wood>
+      <wood>250</wood>
       <metal>100</metal>
     </Resources>
   </Cost>
@@ -25,7 +25,7 @@
     <Unit radius="3.75"/>
   </Obstruction>
   <Health>
-    <Max>400</Max>
+    <Max>350</Max>
   </Health>
   <Armour>
     <Pierce>25.0</Pierce>
