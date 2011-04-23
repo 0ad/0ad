@@ -501,6 +501,8 @@ void CRenderer::EnumCaps()
 
 void CRenderer::ReloadShaders()
 {
+	debug_assert(m->IsOpen);
+
 	typedef std::map<CStr, CStr> Defines;
 
 	Defines defNull;
@@ -651,7 +653,7 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 			break;
 		case OPT_SHADOWS:
 			m_Options.m_Shadows=value;
-			ReloadShaders();
+			MakeShadersDirty();
 			break;
 		case OPT_FANCYWATER:
 			m_Options.m_FancyWater=value;
