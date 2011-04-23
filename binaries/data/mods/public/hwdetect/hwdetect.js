@@ -32,6 +32,100 @@ and driver bugs based on experience of particular system configurations.
 
 */
 
+var g_IntelMesaChipsets = [
+	"Intel(R) 845G",
+	"Intel(R) 830M",
+	"Intel(R) 852GM/855GM",
+	"Intel(R) 865G",
+	"Intel(R) 915G",
+	"Intel (R) E7221G (i915)",
+	"Intel(R) 915GM",
+	"Intel(R) 945G",
+	"Intel(R) 945GM",
+	"Intel(R) 945GME",
+	"Intel(R) G33",
+	"Intel(R) Q35",
+	"Intel(R) Q33",
+	"Intel(R) IGD",
+	"Intel(R) 965Q",
+	"Intel(R) 965G",
+	"Intel(R) 946GZ",
+	"Intel(R) GMA500", // not in current Mesa
+	"Intel(R) 965GM",
+	"Intel(R) 965GME/GLE",
+	"Mobile Intel\xC2\xAE GM45 Express Chipset", // utf-8 decoded as iso-8859-1
+	"Intel(R) Integrated Graphics Device",
+	"Intel(R) G45/G43",
+	"Intel(R) Q45/Q43",
+	"Intel(R) G41",
+	"Intel(R) B43",
+	"Intel(R) IGDNG_D", // not in current Mesa; looks somewhat like Ironlake
+	"Intel(R) IGDNG_M", // not in current Mesa; looks somewhat like Ironlake
+	"Intel(R) Ironlake Desktop",
+	"Intel(R) Ironlake Mobile",
+	"Intel(R) Sandybridge Desktop",
+	"Intel(R) Sandybridge Mobile",
+	"Intel(R) Sandybridge Server",
+	"Unknown Intel Chipset",
+];
+// Originally generated from Mesa with
+//   perl -lne'print "\t$1," if /chipset = (".*")/' src/mesa/drivers/dri/intel/intel_context.c
+// Assumed to be roughly ordered by performance.
+
+var g_IntelWindowsChipsets = [
+	"Intel 845G",
+	"Intel 855GM",
+	"Intel 865G",
+	"Intel 915G",
+	"Intel 915GM",
+	"Intel 945G",
+	"Intel 945GM",
+	"Intel 965/963 Graphics Media Accelerator",
+	"Intel Broadwater G",
+	"Intel Bear Lake B",
+	"Intel Pineview Platform",
+	"Intel Eaglelake",
+	"Intel(R) G41 Express Chipset", // Eaglelake
+	"Intel(R) G45/G43 Express Chipset", // Eaglelake
+	"Intel Cantiga",
+	"Mobile Intel(R) 4 Series Express Chipset Family", // probably Cantiga
+	"Intel(R) HD Graphics", // probably Ironlake
+	"Intel(R) Graphics Media Accelerator HD", // no idea
+];
+// Determined manually from data reports.
+// See http://en.wikipedia.org/wiki/Intel_GMA for useful listing.
+
+function IsWorseThanIntelMesa(renderer, chipset)
+{
+	var target = g_IntelMesaChipsets.indexOf(chipset);
+	if (target == -1)
+		error("Invalid chipset "+chipset);
+
+	// GL_RENDERER is "Mesa DRI $chipset" or "Mesa DRI $chipset $otherstuff"
+	for (var i = 0; i < target; ++i)
+	{
+		var str = "Mesa DRI " + g_IntelMesaChipsets[i];
+		if (renderer == str || renderer.substr(0, str.length+1) == str+" ")
+			return true;
+	}
+
+	return false;
+}
+
+function IsWorseThanIntelWindows(renderer, chipset)
+{
+	var target = g_IntelWindowsChipsets.indexOf(chipset);
+	if (target == -1)
+		error("Invalid chipset "+chipset);
+
+	var match = g_IntelWindowsChipsets.indexOf(renderer);
+	if (match != -1 && match < target)
+		return true;
+
+	return false;
+}
+
+
 function RunDetection(settings)
 {
 	// This function should have no side effects, it should just
@@ -106,23 +200,25 @@ function RunDetection(settings)
 	// Shadows are reportedly very slow on various drivers:
 	//   r300 classic
 	//   Intel 945
-	// Shadows are also quite slow on some others:
+	// Shadows are also known to be quite slow on some others:
 	//   Intel 4500MHD
 	// In the interests of performance, we'll disable them on lots of devices
-	if (os_unix && (
-		GL_RENDERER.match(/^Mesa DRI R300 /) ||
-		GL_RENDERER.match(/^Mesa DRI Intel\S* (915|945|965)(G|GM) /) ||
-		GL_RENDERER.match(/^Mesa DRI Mobile Intel\S* GM45 /)
-	))
+	// (with a fairly arbitrary cutoff for Intels)
+	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Mesa X11)$/)) ||
+		(os_unix && GL_RENDERER.match(/^Mesa DRI R[123]00 /)) ||
+		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Ironlake Desktop")) ||
+		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) HD Graphics"))
+	)
 	{
 		disable_shadows = true;
 	}
 
-	// Fragment-shader water is really slow on at least some old Intel devices
-	if (os_unix && (
-		GL_RENDERER.match(/^Mesa DRI Intel\S* (915|945|965)(G|GM) /) ||
-		GL_RENDERER.match(/^Mesa DRI Mobile Intel\S* GM45 /)
-	))
+	// Fragment-shader water is really slow on most Intel devices,
+	// so disable it (with a fairly arbitrary cutoff)
+	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe)$/)) ||
+		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Sandybridge Desktop")) ||
+		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) Graphics Media Accelerator HD"))
+	)
 	{
 		disable_fancywater = true;
 	}
