@@ -77,6 +77,16 @@ EntityGroups.prototype.getCount = function(templateName)
 	return this.groups[templateName];
 };
 
+EntityGroups.prototype.getTotalCount = function()
+{
+	var totalCount = 0;
+	for each (var group in this.groups)
+	{
+		totalCount += group;
+	}
+	return totalCount;
+};
+
 EntityGroups.prototype.getTemplateNames = function()
 {
 	var templateNames = [];
@@ -323,3 +333,49 @@ EntitySelection.prototype.SetMotionDebugOverlay = function(enabled)
 };
 
 var g_Selection = new EntitySelection();
+
+//-------------------------------- -------------------------------- --------------------------------
+// EntityGroupsContainer class for managing grouped entities
+//-------------------------------- -------------------------------- --------------------------------
+function EntityGroupsContainer()
+{
+	this.groups = {};
+	for (var i = 0; i < 10; ++i)
+	{
+		this.groups[i] = new EntityGroups();
+	}
+}
+
+EntityGroupsContainer.prototype.addEntities = function(groupName, ents)
+{
+	for each (var ent in ents)
+	{
+		for each (var group in this.groups)
+		{
+			if (ent in group.ents)
+			{
+				group.removeEnt(ent);
+			}
+		}
+	}
+	this.groups[groupName].add(ents);
+}
+
+EntityGroupsContainer.prototype.update = function()
+{
+	for each (var group in this.groups)
+	{
+		for (var ent in group.ents)
+		{
+			var entState = GetEntityState(+ent);
+
+			// Remove deleted units
+			if (!entState)
+			{
+				group.removeEnt(ent);
+			}
+		}
+	}
+}
+
+var g_Groups = new EntityGroupsContainer();

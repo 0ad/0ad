@@ -47,6 +47,11 @@ var doubleClicked = false;
 // Store the previously clicked entity - ensure a double/triple click happens on the same entity
 var prevClickedEntity = 0;
 
+// Same double-click behaviour for hotkey presses
+const doublePressTime = 500;
+var doublePressTimer = 0;
+var prevHotkey = 0;
+
 function updateCursor()
 {
 	if (!mouseIsOverObject)
@@ -646,6 +651,29 @@ function handleInputAfterGui(ev)
 				return doAction(action, ev);
 			}
 			break;
+
+		case "hotkeydown":
+				if (ev.hotkey.indexOf("selection.group.") == 0)
+				{
+					var now = new Date();
+					if ((now.getTime() - doublePressTimer < doublePressTime) && (ev.hotkey == prevHotkey))
+					{
+						if (ev.hotkey.indexOf("selection.group.select.") == 0)
+						{
+							var sptr = ev.hotkey.split(".");
+							performGroup("snap", sptr[3]);
+						}
+					}
+					else
+					{
+						var sptr = ev.hotkey.split(".");
+						performGroup(sptr[2], sptr[3]);
+
+						doublePressTimer = now.getTime();
+						prevHotkey = ev.hotkey;
+					}
+				}
+				break;
 		}
 		break;
 	case INPUT_PRESELECTEDACTION:
@@ -1067,6 +1095,40 @@ function performFormation(entity, formationName)
 	if (entity)
 	{
 		console.write(formationName);
+	}
+}
+
+// Performs the specified group
+function performGroup(action, groupId)
+{
+	switch (action)
+	{
+	case "snap":
+	case "select":
+		var toSelect = [];
+		g_Groups.update();
+		for (var ent in g_Groups.groups[groupId].ents)
+			toSelect.push(+ent);
+
+		g_Selection.reset();
+		g_Selection.addList(toSelect);
+
+		if (action == "snap" && toSelect.length)
+			Engine.CameraFollow(toSelect[0]);
+		break;
+
+	case "add":
+		var selection = g_Selection.toList();
+		g_Groups.addEntities(groupId, selection);
+		updateGroups();
+		break;
+
+	case "save":
+		var selection = g_Selection.toList();
+		g_Groups.groups[groupId].reset();
+		g_Groups.addEntities(groupId, selection);
+		updateGroups();
+		break;
 	}
 }
 

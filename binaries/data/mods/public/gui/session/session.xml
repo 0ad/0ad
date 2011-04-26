@@ -387,6 +387,22 @@
 	</object> <!-- END OF TOP PANEL -->
 
 	<!-- ================================  ================================ -->
+	<!-- Unit Selection Groups -->
+	<!-- ================================  ================================ -->
+	<object
+		name="unitGroupPanel"
+		size="0% 50%-216 0%+36 50%+144"
+	>
+		<repeat count="10">
+			<object name="unitGroupButton[n]" size="0 0 36 36" type="button" hidden="false" style="iconButton" tooltip_style="sessionToolTipBottomBold"
+				tooltip="Click to select grouped units.">
+				<object name="unitGroupIcon[n]" size="3 3 33 33" type="image" sprite="groupsIcon" ghost="true"/>
+				<object name="unitGroupLabel[n]" type="text" style="largeCenteredOutlinedText" ghost="true"/>
+			</object>
+		</repeat>
+	</object>
+
+	<!-- ================================  ================================ -->
 	<!-- Idle Worker Button -->
 	<!-- ================================  ================================ -->
 	<object type="image"

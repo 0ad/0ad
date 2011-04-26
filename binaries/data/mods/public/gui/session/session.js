@@ -223,6 +223,7 @@ function onSimulationUpdate()
 	handleNotifications();
 
 	updateMinimap(simState);
+	updateGroups();
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
@@ -243,6 +244,29 @@ function updateMinimap(simState)
 		getGUIObjectByName("minimapSquareOverlay").hidden = false;
 		getGUIObjectByName("minimapCircleOverlay").hidden = true;
 	}
+}
+
+function updateGroups()
+{
+	var guiName = "Group";
+	for (var i = 0; i < 10; i++)
+	{
+		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var label = getGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
+		g_Groups.update();
+		if (g_Groups.groups[i].getTotalCount() == 0)
+			button.hidden = true;
+		else
+			button.hidden = false;
+		button.onpress = (function(i) { return function() { performGroup("select", i); } })(i);
+	}
+	var numButtons = i;
+	var rowLength = 1;
+	var numRows = Math.ceil(numButtons / rowLength);
+	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
+	var buttonSpacer = buttonSideLength+1;
+	for (var i = 0; i < numRows; i++)
+		layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
 }
 
 function updateDebug(simState)
