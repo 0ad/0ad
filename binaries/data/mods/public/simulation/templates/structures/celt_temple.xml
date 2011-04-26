@@ -11,15 +11,15 @@
   <Health>
     <Max>5000</Max>
   </Health>
-  <Footprint replace="">
-    <Circle radius="15.0"/>
-    <Height>12.0</Height>
+  <Footprint>
+    <Square width="24.5" depth="24.5"/>
+    <Height>8.0</Height>
   </Footprint>
   <Obstruction>
-    <Static width="25.0" depth="25.0"/>
+    <Static width="22.5" depth="22.5"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/celts/temple_new.xml</Actor>
+    <Actor>structures/celts/temple.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>
