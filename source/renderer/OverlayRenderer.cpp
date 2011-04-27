@@ -84,6 +84,8 @@ void OverlayRenderer::RenderOverlays()
 		glDrawArrays(GL_LINE_STRIP, 0, (GLsizei)line->m_Coords.size()/3);
 	}
 
+	glDisableClientState(GL_VERTEX_ARRAY);
+
 	glLineWidth(1.f);
 	glDisable(GL_BLEND);
 }
