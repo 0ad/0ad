@@ -137,6 +137,11 @@ void CParticleEmitter::Bind()
 
 void CParticleEmitter::RenderArray()
 {
+	// Some drivers apparently don't like count=0 in glDrawArrays here,
+	// so skip all drawing in that case
+	if (m_Particles.empty())
+		return;
+
 	u8* base = m_VertexArray.Bind();
 
 	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
