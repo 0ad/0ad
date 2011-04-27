@@ -1194,7 +1194,7 @@ public:
 				if (!LosIsOffWorld(i, j))
 				{
 					overallVisibleVertices++;
-					exploredVertices += (i32)los.IsExplored(i, j);
+					exploredVertices += (i32)los.IsExplored_UncheckedRange(i, j);
 				}
 			}
 		}

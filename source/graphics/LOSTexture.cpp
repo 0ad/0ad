@@ -194,9 +194,9 @@ void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData,
 		// Fill in the visibility data
 		for (size_t i = 0; i < w; ++i)
 		{
-			if (los.IsVisible(i, j))
+			if (los.IsVisible_UncheckedRange(i, j))
 				*dataPtr++ = 255;
-			else if (los.IsExplored(i, j))
+			else if (los.IsExplored_UncheckedRange(i, j))
 				*dataPtr++ = 127;
 			else
 				*dataPtr++ = 0;

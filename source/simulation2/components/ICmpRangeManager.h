@@ -185,9 +185,39 @@ public:
 	public:
 		/**
 		 * Returns whether the given vertex is visible (i.e. is within a unit's LOS).
-		 * i and j must be in the range [0, verticesPerSide).
 		 */
 		inline bool IsVisible(ssize_t i, ssize_t j)
+		{
+			if (!(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide))
+				return false;
+
+			// Check high bit of each bit-pair
+			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0xAAAAAAAAu)
+				return true;
+			else
+				return false;
+		}
+
+		/**
+		 * Returns whether the given vertex is explored (i.e. was (or still is) within a unit's LOS).
+		 */
+		inline bool IsExplored(ssize_t i, ssize_t j)
+		{
+			if (!(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide))
+				return false;
+
+			// Check low bit of each bit-pair
+			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0x55555555u)
+				return true;
+			else
+				return false;
+		}
+
+		/**
+		 * Returns whether the given vertex is visible (i.e. is within a unit's LOS).
+		 * i and j must be in the range [0, verticesPerSide), else behaviour is undefined.
+		 */
+		inline bool IsVisible_UncheckedRange(ssize_t i, ssize_t j)
 		{
 #ifndef NDEBUG
 			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
@@ -201,9 +231,9 @@ public:
 
 		/**
 		 * Returns whether the given vertex is explored (i.e. was (or still is) within a unit's LOS).
-		 * i and j must be in the range [0, verticesPerSide).
+		 * i and j must be in the range [0, verticesPerSide), else behaviour is undefined.
 		 */
-		inline bool IsExplored(ssize_t i, ssize_t j)
+		inline bool IsExplored_UncheckedRange(ssize_t i, ssize_t j)
 		{
 #ifndef NDEBUG
 			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
