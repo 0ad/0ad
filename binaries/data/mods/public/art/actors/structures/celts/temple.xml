@@ -7,8 +7,9 @@
       <props>
         <prop actor="props/structures/celts/temple_color.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/temple_palisade.xml" attachpoint="root"/>
-		<prop actor="particle/smoke.xml" attachpoint="fire"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire"/>
         <prop actor="particle/flame.xml" attachpoint="fire"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_struct.dds</texture>
     </variant>
