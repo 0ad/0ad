@@ -572,6 +572,13 @@
               </technique_common>
             </bind_material>
           </instance_geometry>
+          <node id="prop_garrisoned" name="prop_garrisoned">
+            <translate sid="location">-6.381566 14.82969 8.967867</translate>
+            <rotate sid="rotationZ">0 0 1 0</rotate>
+            <rotate sid="rotationY">0 1 0 0</rotate>
+            <rotate sid="rotationX">1 0 0 0</rotate>
+            <scale sid="scale">1 1 1</scale>
+          </node>
         </node>
       </node>
     </visual_scene>
