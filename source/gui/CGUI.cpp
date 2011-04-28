@@ -82,8 +82,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		{
 			for (size_t i = 0; i < it->second.size(); ++i)
 			{
-				it->second[i]->HandleMessage(SGUIMessage(GUIM_PRESSED));
-				it->second[i]->ScriptEvent("press");
+				it->second[i]->SendEvent(GUIM_PRESSED, "press");
 			}
 		}
 	}
@@ -95,9 +94,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		//  float-based environment.
 		m_MousePos = CPos((float)ev->ev.motion.x, (float)ev->ev.motion.y);
 
+		SGUIMessage msg(GUIM_MOUSE_MOTION);
 		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
 										&IGUIObject::HandleMessage, 
-										SGUIMessage(GUIM_MOUSE_MOTION));
+										msg);
 	}
 
 	// Update m_MouseButtons. (BUTTONUP is handled later.)
@@ -157,41 +157,28 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 
 				if (pNearest)
 				{
-					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_LEFT));
-					pNearest->ScriptEvent("mouseleftpress");
-
-					// Block event, so things on the map (behind the GUI) won't be pressed
-					ret = IN_HANDLED;
+					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_LEFT, "mouseleftpress");
 				}
 				break;
 
 			case SDL_BUTTON_RIGHT:
 				if (pNearest)
 				{
-					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_PRESS_RIGHT));
-					pNearest->ScriptEvent("mouserightpress");
-
-					ret = IN_HANDLED;
+					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_RIGHT, "mouserightpress");
 				}
 				break;
 
 			case SDL_BUTTON_WHEELDOWN: // wheel down
 				if (pNearest)
 				{
-					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_DOWN));
-					pNearest->ScriptEvent("mousewheeldown");
-
-					ret = IN_HANDLED;
+					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_DOWN, "mousewheeldown");
 				}
 				break;
 
 			case SDL_BUTTON_WHEELUP: // wheel up
 				if (pNearest)
 				{
-					pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_WHEEL_UP));
-					pNearest->ScriptEvent("mousewheelup"); 
-
-					ret = IN_HANDLED;
+					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
 				}
 				break;
 
@@ -213,16 +200,12 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
 					{
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_DBLCLICK_LEFT));
-						pNearest->ScriptEvent("mouseleftdoubleclick");
+						ret = pNearest->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT, "mouseleftdoubleclick");
 					}
 					else
 					{
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_LEFT));
-						pNearest->ScriptEvent("mouseleftrelease");
+						ret = pNearest->SendEvent(GUIM_MOUSE_RELEASE_LEFT, "mouseleftrelease");
 					}
-
-					ret = IN_HANDLED;
 				}
 				break;
 			case SDL_BUTTON_RIGHT:
@@ -234,16 +217,12 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
 					{
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_DBLCLICK_RIGHT));
-						//pNearest->ScriptEvent("mouserightdoubleclick");
+						ret = pNearest->SendEvent(GUIM_MOUSE_DBLCLICK_RIGHT, "mouserightdoubleclick");
 					}
 					else
 					{
-						pNearest->HandleMessage(SGUIMessage(GUIM_MOUSE_RELEASE_RIGHT));
-						//pNearest->ScriptEvent("mouserightrelease");
+						ret = pNearest->SendEvent(GUIM_MOUSE_RELEASE_RIGHT, "mouserightrelease");
 					}
-
-					ret = IN_HANDLED;
 				}
 				break;
 			}
@@ -264,14 +243,6 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		debug_warn(L"CGUI::HandleEvent error");
 		// TODO Gee: Handle
 	}
-// JW: what's the difference between mPress and mDown? what's the code below responsible for?
-/*
-	// Generally if just mouse is clicked
-	if (m_pInput->mDown(NEMM_BUTTON1) && pNearest)
-	{
-		pNearest->HandleMessage(GUIM_MOUSE_DOWN_LEFT);
-	}
-*/
 
 	// BUTTONUP's effect on m_MouseButtons is handled after
 	// everything else, so that e.g. 'press' handlers (activated
@@ -561,7 +532,8 @@ void CGUI::AddObject(IGUIObject* pObject)
 		GUI<>::RecurseObject(0, pObject, &IGUIObject::UpdateCachedSize);
 
 		// Loaded
-		GUI<SGUIMessage>::RecurseObject(0, pObject, &IGUIObject::HandleMessage, SGUIMessage(GUIM_LOAD));
+		SGUIMessage msg(GUIM_LOAD);
+		GUI<SGUIMessage>::RecurseObject(0, pObject, &IGUIObject::HandleMessage, msg);
 	}
 	catch (PSERROR_GUI&)
 	{
@@ -619,12 +591,18 @@ void CGUI::SetFocusedObject(IGUIObject* pObject)
 		return;
 
 	if (m_FocusedObject)
-		m_FocusedObject->HandleMessage(SGUIMessage(GUIM_LOST_FOCUS));
+	{
+		SGUIMessage msg(GUIM_LOST_FOCUS);
+		m_FocusedObject->HandleMessage(msg);
+	}
 
 	m_FocusedObject = pObject;
 
 	if (m_FocusedObject)
-		m_FocusedObject->HandleMessage(SGUIMessage(GUIM_GOT_FOCUS));
+	{
+		SGUIMessage msg(GUIM_GOT_FOCUS);
+		m_FocusedObject->HandleMessage(msg);
+	}
 }
 
 // private struct used only in GenerateText(...)

@@ -71,7 +71,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage &Message);
 
 	/**
 	 * @see IGUIObject#UpdateCachedSize()

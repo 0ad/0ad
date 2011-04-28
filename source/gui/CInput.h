@@ -71,6 +71,9 @@ public:
 	CInput();
 	virtual ~CInput();
 
+	/**
+	 * @see IGUIObject#ResetStates()
+	 */
 	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
 
 	// Check where the mouse is hovering, and get the appropriate text position.
@@ -84,11 +87,9 @@ public:
 
 protected:
 	/**
-	 * Handle Messages
-	 *
-	 * @param Message GUI Message
+	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage &Message);
 
 	/**
 	 * Handle events manually to catch keyboard inputting.

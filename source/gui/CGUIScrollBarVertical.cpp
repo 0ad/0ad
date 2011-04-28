@@ -130,7 +130,7 @@ void CGUIScrollBarVertical::Draw()
 	}
 } 
 
-void CGUIScrollBarVertical::HandleMessage(const SGUIMessage &Message)
+void CGUIScrollBarVertical::HandleMessage(SGUIMessage &Message)
 {
 	IGUIScrollBar::HandleMessage(Message);
 }

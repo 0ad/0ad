@@ -40,7 +40,10 @@ public:
 protected:
 	void SetupText();
 
-	virtual void HandleMessage(const SGUIMessage &Message);
+	/**
+	 * @see IGUIObject#HandleMessage()
+	 */
+	virtual void HandleMessage(SGUIMessage &Message);
 
 	virtual void Draw();
 };

@@ -69,11 +69,9 @@ public:
 	 * them to the scroll-bar and it will see if the message regarded
 	 * itself.
 	 *
-	 * @param Message SGUIMessage
-	 * @return true if messages handled the scroll-bar some. False if
-	 *		   the message should be processed by the object.
+	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage &Message);
 
 	/**
 	 * Set m_Pos with g_mouse_x/y input, i.e. when draggin.

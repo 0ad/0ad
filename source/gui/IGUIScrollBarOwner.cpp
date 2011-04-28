@@ -76,7 +76,7 @@ const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& sty
  	return &it->second;
 }
 
-void IGUIScrollBarOwner::HandleMessage(const SGUIMessage &Message)
+void IGUIScrollBarOwner::HandleMessage(SGUIMessage &Message)
 {
 	std::vector<IGUIScrollBar*>::iterator it;
 	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)

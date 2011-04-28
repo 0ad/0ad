@@ -42,7 +42,7 @@ CProgressBar::~CProgressBar()
 {
 }
 
-void CProgressBar::HandleMessage(const SGUIMessage &Message)
+void CProgressBar::HandleMessage(SGUIMessage &Message)
 {
 	// Important
 	IGUIObject::HandleMessage(Message);

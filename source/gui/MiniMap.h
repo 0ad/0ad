@@ -32,7 +32,10 @@ public:
 protected:
     virtual void Draw();
 
-	virtual void HandleMessage(const SGUIMessage &Message);
+	/**
+	 * @see IGUIObject#HandleMessage()
+	 */
+	virtual void HandleMessage(SGUIMessage &Message);
 
     // create the minimap textures
     void CreateTextures();

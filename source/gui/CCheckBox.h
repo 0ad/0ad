@@ -63,14 +63,15 @@ public:
 	CCheckBox();
 	virtual ~CCheckBox();
 
+	/**
+	 * @see IGUIObject#ResetStates()
+	 */
 	virtual void ResetStates() { IGUIButtonBehavior::ResetStates(); }
 
 	/**
-	 * Handle Messages
-	 *
-	 * @param Message GUI Message
+	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage &Message);
 
 	/**
 	 * Draws the control

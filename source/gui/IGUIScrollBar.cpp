@@ -76,7 +76,7 @@ void IGUIScrollBar::UpdatePosBoundaries()
 		m_Pos = m_ScrollRange - m_ScrollSpace;
 }
 
-void IGUIScrollBar::HandleMessage(const SGUIMessage &Message)
+void IGUIScrollBar::HandleMessage(SGUIMessage &Message)
 {
 	switch (Message.type)
 	{
@@ -150,7 +150,8 @@ void IGUIScrollBar::HandleMessage(const SGUIMessage &Message)
 						ScrollPlusPlenty();
 
 					// Simulate mouse movement to see if bar now is hovered
-					HandleMessage(SGUIMessage(GUIM_MOUSE_MOTION));
+					SGUIMessage msg(GUIM_MOUSE_MOTION);
+					HandleMessage(msg);
 				}
 			}
 		} break;

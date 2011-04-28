@@ -49,11 +49,9 @@ class CRadioButton : public CCheckBox
 
 public:
 	/**
-	 * Handle Messages
-	 *
-	 * @param Message GUI Message
+	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage &Message);
 };
 
 #endif

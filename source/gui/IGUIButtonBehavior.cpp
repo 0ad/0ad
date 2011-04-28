@@ -34,7 +34,7 @@ IGUIButtonBehavior::~IGUIButtonBehavior()
 {
 }
 
-void IGUIButtonBehavior::HandleMessage(const SGUIMessage &Message)
+void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 {
 	// TODO Gee: easier access functions
 	switch (Message.type)
@@ -63,8 +63,7 @@ void IGUIButtonBehavior::HandleMessage(const SGUIMessage &Message)
 		{
 			m_Pressed = false;
 			// BUTTON WAS CLICKED
-			HandleMessage(GUIM_PRESSED);
-			ScriptEvent("press");
+			SendEvent(GUIM_PRESSED, "press");
 		}
 	}	break;
 

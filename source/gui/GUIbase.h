@@ -102,8 +102,16 @@ enum EGUIMessageType
  */
 struct SGUIMessage
 {
-	SGUIMessage(EGUIMessageType _type) : type(_type) {}
-	SGUIMessage(EGUIMessageType _type, const CStr& _value) : type(_type), value(_value) {}
+	SGUIMessage(EGUIMessageType _type) : type(_type), skipped(false) {}
+	SGUIMessage(EGUIMessageType _type, const CStr& _value) : type(_type), value(_value), skipped(false) {}
+
+	/**
+	 * This method can be used to allow other event handlers to process this GUI event,
+	 * by default an event is not skipped (only the first handler will process it).
+	 *
+	 * @param skip true to allow further event handling, false to prevent it
+	 */
+	void Skip(bool skip = true) { skipped = skip; }
 
 	/**
 	 * Describes what the message regards
@@ -114,6 +122,11 @@ struct SGUIMessage
 	 * Optional data
 	 */
 	CStr value;
+
+	/**
+	 * Flag that specifies if object skipped handling the event
+	 */
+	bool skipped;
 };
 
 /**

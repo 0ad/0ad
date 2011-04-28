@@ -68,7 +68,10 @@ protected:
 	virtual void Draw();
 
 	// If caption is set, make sure it's within the interval 0-100
-	void HandleMessage(const SGUIMessage &Message);
+	/**
+	 * @see IGUIObject#HandleMessage()
+	 */
+	void HandleMessage(SGUIMessage &Message);
 };
 
 #endif

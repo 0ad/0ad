@@ -419,8 +419,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				GUI<bool>::GetSetting(this, "multiline", multiline);
 				if (!multiline)
 				{
-					HandleMessage(GUIM_PRESSED);
-					ScriptEvent("press");
+					SendEvent(GUIM_PRESSED, "press");
 					break;
 				}
 
@@ -466,7 +465,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	return IN_PASS;
 }
 
-void CInput::HandleMessage(const SGUIMessage &Message)
+void CInput::HandleMessage(SGUIMessage &Message)
 {
 	// TODO Gee:
 	IGUIScrollBarOwner::HandleMessage(Message);
@@ -590,19 +589,23 @@ void CInput::HandleMessage(const SGUIMessage &Message)
 		break;
 
 	case GUIM_MOUSE_WHEEL_DOWN:
+		{
 		GetScrollBar(0).ScrollPlus();
 		// Since the scroll was changed, let's simulate a mouse movement
 		//  to check if scrollbar now is hovered
-		HandleMessage(SGUIMessage(GUIM_MOUSE_MOTION));
+		SGUIMessage msg(GUIM_MOUSE_MOTION);
+		HandleMessage(msg);
 		break;
-
+		}
 	case GUIM_MOUSE_WHEEL_UP:
+		{
 		GetScrollBar(0).ScrollMinus();
 		// Since the scroll was changed, let's simulate a mouse movement
 		//  to check if scrollbar now is hovered
-		HandleMessage(SGUIMessage(GUIM_MOUSE_MOTION));
+		SGUIMessage msg(GUIM_MOUSE_MOTION);
+		HandleMessage(msg);
 		break;
-
+		}
 	case GUIM_LOAD:
 		{
 		GetScrollBar(0).SetX( m_CachedActualSize.right );

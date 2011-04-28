@@ -45,7 +45,7 @@ void IGUITextOwner::AddText(SGUIText * text)
 	m_GeneratedTexts.push_back(text);
 }
 
-void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
+void IGUITextOwner::HandleMessage(SGUIMessage &Message)
 {
 	switch (Message.type)
 	{

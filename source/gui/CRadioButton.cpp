@@ -24,7 +24,7 @@ CCheckBox
 #include "CRadioButton.h"
 
 
-void CRadioButton::HandleMessage(const SGUIMessage &Message)
+void CRadioButton::HandleMessage(SGUIMessage &Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);

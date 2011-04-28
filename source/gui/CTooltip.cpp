@@ -133,7 +133,7 @@ void CTooltip::SetupText()
 	GUI<CClientArea>::SetSetting(this, "size", size);
 }
 
-void CTooltip::HandleMessage(const SGUIMessage &Message)
+void CTooltip::HandleMessage(SGUIMessage &Message)
 {
 	IGUITextOwner::HandleMessage(Message);
 }

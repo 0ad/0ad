@@ -332,7 +332,7 @@ public:
 	 *
 	 * @param Message GUI Message
 	 */
-	virtual void HandleMessage(const SGUIMessage& UNUSED(Message)) {}
+	virtual void HandleMessage(SGUIMessage& UNUSED(Message)) {}
 
 protected:
 	/**
@@ -383,9 +383,14 @@ protected:
 
 	void SetGUI(CGUI * const &pGUI) { m_pGUI = pGUI; }
 
-	// Set parent
+	/**
+	 * Set parent of this object
+	 */
 	void SetParent(IGUIObject *pParent) { m_pParent = pParent; }
 	
+	/**
+	 * Reset internal state of this object
+	 */
 	virtual void ResetStates()
 	{
 		m_MouseHovering = false;
@@ -439,6 +444,15 @@ protected:
 	 * cached to avoid slow calculations in real time.
 	 */
 	CRect m_CachedActualSize;
+
+	/**
+	 * Send event to this GUI object (HandleMessage and ScriptEvent)
+	 *
+	 * @param type Type of GUI message to be handled
+	 * @param EventName String representation of event name
+	 * @return IN_HANDLED if event was handled, or IN_PASS if skipped
+	 */
+	InReaction SendEvent(EGUIMessageType type, const CStr& EventName);
 
 	/**
 	 * Execute the script for a particular action.

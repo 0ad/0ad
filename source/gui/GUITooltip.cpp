@@ -203,7 +203,8 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 		debug_warn(L"Failed to set tooltip caption"); // shouldn't fail
 
 	// Make the tooltip object regenerate its text
-	usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
+	SGUIMessage msg(GUIM_SETTINGS_UPDATED, "caption");
+	usedobj->HandleMessage(msg);
 }
 
 void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
@@ -232,8 +233,8 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 
 		// Clear the caption
 		usedobj->SetSetting("caption", L"");
-		usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
-
+		SGUIMessage msg(GUIM_SETTINGS_UPDATED, "caption");
+		usedobj->HandleMessage(msg);
 
 		bool hideobject = true;
 		GUI<bool>::GetSetting(tooltipobj, "hide_object", hideobject);

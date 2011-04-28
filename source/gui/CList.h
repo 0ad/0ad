@@ -71,6 +71,9 @@ public:
 	CList();
 	virtual ~CList();
 
+	/**
+	 * @see IGUIObject#ResetStates()
+	 */
 	virtual void ResetStates() { IGUIScrollBarOwner::ResetStates(); }
 
 	/**
@@ -86,11 +89,9 @@ protected:
 	void SetupText();
 
 	/**
-	 * Handle Messages
-	 *
-	 * @param Message GUI Message
+	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage &Message);
 
 	/**
 	 * Handle events manually to catch keyboard inputting.

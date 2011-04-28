@@ -280,9 +280,9 @@ void CInternalCGUIAccessorBase::QueryResetting(IGUIObject *pObject)
 	GUI<>::RecurseObject(0, pObject, &IGUIObject::ResetStates);
 }
 
-void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMessage &message)
+void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, SGUIMessage &message)
 {
-	pObject->HandleMessage(message);		
+	pObject->HandleMessage(message);
 }
 
 
@@ -393,7 +393,10 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 	}
 
 	if (!SkipMessage)
-		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
+	{
+		SGUIMessage msg(GUIM_SETTINGS_UPDATED, Setting);
+		HandleMessage(pObject, msg);
+	}
 
 	return PSRETURN_OK;
 }

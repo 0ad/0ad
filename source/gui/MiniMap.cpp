@@ -66,7 +66,7 @@ CMiniMap::~CMiniMap()
 	Destroy();
 }
 
-void CMiniMap::HandleMessage(const SGUIMessage &Message)
+void CMiniMap::HandleMessage(SGUIMessage &Message)
 {
 	switch(Message.type)
 	{
@@ -91,7 +91,9 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 		{
 			if(m_Hovering && m_Clicking)
+			{
 				SetCameraPos();
+			}
 			m_Clicking = false;
 			break;
 		}
@@ -102,6 +104,7 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_LEAVE:
 		{
+			m_Clicking = false;
 			m_Hovering = false;
 			break;
 		}
@@ -118,9 +121,15 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 	case GUIM_MOUSE_MOTION:
 		{
 			if (m_Hovering && m_Clicking)
+			{
 				SetCameraPos();
+			}
 			break;
 		}
+	case GUIM_MOUSE_WHEEL_DOWN:
+	case GUIM_MOUSE_WHEEL_UP:
+		Message.Skip();
+		break;
 
 	default:
 		break;

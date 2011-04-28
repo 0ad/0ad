@@ -83,7 +83,7 @@ protected:
 	/// Wrapper for ResetStates
 	static void QueryResetting(IGUIObject *pObject);
 
-	static void HandleMessage(IGUIObject *pObject, const SGUIMessage &message);
+	static void HandleMessage(IGUIObject *pObject, SGUIMessage &message);
 };
 
 

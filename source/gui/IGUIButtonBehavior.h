@@ -70,7 +70,7 @@ public:
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
-	virtual void HandleMessage(const SGUIMessage &Message);
+	virtual void HandleMessage(SGUIMessage &Message);
 
 	/**
 	 * This is a function that lets a button being drawn,
@@ -98,12 +98,18 @@ public:
 					int cell_id);
 
 	/**
-	 * Choosing which color of the following according to 
+	 * Choosing which color of the following according to object enabled/hovered/pressed status:
+	 *		textcolor_disabled	-- disabled
+	 *		textcolor_pressed	-- pressed
+	 *		textcolor_over		-- hovered
 	 */
 	CColor ChooseColor();
 
 
 protected:
+	/**
+	 * @see IGUIObject#ResetStates()
+	 */
 	virtual void ResetStates()
 	{
 		m_MouseHovering = false;

@@ -125,7 +125,9 @@ public:
 	void TickObjects();
 
 	/**
-	 * Sends a specified event to every object
+	 * Sends a specified script event to every object
+	 *
+	 * @param EventName String representation of event name
 	 */
 	void SendEventToAll(const CStr& EventName);
 

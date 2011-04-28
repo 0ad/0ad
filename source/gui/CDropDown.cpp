@@ -64,7 +64,7 @@ void CDropDown::SetupText()
 	CList::SetupText();
 }
 
-void CDropDown::HandleMessage(const SGUIMessage &Message)
+void CDropDown::HandleMessage(SGUIMessage &Message)
 {
 	// Important
 

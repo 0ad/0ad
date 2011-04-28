@@ -79,22 +79,11 @@ void CButton::SetupText()
 	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
 }
 
-void CButton::HandleMessage(const SGUIMessage &Message)
+void CButton::HandleMessage(SGUIMessage &Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);
 	IGUITextOwner::HandleMessage(Message);
-/*
-	switch (Message.type)
-	{
-	case GUIM_PRESSED:
-//		GetGUI()->TEMPmessage = "Button " + string((const TCHAR*)m_Name) + " was pressed!";
-		break;
-
-	default:
-		break;
-	}
-*/
 }
 
 void CButton::Draw() 

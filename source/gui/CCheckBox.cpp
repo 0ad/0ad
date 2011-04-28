@@ -85,7 +85,7 @@ void CCheckBox::SetupText()
 	*m_GeneratedTexts[0] = GetGUI()->GenerateText(caption, font, m_CachedActualSize.GetWidth()-square_side, 0.f, this);
 }
 
-void CCheckBox::HandleMessage(const SGUIMessage &Message)
+void CCheckBox::HandleMessage(SGUIMessage &Message)
 {
 	// Important
 	IGUIButtonBehavior::HandleMessage(Message);

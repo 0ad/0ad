@@ -217,24 +217,21 @@ void IGUIObject::UpdateMouseOver(IGUIObject * const &pMouseOver)
 		if (!m_MouseHovering)
 		{
 			// It wasn't hovering, so that must mean it just entered
-			HandleMessage(GUIM_MOUSE_ENTER);
-			ScriptEvent("mouseenter");
+			SendEvent(GUIM_MOUSE_ENTER, "mouseenter");
 		}
 
 		// Either way, set to true
 		m_MouseHovering = true;
 
 		// call mouse over
-		HandleMessage(GUIM_MOUSE_OVER);
-		ScriptEvent("mousemove");
+		SendEvent(GUIM_MOUSE_OVER, "mousemove");
 	}
 	else // Some other object (or none) is hovered
 	{
 		if (m_MouseHovering)
 		{
 			m_MouseHovering = false;
-			HandleMessage(GUIM_MOUSE_LEAVE);
-			ScriptEvent("mouseleave");
+			SendEvent(GUIM_MOUSE_LEAVE, "mouseleave");
 		}
 	}
 }
@@ -453,8 +450,7 @@ void IGUIObject::CheckSettingsValidity()
 	try
 	{
 		// Send message to itself
-		HandleMessage(GUIM_SETTINGS_UPDATED);
-		ScriptEvent("update");
+		SendEvent(GUIM_SETTINGS_UPDATED, "update");
 	}
 	catch (PSERROR_GUI&)
 	{
@@ -495,6 +491,16 @@ void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
 		delete m_ScriptHandlers[Action];
 	}
 	m_ScriptHandlers[Action] = obj;
+}
+
+InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
+{
+	SGUIMessage msg(type);
+	HandleMessage(msg);
+
+	ScriptEvent(EventName);
+
+	return (msg.skipped ? IN_PASS : IN_HANDLED);
 }
 
 void IGUIObject::ScriptEvent(const CStr& Action)
