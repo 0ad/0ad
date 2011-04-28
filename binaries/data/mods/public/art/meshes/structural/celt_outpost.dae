@@ -8181,6 +8181,13 @@
         <node id="prop-gar01" name="prop-gar01">
           <matrix sid="matrix">0.125886 0.000000 0.000000 0.000125 0.000000 0.000129 -0.126028 -0.024968 0.000000 0.125886 0.000129 4.382104 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <translate sid="location">0.5468796 -0.02496811 6.929515</translate>
+          <rotate sid="rotationZ">0 0 1 0</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 89.94072</rotate>
+          <scale sid="scale">5.146741 5.123523 5.15255</scale>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
