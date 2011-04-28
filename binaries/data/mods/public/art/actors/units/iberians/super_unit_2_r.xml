@@ -7,13 +7,12 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="375"/>
-        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="395"/>
+        <animation event=".5" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <props>
         <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
         <prop actor="props/units/shields/iber_round_su1.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_m_med.xml" attachpoint="shoulders"/>
         <prop actor="props/units/heads/iber_helmet_su1.xml" attachpoint="helmet"/>
@@ -28,6 +27,15 @@
     <variant frequency="1" name="rider-plate armour">
       <mesh>skeletal/m_tunic_long.dae</mesh>
       <texture>skeletal/iber_su2_2.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav_projectile_flame.xml" attachpoint="projectile"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

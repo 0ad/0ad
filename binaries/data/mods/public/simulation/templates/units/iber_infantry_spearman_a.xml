@@ -9,4 +9,25 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>7.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>5.2</WalkSpeed>
+    <Run>
+      <Speed>15.6</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Melee>
+      <Hack>6.0</Hack>
+      <Pierce>16.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>12.0</Hack>
+      <Pierce>32.0</Pierce>
+    </Charge>
+  </Attack>
 </Entity>
