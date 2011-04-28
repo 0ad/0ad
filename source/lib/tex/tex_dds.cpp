@@ -75,13 +75,13 @@ public:
 		if(dxt == 3)
 		{
 			// table of 4-bit alpha entries
-			a = access_bit_tbl64(a_bits, pixel_idx, 4);
+			a = access_bit_tbl(a_bits, pixel_idx, 4);
 			a |= a << 4; // expand to 8 bits (replicate high into low!)
 		}
 		else if(dxt == 5)
 		{
 			// pixel index -> alpha selector (3 bit) -> alpha
-			const size_t a_selector = access_bit_tbl64(a_bits, pixel_idx, 3);
+			const size_t a_selector = access_bit_tbl(a_bits, pixel_idx, 3);
 			a = dxt5_a_tbl[a_selector];
 		}
 		// (dxt == DXT1A)
@@ -106,17 +106,10 @@ private:
 		for(int i = 0; i < 3; i++) dst[i] = (c0[i]+c1[i])/2;
 	}
 
-	static inline size_t access_bit_tbl(u32 tbl, size_t idx, size_t bit_width)
+	template<typename T>
+	static inline size_t access_bit_tbl(T tbl, size_t idx, size_t bit_width)
 	{
-		size_t val = tbl >> (idx*bit_width);
-		val &= bit_mask<u32>(bit_width);
-		return val;
-	}
-
-	static inline size_t access_bit_tbl64(u64 tbl, size_t idx, size_t bit_width)
-	{
-		size_t val = (size_t)(tbl >> (idx*bit_width));
-		val &= bit_mask<u64>(bit_width);
+		size_t val = (tbl >> (idx*bit_width)) & bit_mask<T>(bit_width);
 		return val;
 	}
 
