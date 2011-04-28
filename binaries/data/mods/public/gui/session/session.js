@@ -94,11 +94,23 @@ function init(initData, hotloadData)
 
 function reportPerformance(time)
 {
+	var settings = Engine.GetMapSettings();
 	var data = {
 		time: time,
-		map: Engine.GetMapSettings().Name,
+		map: settings.Name,
 		profiler: Engine.GetProfilerState()
 	};
+	
+	// Add seed and map size for random maps
+	if (settings.Seed !== undefined)
+	{
+		data.seed = settings.Seed;
+	}
+	if (settings.Size !== undefined)
+	{
+		data.size = settings.Size;
+	}
+	
 	Engine.SubmitUserReport("profile", 2, JSON.stringify(data));
 }
 

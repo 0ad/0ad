@@ -42,14 +42,15 @@ function init(data)
 	
 	if (data)
 	{
+		var mapName = data.attribs.settings.Name;
 		switch (data.attribs.mapType)
 		{
 		case "scenario":
-			loadingMapName.caption = "Loading \"" + data.attribs.map + "\"";
+			loadingMapName.caption = "Loading \"" + mapName + "\"";
 			break;
 
 		case "random":
-			loadingMapName.caption = "Generating \"" + data.attribs.script + "\"";
+			loadingMapName.caption = "Generating \"" + mapName + "\"";
 			break;
 
 		default:

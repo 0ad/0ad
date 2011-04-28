@@ -1,8 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
-// TODO: Move some of these into common location (other scripts may need)
+// TODO: Move these into common location (other scripts may need)
 const MAP_SIZES_TEXT = ["Tiny (2 player)", "Small (3 player)", "Medium (4 player)", "Normal (6 player)", "Large (8 player)", "Very Large", "Giant"];
 const MAP_SIZES_DATA = [128, 192, 256, 320, 384, 448, 512];
+const MAP_SIZES_DEFAULTIDX = 2;
+
+const VICTORY_TEXT = ["Conquest", "None"];
+const VICTORY_DATA = ["conquest", "endless"];
+const VICTORY_DEFAULTIDX = 0;
 
 // Max number of players for any map
 const MAX_PLAYERS = 8;
@@ -24,20 +29,8 @@ var g_PlayerAssignments = {};
 // Default game setup attributes
 var g_DefaultPlayerData = [];
 var g_GameAttributes = {
-	mapType: "",
-	map: "",
-	mapPath: "",
-	settings: {
-		Size: 192,
-		Seed: 0,
-		BaseTerrain: "grass1_spring",
-		BaseHeight: 0,
-		PlayerData: [],
-		RevealMap: false,
-		LockTeams: false,
-		GameType: "conquest"
-	}
-}
+	settings: {}
+};
 
 var g_AIs = [];
 
@@ -92,8 +85,12 @@ function initMain()
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
 	
-	// Build player settings using defaults
-	g_GameAttributes.settings.PlayerData = g_DefaultPlayerData;
+	// Copy default player data to settings
+	g_GameAttributes.settings.PlayerData = [];
+	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
+	{
+		g_GameAttributes.settings.PlayerData[i] = g_DefaultPlayerData[i];
+	}
 	
 	// Init civs
 	initCivNameList();
@@ -117,10 +114,6 @@ function initMain()
 	// Setup controls for host only
 	if (g_IsController)
 	{
-		// Generate seed for random maps
-		// TODO: There's probably a better way to do this
-		g_GameAttributes.settings.Seed = Math.floor(Math.random() * 65536);
-	
 		// Set a default map
 		// TODO: This should be remembered from the last session
 		if (!g_IsNetworked)
@@ -146,13 +139,13 @@ function initMain()
 		numPlayersSelect.selected = MAX_PLAYERS - 1;
 		
 		var victoryConditions = getGUIObjectByName("victoryCondition");
-		victoryConditions.list = ["Conquest", "None"];
-		victoryConditions.list_data = ["conquest", "endless"];
+		victoryConditions.list = VICTORY_TEXT;
+		victoryConditions.list_data = VICTORY_DATA;
 		victoryConditions.onSelectionChange = function()
 		{	// Update attributes so other players can see change
 			if (this.selected != -1)
 			{
-				g_GameAttributes.settings.GameType = this.list_data[this.selected];
+				g_GameAttributes.settings.GameType = VICTORY_DATA[this.selected];
 			}
 			
 			if (!g_IsInGuiUpdate)
@@ -160,7 +153,7 @@ function initMain()
 				updateGameAttributes();
 			}
 		};
-		victoryConditions.selected = -1;
+		victoryConditions.selected = VICTORY_DEFAULTIDX;
 		
 		var mapSize = getGUIObjectByName("mapSize");
 		mapSize.list = MAP_SIZES_TEXT;
@@ -169,7 +162,7 @@ function initMain()
 		{	// Update attributes so other players can see change
 			if (this.selected != -1)
 			{
-				g_GameAttributes.settings.Size = this.list_data[this.selected];
+				g_GameAttributes.settings.Size = MAP_SIZES_DATA[this.selected];
 			}
 			
 			if (!g_IsInGuiUpdate)
@@ -177,7 +170,6 @@ function initMain()
 				updateGameAttributes();
 			}
 		};
-		mapSize.selected = 1;
 		
 		getGUIObjectByName("revealMap").onPress = function()
 		{	// Update attributes so other players can see change
@@ -584,9 +576,10 @@ function selectMapType(type)
 		return;
 	}
 
+	// Reset game attributes
 	g_GameAttributes.mapType = type;
 	g_GameAttributes.map = undefined;
-	
+
 	// Clear old map data
 	g_MapData = {};
 	
@@ -599,6 +592,10 @@ function selectMapType(type)
 		
 	case "random":
 		g_GameAttributes.mapPath = "maps/random/";
+		g_GameAttributes.settings = {
+			PlayerData: g_DefaultPlayerData.slice(0, 4),
+			Seed: Math.floor(Math.random() * 65536)
+		};
 		break;
 		
 	default:
@@ -653,34 +650,16 @@ function selectMap(name)
 		return;
 	}
 
-	g_GameAttributes.map = name;
-
 	var mapData = loadMapData(name);
 	var mapSettings = (mapData && mapData.settings ? mapData.settings : {});
 	
-	// Copy any new settings	
-	switch (g_GameAttributes.mapType)
+	// Copy any new settings
+	g_GameAttributes.map = name;
+	g_GameAttributes.script = mapSettings.Script;
+	for (var prop in mapSettings)
 	{
-	case "scenario":
-		g_GameAttributes.settings.PlayerData = (mapSettings.PlayerData ? mapSettings.PlayerData : g_DefaultPlayerData);
-		break;
-		
-	case "random":
-		g_GameAttributes.script = mapSettings.Script;
-		g_GameAttributes.settings.Size = getSetting(mapSettings, g_GameAttributes.settings, "Size");
-		g_GameAttributes.settings.BaseTerrain = getSetting(mapSettings, g_GameAttributes.settings, "BaseTerrain");
-		g_GameAttributes.settings.BaseHeight = getSetting(mapSettings, g_GameAttributes.settings, "BaseHeight");
-		break;
-		
-	default:
-		error("selectMap: Unexpected map type '"+g_GameAttributes.mapType+"'");
-		return;
+		g_GameAttributes.settings[prop] = mapSettings[prop];
 	}
-	g_GameAttributes.settings.Description = getSetting(mapSettings, g_GameAttributes.settings, "Description");
-	g_GameAttributes.settings.RevealMap = getSetting(mapSettings, g_GameAttributes.settings, "RevealMap");
-	g_GameAttributes.settings.LockTeams = getSetting(mapSettings, g_GameAttributes.settings, "LockTeams");
-	g_GameAttributes.settings.GameType = getSetting(mapSettings, g_GameAttributes.settings, "GameType");
-	g_GameAttributes.settings.CircularMap = mapSettings.CircularMap;
 
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
@@ -786,13 +765,14 @@ function onGameAttributesChange()
 	var lockTeamsText = getGUIObjectByName("lockTeamsText");
 	var mapSizeText = getGUIObjectByName("mapSizeText");
 	var numPlayersBox = getGUIObjectByName("numPlayersBox");
+
+	var sizeIdx = (MAP_SIZES_DATA.indexOf(mapSettings.Size) != -1 ? MAP_SIZES_DATA.indexOf(mapSettings.Size) : MAP_SIZES_DEFAULTIDX);
+	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
 	{
 	case "random":
-		var sizeIdx = MAP_SIZES_DATA.indexOf(mapSettings.Size);
-	
 		if (g_IsController)
 		{	//Host
 			getGUIObjectByName("numPlayersSelection").selected = numPlayers - 1;
@@ -803,18 +783,20 @@ function onGameAttributesChange()
 			lockTeams.hidden = false;
 			
 			mapSizeText.caption = "Map size:";
+			mapSize.selected = sizeIdx;
 			revealMapText.caption = "Reveal map:";
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
+			
 			victoryConditionText.caption = "Victory condition:";
-			victoryCondition.selected = victoryCondition.list_data.indexOf(mapSettings.GameType);
+			victoryCondition.selected = victoryIdx;
 			lockTeamsText.caption = "Teams locked:";
 			lockTeams.checked =  (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? true : false);
 		}
 		else
 		{	// Client
-			mapSizeText.caption = "Map size: " + (sizeIdx != -1 ? MAP_SIZES_TEXT[sizeIdx] : "Other (" + mapSettings.Size + ")");
+			mapSizeText.caption = "Map size: " + MAP_SIZES_TEXT[sizeIdx];
 			revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
-			victoryConditionText.caption = "Victory condition: " + (mapSettings.GameType && mapSettings.GameType == "endless"  ?  "None" : "Conquest");
+			victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
 			lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? "Yes" : "No");
 		}
 		
@@ -830,7 +812,7 @@ function onGameAttributesChange()
 		
 		mapSizeText.caption = "Map size: Default";
 		revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
-		victoryConditionText.caption = "Victory condition: " + (mapSettings.GameType && mapSettings.GameType == "endless"  ?  "None" : "Conquest");
+		victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
 		lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams  ? "Yes" : "No");
 		
 		break;
