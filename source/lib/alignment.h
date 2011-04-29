@@ -12,7 +12,7 @@ inline bool IsAligned(T t, uintptr_t multiple)
 template<size_t multiple>
 inline size_t Align(size_t n)
 {
-	cassert(multiple != 0 && ((multiple & (multiple-1)) == 0));	// is power of 2
+	cassert_dependent(multiple != 0 && ((multiple & (multiple-1)) == 0));	// is power of 2
 	return (n + multiple-1) & ~(multiple-1);
 }
 

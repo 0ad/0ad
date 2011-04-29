@@ -69,7 +69,7 @@ namespace io {
 UniqueRange Allocate(size_t size, size_t alignment)
 {
 	debug_assert(is_pow2(alignment));
-	if(alignment <= idxDeleterBits)
+	if(alignment <= (size_t)idxDeleterBits)
 		alignment = idxDeleterBits+1;
 
 	const size_t alignedSize = round_up(size, alignment);
@@ -87,6 +87,8 @@ LibError Issue(aiocb& cb, size_t queueDepth)
 		RETURN_ERR(LibError_from_posix(ret));
 	}
 	else
+#else
+	UNUSED2(queueDepth);
 #endif
 	{
 		debug_assert(lseek(cb.aio_fildes, cb.aio_offset, SEEK_SET) == cb.aio_offset);
@@ -130,6 +132,9 @@ SUSPEND_AGAIN:
 		}
 		cb.aio_nbytes = (size_t)bytesTransferred;
 	}
+#else
+	UNUSED2(cb);
+	UNUSED2(queueDepth);
 #endif
 
 	return INFO::OK;

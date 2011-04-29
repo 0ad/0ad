@@ -647,7 +647,7 @@ void FieldStringizer::operator()<const char*>(size_t flags, const char*& value, 
 	if(lastChar == std::string::npos)	// nothing but spaces
 		return;
 	string.resize(lastChar+1);	// strip trailing spaces
-	if(!stricmp(value, "To Be Filled By O.E.M."))
+	if(!strcasecmp(value, "To Be Filled By O.E.M."))
 		return;
 
 	WriteName(name);
