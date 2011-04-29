@@ -23,11 +23,23 @@
 #include "graphics/ParticleManager.h"
 #include "graphics/TextureManager.h"
 
+#include "renderer/Renderer.h"
+
 CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionTimer(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
 	m_VertexArray(GL_DYNAMIC_DRAW)
 {
+	// If we should start with particles fully emitted, pretend that we
+	// were created in the past so the first update will produce lots of
+	// particles.
+	// TODO: instead of this, maybe it would make more sense to do a full
+	// lifetime-length update of all emitters when the game first starts
+	// (so that e.g. buildings constructed later on won't have fully-started
+	// emitters, but those at the start will)?
+	if (m_Type->m_StartFull)
+		m_LastUpdateTime -= m_Type->m_MaxLifetime;
+
 	m_Particles.reserve(m_Type->m_MaxParticles);
 
 	m_AttributePos.type = GL_FLOAT;
@@ -65,10 +77,14 @@ void CParticleEmitter::UpdateArrayData()
 
 	debug_assert(m_Particles.size() <= m_Type->m_MaxParticles);
 
+	CBound bounds;
+
 	for (size_t i = 0; i < m_Particles.size(); ++i)
 	{
 		// TODO: for more efficient rendering, maybe we should replace this with
 		// a degenerate quad if alpha is 0
+
+		bounds += m_Particles[i].pos;
 
 		*attrPos++ = m_Particles[i].pos;
 		*attrPos++ = m_Particles[i].pos;
@@ -125,6 +141,8 @@ void CParticleEmitter::UpdateArrayData()
 		*attrColor++ = color;
 	}
 
+	m_ParticleBounds = bounds;
+
 	m_VertexArray.Upload();
 }
 
@@ -159,6 +177,9 @@ void CParticleEmitter::RenderArray()
 	glColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 
 	glDrawArrays(GL_QUADS, 0, m_Particles.size()*4);
+
+	g_Renderer.GetStats().m_DrawCalls++;
+	g_Renderer.GetStats().m_Particles += m_Particles.size();
 }
 
 void CParticleEmitter::Unattach(const CParticleEmitterPtr& self)
@@ -210,11 +231,17 @@ void CModelParticleEmitter::CalcBounds()
 	// TODO: we ought to compute sensible bounds here, probably based on the
 	// current computed particle positions plus the emitter type's largest
 	// potential bounding box at the current position
+
+	m_Bounds = m_Type->CalculateBounds(m_Emitter->GetPosition(), m_Emitter->GetParticleBounds());
 }
 
 void CModelParticleEmitter::ValidatePosition()
 {
 	// TODO: do we need to do anything here?
+
+	// This is a convenient (though possibly not particularly appropriate) place
+	// to invalidate bounds so they'll be recomputed from the recent particle data
+	InvalidateBounds();
 }
 
 void CModelParticleEmitter::InvalidatePosition()

@@ -99,18 +99,7 @@ public:
 	// stats class - per frame counts of number of draw calls, poly counts etc
 	struct Stats {
 		// set all stats to zero
-		void Reset() { memset(this,0,sizeof(*this)); }
-		// add given stats to this stats
-		Stats& operator+=(const Stats& rhs) {
-			m_Counter++;
-			m_DrawCalls+=rhs.m_DrawCalls;
-			m_TerrainTris+=rhs.m_TerrainTris;
-			m_ModelTris+=rhs.m_ModelTris;
-			m_BlendSplats+=rhs.m_BlendSplats;
-			return *this;
-		}
-		// count of the number of stats added together
-		size_t m_Counter;
+		void Reset() { memset(this, 0, sizeof(*this)); }
 		// number of draw calls per frame - total DrawElements + Begin/End immediate mode loops
 		size_t m_DrawCalls;
 		// number of terrain triangles drawn
@@ -119,6 +108,8 @@ public:
 		size_t m_ModelTris;
 		// number of splat passes for alphamapping
 		size_t m_BlendSplats;
+		// number of particles
+		size_t m_Particles;
 	};
 
 	// renderer options
@@ -240,7 +231,7 @@ public:
 	void UnloadAlphaMaps();
 
 	// return stats accumulated for current frame
-	const Stats& GetStats() { return m_Stats; }
+	Stats& GetStats() { return m_Stats; }
 
 	// return the current light environment
 	const CLightEnv &GetLightEnv() { return *m_LightEnv; }

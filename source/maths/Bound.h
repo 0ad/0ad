@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,9 +24,9 @@
 
 // necessary includes
 #include "Vector3D.h"
-#include "Matrix3D.h"
 
 class CFrustum;
+class CMatrix3D;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CBound: basic axis aligned bounding box class
@@ -61,6 +61,11 @@ public:
 	void GetCentre(CVector3D& centre) const {
 		centre=(m_Data[0]+m_Data[1])*0.5f;
 	}
+
+	/**
+	 * Expand the bounding box by the given amount in every direction.
+	 */
+	void Expand(float amount);
 
 	/**
 	 * IntersectFrustumConservative: Approximate the intersection of this bounds object

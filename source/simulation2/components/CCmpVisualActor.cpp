@@ -482,7 +482,7 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 
 	CModelAbstract& model = m_Unit->GetModel();
 
-	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBounds()))
+	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBoundsRec()))
 		return;
 
 	collector.SubmitRecursive(&model);

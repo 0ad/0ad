@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,14 +21,15 @@
 
 #include "precompiled.h"
 
-// necessary includes
+#include "Bound.h"
 
 #include "lib/ogl.h"
 
 #include <float.h>
-#include "Bound.h"
+
 #include "graphics/Frustum.h"
-#include "Brush.h"
+#include "maths/Brush.h"
+#include "maths/Matrix3D.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -203,6 +204,13 @@ void CBound::IntersectFrustumConservative(const CFrustum& frustum)
 	buf.Bounds(*this);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////
+void CBound::Expand(float amount)
+{
+	m_Data[0] -= CVector3D(amount, amount, amount);
+	m_Data[1] += CVector3D(amount, amount, amount);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Render the bounding box

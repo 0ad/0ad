@@ -64,6 +64,11 @@ public:
 	virtual void SetDirtyRec(int dirtyflags) = 0;
 
 	/**
+	 * Returns world space bounds of this object and all child objects.
+	 */
+	virtual const CBound GetBoundsRec() { return GetBounds(); }
+
+	/**
 	 * Called when terrain has changed in the given inclusive bounds.
 	 * Might call SetDirty if the change affects this model.
 	 */

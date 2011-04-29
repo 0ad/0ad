@@ -53,6 +53,11 @@ public:
 	 */
 	void RenderParticles(bool solidColor = false);
 
+	/**
+	 * Render bounding boxes for all the submitted emitters.
+	 */
+	void RenderBounds();
+
 private:
 	ParticleRendererInternals* m;
 };

@@ -138,6 +138,8 @@ public:
 	// calculate bounds encompassing all vertex positions for given animation 
 	void CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result);
 
+	virtual const CBound GetBoundsRec();
+
 	/**
 	 * Set transform of this object.
 	 *

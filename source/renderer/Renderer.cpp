@@ -101,11 +101,11 @@ private:
 	std::vector<ProfileColumn> columnDescriptions;
 
 	enum {
-		Row_Counter = 0,
-		Row_DrawCalls,
+		Row_DrawCalls = 0,
 		Row_TerrainTris,
 		Row_ModelTris,
 		Row_BlendSplats,
+		Row_Particles,
 		Row_VBReserved,
 		Row_VBAllocated,
 
@@ -149,12 +149,6 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 
 	switch(row)
 	{
-	case Row_Counter:
-		if (col == 0)
-			return "counter";
-		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_Counter);
-		return buf;
-
 	case Row_DrawCalls:
 		if (col == 0)
 			return "# draw calls";
@@ -177,6 +171,12 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 		if (col == 0)
 			return "# blend splats";
 		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_BlendSplats);
+		return buf;
+
+	case Row_Particles:
+		if (col == 0)
+			return "# particles";
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_Particles);
 		return buf;
 
 	case Row_VBReserved:
@@ -1377,6 +1377,11 @@ void CRenderer::RenderParticles()
 		glColor3f(0.0f, 0.5f, 0.0f);
 
 		m->particleRenderer.RenderParticles(true);
+
+		glDisable(GL_TEXTURE_2D);
+		glColor3f(0.0f, 1.0f, 0.0f);
+
+		m->particleRenderer.RenderBounds();
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}

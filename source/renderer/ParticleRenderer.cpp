@@ -149,3 +149,14 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 
 	shader->Unbind();
 }
+
+void ParticleRenderer::RenderBounds()
+{
+	for (size_t i = 0; i < m->emitters.size(); ++i)
+	{
+		CParticleEmitter* emitter = m->emitters[i];
+
+		CBound bounds = emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
+		bounds.Render();
+	}
+}

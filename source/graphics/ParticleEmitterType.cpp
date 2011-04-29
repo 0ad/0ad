@@ -59,6 +59,12 @@ public:
 	float LastValue() { return m_LastValue; }
 
 	/**
+	 * Returns the minimum value that Evaluate might ever return,
+	 * for computing bounds.
+	 */
+	virtual float Min(CParticleEmitterType& type) = 0;
+
+	/**
 	 * Returns the maximum value that Evaluate might ever return,
 	 * for computing bounds.
 	 */
@@ -83,6 +89,11 @@ public:
 	}
 
 	virtual float Compute(CParticleEmitterType& UNUSED(type), CParticleEmitter& UNUSED(emitter))
+	{
+		return m_Value;
+	}
+
+	virtual float Min(CParticleEmitterType& UNUSED(type))
 	{
 		return m_Value;
 	}
@@ -112,6 +123,11 @@ public:
 		return boost::uniform_real<>(m_Min, m_Max)(type.m_Manager.m_RNG);
 	}
 
+	virtual float Min(CParticleEmitterType& UNUSED(type))
+	{
+		return m_Min;
+	}
+
 	virtual float Max(CParticleEmitterType& UNUSED(type))
 	{
 		return m_Max;
@@ -137,6 +153,11 @@ public:
 	virtual float Compute(CParticleEmitterType& type, CParticleEmitter& UNUSED(emitter))
 	{
 		return type.m_Variables[m_From]->LastValue();
+	}
+
+	virtual float Min(CParticleEmitterType& type)
+	{
+		return type.m_Variables[m_From]->Min(type);
 	}
 
 	virtual float Max(CParticleEmitterType& type)
@@ -165,6 +186,11 @@ public:
 		return std::min(m_Max, emitter.m_EntityVariables[m_From] * m_Mul);
 	}
 
+	virtual float Min(CParticleEmitterType& UNUSED(type))
+	{
+		return 0.f;
+	}
+
 	virtual float Max(CParticleEmitterType& UNUSED(type))
 	{
 		return m_Max;
@@ -190,6 +216,10 @@ public:
 
 	/// Updates all particles.
 	virtual void Evaluate(std::vector<SParticle>& particles, float dt) = 0;
+
+	/// Returns maximum acceleration caused by this effector.
+	virtual CVector3D Max() = 0;
+
 };
 
 /**
@@ -211,6 +241,11 @@ public:
 			particles[i].velocity += dv;
 	}
 
+	virtual CVector3D Max()
+	{
+		return m_Accel;
+	}
+
 private:
 	CVector3D m_Accel;
 };
@@ -225,7 +260,56 @@ CParticleEmitterType::CParticleEmitterType(const VfsPath& path, CParticleManager
 	// TODO: handle load failure
 
 	// Upper bound on number of particles depends on maximum rate and lifetime
-	m_MaxParticles = ceil(m_Variables[VAR_EMISSIONRATE]->Max(*this) * m_Variables[VAR_LIFETIME]->Max(*this));
+	m_MaxLifetime = m_Variables[VAR_LIFETIME]->Max(*this);
+	m_MaxParticles = ceil(m_Variables[VAR_EMISSIONRATE]->Max(*this) * m_MaxLifetime);
+
+
+	// Compute the worst-case bounds of all possible particles,
+	// based on the min/max values of positions and velocities and accelerations
+	// and sizes. (This isn't a guaranteed bound but it should be sufficient for
+	// culling.)
+
+	// Assuming constant acceleration,
+	//        p = p0 + v0*t + 1/2 a*t^2
+	// => dp/dt = v0 + a*t
+	//          = 0 at t = -v0/a
+	// max(p) is at t=0, or t=tmax, or t=-v0/a if that's between 0 and tmax
+	// => max(p) = max(p0, p0 + v0*tmax + 1/2 a*tmax, p0 - 1/2 v0^2/a)
+
+	// Compute combined acceleration (assume constant)
+	CVector3D accel;
+	for (size_t i = 0; i < m_Effectors.size(); ++i)
+		accel += m_Effectors[i]->Max();
+
+	CVector3D vmin(m_Variables[VAR_VELOCITY_X]->Min(*this), m_Variables[VAR_VELOCITY_Y]->Min(*this), m_Variables[VAR_VELOCITY_Z]->Min(*this));
+	CVector3D vmax(m_Variables[VAR_VELOCITY_X]->Max(*this), m_Variables[VAR_VELOCITY_Y]->Max(*this), m_Variables[VAR_VELOCITY_Z]->Max(*this));
+
+	// Start by assuming p0 = 0; compute each XYZ component individually
+	m_MaxBounds.SetEmpty();
+	// Lower/upper bounds at t=0, t=tmax
+	m_MaxBounds[0].X = std::min(0.f, vmin.X*m_MaxLifetime + 0.5f*accel.X*m_MaxLifetime*m_MaxLifetime);
+	m_MaxBounds[0].Y = std::min(0.f, vmin.Y*m_MaxLifetime + 0.5f*accel.Y*m_MaxLifetime*m_MaxLifetime);
+	m_MaxBounds[0].Z = std::min(0.f, vmin.Z*m_MaxLifetime + 0.5f*accel.Z*m_MaxLifetime*m_MaxLifetime);
+	m_MaxBounds[1].X = std::max(0.f, vmax.X*m_MaxLifetime + 0.5f*accel.X*m_MaxLifetime*m_MaxLifetime);
+	m_MaxBounds[1].Y = std::max(0.f, vmax.Y*m_MaxLifetime + 0.5f*accel.Y*m_MaxLifetime*m_MaxLifetime);
+	m_MaxBounds[1].Z = std::max(0.f, vmax.Z*m_MaxLifetime + 0.5f*accel.Z*m_MaxLifetime*m_MaxLifetime);
+	// Extend bounds to include position at t where dp/dt=0, if 0 < t < tmax
+	if (accel.X && 0 < -vmin.X/accel.X && -vmin.X/accel.X < m_MaxLifetime)
+		m_MaxBounds[0].X = std::min(m_MaxBounds[0].X, -0.5f*vmin.X*vmin.X / accel.X);
+	if (accel.Y && 0 < -vmin.Y/accel.Y && -vmin.Y/accel.Y < m_MaxLifetime)
+		m_MaxBounds[0].Y = std::min(m_MaxBounds[0].Y, -0.5f*vmin.Y*vmin.Y / accel.Y);
+	if (accel.Z && 0 < -vmin.Z/accel.Z && -vmin.Z/accel.Z < m_MaxLifetime)
+		m_MaxBounds[0].Z = std::min(m_MaxBounds[0].Z, -0.5f*vmin.Z*vmin.Z / accel.Z);
+	if (accel.X && 0 < -vmax.X/accel.X && -vmax.X/accel.X < m_MaxLifetime)
+		m_MaxBounds[1].X = std::max(m_MaxBounds[1].X, -0.5f*vmax.X*vmax.X / accel.X);
+	if (accel.Y && 0 < -vmax.Y/accel.Y && -vmax.Y/accel.Y < m_MaxLifetime)
+		m_MaxBounds[1].Y = std::max(m_MaxBounds[1].Y, -0.5f*vmax.Y*vmax.Y / accel.Y);
+	if (accel.Z && 0 < -vmax.Z/accel.Z && -vmax.Z/accel.Z < m_MaxLifetime)
+		m_MaxBounds[1].Z = std::max(m_MaxBounds[1].Z, -0.5f*vmax.Z*vmax.Z / accel.Z);
+
+	// Offset by the initial positions
+	m_MaxBounds[0] += CVector3D(m_Variables[VAR_POSITION_X]->Min(*this), m_Variables[VAR_POSITION_Y]->Min(*this), m_Variables[VAR_POSITION_Z]->Min(*this));
+	m_MaxBounds[1] += CVector3D(m_Variables[VAR_POSITION_X]->Max(*this), m_Variables[VAR_POSITION_Y]->Max(*this), m_Variables[VAR_POSITION_Z]->Max(*this));
 }
 
 int CParticleEmitterType::GetVariableID(const std::string& name)
@@ -270,6 +354,7 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	m_BlendEquation = GL_FUNC_ADD;
 	m_BlendFuncSrc = GL_SRC_ALPHA;
 	m_BlendFuncDst = GL_ONE_MINUS_SRC_ALPHA;
+	m_StartFull = false;
 
 	CXeromyces XeroFile;
 	PSRETURN ret = XeroFile.Load(g_VFS, path);
@@ -283,6 +368,7 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(texture);
 	EL(blend);
+	EL(start_full);
 	EL(constant);
 	EL(uniform);
 	EL(copy);
@@ -339,6 +425,10 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 				m_BlendFuncDst = GL_ONE_MINUS_SRC_COLOR;
 			}
 		}
+		else if (Child.GetNodeName() == el_start_full)
+		{
+			m_StartFull = true;
+		}
 		else if (Child.GetNodeName() == el_constant)
 		{
 			int id = GetVariableID(Child.GetAttributes().GetNamedItem(at_name));
@@ -390,10 +480,28 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 
 void CParticleEmitterType::UpdateEmitter(CParticleEmitter& emitter, float dt)
 {
-	debug_assert(emitter.m_Type.get() == this);
+	// If dt is very large, we should do the update in multiple small
+	// steps to prevent all the particles getting clumped together at
+	// low framerates
 
-	// TODO: if dt is very large, maybe we should do the update in multiple small
-	// steps to prevent all the particles getting clumped together at low framerates
+	const float maxStepLength = 0.2f;
+
+	// Avoid wasting time by computing periods longer than the lifetime
+	// period of the particles
+	dt = std::min(dt, m_MaxLifetime);
+
+	while (dt > maxStepLength)
+	{
+		UpdateEmitterStep(emitter, maxStepLength);
+		dt -= maxStepLength;
+	}
+
+	UpdateEmitterStep(emitter, dt);
+}
+
+void CParticleEmitterType::UpdateEmitterStep(CParticleEmitter& emitter, float dt)
+{
+	debug_assert(emitter.m_Type.get() == this);
 
 	if (emitter.m_Active)
 	{
@@ -445,6 +553,11 @@ void CParticleEmitterType::UpdateEmitter(CParticleEmitter& emitter, float dt)
 	for (size_t i = 0; i < emitter.m_Particles.size(); ++i)
 	{
 		SParticle& p = emitter.m_Particles[i];
+
+		// Don't bother updating particles already at the end of their life
+		if (p.age > p.maxAge)
+			continue;
+
 		p.pos += p.velocity * dt;
 		p.angle += p.angleSpeed * dt;
 		p.age += dt;
@@ -461,4 +574,19 @@ void CParticleEmitterType::UpdateEmitter(CParticleEmitter& emitter, float dt)
 	{
 		m_Effectors[i]->Evaluate(emitter.m_Particles, dt);
 	}
+}
+
+CBound CParticleEmitterType::CalculateBounds(CVector3D emitterPos, CBound emittedBounds)
+{
+	CBound bounds = m_MaxBounds;
+	bounds[0] += emitterPos;
+	bounds[1] += emitterPos;
+
+	bounds += emittedBounds;
+
+	// The current bounds is for the particles' centers, so expand by
+	// sqrt(2) * max_size/2 to ensure any rotated billboards fit in
+	bounds.Expand(m_Variables[VAR_SIZE]->Max(*this)/2.f * sqrt(2.f));
+
+	return bounds;
 }

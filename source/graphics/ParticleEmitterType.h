@@ -21,7 +21,9 @@
 #include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "maths/Bound.h"
 
+class CVector3D;
 class CParticleEmitter;
 class CParticleManager;
 class IParticleVar;
@@ -45,10 +47,12 @@ public:
 	CParticleEmitterType(const VfsPath& path, CParticleManager& manager);
 
 private:
+	friend class CModelParticleEmitter;
 	friend class CParticleEmitter;
 	friend class CParticleVarConstant;
 	friend class CParticleVarUniform;
 	friend class CParticleVarCopy;
+	friend class ParticleRenderer;
 
 	enum
 	{
@@ -73,15 +77,29 @@ private:
 
 	bool LoadXML(const VfsPath& path);
 
+	/**
+	 * Update the state of an emitter's particles, by a potentially long time @p dt.
+	 */
 	void UpdateEmitter(CParticleEmitter& emitter, float dt);
+
+	/**
+	 * Update the state of an emitter's particles, by a short time @p dt that can
+	 * be computed in a single step.
+	 */
+	void UpdateEmitterStep(CParticleEmitter& emitter, float dt);
+
+	CBound CalculateBounds(CVector3D emitterPos, CBound emittedBounds);
 
 	CTexturePtr m_Texture;
 
 	GLenum m_BlendEquation;
 	GLenum m_BlendFuncSrc;
 	GLenum m_BlendFuncDst;
+	bool m_StartFull;
 
+	float m_MaxLifetime;
 	size_t m_MaxParticles;
+	CBound m_MaxBounds;
 
 	typedef shared_ptr<IParticleVar> IParticleVarPtr;
 	std::vector<IParticleVarPtr> m_Variables;

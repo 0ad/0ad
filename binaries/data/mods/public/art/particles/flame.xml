@@ -4,6 +4,8 @@
     <texture>art/textures/particles/flame.png</texture>
     <blend mode="add"/>
 
+    <start_full/>
+
     <constant name="emissionrate" value="20.0"/>
     <uniform name="lifetime" min="1.0" max="1.5"/>
 

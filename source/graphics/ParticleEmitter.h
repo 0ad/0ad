@@ -79,6 +79,11 @@ public:
 	}
 
 	/**
+	 * Get the bounding box of the center points of particles at their current positions.
+	 */
+	CBound GetParticleBounds() { return m_ParticleBounds; }
+
+	/**
 	 * Push a new particle onto the ring buffer. (May overwrite an old particle.)
 	 */
 	void AddParticle(const SParticle& particle);
@@ -125,6 +130,9 @@ public:
 	float m_EmissionTimer;
 
 private:
+	/// Bounding box of the current particle center points
+	CBound m_ParticleBounds;
+
 	VertexArray m_VertexArray;
 	VertexArray::Attribute m_AttributePos;
 	VertexArray::Attribute m_AttributeAxis;

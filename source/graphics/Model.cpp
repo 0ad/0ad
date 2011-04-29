@@ -190,6 +190,15 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const CBound CModel::GetBoundsRec()
+{
+	CBound bounds = GetBounds();
+	for (size_t i = 0; i < m_Props.size(); ++i)
+		bounds += m_Props[i].m_Model->GetBoundsRec();
+	return bounds;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
 CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const CStr& name, float speed, float actionpos, float actionpos2)
