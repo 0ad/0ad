@@ -74,7 +74,7 @@ UniqueRange Allocate(size_t size, size_t alignment)
 
 	const size_t alignedSize = round_up(size, alignment);
 	const UniqueRange::pointer p = rtl_AllocateAligned(alignedSize, alignment);
-	return UniqueRange(p, size, idxDeleterAligned);
+	return RVALUE(UniqueRange(p, size, idxDeleterAligned));
 }
 
 

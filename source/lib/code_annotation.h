@@ -330,19 +330,30 @@ private:\
 
 
 //-----------------------------------------------------------------------------
-// partial emulation of C++0x rvalue references (required for UniqueRange)
+// C++0x rvalue references (required for UniqueRange)
 
-#if HAVE_CPP0X
+/**
+ * expands to the type `rvalue reference to T'; used in function
+ * parameter declarations. for example, UniqueRange's move ctor is:
+ * UniqueRange(RVALUE_REF(UniqueRange) rvalue) { ... }
+ **/
+#define RVALUE_REF(T) T&&
 
-#define RVREF(T) T&&	// the type of an rvalue reference
-#define LVALUE(rvalue) rvalue	// (a named rvalue reference is an lvalue)
+/**
+ * convert an rvalue to an lvalue
+ **/
+#define LVALUE(rvalue) rvalue	// in C++0x, a named rvalue reference is already an lvalue
+
+/**
+ * convert anything (lvalue or rvalue) to an rvalue
+ **/
 #define RVALUE(lvalue) std::move(lvalue)
-#define RVALUE_FROM_R(rvalue) RVALUE(rvalue)	// (see above)
 
-#else
 
-// RVALUE wraps an lvalue reference in this class for later use by a
-// "move ctor" that takes an RValue.
+#if !HAVE_CPP0X	// partial emulation
+
+// lvalue references are wrapped in this class, which is the
+// actual argument passed to the "move ctor" etc.
 template<typename T>
 class RValue
 {
@@ -351,27 +362,39 @@ public:
 	T& LValue() const { return lvalue; }
 
 private:
+	// (avoid "assignment operator could not be generated" warning)
+	const RValue& operator=(const RValue&);
+
 	T& lvalue;
 };
 
-// from rvalue or const lvalue
+// (to deduce T automatically, we need function templates)
+
 template<class T>
-static inline RValue<T> ToRValue(const T& t)
+static inline RValue<T> ToRValue(T& lvalue)
 {
-	return RValue<T>((T&)t);
+	return RValue<T>(lvalue);
 }
 
-// from lvalue
 template<class T>
-static inline RValue<T> ToRValue(T& t)
+static inline RValue<T> ToRValue(const T& lvalue)
 {
-	return RValue<T>(t);
+	return RValue<T>((T&)lvalue);
 }
 
-#define RVREF(T) const RValue<T>&	// the type of an rvalue reference
+template<class T>
+static inline RValue<T> ToRValue(const RValue<T>& rvalue)
+{
+	return RValue<T>(rvalue.LValue());
+}
+
+#undef RVALUE_REF
+#undef LVALUE
+#undef RVALUE
+
+#define RVALUE_REF(T) const RValue<T>&
 #define LVALUE(rvalue) rvalue.LValue()
 #define RVALUE(lvalue) ToRValue(lvalue)
-#define RVALUE_FROM_R(rvalue) rvalue
 
 #endif	// #if !HAVE_CPP0X
 

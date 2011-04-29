@@ -68,23 +68,23 @@ public:
 		Set(p, size, deleter);
 	}
 
-	UniqueRange(RVREF(UniqueRange) rvref)
+	UniqueRange(RVALUE_REF(UniqueRange) rvalue)
 	{
-		UniqueRange& rhs = LVALUE(rvref);
-		address_ = rhs.address_;
-		size_ = rhs.size_;
-		rhs.address_ = 0;
+		UniqueRange& lvalue = LVALUE(rvalue);
+		address_ = lvalue.address_;
+		size_ = lvalue.size_;
+		lvalue.address_ = 0;
 	}
 
-	UniqueRange& operator=(RVREF(UniqueRange) rvref)
+	UniqueRange& operator=(RVALUE_REF(UniqueRange) rvalue)
 	{
-		UniqueRange& rhs = LVALUE(rvref);
-		if(this != &rhs)
+		UniqueRange& lvalue = LVALUE(rvalue);
+		if(this != &lvalue)
 		{
 			Delete();
-			address_ = rhs.address_;
-			size_ = rhs.size_;
-			rhs.address_ = 0;
+			address_ = lvalue.address_;
+			size_ = lvalue.size_;
+			lvalue.address_ = 0;
 		}
 		return *this;
 	}
@@ -170,12 +170,12 @@ static inline void swap(UniqueRange& p1, UniqueRange& p2)
 	p1.swap(p2);
 }
 
-static inline void swap(RVREF(UniqueRange) p1, UniqueRange& p2)
+static inline void swap(RVALUE_REF(UniqueRange) p1, UniqueRange& p2)
 {
 	p2.swap(LVALUE(p1));
 }
 
-static inline void swap(UniqueRange& p1, RVREF(UniqueRange) p2)
+static inline void swap(UniqueRange& p1, RVALUE_REF(UniqueRange) p2)
 {
 	p1.swap(LVALUE(p2));
 }

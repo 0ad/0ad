@@ -110,4 +110,24 @@ private:
 	u32 m_checksum;
 };
 
+// avoids the need for std::bind (not supported on all compilers) and boost::bind (can't be
+// used at work)
+struct StreamFeeder
+{
+	NONCOPYABLE(StreamFeeder);
+public:
+	StreamFeeder(Stream& stream)
+		: stream(stream)
+	{
+	}
+
+	LibError operator()(const u8* data, size_t size) const
+	{
+		return stream.Feed(data, size);
+	}
+
+private:
+	Stream& stream;
+};
+
 #endif	// #ifndef INCLUDED_STREAM

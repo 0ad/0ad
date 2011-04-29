@@ -334,7 +334,8 @@ public:
 		Stream stream(codec);
 		stream.SetOutputBuffer(buf.get(), size);
 		io::Operation op(*m_file.get(), 0, m_csize, m_ofs);
-		RETURN_ERR(io::Run(op, io::Parameters(), std::bind(&Stream::Feed, &stream, std::placeholders::_1, std::placeholders::_2)));
+		StreamFeeder streamFeeder(stream);
+		RETURN_ERR(io::Run(op, io::Parameters(), streamFeeder));
 		RETURN_ERR(stream.Finish());
 #if CODEC_COMPUTE_CHECKSUM
 		debug_assert(m_checksum == stream.Checksum());
@@ -447,7 +448,7 @@ public:
 		size_t cd_numEntries = 0;
 		size_t cd_size = 0;
 		RETURN_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
-		UniqueRange buf(io::Allocate(cd_size));
+		UniqueRange buf(RVALUE(io::Allocate(cd_size)));
 
 		io::Operation op(*m_file.get(), buf.get(), cd_size, cd_ofs);
 		RETURN_ERR(io::Run(op));
@@ -532,7 +533,7 @@ private:
 	static LibError LocateCentralDirectory(const PFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
 	{
 		const size_t maxScanSize = 66000u;	// see below
-		UniqueRange buf(io::Allocate(maxScanSize));
+		UniqueRange buf(RVALUE(io::Allocate(maxScanSize)));
 
 		// expected case: ECDR at EOF; no file comment
 		LibError ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
@@ -638,7 +639,7 @@ public:
 
 		// allocate memory
 		const size_t csizeMax = codec->MaxOutputSize(size_t(usize));
-		UniqueRange buf(io::Allocate(sizeof(LFH) + pathnameLength + csizeMax));
+		UniqueRange buf(RVALUE(io::Allocate(sizeof(LFH) + pathnameLength + csizeMax)));
 
 		// read and compress file contents
 		size_t csize; u32 checksum;
@@ -647,7 +648,8 @@ public:
 			Stream stream(codec);
 			stream.SetOutputBuffer(cdata, csizeMax);
 			io::Operation op(*file.get(), 0, usize);
-			RETURN_ERR(io::Run(op, io::Parameters(), std::bind(&Stream::Feed, &stream, std::placeholders::_1, std::placeholders::_2)));
+			StreamFeeder streamFeeder(stream);
+			RETURN_ERR(io::Run(op, io::Parameters(), streamFeeder));
 			RETURN_ERR(stream.Finish());
 			csize = stream.OutSize();
 			checksum = stream.Checksum();

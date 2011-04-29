@@ -45,6 +45,8 @@ namespace io {
 
 // @return memory suitable for use as an I/O buffer (address is a
 // multiple of alignment, size is rounded up to a multiple of alignment)
+// @param alignment is automatically increased if smaller than the
+// UniqueRange requirement.
 //
 // use this instead of the file cache for write buffers that are
 // never reused (avoids displacing other items).
@@ -58,7 +60,8 @@ LIB_API UniqueRange Allocate(size_t size, size_t alignment = maxSectorSize);
 struct Operation
 {
 	// @param buf can be 0, in which case temporary block buffers are allocated.
-	// otherwise, it must be padded to the I/O alignment, e.g. via io::Allocate.
+	// otherwise, it must be aligned and padded to the I/O alignment, e.g. via
+	// io::Allocate.
 	Operation(const File& file, void* buf, off_t size, off_t offset = 0)
 		: fd(file.Descriptor()), opcode(file.Opcode())
 		, offset(offset), size(size), buf((void*)buf)
@@ -90,10 +93,7 @@ struct Parameters
 	// default to single blocking I/Os
 	Parameters()
 		: alignment(1)	// no alignment requirements
-		// use one huge "block" truncated to the requested size.
-		// (this value is a power of two as required by Validate and
-		// avoids overflowing off_t in DivideRoundUp)
-		, blockSize((SIZE_MAX/2)+1)
+		, blockSize(0)	// do not split into blocks
 		, queueDepth(1)	// disable aio
 	{
 	}
@@ -115,8 +115,11 @@ struct Parameters
 		debug_assert(is_pow2(alignment));
 		debug_assert(alignment > 0);
 
-		debug_assert(is_pow2(blockSize));
-		debug_assert(pageSize <= blockSize);	// no upper limit needed
+		if(blockSize != 0)
+		{
+			debug_assert(is_pow2(blockSize));
+			debug_assert(pageSize <= blockSize);	// (don't bother checking an upper bound)
+		}
 
 		debug_assert(1 <= queueDepth && queueDepth <= maxQueueDepth);
 
@@ -130,7 +133,7 @@ struct Parameters
 
 	off_t alignment;
 
-	size_t blockSize;
+	size_t blockSize;	// 0 for one big "block"
 
 	size_t queueDepth;
 };
@@ -182,8 +185,7 @@ public:
 	ControlBlockRingBuffer(const Operation& op, const Parameters& p)
 		: controlBlocks()	// zero-initialize
 	{
-		// (default p.blockSize is "infinity", so clamp to the total size)
-		const size_t blockSize = (size_t)std::min((off_t)p.blockSize, op.size);
+		const size_t blockSize = p.blockSize? p.blockSize : (size_t)op.size;
 
 		const bool temporaryBuffersRequested = (op.buf == 0);
 		if(temporaryBuffersRequested)
@@ -230,7 +232,7 @@ static inline LibError Run(const Operation& op, const Parameters& p = Parameters
 
 	ControlBlockRingBuffer controlBlockRingBuffer(op, p);
 
-	const off_t numBlocks = DivideRoundUp(op.size, (off_t)p.blockSize);
+	const off_t numBlocks = p.blockSize? (off_t)DivideRoundUp((u64)op.size, (u64)p.blockSize) : 1;
 	for(off_t blocksIssued = 0, blocksCompleted = 0; blocksCompleted < numBlocks; blocksCompleted++)
 	{
 		for(; blocksIssued != numBlocks && blocksIssued < blocksCompleted + (off_t)p.queueDepth; blocksIssued++)
