@@ -135,6 +135,11 @@ public:
 		std::swap(size_, rhs.size_);
 	}
 
+	// don't define construction and assignment from lvalue,
+	// but the declarations must be accessible
+	UniqueRange(const UniqueRange&);
+	UniqueRange& operator=(const UniqueRange&);
+
 private:
 	void Set(pointer p, size_t size, IdxDeleter deleter)
 	{
@@ -153,10 +158,6 @@ private:
 	{
 		CallUniqueRangeDeleter(get(), size(), get_deleter());
 	}
-
-	// disallow construction and assignment from lvalue
-	UniqueRange(const UniqueRange&);
-	UniqueRange& operator=(const UniqueRange&);
 
 	// (IdxDeleter is stored in the lower bits of address since size might not even be a multiple of 4.)
 	uintptr_t address_;
