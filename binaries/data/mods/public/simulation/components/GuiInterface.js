@@ -445,32 +445,28 @@ GuiInterface.prototype.PlaySound = function(player, data)
 	PlaySound(data.name, data.entity);
 };
 
-function isIdleWorker(ent)
+function isIdleWorker(ent, idleClass)
 {
 	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && cmpIdentity.HasClass("Worker"));
+	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && idleClass && cmpIdentity.HasClass(idleClass));
 }
 
-GuiInterface.prototype.FindIdleWorker = function(player, prevWorker)
+GuiInterface.prototype.FindIdleWorker = function(player, data)
 {
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var playerEntities = rangeMan.GetEntitiesByPlayer(player);
-
-	var firstUnit = 0;
 
 	// Find the first matching entity that is after the previous selection,
 	// so that we cycle around in a predictable order
 	for each (var ent in playerEntities)
 	{
-		if (ent > prevWorker && isIdleWorker(ent))
+		if (ent > data.prevWorker && isIdleWorker(ent, data.idleClass))
 			return ent;
-		else if (!firstUnit && isIdleWorker(ent))
-			firstUnit = ent;
 	}
 
-	// Nothing after the selection - just return the first entity
-	return firstUnit;
+	// No idle entities left in the class
+	return 0;
 };
 
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)

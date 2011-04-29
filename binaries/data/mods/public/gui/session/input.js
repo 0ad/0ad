@@ -1151,19 +1151,33 @@ function setCameraFollow(entity)
 }
 
 var lastIdleWorker = 0;
+var currIdleClass = 0;
 function findIdleWorker()
 {
-	lastIdleWorker = Engine.GuiInterfaceCall("FindIdleWorker", lastIdleWorker);
-	if (lastIdleWorker)
+	// Cycle through idling classes before giving up
+	var idleClasses = ["Worker", "Trade", "CitizenSoldier"];
+	for (var i = 0; i <= idleClasses.length; ++i)
 	{
-		g_Selection.reset()
-		g_Selection.addList([lastIdleWorker]);
-		Engine.CameraFollow(lastIdleWorker);
+		var data = { prevWorker: lastIdleWorker, idleClass: idleClasses[currIdleClass] };
+		lastIdleWorker = Engine.GuiInterfaceCall("FindIdleWorker", data);
+	
+		// Check if we have valid entity
+		if (lastIdleWorker)
+		{
+			g_Selection.reset()
+			g_Selection.addList([lastIdleWorker]);
+			Engine.CameraFollow(lastIdleWorker);
+			
+			return;
+		}
+		
+		lastIdleWorker = 0;
+		currIdleClass = (currIdleClass + 1) % idleClasses.length;
 	}
-	else
-	{
-		// TODO: display a message or play a sound to indicate no more idle units, or something
-	}
+	
+	// TODO: display a message or play a sound to indicate no more idle units, or something
+	// Reset for next cycle
+	currIdleClass = 0;
 }
 
 function unload(garrisonHolder, entity)
