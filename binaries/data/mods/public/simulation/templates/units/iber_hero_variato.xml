@@ -9,6 +9,11 @@
   <VisualActor>
     <Actor>units/iberians/hero_variato.xml</Actor>
   </VisualActor>
+  <Cost>
+    <Resources>
+      <food>55</food>
+    </Resources>
+  </Cost>
   <UnitMotion>
     <WalkSpeed>8.8</WalkSpeed>
     <Run>

@@ -9,4 +9,26 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Attack>
+    <Melee>
+      <Hack>23.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>46.0</Hack>
+    </Charge>
+  </Attack>
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

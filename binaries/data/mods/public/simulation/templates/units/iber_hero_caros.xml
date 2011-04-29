@@ -9,4 +9,14 @@
   <VisualActor>
     <Actor>units/iberians/hero_caros.xml</Actor>
   </VisualActor>
+  <Cost>
+    <Resources>
+      <metal>225</metal>
+    </Resources>
+  </Cost>
+  <Attack>
+    <Melee>
+      <Hack>30.0</Hack>
+    </Melee>
+  </Attack>
 </Entity>

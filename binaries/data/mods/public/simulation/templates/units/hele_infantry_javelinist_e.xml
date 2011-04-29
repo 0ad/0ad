@@ -8,11 +8,7 @@
   </ResourceGatherer>
   <Health>
     <Max>120</Max>
-    <RegenRate>0.4</RegenRate>
   </Health>
-  <Stamina>
-    <Max>840</Max>
-  </Stamina>
   <Attack>
     <Ranged>
       <Pierce>37.0</Pierce>
@@ -22,4 +18,18 @@
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_e.xml</Actor>
   </VisualActor>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>5.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

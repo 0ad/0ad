@@ -6,4 +6,26 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>5.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Ranged>
+      <Pierce>0.0</Pierce>
+      <Crush>37.0</Crush>
+      <MaxRange>44</MaxRange>
+      <PrepareTime>2000</PrepareTime>
+    </Ranged>
+  </Attack>
 </Entity>

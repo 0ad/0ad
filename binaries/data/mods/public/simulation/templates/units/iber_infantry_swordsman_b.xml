@@ -12,9 +12,22 @@
   <VisualActor>
     <Actor>units/iberians/infantry_swordsman_b.xml</Actor>
   </VisualActor>
+  <Cost>
+    <Resources>
+      <metal>60</metal>
+    </Resources>
+  </Cost>
   <Builder>
     <Entities datatype="tokens">
       structures/iber_sb1
     </Entities>
   </Builder>
+  <Attack>
+    <Melee>
+      <Hack>22.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>44.0</Hack>
+    </Charge>
+  </Attack>
 </Entity>
