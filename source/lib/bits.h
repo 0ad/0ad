@@ -231,13 +231,6 @@ inline T round_down(T n, T multiple)
 
 
 template<typename T>
-inline bool IsAligned(T t, uintptr_t multiple)
-{
-	return ((uintptr_t)t % multiple) == 0;
-}
-
-
-template<typename T>
 inline T MaxPowerOfTwoDivisor(T value)
 {
 	debug_assert(value != T(0));

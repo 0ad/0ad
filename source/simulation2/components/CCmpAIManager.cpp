@@ -25,6 +25,7 @@
 #include "graphics/Terrain.h"
 #include "lib/timer.h"
 #include "lib/tex/tex.h"
+#include "lib/allocators/shared_ptr.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Util.h"
@@ -130,7 +131,8 @@ private:
 
 			const size_t img_size = w * h * bpp/8;
 			const size_t hdr_size = tex_hdr_size(filename);
-			shared_ptr<u8> buf = io_Allocate(hdr_size+img_size);
+			shared_ptr<u8> buf;
+			AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 			Tex t;
 			if (tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
 				return;

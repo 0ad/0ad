@@ -52,4 +52,13 @@ typedef unsigned int mode_t;	// defined by MinGW but not VC
 #define S_ISDIR(m) (m & S_IFDIR)
 #define S_ISREG(m) (m & S_IFREG)
 
+
+//
+// <unistd.h>
+//
+
+extern int read (int fd, void* buf, size_t nbytes);	// thunk
+extern int write(int fd, void* buf, size_t nbytes);	// thunk
+extern off_t lseek(int fd, off_t ofs, int whence);  // thunk
+
 #endif	// #ifndef INCLUDED_WFILESYSTEM

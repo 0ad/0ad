@@ -28,6 +28,7 @@
 #define INCLUDED_CODE_ANNOTATION
 
 #include "lib/sysdep/compiler.h"
+#include "lib/sysdep/arch.h"	// ARCH_AMD64
 
 /**
  * mark a function local variable or parameter as unused and avoid
@@ -77,6 +78,20 @@
  **/
 #define UNREACHABLE	// actually defined below.. this is for
 # undef UNREACHABLE	// CppDoc's benefit only.
+
+// this macro should not generate any fallback code; it is merely the
+// compiler-specific backend for UNREACHABLE.
+// #define it to nothing if the compiler doesn't support such a hint.
+#define HAVE_ASSUME_UNREACHABLE 1
+#if MSC_VERSION && !ICC_VERSION // (ICC ignores this)
+# define ASSUME_UNREACHABLE __assume(0)
+#elif GCC_VERSION >= 450
+# define ASSUME_UNREACHABLE __builtin_unreachable()
+#else
+# define ASSUME_UNREACHABLE
+# undef HAVE_ASSUME_UNREACHABLE
+# define HAVE_ASSUME_UNREACHABLE 0
+#endif
 
 // compiler supports ASSUME_UNREACHABLE => allow it to assume the code is
 // never reached (improves optimization at the cost of undefined behavior
@@ -213,5 +228,151 @@ private:\
 #else
 # define COMPILER_FENCE
 #endif
+
+
+// try to define _W64, if not already done
+// (this is useful for catching pointer size bugs)
+#ifndef _W64
+# if MSC_VERSION
+#  define _W64 __w64
+# elif GCC_VERSION
+#  define _W64 __attribute__((mode (__pointer__)))
+# else
+#  define _W64
+# endif
+#endif
+
+
+// C99-like restrict (non-standard in C++, but widely supported in various forms).
+//
+// May be used on pointers. May also be used on member functions to indicate
+// that 'this' is unaliased (e.g. "void C::m() RESTRICT { ... }").
+// Must not be used on references - GCC supports that but VC doesn't.
+//
+// We call this "RESTRICT" to avoid conflicts with VC's __declspec(restrict),
+// and because it's not really the same as C99's restrict.
+//
+// To be safe and satisfy the compilers' stated requirements: an object accessed
+// by a restricted pointer must not be accessed by any other pointer within the
+// lifetime of the restricted pointer, if the object is modified.
+// To maximise the chance of optimisation, any pointers that could potentially
+// alias with the restricted one should be marked as restricted too.
+//
+// It would probably be a good idea to write test cases for any code that uses
+// this in an even very slightly unclear way, in case it causes obscure problems
+// in a rare compiler due to differing semantics.
+//
+// .. GCC
+#if GCC_VERSION
+# define RESTRICT __restrict__
+// .. VC8 provides __restrict
+#elif MSC_VERSION >= 1400
+# define RESTRICT __restrict
+// .. ICC supports the keyword 'restrict' when run with the /Qrestrict option,
+//    but it always also supports __restrict__ or __restrict to be compatible
+//    with GCC/MSVC, so we'll use the underscored version. One of {GCC,MSC}_VERSION
+//    should have been defined in addition to ICC_VERSION, so we should be using
+//    one of the above cases (unless it's an old VS7.1-emulating ICC).
+#elif ICC_VERSION
+# error ICC_VERSION defined without either GCC_VERSION or an adequate MSC_VERSION
+// .. unsupported; remove it from code
+#else
+# define RESTRICT
+#endif
+
+
+// C99-style __func__
+// .. newer GCC already have it
+#if GCC_VERSION >= 300
+// nothing need be done
+// .. old GCC and MSVC have __FUNCTION__
+#elif GCC_VERSION >= 200 || MSC_VERSION
+# define __func__ __FUNCTION__
+// .. unsupported
+#else
+# define __func__ "(unknown)"
+#endif
+
+
+// extern "C", but does the right thing in pure-C mode
+#if defined(__cplusplus)
+# define EXTERN_C extern "C"
+#else
+# define EXTERN_C extern
+#endif
+
+
+#if MSC_VERSION
+# define INLINE __forceinline
+#else
+# define INLINE inline
+#endif
+
+
+#if MSC_VERSION
+# define CALL_CONV __cdecl
+#else
+# define CALL_CONV
+#endif
+
+
+#if MSC_VERSION && !ARCH_AMD64
+# define DECORATED_NAME(name) _##name
+#else
+# define DECORATED_NAME(name) name
+#endif
+
+
+// workaround for preprocessor limitation: macro args aren't expanded
+// before being pasted.
+#define STRINGIZE2(id) # id
+#define STRINGIZE(id) STRINGIZE2(id)
+
+
+//-----------------------------------------------------------------------------
+// partial emulation of C++0x rvalue references (required for UniqueRange)
+
+#if HAVE_CPP0X
+
+#define RVREF(T) T&&	// the type of an rvalue reference
+#define LVALUE(rvalue) rvalue	// (a named rvalue reference is an lvalue)
+#define RVALUE(lvalue) std::move(lvalue)
+#define RVALUE_FROM_R(rvalue) RVALUE(rvalue)	// (see above)
+
+#else
+
+// RVALUE wraps an lvalue reference in this class for later use by a
+// "move ctor" that takes an RValue.
+template<typename T>
+class RValue
+{
+public:
+	explicit RValue(T& lvalue): lvalue(lvalue) {}
+	T& LValue() const { return lvalue; }
+
+private:
+	T& lvalue;
+};
+
+// from rvalue or const lvalue
+template<class T>
+static inline RValue<T> ToRValue(const T& t)
+{
+	return RValue<T>((T&)t);
+}
+
+// from lvalue
+template<class T>
+static inline RValue<T> ToRValue(T& t)
+{
+	return RValue<T>(t);
+}
+
+#define RVREF(T) const RValue<T>&	// the type of an rvalue reference
+#define LVALUE(rvalue) rvalue.LValue()
+#define RVALUE(lvalue) ToRValue(lvalue)
+#define RVALUE_FROM_R(rvalue) rvalue
+
+#endif	// #if !HAVE_CPP0X
 
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION

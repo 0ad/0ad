@@ -27,7 +27,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/whrt/counter.h"
 
-#include "lib/bits.h"
+#include "lib/alignment.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 
 #include "lib/sysdep/os/win/whrt/tsc.h"
@@ -98,7 +98,7 @@ ICounter* CreateCounter(size_t id)
 
 	static const size_t memSize = 200;
 	static u8 mem[memSize];
-	u8* alignedMem = (u8*)round_up((uintptr_t)mem, (uintptr_t)16u);
+	u8* alignedMem = (u8*)Align<16>((uintptr_t)mem);
 	const size_t bytesLeft = mem+memSize - alignedMem;
 	ICounter* counter = ConstructCounterAt(id, alignedMem, bytesLeft);
 

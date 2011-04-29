@@ -77,7 +77,6 @@ extern void wutil_Free(void* p);
 // critical sections used by win-specific code
 enum WinLockId
 {
-	WAIO_CS,
 	WDBG_SYM_CS,	// protects (non-reentrant) dbghelp.dll
 	WDIR_WATCH_CS,
 
@@ -190,6 +189,8 @@ private:
 
 
 //-----------------------------------------------------------------------------
+
+LIB_API LibError wutil_SetPrivilege(const wchar_t* privilege, bool enable);
 
 /**
  * @return module handle of lib code (that of the main EXE if

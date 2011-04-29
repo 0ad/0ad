@@ -5,7 +5,7 @@
 #include "lib/external_libraries/vorbis.h"
 
 #include "lib/byte_order.h"
-#include "lib/file/file.h"
+#include "lib/file/io/io.h"
 #include "lib/file/file_system_util.h"
 
 
@@ -64,7 +64,8 @@ public:
 		const off_t sizeRemaining = adapter->size - adapter->offset;
 		const size_t sizeToRead = (size_t)std::min(sizeRequested, sizeRemaining);
 
-		if(adapter->file->Read(adapter->offset, (u8*)bufferToFill, sizeToRead) == INFO::OK)
+		io::Operation op(*adapter->file.get(), bufferToFill, sizeToRead, adapter->offset);
+		if(io::Run(op) == INFO::OK)
 		{
 			adapter->offset += sizeToRead;
 			return sizeToRead;

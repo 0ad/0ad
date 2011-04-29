@@ -31,7 +31,6 @@
 #include <sstream>
 
 #include "lib/allocators/pool.h"
-#include "lib/bits.h"	// round_up
 #include "lib/timer.h"	// timer_Time
 #include "lib/sysdep/sysdep.h"	// sys_OpenFile
 

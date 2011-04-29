@@ -17,16 +17,17 @@
 
 #include "precompiled.h"
 
+#include <boost/algorithm/string.hpp>
+
 #include "Pyrogenesis.h"
 #include "Parser.h"
 #include "ConfigDB.h"
 #include "CLogger.h"
 #include "Filesystem.h"
 #include "scripting/ScriptingHost.h"
+#include "lib/allocators/shared_ptr.h"
 
 #include "scriptinterface/ScriptInterface.h"
-
-#include <boost/algorithm/string.hpp>
 
 typedef std::map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
@@ -425,7 +426,8 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 		return false;
 	}
 
-	shared_ptr<u8> buf = io_Allocate(1*MiB);
+	shared_ptr<u8> buf;
+	AllocateAligned(buf, 1*MiB, maxSectorSize);
 	char* pos = (char*)buf.get();
 	TConfigMap &map=m_Map[ns];
 	for(TConfigMap::const_iterator it = map.begin(); it != map.end(); ++it)

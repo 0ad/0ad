@@ -23,6 +23,7 @@
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "lib/utf8.h"
+#include "lib/allocators/shared_ptr.h"
 #include "lib/sysdep/cpu.h"
 #include "maths/Fixed.h"
 
@@ -95,7 +96,8 @@ bool XMLWriter_File::StoreVFS(const PIVFS& vfs, const VfsPath& pathname)
 	if (m_LastElement) debug_warn(L"ERROR: Saving XML while an element is still open");
 
 	const size_t size = m_Data.length();
-	shared_ptr<u8> data = io_Allocate(size);
+	shared_ptr<u8> data;
+	AllocateAligned(data, size, maxSectorSize);
 	memcpy(data.get(), m_Data.data(), size);
 	LibError ret = vfs->CreateFile(pathname, data, size);
 	if (ret < 0)

@@ -27,50 +27,28 @@
 #ifndef INCLUDED_FILE
 #define INCLUDED_FILE
 
-struct aiocb;
-
 #include "lib/os_path.h"
+#include "lib/posix/posix_aio.h"	// opcode: LIO_READ or LIO_WRITE
 
 namespace ERR
 {
 	const LibError FILE_ACCESS = -110300;
-	const LibError IO          = -110301;
 }
 
-namespace FileImpl
-{
-	LIB_API LibError Open(const OsPath& pathname, wchar_t mode, int& fd);
-	LIB_API void Close(int& fd);
-	LIB_API LibError IO(int fd, wchar_t mode, off_t ofs, u8* buf, size_t size);
-	LIB_API LibError Issue(aiocb& req, int fd, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize);
-	LIB_API LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize);
-}
-
+LIB_API LibError FileOpen(const OsPath& pathname, int opcode, int& fd);
+LIB_API void FileClose(int& fd);
 
 class File
 {
 public:
 	File()
-		: m_pathname(), m_fd(0)
+		: pathname(), fd(-1)
 	{
 	}
 
-	LibError Open(const OsPath& pathname, wchar_t mode)
+	File(const OsPath& pathname, int opcode)
 	{
-		RETURN_ERR(FileImpl::Open(pathname, mode, m_fd));
-		m_pathname = pathname;
-		m_mode = mode;
-		return INFO::OK;
-	}
-
-	void Close()
-	{
-		FileImpl::Close(m_fd);
-	}
-
-	File(const OsPath& pathname, wchar_t mode)
-	{
-		(void)Open(pathname, mode);
+		(void)Open(pathname, opcode);
 	}
 
 	~File()
@@ -78,35 +56,38 @@ public:
 		Close();
 	}
 
+	LibError Open(const OsPath& pathname, int opcode)
+	{
+		RETURN_ERR(FileOpen(pathname, opcode, fd));
+		this->pathname = pathname;
+		this->opcode = opcode;
+		return INFO::OK;
+	}
+
+	void Close()
+	{
+		FileClose(fd);
+	}
+
 	const OsPath& Pathname() const
 	{
-		return m_pathname;
+		return pathname;
 	}
 
-	wchar_t Mode() const
+	int Descriptor() const
 	{
-		return m_mode;
+		return fd;
 	}
 
-	LibError Issue(aiocb& req, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const
+	int Opcode() const
 	{
-		return FileImpl::Issue(req, m_fd, mode, alignedOfs, alignedBuf, alignedSize);
-	}
-
-	LibError Write(off_t ofs, const u8* buf, size_t size)
-	{
-		return FileImpl::IO(m_fd, 'w', ofs, const_cast<u8*>(buf), size);
-	}
-
-	LibError Read(off_t ofs, u8* buf, size_t size) const
-	{
-		return FileImpl::IO(m_fd, 'r', ofs, buf, size);
+		return opcode;
 	}
 
 private:
-	OsPath m_pathname;
-	int m_fd;
-	wchar_t m_mode;
+	OsPath pathname;
+	int fd;
+	int opcode;
 };
 
 typedef shared_ptr<File> PFile;

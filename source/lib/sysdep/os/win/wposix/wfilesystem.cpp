@@ -373,6 +373,26 @@ int wclose(int fd)
 // unistd.h
 //-----------------------------------------------------------------------------
 
+// we don't want to #define read to _read, since that's a fairly common
+// identifier. therefore, translate from MS CRT names via thunk functions.
+// efficiency is less important, and the overhead could be optimized away.
+
+int read(int fd, void* buf, size_t nbytes)
+{
+	return _read(fd, buf, (int)nbytes);
+}
+
+int write(int fd, void* buf, size_t nbytes)
+{
+	return _write(fd, buf, (int)nbytes);
+}
+
+off_t lseek(int fd, off_t ofs, int whence)
+{
+	return _lseeki64(fd, ofs, whence);
+}
+
+
 int wtruncate(const OsPath& pathname, off_t length)
 {
 	HANDLE hFile = CreateFileW(OsString(pathname).c_str(), GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);

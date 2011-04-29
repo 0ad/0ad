@@ -48,33 +48,13 @@ RealDirectory::RealDirectory(const OsPath& path, size_t priority, size_t flags)
 
 /*virtual*/ LibError RealDirectory::Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const
 {
-	const OsPath pathname = m_path / name;
-
-	PFile file(new File);
-	RETURN_ERR(file->Open(pathname, 'r'));
-
-	RETURN_ERR(io_ReadAligned(file, 0, buf.get(), size));
-	return INFO::OK;
+	return io::Load(m_path / name, buf.get(), size);
 }
 
 
 LibError RealDirectory::Store(const OsPath& name, const shared_ptr<u8>& fileContents, size_t size)
 {
-	const OsPath pathname = m_path / name;
-
-	{
-		PFile file(new File);
-		RETURN_ERR(file->Open(pathname, 'w'));
-		RETURN_ERR(io_WriteAligned(file, 0, fileContents.get(), size));
-	}
-
-	// io_WriteAligned pads the file; we need to truncate it to the actual
-	// length. ftruncate can't be used because Windows' FILE_FLAG_NO_BUFFERING
-	// only allows resizing to sector boundaries, so the file must first
-	// be closed.
-	wtruncate(pathname, size);
-
-	return INFO::OK;
+	return io::Store(m_path / name, fileContents.get(), size);
 }
 
 

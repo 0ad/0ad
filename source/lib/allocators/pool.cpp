@@ -29,6 +29,10 @@
 
 #include "lib/allocators/mem_util.h"
 
+#include "lib/timer.h"
+
+TIMER_ADD_CLIENT(tc_pool_alloc);
+
 
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 {
@@ -66,6 +70,7 @@ bool pool_contains(const Pool* p, void* el)
 
 void* pool_alloc(Pool* p, size_t size)
 {
+	TIMER_ACCRUE(tc_pool_alloc);
 	// if pool allows variable sizes, go with the size parameter,
 	// otherwise the pool el_size setting.
 	const size_t el_size = p->el_size? p->el_size : mem_RoundUpToAlignment(size);

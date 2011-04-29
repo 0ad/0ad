@@ -316,6 +316,15 @@ STMT(\
 	}\
 )
 
+
+// if expression evaluates to a negative error code, return 0.
+#define RETURN_IF_NOT_CONTINUE(expression)\
+STMT(\
+	i64 err64__ = (i64)(expression);\
+	if(err64__ != INFO::CB_CONTINUE)\
+		return err64__;\
+)
+
 // return an error and warn about it (replaces debug_warn+return)
 #define WARN_RETURN(err)\
 STMT(\
@@ -375,8 +384,8 @@ STMT(\
 STMT(\
 	if(!(ok))\
 	{\
-		debug_warn(L"FYI: WARN_RETURN_IF_FALSE reports that a function failed."\
-		           L"feel free to ignore or suppress this warning.");\
+		debug_warn(L"FYI: WARN_RETURN_IF_FALSE reports that a function failed. "\
+		           L"Feel free to ignore or suppress this warning.");\
 		return ERR::FAIL;\
 	}\
 )
@@ -392,8 +401,8 @@ STMT(\
 #define WARN_IF_FALSE(ok)\
 STMT(\
 	if(!(ok))\
-		debug_warn(L"FYI: WARN_IF_FALSE reports that a function failed."\
-		           L"feel free to ignore or suppress this warning.");\
+		debug_warn(L"FYI: WARN_IF_FALSE reports that a function failed. "\
+		           L"Feel free to ignore or suppress this warning.");\
 )
 
 

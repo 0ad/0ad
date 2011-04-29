@@ -33,7 +33,6 @@
 #include "lib/sysdep/arch/x86_x64/topology.h"
 #include "lib/sysdep/smbios.h"
 #include "lib/tex/tex.h"
-#include "lib/file/io/io_align.h"	// BLOCK_SIZE
 
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -207,7 +206,6 @@ LibError tex_write(Tex* t, const VfsPath& filename)
 	// write to disk
 	LibError ret = INFO::OK;
 	{
-		(void)da_set_size(&da, round_up(da.cur_size, BLOCK_SIZE));
 		shared_ptr<u8> file = DummySharedPtr(da.base);
 		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
 		if(bytes_written > 0)
@@ -254,7 +252,8 @@ void WriteScreenshot(const VfsPath& extension)
 
 	const size_t img_size = w * h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(filename);
-	shared_ptr<u8> buf = io_Allocate(hdr_size+img_size);
+	shared_ptr<u8> buf;
+	AllocateAligned(buf, hdr_size+img_size, maxSectorSize);
 	GLvoid* img = buf.get() + hdr_size;
 	Tex t;
 	if(tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
@@ -311,7 +310,8 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	void* tile_data = malloc(tile_size);
 	if(!tile_data)
 		WARN_ERR_RETURN(ERR::NO_MEM);
-	shared_ptr<u8> img_buf = io_Allocate(hdr_size+img_size);
+	shared_ptr<u8> img_buf;
+	AllocateAligned(img_buf, hdr_size+img_size, maxSectorSize);
 
 	Tex t;
 	GLvoid* img = img_buf.get() + hdr_size;

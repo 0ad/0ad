@@ -32,6 +32,7 @@
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/os/win/wiocp.h"
 
 
 WINIT_REGISTER_MAIN_INIT(wdir_watch_Init);
@@ -291,83 +292,21 @@ struct DirWatch
 
 
 //-----------------------------------------------------------------------------
-// CompletionPort
-
-// this appears to be the best solution for IO notification.
-// there are three alternatives:
-// - multiple threads with blocking I/O. this is rather inefficient when
-//   many directories (e.g. mods) are being watched.
-// - normal overlapped I/O: build a contiguous array of the hEvents
-//   in all OVERLAPPED structures, and WaitForMultipleObjects.
-//   it would be cumbersome to update this array when adding/removing watches.
-// - callback notification: a notification function is called when the thread
-//   that initiated the I/O (ReadDirectoryChangesW) enters an alertable
-//   wait state. it is desirable for notifications to arrive at a single
-//   known point - see dir_watch_Poll. unfortunately there doesn't appear to
-//   be a reliable and non-blocking means of entering AWS - SleepEx(1) may
-//   wait for 10..15 ms if the system timer granularity is low. even worse,
-//   it was noted in a previous project that APCs are sometimes delivered from
-//   within APIs without having used SleepEx (it seems threads sometimes enter
-//   a semi-AWS when calling the kernel).
-class CompletionPort
-{
-public:
-	CompletionPort()
-	{
-		m_hIOCP = 0;	// CreateIoCompletionPort requires 0, not INVALID_HANDLE_VALUE
-	}
-
-	~CompletionPort()
-	{
-		CloseHandle(m_hIOCP);
-		m_hIOCP = INVALID_HANDLE_VALUE;
-	}
-
-	void Attach(HANDLE hFile, uintptr_t key)
-	{
-		WinScopedPreserveLastError s;	// CreateIoCompletionPort
-
-		// (when called for the first time, ends up creating m_hIOCP)
-		m_hIOCP = CreateIoCompletionPort(hFile, m_hIOCP, (ULONG_PTR)key, 0);
-		debug_assert(wutil_IsValidHandle(m_hIOCP));
-	}
-
-	LibError Poll(size_t& bytesTransferred, uintptr_t& key, OVERLAPPED*& ovl)
-	{
-		if(m_hIOCP == 0)
-			return ERR::INVALID_HANDLE;	// NOWARN (happens if called before the first Attach)
-		for(;;)	// don't return abort notifications to caller
-		{
-			DWORD dwBytesTransferred = 0;
-			ULONG_PTR ulKey = 0;
-			ovl = 0;
-			const DWORD timeout = 0;
-			const BOOL gotPacket = GetQueuedCompletionStatus(m_hIOCP, &dwBytesTransferred, &ulKey, &ovl, timeout);
-			bytesTransferred = size_t(dwBytesTransferred);
-			key = uintptr_t(ulKey);
-			if(gotPacket)
-				return INFO::OK;
-
-			if(GetLastError() == WAIT_TIMEOUT)
-				return ERR::AGAIN;	// NOWARN (nothing pending)
-			else if(GetLastError() == ERROR_OPERATION_ABORTED)
-				continue;		// watch was canceled - ignore
-			else
-				return LibError_from_GLE();	// actual error
-		}
-	}
-
-private:
-	HANDLE m_hIOCP;
-};
-
-
-//-----------------------------------------------------------------------------
 // DirWatchManager
 
 class DirWatchManager
 {
 public:
+	DirWatchManager()
+		: hIOCP(0)
+	{
+	}
+
+	~DirWatchManager()
+	{
+		CloseHandle(hIOCP);
+	}
+
 	LibError Add(const OsPath& path, PDirWatch& dirWatch)
 	{
 		debug_assert(path.IsDirectory());
@@ -386,7 +325,7 @@ public:
 		}
 
 		PDirWatchRequest request(new DirWatchRequest(path));
-		m_completionPort.Attach(request->GetDirHandle(), (uintptr_t)request.get());
+		AttachToCompletionPort(request->GetDirHandle(), hIOCP, (uintptr_t)request.get());
 		RETURN_ERR(request->Issue());
 		dirWatch.reset(new DirWatch(&m_sentinel, request));
 		return INFO::OK;
@@ -394,8 +333,17 @@ public:
 
 	LibError Poll(DirWatchNotifications& notifications)
 	{
-		size_t bytesTransferred; uintptr_t key; OVERLAPPED* ovl;
-		RETURN_ERR(m_completionPort.Poll(bytesTransferred, key, ovl));
+		DWORD bytesTransferred; ULONG_PTR key; OVERLAPPED* ovl;
+		for(;;)	// skip notifications of canceled watches
+		{
+			const LibError ret = PollCompletionPort(hIOCP, 0, bytesTransferred, key, ovl);
+			if(ret == INFO::OK)
+				break;
+			if(GetLastError() == ERROR_OPERATION_ABORTED)
+				continue;		// watch was canceled - ignore
+			return ret;
+		}
+
 		DirWatchRequest* request = (DirWatchRequest*)key;
 		request->RetrieveNotifications(notifications);
 		RETURN_ERR(request->Issue());	// re-issue
@@ -404,7 +352,7 @@ public:
 
 private:
 	IntrusiveLink m_sentinel;
-	CompletionPort m_completionPort;
+	HANDLE hIOCP;
 };
 
 static DirWatchManager* s_dirWatchManager;

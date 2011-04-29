@@ -23,7 +23,7 @@
 #ifndef INCLUDED_SHARED_PTR
 #define INCLUDED_SHARED_PTR
 
-#include "lib/sysdep/arch/x86_x64/cache.h"
+#include "lib/alignment.h"
 #include "lib/sysdep/rtl.h" // rtl_AllocateAligned
 
 struct DummyDeleter
@@ -61,6 +61,7 @@ struct FreeDeleter
 // (note: uses CheckedArrayDeleter)
 LIB_API shared_ptr<u8> Allocate(size_t size);
 
+
 struct AlignedDeleter
 {
 	template<class T>
@@ -71,9 +72,13 @@ struct AlignedDeleter
 };
 
 template<class T>
-inline shared_ptr<T> AllocateAligned(size_t size)
+static inline LibError AllocateAligned(shared_ptr<T>& p, size_t size, size_t alignment = cacheLineSize)
 {
-	return shared_ptr<T>((T*)rtl_AllocateAligned(size, x86_x64_Caches(L2D)->entrySize), AlignedDeleter());
+	void* mem = rtl_AllocateAligned(size, alignment);
+	if(!mem)
+		WARN_RETURN(ERR::NO_MEM);
+	p.reset((T*)mem, AlignedDeleter());
+	return INFO::OK;
 }
 
 #endif	// #ifndef INCLUDED_SHARED_PTR

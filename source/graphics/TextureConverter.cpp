@@ -458,7 +458,8 @@ bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 
 	// Move output into a correctly-aligned buffer
 	size_t size = result->output.buffer.size();
-	shared_ptr<u8> file = io_Allocate(size);
+	shared_ptr<u8> file;
+	AllocateAligned(file, size, maxSectorSize);
 	memcpy(file.get(), &result->output.buffer[0], size);
 	if (m_VFS->CreateFile(result->dest, file, size) < 0)
 	{

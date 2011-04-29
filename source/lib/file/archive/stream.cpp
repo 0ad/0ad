@@ -136,12 +136,3 @@ LibError Stream::Finish()
 	m_outProduced += outProduced;
 	return INFO::OK;
 }
-
-
-LibError FeedStream(uintptr_t cbData, const u8* in, size_t inSize)
-{
-//	TIMER_ACCRUE(tc_stream);
-
-	Stream& stream = *(Stream*)cbData;
-	return stream.Feed(in, inSize);
-}

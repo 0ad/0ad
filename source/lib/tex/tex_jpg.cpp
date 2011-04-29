@@ -26,10 +26,12 @@
 
 #include "precompiled.h"
 
+#include <setjmp.h>
+
 #include "lib/external_libraries/libjpeg.h"
+#include "lib/allocators/shared_ptr.h"
 
 #include "tex_codec.h"
-#include <setjmp.h>
 
 
 // squelch "dtor / setjmp interaction" warnings.
@@ -478,7 +480,8 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex
 	// alloc destination buffer
 	const size_t pitch = w * bpp / 8;
 	const size_t img_size = pitch * h;	// for allow_rows
-	shared_ptr<u8> data = io_Allocate(img_size);
+	shared_ptr<u8> data;
+	AllocateAligned(data, img_size, pageSize);
 
 	// read rows
 	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);

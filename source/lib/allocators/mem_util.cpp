@@ -28,6 +28,7 @@
 #include "lib/allocators/mem_util.h"
 
 #include "lib/bits.h"				// round_up
+#include "lib/alignment.h"
 #include "lib/posix/posix_mman.h"
 #include "lib/sysdep/os_cpu.h"			// os_cpu_PageSize
 
@@ -45,8 +46,7 @@ size_t mem_RoundUpToPage(size_t size)
 size_t mem_RoundUpToAlignment(size_t size)
 {
 	// all allocators should align to at least this many bytes:
-	const size_t alignment = 8;
-	return round_up(size, alignment);
+	return Align<8>(size);
 }
 
 

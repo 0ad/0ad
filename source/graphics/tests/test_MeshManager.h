@@ -20,6 +20,7 @@
 #include "lib/file/file_system_util.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
+#include "lib/allocators/shared_ptr.h"
 
 #include "graphics/ColladaManager.h"
 #include "graphics/MeshManager.h"
@@ -116,7 +117,8 @@ public:
 	{
 		copyFile(srcDAE, testDAE);
 		//buildArchive();
-		shared_ptr<u8> buf = io_Allocate(100);
+		shared_ptr<u8> buf;
+		AllocateAligned(buf, 100, maxSectorSize);
 		strcpy_s((char*)buf.get(), 5, "Test");
 		g_VFS->CreateFile(testDAE, buf, 4);
 	}
@@ -178,7 +180,8 @@ public:
 		TestLogger logger;
 
 		copyFile(srcDAE, testDAE);
-		shared_ptr<u8> buf = io_Allocate(100);
+		shared_ptr<u8> buf;
+		AllocateAligned(buf, 100, maxSectorSize);
 		strcpy_s((char*)buf.get(), 100, "Not valid XML");
 		g_VFS->CreateFile(testSkeletonDefs, buf, 13);
 
@@ -192,7 +195,8 @@ public:
 		TestLogger logger;
 
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
-		shared_ptr<u8> buf = io_Allocate(100);
+		shared_ptr<u8> buf;
+		AllocateAligned(buf, 100, maxSectorSize);
 		strcpy_s((char*)buf.get(), 100, "Not valid XML");
 		g_VFS->CreateFile(testDAE, buf, 13);
 

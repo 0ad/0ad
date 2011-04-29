@@ -110,6 +110,4 @@ private:
 	u32 m_checksum;
 };
 
-extern LibError FeedStream(uintptr_t cbData, const u8* in, size_t inSize);
-
 #endif	// #ifndef INCLUDED_STREAM

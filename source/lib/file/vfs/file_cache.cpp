@@ -30,7 +30,6 @@
 #include "lib/external_libraries/suppress_boost_warnings.h"
 
 #include "lib/file/common/file_stats.h"
-#include "lib/file/io/io_align.h"       // BLOCK_SIZE
 #include "lib/cache_adt.h"              // Cache
 #include "lib/bits.h"                   // round_up
 #include "lib/allocators/allocators.h"
@@ -98,7 +97,7 @@ public:
 
 	shared_ptr<u8> Allocate(size_t size, const PAllocator& pthis)
 	{
-		const size_t alignedSize = round_up(size, BLOCK_SIZE);
+		const size_t alignedSize = Align<maxSectorSize>(size);
 
 		u8* mem = (u8*)m_allocator.Allocate(alignedSize);
 		if(!mem)
@@ -114,7 +113,7 @@ public:
 
 	void Deallocate(u8* mem, size_t size)
 	{
-		const size_t alignedSize = round_up(size, BLOCK_SIZE);
+		const size_t alignedSize = Align<maxSectorSize>(size);
 
 		// (re)allow writes in case the buffer was made read-only. it would
 		// be nice to unmap the buffer, but this is not possible because

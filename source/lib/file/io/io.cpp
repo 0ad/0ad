@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,19 +23,14 @@
 #include "precompiled.h"
 #include "lib/file/io/io.h"
 
-#include "lib/posix/posix_aio.h"
-#include "lib/allocators/allocators.h"	// AllocatorChecker
-#include "lib/file/file.h"
-#include "lib/file/common/file_stats.h"
-#include "lib/file/io/block_cache.h"
-#include "lib/file/io/io_align.h"
+#include "lib/sysdep/rtl.h"
 
-static const size_t ioDepth = 16;
+ERROR_ASSOCIATE(ERR::IO, L"Error during IO", EIO);
 
+namespace io {
 
-// the underlying aio implementation likes buffer and offset to be
-// sector-aligned; if not, the transfer goes through an align buffer,
-// and requires an extra memcpy.
+// the Windows aio implementation requires buffer and offset to be
+// sector-aligned.
 //
 // if the user specifies an unaligned buffer, there's not much we can
 // do - we can't assume the buffer contains padding. therefore,
@@ -51,14 +46,14 @@ static const size_t ioDepth = 16;
 // AIO wrapper. rationale:
 // - aligning the transfer isn't possible here since we have no control
 //   over the buffer, i.e. we cannot read more data than requested.
-//   instead, this is done in io_manager.
+//   instead, this is done in manager.
 // - transfer sizes here are arbitrary (i.e. not block-aligned);
 //   that means the cache would have to handle this or also split them up
-//   into blocks, which would duplicate the abovementioned work.
+//   into blocks, which would duplicate the above mentioned work.
 // - if caching here, we'd also have to handle "forwarding" (i.e.
 //   desired block has been issued but isn't yet complete). again, it
-//   is easier to let the synchronous io_manager handle this.
-// - finally, io_manager knows more about whether the block should be cached
+//   is easier to let the synchronous manager handle this.
+// - finally, manager knows more about whether the block should be cached
 //   (e.g. whether another block request will follow), but we don't
 //   currently make use of this.
 //
@@ -71,271 +66,73 @@ static const size_t ioDepth = 16;
 //   this is a bit more complicated than just using the cache as storage.
 
 
-//-----------------------------------------------------------------------------
-// allocator
-//-----------------------------------------------------------------------------
-
-#ifndef NDEBUG
-static AllocatorChecker allocatorChecker;
-#endif
-
-class IoDeleter
+UniqueRange Allocate(size_t size, size_t alignment)
 {
-public:
-	IoDeleter(size_t paddedSize)
-		: m_paddedSize(paddedSize)
-	{
-	}
+	debug_assert(is_pow2(alignment));
+	if(alignment <= idxDeleterBits)
+		alignment = idxDeleterBits+1;
 
-	void operator()(u8* mem)
-	{
-		debug_assert(m_paddedSize != 0);
-#ifndef NDEBUG
-		allocatorChecker.OnDeallocate(mem, m_paddedSize);
-#endif
-		page_aligned_free(mem, m_paddedSize);
-		m_paddedSize = 0;
-	}
-
-private:
-	size_t m_paddedSize;
-};
-
-
-shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
-{
-	debug_assert(size != 0);
-
-	const size_t paddedSize = (size_t)PaddedSize(size, ofs);
-	u8* mem = (u8*)page_aligned_alloc(paddedSize);
-	if(!mem)
-		throw std::bad_alloc();
-
-#ifndef NDEBUG
-	allocatorChecker.OnAllocate(mem, paddedSize);
-#endif
-
-	return shared_ptr<u8>(mem, IoDeleter(paddedSize));
+	const size_t alignedSize = round_up(size, alignment);
+	const UniqueRange::pointer p = rtl_AllocateAligned(alignedSize, alignment);
+	return UniqueRange(p, size, idxDeleterAligned);
 }
 
 
-//-----------------------------------------------------------------------------
-// BlockIo
-//-----------------------------------------------------------------------------
-
-class BlockIo
+LibError Issue(aiocb& cb, size_t queueDepth)
 {
-public:
-	LibError Issue(const PFile& file, off_t alignedOfs, u8* alignedBuf)
+#if CONFIG2_FILE_ENABLE_AIO
+	if(queueDepth > 1)
 	{
-		m_blockId = BlockId(file->Pathname(), alignedOfs);
-		if(file->Mode() == 'r')
-		{
-			if(s_blockCache.Retrieve(m_blockId, m_cachedBlock))
-			{
-				stats_block_cache(CR_HIT);
+		const int ret = (cb.aio_lio_opcode == LIO_WRITE)? aio_write(&cb): aio_read(&cb);
+		RETURN_ERR(LibError_from_posix(ret));
+	}
+	else
+#endif
+	{
+		debug_assert(lseek(cb.aio_fildes, cb.aio_offset, SEEK_SET) == cb.aio_offset);
 
-				// copy from cache into user buffer
-				if(alignedBuf)
-				{
-					memcpy(alignedBuf, m_cachedBlock.get(), BLOCK_SIZE);
-					m_alignedBuf = alignedBuf;
-				}
-				// return cached block
-				else
-				{
-					m_alignedBuf = const_cast<u8*>(m_cachedBlock.get());
-				}
+		void* buf = (void*)cb.aio_buf;	// cast from volatile void*
+		const ssize_t bytesTransferred = (cb.aio_lio_opcode == LIO_WRITE)? write(cb.aio_fildes, buf, cb.aio_nbytes) : read(cb.aio_fildes, buf, cb.aio_nbytes);
+		if(bytesTransferred < 0)
+			return LibError_from_errno();
 
-				return INFO::OK;
-			}
-			else
-			{
-				stats_block_cache(CR_MISS);
-				// fall through to the actual issue..
-			}
-		}
-
-		stats_io_check_seek(m_blockId);
-
-		// transfer directly to/from user buffer
-		if(alignedBuf)
-		{
-			m_alignedBuf = alignedBuf;
-		}
-		// transfer into newly allocated temporary block
-		else
-		{
-			m_tempBlock = io_Allocate(BLOCK_SIZE);
-			m_alignedBuf = const_cast<u8*>(m_tempBlock.get());
-		}
-
-		return file->Issue(m_req, file->Mode(), alignedOfs, m_alignedBuf, BLOCK_SIZE);
+		cb.aio_nbytes = (size_t)bytesTransferred;
 	}
 
-	LibError WaitUntilComplete(const u8*& block, size_t& blockSize)
-	{
-		if(m_cachedBlock)
-		{
-			block = m_alignedBuf;
-			blockSize = BLOCK_SIZE;
-			return INFO::OK;
-		}
-
-		RETURN_ERR(FileImpl::WaitUntilComplete(m_req, const_cast<u8*&>(block), blockSize));
-
-		if(m_tempBlock)
-			s_blockCache.Add(m_blockId, m_tempBlock);
-
-		return INFO::OK;
-	}
-
-private:
-	static BlockCache s_blockCache;
-
-	BlockId m_blockId;
-
-	// the address that WaitUntilComplete will return
-	// (cached or temporary block, or user buffer)
-	u8* m_alignedBuf;
-
-	shared_ptr<u8> m_cachedBlock;
-	shared_ptr<u8> m_tempBlock;
-
-	aiocb m_req;
-};
-
-BlockCache BlockIo::s_blockCache;
-
-
-//-----------------------------------------------------------------------------
-// IoSplitter
-//-----------------------------------------------------------------------------
-
-class IoSplitter
-{
-	NONCOPYABLE(IoSplitter);
-public:
-	IoSplitter(off_t ofs, u8* alignedBuf, off_t size)
-		: m_ofs(ofs), m_alignedBuf(alignedBuf), m_size(size)
-		, m_totalIssued(0), m_totalTransferred(0)
-	{
-		m_alignedOfs = AlignedOffset(ofs);
-		m_alignedSize = PaddedSize(size, ofs);
-		m_misalignment = size_t(ofs - m_alignedOfs);
-	}
-
-	LibError Run(const PFile& file, IoCallback cb = 0, uintptr_t cbData = 0)
-	{
-		ScopedIoMonitor monitor;
-
-		// (issue even if cache hit because blocks must be processed in order)
-		std::deque<BlockIo> pendingIos;
-		for(;;)
-		{
-			while(pendingIos.size() < ioDepth && m_totalIssued < m_alignedSize)
-			{
-				pendingIos.push_back(BlockIo());
-				const off_t alignedOfs = m_alignedOfs + m_totalIssued;
-				u8* const alignedBuf = m_alignedBuf? m_alignedBuf+m_totalIssued : 0;
-				RETURN_ERR(pendingIos.back().Issue(file, alignedOfs, alignedBuf));
-				m_totalIssued += BLOCK_SIZE;
-			}
-
-			if(pendingIos.empty())
-				break;
-
-			Process(pendingIos.front(), cb, cbData);
-			pendingIos.pop_front();
-		}
-
-		debug_assert(m_totalIssued >= m_totalTransferred && m_totalTransferred >= m_size);
-
-		monitor.NotifyOfSuccess(FI_AIO, file->Mode(), m_totalTransferred);
-		return INFO::OK;
-	}
-
-	off_t AlignedOfs() const
-	{
-		return m_alignedOfs;
-	}
-
-private:
-	LibError Process(BlockIo& blockIo, IoCallback cb, uintptr_t cbData) const
-	{
-		const u8* block; size_t blockSize;
-		RETURN_ERR(blockIo.WaitUntilComplete(block, blockSize));
-
-		// first block: skip past alignment
-		if(m_totalTransferred == 0)
-		{
-			block += m_misalignment;
-			blockSize -= m_misalignment;
-		}
-
-		// last block: don't include trailing padding
-		if(m_totalTransferred + (off_t)blockSize > m_size)
-			blockSize = size_t(m_size - m_totalTransferred);
-
-		m_totalTransferred += (off_t)blockSize;
-
-		if(cb)
-		{
-			stats_cb_start();
-			LibError ret = cb(cbData, block, blockSize);
-			stats_cb_finish();
-			CHECK_ERR(ret);
-		}
-
-		return INFO::OK;
-	}
-
-	off_t m_ofs;
-	u8* m_alignedBuf;
-	off_t m_size;
-
-	size_t m_misalignment;
-	off_t m_alignedOfs;
-	off_t m_alignedSize;
-
-	// (useful, raw data: possibly compressed, but doesn't count padding)
-	mutable off_t m_totalIssued;
-	mutable off_t m_totalTransferred;
-};
-
-
-LibError io_Scan(const PFile& file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData)
-{
-	u8* alignedBuf = 0;	// use temporary block buffers
-	IoSplitter splitter(ofs, alignedBuf, size);
-	return splitter.Run(file, cb, cbData);
-}
-
-
-LibError io_Read(const PFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data, IoCallback cb, uintptr_t cbData)
-{
-	IoSplitter splitter(ofs, alignedBuf, size);
-	RETURN_ERR(splitter.Run(file, cb, cbData));
-	data = alignedBuf + ofs - splitter.AlignedOfs();
 	return INFO::OK;
 }
 
 
-LibError io_WriteAligned(const PFile& file, off_t alignedOfs, const u8* alignedData, off_t size, IoCallback cb, uintptr_t cbData)
+LibError WaitUntilComplete(aiocb& cb, size_t queueDepth)
 {
-	debug_assert(IsAligned_Offset(alignedOfs));
-	debug_assert(IsAligned_Data(alignedData));
+#if CONFIG2_FILE_ENABLE_AIO
+	if(queueDepth > 1)
+	{
+		aiocb* const cbs = &cb;
+		timespec* const timeout = 0;	// infinite
+SUSPEND_AGAIN:
+		errno = 0;
+		const int ret = aio_suspend(&cbs, 1, timeout);
+		if(ret != 0)
+		{
+			if(errno == EINTR) // interrupted by signal
+				goto SUSPEND_AGAIN;
+			return LibError_from_errno();
+		}
 
-	IoSplitter splitter(alignedOfs, const_cast<u8*>(alignedData), size);
-	return splitter.Run(file, cb, cbData);
+		const int err = aio_error(&cb);
+		debug_assert(err != EINPROGRESS);	// else aio_return is undefined
+		ssize_t bytesTransferred = aio_return(&cb);
+		if(bytesTransferred == -1)	// transfer failed
+		{
+			errno = err;
+			return LibError_from_errno();
+		}
+		cb.aio_nbytes = (size_t)bytesTransferred;
+	}
+#endif
+
+	return INFO::OK;
 }
 
-
-LibError io_ReadAligned(const PFile& file, off_t alignedOfs, u8* alignedBuf, off_t size, IoCallback cb, uintptr_t cbData)
-{
-	debug_assert(IsAligned_Offset(alignedOfs));
-	debug_assert(IsAligned_Data(alignedBuf));
-
-	IoSplitter splitter(alignedOfs, alignedBuf, size);
-	return splitter.Run(file, cb, cbData);
-}
+}	// namespace io

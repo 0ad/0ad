@@ -27,14 +27,13 @@
 #ifndef INCLUDED_FILE_STATS
 #define INCLUDED_FILE_STATS
 
+#include "lib/posix/posix_aio.h"	// LIO_READ, LIO_WRITE
+
 #define FILE_STATS_ENABLED 0
 
 
 enum FileIOImplentation { FI_LOWIO, FI_AIO, FI_BCACHE, FI_MAX_IDX };
-enum FileOp { FO_READ, FO_WRITE };
 enum CacheRet { CR_HIT, CR_MISS };
-
-#include "lib/file/io/block_cache.h"	// BlockId
 
 #if FILE_STATS_ENABLED
 
@@ -69,13 +68,12 @@ class ScopedIoMonitor
 public:
 	ScopedIoMonitor();
 	~ScopedIoMonitor();
-	void NotifyOfSuccess(FileIOImplentation fi, wchar_t mode, off_t size);
+	void NotifyOfSuccess(FileIOImplentation fi, int opcode, off_t size);
 
 private:
 	double m_startTime;
 };
 
-extern void stats_io_check_seek(BlockId& blockId);
 extern void stats_cb_start();
 extern void stats_cb_finish();
 
@@ -106,9 +104,8 @@ class ScopedIoMonitor
 public:
 	ScopedIoMonitor() {}
 	~ScopedIoMonitor() {}
-	void NotifyOfSuccess(FileIOImplentation UNUSED(fi), wchar_t UNUSED(mode), off_t UNUSED(size)) {}
+	void NotifyOfSuccess(FileIOImplentation UNUSED(fi), int UNUSED(opcode), off_t UNUSED(size)) {}
 };
-#define stats_io_check_seek(blockId)
 #define stats_cb_start()
 #define stats_cb_finish()
 #define stats_cache(cr, size)

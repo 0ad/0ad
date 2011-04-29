@@ -150,7 +150,7 @@ public:
 				fileContents = DummySharedPtr((u8*)0);
 			else if(size > m_cacheSize)
 			{
-				fileContents = io_Allocate(size);
+				RETURN_ERR(AllocateAligned(fileContents, size, maxSectorSize));
 				RETURN_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
 			}
 			else

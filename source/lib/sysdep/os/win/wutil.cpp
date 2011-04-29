@@ -439,6 +439,32 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 
 
 //-----------------------------------------------------------------------------
+
+LibError wutil_SetPrivilege(const wchar_t* privilege, bool enable)
+{
+	WinScopedPreserveLastError s;
+
+	HANDLE hToken;
+	if(!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY, &hToken))
+		return ERR::_1;
+
+	TOKEN_PRIVILEGES tp;
+	if (!LookupPrivilegeValueW(NULL, privilege, &tp.Privileges[0].Luid))
+		return ERR::_2;
+	tp.PrivilegeCount = 1;
+	tp.Privileges[0].Attributes = enable? SE_PRIVILEGE_ENABLED : 0;
+
+	SetLastError(0);
+	const BOOL ok = AdjustTokenPrivileges(hToken, FALSE, &tp, 0, 0, 0);
+	if(!ok || GetLastError() != 0)
+		return ERR::_3;
+
+	WARN_IF_FALSE(CloseHandle(hToken));
+	return INFO::OK;
+}
+
+
+//-----------------------------------------------------------------------------
 // module handle
 
 #ifndef LIB_STATIC_LINK

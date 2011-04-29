@@ -33,6 +33,7 @@
 
 #include "lib/timer.h"
 #include "lib/bits.h"
+#include "lib/allocators/shared_ptr.h"
 #include "lib/sysdep/cpu.h"
 
 #include "tex_codec.h"
@@ -255,7 +256,8 @@ static LibError add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newDat
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 	t->flags |= TEX_MIPMAPS;	// must come before tex_img_size!
 	const size_t mipmap_size = tex_img_size(t);
-	shared_ptr<u8> mipmapData = io_Allocate(mipmap_size, 0);
+	shared_ptr<u8> mipmapData;
+	AllocateAligned(mipmapData, mipmap_size);
 	CreateLevelData cld = { bpp/8, w, h, (const u8*)newData, data_size };
 	tex_util_foreach_mipmap(w, h, bpp, mipmapData.get(), 0, 1, create_level, &cld);
 	t->data = mipmapData;
@@ -332,7 +334,8 @@ TIMER_ACCRUE(tc_plain_transform);
 	//
 	// this is necessary even when not flipping because the initial data
 	// is read-only.
-	shared_ptr<u8> newData = io_Allocate(new_data_size);
+	shared_ptr<u8> newData;
+	AllocateAligned(newData, new_data_size);
 
 	// setup row source/destination pointers (simplifies outer loop)
 	u8* dst = (u8*)newData.get();

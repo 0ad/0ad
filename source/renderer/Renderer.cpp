@@ -32,6 +32,7 @@
 
 #include "lib/bits.h"	// is_pow2
 #include "lib/res/graphics/ogl_tex.h"
+#include "lib/allocators/shared_ptr.h"
 #include "maths/Matrix3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
@@ -1773,7 +1774,8 @@ int CRenderer::LoadAlphaMaps()
 	size_t tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
 	size_t total_w = round_up_to_pow2(tile_w * NumAlphaMaps);
 	size_t total_h = base; debug_assert(is_pow2(total_h));
-	shared_ptr<u8> data = io_Allocate(total_w*total_h*3);
+	shared_ptr<u8> data;
+	AllocateAligned(data, total_w*total_h*3, maxSectorSize);
 	// for each tile on row
 	for(size_t i=0;i<NumAlphaMaps;i++)
 	{

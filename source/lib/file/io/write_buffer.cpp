@@ -25,12 +25,15 @@
 
 #include "lib/bits.h"	// IsAligned
 #include "lib/sysdep/cpu.h"
+#include "lib/allocators/shared_ptr.h"
 #include "lib/file/io/io.h"
-#include "lib/file/io/io_align.h"
+
+
+static const size_t BLOCK_SIZE = 512*KiB;
 
 
 WriteBuffer::WriteBuffer()
-	: m_capacity(4096), m_data(io_Allocate(m_capacity)), m_size(0)
+	: m_capacity(pageSize), m_data((u8*)rtl_AllocateAligned(m_capacity, maxSectorSize), AlignedDeleter()), m_size(0)
 {
 }
 
@@ -40,7 +43,8 @@ void WriteBuffer::Append(const void* data, size_t size)
 	if(m_size + size > m_capacity)
 	{
 		m_capacity = round_up_to_pow2(m_size + size);
-		shared_ptr<u8> newData = io_Allocate(m_capacity);
+		shared_ptr<u8> newData;
+		AllocateAligned(newData, m_capacity, maxSectorSize);
 		memcpy(newData.get(), m_data.get(), m_size);
 		m_data = newData;
 	}
@@ -62,12 +66,15 @@ void WriteBuffer::Overwrite(const void* data, size_t size, size_t offset)
 //-----------------------------------------------------------------------------
 
 UnalignedWriter::UnalignedWriter(const PFile& file, off_t ofs)
-	: m_file(file), m_alignedBuf(io_Allocate(BLOCK_SIZE))
+	: m_file(file), m_alignedBuf((u8*)rtl_AllocateAligned(BLOCK_SIZE, maxSectorSize), AlignedDeleter())
 {
-	m_alignedOfs = AlignedOffset(ofs);
+	m_alignedOfs = round_down(ofs, (off_t)BLOCK_SIZE);
 	const size_t misalignment = (size_t)(ofs - m_alignedOfs);
 	if(misalignment)
-		io_ReadAligned(m_file, m_alignedOfs, m_alignedBuf.get(), BLOCK_SIZE);
+	{
+		io::Operation op(*m_file.get(), m_alignedBuf.get(), BLOCK_SIZE, m_alignedOfs);
+		THROW_ERR(io::Run(op));
+	}
 	m_bytesUsed = misalignment;
 }
 
@@ -84,9 +91,10 @@ LibError UnalignedWriter::Append(const u8* data, size_t size) const
 	{
 		// optimization: write directly from the input buffer, if possible
 		const size_t alignedSize = (size / BLOCK_SIZE) * BLOCK_SIZE;
-		if(m_bytesUsed == 0 && IsAligned(data, SECTOR_SIZE) && alignedSize != 0)
+		if(m_bytesUsed == 0 && IsAligned(data, maxSectorSize) && alignedSize != 0)
 		{
-			RETURN_ERR(io_WriteAligned(m_file, m_alignedOfs, data, alignedSize));
+			io::Operation op(*m_file.get(), (void*)data, alignedSize, m_alignedOfs);
+			RETURN_ERR(io::Run(op));
 			m_alignedOfs += (off_t)alignedSize;
 			data += alignedSize;
 			size -= alignedSize;
@@ -118,7 +126,8 @@ void UnalignedWriter::Flush() const
 
 LibError UnalignedWriter::WriteBlock() const
 {
-	RETURN_ERR(io_WriteAligned(m_file, m_alignedOfs, m_alignedBuf.get(), BLOCK_SIZE));
+	io::Operation op(*m_file.get(), m_alignedBuf.get(), BLOCK_SIZE, m_alignedOfs);
+	RETURN_ERR(io::Run(op));
 	m_alignedOfs += BLOCK_SIZE;
 	m_bytesUsed = 0;
 	return INFO::OK;

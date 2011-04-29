@@ -27,9 +27,8 @@
 #include "precompiled.h"
 #include "lib/allocators/allocators.h"
 
+#include "lib/alignment.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
-#include "lib/bits.h"
-
 #include "lib/allocators/mem_util.h"
 
 
@@ -157,7 +156,7 @@ void single_free(void* storage, volatile intptr_t* in_use_flag, void* p)
 
 void* static_calloc(StaticStorage* ss, size_t size)
 {
-	void* p = (void*)round_up((uintptr_t)ss->pos, (uintptr_t)16u);
+	void* p = (void*)Align<16>((uintptr_t)ss->pos);
 	ss->pos = (u8*)p+size;
 	debug_assert(ss->pos <= ss->end);
 	return p;

@@ -189,23 +189,13 @@ ScopedIoMonitor::~ScopedIoMonitor()
 	timer_reset(&m_startTime);
 }
 
-void ScopedIoMonitor::NotifyOfSuccess(FileIOImplentation fi, wchar_t mode, off_t size)
+void ScopedIoMonitor::NotifyOfSuccess(FileIOImplentation fi, int opcode, off_t size)
 {
 	debug_assert(fi < FI_MAX_IDX);
-	debug_assert(mode == 'r' || mode == 'w');
-	const FileOp op = (mode == 'r')? FO_READ : FO_WRITE;
+	debug_assert(opcode == LIO_READ || opcode == LIO_WRITE);
 
-	io_actual_size_total[fi][op] += size;
-	io_elapsed_time[fi][op] += timer_reset(&m_startTime);
-}
-
-void stats_io_check_seek(BlockId& blockId)
-{
-	static BlockId lastBlockId;
-
-	if(blockId != lastBlockId)
-		io_seeks++;
-	lastBlockId = blockId;
+	io_actual_size_total[fi][opcode == LIO_WRITE] += size;
+	io_elapsed_time[fi][opcode == LIO_WRITE] += timer_reset(&m_startTime);
 }
 
 
@@ -320,11 +310,11 @@ void file_stats_dump()
 		L"Average size = %g KB; seeks: %lu; total callback time: %g ms\n"
 		L"Total data actually read from disk = %g MB\n",
 		(unsigned long)user_ios, user_io_size_total/MB,
-#define THROUGHPUT(impl, op) (io_elapsed_time[impl][op] == 0.0)? 0.0 : (io_actual_size_total[impl][op] / io_elapsed_time[impl][op] / MB)
-		THROUGHPUT(FI_LOWIO, FO_READ), THROUGHPUT(FI_LOWIO, FO_WRITE),
-		THROUGHPUT(FI_AIO  , FO_READ), THROUGHPUT(FI_AIO  , FO_WRITE),
+#define THROUGHPUT(impl, opcode) (io_elapsed_time[impl][opcode == LIO_WRITE] == 0.0)? 0.0 : (io_actual_size_total[impl][opcode == LIO_WRITE] / io_elapsed_time[impl][opcode == LIO_WRITE] / MB)
+		THROUGHPUT(FI_LOWIO, LIO_READ), THROUGHPUT(FI_LOWIO, LIO_WRITE),
+		THROUGHPUT(FI_AIO  , LIO_READ), THROUGHPUT(FI_AIO  , LIO_WRITE),
 		user_io_size_total/user_ios/KB, (unsigned long)io_seeks, io_process_time_total/ms,
-		(io_actual_size_total[FI_LOWIO][FO_READ]+io_actual_size_total[FI_AIO][FO_READ])/MB
+		(io_actual_size_total[FI_LOWIO][0]+io_actual_size_total[FI_AIO][0])/MB
 	);
 
 	debug_printf(

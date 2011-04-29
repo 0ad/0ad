@@ -66,7 +66,7 @@ std::wstring sys_WideFromArgv(const char* argv_i)
 	const int inputSize = -1;	// null-terminated
 	std::vector<wchar_t> buf(strlen(argv_i)+1);	// (upper bound on number of characters)
 	// NB: avoid mbstowcs because it may specify another locale
-	const int ret = MultiByteToWideChar(cp, flags, argv_i, inputSize, &buf[0], buf.size());
+	const int ret = MultiByteToWideChar(cp, flags, argv_i, (int)inputSize, &buf[0], (int)buf.size());
 	debug_assert(ret != 0);
 	return std::wstring(&buf[0]);
 }

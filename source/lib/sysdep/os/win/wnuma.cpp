@@ -23,7 +23,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/numa.h"
 
-#include "lib/bits.h"	// round_up, PopulationCount
+#include "lib/bits.h"	// PopulationCount
 #include "lib/timer.h"
 #include "lib/module_init.h"
 #include "lib/allocators/allocators.h"	// page_aligned_alloc

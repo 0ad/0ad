@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,104 +24,311 @@
  * emulate POSIX asynchronous I/O on Windows.
  */
 
+// NB: this module is significantly faster than Intel's aio library,
+// which also returns ERROR_INVALID_PARAMETER from aio_error if the
+// file is opened with FILE_FLAG_OVERLAPPED. (it looks like they are
+// using threaded blocking IO)
+
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/waio.h"
 
-#include <map>
-
-#include "lib/sysdep/os/win/wposix/crt_posix.h"      // correct definitions of _open() etc.
+#include "lib/alignment.h"	// IsAligned
+#include "lib/module_init.h"
+#include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
 #include "lib/sysdep/filesystem.h"	// O_NO_AIO_NP
+#include "lib/sysdep/os/win/wutil.h"	// wutil_SetPrivilege
+#include "lib/sysdep/os/win/wiocp.h"
+#include "lib/sysdep/os/win/winit.h"
 
-#include "lib/bits.h"	// IsAligned
-#include "lib/sysdep/os/win/wposix/wposix_internal.h"
-#include "lib/sysdep/os/win/wposix/wtime.h"          // timespec
-
-
-WINIT_REGISTER_MAIN_INIT(waio_Init);
 WINIT_REGISTER_MAIN_SHUTDOWN(waio_Shutdown);
 
-// note: we assume sector sizes no larger than a page.
-// (GetDiskFreeSpace allows querying the actual size, but we'd
-// have to do so for all drives, and that may change depending on whether
-// there is a DVD in the drive or not)
-// sector size is relevant because Windows aio requires all IO
-// buffers, offsets and lengths to be a multiple of it. this requirement
-// is also carried over into the vfs / file.cpp interfaces for efficiency
-// (avoids the need for copying to/from align buffers).
-const uintptr_t sectorSize = 0x1000;
+// (dynamic linking preserves compatibility with previous Windows versions)
+static WUTIL_FUNC(pSetFileCompletionNotificationModes, BOOL, (HANDLE, UCHAR));
+static WUTIL_FUNC(pSetFileIoOverlappedRange, BOOL, (HANDLE, PUCHAR, ULONG));
+static WUTIL_FUNC(pSetFileValidData, BOOL, (HANDLE, LONGLONG));
+
+// (there must be one global IOCP because aio_suspend might be called for
+// requests from different files)
+static HANDLE hIOCP;
+
 
 //-----------------------------------------------------------------------------
+// OvlAllocator
 
-// note: the Windows lowio file descriptor limit is currrently 2048.
-
-/**
- * association between POSIX file descriptor and Win32 HANDLE.
- * NB: callers must ensure thread safety.
- **/
-class HandleManager
+// allocator for OVERLAPPED (enables a special optimization, see Associate)
+struct OvlAllocator	// POD
 {
-public:
-	/**
-	 * associate an aio handle with a file descriptor.
-	 **/
-	void Associate(int fd, HANDLE hFile)
+	// freelist entries for (padded) OVERLAPPED from our storage
+	struct Entry
 	{
-		debug_assert(fd > 2);
-		debug_assert(GetFileSize(hFile, 0) != INVALID_FILE_SIZE);
-		std::pair<Map::iterator, bool> ret = m_map.insert(std::make_pair(fd, hFile));
-		debug_assert(ret.second);	// fd better not already have been associated
+		SLIST_ENTRY entry;
+		OVERLAPPED ovl;
+	};
+
+	LibError Init()
+	{
+		// the allocation must be naturally aligned to ensure it doesn't
+		// overlap another page, which might prevent SetFileIoOverlappedRange
+		// from pinning the pages if one of them is PAGE_NOACCESS.
+		storage = _mm_malloc(storageSize, storageSize);
+		if(!storage)
+			WARN_RETURN(ERR::NO_MEM);
+		memset(storage, 0, storageSize);
+
+		InitializeSListHead(&freelist);
+
+		// storageSize provides more than enough OVERLAPPED, so we
+		// pad them to the cache line size to maybe avoid a few RFOs.
+		const size_t size = Align<cacheLineSize>(sizeof(Entry));
+		for(uintptr_t offset = 0; offset+size <= storageSize; offset += size)
+		{
+			Entry* entry = (Entry*)(uintptr_t(storage) + offset);
+			debug_assert(IsAligned(entry, MEMORY_ALLOCATION_ALIGNMENT));
+			InterlockedPushEntrySList(&freelist, &entry->entry);
+		}
+
+		extant = 0;
+
+		return INFO::OK;
 	}
 
-	void Dissociate(int fd)
+	void Shutdown()
 	{
-		const size_t numRemoved = m_map.erase(fd);
-		debug_assert(numRemoved == 1);
+		debug_assert(extant == 0);
+
+		InterlockedFlushSList(&freelist);
+
+		_mm_free(storage);
+		storage = 0;
 	}
 
-	bool IsAssociated(int fd) const
+	// irrevocably enable a special optimization for all I/Os requests
+	// concerning this file, ending when the file is closed. has no effect
+	// unless Vista+ and SeLockMemoryPrivilege are available.
+	void Associate(HANDLE hFile)
 	{
-		return m_map.find(fd) != m_map.end();
+		debug_assert(extant == 0);
+
+		// pin the page in kernel address space, which means our thread
+		// won't have to be the one to service the I/O, thus avoiding an APC.
+		// ("thread agnostic I/O")
+		if(pSetFileIoOverlappedRange)
+			WARN_IF_FALSE(pSetFileIoOverlappedRange(hFile, (PUCHAR)storage, storageSize));
 	}
 
-	/**
-	 * @return aio handle associated with file descriptor or
-	 * INVALID_HANDLE_VALUE if there is none.
-	 **/
-	HANDLE Get(int fd) const
+	// @return OVERLAPPED initialized for I/O starting at offset,
+	// or 0 if all available structures have already been allocated.
+	OVERLAPPED* Allocate(off_t offset)
 	{
-		Map::const_iterator it = m_map.find(fd);
-		if(it == m_map.end())
-			return INVALID_HANDLE_VALUE;
-		return it->second;
+		Entry* entry = (Entry*)InterlockedPopEntrySList(&freelist);
+		if(!entry)
+			return 0;
+
+		OVERLAPPED& ovl = entry->ovl;
+		ovl.Internal = 0;
+		ovl.InternalHigh = 0;
+		ovl.Offset = u64_lo(offset);
+		ovl.OffsetHigh = u64_hi(offset);
+		ovl.hEvent = 0;	// (notification is via IOCP and/or polling)
+
+		cpu_AtomicAdd(&extant, +1);
+
+		return &ovl;
 	}
 
-private:
-	typedef std::map<int, HANDLE> Map;
-	Map m_map;
+	void Deallocate(OVERLAPPED* ovl)
+	{
+		cpu_AtomicAdd(&extant, -1);
+
+		const uintptr_t address = uintptr_t(ovl);
+		debug_assert(uintptr_t(storage) <= address && address < uintptr_t(storage)+storageSize);
+		InterlockedPushEntrySList(&freelist, (PSLIST_ENTRY)(address - offsetof(Entry, ovl)));
+	}
+
+	// one 4 KiB page is enough for 64 OVERLAPPED per file (i.e. plenty).
+	static const size_t storageSize = pageSize;
+
+	void* storage;
+
+#if MSC_VERSION
+# pragma warning(push)
+# pragma warning(disable:4324)	// structure was padded due to __declspec(align())
+#endif
+	__declspec(align(MEMORY_ALLOCATION_ALIGNMENT)) SLIST_HEADER freelist;
+#if MSC_VERSION
+# pragma warning(pop)
+#endif
+
+	volatile intptr_t extant;
 };
 
-static HandleManager* handleManager;
 
+//-----------------------------------------------------------------------------
+// FileControlBlock
 
-// do we want to open a second aio-capable handle?
-static bool IsAioPossible(int fd, bool is_com_port, int oflag)
+// (must correspond to static zero-initialization of fd)
+static const intptr_t FD_AVAILABLE = 0;
+
+// information required to start asynchronous I/Os from a file
+// (aiocb stores a pointer to the originating FCB)
+struct FileControlBlock // POD
 {
-	// stdin/stdout/stderr
-	if(fd <= 2)
-		return false;
+	// search key, indicates the file descriptor with which this
+	// FCB was associated (or FD_AVAILABLE if none).
+	volatile intptr_t fd;
 
-	// COM port - we don't currently need aio access for those, and
-	// aio_reopen's CreateFileW would fail with "access denied".
-	if(is_com_port)
-		return false;
+	// second aio-enabled handle from waio_reopen
+	HANDLE hFile;
 
-	// caller is requesting we skip it (see open())
-	if(oflag & O_NO_AIO_NP)
-		return false;
+	OvlAllocator ovl;
 
-	return true;
+	LibError Init()
+	{
+		fd = FD_AVAILABLE;
+		hFile = INVALID_HANDLE_VALUE;
+		return ovl.Init();
+	}
+
+	void Shutdown()
+	{
+		debug_assert(fd == FD_AVAILABLE);
+		debug_assert(hFile == INVALID_HANDLE_VALUE);
+		ovl.Shutdown();
+	}
+};
+
+
+// NB: the Windows lowio file descriptor limit is 2048, but
+// our applications rarely open more than a few files at a time.
+static FileControlBlock fileControlBlocks[16];
+
+
+static FileControlBlock* AssociateFileControlBlock(int fd, HANDLE hFile)
+{
+	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
+	{
+		FileControlBlock& fcb = fileControlBlocks[i];
+		if(cpu_CAS(&fcb.fd, FD_AVAILABLE, fd))	// the FCB is now ours
+		{
+			fcb.hFile = hFile;
+			fcb.ovl.Associate(hFile);
+
+			AttachToCompletionPort(hFile, hIOCP, (ULONG_PTR)&fcb);
+
+			// minor optimization: avoid posting to IOCP in rare cases
+			// where the I/O completes synchronously
+			if(pSetFileCompletionNotificationModes)
+			{
+				// (for reasons as yet unknown, this fails when the file is
+				// opened for read-only access)
+				(void)pSetFileCompletionNotificationModes(fcb.hFile, FILE_SKIP_COMPLETION_PORT_ON_SUCCESS);
+			}
+
+			return &fcb;
+		}
+	}
+
+	return 0;
 }
 
+
+static void DissociateFileControlBlock(FileControlBlock* fcb)
+{
+	fcb->hFile = INVALID_HANDLE_VALUE;
+	fcb->fd = FD_AVAILABLE;
+}
+
+
+static FileControlBlock* FindFileControlBlock(int fd)
+{
+	debug_assert(fd != FD_AVAILABLE);
+
+	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
+	{
+		FileControlBlock& fcb = fileControlBlocks[i];
+		if(fcb.fd == fd)
+			return &fcb;
+	}
+
+	return 0;
+}
+
+
+//-----------------------------------------------------------------------------
+// init/shutdown
+
+static ModuleInitState waio_initState;
+
+static LibError waio_Init()
+{
+	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
+		fileControlBlocks[i].Init();
+
+	WUTIL_IMPORT_KERNEL32(SetFileCompletionNotificationModes, pSetFileCompletionNotificationModes);
+
+	// NB: using these functions when the privileges are not available would
+	// trigger warnings. since callers have to check the function pointers
+	// anyway, just refrain from setting them in such cases.
+
+	if(wutil_SetPrivilege(L"SeLockMemoryPrivilege", true) == INFO::OK)
+		WUTIL_IMPORT_KERNEL32(SetFileIoOverlappedRange, pSetFileIoOverlappedRange);
+
+	if(wutil_SetPrivilege(L"SeManageVolumePrivilege", true) == INFO::OK)
+		WUTIL_IMPORT_KERNEL32(SetFileValidData, pSetFileValidData);
+
+	return INFO::OK;
+}
+
+
+static LibError waio_Shutdown()
+{
+	if(waio_initState == 0)	// we were never initialized
+		return INFO::OK;
+
+	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
+		fileControlBlocks[i].Shutdown();
+
+	WARN_IF_FALSE(CloseHandle(hIOCP));
+
+	return INFO::OK;
+}
+
+
+//-----------------------------------------------------------------------------
+// OpenFile
+
+static DWORD DesiredAccess(int oflag)
+{
+	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
+	{
+	case O_RDONLY:
+		// (WinXP x64 requires FILE_WRITE_ATTRIBUTES for SetFileCompletionNotificationModes)
+		return GENERIC_READ|FILE_WRITE_ATTRIBUTES;
+	case O_WRONLY:
+		return GENERIC_WRITE;
+	case O_RDWR:
+		return GENERIC_READ|GENERIC_WRITE;
+	default:
+		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
+		return 0;
+	}
+}
+
+static DWORD ShareMode(int oflag)
+{
+	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
+	{
+	case O_RDONLY:
+		return FILE_SHARE_READ;
+	case O_WRONLY:
+		return FILE_SHARE_WRITE;
+	case O_RDWR:
+		return FILE_SHARE_READ|FILE_SHARE_WRITE;
+	default:
+		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
+		return 0;
+	}
+}
 
 static DWORD CreationDisposition(int oflag)
 {
@@ -134,68 +341,68 @@ static DWORD CreationDisposition(int oflag)
 	return OPEN_EXISTING;
 }
 
-
-// (re)open file in asynchronous mode and associate handle with fd.
-// (this works because the files default to DENY_NONE sharing)
-LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
+static DWORD FlagsAndAttributes()
 {
-	WinScopedPreserveLastError s;	// CreateFile
+	// - FILE_FLAG_SEQUENTIAL_SCAN is ignored when FILE_FLAG_NO_BUFFERING
+	//   is set (c.f. "Windows via C/C++", p. 324)
+	// - FILE_FLAG_WRITE_THROUGH is ~5% slower (diskspd.cpp suggests it
+	//   disables hardware caching; the overhead may also be due to the
+	//   Windows cache manager)
+	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING;
+	const DWORD attributes = FILE_ATTRIBUTE_NORMAL;
+	return flags|attributes;
+}
 
-	debug_assert(!(oflag & O_APPEND));	// not supported
-	if(!IsAioPossible(fd, false, oflag))
-		return INFO::SKIPPED;
+static LibError OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
+{
+	WinScopedPreserveLastError s;
 
-	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
-
-	// decode file access mode
-	DWORD access, share;
-	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
-	{
-	case O_RDONLY:
-		access = GENERIC_READ;
-		share = FILE_SHARE_READ;
-		break;
-
-	case O_WRONLY:
-		access = GENERIC_WRITE;
-		share = FILE_SHARE_WRITE;
-		flags |= FILE_FLAG_WRITE_THROUGH;
-		break;
-	
-	case O_RDWR:
-		access = GENERIC_READ|GENERIC_WRITE;
-		share = FILE_SHARE_READ|FILE_SHARE_WRITE;
-		flags |= FILE_FLAG_WRITE_THROUGH;
-		break;
-
-	default:
-		WARN_RETURN(ERR::INVALID_PARAM);
-	}
-
-	// open file
+	const DWORD access = DesiredAccess(oflag);
+	const DWORD share  = ShareMode(oflag);
 	const DWORD create = CreationDisposition(oflag);
-	const HANDLE hFile = CreateFileW(OsString(pathname).c_str(), access, share, 0, create, FILE_ATTRIBUTE_NORMAL|flags, 0);
+	const DWORD flags  = FlagsAndAttributes();
+	hFile = CreateFileW(OsString(pathname).c_str(), access, share, 0, create, flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		return LibError_from_GLE();
 
+	return INFO::OK;
+}
+
+
+//-----------------------------------------------------------------------------
+// Windows-only APIs
+
+LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
+{
+	debug_assert(fd > 2);
+	debug_assert(!(oflag & O_APPEND));	// not supported
+
+	if(oflag & O_NO_AIO_NP)
+		return INFO::SKIPPED;
+
+	RETURN_ERR(ModuleInit(&waio_initState, waio_Init));
+
+	HANDLE hFile;
+	RETURN_ERR(OpenFile(pathname, oflag, hFile));
+
+	if(!AssociateFileControlBlock(fd, hFile))
 	{
-		WinScopedLock lock(WAIO_CS);
-		handleManager->Associate(fd, hFile);
+		CloseHandle(hFile);
+		WARN_RETURN(ERR::LIMIT);
 	}
+
 	return INFO::OK;
 }
 
 
 LibError waio_close(int fd)
 {
-	HANDLE hFile;
-	{
-		WinScopedLock lock(WAIO_CS);
-		if(!handleManager->IsAssociated(fd))	// wasn't opened for aio
-			return INFO::SKIPPED;
-		hFile = handleManager->Get(fd);
-		handleManager->Dissociate(fd);
-	}
+	FileControlBlock* fcb = FindFileControlBlock(fd);
+	if(!fcb)
+		WARN_RETURN(ERR::INVALID_HANDLE);
+	const HANDLE hFile = fcb->hFile;
+
+	DissociateFileControlBlock(fcb);
 
 	if(!CloseHandle(hFile))
 		WARN_RETURN(ERR::INVALID_HANDLE);
@@ -204,266 +411,106 @@ LibError waio_close(int fd)
 }
 
 
-// we don't want to #define read to _read, since that's a fairly common
-// identifier. therefore, translate from MS CRT names via thunk functions.
-// efficiency is less important, and the overhead could be optimized away.
-
-int read(int fd, void* buf, size_t nbytes)
+LibError waio_Preallocate(int fd, off_t alignedSize, off_t alignment)
 {
-	return _read(fd, buf, (int)nbytes);
-}
+	debug_assert(IsAligned(alignedSize, alignment));
 
-int write(int fd, void* buf, size_t nbytes)
-{
-	return _write(fd, buf, (int)nbytes);
-}
-
-off_t lseek(int fd, off_t ofs, int whence)
-{
-	return _lseeki64(fd, ofs, whence);
-}
-
-
-//-----------------------------------------------------------------------------
-
-class aiocb::Impl
-{
-public:
-	Impl()
-	{
-		m_hFile = INVALID_HANDLE_VALUE;
-
-		// (hEvent is initialized below and the rest in Issue(), but clear out
-		// any subsequently added fields)
-		memset(&m_overlapped, 0, sizeof(m_overlapped));
-
-		const BOOL manualReset = TRUE;
-		const BOOL initialState = FALSE;
-		m_overlapped.hEvent = CreateEvent(0, manualReset, initialState, 0);
-	}
-
-	~Impl()
-	{
-		CloseHandle(m_overlapped.hEvent);
-	}
-
-	LibError Issue(HANDLE hFile, off_t ofs, void* buf, size_t size, bool isWrite)
-	{
-		WinScopedPreserveLastError s;
-
-		m_hFile = hFile;
-
-		// note: Read-/WriteFile reset m_overlapped.hEvent, so we don't have to.
-		m_overlapped.Internal = m_overlapped.InternalHigh = 0;
-		m_overlapped.Offset     = u64_lo(ofs);
-		m_overlapped.OffsetHigh = u64_hi(ofs);
-
-		DWORD bytesTransferred;
-		BOOL ok;
-		if(isWrite)
-			ok = WriteFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);
-		else
-			ok =  ReadFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);
-		if(!ok && GetLastError() == ERROR_IO_PENDING)	// "pending" isn't an error
-		{
-			ok = TRUE;
-			SetLastError(0);
-		}
-		return LibError_from_win32(ok);
-	}
-
-	bool HasCompleted() const
-	{
-		// NB: .Internal "was originally reserved for system use and its behavior may change".
-		// besides 0 and STATUS_PENDING, I have seen the address of a pointer to a buffer.
-		return HasOverlappedIoCompleted(&m_overlapped);
-	}
-
-	// required for WaitForMultipleObjects
-	HANDLE Event() const
-	{
-		return m_overlapped.hEvent;
-	}
-
-	LibError GetResult(size_t* pBytesTransferred)
-	{
-		DWORD bytesTransferred;
-		const BOOL wait = FALSE;	// callers should wait until HasCompleted
-		if(!GetOverlappedResult(m_hFile, &m_overlapped, &bytesTransferred, wait))
-		{
-			*pBytesTransferred = 0;
-			return LibError_from_GLE();
-		}
-		else
-		{
-			*pBytesTransferred = bytesTransferred;
-			return INFO::OK;
-		}
-	}
-
-private:
-	OVERLAPPED m_overlapped;
-	HANDLE m_hFile;
-};
-
-
-// called by aio_read, aio_write, and lio_listio.
-// cb->aio_lio_opcode specifies desired operation.
-// @return LibError, also setting errno in case of failure.
-static LibError aio_issue(struct aiocb* cb)
-{
-	// no-op (probably from lio_listio)
-	if(!cb || cb->aio_lio_opcode == LIO_NOP)
-		return INFO::SKIPPED;
-
-	// extract aiocb fields for convenience
-	const bool isWrite = (cb->aio_lio_opcode == LIO_WRITE);
-	const int fd       = cb->aio_fildes;
-	const size_t size  = cb->aio_nbytes;
-	const off_t ofs    = cb->aio_offset;
-	void* const buf    = (void*)cb->aio_buf; // from volatile void*
-
-	// Win32 requires transfers to be sector-aligned.
-	if(!IsAligned(ofs, sectorSize) || !IsAligned(buf, sectorSize) || !IsAligned(size, sectorSize))
-	{
-		errno = EINVAL;
-		WARN_RETURN(ERR::INVALID_PARAM);
-	}
-
-	HANDLE hFile;
-	{
-		WinScopedLock lock(WAIO_CS);
-		hFile = handleManager->Get(fd);
-	}
-	if(hFile == INVALID_HANDLE_VALUE)
-	{
-		errno = EINVAL;
+	FileControlBlock* fcb = FindFileControlBlock(fd);
+	if(!fcb)
 		WARN_RETURN(ERR::INVALID_HANDLE);
-	}
+	const HANDLE hFile = fcb->hFile;
 
-	debug_assert(!cb->impl);	// SUSv3 requires that the aiocb not be in use
-	cb->impl.reset(new aiocb::Impl);
+	// allocate all space up front to reduce fragmentation
+	LARGE_INTEGER size64; size64.QuadPart = alignedSize;
+	WARN_IF_FALSE(SetFilePointerEx(hFile, size64, 0, FILE_BEGIN));
+	WARN_IF_FALSE(SetEndOfFile(hFile));
 
-	LibError ret = cb->impl->Issue(hFile, ofs, buf, size, isWrite);
-	if(ret < 0)
-	{
-		LibError_set_errno(ret);
-		return ret;
-	}
+	// avoid synchronous zero-fill (see discussion in header)
+	if(pSetFileValidData)
+		WARN_IF_FALSE(pSetFileValidData(hFile, alignedSize));
 
 	return INFO::OK;
 }
 
 
-// return status of transfer
-int aio_error(const struct aiocb* cb)
-{
-	return cb->impl->HasCompleted()? 0 : EINPROGRESS;
-}
+//-----------------------------------------------------------------------------
+// helper functions
 
-
-// get bytes transferred. call exactly once for each issued request.
-ssize_t aio_return(struct aiocb* cb)
+// called by aio_read, aio_write, and lio_listio.
+// cb->aio_lio_opcode specifies desired operation.
+// @return -1 on failure (having also set errno)
+static int Issue(aiocb* cb)
 {
-	// SUSv3 says we mustn't be callable before the request has completed
-	debug_assert(cb->impl);
-	debug_assert(cb->impl->HasCompleted());
-	size_t bytesTransferred;
-	LibError ret = cb->impl->GetResult(&bytesTransferred);
-	cb->impl.reset();	// disallow calling again, as required by SUSv3
-	if(ret < 0)
+	debug_assert(IsAligned(cb->aio_offset, maxSectorSize));
+	debug_assert(IsAligned(cb->aio_buf,    maxSectorSize));
+	debug_assert(IsAligned(cb->aio_nbytes, maxSectorSize));
+
+	FileControlBlock* fcb = FindFileControlBlock(cb->aio_fildes);
+	if(!fcb || fcb->hFile == INVALID_HANDLE_VALUE)
 	{
-		LibError_set_errno(ret);
-		return (ssize_t)-1;
-	}
-	return (ssize_t)bytesTransferred;
-}
-
-
-int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* ts)
-{
-	if(n <= 0 || n > MAXIMUM_WAIT_OBJECTS)
-	{
-		WARN_ERR(ERR::INVALID_PARAM);
+		DEBUG_WARN_ERR(ERR::INVALID_HANDLE);
 		errno = EINVAL;
 		return -1;
 	}
 
-	// build array of event handles
-	HANDLE hEvents[MAXIMUM_WAIT_OBJECTS];
-	size_t numPendingIos = 0;
+	debug_assert(!cb->fcb && !cb->ovl);	// SUSv3: aiocb must not be in use
+	cb->fcb = fcb;
+	cb->ovl = fcb->ovl.Allocate(cb->aio_offset);
+	if(!cb->ovl)
+	{
+		DEBUG_WARN_ERR(ERR::LIMIT);
+		errno = EMFILE;
+		return -1;
+	}
+
+	WinScopedPreserveLastError s;
+
+	const HANDLE hFile = fcb->hFile;
+	void* const buf = (void*)cb->aio_buf; // from volatile void*
+	const DWORD size = u64_lo(cb->aio_nbytes);
+	debug_assert(u64_hi(cb->aio_nbytes) == 0);
+	OVERLAPPED* ovl = (OVERLAPPED*)cb->ovl;
+	// (there is no point in using WriteFileGather/ReadFileScatter here
+	// because the IO manager still needs to lock pages and translate them
+	// into an MDL, and we'd just be increasing the number of addresses)
+	const BOOL ok = (cb->aio_lio_opcode == LIO_WRITE)? WriteFile(hFile, buf, size, 0, ovl) : ReadFile(hFile, buf, size, 0, ovl);
+	if(ok || GetLastError() == ERROR_IO_PENDING)
+		return 0;	// success
+
+	LibError_set_errno(LibError_from_GLE());
+	return -1;
+}
+
+
+static bool AreAnyComplete(const struct aiocb* const cbs[], int n)
+{
 	for(int i = 0; i < n; i++)
 	{
-		if(!cbs[i])	// SUSv3 says NULL entries are to be ignored
+		if(!cbs[i])	// SUSv3: must ignore NULL entries
 			continue;
 
-		aiocb::Impl* impl = cbs[i]->impl.get();
-		debug_assert(impl);
-		if(!impl->HasCompleted())
-			hEvents[numPendingIos++] = impl->Event();
+		if(HasOverlappedIoCompleted((OVERLAPPED*)cbs[i]->ovl))
+			return true;
 	}
-	if(!numPendingIos)	// done, don't need to suspend.
-		return 0;
 
-	const BOOL waitAll = FALSE;
-	// convert timespec to milliseconds (ts == 0 => no timeout)
-	const DWORD timeout = ts? (DWORD)(ts->tv_sec*1000 + ts->tv_nsec/1000000) : INFINITE;
-	const DWORD result = WaitForMultipleObjects((DWORD)numPendingIos, hEvents, waitAll, timeout);
-
-	for(size_t i = 0; i < numPendingIos; i++)
-		ResetEvent(hEvents[i]);
-
-	switch(result)
-	{
-	case WAIT_FAILED:
-		WARN_ERR(ERR::FAIL);
-		errno = EIO;
-		return -1;
-
-	case WAIT_TIMEOUT:
-		errno = EAGAIN;
-		return -1;
-
-	default:
-		return 0;
-	}
+	return false;
 }
 
 
-int aio_cancel(int fd, struct aiocb* cb)
-{
-	// Win32 limitation: can't cancel single transfers -
-	// all pending reads on this file are canceled.
-	UNUSED2(cb);
-
-	HANDLE hFile;
-	{
-		WinScopedLock lock(WAIO_CS);
-		hFile = handleManager->Get(fd);
-	}
-	if(hFile == INVALID_HANDLE_VALUE)
-	{
-		WARN_ERR(ERR::INVALID_HANDLE);
-		errno = EINVAL;
-		return -1;
-	}
-
-	WARN_IF_FALSE(CancelIo(hFile));
-	return AIO_CANCELED;
-}
-
+//-----------------------------------------------------------------------------
+// API
 
 int aio_read(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_READ;
-	return (aio_issue(cb) < 0)? 0 : -1;
+	return Issue(cb);
 }
 
 
 int aio_write(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_WRITE;
-	return (aio_issue(cb) < 0)? 0 : -1;
+	return Issue(cb);
 }
 
 
@@ -474,7 +521,10 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 
 	for(int i = 0; i < n; i++)
 	{
-		if(aio_issue(cbs[i]) < 0)
+		if(cbs[i] == 0 || cbs[i]->aio_lio_opcode == LIO_NOP)
+			continue;
+
+		if(Issue(cbs[i]) == -1)
 			return -1;
 	}
 
@@ -485,24 +535,107 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 }
 
 
+int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* timeout)
+{
+	// consume all pending notifications to prevent them from piling up if
+	// requests are always complete by the time we're called
+	DWORD bytesTransferred; ULONG_PTR key; OVERLAPPED* ovl;
+	while(PollCompletionPort(hIOCP, 0, bytesTransferred, key, ovl) == INFO::OK) {}
+
+	// avoid blocking if already complete (synchronous requests don't post notifications)
+	if(AreAnyComplete(cbs, n))
+		return 0;
+
+	// caller doesn't want to block, and no requests are complete
+	if(timeout && timeout->tv_sec == 0 && timeout->tv_nsec == 0)
+	{
+		errno = EAGAIN;
+		return -1;
+	}
+
+	// reduce CPU usage by blocking until a notification arrives or a
+	// brief timeout elapses (necessary because other threads - or even
+	// the above poll - might have consumed our notification). note that
+	// re-posting notifications that don't concern the respective requests
+	// is not desirable because POSIX doesn't require aio_suspend to be
+	// called, which means notifications might pile up.
+	const DWORD milliseconds = 1;	// as short as possible (don't oversleep)
+	const LibError ret = PollCompletionPort(hIOCP, milliseconds, bytesTransferred, key, ovl);
+	if(ret != INFO::OK && ret != ERR::AGAIN)	// failed
+	{
+		debug_assert(0);
+		return -1;
+	}
+
+	// scan again (even if we got a notification, it might not concern THESE requests)
+	if(AreAnyComplete(cbs, n))
+		return 0;
+
+	// none completed, must repeat the above steps. provoke being called again by
+	// claiming to have been interrupted by a signal.
+	errno = EINTR;
+	return -1;
+}
+
+
+int aio_error(const struct aiocb* cb)
+{
+	const OVERLAPPED* ovl = (const OVERLAPPED*)cb->ovl;
+	if(!ovl)	// called after aio_return
+		return EINVAL;
+	if(!HasOverlappedIoCompleted(ovl))
+		return EINPROGRESS;
+	if(ovl->Internal != ERROR_SUCCESS)
+		return EIO;
+	return 0;
+}
+
+
+ssize_t aio_return(struct aiocb* cb)
+{
+	FileControlBlock* fcb = (FileControlBlock*)cb->fcb;
+	OVERLAPPED* ovl = (OVERLAPPED*)cb->ovl;
+	if(!fcb || !ovl)
+	{
+		errno = EINVAL;
+		return -1;
+	}
+
+	const ULONG_PTR status = ovl->Internal;
+	const ULONG_PTR bytesTransferred = ovl->InternalHigh;
+
+	cb->ovl = 0;	// prevent further calls to aio_error/aio_return
+	COMPILER_FENCE;
+	fcb->ovl.Deallocate(ovl);
+	cb->fcb = 0;	// allow reuse
+
+	return (status == ERROR_SUCCESS)? bytesTransferred : -1;
+}
+
+
+int aio_cancel(int UNUSED(fd), struct aiocb* cb)
+{
+	// (faster than calling FindFileControlBlock)
+	const HANDLE hFile = ((const FileControlBlock*)cb->fcb)->hFile;
+	if(hFile == INVALID_HANDLE_VALUE)
+	{
+		WARN_ERR(ERR::INVALID_HANDLE);
+		errno = EINVAL;
+		return -1;
+	}
+
+	// cancel all I/Os this thread issued for the given file
+	// (CancelIoEx can cancel individual operations, but is only
+	// available starting with Vista)
+	WARN_IF_FALSE(CancelIo(hFile));
+
+	return AIO_CANCELED;
+}
+
+
 int aio_fsync(int, struct aiocb*)
 {
 	WARN_ERR(ERR::NOT_IMPLEMENTED);
 	errno = ENOSYS;
 	return -1;
-}
-
-
-//-----------------------------------------------------------------------------
-
-static LibError waio_Init()
-{
-	handleManager = new HandleManager;
-	return INFO::OK;
-}
-
-static LibError waio_Shutdown()
-{
-	delete handleManager;
-	return INFO::OK;
 }

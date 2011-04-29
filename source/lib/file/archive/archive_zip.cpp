@@ -33,7 +33,6 @@
 #include "lib/utf8.h"
 #include "lib/bits.h"
 #include "lib/byte_order.h"
-#include "lib/fat_time.h"
 #include "lib/allocators/pool.h"
 #include "lib/sysdep/filesystem.h"
 #include "lib/file/archive/archive.h"
@@ -41,8 +40,54 @@
 #include "lib/file/archive/stream.h"
 #include "lib/file/file.h"
 #include "lib/file/io/io.h"
-#include "lib/file/io/io_align.h"	// BLOCK_SIZE
-#include "lib/file/io/write_buffer.h"
+
+//-----------------------------------------------------------------------------
+// timestamp conversion: DOS FAT <-> Unix time_t
+//-----------------------------------------------------------------------------
+
+static time_t time_t_from_FAT(u32 fat_timedate)
+{
+	const u32 fat_time = bits(fat_timedate, 0, 15);
+	const u32 fat_date = bits(fat_timedate, 16, 31);
+
+	struct tm t;							// struct tm format:
+	t.tm_sec   = bits(fat_time, 0,4) * 2;	// [0,59]
+	t.tm_min   = bits(fat_time, 5,10);		// [0,59]
+	t.tm_hour  = bits(fat_time, 11,15);		// [0,23]
+	t.tm_mday  = bits(fat_date, 0,4);		// [1,31]
+	t.tm_mon   = bits(fat_date, 5,8) - 1;	// [0,11]
+	t.tm_year  = bits(fat_date, 9,15) + 80;	// since 1900
+	t.tm_isdst = -1;	// unknown - let libc determine
+
+	// otherwise: totally bogus, and at the limit of 32-bit time_t
+	debug_assert(t.tm_year < 138);
+
+	time_t ret = mktime(&t);
+	debug_assert(ret != (time_t)-1);	// mktime shouldn't fail
+	return ret;
+}
+
+
+static u32 FAT_from_time_t(time_t time)
+{
+	// (values are adjusted for DST)
+	struct tm* t = localtime(&time);
+
+	const u16 fat_time = u16(
+		(t->tm_sec/2) |		    // 5
+		(u16(t->tm_min) << 5) | // 6
+		(u16(t->tm_hour) << 11)	// 5
+		);
+
+	const u16 fat_date = u16(
+		(t->tm_mday) |            // 5
+		(u16(t->tm_mon+1) << 5) | // 4
+		(u16(t->tm_year-80) << 9) // 7
+		);
+
+	u32 fat_timedate = u32_from_u16(fat_date, fat_time);
+	return fat_timedate;
+}
 
 
 //-----------------------------------------------------------------------------
@@ -288,7 +333,8 @@ public:
 
 		Stream stream(codec);
 		stream.SetOutputBuffer(buf.get(), size);
-		RETURN_ERR(io_Scan(m_file, m_ofs, m_csize, FeedStream, (uintptr_t)&stream));
+		io::Operation op(*m_file.get(), 0, m_csize, m_ofs);
+		RETURN_ERR(io::Run(op, io::Parameters(), std::bind(&Stream::Feed, &stream, std::placeholders::_1, std::placeholders::_2)));
 		RETURN_ERR(stream.Finish());
 #if CODEC_COMPUTE_CHECKSUM
 		debug_assert(m_checksum == stream.Checksum());
@@ -315,28 +361,31 @@ private:
 
 	struct LFH_Copier
 	{
-		u8* lfh_dst;
-		size_t lfh_bytes_remaining;
+		LFH_Copier(u8* lfh_dst, size_t lfh_bytes_remaining)
+			: lfh_dst(lfh_dst), lfh_bytes_remaining(lfh_bytes_remaining)
+		{
+		}
+
+		// this code grabs an LFH struct from file block(s) that are
+		// passed to the callback. usually, one call copies the whole thing,
+		// but the LFH may straddle a block boundary.
+		//
+		// rationale: this allows using temp buffers for zip_fixup_lfh,
+		// which avoids involving the file buffer manager and thus
+		// avoids cluttering the trace and cache contents.
+		LibError operator()(const u8* block, size_t size) const
+		{
+			debug_assert(size <= lfh_bytes_remaining);
+			memcpy(lfh_dst, block, size);
+			lfh_dst += size;
+			lfh_bytes_remaining -= size;
+
+			return INFO::CB_CONTINUE;
+		}
+
+		mutable u8* lfh_dst;
+		mutable size_t lfh_bytes_remaining;
 	};
-
-	// this code grabs an LFH struct from file block(s) that are
-	// passed to the callback. usually, one call copies the whole thing,
-	// but the LFH may straddle a block boundary.
-	//
-	// rationale: this allows using temp buffers for zip_fixup_lfh,
-	// which avoids involving the file buffer manager and thus
-	// avoids cluttering the trace and cache contents.
-	static LibError lfh_copier_cb(uintptr_t cbData, const u8* block, size_t size)
-	{
-		LFH_Copier* p = (LFH_Copier*)cbData;
-
-		debug_assert(size <= p->lfh_bytes_remaining);
-		memcpy(p->lfh_dst, block, size);
-		p->lfh_dst += size;
-		p->lfh_bytes_remaining -= size;
-
-		return INFO::CB_CONTINUE;
-	}
 
 	/**
 	 * fix up m_ofs (adjust it to point to cdata instead of the LFH).
@@ -358,8 +407,8 @@ private:
 		// only in the block cache if the file starts in the same block as a
 		// previously read file (i.e. both are small).
 		LFH lfh;
-		LFH_Copier params = { (u8*)&lfh, sizeof(LFH) };
-		if(io_Scan(m_file, m_ofs, sizeof(LFH), lfh_copier_cb, (uintptr_t)&params) == INFO::OK)
+		io::Operation op(*m_file.get(), 0, sizeof(LFH), m_ofs);
+		if(io::Run(op, io::Parameters(), LFH_Copier((u8*)&lfh, sizeof(LFH))) == INFO::OK)
 			m_ofs += (off_t)lfh.Size();
 	}
 
@@ -382,7 +431,7 @@ class ArchiveReader_Zip : public IArchiveReader
 {
 public:
 	ArchiveReader_Zip(const OsPath& pathname)
-		: m_file(new File(pathname, 'r'))
+		: m_file(new File(pathname, LIO_READ))
 	{
 		FileInfo fileInfo;
 		GetFileInfo(pathname, &fileInfo);
@@ -398,16 +447,17 @@ public:
 		size_t cd_numEntries = 0;
 		size_t cd_size = 0;
 		RETURN_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
-		shared_ptr<u8> buf = io_Allocate(cd_size, cd_ofs);
-		u8* cd;
-		RETURN_ERR(io_Read(m_file, cd_ofs, buf.get(), cd_size, cd));
+		UniqueRange buf(io::Allocate(cd_size));
+
+		io::Operation op(*m_file.get(), buf.get(), cd_size, cd_ofs);
+		RETURN_ERR(io::Run(op));
 
 		// iterate over Central Directory
-		const u8* pos = cd;
+		const u8* pos = (const u8*)buf.get();
 		for(size_t i = 0; i < cd_numEntries; i++)
 		{
 			// scan for next CDFH
-			CDFH* cdfh = (CDFH*)FindRecord(cd, cd_size, pos, cdfh_magic, sizeof(CDFH));
+			CDFH* cdfh = (CDFH*)FindRecord((const u8*)buf.get(), cd_size, pos, cdfh_magic, sizeof(CDFH));
 			if(!cdfh)
 				WARN_RETURN(ERR::CORRUPTED);
 
@@ -467,11 +517,11 @@ private:
 
 		// read desired chunk of file into memory
 		const off_t ofs = fileSize - off_t(scanSize);
-		u8* data;
-		RETURN_ERR(io_Read(file, ofs, buf, scanSize, data));
+		io::Operation op(*file.get(), buf, scanSize, ofs);
+		RETURN_ERR(io::Run(op));
 
 		// look for ECDR in buffer
-		const ECDR* ecdr = (const ECDR*)FindRecord(data, scanSize, data, ecdr_magic, sizeof(ECDR));
+		const ECDR* ecdr = (const ECDR*)FindRecord(buf, scanSize, buf, ecdr_magic, sizeof(ECDR));
 		if(!ecdr)
 			return INFO::CANNOT_HANDLE;
 
@@ -482,19 +532,20 @@ private:
 	static LibError LocateCentralDirectory(const PFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
 	{
 		const size_t maxScanSize = 66000u;	// see below
-		shared_ptr<u8> buf = io_Allocate(maxScanSize, BLOCK_SIZE-1);	// assume worst-case for alignment
+		UniqueRange buf(io::Allocate(maxScanSize));
 
 		// expected case: ECDR at EOF; no file comment
-		LibError ret = ScanForEcdr(file, fileSize, const_cast<u8*>(buf.get()), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
+		LibError ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
 		if(ret == INFO::OK)
 			return INFO::OK;
 		// worst case: ECDR precedes 64 KiB of file comment
-		ret = ScanForEcdr(file, fileSize, const_cast<u8*>(buf.get()), maxScanSize, cd_numEntries, cd_ofs, cd_size);
+		ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), maxScanSize, cd_numEntries, cd_ofs, cd_size);
 		if(ret == INFO::OK)
 			return INFO::OK;
 
 		// both ECDR scans failed - this is not a valid Zip file.
-		RETURN_ERR(io_ReadAligned(file, 0, const_cast<u8*>(buf.get()), sizeof(LFH)));
+		io::Operation op(*file.get(), buf.get(), sizeof(LFH));
+		RETURN_ERR(io::Run(op));
 		// the Zip file has an LFH but lacks an ECDR. this can happen if
 		// the user hard-exits while an archive is being written.
 		// notes:
@@ -503,7 +554,7 @@ private:
 		//   because it'd be slow.
 		// - do not warn - the corrupt archive will be deleted on next
 		//   successful archive builder run anyway.
-		if(FindRecord(buf.get(), sizeof(LFH), buf.get(), lfh_magic, sizeof(LFH)))
+		if(FindRecord((const u8*)buf.get(), sizeof(LFH), (const u8*)buf.get(), lfh_magic, sizeof(LFH)))
 			return ERR::CORRUPTED;	// NOWARN
 		// totally bogus
 		else
@@ -528,8 +579,7 @@ class ArchiveWriter_Zip : public IArchiveWriter
 {
 public:
 	ArchiveWriter_Zip(const OsPath& archivePathname, bool noDeflate)
-		: m_file(new File(archivePathname, 'w')), m_fileSize(0)
-		, m_unalignedWriter(new UnalignedWriter(m_file, 0))
+		: m_file(new File(archivePathname, LIO_WRITE)), m_fileSize(0)
 		, m_numEntries(0), m_noDeflate(noDeflate)
 	{
 		THROW_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
@@ -546,19 +596,9 @@ public:
 		const off_t cd_ofs = m_fileSize;
 		ecdr->Init(m_numEntries, cd_ofs, cd_size);
 
-		m_unalignedWriter->Append(m_cdfhPool.da.base, cd_size+sizeof(ECDR));
-		m_unalignedWriter->Flush();
-		m_unalignedWriter.reset();
+		write(m_file->Descriptor(), m_cdfhPool.da.base, cd_size+sizeof(ECDR));
 
 		(void)pool_destroy(&m_cdfhPool);
-
-		const OsPath pathname = m_file->Pathname();	// (must be retrieved before resetting m_file)
-		m_file.reset();
-
-		m_fileSize += off_t(cd_size+sizeof(ECDR));
-
-		// remove padding added by UnalignedWriter
-		wtruncate(pathname, m_fileSize);
 	}
 
 	LibError AddFile(const OsPath& pathname, const OsPath& pathnameInArchive)
@@ -578,7 +618,7 @@ public:
 			return INFO::SKIPPED;
 
 		PFile file(new File);
-		RETURN_ERR(file->Open(pathname, 'r'));
+		RETURN_ERR(file->Open(pathname, LIO_READ));
 
 		const size_t pathnameLength = pathnameInArchive.string().length();
 
@@ -598,7 +638,7 @@ public:
 
 		// allocate memory
 		const size_t csizeMax = codec->MaxOutputSize(size_t(usize));
-		shared_ptr<u8> buf = io_Allocate(sizeof(LFH) + pathnameLength + csizeMax);
+		UniqueRange buf(io::Allocate(sizeof(LFH) + pathnameLength + csizeMax));
 
 		// read and compress file contents
 		size_t csize; u32 checksum;
@@ -606,7 +646,8 @@ public:
 			u8* cdata = (u8*)buf.get() + sizeof(LFH) + pathnameLength;
 			Stream stream(codec);
 			stream.SetOutputBuffer(cdata, csizeMax);
-			RETURN_ERR(io_Scan(file, 0, usize, FeedStream, (uintptr_t)&stream));
+			io::Operation op(*file.get(), 0, usize);
+			RETURN_ERR(io::Run(op, io::Parameters(), std::bind(&Stream::Feed, &stream, std::placeholders::_1, std::placeholders::_2)));
 			RETURN_ERR(stream.Finish());
 			csize = stream.OutSize();
 			checksum = stream.Checksum();
@@ -631,7 +672,8 @@ public:
 
 		// write LFH, pathname and cdata to file
 		const size_t packageSize = sizeof(LFH) + pathnameLength + csize;
-		RETURN_ERR(m_unalignedWriter->Append(buf.get(), packageSize));
+		if(write(m_file->Descriptor(), buf.get(), packageSize) < 0)
+			WARN_RETURN(ERR::IO);
 		m_fileSize += (off_t)packageSize;
 
 		return INFO::OK;
@@ -661,7 +703,6 @@ private:
 
 	PFile m_file;
 	off_t m_fileSize;
-	PUnalignedWriter m_unalignedWriter;
 
 	Pool m_cdfhPool;
 	size_t m_numEntries;

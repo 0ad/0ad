@@ -30,6 +30,7 @@
 
 #include "lib/byte_order.h"
 #include "tex_codec.h"
+#include "lib/allocators/shared_ptr.h"
 #include "lib/timer.h"
 
 #if MSC_VERSION
@@ -111,7 +112,8 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 		WARN_RETURN(ERR::TEX_INVALID_COLOR_TYPE);
 
 	const size_t img_size = pitch * h;
-	shared_ptr<u8> data = io_Allocate(img_size);
+	shared_ptr<u8> data;
+	AllocateAligned(data, img_size, pageSize);
 
 	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
 	png_read_image(png_ptr, (png_bytepp)rows.get());

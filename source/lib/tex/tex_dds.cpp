@@ -27,11 +27,14 @@
 #include "precompiled.h"
 
 #include "lib/byte_order.h"
-#include "tex_codec.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
+#include "lib/allocators/shared_ptr.h"
+#include "tex_codec.h"
+
 
 // NOTE: the convention is bottom-up for DDS, but there's no way to tell.
+
 
 //-----------------------------------------------------------------------------
 // S3TC decompression
@@ -279,7 +282,8 @@ static LibError s3tc_decompress(Tex* t)
 	const size_t dxt = t->flags & TEX_DXT;
 	const size_t out_bpp = (dxt != 1)? 32 : 24;
 	const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
-	shared_ptr<u8> decompressedData = io_Allocate(out_size);
+	shared_ptr<u8> decompressedData;
+	AllocateAligned(decompressedData, out_size, pageSize);
 
 	const size_t s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
 	S3tcDecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, decompressedData.get() };

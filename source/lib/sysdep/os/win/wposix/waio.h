@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,13 +29,12 @@
 
 #include "lib/lib_errors.h"
 #include "lib/os_path.h"
+#include "lib/posix/posix_time.h"	// timespec
 #include "lib/sysdep/os/win/wposix/wposix_types.h"
 
-#include "lib/sysdep/os/win/wposix/no_crt_posix.h"
-
 // Note: transfer buffers, offsets, and lengths must be sector-aligned
-// (we don't bother copying to an align buffer because the file cache
-// already requires splitting IOs into aligned blocks)
+// (we don't bother copying to an align buffer because our block cache
+// already requires splitting IOs into naturally-aligned blocks)
 
 
 //
@@ -58,15 +57,6 @@ struct sigevent	// unused
 
 
 //
-// <unistd.h>
-//
-
-extern int read (int fd, void* buf, size_t nbytes);	// thunk
-extern int write(int fd, void* buf, size_t nbytes);	// thunk
-extern off_t lseek(int fd, off_t ofs, int whence);  // thunk
-
-
-//
 // <aio.h>
 //
 
@@ -80,8 +70,11 @@ struct aiocb
 	struct sigevent aio_sigevent;   // Signal number and value. (unused)
 	int             aio_lio_opcode; // Operation to be performed.
 
-	class Impl;
-	shared_ptr<Impl> impl;
+	// internal use only; must be zero-initialized before
+	// calling the first aio_read/aio_write/lio_listio (aio_return also
+	// zero-initializes them)
+	void* fcb;
+	void* ovl;
 };
 
 enum
@@ -101,21 +94,55 @@ enum
 	LIO_WRITE
 };
 
-extern int aio_cancel(int, struct aiocb*);
-extern int aio_error(const struct aiocb*);
-extern int aio_fsync(int, struct aiocb*);
 extern int aio_read(struct aiocb*);
-extern ssize_t aio_return(struct aiocb*);
-struct timespec;
-extern int aio_suspend(const struct aiocb* const[], int, const struct timespec*);
 extern int aio_write(struct aiocb*);
 extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
 
-// for use by wfilesystem's wopen/wclose:
+// (if never called, IOCP notifications will pile up.)
+extern int aio_suspend(const struct aiocb* const[], int, const struct timespec*);
 
-// (re)open file in asynchronous mode and associate handle with fd.
-// (this works because the files default to DENY_NONE sharing)
+// @return status of transfer (0 or an errno)
+extern int aio_error(const struct aiocb*);
+
+// @return bytes transferred or -1 on error.
+// frees internal storage related to the request and MUST be called
+// exactly once for each aiocb after aio_error != EINPROGRESS.
+extern ssize_t aio_return(struct aiocb*);
+
+extern int aio_cancel(int, struct aiocb*);
+
+extern int aio_fsync(int, struct aiocb*);
+
+// Windows doesn't allow aio unless the file is opened in asynchronous mode,
+// which is not possible with _wsopen_s. since we don't want to have to
+// provide a separate File class for aio-enabled files, our wopen wrapper
+// will also call this function to open a SECOND handle to the file (works
+// because CRT open() defaults to DENY_NONE sharing). the CRT's lowio
+// descriptor table remains unaffected, but our [w]aio_* functions are
+// notified of the file descriptor, which means e.g. read and aio_read can
+// both be used. this function must have been called before any
+// other [w]aio_* functions are used.
 extern LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...);
+
+// close our second aio-enabled handle to the file (called from wclose).
 extern LibError waio_close(int fd);
+
+// call this before writing a large file to preallocate clusters, thus
+// reducing fragmentation.
+//
+// @param alignedSize must be a multiple of alignment (SetEndOfFile requires
+// sector alignment; this could be avoided by using the undocumented
+// NtSetInformationFile or SetFileInformationByHandle on Vista and later).
+// use wtruncate after I/O is complete to chop off any excess padding.
+//
+// NB: writes that extend a file (i.e. ALL WRITES when creating new files)
+// are synchronous, which prevents overlapping I/O and other work.
+// (http://support.microsoft.com/default.aspx?scid=kb%3Ben-us%3B156932)
+// if Windows XP and the SE_MANAGE_VOLUME_NAME privileges are available,
+// this function sets the valid data length to avoid the synchronous zero-fill.
+// note that this exposes the previous disk contents (possibly even to
+// other users since the waio_reopen design cannot deny file sharing) until
+// the application successfully writes to the file.
+LIB_API LibError waio_Preallocate(int fd, off_t alignedSize, off_t alignment);
 
 #endif	// #ifndef INCLUDED_WAIO

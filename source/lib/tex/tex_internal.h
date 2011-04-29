@@ -28,7 +28,7 @@
 #define INCLUDED_TEX_INTERNAL
 
 #include "lib/allocators/dynarray.h"
-#include "lib/file/io/io.h"	// io_Allocate
+#include "lib/file/io/io.h"	// io::Allocate
 
 /**
  * check if the given texture format is acceptable: 8bpp grey,
