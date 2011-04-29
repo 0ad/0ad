@@ -5,6 +5,13 @@
     <SpecificName>Torre</SpecificName>
     <History>Sturdy battlements for city walls.</History>
   </Identity>
+  <Footprint>
+    <Square width="9.5" depth="10.5"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="9.0" depth="10.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/iberians/wall_tower.xml</Actor>
   </VisualActor>

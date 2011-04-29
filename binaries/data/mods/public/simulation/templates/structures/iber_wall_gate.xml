@@ -5,6 +5,13 @@
     <SpecificName>Puerta Mortal</SpecificName>
     <History>One of the central attributes of the Iberians civ is that it was a highly defensive one that constantly gave the Carthaginians trouble in their bid to conquer the peninsula (which they never really did) and took the Romans another 200 years to subdue, along with incredibly large cumulative loss of Roman soldier's lives. This doubled gate has been found incorporated into walls surrounding Iberian villages, Oppidum, and fortresses, Castros. It presents rather formidable aspects with its 4 towers, 2 gates, and a courtyard-like interior wherein enemy forces could become entrapped between the two gates, combined with a monolithically strong stone structure. The concept comes from archeologist and paleontologist descriptions of the remains of such gates at various locations scattered about the Iberian Peninsula.</History>
   </Identity>
+  <Footprint>
+    <Square width="39.0" depth="14.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="38.0" depth="13.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/iberians/wall_gate.xml</Actor>
   </VisualActor>
