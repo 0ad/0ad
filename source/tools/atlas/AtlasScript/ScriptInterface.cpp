@@ -482,10 +482,12 @@ template<typename T> jsval ScriptInterface::ToJSVal(JSContext* cx, const T& v)
 
 // Explicit instantiation of functions that would otherwise be unused in this file
 // but are required for linking with other files
+template bool ScriptInterface::FromJSVal<std::string>(JSContext*, jsval, std::string&);
 template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
 template bool ScriptInterface::FromJSVal<bool>(JSContext*, jsval, bool&);
 template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
 template bool ScriptInterface::FromJSVal<CScriptVal>(JSContext*, jsval, CScriptVal&);
+template bool ScriptInterface::FromJSVal<AtlasMessage::sObjectSettings>(JSContext*, jsval, AtlasMessage::sObjectSettings&);
 template jsval ScriptInterface::ToJSVal<wxString>(JSContext*, wxString const&);
 template jsval ScriptInterface::ToJSVal<wxKeyEvent>(JSContext*, wxKeyEvent const&);
 template jsval ScriptInterface::ToJSVal<wxMouseEvent>(JSContext*, wxMouseEvent const&);
@@ -589,8 +591,6 @@ namespace
 
 ScriptInterface_impl::ScriptInterface_impl()
 {
-	JSBool ok;
-
 	m_rt = JS_NewRuntime(RUNTIME_SIZE);
 	assert(m_rt); // TODO: error handling
 
@@ -610,7 +610,7 @@ ScriptInterface_impl::ScriptInterface_impl()
 		);
 
 	m_glob = JS_NewGlobalObject(m_cx, &global_class);
-	ok = JS_InitStandardClasses(m_cx, m_glob);
+	JS_InitStandardClasses(m_cx, m_glob);
 	
 	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
@@ -881,19 +881,18 @@ void ScriptInterface_impl::RegisterMessages(JSObject* parent)
 {
 	using namespace AtlasMessage;
 	
-	JSFunction* ret;
 	JSObject* obj = JS_DefineObject(m_cx, parent, "Message", NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
 	#define MESSAGE(name, vals) \
-	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)vals)-1, \
+	JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)vals)-1, \
 		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
 	#define COMMAND(name, merge, vals) \
-	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)vals)-1, \
+	JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)vals)-1, \
 		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
 	#define QUERY(name, in_vals, out_vals) \
-	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)in_vals)-1, \
+	JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)in_vals)-1, \
 		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
 	#undef INCLUDED_MESSAGES
