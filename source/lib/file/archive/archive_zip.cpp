@@ -597,7 +597,8 @@ public:
 		const off_t cd_ofs = m_fileSize;
 		ecdr->Init(m_numEntries, cd_ofs, cd_size);
 
-		write(m_file->Descriptor(), m_cdfhPool.da.base, cd_size+sizeof(ECDR));
+		if(write(m_file->Descriptor(), m_cdfhPool.da.base, cd_size+sizeof(ECDR)) < 0)
+			DEBUG_WARN_ERR(ERR::IO);	// no way to return error code
 
 		(void)pool_destroy(&m_cdfhPool);
 	}
