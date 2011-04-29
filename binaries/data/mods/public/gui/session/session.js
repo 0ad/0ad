@@ -98,20 +98,12 @@ function reportPerformance(time)
 	var data = {
 		time: time,
 		map: settings.Name,
+		seed: settings.Seed, // only defined for random maps
+		size: settings.Size, // only defined for random maps
 		profiler: Engine.GetProfilerState()
 	};
 	
-	// Add seed and map size for random maps
-	if (settings.Seed !== undefined)
-	{
-		data.seed = settings.Seed;
-	}
-	if (settings.Size !== undefined)
-	{
-		data.size = settings.Size;
-	}
-	
-	Engine.SubmitUserReport("profile", 2, JSON.stringify(data));
+	Engine.SubmitUserReport("profile", 3, JSON.stringify(data));
 }
 
 function leaveGame()
