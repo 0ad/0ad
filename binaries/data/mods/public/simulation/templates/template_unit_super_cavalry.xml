@@ -61,7 +61,15 @@
   </Obstruction>
   <Sound>
     <SoundGroups>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <order_attack>voice/hellenes/civ/civ_male_attack.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
+      <walk>actor/mounted/movement/walk.xml</walk>
+      <run>actor/mounted/movement/walk.xml</run>
+      <attack>attack/weapon/sword.xml</attack>
       <death>actor/fauna/death/death_horse.xml</death>
-    </SoundGroups>
+      <trained>interface/alarm/alarm_create_cav.xml</trained>
+	</SoundGroups>
   </Sound>
 </Entity>
