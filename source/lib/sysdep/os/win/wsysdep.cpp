@@ -27,6 +27,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/sysdep.h"
 
+#include "lib/alignment.h"
 #include "lib/sysdep/os/win/win.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
 #include <shellapi.h>	// open_url

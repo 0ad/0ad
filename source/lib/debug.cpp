@@ -31,6 +31,7 @@
 #include <cstring>
 #include <cstdio>
 
+#include "lib/alignment.h"
 #include "lib/app_hooks.h"
 #include "lib/allocators/page_aligned.h"
 #include "lib/fnv_hash.h"

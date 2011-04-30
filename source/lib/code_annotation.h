@@ -134,8 +134,12 @@ switch(x % 2)
 #define UID__  PASTE3__(LINE_, __LINE__, _)
 #define UID2__ PASTE3__(LINE_, __LINE__, _2)
 
+
+//-----------------------------------------------------------------------------
+// cassert
+
 /**
- * Compile-time ENSURE. Causes a compile error if the expression
+ * Compile-time assertion. Causes a compile error if the expression
  * evaluates to zero/false.
  *
  * No runtime overhead; may be used anywhere, including file scope.
@@ -164,7 +168,8 @@ template<> struct static_assert_<true>
  * This version has a less helpful error message, but redefinition doesn't
  * trigger warnings.
  **/
-#define cassert2(expr) extern u8 CASSERT_FAILURE[1][(expr)]
+#define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
+
 
 // indicate a class is noncopyable (usually due to const or reference members).
 // example:
@@ -280,6 +285,33 @@ private:\
 # define RESTRICT
 #endif
 
+
+//
+// number of array elements
+//
+
+#if GCC_VERSION
+
+// The function trick below does not work in GCC. Instead use the old fashioned
+// divide-by-sizeof-element. This causes problems when the argument to
+// ARRAY_SIZE is a pointer and not an array, but we will catch those when we
+// compile on something other than GCC.
+
+#define ARRAY_SIZE(name) (sizeof(name) / (sizeof((name)[0])))
+
+#else
+
+// (function taking a reference to an array and returning a pointer to
+// an array of characters. it's only declared and never defined; we just
+// need it to determine n, the size of the array that was passed.)
+template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
+
+// (although requiring C++, this method is much better than the standard
+// sizeof(name) / sizeof(name[0]) because it doesn't compile when a
+// pointer is passed, which can easily happen under maintenance.)
+#define ARRAY_SIZE(name) (sizeof(*ArraySizeDeducer(name)))
+
+#endif // GCC_VERSION
 
 // C99-style __func__
 // .. newer GCC already have it

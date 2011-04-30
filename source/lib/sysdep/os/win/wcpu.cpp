@@ -29,6 +29,7 @@
 #include "lib/sysdep/os_cpu.h"
 
 #include "lib/bits.h"
+#include "lib/alignment.h"
 #include "lib/module_init.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"

@@ -27,46 +27,7 @@
 #ifndef INCLUDED_OGL
 #define INCLUDED_OGL
 
-#if OS_WIN
-// wgl.h is a private header and should only be included from here.
-// if this isn't defined, it'll complain.
-#define WGL_HEADER_NEEDED
-#include "lib/sysdep/os/win/wgl.h"
-#endif
-
-
-//
-// bring in the platform's OpenGL headers (with fixes, if necessary)
-//
-
-#if OS_MACOSX || OS_MAC
-# include <OpenGL/gl.h>
-#else
-# include <GL/gl.h>
-#endif
-
-// if gl.h provides real prototypes for 1.2 / 1.3 functions,
-// exclude the corresponding function pointers in glext_funcs.h
-#ifdef GL_VERSION_1_2
-#define REAL_GL_1_2
-#endif
-#ifdef GL_VERSION_1_3
-#define REAL_GL_1_3
-#endif
-
-// this must come after GL/gl.h include, so we can't combine the
-// including GL/glext.h.
-#undef GL_GLEXT_PROTOTYPES
-
-#if OS_MACOSX || OS_MAC
-# include <OpenGL/glext.h>
-#else
-# include <GL/glext.h>
-# if OS_WIN
-#  include <GL/wglext.h>
-#  define GL_TEXTURE_IMAGE_SIZE_ARB 0x86A0
-# endif
-#endif
+#include "lib/external_libraries/opengl.h"
 
 
 /**
@@ -131,7 +92,7 @@ extern const char* ogl_ExtensionString();
 #define FUNC(ret, name, params) EXTERN_C ret (GL_CALL_CONV *p##name) params;
 #define FUNC2(ret, nameARB, nameCore, version, params) EXTERN_C ret (GL_CALL_CONV *p##nameARB) params;
 #define FUNC3(ret, nameARB, nameCore, version, params) EXTERN_C ret (GL_CALL_CONV *p##nameCore) params;
-#include "lib/glext_funcs.h"
+#include "lib/external_libraries/glext_funcs.h"
 #undef FUNC3
 #undef FUNC2
 #undef FUNC

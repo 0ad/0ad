@@ -18,6 +18,7 @@
 #include "lib/self_test.h"
 
 #include "graphics/TextureManager.h"
+#include "lib/alignment.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/res/h_mgr.h"

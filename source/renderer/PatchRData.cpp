@@ -24,6 +24,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "lib/alignment.h"
 #include "lib/allocators/pool.h"
 #include "lib/res/graphics/unifont.h"
 #include "maths/MathUtil.h"

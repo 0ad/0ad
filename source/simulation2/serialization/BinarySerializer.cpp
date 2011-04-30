@@ -21,6 +21,7 @@
 
 #include "SerializedScriptTypes.h"
 
+#include "lib/alignment.h"
 #include "ps/CLogger.h"
 
 #include "scriptinterface/ScriptInterface.h"

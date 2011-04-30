@@ -60,48 +60,9 @@ scope
 #ifndef INCLUDED_LIB
 #define INCLUDED_LIB
 
-#include <math.h>	// fabsf
+#include <cmath>	// fabsf
 #include <limits>	// numeric_limits
 #include <stdexcept>	// out_of_range
-
-#include "lib/config.h"
-#include "lib/debug.h"
-
-
-const size_t KiB = size_t(1) << 10;
-const size_t MiB = size_t(1) << 20;
-const size_t GiB = size_t(1) << 30;
-
-
-//
-// number of array elements
-//
-
-#if GCC_VERSION
-
-// The function trick below does not work in GCC. Instead use the old fashioned
-// divide-by-sizeof-element. This causes problems when the argument to
-// ARRAY_SIZE is a pointer and not an array, but we will catch those when we
-// compile on something other than GCC.
-
-#define ARRAY_SIZE(name) (sizeof(name) / (sizeof((name)[0])))
-
-#else
-
-// (function taking a reference to an array and returning a pointer to
-// an array of characters. it's only declared and never defined; we just
-// need it to determine n, the size of the array that was passed.)
-template<typename T, size_t n> u8 (*ArraySizeDeducer(T (&)[n]))[n];
-
-// (although requiring C++, this method is much better than the standard
-// sizeof(name) / sizeof(name[0]) because it doesn't compile when a
-// pointer is passed, which can easily happen under maintenance.)
-#define ARRAY_SIZE(name) (sizeof(*ArraySizeDeducer(name)))
-
-#endif // GCC_VERSION
-
-
-//-----------------------------------------------------------------------------
 
 template<typename T>
 T Clamp(T val, T min, T max)
@@ -117,11 +78,6 @@ T DivideRoundUp(T dividend, T divisor)
 	return (dividend + divisor-1) / divisor;
 }
 
-/// 16-bit saturating (does not overflow) addition.
-extern u16 addusw(u16 x, u16 y);
-/// 16-bit saturating (does not underflow) subtraction.
-extern u16 subusw(u16 x, u16 y);
-
 /**
  * are the given floats nearly "equal"?
  *
@@ -134,7 +90,7 @@ extern u16 subusw(u16 x, u16 y);
  * - floating-point numbers don't magically lose precision. addition,
  *   subtraction and multiplication results are precise up to the mantissa's
  *   least-significant bit. only division, sqrt, sin/cos and other
- *   trancendental operations introduce error.
+ *   transcendental operations introduce error.
  **/
 inline bool feq(double d1, double d2, double epsilon = 0.00001)
 {

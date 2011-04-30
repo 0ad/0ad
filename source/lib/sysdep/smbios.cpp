@@ -28,6 +28,7 @@
 #include "lib/sysdep/smbios.h"
 
 #include "lib/bits.h"
+#include "lib/alignment.h"
 #include "lib/byte_order.h"	// FOURCC_BE
 #include "lib/module_init.h"
 

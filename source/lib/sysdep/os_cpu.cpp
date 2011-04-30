@@ -27,6 +27,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/os_cpu.h"
 
+#include "lib/alignment.h"
 #include "lib/sysdep/smbios.h"
 
 #if OS_WIN

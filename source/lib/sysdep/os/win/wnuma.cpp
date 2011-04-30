@@ -24,6 +24,7 @@
 #include "lib/sysdep/numa.h"
 
 #include "lib/bits.h"	// PopulationCount
+#include "lib/alignment.h"
 #include "lib/timer.h"
 #include "lib/module_init.h"
 #include "lib/allocators/page_aligned.h"

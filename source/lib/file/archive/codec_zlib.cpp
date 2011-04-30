@@ -23,6 +23,7 @@
 #include "precompiled.h"
 #include "lib/file/archive/codec_zlib.h"
 
+#include "lib/alignment.h"
 #include "lib/file/archive/codec.h"
 #include "lib/external_libraries/zlib.h"
 

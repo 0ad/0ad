@@ -37,6 +37,7 @@
 #include <cstdio>
 #include <cfloat>
 
+#include "lib/alignment.h"
 #include "lib/res/h_mgr.h"
 #include "lib/file/vfs/vfs.h"
 

@@ -18,9 +18,6 @@ inline size_t Align(size_t n)
 }
 
 
-static const size_t allocationAlignment = ARCH_AMD64? 16 : 8;
-
-
 //
 // SIMD vector
 //
@@ -53,6 +50,16 @@ static const size_t cacheLineSize = 64;	// (L2)
 static const size_t pageSize = 0x1000;	// 4 KB
 static const size_t largePageSize = 0x200000;	// 2 MB
 
+
+//
+// misc
+//
+
+static const size_t allocationAlignment = ARCH_AMD64? 16 : 8;
+
+static const size_t KiB = size_t(1) << 10;
+static const size_t MiB = size_t(1) << 20;
+static const size_t GiB = size_t(1) << 30;
 
 // waio opens files with FILE_FLAG_NO_BUFFERING, so Windows requires
 // file offsets / buffers and sizes to be sector-aligned. querying the

@@ -35,19 +35,6 @@
 #include "lib/sysdep/sysdep.h"
 
 
-u16 addusw(u16 x, u16 y)
-{
-	u32 t = x;
-	return (u16)std::min(t+y, 0xFFFFu);
-}
-
-u16 subusw(u16 x, u16 y)
-{
-	long t = x;
-	return (u16)(std::max(t-y, 0l));
-}
-
-
 //-----------------------------------------------------------------------------
 // type conversion
 
