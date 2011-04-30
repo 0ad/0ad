@@ -32,6 +32,7 @@
 
 
 ERROR_ASSOCIATE(ERR::FILE_ACCESS, L"Insufficient access rights to open file", EACCES);
+ERROR_ASSOCIATE(ERR::FILE_NOT_FOUND, L"No such file or directory", ENOENT);
 
 
 LibError FileOpen(const OsPath& pathname, int opcode, int& fd)

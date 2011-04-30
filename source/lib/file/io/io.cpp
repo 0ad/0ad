@@ -29,43 +29,6 @@ ERROR_ASSOCIATE(ERR::IO, L"Error during IO", EIO);
 
 namespace io {
 
-// the Windows aio implementation requires buffer and offset to be
-// sector-aligned.
-//
-// if the user specifies an unaligned buffer, there's not much we can
-// do - we can't assume the buffer contains padding. therefore,
-// callers should let us allocate the buffer if possible.
-//
-// if ofs misalign = buffer, only the first and last blocks will need
-// to be copied by aio, since we read up to the next block boundary.
-// otherwise, everything will have to be copied; at least we split
-// the read into blocks, so aio's buffer won't have to cover the
-// whole file.
-
-// we don't do any caching or alignment here - this is just a thin
-// AIO wrapper. rationale:
-// - aligning the transfer isn't possible here since we have no control
-//   over the buffer, i.e. we cannot read more data than requested.
-//   instead, this is done in manager.
-// - transfer sizes here are arbitrary (i.e. not block-aligned);
-//   that means the cache would have to handle this or also split them up
-//   into blocks, which would duplicate the above mentioned work.
-// - if caching here, we'd also have to handle "forwarding" (i.e.
-//   desired block has been issued but isn't yet complete). again, it
-//   is easier to let the synchronous manager handle this.
-// - finally, manager knows more about whether the block should be cached
-//   (e.g. whether another block request will follow), but we don't
-//   currently make use of this.
-//
-// disadvantages:
-// - streamed data will always be read from disk. that's not a problem,
-//   because such data (e.g. music, long speech) is unlikely to be used
-//   again soon.
-// - prefetching (issuing the next few blocks from archive/file during
-//   idle time to satisfy potential future IOs) requires extra buffers;
-//   this is a bit more complicated than just using the cache as storage.
-
-
 UniqueRange Allocate(size_t size, size_t alignment)
 {
 	ENSURE(is_pow2(alignment));
@@ -77,6 +40,10 @@ UniqueRange Allocate(size_t size, size_t alignment)
 	return RVALUE(UniqueRange(p, size, idxDeleterAligned));
 }
 
+
+// this is just a thin wrapper on top of lowio and POSIX aio.
+// note that the Windows aio implementation requires buffers, sizes and
+// offsets to be sector-aligned.
 
 LibError Issue(aiocb& cb, size_t queueDepth)
 {

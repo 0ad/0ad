@@ -280,7 +280,8 @@ static inline LibError Run(const Operation& op, const Parameters& p = Parameters
 template<class CompletedHook, class IssueHook>
 static inline LibError Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
-	File file(pathname, LIO_WRITE);
+	File file;
+	CHECK_ERR(file.Open(pathname, LIO_WRITE));
 	io::Operation op(file, (void*)data, size);
 
 #if OS_WIN && CONFIG2_FILE_ENABLE_AIO
@@ -315,7 +316,8 @@ static inline LibError Store(const OsPath& pathname, const void* data, size_t si
 template<class CompletedHook, class IssueHook>
 static inline LibError Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
-	File file(pathname, LIO_READ);
+	File file;
+	RETURN_ERR(file.Open(pathname, LIO_READ));
 	io::Operation op(file, buf, size);
 	return io::Run(op, p, completedHook, issueHook);
 }

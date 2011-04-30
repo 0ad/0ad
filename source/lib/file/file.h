@@ -33,6 +33,7 @@
 namespace ERR
 {
 	const LibError FILE_ACCESS = -110300;
+	const LibError FILE_NOT_FOUND = -110301;
 }
 
 LIB_API LibError FileOpen(const OsPath& pathname, int opcode, int& fd);
