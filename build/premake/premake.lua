@@ -518,6 +518,7 @@ function setup_all_libs ()
 
 	source_dirs = {
 		"lib",
+		"lib/adts",
 		"lib/allocators",
 		"lib/external_libraries",
 		"lib/file",

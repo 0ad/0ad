@@ -22,7 +22,7 @@
 
 #include "lib/self_test.h"
 
-#include "lib/adts.h"
+#include "lib/adts/ring_buf.h"
 #include "lib/rand.h"
 
 class TestRingbuf : public CxxTest::TestSuite 

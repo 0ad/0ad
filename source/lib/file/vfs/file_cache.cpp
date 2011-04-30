@@ -30,7 +30,7 @@
 #include "lib/external_libraries/suppress_boost_warnings.h"
 
 #include "lib/file/common/file_stats.h"
-#include "lib/cache_adt.h"              // Cache
+#include "lib/adts/cache_adt.h"
 #include "lib/bits.h"                   // round_up
 #include "lib/allocators/allocator_checker.h"
 #include "lib/allocators/shared_ptr.h"

@@ -303,7 +303,7 @@ LIB_API LibError debug_WriteCrashlog(const wchar_t* text);
 #define ASSERT(expr) ENSURE(expr)
 #ifdef NDEBUG
 # undef ASSERT
-# define ASSERT(expr) (void)expr
+# define ASSERT(expr)
 #endif
 
 /**

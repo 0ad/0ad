@@ -24,7 +24,7 @@
 
 #include <vector>
 
-#include "lib/adts.h"
+#include "lib/adts/ring_buf.h"
 #include "ps/Singleton.h"
 #include "ps/ThreadUtil.h"
 
