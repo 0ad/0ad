@@ -29,6 +29,7 @@
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
 #include "lib/timer.h"
+#include "lib/external_libraries/sdl.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
@@ -1109,6 +1110,10 @@ int CMapReader::GenerateMap()
 	else
 	{
 		// Still working
+
+		// Sleep for a while, slowing down the rendering thread
+		// to allow more CPU for the map generator thread
+		SDL_Delay(100);
 	}
 	
 	// return progress
