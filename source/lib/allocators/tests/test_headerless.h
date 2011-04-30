@@ -120,7 +120,7 @@ public:
 			if(rand() >= RAND_MAX/2)
 			{
 				const size_t maxSize = (size_t)((rand() / (float)RAND_MAX) * poolSize);
-				const size_t size = std::max((size_t)HeaderlessAllocator::minAllocationSize, round_down(maxSize, HeaderlessAllocator::allocationGranularity));
+				const size_t size = std::max((size_t)HeaderlessAllocator::minAllocationSize, round_down(maxSize, HeaderlessAllocator::allocationAlignment));
 				// (the size_t cast on minAllocationSize prevents max taking a reference to the non-defined variable)
 				void* p = a.Allocate(size);
 				if(!p)

@@ -32,10 +32,11 @@
 #include "lib/file/common/file_stats.h"
 #include "lib/cache_adt.h"              // Cache
 #include "lib/bits.h"                   // round_up
-#include "lib/allocators/allocators.h"
+#include "lib/allocators/allocator_checker.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/allocators/headerless.h"
 #include "lib/sysdep/os_cpu.h"	// os_cpu_PageSize
+#include "lib/posix/posix_mman.h"	// mprotect
 
 
 //-----------------------------------------------------------------------------

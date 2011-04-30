@@ -20,8 +20,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef INCLUDED_SHARED_PTR
-#define INCLUDED_SHARED_PTR
+#ifndef INCLUDED_ALLOCATORS_SHARED_PTR
+#define INCLUDED_ALLOCATORS_SHARED_PTR
 
 #include "lib/alignment.h"
 #include "lib/sysdep/rtl.h" // rtl_AllocateAligned
@@ -49,15 +49,6 @@ struct ArrayDeleter
 	}
 };
 
-struct FreeDeleter
-{
-	template<class T>
-	void operator()(T* p)
-	{
-		free(p);
-	}
-};
-
 // (note: uses CheckedArrayDeleter)
 LIB_API shared_ptr<u8> Allocate(size_t size);
 
@@ -81,4 +72,4 @@ static inline LibError AllocateAligned(shared_ptr<T>& p, size_t size, size_t ali
 	return INFO::OK;
 }
 
-#endif	// #ifndef INCLUDED_SHARED_PTR
+#endif	// #ifndef INCLUDED_ALLOCATORS_SHARED_PTR

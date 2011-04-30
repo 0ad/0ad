@@ -20,34 +20,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * memory allocator helper routines.
- */
-
 #include "precompiled.h"
-#include "lib/allocators/mem_util.h"
+#include "lib/allocators/page_aligned.h"
 
-#include "lib/bits.h"				// round_up
 #include "lib/alignment.h"
-#include "lib/posix/posix_mman.h"
-#include "lib/sysdep/os_cpu.h"			// os_cpu_PageSize
-
-
-bool mem_IsPageMultiple(uintptr_t x)
-{
-	return (x & (os_cpu_PageSize()-1)) == 0;
-}
-
-size_t mem_RoundUpToPage(size_t size)
-{
-	return round_up(size, os_cpu_PageSize());
-}
-
-size_t mem_RoundUpToAlignment(size_t size)
-{
-	// all allocators should align to at least this many bytes:
-	return Align<8>(size);
-}
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 
 
 //-----------------------------------------------------------------------------
@@ -110,11 +87,23 @@ LibError mem_Protect(u8* p, size_t size, int prot)
 }
 
 
-void* mem_freelist_Sentinel()
+//-----------------------------------------------------------------------------
+
+void* page_aligned_alloc(size_t size)
 {
-	// sentinel storing its own address
-	static void* storageForPrevPtr;
-	void* const storageAddress = &storageForPrevPtr;
-	memcpy(&storageForPrevPtr, &storageAddress, sizeof(storageForPrevPtr));
-	return storageAddress;
+	const size_t alignedSize = Align<pageSize>(size);
+	u8* p = 0;
+	RETURN0_IF_ERR(mem_Reserve(alignedSize, &p));
+	RETURN0_IF_ERR(mem_Commit(p, alignedSize, PROT_READ|PROT_WRITE));
+	return p;
+}
+
+
+void page_aligned_free(void* p, size_t size)
+{
+	if(!p)
+		return;
+	debug_assert(IsAligned(p, pageSize));
+	const size_t alignedSize = Align<pageSize>(size);
+	(void)mem_Release((u8*)p, alignedSize);
 }

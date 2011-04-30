@@ -19,7 +19,6 @@
 
 #include "lib/app_hooks.h"
 #include "lib/input.h"
-#include "lib/lockfree.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/external_libraries/sdl.h"

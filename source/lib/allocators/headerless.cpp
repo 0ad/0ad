@@ -27,9 +27,8 @@
 #include "precompiled.h"
 #include "lib/allocators/headerless.h"
 
-#include "lib/allocators/mem_util.h"
-#include "lib/allocators/pool.h"
 #include "lib/bits.h"
+#include "lib/allocators/pool.h"
 
 
 static const bool performSanityChecks = true;
@@ -128,7 +127,7 @@ static bool IsValidSize(size_t size)
 	if(size < HeaderlessAllocator::minAllocationSize)
 		return false;
 
-	if(size % HeaderlessAllocator::allocationGranularity)
+	if(size % HeaderlessAllocator::allocationAlignment)
 		return false;
 
 	return true;
@@ -395,7 +394,7 @@ private:
 // prev/next pointers should reside between the magic and ID fields.
 // maintaining separate FreedBlock and Footer classes is also undesirable;
 // we prefer to use FreedBlock for both, which increases the minimum
-// allocation size to 64 + allocationGranularity, e.g. 128.
+// allocation size to 64 + allocationAlignment, e.g. 128.
 // that's not a problem because the allocator is designed for
 // returning pages or IO buffers (4..256 KB).
 cassert(HeaderlessAllocator::minAllocationSize >= 2*sizeof(FreedBlock));
@@ -645,13 +644,13 @@ public:
 		m_stats.OnAllocate(size);
 
 		Validate();
-		debug_assert((uintptr_t)p % allocationGranularity == 0);
+		debug_assert((uintptr_t)p % allocationAlignment == 0);
 		return p;
 	}
 
 	void Deallocate(u8* p, size_t size)
 	{
-		debug_assert((uintptr_t)p % allocationGranularity == 0);
+		debug_assert((uintptr_t)p % allocationAlignment == 0);
 		debug_assert(IsValidSize(size));
 		debug_assert(pool_contains(&m_pool, p));
 		debug_assert(pool_contains(&m_pool, p+size-1));

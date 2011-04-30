@@ -147,15 +147,15 @@ void tex_codec_register_all()
 // bottom-up; the row array is inverted if necessary to match global
 // orienatation. (this is more efficient than "transforming" later)
 //
-// used by PNG and JPG codecs; caller must delete[] rows when done.
+// used by PNG and JPG codecs.
 //
 // note: we don't allocate the data param ourselves because this function is
 // needed for encoding, too (where data is already present).
-shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, size_t src_flags, size_t dst_orientation)
+std::vector<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, size_t src_flags, size_t dst_orientation)
 {
 	const bool flip = !tex_orientations_match(src_flags, dst_orientation);
 
-	shared_ptr<RowPtr> rows(new RowPtr[h], ArrayDeleter());
+	std::vector<RowPtr> rows(h);
 
 	// determine start position and direction
 	RowPtr pos        = flip? data+pitch*(h-1) : data;
@@ -164,7 +164,7 @@ shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, 
 
 	for(size_t i = 0; i < h; i++)
 	{
-		rows.get()[i] = pos;
+		rows[i] = pos;
 		pos += add;
 	}
 

@@ -22,7 +22,6 @@
 
 #include "lib/self_test.h"
 
-#include "lib/allocators/allocators.h"
 #include "lib/allocators/dynarray.h"
 #include "lib/byte_order.h"
 
@@ -49,20 +48,5 @@ public:
 		TS_ASSERT(da_read(&da, buf, 1) < 0);		// no more data left
 		TS_ASSERT_EQUALS((uint32_t)debug_StopSkippingErrors(), (uint32_t)1);
 		TS_ASSERT_OK(da_free(&da));
-	}
-
-	void test_matrix()
-	{
-		// not much we can do here; allocate a matrix, write to it and
-		// make sure it can be freed.
-		// (note: can't check memory layout because "matrix" is int** -
-		// array of pointers. the matrix interface doesn't guarantee
-		// that data comes in row-major order after the row pointers)
-		int** m = (int**)matrix_alloc(3, 3, sizeof(int));
-		m[0][0] = 1;
-		m[0][1] = 2;
-		m[1][0] = 3;
-		m[2][2] = 4;
-		matrix_free((void**)m);
 	}
 };

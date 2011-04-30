@@ -484,10 +484,10 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex
 	AllocateAligned(data, img_size, pageSize);
 
 	// read rows
-	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
-	JSAMPARRAY row = (JSAMPARRAY)rows.get();
+	JSAMPARRAY row = (JSAMPARRAY)&rows[0];
 	JDIMENSION lines_left = h;
 	while(lines_left != 0)
 	{
@@ -542,11 +542,11 @@ static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* d
 
 	const size_t pitch = t->w * t->bpp / 8;
 	u8* data = tex_get_data(t);
-	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN);
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN);
 
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
-	JSAMPARRAY row = (JSAMPARRAY)rows.get();
+	JSAMPARRAY row = (JSAMPARRAY)&rows[0];
 	JDIMENSION lines_left = (JDIMENSION)t->h;
 	while(lines_left != 0)
 	{

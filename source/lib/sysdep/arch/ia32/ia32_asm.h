@@ -27,12 +27,8 @@
 #ifndef INCLUDED_IA32_ASM
 #define INCLUDED_IA32_ASM
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 struct x86_x64_CpuidRegs;
-extern void CALL_CONV ia32_asm_cpuid(x86_x64_CpuidRegs* regs);
+EXTERN_C void CALL_CONV ia32_asm_cpuid(x86_x64_CpuidRegs* regs);
 
 /// control87
 // FPU control word
@@ -58,7 +54,7 @@ const u32 IA32_EM_INEXACT    = 0x20;
  * with the bit values in new_val.
  * @return 0 to indicate success.
  **/
-extern u32 CALL_CONV ia32_asm_control87(u32 new_val, u32 mask);
+EXTERN_C u32 CALL_CONV ia32_asm_control87(u32 new_val, u32 mask);
 
 /// POSIX fpclassify
 #define IA32_FP_NAN       0x0100
@@ -66,17 +62,13 @@ extern u32 CALL_CONV ia32_asm_control87(u32 new_val, u32 mask);
 #define IA32_FP_INFINITE  (IA32_FP_NAN | IA32_FP_NORMAL)
 #define IA32_FP_ZERO      0x4000
 #define IA32_FP_SUBNORMAL (IA32_FP_NORMAL | IA32_FP_ZERO)
-extern size_t CALL_CONV ia32_asm_fpclassifyd(double d);
-extern size_t CALL_CONV ia32_asm_fpclassifyf(float f);
+EXTERN_C size_t CALL_CONV ia32_asm_fpclassifyd(double d);
+EXTERN_C size_t CALL_CONV ia32_asm_fpclassifyf(float f);
 
 /**
  * write the current execution state (e.g. all register values) into
  * (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
  **/
-extern void CALL_CONV ia32_asm_GetCurrentContext(void* pcontext);
-
-#ifdef __cplusplus
-}
-#endif
+EXTERN_C void CALL_CONV ia32_asm_GetCurrentContext(void* pcontext);
 
 #endif	// #ifndef INCLUDED_IA32_ASM

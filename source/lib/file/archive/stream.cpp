@@ -23,7 +23,7 @@
 #include "precompiled.h"
 #include "lib/file/archive/stream.h"
 
-#include "lib/allocators/allocators.h"	// page_aligned_alloc
+#include "lib/allocators/page_aligned.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/archive/codec.h"
 //#include "lib/timer.h"
@@ -64,7 +64,7 @@ void OutputBufferManager::AllocateBuffer(size_t size)
 	// no buffer or the previous one wasn't big enough: reallocate
 	if(!m_mem || m_capacity < size)
 	{
-		m_mem.reset((u8*)page_aligned_alloc(size), PageAlignedDeleter<u8>(size));
+		AllocateAligned(m_mem, size);
 		m_capacity = size;
 	}
 

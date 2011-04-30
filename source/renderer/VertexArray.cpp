@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "lib/bits.h"
+#include "lib/alignment.h"
 #include "lib/ogl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
@@ -158,7 +158,7 @@ static size_t RoundStride(size_t stride)
 	if (stride <= 16)
 		return 16;
 	
-	return round_up(stride, (size_t)32);
+	return Align<32>(stride);
 }
 
 // Re-layout by assigning offsets on a first-come first-serve basis,
@@ -203,7 +203,7 @@ void VertexArray::Layout()
 		m_Stride += attrSize;
 
 		if (m_Target == GL_ARRAY_BUFFER)
-			m_Stride = round_up(m_Stride, (size_t)4);
+			m_Stride = Align<4>(m_Stride);
 
 		//debug_printf(L"%i: offset: %u\n", idx, attr->offset);
 	}

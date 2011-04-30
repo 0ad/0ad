@@ -24,8 +24,8 @@
  * (header-less) pool-based heap allocator
  */
 
-#ifndef INCLUDED_HEADERLESS
-#define INCLUDED_HEADERLESS
+#ifndef INCLUDED_ALLOCATORS_HEADERLESS
+#define INCLUDED_ALLOCATORS_HEADERLESS
 
 /**
  * (header-less) pool-based heap allocator
@@ -52,8 +52,8 @@ public:
 	// allocators must 'naturally' align pointers, i.e. ensure they are
 	// multiples of the largest native type (currently __m128).
 	// since there are no headers, we can guarantee alignment by
-	// requiring sizes to be multiples of allocationGranularity.
-	static const size_t allocationGranularity = 16;
+	// requiring sizes to be multiples of allocationAlignment.
+	static const size_t allocationAlignment = 16;
 
 	// allocations must be large enough to hold our boundary tags
 	// when freed. (see rationale above BoundaryTagManager)
@@ -72,7 +72,7 @@ public:
 	void Reset();
 
 	/**
-	 * @param size [bytes] (= minAllocationSize + i*allocationGranularity).
+	 * @param size [bytes] (= minAllocationSize + i*allocationAlignment).
 	 * (this allocator is designed for requests on the order of several KiB)
 	 * @return allocated memory or 0 if the pool is too fragmented or full.
 	 **/
@@ -81,7 +81,7 @@ public:
 	/**
 	 * deallocate memory.
 	 * @param p must be exactly as returned by Allocate (in particular,
-	 * evenly divisible by allocationGranularity)
+	 * evenly divisible by allocationAlignment)
 	 * @param size must be exactly as specified to Allocate.
 	 **/
 	void Deallocate(void* p, size_t size);
@@ -96,4 +96,4 @@ private:
 	shared_ptr<Impl> impl;
 };
 
-#endif	// #ifndef INCLUDED_HEADERLESS
+#endif	// #ifndef INCLUDED_ALLOCATORS_HEADERLESS

@@ -27,7 +27,8 @@
 #include "precompiled.h"
 #include "lib/allocators/pool.h"
 
-#include "lib/allocators/mem_util.h"
+#include "lib/alignment.h"
+#include "lib/allocators/freelist.h"
 
 #include "lib/timer.h"
 
@@ -39,7 +40,7 @@ LibError pool_create(Pool* p, size_t max_size, size_t el_size)
 	if(el_size == POOL_VARIABLE_ALLOCS)
 		p->el_size = 0;
 	else
-		p->el_size = mem_RoundUpToAlignment(el_size);
+		p->el_size = Align<allocationAlignment>(el_size);
 	p->freelist = mem_freelist_Sentinel();
 	RETURN_ERR(da_alloc(&p->da, max_size));
 	return INFO::OK;
@@ -73,7 +74,7 @@ void* pool_alloc(Pool* p, size_t size)
 	TIMER_ACCRUE(tc_pool_alloc);
 	// if pool allows variable sizes, go with the size parameter,
 	// otherwise the pool el_size setting.
-	const size_t el_size = p->el_size? p->el_size : mem_RoundUpToAlignment(size);
+	const size_t el_size = p->el_size? p->el_size : Align<allocationAlignment>(size);
 
 	// note: this can never happen in pools with variable-sized elements
 	// because they disallow pool_free.

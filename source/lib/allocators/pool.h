@@ -24,8 +24,8 @@
  * pool allocator
  */
 
-#ifndef INCLUDED_POOL
-#define INCLUDED_POOL
+#ifndef INCLUDED_ALLOCATORS_POOL
+#define INCLUDED_ALLOCATORS_POOL
 
 #include "lib/allocators/dynarray.h"
 
@@ -321,4 +321,4 @@ bool operator!=(const pool_allocator<T1>&, const pool_allocator<T2>&) throw ()
 	return false;
 }
 
-#endif	// #ifndef INCLUDED_POOL
+#endif	// #ifndef INCLUDED_ALLOCATORS_POOL

@@ -1,6 +1,5 @@
-#ifndef INCLUDED_UNIQUE_RANGE
-#define INCLUDED_UNIQUE_RANGE
-
+#ifndef INCLUDED_ALLOCATORS_UNIQUE_RANGE
+#define INCLUDED_ALLOCATORS_UNIQUE_RANGE
 
 #define ASSERT debug_assert
 
@@ -183,4 +182,4 @@ static inline void swap(UniqueRange& p1, RVALUE_REF(UniqueRange) p2)
 
 }
 
-#endif	// #ifndef INCLUDED_UNIQUE_RANGE
+#endif	// #ifndef INCLUDED_ALLOCATORS_UNIQUE_RANGE

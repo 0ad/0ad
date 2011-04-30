@@ -27,9 +27,8 @@
 #include "precompiled.h"
 #include "lib/allocators/dynarray.h"
 
-#include "lib/posix/posix_mman.h"	// PROT_* constants for da_set_prot
-#include "lib/sysdep/cpu.h"
-#include "lib/allocators/mem_util.h"
+#include "lib/alignment.h"
+#include "lib/allocators/page_aligned.h"
 
 
 // indicates that this DynArray must not be resized or freed
@@ -52,9 +51,7 @@ static LibError validate_da(DynArray* da)
 //		WARN_RETURN(ERR::_1);
 	// note: don't check if base is page-aligned -
 	// might not be true for 'wrapped' mem regions.
-//	if(!mem_IsPageMultiple((uintptr_t)base))
-//		WARN_RETURN(ERR::_2);
-	if(!mem_IsPageMultiple(max_size_pa))
+	if(!IsAligned(max_size_pa, pageSize))
 		WARN_RETURN(ERR::_3);
 	if(cur_size > max_size_pa)
 		WARN_RETURN(ERR::_4);
@@ -71,7 +68,7 @@ static LibError validate_da(DynArray* da)
 
 LibError da_alloc(DynArray* da, size_t max_size)
 {
-	const size_t max_size_pa = mem_RoundUpToPage(max_size);
+	const size_t max_size_pa = Align<pageSize>(max_size);
 
 	u8* p = 0;
 	if(max_size_pa)	// (avoid mmap failure)
@@ -117,8 +114,8 @@ LibError da_set_size(DynArray* da, size_t new_size)
 		WARN_RETURN(ERR::LOGIC);
 
 	// determine how much to add/remove
-	const size_t cur_size_pa = mem_RoundUpToPage(da->cur_size);
-	const size_t new_size_pa = mem_RoundUpToPage(new_size);
+	const size_t cur_size_pa = Align<pageSize>(da->cur_size);
+	const size_t new_size_pa = Align<pageSize>(new_size);
 	const ssize_t size_delta_pa = (ssize_t)new_size_pa - (ssize_t)cur_size_pa;
 
 	// not enough memory to satisfy this expand request: abort.
@@ -173,7 +170,7 @@ LibError da_set_prot(DynArray* da, int prot)
 LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 {
 	da->base        = p;
-	da->max_size_pa = mem_RoundUpToPage(size);
+	da->max_size_pa = Align<pageSize>(size);
 	da->cur_size    = size;
 	da->cur_size_pa = da->max_size_pa;
 	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;

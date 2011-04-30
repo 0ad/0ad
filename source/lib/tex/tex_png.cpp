@@ -115,8 +115,8 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 	shared_ptr<u8> data;
 	AllocateAligned(data, img_size, pageSize);
 
-	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
-	png_read_image(png_ptr, (png_bytepp)rows.get());
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
+	png_read_image(png_ptr, (png_bytepp)&rows[0]);
 	png_read_end(png_ptr, info_ptr);
 
 	// success; make sure all data was consumed.
@@ -164,12 +164,12 @@ static LibError png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	u8* data = tex_get_data(t);
-	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN);
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN);
 
 	// PNG is native RGB.
 	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
 
-	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows.get());
+	png_set_rows(png_ptr, info_ptr, (png_bytepp)&rows[0]);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
 
 	return INFO::OK;

@@ -23,7 +23,7 @@
 #include "precompiled.h"
 #include "lib/allocators/shared_ptr.h"
 
-#include "lib/allocators/allocators.h"	// AllocatorChecker
+#include "lib/allocators/allocator_checker.h"
 
 
 #ifndef NDEBUG

@@ -27,8 +27,8 @@
 #include "precompiled.h"
 #include "lib/allocators/bucket.h"
 
-#include "lib/bits.h"
-#include "lib/allocators/mem_util.h"
+#include "lib/alignment.h"
+#include "lib/allocators/freelist.h"
 
 
 // power-of-2 isn't required; value is arbitrary.
@@ -38,7 +38,7 @@ const size_t bucketSize = 4000;
 LibError bucket_create(Bucket* b, size_t el_size)
 {
 	b->freelist = mem_freelist_Sentinel();
-	b->el_size = mem_RoundUpToAlignment(el_size);
+	b->el_size = Align<allocationAlignment>(el_size);
 
 	// note: allocating here avoids the is-this-the-first-time check
 	// in bucket_alloc, which speeds things up.
@@ -52,7 +52,7 @@ LibError bucket_create(Bucket* b, size_t el_size)
 	}
 
 	*(u8**)b->bucket = 0;	// terminate list
-	b->pos = mem_RoundUpToAlignment(sizeof(u8*));
+	b->pos = Align<allocationAlignment>(sizeof(u8*));
 	b->num_buckets = 1;
 	return INFO::OK;
 }
@@ -78,7 +78,7 @@ void bucket_destroy(Bucket* b)
 
 void* bucket_alloc(Bucket* b, size_t size)
 {
-	size_t el_size = b->el_size? b->el_size : mem_RoundUpToAlignment(size);
+	size_t el_size = b->el_size? b->el_size : Align<allocationAlignment>(size);
 	// must fit in a bucket
 	debug_assert(el_size <= bucketSize-sizeof(u8*));
 
@@ -98,7 +98,7 @@ void* bucket_alloc(Bucket* b, size_t size)
 		b->bucket = bucket;
 		// skip bucket list field and align (note: malloc already
 		// aligns to at least 8 bytes, so don't take b->bucket into account)
-		b->pos = mem_RoundUpToAlignment(sizeof(u8*));;
+		b->pos = Align<allocationAlignment>(sizeof(u8*));;
 		b->num_buckets++;
 	}
 

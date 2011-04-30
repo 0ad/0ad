@@ -26,7 +26,7 @@
 #include "lib/bits.h"	// PopulationCount
 #include "lib/timer.h"
 #include "lib/module_init.h"
-#include "lib/allocators/allocators.h"	// page_aligned_alloc
+#include "lib/allocators/page_aligned.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/acpi.h"
 #include "lib/sysdep/os/win/win.h"

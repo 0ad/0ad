@@ -24,8 +24,10 @@
  * dynamic (expandable) array
  */
 
-#ifndef INCLUDED_DYNARRAY
-#define INCLUDED_DYNARRAY
+#ifndef INCLUDED_ALLOCATORS_DYNARRAY
+#define INCLUDED_ALLOCATORS_DYNARRAY
+
+#include "lib/posix/posix_mman.h"	// PROT_*
 
 /**
  * provides a memory range that can be expanded but doesn't waste
@@ -146,4 +148,4 @@ LIB_API LibError da_read(DynArray* da, void* data_dst, size_t size);
  **/
 LIB_API LibError da_append(DynArray* da, const void* data_src, size_t size);
 
-#endif	// #ifndef INCLUDED_DYNARRAY
+#endif	// #ifndef INCLUDED_ALLOCATORS_DYNARRAY

@@ -24,8 +24,8 @@
  * bucket allocator
  */
 
-#ifndef INCLUDED_BUCKET
-#define INCLUDED_BUCKET
+#ifndef INCLUDED_ALLOCATORS_BUCKET
+#define INCLUDED_ALLOCATORS_BUCKET
 
 /**
  * allocator design goals:
@@ -111,4 +111,4 @@ LIB_API void* bucket_fast_alloc(Bucket* b);
  **/
 LIB_API void bucket_free(Bucket* b, void* el);
 
-#endif	// #ifndef INCLUDED_BUCKET
+#endif	// #ifndef INCLUDED_ALLOCATORS_BUCKET
