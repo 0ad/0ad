@@ -21,8 +21,7 @@
  */
 
 /*
- * SDL input redirector; dispatches to multiple handlers and allows
- * record/playback of evs.
+ * SDL input redirector; dispatches to multiple handlers.
  */
 
 #include "precompiled.h"
@@ -53,7 +52,7 @@ void in_reset_handlers()
 }
 
 // send ev to each handler until one returns IN_HANDLED
-static void dispatch_ev(const SDL_Event_* ev)
+void in_dispatch_event(const SDL_Event_* ev)
 {
 	for(int i = (int)handler_stack_top-1; i >= 0; i--)
 	{
@@ -68,115 +67,5 @@ static void dispatch_ev(const SDL_Event_* ev)
 		// .. invalid return value
 		else
 			debug_assert(0);	// invalid handler return value
-	}
-}
-
-
-//-----------------------------------------------------------------------------
-
-static enum
-{
-	INIT,		// first call to in_record() or in_playback(): register cleanup routine
-	IDLE,
-	RECORD,
-	PLAYBACK
-}
-state = INIT;
-
-static FILE* f;
-
-u32 game_ticks;
-
-static u32 time_adjust = 0;
-static u32 next_ev_time;
-
-
-void in_stop()
-{
-	if(f)
-	{
-		fclose(f);
-		f = 0;
-	}
-
-	state = IDLE;
-}
-
-
-LibError in_record(const char* fn)
-{
-	if(state == INIT)
-		atexit(in_stop);
-
-	in_stop();
-
-	f = fopen(fn, "wb");
-	if(!f)
-		WARN_RETURN(ERR::FAIL);
-
-	(void)fwrite(&game_ticks, sizeof(u32), 1, f);
-
-	state = RECORD;
-
-	return INFO::OK;
-}
-
-
-LibError in_playback(const char* fn)
-{
-	if(state == INIT)
-		atexit(in_stop);
-
-	in_stop();
-
-	f = fopen(fn, "rb");
-	if(!f)
-		WARN_RETURN(ERR::FAIL);
-
-	u32 rec_start_time;
-	(void)fread(&rec_start_time, sizeof(u32), 1, f);
-	time_adjust = game_ticks-rec_start_time;
-
-	(void)fread(&next_ev_time, sizeof(u32), 1, f);
-	next_ev_time += time_adjust;
-
-	state = PLAYBACK;
-
-	return INFO::OK;
-}
-
-
-
-void in_dispatch_event(const SDL_Event_* ev)
-{
-	if(state == RECORD)
-	{
-		(void)fwrite(&game_ticks, sizeof(u32), 1, f);
-		(void)fwrite(ev, sizeof(SDL_Event_), 1, f);
-	}
-
-	dispatch_ev(ev);
-}
-
-
-void in_dispatch_recorded_events()
-{
-	SDL_Event_ ev;
-
-	while(state == PLAYBACK && next_ev_time <= game_ticks)
-	{
-		(void)fread(&ev, sizeof(SDL_Event_), 1, f);
-
-		// do this before dispatch_ev(),
-		// in case a handler calls in_stop() (setting f to 0)
-		if(!fread(&next_ev_time, sizeof(u32), 1, f))
-{
-			in_stop();
-exit(0x73c07d);
-// TODO: 'disconnect'?
-}
-		next_ev_time += time_adjust;			
-
-		in_dispatch_event(&ev);	
 	}
 }

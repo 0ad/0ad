@@ -21,8 +21,7 @@
  */
 
 /*
- * SDL input redirector; dispatches to multiple handlers and allows
- * record/playback of events.
+ * SDL input redirector; dispatches to multiple handlers.
  */
 
 #ifndef INCLUDED_INPUT
@@ -55,11 +54,5 @@ extern void in_reset_handlers();
 
 // send event to each handler (newest first) until one returns true
 extern void in_dispatch_event(const SDL_Event_* event);
-
-extern void in_dispatch_recorded_events();
-
-extern LibError in_record(const char* fn);
-extern LibError in_playback(const char* fn);
-extern void in_stop(void);
 
 #endif	// #ifndef INCLUDED_INPUT
