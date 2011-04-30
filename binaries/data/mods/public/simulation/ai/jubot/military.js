@@ -14,7 +14,7 @@ var MilitaryAttackManager = Class({
 		this.defsquad = 10;
 		this.defsquadmin = 2;
 		this.findatype = 1;
-		this.killstrat = 3;
+		this.killstrat = 0;
 		this.changetime = 60*1000;
 		this.changetimeReg = 60*5000;
 		this.changetimeRegDef = 60*5000;
@@ -177,6 +177,9 @@ var MilitaryAttackManager = Class({
 				var dist = VectorDistance(foeposition, currentPosition);
 				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
 				}
+				else {
+				return false;
+				}
 			});
 			if (targets.length >= 5){
 				regroupneeded.forEach(function(person) {
@@ -202,6 +205,9 @@ var MilitaryAttackManager = Class({
 				var dist = VectorDistance(foeposition, currentPosition);
 				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
 				}
+				else {
+				return false;
+				}
 			});
 			if (targets.length >= 5){
 				regroupneeded.forEach(function(person) {
@@ -226,6 +232,9 @@ var MilitaryAttackManager = Class({
 				var dist = VectorDistance(foeposition, currentPosition);
 				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
 				}
+				else {
+				return false;
+				}
 			});
 			if (targets.length >= 5){
 				regroupneeded.forEach(function(person) {
@@ -249,6 +258,9 @@ var MilitaryAttackManager = Class({
 				if (foeposition){
 				var dist = VectorDistance(foeposition, currentPosition);
 				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
+				}
+				else {
+				return false;
 				}
 			});
 			if (targets.length >= 5){
@@ -426,22 +438,22 @@ var MilitaryAttackManager = Class({
 				}
 			//Iberians
 				else if (gameState.displayCiv() == "iber"){
-					if (this.attacknumbers < 0.2){
+					if (this.attacknumbers < 0.25){
 					this.trainSomeTroops(gameState, planGroups, "units/iber_super_infantry");
 					}
-					else if (this.attacknumbers < 0.3){
+					else if (this.attacknumbers < 0.4){
 					this.trainSomeTroops(gameState, planGroups, "units/iber_super_cavalry");
 					}
-					else if (this.attacknumbers < 0.4){
+					else if (this.attacknumbers < 0.5){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_slinger_b");
 					}
-					else if (this.attacknumbers < 0.5){
+					else if (this.attacknumbers < 0.6){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_spearman_b");
 					}
-					else if (this.attacknumbers < 0.6){
+					else if (this.attacknumbers < 0.7){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
 					}
-					else if (this.attacknumbers < 0.7){
+					else if (this.attacknumbers < 0.8){
 					this.trainMachine(gameState, planGroups, "units/iber_mechanical_siege_ram");
 					}
 					else {
@@ -457,7 +469,7 @@ var MilitaryAttackManager = Class({
 			else if (this.attacknumbers < 0.25 && gameState.displayCiv() == "celt"){
 			this.trainSomeTroops(gameState, planGroups, "units/celt_super_cavalry_brit");
 			}
-			else if (this.attacknumbers < 0.35 && gameState.displayCiv() == "iber"){
+			else if (this.attacknumbers < 0.4 && gameState.displayCiv() == "iber"){
 			this.trainSomeTroops(gameState, planGroups, "units/iber_super_cavalry");
 			}
 			else if (this.attacknumbers < 0.6 && gameState.displayCiv() == "celt"){
