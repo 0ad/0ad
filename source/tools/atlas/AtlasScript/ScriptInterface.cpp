@@ -499,10 +499,10 @@ template jsval ScriptInterface::ToJSVal<std::vector<wxString> >(JSContext*, std:
 
 ////////////////////////////////////////////////////////////////
 
-struct ScriptInterface_impl
+struct AtlasScriptInterface_impl
 {
-	ScriptInterface_impl();
-	~ScriptInterface_impl();
+	AtlasScriptInterface_impl();
+	~AtlasScriptInterface_impl();
 	static JSBool LoadScript(JSContext* cx, const jschar* chars, uintN length, const char* filename, jsval* rval);
 	void RegisterMessages(JSObject* parent);
 	void Register(const char* name, JSNative fptr, uintN nargs);
@@ -563,7 +563,7 @@ namespace
 		JSString* code = JSVAL_TO_STRING(JS_ARGV(cx, vp)[1]);
 		
 		jsval rval = JSVAL_VOID;
-		if (!ScriptInterface_impl::LoadScript(cx,
+		if (!AtlasScriptInterface_impl::LoadScript(cx,
 				JS_GetStringChars(code), (uintN)JS_GetStringLength(code),
 				name.c_str(), &rval))
 			return JS_FALSE;
@@ -589,7 +589,7 @@ namespace
 	}
 }
 
-ScriptInterface_impl::ScriptInterface_impl()
+AtlasScriptInterface_impl::AtlasScriptInterface_impl()
 {
 	m_rt = JS_NewRuntime(RUNTIME_SIZE);
 	assert(m_rt); // TODO: error handling
@@ -629,14 +629,14 @@ ScriptInterface_impl::ScriptInterface_impl()
 	RegisterMessages(m_atlas);
 }
 
-ScriptInterface_impl::~ScriptInterface_impl()
+AtlasScriptInterface_impl::~AtlasScriptInterface_impl()
 {
 	JS_EndRequest(m_cx);
 	JS_DestroyContext(m_cx);
 	JS_DestroyRuntime(m_rt);
 }
 
-JSBool ScriptInterface_impl::LoadScript(JSContext* cx, const jschar* chars, uintN length, const char* filename, jsval* rval)
+JSBool AtlasScriptInterface_impl::LoadScript(JSContext* cx, const jschar* chars, uintN length, const char* filename, jsval* rval)
 {
 	JSObject* scriptObj = JS_NewObject(cx, NULL, NULL, NULL);
 	if (! scriptObj)
@@ -651,14 +651,14 @@ JSBool ScriptInterface_impl::LoadScript(JSContext* cx, const jschar* chars, uint
 	return JS_TRUE;
 }
 
-void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
+void AtlasScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
 {
 	JS_DefineFunction(m_cx, m_atlas, name, fptr, nargs, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 }
 
 
 ScriptInterface::ScriptInterface(SubmitCommand submitCommand)
-	: m(new ScriptInterface_impl())
+	: m(new AtlasScriptInterface_impl())
 {
 	g_SubmitCommand = submitCommand;
 }
@@ -877,7 +877,7 @@ namespace
 #undef COMMAND
 #undef QUERY
 
-void ScriptInterface_impl::RegisterMessages(JSObject* parent)
+void AtlasScriptInterface_impl::RegisterMessages(JSObject* parent)
 {
 	using namespace AtlasMessage;
 	

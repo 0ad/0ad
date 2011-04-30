@@ -40,7 +40,7 @@ class wxPanel;
 namespace AtlasMessage { struct mWorldCommand; }
 typedef void (*SubmitCommand)(AtlasMessage::mWorldCommand* command);
 
-struct ScriptInterface_impl;
+struct AtlasScriptInterface_impl;
 class ScriptInterface
 {
 public:
@@ -88,7 +88,7 @@ private:
 	bool Eval_(const wxString& name, jsval& ret);
 
 	void Register(const char* name, JSNative fptr, size_t nargs);
-	std::auto_ptr<ScriptInterface_impl> m;
+	std::auto_ptr<AtlasScriptInterface_impl> m;
 
 // The nasty macro/template bits are split into a separate file so you don't have to look at them
 #include "NativeWrapper.inl"
