@@ -24,6 +24,7 @@
 #include "lib/file/vfs/vfs.h"
 
 #include "lib/allocators/shared_ptr.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/file/file_system_util.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/file/common/trace.h"
@@ -38,6 +39,13 @@ ERROR_ASSOCIATE(ERR::VFS_DIR_NOT_FOUND, L"VFS directory not found", -1);
 ERROR_ASSOCIATE(ERR::VFS_FILE_NOT_FOUND, L"VFS file not found", -1);
 ERROR_ASSOCIATE(ERR::VFS_ALREADY_MOUNTED, L"VFS path already mounted", -1);
 
+static pthread_mutex_t vfs_mutex = PTHREAD_MUTEX_INITIALIZER;
+struct ScopedLock
+{
+	ScopedLock() { pthread_mutex_lock(&vfs_mutex); }
+	~ScopedLock() {	pthread_mutex_unlock(&vfs_mutex); }
+};
+
 class VFS : public IVFS
 {
 public:
@@ -49,6 +57,7 @@ public:
 
 	virtual LibError Mount(const VfsPath& mountPoint, const OsPath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
+		ScopedLock s;
 		if(!fs_util::DirectoryExists(path))
 		{
 			if(flags & VFS_MOUNT_MUST_EXIST)
@@ -67,6 +76,7 @@ public:
 
 	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const
 	{
+		ScopedLock s;
 		VfsDirectory* directory; VfsFile* file;
 		LibError ret = vfs_Lookup(pathname, &m_rootDirectory, directory, &file);
 		if(!pfileInfo)	// just indicate if the file exists without raising warnings.
@@ -78,6 +88,7 @@ public:
 
 	virtual LibError GetFilePriority(const VfsPath& pathname, size_t* ppriority) const
 	{
+		ScopedLock s;
 		VfsDirectory* directory; VfsFile* file;
 		RETURN_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 		*ppriority = file->Priority();
@@ -86,6 +97,7 @@ public:
 
 	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
 	{
+		ScopedLock s;
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(path, &m_rootDirectory, directory, 0));
 
@@ -115,6 +127,7 @@ public:
 
 	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size)
 	{
+		ScopedLock s;
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
@@ -135,6 +148,7 @@ public:
 
 	virtual LibError LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size)
 	{
+		ScopedLock s;
 		const bool isCacheHit = m_fileCache.Retrieve(pathname, fileContents, size);
 		if(!isCacheHit)
 		{
@@ -170,6 +184,7 @@ public:
 
 	virtual std::wstring TextRepresentation() const
 	{
+		ScopedLock s;
 		std::wstring textRepresentation;
 		textRepresentation.reserve(100*KiB);
 		DirectoryDescriptionR(textRepresentation, m_rootDirectory, 0);
@@ -178,6 +193,7 @@ public:
 
 	virtual LibError GetRealPath(const VfsPath& pathname, OsPath& realPathname)
 	{
+		ScopedLock s;
 		VfsDirectory* directory; VfsFile* file;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 		realPathname = file->Loader()->Path() / pathname.Filename();
@@ -186,6 +202,7 @@ public:
 
 	virtual LibError GetVirtualPath(const OsPath& realPathname, VfsPath& pathname)
 	{
+		ScopedLock s;
 		const OsPath realPath = realPathname.Parent()/"";
 		VfsPath path;
 		RETURN_ERR(FindRealPathR(realPath, m_rootDirectory, L"", path));
@@ -195,6 +212,7 @@ public:
 
 	virtual LibError Invalidate(const VfsPath& pathname)
 	{
+		ScopedLock s;
 		m_fileCache.Remove(pathname);
 
 		VfsDirectory* directory;
@@ -207,6 +225,7 @@ public:
 
 	virtual void Clear()
 	{
+		ScopedLock s;
 		m_rootDirectory.Clear();
 	}
 

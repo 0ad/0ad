@@ -55,11 +55,13 @@ enum VfsMountFlags
 
 	/**
 	 * return ERR::VFS_DIR_NOT_FOUND if the given real path doesn't exist.
-	 * (the default behaviour is to create all real directories in the path)
+	 * (the default behavior is to create all real directories in the path)
 	 **/
 	VFS_MOUNT_MUST_EXIST = 4
 };
 
+// (member functions are thread-safe after the instance has been
+// constructed - each acquires a pthread mutex.)
 struct IVFS
 {
 	virtual ~IVFS() {}

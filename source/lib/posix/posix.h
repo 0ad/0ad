@@ -75,7 +75,6 @@ need only be renamed (e.g. _open, _stat).
 //#include "lib/posix/posix_mman.h"
 //#include "lib/posix/posix_pthread.h"
 //#include "lib/posix/posix_sock.h"
-//#include "lib/posix/posix_terminal.h"
 //#include "lib/posix/posix_time.h"
 //#include "lib/posix/posix_utsname.h"
 
