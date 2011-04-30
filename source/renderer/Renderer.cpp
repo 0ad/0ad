@@ -1699,13 +1699,6 @@ void CRenderer::BindTexture(int unit,GLuint tex)
 	}
 }
 
-static inline void CopyTriple(unsigned char* dst,const unsigned char* src)
-{
-	dst[0]=src[0];
-	dst[1]=src[1];
-	dst[2]=src[2];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
 // calculate the coordinate of each alphamap within this packed texture
@@ -1755,8 +1748,10 @@ int CRenderer::LoadAlphaMaps()
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
-		size_t this_width = 0, this_bpp = 0;	// fail-safe
-		(void)ogl_tex_get_size(textures[i], &this_width, 0, &this_bpp);
+		size_t this_width = 0, this_height = 0, this_bpp = 0;	// fail-safe
+		(void)ogl_tex_get_size(textures[i], &this_width, &this_height, &this_bpp);
+		if(this_width != this_height)
+			DEBUG_DISPLAY_ERROR(L"Alpha maps are not square");
 		// .. first iteration: establish size
 		if(i == 0)
 		{
@@ -1775,55 +1770,53 @@ int CRenderer::LoadAlphaMaps()
 	size_t total_w = round_up_to_pow2(tile_w * NumAlphaMaps);
 	size_t total_h = base; debug_assert(is_pow2(total_h));
 	shared_ptr<u8> data;
-	AllocateAligned(data, total_w*total_h*3, maxSectorSize);
+	AllocateAligned(data, total_w*total_h, maxSectorSize);
 	// for each tile on row
-	for(size_t i=0;i<NumAlphaMaps;i++)
+	for (size_t i = 0; i < NumAlphaMaps; i++)
 	{
 		// get src of copy
 		u8* src = 0;
 		(void)ogl_tex_get_data(textures[i], &src);
 
-		size_t srcstep=bpp/8;
+		size_t srcstep = bpp/8;
 
 		// get destination of copy
-		u8* dst=data.get()+3*(i*tile_w);
+		u8* dst = data.get() + (i*tile_w);
 
 		// for each row of image
-		for (size_t j=0;j<base;j++) {
+		for (size_t j = 0; j < base; j++)
+		{
 			// duplicate first pixel
-			CopyTriple(dst,src);
-			dst+=3;
-			CopyTriple(dst,src);
-			dst+=3;
+			*dst++ = *src;
+			*dst++ = *src;
 
 			// copy a row
-			for (size_t k=0;k<base;k++) {
-				CopyTriple(dst,src);
-				dst+=3;
-				src+=srcstep;
+			for (size_t k = 0; k < base; k++)
+			{
+				*dst++ = *src;
+				src += srcstep;
 			}
+
 			// duplicate last pixel
-			CopyTriple(dst,(src-srcstep));
-			dst+=3;
-			CopyTriple(dst,(src-srcstep));
-			dst+=3;
+			*dst++ = *(src-srcstep);
+			*dst++ = *(src-srcstep);
 
 			// advance write pointer for next row
-			dst+=3*(total_w-tile_w);
+			dst += total_w-tile_w;
 		}
 
-		m_AlphaMapCoords[i].u0=float(i*tile_w+2)/float(total_w);
-		m_AlphaMapCoords[i].u1=float((i+1)*tile_w-2)/float(total_w);
-		m_AlphaMapCoords[i].v0=0.0f;
-		m_AlphaMapCoords[i].v1=1.0f;
+		m_AlphaMapCoords[i].u0 = float(i*tile_w+2) / float(total_w);
+		m_AlphaMapCoords[i].u1 = float((i+1)*tile_w-2) / float(total_w);
+		m_AlphaMapCoords[i].v0 = 0.0f;
+		m_AlphaMapCoords[i].v1 = 1.0f;
 	}
 
-	for (size_t i=0;i<NumAlphaMaps;i++)
+	for (size_t i = 0; i < NumAlphaMaps; i++)
 		(void)ogl_tex_free(textures[i]);
 
 	// upload the composite texture
 	Tex t;
-	(void)tex_wrap(total_w, total_h, 24, 0, data, 0, &t);
+	(void)tex_wrap(total_w, total_h, 8, TEX_GREY, data, 0, &t);
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
