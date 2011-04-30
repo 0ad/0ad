@@ -140,7 +140,7 @@ TestBotAI.prototype.OnUpdate = function()
 			planGroup.resetPlans();
 	}
 	if (this.turn == 0){
-		this.chat("Good morning. Please prepare for annhilation. Jubal apologises for any inconvenience likely to be caused by your imminent demise.");
+		this.chat("Good morning. Please prepare for annihilation. Jubal apologises for any inconvenience likely to be caused by your imminent demise.");
 		}
 	this.turn++;
 };
