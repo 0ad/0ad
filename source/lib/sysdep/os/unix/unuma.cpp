@@ -38,13 +38,13 @@ size_t numa_NodeFromProcessor(size_t UNUSED(processor))
 
 uintptr_t numa_ProcessorMaskFromNode(size_t node)
 {
-	debug_assert(node == 0);
+	ENSURE(node == 0);
 	return bit_mask<uintptr_t>(os_cpu_NumProcessors());
 }
 
 size_t numa_AvailableMemory(size_t node)
 {
-	debug_assert(node == 0);
+	ENSURE(node == 0);
 	return os_cpu_MemoryAvailable();
 }
 

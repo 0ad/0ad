@@ -23,6 +23,7 @@
 #include "precompiled.h"
 
 #include "lib/sysdep/os_cpu.h"
+#include "lib/alignment.h"
 #include "lib/bits.h"
 
 #include <sys/sysctl.h>
@@ -38,7 +39,7 @@ size_t os_cpu_NumProcessors()
 		int ncpus;
 		size_t len = sizeof(ncpus);
 		int ret = sysctl(mib, 2, &ncpus, &len, NULL, 0);
-		debug_assert(ret != -1);
+		ENSURE(ret != -1);
 		numProcessors = (size_t)ncpus;
 	}
 

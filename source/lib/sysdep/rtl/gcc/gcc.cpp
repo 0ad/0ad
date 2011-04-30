@@ -67,7 +67,7 @@ void* rtl_AllocateAligned(size_t size, size_t align)
 		(void *)(round_down(uintptr_t(malloc_ptr), uintptr_t(align)) + align);
 
 	// Just make sure we did the right thing with all the alignment hacks above.
-	debug_assert(((void**)aligned_ptr) - 1 >= malloc_ptr);
+	ENSURE(((void**)aligned_ptr) - 1 >= malloc_ptr);
 
 	// Store the original pointer which will have to be sent to free().
 	((void **)aligned_ptr)[-1] = malloc_ptr;

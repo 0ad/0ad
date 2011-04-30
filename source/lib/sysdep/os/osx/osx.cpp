@@ -52,7 +52,7 @@ LibError sys_clipboard_free(wchar_t* copy)
 {
 	// Since clipboard_get never returns allocated memory (unimplemented), we
 	// should only ever get called with a NULL pointer.
-	debug_assert(!copy);
+	ENSURE(!copy);
 	return INFO::OK;
 }
 

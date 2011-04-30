@@ -23,6 +23,7 @@
 #include "precompiled.h"
 
 #include "lib/sysdep/os_cpu.h"
+#include "lib/alignment.h"
 #include "lib/bits.h"
 
 #if OS_LINUX
@@ -44,7 +45,7 @@ size_t os_cpu_NumProcessors()
 		else
 		{
 			long res = sysconf(_SC_NPROCESSORS_CONF);
-			debug_assert(res != -1);
+			ENSURE(res != -1);
 			numProcessors = (size_t)res;
 		}
 	}
@@ -113,7 +114,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 	uintptr_t previousProcessorMask = 0;
 	{
 		ret = sched_getaffinity(0, sizeof(set), &set);
-		debug_assert(ret == 0);
+		ENSURE(ret == 0);
 
 		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 		{
@@ -130,7 +131,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 	}
 
 	ret = sched_setaffinity(0, sizeof(set), &set);
-	debug_assert(ret == 0);
+	ENSURE(ret == 0);
 	// (The process gets migrated immediately by the setaffinity call)
 
 	return previousProcessorMask;

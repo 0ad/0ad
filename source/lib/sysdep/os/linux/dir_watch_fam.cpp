@@ -66,7 +66,7 @@ struct DirWatch
 
 	~DirWatch()
 	{
-		debug_assert(initialized > 0);
+		ENSURE(initialized > 0);
 
 		FAMRequest req;
 		req.reqnum = reqnum;

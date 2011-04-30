@@ -69,7 +69,7 @@ int wclosedir(WDIR* wd)
 
 int wopen(const OsPath& pathname, int oflag)
 {
-	debug_assert(!(oflag & O_CREAT));
+	ENSURE(!(oflag & O_CREAT));
 	return open(OsString(pathname).c_str(), oflag);
 }
 
