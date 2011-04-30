@@ -32,6 +32,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/waio.h"
 
+#include "lib/bits.h"	// round_up
 #include "lib/alignment.h"	// IsAligned
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
@@ -411,14 +412,15 @@ LibError waio_close(int fd)
 }
 
 
-LibError waio_Preallocate(int fd, off_t alignedSize, off_t alignment)
+LibError waio_Preallocate(int fd, off_t size)
 {
-	debug_assert(IsAligned(alignedSize, alignment));
-
 	FileControlBlock* fcb = FindFileControlBlock(fd);
 	if(!fcb)
 		WARN_RETURN(ERR::INVALID_HANDLE);
 	const HANDLE hFile = fcb->hFile;
+
+	// Windows requires sector alignment (see discussion in header)
+	const off_t alignedSize = round_up(size, (off_t)maxSectorSize);
 
 	// allocate all space up front to reduce fragmentation
 	LARGE_INTEGER size64; size64.QuadPart = alignedSize;

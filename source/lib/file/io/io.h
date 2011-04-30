@@ -284,7 +284,7 @@ static inline LibError Store(const OsPath& pathname, const void* data, size_t si
 	io::Operation op(file, (void*)data, size);
 
 #if OS_WIN && CONFIG2_FILE_ENABLE_AIO
-	(void)waio_Preallocate(op.fd, (off_t)size, p.alignment);
+	(void)waio_Preallocate(op.fd, (off_t)size);
 #endif
 
 	RETURN_ERR(io::Run(op, p, completedHook, issueHook));

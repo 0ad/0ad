@@ -130,10 +130,10 @@ extern LibError waio_close(int fd);
 // call this before writing a large file to preallocate clusters, thus
 // reducing fragmentation.
 //
-// @param alignedSize must be a multiple of alignment (SetEndOfFile requires
-// sector alignment; this could be avoided by using the undocumented
+// @param size is rounded up to a multiple of maxSectorSize (required by
+// SetEndOfFile; this could be avoided by using the undocumented
 // NtSetInformationFile or SetFileInformationByHandle on Vista and later).
-// use wtruncate after I/O is complete to chop off any excess padding.
+// use wtruncate after I/O is complete to chop off the excess padding.
 //
 // NB: writes that extend a file (i.e. ALL WRITES when creating new files)
 // are synchronous, which prevents overlapping I/O and other work.
@@ -143,6 +143,6 @@ extern LibError waio_close(int fd);
 // note that this exposes the previous disk contents (possibly even to
 // other users since the waio_reopen design cannot deny file sharing) until
 // the application successfully writes to the file.
-LIB_API LibError waio_Preallocate(int fd, off_t alignedSize, off_t alignment);
+LIB_API LibError waio_Preallocate(int fd, off_t size);
 
 #endif	// #ifndef INCLUDED_WAIO
