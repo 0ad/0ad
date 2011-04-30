@@ -42,7 +42,7 @@ bool RelaxNGValidator::LoadGrammar(const std::string& grammar)
 {
 	TIMER_ACCRUE(xml_validation);
 
-	debug_assert(m_Schema == NULL);
+	ENSURE(m_Schema == NULL);
 
 	xmlRelaxNGParserCtxtPtr ctxt = xmlRelaxNGNewMemParserCtxt(grammar.c_str(), (int)grammar.size());
 	m_Schema = xmlRelaxNGParse(ctxt);

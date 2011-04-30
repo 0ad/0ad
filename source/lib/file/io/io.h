@@ -70,11 +70,11 @@ struct Operation
 
 	void Validate() const
 	{
-		debug_assert(fd >= 0);
-		debug_assert(opcode == LIO_READ || opcode == LIO_WRITE);
+		ENSURE(fd >= 0);
+		ENSURE(opcode == LIO_READ || opcode == LIO_WRITE);
 
-		debug_assert(offset >= 0);
-		debug_assert(size >= 0);
+		ENSURE(offset >= 0);
+		ENSURE(size >= 0);
 		// buf can legitimately be 0 (see above)
 	}
 
@@ -112,20 +112,20 @@ struct Parameters
 
 	void Validate(const Operation& op) const
 	{
-		debug_assert(is_pow2(alignment));
-		debug_assert(alignment > 0);
+		ENSURE(is_pow2(alignment));
+		ENSURE(alignment > 0);
 
 		if(blockSize != 0)
 		{
-			debug_assert(is_pow2(blockSize));
-			debug_assert(pageSize <= blockSize);	// (don't bother checking an upper bound)
+			ENSURE(is_pow2(blockSize));
+			ENSURE(pageSize <= blockSize);	// (don't bother checking an upper bound)
 		}
 
-		debug_assert(1 <= queueDepth && queueDepth <= maxQueueDepth);
+		ENSURE(1 <= queueDepth && queueDepth <= maxQueueDepth);
 
-		debug_assert(IsAligned(op.offset, alignment));
+		ENSURE(IsAligned(op.offset, alignment));
 		// op.size doesn't need to be aligned
-		debug_assert(IsAligned(op.buf, alignment));
+		ENSURE(IsAligned(op.buf, alignment));
 	}
 
 	// (ATTO only allows 10, which improves upon 8)

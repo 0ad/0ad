@@ -56,7 +56,7 @@ LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)())
 			continue;
 		}
 
-		debug_assert(latchedInitState == INITIALIZED || latchedInitState < 0);
+		ENSURE(latchedInitState == INITIALIZED || latchedInitState < 0);
 		return (LibError)latchedInitState;
 	}
 }
@@ -84,7 +84,7 @@ LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)())
 		if(latchedInitState == UNINITIALIZED)
 			return INFO::SKIPPED;
 
-		debug_assert(latchedInitState < 0);
+		ENSURE(latchedInitState < 0);
 		return (LibError)latchedInitState;
 	}
 }

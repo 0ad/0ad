@@ -56,14 +56,14 @@ static LibError CreateDirectory(const OsPath& path)
 		// file is "in the way" and needs to be deleted)
 		struct stat s;
 		const int ret = wstat(path, &s);
-		debug_assert(ret == 0);	// (wmkdir said it existed)
-		debug_assert(S_ISDIR(s.st_mode));
+		ENSURE(ret == 0);	// (wmkdir said it existed)
+		ENSURE(S_ISDIR(s.st_mode));
 		return INFO::OK;
 	}
 
 	// unexpected failure
 	debug_printf(L"wmkdir failed with errno=%d\n", errno);
-	debug_assert(0);
+	ENSURE(0);
 	return LibError_from_errno();
 }
 
@@ -74,7 +74,7 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 	const bool addMissingDirectories    = (flags & VFS_LOOKUP_ADD) != 0;
 	const bool createMissingDirectories = (flags & VFS_LOOKUP_CREATE) != 0;
 	const bool skipPopulate = (flags & VFS_LOOKUP_SKIP_POPULATE) != 0;
-	debug_assert((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_SKIP_POPULATE)) == 0);
+	ENSURE((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_SKIP_POPULATE)) == 0);
 
 	directory = startDirectory;
 	if(pfile)
@@ -132,7 +132,7 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 	if(pfile)
 	{
-		debug_assert(!pathname.IsDirectory());
+		ENSURE(!pathname.IsDirectory());
 		const VfsPath filename = pathname.string().substr(pos);
 		*pfile = directory->GetFile(filename);
 		if(!*pfile)

@@ -97,7 +97,7 @@ SELF_TEST_RUN;									// (4)
 (2) wrapping in a namespace is optional and must be removed for C programs.
     it avoids possible name collisions with the module being tested.
 
-(3) TEST *must* be used instead of debug_assert et al.! this is
+(3) TEST *must* be used instead of ENSURE et al.! this is
     explained below.
 
 (4) automatically calls your self_test function at non-local static object

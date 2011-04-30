@@ -289,7 +289,7 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 		flags = DE_NO_CONTINUE;
 	const wchar_t* const lastFuncToSkip = WIDEN(STRINGIZE(DECORATED_NAME(wseh_ExceptionFilter)));
 	ErrorReaction er = debug_DisplayError(message, flags, ep->ContextRecord, lastFuncToSkip, file,line,utf8_from_wstring(func).c_str(), 0);
-	debug_assert(er == ER_CONTINUE);	// nothing else possible
+	ENSURE(er == ER_CONTINUE);	// nothing else possible
 
 	// invoke the Win32 default handler - it calls ExitProcess for
 	// most exception types.

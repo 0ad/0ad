@@ -175,7 +175,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	}
 
 	// TODO: add GLSL support
-	debug_assert(!isGLSL);
+	ENSURE(!isGLSL);
 
 	program = CShaderProgramPtr(CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags));
 	program->Reload();

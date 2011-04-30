@@ -38,7 +38,7 @@ static size_t handler_stack_top = 0;
 
 void in_add_handler(InHandler handler)
 {
-	debug_assert(handler);
+	ENSURE(handler);
 
 	if(handler_stack_top >= MAX_HANDLERS)
 		WARN_ERR_RETURN(ERR::LIMIT);
@@ -56,7 +56,7 @@ void in_dispatch_event(const SDL_Event_* ev)
 {
 	for(int i = (int)handler_stack_top-1; i >= 0; i--)
 	{
-		debug_assert(handler_stack[i] && ev);
+		ENSURE(handler_stack[i] && ev);
 		InReaction ret = handler_stack[i](ev);
 		// .. done, return
 		if(ret == IN_HANDLED)
@@ -66,6 +66,6 @@ void in_dispatch_event(const SDL_Event_* ev)
 			continue;
 		// .. invalid return value
 		else
-			debug_assert(0);	// invalid handler return value
+			ENSURE(0);	// invalid handler return value
 	}
 }

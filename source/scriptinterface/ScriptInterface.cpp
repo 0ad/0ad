@@ -60,7 +60,7 @@ public:
 		m_rooter(NULL)
 	{
 		m_rt = JS_NewRuntime(runtimeSize);
-		debug_assert(m_rt); // TODO: error handling
+		ENSURE(m_rt); // TODO: error handling
 
 #if ENABLE_SCRIPT_PROFILING
 		// Profiler isn't thread-safe, so only enable this on the main thread
@@ -416,7 +416,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JSBool ok;
 
 	m_cx = JS_NewContext(m_runtime->m_rt, STACK_CHUNK_SIZE);
-	debug_assert(m_cx);
+	ENSURE(m_cx);
 
 	// For GC debugging:
 	// JS_SetGCZeal(m_cx, 2);
@@ -449,7 +449,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	m_glob = JS_NewGlobalObject(m_cx, &global_class);
 	ok = JS_InitStandardClasses(m_cx, m_glob);
-	debug_assert(ok);
+	ENSURE(ok);
 
 	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
@@ -808,7 +808,7 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 {
-	debug_assert(ThreadUtil::IsMainThread()); // VFS isn't thread-safe
+	ENSURE(ThreadUtil::IsMainThread()); // VFS isn't thread-safe
 
 	if (!VfsFileExists(g_VFS, path))
 	{
@@ -896,7 +896,7 @@ CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
 
 CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 {
-	debug_assert(ThreadUtil::IsMainThread()); // VFS isn't thread-safe
+	ENSURE(ThreadUtil::IsMainThread()); // VFS isn't thread-safe
 
 	if (!VfsFileExists(g_VFS, path))
 	{
@@ -1086,7 +1086,7 @@ private:
 			return rval;
 		}
 
-		debug_assert(JSVAL_IS_OBJECT(val));
+		ENSURE(JSVAL_IS_OBJECT(val));
 
 		JSObject* newObj;
 		if (JS_IsArrayObject(cxFrom, JSVAL_TO_OBJECT(val)))

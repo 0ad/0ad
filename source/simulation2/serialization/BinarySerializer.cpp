@@ -146,7 +146,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 		}
 		else
 		{
-			debug_assert(JSVAL_IS_DOUBLE(val));
+			ENSURE(JSVAL_IS_DOUBLE(val));
 
 			// If the value fits in an int, serialise as an int
 			jsdouble d = JSVAL_TO_DOUBLE(val);

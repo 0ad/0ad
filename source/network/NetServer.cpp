@@ -105,8 +105,8 @@ CNetServerWorker::~CNetServerWorker()
 
 bool CNetServerWorker::SetupConnection()
 {
-	debug_assert(m_State == SERVER_STATE_UNCONNECTED);
-	debug_assert(!m_Host);
+	ENSURE(m_State == SERVER_STATE_UNCONNECTED);
+	ENSURE(!m_Host);
 
 	// Bind to default host
 	ENetAddress addr;
@@ -129,14 +129,14 @@ bool CNetServerWorker::SetupConnection()
 
 	// Launch the worker thread
 	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-	debug_assert(ret == 0);
+	ENSURE(ret == 0);
 
 	return true;
 }
 
 bool CNetServerWorker::SendMessage(ENetPeer* peer, const CNetMessage* message)
 {
-	debug_assert(m_Host);
+	ENSURE(m_Host);
 
 	CNetServerSession* session = static_cast<CNetServerSession*>(peer->data);
 
@@ -145,7 +145,7 @@ bool CNetServerWorker::SendMessage(ENetPeer* peer, const CNetMessage* message)
 
 bool CNetServerWorker::Broadcast(const CNetMessage* message)
 {
-	debug_assert(m_Host);
+	ENSURE(m_Host);
 
 	bool ok = true;
 
@@ -277,7 +277,7 @@ bool CNetServerWorker::RunStep()
 
 		SetupSession(session);
 
-		debug_assert(event.peer->data == NULL);
+		ENSURE(event.peer->data == NULL);
 		event.peer->data = session;
 
 		HandleConnect(session);
@@ -487,7 +487,7 @@ void CNetServerWorker::SetTurnLength(u32 msecs)
 
 bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_CLIENT_HANDSHAKE);
+	ENSURE(event->GetType() == (uint)NMT_CLIENT_HANDSHAKE);
 
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
@@ -516,7 +516,7 @@ bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 
 bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_AUTHENTICATE);
+	ENSURE(event->GetType() == (uint)NMT_AUTHENTICATE);
 
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
@@ -585,7 +585,7 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 
 bool CNetServerWorker::OnChat(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_CHAT);
+	ENSURE(event->GetType() == (uint)NMT_CHAT);
 
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
@@ -601,7 +601,7 @@ bool CNetServerWorker::OnChat(void* context, CFsmEvent* event)
 
 bool CNetServerWorker::OnLoadedGame(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_LOADED_GAME);
+	ENSURE(event->GetType() == (uint)NMT_LOADED_GAME);
 
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
@@ -613,7 +613,7 @@ bool CNetServerWorker::OnLoadedGame(void* context, CFsmEvent* event)
 
 bool CNetServerWorker::OnDisconnect(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_CONNECTION_LOST);
+	ENSURE(event->GetType() == (uint)NMT_CONNECTION_LOST);
 
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();

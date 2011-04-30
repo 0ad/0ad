@@ -105,7 +105,7 @@
 #else
 # define UNREACHABLE\
 	STMT(\
-		debug_assert(0);	/* hit supposedly unreachable code */\
+		ENSURE(0);	/* hit supposedly unreachable code */\
 		for(;;){};\
 	)
 #endif
@@ -135,7 +135,7 @@ switch(x % 2)
 #define UID2__ PASTE3__(LINE_, __LINE__, _2)
 
 /**
- * Compile-time debug_assert. Causes a compile error if the expression
+ * Compile-time ENSURE. Causes a compile error if the expression
  * evaluates to zero/false.
  *
  * No runtime overhead; may be used anywhere, including file scope.
@@ -327,6 +327,12 @@ private:\
 // before being pasted.
 #define STRINGIZE2(id) # id
 #define STRINGIZE(id) STRINGIZE2(id)
+
+// for widening non-literals (e.g. __FILE__)
+// note: C99 says __func__ is a magic *variable*, and GCC doesn't allow
+// widening it via preprocessor.
+#define WIDEN2(x) L ## x
+#define WIDEN(x) WIDEN2(x)
 
 
 //-----------------------------------------------------------------------------

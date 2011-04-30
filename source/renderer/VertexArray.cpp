@@ -72,8 +72,8 @@ void VertexArray::SetNumVertices(size_t num)
 // Add vertex attributes like Position, Normal, UV
 void VertexArray::AddAttribute(Attribute* attr)
 {
-	debug_assert((attr->type == GL_FLOAT || attr->type == GL_UNSIGNED_SHORT || attr->type == GL_UNSIGNED_BYTE) && "Unsupported attribute type");
-	debug_assert(attr->elems >= 1 && attr->elems <= 4);
+	ENSURE((attr->type == GL_FLOAT || attr->type == GL_UNSIGNED_SHORT || attr->type == GL_UNSIGNED_BYTE) && "Unsupported attribute type");
+	ENSURE(attr->elems >= 1 && attr->elems <= 4);
 
 	attr->vertexArray = this;
 	m_Attributes.push_back(attr);
@@ -88,9 +88,9 @@ void VertexArray::AddAttribute(Attribute* attr)
 template<>
 VertexArrayIterator<CVector3D> VertexArray::Attribute::GetIterator<CVector3D>() const
 {
-	debug_assert(vertexArray);
-	debug_assert(type == GL_FLOAT);
-	debug_assert(elems >= 3);
+	ENSURE(vertexArray);
+	ENSURE(type == GL_FLOAT);
+	ENSURE(elems >= 3);
 	
 	return vertexArray->MakeIterator<CVector3D>(this);
 }
@@ -98,9 +98,9 @@ VertexArrayIterator<CVector3D> VertexArray::Attribute::GetIterator<CVector3D>() 
 template<>
 VertexArrayIterator<CVector4D> VertexArray::Attribute::GetIterator<CVector4D>() const
 {
-	debug_assert(vertexArray);
-	debug_assert(type == GL_FLOAT);
-	debug_assert(elems >= 4);
+	ENSURE(vertexArray);
+	ENSURE(type == GL_FLOAT);
+	ENSURE(elems >= 4);
 	
 	return vertexArray->MakeIterator<CVector4D>(this);
 }
@@ -108,9 +108,9 @@ VertexArrayIterator<CVector4D> VertexArray::Attribute::GetIterator<CVector4D>() 
 template<>
 VertexArrayIterator<float[2]> VertexArray::Attribute::GetIterator<float[2]>() const
 {
-	debug_assert(vertexArray);
-	debug_assert(type == GL_FLOAT);
-	debug_assert(elems >= 2);
+	ENSURE(vertexArray);
+	ENSURE(type == GL_FLOAT);
+	ENSURE(elems >= 2);
 	
 	return vertexArray->MakeIterator<float[2]>(this);
 }
@@ -118,9 +118,9 @@ VertexArrayIterator<float[2]> VertexArray::Attribute::GetIterator<float[2]>() co
 template<>
 VertexArrayIterator<SColor3ub> VertexArray::Attribute::GetIterator<SColor3ub>() const
 {
-	debug_assert(vertexArray);
-	debug_assert(type == GL_UNSIGNED_BYTE);
-	debug_assert(elems >= 3);
+	ENSURE(vertexArray);
+	ENSURE(type == GL_UNSIGNED_BYTE);
+	ENSURE(elems >= 3);
 	
 	return vertexArray->MakeIterator<SColor3ub>(this);
 }
@@ -128,9 +128,9 @@ VertexArrayIterator<SColor3ub> VertexArray::Attribute::GetIterator<SColor3ub>() 
 template<>
 VertexArrayIterator<SColor4ub> VertexArray::Attribute::GetIterator<SColor4ub>() const
 {
-	debug_assert(vertexArray);
-	debug_assert(type == GL_UNSIGNED_BYTE);
-	debug_assert(elems >= 4);
+	ENSURE(vertexArray);
+	ENSURE(type == GL_UNSIGNED_BYTE);
+	ENSURE(elems >= 4);
 	
 	return vertexArray->MakeIterator<SColor4ub>(this);
 }
@@ -138,9 +138,9 @@ VertexArrayIterator<SColor4ub> VertexArray::Attribute::GetIterator<SColor4ub>() 
 template<>
 VertexArrayIterator<u16> VertexArray::Attribute::GetIterator<u16>() const
 {
-	debug_assert(vertexArray);
-	debug_assert(type == GL_UNSIGNED_SHORT);
-	debug_assert(elems >= 1);
+	ENSURE(vertexArray);
+	ENSURE(type == GL_UNSIGNED_SHORT);
+	ENSURE(elems >= 1);
 
 	return vertexArray->MakeIterator<u16>(this);
 }
@@ -222,7 +222,7 @@ void VertexArray::Layout()
 // Create the VBO if necessary.
 void VertexArray::Upload()
 {
-	debug_assert(m_BackingStore);
+	ENSURE(m_BackingStore);
 	
 	if (!m_VB)
 		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Usage, m_Target);

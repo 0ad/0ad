@@ -153,7 +153,7 @@ static void delete_pair_2nd(std::pair<T,S> v)
 ViewGame::ViewGame()
 : m_SpeedMultiplier(0.f)
 {
-	debug_assert(g_Game);
+	ENSURE(g_Game);
 }
 
 ViewGame::~ViewGame()

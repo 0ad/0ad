@@ -90,7 +90,7 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 	if (!g_Game)
 		return JSVAL_VOID;
 	CSimulation2* sim = g_Game->GetSimulation2();
-	debug_assert(sim);
+	ENSURE(sim);
 
 	CmpPtr<ICmpGuiInterface> gui(*sim, SYSTEM_ENTITY);
 	if (gui.null())
@@ -112,7 +112,7 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 	if (!g_Game)
 		return;
 	CSimulation2* sim = g_Game->GetSimulation2();
-	debug_assert(sim);
+	ENSURE(sim);
 
 	CmpPtr<ICmpCommandQueue> queue(*sim, SYSTEM_ENTITY);
 	if (queue.null())
@@ -169,7 +169,7 @@ std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
 
 void StartNetworkGame(void* UNUSED(cbdata))
 {
-	debug_assert(g_NetServer);
+	ENSURE(g_NetServer);
 	g_NetServer->StartGame();
 }
 
@@ -177,10 +177,10 @@ void StartGame(void* cbdata, CScriptVal attribs, int playerID)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	debug_assert(!g_NetServer);
-	debug_assert(!g_NetClient);
+	ENSURE(!g_NetServer);
+	ENSURE(!g_NetClient);
 
-	debug_assert(!g_Game);
+	ENSURE(!g_Game);
 	g_Game = new CGame();
 
 	// Convert from GUI script context to sim script context
@@ -196,7 +196,7 @@ void SetNetworkGameAttributes(void* cbdata, CScriptVal attribs)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	debug_assert(g_NetServer);
+	ENSURE(g_NetServer);
 
 	g_NetServer->UpdateGameAttributes(attribs, guiManager->GetScriptInterface());
 }
@@ -205,9 +205,9 @@ void StartNetworkHost(void* cbdata, std::wstring playerName)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	debug_assert(!g_NetClient);
-	debug_assert(!g_NetServer);
-	debug_assert(!g_Game);
+	ENSURE(!g_NetClient);
+	ENSURE(!g_NetServer);
+	ENSURE(!g_Game);
 
 	g_NetServer = new CNetServer();
 	if (!g_NetServer->SetupConnection())
@@ -233,9 +233,9 @@ void StartNetworkJoin(void* cbdata, std::wstring playerName, std::string serverA
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
-	debug_assert(!g_NetClient);
-	debug_assert(!g_NetServer);
-	debug_assert(!g_Game);
+	ENSURE(!g_NetClient);
+	ENSURE(!g_NetServer);
+	ENSURE(!g_Game);
 
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game);
@@ -272,14 +272,14 @@ CScriptVal PollNetworkClient(void* cbdata)
 
 void AssignNetworkPlayer(void* UNUSED(cbdata), int playerID, std::string guid)
 {
-	debug_assert(g_NetServer);
+	ENSURE(g_NetServer);
 
 	g_NetServer->AssignPlayer(playerID, guid);
 }
 
 void SendNetworkChat(void* UNUSED(cbdata), std::wstring message)
 {
-	debug_assert(g_NetClient);
+	ENSURE(g_NetClient);
 
 	g_NetClient->SendChatMessage(message);
 }

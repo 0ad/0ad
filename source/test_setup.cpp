@@ -114,9 +114,9 @@ void ScriptTestSetup(ScriptInterface& ifc)
 	// (We don't use VFS because tests might not have the normal VFS paths loaded)
 	OsPath path = DataDir()/"tests/test_setup.js";
 	std::ifstream ifs(OsString(path).c_str());
-	debug_assert(ifs.good());
+	ENSURE(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
 	std::wstring wcontent(content.begin(), content.end());
 	bool ok = ifc.LoadScript(L"test_setup.js", wcontent);
-	debug_assert(ok);
+	ENSURE(ok);
 }

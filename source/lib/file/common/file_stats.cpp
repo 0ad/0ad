@@ -75,7 +75,7 @@ static void timer_start(double* start_time_storage = &start_time)
 {
 	// make sure no measurement is currently active
 	// (since start_time is shared static storage)
-	debug_assert(*start_time_storage == 0.0);
+	ENSURE(*start_time_storage == 0.0);
 	*start_time_storage = timer_Time();
 }
 static double timer_reset(double* start_time_storage = &start_time)
@@ -136,7 +136,7 @@ void stats_open()
 
 void stats_close()
 {
-	debug_assert(open_files_cur > 0);
+	ENSURE(open_files_cur > 0);
 	open_files_cur--;
 }
 
@@ -157,7 +157,7 @@ void stats_buf_alloc(size_t size, size_t alignedSize)
 
 void stats_buf_free()
 {
-	debug_assert(extant_bufs_cur > 0);
+	ENSURE(extant_bufs_cur > 0);
 	extant_bufs_cur--;
 }
 
@@ -191,8 +191,8 @@ ScopedIoMonitor::~ScopedIoMonitor()
 
 void ScopedIoMonitor::NotifyOfSuccess(FileIOImplentation fi, int opcode, off_t size)
 {
-	debug_assert(fi < FI_MAX_IDX);
-	debug_assert(opcode == LIO_READ || opcode == LIO_WRITE);
+	ENSURE(fi < FI_MAX_IDX);
+	ENSURE(opcode == LIO_READ || opcode == LIO_WRITE);
 
 	io_actual_size_total[fi][opcode == LIO_WRITE] += size;
 	io_elapsed_time[fi][opcode == LIO_WRITE] += timer_reset(&m_startTime);
@@ -216,7 +216,7 @@ void stats_cb_finish()
 
 void stats_cache(CacheRet cr, size_t size)
 {
-	debug_assert(cr == CR_HIT || cr == CR_MISS);
+	ENSURE(cr == CR_HIT || cr == CR_MISS);
 
 #if 0
 	if(cr == CR_MISS)
@@ -236,7 +236,7 @@ void stats_cache(CacheRet cr, size_t size)
 
 void stats_block_cache(CacheRet cr)
 {
-	debug_assert(cr == CR_HIT || cr == CR_MISS);
+	ENSURE(cr == CR_HIT || cr == CR_MISS);
 	block_cache_count[cr]++;
 }
 

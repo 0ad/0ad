@@ -45,7 +45,7 @@ void OutputBufferManager::Reset()
 
 void OutputBufferManager::SetBuffer(u8* buffer, size_t size)
 {
-	debug_assert(IsAllowableBuffer(buffer, size));
+	ENSURE(IsAllowableBuffer(buffer, size));
 
 	m_buffer = buffer;
 	m_size = size;

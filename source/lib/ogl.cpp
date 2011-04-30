@@ -67,7 +67,7 @@ static bool have_30, have_21, have_20, have_15, have_14, have_13, have_12;
 // (useful for crash logs).
 const char* ogl_ExtensionString()
 {
-	debug_assert(exts && "call ogl_Init before using this function");
+	ENSURE(exts && "call ogl_Init before using this function");
 	return exts;
 }
 
@@ -186,7 +186,7 @@ static bool isImplementedInCore(const char* ext)
 // takes subsequently added core support for some extensions into account.
 bool ogl_HaveExtension(const char* ext)
 {
-	debug_assert(exts && "call ogl_Init before using this function");
+	ENSURE(exts && "call ogl_Init before using this function");
 
 	if(isImplementedInCore(ext))
 		return true;
@@ -221,7 +221,7 @@ bool ogl_HaveVersion(const char* desired_version)
 	int desired_major, desired_minor;
 	if(sscanf_s(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
 	{
-		debug_assert(0);	// invalid version string
+		ENSURE(0);	// invalid version string
 		return false;
 	}
 
@@ -230,7 +230,7 @@ bool ogl_HaveVersion(const char* desired_version)
 	int major, minor;
 	if(!version || sscanf_s(version, "%d.%d", &major, &minor) != 2)
 	{
-		debug_assert(0);	// GL_VERSION invalid
+		ENSURE(0);	// GL_VERSION invalid
 		return false;
 	}
 
@@ -475,7 +475,7 @@ void ogl_Init()
 	// note: this is less about performance (since the above are not
 	// time-critical) than centralizing the 'OpenGL is ready' check.
 	exts = (const char*)glGetString(GL_EXTENSIONS);
-	debug_assert(exts);	// else: called before OpenGL is ready for use
+	ENSURE(exts);	// else: called before OpenGL is ready for use
 	have_12 = ogl_HaveVersion("1.2");
 	have_13 = ogl_HaveVersion("1.3");
 	have_14 = ogl_HaveVersion("1.4");

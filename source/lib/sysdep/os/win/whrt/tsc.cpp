@@ -164,7 +164,7 @@ public:
 		const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 		if(fadt)
 		{
-			debug_assert(fadt->header.size >= sizeof(FADT));
+			ENSURE(fadt->header.size >= sizeof(FADT));
 
 			// TSC isn't incremented in deep-sleep states => unsafe.
 			if(fadt->IsC3Supported())
@@ -241,6 +241,6 @@ public:
 
 ICounter* CreateCounterTSC(void* address, size_t size)
 {
-	debug_assert(sizeof(CounterTSC) <= size);
+	ENSURE(sizeof(CounterTSC) <= size);
 	return new(address) CounterTSC();
 }

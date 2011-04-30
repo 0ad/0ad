@@ -173,7 +173,7 @@ PSRETURN CGame::ReallyStartGame()
 	{
 		jsval fval, rval;
 		JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), "reallyStartGame", &fval);
-		debug_assert(ok);
+		ENSURE(ok);
 		if (ok && !JSVAL_IS_VOID(fval))
 			ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
 	}

@@ -281,7 +281,7 @@ void DumpHeap(const char* basename, int idx, JSContext* cx)
 	sprintf_s(filename, ARRAY_SIZE(filename), "%s.%03d.txt", basename, idx);
 	OsPath pathname = psLogDir() / filename;
 	FILE* f = sys_OpenFile(pathname, "w");
-	debug_assert(f);
+	ENSURE(f);
 	JS_DumpHeap(cx, f, NULL, 0, NULL, (size_t)-1, NULL);
 	fclose(f);
 }

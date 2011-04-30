@@ -87,7 +87,7 @@ static size_t bmp_hdr_size(const u8* file)
 	{
 		BmpHeader* hdr = (BmpHeader*)file;
 		const u32 ofs = read_le32(&hdr->bfOffBits);
-		debug_assert(ofs >= hdr_size && "bmp_hdr_size invalid");
+		ENSURE(ofs >= hdr_size && "bmp_hdr_size invalid");
 		return ofs;
 	}
 	return hdr_size;

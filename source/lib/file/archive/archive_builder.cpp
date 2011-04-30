@@ -95,13 +95,13 @@ public:
 	{
 		// +1 to skip NULL_ID value
 		FileId id = node - &((*nodes)[0]) +1;
-		debug_assert(id <= nodes->size());
+		ENSURE(id <= nodes->size());
 		return id;
 	}
 
 	FileNode* node_from_id(FileId id) const
 	{
-		debug_assert(id != NULL_ID);
+		ENSURE(id != NULL_ID);
 		return &(*nodes)[id-1];
 	}
 
@@ -387,7 +387,7 @@ class TourBuilder
 
 		const bool introduced_cycle = is_cycle_at(file_nodes, second_id);
 #ifndef NDEBUG
-		debug_assert(introduced_cycle == is_cycle_at(file_nodes, first_id));
+		ENSURE(introduced_cycle == is_cycle_at(file_nodes, first_id));
 #endif
 		if(introduced_cycle)
 		{
@@ -753,7 +753,7 @@ int archive_build_continue(ArchiveBuildState* ab)
 			// 0 means "finished", so don't return that!
 			if(progress_percent == 0)
 				progress_percent = 1;
-			debug_assert(0 < progress_percent && progress_percent <= 100);
+			ENSURE(0 < progress_percent && progress_percent <= 100);
 			return progress_percent;
 		}
 	}
@@ -1020,7 +1020,7 @@ void trace_get(Trace* t)
 		if(last_start_idx == start_idx)
 			continue;
 
-		debug_assert(start_idx < t->total_ents);
+		ENSURE(start_idx < t->total_ents);
 
 		TraceRun& run = runs[t->num_runs++];
 		run.num_ents = last_start_idx - start_idx;
@@ -1031,7 +1031,7 @@ void trace_get(Trace* t)
 			break;
 	}
 
-	debug_assert(t->num_runs != 0);
+	ENSURE(t->num_runs != 0);
 }
 
 

@@ -97,12 +97,12 @@ u8 u8_from_double(double in)
 {
 	if(!(0.0 <= in && in < 1.0))
 	{
-		debug_assert(0);	// clampf not in [0,1)
+		ENSURE(0);	// clampf not in [0,1)
 		return 255;
 	}
 
 	int l = (int)(in * 255.0);
-	debug_assert((unsigned)l <= 255u);
+	ENSURE((unsigned)l <= 255u);
 	return (u8)l;
 }
 
@@ -111,11 +111,11 @@ u16 u16_from_double(double in)
 {
 	if(!(0.0 <= in && in < 1.0))
 	{
-		debug_assert(0);	// clampf not in [0,1)
+		ENSURE(0);	// clampf not in [0,1)
 		return 65535;
 	}
 
 	long l = (long)(in * 65535.0);
-	debug_assert((unsigned long)l <= 65535u);
+	ENSURE((unsigned long)l <= 65535u);
 	return (u16)l;
 }

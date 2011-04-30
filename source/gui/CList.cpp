@@ -77,7 +77,7 @@ void CList::SetupText()
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
-	//debug_assert(m_GeneratedTexts.size()>=1);
+	//ENSURE(m_GeneratedTexts.size()>=1);
 
 	m_ItemsYPositions.resize( pList->m_Items.size()+1 );
 
@@ -348,7 +348,7 @@ void CList::DrawList(const int &selected,
 
 		if (selected != -1)
 		{
-			debug_assert(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
+			ENSURE(selected >= 0 && selected+1 < (int)m_ItemsYPositions.size());
 
 			// Get rectangle of selection:
 			CRect rect_sel(rect.left, rect.top + m_ItemsYPositions[selected] - scroll,

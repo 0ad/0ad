@@ -45,7 +45,7 @@ void MD5::UpdateRest(const u8* data, size_t len)
 
 	// Add as much data as possible to the buffer
 	size_t n = CHUNK_SIZE - m_BufLen;
-//	debug_assert(len >= n);
+//	ENSURE(len >= n);
 	memcpy(m_Buf + m_BufLen, data, n);
 	data += n;
 	len -= n;

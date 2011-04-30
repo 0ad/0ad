@@ -282,7 +282,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 
 		default:
 			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
-			debug_assert(0);
+			ENSURE(0);
 			return JS_FALSE;
 		}
 

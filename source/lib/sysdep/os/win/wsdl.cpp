@@ -87,7 +87,7 @@ public:
 		// get current ramp (once) so we can later restore it.
 		if(!m_hasChanged)
 		{
-			debug_assert(wutil_IsValidHandle(hDC));
+			ENSURE(wutil_IsValidHandle(hDC));
 			if(!GetDeviceGammaRamp(hDC, m_original))
 				return false;
 		}
@@ -135,15 +135,15 @@ private:
 			const double clamped = std::max(0.0, std::min(val, 1.0-DBL_EPSILON));
 			ramp[i] = u16_from_double(clamped);
 		}
-		debug_assert(ramp[0] == 0);
-		debug_assert(ramp[255] == 0xFFFF);
+		ENSURE(ramp[0] == 0);
+		ENSURE(ramp[255] == 0xFFFF);
 	}
 
 	bool Upload(u16* ramps)
 	{
 		WinScopedPreserveLastError s;
 		SetLastError(0);
-		debug_assert(wutil_IsValidHandle(g_hDC));
+		ENSURE(wutil_IsValidHandle(g_hDC));
 		BOOL ok = SetDeviceGammaRamp(g_hDC, ramps);
 		// on multi-monitor NVidia systems, the first call after a reboot
 		// fails, but subsequent ones succeed.
@@ -151,7 +151,7 @@ private:
 		if(ok == FALSE)
 		{
 			ok = SetDeviceGammaRamp(g_hDC, ramps);
-			debug_assert(ok);
+			ENSURE(ok);
 		}
 		return (ok == TRUE);
 	}
@@ -239,7 +239,7 @@ static HWND wnd_CreateWindow(int w, int h)
 	ATOM class_atom = RegisterClassW(&wc);
 	if(!class_atom)
 	{
-		debug_assert(0);	// RegisterClassW failed
+		ENSURE(0);	// RegisterClassW failed
 		return 0;
 	}
 
@@ -342,7 +342,7 @@ static void video_SetPixelFormat(HDC g_hDC, int bpp)
 	// a deadlock on the next line is probably due to VLD's LdrLoadDll hook.
 
 	const int pf = ChoosePixelFormat(g_hDC, &pfd);
-	debug_assert(pf >= 1);
+	ENSURE(pf >= 1);
 	WARN_IF_FALSE(SetPixelFormat(g_hDC, pf, &pfd));
 }
 
@@ -436,7 +436,7 @@ static void video_Shutdown()
 	if(fullscreen)
 	{
 		LONG status = ChangeDisplaySettings(0, 0);
-		debug_assert(status == DISP_CHANGE_SUCCESSFUL);
+		ENSURE(status == DISP_CHANGE_SUCCESSFUL);
 	}
 
 	if(wutil_IsValidHandle(hGLRC))
@@ -609,7 +609,7 @@ static inline SDLKey SDLKeyFromVK(int vk)
 {
 	if(!(0 <= vk && vk < 256))
 	{
-		debug_assert(0);	// invalid vk
+		ENSURE(0);	// invalid vk
 		return SDLK_UNKNOWN;
 	}
 	return g_SDLKeyForVK[vk];
@@ -840,7 +840,7 @@ static void QueueMouseEvent(int x, int y)
 {
 	SDL_Event ev;
 	ev.type = SDL_MOUSEMOTION;
-	debug_assert(unsigned(x|y) <= USHRT_MAX);
+	ENSURE(unsigned(x|y) <= USHRT_MAX);
 	ev.motion.x = (Uint16)x;
 	ev.motion.y = (Uint16)y;
 	QueueEvent(ev);
@@ -852,7 +852,7 @@ static void QueueButtonEvent(int button, int state, int x, int y)
 	ev.type = Uint8((state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP);
 	ev.button.button = (u8)button;
 	ev.button.state  = (u8)state;
-	debug_assert(unsigned(x|y) <= USHRT_MAX);
+	ENSURE(unsigned(x|y) <= USHRT_MAX);
 	ev.button.x = (Uint16)x;
 	ev.button.y = (Uint16)y;
 	QueueEvent(ev);
@@ -889,7 +889,7 @@ static POINT mouse_ScreenFromClient(int client_x, int client_y)
 // get idealized client coordinates or return false if outside our window.
 static bool mouse_GetCoords(int screen_x, int screen_y, int& x, int& y)
 {
-	debug_assert(wutil_IsValidHandle(g_hWnd));
+	ENSURE(wutil_IsValidHandle(g_hWnd));
 
 	POINT screen_pt;
 	screen_pt.x = (LONG)screen_x;
@@ -904,7 +904,7 @@ static bool mouse_GetCoords(int screen_x, int screen_y, int& x, int& y)
 		SetLastError(0);
 		client_pt = screen_pt;	// translated below
 		const int ret = MapWindowPoints(HWND_DESKTOP, g_hWnd, &client_pt, 1);
-		debug_assert(ret != 0 || GetLastError() == 0);
+		ENSURE(ret != 0 || GetLastError() == 0);
 	}
 
 	{
@@ -919,7 +919,7 @@ static bool mouse_GetCoords(int screen_x, int screen_y, int& x, int& y)
 
 	x = client_pt.x;
 	y = client_pt.y;
-	debug_assert(x >= 0 && y >= 0);
+	ENSURE(x >= 0 && y >= 0);
 	return true;
 }
 
@@ -1063,7 +1063,7 @@ void SDL_WarpMouse(int x, int y)
 {
 	// SDL interface provides for int, but the values should be
 	// idealized client coords (>= 0)
-	debug_assert(x >= 0 && y >= 0);
+	ENSURE(x >= 0 && y >= 0);
 	mouse_UpdatePosition(x, y);
 
 	const int client_x = x, client_y = y;
@@ -1189,7 +1189,7 @@ static LRESULT OnPaint(HWND hWnd)
 
 static LRESULT OnDestroy(HWND hWnd)
 {
-	debug_assert(hWnd == g_hWnd);
+	ENSURE(hWnd == g_hWnd);
 	WARN_IF_FALSE(ReleaseDC(g_hWnd, g_hDC));
 	g_hDC = (HDC)INVALID_HANDLE_VALUE;
 	g_hWnd = (HWND)INVALID_HANDLE_VALUE;

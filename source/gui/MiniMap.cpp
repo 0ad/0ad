@@ -417,7 +417,7 @@ void CMiniMap::Draw()
 	vertexArray.reserve(ents.size());
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
-	debug_assert(!cmpRangeManager.null());
+	ENSURE(!cmpRangeManager.null());
 
 	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{

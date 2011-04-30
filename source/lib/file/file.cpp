@@ -46,7 +46,7 @@ LibError FileOpen(const OsPath& pathname, int opcode, int& fd)
 		oflag = O_WRONLY|O_CREAT|O_TRUNC;
 		break;
 	default:
-		debug_assert(0);
+		ENSURE(0);
 		break;
 	}
 #if OS_WIN

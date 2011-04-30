@@ -53,7 +53,7 @@ char* dlerror()
 
 void* dlopen(const char* so_name, int flags)
 {
-	debug_assert(!(flags & RTLD_GLOBAL));
+	ENSURE(!(flags & RTLD_GLOBAL));
 
 	OsPath pathname = Path(so_name).ChangeExtension(L".dll");
 	HMODULE hModule = LoadLibraryW(OsString(pathname).c_str());
@@ -65,6 +65,6 @@ void* dlsym(void* handle, const char* sym_name)
 {
 	HMODULE hModule = HMODULE_from_void(handle);
 	void* sym = GetProcAddress(hModule, sym_name);
-	debug_assert(sym);
+	ENSURE(sym);
 	return sym;
 }

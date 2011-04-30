@@ -886,7 +886,7 @@ next	[a]		Null	[a]		<-- added NewNode
 				}
 
 				// Dive into the alternative node
-				debug_assert(! CurNode->m_AltNode);
+				ENSURE(! CurNode->m_AltNode);
 				CurNode->m_AltNode = new CParserTaskTypeNode();
 				CurNode->m_AltNode->m_ParentNode = CurNode;
 
@@ -929,7 +929,7 @@ next	[a]		Null	[a]		<-- added NewNode
 			{
 				// Check if this is the first input
 				// CONSTRUCT A CHILD NODE
-				debug_assert(! CurNode->m_NextNode);
+				ENSURE(! CurNode->m_NextNode);
 				CurNode->m_NextNode = new CParserTaskTypeNode();
 				CurNode->m_NextNode->m_ParentNode = CurNode;
 
@@ -977,7 +977,7 @@ next	[a]		Null	[a]		<-- added NewNode
 			if (Extract == false)
 			{
 				// CONSTRUCT A CHILD NODE
-				debug_assert(! CurNode->m_NextNode);
+				ENSURE(! CurNode->m_NextNode);
 				CurNode->m_NextNode = new CParserTaskTypeNode();
 				CurNode->m_NextNode->m_ParentNode = CurNode;
 

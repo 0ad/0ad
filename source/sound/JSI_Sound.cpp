@@ -52,7 +52,7 @@ bool JSI_Sound::SetGain(JSContext* cx, uintN argc, jsval* argv)
 	if (! m_Handle)
 		return false;
 
-	debug_assert(argc >= 1); // FIXME
+	ENSURE(argc >= 1); // FIXME
 	float gain;
 	if (! ToPrimitive<float>(cx, argv[0], gain))
 		return false;
@@ -66,7 +66,7 @@ bool JSI_Sound::SetPitch(JSContext* cx, uintN argc, jsval* argv)
 	if (! m_Handle)
 		return false;
 
-	debug_assert(argc >= 1); // FIXME
+	ENSURE(argc >= 1); // FIXME
 	float pitch;
 	if (! ToPrimitive<float>(cx, argv[0], pitch))
 		return false;
@@ -80,7 +80,7 @@ bool JSI_Sound::SetPosition(JSContext* cx, uintN argc, jsval* argv)
 	if (! m_Handle)
 		return false;
 
-	debug_assert(argc >= 1); // FIXME
+	ENSURE(argc >= 1); // FIXME
 
 	CVector3D pos;
 	// absolute world coords
@@ -100,7 +100,7 @@ bool JSI_Sound::Fade(JSContext* cx, uintN argc, jsval* argv)
 	if (! m_Handle)
 		return false;
 
-	debug_assert(argc >= 3); // FIXME
+	ENSURE(argc >= 3); // FIXME
 	float initial_gain, final_gain;
 	float length;
 	if (! (ToPrimitive<float>(cx, argv[0], initial_gain)

@@ -95,7 +95,7 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, L"Invalid string (no 0 terminator fo
 // currently disabled due to high risk of false positives.
 #define WARN_IF_PTR_LEN(len)\
 /*
-	debug_assert(len != sizeof(char*));
+	ENSURE(len != sizeof(char*));
 */
 
 
@@ -111,7 +111,7 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, L"Invalid string (no 0 terminator fo
 size_t tnlen(const tchar* str, size_t max_len)
 {
 	// note: we can't bail - what would the return value be?
-	debug_assert(str != 0);
+	ENSURE(str != 0);
 
 	WARN_IF_PTR_LEN(max_len);
 

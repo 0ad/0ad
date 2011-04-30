@@ -284,7 +284,7 @@ public:
 
 	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& map)
 	{
-		debug_assert(m_CommandsComputed);
+		ENSURE(m_CommandsComputed);
 
 		m_GameState = gameState;
 
@@ -374,7 +374,7 @@ public:
 
 	void Deserialize(std::istream& stream)
 	{
-		debug_assert(m_CommandsComputed); // deserializing while we're still actively computing would be bad
+		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
 		CStdDeserializer deserializer(m_ScriptInterface, stream);
 
@@ -551,7 +551,7 @@ public:
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSimContext(), SYSTEM_ENTITY);
-		debug_assert(!cmpAIInterface.null());
+		ENSURE(!cmpAIInterface.null());
 
 		// Get the game state from AIInterface
 		CScriptVal state = cmpAIInterface->GetRepresentation();
@@ -597,7 +597,7 @@ private:
 	void StartLoadEntityTemplates()
 	{
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
-		debug_assert(!cmpTemplateManager.null());
+		ENSURE(!cmpTemplateManager.null());
 
 		m_TemplateNames = cmpTemplateManager->FindAllTemplates(false);
 		m_TemplateLoadedIdx = 0;
@@ -611,7 +611,7 @@ private:
 			return false;
 
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
-		debug_assert(!cmpTemplateManager.null());
+		ENSURE(!cmpTemplateManager.null());
 
 		const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(m_TemplateNames[m_TemplateLoadedIdx]);
 		if (node)

@@ -130,7 +130,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 			std::vector<Variant>::iterator currentVariant = currentGroup->begin();
 			XERO_ITER_EL(child, variant)
 			{
-				debug_assert(variant.GetNodeName() == el_variant);
+				ENSURE(variant.GetNodeName() == el_variant);
 				XERO_ITER_ATTR(variant, attr)
 				{
 					if (attr.Name == at_name)
@@ -181,7 +181,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 					{
 						XERO_ITER_EL(option, anim_element)
 						{
-							debug_assert(anim_element.GetNodeName() == el_animation);
+							ENSURE(anim_element.GetNodeName() == el_animation);
 
 							Anim anim;
 							XERO_ITER_ATTR(anim_element, ae)
@@ -218,7 +218,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 					{
 						XERO_ITER_EL(option, prop_element)
 						{
-							debug_assert(prop_element.GetNodeName() == el_prop);
+							ENSURE(prop_element.GetNodeName() == el_prop);
 
 							Prop prop;
 							XERO_ITER_ATTR(prop_element, pe)
@@ -310,7 +310,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 
 			for (std::vector<std::set<CStr> >::const_iterator selset = selections.begin(); selset < selections.end(); ++selset)
 			{
-				debug_assert(grp->size() < 256); // else they won't fit in 'choices'
+				ENSURE(grp->size() < 256); // else they won't fit in 'choices'
 
 				for (size_t i = 0; i < grp->size(); ++i)
 				{
@@ -518,7 +518,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 						break;
 					}
 				}
-				debug_assert(randNum < 0);
+				ENSURE(randNum < 0);
 				// This should always succeed; otherwise it
 				// wouldn't have chosen any of the variants.
 			}

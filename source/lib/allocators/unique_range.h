@@ -1,9 +1,6 @@
 #ifndef INCLUDED_ALLOCATORS_UNIQUE_RANGE
 #define INCLUDED_ALLOCATORS_UNIQUE_RANGE
 
-#define ASSERT debug_assert
-
-
 #include "lib/lib_api.h"
 
 // we usually don't hold multiple references to allocations, so unique_ptr

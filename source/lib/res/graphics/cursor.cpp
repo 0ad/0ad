@@ -180,7 +180,7 @@ static void Cursor_dtor(Cursor* c)
 		break;
 
 	default:
-		debug_assert(0);
+		ENSURE(0);
 		break;
 	}
 }
@@ -261,7 +261,7 @@ static LibError Cursor_to_string(const Cursor* c, wchar_t* buf)
 		break;
 
 	default:
-		debug_assert(0);
+		ENSURE(0);
 		type = L"?";
 		break;
 	}
@@ -323,7 +323,7 @@ LibError cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
 		break;
 
 	default:
-		debug_assert(0);
+		ENSURE(0);
 		break;
 	}
 

@@ -107,10 +107,10 @@ static void hsd_list_free_all();
 
 static void al_ReportError(ALenum err, const char* caller, int line)
 {
-	debug_assert(al_initialized);
+	ENSURE(al_initialized);
 
 	debug_printf(L"OpenAL error: %hs; called from %hs (line %d)\n", alGetString(err), caller, line);
-	debug_assert(0);
+	ENSURE(0);
 }
 
 /**
@@ -409,7 +409,7 @@ static ALuint al_buf_alloc(ALvoid* data, ALsizei size, ALenum fmt, ALsizei freq)
 	alBufferData(al_buf, fmt, data, size, freq);
 	AL_CHECK;
 
-	debug_assert(alIsBuffer(al_buf));
+	ENSURE(alIsBuffer(al_buf));
 	al_bufs_outstanding++;
 
 	return al_buf;
@@ -428,7 +428,7 @@ static void al_buf_free(ALuint al_buf)
 	if(!al_buf)
 		return;
 
-	debug_assert(alIsBuffer(al_buf));
+	ENSURE(alIsBuffer(al_buf));
 
 	AL_CHECK;
 	alDeleteBuffers(1, &al_buf);
@@ -444,7 +444,7 @@ static void al_buf_free(ALuint al_buf)
  */
 static void al_buf_shutdown()
 {
-	debug_assert(al_bufs_outstanding == 0);
+	ENSURE(al_bufs_outstanding == 0);
 }
 
 
@@ -490,7 +490,7 @@ static void al_src_init()
 		// we've reached the limit, no more are available.
 		if(alGetError() != AL_NO_ERROR)
 			break;
-		debug_assert(alIsSource(al_src));
+		ENSURE(alIsSource(al_src));
 		al_srcs[i] = al_src;
 		al_src_numPreallocated++;
 	}
@@ -501,7 +501,7 @@ static void al_src_init()
 		al_src_maxNumToUse = al_src_numPreallocated;
 
 	// make sure we got the minimum guaranteed by OpenAL.
-	debug_assert(al_src_numPreallocated >= 16);
+	ENSURE(al_src_numPreallocated >= 16);
 }
 
 
@@ -513,7 +513,7 @@ static void al_src_init()
 static void al_src_shutdown()
 {
 	for(size_t i = 0; i < al_src_numPreallocated; i++)
-		debug_assert(al_srcs_allocationStates[i] == kAvailable);
+		ENSURE(al_srcs_allocationStates[i] == kAvailable);
 
 	AL_CHECK;
 	alDeleteSources((ALsizei)al_src_numPreallocated, al_srcs);
@@ -551,16 +551,16 @@ static bool al_src_alloc(ALuint& al_src)
  */
 static void al_src_free(ALuint al_src)
 {
-	debug_assert(alIsSource(al_src));
+	ENSURE(alIsSource(al_src));
 
 	const ALuint* pos = std::find(al_srcs, al_srcs+al_src_numPreallocated, al_src);
 	if(pos != al_srcs+al_src_numPreallocated)	// found it
 	{
 		const size_t i = pos - al_srcs;
-		debug_assert(cpu_CAS(&al_srcs_allocationStates[i], kInUse, kAvailable));
+		ENSURE(cpu_CAS(&al_srcs_allocationStates[i], kInUse, kAvailable));
 	}
 	else
-		debug_assert(0);	// al_src wasn't in al_srcs
+		ENSURE(0);	// al_src wasn't in al_srcs
 }
 
 
@@ -698,7 +698,7 @@ LibError snd_disable(bool disabled)
 
 	if(snd_disabled)
 	{
-		debug_assert(!al_initialized);	// already initialized => disable is pointless
+		ENSURE(!al_initialized);	// already initialized => disable is pointless
 		return INFO::OK;
 	}
 	else
@@ -932,8 +932,8 @@ static LibError SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pat
 		const LibError ret = sd->ogg->GetNextChunk(&data[0], data.size());
 		RETURN_ERR(ret);
 		const size_t size = (size_t)ret;
-		debug_assert(size != 0);	// must have read something
-		debug_assert(size != data.size());	// shouldn't be limited by buffer size
+		ENSURE(size != 0);	// must have read something
+		ENSURE(size != data.size());	// shouldn't be limited by buffer size
 		sd->al_buf = al_buf_alloc(&data[0], (ALsizei)size, sd->al_fmt, sd->al_freq);
 		sd->ogg.reset();
 	}
@@ -1122,8 +1122,8 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 	if(fi.type == FT_NONE)
 		return FADE_NO_CHANGE;
 
-	debug_assert(0.0f <= fi.initial_val && fi.initial_val <= 1.0f);
-	debug_assert(0.0f <= fi.final_val && fi.final_val <= 1.0f);
+	ENSURE(0.0f <= fi.initial_val && fi.initial_val <= 1.0f);
+	ENSURE(0.0f <= fi.final_val && fi.final_val <= 1.0f);
 
 	// end reached - if fi.length is 0, but the fade is "in progress", do the
 	// processing here, and skip the dangerous division
@@ -1145,7 +1145,7 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 
 	// how far into the fade are we? [0,1]
 	const float t = (cur_time - fi.start_time) / fi.length;
-	debug_assert(0.0f <= t && t <= 1.0f);
+	ENSURE(0.0f <= t && t <= 1.0f);
 
 	float factor;
 	switch(fi.type)
@@ -1225,7 +1225,7 @@ struct VSrc
 	{
 		if((flags & VS_HAS_AL_SRC) == 0)
 			return false;
-		debug_assert(alIsSource(al_src));
+		ENSURE(alIsSource(al_src));
 		return true;
 	}
 
@@ -1470,7 +1470,7 @@ static void list_remove(VSrc* vs)
 		}
 	}
 
-	debug_assert(0);	// VSrc not found
+	ENSURE(0);	// VSrc not found
 }
 
 
@@ -1578,7 +1578,7 @@ static void vsrc_latch(VSrc* vs)
  */
 static int vsrc_deque_finished_bufs(VSrc* vs)
 {
-	debug_assert(vs->HasSource());	// (otherwise there's no sense in calling this function)
+	ENSURE(vs->HasSource());	// (otherwise there's no sense in calling this function)
 
 	AL_CHECK;
 	int num_processed;
@@ -1712,7 +1712,7 @@ static LibError vsrc_reclaim(VSrc* vs)
 {
 	if(!vs->HasSource())
 		return ERR::FAIL;	// NOWARN
-	debug_assert(alIsSource(vs->al_src));
+	ENSURE(alIsSource(vs->al_src));
 
 	// clear the source's buffer queue (necessary because buffers cannot
 	// be deleted at shutdown while still attached to a source).

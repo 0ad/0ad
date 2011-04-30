@@ -76,7 +76,7 @@ class DynHashTbl
 	T& get_slot(Key key) const
 	{
 		size_t hash = tr.hash(key);
-		debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
+		ENSURE(max_entries != 0);	// otherwise, mask will be incorrect
 		const size_t mask = max_entries-1;
 		for(;;)
 		{
@@ -155,7 +155,7 @@ public:
 			expand_tbl();
 
 		T& slot = get_slot(key);
-		debug_assert(slot == 0);	// not already present
+		ENSURE(slot == 0);	// not already present
 		slot = t;
 		num_entries++;
 	}
@@ -297,35 +297,35 @@ public:
 
 	const T& operator[](int ofs) const
 	{
-		debug_assert(!empty());
+		ENSURE(!empty());
 		size_t idx = (size_t)(head + ofs);
 		return data[idx % n];
 	}
 	T& operator[](int ofs)
 	{
-		debug_assert(!empty());
+		ENSURE(!empty());
 		size_t idx = (size_t)(head + ofs);
 		return data[idx % n];
 	}
 
 	T& front()
 	{
-		debug_assert(!empty());
+		ENSURE(!empty());
 		return data[head];
 	}
 	const T& front() const
 	{
-		debug_assert(!empty());
+		ENSURE(!empty());
 		return data[head];
 	}
 	T& back()
 	{
-		debug_assert(!empty());
+		ENSURE(!empty());
 		return data[tail];
 	}
 	const T& back() const
 	{
-		debug_assert(!empty());
+		ENSURE(!empty());
 		return data[tail];
 	}
 
@@ -350,7 +350,7 @@ public:
 			head = (head + 1) % n;
 		}
 		else
-			debug_assert(0);	// underflow
+			ENSURE(0);	// underflow
 	}
 
 	class iterator
@@ -492,7 +492,7 @@ class MateiHashTbl
 	Entry& get_slot(K key) const
 	{
 		size_t hash = hashFunc(key);
-		//debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
+		//ENSURE(max_entries != 0);	// otherwise, mask will be incorrect
 		const size_t mask = max_entries-1;
 		int stride = 1;	// for quadratic probing
 		for(;;)
@@ -554,7 +554,7 @@ public:
 		tbl = 0;
 		num_entries = 0;
 		max_entries = initial_entries/2;	// will be doubled in expand_tbl
-		//debug_assert(is_pow2(max_entries));
+		//ENSURE(is_pow2(max_entries));
 		expand_tbl();
 	}
 

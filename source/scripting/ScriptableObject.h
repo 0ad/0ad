@@ -123,7 +123,7 @@ public:
 		m_Getter = Getter;
 		m_Setter = Setter;
 		// Must at least be able to read 
-		debug_assert( m_Getter );
+		ENSURE( m_Getter );
 	}
 	jsval Get( JSContext* cx, IJSObject* obj )
 	{
@@ -314,7 +314,7 @@ public:
 
 	void AddProperty( const CStrW& PropertyName, jsval Value )
 	{
-		debug_assert( !HasProperty( PropertyName ) );
+		ENSURE( !HasProperty( PropertyName ) );
 		CJSValProperty* newProp = new CJSValProperty( Value ); 
 		m_ScriptProperties[PropertyName] = newProp;
 	}

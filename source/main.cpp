@@ -258,7 +258,7 @@ static void Frame()
 #else
 	const float TimeSinceLastFrame = 1.0 / g_frequencyFilter->SmoothedFrequency();
 #endif
-	debug_assert(TimeSinceLastFrame > 0.0f);
+	ENSURE(TimeSinceLastFrame > 0.0f);
 
 	// decide if update/render is necessary
 	bool need_render = !g_app_minimized;

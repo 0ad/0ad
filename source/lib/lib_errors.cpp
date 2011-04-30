@@ -114,7 +114,7 @@ LibError LibError_from_errno(bool warn_if_failed)
 
 LibError LibError_from_posix(int ret, bool warn_if_failed)
 {
-	debug_assert(ret == 0 || ret == -1);
+	ENSURE(ret == 0 || ret == -1);
 	if(ret == 0)
 		return INFO::OK;
 	return LibError_from_errno(warn_if_failed);

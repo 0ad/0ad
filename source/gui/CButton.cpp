@@ -61,7 +61,7 @@ void CButton::SetupText()
 	if (!GetGUI())
 		return;
 
-	debug_assert(m_GeneratedTexts.size()==1);
+	ENSURE(m_GeneratedTexts.size()==1);
 
 	CStrW font;
 	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())

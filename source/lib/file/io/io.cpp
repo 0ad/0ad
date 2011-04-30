@@ -68,7 +68,7 @@ namespace io {
 
 UniqueRange Allocate(size_t size, size_t alignment)
 {
-	debug_assert(is_pow2(alignment));
+	ENSURE(is_pow2(alignment));
 	if(alignment <= (size_t)idxDeleterBits)
 		alignment = idxDeleterBits+1;
 
@@ -91,7 +91,7 @@ LibError Issue(aiocb& cb, size_t queueDepth)
 	UNUSED2(queueDepth);
 #endif
 	{
-		debug_assert(lseek(cb.aio_fildes, cb.aio_offset, SEEK_SET) == cb.aio_offset);
+		ENSURE(lseek(cb.aio_fildes, cb.aio_offset, SEEK_SET) == cb.aio_offset);
 
 		void* buf = (void*)cb.aio_buf;	// cast from volatile void*
 		const ssize_t bytesTransferred = (cb.aio_lio_opcode == LIO_WRITE)? write(cb.aio_fildes, buf, cb.aio_nbytes) : read(cb.aio_fildes, buf, cb.aio_nbytes);
@@ -123,7 +123,7 @@ SUSPEND_AGAIN:
 		}
 
 		const int err = aio_error(&cb);
-		debug_assert(err != EINPROGRESS);	// else aio_return is undefined
+		ENSURE(err != EINPROGRESS);	// else aio_return is undefined
 		ssize_t bytesTransferred = aio_return(&cb);
 		if(bytesTransferred == -1)	// transfer failed
 		{

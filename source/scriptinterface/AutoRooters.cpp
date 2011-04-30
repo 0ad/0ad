@@ -30,7 +30,7 @@ AutoGCRooter::AutoGCRooter(ScriptInterface& scriptInterface)
 AutoGCRooter::~AutoGCRooter()
 {
 	AutoGCRooter* r = m_ScriptInterface.ReplaceAutoGCRooter(m_Previous);
-	debug_assert(r == this); // must be correctly nested
+	ENSURE(r == this); // must be correctly nested
 }
 
 void AutoGCRooter::Trace(JSTracer* trc)

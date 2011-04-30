@@ -55,9 +55,9 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 {
 	CVertexBuffer::VBChunk* result=0;
 
-	debug_assert(usage == GL_STREAM_DRAW || usage == GL_STATIC_DRAW || usage == GL_DYNAMIC_DRAW);
+	ENSURE(usage == GL_STREAM_DRAW || usage == GL_STATIC_DRAW || usage == GL_DYNAMIC_DRAW);
 
-	debug_assert(target == GL_ARRAY_BUFFER || target == GL_ELEMENT_ARRAY_BUFFER);
+	ENSURE(target == GL_ARRAY_BUFFER || target == GL_ELEMENT_ARRAY_BUFFER);
 
 	// TODO, RC - run some sanity checks on allocation request
 
@@ -88,7 +88,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 // Release: return given chunk to its owner
 void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)
 {
-	debug_assert(chunk);
+	ENSURE(chunk);
 	chunk->m_Owner->Release(chunk);
 }
 

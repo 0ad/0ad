@@ -53,7 +53,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 
 	// EnumDisplaySettings is documented to set the values of the following:
 	const DWORD expectedFlags = DM_PELSWIDTH|DM_PELSHEIGHT|DM_BITSPERPEL|DM_DISPLAYFREQUENCY|DM_DISPLAYFLAGS;
-	debug_assert((dm.dmFields & expectedFlags) == expectedFlags);
+	ENSURE((dm.dmFields & expectedFlags) == expectedFlags);
 
 	if(xres)
 		*xres = (int)dm.dmPelsWidth;
@@ -134,7 +134,7 @@ static LibError AppendDriverVersionsFromRegistry(VersionList& versionList)
 			}
 			break;
 		}
-		debug_assert(err == ERROR_SUCCESS);
+		ENSURE(err == ERROR_SUCCESS);
 
 		HKEY hkDriver;
 		if(RegOpenKeyExW(hkDrivers, driverName, 0, KEY_QUERY_VALUE, &hkDriver) == 0)
@@ -159,7 +159,7 @@ static LibError AppendDriverVersionsFromRegistry(VersionList& versionList)
 		const DWORD err = RegEnumValueW(hkDrivers, i, name, &nameLength, 0, &type, (LPBYTE)dllName, &dllNameLength);
 		if(err == ERROR_NO_MORE_ITEMS)
 			break;
-		debug_assert(err == ERROR_SUCCESS);
+		ENSURE(err == ERROR_SUCCESS);
 		if(type == REG_SZ)
 			wdll_ver_Append(dllName, versionList);
 	}

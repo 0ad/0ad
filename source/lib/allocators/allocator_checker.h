@@ -37,19 +37,19 @@ public:
 	{
 		const Allocs::value_type item = std::make_pair(p, size);
 		std::pair<Allocs::iterator, bool> ret = allocs.insert(item);
-		debug_assert(ret.second == true);	// wasn't already in map
+		ENSURE(ret.second == true);	// wasn't already in map
 	}
 
 	void OnDeallocate(void* p, size_t size)
 	{
 		Allocs::iterator it = allocs.find(p);
 		if(it == allocs.end())
-			debug_assert(0);	// freeing invalid pointer
+			ENSURE(0);	// freeing invalid pointer
 		else
 		{
 			// size must match what was passed to OnAllocate
 			const size_t allocated_size = it->second;
-			debug_assert(size == allocated_size);
+			ENSURE(size == allocated_size);
 
 			allocs.erase(it);
 		}

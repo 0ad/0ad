@@ -75,6 +75,6 @@ size_t rand(size_t min_inclusive, size_t max_exclusive)
 	x /= inv_range;
 
 	x += min_inclusive;
-	debug_assert(x < max_exclusive);
+	ENSURE(x < max_exclusive);
 	return x;
 }

@@ -176,7 +176,7 @@ extern LibError LDR_NonprogressiveLoad();
 		/* 0 means "finished", so don't return that! */\
 		if(progress_percent == 0)\
 			progress_percent = 1;\
-		debug_assert(0 < progress_percent && progress_percent <= 100);\
+		ENSURE(0 < progress_percent && progress_percent <= 100);\
 		return (int)progress_percent;\
 	}
 

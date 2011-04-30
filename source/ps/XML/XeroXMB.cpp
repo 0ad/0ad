@@ -37,7 +37,7 @@ bool XMBFile::Initialise(const char* FileData)
 	// (c.f. @return documentation of this function)
 	if(!strcmp(Header, UnfinishedHeaderMagicStr))
 		return false;
-	debug_assert(!strcmp(Header, HeaderMagicStr) && "Invalid XMB header!");
+	ENSURE(!strcmp(Header, HeaderMagicStr) && "Invalid XMB header!");
 
 	int i;
 
@@ -232,7 +232,7 @@ XMBElement XMBElementList::GetFirstNamedItem(const int ElementName) const
 
 XMBElement XMBElementList::Item(const int id)
 {
-	debug_assert(id >= 0 && id < Count && "Element ID out of range");
+	ENSURE(id >= 0 && id < Count && "Element ID out of range");
 	const char* Pos;
 
 	// If access is sequential, don't bother scanning
@@ -275,7 +275,7 @@ CStr8 XMBAttributeList::GetNamedItem(const int AttributeName) const
 
 XMBAttribute XMBAttributeList::Item(const int id)
 {
-	debug_assert(id >= 0 && id < Count && "Attribute ID out of range");
+	ENSURE(id >= 0 && id < Count && "Attribute ID out of range");
 	const char* Pos;
 
 	// If access is sequential, don't bother scanning through

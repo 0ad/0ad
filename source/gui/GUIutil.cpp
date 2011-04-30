@@ -308,7 +308,7 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, SGUIMessage &
 template <typename T>
 PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
 {
-	debug_assert(pObject != NULL);
+	ENSURE(pObject != NULL);
 
 	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
@@ -358,7 +358,7 @@ template <typename T>
 PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, 
 							 const T &Value, const bool& SkipMessage)
 {
-	debug_assert(pObject != NULL);
+	ENSURE(pObject != NULL);
 
 	if (!pObject->SettingExists(Setting))
 	{

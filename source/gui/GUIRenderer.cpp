@@ -396,7 +396,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			Sprites[SpriteName] = Sprite;
 			
 			it = Sprites.find(SpriteName);
-			debug_assert(it != Sprites.end()); // The insertion above shouldn't fail
+			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
 		else if (SpriteName.substr(0, 7) == "colour:")
 		{
@@ -424,7 +424,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			Sprites[SpriteName] = Sprite;
 
 			it = Sprites.find(SpriteName);
-			debug_assert(it != Sprites.end()); // The insertion above shouldn't fail
+			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
 		}
 		else
 		{

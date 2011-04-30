@@ -278,7 +278,7 @@ BatchModelRenderer::~BatchModelRenderer()
 // Submit one model.
 void BatchModelRenderer::Submit(CModel* model)
 {
-	debug_assert(m->phase == BMRSubmit);
+	ENSURE(m->phase == BMRSubmit);
 
 	ogl_WarnIfError();
 
@@ -332,7 +332,7 @@ void BatchModelRenderer::Submit(CModel* model)
 		if (mdeftracker->m_Slots > mdeftracker->m_ModelSlots.size())
 		{
 			mdeftracker->m_ModelSlots.push_back(0);
-			debug_assert(mdeftracker->m_ModelSlots.size() == mdeftracker->m_Slots);
+			ENSURE(mdeftracker->m_ModelSlots.size() == mdeftracker->m_Slots);
 		}
 		mdeftracker->m_ModelSlots[idx] = 0;
 	}
@@ -347,7 +347,7 @@ void BatchModelRenderer::Submit(CModel* model)
 // Call update for all submitted models and enter the rendering phase
 void BatchModelRenderer::PrepareModels()
 {
-	debug_assert(m->phase == BMRSubmit);
+	ENSURE(m->phase == BMRSubmit);
 
 	for(BMRModelDefTracker* mdeftracker = m->submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
 	{
@@ -357,7 +357,7 @@ void BatchModelRenderer::PrepareModels()
 			{
 				CModel* model = bmrdata->GetModel();
 
-				debug_assert(model->GetRenderData() == bmrdata);
+				ENSURE(model->GetRenderData() == bmrdata);
 
 				m->vertexRenderer->UpdateModelData(
 						model, bmrdata->m_Data,
@@ -401,7 +401,7 @@ bool BatchModelRenderer::HaveSubmissions()
 // Render models, outer loop for multi-passing
 void BatchModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 {
-	debug_assert(m->phase == BMRRender);
+	ENSURE(m->phase == BMRRender);
 
 	if (!HaveSubmissions())
 		return;
@@ -440,7 +440,7 @@ void BatchModelRendererInternals::RenderAllModels(
 			{
 				CModel* model = bmrdata->GetModel();
 
-				debug_assert(bmrdata->GetKey() == this);
+				ENSURE(bmrdata->GetKey() == this);
 
 				if (filterflags && !(model->GetFlags()&filterflags))
 					continue;

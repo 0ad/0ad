@@ -51,7 +51,7 @@ jsval CScriptValRooted::get() const
 
 jsval& CScriptValRooted::getRef() const
 {
-	debug_assert(m_Val);
+	ENSURE(m_Val);
 	return *m_Val;
 }
 
@@ -83,13 +83,13 @@ JSIdArray* AutoJSIdArray::get() const
 
 size_t AutoJSIdArray::length() const
 {
-	debug_assert(m_IdArray);
+	ENSURE(m_IdArray);
 	return m_IdArray->length;
 }
 
 jsid AutoJSIdArray::operator[](size_t i) const
 {
-	debug_assert(m_IdArray);
-	debug_assert(i < (size_t)m_IdArray->length);
+	ENSURE(m_IdArray);
+	ENSURE(i < (size_t)m_IdArray->length);
 	return m_IdArray->vector[i];
 }

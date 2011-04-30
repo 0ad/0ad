@@ -69,8 +69,8 @@ public:
 		dpj = pj_-j;
 #if PATHFIND_DEBUG
 		// predecessor must be adjacent
-		debug_assert(pi_-i == -1 || pi_-i == 0 || pi_-i == 1);
-		debug_assert(pj_-j == -1 || pj_-j == 0 || pj_-j == 1);
+		ENSURE(pi_-i == -1 || pi_-i == 0 || pi_-i == 1);
+		ENSURE(pj_-j == -1 || pj_-j == 0 || pj_-j == 1);
 #endif
 	}
 

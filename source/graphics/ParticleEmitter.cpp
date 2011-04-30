@@ -75,7 +75,7 @@ void CParticleEmitter::UpdateArrayData()
 	VertexArrayIterator<float[2]> attrUV = m_AttributeUV.GetIterator<float[2]>();
 	VertexArrayIterator<SColor4ub> attrColor = m_AttributeColor.GetIterator<SColor4ub>();
 
-	debug_assert(m_Particles.size() <= m_Type->m_MaxParticles);
+	ENSURE(m_Particles.size() <= m_Type->m_MaxParticles);
 
 	CBound bounds;
 

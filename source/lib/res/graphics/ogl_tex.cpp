@@ -129,7 +129,7 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 		case 5:
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
 		default:
-			debug_assert(0);	// invalid DXT value
+			ENSURE(0);	// invalid DXT value
 			return 0;
 		}
 	}
@@ -138,18 +138,18 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 	switch(bpp)
 	{
 	case 8:
-		debug_assert(grey);
+		ENSURE(grey);
 		return GL_LUMINANCE;
 	case 16:
 		return GL_LUMINANCE_ALPHA;
 	case 24:
-		debug_assert(!alpha);
+		ENSURE(!alpha);
 		return bgr? GL_BGR : GL_RGB;
 	case 32:
-		debug_assert(alpha);
+		ENSURE(alpha);
 		return bgr? GL_BGRA : GL_RGBA;
 	default:
-		debug_assert(0);	// invalid bpp
+		ENSURE(0);	// invalid bpp
 		return 0;
 	}
 
@@ -188,13 +188,13 @@ void ogl_tex_set_defaults(int q_flags, GLint filter)
 {
 	if(q_flags)
 	{
-		debug_assert(q_flags_valid(q_flags));
+		ENSURE(q_flags_valid(q_flags));
 		default_q_flags = q_flags;
 	}
 
 	if(filter)
 	{
-		debug_assert(filter_valid(filter));
+		ENSURE(filter_valid(filter));
 		default_filter = filter;
 	}
 }
@@ -242,7 +242,7 @@ static GLint choose_int_fmt(GLenum fmt, int q_flags)
 		wchar_t buf[100];
 		swprintf_s(buf, ARRAY_SIZE(buf), L"choose_int_fmt: fmt 0x%x isn't covered! please add it", fmt);
 		DEBUG_DISPLAY_ERROR(buf);
-		debug_assert(0);	// given fmt isn't covered! please add it.
+		ENSURE(0);	// given fmt isn't covered! please add it.
 		// fall back to a reasonable default
 		return half_bpp? GL_RGB4 : GL_RGB8;
 		}
@@ -588,7 +588,7 @@ static void warn_if_uploaded(Handle ht, const OglTex* ot)
 		return;	// don't complain
 
 	if(ot->flags & OT_IS_UPLOADED)
-		debug_assert(0);	// ogl_tex_set_*: texture already uploaded and shouldn't be changed
+		ENSURE(0);	// ogl_tex_set_*: texture already uploaded and shouldn't be changed
 #else
 	// (prevent warnings; the alternative of wrapping all call sites in
 	// #ifndef is worse)
@@ -674,7 +674,7 @@ static int have_anistropy = -1;
 // given feature. should be called from ah_override_gl_upload_caps.
 void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 {
-	debug_assert(allow == OGL_TEX_ENABLE || allow == OGL_TEX_DISABLE);
+	ENSURE(allow == OGL_TEX_ENABLE || allow == OGL_TEX_DISABLE);
 	const bool enable = (allow == OGL_TEX_ENABLE);
 
 	switch(what)
@@ -689,7 +689,7 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 		have_anistropy = enable;
 		break;
 	default:
-		debug_assert(0);	// invalid <what>
+		ENSURE(0);	// invalid <what>
 		break;
 	}
 }
@@ -863,7 +863,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint 
 
 	H_DEREF(ht, OglTex, ot);
 	Tex* t = &ot->t;
-	debug_assert(q_flags_valid(q_flags_ovr));
+	ENSURE(q_flags_valid(q_flags_ovr));
 	// we don't bother verifying *fmt_ovr - there are too many values
 
 	// upload already happened; no work to do.
@@ -952,7 +952,7 @@ LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt)
 		*flags = ot->t.flags;
 	if(fmt)
 	{
-		debug_assert(ot->flags & OT_IS_UPLOADED);
+		ENSURE(ot->flags & OT_IS_UPLOADED);
 		*fmt = ot->fmt;
 	}
 	return INFO::OK;
@@ -1021,7 +1021,7 @@ LibError ogl_tex_bind(Handle ht, size_t unit)
 	// if 0, there's a problem in the OglTex reload/dtor logic.
 	// binding it results in whiteness, which can have many causes;
 	// we therefore complain so this one can be ruled out.
-	debug_assert(ot->id != 0);
+	ENSURE(ot->id != 0);
 
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, ot->id);
@@ -1053,7 +1053,7 @@ LibError ogl_tex_transform_to(Handle ht, size_t new_flags)
 bool ogl_tex_has_s3tc()
 {
 	// ogl_tex_upload must be called before this
-	debug_assert(have_s3tc != -1);
+	ENSURE(have_s3tc != -1);
 
 	return (have_s3tc != 0);
 }
@@ -1062,7 +1062,7 @@ bool ogl_tex_has_s3tc()
 bool ogl_tex_has_anisotropy()
 {
 	// ogl_tex_upload must be called before this
-	debug_assert(have_anistropy != -1);
+	ENSURE(have_anistropy != -1);
 
 	return (have_anistropy != 0);
 }

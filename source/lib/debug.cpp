@@ -83,7 +83,7 @@ void debug_filter_add(const wchar_t* tag)
 	// too many already?
 	if(num_tags == MAX_TAGS)
 	{
-		debug_assert(0);	// increase MAX_TAGS
+		ENSURE(0);	// increase MAX_TAGS
 		return;
 	}
 
@@ -143,7 +143,7 @@ void debug_printf(const wchar_t* fmt, ...)
 	va_list ap;
 	va_start(ap, fmt);
 	const int numChars = vswprintf_s(buf, ARRAY_SIZE(buf), fmt, ap);
-	debug_assert(numChars >= 0);
+	ENSURE(numChars >= 0);
 	va_end(ap);
 
 	if(debug_filter_allows(buf))

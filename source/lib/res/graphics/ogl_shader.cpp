@@ -328,7 +328,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 	ogl_WarnIfError();
 	
 	// Check that we're not accidentally using shaders when they're not supported
-	debug_assert(pglCreateProgramObjectARB != NULL);
+	ENSURE(pglCreateProgramObjectARB != NULL);
 
 	p->id = pglCreateProgramObjectARB();
 	if (!p->id)

@@ -103,7 +103,7 @@ void page_aligned_free(void* p, size_t size)
 {
 	if(!p)
 		return;
-	debug_assert(IsAligned(p, pageSize));
+	ENSURE(IsAligned(p, pageSize));
 	const size_t alignedSize = Align<pageSize>(size);
 	(void)mem_Release((u8*)p, alignedSize);
 }

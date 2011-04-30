@@ -36,7 +36,7 @@
 
 FastPlayerColorRender::FastPlayerColorRender()
 {
-	debug_assert(ogl_max_tex_units >= 3);
+	ENSURE(ogl_max_tex_units >= 3);
 }
 
 FastPlayerColorRender::~FastPlayerColorRender()
@@ -50,7 +50,7 @@ bool FastPlayerColorRender::IsAvailable()
 
 int FastPlayerColorRender::BeginPass(int pass)
 {
-	debug_assert(pass == 0);
+	ENSURE(pass == 0);
 
 	// Fast player color uses a single pass with three texture environments
 	// Note: This uses ARB_texture_env_crossbar (which is checked in GameSetup)

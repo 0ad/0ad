@@ -148,7 +148,7 @@ public:
 		if(writeBuffer.Size())
 		{
 			LibError ret = g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
-			debug_assert(ret == INFO::OK);
+			ENSURE(ret == INFO::OK);
 		}
 
 		return true;
@@ -242,7 +242,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	// realDaePath_ is "[..]/mods/whatever/art/meshes/whatever.dae"
 	OsPath realDaePath_;
 	LibError ret = g_VFS->GetRealPath(dae, realDaePath_);
-	debug_assert(ret == INFO::OK);
+	ENSURE(ret == INFO::OK);
 	wchar_t realDaeBuf[PATH_MAX];
 	wcscpy_s(realDaeBuf, ARRAY_SIZE(realDaeBuf), realDaePath_.string().c_str());
 	const wchar_t* realDaePath = wcsstr(realDaeBuf, L"mods/");

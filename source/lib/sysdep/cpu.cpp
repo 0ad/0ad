@@ -49,15 +49,15 @@ static void TestCAS64()
 {
 	volatile i64 var = 1;
 	cpu_CAS64(&var, 1ull, 2ull);
-	debug_assert(var == 2ull);
+	ENSURE(var == 2ull);
 }
 
 static void TestAtomicAdd()
 {
 	volatile intptr_t i1 = 1;
 	intptr_t prev = cpu_AtomicAdd(&i1, 1);
-	debug_assert(prev == 1);
-	debug_assert(i1 == 2);
+	ENSURE(prev == 1);
+	ENSURE(i1 == 2);
 }
 
 void cpu_Test()

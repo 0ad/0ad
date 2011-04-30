@@ -34,7 +34,7 @@ CSimContext::~CSimContext()
 
 CComponentManager& CSimContext::GetComponentManager() const
 {
-	debug_assert(m_ComponentManager);
+	ENSURE(m_ComponentManager);
 	return *m_ComponentManager;
 }
 
@@ -45,19 +45,19 @@ bool CSimContext::HasUnitManager() const
 
 CUnitManager& CSimContext::GetUnitManager() const
 {
-	debug_assert(m_UnitManager);
+	ENSURE(m_UnitManager);
 	return *m_UnitManager;
 }
 
 CTerrain& CSimContext::GetTerrain() const
 {
-	debug_assert(m_Terrain);
+	ENSURE(m_Terrain);
 	return *m_Terrain;
 }
 
 void CSimContext::SetComponentManager(CComponentManager* man)
 {
-	debug_assert(!m_ComponentManager);
+	ENSURE(!m_ComponentManager);
 	m_ComponentManager = man;
 }
 

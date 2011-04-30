@@ -418,7 +418,7 @@ public:
 	// Reinitialise subdivisions and LOS data, based on entity data
 	void ResetDerivedData()
 	{
-		debug_assert(m_WorldX0.IsZero() && m_WorldZ0.IsZero()); // don't bother implementing non-zero offsets yet
+		ENSURE(m_WorldX0.IsZero() && m_WorldZ0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(m_WorldX1, m_WorldZ1);
 
 		m_LosPlayerCounts.clear();
@@ -686,7 +686,7 @@ public:
 			for (size_t i = 0; i < ents.size(); ++i)
 			{
 				std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.find(ents[i]);
-				debug_assert(it != m_EntityData.end());
+				ENSURE(it != m_EntityData.end());
 
 				if (!TestEntityQuery(q, it->first, it->second))
 					continue;

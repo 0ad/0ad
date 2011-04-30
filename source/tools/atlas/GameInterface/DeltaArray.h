@@ -81,7 +81,7 @@ void DeltaArray2D<T>::OverlayWith(const DeltaArray2D<T>& overlayer)
 			m_Data.insert(*it);
 		else
 		{
-			//debug_assert(it2->second.second == it->second.first);
+			//ENSURE(it2->second.second == it->second.first);
 			it2->second.second = it->second.second;
 		}
 	}

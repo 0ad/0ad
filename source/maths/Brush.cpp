@@ -149,7 +149,7 @@ size_t CBrush::Helper::SliceNewVertex(SliceInfo& si, size_t v1, size_t v2)
 
 void CBrush::Slice(const CPlane& plane, CBrush& result) const
 {
-	debug_assert(&result != this);
+	ENSURE(&result != this);
 
 	SliceInfo si;
 
@@ -188,7 +188,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 	{
 		if (firstInFace == no_vertex)
 		{
-			debug_assert(si.thisFaceNewVertex == no_vertex);
+			ENSURE(si.thisFaceNewVertex == no_vertex);
 
 			firstInFace = m_Faces[i];
 			startInResultFaceArray = result.m_Faces.size();
@@ -229,7 +229,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 		}
 	}
 
-	debug_assert(firstInFace == no_vertex);
+	ENSURE(firstInFace == no_vertex);
 
 	// Create the face that lies in the slicing plane
 	if (si.newv.size())
@@ -243,7 +243,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 
 		while(idx != 0)
 		{
-			debug_assert(idx < si.newv.size());
+			ENSURE(idx < si.newv.size());
 
 			if (si.newv[idx].neighb1 == prev)
 			{
@@ -252,7 +252,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 			}
 			else
 			{
-				debug_assert(si.newv[idx].neighb2 == prev);
+				ENSURE(si.newv[idx].neighb2 == prev);
 
 				si.newv[idx].neighb2 = no_vertex;
 			}
@@ -273,7 +273,7 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 // Intersect with frustum by repeated slicing
 void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 {
-	debug_assert(&result != this);
+	ENSURE(&result != this);
 
 	if (!frustum.GetNumPlanes())
 	{
@@ -300,7 +300,7 @@ void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 			next = &buf;
 	}
 
-	debug_assert(prev == &result);
+	ENSURE(prev == &result);
 }
 
 
@@ -330,7 +330,7 @@ void CBrush::Render() const
 		}
 	}
 
-	debug_assert(firstInFace == no_vertex);
+	ENSURE(firstInFace == no_vertex);
 }
 
 

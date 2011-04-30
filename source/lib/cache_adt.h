@@ -286,7 +286,7 @@ again:
 		// different evictions than Landlord_Lazy, which is unacceptable.
 		// nor is doing so necessary: if mcd is tiny, so is credit.
 		const float min_credit_density = mcd_calc(map);
-		debug_assert(min_credit_density > 0.0f);
+		ENSURE(min_credit_density > 0.0f);
 
 		for(MapIt it = map.begin(); it != map.end();)	// no ++it
 		{
@@ -329,7 +329,7 @@ protected:
 		typedef std::pair<MapIt, bool> PairIB;
 		typename Map::value_type val = std::make_pair(key, entry);
 		PairIB ret = map.insert(val);
-		debug_assert(ret.second);	// must not already be in map
+		ENSURE(ret.second);	// must not already be in map
 
 		mcd_calc.notify_added(entry);
 
@@ -444,7 +444,7 @@ public:
 		// this entry); then add the resulting density to pending_delta.
 		entry.credit -= pending_delta*entry.size;
 		const float credit_density = entry.credit_density();
-		debug_assert(credit_density > 0.0f);
+		ENSURE(credit_density > 0.0f);
 		pending_delta += credit_density;
 
 		Parent::remove_(least_valuable_it);
@@ -581,7 +581,7 @@ public:
 				return;
 			}
 		}
-		debug_assert(0);	// entry not found in list
+		ENSURE(0);	// entry not found in list
 	}
 
 	void remove_least_valuable(std::list<Entry>& entry_list)
@@ -641,7 +641,7 @@ template<class Item, class Divider> struct CacheEntry
 		credit = (float)cost;
 
 		// else divider will fail
-		debug_assert(size != 0);
+		ENSURE(size != 0);
 	}
 
 	float credit_density() const
@@ -723,7 +723,7 @@ public:
 				return false;
 
 			mgr.remove_least_valuable(entries_awaiting_eviction);
-			debug_assert(!entries_awaiting_eviction.empty());
+			ENSURE(!entries_awaiting_eviction.empty());
 		}
 
 		const Entry& entry = entries_awaiting_eviction.front();

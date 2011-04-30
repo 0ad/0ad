@@ -190,7 +190,7 @@ void FixedFunctionModelRenderer::DestroyModelData(CModel* UNUSED(model), void* d
 // Setup one rendering pass
 void FixedFunctionModelRenderer::BeginPass(int streamflags)
 {
-	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR)));
+	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR)));
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 
@@ -216,7 +216,7 @@ void FixedFunctionModelRenderer::PrepareModelDef(int streamflags, const CModelDe
 {
 	m->ffmodeldef = (FFModelDef*)def->GetRenderData(m);
 
-	debug_assert(m->ffmodeldef);
+	ENSURE(m->ffmodeldef);
 
 	if (streamflags & STREAM_UV0)
 	{

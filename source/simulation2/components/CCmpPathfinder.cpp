@@ -63,7 +63,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	for (CParamNode::ChildrenMap::const_iterator it = passClasses.begin(); it != passClasses.end(); ++it)
 	{
 		std::string name = it->first;
-		debug_assert((int)m_PassClasses.size() <= PASS_CLASS_BITS);
+		ENSURE((int)m_PassClasses.size() <= PASS_CLASS_BITS);
 		pass_class_t mask = (pass_class_t)(1u << (m_PassClasses.size() + 2));
 		m_PassClasses.push_back(PathfinderPassability(mask, it->second));
 		m_PassClassMasks[name] = mask;
@@ -283,7 +283,7 @@ void CCmpPathfinder::UpdateGrid()
 		// TOOD: these bits should come from ICmpTerrain
 		ssize_t size = GetSimContext().GetTerrain().GetTilesPerSide();
 
-		debug_assert(size >= 1 && size <= 0xffff); // must fit in 16 bits
+		ENSURE(size >= 1 && size <= 0xffff); // must fit in 16 bits
 		m_MapSize = size;
 		m_Grid = new Grid<TerrainTile>(m_MapSize, m_MapSize);
 		m_ObstructionGrid = new Grid<u8>(m_MapSize, m_MapSize);

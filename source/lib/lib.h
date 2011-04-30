@@ -106,18 +106,14 @@ template<typename T, size_t n> u8 (*ArraySizeDeducer(T (&)[n]))[n];
 template<typename T>
 T Clamp(T val, T min, T max)
 {
-#ifndef NDEBUG
-	debug_assert(min <= max);
-#endif
+	ASSERT(min <= max);
 	return std::max(min, std::min(val, max));
 }
 
 template<typename T>
 T DivideRoundUp(T dividend, T divisor)
 {
-#ifndef NDEBUG
-	debug_assert(divisor != 0);
-#endif
+	ASSERT(divisor != 0);
 	return (dividend + divisor-1) / divisor;
 }
 
@@ -179,7 +175,7 @@ extern u32 u32_from_u16(u16 hi, u16 lo);	/// assemble u32 from u16
 // these are generally useful but included here (instead of e.g. lib.h) for
 // several reasons:
 // - including implementation in lib.h doesn't work because the definition
-//   of debug_assert in turn requires lib.h's STMT.
+//   of ENSURE in turn requires lib.h's STMT.
 // - separate compilation of templates via export isn't supported by
 //   most compilers.
 

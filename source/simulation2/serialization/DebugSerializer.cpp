@@ -64,7 +64,7 @@ void CDebugSerializer::Indent(int spaces)
 
 void CDebugSerializer::Dedent(int spaces)
 {
-	debug_assert(spaces <= m_Indent);
+	ENSURE(spaces <= m_Indent);
 	m_Indent -= spaces;
 }
 

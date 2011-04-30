@@ -79,10 +79,10 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	// sanity checks. we don't care about these but enforce them to
 	// ensure callers are compatible with mmap.
 	// .. MAP_ANONYMOUS is documented to require this.
-	debug_assert(fd == -1);
+	ENSURE(fd == -1);
 	// .. if MAP_SHARED, writes are to change "the underlying [mapped]
 	//    object", but there is none here (we're backed by the page file).
-	debug_assert(flags & MAP_PRIVATE);
+	ENSURE(flags & MAP_PRIVATE);
 
 	// see explanation at MAP_NORESERVE definition.
 	bool want_commit = (prot != PROT_NONE && !(flags & MAP_NORESERVE));
@@ -156,7 +156,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, 
 {
 	WinScopedPreserveLastError s;
 
-	debug_assert(fd != -1);	// handled by mmap_mem
+	ENSURE(fd != -1);	// handled by mmap_mem
 
 	HANDLE hFile = HANDLE_from_intptr(_get_osfhandle(fd));
 	if(hFile == INVALID_HANDLE_VALUE)
@@ -181,7 +181,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, 
 	const DWORD ofs_hi = u64_hi(ofs), ofs_lo = u64_lo(ofs);
 	void* p = MapViewOfFileEx(hMap, dwAccess, ofs_hi, ofs_lo, (SIZE_T)len, start);
 	// .. make sure we got the requested address if MAP_FIXED was passed.
-	debug_assert(!(flags & MAP_FIXED) || (p == start));
+	ENSURE(!(flags & MAP_FIXED) || (p == start));
 	// .. free the mapping object now, so that we don't have to hold on to its
 	//    handle until munmap(). it's not actually released yet due to the
 	//    reference held by MapViewOfFileEx (if it succeeded).
@@ -202,7 +202,7 @@ void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 {
 	if(len == 0)	// POSIX says this must cause mmap to fail
 	{
-		debug_assert(0);
+		ENSURE(0);
 		errno = EINVAL;
 		return MAP_FAILED;
 	}

@@ -219,7 +219,7 @@ public:
 		MakeDirtyAll();
 
 		// Subdivision system bounds:
-		debug_assert(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
+		ENSURE(x0.IsZero() && z0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(x1, z1);
 	}
 
@@ -297,7 +297,7 @@ public:
 
 	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a)
 	{
-		debug_assert(TAG_IS_VALID(tag));
+		ENSURE(TAG_IS_VALID(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{
@@ -342,7 +342,7 @@ public:
 
 	virtual void SetUnitMovingFlag(tag_t tag, bool moving)
 	{
-		debug_assert(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
+		ENSURE(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{
@@ -358,7 +358,7 @@ public:
 
 	virtual void SetUnitControlGroup(tag_t tag, entity_id_t group)
 	{
-		debug_assert(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
+		ENSURE(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{
@@ -369,7 +369,7 @@ public:
 
 	virtual void RemoveShape(tag_t tag)
 	{
-		debug_assert(TAG_IS_VALID(tag));
+		ENSURE(TAG_IS_VALID(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{
@@ -396,7 +396,7 @@ public:
 
 	virtual ObstructionSquare GetObstruction(tag_t tag)
 	{
-		debug_assert(TAG_IS_VALID(tag));
+		ENSURE(TAG_IS_VALID(tag));
 
 		if (TAG_IS_UNIT(tag))
 		{
@@ -531,7 +531,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 	for (size_t i = 0; i < unitShapes.size(); ++i)
 	{
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
-		debug_assert(it != m_UnitShapes.end());
+		ENSURE(it != m_UnitShapes.end());
 
 		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
 			continue;
@@ -546,7 +546,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 	for (size_t i = 0; i < staticShapes.size(); ++i)
 	{
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
-		debug_assert(it != m_StaticShapes.end());
+		ENSURE(it != m_StaticShapes.end());
 
 		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
 			continue;
@@ -861,13 +861,13 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 {
 	PROFILE("GetObstructionsInRange");
 
-	debug_assert(x0 <= x1 && z0 <= z1);
+	ENSURE(x0 <= x1 && z0 <= z1);
 
 	std::vector<u32> unitShapes = m_UnitSubdivision.GetInRange(CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
 	for (size_t i = 0; i < unitShapes.size(); ++i)
 	{
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
-		debug_assert(it != m_UnitShapes.end());
+		ENSURE(it != m_UnitShapes.end());
 
 		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
 			continue;
@@ -888,7 +888,7 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 	for (size_t i = 0; i < staticShapes.size(); ++i)
 	{
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
-		debug_assert(it != m_StaticShapes.end());
+		ENSURE(it != m_StaticShapes.end());
 
 		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
 			continue;

@@ -139,7 +139,7 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 
 void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI* gui)
 {
-	debug_assert(obj);
+	ENSURE(obj);
 
 	// Ignore attempts to use tooltip ""
 	if (style.empty())

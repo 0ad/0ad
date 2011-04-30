@@ -63,7 +63,7 @@ ERROR_ASSOCIATE(ERR::STL_CNT_INVALID, L"Container type is known but contents are
 			dst--;\
 		src += ARRAY_SIZE(what)-1;\
 		/* strip everything until trailing > is matched */\
-		debug_assert(nesting == 0);\
+		ENSURE(nesting == 0);\
 		nesting = 1;\
 	}
 
@@ -110,7 +110,7 @@ wchar_t* debug_stl_simplify_name(wchar_t* name)
 			else if(c == '>')
 			{
 				nesting--;
-				debug_assert(nesting >= 0);
+				ENSURE(nesting >= 0);
 			}
 			continue;
 		}
@@ -276,9 +276,9 @@ private:
 	{
 		const size_t el_per_bucket = ElementsPerBucket(el_size);
 		const size_t bucket_idx = i / el_per_bucket;
-		debug_assert(bucket_idx < _Mapsize);
+		ENSURE(bucket_idx < _Mapsize);
 		const size_t idx_in_bucket = i - bucket_idx * el_per_bucket;
-		debug_assert(idx_in_bucket < el_per_bucket);
+		ENSURE(idx_in_bucket < el_per_bucket);
 		const u8** map = (const u8**)_Map;
 		const u8* bucket = map[bucket_idx];
 		const u8* p = bucket + idx_in_bucket*el_size;
@@ -517,8 +517,8 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 	typedef typename T::iterator iterator;
 	typedef typename T::const_iterator const_iterator;
 	
-	debug_assert(sizeof(T) == size);
-	debug_assert(sizeof(iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
+	ENSURE(sizeof(T) == size);
+	ENSURE(sizeof(iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
 
 	el_count = t.NumElements(el_size);
 

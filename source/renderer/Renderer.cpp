@@ -502,7 +502,7 @@ void CRenderer::EnumCaps()
 
 void CRenderer::ReloadShaders()
 {
-	debug_assert(m->IsOpen);
+	ENSURE(m->IsOpen);
 
 	typedef std::map<CStr, CStr> Defines;
 
@@ -1681,7 +1681,7 @@ void CRenderer::RenderScene(Scene& scene)
 
 Scene& CRenderer::GetScene()
 {
-	debug_assert(m_CurrentScene);
+	ENSURE(m_CurrentScene);
 	return *m_CurrentScene;
 }
 
@@ -1768,7 +1768,7 @@ int CRenderer::LoadAlphaMaps()
 	//
 	size_t tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
 	size_t total_w = round_up_to_pow2(tile_w * NumAlphaMaps);
-	size_t total_h = base; debug_assert(is_pow2(total_h));
+	size_t total_h = base; ENSURE(is_pow2(total_h));
 	shared_ptr<u8> data;
 	AllocateAligned(data, total_w*total_h, maxSectorSize);
 	// for each tile on row

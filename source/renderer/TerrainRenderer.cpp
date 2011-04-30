@@ -109,7 +109,7 @@ TerrainRenderer::~TerrainRenderer()
 // Submit a patch for rendering
 void TerrainRenderer::Submit(CPatch* patch)
 {
-	debug_assert(m->phase == Phase_Submit);
+	ENSURE(m->phase == Phase_Submit);
 
 	CPatchRData* data = (CPatchRData*)patch->GetRenderData();
 	if (data == 0)
@@ -127,7 +127,7 @@ void TerrainRenderer::Submit(CPatch* patch)
 // Submit a decal for rendering
 void TerrainRenderer::Submit(CModelDecal* decal)
 {
-	debug_assert(m->phase == Phase_Submit);
+	ENSURE(m->phase == Phase_Submit);
 
 	CDecalRData* data = (CDecalRData*)decal->GetRenderData();
 	if (data == 0)
@@ -145,7 +145,7 @@ void TerrainRenderer::Submit(CModelDecal* decal)
 // Prepare for rendering
 void TerrainRenderer::PrepareForRendering()
 {
-	debug_assert(m->phase == Phase_Submit);
+	ENSURE(m->phase == Phase_Submit);
 
 	m->phase = Phase_Render;
 }
@@ -154,7 +154,7 @@ void TerrainRenderer::PrepareForRendering()
 // Clear submissions lists
 void TerrainRenderer::EndFrame()
 {
-	debug_assert(m->phase == Phase_Render || m->phase == Phase_Submit);
+	ENSURE(m->phase == Phase_Render || m->phase == Phase_Submit);
 
 	m->visiblePatches.clear();
 	m->visibleDecals.clear();
@@ -167,7 +167,7 @@ void TerrainRenderer::EndFrame()
 // Full-featured terrain rendering with blending and everything
 void TerrainRenderer::RenderTerrain()
 {
-	debug_assert(m->phase == Phase_Render);
+	ENSURE(m->phase == Phase_Render);
 
 	// render the solid black sides of the map first
 	g_Renderer.BindTexture(0, 0);
@@ -375,7 +375,7 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 
 void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 {
-	debug_assert(m->phase == Phase_Render);
+	ENSURE(m->phase == Phase_Render);
 
 	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
 
@@ -482,7 +482,7 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 // Render un-textured patches as polygons
 void TerrainRenderer::RenderPatches()
 {
-	debug_assert(m->phase == Phase_Render);
+	ENSURE(m->phase == Phase_Render);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	CPatchRData::RenderStreams(m->visiblePatches, STREAM_POS);
@@ -494,7 +494,7 @@ void TerrainRenderer::RenderPatches()
 // Render outlines of submitted patches as lines
 void TerrainRenderer::RenderOutlines()
 {
-	debug_assert(m->phase == Phase_Render);
+	ENSURE(m->phase == Phase_Render);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
@@ -774,7 +774,7 @@ void TerrainRenderer::RenderPriorities()
 {
 	PROFILE("render priorities");
 
-	debug_assert(m->phase == Phase_Render);
+	ENSURE(m->phase == Phase_Render);
 
 	CFont font(L"mono-stroke-10");
 	font.Bind();

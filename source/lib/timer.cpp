@@ -118,12 +118,12 @@ double timer_Time()
 #if OS_WIN
 	t = whrt_Time();
 #elif HAVE_CLOCK_GETTIME
-	debug_assert(start.tv_sec || start.tv_nsec);	// must have called timer_LatchStartTime first
+	ENSURE(start.tv_sec || start.tv_nsec);	// must have called timer_LatchStartTime first
 	struct timespec cur;
 	(void)clock_gettime(CLOCK_REALTIME, &cur);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_nsec - start.tv_nsec)*1e-9;
 #elif HAVE_GETTIMEOFDAY
-	debug_assert(start.tv_sec || start.tv_usec);	// must have called timer_LatchStartTime first
+	ENSURE(start.tv_sec || start.tv_usec);	// must have called timer_LatchStartTime first
 	struct timeval cur;
 	gettimeofday(&cur, 0);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec)*1e-6;
@@ -202,7 +202,7 @@ void timer_DisplayClientTotals()
 	while(clients)
 	{
 		// (make sure list and count are consistent)
-		debug_assert(numClients != 0);
+		ENSURE(numClients != 0);
 		TimerClient* tc = clients;
 		clients = tc->next;
 		numClients--;

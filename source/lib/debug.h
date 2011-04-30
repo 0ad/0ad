@@ -37,6 +37,7 @@
 //   crashlogs with "last-known activity" reporting.
 
 #include "lib/lib_errors.h"
+#include "lib/code_annotation.h"
 #include "lib/code_generation.h"
 
 /**
@@ -50,12 +51,6 @@
 #else
 extern void debug_break();
 #endif
-
-// for widening non-literals (e.g. __FILE__)
-// note: C99 says __func__ is a magic *variable*, and GCC doesn't allow
-// widening it via preprocessor.
-#define WIDEN2(x) L ## x
-#define WIDEN(x) WIDEN2(x)
 
 
 //-----------------------------------------------------------------------------
@@ -265,33 +260,72 @@ LIB_API LibError debug_WriteCrashlog(const wchar_t* text);
 
 
 //-----------------------------------------------------------------------------
-// debug_assert
+// assertions
 //-----------------------------------------------------------------------------
 
 /**
- * make sure the expression \<expr\> evaluates to non-zero. used to validate
+ * ensure the expression \<expr\> evaluates to non-zero. used to validate
  * invariants in the program during development and thus gives a
  * very helpful warning if something isn't going as expected.
  * sprinkle these liberally throughout your code!
  *
- * recommended use is debug_assert(expression && "descriptive string") -
- * the string can pass more information about the problem on to whomever
- * is seeing the error.
- *
- * rationale: we call this "debug_assert" instead of "assert" for the
- * following reasons:
- * - consistency (everything here is prefixed with debug_) and
- * - to avoid inadvertent use of the much less helpful built-in CRT assert.
- *   if we were to override assert, it would be difficult to tell whether
- *   user source has included \<assert.h\> (possibly indirectly via other
- *   headers) and thereby stomped on our definition.
+ * to pass more information to users at runtime, you can write
+ * ENSURE(expression && "descriptive string").
  **/
-#define debug_assert(expr) \
-STMT(\
-	static atomic_bool suppress__;\
-	if(!(expr))\
+#define ENSURE(expr)\
+	do\
 	{\
-		switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
+		static atomic_bool suppress__;\
+		if(!(expr))\
+		{\
+			switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
+			{\
+			case ER_CONTINUE:\
+				break;\
+			case ER_BREAK:\
+			default:\
+				debug_break();\
+				break;\
+			}\
+		}\
+	}\
+	while(0)
+
+/**
+ * same as ENSURE in debug mode, does nothing in release mode.
+ * (we don't override the `assert' macro because users may
+ * inadvertently include \<assert.h\> afterwards)
+ * (we do not provide an MFC-style VERIFY macro because the distinction
+ * between ENSURE and VERIFY is unclear. to always run code but only
+ * check for success in debug builds without raising unused-variable warnings,
+ * use ASSERT + UNUSED2.)
+ **/
+#define ASSERT(expr) ENSURE(expr)
+#ifdef NDEBUG
+# undef ASSERT
+# define ASSERT(expr) (void)expr
+#endif
+
+/**
+ * display the error dialog with the given text. this is less error-prone than
+ * ENSURE(0 && "text"). note that "conditional expression is constant" warnings
+ * are disabled anyway.
+ *
+ * if being able to suppress the warning is desirable (e.g. for self-tests),
+ * then use DEBUG_WARN_ERR instead.
+ **/
+#define debug_warn(expr) ENSURE(0 && (expr))
+
+/**
+ * display the error dialog with text corresponding to the given error code.
+ * used by CHECK_ERR et al., which wrap function calls and automatically
+ * raise warnings and return to the caller.
+ **/
+#define DEBUG_WARN_ERR(err)\
+	do\
+	{\
+		static atomic_bool suppress__;\
+		switch(debug_OnError(err, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 		{\
 		case ER_CONTINUE:\
 			break;\
@@ -301,58 +335,10 @@ STMT(\
 			break;\
 		}\
 	}\
-)
+	while(0)
 
 /**
- * show a dialog to make sure unexpected states in the program are noticed.
- * this is less error-prone than "debug_assert(0 && "text");" and avoids
- * "conditional expression is constant" warnings. we'd really like to
- * completely eliminate the problem; replacing 0 literals with LIB_API
- * volatile variables fools VC7 but isn't guaranteed to be free of overhead.
- * we therefore just squelch the warning (unfortunately non-portable).
- * this duplicates the code from debug_assert to avoid compiler warnings about
- * constant conditions.
- *
- * if being able to suppress the warning is desirable (e.g. for self-tests),
- * then use DEBUG_WARN_ERR instead.
- **/
-#define debug_warn(expr) \
-STMT(\
-	static atomic_bool suppress__;\
-	switch(debug_OnAssertionFailure(expr, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
-	{\
-	case ER_CONTINUE:\
-		break;\
-	case ER_BREAK:\
-	default:\
-		debug_break();\
-		break;\
-	}\
-)
-
-
-/**
- * if (LibError)err indicates an function failed, display the error dialog.
- * used by CHECK_ERR et al., which wrap function calls and automatically
- * warn user and return to caller.
- **/
-#define DEBUG_WARN_ERR(err)\
-STMT(\
-	static atomic_bool suppress__;\
-	switch(debug_OnError(err, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
-	{\
-	case ER_CONTINUE:\
-		break;\
-	case ER_BREAK:\
-	default:\
-		debug_break();\
-		break;\
-	}\
-)
-
-
-/**
- * called when a debug_assert fails;
+ * called when a ENSURE/ASSERT fails;
  * notifies the user via debug_DisplayError.
  *
  * @param assert_expr the expression that failed; typically passed as
@@ -393,6 +379,9 @@ LIB_API ErrorReaction debug_OnError(LibError err, atomic_bool* suppress, const w
  */
 LIB_API void debug_SkipErrors(LibError err);
 
+/**
+ * @return how many errors were skipped since the call to debug_SkipErrors()
+ **/
 LIB_API size_t debug_StopSkippingErrors();
 
 

@@ -501,7 +501,7 @@ void CParticleEmitterType::UpdateEmitter(CParticleEmitter& emitter, float dt)
 
 void CParticleEmitterType::UpdateEmitterStep(CParticleEmitter& emitter, float dt)
 {
-	debug_assert(emitter.m_Type.get() == this);
+	ENSURE(emitter.m_Type.get() == this);
 
 	if (emitter.m_Active)
 	{

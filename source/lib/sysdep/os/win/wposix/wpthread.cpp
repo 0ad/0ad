@@ -135,7 +135,7 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	if(idx == TLS_OUT_OF_INDEXES)
 		return -ENOMEM;
 
-	debug_assert(idx < TLS_LIMIT);
+	ENSURE(idx < TLS_LIMIT);
 	*key = (pthread_key_t)idx;
 
 	// acquire a free dtor slot
@@ -159,10 +159,10 @@ have_slot:
 int pthread_key_delete(pthread_key_t key)
 {
 	DWORD idx = (DWORD)key;
-	debug_assert(idx < TLS_LIMIT);
+	ENSURE(idx < TLS_LIMIT);
 
 	BOOL ret = TlsFree(idx);
-	debug_assert(ret != 0);
+	ENSURE(ret != 0);
 	return 0;
 }
 
@@ -170,7 +170,7 @@ int pthread_key_delete(pthread_key_t key)
 void* pthread_getspecific(pthread_key_t key)
 {
 	DWORD idx = (DWORD)key;
-	debug_assert(idx < TLS_LIMIT);
+	ENSURE(idx < TLS_LIMIT);
 
 	// TlsGetValue sets last error to 0 on success (boo).
 	// we don't want this to hide previous errors, so it's restored below.
@@ -196,10 +196,10 @@ void* pthread_getspecific(pthread_key_t key)
 int pthread_setspecific(pthread_key_t key, const void* value)
 {
 	DWORD idx = (DWORD)key;
-	debug_assert(idx < TLS_LIMIT);
+	ENSURE(idx < TLS_LIMIT);
 
 	BOOL ret = TlsSetValue(idx, (void*)value);
-	debug_assert(ret != 0);
+	ENSURE(ret != 0);
 	return 0;
 }
 
@@ -259,7 +259,7 @@ static CRITICAL_SECTION* CRITICAL_SECTION_from_pthread_mutex_t(pthread_mutex_t* 
 {
 	if(!m)
 	{
-		debug_assert(0);
+		ENSURE(0);
 		return 0;
 	}
 	return (CRITICAL_SECTION*)*m;
@@ -341,9 +341,9 @@ sem_t* sem_open(const char* name, int oflag, ...)
 	const bool exclusive = (oflag & O_EXCL) != 0;
 
 	// SUSv3 parameter requirements:
-	debug_assert(name[0] == '/');
-	debug_assert((oflag & ~(O_CREAT|O_EXCL)) == 0);	// no other bits
-	debug_assert(!exclusive || create);	// excl implies creat
+	ENSURE(name[0] == '/');
+	ENSURE((oflag & ~(O_CREAT|O_EXCL)) == 0);	// no other bits
+	ENSURE(!exclusive || create);	// excl implies creat
 
 	// if creating, get additional parameters
 	unsigned initialValue = 0;
@@ -354,7 +354,7 @@ sem_t* sem_open(const char* name, int oflag, ...)
 		const mode_t mode = va_arg(args, mode_t);
 		initialValue = va_arg(args, unsigned);
 		va_end(args);
-		debug_assert(mode == 0700 && "this implementation ignores mode_t");
+		ENSURE(mode == 0700 && "this implementation ignores mode_t");
 	}
 
 	// create or open
@@ -432,7 +432,7 @@ int sem_wait(sem_t* sem)
 {
 	HANDLE h = HANDLE_from_sem_t(sem);
 	DWORD ret = WaitForSingleObject(h, INFINITE);
-	debug_assert(ret == WAIT_OBJECT_0);
+	ENSURE(ret == WAIT_OBJECT_0);
 	return 0;
 }
 

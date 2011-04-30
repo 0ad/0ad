@@ -63,7 +63,7 @@ public:
 
 	void WritePixel(size_t pixel_idx, u8* RESTRICT out) const
 	{
-		debug_assert(pixel_idx < 16);
+		ENSURE(pixel_idx < 16);
 
 		// pixel index -> color selector (2 bit) -> color
 		const size_t c_selector = access_bit_tbl(c_selectors, pixel_idx, 2);
@@ -239,7 +239,7 @@ static void s3tc_decompress_level(size_t UNUSED(level), size_t level_w, size_t l
 	const size_t blocks_w = DivideRoundUp(level_w, size_t(4));
 	const size_t blocks_h = DivideRoundUp(level_h, size_t(4));
 	const u8* s3tc_data = level_data;
-	debug_assert(level_data_size % s3tc_block_size == 0);
+	ENSURE(level_data_size % s3tc_block_size == 0);
 
 	for(size_t block_y = 0; block_y < blocks_h; block_y++)
 	{
@@ -264,7 +264,7 @@ static void s3tc_decompress_level(size_t UNUSED(level), size_t level_w, size_t l
 		}
 	}
 
-	debug_assert(s3tc_data == level_data + level_data_size);
+	ENSURE(s3tc_data == level_data + level_data_size);
 	di->out += blocks_w*blocks_h * 16 * di->out_Bpp;
 }
 
@@ -555,12 +555,12 @@ static LibError decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bp
 
 	// check caps
 	// .. this is supposed to be set, but don't bail if not (pointless)
-	debug_assert(sd->dwCaps & DDSCAPS_TEXTURE);
+	ENSURE(sd->dwCaps & DDSCAPS_TEXTURE);
 	// .. sanity check: warn if mipmap flag not set (don't bail if not
 	// because we've already made the decision).
 	const bool mipmap_cap = (sd->dwCaps & DDSCAPS_MIPMAP) != 0;
 	const bool mipmap_flag = (flags & TEX_MIPMAPS) != 0;
-	debug_assert(mipmap_cap == mipmap_flag);
+	ENSURE(mipmap_cap == mipmap_flag);
 	// note: we do not check for cubemaps and volume textures (not supported)
 	// because the file may still have useful data we can read.
 
@@ -613,7 +613,7 @@ static LibError dds_transform(Tex* t, size_t transforms)
 
 	size_t mipmaps = t->flags & TEX_MIPMAPS;
 	size_t dxt = t->flags & TEX_DXT;
-	debug_assert(is_valid_dxt(dxt));
+	ENSURE(is_valid_dxt(dxt));
 
 	const size_t transform_mipmaps = transforms & TEX_MIPMAPS;
 	const size_t transform_dxt = transforms & TEX_DXT;

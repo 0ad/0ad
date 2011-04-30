@@ -156,7 +156,7 @@ public:
 
 	// return the models bone matrices
 	const CMatrix3D* GetAnimatedBoneMatrices() { 
-		debug_assert(m_PositionValid);
+		ENSURE(m_PositionValid);
 		return m_BoneMatrices;
 	}
 	const CMatrix3D* GetInverseBindBoneMatrices() { 

@@ -90,7 +90,7 @@ public:
 			if (m_Heap[n].id == id)
 			{
 #if PRIORITYQUEUE_DEBUG
-				debug_assert(m_Heap[n].rank > newrank);
+				ENSURE(m_Heap[n].rank > newrank);
 #endif
 				m_Heap[n].rank = newrank;
 				push_heap(m_Heap.begin(), m_Heap.begin()+n+1, QueueItemPriority<Item>());
@@ -102,7 +102,7 @@ public:
 	Item pop()
 	{
 #if PRIORITYQUEUE_DEBUG
-		debug_assert(m_Heap.size());
+		ENSURE(m_Heap.size());
 #endif
 		Item r = m_Heap.front();
 		pop_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item>());
@@ -163,7 +163,7 @@ public:
 	Item pop()
 	{
 #if PRIORITYQUEUE_DEBUG
-		debug_assert(m_List.size());
+		ENSURE(m_List.size());
 #endif
 		// Loop backwards looking for the best (it's most likely to be one
 		// we've recently pushed, so going backwards saves a bit of copying)

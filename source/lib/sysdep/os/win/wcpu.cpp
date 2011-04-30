@@ -43,8 +43,8 @@ uintptr_t os_cpu_ProcessorMask()
 		const HANDLE hProcess = GetCurrentProcess();
 		DWORD_PTR processAffinity, systemAffinity;
 		const BOOL ok = GetProcessAffinityMask(hProcess, &processAffinity, &systemAffinity);
-		debug_assert(ok);
-		debug_assert(processAffinity != 0);
+		ENSURE(ok);
+		ENSURE(processAffinity != 0);
 		processorMask = processAffinity;
 	}
 
@@ -63,8 +63,8 @@ size_t os_cpu_NumProcessors()
 		// sanity check
 		SYSTEM_INFO si;
 		GetSystemInfo(&si);	// guaranteed to succeed
-		debug_assert(numProcessors <= (size_t)si.dwNumberOfProcessors);
-		debug_assert(numProcessors >= 1);
+		ENSURE(numProcessors <= (size_t)si.dwNumberOfProcessors);
+		ENSURE(numProcessors >= 1);
 	}
 
 	return numProcessors;
@@ -117,8 +117,8 @@ size_t os_cpu_LargePageSize()
 		if(pGetLargePageMinimum)
 		{
 			largePageSize = pGetLargePageMinimum();
-			debug_assert(largePageSize != 0);	// IA-32 and AMD64 definitely support large pages
-			debug_assert(largePageSize > os_cpu_PageSize());
+			ENSURE(largePageSize != 0);	// IA-32 and AMD64 definitely support large pages
+			ENSURE(largePageSize > os_cpu_PageSize());
 		}
 		// no OS support for large pages
 		else
@@ -226,7 +226,7 @@ static void VerifyRunningOnCorrectProcessors(DWORD_PTR affinity)
 		return;
 	}
 
-	debug_assert(IsBitSet(affinity, currentProcessor));
+	ENSURE(IsBitSet(affinity, currentProcessor));
 }
 
 
@@ -234,7 +234,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 {
 	const size_t numProcessors = os_cpu_NumProcessors();
 	// (avoid undefined result when right shift count >= number of bits)
-	debug_assert(numProcessors == sizeof(processorMask)*CHAR_BIT || (processorMask >> numProcessors) == 0);
+	ENSURE(numProcessors == sizeof(processorMask)*CHAR_BIT || (processorMask >> numProcessors) == 0);
 
 	DWORD_PTR processAffinity, systemAffinity;
 	const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
@@ -242,7 +242,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 
 	const DWORD_PTR affinity = wcpu_AffinityFromProcessorMask(processAffinity, processorMask);
 	const DWORD_PTR previousAffinity = SetThreadAffinityMask(GetCurrentThread(), affinity);
-	debug_assert(previousAffinity != 0);	// ensure function didn't fail
+	ENSURE(previousAffinity != 0);	// ensure function didn't fail
 	// (MSDN says SetThreadAffinityMask takes care of rescheduling)
 	VerifyRunningOnCorrectProcessors(affinity);
 

@@ -40,7 +40,7 @@ public:
 
 	void operator()(u8* p)
 	{
-		debug_assert(m_size != 0);
+		ENSURE(m_size != 0);
 #ifndef NDEBUG
 		s_allocatorChecker.OnDeallocate(p, m_size);
 #endif
@@ -54,7 +54,7 @@ private:
 
 shared_ptr<u8> Allocate(size_t size)
 {
-	debug_assert(size != 0);
+	ENSURE(size != 0);
 
 	u8* p = new u8[size];
 #ifndef NDEBUG

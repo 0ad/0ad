@@ -91,13 +91,13 @@ GLuint CLOSTexture::GetTexture()
 
 const float* CLOSTexture::GetTextureMatrix()
 {
-	debug_assert(!m_Dirty);
+	ENSURE(!m_Dirty);
 	return &m_TextureMatrix._11;
 }
 
 const float* CLOSTexture::GetMinimapTextureMatrix()
 {
-	debug_assert(!m_Dirty);
+	ENSURE(!m_Dirty);
 	return &m_MinimapTextureMatrix._11;
 }
 

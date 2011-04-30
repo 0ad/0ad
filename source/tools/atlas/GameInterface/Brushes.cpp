@@ -84,7 +84,7 @@ void Brush::SetData(ssize_t w, ssize_t h, const std::vector<float>& data)
 
 	m_Data = data;
 	
-	debug_assert(data.size() == (size_t)(w*h));
+	ENSURE(data.size() == (size_t)(w*h));
 }
 
 void Brush::GetCentre(ssize_t& x, ssize_t& y) const

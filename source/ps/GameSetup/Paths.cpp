@@ -56,7 +56,7 @@ Paths::Paths(const CmdLineArgs& args)
 		m_logs = appdata/"logs/";
 #else
 		const char* envHome = getenv("HOME");
-		debug_assert(envHome);
+		ENSURE(envHome);
 		const OsPath home(envHome);
 		const OsPath xdgData   = XDG_Path("XDG_DATA_HOME",   home, home/".local/share/") / subdirectoryName;
 		const OsPath xdgConfig = XDG_Path("XDG_CONFIG_HOME", home, home/".config/"     ) / subdirectoryName;

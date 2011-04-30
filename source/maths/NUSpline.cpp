@@ -110,7 +110,7 @@ CVector3D RNSpline::GetPosition(float time) const
     CurrentDistance += Node[i].Distance;
     i++;
   }
-  debug_assert( i < NodeCount - 1 ); 
+  ENSURE( i < NodeCount - 1 ); 
   float t = Distance - CurrentDistance;
   t /= Node[i].Distance; // scale t in range 0 - 1
   CVector3D startVel = Node[i].Velocity * Node[i].Distance;

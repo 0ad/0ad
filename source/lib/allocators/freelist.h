@@ -41,10 +41,8 @@ LIB_API void* mem_freelist_Sentinel();
 
 static inline void mem_freelist_AddToFront(void*& freelist, void* el)
 {
-#ifndef NDEBUG
-	debug_assert(freelist != 0);
-	debug_assert(el != 0);
-#endif
+	ASSERT(freelist != 0);
+	ASSERT(el != 0);
 
 	memcpy(el, &freelist, sizeof(void*));
 	freelist = el;
@@ -54,9 +52,7 @@ static inline void mem_freelist_AddToFront(void*& freelist, void* el)
 // previously been passed to mem_freelist_AddToFront.
 static inline void* mem_freelist_Detach(void*& freelist)
 {
-#ifndef NDEBUG
-	debug_assert(freelist != 0);
-#endif
+	ASSERT(freelist != 0);
 
 	void* prev_el;
 	memcpy(&prev_el, freelist, sizeof(void*));

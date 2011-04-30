@@ -596,7 +596,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;
 
-	debug_assert(wcslen(szLine) < CONSOLE_BUFFER_SIZE);
+	ENSURE(wcslen(szLine) < CONSOLE_BUFFER_SIZE);
 
 	m_deqBufHistory.push_front(szLine);
 	SaveHistory(); // Do this each line for the moment; if a script causes

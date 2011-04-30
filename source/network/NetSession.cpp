@@ -49,8 +49,8 @@ CNetClientSession::~CNetClientSession()
 
 bool CNetClientSession::Connect(u16 port, const CStr& server)
 {
-	debug_assert(!m_Host);
-	debug_assert(!m_Server);
+	ENSURE(!m_Host);
+	ENSURE(!m_Server);
 
 	// Create ENet host
 	ENetHost* host = enet_host_create(NULL, 1, 0, 0);
@@ -80,7 +80,7 @@ bool CNetClientSession::Connect(u16 port, const CStr& server)
 
 void CNetClientSession::Disconnect(u32 reason)
 {
-	debug_assert(m_Host && m_Server);
+	ENSURE(m_Host && m_Server);
 
 	// TODO: ought to do reliable async disconnects, probably
 	enet_peer_disconnect_now(m_Server, reason);
@@ -94,7 +94,7 @@ void CNetClientSession::Disconnect(u32 reason)
 
 void CNetClientSession::Poll()
 {
-	debug_assert(m_Host && m_Server);
+	ENSURE(m_Host && m_Server);
 
 	ENetEvent event;
 	while (enet_host_service(m_Host, &event, 0) > 0)
@@ -103,7 +103,7 @@ void CNetClientSession::Poll()
 		{
 		case ENET_EVENT_TYPE_CONNECT:
 		{
-			debug_assert(event.peer == m_Server);
+			ENSURE(event.peer == m_Server);
 
 			// Report the server address
 			char hostname[256] = "(error)";
@@ -117,7 +117,7 @@ void CNetClientSession::Poll()
 
 		case ENET_EVENT_TYPE_DISCONNECT:
 		{
-			debug_assert(event.peer == m_Server);
+			ENSURE(event.peer == m_Server);
 
 			LOGMESSAGE(L"Net client: Disconnected");
 			m_Client.HandleDisconnect(event.data);
@@ -150,14 +150,14 @@ void CNetClientSession::Poll()
 
 void CNetClientSession::Flush()
 {
-	debug_assert(m_Host && m_Server);
+	ENSURE(m_Host && m_Server);
 
 	enet_host_flush(m_Host);
 }
 
 bool CNetClientSession::SendMessage(const CNetMessage* message)
 {
-	debug_assert(m_Host && m_Server);
+	ENSURE(m_Host && m_Server);
 
 	return CNetHost::SendMessage(message, m_Server, "server");
 }

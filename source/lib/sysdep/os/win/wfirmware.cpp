@@ -13,12 +13,12 @@ TableIds GetTableIDs(Provider provider)
 		return TableIds();
 
 	const size_t tableIdsSize = pEnumSystemFirmwareTables(provider, 0, 0);
-	debug_assert(tableIdsSize != 0);
-	debug_assert(tableIdsSize % sizeof(TableId) == 0);
+	ENSURE(tableIdsSize != 0);
+	ENSURE(tableIdsSize % sizeof(TableId) == 0);
 	TableIds tableIDs(DivideRoundUp(tableIdsSize, sizeof(TableId)), 0);
 
 	const size_t bytesWritten = pEnumSystemFirmwareTables(provider, &tableIDs[0], (DWORD)tableIdsSize);
-	debug_assert(bytesWritten == tableIdsSize);
+	ENSURE(bytesWritten == tableIdsSize);
 
 	return tableIDs;
 }
@@ -34,13 +34,13 @@ Table GetTable(Provider provider, TableId tableId)
 	const size_t tableSize = pGetSystemFirmwareTable(provider, tableId, 0, 0);
 	if(tableSize == 0)
 	{
-		debug_assert(0);
+		ENSURE(0);
 		return Table();
 	}
 
 	Table table(tableSize, 0);
 	const size_t bytesWritten = pGetSystemFirmwareTable(provider, tableId, &table[0], (DWORD)tableSize);
-	debug_assert(bytesWritten == tableSize);
+	ENSURE(bytesWritten == tableSize);
 
 	return table;
 }

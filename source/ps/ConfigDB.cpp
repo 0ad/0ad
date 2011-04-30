@@ -192,9 +192,9 @@ namespace ConfigDB_JS
 		int flags=JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT;
 #define cfg_ns(_propname, _enum) STMT (\
 	JSObject *nsobj=g_ScriptingHost.CreateCustomObject("ConfigNamespace"); \
-	debug_assert(nsobj); \
+	ENSURE(nsobj); \
 	ConfigNamespace_JS::SetNamespace(cx, nsobj, _enum); \
-	debug_assert(JS_DefineProperty(cx, newObj, _propname, OBJECT_TO_JSVAL(nsobj), NULL, NULL, flags)); )
+	ENSURE(JS_DefineProperty(cx, newObj, _propname, OBJECT_TO_JSVAL(nsobj), NULL, NULL, flags)); )
 
 		cfg_ns("default", CFG_DEFAULT);
 		cfg_ns("system", CFG_SYSTEM);

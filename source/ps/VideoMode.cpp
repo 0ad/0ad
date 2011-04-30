@@ -112,7 +112,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 bool CVideoMode::InitSDL()
 {
-	debug_assert(!m_IsInitialised);
+	ENSURE(!m_IsInitialised);
 
 	ReadConfig();
 
@@ -197,7 +197,7 @@ bool CVideoMode::InitSDL()
 
 bool CVideoMode::InitNonSDL()
 {
-	debug_assert(!m_IsInitialised);
+	ENSURE(!m_IsInitialised);
 
 	ReadConfig();
 
@@ -210,7 +210,7 @@ bool CVideoMode::InitNonSDL()
 
 void CVideoMode::Shutdown()
 {
-	debug_assert(m_IsInitialised);
+	ENSURE(m_IsInitialised);
 
 	m_IsInitialised = false;
 }
@@ -239,7 +239,7 @@ void CVideoMode::EnableS3TC()
 
 bool CVideoMode::ResizeWindow(int w, int h)
 {
-	debug_assert(m_IsInitialised);
+	ENSURE(m_IsInitialised);
 
 	// Ignore if not windowed
 	if (m_IsFullscreen)
@@ -365,18 +365,18 @@ int CVideoMode::GetBestBPP()
 
 int CVideoMode::GetXRes()
 {
-	debug_assert(m_IsInitialised);
+	ENSURE(m_IsInitialised);
 	return m_CurrentW;
 }
 
 int CVideoMode::GetYRes()
 {
-	debug_assert(m_IsInitialised);
+	ENSURE(m_IsInitialised);
 	return m_CurrentH;
 }
 
 int CVideoMode::GetBPP()
 {
-	debug_assert(m_IsInitialised);
+	ENSURE(m_IsInitialised);
 	return m_CurrentBPP;
 }

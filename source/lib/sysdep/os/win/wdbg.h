@@ -37,7 +37,7 @@
 LIB_API void wdbg_printf(const wchar_t* fmt, ...);
 
 /**
- * similar to debug_assert but safe to use during critical init or
+ * similar to ENSURE but safe to use during critical init or
  * while under the heap or dbghelp locks.
  **/
 #define wdbg_assert(expr) STMT(if(!(expr)) debug_break();)

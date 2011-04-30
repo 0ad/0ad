@@ -199,7 +199,7 @@ retry:
 
 	std::wstring ToString() const
 	{
-		debug_assert(m_cycles >= 0.0);
+		ENSURE(m_cycles >= 0.0);
 		return StringForCycles(m_cycles);
 	}
 
@@ -253,7 +253,7 @@ retry:
 
 	std::wstring ToString() const
 	{
-		debug_assert(m_seconds >= 0.0);
+		ENSURE(m_seconds >= 0.0);
 		return StringForSeconds(m_seconds);
 	}
 

@@ -99,8 +99,8 @@ public:
 		// note: we can't check for prev != next because we're called for
 		// footers as well, and they don't have valid pointers.
 
-		debug_assert(IsValidSize(m_size));
-		debug_assert(IsFreedBlock(id));
+		ENSURE(IsValidSize(m_size));
+		ENSURE(IsFreedBlock(id));
 	}
 
 private:
@@ -198,7 +198,7 @@ public:
 		}
 
 		// none found, so average block size is less than the desired size
-		debug_assert(m_freeBytes/m_freeBlocks < minSize);
+		ENSURE(m_freeBytes/m_freeBlocks < minSize);
 		return 0;
 	}
 
@@ -207,8 +207,8 @@ public:
 		freedBlock->next->prev = freedBlock->prev;
 		freedBlock->prev->next = freedBlock->next;
 
-		debug_assert(m_freeBlocks != 0);
-		debug_assert(m_freeBytes >= freedBlock->Size());
+		ENSURE(m_freeBlocks != 0);
+		ENSURE(m_freeBytes >= freedBlock->Size());
 		m_freeBlocks--;
 		m_freeBytes -= freedBlock->Size();
 	}
@@ -234,9 +234,9 @@ public:
 		}
 
 		// our idea of the number and size of free blocks is correct
-		debug_assert(freeBlocks == m_freeBlocks*2 && freeBytes == m_freeBytes*2);
+		ENSURE(freeBlocks == m_freeBlocks*2 && freeBytes == m_freeBytes*2);
 		// if empty, state must be as established by Reset
-		debug_assert(!IsEmpty() || (m_sentinel.next == &m_sentinel && m_sentinel.prev == &m_sentinel));
+		ENSURE(!IsEmpty() || (m_sentinel.next == &m_sentinel && m_sentinel.prev == &m_sentinel));
 	}
 
 	bool IsEmpty() const
@@ -311,7 +311,7 @@ public:
 
 		// apparently all classes above minSizeClass are empty,
 		// or the above would have succeeded.
-		debug_assert(m_bitmap < Bit<uintptr_t>(minSizeClass+1));
+		ENSURE(m_bitmap < Bit<uintptr_t>(minSizeClass+1));
 		return 0;
 	}
 
@@ -332,7 +332,7 @@ public:
 			m_rangeLists[i].Validate(id);
 
 			// both bitmap and list must agree on whether they are empty
-			debug_assert(((m_bitmap & Bit<uintptr_t>(i)) == 0) == m_rangeLists[i].IsEmpty());
+			ENSURE(((m_bitmap & Bit<uintptr_t>(i)) == 0) == m_rangeLists[i].IsEmpty());
 		}
 	}
 
@@ -424,8 +424,8 @@ public:
 	{
 		Validate(freedBlock);
 
-		debug_assert(m_freeBlocks != 0);
-		debug_assert(m_freeBytes >= freedBlock->Size());
+		ENSURE(m_freeBlocks != 0);
+		ENSURE(m_freeBytes >= freedBlock->Size());
 		m_freeBlocks--;
 		m_freeBytes -= freedBlock->Size();
 
@@ -486,8 +486,8 @@ private:
 
 		// the existence of freedBlock means our bookkeeping better have
 		// records of at least that much memory.
-		debug_assert(m_freeBlocks != 0);
-		debug_assert(m_freeBytes >= freedBlock->Size());
+		ENSURE(m_freeBlocks != 0);
+		ENSURE(m_freeBytes >= freedBlock->Size());
 
 		freedBlock->Validate(s_headerId);
 		Footer(freedBlock)->Validate(s_footerId);
@@ -538,11 +538,11 @@ public:
 
 		m_totalDeallocatedBlocks++;
 		m_totalDeallocatedBytes += size;
-		debug_assert(m_totalDeallocatedBlocks <= m_totalAllocatedBlocks);
-		debug_assert(m_totalDeallocatedBytes <= m_totalDeallocatedBytes);
+		ENSURE(m_totalDeallocatedBlocks <= m_totalAllocatedBlocks);
+		ENSURE(m_totalDeallocatedBytes <= m_totalDeallocatedBytes);
 
-		debug_assert(m_currentExtantBlocks != 0);
-		debug_assert(m_currentExtantBytes >= size);
+		ENSURE(m_currentExtantBlocks != 0);
+		ENSURE(m_currentExtantBytes >= size);
 		m_currentExtantBlocks--;
 		m_currentExtantBytes -= size;
 	}
@@ -557,8 +557,8 @@ public:
 	{
 		if(!performSanityChecks) return;
 
-		debug_assert(m_currentFreeBlocks != 0);
-		debug_assert(m_currentFreeBytes >= size);
+		ENSURE(m_currentFreeBlocks != 0);
+		ENSURE(m_currentFreeBytes >= size);
 		m_currentFreeBlocks--;
 		m_currentFreeBytes -= size;
 	}
@@ -567,11 +567,11 @@ public:
 	{
 		if(!performSanityChecks) return;
 
-		debug_assert(m_totalDeallocatedBlocks <= m_totalAllocatedBlocks);
-		debug_assert(m_totalDeallocatedBytes <= m_totalAllocatedBytes);
+		ENSURE(m_totalDeallocatedBlocks <= m_totalAllocatedBlocks);
+		ENSURE(m_totalDeallocatedBytes <= m_totalAllocatedBytes);
 
-		debug_assert(m_currentExtantBlocks == m_totalAllocatedBlocks-m_totalDeallocatedBlocks);
-		debug_assert(m_currentExtantBytes == m_totalAllocatedBytes-m_totalDeallocatedBytes);
+		ENSURE(m_currentExtantBlocks == m_totalAllocatedBlocks-m_totalDeallocatedBlocks);
+		ENSURE(m_currentExtantBytes == m_totalAllocatedBytes-m_totalDeallocatedBytes);
 	}
 
 	size_t FreeBlocks() const
@@ -598,7 +598,7 @@ private:
 
 static void AssertEqual(size_t x1, size_t x2, size_t x3)
 {
-	debug_assert(x1 == x2 && x2 == x3);
+	ENSURE(x1 == x2 && x2 == x3);
 }
 
 class HeaderlessAllocator::Impl
@@ -629,7 +629,7 @@ public:
 
 	void* Allocate(size_t size) throw()
 	{
-		debug_assert(IsValidSize(size));
+		ENSURE(IsValidSize(size));
 		Validate();
 
 		void* p = TakeAndSplitFreeBlock(size);
@@ -644,16 +644,16 @@ public:
 		m_stats.OnAllocate(size);
 
 		Validate();
-		debug_assert((uintptr_t)p % allocationAlignment == 0);
+		ENSURE((uintptr_t)p % allocationAlignment == 0);
 		return p;
 	}
 
 	void Deallocate(u8* p, size_t size)
 	{
-		debug_assert((uintptr_t)p % allocationAlignment == 0);
-		debug_assert(IsValidSize(size));
-		debug_assert(pool_contains(&m_pool, p));
-		debug_assert(pool_contains(&m_pool, p+size-1));
+		ENSURE((uintptr_t)p % allocationAlignment == 0);
+		ENSURE(IsValidSize(size));
+		ENSURE(pool_contains(&m_pool, p));
+		ENSURE(pool_contains(&m_pool, p+size-1));
 
 		Validate();
 

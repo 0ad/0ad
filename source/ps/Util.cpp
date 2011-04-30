@@ -92,7 +92,7 @@ void WriteSystemInfo()
 	time(&seconds);
 	struct tm* t = gmtime(&seconds);
 	const size_t charsWritten = wcsftime(timestampBuf, ARRAY_SIZE(timestampBuf), L"(generated %Y-%m-%d %H:%M:%S UTC)", t);
-	debug_assert(charsWritten != 0);
+	ENSURE(charsWritten != 0);
 	fprintf(f, "%ls\n\n", timestampBuf);
 	}
 
@@ -209,7 +209,7 @@ LibError tex_write(Tex* t, const VfsPath& filename)
 		shared_ptr<u8> file = DummySharedPtr(da.base);
 		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
 		if(bytes_written > 0)
-			debug_assert(bytes_written == (ssize_t)da.pos);
+			ENSURE(bytes_written == (ssize_t)da.pos);
 		else
 			ret = (LibError)bytes_written;
 	}
@@ -290,7 +290,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
 	// hope the screen is actually large enough for that.
 	const int tile_w = 640, tile_h = 480;
-	debug_assert(g_xres >= tile_w && g_yres >= tile_h);
+	ENSURE(g_xres >= tile_w && g_yres >= tile_h);
 
 	const int img_w = tile_w*tiles, img_h = tile_h*tiles;
 	const int bpp = 24;

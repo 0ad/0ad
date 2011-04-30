@@ -50,7 +50,7 @@ ENetPacket* CNetHost::CreatePacket(const CNetMessage* message)
 {
 	size_t size = message->GetSerializedLength();
 
-	debug_assert(size); // else we'll fail when accessing the 0th element
+	ENSURE(size); // else we'll fail when accessing the 0th element
 
 	// Adjust buffer for message
 	std::vector<u8> buffer;
@@ -70,7 +70,7 @@ ENetPacket* CNetHost::CreatePacket(const CNetMessage* message)
 void CNetHost::Initialize()
 {
 	int ret = enet_initialize();
-	debug_assert(ret == 0);
+	ENSURE(ret == 0);
 }
 
 void CNetHost::Deinitialize()

@@ -105,9 +105,9 @@ static void InitCounter()
 {
 	// we used to support switching counters at runtime, but that's
 	// unnecessarily complex. it need and should only be done once.
-	debug_assert(counter == 0);
+	ENSURE(counter == 0);
 	counter = GetNextBestSafeCounter();
-	debug_assert(counter != 0);
+	ENSURE(counter != 0);
 
 	nominalFrequency = counter->NominalFrequency();
 	resolution       = counter->Resolution();
@@ -115,9 +115,9 @@ static void InitCounter()
 	debug_printf(L"HRT| counter=%ls freq=%g res=%g bits=%d\n", counter->Name(), nominalFrequency, resolution, counterBits);
 
 	// sanity checks
-	debug_assert(nominalFrequency >= 500.0-DBL_EPSILON);
-	debug_assert(resolution <= 2e-3);
-	debug_assert(8 <= counterBits && counterBits <= 64);
+	ENSURE(nominalFrequency >= 500.0-DBL_EPSILON);
+	ENSURE(resolution <= 2e-3);
+	ENSURE(8 <= counterBits && counterBits <= 64);
 
 	counterMask = bit_mask<u64>(counterBits);
 }
@@ -143,7 +143,7 @@ static inline u64 CounterDelta(u64 oldCounter, u64 newCounter)
 
 double whrt_Resolution()
 {
-	debug_assert(resolution != 0.0);
+	ENSURE(resolution != 0.0);
 	return resolution;
 }
 
@@ -266,7 +266,7 @@ static inline LibError InitUpdateThread()
 	// (counterBits can be 64 => Bit() would overflow => calculate period/2)
 	const double period_2 = Bit<u64>(counterBits-1) / nominalFrequency;
 	const size_t rolloversPerInterval = size_t(UPDATE_INTERVAL_MS / i64(period_2*2.0*1000.0));
-	debug_assert(rolloversPerInterval <= 1);
+	ENSURE(rolloversPerInterval <= 1);
 
 	hExitEvent = CreateEvent(0, TRUE, FALSE, 0);	// manual reset, initially false
 	if(hExitEvent == INVALID_HANDLE_VALUE)

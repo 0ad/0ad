@@ -60,7 +60,7 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 
 	if (state.anims.empty())
 		state.anims = object->GetAnimations("idle");
-	debug_assert(!state.anims.empty()); // there must always be an idle animation
+	ENSURE(!state.anims.empty()); // there must always be an idle animation
 
 	state.model = model;
 	state.animIdx = rand(0, state.anims.size());

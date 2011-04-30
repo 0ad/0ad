@@ -175,7 +175,7 @@ static void Type_dtor(Res1* r);
 }
 
 again no provision for reporting errors - there's no one to act on it
-if called at exit. you can debug_assert or log the error, though.
+if called at exit. you can ENSURE or log the error, though.
 
 be careful to correctly handle the different cases in which this routine
 can be called! some flags should persist across reloads (e.g. choices made

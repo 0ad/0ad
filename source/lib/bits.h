@@ -113,7 +113,7 @@ template<typename T>
 inline T SetBitsTo(T num, size_t lo_idx, size_t hi_idx, size_t value)
 {
 	const size_t numBits = (hi_idx - lo_idx)+1;
-	debug_assert(value < (T(1) << numBits));
+	ASSERT(value < (T(1) << numBits));
 	const T mask = bit_mask<T>(numBits) << lo_idx;
 	T result = num & ~mask;
 	result = T(result | (value << lo_idx));
@@ -214,18 +214,18 @@ inline T round_up_to_pow2(T x)
 template<typename T>
 inline T round_up(T n, T multiple)
 {
-	debug_assert(is_pow2(multiple));
+	ASSERT(is_pow2(multiple));
 	const T result = (n + multiple-1) & ~(multiple-1);
-	debug_assert(n <= result && result < n+multiple);
+	ASSERT(n <= result && result < n+multiple);
 	return result;
 }
 
 template<typename T>
 inline T round_down(T n, T multiple)
 {
-	debug_assert(is_pow2(multiple));
+	ASSERT(is_pow2(multiple));
 	const T result = n & ~(multiple-1);
-	debug_assert(result <= n && n < result+multiple);
+	ASSERT(result <= n && n < result+multiple);
 	return result;
 }
 
@@ -233,7 +233,7 @@ inline T round_down(T n, T multiple)
 template<typename T>
 inline T MaxPowerOfTwoDivisor(T value)
 {
-	debug_assert(value != T(0));
+	ASSERT(value != T(0));
 
 	for(size_t log2 = 0; log2 < sizeof(T)*CHAR_BIT; log2++)
 	{
@@ -241,7 +241,7 @@ inline T MaxPowerOfTwoDivisor(T value)
 			return T(1) << log2;
 	}
 
-	debug_assert(0);	// unreachable (!= 0 => there is a set bit)
+	ENSURE(0);	// unreachable (!= 0 => there is a set bit)
 	return 0;
 }
 

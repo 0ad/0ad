@@ -45,13 +45,13 @@ void dbghelp_ImportFunctions()
 	// to our executable directory, which contains a newer dbghelp.dll.
 	const OsPath pathname = sys_ExecutablePathname().Parent()/"dbghelp.dll";
 	HMODULE hDbghelp = LoadLibraryW(OsString(pathname).c_str());
-	debug_assert(hDbghelp);
+	ENSURE(hDbghelp);
 #define FUNC(ret, name, params) p##name = (ret (__stdcall*) params)GetProcAddress(hDbghelp, #name);
 #include "lib/external_libraries/dbghelp_funcs.h"
 #undef FUNC
 
 	// if this function is missing, the DLL is too old.
-	debug_assert(pSymInitializeW);
+	ENSURE(pSymInitializeW);
 }
 
 #endif // OS_WIN

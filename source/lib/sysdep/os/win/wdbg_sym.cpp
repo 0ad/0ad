@@ -313,7 +313,7 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTE
 	// to function properly, StackWalk64 requires a CONTEXT on
 	// non-x86 systems (documented) or when in release mode (observed).
 	// exception handlers can call wdbg_sym_WalkStack with their context record;
-	// otherwise (e.g. dump_stack from debug_assert), we need to query it.
+	// otherwise (e.g. dump_stack from ENSURE), we need to query it.
 	CONTEXT context;
 	// .. caller knows the context (most likely from an exception);
 	//    since StackWalk64 may modify it, copy to a local variable.
@@ -436,7 +436,7 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTE
 		// (can be either success or failure)
 		else
 		{
-			debug_assert(ret <= 0);	// shouldn't return > 0
+			ENSURE(ret <= 0);	// shouldn't return > 0
 			return ret;
 		}
 	}
@@ -536,7 +536,7 @@ static void out(const wchar_t* fmt, ...)
 		// make sure out_chars_left remains nonnegative
 		if((size_t)len > out_chars_left)
 		{
-			debug_assert(0);	// apparently wrote more than out_chars_left
+			ENSURE(0);	// apparently wrote more than out_chars_left
 			len = (int)out_chars_left;
 		}
 		out_chars_left -= len;
@@ -969,9 +969,9 @@ static LibError dump_sym_array(DWORD type_id, const u8* p, DumpState state)
 	if(!pSymGetTypeInfo(hProcess, mod_base, el_type_id, TI_GET_LENGTH, &el_size_))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t el_size = (size_t)el_size_;
-	debug_assert(el_size != 0);
+	ENSURE(el_size != 0);
 	const size_t num_elements = size/el_size;
-	debug_assert(num_elements != 0);
+	ENSURE(num_elements != 0);
  
 	return dump_array(p, num_elements, el_type_id, el_size, state);
 }
@@ -1036,12 +1036,12 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 		else if(size == sizeof(double))
 			out(L"%g (0x%016I64X)", data, data);
 		else
-			debug_assert(0);	// invalid float size
+			ENSURE(0);	// invalid float size
 		break;
 
 	// boolean
 	case btBool:
-		debug_assert(size == sizeof(bool));
+		ENSURE(size == sizeof(bool));
 		if(data == 0 || data == 1)
 			out(L"%ls", data? L"true " : L"false");
 		else
@@ -1074,14 +1074,14 @@ display_as_hex:
 		else if(size == 8)
 			fmt = L"%I64d (0x%016I64X)";
 		else
-			debug_assert(0);	// invalid size for integers
+			ENSURE(0);	// invalid size for integers
 		out(fmt, data, data);
 		break;
 
 	// character
 	case btChar:
 	case btWChar:
-		debug_assert(size == sizeof(char) || size == sizeof(wchar_t));
+		ENSURE(size == sizeof(char) || size == sizeof(wchar_t));
 		// char*, wchar_t*
 		if(state.indirection)
 		{
@@ -1102,11 +1102,11 @@ display_as_hex:
 			fmt = L"";
 		}
 		else
-			debug_assert(0);	// non-pointer btVoid or btNoType
+			ENSURE(0);	// non-pointer btVoid or btNoType
 		break;
 
 	default:
-		debug_assert(0);	// unknown type
+		ENSURE(0);	// unknown type
 		break;
 
 	// unsupported complex types
@@ -1377,7 +1377,7 @@ static LibError udt_get_child_type(const wchar_t* child_name, ULONG num_children
 		if(!pSymFromIndexW(hProcess, mod_base, child_id, sym))
 		{
 			// this happens for several UDTs; cause is unknown.
-			debug_assert(GetLastError() == ERROR_NOT_FOUND);
+			ENSURE(GetLastError() == ERROR_NOT_FOUND);
 			continue;
 		}
 		if(!wcscmp(sym->Name, child_name))
@@ -1584,7 +1584,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 		{
 			debug_printf(L"INVALID_UDT %ls %d %d\n", type_name, ofs, size);
 		}
-		//debug_assert(ofs < size);
+		//ENSURE(ofs < size);
 
 		if(!fits_on_one_line)
 			INDENT;

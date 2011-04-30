@@ -185,7 +185,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 			static double last_time = time;
 			float length = (float)(time-last_time);
 			last_time = time;
-			debug_assert(length >= 0.0f);
+			ENSURE(length >= 0.0f);
 			// TODO: filter out big jumps, e.g. when having done a lot of slow
 			// processing in the last frame
 			state.frameLength = length;

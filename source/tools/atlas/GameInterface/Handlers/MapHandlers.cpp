@@ -61,7 +61,7 @@ namespace
 		LDR_NonprogressiveLoad();
 		
 		PSRETURN ret = g_Game->ReallyStartGame();
-		debug_assert(ret == PSRETURN_OK);
+		ENSURE(ret == PSRETURN_OK);
 
 		// Disable fog-of-war
 		CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);

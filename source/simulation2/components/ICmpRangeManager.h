@@ -220,7 +220,7 @@ public:
 		inline bool IsVisible_UncheckedRange(ssize_t i, ssize_t j)
 		{
 #ifndef NDEBUG
-			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
+			ENSURE(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check high bit of each bit-pair
 			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0xAAAAAAAAu)
@@ -236,7 +236,7 @@ public:
 		inline bool IsExplored_UncheckedRange(ssize_t i, ssize_t j)
 		{
 #ifndef NDEBUG
-			debug_assert(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
+			ENSURE(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
 #endif
 			// Check low bit of each bit-pair
 			if ((m_Data[j*m_VerticesPerSide + i] & m_PlayerMask) & 0x55555555u)

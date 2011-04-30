@@ -64,14 +64,14 @@ TraceEntry::TraceEntry(const std::wstring& text)
 	stream >> m_timestamp;
 
 	stream >> dummy;
-	debug_assert(dummy == ':');
+	ENSURE(dummy == ':');
 
 	stream >> action;
-	debug_assert(action == 'L' || action == 'S');
+	ENSURE(action == 'L' || action == 'S');
 	m_action = (EAction)action;
 
 	stream >> dummy;
-	debug_assert(dummy == '"');
+	ENSURE(dummy == '"');
 
 	Path::String pathname;
 	std::getline(stream, pathname, L'"');
@@ -79,9 +79,9 @@ TraceEntry::TraceEntry(const std::wstring& text)
 
 	stream >> m_size;
 
-	debug_assert(stream.get() == '\n');
-	debug_assert(stream.good());
-	debug_assert(stream.get() == WEOF);
+	ENSURE(stream.get() == '\n');
+	ENSURE(stream.good());
+	ENSURE(stream.get() == WEOF);
 }
 
 
@@ -215,7 +215,7 @@ private:
 	void* Allocate()
 	{
 		void* p = pool_alloc(&m_pool, 0);
-		debug_assert(p);
+		ENSURE(p);
 		return p;
 	}
 

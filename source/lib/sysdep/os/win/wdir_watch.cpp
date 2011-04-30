@@ -86,7 +86,7 @@ public:
 		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize])
 	{
 		m_ovl = (OVERLAPPED*)calloc(1, sizeof(OVERLAPPED));	// rationale for dynamic alloc: see decl
-		debug_assert(m_ovl);
+		ENSURE(m_ovl);
 
 		// (hEvent is needed for the wait after CancelIo below)
 		const BOOL manualReset = TRUE;
@@ -195,7 +195,7 @@ private:
 			return DirWatchNotification::Changed;
 
 		default:
-			debug_assert(0);
+			ENSURE(0);
 			return DirWatchNotification::Changed;
 		}
 	}
@@ -309,7 +309,7 @@ public:
 
 	LibError Add(const OsPath& path, PDirWatch& dirWatch)
 	{
-		debug_assert(path.IsDirectory());
+		ENSURE(path.IsDirectory());
 
 		// check if this is a subdirectory of a tree that's already being
 		// watched (this is much faster than issuing a new watch; it also

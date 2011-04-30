@@ -643,7 +643,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		// to reduce the search space
 	}
 
-	debug_assert(vertexes.size() < 65536); // we store array indexes as u16
+	ENSURE(vertexes.size() < 65536); // we store array indexes as u16
 
 	if (m_DebugOverlay)
 	{

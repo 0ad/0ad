@@ -60,7 +60,7 @@ bool FileExists(const OsPath& pathname)
 u64 FileSize(const OsPath& pathname)
 {
 	struct stat s;
-	debug_assert(wstat(pathname, &s) == 0);
+	ENSURE(wstat(pathname, &s) == 0);
 	return s.st_size;
 }
 

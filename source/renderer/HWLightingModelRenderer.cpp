@@ -160,7 +160,7 @@ void ShaderModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
 // Setup one rendering pass
 void ShaderModelRenderer::BeginPass(int streamflags)
 {
-	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
+	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
 
 	if (streamflags & STREAM_POS)
 		glEnableClientState(GL_VERTEX_ARRAY);
@@ -193,7 +193,7 @@ void ShaderModelRenderer::PrepareModelDef(int UNUSED(streamflags), const CModelD
 {
 	m->shadermodeldef = (ShaderModelDef*)def->GetRenderData(m);
 
-	debug_assert(m->shadermodeldef);
+	ENSURE(m->shadermodeldef);
 }
 
 

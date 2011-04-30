@@ -362,10 +362,10 @@ static size_t ChooseCacheSize()
 	// (all sizes in MiB)
 	const size_t total = os_cpu_MemorySize();
 	const size_t available = os_cpu_MemoryAvailable();
-	debug_assert(total >= available);
+	ENSURE(total >= available);
 	const size_t inUse = total-available;
 	size_t os = OperatingSystemFootprint();
-	debug_assert(total >= os/2);
+	ENSURE(total >= os/2);
 	size_t apps = (inUse > os)? (inUse - os) : 0;
 	size_t game = 300;
 	size_t cache = 200;
@@ -1121,7 +1121,7 @@ bool Autostart(const CmdLineArgs& args)
 		g_NetServer->UpdateGameAttributes(attrs.get(), scriptInterface);
 
 		bool ok = g_NetServer->SetupConnection();
-		debug_assert(ok);
+		ENSURE(ok);
 
 		g_NetClient = new CNetClient(g_Game);
 		g_NetClient->SetUserName(userName);
@@ -1141,7 +1141,7 @@ bool Autostart(const CmdLineArgs& args)
 		}
 
 		bool ok = g_NetClient->SetupConnection(ip);
-		debug_assert(ok);
+		ENSURE(ok);
 	}
 	else
 	{
@@ -1151,7 +1151,7 @@ bool Autostart(const CmdLineArgs& args)
 		LDR_NonprogressiveLoad();
 
 		PSRETURN ret = g_Game->ReallyStartGame();
-		debug_assert(ret == PSRETURN_OK);
+		ENSURE(ret == PSRETURN_OK);
 
 		InitPs(true, L"page_session.xml", JSVAL_VOID);
 	}
@@ -1171,7 +1171,7 @@ void CancelLoad(const CStrW& message)
 		JSContext* cx = g_ScriptingHost.getContext();
 		jsval fval, rval;
 		JSBool ok = JS_GetProperty(cx, g_GUI->GetScriptObject(), "cancelOnError", &fval);
-		debug_assert(ok);
+		ENSURE(ok);
 
 		jsval msgval = ToJSVal(message);
 

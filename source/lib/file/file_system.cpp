@@ -34,7 +34,7 @@ struct DirDeleter
 	void operator()(WDIR* osDir) const
 	{
 		const int ret = wclosedir(osDir);
-		debug_assert(ret == 0);
+		ENSURE(ret == 0);
 	}
 };
 

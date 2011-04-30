@@ -33,7 +33,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	camera.BuildCameraRay(screenX, screenY, origin, dir);
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
-	debug_assert(!cmpRangeManager.null());
+	ENSURE(!cmpRangeManager.null());
 
 	std::vector<std::pair<float, entity_id_t> > hits; // (dist^2, entity) pairs
 
@@ -87,7 +87,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 		std::swap(sy0, sy1);
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
-	debug_assert(!cmpRangeManager.null());
+	ENSURE(!cmpRangeManager.null());
 
 	std::vector<entity_id_t> hitEnts;
 

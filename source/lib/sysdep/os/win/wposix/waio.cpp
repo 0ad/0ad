@@ -84,7 +84,7 @@ struct OvlAllocator	// POD
 		for(uintptr_t offset = 0; offset+size <= storageSize; offset += size)
 		{
 			Entry* entry = (Entry*)(uintptr_t(storage) + offset);
-			debug_assert(IsAligned(entry, MEMORY_ALLOCATION_ALIGNMENT));
+			ENSURE(IsAligned(entry, MEMORY_ALLOCATION_ALIGNMENT));
 			InterlockedPushEntrySList(&freelist, &entry->entry);
 		}
 
@@ -95,7 +95,7 @@ struct OvlAllocator	// POD
 
 	void Shutdown()
 	{
-		debug_assert(extant == 0);
+		ENSURE(extant == 0);
 
 		InterlockedFlushSList(&freelist);
 
@@ -108,7 +108,7 @@ struct OvlAllocator	// POD
 	// unless Vista+ and SeLockMemoryPrivilege are available.
 	void Associate(HANDLE hFile)
 	{
-		debug_assert(extant == 0);
+		ENSURE(extant == 0);
 
 		// pin the page in kernel address space, which means our thread
 		// won't have to be the one to service the I/O, thus avoiding an APC.
@@ -142,7 +142,7 @@ struct OvlAllocator	// POD
 		cpu_AtomicAdd(&extant, -1);
 
 		const uintptr_t address = uintptr_t(ovl);
-		debug_assert(uintptr_t(storage) <= address && address < uintptr_t(storage)+storageSize);
+		ENSURE(uintptr_t(storage) <= address && address < uintptr_t(storage)+storageSize);
 		InterlockedPushEntrySList(&freelist, (PSLIST_ENTRY)(address - offsetof(Entry, ovl)));
 	}
 
@@ -192,8 +192,8 @@ struct FileControlBlock // POD
 
 	void Shutdown()
 	{
-		debug_assert(fd == FD_AVAILABLE);
-		debug_assert(hFile == INVALID_HANDLE_VALUE);
+		ENSURE(fd == FD_AVAILABLE);
+		ENSURE(hFile == INVALID_HANDLE_VALUE);
 		ovl.Shutdown();
 	}
 };
@@ -242,7 +242,7 @@ static void DissociateFileControlBlock(FileControlBlock* fcb)
 
 static FileControlBlock* FindFileControlBlock(int fd)
 {
-	debug_assert(fd != FD_AVAILABLE);
+	ENSURE(fd != FD_AVAILABLE);
 
 	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
 	{
@@ -375,8 +375,8 @@ static LibError OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
 
 LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
 {
-	debug_assert(fd > 2);
-	debug_assert(!(oflag & O_APPEND));	// not supported
+	ENSURE(fd > 2);
+	ENSURE(!(oflag & O_APPEND));	// not supported
 
 	if(oflag & O_NO_AIO_NP)
 		return INFO::SKIPPED;
@@ -443,9 +443,9 @@ LibError waio_Preallocate(int fd, off_t size)
 // @return -1 on failure (having also set errno)
 static int Issue(aiocb* cb)
 {
-	debug_assert(IsAligned(cb->aio_offset, maxSectorSize));
-	debug_assert(IsAligned(cb->aio_buf,    maxSectorSize));
-	debug_assert(IsAligned(cb->aio_nbytes, maxSectorSize));
+	ENSURE(IsAligned(cb->aio_offset, maxSectorSize));
+	ENSURE(IsAligned(cb->aio_buf,    maxSectorSize));
+	ENSURE(IsAligned(cb->aio_nbytes, maxSectorSize));
 
 	FileControlBlock* fcb = FindFileControlBlock(cb->aio_fildes);
 	if(!fcb || fcb->hFile == INVALID_HANDLE_VALUE)
@@ -455,7 +455,7 @@ static int Issue(aiocb* cb)
 		return -1;
 	}
 
-	debug_assert(!cb->fcb && !cb->ovl);	// SUSv3: aiocb must not be in use
+	ENSURE(!cb->fcb && !cb->ovl);	// SUSv3: aiocb must not be in use
 	cb->fcb = fcb;
 	cb->ovl = fcb->ovl.Allocate(cb->aio_offset);
 	if(!cb->ovl)
@@ -470,7 +470,7 @@ static int Issue(aiocb* cb)
 	const HANDLE hFile = fcb->hFile;
 	void* const buf = (void*)cb->aio_buf; // from volatile void*
 	const DWORD size = u64_lo(cb->aio_nbytes);
-	debug_assert(u64_hi(cb->aio_nbytes) == 0);
+	ENSURE(u64_hi(cb->aio_nbytes) == 0);
 	OVERLAPPED* ovl = (OVERLAPPED*)cb->ovl;
 	// (there is no point in using WriteFileGather/ReadFileScatter here
 	// because the IO manager still needs to lock pages and translate them
@@ -518,7 +518,7 @@ int aio_write(struct aiocb* cb)
 
 int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 {
-	debug_assert(mode == LIO_WAIT || mode == LIO_NOWAIT);
+	ENSURE(mode == LIO_WAIT || mode == LIO_NOWAIT);
 	UNUSED2(se);	// signaling is not implemented.
 
 	for(int i = 0; i < n; i++)
@@ -565,7 +565,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 	const LibError ret = PollCompletionPort(hIOCP, milliseconds, bytesTransferred, key, ovl);
 	if(ret != INFO::OK && ret != ERR::AGAIN)	// failed
 	{
-		debug_assert(0);
+		ENSURE(0);
 		return -1;
 	}
 

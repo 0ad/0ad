@@ -120,7 +120,7 @@ static size_t MsFromTimespec(const timespec& ts)
 
 int clock_gettime(clockid_t clock, struct timespec* ts)
 {
-	debug_assert(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
+	ENSURE(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
 
 	const i64 ns = CurrentSystemTime_ns();
 	*ts = TimespecFromNs(ns);
@@ -130,7 +130,7 @@ int clock_gettime(clockid_t clock, struct timespec* ts)
 
 int clock_getres(clockid_t clock, struct timespec* ts)
 {
-	debug_assert(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
+	ENSURE(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
 
 	const double resolution = whrt_Resolution();
 	const i64 ns = i64(resolution * 1e9);
@@ -152,7 +152,7 @@ unsigned sleep(unsigned sec)
 {
 	// warn if overflow would result (it would be insane to ask for
 	// such lengthy sleep timeouts, but still)
-	debug_assert(sec < std::numeric_limits<size_t>::max()/1000);
+	ENSURE(sec < std::numeric_limits<size_t>::max()/1000);
 
 	const DWORD ms = sec * 1000;
 	if(ms)
@@ -163,7 +163,7 @@ unsigned sleep(unsigned sec)
 
 int usleep(useconds_t us)
 {
-	debug_assert(us < _1e6);
+	ENSURE(us < _1e6);
 
 	const DWORD ms = us/1000;
 	if(ms)

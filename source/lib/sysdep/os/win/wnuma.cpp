@@ -57,7 +57,7 @@ static size_t numNodes;
 
 static Node* AddNode()
 {
-	debug_assert(numNodes < ARRAY_SIZE(nodes));
+	ENSURE(numNodes < ARRAY_SIZE(nodes));
 	return &nodes[numNodes++];
 }
 
@@ -95,7 +95,7 @@ static void FillProcessorsNode()
 		if(node)
 			processorsNode[processor] = node-nodes;
 		else
-			debug_assert(0);
+			ENSURE(0);
 	}
 }
 
@@ -128,7 +128,7 @@ static void PopulateNodes()
 		const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
 		WARN_IF_FALSE(ok);
 	}
-	debug_assert(PopulationCount(processAffinity) <= PopulationCount(systemAffinity));
+	ENSURE(PopulationCount(processAffinity) <= PopulationCount(systemAffinity));
 
 	for(UCHAR nodeNumber = 0; nodeNumber <= HighestNodeNumber(); nodeNumber++)
 	{
@@ -218,7 +218,7 @@ static const Affinity* DynamicCastFromHeader(const AffinityHeader* header)
 		return 0;
 
 	// sanity check: ensure no padding was inserted
-	debug_assert(header->length == sizeof(Affinity));
+	ENSURE(header->length == sizeof(Affinity));
 
 	const Affinity* affinity = (const Affinity*)header;
 	if(!IsBitSet(affinity->flags, 0))	// not enabled
@@ -239,7 +239,7 @@ static void PopulateProcessorMaskFromApicId(u32 apicId, uintptr_t& processorMask
 		}
 	}
 
-	debug_assert(0);	// APIC ID not found
+	ENSURE(0);	// APIC ID not found
 }
 
 struct ProximityDomain
@@ -328,21 +328,21 @@ size_t numa_NumNodes()
 size_t numa_NodeFromProcessor(size_t processor)
 {
 	(void)ModuleInit(&initState, InitTopology);
-	debug_assert(processor < os_cpu_NumProcessors());
+	ENSURE(processor < os_cpu_NumProcessors());
 	return processorsNode[processor];
 }
 
 uintptr_t numa_ProcessorMaskFromNode(size_t node)
 {
 	(void)ModuleInit(&initState, InitTopology);
-	debug_assert(node < numNodes);
+	ENSURE(node < numNodes);
 	return nodes[node].processorMask;
 }
 
 static UCHAR NodeNumberFromNode(size_t node)
 {
 	(void)ModuleInit(&initState, InitTopology);
-	debug_assert(node < numa_NumNodes());
+	ENSURE(node < numa_NumNodes());
 	return nodes[node].nodeNumber;
 }
 
@@ -388,10 +388,10 @@ struct SLIT
 static double ReadRelativeDistanceFromSLIT(const SLIT* slit)
 {
 	const size_t n = slit->numSystemLocalities;
-	debug_assert(slit->header.size == sizeof(SLIT)-sizeof(slit->entries)+n*n);
+	ENSURE(slit->header.size == sizeof(SLIT)-sizeof(slit->entries)+n*n);
 	// diagonals are specified to be 10
 	for(size_t i = 0; i < n; i++)
-		debug_assert(slit->entries[i*n+i] == 10);
+		ENSURE(slit->entries[i*n+i] == 10);
 	// entries = relativeDistance * 10
 	return *std::max_element(slit->entries, slit->entries+n*n) / 10.0;
 }
@@ -444,8 +444,8 @@ static LibError InitRelativeDistance()
 	else
 		relativeDistance = MeasureRelativeDistance();
 
-	debug_assert(relativeDistance >= 1.0);
-	debug_assert(relativeDistance <= 3.0);	// (Microsoft guideline for NUMA systems)
+	ENSURE(relativeDistance >= 1.0);
+	ENSURE(relativeDistance <= 3.0);	// (Microsoft guideline for NUMA systems)
 	return INFO::OK;
 }
 
@@ -499,7 +499,7 @@ bool numa_IsMemoryInterleaved()
 //
 //#if WINVER >= 0x600
 //	size_t largePageSize = os_cpu_LargePageSize();
-//	debug_assert(largePageSize != 0); // this value is needed for later
+//	ENSURE(largePageSize != 0); // this value is needed for later
 //
 //	// retrieve attributes of all pages constituting mem
 //	const size_t numPages = (size + pageSize-1) / pageSize;
@@ -540,7 +540,7 @@ bool numa_IsMemoryInterleaved()
 //
 //void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePageDisposition, size_t* ppageSize)
 //{
-//	debug_assert(node < numa_NumNodes());
+//	ENSURE(node < numa_NumNodes());
 //
 //	// see if there will be enough memory (non-authoritative, for debug purposes only)
 //	{

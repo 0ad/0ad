@@ -53,7 +53,7 @@ std::istream& CStdDeserializer::GetStream()
 void CStdDeserializer::AddScriptBackref(JSObject* obj)
 {
 	std::pair<std::map<u32, JSObject*>::iterator, bool> it = m_ScriptBackrefs.insert(std::make_pair((u32)m_ScriptBackrefs.size()+1, obj));
-	debug_assert(it.second);
+	ENSURE(it.second);
 	if (!JS_AddObjectRoot(m_ScriptInterface.GetContext(), &it.first->second))
 		throw PSERROR_Deserialize_ScriptError("JS_AddRoot failed");
 }

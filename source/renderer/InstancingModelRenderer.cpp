@@ -130,7 +130,7 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 	CModelDefPtr mdef = model->GetModelDef();
 	IModelDef* imodeldef = (IModelDef*)mdef->GetRenderData(m);
 
-	debug_assert(!model->IsSkinned());
+	ENSURE(!model->IsSkinned());
 
 	if (!imodeldef)
 	{
@@ -157,7 +157,7 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 // Setup one rendering pass.
 void InstancingModelRenderer::BeginPass(int streamflags)
 {
-	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
+	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
 
 	if (streamflags & STREAM_POS)
 		glEnableClientState(GL_VERTEX_ARRAY);
@@ -190,7 +190,7 @@ void InstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPt
 {
 	m->imodeldef = (IModelDef*)def->GetRenderData(m);
 
-	debug_assert(m->imodeldef);
+	ENSURE(m->imodeldef);
 
 	u8* base = m->imodeldef->m_Array.Bind();
 	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();

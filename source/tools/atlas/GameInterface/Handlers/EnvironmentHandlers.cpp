@@ -39,7 +39,7 @@ sEnvironmentSettings GetSettings()
 	sEnvironmentSettings s;
 
 	CmpPtr<ICmpWaterManager> cmpWaterMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	debug_assert(!cmpWaterMan.null());
+	ENSURE(!cmpWaterMan.null());
 
 	s.waterheight = cmpWaterMan->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
 
@@ -86,7 +86,7 @@ sEnvironmentSettings GetSettings()
 void SetSettings(const sEnvironmentSettings& s)
 {
 	CmpPtr<ICmpWaterManager> cmpWaterMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	debug_assert(!cmpWaterMan.null());
+	ENSURE(!cmpWaterMan.null());
 
 	cmpWaterMan->SetWaterLevel(entity_pos_t::FromFloat(s.waterheight * (65536.f * HEIGHT_SCALE)));
 

@@ -86,7 +86,7 @@ void CArchiveBuilder::Build(const OsPath& archive)
 		const VfsPath path = m_Files[i];
 		OsPath realPath;
 		ret = m_VFS->GetRealPath(path, realPath);
-		debug_assert(ret == INFO::OK);
+		ENSURE(ret == INFO::OK);
 
 		// Compress textures and store the new cached version instead of the original
 		if (boost::algorithm::starts_with(path.string(), L"art/textures/") &&
@@ -99,11 +99,11 @@ void CArchiveBuilder::Build(const OsPath& archive)
 			VfsPath cachedPath;
 			debug_printf(L"Converting texture %ls\n", realPath.string().c_str());
 			bool ok = texman.GenerateCachedTexture(path, cachedPath);
-			debug_assert(ok);
+			ENSURE(ok);
 
 			OsPath cachedRealPath;
 			ret = m_VFS->GetRealPath(VfsPath("cache")/cachedPath, cachedRealPath);
-			debug_assert(ret == INFO::OK);
+			ENSURE(ret == INFO::OK);
 
 			writer->AddFile(cachedRealPath, cachedPath);
 
@@ -123,11 +123,11 @@ void CArchiveBuilder::Build(const OsPath& archive)
 			VfsPath cachedPath;
 			debug_printf(L"Converting XML file %ls\n", realPath.string().c_str());
 			bool ok = xero.GenerateCachedXMB(m_VFS, path, cachedPath);
-			debug_assert(ok);
+			ENSURE(ok);
 
 			OsPath cachedRealPath;
 			ret = m_VFS->GetRealPath(VfsPath("cache")/cachedPath, cachedRealPath);
-			debug_assert(ret == INFO::OK);
+			ENSURE(ret == INFO::OK);
 
 			writer->AddFile(cachedRealPath, cachedPath);
 		}

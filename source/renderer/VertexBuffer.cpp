@@ -151,14 +151,14 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
 {
 	if (g_Renderer.m_Caps.m_VBO)
 	{
-		debug_assert(m_Handle);
+		ENSURE(m_Handle);
 		pglBindBufferARB(m_Target, m_Handle);
 		pglBufferSubDataARB(m_Target, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
 		pglBindBufferARB(m_Target, 0);
 	}
 	else
 	{
-		debug_assert(m_SysMem);
+		ENSURE(m_SysMem);
 		memcpy(m_SysMem + chunk->m_Index * m_VertexSize, data, chunk->m_Count * m_VertexSize);
 	}
 }

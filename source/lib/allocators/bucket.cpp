@@ -68,7 +68,7 @@ void bucket_destroy(Bucket* b)
 		b->num_buckets--;
 	}
 
-	debug_assert(b->num_buckets == 0);
+	ENSURE(b->num_buckets == 0);
 
 	// poison pill: cause subsequent alloc and free to fail
 	b->freelist = 0;
@@ -80,7 +80,7 @@ void* bucket_alloc(Bucket* b, size_t size)
 {
 	size_t el_size = b->el_size? b->el_size : Align<allocationAlignment>(size);
 	// must fit in a bucket
-	debug_assert(el_size <= bucketSize-sizeof(u8*));
+	ENSURE(el_size <= bucketSize-sizeof(u8*));
 
 	// try to satisfy alloc from freelist
 	void* el = mem_freelist_Detach(b->freelist);

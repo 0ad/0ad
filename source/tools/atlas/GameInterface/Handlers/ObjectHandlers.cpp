@@ -481,7 +481,7 @@ BEGIN_COMMAND(MoveObject)
 	void MergeIntoPrevious(cMoveObject* prev)
 	{
 		// TODO: do something valid if prev unit != this unit
-		debug_assert(prev->msg->id == msg->id);
+		ENSURE(prev->msg->id == msg->id);
 		prev->m_PosNew = m_PosNew;
 	}
 };
@@ -536,7 +536,7 @@ BEGIN_COMMAND(RotateObject)
 	void MergeIntoPrevious(cRotateObject* prev)
 	{
 		// TODO: do something valid if prev unit != this unit
-		debug_assert(prev->msg->id == msg->id);
+		ENSURE(prev->msg->id == msg->id);
 		prev->m_AngleNew = m_AngleNew;
 	}
 };
@@ -567,7 +567,7 @@ BEGIN_COMMAND(DeleteObject)
 	{
 		CSimulation2& sim = *g_Game->GetSimulation2();
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
-		debug_assert(!cmpTemplateManager.null());
+		ENSURE(!cmpTemplateManager.null());
 
 		m_EntityID = (entity_id_t)msg->id;
 		m_TemplateName = cmpTemplateManager->GetCurrentTemplateName(m_EntityID);

@@ -54,7 +54,7 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 
 	// Launch the worker thread
 	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-	debug_assert(ret == 0);
+	ENSURE(ret == 0);
 }
 
 void* CMapGeneratorWorker::RunThread(void *data)

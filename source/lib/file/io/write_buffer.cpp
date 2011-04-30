@@ -56,7 +56,7 @@ void WriteBuffer::Append(const void* data, size_t size)
 
 void WriteBuffer::Overwrite(const void* data, size_t size, size_t offset)
 {
-	debug_assert(offset+size < m_size);
+	ENSURE(offset+size < m_size);
 	memcpy(m_data.get()+offset, data, size);
 }
 

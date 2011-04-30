@@ -75,7 +75,7 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 // notify the profiler when these functions are being called
 #if ENABLE_SCRIPT_PROFILING
 #define SCRIPT_PROFILE \
-	debug_assert(JSVAL_IS_OBJECT(JS_CALLEE(cx, vp)) && JS_ObjectIsFunction(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)))); \
+	ENSURE(JSVAL_IS_OBJECT(JS_CALLEE(cx, vp)) && JS_ObjectIsFunction(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)))); \
 	const char* name = JS_GetFunctionName(JS_ValueToFunction(cx, JS_CALLEE(cx, vp))); /* native function so ValueToFunction is safe; this makes unsafe lifetime assumptions */ \
 	CProfileSampleScript profile(name);
 #else

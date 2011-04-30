@@ -151,6 +151,6 @@ private:
 
 ICounter* CreateCounterQPC(void* address, size_t size)
 {
-	debug_assert(sizeof(CounterQPC) <= size);
+	ENSURE(sizeof(CounterQPC) <= size);
 	return new(address) CounterQPC();
 }

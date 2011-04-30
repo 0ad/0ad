@@ -273,7 +273,7 @@ CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 {
 	// Verify that we are running with at least the version we were compiled with,
 	// to avoid bugs caused by ABI changes
-	debug_assert(nvtt::version() >= NVTT_VERSION);
+	ENSURE(nvtt::version() >= NVTT_VERSION);
 
 	// Set up the worker thread:
 
@@ -281,13 +281,13 @@ CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 
 	// Use SDL semaphores since OS X doesn't implement sem_init
 	m_WorkerSem = SDL_CreateSemaphore(0);
-	debug_assert(m_WorkerSem);
+	ENSURE(m_WorkerSem);
 
 	ret = pthread_mutex_init(&m_WorkerMutex, NULL);
-	debug_assert(ret == 0);
+	ENSURE(ret == 0);
 
 	ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-	debug_assert(ret == 0);
+	ENSURE(ret == 0);
 
 	// Maybe we should share some centralised pool of worker threads?
 	// For now we'll just stick with a single thread for this specific use.

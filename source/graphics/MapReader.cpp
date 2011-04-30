@@ -228,7 +228,7 @@ int CMapReader::UnpackTerrain()
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
-		debug_assert(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
+		ENSURE(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
 		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texturename);
 		m_TerrainTextures.push_back(texentry);
 
@@ -327,7 +327,7 @@ PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 	#undef EL
 
 	XMBElement root = xmb_file.GetRoot();
-	debug_assert(root.GetNodeName() == el_scenario);
+	ENSURE(root.GetNodeName() == el_scenario);
 
 	XERO_ITER_EL(root, child)
 	{
@@ -440,7 +440,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 #undef EL
 
 	XMBElement root = xmb_file.GetRoot();
-	debug_assert(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
+	ENSURE(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
 	nodes = root.GetChildNodes();
 
 	// find out total number of entities+nonentities
@@ -466,7 +466,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 CStr CXMLReader::ReadScriptSettings()
 {
 	XMBElement root = xmb_file.GetRoot();
-	debug_assert(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
+	ENSURE(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
 	nodes = root.GetChildNodes();
 
 	XMBElement settings = nodes.GetFirstNamedItem(xmb_file.GetElementID("ScriptSettings"));
@@ -504,7 +504,7 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 	m_MapReader.m_PatchesPerSide = patches;
 
 	// Load the texture
-	debug_assert(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
+	ENSURE(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
 	CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texture);
 
 	m_MapReader.pTerrain->Initialize(patches, NULL);
@@ -613,14 +613,14 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		{
 			XERO_ITER_EL(element, waterbody)
 			{
-				debug_assert(waterbody.GetNodeName() == el_waterbody);
+				ENSURE(waterbody.GetNodeName() == el_waterbody);
 				XERO_ITER_EL(waterbody, waterelement)
 				{
 					int element_name = waterelement.GetNodeName();
 					if (element_name == el_height)
 					{
 						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
-						debug_assert(!cmpWaterMan.null());
+						ENSURE(!cmpWaterMan.null());
 						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(waterelement.GetText()));
 						continue;
 					}
@@ -832,7 +832,7 @@ void CXMLReader::ReadCinema(XMBElement parent)
 			pathList[name] = path;	
 		}
 		else
-			debug_assert("Invalid cinema child");
+			ENSURE("Invalid cinema child");
 	}
 
 	if (m_MapReader.pCinema)
@@ -853,11 +853,11 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		// wrapped, since we only yield after a complete iteration.
 
 		XMBElement entity = entities.Item(entity_idx++);
-		debug_assert(entity.GetNodeName() == el_entity);
+		ENSURE(entity.GetNodeName() == el_entity);
 
 		XMBAttributeList attrs = entity.GetAttributes();
 		CStr uid = attrs.GetNamedItem(at_uid);
-		debug_assert(!uid.empty());
+		ENSURE(!uid.empty());
 		int EntityUid = uid.ToInt();
 
 		CStrW TemplateName;
@@ -1142,7 +1142,7 @@ int CMapReader::ParseTerrain()
 
 	while (cur_terrain_tex < num_terrain_tex)
 	{
-		debug_assert(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
+		ENSURE(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
 		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(textureNames[cur_terrain_tex]);
 		m_TerrainTextures.push_back(texentry);
 
@@ -1156,7 +1156,7 @@ int CMapReader::ParseTerrain()
 	std::vector<CMapIO::STileDesc> tileData;
 	GET_TERRAIN_PROPERTY(tileData, tileData)
 
-	debug_assert(SQR(size) == tileData.size());
+	ENSURE(SQR(size) == tileData.size());
 
 	// reorder by patches and store
 	for (size_t x = 0; x < size; ++x)
@@ -1287,7 +1287,7 @@ int CMapReader::ParseEnvironment()
 	GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Height, waterHeight)
 
 	CmpPtr<ICmpWaterManager> cmpWaterMan(*pSimulation2, SYSTEM_ENTITY);
-	debug_assert(!cmpWaterMan.null());
+	ENSURE(!cmpWaterMan.null());
 	cmpWaterMan->SetWaterLevel(entity_pos_t::FromFloat(waterHeight));
 
 	// If we have graphics, get rest of settings

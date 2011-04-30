@@ -120,7 +120,7 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 	png_read_end(png_ptr, info_ptr);
 
 	// success; make sure all data was consumed.
-	debug_assert(da->pos == da->cur_size);
+	ENSURE(da->pos == da->cur_size);
 
 	// store image info
 	t->data  = data;

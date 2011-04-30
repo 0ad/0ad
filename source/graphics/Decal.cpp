@@ -78,7 +78,7 @@ void CModelDecal::ValidatePosition()
 {
 	if (m_PositionValid)
 	{
-		debug_assert(!m_Parent || m_Parent->m_PositionValid);
+		ENSURE(!m_Parent || m_Parent->m_PositionValid);
 		return;
 	}
 
@@ -89,7 +89,7 @@ void CModelDecal::ValidatePosition()
 		m_Parent->ValidatePosition();
 
 		// Parent will recursively call our validation.
-		debug_assert(m_PositionValid);
+		ENSURE(m_PositionValid);
 		return;
 	}
 

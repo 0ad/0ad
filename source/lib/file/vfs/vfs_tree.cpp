@@ -127,7 +127,7 @@ VfsDirectory* VfsDirectory::GetSubdirectory(const VfsPath& name)
 void VfsDirectory::SetAssociatedDirectory(const PRealDirectory& realDirectory)
 {
 	if(!cpu_CAS(&m_shouldPopulate, 0, 1))
-		debug_assert(0);	// caller didn't check ShouldPopulate
+		ENSURE(0);	// caller didn't check ShouldPopulate
 	m_realDirectory = realDirectory;
 }
 

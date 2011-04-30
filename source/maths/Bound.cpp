@@ -168,7 +168,7 @@ bool CBound::IsEmpty()
 // (can't remember which one it was, though)
 void CBound::Transform(const CMatrix3D& m,CBound& result) const
 {
-	debug_assert(this!=&result);
+	ENSURE(this!=&result);
 
 	for (int i=0;i<3;++i) {
 		// handle translation

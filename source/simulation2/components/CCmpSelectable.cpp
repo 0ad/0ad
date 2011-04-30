@@ -113,7 +113,7 @@ public:
 			// times thousands of units when the selections are not being rendered any more)
 			std::vector<float> empty;
 			m_Overlay.m_Coords.swap(empty);
-			debug_assert(m_Overlay.m_Coords.capacity() == 0);
+			ENSURE(m_Overlay.m_Coords.capacity() == 0);
 		}
 
 		// TODO: it'd be nice to fade smoothly (but quickly) from transparent to solid

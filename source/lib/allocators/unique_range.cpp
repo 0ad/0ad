@@ -23,9 +23,9 @@ static IdxDeleter numDeleters = 2;
 
 IdxDeleter AddUniqueRangeDeleter(UniqueRangeDeleter deleter)
 {
-	debug_assert(deleter);
+	ENSURE(deleter);
 	IdxDeleter idxDeleter = cpu_AtomicAdd(&numDeleters, 1);
-	debug_assert(idxDeleter < (IdxDeleter)ARRAY_SIZE(deleters));
+	ENSURE(idxDeleter < (IdxDeleter)ARRAY_SIZE(deleters));
 	deleters[idxDeleter] = deleter;
 	return idxDeleter;
 }

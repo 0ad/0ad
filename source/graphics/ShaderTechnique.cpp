@@ -116,19 +116,19 @@ int CShaderTechnique::GetNumPasses()
 
 void CShaderTechnique::BeginPass(int pass)
 {
-	debug_assert(0 <= pass && pass < (int)m_Passes.size());
+	ENSURE(0 <= pass && pass < (int)m_Passes.size());
 	m_Passes[pass].Bind();
 }
 
 void CShaderTechnique::EndPass(int pass)
 {
-	debug_assert(0 <= pass && pass < (int)m_Passes.size());
+	ENSURE(0 <= pass && pass < (int)m_Passes.size());
 	m_Passes[pass].Unbind();
 }
 
 CShaderProgramPtr CShaderTechnique::GetShader(int pass)
 {
-	debug_assert(0 <= pass && pass < (int)m_Passes.size());
+	ENSURE(0 <= pass && pass < (int)m_Passes.size());
 	return m_Passes[pass].GetShader();
 
 }

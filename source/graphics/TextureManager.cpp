@@ -266,7 +266,7 @@ public:
 		}
 		else
 		{
-			debug_assert(ret < 0);
+			ENSURE(ret < 0);
 
 			// No source file or archive cache was found, so we can't load the
 			// real texture at all - return the error texture instead

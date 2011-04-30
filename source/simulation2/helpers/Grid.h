@@ -83,7 +83,7 @@ public:
 	void set(size_t i, size_t j, const T& value)
 	{
 #if GRID_BOUNDS_DEBUG
-		debug_assert(i < m_W && j < m_H);
+		ENSURE(i < m_W && j < m_H);
 #endif
 		m_Data[j*m_W + i] = value;
 	}
@@ -91,7 +91,7 @@ public:
 	T& get(size_t i, size_t j) const
 	{
 #if GRID_BOUNDS_DEBUG
-		debug_assert(i < m_W && j < m_H);
+		ENSURE(i < m_W && j < m_H);
 #endif
 		return m_Data[j*m_W + i];
 	}
@@ -127,7 +127,7 @@ class SparseGrid
 public:
 	SparseGrid(u16 w, u16 h) : m_W(w), m_H(h), m_DirtyID(0)
 	{
-		debug_assert(m_W && m_H);
+		ENSURE(m_W && m_H);
 
 		m_BW = (m_W + BucketSize-1) >> BucketBits;
 		m_BH = (m_H + BucketSize-1) >> BucketBits;
@@ -153,7 +153,7 @@ public:
 	void set(size_t i, size_t j, const T& value)
 	{
 #if GRID_BOUNDS_DEBUG
-		debug_assert(i < m_W && j < m_H);
+		ENSURE(i < m_W && j < m_H);
 #endif
 		GetBucket(i, j)[(j % BucketSize)*BucketSize + (i % BucketSize)] = value;
 	}
@@ -161,7 +161,7 @@ public:
 	T& get(size_t i, size_t j)
 	{
 #if GRID_BOUNDS_DEBUG
-		debug_assert(i < m_W && j < m_H);
+		ENSURE(i < m_W && j < m_H);
 #endif
 		return GetBucket(i, j)[(j % BucketSize)*BucketSize + (i % BucketSize)];
 	}

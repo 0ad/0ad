@@ -81,7 +81,7 @@ CNetClient::~CNetClient()
 
 void CNetClient::SetUserName(const CStrW& username)
 {
-	debug_assert(!m_Session); // must be called before we start the connection
+	ENSURE(!m_Session); // must be called before we start the connection
 
 	m_UserName = username;
 }
@@ -124,7 +124,7 @@ CScriptValRooted CNetClient::GuiPoll()
 
 void CNetClient::PushGuiMessage(const CScriptValRooted& message)
 {
-	debug_assert(!message.undefined());
+	ENSURE(!message.undefined());
 
 	m_GuiMessageQueue.push_back(message);
 }
@@ -222,7 +222,7 @@ void CNetClient::LoadFinished()
 
 bool CNetClient::OnConnect(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_CONNECT_COMPLETE);
+	ENSURE(event->GetType() == (uint)NMT_CONNECT_COMPLETE);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -235,7 +235,7 @@ bool CNetClient::OnConnect(void* context, CFsmEvent* event)
 
 bool CNetClient::OnHandshake(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_SERVER_HANDSHAKE);
+	ENSURE(event->GetType() == (uint)NMT_SERVER_HANDSHAKE);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -250,7 +250,7 @@ bool CNetClient::OnHandshake(void* context, CFsmEvent* event)
 
 bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_SERVER_HANDSHAKE_RESPONSE);
+	ENSURE(event->GetType() == (uint)NMT_SERVER_HANDSHAKE_RESPONSE);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -265,7 +265,7 @@ bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 
 bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_AUTHENTICATE_RESULT);
+	ENSURE(event->GetType() == (uint)NMT_AUTHENTICATE_RESULT);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -284,7 +284,7 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 bool CNetClient::OnChat(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_CHAT);
+	ENSURE(event->GetType() == (uint)NMT_CHAT);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -301,7 +301,7 @@ bool CNetClient::OnChat(void* context, CFsmEvent* event)
 
 bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_GAME_SETUP);
+	ENSURE(event->GetType() == (uint)NMT_GAME_SETUP);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -319,7 +319,7 @@ bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
 
 bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_PLAYER_ASSIGNMENT);
+	ENSURE(event->GetType() == (uint)NMT_PLAYER_ASSIGNMENT);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -344,7 +344,7 @@ bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
 
 bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_GAME_START);
+	ENSURE(event->GetType() == (uint)NMT_GAME_START);
 
 	CNetClient* client = (CNetClient*)context;
 
@@ -368,7 +368,7 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 
 bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 {
-	debug_assert(event->GetType() == (uint)NMT_LOADED_GAME);
+	ENSURE(event->GetType() == (uint)NMT_LOADED_GAME);
 
 	CNetClient* client = (CNetClient*)context;
 

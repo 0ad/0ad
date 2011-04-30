@@ -280,7 +280,7 @@ void PolygonSortModelRenderer::DestroyModelData(CModel* UNUSED(model), void* dat
 // Prepare for one rendering pass
 void PolygonSortModelRenderer::BeginPass(int streamflags)
 {
-	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0)));
+	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0)));
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 
@@ -308,7 +308,7 @@ void PolygonSortModelRenderer::PrepareModelDef(int streamflags, const CModelDefP
 	{
 		PSModelDef* psmdef = (PSModelDef*)def->GetRenderData(m);
 
-		debug_assert(psmdef);
+		ENSURE(psmdef);
 
 		u8* base = psmdef->m_Array.Bind();
 		GLsizei stride = (GLsizei)psmdef->m_Array.GetStride();
@@ -455,7 +455,7 @@ void SortModelRenderer::PrepareModels()
 		SModel* smdl = *it;
 		CModel* model = smdl->GetModel();
 
-		debug_assert(model->GetRenderData() == smdl);
+		ENSURE(model->GetRenderData() == smdl);
 
 		m->vertexRenderer->UpdateModelData(model, smdl->m_Data, smdl->m_UpdateFlags);
 		smdl->m_UpdateFlags = 0;
@@ -511,7 +511,7 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 			if (flags && !(mdl->GetFlags() & flags))
 				continue;
 
-			debug_assert(smdl->GetKey() == m);
+			ENSURE(smdl->GetKey() == m);
 
 			CModelDefPtr mdef = mdl->GetModelDef();
 			CTexturePtr tex = mdl->GetTexture();
@@ -645,7 +645,7 @@ TransparentDepthShadowModifier::~TransparentDepthShadowModifier()
 
 int TransparentDepthShadowModifier::BeginPass(int pass)
 {
-	debug_assert(pass == 0);
+	ENSURE(pass == 0);
 
 	glEnable(GL_ALPHA_TEST);
 	glAlphaFunc(GL_GREATER, 0.4f);

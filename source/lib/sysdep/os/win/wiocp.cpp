@@ -11,7 +11,7 @@ void AttachToCompletionPort(HANDLE hFile, HANDLE& hIOCP, ULONG_PTR key, DWORD nu
 
 	// (when called for the first time, ends up creating hIOCP)
 	hIOCP = CreateIoCompletionPort(hFile, hIOCP, key, numConcurrentThreads);
-	debug_assert(wutil_IsValidHandle(hIOCP));
+	ENSURE(wutil_IsValidHandle(hIOCP));
 }
 
 

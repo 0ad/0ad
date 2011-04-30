@@ -47,7 +47,7 @@ static LibError Init()
 	HRESULT hr;
 
 	hr = CoInitialize(0);
-	debug_assert(hr == S_OK || hr == S_FALSE);	// S_FALSE => already initialized
+	ENSURE(hr == S_OK || hr == S_FALSE);	// S_FALSE => already initialized
 
 	hr = CoInitializeSecurity(0, -1, 0, 0, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, 0, EOAC_NONE, 0);
 	if(FAILED(hr))
@@ -95,7 +95,7 @@ LibError wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
 	HRESULT hr = pSvc->ExecQuery(L"WQL", _bstr_t(query), WBEM_FLAG_FORWARD_ONLY|WBEM_FLAG_RETURN_IMMEDIATELY, 0, &pEnum);
 	if(FAILED(hr))
 		WARN_RETURN(ERR::FAIL);
-	debug_assert(pEnum);
+	ENSURE(pEnum);
 
 	for(;;)
 	{
@@ -106,7 +106,7 @@ LibError wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
 			WARN_RETURN(ERR::FAIL);
 		if(numReturned == 0)
 			break;
-		debug_assert(pEnum);
+		ENSURE(pEnum);
 
 		pObj->BeginEnumeration(WBEM_FLAG_NONSYSTEM_ONLY);
 		for(;;)

@@ -104,7 +104,7 @@ IGUIObject::~IGUIObject()
 void IGUIObject::AddChild(IGUIObject *pChild)
 {
 	// 
-//	debug_assert(pChild);
+//	ENSURE(pChild);
 
 	pChild->SetParent(this);
 

@@ -176,7 +176,7 @@ private:
 	template<typename T>
 	VertexArrayIterator<T> MakeIterator(const Attribute* attr)
 	{
-		debug_assert(attr->type && attr->elems);
+		ENSURE(attr->type && attr->elems);
 		return VertexArrayIterator<T>(m_BackingStore + attr->offset, m_Stride);
 	}
 

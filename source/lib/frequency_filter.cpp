@@ -38,7 +38,7 @@ public:
 		, m_lastTime(0)	// will be set on first call
 		, m_numEvents(0)
 	{
-		debug_assert(resolution > 0.0);
+		ENSURE(resolution > 0.0);
 	}
 
 	bool operator()(double time, double& frequency)

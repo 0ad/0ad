@@ -38,25 +38,25 @@ class Singleton
 public:
 	Singleton()
 	{
-		debug_assert( !ms_singleton );
+		ENSURE( !ms_singleton );
 		ms_singleton = static_cast<T*>(this);
 	}
 
 	~Singleton()
 	{
-		debug_assert( ms_singleton );
+		ENSURE( ms_singleton );
 		ms_singleton = 0;
 	}
 
 	static T& GetSingleton()
 	{
-		debug_assert( ms_singleton );
+		ENSURE( ms_singleton );
 		return *ms_singleton;
 	}
 
 	static T* GetSingletonPtr()
 	{
-		debug_assert( ms_singleton );
+		ENSURE( ms_singleton );
 		return ms_singleton;
 	}
 

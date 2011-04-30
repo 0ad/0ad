@@ -179,7 +179,7 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	bool quick = !TurnNeedsFullHash(turn);
 	std::string hash;
 	bool ok = m_Simulation2.ComputeStateHash(hash, quick);
-	debug_assert(ok);
+	ENSURE(ok);
 
 	OsPath path = psLogDir()/"oos_dump.txt";
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
@@ -222,7 +222,7 @@ void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
 {
 	NETTURN_LOG((L"FinishedAllCommands(%d, %d)\n", turn, turnLength));
 
-	debug_assert(turn == m_ReadyTurn + 1);
+	ENSURE(turn == m_ReadyTurn + 1);
 	m_ReadyTurn = turn;
 	m_TurnLength = turnLength;
 }
@@ -308,7 +308,7 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 	{
 		PROFILE("state hash check");
 		bool ok = m_Simulation2.ComputeStateHash(hash, quick);
-		debug_assert(ok);
+		ENSURE(ok);
 	}
 
 	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %ls)\n", turn, Hexify(hash).c_str()));
@@ -353,7 +353,7 @@ void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn))
 	{
 		PROFILE("state hash check");
 		bool ok = m_Simulation2.ComputeStateHash(hash);
-		debug_assert(ok);
+		ENSURE(ok);
 	}
 	m_Replay.Hash(hash);
 #endif
@@ -377,10 +377,10 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
 	NETTURN_LOG((L"NotifyFinishedClientCommands(client=%d, turn=%d)\n", client, turn));
 
 	// Must be a client we've already heard of
-	debug_assert(m_ClientsReady.find(client) != m_ClientsReady.end());
+	ENSURE(m_ClientsReady.find(client) != m_ClientsReady.end());
 
 	// Clients must advance one turn at a time
-	debug_assert(turn == m_ClientsReady[client] + 1);
+	ENSURE(turn == m_ClientsReady[client] + 1);
 	m_ClientsReady[client] = turn;
 
 	// Check whether this was the final client to become ready
@@ -412,7 +412,7 @@ void CNetServerTurnManager::CheckClientsReady()
 void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash)
 {
 	// Clients must advance one turn at a time
-	debug_assert(turn == m_ClientsSimulated[client] + 1);
+	ENSURE(turn == m_ClientsSimulated[client] + 1);
 	m_ClientsSimulated[client] = turn;
 
 	m_ClientStateHashes[turn][client] = hash;
@@ -460,7 +460,7 @@ void CNetServerTurnManager::InitialiseClient(int client)
 {
 	NETTURN_LOG((L"InitialiseClient(client=%d)\n", client));
 
-	debug_assert(m_ClientsReady.find(client) == m_ClientsReady.end());
+	ENSURE(m_ClientsReady.find(client) == m_ClientsReady.end());
 	m_ClientsReady[client] = 1;
 	m_ClientsSimulated[client] = 0;
 }
@@ -469,7 +469,7 @@ void CNetServerTurnManager::UninitialiseClient(int client)
 {
 	NETTURN_LOG((L"UninitialiseClient(client=%d)\n", client));
 
-	debug_assert(m_ClientsReady.find(client) != m_ClientsReady.end());
+	ENSURE(m_ClientsReady.find(client) != m_ClientsReady.end());
 	m_ClientsReady.erase(client);
 	m_ClientsSimulated.erase(client);
 

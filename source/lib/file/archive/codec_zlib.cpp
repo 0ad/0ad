@@ -151,11 +151,11 @@ protected:
 		// must have been consumed.
 		if(ret == Z_STREAM_END)
 		{
-			debug_assert(m_zs.avail_in == 0);
+			ENSURE(m_zs.avail_in == 0);
 			ret = Z_OK;
 		}
 
-		debug_assert(inSize >= m_zs.avail_in && outSize >= m_zs.avail_out);
+		ENSURE(inSize >= m_zs.avail_in && outSize >= m_zs.avail_out);
 		inConsumed  = inSize  - m_zs.avail_in;
 		outProduced = outSize - m_zs.avail_out;
 
@@ -195,7 +195,7 @@ public:
 		const int memLevel   = 9;					// max speed; total mem ~= 384KiB
 		const int strategy   = Z_DEFAULT_STRATEGY;	// normal data - not RLE
 		const int ret = deflateInit2(&m_zs, level, Z_DEFLATED, windowBits, memLevel, strategy);
-		debug_assert(ret == Z_OK);
+		ENSURE(ret == Z_OK);
 	}
 
 	virtual ~Compressor_ZLib()
@@ -230,7 +230,7 @@ public:
 		// our output buffer has enough space due to use of deflateBound;
 		// therefore, deflate must return Z_STREAM_END.
 		const int ret = deflate(&m_zs, Z_FINISH);
-		debug_assert(ret == Z_STREAM_END);
+		ENSURE(ret == Z_STREAM_END);
 
 		outProduced = size_t(availOut - m_zs.avail_out);
 
@@ -249,7 +249,7 @@ public:
 	{
 		const int windowBits = -MAX_WBITS;	// max window size; omit ZLib header
 		const int ret = inflateInit2(&m_zs, windowBits);
-		debug_assert(ret == Z_OK);
+		ENSURE(ret == Z_OK);
 	}
 
 	virtual ~Decompressor_ZLib()
@@ -263,7 +263,7 @@ public:
 		// relying on an upper bound for the output is a really bad idea for
 		// large files. archive formats store the uncompressed file sizes,
 		// so callers should use that when allocating the output buffer.
-		debug_assert(inSize < 1*MiB);
+		ENSURE(inSize < 1*MiB);
 
 		return inSize*1032;	// see http://www.zlib.org/zlib_tech.html
 	}

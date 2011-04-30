@@ -100,7 +100,7 @@ static size_t MaxLogicalPerCore()
 		const size_t logicalPerPackage = bits(regs.ebx, 16, 23);
 		const size_t maxCoresPerPackage = MaxCoresPerPackage();
 		// cores ought to be uniform WRT # logical processors
-		debug_assert(logicalPerPackage % maxCoresPerPackage == 0);
+		ENSURE(logicalPerPackage % maxCoresPerPackage == 0);
 		const size_t maxLogicalPerCore = logicalPerPackage / maxCoresPerPackage;
 		return maxLogicalPerCore;
 	}
@@ -181,7 +181,7 @@ size_t ProcessorFromApicId(size_t apicId)
 	const u8* pos = std::find(apicIds, end, apicId);
 	if(pos == end)
 	{
-		debug_assert(0);
+		ENSURE(0);
 		return 0;
 	}
 	return pos - apicIds;	// index
@@ -290,7 +290,7 @@ static LibError InitCpuTopology()
 				const size_t logicalPerCore = logicalPerPackage / coresPerPackage;
 				if(logicalPerCore <= maxLogicalPerCore)
 				{
-					debug_assert(numProcessors == numPackages*coresPerPackage*logicalPerCore);
+					ENSURE(numProcessors == numPackages*coresPerPackage*logicalPerCore);
 					cpuTopology.logicalPerCore = logicalPerCore;
 					cpuTopology.coresPerPackage = coresPerPackage;
 					cpuTopology.numPackages = numPackages;
@@ -299,7 +299,7 @@ static LibError InitCpuTopology()
 			}
 		}
 
-		debug_assert(0);	// didn't find a feasible topology
+		ENSURE(0);	// didn't find a feasible topology
 	}
 
 	return INFO::OK;
@@ -350,18 +350,18 @@ size_t cpu_topology_ApicId(size_t idxLogical, size_t idxCore, size_t idxPackage)
 	// we therefore compute an index into the sorted ApicIds array.
 
 	size_t idx = 0;
-	debug_assert(idxPackage < cpuTopology.numPackages);
+	ENSURE(idxPackage < cpuTopology.numPackages);
 	idx += idxPackage;
 
 	idx *= cpuTopology.coresPerPackage;
-	debug_assert(idxCore < cpuTopology.coresPerPackage);
+	ENSURE(idxCore < cpuTopology.coresPerPackage);
 	idx += idxCore;
 
 	idx *= cpuTopology.logicalPerCore;
-	debug_assert(idxLogical < cpuTopology.logicalPerCore);
+	ENSURE(idxLogical < cpuTopology.logicalPerCore);
 	idx += idxLogical;
 
-	debug_assert(idx < os_cpu_NumProcessors());
+	ENSURE(idx < os_cpu_NumProcessors());
 	const size_t apicId = ApicIds()[idx];
 	return apicId;
 }
@@ -491,7 +491,7 @@ static void DetermineProcessorsCache(const uintptr_t* cachesProcessorMask, size_
 		{
 			if(IsBitSet(processorMask, processor))
 			{
-				debug_assert(processorsCache[processor] == 0);
+				ENSURE(processorsCache[processor] == 0);
 				processorsCache[processor] = cache;
 			}
 		}
@@ -528,13 +528,13 @@ size_t cache_topology_NumCaches()
 size_t cache_topology_CacheFromProcessor(size_t processor)
 {
 	ModuleInit(&cacheInitState, InitCacheTopology);
-	debug_assert(processor < os_cpu_NumProcessors());
+	ENSURE(processor < os_cpu_NumProcessors());
 	return cacheTopology.processorsCache[processor];
 }
 
 uintptr_t cache_topology_ProcessorMaskFromCache(size_t cache)
 {
 	ModuleInit(&cacheInitState, InitCacheTopology);
-	debug_assert(cache < cacheTopology.numCaches);
+	ENSURE(cache < cacheTopology.numCaches);
 	return cacheTopology.cachesProcessorMask[cache];
 }

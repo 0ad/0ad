@@ -51,7 +51,7 @@ InReaction gui_handler(const SDL_Event_* ev)
 CGUIManager::CGUIManager(ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface)
 {
-	debug_assert(ScriptInterface::GetCallbackData(scriptInterface.GetContext()) == NULL);
+	ENSURE(ScriptInterface::GetCallbackData(scriptInterface.GetContext()) == NULL);
 	scriptInterface.SetCallbackData(this);
 }
 
@@ -280,6 +280,6 @@ JSObject* CGUIManager::GetScriptObject()
 // calls SwitchPage)
 shared_ptr<CGUI> CGUIManager::top() const
 {
-	debug_assert(m_PageStack.size());
+	ENSURE(m_PageStack.size());
 	return m_PageStack.back().gui;
 }

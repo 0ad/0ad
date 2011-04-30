@@ -67,7 +67,7 @@ std::wstring sys_WideFromArgv(const char* argv_i)
 	std::vector<wchar_t> buf(strlen(argv_i)+1);	// (upper bound on number of characters)
 	// NB: avoid mbstowcs because it may specify another locale
 	const int ret = MultiByteToWideChar(cp, flags, argv_i, (int)inputSize, &buf[0], (int)buf.size());
-	debug_assert(ret != 0);
+	ENSURE(ret != 0);
 	return std::wstring(&buf[0]);
 }
 
@@ -79,7 +79,7 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 
 
 //-----------------------------------------------------------------------------
-// "program error" dialog (triggered by debug_assert and exception)
+// "program error" dialog (triggered by ENSURE and exception)
 //-----------------------------------------------------------------------------
 
 // support for resizing the dialog / its controls (must be done manually)
@@ -354,11 +354,11 @@ LibError sys_error_description_r(int user_err, wchar_t* buf, size_t max_chars)
 		const DWORD charsWritten = FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, source, err, lang_id, message, (DWORD)ARRAY_SIZE(message), args);
 		if(!charsWritten)
 			WARN_RETURN(ERR::FAIL);
-		debug_assert(charsWritten < max_chars);
+		ENSURE(charsWritten < max_chars);
 	}
 
 	const int charsWritten = swprintf_s(buf, max_chars, L"%d (%ls)", err, message);
-	debug_assert(charsWritten != -1);
+	ENSURE(charsWritten != -1);
 	return INFO::OK;
 }
 
@@ -370,7 +370,7 @@ static LibError GetModulePathname(HMODULE hModule, OsPath& pathname)
 	const DWORD charsWritten = GetModuleFileNameW(hModule, pathnameBuf, length);
 	if(charsWritten == 0)	// failed
 		return LibError_from_GLE();
-	debug_assert(charsWritten < length);	// why would the above buffer ever be exceeded?
+	ENSURE(charsWritten < length);	// why would the above buffer ever be exceeded?
 	pathname = pathnameBuf;
 	return INFO::OK;
 }
@@ -382,7 +382,7 @@ LibError sys_get_module_filename(void* addr, OsPath& pathname)
 	const SIZE_T bytesWritten = VirtualQuery(addr, &mbi, sizeof(mbi));
 	if(!bytesWritten)
 		return LibError_from_GLE();
-	debug_assert(bytesWritten >= sizeof(mbi));
+	ENSURE(bytesWritten >= sizeof(mbi));
 	return GetModulePathname((HMODULE)mbi.AllocationBase, pathname);
 }
 
@@ -390,7 +390,7 @@ LibError sys_get_module_filename(void* addr, OsPath& pathname)
 OsPath sys_ExecutablePathname()
 {
 	OsPath pathname;
-	debug_assert(GetModulePathname(0, pathname) == INFO::OK);
+	ENSURE(GetModulePathname(0, pathname) == INFO::OK);
 	return pathname;
 }
 
@@ -423,7 +423,7 @@ LibError sys_pick_directory(OsPath& path)
 {
 	// (must not use multi-threaded apartment due to BIF_NEWDIALOGSTYLE)
 	const HRESULT hr = CoInitialize(0);
-	debug_assert(hr == S_OK || hr == S_FALSE);	// S_FALSE == already initialized
+	ENSURE(hr == S_OK || hr == S_FALSE);	// S_FALSE == already initialized
 
 	// note: bi.pszDisplayName isn't the full path, so it isn't of any use.
 	BROWSEINFOW bi;

@@ -240,7 +240,7 @@ int wutil_argc()
 
 wchar_t** wutil_argv()
 {
-	debug_assert(s_argv);
+	ENSURE(s_argv);
 	return s_argv;
 }
 
@@ -295,10 +295,10 @@ static void GetDirectories()
 	// system directory
 	{
 		const UINT length = GetSystemDirectoryW(0, 0);
-		debug_assert(length != 0);
+		ENSURE(length != 0);
 		std::wstring path(length, '\0');
 		const UINT charsWritten = GetSystemDirectoryW(&path[0], length);
-		debug_assert(charsWritten == length-1);
+		ENSURE(charsWritten == length-1);
 		systemPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
 	}
 
@@ -311,7 +311,7 @@ static void GetDirectories()
 		HANDLE token = 0;
 		wchar_t path[MAX_PATH];	// mandated by SHGetFolderPathW
 		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
-		debug_assert(SUCCEEDED(ret));
+		ENSURE(SUCCEEDED(ret));
 		appdataPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
 	}
 }
@@ -476,7 +476,7 @@ HMODULE wutil_LibModuleHandle()
 	HMODULE hModule;
 	const DWORD flags = GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT;
 	const BOOL ok = GetModuleHandleEx(flags, (LPCWSTR)&wutil_LibModuleHandle, &hModule);
-	// (avoid debug_assert etc. because we're called from debug_DisplayError)
+	// (avoid ENSURE etc. because we're called from debug_DisplayError)
 	wdbg_assert(ok);
 	return hModule;
 }
@@ -526,7 +526,7 @@ HWND wutil_AppWindow()
 		WinScopedPreserveLastError s;
 		SetLastError(0);
 		(void)EnumWindows(FindAppWindowByPid, 0);	// (see above)
-		debug_assert(GetLastError() == 0);
+		ENSURE(GetLastError() == 0);
 	}
 
 	return hAppWindow;

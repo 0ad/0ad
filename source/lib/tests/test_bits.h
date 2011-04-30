@@ -24,7 +24,7 @@
 
 #include "lib/bits.h"
 
-#define EQUALS(actual, expected) debug_assert((actual) == (expected))
+#define EQUALS(actual, expected) ENSURE((actual) == (expected))
 
 class TestBits : public CxxTest::TestSuite 
 {

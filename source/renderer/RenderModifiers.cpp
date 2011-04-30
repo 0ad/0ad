@@ -86,7 +86,7 @@ PlainRenderModifier::~PlainRenderModifier()
 
 int PlainRenderModifier::BeginPass(int pass)
 {
-	debug_assert(pass == 0);
+	ENSURE(pass == 0);
 
 	// set up texture environment for base pass - modulate texture and primary color
 	pglActiveTextureARB(GL_TEXTURE0);
@@ -140,7 +140,7 @@ WireframeRenderModifier::~WireframeRenderModifier()
 
 int WireframeRenderModifier::BeginPass(int pass)
 {
-	debug_assert(pass == 0);
+	ENSURE(pass == 0);
 
 	// first switch on wireframe
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

@@ -118,7 +118,7 @@ static LibError Init()
 {
 	char d[1024];
 	int ret = WSAStartup(0x0002, d);	// want 2.0
-	debug_assert(ret == 0);
+	ENSURE(ret == 0);
 
 	ImportOptionalFunctions();
 
@@ -128,7 +128,7 @@ static LibError Init()
 static void Shutdown()
 {
 	int ret = WSACleanup();
-	debug_assert(ret >= 0);
+	ENSURE(ret >= 0);
 }
 
 static ModuleInitState initState;

@@ -78,7 +78,7 @@ struct x86_x64_Cache	// POD (may be used before static constructors)
 		associativity = 0;
 		sharedBy      = 0;
 
-		debug_assert(Validate());
+		ENSURE(Validate());
 	}
 
 	bool Validate() const

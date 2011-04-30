@@ -100,7 +100,7 @@ struct DurationAdder: public std::binary_function<double, const LoadRequest&, do
 // or issuing via console while already loading.
 void LDR_BeginRegistering()
 {
-	debug_assert(state == IDLE);
+	ENSURE(state == IDLE);
 
 	state = REGISTERING;
 	load_requests.clear();
@@ -118,7 +118,7 @@ void LDR_BeginRegistering()
 void LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 	int estimated_duration_ms)
 {
-	debug_assert(state == REGISTERING);	// must be called between LDR_(Begin|End)Register
+	ENSURE(state == REGISTERING);	// must be called between LDR_(Begin|End)Register
 
 	const LoadRequest lr(func, param, description, estimated_duration_ms);
 	load_requests.push_back(lr);
@@ -129,8 +129,8 @@ void LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 // LDR_ProgressiveLoad will then work off the queued entries.
 void LDR_EndRegistering()
 {
-	debug_assert(state == REGISTERING);
-	debug_assert(!load_requests.empty());
+	ENSURE(state == REGISTERING);
+	ENSURE(!load_requests.empty());
 
 	state = FIRST_LOAD;
 	estimated_duration_tally = 0.0;
@@ -281,7 +281,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t ma
 	// set output params (there are several return points above)
 done:
 	*progress_percent = (int)(progress * 100.0);
-	debug_assert(0 <= *progress_percent && *progress_percent <= 100);
+	ENSURE(0 <= *progress_percent && *progress_percent <= 100);
 
 	// we want the next task, instead of what just completed:
 	// it will be displayed during the next load phase.

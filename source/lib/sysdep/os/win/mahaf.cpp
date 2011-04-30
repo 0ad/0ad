@@ -57,21 +57,21 @@ static u32 ReadPort(u16 port, u8 numBytes)
 		return 0;
 	}
 
-	debug_assert(bytesReturned == sizeof(out));
+	ENSURE(bytesReturned == sizeof(out));
 	return out.value;
 }
 
 u8 mahaf_ReadPort8(u16 port)
 {
 	const u32 value = ReadPort(port, 1);
-	debug_assert(value <= 0xFF);
+	ENSURE(value <= 0xFF);
 	return (u8)(value & 0xFF);
 }
 
 u16 mahaf_ReadPort16(u16 port)
 {
 	const u32 value = ReadPort(port, 2);
-	debug_assert(value <= 0xFFFF);
+	ENSURE(value <= 0xFFFF);
 	return (u16)(value & 0xFFFF);
 }
 
@@ -124,7 +124,7 @@ bool mahaf_IsPhysicalMappingDangerous()
 
 volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
 {
-	debug_assert(!mahaf_IsPhysicalMappingDangerous());
+	ENSURE(!mahaf_IsPhysicalMappingDangerous());
 
 	AkenMapIn in;
 	in.physicalAddress = (DWORD64)physicalAddress;
@@ -140,7 +140,7 @@ volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numByte
 		return 0;
 	}
 
-	debug_assert(bytesReturned == sizeof(out));
+	ENSURE(bytesReturned == sizeof(out));
 	volatile void* virtualAddress = (volatile void*)(uintptr_t)out.virtualAddress;
 	return virtualAddress;
 }
@@ -148,7 +148,7 @@ volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numByte
 
 void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress)
 {
-	debug_assert(!mahaf_IsPhysicalMappingDangerous());
+	ENSURE(!mahaf_IsPhysicalMappingDangerous());
 
 	AkenUnmapIn in;
 	in.virtualAddress = (DWORD64)virtualAddress;
@@ -175,7 +175,7 @@ static u64 ReadRegister(DWORD ioctl, u64 reg)
 		return 0;
 	}
 
-	debug_assert(bytesReturned == sizeof(out));
+	ENSURE(bytesReturned == sizeof(out));
 	return out.value;
 }
 
@@ -219,7 +219,7 @@ static SC_HANDLE OpenServiceControlManager()
 		// thus out of the question.
 
 		// rule out other problems
-		debug_assert(GetLastError() == ERROR_ACCESS_DENIED);
+		ENSURE(GetLastError() == ERROR_ACCESS_DENIED);
 
 		return 0;
 	}
@@ -244,7 +244,7 @@ static void UninstallDriver()
 		// if the problem wasn't that the service is already stopped,
 		// something actually went wrong.
 		const DWORD err = GetLastError();
-		debug_assert(err == ERROR_SERVICE_NOT_ACTIVE || err == ERROR_SERVICE_CANNOT_ACCEPT_CTRL);
+		ENSURE(err == ERROR_SERVICE_NOT_ACTIVE || err == ERROR_SERVICE_CANNOT_ACCEPT_CTRL);
 	}
 
 	// delete service
@@ -290,7 +290,7 @@ static void StartDriver(const OsPath& driverPathname)
 		hService = CreateServiceW(hSCM, AKEN_NAME, AKEN_NAME,
 			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
 			OsString(driverPathname).c_str(), 0, 0, 0, startName, 0);
-		debug_assert(hService != 0);
+		ENSURE(hService != 0);
 	}
 
 	// start service
@@ -303,7 +303,7 @@ static void StartDriver(const OsPath& driverPathname)
 			{
 				// starting failed. don't raise a warning because this
 				// always happens on least-permission user accounts.
-				//debug_assert(0);
+				//ENSURE(0);
 			}
 		}
 	}

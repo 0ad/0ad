@@ -67,7 +67,7 @@ static LibError GetTable(wfirmware::Table& table)
 		u32 length;
 	};
 	const WmiHeader* wmiHeader = (const WmiHeader*)&table[0];
-	debug_assert(table.size() == sizeof(WmiHeader) + wmiHeader->length);
+	ENSURE(table.size() == sizeof(WmiHeader) + wmiHeader->length);
 	memmove(&table[0], &table[sizeof(WmiHeader)], table.size()-sizeof(WmiHeader));
 
 	return INFO::OK;
@@ -203,7 +203,7 @@ void FieldInitializer::operator()<bool>(size_t flags, bool& UNUSED(t), const cha
 {
 	// SMBIOS doesn't specify any individual booleans, so we're only called for
 	// derived fields and don't need to do anything.
-	debug_assert(flags & F_DERIVED);
+	ENSURE(flags & F_DERIVED);
 }
 
 template<>

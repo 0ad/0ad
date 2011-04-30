@@ -114,7 +114,7 @@ static AppHooks default_ah = ah;
 // (these default to the stub hooks which are functional but basic).
 void app_hooks_update(AppHooks* new_ah)
 {
-	debug_assert(new_ah);
+	ENSURE(new_ah);
 
 #define OVERRIDE_IF_NONZERO(HOOKNAME) if(new_ah->HOOKNAME) ah.HOOKNAME = new_ah->HOOKNAME;
 	OVERRIDE_IF_NONZERO(override_gl_upload_caps)

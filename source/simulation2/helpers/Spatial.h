@@ -58,7 +58,7 @@ public:
 	 */
 	void Add(T item, CFixedVector2D toMin, CFixedVector2D toMax)
 	{
-		debug_assert(toMin.X <= toMax.X && toMin.Y <= toMax.Y);
+		ENSURE(toMin.X <= toMax.X && toMin.Y <= toMax.Y);
 
 		size_t i0 = GetI0(toMin.X);
 		size_t j0 = GetJ0(toMin.Y);
@@ -81,7 +81,7 @@ public:
 	 */
 	void Remove(T item, CFixedVector2D fromMin, CFixedVector2D fromMax)
 	{
-		debug_assert(fromMin.X <= fromMax.X && fromMin.Y <= fromMax.Y);
+		ENSURE(fromMin.X <= fromMax.X && fromMin.Y <= fromMax.Y);
 
 		size_t i0 = GetI0(fromMin.X);
 		size_t j0 = GetJ0(fromMin.Y);
@@ -153,7 +153,7 @@ public:
 	{
 		std::vector<T> ret;
 
-		debug_assert(posMin.X <= posMax.X && posMin.Y <= posMax.Y);
+		ENSURE(posMin.X <= posMax.X && posMin.Y <= posMax.Y);
 
 		size_t i0 = GetI0(posMin.X);
 		size_t j0 = GetJ0(posMin.Y);

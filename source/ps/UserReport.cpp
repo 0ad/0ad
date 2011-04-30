@@ -89,7 +89,7 @@ public:
 		// Set up libcurl:
 
 		m_Curl = curl_easy_init();
-		debug_assert(m_Curl);
+		ENSURE(m_Curl);
 
 #if DEBUG_UPLOADS
 		curl_easy_setopt(m_Curl, CURLOPT_VERBOSE, 1L);
@@ -132,10 +132,10 @@ public:
 
 		// Use SDL semaphores since OS X doesn't implement sem_init
 		m_WorkerSem = SDL_CreateSemaphore(0);
-		debug_assert(m_WorkerSem);
+		ENSURE(m_WorkerSem);
 
 		int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
-		debug_assert(ret == 0);
+		ENSURE(ret == 0);
 	}
 
 	~CUserReporterWorker()
@@ -409,7 +409,7 @@ private:
 		compressed.resize(compressBound(r.size()));
 		uLongf destLen = compressed.size();
 		int ok = compress((Bytef*)compressed.c_str(), &destLen, (const Bytef*)r.c_str(), r.size());
-		debug_assert(ok == Z_OK);
+		ENSURE(ok == Z_OK);
 		compressed.resize(destLen);
 
 		m_RequestData.swap(compressed);
@@ -498,7 +498,7 @@ CUserReporter::CUserReporter() :
 
 CUserReporter::~CUserReporter()
 {
-	debug_assert(!m_Worker); // Deinitialize should have been called before shutdown
+	ENSURE(!m_Worker); // Deinitialize should have been called before shutdown
 }
 
 std::string CUserReporter::LoadUserID()
@@ -558,7 +558,7 @@ std::string CUserReporter::GetStatus()
 
 void CUserReporter::Initialize()
 {
-	debug_assert(!m_Worker); // must only be called once
+	ENSURE(!m_Worker); // must only be called once
 
 	std::string userID = LoadUserID();
 	std::string url;

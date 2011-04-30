@@ -260,7 +260,7 @@ CCinemaManager::CCinemaManager() : m_DrawCurrentSpline(false), m_Active(true), m
 
 void CCinemaManager::AddPath(CCinemaPath path, const CStrW& name)
 {
-	debug_assert( m_Paths.find( name ) == m_Paths.end() );
+	ENSURE( m_Paths.find( name ) == m_Paths.end() );
 	m_Paths[name] = path;
 }
 
@@ -272,7 +272,7 @@ void CCinemaManager::QueuePath(const CStrW& name, bool queue )
 	}
 	else
 	{
-		debug_assert(HasTrack(name));
+		ENSURE(HasTrack(name));
 		m_PathQueue.push_back(m_Paths[name]);
 	}
 }
@@ -280,7 +280,7 @@ void CCinemaManager::QueuePath(const CStrW& name, bool queue )
 void CCinemaManager::OverridePath(const CStrW& name)
 {
 	m_PathQueue.clear();
-	debug_assert(HasTrack(name));
+	ENSURE(HasTrack(name));
 	m_PathQueue.push_back( m_Paths[name] );
 }
 
@@ -318,7 +318,7 @@ void CCinemaManager::DrawSpline() const
 
 void CCinemaManager::MoveToPointAt(float time)
 {
-	debug_assert(m_CurrentPath != m_Paths.end());
+	ENSURE(m_CurrentPath != m_Paths.end());
 	StopPlaying();
 
 	m_CurrentPath->second.m_TimeElapsed = time;

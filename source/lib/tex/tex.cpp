@@ -128,7 +128,7 @@ LibError tex_validate_plain_format(size_t bpp, size_t flags)
 
 void tex_util_foreach_mipmap(size_t w, size_t h, size_t bpp, const u8* pixels, int levels_to_skip, size_t data_padding, MipmapCB cb, void* RESTRICT cbData)
 {
-	debug_assert(levels_to_skip >= 0 || levels_to_skip == TEX_BASE_LEVEL_ONLY);
+	ENSURE(levels_to_skip >= 0 || levels_to_skip == TEX_BASE_LEVEL_ONLY);
 
 	size_t level_w = w, level_h = h;
 	const u8* level_data = pixels;
@@ -191,7 +191,7 @@ static void create_level(size_t level, size_t level_w, size_t level_h, const u8*
 	// base level - must be copied over from source buffer
 	if(level == 0)
 	{
-		debug_assert(level_data_size == cld->prev_level_data_size);
+		ENSURE(level_data_size == cld->prev_level_data_size);
 		memcpy(dst, src, level_data_size);
 	}
 	else
@@ -236,8 +236,8 @@ static void create_level(size_t level, size_t level_w, size_t level_h, const u8*
 			}
 		}
 
-		debug_assert(dst == level_data + level_data_size);
-		debug_assert(src == cld->prev_level_data + cld->prev_level_data_size);
+		ENSURE(dst == level_data + level_data_size);
+		ENSURE(src == cld->prev_level_data + cld->prev_level_data_size);
 	}
 
 	cld->prev_level_data = level_data;
@@ -509,7 +509,7 @@ static int global_orientation = TEX_TOP_DOWN;
 // (excepting file formats that don't specify their orientation, i.e. DDS).
 void tex_set_global_orientation(int o)
 {
-	debug_assert(o == TEX_TOP_DOWN || o == TEX_BOTTOM_UP);
+	ENSURE(o == TEX_TOP_DOWN || o == TEX_BOTTOM_UP);
 	global_orientation = o;
 }
 
@@ -659,7 +659,7 @@ u32 tex_get_average_colour(const Tex* t)
 	WARN_ERR(tex_transform_to(&basetex, TEX_BGR | TEX_ALPHA));
 
 	// extract components into u32
-	debug_assert(basetex.dataSize >= basetex.ofs+4);
+	ENSURE(basetex.dataSize >= basetex.ofs+4);
 	u8 b = basetex.data.get()[basetex.ofs];
 	u8 g = basetex.data.get()[basetex.ofs+1];
 	u8 r = basetex.data.get()[basetex.ofs+2];

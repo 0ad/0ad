@@ -43,7 +43,7 @@ static const TexCodecVTbl* codecs;
 // returns int to alloc calling from a macro at file scope.
 int tex_codec_register(TexCodecVTbl* c)
 {
-	debug_assert(c);
+	ENSURE(c);
 
 	// insert at front of list.
 	c->next = codecs;
@@ -119,7 +119,7 @@ LibError tex_codec_transform(Tex* t, size_t transforms)
 		else if(err != INFO::TEX_CODEC_CANNOT_HANDLE)
 		{
 			ret = err;
-			debug_assert(0);	// codec indicates error
+			ENSURE(0);	// codec indicates error
 		}
 	}
 
@@ -168,7 +168,7 @@ std::vector<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 		pos += add;
 	}
 
-	debug_assert(pos == end);
+	ENSURE(pos == end);
 	return rows;
 }
 

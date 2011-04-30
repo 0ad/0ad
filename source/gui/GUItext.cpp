@@ -72,7 +72,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 		if (_to == _from && itTextChunk->m_From == itTextChunk->m_To)
 		{
 			// These should never be able to have more than one tag.
-			debug_assert(itTextChunk->m_Tags.size()==1);
+			ENSURE(itTextChunk->m_Tags.size()==1);
 
 			// Now do second check
 			//  because icons and images are placed on exactly one position

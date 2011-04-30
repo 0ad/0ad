@@ -166,7 +166,7 @@ MESSAGEHANDLER(CinemaEvent)
 	else if ( msg->mode == eCinemaEventMode::SELECT )
 		manager->SetCurrentPath(*msg->path, msg->drawCurrent, msg->lines);
 	else
-		debug_assert(false);
+		ENSURE(false);
 }
 			
 BEGIN_COMMAND(SetCinemaPaths)

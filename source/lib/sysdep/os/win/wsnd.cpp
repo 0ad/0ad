@@ -115,7 +115,7 @@ static const OsPath& GetDirectSoundDriverPath()
 	if(pDirectSoundEnumerateW)
 	{
 		HRESULT ret = pDirectSoundEnumerateW(DirectSoundCallback, (void*)0);
-		debug_assert(ret == DS_OK);
+		ENSURE(ret == DS_OK);
 	}
 	FreeLibrary(hDsoundDll);
 

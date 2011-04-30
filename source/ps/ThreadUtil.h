@@ -53,13 +53,13 @@ public:
 	CMutex()
 	{
 		int ret = pthread_mutex_init(&m_Mutex, NULL);
-		debug_assert(ret == 0);
+		ENSURE(ret == 0);
 	}
 	
 	~CMutex()
 	{
 		int ret = pthread_mutex_destroy(&m_Mutex);
-		debug_assert(ret == 0);
+		ENSURE(ret == 0);
 	}
 
 private:

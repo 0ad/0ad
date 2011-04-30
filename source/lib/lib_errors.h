@@ -359,7 +359,7 @@ STMT(\
 )
 
 // if expression evaluates to a negative error code, warn user
-// (this is similar to debug_assert but also works in release mode)
+// (this is similar to ENSURE but also works in release mode)
 #define WARN_ERR(expression)\
 STMT(\
 	i64 err64__ = (i64)(expression);\

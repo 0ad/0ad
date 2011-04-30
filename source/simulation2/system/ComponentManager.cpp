@@ -134,7 +134,7 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	m_CurrentlyHotloading = hotload;
 	CVFSFile file;
 	PSRETURN loadOk = file.Load(g_VFS, filename);
-	debug_assert(loadOk == PSRETURN_OK); // TODO
+	ENSURE(loadOk == PSRETURN_OK); // TODO
 	std::wstring content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // TODO: encodings etc
 	bool ok = m_ScriptInterface.LoadScript(filename, content);
 	return ok;
@@ -497,7 +497,7 @@ void CComponentManager::RegisterMessageType(MessageTypeId mtid, const char* name
 void CComponentManager::SubscribeToMessageType(MessageTypeId mtid)
 {
 	// TODO: verify mtid
-	debug_assert(m_CurrentComponent != CID__Invalid);
+	ENSURE(m_CurrentComponent != CID__Invalid);
 	std::vector<ComponentTypeId>& types = m_LocalMessageSubscriptions[mtid];
 	types.push_back(m_CurrentComponent);
 	std::sort(types.begin(), types.end()); // TODO: just sort once at the end of LoadComponents
@@ -506,7 +506,7 @@ void CComponentManager::SubscribeToMessageType(MessageTypeId mtid)
 void CComponentManager::SubscribeGloballyToMessageType(MessageTypeId mtid)
 {
 	// TODO: verify mtid
-	debug_assert(m_CurrentComponent != CID__Invalid);
+	ENSURE(m_CurrentComponent != CID__Invalid);
 	std::vector<ComponentTypeId>& types = m_GlobalMessageSubscriptions[mtid];
 	types.push_back(m_CurrentComponent);
 	std::sort(types.begin(), types.end()); // TODO: just sort once at the end of LoadComponents
@@ -590,7 +590,7 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 
 	const ComponentType& ct = it->second;
 
-	debug_assert((size_t)ct.iid < m_ComponentsByInterface.size());
+	ENSURE((size_t)ct.iid < m_ComponentsByInterface.size());
 
 	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[ct.iid];
 	if (emap1.find(ent) != emap1.end())
@@ -615,7 +615,7 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 
 	// Construct the new component
 	IComponent* component = ct.alloc(m_ScriptInterface, obj);
-	debug_assert(component);
+	ENSURE(component);
 
 	component->SetEntityId(ent);
 	component->SetSimContext(m_SimContext);

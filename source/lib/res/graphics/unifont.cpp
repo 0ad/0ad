@@ -127,7 +127,7 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 
 		if (Codepoint < 0 || Codepoint > 0xFFFF)
 		{
-			debug_assert(0);	// Invalid codepoint
+			ENSURE(0);	// Invalid codepoint
 			continue;
 		}
 
@@ -145,7 +145,7 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 		(*f->glyphs)[(u16)Codepoint] = g;
 	}
 
-	debug_assert(f->Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
+	ENSURE(f->Height); // Ensure the height has been found (which should always happen if the font includes an 'I')
 
 	// Load glyph texture
 	// [cumulative for 12: 20ms]
@@ -270,7 +270,7 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 	// Make sure there's always null termination
 	buf[buf_size-1] = 0;
 
-	debug_assert(BoundGlyphs != NULL); // You always need to bind something first
+	ENSURE(BoundGlyphs != NULL); // You always need to bind something first
 
 	// Count the number of characters
 	size_t len = wcslen(buf);
@@ -367,7 +367,7 @@ LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int
 
 		if (it == f->glyphs->end()) // Missing the missing glyph symbol - give up
 		{
-			debug_assert(0);	// Missing the missing glyph in a unifont!
+			ENSURE(0);	// Missing the missing glyph in a unifont!
 			return INFO::OK;
 		}
 

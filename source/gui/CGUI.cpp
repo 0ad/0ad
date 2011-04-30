@@ -1161,7 +1161,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 
 void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths)
 {
-	debug_assert(pParent);
+	ENSURE(pParent);
 	int i;
 
 	// Our object we are going to create

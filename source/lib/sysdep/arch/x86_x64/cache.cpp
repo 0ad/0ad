@@ -37,7 +37,7 @@ static x86_x64_Cache caches[numCaches];
 
 static void AddCache(const x86_x64_Cache& cache)
 {
-	debug_assert(cache.Validate());
+	ENSURE(cache.Validate());
 
 	if(cache.type == x86_x64_Cache::kData || cache.type == x86_x64_Cache::kUnified)
 		caches[L1D + cache.level-1] = cache;
@@ -48,10 +48,10 @@ static void AddCache(const x86_x64_Cache& cache)
 
 static void AddTLB(const x86_x64_Cache& tlb)
 {
-	debug_assert(tlb.Validate());
-	debug_assert(tlb.level == 1 || tlb.level == 2);	// see maxTLBs
+	ENSURE(tlb.Validate());
+	ENSURE(tlb.level == 1 || tlb.level == 2);	// see maxTLBs
 
-	debug_assert(numTLBs < maxTLBs);
+	ENSURE(numTLBs < maxTLBs);
 	caches[TLB+numTLBs++] = tlb;
 }
 
@@ -290,7 +290,7 @@ static Descriptors GetDescriptors()
 			break;
 		regs.eax = 2;
 		const bool ok = x86_x64_cpuid(&regs);
-		debug_assert(ok);
+		ENSURE(ok);
 	}
 
 	os_cpu_SetThreadAffinityMask(prevAffinityMask);
@@ -331,7 +331,7 @@ struct Characteristics	// POD
 		case U:
 			return x86_x64_Cache::kUnified;
 		default:
-			debug_assert(0);
+			ENSURE(0);
 			return x86_x64_Cache::kNull;
 		}
 	}
@@ -339,7 +339,7 @@ struct Characteristics	// POD
 	size_t Level() const
 	{
 		const size_t level = flags & 3;
-		debug_assert(level != 0);
+		ENSURE(level != 0);
 		return level;
 	}
 
@@ -623,16 +623,16 @@ static LibError DetectCacheAndTLB()
 	// sanity checks
 	for(size_t idxLevel = 0; idxLevel < x86_x64_Cache::maxLevels; idxLevel++)
 	{
-		debug_assert(caches[L1D+idxLevel].type == x86_x64_Cache::kData || caches[L1D+idxLevel].type == x86_x64_Cache::kUnified);
-		debug_assert(caches[L1D+idxLevel].level == idxLevel+1);
-		debug_assert(caches[L1D+idxLevel].Validate() == true);
+		ENSURE(caches[L1D+idxLevel].type == x86_x64_Cache::kData || caches[L1D+idxLevel].type == x86_x64_Cache::kUnified);
+		ENSURE(caches[L1D+idxLevel].level == idxLevel+1);
+		ENSURE(caches[L1D+idxLevel].Validate() == true);
 
-		debug_assert(caches[L1I+idxLevel].type == x86_x64_Cache::kInstruction || caches[L1I+idxLevel].type == x86_x64_Cache::kUnified);
-		debug_assert(caches[L1I+idxLevel].level == idxLevel+1);
-		debug_assert(caches[L1I+idxLevel].Validate() == true);
+		ENSURE(caches[L1I+idxLevel].type == x86_x64_Cache::kInstruction || caches[L1I+idxLevel].type == x86_x64_Cache::kUnified);
+		ENSURE(caches[L1I+idxLevel].level == idxLevel+1);
+		ENSURE(caches[L1I+idxLevel].Validate() == true);
 	}
 	for(size_t i = 0; i < numTLBs; i++)
-		debug_assert(caches[TLB+i].Validate() == true);
+		ENSURE(caches[TLB+i].Validate() == true);
 
 	return INFO::OK;
 }

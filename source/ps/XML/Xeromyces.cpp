@@ -48,7 +48,7 @@ static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 static bool g_XeromycesStarted = false;
 void CXeromyces::Startup()
 {
-	debug_assert(!g_XeromycesStarted);
+	ENSURE(!g_XeromycesStarted);
 	xmlInitParser();
 	xmlSetStructuredErrorFunc(NULL, &errorHandler);
 	g_XeromycesStarted = true;
@@ -56,7 +56,7 @@ void CXeromyces::Startup()
 
 void CXeromyces::Terminate()
 {
-	debug_assert(g_XeromycesStarted);
+	ENSURE(g_XeromycesStarted);
 	xmlCleanupParser();
 	xmlSetStructuredErrorFunc(NULL, NULL);
 	g_XeromycesStarted = false;
@@ -74,7 +74,7 @@ void CXeromyces::PrepareCacheKey(MD5& hash, u32& version)
 
 PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 {
-	debug_assert(g_XeromycesStarted);
+	ENSURE(g_XeromycesStarted);
 
 	CCacheLoader cacheLoader(vfs, L".xmb");
 	MD5 hash;
@@ -98,7 +98,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 	}
 	else
 	{
-		debug_assert(ret < 0);
+		ENSURE(ret < 0);
 
 		// No source file or archive cache was found, so we can't load the
 		// XML file at all
@@ -151,7 +151,7 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 
 	// Set up the XMBFile
 	const bool ok = Initialise((const char*)m_XMBBuffer.get());
-	debug_assert(ok);
+	ENSURE(ok);
 
 	return PSRETURN_OK;
 }
@@ -166,7 +166,7 @@ bool CXeromyces::ReadXMBFile(const PIVFS& vfs, const VfsPath& filename)
 	// reporting failure will cause our caller to re-generate the XMB.
 	if(size == 0)
 		return false;
-	debug_assert(size >= 4); // make sure it's at least got the initial header
+	ENSURE(size >= 4); // make sure it's at least got the initial header
 
 	// Set up the XMBFile
 	if(!Initialise((const char*)m_XMBBuffer.get()))
@@ -177,7 +177,7 @@ bool CXeromyces::ReadXMBFile(const PIVFS& vfs, const VfsPath& filename)
 
 PSRETURN CXeromyces::LoadString(const char* xml)
 {
-	debug_assert(g_XeromycesStarted);
+	ENSURE(g_XeromycesStarted);
 
 	xmlDocPtr doc = xmlReadMemory(xml, (int)strlen(xml), "", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
@@ -195,7 +195,7 @@ PSRETURN CXeromyces::LoadString(const char* xml)
 
 	// Set up the XMBFile
 	const bool ok = Initialise((const char*)m_XMBBuffer.get());
-	debug_assert(ok);
+	ENSURE(ok);
 
 	return PSRETURN_OK;
 }

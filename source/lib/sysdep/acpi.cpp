@@ -45,7 +45,7 @@ typedef const volatile AcpiTable* PCV_AcpiTable;
 
 static AcpiTable* AllocateTable(size_t size)
 {
-	debug_assert(size >= sizeof(AcpiTable));
+	ENSURE(size >= sizeof(AcpiTable));
 	return (AcpiTable*)malloc(size);
 }
 
@@ -165,7 +165,7 @@ typedef const volatile BiosDataArea* PCV_BiosDataArea;
 
 static void* UnsafeReadEbdaPhysicalAddress(PCV_u8 mem, size_t numBytes, void* UNUSED(arg))
 {
-	debug_assert(numBytes >= sizeof(BiosDataArea));
+	ENSURE(numBytes >= sizeof(BiosDataArea));
 
 	PCV_BiosDataArea bda = (PCV_BiosDataArea)mem;
 	const uintptr_t ebdaPhysicalAddress = ((uintptr_t)bda->ebdaSegment) * 16;
@@ -188,7 +188,7 @@ static const size_t RSDP_ALIGNMENT = 16;
 
 static void* UnsafeLocateAndRetrieveRsdp(PCV_u8 buf, size_t numBytes, void* arg)
 {
-	debug_assert(numBytes >= sizeof(RSDP));
+	ENSURE(numBytes >= sizeof(RSDP));
 
 	for(PCV_u8 p = buf; p < buf+numBytes; p += RSDP_ALIGNMENT)
 	{
@@ -232,7 +232,7 @@ static bool RetrieveRsdp(RSDP& rsdp)
 
 static void* UnsafeAllocateAndCopyTable(PCV_u8 mem, size_t numBytes, void* arg)
 {
-	debug_assert(numBytes >= sizeof(AcpiTable));
+	ENSURE(numBytes >= sizeof(AcpiTable));
 
 	PCV_AcpiTable table = (PCV_AcpiTable)mem;
 	const size_t tableSize = table->size;
@@ -300,7 +300,7 @@ static void AllocateAndCopyTables(const AcpiTable**& tables, size_t& numTables)
 	}
 
 	numTables = (rsdt->header.size - sizeof(AcpiTable)) / sizeof(rsdt->tableAddresses[0]);
-	debug_assert(numTables != 0);
+	ENSURE(numTables != 0);
 
 	tables = new const AcpiTable*[numTables];
 	for(size_t i = 0; i < numTables; i++)
@@ -317,7 +317,7 @@ static void AllocateAndCopyTables(const AcpiTable**& tables, size_t& numTables)
 	for(size_t i = 0; i < numTables; i++)
 	{
 		wfirmware::Table table = wfirmware::GetTable(provider, tableIDs[i]);
-		debug_assert(!table.empty());
+		ENSURE(!table.empty());
 		tables[i] = AllocateTable(table.size());
 		memcpy((void*)tables[i], &table[0], table.size());
 	}

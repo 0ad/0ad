@@ -89,7 +89,7 @@ public:
 	{
 		// (see previous acpi_GetTable call)
 		const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
-		debug_assert(fadt);	// Activate made sure FADT is available
+		ENSURE(fadt);	// Activate made sure FADT is available
 		const size_t counterBits = (fadt->flags & TMR_VAL_EXT)? 32 : 24;
 		return counterBits;
 	}
@@ -110,6 +110,6 @@ private:
 
 ICounter* CreateCounterPMT(void* address, size_t size)
 {
-	debug_assert(sizeof(CounterPMT) <= size);
+	ENSURE(sizeof(CounterPMT) <= size);
 	return new(address) CounterPMT();
 }

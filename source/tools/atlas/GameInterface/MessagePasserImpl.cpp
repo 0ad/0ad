@@ -79,8 +79,8 @@ MessagePasserImpl::~MessagePasserImpl()
 
 void MessagePasserImpl::Add(IMessage* msg)
 {
-	debug_assert(msg);
-	debug_assert(msg->GetType() == IMessage::Message);
+	ENSURE(msg);
+	ENSURE(msg->GetType() == IMessage::Message);
 
 	if (m_Trace)
 		debug_printf(L"%8.3f add message: %hs\n", timer_Time(), msg->GetName());
@@ -116,8 +116,8 @@ IMessage* MessagePasserImpl::Retrieve()
 
 void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) )())
 {
-	debug_assert(qry);
-	debug_assert(qry->GetType() == IMessage::Query);
+	ENSURE(qry);
+	ENSURE(qry->GetType() == IMessage::Query);
 
 	if (m_Trace)
 		debug_printf(L"%8.3f add query: %hs\n", timer_Time(), qry->GetName());

@@ -60,10 +60,10 @@ static time_t time_t_from_FAT(u32 fat_timedate)
 	t.tm_isdst = -1;	// unknown - let libc determine
 
 	// otherwise: totally bogus, and at the limit of 32-bit time_t
-	debug_assert(t.tm_year < 138);
+	ENSURE(t.tm_year < 138);
 
 	time_t ret = mktime(&t);
-	debug_assert(ret != (time_t)-1);	// mktime shouldn't fail
+	ENSURE(ret != (time_t)-1);	// mktime shouldn't fail
 	return ret;
 }
 
@@ -130,7 +130,7 @@ public:
 
 	size_t Size() const
 	{
-		debug_assert(m_magic == lfh_magic);
+		ENSURE(m_magic == lfh_magic);
 		size_t size = sizeof(LFH);
 		size += read_le16(&m_fn_len);
 		size += read_le16(&m_e_len);
@@ -338,7 +338,7 @@ public:
 		RETURN_ERR(io::Run(op, io::Parameters(), streamFeeder));
 		RETURN_ERR(stream.Finish());
 #if CODEC_COMPUTE_CHECKSUM
-		debug_assert(m_checksum == stream.Checksum());
+		ENSURE(m_checksum == stream.Checksum());
 #endif
 
 		return INFO::OK;
@@ -376,7 +376,7 @@ private:
 		// avoids cluttering the trace and cache contents.
 		LibError operator()(const u8* block, size_t size) const
 		{
-			debug_assert(size <= lfh_bytes_remaining);
+			ENSURE(size <= lfh_bytes_remaining);
 			memcpy(lfh_dst, block, size);
 			lfh_dst += size;
 			lfh_bytes_remaining -= size;
@@ -438,7 +438,7 @@ public:
 		GetFileInfo(pathname, &fileInfo);
 		m_fileSize = fileInfo.Size();
 		const size_t minFileSize = sizeof(LFH)+sizeof(CDFH)+sizeof(ECDR);
-		debug_assert(m_fileSize >= off_t(minFileSize));
+		ENSURE(m_fileSize >= off_t(minFileSize));
 	}
 
 	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)
@@ -497,7 +497,7 @@ private:
 			// found it
 			if(*(u32*)p == magic)
 			{
-				debug_assert(p == start);	// otherwise, the archive is a bit broken
+				ENSURE(p == start);	// otherwise, the archive is a bit broken
 				return p;
 			}
 		}

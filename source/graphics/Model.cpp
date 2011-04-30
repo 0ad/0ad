@@ -116,7 +116,7 @@ void CModel::CalcBounds()
 	{
 		if (m_Anim->m_ObjectBounds.IsEmpty())
 			CalcAnimatedObjectBound(m_Anim->m_AnimDef, m_Anim->m_ObjectBounds);
-		debug_assert(! m_Anim->m_ObjectBounds.IsEmpty()); // (if this happens, it'll be recalculating the bounds every time)
+		ENSURE(! m_Anim->m_ObjectBounds.IsEmpty()); // (if this happens, it'll be recalculating the bounds every time)
 		m_ObjectBounds = m_Anim->m_ObjectBounds;
 	}
 
@@ -261,7 +261,7 @@ void CModel::ValidatePosition()
 {
 	if (m_PositionValid)
 	{
-		debug_assert(!m_Parent || m_Parent->m_PositionValid);
+		ENSURE(!m_Parent || m_Parent->m_PositionValid);
 		return;
 	}
 	
@@ -272,7 +272,7 @@ void CModel::ValidatePosition()
 		m_Parent->ValidatePosition();
 		
 		// Parent will recursively call our validation.
-		debug_assert(m_PositionValid);
+		ENSURE(m_PositionValid);
 		return;
 	}
 
@@ -280,7 +280,7 @@ void CModel::ValidatePosition()
 	{
 //		PROFILE( "generating bone matrices" );
 	
-		debug_assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
+		ENSURE(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
 	
 		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & MODELFLAG_NOLOOPANIMATION));
 	

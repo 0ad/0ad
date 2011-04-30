@@ -61,7 +61,7 @@ CommandProc::~CommandProc()
 {
 	// Make sure Destroy has been called before now (to avoid
 	// problems from the destruction order of static variables)
-	debug_assert(!m_Commands.size());
+	ENSURE(!m_Commands.size());
 }
 
 void CommandProc::Destroy()

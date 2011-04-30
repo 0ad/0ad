@@ -104,13 +104,13 @@ static inline u32 h_tag(const Handle h)
 static inline Handle handle(const u32 _idx, const u32 tag)
 {
 	const u32 idx = _idx+1;
-	debug_assert(idx <= IDX_MASK && tag <= TAG_MASK && "handle: idx or tag too big");
+	ENSURE(idx <= IDX_MASK && tag <= TAG_MASK && "handle: idx or tag too big");
 	// somewhat clunky, but be careful with the shift:
 	// *_SHIFT may be larger than its field's type.
 	Handle h_idx = idx & IDX_MASK; h_idx <<= IDX_SHIFT;
 	Handle h_tag = tag & TAG_MASK; h_tag <<= TAG_SHIFT;
 	Handle h = h_idx | h_tag;
-	debug_assert(h > 0);
+	ENSURE(h > 0);
 	return h;
 }
 
@@ -288,7 +288,7 @@ static LibError alloc_idx(ssize_t& idx, HDATA*& hd)
 		for(idx = 0; idx <= last_in_use; idx++)
 		{
 			hd = h_data_from_idx(idx);
-			debug_assert(hd);	// can't fail - idx is valid
+			ENSURE(hd);	// can't fail - idx is valid
 
 			// found one - done
 			if(!hd->tag)
@@ -306,7 +306,7 @@ static LibError alloc_idx(ssize_t& idx, HDATA*& hd)
 			// can't fail for any other reason - idx is checked above.
 		{	// VC6 goto fix
 		bool is_unused = !hd->tag;
-		debug_assert(is_unused && "invalid last_in_use");
+		ENSURE(is_unused && "invalid last_in_use");
 		}
 
 have_idx:;
@@ -406,7 +406,7 @@ static void key_add(uintptr_t key, Handle h)
 static void key_remove(uintptr_t key, H_Type type)
 {
 	Handle ret = key_find(key, type, KEY_REMOVE);
-	debug_assert(ret > 0);
+	ENSURE(ret > 0);
 }
 
 
@@ -425,14 +425,14 @@ static void warn_if_invalid(HDATA* hd)
 
 	// have the resource validate its user_data
 	LibError err = vtbl->validate(hd->user);
-	debug_assert(err == INFO::OK);
+	ENSURE(err == INFO::OK);
 
 	// make sure empty space in control block isn't touched
 	// .. but only if we're not storing a filename there
 	const u8* start = hd->user + vtbl->user_size;
 	const u8* end   = hd->user + HDATA_USER_SIZE;
 	for(const u8* p = start; p < end; p++)
-		debug_assert(*p == 0);	// else: handle user data was overrun!
+		ENSURE(*p == 0);	// else: handle user data was overrun!
 #else
 	UNUSED2(hd);
 #endif
@@ -675,7 +675,7 @@ void* h_user_data(const Handle h, const H_Type type)
 	if(!hd->refs)
 	{
 		// note: resetting the tag is not enough (user might pass in its value)
-		debug_assert(0);	// no references to resource (it's cached, but someone is accessing it directly)
+		ENSURE(0);	// no references to resource (it's cached, but someone is accessing it directly)
 		return 0;
 	}
 
@@ -691,7 +691,7 @@ VfsPath h_filename(const Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		debug_assert(0);
+		ENSURE(0);
 		return VfsPath();
 	}
 	return hd->pathname;
@@ -779,11 +779,11 @@ void h_add_ref(Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		debug_assert(0);	// invalid handle
+		ENSURE(0);	// invalid handle
 		return;
 	}
 
-	debug_assert(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
+	ENSURE(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
 	hd->refs++;
 }
 
@@ -800,7 +800,7 @@ int h_get_refcnt(Handle h)
 	if(!hd)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
-	debug_assert(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
+	ENSURE(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
 	return hd->refs;
 }
 
@@ -824,7 +824,7 @@ static void Shutdown()
 		// each HDATA entry has already been allocated.
 		if(!hd)
 		{
-			debug_assert(0);	// h_data_from_idx failed - why?!
+			ENSURE(0);	// h_data_from_idx failed - why?!
 			continue;
 		}
 

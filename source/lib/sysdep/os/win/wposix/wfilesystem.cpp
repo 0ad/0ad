@@ -72,7 +72,7 @@ static inline void wdir_free(WDIR* d)
 	if(d == &wdir_storage)
 	{
 		const bool ok = cpu_CAS(&wdir_in_use, 1, 0);	// relinquish ownership
-		debug_assert(ok);	// ensure it wasn't double-freed
+		ENSURE(ok);	// ensure it wasn't double-freed
 	}
 	else	// allocated from heap
 		delete d;
@@ -202,7 +202,7 @@ int wclosedir(WDIR* d)
 
 int wopen(const OsPath& pathname, int oflag)
 {
-	debug_assert(!(oflag & O_CREAT));
+	ENSURE(!(oflag & O_CREAT));
 	return wopen(OsString(pathname).c_str(), oflag, _S_IREAD|_S_IWRITE);
 }
 
@@ -237,7 +237,7 @@ int wopen(const OsPath& pathname, int oflag, mode_t mode_arg)
 
 int wclose(int fd)
 {
-	debug_assert(3 <= fd && fd < 256);
+	ENSURE(3 <= fd && fd < 256);
 
 	(void)waio_close(fd);	// no-op if fd wasn't opened for aio
 
@@ -274,7 +274,7 @@ int wtruncate(const OsPath& pathname, off_t length)
 	// (re-open the file to avoid the FILE_FLAG_NO_BUFFERING
 	// sector-alignment restriction)
 	HANDLE hFile = CreateFileW(OsString(pathname).c_str(), GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
-	debug_assert(hFile != INVALID_HANDLE_VALUE);
+	ENSURE(hFile != INVALID_HANDLE_VALUE);
 	LARGE_INTEGER ofs; ofs.QuadPart = length;
 	WARN_IF_FALSE(SetFilePointerEx(hFile, ofs, 0, FILE_BEGIN));
 	WARN_IF_FALSE(SetEndOfFile(hFile));

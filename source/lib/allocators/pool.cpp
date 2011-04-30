@@ -64,7 +64,7 @@ bool pool_contains(const Pool* p, void* el)
 		return false;
 	// sanity check: it should be aligned (if pool has fixed-size elements)
 	if(p->el_size)
-		debug_assert((uintptr_t)((u8*)el - p->da.base) % p->el_size == 0);
+		ENSURE((uintptr_t)((u8*)el - p->da.base) % p->el_size == 0);
 	return true;
 }
 
@@ -93,7 +93,7 @@ void* pool_alloc(Pool* p, size_t size)
 	}
 
 have_el:
-	debug_assert(pool_contains(p, el));	// paranoia
+	ENSURE(pool_contains(p, el));	// paranoia
 	return el;
 }
 
@@ -105,14 +105,14 @@ void pool_free(Pool* p, void* el)
 	// check if requested_size matches that when allocating)
 	if(p->el_size == 0)
 	{
-		debug_assert(0);	// cannot free variable-size items
+		ENSURE(0);	// cannot free variable-size items
 		return;
 	}
 
 	if(pool_contains(p, el))
 		mem_freelist_AddToFront(p->freelist, el);
 	else
-		debug_assert(0);	// invalid pointer (not in pool)
+		ENSURE(0);	// invalid pointer (not in pool)
 }
 
 

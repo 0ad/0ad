@@ -114,15 +114,15 @@ CReplayPlayer::~CReplayPlayer()
 
 void CReplayPlayer::Load(const std::string& path)
 {
-	debug_assert(!m_Stream);
+	ENSURE(!m_Stream);
 
 	m_Stream = new std::ifstream(path.c_str());
-	debug_assert(m_Stream->good());
+	ENSURE(m_Stream->good());
 }
 
 void CReplayPlayer::Replay()
 {
-	debug_assert(m_Stream);
+	ENSURE(m_Stream);
 
 	new CProfileViewer;
 	new CProfileManager;
@@ -160,7 +160,7 @@ void CReplayPlayer::Replay()
 			LDR_NonprogressiveLoad();
 
 			PSRETURN ret = game.ReallyStartGame();
-			debug_assert(ret == PSRETURN_OK);
+			ENSURE(ret == PSRETURN_OK);
 		}
 		else if (type == "turn")
 		{
@@ -192,7 +192,7 @@ void CReplayPlayer::Replay()
 			{
 				std::string hash;
 				bool ok = game.GetSimulation2()->ComputeStateHash(hash, quick);
-				debug_assert(ok);
+				ENSURE(ok);
 				std::string hexHash = Hexify(hash);
 				if (hexHash == replayHash)
 					debug_printf(L"hash ok (%hs)", hexHash.c_str());
@@ -207,7 +207,7 @@ void CReplayPlayer::Replay()
 
 //			std::string hash;
 //			bool ok = game.GetSimulation2()->ComputeStateHash(hash, true);
-//			debug_assert(ok);
+//			ENSURE(ok);
 //			debug_printf(L"%hs", Hexify(hash).c_str());
 
 			debug_printf(L"\n");
@@ -228,7 +228,7 @@ void CReplayPlayer::Replay()
 
 	std::string hash;
 	bool ok = game.GetSimulation2()->ComputeStateHash(hash, false);
-	debug_assert(ok);
+	ENSURE(ok);
 	debug_printf(L"# Final state: %hs\n", Hexify(hash).c_str());
 
 	timer_DisplayClientTotals();

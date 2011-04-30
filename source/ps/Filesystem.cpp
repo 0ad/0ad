@@ -109,7 +109,7 @@ PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename)
 	// Load should never be called more than once, so complain
 	if (m_Buffer)
 	{
-		debug_assert(0);
+		ENSURE(0);
 		return PSRETURN_CVFSFile_AlreadyLoaded;
 	}
 

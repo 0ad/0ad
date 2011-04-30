@@ -151,7 +151,7 @@ public:
 		if (CProfileManager::IsInitialised())
 		{
 			// The profiler is only safe to use on the main thread
-			debug_assert(ThreadUtil::IsMainThread());
+			ENSURE(ThreadUtil::IsMainThread());
 
 			g_Profiler.Start( name );
 		}

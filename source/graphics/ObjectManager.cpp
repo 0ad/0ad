@@ -74,7 +74,7 @@ CObjectManager::~CObjectManager()
 
 CObjectBase* CObjectManager::FindObjectBase(const CStrW& objectname)
 {
-	debug_assert(!objectname.empty());
+	ENSURE(!objectname.empty());
 
 	// See if the base type has been loaded yet:
 

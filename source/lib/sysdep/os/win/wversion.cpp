@@ -35,7 +35,7 @@ static size_t windowsVersion;	// see WVERSION_*
 
 const wchar_t* wversion_Family()
 {
-	debug_assert(windowsVersion != 0);
+	ENSURE(windowsVersion != 0);
 	switch(windowsVersion)
 	{
 	case WVERSION_2K:
@@ -56,13 +56,13 @@ const wchar_t* wversion_Family()
 
 const wchar_t* wversion_String()
 {
-	debug_assert(windowsVersionString[0] != '\0');
+	ENSURE(windowsVersionString[0] != '\0');
 	return windowsVersionString;
 }
 
 size_t wversion_Number()
 {
-	debug_assert(windowsVersion != 0);
+	ENSURE(windowsVersion != 0);
 	return windowsVersion;
 }
 
@@ -84,17 +84,17 @@ static LibError wversion_Init()
 		ss >> major;
 		wchar_t dot;
 		ss >> dot;
-		debug_assert(dot == '.');
+		ENSURE(dot == '.');
 		ss >> minor;
 
-		debug_assert(4 <= major && major <= 0xFF);
-		debug_assert(minor <= 0xFF);
+		ENSURE(4 <= major && major <= 0xFF);
+		ENSURE(minor <= 0xFF);
 		windowsVersion = (major << 8) | minor;
 
 		RegCloseKey(hKey);
 	}
 	else
-		debug_assert(0);
+		ENSURE(0);
 
 	return INFO::OK;
 }

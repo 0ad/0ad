@@ -75,7 +75,7 @@ void OverlayRenderer::RenderOverlays()
 		if (line->m_Coords.empty())
 			continue;
 
-		debug_assert(line->m_Coords.size() % 3 == 0);
+		ENSURE(line->m_Coords.size() % 3 == 0);
 
 		glColor4fv(line->m_Color.FloatArray());
 		glLineWidth((float)line->m_Thickness);

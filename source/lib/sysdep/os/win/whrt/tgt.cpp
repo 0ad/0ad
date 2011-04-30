@@ -59,7 +59,7 @@ public:
 		// note: timeGetTime is always available and cannot fail.
 
 		MMRESULT ret = timeBeginPeriod(PERIOD_MS);
-		debug_assert(ret == TIMERR_NOERROR);
+		ENSURE(ret == TIMERR_NOERROR);
 
 		return INFO::OK;
 	}
@@ -101,6 +101,6 @@ public:
 
 ICounter* CreateCounterTGT(void* address, size_t size)
 {
-	debug_assert(sizeof(CounterTGT) <= size);
+	ENSURE(sizeof(CounterTGT) <= size);
 	return new(address) CounterTGT();
 }

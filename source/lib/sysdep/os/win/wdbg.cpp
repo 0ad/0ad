@@ -138,7 +138,7 @@ void debug_SetThreadName(const char* name)
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 		// if we get here, the debugger didn't handle the exception.
-		// this happens if profiling with Dependency Walker; debug_assert
+		// this happens if profiling with Dependency Walker; ENSURE
 		// must not be called because we may be in critical init.
 	}
 }

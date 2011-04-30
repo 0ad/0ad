@@ -57,7 +57,7 @@ const ssize_t BlendOffsets[9][2] = {
 CPatchRData::CPatchRData(CPatch* patch) :
 	m_Patch(patch), m_VBSides(0), m_VBBase(0), m_VBBaseIndices(0), m_VBBlends(0), m_VBBlendIndices(0)
 {
-	debug_assert(patch);
+	ENSURE(patch);
 	Build();
 }
 
@@ -427,7 +427,7 @@ void CPatchRData::BuildIndices()
 	ssize_t pz = m_Patch->m_Z * PATCH_SIZE;
 
 	// must have allocated some vertices before trying to build corresponding indices
-	debug_assert(m_VBBase);
+	ENSURE(m_VBBase);
 
 	// number of vertices in each direction in each patch
 	ssize_t vsize=PATCH_SIZE+1;
@@ -455,7 +455,7 @@ void CPatchRData::BuildIndices()
 	m_Splats.resize(textures.size());
 	// build indices for base splats
 	size_t base=m_VBBase->m_Index;
-	debug_assert(base + vsize*vsize < 65536); // mustn't overflow u16 indexes
+	ENSURE(base + vsize*vsize < 65536); // mustn't overflow u16 indexes
 	for (size_t i=0;i<m_Splats.size();i++) {
 		CTerrainTextureEntry* tex=textures[i];
 
@@ -503,7 +503,7 @@ void CPatchRData::BuildIndices()
 		m_VBBaseIndices = 0;
 	}
 
-	debug_assert(indices.size());
+	ENSURE(indices.size());
 
 	// Construct vertex buffer
 	m_VBBaseIndices = g_VBMan.Allocate(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
@@ -1070,7 +1070,7 @@ void CPatchRData::RenderOutline()
 
 void CPatchRData::RenderSides()
 {
-	debug_assert(m_UpdateFlags==0);
+	ENSURE(m_UpdateFlags==0);
 
 	if (!m_VBSides)
 		return;

@@ -172,7 +172,7 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 
 	// We don't serialize the destruction queue, since we'd have to be careful to skip local entities etc
 	// and it's (hopefully) easier to just expect callers to flush the queue before serializing
-	debug_assert(m_DestructionQueue.empty());
+	ENSURE(m_DestructionQueue.empty());
 
 	serializer.StringASCII("rng", SerializeRNG(m_RNG), 0, 32);
 	serializer.NumberU32_Unbounded("next entity id", m_NextEntityId);

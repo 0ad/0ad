@@ -165,7 +165,7 @@ public:
 	shared_ptr<u8> Reserve(size_t size)
 	{
 		// (should never happen because the VFS ensures size != 0.)
-		debug_assert(size != 0);
+		ENSURE(size != 0);
 
 		// (300 iterations have been observed when reserving several MB
 		// of space in a full cache)
@@ -184,7 +184,7 @@ public:
 				bool removed = m_cache.remove_least_valuable(&discardedData, &discardedSize);
 				// only false if cache is empty, which can't be the case because
 				// allocation failed.
-				debug_assert(removed);
+				ENSURE(removed);
 			}
 		}
 	}

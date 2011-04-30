@@ -230,7 +230,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("b", pWaterMan->m_WaterColor.b);
 					}
 					CmpPtr<ICmpWaterManager> cmpWaterMan(*pSimulation2, SYSTEM_ENTITY);
-					debug_assert(!cmpWaterMan.null());
+					ENSURE(!cmpWaterMan.null());
 					XML_Setting("Height", cmpWaterMan->GetExactWaterLevel(0, 0));
 					XML_Setting("Shininess", pWaterMan->m_Shininess);
 					XML_Setting("Waviness", pWaterMan->m_Waviness);
@@ -294,7 +294,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			CSimulation2& sim = *pSimulation2;
 
 			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
-			debug_assert(!cmpTemplateManager.null());
+			ENSURE(!cmpTemplateManager.null());
 
 			// This will probably need to be changed in the future, but for now we'll
 			// just save all entities that have a position
@@ -386,7 +386,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		}
 	}
 	if (! XML_StoreVFS(g_VFS, filename))
-		debug_assert(0);	// failed to write map XML file
+		ENSURE(0);	// failed to write map XML file
 }
 
 /*

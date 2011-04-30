@@ -547,7 +547,7 @@ void* calloc(size_t nm, size_t sz)
 	{
 		if (alloc_has_called_dlsym && !alloc_bootstrapped)
 		{
-			debug_assert(nm*sz <= ARRAY_SIZE(alloc_bootstrap_buffer));
+			ENSURE(nm*sz <= ARRAY_SIZE(alloc_bootstrap_buffer));
 #ifdef ALLOC_DEBUG
 			printf("### calloc-bs(%d, %d) = %p\n", nm, sz, alloc_bootstrap_buffer);
 #endif

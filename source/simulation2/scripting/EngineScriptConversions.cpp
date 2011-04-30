@@ -227,7 +227,7 @@ template<> jsval ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, const Grid<
 		return JSVAL_VOID;
 
 	js::TypedArray *tdest = js::TypedArray::fromJSObject(darray);
-	debug_assert(tdest->byteLength == len*sizeof(u16));
+	ENSURE(tdest->byteLength == len*sizeof(u16));
 
 	memcpy(tdest->data, val.m_Data, tdest->byteLength);
 

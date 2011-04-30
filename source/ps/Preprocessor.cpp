@@ -426,7 +426,7 @@ CPreprocessor::Token CPreprocessor::ExpandMacro (const Token &iToken)
             if (t.String)
             {
                 // Returned token should never be allocated on heap
-                debug_assert (t.Allocated == 0);
+                ENSURE (t.Allocated == 0);
                 Source = t.String;
                 Line -= t.CountNL ();
             }
@@ -520,7 +520,7 @@ CPreprocessor::Token CPreprocessor::GetExpression (
                 return Token (Token::TK_ERROR);
             }
 
-            debug_assert (op.Type == Token::TK_PUNCTUATION &&
+            ENSURE (op.Type == Token::TK_PUNCTUATION &&
                           op.Length == 1 &&
                           op.String [0] == ')');
             op = GetToken (true);
@@ -905,7 +905,7 @@ bool CPreprocessor::HandleDefine (Token &iBody, int iLine)
 
         default:
             t.Type = Token::TK_TEXT;
-            debug_assert (t.String + t.Length == cpp.Source);
+            ENSURE (t.String + t.Length == cpp.Source);
             t.Length = cpp.SourceEnd - t.String;
             break;
     }

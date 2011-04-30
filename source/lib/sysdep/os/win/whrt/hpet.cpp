@@ -64,12 +64,12 @@ public:
 		{
 			const u64 caps_and_id = Read64(CAPS_AND_ID);
 			const u8 revision = (u8)bits(caps_and_id, 0, 7);
-			debug_assert(revision != 0);	// "the value must NOT be 00h"
+			ENSURE(revision != 0);	// "the value must NOT be 00h"
 			m_counterBits = (caps_and_id & Bit<u64>(13))? 64 : 32;
 			const u16 vendorID = (u16)bits(caps_and_id, 16, 31);
 			const u32 period_fs = (u32)bits(caps_and_id, 32, 63);
-			debug_assert(period_fs != 0);	// "a value of 0 in this field is not permitted"
-			debug_assert(period_fs <= 0x05F5E100);	// 100 ns (min freq is 10 MHz)
+			ENSURE(period_fs != 0);	// "a value of 0 in this field is not permitted"
+			ENSURE(period_fs <= 0x05F5E100);	// 100 ns (min freq is 10 MHz)
 			m_frequency = 1e15 / period_fs;
 			debug_printf(L"HPET: rev=%X vendor=%X bits=%d period=%08X freq=%g\n", revision, vendorID, m_counterBits, period_fs, m_frequency);
 		}
@@ -159,7 +159,7 @@ private:
 			return ERR::NOT_SUPPORTED;	// NOWARN (happens on some BIOSes)
 		// hpet->baseAddress.accessSize is reserved
 		const uintptr_t address = uintptr_t(hpet->baseAddress.address);
-		debug_assert(address % 8 == 0);	// "registers are generally aligned on 64-bit boundaries"
+		ENSURE(address % 8 == 0);	// "registers are generally aligned on 64-bit boundaries"
 
 		registers = mahaf_MapPhysicalMemory(address, MAX_OFFSET+1);
 		if(!registers)
@@ -172,8 +172,8 @@ private:
 	// above have a 64-bit data bus and MOVQ instruction)
 	u64 Read64(size_t offset) const
 	{
-		debug_assert(offset <= MAX_OFFSET);
-		debug_assert(offset % 8 == 0);
+		ENSURE(offset <= MAX_OFFSET);
+		ENSURE(offset % 8 == 0);
 		const uintptr_t address = uintptr_t(m_hpetRegisters)+offset;
 		const __m128i value128 = _mm_loadl_epi64((__m128i*)address);
 #if HAVE_X64_MOVD
@@ -187,9 +187,9 @@ private:
 
 	void Write64(size_t offset, u64 value) const
 	{
-		debug_assert(offset <= MAX_OFFSET);
-		debug_assert(offset % 8 == 0);
-		debug_assert(offset != CAPS_AND_ID);	// can't write to read-only registers
+		ENSURE(offset <= MAX_OFFSET);
+		ENSURE(offset % 8 == 0);
+		ENSURE(offset != CAPS_AND_ID);	// can't write to read-only registers
 		const uintptr_t address = uintptr_t(m_hpetRegisters)+offset;
 #if HAVE_X64_MOVD
 		const __m128i value128 = _mm_cvtsi64x_si128(value);
@@ -206,6 +206,6 @@ private:
 
 ICounter* CreateCounterHPET(void* address, size_t size)
 {
-	debug_assert(sizeof(CounterHPET) <= size);
+	ENSURE(sizeof(CounterHPET) <= size);
 	return new(address) CounterHPET();
 }
