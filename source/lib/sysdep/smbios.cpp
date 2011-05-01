@@ -358,6 +358,24 @@ void Fixup<TemperatureProbe>(TemperatureProbe& p)
 	p.status = (Status)bits(p.locationAndStatus, 5, 7);
 }
 
+template<>
+void Fixup<SystemPowerSupply>(SystemPowerSupply& p)
+{
+	p.type = (SystemPowerSupplyType)bits(p.characteristics, 10, 13);
+	p.status = (Status)bits(p.characteristics, 7, 9);
+	p.inputSwitching = (SystemPowerSupplyInputSwitching)bits(p.characteristics, 3, 6);
+	p.characteristics = bits(p.characteristics, 0, 2);
+}
+
+template<>
+void Fixup<OnboardDevices2>(OnboardDevices2& p)
+{
+	p.enabled = IsBitSet(p.type, 7);
+	p.type = (OnBoardDeviceType)bits(p.type, 0, 6);
+	p.deviceNumber = bits(p.functionAndDeviceNumber, 3, 7);
+	p.functionNumber = bits(p.functionAndDeviceNumber, 0, 2);
+}
+
 
 //-----------------------------------------------------------------------------
 // InitStructures

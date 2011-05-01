@@ -72,8 +72,12 @@ namespace SMBIOS {
 	ENUMERATION(VoltageProbeLocation, u8)\
 	ENUMERATION(CoolingDeviceType, u8)\
 	ENUMERATION(TemperatureProbeLocation, u8)\
-	ENUMERATION(SystemBootStatus, u8)
-
+	ENUMERATION(SystemBootStatus, u8)\
+	ENUMERATION(ManagementDeviceType, u8)\
+	ENUMERATION(ManagementDeviceAddressType, u8)\
+	ENUMERATION(SystemPowerSupplyCharacteristics, u16)\
+	ENUMERATION(SystemPowerSupplyType, u8)\
+	ENUMERATION(SystemPowerSupplyInputSwitching, u8)
 
 // to introduce another structure:
 // 1) add its name and ID here
@@ -103,10 +107,14 @@ namespace SMBIOS {
 	STRUCTURE(CoolingDevice, 27)\
 	STRUCTURE(TemperatureProbe, 28)\
 	/* ElectricalCurrentProbe (29), OutOfBandRemoteAccess (30), BootIntegrityServices (31) are optional */\
-	STRUCTURE(SystemBoot, 32)
-	/* MemoryError64 (33), ManagementDevice (34), ManagementDeviceComponent (35), ManagementDeviceThreshold (36) are optional */
-	/* MemoryChannel (37), IpmiDevice (38), SystemPowerSupply (39), Additional (40), OnboardDevices2 (41) are optional */
-	/* ManagementControllerHostInterface (42) is optional */
+	STRUCTURE(SystemBoot, 32)\
+	STRUCTURE(ManagementDevice, 34)\
+	STRUCTURE(ManagementDeviceComponent, 35)\
+	STRUCTURE(ManagementDeviceThreshold, 36)\
+	STRUCTURE(SystemPowerSupply, 39)\
+	STRUCTURE(OnboardDevices2, 41)\
+	/* MemoryError64 (33), MemoryChannel (37), IpmiDevice (38) are optional */
+	/* Additional (40), ManagementControllerHostInterface (42) are optional */
 
 
 //-----------------------------------------------------------------------------
@@ -1031,6 +1039,121 @@ struct Handle
 	FIELD(F_INTERNAL, u32, reserved32, "")\
 	FIELD(F_INTERNAL, u16, reserved16, "")\
 	FIELD(0, SystemBootStatus, status, "")\
+
+
+//----------------------------------------------------------------------------
+// ManagementDevice
+
+#define ManagementDeviceType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(LM75, 3)\
+	ENUM(LM78, 4)\
+	ENUM(LM79, 5)\
+	ENUM(LM80, 6)\
+	ENUM(LM81, 7)\
+	ENUM(ADM9240, 8)\
+	ENUM(DS1780, 9)\
+	ENUM(M1617, 0xA)\
+	ENUM(GL518SM, 0xB)\
+	ENUM(W83781D, 0xC)\
+	ENUM(HT82H791, 0xD)\
+
+#define ManagementDeviceAddressType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(port, 3)\
+	ENUM(memory, 4)\
+	ENUM(smbus, 5)
+
+#define ManagementDevice_FIELDS\
+	FIELD(0, const char*, description, "")\
+	FIELD(0, ManagementDeviceType, type, "")\
+	FIELD(0, u32, address, "")\
+	FIELD(0, ManagementDeviceAddressType, addressType, "")
+
+
+//----------------------------------------------------------------------------
+// ManagementDeviceComponent
+
+#define ManagementDeviceComponent_FIELDS\
+	FIELD(0, const char*, description, "")\
+	FIELD(0, Handle, hDevice, "")\
+	FIELD(0, Handle, hComponent, "")\
+	FIELD(0, Handle, hThreshold, "")
+
+
+//----------------------------------------------------------------------------
+// ManagementDeviceThreshold
+
+#define ManagementDeviceThreshold_FIELDS\
+	FIELD(0, i16, nonCriticalLo, "")\
+	FIELD(0, i16, nonCriticalHi, "")\
+	FIELD(0, i16, criticalLo, "")\
+	FIELD(0, i16, criticalHi, "")\
+	FIELD(0, i16, nonrecoverableLo, "")\
+	FIELD(0, i16, nonrecoverableHi, "")
+
+
+//----------------------------------------------------------------------------
+// SystemPowerSupply
+
+#define SystemPowerSupplyCharacteristics_ENUMERATORS\
+	ENUM(hot_replaceable, 1)\
+	ENUM(present, 2)\
+	ENUM(unplugged, 4)
+
+#define SystemPowerSupplyType_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(linear, 3)\
+	ENUM(switching, 4)\
+	ENUM(battery, 5)\
+	ENUM(ups, 6)\
+	ENUM(converter, 7)\
+	ENUM(regulator, 8)
+
+#define SystemPowerSupplyInputSwitching_ENUMERATORS\
+	ENUM(other, 1)\
+	ENUM(unknown, 2)\
+	ENUM(manual, 3)\
+	ENUM(auto_switch, 4)\
+	ENUM(wide_range, 5)\
+	ENUM(none, 6)
+
+#define SystemPowerSupply_FIELDS\
+	FIELD(0, u8, group, "")\
+	FIELD(0, const char*, location, "")\
+	FIELD(0, const char*, deviceName, "")\
+	FIELD(0, const char*, manufacturer, "")\
+	FIELD(0, const char*, serialNumber, "")\
+	FIELD(0, const char*, assetTag, "")\
+	FIELD(0, const char*, partNumber, "")\
+	FIELD(0, const char*, revisionLevel, "")\
+	FIELD(0, i16, maxPower, " mW")\
+	FIELD(0, SystemPowerSupplyCharacteristics, characteristics, "")\
+	FIELD(0, Handle, hVoltageProbe, "")\
+	FIELD(0, Handle, hCoolingDevice, "")\
+	FIELD(0, Handle, hCurrentProbe, "")\
+	FIELD(F_DERIVED, SystemPowerSupplyType, type, "")\
+	FIELD(F_DERIVED, Status, status, "")\
+	FIELD(F_DERIVED, SystemPowerSupplyInputSwitching, inputSwitching, "")\
+
+
+//----------------------------------------------------------------------------
+// OnboardDevices2
+
+#define OnboardDevices2_FIELDS\
+	FIELD(0, const char*, referenceDesignation, "")\
+	FIELD(0, const char*, deviceName, "")\
+	FIELD(0, OnBoardDeviceType, type, "")\
+	FIELD(0, u8, instance, "")\
+	FIELD(0, u16, groupNumber, "")\
+	FIELD(0, u8, busNumber, "")\
+	FIELD(F_INTERNAL, u8, functionAndDeviceNumber, "")\
+	FIELD(F_DERIVED, bool, enabled, "")\
+	FIELD(F_DERIVED, u8, deviceNumber, "")\
+	FIELD(F_DERIVED, u8, functionNumber, "")\
 
 
 //-----------------------------------------------------------------------------
