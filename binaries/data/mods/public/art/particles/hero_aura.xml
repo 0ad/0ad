@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/hero_aura.png</texture>
+    <blend mode="add"/>
+
+    <constant name="emissionrate" value="0.1"/>
+    <constant name="lifetime" value="10.1"/>
+
+    <uniform name="size" min="1.5" max="2.0"/>
+
+    <uniform name="color.r" min="0.8" max="1.0"/>
+    <copy name="color.g" from="color.r"/>
+    <copy name="color.b" from="color.r"/>
+	
+	<force x="0.0" y="-1.0" z="0.0"/>
+
+</particles>
