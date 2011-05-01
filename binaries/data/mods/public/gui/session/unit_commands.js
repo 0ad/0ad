@@ -248,9 +248,22 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		if (guiName == "Formation")
 		{
 			icon.cell_id = getFormationCellId(item);
-			icon.enabled = false;
+			var formationOk = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
+				"ents": g_Selection.toList(),
+				"formationName": item
+			});
+
+			icon.enabled = formationOk;
+			button.enabled = formationOk;
 			if (!icon.enabled)
+			{
 				icon.sprite = "formation_disabled";
+				button.tooltip += " (disabled)";
+			}
+			else
+			{
+				icon.sprite = "formation";
+			}
 		}
 		else if (guiName == "Command")
 		{

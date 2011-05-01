@@ -2,6 +2,7 @@
 <Entity parent="template_unit_infantry">
   <Identity>
     <GenericName>Ranged</GenericName>
+    <Classes datatype="tokens">Ranged</Classes>
   </Identity>
   <Health>
     <Max>90</Max>

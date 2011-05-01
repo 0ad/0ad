@@ -2,6 +2,7 @@
 <Entity parent="template_unit_infantry">
   <Identity>
     <GenericName>Melee Infantry</GenericName>
+    <Classes datatype="tokens">Melee</Classes>
   </Identity>
   <Health>
     <Max>100</Max>

@@ -264,6 +264,11 @@ GuiInterface.prototype.GetNextNotification = function()
 		return "";
 };
 
+GuiInterface.prototype.CanMoveEntsIntoFormation = function(player, data)
+{
+	return CanMoveEntsIntoFormation(data.ents, data.formationName);
+};
+
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
@@ -509,6 +514,8 @@ var exposedFunctions = {
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
 	"GetNextNotification": 1,
+
+	"CanMoveEntsIntoFormation": 1,
 
 	"SetSelectionHighlight": 1,
 	"SetStatusBars": 1,

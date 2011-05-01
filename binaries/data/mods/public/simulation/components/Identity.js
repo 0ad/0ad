@@ -68,6 +68,7 @@ Identity.prototype.Schema =
 						"<value>Infantry</value>" +
 						"<value>Cavalry</value>" +
 						"<value>Ranged</value>" +
+						"<value>Melee</value>" +
 						"<value>Mechanical</value>" +
 						"<value>Ship</value>" +
 						"<value>Siege</value>" +

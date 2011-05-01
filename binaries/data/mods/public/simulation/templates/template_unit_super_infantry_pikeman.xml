@@ -2,6 +2,7 @@
 <Entity parent="template_unit_super_infantry">
   <Identity>
     <GenericName>Super Infantry Pikeman</GenericName>
+    <Classes datatype="tokens">Melee</Classes>
   </Identity>
   <Cost>
     <Resources>

@@ -2,6 +2,7 @@
 <Entity parent="template_unit_super_cavalry">
   <Identity>
     <GenericName>Super Cavalry Spearman</GenericName>
+    <Classes datatype="tokens">Melee</Classes>
   </Identity>
   <Cost>
     <BuildTime>16</BuildTime>

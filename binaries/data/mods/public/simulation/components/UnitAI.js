@@ -1161,6 +1161,7 @@ UnitAI.prototype.Init = function()
 	this.order = undefined; // always == this.orderQueue[0]
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 	this.isIdle = false;
+	this.lastFormationName = "Line Closed";
 
 	this.SetStance(this.template.DefaultStance);
 };
@@ -1738,6 +1739,16 @@ UnitAI.prototype.SetFormationController = function(ent)
 UnitAI.prototype.GetFormationController = function()
 {
 	return this.formationController;
+};
+
+UnitAI.prototype.SetLastFormationName = function(name)
+{
+	this.lastFormationName = name;
+};
+
+UnitAI.prototype.GetLastFormationName = function()
+{
+	return this.lastFormationName;
 };
 
 /**

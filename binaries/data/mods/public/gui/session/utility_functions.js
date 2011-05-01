@@ -223,29 +223,29 @@ function getFormationCellId(formationName)
 {
 	switch (formationName)
 	{
-	case "Formation0":
+	case "Loose":
 		return 0;
-	case "Formation1":
+	case "Box":
 		return 1;
-	case "Formation2":
+	case "Column Closed":
 		return 2;
-	case "Formation3":
+	case "Line Closed":
 		return 3;
-	case "Formation4":
+	case "Column Open":
 		return 4;
-	case "Formation5":
+	case "Line Open":
 		return 5;
-	case "Formation6":
+	case "Flank":
 		return 6;
-	case "Formation7":
+	case "Skirmish":
 		return 7;
-	case "Formation8":
+	case "Wedge":
 		return 8;
-	case "Formation9":
+	case "Testudo":
 		return 9;
-	case "Formation10":
-		return 10;	
-	case "Formation11":
+	case "Phalanx":
+		return 10;
+	case "Syntagma":
 		return 11;
 	case "Formation12":
 		return 12;
@@ -273,22 +273,26 @@ function getCommandImage(commandName)
 
 function getEntityFormationsList(entState)
 {
-	var formations = [];
-
-	formations.push("Formation0");
-	formations.push("Formation1");
-	formations.push("Formation2");
-	formations.push("Formation3");
-	formations.push("Formation4");
-	formations.push("Formation5");
-	formations.push("Formation6");
-	formations.push("Formation7");
-	formations.push("Formation8");
-	formations.push("Formation9");
-	formations.push("Formation10");
-	formations.push("Formation11");
-	formations.push("Formation12");
+	var civ = g_Players[entState.player].civ;
+	var formations = getCivFormations(civ);
 	return formations;
+}
+
+function getCivFormations(civ)
+{
+	// TODO: this should come from the civ JSON files instead
+
+	var civFormations = ["Loose", "Box", "Column Closed", "Line Closed", "Column Open", "Line Open", "Flank", "Skirmish", "Wedge", "Formation12"];
+	if (civ == "hele")
+	{
+		civFormations.push("Phalanx");
+		civFormations.push("Syntagma");
+	}
+	else if (civ == "rome")
+	{
+		civFormations.push("Testudo");
+	}
+	return civFormations;
 }
 
 function getEntityCommandsList(entState)

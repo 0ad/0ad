@@ -237,6 +237,17 @@ function ProcessCommand(player, cmd)
 		var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
 		cmpGarrisonHolder.UnloadAll();
 		break;
+
+	case "formation":
+		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		if (!cmpUnitAI)
+			break;
+		var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
+		if (!cmpFormation)
+			break;
+		cmpFormation.LoadFormation(cmd.name);
+		cmpFormation.MoveMembersIntoFormation(true);
+		break;
 		
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");
@@ -339,9 +350,139 @@ function GetFormationUnitAI(ents)
 		formationEnt = Engine.AddEntity("special/formation");
 		var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
 		cmpFormation.SetMembers(formation.entities);
+
+		// If all the selected units were previously in formations of the same shape,
+		// then set this new formation to that shape too; otherwise use the default shape
+		var lastFormationName = undefined;
+		for each (var ent in formation.entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+			{
+				var name = cmpUnitAI.GetLastFormationName();
+				if (lastFormationName === undefined)
+				{
+					lastFormationName = name;
+				}
+				else if (lastFormationName != name)
+				{
+					lastFormationName = undefined;
+					break;
+				}
+			}
+		}
+		var formationName;
+		if (lastFormationName)
+			formationName = lastFormationName;
+		else
+			formationName = "Line Closed";
+
+		if (CanMoveEntsIntoFormation(formation.entities, formationName))
+		{
+			cmpFormation.LoadFormation(formationName);
+		}
+		else
+		{
+			cmpFormation.LoadFormation("Loose");
+		}
 	}
 
 	return Engine.QueryInterface(formationEnt, IID_UnitAI);
 }
 
+function CanMoveEntsIntoFormation(ents, formationName)
+{
+	var count = ents.length;
+	var classesRequired;
+
+	// TODO: should check the player's civ is allowed to use this formation
+
+	if (formationName == "Loose")
+	{
+		return true;
+	}
+	else if (formationName == "Box")
+	{
+		if (count < 4)
+			return false;
+	}
+	else if (formationName == "Column Closed")
+	{
+	}
+	else if (formationName == "Line Closed")
+	{
+	}
+	else if (formationName == "Column Open")
+	{
+	}
+	else if (formationName == "Line Open")
+	{
+	}
+	else if (formationName == "Flank")
+	{
+		if (count < 8)
+			return false;
+	}
+	else if (formationName == "Skirmish")
+	{
+		classesRequired = ["Ranged"];
+	}
+	else if (formationName == "Wedge")
+	{
+		if (count < 3)
+			return false;
+		classesRequired = ["Cavalry"];
+	}
+	else if (formationName == "Formation12")
+	{
+	}
+	else if (formationName == "Phalanx")
+	{
+		if (count < 10)
+			return false;
+		classesRequired = ["Melee", "Infantry"];
+	}
+	else if (formationName == "Syntagma")
+	{
+		if (count < 9)
+			return false;
+		classesRequired = ["Melee", "Infantry"]; // TODO: pike only
+	}
+	else if (formationName == "Testudo")
+	{
+		if (count < 9)
+			return false;
+		classesRequired = ["Melee", "Infantry"];
+	}
+	else
+	{
+		return false;
+	}
+
+	var looseOnlyUnits = true;
+	for each (var ent in ents)
+	{
+		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		if (cmpIdentity)
+		{
+			var classes = cmpIdentity.GetClassesList();
+			if (looseOnlyUnits && (classes.indexOf("Worker") == -1 || classes.indexOf("Support") == -1))
+				looseOnlyUnits = false;
+			for each (var classRequired in classesRequired)
+			{
+				if (classes.indexOf(classRequired) == -1)
+				{
+					return false;
+				}
+			}
+		}
+	}
+
+	if (looseOnlyUnits)
+		return false;
+
+	return true;
+}
+
+Engine.RegisterGlobal("CanMoveEntsIntoFormation", CanMoveEntsIntoFormation);
 Engine.RegisterGlobal("ProcessCommand", ProcessCommand);
