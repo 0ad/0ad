@@ -298,7 +298,7 @@ var MilitaryAttackManager = Class({
 	trainDefenderSquad: function(gameState, planGroups)
 	{
 		var pendingdefense = gameState.getOwnEntitiesWithRole("defenders");
-		//TestBotAI.prototype.chat("Number of defenders is" + pendingdefense.length);
+		//JuBotAI.prototype.chat("Number of defenders is" + pendingdefense.length);
 			if (pendingdefense.length < this.defsquadmin && gameState.displayCiv() == "iber"){
 			planGroups.economyPersonnel.addPlan(122,
 				new UnitTrainingPlan(gameState,
@@ -310,21 +310,21 @@ var MilitaryAttackManager = Class({
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_spearman_b", 3, { "role": "defenders" })
 			);
-		//TestBotAI.prototype.chat("Training defenders");
+		//JuBotAI.prototype.chat("Training defenders");
 			}
 			else if (pendingdefense.length < this.defsquad && gameState.displayCiv() == "iber"){
 			planGroups.economyPersonnel.addPlan(110,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_swordsman_b", 3, { "role": "defenders" })
 			);
-		//TestBotAI.prototype.chat("Training defenders");
+		//JuBotAI.prototype.chat("Training defenders");
 			}
 			else if (pendingdefense.length < this.defsquad){
 			planGroups.economyPersonnel.addPlan(110,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_spearman_b", 3, { "role": "defenders" })
 			);
-		//TestBotAI.prototype.chat("Training defenders");
+		//JuBotAI.prototype.chat("Training defenders");
 			}
 	},
 	
@@ -648,25 +648,25 @@ var MilitaryAttackManager = Class({
 			if (whatnext > 0.85){
 			this.killstrat = 0;
 			// Regular "train a few guys and go kill stuff" type attack.
-		//TestBotAI.prototype.chat("Regular attack (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("Regular attack (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			}
 			else if (whatnext > 0.55) {
 			this.killstrat = 2;
-		//TestBotAI.prototype.chat("Cavalry raid (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("Cavalry raid (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			// Cavalry raid
 			}
 			else if (whatnext > 0.2) {
 			this.killstrat = 3;
-		//TestBotAI.prototype.chat("3 pronged assault (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("3 pronged assault (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			// 3 prong
 			}
 			else {
 			this.killstrat = 1;
-		//TestBotAI.prototype.chat("Full assault (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("Full assault (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			//Full Assault!
 			}
 		}
@@ -732,25 +732,25 @@ var MilitaryAttackManager = Class({
 			if (whatnext > 0.8){
 			this.killstrat = 0;
 			// Regular "train a few guys and go kill stuff" type attack.
-		//TestBotAI.prototype.chat("Regular attack (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("Regular attack (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			}
 			else if (whatnext > 0.5) {
 			this.killstrat = 2;
-		//TestBotAI.prototype.chat("Cavalry raid (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("Cavalry raid (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			// Cavalry raid
 			}
 			else if (whatnext > 0.3) {
 			this.killstrat = 3;
-		//TestBotAI.prototype.chat("3 pronged assault (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("3 pronged assault (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			// 3 prong
 			}
 			else {
 			this.killstrat = 1;
-		//TestBotAI.prototype.chat("Full assault (" + gameState.displayCiv() + ")");
-		//TestBotAI.prototype.chat(whatnext);
+		//JuBotAI.prototype.chat("Full assault (" + gameState.displayCiv() + ")");
+		//JuBotAI.prototype.chat(whatnext);
 			//Full Assault!
 			}
 		}

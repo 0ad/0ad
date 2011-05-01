@@ -191,14 +191,14 @@ var BuildingConstructionPlan = Class({
 			{
 				var v = friendlyTiles[i];
 				var foe = enemyTiles[i];
-			//TestBotAI.prototype.chat(v);
-			//TestBotAI.prototype.chat(i);
-			//TestBotAI.prototype.chat(foe);
+			//JuBotAI.prototype.chat(v);
+			//JuBotAI.prototype.chat(i);
+			//JuBotAI.prototype.chat(foe);
 				if (v >= bestVal)
 				{
 					bestVal = v;
 					bestIdx = i;
-			//TestBotAI.prototype.chat("BestVal is " + bestVal + ", and bestIdx is " + bestIdx + ".");
+			//JuBotAI.prototype.chat("BestVal is " + bestVal + ", and bestIdx is " + bestIdx + ".");
 				}
 			}
 		}
