@@ -11,6 +11,7 @@ const tBeachWet = "medit_sand_wet";
 const tBeachDry = "medit_sand";
 const tBeachGrass = "medit_rocks_grass";
 const tBeachCliff = "medit_dirt";
+const tCity = "medit_city_tile";
 const tGrassDry = ["medit_grass_field_brown", "medit_grass_field_dry", "medit_grass_field_b"];
 const tGrass = ["medit_grass_field_dry", "medit_grass_field_brown", "medit_grass_field_b"];
 const tGrassLush = ["grass_temperate_dry_tufts", "medit_grass_flowers"];
@@ -34,6 +35,9 @@ const oOak = "gaia/flora_tree_oak";
 const oPalm = "gaia/flora_tree_medit_fan_palm";
 const oPine = "gaia/flora_tree_aleppo_pine";
 const oPoplar = "gaia/flora_tree_poplar";
+const oChicken = "gaia/fauna_chicken";
+const oDeer = "gaia/fauna_deer";
+const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_sheep";
 const oStone = "gaia/geology_stone_mediterranean";
 const oMetal = "gaia/geology_metal_mediterranean_slabs";
@@ -45,23 +49,18 @@ const aBushMedDry = "actor|props/flora/bush_medit_me_dry.xml";
 const aBushMed = "actor|props/flora/bush_medit_me.xml";
 const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const aBushSmallDry = "actor|props/flora/bush_medit_sm_dry.xml";
-const aGrass = "actor|props/flora/grass_medit_field.xml";
-const aGrassDry = "actor|props/flora/grass_soft_dry_small.xml";
-const aRockLarge = "actor|geology/stone_granite_greek_large.xml";
-const aRockMed = "actor|geology/stone_granite_greek_med.xml";
-const aRockSmall = "actor|geology/stone_granite_greek_small.xml";
+const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
+const aGrassDry = "actor|props/flora/grass_soft_dry_large_tall.xml";
+const aRockLarge = "actor|geology/stone_granite_large.xml";
+const aRockMed = "actor|geology/stone_granite_med.xml";
+const aRockSmall = "actor|geology/stone_granite_small.xml";
 const aWaterLog = "actor|props/flora/water_log.xml";
 
 // terrain + entity (for painting)
-var pPalmForest = tForestFloor+TERRAIN_SEPARATOR+oPalm;
-var pPineForest = tForestFloor+TERRAIN_SEPARATOR+oPine;
-var pCarobForest = tForestFloor+TERRAIN_SEPARATOR+oCarob;
-var pBeechForest = tForestFloor+TERRAIN_SEPARATOR+oBeech;
-var pPoplarForest = tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar;
-var tPalmForest = [pPalmForest, tGrass];
-var tPineForest = [pPineForest, tGrass];
-var tMainForest = [pCarobForest, pBeechForest, tGrass, tGrass];
-var tPoplarForest = [pPoplarForest, tGrass];
+var pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
+var pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
+var pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
+var pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
 // initialize map
 
@@ -87,80 +86,27 @@ var clSettlement = createTileClass();
 
 // Place players
 
-log("Placing players...");
+log("Creating players...");
 
 var playerX = new Array(numPlayers+1);
 var playerZ = new Array(numPlayers+1);
 
 var numLeftPlayers = ceil(numPlayers/2);
-for (var i=1; i <= numLeftPlayers; i++)
+for (var i = 1; i <= numLeftPlayers; i++)
 {
-	playerX[i] = 0.28 + (2*randFloat()-1)*0.01;
-	playerZ[i] = (0.5+i-1)/numLeftPlayers + (2*randFloat()-1)*0.01;
+	playerX[i] = 0.28 + randFloat(-0.01, 0.01);
+	playerZ[i] = (0.5+i-1)/numLeftPlayers + randFloat(-0.01, 0.01);
 }
-for (var i=numLeftPlayers+1; i <= numPlayers; i++)
+for (var i = numLeftPlayers+1; i <= numPlayers; i++)
 {
-	playerX[i] = 0.72 + (2*randFloat()-1)*0.01;
-	playerZ[i] = (0.5+i-numLeftPlayers-1)/numLeftPlayers + (2*randFloat()-1)*0.01;
-}
-
-for (var i=1; i <= numPlayers; i++)
-{
-	log("Creating base for player " + i + "...");
-	
-	// get fractional locations in tiles
-	var ix = round(fractionToTiles(playerX[i]));
-	var iz = round(fractionToTiles(playerZ[i]));
-	addToClass(ix, iz, clPlayer);
-	
-	// create TC and starting units
-	// TODO: Get civ specific starting units
-	var civ = getCivCode(i - 1);
-	placeObject(ix, iz, "structures/"+civ + "_civil_centre", i, PI*3/4);
-	var group = new SimpleGroup(
-		[new SimpleObject("units/"+civ+"_support_female_citizen", 3,3, 5,5)],
-		true, null,	ix, iz
-	);
-	createObjectGroup(group, i);
-	
-	// create starting berry bushes
-	var bbAngle = randFloat()*2*PI;
-	var bbDist = 9;
-	var bbX = round(ix + bbDist * cos(bbAngle));
-	var bbZ = round(iz + bbDist * sin(bbAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oBerryBush, 5,5, 0,2)],
-		true, clBaseResource, bbX, bbZ
-	);
-	createObjectGroup(group, 0);
-	
-	// create starting mines
-	var mAngle = bbAngle;
-	while(abs(mAngle - bbAngle) < PI/3) {
-		mAngle = randFloat()*2*PI;
-	}
-	var mDist = 9;
-	var mX = round(ix + mDist * cos(mAngle));
-	var mZ = round(iz + mDist * sin(mAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(oStone, 2,2, 0,3),
-		new SimpleObject(oMetal, 1,1, 0,3)],
-		true, clBaseResource, mX, mZ
-	);
-	createObjectGroup(group, 0);
-	
-	// create starting straggler trees
-	group = new SimpleGroup(
-		[new SimpleObject(oPalm, 3,3, 7,10)],
-		true, clBaseResource, ix, iz
-	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
+	playerX[i] = 0.72 + randFloat(-0.01, 0.01);
+	playerZ[i] = (0.5+i-numLeftPlayers-1)/numLeftPlayers + randFloat(-0.01, 0.01);
 }
 
 function distanceToPlayers(x, z)
 {
 	var r = 10000;
-	for (var i=1; i <= numPlayers; i++)
+	for (var i = 1; i <= numPlayers; i++)
 	{
 		var dx = x - playerX[i];
 		var dz = z - playerZ[i];
@@ -202,9 +148,9 @@ var noise3 = new Noise2D(4 * mapSize/128);
 var noise4 = new Noise2D(6 * mapSize/128);
 var noise5 = new Noise2D(11 * mapSize/128);
 
-for (var ix=0; ix<=mapSize; ix++)
+for (var ix = 0; ix <= mapSize; ix++)
 {
-	for (var iz=0; iz<=mapSize; iz++)
+	for (var iz = 0; iz <= mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
@@ -288,9 +234,9 @@ var noise9 = new Noise2D(26 * mapSize/128);
 
 var noise10 = new Noise2D(50 * mapSize/128);
 
-for (var ix=0; ix<mapSize; ix++)
+for (var ix = 0; ix < mapSize; ix++)
 {
-	for (var iz=0; iz<mapSize; iz++)
+	for (var iz = 0; iz < mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
@@ -312,9 +258,9 @@ for (var ix=0; ix<mapSize; ix++)
 		{
 			var maxNx = min(ix+2, mapSize);
 			var maxNz = min(iz+2, mapSize);
-			for (var nx=max(ix-1, 0); nx <= maxNx; nx++)
+			for (var nx = max(ix-1, 0); nx <= maxNx; nx++)
 			{
-				for (var nz=max(iz-1, 0); nz <= maxNz; nz++)
+				for (var nz = max(iz-1, 0); nz <= maxNz; nz++)
 				{
 					minAdjHeight = min(minAdjHeight, getHeight(nx, nz));
 				}
@@ -380,8 +326,7 @@ for (var ix=0; ix<mapSize; ix++)
 		// forests
 		if (maxH - minH < 1 && minH > 1)
 		{
-			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn;
-			forestNoise -= 0.59;
+			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
 			
 			if (forestNoise > 0)
 			{
@@ -390,17 +335,17 @@ for (var ix=0; ix<mapSize; ix++)
 					var typeNoise = noise10.get(x,z);
 					
 					if (typeNoise < 0.43 && forestNoise < 0.05)
-						t = tPoplarForest;
+						t = pPoplarForest;
 					else if (typeNoise < 0.63)
-						t = tMainForest;
+						t = pMainForest;
 					else
-						t = tPineForest;
+						t = pPineForest;
 					
 					addToClass(ix, iz, clForest);
 				}
 				else if (minH < 3)
 				{
-					t = tPalmForest;
+					t = pPalmForest;
 					addToClass(ix, iz, clForest);
 				}
 			}
@@ -417,9 +362,9 @@ for (var ix=0; ix<mapSize; ix++)
 			else if (grassNoise < 0.34)
 			{
 				t = (maxH - minH > 1.2) ? tGrassCliff : tGrassDry;
-				if (maxH - minH < 0.5 && randFloat() < 0.03)
+				if (maxH - minH < 0.5 && randFloat() < 0.02)
 				{
-					placeObject(ix+randFloat(), iz+randFloat(), aGrassDry, 0, randFloat()*2*PI);
+					placeObject(ix+randFloat(), iz+randFloat(), aGrassDry, 0, randFloat(0, TWO_PI));
 				}
 			}
 			else if (grassNoise > 0.61)
@@ -428,9 +373,9 @@ for (var ix=0; ix<mapSize; ix++)
 			}
 			else
 			{
-				if ((maxH - minH) < 0.5 && randFloat() < 0.05)
+				if ((maxH - minH) < 0.5 && randFloat() < 0.02)
 				{
-					placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat()*2*PI);
+					placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat(0, TWO_PI));
 				}
 			}
 		}
@@ -439,15 +384,112 @@ for (var ix=0; ix<mapSize; ix++)
 	}
 }
 
-log("Placing settlements...");
-// create settlements
-// group = new SimpleGroup([new SimpleObject("gaia/special_settlement", 1,1, 0,0)], true, clSettlement);
-// createObjectGroups(group, 0,
-	// avoidClasses(clWater, 5, clForest, 4, clPlayer, 25, clCliff, 4, clSettlement, 35),
-	// 2*numPlayers, 50
-// );
+for (var i = 1; i <= numPlayers; i++)
+{
+	log("Creating base for player " + i + "...");
+	
+	// get fractional locations in tiles
+	var fx = fractionToTiles(playerX[i]);
+	var fz = fractionToTiles(playerZ[i]);
+	var ix = round(fx);
+	var iz = round(fz);
+	addToClass(ix, iz, clPlayer);
+	
+	// create the city patch
+	var cityRadius = 8;
+	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
+	var painter = new LayeredPainter([tGrass, tCity], [1]);
+	createArea(placer, painter, null);
+	
+	// create TC and starting units
+	// TODO: Get civ specific starting units
+	// create the TC
+	var civ = getCivCode(i-1);
+	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
+		[new SimpleObject("structures/"+civ+"_civil_centre", 1,1, 0,0)],
+		true, null, ix, iz
+	);
+	createObjectGroup(group, i);
+	
+	// create starting units
+	var uDist = 7;
+	var uAngle = randFloat(0, TWO_PI);
+	var ux = round(fx + uDist * cos(uAngle));
+	var uz = round(fz + uDist * sin(uAngle));
+	group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
+		[new SimpleObject("units/"+civ+"_support_female_citizen", 4,4, 1,2)],
+		true, null, ux, uz
+	);
+	createObjectGroup(group, i);
+	
+	uAngle += PI/4;
+	ux = round(fx + uDist * cos(uAngle));
+	uz = round(fz + uDist * sin(uAngle));
+	group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
+		[new SimpleObject("units/"+civ+"_infantry_javelinist_a", 4,4, 1,2)],
+		true, null, ux, uz
+	);
+	createObjectGroup(group, i);
+	
+	// create animals
+	for (var j = 0; j < 2; ++j)
+	{
+		var aAngle = randFloat(0, TWO_PI);
+		var aDist = 7;
+		var aX = round(fx + aDist * cos(aAngle));
+		var aZ = round(fz + aDist * sin(aAngle));
+		group = new SimpleGroup(
+			[new SimpleObject(oChicken, 5,5, 0,3)],
+			true, clBaseResource, aX, aZ
+		);
+		createObjectGroup(group, 0);
+	}
+	
+	// create starting berry bushes
+	var bbAngle = randFloat(0, TWO_PI);
+	var bbDist = 9;
+	var bbX = round(fx + bbDist * cos(bbAngle));
+	var bbZ = round(fz + bbDist * sin(bbAngle));
+	group = new SimpleGroup(
+		[new SimpleObject(oBerryBush, 5,5, 0,2)],
+		true, clBaseResource, bbX, bbZ
+	);
+	createObjectGroup(group, 0);
+	
+	// create metal mine
+	var mAngle = bbAngle;
+	while(abs(mAngle - bbAngle) < PI/3)
+	{
+		mAngle = randFloat(0, TWO_PI);
+	}
+	var mDist = 15;
+	var mX = round(fx + mDist * cos(mAngle));
+	var mZ = round(fz + mDist * sin(mAngle));
+	group = new SimpleGroup(
+		[new SimpleObject(oMetal, 1,1, 0,0)],
+		true, clBaseResource, mX, mZ
+	);
+	createObjectGroup(group, 0);
+	
+	// create stone mines
+	mAngle += randFloat(PI/8, PI/4);
+	mX = round(fx + mDist * cos(mAngle));
+	mZ = round(fz + mDist * sin(mAngle));
+	group = new SimpleGroup(
+		[new SimpleObject(oStone, 5,5, 0,3)],
+		true, clBaseResource, mX, mZ
+	);
+	createObjectGroup(group, 0);
+	
+	// create starting straggler trees
+	group = new SimpleGroup(
+		[new SimpleObject(oPalm, 3,3, 7,10)],
+		true, clBaseResource, ix, iz
+	);
+	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
+}
 
-log("Placing straggler trees...");
+log("Creating straggler trees...");
 // create straggler trees
 var trees = [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine];
 for (var t in trees)
@@ -459,7 +501,7 @@ for (var t in trees)
 	);
 }
 
-log("Placing cypress trees...");
+log("Creating cypress trees...");
 // create cypresses
 group = new SimpleGroup(
 	[new SimpleObject(oCypress2, 1,3, 0,3),
@@ -470,7 +512,7 @@ createObjectGroups(group, 0,
 	mapArea/3500, 50
 );
 
-log("Placing bushes...");
+log("Creating bushes...");
 // create bushes
 group = new SimpleGroup(
 	[new SimpleObject(aBushSmall, 0,2, 0,2), new SimpleObject(aBushSmallDry, 0,2, 0,2), 
@@ -481,7 +523,7 @@ createObjectGroups(group, 0,
 	mapArea/1800, 50
 );
 
-log("Placing rocks...");
+log("Creating rocks...");
 // create rocks
 group = new SimpleGroup(
 	[new SimpleObject(aRockSmall, 0,3, 0,2), new SimpleObject(aRockMed, 0,2, 0,2), 
@@ -492,33 +534,52 @@ createObjectGroups(group, 0,
 	mapArea/1800, 50
 );
 
-log("Placing stone mines...");
+log("Creating stone mines...");
 // create stone
-group = new SimpleGroup([new SimpleObject(oStone, 2,3, 0,2)], true, clStone);
+group = new SimpleGroup([new SimpleObject(oStone, 3,5, 0,2)], true, clStone);
 createObjectGroups(group, 0,
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clStone, 15), 
-	 new BorderTileClassConstraint(clCliff, 0, 5)],
-	3 * numPlayers, 100
+	 borderClasses(clCliff, 0, 5)],
+	8 * numPlayers, 100
 );
 
-log("Placing metal mines...");
+log("Creating metal mines...");
 // create metal
 group = new SimpleGroup([new SimpleObject(oMetal, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clMetal, 15, clStone, 5), 
-	 new BorderTileClassConstraint(clCliff, 0, 5)],
-	3 * numPlayers, 100
+	 borderClasses(clCliff, 0, 5)],
+	scaleByMapSize(8,32) * numPlayers, 100
 );
 
-log("Placing sheep...");
+log("Creating sheep...");
 // create sheep
 group = new SimpleGroup([new SimpleObject(oSheep, 2,4, 0,2)], true, clFood);
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 5, clForest, 1, clCliff, 1, clPlayer, 20, clMetal, 2, clStone, 2, clFood, 8),
-	3 * numPlayers, 100
+	3 * numPlayers, 50
 );
 
-log("Placing berry bushes...");
+log("Creating fish...");
+// create fish
+group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood);
+createObjectGroups(group, 0,
+	[borderClasses(clWater, 0, 7), avoidClasses(clFood, 8, clCliff, 0)],
+	3 * numPlayers, 50
+);
+
+// create deer
+log("Creating deer...");
+group = new SimpleGroup(
+	[new SimpleObject(oDeer, 5,7, 0,4)],
+	true, clFood
+);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 5, clForest, 1, clCliff, 1, clPlayer, 20, clMetal, 2, clStone, 2, clFood, 8),
+	3 * numPlayers, 50
+);
+
+log("Creating berry bushes...");
 // create berry bushes
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
 createObjectGroups(group, 0,

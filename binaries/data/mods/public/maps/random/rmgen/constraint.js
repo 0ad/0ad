@@ -133,7 +133,6 @@ function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
 
 BorderTileClassConstraint.prototype.allows = function(x, z)
 {
-	//error("BTCC.allows("+x+", "+z+"): class="+this.tileClass.id+", in="+this.tileClass.countMembersInRadius(x, z, this.distanceOutside)+", out="+this.tileClass.countNonMembersInRadius(x, z, this.distanceInside));
 	return (this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0 
 		&& this.tileClass.countNonMembersInRadius(x, z, this.distanceInside) > 0);
 };

@@ -47,7 +47,9 @@ ElevationPainter.prototype.paint = function(area)
 function LayeredPainter(terrainArray, widths)
 {
 	if (!(terrainArray instanceof Array))
-		error("terrains must be an array!");
+	{
+		throw("LayeredPainter: terrains must be an array!");
+	}
 	
 	this.terrains = [];
 	for (var i = 0; i < terrainArray.length; ++i)
@@ -187,12 +189,20 @@ function SmoothElevationPainter(type, elevation, blendRadius)
 	this.blendRadius = blendRadius;
 	
 	if (type != ELEVATION_SET && type != ELEVATION_MODIFY)
-		error("SmoothElevationPainter: invalid type '"+type+"'");
+	{
+		throw("SmoothElevationPainter: invalid type '"+type+"'");
+	}
 }
 
 SmoothElevationPainter.prototype.checkInArea = function(areaID, x, z)
 {
-	return (g_Map.validT(x, z) && g_Map.area[x][z] == areaID);
+	// Check given tile and its neighbors
+	return (
+		(g_Map.validT(x, z) && g_Map.area[x][z] == areaID)
+		|| (g_Map.validT(x-1, z) && g_Map.area[x-1][z] == areaID)
+		|| (g_Map.validT(x, z-1) && g_Map.area[x][z-1] == areaID)
+		|| (g_Map.validT(x-1, z-1) && g_Map.area[x-1][z-1] == areaID)
+	);
 };
 
 SmoothElevationPainter.prototype.paint = function(area)
@@ -255,12 +265,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			{
 				var nz = z+dz;
 				
-				if (g_Map.validH(nx, nz) 
-					&& !this.checkInArea(areaID, nx, nz)
-					&& !this.checkInArea(areaID, nx-1, nz)
-					&& !this.checkInArea(areaID, nx, nz-1)
-					&& !this.checkInArea(areaID, nx-1, nz-1)
-					&& !saw[nx][nz])
+				if (g_Map.validH(nx, nz) && !this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
 				{
 					saw[nx][nz]= 1;
 					dist[nx][nz] = 0;
@@ -279,9 +284,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 		var d = dist[px][pz];
 
 		// paint if in area
-		if (g_Map.validH(px, pz)
-			&& (this.checkInArea(areaID, px, pz) || this.checkInArea(areaID, px-1, pz) 
-			|| this.checkInArea(areaID, px, pz-1) || this.checkInArea(areaID, px-1, pz-1)))
+		if (g_Map.validH(px, pz) && this.checkInArea(areaID, px, pz))
 		{
 			if (d <= this.blendRadius)
 			{
@@ -316,10 +319,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			{
 				var nz = pz+dz;
 				
-				if (g_Map.validH(nx, nz) 
-					&& (this.checkInArea(areaID, nx, nz) || this.checkInArea(areaID, nx-1, nz) 
-						|| this.checkInArea(areaID, nx, nz-1) || this.checkInArea(areaID, nx-1, nz-1))
-					&& !saw[nx][nz])
+				if (g_Map.validH(nx, nz) && this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
 				{
 					saw[nx][nz] = 1;
 					dist[nx][nz] = d+1;
@@ -338,8 +338,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 		var px = pt.x;
 		var pz = pt.z;
 		
-		if ((this.checkInArea(areaID, px, pz) || this.checkInArea(areaID, px-1, pz) 
-			|| this.checkInArea(areaID, px, pz-1) || this.checkInArea(areaID, px-1, pz-1)))
+		if (this.checkInArea(areaID, px, pz))
 		{
 			var sum = 8 * newHeight[px][pz];
 			var count = 8;

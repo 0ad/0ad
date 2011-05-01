@@ -137,7 +137,9 @@ function RectPlacer(x1, z1, x2, z2)
 	this.z2 = z2;
 	
 	if (x1 > x2 || z1 > z2)
-		error("RectPlacer: incorrect bounds on rect");
+	{
+		throw("RectPlacer: incorrect bounds on rect");
+	}
 }
 
 RectPlacer.prototype.place = function(constraint)
@@ -201,13 +203,13 @@ function SimpleObject(type, minCount, maxCount, minDistance, maxDistance, minAng
 	this.maxAngle = (maxAngle !== undefined ? maxAngle : 2*PI);
 	
 	if (minCount > maxCount)
-		error("SimpleObject: minCount must be less than or equal to maxCount");
+		warn("SimpleObject: minCount should be less than or equal to maxCount");
 	
 	if (minDistance > maxDistance)
-		error("SimpleObject: minDistance must be less than or equal to maxDistance");
+		warn("SimpleObject: minDistance should be less than or equal to maxDistance");
 	
 	if (minAngle > maxAngle)
-		error("SimpleObject: minAngle must be less than or equal to maxAngle");
+		warn("SimpleObject: minAngle should be less than or equal to maxAngle");
 }
 
 SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
@@ -258,6 +260,108 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
 					{	// if we got here, we're good
 						var angle = randFloat(this.minAngle, this.maxAngle);
 						resultObjs.push(new Entity(this.type, player, x, z, angle));
+						break;
+					}
+				}
+			}
+			
+			if (fail)
+			{
+				failCount++;
+				if (failCount > 20)	// TODO: Make this adjustable
+				{
+					return undefined;
+				}
+			}
+		}
+	}
+	
+	return resultObjs;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//	RandomObject
+//
+//	Class specifying entities that can be placed on the map, selected randomly
+//
+//	types: Array of entity template names
+//	minCount,maxCount: The number of objects to place
+//	minDistance,maxDistance: The distance between placed objects
+//	minAngle,maxAngle: The variation in angle of placed objects (optional)
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function RandomObject(types, minCount, maxCount, minDistance, maxDistance, minAngle, maxAngle)
+{
+	this.types = types;
+	this.minCount = minCount;
+	this.maxCount = maxCount;
+	this.minDistance = minDistance;
+	this.maxDistance = maxDistance;
+	this.minAngle = (minAngle !== undefined ? minAngle : 0);
+	this.maxAngle = (maxAngle !== undefined ? maxAngle : 2*PI);
+	
+	if (minCount > maxCount)
+		warn("RandomObject: minCount should be less than or equal to maxCount");
+	
+	if (minDistance > maxDistance)
+		warn("RandomObject: minDistance should be less than or equal to maxDistance");
+	
+	if (minAngle > maxAngle)
+		warn("RandomObject: minAngle should be less than or equal to maxAngle");
+}
+
+RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
+{
+	var failCount = 0;
+	var count = randInt(this.minCount, this.maxCount);
+	var resultObjs = [];
+	
+	for (var i=0; i < count; i++)
+	{
+		while(true)
+		{
+			var distance = randFloat(this.minDistance, this.maxDistance);
+			var direction = randFloat(0, 2*PI);
+
+			var x = cx + 0.5 + distance*cos(direction);
+			var z = cz + 0.5 + distance*sin(direction);
+			var fail = false; // reset place failure flag
+
+			if (!g_Map.validT(x, z))
+			{
+				fail = true;
+			}
+			else
+			{
+				if (avoidSelf)
+				{
+					var length = resultObjs.length;
+					for (var i = 0; (i < length) && !fail; i++)
+					{
+						var dx = x - resultObjs[i].x;
+						var dy = z - resultObjs[i].z;
+						
+						if ((dx*dx + dy*dy) < 1)
+						{
+							fail = true;
+						}
+					}
+				}
+				
+				if (!fail)
+				{
+					if (!constraint.allows(Math.floor(x), Math.floor(z)))
+					{
+						fail = true;
+					}
+					else
+					{	// if we got here, we're good
+						var angle = randFloat(this.minAngle, this.maxAngle);
+						
+						//Randomly select entity
+						var type = this.types[randInt(this.types.length)];
+						resultObjs.push(new Entity(type, player, x, z, angle));
 						break;
 					}
 				}
@@ -335,3 +439,58 @@ SimpleGroup.prototype.place = function(player, constraint)
 	return true;
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//	RandomGroup
+//
+//	Class for placing group of a random simple object
+//
+//	elements: Array of SimpleObjects
+//	avoidSelf: Objects will not overlap
+//	tileClass: Optional tile class to add with these objects
+//	x,z: Tile coordinates of center of placer
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function RandomGroup(elements, avoidSelf, tileClass, x, z)
+{
+	this.elements = elements;
+	this.tileClass = (tileClass !== undefined ? getTileClass(tileClass) : undefined);
+	this.avoidSelf = (avoidSelf !== undefined ? avoidSelf : false);
+	this.x = (x !== undefined ? x : -1);
+	this.z = (z !== undefined ? z : -1);
+}
+
+RandomGroup.prototype.place = function(player, constraint)
+{
+	var resultObjs = [];
+
+	// Pick one of the object placers at random
+	var placer = this.elements[randInt(this.elements.length)];
+	
+	var objs = placer.place(this.x, this.z, player, this.avoidSelf, constraint);
+	if (objs === undefined)
+	{	// Failure
+		return false;
+	}
+	else
+	{
+		for (var j = 0; j < objs.length; ++j)
+		{
+			resultObjs.push(objs[j]);
+		}
+	}
+	
+	// Add placed objects to map
+	var length = resultObjs.length;
+	for (var i=0; i < length; i++)
+	{
+		g_Map.addObject(resultObjs[i]);
+		
+		if (this.tileClass !== undefined)
+		{	// Round object position to integer
+			this.tileClass.add(Math.floor(resultObjs[i].tileX), Math.floor(resultObjs[i].tileZ));
+		}
+	}
+	
+	return true;
+};

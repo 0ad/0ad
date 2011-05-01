@@ -35,7 +35,7 @@ function InitMap()
 	if (g_MapSettings === undefined)
 	{
 		// Should never get this far, failed settings would abort prior to loading scripts
-		error("InitMapGen: settings missing");
+		throw("InitMapGen: settings missing");
 	}
 	
 	// Create new map

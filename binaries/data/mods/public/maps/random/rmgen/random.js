@@ -1,3 +1,4 @@
+// TODO: rename/change these functions, so the bounds are more clear
 
 /*
  * Return a random floating point number using Math.random library
@@ -20,7 +21,7 @@ function randFloat()
 	}
 	else
 	{
-		error("randFloat() received invalid number of arguments: "+arguments.length);
+		error("randFloat: invalid number of arguments: "+arguments.length);
 		return undefined;
 	}
 }
@@ -47,7 +48,7 @@ function randInt()
 	}
 	else
 	{
-		error("randInt() received invalid number of arguments: "+arguments.length);
+		error("randInt: invalid number of arguments: "+arguments.length);
 		return undefined;
 	}
 }

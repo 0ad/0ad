@@ -95,7 +95,17 @@ Map.prototype.getEntityID = function()
 // Check bounds on tile map
 Map.prototype.validT = function(x, z)
 {
-	return x >= 0 && z >= 0 && x < this.size && z < this.size;
+	if (g_MapSettings.CircularMap)
+	{	// Within map circle
+		var halfSize = 0.5*this.size;
+		var dx = (x - halfSize);
+		var dz = (z - halfSize);
+		return Math.sqrt(dx*dx + dz*dz) < (halfSize - 1.5);
+	}
+	else
+	{	// Within map square
+		return x >= 0 && z >= 0 && x < this.size && z < this.size;
+	}
 };
 
 // Check bounds on height map (size + 1 by size + 1)
@@ -114,7 +124,7 @@ Map.prototype.getTexture = function(x, z)
 {
 	if (!this.validT(x, z))
 	{
-		error("getTexture: invalid tile position ("+x+", "+z+")");
+		throw("getTexture: invalid tile position ("+x+", "+z+")");
 	}
 	
 	return this.IDToName[this.texture[x][z]];
@@ -124,7 +134,7 @@ Map.prototype.setTexture = function(x, z, texture)
 {
 	if (!this.validT(x, z))
 	{
-		error("setTexture: invalid tile position ("+x+", "+z+")");
+		throw("setTexture: invalid tile position ("+x+", "+z+")");
 	}
 	
 	 this.texture[x][z] = this.getTextureID(texture);
@@ -134,7 +144,7 @@ Map.prototype.getHeight = function(x, z)
 {
 	if (!this.validH(x, z))
 	{
-		error("getHeight: invalid vertex position ("+x+", "+z+")");
+		throw("getHeight: invalid vertex position ("+x+", "+z+")");
 	}
 	
 	return this.height[x][z];
@@ -144,7 +154,7 @@ Map.prototype.setHeight = function(x, z, height)
 {
 	if (!this.validH(x, z))
 	{
-		error("setHeight: invalid vertex position ("+x+", "+z+")");
+		throw("setHeight: invalid vertex position ("+x+", "+z+")");
 	}
 	
 	this.height[x][z] = height;
@@ -154,7 +164,7 @@ Map.prototype.getTerrainObjects = function(x, z)
 {
 	if (!this.validT(x, z))
 	{
-		error("getTerrainObjects: invalid tile position ("+x+", "+z+")");
+		throw("getTerrainObjects: invalid tile position ("+x+", "+z+")");
 	}
 
 	return this.terrainObjects[x][z];
@@ -164,7 +174,7 @@ Map.prototype.setTerrainObject = function(x, z, object)
 {
 	if (!this.validT(x, z))
 	{
-		error("setTerrainObject: invalid tile position ("+x+", "+z+")");
+		throw("setTerrainObject: invalid tile position ("+x+", "+z+")");
 	}
 
 	this.terrainObjects[x][z] = object;
