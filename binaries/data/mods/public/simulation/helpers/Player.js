@@ -8,12 +8,16 @@ function LoadPlayerSettings(settings)
 {
 	// Default settings
 	if (!settings)
+	{
 		settings = {};
+	}
 
 	// Get default player data
 	var rawData = Engine.ReadJSONFile("player_defaults.json");
 	if (!(rawData && rawData.PlayerData))
-		error("Error reading player default data: player_defaults.json");
+	{
+		throw("Player.js: Error reading player default data (player_defaults.json)");
+	}
 
 	var playerDefaults = rawData.PlayerData;
 	
@@ -26,7 +30,7 @@ function LoadPlayerSettings(settings)
 	}
 	else
 	{
-		warn("Setup has no player data - using defaults");
+		warn("Player.js: Setup has no player data - using defaults");
 	}
 	
 	// Get player manager
@@ -48,9 +52,13 @@ function LoadPlayerSettings(settings)
 		if (team !== undefined && team != -1)
 		{
 			if (!teams[team])
+			{
 				teams[team] = [i];
+			}
 			else
+			{
 				teams[team].push(i);
+			}
 		}
 	}
 
@@ -62,7 +70,9 @@ function LoadPlayerSettings(settings)
 		// Retrieve entity
 		var player = Engine.QueryInterface(entID, IID_Player);
 		if (!player)
-			error("Error creating new player entity in Setup.js!");
+		{
+			throw("Player.js: Error creating player entity "+i);
+		}
 		
 		player.SetPlayerID(i);
 		
@@ -81,11 +91,14 @@ function LoadPlayerSettings(settings)
 			player.SetColour(colour.r, colour.g, colour.b);
 			
 			if (getSetting(pData, pDefs, "PopulationLimit") !== undefined)
+			{
 				player.SetPopulationLimit(getSetting(pData, pDefs, "PopulationLimit"));
+			}
 			
 			if (getSetting(pData, pDefs, "Resources") !== undefined)
+			{
 				player.SetResourceCounts(getSetting(pData, pDefs, "Resources"));
-			
+			}
 			
 			var team = getSetting(pData, pDefs, "Team");
 			
@@ -95,10 +108,19 @@ function LoadPlayerSettings(settings)
 				player.SetDiplomacy(getSetting(pData, pDefs, "Diplomacy"));
 			}
 			else if (team !== undefined && team != -1)
-			{	//Team exists
-				var teamDiplomacy = diplomacy;
-				for (var n in teams[team])
-					teamDiplomacy[n] = cmpPlayerMan.Diplomacy.ALLY; //Set ally
+			{
+				//Team exists, copy default diplomacy
+				var teamDiplomacy = [];
+				for (var p in diplomacy)
+				{
+					teamDiplomacy[p] = diplomacy[p];
+				}
+				// Set teammates to allies
+				var myTeam = teams[team];
+				for (var n in myTeam)
+				{
+					teamDiplomacy[myTeam[n]] = cmpPlayerMan.Diplomacy.ALLY; //Set ally
+				}
 				
 				player.SetDiplomacy(teamDiplomacy);
 			}
