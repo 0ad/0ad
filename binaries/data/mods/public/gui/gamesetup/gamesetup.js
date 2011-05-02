@@ -387,8 +387,12 @@ function initCivNameList()
 	// Cache civ data
 	g_CivData = loadCivData();
 	
-	var civList = [ { "name": civ.Name, "code": civ.Code } for each (civ in g_CivData) ];
-	
+	// Extract name/code, and skip civs that are explicitly disabled
+	// (intended for unusable incomplete civs)
+	var civList = [ { "name": civ.Name, "code": civ.Code }
+		for each (civ in g_CivData)
+		if (civ.SelectableInGameSetup !== false) ];
+
 	// Alphabetically sort the list, ignoring case
 	civList.sort(sortNameIgnoreCase);
 	
