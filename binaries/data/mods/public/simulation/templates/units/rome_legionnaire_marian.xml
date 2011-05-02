@@ -9,8 +9,8 @@
     <Icon>units/rome_super_legion_marian.png</Icon>
   </Identity>
   <Promotion>
-    <Entity>rome_legionnaire_imperial</Entity>
-    <Req>500</Req>
+    <Entity>units/rome_legionnaire_imperial</Entity>
+    <RequiredXp>500</RequiredXp>
   </Promotion>
   <VisualActor>
     <Actor>units/romans/super_unit_3.xml</Actor>

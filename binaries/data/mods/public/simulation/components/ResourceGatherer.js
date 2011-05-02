@@ -86,6 +86,18 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
 };
 
 /**
+ * Used to instantly give resources to unit
+ * @param resources The same structure as returned form GetCarryingStatus
+ */
+ResourceGatherer.prototype.GiveResources = function(resources)
+{
+	for each (var resource in resources)
+	{
+		this.carrying[resource.type] = +(resource.amount);
+	}
+};
+
+/**
  * Returns the generic type of one particular resource this unit is
  * currently carrying, or undefined if none.
  */

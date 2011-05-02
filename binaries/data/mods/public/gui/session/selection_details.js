@@ -65,6 +65,25 @@ function displaySingle(entState, template)
 	{
 		getGUIObjectByName("health").hidden = true;
 	}
+	
+	// Experience
+	if (entState.promotion)
+	{
+		var experienceBar = getGUIObjectByName("experienceBar");
+		var experienceSize = experienceBar.size;
+		experienceSize.rtop = 100 - 100 * Math.max(0, Math.min(1, 1.0 * entState.promotion.curr / entState.promotion.req));
+		experienceBar.size = experienceSize;
+ 
+		var experience = "[font=\"serif-bold-13\"]XP [/font]" + entState.promotion.curr;
+		if (entState.promotion.curr < entState.promotion.req)
+			experience += "/" + entState.promotion.req;
+		getGUIObjectByName("experience").tooltip = experience;
+		getGUIObjectByName("experience").hidden = false;
+	}
+	else
+	{
+		getGUIObjectByName("experience").hidden = true;
+	}
 
 	// Resource stats
 	var resources = "";
@@ -256,7 +275,7 @@ function updateSelectionDetails()
 	supplementalDetailsPanel.hidden = false;
 	detailsPanel.hidden = false;
 	commandsPanel.hidden = false;
-	
+
 	// Fill out commands panel for specific unit selected (or first unit of primary group)
 	updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
 }

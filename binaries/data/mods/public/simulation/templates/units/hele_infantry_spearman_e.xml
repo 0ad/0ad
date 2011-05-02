@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_spearman_a">
   <Identity>
-	<Rank>Elite</Rank>
+    <Rank>Elite</Rank>
   </Identity>
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
@@ -33,5 +33,5 @@
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_e.xml</Actor>
   </VisualActor>
-  
+  <Promotion disable=""/>
 </Entity>

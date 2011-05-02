@@ -288,4 +288,12 @@ GarrisonHolder.prototype.OnDestroy = function()
 	}
 };
 
+GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
+{
+	if (this.entities.indexOf(msg.entity) != -1)
+	{
+		this.entities[this.entities.indexOf(msg.entity)] = msg.newentity;
+	}
+}
+
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);

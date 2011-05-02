@@ -17,10 +17,21 @@ Loot.prototype.Schema =
 		"<element name='metal'><data type='nonNegativeInteger'/></element>" +
 	"</optional>";
 
-/*
- * TODO: this all needs to be designed and implemented
- */
-
 Loot.prototype.Serialize = null; // we have no dynamic state to save
+
+Loot.prototype.GetXp = function()
+{
+	return this.template.xp;
+};
+
+Loot.prototype.GetResources = function()
+{
+	return {
+		"food": +(this.template.food || 0),
+		"wood": +(this.template.wood || 0),
+		"metal": +(this.template.metal || 0),
+		"stone": +(this.template.stone || 0)
+	};
+};
 
 Engine.RegisterComponentType(IID_Loot, "Loot", Loot);

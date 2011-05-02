@@ -110,6 +110,10 @@ var UnitFsmSpec = {
 		// ignore
 	},
 
+	"EntityRenamed": function(msg) {
+		// ignore
+	},
+
 	// Formation handlers:
 
 	"FormationLeave": function(msg) {
@@ -304,6 +308,10 @@ var UnitFsmSpec = {
 		{
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 		}
+	},
+	
+	"Order.Cheering": function(msg) {
+		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
 
 	// States for the special entity representing a group of units moving in formation:
@@ -533,6 +541,11 @@ var UnitFsmSpec = {
 		},
 
 		"COMBAT": {
+			"EntityRenamed": function(msg) {
+				if (this.order.data.target == msg.entity)
+					this.order.data.target = msg.newentity;
+			},
+
 			"Attacked": function(msg) {
 				// If we're already in combat mode, ignore anyone else
 				// who's attacking us
@@ -980,6 +993,26 @@ var UnitFsmSpec = {
 			},
 		},
 
+		"CHEERING": {
+			"enter": function() {
+				// Unit is invulnerable while cheering
+				var cmpDamageReceiver = Engine.QueryInterface(this.entity, IID_DamageReceiver);
+				cmpDamageReceiver.SetInvulnerability(true); 
+				this.SelectAnimation("promotion");
+				this.StartTimer(4000, 4000);
+				return false;
+			},
+
+			"leave": function() {
+				this.StopTimer();
+				var cmpDamageReceiver = Engine.QueryInterface(this.entity, IID_DamageReceiver);
+				cmpDamageReceiver.SetInvulnerability(false);
+			},
+
+			"Timer": function(msg) {
+				this.FinishOrder();
+			},
+		},
 	},
 
 	"ANIMAL": {
@@ -1323,17 +1356,48 @@ UnitAI.prototype.PushOrder = function(type, data)
 UnitAI.prototype.PushOrderFront = function(type, data)
 {
 	var order = { "type": type, "data": data };
-	this.orderQueue.unshift(order);
-
-	this.order = order;
-	UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+	// If current order is cheering then add new order after it 
+	if (this.order && this.order.type == "Cheering")
+	{
+		var cheeringOrder = this.orderQueue.shift();
+		this.orderQueue.unshift(cheeringOrder, order);
+	}
+	else
+	{
+		this.orderQueue.unshift(order);
+		this.order = order;
+		UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+	}
 };
 
 UnitAI.prototype.ReplaceOrder = function(type, data)
 {
-	this.orderQueue = [];
-	this.PushOrder(type, data);
+	// If current order is cheering then add new order after it
+	if (this.order && this.order.type == "Cheering")
+	{
+		var order = { "type": type, "data": data };
+		var cheeringOrder = this.orderQueue.shift();
+		this.orderQueue = [ cheeringOrder, order ];
+	}
+	else
+	{
+		this.orderQueue = [];
+		this.PushOrder(type, data);
+	}
 };
+
+UnitAI.prototype.GetOrders = function()
+{
+	return this.orderQueue.slice();
+}
+
+UnitAI.prototype.AddOrders = function(orders)
+{
+	for each (var order in orders)
+	{
+		this.PushOrder(order.type, order.data);
+	}
+}
 
 UnitAI.prototype.TimerHandler = function(data, lateness)
 {
@@ -1401,6 +1465,11 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 
 	UnitFsm.ProcessMessage(this, {"type": "ConstructionFinished", "data": msg});
 };
+
+UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
+{
+	UnitFsm.ProcessMessage(this, {"type": "EntityRenamed", "entity": msg.entity, "newentity": msg.newentity});
+}
 
 UnitAI.prototype.OnAttacked = function(msg)
 {
@@ -1916,6 +1985,11 @@ UnitAI.prototype.Repair = function(target, autocontinue, queued)
 	}
 
 	this.AddOrder("Repair", { "target": target, "autocontinue": autocontinue }, queued);
+};
+
+UnitAI.prototype.Cheer = function()
+{
+	this.AddOrder("Cheering", null, false);
 };
 
 UnitAI.prototype.SetStance = function(stance)

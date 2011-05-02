@@ -8,8 +8,8 @@
     <Icon>units/rome_super_legion_imperial.png</Icon>
   </Identity>
   <Promotion>
-    <Entity>rome_centurio_imperial</Entity>
-    <Req>700</Req>
+    <Entity>units/rome_centurio_imperial</Entity>
+    <RequiredXp>700</RequiredXp>
   </Promotion>
   <Armour>
     <Hack>10.0</Hack>

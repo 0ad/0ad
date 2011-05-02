@@ -118,9 +118,7 @@ Identity.prototype.GetCiv = function()
 
 Identity.prototype.GetRank = function()
 {
-	if (this.template.Rank)
-		return this.template.Rank;
-	return "";
+	return (this.template.Rank || "");
 };
 
 Identity.prototype.GetClassesList = function()

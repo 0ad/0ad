@@ -203,6 +203,7 @@ EntitySelection.prototype.getTemplateNames = function()
 // Update the selection to take care of changes (like units that have been killed)
 EntitySelection.prototype.update = function()
 {
+	this.checkRenamedEntities();
 	for each (var ent in this.selected)
 	{
 		var entState = GetEntityState(ent);
@@ -230,6 +231,30 @@ EntitySelection.prototype.update = function()
 		}
 	}
 };
+
+/**
+ * Update selection if some selected entities was renamed
+ * (in case of unit promotion or finishing building structure)
+ */
+EntitySelection.prototype.checkRenamedEntities = function()
+{
+	var renamedEntities = Engine.GuiInterfaceCall("GetRenamedEntities", true);
+	if (renamedEntities.length > 0)
+	{
+		var removeFromSelectionList = [];
+		var addToSelectionList = [];
+		for each (var renamedEntity in renamedEntities)
+		{
+			if (this.selected[renamedEntity.entity])
+			{
+				removeFromSelectionList.push(renamedEntity.entity);
+				addToSelectionList.push(renamedEntity.newentity);
+			}
+		}
+		this.removeList(removeFromSelectionList);
+		this.addList(addToSelectionList);
+	}
+}
 
 EntitySelection.prototype.addList = function(ents)
 {

@@ -5,6 +5,7 @@ Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Identity.js");
+Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/RallyPoint.js");
 Engine.LoadComponentScript("interfaces/ResourceDropsite.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");

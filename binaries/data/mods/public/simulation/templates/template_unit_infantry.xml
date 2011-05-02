@@ -3,10 +3,10 @@
   <Identity>
     <GenericName>Infantry</GenericName>
     <Classes datatype="tokens">Infantry CitizenSoldier Organic</Classes>
-	<Rank>Basic</Rank>
+    <Rank>Basic</Rank>
   </Identity>
   <Promotion>
-    <Req>600</Req>
+    <RequiredXp>600</RequiredXp>
   </Promotion>
   <Cost>
     <BuildTime>9</BuildTime>

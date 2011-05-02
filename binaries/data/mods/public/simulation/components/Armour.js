@@ -19,12 +19,20 @@ Armour.prototype.Schema =
 
 Armour.prototype.Init = function()
 {
+	this.invulnerable = false;
 };
 
 Armour.prototype.Serialize = null; // we have no dynamic state to save
 
+Armour.prototype.SetInvulnerability = function(invulnerability)
+{
+	this.invulnerable = invulnerability;
+};
+
 Armour.prototype.TakeDamage = function(hack, pierce, crush)
 {
+	if (this.invulnerable) 
+		return { "killed": false };
 	// Adjust damage values based on armour
 	var adjHack = Math.max(0, hack - this.template.Hack);
 	var adjPierce = Math.max(0, pierce - this.template.Pierce);

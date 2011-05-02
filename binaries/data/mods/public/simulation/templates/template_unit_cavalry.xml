@@ -3,10 +3,10 @@
   <Identity>
     <GenericName>Cavalry</GenericName>
     <Classes datatype="tokens">Cavalry CitizenSoldier Organic</Classes>
-	<Rank>Basic</Rank>
+    <Rank>Basic</Rank>
   </Identity>
   <Promotion>
-    <Req>900</Req>
+    <RequiredXp>900</RequiredXp>
   </Promotion>
   <Position>
     <Anchor>pitch</Anchor>

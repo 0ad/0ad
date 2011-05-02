@@ -20,6 +20,7 @@ GuiInterface.prototype.Init = function()
 	this.placementEntity = undefined; // = undefined or [templateName, entityID]
 	this.rallyPoints = undefined;
 	this.notifications = [];
+	this.renamedEntities = [];
 };
 
 /*
@@ -89,6 +90,14 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 	}
 
 	return ret;
+};
+
+GuiInterface.prototype.GetRenamedEntities = function(player, clearList)
+{
+	var result = this.renamedEntities;
+	if (clearList)
+		this.renamedEntities = [];
+	return result;
 };
 
 GuiInterface.prototype.GetEntityState = function(player, ent)
@@ -207,6 +216,15 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.garrisonHolder = {
 			"entities": cmpGarrisonHolder.GetEntities(),
 			"allowedClasses": cmpGarrisonHolder.GetAllowedClassesList()
+		};
+	}
+	
+	var cmpPromotion = Engine.QueryInterface(ent, IID_Promotion);
+	if (cmpPromotion)
+	{
+		ret.promotion = {
+			"curr": cmpPromotion.GetCurrentXp(),
+			"req": cmpPromotion.GetRequiredXp()
 		};
 	}
 	
@@ -502,6 +520,11 @@ GuiInterface.prototype.SetRangeDebugOverlay = function(player, enabled)
 	cmpRangeManager.SetDebugOverlay(enabled);
 };
 
+GuiInterface.prototype.OnGlobalEntityRenamed = function(msg)
+{
+	this.renamedEntities.push(msg);
+}
+
 // List the GuiInterface functions that can be safely called by GUI scripts.
 // (GUI scripts are non-deterministic and untrusted, so these functions must be
 // appropriately careful. They are called with a first argument "player", which is
@@ -511,6 +534,7 @@ var exposedFunctions = {
 	
 	"GetSimulationState": 1,
 	"GetExtendedSimulationState": 1,
+	"GetRenamedEntities": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
 	"GetNextNotification": 1,

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/iber_cavalry_spearman_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
   <Promotion>
-    <Entity>iber_cavalry_spearman_e</Entity>
+    <Entity>units/iber_cavalry_spearman_e</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/iberians/cavalry_spearman_a.xml</Actor>

@@ -538,6 +538,13 @@
 						<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
+					
+					<!-- Experience bar -->
+					<object size="46 0 58 100%" type="image" name="experience" tooltip="XP" tooltip_style="snToolTip">
+						<object type="image" sprite="experienceBackground" ghost="true"/>
+						<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
+						<object type="image" sprite="statsBarShader" ghost="true"/>
+					</object>
 				</object>
 				
 				<!-- Specific Name -->

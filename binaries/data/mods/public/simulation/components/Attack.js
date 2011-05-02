@@ -211,7 +211,6 @@ Attack.prototype.PerformAttack = function(type, target)
 
 /**
  * Called when some units kills something (another unit, building, animal etc)
- * update player statistics only for now
  */
 Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
 {
@@ -219,6 +218,13 @@ Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
 	if (cmpKillerPlayerStatisticsTracker) cmpKillerPlayerStatisticsTracker.KilledEntity(targetEntity);
 	var cmpTargetPlayerStatisticsTracker = QueryOwnerInterface(targetEntity, IID_StatisticsTracker);
 	if (cmpTargetPlayerStatisticsTracker) cmpTargetPlayerStatisticsTracker.LostEntity(targetEntity);
+
+	// if unit can collect loot, lets try to collect it
+	var cmpLooter = Engine.QueryInterface(killerEntity, IID_Looter);
+	if (cmpLooter)
+	{
+		cmpLooter.Collect(targetEntity);
+	}
 }
 
 /**

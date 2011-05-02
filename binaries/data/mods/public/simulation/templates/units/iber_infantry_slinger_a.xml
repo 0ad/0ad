@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/iber_infantry_slinger_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
   <Promotion>
-    <Entity>iber_infantry_slinger_e</Entity>
+    <Entity>units/iber_infantry_slinger_e</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/iberians/infantry_slinger_a.xml</Actor>
