@@ -305,43 +305,56 @@ function init(window)
 	
 	///////////////////////////////////////////////////////////////////////
 	// Keyword list
-	
 	var keywordSizer = new wxStaticBoxSizer(new wxStaticBox(window, -1, 'Keywords'), wxOrientation.VERTICAL);
-	var keywords = ["demo", "hidden"];
-	var keywordCtrl = new wxListBox(window, -1, wxDefaultPosition, wxDefaultSize, keywords, wxListBox.MULTIPLE);
-	keywordCtrl.toolTip = 'Select keyword(s) to apply to this map';
-	keywordCtrl.onListBox = function()
+
+	boxSizer = new wxBoxSizer(wxOrientation.HORIZONTAL);
+	boxSizer.add(new wxStaticText(window, -1, 'Demo'));
+	boxSizer.add(5, 0);
+	var demoCtrl = new wxCheckBox(window, -1, '');
+	demoCtrl.tooltip = 'Toggle \'demo\' keyword';
+	demoCtrl.onCheckBox = function(evt)
 		{
-			var kws = [];
-			// Convert selections to keywords array
-			var selections = this.selections;
-			for (var i = 0; i < selections.length; ++i)
-			{
-				kws.push(keywords[selections[i]]);
-			}
-			Atlas.State.mapSettings.settings.Keywords = kws;
+			applyKeyword(evt.checked, 'demo');
 		};
-	function updateKeywords()
-	{
-		var kws = Atlas.State.mapSettings.settings.Keywords;
-		if (kws)
+	boxSizer.add(demoCtrl);		
+	keywordSizer.add(boxSizer, 0, wxStretch.EXPAND);
+	keywordSizer.add(0, 5);
+	
+	boxSizer = new wxBoxSizer(wxOrientation.HORIZONTAL);
+	boxSizer.add(new wxStaticText(window, -1, 'Hidden'));
+	boxSizer.add(5, 0);
+	var hiddenCtrl = new wxCheckBox(window, -1, '');
+	hiddenCtrl.tooltip = 'Toggle \'hidden\' keyword';
+	hiddenCtrl.onCheckBox = function(evt)
 		{
-			for (var i = 0; i < kws.length; ++i)
-			{
-				var idx = keywords.indexOf(kws[i]);
-				if (idx != -1)
-				{
-					// TODO: There doesn't appear to be a way to set selections
-				}
-				else
-				{	// New keyword, add to list
-					keywordCtrl.insertItems([kws[i]]);
-				}
-			}
+			applyKeyword(evt.checked, 'hidden');
+		};
+	boxSizer.add(hiddenCtrl);		
+	keywordSizer.add(boxSizer, 0, wxStretch.EXPAND);
+	
+	function applyKeyword(flag, keyword)
+	{
+		var idx = Atlas.State.mapSettings.settings.Keywords.indexOf(keyword);
+		if (flag && idx == -1)
+		{	// Add keyword
+			Atlas.State.mapSettings.settings.Keywords.push(keyword);
+		}
+		else if (!flag && idx != -1)
+		{	// Remove keyword
+			Atlas.State.mapSettings.settings.Keywords.splice(idx, 1);
 		}
 	}
 	
-	keywordSizer.add(keywordCtrl, 0, wxStretch.EXPAND);
+	function updateKeywords()
+	{
+		if (!Atlas.State.mapSettings.settings.Keywords)
+		{
+			Atlas.State.mapSettings.settings.Keywords = [];
+		}
+		
+		demoCtrl.value = (Atlas.State.mapSettings.settings.Keywords && Atlas.State.mapSettings.settings.Keywords.indexOf('demo') != -1);
+		hiddenCtrl.value = (Atlas.State.mapSettings.settings.Keywords && Atlas.State.mapSettings.settings.Keywords.indexOf('hidden') != -1);
+	}
 	
 	window.sizer.add(keywordSizer, 0, wxStretch.EXPAND | wxDirection.LEFT|wxDirection.RIGHT, 2);
 	
