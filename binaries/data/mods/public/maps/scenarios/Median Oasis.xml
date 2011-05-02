@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="520.32" y="118.383" z="691.885"/>
+		<Position x="508.541" y="94.4287" z="747.203"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -70,7 +70,8 @@
       }
     }
   ],
-  "CircularMap": true
+  "CircularMap": true,
+  "Keywords": []
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -13979,16 +13980,6 @@
 		<Entity uid="2634">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="551.47956" z="837.91065"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2635">
-			<Template>actor|particle/flame.xml</Template>
-			<Position x="523.17017" z="860.98987"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2636">
-			<Template>actor|particle/smoke.xml</Template>
-			<Position x="523.30567" z="860.29218"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2640">
