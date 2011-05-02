@@ -228,9 +228,12 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "numa_interleaved", numa_IsMemoryInterleaved());
 
 	scriptInterface.SetProperty(settings.get(), "ram_total", (u32)os_cpu_MemorySize());
+	scriptInterface.SetProperty(settings.get(), "ram_total_os", (u32)os_cpu_QueryMemorySize());
 	scriptInterface.SetProperty(settings.get(), "ram_free", (u32)os_cpu_MemoryAvailable());
 
 #if ARCH_X86_X64
+	scriptInterface.SetProperty(settings.get(), "x86_frequency", x86_x64_ClockFrequency());
+
 	scriptInterface.SetProperty(settings.get(), "x86_vendor", (u32)x86_x64_Vendor());
 	scriptInterface.SetProperty(settings.get(), "x86_model", (u32)x86_x64_Model());
 	scriptInterface.SetProperty(settings.get(), "x86_family", (u32)x86_x64_Family());
@@ -248,7 +251,7 @@ void RunHardwareDetection()
 #endif
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 6, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 7, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 
@@ -282,58 +285,78 @@ void RunHardwareDetection()
 
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings)
 {
+	const char* errstr = "(error)";
+
 #define INTEGER(id) do { \
 	GLint i = -1; \
 	glGetIntegerv(GL_##id, &i); \
-	ogl_WarnIfError(); \
-	scriptInterface.SetProperty(settings.get(), "GL_" #id, i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id, errstr); \
+	else \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id, i); \
 	} while (false)
 
 #define INTEGER2(id) do { \
 	GLint i[2] = { -1, -1 }; \
 	glGetIntegerv(GL_##id, i); \
-	ogl_WarnIfError(); \
-	scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", i[0]); \
-	scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", i[1]); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) { \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", errstr); \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", errstr); \
+	} else { \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", i[0]); \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", i[1]); \
+	} \
 	} while (false)
 
 #define FLOAT(id) do { \
 	GLfloat f = std::numeric_limits<GLfloat>::quiet_NaN(); \
 	glGetFloatv(GL_##id, &f); \
-	ogl_WarnIfError(); \
-	scriptInterface.SetProperty(settings.get(), "GL_" #id, f); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id, errstr); \
+	else \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id, f); \
 	} while (false)
 
 #define FLOAT2(id) do { \
 	GLfloat f[2] = { std::numeric_limits<GLfloat>::quiet_NaN(), std::numeric_limits<GLfloat>::quiet_NaN() }; \
 	glGetFloatv(GL_##id, f); \
-	ogl_WarnIfError(); \
-	scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", f[0]); \
-	scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", f[1]); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) { \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", errstr); \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", errstr); \
+	} else { \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", f[0]); \
+		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", f[1]); \
+	} \
 	} while (false)
 
 #define STRING(id) do { \
 	const char* c = (const char*)glGetString(GL_##id); \
-	ogl_WarnIfError(); \
 	if (!c) c = ""; \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) c = errstr; \
 	scriptInterface.SetProperty(settings.get(), "GL_" #id, std::string(c)); \
 	}  while (false)
 
 #define VERTEXPROGRAM(id) do { \
 	GLint i = -1; \
 	pglGetProgramivARB(GL_VERTEX_PROGRAM_ARB, GL_##id, &i); \
-	ogl_WarnIfError(); \
-	scriptInterface.SetProperty(settings.get(), "GL_VERTEX_PROGRAM_ARB.GL_" #id, i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		scriptInterface.SetProperty(settings.get(), "GL_VERTEX_PROGRAM_ARB.GL_" #id, errstr); \
+	else \
+		scriptInterface.SetProperty(settings.get(), "GL_VERTEX_PROGRAM_ARB.GL_" #id, i); \
 	} while (false)
 
 #define FRAGMENTPROGRAM(id) do { \
 	GLint i = -1; \
 	pglGetProgramivARB(GL_FRAGMENT_PROGRAM_ARB, GL_##id, &i); \
-	ogl_WarnIfError(); \
-	scriptInterface.SetProperty(settings.get(), "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		scriptInterface.SetProperty(settings.get(), "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, errstr); \
+	else \
+		scriptInterface.SetProperty(settings.get(), "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, i); \
 	} while (false)
 
 #define BOOL(id) INTEGER(id)
+
+	ogl_WarnIfError();
 
 	// Core OpenGL 1.3:
 	// (We don't bother checking extension strings for anything older than 1.3;
