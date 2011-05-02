@@ -1,15 +1,17 @@
-from userreport.models import UserReport, UserReport_hwdetect
+from userreport.models import UserReport, UserReport_hwdetect, GraphicsDevice, GraphicsExtension, GraphicsLimit
 import userreport.x86 as x86
 import userreport.gl
 
 import hashlib
 import datetime
 import zlib
+import re
 
 from django.http import HttpResponseBadRequest, HttpResponse, Http404, QueryDict
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
+from django.db import connection, transaction
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -67,13 +69,14 @@ def index(request):
 
 def report_cpu(request):
     reports = UserReport_hwdetect.objects
-    reports = reports.filter(data_type = 'hwdetect', data_version__gte = 4)
+    reports = reports.filter(data_type = 'hwdetect', data_version__gte = 4, data_version__lte = 5)
+    # TODO: add v6 support
 
     all_users = set()
     cpus = {}
 
     for report in reports:
-        json = report.data_json()
+        json = report.data_json_nocache()
         if json is None:
             continue
 
@@ -140,8 +143,11 @@ def report_cpu(request):
                         icaches.pop(0)
             return tuple(caches)
 
-        cpu['caches'] = fmt_caches(json['x86_dcaches'], json['x86_icaches'], fmt_cache)
-        cpu['tlbs'] = fmt_caches(json['x86_dtlbs'], json['x86_itlbs'], fmt_tlb)
+        try:
+            cpu['caches'] = fmt_caches(json['x86_dcaches'], json['x86_icaches'], fmt_cache)
+            cpu['tlbs'] = fmt_caches(json['x86_dtlbs'], json['x86_itlbs'], fmt_tlb)
+        except TypeError:
+            continue # skip on bogus cache data
 
         caps = set()
         for (n,_,b) in x86.cap_bits:
@@ -156,61 +162,67 @@ def report_cpu(request):
 
     return render_to_response('reports/cpu.html', {'cpus': cpus, 'x86_cap_descs': x86.cap_descs})
 
-def get_hwdetect_reports():
-    reports = UserReport_hwdetect.objects
-    reports = reports.filter(data_type = 'hwdetect', data_version__gte = 3)
-    return reports
-
 def report_opengl_json(request):
-    reports = get_hwdetect_reports()
-
     devices = {}
 
+    reports = GraphicsDevice.objects.all()
     for report in reports:
-        json = report.data_json()
-        if json is None:
-            continue
+        exts = frozenset(e.name for e in report.graphicsextension_set.all())
+        limits = dict((l.name, l.value) for l in report.graphicslimit_set.all())
 
-        exts = report.gl_extensions()
-        limits = report.gl_limits()
+        device = (report.vendor, report.renderer, report.os, report.driver)
+        devices.setdefault((hashabledict(limits), exts), set()).add(device)
 
-        devices.setdefault(hashabledict({'renderer': report.gl_renderer(), 'os': report.os()}), {}).setdefault((hashabledict(limits), exts), set()).add(report.gl_driver())
-
-    distinct_devices = []
-    for (renderer, v) in devices.items():
-        for (caps, versions) in v.items():
-            distinct_devices.append((renderer, sorted(versions), caps))
-    distinct_devices.sort(key = lambda x: (x[0]['renderer'], x[0]['os'], x))
+    sorted_devices = sorted(devices.items(), key = lambda (k,deviceset): sorted(deviceset))
 
     data = []
-    for r,vs,(limits,exts) in distinct_devices:
-        data.append({'device': r, 'drivers': vs, 'limits': limits, 'extensions': sorted(exts)})
+    for (limits,exts),deviceset in sorted_devices:
+        devices = [
+            {'vendor': v, 'renderer': r, 'os': o, 'driver': d}
+            for (v,r,o,d) in sorted(deviceset)
+        ]
+        data.append({'devices': devices, 'limits': limits, 'extensions': sorted(exts)})
     json = simplejson.dumps(data, indent=1, sort_keys=True)
     return HttpResponse(json, content_type = 'text/plain')
 
+def report_opengl_json_format(request):
+    return render_to_response('jsonformat.html')
+
 def report_opengl_index(request):
-    reports = get_hwdetect_reports()
+    cursor = connection.cursor()
 
-    all_limits = set()
-    all_exts = set()
-    all_devices = {}
-    ext_devices = {}
+    cursor.execute('''
+        SELECT SUM(usercount)
+        FROM userreport_graphicsdevice
+    ''')
+    num_users = sum(c for (c,) in cursor)
 
-    for report in reports:
-        json = report.data_json()
-        if json is None:
-            continue
+    cursor.execute('''
+        SELECT name, SUM(usercount)
+        FROM userreport_graphicsextension e
+        JOIN userreport_graphicsdevice d
+            ON e.device_id = d.id
+        GROUP BY name
+    ''')
+    exts = cursor.fetchall()
+    all_exts = set(n for n,c in exts)
+    ext_devices = dict((n,c) for n,c in exts)
 
-        device = report.gl_device_identifier()
-        all_devices.setdefault(device, set()).add(report.user_id_hash)
+    cursor.execute('''
+        SELECT name
+        FROM userreport_graphicslimit l
+        JOIN userreport_graphicsdevice d
+            ON l.device_id = d.id
+        GROUP BY name
+    ''')
+    all_limits = set(n for (n,) in cursor.fetchall())
 
-        exts = report.gl_extensions()
-        all_exts |= exts
-        for ext in exts:
-            ext_devices.setdefault(ext, set()).add(device)
-
-        limits = report.gl_limits()
-        all_limits |= set(limits.keys())
+    cursor.execute('''
+        SELECT device_name, SUM(usercount)
+        FROM userreport_graphicsdevice
+        GROUP BY device_name
+    ''')
+    all_devices = dict((n,c) for n,c in cursor.fetchall())
 
     all_limits = sorted(all_limits)
     all_exts = sorted(all_exts)
@@ -220,76 +232,107 @@ def report_opengl_index(request):
         'all_exts': all_exts,
         'all_devices': all_devices,
         'ext_devices': ext_devices,
+        'num_users': num_users,
         'ext_versions': userreport.gl.glext_versions,
     })
 
 def report_opengl_feature(request, feature):
-    reports = get_hwdetect_reports()
-
     all_values = set()
+    usercounts = {}
     values = {}
+
+    cursor = connection.cursor()
+
     is_extension = False
-
-    for report in reports:
-        json = report.data_json()
-        if json is None:
-            continue
-
-        device = report.gl_device_identifier()
-        exts = report.gl_extensions()
-        limits = hashabledict(report.gl_limits())
-
-        val = None
-        if feature in exts:
-            val = True
-            is_extension = True
-        elif feature in limits:
-            val = limits[feature]
-        all_values.add(val)
-
-        values.setdefault(val, {}).setdefault(hashabledict({'vendor': json['GL_VENDOR'], 'renderer': report.gl_renderer(), 'os': report.os(), 'device': device}), set()).add(report.gl_driver())
-
-    if values.keys() == [None]:
-        raise Http404
+    if re.search(r'[a-z]', feature):
+        is_extension = True
 
     if is_extension:
-        values = {
-            'true': values.get(True, {}),
-            'false': values.get(None, {}),
-        }
+        cursor.execute('''
+            SELECT vendor, renderer, os, driver, device_name, SUM(usercount),
+                (SELECT 1 FROM userreport_graphicsextension e WHERE e.name = %s AND e.device_id = d.id) AS val
+            FROM userreport_graphicsdevice d
+            GROUP BY vendor, renderer, os, driver, device_name, val
+        ''', [feature])
+
+        for vendor, renderer, os, driver, device_name, usercount, val in cursor:
+            val = 'true' if val else 'false'
+            all_values.add(val)
+            usercounts[val] = usercounts.get(val, 0) + usercount
+            v = values.setdefault(val, {}).setdefault(hashabledict({
+                'vendor': vendor,
+                'renderer': renderer,
+                'os': os,
+                'device': device_name
+            }), {'usercount': 0, 'drivers': set()})
+            v['usercount'] += usercount
+            v['drivers'].add(driver)
+
+    else:
+        cursor.execute('''
+            SELECT value, vendor, renderer, os, driver, device_name, usercount
+            FROM userreport_graphicslimit l
+            JOIN userreport_graphicsdevice d
+                ON l.device_id = d.id
+            WHERE name = %s
+        ''', [feature])
+
+        for val, vendor, renderer, os, driver, device_name, usercount in cursor:
+            # Convert to int/float if possible, for better sorting
+            try: val = int(val)
+            except ValueError:
+                try: val = float(val)
+                except ValueError: pass
+
+            all_values.add(val)
+            usercounts[val] = usercounts.get(val, 0) + usercount
+            v = values.setdefault(val, {}).setdefault(hashabledict({
+                'vendor': vendor,
+                'renderer': renderer,
+                'os': os,
+                'device': device_name
+            }), {'usercount': 0, 'drivers': set()})
+            v['usercount'] += usercount
+            v['drivers'].add(driver)
+
+    if values.keys() == [] or values.keys() == ['false']:
+        raise Http404
+
+    num_users = sum(usercounts.values())
 
     return render_to_response('reports/opengl_feature.html', {
         'feature': feature,
         'all_values': all_values,
         'values': values,
         'is_extension': is_extension,
+        'usercounts': usercounts,
+        'num_users': num_users,
     })
 
 def report_opengl_devices(request, selected):
-    reports = get_hwdetect_reports()
+    cursor = connection.cursor()
+    cursor.execute('''
+        SELECT DISTINCT device_name
+        FROM userreport_graphicsdevice
+    ''')
+    all_devices = set(n for (n,) in cursor.fetchall())
 
     all_limits = set()
     all_exts = set()
-    all_devices = set()
     devices = {}
+    gl_renderers = set()
 
+    reports = GraphicsDevice.objects.filter(device_name__in = selected)
     for report in reports:
-        json = report.data_json()
-        if json is None:
-            continue
-
-        device = report.gl_device_identifier()
-        all_devices.add(device)
-        if device not in selected:
-            continue
-
-        exts = report.gl_extensions()
+        exts = frozenset(e.name for e in report.graphicsextension_set.all())
         all_exts |= exts
 
-        limits = report.gl_limits()
+        limits = dict((l.name, l.value) for l in report.graphicslimit_set.all())
         all_limits |= set(limits.keys())
 
-        devices.setdefault(hashabledict({'device': report.gl_device_identifier(), 'os': report.os()}), {}).setdefault((hashabledict(limits), exts), set()).add(report.gl_driver())
+        devices.setdefault(hashabledict({'device': report.device_name, 'os': report.os}), {}).setdefault((hashabledict(limits), exts), set()).add(report.driver)
+
+        gl_renderers.add(report.renderer)
 
     if len(selected) == 1 and len(devices) == 0:
         raise Http404
@@ -309,6 +352,7 @@ def report_opengl_devices(request, selected):
         'all_exts': all_exts,
         'all_devices': all_devices,
         'devices': distinct_devices,
+        'gl_renderers': gl_renderers,
     })
 
 def report_opengl_device(request, device):
@@ -316,3 +360,55 @@ def report_opengl_device(request, device):
 
 def report_opengl_device_compare(request):
     return report_opengl_devices(request, request.GET.getlist('d'))
+
+
+
+def report_usercount(request):
+    reports = UserReport.objects.raw('''
+        SELECT id, upload_date, user_id_hash
+        FROM userreport_userreport
+        ORDER BY upload_date
+    ''')
+
+    users_by_date = {}
+
+    for report in reports:
+        t = report.upload_date.date() # group by day
+        users_by_date.setdefault(t, set()).add(report.user_id_hash)
+
+    seen_users = set()
+    data_scatter = ([], [], [])
+    for date,users in sorted(users_by_date.items()):
+        data_scatter[0].append(date)
+        data_scatter[1].append(len(users))
+        data_scatter[2].append(len(users - seen_users))
+        seen_users |= users
+
+    from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+    from matplotlib.figure import Figure
+    from matplotlib.dates import DateFormatter
+    import matplotlib.artist
+
+    fig = Figure(figsize=(12,6))
+
+    ax = fig.add_subplot(111)
+    fig.subplots_adjust(left = 0.08, right = 0.95, top = 0.95, bottom = 0.2)
+
+    ax.plot(data_scatter[0], data_scatter[1], marker='o')
+    ax.plot(data_scatter[0], data_scatter[2], marker='o')
+
+    ax.legend(('Total users', 'New users'), 'upper left', frameon=False)
+    matplotlib.artist.setp(ax.get_legend().get_texts(), fontsize='small')
+
+    ax.set_ylabel('Number of users per day')
+
+    for label in ax.get_xticklabels():
+        label.set_rotation(90)
+        label.set_fontsize(9)
+
+    ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
+
+    canvas = FigureCanvas(fig)
+    response = HttpResponse(content_type = 'image/png')
+    canvas.print_png(response, dpi=80)
+    return response

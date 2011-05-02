@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>0 A.D. report service</title>
+<style>
+body {
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+b {
+    color: red;
+}
+</style>
+
+<p>(<a href="{% url userreport.views.report_opengl_index %}">Back to index page.</a>)</p>
+
+<p>The <a href="{% url userreport.views.report_opengl_json %}">JSON data</a> currently
+has the format shown below.</p>
+
+<p>Each entry in the outer array is a single distinct set of device features
+(array of <code>"extensions"</code> plus hash of implementation-dependent <code>"limits"</code>).</p>
+
+<p>Each feature set is associated with an array of <code>"devices"</code>.
+For each of those devices, we have received a report containing that particular feature set;
+this is effectively just a compression mechanism so we don't have to duplicate the entire
+feature set description when dozens of devices have identical features.</p>
+
+<p>Each device has an <code>"os"</code> (<code>"Windows"</code>, <code>"Linux"</code>, <code>"OS X"</code>),
+a <code>"renderer"</code> (from <code>GL_RENDERER</code>),
+a <code>"vendor"</code> (from <code>GL_VENDOR</code>),
+and a <code>"driver"</code> (typically derived from the appropriate DLL on Windows,
+or sometimes a list of lots of DLLs if we can't figure out which is appropriate,
+or derived from the full <code>GL_VERSION</code> string on Linux).</p>
+
+<pre>
+[
+ {
+  "devices": [
+   {
+    "driver": "6.14.10.8494",
+    "os": "Windows",
+    "renderer": "AMD 760G",
+    "vendor": "ATI Technologies Inc."
+   }
+  ],
+  "extensions": [
+   "GL_AMD_performance_monitor",
+   <b>...</b>
+   "WGL_EXT_swap_control"
+  ],
+  "limits": {
+   "GL_ALIASED_LINE_WIDTH_RANGE[0]": "1",
+   <b>...</b>
+   "GL_VERTEX_PROGRAM_ARB.GL_MAX_PROGRAM_TEMPORARIES_ARB": "160"
+  }
+ },
+ {
+  "devices": [
+   {
+    "driver": "6.14.10.10057",
+    "os": "Windows",
+    "renderer": "AMD M880G with ATI Mobility Radeon HD 4200",
+    "vendor": "ATI Technologies Inc."
+   },
+   {
+    "driver": "6.14.10.10179",
+    "os": "Windows",
+    "renderer": "AMD M880G with ATI Mobility Radeon HD 4250",
+    "vendor": "ATI Technologies Inc."
+   },
+   {
+    "driver": "3.3.10188",
+    "os": "Linux",
+    "renderer": "ATI Mobility Radeon HD 3400 Series",
+    "vendor": "ATI Technologies Inc."
+   },
+   {
+    "driver": "6.14.10.10151",
+    "os": "Windows",
+    "renderer": "ATI Mobility Radeon HD 3400 Series",
+    "vendor": "ATI Technologies Inc."
+   },
+   <b>...</b>
+  ],
+  "extensions": [
+   "GL_AMDX_debug_output",
+   <b>...</b>
+   "WGL_EXT_swap_control"
+  ],
+  "limits": {
+   "GL_ALIASED_LINE_WIDTH_RANGE[0]": "1",
+   <b>...</b>
+   "GL_VERTEX_PROGRAM_ARB.GL_MAX_PROGRAM_TEMPORARIES_ARB": "160"
+  }
+ },
+ <b>...</b>
+}
+</pre>
+

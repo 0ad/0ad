@@ -1,4 +1,4 @@
-from userreport.models import UserReport
+from userreport.models import UserReport, GraphicsDevice, GraphicsExtension, GraphicsLimit
 from django.contrib import admin
 
 class UserReportAdmin(admin.ModelAdmin):
@@ -11,7 +11,20 @@ class UserReportAdmin(admin.ModelAdmin):
     ]
     list_display = ('uploader', 'user_id_hash', 'data_type', 'data_version', 'upload_date', 'generation_date')
     list_filter = ['upload_date', 'generation_date', 'data_type']
-    search_fields = ['=uploader', '=user_id_hash']
+    search_fields = ['=uploader', '=user_id_hash', 'data']
     date_hierarchy = 'upload_date'
 
+class GraphicsDeviceAdmin(admin.ModelAdmin):
+    pass
+
+class GraphicsExtensionAdmin(admin.ModelAdmin):
+    pass
+
+class GraphicsLimitAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(UserReport, UserReportAdmin)
+admin.site.register(GraphicsDevice, GraphicsDeviceAdmin)
+admin.site.register(GraphicsExtension, GraphicsExtensionAdmin)
+admin.site.register(GraphicsLimit, GraphicsLimitAdmin)
+

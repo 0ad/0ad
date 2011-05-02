@@ -33,6 +33,15 @@ class UserReport(models.Model):
                 self.cached_json = None
         return self.cached_json
 
+    def data_json_nocache(self):
+        try:
+            return simplejson.loads(self.data)
+        except:
+            return None
+
+    def clear_cache(self):
+        delattr(self, 'cached_json')
+
     def downcast(self):
         if self.data_type == 'hwdetect':
             return UserReport_hwdetect.objects.get(id = self.id)
@@ -62,15 +71,16 @@ class UserReport_hwdetect(UserReport):
             return None
         # The renderer string should typically be interpreted as UTF-8
         try:
-            return json['GL_RENDERER'].encode('iso-8859-1').decode('utf-8')
+            return json['GL_RENDERER'].encode('iso-8859-1').decode('utf-8').strip()
         except UnicodeError:
-            return json['GL_RENDERER']
+            return json['GL_RENDERER'].strip()
 
     def gl_extensions(self):
         json = self.data_json()
         if json is None or 'GL_EXTENSIONS' not in json:
             return None
-        return frozenset(json['GL_EXTENSIONS'].strip().split(' '))
+        vals = re.split(r'\s+', json['GL_EXTENSIONS'])
+        return frozenset(v for v in vals if len(v)) # skip empty strings (e.g. no extensions at all, or leading/trailing space)
 
     def gl_limits(self):
         json = self.data_json()
@@ -91,6 +101,10 @@ class UserReport_hwdetect(UserReport):
             # Hide some values that got deleted from the report in r8953, for consistency
             if k in ('GL_MAX_COLOR_MATRIX_STACK_DEPTH', 'GL_FRAGMENT_PROGRAM_ARB.GL_MAX_PROGRAM_ADDRESS_REGISTERS_ARB', 'GL_FRAGMENT_PROGRAM_ARB.GL_MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB'):
                 continue
+            # Hide some pixel depth values that are not really correlated with device
+            if k in ('GL_RED_BITS', 'GL_GREEN_BITS', 'GL_BLUE_BITS', 'GL_ALPHA_BITS', 'GL_INDEX_BITS', 'GL_DEPTH_BITS', 'GL_STENCIL_BITS',
+                     'GL_ACCUM_RED_BITS', 'GL_ACCUM_GREEN_BITS', 'GL_ACCUM_BLUE_BITS', 'GL_ACCUM_ALPHA_BITS'):
+                continue
             limits[k] = v
         return limits
 
@@ -98,17 +112,26 @@ class UserReport_hwdetect(UserReport):
     # (skipping boring hardware/driver details)
     def gl_device_identifier(self):
         r = self.gl_renderer()
-        m = re.match(r'^(?:ATI |Mesa DRI )?(.*?)\s*(?:GEM 20100330 DEVELOPMENT|GEM 20091221 2009Q4|20090101|Series)?\s*(?:x86|/AGP|/PCI|/MMX|/MMX\+|/SSE|/SSE2|/3DNOW!|/3DNow!\+)*(?: TCL| NO-TCL)?(?: DRI2)?$', r)
+        m = re.match(r'^(?:AMD |ATI |NVIDIA |Mesa DRI )?(.*?)\s*(?:GEM 20100328 2010Q1|GEM 20100330 DEVELOPMENT|GEM 20091221 2009Q4|20090101|Series)?\s*(?:x86|/AGP|/PCI|/MMX|/MMX\+|/SSE|/SSE2|/3DNOW!|/3DNow!|/3DNow!\+)*(?: TCL| NO-TCL)?(?: DRI2)?(?: \(Microsoft Corporation - WDDM\))?(?: OpenGL Engine)?\s*$', r)
         if m:
             r = m.group(1)
-        return r
+        return r.strip()
+
+    def gl_vendor(self):
+        json = self.data_json()
+        return json['GL_VENDOR'].strip()
 
     # Construct a nice string identifying the driver
     def gl_driver(self):
         json = self.data_json()
         gfx_drv_ver = json['gfx_drv_ver']
 
-        # Try the Mesa style first
+        # Try the Mesa git style first
+        m = re.match(r'^OpenGL \d+\.\d+(?:\.\d+)? (Mesa \d+\.\d+)-devel \(git-([a-f0-9]+)', gfx_drv_ver)
+        if m:
+            return '%s-git-%s' % (m.group(1), m.group(2))
+
+        # Try the normal Mesa style
         m = re.match(r'^OpenGL \d+\.\d+(?:\.\d+)? (Mesa .*)$', gfx_drv_ver)
         if m:
             return m.group(1)
@@ -119,9 +142,14 @@ class UserReport_hwdetect(UserReport):
             return m.group(1)
 
         # Try the ATI Catalyst Linux style
-        m = re.match(r'^OpenGL (\d+\.\d+\.\d+) Compatibility Profile Context$', gfx_drv_ver)
+        m = re.match(r'^OpenGL (\d+\.\d+\.\d+) Compatibility Profile Context(?: FireGL)?$', gfx_drv_ver)
         if m:
             return m.group(1)
+
+        # Try the non-direct-rendering ATI Catalyst Linux style
+        m = re.match(r'^OpenGL 1\.4 \((\d+\.\d+\.\d+) Compatibility Profile Context(?: FireGL)?\)$', gfx_drv_ver)
+        if m:
+            return '%s (indirect)' % m.group(1)
 
         # Try to guess the relevant Windows driver
         # (These are the ones listed in lib/sysdep/os/win/wgfx.cpp)
@@ -138,6 +166,10 @@ class UserReport_hwdetect(UserReport):
         if json['GL_VENDOR'] in ('ATI Technologies Inc.', 'Advanced Micro Devices, Inc.'):
             m = re.search(r'atioglxx.dll \((.*?)\)', gfx_drv_ver)
             if m: return m.group(1)
+            m = re.search(r'atioglx2.dll \((.*?)\)', gfx_drv_ver)
+            if m: return m.group(1)
+            m = re.search(r'atioglaa.dll \((.*?)\)', gfx_drv_ver)
+            if m: return m.group(1)
 
         if json['GL_VENDOR'] == 'Intel':
             # Assume 64-bit takes precedence
@@ -148,5 +180,28 @@ class UserReport_hwdetect(UserReport):
             # Legacy 32-bit
             m = re.search(r'iglicd32.dll \((.*?)\)', gfx_drv_ver)
             if m: return m.group(1)
+            m = re.search(r'ialmgicd32.dll \((.*?)\)', gfx_drv_ver)
+            if m: return m.group(1)
+            m = re.search(r'ialmgicd.dll \((.*?)\)', gfx_drv_ver)
+            if m: return m.group(1)
 
         return gfx_drv_ver
+
+
+class GraphicsDevice(models.Model):
+    device_name = models.CharField(max_length = 128, db_index = True)
+    vendor = models.CharField(max_length = 64)
+    renderer = models.CharField(max_length = 128)
+    os = models.CharField(max_length = 16)
+    driver = models.CharField(max_length = 128)
+    usercount = models.IntegerField()
+
+class GraphicsExtension(models.Model):
+    device = models.ForeignKey(GraphicsDevice)
+    name = models.CharField(max_length = 128, db_index = True)
+
+class GraphicsLimit(models.Model):
+    device = models.ForeignKey(GraphicsDevice)
+    name = models.CharField(max_length = 128, db_index = True)
+    value = models.CharField(max_length = 64)
+

@@ -8,11 +8,19 @@ td.true { background: #3f3; }
 td.false { background: #f33; }
 td.true.alt { background: #2e2; }
 td.false.alt { background: #e22; }
+td.changed { font-weight: bold; }
 
-.device-status ul {
+.devices {
+    vertical-align: top;
+}
+
+.devices ul {
     margin: 0;
     padding: 0;
-    padding-left: 2em;
+    list-style-type: none;
+    font-weight: normal;
+    font-size: smaller;
+    white-space: pre;
 }
 {% endblock %}
 
@@ -28,26 +36,30 @@ OpenGL capabilities report
 
 <p>(<a href="{% url userreport.views.report_opengl_index %}">Back to index page.</a>)</p>
 
-<p>The table here shows the features reported for the following devices:</p>
+<p>The table here shows the features reported for devices with the following GL_RENDERER strings:</p>
 <ul>
-{% for device in selected %}<li>{{ device }}{% endfor %}
+{% for r in gl_renderers|sort %}<li>{{ r }}</li>
+{% endfor %}
 </ul>
 <p>Different driver versions may have different feature sets,
 and we may have conflicting reports from the same driver version.
-There is a column for each distinct set of reported features.</p>
+There is a column for each distinct set of reported features.
+The column heading gives the short device name, and the set of
+driver versions with that feature set.</p>
 
-<p>Green cells indicate supported extensions; red cells indicate non-supported extensions.</p>
+<p>Green cells indicate supported extensions; red cells indicate non-supported extensions.
+Cells are marked with bold when their value differs from the previous cell in the same row.</p>
+
 
 <table class=device-status>
   <tr>
     <td>
 
 {% for ext in all_exts %}
-
   {% if not forloop.counter0|mod:30 %}
     <tr><td>
     {% for device in devices %}
-      <th{% safe_cycle ' class=alt' '' %}>
+      <th class="devices{% safe_cycle ' alt' '' %}">
         {{ device.0.device }} ({{ device.0.os }}):
         <ul>{% for driver in device.1 %}<li>{{ driver }}{% endfor %}</ul>
     {% endfor %}
@@ -64,7 +76,7 @@ There is a column for each distinct set of reported features.</p>
   {% if not forloop.counter|mod:30 %}
     <tr><td>
     {% for device in devices %}
-      <th{% safe_cycle ' class=alt' '' %}>
+      <th class="devices{% safe_cycle ' alt' '' %}">
         {{ device.0.device }} ({{ device.0.os }}):
         <ul>{% for driver in device.1 %}<li>{{ driver }}{% endfor %}</ul>
     {% endfor %}
@@ -73,7 +85,7 @@ There is a column for each distinct set of reported features.</p>
   <tr title="{{ limit }}">
     <th><nobr><a href="{% url userreport.views.report_opengl_feature limit %}">{{ limit|prettify_gl_title }}</a></nobr>
     {% for device in devices %}
-      <td{% safe_cycle ' class=alt' '' %}>{{ device.2.0|dictget:limit }}
+      <td class="{% safe_cycle 'alt' '' %}{% ifchanged device.2.0|dictget:limit %}{% if not forloop.first %} changed{% endif %}{% endifchanged %}">{{ device.2.0|dictget:limit }}
     {% endfor %}
 {% endfor %}
 </table>

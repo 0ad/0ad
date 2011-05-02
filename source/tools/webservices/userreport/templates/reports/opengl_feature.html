@@ -24,6 +24,22 @@ tr.head {
     background: #ddd;
 }
 
+tr.true {
+    background: #f6fff6;
+}
+
+tr.true.alt {
+    background: #f0fff0;
+}
+
+tr.false {
+    background: #fff6f6;
+}
+
+tr.false.alt {
+    background: #fff0f0;
+}
+
 tr.data:hover {
     background: #ddd;
 }
@@ -47,58 +63,81 @@ OpenGL capabilities report: {{ feature }}
 
   <table class=support-status>
 
+{% if values.true %}
     <tr>
-      <td colspan=4><h2>Supported by:</h2>
+      <td colspan=4><h2>Supported by
+        {{ usercounts.true }} user{{ usercounts.true|pluralize }}:</h2>
 
     <tr class=head>
       <th>Vendor
       <th>Renderer
+      <th>Users
       <th>OS
       <th>Driver versions
 
 {% for device in values.true|sorteddeviceitems %}
-<tr class="data{% safe_cycle '' ' alt'%}">
+<tr class="data true{% safe_cycle '' ' alt'%}">
 <td>{{ device.0.vendor }}
 <td class=r><a href="{% url userreport.views.report_opengl_device device.0.device %}">{{ device.0.renderer }}</a>
+<td>{{ device.1.usercount }}
 <td>{{ device.0.os }}
 <td><ul>
-{% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
+{% for driver in device.1.drivers|sort %}<li>{{ driver }}{% endfor %}
 </ul>
 {% endfor %}
+{% endif %}
 
+{% if values.false %}
     <tr>
-      <td colspan=4><h2>Not supported by:</h2>
+      <td colspan=4><h2>Not supported by
+        {{ usercounts.false }} user{{ usercounts.false|pluralize }}:</h2>
 
     <tr class=head>
       <th>Vendor
       <th>Renderer
+      <th>Users
       <th>OS
       <th>Driver versions
 
 {% for device in values.false|sorteddeviceitems %}
-<tr class="data{% safe_cycle '' ' alt'%}">
+<tr class="data false{% safe_cycle '' ' alt'%}">
 <td>{{ device.0.vendor }}
 <td class=r><a href="{% url userreport.views.report_opengl_device device.0.device %}">{{ device.0.renderer }}</a>
+<td>{{ device.1.usercount }}
 <td>{{ device.0.os }}
 <td><ul>
-{% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
+{% for driver in device.1.drivers|sort %}<li>{{ driver }}{% endfor %}
 </ul>
 {% endfor %}
+{% endif %}
 
   </table>
 
 {% else %}
 
   <table class=support-status>
+    <tr>
+      <th>Value
+      <th>Number of users
+  {% for val in values.keys|sortreversed %}
+    <tr>
+      <td><a href="#{{ val|urlencode }}">{{ val|default_if_none:"Unsupported/unknown" }}</a>
+      <td>{{ usercounts|dictget:val }} ({% widthratio usercounts|dictget:val num_users 100 %}%)
+  {% endfor %}
+  </table>
+
+  <table class=support-status>
 
   {% for val in values.keys|sortreversed %}
 
     <tr>
-      <td colspan=4><h2>Value: {{ val|default_if_none:"Unsupported/unknown" }}</h2>
+      <td colspan=4 id="{{ val }}"><h2>Value "{{ val|default_if_none:"Unsupported/unknown" }}"
+        ({{ usercounts|dictget:val }} user{{ usercounts|dictget:val|pluralize }}):</h2>
 
     <tr class=head>
       <th>Vendor
       <th>Renderer
+      <th>Users
       <th>OS
       <th>Driver versions
 
@@ -106,9 +145,10 @@ OpenGL capabilities report: {{ feature }}
 <tr class="data{% safe_cycle '' ' alt'%}">
 <td>{{ device.0.vendor }}
 <td class=r><a href="{% url userreport.views.report_opengl_device device.0.device %}">{{ device.0.renderer }}</a>
+<td>{{ device.1.usercount }}
 <td>{{ device.0.os }}
 <td><ul>
-{% for driver in device.1|sort %}<li>{{ driver }}{% endfor %}
+{% for driver in device.1.drivers|sort %}<li>{{ driver }}{% endfor %}
 </ul>
 {% endfor %}
 

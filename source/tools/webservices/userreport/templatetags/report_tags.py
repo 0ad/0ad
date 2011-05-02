@@ -37,15 +37,18 @@ def prettify_json(value):
 @stringfilter
 def glext_spec_link(value):
     c = value.split('_', 2)
+    if len(c) < 2: return ''
     return 'http://www.opengl.org/registry/specs/%s/%s.txt' % (c[1], c[2])
 
 @register.filter
 @stringfilter
 def prettify_gl_title(value):
+    if value[-4:] in ('_ARB', '_EXT'):
+        value = value[:-4]
     if value.startswith('GL_FRAGMENT_PROGRAM_ARB.'):
-        return value[24:] + ' (fragment)'
+        value = value[24:] + ' (fragment)'
     if value.startswith('GL_VERTEX_PROGRAM_ARB.'):
-        return value[22:] + ' (vertex)'
+        value = value[22:] + ' (vertex)'
     return value
 
 @register.filter
