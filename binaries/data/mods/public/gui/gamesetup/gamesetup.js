@@ -114,17 +114,6 @@ function initMain()
 	// Setup controls for host only
 	if (g_IsController)
 	{
-		// Set a default map
-		// TODO: This should be remembered from the last session
-		if (!g_IsNetworked)
-		{
-			g_GameAttributes.map = "Death Canyon";
-		}
-		else
-		{
-			g_GameAttributes.map = "Median Oasis";
-		}
-		
 		mapTypes.selected = 0;
 		mapFilters.selected = 0;
 		
@@ -581,8 +570,8 @@ function selectMapType(type)
 	}
 
 	// Reset game attributes
+	g_GameAttributes.map = "";
 	g_GameAttributes.mapType = type;
-	g_GameAttributes.map = undefined;
 
 	// Clear old map data
 	g_MapData = {};
@@ -591,6 +580,9 @@ function selectMapType(type)
 	switch (g_GameAttributes.mapType)
 	{
 	case "scenario":
+		// Set a default map
+		// TODO: This should be remembered from the last session
+		g_GameAttributes.map = (g_IsNetworked ? "Median Oasis" : "Death Canyon");
 		g_GameAttributes.mapPath = "maps/scenarios/";
 		break;
 		
