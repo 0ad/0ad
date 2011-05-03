@@ -2,28 +2,29 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.05882" g="1.05882" b="1.05882"/>
+		<SunColour r="0.858862" g="0.805461" b="0.671959"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="0.374291"/>
-		<TerrainAmbientColour r="0.341176" g="0.403922" b="0.466667"/>
+		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>18.1508</Height>
-				<Shininess>250</Shininess>
+				<Shininess>0</Shininess>
 				<Waviness>7.96875</Waviness>
-				<Murkiness>0.508789</Murkiness>
-				<Tint r="0.447059" g="0.537255" b="0.729412"/>
-				<ReflectionTint r="0.447059" g="0.537255" b="0.729412"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Murkiness>0.501953</Murkiness>
+				<Tint r="0" g="1" b="1"/>
+				<ReflectionTint r="0" g="1" b="1"/>
+				<ReflectionTintStrength>0.101563</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="222.824" y="133.042" z="57.8945"/>
+		<Position x="243.096" y="118.383" z="55.5639"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -39,7 +40,8 @@
       "Civ": "rome"
     }
   ],
-  "GameType": "endless"
+  "GameType": "endless",
+  "Keywords": []
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -2290,7 +2292,7 @@
 		<Entity uid="493">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="223.29421" z="359.9658"/>
+			<Position x="219.55251" z="359.25956"/>
 			<Orientation y="2.48816"/>
 		</Entity>
 		<Entity uid="494">
@@ -2302,7 +2304,7 @@
 		<Entity uid="495">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="199.52076" z="364.19776"/>
+			<Position x="196.27343" z="360.25116"/>
 			<Orientation y="0.64908"/>
 		</Entity>
 		<Entity uid="496">
@@ -2314,7 +2316,7 @@
 		<Entity uid="497">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="202.67673" z="374.21564"/>
+			<Position x="201.09662" z="377.46296"/>
 			<Orientation y="2.55176"/>
 		</Entity>
 		<Entity uid="498">
@@ -2326,8 +2328,8 @@
 		<Entity uid="499">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="206.55736" z="363.23523"/>
-			<Orientation y="2.35621"/>
+			<Position x="209.7962" z="353.7107"/>
+			<Orientation y="-0.92357"/>
 		</Entity>
 		<Entity uid="500">
 			<Template>gaia/flora_tree_pine</Template>
@@ -2446,7 +2448,7 @@
 		<Entity uid="519">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="222.04661" z="355.1356"/>
+			<Position x="217.85341" z="351.857"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="520">
@@ -2470,13 +2472,13 @@
 		<Entity uid="523">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="204.03525" z="369.40302"/>
+			<Position x="201.56266" z="364.27149"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="524">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="196.32338" z="376.70997"/>
+			<Position x="191.01319" z="384.43604"/>
 			<Orientation y="0.68271"/>
 		</Entity>
 		<Entity uid="525">
@@ -2542,7 +2544,7 @@
 		<Entity uid="535">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="196.89856" z="390.71576"/>
+			<Position x="195.01375" z="385.08735"/>
 			<Orientation y="3.04134"/>
 		</Entity>
 		<Entity uid="536">
