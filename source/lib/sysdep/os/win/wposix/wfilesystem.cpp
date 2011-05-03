@@ -156,8 +156,10 @@ struct wdirent* wreaddir(WDIR* d)
 		{
 			if(!FindNextFileW(d->hFind, &d->findData))
 			{
-				if(GetLastError() != ERROR_NO_MORE_FILES)	// an actual error occurred
-					WARN_IF_ERR(StatusFromWin());
+				if(GetLastError() == ERROR_NO_MORE_FILES)
+					SetLastError(0);
+				else	// unexpected error
+					DEBUG_WARN_ERR(StatusFromWin());
 				return 0;	// end of directory or error
 			}
 		}

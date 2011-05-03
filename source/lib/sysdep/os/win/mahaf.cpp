@@ -251,7 +251,11 @@ static void StartDriver(const OsPath& driverPathname)
 {
 	const SC_HANDLE hSCM = OpenServiceControlManager();
 	if(!hSCM)
+	{
+		ENSURE(GetLastError() == ERROR_ACCESS_DENIED);
+		SetLastError(0);
 		return;
+	}
 
 	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
 
@@ -328,6 +332,8 @@ static OsPath DriverPathname()
 
 static Status Init()
 {
+	WinScopedPreserveLastError s;
+
 	if(wutil_HasCommandLineArgument(L"-wNoMahaf"))
 		return ERR::NOT_SUPPORTED;	// NOWARN
 
@@ -340,7 +346,11 @@ static Status Init()
 		const DWORD shareMode = 0;
 		hAken = CreateFileW(L"\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 		if(hAken == INVALID_HANDLE_VALUE)
+		{
+			ENSURE(GetLastError() == ERROR_FILE_NOT_FOUND);
+			SetLastError(0);
 			return ERR::INVALID_HANDLE;	// NOWARN (happens often due to security restrictions)
+		}
 	}
 
 	return INFO::OK;

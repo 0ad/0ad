@@ -30,7 +30,7 @@
 #include <process.h>	// _beginthreadex
 
 #include "lib/sysdep/cpu.h"
-#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/acpi.h"
 #include "lib/bits.h"
@@ -261,6 +261,8 @@ static unsigned __stdcall UpdateThread(void* UNUSED(data))
 
 static inline Status InitUpdateThread()
 {
+	WinScopedPreserveLastError s;	// CreateEvent
+
 	// make sure our interval isn't too long
 	// (counterBits can be 64 => Bit() would overflow => calculate period/2)
 	const double period_2 = Bit<u64>(counterBits-1) / nominalFrequency;

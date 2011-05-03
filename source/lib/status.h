@@ -251,7 +251,7 @@ extern Status StatusFromErrno();
 	{\
 		const Status status_ = (expression);\
 		if(status_ < 0)\
-		DEBUG_WARN_ERR(status_);\
+			DEBUG_WARN_ERR(status_);\
 	}\
 	while(0)
 
@@ -375,6 +375,7 @@ namespace ERR
 	const Status REENTERED = -100012;
 	const Status CORRUPTED = -100013;
 	const Status VERSION   = -100014;
+	const Status ABORTED   = -100015;
 
 	// function arguments
 	const Status INVALID_PARAM  = -100020;

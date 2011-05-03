@@ -145,7 +145,10 @@ Status StatusFromWin()
 	case ERROR_PROC_NOT_FOUND:
 		return ERR::NO_SYS;
 	case ERROR_BUSY:
+	case WAIT_TIMEOUT:
 		return ERR::AGAIN;
+	case ERROR_OPERATION_ABORTED:
+		return ERR::ABORTED;
 	case ERROR_FILE_NOT_FOUND:
 		return ERR::VFS_FILE_NOT_FOUND;
 	case ERROR_PATH_NOT_FOUND:
@@ -289,6 +292,8 @@ static void GetDirectories()
 		wchar_t path[MAX_PATH];	// mandated by SHGetFolderPathW
 		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
 		ENSURE(SUCCEEDED(ret));
+		if(GetLastError() == ERROR_NO_TOKEN)	// avoid polluting last error
+			SetLastError(0);
 		appdataPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
 	}
 }
@@ -340,6 +345,14 @@ static void FreeUser32Dll()
 
 static void EnableLowFragmentationHeap()
 {
+	if(IsDebuggerPresent())
+	{
+		// and the debug heap isn't explicitly disabled,
+		char* var = getenv("_NO_DEBUG_HEAP");
+		if(!var || var[0] != '1')
+			return;	// we can't enable the LFH
+	}
+
 #if WINVER >= 0x0501
 	WUTIL_FUNC(pHeapSetInformation, BOOL, (HANDLE, HEAP_INFORMATION_CLASS, void*, size_t));
 	WUTIL_IMPORT_KERNEL32(HeapSetInformation, pHeapSetInformation);

@@ -1485,6 +1485,8 @@ static void RedirectStdout()
 	if(wutil_IsValidHandle(GetStdHandle(STD_OUTPUT_HANDLE)))
 		return;
 
+	WinScopedPreserveLastError s;	// ChangeExtension
+
 	// this code may be included in multiple executables sharing the same
 	// directory, so include the executable's name in the filename. use its
 	// full path since the current directory is unreliable.
@@ -1495,9 +1497,12 @@ static void RedirectStdout()
 	// that means stdout isn't associated with a lowio handle; _close is
  	// called with fd = -1. oh well, there's nothing we can do.
  	FILE* f = 0;
-	// (return value ignored - it indicates 'file already exists' even
-	// if f is valid)
-	(void)_wfreopen_s(&f, OsString(pathname).c_str(), L"wt", stdout);
+	errno_t ret = _wfreopen_s(&f, OsString(pathname).c_str(), L"wt", stdout);
+	// (ignore return value - it might indicate 'file already exists' even
+	// if f is valid, which is what actually counts)
+	UNUSED2(ret);
+	if(GetLastError() == ERROR_ALREADY_EXISTS)
+		SetLastError(0);
 	// executable directory (probably Program Files) is read-only for
 	// non-Administrators. we can't pick another directory because
 	// ah_log_dir might not be valid until the app's init has run,

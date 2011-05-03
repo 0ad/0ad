@@ -390,6 +390,7 @@ Status sys_get_module_filename(void* addr, OsPath& pathname)
 
 OsPath sys_ExecutablePathname()
 {
+	WinScopedPreserveLastError s;
 	OsPath pathname;
 	ENSURE(GetModulePathname(0, pathname) == INFO::OK);
 	return pathname;

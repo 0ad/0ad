@@ -333,16 +333,12 @@ public:
 
 	Status Poll(DirWatchNotifications& notifications)
 	{
+POLL_AGAIN:
 		DWORD bytesTransferred; ULONG_PTR key; OVERLAPPED* ovl;
-		for(;;)	// skip notifications of canceled watches
-		{
-			const Status ret = PollCompletionPort(hIOCP, 0, bytesTransferred, key, ovl);
-			if(ret == INFO::OK)
-				break;
-			if(GetLastError() == ERROR_OPERATION_ABORTED)
-				continue;		// watch was canceled - ignore
-			return ret;
-		}
+		const Status ret = PollCompletionPort(hIOCP, 0, bytesTransferred, key, ovl);
+		if(ret == ERR::ABORTED)	// watch was canceled
+			goto POLL_AGAIN;
+		RETURN_STATUS_IF_ERR(ret);
 
 		DirWatchRequest* request = (DirWatchRequest*)key;
 		request->RetrieveNotifications(notifications);

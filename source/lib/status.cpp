@@ -130,6 +130,7 @@ STATUS_DEFINE(ERR, TIMED_OUT, L"Timed out", -1);
 STATUS_DEFINE(ERR, REENTERED, L"Single-call function was reentered", -1);
 STATUS_DEFINE(ERR, CORRUPTED, L"File/memory data is corrupted", -1);
 STATUS_DEFINE(ERR, VERSION,   L"Version mismatch", -1);
+STATUS_DEFINE(ERR, ABORTED,   L"Operation aborted", -1);
 
 STATUS_DEFINE(ERR, INVALID_PARAM, L"Invalid function argument", EINVAL);
 STATUS_DEFINE(ERR, INVALID_HANDLE, L"Invalid Handle (argument)", -1);
