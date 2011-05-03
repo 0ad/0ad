@@ -43,16 +43,16 @@
 #endif
 
 
-ERROR_ASSOCIATE(ERR::SYM_NO_STACK_FRAMES_FOUND, L"No stack frames found", -1);
-ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_STATIC, L"Value unretrievable (stored in external module)", -1);
-ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE, L"Value unretrievable", -1);
-ERROR_ASSOCIATE(ERR::SYM_TYPE_INFO_UNAVAILABLE, L"Error getting type_info", -1);
-ERROR_ASSOCIATE(ERR::SYM_INTERNAL_ERROR, L"Exception raised while processing a symbol", -1);
-ERROR_ASSOCIATE(ERR::SYM_UNSUPPORTED, L"Symbol type not (fully) supported", -1);
-ERROR_ASSOCIATE(ERR::SYM_CHILD_NOT_FOUND, L"Symbol does not have the given child", -1);
-ERROR_ASSOCIATE(ERR::SYM_NESTING_LIMIT, L"Symbol nesting too deep or infinite recursion", -1);
-ERROR_ASSOCIATE(ERR::SYM_SINGLE_SYMBOL_LIMIT, L"Symbol has produced too much output", -1);
-ERROR_ASSOCIATE(INFO::SYM_SUPPRESS_OUTPUT, L"Symbol was suppressed", -1);
+STATUS_DEFINE(ERR, SYM_NO_STACK_FRAMES_FOUND, L"No stack frames found", -1);
+STATUS_DEFINE(ERR, SYM_UNRETRIEVABLE_STATIC, L"Value unretrievable (stored in external module)", -1);
+STATUS_DEFINE(ERR, SYM_UNRETRIEVABLE, L"Value unretrievable", -1);
+STATUS_DEFINE(ERR, SYM_TYPE_INFO_UNAVAILABLE, L"Error getting type_info", -1);
+STATUS_DEFINE(ERR, SYM_INTERNAL_ERROR, L"Exception raised while processing a symbol", -1);
+STATUS_DEFINE(ERR, SYM_UNSUPPORTED, L"Symbol type not (fully) supported", -1);
+STATUS_DEFINE(ERR, SYM_CHILD_NOT_FOUND, L"Symbol does not have the given child", -1);
+STATUS_DEFINE(ERR, SYM_NESTING_LIMIT, L"Symbol nesting too deep or infinite recursion", -1);
+STATUS_DEFINE(ERR, SYM_SINGLE_SYMBOL_LIMIT, L"Symbol has produced too much output", -1);
+STATUS_DEFINE(INFO, SYM_SUPPRESS_OUTPUT, L"Symbol was suppressed", -1);
 
 
 // need to shoehorn printf-style variable params into
@@ -154,7 +154,7 @@ void debug_printf(const wchar_t* fmt, ...)
 
 //-----------------------------------------------------------------------------
 
-LibError debug_WriteCrashlog(const wchar_t* text)
+Status debug_WriteCrashlog(const wchar_t* text)
 {
 	// (avoid infinite recursion and/or reentering this function if it
 	// fails/reports an error)
@@ -284,7 +284,7 @@ fail:
 	}
 
 	// append stack trace
-	LibError ret = debug_DumpStack(writer.Position(), writer.CharsLeft(), context, lastFuncToSkip);
+	Status ret = debug_DumpStack(writer.Position(), writer.CharsLeft(), context, lastFuncToSkip);
 	if(ret == ERR::REENTERED)
 	{
 		if(!writer(
@@ -299,7 +299,7 @@ fail:
 		wchar_t description_buf[100] = {'?'};
 		if(!writer(
 			L"(error while dumping stack: %ls)",
-			error_description_r(ret, description_buf, ARRAY_SIZE(description_buf))
+			StatusDescription(ret, description_buf, ARRAY_SIZE(description_buf))
 		))
 			goto fail;
 	}
@@ -311,11 +311,11 @@ fail:
 	// append OS error (just in case it happens to be relevant -
 	// it's usually still set from unrelated operations)
 	wchar_t description_buf[100] = L"?";
-	LibError errno_equiv = LibError_from_errno(false);
+	Status errno_equiv = StatusFromErrno();	// NOWARN
 	if(errno_equiv != ERR::FAIL)	// meaningful translation
-		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
+		StatusDescription(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
 	wchar_t os_error[100] = L"?";
-	sys_error_description_r(0, os_error, ARRAY_SIZE(os_error));
+	sys_StatusDescription(0, os_error, ARRAY_SIZE(os_error));
 	if(!writer(
 		L"\r\n"
 		L"errno = %d (%ls)\r\n"
@@ -480,10 +480,10 @@ enum SkipStatus
 	INVALID, VALID, BUSY
 };
 static intptr_t skipStatus = INVALID;
-static LibError errorToSkip;
+static Status errorToSkip;
 static size_t numSkipped;
 
-void debug_SkipErrors(LibError err)
+void debug_SkipErrors(Status err)
 {
 	if(cpu_CAS(&skipStatus, INVALID, BUSY))
 	{
@@ -512,7 +512,7 @@ size_t debug_StopSkippingErrors()
 	}
 }
 
-static bool ShouldSkipError(LibError err)
+static bool ShouldSkipError(Status err)
 {
 	if(cpu_CAS(&skipStatus, VALID, BUSY))
 	{
@@ -526,7 +526,7 @@ static bool ShouldSkipError(LibError err)
 }
 
 
-ErrorReaction debug_OnError(LibError err, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
+ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
 {
 	if(ShouldSkipError(err))
 		return ER_CONTINUE;
@@ -534,8 +534,8 @@ ErrorReaction debug_OnError(LibError err, atomic_bool* suppress, const wchar_t* 
 	void* context = 0;
 	const wchar_t* lastFuncToSkip = L"debug_OnError";
 	wchar_t buf[400];
-	wchar_t err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
-	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %ld (%ls)", err, err_buf);
+	wchar_t err_buf[200]; StatusDescription(err, err_buf, ARRAY_SIZE(err_buf));
+	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %lld (%ls)", err, err_buf);
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
 

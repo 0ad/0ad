@@ -187,12 +187,12 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	return PSRETURN_OK;
 }
 
-/*static*/ LibError CShaderManager::ReloadChangedFileCB(void* param, const VfsPath& path)
+/*static*/ Status CShaderManager::ReloadChangedFileCB(void* param, const VfsPath& path)
 {
 	return static_cast<CShaderManager*>(param)->ReloadChangedFile(path);
 }
 
-LibError CShaderManager::ReloadChangedFile(const VfsPath& path)
+Status CShaderManager::ReloadChangedFile(const VfsPath& path)
 {
 	// Find all shaders using this file
 	HotloadFilesMap::iterator files = m_HotloadFiles.find(path);

@@ -375,7 +375,7 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 	CParamNode::LoadXMLString(out, xml.c_str());
 }
 
-static LibError AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+static Status AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 
@@ -392,7 +392,7 @@ static LibError AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(f
 	return INFO::OK;
 }
 
-static LibError AddActorToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+static Status AddActorToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
 
@@ -411,17 +411,17 @@ std::vector<std::string> CCmpTemplateManager::FindAllTemplates(bool includeActor
 
 	std::vector<std::string> templates;
 
-	LibError ok;
+	Status ok;
 
 	// Find all the normal entity templates first
 	ok = fs_util::ForEachFile(g_VFS, TEMPLATE_ROOT, AddToTemplates, (uintptr_t)&templates, L"*.xml", fs_util::DIR_RECURSIVE);
-	WARN_ERR(ok);
+	WARN_IF_ERR(ok);
 
 	if (includeActors)
 	{
 		// Add all the actors too
 		ok = fs_util::ForEachFile(g_VFS, ACTOR_ROOT, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", fs_util::DIR_RECURSIVE);
-		WARN_ERR(ok);
+		WARN_IF_ERR(ok);
 	}
 
 	return templates;

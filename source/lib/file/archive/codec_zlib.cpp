@@ -76,13 +76,13 @@ public:
 		return inSize;
 	}
 
-	virtual LibError Reset()
+	virtual Status Reset()
 	{
 		m_checksum = InitializeChecksum();
 		return INFO::OK;
 	}
 
-	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
+	virtual Status Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		const size_t transferSize = std::min(inSize, outSize);
 		memcpy(out, in, transferSize);
@@ -91,7 +91,7 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError Finish(u32& checksum, size_t& outProduced)
+	virtual Status Finish(u32& checksum, size_t& outProduced)
 	{
 		outProduced = 0;
 		checksum = m_checksum;
@@ -114,7 +114,7 @@ protected:
 		m_checksum = InitializeChecksum();
 	}
 
-	static LibError LibError_from_zlib(int zlib_ret)
+	static Status LibError_from_zlib(int zlib_ret)
 	{
 		switch(zlib_ret)
 		{
@@ -140,7 +140,7 @@ protected:
 
 	typedef int ZEXPORT (*ZLibFunc)(z_streamp strm, int flush);
 
-	LibError CallStreamFunc(ZLibFunc func, int flush, const u8* in, const size_t inSize, u8* out, const size_t outSize, size_t& inConsumed, size_t& outProduced)
+	Status CallStreamFunc(ZLibFunc func, int flush, const u8* in, const size_t inSize, u8* out, const size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		m_zs.next_in  = (Byte*)in;
 		m_zs.avail_in = (uInt)inSize;
@@ -184,14 +184,8 @@ public:
 		// note: with Z_BEST_COMPRESSION, 78% percent of
 		// archive builder CPU time is spent in ZLib, even though
 		// that is interleaved with IO; everything else is negligible.
-		// we therefore enable this only in final builds; during
-		// development, 1.5% bigger archives are definitely worth much
-		// faster build time.
-#if CONFIG_FINAL
-		const int level      = Z_BEST_COMPRESSION;
-#else
+		// we prefer faster speed at the cost of 1.5% larger archives.
 		const int level      = Z_BEST_SPEED;
-#endif
 		const int windowBits = -MAX_WBITS;	// max window size; omit ZLib header
 		const int memLevel   = 9;					// max speed; total mem ~= 384KiB
 		const int strategy   = Z_DEFAULT_STRATEGY;	// normal data - not RLE
@@ -210,20 +204,20 @@ public:
 		return (size_t)deflateBound(&m_zs, (uLong)inSize);
 	}
 
-	virtual LibError Reset()
+	virtual Status Reset()
 	{
 		m_checksum = InitializeChecksum();
 		const int ret = deflateReset(&m_zs);
 		return LibError_from_zlib(ret);
 	}
 
-	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
+	virtual Status Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		m_checksum = UpdateChecksum(m_checksum, in, inSize);
 		return CodecZLibStream::CallStreamFunc(deflate, 0, in, inSize, out, outSize, inConsumed, outProduced);
 	}
 
-	virtual LibError Finish(u32& checksum, size_t& outProduced)
+	virtual Status Finish(u32& checksum, size_t& outProduced)
 	{
 		const uInt availOut = m_zs.avail_out;
 
@@ -269,21 +263,21 @@ public:
 		return inSize*1032;	// see http://www.zlib.org/zlib_tech.html
 	}
 
-	virtual LibError Reset()
+	virtual Status Reset()
 	{
 		m_checksum = InitializeChecksum();
 		const int ret = inflateReset(&m_zs);
 		return LibError_from_zlib(ret);
 	}
 
-	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
+	virtual Status Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
-		const LibError ret = CodecZLibStream::CallStreamFunc(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outProduced);
+		const Status ret = CodecZLibStream::CallStreamFunc(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outProduced);
 		m_checksum = UpdateChecksum(m_checksum, out, outProduced);
 		return ret;
 	}
 
-	virtual LibError Finish(u32& checksum, size_t& outProduced)
+	virtual Status Finish(u32& checksum, size_t& outProduced)
 	{
 		// no action needed - decompression always flushes immediately.
 		outProduced = 0;

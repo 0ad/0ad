@@ -29,7 +29,7 @@
 #define INCLUDED_VFS_OPTIMIZER
 
 
-extern LibError vfs_opt_rebuild_main_archive(const char* trace_filename, const char* archive_fn_fmt);
+extern Status vfs_opt_rebuild_main_archive(const char* trace_filename, const char* archive_fn_fmt);
 
 extern void vfs_opt_auto_build_cancel();
 

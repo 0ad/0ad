@@ -1443,7 +1443,7 @@ void* SDL_GL_GetProcAddress(const char* name)
 // around ATI driver breakage)
 static ModuleInitState initState;
 
-static LibError Init()
+static Status Init()
 {
 	key_Init();
 	return INFO::OK;
@@ -1507,14 +1507,14 @@ static void RedirectStdout()
 	if(f == 0)
 		return;
 
-#if CONFIG_PARANOIA
+#if CONFIG_ENABLE_CHECKS
 	// disable buffering, so that no writes are lost even if the program
  	// crashes. only enabled in full debug mode because this is really slow!
  	setvbuf(stdout, 0, _IONBF, 0);
  #endif
 }
 
-static LibError wsdl_Init()
+static Status wsdl_Init()
 {
 	// note: SDL does this in its WinMain hook. doing so in SDL_Init would be
 	// too late (we might miss some output), so we use winit.
@@ -1524,7 +1524,7 @@ static LibError wsdl_Init()
  	return INFO::OK;
 }
 
-static LibError wsdl_Shutdown()
+static Status wsdl_Shutdown()
 {
 	// was redirected to stdout.txt; closing avoids a BoundsChecker warning.
 	fclose(stdout);

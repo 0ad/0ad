@@ -41,7 +41,7 @@ void in_add_handler(InHandler handler)
 	ENSURE(handler);
 
 	if(handler_stack_top >= MAX_HANDLERS)
-		WARN_ERR_RETURN(ERR::LIMIT);
+		WARN_IF_ERR(ERR::LIMIT);
 
 	handler_stack[handler_stack_top++] = handler;
 }

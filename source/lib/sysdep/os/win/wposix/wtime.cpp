@@ -615,7 +615,7 @@ strptime (const char *buf, const char *format, struct tm *timeptr)
 
 //-----------------------------------------------------------------------------
 
-static LibError wtime_Init()
+static Status wtime_Init()
 {
 	LatchInitialSystemTime();
 	return INFO::OK;

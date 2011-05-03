@@ -357,7 +357,7 @@ protected:
 	void ReloadShaders();
 
 	// hotloading
-	static LibError ReloadChangedFileCB(void* param, const VfsPath& path);
+	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
 
 	// RENDERER DATA:
 	/// Private data that is not needed by inline functions

@@ -314,7 +314,7 @@ public:
 		return m_file->Pathname();
 	}
 
-	virtual LibError Load(const OsPath& UNUSED(name), const shared_ptr<u8>& buf, size_t size) const
+	virtual Status Load(const OsPath& UNUSED(name), const shared_ptr<u8>& buf, size_t size) const
 	{
 		AdjustOffset();
 
@@ -335,8 +335,8 @@ public:
 		stream.SetOutputBuffer(buf.get(), size);
 		io::Operation op(*m_file.get(), 0, m_csize, m_ofs);
 		StreamFeeder streamFeeder(stream);
-		RETURN_ERR(io::Run(op, io::Parameters(), streamFeeder));
-		RETURN_ERR(stream.Finish());
+		RETURN_STATUS_IF_ERR(io::Run(op, io::Parameters(), streamFeeder));
+		RETURN_STATUS_IF_ERR(stream.Finish());
 #if CODEC_COMPUTE_CHECKSUM
 		ENSURE(m_checksum == stream.Checksum());
 #endif
@@ -374,7 +374,7 @@ private:
 		// rationale: this allows using temp buffers for zip_fixup_lfh,
 		// which avoids involving the file buffer manager and thus
 		// avoids cluttering the trace and cache contents.
-		LibError operator()(const u8* block, size_t size) const
+		Status operator()(const u8* block, size_t size) const
 		{
 			ENSURE(size <= lfh_bytes_remaining);
 			memcpy(lfh_dst, block, size);
@@ -441,17 +441,17 @@ public:
 		ENSURE(m_fileSize >= off_t(minFileSize));
 	}
 
-	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)
+	virtual Status ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)
 	{
 		// locate and read Central Directory
 		off_t cd_ofs = 0;
 		size_t cd_numEntries = 0;
 		size_t cd_size = 0;
-		RETURN_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
+		RETURN_STATUS_IF_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
 		UniqueRange buf(RVALUE(io::Allocate(cd_size)));
 
 		io::Operation op(*m_file.get(), buf.get(), cd_size, cd_ofs);
-		RETURN_ERR(io::Run(op));
+		RETURN_STATUS_IF_ERR(io::Run(op));
 
 		// iterate over Central Directory
 		const u8* pos = (const u8*)buf.get();
@@ -511,7 +511,7 @@ private:
 	// search for ECDR in the last <maxScanSize> bytes of the file.
 	// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
 	// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
-	static LibError ScanForEcdr(const PFile& file, off_t fileSize, u8* buf, size_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, size_t& cd_size)
+	static Status ScanForEcdr(const PFile& file, off_t fileSize, u8* buf, size_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, size_t& cd_size)
 	{
 		// don't scan more than the entire file
 		const size_t scanSize = std::min(maxScanSize, size_t(fileSize));
@@ -519,7 +519,7 @@ private:
 		// read desired chunk of file into memory
 		const off_t ofs = fileSize - off_t(scanSize);
 		io::Operation op(*file.get(), buf, scanSize, ofs);
-		RETURN_ERR(io::Run(op));
+		RETURN_STATUS_IF_ERR(io::Run(op));
 
 		// look for ECDR in buffer
 		const ECDR* ecdr = (const ECDR*)FindRecord(buf, scanSize, buf, ecdr_magic, sizeof(ECDR));
@@ -530,13 +530,13 @@ private:
 		return INFO::OK;
 	}
 
-	static LibError LocateCentralDirectory(const PFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
+	static Status LocateCentralDirectory(const PFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
 	{
 		const size_t maxScanSize = 66000u;	// see below
 		UniqueRange buf(RVALUE(io::Allocate(maxScanSize)));
 
 		// expected case: ECDR at EOF; no file comment
-		LibError ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
+		Status ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
 		if(ret == INFO::OK)
 			return INFO::OK;
 		// worst case: ECDR precedes 64 KiB of file comment
@@ -546,7 +546,7 @@ private:
 
 		// both ECDR scans failed - this is not a valid Zip file.
 		io::Operation op(*file.get(), buf.get(), sizeof(LFH));
-		RETURN_ERR(io::Run(op));
+		RETURN_STATUS_IF_ERR(io::Run(op));
 		// the Zip file has an LFH but lacks an ECDR. this can happen if
 		// the user hard-exits while an archive is being written.
 		// notes:
@@ -583,7 +583,7 @@ public:
 		: m_file(new File(archivePathname, LIO_WRITE)), m_fileSize(0)
 		, m_numEntries(0), m_noDeflate(noDeflate)
 	{
-		THROW_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
+		THROW_STATUS_IF_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
 	}
 
 	~ArchiveWriter_Zip()
@@ -603,10 +603,10 @@ public:
 		(void)pool_destroy(&m_cdfhPool);
 	}
 
-	LibError AddFile(const OsPath& pathname, const OsPath& pathnameInArchive)
+	Status AddFile(const OsPath& pathname, const OsPath& pathnameInArchive)
 	{
 		FileInfo fileInfo;
-		RETURN_ERR(GetFileInfo(pathname, &fileInfo));
+		RETURN_STATUS_IF_ERR(GetFileInfo(pathname, &fileInfo));
 		const off_t usize = fileInfo.Size();
 		// skip 0-length files.
 		// rationale: zip.cpp needs to determine whether a CDFH entry is
@@ -620,7 +620,7 @@ public:
 			return INFO::SKIPPED;
 
 		PFile file(new File);
-		RETURN_ERR(file->Open(pathname, LIO_READ));
+		RETURN_STATUS_IF_ERR(file->Open(pathname, LIO_READ));
 
 		const size_t pathnameLength = pathnameInArchive.string().length();
 
@@ -650,8 +650,8 @@ public:
 			stream.SetOutputBuffer(cdata, csizeMax);
 			io::Operation op(*file.get(), 0, usize);
 			StreamFeeder streamFeeder(stream);
-			RETURN_ERR(io::Run(op, io::Parameters(), streamFeeder));
-			RETURN_ERR(stream.Finish());
+			RETURN_STATUS_IF_ERR(io::Run(op, io::Parameters(), streamFeeder));
+			RETURN_STATUS_IF_ERR(stream.Finish());
 			csize = stream.OutSize();
 			checksum = stream.Checksum();
 		}

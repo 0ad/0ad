@@ -29,6 +29,6 @@ extern const wchar_t* ErrorString(int err);
 extern void WriteScreenshot(const VfsPath& extension);
 extern void WriteBigScreenshot(const VfsPath& extension, int tiles);
 
-extern LibError tex_write(Tex* t, const VfsPath& filename);
+extern Status tex_write(Tex* t, const VfsPath& filename);
 
 #endif // PS_UTIL_H

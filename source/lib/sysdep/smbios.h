@@ -34,7 +34,7 @@ namespace SMBIOS {
 // 2) define a <name>_ENUMERATORS macro specifying its enumerators
 //    (prefer lower case to avoid conflicts with macros)
 #define ENUMERATIONS\
-	ENUMERATION(Status, u8)\
+	ENUMERATION(State, u8)\
 	ENUMERATION(ECC, u8)\
 	ENUMERATION(BiosFlags, u32)\
 	ENUMERATION(BiosFlags1, u8)\
@@ -157,7 +157,7 @@ struct Handle
 };
 
 
-#define Status_ENUMERATORS\
+#define State_ENUMERATORS\
 	ENUM(other, 1)\
 	ENUM(unknown, 2)\
 	ENUM(ok, 3)\
@@ -351,9 +351,9 @@ struct Handle
 	FIELD(0, const char*, version, "")\
 	FIELD(0, const char*, serialNumber, "")\
 	FIELD(0, const char*, assetTag, "")\
-	FIELD(0, Status, state, "")\
-	FIELD(0, Status, powerState, "")\
-	FIELD(0, Status, thermalState, "")\
+	FIELD(0, State, state, "")\
+	FIELD(0, State, powerState, "")\
+	FIELD(0, State, thermalState, "")\
 	FIELD(0, ChassisSecurityStatus, securityStatus, "")\
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, u8, height, "U")\
@@ -957,7 +957,7 @@ struct Handle
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, i16, nominalValue, " mv")\
 	FIELD(F_DERIVED, VoltageProbeLocation, location, "")\
-	FIELD(F_DERIVED, Status, status, "")
+	FIELD(F_DERIVED, State, status, "")
 
 
 //----------------------------------------------------------------------------
@@ -984,7 +984,7 @@ struct Handle
 	FIELD(0, u16, nominalSpeed, " rpm")\
 	FIELD(0, const char*, description, "")\
 	FIELD(F_DERIVED, CoolingDeviceType, type, "")\
-	FIELD(F_DERIVED, Status, status, "")
+	FIELD(F_DERIVED, State, status, "")
 
 
 //----------------------------------------------------------------------------
@@ -1018,7 +1018,7 @@ struct Handle
 	FIELD(0, u32, oemDefined, "")\
 	FIELD(0, i16, nominalValue, " dDegC")\
 	FIELD(F_DERIVED, TemperatureProbeLocation, location, "")\
-	FIELD(F_DERIVED, Status, status, "")
+	FIELD(F_DERIVED, State, status, "")
 
 
 //----------------------------------------------------------------------------
@@ -1136,7 +1136,7 @@ struct Handle
 	FIELD(0, Handle, hCoolingDevice, "")\
 	FIELD(0, Handle, hCurrentProbe, "")\
 	FIELD(F_DERIVED, SystemPowerSupplyType, type, "")\
-	FIELD(F_DERIVED, Status, status, "")\
+	FIELD(F_DERIVED, State, status, "")\
 	FIELD(F_DERIVED, SystemPowerSupplyInputSwitching, inputSwitching, "")\
 
 

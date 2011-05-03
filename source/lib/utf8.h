@@ -26,10 +26,10 @@
 // note: error codes are returned via optional output parameter.
 namespace ERR
 {
-	const LibError UTF8_SURROGATE     = -100700;
-	const LibError UTF8_OUTSIDE_BMP   = -100701;
-	const LibError UTF8_NONCHARACTER  = -100702;
-	const LibError UTF8_INVALID_UTF8  = -100703;
+	const Status UTF8_SURROGATE     = -100700;
+	const Status UTF8_OUTSIDE_BMP   = -100701;
+	const Status UTF8_NONCHARACTER  = -100702;
+	const Status UTF8_INVALID_UTF8  = -100703;
 }
 
 /**
@@ -42,11 +42,11 @@ namespace ERR
  * otherwise, the function raises a warning dialog for every
  * error/warning.
  **/
-LIB_API std::wstring wstring_from_utf8(const std::string& s, LibError* err = 0);
+LIB_API std::wstring wstring_from_utf8(const std::string& s, Status* err = 0);
 
 /**
  * opposite of wstring_from_utf8
  **/
-LIB_API std::string utf8_from_wstring(const std::wstring& s, LibError* err = 0);
+LIB_API std::string utf8_from_wstring(const std::wstring& s, Status* err = 0);
 
 #endif	// #ifndef INCLUDED_UTF8

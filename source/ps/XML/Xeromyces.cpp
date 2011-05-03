@@ -82,7 +82,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 	PrepareCacheKey(hash, version);
 
 	VfsPath xmbPath;
-	LibError ret = cacheLoader.TryLoadingCached(filename, MD5(), version, xmbPath);
+	Status ret = cacheLoader.TryLoadingCached(filename, MD5(), version, xmbPath);
 
 	if (ret == INFO::OK)
 	{

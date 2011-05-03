@@ -48,7 +48,7 @@ static HCURSOR HCURSOR_from_cursor(sys_cursor cursor)
 }
 
 
-LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
+Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
 {
 	*cursor = 0;
 
@@ -84,14 +84,14 @@ LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cur
 }
 
 
-LibError sys_cursor_create_empty(sys_cursor* cursor)
+Status sys_cursor_create_empty(sys_cursor* cursor)
 {
 	u8 bgra_img[] = {0, 0, 0, 0};
 	return sys_cursor_create(1, 1, bgra_img, 0, 0, cursor);
 }
 
 
-LibError sys_cursor_set(sys_cursor cursor)
+Status sys_cursor_set(sys_cursor cursor)
 {
 	// restore default cursor.
 	if(!cursor)
@@ -104,7 +104,7 @@ LibError sys_cursor_set(sys_cursor cursor)
 }
 
 
-LibError sys_cursor_free(sys_cursor cursor)
+Status sys_cursor_free(sys_cursor cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
@@ -113,13 +113,14 @@ LibError sys_cursor_free(sys_cursor cursor)
 	// if the cursor being freed is active, restore the default arrow
 	// (just for safety).
 	if(cursor_from_HCURSOR(GetCursor()) == cursor)
-		WARN_ERR(sys_cursor_set(0));
+		WARN_IF_ERR(sys_cursor_set(0));
 
-	BOOL ok = DestroyIcon(HICON_from_cursor(cursor));
-	return LibError_from_win32(ok);
+	if(!DestroyIcon(HICON_from_cursor(cursor)))
+		WARN_RETURN(StatusFromWin());
+	return INFO::OK;
 }
 
-LibError sys_cursor_reset()
+Status sys_cursor_reset()
 {
 	return INFO::OK;
 }

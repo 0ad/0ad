@@ -42,7 +42,7 @@
 LIB_API bool mahaf_IsPhysicalMappingDangerous();
 
 
-LIB_API LibError mahaf_Init();
+LIB_API Status mahaf_Init();
 LIB_API void mahaf_Shutdown();
 
 LIB_API u8  mahaf_ReadPort8 (u16 port);

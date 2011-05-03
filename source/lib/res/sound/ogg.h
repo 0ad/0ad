@@ -12,19 +12,19 @@ public:
 	virtual ALsizei SamplingRate() = 0;
 
 	/**
-	 * @return bytes read (<= size) or a (negative) LibError
+	 * @return bytes read (<= size) or a (negative) Status
 	 **/
-	virtual LibError GetNextChunk(u8* buffer, size_t size) = 0;
+	virtual Status GetNextChunk(u8* buffer, size_t size) = 0;
 };
 
 typedef shared_ptr<OggStream> OggStreamPtr;
 
-extern LibError OpenOggStream(const OsPath& pathname, OggStreamPtr& stream);
+extern Status OpenOggStream(const OsPath& pathname, OggStreamPtr& stream);
 
 /**
  * A non-streaming OggStream (reading the whole file in advance)
  * that can cope with archived/compressed files.
  */
-extern LibError OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr& stream);
+extern Status OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr& stream);
 
 #endif // INCLUDED_OGG

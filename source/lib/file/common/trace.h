@@ -105,7 +105,7 @@ struct ITrace
 	 * because storing filename strings in a binary format would be a
 	 * bit awkward.
 	 **/
-	virtual LibError Store(const OsPath& pathname) const = 0;
+	virtual Status Store(const OsPath& pathname) const = 0;
 
 	/**
 	 * load entries from file.
@@ -114,7 +114,7 @@ struct ITrace
 	 *
 	 * replaces any existing entries.
 	 **/
-	virtual LibError Load(const OsPath& pathname) = 0;
+	virtual Status Load(const OsPath& pathname) = 0;
 
 	virtual const TraceEntry* Entries() const = 0;
 	virtual size_t NumEntries() const = 0;

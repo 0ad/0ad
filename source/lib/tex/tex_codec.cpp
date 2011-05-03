@@ -62,7 +62,7 @@ void tex_codec_unregister_all()
 // or return ERR::TEX_UNKNOWN_FORMAT if unknown.
 // note: does not raise a warning because it is used by
 // tex_is_known_extension.
-LibError tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c)
+Status tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c)
 {
 	for(*c = codecs; *c; *c = (*c)->next)
 	{
@@ -76,7 +76,7 @@ LibError tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c)
 
 
 // find codec that recognizes the header's magic field
-LibError tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c)
+Status tex_codec_for_header(const u8* file, size_t file_size, const TexCodecVTbl** c)
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
@@ -104,14 +104,14 @@ const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec)
 }
 
 
-LibError tex_codec_transform(Tex* t, size_t transforms)
+Status tex_codec_transform(Tex* t, size_t transforms)
 {
-	LibError ret = INFO::TEX_CODEC_CANNOT_HANDLE;
+	Status ret = INFO::TEX_CODEC_CANNOT_HANDLE;
 
 	// find codec that understands the data, and transform
 	for(const TexCodecVTbl* c = codecs; c; c = c->next)
 	{
-		LibError err = c->transform(t, transforms);
+		Status err = c->transform(t, transforms);
 		// success
 		if(err == INFO::OK)
 			return INFO::OK;
@@ -173,12 +173,12 @@ std::vector<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 }
 
 
-LibError tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da)
+Status tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
-	RETURN_ERR(tex_transform(t, transforms));
+	RETURN_STATUS_IF_ERR(tex_transform(t, transforms));
 
 	void* img_data = tex_get_data(t); const size_t img_size = tex_img_size(t);
-	RETURN_ERR(da_append(da, hdr, hdr_size));
-	RETURN_ERR(da_append(da, img_data, img_size));
+	RETURN_STATUS_IF_ERR(da_append(da, hdr, hdr_size));
+	RETURN_STATUS_IF_ERR(da_append(da, img_data, img_size));
 	return INFO::OK;
 }

@@ -32,7 +32,7 @@ that of Atlas depending on commandline parameters.
 #include "lib/precompiled.h"
 
 #include "lib/debug.h"
-#include "lib/lib_errors.h"
+#include "lib/status.h"
 #include "lib/secure_crt.h"
 #include "lib/frequency_filter.h"
 #include "lib/input.h"
@@ -186,7 +186,7 @@ static int ProgressiveLoad()
 	int progress_percent;
 	try
 	{
-		LibError ret = LDR_ProgressiveLoad(10e-3, description, ARRAY_SIZE(description), &progress_percent);
+		Status ret = LDR_ProgressiveLoad(10e-3, description, ARRAY_SIZE(description), &progress_percent);
 		switch(ret)
 		{
 			// no load active => no-op (skip code below)
@@ -205,7 +205,7 @@ static int ProgressiveLoad()
 			break;
 			// error!
 		default:
-			CHECK_ERR(ret);
+			WARN_RETURN_STATUS_IF_ERR(ret);
 			// can't do this above due to legit ERR::TIMED_OUT
 			break;
 		}

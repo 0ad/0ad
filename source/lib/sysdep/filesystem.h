@@ -40,14 +40,13 @@ struct WDIR;
 struct wdirent
 {
 	// note: SUSv3 describes this as a "char array" but of unspecified size.
-	// since that precludes using sizeof(), we may as well declare as a
-	// pointer to avoid copying in the implementation.
+	// we declare as a pointer to avoid having to copy the string.
 	wchar_t* d_name;
 };
 
 extern WDIR* wopendir(const OsPath& path);
 
-extern struct wdirent* wreaddir(WDIR*);
+extern wdirent* wreaddir(WDIR*);
 
 // return status for the file returned by the last successful
 // wreaddir call from the given directory stream.
@@ -71,11 +70,6 @@ extern int wclosedir(WDIR*);
 // (this can be used for small files where AIO overhead isn't worthwhile,
 // thus speeding up loading and reducing resource usage.)
 #define O_NO_AIO_NP    0x20000
-
-// POSIX flags not supported by the underlying Win32 _wsopen_s:
-#if OS_WIN
-#define O_NONBLOCK     0x1000000
-#endif
 
 extern int wopen(const OsPath& pathname, int oflag);
 extern int wopen(const OsPath& pathname, int oflag, mode_t mode);

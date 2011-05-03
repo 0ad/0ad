@@ -151,7 +151,7 @@ bool CPreprocessor::Token::GetValue (long &oValue) const
 void CPreprocessor::Token::SetValue (long iValue)
 {
     char tmp [21];
-    int len = snprintf (tmp, sizeof (tmp), "%ld", iValue);
+    int len = snprintf (tmp, sizeof (tmp), "%lld", iValue);
     Length = 0;
     Append (tmp, len);
     Type = TK_NUMBER;

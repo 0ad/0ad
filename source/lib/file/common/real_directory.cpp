@@ -46,13 +46,13 @@ RealDirectory::RealDirectory(const OsPath& path, size_t priority, size_t flags)
 }
 
 
-/*virtual*/ LibError RealDirectory::Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const
+/*virtual*/ Status RealDirectory::Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const
 {
 	return io::Load(m_path / name, buf.get(), size);
 }
 
 
-LibError RealDirectory::Store(const OsPath& name, const shared_ptr<u8>& fileContents, size_t size)
+Status RealDirectory::Store(const OsPath& name, const shared_ptr<u8>& fileContents, size_t size)
 {
 	return io::Store(m_path / name, fileContents.get(), size);
 }

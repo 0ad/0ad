@@ -35,7 +35,7 @@
 #endif
 
 
-ERROR_ASSOCIATE(ERR::OS_CPU_RESTRICTED_AFFINITY, L"Cannot set desired CPU affinity", -1);
+STATUS_DEFINE(ERR, OS_CPU_RESTRICTED_AFFINITY, L"Cannot set desired CPU affinity", -1);
 
 
 double os_cpu_ClockFrequency()

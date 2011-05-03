@@ -47,9 +47,9 @@ struct TexCodecVTbl
 	 * (usually enough to compare the header's "magic" field;
 	 * anyway, no legitimate file will be smaller)
 	 * @param t output texture object
-	 * @return LibError
+	 * @return Status
 	 **/
-	LibError (*decode)(DynArray* RESTRICT da, Tex * RESTRICT t);
+	Status (*decode)(DynArray* RESTRICT da, Tex * RESTRICT t);
 
 
 	/**
@@ -61,9 +61,9 @@ struct TexCodecVTbl
 	 * rationale: some codecs cannot calculate the output size beforehand
 	 * (e.g. PNG output via libpng), so the output memory cannot be allocated
 	 * by the caller.
-	 * @return LibError
+	 * @return Status
 	 **/
-	LibError (*encode)(Tex* RESTRICT t, DynArray * RESTRICT da);
+	Status (*encode)(Tex* RESTRICT t, DynArray * RESTRICT da);
 
 	/**
 	 * transform the texture's pixel format.
@@ -74,7 +74,7 @@ struct TexCodecVTbl
 	 * to its format; generic pixel format transforms are handled by
 	 * the caller.
 	 **/
-	LibError (*transform)(Tex* t, size_t transforms);
+	Status (*transform)(Tex* t, size_t transforms);
 
 	/**
 	 * indicate if the data appears to be an instance of this codec's header,
@@ -166,11 +166,11 @@ extern int tex_codec_register(TexCodecVTbl* c);
  *
  * @param extension
  * @param c (out) vtbl of responsible codec
- * @return LibError; ERR::RES_UNKNOWN_FORMAT (without warning, because this is
+ * @return Status; ERR::RES_UNKNOWN_FORMAT (without warning, because this is
  * called by tex_is_known_extension) if no codec indicates they can
  * handle the given extension.
  **/
-extern LibError tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c);
+extern Status tex_codec_for_filename(const OsPath& extension, const TexCodecVTbl** c);
 
 /**
  * find codec that recognizes the header's magic field.
@@ -179,10 +179,10 @@ extern LibError tex_codec_for_filename(const OsPath& extension, const TexCodecVT
  * (first 4 bytes of) header.
  * @param data_size [bytes]
  * @param c (out) vtbl of responsible codec
- * @return LibError; ERR::RES_UNKNOWN_FORMAT if no codec indicates they can
+ * @return Status; ERR::RES_UNKNOWN_FORMAT if no codec indicates they can
  * handle the given format (header).
  **/
-extern LibError tex_codec_for_header(const u8* data, size_t data_size, const TexCodecVTbl** c);
+extern Status tex_codec_for_header(const u8* data, size_t data_size, const TexCodecVTbl** c);
 
 /**
  * enumerate all registered codecs.
@@ -203,9 +203,9 @@ extern const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec);
  * @param t texture object
  * @param transforms: OR-ed combination of TEX_* flags that are to
  * be changed.
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_codec_transform(Tex* t, size_t transforms);
+extern Status tex_codec_transform(Tex* t, size_t transforms);
 
 /**
  * allocate an array of row pointers that point into the given texture data.
@@ -237,8 +237,8 @@ extern std::vector<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t
  * @param hdr header data
  * @param hdr_size [bytes]
  * @param da output data array (will be expanded as necessary)
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da);
+extern Status tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da);
 
 #endif	 // #ifndef INCLUDED_TEX_CODEC

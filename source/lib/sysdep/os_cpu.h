@@ -29,7 +29,7 @@
 
 namespace ERR
 {
-	const LibError OS_CPU_RESTRICTED_AFFINITY = -130100;
+	const Status OS_CPU_RESTRICTED_AFFINITY = -130100;
 }
 
 
@@ -154,6 +154,6 @@ typedef void (*OsCpuCallback)(size_t processor, uintptr_t cbData);
  * order of processor ID.
  * fails if process affinity prevents running on all processors.
  **/
-LIB_API LibError os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData);
+LIB_API Status os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData);
 
 #endif	// #ifndef INCLUDED_OS_CPU

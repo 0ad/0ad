@@ -15,7 +15,7 @@ void AttachToCompletionPort(HANDLE hFile, HANDLE& hIOCP, ULONG_PTR key, DWORD nu
 }
 
 
-LibError PollCompletionPort(HANDLE hIOCP, DWORD timeout, DWORD& bytesTransferred, ULONG_PTR& key, OVERLAPPED*& ovl)
+Status PollCompletionPort(HANDLE hIOCP, DWORD timeout, DWORD& bytesTransferred, ULONG_PTR& key, OVERLAPPED*& ovl)
 {
 	if(hIOCP == 0)
 		return ERR::INVALID_HANDLE;	// NOWARN (happens if called before the first Attach)

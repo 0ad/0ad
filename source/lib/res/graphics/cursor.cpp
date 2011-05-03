@@ -46,7 +46,7 @@
 #endif
 
 
-static LibError load_sys_cursor(const PIVFS& vfs, const VfsPath& pathname, int hx, int hy, sys_cursor* cursor)
+static Status load_sys_cursor(const PIVFS& vfs, const VfsPath& pathname, int hx, int hy, sys_cursor* cursor)
 {
 #if !ALLOW_SYS_CURSOR
 	UNUSED2(vfs);
@@ -58,19 +58,19 @@ static LibError load_sys_cursor(const PIVFS& vfs, const VfsPath& pathname, int h
 	return ERR::FAIL;
 #else
 	shared_ptr<u8> file; size_t fileSize;
-	RETURN_ERR(vfs->LoadFile(pathname, file, fileSize));
+	RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, fileSize));
 
 	ScopedTex t;
-	RETURN_ERR(tex_decode(file, fileSize, &t));
+	RETURN_STATUS_IF_ERR(tex_decode(file, fileSize, &t));
 
 	// convert to required BGRA format.
 	const size_t flags = (t.flags | TEX_BGR) & ~TEX_DXT;
-	RETURN_ERR(tex_transform_to(&t, flags));
+	RETURN_STATUS_IF_ERR(tex_transform_to(&t, flags));
 	void* bgra_img = tex_get_data(&t);
 	if(!bgra_img)
 		WARN_RETURN(ERR::FAIL);
 
-	RETURN_ERR(sys_cursor_create((int)t.w, (int)t.h, bgra_img, hx, hy, cursor));
+	RETURN_STATUS_IF_ERR(sys_cursor_create((int)t.w, (int)t.h, bgra_img, hx, hy, cursor));
 	return INFO::OK;
 #endif
 }
@@ -86,10 +86,10 @@ class GLCursor
 	int hotspotx, hotspoty;
 
 public:
-	LibError create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_)
+	Status create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_)
 	{
 		ht = ogl_tex_load(vfs, pathname);
-		RETURN_ERR(ht);
+		RETURN_STATUS_IF_ERR(ht);
 
 		size_t width, height;
 		(void)ogl_tex_get_size(ht, &width, &height, 0);
@@ -127,7 +127,7 @@ public:
 		glEnd();
 	}
 
-	LibError validate() const
+	Status validate() const
 	{
 		const GLint A = 128;	// no cursor is expected to get this big
 		if(w > A || h > A || hotspotx > A || hotspoty > A)
@@ -185,7 +185,7 @@ static void Cursor_dtor(Cursor* c)
 	}
 }
 
-static LibError Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Handle)
+static Status Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Handle)
 {
 	const VfsPath pathname(VfsPath(L"art/textures/cursors") / name);
 
@@ -195,7 +195,7 @@ static LibError Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, 
 	{
 		const VfsPath pathnameHotspot = pathname.ChangeExtension(L".txt");
 		shared_ptr<u8> buf; size_t size;
-		RETURN_ERR(vfs->LoadFile(pathnameHotspot, buf, size));
+		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathnameHotspot, buf, size));
 		std::wstringstream s(std::wstring((const wchar_t*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
 	}
@@ -219,7 +219,7 @@ static LibError Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, 
 	return INFO::OK;
 }
 
-static LibError Cursor_validate(const Cursor* c)
+static Status Cursor_validate(const Cursor* c)
 {
 	switch(c->kind)
 	{
@@ -232,7 +232,7 @@ static LibError Cursor_validate(const Cursor* c)
 		break;
 
 	case CK_OpenGL:
-		RETURN_ERR(c->gl_cursor.validate());
+		RETURN_STATUS_IF_ERR(c->gl_cursor.validate());
 		break;
 
 	default:
@@ -243,7 +243,7 @@ static LibError Cursor_validate(const Cursor* c)
 	return INFO::OK;
 }
 
-static LibError Cursor_to_string(const Cursor* c, wchar_t* buf)
+static Status Cursor_to_string(const Cursor* c, wchar_t* buf)
 {
 	const wchar_t* type;
 	switch(c->kind)
@@ -282,13 +282,13 @@ static Handle cursor_load(const PIVFS& vfs, const VfsPath& name)
 	return h_alloc(H_Cursor, vfs, name, 0);
 }
 
-static LibError cursor_free(Handle& h)
+static Status cursor_free(Handle& h)
 {
 	return h_free(h, H_Cursor);
 }
 
 
-LibError cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
+Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
 {
 	// hide the cursor
 	if(!name)
@@ -299,7 +299,7 @@ LibError cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
 
 	Handle hc = cursor_load(vfs, name);
 
-	RETURN_ERR(hc); // silently ignore failures
+	RETURN_STATUS_IF_ERR(hc); // silently ignore failures
 
 	H_DEREF(hc, Cursor, c);
 

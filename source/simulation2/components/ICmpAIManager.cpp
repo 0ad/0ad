@@ -45,7 +45,7 @@ public:
 		fs_util::ForEachFile(g_VFS, L"simulation/ai/", Callback, (uintptr_t)this, L"*.json", fs_util::DIR_RECURSIVE);
 	}
 
-	static LibError Callback(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+	static Status Callback(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 	{
 		GetAIsHelper* self = (GetAIsHelper*)cbData;
 

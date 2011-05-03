@@ -37,11 +37,11 @@ typedef intptr_t ModuleInitState;	// intptr_t is required by cpu_CAS
 /**
  * calls a user-defined init function if initState is zero.
  *
- * @return INFO::SKIPPED if already initialized, a LibError if the
+ * @return INFO::SKIPPED if already initialized, a Status if the
  * previous invocation failed, or the value returned by the callback.
  *
  * postcondition: initState is "initialized" if the callback returned
- * INFO::OK, otherwise its LibError return value (which prevents
+ * INFO::OK, otherwise its Status return value (which prevents
  * shutdown from being called).
  *
  * thread-safe: subsequent callers spin until the callback returns
@@ -50,15 +50,15 @@ typedef intptr_t ModuleInitState;	// intptr_t is required by cpu_CAS
  * note that callbacks typically reference static data and thus do not
  * require a function argument, but that can later be added if necessary.
  **/
-LIB_API LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)());
+LIB_API Status ModuleInit(volatile ModuleInitState* initState, Status (*init)());
 
 /**
  * calls a user-defined shutdown function if initState is "initialized".
  *
  * @return INFO::OK if shutdown occurred, INFO::SKIPPED if initState was
- * zero (uninitialized), otherwise the LibError returned by ModuleInit.
+ * zero (uninitialized), otherwise the Status returned by ModuleInit.
  *
- * postcondition: initState remains set to the LibError, or has been
+ * postcondition: initState remains set to the Status, or has been
  * reset to zero to allow multiple init/shutdown pairs, e.g. in self-tests.
  *
  * note: there is no provision for reference-counting because that
@@ -69,6 +69,6 @@ LIB_API LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init
  * cleanup is necessary (e.g. at exit before leak reporting) and
  * it is certain that the module is no longer in use.
  **/
-LIB_API LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)());
+LIB_API Status ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)());
 
 #endif	// #ifndef INCLUDED_MODULE_INIT

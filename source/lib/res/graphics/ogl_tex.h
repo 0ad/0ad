@@ -219,7 +219,7 @@ extern void ogl_tex_set_defaults(int q_flags, GLint filter);
 * @param vfs
 * @param pathname
 * @param flags h_alloc flags.
-* @return Handle to texture or negative LibError
+* @return Handle to texture or negative Status
 * for a list of supported formats, see tex.h's tex_load.
 */
 extern Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0);
@@ -229,7 +229,7 @@ extern Handle ogl_tex_load(const PIVFS& vfs, const VfsPath& pathname, size_t fla
 * loaded and is still in memory.
 *
 * @param pathname fn VFS filename of texture.
-* @return Handle to texture or negative LibError
+* @return Handle to texture or negative Status
 */
 extern Handle ogl_tex_find(const VfsPath& pathname);
 
@@ -244,7 +244,7 @@ extern Handle ogl_tex_find(const VfsPath& pathname);
 *        but would allow h_filename to return meaningful info for
 *        purposes of debugging.
 * @param flags
-* @return Handle to texture or negative LibError
+* @return Handle to texture or negative Status
 *
 * note: because we cannot guarantee that callers will pass distinct
 * "filenames", caching is disabled for the created object. this avoids
@@ -260,9 +260,9 @@ extern Handle ogl_tex_wrap(Tex* t, const PIVFS& vfs, const VfsPath& pathname, si
 * its associated resources are freed and further use made impossible.
 *
 * @param ht Texture handle.
-* @return LibError
+* @return Status
 */
-extern LibError ogl_tex_free(Handle& ht);
+extern Status ogl_tex_free(Handle& ht);
 
 
 //
@@ -279,11 +279,11 @@ extern LibError ogl_tex_free(Handle& ht);
 * @param ht Texture handle
 * @param filter OpenGL minification and magnification filter
 *        (rationale: see {@link OglTexState})
-* @return LibError
+* @return Status
 *
 * Must be called before uploading (raises a warning if called afterwards).
 */
-extern LibError ogl_tex_set_filter(Handle ht, GLint filter);
+extern Status ogl_tex_set_filter(Handle ht, GLint filter);
 
 /**
 * Override default wrap mode (GL_REPEAT) for this texture.
@@ -291,11 +291,11 @@ extern LibError ogl_tex_set_filter(Handle ht, GLint filter);
 * @param ht Texture handle
 * @param wrap OpenGL wrap mode (for both S and T coordinates)
 *        (rationale: see {@link OglTexState})
-* @return LibError
+* @return Status
 *
 * Must be called before uploading (raises a warning if called afterwards).
 */
-extern LibError ogl_tex_set_wrap(Handle ht, GLint wrap);
+extern Status ogl_tex_set_wrap(Handle ht, GLint wrap);
 
 /**
 * Override default maximum anisotropic filtering for this texture.
@@ -303,11 +303,11 @@ extern LibError ogl_tex_set_wrap(Handle ht, GLint wrap);
 * @param ht Texture handle
 * @param anisotropy Anisotropy value (must not be less than 1.0; should
 *        usually be a power of two)
-* @return LibError
+* @return Status
 *
 * Must be called before uploading (raises a warning if called afterwards).
 */
-extern LibError ogl_tex_set_anisotropy(Handle ht, GLfloat anisotropy);
+extern Status ogl_tex_set_anisotropy(Handle ht, GLfloat anisotropy);
 
 
 //
@@ -346,13 +346,13 @@ extern void ogl_tex_override(OglTexOverrides what, OglTexAllow allow);
 *        OglTexQualityFlags
 * @param int_fmt_ovr optional override for OpenGL internal format
 *        (e.g. GL_RGB8), which is decided from fmt / q_flags.
-* @return LibError.
+* @return Status.
 *
 * Side Effects:
 * - enables texturing on TMU 0 and binds the texture to it;
 * - frees the texel data! see ogl_tex_get_data.
 */
-extern LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, int q_flags_ovr = 0, GLint int_fmt_ovr = 0);
+extern Status ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, int q_flags_ovr = 0, GLint int_fmt_ovr = 0);
 
 
 //
@@ -366,9 +366,9 @@ extern LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr = 0, int q_flags_
 * @param w optional; will be filled with width
 * @param h optional; will be filled with height
 * @param bpp optional; will be filled with bits per pixel
-* @return LibError
+* @return Status
 */
-extern LibError ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp);
+extern Status ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp);
 
 /**
 * Retrieve pixel format of the texture.
@@ -377,16 +377,16 @@ extern LibError ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp);
 * @param flags optional; will be filled with TexFlags
 * @param fmt optional; will be filled with GL format
 *        (it is determined during ogl_tex_upload and 0 before then)
-* @return LibError
+* @return Status
 */
-extern LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt);
+extern Status ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt);
 
 /**
 * Retrieve pixel data of the texture.
 *
 * @param ht Texture handle
 * @param p will be filled with pointer to texels.
-* @return LibError
+* @return Status
 *
 * Note: this memory is freed after a successful ogl_tex_upload for
 * this texture. After that, the pointer we retrieve is NULL but
@@ -394,7 +394,7 @@ extern LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt);
 * If you still need to get at the data, add a reference before
 * uploading it or read directly from OpenGL (discouraged).
 */
-extern LibError ogl_tex_get_data(Handle ht, u8** p);
+extern Status ogl_tex_get_data(Handle ht, u8** p);
 
 /**
  * Retrieve ARGB value of 1x1 mipmap level of the texture,
@@ -402,11 +402,11 @@ extern LibError ogl_tex_get_data(Handle ht, u8** p);
  *
  * @param ht Texture handle
  * @param p will be filled with ARGB value (or 0 if texture does not have mipmaps)
- * @return LibError
+ * @return Status
  *
  * Must be called before uploading (raises a warning if called afterwards).
  */
-extern LibError ogl_tex_get_average_colour(Handle ht, u32* p);
+extern Status ogl_tex_get_average_colour(Handle ht, u32* p);
 
 
 //
@@ -419,7 +419,7 @@ extern LibError ogl_tex_get_average_colour(Handle ht, u32* p);
 *
 * @param ht Texture handle. If 0, texturing is disabled on this unit.
 * @param unit Texture Mapping Unit number, typically 0 for the first.
-* @return LibError
+* @return Status
 *
 * Side Effects:
 * - changes the active texture unit;
@@ -430,33 +430,33 @@ extern LibError ogl_tex_get_average_colour(Handle ht, u32* p);
 * - not necessary before calling ogl_tex_upload!
 * - on error, the unit's texture state is unchanged; see implementation.
 */
-extern LibError ogl_tex_bind(Handle ht, size_t unit = 0);
+extern Status ogl_tex_bind(Handle ht, size_t unit = 0);
 
 /**
 * (partially) Transform pixel format of the texture.
 *
 * @param ht Texture handle.
 * @param flags the TexFlags that are to be @em changed.
-* @return LibError
+* @return Status
 * @see tex_transform
 *
 * Must be called before uploading (raises a warning if called afterwards).
 */
-extern LibError ogl_tex_transform(Handle ht, size_t flags);
+extern Status ogl_tex_transform(Handle ht, size_t flags);
 
 /**
 * Transform pixel format of the texture.
 *
 * @param ht Texture handle.
 * @param new_flags Flags desired new TexFlags indicating pixel format.
-* @return LibError
+* @return Status
 * @see tex_transform
 *
 * Must be called before uploading (raises a warning if called afterwards).
 *
 * Note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
 */
-extern LibError ogl_tex_transform_to(Handle ht, size_t new_flags);
+extern Status ogl_tex_transform_to(Handle ht, size_t new_flags);
 
 /**
  * Return whether native S3TC texture compression support is available.

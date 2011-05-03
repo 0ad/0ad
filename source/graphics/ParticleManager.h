@@ -46,7 +46,7 @@ public:
 
 	float GetCurrentTime() const { return m_CurrentTime; }
 
-	LibError ReloadChangedFile(const VfsPath& path);
+	Status ReloadChangedFile(const VfsPath& path);
 
 	/// Random number generator shared between all particle emitters.
 	boost::mt19937 m_RNG;

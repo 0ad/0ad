@@ -42,7 +42,7 @@ class VfsDirectory;
  * note: the most recently attached real directory will be used when
  * creating files in the VFS directory.
  **/
-extern LibError vfs_Attach(VfsDirectory* directory, const PRealDirectory& realDirectory);
+extern Status vfs_Attach(VfsDirectory* directory, const PRealDirectory& realDirectory);
 
 /**
  * populate the directory from the attached real directory.
@@ -52,6 +52,6 @@ extern LibError vfs_Attach(VfsDirectory* directory, const PRealDirectory& realDi
  *
  * has no effect if no directory has been attached since the last populate.
  **/
-extern LibError vfs_Populate(VfsDirectory* directory);
+extern Status vfs_Populate(VfsDirectory* directory);
 
 #endif	// #ifndef INCLUDED_VFS_POPULATE

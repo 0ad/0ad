@@ -27,7 +27,7 @@
 #include "lib/sysdep/os/win/wutil.h"
 
 // caller is responsible for freeing *hMem.
-static LibError SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
+static Status SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
 {
 	const size_t numChars = wcslen(text);
 	*hMem = GlobalAlloc(GMEM_MOVEABLE, (numChars+1) * sizeof(wchar_t));
@@ -48,7 +48,7 @@ static LibError SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
 }
 
 // "copy" text into the clipboard. replaces previous contents.
-LibError sys_clipboard_set(const wchar_t* text)
+Status sys_clipboard_set(const wchar_t* text)
 {
 	// note: MSDN claims that the window handle must not be 0;
 	// that does actually work on WinXP, but we'll play it safe.
@@ -57,7 +57,7 @@ LibError sys_clipboard_set(const wchar_t* text)
 	EmptyClipboard();
 
 	HGLOBAL hMem;
-	LibError ret = SetClipboardText(text, &hMem);
+	Status ret = SetClipboardText(text, &hMem);
 
 	CloseClipboard();
 
@@ -107,7 +107,7 @@ wchar_t* sys_clipboard_get()
 
 // frees memory used by <copy>, which must have been returned by
 // sys_clipboard_get. see note above.
-LibError sys_clipboard_free(wchar_t* text)
+Status sys_clipboard_free(wchar_t* text)
 {
 	delete[] text;
 	return INFO::OK;

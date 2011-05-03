@@ -53,7 +53,7 @@ bool CObjectManager::ObjectKey::operator< (const CObjectManager::ObjectKey& a) c
 		return ActorVariation < a.ActorVariation;
 }
 
-static LibError ReloadChangedFileCB(void* param, const VfsPath& path)
+static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 {
 	return static_cast<CObjectManager*>(param)->ReloadChangedFile(path);
 }
@@ -191,7 +191,7 @@ void CObjectManager::UnloadObjects()
 	m_ObjectBases.clear();
 }
 
-LibError CObjectManager::ReloadChangedFile(const VfsPath& path)
+Status CObjectManager::ReloadChangedFile(const VfsPath& path)
 {
 	// Mark old entries as outdated so we don't reload them from the cache
 	for (std::map<ObjectKey, CObjectEntry*>::iterator it = m_Objects.begin(); it != m_Objects.end(); ++it)

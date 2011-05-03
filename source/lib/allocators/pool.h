@@ -71,9 +71,9 @@ const size_t POOL_VARIABLE_ALLOCS = ~(size_t)0u;
  * @param el_size Number of bytes that will be returned by each
  * pool_alloc (whose size parameter is then ignored). Can be 0 to
  * allow variable-sized allocations, but pool_free is then unusable.
- * @return LibError
+ * @return Status
  **/
-LIB_API LibError pool_create(Pool* p, size_t max_size, size_t el_size);
+LIB_API Status pool_create(Pool* p, size_t max_size, size_t el_size);
 
 /**
  * free all memory (address space + physical) that constitutes the
@@ -85,9 +85,9 @@ LIB_API LibError pool_create(Pool* p, size_t max_size, size_t el_size);
  * (* no matter if in freelist or unused or "allocated" to user)
  *
  * @param p Pool*
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError pool_destroy(Pool* p);
+LIB_API Status pool_destroy(Pool* p);
 
 /**
  * indicate whether a pointer was allocated from the given pool.

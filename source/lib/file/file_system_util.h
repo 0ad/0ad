@@ -37,7 +37,7 @@ LIB_API bool FileExists(const OsPath& pathname);
 
 LIB_API u64 FileSize(const OsPath& pathname);
 
-extern LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames);
+extern Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames);
 
 /**
  * called for files in a directory.
@@ -51,7 +51,7 @@ extern LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t
  * CAVEAT: pathname and fileInfo are only valid until the function
  * returns!
  **/
-typedef LibError (*FileCallback)(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
+typedef Status (*FileCallback)(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
 
 enum DirFlags
 {
@@ -68,9 +68,9 @@ enum DirFlags
  * @param pattern that file names must match. '*' and '&' wildcards
  *		  are allowed. 0 matches everything.
  * @param flags @ref DirFlags
- * @return LibError
+ * @return Status
  **/
-extern LibError ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const wchar_t* pattern = 0, size_t flags = 0);
+extern Status ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const wchar_t* pattern = 0, size_t flags = 0);
 
 
 /**

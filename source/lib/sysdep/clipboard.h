@@ -21,7 +21,7 @@
  */
 
 // "copy" text into the clipboard. replaces previous contents.
-extern LibError sys_clipboard_set(const wchar_t* text);
+extern Status sys_clipboard_set(const wchar_t* text);
 
 // allow "pasting" from clipboard. returns the current contents if they
 // can be represented as text, otherwise 0.
@@ -31,4 +31,4 @@ extern wchar_t* sys_clipboard_get();
 
 // frees memory used by <copy>, which must have been returned by
 // sys_clipboard_get. see note above.
-extern LibError sys_clipboard_free(wchar_t* copy);
+extern Status sys_clipboard_free(wchar_t* copy);

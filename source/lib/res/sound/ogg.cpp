@@ -9,7 +9,7 @@
 #include "lib/file/file_system_util.h"
 
 
-static LibError LibErrorFromVorbis(int err)
+static Status LibErrorFromVorbis(int err)
 {
 	switch(err)
 	{
@@ -196,7 +196,7 @@ public:
 	{
 	}
 
-	LibError Open()
+	Status Open()
 	{
 		ov_callbacks callbacks;
 		callbacks.read_func = Adapter::Read;
@@ -225,7 +225,7 @@ public:
 		return info->rate;
 	}
 
-	virtual LibError GetNextChunk(u8* buffer, size_t size)
+	virtual Status GetNextChunk(u8* buffer, size_t size)
 	{
 		// we may have to call ov_read multiple times because it
 		// treats the buffer size "as a limit and not a request"
@@ -238,14 +238,14 @@ public:
 			int bitstream;	// unused
 			const int ret = ov_read(&vf, (char*)buffer+bytesRead, int(size-bytesRead), isBigEndian, wordSize, isSigned, &bitstream);
 			if(ret == 0)	// EOF
-				return (LibError)bytesRead;
+				return (Status)bytesRead;
 			else if(ret < 0)
 				WARN_RETURN(LibErrorFromVorbis(ret));
 			else	// success
 			{
 				bytesRead += ret;
 				if(bytesRead == size)
-					return (LibError)bytesRead;
+					return (Status)bytesRead;
 			}
 		}
 	}
@@ -259,25 +259,25 @@ private:
 
 //-----------------------------------------------------------------------------
 
-LibError OpenOggStream(const OsPath& pathname, OggStreamPtr& stream)
+Status OpenOggStream(const OsPath& pathname, OggStreamPtr& stream)
 {
 	PFile file(new File);
-    RETURN_ERR(file->Open(pathname, L'r'));
+    RETURN_STATUS_IF_ERR(file->Open(pathname, L'r'));
 
 	shared_ptr<OggStreamImpl<VorbisFileAdapter> > tmp(new OggStreamImpl<VorbisFileAdapter>(VorbisFileAdapter(file)));
-	RETURN_ERR(tmp->Open());
+	RETURN_STATUS_IF_ERR(tmp->Open());
 	stream = tmp;
 	return INFO::OK;
 }
 
-LibError OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr& stream)
+Status OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr& stream)
 {
 	shared_ptr<u8> contents;
 	size_t size;
-	RETURN_ERR(vfs->LoadFile(pathname, contents, size));
+	RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, contents, size));
 
 	shared_ptr<OggStreamImpl<VorbisBufferAdapter> > tmp(new OggStreamImpl<VorbisBufferAdapter>(VorbisBufferAdapter(contents, size)));
-	RETURN_ERR(tmp->Open());
+	RETURN_STATUS_IF_ERR(tmp->Open());
 	stream = tmp;
 	return INFO::OK;
 }

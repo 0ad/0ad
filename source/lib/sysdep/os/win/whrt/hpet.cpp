@@ -56,9 +56,9 @@ public:
 		return L"HPET";
 	}
 
-	LibError Activate()
+	Status Activate()
 	{
-		RETURN_ERR(MapRegisters(m_hpetRegisters));
+		RETURN_STATUS_IF_ERR(MapRegisters(m_hpetRegisters));
 
 		// retrieve capabilities and ID
 		{
@@ -145,11 +145,11 @@ private:
 		MAX_OFFSET    = 0x3FF
 	};
 
-	static LibError MapRegisters(volatile void*& registers)
+	static Status MapRegisters(volatile void*& registers)
 	{
 		if(mahaf_IsPhysicalMappingDangerous())
 			return ERR::FAIL;	// NOWARN (happens on Win2k)
-		RETURN_ERR(mahaf_Init());	// (fails without Administrator privileges)
+		RETURN_STATUS_IF_ERR(mahaf_Init());	// (fails without Administrator privileges)
 
 		const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
 		if(!hpet)

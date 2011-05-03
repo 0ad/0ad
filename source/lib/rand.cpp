@@ -56,7 +56,7 @@ size_t rand(size_t min_inclusive, size_t max_exclusive)
 	// huge interval or min >= max
 	if(range == 0 || range > XRAND_MAX)
 	{
-		WARN_ERR(ERR::INVALID_PARAM);
+		WARN_IF_ERR(ERR::INVALID_PARAM);
 		return 0;
 	}
 

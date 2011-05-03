@@ -190,9 +190,9 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_chars, int* progress_percent)
+Status LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_chars, int* progress_percent)
 {
-	LibError ret;	// single exit; this is returned
+	Status ret;	// single exit; this is returned
 	double progress = 0.0;	// used to set progress_percent
 	double time_left = time_budget;
 
@@ -267,7 +267,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t ma
 		//    error that came up so we can report all errors that happen.
 		else if(status < 0)
 		{
-			ret = (LibError)status;
+			ret = (Status)status;
 			goto done;
 		}
 		// .. succeeded; continue and process next queued task.
@@ -298,7 +298,7 @@ done:
 
 // immediately process all queued load requests.
 // returns 0 on success or a negative error code.
-LibError LDR_NonprogressiveLoad()
+Status LDR_NonprogressiveLoad()
 {
 	const double time_budget = 100.0;
 		// large enough so that individual functions won't time out
@@ -308,7 +308,7 @@ LibError LDR_NonprogressiveLoad()
 
 	for(;;)
 	{
-		LibError ret = LDR_ProgressiveLoad(time_budget, description, ARRAY_SIZE(description), &progress_percent);
+		Status ret = LDR_ProgressiveLoad(time_budget, description, ARRAY_SIZE(description), &progress_percent);
 		switch(ret)
 		{
 		case INFO::OK:
@@ -319,7 +319,7 @@ LibError LDR_NonprogressiveLoad()
 		case ERR::TIMED_OUT:
 			break;			// continue loading
 		default:
-			CHECK_ERR(ret);	// failed; complain
+			WARN_RETURN_STATUS_IF_ERR(ret);	// failed; complain
 		}
 	}
 }

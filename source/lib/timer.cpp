@@ -139,7 +139,7 @@ double timer_Time()
 // cached because the default implementation may take several milliseconds
 static double resolution;
 
-static LibError InitResolution()
+static Status InitResolution()
 {
 #if OS_WIN
 	resolution = whrt_Resolution();

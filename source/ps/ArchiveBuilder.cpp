@@ -81,7 +81,7 @@ void CArchiveBuilder::Build(const OsPath& archive)
 
 	for (size_t i = 0; i < m_Files.size(); ++i)
 	{
-		LibError ret;
+		Status ret;
 
 		const VfsPath path = m_Files[i];
 		OsPath realPath;
@@ -134,7 +134,7 @@ void CArchiveBuilder::Build(const OsPath& archive)
 	}
 }
 
-LibError CArchiveBuilder::CollectFileCB(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+Status CArchiveBuilder::CollectFileCB(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	CArchiveBuilder* self = static_cast<CArchiveBuilder*>((void*)cbData);
 	self->m_Files.push_back(pathname);

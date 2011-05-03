@@ -42,7 +42,7 @@ _COM_SMARTPTR_TYPEDEF(IEnumWbemClassObject, __uuidof(IEnumWbemClassObject));
 
 static ModuleInitState initState;
 
-static LibError Init()
+static Status Init()
 {
 	HRESULT hr;
 
@@ -85,9 +85,9 @@ void wmi_Shutdown()
 }
 
 
-LibError wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
+Status wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
 {
-	RETURN_ERR(ModuleInit(&initState, Init));
+	RETURN_STATUS_IF_ERR(ModuleInit(&initState, Init));
 
 	IEnumWbemClassObjectPtr pEnum = 0;
 	wchar_t query[200];

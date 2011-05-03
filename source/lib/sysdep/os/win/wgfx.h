@@ -23,6 +23,6 @@
 #ifndef INCLUDED_WGFX
 #define INCLUDED_WGFX
 
-extern LibError win_get_gfx_info();
+extern Status win_get_gfx_info();
 
 #endif	// #ifndef INCLUDED_WGFX

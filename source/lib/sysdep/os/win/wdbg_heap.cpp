@@ -46,7 +46,7 @@ void wdbg_heap_Enable(bool enable)
 	{
 		flags |= _CRTDBG_ALLOC_MEM_DF;	// enable checks at deallocation time
 		flags |= _CRTDBG_LEAK_CHECK_DF;	// report leaks at exit
-#if CONFIG_PARANOIA
+#if CONFIG_ENABLE_CHECKS
 		flags |= _CRTDBG_CHECK_ALWAYS_DF;	// check during every heap operation (slow!)
 		flags |= _CRTDBG_DELAY_FREE_MEM_DF;	// blocks cannot be reused
 #endif
@@ -335,7 +335,7 @@ public:
 		m_knownCallers.RemoveDuplicates();
 	}
 
-	LibError NotifyOfCaller(uintptr_t pc)
+	Status NotifyOfCaller(uintptr_t pc)
 	{
 		if(!m_isRecordingKnownCallers)
 			return INFO::SKIPPED;	// do not affect the stack walk
@@ -690,7 +690,7 @@ public:
 	}
 
 private:
-	LibError OnFrame(const STACKFRAME64* frame)
+	Status OnFrame(const STACKFRAME64* frame)
 	{
 		const uintptr_t pc = frame->AddrPC.Offset;
 
@@ -698,7 +698,7 @@ private:
 		if(pc == 0)
 			return INFO::CB_CONTINUE;
 
-		LibError ret = m_filter.NotifyOfCaller(pc);
+		Status ret = m_filter.NotifyOfCaller(pc);
 		// (CallerFilter provokes stack traces of heap functions; if that is
 		// what happened, then we must not continue)
 		if(ret != INFO::SKIPPED)
@@ -713,7 +713,7 @@ private:
 		return INFO::CB_CONTINUE;
 	}
 
-	static LibError OnFrame_Trampoline(const STACKFRAME64* frame, uintptr_t cbData)
+	static Status OnFrame_Trampoline(const STACKFRAME64* frame, uintptr_t cbData)
 	{
 		CallStack* this_ = (CallStack*)cbData;
 		return this_->OnFrame(frame);
@@ -851,7 +851,7 @@ static void PrintCallStack(const uintptr_t* callers, size_t numCallers)
 	for(size_t i = 0; i < numCallers; i++)
 	{
 		wchar_t name[DBG_SYMBOL_LEN] = {'\0'}; wchar_t file[DBG_FILE_LEN] = {'\0'}; int line = -1;
-		LibError err = debug_ResolveSymbol((void*)callers[i], name, file, &line);
+		Status err = debug_ResolveSymbol((void*)callers[i], name, file, &line);
 		wdbg_printf(L"    ");
 		if(err != INFO::OK)
 			wdbg_printf(L"(error %d resolving PC=%p) ", err, callers[i]);
@@ -938,7 +938,7 @@ intptr_t wdbg_heap_NumberOfAllocations()
 static AllocationTracker* s_tracker;
 #endif
 
-static LibError wdbg_heap_Init()
+static Status wdbg_heap_Init()
 {
 #if ENABLE_LEAK_INSTRUMENTATION
 	FindCodeSegment();
@@ -959,7 +959,7 @@ static LibError wdbg_heap_Init()
 	return INFO::OK;
 }
 
-static LibError wdbg_heap_Shutdown()
+static Status wdbg_heap_Shutdown()
 {
 #if ENABLE_LEAK_INSTRUMENTATION
 	SAFE_DELETE(s_tracker);

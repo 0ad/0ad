@@ -180,7 +180,7 @@ no_ip:
 static const wchar_t* HardcodedErrorString(int err)
 {
 	static wchar_t description[200];
-	error_description_r((LibError)err, description, ARRAY_SIZE(description));
+	StatusDescription((Status)err, description, ARRAY_SIZE(description));
 	return description;
 }
 
@@ -198,20 +198,20 @@ const wchar_t* ErrorString(int err)
 // write the specified texture to disk.
 // note: <t> cannot be made const because the image may have to be
 // transformed to write it out in the format determined by <fn>'s extension.
-LibError tex_write(Tex* t, const VfsPath& filename)
+Status tex_write(Tex* t, const VfsPath& filename)
 {
 	DynArray da;
-	RETURN_ERR(tex_encode(t, filename.Extension(), &da));
+	RETURN_STATUS_IF_ERR(tex_encode(t, filename.Extension(), &da));
 
 	// write to disk
-	LibError ret = INFO::OK;
+	Status ret = INFO::OK;
 	{
 		shared_ptr<u8> file = DummySharedPtr(da.base);
 		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
 		if(bytes_written > 0)
 			ENSURE(bytes_written == (ssize_t)da.pos);
 		else
-			ret = (LibError)bytes_written;
+			ret = (Status)bytes_written;
 	}
 
 	(void)da_free(&da);
@@ -309,7 +309,10 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	const size_t hdr_size = tex_hdr_size(filename);
 	void* tile_data = malloc(tile_size);
 	if(!tile_data)
-		WARN_ERR_RETURN(ERR::NO_MEM);
+	{
+		WARN_IF_ERR(ERR::NO_MEM);
+		return;
+	}
 	shared_ptr<u8> img_buf;
 	AllocateAligned(img_buf, hdr_size+img_size, maxSectorSize);
 

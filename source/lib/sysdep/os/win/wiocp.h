@@ -45,6 +45,6 @@
 // @param hIOCP 0 to create a new port
 extern void AttachToCompletionPort(HANDLE hFile, HANDLE& hIOCP, ULONG_PTR key, DWORD numConcurrentThreads = 0);
 
-extern LibError PollCompletionPort(HANDLE hIOCP, DWORD timeout, DWORD& bytesTransferred, ULONG_PTR& key, OVERLAPPED*& ovl);
+extern Status PollCompletionPort(HANDLE hIOCP, DWORD timeout, DWORD& bytesTransferred, ULONG_PTR& key, OVERLAPPED*& ovl);
 
 #endif	// #ifndef INCLUDED_WIOCP

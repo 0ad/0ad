@@ -25,7 +25,7 @@
 
 #include "lib/sysdep/rtl.h"
 
-ERROR_ASSOCIATE(ERR::IO, L"Error during IO", EIO);
+STATUS_DEFINE(ERR, IO, L"Error during IO", EIO);
 
 namespace io {
 
@@ -45,13 +45,14 @@ UniqueRange Allocate(size_t size, size_t alignment)
 // note that the Windows aio implementation requires buffers, sizes and
 // offsets to be sector-aligned.
 
-LibError Issue(aiocb& cb, size_t queueDepth)
+Status Issue(aiocb& cb, size_t queueDepth)
 {
 #if CONFIG2_FILE_ENABLE_AIO
 	if(queueDepth > 1)
 	{
 		const int ret = (cb.aio_lio_opcode == LIO_WRITE)? aio_write(&cb): aio_read(&cb);
-		RETURN_ERR(LibError_from_posix(ret));
+		if(ret != 0)
+			WARN_RETURN(StatusFromErrno());
 	}
 	else
 #else
@@ -63,7 +64,7 @@ LibError Issue(aiocb& cb, size_t queueDepth)
 		void* buf = (void*)cb.aio_buf;	// cast from volatile void*
 		const ssize_t bytesTransferred = (cb.aio_lio_opcode == LIO_WRITE)? write(cb.aio_fildes, buf, cb.aio_nbytes) : read(cb.aio_fildes, buf, cb.aio_nbytes);
 		if(bytesTransferred < 0)
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 
 		cb.aio_nbytes = (size_t)bytesTransferred;
 	}
@@ -72,7 +73,7 @@ LibError Issue(aiocb& cb, size_t queueDepth)
 }
 
 
-LibError WaitUntilComplete(aiocb& cb, size_t queueDepth)
+Status WaitUntilComplete(aiocb& cb, size_t queueDepth)
 {
 #if CONFIG2_FILE_ENABLE_AIO
 	if(queueDepth > 1)
@@ -86,7 +87,7 @@ SUSPEND_AGAIN:
 		{
 			if(errno == EINTR) // interrupted by signal
 				goto SUSPEND_AGAIN;
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 		}
 
 		const int err = aio_error(&cb);
@@ -95,7 +96,7 @@ SUSPEND_AGAIN:
 		if(bytesTransferred == -1)	// transfer failed
 		{
 			errno = err;
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 		}
 		cb.aio_nbytes = (size_t)bytesTransferred;
 	}

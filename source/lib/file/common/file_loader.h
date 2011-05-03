@@ -33,7 +33,7 @@ struct IFileLoader
 	virtual wchar_t LocationCode() const = 0;
 	virtual OsPath Path() const = 0;
 
-	virtual LibError Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const = 0;
+	virtual Status Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const = 0;
 };
 
 typedef shared_ptr<IFileLoader> PIFileLoader;

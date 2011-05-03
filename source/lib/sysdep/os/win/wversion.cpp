@@ -67,7 +67,7 @@ size_t wversion_Number()
 }
 
 
-static LibError wversion_Init()
+static Status wversion_Init()
 {
 	// note: don't use GetVersion[Ex] because it gives the version of the
 	// emulated OS when running an app with compatibility shims enabled.

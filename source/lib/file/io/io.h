@@ -38,7 +38,7 @@
 
 namespace ERR
 {
-	const LibError IO = -110301;
+	const Status IO = -110301;
 }
 
 namespace io {
@@ -152,7 +152,7 @@ struct DefaultCompletedHook
 	 * allows progress notification and processing data while waiting for
 	 * previous I/Os to complete.
 	 **/
-	LibError operator()(const u8* UNUSED(block), size_t UNUSED(blockSize)) const
+	Status operator()(const u8* UNUSED(block), size_t UNUSED(blockSize)) const
 	{
 		return INFO::CB_CONTINUE;
 	}
@@ -170,7 +170,7 @@ struct DefaultIssueHook
 	 * allows generating the data to write while waiting for
 	 * previous I/Os to complete.
 	 **/
-	LibError operator()(aiocb& UNUSED(cb)) const
+	Status operator()(aiocb& UNUSED(cb)) const
 	{
 		return INFO::CB_CONTINUE;
 	}
@@ -215,8 +215,8 @@ private:
 #pragma pack(pop)
 
 
-LIB_API LibError Issue(aiocb& cb, size_t queueDepth);
-LIB_API LibError WaitUntilComplete(aiocb& cb, size_t queueDepth);
+LIB_API Status Issue(aiocb& cb, size_t queueDepth);
+LIB_API Status WaitUntilComplete(aiocb& cb, size_t queueDepth);
 
 
 //-----------------------------------------------------------------------------
@@ -225,7 +225,7 @@ LIB_API LibError WaitUntilComplete(aiocb& cb, size_t queueDepth);
 // (hooks must be passed by const reference to allow passing rvalues.
 // functors with non-const member data can mark them as mutable.)
 template<class CompletedHook, class IssueHook>
-static inline LibError Run(const Operation& op, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
+static inline Status Run(const Operation& op, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
 	op.Validate();
 	p.Validate(op);
@@ -246,11 +246,11 @@ static inline LibError Run(const Operation& op, const Parameters& p = Parameters
 
 			RETURN_IF_NOT_CONTINUE(issueHook(cb));
 
-			RETURN_ERR(Issue(cb, p.queueDepth));
+			RETURN_STATUS_IF_ERR(Issue(cb, p.queueDepth));
 		}
 
 		aiocb& cb = controlBlockRingBuffer[blocksCompleted];
-		RETURN_ERR(WaitUntilComplete(cb, p.queueDepth));
+		RETURN_STATUS_IF_ERR(WaitUntilComplete(cb, p.queueDepth));
 
 		RETURN_IF_NOT_CONTINUE(completedHook((u8*)cb.aio_buf, cb.aio_nbytes));
 	}
@@ -260,12 +260,12 @@ static inline LibError Run(const Operation& op, const Parameters& p = Parameters
 
 // (overloads allow omitting parameters without requiring a template argument list)
 template<class CompletedHook>
-static inline LibError Run(const Operation& op, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook())
+static inline Status Run(const Operation& op, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook())
 {
 	return Run(op, p, completedHook, DefaultIssueHook());
 }
 
-static inline LibError Run(const Operation& op, const Parameters& p = Parameters())
+static inline Status Run(const Operation& op, const Parameters& p = Parameters())
 {
 	return Run(op, p, DefaultCompletedHook(), DefaultIssueHook());
 }
@@ -278,32 +278,32 @@ static inline LibError Run(const Operation& op, const Parameters& p = Parameters
 // padded to the sector size and needs to be truncated afterwards.
 // this function takes care of both.
 template<class CompletedHook, class IssueHook>
-static inline LibError Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
+static inline Status Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
 	File file;
-	CHECK_ERR(file.Open(pathname, LIO_WRITE));
+	WARN_RETURN_STATUS_IF_ERR(file.Open(pathname, LIO_WRITE));
 	io::Operation op(file, (void*)data, size);
 
 #if OS_WIN && CONFIG2_FILE_ENABLE_AIO
 	(void)waio_Preallocate(op.fd, (off_t)size);
 #endif
 
-	RETURN_ERR(io::Run(op, p, completedHook, issueHook));
+	RETURN_STATUS_IF_ERR(io::Run(op, p, completedHook, issueHook));
 
 	file.Close();	// (required by wtruncate)
 
-	RETURN_ERR(wtruncate(pathname, size));
+	RETURN_STATUS_IF_ERR(wtruncate(pathname, size));
 
 	return INFO::OK;
 }
 
 template<class CompletedHook>
-static inline LibError Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook())
+static inline Status Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook())
 {
 	return Store(pathname, data, size, p, completedHook, DefaultIssueHook());
 }
 
-static inline LibError Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters())
+static inline Status Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters())
 {
 	return Store(pathname, data, size, p, DefaultCompletedHook(), DefaultIssueHook());
 }
@@ -314,21 +314,21 @@ static inline LibError Store(const OsPath& pathname, const void* data, size_t si
 
 // convenience function provided for symmetry with Store
 template<class CompletedHook, class IssueHook>
-static inline LibError Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
+static inline Status Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
 	File file;
-	RETURN_ERR(file.Open(pathname, LIO_READ));
+	RETURN_STATUS_IF_ERR(file.Open(pathname, LIO_READ));
 	io::Operation op(file, buf, size);
 	return io::Run(op, p, completedHook, issueHook);
 }
 
 template<class CompletedHook>
-static inline LibError Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook())
+static inline Status Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook())
 {
 	return Load(pathname, buf, size, p, completedHook, DefaultIssueHook());
 }
 
-static inline LibError Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters())
+static inline Status Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters())
 {
 	return Load(pathname, buf, size, p, DefaultCompletedHook(), DefaultIssueHook());
 }

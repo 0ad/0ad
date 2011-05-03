@@ -37,7 +37,7 @@
 #include "lib/timer.h"
 
 
-static LibError CreateDirectory(const OsPath& path)
+static Status CreateDirectory(const OsPath& path)
 {
 	{
 		const mode_t mode = S_IRWXU; // 0700 as prescribed by XDG basedir
@@ -64,11 +64,11 @@ static LibError CreateDirectory(const OsPath& path)
 	// unexpected failure
 	debug_printf(L"wmkdir failed with errno=%d\n", errno);
 	ENSURE(0);
-	return LibError_from_errno();
+	WARN_RETURN(StatusFromErrno());
 }
 
 
-LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, size_t flags)
+Status vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, size_t flags)
 {
 	// extract and validate flags (ensure no unknown bits are set)
 	const bool addMissingDirectories    = (flags & VFS_LOOKUP_ADD) != 0;
@@ -81,7 +81,7 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 		*pfile = 0;
 
 	if(!skipPopulate)
-		RETURN_ERR(vfs_Populate(directory));
+		RETURN_STATUS_IF_ERR(vfs_Populate(directory));
 
 	// early-out for pathname == "" when mounting into VFS root
 	if(pathname.empty())	// (prevent iterator error in loop end condition)
@@ -118,14 +118,14 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 				currentPath = directory->AssociatedDirectory()->Path();
 			currentPath = currentPath / subdirectoryName;
 
-			RETURN_ERR(CreateDirectory(currentPath));
+			RETURN_STATUS_IF_ERR(CreateDirectory(currentPath));
 
 			PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
-			RETURN_ERR(vfs_Attach(subdirectory, realDirectory));
+			RETURN_STATUS_IF_ERR(vfs_Attach(subdirectory, realDirectory));
 		}
 
 		if(!skipPopulate)
-			RETURN_ERR(vfs_Populate(subdirectory));
+			RETURN_STATUS_IF_ERR(vfs_Populate(subdirectory));
 
 		directory = subdirectory;
 	}

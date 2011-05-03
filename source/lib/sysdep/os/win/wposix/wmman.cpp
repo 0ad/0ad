@@ -65,16 +65,16 @@ static DWORD win32_prot(int prot)
 
 int mprotect(void* addr, size_t len, int prot)
 {
-	const DWORD flNewProtect = win32_prot(prot);
-	DWORD flOldProtect;	// required by VirtualProtect
-	BOOL ok = VirtualProtect(addr, len, flNewProtect, &flOldProtect);
-	WARN_RETURN_IF_FALSE(ok);
-	return 0;
+	const DWORD newProtect = win32_prot(prot);
+	DWORD oldProtect;	// required by VirtualProtect
+	const BOOL ok = VirtualProtect(addr, len, newProtect, &oldProtect);
+	WARN_IF_FALSE(ok);
+	return ok? 0 : -1;
 }
 
 
 // called when flags & MAP_ANONYMOUS
-static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, void** pp)
+static Status mmap_mem(void* start, size_t len, int prot, int flags, int fd, void** pp)
 {
 	// sanity checks. we don't care about these but enforce them to
 	// ensure callers are compatible with mmap.
@@ -91,7 +91,8 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	if(!want_commit && start != 0 && flags & MAP_FIXED)
 	{
 		MEMORY_BASIC_INFORMATION mbi;
-		WARN_RETURN_IF_FALSE(VirtualQuery(start, &mbi, sizeof(mbi)));
+		if(!VirtualQuery(start, &mbi, sizeof(mbi)))
+			WARN_RETURN(StatusFromWin());
 		if(mbi.State == MEM_COMMIT)
 		{
 			WARN_IF_FALSE(VirtualFree(start, len, MEM_DECOMMIT));
@@ -102,9 +103,9 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 		}
 	}
 
-	DWORD flAllocationType = want_commit? MEM_COMMIT : MEM_RESERVE;
-	DWORD flProtect = win32_prot(prot);
-	void* p = VirtualAlloc(start, len, flAllocationType, flProtect);
+	const DWORD allocationType = want_commit? MEM_COMMIT : MEM_RESERVE;
+	const DWORD protect = win32_prot(prot);
+	void* p = VirtualAlloc(start, len, allocationType, protect);
 	if(!p)
 	{
 		debug_printf(L"wmman: VirtualAlloc(%p, 0x%I64X) failed\n", start, len);
@@ -119,10 +120,10 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 // CreateFileMapping / MapViewOfFile. they only support read-only,
 // read/write and copy-on-write, so we dumb it down to that and later
 // set the correct (and more restrictive) permission via mprotect.
-static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& dwAccess)
+static Status mmap_file_access(int prot, int flags, DWORD& protect, DWORD& dwAccess)
 {
 	// assume read-only; other cases handled below.
-	flProtect = PAGE_READONLY;
+	protect = PAGE_READONLY;
 	dwAccess  = FILE_MAP_READ;
 
 	if(prot & PROT_WRITE)
@@ -132,12 +133,12 @@ static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& d
 		{
 			// .. changes are written to file.
 		case MAP_SHARED:
-			flProtect = PAGE_READWRITE;
+			protect = PAGE_READWRITE;
 			dwAccess  = FILE_MAP_WRITE;	// read and write
 			break;
 			// .. copy-on-write mapping; writes do not affect the file.
 		case MAP_PRIVATE:
-			flProtect = PAGE_WRITECOPY;
+			protect = PAGE_WRITECOPY;
 			dwAccess  = FILE_MAP_COPY;
 			break;
 			// .. either none or both of the flags are set. the latter is
@@ -152,7 +153,7 @@ static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& d
 }
 
 
-static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, off_t ofs, void** pp)
+static Status mmap_file(void* start, size_t len, int prot, int flags, int fd, off_t ofs, void** pp)
 {
 	WinScopedPreserveLastError s;
 
@@ -170,11 +171,11 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, 
 	// choose protection and access rights for CreateFileMapping /
 	// MapViewOfFile. these are weaker than what PROT_* allows and
 	// are augmented below by subsequently mprotect-ing.
-	DWORD flProtect; DWORD dwAccess;
-	RETURN_ERR(mmap_file_access(prot, flags, flProtect, dwAccess));
+	DWORD protect; DWORD dwAccess;
+	RETURN_STATUS_IF_ERR(mmap_file_access(prot, flags, protect, dwAccess));
 
 	// enough foreplay; now actually map.
-	const HANDLE hMap = CreateFileMapping(hFile, 0, flProtect, 0, 0, 0);
+	const HANDLE hMap = CreateFileMapping(hFile, 0, protect, 0, 0, 0);
 	// .. create failed; bail now to avoid overwriting the last error value.
 	if(!hMap)
 		WARN_RETURN(ERR::NO_MEM);
@@ -208,16 +209,15 @@ void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 	}
 
 	void* p;
-	LibError err;
+	Status status;
 	if(flags & MAP_ANONYMOUS)
-		err = mmap_mem(start, len, prot, flags, fd, &p);
+		status = mmap_mem(start, len, prot, flags, fd, &p);
 	else
-		err = mmap_file(start, len, prot, flags, fd, ofs, &p);
-	if(err < 0)
+		status = mmap_file(start, len, prot, flags, fd, ofs, &p);
+	if(status < 0)
 	{
-		WARN_ERR(err);
-		LibError_set_errno(err);
-		return MAP_FAILED;
+		errno = ErrnoFromStatus(status);
+		return MAP_FAILED;	// NOWARN - already done
 	}
 
 	return p;
@@ -232,9 +232,6 @@ int munmap(void* start, size_t UNUSED(len))
 	if(!ok)
 		// VirtualFree requires dwSize to be 0 (entire region is released).
 		ok = VirtualFree(start, 0, MEM_RELEASE);
-
-	WARN_RETURN_IF_FALSE(ok);	// both failed
-	return 0;
+	WARN_IF_FALSE(ok);
+	return ok? 0 : -1;
 }
-
-

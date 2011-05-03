@@ -32,11 +32,11 @@
 
 namespace ERR
 {
-	const LibError FILE_ACCESS = -110300;
-	const LibError FILE_NOT_FOUND = -110301;
+	const Status FILE_ACCESS = -110300;
+	const Status FILE_NOT_FOUND = -110301;
 }
 
-LIB_API LibError FileOpen(const OsPath& pathname, int opcode, int& fd);
+LIB_API Status FileOpen(const OsPath& pathname, int opcode, int& fd);
 LIB_API void FileClose(int& fd);
 
 class File
@@ -57,9 +57,9 @@ public:
 		Close();
 	}
 
-	LibError Open(const OsPath& pathname, int opcode)
+	Status Open(const OsPath& pathname, int opcode)
 	{
-		RETURN_ERR(FileOpen(pathname, opcode, fd));
+		RETURN_STATUS_IF_ERR(FileOpen(pathname, opcode, fd));
 		this->pathname = pathname;
 		this->opcode = opcode;
 		return INFO::OK;

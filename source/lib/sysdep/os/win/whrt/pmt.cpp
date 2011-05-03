@@ -52,10 +52,10 @@ public:
 		return L"PMT";
 	}
 
-	LibError Activate()
+	Status Activate()
 	{
 		// mahaf is needed for port I/O.
-		RETURN_ERR(mahaf_Init());	// (fails without Administrator privileges)
+		RETURN_STATUS_IF_ERR(mahaf_Init());	// (fails without Administrator privileges)
 		// (note: it's called FADT, but the signature is "FACP")
 		const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 		if(!fadt)

@@ -50,12 +50,8 @@ static u32 ReadPort(u16 port, u8 numBytes)
 
 	DWORD bytesReturned;
 	LPOVERLAPPED ovl = 0;	// synchronous
-	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_READ_PORT, &in, sizeof(in), &out, sizeof(out), &bytesReturned, ovl);
-	if(!ok)
-	{
-		WARN_WIN32_ERR;
-		return 0;
-	}
+	const BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_READ_PORT, &in, sizeof(in), &out, sizeof(out), &bytesReturned, ovl);
+	WARN_RETURN_0_IF_FALSE(ok);
 
 	ENSURE(bytesReturned == sizeof(out));
 	return out.value;
@@ -133,12 +129,8 @@ volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numByte
 
 	DWORD bytesReturned;
 	LPOVERLAPPED ovl = 0;	// synchronous
-	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_MAP, &in, sizeof(in), &out, sizeof(out), &bytesReturned, ovl);
-	if(!ok)
-	{
-		WARN_WIN32_ERR;
-		return 0;
-	}
+	const BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_MAP, &in, sizeof(in), &out, sizeof(out), &bytesReturned, ovl);
+	WARN_RETURN_0_IF_FALSE(ok);
 
 	ENSURE(bytesReturned == sizeof(out));
 	volatile void* virtualAddress = (volatile void*)(uintptr_t)out.virtualAddress;
@@ -168,12 +160,8 @@ static u64 ReadRegister(DWORD ioctl, u64 reg)
 
 	DWORD bytesReturned;
 	LPOVERLAPPED ovl = 0;	// synchronous
-	BOOL ok = DeviceIoControl(hAken, ioctl, &in, sizeof(in), &out, sizeof(out), &bytesReturned, ovl);
-	if(!ok)
-	{
-		WARN_WIN32_ERR;
-		return 0;
-	}
+	const BOOL ok = DeviceIoControl(hAken, ioctl, &in, sizeof(in), &out, sizeof(out), &bytesReturned, ovl);
+	WARN_RETURN_0_IF_FALSE(ok);
 
 	ENSURE(bytesReturned == sizeof(out));
 	return out.value;
@@ -338,7 +326,7 @@ static OsPath DriverPathname()
 
 //-----------------------------------------------------------------------------
 
-static LibError Init()
+static Status Init()
 {
 	if(wutil_HasCommandLineArgument(L"-wNoMahaf"))
 		return ERR::NOT_SUPPORTED;	// NOWARN
@@ -369,7 +357,7 @@ static void Shutdown()
 
 static ModuleInitState initState;
 
-LibError mahaf_Init()
+Status mahaf_Init()
 {
 	return ModuleInit(&initState, Init);
 }

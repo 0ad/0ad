@@ -27,11 +27,11 @@
 
 // very thin wrapper on top of sys/mman.h that makes the intent more obvious
 // (its commit/decommit semantics are difficult to tell apart)
-LIB_API LibError mem_Reserve(size_t size, u8** pp);
-LIB_API LibError mem_Release(u8* p, size_t size);
-LIB_API LibError mem_Commit(u8* p, size_t size, int prot);
-LIB_API LibError mem_Decommit(u8* p, size_t size);
-LIB_API LibError mem_Protect(u8* p, size_t size, int prot);
+LIB_API Status mem_Reserve(size_t size, u8** pp);
+LIB_API Status mem_Release(u8* p, size_t size);
+LIB_API Status mem_Commit(u8* p, size_t size, int prot);
+LIB_API Status mem_Decommit(u8* p, size_t size);
+LIB_API Status mem_Protect(u8* p, size_t size, int prot);
 
 
 /**

@@ -87,9 +87,9 @@ public:
 	/**
 	 * 'feed' the codec with a data block.
 	 **/
-	LibError Feed(const u8* in, size_t inSize);
+	Status Feed(const u8* in, size_t inSize);
 
-	LibError Finish();
+	Status Finish();
 
 	size_t OutSize() const
 	{
@@ -121,7 +121,7 @@ public:
 	{
 	}
 
-	LibError operator()(const u8* data, size_t size) const
+	Status operator()(const u8* data, size_t size) const
 	{
 		return stream.Feed(data, size);
 	}

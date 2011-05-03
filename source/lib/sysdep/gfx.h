@@ -63,12 +63,12 @@ extern void gfx_detect();
  * @param xres, yres (optional out) resolution [pixels]
  * @param bpp (optional out) bits per pixel
  * @param freq (optional out) vertical refresh rate [Hz]
- * @return LibError; INFO::OK unless: some information was requested
+ * @return Status; INFO::OK unless: some information was requested
  * (i.e. pointer is non-NULL) but cannot be returned.
  * on failure, the outputs are all left unchanged (they are
  * assumed initialized to defaults)
  **/
-extern LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq);
+extern Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq);
 
 /**
  * get monitor dimensions.
@@ -77,10 +77,10 @@ extern LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq);
  *
  * @param width_mm (out) screen width [mm]
  * @param height_mm (out) screen height [mm]
- * @return LibError. on failure, the outputs are all left unchanged
+ * @return Status. on failure, the outputs are all left unchanged
  * on failure, the outputs are all left unchanged (they are
  * assumed initialized to defaults)
  **/
-extern LibError gfx_get_monitor_size(int& width_mm, int& height_mm);
+extern Status gfx_get_monitor_size(int& width_mm, int& height_mm);
 
 #endif	// #ifndef INCLUDED_GFX

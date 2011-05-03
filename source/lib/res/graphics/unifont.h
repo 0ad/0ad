@@ -46,14 +46,14 @@ extern Handle unifont_load(const PIVFS& vfs, const VfsPath& pathname, size_t fla
  * Release a handle to a previously loaded font
  * (subject to reference counting).
  **/
-extern LibError unifont_unload(Handle& h);
+extern Status unifont_unload(Handle& h);
 
 /**
  * Use a font for all subsequent glwprintf() calls.
  *
  * Must be called before any glwprintf().
  **/
-extern LibError unifont_bind(Handle h);
+extern Status unifont_bind(Handle h);
 
 /**
  * Output text at current OpenGL modelview pos.
@@ -90,7 +90,7 @@ extern void glvwprintf(const wchar_t* fmt, va_list args) VWPRINTF_ARGS(1);
  *
  * note: This is intended for the GUI (hence Unicode).
  **/
-LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height);
+Status unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height);
 
 /**
  * @return height [pixels] of the font.

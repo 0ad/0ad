@@ -293,7 +293,7 @@ static void PopulateNodesFromProximityDomains(const ProximityDomains& proximityD
 
 static ModuleInitState initState;
 
-static LibError InitTopology()
+static Status InitTopology()
 {
 	PopulateNodes();
 
@@ -429,7 +429,7 @@ static double MeasureRelativeDistance()
 
 static double relativeDistance;
 
-static LibError InitRelativeDistance()
+static Status InitRelativeDistance()
 {
 	// early-out for non-NUMA systems (saves some time)
 	if(numa_NumNodes() == 1)
@@ -474,7 +474,7 @@ static bool IsMemoryInterleaved()
 
 static bool isMemoryInterleaved;
 
-static LibError InitMemoryInterleaved()
+static Status InitMemoryInterleaved()
 {
 	isMemoryInterleaved = IsMemoryInterleaved();
 	return INFO::OK;

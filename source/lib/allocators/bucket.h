@@ -73,9 +73,9 @@ struct Bucket
  * @param el_size 0 to allow variable-sized allocations (which cannot be
  * freed individually); otherwise, it specifies the number of bytes that
  * will be returned by bucket_alloc (whose size parameter is then ignored).
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError bucket_create(Bucket* b, size_t el_size);
+LIB_API Status bucket_create(Bucket* b, size_t el_size);
 
 /**
  * free all memory that ensued from \<b\>.

@@ -24,7 +24,7 @@
 #include "lib/sysdep/filesystem.h"
 
 #include "lib/sysdep/cpu.h"	// cpu_CAS
-#include "lib/sysdep/os/win/wutil.h"	// LibError_from_GLE
+#include "lib/sysdep/os/win/wutil.h"	// StatusFromWin
 #include "lib/sysdep/os/win/wposix/waio.h"	// waio_reopen
 #include "lib/sysdep/os/win/wposix/wtime_internal.h"	// wtime_utc_filetime_to_time_t
 #include "lib/sysdep/os/win/wposix/crt_posix.h"			// _close, _lseeki64 etc.
@@ -128,11 +128,14 @@ WDIR* wopendir(const OsPath& path)
 	if(GetLastError() == ERROR_NO_MORE_FILES)
 		return d;	// success, but directory is empty
 
-	LibError_set_errno(LibError_from_GLE());
+	Status status = StatusFromWin();
 
 	// release the WDIR allocated above (this is preferable to
 	// always copying the large WDIR or findData from a temporary)
 	wdir_free(d);
+
+	WARN_IF_ERR(status);
+	errno = ErrnoFromStatus(status);
 
 	return 0;
 }
@@ -154,7 +157,7 @@ struct wdirent* wreaddir(WDIR* d)
 			if(!FindNextFileW(d->hFind, &d->findData))
 			{
 				if(GetLastError() != ERROR_NO_MORE_FILES)	// an actual error occurred
-					(void)LibError_from_GLE();	// raise warning
+					WARN_IF_ERR(StatusFromWin());
 				return 0;	// end of directory or error
 			}
 		}
@@ -224,12 +227,7 @@ int wopen(const OsPath& pathname, int oflag, mode_t mode_arg)
 	if(waio_reopen(fd, pathname, oflag) != INFO::OK)
 		return -1;
 
-	// CRT doesn't like more than 255 files open.
-	// warn now, so that we notice why so many are open.
-#ifndef NDEBUG
-	if(fd > 256)
-		WARN_ERR(ERR::LIMIT);
-#endif
+	ASSERT(fd < 256);	// CRT limitation
 
 	return fd;
 }

@@ -42,7 +42,7 @@
 
 //-----------------------------------------------------------------------------
 
-static LibError ReadVersionString(const OsPath& modulePathname, wchar_t* out_ver, size_t out_ver_len)
+static Status ReadVersionString(const OsPath& modulePathname, wchar_t* out_ver, size_t out_ver_len)
 {
 	WinScopedPreserveLastError s;	// GetFileVersion*, Ver*
 

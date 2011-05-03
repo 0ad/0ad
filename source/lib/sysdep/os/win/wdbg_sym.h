@@ -41,7 +41,7 @@ struct _EXCEPTION_POINTERS;
  * @return INFO::CB_CONTINUE to continue, anything else to stop immediately
  * and return that value to wdbg_sym_WalkStack's caller.
  **/
-typedef LibError (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t cbData);
+typedef Status (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t cbData);
 
 /**
  * Iterate over a call stack, invoking a callback for each frame encountered.
@@ -52,11 +52,11 @@ typedef LibError (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t 
  *		  an exception record), or 0 to walk the current stack.
  * @param lastFuncToSkip
  *
- * @note It is safe to use ENSURE/debug_warn/CHECK_ERR even during a
+ * @note It is safe to use ENSURE/debug_warn/WARN_RETURN_STATUS_IF_ERR even during a
  * stack trace (which is triggered by ENSURE et al. in app code) because
  * nested stack traces are ignored and only the error is displayed.
  **/
-extern LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData = 0, const _CONTEXT* pcontext = 0, const wchar_t* lastFuncToSkip = 0);
+extern Status wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData = 0, const _CONTEXT* pcontext = 0, const wchar_t* lastFuncToSkip = 0);
 
 extern void wdbg_sym_WriteMinidump(_EXCEPTION_POINTERS* ep);
 

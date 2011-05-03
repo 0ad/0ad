@@ -602,7 +602,7 @@ static void DetectCacheAndTLB(size_t& descriptorFlags)
 }	// namespace CPUID2
 
 
-static LibError DetectCacheAndTLB()
+static Status DetectCacheAndTLB()
 {
 	// ensure all cache entries are initialized (DetectCache* might not set them all)
 	for(size_t idxLevel = 0; idxLevel < x86_x64_Cache::maxLevels; idxLevel++)

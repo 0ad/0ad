@@ -43,7 +43,7 @@ WINIT_REGISTER_LATE_SHUTDOWN(whrt_Shutdown);
 
 namespace ERR
 {
-	const LibError WHRT_COUNTER_UNSAFE = 140000;
+	const Status WHRT_COUNTER_UNSAFE = 140000;
 }
 
 
@@ -51,9 +51,9 @@ namespace ERR
 // choose best available safe counter
 
 // (moved into a separate function to simplify error handling)
-static inline LibError ActivateCounter(ICounter* counter)
+static inline Status ActivateCounter(ICounter* counter)
 {
-	RETURN_ERR(counter->Activate());
+	RETURN_STATUS_IF_ERR(counter->Activate());
 
 	if(!counter->IsSafe())
 		return ERR::WHRT_COUNTER_UNSAFE;	// NOWARN (happens often)
@@ -74,7 +74,7 @@ static ICounter* GetNextBestSafeCounter()
 		if(!counter)
 			return 0;	// tried all, none were safe
 
-		LibError err = ActivateCounter(counter);
+		Status err = ActivateCounter(counter);
 		if(err == INFO::OK)
 		{
 			debug_printf(L"HRT| using name=%ls freq=%f\n", counter->Name(), counter->NominalFrequency());
@@ -83,7 +83,7 @@ static ICounter* GetNextBestSafeCounter()
 		else
 		{
 			wchar_t buf[100];
-			debug_printf(L"HRT| activating %ls failed: %ls\n", counter->Name(), error_description_r(err, buf, ARRAY_SIZE(buf)));
+			debug_printf(L"HRT| activating %ls failed: %ls\n", counter->Name(), StatusDescription(err, buf, ARRAY_SIZE(buf)));
 			DestroyCounter(counter);
 		}
 	}
@@ -259,7 +259,7 @@ static unsigned __stdcall UpdateThread(void* UNUSED(data))
 	return 0;
 }
 
-static inline LibError InitUpdateThread()
+static inline Status InitUpdateThread()
 {
 	// make sure our interval isn't too long
 	// (counterBits can be 64 => Bit() would overflow => calculate period/2)
@@ -293,7 +293,7 @@ static inline void ShutdownUpdateThread()
 
 //-----------------------------------------------------------------------------
 
-static LibError whrt_Init()
+static Status whrt_Init()
 {
 	InitCounter();
 
@@ -302,13 +302,13 @@ static LibError whrt_Init()
 
 	UpdateTimerState();	// must come before InitUpdateThread to avoid race
 
-	RETURN_ERR(InitUpdateThread());
+	RETURN_STATUS_IF_ERR(InitUpdateThread());
 
 	return INFO::OK;
 }
 
 
-static LibError whrt_Shutdown()
+static Status whrt_Shutdown()
 {
 	ShutdownUpdateThread();
 

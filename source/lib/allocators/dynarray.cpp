@@ -36,7 +36,7 @@
 // stored in da->prot to reduce size; doesn't conflict with any PROT_* flags.
 const int DA_NOT_OUR_MEM = 0x40000000;
 
-static LibError validate_da(DynArray* da)
+static Status validate_da(DynArray* da)
 {
 	if(!da)
 		WARN_RETURN(ERR::INVALID_PARAM);
@@ -63,16 +63,16 @@ static LibError validate_da(DynArray* da)
 	return INFO::OK;
 }
 
-#define CHECK_DA(da) RETURN_ERR(validate_da(da))
+#define CHECK_DA(da) RETURN_STATUS_IF_ERR(validate_da(da))
 
 
-LibError da_alloc(DynArray* da, size_t max_size)
+Status da_alloc(DynArray* da, size_t max_size)
 {
 	const size_t max_size_pa = Align<pageSize>(max_size);
 
 	u8* p = 0;
 	if(max_size_pa)	// (avoid mmap failure)
-		RETURN_ERR(mem_Reserve(max_size_pa, &p));
+		RETURN_STATUS_IF_ERR(mem_Reserve(max_size_pa, &p));
 
 	da->base        = p;
 	da->max_size_pa = max_size_pa;
@@ -85,7 +85,7 @@ LibError da_alloc(DynArray* da, size_t max_size)
 }
 
 
-LibError da_free(DynArray* da)
+Status da_free(DynArray* da)
 {
 	CHECK_DA(da);
 
@@ -101,12 +101,12 @@ LibError da_free(DynArray* da)
 	// (i.e. it doesn't actually own any memory). don't complain;
 	// da_free is supposed to be called even in the above case.
 	if(!was_wrapped && size_pa)
-		RETURN_ERR(mem_Release(p, size_pa));
+		RETURN_STATUS_IF_ERR(mem_Release(p, size_pa));
 	return INFO::OK;
 }
 
 
-LibError da_set_size(DynArray* da, size_t new_size)
+Status da_set_size(DynArray* da, size_t new_size)
 {
 	CHECK_DA(da);
 
@@ -127,10 +127,10 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	u8* end = da->base + cur_size_pa;
 	// expanding
 	if(size_delta_pa > 0)
-		RETURN_ERR(mem_Commit(end, size_delta_pa, da->prot));
+		RETURN_STATUS_IF_ERR(mem_Commit(end, size_delta_pa, da->prot));
 	// shrinking
 	else if(size_delta_pa < 0)
-		RETURN_ERR(mem_Decommit(end+size_delta_pa, -size_delta_pa));
+		RETURN_STATUS_IF_ERR(mem_Decommit(end+size_delta_pa, -size_delta_pa));
 	// else: no change in page count, e.g. if going from size=1 to 2
 	// (we don't want mem_* to have to handle size=0)
 
@@ -141,16 +141,16 @@ LibError da_set_size(DynArray* da, size_t new_size)
 }
 
 
-LibError da_reserve(DynArray* da, size_t size)
+Status da_reserve(DynArray* da, size_t size)
 {
 	if(da->pos+size > da->cur_size_pa)
-		RETURN_ERR(da_set_size(da, da->cur_size_pa+size));
+		RETURN_STATUS_IF_ERR(da_set_size(da, da->cur_size_pa+size));
 	da->cur_size = std::max(da->cur_size, da->pos+size);
 	return INFO::OK;
 }
 
 
-LibError da_set_prot(DynArray* da, int prot)
+Status da_set_prot(DynArray* da, int prot)
 {
 	CHECK_DA(da);
 
@@ -160,14 +160,14 @@ LibError da_set_prot(DynArray* da, int prot)
 		WARN_RETURN(ERR::LOGIC);
 
 	da->prot = prot;
-	RETURN_ERR(mem_Protect(da->base, da->cur_size_pa, prot));
+	RETURN_STATUS_IF_ERR(mem_Protect(da->base, da->cur_size_pa, prot));
 
 	CHECK_DA(da);
 	return INFO::OK;
 }
 
 
-LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
+Status da_wrap_fixed(DynArray* da, u8* p, size_t size)
 {
 	da->base        = p;
 	da->max_size_pa = Align<pageSize>(size);
@@ -180,7 +180,7 @@ LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 }
 
 
-LibError da_read(DynArray* da, void* data, size_t size)
+Status da_read(DynArray* da, void* data, size_t size)
 {
 	// make sure we have enough data to read
 	if(da->pos+size > da->cur_size)
@@ -192,9 +192,9 @@ LibError da_read(DynArray* da, void* data, size_t size)
 }
 
 
-LibError da_append(DynArray* da, const void* data, size_t size)
+Status da_append(DynArray* da, const void* data, size_t size)
 {
-	RETURN_ERR(da_reserve(da, size));
+	RETURN_STATUS_IF_ERR(da_reserve(da, size));
 	memcpy(da->base+da->pos, data, size);
 	da->pos += size;
 	return INFO::OK;

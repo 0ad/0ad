@@ -73,7 +73,7 @@ UnalignedWriter::UnalignedWriter(const PFile& file, off_t ofs)
 	if(misalignment)
 	{
 		io::Operation op(*m_file.get(), m_alignedBuf.get(), BLOCK_SIZE, m_alignedOfs);
-		THROW_ERR(io::Run(op));
+		THROW_STATUS_IF_ERR(io::Run(op));
 	}
 	m_bytesUsed = misalignment;
 }
@@ -85,7 +85,7 @@ UnalignedWriter::~UnalignedWriter()
 }
 
 
-LibError UnalignedWriter::Append(const u8* data, size_t size) const
+Status UnalignedWriter::Append(const u8* data, size_t size) const
 {
 	while(size != 0)
 	{
@@ -94,7 +94,7 @@ LibError UnalignedWriter::Append(const u8* data, size_t size) const
 		if(m_bytesUsed == 0 && IsAligned(data, maxSectorSize) && alignedSize != 0)
 		{
 			io::Operation op(*m_file.get(), (void*)data, alignedSize, m_alignedOfs);
-			RETURN_ERR(io::Run(op));
+			RETURN_STATUS_IF_ERR(io::Run(op));
 			m_alignedOfs += (off_t)alignedSize;
 			data += alignedSize;
 			size -= alignedSize;
@@ -107,7 +107,7 @@ LibError UnalignedWriter::Append(const u8* data, size_t size) const
 		size -= chunkSize;
 
 		if(m_bytesUsed == BLOCK_SIZE)
-			RETURN_ERR(WriteBlock());
+			RETURN_STATUS_IF_ERR(WriteBlock());
 	}
 
 	return INFO::OK;
@@ -124,10 +124,10 @@ void UnalignedWriter::Flush() const
 }
 
 
-LibError UnalignedWriter::WriteBlock() const
+Status UnalignedWriter::WriteBlock() const
 {
 	io::Operation op(*m_file.get(), m_alignedBuf.get(), BLOCK_SIZE, m_alignedOfs);
-	RETURN_ERR(io::Run(op));
+	RETURN_STATUS_IF_ERR(io::Run(op));
 	m_alignedOfs += BLOCK_SIZE;
 	m_bytesUsed = 0;
 	return INFO::OK;

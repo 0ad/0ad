@@ -38,13 +38,13 @@ struct DirDeleter
 	}
 };
 
-LibError GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
+Status GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
 {
 	// open directory
 	errno = 0;
 	WDIR* pDir = wopendir(path);
 	if(!pDir)
-		return LibError_from_errno(false);
+		return StatusFromErrno();	// NOWARN
 	shared_ptr<WDIR> osDir(pDir, DirDeleter());
 
 	for(;;)
@@ -56,24 +56,24 @@ LibError GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryName
 			// no error, just no more entries to return
 			if(!errno)
 				return INFO::OK;
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 		}
 
 		for(size_t i = 0; osEnt->d_name[i] != '\0'; i++)
-			RETURN_ERR(Path::Validate(osEnt->d_name[i]));
+			RETURN_STATUS_IF_ERR(Path::Validate(osEnt->d_name[i]));
 		const OsPath name(osEnt->d_name);
 
 		// get file information (mode, size, mtime)
 		struct stat s;
 #if OS_WIN
 		// .. return wdirent directly (much faster than calling stat).
-		RETURN_ERR(wreaddir_stat_np(osDir.get(), &s));
+		RETURN_STATUS_IF_ERR(wreaddir_stat_np(osDir.get(), &s));
 #else
 		// .. call regular stat().
 		errno = 0;
 		const OsPath pathname = path / name;
 		if(wstat(pathname, &s) != 0)
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 #endif
 
 		if(files && S_ISREG(s.st_mode))
@@ -84,20 +84,20 @@ LibError GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryName
 }
 
 
-LibError GetFileInfo(const OsPath& pathname, FileInfo* pfileInfo)
+Status GetFileInfo(const OsPath& pathname, FileInfo* pfileInfo)
 {
 	errno = 0;
 	struct stat s;
 	memset(&s, 0, sizeof(s));
 	if(wstat(pathname, &s) != 0)
-		return LibError_from_errno();
+		WARN_RETURN(StatusFromErrno());
 
 	*pfileInfo = FileInfo(pathname.Filename(), s.st_size, s.st_mtime);
 	return INFO::OK;
 }
 
 
-LibError CreateDirectories(const OsPath& path, mode_t mode)
+Status CreateDirectories(const OsPath& path, mode_t mode)
 {
 	if(path.empty())
 		return INFO::OK;
@@ -115,23 +115,23 @@ LibError CreateDirectories(const OsPath& path, mode_t mode)
 	if(path.IsDirectory())
 		return CreateDirectories(path.Parent(), mode);
 
-	RETURN_ERR(CreateDirectories(path.Parent(), mode));
+	RETURN_STATUS_IF_ERR(CreateDirectories(path.Parent(), mode));
 
 	errno = 0;
 	if(wmkdir(path, mode) != 0)
-		return LibError_from_errno();
+		WARN_RETURN(StatusFromErrno());
 
 	return INFO::OK;
 }
 
 
-LibError DeleteDirectory(const OsPath& path)
+Status DeleteDirectory(const OsPath& path)
 {
 	// note: we have to recursively empty the directory before it can
 	// be deleted (required by Windows and POSIX rmdir()).
 
 	FileInfos files; DirectoryNames subdirectoryNames;
-	RETURN_ERR(GetDirectoryEntries(path, &files, &subdirectoryNames));
+	RETURN_STATUS_IF_ERR(GetDirectoryEntries(path, &files, &subdirectoryNames));
 
 	// delete files
 	for(size_t i = 0; i < files.size(); i++)
@@ -139,16 +139,16 @@ LibError DeleteDirectory(const OsPath& path)
 		const OsPath pathname = path / files[i].Name();
 		errno = 0;
 		if(wunlink(pathname) != 0)
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 	}
 
 	// recurse over subdirectoryNames
 	for(size_t i = 0; i < subdirectoryNames.size(); i++)
-		RETURN_ERR(DeleteDirectory(path / subdirectoryNames[i]));
+		RETURN_STATUS_IF_ERR(DeleteDirectory(path / subdirectoryNames[i]));
 
 	errno = 0;
 	if(wrmdir(path) != 0)
-		return LibError_from_errno();
+		WARN_RETURN(StatusFromErrno());
 
 	return INFO::OK;
 }

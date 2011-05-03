@@ -66,7 +66,7 @@ struct OvlAllocator	// POD
 		OVERLAPPED ovl;
 	};
 
-	LibError Init()
+	Status Init()
 	{
 		// the allocation must be naturally aligned to ensure it doesn't
 		// overlap another page, which might prevent SetFileIoOverlappedRange
@@ -183,7 +183,7 @@ struct FileControlBlock // POD
 
 	OvlAllocator ovl;
 
-	LibError Init()
+	Status Init()
 	{
 		fd = FD_AVAILABLE;
 		hFile = INVALID_HANDLE_VALUE;
@@ -260,7 +260,7 @@ static FileControlBlock* FindFileControlBlock(int fd)
 
 static ModuleInitState waio_initState;
 
-static LibError waio_Init()
+static Status waio_Init()
 {
 	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
 		fileControlBlocks[i].Init();
@@ -281,7 +281,7 @@ static LibError waio_Init()
 }
 
 
-static LibError waio_Shutdown()
+static Status waio_Shutdown()
 {
 	if(waio_initState == 0)	// we were never initialized
 		return INFO::OK;
@@ -354,7 +354,7 @@ static DWORD FlagsAndAttributes()
 	return flags|attributes;
 }
 
-static LibError OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
+static Status OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
 {
 	WinScopedPreserveLastError s;
 
@@ -364,7 +364,7 @@ static LibError OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
 	const DWORD flags  = FlagsAndAttributes();
 	hFile = CreateFileW(OsString(pathname).c_str(), access, share, 0, create, flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
-		return LibError_from_GLE();
+		WARN_RETURN(StatusFromWin());
 
 	return INFO::OK;
 }
@@ -373,7 +373,7 @@ static LibError OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
 //-----------------------------------------------------------------------------
 // Windows-only APIs
 
-LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
+Status waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
 {
 	ENSURE(fd > 2);
 	ENSURE(!(oflag & O_APPEND));	// not supported
@@ -381,10 +381,10 @@ LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
 	if(oflag & O_NO_AIO_NP)
 		return INFO::SKIPPED;
 
-	RETURN_ERR(ModuleInit(&waio_initState, waio_Init));
+	RETURN_STATUS_IF_ERR(ModuleInit(&waio_initState, waio_Init));
 
 	HANDLE hFile;
-	RETURN_ERR(OpenFile(pathname, oflag, hFile));
+	RETURN_STATUS_IF_ERR(OpenFile(pathname, oflag, hFile));
 
 	if(!AssociateFileControlBlock(fd, hFile))
 	{
@@ -396,7 +396,7 @@ LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
 }
 
 
-LibError waio_close(int fd)
+Status waio_close(int fd)
 {
 	FileControlBlock* fcb = FindFileControlBlock(fd);
 	if(!fcb)
@@ -412,7 +412,7 @@ LibError waio_close(int fd)
 }
 
 
-LibError waio_Preallocate(int fd, off_t size)
+Status waio_Preallocate(int fd, off_t size)
 {
 	FileControlBlock* fcb = FindFileControlBlock(fd);
 	if(!fcb)
@@ -420,7 +420,7 @@ LibError waio_Preallocate(int fd, off_t size)
 	const HANDLE hFile = fcb->hFile;
 
 	// Windows requires sector alignment (see discussion in header)
-	const off_t alignedSize = round_up(size, (off_t)maxSectorSize);
+	const off_t alignedSize = round_up(size, (off_t)maxSectorSize);	// (Align<> cannot compute off_t)
 
 	// allocate all space up front to reduce fragmentation
 	LARGE_INTEGER size64; size64.QuadPart = alignedSize;
@@ -479,7 +479,9 @@ static int Issue(aiocb* cb)
 	if(ok || GetLastError() == ERROR_IO_PENDING)
 		return 0;	// success
 
-	LibError_set_errno(LibError_from_GLE());
+	const Status status = StatusFromWin();
+	WARN_IF_ERR(status);
+	errno = ErrnoFromStatus(status);
 	return -1;
 }
 
@@ -562,7 +564,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 	// is not desirable because POSIX doesn't require aio_suspend to be
 	// called, which means notifications might pile up.
 	const DWORD milliseconds = 1;	// as short as possible (don't oversleep)
-	const LibError ret = PollCompletionPort(hIOCP, milliseconds, bytesTransferred, key, ovl);
+	const Status ret = PollCompletionPort(hIOCP, milliseconds, bytesTransferred, key, ovl);
 	if(ret != INFO::OK && ret != ERR::AGAIN)	// failed
 	{
 		ENSURE(0);
@@ -621,7 +623,7 @@ int aio_cancel(int UNUSED(fd), struct aiocb* cb)
 	const HANDLE hFile = ((const FileControlBlock*)cb->fcb)->hFile;
 	if(hFile == INVALID_HANDLE_VALUE)
 	{
-		WARN_ERR(ERR::INVALID_HANDLE);
+		WARN_IF_ERR(ERR::INVALID_HANDLE);
 		errno = EINVAL;
 		return -1;
 	}
@@ -637,7 +639,7 @@ int aio_cancel(int UNUSED(fd), struct aiocb* cb)
 
 int aio_fsync(int, struct aiocb*)
 {
-	WARN_ERR(ERR::NOT_IMPLEMENTED);
+	WARN_IF_ERR(ERR::NOT_IMPLEMENTED);
 	errno = ENOSYS;
 	return -1;
 }

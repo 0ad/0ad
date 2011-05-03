@@ -124,7 +124,7 @@ static const OsPath& GetDirectSoundDriverPath()
 
 //-----------------------------------------------------------------------------
 
-LibError win_get_snd_info()
+Status win_get_snd_info()
 {
 	WmiMap wmiMap;
 	if(wmi_GetClass(L"Win32_SoundDevice", wmiMap) == INFO::OK)

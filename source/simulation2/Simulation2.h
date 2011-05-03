@@ -118,7 +118,7 @@ public:
 	 * Reload any scripts that were loaded from the given filename.
 	 * (This is used to implement hotloading.)
 	 */
-	LibError ReloadChangedFile(const VfsPath& path);
+	Status ReloadChangedFile(const VfsPath& path);
 
 	/**
 	 * Initialise (or re-initialise) the complete simulation state.

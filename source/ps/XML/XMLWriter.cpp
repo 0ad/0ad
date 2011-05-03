@@ -99,10 +99,10 @@ bool XMLWriter_File::StoreVFS(const PIVFS& vfs, const VfsPath& pathname)
 	shared_ptr<u8> data;
 	AllocateAligned(data, size, maxSectorSize);
 	memcpy(data.get(), m_Data.data(), size);
-	LibError ret = vfs->CreateFile(pathname, data, size);
+	Status ret = vfs->CreateFile(pathname, data, size);
 	if (ret < 0)
 	{
-		LOGERROR(L"Error saving XML data through VFS: %ld", ret);
+		LOGERROR(L"Error saving XML data through VFS: %lld", ret);
 		return false;
 	}
 	return true;

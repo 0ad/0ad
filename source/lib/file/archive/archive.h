@@ -37,8 +37,8 @@
 
 namespace ERR
 {
-	const LibError ARCHIVE_UNKNOWN_FORMAT = -110400;
-	const LibError ARCHIVE_UNKNOWN_METHOD = -110401;
+	const Status ARCHIVE_UNKNOWN_FORMAT = -110400;
+	const Status ARCHIVE_UNKNOWN_METHOD = -110401;
 }
 
 struct IArchiveFile : public IFileLoader
@@ -56,7 +56,7 @@ struct IArchiveReader
 	 * @param pathname full pathname of entry; only valid during the callback.
 	 **/
 	typedef void (*ArchiveEntryCallback)(const VfsPath& pathname, const FileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData);
-	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData) = 0;
+	virtual Status ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData) = 0;
 };
 
 typedef shared_ptr<IArchiveReader> PIArchiveReader;
@@ -91,7 +91,7 @@ struct IArchiveWriter
 	 * @param pathname the actual file to add
 	 * @param pathnameInArchive the name to store in the archive
 	 **/
-	virtual LibError AddFile(const OsPath& pathname, const Path& pathameInArchive) = 0;
+	virtual Status AddFile(const OsPath& pathname, const Path& pathameInArchive) = 0;
 };
 
 typedef shared_ptr<IArchiveWriter> PIArchiveWriter;

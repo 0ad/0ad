@@ -30,9 +30,9 @@
 #include <cstring>
 #include <cerrno>
 
-ERROR_ASSOCIATE(ERR::PATH_CHARACTER_ILLEGAL, L"illegal path character", -1);
-ERROR_ASSOCIATE(ERR::PATH_CHARACTER_UNSAFE, L"unsafe path character", -1);
-ERROR_ASSOCIATE(ERR::PATH_NOT_FOUND, L"path not found", -1);
+STATUS_DEFINE(ERR, PATH_CHARACTER_ILLEGAL, L"illegal path character", -1);
+STATUS_DEFINE(ERR, PATH_CHARACTER_UNSAFE, L"unsafe path character", -1);
+STATUS_DEFINE(ERR, PATH_NOT_FOUND, L"path not found", -1);
 
 
 static bool path_is_dir_sep(wchar_t c)
@@ -92,7 +92,7 @@ const wchar_t* path_name_only(const wchar_t* path)
 }
 
 
-/*static*/ LibError Path::Validate(String::value_type c)
+/*static*/ Status Path::Validate(String::value_type c)
 {
 	if(c < 32)
 		return ERR::PATH_CHARACTER_UNSAFE;

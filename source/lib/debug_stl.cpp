@@ -36,8 +36,8 @@
 #include "lib/regex.h"
 
 
-ERROR_ASSOCIATE(ERR::STL_CNT_UNKNOWN, L"Unknown STL container type_name", -1);
-ERROR_ASSOCIATE(ERR::STL_CNT_INVALID, L"Container type is known but contents are invalid", -1);
+STATUS_DEFINE(ERR, STL_CNT_UNKNOWN, L"Unknown STL container type_name", -1);
+STATUS_DEFINE(ERR, STL_CNT_INVALID, L"Container type is known but contents are invalid", -1);
 
 
 // used in debug_stl_simplify_name.
@@ -541,7 +541,7 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 // return number of elements and an iterator (any data it needs is stored in
 // it_mem, which must hold DEBUG_STL_MAX_ITERATOR_SIZE bytes).
 // returns 0 on success or an StlContainerError.
-LibError debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
+Status debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem)
 {
 #if MSC_VERSION >= 1400

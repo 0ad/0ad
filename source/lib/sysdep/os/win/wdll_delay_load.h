@@ -31,7 +31,7 @@
 struct WdllLoadNotify
 {
 	const char* dll_name;
-	LibError (*func)();
+	Status (*func)();
 	WdllLoadNotify* next;
 };
 

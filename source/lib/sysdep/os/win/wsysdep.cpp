@@ -331,7 +331,7 @@ ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 // misc
 //-----------------------------------------------------------------------------
 
-LibError sys_error_description_r(int user_err, wchar_t* buf, size_t max_chars)
+Status sys_StatusDescription(int user_err, wchar_t* buf, size_t max_chars)
 {
 	// validate user_err - Win32 doesn't have negative error numbers
 	if(user_err < 0)
@@ -364,25 +364,25 @@ LibError sys_error_description_r(int user_err, wchar_t* buf, size_t max_chars)
 }
 
 
-static LibError GetModulePathname(HMODULE hModule, OsPath& pathname)
+static Status GetModulePathname(HMODULE hModule, OsPath& pathname)
 {
 	wchar_t pathnameBuf[32768];	// NTFS limit
 	const DWORD length = (DWORD)ARRAY_SIZE(pathnameBuf);
 	const DWORD charsWritten = GetModuleFileNameW(hModule, pathnameBuf, length);
 	if(charsWritten == 0)	// failed
-		return LibError_from_GLE();
+		WARN_RETURN(StatusFromWin());
 	ENSURE(charsWritten < length);	// why would the above buffer ever be exceeded?
 	pathname = pathnameBuf;
 	return INFO::OK;
 }
 
 
-LibError sys_get_module_filename(void* addr, OsPath& pathname)
+Status sys_get_module_filename(void* addr, OsPath& pathname)
 {
 	MEMORY_BASIC_INFORMATION mbi;
 	const SIZE_T bytesWritten = VirtualQuery(addr, &mbi, sizeof(mbi));
 	if(!bytesWritten)
-		return LibError_from_GLE();
+		WARN_RETURN(StatusFromWin());
 	ENSURE(bytesWritten >= sizeof(mbi));
 	return GetModulePathname((HMODULE)mbi.AllocationBase, pathname);
 }
@@ -420,7 +420,7 @@ static int CALLBACK BrowseCallback(HWND hWnd, unsigned int msg, LPARAM UNUSED(lP
 	return 0;
 }
 
-LibError sys_pick_directory(OsPath& path)
+Status sys_pick_directory(OsPath& path)
 {
 	// (must not use multi-threaded apartment due to BIF_NEWDIALOGSTYLE)
 	const HRESULT hr = CoInitialize(0);
@@ -454,11 +454,11 @@ LibError sys_pick_directory(OsPath& path)
 		return INFO::OK;
 	}
 
-	return LibError_from_GLE();
+	WARN_RETURN(StatusFromWin());
 }
 
 
-LibError sys_open_url(const std::string& url)
+Status sys_open_url(const std::string& url)
 {
 	HINSTANCE r = ShellExecuteA(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
 	if ((int)(intptr_t)r > 32)
@@ -468,18 +468,18 @@ LibError sys_open_url(const std::string& url)
 }
 
 
-LibError sys_generate_random_bytes(u8* buffer, size_t size)
+Status sys_generate_random_bytes(u8* buffer, size_t size)
 {
 	HCRYPTPROV hCryptProv = 0;
 	if(!CryptAcquireContext(&hCryptProv, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT))
-		return LibError_from_GLE();
+		WARN_RETURN(StatusFromWin());
 
 	memset(buffer, 0, size);
 	if(!CryptGenRandom(hCryptProv, (DWORD)size, (BYTE*)buffer))
-		return LibError_from_GLE();
+		WARN_RETURN(StatusFromWin());
 
 	if(!CryptReleaseContext(hCryptProv, 0))
-		return LibError_from_GLE();
+		WARN_RETURN(StatusFromWin());
 
 	return INFO::OK;
 }
@@ -511,7 +511,7 @@ static std::wstring parse_proxy(const std::wstring& input)
 	return L"";
 }
 
-LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy)
+Status sys_get_proxy_config(const std::wstring& url, std::wstring& proxy)
 {
 	WINHTTP_AUTOPROXY_OPTIONS autoProxyOptions;
 	memset(&autoProxyOptions, 0, sizeof(autoProxyOptions));
@@ -527,7 +527,7 @@ LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy)
 
 	HINTERNET hSession = NULL;
 
-	LibError err = INFO::SKIPPED;
+	Status err = INFO::SKIPPED;
 
 	bool useAutoDetect;
 

@@ -31,11 +31,11 @@
 #include "lib/file/common/file_stats.h"
 
 
-ERROR_ASSOCIATE(ERR::FILE_ACCESS, L"Insufficient access rights to open file", EACCES);
-ERROR_ASSOCIATE(ERR::FILE_NOT_FOUND, L"No such file or directory", ENOENT);
+STATUS_DEFINE(ERR, FILE_ACCESS, L"Insufficient access rights to open file", EACCES);
+STATUS_DEFINE(ERR, FILE_NOT_FOUND, L"No such file or directory", ENOENT);
 
 
-LibError FileOpen(const OsPath& pathname, int opcode, int& fd)
+Status FileOpen(const OsPath& pathname, int opcode, int& fd)
 {
 	int oflag = 0;
 	switch(opcode)
@@ -58,7 +58,7 @@ LibError FileOpen(const OsPath& pathname, int opcode, int& fd)
 	const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;	// 0644
 	fd = wopen(pathname, oflag, mode);
 	if(fd < 0)
-		return LibError_from_errno(false);
+		return StatusFromErrno();	// NOWARN
 
 	stats_open();
 	return INFO::OK;

@@ -112,24 +112,24 @@ library and IO layer. Read and write are zero-copy.
 
 namespace ERR
 {
-	const LibError TEX_UNKNOWN_FORMAT      = -120100;
-	const LibError TEX_INCOMPLETE_HEADER   = -120101;
-	const LibError TEX_FMT_INVALID         = -120102;
-	const LibError TEX_INVALID_COLOR_TYPE  = -120103;
-	const LibError TEX_NOT_8BIT_PRECISION  = -120104;
-	const LibError TEX_INVALID_LAYOUT      = -120105;
-	const LibError TEX_COMPRESSED          = -120106;
-	const LibError TEX_INVALID_SIZE        = -120107;
+	const Status TEX_UNKNOWN_FORMAT      = -120100;
+	const Status TEX_INCOMPLETE_HEADER   = -120101;
+	const Status TEX_FMT_INVALID         = -120102;
+	const Status TEX_INVALID_COLOR_TYPE  = -120103;
+	const Status TEX_NOT_8BIT_PRECISION  = -120104;
+	const Status TEX_INVALID_LAYOUT      = -120105;
+	const Status TEX_COMPRESSED          = -120106;
+	const Status TEX_INVALID_SIZE        = -120107;
 }
 
 namespace WARN
 {
-	const LibError TEX_INVALID_DATA        = +120108;
+	const Status TEX_INVALID_DATA        = +120108;
 }
 
 namespace INFO
 {
-	const LibError TEX_CODEC_CANNOT_HANDLE = +120109;
+	const Status TEX_CODEC_CANNOT_HANDLE = +120109;
 }
 
 
@@ -239,9 +239,9 @@ struct Tex
  * Is the texture object valid and self-consistent?
  * 
  * @param t
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_validate(const Tex* t);
+extern Status tex_validate(const Tex* t);
 
 
 /**
@@ -278,9 +278,9 @@ extern void tex_codec_unregister_all();
  * @param data Input data.
  * @param data_size Its size [bytes].
  * @param t Output texture object.
- * @return LibError.
+ * @return Status.
  **/
-extern LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t);
+extern Status tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t);
 
 /**
  * encode a texture into a memory buffer in the desired file format.
@@ -289,9 +289,9 @@ extern LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
  * @param extension (including '.').
  * @param da Output memory array. Allocated here; caller must free it
  *		  when no longer needed. Invalid unless function succeeds.
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_encode(Tex* t, const OsPath& extension, DynArray* da);
+extern Status tex_encode(Tex* t, const OsPath& extension, DynArray* da);
 
 /**
  * store the given image data into a Tex object; this will be as if
@@ -315,16 +315,16 @@ extern LibError tex_encode(Tex* t, const OsPath& extension, DynArray* da);
  * @param data Img texture data. note: size is calculated from other params.
  * @param ofs
  * @param t output texture object.
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t);
+extern Status tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t);
 
 /**
  * free all resources associated with the image and make further
  * use of it impossible.
  *
  * @param t texture object (note: not zeroed afterwards; see impl)
- * @return LibError
+ * @return Status
  **/
 extern void tex_free(Tex* t);
 
@@ -338,9 +338,9 @@ extern void tex_free(Tex* t);
  *
  * @param t Input texture object.
  * @param transforms TexFlags that are to be flipped.
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_transform(Tex* t, size_t transforms);
+extern Status tex_transform(Tex* t, size_t transforms);
 
 /**
  * Change \<t\>'s pixel format (2nd version)
@@ -348,9 +348,9 @@ extern LibError tex_transform(Tex* t, size_t transforms);
  *
  * @param t Input texture object.
  * @param new_flags desired new value of TexFlags.
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_transform_to(Tex* t, size_t new_flags);
+extern Status tex_transform_to(Tex* t, size_t new_flags);
 
 
 //

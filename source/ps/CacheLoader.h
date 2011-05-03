@@ -48,7 +48,7 @@ public:
 	 * Returns INFO::SKIPPED and sets loadPath to the desire loose cache name if there isn't one.
 	 * Returns a value < 0 on error (e.g. the source file doesn't exist).
 	 */
-	LibError TryLoadingCached(const VfsPath& sourcePath, const MD5& initialHash, u32 version, VfsPath& loadPath);
+	Status TryLoadingCached(const VfsPath& sourcePath, const MD5& initialHash, u32 version, VfsPath& loadPath);
 
 	/**
 	 * Determines whether we can safely use the archived cache file, or need to

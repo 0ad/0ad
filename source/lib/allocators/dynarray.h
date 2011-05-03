@@ -61,9 +61,9 @@ struct DynArray
  * @param max_size size [bytes] of address space to reserve (*);
  * the DynArray can never expand beyond this.
  * (* rounded up to next page size multiple)
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError da_alloc(DynArray* da, size_t max_size);
+LIB_API Status da_alloc(DynArray* da, size_t max_size);
 
 /**
  * free all memory (address space + physical) that constitutes the
@@ -72,9 +72,9 @@ LIB_API LibError da_alloc(DynArray* da, size_t max_size);
  * use-after-free is impossible because the memory is unmapped.
  *
  * @param da DynArray* zeroed afterwards.
- * @return LibError
+ * @return Status
  **/
-LIB_API LibError da_free(DynArray* da);
+LIB_API Status da_free(DynArray* da);
 
 /**
  * expand or shrink the array: changes the amount of currently committed
@@ -83,9 +83,9 @@ LIB_API LibError da_free(DynArray* da);
  * @param da DynArray.
  * @param new_size target size (rounded up to next page multiple).
  * pages are added/removed until this is met.
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError da_set_size(DynArray* da, size_t new_size);
+LIB_API Status da_set_size(DynArray* da, size_t new_size);
 
 /**
  * Make sure at least \<size\> bytes starting at da->pos are committed and
@@ -93,9 +93,9 @@ LIB_API LibError da_set_size(DynArray* da, size_t new_size);
  *
  * @param da DynArray*
  * @param size Minimum amount to guarantee [bytes]
- * @return LibError
+ * @return Status
  **/
-LIB_API LibError da_reserve(DynArray* da, size_t size);
+LIB_API Status da_reserve(DynArray* da, size_t size);
 
 /**
  * change access rights of the array memory.
@@ -105,9 +105,9 @@ LIB_API LibError da_reserve(DynArray* da, size_t size);
  *
  * @param da DynArray.
  * @param prot a combination of the PROT_* values used with mprotect.
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError da_set_prot(DynArray* da, int prot);
+LIB_API Status da_set_prot(DynArray* da, int prot);
 
 /**
  * "wrap" (i.e. store information about) the given buffer in a DynArray.
@@ -120,9 +120,9 @@ LIB_API LibError da_set_prot(DynArray* da, int prot);
  * change the underlying memory (e.g. da_set_size) will fail.
  * @param p target memory (no alignment/padding requirements)
  * @param size maximum size (no alignment requirements)
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError da_wrap_fixed(DynArray* da, u8* p, size_t size);
+LIB_API Status da_wrap_fixed(DynArray* da, u8* p, size_t size);
 
 /**
  * "read" from array, i.e. copy into the given buffer.
@@ -132,9 +132,9 @@ LIB_API LibError da_wrap_fixed(DynArray* da, u8* p, size_t size);
  * @param da DynArray.
  * @param data_dst destination memory
  * @param size [bytes] to copy
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError da_read(DynArray* da, void* data_dst, size_t size);
+LIB_API Status da_read(DynArray* da, void* data_dst, size_t size);
 
 /**
  * "write" to array, i.e. copy from the given buffer.
@@ -144,8 +144,8 @@ LIB_API LibError da_read(DynArray* da, void* data_dst, size_t size);
  * @param da DynArray.
  * @param data_src source memory
  * @param size [bytes] to copy
- * @return LibError.
+ * @return Status.
  **/
-LIB_API LibError da_append(DynArray* da, const void* data_src, size_t size);
+LIB_API Status da_append(DynArray* da, const void* data_src, size_t size);
 
 #endif	// #ifndef INCLUDED_ALLOCATORS_DYNARRAY

@@ -150,7 +150,7 @@ static void* prof_thread_func(void* UNUSED(data))
 
 
 // call from thread that is to be profiled
-LibError prof_start()
+Status prof_start()
 {
 	// we need a real HANDLE to the target thread for use with
 	// Suspend|ResumeThread and GetThreadContext.
@@ -168,7 +168,7 @@ LibError prof_start()
 	return INFO::OK;
 }
 
-LibError prof_shutdown()
+Status prof_shutdown()
 {
 	WARN_IF_FALSE(CloseHandle(prof_target_thread));
 	return INFO::OK;

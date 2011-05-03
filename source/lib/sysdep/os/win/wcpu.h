@@ -29,7 +29,7 @@
 
 #include "lib/sysdep/os/win/win.h"
 
-extern LibError wcpu_ReadFrequencyFromRegistry(u32& freqMhz);
+extern Status wcpu_ReadFrequencyFromRegistry(u32& freqMhz);
 
 // "affinity" and "processorNumber" are what Windows sees.
 // "processorMask" and "processor" are the idealized representation we expose

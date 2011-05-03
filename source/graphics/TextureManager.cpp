@@ -251,7 +251,7 @@ public:
 		PrepareCacheKey(texture, hash, version);
 
 		VfsPath loadPath;
-		LibError ret = m_CacheLoader.TryLoadingCached(texture->m_Properties.m_Path, hash, version, loadPath);
+		Status ret = m_CacheLoader.TryLoadingCached(texture->m_Properties.m_Path, hash, version, loadPath);
 
 		if (ret == INFO::OK)
 		{
@@ -443,12 +443,12 @@ public:
 		}
 	}
 
-	static LibError ReloadChangedFileCB(void* param, const VfsPath& path)
+	static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 	{
 		return static_cast<CTextureManagerImpl*>(param)->ReloadChangedFile(path);
 	}
 
-	LibError ReloadChangedFile(const VfsPath& path)
+	Status ReloadChangedFile(const VfsPath& path)
 	{
 		// Uncache settings file, if this is one
 		m_SettingsFiles.erase(path);

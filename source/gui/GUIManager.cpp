@@ -163,7 +163,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	m_CurrentGUI = oldGUI;
 }
 
-LibError CGUIManager::ReloadChangedFiles(const VfsPath& path)
+Status CGUIManager::ReloadChangedFiles(const VfsPath& path)
 {
 	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
 	{

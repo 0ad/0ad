@@ -29,11 +29,11 @@
 
 //-----------------------------------------------------------------------------
 
-static inline LibError LibError_from_mmap(void* ret, bool warn_if_failed = true)
+static inline Status StatusFromMap(void* ret)
 {
 	if(ret != MAP_FAILED)
 		return INFO::OK;
-	return LibError_from_errno(warn_if_failed);
+	WARN_RETURN(StatusFromErrno());
 }
 
 // "anonymous" effectively means mapping /dev/zero, but is more efficient.
@@ -46,22 +46,23 @@ static inline LibError LibError_from_mmap(void* ret, bool warn_if_failed = true)
 
 static const int mmap_flags = MAP_PRIVATE|MAP_ANONYMOUS;
 
-LibError mem_Reserve(size_t size, u8** pp)
+Status mem_Reserve(size_t size, u8** pp)
 {
 	errno = 0;
 	void* ret = mmap(0, size, PROT_NONE, mmap_flags|MAP_NORESERVE, -1, 0);
 	*pp = (u8*)ret;
-	return LibError_from_mmap(ret);
+	return StatusFromMap(ret);
 }
 
-LibError mem_Release(u8* p, size_t size)
+Status mem_Release(u8* p, size_t size)
 {
 	errno = 0;
-	int ret = munmap(p, size);
-	return LibError_from_posix(ret);
+	if(munmap(p, size) != 0)
+		WARN_RETURN(StatusFromErrno());
+	return 0;
 }
 
-LibError mem_Commit(u8* p, size_t size, int prot)
+Status mem_Commit(u8* p, size_t size, int prot)
 {
 	// avoid misinterpretation by mmap.
 	if(prot == PROT_NONE)
@@ -69,21 +70,23 @@ LibError mem_Commit(u8* p, size_t size, int prot)
 
 	errno = 0;
 	void* ret = mmap(p, size, prot, mmap_flags|MAP_FIXED, -1, 0);
-	return LibError_from_mmap(ret);
+	return StatusFromMap(ret);
 }
 
-LibError mem_Decommit(u8* p, size_t size)
+Status mem_Decommit(u8* p, size_t size)
 {
 	errno = 0;
 	void* ret = mmap(p, size, PROT_NONE, mmap_flags|MAP_NORESERVE|MAP_FIXED, -1, 0);
-	return LibError_from_mmap(ret);
+	return StatusFromMap(ret);
 }
 
-LibError mem_Protect(u8* p, size_t size, int prot)
+Status mem_Protect(u8* p, size_t size, int prot)
 {
 	errno = 0;
-	int ret = mprotect(p, size, prot);
-	return LibError_from_posix(ret);
+	if(mprotect(p, size, prot) != 0)
+		WARN_RETURN(StatusFromErrno());
+	return 0;
+
 }
 
 
@@ -93,8 +96,8 @@ void* page_aligned_alloc(size_t size)
 {
 	const size_t alignedSize = Align<pageSize>(size);
 	u8* p = 0;
-	RETURN0_IF_ERR(mem_Reserve(alignedSize, &p));
-	RETURN0_IF_ERR(mem_Commit(p, alignedSize, PROT_READ|PROT_WRITE));
+	RETURN_0_IF_ERR(mem_Reserve(alignedSize, &p));
+	RETURN_0_IF_ERR(mem_Commit(p, alignedSize, PROT_READ|PROT_WRITE));
 	return p;
 }
 

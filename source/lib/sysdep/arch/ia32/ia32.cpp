@@ -95,7 +95,7 @@ static bool IsCall(void* ret_addr, void*& target)
 	return false;
 }
 
-LibError ia32_GetCallTarget(void* ret_addr, void*& target)
+Status ia32_GetCallTarget(void* ret_addr, void*& target)
 {
 	if(IsCall(ret_addr, target))
 	{

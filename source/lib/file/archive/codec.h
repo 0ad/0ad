@@ -53,7 +53,7 @@ public:
 	 * efficient since it avoids reallocating a considerable amount of
 	 * memory (about 200KB for LZ).
 	 **/
-	virtual LibError Reset() = 0;
+	virtual Status Reset() = 0;
 
 	/**
 	 * process (i.e. compress or decompress) data.
@@ -66,7 +66,7 @@ public:
 	 *		  output buffers were used. either or both of these can be zero if
 	 *		  the input size is small or there's not enough output space.
 	 **/
-	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced) = 0;
+	virtual Status Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced) = 0;
 
 	/**
 	 * Flush buffers and make sure all output has been produced.
@@ -75,7 +75,7 @@ public:
 	 * @param outProduced
 	 * @return error status for the entire operation.
 	 **/
-	virtual LibError Finish(u32& checksum, size_t& outProduced) = 0;
+	virtual Status Finish(u32& checksum, size_t& outProduced) = 0;
 
 	/**
 	 * update a checksum to reflect the contents of a buffer.

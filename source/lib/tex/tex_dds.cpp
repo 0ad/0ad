@@ -271,7 +271,7 @@ static void s3tc_decompress_level(size_t UNUSED(level), size_t level_w, size_t l
 
 // decompress the given image (which is known to be stored as DXTn)
 // effectively in-place. updates Tex fields.
-static LibError s3tc_decompress(Tex* t)
+static Status s3tc_decompress(Tex* t)
 {
 	// alloc new image memory
 	// notes:
@@ -387,7 +387,7 @@ static bool is_valid_dxt(size_t dxt)
 // pf points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static LibError decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
+static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 {
 	bpp = 0;
 	flags = 0;
@@ -433,7 +433,7 @@ static LibError decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 			WARN_RETURN(ERR::TEX_FMT_INVALID);
 		}
 
-		RETURN_ERR(tex_validate_plain_format(bpp, (int)flags));
+		RETURN_STATUS_IF_ERR(tex_validate_plain_format(bpp, (int)flags));
 	}
 	// .. compressed
 	else if(pf_flags & DDPF_FOURCC)
@@ -476,7 +476,7 @@ static LibError decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 // sd points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static LibError decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp, size_t& flags)
+static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp, size_t& flags)
 {
 	// check header size
 	if(read_le32(&sd->dwSize) != sizeof(*sd))
@@ -495,7 +495,7 @@ static LibError decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bp
 	w = (size_t)read_le32(&sd->dwWidth);
 
 	// pixel format
-	RETURN_ERR(decode_pf(&sd->ddpf, bpp, flags));
+	RETURN_STATUS_IF_ERR(decode_pf(&sd->ddpf, bpp, flags));
 
 	// if the image is not aligned with the S3TC block size, it is stored
 	// with extra pixels on the bottom left to fill up the space, so we need
@@ -588,16 +588,16 @@ static size_t dds_hdr_size(const u8* UNUSED(file))
 }
 
 
-static LibError dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+static Status dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
 	u8* file = da->base;
 	const DDS_HEADER* sd = (const DDS_HEADER*)(file+4);
-	RETURN_ERR(decode_sd(sd, t->w, t->h, t->bpp, t->flags));
+	RETURN_STATUS_IF_ERR(decode_sd(sd, t->w, t->h, t->bpp, t->flags));
 	return INFO::OK;
 }
 
 
-static LibError dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
+static Status dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
 {
 	// note: do not return ERR::NOT_IMPLEMENTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
@@ -607,7 +607,7 @@ static LibError dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da
 
 TIMER_ADD_CLIENT(tc_dds_transform);
 
-static LibError dds_transform(Tex* t, size_t transforms)
+static Status dds_transform(Tex* t, size_t transforms)
 {
 	TIMER_ACCRUE(tc_dds_transform);
 
@@ -628,7 +628,7 @@ static LibError dds_transform(Tex* t, size_t transforms)
 	// requesting decompression
 	if(dxt && transform_dxt)
 	{
-		RETURN_ERR(s3tc_decompress(t));
+		RETURN_STATUS_IF_ERR(s3tc_decompress(t));
 		return INFO::OK;
 	}
 	// both are DXT (unsupported; there are no flags we can change while

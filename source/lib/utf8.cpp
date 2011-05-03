@@ -23,10 +23,10 @@
 #include "precompiled.h"
 #include "lib/utf8.h"
 
-ERROR_ASSOCIATE(ERR::UTF8_SURROGATE, L"UTF-16 surrogate pairs aren't supported", -1);
-ERROR_ASSOCIATE(ERR::UTF8_OUTSIDE_BMP, L"Code point outside BMP (> 0x10000)", -1);
-ERROR_ASSOCIATE(ERR::UTF8_NONCHARACTER, L"Noncharacter (e.g. WEOF)", -1);
-ERROR_ASSOCIATE(ERR::UTF8_INVALID_UTF8, L"Invalid UTF-8 sequence", -1);
+STATUS_DEFINE(ERR, UTF8_SURROGATE, L"UTF-16 surrogate pairs aren't supported", -1);
+STATUS_DEFINE(ERR, UTF8_OUTSIDE_BMP, L"Code point outside BMP (> 0x10000)", -1);
+STATUS_DEFINE(ERR, UTF8_NONCHARACTER, L"Noncharacter (e.g. WEOF)", -1);
+STATUS_DEFINE(ERR, UTF8_INVALID_UTF8, L"Invalid UTF-8 sequence", -1);
 
 
 // adapted from http://unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
@@ -70,7 +70,7 @@ typedef u32 UTF32;
 
 
 // called from ReplaceIfInvalid and UTF8Codec::Decode
-static UTF32 RaiseError(LibError err, LibError* perr)
+static UTF32 RaiseError(Status err, Status* perr)
 {
 	if(perr)	// caller wants return code, not warning dialog
 	{
@@ -84,7 +84,7 @@ static UTF32 RaiseError(LibError err, LibError* perr)
 }
 
 
-static UTF32 ReplaceIfInvalid(UTF32 u, LibError* err)
+static UTF32 ReplaceIfInvalid(UTF32 u, Status* err)
 {
 	// disallow surrogates
 	if(0xD800ul <= u && u <= 0xDFFFul)
@@ -122,7 +122,7 @@ public:
 	}
 
 	// @return decoded scalar, or replacementCharacter on error
-	static UTF32 Decode(const UTF8*& srcPos, const UTF8* const srcEnd, LibError* err)
+	static UTF32 Decode(const UTF8*& srcPos, const UTF8* const srcEnd, Status* err)
 	{
 		const size_t size = SizeFromFirstByte(*srcPos);
 		if(!IsValid(srcPos, size, srcEnd))
@@ -202,7 +202,7 @@ private:
 
 //-----------------------------------------------------------------------------
 
-std::string utf8_from_wstring(const std::wstring& src, LibError* err)
+std::string utf8_from_wstring(const std::wstring& src, Status* err)
 {
 	if(err)
 		*err = INFO::OK;
@@ -219,7 +219,7 @@ std::string utf8_from_wstring(const std::wstring& src, LibError* err)
 }
 
 
-std::wstring wstring_from_utf8(const std::string& src, LibError* err)
+std::wstring wstring_from_utf8(const std::string& src, Status* err)
 {
 	if(err)
 		*err = INFO::OK;

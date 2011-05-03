@@ -38,7 +38,7 @@
 
 // useful for choosing a video mode.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
+Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
 	DEVMODEA dm;
 	memset(&dm, 0, sizeof(dm));
@@ -70,7 +70,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 
 // useful for determining aspect ratio.
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
+Status gfx_get_monitor_size(int& width_mm, int& height_mm)
 {
 	// (DC for the primary monitor's entire screen)
 	HDC dc = GetDC(0);
@@ -83,17 +83,17 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 
 //-----------------------------------------------------------------------------
 
-static LibError win_get_gfx_card()
+static Status win_get_gfx_card()
 {
 	WmiMap wmiMap;
-	RETURN_ERR(wmi_GetClass(L"Win32_VideoController", wmiMap));
+	RETURN_STATUS_IF_ERR(wmi_GetClass(L"Win32_VideoController", wmiMap));
 	swprintf_s(gfx_card, GFX_CARD_LEN, L"%ls", wmiMap[L"Caption"].bstrVal);
 	return INFO::OK;
 }
 
 
 // note: this implementation doesn't require OpenGL to be initialized.
-static LibError AppendDriverVersionsFromRegistry(VersionList& versionList)
+static Status AppendDriverVersionsFromRegistry(VersionList& versionList)
 {
 	// rationale:
 	// - we could easily determine the 2d driver via EnumDisplaySettings,
@@ -191,9 +191,9 @@ static void AppendDriverVersionsFromKnownFiles(VersionList& versionList)
 }
 
 
-LibError win_get_gfx_info()
+Status win_get_gfx_info()
 {
-	LibError err = win_get_gfx_card();
+	Status err = win_get_gfx_card();
 
 	VersionList versionList;
 	if(AppendDriverVersionsFromRegistry(versionList) != INFO::OK)	// (fails on Windows 7)

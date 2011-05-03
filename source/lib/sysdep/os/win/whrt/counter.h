@@ -39,7 +39,7 @@ public:
 
 	// Activate with an error return value is much cleaner+safer than
 	// throwing exceptions in the ctor.
-	virtual LibError Activate() = 0;
+	virtual Status Activate() = 0;
 	virtual void Shutdown() = 0;
 
 	virtual bool IsSafe() const = 0;

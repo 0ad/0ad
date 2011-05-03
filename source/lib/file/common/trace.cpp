@@ -112,12 +112,12 @@ public:
 	{
 	}
 
-	virtual LibError Load(const OsPath& UNUSED(pathname))
+	virtual Status Load(const OsPath& UNUSED(pathname))
 	{
 		return INFO::OK;
 	}
 
-	virtual LibError Store(const OsPath& UNUSED(pathname)) const
+	virtual Status Store(const OsPath& UNUSED(pathname)) const
 	{
 		return INFO::OK;
 	}
@@ -165,14 +165,14 @@ public:
 		new(Allocate()) TraceEntry(TraceEntry::Store, pathname, size);
 	}
 
-	virtual LibError Load(const OsPath& pathname)
+	virtual Status Load(const OsPath& pathname)
 	{
 		pool_free_all(&m_pool);
 
 		errno = 0;
 		FILE* file = sys_OpenFile(pathname, "rt");
 		if(!file)
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 
 		for(;;)
 		{
@@ -186,12 +186,12 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError Store(const OsPath& pathname) const
+	virtual Status Store(const OsPath& pathname) const
 	{
 		errno = 0;
 		FILE* file = sys_OpenFile(pathname, "at");
 		if(!file)
-			return LibError_from_errno();
+			WARN_RETURN(StatusFromErrno());
 		for(size_t i = 0; i < NumEntries(); i++)
 		{
 			std::wstring text = Entries()[i].EncodeAsText();

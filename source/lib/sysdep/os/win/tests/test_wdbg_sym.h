@@ -42,7 +42,7 @@
 static void* callers[100];
 static size_t numCallers;
 
-static LibError OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
+static Status OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
 {
 	callers[numCallers++] = (void*)frame->AddrPC.Offset;
 	return INFO::CB_CONTINUE;
@@ -293,7 +293,7 @@ public:
 		for(size_t i = 0; i < 3; i++)
 		{
 			wchar_t func1[DBG_SYMBOL_LEN], func2[DBG_SYMBOL_LEN];
-			LibError ret;
+			Status ret;
 			ret = debug_ResolveSymbol(callers[i], func1, 0, 0);
 			TS_ASSERT_OK(ret);
 			ret = debug_ResolveSymbol(funcAddresses[i], func2, 0, 0);

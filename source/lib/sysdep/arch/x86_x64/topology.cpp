@@ -147,7 +147,7 @@ static bool AreApicIdsUnique(u8* apicIds, size_t numIds)
 static u8 apicIdStorage[os_cpu_MaxProcessors];
 static const u8* apicIds;	// = apicIdStorage, or 0 if IDs invalid
 
-static LibError InitApicIds()
+static Status InitApicIds()
 {
 	struct StoreEachProcessorsApicId
 	{
@@ -218,7 +218,7 @@ struct CpuTopology	// POD
 static CpuTopology cpuTopology;
 static ModuleInitState cpuInitState;
 
-static LibError InitCpuTopology()
+static Status InitCpuTopology()
 {
 	const size_t maxLogicalPerCore = MaxLogicalPerCore();
 	const size_t maxCoresPerPackage = MaxCoresPerPackage();
@@ -511,7 +511,7 @@ struct CacheTopology	// POD
 static CacheTopology cacheTopology;
 static ModuleInitState cacheInitState;
 
-static LibError InitCacheTopology()
+static Status InitCacheTopology()
 {
 	const u8* apicIds = ApicIds();
 	DetermineCachesProcessorMask(apicIds, cacheTopology.cachesProcessorMask, cacheTopology.numCaches);

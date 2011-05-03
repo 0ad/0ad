@@ -133,7 +133,7 @@ reload:
 does all initialization of the resource that requires its source file.
 called after init; also after dtor every time the file is reloaded.
 
-static LibError Type_reload(Res1* r, const VfsPath& pathname, Handle);
+static Status Type_reload(Res1* r, const VfsPath& pathname, Handle);
 {
 	// already loaded; done
 	if(r->data)
@@ -191,7 +191,7 @@ makes sure the resource control block is in a valid state. returns 0 if
 all is well, or a negative error code.
 called automatically when the Handle is dereferenced or freed.
 
-static LibError Type_validate(const Res1* r);
+static Status Type_validate(const Res1* r);
 {
 	const int permissible_flags = 0x01;
 	if(debug_IsPointerBogus(r->data))
@@ -209,7 +209,7 @@ Handle res1_load(const VfsPath& pathname, int my_flags)
 	return h_alloc(H_Res1, pathname, 0, my_flags);
 }
 
-LibError res1_free(Handle& h)
+Status res1_free(Handle& h)
 {
 	// control block is automatically zeroed after this.
 	return h_free(h, H_Res1);
@@ -296,10 +296,10 @@ but- has to handle variable params, a bit ugly
 struct H_VTbl
 {
 	void (*init)(void* user, va_list);
-	LibError (*reload)(void* user, const PIVFS& vfs, const VfsPath& pathname, Handle);
+	Status (*reload)(void* user, const PIVFS& vfs, const VfsPath& pathname, Handle);
 	void (*dtor)(void* user);
-	LibError (*validate)(const void* user);
-	LibError (*to_string)(const void* user, wchar_t* buf);
+	Status (*validate)(const void* user);
+	Status (*to_string)(const void* user, wchar_t* buf);
 	size_t user_size;
 	const wchar_t* name;
 };
@@ -309,17 +309,17 @@ typedef H_VTbl* H_Type;
 #define H_TYPE_DEFINE(type)\
 	/* forward decls */\
 	static void type##_init(type*, va_list);\
-	static LibError type##_reload(type*, const PIVFS&, const VfsPath&, Handle);\
+	static Status type##_reload(type*, const PIVFS&, const VfsPath&, Handle);\
 	static void type##_dtor(type*);\
-	static LibError type##_validate(const type*);\
-	static LibError type##_to_string(const type*, wchar_t* buf);\
+	static Status type##_validate(const type*);\
+	static Status type##_to_string(const type*, wchar_t* buf);\
 	static H_VTbl V_##type =\
 	{\
 		(void (*)(void*, va_list))type##_init,\
-		(LibError (*)(void*, const PIVFS&, const VfsPath&, Handle))type##_reload,\
+		(Status (*)(void*, const PIVFS&, const VfsPath&, Handle))type##_reload,\
 		(void (*)(void*))type##_dtor,\
-		(LibError (*)(const void*))type##_validate,\
-		(LibError (*)(const void*, wchar_t*))type##_to_string,\
+		(Status (*)(const void*))type##_validate,\
+		(Status (*)(const void*, wchar_t*))type##_to_string,\
 		sizeof(type),	/* control block size */\
 		WIDEN(#type)			/* name */\
 	};\
@@ -344,7 +344,7 @@ typedef H_VTbl* H_Type;
 	/* h already indicates an error - return immediately to pass back*/\
 	/* that specific error, rather than only ERR::INVALID_HANDLE*/\
 	if(h < 0)\
-		WARN_RETURN((LibError)h);\
+		WARN_RETURN((Status)h);\
 	type* const var = H_USER_DATA(h, type);\
 	if(!var)\
 		WARN_RETURN(ERR::INVALID_HANDLE);
@@ -395,7 +395,7 @@ const size_t H_STRING_LEN = 256;
 // dtor is associated with type and called when the object is freed.
 // handle data is initialized to 0; optionally, a pointer to it is returned.
 extern Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t flags = 0, ...);
-extern LibError h_free(Handle& h, H_Type type);
+extern Status h_free(Handle& h, H_Type type);
 
 
 // find and return a handle by key (typically filename hash)
@@ -413,7 +413,7 @@ extern void* h_user_data(Handle h, H_Type type);
 extern VfsPath h_filename(Handle h);
 
 
-extern LibError h_reload(const PIVFS& vfs, const VfsPath& pathname);
+extern Status h_reload(const PIVFS& vfs, const VfsPath& pathname);
 
 // force the resource to be freed immediately, even if cached.
 // tag is not checked - this allows the first Handle returned
@@ -421,7 +421,7 @@ extern LibError h_reload(const PIVFS& vfs, const VfsPath& pathname);
 // to later close the object.
 // this is used when reinitializing the sound engine -
 // at that point, all (cached) OpenAL resources must be freed.
-extern LibError h_force_free(Handle h, H_Type type);
+extern Status h_force_free(Handle h, H_Type type);
 
 // increment Handle <h>'s reference count.
 // only meant to be used for objects that free a Handle in their dtor,

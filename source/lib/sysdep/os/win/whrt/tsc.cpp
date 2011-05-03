@@ -119,7 +119,7 @@ public:
 		return L"TSC";
 	}
 
-	LibError Activate()
+	Status Activate()
 	{
 #if ARCH_X86_X64
 		if(!x86_x64_cap(X86_X64_CAP_TSC))

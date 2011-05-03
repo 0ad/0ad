@@ -37,9 +37,9 @@
  * tex_codec_plain_transform.
  * @param bpp bits per pixel
  * @param flags TexFlags
- * @return LibError
+ * @return Status
  **/
-extern LibError tex_validate_plain_format(size_t bpp, size_t flags);
+extern Status tex_validate_plain_format(size_t bpp, size_t flags);
 
 
 /**

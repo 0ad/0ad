@@ -40,11 +40,11 @@
 extern PIVFS vfs;
 
 
-ERROR_ASSOCIATE(ERR::SHDR_CREATE, L"Shader creation failed", -1);
-ERROR_ASSOCIATE(ERR::SHDR_COMPILE, L"Shader compile failed", -1);
-ERROR_ASSOCIATE(ERR::SHDR_NO_SHADER, L"Invalid shader reference", -1);
-ERROR_ASSOCIATE(ERR::SHDR_LINK, L"Shader linking failed", -1);
-ERROR_ASSOCIATE(ERR::SHDR_NO_PROGRAM, L"Invalid shader program reference", -1);
+STATUS_DEFINE(ERR, SHDR_CREATE, L"Shader creation failed", -1);
+STATUS_DEFINE(ERR, SHDR_COMPILE, L"Shader compile failed", -1);
+STATUS_DEFINE(ERR, SHDR_NO_SHADER, L"Invalid shader reference", -1);
+STATUS_DEFINE(ERR, SHDR_LINK, L"Shader linking failed", -1);
+STATUS_DEFINE(ERR, SHDR_NO_PROGRAM, L"Invalid shader program reference", -1);
 
 
 // Convert a shader object type into a descriptive string.
@@ -109,15 +109,15 @@ TIMER_ADD_CLIENT(tc_linkProgram);
 // have absolutely no effect on a program object that contains these shaders
 // when the program object is already linked.
 // So, how can we inform the "parent object" (i.e. the program object) of our change?
-static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const PIVFS& vfs, const VfsPath& pathname, Handle UNUSED(h))
+static Status Ogl_Shader_reload(Ogl_Shader* shdr, const PIVFS& vfs, const VfsPath& pathname, Handle UNUSED(h))
 {
-	LibError err  = ERR::FAIL;
+	Status err  = ERR::FAIL;
 
 	if (shdr->id)
 		return INFO::OK;
 
 	shared_ptr<u8> file; size_t file_size;
-	RETURN_ERR(vfs->LoadFile(pathname, file, file_size));
+	RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, file_size));
 
 	ogl_WarnIfError();
 
@@ -204,13 +204,13 @@ static void Ogl_Shader_dtor(Ogl_Shader* shdr)
 	}
 }
 
-static LibError Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
+static Status Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
 {
 	// TODO
 	return INFO::OK;
 }
 
-static LibError Ogl_Shader_to_string(const Ogl_Shader* shdr, wchar_t* buf)
+static Status Ogl_Shader_to_string(const Ogl_Shader* shdr, wchar_t* buf)
 {
 	swprintf_s(buf, H_STRING_LEN, L"Ogl_Shader %p", shdr);
 	return INFO::OK;
@@ -237,7 +237,7 @@ void ogl_shader_free(Handle& h)
 }
 
 // Attach a shader to the given OpenGL program.
-LibError ogl_shader_attach(GLhandleARB program, Handle& h)
+Status ogl_shader_attach(GLhandleARB program, Handle& h)
 {
 	H_DEREF(h, Ogl_Shader, shdr);
 
@@ -272,7 +272,7 @@ static void Ogl_Program_init(Ogl_Program* UNUSED(p), va_list UNUSED(args))
 
 // Load the shader associated with one Shader element,
 // and attach it to our program object.
-static LibError do_load_shader(
+static Status do_load_shader(
 		Ogl_Program* p, const VfsPath& pathname, Handle UNUSED(h),
 		const CXeromyces& XeroFile, const XMBElement& Shader)
 {
@@ -305,7 +305,7 @@ static LibError do_load_shader(
 	}
 	
 	Handle hshader = ogl_shader_load(g_VFS, pathnameShader.FromUTF8(), shadertype);
-	RETURN_ERR(hshader);
+	RETURN_STATUS_IF_ERR(hshader);
 
 	ogl_shader_attach(p->id, hshader);
 
@@ -320,7 +320,7 @@ static LibError do_load_shader(
 
 
 // Reload the program object from the source file.
-static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPath& pathname, Handle h)
+static Status Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPath& pathname, Handle h)
 {
 	if (p->id)
 		return INFO::OK;
@@ -380,7 +380,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const PIVFS& vfs, const VfsPa
 					WARN_RETURN(ERR::CORRUPTED);
 				}
 				
-				RETURN_ERR(do_load_shader(p, pathname, h, XeroFile, Shader));
+				RETURN_STATUS_IF_ERR(do_load_shader(p, pathname, h, XeroFile, Shader));
 			}
 		}
 		else
@@ -427,13 +427,13 @@ static void Ogl_Program_dtor(Ogl_Program* p)
 	}
 }
 
-static LibError Ogl_Program_validate(const Ogl_Program* UNUSED(p))
+static Status Ogl_Program_validate(const Ogl_Program* UNUSED(p))
 {
 	// TODO
 	return INFO::OK;
 }
 
-static LibError Ogl_Program_to_string(const Ogl_Program* p, wchar_t* buf)
+static Status Ogl_Program_to_string(const Ogl_Program* p, wchar_t* buf)
 {
 	swprintf_s(buf, H_STRING_LEN, L"Ogl_Program %p", p);
 	return INFO::OK;
@@ -459,7 +459,7 @@ void ogl_program_free(Handle& h)
 
 // Activate the program (glUseProgramObjectARB).
 // h may be 0, in which case program objects are disabled.
-LibError ogl_program_use(Handle h)
+Status ogl_program_use(Handle h)
 {
 	if (!h)
 	{

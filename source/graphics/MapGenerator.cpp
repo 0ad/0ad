@@ -220,7 +220,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	return true;
 }
 
-LibError CMapGeneratorWorker::PreloadScript(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+Status CMapGeneratorWorker::PreloadScript(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	CMapGeneratorWorker* self = (CMapGeneratorWorker*)cbData;
 

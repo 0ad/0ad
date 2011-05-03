@@ -1744,7 +1744,7 @@ int CRenderer::LoadAlphaMaps()
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
 		textures[i] = ogl_tex_load(g_VFS, path / fnames[i]);
-		RETURN_ERR(textures[i]);
+		RETURN_STATUS_IF_ERR(textures[i]);
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
@@ -1835,7 +1835,7 @@ void CRenderer::UnloadAlphaMaps()
 
 
 
-LibError CRenderer::ReloadChangedFileCB(void* param, const VfsPath& path)
+Status CRenderer::ReloadChangedFileCB(void* param, const VfsPath& path)
 {
 	CRenderer* renderer = static_cast<CRenderer*>(param);
 

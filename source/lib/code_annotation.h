@@ -96,9 +96,9 @@
 // compiler supports ASSUME_UNREACHABLE => allow it to assume the code is
 // never reached (improves optimization at the cost of undefined behavior
 // if the annotation turns out to be incorrect).
-#if HAVE_ASSUME_UNREACHABLE && !CONFIG_PARANOIA
+#if HAVE_ASSUME_UNREACHABLE && !CONFIG_ENABLE_CHECKS
 # define UNREACHABLE ASSUME_UNREACHABLE
-// otherwise (or if CONFIG_PARANOIA is set), add a user-visible
+// otherwise (or if CONFIG_ENABLE_CHECKS is set), add a user-visible
 // warning if the code is reached. note that abort() fails to stop
 // ICC from warning about the lack of a return statement, so we
 // use an infinite loop instead.

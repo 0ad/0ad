@@ -44,7 +44,7 @@ namespace SMBIOS {
 
 #if OS_WIN
 
-static LibError GetTable(wfirmware::Table& table)
+static Status GetTable(wfirmware::Table& table)
 {
 	// (MSDN mentions 'RSMB', but multi-character literals are implementation-defined.)
 	const DWORD provider = FOURCC_BE('R','S','M','B');
@@ -341,28 +341,28 @@ template<>
 void Fixup<VoltageProbe>(VoltageProbe& p)
 {
 	p.location = (VoltageProbeLocation)bits(p.locationAndStatus, 0, 4);
-	p.status = (Status)bits(p.locationAndStatus, 5, 7);
+	p.status = (State)bits(p.locationAndStatus, 5, 7);
 }
 
 template<>
 void Fixup<CoolingDevice>(CoolingDevice& p)
 {
 	p.type = (CoolingDeviceType)bits(p.typeAndStatus, 0, 4);
-	p.status = (Status)bits(p.typeAndStatus, 5, 7);
+	p.status = (State)bits(p.typeAndStatus, 5, 7);
 }
 
 template<>
 void Fixup<TemperatureProbe>(TemperatureProbe& p)
 {
 	p.location = (TemperatureProbeLocation)bits(p.locationAndStatus, 0, 4);
-	p.status = (Status)bits(p.locationAndStatus, 5, 7);
+	p.status = (State)bits(p.locationAndStatus, 5, 7);
 }
 
 template<>
 void Fixup<SystemPowerSupply>(SystemPowerSupply& p)
 {
 	p.type = (SystemPowerSupplyType)bits(p.characteristics, 10, 13);
-	p.status = (Status)bits(p.characteristics, 7, 9);
+	p.status = (State)bits(p.characteristics, 7, 9);
 	p.inputSwitching = (SystemPowerSupplyInputSwitching)bits(p.characteristics, 3, 6);
 	p.characteristics = bits(p.characteristics, 0, 2);
 }
@@ -404,11 +404,11 @@ void AddStructure(const Header* header, const Strings& strings, Structure*& list
 }
 
 
-static LibError InitStructures()
+static Status InitStructures()
 {
 #if OS_WIN
 	wfirmware::Table table;
-	RETURN_ERR(GetTable(table));
+	RETURN_STATUS_IF_ERR(GetTable(table));
 #else
 	std::vector<u8> table;
 	return ERR::NOT_IMPLEMENTED;
@@ -681,7 +681,7 @@ void FieldStringizer::operator()<const char*>(size_t flags, const char*& value, 
 const Structures* GetStructures()
 {
 	static ModuleInitState initState;
-	LibError ret = ModuleInit(&initState, InitStructures);
+	Status ret = ModuleInit(&initState, InitStructures);
 	// (callers have to check if member pointers are nonzero anyway, so
 	// we always return a valid pointer to simplify most use cases.)
 	UNUSED2(ret);

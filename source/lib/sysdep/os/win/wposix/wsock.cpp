@@ -114,7 +114,7 @@ static void ImportOptionalFunctions()
 
 //-----------------------------------------------------------------------------
 
-static LibError Init()
+static Status Init()
 {
 	char d[1024];
 	int ret = WSAStartup(0x0002, d);	// want 2.0
@@ -135,12 +135,12 @@ static ModuleInitState initState;
 
 // called from delay loader the first time a wsock function is called
 // (shortly before the actual wsock function is called).
-static LibError OnLoad()
+static Status OnLoad()
 {
 	return ModuleInit(&initState, Init);
 }
 
-static LibError wsock_Init()
+static Status wsock_Init()
 {
 	// trigger OnLoad when someone first calls a wsock function.
 	static WdllLoadNotify loadNotify = { "ws2_32", OnLoad };
@@ -148,7 +148,7 @@ static LibError wsock_Init()
 	return INFO::OK;
 }
 
-static LibError wsock_Shutdown()
+static Status wsock_Shutdown()
 {
 	ModuleShutdown(&initState, Shutdown);
 	return INFO::OK;

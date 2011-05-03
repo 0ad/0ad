@@ -39,8 +39,7 @@ static void* void_from_HMODULE(HMODULE hModule)
 
 int dlclose(void* handle)
 {
-	BOOL ok = FreeLibrary(HMODULE_from_void(handle));
-	WARN_RETURN_IF_FALSE(ok);
+	WARN_IF_FALSE(FreeLibrary(HMODULE_from_void(handle)));
 	return 0;
 }
 

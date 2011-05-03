@@ -23,6 +23,6 @@
 #ifndef INCLUDED_WSND
 #define INCLUDED_WSND
 
-extern LibError win_get_snd_info();
+extern Status win_get_snd_info();
 
 #endif	// #ifndef INCLUDED_WSND

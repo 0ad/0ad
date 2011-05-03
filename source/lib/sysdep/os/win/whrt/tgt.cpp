@@ -54,7 +54,7 @@ public:
 		return L"TGT";
 	}
 
-	LibError Activate()
+	Status Activate()
 	{
 		// note: timeGetTime is always available and cannot fail.
 

@@ -182,7 +182,7 @@ extern bool self_test_active;
 
 
 // for convenience, to avoid having to include all of these manually
-#include "lib/lib_errors.h"
+#include "lib/status.h"
 #include "lib/os_path.h"
 #include "lib/posix/posix.h"
 

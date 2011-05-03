@@ -179,7 +179,7 @@ void IDeserializer::String(const char* UNUSED(name), std::wstring& out, uint32_t
 	str.resize(len); // TODO: should check len <= bytes remaining in stream
 	Get((u8*)str.data(), len);
 
-	LibError err;
+	Status err;
 	out = wstring_from_utf8(str, &err);
 	if (err)
 		throw PSERROR_Deserialize_InvalidCharInString();

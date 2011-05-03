@@ -65,10 +65,10 @@ u64 FileSize(const OsPath& pathname)
 }
 
 
-LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames)
+Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames)
 {
 	std::vector<FileInfo> files;
-	RETURN_ERR(fs->GetDirectoryEntries(path, &files, 0));
+	RETURN_STATUS_IF_ERR(fs->GetDirectoryEntries(path, &files, 0));
 
 	pathnames.clear();
 	pathnames.reserve(files.size());
@@ -83,7 +83,7 @@ LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filte
 }
 
 
-LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags)
+Status ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags)
 {
 	// (declare here to avoid reallocations)
 	FileInfos files; DirectoryNames subdirectoryNames;
@@ -96,7 +96,7 @@ LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb,
 	{
 		const VfsPath& path = pendingDirectories.front();
 
-		RETURN_ERR(fs->GetDirectoryEntries(path, &files, &subdirectoryNames));
+		RETURN_STATUS_IF_ERR(fs->GetDirectoryEntries(path, &files, &subdirectoryNames));
 
 		for(size_t i = 0; i < files.size(); i++)
 		{

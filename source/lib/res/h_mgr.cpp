@@ -273,7 +273,7 @@ static HDATA* h_data_tag_type(const Handle h, const H_Type type)
 
 // idx and hd are undefined if we fail.
 // called by h_alloc only.
-static LibError alloc_idx(ssize_t& idx, HDATA*& hd)
+static Status alloc_idx(ssize_t& idx, HDATA*& hd)
 {
 	// we already know the first free entry
 	if(first_free != -1)
@@ -326,7 +326,7 @@ have_idx:;
 }
 
 
-static LibError free_idx(ssize_t idx)
+static Status free_idx(ssize_t idx)
 {
 	if(first_free == -1 || idx < first_free)
 		first_free = idx;
@@ -424,7 +424,7 @@ static void warn_if_invalid(HDATA* hd)
 	// the others have no invariants we could check.
 
 	// have the resource validate its user_data
-	LibError err = vtbl->validate(hd->user);
+	Status err = vtbl->validate(hd->user);
 	ENSURE(err == INFO::OK);
 
 	// make sure empty space in control block isn't touched
@@ -439,7 +439,7 @@ static void warn_if_invalid(HDATA* hd)
 }
 
 
-static LibError type_validate(H_Type type)
+static Status type_validate(H_Type type)
 {
 	if(!type)
 		WARN_RETURN(ERR::INVALID_PARAM);
@@ -498,9 +498,9 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, size_t flags)
 }
 
 
-static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const PIVFS& vfs, const VfsPath& pathname, va_list* init_args)
+static Status call_init_and_reload(Handle h, H_Type type, HDATA* hd, const PIVFS& vfs, const VfsPath& pathname, va_list* init_args)
 {
-	LibError err = INFO::OK;
+	Status err = INFO::OK;
 	H_VTbl* vtbl = type;	// exact same thing but for clarity
 
 	// init
@@ -531,7 +531,7 @@ static Handle alloc_new_handle(H_Type type, const PIVFS& vfs, const VfsPath& pat
 {
 	ssize_t idx;
 	HDATA* hd;
-	RETURN_ERR(alloc_idx(idx, hd));
+	RETURN_STATUS_IF_ERR(alloc_idx(idx, hd));
 
 	// (don't want to do this before the add-reference exit,
 	// so as not to waste tags for often allocated handles.)
@@ -552,7 +552,7 @@ static Handle alloc_new_handle(H_Type type, const PIVFS& vfs, const VfsPath& pat
 	if(key && !hd->unique)
 		key_add(key, h);
 
-	LibError err = call_init_and_reload(h, type, hd, vfs, pathname, init_args);
+	Status err = call_init_and_reload(h, type, hd, vfs, pathname, init_args);
 	if(err < 0)
 		goto fail;
 
@@ -561,7 +561,7 @@ static Handle alloc_new_handle(H_Type type, const PIVFS& vfs, const VfsPath& pat
 fail:
 	// reload failed; free the handle
 	hd->keep_open = 0;	// disallow caching (since contents are invalid)
-	(void)h_free(h, type);	// (h_free already does WARN_ERR)
+	(void)h_free(h, type);	// (h_free already does WARN_IF_ERR)
 
 	// note: since some uses will always fail (e.g. loading sounds if
 	// g_Quickstart), do not complain here.
@@ -572,13 +572,13 @@ fail:
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t flags, ...)
 {
-	RETURN_ERR(type_validate(type));
+	RETURN_STATUS_IF_ERR(type_validate(type));
 
 	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
 
 	// see if we can reuse an existing handle
 	Handle h = reuse_existing_handle(key, type, flags);
-	RETURN_ERR(h);
+	RETURN_STATUS_IF_ERR(h);
 	// .. successfully reused the handle; refcount increased
 	if(h > 0)
 		return h;
@@ -587,14 +587,14 @@ Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t fl
 	va_start(args, flags);
 	h = alloc_new_handle(type, vfs, pathname, key, flags, &args);
 	va_end(args);
-	return h;	// alloc_new_handle already does CHECK_ERR
+	return h;	// alloc_new_handle already does WARN_RETURN_STATUS_IF_ERR
 }
 
 
 //-----------------------------------------------------------------------------
 
 // currently cannot fail.
-static LibError h_free_idx(ssize_t idx, HDATA* hd)
+static Status h_free_idx(ssize_t idx, HDATA* hd)
 {
 	// only decrement if refcount not already 0.
 	if(hd->refs > 0)
@@ -638,7 +638,7 @@ static LibError h_free_idx(ssize_t idx, HDATA* hd)
 }
 
 
-LibError h_free(Handle& h, H_Type type)
+Status h_free(Handle& h, H_Type type)
 {
 	ssize_t idx = h_idx(h);
 	HDATA* hd = h_data_tag_type(h, type);
@@ -699,7 +699,7 @@ VfsPath h_filename(const Handle h)
 
 
 // TODO: what if iterating through all handles is too slow?
-LibError h_reload(const PIVFS& vfs, const VfsPath& pathname)
+Status h_reload(const PIVFS& vfs, const VfsPath& pathname)
 {
 	const u32 key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
 
@@ -715,7 +715,7 @@ LibError h_reload(const PIVFS& vfs, const VfsPath& pathname)
 		hd->type->dtor(hd->user);
 	}
 
-	LibError ret = INFO::OK;
+	Status ret = INFO::OK;
 
 	// now reload all affected handles
 	for(ssize_t i = 0; i <= last_in_use; i++)
@@ -726,7 +726,7 @@ LibError h_reload(const PIVFS& vfs, const VfsPath& pathname)
 
 		Handle h = handle(i, hd->tag);
 
-		LibError err = hd->type->reload(hd->user, vfs, hd->pathname, h);
+		Status err = hd->type->reload(hd->user, vfs, hd->pathname, h);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
 		{
@@ -755,7 +755,7 @@ Handle h_find(H_Type type, uintptr_t key)
 // to later close the object.
 // this is used when reinitializing the sound engine -
 // at that point, all (cached) OpenAL resources must be freed.
-LibError h_force_free(Handle h, H_Type type)
+Status h_force_free(Handle h, H_Type type)
 {
 	// require valid index; ignore tag; type checked below.
 	HDATA* hd = h_data_no_tag(h);
@@ -807,7 +807,7 @@ int h_get_refcnt(Handle h)
 
 static ModuleInitState initState;
 
-static LibError Init()
+static Status Init()
 {
 	return INFO::OK;
 }

@@ -75,7 +75,7 @@ public:
 			const std::string str_utf8(tests[i].utf8);
 			const std::wstring str_utf16(tests[i].utf16);
 
-			LibError err;
+			Status err;
 			const std::wstring str_utf8to16 = wstring_from_utf8(str_utf8, &err);
 			TS_ASSERT_EQUALS(err, ERR::UTF8_INVALID_UTF8);
 			TS_ASSERT_EQUALS(str_utf16.length(), str_utf8to16.length());

@@ -34,7 +34,7 @@
 //
 // note: this module is kept distinct from the CRT's init/shutdown mechanism
 // to insulate against changes there. another advantage is that callbacks
-// can return LibError instead of int.
+// can return Status instead of int.
 
 // currently (2008-02-17) the init groups are populated as follows:
 //   critical : wposix
@@ -43,7 +43,7 @@
 //   main     : waio, wsock, wtime, wdir_watch
 //   late     : wsdl
 
-typedef LibError (*PfnLibError)();
+typedef Status (*PfnLibError)();
 
 // pointers to start and end of function tables.
 // notes:

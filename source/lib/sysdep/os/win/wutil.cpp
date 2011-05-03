@@ -123,59 +123,36 @@ static void ShutdownLocks()
 // error codes
 
 // only call after a Win32 function indicates failure.
-LibError LibError_from_GLE(bool warn_if_failed)
+Status StatusFromWin()
 {
-	LibError err = ERR::FAIL;
 	switch(GetLastError())
 	{
 	case ERROR_OUTOFMEMORY:
 	case ERROR_NOT_ENOUGH_MEMORY:
-		err = ERR::NO_MEM;
-		break;
+		return ERR::NO_MEM;
 	case ERROR_INVALID_HANDLE:
 	case ERROR_INVALID_PARAMETER:
 	case ERROR_BAD_ARGUMENTS:
-		err = ERR::INVALID_PARAM;
-		break;
+		return ERR::INVALID_PARAM;
 	case ERROR_INSUFFICIENT_BUFFER:
-		err = ERR::BUF_SIZE;
-		break;
+		return ERR::BUF_SIZE;
 	case ERROR_ACCESS_DENIED:
-		err = ERR::FILE_ACCESS;
-		break;
+		return ERR::FILE_ACCESS;
 	case ERROR_NOT_SUPPORTED:
-		err = ERR::NOT_SUPPORTED;
-		break;
+		return ERR::NOT_SUPPORTED;
 	case ERROR_CALL_NOT_IMPLEMENTED:
-		err = ERR::NOT_IMPLEMENTED;
-		break;
+		return ERR::NOT_IMPLEMENTED;
 	case ERROR_PROC_NOT_FOUND:
-		err = ERR::NO_SYS;
-		break;
+		return ERR::NO_SYS;
 	case ERROR_BUSY:
-		err = ERR::AGAIN;
-		break;
+		return ERR::AGAIN;
 	case ERROR_FILE_NOT_FOUND:
-		err = ERR::VFS_FILE_NOT_FOUND;
-		break;
+		return ERR::VFS_FILE_NOT_FOUND;
 	case ERROR_PATH_NOT_FOUND:
-		err = ERR::VFS_DIR_NOT_FOUND;
-		break;
+		return ERR::VFS_DIR_NOT_FOUND;
 	default:
-		break;	// err already set above
+		return ERR::FAIL;
 	}
-
-	if(warn_if_failed)
-		DEBUG_WARN_ERR(err);
-	return err;
-}
-
-
-LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
-{
-	if(ret != FALSE)
-		return INFO::OK;
-	return LibError_from_GLE(warn_if_failed);
 }
 
 
@@ -440,7 +417,7 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 
 //-----------------------------------------------------------------------------
 
-LibError wutil_SetPrivilege(const wchar_t* privilege, bool enable)
+Status wutil_SetPrivilege(const wchar_t* privilege, bool enable)
 {
 	WinScopedPreserveLastError s;
 
@@ -504,29 +481,21 @@ static HWND hAppWindow;
 static BOOL CALLBACK FindAppWindowByPid(HWND hWnd, LPARAM UNUSED(lParam))
 {
 	DWORD pid;
-	(void)GetWindowThreadProcessId(hWnd, &pid);	// (function always succeeds)
+	DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
+	UNUSED2(tid);
 
 	if(pid == GetCurrentProcessId())
-	{
 		hAppWindow = hWnd;
-		return FALSE;	// done
-	}
 
 	return TRUE;	// keep calling
 }
-
 
 HWND wutil_AppWindow()
 {
 	if(!hAppWindow)
 	{
-		// to avoid wasting time, FindAppWindowByPid returns FALSE after
-		// finding the desired window, which causes EnumWindows to 'fail'.
-		// we detect actual errors by checking GetLastError.
-		WinScopedPreserveLastError s;
-		SetLastError(0);
-		(void)EnumWindows(FindAppWindowByPid, 0);	// (see above)
-		ENSURE(GetLastError() == 0);
+		WARN_IF_FALSE(EnumWindows(FindAppWindowByPid, 0));
+		ENSURE(hAppWindow != 0);
 	}
 
 	return hAppWindow;
@@ -535,7 +504,7 @@ HWND wutil_AppWindow()
 
 //-----------------------------------------------------------------------------
 
-static LibError wutil_Init()
+static Status wutil_Init()
 {
 	InitLocks();
 
@@ -554,7 +523,7 @@ static LibError wutil_Init()
 }
 
 
-static LibError wutil_Shutdown()
+static Status wutil_Shutdown()
 {
 	FreeCommandLine();
 

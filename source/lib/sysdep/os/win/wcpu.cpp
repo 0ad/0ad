@@ -74,7 +74,7 @@ size_t os_cpu_NumProcessors()
 
 //-----------------------------------------------------------------------------
 
-LibError wcpu_ReadFrequencyFromRegistry(u32& freqMhz)
+Status wcpu_ReadFrequencyFromRegistry(u32& freqMhz)
 {
 	HKEY hKey;
 	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS)
@@ -151,7 +151,7 @@ size_t os_cpu_QueryMemorySize()
 	// it's not considered available to the kernel. (the amount is
 	// 528 KiB on a 512 MiB WinXP/Win2k machine). we'll round up
 	// to the nearest megabyte to fix this.
-	memorySize = round_up(memorySize, DWORDLONG(1*MiB));
+	memorySize = round_up(memorySize, DWORDLONG(1*MiB));		// (Align<> cannot compute DWORDLONG)
 
 	return size_t(memorySize / MiB);
 }
@@ -252,7 +252,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 }
 
 
-LibError os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
+Status os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 {
 	// abort if we can't run on all system processors
 	DWORD_PTR processAffinity, systemAffinity;

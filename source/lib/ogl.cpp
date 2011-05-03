@@ -448,7 +448,7 @@ GLint ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
 //
 // fails if OpenGL not ready for use.
 // gfx_card and gfx_drv_ver are unchanged on failure.
-LibError ogl_get_gfx_info()
+Status ogl_get_gfx_info()
 {
 	const char* vendor   = (const char*)glGetString(GL_VENDOR);
 	const char* renderer = (const char*)glGetString(GL_RENDERER);

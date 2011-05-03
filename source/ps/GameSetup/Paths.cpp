@@ -79,12 +79,12 @@ Paths::Paths(const CmdLineArgs& args)
 		errno = 0;
 		pathname = wrealpath(argv0);
 		if(pathname.empty())
-			WARN_ERR(LibError_from_errno(false));
+			WARN_IF_ERR(StatusFromErrno());
 	}
 
 	// make sure it's valid
 	if(!fs_util::FileExists(pathname))
-		WARN_ERR(LibError_from_errno(false));
+		WARN_IF_ERR(StatusFromErrno());
 
 	fs::wpath components = pathname.string();
 	for(size_t i = 0; i < 3; i++)	// remove "system/name.exe"

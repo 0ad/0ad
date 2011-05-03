@@ -38,7 +38,7 @@ WINIT_REGISTER_LATE_SHUTDOWN2(wdll_Shutdown);	// last - DLLs are unloaded here
 
 
 #define FACILITY_VISUALCPP  ((LONG)0x6d)
-#define VcppException(sev,err)  ((sev) | (FACILITY_VISUALCPP<<16) | err)
+#define VcppException(sev,status)  ((sev) | (FACILITY_VISUALCPP<<16) | status)
 
 typedef IMAGE_THUNK_DATA *          PImgThunkData;
 typedef const IMAGE_THUNK_DATA *    PCImgThunkData;
@@ -466,7 +466,7 @@ static void UnloadAllDlls()
 
 //-----------------------------------------------------------------------------
 
-static LibError wdll_Shutdown()
+static Status wdll_Shutdown()
 {
 	UnloadAllDlls();
 	return INFO::OK;

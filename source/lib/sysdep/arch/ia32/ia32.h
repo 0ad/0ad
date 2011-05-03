@@ -41,6 +41,6 @@
  *
  * this function is used for walking the call stack.
  **/
-LIB_API LibError ia32_GetCallTarget(void* ret_addr, void*& target);
+LIB_API Status ia32_GetCallTarget(void* ret_addr, void*& target);
 
 #endif	// #ifndef INCLUDED_IA32

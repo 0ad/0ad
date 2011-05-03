@@ -84,7 +84,7 @@ void ISerializer::String(const char* name, const std::wstring& value, uint32_t m
 	if (!(minlength <= value.length() && value.length() <= maxlength))
 		throw PSERROR_Serialize_OutOfBounds();
 
-	LibError err;
+	Status err;
 	std::string str = utf8_from_wstring(value, &err);
 	if (err)
 		throw PSERROR_Serialize_InvalidCharInString();

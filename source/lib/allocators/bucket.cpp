@@ -35,7 +35,7 @@
 const size_t bucketSize = 4000;
 
 
-LibError bucket_create(Bucket* b, size_t el_size)
+Status bucket_create(Bucket* b, size_t el_size)
 {
 	b->freelist = mem_freelist_Sentinel();
 	b->el_size = Align<allocationAlignment>(el_size);

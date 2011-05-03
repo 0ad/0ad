@@ -139,7 +139,7 @@ private:
 	ScriptFilesMap m_ScriptFiles;
 
 	// callback for VFS preloading
-	static LibError PreloadScript(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
+	static Status PreloadScript(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
 
 // Thread
 	static void* RunThread(void* data);

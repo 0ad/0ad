@@ -30,9 +30,9 @@
 
 namespace ERR
 {
-	const LibError STL_CNT_UNKNOWN = -100500;
+	const Status STL_CNT_UNKNOWN = -100500;
 	// likely causes: not yet initialized or memory corruption.
-	const LibError STL_CNT_INVALID = -100501;
+	const Status STL_CNT_INVALID = -100501;
 }
 
 
@@ -77,9 +77,9 @@ const size_t DEBUG_STL_MAX_ITERATOR_SIZE = 64;
  * @param el_iterator out; callback function that acts as an iterator
  * @param it_mem out; buffer holding the iterator state. must be
  * at least DEBUG_STL_MAX_ITERATOR_SIZE bytes.
- * @return LibError (ERR::STL_*)
+ * @return Status (ERR::STL_*)
  **/
-extern LibError debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
+extern Status debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem);
 
 #endif	// #ifndef INCLUDED_DEBUG_STL

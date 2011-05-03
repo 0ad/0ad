@@ -426,7 +426,7 @@ JpgErrorMgr::JpgErrorMgr(jpeg_decompress_struct& cinfo)
 //-----------------------------------------------------------------------------
 
 
-static LibError jpg_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+static Status jpg_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -443,7 +443,7 @@ static LibError jpg_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 // due to less copying.
 
 
-static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex* t)
+static Status jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex* t)
 {
 	src_prepare(cinfo, da);
 
@@ -502,7 +502,7 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex
 	// mem data source.
 	(void)jpeg_finish_decompress(cinfo);
 
-	LibError ret = INFO::OK;
+	Status ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN::TEX_INVALID_DATA;
 
@@ -519,7 +519,7 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex
 }
 
 
-static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
+static Status jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 {
 	dst_prepare(cinfo, da);
 
@@ -538,7 +538,7 @@ static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* d
 	jpeg_start_compress(cinfo, TRUE);
 
 	// if BGR, convert to RGB.
-	WARN_ERR(tex_transform_to(t, t->flags & ~TEX_BGR));
+	WARN_IF_ERR(tex_transform_to(t, t->flags & ~TEX_BGR));
 
 	const size_t pitch = t->w * t->bpp / 8;
 	u8* data = tex_get_data(t);
@@ -559,7 +559,7 @@ static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* d
 
 	jpeg_finish_compress(cinfo);
 
-	LibError ret = INFO::OK;
+	Status ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN::TEX_INVALID_DATA;
 
@@ -588,7 +588,7 @@ static size_t jpg_hdr_size(const u8* UNUSED(file))
 }
 
 
-static LibError jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+static Status jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
 	// contains the JPEG decompression parameters and pointers to
 	//  working space (allocated as needed by the JPEG library).
@@ -600,7 +600,7 @@ static LibError jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 	jpeg_create_decompress(&cinfo);
 
-	LibError ret = jpg_decode_impl(da, &cinfo, t);
+	Status ret = jpg_decode_impl(da, &cinfo, t);
 
 	jpeg_destroy_decompress(&cinfo); // releases a "good deal" of memory
 
@@ -609,7 +609,7 @@ static LibError jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 
 // limitation: palette images aren't supported
-static LibError jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+static Status jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 {
 	// contains the JPEG compression parameters and pointers to
 	// working space (allocated as needed by the JPEG library).
@@ -621,7 +621,7 @@ static LibError jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 
 	jpeg_create_compress(&cinfo);
 
-	LibError ret = jpg_encode_impl(t, &cinfo, da);
+	Status ret = jpg_encode_impl(t, &cinfo, da);
 
 	jpeg_destroy_compress(&cinfo); // releases a "good deal" of memory
 

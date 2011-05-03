@@ -27,7 +27,7 @@
 #ifndef INCLUDED_WAIO
 #define INCLUDED_WAIO
 
-#include "lib/lib_errors.h"
+#include "lib/status.h"
 #include "lib/os_path.h"
 #include "lib/posix/posix_time.h"	// timespec
 #include "lib/sysdep/os/win/wposix/wposix_types.h"
@@ -122,10 +122,10 @@ extern int aio_fsync(int, struct aiocb*);
 // notified of the file descriptor, which means e.g. read and aio_read can
 // both be used. this function must have been called before any
 // other [w]aio_* functions are used.
-extern LibError waio_reopen(int fd, const OsPath& pathname, int oflag, ...);
+extern Status waio_reopen(int fd, const OsPath& pathname, int oflag, ...);
 
 // close our second aio-enabled handle to the file (called from wclose).
-extern LibError waio_close(int fd);
+extern Status waio_close(int fd);
 
 // call this before writing a large file to preallocate clusters, thus
 // reducing fragmentation.
@@ -143,6 +143,6 @@ extern LibError waio_close(int fd);
 // note that this exposes the previous disk contents (possibly even to
 // other users since the waio_reopen design cannot deny file sharing) until
 // the application successfully writes to the file.
-LIB_API LibError waio_Preallocate(int fd, off_t size);
+LIB_API Status waio_Preallocate(int fd, off_t size);
 
 #endif	// #ifndef INCLUDED_WAIO

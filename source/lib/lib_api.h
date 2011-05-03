@@ -20,6 +20,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef INCLUDED_LIB_API
+#define INCLUDED_LIB_API
+
 #include "lib/sysdep/compiler.h"
 
 // note: EXTERN_C cannot be used because shared_ptr is often returned
@@ -49,3 +52,5 @@
 #  error "Don't know how to define LIB_API for this compiler"
 # endif
 #endif
+
+#endif	// #ifndef INCLUDED_LIB_API

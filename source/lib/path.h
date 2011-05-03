@@ -45,9 +45,9 @@
 
 namespace ERR
 {
-	const LibError PATH_CHARACTER_ILLEGAL   = -100300;
-	const LibError PATH_CHARACTER_UNSAFE    = -100301;
-	const LibError PATH_NOT_FOUND           = -100302;
+	const Status PATH_CHARACTER_ILLEGAL   = -100300;
+	const Status PATH_CHARACTER_UNSAFE    = -100301;
+	const Status PATH_NOT_FOUND           = -100302;
 }
 
 /**
@@ -179,7 +179,7 @@ public:
 		return ret;
 	}
 
-	static LibError Validate(String::value_type c);
+	static Status Validate(String::value_type c);
 
 private:
 	String path;

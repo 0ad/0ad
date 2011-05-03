@@ -175,7 +175,7 @@ public:
 			// note: use this instead of resize because FileNode doesn't have
 			// a default ctor. NB: this is how resize is implemented anyway.
 			file_nodes.erase(file_nodes.begin() + MAX_IDS, file_nodes.end());
-			WARN_ERR(ERR::LIMIT);
+			WARN_IF_ERR(ERR::LIMIT);
 		}
 	}
 };
@@ -306,10 +306,10 @@ class ConnectionBuilder
 	}
 
 public:
-	LibError run(const char* trace_filename, Connections& connections)
+	Status run(const char* trace_filename, Connections& connections)
 	{
 		Trace t;
-		RETURN_ERR(trace_read_from_file(trace_filename, &t));
+		RETURN_STATUS_IF_ERR(trace_read_from_file(trace_filename, &t));
 
 		// reserve memory for worst-case amount of connections (happens if
 		// all accesses are unique). this is necessary because we store
@@ -560,7 +560,7 @@ public:
 	}
 };
 
-static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_fmt, bool force_build)
+static Status vfs_opt_init(const char* trace_filename, const char* archive_fn_fmt, bool force_build)
 {
 	Filesystem_Posix fsPosix;
 
@@ -575,7 +575,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	{
 	char dir[PATH_MAX];
 	path_dir_only(archive_fn_fmt, dir);
-	RETURN_ERR(dir_GatherSortedEntries(&fsPosix, dir, existing_archives));
+	RETURN_STATUS_IF_ERR(dir_GatherSortedEntries(&fsPosix, dir, existing_archives));
 	DirEntIt new_end = std::remove_if(existing_archives.begin(), existing_archives.end(), IsArchive(archive_fn));
 	existing_archives.erase(new_end, existing_archives.end());
 	}
@@ -597,7 +597,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	// are defined by trace entries.
 	Connections connections;
 	ConnectionBuilder cbuilder;
-	RETURN_ERR(cbuilder.run(trace_filename, connections));
+	RETURN_STATUS_IF_ERR(cbuilder.run(trace_filename, connections));
 
 	// create output filename list by first adding the above edges (most
 	// frequent first) and then adding the rest sequentially.
@@ -605,7 +605,7 @@ static LibError vfs_opt_init(const char* trace_filename, const char* archive_fn_
 	fn_vector.push_back(0);	// 0-terminate for use as Filenames
 	Filenames V_fns = &fn_vector[0];
 
-	RETURN_ERR(archive_build_init(archive_fn, V_fns, &ab));
+	RETURN_STATUS_IF_ERR(archive_build_init(archive_fn, V_fns, &ab));
 	return INFO::OK;
 }
 
@@ -660,7 +660,7 @@ static bool should_build_mini_archive(const char* UNUSED(mini_archive_fn_fmt))
 	return false;
 }
 
-static LibError build_mini_archive(const char* mini_archive_fn_fmt)
+static Status build_mini_archive(const char* mini_archive_fn_fmt)
 {
 	if(!should_build_mini_archive(mini_archive_fn_fmt))
 		return INFO::SKIPPED;
@@ -676,7 +676,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 	Filesystem_Posix fsPosix;
 	dir_NextNumberedFilename(&fsPosix, mini_archive_fn_fmt, &nfi, mini_archive_fn);
 
-	RETURN_ERR(archive_build(mini_archive_fn, V_fns));
+	RETURN_STATUS_IF_ERR(archive_build(mini_archive_fn, V_fns));
 	delete[] V_fns;
 	return INFO::OK;
 #else
@@ -712,7 +712,7 @@ struct ArchiveBuildState
 
 // create an archive (overwriting previous file) and fill it with the given
 // files. compression method is chosen based on extension.
-LibError archive_build_init(const char* P_archive_filename, Filenames V_fns, ArchiveBuildState* ab)
+Status archive_build_init(const char* P_archive_filename, Filenames V_fns, ArchiveBuildState* ab)
 {
 	ab->archiveBuilder = CreateArchiveBuilder_Zip(P_archive_filename);
 
@@ -779,14 +779,14 @@ void archive_build_cancel(ArchiveBuildState* ab)
 }
 
 
-LibError archive_build(const char* P_archive_filename, Filenames V_fns)
+Status archive_build(const char* P_archive_filename, Filenames V_fns)
 {
 	ArchiveBuildState ab;
-	RETURN_ERR(archive_build_init(P_archive_filename, V_fns, &ab));
+	RETURN_STATUS_IF_ERR(archive_build_init(P_archive_filename, V_fns, &ab));
 	for(;;)
 	{
 		int ret = archive_build_continue(&ab);
-		RETURN_ERR(ret);
+		RETURN_STATUS_IF_ERR(ret);
 		if(ret == INFO::OK)
 			return INFO::OK;
 	}
@@ -835,7 +835,7 @@ int vfs_opt_auto_build(const char* trace_filename,
 		else
 		{
 			// create mini-archive (if needed)
-			RETURN_ERR(build_mini_archive(mini_archive_fn_fmt));
+			RETURN_STATUS_IF_ERR(build_mini_archive(mini_archive_fn_fmt));
 
 			state = NOP;
 			return INFO::OK;	// "finished"
@@ -854,12 +854,12 @@ int vfs_opt_auto_build(const char* trace_filename,
 	UNREACHABLE;
 }
 
-LibError vfs_opt_rebuild_main_archive(const char* trace_filename, const char* archive_fn_fmt)
+Status vfs_opt_rebuild_main_archive(const char* trace_filename, const char* archive_fn_fmt)
 {
 	for(;;)
 	{
 		int ret = vfs_opt_auto_build(trace_filename, archive_fn_fmt, 0, true);
-		RETURN_ERR(ret);
+		RETURN_STATUS_IF_ERR(ret);
 		if(ret == INFO::OK)
 			return INFO::OK;
 	}
@@ -912,8 +912,8 @@ struct Trace
 };
 
 extern void trace_get(Trace* t);
-extern LibError trace_write_to_file(const char* trace_filename);
-extern LibError trace_read_from_file(const char* trace_filename, Trace* t);
+extern Status trace_write_to_file(const char* trace_filename);
+extern Status trace_read_from_file(const char* trace_filename, Trace* t);
 
 
 // simulate carrying out the entry's TraceOp to determine
@@ -922,7 +922,7 @@ extern bool trace_entry_causes_io(const TraceEntry* ent);
 
 
 // carry out all operations specified in the trace.
-extern LibError trace_run(const char* trace_filename);
+extern Status trace_run(const char* trace_filename);
 
 
 
@@ -1108,10 +1108,10 @@ bool trace_entry_causes_io(FileCache& simulatedCache, const TraceEntry* ent)
 
 
 
-LibError trace_run(const char* osPathname)
+Status trace_run(const char* osPathname)
 {
 	Trace trace;
-	RETURN_ERR(trace.Load(osPathname));
+	RETURN_STATUS_IF_ERR(trace.Load(osPathname));
 	for(size_t i = 0; i < trace.NumEntries(); i++)
 		trace.Entries()[i]->Run();
 	return INFO::OK;

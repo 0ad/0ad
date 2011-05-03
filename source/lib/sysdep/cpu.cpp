@@ -27,9 +27,9 @@
 #include "precompiled.h"
 #include "lib/sysdep/cpu.h"
 
-ERROR_ASSOCIATE(ERR::CPU_FEATURE_MISSING, L"This CPU doesn't support a required feature", -1);
-ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_OPCODE, L"Disassembly failed", -1);
-ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_VENDOR, L"CPU vendor unknown", -1);
+STATUS_DEFINE(ERR, CPU_FEATURE_MISSING, L"This CPU doesn't support a required feature", -1);
+STATUS_DEFINE(ERR, CPU_UNKNOWN_OPCODE, L"Disassembly failed", -1);
+STATUS_DEFINE(ERR, CPU_UNKNOWN_VENDOR, L"CPU vendor unknown", -1);
 
 
 // ensure the actual pointer size matches expectations on the most common

@@ -76,7 +76,7 @@ static void io_flush(png_structp UNUSED(png_ptr))
 
 //-----------------------------------------------------------------------------
 
-static LibError png_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
+static Status png_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -87,7 +87,7 @@ static LibError png_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 
 // split out of png_decode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop info_ptr, Tex* t)
+static Status png_decode_impl(DynArray* da, png_structp png_ptr, png_infop info_ptr, Tex* t)
 {
 	png_set_read_fn(png_ptr, da, io_read);
 
@@ -137,7 +137,7 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 
 // split out of png_encode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static LibError png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, DynArray* da)
+static Status png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, DynArray* da)
 {
 	const png_uint_32 w = (png_uint_32)t->w, h = (png_uint_32)t->h;
 	const size_t pitch = w * t->bpp / 8;
@@ -200,11 +200,11 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 TIMER_ADD_CLIENT(tc_png_decode);
 
 // limitation: palette images aren't supported
-static LibError png_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+static Status png_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
 TIMER_ACCRUE(tc_png_decode);
 
-	LibError ret = ERR::FAIL;
+	Status ret = ERR::FAIL;
 	png_infop info_ptr = 0;
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
@@ -231,9 +231,9 @@ fail:
 
 
 // limitation: palette images aren't supported
-static LibError png_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
+static Status png_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 {
-	LibError ret = ERR::FAIL;
+	Status ret = ERR::FAIL;
 	png_infop info_ptr = 0;
 
 	// allocate PNG structures; use default stderr and longjmp error handlers

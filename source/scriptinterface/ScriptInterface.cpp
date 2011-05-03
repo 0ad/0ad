@@ -926,7 +926,7 @@ struct Stringifier
 		utf16string str(buf, buf+len);
 		std::wstring strw(str.begin(), str.end());
 
-		LibError err; // ignore Unicode errors
+		Status err; // ignore Unicode errors
 		static_cast<Stringifier*>(data)->stream << utf8_from_wstring(strw, &err);
 		return JS_TRUE;
 	}

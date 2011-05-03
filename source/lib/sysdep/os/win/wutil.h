@@ -137,22 +137,12 @@ private:
 
 
 /**
- * @return the LibError equivalent of GetLastError(), or ERR::FAIL if
+ * @return the Status equivalent of GetLastError(), or ERR::FAIL if
  * there's no equivalent.
- * you should SetLastError(0) before calling whatever will set ret
- * to make sure we do not report any stale errors.
- *
- * @param warn_if_failed if set, raises an error dialog that reports
- * the LibError.
+ * SetLastError(0) should be called before the Windows function to
+ * make sure no stale errors are returned.
  **/
-LibError LibError_from_GLE(bool warn_if_failed = true);
-
-#define WARN_WIN32_ERR (void)LibError_from_GLE(true)
-
-/**
- * @return INFO::OK if ret != FALSE, else LibError_from_GLE().
- **/
-extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
+extern Status StatusFromWin();
 
 
 //-----------------------------------------------------------------------------
@@ -190,7 +180,7 @@ private:
 
 //-----------------------------------------------------------------------------
 
-LIB_API LibError wutil_SetPrivilege(const wchar_t* privilege, bool enable);
+LIB_API Status wutil_SetPrivilege(const wchar_t* privilege, bool enable);
 
 /**
  * @return module handle of lib code (that of the main EXE if

@@ -29,11 +29,11 @@
 
 #include <stdarg.h>
 
-#include "lib/lib_errors.h"
+#include "lib/status.h"
 
 namespace ERR
 {
-	const LibError STRING_NOT_TERMINATED = -100600;
+	const Status STRING_NOT_TERMINATED = -100600;
 }
 
 // if the platform lacks a secure CRT implementation, we'll provide one.

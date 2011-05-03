@@ -35,19 +35,19 @@
 TIMER_ADD_CLIENT(tc_pool_alloc);
 
 
-LibError pool_create(Pool* p, size_t max_size, size_t el_size)
+Status pool_create(Pool* p, size_t max_size, size_t el_size)
 {
 	if(el_size == POOL_VARIABLE_ALLOCS)
 		p->el_size = 0;
 	else
 		p->el_size = Align<allocationAlignment>(el_size);
 	p->freelist = mem_freelist_Sentinel();
-	RETURN_ERR(da_alloc(&p->da, max_size));
+	RETURN_STATUS_IF_ERR(da_alloc(&p->da, max_size));
 	return INFO::OK;
 }
 
 
-LibError pool_destroy(Pool* p)
+Status pool_destroy(Pool* p)
 {
 	// don't be picky and complain if the freelist isn't empty;
 	// we don't care since it's all part of the da anyway.

@@ -35,11 +35,11 @@
 
 namespace ERR
 {
-	const LibError SHDR_CREATE     = -120200;
-	const LibError SHDR_COMPILE    = -120201;
-	const LibError SHDR_NO_SHADER  = -120202;
-	const LibError SHDR_LINK       = -120203;
-	const LibError SHDR_NO_PROGRAM = -120204;
+	const Status SHDR_CREATE     = -120200;
+	const Status SHDR_COMPILE    = -120201;
+	const Status SHDR_NO_SHADER  = -120202;
+	const Status SHDR_LINK       = -120203;
+	const Status SHDR_NO_PROGRAM = -120204;
 }
 
 /*
@@ -69,7 +69,7 @@ void ogl_shader_free(Handle& h);
 /**
  * Attach a shader to the given OpenGL program.
  **/
-LibError ogl_shader_attach(GLhandleARB program, Handle& h);
+Status ogl_shader_attach(GLhandleARB program, Handle& h);
 
 
 /*
@@ -97,7 +97,7 @@ void ogl_program_free(Handle& h);
  *
  * @param h may be 0, in which case program objects are disabled.
  **/
-LibError ogl_program_use(Handle h);
+Status ogl_program_use(Handle h);
 
 /**
  * Query uniform information

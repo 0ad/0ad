@@ -72,7 +72,7 @@ static void UniFont_dtor(UniFont* f)
 
 // basename is e.g. "console"; the files are "fonts/console.fnt" and "fonts/console.png"
 // [10..70ms]
-static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basename, Handle UNUSED(h))
+static Status UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basename, Handle UNUSED(h))
 {
 	// already loaded
 	if(f->ht > 0)
@@ -85,7 +85,7 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 	// Read font definition file into a stringstream
 	shared_ptr<u8> buf; size_t size;
 	const VfsPath fntName(basename.ChangeExtension(L".fnt"));
-	RETURN_ERR(vfs->LoadFile(path / fntName, buf, size));	// [cumulative for 12: 36ms]
+	RETURN_STATUS_IF_ERR(vfs->LoadFile(path / fntName, buf, size));	// [cumulative for 12: 36ms]
 	std::istringstream FNTStream(std::string((const char*)buf.get(), size));
 
 	int Version;
@@ -151,13 +151,13 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 	// [cumulative for 12: 20ms]
 	const VfsPath imgName(basename.ChangeExtension(L".png"));
 	Handle ht = ogl_tex_load(vfs, path / imgName);
-	RETURN_ERR(ht);
+	RETURN_STATUS_IF_ERR(ht);
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
 	// override is necessary because the GL format is chosen as LUMINANCE,
 	// but we want ALPHA. there is no way of knowing what format
 	// 8bpp textures are in - we could adopt a naming convention and
 	// add some TEX_ flags, but that's overkill.
-	LibError err = ogl_tex_upload(ht, fmt_ovr);
+	Status err = ogl_tex_upload(ht, fmt_ovr);
 	if(err < 0)
 	{
 		(void)ogl_tex_free(ht);
@@ -169,7 +169,7 @@ static LibError UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& base
 	return INFO::OK;
 }
 
-static LibError UniFont_validate(const UniFont* f)
+static Status UniFont_validate(const UniFont* f)
 {
 	if(f->ht < 0)
 		WARN_RETURN(ERR::_1);
@@ -182,7 +182,7 @@ static LibError UniFont_validate(const UniFont* f)
 	return INFO::OK;
 }
 
-static LibError UniFont_to_string(const UniFont* f, wchar_t* buf)
+static Status UniFont_to_string(const UniFont* f, wchar_t* buf)
 {
 	if (f->ht) // not true if this is called after dtor (which it is)
 	{
@@ -201,7 +201,7 @@ Handle unifont_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags)
 }
 
 
-LibError unifont_unload(Handle& h)
+Status unifont_unload(Handle& h)
 {
 	H_DEREF(h, UniFont, f);
 
@@ -214,7 +214,7 @@ LibError unifont_unload(Handle& h)
 }
 
 
-LibError unifont_bind(const Handle h)
+Status unifont_bind(const Handle h)
 {
 	H_DEREF(h, UniFont, f);
 
@@ -349,7 +349,7 @@ void glwprintf(const wchar_t* fmt, ...)
 }
 
 
-LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height)
+Status unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height)
 {
 	H_DEREF(h, UniFont, f);
 

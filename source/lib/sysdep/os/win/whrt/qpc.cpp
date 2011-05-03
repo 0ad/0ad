@@ -49,7 +49,7 @@ public:
 		return L"QPC";
 	}
 
-	LibError Activate()
+	Status Activate()
 	{
 		// note: QPC is observed to be universally supported, but the API
 		// provides for failure, so play it safe.
@@ -57,7 +57,8 @@ public:
 		LARGE_INTEGER qpcFreq, qpcValue;
 		const BOOL ok1 = QueryPerformanceFrequency(&qpcFreq);
 		const BOOL ok2 = QueryPerformanceCounter(&qpcValue);
-		WARN_RETURN_IF_FALSE(ok1 && ok2);
+		if(!ok1 || !ok2)
+			WARN_RETURN(ERR::FAIL);
 		if(!qpcFreq.QuadPart || !qpcValue.QuadPart)
 			WARN_RETURN(ERR::FAIL);
 

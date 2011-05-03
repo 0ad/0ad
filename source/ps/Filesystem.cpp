@@ -70,26 +70,26 @@ static bool CanIgnore(const DirWatchNotification& notification)
 	return false;
 }
 
-LibError ReloadChangedFiles()
+Status ReloadChangedFiles()
 {
 	std::vector<DirWatchNotification> notifications;
-	RETURN_ERR(dir_watch_Poll(notifications));
+	RETURN_STATUS_IF_ERR(dir_watch_Poll(notifications));
 	for(size_t i = 0; i < notifications.size(); i++)
 	{
 		if(!CanIgnore(notifications[i]))
 		{
 			VfsPath pathname;
-			RETURN_ERR(g_VFS->GetVirtualPath(notifications[i].Pathname(), pathname));
-			RETURN_ERR(g_VFS->Invalidate(pathname));
+			RETURN_STATUS_IF_ERR(g_VFS->GetVirtualPath(notifications[i].Pathname(), pathname));
+			RETURN_STATUS_IF_ERR(g_VFS->Invalidate(pathname));
 
 			// Tell each hotloadable system about this file change:
 
-			RETURN_ERR(g_GUI->ReloadChangedFiles(pathname));
+			RETURN_STATUS_IF_ERR(g_GUI->ReloadChangedFiles(pathname));
 
 			for (size_t j = 0; j < g_ReloadFuncs.size(); ++j)
 				g_ReloadFuncs[j].first(g_ReloadFuncs[j].second, pathname);
 
-			RETURN_ERR(h_reload(g_VFS, pathname));
+			RETURN_STATUS_IF_ERR(h_reload(g_VFS, pathname));
 		}
 	}
 	return INFO::OK;
@@ -113,10 +113,10 @@ PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename)
 		return PSRETURN_CVFSFile_AlreadyLoaded;
 	}
 
-	LibError ret = vfs->LoadFile(filename, m_Buffer, m_BufferSize);
+	Status ret = vfs->LoadFile(filename, m_Buffer, m_BufferSize);
 	if (ret != INFO::OK)
 	{
-		LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %ld)", filename.string().c_str(), ret);
+		LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %lld)", filename.string().c_str(), ret);
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 

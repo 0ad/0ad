@@ -99,11 +99,11 @@ terminology
  * snd_dev_next).
  * may be called each time the device list is needed.
  *
- * @return LibError; fails iff the requisite OpenAL extension isn't available.
+ * @return Status; fails iff the requisite OpenAL extension isn't available.
  * in that case, a "cannot enum device" message should be displayed, but
  * snd_dev_set need not be called; OpenAL will use its default device.
  **/
-extern LibError snd_dev_prepare_enum();
+extern Status snd_dev_prepare_enum();
 
 /**
  * get next device name in list.
@@ -137,9 +137,9 @@ extern const char* snd_dev_next();
  * re-initialize with the new device. that's fairly time-consuming,
  * so preferably call this routine before sounds are loaded.
  *
- * @return LibError (the status returned by OpenAL re-init)
+ * @return Status (the status returned by OpenAL re-init)
  **/
-extern LibError snd_dev_set(const char* alc_new_dev_name);
+extern Status snd_dev_set(const char* alc_new_dev_name);
 
 /**
  * Set maximum number of voices to play simultaneously;
@@ -147,9 +147,9 @@ extern LibError snd_dev_set(const char* alc_new_dev_name);
  *
  * @param limit Maximum number of voices. Ignored if higher than
  *		  an implementation-defined limit anyway.
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_set_max_voices(size_t limit);
+extern Status snd_set_max_voices(size_t limit);
 
 /**
  * set amplitude modifier, which is effectively applied to all sounds.
@@ -157,9 +157,9 @@ extern LibError snd_set_max_voices(size_t limit);
  *
  * @param gain amplitude modifier. must be non-negative;
  * 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_set_master_gain(float gain);
+extern Status snd_set_master_gain(float gain);
 
 
 //
@@ -176,7 +176,7 @@ extern LibError snd_set_master_gain(float gain);
  *		  its gain (0.0 .. 1.0).
  *		  Otherwise, it is taken to be the sound file name and
  *		  gain is set to the default of 1.0 (no attenuation).
- * @return Handle or LibError
+ * @return Handle or Status
  **/
 extern Handle snd_open(const PIVFS& vfs, const VfsPath& pathname);
 
@@ -187,9 +187,9 @@ extern Handle snd_open(const PIVFS& vfs, const VfsPath& pathname);
  * this API is provided for completeness only.
  *
  * @param hvs Handle to sound instance. Zeroed afterwards.
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_free(Handle& hvs);
+extern Status snd_free(Handle& hvs);
 
 /**
  * Start playing the sound.
@@ -206,9 +206,9 @@ extern LibError snd_free(Handle& hvs);
  * voices are available). the static priority is attenuated by
  * distance to the listener; see snd_update.
  *
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_play(Handle hvs, float static_pri = 0.0f);
+extern Status snd_play(Handle hvs, float static_pri = 0.0f);
 
 /**
  * Change 3d position of the sound source.
@@ -220,9 +220,9 @@ extern LibError snd_play(Handle hvs, float static_pri = 0.0f);
  * @param x,y,z 
  * @param relative treat (x,y,z) as relative to the listener;
  * 		  if false (the default), it is the position in world coordinates.
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative = false);
+extern Status snd_set_pos(Handle hvs, float x, float y, float z, bool relative = false);
 
 /**
  * change gain (amplitude modifier) of the sound source.
@@ -233,9 +233,9 @@ extern LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative
  *
  * @param gain amplitude modifier. must be non-negative;
  * 1 -\> unattenuated, 0.5 -\> -6 dB, 0 -\> silence.
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_set_gain(Handle hs, float gain);
+extern Status snd_set_gain(Handle hs, float gain);
 
 /**
  * change pitch shift of the sound source.
@@ -245,9 +245,9 @@ extern LibError snd_set_gain(Handle hs, float gain);
  *
  * @param pitch shift: 1.0 means no change; each doubling/halving equals a
  * pitch shift of +/-12 semitones (one octave). zero is invalid.
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_set_pitch(Handle hs, float pitch);
+extern Status snd_set_pitch(Handle hs, float pitch);
 
 /**
  * Enable/disable looping on the sound source.
@@ -264,9 +264,9 @@ extern LibError snd_set_pitch(Handle hs, float pitch);
  *
  * @param hvs Handle to the sound.
  * @param loop Boolean to enable/disable lopping on the sound.
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_set_loop(Handle hvs, bool loop);
+extern Status snd_set_loop(Handle hvs, bool loop);
 
 /// types of fade in/out operations
 enum FadeType
@@ -312,9 +312,9 @@ enum FadeType
  * It is safe to start another fade on the same sound source while
  * one is already in progress; the old one will be discarded.
  *
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
+extern Status snd_fade(Handle hvs, float initial_gain, float final_gain,
 	float length, FadeType type);
 
 
@@ -338,9 +338,9 @@ extern LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
  * will be applied and subsequent sound load / play requests will work.
  *
  * @param disabled
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_disable(bool disabled);
+extern Status snd_disable(bool disabled);
 
 /**
  * Perform housekeeping (e.g. streaming); call once a frame.
@@ -351,9 +351,9 @@ extern LibError snd_disable(bool disabled);
  * @param pos listener's position
  * @param dir listener view direction
  * @param up listener's local up vector
- * @return LibError
+ * @return Status
  **/
-extern LibError snd_update(const float* pos, const float* dir, const float* up);
+extern Status snd_update(const float* pos, const float* dir, const float* up);
 
 /**
  * find out if a sound is still playing

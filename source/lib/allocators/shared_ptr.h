@@ -63,7 +63,7 @@ struct AlignedDeleter
 };
 
 template<class T>
-static inline LibError AllocateAligned(shared_ptr<T>& p, size_t size, size_t alignment = cacheLineSize)
+static inline Status AllocateAligned(shared_ptr<T>& p, size_t size, size_t alignment = cacheLineSize)
 {
 	void* mem = rtl_AllocateAligned(size, alignment);
 	if(!mem)

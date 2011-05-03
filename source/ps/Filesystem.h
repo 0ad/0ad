@@ -36,7 +36,7 @@ extern bool VfsFileExists(const VfsPath& pathname);
 /**
  * callback function type for file change notifications
  */
-typedef LibError (*FileReloadFunc)(void* param, const VfsPath& path);
+typedef Status (*FileReloadFunc)(void* param, const VfsPath& path);
 
 /**
  * register a callback function to be called by ReloadChangedFiles
@@ -55,7 +55,7 @@ void UnregisterFileReloadFunc(FileReloadFunc func, void* obj);
  * may be lost.
  * note: polling is much simpler than asynchronous notifications.
  **/
-extern LibError ReloadChangedFiles();
+extern Status ReloadChangedFiles();
 
 ERROR_GROUP(CVFSFile);
 ERROR_TYPE(CVFSFile, LoadFailed);

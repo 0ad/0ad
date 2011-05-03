@@ -138,7 +138,7 @@ public:
 		return m_dirHandle;
 	}
 
-	LibError Issue()
+	Status Issue()
 	{
 		if(m_dirHandle == INVALID_HANDLE_VALUE)
 			WARN_RETURN(ERR::PATH_NOT_FOUND);
@@ -307,7 +307,7 @@ public:
 		CloseHandle(hIOCP);
 	}
 
-	LibError Add(const OsPath& path, PDirWatch& dirWatch)
+	Status Add(const OsPath& path, PDirWatch& dirWatch)
 	{
 		ENSURE(path.IsDirectory());
 
@@ -326,17 +326,17 @@ public:
 
 		PDirWatchRequest request(new DirWatchRequest(path));
 		AttachToCompletionPort(request->GetDirHandle(), hIOCP, (uintptr_t)request.get());
-		RETURN_ERR(request->Issue());
+		RETURN_STATUS_IF_ERR(request->Issue());
 		dirWatch.reset(new DirWatch(&m_sentinel, request));
 		return INFO::OK;
 	}
 
-	LibError Poll(DirWatchNotifications& notifications)
+	Status Poll(DirWatchNotifications& notifications)
 	{
 		DWORD bytesTransferred; ULONG_PTR key; OVERLAPPED* ovl;
 		for(;;)	// skip notifications of canceled watches
 		{
-			const LibError ret = PollCompletionPort(hIOCP, 0, bytesTransferred, key, ovl);
+			const Status ret = PollCompletionPort(hIOCP, 0, bytesTransferred, key, ovl);
 			if(ret == INFO::OK)
 				break;
 			if(GetLastError() == ERROR_OPERATION_ABORTED)
@@ -346,7 +346,7 @@ public:
 
 		DirWatchRequest* request = (DirWatchRequest*)key;
 		request->RetrieveNotifications(notifications);
-		RETURN_ERR(request->Issue());	// re-issue
+		RETURN_STATUS_IF_ERR(request->Issue());	// re-issue
 		return INFO::OK;
 	}
 
@@ -360,13 +360,13 @@ static DirWatchManager* s_dirWatchManager;
 
 //-----------------------------------------------------------------------------
 
-LibError dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
+Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 {
 	WinScopedLock lock(WDIR_WATCH_CS);
 	return s_dirWatchManager->Add(path, dirWatch);
 }
 
-LibError dir_watch_Poll(DirWatchNotifications& notifications)
+Status dir_watch_Poll(DirWatchNotifications& notifications)
 {
 	WinScopedLock lock(WDIR_WATCH_CS);
 	return s_dirWatchManager->Poll(notifications);
@@ -375,13 +375,13 @@ LibError dir_watch_Poll(DirWatchNotifications& notifications)
 
 //-----------------------------------------------------------------------------
 
-static LibError wdir_watch_Init()
+static Status wdir_watch_Init()
 {
 	s_dirWatchManager = new DirWatchManager;
 	return INFO::OK;
 }
 
-static LibError wdir_watch_Shutdown()
+static Status wdir_watch_Shutdown()
 {
 	SAFE_DELETE(s_dirWatchManager);
 	return INFO::OK;

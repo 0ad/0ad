@@ -49,8 +49,8 @@ public:
 private:
 	bool NewProgram(const char* name, const std::map<CStr, CStr>& defines, CShaderProgramPtr& program);
 
-	static LibError ReloadChangedFileCB(void* param, const VfsPath& path);
-	LibError ReloadChangedFile(const VfsPath& path);
+	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
+	Status ReloadChangedFile(const VfsPath& path);
 
 	struct CacheKey
 	{

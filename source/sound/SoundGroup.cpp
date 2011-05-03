@@ -118,7 +118,7 @@ void CSoundGroup::UploadPropertiesAndPlay(Handle hSound, const CVector3D& positi
 }
 
 
-static void HandleError(const std::wstring& message, const VfsPath& pathname, LibError err)
+static void HandleError(const std::wstring& message, const VfsPath& pathname, Status err)
 {
 	if(err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
@@ -136,7 +136,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 			m_hReplacement = snd_open(g_VFS, pathname);
 			if(m_hReplacement < 0)
 			{
-				HandleError(L"PlayNext: snd_open for replacement file failed", pathname, (LibError)m_hReplacement);
+				HandleError(L"PlayNext: snd_open for replacement file failed", pathname, (Status)m_hReplacement);
 				return;
 			}
 
@@ -157,7 +157,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		Handle hs = snd_open(g_VFS, pathname);
 		if(hs < 0)
 		{
-			HandleError(L"PlayNext: snd_open failed", pathname, (LibError)hs);
+			HandleError(L"PlayNext: snd_open failed", pathname, (Status)hs);
 			return;
 		}
 

@@ -24,11 +24,11 @@ inline size_t Align(size_t n)
 
 static const size_t vectorSize = 16;
 
-#define VERIFY_VECTOR_MULTIPLE(size)\
-	VERIFY(IsAligned(size, vectorSize))
+#define ASSERT_VECTOR_MULTIPLE(size)\
+	ASSERT(IsAligned(size, vectorSize))
 
-#define VERIFY_VECTOR_ALIGNED(pointer)\
-	VERIFY_VECTOR_MULTIPLE(pointer);\
+#define ASSERT_VECTOR_ALIGNED(pointer)\
+	ASSERT_VECTOR_MULTIPLE(pointer);\
 	ASSUME_ALIGNED(pointer, vectorSize)
 
 

@@ -147,8 +147,8 @@ extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
  * fails if OpenGL not ready for use.
  * gfx_card and gfx_drv_ver are unchanged on failure.
  *
- * @return LibError
+ * @return Status
  **/
-extern LibError ogl_get_gfx_info();
+extern Status ogl_get_gfx_info();
 
 #endif	// #ifndef INCLUDED_OGL

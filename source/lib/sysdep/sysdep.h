@@ -100,18 +100,18 @@ extern int sys_vswprintf(wchar_t* buffer, size_t count, const wchar_t* format, v
  * rationale: it is expected to be rare that OS return/error codes are
  * actually seen by user code, but we leave the possibility open.
  **/
-extern LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars);
+extern Status sys_StatusDescription(int err, wchar_t* buf, size_t max_chars);
 
 /**
  * determine filename of the module to whom an address belongs.
  *
  * @param addr
  * @param pathname Full path to module (unchanged unless INFO::OK is returned).
- * @return LibError
+ * @return Status
  *
  * note: this is useful for handling exceptions in other modules.
  **/
-LibError sys_get_module_filename(void* addr, OsPath& pathname);
+Status sys_get_module_filename(void* addr, OsPath& pathname);
 
 /**
  * @return full pathname of the current executable.
@@ -134,12 +134,12 @@ extern std::wstring sys_get_user_name();
  *		  faster browsing. if INFO::OK is returned, it receives
  *		  chosen directory path.
  **/
-extern LibError sys_pick_directory(OsPath& path);
+extern Status sys_pick_directory(OsPath& path);
 
 /**
  * Open the user's default web browser to the given URL.
  **/
-extern LibError sys_open_url(const std::string& url);
+extern Status sys_open_url(const std::string& url);
 
 /**
  * return the largest sector size [bytes] of any storage medium
@@ -171,7 +171,7 @@ extern size_t sys_max_sector_size();
  * this should only be used with small numbers of bytes, to avoid
  * hogging the system's entropy.
  **/
-LIB_API LibError sys_generate_random_bytes(u8* buf, size_t count);
+LIB_API Status sys_generate_random_bytes(u8* buf, size_t count);
 
 /**
  * get the proxy address for accessing the given HTTP URL.
@@ -180,7 +180,7 @@ LIB_API LibError sys_generate_random_bytes(u8* buf, size_t count);
  *
  * @return INFO::OK on success; INFO::SKIPPED if no proxy found.
  **/
-LIB_API LibError sys_get_proxy_config(const std::wstring& url, std::wstring& proxy);
+LIB_API Status sys_get_proxy_config(const std::wstring& url, std::wstring& proxy);
 
 /**
  * open a file like with fopen (but taking an OsPath argument).

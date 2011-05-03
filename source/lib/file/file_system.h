@@ -60,17 +60,17 @@ private:
 	time_t mtime;
 };
 
-extern LibError GetFileInfo(const OsPath& pathname, FileInfo* fileInfo);
+extern Status GetFileInfo(const OsPath& pathname, FileInfo* fileInfo);
 
 typedef std::vector<FileInfo> FileInfos;
 typedef std::vector<OsPath> DirectoryNames;
 
-extern LibError GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames);
+extern Status GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames);
 
 // same as boost::filesystem::create_directories, except that mkdir is invoked with
 // <mode> instead of 0755.
-extern LibError CreateDirectories(const OsPath& path, mode_t mode);
+extern Status CreateDirectories(const OsPath& path, mode_t mode);
 
-extern LibError DeleteDirectory(const OsPath& dirPath);
+extern Status DeleteDirectory(const OsPath& dirPath);
 
 #endif	// #ifndef INCLUDED_FILE_SYSTEM

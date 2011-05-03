@@ -49,7 +49,7 @@ typedef shared_ptr<DirWatch> PDirWatch;
  * convenient to store PDirWatch there instead of creating a second
  * tree structure here.
  **/
-LIB_API LibError dir_watch_Add(const OsPath& path, PDirWatch& dirWatch);
+LIB_API Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch);
 
 class DirWatchNotification
 {
@@ -87,7 +87,7 @@ typedef std::vector<DirWatchNotification> DirWatchNotifications;
  * return all pending directory watch notifications.
  *
  * @param notifications receives any pending notifications in unspecified order.
- * @return LibError (INFO::OK doesn't imply notifications were returned)
+ * @return Status (INFO::OK doesn't imply notifications were returned)
  *
  * note: the run time of this function is independent of the number of
  * directory watches and number of files.
@@ -96,6 +96,6 @@ typedef std::vector<DirWatchNotification> DirWatchNotifications;
  * typically want to receive change notifications at a single point,
  * rather than deal with the complexity of asynchronous notifications.
  **/
-LIB_API LibError dir_watch_Poll(DirWatchNotifications& notifications);
+LIB_API Status dir_watch_Poll(DirWatchNotifications& notifications);
 
 #endif	// #ifndef INCLUDED_DIR_WATCH

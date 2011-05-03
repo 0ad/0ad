@@ -88,7 +88,7 @@ static void cpuid(x86_x64_CpuidRegs* regs)
 static u32 cpuid_maxFunction;
 static u32 cpuid_maxExtendedFunction;
 
-static LibError InitCpuid()
+static Status InitCpuid()
 {
 	x86_x64_CpuidRegs regs = { 0 };
 
@@ -128,7 +128,7 @@ static u32 caps[4];
 
 static ModuleInitState capsInitState;
 
-static LibError InitCaps()
+static Status InitCaps()
 {
 	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
@@ -177,7 +177,7 @@ void x86_x64_caps(u32* d0, u32* d1, u32* d2, u32* d3)
 
 static x86_x64_Vendors vendor;
 
-static LibError InitVendor()
+static Status InitVendor()
 {
 	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 0;
@@ -220,7 +220,7 @@ static size_t model;
 static size_t family;
 static ModuleInitState signatureInitState;
 
-static LibError InitSignature()
+static Status InitSignature()
 {
 	x86_x64_CpuidRegs regs = { 0 };
 	regs.eax = 1;
@@ -287,7 +287,7 @@ private:
 // 3 calls x 4 registers x 4 bytes = 48 + 0-terminator
 static char identifierString[48+1];
 
-static LibError InitIdentifierString()
+static Status InitIdentifierString()
 {
 	// get brand string (if available)
 	char* pos = identifierString;

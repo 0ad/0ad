@@ -23,7 +23,7 @@
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 
-static LibError ReloadChangedFileCB(void* param, const VfsPath& path)
+static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 {
 	return static_cast<CParticleManager*>(param)->ReloadChangedFile(path);
 }
@@ -88,7 +88,7 @@ void CParticleManager::RenderSubmit(SceneCollector& collector, const CFrustum& U
 		collector.Submit(it->get());
 }
 
-LibError CParticleManager::ReloadChangedFile(const VfsPath& path)
+Status CParticleManager::ReloadChangedFile(const VfsPath& path)
 {
 	m_EmitterTypes.erase(path);
 	return INFO::OK;

@@ -149,7 +149,7 @@ void RunHardwareDetection()
 		return;
 	}
 
-	LibError err; // ignore encoding errors
+	Status err; // ignore encoding errors
 	std::wstring code = wstring_from_utf8(file.GetAsString(), &err);
 
 	scriptInterface.LoadScript(scriptName, code);

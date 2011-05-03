@@ -98,11 +98,11 @@ static bool al_initialized = false;
 
 
 // used by snd_dev_set to reset OpenAL after device has been changed.
-static LibError al_reinit();
+static Status al_reinit();
 
 // used by al_shutdown to free all VSrc and SndData objects, respectively,
 // so that they release their OpenAL sources and buffers.
-static LibError list_free_all();
+static Status list_free_all();
 static void hsd_list_free_all();
 
 
@@ -147,7 +147,7 @@ static const char* alc_dev_name = 0;
  * tell OpenAL to use the specified device in future.
  *
  * @param alc_new_dev_name Device name.
- * @return LibError
+ * @return Status
  *
  * name = 0 reverts to OpenAL's default choice, which will also
  * be used if this routine is never called.
@@ -163,7 +163,7 @@ static const char* alc_dev_name = 0;
  * re-initialize with the new device. that's fairly time-consuming,
  * so preferably call this routine before sounds are loaded.
  */
-LibError snd_dev_set(const char* alc_new_dev_name)
+Status snd_dev_set(const char* alc_new_dev_name)
 {
 	// requesting a specific device
 	if(alc_new_dev_name)
@@ -216,11 +216,11 @@ static void alc_shutdown()
 /**
  * Ready OpenAL for use by setting up a device and context.
  *
- * @return LibError
+ * @return Status
  */
-static LibError alc_init()
+static Status alc_init()
 {
-	LibError ret = INFO::OK;
+	Status ret = INFO::OK;
 
 #if WIN_LOADLIBRARY_HACK
 	HMODULE dlls[3];
@@ -329,9 +329,9 @@ static void al_listener_latch()
  *
  * @param gain Modifier: must be non-negative;
  * 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
- * @return LibError
+ * @return Status
  */
-LibError snd_set_master_gain(float gain)
+Status snd_set_master_gain(float gain)
 {
 	if(gain < 0)
 		WARN_RETURN(ERR::INVALID_PARAM);
@@ -572,9 +572,9 @@ static void al_src_free(ALuint al_src)
  * implementation- defined ceiling anyway.
  *
  * @param limit max. number of sources
- * @return LibError
+ * @return Status
  */
-LibError snd_set_max_voices(size_t limit)
+Status snd_set_max_voices(size_t limit)
 {
 	// valid if cap is legit (less than what we allocated in al_src_init),
 	// or if al_src_init hasn't been called yet. note: we accept anything
@@ -604,15 +604,15 @@ LibError snd_set_max_voices(size_t limit)
  * master OpenAL init; makes sure all subsystems are ready for use.
  * called from each snd_open; no harm if called more than once.
  *
- * @return LibError
+ * @return Status
  */
-static LibError al_init()
+static Status al_init()
 {
 	// only take action on first call, OR when re-initializing.
 	if(al_initialized)
 		return INFO::OK;
 
-	RETURN_ERR(alc_init());
+	RETURN_STATUS_IF_ERR(alc_init());
 
 	al_initialized = true;
 
@@ -659,9 +659,9 @@ static void al_shutdown()
 /**
  * re-initialize OpenAL. currently only required for changing devices.
  *
- * @return LibError
+ * @return Status
  */
-static LibError al_reinit()
+static Status al_reinit()
 {
 	// not yet initialized. settings have been saved, and will be
 	// applied by the component init routines called from al_init.
@@ -681,9 +681,9 @@ static bool snd_disabled = false;
  * extra layer on top of al_init that allows 'disabling' sound.
  * called from each snd_open.
  *
- * @return LibError from al_init, or ERR::AGAIN if sound disabled
+ * @return Status from al_init, or ERR::AGAIN if sound disabled
  */
-static LibError snd_init()
+static Status snd_init()
 {
 	// (note: each VSrc_reload and therefore snd_open will fail)
 	if(snd_disabled)
@@ -693,7 +693,7 @@ static LibError snd_init()
 }
 
 
-LibError snd_disable(bool disabled)
+Status snd_disable(bool disabled)
 {
 	snd_disabled = disabled;
 
@@ -733,12 +733,12 @@ static const char* devs;
  *
  * may be called each time the device list is needed.
  *
- * @return LibError; always successful unless the requisite device
+ * @return Status; always successful unless the requisite device
  * enumeration extension isn't available. in the latter case,
  * a "cannot enum device" message should be presented to the user,
  * and snd_dev_set need not be called; OpenAL will use its default device.
  */
-LibError snd_dev_prepare_enum()
+Status snd_dev_prepare_enum()
 {
 	if(alcIsExtensionPresent(0, (alcString)"ALC_ENUMERATION_EXT") != AL_TRUE)
 		WARN_RETURN(ERR::NO_SYS);
@@ -897,25 +897,25 @@ static void SndData_dtor(SndData* sd)
 		sd->ogg.reset();
 }
 
-static LibError SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pathname, Handle hsd)
+static Status SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pathname, Handle hsd)
 {
 #if 0 // HACK: streaming disabled because it breaks archives
 
 	// (OGG streaming requires a real POSIX pathname - see OpenOggStream)
 	fs::wpath real_pathname;
-	RETURN_ERR(vfs->GetRealPath(pathname, real_pathname));
+	RETURN_STATUS_IF_ERR(vfs->GetRealPath(pathname, real_pathname));
 
 	// currently only supports OGG; WAV is no longer supported. writing our own loader is infeasible
 	// due to a seriously watered down spec with many incompatible variants.
 	// pulling in an external library (e.g. freealut) is deemed not worth the
 	// effort - OGG should be better in all cases.
 
-	RETURN_ERR(OpenOggStream(real_pathname, sd->ogg));
+	RETURN_STATUS_IF_ERR(OpenOggStream(real_pathname, sd->ogg));
 	const size_t size = fs::file_size(real_pathname);
 #else
-	RETURN_ERR(OpenOggNonstream(vfs, pathname, sd->ogg));
+	RETURN_STATUS_IF_ERR(OpenOggNonstream(vfs, pathname, sd->ogg));
 	FileInfo fileInfo;
-	RETURN_ERR(vfs->GetFileInfo(pathname, &fileInfo));
+	RETURN_STATUS_IF_ERR(vfs->GetFileInfo(pathname, &fileInfo));
 	const size_t size = fileInfo.Size();
 #endif
 
@@ -930,8 +930,8 @@ static LibError SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pat
 	if(sd->type == SD_CLIP)
 	{
 		std::vector<u8> data(50*MiB);	// max. size of any clip (anything larger should be streamed)
-		const LibError ret = sd->ogg->GetNextChunk(&data[0], data.size());
-		RETURN_ERR(ret);
+		const Status ret = sd->ogg->GetNextChunk(&data[0], data.size());
+		RETURN_STATUS_IF_ERR(ret);
 		const size_t size = (size_t)ret;
 		ENSURE(size != 0);	// must have read something
 		ENSURE(size != data.size());	// shouldn't be limited by buffer size
@@ -949,7 +949,7 @@ static LibError SndData_reload(SndData* sd, const PIVFS& vfs, const VfsPath& pat
 	return INFO::OK;
 }
 
-static LibError SndData_validate(const SndData* sd)
+static Status SndData_validate(const SndData* sd)
 {
 	if(sd->al_fmt == 0)
 		WARN_RETURN(ERR::_11);
@@ -971,7 +971,7 @@ static LibError SndData_validate(const SndData* sd)
 }
 
 
-static LibError SndData_to_string(const SndData* sd, wchar_t* buf)
+static Status SndData_to_string(const SndData* sd, wchar_t* buf)
 {
 	const wchar_t* type = (sd->type == SD_CLIP)? L"clip" : L"stream";
 	swprintf_s(buf, H_STRING_LEN, L"%ls; al_buf=%d", type, sd->al_buf);
@@ -982,7 +982,7 @@ static LibError SndData_to_string(const SndData* sd, wchar_t* buf)
 /**
  * open and return a handle to a sound file's data.
  *
- * @return Handle or LibError on failure
+ * @return Handle or Status on failure
  */
 static Handle snd_data_load(const PIVFS& vfs, const VfsPath& pathname)
 {
@@ -993,9 +993,9 @@ static Handle snd_data_load(const PIVFS& vfs, const VfsPath& pathname)
  * Free the sound.
  *
  * @param hsd Handle to SndData; set to 0 afterwards.
- * @return LibError
+ * @return Status
  */
-static LibError snd_data_free(Handle& hsd)
+static Status snd_data_free(Handle& hsd)
 {
 	return h_free(hsd, H_SndData);
 }
@@ -1008,11 +1008,11 @@ static LibError snd_data_free(Handle& hsd)
  *
  * @param hsd Handle to SndData.
  * @param al_buf buffer name.
- * @return LibError, most commonly:
+ * @return Status, most commonly:
  * INFO::CB_CONTINUE = buffer has been returned; more are expected to be available.
  * INFO::OK = buffer has been returned but is the last one (EOF).
  */
-static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
+static Status snd_data_buf_get(Handle hsd, ALuint& al_buf)
 {
 	H_DEREF(hsd, SndData, sd);
 	if(sd->type == SD_CLIP)
@@ -1024,8 +1024,8 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	if(!sd->ogg)
 		WARN_RETURN(ERR::INVALID_HANDLE);
 	u8 data[maxBufferSize];
-	const LibError ret = sd->ogg->GetNextChunk(data, maxBufferSize);
-	RETURN_ERR(ret);
+	const Status ret = sd->ogg->GetNextChunk(data, maxBufferSize);
+	RETURN_STATUS_IF_ERR(ret);
 	const size_t size = (size_t)ret;
 	al_buf = al_buf_alloc(data, (ALsizei)size, sd->al_fmt, sd->al_freq);
 
@@ -1038,9 +1038,9 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
  *
  * @param hsd Handle to SndData.
  * @param al_buf buffer name
- * @return LibError
+ * @return Status
  */
-static LibError snd_data_buf_free(Handle hsd, ALuint al_buf)
+static Status snd_data_buf_free(Handle hsd, ALuint al_buf)
 {
 	H_DEREF(hsd, SndData, sd);
 
@@ -1265,7 +1265,7 @@ static void VSrc_init(VSrc* vs, va_list UNUSED(args))
 }
 
 static void list_remove(VSrc* vs);
-static LibError vsrc_reclaim(VSrc* vs);
+static Status vsrc_reclaim(VSrc* vs);
 
 static void VSrc_dtor(VSrc* vs)
 {
@@ -1281,16 +1281,16 @@ static void VSrc_dtor(VSrc* vs)
 	(void)snd_data_free(vs->hsd);
 }
 
-static LibError VSrc_reload(VSrc* vs, const PIVFS& vfs, const VfsPath& pathname, Handle hvs)
+static Status VSrc_reload(VSrc* vs, const PIVFS& vfs, const VfsPath& pathname, Handle hvs)
 {
 	// cannot wait till play(), need to init here:
 	// must load OpenAL so that snd_data_load can check for OGG extension.
-	LibError err = snd_init();
+	Status err = snd_init();
 	// .. don't complain if sound is disabled; fail silently.
 	if(err == ERR::AGAIN)
 		return err;
 	// .. catch genuine errors during init.
-	RETURN_ERR(err);
+	RETURN_STATUS_IF_ERR(err);
 
 	VfsPath dataPathname;
 
@@ -1299,7 +1299,7 @@ static LibError VSrc_reload(VSrc* vs, const PIVFS& vfs, const VfsPath& pathname,
 	if(pathname.Extension() == L".txt")
 	{
 		shared_ptr<u8> buf; size_t size;
-		RETURN_ERR(vfs->LoadFile(pathname, buf, size));
+		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, buf, size));
 		std::wistringstream def(std::wstring((wchar_t*)buf.get(), (int)size));
 
 		def >> dataPathname;
@@ -1322,7 +1322,7 @@ static LibError VSrc_reload(VSrc* vs, const PIVFS& vfs, const VfsPath& pathname,
 	vsrc_reclaim(vs);
 
 	vs->hsd = snd_data_load(vfs, dataPathname);
-	RETURN_ERR(vs->hsd);
+	RETURN_STATUS_IF_ERR(vs->hsd);
 
 	return INFO::OK;
 }
@@ -1332,7 +1332,7 @@ static bool IsValidBoolean(ALboolean b)
 	return (b == AL_FALSE || b == AL_TRUE);
 }
 
-static LibError VSrc_validate(const VSrc* vs)
+static Status VSrc_validate(const VSrc* vs)
 {
 	// al_src can legitimately be 0 (if vs is low-pri)
 	if(vs->flags & ~VS_ALL_FLAGS)
@@ -1348,7 +1348,7 @@ static LibError VSrc_validate(const VSrc* vs)
 	return INFO::OK;
 }
 
-static LibError VSrc_to_string(const VSrc* vs, wchar_t* buf)
+static Status VSrc_to_string(const VSrc* vs, wchar_t* buf)
 {
 	swprintf_s(buf, H_STRING_LEN, L"al_src = %d", vs->al_src);
 	return INFO::OK;
@@ -1363,7 +1363,7 @@ static LibError VSrc_to_string(const VSrc* vs, wchar_t* buf)
  * sound file name and its gain (0.0 .. 1.0).
  * otherwise, it is taken to be the sound file name and
  * gain is set to the default of 1.0 (no attenuation).
- * @return Handle or LibError on failure
+ * @return Handle or Status on failure
  */
 Handle snd_open(const PIVFS& vfs, const VfsPath& pathname)
 {
@@ -1379,9 +1379,9 @@ Handle snd_open(const PIVFS& vfs, const VfsPath& pathname)
  * this is provided for completeness only.
  *
  * @param hvs Handle to VSrc. will be set to 0 afterwards.
- * @return LibError
+ * @return Status
  */
-LibError snd_free(Handle& hvs)
+Status snd_free(Handle& hvs)
 {
 	if(!hvs)
 		return INFO::OK;
@@ -1499,7 +1499,7 @@ static void vsrc_free(VSrc* vs)
 	snd_free(vs->hvs);
 }
 
-static LibError list_free_all()
+static Status list_free_all()
 {
 	list_foreach(vsrc_free);
 	return INFO::OK;
@@ -1612,7 +1612,7 @@ public:
 	{
 	}
 
-	LibError operator()(VSrc* vs) const
+	Status operator()(VSrc* vs) const
 	{
 		if(!vs->HasSource())
 			return INFO::OK;
@@ -1649,8 +1649,8 @@ public:
 		{
 			// get next buffer
 			ALuint al_buf;
-			LibError ret = snd_data_buf_get(vs->hsd, al_buf);
-			RETURN_ERR(ret);
+			Status ret = snd_data_buf_get(vs->hsd, al_buf);
+			RETURN_STATUS_IF_ERR(ret);
 			if(ret == INFO::OK)	// no further buffers will be forthcoming
 				vs->flags |= VS_EOF;
 
@@ -1676,9 +1676,9 @@ private:
  * Try to give the VSrc an AL source so that it can (re)start playing.
  * called by snd_play and voice management.
  *
- * @return LibError (ERR::FAIL if no AL source is available)
+ * @return Status (ERR::FAIL if no AL source is available)
  */
-static LibError vsrc_grant(VSrc* vs)
+static Status vsrc_grant(VSrc* vs)
 {
 	if(vs->HasSource())	// already playing
 		return INFO::OK;
@@ -1709,7 +1709,7 @@ static LibError vsrc_grant(VSrc* vs)
  * called when closing the VSrc, or when voice management decides
  * this VSrc must yield to others of higher priority.
  */
-static LibError vsrc_reclaim(VSrc* vs)
+static Status vsrc_reclaim(VSrc* vs)
 {
 	if(!vs->HasSource())
 		return ERR::FAIL;	// NOWARN
@@ -1761,9 +1761,9 @@ static LibError vsrc_reclaim(VSrc* vs)
  * @param static_pri (min 0 .. max 1, default 0) indicates which sounds are
  * considered more important; this is attenuated by distance to the
  * listener (see snd_update).
- * @return LibError
+ * @return Status
  */
-LibError snd_play(Handle hvs, float static_pri)
+Status snd_play(Handle hvs, float static_pri)
 {
 	H_DEREF(hvs, VSrc, vs);
 
@@ -1792,9 +1792,9 @@ LibError snd_play(Handle hvs, float static_pri)
  * @param x,y,z coordinates (interpretation: see below)
  * @param relative if true, (x,y,z) is treated as relative to the listener;
  * otherwise, it is the position in world coordinates (default).
- * @return LibError
+ * @return Status
  */
-LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
+Status snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
 {
 	H_DEREF(hvs, VSrc, vs);
 
@@ -1816,9 +1816,9 @@ LibError snd_set_pos(Handle hvs, float x, float y, float z, bool relative)
  * @param hvs Handle to VSrc
  * @param gain modifier; must be non-negative;
  * 1 -> unattenuated, 0.5 -> -6 dB, 0 -> silence.
- * @return LibError
+ * @return Status
  */
-LibError snd_set_gain(Handle hvs, float gain)
+Status snd_set_gain(Handle hvs, float gain)
 {
 	H_DEREF(hvs, VSrc, vs);
 
@@ -1847,9 +1847,9 @@ LibError snd_set_gain(Handle hvs, float gain)
  * @param hvs Handle to VSrc
  * @param pitch shift: 1.0 means no change; each doubling/halving equals a
  * pitch shift of +/-12 semitones (one octave). zero is invalid.
- * @return LibError
+ * @return Status
  */
-LibError snd_set_pitch(Handle hvs, float pitch)
+Status snd_set_pitch(Handle hvs, float pitch)
 {
 	H_DEREF(hvs, VSrc, vs);
 
@@ -1878,7 +1878,7 @@ LibError snd_set_pitch(Handle hvs, float pitch)
  *
  * @param hvs Handle to VSrc
  */
-LibError snd_set_loop(Handle hvs, bool loop)
+Status snd_set_loop(Handle hvs, bool loop)
 {
 	H_DEREF(hvs, VSrc, vs);
 
@@ -1916,9 +1916,9 @@ LibError snd_set_loop(Handle hvs, bool loop)
  * http://www.transom.org/tools/editing_mixing/200309.stupidfadetricks.html
  * you can also pass FT_ABORT to stop fading (if in progress) and
  * set gain to the final_gain parameter passed here.
- * @return LibError
+ * @return Status
  */
-LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
+Status snd_fade(Handle hvs, float initial_gain, float final_gain,
 	float length, FadeType type)
 {
 	H_DEREF(hvs, VSrc, vs);
@@ -2026,7 +2026,7 @@ static void reclaim(VSrc* vs)
  * update voice management, i.e. recalculate priority and assign AL sources.
  * no-op if OpenAL not yet initialized.
  */
-static LibError vm_update()
+static Status vm_update()
 {
 	list_prune_removed();
 
@@ -2056,9 +2056,9 @@ static LibError vm_update()
  * world isn't initialized yet.
  * @param dir view direction
  * @param up up vector
- * @return LibError
+ * @return Status
  */
-LibError snd_update(const float* pos, const float* dir, const float* up)
+Status snd_update(const float* pos, const float* dir, const float* up)
 {
 	// there's no sense in updating anything if we weren't initialized
 	// yet (most notably, if sound is disabled). we check for this to

@@ -142,7 +142,7 @@ CLogger::~CLogger()
 
 static std::string ToHTML(const wchar_t* message)
 {
-	LibError err;
+	Status err;
 	std::string cmessage = utf8_from_wstring(message, &err);
 	boost::algorithm::replace_all(cmessage, "&", "&amp;");
 	boost::algorithm::replace_all(cmessage, "<", "&lt;");
@@ -394,7 +394,7 @@ TestLogger::~TestLogger()
 
 std::wstring TestLogger::GetOutput()
 {
-	LibError err;
+	Status err;
 	return wstring_from_utf8(m_Stream.str(), &err);
 }
 

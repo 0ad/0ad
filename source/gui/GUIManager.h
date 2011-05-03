@@ -82,7 +82,7 @@ public:
 	/**
 	 * Call when a file has bee modified, to hotload pages if their .xml files changed.
 	 */
-	LibError ReloadChangedFiles(const VfsPath& path);
+	Status ReloadChangedFiles(const VfsPath& path);
 
 	/**
 	 * Pass input events to the currently active GUI page.

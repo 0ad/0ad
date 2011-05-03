@@ -426,7 +426,7 @@ static void OglTex_dtor(OglTex* ot)
 	ot->flags &= ~OT_IS_UPLOADED;
 }
 
-static LibError OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathname, Handle h)
+static Status OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathname, Handle h)
 {
 	// we're reusing a freed but still in-memory OglTex object
 	if(ot->flags & OT_IS_UPLOADED)
@@ -437,7 +437,7 @@ static LibError OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathn
 	if(!(ot->flags & OT_TEX_VALID))
 	{
 		shared_ptr<u8> file; size_t fileSize;
-		RETURN_ERR(vfs->LoadFile(pathname, file, fileSize));
+		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, fileSize));
 		if(tex_decode(file, fileSize, &ot->t) >= 0)
 			ot->flags |= OT_TEX_VALID;
 	}
@@ -452,11 +452,11 @@ static LibError OglTex_reload(OglTex* ot, const PIVFS& vfs, const VfsPath& pathn
 	return INFO::OK;
 }
 
-static LibError OglTex_validate(const OglTex* ot)
+static Status OglTex_validate(const OglTex* ot)
 {
 	if(ot->flags & OT_TEX_VALID)
 	{
-		RETURN_ERR(tex_validate(&ot->t));
+		RETURN_STATUS_IF_ERR(tex_validate(&ot->t));
 
 		// width, height
 		// (note: this is done here because tex.cpp doesn't impose any
@@ -497,7 +497,7 @@ static LibError OglTex_validate(const OglTex* ot)
 	return INFO::OK;
 }
 
-static LibError OglTex_to_string(const OglTex* ot, wchar_t* buf)
+static Status OglTex_to_string(const OglTex* ot, wchar_t* buf)
 {
 	swprintf_s(buf, H_STRING_LEN, L"OglTex id=%d flags=%lx", ot->id, ot->flags);
 	return INFO::OK;
@@ -550,7 +550,7 @@ Handle ogl_tex_wrap(Tex* t, const PIVFS& vfs, const VfsPath& pathname, size_t fl
 
 // free all resources associated with the texture and make further
 // use of it impossible. (subject to refcount)
-LibError ogl_tex_free(Handle& ht)
+Status ogl_tex_free(Handle& ht)
 {
 	return h_free(ht, H_OglTex);
 }
@@ -602,7 +602,7 @@ static void warn_if_uploaded(Handle ht, const OglTex* ot)
 // must be called before uploading (raises a warning if called afterwards).
 // filter is as defined by OpenGL; it is applied for both minification and
 // magnification (for rationale and details, see OglTexState)
-LibError ogl_tex_set_filter(Handle ht, GLint filter)
+Status ogl_tex_set_filter(Handle ht, GLint filter)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -622,7 +622,7 @@ LibError ogl_tex_set_filter(Handle ht, GLint filter)
 // must be called before uploading (raises a warning if called afterwards).
 // wrap is as defined by OpenGL and applies to both S and T coordinates
 // (rationale: see OglTexState).
-LibError ogl_tex_set_wrap(Handle ht, GLint wrap)
+Status ogl_tex_set_wrap(Handle ht, GLint wrap)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -640,7 +640,7 @@ LibError ogl_tex_set_wrap(Handle ht, GLint wrap)
 
 // override default anisotropy for this texture.
 // must be called before uploading (raises a warning if called afterwards).
-LibError ogl_tex_set_anisotropy(Handle ht, GLfloat anisotropy)
+Status ogl_tex_set_anisotropy(Handle ht, GLfloat anisotropy)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -747,7 +747,7 @@ static void detect_gl_upload_caps()
 // whether mipmaps are needed and the quality settings).
 // returns 0 to indicate success; otherwise, caller must disable
 // mipmapping by switching filter to e.g. GL_LINEAR.
-static LibError get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_skip)
+static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_skip)
 {
 	// decisions:
 	// .. does filter call for uploading mipmaps?
@@ -788,7 +788,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_s
 	// we will generate mipmaps in software.
 	else
 	{
-		RETURN_ERR(tex_transform_to(t, t->flags|TEX_MIPMAPS));
+		RETURN_STATUS_IF_ERR(tex_transform_to(t, t->flags|TEX_MIPMAPS));
 		*plevels_to_skip = 0;	// t contains mipmaps
 	}
 
@@ -857,7 +857,7 @@ static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip)
 // side effects:
 // - enables texturing on TMU 0 and binds the texture to it;
 // - frees the texel data! see ogl_tex_get_data.
-LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint int_fmt_ovr)
+Status ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint int_fmt_ovr)
 {
 	ONCE(detect_gl_upload_caps());
 
@@ -889,7 +889,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint 
 		{
 			// (note: we know ht is valid due to H_DEREF, but ogl_tex_bind can
 			// fail in debug builds if OglTex.id isn't a valid texture name)
-			RETURN_ERR(ogl_tex_bind(ht, ot->tmu));
+			RETURN_STATUS_IF_ERR(ogl_tex_bind(ht, ot->tmu));
 			int levels_to_skip;
 			if(get_mipmaps(t, ot->state.filter, ot->q_flags, &levels_to_skip) < 0)
 				// error => disable mipmapping
@@ -927,7 +927,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint 
 
 // retrieve texture dimensions and bits per pixel.
 // all params are optional and filled if non-NULL.
-LibError ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp)
+Status ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -944,7 +944,7 @@ LibError ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp)
 // retrieve TexFlags and the corresponding OpenGL format.
 // the latter is determined during ogl_tex_upload and is 0 before that.
 // all params are optional and filled if non-NULL.
-LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt)
+Status ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -966,7 +966,7 @@ LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt)
 // the function doesn't fail (negative return value) by design.
 // if you still need to get at the data, add a reference before
 // uploading it or read directly from OpenGL (discouraged).
-LibError ogl_tex_get_data(Handle ht, u8** p)
+Status ogl_tex_get_data(Handle ht, u8** p)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -975,7 +975,7 @@ LibError ogl_tex_get_data(Handle ht, u8** p)
 }
 
 // retrieve colour of 1x1 mipmap level
-extern LibError ogl_tex_get_average_colour(Handle ht, u32* p)
+extern Status ogl_tex_get_average_colour(Handle ht, u32* p)
 {
 	H_DEREF(ht, OglTex, ot);
 	warn_if_uploaded(ht, ot);
@@ -999,7 +999,7 @@ extern LibError ogl_tex_get_average_colour(Handle ht, u32* p)
 // - assumes multitexturing is available.
 // - not necessary before calling ogl_tex_upload!
 // - on error, the unit's texture state is unchanged; see implementation.
-LibError ogl_tex_bind(Handle ht, size_t unit)
+Status ogl_tex_bind(Handle ht, size_t unit)
 {
 	// note: there are many call sites of glActiveTextureARB, so caching
 	// those and ignoring redundant sets isn't feasible.
@@ -1031,20 +1031,20 @@ LibError ogl_tex_bind(Handle ht, size_t unit)
 
 // apply the specified transforms (as in tex_transform) to the image.
 // must be called before uploading (raises a warning if called afterwards).
-LibError ogl_tex_transform(Handle ht, size_t transforms)
+Status ogl_tex_transform(Handle ht, size_t transforms)
 {
 	H_DEREF(ht, OglTex, ot);
-	LibError ret = tex_transform(&ot->t, transforms);
+	Status ret = tex_transform(&ot->t, transforms);
 	return ret;
 }
 
 
 // change the pixel format to that specified by <new_flags>.
 // (note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
-LibError ogl_tex_transform_to(Handle ht, size_t new_flags)
+Status ogl_tex_transform_to(Handle ht, size_t new_flags)
 {
 	H_DEREF(ht, OglTex, ot);
-	LibError ret = tex_transform_to(&ot->t, new_flags);
+	Status ret = tex_transform_to(&ot->t, new_flags);
 	return ret;
 }
 

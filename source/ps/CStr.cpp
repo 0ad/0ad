@@ -47,7 +47,7 @@
  **/
 CStr8 CStrW::ToUTF8() const
 {
-	LibError err;
+	Status err;
 	return utf8_from_wstring(*this, &err);
 }
 
@@ -58,7 +58,7 @@ CStr8 CStrW::ToUTF8() const
  **/
 CStrW CStr8::FromUTF8() const
 {
-	LibError err;
+	Status err;
 	return wstring_from_utf8(*this, &err);
 }
 

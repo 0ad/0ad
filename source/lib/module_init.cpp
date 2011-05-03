@@ -37,13 +37,13 @@ static const ModuleInitState BUSY = INFO::ALREADY_EXISTS;	// never returned
 static const ModuleInitState INITIALIZED = INFO::SKIPPED;
 
 
-LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)())
+Status ModuleInit(volatile ModuleInitState* initState, Status (*init)())
 {
 	for(;;)
 	{
 		if(cpu_CAS(initState, UNINITIALIZED, BUSY))
 		{
-			LibError ret = init();
+			Status ret = init();
 			*initState = (ret == INFO::OK)? INITIALIZED : ret;
 			COMPILER_FENCE;
 			return ret;
@@ -57,12 +57,12 @@ LibError ModuleInit(volatile ModuleInitState* initState, LibError (*init)())
 		}
 
 		ENSURE(latchedInitState == INITIALIZED || latchedInitState < 0);
-		return (LibError)latchedInitState;
+		return (Status)latchedInitState;
 	}
 }
 
 
-LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)())
+Status ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)())
 {
 	for(;;)
 	{
@@ -85,6 +85,6 @@ LibError ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)())
 			return INFO::SKIPPED;
 
 		ENSURE(latchedInitState < 0);
-		return (LibError)latchedInitState;
+		return (Status)latchedInitState;
 	}
 }

@@ -29,7 +29,7 @@ CCacheLoader::CCacheLoader(PIVFS vfs, const std::wstring& fileExtension) :
 {
 }
 
-LibError CCacheLoader::TryLoadingCached(const VfsPath& sourcePath, const MD5& initialHash, u32 version, VfsPath& loadPath)
+Status CCacheLoader::TryLoadingCached(const VfsPath& sourcePath, const MD5& initialHash, u32 version, VfsPath& loadPath)
 {
 	VfsPath archiveCachePath = ArchiveCachePath(sourcePath);
 
@@ -41,7 +41,7 @@ LibError CCacheLoader::TryLoadingCached(const VfsPath& sourcePath, const MD5& in
 	}
 
 	// Fail if no source or archive cache
-	LibError err = m_VFS->GetFileInfo(sourcePath, NULL);
+	Status err = m_VFS->GetFileInfo(sourcePath, NULL);
 	if (err < 0)
 	{
 		LOGERROR(L"Failed to find file: \"%ls\"", sourcePath.string().c_str());

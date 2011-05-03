@@ -56,14 +56,9 @@
 # define CONFIG_DISABLE_EXCEPTIONS 0
 #endif
 
-// enable additional debug checks (very slow).
-#ifndef CONFIG_PARANOIA
-# define CONFIG_PARANOIA 0
-#endif
-
-// final release; disables some safety checks.
-#ifndef CONFIG_FINAL
-# define CONFIG_FINAL 0
+// enable additional debug checks (potentially rather slow).
+#ifndef CONFIG_ENABLE_CHECKS
+# define CONFIG_ENABLE_CHECKS 0
 #endif
 
 // static type checking with Dehydra

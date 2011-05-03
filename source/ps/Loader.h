@@ -158,11 +158,11 @@ extern void LDR_Cancel();
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-extern LibError LDR_ProgressiveLoad(double time_budget, wchar_t* next_description, size_t max_chars, int* progress_percent);
+extern Status LDR_ProgressiveLoad(double time_budget, wchar_t* next_description, size_t max_chars, int* progress_percent);
 
 // immediately process all queued load requests.
 // returns 0 on success or a negative error code.
-extern LibError LDR_NonprogressiveLoad();
+extern Status LDR_NonprogressiveLoad();
 
 
 // boilerplate check-if-timed-out and return-progress-percent code.

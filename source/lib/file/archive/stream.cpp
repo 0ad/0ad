@@ -113,7 +113,7 @@ void Stream::SetOutputBuffer(u8* out, size_t outSize)
 }
 
 
-LibError Stream::Feed(const u8* in, size_t inSize)
+Status Stream::Feed(const u8* in, size_t inSize)
 {
 	if(m_outProduced == m_outputBufferManager.Size())	// output buffer full; must not call Process
 		return INFO::OK;
@@ -121,7 +121,7 @@ LibError Stream::Feed(const u8* in, size_t inSize)
 	size_t inConsumed, outProduced;
 	u8* const out = m_outputBufferManager.Buffer() + m_outProduced;
 	const size_t outSize = m_outputBufferManager.Size() - m_outProduced;
-	RETURN_ERR(m_codec->Process(in, inSize, out, outSize, inConsumed, outProduced));
+	RETURN_STATUS_IF_ERR(m_codec->Process(in, inSize, out, outSize, inConsumed, outProduced));
 
 	m_inConsumed += inConsumed;
 	m_outProduced += outProduced;
@@ -129,10 +129,10 @@ LibError Stream::Feed(const u8* in, size_t inSize)
 }
 
 
-LibError Stream::Finish()
+Status Stream::Finish()
 {
 	size_t outProduced;
-	RETURN_ERR(m_codec->Finish(m_checksum, outProduced));
+	RETURN_STATUS_IF_ERR(m_codec->Finish(m_checksum, outProduced));
 	m_outProduced += outProduced;
 	return INFO::OK;
 }

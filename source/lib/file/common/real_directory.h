@@ -49,9 +49,9 @@ public:
 	{
 		return m_path;
 	}
-	virtual LibError Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const;
+	virtual Status Load(const OsPath& name, const shared_ptr<u8>& buf, size_t size) const;
 
-	LibError Store(const OsPath& name, const shared_ptr<u8>& fileContents, size_t size);
+	Status Store(const OsPath& name, const shared_ptr<u8>& fileContents, size_t size);
 
 	void Watch();
 

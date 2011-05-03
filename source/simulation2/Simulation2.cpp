@@ -111,9 +111,9 @@ public:
 	}
 
 	bool LoadScripts(const VfsPath& path);
-	LibError ReloadChangedFile(const VfsPath& path);
+	Status ReloadChangedFile(const VfsPath& path);
 
-	static LibError ReloadChangedFileCB(void* param, const VfsPath& path)
+	static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 	{
 		return static_cast<CSimulation2Impl*>(param)->ReloadChangedFile(path);
 	}
@@ -157,7 +157,7 @@ bool CSimulation2Impl::LoadScripts(const VfsPath& path)
 	return ok;
 }
 
-LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
+Status CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 {
 	const VfsPath& filename = path;
 
@@ -482,7 +482,7 @@ int CSimulation2::ProgressiveLoad()
 	return m->ProgressiveLoad();
 }
 
-LibError CSimulation2::ReloadChangedFile(const VfsPath& path)
+Status CSimulation2::ReloadChangedFile(const VfsPath& path)
 {
 	return m->ReloadChangedFile(path);
 }
@@ -526,7 +526,7 @@ std::vector<std::string> CSimulation2::GetRMSData()
 	std::vector<std::string> data;
 
 	// Find all ../maps/random/*.json
-	LibError ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	Status ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
 	if (ret == INFO::OK)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
@@ -548,7 +548,7 @@ std::vector<std::string> CSimulation2::GetRMSData()
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), error_description_r(ret, error, ARRAY_SIZE(error)));
+		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 
 	return data;
@@ -562,7 +562,7 @@ std::vector<std::string> CSimulation2::GetCivData()
 	std::vector<std::string> data;
 
 	// Load all JSON files in civs directory
-	LibError ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	Status ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
 	if (ret == INFO::OK)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
@@ -584,7 +584,7 @@ std::vector<std::string> CSimulation2::GetCivData()
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), error_description_r(ret, error, ARRAY_SIZE(error)));
+		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 
 	// Convert from vector to array and stringify

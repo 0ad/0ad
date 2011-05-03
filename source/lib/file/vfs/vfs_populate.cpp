@@ -50,7 +50,7 @@ public:
 	{
 	}
 
-	LibError AddEntries() const
+	Status AddEntries() const
 	{
 #if ENABLE_ARCHIVE_STATS
 		s_looseFiles.reserve(10000);
@@ -58,9 +58,9 @@ public:
 
 		FileInfos files; files.reserve(500);
 		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(50);
-		RETURN_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
+		RETURN_STATUS_IF_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
 
-		RETURN_ERR(AddFiles(files));
+		RETURN_STATUS_IF_ERR(AddFiles(files));
 		AddSubdirectories(subdirectoryNames);
 
 		return INFO::OK;
@@ -93,7 +93,7 @@ private:
 		// don't always place directory entries before their files)
 		const size_t flags = VFS_LOOKUP_ADD|VFS_LOOKUP_SKIP_POPULATE;
 		VfsDirectory* directory;
-		WARN_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
+		WARN_IF_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
 		const VfsFile file(fileInfo.Name(), (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
 		directory->AddFile(file);
 #if ENABLE_ARCHIVE_STATS
@@ -101,7 +101,7 @@ private:
 #endif
 	}
 
-	LibError AddFiles(const FileInfos& files) const
+	Status AddFiles(const FileInfos& files) const
 	{
 		const OsPath path(m_realDirectory->Path());
 
@@ -111,7 +111,7 @@ private:
 			if(pathname.Extension() == L".zip")
 			{
 				PIArchiveReader archiveReader = CreateArchiveReader_Zip(pathname);
-				RETURN_ERR(archiveReader->ReadEntries(AddArchiveFile, (uintptr_t)this));
+				RETURN_STATUS_IF_ERR(archiveReader->ReadEntries(AddArchiveFile, (uintptr_t)this));
 			}
 			else	// regular (non-archive) file
 				AddFile(files[i]);
@@ -140,7 +140,7 @@ private:
 };
 
 
-LibError vfs_Populate(VfsDirectory* directory)
+Status vfs_Populate(VfsDirectory* directory)
 {
 	if(!directory->ShouldPopulate())
 		return INFO::OK;
@@ -151,15 +151,15 @@ LibError vfs_Populate(VfsDirectory* directory)
 		realDirectory->Watch();
 
 	PopulateHelper helper(directory, realDirectory);
-	RETURN_ERR(helper.AddEntries());
+	RETURN_STATUS_IF_ERR(helper.AddEntries());
 
 	return INFO::OK;
 }
 
 
-LibError vfs_Attach(VfsDirectory* directory, const PRealDirectory& realDirectory)
+Status vfs_Attach(VfsDirectory* directory, const PRealDirectory& realDirectory)
 {
-	RETURN_ERR(vfs_Populate(directory));
+	RETURN_STATUS_IF_ERR(vfs_Populate(directory));
 	directory->SetAssociatedDirectory(realDirectory);
 	return INFO::OK;
 }

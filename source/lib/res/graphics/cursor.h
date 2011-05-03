@@ -43,6 +43,6 @@
  * Uses a hardware mouse cursor where available, otherwise a
  * portable OpenGL implementation.
  **/
-extern LibError cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y);
+extern Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y);
 
 #endif	// #ifndef INCLUDED_GRAPHICS_CURSOR

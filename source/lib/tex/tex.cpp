@@ -39,14 +39,14 @@
 #include "tex_codec.h"
 
 
-ERROR_ASSOCIATE(ERR::TEX_FMT_INVALID, L"Invalid/unsupported texture format", -1);
-ERROR_ASSOCIATE(ERR::TEX_INVALID_COLOR_TYPE, L"Invalid color type", -1);
-ERROR_ASSOCIATE(ERR::TEX_NOT_8BIT_PRECISION, L"Not 8-bit channel precision", -1);
-ERROR_ASSOCIATE(ERR::TEX_INVALID_LAYOUT, L"Unsupported texel layout, e.g. right-to-left", -1);
-ERROR_ASSOCIATE(ERR::TEX_COMPRESSED, L"Unsupported texture compression", -1);
-ERROR_ASSOCIATE(WARN::TEX_INVALID_DATA, L"Warning: invalid texel data encountered", -1);
-ERROR_ASSOCIATE(ERR::TEX_INVALID_SIZE, L"Texture size is incorrect", -1);
-ERROR_ASSOCIATE(INFO::TEX_CODEC_CANNOT_HANDLE, L"Texture codec cannot handle the given format", -1);
+STATUS_DEFINE(ERR,  TEX_FMT_INVALID, L"Invalid/unsupported texture format", -1);
+STATUS_DEFINE(ERR,  TEX_INVALID_COLOR_TYPE, L"Invalid color type", -1);
+STATUS_DEFINE(ERR,  TEX_NOT_8BIT_PRECISION, L"Not 8-bit channel precision", -1);
+STATUS_DEFINE(ERR,  TEX_INVALID_LAYOUT, L"Unsupported texel layout, e.g. right-to-left", -1);
+STATUS_DEFINE(ERR,  TEX_COMPRESSED, L"Unsupported texture compression", -1);
+STATUS_DEFINE(WARN, TEX_INVALID_DATA, L"Warning: invalid texel data encountered", -1);
+STATUS_DEFINE(ERR,  TEX_INVALID_SIZE, L"Texture size is incorrect", -1);
+STATUS_DEFINE(INFO, TEX_CODEC_CANNOT_HANDLE, L"Texture codec cannot handle the given format", -1);
 
 
 //-----------------------------------------------------------------------------
@@ -54,7 +54,7 @@ ERROR_ASSOCIATE(INFO::TEX_CODEC_CANNOT_HANDLE, L"Texture codec cannot handle the
 //-----------------------------------------------------------------------------
 
 // be careful not to use other tex_* APIs here because they call us.
-LibError tex_validate(const Tex* t)
+Status tex_validate(const Tex* t)
 {
 	if(t->flags & TEX_UNDEFINED_FLAGS)
 		WARN_RETURN(ERR::_1);
@@ -88,14 +88,14 @@ LibError tex_validate(const Tex* t)
 	return INFO::OK;
 }
 
-#define CHECK_TEX(t) RETURN_ERR(tex_validate(t))
+#define CHECK_TEX(t) RETURN_STATUS_IF_ERR(tex_validate(t))
 
 
 // check if the given texture format is acceptable: 8bpp grey,
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
 // basically, this is the "plain" format understood by all codecs and
 // tex_codec_plain_transform.
-LibError tex_validate_plain_format(size_t bpp, size_t flags)
+Status tex_validate_plain_format(size_t bpp, size_t flags)
 {
 	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
 	const bool grey    = (flags & TEX_GREY   ) != 0;
@@ -247,7 +247,7 @@ static void create_level(size_t level, size_t level_w, size_t level_h, const u8*
 }
 
 
-static LibError add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData, size_t data_size)
+static Status add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData, size_t data_size)
 {
 	// this code assumes the image is of POT dimension; we don't
 	// go to the trouble of implementing image scaling because
@@ -281,7 +281,7 @@ TIMER_ADD_CLIENT(tc_plain_transform);
 // but is much easier to maintain than providing all<->all conversion paths.
 //
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
-static LibError plain_transform(Tex* t, size_t transforms)
+static Status plain_transform(Tex* t, size_t transforms)
 {
 TIMER_ACCRUE(tc_plain_transform);
 
@@ -299,7 +299,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	if(transforms & ~(TEX_BGR|TEX_ORIENTATION|TEX_MIPMAPS|TEX_ALPHA))
 		return INFO::TEX_CODEC_CANNOT_HANDLE;
 	// .. data is not in "plain" format
-	RETURN_ERR(tex_validate_plain_format(bpp, flags));
+	RETURN_STATUS_IF_ERR(tex_validate_plain_format(bpp, flags));
 	// .. nothing to do
 	if(!transforms)
 		return INFO::OK;
@@ -450,7 +450,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	t->ofs = 0;
 
 	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
-		RETURN_ERR(add_mipmaps(t, w, h, bpp, newData.get(), new_data_size));
+		RETURN_STATUS_IF_ERR(add_mipmaps(t, w, h, bpp, newData.get(), new_data_size));
 
 	CHECK_TEX(t);
 	return INFO::OK;
@@ -461,7 +461,7 @@ TIMER_ADD_CLIENT(tc_transform);
 
 // change <t>'s pixel format by flipping the state of all TEX_* flags
 // that are set in transforms.
-LibError tex_transform(Tex* t, size_t transforms)
+Status tex_transform(Tex* t, size_t transforms)
 {
 	TIMER_ACCRUE(tc_transform);
 	CHECK_TEX(t);
@@ -475,20 +475,20 @@ LibError tex_transform(Tex* t, size_t transforms)
 		if(remaining_transforms == 0)
 			return INFO::OK;
 
-		LibError ret = tex_codec_transform(t, remaining_transforms);
+		Status ret = tex_codec_transform(t, remaining_transforms);
 		if(ret != INFO::OK)
 			break;
 	}
 
 	// last chance
-	RETURN_ERR(plain_transform(t, remaining_transforms));
+	RETURN_STATUS_IF_ERR(plain_transform(t, remaining_transforms));
 	return INFO::OK;
 }
 
 
 // change <t>'s pixel format to the new format specified by <new_flags>.
 // (note: this is equivalent to tex_transform(t, t->flags^new_flags).
-LibError tex_transform_to(Tex* t, size_t new_flags)
+Status tex_transform_to(Tex* t, size_t new_flags)
 {
 	// tex_transform takes care of validating <t>
 	const size_t transforms = t->flags ^ new_flags;
@@ -517,7 +517,7 @@ void tex_set_global_orientation(int o)
 static void flip_to_global_orientation(Tex* t)
 {
 	// (can't use normal CHECK_TEX due to void return)
-	WARN_ERR(tex_validate(t));
+	WARN_IF_ERR(tex_validate(t));
 
 	size_t orientation = t->flags & TEX_ORIENTATION;
 	// if codec knows which way around the image is (i.e. not DDS):
@@ -525,7 +525,7 @@ static void flip_to_global_orientation(Tex* t)
 	{
 		// flip image if necessary
 		size_t transforms = orientation ^ global_orientation;
-		WARN_ERR(plain_transform(t, transforms));
+		WARN_IF_ERR(plain_transform(t, transforms));
 	}
 
 	// indicate image is at global orientation. this is still done even
@@ -534,7 +534,7 @@ static void flip_to_global_orientation(Tex* t)
 	t->flags = (t->flags & ~TEX_ORIENTATION) | global_orientation;
 
 	// (can't use normal CHECK_TEX due to void return)
-	WARN_ERR(tex_validate(t));
+	WARN_IF_ERR(tex_validate(t));
 }
 
 
@@ -587,7 +587,7 @@ bool tex_is_known_extension(const VfsPath& pathname)
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-LibError tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t)
+Status tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t)
 {
 	t->w     = w;
 	t->h     = h;
@@ -626,7 +626,7 @@ void tex_free(Tex* t)
 u8* tex_get_data(const Tex* t)
 {
 	// (can't use normal CHECK_TEX due to u8* return value)
-	WARN_ERR(tex_validate(t));
+	WARN_IF_ERR(tex_validate(t));
 
 	u8* p = t->data.get();
 	if(!p)
@@ -656,7 +656,7 @@ u32 tex_get_average_colour(const Tex* t)
 	basetex.ofs += size - last_level_size;
 
 	// convert to BGRA
-	WARN_ERR(tex_transform_to(&basetex, TEX_BGR | TEX_ALPHA));
+	WARN_IF_ERR(tex_transform_to(&basetex, TEX_BGR | TEX_ALPHA));
 
 	// extract components into u32
 	ENSURE(basetex.dataSize >= basetex.ofs+4);
@@ -680,7 +680,7 @@ static void add_level_size(size_t UNUSED(level), size_t UNUSED(level_w), size_t 
 size_t tex_img_size(const Tex* t)
 {
 	// (can't use normal CHECK_TEX due to size_t return value)
-	WARN_ERR(tex_validate(t));
+	WARN_IF_ERR(tex_validate(t));
 
 	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
 	const size_t data_padding = (t->flags & TEX_DXT)? 4 : 1;
@@ -702,7 +702,7 @@ size_t tex_hdr_size(const VfsPath& filename)
 	const TexCodecVTbl* c;
 	
 	const OsPath extension = filename.Extension();
-	CHECK_ERR(tex_codec_for_filename(extension, &c));
+	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
 	return c->hdr_size(0);
 }
 
@@ -711,10 +711,10 @@ size_t tex_hdr_size(const VfsPath& filename)
 // read/write from memory and disk
 //-----------------------------------------------------------------------------
 
-LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
+Status tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
 {
 	const TexCodecVTbl* c;
-	RETURN_ERR(tex_codec_for_header(data.get(), data_size, &c));
+	RETURN_STATUS_IF_ERR(tex_codec_for_header(data.get(), data_size, &c));
 
 	// make sure the entire header is available
 	const size_t min_hdr_size = c->hdr_size(0);
@@ -731,9 +731,9 @@ LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
 	// for orthogonality, encode and decode both receive the memory as a
 	// DynArray. package data into one and free it again after decoding:
 	DynArray da;
-	RETURN_ERR(da_wrap_fixed(&da, data.get(), data_size));
+	RETURN_STATUS_IF_ERR(da_wrap_fixed(&da, data.get(), data_size));
 
-	RETURN_ERR(c->decode(&da, t));
+	RETURN_STATUS_IF_ERR(c->decode(&da, t));
 
 	// note: not reached if decode fails. that's not a problem;
 	// this call just zeroes <da> and could be left out.
@@ -753,10 +753,10 @@ LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
 }
 
 
-LibError tex_encode(Tex* t, const OsPath& extension, DynArray* da)
+Status tex_encode(Tex* t, const OsPath& extension, DynArray* da)
 {
 	CHECK_TEX(t);
-	CHECK_ERR(tex_validate_plain_format(t->bpp, t->flags));
+	WARN_RETURN_STATUS_IF_ERR(tex_validate_plain_format(t->bpp, t->flags));
 
 	// we could be clever here and avoid the extra alloc if our current
 	// memory block ensued from the same kind of texture file. this is
@@ -764,13 +764,13 @@ LibError tex_encode(Tex* t, const OsPath& extension, DynArray* da)
 	// this would make for zero-copy IO.
 
 	const size_t max_out_size = tex_img_size(t)*4 + 256*KiB;
-	RETURN_ERR(da_alloc(da, max_out_size));
+	RETURN_STATUS_IF_ERR(da_alloc(da, max_out_size));
 
 	const TexCodecVTbl* c;
-	CHECK_ERR(tex_codec_for_filename(extension, &c));
+	WARN_RETURN_STATUS_IF_ERR(tex_codec_for_filename(extension, &c));
 
 	// encode into <da>
-	LibError err = c->encode(t, da);
+	Status err = c->encode(t, da);
 	if(err < 0)
 	{
 		(void)da_free(da);

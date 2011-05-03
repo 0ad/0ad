@@ -61,7 +61,7 @@ public:
 	/**
 	 * add data to the align buffer, writing it out to disk if full.
 	 **/
-	LibError Append(const u8* data, size_t size) const;
+	Status Append(const u8* data, size_t size) const;
 
 	/**
 	 * zero-initialize any remaining space in the align buffer and write
@@ -70,7 +70,7 @@ public:
 	void Flush() const;
 
 private:
-	LibError WriteBlock() const;
+	Status WriteBlock() const;
 
 	PFile m_file;
 	shared_ptr<u8> m_alignedBuf;

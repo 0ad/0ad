@@ -33,9 +33,9 @@
 
 namespace ERR
 {
-	const LibError VFS_DIR_NOT_FOUND   = -110100;
-	const LibError VFS_FILE_NOT_FOUND  = -110101;
-	const LibError VFS_ALREADY_MOUNTED = -110102;
+	const Status VFS_DIR_NOT_FOUND   = -110100;
+	const Status VFS_FILE_NOT_FOUND  = -110101;
+	const Status VFS_ALREADY_MOUNTED = -110102;
 }
 
 // (recursive mounting and mounting archives are no longer optional since they don't hurt)
@@ -73,7 +73,7 @@ struct IVFS
 	 * @param path real directory path
 	 * @param flags
 	 * @param priority
-	 * @return LibError.
+	 * @return Status.
 	 *
 	 * if files are encountered that already exist in the VFS (sub)directories,
 	 * the most recent / highest priority/precedence version is preferred.
@@ -81,7 +81,7 @@ struct IVFS
 	 * if files with archive extensions are seen, their contents are added
 	 * as well.
 	 **/
-	virtual LibError Mount(const VfsPath& mountPoint, const OsPath& path, size_t flags = 0, size_t priority = 0) = 0;
+	virtual Status Mount(const VfsPath& mountPoint, const OsPath& path, size_t flags = 0, size_t priority = 0) = 0;
 
 	/**
 	 * Retrieve information about a file (similar to POSIX stat).
@@ -90,9 +90,9 @@ struct IVFS
 	 * @param pfileInfo receives information about the file. Passing NULL
 	 *		  suppresses warnings if the file doesn't exist.
 	 * 
-	 * @return LibError.
+	 * @return Status.
 	 **/
-	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
+	virtual Status GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
 
 	/**
 	 * Retrieve mount priority for a file.
@@ -100,14 +100,14 @@ struct IVFS
 	 * @param pathname
 	 * @param ppriority receives priority value, if the file can be found.
 	 *
-	 * @return LibError.
+	 * @return Status.
 	 **/
-	virtual LibError GetFilePriority(const VfsPath& pathname, size_t* ppriority) const = 0;
+	virtual Status GetFilePriority(const VfsPath& pathname, size_t* ppriority) const = 0;
 
 	/**
 	 * Retrieve lists of all files and subdirectories in a directory.
 	 *
-	 * @return LibError.
+	 * @return Status.
 	 *
 	 * Rationale:
 	 * - this interface avoids having to lock the directory while an
@@ -115,19 +115,19 @@ struct IVFS
 	 * - we cannot efficiently provide routines for returning files and
 	 *   subdirectories separately due to the underlying POSIX interface.
 	 **/
-	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const = 0;
+	virtual Status GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const = 0;
 
 	/**
 	 * Create a file with the given contents.
 	 * @param pathname
 	 * @param fileContents
 	 * @param size [bytes] of the contents, will match that of the file.
-	 * @return LibError.
+	 * @return Status.
 	 *
 	 * rationale: disallowing partial writes simplifies file cache coherency
 	 * (we need only invalidate cached data when closing a newly written file).
 	 **/
-	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
+	virtual Status CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
 
 	/**
 	 * Read an entire file into memory.
@@ -139,9 +139,9 @@ struct IVFS
 	 * 		  provision for Copy-on-Write, which means that such buffers
 	 * 		  must not be modified (this is enforced via mprotect).
 	 * @param size receives the size [bytes] of the file contents.
-	 * @return LibError.
+	 * @return Status.
 	 **/
-	virtual LibError LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size) = 0;
+	virtual Status LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size) = 0;
 
 	/**
 	 * @return a string representation of all files and directories.
@@ -153,7 +153,7 @@ struct IVFS
 	 *
 	 * this is useful for passing paths to external libraries.
 	 **/
-	virtual LibError GetRealPath(const VfsPath& pathname, OsPath& realPathname) = 0;
+	virtual Status GetRealPath(const VfsPath& pathname, OsPath& realPathname) = 0;
 
 	/**
 	 * retrieve the VFS pathname that corresponds to a real file.
@@ -164,13 +164,13 @@ struct IVFS
 	 * number of directories; this could be accelerated by only checking
 	 * directories below a mount point with a matching real path.
 	 **/
-	virtual LibError GetVirtualPath(const OsPath& realPathname, VfsPath& pathname) = 0;
+	virtual Status GetVirtualPath(const OsPath& realPathname, VfsPath& pathname) = 0;
 	
 	/**
 	 * indicate that a file has changed; remove its data from the cache and
 	 * arrange for its directory to be updated.
 	 **/
-	virtual LibError Invalidate(const VfsPath& pathname) = 0;
+	virtual Status Invalidate(const VfsPath& pathname) = 0;
 
 	/**
 	 * empty the contents of the filesystem.

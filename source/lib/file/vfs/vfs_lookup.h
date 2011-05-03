@@ -61,10 +61,10 @@ enum VfsLookupFlags
  * @param pfile File is set to 0 if there is no name component, otherwise the
  *		  corresponding file.
  * @param flags @see VfsLookupFlags.
- * @return LibError (INFO::OK if all components in pathname exist).
+ * @return Status (INFO::OK if all components in pathname exist).
  *
  * to allow noiseless file-existence queries, this does not raise warnings.
  **/
-extern LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, size_t flags = 0);
+extern Status vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, size_t flags = 0);
 
 #endif	// #ifndef INCLUDED_VFS_LOOKUP

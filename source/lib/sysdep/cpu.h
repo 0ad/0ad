@@ -32,9 +32,9 @@
 
 namespace ERR
 {
-	const LibError CPU_FEATURE_MISSING     = -130000;
-	const LibError CPU_UNKNOWN_OPCODE      = -130001;
-	const LibError CPU_UNKNOWN_VENDOR      = -130002;
+	const Status CPU_FEATURE_MISSING     = -130000;
+	const Status CPU_UNKNOWN_OPCODE      = -130001;
+	const Status CPU_UNKNOWN_VENDOR      = -130002;
 	
 }
 
