@@ -3,6 +3,7 @@ Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/Identity.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Formation.js");
@@ -49,6 +50,10 @@ function TestFormationExiting(mode)
 
 
 	var unitAI = ConstructComponent(unit, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
+
+	AddMock(unit, IID_Identity, {
+		GetClassesList: function() { return []; },
+	});
 
 	AddMock(unit, IID_Position, {
 		GetPosition: function() { return { "x": 0, "z": 0 }; },
