@@ -49,7 +49,7 @@ void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSki
 	return bt[2];
 }
 
-LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
+Status debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
 	static const size_t N_FRAMES = 16;
 	void *bt[N_FRAMES];
@@ -96,7 +96,7 @@ LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), 
 	return INFO::OK;
 }
 
-LibError debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line)
+Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line)
 {
 	if (sym_name)
 		*sym_name = 0;

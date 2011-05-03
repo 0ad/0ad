@@ -83,7 +83,7 @@ static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool man
 	// should only call async-signal-safe functions before exec.
 	// So prepare all the child's data in advance, before forking:
 
-	LibError err; // ignore UTF-8 errors
+	Status err; // ignore UTF-8 errors
 	std::string message = utf8_from_wstring(text, &err);
 
 	// Replace CRLF->LF
@@ -262,7 +262,7 @@ ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 }
 
 
-LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
+Status sys_StatusDescription(int err, wchar_t* buf, size_t max_chars)
 {
 	UNUSED2(err);
 	UNUSED2(buf);
@@ -279,7 +279,7 @@ LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
 
 // note: do not return ERR_NOT_IMPLEMENTED or similar because that
 // would result in WARN_ERRs.
-LibError sys_cursor_create(size_t w, size_t h, void* bgra_img, size_t hx, size_t hy, sys_cursor* cursor)
+Status sys_cursor_create(size_t w, size_t h, void* bgra_img, size_t hx, size_t hy, sys_cursor* cursor)
 {
 	UNUSED2(w);
 	UNUSED2(h);
@@ -292,7 +292,7 @@ LibError sys_cursor_create(size_t w, size_t h, void* bgra_img, size_t hx, size_t
 }
 
 // returns a dummy value representing an empty cursor
-LibError sys_cursor_create_empty(sys_cursor* cursor)
+Status sys_cursor_create_empty(sys_cursor* cursor)
 {
 	*cursor = (void*)1; // any non-zero value, since the cursor NULL has special meaning
 	return INFO::OK;
@@ -300,7 +300,7 @@ LibError sys_cursor_create_empty(sys_cursor* cursor)
 
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
-LibError sys_cursor_set(sys_cursor cursor)
+Status sys_cursor_set(sys_cursor cursor)
 {
 	if (cursor) // dummy empty cursor
 		SDL_ShowCursor(SDL_DISABLE);
@@ -312,7 +312,7 @@ LibError sys_cursor_set(sys_cursor cursor)
 
 // destroys the indicated cursor and frees its resources. if it is
 // currently the system cursor, the default cursor is restored first.
-LibError sys_cursor_free(sys_cursor cursor)
+Status sys_cursor_free(sys_cursor cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
@@ -323,7 +323,7 @@ LibError sys_cursor_free(sys_cursor cursor)
 	return INFO::OK;
 }
 
-LibError sys_cursor_reset()
+Status sys_cursor_reset()
 {
 	return INFO::OK;
 }
@@ -356,7 +356,7 @@ std::wstring sys_get_user_name()
 	return L"";
 }
 
-LibError sys_generate_random_bytes(u8* buf, size_t count)
+Status sys_generate_random_bytes(u8* buf, size_t count)
 {
 	FILE* f = fopen("/dev/urandom", "rb");
 	if (!f)
@@ -376,12 +376,12 @@ LibError sys_generate_random_bytes(u8* buf, size_t count)
 	return INFO::OK;
 }
 
-LibError sys_get_proxy_config(const std::wstring& UNUSED(url), std::wstring& UNUSED(proxy))
+Status sys_get_proxy_config(const std::wstring& UNUSED(url), std::wstring& UNUSED(proxy))
 {
 	return INFO::SKIPPED;
 }
 
-LibError sys_open_url(const std::string& url)
+Status sys_open_url(const std::string& url)
 {
 	pid_t pid = fork();
 	if (pid < 0)

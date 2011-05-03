@@ -46,6 +46,7 @@
 
 #include <algorithm>
 #undef Cursor
+#undef Status
 
 static Display *SDL_Display;
 static Window SDL_Window;
@@ -56,7 +57,7 @@ static size_t selection_size=0;
 
 // useful for choosing a video mode. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
+Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
@@ -90,7 +91,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 
 // useful for determining aspect ratio. not called by detect().
 // if we fail, outputs are unchanged (assumed initialized to defaults)
-LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
+Status gfx_get_monitor_size(int& width_mm, int& height_mm)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
@@ -212,7 +213,7 @@ wchar_t *sys_clipboard_get()
 	return NULL;
 }
 
-LibError sys_clipboard_free(wchar_t *clip_buf)
+Status sys_clipboard_free(wchar_t *clip_buf)
 {
 	free(clip_buf);
 	return INFO::OK;
@@ -281,7 +282,7 @@ int clipboard_filter(const SDL_Event *event)
  * Initialization for X clipboard handling, called on-demand by
  * sys_clipboard_set.
  */
-LibError x11_clipboard_init()
+Status x11_clipboard_init()
 {
 	SDL_SysWMinfo info;
 
@@ -321,7 +322,7 @@ LibError x11_clipboard_init()
  * <li>Listen for Selection events and respond to them as appropriate
  * </ul>
  */
-LibError sys_clipboard_set(const wchar_t *str)
+Status sys_clipboard_set(const wchar_t *str)
 {
 	ONCE(x11_clipboard_init());
 

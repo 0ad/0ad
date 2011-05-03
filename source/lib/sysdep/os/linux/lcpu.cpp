@@ -142,7 +142,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 }
 
 
-LibError os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
+Status os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 {
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{

@@ -154,7 +154,7 @@ static void* fam_event_loop(void*)
 	}
 }
 
-LibError dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
+Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 {
 	// init already failed; don't try again or complain
 	if(initialized == -1)
@@ -203,7 +203,7 @@ LibError dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 
 
 
-LibError dir_watch_Poll(DirWatchNotifications& notifications)
+Status dir_watch_Poll(DirWatchNotifications& notifications)
 {
 	if(initialized == -1)
 		return ERR::FAIL;	// NOWARN

@@ -25,12 +25,12 @@
 
 // stub implementations
 
-LibError dir_watch_Add(const OsPath& UNUSED(path), PDirWatch& UNUSED(dirWatch))
+Status dir_watch_Add(const OsPath& UNUSED(path), PDirWatch& UNUSED(dirWatch))
 {
 	return INFO::OK;
 }
 
-LibError dir_watch_Poll(DirWatchNotifications& UNUSED(notifications))
+Status dir_watch_Poll(DirWatchNotifications& UNUSED(notifications))
 {
 	return INFO::OK;
 }

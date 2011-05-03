@@ -33,12 +33,12 @@ void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSki
 	return NULL;
 }
 
-LibError debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
+Status debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
 	return ERR::NOT_IMPLEMENTED;
 }
 
-LibError debug_ResolveSymbol(void* UNUSED(ptr_of_interest), wchar_t* UNUSED(sym_name), wchar_t* UNUSED(file), int* UNUSED(line))
+Status debug_ResolveSymbol(void* UNUSED(ptr_of_interest), wchar_t* UNUSED(sym_name), wchar_t* UNUSED(file), int* UNUSED(line))
 {
 	return ERR::NOT_IMPLEMENTED;
 }
