@@ -4,13 +4,13 @@
     <texture>art/textures/particles/dust_256a.png</texture>
     <blend mode="over"/>
 
-    <expr name="emissionrate" from="numbuilders" mul="5.0" max="50.0"/>
+    <expr name="emissionrate" from="numbuilders" mul="2.0" max="16.0"/>
 
-    <uniform name="lifetime" min="5.0" max="7.0"/>
+    <uniform name="lifetime" min="3.0" max="5.0"/>
 
     <uniform name="position.x" min="-8.0" max="8.0"/>
     <uniform name="position.z" min="-8.0" max="8.0"/>
-    <constant name="position.y" value="0.0"/>
+    <constant name="position.y" value="1.0"/>
 
     <uniform name="angle" min="-3.14" max="3.14"/>
 
