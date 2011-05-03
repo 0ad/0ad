@@ -6,11 +6,14 @@ die()
   exit 1
 }
 
+JOBS=${JOBS:="-j2"}
+
 with_system_nvtt=false
 for i in "$@"
 do
   case $i in
     --with-system-nvtt ) with_system_nvtt=true ;;
+    -j* ) JOBS=$i ;;
   esac
 done
 
@@ -21,12 +24,12 @@ echo "Updating bundled third-party dependencies..."
 echo
 
 # Build/update bundled external libraries
-(cd ../../libraries/fcollada/src && make) || die "FCollada build failed"
+(cd ../../libraries/fcollada/src && make ${JOBS}) || die "FCollada build failed"
 echo
-(cd ../../libraries/spidermonkey-tip && ./build.sh) || die "SpiderMonkey build failed"
+(cd ../../libraries/spidermonkey-tip && JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
 echo
 if [ "$with_system_nvtt" = "false" ]; then
-  (cd ../../libraries/nvtt && ./build.sh) || die "NVTT build failed"
+  (cd ../../libraries/nvtt && JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
 fi
 echo
 
@@ -35,7 +38,7 @@ mkdir -p gcc
 
 # Now build premake and run it to create the makefiles
 cd ../premake
-make -C src || die "Premake build failed"
+make -C src ${JOBS} || die "Premake build failed"
 
 echo
 

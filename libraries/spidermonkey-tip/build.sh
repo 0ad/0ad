@@ -17,7 +17,9 @@ fi
 echo "Building SpiderMonkey..."
 echo
 
-MAKE_OPTS="-j2"
+JOBS=${JOBS:="-j2"}
+
+MAKE_OPTS="${JOBS}"
 
 CONF_OPTS="--disable-tests"
 # (We don't use --enable-threadsafe because we don't use a single runtime in
