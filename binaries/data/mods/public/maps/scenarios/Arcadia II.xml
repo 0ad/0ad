@@ -2,8 +2,9 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.47461" g="1.47461" b="1.47461"/>
+		<SunColour r="0.791843" g="0.770895" b="0.687102"/>
 		<SunElevation angle="0.951868"/>
 		<SunRotation angle="-0.532844"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
@@ -23,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="602.115" y="102.991" z="484.886"/>
+		<Position x="613.331" y="102.336" z="485.034"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -38,7 +39,8 @@
     {
       "Civ": "celt"
     }
-  ]
+  ],
+  "Keywords": []
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -1920,7 +1922,7 @@
 		</Entity>
 		<Entity uid="577">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="570.62684" z="664.02051"/>
+			<Position x="570.4939" z="653.23719"/>
 			<Orientation y="-2.23243"/>
 		</Entity>
 		<Entity uid="578">
@@ -3230,12 +3232,12 @@
 		</Entity>
 		<Entity uid="839">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="563.46424" z="662.391"/>
+			<Position x="571.57136" z="659.93952"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="840">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="568.01502" z="668.02442"/>
+			<Position x="563.55726" z="664.92603"/>
 			<Orientation y="1.23397"/>
 		</Entity>
 		<Entity uid="841">
@@ -3245,7 +3247,7 @@
 		</Entity>
 		<Entity uid="842">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="570.43891" z="675.39484"/>
+			<Position x="553.87757" z="656.96961"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="843">
@@ -3260,7 +3262,7 @@
 		</Entity>
 		<Entity uid="846">
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
-			<Position x="570.92615" z="658.02839"/>
+			<Position x="567.50318" z="655.43958"/>
 			<Orientation y="-2.76233"/>
 		</Entity>
 		<Entity uid="847">
@@ -3626,30 +3628,6 @@
 			<Player>0</Player>
 			<Position x="547.40687" z="735.74012"/>
 			<Orientation y="-0.22866"/>
-		</Entity>
-		<Entity uid="922">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="567.6988" z="656.30347"/>
-			<Orientation y="2.1594"/>
-		</Entity>
-		<Entity uid="923">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="573.4314" z="665.76746"/>
-			<Orientation y="-2.84238"/>
-		</Entity>
-		<Entity uid="924">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="563.20258" z="671.13801"/>
-			<Orientation y="-0.21204"/>
-		</Entity>
-		<Entity uid="925">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="578.4726" z="674.03046"/>
-			<Orientation y="-1.20664"/>
 		</Entity>
 		<Entity uid="926">
 			<Template>gaia/geology_stone_mediterranean</Template>
@@ -9090,30 +9068,6 @@
 			<Player>0</Player>
 			<Position x="65.99144" z="113.37609"/>
 			<Orientation y="-3.01446"/>
-		</Entity>
-		<Entity uid="2016">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="162.01624" z="133.24305"/>
-			<Orientation y="2.03835"/>
-		</Entity>
-		<Entity uid="2017">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="160.28711" z="143.71792"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2018">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="152.92666" z="152.98198"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2019">
-			<Template>gaia/geology_stone_mediterranean</Template>
-			<Player>0</Player>
-			<Position x="168.95736" z="152.82001"/>
-			<Orientation y="-2.40107"/>
 		</Entity>
 		<Entity uid="2020">
 			<Template>gaia/flora_tree_apple</Template>
@@ -21823,7 +21777,7 @@
 		</Entity>
 		<Entity uid="4602">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="558.61286" z="663.03895"/>
+			<Position x="556.06635" z="654.16541"/>
 			<Orientation y="-2.7036"/>
 		</Entity>
 		<Entity uid="4603">
@@ -21913,12 +21867,12 @@
 		</Entity>
 		<Entity uid="4620">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="177.0822" z="165.63949"/>
+			<Position x="160.88643" z="151.37935"/>
 			<Orientation y="-1.42295"/>
 		</Entity>
 		<Entity uid="4621">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="166.19353" z="168.68818"/>
+			<Position x="162.8073" z="159.24233"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4622">
@@ -21928,32 +21882,27 @@
 		</Entity>
 		<Entity uid="4623">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="163.02724" z="168.87032"/>
+			<Position x="67.56832" z="177.30205"/>
 			<Orientation y="2.53136"/>
 		</Entity>
 		<Entity uid="4624">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="169.70813" z="159.63567"/>
+			<Position x="54.16521" z="179.04816"/>
 			<Orientation y="2.68107"/>
 		</Entity>
 		<Entity uid="4625">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="172.28597" z="155.23894"/>
+			<Position x="150.11081" z="150.50181"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4626">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="172.70418" z="143.5623"/>
+			<Position x="157.37142" z="151.93268"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4627">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="170.76493" z="147.88372"/>
-			<Orientation y="1.55143"/>
 		</Entity>
 		<Entity uid="4628">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="174.49318" z="148.62386"/>
+			<Position x="160.09424" z="146.87558"/>
 			<Orientation y="-2.84656"/>
 		</Entity>
 		<Entity uid="4629">
@@ -22555,6 +22504,18 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="437.35041" z="649.28357"/>
 			<Orientation y="-0.79319"/>
+		</Entity>
+		<Entity uid="4749">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="562.37238" z="660.4372"/>
+			<Orientation y="-1.99067"/>
+		</Entity>
+		<Entity uid="4750">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="151.16021" z="154.75692"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
