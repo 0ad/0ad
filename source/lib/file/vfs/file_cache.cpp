@@ -182,9 +182,11 @@ public:
 			{
 				shared_ptr<u8> discardedData; size_t discardedSize;
 				bool removed = m_cache.remove_least_valuable(&discardedData, &discardedSize);
-				// only false if cache is empty, which can't be the case because
-				// allocation failed.
-				ENSURE(removed);
+				// the cache is empty, and allocation still failed.
+				// apparently the cache is full of data that's still
+				// referenced, so we can't reserve any more space.
+				if(!removed)
+					return shared_ptr<u8>();
 			}
 		}
 	}

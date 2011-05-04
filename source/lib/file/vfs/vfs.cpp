@@ -158,20 +158,22 @@ public:
 			// instead, callers should log the error, including pathname.
 			RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 
+			fileContents = DummySharedPtr((u8*)0);
 			size = file->Size();
-			// safely handle zero-length files
-			if(!size)
-				fileContents = DummySharedPtr((u8*)0);
-			else if(size > m_cacheSize)
+			if(size != 0)	// (the file cache can't handle zero-length allocations)
 			{
-				RETURN_STATUS_IF_ERR(AllocateAligned(fileContents, size, maxSectorSize));
-				RETURN_STATUS_IF_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
-			}
-			else
-			{
-				fileContents = m_fileCache.Reserve(size);
-				RETURN_STATUS_IF_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
-				m_fileCache.Add(pathname, fileContents, size);
+				if(size < m_cacheSize/2)	// (avoid evicting lots of previous data)
+					fileContents = m_fileCache.Reserve(size);
+				if(fileContents)
+				{
+					RETURN_STATUS_IF_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
+					m_fileCache.Add(pathname, fileContents, size);
+				}
+				else
+				{
+					RETURN_STATUS_IF_ERR(AllocateAligned(fileContents, size, maxSectorSize));
+					RETURN_STATUS_IF_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
+				}
 			}
 		}
 
