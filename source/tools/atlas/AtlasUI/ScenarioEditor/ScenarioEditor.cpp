@@ -26,6 +26,7 @@
 #include "wx/filename.h"
 #include "wx/image.h"
 #include "wx/tooltip.h"
+#include "wx/dir.h"
 
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"

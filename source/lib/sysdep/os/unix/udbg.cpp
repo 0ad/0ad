@@ -30,6 +30,8 @@ symbol lookups and backtraces)
 #include "precompiled.h"
 
 #include <cstdio>
+#include <sys/types.h>
+#include <signal.h>
 
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"

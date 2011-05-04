@@ -21,6 +21,7 @@
 #include "ScenarioEditor/ScenarioEditor.h"
 
 #include "wx/dialog.h"
+#include "wx/spinctrl.h"
 
 class NewDialog : public wxDialog
 {

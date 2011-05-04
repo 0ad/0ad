@@ -23,6 +23,8 @@
 #include "graphics/Texture.h"
 #include "renderer/VertexArray.h"
 
+#include <map>
+
 /**
  * Simulation state for a single particle.
  */

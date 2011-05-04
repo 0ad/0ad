@@ -23,6 +23,8 @@
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 
+#include <map>
+
 struct CColor;
 class CMatrix3D;
 class CVector3D;

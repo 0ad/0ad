@@ -29,6 +29,8 @@
 # include "ps/XML/RelaxNG.h"
 #endif
 
+#include <set>
+
 /**
  * Shader manager: loads and caches shader programs.
  */

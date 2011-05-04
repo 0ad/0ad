@@ -19,6 +19,7 @@
 
 #include <set>
 #include <algorithm>
+#include <numeric>
 
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"

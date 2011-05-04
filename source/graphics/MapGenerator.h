@@ -25,6 +25,8 @@
 #include <boost/random/linear_congruential.hpp>
 #include <boost/unordered_map.hpp>
 
+#include <set>
+
 typedef boost::unordered_map<VfsPath, std::wstring> ScriptFilesMap;
 
 class CMapGeneratorWorker;

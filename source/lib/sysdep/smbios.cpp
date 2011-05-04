@@ -37,6 +37,8 @@
 # include "lib/sysdep/os/win/wfirmware.h"
 #endif
 
+#include <sstream>
+
 namespace SMBIOS {
 
 //-----------------------------------------------------------------------------
