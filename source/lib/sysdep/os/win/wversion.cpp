@@ -94,7 +94,7 @@ static Status wversion_Init()
 		RegCloseKey(hKey);
 	}
 	else
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 
 	return INFO::OK;
 }

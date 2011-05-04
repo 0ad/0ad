@@ -581,7 +581,7 @@ public:
 				return;
 			}
 		}
-		ENSURE(0);	// entry not found in list
+		DEBUG_WARN_ERR(ERR::LOGIC);	// entry not found in list
 	}
 
 	void remove_least_valuable(std::list<Entry>& entry_list)

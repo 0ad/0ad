@@ -203,7 +203,7 @@ void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 {
 	if(len == 0)	// POSIX says this must cause mmap to fail
 	{
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 		errno = EINVAL;
 		return MAP_FAILED;
 	}

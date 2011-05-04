@@ -239,7 +239,7 @@ static HWND wnd_CreateWindow(int w, int h)
 	ATOM class_atom = RegisterClassW(&wc);
 	if(!class_atom)
 	{
-		ENSURE(0);	// RegisterClassW failed
+		DEBUG_WARN_ERR(ERR::LOGIC);	// RegisterClassW failed
 		return 0;
 	}
 
@@ -609,7 +609,7 @@ static inline SDLKey SDLKeyFromVK(int vk)
 {
 	if(!(0 <= vk && vk < 256))
 	{
-		ENSURE(0);	// invalid vk
+		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid vk
 		return SDLK_UNKNOWN;
 	}
 	return g_SDLKeyForVK[vk];

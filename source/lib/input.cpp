@@ -66,6 +66,6 @@ void in_dispatch_event(const SDL_Event_* ev)
 			continue;
 		// .. invalid return value
 		else
-			ENSURE(0);	// invalid handler return value
+			DEBUG_WARN_ERR(ERR::LOGIC);	// invalid handler return value
 	}
 }

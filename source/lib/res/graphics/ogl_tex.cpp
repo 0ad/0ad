@@ -129,7 +129,7 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 		case 5:
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
 		default:
-			ENSURE(0);	// invalid DXT value
+			DEBUG_WARN_ERR(ERR::LOGIC);	// invalid DXT value
 			return 0;
 		}
 	}
@@ -149,7 +149,7 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 		ENSURE(alpha);
 		return bgr? GL_BGRA : GL_RGBA;
 	default:
-		ENSURE(0);	// invalid bpp
+		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid bpp
 		return 0;
 	}
 
@@ -242,7 +242,7 @@ static GLint choose_int_fmt(GLenum fmt, int q_flags)
 		wchar_t buf[100];
 		swprintf_s(buf, ARRAY_SIZE(buf), L"choose_int_fmt: fmt 0x%x isn't covered! please add it", fmt);
 		DEBUG_DISPLAY_ERROR(buf);
-		ENSURE(0);	// given fmt isn't covered! please add it.
+		DEBUG_WARN_ERR(ERR::LOGIC);	// given fmt isn't covered! please add it.
 		// fall back to a reasonable default
 		return half_bpp? GL_RGB4 : GL_RGB8;
 		}
@@ -588,7 +588,7 @@ static void warn_if_uploaded(Handle ht, const OglTex* ot)
 		return;	// don't complain
 
 	if(ot->flags & OT_IS_UPLOADED)
-		ENSURE(0);	// ogl_tex_set_*: texture already uploaded and shouldn't be changed
+		DEBUG_WARN_ERR(ERR::LOGIC);	// ogl_tex_set_*: texture already uploaded and shouldn't be changed
 #else
 	// (prevent warnings; the alternative of wrapping all call sites in
 	// #ifndef is worse)
@@ -689,7 +689,7 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 		have_anistropy = enable;
 		break;
 	default:
-		ENSURE(0);	// invalid <what>
+		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid <what>
 		break;
 	}
 }

@@ -84,7 +84,7 @@ void debug_filter_add(const wchar_t* tag)
 	// too many already?
 	if(num_tags == MAX_TAGS)
 	{
-		ENSURE(0);	// increase MAX_TAGS
+		DEBUG_WARN_ERR(ERR::LOGIC);	// increase MAX_TAGS
 		return;
 	}
 

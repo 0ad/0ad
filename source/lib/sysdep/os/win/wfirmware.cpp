@@ -34,7 +34,7 @@ Table GetTable(Provider provider, TableId tableId)
 	const size_t tableSize = pGetSystemFirmwareTable(provider, tableId, 0, 0);
 	if(tableSize == 0)
 	{
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 		return Table();
 	}
 

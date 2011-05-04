@@ -105,7 +105,7 @@
 #else
 # define UNREACHABLE\
 	STMT(\
-		ENSURE(0);	/* hit supposedly unreachable code */\
+		DEBUG_WARN_ERR(ERR::LOGIC);	/* hit supposedly unreachable code */\
 		for(;;){};\
 	)
 #endif

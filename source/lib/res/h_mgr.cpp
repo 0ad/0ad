@@ -675,7 +675,7 @@ void* h_user_data(const Handle h, const H_Type type)
 	if(!hd->refs)
 	{
 		// note: resetting the tag is not enough (user might pass in its value)
-		ENSURE(0);	// no references to resource (it's cached, but someone is accessing it directly)
+		DEBUG_WARN_ERR(ERR::LOGIC);	// no references to resource (it's cached, but someone is accessing it directly)
 		return 0;
 	}
 
@@ -691,7 +691,7 @@ VfsPath h_filename(const Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 		return VfsPath();
 	}
 	return hd->pathname;
@@ -779,7 +779,7 @@ void h_add_ref(Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		ENSURE(0);	// invalid handle
+		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid handle
 		return;
 	}
 
@@ -824,7 +824,7 @@ static void Shutdown()
 		// each HDATA entry has already been allocated.
 		if(!hd)
 		{
-			ENSURE(0);	// h_data_from_idx failed - why?!
+			DEBUG_WARN_ERR(ERR::LOGIC);	// h_data_from_idx failed - why?!
 			continue;
 		}
 

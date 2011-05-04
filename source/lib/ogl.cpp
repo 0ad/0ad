@@ -221,7 +221,7 @@ bool ogl_HaveVersion(const char* desired_version)
 	int desired_major, desired_minor;
 	if(sscanf_s(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
 	{
-		ENSURE(0);	// invalid version string
+		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid version string
 		return false;
 	}
 
@@ -230,7 +230,7 @@ bool ogl_HaveVersion(const char* desired_version)
 	int major, minor;
 	if(!version || sscanf_s(version, "%d.%d", &major, &minor) != 2)
 	{
-		ENSURE(0);	// GL_VERSION invalid
+		DEBUG_WARN_ERR(ERR::LOGIC);	// GL_VERSION invalid
 		return false;
 	}
 

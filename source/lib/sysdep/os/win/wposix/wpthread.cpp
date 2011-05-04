@@ -259,7 +259,7 @@ static CRITICAL_SECTION* CRITICAL_SECTION_from_pthread_mutex_t(pthread_mutex_t* 
 {
 	if(!m)
 	{
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 		return 0;
 	}
 	return (CRITICAL_SECTION*)*m;

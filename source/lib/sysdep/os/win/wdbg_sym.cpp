@@ -534,7 +534,7 @@ static void out(const wchar_t* fmt, ...)
 		// make sure out_chars_left remains nonnegative
 		if((size_t)len > out_chars_left)
 		{
-			ENSURE(0);	// apparently wrote more than out_chars_left
+			DEBUG_WARN_ERR(ERR::LOGIC);	// apparently wrote more than out_chars_left
 			len = (int)out_chars_left;
 		}
 		out_chars_left -= len;
@@ -1034,7 +1034,7 @@ static Status dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 		else if(size == sizeof(double))
 			out(L"%g (0x%016I64X)", data, data);
 		else
-			ENSURE(0);	// invalid float size
+			DEBUG_WARN_ERR(ERR::LOGIC);	// invalid float size
 		break;
 
 	// boolean
@@ -1072,7 +1072,7 @@ display_as_hex:
 		else if(size == 8)
 			fmt = L"%I64d (0x%016I64X)";
 		else
-			ENSURE(0);	// invalid size for integers
+			DEBUG_WARN_ERR(ERR::LOGIC);	// invalid size for integers
 		out(fmt, data, data);
 		break;
 
@@ -1100,11 +1100,11 @@ display_as_hex:
 			fmt = L"";
 		}
 		else
-			ENSURE(0);	// non-pointer btVoid or btNoType
+			DEBUG_WARN_ERR(ERR::LOGIC);	// non-pointer btVoid or btNoType
 		break;
 
 	default:
-		ENSURE(0);	// unknown type
+		DEBUG_WARN_ERR(ERR::LOGIC);	// unknown type
 		break;
 
 	// unsupported complex types

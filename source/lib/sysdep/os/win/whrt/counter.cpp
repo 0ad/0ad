@@ -94,7 +94,7 @@ ICounter* CreateCounter(size_t id)
 	//   size until after the alloc / placement new.
 
 	if(!cpu_CAS(&isCounterAllocated, 0, 1))
-		ENSURE(0);	// static counter memory is already in use!
+		DEBUG_WARN_ERR(ERR::LOGIC);	// static counter memory is already in use!
 
 	static const size_t memSize = 200;
 	static u8 mem[memSize];

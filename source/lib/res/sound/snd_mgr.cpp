@@ -111,7 +111,7 @@ static void al_ReportError(ALenum err, const char* caller, int line)
 	ENSURE(al_initialized);
 
 	debug_printf(L"OpenAL error: %hs; called from %hs (line %d)\n", alGetString(err), caller, line);
-	ENSURE(0);
+	DEBUG_WARN_ERR(ERR::LOGIC);
 }
 
 /**
@@ -561,7 +561,7 @@ static void al_src_free(ALuint al_src)
 		ENSURE(cpu_CAS(&al_srcs_allocationStates[i], kInUse, kAvailable));
 	}
 	else
-		ENSURE(0);	// al_src wasn't in al_srcs
+		DEBUG_WARN_ERR(ERR::LOGIC);	// al_src wasn't in al_srcs
 }
 
 
@@ -1471,7 +1471,7 @@ static void list_remove(VSrc* vs)
 		}
 	}
 
-	ENSURE(0);	// VSrc not found
+	DEBUG_WARN_ERR(ERR::LOGIC);	// VSrc not found
 }
 
 

@@ -63,7 +63,7 @@ static Status CreateDirectory(const OsPath& path)
 
 	// unexpected failure
 	debug_printf(L"wmkdir failed with errno=%d\n", errno);
-	ENSURE(0);
+	DEBUG_WARN_ERR(ERR::LOGIC);
 	WARN_RETURN(StatusFromErrno());
 }
 

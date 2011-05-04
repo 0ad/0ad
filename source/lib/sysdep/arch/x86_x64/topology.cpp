@@ -181,7 +181,7 @@ size_t ProcessorFromApicId(size_t apicId)
 	const u8* pos = std::find(apicIds, end, apicId);
 	if(pos == end)
 	{
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 		return 0;
 	}
 	return pos - apicIds;	// index
@@ -299,7 +299,7 @@ static Status InitCpuTopology()
 			}
 		}
 
-		ENSURE(0);	// didn't find a feasible topology
+		DEBUG_WARN_ERR(ERR::LOGIC);	// didn't find a feasible topology
 	}
 
 	return INFO::OK;

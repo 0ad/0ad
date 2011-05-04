@@ -190,7 +190,7 @@ void XMLWriter_File::ElementEnd(const char* name, int type)
 		m_Data += ">";
 		break;
 	default:
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 	}
 }
 

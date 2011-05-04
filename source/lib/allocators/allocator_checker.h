@@ -44,7 +44,7 @@ public:
 	{
 		Allocs::iterator it = allocs.find(p);
 		if(it == allocs.end())
-			ENSURE(0);	// freeing invalid pointer
+			DEBUG_WARN_ERR(ERR::LOGIC);	// freeing invalid pointer
 		else
 		{
 			// size must match what was passed to OnAllocate

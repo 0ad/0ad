@@ -295,7 +295,7 @@ static void StartDriver(const OsPath& driverPathname)
 			{
 				// starting failed. don't raise a warning because this
 				// always happens on least-permission user accounts.
-				//ENSURE(0);
+				//DEBUG_WARN_ERR(ERR::LOGIC);
 			}
 		}
 	}

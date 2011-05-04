@@ -127,7 +127,7 @@ static Status UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basena
 
 		if (Codepoint < 0 || Codepoint > 0xFFFF)
 		{
-			ENSURE(0);	// Invalid codepoint
+			DEBUG_WARN_ERR(ERR::LOGIC);	// Invalid codepoint
 			continue;
 		}
 
@@ -367,7 +367,7 @@ Status unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& 
 
 		if (it == f->glyphs->end()) // Missing the missing glyph symbol - give up
 		{
-			ENSURE(0);	// Missing the missing glyph in a unifont!
+			DEBUG_WARN_ERR(ERR::LOGIC);	// Missing the missing glyph in a unifont!
 			return INFO::OK;
 		}
 

@@ -332,7 +332,7 @@ struct Characteristics	// POD
 		case U:
 			return x86_x64_Cache::kUnified;
 		default:
-			ENSURE(0);
+			DEBUG_WARN_ERR(ERR::LOGIC);
 			return x86_x64_Cache::kNull;
 		}
 	}

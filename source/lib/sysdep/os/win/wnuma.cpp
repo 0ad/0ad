@@ -96,7 +96,7 @@ static void FillProcessorsNode()
 		if(node)
 			processorsNode[processor] = node-nodes;
 		else
-			ENSURE(0);
+			DEBUG_WARN_ERR(ERR::LOGIC);
 	}
 }
 
@@ -240,7 +240,7 @@ static void PopulateProcessorMaskFromApicId(u32 apicId, uintptr_t& processorMask
 		}
 	}
 
-	ENSURE(0);	// APIC ID not found
+	DEBUG_WARN_ERR(ERR::LOGIC);	// APIC ID not found
 }
 
 struct ProximityDomain

@@ -119,7 +119,7 @@ Status tex_codec_transform(Tex* t, size_t transforms)
 		else if(err != INFO::TEX_CODEC_CANNOT_HANDLE)
 		{
 			ret = err;
-			ENSURE(0);	// codec indicates error
+			DEBUG_WARN_ERR(ERR::LOGIC);	// codec indicates error
 		}
 	}
 

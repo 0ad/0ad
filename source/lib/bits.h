@@ -241,7 +241,7 @@ inline T MaxPowerOfTwoDivisor(T value)
 			return T(1) << log2;
 	}
 
-	ENSURE(0);	// unreachable (!= 0 => there is a set bit)
+	DEBUG_WARN_ERR(ERR::LOGIC);	// unreachable (!= 0 => there is a set bit)
 	return 0;
 }
 

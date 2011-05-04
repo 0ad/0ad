@@ -567,7 +567,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 	const Status ret = PollCompletionPort(hIOCP, milliseconds, bytesTransferred, key, ovl);
 	if(ret != INFO::OK && ret != ERR::AGAIN)	// failed
 	{
-		ENSURE(0);
+		DEBUG_WARN_ERR(ERR::LOGIC);
 		return -1;
 	}
 

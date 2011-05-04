@@ -96,7 +96,7 @@ public:
 			head = (head + 1) % n;
 		}
 		else
-			ENSURE(0);	// underflow
+			DEBUG_WARN_ERR(ERR::LOGIC);	// underflow
 	}
 
 	class iterator
