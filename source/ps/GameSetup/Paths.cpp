@@ -31,9 +31,9 @@ Paths::Paths(const CmdLineArgs& args)
 	m_root = Root(args.GetArg0());
 
 #ifdef INSTALLED_DATADIR
-	m_rdata = WIDEN(STRINGIZE(INSTALLED_DATADIR)) L"/";
+	m_rdata = WIDEN(STRINGIZE(INSTALLED_DATADIR))/L"";
 #else
-	m_rdata = m_root/"data/";
+	m_rdata = m_root/"data"/"";
 #endif
 
 	const char* subdirectoryName = args.Has("writableRoot")? 0 : "0ad";
@@ -42,18 +42,18 @@ Paths::Paths(const CmdLineArgs& args)
 	if(!subdirectoryName)
 	{
 		m_data = m_rdata;
-		m_config = m_data/"config/";
-		m_cache = m_data/"cache/";
-		m_logs = m_root/"logs/";
+		m_config = m_data/"config"/"";
+		m_cache = m_data/"cache"/"";
+		m_logs = m_root/"logs"/"";
 	}
 	else
 	{
 #if OS_WIN
 		const OsPath appdata = wutil_AppdataPath() / subdirectoryName/"";
-		m_data = appdata/"data/";
-		m_config = appdata/"config/";
-		m_cache = appdata/"cache/";
-		m_logs = appdata/"logs/";
+		m_data = appdata/"data"/"";
+		m_config = appdata/"config"/"";
+		m_cache = appdata/"cache"/"";
+		m_logs = appdata/"logs"/"";
 #else
 		const char* envHome = getenv("HOME");
 		ENSURE(envHome);
@@ -63,8 +63,8 @@ Paths::Paths(const CmdLineArgs& args)
 		const OsPath xdgCache  = XDG_Path("XDG_CACHE_HOME",  home, home/".cache/"      ) / subdirectoryName;
 		m_data   = xdgData/"";
 		m_cache  = xdgCache/"";
-		m_config = xdgConfig/"config/";
-		m_logs   = xdgConfig/"logs/";
+		m_config = xdgConfig/"config"/"";
+		m_logs   = xdgConfig/"logs"/"";
 #endif
 	}
 }

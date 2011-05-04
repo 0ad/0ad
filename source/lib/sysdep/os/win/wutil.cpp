@@ -508,7 +508,7 @@ HWND wutil_AppWindow()
 	if(!hAppWindow)
 	{
 		WARN_IF_FALSE(EnumWindows(FindAppWindowByPid, 0));
-		ENSURE(hAppWindow != 0);
+		// (hAppWindow may still be 0 if we haven't created a window yet)
 	}
 
 	return hAppWindow;

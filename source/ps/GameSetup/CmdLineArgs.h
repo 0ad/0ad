@@ -19,6 +19,7 @@
 #define INCLUDED_CMDLINEARGS
 
 #include "ps/CStr.h"
+#include "lib/os_path.h"
 
 class CmdLineArgs
 {
@@ -58,12 +59,12 @@ public:
 	 * Get the value of argv[0], which is typically meant to be the name/path of
 	 * the program (but the actual value is up to whoever executed the program).
 	 */
-	CStr GetArg0() const;
+	OsPath GetArg0() const;
 
 private:
 	typedef std::vector<std::pair<CStr, CStr> > ArgsT;
 	ArgsT m_Args;
-	CStr m_Arg0;
+	OsPath m_Arg0;
 };
 
 #endif // INCLUDED_CMDLINEARGS

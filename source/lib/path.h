@@ -48,6 +48,7 @@ namespace ERR
 	const Status PATH_CHARACTER_ILLEGAL   = -100300;
 	const Status PATH_CHARACTER_UNSAFE    = -100301;
 	const Status PATH_NOT_FOUND           = -100302;
+	const Status PATH_MIXED_SEPARATORS    = -100303;
 }
 
 /**
@@ -69,18 +70,48 @@ LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
 
 // NB: there is a need for 'generic' paths (e.g. for Trace entry / archive pathnames). 
-// converting via c_str would be inefficient, and the Os/VfsPath typedefs are hopefully
-// sufficient to avoid errors.
+// converting between specialized variants via c_str would be inefficient, and the
+// Os/VfsPath typedefs are hopefully sufficient to avoid errors.
 class Path
 {
 public:
 	typedef std::wstring String;
 
-	Path() {}
-	Path(const char* p)         : path(p, p+strlen(p)) {}
-	Path(const wchar_t* p)      : path(p, p+wcslen(p)) {}
-	Path(const std::string& s)  : path(s.begin(), s.end()) {}
-	Path(const std::wstring& s) : path(s) {}
+	Path()
+	{
+		DetectSeparator();
+	}
+
+	Path(const char* p)
+		: path(p, p+strlen(p))
+	{
+		DetectSeparator();
+	}
+
+	Path(const wchar_t* p)
+		: path(p, p+wcslen(p))
+	{
+		DetectSeparator();
+	}
+
+	Path(const std::string& s)
+		: path(s.begin(), s.end())
+	{
+		DetectSeparator();
+	}
+
+	Path(const std::wstring& s)
+		: path(s)
+	{
+		DetectSeparator();
+	}
+
+	Path& operator=(const Path& rhs)
+	{
+		path = rhs.path;
+		DetectSeparator();	// (warns if separators differ)
+		return *this;
+	}
 
 	bool empty() const
 	{
@@ -111,38 +142,22 @@ public:
 	{
 		if(empty())	// (ensure length()-1 is safe)
 			return true;	// (the VFS root directory is represented as an empty string)
-
-		// note: ideally, path strings would only contain '/' or even SYS_DIR_SEP.
-		// however, windows-specific code (e.g. the sound driver detection)
-		// uses these routines with '\\' strings. converting them all to
-		// '/' and then back before passing to OS functions would be annoying.
-		// also, the self-tests verify correct operation of such strings.
-		// it would be error-prone to only test the platform's separators.
-		// we therefore allow all separators here.
-		return path[path.length()-1] == '/' || path[path.length()-1] == '\\';
+		return path[path.length()-1] == separator;
 	}
 
 	Path Parent() const
 	{
-		size_t idxSlash = path.find_last_of('/');
+		const size_t idxSlash = path.find_last_of(separator);
 		if(idxSlash == String::npos)
-		{
-			idxSlash = path.find_last_of('\\');
-			if(idxSlash == String::npos)
-				return L"";
-		}
+			return L"";
 		return path.substr(0, idxSlash);
 	}
 
 	Path Filename() const
 	{
-		size_t idxSlash = path.find_last_of('/');
+		const size_t idxSlash = path.find_last_of(separator);
 		if(idxSlash == String::npos)
-		{
-			idxSlash = path.find_last_of('\\');
-			if(idxSlash == String::npos)
-				return path;
-		}
+			return path;
 		return path.substr(idxSlash+1);
 	}
 
@@ -173,8 +188,13 @@ public:
 	Path operator/(Path rhs) const
 	{
 		Path ret = *this;
+		if(ret.path.empty())	// (empty paths assume '/')
+			ret.separator = rhs.separator;
 		if(!ret.IsDirectory())
-			ret.path += '/';
+			ret.path += ret.separator;
+
+		if(rhs.path.find((ret.separator == '/')? '\\' : '/') != String::npos)
+			DEBUG_WARN_ERR(ERR::PATH_MIXED_SEPARATORS);
 		ret.path += rhs.path;
 		return ret;
 	}
@@ -182,7 +202,27 @@ public:
 	static Status Validate(String::value_type c);
 
 private:
+	void DetectSeparator()
+	{
+		const size_t idxBackslash = path.find('\\');
+
+		if(path.find('/') != String::npos && idxBackslash != String::npos)
+			DEBUG_WARN_ERR(ERR::PATH_MIXED_SEPARATORS);
+
+		// (default to '/' for empty strings)
+		separator = (idxBackslash == String::npos)? '/' : '\\';
+	}
+
 	String path;
+
+	// note: ideally, path strings would only contain '/' or even SYS_DIR_SEP.
+	// however, Windows-specific code (e.g. the sound driver detection)
+	// uses these routines with '\\' strings. the boost::filesystem approach of
+	// converting them all to '/' and then back via external_file_string is
+	// annoying and inefficient. we allow either type of separators,
+	// appending whichever was first encountered. when modifying the path,
+	// we ensure the same separator is used.
+	wchar_t separator;
 };
 
 static inline std::wostream& operator<<(std::wostream& s, const Path& path)

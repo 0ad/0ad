@@ -16,13 +16,21 @@
  */
 
 #include "precompiled.h"
-
 #include "CmdLineArgs.h"
+
+#include "lib/sysdep/filesystem.h"	// wrealpath
+
 
 CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
 {
 	if (argc >= 1)
-		m_Arg0 = argv[0];
+	{
+		std::string arg0(argv[0]);
+		// avoid OsPath complaining about mixing both types of separators,
+		// which happens when running in the VC2010 debugger
+		std::replace(arg0.begin(), arg0.end(), '\\', '/');
+		m_Arg0 = wrealpath(arg0);
+	}
 
 	for (int i = 1; i < argc; ++i)
 	{
@@ -85,7 +93,7 @@ std::vector<CStr> CmdLineArgs::GetMultiple(const char* name) const
 	return values;
 }
 
-CStr CmdLineArgs::GetArg0() const
+OsPath CmdLineArgs::GetArg0() const
 {
 	return m_Arg0;
 }

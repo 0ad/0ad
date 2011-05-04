@@ -58,15 +58,13 @@ CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
 	// to avoid accidentally overwriting earlier logs.
 
 	std::wstringstream name;
-	name << L"sim_log/" << getpid();
+	name << getpid();
 
 	static int run = -1;
 	if (++run)
 		name << "-" << run;
 
-	name << L"/commands.txt";
-
-	OsPath path = psLogDir() / name.str();
+	OsPath path = psLogDir() / L"sim_log" / name.str() / L"commands.txt";
 	CreateDirectories(path.Parent(), 0700);
 	m_Stream = new std::ofstream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 }

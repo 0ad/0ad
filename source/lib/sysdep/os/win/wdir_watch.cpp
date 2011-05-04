@@ -111,6 +111,7 @@ public:
 			WARN_IF_FALSE(CloseHandle(m_ovl->hEvent));
 			if(ret == WAIT_OBJECT_0 || GetLastError() == ERROR_OPERATION_ABORTED)
 			{
+				SetLastError(0);
 				delete[] m_data;
 				free(m_ovl);
 			}
@@ -130,14 +131,12 @@ public:
 		return m_path;
 	}
 
-	/**
-	 * (this is the handle to be associated with the completion port)
-	 **/
-	HANDLE GetDirHandle() const
+	void AttachTo(HANDLE hIOCP) const
 	{
-		return m_dirHandle;
+		AttachToCompletionPort(m_dirHandle, hIOCP, (uintptr_t)this);
 	}
 
+	// (called again after each notification, so it mustn't AttachToCompletionPort)
 	Status Issue()
 	{
 		if(m_dirHandle == INVALID_HANDLE_VALUE)
@@ -150,8 +149,7 @@ public:
 		// not set: FILE_NOTIFY_CHANGE_ATTRIBUTES, FILE_NOTIFY_CHANGE_LAST_ACCESS, FILE_NOTIFY_CHANGE_SECURITY
 		DWORD undefined = 0;	// (non-NULL pointer avoids BoundsChecker warning)
 		m_ovl->Internal = 0;
-		const BOOL ok = ReadDirectoryChangesW(m_dirHandle, m_data, dataSize, watchSubtree, filter, &undefined, m_ovl, 0);
-		WARN_IF_FALSE(ok);
+		WARN_IF_FALSE(ReadDirectoryChangesW(m_dirHandle, m_data, dataSize, watchSubtree, filter, &undefined, m_ovl, 0));
 		return INFO::OK;
 	}
 
@@ -163,10 +161,13 @@ public:
 		const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)m_data;
 		for(;;)
 		{
-			// convert name from BSTR (non-zero-terminated) to OsPath
+			// convert (non-zero-terminated) BSTR to Path::String
 			cassert(sizeof(wchar_t) == sizeof(WCHAR));
-			const size_t nameChars = fni->FileNameLength / sizeof(WCHAR);
-			const OsPath name(Path::String(fni->FileName, nameChars));
+			const size_t length = fni->FileNameLength / sizeof(WCHAR);
+			Path::String name(fni->FileName, length);
+			// since we watch subtrees, name may contain '\\'. OsPath forbids
+			// mixing directory separators, so convert them all to '/'.
+			std::replace(name.begin(), name.end(), '\\', '/');
 
 			const OsPath pathname = m_path / name;
 			const DirWatchNotification::EType type = TypeFromAction(fni->Action);
@@ -195,7 +196,7 @@ private:
 			return DirWatchNotification::Changed;
 
 		default:
-			ENSURE(0);
+			DEBUG_WARN_ERR(ERR::LOGIC);
 			return DirWatchNotification::Changed;
 		}
 	}
@@ -325,7 +326,7 @@ public:
 		}
 
 		PDirWatchRequest request(new DirWatchRequest(path));
-		AttachToCompletionPort(request->GetDirHandle(), hIOCP, (uintptr_t)request.get());
+		request->AttachTo(hIOCP);
 		RETURN_STATUS_IF_ERR(request->Issue());
 		dirWatch.reset(new DirWatch(&m_sentinel, request));
 		return INFO::OK;

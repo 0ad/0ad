@@ -33,6 +33,7 @@
 STATUS_DEFINE(ERR, PATH_CHARACTER_ILLEGAL, L"illegal path character", -1);
 STATUS_DEFINE(ERR, PATH_CHARACTER_UNSAFE, L"unsafe path character", -1);
 STATUS_DEFINE(ERR, PATH_NOT_FOUND, L"path not found", -1);
+STATUS_DEFINE(ERR, PATH_MIXED_SEPARATORS, L"path contains both slash and backslash separators", -1);
 
 
 static bool path_is_dir_sep(wchar_t c)

@@ -448,8 +448,8 @@ static void InitVfs(const CmdLineArgs& args)
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount(L"screenshots/", paths.Data()/"screenshots/");
-	const OsPath readonlyConfig = paths.RData()/"config/";
+	g_VFS->Mount(L"screenshots/", paths.Data()/"screenshots"/"");
+	const OsPath readonlyConfig = paths.RData()/"config"/"";
 	g_VFS->Mount(L"config/", readonlyConfig);
 	if(readonlyConfig != paths.Config())
 		g_VFS->Mount(L"config/", paths.Config());
