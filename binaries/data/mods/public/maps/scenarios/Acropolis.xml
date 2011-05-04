@@ -3,12 +3,12 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>stormy</SkySet>
-		<SunColour r="1.0332" g="0.891391" b="0.68475"/>
-		<SunElevation angle="0.506214"/>
-		<SunRotation angle="0.374291"/>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="0.92549" g="0.835294" b="0.741176"/>
+		<SunElevation angle="0.665748"/>
+		<SunRotation angle="-0.263845"/>
 		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
+		<UnitsAmbientColour r="0.384314" g="0.423529" b="0.458824"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="486.203" y="130.525" z="342.233"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="499.272" y="143.81" z="328.387"/>
+		<Rotation angle="0.00126462"/>
+		<Declination angle="0.521986"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {

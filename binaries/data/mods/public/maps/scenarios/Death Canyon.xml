@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="669.244" y="171.537" z="615.449"/>
+		<Position x="683.522" y="171.587" z="604.284"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -17226,6 +17226,36 @@
 			<Template>other/obelisk</Template>
 			<Player>1</Player>
 			<Position x="460.09284" z="822.5735"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3385">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="816.79969" z="737.60584"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3386">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="879.39399" z="742.40131"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3387">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="940.48212" z="634.23023"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3388">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="237.62107" z="386.38209"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3389">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="497.07953" z="43.51615"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3390">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="521.22083" z="187.10917"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
