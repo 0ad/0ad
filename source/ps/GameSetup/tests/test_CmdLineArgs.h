@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 
 #include "ps/GameSetup/CmdLineArgs.h"
 
-class TestCmdLineArgs : public CxxTest::TestSuite 
+class TestCmdLineArgs : public CxxTest::TestSuite
 {
 public:
 	void test_has()
@@ -78,9 +78,13 @@ public:
 	{
 		const char* argv[] = { "program" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
-		TS_ASSERT_STR_EQUALS(c.GetArg0(), "program");
+		TS_ASSERT_WSTR_EQUALS(c.GetArg0().string(), L"program");
 
 		CmdLineArgs c2(0, NULL);
-		TS_ASSERT_STR_EQUALS(c2.GetArg0(), "");
+		TS_ASSERT_WSTR_EQUALS(c2.GetArg0().string(), L"");
+
+		const char* argv3[] = { "ab/cd\\ef\\gh/../ij" };
+		CmdLineArgs c3(ARRAY_SIZE(argv3), argv3);
+		TS_ASSERT_WSTR_EQUALS(c3.GetArg0().string(), L"ab/cd/ef/gh/../ij");
 	}
 };
