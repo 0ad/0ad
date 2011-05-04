@@ -35,7 +35,7 @@ ClumpPlacer.prototype.place = function(constraint)
 	var gotRet = new Array(size);
 	for (var i = 0; i < size; ++i)
 	{
-		gotRet[i] = new Uint8Array(size);			// bool / uint8
+		gotRet[i] = new Uint8Array(Math.floor(size));			// bool / uint8	// HACK: typed arrays require integer arguments
 	}
 	
 	var radius = sqrt(this.size / PI);
@@ -49,9 +49,9 @@ ClumpPlacer.prototype.place = function(constraint)
 		ctrlPts = Math.floor(radius * 2 * PI) + 1;
 	}
 	
-	var noise = new Float32Array(intPerim);			//float32
-	var ctrlCoords = new Float32Array(ctrlPts+1);	//float32
-	var ctrlVals = new Float32Array(ctrlPts+1);		//float32
+	var noise = new Float32Array(Math.floor(intPerim));			//float32	// HACK: typed arrays require integer arguments
+	var ctrlCoords = new Float32Array(Math.floor(ctrlPts+1));	//float32	// HACK: typed arrays require integer arguments
+	var ctrlVals = new Float32Array(Math.floor(ctrlPts+1));		//float32	// HACK: typed arrays require integer arguments
 
 	// Generate some interpolated noise
 	for (var i=0; i < ctrlPts; i++)

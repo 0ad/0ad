@@ -23,11 +23,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include <boost/random/linear_congruential.hpp>
-#include <boost/unordered_map.hpp>
 
-#include <set>
-
-typedef boost::unordered_map<VfsPath, std::wstring> ScriptFilesMap;
 
 class CMapGeneratorWorker;
 
@@ -80,8 +76,6 @@ private:
  * - Initialize and constructor/destructor must be called from the main thread.
  * - ScriptInterface created and destroyed by thread
  * - StructuredClone used to return JS map data - jsvals can't be used across threads/runtimes
- * - VFS is not threadsafe, so preload all random map scripts in the main thread for later use
- *		by the worker
  */
 class CMapGeneratorWorker
 {
@@ -100,7 +94,7 @@ public:
 	/**
 	 * Get status of the map generator thread
 	 *
-	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 when 
+	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 on error 
 	 */
 	int GetProgress();
 
@@ -133,15 +127,9 @@ private:
 	shared_ptr<ScriptInterface::StructuredClone> m_MapData;
 	boost::rand48 m_MapGenRNG;
 	int m_Progress;
-	VfsPath m_ScriptPath;
 	ScriptInterface* m_ScriptInterface;
+	VfsPath m_ScriptPath;
 	std::string m_Settings;
-	
-	// Since VFS is not threadsafe, use this map to store preloaded scripts
-	ScriptFilesMap m_ScriptFiles;
-
-	// callback for VFS preloading
-	static Status PreloadScript(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
 
 // Thread
 	static void* RunThread(void* data);

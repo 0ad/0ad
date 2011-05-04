@@ -387,6 +387,63 @@ function getCivCode(player)
 	return g_MapSettings.PlayerData[player].Civ;
 }
 
+function getStartingEntities(player)
+{	
+	// This is a temporary hack until map generator has a LoadCivData method
+	var civStartingEntities = {
+		"celt" : [
+			{
+				"Template": "structures/celt_civil_centre" 
+			},
+			{
+				"Template": "units/celt_support_female_citizen",
+				"Count": 4
+			},
+			{
+				"Template": "units/celt_infantry_spearman_b",
+				"Count": 4 
+			},
+			{
+				"Template": "units/celt_cavalry_swordsman_b" 
+			}
+		],
+		"hele" : [
+			{
+				"Template": "structures/hele_civil_centre"
+			},
+			{
+				"Template": "units/hele_support_female_citizen",
+				"Count": 4
+			},
+			{
+				"Template": "units/hele_infantry_spearman_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/hele_cavalry_swordsman_b"
+			}
+		],
+		"iber" : [
+			{
+				"Template": "structures/iber_civil_centre"
+			},
+			{
+				"Template": "units/iber_support_female_citizen",
+				"Count": 4
+			},
+			{
+				"Template": "units/iber_infantry_spearman_b",
+				"Count": 4
+			},
+			{
+				"Template": "units/iber_cavalry_spearman_b"
+			}
+		]
+	};
+	
+	return civStartingEntities[getCivCode(player)];
+}
+
 function getHeight(x, z)
 {
 	return g_Map.getHeight(x, z);

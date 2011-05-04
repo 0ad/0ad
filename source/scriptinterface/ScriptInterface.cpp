@@ -808,8 +808,6 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 {
-	ENSURE(ThreadUtil::IsMainThread()); // VFS isn't thread-safe
-
 	if (!VfsFileExists(g_VFS, path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
@@ -896,8 +894,6 @@ CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
 
 CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 {
-	ENSURE(ThreadUtil::IsMainThread()); // VFS isn't thread-safe
-
 	if (!VfsFileExists(g_VFS, path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());

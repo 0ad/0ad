@@ -42,10 +42,6 @@ function InitMap()
 	log("Creating new map...");
 	var terrain = createTerrain(g_MapSettings.BaseTerrain);
 	
-	// XXX: Temporary hack to keep typed arrays from complaining about invalid arguments,
-	//		until SpiderMonkey gets upgraded
-	g_MapSettings.Size = Math.floor(g_MapSettings.Size);
-	
 	g_Map = new Map(g_MapSettings.Size, g_MapSettings.BaseHeight);
 	g_Map.initTerrain(terrain);
 }

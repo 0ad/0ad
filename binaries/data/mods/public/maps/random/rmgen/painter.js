@@ -69,8 +69,8 @@ LayeredPainter.prototype.paint = function(area)
 	// init typed arrays
 	for (var i = 0; i < size; ++i)
 	{
-		saw[i] = new Uint8Array(size);		// bool / uint8
-		dist[i] = new Uint16Array(size);		// uint16
+		saw[i] = new Uint8Array(Math.floor(size));		// bool / uint8	// HACK: typed arrays require integer arguments
+		dist[i] = new Uint16Array(Math.floor(size));	// uint16	// HACK: typed arrays require integer arguments
 	}
 
 	// Point queue (implemented with array)
@@ -221,10 +221,10 @@ SmoothElevationPainter.prototype.paint = function(area)
 	// init typed arrays
 	for (var i = 0; i < mapSize; ++i)
 	{
-		saw[i] = new Uint8Array(mapSize);		// bool / uint8
-		dist[i] = new Uint16Array(mapSize);		// uint16
-		gotHeightPt[i] = new Uint8Array(mapSize);	// bool / uint8
-		newHeight[i] = new Float32Array(mapSize);	// float32
+		saw[i] = new Uint8Array(Math.floor(mapSize));			// bool / uint8	// HACK: typed arrays require integer arguments
+		dist[i] = new Uint16Array(Math.floor(mapSize));			// uint16	// HACK: typed arrays require integer arguments
+		gotHeightPt[i] = new Uint8Array(Math.floor(mapSize));	// bool / uint8	// HACK: typed arrays require integer arguments
+		newHeight[i] = new Float32Array(Math.floor(mapSize));	// float32	// HACK: typed arrays require integer arguments
 	}
 	
 	var length = pts.length;

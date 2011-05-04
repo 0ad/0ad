@@ -20,9 +20,9 @@ function Map(size, baseHeight)
 	
 	for (var i = 0; i < size; i++)
 	{
-		this.texture[i] = new Uint16Array(size);		// uint16 - texture IDs
-		this.terrainObjects[i] = new Array(size);		// array of entities
-		this.area[i] = new Uint16Array(size);			// uint16 - area IDs
+		this.texture[i] = new Uint16Array(Math.floor(size));	// uint16 - texture IDs	// HACK: typed arrays require integer arguments
+		this.terrainObjects[i] = new Array(size);				// array of entities
+		this.area[i] = new Uint16Array(Math.floor(size));		// uint16 - area IDs	// HACK: typed arrays require integer arguments
 		
 		for (var j = 0; j < size; j++)
 		{
@@ -35,7 +35,7 @@ function Map(size, baseHeight)
 	this.height = new Array(mapSize);
 	for (var i = 0; i < mapSize; i++)
 	{
-		this.height[i] = new Float32Array(mapSize);		// float32
+		this.height[i] = new Float32Array(Math.floor(mapSize));		// float32	// HACK: typed arrays require integer arguments
 		
 		for (var j = 0; j < mapSize; j++)
 		{	// Initialize height map to baseHeight

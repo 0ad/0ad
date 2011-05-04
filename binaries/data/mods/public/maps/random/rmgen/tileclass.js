@@ -13,7 +13,7 @@ function RangeOp(size)
 		this.nn *= 2;
 	}
 	
-	this.vals = new Int16Array(2*this.nn);	// int16
+	this.vals = new Int16Array(Math.floor(2*this.nn));	// int16	// HACK: typed arrays require integer arguments
 }
 
 RangeOp.prototype.set = function(pos, amt)
@@ -78,7 +78,7 @@ function TileClass(size, id)
 	
 	for (var i=0; i < size; ++i)
 	{
-		this.inclusionCount[i] = new Int16Array(size); //int16		
+		this.inclusionCount[i] = new Int16Array(Math.floor(size)); //int16	// HACK: typed arrays require integer arguments
 		this.rangeCount[i] = new RangeOp(size);
 	}
 }

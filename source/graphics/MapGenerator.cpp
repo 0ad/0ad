@@ -19,10 +19,9 @@
 
 #include "MapGenerator.h"
 
-#include "lib/file/vfs/vfs_path.h"
 #include "lib/timer.h"
-#include "lib/utf8.h"
 #include "ps/CLogger.h"
+
 
 // TODO: what's a good default? perhaps based on map size
 #define RMS_RUNTIME_SIZE 96 * 1024 * 1024
@@ -48,9 +47,6 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 	m_Progress = 1;
 	m_ScriptPath = scriptFile;
 	m_Settings = settings;
-
-	// Preload random map and library scripts
-	fs_util::ForEachFile(g_VFS, L"maps/random/", PreloadScript, (uintptr_t)this, L"*.js", fs_util::DIR_RECURSIVE);
 
 	// Launch the worker thread
 	int ret = pthread_create(&m_WorkerThread, NULL, &RunThread, this);
@@ -121,20 +117,15 @@ bool CMapGeneratorWorker::Run()
 		return false;
 	}
 
-	// Find RMS file and run
-	ScriptFilesMap::iterator it = m_ScriptFiles.find(m_ScriptPath);
-	if (it != m_ScriptFiles.end())
+	// Load RMS
+	LOGMESSAGE(L"Loading RMS '%ls'", m_ScriptPath.string().c_str());
+	if (!m_ScriptInterface->LoadGlobalScriptFile(m_ScriptPath))
 	{
-		LOGMESSAGE(L"CMapGeneratorWorker::Run: Loading RMS '%ls'", m_ScriptPath.string().c_str());
-		// Note: we're not really accessing the file here
-		if (m_ScriptInterface->LoadGlobalScript(m_ScriptPath, it->second))
-		{
-			return true;
-		}
+		LOGERROR(L"CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string().c_str());
+		return false;
 	}
 
-	LOGERROR(L"CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string().c_str());
-	return false;
+	return true;
 }
 
 int CMapGeneratorWorker::GetProgress()
@@ -192,63 +183,37 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	// Mark this as loaded, to prevent it recursively loading itself
 	m_LoadedLibraries.insert(libraryName);
 
-	LOGMESSAGE(L"Loading '%ls' library", libraryName.c_str());
+	VfsPath path = L"maps/random/" + libraryName + L"/";
+	VfsPaths pathnames;
 
-	std::wstring libraryPath = L"maps/random/" + libraryName + L"/";
-
-	// Iterate preloaded script map, running library scripts
-	for (ScriptFilesMap::iterator it = m_ScriptFiles.begin(); it != m_ScriptFiles.end(); ++it)
+	// Load all scripts in mapgen directory
+	Status ret = fs_util::GetPathnames(g_VFS, path, L"*.js", pathnames);
+	if (ret == INFO::OK)
 	{
-		std::wstring path = it->first.string();
-		if (path.find(libraryPath) == 0)
+		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 		{
-			// This script is part of the library, so load it
-			// Note: we're not really accessing the file here
-			if (m_ScriptInterface->LoadGlobalScript(path, it->second))
+			LOGMESSAGE(L"Loading map generator script '%ls'", it->string().c_str());
+
+			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
 			{
-				LOGMESSAGE(L"Successfully loaded library script '%ls'", path.c_str());
-			}
-			else
-			{
-				// Script failed to run
-				LOGERROR(L"Failed loading library script '%ls'", path.c_str());
+				LOGERROR(L"CMapGeneratorWorker::LoadScripts: Failed to load script '%ls'", it->string().c_str());
 				return false;
 			}
 		}
+	}
+	else
+	{
+		// Some error reading directory
+		wchar_t error[200];
+		LOGERROR(L"CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		return false;
 	}
 
 	return true;
 }
 
-Status CMapGeneratorWorker::PreloadScript(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
-{
-	CMapGeneratorWorker* self = (CMapGeneratorWorker*)cbData;
-
-	if (!VfsFileExists(g_VFS, pathname))
-	{
-		// This should never happen
-		LOGERROR(L"CMapGeneratorWorker::PreloadScript: File '%ls' does not exist", pathname.string().c_str());
-		return ERR::VFS_FILE_NOT_FOUND;
-	}
-
-	CVFSFile file;
-
-	PSRETURN ret = file.Load(g_VFS, pathname);
-	if (ret != PSRETURN_OK)
-	{
-		LOGERROR(L"CMapGeneratorWorker::PreloadScript: Failed to load file '%ls', error=%hs", pathname.string().c_str(), GetErrorString(ret));
-		return ERR::FAIL;
-	}
-
-	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
-
-	self->m_ScriptFiles.insert(std::make_pair(pathname, wstring_from_utf8(content)));
-	return INFO::OK;
-}
-
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-
 
 CMapGenerator::CMapGenerator() : m_Worker(new CMapGeneratorWorker())
 {

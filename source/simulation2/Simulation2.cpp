@@ -572,7 +572,7 @@ std::vector<std::string> CSimulation2::GetCivData()
 			PSRETURN ret = file.Load(g_VFS, *it);
 			if (ret != PSRETURN_OK)
 			{
-				LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+				LOGERROR(L"CSimulation2::GetCivData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
 			}
 			else
 			{
@@ -584,10 +584,9 @@ std::vector<std::string> CSimulation2::GetCivData()
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR(L"CSimulation2::GetCivData: Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 
-	// Convert from vector to array and stringify
 	return data;
 }
 

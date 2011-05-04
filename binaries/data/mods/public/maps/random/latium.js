@@ -39,8 +39,9 @@ const oChicken = "gaia/fauna_chicken";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_sheep";
-const oStone = "gaia/geology_stone_mediterranean";
-const oMetal = "gaia/geology_metal_mediterranean_slabs";
+const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
+const oStoneSmall = "gaia/geology_stone_mediterranean";
+const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
 
 // decorative props
 const aBushLargeDry = "actor|props/flora/bush_medit_la_dry.xml";
@@ -137,16 +138,16 @@ function playerNearness(x, z)
 
 log("Painting elevation...");
 
-var noise0 = new Noise2D(4 * mapSize/128);
-var noise1 = new Noise2D(8 * mapSize/128);
-var noise2 = new Noise2D(15 * mapSize/128);
+var noise0 = new Noise2D(scaleByMapSize(4, 16));
+var noise1 = new Noise2D(scaleByMapSize(8, 32));
+var noise2 = new Noise2D(scaleByMapSize(15, 60));
 
-var noise2a = new Noise2D(20 * mapSize/128);
-var noise2b = new Noise2D(35 * mapSize/128);
+var noise2a = new Noise2D(scaleByMapSize(20, 80));
+var noise2b = new Noise2D(scaleByMapSize(35, 140));
 
-var noise3 = new Noise2D(4 * mapSize/128);
-var noise4 = new Noise2D(6 * mapSize/128);
-var noise5 = new Noise2D(11 * mapSize/128);
+var noise3 = new Noise2D(scaleByMapSize(4, 16));
+var noise4 = new Noise2D(scaleByMapSize(6, 24));
+var noise5 = new Noise2D(scaleByMapSize(11, 44));
 
 for (var ix = 0; ix <= mapSize; ix++)
 {
@@ -226,13 +227,13 @@ for (var ix = 0; ix <= mapSize; ix++)
 
 log("Painting terrain...");
 
-var noise6 = new Noise2D(10 * mapSize/128);
-var noise7 = new Noise2D(20 * mapSize/128);
+var noise6 = new Noise2D(scaleByMapSize(10, 40));
+var noise7 = new Noise2D(scaleByMapSize(20, 80));
 
-var noise8 = new Noise2D(13 * mapSize/128);
-var noise9 = new Noise2D(26 * mapSize/128);
+var noise8 = new Noise2D(scaleByMapSize(13, 52));
+var noise9 = new Noise2D(scaleByMapSize(26, 104));
 
-var noise10 = new Noise2D(50 * mapSize/128);
+var noise10 = new Noise2D(scaleByMapSize(50, 200));
 
 for (var ix = 0; ix < mapSize; ix++)
 {
@@ -251,6 +252,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		// find min and max height
 		var maxH = Math.max(h00, h01, h10, h11);
 		var minH = Math.min(h00, h01, h10, h11);
+		var diffH = maxH - minH;
 		
 		// figure out if we're at the top of a cliff using min adjacent height
 		var minAdjHeight = minH;
@@ -306,12 +308,12 @@ for (var ix = 0; ix < mapSize; ix++)
 		}
 		
 		// cliffs
-		if (maxH - minH > 2.9 && minH > -7)
+		if (diffH > 2.9 && minH > -7)
 		{
 			t = tCliff;
 			addToClass(ix, iz, clCliff);
 		}
-		else if ((maxH - minH > 2.5 && minH > -5) || (maxH-minAdjHeight > 2.9 && minH > 0) )
+		else if ((diffH > 2.5 && minH > -5) || ((maxH - minAdjHeight) > 2.9 && minH > 0) )
 		{
 			if (minH < -1)
 				t = tCliff;
@@ -324,11 +326,12 @@ for (var ix = 0; ix < mapSize; ix++)
 		}
 		
 		// forests
-		if (maxH - minH < 1 && minH > 1)
+		if (diffH < 1 && minH > 1)
 		{
 			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
 			
-			if (forestNoise > 0)
+			// Thin out trees a bit
+			if (forestNoise > 0 && randFloat() < 0.5)
 			{
 				if (minH > 5)
 				{
@@ -357,23 +360,23 @@ for (var ix = 0; ix < mapSize; ix++)
 			var grassNoise = (noise8.get(x,z) + 0.6*noise9.get(x,z)) / 1.6;
 			if (grassNoise < 0.3)
 			{
-				t = (maxH - minH > 1.2) ? tDirtCliff : tDirt;
+				t = (diffH > 1.2) ? tDirtCliff : tDirt;
 			}
 			else if (grassNoise < 0.34)
 			{
-				t = (maxH - minH > 1.2) ? tGrassCliff : tGrassDry;
-				if (maxH - minH < 0.5 && randFloat() < 0.02)
+				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
+				if (diffH < 0.5 && randFloat() < 0.02)
 				{
 					placeObject(ix+randFloat(), iz+randFloat(), aGrassDry, 0, randFloat(0, TWO_PI));
 				}
 			}
 			else if (grassNoise > 0.61)
 			{
-				t = ((maxH - minH) > 1.2 ? tGrassRock : tGrassShrubs);
+				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
 			else
 			{
-				if ((maxH - minH) < 0.5 && randFloat() < 0.02)
+				if (diffH < 0.5 && randFloat() < 0.02)
 				{
 					placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat(0, TWO_PI));
 				}
@@ -401,35 +404,31 @@ for (var i = 1; i <= numPlayers; i++)
 	var painter = new LayeredPainter([tGrass, tCity], [1]);
 	createArea(placer, painter, null);
 	
-	// create TC and starting units
-	// TODO: Get civ specific starting units
+	// get civ specific starting entities
+	var civEntities = getStartingEntities(i-1);
+	
 	// create the TC
-	var civ = getCivCode(i-1);
 	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject("structures/"+civ+"_civil_centre", 1,1, 0,0)],
+		[new SimpleObject(civEntities[0].Template, 1,1, 0,0)],
 		true, null, ix, iz
 	);
 	createObjectGroup(group, i);
 	
 	// create starting units
-	var uDist = 7;
+	var uDist = 8;
 	var uAngle = randFloat(0, TWO_PI);
-	var ux = round(fx + uDist * cos(uAngle));
-	var uz = round(fz + uDist * sin(uAngle));
-	group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject("units/"+civ+"_support_female_citizen", 4,4, 1,2)],
-		true, null, ux, uz
-	);
-	createObjectGroup(group, i);
-	
-	uAngle += PI/4;
-	ux = round(fx + uDist * cos(uAngle));
-	uz = round(fz + uDist * sin(uAngle));
-	group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject("units/"+civ+"_infantry_javelinist_a", 4,4, 1,2)],
-		true, null, ux, uz
-	);
-	createObjectGroup(group, i);
+	for (var j = 1; j < civEntities.length; ++j)
+	{
+		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
+		var ux = round(fx + uDist * cos(uAngle));
+		var uz = round(fz + uDist * sin(uAngle));
+		group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
+			[new SimpleObject(civEntities[j].Template, count,count, 1,ceil(count/2))],
+			true, null, ux, uz
+		);
+		createObjectGroup(group, i);
+		uAngle += PI/4;
+	}
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)
@@ -466,7 +465,7 @@ for (var i = 1; i <= numPlayers; i++)
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oMetal, 1,1, 0,0)],
+		[new SimpleObject(oMetalLarge, 1,1, 0,0)],
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
@@ -476,7 +475,7 @@ for (var i = 1; i <= numPlayers; i++)
 	mX = round(fx + mDist * cos(mAngle));
 	mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oStone, 5,5, 0,3)],
+		[new SimpleObject(oStoneLarge, 1,1, 0,2)],
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
@@ -536,20 +535,20 @@ createObjectGroups(group, 0,
 
 log("Creating stone mines...");
 // create stone
-group = new SimpleGroup([new SimpleObject(oStone, 3,5, 0,2)], true, clStone);
+group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,8), new SimpleObject(oStoneLarge, 0,1, 0,8)], true, clStone);
 createObjectGroups(group, 0,
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clStone, 15), 
 	 borderClasses(clCliff, 0, 5)],
-	8 * numPlayers, 100
+	scaleByMapSize(1,4) * numPlayers, 100
 );
 
 log("Creating metal mines...");
 // create metal
-group = new SimpleGroup([new SimpleObject(oMetal, 1,1, 0,2)], true, clMetal);
+group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clMetal, 15, clStone, 5), 
 	 borderClasses(clCliff, 0, 5)],
-	scaleByMapSize(8,32) * numPlayers, 100
+	scaleByMapSize(1,4) * numPlayers, 100
 );
 
 log("Creating sheep...");
@@ -564,7 +563,7 @@ log("Creating fish...");
 // create fish
 group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood);
 createObjectGroups(group, 0,
-	[borderClasses(clWater, 0, 7), avoidClasses(clFood, 8, clCliff, 0)],
+	[borderClasses(clWater, 7, 0), avoidClasses(clFood, 8, clCliff, 0)],
 	3 * numPlayers, 50
 );
 

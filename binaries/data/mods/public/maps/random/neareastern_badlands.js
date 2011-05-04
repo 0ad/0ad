@@ -25,8 +25,9 @@ const oGazelle = "gaia/fauna_gazelle";
 const oGiraffe = "gaia/fauna_giraffe";
 const oGoat = "gaia/fauna_goat";
 const oWildebeest = "gaia/fauna_wildebeest";
-const oStone = "gaia/geology_stone_desert_small";
-const oMetal = "gaia/geology_metal_desert_slabs";
+const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
+const oStoneSmall = "gaia/geology_stone_desert_small";
+const oMetalLarge = "gaia/geology_metal_desert_slabs";
 const oDatePalm = "gaia/flora_tree_date_palm";
 const oSDatePalm = "gaia/flora_tree_senegal_date_palm";
 
@@ -106,33 +107,31 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tCity, tCityPlaza], [3]);
 	createArea(placer, painter, null);
 	
-	// create the TC and citizens
-	var civ = getCivCode(i);
-	var group = new SimpleGroup(	// elements (type, count, distance)
-		[new SimpleObject("structures/"+civ+"_civil_centre", 1,1, 0,0)],
-		true, null,	ix, iz
+	// get civ specific starting entities
+	var civEntities = getStartingEntities(i);
+	
+	// create the TC
+	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
+		[new SimpleObject(civEntities[0].Template, 1,1, 0,0)],
+		true, null, ix, iz
 	);
 	createObjectGroup(group, i+1);
 	
 	// create starting units
-	var uDist = 7;
+	var uDist = 8;
 	var uAngle = playerAngle[i] + PI + randFloat(-PI/8, PI/8);
-	var ux = round(fx + uDist * cos(uAngle));
-	var uz = round(fz + uDist * sin(uAngle));
-	group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject("units/"+civ+"_support_female_citizen", 4,4, 1,2)],
-		true, null, ux, uz
-	);
-	createObjectGroup(group, i+1);
-	
-	uAngle += PI/4;
-	ux = round(fx + uDist * cos(uAngle));
-	uz = round(fz + uDist * sin(uAngle));
-	group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject("units/"+civ+"_infantry_javelinist_a", 4,4, 1,2)],
-		true, null, ux, uz
-	);
-	createObjectGroup(group, i+1);
+	for (var j = 1; j < civEntities.length; ++j)
+	{
+		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
+		var ux = round(fx + uDist * cos(uAngle));
+		var uz = round(fz + uDist * sin(uAngle));
+		group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
+			[new SimpleObject(civEntities[j].Template, count,count, 1,ceil(count/2))],
+			true, null, ux, uz
+		);
+		createObjectGroup(group, i+1);
+		uAngle += PI/4;
+	}
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)
@@ -169,7 +168,7 @@ for (var i = 0; i < numPlayers; i++)
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oMetal, 1,1, 0,0), new RandomObject(aBushes, 2,4, 0,2)],
+		[new SimpleObject(oMetalLarge, 1,1, 0,0), new RandomObject(aBushes, 2,4, 0,2)],
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
@@ -179,7 +178,7 @@ for (var i = 0; i < numPlayers; i++)
 	mX = round(fx + mDist * cos(mAngle));
 	mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oStone, 5,5, 0,3), new RandomObject(aBushes, 2,4, 0,2)],
+		[new SimpleObject(oStoneLarge, 1,1, 0,2), new RandomObject(aBushes, 2,4, 0,2)],
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
@@ -228,7 +227,7 @@ log("Creating oasis...");
 var oRadius = scaleByMapSize(14, 40);
 placer = new ClumpPlacer(PI*oRadius*oRadius, 0.6, 0.15, 0, mapSize/2, mapSize/2);
 painter = new LayeredPainter([[tSand, pForest], [tGrassSand25, pForestOasis], tGrassSand25, tShore, tWaterDeep], [2, 3, 1, 1]);
-elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -12, 7);
+elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -11, 8);
 createArea(placer, [painter, elevationPainter, paintClass(clForest)], null);
 
 // create oasis wildlife
@@ -240,7 +239,7 @@ for (var i = 0; i < num; ++i)
 	var r = 0;
 	var angle = TWO_PI / num * i;
 	do {
-		// Work outward until we find 
+		// Work outward until constraint met
 		var gx = round(halfSize + r * cos(angle));
 		var gz = round(halfSize + r * sin(angle));
 		++r;
@@ -262,7 +261,7 @@ for (var i = 0; i < num; ++i)
 	var r = 0;
 	var angle = TWO_PI / num * i;
 	do {
-		// Work outward until we find 
+		// Work outward until constraint met 
 		var gx = round(halfSize + r * cos(angle));
 		var gz = round(halfSize + r * sin(angle));
 		++r;
@@ -310,22 +309,18 @@ RMS.SetProgress(70);
 
 log("Creating stone mines...");
 // create stone
-group = new SimpleGroup([new SimpleObject(oStone, 3,5, 0,8), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
-createObjectGroupsByAreas(group, 0,
-	[avoidClasses(clForest, 2, clPlayer, 0, clRock, 10), 
-	 borderClasses(clHill1, 0, 4)],
-	8 * numPlayers, 100,
-	hillAreas
+group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,8), new SimpleObject(oStoneLarge, 0,1, 0,8), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
+createObjectGroups(group, 0,
+	[avoidClasses(clForest, 2, clPlayer, 10, clRock, 10, clHill1, 0)],
+	scaleByMapSize(1,4) * numPlayers, 100
 );
 
 log("Creating metal mines...");
 // create metal
-group = new SimpleGroup([new SimpleObject(oMetal, 1,1, 0,8), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
-createObjectGroupsByAreas(group, 0,
-	[avoidClasses(clForest, 2, clPlayer, 0, clMetal, 10, clRock, 5), 
-	 borderClasses(clHill1, 0, 4)],
-	scaleByMapSize(8,32) * numPlayers, 100,
-	hillAreas
+group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,8), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
+createObjectGroups(group, 0,
+	[avoidClasses(clForest, 2, clPlayer, 10, clMetal, 10, clRock, 5, clHill1, 0)],
+	scaleByMapSize(1,4) * numPlayers, 100
 );
 
 // create decorative rocks for hills
@@ -336,7 +331,7 @@ group = new SimpleGroup(
 );
 createObjectGroupsByAreas(group, 0,
 	borderClasses(clHill1, 0, 3),
-	scaleByMapSize(40,100), 100,
+	scaleByMapSize(40,200), 50,
 	hillAreas
 );
 
