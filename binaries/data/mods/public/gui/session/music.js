@@ -3,14 +3,46 @@ var g_CurrentAmbient = null;
 
 var g_MusicGain = 0.3;
 
+const MUSIC_PATH = "audio/music/";
+var g_PeaceTracks = [];
+var g_BattleTracks = [];
+
 /*
  * At some point, this ought to be extended to do dynamic music selection and
  * crossfading - it at least needs to pick the music track based on the player's
  * civ and peace/battle
  */
 
-function startMusic()
+function storeTracks(civMusic)
 {
+	for each (var music in civMusic)
+	{
+		if ("peace" == music["Type"])
+		{
+			g_PeaceTracks.push(music["File"]);
+		}
+		else if ("battle" == music["Type"])
+		{
+			g_BattleTracks.push(music["File"]);
+		}
+	}
+}
+
+function getRandomPeaceTrack()
+{
+	return MUSIC_PATH + g_PeaceTracks[getRandom(0, g_PeaceTracks.length-1)];
+}
+
+function getRandomBattleTrack()
+{
+	return MUSIC_PATH + g_BattleTracks[getRandom(0, g_BattleTracks.length-1)];
+}
+
+function startMusic(civMusic)
+{
+	storeTracks(civMusic);
+
+
 	g_CurrentAmbient = new Sound("audio/ambient/dayscape/day_temperate_gen_03.ogg");
 	if (g_CurrentAmbient)
 	{
@@ -18,7 +50,9 @@ function startMusic()
 		g_CurrentAmbient.setGain(0.8);
 	}
 
-	g_CurrentMusic = new Sound("audio/music/germanic_peace_1.ogg");
+	//g_CurrentMusic = new Sound("audio/music/germanic_peace_1.ogg");
+	
+	g_CurrentMusic = new Sound(getRandomPeaceTrack());
 	if (g_CurrentMusic)
 	{
 		g_CurrentMusic.loop();
@@ -31,7 +65,7 @@ function switchMusic(track, fadeInPeriod)
 	if (g_CurrentMusic)
 		g_CurrentMusic.fade(-1, 0.0, 5.0);
 
-	g_CurrentMusic = new Sound("audio/music/" + track + ".ogg");
+	g_CurrentMusic = new Sound(MUSIC_PATH + track + ".ogg");
 
 	if (g_CurrentMusic)
 	{

@@ -52,16 +52,6 @@ function GetTemplateData(templateName)
 // Init
 function init(initData, hotloadData)
 {
-	if (hotloadData)
-	{
-		g_Selection.selected = hotloadData.selection;
-	}
-	else 
-	{
-		// Starting for the first time:
-		startMusic();
-	}
-
 	if (initData)
 	{
 		g_IsNetworked = initData.isNetworked; // Set network mode
@@ -81,7 +71,16 @@ function init(initData, hotloadData)
 	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia" };
 
 	getGUIObjectByName("civIcon").sprite = "stretched:"+g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
-	
+
+	if (hotloadData)
+	{
+		g_Selection.selected = hotloadData.selection;
+	}
+	else 
+	{
+		startMusic(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music); // Starting for the first time:
+	}
+
 	onSimulationUpdate();
 
 	// Report the performance after 5 seconds (when we're still near
