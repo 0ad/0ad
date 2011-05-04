@@ -42,15 +42,12 @@ function startMusic(civMusic)
 {
 	storeTracks(civMusic);
 
-
 	g_CurrentAmbient = new Sound("audio/ambient/dayscape/day_temperate_gen_03.ogg");
 	if (g_CurrentAmbient)
 	{
 		g_CurrentAmbient.loop();
 		g_CurrentAmbient.setGain(0.8);
 	}
-
-	//g_CurrentMusic = new Sound("audio/music/germanic_peace_1.ogg");
 	
 	g_CurrentMusic = new Sound(getRandomPeaceTrack());
 	if (g_CurrentMusic)
