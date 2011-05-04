@@ -540,7 +540,7 @@
 					</object>
 					
 					<!-- Experience bar -->
-					<object size="46 0 58 100%" type="image" name="experience" tooltip="XP" tooltip_style="snToolTip">
+					<object size="46 0 58 100%" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
 						<object type="image" sprite="experienceBackground" ghost="true"/>
 						<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
