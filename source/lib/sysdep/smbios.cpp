@@ -126,7 +126,13 @@ static void Cleanup()	// called via atexit
 	stringStoragePos = 0;
 
 	// free each allocated structure
-#define STRUCTURE(name, id) SAFE_FREE(structures.name##_);
+#define STRUCTURE(name, id)\
+	while(structures.name##_)\
+	{\
+		name* next = structures.name##_->next;\
+		SAFE_FREE(structures.name##_);\
+		structures.name##_ = next;\
+	}
 	STRUCTURES
 #undef STRUCTURE
 }
@@ -417,7 +423,7 @@ static Status InitStructures()
 #endif
 
 	// (instead of counting the total string size, just use the
-	// SMBIOS size - typically 1-2 KB - as an upper bound.) 
+	// SMBIOS size - typically 1-2 KB - as an upper bound.)
 	stringStoragePos = stringStorage = (char*)calloc(table.size(), sizeof(char));	// freed in Cleanup
 	if(!stringStorage)
 		WARN_RETURN(ERR::NO_MEM);
