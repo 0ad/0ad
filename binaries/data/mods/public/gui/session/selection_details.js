@@ -45,7 +45,7 @@ function displaySingle(entState, template)
 	}
 
 	// Rank					
-	getGUIObjectByName("rankIcon").cell_id = getRankIconCellId(entState);							
+	getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);					
 								
 	// Hitpoints
 	var hitpoints = "";

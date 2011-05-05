@@ -359,16 +359,25 @@ function getEntityRankedName(entState)
 		return template.name.specific;
 }
 
-function getRankIconCellId(entState)
+function getRankIconSprite(entState)
 {
-	var template = GetTemplateData(entState.template)
-	var rank = entState.identity.rank;
-	if (rank)
+	if (entState.identity && entState.identity.rank && entState.identity.classes)
 	{
-		if (rank == "Elite")
-			return 0;
-		else if (rank == "Advanced")
-			return 1;
+		if ("Elite" == entState.identity.rank)
+		{
+			return "stretched:session/icons/single/rank3.png";
+		}
+		else if ("Advanced" == entState.identity.rank)
+		{
+			return "stretched:session/icons/single/rank2.png";
+		}
+		else if (entState.identity.classes &&
+			entState.identity.classes.length &&
+			-1 != entState.identity.classes.indexOf("CitizenSoldier"))
+		{
+			return "stretched:session/icons/single/rank1.png";
+		}
 	}
-	return -1;
+
+	return "";
 }
