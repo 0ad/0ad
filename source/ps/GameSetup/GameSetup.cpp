@@ -370,13 +370,13 @@ static size_t ChooseCacheSize()
 	// the cache reserves contiguous address space, which is a precious
 	// resource on 32-bit systems, so don't use too much:
 	if(ARCH_IA32 || sizeof(void*) == 4)
-		cache = std::min(cache, 200);
+		cache = std::min(cache, (ssize_t)200);
 
 	// try to leave over enough memory for the OS and game
 	cache = std::min(cache, total-os-game);
 
 	// always provide at least this much to ensure correct operation
-	cache = std::max(cache, 64);
+	cache = std::max(cache, (ssize_t)64);
 
 	debug_printf(L"Cache: %d (total: %d) MiB\n", cache, total);
 	return size_t(cache)*MiB;
