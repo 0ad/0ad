@@ -39,12 +39,14 @@
 #include "lib/file/vfs/vfs.h"
 extern PIVFS vfs;
 
-
-STATUS_DEFINE(ERR, SHDR_CREATE, L"Shader creation failed", -1);
-STATUS_DEFINE(ERR, SHDR_COMPILE, L"Shader compile failed", -1);
-STATUS_DEFINE(ERR, SHDR_NO_SHADER, L"Invalid shader reference", -1);
-STATUS_DEFINE(ERR, SHDR_LINK, L"Shader linking failed", -1);
-STATUS_DEFINE(ERR, SHDR_NO_PROGRAM, L"Invalid shader program reference", -1);
+static const StatusDefinition oglShaderStatusDefs[] = {
+	{ ERR::SHDR_CREATE,     L"Shader creation failed" },
+	{ ERR::SHDR_COMPILE,    L"Shader compile failed" },
+	{ ERR::SHDR_NO_SHADER,  L"Invalid shader reference" },
+	{ ERR::SHDR_LINK,       L"Shader linking failed" },
+	{ ERR::SHDR_NO_PROGRAM, L"Invalid shader program reference" }
+};
+STATUS_ADD_DEFINITIONS(oglShaderStatusDefs);
 
 
 // Convert a shader object type into a descriptive string.

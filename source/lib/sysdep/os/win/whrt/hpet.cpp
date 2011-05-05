@@ -153,7 +153,7 @@ private:
 
 		const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
 		if(!hpet)
-			return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)
+			return ERR::NOT_SUPPORTED;	// NOWARN (HPET not reported by BIOS)
 
 		if(hpet->baseAddress.addressSpaceId != ACPI_AS_MEMORY)
 			return ERR::NOT_SUPPORTED;	// NOWARN (happens on some BIOSes)

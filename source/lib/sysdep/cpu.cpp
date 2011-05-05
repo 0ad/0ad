@@ -27,9 +27,12 @@
 #include "precompiled.h"
 #include "lib/sysdep/cpu.h"
 
-STATUS_DEFINE(ERR, CPU_FEATURE_MISSING, L"This CPU doesn't support a required feature", -1);
-STATUS_DEFINE(ERR, CPU_UNKNOWN_OPCODE, L"Disassembly failed", -1);
-STATUS_DEFINE(ERR, CPU_UNKNOWN_VENDOR, L"CPU vendor unknown", -1);
+static const StatusDefinition cpuStatusDefinitions[] = {
+	{ ERR::CPU_FEATURE_MISSING, L"This CPU doesn't support a required feature" },
+	{ ERR::CPU_UNKNOWN_OPCODE, L"Disassembly failed" },
+	{ ERR::CPU_UNKNOWN_VENDOR, L"CPU vendor unknown" }
+};
+STATUS_ADD_DEFINITIONS(cpuStatusDefinitions);
 
 
 // ensure the actual pointer size matches expectations on the most common

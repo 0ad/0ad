@@ -39,14 +39,17 @@
 #include "tex_codec.h"
 
 
-STATUS_DEFINE(ERR,  TEX_FMT_INVALID, L"Invalid/unsupported texture format", -1);
-STATUS_DEFINE(ERR,  TEX_INVALID_COLOR_TYPE, L"Invalid color type", -1);
-STATUS_DEFINE(ERR,  TEX_NOT_8BIT_PRECISION, L"Not 8-bit channel precision", -1);
-STATUS_DEFINE(ERR,  TEX_INVALID_LAYOUT, L"Unsupported texel layout, e.g. right-to-left", -1);
-STATUS_DEFINE(ERR,  TEX_COMPRESSED, L"Unsupported texture compression", -1);
-STATUS_DEFINE(WARN, TEX_INVALID_DATA, L"Warning: invalid texel data encountered", -1);
-STATUS_DEFINE(ERR,  TEX_INVALID_SIZE, L"Texture size is incorrect", -1);
-STATUS_DEFINE(INFO, TEX_CODEC_CANNOT_HANDLE, L"Texture codec cannot handle the given format", -1);
+static const StatusDefinition texStatusDefinitions[] = {
+	{ ERR::TEX_FMT_INVALID, L"Invalid/unsupported texture format" },
+	{ ERR::TEX_INVALID_COLOR_TYPE, L"Invalid color type" },
+	{ ERR::TEX_NOT_8BIT_PRECISION, L"Not 8-bit channel precision" },
+	{ ERR::TEX_INVALID_LAYOUT, L"Unsupported texel layout, e.g. right-to-left" },
+	{ ERR::TEX_COMPRESSED, L"Unsupported texture compression" },
+	{ WARN::TEX_INVALID_DATA, L"Warning: invalid texel data encountered" },
+	{ ERR::TEX_INVALID_SIZE, L"Texture size is incorrect" },
+	{ INFO::TEX_CODEC_CANNOT_HANDLE, L"Texture codec cannot handle the given format" }
+};
+STATUS_ADD_DEFINITIONS(texStatusDefinitions);
 
 
 //-----------------------------------------------------------------------------

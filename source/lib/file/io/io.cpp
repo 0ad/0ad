@@ -25,7 +25,10 @@
 
 #include "lib/sysdep/rtl.h"
 
-STATUS_DEFINE(ERR, IO, L"Error during IO", EIO);
+static const StatusDefinition ioStatusDefinitions[] = {
+	{ ERR::IO, L"Error during IO", EIO }
+};
+STATUS_ADD_DEFINITIONS(ioStatusDefinitions);
 
 namespace io {
 

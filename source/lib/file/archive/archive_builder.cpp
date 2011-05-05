@@ -680,7 +680,7 @@ static Status build_mini_archive(const char* mini_archive_fn_fmt)
 	delete[] V_fns;
 	return INFO::OK;
 #else
-	return ERR::NOT_IMPLEMENTED;
+	return ERR::NOT_SUPPORTED;
 #endif
 }
 

@@ -419,7 +419,7 @@ static Status InitStructures()
 	RETURN_STATUS_IF_ERR(GetTable(table));
 #else
 	std::vector<u8> table;
-	return ERR::NOT_IMPLEMENTED;
+	return ERR::NOT_SUPPORTED;
 #endif
 
 	// (instead of counting the total string size, just use the

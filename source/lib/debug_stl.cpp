@@ -35,9 +35,11 @@
 
 #include "lib/regex.h"
 
-
-STATUS_DEFINE(ERR, STL_CNT_UNKNOWN, L"Unknown STL container type_name", -1);
-STATUS_DEFINE(ERR, STL_CNT_INVALID, L"Container type is known but contents are invalid", -1);
+static const StatusDefinition debugStlStatusDefinitions[] = {
+	{ ERR::STL_CNT_UNKNOWN, L"Unknown STL container type_name" },
+	{ ERR::STL_CNT_INVALID, L"Container type is known but contents are invalid" }
+};
+STATUS_ADD_DEFINITIONS(debugStlStatusDefinitions);
 
 
 // used in debug_stl_simplify_name.

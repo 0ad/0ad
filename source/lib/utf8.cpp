@@ -23,10 +23,13 @@
 #include "precompiled.h"
 #include "lib/utf8.h"
 
-STATUS_DEFINE(ERR, UTF8_SURROGATE, L"UTF-16 surrogate pairs aren't supported", -1);
-STATUS_DEFINE(ERR, UTF8_OUTSIDE_BMP, L"Code point outside BMP (> 0x10000)", -1);
-STATUS_DEFINE(ERR, UTF8_NONCHARACTER, L"Noncharacter (e.g. WEOF)", -1);
-STATUS_DEFINE(ERR, UTF8_INVALID_UTF8, L"Invalid UTF-8 sequence", -1);
+static const StatusDefinition utf8StatusDefinitions[] = {
+	{ ERR::UTF8_SURROGATE, L"UTF-16 surrogate pairs aren't supported" },
+	{ ERR::UTF8_OUTSIDE_BMP, L"Code point outside BMP (> 0x10000)" },
+	{ ERR::UTF8_NONCHARACTER, L"Noncharacter (e.g. WEOF)" },
+	{ ERR::UTF8_INVALID_UTF8, L"Invalid UTF-8 sequence" }
+};
+STATUS_ADD_DEFINITIONS(utf8StatusDefinitions);
 
 
 // adapted from http://unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c

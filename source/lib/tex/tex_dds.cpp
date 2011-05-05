@@ -550,7 +550,7 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 	{
 		const size_t depth = (size_t)read_le32(&sd->dwDepth);
 		if(depth)
-			WARN_RETURN(ERR::NOT_IMPLEMENTED);
+			WARN_RETURN(ERR::NOT_SUPPORTED);
 	}
 
 	// check caps
@@ -599,7 +599,7 @@ static Status dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 static Status dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da))
 {
-	// note: do not return ERR::NOT_IMPLEMENTED et al. because that would
+	// note: do not return ERR::NOT_SUPPORTED et al. because that would
 	// break tex_write (which assumes either this, 0 or errors are returned).
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }

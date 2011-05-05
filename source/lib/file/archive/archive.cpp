@@ -27,8 +27,11 @@
 #include "precompiled.h"
 #include "lib/file/archive/archive.h"
 
-STATUS_DEFINE(ERR, ARCHIVE_UNKNOWN_FORMAT, L"Unknown archive format", -1);
-STATUS_DEFINE(ERR, ARCHIVE_UNKNOWN_METHOD, L"Unknown compression method", -1);
+static const StatusDefinition archiveStatusDefinitions[] = {
+	{ ERR::ARCHIVE_UNKNOWN_FORMAT, L"Unknown archive format" },
+	{ ERR::ARCHIVE_UNKNOWN_METHOD, L"Unknown compression method" }
+};
+STATUS_ADD_DEFINITIONS(archiveStatusDefinitions);
 
 IArchiveReader::~IArchiveReader()
 {

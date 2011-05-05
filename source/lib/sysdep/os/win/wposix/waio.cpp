@@ -639,7 +639,7 @@ int aio_cancel(int UNUSED(fd), struct aiocb* cb)
 
 int aio_fsync(int, struct aiocb*)
 {
-	WARN_IF_ERR(ERR::NOT_IMPLEMENTED);
+	WARN_IF_ERR(ERR::NOT_SUPPORTED);
 	errno = ENOSYS;
 	return -1;
 }

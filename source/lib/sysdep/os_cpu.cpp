@@ -34,8 +34,10 @@
 # include "lib/sysdep/os/win/wcpu.h"
 #endif
 
-
-STATUS_DEFINE(ERR, OS_CPU_RESTRICTED_AFFINITY, L"Cannot set desired CPU affinity", -1);
+static const StatusDefinition osCpuStatusDefinitions[] = {
+	{ ERR::OS_CPU_RESTRICTED_AFFINITY, L"Cannot set desired CPU affinity" }
+};
+STATUS_ADD_DEFINITIONS(osCpuStatusDefinitions);
 
 
 double os_cpu_ClockFrequency()

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -163,39 +163,57 @@ To summarize: +/-1SHHCC (S=subsystem, HH=header, CC=code number)
 
 #include "lib/lib_api.h"
 
-// an integral type allows defining error codes in individual headers,
+// an integral type allows defining error codes in separate headers,
 // but is not as type-safe as an enum. use Lint's 'strong type' checking
 // to catch errors such as Status Func() { return 1; }.
-// this must be signed and 64-bit because some functions may multiplex
-// file offsets/sizes and Status in their return value.
+// this must be i64 because some functions may multiplex Status with
+// file offsets/sizes in their return value.
 typedef i64 Status;
 
-// opaque - do not access its fields!
-// note: must be defined here because clients instantiate them;
-// fields cannot be made private due to POD requirements.
+// associates a status code with a description [and errno_equivalent].
 struct StatusDefinition	// POD
 {
 	Status status;
 
-	// must remain valid until end of program.
+	// typically a string literal; must remain valid until end of program.
 	const wchar_t* description;
 
-	StatusDefinition* next;
+	// omit initializer (or initialize to 0) if there is no errno equivalent.
+	int errno_equivalent;
+};
 
-	int errno_equivalent;	// (-1 if there is none)
+// retrieving description and errno_equivalent requires going through all
+// StatusDefinition instances. we avoid dynamic memory allocation (which
+// is problematic because status codes may be needed before _cinit) by
+// organizing them into a linked list, with nodes residing in static storage.
+// since modules may introduce many status codes, they are stored in an
+// array, aka "bucket", which includes a link to the next bucket.
+// initialized via STATUS_ADD_DEFINITIONS; opaque.
+struct StatusDefinitionBucket	// POD
+{
+	const StatusDefinition* definitions;
+	size_t numDefinitions;
+	StatusDefinitionBucket* next;
 };
 
 /**
- * associating a Status with a description and errno equivalent.
- * @return dummy integer to allow calling via static initializer.
+ * (called via STATUS_ADD_DEFINITIONS)
+ *
+ * @param bucket is being added; its definitions and numDefinitions must
+ *   already be initialized.
+ * @return previous bucket in list, suitable for initializing bucket->next.
+ *
+ * (this function must be callable as a static initializer; initializing
+ * next avoids the need for a separate dummy variable)
  **/
-LIB_API int StatusAddDefinition(StatusDefinition*);
+LIB_API StatusDefinitionBucket* StatusAddDefinitions(StatusDefinitionBucket* bucket);
 
-// associate a Status with a description and errno equivalent.
-// Invoke this at file or function scope.
-#define STATUS_DEFINE(namespaceName, identifier, description, errno_equivalent)\
-	static StatusDefinition identifier##_def = { namespaceName::identifier, description, NULL, errno_equivalent };\
-	static int identifier##_dummy = StatusAddDefinition(&identifier##_def)
+/**
+ * add a module's array of StatusDefinition to the list.
+ * typically invoked at file scope.
+ * @param definitions name (identifier) of the array
+ **/
+#define STATUS_ADD_DEFINITIONS(definitions) static StatusDefinitionBucket definitions##_bucket = { definitions, ARRAY_SIZE(definitions), StatusAddDefinitions(&definitions##_bucket) };
 
 
 /**
@@ -208,13 +226,6 @@ LIB_API int StatusAddDefinition(StatusDefinition*);
  **/
 LIB_API wchar_t* StatusDescription(Status status, wchar_t* buf, size_t max_chars);
 
-
-//-----------------------------------------------------------------------------
-
-// conversion to/from other error code definitions.
-// note: other conversion routines (e.g. to/from Win32) are implemented in
-// the corresponding modules to keep this header portable.
-
 /**
  * @return the errno equivalent of a Status.
  *
@@ -226,13 +237,18 @@ extern int ErrnoFromStatus(Status status);
 
 /**
  * @return Status equivalent of errno, or ERR::FAIL if there's no equivalent.
- * should only be called directly after a POSIX function indicates failure;
- * errno may otherwise still be set from another error cause.
+ *
+ * NB: reset errno to 0 before calling POSIX functions to avoid confusion
+ * with previous errors.
  **/
 extern Status StatusFromErrno();
 
+// note: other conversion routines (e.g. to/from Win32) are implemented in
+// the corresponding modules to keep this header portable.
+
 
 //-----------------------------------------------------------------------------
+// propagation macros
 
 // warn and return a status. use when an error is first detected to
 // begin propagating it to callers.
@@ -338,6 +354,7 @@ extern Status StatusFromErrno();
 
 
 //-----------------------------------------------------------------------------
+// shared status code definitions
 
 namespace INFO
 {
@@ -385,10 +402,8 @@ namespace ERR
 	// system limitations
 	const Status AGAIN           = -100030;
 	const Status LIMIT           = -100031;
-	const Status NO_SYS          = -100032;
-	const Status NOT_IMPLEMENTED = -100033;
-	const Status NOT_SUPPORTED   = -100034;
-	const Status NO_MEM          = -100035;
+	const Status NOT_SUPPORTED   = -100032;
+	const Status NO_MEM          = -100033;
 
 	// these are for cases where we just want a distinct value to display and
 	// a symbolic name + string would be overkill (e.g. the various

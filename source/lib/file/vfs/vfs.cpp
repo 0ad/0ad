@@ -35,9 +35,12 @@
 #include "lib/file/vfs/vfs_populate.h"
 #include "lib/file/vfs/file_cache.h"
 
-STATUS_DEFINE(ERR, VFS_DIR_NOT_FOUND, L"VFS directory not found", -1);
-STATUS_DEFINE(ERR, VFS_FILE_NOT_FOUND, L"VFS file not found", -1);
-STATUS_DEFINE(ERR, VFS_ALREADY_MOUNTED, L"VFS path already mounted", -1);
+static const StatusDefinition vfsStatusDefinitions[] = {
+	{ ERR::VFS_DIR_NOT_FOUND, L"VFS directory not found" },
+	{ ERR::VFS_FILE_NOT_FOUND, L"VFS file not found" },
+	{ ERR::VFS_ALREADY_MOUNTED, L"VFS path already mounted" }
+};
+STATUS_ADD_DEFINITIONS(vfsStatusDefinitions);
 
 static pthread_mutex_t vfs_mutex = PTHREAD_MUTEX_INITIALIZER;
 struct ScopedLock

@@ -18,7 +18,6 @@
 #include "precompiled.h"
 
 #include "lib/ogl.h"
-#include "lib/res/graphics/ogl_shader.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 

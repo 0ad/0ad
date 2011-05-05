@@ -30,9 +30,11 @@
 #include "lib/sysdep/filesystem.h"	// O_*, S_*
 #include "lib/file/common/file_stats.h"
 
-
-STATUS_DEFINE(ERR, FILE_ACCESS, L"Insufficient access rights to open file", EACCES);
-STATUS_DEFINE(ERR, FILE_NOT_FOUND, L"No such file or directory", ENOENT);
+static const StatusDefinition fileStatusDefinitions[] = {
+	{ ERR::FILE_ACCESS, L"Insufficient access rights to open file", EACCES },
+	{ ERR::FILE_NOT_FOUND, L"No such file or directory", ENOENT }
+};
+STATUS_ADD_DEFINITIONS(fileStatusDefinitions);
 
 
 Status FileOpen(const OsPath& pathname, int opcode, int& fd)

@@ -22,7 +22,7 @@ static Status LibErrorFromVorbis(int err)
 	case OV_EFAULT:
 		return ERR::LOGIC;
 	case OV_EIMPL:
-		return ERR::NOT_IMPLEMENTED;
+		return ERR::NOT_SUPPORTED;
 	case OV_EINVAL:
 		return ERR::INVALID_PARAM;
 	case OV_ENOTVORBIS:

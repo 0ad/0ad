@@ -42,17 +42,19 @@
 # include "lib/sysdep/os/win/wdbg_heap.h"
 #endif
 
-
-STATUS_DEFINE(ERR, SYM_NO_STACK_FRAMES_FOUND, L"No stack frames found", -1);
-STATUS_DEFINE(ERR, SYM_UNRETRIEVABLE_STATIC, L"Value unretrievable (stored in external module)", -1);
-STATUS_DEFINE(ERR, SYM_UNRETRIEVABLE, L"Value unretrievable", -1);
-STATUS_DEFINE(ERR, SYM_TYPE_INFO_UNAVAILABLE, L"Error getting type_info", -1);
-STATUS_DEFINE(ERR, SYM_INTERNAL_ERROR, L"Exception raised while processing a symbol", -1);
-STATUS_DEFINE(ERR, SYM_UNSUPPORTED, L"Symbol type not (fully) supported", -1);
-STATUS_DEFINE(ERR, SYM_CHILD_NOT_FOUND, L"Symbol does not have the given child", -1);
-STATUS_DEFINE(ERR, SYM_NESTING_LIMIT, L"Symbol nesting too deep or infinite recursion", -1);
-STATUS_DEFINE(ERR, SYM_SINGLE_SYMBOL_LIMIT, L"Symbol has produced too much output", -1);
-STATUS_DEFINE(INFO, SYM_SUPPRESS_OUTPUT, L"Symbol was suppressed", -1);
+static const StatusDefinition debugStatusDefinitions[] = {
+	{ ERR::SYM_NO_STACK_FRAMES_FOUND, L"No stack frames found" },
+	{ ERR::SYM_UNRETRIEVABLE_STATIC, L"Value unretrievable (stored in external module)" },
+	{ ERR::SYM_UNRETRIEVABLE, L"Value unretrievable" },
+	{ ERR::SYM_TYPE_INFO_UNAVAILABLE, L"Error getting type_info" },
+	{ ERR::SYM_INTERNAL_ERROR, L"Exception raised while processing a symbol" },
+	{ ERR::SYM_UNSUPPORTED, L"Symbol type not (fully) supported" },
+	{ ERR::SYM_CHILD_NOT_FOUND, L"Symbol does not have the given child" },
+	{ ERR::SYM_NESTING_LIMIT, L"Symbol nesting too deep or infinite recursion" },
+	{ ERR::SYM_SINGLE_SYMBOL_LIMIT, L"Symbol has produced too much output" },
+	{ INFO::SYM_SUPPRESS_OUTPUT, L"Symbol was suppressed" }
+};
+STATUS_ADD_DEFINITIONS(debugStatusDefinitions);
 
 
 // need to shoehorn printf-style variable params into

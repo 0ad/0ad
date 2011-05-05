@@ -130,7 +130,7 @@ static Status AppendDriverVersionsFromRegistry(VersionList& versionList)
 			if(i == 0)
 			{
 				RegCloseKey(hkDrivers);
-				return ERR::NO_SYS;	// NOWARN (ATI and NVidia don't create sub-keys on Windows 7)
+				return ERR::NOT_SUPPORTED;	// NOWARN (ATI and NVidia don't create sub-keys on Windows 7)
 			}
 			break;
 		}

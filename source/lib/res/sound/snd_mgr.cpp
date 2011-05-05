@@ -741,7 +741,7 @@ static const char* devs;
 Status snd_dev_prepare_enum()
 {
 	if(alcIsExtensionPresent(0, (alcString)"ALC_ENUMERATION_EXT") != AL_TRUE)
-		WARN_RETURN(ERR::NO_SYS);
+		WARN_RETURN(ERR::NOT_SUPPORTED);
 
 	devs = (const char*)alcGetString(0, ALC_DEVICE_SPECIFIER);
 	return INFO::OK;

@@ -123,7 +123,7 @@ public:
 	{
 #if ARCH_X86_X64
 		if(!x86_x64_cap(X86_X64_CAP_TSC))
-			return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
+			return ERR::NOT_SUPPORTED;		// NOWARN (CPU doesn't support RDTSC)
 #endif
 
 		return INFO::OK;

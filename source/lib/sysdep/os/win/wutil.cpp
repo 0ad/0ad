@@ -31,7 +31,6 @@
 #include <stdlib.h>	// __argc
 
 #include "lib/file/file.h"
-#include "lib/file/vfs/vfs.h"
 #include "lib/posix/posix.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/os/win/win.h"
@@ -139,20 +138,17 @@ Status StatusFromWin()
 	case ERROR_ACCESS_DENIED:
 		return ERR::FILE_ACCESS;
 	case ERROR_NOT_SUPPORTED:
-		return ERR::NOT_SUPPORTED;
 	case ERROR_CALL_NOT_IMPLEMENTED:
-		return ERR::NOT_IMPLEMENTED;
 	case ERROR_PROC_NOT_FOUND:
-		return ERR::NO_SYS;
+		return ERR::NOT_SUPPORTED;
 	case ERROR_BUSY:
 	case WAIT_TIMEOUT:
 		return ERR::AGAIN;
 	case ERROR_OPERATION_ABORTED:
 		return ERR::ABORTED;
 	case ERROR_FILE_NOT_FOUND:
-		return ERR::VFS_FILE_NOT_FOUND;
 	case ERROR_PATH_NOT_FOUND:
-		return ERR::VFS_DIR_NOT_FOUND;
+		return ERR::FILE_NOT_FOUND;
 	default:
 		return ERR::FAIL;
 	}

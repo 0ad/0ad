@@ -35,7 +35,10 @@
 // we were included from wsecure_crt.cpp; skip all stuff that
 // must only be done once.
 #ifndef WSECURE_CRT
-STATUS_DEFINE(ERR, STRING_NOT_TERMINATED, L"Invalid string (no 0 terminator found in buffer)", -1);
+static const StatusDefinition secureCrtStatusDefinitions[] = {
+	{ ERR::STRING_NOT_TERMINATED, L"Invalid string (no 0 terminator found in buffer)" }
+};
+STATUS_ADD_DEFINITIONS(secureCrtStatusDefinitions);
 #endif
 
 
