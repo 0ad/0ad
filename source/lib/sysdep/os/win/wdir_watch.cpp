@@ -131,7 +131,7 @@ public:
 		return m_path;
 	}
 
-	void AttachTo(HANDLE hIOCP) const
+	void AttachTo(HANDLE& hIOCP) const
 	{
 		AttachToCompletionPort(m_dirHandle, hIOCP, (uintptr_t)this);
 	}
@@ -299,7 +299,7 @@ class DirWatchManager
 {
 public:
 	DirWatchManager()
-		: hIOCP(0)
+		: hIOCP(0)	// Win32 requires 0-init; created in the first call to AttachTo
 	{
 	}
 
