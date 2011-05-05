@@ -333,8 +333,6 @@ static void InitScripting()
 	RegisterJavascriptInterfaces();
 }
 
-#if 0
-// disabled because the file cache doesn't work (http://trac.wildfiregames.com/ticket/611)
 
 static size_t OperatingSystemFootprint()
 {
@@ -346,7 +344,7 @@ static size_t OperatingSystemFootprint()
 		return 150;
 	case WVERSION_XP64:
 		return 200;
-	default:	// don't warn about newer Windows versions
+	default:	// newer Windows version: assume the worst, and don't warn
 	case WVERSION_VISTA:
 		return 300;
 	case WVERSION_7:
@@ -359,52 +357,31 @@ static size_t OperatingSystemFootprint()
 
 static size_t ChooseCacheSize()
 {
-	// (all sizes in MiB)
-	const size_t total = os_cpu_MemorySize();
-	const size_t available = os_cpu_MemoryAvailable();
-	ENSURE(total >= available);
-	const size_t inUse = total-available;
-	size_t os = OperatingSystemFootprint();
-	ENSURE(total >= os/2);
-	size_t apps = (inUse > os)? (inUse - os) : 0;
-	size_t game = 300;
-	size_t cache = 200;
+	// (all sizes in MiB and signed to allow temporarily negative computations)
 
-	// plenty of memory
-	if(os + apps + game + cache < total)
-	{
-		cache = total - os - apps - game;
-	}
-	else	// below min-spec
-	{
-		// assume kernel+other apps will be swapped out
-		os = 9*os/10;
-		apps = 2*apps/3;
-		game = 3*game/4;
-		if(os + apps + game + cache < total)
-			cache = total - os - apps - game;
-		else
-		{
-			cache = 50;
-			debug_printf(L"Warning: memory size (%d MiB, %d used) is rather low\n", total, available);
-		}
-	}
+	const ssize_t total = (ssize_t)os_cpu_MemorySize();
+	// (NB: os_cpu_MemoryAvailable is useless on Linux because free memory
+	// is marked as "in use" by OS caches.)
+	const ssize_t os = (ssize_t)OperatingSystemFootprint();
+	const ssize_t game = 300;	// estimated working set
 
-	// total data is currently about 500 MiB, and not all of it
-	// is used at once, so don't use more than that.
-	// (this also ensures the byte count will fit in size_t and
-	// avoids using up too much address space)
-	cache = std::min(cache, (size_t)500);
+	ssize_t cache = 500;	// upper bound: total size of our data
 
-	debug_printf(L"Cache: %d (total: %d; available: %d)\n", cache, total, available);
-	return cache*MiB;
+	// the cache reserves contiguous address space, which is a precious
+	// resource on 32-bit systems, so don't use too much:
+	if(ARCH_IA32 || sizeof(void*) == 4)
+		cache = std::min(cache, 200);
+
+	// try to leave over enough memory for the OS and game
+	cache = std::min(cache, total-os-game);
+
+	// always provide at least this much to ensure correct operation
+	cache = std::max(cache, 64);
+
+	debug_printf(L"Cache: %d (total: %d) MiB\n", cache, total);
+	return size_t(cache)*MiB;
 }
-#else
-static size_t ChooseCacheSize()
-{
-	return 32*MiB;
-}
-#endif
+
 
 ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
 {
