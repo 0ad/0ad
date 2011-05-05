@@ -31,7 +31,7 @@ Paths::Paths(const CmdLineArgs& args)
 	m_root = Root(args.GetArg0());
 
 #ifdef INSTALLED_DATADIR
-	m_rdata = WIDEN(STRINGIZE(INSTALLED_DATADIR))/L"";
+	m_rdata = OsPath(STRINGIZE(INSTALLED_DATADIR))/"";
 #else
 	m_rdata = m_root/"data"/"";
 #endif
