@@ -119,7 +119,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.identity = {
 			"rank": cmpIdentity.GetRank(),
-			"classes": cmpIdentity.GetClassesList()
+			"classes": cmpIdentity.GetClassesList(),
+			"selectionGroupName": cmpIdentity.GetSelectionGroupName()
 		};
 	}
 	

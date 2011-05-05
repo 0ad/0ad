@@ -21,6 +21,7 @@
 
 #include "graphics/Camera.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpIdentity.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
@@ -132,17 +133,38 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	return hitEnts;
 }
 
-std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, int owner, bool onScreenOnly)
+std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, int owner, bool includeOffScreen, bool matchRank)
 {
 	CmpPtr<ICmpTemplateManager> cmpTemplateManager(simulation, SYSTEM_ENTITY);
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
 
 	std::vector<entity_id_t> hitEnts;
 
- 	std::vector<entity_id_t> entities = cmpTemplateManager->GetEntitiesUsingTemplate(templateName);
- 	for (std::vector<entity_id_t>::iterator it = entities.begin(); it != entities.end(); ++it)
- 	{
- 		entity_id_t ent = *it;
+ 	const CSimulation2::InterfaceListUnordered& ents = simulation.GetEntitiesWithInterfaceUnordered(IID_Selectable);
+	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	{
+ 		entity_id_t ent = it->first;
+
+		CmpPtr<ICmpIdentity> cmpIdentity(simulation.GetSimContext(), ent);
+
+		std::string groupName;
+		if (!cmpIdentity.null())
+		{
+			groupName = cmpIdentity->GetSelectionGroupName();
+		}
+
+		if (!matchRank && !groupName.empty())
+		{
+			// There's a selection group so match that
+			if (groupName.compare(templateName) != 0)
+				continue;
+		}
+		else
+		{
+			// Fall back to exact template name matching
+			if (cmpTemplateManager->GetCurrentTemplateName(ent).compare(templateName) != 0)
+				continue;
+		}
 
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		// In this case, the checking is done to avoid selecting garrisoned units
@@ -154,7 +176,8 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
  		if (cmpOwnership.null() || cmpOwnership->GetOwner() != owner)
  			continue;
 
- 		if (onScreenOnly)
+		// Ignore off screen entities
+ 		if (!includeOffScreen)
  		{
  			// Find the current interpolated model position.
 			CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);

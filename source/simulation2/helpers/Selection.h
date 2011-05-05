@@ -49,10 +49,12 @@ std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCam
 
 /**
  * Finds all entities with the given entity template name, that belong to player @p owner.
- * If @p onScreenOnly then only entities visible on the screen will be selected,
- * else all entities visible in the world will be selected.
+ * If @p includeOffScreen then all entities visible in the world will be selected,
+ * else only entities visible on the screen will be selected.
+ * If @p matchRank then only entities that exactly match @p templateName will be selected,
+ * else entities with matching SelectionGroupName will be selected.
  */
-std::vector<entity_id_t> PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, int owner, bool onScreenOnly);
+std::vector<entity_id_t> PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, int owner, bool includeOffScreen, bool matchRank);
 
 } // namespace
 

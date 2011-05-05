@@ -133,9 +133,9 @@ std::vector<entity_id_t> PickFriendlyEntitiesInRect(void* UNUSED(cbdata), int x0
 	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player);
 }
 
-std::vector<entity_id_t> PickSimilarFriendlyEntities(void* UNUSED(cbdata), std::string templateName, bool onScreenOnly)
+std::vector<entity_id_t> PickSimilarFriendlyEntities(void* UNUSED(cbdata), std::string templateName, bool includeOffScreen, bool matchRank)
 {
-	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetPlayerID(), onScreenOnly);
+	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetPlayerID(), includeOffScreen, matchRank);
 }
 
 CFixedVector3D GetTerrainAtPoint(void* UNUSED(cbdata), int x, int y)
@@ -465,7 +465,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Entity picking
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, &PickEntitiesAtPoint>("PickEntitiesAtPoint");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickFriendlyEntitiesInRect>("PickFriendlyEntitiesInRect");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, &PickSimilarFriendlyEntities>("PickSimilarFriendlyEntities");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, &PickSimilarFriendlyEntities>("PickSimilarFriendlyEntities");
 	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtPoint>("GetTerrainAtPoint");
 
 	// Network / game setup functions

@@ -76,6 +76,9 @@ COMPONENT(Footprint)
 INTERFACE(GuiInterface)
 COMPONENT(GuiInterfaceScripted)
 
+INTERFACE(Identity)
+COMPONENT(IdentityScripted)
+
 INTERFACE(Minimap)
 COMPONENT(Minimap)
 

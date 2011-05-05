@@ -139,4 +139,9 @@ Identity.prototype.HasClass = function(name)
 	return this.GetClassesList().indexOf(name) != -1;
 };
 
+Identity.prototype.GetSelectionGroupName = function()
+{
+	return (this.template.SelectionGroupName || "");
+}
+
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);

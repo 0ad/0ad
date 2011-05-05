@@ -726,7 +726,9 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
-				var onScreenOnly;
+				var showOffscreen = Engine.HotkeyIsPressed("selection.offscreen");
+				var matchRank;
+				var templateToMatch;
 				var selectedEntity = ents[0];
 				var now = new Date();
 
@@ -738,20 +740,20 @@ function handleInputAfterGui(ev)
 					if (!doubleClicked)
 					{
 						// If double click hasn't already occurred, this is a double click.
-						// Select only similar on-screen units
-						onScreenOnly = true;
+						// Select units matching exact rank
+						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
+						matchRank = true;
 						doubleClicked = true;
 					}
 					else
 					{
 						// Double click has already occurred, so this is a triple click.
-						// Select all similar units whether they are on-screen or not
-						onScreenOnly = false;
+						// Select all similar units regardless of rank
+						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).identity.selectionGroupName;
+						matchRank = false;
 					}
 					
-					var templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
-					
-					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, onScreenOnly);
+					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, showOffscreen, matchRank);
 				}
 				else
 				{
