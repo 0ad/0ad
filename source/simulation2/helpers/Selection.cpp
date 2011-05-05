@@ -145,24 +145,17 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 	{
  		entity_id_t ent = it->first;
 
-		CmpPtr<ICmpIdentity> cmpIdentity(simulation.GetSimContext(), ent);
-
-		std::string groupName;
-		if (!cmpIdentity.null())
+		if (matchRank)
 		{
-			groupName = cmpIdentity->GetSelectionGroupName();
-		}
-
-		if (!matchRank && !groupName.empty())
-		{
-			// There's a selection group so match that
-			if (groupName.compare(templateName) != 0)
+			// Exact template name matching
+			if (cmpTemplateManager->GetCurrentTemplateName(ent).compare(templateName) != 0)
 				continue;
 		}
 		else
 		{
-			// Fall back to exact template name matching
-			if (cmpTemplateManager->GetCurrentTemplateName(ent).compare(templateName) != 0)
+			// Match by selection group name
+			CmpPtr<ICmpIdentity> cmpIdentity(simulation.GetSimContext(), ent);
+			if (cmpIdentity.null() || cmpIdentity->GetSelectionGroupName().compare(templateName) != 0)
 				continue;
 		}
 

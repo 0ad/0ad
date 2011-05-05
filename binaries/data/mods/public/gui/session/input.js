@@ -726,31 +726,37 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
-				var showOffscreen = Engine.HotkeyIsPressed("selection.offscreen");
-				var matchRank;
-				var templateToMatch;
 				var selectedEntity = ents[0];
 				var now = new Date();
 
 				if ((now.getTime() - doubleClickTimer < doubleClickTime) && (selectedEntity == prevClickedEntity))
 				{
 					// Double click or triple click has occurred
+					var showOffscreen = Engine.HotkeyIsPressed("selection.offscreen");
+					var matchRank = true;
+					var templateToMatch;
 					
 					// Check for double click or triple click
 					if (!doubleClicked)
 					{
 						// If double click hasn't already occurred, this is a double click.
-						// Select units matching exact rank
+						// Select units matching exact template name (same rank)
 						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
-						matchRank = true;
 						doubleClicked = true;
 					}
 					else
 					{
 						// Double click has already occurred, so this is a triple click.
-						// Select all similar units regardless of rank
+						// Select similar units regardless of rank
 						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).identity.selectionGroupName;
-						matchRank = false;
+						if (templateToMatch)
+						{
+							matchRank = false;
+						}
+						else
+						{	// No selection group name defined, so fall back to exact match
+							templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
+						}
 					}
 					
 					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, showOffscreen, matchRank);
