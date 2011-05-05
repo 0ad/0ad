@@ -73,7 +73,7 @@ Status sys_clipboard_free(wchar_t* copy)
 Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
 	// TODO Implement
-	return ERR::NOT_IMPLEMENTED;
+	return ERR::NOT_SUPPORTED;
 }
 
 

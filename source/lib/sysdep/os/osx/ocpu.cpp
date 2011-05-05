@@ -100,7 +100,7 @@ size_t os_cpu_MemoryAvailable()
 }
 
 
-uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
+uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t UNUSED(processorMask))
 {
 	// not yet implemented. when doing so, see http://developer.apple.com/releasenotes/Performance/RN-AffinityAPI/
 

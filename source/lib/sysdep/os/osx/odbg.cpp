@@ -35,12 +35,12 @@ void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSki
 
 Status debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
-	return ERR::NOT_IMPLEMENTED;
+	return ERR::NOT_SUPPORTED;
 }
 
 Status debug_ResolveSymbol(void* UNUSED(ptr_of_interest), wchar_t* UNUSED(sym_name), wchar_t* UNUSED(file), int* UNUSED(line))
 {
-	return ERR::NOT_IMPLEMENTED;
+	return ERR::NOT_SUPPORTED;
 }
 
 void debug_SetThreadName(char const* UNUSED(name))
