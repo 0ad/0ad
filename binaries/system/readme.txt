@@ -43,6 +43,7 @@ Autostart options:
 -autostart-players=NUMBER		number of players
 -autostart-client				multiplayer client mode
 -autostart-ip=IP				multiplayer connect to given IP
+-autostart-ai=PLAYER:AI			adds named AI to the given player (such as 2:testbot)
 Random maps only:
 -autostart-random				random map
 -autostart-random=SEED			random map with seed value (default 0, use -1 for random)
