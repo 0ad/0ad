@@ -3,7 +3,6 @@ Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
-Engine.LoadComponentScript("interfaces/Identity.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Formation.js");
