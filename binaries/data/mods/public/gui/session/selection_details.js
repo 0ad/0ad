@@ -74,7 +74,7 @@ function displaySingle(entState, template)
 		experienceSize.rtop = 100 - 100 * Math.max(0, Math.min(1, 1.0 * entState.promotion.curr / entState.promotion.req));
 		experienceBar.size = experienceSize;
  
-		var experience = "[font=\"serif-bold-13\"]XP [/font]" + entState.promotion.curr;
+		var experience = "[font=\"serif-bold-13\"]Experience [/font]" + entState.promotion.curr;
 		if (entState.promotion.curr < entState.promotion.req)
 			experience += "/" + entState.promotion.req;
 		getGUIObjectByName("experience").tooltip = experience;
