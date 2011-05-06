@@ -37,7 +37,7 @@
 #include "renderer/Scene.h"
 
 // Time (in seconds) before projectiles that stuck in the ground are destroyed
-const static float PROJECTILE_DECAY_TIME = 60.f;
+const static float PROJECTILE_DECAY_TIME = 30.f;
 
 class CCmpProjectileManager : public ICmpProjectileManager
 {
