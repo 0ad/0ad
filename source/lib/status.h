@@ -321,12 +321,12 @@ extern Status StatusFromErrno();
 	while(0)
 
 // return expression if it evaluates to something other than
-// INFO::CB_CONTINUE. use when invoking callbacks.
+// INFO::CONTINUE. use when invoking callbacks.
 #define RETURN_IF_NOT_CONTINUE(expression)\
 	do\
 	{\
 		const Status status_ = (expression);\
-		if(status_ != INFO::CB_CONTINUE)\
+		if(status_ != INFO::CONTINUE)\
 			return status_;\
 	}\
 	while(0)
@@ -356,48 +356,50 @@ extern Status StatusFromErrno();
 //-----------------------------------------------------------------------------
 // shared status code definitions
 
-namespace INFO
-{
+namespace INFO {
+
 	const Status OK = 0;
 
 	// note: these values are > 100 to allow multiplexing them with
 	// coroutine return values, which return completion percentage.
 
-	// function is a callback and indicates that it can (but need not
-	// necessarily) be called again.
-	const Status CB_CONTINUE    = +100000;
+	// the function (usually a callback) would like to be called again.
+	const Status CONTINUE      = +100000;
 
 	// notify caller that nothing was done.
-	const Status SKIPPED        = +100001;
+	const Status SKIPPED       = +100001;
 
 	// function is incapable of doing the requested task with the given inputs.
 	// this implies SKIPPED, but also conveys a bit more information.
-	const Status CANNOT_HANDLE  = +100002;
+	const Status CANNOT_HANDLE = +100002;
 
 	// function is meant to be called repeatedly, and now indicates that
 	// all jobs are complete.
-	const Status ALL_COMPLETE   = +100003;
+	const Status ALL_COMPLETE  = +100003;
 
-	// (returned e.g. when inserting into container)
-	const Status ALREADY_EXISTS = +100004;
 }	// namespace INFO
 
-namespace ERR
-{
-	const Status FAIL = -1;
+namespace ERR {
+
+	const Status FAIL = -1;	// unknown failure
 
 	// general
 	const Status LOGIC     = -100010;
-	const Status TIMED_OUT = -100011;
-	const Status REENTERED = -100012;
-	const Status CORRUPTED = -100013;
-	const Status VERSION   = -100014;
+	const Status EXCEPTION = -100011;
+	const Status TIMED_OUT = -100012;
+	const Status REENTERED = -100013;
+	const Status CORRUPTED = -100014;
 	const Status ABORTED   = -100015;
 
-	// function arguments
-	const Status INVALID_PARAM  = -100020;
-	const Status INVALID_HANDLE = -100021;
-	const Status BUF_SIZE       = -100022;
+	// invalid values (usually function arguments)
+	const Status INVALID_ALIGNMENT = -100020;
+	const Status INVALID_OFFSET    = -100021;
+	const Status INVALID_HANDLE    = -100022;
+	const Status INVALID_POINTER   = -100023;
+	const Status INVALID_SIZE      = -100024;
+	const Status INVALID_FLAG      = -100025;
+	const Status INVALID_PARAM     = -100026;
+	const Status INVALID_VERSION   = -100027;
 
 	// system limitations
 	const Status AGAIN           = -100030;
@@ -441,6 +443,7 @@ namespace ERR
 	const Status _27 = -100127;
 	const Status _28 = -100128;
 	const Status _29 = -100129;
+
 }	// namespace ERR
 
 #endif	// #ifndef INCLUDED_STATUS

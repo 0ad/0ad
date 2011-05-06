@@ -36,7 +36,7 @@ public:
 		DeleteDirectory(DataDir()/"_testcache"); // clean up in case the last test run failed
 
 		m_VFS = CreateVfs(20*MiB);
-		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir()/"mods/_test.tex", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir()/"mods"/"_test.tex", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir()/"_testcache"));
 
 		tex_codec_register_all();

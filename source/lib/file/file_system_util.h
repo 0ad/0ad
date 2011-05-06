@@ -45,7 +45,7 @@ extern Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* 
  * @param pathname full pathname (since FileInfo only gives the name).
  * @param fileInfo file information
  * @param cbData user-specified context
- * @return INFO::CB_CONTINUE on success; any other value will immediately
+ * @return INFO::CONTINUE on success; any other value will immediately
  * be returned to the caller (no more calls will be forthcoming).
  *
  * CAVEAT: pathname and fileInfo are only valid until the function

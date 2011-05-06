@@ -165,10 +165,8 @@ public:
 			cassert(sizeof(wchar_t) == sizeof(WCHAR));
 			const size_t length = fni->FileNameLength / sizeof(WCHAR);
 			Path::String name(fni->FileName, length);
-			// since we watch subtrees, name may contain '\\'. OsPath forbids
-			// mixing directory separators, so convert them all to '/'.
-			std::replace(name.begin(), name.end(), '\\', '/');
 
+			// (NB: name is actually a relative path since we watch entire subtrees)
 			const OsPath pathname = m_path / name;
 			const DirWatchNotification::EType type = TypeFromAction(fni->Action);
 			notifications.push_back(DirWatchNotification(pathname, type));

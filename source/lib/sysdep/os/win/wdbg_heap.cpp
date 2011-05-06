@@ -347,7 +347,7 @@ public:
 		// pc is a 'known' function on the allocation hook's back-trace
 		// (e.g. _malloc_dbg and other helper functions)
 		m_knownCallers.Add(pc);
-		return INFO::CB_CONTINUE;
+		return INFO::CONTINUE;
 	}
 
 	bool IsKnownCaller(uintptr_t pc) const
@@ -696,7 +696,7 @@ private:
 
 		// skip invalid frames
 		if(pc == 0)
-			return INFO::CB_CONTINUE;
+			return INFO::CONTINUE;
 
 		Status ret = m_filter.NotifyOfCaller(pc);
 		// (CallerFilter provokes stack traces of heap functions; if that is
@@ -710,7 +710,7 @@ private:
 
 		if(!m_filter.IsKnownCaller(pc))
 			m_callers[m_numCallers++] = pc;
-		return INFO::CB_CONTINUE;
+		return INFO::CONTINUE;
 	}
 
 	static Status OnFrame_Trampoline(const STACKFRAME64* frame, uintptr_t cbData)

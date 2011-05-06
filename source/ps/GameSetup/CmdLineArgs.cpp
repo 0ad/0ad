@@ -16,8 +16,9 @@
  */
 
 #include "precompiled.h"
-
 #include "CmdLineArgs.h"
+
+#include "lib/sysdep/sysdep.h"
 
 CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
 {
@@ -26,7 +27,7 @@ CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
 		std::string arg0(argv[0]);
 		// avoid OsPath complaining about mixing both types of separators,
 		// which happens when running in the VC2010 debugger
-		std::replace(arg0.begin(), arg0.end(), '\\', '/');
+		std::replace(arg0.begin(), arg0.end(), '/', SYS_DIR_SEP);
 		m_Arg0 = arg0;
 	}
 

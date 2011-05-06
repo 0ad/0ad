@@ -39,7 +39,7 @@ const int DA_NOT_OUR_MEM = 0x40000000;
 static Status validate_da(DynArray* da)
 {
 	if(!da)
-		WARN_RETURN(ERR::INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_POINTER);
 //	u8* const base           = da->base;
 	const size_t max_size_pa = da->max_size_pa;
 	const size_t cur_size    = da->cur_size;

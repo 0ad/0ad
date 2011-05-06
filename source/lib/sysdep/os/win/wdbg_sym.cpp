@@ -428,7 +428,7 @@ Status wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT
 
 		ret = cb(&sf, cbData);
 		// callback is allowing us to continue
-		if(ret == INFO::CB_CONTINUE)
+		if(ret == INFO::CONTINUE)
 			ret = INFO::OK;
 		// callback reports it's done; stop calling it and return that value.
 		// (can be either success or failure)
@@ -1834,7 +1834,7 @@ static Status dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData)
 	pSymEnumSymbolsW(hProcess, base, mask, dump_sym_cb, 0);
 
 	out(L"\r\n");
-	return INFO::CB_CONTINUE;
+	return INFO::CONTINUE;
 }
 
 

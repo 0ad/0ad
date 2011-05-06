@@ -33,7 +33,7 @@ static LibError LoadTechThunk( const VfsPath& pathname, const FileInfo& UNUSED(f
 {
 	CTechnologyCollection* this_ = (CTechnologyCollection*)cbData;
 	this_->LoadFile(pathname);
-	return INFO::CB_CONTINUE;
+	return INFO::CONTINUE;
 }
 
 int CTechnologyCollection::LoadTechnologies()

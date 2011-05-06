@@ -45,7 +45,7 @@ static size_t numCallers;
 static Status OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
 {
 	callers[numCallers++] = (void*)frame->AddrPC.Offset;
-	return INFO::CB_CONTINUE;
+	return INFO::CONTINUE;
 }
 
 #pragma optimize("", off)

@@ -1009,7 +1009,7 @@ static Status snd_data_free(Handle& hsd)
  * @param hsd Handle to SndData.
  * @param al_buf buffer name.
  * @return Status, most commonly:
- * INFO::CB_CONTINUE = buffer has been returned; more are expected to be available.
+ * INFO::CONTINUE = buffer has been returned; more are expected to be available.
  * INFO::OK = buffer has been returned but is the last one (EOF).
  */
 static Status snd_data_buf_get(Handle hsd, ALuint& al_buf)
@@ -1029,7 +1029,7 @@ static Status snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	const size_t size = (size_t)ret;
 	al_buf = al_buf_alloc(data, (ALsizei)size, sd->al_fmt, sd->al_freq);
 
-	return (size < maxBufferSize)? INFO::OK : INFO::CB_CONTINUE;
+	return (size < maxBufferSize)? INFO::OK : INFO::CONTINUE;
 }
 
 
@@ -1923,8 +1923,7 @@ Status snd_fade(Handle hvs, float initial_gain, float final_gain,
 {
 	H_DEREF(hvs, VSrc, vs);
 
-	if(type != FT_LINEAR && type != FT_EXPONENTIAL && type != FT_S_CURVE &&
-	   type != FT_ABORT)
+	if(type != FT_LINEAR && type != FT_EXPONENTIAL && type != FT_S_CURVE && type != FT_ABORT)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
 	// special case - set initial value to current gain (see above).

@@ -798,7 +798,7 @@ int h_get_refcnt(Handle h)
 {
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
-		WARN_RETURN(ERR::INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_HANDLE);
 
 	ENSURE(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
 	return hd->refs;

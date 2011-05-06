@@ -161,7 +161,7 @@ static Status mmap_file(void* start, size_t len, int prot, int flags, int fd, of
 
 	HANDLE hFile = HANDLE_from_intptr(_get_osfhandle(fd));
 	if(hFile == INVALID_HANDLE_VALUE)
-		WARN_RETURN(ERR::INVALID_PARAM);
+		WARN_RETURN(ERR::INVALID_HANDLE);
 
 	// MapViewOfFileEx will fail if the "suggested" base address is
 	// nonzero but cannot be honored, so wipe out <start> unless MAP_FIXED.

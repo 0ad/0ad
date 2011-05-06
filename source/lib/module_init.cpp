@@ -32,7 +32,7 @@
 // not yet initialized, or already shutdown
 static const ModuleInitState UNINITIALIZED = 0;	// value documented in header
 // running user callback - concurrent ModuleInit callers must spin
-static const ModuleInitState BUSY = INFO::ALREADY_EXISTS;	// never returned
+static const ModuleInitState BUSY = ERR::AGAIN;	// never returned
 // init succeeded; allow shutdown
 static const ModuleInitState INITIALIZED = INFO::SKIPPED;
 

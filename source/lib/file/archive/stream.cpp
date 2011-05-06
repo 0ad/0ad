@@ -125,7 +125,7 @@ Status Stream::Feed(const u8* in, size_t inSize)
 
 	m_inConsumed += inConsumed;
 	m_outProduced += outProduced;
-	return INFO::CB_CONTINUE;
+	return INFO::CONTINUE;
 }
 
 

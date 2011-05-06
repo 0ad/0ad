@@ -30,7 +30,7 @@ static Status LibErrorFromVorbis(int err)
 	case OV_EBADHEADER:
 		return ERR::CORRUPTED;
 	case OV_EVERSION:
-		return ERR::VERSION;
+		return ERR::INVALID_VERSION;
 	case OV_ENOTAUDIO:
 		return ERR::_1;
 	case OV_EBADPACKET:

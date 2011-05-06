@@ -71,7 +71,7 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const FileInfo& UNUSED(
 
 	jsval val = ToJSVal( CStrW(pathname.string()) );
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, &val);
-	return INFO::CB_CONTINUE;
+	return INFO::CONTINUE;
 }
 
 

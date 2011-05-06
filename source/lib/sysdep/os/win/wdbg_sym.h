@@ -38,7 +38,7 @@ struct _EXCEPTION_POINTERS;
  * instruction-pointer because dump_frame_cb needs the frame pointer to
  * locate frame-relative variables)
  * @param cbData the user-specified value that was passed to wdbg_sym_WalkStack
- * @return INFO::CB_CONTINUE to continue, anything else to stop immediately
+ * @return INFO::CONTINUE to continue, anything else to stop immediately
  * and return that value to wdbg_sym_WalkStack's caller.
  **/
 typedef Status (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t cbData);

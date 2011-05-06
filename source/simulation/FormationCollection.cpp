@@ -39,7 +39,7 @@ static LibError LoadFormationThunk( const VfsPath& path, const FileInfo& UNUSED(
 {
 	CFormationCollection* this_ = (CFormationCollection*)cbData;
 	this_->LoadFile(path);
-	return INFO::CB_CONTINUE;
+	return INFO::CONTINUE;
 }
 
 int CFormationCollection::LoadTemplates()

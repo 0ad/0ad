@@ -381,7 +381,7 @@ private:
 			lfh_dst += size;
 			lfh_bytes_remaining -= size;
 
-			return INFO::CB_CONTINUE;
+			return INFO::CONTINUE;
 		}
 
 		mutable u8* lfh_dst;

@@ -29,7 +29,7 @@
 #include "ps/CLogger.h"
 #include "ps/XML/RelaxNG.h"
 
-static OsPath MOD_PATH(DataDir()/"mods/_test.mesh");
+static OsPath MOD_PATH(DataDir()/"mods"/"_test.mesh");
 static OsPath CACHE_PATH(DataDir()/"_testcache");
 
 const OsPath srcDAE(L"collada/sphere.dae");
@@ -61,7 +61,7 @@ class TestMeshManager : public CxxTest::TestSuite
 		g_VFS = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/"tests/collada", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/"tests"/"collada", VFS_MOUNT_MUST_EXIST));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the

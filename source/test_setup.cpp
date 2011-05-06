@@ -93,7 +93,7 @@ bool ts_str_contains(const std::wstring& str1, const std::wstring& str2)
 // available, so we use sys_ExecutablePathname.
 OsPath DataDir()
 {
-	return sys_ExecutablePathname().Parent()/"../data";
+	return sys_ExecutablePathname().Parent()/".."/"data";
 }
 
 // Script-based testing setup:
@@ -112,7 +112,7 @@ void ScriptTestSetup(ScriptInterface& ifc)
 
 	// Load the TS_* function definitions
 	// (We don't use VFS because tests might not have the normal VFS paths loaded)
-	OsPath path = DataDir()/"tests/test_setup.js";
+	OsPath path = DataDir()/"tests"/"test_setup.js";
 	std::ifstream ifs(OsString(path).c_str());
 	ENSURE(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());

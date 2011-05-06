@@ -86,10 +86,9 @@ Paths::Paths(const CmdLineArgs& args)
 	if(!fs_util::FileExists(pathname))
 		WARN_IF_ERR(StatusFromErrno());
 
-	fs::wpath components = pathname.string();
-	for(size_t i = 0; i < 3; i++)	// remove "system/name.exe"
-		components.remove_leaf();
-	return components.string();
+	for(size_t i = 0; i < 2; i++)	// remove "system/name.exe"
+		pathname = pathname.Parent();
+	return pathname;
 }
 
 

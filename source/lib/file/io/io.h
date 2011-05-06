@@ -146,7 +146,7 @@ struct DefaultCompletedHook
 	/**
 	 * called after a block I/O has completed.
 	 *
-	 * @return INFO::CB_CONTINUE to proceed; any other value will
+	 * @return INFO::CONTINUE to proceed; any other value will
 	 * be immediately returned by Run.
 	 *
 	 * allows progress notification and processing data while waiting for
@@ -154,7 +154,7 @@ struct DefaultCompletedHook
 	 **/
 	Status operator()(const u8* UNUSED(block), size_t UNUSED(blockSize)) const
 	{
-		return INFO::CB_CONTINUE;
+		return INFO::CONTINUE;
 	}
 };
 
@@ -164,7 +164,7 @@ struct DefaultIssueHook
 	/**
 	 * called before a block I/O is issued.
 	 *
-	 * @return INFO::CB_CONTINUE to proceed; any other value will
+	 * @return INFO::CONTINUE to proceed; any other value will
 	 * be immediately returned by Run.
 	 *
 	 * allows generating the data to write while waiting for
@@ -172,7 +172,7 @@ struct DefaultIssueHook
 	 **/
 	Status operator()(aiocb& UNUSED(cb)) const
 	{
-		return INFO::CB_CONTINUE;
+		return INFO::CONTINUE;
 	}
 };
 

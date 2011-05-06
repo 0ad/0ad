@@ -179,39 +179,41 @@ public:
 # define STOP_SKIPPING_ERRORS(expectedCount) (void)0
 #endif
 
-		SKIP_ERRORS(ERR::INVALID_PARAM);
+		SKIP_ERRORS(ERR::INVALID_POINTER);
 		TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
 		TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
 		TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
 		TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
-		TEST_CPY(d1,0,s1, EINVAL,"");	// max_dst_chars = 0
-		STOP_SKIPPING_ERRORS(5);
+		STOP_SKIPPING_ERRORS(4);
 
-		SKIP_ERRORS(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::INVALID_SIZE);
+		TEST_CPY(d1,0,s1, EINVAL,"");	// max_dst_chars = 0
 		TEST_CPY2(d1,1, s1, ERANGE,"");
 		TEST_CPY2(d1,1, s5, ERANGE,"");
 		TEST_CPY2(d5,5, s5, ERANGE,"");
-		STOP_SKIPPING_ERRORS(3);
+		STOP_SKIPPING_ERRORS(4);
 
-		SKIP_ERRORS(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::INVALID_SIZE);
 		TEST_NCPY(d1,1 ,s1,1, ERANGE,"");
 		TEST_NCPY(d1,1 ,s5,1, ERANGE,"");
 		TEST_NCPY(d5,5 ,s5,5, ERANGE,"");
 		STOP_SKIPPING_ERRORS(3);
 
-		SKIP_ERRORS(ERR::INVALID_PARAM);
+		SKIP_ERRORS(ERR::INVALID_POINTER);
 		TEST_CAT(0 ,0,0 , EINVAL,"");	// all invalid
 		TEST_CAT(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
 		TEST_CAT(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
 		TEST_CAT(d1,1,0 , EINVAL,"");	// src = 0
+		STOP_SKIPPING_ERRORS(4);
+		SKIP_ERRORS(ERR::INVALID_SIZE);
 		TEST_CAT(d1,0,s1, EINVAL,"");	// max_dst_chars = 0
-		STOP_SKIPPING_ERRORS(5);
+		STOP_SKIPPING_ERRORS(1);
 
 		SKIP_ERRORS(ERR::STRING_NOT_TERMINATED);
 		TEST_CAT(no_null,5,s1, EINVAL,"");	// dst not terminated
 		STOP_SKIPPING_ERRORS(1);
 
-		SKIP_ERRORS(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::INVALID_SIZE);
 		TEST_CAT2(d1,1, s1, "",ERANGE,"");
 		TEST_CAT2(d1,1, s5, "",ERANGE,"");
 		TEST_CAT2(d10,10, s10, "",ERANGE,"");		// empty, total overflow
@@ -219,7 +221,7 @@ public:
 		TEST_CAT2(d10,10, s10, "12345",ERANGE,"");	// not empty, total overflow
 		STOP_SKIPPING_ERRORS(5);
 
-		SKIP_ERRORS(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::INVALID_SIZE);
 		TEST_NCAT(d1,1, s1,1, "",ERANGE,"");
 		TEST_NCAT(d1,1, s5,5, "",ERANGE,"");
 		TEST_NCAT(d10,10, s10,10, "",ERANGE,"");		// empty, total overflow

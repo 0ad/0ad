@@ -44,7 +44,7 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods/_test.sim", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"_test.sim", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
 		CXeromyces::Startup();
 	}

@@ -245,6 +245,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 	ENSURE(ret == INFO::OK);
 	wchar_t realDaeBuf[PATH_MAX];
 	wcscpy_s(realDaeBuf, ARRAY_SIZE(realDaeBuf), realDaePath_.string().c_str());
+	std::replace(realDaeBuf, realDaeBuf+ARRAY_SIZE(realDaeBuf), '\\', '/');
 	const wchar_t* realDaePath = wcsstr(realDaeBuf, L"mods/");
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
