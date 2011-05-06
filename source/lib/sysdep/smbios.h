@@ -1145,7 +1145,6 @@ struct Handle
 
 #define OnboardDevices2_FIELDS\
 	FIELD(0, const char*, referenceDesignation, "")\
-	FIELD(0, const char*, deviceName, "")\
 	FIELD(0, OnBoardDeviceType, type, "")\
 	FIELD(0, u8, instance, "")\
 	FIELD(0, u16, groupNumber, "")\
