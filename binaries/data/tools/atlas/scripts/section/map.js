@@ -105,39 +105,38 @@ function setDefaults(defs, obj)
 }
 
 // Read civ data and player defaults
-function getStartingData()
+function loadCivData()
 {	
 	// Load civilization data
-	if (!Atlas.State.CivData)
-	{
-		Atlas.State.CivData = [];
-		Atlas.State.CivNames = [];
-		Atlas.State.CivCodes = [];
-		
-		var dataArray = Atlas.Message.GetCivData().data;
-		if (dataArray)
-		{	// parse JSON strings into objects
-			for (var i = 0; i < dataArray.length; ++i)
+	Atlas.State.CivData = [];
+	Atlas.State.CivNames = [];
+	Atlas.State.CivCodes = [];
+	
+	var dataArray = Atlas.Message.GetCivData().data;
+	if (dataArray)
+	{	// parse JSON strings into objects
+		for (var i = 0; i < dataArray.length; ++i)
+		{
+			var civ = JSON.parse(dataArray[i]);
+			if (civ)
 			{
-				var civ = JSON.parse(dataArray[i]);
-				if (civ)
-				{
-					Atlas.State.CivData.push(civ);
-					Atlas.State.CivNames.push(civ.Name);
-					Atlas.State.CivCodes.push(civ.Code);
-				}
+				Atlas.State.CivData.push(civ);
+				Atlas.State.CivNames.push(civ.Name);
+				Atlas.State.CivCodes.push(civ.Code);
 			}
 		}
 	}
-	
+}
+
+function loadPlayerDefaults()
+{
 	// Load player default data (names, civs, colors, etc)
-	if (!Atlas.State.PlayerDefaults)
+	Atlas.State.PlayerDefaults = [];
+	
+	var rawData = Atlas.Message.GetPlayerDefaults().defaults;
+	if(rawData)
 	{
-		var rawData = Atlas.Message.GetPlayerDefaults().defaults;
-		if(rawData)
-		{
-			Atlas.State.PlayerDefaults = JSON.parse(rawData).PlayerData;
-		}
+		Atlas.State.PlayerDefaults = JSON.parse(rawData).PlayerData;
 	}
 }
 
@@ -363,16 +362,14 @@ function init(window)
 	var rmsPanel = new wxPanel(window, -1);
 	var rmsSizer = new wxStaticBoxSizer(new wxStaticBox(rmsPanel, -1, 'Random map'), wxOrientation.VERTICAL);
 	
-	var scriptNames = [];
-	var scriptData = [];
 	boxSizer = new wxBoxSizer(wxOrientation.HORIZONTAL);
-	var rmsChoice = new wxChoice(rmsPanel, -1, wxDefaultPosition, wxDefaultSize, scriptNames);
+	var rmsChoice = new wxChoice(rmsPanel, -1, wxDefaultPosition, wxDefaultSize, []);
 	rmsChoice.toolTip = "Select the random map script to run";
 	function loadScriptChoices()
 	{
 		// Reload RMS data
-		scriptNames = [];
-		scriptData = [];
+		Atlas.State.scriptNames = [];
+		Atlas.State.scriptData = [];
 		
 		// Get array of RMS data
 		var rawData = Atlas.Message.GetRMSData().data;
@@ -382,14 +379,14 @@ function init(window)
 			var data = JSON.parse(rawData[i]);
 			if (data && data.settings)
 			{
-				scriptData.push(data);
-				scriptNames.push(data.settings.Name);
+				Atlas.State.scriptData.push(data);
+				Atlas.State.scriptNames.push(data.settings.Name);
 			}
 		}
 		
 		// Add script names to choice control
 		rmsChoice.clear();
-		rmsChoice.append(scriptNames);
+		rmsChoice.append(Atlas.State.scriptNames);
 		rmsChoice.selection = 0;
 	}
 	boxSizer.add(rmsChoice, 1, wxAlignment.CENTER_VERTICAL);
@@ -424,7 +421,7 @@ function init(window)
 			var selection = rmsChoice.selection;
 			if (selection != -1)
 			{
-				var RMSData = scriptData[selection].settings;
+				var RMSData = Atlas.State.scriptData[selection].settings;
 				if (RMSData)
 				{
 					if (useRandomCtrl.value)
@@ -432,22 +429,17 @@ function init(window)
 						generateRandomSeed();
 					}
 					
-					// Base terrains must be array
-					var terrainArray = [];
-					if (RMSData.BaseTerrain instanceof Array)
+					// Copy RMS data to map settings
+					for (var prop in RMSData)
 					{
-						terrainArray = RMSData.BaseTerrain;
-					}
-					else
-					{	// Add string to array
-						terrainArray.push(RMSData.BaseTerrain);
+						Atlas.State.mapSettings.settings[prop] = RMSData[prop];
 					}
 					
 					// Complete map settings
 					Atlas.State.mapSettings.settings.Seed = Atlas.State.Seed ? Atlas.State.Seed : 0;
 					Atlas.State.mapSettings.settings.Size = sizeTiles[sizeChoice.selection];
-					Atlas.State.mapSettings.settings.BaseTerrain = terrainArray;
-					Atlas.State.mapSettings.settings.BaseHeight = RMSData.BaseHeight;
+					
+					// TODO: Would be nice to have some sort of busy notification here
 					
 					// Generate map
 					var ret = Atlas.Message.GenerateMap(RMSData.Script, JSON.stringify(Atlas.State.mapSettings.settings));
@@ -514,14 +506,29 @@ function init(window)
 	{
 		if (!g_externalNotify)
 		{
-			// If we don't have civ data or player defaults yet, get those
-			getStartingData();
+			// We have to do these steps here, because the simulation is not
+			//		initialized when this script is first loaded
+			
+			// If we don't have civ data, load those
+			if (!Atlas.State.CivData)
+			{
+				loadCivData();
+			}
+			
+			// If we don't have default player data, load those
+			if (!Atlas.State.PlayerDefaults)
+			{
+				loadPlayerDefaults();
+			}
+			
+			// If we don't have RMS data yet, load those
+			if (!Atlas.State.scriptData)
+			{
+				loadScriptChoices();
+			}
 			
 			// Load map settings from engine
 			getMapSettings();
-			
-			// Load RMS names from engine
-			loadScriptChoices();
 			
 			// Update UI controls
 			updateMapName();

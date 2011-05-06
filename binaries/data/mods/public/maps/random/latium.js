@@ -223,6 +223,8 @@ for (var ix = 0; ix <= mapSize; ix++)
 	}
 }
 
+RMS.SetProgress(15);
+
 // Paint base terrain
 
 log("Painting terrain...");
@@ -387,6 +389,8 @@ for (var ix = 0; ix < mapSize; ix++)
 	}
 }
 
+RMS.SetProgress(30);
+
 for (var i = 1; i <= numPlayers; i++)
 {
 	log("Creating base for player " + i + "...");
@@ -398,11 +402,16 @@ for (var i = 1; i <= numPlayers; i++)
 	var iz = round(fz);
 	addToClass(ix, iz, clPlayer);
 	
-	// create the city patch
+	// create the city patch, flatten area under TC
 	var cityRadius = 8;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tGrass, tCity], [1]);
-	createArea(placer, painter, null);
+	var elevationPainter = new SmoothElevationPainter(
+		ELEVATION_SET,	// type
+		5,				// elevation
+		2				// blend radius
+	);
+	createArea(placer, [painter, elevationPainter], null);
 	
 	// get civ specific starting entities
 	var civEntities = getStartingEntities(i-1);
@@ -488,28 +497,7 @@ for (var i = 1; i <= numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
 
-log("Creating straggler trees...");
-// create straggler trees
-var trees = [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine];
-for (var t in trees)
-{
-	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
-	createObjectGroups(group, 0,
-		avoidClasses(clWater, 5, clCliff, 0, clForest, 1, clPlayer, 15),
-		mapArea/7000, 50
-	);
-}
-
-log("Creating cypress trees...");
-// create cypresses
-group = new SimpleGroup(
-	[new SimpleObject(oCypress2, 1,3, 0,3),
-	new SimpleObject(oCypress1, 0,2, 0,2)]
-);
-createObjectGroups(group, 0,
-	avoidClasses(clWater, 4, clCliff, 2, clForest, 1, clPlayer, 15),
-	mapArea/3500, 50
-);
+RMS.SetProgress(40);
 
 log("Creating bushes...");
 // create bushes
@@ -519,8 +507,10 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 4, clCliff, 2),
-	mapArea/1800, 50
+	scaleByMapSize(9, 146), 50
 );
+
+RMS.SetProgress(45);
 
 log("Creating rocks...");
 // create rocks
@@ -530,26 +520,62 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 0, clCliff, 0),
-	mapArea/1800, 50
+	scaleByMapSize(9, 146), 50
 );
 
+RMS.SetProgress(50);
+
 log("Creating stone mines...");
-// create stone
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,8), new SimpleObject(oStoneLarge, 0,1, 0,8)], true, clStone);
+// create large stone quarries
+group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clStone);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clStone, 15), 
-	 borderClasses(clCliff, 0, 5)],
-	scaleByMapSize(1,4) * numPlayers, 100
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clStone, 15)],
+	scaleByMapSize(4,16), 100
+);
+
+// create small stone quarries
+group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clStone);
+createObjectGroups(group, 0,
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clStone, 15)],
+	scaleByMapSize(4,16), 100
 );
 
 log("Creating metal mines...");
-// create metal
+// create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clMetal, 15, clStone, 5), 
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 15, clStone, 5), 
 	 borderClasses(clCliff, 0, 5)],
-	scaleByMapSize(1,4) * numPlayers, 100
+	scaleByMapSize(4,16), 100
 );
+
+RMS.SetProgress(60);
+
+log("Creating straggler trees...");
+// create straggler trees
+var trees = [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine];
+for (var t in trees)
+{
+	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
+	createObjectGroups(group, 0,
+		avoidClasses(clWater, 5, clCliff, 0, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
+		scaleByMapSize(2, 38), 50
+	);
+}
+
+RMS.SetProgress(70);
+
+// create straggler cypresses
+group = new SimpleGroup(
+	[new SimpleObject(oCypress2, 1,3, 0,3), new SimpleObject(oCypress1, 0,2, 0,2)],
+	true
+);
+createObjectGroups(group, 0,
+	avoidClasses(clWater, 4, clCliff, 2, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
+	scaleByMapSize(5, 75), 50
+);
+
+RMS.SetProgress(80);
 
 log("Creating sheep...");
 // create sheep
@@ -559,13 +585,30 @@ createObjectGroups(group, 0,
 	3 * numPlayers, 50
 );
 
+RMS.SetProgress(85);
+
 log("Creating fish...");
 // create fish
-group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood);
-createObjectGroups(group, 0,
-	[borderClasses(clWater, 7, 0), avoidClasses(clFood, 8, clCliff, 0)],
-	3 * numPlayers, 50
-);
+var num = scaleByMapSize(4, 16);
+var offsetX = mapSize * WATER_WIDTH/2;
+for (var i = 0; i < num; ++i)
+{
+	var cX = round(offsetX + offsetX/2 * randFloat(-1, 1));
+	var cY = round((i + 0.5) * mapSize/num);
+	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
+	createObjectGroup(group, 0);
+}
+
+for (var i = 0; i < num; ++i)
+{
+	var cX = round(mapSize - offsetX + offsetX/2 * randFloat(-1, 1));
+	var cY = round((i + 0.5) * mapSize/num);
+	error(cX+" "+cY);
+	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
+	createObjectGroup(group, 0);
+}
+
+RMS.SetProgress(90);
 
 // create deer
 log("Creating deer...");
@@ -577,6 +620,8 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 5, clForest, 1, clCliff, 1, clPlayer, 20, clMetal, 2, clStone, 2, clFood, 8),
 	3 * numPlayers, 50
 );
+
+RMS.SetProgress(95);
 
 log("Creating berry bushes...");
 // create berry bushes
