@@ -743,6 +743,8 @@ function handleInputAfterGui(ev)
 						// Select units matching exact template name (same rank)
 						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
 						doubleClicked = true;
+						// Reset the timer so the user has an extra period 'doubleClickTimer' to do a triple-click
+						doubleClickTimer = now.getTime();
 					}
 					else
 					{
