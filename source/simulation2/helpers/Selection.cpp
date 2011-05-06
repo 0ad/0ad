@@ -148,14 +148,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 		if (matchRank)
 		{
 			// Exact template name matching
-			if (cmpTemplateManager->GetCurrentTemplateName(ent).compare(templateName) != 0)
-				continue;
-		}
-		else
-		{
-			// Match by selection group name
-			CmpPtr<ICmpIdentity> cmpIdentity(simulation.GetSimContext(), ent);
-			if (cmpIdentity.null() || cmpIdentity->GetSelectionGroupName().compare(templateName) != 0)
+			if (cmpTemplateManager->GetCurrentTemplateName(ent) != templateName)
 				continue;
 		}
 
@@ -182,6 +175,15 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 			if (!camera.GetFrustum().IsPointVisible(position))
 				continue;
  		}
+
+		if (!matchRank)
+		{
+			// Match by selection group name
+			// (This is relatively expensive since it involves script calls, so do it after all other tests)
+			CmpPtr<ICmpIdentity> cmpIdentity(simulation.GetSimContext(), ent);
+			if (cmpIdentity.null() || cmpIdentity->GetSelectionGroupName() != templateName)
+				continue;
+		}
 
  		hitEnts.push_back(ent);
  	}
