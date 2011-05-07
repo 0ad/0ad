@@ -40,8 +40,11 @@
 #include "lib/sysdep/compiler.h"    // MSC_VERSION, HAVE_PCH
 
 // must come before any STL headers are included
-#if MSC_VERSION && defined(NDEBUG)
-# define _SECURE_SCL 0
+#if MSC_VERSION
+# ifdef NDEBUG	// release: disable all checks
+#  define _HAS_ITERATOR_DEBUGGING 0
+#  define _SECURE_SCL 0
+# endif
 #endif
 
 // disable some common and annoying warnings
