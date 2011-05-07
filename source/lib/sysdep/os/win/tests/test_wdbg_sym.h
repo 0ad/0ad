@@ -88,16 +88,16 @@ class TestWdbgSym : public CxxTest::TestSuite
 			double d4;
 		};
 
-		Large large_array_of_large_structs[8] = { { 0.0,0.0,0.0,0.0 } }; UNUSED2(large_array_of_large_structs);
-		Large small_array_of_large_structs[2] = { { 0.0,0.0,0.0,0.0 } }; UNUSED2(small_array_of_large_structs);
-		Small large_array_of_small_structs[8] = { { 1,2 } }; UNUSED2(large_array_of_small_structs);
-		Small small_array_of_small_structs[2] = { { 1,2 } }; UNUSED2(small_array_of_small_structs);
+		Large large_array_of_large_structs[8] = { { 0.0,0.0,0.0,0.0 } };
+		Large small_array_of_large_structs[2] = { { 0.0,0.0,0.0,0.0 } };
+		Small large_array_of_small_structs[8] = { { 1,2 } };
+		Small small_array_of_small_structs[2] = { { 1,2 } };
 
-		int ints[] = { 1,2,3,4,5 };	UNUSED2(ints);
-		wchar_t chars[] = { 'w','c','h','a','r','s',0 }; UNUSED2(chars);
+		int ints[] = { 1,2,3,4,5 };
+		wchar_t chars[] = { 'w','c','h','a','r','s',0 };
 		wchar_t many_wchars[1024]; memset(many_wchars, 'a', sizeof(many_wchars));
 
-		debug_printf(L"\n(dumping stack frames may result in access violations..)\n");
+		debug_printf(L"\n(dumping stack frames may result in access violations %.0d %.0c %.0c %.0g %.0g %.0d %.0d..)\n", ints[0], chars[0], many_wchars[0], large_array_of_large_structs[0].d1, small_array_of_large_structs[0].d1, large_array_of_small_structs[0].i1, small_array_of_small_structs[0].i1);
 
 		// note: we don't want any kind of dialog to be raised, because
 		// this test now always runs. therefore, just make sure a decent
@@ -263,9 +263,9 @@ class TestWdbgSym : public CxxTest::TestSuite
 		UNUSED2(p_int);
 		UNUSED2(l_funcptr);
 		UNUSED2(l_enum);
-		UNUSED2(l_u8s);
 		UNUSED2(l_uint);
-		UNUSED2(l_wchars);
+		(void)l_u8s;
+		(void)l_wchars;
 #endif
 
 		m_test_stl();

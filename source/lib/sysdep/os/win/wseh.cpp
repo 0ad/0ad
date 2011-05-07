@@ -355,7 +355,14 @@ C++ classes. this way is more reliable/documented, but has several drawbacks:
 
 #include "lib/utf8.h"
 
-EXTERN_C int wmainCRTStartup();
+// disable argument conversion on ICC because it says "nonstandard second parameter "__wchar_t *[]" of "main"" and
+// "unresolved external symbol _wmain referenced in function ___tmainCRTStartup" (extern "C" { and __cdecl don't help) 
+#if ICC_VERSION
+#define MAIN_STARTUP mainCRTStartup
+
+#else
+#define MAIN_STARTUP wmainCRTStartup
+
 EXTERN_C int main(int argc, char* argv[]);
 
 // required because main's argv is in a non-UTF8 encoding
@@ -377,12 +384,16 @@ int wmain(int argc, wchar_t* argv[])
 	return ret;
 }
 
+#endif
+
+EXTERN_C int MAIN_STARTUP();
+
 static int CallStartupWithinTryBlock()
 {
 	int ret;
 	__try
 	{
-		ret = wmainCRTStartup();
+		ret = MAIN_STARTUP();
 	}
 	__except(wseh_ExceptionFilter(GetExceptionInformation()))
 	{

@@ -287,7 +287,7 @@ public:
 		new (ptr) T(t);
 	}
 
-	void destroy(const pointer ptr)
+	void destroy(pointer ptr)
 	{
 		ptr->~T();
 		UNUSED2(ptr); // silence MSVC warnings

@@ -1632,7 +1632,7 @@ public:
 		alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
 		AL_CHECK;
 
-		const int num_processed = vsrc_deque_finished_bufs(vs);
+		int num_processed = vsrc_deque_finished_bufs(vs);
 		UNUSED2(num_processed);
 
 		if(vs->flags & VS_EOF)

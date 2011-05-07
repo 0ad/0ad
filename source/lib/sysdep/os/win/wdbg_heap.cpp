@@ -46,9 +46,9 @@ void wdbg_heap_Enable(bool enable)
 	{
 		flags |= _CRTDBG_ALLOC_MEM_DF;	// enable checks at deallocation time
 		flags |= _CRTDBG_LEAK_CHECK_DF;	// report leaks at exit
-#if CONFIG_ENABLE_CHECKS
-		flags |= _CRTDBG_CHECK_ALWAYS_DF;	// check during every heap operation (slow!)
-		flags |= _CRTDBG_DELAY_FREE_MEM_DF;	// blocks cannot be reused
+#if 0
+		flags |= _CRTDBG_CHECK_ALWAYS_DF;	// check during every heap operation (too slow to be practical)
+		flags |= _CRTDBG_DELAY_FREE_MEM_DF;	// memory is never actually freed
 #endif
 	}
 	_CrtSetDbgFlag(flags);
