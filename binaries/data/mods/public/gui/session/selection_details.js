@@ -57,7 +57,7 @@ function displaySingle(entState, template)
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
-		hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
+		hitpoints = "[font=\"serif-bold-13\"]Health [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
 		getGUIObjectByName("health").tooltip = hitpoints;
 		getGUIObjectByName("health").hidden = false;
 	}
