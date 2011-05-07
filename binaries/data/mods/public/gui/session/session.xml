@@ -35,7 +35,7 @@
 		
 		<!-- Displays Alpha name and number -->
 		<object size="100%-200 32 100% 52" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white" ghost="true">
-			ALPHA V : Edetani
+			ALPHA V : Edetania
 		</object>
 
 		<!-- Displays build date and revision number-->
@@ -519,7 +519,7 @@
 				<!-- Stats Bars -->
 				<object size= "50%+48 40 100% 136" type="image" tooltip_style="sessionToolTip">
 					<!-- Health bar -->
-					<object size="18 0 30 100%" type="image" name="health" tooltip="Hitpoints" tooltip_style="sessionToolTip">
+					<object size="18 0 30 100%" type="image" name="health" tooltip="Health" tooltip_style="sessionToolTip">
 						<object type="image" sprite="healthBackground" ghost="true"/>
 						<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
