@@ -1713,7 +1713,6 @@ static Status vsrc_reclaim(VSrc* vs)
 {
 	if(!vs->HasSource())
 		return ERR::FAIL;	// NOWARN
-	ENSURE(alIsSource(vs->al_src));
 
 	// clear the source's buffer queue (necessary because buffers cannot
 	// be deleted at shutdown while still attached to a source).
@@ -1741,6 +1740,8 @@ static Status vsrc_reclaim(VSrc* vs)
 	alSourceRewind(vs->al_src);
 
 	al_src_free(vs->al_src);
+	vs->flags &= ~VS_HAS_AL_SRC;
+
 	return INFO::OK;
 }
 
@@ -2034,7 +2035,7 @@ static Status vm_update()
 
 	list_SortByDescendingPriority();
 
-	// partition list; the first al_src_cap will be granted a source
+	// partition list; the first ones will be granted a source
 	// (if they don't have one already), after reclaiming all sources from
 	// the remainder of the VSrc list entries.
 	size_t first_unimportant = std::min((size_t)vsrcs.size(), al_src_maxNumToUse);
