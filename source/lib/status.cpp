@@ -104,6 +104,9 @@ int ErrnoFromStatus(Status status)
 
 Status StatusFromErrno()
 {
+	if(errno == 0)
+		return ERR::FAIL;
+
 	const StatusDefinition* def = DefinitionFromErrno(errno);
 	return def? def->status : ERR::FAIL;
 }
