@@ -83,7 +83,7 @@ public:
 		CmdLineArgs c2(0, NULL);
 		TS_ASSERT_WSTR_EQUALS(c2.GetArg0().string(), L"");
 
-		const char* argv3[] = { "ab/cd\\ef\\gh/../ij" };
+		const char* argv3[] = { "ab/cd/ef/gh/../ij" };
 		CmdLineArgs c3(ARRAY_SIZE(argv3), argv3);
 #if OS_WIN
 		TS_ASSERT_WSTR_EQUALS(c3.GetArg0().string(), L"ab\\cd\\ef\\gh\\..\\ij");
