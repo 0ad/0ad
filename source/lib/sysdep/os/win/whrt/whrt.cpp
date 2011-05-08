@@ -77,13 +77,13 @@ static ICounter* GetNextBestSafeCounter()
 		Status err = ActivateCounter(counter);
 		if(err == INFO::OK)
 		{
-			debug_printf(L"HRT| using name=%ls freq=%f\n", counter->Name(), counter->NominalFrequency());
+			debug_printf(L"HRT: using name=%ls freq=%f\n", counter->Name(), counter->NominalFrequency());
 			return counter;	// found a safe counter
 		}
 		else
 		{
 			wchar_t buf[100];
-			debug_printf(L"HRT| activating %ls failed: %ls\n", counter->Name(), StatusDescription(err, buf, ARRAY_SIZE(buf)));
+			debug_printf(L"HRT: activating %ls failed: %ls\n", counter->Name(), StatusDescription(err, buf, ARRAY_SIZE(buf)));
 			DestroyCounter(counter);
 		}
 	}
@@ -111,7 +111,7 @@ static void InitCounter()
 	nominalFrequency = counter->NominalFrequency();
 	resolution       = counter->Resolution();
 	counterBits      = counter->CounterBits();
-	debug_printf(L"HRT| counter=%ls freq=%g res=%g bits=%d\n", counter->Name(), nominalFrequency, resolution, counterBits);
+	debug_printf(L"HRT: counter=%ls freq=%g res=%g bits=%d\n", counter->Name(), nominalFrequency, resolution, counterBits);
 
 	// sanity checks
 	ENSURE(nominalFrequency >= 500.0-DBL_EPSILON);

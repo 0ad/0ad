@@ -739,7 +739,6 @@ void EarlyInit()
 	debug_SetThreadName("main");
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add(L"TIMER");
-	debug_filter_add(L"HRT");
 
 	cpu_ConfigureFloatingPoint();
 
