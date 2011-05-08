@@ -1,17 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
-		<animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
         <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
-        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
-        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
+        <animation event="" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
+        <animation event="" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
@@ -20,7 +18,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="hyppikon-horse-texture-plain">
       <texture>skeletal/horse_hele_a_1.dds</texture>
@@ -29,7 +26,6 @@
       <texture>skeletal/horse_hele_a_2.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-color-bay">
       <colour>228 107 27</colour>
@@ -50,7 +46,5 @@
       <colour>209 203 131</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>
