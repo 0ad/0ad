@@ -35,7 +35,7 @@ GarrisonHolder.prototype.Init = function()
 GarrisonHolder.prototype.GetEntities = function()
 {
 	return this.entities;
-}
+};
 
 /**
  * Returns an array of unit classes which can be garrisoned inside this
@@ -70,10 +70,11 @@ GarrisonHolder.prototype.GetGarrisonedArcherCount = function()
 			count++;
 	}
 	return count;
-}
+};
+
 /**
  * Checks if an entity can be allowed to garrison in the building
- * based on it's class
+ * based on its class
  */
 GarrisonHolder.prototype.AllowedToGarrison = function(entity)
 {
@@ -152,7 +153,7 @@ GarrisonHolder.prototype.Eject = function(entity)
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);
 	// TODO: what direction should they face in?
-}
+};
 
 /**
  * Order entities to walk to the Rally Point
@@ -175,7 +176,7 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 			});
 		}
 	}
-}
+};
 
 /**
  * Unload units from the garrisoning entity and order them
@@ -194,9 +195,9 @@ GarrisonHolder.prototype.Unload = function(entity)
  */
 GarrisonHolder.prototype.UnloadAll = function()
 {
-	//The entities list is saved to a temporary variable
-	//because during each loop an element is removed
-	//from the list
+	// The entities list is saved to a temporary variable
+	// because during each loop an element is removed
+	// from the list
 	var entities = this.entities.splice(0);
 	for each (var entity in entities)
 	{
@@ -269,11 +270,6 @@ GarrisonHolder.prototype.UpdateGarrisonFlag = function()
 		cmpVisual.SelectAnimation("garrisoned", false, 1.0, "");
 	else
 		cmpVisual.SelectAnimation("idle", false, 1.0, "");
-}
-
-GarrisonHolder.prototype.OnOwnershipChanged = function(msg)
-{
-
 };
 
 /**
@@ -288,12 +284,39 @@ GarrisonHolder.prototype.OnDestroy = function()
 	}
 };
 
+/**
+ * If a garrisoned entity is captured, or about to be killed (so its owner
+ * changes to '-1'), remove it from the building so we only ever contain valid
+ * entities
+ */
+GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
+{
+	if (this.entities.indexOf(msg.entity) != -1)
+	{
+		// If the entity is dead, remove it directly instead of ejecting the corpse
+		var cmpHealth = Engine.QueryInterface(msg.entity, IID_Health);
+		if (cmpHealth && cmpHealth.GetHitpoints() == 0)
+		{
+			this.entities.splice(this.entities.indexOf(msg.entity), 1);
+		}
+		else
+		{
+			// Otherwise the unit probably got captured somehow and we don't want it
+			// any more, so eject it
+			this.Eject(msg.entity);
+		}
+	}
+};
+
+/**
+ * Update list of garrisoned entities if one gets renamed (e.g. by promotion)
+ */
 GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	if (this.entities.indexOf(msg.entity) != -1)
 	{
 		this.entities[this.entities.indexOf(msg.entity)] = msg.newentity;
 	}
-}
+};
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);

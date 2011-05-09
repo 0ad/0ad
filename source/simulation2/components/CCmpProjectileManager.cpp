@@ -230,7 +230,7 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 		if (projectile.targetEnt != INVALID_ENTITY)
 		{
 			CmpPtr<ICmpPosition> targetPos(GetSimContext(), projectile.targetEnt);
-			if (!targetPos.null())
+			if (!targetPos.null() && targetPos->IsInWorld())
 			{
 				CMatrix3D t = targetPos->GetInterpolatedTransform(frameOffset, false);
 				projectile.target = t.GetTranslation();

@@ -143,6 +143,12 @@ Health.prototype.Increase = function(amount)
 
 Health.prototype.CreateCorpse = function()
 {
+	// If the unit died while not in the world, don't create any corpse for it
+	// since there's nowhere for the corpse to be placed
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition.IsInWorld())
+		return;
+
 	// Create a static local version of the current entity
 	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTempMan.GetCurrentTemplateName(this.entity);
@@ -150,7 +156,6 @@ Health.prototype.CreateCorpse = function()
 
 	// Copy various parameters so it looks just like us
 
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var cmpCorpsePosition = Engine.QueryInterface(corpse, IID_Position);
 	var pos = cmpPosition.GetPosition();
 	cmpCorpsePosition.JumpTo(pos.x, pos.z);
