@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/mace_hypaspist">
+  <VisualActor>
+    <Actor>units/macedonians/mace_su1_argyraspis.xml</Actor>
+  </VisualActor>
   <Identity>
     <SpecificName>Argyraspides (Silver shield)</SpecificName>
 	<Tooltip>Alexander's elite guard infantry.</Tooltip>
@@ -32,7 +35,5 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
-  <VisualActor>
-    <Actor>units/macedonians/mace_su1_argyraspis.xml</Actor>
-  </VisualActor>
+  <Promotion disable=""/>
 </Entity>
