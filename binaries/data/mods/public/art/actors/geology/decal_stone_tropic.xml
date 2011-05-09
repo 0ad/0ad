@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_stone_medit_a">
+      <decal angle="0" depth="12" offsetx="0" offsetz="0" width="12"/>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="decal_01">
+      <texture>gaia/decal_quarry_tropic_a.png</texture>
+    </variant>
+    <variant frequency="1" name="decal_02">
+      <texture>gaia/decal_quarry_tropic_b.png</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
