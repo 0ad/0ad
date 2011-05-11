@@ -153,6 +153,7 @@ GarrisonHolder.prototype.Eject = function(entity)
 		// Whoops, something went wrong (maybe there wasn't any space to place the unit).
 		// What should we do here?
 		// For now, just move the unit into the middle of the building where it'll probably get stuck
+		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 		pos = cmpPosition.GetPosition();
 		warn("Can't find free space to ungarrison unit");
 	}
