@@ -671,6 +671,7 @@ var UnitFsmSpec = {
 					// off to a different target.)
 					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
 					{
+						this.StopMoving();
 						var typename = "gather_" + this.order.data.type.specific;
 						this.SelectAnimation(typename, false, 1.0, typename);
 					}
