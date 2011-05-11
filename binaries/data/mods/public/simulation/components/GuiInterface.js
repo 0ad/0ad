@@ -473,7 +473,9 @@ function isIdleWorker(ent, idleClass)
 {
 	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && idleClass && cmpIdentity.HasClass(idleClass));
+	
+	// TODO: Do something with garrisoned idle units
+	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && !cmpUnitAI.IsGarrisoned() && idleClass && cmpIdentity.HasClass(idleClass));
 }
 
 GuiInterface.prototype.FindIdleWorker = function(player, data)

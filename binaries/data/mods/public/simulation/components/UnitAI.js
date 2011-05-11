@@ -967,7 +967,17 @@ var UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					this.SetNextState("GARRISONED");
+					var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
+					if (cmpGarrisonHolder && cmpGarrisonHolder.Garrison(this.entity))
+					{
+						this.SetNextState("GARRISONED");
+					}
+					else
+					{
+						if (this.FinishOrder())
+							return;
+					}
+					
 				},
 				
 				"leave": function() {
@@ -977,18 +987,16 @@ var UnitFsmSpec = {
 
 			"GARRISONED": {
 				"enter": function() {
-					var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
-					if (cmpGarrisonHolder)
-					{
-						cmpGarrisonHolder.Garrison(this.entity);
-						
-					}
+					this.isGarrisoned = true;
+				},
+				
+				"Order.Ungarrison": function() {
 					if (this.FinishOrder())
 						return;
 				},
 
 				"leave": function() {
-
+					this.isGarrisoned = false;
 				}
 			},
 		},
@@ -1193,6 +1201,7 @@ UnitAI.prototype.Init = function()
 	this.orderQueue = []; // current order is at the front of the list
 	this.order = undefined; // always == this.orderQueue[0]
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
+	this.isGarrisoned = false;
 	this.isIdle = false;
 	this.lastFormationName = "Line Closed";
 
@@ -1225,6 +1234,11 @@ UnitAI.prototype.IsUnhuntable = function()
 UnitAI.prototype.IsIdle = function()
 {
 	return this.isIdle;
+};
+
+UnitAI.prototype.IsGarrisoned = function()
+{
+	return this.isGarrisoned;
 };
 
 UnitAI.prototype.OnCreate = function()
@@ -1937,6 +1951,14 @@ UnitAI.prototype.Garrison = function(target, queued)
 		return;
 	}
 	this.AddOrder("Garrison", { "target": target }, queued);
+};
+
+UnitAI.prototype.Ungarrison = function()
+{
+	if (this.IsGarrisoned())
+	{
+		this.AddOrder("Ungarrison", null, false);
+	}
 };
 
 UnitAI.prototype.Gather = function(target, queued)

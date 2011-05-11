@@ -139,6 +139,13 @@ GarrisonHolder.prototype.Eject = function(entity)
 	var entityIndex = this.entities.indexOf(entity);
 	this.spaceOccupied -= 1;
 	this.entities.splice(entityIndex, 1);
+	
+	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
+	if (cmpUnitAI)
+	{
+		cmpUnitAI.Ungarrison();
+	}
+	
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	var pos = cmpFootprint.PickSpawnPoint(entity);
 	if (pos.y < 0)
@@ -147,7 +154,7 @@ GarrisonHolder.prototype.Eject = function(entity)
 		// What should we do here?
 		// For now, just move the unit into the middle of the building where it'll probably get stuck
 		pos = cmpPosition.GetPosition();
-		warn("Can't find free space to spawn trained unit");
+		warn("Can't find free space to ungarrison unit");
 	}
 
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
@@ -184,7 +191,6 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
  */
 GarrisonHolder.prototype.Unload = function(entity)
 {
-	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	this.Eject(entity);
 	this.OrderWalkToRallyPoint([entity]);
 	this.UpdateGarrisonFlag();
