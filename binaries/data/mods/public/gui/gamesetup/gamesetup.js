@@ -84,14 +84,7 @@ function initMain()
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
-	
-	// Copy default player data to settings
-	g_GameAttributes.settings.PlayerData = [];
-	for (var i = 0; i < g_DefaultPlayerData.length; ++i)
-	{
-		g_GameAttributes.settings.PlayerData[i] = g_DefaultPlayerData[i];
-	}
-	
+
 	// Init civs
 	initCivNameList();
 	
@@ -542,13 +535,17 @@ function selectNumPlayers(num)
 	// Update player data
 	var pData = g_GameAttributes.settings.PlayerData;
 	if (pData && num < pData.length)
-	{	// Remove extra player data
+	{
+		// Remove extra player data
 		g_GameAttributes.settings.PlayerData = pData.slice(0, num);
 	}
 	else
-	{	// Add player data from defaults
+	{
+		// Add player data from defaults
 		for (var i = pData.length; i < num; ++i)
+		{
 			g_GameAttributes.settings.PlayerData.push(g_DefaultPlayerData[i]);
+		}
 	}
 	
 	updateGameAttributes();
@@ -647,7 +644,7 @@ function selectMap(name)
 	}
 
 	var mapData = loadMapData(name);
-	var mapSettings = (mapData && mapData.settings ? mapData.settings : {});
+	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});
 	
 	// Copy any new settings
 	g_GameAttributes.map = name;
@@ -655,6 +652,15 @@ function selectMap(name)
 	for (var prop in mapSettings)
 	{
 		g_GameAttributes.settings[prop] = mapSettings[prop];
+	}
+
+	// Use default AI if the map doesn't specify any explicitly
+	for (var i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
+	{
+		if (!('AI' in g_GameAttributes.settings.PlayerData[i]))
+		{
+			g_GameAttributes.settings.PlayerData[i].AI = g_DefaultPlayerData[i].AI;
+		}
 	}
 
 	// Reset player assignments on map change
@@ -941,7 +947,7 @@ function updatePlayerList()
 		
 		var configButton = getGUIObjectByName("playerConfig["+i+"]");
 		configButton.hidden = true;
-		
+
 		// Look for valid player slots
 		if (playerSlot < g_GameAttributes.settings.PlayerData.length)
 		{
