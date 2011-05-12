@@ -977,17 +977,7 @@ var UnitFsmSpec = {
 				},
 
 				"MoveCompleted": function() {
-					var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
-					if (cmpGarrisonHolder && cmpGarrisonHolder.Garrison(this.entity))
-					{
-						this.SetNextState("GARRISONED");
-					}
-					else
-					{
-						if (this.FinishOrder())
-							return;
-					}
-					
+					this.SetNextState("GARRISONED");
 				},
 				
 				"leave": function() {
@@ -997,7 +987,16 @@ var UnitFsmSpec = {
 
 			"GARRISONED": {
 				"enter": function() {
-					this.isGarrisoned = true;
+					var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
+					if (cmpGarrisonHolder && cmpGarrisonHolder.Garrison(this.entity))
+					{
+						this.isGarrisoned = true;
+					}
+					else
+					{	// Garrisoning failed for some reason, so finish the order
+						if (this.FinishOrder())
+							return;
+					}
 				},
 				
 				"Order.Ungarrison": function() {
