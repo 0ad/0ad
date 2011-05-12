@@ -175,6 +175,7 @@ var UnitFsmSpec = {
 		else
 		{
 			// We are already at the target, or can't move at all
+			this.StopMoving();
 			this.FinishOrder();
 		}
 	},
@@ -190,6 +191,7 @@ var UnitFsmSpec = {
 		else
 		{
 			// We are already at the target, or can't move at all
+			this.StopMoving();
 			this.FinishOrder();
 		}
 	},
@@ -226,6 +228,7 @@ var UnitFsmSpec = {
 			// We are already at the target, or can't move at all,
 			// so try attacking it from here.
 			// TODO: need better handling of the can't-reach-target case
+			this.StopMoving();
 			if (this.IsAnimal())
 				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
 			else
@@ -261,6 +264,7 @@ var UnitFsmSpec = {
 			// We are already at the target, or can't move at all,
 			// so try gathering it from here.
 			// TODO: need better handling of the can't-reach-target case
+			this.StopMoving();
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
 		}
 	},
@@ -278,6 +282,7 @@ var UnitFsmSpec = {
 			// Maybe we should try to pick another dropsite, to find an
 			// accessible one?
 			// For now, just give up.
+			this.StopMoving();
 			this.FinishOrder();
 			return;
 		}
@@ -295,6 +300,7 @@ var UnitFsmSpec = {
 			// We are already at the target, or can't move at all,
 			// so try repairing it from here.
 			// TODO: need better handling of the can't-reach-target case
+			this.StopMoving();
 			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
 		}
 	},
@@ -306,6 +312,10 @@ var UnitFsmSpec = {
 		}
 		else
 		{
+			// TODO: this is probably bogus if the unit was
+			// unable to move at all - we need to do some range checks
+			// before actually garrisoning
+			this.StopMoving();
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 		}
 	},
@@ -671,7 +681,6 @@ var UnitFsmSpec = {
 					// off to a different target.)
 					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
 					{
-						this.StopMoving();
 						var typename = "gather_" + this.order.data.type.specific;
 						this.SelectAnimation(typename, false, 1.0, typename);
 					}
