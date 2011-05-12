@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-05-12T05:09:12Z</created>
+    <modified>2011-05-12T05:09:12Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__313-image" name="Map__313">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\helmet\pers_h1.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material__1" name="Material__1">
+      <instance_effect url="#Material__1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Material__1-fx" name="Material__1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__313-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Plane001-lib" name="Plane001Mesh">
+      <mesh>
+        <source id="Plane001-lib-Position">
+          <float_array id="Plane001-lib-Position-array" count="78">
+-0.603059 -0.715641 -0.621278
+-0.547720 -0.715641 0.095930
+-0.073011 -0.715641 0.418565
+0.225886 -0.715641 0.418565
+0.699877 -0.715641 0.095930
+0.762146 -0.715641 -0.621278
+-0.479099 -0.085027 -0.698628
+-0.488405 -0.085027 0.018579
+-0.073011 -0.085027 0.341214
+0.225886 -0.085027 0.341214
+0.639715 -0.085027 0.018579
+0.621770 -0.085027 -0.698628
+-0.479099 0.530450 -0.698628
+-0.488405 0.530450 0.018579
+-0.073011 0.530449 0.341214
+0.225886 0.530449 0.341214
+0.639715 0.530450 0.018579
+0.621770 0.530450 -0.698628
+-0.488405 0.530450 -0.002771
+-0.488405 -0.085027 -0.002771
+-0.073011 0.530449 0.319863
+-0.073011 -0.085026 0.319863
+0.225886 0.530449 0.319863
+0.225886 -0.085026 0.319863
+0.639715 0.530450 -0.002771
+0.639715 -0.085027 -0.002771
+</float_array>
+          <technique_common>
+            <accessor source="#Plane001-lib-Position-array" count="26" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane001-lib-Normal0">
+          <float_array id="Plane001-lib-Normal0-array" count="234">
+-0.995654 0.092231 -0.012919
+-0.988165 0.150720 0.028523
+-0.896470 0.084074 0.435056
+-0.857451 0.125112 0.499124
+-0.896470 0.084074 0.435056
+-0.988165 0.150720 0.028523
+-0.896470 0.084074 0.435056
+-0.857451 0.125112 0.499124
+-0.320002 0.066985 0.945046
+-0.285876 0.116666 0.951138
+-0.320002 0.066985 0.945046
+-0.857451 0.125112 0.499124
+-0.320002 0.066985 0.945046
+-0.285876 0.116666 0.951138
+0.328571 0.058237 0.942682
+0.298370 0.131263 0.945381
+0.328571 0.058237 0.942682
+-0.285876 0.116666 0.951138
+0.328571 0.058237 0.942682
+0.298370 0.131263 0.945381
+0.903498 0.061315 0.424184
+0.856003 0.172984 0.487170
+0.903498 0.061315 0.424184
+0.298370 0.131263 0.945381
+0.903498 0.061315 0.424184
+0.856003 0.172984 0.487170
+0.996842 0.079343 0.003254
+0.970397 0.226346 0.084251
+0.996842 0.079343 0.003254
+0.856003 0.172984 0.487170
+-0.999916 0.000000 -0.012974
+-0.995654 0.092231 -0.012919
+-0.901000 0.000000 0.433819
+-0.896470 0.084074 0.435056
+-0.901000 0.000000 0.433819
+-0.995654 0.092231 -0.012919
+-0.901000 0.000000 0.433819
+-0.896470 0.084074 0.435056
+-0.324217 0.000000 0.945983
+-0.320002 0.066985 0.945046
+-0.324217 0.000000 0.945983
+-0.896470 0.084074 0.435056
+-0.324217 0.000000 0.945983
+-0.320002 0.066985 0.945046
+0.325083 0.000000 0.945686
+0.328571 0.058237 0.942682
+0.325083 0.000000 0.945686
+-0.320002 0.066985 0.945046
+0.325083 0.000000 0.945686
+0.328571 0.058237 0.942682
+0.903987 0.000000 0.427559
+0.903498 0.061315 0.424184
+0.903987 0.000000 0.427559
+0.328571 0.058237 0.942682
+0.903987 0.000000 0.427559
+0.903498 0.061315 0.424184
+0.999687 0.000000 -0.025013
+0.996842 0.079343 0.003254
+0.999687 0.000000 -0.025013
+0.903498 0.061315 0.424184
+0.613408 0.000000 -0.789766
+0.613408 0.000000 -0.789766
+0.324217 0.000000 -0.945983
+0.324217 0.000000 -0.945983
+0.324217 0.000000 -0.945983
+0.613408 0.000000 -0.789766
+0.324217 0.000000 -0.945983
+0.324217 0.000000 -0.945983
+-0.325083 0.000000 -0.945686
+-0.325083 0.000000 -0.945686
+-0.325083 0.000000 -0.945686
+0.324217 0.000000 -0.945983
+-0.325083 0.000000 -0.945686
+-0.325083 0.000000 -0.945686
+-0.614852 0.000000 -0.788643
+-0.614852 0.000000 -0.788643
+-0.614852 0.000000 -0.788643
+-0.325083 0.000000 -0.945686
+</float_array>
+          <technique_common>
+            <accessor source="#Plane001-lib-Normal0-array" count="78" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane001-lib-UV0">
+          <float_array id="Plane001-lib-UV0-array" count="52">
+0.000000 0.000000
+0.243590 0.000000
+0.435960 0.000000
+0.562449 0.000000
+0.756410 0.000000
+1.000000 0.000000
+0.000000 0.477721
+0.243590 0.477721
+0.435960 0.477721
+0.562449 0.477721
+0.756410 0.477721
+1.000000 0.477721
+0.000000 0.939529
+0.243590 0.939529
+0.435960 0.939529
+0.562449 0.939529
+0.756410 0.939529
+1.000000 0.939529
+0.243590 0.939529
+0.243590 0.477721
+0.435960 0.939529
+0.435960 0.477721
+0.562449 0.939529
+0.562449 0.477721
+0.756410 0.939529
+0.756410 0.477721
+</float_array>
+          <technique_common>
+            <accessor source="#Plane001-lib-UV0-array" count="26" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane001-lib-Vertex">
+          <input semantic="POSITION" source="#Plane001-lib-Position"/>
+        </vertices>
+        <polygons material="Material__1" count="26">
+          <input semantic="VERTEX" offset="0" source="#Plane001-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Plane001-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Plane001-lib-UV0"/>
+          <p>6 0 6 0 1 0 7 2 7</p>
+          <p>1 3 1 7 4 7 0 5 0</p>
+          <p>7 6 7 1 7 1 8 8 8</p>
+          <p>2 9 2 8 10 8 1 11 1</p>
+          <p>8 12 8 2 13 2 9 14 9</p>
+          <p>3 15 3 9 16 9 2 17 2</p>
+          <p>9 18 9 3 19 3 10 20 10</p>
+          <p>4 21 4 10 22 10 3 23 3</p>
+          <p>10 24 10 4 25 4 11 26 11</p>
+          <p>5 27 5 11 28 11 4 29 4</p>
+          <p>12 30 12 6 31 6 13 32 13</p>
+          <p>7 33 7 13 34 13 6 35 6</p>
+          <p>13 36 13 7 37 7 14 38 14</p>
+          <p>8 39 8 14 40 14 7 41 7</p>
+          <p>14 42 14 8 43 8 15 44 15</p>
+          <p>9 45 9 15 46 15 8 47 8</p>
+          <p>15 48 15 9 49 9 16 50 16</p>
+          <p>10 51 10 16 52 16 9 53 9</p>
+          <p>16 54 16 10 55 10 17 56 17</p>
+          <p>11 57 11 17 58 17 10 59 10</p>
+          <p>19 60 19 18 61 18 20 62 20</p>
+          <p>20 63 20 21 64 21 19 65 19</p>
+          <p>21 66 21 20 67 20 22 68 22</p>
+          <p>22 69 22 23 70 23 21 71 21</p>
+          <p>23 72 23 22 73 22 24 74 24</p>
+          <p>24 75 24 25 76 25 23 77 23</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="SceneAmbient-lib" name="SceneAmbientMesh">
+      <technique_common>
+        <ambient>
+          <color>0.466667 0.466667 0.466667</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Plane001" name="Plane001">
+        <matrix sid="matrix">0.904254 0.000000 0.000000 -0.077867 0.000000 0.984808 0.173648 0.066533 0.000000 -0.173648 0.984808 -0.034068 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Plane001-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material__1" target="#Material__1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
