@@ -348,6 +348,22 @@ JSBool error(JSContext* cx, uintN argc, jsval* vp)
 	return JS_TRUE;
 }
 
+JSBool deepcopy(JSContext* cx, uintN argc, jsval* vp)
+{
+	if (argc < 1)
+	{
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		return JS_TRUE;
+	}
+
+	jsval ret;
+	if (!JS_StructuredClone(cx, JS_ARGV(cx, vp)[0], &ret))
+		return JS_FALSE;
+
+	JS_SET_RVAL(cx, vp, ret);
+	return JS_TRUE;
+}
+
 JSBool ProfileStart(JSContext* cx, uintN argc, jsval* vp)
 {
 	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
@@ -461,6 +477,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_DefineFunction(m_cx, m_glob, "log",   ::logmsg, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_glob, "warn",  ::warn,   1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_glob, "error", ::error,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_glob, "deepcopy", ::deepcopy, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
 	Register("ProfileStart", ::ProfileStart, 1);
 	Register("ProfileStop", ::ProfileStop, 0);

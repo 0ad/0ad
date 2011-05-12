@@ -22,7 +22,6 @@
 #include "lib/regex.h"
 #include "lib/timer.h"
 #include "lib/allocators/shared_ptr.h"
-#include "lib/file/io/io.h"
 #include "lib/tex/tex.h"
 #include "maths/MD5.h"
 #include "ps/CLogger.h"
