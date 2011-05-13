@@ -99,7 +99,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 	if (!this.committed)
 	{
 		var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-		if (cmpObstruction)
+		if (cmpObstruction && cmpObstruction.GetBlockMovementFlag())
 		{
 			// If there's any units in the way, ask them to move away
 			// and return early from this method.

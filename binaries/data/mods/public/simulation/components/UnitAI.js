@@ -407,6 +407,25 @@ var UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.IDLE");
 		},
 
+		// Override the LeaveFoundation order since we're not doing
+		// anything more important (and we might be stuck in the WALKING
+		// state forever and need to get out of foundations in that case)
+		"Order.LeaveFoundation": function(msg) {
+			// Move a tile outside the building
+			var range = 4;
+			var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
+			if (ok)
+			{
+				// We've started walking to the given point
+				this.SetNextState("WALKING");
+			}
+			else
+			{
+				// We are already at the target, or can't move at all
+				this.FinishOrder();
+			}
+		},
+
 		"IDLE": {
 			"enter": function() {
 				this.SelectAnimation("idle");
@@ -417,6 +436,10 @@ var UnitFsmSpec = {
 			"enter": function () {
 				this.SelectAnimation("move");
 			},
+
+			// (We stay in this state even if we're already in position
+			// and no longer moving, because the formation controller might
+			// move and we'll automatically start chasing after it again)
 		},
 	},
 

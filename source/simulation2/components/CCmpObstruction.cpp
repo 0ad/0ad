@@ -289,6 +289,11 @@ public:
 		}
 	}
 
+	virtual bool GetBlockMovementFlag()
+	{
+		return (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT) != 0;
+	}
+
 	virtual ICmpObstructionManager::tag_t GetObstruction()
 	{
 		return m_Tag;
