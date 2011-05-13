@@ -355,6 +355,7 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 	m_BlendFuncSrc = GL_SRC_ALPHA;
 	m_BlendFuncDst = GL_ONE_MINUS_SRC_ALPHA;
 	m_StartFull = false;
+	m_Texture = g_Renderer.GetTextureManager().GetErrorTexture();
 
 	CXeromyces XeroFile;
 	PSRETURN ret = XeroFile.Load(g_VFS, path);
@@ -507,11 +508,10 @@ void CParticleEmitterType::UpdateEmitterStep(CParticleEmitter& emitter, float dt
 	{
 		float emissionRate = m_Variables[VAR_EMISSIONRATE]->Evaluate(emitter);
 
-		// Find how many new particles to spawn, and accumulate any rounding errors into EmissionTimer
-		emitter.m_EmissionTimer += dt;
-		int newParticles = floor(emitter.m_EmissionTimer * emissionRate);
-		if (newParticles) // avoid divide-by-zero if emissionRate == 0
-			emitter.m_EmissionTimer -= newParticles / emissionRate;
+		// Find how many new particles to spawn, and accumulate any rounding errors
+		// (to maintain a constant emission rate even if dt is very small)
+		int newParticles = floor(emitter.m_EmissionRoundingError + dt*emissionRate);
+		emitter.m_EmissionRoundingError += dt*emissionRate - newParticles;
 
 		// If dt was very large, there's no point spawning new particles that
 		// we'll immediately overwrite, so clamp it

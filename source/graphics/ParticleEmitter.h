@@ -129,7 +129,7 @@ public:
 	size_t m_NextParticleIdx;
 
 	float m_LastUpdateTime;
-	float m_EmissionTimer;
+	float m_EmissionRoundingError;
 
 private:
 	/// Bounding box of the current particle center points

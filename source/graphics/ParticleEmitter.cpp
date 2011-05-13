@@ -26,7 +26,7 @@
 #include "renderer/Renderer.h"
 
 CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
-	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionTimer(0.f),
+	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
 	m_VertexArray(GL_DYNAMIC_DRAW)
 {
