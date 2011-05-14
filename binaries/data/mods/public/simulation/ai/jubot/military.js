@@ -18,6 +18,7 @@ var MilitaryAttackManager = Class({
 		this.changetime = 60*1000;
 		this.changetimeReg = 60*5000;
 		this.changetimeRegDef = 60*5000;
+		this.changetimeRegWaiting = 60*4000;
 		this.attacknumbers = 0.4
 		this.squadTypes = [
 			"units/{civ}_infantry_spearman_b",
@@ -149,7 +150,35 @@ var MilitaryAttackManager = Class({
 					ent.setMetadata("role", "attack-pending_3p3");
 					}
 				});
-			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending");
+				// MOVE THEM ALL
+				// GROUP ONE
+			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending_3p1");
+				//Find a friendsly CC
+			var targets = gameState.entities.filter(function(ent) {
+				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
+			});
+			if (targets.length){
+				var target = targets.toEntityArray()[0];
+				var targetPos = target.position();
+
+				// TODO: this should be an attack-move command
+				regroupneededPartB.move(targetPos[0], targetPos[1]);
+			}
+				// MOVING GROUP TWO
+			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending_3p2");
+				//Find a friendsly CC
+			var targets = gameState.entities.filter(function(ent) {
+				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
+			});
+			if (targets.length){
+				var target = targets.toEntityArray()[0];
+				var targetPos = target.position();
+
+				// TODO: this should be an attack-move command
+				regroupneededPartB.move(targetPos[0], targetPos[1]);
+			}
+				// MOVING GROUP THREE
+			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending_3p3");
 				//Find a friendsly CC
 			var targets = gameState.entities.filter(function(ent) {
 				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
@@ -294,6 +323,72 @@ var MilitaryAttackManager = Class({
 			this.changetimeRegDef = this.changetimeRegDef + (60*1500);
 			}
 	},
+	
+	waitingregroup: function(gameState, planGroups)
+	{
+			if (gameState.getTimeElapsed() > this.changetimeRegWaiting){
+			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending");
+				//Find a friendsly CC
+			var targets = gameState.entities.filter(function(ent) {
+				return (!ent.isEnemy() && ent.hasClass("Village"));
+			});
+					// If we have a target, move to it
+			if (targets.length)
+			{
+				var targetrandomiser = Math.floor(Math.random()*targets.length);
+				var target = targets.toEntityArray()[targetrandomiser];
+				var targetPos = target.position();
+				// TODO: this should be an attack-move command
+				regroupneededPartC.move(targetPos[0], targetPos[1]);
+			}
+			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending_3p1");
+				//Find a friendsly CC
+			var targets = gameState.entities.filter(function(ent) {
+				return (!ent.isEnemy() && ent.hasClass("Village"));
+			});
+					// If we have a target, move to it
+			if (targets.length)
+			{
+				var targetrandomiser = Math.floor(Math.random()*targets.length);
+				var target = targets.toEntityArray()[targetrandomiser];
+				var targetPos = target.position();
+				// TODO: this should be an attack-move command
+				regroupneededPartC.move(targetPos[0], targetPos[1]);
+			}
+			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending_3p2");
+				//Find a friendsly CC
+			var targets = gameState.entities.filter(function(ent) {
+				return (!ent.isEnemy() && ent.hasClass("Village"));
+			});
+					// If we have a target, move to it
+			if (targets.length)
+			{
+				var targetrandomiser = Math.floor(Math.random()*targets.length);
+				var target = targets.toEntityArray()[targetrandomiser];
+				var targetPos = target.position();
+				// TODO: this should be an attack-move command
+				regroupneededPartC.move(targetPos[0], targetPos[1]);
+			}
+			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending_3p3");
+				//Find a friendsly CC
+			var targets = gameState.entities.filter(function(ent) {
+				return (!ent.isEnemy() && ent.hasClass("Village"));
+			});
+					// If we have a target, move to it
+			if (targets.length)
+			{
+				var targetrandomiser = Math.floor(Math.random()*targets.length);
+				var target = targets.toEntityArray()[targetrandomiser];
+				var targetPos = target.position();
+				// TODO: this should be an attack-move command
+				regroupneededPartC.move(targetPos[0], targetPos[1]);
+			}
+			// Wait 4 mins to do this again.
+			this.changetimeRegWaiting = this.changetimeRegWaiting + (60*1500);
+			}
+	},
+	
+
 		
 	trainDefenderSquad: function(gameState, planGroups)
 	{
@@ -741,7 +836,7 @@ var MilitaryAttackManager = Class({
 		//JuBotAI.prototype.chat(whatnext);
 			// Cavalry raid
 			}
-			else if (whatnext > 0.3) {
+			else if (whatnext > 0.4) {
 			this.killstrat = 3;
 		//JuBotAI.prototype.chat("3 pronged assault (" + gameState.displayCiv() + ")");
 		//JuBotAI.prototype.chat(whatnext);
