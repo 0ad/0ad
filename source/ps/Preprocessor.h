@@ -4,7 +4,7 @@
  * All changes are released under the original license, as follows:
  */
 
-/**
+/*
 -----------------------------------------------------------------------------
 This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
