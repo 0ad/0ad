@@ -194,7 +194,11 @@ public:
 			ret.path += ret.separator;
 
 		if(rhs.path.find((ret.separator == '/')? '\\' : '/') != String::npos)
+		{
+			PrintToDebugOutput();
+			rhs.PrintToDebugOutput();
 			DEBUG_WARN_ERR(ERR::PATH_MIXED_SEPARATORS);
+		}
 		ret.path += rhs.path;
 		return ret;
 	}
@@ -202,12 +206,20 @@ public:
 	static Status Validate(String::value_type c);
 
 private:
+	void PrintToDebugOutput() const
+	{
+		debug_printf(L"Path %ws, separator %c\n", path.c_str(), separator);
+	}
+
 	void DetectSeparator()
 	{
 		const size_t idxBackslash = path.find('\\');
 
 		if(path.find('/') != String::npos && idxBackslash != String::npos)
+		{
+			PrintToDebugOutput();
 			DEBUG_WARN_ERR(ERR::PATH_MIXED_SEPARATORS);
+		}
 
 		// (default to '/' for empty strings)
 		separator = (idxBackslash == String::npos)? '/' : '\\';
