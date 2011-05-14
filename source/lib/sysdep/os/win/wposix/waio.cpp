@@ -429,7 +429,19 @@ Status waio_Preallocate(int fd, off_t size)
 
 	// avoid synchronous zero-fill (see discussion in header)
 	if(pSetFileValidData)
-		WARN_IF_FALSE(pSetFileValidData(hFile, alignedSize));
+	{
+		// this has been reported (#849) to fail with GetLastError() == 0 for
+		// both tiny and medium alignedSize, despite Administrator privileges.
+		// it seems the problem is the underlying FAT filesystem. Nick Ryan:
+		// "FastFat does not process the FILE_VALID_DATA_LENGTH_INFORMATION IOCTL"
+		// (http://us.generation-nt.com/answer/setfilevaliddata-help-25926952.html?page=2)
+		// verifying the filesystem is indeed FAT would be overkill; we'll just
+		// ignore the return code. however, GetLastError can be used to check
+		// whether other problems arose.
+		WinScopedPreserveLastError s;
+		(void)pSetFileValidData(hFile, alignedSize);
+		ENSURE(GetLastError() == 0);
+	}
 
 	return INFO::OK;
 }
