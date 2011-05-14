@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,14 +74,18 @@ FColladaErrorHandler::~FColladaErrorHandler()
 
 void FColladaErrorHandler::OnError(FUError::Level errorLevel, uint32 errorCode, uint32 UNUSED(lineNumber))
 {
+	// Ignore warnings about missing materials, since we ignore materials entirely anyway
+	if (errorCode == FUError::WARNING_INVALID_POLYGON_MAT_SYMBOL)
+		return;
+
 	const char* errorString = FUError::GetErrorString((FUError::Code) errorCode);
 	if (! errorString)
 		errorString = "Unknown error code";
 
 	if (errorLevel == FUError::DEBUG_LEVEL)
-		Log(LOG_INFO, "FCollada message %d: %s", errorCode, errorString);
+		Log(LOG_INFO, "FCollada %d: %s", errorCode, errorString);
 	else if (errorLevel == FUError::WARNING_LEVEL)
-		Log(LOG_WARNING, "FCollada warning %d: %s", errorCode, errorString);
+		Log(LOG_WARNING, "FCollada %d: %s", errorCode, errorString);
 	else
 		throw ColladaException(errorString);
 }

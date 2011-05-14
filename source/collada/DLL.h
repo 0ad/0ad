@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,14 +36,14 @@
 #define LOG_WARNING 1
 #define LOG_ERROR 2
 
-typedef void (*LogFn) (int severity, const char* text);
+typedef void (*LogFn) (void* cb_data, int severity, const char* text);
 typedef void (*OutputFn) (void* cb_data, const char* data, unsigned int length);
 
 /* This version number should be bumped whenever incompatible changes
  * are made, to invalidate old caches. */
 #define COLLADA_CONVERTER_VERSION 2
 
-EXPORT void set_logger(LogFn logger);
+EXPORT void set_logger(LogFn logger, void* cb_data);
 EXPORT int set_skeleton_definitions(const char* xml, int length);
 EXPORT int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data);
 EXPORT int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_data);

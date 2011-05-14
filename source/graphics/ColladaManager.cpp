@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,14 +33,16 @@ namespace Collada
 
 namespace
 {
-	void ColladaLog(int severity, const char* text)
+	void ColladaLog(void* cb_data, int severity, const char* text)
 	{
+		VfsPath* path = static_cast<VfsPath*>(cb_data);
+
 		if (severity == LOG_INFO)
-			LOGMESSAGE(L"Collada message: %hs", text);
+			LOGMESSAGE(L"%ls: %hs", path->string().c_str(), text);
 		else if (severity == LOG_WARNING)
-			LOGWARNING(L"Collada warning: %hs", text);
+			LOGWARNING(L"%ls: %hs", path->string().c_str(), text);
 		else
-			LOGERROR(L"Collada error: %hs", text);
+			LOGERROR(L"%ls: %hs", path->string().c_str(), text);
 	}
 
 	void ColladaOutput(void* cb_data, const char* data, unsigned int length)
@@ -54,7 +56,7 @@ class CColladaManagerImpl
 {
 	DllLoader dll;
 
-	void (*set_logger)(Collada::LogFn logger);
+	void (*set_logger)(Collada::LogFn logger, void* cb_data);
 	int (*set_skeleton_definitions)(const char* xml, int length);
 	int (*convert_dae_to_pmd)(const char* dae, Collada::OutputFn pmd_writer, void* cb_data);
 	int (*convert_dae_to_psa)(const char* dae, Collada::OutputFn psa_writer, void* cb_data);
@@ -68,7 +70,7 @@ public:
 	~CColladaManagerImpl()
 	{
 		if (dll.IsLoaded())
-			set_logger(NULL); // unregister the log handler
+			set_logger(NULL, NULL); // unregister the log handler
 	}
 
 	bool Convert(const VfsPath& daeFilename, const VfsPath& pmdFilename, CColladaManager::FileType type)
@@ -101,10 +103,13 @@ public:
 				return false;
 			}
 
-			set_logger(ColladaLog);
+			VfsPath skeletonPath("art/skeletons/skeletons.xml");
+
+			// Set the filename for the logger to report
+			set_logger(ColladaLog, static_cast<void*>(&skeletonPath));
 
 			CVFSFile skeletonFile;
-			if (skeletonFile.Load(g_VFS, L"art/skeletons/skeletons.xml") != PSRETURN_OK)
+			if (skeletonFile.Load(g_VFS, skeletonPath) != PSRETURN_OK)
 			{
 				LOGERROR(L"Failed to read skeleton definitions");
 				dll.Unload();
@@ -123,6 +128,9 @@ public:
 			// the skeleton definition file is changed, else people will get confused
 			// as to why it's not picking up their changes
 		}
+
+		// Set the filename for the logger to report
+		set_logger(ColladaLog, const_cast<void*>(static_cast<const void*>(&daeFilename)));
 
 		// We need to null-terminate the buffer, so do it (possibly inefficiently)
 		// by converting to a CStr
@@ -145,7 +153,7 @@ public:
 		// don't create zero-length files (as happens in test_invalid_dae when
 		// we deliberately pass invalid XML data) because the VFS caching
 		// logic warns when asked to load such.
-		if(writeBuffer.Size())
+		if (writeBuffer.Size())
 		{
 			Status ret = g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
 			ENSURE(ret == INFO::OK);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,19 +25,26 @@
 #include <cstdarg>
 #include <cassert>
 
-void default_logger(int severity, const char* message)
+void default_logger(void*, int severity, const char* message)
 {
 	fprintf(stderr, "[%d] %s\n", severity, message);
 }
 
 static LogFn g_Logger = &default_logger;
+static void* g_LoggerCBData = NULL;
 
-EXPORT void set_logger(LogFn logger)
+EXPORT void set_logger(LogFn logger, void* cb_data)
 {
 	if (logger)
+	{
 		g_Logger = logger;
+		g_LoggerCBData = cb_data;
+	}
 	else
+	{
 		g_Logger = &default_logger;
+		g_LoggerCBData = NULL;
+	}
 }
 
 void Log(int severity, const char* msg, ...)
@@ -49,7 +56,7 @@ void Log(int severity, const char* msg, ...)
 	buffer[sizeof(buffer)-1] = '\0';
 	va_end(ap);
 
-	g_Logger(severity, buffer);
+	g_Logger(g_LoggerCBData, severity, buffer);
 }
 
 struct BufferedOutputCallback : public OutputCB
