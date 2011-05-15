@@ -140,7 +140,7 @@ var UnitFsmSpec = {
 
 	"Order.LeaveFoundation": function(msg) {
 		// Default behaviour is to ignore the order since we're busy
-		this.FinishOrder();
+		this.DiscardOrder();
 	},
 
 	// Individual orders:
@@ -1375,6 +1375,23 @@ UnitAI.prototype.FinishOrder = function()
 	{
 		this.SetNextState("IDLE");
 		return false;
+	}
+};
+
+/**
+ * Call when you want to drop an order inside a FSM order handler.
+ * Don't change the FSM state.
+ */
+UnitAI.prototype.DiscardOrder = function()
+{
+	if (!this.orderQueue.length)
+		error("DiscardOrder called when order queue is empty");
+
+	this.orderQueue.shift();
+	this.order = this.orderQueue[0];
+	if (!this.orderQueue.length)
+	{
+		this.SetNextState("IDLE");
 	}
 };
 
