@@ -24,6 +24,7 @@
 
 #include <boost/random/linear_congruential.hpp>
 
+#include <set>
 
 class CMapGeneratorWorker;
 
