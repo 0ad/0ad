@@ -248,7 +248,19 @@ function ProcessCommand(player, cmd)
 		cmpFormation.LoadFormation(cmd.name);
 		cmpFormation.MoveMembersIntoFormation(true);
 		break;
-		
+
+	case "promote":
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": "(Cheat - promoted units)"});
+
+		for each (var ent in cmd.entities)
+		{
+			var cmpPromotion = Engine.QueryInterface(ent, IID_Promotion);
+			if (cmpPromotion)
+				cmpPromotion.IncreaseXp(cmpPromotion.GetRequiredXp() - cmpPromotion.GetCurrentXp());
+		}
+		break;
+
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");
 	}
