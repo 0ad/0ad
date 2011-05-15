@@ -208,7 +208,7 @@ public:
 private:
 	void PrintToDebugOutput() const
 	{
-		debug_printf(L"Path %ws, separator %c\n", path.c_str(), separator);
+		debug_printf(L"Path %ls, separator %c\n", path.c_str(), separator);
 	}
 
 	void DetectSeparator()
