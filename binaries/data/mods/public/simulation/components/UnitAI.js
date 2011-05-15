@@ -140,7 +140,7 @@ var UnitFsmSpec = {
 
 	"Order.LeaveFoundation": function(msg) {
 		// Default behaviour is to ignore the order since we're busy
-		this.DiscardOrder();
+		return { "discardOrder": true };
 	},
 
 	// Individual orders:
@@ -1368,30 +1368,24 @@ UnitAI.prototype.FinishOrder = function()
 
 	if (this.orderQueue.length)
 	{
-		UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+		var ret = UnitFsm.ProcessMessage(this,
+			{"type": "Order."+this.order.type, "data": this.order.data}
+		);
+
+		// If the order was rejected then immediately take it off
+		// and process the remaining queue
+		if (ret && ret.discardOrder)
+		{
+			return this.FinishOrder();
+		}
+
+		// Otherwise we've successfully processed a new order
 		return true;
 	}
 	else
 	{
 		this.SetNextState("IDLE");
 		return false;
-	}
-};
-
-/**
- * Call when you want to drop an order inside a FSM order handler.
- * Don't change the FSM state.
- */
-UnitAI.prototype.DiscardOrder = function()
-{
-	if (!this.orderQueue.length)
-		error("DiscardOrder called when order queue is empty");
-
-	this.orderQueue.shift();
-	this.order = this.orderQueue[0];
-	if (!this.orderQueue.length)
-	{
-		this.SetNextState("IDLE");
 	}
 };
 
@@ -1408,7 +1402,16 @@ UnitAI.prototype.PushOrder = function(type, data)
 	if (this.orderQueue.length == 1)
 	{
 		this.order = order;
-		UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+		var ret = UnitFsm.ProcessMessage(this,
+			{"type": "Order."+this.order.type, "data": this.order.data}
+		);
+
+		// If the order was rejected then immediately take it off
+		// and process the remaining queue
+		if (ret && ret.discardOrder)
+		{
+			this.FinishOrder();
+		}
 	}
 };
 
@@ -1429,7 +1432,19 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 	{
 		this.orderQueue.unshift(order);
 		this.order = order;
-		UnitFsm.ProcessMessage(this, {"type": "Order."+this.order.type, "data": this.order.data});
+		var ret = UnitFsm.ProcessMessage(this,
+			{"type": "Order."+this.order.type, "data": this.order.data}
+		);
+
+		// If the order was rejected then immediately take it off again;
+		// assume the previous active order is still valid (the short-lived
+		// new order hasn't changed state or anything) so we can carry on
+		// as if nothing had happened
+		if (ret && ret.discardOrder)
+		{
+			this.orderQueue.shift();
+			this.order = this.orderQueue[0];
+		}
 	}
 };
 

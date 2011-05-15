@@ -245,10 +245,13 @@ FSM.prototype.ProcessMessage = function(obj, msg)
 	if (!func)
 	{
 		error("Tried to process unhandled event '" + msg.type + "' in state '" + obj.fsmStateName + "'");
-		return;
+		return undefined;
 	}
-	func.apply(obj, [msg]);
 
+	var ret = func.apply(obj, [msg]);
+
+	// If func called SetNextState then switch into the new state,
+	// and continue switching if the new state's 'enter' called SetNextState again
 	while (obj.fsmNextState)
 	{
 		var nextStateName = this.LookupState(obj.fsmStateName, obj.fsmNextState);
@@ -257,6 +260,8 @@ FSM.prototype.ProcessMessage = function(obj, msg)
 		if (nextStateName != obj.fsmStateName)
 			this.SwitchToNextState(obj, nextStateName);
 	}
+
+	return ret;
 };
 
 FSM.prototype.DeferMessage = function(obj, msg)
@@ -339,6 +344,6 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	}
 
 	obj.fsmStateName = nextStateName;
-}
+};
 
 Engine.RegisterGlobal("FSM", FSM);
