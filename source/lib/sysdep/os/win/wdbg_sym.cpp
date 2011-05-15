@@ -91,6 +91,7 @@ static Status InitDbghelp()
 	// .. use default *symbol* search path. we don't use this to locate
 	//    our PDB file because its absolute path is stored inside the EXE.
 	const PWSTR UserSearchPath = 0;
+	WinScopedPreserveLastError s;	// SymInitializeW
 	const BOOL ok = pSymInitializeW(hProcess, UserSearchPath, fInvadeProcess);
 	WARN_IF_FALSE(ok);
 
@@ -153,6 +154,8 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 	const DWORD64 addr = (DWORD64)ptr_of_interest;
 	int successes = 0;
 
+	WinScopedPreserveLastError s;	// SymFromAddrW, SymGetLineFromAddrW64
+
 	// get symbol name (if requested)
 	if(sym_name)
 	{
@@ -195,6 +198,11 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 			}
 		}
 	}
+
+	if(addr == 0 && GetLastError() == ERROR_MOD_NOT_FOUND)
+		SetLastError(0);
+	if(GetLastError() == ERROR_INVALID_ADDRESS)
+		SetLastError(0);
 
 	return (successes != 0)? INFO::OK : ERR::FAIL;
 }
@@ -1821,6 +1829,8 @@ static Status dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData)
 	else
 		out(L"%p\r\n", func);
 
+	WinScopedPreserveLastError s;	// SymSetContext
+
 	// only enumerate symbols for this stack frame
 	// (i.e. its locals and parameters)
 	// problem: debug info is scope-aware, so we won't see any variables
@@ -1832,6 +1842,9 @@ static Status dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData)
 
 	const ULONG64 base = 0; const wchar_t* const mask = 0;	// use scope set by pSymSetContext
 	pSymEnumSymbolsW(hProcess, base, mask, dump_sym_cb, 0);
+
+	if(GetLastError() == ERROR_NOT_SUPPORTED)	// no debug info present?
+		SetLastError(0);
 
 	out(L"\r\n");
 	return INFO::CONTINUE;
