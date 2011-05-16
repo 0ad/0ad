@@ -2,30 +2,31 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.08635" g="1.08635" b="1.08635"/>
-		<SunElevation angle="0.659612"/>
-		<SunRotation angle="0.79767"/>
-		<TerrainAmbientColour r="0.341176" g="0.403922" b="0.466667"/>
-		<UnitsAmbientColour r="0.478431" g="0.478431" b="0.478431"/>
+		<SunColour r="0.741176" g="0.721569" b="0.643137"/>
+		<SunElevation angle="0.773126"/>
+		<SunRotation angle="-0.693359"/>
+		<TerrainAmbientColour r="0.423529" g="0.482353" b="0.52549"/>
+		<UnitsAmbientColour r="0.47451" g="0.47451" b="0.47451"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>22.1377</Height>
-				<Shininess>150</Shininess>
+				<Shininess>0</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0.447059" g="0.411765" b="0.321569"/>
-				<ReflectionTint r="0.447059" g="0.415686" b="0.321569"/>
-				<ReflectionTintStrength>0.677734</ReflectionTintStrength>
+				<ReflectionTint r="0.219608" g="0.188235" b="0.172549"/>
+				<ReflectionTintStrength>0.498047</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="892.34" y="119.793" z="340.077"/>
-		<Rotation angle="-0.000223319"/>
-		<Declination angle="0.555451"/>
+		<Position x="884.834" y="102.4" z="356.544"/>
+		<Rotation angle="-0.00791982"/>
+		<Declination angle="0.52988"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -39,7 +40,8 @@
       "Civ": "celt"
     }
   ],
-  "CircularMap": true
+  "CircularMap": true,
+  "Keywords": []
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -3353,7 +3355,7 @@
 			<Template>other/celt_homestead</Template>
 			<Player>2</Player>
 			<Position x="513.21052" z="98.58271"/>
-			<Orientation y="-0.82177"/>
+			<Orientation y="2.46763"/>
 		</Entity>
 		<Entity uid="685">
 			<Template>gaia/flora_tree_pine</Template>
@@ -12431,7 +12433,7 @@
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
 			<Position x="456.92286" z="135.19904"/>
-			<Orientation y="-3.13506"/>
+			<Orientation y="-2.30239"/>
 		</Entity>
 		<Entity uid="2213">
 			<Template>gaia/flora_tree_pine</Template>
