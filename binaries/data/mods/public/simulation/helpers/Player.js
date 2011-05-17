@@ -191,6 +191,30 @@ function QueryPlayerIDInterface(id, iid)
 	return Engine.QueryInterface(playerEnt, iid);
 }
 
+function IsOwnedByAlly(entity, target)
+{
+  //figure out which player controls us
+  var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+  var owner = 0;
+  if (cmpOwnership)
+    owner = cmpOwnership.GetOwner();
+
+  var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+  var player = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
+  // Get our diplomacy array
+  var diplomacy = player.GetDiplomacy();
+
+  //figure out which player controls the foundation being built
+  var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+  var targetOwner = 0;
+  if (cmpOwnershipTarget)
+    targetOwner = cmpOwnershipTarget.GetOwner();
+
+  //If we don't like the guy with the building, ignore their request to move
+  return owner==targetOwner || diplomacy[targetOwner - 1] > 0;
+}
+
 Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
 Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
+Engine.RegisterGlobal("IsOwnedByAlly", IsOwnedByAlly);

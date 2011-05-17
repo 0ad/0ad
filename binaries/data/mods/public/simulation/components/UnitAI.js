@@ -414,6 +414,11 @@ var UnitFsmSpec = {
 		// anything more important (and we might be stuck in the WALKING
 		// state forever and need to get out of foundations in that case)
 		"Order.LeaveFoundation": function(msg) {
+			if (!IsOwnedByAlly(this.entity, msg.data.target))
+			{
+				this.FinishOrder();
+				return;
+			}
 			// Move a tile outside the building
 			var range = 4;
 			var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
@@ -526,6 +531,11 @@ var UnitFsmSpec = {
 			// Override the LeaveFoundation order since we're not doing
 			// anything more important
 			"Order.LeaveFoundation": function(msg) {
+				if (!IsOwnedByAlly(this.entity, msg.data.target))
+				{
+					this.FinishOrder();
+					return;
+				}
 				// Move a tile outside the building
 				var range = 4;
 				var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
@@ -978,6 +988,11 @@ var UnitFsmSpec = {
 			// Override the LeaveFoundation order since we don't want to be
 			// accidentally blocking our own building
 			"Order.LeaveFoundation": function(msg) {
+				if (!IsOwnedByAlly(this.entity, msg.data.target))
+				{
+					this.FinishOrder();
+					return;
+				}
 				// Move a tile outside the building
 				var range = 4;
 				var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
