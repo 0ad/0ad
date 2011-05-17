@@ -186,7 +186,10 @@ var UnitFsmSpec = {
 		if (ok)
 		{
 			// We've started fleeing from the given target
-			this.SetNextState("INDIVIDUAL.FLEEING");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.FLEEING");
+			else
+				this.SetNextState("INDIVIDUAL.FLEEING");
 		}
 		else
 		{
@@ -1068,7 +1071,7 @@ var UnitFsmSpec = {
 			    this.template.NaturalBehaviour == "passive")
 			{
 				this.MoveToTargetRangeExplicit(msg.data.attacker, +this.template.FleeDistance, +this.template.FleeDistance);
-				this.SetNextState("FLEEING");
+				this.Flee(msg.data.attacker);
 			}
 			else if (this.template.NaturalBehaviour == "violent" ||
 			         this.template.NaturalBehaviour == "aggressive" ||
@@ -1138,7 +1141,7 @@ var UnitFsmSpec = {
 					if (msg.data.added.length > 0)
 					{
 						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
-						this.SetNextState("FLEEING");
+						this.Flee(msg.data.added[0]);
 						return;
 					}
 				}
@@ -1183,7 +1186,7 @@ var UnitFsmSpec = {
 					if (msg.data.added.length > 0)
 					{
 						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
-						this.SetNextState("FLEEING");
+						this.Flee(msg.data.added[0]);
 						return;
 					}
 				}
@@ -1201,26 +1204,7 @@ var UnitFsmSpec = {
 			},
 		},
 
-		"FLEEING": { // TODO: would be nice to share more of this with non-animal units
-			"enter": function() {
-				this.PlaySound("panic");
-
-				// Run quickly
-				var speed = this.GetRunSpeed();
-				this.SelectAnimation("run", false, speed);
-				this.SetMoveSpeed(speed);
-			},
-
-			"leave": function() {
-				// Reset normal speed
-				this.SetMoveSpeed(this.GetWalkSpeed());
-			},
-
-			"MoveCompleted": function() {
-				// When we've run far enough, go back to the roaming state
-				this.SetNextState("ROAMING");
-			},
-		},
+		"FLEEING": "INDIVIDUAL.FLEEING", // reuse the same fleeing behaviour for animals
 
 		"COMBAT": "INDIVIDUAL.COMBAT", // reuse the same combat behaviour for animals
 	},
@@ -2071,6 +2055,11 @@ UnitAI.prototype.Repair = function(target, autocontinue, queued)
 	}
 
 	this.AddOrder("Repair", { "target": target, "autocontinue": autocontinue }, queued);
+};
+
+UnitAI.prototype.Flee = function(target, queued)
+{
+	this.AddOrder("Flee", { "target": target }, queued);
 };
 
 UnitAI.prototype.Cheer = function()
