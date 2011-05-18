@@ -39,4 +39,7 @@ int main() {
     wprintf(L"%hs", L"x");
     wprintf(L"%ls", "x");
     wprintf(L"%ls", L"x");
+    printf("%.*ls", 1, L"xy");
+    printf("%.*ls", L"z", L"xy");
+    printf("%.*ls", L"xy");
 }

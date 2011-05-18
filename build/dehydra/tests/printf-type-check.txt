@@ -1,18 +1,20 @@
 tests/printf-type-check.cpp: In function ‘int main()’:
-tests/printf-type-check.cpp:17: error: Invalid format specifier "%z"
-tests/printf-type-check.cpp:18: error: Invalid argument type "long unsigned int" for format specifier "%d"
-tests/printf-type-check.cpp:20: error: Invalid argument type "double" for format specifier "%d"
-tests/printf-type-check.cpp:22: error: Invalid argument type "int" for format specifier "%s"
-tests/printf-type-check.cpp:23: error: Invalid argument type "int" for format specifier "%s"
-tests/printf-type-check.cpp:24: error: Invalid argument type "unsigned char*" for format specifier "%d"
-tests/printf-type-check.cpp:25: error: Invalid argument type "int" for format specifier "%s"
-tests/printf-type-check.cpp:26: error: Invalid argument type "int" for format specifier "%s"
-tests/printf-type-check.cpp:27: warning: Ignoring unannotated vararg function "baz"
-tests/printf-type-check.cpp:29: error: Number of format string specifiers (1) != number of format arguments (0)
-tests/printf-type-check.cpp:30: warning: Non-constant format string argument - can't check types
-tests/printf-type-check.cpp:33: error: Invalid argument type "const wchar_t*" for format specifier "%s"
-tests/printf-type-check.cpp:36: error: Non-portable %s used in wprintf-style function
-tests/printf-type-check.cpp:37: error: Non-portable %s used in wprintf-style function
-tests/printf-type-check.cpp:37: error: Invalid argument type "const wchar_t*" for format specifier "%s"
-tests/printf-type-check.cpp:39: error: Invalid argument type "const wchar_t*" for format specifier "%hs"
-tests/printf-type-check.cpp:40: error: Invalid argument type "const char*" for format specifier "%ls"
+tests/printf-type-check.cpp:17:23: error: Invalid format specifier "%z"
+tests/printf-type-check.cpp:18:38: error: Invalid argument type "long unsigned int" for format specifier "%d"
+tests/printf-type-check.cpp:20:27: error: Invalid argument type "double" for format specifier "%d"
+tests/printf-type-check.cpp:22:16: error: Invalid argument type "int" for format specifier "%s"
+tests/printf-type-check.cpp:23:16: error: Invalid argument type "int" for format specifier "%s"
+tests/printf-type-check.cpp:24:23: error: Invalid argument type "unsigned char*" for format specifier "%d"
+tests/printf-type-check.cpp:25:32: error: Invalid argument type "int" for format specifier "%s"
+tests/printf-type-check.cpp:26:16: error: Invalid argument type "int" for format specifier "%s"
+tests/printf-type-check.cpp:27:16: warning: Ignoring unannotated vararg function "baz"
+tests/printf-type-check.cpp:29:18: error: Number of format string specifiers (1) != number of format arguments (0)
+tests/printf-type-check.cpp:30:18: warning: Non-constant format string argument - can't check types
+tests/printf-type-check.cpp:33:22: error: Invalid argument type "const wchar_t*" for format specifier "%s"
+tests/printf-type-check.cpp:36:23: error: Non-portable %s used in wprintf-style function
+tests/printf-type-check.cpp:37:24: error: Non-portable %s used in wprintf-style function
+tests/printf-type-check.cpp:37:24: error: Invalid argument type "const wchar_t*" for format specifier "%s"
+tests/printf-type-check.cpp:39:25: error: Invalid argument type "const wchar_t*" for format specifier "%hs"
+tests/printf-type-check.cpp:40:24: error: Invalid argument type "const char*" for format specifier "%ls"
+tests/printf-type-check.cpp:43:32: error: Invalid argument type "const wchar_t*" for format specifier "%.*ls"
+tests/printf-type-check.cpp:44:26: error: Number of format string specifiers (2) != number of format arguments (1)

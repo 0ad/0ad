@@ -69,9 +69,11 @@ function find_printf_type(decl, loc) {
         return ['w', 'printf', 3, 4];
     else if (name == 'JS_ReportError')
         return ['a', 'printf', 2, 3];
+    else if (name == 'JS_ReportWarning')
+        return ['a', 'printf', 2, 3];
 
     // Ignore vararg functions that we know aren't using normal format strings
-    if (name.match(/^(__builtin_va_start|execlp|open|fcntl|ioctl|sem_open|h_alloc|sys_wopen|ogl_HaveExtensions|JS_ConvertArguments)$/))
+    if (name.match(/^(__builtin_va_start|execlp|open|fcntl|ioctl|sem_open|h_alloc|sys_wopen|ogl_HaveExtensions|JS_ConvertArguments|curl_easy_setopt|curl_easy_getinfo|SMBIOS::FieldInitializer::Read|SMBIOS::FieldStringizer::Write)$/))
         return;
 
     warning('Ignoring unannotated vararg function "'+name+'"', loc());
@@ -115,6 +117,8 @@ function compare_format_type(ctype, functype, fmt, arg, loc) {
             return (arg == 'int' || arg == 'unsigned int'); // spec says wint_t
         if (t.match(/^l[diouxX]$/))
             return (arg == 'long int' || arg == 'long unsigned int');
+        if (t.match(/^ll[diouxX]$/))
+            return (arg == 'long long int' || arg == 'long long unsigned int');
         if (t.match(/^[fFeEgGaA]$/))
             return (arg == 'double');
         if (t.match(/^p$/))
@@ -152,9 +156,15 @@ function check_arg_types(ctype, functype, fmt_string, arg_type_names, loc) {
     var fmt_types = fmt_string.match(/%([-+ #0*]*)(\*|\d+)?(\.\*|\.-?\d+)?(hh|h|ll|l|j|z|t|L)?(.)/g);
 
     var num_fmt_types = 0;
-    for each (var fmt_type in fmt_types)
+    for each (var fmt_type in fmt_types) {
         if (fmt_type != '%%')
             ++num_fmt_types;
+
+        // Each '*' eats an extra argument
+        var stars = fmt_type.match(/\*/g);
+        if (stars)
+            num_fmt_types += stars.length;
+    }
 
     if (num_fmt_types != arg_type_names.length) {
         error('Number of format string specifiers ('+num_fmt_types+') != number of format arguments ('+arg_type_names.length+')', loc());
@@ -163,6 +173,17 @@ function check_arg_types(ctype, functype, fmt_string, arg_type_names, loc) {
 
     for each (var fmt_type in fmt_types) {
         if (fmt_type != '%%') {
+            // Each '*' eats an extra argument of type int
+            var stars = fmt_type.match(/\*/g);
+            if (stars) {
+                for (var s in stars) {
+                    var arg = arg_type_names.shift();
+                    if (! compare_format_type(ctype, functype, '%d', arg, loc)) {
+                        error('Invalid argument type "'+arg+'" for format specifier "'+fmt_type+'"', loc());
+                    }
+                }
+            }
+
             var arg = arg_type_names.shift();
             if (! compare_format_type(ctype, functype, fmt_type, arg, loc)) {
                 error('Invalid argument type "'+arg+'" for format specifier "'+fmt_type+'"', loc());

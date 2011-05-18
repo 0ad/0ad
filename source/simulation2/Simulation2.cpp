@@ -548,7 +548,7 @@ std::vector<std::string> CSimulation2::GetRMSData()
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"Error reading directory '%ls': %hs", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR(L"Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 
 	return data;

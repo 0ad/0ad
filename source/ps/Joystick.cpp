@@ -50,7 +50,7 @@ void CJoystick::Initialise()
 	LOGMESSAGE(L"Found %d joystick(s)", numJoysticks);
 
 	for (int i = 0; i < numJoysticks; ++i)
-		LOGMESSAGE(L"Joystick %d: %s", i, SDL_JoystickName(i));
+		LOGMESSAGE(L"Joystick %d: %hs", i, SDL_JoystickName(i));
 
 	if (numJoysticks)
 	{

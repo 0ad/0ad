@@ -378,7 +378,7 @@ static size_t ChooseCacheSize()
 	// always provide at least this much to ensure correct operation
 	cache = std::max(cache, (ssize_t)64);
 
-	debug_printf(L"Cache: %d (total: %d) MiB\n", cache, total);
+	debug_printf(L"Cache: %d (total: %d) MiB\n", (int)cache, (int)total);
 	return size_t(cache)*MiB;
 }
 

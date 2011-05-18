@@ -227,7 +227,7 @@ void FieldInitializer::operator()<const char*>(size_t flags, const char*& t, con
 
 	if(number > strings.size())
 	{
-		debug_printf(L"SMBIOS: invalid string number %d (count=%d)\n", number, strings.size());
+		debug_printf(L"SMBIOS: invalid string number %d (count=%d)\n", number, (int)strings.size());
 		return;
 	}
 

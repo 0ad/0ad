@@ -108,7 +108,7 @@ Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* fi
 	char** symbols = backtrace_symbols(&ptr_of_interest, 1);
 	if (symbols)
 	{
-		swprintf_s(sym_name, DBG_SYMBOL_LEN, L"%s", symbols[0]);
+		swprintf_s(sym_name, DBG_SYMBOL_LEN, L"%hs", symbols[0]);
 		free(symbols);
 
 		// (Note that this will usually return a pretty useless string,
