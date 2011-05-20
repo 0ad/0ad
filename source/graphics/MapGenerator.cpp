@@ -101,14 +101,14 @@ bool CMapGeneratorWorker::Run()
 	}
 
 	// Init RNG seed
-	uint32 seed;
+	uint32_t seed;
 	if (!m_ScriptInterface->GetProperty(settingsVal.get(), "Seed", seed))
 	{	// No seed specified
 		LOGWARNING(L"CMapGeneratorWorker::Run: No seed value specified - using 0");
 		seed = 0;
 	}
 
-	m_MapGenRNG.seed(seed);
+	m_MapGenRNG.seed((int32_t)seed);
 
 	// Copy settings to global variable
 	if (!m_ScriptInterface->SetProperty(m_ScriptInterface->GetGlobalObject(), "g_MapSettings", settingsVal))
