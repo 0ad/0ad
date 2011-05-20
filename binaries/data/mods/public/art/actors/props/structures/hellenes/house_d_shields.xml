@@ -2,8 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="house d shields">
+    <variant frequency="1" name="house d shields 1">
       <mesh>props/hele_house_d_shields.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
       <texture>props/hele_props_b.dds</texture>
     </variant>
   </group>
