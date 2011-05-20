@@ -23,8 +23,17 @@
         <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/xiphos_alexander.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/hele_round_themistocles.xml" attachpoint="shield"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>skeletal/hele_themistocles.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
