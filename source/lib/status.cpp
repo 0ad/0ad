@@ -105,8 +105,7 @@ int ErrnoFromStatus(Status status)
 Status StatusFromErrno()
 {
 	if(errno == 0)
-		return ERR::FAIL;
-
+		return INFO::OK;
 	const StatusDefinition* def = DefinitionFromErrno(errno);
 	return def? def->status : ERR::FAIL;
 }
@@ -118,7 +117,7 @@ static const StatusDefinition statusDefs[] = {
 
 // INFO::OK doesn't really need a string because calling StatusDescription(0)
 // should never happen, but we'll play it safe.
-{ INFO::OK,             L"(but return value was 0 which indicates success)" },
+{ INFO::OK,             L"No error reported here" },
 { ERR::FAIL,            L"Function failed (no details available)" },
 
 { INFO::CONTINUE,       L"Continue (not an error)" },
@@ -176,4 +175,4 @@ static const StatusDefinition statusDefs[] = {
 { ERR::_29, L"Case 29" }
 
 };
-STATUS_ADD_DEFINITIONS(statusDefs)
+STATUS_ADD_DEFINITIONS(statusDefs);

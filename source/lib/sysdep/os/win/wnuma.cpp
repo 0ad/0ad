@@ -401,8 +401,9 @@ static double ReadRelativeDistanceFromSLIT(const SLIT* slit)
 // memory from each processor.
 static double MeasureRelativeDistance()
 {
-	const size_t size = 16*MiB;
+	const size_t size = 32*MiB;
 	void* mem = page_aligned_alloc(size);
+	ASSUME_ALIGNED(mem, pageSize);
 
 	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
 
@@ -446,7 +447,7 @@ static Status InitRelativeDistance()
 		relativeDistance = MeasureRelativeDistance();
 
 	ENSURE(relativeDistance >= 1.0);
-	ENSURE(relativeDistance <= 3.0);	// (Microsoft guideline for NUMA systems)
+	ENSURE(relativeDistance <= 4.0);
 	return INFO::OK;
 }
 

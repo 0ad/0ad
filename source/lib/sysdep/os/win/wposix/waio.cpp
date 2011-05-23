@@ -95,7 +95,8 @@ struct OvlAllocator	// POD
 
 	void Shutdown()
 	{
-		ENSURE(extant == 0);
+		if(extant != 0)
+			debug_printf(L"waio: OvlAllocator::Shutdown with extant=%d\n", extant);
 
 		InterlockedFlushSList(&freelist);
 

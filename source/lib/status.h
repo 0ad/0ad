@@ -213,7 +213,7 @@ LIB_API StatusDefinitionBucket* StatusAddDefinitions(StatusDefinitionBucket* buc
  * typically invoked at file scope.
  * @param definitions name (identifier) of the array
  **/
-#define STATUS_ADD_DEFINITIONS(definitions) static StatusDefinitionBucket definitions##_bucket = { definitions, ARRAY_SIZE(definitions), StatusAddDefinitions(&definitions##_bucket) };
+#define STATUS_ADD_DEFINITIONS(definitions) static StatusDefinitionBucket definitions##_bucket = { definitions, ARRAY_SIZE(definitions), StatusAddDefinitions(&definitions##_bucket) }
 
 
 /**

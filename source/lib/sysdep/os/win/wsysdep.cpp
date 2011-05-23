@@ -356,6 +356,10 @@ Status sys_StatusDescription(int user_err, wchar_t* buf, size_t max_chars)
 		if(!charsWritten)
 			WARN_RETURN(ERR::FAIL);
 		ENSURE(charsWritten < max_chars);
+		if(message[charsWritten-1] == '\n')
+			message[charsWritten-1] = '\0';
+		if(message[charsWritten-2] == '\r')
+			message[charsWritten-2] = '\0';
 	}
 
 	const int charsWritten = swprintf_s(buf, max_chars, L"%d (%ls)", err, message);

@@ -30,5 +30,5 @@ Status PollCompletionPort(HANDLE hIOCP, DWORD timeout, DWORD& bytesTransferred, 
 	const Status ret = StatusFromWin();
 	if(ret == ERR::AGAIN || ret == ERR::ABORTED)	// avoid polluting last error
 		SetLastError(0);
-	return StatusFromWin();	// NOWARN (let caller decide what to do)
+	return ret;	// NOWARN (let caller decide what to do)
 }

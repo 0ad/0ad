@@ -264,6 +264,15 @@ const wchar_t* debug_BuildErrorMessage(
 	void* context, const wchar_t* lastFuncToSkip,
 	ErrorMessageMem* emm)
 {
+	// retrieve errno (might be relevant) before doing anything else
+	// that might overwrite it.
+	wchar_t description_buf[100] = L"?";
+	wchar_t os_error[100] = L"?";
+	Status errno_equiv = StatusFromErrno();	// NOWARN
+	if(errno_equiv != ERR::FAIL)	// meaningful translation
+		StatusDescription(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
+	sys_StatusDescription(0, os_error, ARRAY_SIZE(os_error));
+
 	// rationale: see ErrorMessageMem
 	emm->pa_mem = page_aligned_alloc(messageSize);
 	wchar_t* const buf = (wchar_t*)emm->pa_mem;
@@ -298,10 +307,10 @@ fail:
 	}
 	else if(ret != INFO::OK)
 	{
-		wchar_t description_buf[100] = {'?'};
+		wchar_t error_buf[100] = {'?'};
 		if(!writer(
 			L"(error while dumping stack: %ls)",
-			StatusDescription(ret, description_buf, ARRAY_SIZE(description_buf))
+			StatusDescription(ret, error_buf, ARRAY_SIZE(error_buf))
 		))
 			goto fail;
 	}
@@ -310,14 +319,7 @@ fail:
 		writer.CountAddedChars();
 	}
 
-	// append OS error (just in case it happens to be relevant -
-	// it's usually still set from unrelated operations)
-	wchar_t description_buf[100] = L"?";
-	Status errno_equiv = StatusFromErrno();	// NOWARN
-	if(errno_equiv != ERR::FAIL)	// meaningful translation
-		StatusDescription(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
-	wchar_t os_error[100] = L"?";
-	sys_StatusDescription(0, os_error, ARRAY_SIZE(os_error));
+	// append errno
 	if(!writer(
 		L"\r\n"
 		L"errno = %d (%ls)\r\n"
