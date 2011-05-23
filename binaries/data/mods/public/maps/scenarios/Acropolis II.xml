@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="469.054" y="114.653" z="53.1036"/>
+		<Position x="464.278" y="138.563" z="26.6715"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -3319,12 +3319,12 @@
 		</Entity>
 		<Entity uid="627">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="495.45759" z="128.47283"/>
+			<Position x="498.145" z="135.16817"/>
 			<Orientation y="-0.90317"/>
 		</Entity>
 		<Entity uid="628">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="491.20563" z="132.78408"/>
+			<Position x="498.46616" z="128.45096"/>
 			<Orientation y="-0.62131"/>
 		</Entity>
 		<Entity uid="629">
@@ -3332,29 +3332,14 @@
 			<Position x="486.38572" z="137.60422"/>
 			<Orientation y="-2.81252"/>
 		</Entity>
-		<Entity uid="630">
-			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="484.27628" z="131.85555"/>
-			<Orientation y="-2.47808"/>
-		</Entity>
-		<Entity uid="631">
-			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="483.15345" z="129.69533"/>
-			<Orientation y="2.7001"/>
-		</Entity>
 		<Entity uid="632">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="486.50705" z="125.8743"/>
+			<Position x="489.34742" z="130.97313"/>
 			<Orientation y="1.13245"/>
-		</Entity>
-		<Entity uid="633">
-			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="492.02958" z="132.2024"/>
-			<Orientation y="0.97439"/>
 		</Entity>
 		<Entity uid="634">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="499.50397" z="135.63976"/>
+			<Position x="499.3538" z="141.61558"/>
 			<Orientation y="1.95676"/>
 		</Entity>
 		<Entity uid="635">
@@ -5781,8 +5766,8 @@
 		<Entity uid="1105">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="675.1443" z="751.24561"/>
-			<Orientation y="1.35206"/>
+			<Position x="674.96845" z="751.31366"/>
+			<Orientation y="2.94259"/>
 		</Entity>
 		<Entity uid="1106">
 			<Template>gaia/flora_tree_carob</Template>
@@ -5794,7 +5779,7 @@
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
 			<Position x="693.74518" z="763.12787"/>
-			<Orientation y="0.73458"/>
+			<Orientation y="3.12179"/>
 		</Entity>
 		<Entity uid="1108">
 			<Template>gaia/flora_tree_carob</Template>
@@ -6483,7 +6468,7 @@
 		<Entity uid="1222">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="395.57422" z="706.95356"/>
+			<Position x="398.26694" z="707.33143"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1223">
@@ -6688,7 +6673,7 @@
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
 			<Position x="721.34528" z="801.43213"/>
-			<Orientation y="1.34722"/>
+			<Orientation y="0.2822"/>
 		</Entity>
 		<Entity uid="1257">
 			<Template>gaia/flora_tree_carob</Template>
@@ -21688,8 +21673,8 @@
 		<Entity uid="4160">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="407.75373" z="732.68409"/>
-			<Orientation y="1.04339"/>
+			<Position x="407.78763" z="732.81598"/>
+			<Orientation y="3.00335"/>
 		</Entity>
 		<Entity uid="4161">
 			<Template>gaia/flora_tree_carob</Template>
@@ -21700,7 +21685,7 @@
 		<Entity uid="4162">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="379.05155" z="739.59528"/>
+			<Position x="405.94864" z="757.53687"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4163">
@@ -21712,7 +21697,7 @@
 		<Entity uid="4164">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="394.81601" z="726.2209"/>
+			<Position x="421.11606" z="736.93"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4165">
@@ -21730,7 +21715,7 @@
 		<Entity uid="4167">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="381.1591" z="704.94568"/>
+			<Position x="371.56238" z="696.27686"/>
 			<Orientation y="-0.31276"/>
 		</Entity>
 		<Entity uid="4168">
@@ -22116,6 +22101,1286 @@
 			<Player>0</Player>
 			<Position x="28.40665" z="425.1218"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4232">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="474.57749" z="764.57813"/>
+			<Orientation y="-2.21196"/>
+		</Entity>
+		<Entity uid="4233">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="477.32453" z="755.4004"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4234">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="484.5528" z="762.04145"/>
+			<Orientation y="-2.9353"/>
+		</Entity>
+		<Entity uid="4235">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="485.26282" z="770.961"/>
+			<Orientation y="-2.85729"/>
+		</Entity>
+		<Entity uid="4236">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="463.91761" z="769.26838"/>
+			<Orientation y="0.67717"/>
+		</Entity>
+		<Entity uid="4237">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="489.22736" z="745.18311"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4238">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="698.49317" z="747.9889"/>
+			<Orientation y="3.01517"/>
+		</Entity>
+		<Entity uid="4239">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="704.68531" z="742.41987"/>
+			<Orientation y="0.58434"/>
+		</Entity>
+		<Entity uid="4240">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="707.65467" z="747.27717"/>
+			<Orientation y="0.44246"/>
+		</Entity>
+		<Entity uid="4241">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="713.36701" z="752.72968"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4242">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="714.20008" z="747.63245"/>
+			<Orientation y="3.08471"/>
+		</Entity>
+		<Entity uid="4243">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="717.70203" z="739.73902"/>
+			<Orientation y="1.80111"/>
+		</Entity>
+		<Entity uid="4244">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="689.97059" z="752.55774"/>
+			<Orientation y="-2.07395"/>
+		</Entity>
+		<Entity uid="4245">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="684.11371" z="751.4532"/>
+			<Orientation y="-0.88825"/>
+		</Entity>
+		<Entity uid="4246">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="677.1836" z="754.17432"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4247">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="673.7588" z="751.28223"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4248">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="875.60712" z="398.93805"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="4249">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="871.8346" z="398.93802"/>
+			<Orientation y="2.73069"/>
+		</Entity>
+		<Entity uid="4250">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="890.0871" z="388.08713"/>
+			<Orientation y="0.54435"/>
+		</Entity>
+		<Entity uid="4251">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="894.19483" z="392.7865"/>
+			<Orientation y="2.8346"/>
+		</Entity>
+		<Entity uid="4252">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="895.07398" z="384.87082"/>
+			<Orientation y="-2.99181"/>
+		</Entity>
+		<Entity uid="4253">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="894.57416" z="377.47223"/>
+			<Orientation y="1.6724"/>
+		</Entity>
+		<Entity uid="4254">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="901.46692" z="376.42988"/>
+			<Orientation y="2.86579"/>
+		</Entity>
+		<Entity uid="4255">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="901.62336" z="370.0517"/>
+			<Orientation y="-2.07503"/>
+		</Entity>
+		<Entity uid="4256">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="883.13245" z="377.64698"/>
+			<Orientation y="1.00283"/>
+		</Entity>
+		<Entity uid="4257">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="300.4116" z="299.45203"/>
+			<Orientation y="-2.24427"/>
+		</Entity>
+		<Entity uid="4258">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="290.73124" z="293.10508"/>
+			<Orientation y="-2.13761"/>
+		</Entity>
+		<Entity uid="4259">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="287.5553" z="290.21491"/>
+			<Orientation y="2.12708"/>
+		</Entity>
+		<Entity uid="4260">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="294.53891" z="287.88392"/>
+			<Orientation y="1.4729"/>
+		</Entity>
+		<Entity uid="4261">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="305.00147" z="290.88898"/>
+			<Orientation y="0.5181"/>
+		</Entity>
+		<Entity uid="4262">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="307.11438" z="296.94623"/>
+			<Orientation y="0.29191"/>
+		</Entity>
+		<Entity uid="4263">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="309.54029" z="304.18073"/>
+			<Orientation y="1.70151"/>
+		</Entity>
+		<Entity uid="4264">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="313.43534" z="301.65082"/>
+			<Orientation y="3.09261"/>
+		</Entity>
+		<Entity uid="4265">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="261.40748" z="308.23475"/>
+			<Orientation y="-1.24209"/>
+		</Entity>
+		<Entity uid="4266">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="248.07262" z="312.3545"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="4267">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="242.0478" z="311.56003"/>
+			<Orientation y="2.94924"/>
+		</Entity>
+		<Entity uid="4268">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="244.25002" z="304.61347"/>
+			<Orientation y="2.29836"/>
+		</Entity>
+		<Entity uid="4269">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="254.28742" z="297.6572"/>
+			<Orientation y="1.61457"/>
+		</Entity>
+		<Entity uid="4270">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="282.5435" z="286.73469"/>
+			<Orientation y="-1.9852"/>
+		</Entity>
+		<Entity uid="4271">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="336.96503" z="373.07303"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4272">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="337.21708" z="368.63999"/>
+			<Orientation y="-2.71229"/>
+		</Entity>
+		<Entity uid="4273">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="331.03537" z="361.02317"/>
+			<Orientation y="-2.5189"/>
+		</Entity>
+		<Entity uid="4274">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="326.25931" z="359.19886"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4275">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="291.12894" z="349.45832"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4276">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="294.07026" z="351.72407"/>
+			<Orientation y="0.72057"/>
+		</Entity>
+		<Entity uid="4277">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="298.85828" z="356.18775"/>
+			<Orientation y="1.16791"/>
+		</Entity>
+		<Entity uid="4278">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="305.92634" z="356.98078"/>
+			<Orientation y="2.67762"/>
+		</Entity>
+		<Entity uid="4279">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="313.32807" z="355.39979"/>
+			<Orientation y="-2.368"/>
+		</Entity>
+		<Entity uid="4280">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="347.27378" z="544.56318"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4281">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="367.48166" z="590.0652"/>
+			<Orientation y="-0.51038"/>
+		</Entity>
+		<Entity uid="4282">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="364.30851" z="595.53602"/>
+			<Orientation y="0.01241"/>
+		</Entity>
+		<Entity uid="4283">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="365.94306" z="603.63526"/>
+			<Orientation y="1.51357"/>
+		</Entity>
+		<Entity uid="4284">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="377.76502" z="609.48829"/>
+			<Orientation y="2.0155"/>
+		</Entity>
+		<Entity uid="4285">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="389.2746" z="606.61762"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4286">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="389.39368" z="601.32392"/>
+			<Orientation y="-2.84156"/>
+		</Entity>
+		<Entity uid="4287">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="384.32154" z="584.99152"/>
+			<Orientation y="2.32894"/>
+		</Entity>
+		<Entity uid="4288">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="388.58198" z="584.43763"/>
+			<Orientation y="-2.3963"/>
+		</Entity>
+		<Entity uid="4289">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="373.80253" z="569.92212"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4290">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="370.28107" z="574.52497"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4291">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="380.8404" z="574.52497"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4292">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="377.25922" z="585.82612"/>
+			<Orientation y="0.9715"/>
+		</Entity>
+		<Entity uid="4293">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="215.39116" z="641.71717"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4294">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="222.07816" z="639.12928"/>
+			<Orientation y="2.71303"/>
+		</Entity>
+		<Entity uid="4295">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="227.20835" z="626.99524"/>
+			<Orientation y="-3.0812"/>
+		</Entity>
+		<Entity uid="4296">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="227.84379" z="617.08631"/>
+			<Orientation y="1.50321"/>
+		</Entity>
+		<Entity uid="4297">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="237.88482" z="621.05805"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4298">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="240.76801" z="622.85914"/>
+			<Orientation y="2.67836"/>
+		</Entity>
+		<Entity uid="4299">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="244.20467" z="617.30408"/>
+			<Orientation y="1.2491"/>
+		</Entity>
+		<Entity uid="4300">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="251.3003" z="625.37287"/>
+			<Orientation y="-2.34086"/>
+		</Entity>
+		<Entity uid="4301">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="27.30553" z="497.03742"/>
+			<Orientation y="-2.58455"/>
+		</Entity>
+		<Entity uid="4302">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="83.6182" z="330.13672"/>
+			<Orientation y="-1.77611"/>
+		</Entity>
+		<Entity uid="4303">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="80.04653" z="328.46357"/>
+			<Orientation y="2.93538"/>
+		</Entity>
+		<Entity uid="4304">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="82.43763" z="321.1565"/>
+			<Orientation y="2.33568"/>
+		</Entity>
+		<Entity uid="4305">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="87.82435" z="318.60544"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4306">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="166.902" z="292.02317"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4307">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="168.6448" z="290.57221"/>
+			<Orientation y="2.56794"/>
+		</Entity>
+		<Entity uid="4308">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="171.3408" z="285.85611"/>
+			<Orientation y="-2.99567"/>
+		</Entity>
+		<Entity uid="4309">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="169.73104" z="281.02128"/>
+			<Orientation y="-2.07996"/>
+		</Entity>
+		<Entity uid="4310">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="164.82471" z="279.51185"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4311">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="161.93665" z="286.47907"/>
+			<Orientation y="0.77886"/>
+		</Entity>
+		<Entity uid="4312">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="154.50925" z="302.71805"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4313">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="604.7132" z="333.50208"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="4314">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="592.2436" z="331.71607"/>
+			<Orientation y="-2.05347"/>
+		</Entity>
+		<Entity uid="4315">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="586.9665" z="327.8227"/>
+			<Orientation y="-2.36077"/>
+		</Entity>
+		<Entity uid="4316">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="581.18213" z="322.87867"/>
+			<Orientation y="-1.36998"/>
+		</Entity>
+		<Entity uid="4317">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="574.474" z="325.7516"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4318">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="577.87262" z="333.33906"/>
+			<Orientation y="0.56141"/>
+		</Entity>
+		<Entity uid="4319">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="605.25458" z="343.62446"/>
+			<Orientation y="-2.63622"/>
+		</Entity>
+		<Entity uid="4320">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="663.94202" z="390.61255"/>
+			<Orientation y="-1.02529"/>
+		</Entity>
+		<Entity uid="4321">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="655.55127" z="391.80066"/>
+			<Orientation y="-1.67356"/>
+		</Entity>
+		<Entity uid="4322">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="650.76716" z="394.80381"/>
+			<Orientation y="0.69481"/>
+		</Entity>
+		<Entity uid="4323">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="661.00428" z="402.42676"/>
+			<Orientation y="1.61478"/>
+		</Entity>
+		<Entity uid="4324">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="673.48627" z="407.09296"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4325">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="672.39338" z="412.57392"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4326">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="672.01838" z="417.36408"/>
+			<Orientation y="0.88907"/>
+		</Entity>
+		<Entity uid="4327">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="627.95032" z="473.8346"/>
+			<Orientation y="1.141"/>
+		</Entity>
+		<Entity uid="4328">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="632.76301" z="474.26438"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4329">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="633.01838" z="470.18018"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4330">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="635.09595" z="467.85718"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4331">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="641.63074" z="464.92573"/>
+			<Orientation y="0.88044"/>
+		</Entity>
+		<Entity uid="4332">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="666.98078" z="590.0918"/>
+			<Orientation y="2.25831"/>
+		</Entity>
+		<Entity uid="4333">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="922.38318" z="754.12531"/>
+			<Orientation y="-2.23835"/>
+		</Entity>
+		<Entity uid="4334">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="899.18665" z="674.98884"/>
+			<Orientation y="-3.04505"/>
+		</Entity>
+		<Entity uid="4335">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="899.58143" z="659.9297"/>
+			<Orientation y="1.66004"/>
+		</Entity>
+		<Entity uid="4336">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="909.40754" z="676.57062"/>
+			<Orientation y="-2.67511"/>
+		</Entity>
+		<Entity uid="4337">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="989.16157" z="566.7577"/>
+			<Orientation y="-2.46232"/>
+		</Entity>
+		<Entity uid="4338">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="978.6576" z="552.67286"/>
+			<Orientation y="-3.05643"/>
+		</Entity>
+		<Entity uid="4339">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="977.6833" z="539.8166"/>
+			<Orientation y="-1.66839"/>
+		</Entity>
+		<Entity uid="4340">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="967.33143" z="538.83637"/>
+			<Orientation y="-1.64255"/>
+		</Entity>
+		<Entity uid="4341">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="957.28815" z="541.29981"/>
+			<Orientation y="-1.9087"/>
+		</Entity>
+		<Entity uid="4342">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="953.44727" z="538.10572"/>
+			<Orientation y="-3.08323"/>
+		</Entity>
+		<Entity uid="4343">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="958.12372" z="529.8534"/>
+			<Orientation y="1.46993"/>
+		</Entity>
+		<Entity uid="4344">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="969.40577" z="528.03504"/>
+			<Orientation y="-1.7675"/>
+		</Entity>
+		<Entity uid="4345">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="917.70923" z="511.95502"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="4346">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="908.45344" z="506.96711"/>
+			<Orientation y="-2.93139"/>
+		</Entity>
+		<Entity uid="4347">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="909.03797" z="498.64386"/>
+			<Orientation y="1.93895"/>
+		</Entity>
+		<Entity uid="4348">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="917.4433" z="497.49488"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4349">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="922.00843" z="492.33161"/>
+			<Orientation y="1.70234"/>
+		</Entity>
+		<Entity uid="4350">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="813.58295" z="267.11954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4351">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="821.33405" z="257.15528"/>
+			<Orientation y="1.65363"/>
+		</Entity>
+		<Entity uid="4352">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="830.53217" z="257.15528"/>
+			<Orientation y="1.78481"/>
+		</Entity>
+		<Entity uid="4353">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="836.3534" z="255.21442"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4354">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="831.831" z="272.5139"/>
+			<Orientation y="-2.51285"/>
+		</Entity>
+		<Entity uid="4355">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="830.45545" z="190.57528"/>
+			<Orientation y="1.34572"/>
+		</Entity>
+		<Entity uid="4356">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="830.1178" z="199.66132"/>
+			<Orientation y="-1.20971"/>
+		</Entity>
+		<Entity uid="4357">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="817.33063" z="204.33652"/>
+			<Orientation y="3.02819"/>
+		</Entity>
+		<Entity uid="4358">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="823.11451" z="187.94933"/>
+			<Orientation y="2.37357"/>
+		</Entity>
+		<Entity uid="4359">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="825.2461" z="186.16262"/>
+			<Orientation y="3.11248"/>
+		</Entity>
+		<Entity uid="4360">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="825.45838" z="175.04427"/>
+			<Orientation y="2.20244"/>
+		</Entity>
+		<Entity uid="4361">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="924.45856" z="244.41207"/>
+			<Orientation y="1.09826"/>
+		</Entity>
+		<Entity uid="4362">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="930.97498" z="252.98295"/>
+			<Orientation y="-0.34522"/>
+		</Entity>
+		<Entity uid="4363">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="922.84131" z="265.44636"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4364">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="926.67042" z="272.977"/>
+			<Orientation y="1.5708"/>
+		</Entity>
+		<Entity uid="4365">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="937.37946" z="272.089"/>
+			<Orientation y="-3.01893"/>
+		</Entity>
+		<Entity uid="4366">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="937.49903" z="256.13407"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4367">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="937.57648" z="254.28765"/>
+			<Orientation y="2.50231"/>
+		</Entity>
+		<Entity uid="4368">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="933.21888" z="263.54807"/>
+			<Orientation y="-1.90281"/>
+		</Entity>
+		<Entity uid="4369">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="967.30665" z="358.16367"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4370">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="946.51893" z="432.96802"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="4371">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="933.49213" z="432.00147"/>
+			<Orientation y="-1.45421"/>
+		</Entity>
+		<Entity uid="4372">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="926.04511" z="435.21082"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4373">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="928.76612" z="442.5365"/>
+			<Orientation y="1.68731"/>
+		</Entity>
+		<Entity uid="4374">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="954.45575" z="446.3907"/>
+			<Orientation y="0.94086"/>
+		</Entity>
+		<Entity uid="4375">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="765.91022" z="589.47895"/>
+			<Orientation y="-0.48366"/>
+		</Entity>
+		<Entity uid="4376">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="757.02448" z="599.2779"/>
+			<Orientation y="-1.10141"/>
+		</Entity>
+		<Entity uid="4377">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="748.84083" z="607.47846"/>
+			<Orientation y="0.08463"/>
+		</Entity>
+		<Entity uid="4378">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="748.11988" z="617.844"/>
+			<Orientation y="-1.86715"/>
+		</Entity>
+		<Entity uid="4379">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="738.72461" z="611.71497"/>
+			<Orientation y="-2.73778"/>
+		</Entity>
+		<Entity uid="4380">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="735.36451" z="603.85364"/>
+			<Orientation y="2.73317"/>
+		</Entity>
+		<Entity uid="4381">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="751.9856" z="596.05866"/>
+			<Orientation y="1.13518"/>
+		</Entity>
+		<Entity uid="4382">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="768.51935" z="588.35315"/>
+			<Orientation y="3.07789"/>
+		</Entity>
+		<Entity uid="4383">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="769.8888" z="573.11152"/>
+			<Orientation y="-2.63935"/>
+		</Entity>
+		<Entity uid="4384">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="765.03864" z="565.48505"/>
+			<Orientation y="-2.87412"/>
+		</Entity>
+		<Entity uid="4385">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="757.69996" z="580.22614"/>
+			<Orientation y="1.10636"/>
+		</Entity>
+		<Entity uid="4386">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="731.57575" z="586.28046"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4387">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="546.63874" z="745.48078"/>
+			<Orientation y="0.59917"/>
+		</Entity>
+		<Entity uid="4388">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="516.40345" z="915.3672"/>
+			<Orientation y="-2.79081"/>
+		</Entity>
+		<Entity uid="4389">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="509.62894" z="900.38538"/>
+			<Orientation y="-2.33736"/>
+		</Entity>
+		<Entity uid="4390">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="496.47938" z="889.77918"/>
+			<Orientation y="-1.53718"/>
+		</Entity>
+		<Entity uid="4391">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="488.1803" z="890.98456"/>
+			<Orientation y="-1.32566"/>
+		</Entity>
+		<Entity uid="4392">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="487.7682" z="897.88746"/>
+			<Orientation y="0.44498"/>
+		</Entity>
+		<Entity uid="4393">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="495.21833" z="901.8158"/>
+			<Orientation y="-2.3742"/>
+		</Entity>
+		<Entity uid="4394">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="472.59638" z="888.01777"/>
+			<Orientation y="2.30637"/>
+		</Entity>
+		<Entity uid="4395">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="476.34488" z="883.11463"/>
+			<Orientation y="-2.84568"/>
+		</Entity>
+		<Entity uid="4396">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="470.9759" z="870.1554"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4397">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="468.12775" z="881.77393"/>
+			<Orientation y="0.87082"/>
+		</Entity>
+		<Entity uid="4398">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="518.56641" z="907.22889"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4399">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="522.56275" z="911.73932"/>
+			<Orientation y="0.75057"/>
+		</Entity>
+		<Entity uid="4400">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="532.54224" z="919.029"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4401">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="372.1197" z="976.69013"/>
+			<Orientation y="-1.22896"/>
+		</Entity>
+		<Entity uid="4402">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="364.57441" z="978.5489"/>
+			<Orientation y="-2.79114"/>
+		</Entity>
+		<Entity uid="4403">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="362.82969" z="970.11084"/>
+			<Orientation y="2.1107"/>
+		</Entity>
+		<Entity uid="4404">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="367.83426" z="969.0915"/>
+			<Orientation y="-3.11246"/>
+		</Entity>
+		<Entity uid="4405">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="465.98737" z="751.65662"/>
+			<Orientation y="1.40473"/>
+		</Entity>
+		<Entity uid="4406">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="727.57105" z="744.29975"/>
+			<Orientation y="1.95585"/>
+		</Entity>
+		<Entity uid="4407">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="708.60505" z="738.46479"/>
+			<Orientation y="-2.48537"/>
+		</Entity>
+		<Entity uid="4408">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="748.01813" z="768.34327"/>
+			<Orientation y="-1.53982"/>
+		</Entity>
+		<Entity uid="4409">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="736.79859" z="768.49012"/>
+			<Orientation y="-0.90473"/>
+		</Entity>
+		<Entity uid="4410">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="729.99616" z="775.45636"/>
+			<Orientation y="1.4787"/>
+		</Entity>
+		<Entity uid="4411">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="741.03669" z="777.19605"/>
+			<Orientation y="1.32828"/>
+		</Entity>
+		<Entity uid="4412">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="791.56885" z="783.24512"/>
+			<Orientation y="-2.51398"/>
+		</Entity>
+		<Entity uid="4413">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="810.64148" z="830.83875"/>
+			<Orientation y="0.74083"/>
+		</Entity>
+		<Entity uid="4414">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="818.3299" z="833.44452"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4415">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="836.60846" z="889.72925"/>
+			<Orientation y="-2.49207"/>
+		</Entity>
+		<Entity uid="4416">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="840.22632" z="609.78187"/>
+			<Orientation y="-1.61944"/>
+		</Entity>
+		<Entity uid="4417">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="831.88025" z="607.92597"/>
+			<Orientation y="-2.09066"/>
+		</Entity>
+		<Entity uid="4418">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="824.23017" z="605.2917"/>
+			<Orientation y="-1.03476"/>
+		</Entity>
+		<Entity uid="4419">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="821.47797" z="609.78187"/>
+			<Orientation y="0.80082"/>
+		</Entity>
+		<Entity uid="4420">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="831.9806" z="616.82215"/>
+			<Orientation y="1.1949"/>
+		</Entity>
+		<Entity uid="4421">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="838.87519" z="619.70185"/>
+			<Orientation y="0.41478"/>
+		</Entity>
+		<Entity uid="4422">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="841.92981" z="628.72724"/>
+			<Orientation y="0.74677"/>
+		</Entity>
+		<Entity uid="4423">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="178.18918" z="230.80639"/>
+			<Orientation y="3.05405"/>
+		</Entity>
+		<Entity uid="4424">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="178.66185" z="223.19193"/>
+			<Orientation y="-2.53228"/>
+		</Entity>
+		<Entity uid="4425">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="171.60074" z="216.0608"/>
+			<Orientation y="-1.75002"/>
+		</Entity>
+		<Entity uid="4426">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="162.46009" z="215.12717"/>
+			<Orientation y="-1.08851"/>
+		</Entity>
+		<Entity uid="4427">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="150.97075" z="224.99259"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4428">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="150.09644" z="229.06379"/>
+			<Orientation y="0.03193"/>
+		</Entity>
+		<Entity uid="4429">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="192.2689" z="227.98932"/>
+			<Orientation y="1.00742"/>
+		</Entity>
+		<Entity uid="4430">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="185.9782" z="222.75747"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4431">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="227.52971" z="376.9646"/>
+			<Orientation y="-1.94961"/>
+		</Entity>
+		<Entity uid="4432">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="218.63855" z="371.06818"/>
+			<Orientation y="2.77355"/>
+		</Entity>
+		<Entity uid="4433">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="228.31379" z="363.8888"/>
+			<Orientation y="1.91935"/>
+		</Entity>
+		<Entity uid="4434">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="234.24659" z="358.44047"/>
+			<Orientation y="2.84646"/>
+		</Entity>
+		<Entity uid="4435">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="236.10462" z="349.3617"/>
+			<Orientation y="-2.90243"/>
+		</Entity>
+		<Entity uid="4436">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="235.00524" z="340.16584"/>
+			<Orientation y="2.21441"/>
+		</Entity>
+		<Entity uid="4437">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="215.33915" z="415.39783"/>
+			<Orientation y="-2.2998"/>
+		</Entity>
+		<Entity uid="4438">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="202.22844" z="391.42188"/>
+			<Orientation y="2.9553"/>
+		</Entity>
+		<Entity uid="4439">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="202.85456" z="387.21991"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="4440">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="189.69675" z="389.19385"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4441">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="188.5091" z="392.77665"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4442">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="261.43763" z="498.24561"/>
+			<Orientation y="1.24387"/>
+		</Entity>
+		<Entity uid="4443">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="270.82319" z="498.24567"/>
+			<Orientation y="-3.0856"/>
+		</Entity>
+		<Entity uid="4444">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="270.5557" z="489.49354"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4445">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="268.79291" z="486.72873"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4446">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="273.67304" z="494.38294"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4447">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="211.29328" z="487.37275"/>
+			<Orientation y="0.86336"/>
+		</Entity>
+		<Entity uid="4448">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="214.52848" z="482.77076"/>
+			<Orientation y="-2.21184"/>
+		</Entity>
+		<Entity uid="4449">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="206.01935" z="474.23102"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="4450">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="217.63164" z="627.07648"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4451">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="206.58808" z="636.47876"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4452">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="259.84046" z="680.28394"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4453">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="262.08713" z="685.4372"/>
+			<Orientation y="0.98215"/>
+		</Entity>
+		<Entity uid="4454">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="230.23642" z="761.89856"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4455">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="222.3417" z="758.95801"/>
+			<Orientation y="-2.4258"/>
+		</Entity>
+		<Entity uid="4456">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="215.18757" z="751.95777"/>
+			<Orientation y="3.13524"/>
+		</Entity>
+		<Entity uid="4457">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="214.76706" z="744.75086"/>
+			<Orientation y="-0.98395"/>
+		</Entity>
+		<Entity uid="4458">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="208.38613" z="750.41761"/>
+			<Orientation y="-0.10672"/>
+		</Entity>
+		<Entity uid="4459">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="206.18027" z="761.24225"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4460">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="212.26897" z="766.30842"/>
+			<Orientation y="0.23783"/>
+		</Entity>
+		<Entity uid="4461">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="215.58326" z="780.56568"/>
+			<Orientation y="0.7159"/>
+		</Entity>
+		<Entity uid="4462">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="238.52277" z="784.34461"/>
+			<Orientation y="-3.11712"/>
+		</Entity>
+		<Entity uid="4463">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="245.034" z="772.44056"/>
+			<Orientation y="0.66083"/>
+		</Entity>
+		<Entity uid="4464">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="303.3631" z="792.60743"/>
+			<Orientation y="2.26647"/>
+		</Entity>
+		<Entity uid="4465">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="329.89258" z="777.39832"/>
+			<Orientation y="-3.03194"/>
+		</Entity>
+		<Entity uid="4466">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="327.34089" z="762.04255"/>
+			<Orientation y="-3.01021"/>
+		</Entity>
+		<Entity uid="4467">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="331.25428" z="750.21546"/>
+			<Orientation y="1.86126"/>
+		</Entity>
+		<Entity uid="4468">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="348.35972" z="749.81965"/>
+			<Orientation y="1.45492"/>
+		</Entity>
+		<Entity uid="4469">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="348.88672" z="749.2472"/>
+			<Orientation y="2.5085"/>
+		</Entity>
+		<Entity uid="4470">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="366.0991" z="725.23108"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4471">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="363.49775" z="716.52271"/>
+			<Orientation y="-2.79755"/>
+		</Entity>
+		<Entity uid="4472">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="360.46659" z="706.24616"/>
+			<Orientation y="2.87325"/>
+		</Entity>
+		<Entity uid="4473">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="364.29081" z="697.14417"/>
+			<Orientation y="2.3179"/>
+		</Entity>
+		<Entity uid="4474">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="371.58561" z="690.82465"/>
+			<Orientation y="-2.80233"/>
+		</Entity>
+		<Entity uid="4475">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="367.44846" z="680.42548"/>
+			<Orientation y="-2.70157"/>
+		</Entity>
+		<Entity uid="4476">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="364.98017" z="675.55701"/>
+			<Orientation y="2.6873"/>
+		</Entity>
+		<Entity uid="4477">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="356.10395" z="680.67548"/>
+			<Orientation y="1.27363"/>
+		</Entity>
+		<Entity uid="4478">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="426.70121" z="661.53089"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4479">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="395.82706" z="595.75886"/>
+			<Orientation y="-2.44118"/>
+		</Entity>
+		<Entity uid="4480">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="665.61451" z="905.5121"/>
+			<Orientation y="-3.00083"/>
+		</Entity>
+		<Entity uid="4481">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="673.65766" z="893.45282"/>
+			<Orientation y="1.63639"/>
+		</Entity>
+		<Entity uid="4482">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="684.3877" z="892.80701"/>
+			<Orientation y="2.5247"/>
+		</Entity>
+		<Entity uid="4483">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="689.40284" z="883.45356"/>
+			<Orientation y="2.43706"/>
+		</Entity>
+		<Entity uid="4484">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="700.46741" z="877.33954"/>
+			<Orientation y="-0.00603"/>
+		</Entity>
+		<Entity uid="4485">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="683.43805" z="903.55903"/>
+			<Orientation y="-0.60854"/>
+		</Entity>
+		<Entity uid="4486">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="675.30256" z="899.875"/>
+			<Orientation y="0.07244"/>
+		</Entity>
+		<Entity uid="4487">
+			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
+			<Position x="534.54969" z="902.0312"/>
+			<Orientation y="0.01647"/>
 		</Entity>
 	</Entities>
 	<Paths/>
