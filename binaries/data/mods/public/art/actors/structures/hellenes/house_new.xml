@@ -31,11 +31,20 @@
       </props>
       <texture>structural/hele_struct.dds</texture>
     </variant>
-    <variant frequency="3" name="Hellenes House d">
+    <variant frequency="4" name="Hellenes House d">
       <mesh>structural/hele_house_d.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/house_d_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/house_d_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct_b.png</texture>
+    </variant>
+    <variant frequency="4" name="Hellenes House 3">
+      <mesh>structural/hele_house_e.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/house_e_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/house_e_props.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
       <texture>structural/hele_struct_b.png</texture>
