@@ -180,9 +180,9 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "build_icc", (int)ICC_VERSION);
 	scriptInterface.SetProperty(settings.get(), "build_gcc", (int)GCC_VERSION);
 
-	scriptInterface.SetProperty(settings.get(), "gfx_card", std::wstring(gfx_card));
-	scriptInterface.SetProperty(settings.get(), "gfx_drv_ver", std::wstring(gfx_drv_ver));
-	scriptInterface.SetProperty(settings.get(), "gfx_mem", gfx_mem);
+	scriptInterface.SetProperty(settings.get(), "gfx_card", gfx::CardName());
+	scriptInterface.SetProperty(settings.get(), "gfx_drv_ver", gfx::DriverInfo());
+	scriptInterface.SetProperty(settings.get(), "gfx_mem", gfx::MemorySizeMiB());
 
 	scriptInterface.SetProperty(settings.get(), "snd_card", std::wstring(snd_card));
 	scriptInterface.SetProperty(settings.get(), "snd_drv_ver", std::wstring(snd_drv_ver));

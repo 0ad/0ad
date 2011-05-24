@@ -728,14 +728,12 @@ static void detect_gl_upload_caps()
 	// no app hook defined - have our own crack at blacklisting some hardware.
 	else
 	{
+		const std::wstring cardName = gfx::CardName();
 		// rationale: janwas's laptop's S3 card blows up if S3TC is used
 		// (oh, the irony). it'd be annoying to have to share this between all
 		// projects, hence this default implementation here.
-		if(!wcscmp(gfx_card, L"S3 SuperSavage/IXC 1014"))
-		{
-			if(wcsstr(gfx_drv_ver, L"ssicdnt.dll (2.60.115)"))
-				ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
-		}
+		if(cardName == L"S3 SuperSavage/IXC 1014")
+			ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
 	}
 }
 

@@ -25,8 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "lib/sysdep/gfx.h"
+#include "lib/sysdep/os/win/wgfx.h"
 
+#include "lib/sysdep/gfx.h"
 #include "lib/sysdep/os/win/wdll_ver.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wmi.h"
@@ -34,62 +35,6 @@
 #if MSC_VERSION
 #pragma comment(lib, "advapi32.lib")	// registry
 #endif
-
-
-// useful for choosing a video mode.
-// if we fail, outputs are unchanged (assumed initialized to defaults)
-Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
-{
-	DEVMODEA dm;
-	memset(&dm, 0, sizeof(dm));
-	dm.dmSize = sizeof(dm);
-	// dm.dmDriverExtra already set to 0 by memset
-
-	// (Win2k: don't use EnumDisplaySettingsW - BoundsChecker reports it causes
-	// a memory overrun, even if called as the very first thing before
-	// static CRT initialization.)
-	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
-		WARN_RETURN(ERR::FAIL);
-
-	// EnumDisplaySettings is documented to set the values of the following:
-	const DWORD expectedFlags = DM_PELSWIDTH|DM_PELSHEIGHT|DM_BITSPERPEL|DM_DISPLAYFREQUENCY|DM_DISPLAYFLAGS;
-	ENSURE((dm.dmFields & expectedFlags) == expectedFlags);
-
-	if(xres)
-		*xres = (int)dm.dmPelsWidth;
-	if(yres)
-		*yres = (int)dm.dmPelsHeight;
-	if(bpp)
-		*bpp  = (int)dm.dmBitsPerPel;
-	if(freq)
-		*freq = (int)dm.dmDisplayFrequency;
-
-	return INFO::OK;
-}
-
-
-// useful for determining aspect ratio.
-// if we fail, outputs are unchanged (assumed initialized to defaults)
-Status gfx_get_monitor_size(int& width_mm, int& height_mm)
-{
-	// (DC for the primary monitor's entire screen)
-	HDC dc = GetDC(0);
-	width_mm = GetDeviceCaps(dc, HORZSIZE);
-	height_mm = GetDeviceCaps(dc, VERTSIZE);
-	ReleaseDC(0, dc);
-	return INFO::OK;
-}
-
-
-//-----------------------------------------------------------------------------
-
-static Status win_get_gfx_card()
-{
-	WmiMap wmiMap;
-	RETURN_STATUS_IF_ERR(wmi_GetClass(L"Win32_VideoController", wmiMap));
-	swprintf_s(gfx_card, GFX_CARD_LEN, L"%ls", wmiMap[L"Caption"].bstrVal);
-	return INFO::OK;
-}
 
 
 // note: this implementation doesn't require OpenGL to be initialized.
@@ -169,7 +114,6 @@ static Status AppendDriverVersionsFromRegistry(VersionList& versionList)
 	return INFO::OK;
 }
 
-#include "lib/timer.h"
 
 static void AppendDriverVersionsFromKnownFiles(VersionList& versionList)
 {
@@ -191,16 +135,61 @@ static void AppendDriverVersionsFromKnownFiles(VersionList& versionList)
 }
 
 
-Status win_get_gfx_info()
+Status wgfx_CardName(wchar_t* cardName, size_t numChars)
 {
-	Status err = win_get_gfx_card();
+	WmiMap wmiMap;
+	RETURN_STATUS_IF_ERR(wmi_GetClass(L"Win32_VideoController", wmiMap));
+	swprintf_s(cardName, numChars, L"%ls", wmiMap[L"Caption"].bstrVal);
+	return INFO::OK;
+}
 
+
+std::wstring wgfx_DriverInfo()
+{
 	VersionList versionList;
 	if(AppendDriverVersionsFromRegistry(versionList) != INFO::OK)	// (fails on Windows 7)
 		AppendDriverVersionsFromKnownFiles(versionList);
-	if(versionList.empty())
-		versionList = L"(unknown)";
-	wcscpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
-
-	return err;
+	return versionList;
 }
+
+
+//-----------------------------------------------------------------------------
+// direct implementations of some gfx functions
+
+namespace gfx {
+
+Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
+{
+	DEVMODE dm = { sizeof(dm) };
+
+	if(!EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm))
+		WARN_RETURN(ERR::FAIL);
+
+	// EnumDisplaySettings is documented to set the values of the following:
+	const DWORD expectedFlags = DM_PELSWIDTH|DM_PELSHEIGHT|DM_BITSPERPEL|DM_DISPLAYFREQUENCY|DM_DISPLAYFLAGS;
+	ENSURE((dm.dmFields & expectedFlags) == expectedFlags);
+
+	if(xres)
+		*xres = (int)dm.dmPelsWidth;
+	if(yres)
+		*yres = (int)dm.dmPelsHeight;
+	if(bpp)
+		*bpp  = (int)dm.dmBitsPerPel;
+	if(freq)
+		*freq = (int)dm.dmDisplayFrequency;
+
+	return INFO::OK;
+}
+
+
+Status GetMonitorSize(int& width_mm, int& height_mm)
+{
+	// (DC for the primary monitor's entire screen)
+	const HDC hDC = GetDC(0);
+	width_mm = GetDeviceCaps(hDC, HORZSIZE);
+	height_mm = GetDeviceCaps(hDC, VERTSIZE);
+	ReleaseDC(0, hDC);
+	return INFO::OK;
+}
+
+}	// namespace gfx

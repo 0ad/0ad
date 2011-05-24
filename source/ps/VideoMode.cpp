@@ -120,7 +120,7 @@ bool CVideoMode::InitSDL()
 
 	// preferred video mode = current desktop settings
 	// (command line params may override these)
-	gfx_get_video_mode(&m_PreferredW, &m_PreferredH, &m_PreferredBPP, &m_PreferredFreq);
+	gfx::GetVideoMode(&m_PreferredW, &m_PreferredH, &m_PreferredBPP, &m_PreferredFreq);
 
 	int w = m_ConfigW;
 	int h = m_ConfigH;

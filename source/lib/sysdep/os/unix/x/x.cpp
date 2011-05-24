@@ -55,9 +55,9 @@ static void (*Unlock_Display)(void);
 static wchar_t *selection_data=NULL;
 static size_t selection_size=0;
 
-// useful for choosing a video mode. not called by detect().
-// if we fail, outputs are unchanged (assumed initialized to defaults)
-Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
+namespace gfx {
+
+Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
@@ -89,9 +89,7 @@ Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 
-// useful for determining aspect ratio. not called by detect().
-// if we fail, outputs are unchanged (assumed initialized to defaults)
-Status gfx_get_monitor_size(int& width_mm, int& height_mm)
+Status GetMonitorSize(int& width_mm, int& height_mm)
 {
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
@@ -99,12 +97,15 @@ Status gfx_get_monitor_size(int& width_mm, int& height_mm)
 
 	int screen = XDefaultScreen(disp);
 	
-	width_mm=XDisplayWidthMM(disp, screen);
-	height_mm=XDisplayHeightMM(disp, screen);
+	width_mm = XDisplayWidthMM(disp, screen);
+	height_mm = XDisplayHeightMM(disp, screen);
 	
 	XCloseDisplay(disp);
 	return INFO::OK;
 }
+
+}	// namespace gfx
+
 
 /*
 Oh, boy, this is heavy stuff...

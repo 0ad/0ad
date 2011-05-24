@@ -34,37 +34,65 @@
 #endif
 
 
-wchar_t gfx_card[GFX_CARD_LEN] = L"";
-wchar_t gfx_drv_ver[GFX_DRV_VER_LEN] = L"";
+namespace gfx {
 
-int gfx_mem = -1;	// [MiB]; approximate
-
-
-// detect graphics card and set the above information.
-void gfx_detect()
+std::wstring CardName()
 {
-	// TODO: add sizeof(FB)?
-	gfx_mem = (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MiB]
-
-	// try platform-specific version: they return more
-	// detailed information, and don't require OpenGL to be ready.
 #if OS_WIN
-	if(win_get_gfx_info() < 0)
+	wchar_t cardName[128];
+	if(wgfx_CardName(cardName, ARRAY_SIZE(cardName)) != INFO::OK)
 #endif
 	{
-		// the OpenGL version should always work, unless OpenGL isn't ready for use,
-		// or we were called between glBegin and glEnd.
-		ogl_get_gfx_info();
+		const char* vendor   = (const char*)glGetString(GL_VENDOR);
+		const char* renderer = (const char*)glGetString(GL_RENDERER);
+		// (happens if called before ogl_Init or between glBegin and glEnd.)
+		if(!vendor || !renderer)
+			return L"";
+		swprintf_s(cardName, ARRAY_SIZE(cardName), L"%hs %hs", vendor, renderer);
 	}
 
 	// remove crap from vendor names. (don't dare touch the model name -
 	// it's too risky, there are too many different strings)
-#define SHORTEN(what, chars_to_keep)\
-	if(!wcsncmp(gfx_card, what, ARRAY_SIZE(what)-1))\
-		memmove(gfx_card+chars_to_keep, gfx_card+ARRAY_SIZE(what)-1, (wcslen(gfx_card)-(ARRAY_SIZE(what)-1)+1)*sizeof(wchar_t));
+#define SHORTEN(what, charsToKeep)\
+	if(!wcsncmp(cardName, what, ARRAY_SIZE(what)-1))\
+		memmove(cardName+charsToKeep, cardName+ARRAY_SIZE(what)-1, (wcslen(cardName)-(ARRAY_SIZE(what)-1)+1)*sizeof(wchar_t));
 	SHORTEN(L"ATI Technologies Inc.", 3);
 	SHORTEN(L"NVIDIA Corporation", 6);
 	SHORTEN(L"S3 Graphics", 2);					// returned by EnumDisplayDevices
 	SHORTEN(L"S3 Graphics, Incorporated", 2);	// returned by GL_VENDOR
 #undef SHORTEN
+
+	return cardName;
 }
+
+
+std::wstring DriverInfo()
+{
+	std::wstring driverInfo;
+#if OS_WIN
+	driverInfo = wgfx_DriverInfo();
+	if(driverInfo.empty())
+#endif
+	{
+		const char* version = (const char*)glGetString(GL_VERSION);
+		if(version)
+		{
+			// add "OpenGL" to differentiate this from the real driver version
+			// (returned by platform-specific detect routines).
+			driverInfo = std::wstring(L"OpenGL ") + std::wstring(version, version+strlen(version));
+		}
+	}
+
+	if(driverInfo.empty())
+		return L"(unknown)";
+	return driverInfo;
+}
+
+
+size_t MemorySizeMiB()
+{
+	// (maybe add the size of the framebuffer?)
+	return (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MiB]
+}
+
+}	// namespace gfx

@@ -27,60 +27,41 @@
 #ifndef INCLUDED_GFX
 #define INCLUDED_GFX
 
-const size_t GFX_CARD_LEN = 128;
+namespace gfx {
+
 /**
- * description of graphics card.
- * initial value is "".
+ * @return description of graphics card,
+*  or L"" if unknown.
  **/
-extern wchar_t gfx_card[GFX_CARD_LEN];
+LIB_API std::wstring CardName();
 
-// note: increased from 64 by Joe Cocovich; this large size is necessary
-// because there must be enough space to list the versions of all drivers
-// mentioned in the registry (including unused remnants).
-const size_t GFX_DRV_VER_LEN = 256;
 /**
- * (OpenGL) graphics driver identification and version.
- * initial value is "".
+ * @return string describing the graphics driver and its version,
+ * or L"" if unknown.
  **/
-extern wchar_t gfx_drv_ver[GFX_DRV_VER_LEN];
+LIB_API std::wstring DriverInfo();
+
+LIB_API size_t MemorySizeMiB();
 
 /**
- * approximate amount of graphics memory [MiB]
- **/
-extern int gfx_mem;
-
-/**
- * detect graphics card and set the above information.
- **/
-extern void gfx_detect();
-
-
-/**
- * get current video mode.
- *
- * this is useful when choosing a new video mode.
+ * (useful for choosing a new video mode)
  *
  * @param xres, yres (optional out) resolution [pixels]
  * @param bpp (optional out) bits per pixel
  * @param freq (optional out) vertical refresh rate [Hz]
- * @return Status; INFO::OK unless: some information was requested
- * (i.e. pointer is non-NULL) but cannot be returned.
- * on failure, the outputs are all left unchanged (they are
- * assumed initialized to defaults)
+ * @return Status (if negative, outputs were left unchanged)
  **/
-extern Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq);
+LIB_API Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq);
 
 /**
- * get monitor dimensions.
- *
- * this is useful for determining aspect ratio.
+ * (useful for determining aspect ratio)
  *
  * @param width_mm (out) screen width [mm]
  * @param height_mm (out) screen height [mm]
- * @return Status. on failure, the outputs are all left unchanged
- * on failure, the outputs are all left unchanged (they are
- * assumed initialized to defaults)
+ * @return Status (if if negative, outputs were left unchanged)
  **/
-extern Status gfx_get_monitor_size(int& width_mm, int& height_mm);
+LIB_API Status GetMonitorSize(int& width_mm, int& height_mm);
+
+}	// namespace gfx
 
 #endif	// #ifndef INCLUDED_GFX

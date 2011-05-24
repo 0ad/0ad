@@ -443,30 +443,6 @@ bool ogl_SquelchError(GLenum err_to_ignore)
 GLint ogl_max_tex_size = -1;				// [pixels]
 GLint ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
 
-
-// set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
-//
-// fails if OpenGL not ready for use.
-// gfx_card and gfx_drv_ver are unchanged on failure.
-Status ogl_get_gfx_info()
-{
-	const char* vendor   = (const char*)glGetString(GL_VENDOR);
-	const char* renderer = (const char*)glGetString(GL_RENDERER);
-	const char* version  = (const char*)glGetString(GL_VERSION);
-	// can fail if OpenGL not yet initialized,
-	// or if called between glBegin and glEnd.
-	if(!vendor || !renderer || !version)
-		WARN_RETURN(ERR::AGAIN);
-
-	swprintf_s(gfx_card, ARRAY_SIZE(gfx_card), L"%hs %hs", vendor, renderer);
-
-	// add "OpenGL" to differentiate this from the real driver version
-	// (returned by platform-specific detect routines).
-	swprintf_s(gfx_drv_ver, ARRAY_SIZE(gfx_drv_ver), L"OpenGL %hs", version);
-	return INFO::OK;
-}
-
-
 // call after each video mode change, since thereafter extension functions
 // may have changed [address].
 void ogl_Init()

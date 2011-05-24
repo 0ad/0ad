@@ -57,24 +57,21 @@ Status sys_clipboard_free(wchar_t* copy)
 }
 
 
-/**
- * get current video mode.
- *
- * this is useful when choosing a new video mode.
- *
- * @param xres, yres (optional out) resolution [pixels]
- * @param bpp (optional out) bits per pixel
- * @param freq (optional out) vertical refresh rate [Hz]
- * @return Status; INFO::OK unless: some information was requested
- * (i.e. pointer is non-NULL) but cannot be returned.
- * on failure, the outputs are all left unchanged (they are
- * assumed initialized to defaults)
- **/
-Status gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
+namespace gfx {
+
+Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 {
 	// TODO Implement
-	return ERR::NOT_SUPPORTED;
+	return ERR::NOT_SUPPORTED;	// NOWARN
 }
+
+Status GetMonitorSize(int* xres, int* yres, int* bpp, int* freq)
+{
+	// TODO Implement
+	return ERR::NOT_SUPPORTED;	// NOWARN
+}
+
+}	// namespace gfx
 
 
 OsPath sys_ExecutablePathname()
@@ -101,3 +98,5 @@ OsPath sys_ExecutablePathname()
 	
 	return name;
 }
+
+}	// namespace gfx

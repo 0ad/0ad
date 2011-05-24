@@ -116,8 +116,10 @@ void WriteSystemInfo()
 	fprintf(f, "Memory         : %u MiB; %u MiB free\n", (unsigned)os_cpu_MemorySize(), (unsigned)os_cpu_MemoryAvailable());
 
 	// graphics
-	fprintf(f, "Graphics Card  : %ls\n", gfx_card);
-	fprintf(f, "OpenGL Drivers : %s; %ls\n", glGetString(GL_VERSION), gfx_drv_ver);
+	const std::wstring cardName = gfx::CardName();
+	const std::wstring driverInfo = gfx::DriverInfo();
+	fprintf(f, "Graphics Card  : %ls\n", cardName.c_str());
+	fprintf(f, "OpenGL Drivers : %s; %ls\n", glGetString(GL_VERSION), driverInfo.c_str());
 	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
 
 	// sound

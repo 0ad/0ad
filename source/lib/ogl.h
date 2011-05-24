@@ -141,14 +141,4 @@ extern bool ogl_SquelchError(GLenum err_to_ignore);
 extern GLint ogl_max_tex_size;				/// [pixels]
 extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
 
-/**
- * set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
- * 
- * fails if OpenGL not ready for use.
- * gfx_card and gfx_drv_ver are unchanged on failure.
- *
- * @return Status
- **/
-extern Status ogl_get_gfx_info();
-
 #endif	// #ifndef INCLUDED_OGL

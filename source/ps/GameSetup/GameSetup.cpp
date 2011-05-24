@@ -831,11 +831,6 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		SDL_WM_SetCaption("0 A.D.", "0 A.D.");
 	}
 
-	// needed by ogl_tex to detect broken gfx card/driver combos,
-	// but takes a while due to WMI startup, so make it optional.
-	if(!g_Quickstart)
-		gfx_detect();
-
 	RunHardwareDetection();
 
 	tex_codec_register_all();

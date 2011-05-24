@@ -23,6 +23,7 @@
 #ifndef INCLUDED_WGFX
 #define INCLUDED_WGFX
 
-extern Status win_get_gfx_info();
+extern Status wgfx_CardName(wchar_t* cardName, size_t numChars);
+extern std::wstring wgfx_DriverInfo();
 
 #endif	// #ifndef INCLUDED_WGFX
