@@ -33,6 +33,7 @@
 #include "lib/bits.h"
 #include "lib/file/file.h"
 #include "lib/sysdep/filesystem.h"	// wtruncate
+#include "lib/posix/posix_aio.h"	// LIO_READ, LIO_WRITE
 
 #include "lib/allocators/unique_range.h"
 
@@ -63,7 +64,7 @@ struct Operation
 	// otherwise, it must be aligned and padded to the I/O alignment, e.g. via
 	// io::Allocate.
 	Operation(const File& file, void* buf, off_t size, off_t offset = 0)
-		: fd(file.Descriptor()), opcode(file.Opcode())
+		: fd(file.Descriptor()), opcode((file.Flags() & O_WRONLY)? LIO_WRITE : LIO_READ)
 		, offset(offset), size(size), buf((void*)buf)
 	{
 	}
@@ -281,10 +282,10 @@ template<class CompletedHook, class IssueHook>
 static inline Status Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
 	File file;
-	WARN_RETURN_STATUS_IF_ERR(file.Open(pathname, LIO_WRITE));
+	WARN_RETURN_STATUS_IF_ERR(file.Open(pathname, O_WRONLY));
 	io::Operation op(file, (void*)data, size);
 
-#if OS_WIN && CONFIG2_FILE_ENABLE_AIO
+#if OS_WIN
 	(void)waio_Preallocate(op.fd, (off_t)size);
 #endif
 
@@ -317,7 +318,7 @@ template<class CompletedHook, class IssueHook>
 static inline Status Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
 	File file;
-	RETURN_STATUS_IF_ERR(file.Open(pathname, LIO_READ));
+	RETURN_STATUS_IF_ERR(file.Open(pathname, O_RDONLY));
 	io::Operation op(file, buf, size);
 	return io::Run(op, p, completedHook, issueHook);
 }

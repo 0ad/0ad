@@ -207,41 +207,49 @@ int wclosedir(WDIR* d)
 
 int wopen(const OsPath& pathname, int oflag)
 {
-	ENSURE(!(oflag & O_CREAT));
+	ENSURE(!(oflag & O_CREAT));	// must specify mode_arg if O_CREAT
 	return wopen(OsString(pathname).c_str(), oflag, _S_IREAD|_S_IWRITE);
 }
 
-int wopen(const OsPath& pathname, int oflag, mode_t mode_arg)
+
+int wopen(const OsPath& pathname, int oflag, mode_t mode)
 {
-	mode_t mode = _S_IREAD|_S_IWRITE;
-	if(oflag & O_CREAT)
-		mode = mode_arg;
-
-	WinScopedPreserveLastError s;	// _wsopen_s's CreateFileW
-	int fd;
-	errno_t ret = _wsopen_s(&fd, OsString(pathname).c_str(), oflag, _SH_DENYNO, mode);
-	if(ret != 0)
+	if(oflag & O_DIRECT)
 	{
-		errno = ret;
-		return -1;	// NOWARN
+		Status ret = waio_open(pathname, oflag);
+		if(ret < 0)
+		{
+			errno = ErrnoFromStatus(ret);
+			return -1;
+		}
+		return (int)ret;	// file descriptor
 	}
-
-	if(waio_reopen(fd, pathname, oflag) != INFO::OK)
-		return -1;
-
-	ASSERT(fd < 256);	// CRT limitation
-
-	return fd;
+	else
+	{
+		WinScopedPreserveLastError s;	// _wsopen_s's CreateFileW
+		int fd;
+		oflag |= _O_BINARY;
+		if(oflag & O_WRONLY)
+			oflag |= O_CREAT|O_TRUNC;
+		// NB: _wsopen_s ignores mode unless oflag & O_CREAT
+		errno_t ret = _wsopen_s(&fd, OsString(pathname).c_str(), oflag, _SH_DENYRD, mode);
+		if(ret != 0)
+		{
+			errno = ret;
+			return -1;	// NOWARN
+		}
+		return fd;
+	}
 }
 
 
 int wclose(int fd)
 {
-	ENSURE(3 <= fd && fd < 256);
+	ENSURE(fd >= 3);	// not invalid nor stdin/out/err
 
-	(void)waio_close(fd);	// no-op if fd wasn't opened for aio
-
-	return _close(fd);
+	if(waio_close(fd) != 0)
+		return _close(fd);
+	return 0;
 }
 
 

@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "lib/file/file_system_util.h"
+#include "lib/file/vfs/vfs_util.h"
 
 #include <queue>
 #include <cstring>
@@ -35,35 +35,7 @@
 #include "lib/regex.h"
 
 
-namespace fs_util {
-
-bool DirectoryExists(const OsPath& path)
-{
-	WDIR* dir = wopendir(path);
-	if(dir)
-	{
-		wclosedir(dir);
-		return true;
-	}
-	return false;
-}
-
-
-bool FileExists(const OsPath& pathname)
-{
-	struct stat s;
-	const bool exists = wstat(pathname, &s) == 0;
-	return exists;
-}
-
-
-u64 FileSize(const OsPath& pathname)
-{
-	struct stat s;
-	ENSURE(wstat(pathname, &s) == 0);
-	return s.st_size;
-}
-
+namespace vfs {
 
 Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames)
 {
@@ -159,4 +131,4 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	while(fs->GetFileInfo(nextPathname, 0) == INFO::OK);
 }
 
-}	// namespace fs_util
+}	// namespace vfs

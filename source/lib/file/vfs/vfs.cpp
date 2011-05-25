@@ -25,7 +25,7 @@
 
 #include "lib/allocators/shared_ptr.h"
 #include "lib/posix/posix_pthread.h"
-#include "lib/file/file_system_util.h"
+#include "lib/file/file_system.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/file/common/trace.h"
 #include "lib/file/archive/archive.h"
@@ -61,7 +61,7 @@ public:
 	virtual Status Mount(const VfsPath& mountPoint, const OsPath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
 		ScopedLock s;
-		if(!fs_util::DirectoryExists(path))
+		if(!DirectoryExists(path))
 		{
 			if(flags & VFS_MOUNT_MUST_EXIST)
 				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN

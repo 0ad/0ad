@@ -28,7 +28,7 @@
 #define INCLUDED_FILE
 
 #include "lib/os_path.h"
-#include "lib/posix/posix_aio.h"	// opcode: LIO_READ or LIO_WRITE
+#include "lib/sysdep/filesystem.h"	// O_*, S_*
 
 namespace ERR
 {
@@ -36,7 +36,10 @@ namespace ERR
 	const Status FILE_NOT_FOUND = -110301;
 }
 
-LIB_API Status FileOpen(const OsPath& pathname, int opcode, int& fd);
+// @param oflag: either O_RDONLY or O_WRONLY (in which case O_CREAT and
+//   O_TRUNC are added), plus O_DIRECT if aio is desired
+// @return file descriptor or a negative Status
+LIB_API Status FileOpen(const OsPath& pathname, int oflag);
 LIB_API void FileClose(int& fd);
 
 class File
@@ -47,9 +50,9 @@ public:
 	{
 	}
 
-	File(const OsPath& pathname, int opcode)
+	File(const OsPath& pathname, int oflag)
 	{
-		(void)Open(pathname, opcode);
+		(void)Open(pathname, oflag);
 	}
 
 	~File()
@@ -57,11 +60,13 @@ public:
 		Close();
 	}
 
-	Status Open(const OsPath& pathname, int opcode)
+	Status Open(const OsPath& pathname, int oflag)
 	{
-		RETURN_STATUS_IF_ERR(FileOpen(pathname, opcode, fd));
+		Status ret = FileOpen(pathname, oflag);
+		RETURN_STATUS_IF_ERR(ret);
 		this->pathname = pathname;
-		this->opcode = opcode;
+		this->fd = (int)ret;
+		this->oflag = oflag;
 		return INFO::OK;
 	}
 
@@ -80,15 +85,15 @@ public:
 		return fd;
 	}
 
-	int Opcode() const
+	int Flags() const
 	{
-		return opcode;
+		return oflag;
 	}
 
 private:
 	OsPath pathname;
 	int fd;
-	int opcode;
+	int oflag;
 };
 
 typedef shared_ptr<File> PFile;

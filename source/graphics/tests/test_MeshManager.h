@@ -17,7 +17,7 @@
 
 #include "lib/self_test.h"
 
-#include "lib/file/file_system_util.h"
+#include "lib/file/file_system.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
 #include "lib/allocators/shared_ptr.h"
@@ -53,9 +53,9 @@ class TestMeshManager : public CxxTest::TestSuite
 
 		// Make sure the required directories doesn't exist when we start,
 		// in case the previous test aborted and left them full of junk
-		if(fs_util::DirectoryExists(MOD_PATH))
+		if(DirectoryExists(MOD_PATH))
 			DeleteDirectory(MOD_PATH);
-		if(fs_util::DirectoryExists(CACHE_PATH))
+		if(DirectoryExists(CACHE_PATH))
 			DeleteDirectory(CACHE_PATH);
 
 		g_VFS = CreateVfs(20*MiB);

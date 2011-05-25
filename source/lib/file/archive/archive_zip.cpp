@@ -432,7 +432,7 @@ class ArchiveReader_Zip : public IArchiveReader
 {
 public:
 	ArchiveReader_Zip(const OsPath& pathname)
-		: m_file(new File(pathname, LIO_READ))
+		: m_file(new File(pathname, O_RDONLY))
 	{
 		FileInfo fileInfo;
 		GetFileInfo(pathname, &fileInfo);
@@ -580,7 +580,7 @@ class ArchiveWriter_Zip : public IArchiveWriter
 {
 public:
 	ArchiveWriter_Zip(const OsPath& archivePathname, bool noDeflate)
-		: m_file(new File(archivePathname, LIO_WRITE)), m_fileSize(0)
+		: m_file(new File(archivePathname, O_WRONLY)), m_fileSize(0)
 		, m_numEntries(0), m_noDeflate(noDeflate)
 	{
 		THROW_STATUS_IF_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
@@ -620,7 +620,7 @@ public:
 			return INFO::SKIPPED;
 
 		PFile file(new File);
-		RETURN_STATUS_IF_ERR(file->Open(pathname, LIO_READ));
+		RETURN_STATUS_IF_ERR(file->Open(pathname, O_RDONLY));
 
 		const size_t pathnameLength = pathnameInArchive.string().length();
 

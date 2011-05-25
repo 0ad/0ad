@@ -187,7 +187,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	VfsPaths pathnames;
 
 	// Load all scripts in mapgen directory
-	Status ret = fs_util::GetPathnames(g_VFS, path, L"*.js", pathnames);
+	Status ret = vfs::GetPathnames(g_VFS, path, L"*.js", pathnames);
 	if (ret == INFO::OK)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)

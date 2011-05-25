@@ -18,7 +18,7 @@
 #include "precompiled.h"
 #include "Paths.h"
 
-#include "lib/file/file_system_util.h"
+#include "lib/file/file_system.h"
 #include "lib/sysdep/sysdep.h"	// sys_get_executable_name
 #include "lib/sysdep/filesystem.h"	// wrealpath
 #if OS_WIN
@@ -83,7 +83,7 @@ Paths::Paths(const CmdLineArgs& args)
 	}
 
 	// make sure it's valid
-	if(!fs_util::FileExists(pathname))
+	if(!FileExists(pathname))
 		WARN_IF_ERR(StatusFromErrno());
 
 	for(size_t i = 0; i < 2; i++)	// remove "system/name.exe"

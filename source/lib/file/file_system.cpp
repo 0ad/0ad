@@ -20,6 +20,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/*
+ * higher-level interface on top of sysdep/filesystem.h
+ */
+
 #include "precompiled.h"
 #include "lib/file/file_system.h"
 
@@ -28,6 +32,48 @@
 #include <string>
 
 #include "lib/sysdep/filesystem.h"
+
+
+bool DirectoryExists(const OsPath& path)
+{
+	WDIR* dir = wopendir(path);
+	if(dir)
+	{
+		wclosedir(dir);
+		return true;
+	}
+	return false;
+}
+
+
+bool FileExists(const OsPath& pathname)
+{
+	struct stat s;
+	const bool exists = wstat(pathname, &s) == 0;
+	return exists;
+}
+
+
+u64 FileSize(const OsPath& pathname)
+{
+	struct stat s;
+	ENSURE(wstat(pathname, &s) == 0);
+	return s.st_size;
+}
+
+
+Status GetFileInfo(const OsPath& pathname, FileInfo* pfileInfo)
+{
+	errno = 0;
+	struct stat s;
+	memset(&s, 0, sizeof(s));
+	if(wstat(pathname, &s) != 0)
+		WARN_RETURN(StatusFromErrno());
+
+	*pfileInfo = FileInfo(pathname.Filename(), s.st_size, s.st_mtime);
+	return INFO::OK;
+}
+
 
 struct DirDeleter
 {
@@ -81,19 +127,6 @@ Status GetDirectoryEntries(const OsPath& path, FileInfos* files, DirectoryNames*
 		else if(subdirectoryNames && S_ISDIR(s.st_mode) && name != L"." && name != L"..")
 			subdirectoryNames->push_back(name);
 	}
-}
-
-
-Status GetFileInfo(const OsPath& pathname, FileInfo* pfileInfo)
-{
-	errno = 0;
-	struct stat s;
-	memset(&s, 0, sizeof(s));
-	if(wstat(pathname, &s) != 0)
-		WARN_RETURN(StatusFromErrno());
-
-	*pfileInfo = FileInfo(pathname.Filename(), s.st_size, s.st_mtime);
-	return INFO::OK;
 }
 
 

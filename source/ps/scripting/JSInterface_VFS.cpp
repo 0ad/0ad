@@ -25,6 +25,7 @@
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"
 #include "ps/scripting/JSInterface_VFS.h"
+#include "lib/file/vfs/vfs_util.h"
 
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
@@ -115,12 +116,12 @@ JSBool JSI_VFS::BuildDirEntList(JSContext* cx, uintN argc, jsval* vp)
 		if (!ToPrimitive<bool> (cx, JS_ARGV(cx, vp)[2], recursive))
 			return JS_FALSE;
 	}
-	int flags = recursive ? fs_util::DIR_RECURSIVE : 0;
+	int flags = recursive ? vfs::DIR_RECURSIVE : 0;
 
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
-	fs_util::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
+	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(state.filename_array));
 	return JS_TRUE;

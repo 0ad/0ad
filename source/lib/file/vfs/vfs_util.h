@@ -24,18 +24,13 @@
  * helper functions for directory access
  */
 
-#ifndef INCLUDED_FILE_SYSTEM_UTIL
-#define INCLUDED_FILE_SYSTEM_UTIL
+#ifndef INCLUDED_VFS_UTIL
+#define INCLUDED_VFS_UTIL
 
 #include "lib/os_path.h"
 #include "lib/file/vfs/vfs.h"
 
-namespace fs_util {
-
-LIB_API bool DirectoryExists(const OsPath& path);
-LIB_API bool FileExists(const OsPath& pathname);
-
-LIB_API u64 FileSize(const OsPath& pathname);
+namespace vfs {
 
 extern Status GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames);
 
@@ -88,6 +83,6 @@ extern Status ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb,
  **/
 extern void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname);
 
-}	// namespace fs_util
+}	// namespace vfs
 
-#endif	 // #ifndef INCLUDED_FILE_SYSTEM_UTIL
+#endif	 // #ifndef INCLUDED_VFS_UTIL

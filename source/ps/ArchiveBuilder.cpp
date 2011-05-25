@@ -22,6 +22,7 @@
 #include "graphics/TextureManager.h"
 #include "lib/tex/tex_codec.h"
 #include "lib/file/archive/archive_zip.h"
+#include "lib/file/vfs/vfs_util.h"
 #include "ps/XML/Xeromyces.h"
 
 // Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
@@ -45,7 +46,7 @@ CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
 	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST);
 
 	// Collect the list of files before loading any base mods
-	fs_util::ForEachFile(m_VFS, L"", &CollectFileCB, (uintptr_t)static_cast<void*>(this), 0, fs_util::DIR_RECURSIVE);
+	vfs::ForEachFile(m_VFS, L"", &CollectFileCB, (uintptr_t)static_cast<void*>(this), 0, vfs::DIR_RECURSIVE);
 }
 
 CArchiveBuilder::~CArchiveBuilder()

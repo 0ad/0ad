@@ -71,9 +71,8 @@ struct aiocb
 	int             aio_lio_opcode; // Operation to be performed.
 
 	// internal use only; must be zero-initialized before
-	// calling the first aio_read/aio_write/lio_listio (aio_return also
-	// zero-initializes them)
-	void* fcb;
+	// calling the first aio_read/aio_write/lio_listio
+	// (aio_return resets it to 0)
 	void* ovl;
 };
 
@@ -113,23 +112,20 @@ extern int aio_cancel(int, struct aiocb*);
 
 extern int aio_fsync(int, struct aiocb*);
 
-// Windows doesn't allow aio unless the file is opened in asynchronous mode,
-// which is not possible with _wsopen_s. since we don't want to have to
-// provide a separate File class for aio-enabled files, our wopen wrapper
-// will also call this function to open a SECOND handle to the file (works
-// because CRT open() defaults to DENY_NONE sharing). the CRT's lowio
-// descriptor table remains unaffected, but our [w]aio_* functions are
-// notified of the file descriptor, which means e.g. read and aio_read can
-// both be used. this function must have been called before any
-// other [w]aio_* functions are used.
-extern Status waio_reopen(int fd, const OsPath& pathname, int oflag, ...);
+// open the file for aio (not possible via _wsopen_s since it cannot
+// set FILE_FLAG_NO_BUFFERING).
+//
+// @return the smallest available file descriptor. NB: these numbers
+// are not 0-based to avoid confusion with lowio descriptors and
+// must only be used with waio functions.
+extern Status waio_open(const OsPath& pathname, int oflag, ...);
 
-// close our second aio-enabled handle to the file (called from wclose).
 extern Status waio_close(int fd);
 
 // call this before writing a large file to preallocate clusters, thus
 // reducing fragmentation.
 //
+// @param fd file descriptor from _wsopen_s OR waio_open
 // @param size is rounded up to a multiple of maxSectorSize (required by
 // SetEndOfFile; this could be avoided by using the undocumented
 // NtSetInformationFile or SetFileInformationByHandle on Vista and later).
@@ -140,9 +136,8 @@ extern Status waio_close(int fd);
 // (http://support.microsoft.com/default.aspx?scid=kb%3Ben-us%3B156932)
 // if Windows XP and the SE_MANAGE_VOLUME_NAME privileges are available,
 // this function sets the valid data length to avoid the synchronous zero-fill.
-// note that this exposes the previous disk contents (possibly even to
-// other users since the waio_reopen design cannot deny file sharing) until
-// the application successfully writes to the file.
+// to avoid exposing the previous disk contents until the application
+// successfully writes to the file, deny sharing when opening the file.
 LIB_API Status waio_Preallocate(int fd, off_t size);
 
 #endif	// #ifndef INCLUDED_WAIO

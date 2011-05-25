@@ -18,7 +18,7 @@
 #ifndef INCLUDED_ARCHIVEBUILDER
 #define INCLUDED_ARCHIVEBUILDER
 
-#include "lib/file/file_system_util.h"
+#include "lib/file/vfs/vfs.h"
 #include "ps/CStr.h"
 
 /**

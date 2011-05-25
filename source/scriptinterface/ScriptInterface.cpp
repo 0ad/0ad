@@ -825,7 +825,7 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstri
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 {
-	if (!VfsFileExists(g_VFS, path))
+	if (!VfsFileExists(path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
 		return false;
@@ -911,7 +911,7 @@ CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
 
 CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 {
-	if (!VfsFileExists(g_VFS, path))
+	if (!VfsFileExists(path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
 		return CScriptValRooted();

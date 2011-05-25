@@ -27,7 +27,6 @@
 #include "precompiled.h"
 #include "lib/file/file.h"
 
-#include "lib/sysdep/filesystem.h"	// O_*, S_*
 #include "lib/file/common/file_stats.h"
 
 static const StatusDefinition fileStatusDefinitions[] = {
@@ -37,33 +36,20 @@ static const StatusDefinition fileStatusDefinitions[] = {
 STATUS_ADD_DEFINITIONS(fileStatusDefinitions);
 
 
-Status FileOpen(const OsPath& pathname, int opcode, int& fd)
+Status FileOpen(const OsPath& pathname, int oflag)
 {
-	int oflag = 0;
-	switch(opcode)
-	{
-	case LIO_READ:
-		oflag = O_RDONLY;
-		break;
-	case LIO_WRITE:
-		oflag = O_WRONLY|O_CREAT|O_TRUNC;
-		break;
-	default:
-		DEBUG_WARN_ERR(ERR::LOGIC);
-		break;
-	}
-#if OS_WIN
-	oflag |= O_BINARY_NP;
-#endif
+	ENSURE((oflag & ~(O_RDONLY|O_WRONLY|O_DIRECT)) == 0);
+	if(oflag & O_WRONLY)
+		oflag |= O_CREAT|O_TRUNC;
 	// prevent exploits by disallowing writes to our files by other users.
 	// note that the system-wide installed cache is read-only.
 	const mode_t mode = S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH;	// 0644
-	fd = wopen(pathname, oflag, mode);
+	const int fd = wopen(pathname, oflag, mode);
 	if(fd < 0)
 		return StatusFromErrno();	// NOWARN
 
 	stats_open();
-	return INFO::OK;
+	return (Status)fd;
 }
 
 

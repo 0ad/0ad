@@ -21,7 +21,7 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
-#include "lib/file/file_system_util.h"
+#include "lib/file/vfs/vfs_util.h"
 #include "ps/Filesystem.h"
 
 BEGIN_INTERFACE_WRAPPER(AIManager)
@@ -42,7 +42,7 @@ public:
 
 	void Run()
 	{
-		fs_util::ForEachFile(g_VFS, L"simulation/ai/", Callback, (uintptr_t)this, L"*.json", fs_util::DIR_RECURSIVE);
+		vfs::ForEachFile(g_VFS, L"simulation/ai/", Callback, (uintptr_t)this, L"*.json", vfs::DIR_RECURSIVE);
 	}
 
 	static Status Callback(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)

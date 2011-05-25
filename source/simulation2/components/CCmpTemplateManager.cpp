@@ -414,13 +414,13 @@ std::vector<std::string> CCmpTemplateManager::FindAllTemplates(bool includeActor
 	Status ok;
 
 	// Find all the normal entity templates first
-	ok = fs_util::ForEachFile(g_VFS, TEMPLATE_ROOT, AddToTemplates, (uintptr_t)&templates, L"*.xml", fs_util::DIR_RECURSIVE);
+	ok = vfs::ForEachFile(g_VFS, TEMPLATE_ROOT, AddToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
 	WARN_IF_ERR(ok);
 
 	if (includeActors)
 	{
 		// Add all the actors too
-		ok = fs_util::ForEachFile(g_VFS, ACTOR_ROOT, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", fs_util::DIR_RECURSIVE);
+		ok = vfs::ForEachFile(g_VFS, ACTOR_ROOT, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
 		WARN_IF_ERR(ok);
 	}
 

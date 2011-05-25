@@ -20,11 +20,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/*
+ * higher-level interface on top of sysdep/filesystem.h
+ */
+
 #ifndef INCLUDED_FILE_SYSTEM
 #define INCLUDED_FILE_SYSTEM
 
 #include "lib/os_path.h"
 #include "lib/posix/posix_filesystem.h"	// mode_t
+
+
+LIB_API bool DirectoryExists(const OsPath& path);
+LIB_API bool FileExists(const OsPath& pathname);
+
+LIB_API u64 FileSize(const OsPath& pathname);
+
 
 // (bundling size and mtime avoids a second expensive call to stat())
 class FileInfo

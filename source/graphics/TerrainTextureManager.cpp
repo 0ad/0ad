@@ -117,7 +117,7 @@ void CTerrainTextureManager::DeleteTexture(CTerrainTextureEntry* entry)
 void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const VfsPath& path)
 {
 	VfsPaths pathnames;
-	if(fs_util::GetPathnames(g_VFS, path, 0, pathnames) < 0)
+	if(vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
 		return;
 
 	// If we have any .cached.dds files then strip that extension to get the

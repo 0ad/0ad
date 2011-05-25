@@ -156,7 +156,7 @@ private:
 
 			// Load and execute *.js
 			VfsPaths pathnames;
-			fs_util::GetPathnames(g_VFS, L"simulation/ai/" + moduleName + L"/", L"*.js", pathnames);
+			vfs::GetPathnames(g_VFS, L"simulation/ai/" + moduleName + L"/", L"*.js", pathnames);
 			for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 			{
 				if (!m_ScriptInterface.LoadGlobalScriptFile(*it))

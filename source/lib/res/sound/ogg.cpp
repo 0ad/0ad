@@ -6,7 +6,7 @@
 
 #include "lib/byte_order.h"
 #include "lib/file/io/io.h"
-#include "lib/file/file_system_util.h"
+#include "lib/file/file_system.h"
 
 
 static Status LibErrorFromVorbis(int err)
@@ -52,7 +52,7 @@ class VorbisFileAdapter
 public:
 	VorbisFileAdapter(const PFile& openedFile)
 		: file(openedFile)
-		, size(fs_util::FileSize(openedFile->Pathname()))
+		, size(FileSize(openedFile->Pathname()))
 		, offset(0)
 	{
 	}

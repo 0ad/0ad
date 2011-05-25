@@ -20,16 +20,13 @@
 
 #include "lib/file/file.h"
 #include "lib/file/io/io.h"
-#include "lib/file/vfs/vfs.h"
-#include "lib/file/file_system_util.h"
 #include "lib/file/io/write_buffer.h"
+#include "lib/file/vfs/vfs_util.h"
 
 #include "ps/CStr.h"
 #include "ps/Errors.h"
 
 extern PIVFS g_VFS;
-
-extern bool VfsFileExists(const PIVFS& vfs, const VfsPath& pathname);
 
 extern bool VfsFileExists(const VfsPath& pathname);
 

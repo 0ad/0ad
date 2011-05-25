@@ -37,7 +37,6 @@
 #include "lib/timer.h"
 #include "lib/res/h_mgr.h"
 #include "lib/file/vfs/vfs.h"
-extern PIVFS vfs;
 
 static const StatusDefinition oglShaderStatusDefs[] = {
 	{ ERR::SHDR_CREATE,     L"Shader creation failed" },

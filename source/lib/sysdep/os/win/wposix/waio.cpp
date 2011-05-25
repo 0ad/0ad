@@ -36,10 +36,11 @@
 #include "lib/alignment.h"	// IsAligned
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
-#include "lib/sysdep/filesystem.h"	// O_NO_AIO_NP
+#include "lib/sysdep/filesystem.h"	// O_DIRECT
 #include "lib/sysdep/os/win/wutil.h"	// wutil_SetPrivilege
 #include "lib/sysdep/os/win/wiocp.h"
 #include "lib/sysdep/os/win/winit.h"
+#include "lib/sysdep/os/win/wposix/crt_posix.h"	// _get_osfhandle
 
 WINIT_REGISTER_MAIN_SHUTDOWN(waio_Shutdown);
 
@@ -51,6 +52,81 @@ static WUTIL_FUNC(pSetFileValidData, BOOL, (HANDLE, LONGLONG));
 // (there must be one global IOCP because aio_suspend might be called for
 // requests from different files)
 static HANDLE hIOCP;
+
+
+//-----------------------------------------------------------------------------
+// OpenFile
+
+static DWORD DesiredAccess(int oflag)
+{
+	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
+	{
+	case O_RDONLY:
+		// (WinXP x64 requires FILE_WRITE_ATTRIBUTES for SetFileCompletionNotificationModes)
+		return GENERIC_READ|FILE_WRITE_ATTRIBUTES;
+	case O_WRONLY:
+		return GENERIC_WRITE;
+	case O_RDWR:
+		return GENERIC_READ|GENERIC_WRITE;
+	default:
+		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
+		return 0;
+	}
+}
+
+static DWORD ShareMode(int oflag)
+{
+	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
+	{
+	case O_RDONLY:
+		return FILE_SHARE_READ;
+	case O_WRONLY:
+		return FILE_SHARE_WRITE;
+	case O_RDWR:
+		return FILE_SHARE_WRITE;	// deny read access (c.f. waio_Preallocate)
+	default:
+		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
+		return 0;
+	}
+}
+
+static DWORD CreationDisposition(int oflag)
+{
+	if(oflag & O_CREAT)
+		return (oflag & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
+
+	if(oflag & O_TRUNC)
+		return TRUNCATE_EXISTING;
+
+	return OPEN_EXISTING;
+}
+
+static DWORD FlagsAndAttributes()
+{
+	// - FILE_FLAG_SEQUENTIAL_SCAN is ignored when FILE_FLAG_NO_BUFFERING
+	//   is set (c.f. "Windows via C/C++", p. 324)
+	// - FILE_FLAG_WRITE_THROUGH is ~5% slower (diskspd.cpp suggests it
+	//   disables hardware caching; the overhead may also be due to the
+	//   Windows cache manager)
+	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING;
+	const DWORD attributes = FILE_ATTRIBUTE_NORMAL;
+	return flags|attributes;
+}
+
+static Status OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
+{
+	WinScopedPreserveLastError s;
+
+	const DWORD access = DesiredAccess(oflag);
+	const DWORD share  = ShareMode(oflag);
+	const DWORD create = CreationDisposition(oflag);
+	const DWORD flags  = FlagsAndAttributes();
+	hFile = CreateFileW(OsString(pathname).c_str(), access, share, 0, create, flags, 0);
+	if(hFile == INVALID_HANDLE_VALUE)
+		WARN_RETURN(StatusFromWin());
+
+	return INFO::OK;
+}
 
 
 //-----------------------------------------------------------------------------
@@ -168,92 +244,124 @@ struct OvlAllocator	// POD
 //-----------------------------------------------------------------------------
 // FileControlBlock
 
-// (must correspond to static zero-initialization of fd)
-static const intptr_t FD_AVAILABLE = 0;
-
 // information required to start asynchronous I/Os from a file
-// (aiocb stores a pointer to the originating FCB)
 struct FileControlBlock // POD
 {
-	// search key, indicates the file descriptor with which this
-	// FCB was associated (or FD_AVAILABLE if none).
-	volatile intptr_t fd;
-
-	// second aio-enabled handle from waio_reopen
 	HANDLE hFile;
 
 	OvlAllocator ovl;
 
 	Status Init()
 	{
-		fd = FD_AVAILABLE;
 		hFile = INVALID_HANDLE_VALUE;
 		return ovl.Init();
 	}
 
 	void Shutdown()
 	{
-		ENSURE(fd == FD_AVAILABLE);
 		ENSURE(hFile == INVALID_HANDLE_VALUE);
 		ovl.Shutdown();
+	}
+
+	Status Open(const OsPath& pathname, int oflag)
+	{
+		RETURN_STATUS_IF_ERR(OpenFile(pathname, oflag, hFile));
+
+		ovl.Associate(hFile);
+
+		AttachToCompletionPort(hFile, hIOCP, (ULONG_PTR)this);
+
+		// minor optimization: avoid posting to IOCP in rare cases
+		// where the I/O completes synchronously
+		if(pSetFileCompletionNotificationModes)
+		{
+			// (for reasons as yet unknown, this fails when the file is
+			// opened for read-only access)
+			(void)pSetFileCompletionNotificationModes(hFile, FILE_SKIP_COMPLETION_PORT_ON_SUCCESS);
+		}
+
+		return INFO::OK;
+	}
+
+	Status Close()
+	{
+		const BOOL ok = CloseHandle(hFile);
+		hFile = INVALID_HANDLE_VALUE;
+		if(!ok)
+			WARN_RETURN(ERR::INVALID_HANDLE);
+		return INFO::OK;
 	}
 };
 
 
-// NB: the Windows lowio file descriptor limit is 2048, but
-// our applications rarely open more than a few files at a time.
-static FileControlBlock fileControlBlocks[16];
+//-----------------------------------------------------------------------------
+// FileControlBlocks
 
-
-static FileControlBlock* AssociateFileControlBlock(int fd, HANDLE hFile)
+struct FileControlBlocks // POD
 {
-	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
+	// (we never open more than a few files at a time.)
+	static const size_t maxFiles = 8;
+
+	// (our descriptors exceed _NHANDLE_ (2048) to ensure they are not
+	// confused with lowio descriptors.)
+	static const int firstDescriptor = 4000;
+
+	FileControlBlock fcbs[maxFiles];
+	CACHE_ALIGNED volatile intptr_t inUse[maxFiles];
+
+	void Init()
 	{
-		FileControlBlock& fcb = fileControlBlocks[i];
-		if(cpu_CAS(&fcb.fd, FD_AVAILABLE, fd))	// the FCB is now ours
+		for(size_t i = 0; i < maxFiles; i++)
 		{
-			fcb.hFile = hFile;
-			fcb.ovl.Associate(hFile);
-
-			AttachToCompletionPort(hFile, hIOCP, (ULONG_PTR)&fcb);
-
-			// minor optimization: avoid posting to IOCP in rare cases
-			// where the I/O completes synchronously
-			if(pSetFileCompletionNotificationModes)
-			{
-				// (for reasons as yet unknown, this fails when the file is
-				// opened for read-only access)
-				(void)pSetFileCompletionNotificationModes(fcb.hFile, FILE_SKIP_COMPLETION_PORT_ON_SUCCESS);
-			}
-
-			return &fcb;
+			inUse[i] = 0;
+			fcbs[i].Init();
 		}
 	}
 
-	return 0;
-}
-
-
-static void DissociateFileControlBlock(FileControlBlock* fcb)
-{
-	fcb->hFile = INVALID_HANDLE_VALUE;
-	fcb->fd = FD_AVAILABLE;
-}
-
-
-static FileControlBlock* FindFileControlBlock(int fd)
-{
-	ENSURE(fd != FD_AVAILABLE);
-
-	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
+	void Shutdown()
 	{
-		FileControlBlock& fcb = fileControlBlocks[i];
-		if(fcb.fd == fd)
-			return &fcb;
+		for(size_t i = 0; i < maxFiles; i++)
+		{
+			ENSURE(inUse[i] == 0);
+			fcbs[i].Shutdown();
+		}
 	}
 
-	return 0;
-}
+	FileControlBlock* Allocate()
+	{
+		for(size_t i = 0; i < maxFiles; i++)
+		{
+			if(cpu_CAS(&inUse[i], 0, 1))
+				return &fcbs[i];
+		}
+
+		return 0;
+	}
+
+	void Deallocate(FileControlBlock* fcb)
+	{
+		const size_t index = fcb - &fcbs[0];
+		inUse[index] = 0;
+	}
+
+	int Descriptor(FileControlBlock* fcb) const
+	{
+		const size_t index = fcb - &fcbs[0];
+		return firstDescriptor + (int)index;
+	}
+
+	FileControlBlock* FromDescriptor(int descriptor)
+	{
+		const size_t index = size_t(descriptor - firstDescriptor);
+		if(index >= maxFiles)
+			return 0;
+		if(!inUse[index])
+			return 0;
+		return &fcbs[index];
+	}
+};
+
+static FileControlBlocks fileControlBlocks;
 
 
 //-----------------------------------------------------------------------------
@@ -261,10 +369,10 @@ static FileControlBlock* FindFileControlBlock(int fd)
 
 static ModuleInitState waio_initState;
 
+// called from waio_Open (avoids overhead if this module is never used)
 static Status waio_Init()
 {
-	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
-		fileControlBlocks[i].Init();
+	fileControlBlocks.Init();
 
 	WUTIL_IMPORT_KERNEL32(SetFileCompletionNotificationModes, pSetFileCompletionNotificationModes);
 
@@ -287,8 +395,7 @@ static Status waio_Shutdown()
 	if(waio_initState == 0)	// we were never initialized
 		return INFO::OK;
 
-	for(size_t i = 0; i < ARRAY_SIZE(fileControlBlocks); i++)
-		fileControlBlocks[i].Shutdown();
+	fileControlBlocks.Shutdown();
 
 	WARN_IF_FALSE(CloseHandle(hIOCP));
 
@@ -297,128 +404,50 @@ static Status waio_Shutdown()
 
 
 //-----------------------------------------------------------------------------
-// OpenFile
-
-static DWORD DesiredAccess(int oflag)
-{
-	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
-	{
-	case O_RDONLY:
-		// (WinXP x64 requires FILE_WRITE_ATTRIBUTES for SetFileCompletionNotificationModes)
-		return GENERIC_READ|FILE_WRITE_ATTRIBUTES;
-	case O_WRONLY:
-		return GENERIC_WRITE;
-	case O_RDWR:
-		return GENERIC_READ|GENERIC_WRITE;
-	default:
-		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
-		return 0;
-	}
-}
-
-static DWORD ShareMode(int oflag)
-{
-	switch(oflag & (O_RDONLY|O_WRONLY|O_RDWR))
-	{
-	case O_RDONLY:
-		return FILE_SHARE_READ;
-	case O_WRONLY:
-		return FILE_SHARE_WRITE;
-	case O_RDWR:
-		return FILE_SHARE_READ|FILE_SHARE_WRITE;
-	default:
-		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
-		return 0;
-	}
-}
-
-static DWORD CreationDisposition(int oflag)
-{
-	if(oflag & O_CREAT)
-		return (oflag & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
-
-	if(oflag & O_TRUNC)
-		return TRUNCATE_EXISTING;
-
-	return OPEN_EXISTING;
-}
-
-static DWORD FlagsAndAttributes()
-{
-	// - FILE_FLAG_SEQUENTIAL_SCAN is ignored when FILE_FLAG_NO_BUFFERING
-	//   is set (c.f. "Windows via C/C++", p. 324)
-	// - FILE_FLAG_WRITE_THROUGH is ~5% slower (diskspd.cpp suggests it
-	//   disables hardware caching; the overhead may also be due to the
-	//   Windows cache manager)
-	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING;
-	const DWORD attributes = FILE_ATTRIBUTE_NORMAL;
-	return flags|attributes;
-}
-
-static Status OpenFile(const OsPath& pathname, int oflag, HANDLE& hFile)
-{
-	WinScopedPreserveLastError s;
-
-	const DWORD access = DesiredAccess(oflag);
-	const DWORD share  = ShareMode(oflag);
-	const DWORD create = CreationDisposition(oflag);
-	const DWORD flags  = FlagsAndAttributes();
-	hFile = CreateFileW(OsString(pathname).c_str(), access, share, 0, create, flags, 0);
-	if(hFile == INVALID_HANDLE_VALUE)
-		WARN_RETURN(StatusFromWin());
-
-	return INFO::OK;
-}
-
-
-//-----------------------------------------------------------------------------
 // Windows-only APIs
 
-Status waio_reopen(int fd, const OsPath& pathname, int oflag, ...)
+Status waio_open(const OsPath& pathname, int oflag, ...)
 {
-	ENSURE(fd > 2);
+	ASSERT(oflag & O_DIRECT);
 	ENSURE(!(oflag & O_APPEND));	// not supported
-
-	if(oflag & O_NO_AIO_NP)
-		return INFO::SKIPPED;
 
 	RETURN_STATUS_IF_ERR(ModuleInit(&waio_initState, waio_Init));
 
-	HANDLE hFile;
-	RETURN_STATUS_IF_ERR(OpenFile(pathname, oflag, hFile));
-
-	if(!AssociateFileControlBlock(fd, hFile))
-	{
-		CloseHandle(hFile);
+	FileControlBlock* fcb = fileControlBlocks.Allocate();
+	if(!fcb)
 		WARN_RETURN(ERR::LIMIT);
-	}
 
-	return INFO::OK;
+	RETURN_STATUS_IF_ERR(fcb->Open(pathname, oflag));
+	return (Status)fileControlBlocks.Descriptor(fcb);
 }
 
 
 Status waio_close(int fd)
 {
-	FileControlBlock* fcb = FindFileControlBlock(fd);
+	FileControlBlock* fcb = fileControlBlocks.FromDescriptor(fd);
 	if(!fcb)
-		WARN_RETURN(ERR::INVALID_HANDLE);
-	const HANDLE hFile = fcb->hFile;
+		return ERR::INVALID_HANDLE;	// NOWARN - fd might be from lowio
 
-	DissociateFileControlBlock(fcb);
-
-	if(!CloseHandle(hFile))
-		WARN_RETURN(ERR::INVALID_HANDLE);
-
-	return INFO::OK;
+	Status ret = fcb->Close();
+	fileControlBlocks.Deallocate(fcb);
+	return ret;
 }
 
 
 Status waio_Preallocate(int fd, off_t size)
 {
-	FileControlBlock* fcb = FindFileControlBlock(fd);
-	if(!fcb)
-		WARN_RETURN(ERR::INVALID_HANDLE);
-	const HANDLE hFile = fcb->hFile;
+	HANDLE hFile;	// from FileControlBlock OR lowio
+	{
+		FileControlBlock* fcb = fileControlBlocks.FromDescriptor(fd);
+		if(fcb)
+			hFile = fcb->hFile;
+		else
+		{
+			hFile = (HANDLE)_get_osfhandle(fd);
+			if(hFile == INVALID_HANDLE_VALUE)
+				WARN_RETURN(ERR::INVALID_HANDLE);
+		}
+	}
 
 	// Windows requires sector alignment (see discussion in header)
 	const off_t alignedSize = round_up(size, (off_t)maxSectorSize);	// (Align<> cannot compute off_t)
@@ -460,16 +489,15 @@ static int Issue(aiocb* cb)
 	ENSURE(IsAligned(cb->aio_buf,    maxSectorSize));
 	ENSURE(IsAligned(cb->aio_nbytes, maxSectorSize));
 
-	FileControlBlock* fcb = FindFileControlBlock(cb->aio_fildes);
-	if(!fcb || fcb->hFile == INVALID_HANDLE_VALUE)
+	FileControlBlock* fcb = fileControlBlocks.FromDescriptor(cb->aio_fildes);
+	if(!fcb)
 	{
 		DEBUG_WARN_ERR(ERR::INVALID_HANDLE);
 		errno = EINVAL;
 		return -1;
 	}
 
-	ENSURE(!cb->fcb && !cb->ovl);	// SUSv3: aiocb must not be in use
-	cb->fcb = fcb;
+	ENSURE(!cb->ovl);	// SUSv3: aiocb must not be in use
 	cb->ovl = fcb->ovl.Allocate(cb->aio_offset);
 	if(!cb->ovl)
 	{
@@ -610,7 +638,7 @@ int aio_error(const struct aiocb* cb)
 
 ssize_t aio_return(struct aiocb* cb)
 {
-	FileControlBlock* fcb = (FileControlBlock*)cb->fcb;
+	FileControlBlock* fcb = fileControlBlocks.FromDescriptor(cb->aio_fildes);
 	OVERLAPPED* ovl = (OVERLAPPED*)cb->ovl;
 	if(!fcb || !ovl)
 	{
@@ -624,27 +652,25 @@ ssize_t aio_return(struct aiocb* cb)
 	cb->ovl = 0;	// prevent further calls to aio_error/aio_return
 	COMPILER_FENCE;
 	fcb->ovl.Deallocate(ovl);
-	cb->fcb = 0;	// allow reuse
 
 	return (status == ERROR_SUCCESS)? bytesTransferred : -1;
 }
 
 
-int aio_cancel(int UNUSED(fd), struct aiocb* cb)
+// Win32 limitation: cancel all I/Os this thread issued for the given file
+// (CancelIoEx can cancel individual operations, but is only
+// available starting with Vista)
+int aio_cancel(int fd, struct aiocb* UNUSED(cb))
 {
-	// (faster than calling FindFileControlBlock)
-	const HANDLE hFile = ((const FileControlBlock*)cb->fcb)->hFile;
-	if(hFile == INVALID_HANDLE_VALUE)
+	FileControlBlock* fcb = fileControlBlocks.FromDescriptor(fd);
+	if(!fcb)
 	{
 		WARN_IF_ERR(ERR::INVALID_HANDLE);
 		errno = EINVAL;
 		return -1;
 	}
 
-	// cancel all I/Os this thread issued for the given file
-	// (CancelIoEx can cancel individual operations, but is only
-	// available starting with Vista)
-	WARN_IF_FALSE(CancelIo(hFile));
+	WARN_IF_FALSE(CancelIo(fcb->hFile));
 
 	return AIO_CANCELED;
 }

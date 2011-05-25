@@ -24,8 +24,8 @@
  * wchar_t versions of POSIX filesystem functions
  */
 
-#ifndef INCLUDED_FILESYSTEM
-#define INCLUDED_FILESYSTEM
+#ifndef INCLUDED_SYSDEP_FILESYSTEM
+#define INCLUDED_SYSDEP_FILESYSTEM
 
 #include "lib/os_path.h"
 #include "lib/posix/posix_filesystem.h"	// mode_t
@@ -61,16 +61,16 @@ extern int wclosedir(WDIR*);
 // fcntl.h
 //
 
-// Win32 _wsopen_s flags not specified by POSIX:
-#define O_TEXT_NP      0x4000  // file mode is text (translated)
-#define O_BINARY_NP    0x8000  // file mode is binary (untranslated)
-
-// waio flags not specified by POSIX nor implemented by Win32 _wsopen_s:
-// do not open a separate AIO-capable handle.
-// (this can be used for small files where AIO overhead isn't worthwhile,
-// thus speeding up loading and reducing resource usage.)
-#define O_NO_AIO_NP    0x20000
-
+// Win32 _wsopen_s does not open files in a manner compatible with waio.
+// if its aio_read/aio_write are to be used, waio_open must (also) be called.
+// calling both is possible but wasteful and unsafe, since it prevents
+// file sharing restrictions, which are the only way to prevent
+// exposing previous data as a side effect of waio_Preallocate.
+// applications shouldn't mix aio and synchronous I/O anyway, so we
+// want wopen to call either waio_open or _wsopen_s.
+// since waio requires callers to respect the FILE_FLAG_NO_BUFFERING
+// restrictions (sector alignment), and IRIX/BSD/Linux O_DIRECT imposes
+// similar semantics, we treat that flag as a request to enable aio.
 extern int wopen(const OsPath& pathname, int oflag);
 extern int wopen(const OsPath& pathname, int oflag, mode_t mode);
 extern int wclose(int fd);
@@ -114,4 +114,4 @@ LIB_API int wstat(const OsPath& pathname, struct stat* buf);
 
 LIB_API int wmkdir(const OsPath& path, mode_t mode);
 
-#endif	// #ifndef INCLUDED_FILESYSTEM
+#endif	// #ifndef INCLUDED_SYSDEP_FILESYSTEM

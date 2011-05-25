@@ -28,7 +28,7 @@
 #include "simulation2/components/ICmpTemplateManager.h"
 
 #include "lib/timer.h"
-#include "lib/file/file_system_util.h"
+#include "lib/file/vfs/vfs_util.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -142,7 +142,7 @@ public:
 bool CSimulation2Impl::LoadScripts(const VfsPath& path)
 {
 	VfsPaths pathnames;
-	if (fs_util::GetPathnames(g_VFS, path, L"*.js", pathnames) < 0)
+	if (vfs::GetPathnames(g_VFS, path, L"*.js", pathnames) < 0)
 		return false;
 
 	bool ok = true;
@@ -526,7 +526,7 @@ std::vector<std::string> CSimulation2::GetRMSData()
 	std::vector<std::string> data;
 
 	// Find all ../maps/random/*.json
-	Status ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
 	if (ret == INFO::OK)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
@@ -562,7 +562,7 @@ std::vector<std::string> CSimulation2::GetCivData()
 	std::vector<std::string> data;
 
 	// Load all JSON files in civs directory
-	Status ret = fs_util::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
 	if (ret == INFO::OK)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
@@ -596,7 +596,7 @@ std::string CSimulation2::GetPlayerDefaults()
 
 	std::string data;
 
-	if (!VfsFileExists(g_VFS, path))
+	if (!VfsFileExists(path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
 	}
