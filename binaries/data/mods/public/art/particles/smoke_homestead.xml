@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <particles>
 
-    <texture>art/textures/particles/smoke.png</texture>
-    <blend mode="multiply"/>
+    <texture>art/textures/particles/smoke_64a.png</texture>
+    <blend mode="over"/>
 
     <constant name="emissionrate" value="10.0"/>
     <uniform name="lifetime" min="8.0" max="10.0"/>
@@ -20,7 +20,7 @@
 
     <uniform name="size" min="2.5" max="3.5"/>
 
-    <uniform name="color.r" min="0.2" max="0.4"/>
+    <uniform name="color.r" min="0.3" max="0.7"/>
     <copy name="color.g" from="color.r"/>
     <copy name="color.b" from="color.r"/>
 
