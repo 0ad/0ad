@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,9 +34,8 @@ struct ToolManagerImpl
 {
 	ToolManagerImpl() : CurrentTool(&dummy) {}
 
-	ITool* CurrentTool;
+	ObservablePtr<ITool> CurrentTool;
 	wxString CurrentToolName;
-
 };
 
 ToolManager::ToolManager(ScenarioEditor* scenarioEditor)
@@ -49,19 +48,19 @@ ToolManager::~ToolManager()
 	delete m;
 }
 
-ITool& ToolManager::GetCurrentTool()
+ObservablePtr<ITool>& ToolManager::GetCurrentTool()
 {
-	return *m->CurrentTool;
+	return m->CurrentTool;
 }
 
 void SetActive(bool active, const wxString& name);
 
 void ToolManager::SetCurrentTool(const wxString& name, void* initData)
 {
-	if (m->CurrentTool != &dummy)
+	if (*m->CurrentTool != &dummy)
 	{
 		m->CurrentTool->Shutdown();
-		delete m->CurrentTool;
+		delete *m->CurrentTool;
 		m->CurrentTool = &dummy;
 	}
 
@@ -82,6 +81,8 @@ void ToolManager::SetCurrentTool(const wxString& name, void* initData)
 
 	m->CurrentToolName = name;
 	SetActive(true, m->CurrentToolName);
+
+	m->CurrentTool.NotifyObservers();
 }
 
 //////////////////////////////////////////////////////////////////////////

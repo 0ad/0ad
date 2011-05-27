@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_TOOLS
 
 #include "General/AtlasWindowCommand.h"
+#include "General/Observable.h"
 
 class wxMouseEvent;
 class wxKeyEvent;
@@ -44,7 +45,7 @@ class ToolManager
 public:
 	ToolManager(ScenarioEditor* scenarioEditor);
 	~ToolManager();
-	ITool& GetCurrentTool();
+	ObservablePtr<ITool>& GetCurrentTool();
 	void SetCurrentTool(const wxString& name, void* initData = NULL);
 private:
 	ToolManagerImpl* m;

@@ -203,9 +203,9 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 
 	// TODO: These are yucky
 	wxSizer* spinnerSizer = new wxFlexGridSizer(2);
-	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Size")));
+	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Size")), wxSizerFlags().Right());
 	spinnerSizer->Add(new BrushSizeCtrl(parent, *this));
-	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Strength")));
+	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Strength")), wxSizerFlags().Right());
 	spinnerSizer->Add(new BrushStrengthCtrl(parent, *this));
 	sizer->Add(spinnerSizer);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,6 +54,8 @@ public:
 		explicit Observable(const T1& a1) : T(a1) {}
 	template <typename T1, typename T2>
 		explicit Observable(T1& a1, T2& a2) : T(a1, a2) {}
+	template <typename T1, typename T2>
+		explicit Observable(T1& a1, T2 a2) : T(a1, a2) {}
 
 	template<typename C> ObservableConnection RegisterObserver(int order, void (C::*callback) (const T&), C* obj)
 	{
@@ -94,14 +96,82 @@ public:
 		}
 	}
 
-	Observable<T>* operator=(const T& rhs)
+	Observable<T>& operator=(const T& rhs)
 	{
 		*dynamic_cast<T*>(this) = rhs;
-		return this;
+		return *this;
 	}
 
 private:
 	boost::signal<void (const T&)> m_Signal;
+};
+
+// A similar thing, but for wrapping pointers instead of objects
+template <typename T> class ObservablePtr
+{
+public:
+	ObservablePtr() : m_Ptr(NULL) {}
+
+	ObservablePtr(T* p) : m_Ptr(p) {}
+
+	ObservablePtr& operator=(T* p)
+	{
+		m_Ptr = p;
+		return *this;
+	}
+
+	T* operator->()
+	{
+		return m_Ptr;
+	}
+
+	T* operator*()
+	{
+		return m_Ptr;
+	}
+
+	template<typename C> ObservableConnection RegisterObserver(int order, void (C::*callback) (T*), C* obj)
+	{
+		return m_Signal.connect(order, boost::bind(std::mem_fun(callback), obj, _1));
+	}
+
+	ObservableConnection RegisterObserver(int order, void (*callback) (T*))
+	{
+		return m_Signal.connect(order, callback);
+	}
+
+	void RemoveObserver(const ObservableConnection& conn)
+	{
+		conn.disconnect();
+	}
+
+	void NotifyObservers()
+	{
+		m_Signal(m_Ptr);
+	}
+
+	// Use when an object is changing something that it's also observing,
+	// because it already knows about the change and doesn't need to be notified
+	// again (particularly since that may cause infinite loops).
+	void NotifyObserversExcept(ObservableConnection& conn)
+	{
+		if (conn.blocked())
+		{
+			// conn is already blocked and won't see anything
+			NotifyObservers();
+		}
+		else
+		{
+			// Temporarily disable conn
+			conn.block();
+			NotifyObservers();
+			conn.unblock();
+		}
+	}
+
+private:
+	T* m_Ptr;
+	boost::signal<void (T*)> m_Signal;
 };
 
 class ObservableScopedConnections

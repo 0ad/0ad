@@ -39,6 +39,11 @@ void ObjectSettings::SetPlayerID(int playerID)
 	PostToGame();
 }
 
+void ObjectSettings::SetView(int view)
+{
+	m_View = view;
+}
+
 const std::set<wxString>& ObjectSettings::GetActorSelections() const
 {
 	return m_ActorSelections;
@@ -53,7 +58,7 @@ void ObjectSettings::SetActorSelections(const std::set<wxString>& selections)
 const std::vector<ObjectSettings::Group> ObjectSettings::GetActorVariation() const
 {
 	std::vector<Group> variation;
-	
+
 	for (std::vector<wxArrayString>::const_iterator grp = m_VariantGroups.begin();
 		grp != m_VariantGroups.end();
 		++grp)
@@ -107,7 +112,7 @@ void ObjectSettings::OnSelectionChange(const std::vector<AtlasMessage::ObjectID>
 
 	if (selection.empty())
 		return;
-		
+
 	AtlasMessage::qGetObjectSettings qry (m_View, selection[0]);
 	qry.Post();
 
@@ -116,7 +121,7 @@ void ObjectSettings::OnSelectionChange(const std::vector<AtlasMessage::ObjectID>
 	m_ActorSelections.clear();
 	m_VariantGroups.clear();
 
-	std::vector<std::vector<std::wstring> > variation = *qry.settings->variantgroups;
+	std::vector<std::vector<std::wstring> > variation = *qry.settings->variantGroups;
 	for (std::vector<std::vector<std::wstring> >::iterator grp = variation.begin();
 		grp != variation.end();
 		++grp)

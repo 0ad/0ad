@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,8 @@
 
 #include "../Common/Sidebar.h"
 
+class ITool;
+
 struct ObjectSidebarImpl;
 class ObjectSidebar : public Sidebar
 {
@@ -29,5 +31,13 @@ protected:
 	virtual void OnFirstDisplay();
 
 private:
+	void OnToolChange(ITool* tool);
+
+	void ToggleViewer(wxCommandEvent& evt);
+	void OnSelectType(wxCommandEvent& evt);
+	void OnSelectObject(wxCommandEvent& evt);
+
 	ObjectSidebarImpl* p;
+
+	DECLARE_EVENT_TABLE();
 };

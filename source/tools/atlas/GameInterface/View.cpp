@@ -31,6 +31,7 @@
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
+#include "maths/MathUtil.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/World.h"
@@ -79,7 +80,7 @@ void ViewActor::Render()
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
 	camera.SetViewPort(vp);
-	camera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
+	camera.SetProjection(2.f, 512.f, DEGTORAD(20.f));
 	camera.UpdateFrustum();
 
 	m_ActorViewer->Render();

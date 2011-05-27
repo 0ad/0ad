@@ -1,4 +1,21 @@
-#include "stdafx.h"
+/* Copyright (C) 2011 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "precompiled.h"
 
 #include "Map.h"
 
@@ -30,8 +47,8 @@ enum
 };
 bool IsPlaying(int s) { return (s == SimPlaying || s == SimPlayingFast || s == SimPlayingSlow); }
 
-MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-	: Sidebar(sidebarContainer, bottomBarContainer), m_SimState(SimInactive)
+MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), m_SimState(SimInactive)
 {
 	// TODO: Less ugliness
 	// TODO: Intercept arrow keys and send them to the GL window
@@ -60,7 +77,9 @@ MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
 
 void MapSidebar::GenerateMap(wxCommandEvent& WXUNUSED(event))
 {
-	POST_MESSAGE(GenerateMap, (9));
+//	qGenerateMap qry();
+//	qry.Post();
+//	POST_MESSAGE(GenerateMap, (9));
 }
 
 void MapSidebar::GenerateRMS(wxCommandEvent& WXUNUSED(event))
@@ -119,7 +138,7 @@ void MapSidebar::OnSimPlay(wxCommandEvent& event)
 
 	if (m_SimState == SimInactive)
 	{
-		POST_MESSAGE(SimStateSave, (L"default", true));
+		POST_MESSAGE(SimStateSave, (L"default"));
 		POST_MESSAGE(SimPlay, (speed));
 		m_SimState = newState;
 	}

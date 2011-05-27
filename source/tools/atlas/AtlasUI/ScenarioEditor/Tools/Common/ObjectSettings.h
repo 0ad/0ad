@@ -39,6 +39,8 @@ public:
 	size_t GetPlayerID() const;
 	void SetPlayerID(int playerID);
 
+	void SetView(int view);
+
 	struct Group
 	{
 		wxArrayString variants;

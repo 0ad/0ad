@@ -61,7 +61,7 @@ public:
 	static float GetSpeedModifier();
 
 	ScriptInterface& GetScriptInterface() const { return m_ScriptInterface; }
-	ObjectSettings& GetObjectSettings() { return m_ObjectSettings; }
+	Observable<ObjectSettings>& GetObjectSettings() { return m_ObjectSettings; }
 
 	ToolManager& GetToolManager() { return m_ToolManager; }
 

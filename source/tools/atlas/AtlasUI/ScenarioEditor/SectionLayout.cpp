@@ -29,6 +29,9 @@
 
 #include "Sections/Environment/Environment.h"
 #include "Sections/Cinematic/Cinematic.h"
+#include "Sections/Map/Map.h"
+#include "Sections/Object/Object.h"
+#include "Sections/Terrain/Terrain.h"
 #include "Sections/Trigger/Trigger.h"
 
 #include "General/Datafile.h"
@@ -313,14 +316,13 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 		m_PageMappings.insert(std::make_pair(name, (int)m_SidebarBook->GetPageCount()-1));
 	
 	ADD_SIDEBAR_SCRIPT(_T("map"),       _T("map.png"),         _("Map"));
-	ADD_SIDEBAR_SCRIPT(_T("terrain"),   _T("terrain.png"),     _("Terrain"));
-	ADD_SIDEBAR_SCRIPT(_T("object"),    _T("object.png"),      _("Object"));
+//	ADD_SIDEBAR(MapSidebar,             _T("map.png"),         _("Map"));
+	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
+	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
 	
-	#ifndef ATLAS_PUBLIC_RELEASE
-		ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinema"));
-		ADD_SIDEBAR(TriggerSidebar,		_T("trigger.png"),	   _("Trigger"));
-	#endif
+//	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinema"));
+//	ADD_SIDEBAR(TriggerSidebar,		_T("trigger.png"),	   _("Trigger"));
 
 	#undef ADD_SIDEBAR
 

@@ -115,7 +115,7 @@ private:
 
 	void OnKeyDown(wxKeyEvent& evt)
 	{
-		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnKey(evt, ITool::KEY_DOWN))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnKey(evt, ITool::KEY_DOWN))
 		{
 			// Key event has been handled by the tool, so don't try
 			// to use it for camera motion too
@@ -134,7 +134,7 @@ private:
 
 	void OnKeyUp(wxKeyEvent& evt)
 	{
-		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnKey(evt, ITool::KEY_UP))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnKey(evt, ITool::KEY_UP))
 			return;
 
 		if (KeyScroll(evt, false))
@@ -149,7 +149,7 @@ private:
 
 	void OnChar(wxKeyEvent& evt)
 	{
-		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnKey(evt, ITool::KEY_CHAR))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnKey(evt, ITool::KEY_CHAR))
 			return;
 
 		// Alt+enter toggles fullscreen
@@ -218,7 +218,7 @@ private:
 		if (evt.Moving())
 			SetFocus();
 
-		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnMouse(evt))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnMouse(evt))
 		{
 			// Mouse event has been handled by the tool, so don't try
 			// to use it for camera motion too
@@ -390,7 +390,7 @@ namespace
 ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
 , m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(scriptInterface)
-, m_ObjectSettings(g_SelectedObjects, m_ScriptInterface)
+, m_ObjectSettings(g_SelectedObjects, AtlasMessage::eRenderView::GAME)
 , m_ToolManager(this)
 {
 	// Global application initialisation:
@@ -460,9 +460,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		wxLogError(_("Failed to read common scripts directory"));
 	}
 
-
-	// Initialise things that rely on scripts
-	m_ObjectSettings.Init(AtlasMessage::eRenderView::GAME);
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -653,7 +650,7 @@ static void UpdateTool(ToolManager& toolManager)
 		// TODO: Smoother timing stuff?
 		static double last = g_Timer.GetTime();
 		double time = g_Timer.GetTime();
-		toolManager.GetCurrentTool().OnTick(time-last);
+		toolManager.GetCurrentTool()->OnTick(time-last);
 		last = time;
 	}
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,29 +39,29 @@ class TextureNotebook;
 class TerrainBottomBar : public wxPanel
 {
 public:
-	TerrainBottomBar(wxWindow* parent);
+	TerrainBottomBar(ScenarioEditor& scenarioEditor, wxWindow* parent);
 	void LoadTerrain();
 private:
 	TextureNotebook* m_Textures;
 };
 
 
-TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
+enum
 {
-	// TODO: Less ugliness
+	ID_Passability = 1,
+	ID_ShowPriorities
+};
 
-	m_MainSizer->Add(new wxStaticText(this, wxID_ANY, _T("TODO: Make this much less ugly\n")));
-
+TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer) :
+	Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
+{
 	{
 		wxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Elevation tools"));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation"), wxSize(50,20)));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation"), wxSize(50,20)));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation"), wxSize(50,20)));
-//		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T(""), wxSize(50,20)));
-//		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Sample"), _T(""), wxSize(50,20)));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain"), wxSize(50,20)));
-		m_MainSizer->Add(sizer);
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")), wxSizerFlags().Proportion(1));
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")), wxSizerFlags().Proportion(1));
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation")), wxSizerFlags().Proportion(1));
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")), wxSizerFlags().Proportion(1));
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand());
 	}
 
 	{
@@ -70,113 +70,208 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		m_MainSizer->Add(sizer);
 	}
 
-	m_BottomBar = new TerrainBottomBar(bottomBarContainer);
+	{
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Visualise"));
+		m_MainSizer->Add(sizer);
+
+		wxSizer* visSizer = new wxFlexGridSizer(2);
+		sizer->Add(visSizer);
+
+		wxArrayString defaultChoices;
+		defaultChoices.Add(_("(none)"));
+		m_PassabilityChoice = new wxChoice(this, ID_Passability, wxDefaultPosition, wxDefaultSize, defaultChoices);
+
+		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Passability")), wxSizerFlags().Right());
+		visSizer->Add(m_PassabilityChoice);
+
+		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Priorities")), wxSizerFlags().Right());
+		visSizer->Add(new wxCheckBox(this, ID_ShowPriorities, _("")));
+	}
+
+	m_BottomBar = new TerrainBottomBar(scenarioEditor, bottomBarContainer);
 }
 
 void TerrainSidebar::OnFirstDisplay()
 {
+	AtlasMessage::qGetTerrainPassabilityClasses qry;
+	qry.Post();
+	std::vector<std::wstring> passClasses = *qry.classNames;
+	for (size_t i = 0; i < passClasses.size(); ++i)
+		m_PassabilityChoice->Append(passClasses[i]);
+
 	static_cast<TerrainBottomBar*>(m_BottomBar)->LoadTerrain();
 }
+
+void TerrainSidebar::OnPassabilityChoice(wxCommandEvent& evt)
+{
+	if (evt.GetSelection() == 0)
+		POST_MESSAGE(SetViewParamS, (AtlasMessage::eRenderView::GAME, L"passability", L""));
+	else
+		POST_MESSAGE(SetViewParamS, (AtlasMessage::eRenderView::GAME, L"passability", evt.GetString().c_str()));
+}
+
+void TerrainSidebar::OnShowPriorities(wxCommandEvent& evt)
+{
+	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::GAME, L"priorities", evt.IsChecked()));
+}
+
+BEGIN_EVENT_TABLE(TerrainSidebar, Sidebar)
+	EVT_CHOICE(ID_Passability, TerrainSidebar::OnPassabilityChoice)
+	EVT_CHECKBOX(ID_ShowPriorities, TerrainSidebar::OnShowPriorities)
+END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
 
 class TextureNotebookPage : public wxPanel
 {
+private:
+	static const int imageWidth = 120;
+	static const int imageHeight = 40;
+
 public:
-	TextureNotebookPage(wxWindow* parent, const wxString& name)
-		: wxPanel(parent, wxID_ANY), m_Name(name), m_ListCtrl(NULL)
+	TextureNotebookPage(ScenarioEditor& scenarioEditor, wxWindow* parent, const wxString& name)
+		: wxPanel(parent, wxID_ANY), m_ScenarioEditor(scenarioEditor), m_Timer(this), m_Name(name), m_Loaded(false)
 	{
+		m_ScrolledPanel = new wxScrolledWindow(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxVSCROLL);
+		m_ScrolledPanel->SetScrollRate(0, 10);
+		m_ScrolledPanel->SetBackgroundColour(wxColour(255, 255, 255));
+
+		wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+		sizer->Add(m_ScrolledPanel, wxSizerFlags().Proportion(1).Expand());
+		SetSizer(sizer);
+
+		m_ItemSizer = new wxGridSizer(6, 4, 0);
+		m_ScrolledPanel->SetSizer(m_ItemSizer);
 	}
 
 	void OnDisplay()
 	{
-		if (m_ListCtrl)
-		{
-			int sel = m_ListCtrl->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-			if (sel != -1)
-				SetSelection(m_ListCtrl->GetItemData(sel));
+		// Trigger the terrain loading on first display
+
+		if (m_Loaded)
 			return;
-		}
+
+		m_Loaded = true;
 
 		wxBusyInfo busy (_("Loading terrain previews"));
 
-		m_TextureNames.Clear();
+		ReloadPreviews();
+	}
 
-		wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+	void ReloadPreviews()
+	{
+		Freeze();
 
-		m_ListCtrl = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_ICON | wxLC_SINGLE_SEL | wxLC_AUTOARRANGE);
+		m_ScrolledPanel->DestroyChildren();
+		m_ItemSizer->Clear();
 
-		const int imageWidth = 64;
-		const int imageHeight = 32;
-		wxImageList* imglist = new wxImageList(imageWidth, imageHeight, false, 0);
+		m_LastTerrainSelection = NULL; // clear any reference to deleted button
 
 		AtlasMessage::qGetTerrainGroupPreviews qry(m_Name.c_str(), imageWidth, imageHeight);
 		qry.Post();
 
 		std::vector<AtlasMessage::sTerrainGroupPreview> previews = *qry.previews;
 
-		int i = 0;
-		for (std::vector<AtlasMessage::sTerrainGroupPreview>::iterator it = previews.begin(); it != previews.end(); ++it)
+		bool allLoaded = true;
+
+		for (size_t i = 0; i < previews.size(); ++i)
 		{
-			unsigned char* buf = (unsigned char*)(malloc(it->imagedata.GetSize()));
-			// it->imagedata.GetBuffer() gives a Shareable<unsigned char>*, which
+			if (!previews[i].loaded)
+				allLoaded = false;
+
+			// Construct the wrapped-text label
+			wxString name = previews[i].name.c_str();
+
+			// Add spaces into the displayed name so there are more wrapping opportunities
+			wxString labelText = name;
+			labelText.Replace(_T("_"), _T(" "));
+			wxStaticText* label = new wxStaticText(m_ScrolledPanel, wxID_ANY, labelText, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
+			label->Wrap(imageWidth);
+
+			unsigned char* buf = (unsigned char*)(malloc(previews[i].imageData.GetSize()));
+			// imagedata.GetBuffer() gives a Shareable<unsigned char>*, which
 			// is stored the same as a unsigned char*, so we can just copy it.
-			memcpy(buf, it->imagedata.GetBuffer(), it->imagedata.GetSize());
+			memcpy(buf, previews[i].imageData.GetBuffer(), previews[i].imageData.GetSize());
 			wxImage img (imageWidth, imageHeight, buf);
-			imglist->Add(wxBitmap(img));
 
-			wxListItem item;
+			wxButton* button = new wxBitmapButton(m_ScrolledPanel, wxID_ANY, wxBitmap(img));
+			// Store the texture name in the clientdata slot
+			button->SetClientObject(new wxStringClientData(name));
 
-			wxString name = it->name.c_str();
-			m_TextureNames.Add(name);
-			// Add spaces into the displayed name, so Windows doesn't just say
-			// "grass_..." in the list ctrl for every terrain
-			name.Replace(_T("_"), _T(" "));
-			item.SetText(name);
-
-			item.SetData(i);
-			item.SetId(i);
-			item.SetImage(i);
-
-			m_ListCtrl->InsertItem(item);
-			++i;
+			wxSizer* imageSizer = new wxBoxSizer(wxVERTICAL);
+			imageSizer->Add(button, wxSizerFlags().Center());
+			imageSizer->Add(label, wxSizerFlags().Proportion(1).Center());
+			m_ScrolledPanel->GetSizer()->Add(imageSizer, wxSizerFlags().Expand().Center());
 		}
-		m_ListCtrl->AssignImageList(imglist, wxIMAGE_LIST_NORMAL);
 
-		sizer->Add(m_ListCtrl, wxSizerFlags().Expand().Proportion(1));
-		SetSizer(sizer);
-		Layout(); // required to make things size correctly
+		Layout();
+
+		Thaw();
+
+		// If not all textures were loaded yet, run a timer to reload the previews
+		// every so often until they've all finished
+		if (allLoaded && m_Timer.IsRunning())
+		{
+			m_Timer.Stop();
+		}
+		else if (!allLoaded && !m_Timer.IsRunning())
+		{
+			m_Timer.Start(2000);
+		}
 	}
 
-	void OnSelect(wxListEvent& evt)
+	void OnButton(wxCommandEvent& evt)
 	{
-		SetSelection(evt.GetData());
+		wxButton* button = wxDynamicCast(evt.GetEventObject(), wxButton);
+		wxString name = static_cast<wxStringClientData*>(button->GetClientObject())->GetData();
+		g_SelectedTexture = name;
+
+		if (m_LastTerrainSelection)
+			m_LastTerrainSelection->SetBackgroundColour(wxNullColour);
+
+		button->SetBackgroundColour(wxColour(255, 255, 0));
+		m_LastTerrainSelection = button;
+
+		m_ScenarioEditor.GetToolManager().SetCurrentTool(L"PaintTerrain");
 	}
 
-	void SetSelection(int n)
+	void OnSize(wxSizeEvent& evt)
 	{
-		if (n >= 0 && n < (int)m_TextureNames.GetCount())
-			g_SelectedTexture = m_TextureNames[n];
+		int numCols = std::max(1, (int)(evt.GetSize().GetWidth() / (imageWidth + 16)));
+		m_ItemSizer->SetCols(numCols);
+		evt.Skip();
+	}
+
+	void OnTimer(wxTimerEvent& WXUNUSED(evt))
+	{
+		ReloadPreviews();
 	}
 
 private:
-	wxListCtrl* m_ListCtrl;
+	ScenarioEditor& m_ScenarioEditor;
+	bool m_Loaded;
+	wxTimer m_Timer;
 	wxString m_Name;
-	wxArrayString m_TextureNames;
+	wxScrolledWindow* m_ScrolledPanel;
+	wxGridSizer* m_ItemSizer;
+	wxButton* m_LastTerrainSelection; // button that was last selected, so we can undo its colouring
 
 	DECLARE_EVENT_TABLE();
 };
 
 BEGIN_EVENT_TABLE(TextureNotebookPage, wxPanel)
-	EVT_LIST_ITEM_SELECTED(wxID_ANY, TextureNotebookPage::OnSelect)
+	EVT_BUTTON(wxID_ANY, TextureNotebookPage::OnButton)
+	EVT_SIZE(TextureNotebookPage::OnSize)
+	EVT_TIMER(wxID_ANY, TextureNotebookPage::OnTimer)
 END_EVENT_TABLE();
 
 
 class TextureNotebook : public wxNotebook
 {
 public:
-	TextureNotebook(wxWindow *parent)
-		: wxNotebook(parent, wxID_ANY/*, wxDefaultPosition, wxDefaultSize, wxNB_FIXEDWIDTH*/)
+	TextureNotebook(ScenarioEditor& scenarioEditor, wxWindow *parent)
+		: wxNotebook(parent, wxID_ANY/*, wxDefaultPosition, wxDefaultSize, wxNB_FIXEDWIDTH*/),
+		  m_ScenarioEditor(scenarioEditor)
 	{
 	}
 
@@ -190,7 +285,7 @@ public:
 		// Get the list of terrain groups from the engine
 		AtlasMessage::qGetTerrainGroups qry;
 		qry.Post();
-		std::vector<std::wstring> groupnames = *qry.groupnames;
+		std::vector<std::wstring> groupnames = *qry.groupNames;
 		for (std::vector<std::wstring>::iterator it = groupnames.begin(); it != groupnames.end(); ++it)
 			m_TerrainGroups.Add(it->c_str());
 
@@ -199,7 +294,7 @@ public:
 			wxString visibleName = m_TerrainGroups[i];
 			if (visibleName.Len())
 				visibleName[0] = wxToupper(visibleName[0]);
-			AddPage(new TextureNotebookPage(this, m_TerrainGroups[i]), visibleName);
+			AddPage(new TextureNotebookPage(m_ScenarioEditor, this, m_TerrainGroups[i]), visibleName);
 		}
 	}
 
@@ -214,7 +309,9 @@ protected:
 	}
 
 private:
+	ScenarioEditor& m_ScenarioEditor;
 	wxArrayString m_TerrainGroups;
+
 	DECLARE_EVENT_TABLE();
 };
 
@@ -224,11 +321,11 @@ END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
 
-TerrainBottomBar::TerrainBottomBar(wxWindow* parent)
-	: wxPanel(parent, wxID_ANY)
+TerrainBottomBar::TerrainBottomBar(ScenarioEditor& scenarioEditor, wxWindow* parent) :
+	wxPanel(parent, wxID_ANY)
 {
 	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-	m_Textures = new TextureNotebook(this);
+	m_Textures = new TextureNotebook(scenarioEditor, this);
 	sizer->Add(m_Textures, wxSizerFlags().Expand().Proportion(1));
 	SetSizer(sizer);
 }
