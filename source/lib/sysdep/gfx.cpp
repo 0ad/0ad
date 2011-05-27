@@ -38,8 +38,8 @@ namespace gfx {
 
 std::wstring CardName()
 {
-#if OS_WIN
 	wchar_t cardName[128];
+#if OS_WIN
 	if(wgfx_CardName(cardName, ARRAY_SIZE(cardName)) != INFO::OK)
 #endif
 	{
