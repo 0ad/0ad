@@ -51,10 +51,9 @@ static unsigned int ScaleColor(unsigned int color, float x)
 }
 
 CMiniMap::CMiniMap() :
-	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true)
+	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
-	AddSetting(GUIST_bool,		"circular");
 	AddSetting(GUIST_CStrW,		"tooltip");
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;
@@ -147,8 +146,9 @@ void CMiniMap::GetMouseWorldCoordinates(float& x, float& z)
 
 	float angle = GetAngle();
 
-	x = CELL_SIZE * m_MapSize * (cos(angle)*(px-0.5) - sin(angle)*(py-0.5) + 0.5);
-	z = CELL_SIZE * m_MapSize * (cos(angle)*(py-0.5) + sin(angle)*(px-0.5) + 0.5);
+	// Scale world coordinates for shrunken square map
+	x = CELL_SIZE * m_MapSize * (m_MapScale * (cos(angle)*(px-0.5) - sin(angle)*(py-0.5)) + 0.5);
+	z = CELL_SIZE * m_MapSize * (m_MapScale * (cos(angle)*(py-0.5) + sin(angle)*(px-0.5)) + 0.5);
 }
 
 void CMiniMap::SetCameraPos()
@@ -163,18 +163,8 @@ void CMiniMap::SetCameraPos()
 
 float CMiniMap::GetAngle()
 {
-	bool circular;
-	GUI<bool>::GetSetting(this, "circular", circular);
-
-	// If this is a circular map, rotate it to match the camera angle
-	if (circular)
-	{
-		CVector3D cameraIn = m_Camera->m_Orientation.GetIn();
-		return -atan2(cameraIn.X, cameraIn.Z);
-	}
-
-	// Otherwise there's no rotation
-	return 0.f;
+	CVector3D cameraIn = m_Camera->m_Orientation.GetIn();
+	return -atan2(cameraIn.X, cameraIn.Z);
 }
 
 void CMiniMap::FireWorldClickEvent(int button, int clicks)
@@ -251,8 +241,9 @@ struct MinimapUnitVertex
 void CMiniMap::DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z)
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
-	const float s = sin(angle);
-	const float c = cos(angle);
+	// Scale square maps to fit in circular minimap area
+	const float s = sin(angle) * m_MapScale;
+	const float c = cos(angle) * m_MapScale;
 	const float m = coordMax / 2.f;
 
 	glBegin(GL_QUADS);
@@ -276,6 +267,10 @@ void CMiniMap::Draw()
 	if(!(GetGUI() && g_Game && g_Game->IsGameStarted()))
 		return;
 
+	CSimulation2* sim = g_Game->GetSimulation2();
+	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
+	ENSURE(!cmpRangeManager.null());
+
 	// Set our globals in case they hadn't been set before
 	m_Camera      = g_Game->GetView()->GetCamera();
 	m_Terrain     = g_Game->GetWorld()->GetTerrain();
@@ -283,6 +278,7 @@ void CMiniMap::Draw()
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = m_Terrain->GetVerticesPerSide();
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
+	m_MapScale = (cmpRangeManager->GetLosCircular() ? 1.f : 1.414f);
 
 	if(!m_TerrainTexture || g_GameRestarted)
 		CreateTextures();
@@ -398,6 +394,9 @@ void CMiniMap::Draw()
 	glTranslatef(x, y, z);
 	// Rotate around the center of the map
 	glTranslatef((x2-x)/2.f, (y2-y)/2.f, 0.f);
+	// Scale square maps to fit in circular minimap area
+	float unitScale = (cmpRangeManager->GetLosCircular() ? 1.f : m_MapScale/2.f);
+	glScalef(unitScale, unitScale, 1.f);
 	glRotatef(angle * 180.f/M_PI, 0.f, 0.f, 1.f);
 	glTranslatef(-(x2-x)/2.f, -(y2-y)/2.f, 0.f);
 
@@ -410,14 +409,10 @@ void CMiniMap::Draw()
 	float sx = (float)m_Width / ((m_MapSize - 1) * CELL_SIZE);
 	float sy = (float)m_Height / ((m_MapSize - 1) * CELL_SIZE);
 
-	CSimulation2* sim = g_Game->GetSimulation2();
 	CSimulation2::InterfaceList ents = sim->GetEntitiesWithInterface(IID_Minimap);
 
 	std::vector<MinimapUnitVertex> vertexArray;
 	vertexArray.reserve(ents.size());
-
-	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
-	ENSURE(!cmpRangeManager.null());
 
 	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{

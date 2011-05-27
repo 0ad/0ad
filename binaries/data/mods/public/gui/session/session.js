@@ -225,28 +225,11 @@ function onSimulationUpdate()
 
 	handleNotifications();
 
-	updateMinimap(simState);
 	updateGroups();
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
-}
-
-function updateMinimap(simState)
-{
-	if (simState.circularMap)
-	{
-		getGUIObjectByName("minimap").circular = true;
-		getGUIObjectByName("minimapSquareOverlay").hidden = true;
-		getGUIObjectByName("minimapCircleOverlay").hidden = false;
-	}
-	else
-	{
-		getGUIObjectByName("minimap").circular = false;
-		getGUIObjectByName("minimapSquareOverlay").hidden = false;
-		getGUIObjectByName("minimapCircleOverlay").hidden = true;
-	}
 }
 
 function updateGroups()

@@ -76,6 +76,9 @@ protected:
     // texture size
     GLsizei m_TextureSize;
 
+	// 1.f if map is circular or 1.414f if square (to shrink it inside the circle)
+	float m_MapScale;
+
 	void DrawTexture(float coordMax, float angle, float x, float y, float x2, float y2, float z);
 
 	void DrawViewRect();
