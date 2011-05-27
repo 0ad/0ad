@@ -603,7 +603,6 @@ for (var i = 0; i < num; ++i)
 {
 	var cX = round(mapSize - offsetX + offsetX/2 * randFloat(-1, 1));
 	var cY = round((i + 0.5) * mapSize/num);
-	error(cX+" "+cY);
 	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
 	createObjectGroup(group, 0);
 }
