@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="505.443" y="129.491" z="340.214"/>
-		<Rotation angle="-0.0013684"/>
-		<Declination angle="0.485471"/>
+		<Position x="495.705" y="154.718" z="317.658"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -70,7 +70,8 @@
       }
     }
   ],
-  "CircularMap": true
+  "CircularMap": true,
+  "Keywords": []
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -3569,7 +3570,7 @@
 		<Entity uid="647">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="1448.18897" z="828.83301"/>
+			<Position x="1440.09937" z="826.97944"/>
 			<Orientation y="0.24769"/>
 		</Entity>
 		<Entity uid="648">
@@ -3629,7 +3630,7 @@
 		<Entity uid="658">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="1471.23633" z="787.4485"/>
+			<Position x="1478.43567" z="794.87562"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="659">
@@ -8081,7 +8082,7 @@
 		<Entity uid="1411">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="1503.13758" z="810.75959"/>
+			<Position x="1526.34253" z="852.45905"/>
 			<Orientation y="2.58126"/>
 		</Entity>
 		<Entity uid="1412">
@@ -30019,7 +30020,7 @@
 		</Entity>
 		<Entity uid="5587">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="1506.43238" z="827.85541"/>
+			<Position x="1504.01661" z="777.21216"/>
 			<Orientation y="2.39036"/>
 		</Entity>
 		<Entity uid="5588">
@@ -30814,17 +30815,17 @@
 		</Entity>
 		<Entity uid="5746">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="1504.13282" z="812.58063"/>
+			<Position x="1498.1471" z="897.38135"/>
 			<Orientation y="-0.1619"/>
 		</Entity>
 		<Entity uid="5747">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="1494.8628" z="831.72815"/>
+			<Position x="1482.99756" z="763.08985"/>
 			<Orientation y="-0.17545"/>
 		</Entity>
 		<Entity uid="5748">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="1491.47303" z="851.31617"/>
+			<Position x="1418.19788" z="780.54712"/>
 			<Orientation y="0.35201"/>
 		</Entity>
 		<Entity uid="5749">
@@ -49097,7 +49098,97 @@
 		<Entity uid="9598">
 			<Template>other/pyramid_great</Template>
 			<Player>0</Player>
-			<Position x="1506.23975" z="806.19715"/>
+			<Position x="1507.05762" z="813.19788"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9599">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1243.52442" z="655.78211"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9600">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="759.87995" z="637.6875"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9601">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="866.37684" z="364.27378"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9602">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="825.5398" z="378.90629"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9603">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="157.71586" z="929.2787"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9604">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="210.79647" z="927.00965"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9605">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="594.24488" z="1285.02613"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9606">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="664.88825" z="1281.1659"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9607">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1099.17225" z="1536.49842"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9608">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1568.18128" z="1205.16358"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9609">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1532.06531" z="1235.02137"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9610">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1490.10279" z="1119.29712"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9611">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1452.20362" z="993.03632"/>
+			<Orientation y="-0.43308"/>
+		</Entity>
+		<Entity uid="9612">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1445.9629" z="1027.0901"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9613">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1421.70301" z="989.31531"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9614">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1339.46204" z="778.62281"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9615">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1438.36097" z="240.89385"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9616">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="1781.40101" z="430.85596"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

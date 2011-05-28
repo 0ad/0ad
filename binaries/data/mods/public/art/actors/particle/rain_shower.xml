@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
-    <variant>
-      <decal width="300" depth="300" angle="0" offsetx="0" offsetz="0"/>
-      <texture>temp/wallring.dds</texture>
+    <variant name="Rain Shower">
+      <particles file="rain.xml"/>
     </variant>
   </group>
   <material>basic_trans.xml</material>

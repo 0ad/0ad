@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/raindrop.png</texture>
+    <blend mode="over"/>
+
+    <constant name="emissionrate" value="256.0"/>
+    <uniform name="lifetime" min="4.0" max="5.0"/>
+
+    <uniform name="position.x" min="-50.0" max="50.0"/>
+    <uniform name="position.z" min="-50.0" max="50.0"/>
+    <uniform name="position.y" min="70.0" max="60.0"/>
+
+    <uniform name="velocity.x" min="-0.5" max="-0.75"/>
+    <uniform name="velocity.y" min="-1.5" max="-2.0"/>
+
+    <uniform name="size" min="0.2" max="0.25"/>
+
+    <force y="-4.0"/>
+
+</particles>
