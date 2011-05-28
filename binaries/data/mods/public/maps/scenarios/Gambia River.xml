@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>fog</SkySet>
-		<SunColour r="0.8" g="0.756863" b="0.6"/>
+		<SunColour r="0.823529" g="0.784314" b="0.643137"/>
 		<SunElevation angle="0.920389"/>
 		<SunRotation angle="-0.953995"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="391.525" y="99.9872" z="166.414"/>
+		<Position x="394.028" y="94.4387" z="173.294"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "Name": "Gambia River",
-  "Description": "All players start on one bank of the river, with the other rich in resources.",
+  "Description": "All players start on one bank of the river, with the other rich in resources.\u000a\u000a(Warning: Large map. Good computer specs recommended)",
   "Keywords": [],
   "PlayerData": [
     {
