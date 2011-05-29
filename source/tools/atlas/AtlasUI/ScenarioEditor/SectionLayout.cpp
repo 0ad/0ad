@@ -42,7 +42,7 @@ class SidebarButton : public wxBitmapButton
 {
 public:
 	SidebarButton(wxWindow* parent, const wxBitmap& bitmap, SidebarBook* book, size_t id)
-		: wxBitmapButton(parent, wxID_ANY, bitmap, wxDefaultPosition, wxSize(28, 28))
+		: wxBitmapButton(parent, wxID_ANY, bitmap, wxDefaultPosition, wxSize(34, 32))
 		, m_Book(book), m_Id(id)
 	{
 		SetSelectedAppearance(false);
@@ -65,7 +65,7 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 
-BEGIN_EVENT_TABLE(SidebarButton, wxButton)
+BEGIN_EVENT_TABLE(SidebarButton, wxBitmapButton)
 	EVT_BUTTON(wxID_ANY, SidebarButton::OnClick)
 END_EVENT_TABLE();
 
@@ -85,7 +85,7 @@ public:
 	SidebarBook(wxWindow *parent, SnapSplitterWindow* splitter)
 		: wxPanel(parent), m_Splitter(splitter), m_SelectedPage(-1)
 	{
-		m_ButtonsSizer = new wxGridSizer(6, 5, 5);
+		m_ButtonsSizer = new wxGridSizer(6, 0, 0);
 
 		wxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
