@@ -91,6 +91,7 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		wxArrayString defaultChoices;
 		defaultChoices.Add(_("(none)"));
 		m_PassabilityChoice = new wxChoice(this, ID_Passability, wxDefaultPosition, wxDefaultSize, defaultChoices);
+		m_PassabilityChoice->SetSelection(0);
 
 		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Passability")), wxSizerFlags().Right());
 		visSizer->Add(m_PassabilityChoice);
@@ -245,9 +246,10 @@ public:
 			wxSizer* imageSizer = new wxBoxSizer(wxVERTICAL);
 			imageSizer->Add(button, wxSizerFlags().Center());
 			imageSizer->Add(label, wxSizerFlags().Proportion(1).Center());
-			m_ScrolledPanel->GetSizer()->Add(imageSizer, wxSizerFlags().Expand().Center());
+			m_ItemSizer->Add(imageSizer, wxSizerFlags().Expand().Center());
 		}
 
+		m_ScrolledPanel->Fit();
 		Layout();
 
 		Thaw();

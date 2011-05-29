@@ -156,7 +156,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 	if (m_Texture)
 	{
 		CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-		if (!cmpTerrain.null() && m_MapSize != cmpTerrain->GetVerticesPerSide())
+		if (!cmpTerrain.null() && m_MapSize != (ssize_t)cmpTerrain->GetVerticesPerSide())
 			DeleteTexture();
 	}
 

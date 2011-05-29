@@ -109,6 +109,7 @@ ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarCo
 	strings.Add(_("Entities"));
 	strings.Add(_("Actors (all)"));
 	wxChoice* objectType = new wxChoice(this, ID_ObjectType, wxDefaultPosition, wxDefaultSize, strings);
+	objectType->SetSelection(0);
 	m_MainSizer->Add(objectType, wxSizerFlags().Expand());
 
 	p->m_ObjectListBox = new wxListBox(this, ID_SelectObject, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);
@@ -281,6 +282,7 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& o
 		_T("gather_rock"), _T("gather_ore"), _T("gather_ruins"), _T("gather_treasure")
 	}; // TODO: this list should come from the actor
 	wxChoice* viewerAnimSelector = new wxChoice(m_ViewerPanel, ID_ViewerAnimation, wxDefaultPosition, wxDefaultSize, sizeof(animChoices)/sizeof(animChoices[0]), animChoices);
+	viewerAnimSelector->SetSelection(0);
 	viewerAnimSizer->Add(viewerAnimSelector, wxSizerFlags().Expand());
 
 	wxSizer* viewerAnimSpeedSizer = new wxBoxSizer(wxHORIZONTAL);

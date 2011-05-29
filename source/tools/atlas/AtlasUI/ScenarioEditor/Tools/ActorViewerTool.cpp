@@ -45,7 +45,7 @@ class ActorViewerTool : public StateDrivenTool<ActorViewerTool>
 
 public:
 	ActorViewerTool() :
-		m_Distance(20.f), m_Angle(0.f), m_Elevation(M_PI / 6.f),
+		m_Distance(20.f), m_Angle(0.f), m_Elevation((float)M_PI / 6.f),
 		m_LastIsValid(false)
 	{
 	}

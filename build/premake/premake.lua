@@ -765,6 +765,7 @@ function setup_atlas_packages()
 		""
 	},{	-- include
 	},{	-- extern_libs
+		"boost",
 		"libxml2",
 		"spidermonkey",
 		"wxwidgets"
@@ -1039,6 +1040,7 @@ function setup_tests()
 	tinsert(links, "test_gen")
 	if options["atlas"] then
 		tinsert(links, "AtlasObject")
+		package_add_extern_libs({"wxwidgets"})
 	end
 	extra_params = {
 		extra_files = { "test_root.cpp", "test_setup.cpp" },

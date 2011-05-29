@@ -149,15 +149,15 @@ void MapSettings::CreateWidgets()
 	gameTypes.Add(_T("conquest"));
 	gameTypes.Add(_T("endless"));
 
-	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2);
+	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 2);
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Reveal map")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(new wxCheckBox(this, ID_MapReveal, wxEmptyString));
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Game type")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes));
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Num players")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	wxSpinCtrl* numPlayersSpin = new wxSpinCtrl(this, ID_MapNumPlayers, wxEmptyString, wxDefaultPosition, wxSize(40, -1));
-	numPlayersSpin->SetRange(1, MAX_NUM_PLAYERS);
 	numPlayersSpin->SetValue(MAX_NUM_PLAYERS);
+	numPlayersSpin->SetRange(1, MAX_NUM_PLAYERS);
 	gridSizer->Add(numPlayersSpin);
 
 	sizer->Add(gridSizer);
@@ -177,13 +177,14 @@ void MapSettings::CreateWidgets()
 
 	wxCollapsiblePane* playersPane = new wxCollapsiblePane(this, wxID_ANY, _("Player settings"), wxDefaultPosition, wxDefaultSize, wxCP_NO_TLW_RESIZE);
 	wxFlexGridSizer* playersPaneSizer = new wxFlexGridSizer(2);
+	playersPaneSizer->AddGrowableCol(1);
 	playersPaneSizer->Add(new wxStaticText(playersPane->GetPane(), wxID_ANY, _T("")));
 	playersPaneSizer->Add(new wxStaticText(playersPane->GetPane(), wxID_ANY, _("Civ")));
 	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i)
 	{
 		wxString idStr;
 		idStr << (i+1);
-		playersPaneSizer->Add(new wxStaticText(playersPane->GetPane(), wxID_ANY, idStr), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+		playersPaneSizer->Add(new wxStaticText(playersPane->GetPane(), wxID_ANY, idStr), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT).Border(wxRIGHT, 2));
 		wxChoice* civChoice = new wxChoice(playersPane->GetPane(), wxID_ANY);
 		for (size_t j = 0; j < civNames.Count(); ++j)
 			civChoice->Append(civNames[j], new wxStringClientData(civCodes[j]));
@@ -197,7 +198,7 @@ void MapSettings::CreateWidgets()
 	sizer->Add(playersPane, wxSizerFlags().Expand());
 
 	wxStaticBoxSizer* keywordsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keywords"));
-	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(2);
+	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(2, 2);
 	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Demo")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	kwGridSizer->Add(new wxCheckBox(this, ID_MapKW_Demo, wxEmptyString));
 	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Hidden")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
@@ -222,7 +223,10 @@ void MapSettings::ReadFromEngine()
 
 	wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->SetValue(wxString(m_MapSettings["RevealMap"]) == L"true");
 
-	wxDynamicCast(FindWindow(ID_MapType), wxChoice)->SetStringSelection(wxString(m_MapSettings["GameType"]));
+	if (m_MapSettings["GameType"].defined())
+		wxDynamicCast(FindWindow(ID_MapType), wxChoice)->SetStringSelection(wxString(m_MapSettings["GameType"]));
+	else
+		wxDynamicCast(FindWindow(ID_MapType), wxChoice)->SetSelection(0);
 
 	size_t numPlayers = m_MapSettings["PlayerData"]["item"].count();
 	wxDynamicCast(FindWindow(ID_MapNumPlayers), wxSpinCtrl)->SetValue(numPlayers);
@@ -331,7 +335,7 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 
 		sizer->Add(new wxChoice(this, ID_RandomScript), wxSizerFlags().Expand());
 
-		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2);
+		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 2);
 		gridSizer->AddGrowableCol(1);
 
 		wxChoice* sizeChoice = new wxChoice(this, ID_RandomSize);
@@ -373,9 +377,15 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 
 void MapSidebar::OnCollapse(wxCollapsiblePaneEvent& WXUNUSED(evt))
 {
+	Freeze();
+
 	// Toggling the collapsing doesn't seem to update the sidebar layout
 	// automatically, so do it explicitly here
 	Layout();
+
+	Refresh(); // fixes repaint glitch on Windows
+
+	Thaw();
 }
 
 void MapSidebar::OnFirstDisplay()
@@ -398,6 +408,8 @@ void MapSidebar::OnFirstDisplay()
 		scriptChoice->Append(name, new AtObjClientData(*data["settings"]));
 	}
 	scriptChoice->SetSelection(0);
+
+	Layout();
 }
 
 void MapSidebar::OnMapReload()
