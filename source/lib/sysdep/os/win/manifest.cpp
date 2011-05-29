@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,4 +39,20 @@ is currently disabled there.
 # elif ARCH_AMD64
 #  pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df'\"")
 # endif
+
+/*
+The game uses some DLLs that were built with VC80. The CRT DLL wants to find itself
+inside the executable's manifest, else it complains with R6034.
+If we're building with VC90+, we need to explicitly include the appropriate manifest
+entries (in addition to the VC90 CRT entries that will be added automatically).
+(This is kind of a dirty hack.)
+*/
+#if MSC_VERSION >= 1500 && ARCH_IA32
+# ifdef NDEBUG
+#  pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.VC80.CRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"")
+# else
+#  pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.VC80.DebugCRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"")
+# endif
+#endif
+
 #endif
