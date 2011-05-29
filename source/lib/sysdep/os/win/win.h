@@ -32,7 +32,7 @@
 #endif
 
 // Win32 socket declarations aren't portable (e.g. problems with socklen_t)
-// => skip winsock.h; posix_sock.h should be used instead.
+// => skip winsock.h; use curl or enet library instead.
 #define _WINSOCKAPI_
 
 #define WIN32_LEAN_AND_MEAN

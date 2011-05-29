@@ -26,9 +26,9 @@
 #ifndef CStr_CPP_FIRST
 #define CStr_CPP_FIRST
 
-#include "lib/posix/posix_sock.h" // htons, ntohs
 #include "lib/fnv_hash.h"
 #include "lib/utf8.h"
+#include "lib/byte_order.h"
 #include "network/Serialization.h"
 #include <cassert>
 
@@ -446,7 +446,10 @@ u8* CStrW::Serialize(u8* buffer) const
 	size_t len = length();
 	size_t i = 0;
 	for (i = 0; i < len; i++)
-		*(u16 *)(buffer + i*2) = htons((*this)[i]); // convert to network order (big-endian)
+	{
+		const u16 bigEndian = to_be16((*this)[i]);
+		*(u16 *)(buffer + i*2) = bigEndian;
+	}
 	*(u16 *)(buffer + i*2) = 0;
 	return buffer + len*2 + 2;
 }
@@ -462,7 +465,10 @@ const u8* CStrW::Deserialize(const u8* buffer, const u8* bufferend)
 
 	std::wstring::iterator str = begin();
 	while (ptr < strend)
-		*(str++) = (tchar)ntohs(*(ptr++)); // convert from network order (big-endian)
+	{
+		const u16 native = to_be16(*(ptr++));	// we want from_be16, but that's the same
+		*(str++) = (tchar)native;
+	}
 
 	return (const u8 *)(strend+1);
 }

@@ -20,7 +20,6 @@
 #include "ps/Util.h"
 
 #include "lib/posix/posix_utsname.h"
-#include "lib/posix/posix_sock.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/bits.h"	// round_up
@@ -125,44 +124,6 @@ void WriteSystemInfo()
 	// sound
 	fprintf(f, "Sound Card     : %ls\n", snd_card);
 	fprintf(f, "Sound Drivers  : %ls\n", snd_drv_ver);
-
-
-	//
-	// network name / ips
-	//
-
-	// note: can't use un.nodename because it is for an
-	// "implementation-defined communications network".
-	char hostname[128] = "(unknown)";
-	(void)gethostname(hostname, sizeof(hostname)-1);
-	// -1 makes sure it's 0-terminated. if the function fails,
-	// we display "(unknown)" and will skip IP output below.
-	fprintf(f, "Network Name   : %s", hostname);
-
-	{
-		// ignore exception here - see https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=114032
-		hostent* host = gethostbyname(hostname);
-		if(!host)
-			goto no_ip;
-		struct in_addr** ips = (struct in_addr**)host->h_addr_list;
-		if(!ips)
-			goto no_ip;
-
-		// output all IPs (> 1 if using VMware or dual ethernet)
-		fprintf(f, " (");
-		for(size_t i = 0; i < 256 && ips[i]; i++)	// safety
-		{
-			// separate entries but avoid trailing comma
-			if(i != 0)
-				fprintf(f, ", ");
-			fprintf(f, "%s", inet_ntoa(*ips[i]));
-		}
-		fprintf(f, ")");
-	}
-
-no_ip:
-	fprintf(f, "\n");
-
 
 	// OpenGL extensions (write them last, since it's a lot of text)
 	const char* exts = ogl_ExtensionString();
