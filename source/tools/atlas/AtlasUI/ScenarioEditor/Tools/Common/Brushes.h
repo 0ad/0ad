@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,9 @@ public:
 	int GetWidth() const;
 	int GetHeight() const;
 	std::vector<float> GetData() const;
+
+	void SetCircle(int size);
+	void SetSquare(int size);
 
 	float GetStrength() const;
 	void SetStrength(float strength);

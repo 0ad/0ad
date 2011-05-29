@@ -80,8 +80,9 @@ public:
 	bool AddRoot(jsval* ptr);
 	bool RemoveRoot(jsval* ptr);
 
-private:
 	JSContext* GetContext();
+
+private:
 	bool SetValue_(const wxString& name, jsval val);
 	bool GetValue_(const wxString& name, jsval& ret);
 	bool CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret);

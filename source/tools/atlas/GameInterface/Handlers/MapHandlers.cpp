@@ -19,8 +19,10 @@
 
 #include "MessageHandler.h"
 #include "../GameLoop.h"
+#include "../CommandProc.h"
 
 #include "graphics/GameView.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/MapWriter.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
@@ -36,6 +38,7 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpTerrain.h"
 
 namespace
 {
@@ -145,5 +148,44 @@ QUERYHANDLER(GetRMSData)
 {
 	msg->data = g_Game->GetSimulation2()->GetRMSData();
 }
+
+BEGIN_COMMAND(ResizeMap)
+{
+	cResizeMap()
+	{
+	}
+
+	void MakeDirty()
+	{
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+			cmpTerrain->ReloadTerrain();
+
+		// The LOS texture won't normally get updated when running Atlas
+		// (since there's no simulation updates), so explicitly dirty it
+		g_Game->GetView()->GetLOSTexture().MakeDirty();
+	}
+
+	void Do()
+	{
+		Redo();
+	}
+
+	void Undo()
+	{
+		// TODO
+		debug_warn(L"Can't undo ResizeMap");
+	}
+
+	void Redo()
+	{
+		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+		terrain->Resize(msg->tiles / PATCH_SIZE);
+
+		MakeDirty();
+	}
+};
+END_COMMAND(ResizeMap)
 
 }

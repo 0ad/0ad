@@ -34,7 +34,6 @@
 #include "CustomControls/HighResTimer/HighResTimer.h"
 #include "CustomControls/Buttons/ToolButton.h"
 #include "CustomControls/Canvas/Canvas.h"
-#include "CustomControls/NewDialog/NewDialog.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
@@ -590,11 +589,11 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// a valid map loaded)
 	POST_MESSAGE(LoadMap, (_T("_default")));
 
+	// Select the initial sidebar (after the map has loaded)
+	m_SectionLayout.SelectPage(_T("MapSidebar"));
+
 	// Wait for blank map
 	qry.Post();
-
-	// Notify UI scripts that map settings have been loaded
-	m_ScriptInterface.Eval(_T("Atlas.State.mapSettings.notifyObservers()"));
 
 	POST_MESSAGE(RenderEnable, (eRenderView::GAME));
 
@@ -682,54 +681,11 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 
 void ScenarioEditor::OnNew(wxCommandEvent& WXUNUSED(event))
 {
-	NewDialog dlg(NULL, _("Create new map"), wxSize(600, 400), *this);
-
-	if(dlg.ShowModal() == wxID_OK)
-	{
-		wxBusyInfo busy(_("Creating blank map"));
-
-		// Generate new blank map
-		size_t tiles = dlg.GetSelectedSize();
-		size_t height = dlg.GetBaseHeight();
-
-		// Get terrain texture
-		// TODO: Support choosing multiple textures
-		std::vector<wxString> textures;
-		textures.push_back(g_SelectedTexture);
-
-		// TODO: This seems like a nasty way to do this
-		std::string settings;
-		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.Size"), tiles);
-		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.Seed"), 0);
-		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.BaseTerrain"), textures);
-		m_ScriptInterface.SetValue(_T("Atlas.State.mapSettings.settings.BaseHeight"), height);
-		m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings)"), settings);
-
-		// Generate map
-		qGenerateMap qry(L"blank.js", settings);
-
-
-		
-		// Wait for map generation to finish
-		qry.Post();
-
-		if (qry.status < 0)
-		{	// Map generation failed
-			wxMessageDialog msgDlg(NULL, _T("Random map script 'blank.js'. Loading blank map."), _T("Error"), wxICON_ERROR);
-			
-			qPing pingQry;
-			POST_MESSAGE(LoadMap, (_T("_default")));
-
-			// Wait for blank map
-			pingQry.Post();
-		}
-
-		// Notify UI scripts that map settings have been loaded
-		m_ScriptInterface.Eval(_T("Atlas.State.mapSettings.notifyObservers()"));
-	}
+	if (wxMessageBox(_("Discard current map and start blank new map?"), _("New map"), wxOK|wxCANCEL|wxICON_QUESTION, this) == wxOK)
+		OpenFile(_T("_default"), _T(""));
 }
 
-void ScenarioEditor::OpenFile(const wxString& name)
+void ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 {
 	wxBusyInfo busy(_("Loading map"));
 	wxBusyCursor busyc;
@@ -744,14 +700,13 @@ void ScenarioEditor::OpenFile(const wxString& name)
 
 	POST_MESSAGE(LoadMap, (map));
 
-	SetOpenFilename(name);
+	SetOpenFilename(filename);
 
 	// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
 	qPing qry;
 	qry.Post();
 
-	// Notify UI scripts that map settings have been loaded
-	m_ScriptInterface.Eval(_T("Atlas.State.mapSettings.notifyObservers()"));
+	NotifyOnMapReload();
 
 	// TODO: Make this a non-undoable command
 }
@@ -768,7 +723,7 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 	wxString cwd = wxFileName::GetCwd();
 	
 	if (dlg.ShowModal() == wxID_OK)
-		OpenFile(dlg.GetFilename());
+		OpenFile(dlg.GetFilename(), dlg.GetFilename());
 	
 	wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
 		// paranoia - MSDN says OFN_NOCHANGEDIR (used when we don't give wxCHANGE_DIR)
@@ -782,7 +737,7 @@ void ScenarioEditor::OnMRUFile(wxCommandEvent& event)
 	wxString filename(m_FileHistory.GetHistoryFile(event.GetId() - wxID_FILE1));
 	if (filename.Len())
 	{
-		OpenFile(filename);
+		OpenFile(filename, filename);
 	}
 	else
 	{	//Remove from MRU
@@ -807,22 +762,11 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 		// the preview units.)
 		m_ToolManager.SetCurrentTool(_T(""));
 
-		qPing qry;
-
-		// Save map settings
-		std::string settings;
-		if (m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings)"), settings))
-		{
-			POST_MESSAGE(SetMapSettings, (settings));
-
-			// Wait for it to finish saving
-			qry.Post();
-		}
-
 		std::wstring map = m_OpenFilename.c_str();
 		POST_MESSAGE(SaveMap, (map));
 
 		// Wait for it to finish saving
+		qPing qry;
 		qry.Post();
 	}
 }
@@ -840,18 +784,6 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 
 		m_ToolManager.SetCurrentTool(_T(""));
 
-		qPing qry;
-
-		// Save map settings
-		std::string settings;
-		if (m_ScriptInterface.Eval(_T("JSON.stringify(Atlas.State.mapSettings.settings)"), settings))
-		{
-			POST_MESSAGE(SetMapSettings, (settings));
-
-			// Wait for it to finish saving
-			qry.Post();
-		}
-
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();
 		POST_MESSAGE(SaveMap, (map));
@@ -859,6 +791,7 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 		SetOpenFilename(dlg.GetFilename());
 
 		// Wait for it to finish saving
+		qPing qry;
 		qry.Post();
 	}
 }
@@ -872,6 +805,11 @@ void ScenarioEditor::SetOpenFilename(const wxString& filename)
 
 	if (! filename.IsEmpty())
 		m_FileHistory.AddFileToHistory(filename);
+}
+
+void ScenarioEditor::NotifyOnMapReload()
+{
+	m_SectionLayout.OnMapReload();
 }
 
 //////////////////////////////////////////////////////////////////////////

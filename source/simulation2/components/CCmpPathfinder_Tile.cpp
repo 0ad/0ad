@@ -107,6 +107,11 @@ public:
 	{
 	}
 
+	virtual void StartRender()
+	{
+		m_Pathfinder.UpdateGrid();
+	}
+
 	virtual void ProcessTile(ssize_t i, ssize_t j)
 	{
 		if (m_Pathfinder.m_Grid && !IS_PASSABLE(m_Pathfinder.m_Grid->get(i, j), m_Pathfinder.m_DebugPassClass))

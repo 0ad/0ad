@@ -766,6 +766,7 @@ function setup_atlas_packages()
 	},{	-- include
 	},{	-- extern_libs
 		"libxml2",
+		"spidermonkey",
 		"wxwidgets"
 	},{	-- extra_params
 	})
@@ -812,7 +813,6 @@ function setup_atlas_packages()
 		"CustomControls/EditableListCtrl",
 		"CustomControls/FileHistory",
 		"CustomControls/HighResTimer",
-		"CustomControls/NewDialog",
 		"CustomControls/SnapSplitterWindow",
 		"CustomControls/VirtualDirTreeCtrl",
 		"CustomControls/Windows",

@@ -131,10 +131,6 @@ public:
 
 		sidebar->Show(false);
 
-		// If this is the first page, make it selected by default
-		if (m_Pages.size() == 1)
-			SetSelection(0);
-
 		return true;
 	}
 
@@ -184,6 +180,12 @@ public:
 
 			OnPageChanged(oldPage, m_Pages[m_SelectedPage]);
 		}
+	}
+
+	void OnMapReload()
+	{
+		for (size_t i = 0; i < m_Pages.size(); ++i)
+			m_Pages[i].bar->OnMapReload();
 	}
 
 protected:
@@ -314,9 +316,8 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 			sidebar->GetBottomBar()->Show(false); \
 		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
 		m_PageMappings.insert(std::make_pair(name, (int)m_SidebarBook->GetPageCount()-1));
-	
-	ADD_SIDEBAR_SCRIPT(_T("map"),       _T("map.png"),         _("Map"));
-//	ADD_SIDEBAR(MapSidebar,             _T("map.png"),         _("Map"));
+
+	ADD_SIDEBAR(MapSidebar,             _T("map.png"),         _("Map"));
 	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
@@ -338,4 +339,9 @@ void SectionLayout::SelectPage(const wxString& classname)
 	std::map<std::wstring, int>::iterator it = m_PageMappings.find(classname.c_str());
 	if (it != m_PageMappings.end())
 		m_SidebarBook->SetSelection(it->second);
+}
+
+void SectionLayout::OnMapReload()
+{
+	m_SidebarBook->OnMapReload();
 }

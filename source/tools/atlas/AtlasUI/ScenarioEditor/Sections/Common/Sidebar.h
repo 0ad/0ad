@@ -30,6 +30,8 @@ public:
 
 	wxWindow* GetBottomBar() { return m_BottomBar; }
 
+	virtual void OnMapReload() {}
+
 protected:
 	ScenarioEditor& m_ScenarioEditor;
 

@@ -46,6 +46,7 @@ public:
 	ToolManager(ScenarioEditor* scenarioEditor);
 	~ToolManager();
 	ObservablePtr<ITool>& GetCurrentTool();
+	wxString GetCurrentToolName();
 	void SetCurrentTool(const wxString& name, void* initData = NULL);
 private:
 	ToolManagerImpl* m;

@@ -71,6 +71,7 @@ public:
 	const float* GetMinimapTextureMatrix();
 
 private:
+	void DeleteTexture();
 	void ConstructTexture(int unit);
 	void RecomputeTexture(int unit);
 

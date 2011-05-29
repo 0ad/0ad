@@ -49,18 +49,29 @@ private:
 enum
 {
 	ID_Passability = 1,
-	ID_ShowPriorities
+	ID_ShowPriorities,
+	ID_ResizeMap
 };
 
 TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer) :
 	Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
 {
 	{
-		wxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Elevation tools"));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")), wxSizerFlags().Proportion(1));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")), wxSizerFlags().Proportion(1));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation")), wxSizerFlags().Proportion(1));
-		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")), wxSizerFlags().Proportion(1));
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Elevation tools"));
+		wxSizer* gridSizer = new wxGridSizer(3);
+		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")), wxSizerFlags().Expand());
+		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")), wxSizerFlags().Expand());
+		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation")), wxSizerFlags().Expand());
+		sizer->Add(gridSizer, wxSizerFlags().Expand());
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand());
+	}
+
+	{
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Texture tools"));
+		wxSizer* gridSizer = new wxGridSizer(3);
+		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")), wxSizerFlags().Expand());
+		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Replace"), _T("ReplaceTerrain")), wxSizerFlags().Expand());
+		sizer->Add(gridSizer, wxSizerFlags().Expand());
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand());
 	}
 
@@ -86,6 +97,12 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 
 		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Priorities")), wxSizerFlags().Right());
 		visSizer->Add(new wxCheckBox(this, ID_ShowPriorities, _("")));
+	}
+
+	{
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Misc tools"));
+		sizer->Add(new wxButton(this, ID_ResizeMap, _("Resize map")), wxSizerFlags().Expand());
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand());
 	}
 
 	m_BottomBar = new TerrainBottomBar(scenarioEditor, bottomBarContainer);
@@ -115,9 +132,36 @@ void TerrainSidebar::OnShowPriorities(wxCommandEvent& evt)
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::GAME, L"priorities", evt.IsChecked()));
 }
 
+void TerrainSidebar::OnResizeMap(wxCommandEvent& WXUNUSED(evt))
+{
+	wxArrayString sizeNames;
+	std::vector<size_t> sizeTiles;
+
+	AtObj sizes(Datafile::ReadList("mapsizes"));
+	for (AtIter s = sizes["size"]; s.defined(); ++s)
+	{
+		long tiles = 0;
+		wxString(s["@tiles"]).ToLong(&tiles);
+		sizeNames.Add(wxString(s["@name"]));
+		sizeTiles.push_back((size_t)tiles);
+	}
+
+	// TODO: set default based on current map size
+
+	wxSingleChoiceDialog dlg(this, _("Select new map size. WARNING: This probably only works reliably on blank maps, and cannot be undone."),
+			_("Resize map"), sizeNames);
+
+	if (dlg.ShowModal() != wxID_OK)
+		return;
+
+	size_t tiles = sizeTiles.at(dlg.GetSelection());
+	POST_COMMAND(ResizeMap, (tiles));
+}
+
 BEGIN_EVENT_TABLE(TerrainSidebar, Sidebar)
 	EVT_CHOICE(ID_Passability, TerrainSidebar::OnPassabilityChoice)
 	EVT_CHECKBOX(ID_ShowPriorities, TerrainSidebar::OnShowPriorities)
+	EVT_BUTTON(ID_ResizeMap, TerrainSidebar::OnResizeMap)
 END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
@@ -232,7 +276,11 @@ public:
 		button->SetBackgroundColour(wxColour(255, 255, 0));
 		m_LastTerrainSelection = button;
 
-		m_ScenarioEditor.GetToolManager().SetCurrentTool(L"PaintTerrain");
+		// Slight hack: Default to Paint mode because that's probably what the user wanted
+		// when they selected a terrain; unless already explicitly in Replace mode, because
+		// then the user probably wanted that instead
+		if (m_ScenarioEditor.GetToolManager().GetCurrentToolName() != _T("ReplaceTerrain"))
+			m_ScenarioEditor.GetToolManager().SetCurrentTool(_T("PaintTerrain"));
 	}
 
 	void OnSize(wxSizeEvent& evt)

@@ -46,7 +46,7 @@ enum
 };
 
 // Helper function for adding tooltips
-wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
+static wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
 {
 	window->SetToolTip(tip);
 	return window;

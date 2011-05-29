@@ -39,6 +39,8 @@ public:
 
 	void SelectPage(const wxString& classname);
 
+	void OnMapReload();
+
 private:
 	SidebarBook* m_SidebarBook;
 	wxWindow* m_Canvas;

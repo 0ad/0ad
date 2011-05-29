@@ -54,7 +54,9 @@ public:
 	void OnRenderPath(wxCommandEvent& event);
 	void OnDumpState(wxCommandEvent& event);
 
-	void OpenFile(const wxString& name);
+	void OpenFile(const wxString& name, const wxString& filename);
+
+	void NotifyOnMapReload();
 
 	static AtlasWindowCommandProc& GetCommandProc();
 

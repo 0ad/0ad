@@ -19,6 +19,7 @@
 #include "AtlasObjectImpl.h"
 
 #include <assert.h>
+#include <sstream>
 
 #define ATSMARTPTR_IMPL(T) \
 	template<> void AtSmartPtr<T>::inc_ref()	\
@@ -100,6 +101,14 @@ bool AtIter::hasContent() const
 	return p->iter->second->hasContent();
 }
 
+size_t AtIter::count() const
+{
+	if (!p)
+		return 0;
+
+	return std::distance(p->iter, p->iter_upperbound);
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 const AtIter AtObj::operator [] (const char* key) const
@@ -155,12 +164,44 @@ void AtObj::set(const char* key, const wchar_t* value)
 	p = p->setChild(key, AtNode::Ptr(o));
 }
 
+void AtObj::setBool(const char* key, bool value)
+{
+	AtNode* o = new AtNode(value ? L"true" : L"false");
+	o->children.insert(AtNode::child_pairtype("@boolean", AtNode::Ptr(new AtNode())));
+
+	if (!p)
+		p = new AtNode();
+
+	p = p->setChild(key, AtNode::Ptr(o));
+}
+
+void AtObj::setInt(const char* key, int value)
+{
+	std::wstringstream str;
+	str << value;
+	AtNode* o = new AtNode(str.str().c_str());
+	o->children.insert(AtNode::child_pairtype("@number", AtNode::Ptr(new AtNode())));
+
+	if (!p)
+		p = new AtNode();
+
+	p = p->setChild(key, AtNode::Ptr(o));
+}
+
 void AtObj::setString(const wchar_t* value)
 {
 	if (!p)
 		p = new AtNode();
 
 	p = p->setValue(value);
+}
+
+void AtObj::addOverlay(AtObj& data)
+{
+	if (!p)
+		p = new AtNode();
+
+	p = p->addOverlay(data.p);
 }
 
 bool AtObj::hasContent() const
@@ -222,6 +263,20 @@ const AtNode::Ptr AtNode::addChild(const char* key, const AtNode::Ptr &data) con
 	return AtNode::Ptr(newNode);
 }
 
+const AtNode::Ptr AtNode::addOverlay(const AtNode::Ptr &data) const
+{
+	AtNode* newNode = new AtNode(this);
+
+	// Delete old childs that are also in the overlay
+	for (AtNode::child_maptype::const_iterator it = data->children.begin(); it != data->children.end(); ++it)
+		newNode->children.erase(it->first);
+
+	// Add the overlay childs back in
+	for (AtNode::child_maptype::const_iterator it = data->children.begin(); it != data->children.end(); ++it)
+		newNode->children.insert(*it);
+
+	return AtNode::Ptr(newNode);
+}
 //////////////////////////////////////////////////////////////////////////
 
 AtObj AtlasObject::TrimEmptyChildren(AtObj& obj)

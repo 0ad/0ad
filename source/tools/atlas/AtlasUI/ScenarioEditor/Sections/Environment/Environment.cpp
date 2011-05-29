@@ -258,5 +258,13 @@ void EnvironmentSidebar::OnFirstDisplay()
 
 
 	g_EnvironmentSettings.NotifyObservers();
-	// TODO: reupdate everything when loading a new map...
+}
+
+void EnvironmentSidebar::OnMapReload()
+{
+	AtlasMessage::qGetEnvironmentSettings qry_env;
+	qry_env.Post();
+	g_EnvironmentSettings = qry_env.settings;
+
+	g_EnvironmentSettings.NotifyObservers();
 }

@@ -56,10 +56,13 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation) :
 CLOSTexture::~CLOSTexture()
 {
 	if (m_Texture)
-	{
-		glDeleteTextures(1, &m_Texture);
-		m_Texture = 0;
-	}
+		DeleteTexture();
+}
+
+void CLOSTexture::DeleteTexture()
+{
+	glDeleteTextures(1, &m_Texture);
+	m_Texture = 0;
 }
 
 void CLOSTexture::MakeDirty()
@@ -149,6 +152,14 @@ void CLOSTexture::ConstructTexture(int unit)
 
 void CLOSTexture::RecomputeTexture(int unit)
 {
+	// If the map was resized, delete and regenerate the texture
+	if (m_Texture)
+	{
+		CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
+		if (!cmpTerrain.null() && m_MapSize != cmpTerrain->GetVerticesPerSide())
+			DeleteTexture();
+	}
+
 	if (!m_Texture)
 		ConstructTexture(unit);
 

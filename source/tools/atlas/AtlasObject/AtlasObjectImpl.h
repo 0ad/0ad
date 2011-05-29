@@ -48,6 +48,7 @@ public:
 	const AtNode::Ptr setValue(const wchar_t* value) const;
 	const AtNode::Ptr addChild(const char* key, const AtNode::Ptr &data) const;
 	const AtNode::Ptr setChild(const char* key, const AtNode::Ptr &data) const;
+	const AtNode::Ptr addOverlay(const AtNode::Ptr &data) const;
 	const AtIter getChild(const char* key) const;
 
 	// Check recursively for any 'value' data

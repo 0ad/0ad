@@ -109,6 +109,8 @@ public:
 					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
 					m_Terrain->GetVerticesPerSide());
 		}
+
+		MakeDirty(0, 0, m_Terrain->GetTilesPerSide()+1, m_Terrain->GetTilesPerSide()+1);
 	}
 
 	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)

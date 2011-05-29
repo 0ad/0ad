@@ -26,6 +26,8 @@ class EnvironmentSidebar : public Sidebar
 public:
 	EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
+	virtual void OnMapReload();
+
 protected:
 	virtual void OnFirstDisplay();
 

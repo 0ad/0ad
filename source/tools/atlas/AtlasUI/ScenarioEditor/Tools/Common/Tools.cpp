@@ -53,6 +53,11 @@ ObservablePtr<ITool>& ToolManager::GetCurrentTool()
 	return m->CurrentTool;
 }
 
+wxString ToolManager::GetCurrentToolName()
+{
+	return m->CurrentTool->GetClassInfo()->GetClassName();
+}
+
 void SetActive(bool active, const wxString& name);
 
 void ToolManager::SetCurrentTool(const wxString& name, void* initData)

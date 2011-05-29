@@ -136,65 +136,91 @@ QUERYHANDLER(GetTerrainPassabilityClasses)
 
 //////////////////////////////////////////////////////////////////////////
 
+namespace {
+
+struct TerrainTile
+{
+	TerrainTile(CTerrainTextureEntry* t, ssize_t p) : tex(t), priority(p) {}
+	CTerrainTextureEntry* tex;
+	ssize_t priority;
+};
+
+class TerrainArray : public DeltaArray2D<TerrainTile>
+{
+public:
+	void Init()
+	{
+		m_Terrain = g_Game->GetWorld()->GetTerrain();
+		m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+	}
+
+	void UpdatePriority(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priorityScale, ssize_t& priority)
+	{
+		CMiniPatch* tile = m_Terrain->GetTile(x, y);
+		if (!tile)
+			return; // tile was out-of-bounds
+
+		// If this tile matches the current texture, we just want to match its
+		// priority; otherwise we want to exceed its priority
+		if (tile->GetTextureEntry() == tex)
+			priority = std::max(priority, tile->GetPriority()*priorityScale);
+		else
+			priority = std::max(priority, tile->GetPriority()*priorityScale + 1);
+	}
+
+	CTerrainTextureEntry* GetTexEntry(ssize_t x, ssize_t y)
+	{
+		if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
+			return NULL;
+
+		return get(x, y).tex;
+	}
+
+	ssize_t GetPriority(ssize_t x, ssize_t y)
+	{
+		if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
+			return 0;
+
+		return get(x, y).priority;
+	}
+
+	void PaintTile(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priority)
+	{
+		// Ignore out-of-bounds tiles
+		if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
+			return;
+
+		set(x,y, TerrainTile(tex, priority));
+	}
+
+	ssize_t GetTilesPerSide()
+	{
+		return m_VertsPerSide-1;
+	}
+
+protected:
+	TerrainTile getOld(ssize_t x, ssize_t y)
+	{
+		CMiniPatch* mp = m_Terrain->GetTile(x, y);
+		ENSURE(mp);
+		return TerrainTile(mp->Tex, mp->Priority);
+	}
+	void setNew(ssize_t x, ssize_t y, const TerrainTile& val)
+	{
+		CMiniPatch* mp = m_Terrain->GetTile(x, y);
+		ENSURE(mp);
+		mp->Tex = val.tex;
+		mp->Priority = val.priority;
+	}
+
+	CTerrain* m_Terrain;
+	ssize_t m_VertsPerSide;
+};
+
+}
+
 BEGIN_COMMAND(PaintTerrain)
 {
-	struct TerrainTile
-	{
-		TerrainTile(CTerrainTextureEntry* t, ssize_t p) : tex(t), priority(p) {}
-		CTerrainTextureEntry* tex;
-		ssize_t priority;
-	};
-	class TerrainArray : public DeltaArray2D<TerrainTile>
-	{
-	public:
-		void Init()
-		{
-			m_Terrain = g_Game->GetWorld()->GetTerrain();
-			m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
-		}
-
-		void UpdatePriority(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priorityScale, ssize_t& priority)
-		{
-			CMiniPatch* tile = m_Terrain->GetTile(x, y);
-			if (!tile)
-				return; // tile was out-of-bounds
-
-			// If this tile matches the current texture, we just want to match its
-			// priority; otherwise we want to exceed its priority
-			if (tile->GetTextureEntry() == tex)
-				priority = std::max(priority, tile->GetPriority()*priorityScale);
-			else
-				priority = std::max(priority, tile->GetPriority()*priorityScale + 1);
-		}
-
-		void PaintTile(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priority)
-		{
-			// Ignore out-of-bounds tiles
-			if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
-				return;
-
-			set(x,y, TerrainTile(tex, priority));
-		}
-
-	protected:
-		TerrainTile getOld(ssize_t x, ssize_t y)
-		{
-			CMiniPatch* mp = m_Terrain->GetTile(x, y);
-			ENSURE(mp);
-			return TerrainTile(mp->Tex, mp->Priority);
-		}
-		void setNew(ssize_t x, ssize_t y, const TerrainTile& val)
-		{
-			CMiniPatch* mp = m_Terrain->GetTile(x, y);
-			ENSURE(mp);
-			mp->Tex = val.tex;
-			mp->Priority = val.priority;
-		}
-
-		CTerrain* m_Terrain;
-		ssize_t m_VertsPerSide;
-	};
-
 	TerrainArray m_TerrainDelta;
 	ssize_t m_i0, m_j0, m_i1, m_j1;
 
@@ -279,6 +305,79 @@ BEGIN_COMMAND(PaintTerrain)
 	}
 };
 END_COMMAND(PaintTerrain)
+
+//////////////////////////////////////////////////////////////////////////
+
+BEGIN_COMMAND(ReplaceTerrain)
+{
+	TerrainArray m_TerrainDelta;
+	ssize_t m_i0, m_j0, m_i1, m_j1;
+
+	cReplaceTerrain()
+	{
+		m_TerrainDelta.Init();
+	}
+
+	void MakeDirty()
+	{
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
+	}
+
+	void Do()
+	{
+		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
+
+		ssize_t x0, y0;
+		g_CurrentBrush.GetBottomLeft(x0, y0);
+
+		m_i0 = m_i1 = x0;
+		m_j0 = m_j1 = y0;
+
+		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture).ToUTF8());
+		if (! texentry)
+		{
+			debug_warn(L"Can't find texentry"); // TODO: nicer error handling
+			return;
+		}
+
+		CTerrainTextureEntry* replacedTex = m_TerrainDelta.GetTexEntry(x0, y0);
+
+		ssize_t tiles = m_TerrainDelta.GetTilesPerSide();
+
+		for (ssize_t j = 0; j < tiles; ++j)
+		{
+			for (ssize_t i = 0; i < tiles; ++i)
+			{
+				if (m_TerrainDelta.GetTexEntry(i, j) == replacedTex)
+				{
+					m_i0 = std::min(m_i0, i);
+					m_j0 = std::min(m_j0, j);
+					m_i1 = std::max(m_i1, i+1);
+					m_j1 = std::max(m_j1, j+1);
+					m_TerrainDelta.PaintTile(i, j, texentry, m_TerrainDelta.GetPriority(i, j));
+				}
+			}
+		}
+
+		MakeDirty();
+	}
+
+	void Undo()
+	{
+		m_TerrainDelta.Undo();
+		MakeDirty();
+	}
+
+	void Redo()
+	{
+		m_TerrainDelta.Redo();
+		MakeDirty();
+	}
+};
+END_COMMAND(ReplaceTerrain)
 
 
 }

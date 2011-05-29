@@ -47,8 +47,8 @@ public:
 	virtual void ReloadTerrain() = 0;
 
 	/**
-	 * Indicate that the terrain within the given region (inclusive lower bound,
-	 * exclusive upper bound) has been changed. CMessageTerrainChanged will be
+	 * Indicate that terrain tiles within the given region (inclusive lower bound,
+	 * exclusive upper bound) have been changed. CMessageTerrainChanged will be
 	 * sent to any components that care about terrain changes.
 	 */
 	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) = 0;

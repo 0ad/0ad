@@ -277,6 +277,14 @@ const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
 
 void CCmpPathfinder::UpdateGrid()
 {
+	// If the terrain was resized then delete the old grid data
+	if (m_Grid && m_MapSize != GetSimContext().GetTerrain().GetTilesPerSide())
+	{
+		SAFE_DELETE(m_Grid);
+		SAFE_DELETE(m_ObstructionGrid);
+		m_TerrainDirty = true;
+	}
+
 	// Initialise the terrain data when first needed
 	if (!m_Grid)
 	{

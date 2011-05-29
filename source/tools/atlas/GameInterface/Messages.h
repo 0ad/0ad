@@ -161,6 +161,10 @@ QUERY(GetRMSData,
 		((std::vector<std::string>, data))
 		);
 
+COMMAND(ResizeMap, NOMERGE,
+		((int, tiles))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 // Messages for player panel
 
@@ -429,6 +433,11 @@ COMMAND(PaintTerrain, MERGE,
 		((Position, pos))
 		((std::wstring, texture))
 		((int, priority)) // ePaintTerrainPriority
+		);
+
+COMMAND(ReplaceTerrain, NOMERGE,
+		((Position, pos))
+		((std::wstring, texture))
 		);
 
 //////////////////////////////////////////////////////////////////////////

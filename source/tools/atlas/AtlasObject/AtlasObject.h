@@ -27,6 +27,8 @@
 #include <wchar.h> // for wchar_t
 #include <string>
 
+typedef struct JSContext JSContext;
+
 //////////////////////////////////////////////////////////////////////////
 // Mostly-private bits:
 
@@ -103,6 +105,8 @@ public:
 	bool defined() const;
 	// Return whether this iterator is pointing to a non-contentless AtObj
 	bool hasContent() const;
+	// Return the number of AtObjs that will be iterated over (including the current one)
+	size_t count() const;
 
 	// Return an iterator to the children matching 'key'. (That is, children
 	// of the AtObj currently pointed to by this iterator)
@@ -148,7 +152,10 @@ public:
 	void add(const char* key, AtObj& data);
 	void set(const char* key, const wchar_t* value);
 	void set(const char* key, AtObj& data);
+	void setBool(const char* key, bool value);
+	void setInt(const char* key, int value);
 	void setString(const wchar_t* value);
+	void addOverlay(AtObj& data);
 
 	AtSmartPtr<const AtNode> p;
 };
@@ -160,9 +167,16 @@ namespace AtlasObject
 	// Returns AtObj() on failure - test with AtObj::defined()
 	AtObj LoadFromXML(const std::string& xml);
 
+	// Returns AtObj() on failure - test with AtObj::defined()
+	AtObj LoadFromJSON(JSContext* cx, const std::string& json);
+
 	// Returns UTF-8-encoded XML document string.
 	// Returns empty string on failure.
 	std::string SaveToXML(AtObj& obj);
+
+	// Returns UTF-8-encoded JSON string.
+	// Returns empty string on failure.
+	std::string SaveToJSON(JSContext* cx, AtObj& obj);
 
 	AtObj TrimEmptyChildren(AtObj& obj);
 }

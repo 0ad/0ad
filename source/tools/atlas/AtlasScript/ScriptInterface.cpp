@@ -609,6 +609,8 @@ AtlasScriptInterface_impl::AtlasScriptInterface_impl()
 		| JSOPTION_XML // "ECMAScript for XML support: parse <!-- --> as a token"
 		);
 
+	JS_SetVersion(m_cx, JSVERSION_LATEST);
+
 	m_glob = JS_NewGlobalObject(m_cx, &global_class);
 	JS_InitStandardClasses(m_cx, m_glob);
 	

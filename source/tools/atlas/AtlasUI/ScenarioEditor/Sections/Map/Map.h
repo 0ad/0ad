@@ -17,20 +17,29 @@
 
 #include "../Common/Sidebar.h"
 
+#include "wx/collpane.h"
+
+class MapSettings;
+
 class MapSidebar : public Sidebar
 {
 public:
 	MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
+	virtual void OnMapReload();
+
+protected:
+	virtual void OnFirstDisplay();
+
 private:
-	void GenerateMap(wxCommandEvent& event);
-	void GenerateRMS(wxCommandEvent& event);
+	MapSettings* m_MapSettings;
 
-	wxTextCtrl* m_RMSText;
-
-	void OnSimPlay(wxCommandEvent& event);
-	void OnSimPause(wxCommandEvent& event);
-	void OnSimReset(wxCommandEvent& event);
+	void OnCollapse(wxCollapsiblePaneEvent& evt);
+	void OnSimPlay(wxCommandEvent& evt);
+	void OnSimPause(wxCommandEvent& evt);
+	void OnSimReset(wxCommandEvent& evt);
+	void OnRandomReseed(wxCommandEvent& evt);
+	void OnRandomGenerate(wxCommandEvent& evt);
 	void UpdateSimButtons();
 
 	int m_SimState;

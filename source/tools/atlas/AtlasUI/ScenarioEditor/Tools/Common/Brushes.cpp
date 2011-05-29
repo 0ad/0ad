@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -112,6 +112,18 @@ float Brush::GetStrength() const
 void Brush::SetStrength(float strength)
 {
 	m_Strength = strength;
+}
+
+void Brush::SetCircle(int size)
+{
+	m_Shape = CIRCLE;
+	m_Size = size;
+}
+
+void Brush::SetSquare(int size)
+{
+	m_Shape = SQUARE;
+	m_Size = size;
 }
 
 //////////////////////////////////////////////////////////////////////////
