@@ -192,6 +192,11 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		return IN_PASS;
 	}
 
+	// Rather ugly hack to make the '"' key work better on a MacBook Pro on Windows so it doesn't
+	// always close the console. (Maybe this would be better handled in wsdl or something?)
+	if (keycode == SDLK_BACKQUOTE && (ev->ev.key.keysym.unicode == '\'' || ev->ev.key.keysym.unicode == '"'))
+		keycode = ev->ev.key.keysym.unicode;
+
 	// Somewhat hackish:
 	// Create phantom 'unified-modifier' events when left- or right- modifier keys are pressed
 	// Just send them to this handler; don't let the imaginary event codes leak back to real SDL.
