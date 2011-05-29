@@ -19,6 +19,7 @@ local function add_extern_lib_paths(extern_lib)
 		extern_lib == "cxxtest" or
 		extern_lib == "fcollada" or
 		extern_lib == "valgrind" or
+		(extern_lib == "enet" and not options["with-system-enet"]) or
 		(extern_lib == "nvtt" and not options["with-system-nvtt"])
 	then
 		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
@@ -99,22 +100,9 @@ extern_lib_defs = {
 		win_names  = { },
 		unix_names = { "dl" },
 	},
-	-- rationale: see libraries_dir..enet/lib/rationale.txt
 	enet = {
-		add_func = function()
-			if OS == "windows" then
-				tinsert(package.includepaths, libraries_dir.."enet/include")
-				tinsert(package.config["Debug"  ].libpaths, libraries_dir.."enet/lib/debug")
-				tinsert(package.config["Testing"].libpaths, libraries_dir.."enet/lib/debug")
-				tinsert(package.config["Release"].libpaths, libraries_dir.."enet/lib/release")
-				tinsert(package.config["Debug"  ].links, "enet_dbg")
-				tinsert(package.config["Testing"].links, "enet_dbg")
-				tinsert(package.config["Release"].links, "enet")
-			else
-				-- We should be using pkgconfig, but (at least on ubuntu) that adds /usr/include/enet which contains a time.h that gets used before the system header...
-				tinsert(package.links, "enet")
-			end
-		end,
+		win_names  = { "enet" },
+		unix_names = { "enet" },
 	},
 	fcollada = {
 		add_func = function()

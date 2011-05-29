@@ -13,16 +13,7 @@
 #endif
 
 #include <stdlib.h>
-
-#if 0
 #include <winsock2.h>
-#else
-// When this header is included in Pyrogenesis, it needs to avoid pulling in the
-// standards Win32 headers (else there are conflicts), but we need to define a
-// couple of Win32-specific socket values so that ENet still compiles
-typedef uintptr_t        SOCKET;
-#define INVALID_SOCKET  (SOCKET)(~0)
-#endif
 
 typedef SOCKET ENetSocket;
 
@@ -54,6 +45,13 @@ typedef struct
 #else /* !ENET_DLL */
 #define ENET_API extern
 #endif /* ENET_DLL */
+
+typedef fd_set ENetSocketSet;
+
+#define ENET_SOCKETSET_EMPTY(sockset)          FD_ZERO (& (sockset))
+#define ENET_SOCKETSET_ADD(sockset, socket)    FD_SET (socket, & (sockset))
+#define ENET_SOCKETSET_REMOVE(sockset, socket) FD_CLEAR (socket, & (sockset))
+#define ENET_SOCKETSET_CHECK(sockset, socket)  FD_ISSET (socket, & (sockset))
 
 #endif /* __ENET_WIN32_H__ */
 

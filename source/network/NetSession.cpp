@@ -53,7 +53,7 @@ bool CNetClientSession::Connect(u16 port, const CStr& server)
 	ENSURE(!m_Server);
 
 	// Create ENet host
-	ENetHost* host = enet_host_create(NULL, 1, 0, 0);
+	ENetHost* host = enet_host_create(NULL, 1, CHANNEL_COUNT, 0, 0);
 	if (!host)
 		return false;
 
@@ -64,7 +64,7 @@ bool CNetClientSession::Connect(u16 port, const CStr& server)
 		return false;
 
 	// Initiate connection to server
-	ENetPeer* peer = enet_host_connect(host, &addr, CHANNEL_COUNT);
+	ENetPeer* peer = enet_host_connect(host, &addr, CHANNEL_COUNT, 0);
 	if (!peer)
 		return false;
 

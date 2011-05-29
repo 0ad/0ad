@@ -34,6 +34,8 @@
 #define DEFAULT_WELCOME_MESSAGE		L"Welcome"
 #define MAX_CLIENTS					8
 
+static const int CHANNEL_COUNT = 1;
+
 /**
  * enet_host_service timeout (msecs).
  * Smaller numbers may hurt performance; larger numbers will
@@ -114,7 +116,7 @@ bool CNetServerWorker::SetupConnection()
 	addr.port = PS_DEFAULT_PORT;
 
 	// Create ENet server
-	m_Host = enet_host_create(&addr, MAX_CLIENTS, 0, 0);
+	m_Host = enet_host_create(&addr, MAX_CLIENTS, CHANNEL_COUNT, 0, 0);
 	if (!m_Host)
 	{
 		LOGERROR(L"Net server: enet_host_create failed");

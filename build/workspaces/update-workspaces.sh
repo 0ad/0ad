@@ -8,11 +8,14 @@ die()
 
 JOBS=${JOBS:="-j2"}
 
+# Parse command-line options
 with_system_nvtt=false
+with_system_enet=false
 for i in "$@"
 do
   case $i in
     --with-system-nvtt ) with_system_nvtt=true ;;
+    --with-system-enet ) with_system_enet=true ;;
     -j* ) JOBS=$i ;;
   esac
 done
@@ -30,6 +33,10 @@ echo
 echo
 if [ "$with_system_nvtt" = "false" ]; then
   (cd ../../libraries/nvtt && JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
+fi
+echo
+if [ "$with_system_enet" = "false" ]; then
+  (cd ../../libraries/enet && JOBS=${JOBS} ./build.sh) || die "ENet build failed"
 fi
 echo
 

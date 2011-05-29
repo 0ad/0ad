@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,11 +27,27 @@
 #ifndef INCLUDED_ENET
 #define INCLUDED_ENET
 
+#if OS_WIN
+
+// enet/win32.h wants to include winsock2.h which causes conflicts.
+// provide some required definitions from winsock.h, then pretend
+// we already included winsock.h
+
+typedef uintptr_t SOCKET;
+#define INVALID_SOCKET (SOCKET)(~0)
+struct fd_set;
+
+#define _WINSOCK2API_	// winsock2.h include guard
+
+#define WIN32
+
+#endif	// OS_WIN
+
 #include <enet/enet.h>
 
-#if defined(ENET_VERSION_MAJOR) && (ENET_VERSION_MAJOR > 1 || ENET_VERSION_MINOR > 2)
-#error The game currently requires ENet 1.2.x. You are using a newer version, which\
- has an incompatible API and network protocol. Please switch to an older version.
+#if defined(ENET_VERSION_MAJOR) && !(ENET_VERSION_MAJOR > 1 || ENET_VERSION_MINOR > 2)
+#error The game currently requires ENet 1.3.x. You are using a newer older, which\
+ has an incompatible API and network protocol. Please switch to a newer version.
 #endif
 
 #endif	// #ifndef INCLUDED_ENET
