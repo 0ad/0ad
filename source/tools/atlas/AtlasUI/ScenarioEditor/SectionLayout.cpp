@@ -248,29 +248,6 @@ void SidebarButton::OnClick(wxCommandEvent& WXUNUSED(event))
 
 //////////////////////////////////////////////////////////////////////////
 
-class ScriptedSidebar : public Sidebar
-{
-public:
-	ScriptedSidebar(const wxString& name, ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), m_BottomBarContainer(bottomBarContainer), m_Name(name)
-	{
-	}
-	
-	virtual void OnFirstDisplay()
-	{
-		Freeze();
-		std::pair<wxPanel*, wxPanel*> panels = m_ScenarioEditor.GetScriptInterface().LoadScriptAsSidebar(_T("section/") + m_Name, this, m_BottomBarContainer);
-		m_MainSizer->Add(panels.first, wxSizerFlags(1).Expand());
-		m_BottomBar = panels.second;
-		Layout();
-		Thaw();
-	}
-private:
-	wxString m_Name;
-	wxWindow* m_BottomBarContainer;
-};
-
-
 SectionLayout::SectionLayout()
 {
 }
@@ -310,13 +287,6 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
 		m_PageMappings.insert(std::make_pair(L###classname, (int)m_SidebarBook->GetPageCount()-1));
 	
-	#define ADD_SIDEBAR_SCRIPT(name, icon, tooltip) \
-		sidebar = new ScriptedSidebar(name, scenarioEditor, m_SidebarBook->GetContentWindow(), m_VertSplitter); \
-		if (sidebar->GetBottomBar()) \
-			sidebar->GetBottomBar()->Show(false); \
-		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
-		m_PageMappings.insert(std::make_pair(name, (int)m_SidebarBook->GetPageCount()-1));
-
 	ADD_SIDEBAR(MapSidebar,             _T("map.png"),         _("Map"));
 	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));

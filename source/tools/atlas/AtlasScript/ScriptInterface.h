@@ -33,9 +33,7 @@
 
 #include "js/jsapi.h"
 
-class wxWindow;
 class wxString;
-class wxPanel;
 
 namespace AtlasMessage { struct mWorldCommand; }
 typedef void (*SubmitCommand)(AtlasMessage::mWorldCommand* command);
@@ -68,8 +66,6 @@ public:
 	// in ScriptInterface.cpp, else you'll end up with linker errors.)
 
 	void LoadScript(const wxString& filename, const wxString& code);
-	wxPanel* LoadScriptAsPanel(const wxString& name, wxWindow* parent);
-	std::pair<wxPanel*, wxPanel*> LoadScriptAsSidebar(const wxString& name, wxWindow* side, wxWindow* bottom);
 
 	// Convert a jsval to a C++ type. (This might trigger GC.)
 	template <typename T> static bool FromJSVal(JSContext* cx, jsval val, T& ret);

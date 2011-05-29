@@ -350,42 +350,6 @@ END_EVENT_TABLE()
 static AtlasWindowCommandProc g_CommandProc;
 AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
-namespace
-{
-	// Wrapper functions for scripts
-
-	void SetCurrentTool_(void* cbdata, wxString name)
-	{
-		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name);
-	}
-
-	void SetCurrentToolWith(void* cbdata, wxString name, wxString arg)
-	{
-		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name, &arg);
-	}
-
-	void SetCurrentToolWithVal(void* cbdata, wxString name, CScriptVal arg)
-	{
-		jsval tool = arg.get();
-		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name, &tool);
-	}
-
-	wxString GetDataDirectory(void*)
-	{
-		return Datafile::GetDataDirectory();
-	}
-	
-	// TODO: see comment in terrain.js, and remove this when/if it's no longer necessary
-	void SetBrushStrength(void*, float strength)
-	{
-		g_Brush_Elevation.SetStrength(strength);
-	}
-	void SetSelectedTexture(void*, wxString name)
-	{
-		g_SelectedTexture = name;
-	}
-}
-
 ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
 , m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(scriptInterface)
@@ -412,53 +376,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	wxToolTip::Enable(true);
 
 	wxImage::AddHandler(new wxPNGHandler);
-
-	//////////////////////////////////////////////////////////////////////////
-	// Script interface functions
-	GetScriptInterface().SetCallbackData(static_cast<void*>(this));
-	GetScriptInterface().RegisterFunction<wxString, GetDataDirectory>("GetDataDirectory");
-	GetScriptInterface().RegisterFunction<void, wxString, SetCurrentTool_>("SetCurrentTool");
-	GetScriptInterface().RegisterFunction<void, wxString, wxString, SetCurrentToolWith>("SetCurrentToolWith");
-	GetScriptInterface().RegisterFunction<void, wxString, CScriptVal, SetCurrentToolWithVal>("SetCurrentToolWithVal");
-	GetScriptInterface().RegisterFunction<void, float, SetBrushStrength>("SetBrushStrength");
-	GetScriptInterface().RegisterFunction<void, wxString, SetSelectedTexture>("SetSelectedTexture");
-
-	{
-		const wxString relativePath (_T("tools/atlas/scripts/main.js"));
-		wxFileName filename (relativePath, wxPATH_UNIX);
-		filename.MakeAbsolute(Datafile::GetDataDirectory());
-		wxFFile file (filename.GetFullPath());
-		wxString script;
-		if (! file.ReadAll(&script))
-		{
-			wxLogError(_("Failed to read script"));
-		}
-		GetScriptInterface().LoadScript(filename.GetFullName(), script);
-	}
-
-	// Load common scripts
-	const wxString commonPath(_T("tools/atlas/scripts/common/"));
-	wxFileName filename(commonPath, wxPATH_UNIX);
-	filename.MakeAbsolute(Datafile::GetDataDirectory());
-	wxArrayString filenames;
-	if (wxDir::GetAllFiles(filename.GetFullPath(), &filenames, _T("*.js")) > 0)
-	{
-		for (size_t i = 0; i < filenames.GetCount(); ++i)
-		{
-			wxFFile file (filenames[i]);
-			wxString script;
-			if (! file.ReadAll(&script))
-			{
-				wxLogError(_("Failed to read script"));
-			}
-			GetScriptInterface().LoadScript(filename.GetFullName(), script);
-		}
-	}
-	else
-	{
-		wxLogError(_("Failed to read common scripts directory"));
-	}
-
 
 	//////////////////////////////////////////////////////////////////////////
 

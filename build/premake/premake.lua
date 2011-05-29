@@ -784,25 +784,6 @@ function setup_atlas_packages()
 	},{	-- extra_params
 	})
 
-	setup_atlas_package("wxJS", "lib",
-	{	-- src
-		"",
-		"common",
-		"ext",
-		"gui",
-		"gui/control",
-		"gui/event",
-		"gui/misc",
-		"io",
-	},{	-- include
-	},{	-- extern_libs
-		"spidermonkey",
-		"wxwidgets"
-	},{	-- extra_params
-		pch = (not has_broken_pch),
-		no_unused_warnings = 1, -- wxJS has far too many and we're never going to fix them, so just ignore them
-	})
-
 	atlas_src = {
 		"ActorEditor",
 		"ColourTester",
@@ -834,7 +815,6 @@ function setup_atlas_packages()
 	atlas_extra_links = {
 		"AtlasObject",
 		"AtlasScript",
-		"wxJS",
 	}
 	if options["aoe3ed"] then
 		tinsert(atlas_src, "ArchiveViewer")

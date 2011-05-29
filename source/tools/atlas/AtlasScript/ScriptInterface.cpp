@@ -31,16 +31,6 @@
 
 #include "wx/wx.h"
 
-#include "wxJS/common/main.h"
-#include "wxJS/ext/wxjs_ext.h"
-#include "wxJS/io/init.h"
-#include "wxJS/gui/init.h"
-#include "wxJS/gui/control/panel.h"
-#include "wxJS/gui/misc/bitmap.h"
-#include "wxJS/gui/event/jsevent.h"
-#include "wxJS/gui/event/key.h"
-#include "wxJS/gui/event/mouse.h"
-
 #include "GameInterface/Shareable.h"
 #include "GameInterface/Messages.h"
 
@@ -311,31 +301,6 @@ namespace
 	};
 
 	////////////////////////////////////////////////////////////////
-	// wxJS types:
-
-	template<> struct ToJSVal<wxKeyEvent>
-	{
-		static jsval Convert(JSContext* cx, const wxKeyEvent& val)
-		{
-			wxKeyEvent& evt = const_cast<wxKeyEvent&>(val); // ugly, but needed for wxJS
-			wxjs::gui::PrivKeyEvent *jsEvent = new wxjs::gui::PrivKeyEvent(evt);
-			jsEvent->SetScoop(false); // (wxJS will clone the event now, and not modify the const version)
-			return wxjs::gui::KeyEvent::CreateObject(cx, jsEvent);
-		}
-	};
-
-	template<> struct ToJSVal<wxMouseEvent>
-	{
-		static jsval Convert(JSContext* cx, const wxMouseEvent& val)
-		{
-			wxMouseEvent& evt = const_cast<wxMouseEvent&>(val); // see comments above for KeyEvent
-			wxjs::gui::PrivMouseEvent *jsEvent = new wxjs::gui::PrivMouseEvent(evt);
-			jsEvent->SetScoop(false);
-			return wxjs::gui::MouseEvent::CreateObject(cx, jsEvent);
-		}
-	};
-
-	////////////////////////////////////////////////////////////////
 	// Compound types:
 
 	template<typename T> struct ToJSVal<std::vector<T> >
@@ -360,114 +325,6 @@ namespace
 			return ToJSVal<T>::Convert(cx, val._Unwrap());
 		}
 	};
-
-	////////////////////////////////////////////////////////////////
-	// AtlasMessage structures:
-
-	template<> struct FromJSVal<AtlasMessage::Position>
-	{
-		static bool Convert(JSContext* cx, jsval v, AtlasMessage::Position& out)
-		{
-			JSObject* obj;
-			if (! JS_ValueToObject(cx, v, &obj) || obj == NULL)
-				FAIL("Argument must be an object");
-			jsval val;
-
-			float x, y, z;
-			if (! JS_GetProperty(cx, obj, "x", &val))
-				FAIL("Failed to get 'x'");
-			if (! ScriptInterface::FromJSVal(cx, val, x))
-				FAIL("Failed to convert 'x'");
-			if (! JS_GetProperty(cx, obj, "y", &val))
-				FAIL("Failed to get 'y'");
-			if (! ScriptInterface::FromJSVal(cx, val, y))
-				FAIL("Failed to convert 'y'");
-			if (! JS_GetProperty(cx, obj, "z", &val))
-				FAIL("Failed to get 'z'");
-			if (! ScriptInterface::FromJSVal(cx, val, z))
-				FAIL("Failed to convert 'z'");
-
-			out = AtlasMessage::Position(x, y, z);
-			return true;
-		}
-	};
-
-	template<> struct ToJSVal<AtlasMessage::sTerrainGroupPreview>
-	{
-		static jsval Convert(JSContext* cx, const AtlasMessage::sTerrainGroupPreview& val)
-		{
-			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
-			if (! obj) return JSVAL_VOID;
-			
-			JS_DefineProperty(cx, obj, "name", ToJSVal<std::wstring>::Convert(cx, *val.name), NULL, NULL, JSPROP_ENUMERATE);
-
-			JS_DefineProperty(cx, obj, "loaded", ToJSVal<bool>::Convert(cx, val.loaded), NULL, NULL, JSPROP_ENUMERATE);
-
-			unsigned char* buf = (unsigned char*)(malloc(val.imageData.GetSize()));
-			memcpy(buf, val.imageData.GetBuffer(), val.imageData.GetSize());
-			jsval bmp = wxjs::gui::Bitmap::CreateObject(cx, new wxBitmap (wxImage(val.imageWidth, val.imageHeight, buf)));
-			JS_DefineProperty(cx, obj, "imagedata", bmp, NULL, NULL, JSPROP_ENUMERATE);
-			
-			return OBJECT_TO_JSVAL(obj);
-		}
-	};
-
-	template<> struct ToJSVal<AtlasMessage::sObjectsListItem>
-	{
-		static jsval Convert(JSContext* cx, const AtlasMessage::sObjectsListItem& val)
-		{
-			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
-			if (! obj) return JSVAL_VOID;
-			JS_DefineProperty(cx, obj, "id", ToJSVal<std::wstring>::Convert(cx, *val.id), NULL, NULL, JSPROP_ENUMERATE);
-			JS_DefineProperty(cx, obj, "name", ToJSVal<std::wstring>::Convert(cx, *val.name), NULL, NULL, JSPROP_ENUMERATE);
-			JS_DefineProperty(cx, obj, "type", ToJSVal<int>::Convert(cx, val.type), NULL, NULL, JSPROP_ENUMERATE);
-			return OBJECT_TO_JSVAL(obj);
-		}
-	};
-
-	template<> struct ToJSVal<AtlasMessage::sObjectSettings>
-	{
-		static jsval Convert(JSContext* cx, const AtlasMessage::sObjectSettings& val)
-		{
-			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
-			if (! obj) return JSVAL_VOID;
-			JS_DefineProperty(cx, obj, "player", ToJSVal<size_t>::Convert(cx, val.player), NULL, NULL, JSPROP_ENUMERATE);
-			JS_DefineProperty(cx, obj, "selections", ToJSVal<std::vector<std::wstring> >::Convert(cx, *val.selections), NULL, NULL, JSPROP_ENUMERATE);
-			JS_DefineProperty(cx, obj, "variantgroups", ToJSVal<std::vector<std::vector<std::wstring> > >::Convert(cx, *val.variantGroups), NULL, NULL, JSPROP_ENUMERATE);
-			return OBJECT_TO_JSVAL(obj);
-		}
-	};
-
-	template<> struct FromJSVal<AtlasMessage::sObjectSettings>
-	{
-		static bool Convert(JSContext* cx, jsval v, AtlasMessage::sObjectSettings& out)
-		{
-			JSObject* obj;
-			if (! JS_ValueToObject(cx, v, &obj) || obj == NULL)
-				FAIL("Argument must be an object");
-			jsval val;
-
-			int player;
-			if (! JS_GetProperty(cx, obj, "player", &val))
-				FAIL("Failed to get 'player'");
-			if (! ScriptInterface::FromJSVal(cx, val, player))
-				FAIL("Failed to convert 'player'");
-			out.player = player;
-
-			std::vector<std::wstring> selections;
-			if (! JS_GetProperty(cx, obj, "selections", &val))
-				FAIL("Failed to get 'selections'");
-			if (! ScriptInterface::FromJSVal(cx, val, selections))
-				FAIL("Failed to convert 'selections'");
-			out.selections = selections;
-			
-			// variantgroups is only used in engine-to-editor, so we don't
-			// bother converting it here
-
-			return true;
-		}
-	};
-
 }
 
 template<typename T> bool ScriptInterface::FromJSVal(JSContext* cx, jsval v, T& out)
@@ -616,11 +473,6 @@ AtlasScriptInterface_impl::AtlasScriptInterface_impl()
 	
 	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
-	wxjs::gui::InitClass(m_cx, m_glob);
-	wxjs::io::InitClass(m_cx, m_glob);
-	wxjs::ext::InitClass(m_cx, m_glob);
-	wxjs::ext::InitObject(m_cx, m_glob);
-
 	JS_DefineFunction(m_cx, m_glob, "print", ::print, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	
 	m_atlas = JS_DefineObject(m_cx, m_glob, "Atlas", NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
@@ -763,51 +615,6 @@ void ScriptInterface::LoadScript(const wxString& filename, const wxString& code)
 	wxCharBuffer codeUTF16 = conv.cWC2MB(code.c_str(), code.length()+1, &codeLength);
 	jsval rval;
 	m->LoadScript(m->m_cx, reinterpret_cast<jschar*>(codeUTF16.data()), (uintN)(codeLength/2), filename.ToAscii(), &rval);
-}
-
-wxPanel* ScriptInterface::LoadScriptAsPanel(const wxString& name, wxWindow* parent)
-{
-	wxPanel* panel = new wxPanel(parent, -1);
-	JSObject* jsWindow = JSVAL_TO_OBJECT(wxjs::gui::Panel::CreateObject(m->m_cx, panel));
-	panel->SetClientObject(new wxjs::JavaScriptClientData(m->m_cx, jsWindow, true, false));
-	
-	jsval jsName = ToJSVal(m->m_cx, name);
-	
-	const uintN argc = 2;
-	jsval argv[argc] = { jsName, OBJECT_TO_JSVAL(jsWindow) };
-	
-	jsval rval;
-	JS_CallFunctionName(m->m_cx, m->m_glob, "loadScript", argc, argv, &rval); // TODO: error checking
-	return panel;
-}
-
-// TODO: this is an ugly function to provide
-std::pair<wxPanel*, wxPanel*> ScriptInterface::LoadScriptAsSidebar(const wxString& name, wxWindow* side, wxWindow* bottom)
-{
-	wxPanel* sidePanel = new wxPanel(side, -1);
-	JSObject* jsSideWindow = JSVAL_TO_OBJECT(wxjs::gui::Panel::CreateObject(m->m_cx, sidePanel));
-	sidePanel->SetClientObject(new wxjs::JavaScriptClientData(m->m_cx, jsSideWindow, true, false));
-	
-	wxPanel* bottomPanel = new wxPanel(bottom, -1);
-	JSObject* jsBottomWindow = JSVAL_TO_OBJECT(wxjs::gui::Panel::CreateObject(m->m_cx, bottomPanel));
-	bottomPanel->SetClientObject(new wxjs::JavaScriptClientData(m->m_cx, jsBottomWindow, true, false));
-
-	jsval jsName = ToJSVal(m->m_cx, name);
-	
-	const uintN argc = 3;
-	jsval argv[argc] = { jsName, OBJECT_TO_JSVAL(jsSideWindow), OBJECT_TO_JSVAL(jsBottomWindow) };
-	
-	jsval rval;
-	JS_CallFunctionName(m->m_cx, m->m_glob, "loadScript", argc, argv, &rval); // TODO: error checking
-	
-	// TODO: This really need a better way to handle these two windows (of which one is optional)...
-	if (bottomPanel->GetChildren().size() != 0)
-		return std::make_pair(sidePanel, bottomPanel);
-	else
-	{
-		bottomPanel->Destroy();
-		return std::make_pair(sidePanel, static_cast<wxPanel*>(NULL));
-	}
 }
 
 ////////////////////////////////////////////////////////////////
