@@ -46,7 +46,7 @@ struct fd_set;
 #include <enet/enet.h>
 
 #if defined(ENET_VERSION_MAJOR) && !(ENET_VERSION_MAJOR > 1 || ENET_VERSION_MINOR > 2)
-#error The game currently requires ENet 1.3.x. You are using a newer older, which\
+#error The game currently requires ENet 1.3.x. You are using an older version, which\
  has an incompatible API and network protocol. Please switch to a newer version.
 #endif
 
