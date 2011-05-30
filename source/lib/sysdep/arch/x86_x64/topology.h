@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,23 +28,12 @@
 #ifndef INCLUDED_TOPOLOGY
 #define INCLUDED_TOPOLOGY
 
-/**
- * @return pointer to an array (up to os_cpu_MaxProcessors entries;
- * os_cpu_NumProcessors() of them are valid) of the processors'
- * unique, strictly monotonically increasing APIC IDs --
- * or zero if no xAPIC is present or process affinity is restricted.
- **/
-LIB_API const u8* ApicIds();
-
-LIB_API size_t ProcessorFromApicId(size_t apicId);
-
-
 //-----------------------------------------------------------------------------
 // cpu
 
-// the CPU topology, i.e. how many packages, cores and SMT units are
-// actually present and enabled, is useful for detecting SMP systems,
-// predicting performance and dimensioning thread pools.
+// the CPU topology, i.e. how many packages, cores and logical processors are
+// actually present and enabled, is useful for parameterizing parallel
+// algorithms, especially on NUMA systems.
 //
 // note: OS abstractions usually only mention "processors", which could be
 // any mix of the above.
@@ -61,12 +50,12 @@ LIB_API size_t cpu_topology_NumPackages();
 LIB_API size_t cpu_topology_CoresPerPackage();
 
 /**
- * @return number of *enabled* hyperthreading units per core.
- * (2 on P4 EE)
+ * @return number of *enabled* logical processors (aka Hyperthreads)
+ * per core. (2 on P4 EE)
  **/
 LIB_API size_t cpu_topology_LogicalPerCore();
 
-
+LIB_API size_t cpu_topology_ProcessorFromApicId(size_t apicId);
 LIB_API size_t cpu_topology_PackageFromApicId(size_t apicId);
 LIB_API size_t cpu_topology_CoreFromApicId(size_t apicId);
 LIB_API size_t cpu_topology_LogicalFromApicId(size_t apicId);
@@ -90,12 +79,12 @@ LIB_API size_t cpu_topology_ApicId(size_t idxPackage, size_t idxCore, size_t idx
 LIB_API size_t cache_topology_NumCaches();
 
 /**
- * @return L2 cache number (zero-based) to which \<processor\> belongs.
+ * @return L2 cache number (zero-based) to which the given processor belongs.
  **/
 LIB_API size_t cache_topology_CacheFromProcessor(size_t processor);
 
 /**
- * @return bit-mask of all processors sharing \<cache\>.
+ * @return bit-mask of all processors sharing the given cache.
  **/
 LIB_API uintptr_t cache_topology_ProcessorMaskFromCache(size_t cache);
 

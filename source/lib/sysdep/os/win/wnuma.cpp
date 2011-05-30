@@ -85,22 +85,6 @@ static Node* FindNodeWithProcessor(size_t processor)
 }
 
 
-// cached results of FindNodeWithProcessor for each processor
-static size_t processorsNode[os_cpu_MaxProcessors];
-
-static void FillProcessorsNode()
-{
-	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
-	{
-		Node* node = FindNodeWithProcessor(processor);
-		if(node)
-			processorsNode[processor] = node-nodes;
-		else
-			DEBUG_WARN_ERR(ERR::LOGIC);
-	}
-}
-
-
 //-----------------------------------------------------------------------------
 // Windows topology
 
@@ -228,21 +212,6 @@ static const Affinity* DynamicCastFromHeader(const AffinityHeader* header)
 	return affinity;
 }
 
-static void PopulateProcessorMaskFromApicId(u32 apicId, uintptr_t& processorMask)
-{
-	const u8* apicIds = ApicIds();
-	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
-	{
-		if(apicIds[processor] == apicId)
-		{
-			processorMask |= Bit<uintptr_t>(processor);
-			return;
-		}
-	}
-
-	DEBUG_WARN_ERR(ERR::LOGIC);	// APIC ID not found
-}
-
 struct ProximityDomain
 {
 	uintptr_t processorMask;
@@ -262,9 +231,10 @@ static ProximityDomains ExtractProximityDomainsFromSRAT(const SRAT* srat)
 		const AffinityAPIC* affinityAPIC = DynamicCastFromHeader<AffinityAPIC>(header);
 		if(affinityAPIC)
 		{
+			const size_t processor = cpu_topology_ProcessorFromApicId(affinityAPIC->apicId);
 			const u32 proximityDomainNumber = affinityAPIC->ProximityDomainNumber();
 			ProximityDomain& proximityDomain = proximityDomains[proximityDomainNumber];
-			PopulateProcessorMaskFromApicId(affinityAPIC->apicId, proximityDomain.processorMask);
+			proximityDomain.processorMask |= Bit<uintptr_t>(processor);
 		}
 	}
 
@@ -281,6 +251,7 @@ static void PopulateNodesFromProximityDomains(const ProximityDomains& proximityD
 		Node* node = FindNodeWithProcessorMask(proximityDomain.processorMask);
 		if(!node)
 			node = AddNode();
+		// (we don't know Windows' nodeNumber; it has hopefully already been set)
 		node->proximityDomainNumber = proximityDomainNumber;
 		node->processorMask = proximityDomain.processorMask;
 	}
@@ -316,7 +287,6 @@ static Status InitTopology()
 		node->processorMask = os_cpu_ProcessorMask();
 	}
 
-	FillProcessorsNode();
 	return INFO::OK;
 }
 
@@ -330,7 +300,9 @@ size_t numa_NodeFromProcessor(size_t processor)
 {
 	(void)ModuleInit(&initState, InitTopology);
 	ENSURE(processor < os_cpu_NumProcessors());
-	return processorsNode[processor];
+	Node* node = FindNodeWithProcessor(processor);
+	ENSURE(node);
+	return nodes-node;
 }
 
 uintptr_t numa_ProcessorMaskFromNode(size_t node)

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -118,73 +118,43 @@ static size_t MaxLogicalPerCache()
 //-----------------------------------------------------------------------------
 // APIC IDs
 
-// APIC IDs consist of variable-length fields identifying the logical unit,
-// core, package and shared cache. if they are available, we can determine
-// the exact topology; otherwise we have to guess.
+typedef u8 ApicId;
 
-// APIC IDs should always be unique; if not (false is returned), then
-// something went wrong and the IDs shouldn't be used.
-// side effect: sorts IDs and `removes' duplicates.
-static bool AreApicIdsUnique(u8* apicIds, size_t numIds)
-{
-	std::sort(apicIds, apicIds+numIds);
-	u8* const end = std::unique(apicIds, apicIds+numIds);
-	const size_t numUnique = end-apicIds;
-	// all unique => IDs are valid.
-	if(numUnique == numIds)
-		return true;
+// APIC IDs consist of variable-length bit fields indicating the logical,
+// core, package and cache IDs. Vol3a says they aren't guaranteed to be
+// contiguous, but that also applies to the individual fields.
+// for example, quad-core E5630 CPUs report 4-bit core IDs 0, 1, 6, 7.
 
-	// all zero => the system lacks an xAPIC.
-	if(numUnique == 1 && apicIds[0] == 0)
-		return false;
-
-	// duplicated IDs => something went wrong. for example, VMs might not
-	// expose all physical processors, and OS X still doesn't support
-	// thread affinity masks.
-	return false;
-}
-
-static u8 apicIdStorage[os_cpu_MaxProcessors];
-static const u8* apicIds;	// = apicIdStorage, or 0 if IDs invalid
-
-static Status InitApicIds()
+// (IDs are indeterminate unless INFO::OK is returned)
+static Status GetApicIds(ApicId* apicIds, ApicId* sortedApicIds, size_t numIds)
 {
 	struct StoreEachProcessorsApicId
 	{
-		static void Callback(size_t processor, uintptr_t UNUSED(cbData))
+		static void Callback(size_t processor, uintptr_t cbData)
 		{
-			apicIdStorage[processor] = x86_x64_ApicId();
+			ApicId* apicIds = (ApicId*)cbData;
+			apicIds[processor] = x86_x64_ApicId();
 		}
 	};
-	// (fails if the OS limits our process affinity)
-	if(os_cpu_CallByEachCPU(StoreEachProcessorsApicId::Callback, (uintptr_t)&apicIds) == INFO::OK)
-	{
-		if(AreApicIdsUnique(apicIdStorage, os_cpu_NumProcessors()))
-			apicIds = apicIdStorage;	// success, ApicIds will return this pointer
-	}
+	// (can fail due to restrictions on our process affinity or lack of
+	// support for affinity masks in OS X.)
+	RETURN_STATUS_IF_ERR(os_cpu_CallByEachCPU(StoreEachProcessorsApicId::Callback, (uintptr_t)apicIds));
+
+	std::copy(apicIds, apicIds+numIds, sortedApicIds);
+	std::sort(sortedApicIds, sortedApicIds+numIds);
+	ApicId* const end = std::unique(sortedApicIds, sortedApicIds+numIds);
+	const size_t numUnique = end-sortedApicIds;
+
+	// all IDs are zero - system lacks an xAPIC.
+	if(numUnique == 1 && sortedApicIds[0] == 0)
+		return ERR::CPU_FEATURE_MISSING;	// NOWARN
+
+	// not all unique - probably running in a VM whose emulation is
+	// imperfect or doesn't allow access to all processors.
+	if(numUnique != numIds)
+		return ERR::FAIL;	// NOWARN
 
 	return INFO::OK;
-}
-
-const u8* ApicIds()
-{
-	static ModuleInitState initState;
-	ModuleInit(&initState, InitApicIds);
-	return apicIds;
-}
-
-
-size_t ProcessorFromApicId(size_t apicId)
-{
-	const u8* apicIds = ApicIds();
-	const u8* end = apicIds + os_cpu_NumProcessors();
-	const u8* pos = std::find(apicIds, end, apicId);
-	if(pos == end)
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);
-		return 0;
-	}
-	return pos - apicIds;	// index
 }
 
 
@@ -203,9 +173,12 @@ struct ApicField	// POD
 //-----------------------------------------------------------------------------
 // CPU topology interface
 
-
 struct CpuTopology	// POD
 {
+	size_t numProcessors;	// total reported by OS
+	ApicId apicIds[os_cpu_MaxProcessors];
+	ApicId sortedApicIds[os_cpu_MaxProcessors];
+
 	ApicField logical;
 	ApicField core;
 	ApicField package;
@@ -220,6 +193,8 @@ static ModuleInitState cpuInitState;
 
 static Status InitCpuTopology()
 {
+	cpuTopology.numProcessors = os_cpu_NumProcessors();
+
 	const size_t maxLogicalPerCore = MaxLogicalPerCore();
 	const size_t maxCoresPerPackage = MaxCoresPerPackage();
 	const size_t maxPackages = 256;	// "enough"
@@ -236,28 +211,27 @@ static Status InitCpuTopology()
 	cpuTopology.core.shift    = logicalWidth;
 	cpuTopology.package.shift = logicalWidth + coreWidth;
 
-	const u8* apicIds = ApicIds();
-	if(apicIds)
+	if(GetApicIds(cpuTopology.apicIds, cpuTopology.sortedApicIds, cpuTopology.numProcessors) == INFO::OK)
 	{
 		struct NumUniqueValuesInField
 		{
-			size_t operator()(const u8* apicIds, const ApicField& apicField) const
+			size_t operator()(const ApicId* apicIds, const ApicField& apicField) const
 			{
-				std::set<size_t> values;
+				std::bitset<os_cpu_MaxProcessors> values;
 				for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 				{
 					const size_t value = apicField(apicIds[processor]);
-					values.insert(value);
+					values.set(value);
 				}
-				return values.size();
+				return values.count();
 			}
 		};
 
-		cpuTopology.logicalPerCore  = NumUniqueValuesInField()(apicIds, cpuTopology.logical);
-		cpuTopology.coresPerPackage = NumUniqueValuesInField()(apicIds, cpuTopology.core);
-		cpuTopology.numPackages     = NumUniqueValuesInField()(apicIds, cpuTopology.package);
+		cpuTopology.logicalPerCore  = NumUniqueValuesInField()(cpuTopology.apicIds, cpuTopology.logical);
+		cpuTopology.coresPerPackage = NumUniqueValuesInField()(cpuTopology.apicIds, cpuTopology.core);
+		cpuTopology.numPackages     = NumUniqueValuesInField()(cpuTopology.apicIds, cpuTopology.package);
 	}
-	else // the processor lacks an xAPIC, or the IDs are invalid
+	else // processor lacks an xAPIC, or IDs are invalid
 	{
 		struct MinPackages
 		{
@@ -276,12 +250,11 @@ static Status InitCpuTopology()
 		// since the former are less likely to be disabled, we seek the
 		// maximum feasible number of cores and minimal number of packages:
 		const size_t minPackages = MinPackages()(maxCoresPerPackage, maxLogicalPerCore);
-		const size_t numProcessors = os_cpu_NumProcessors();
-		for(size_t numPackages = minPackages; numPackages <= numProcessors; numPackages++)
+		for(size_t numPackages = minPackages; numPackages <= cpuTopology.numProcessors; numPackages++)
 		{
-			if(numProcessors % numPackages != 0)
+			if(cpuTopology.numProcessors % numPackages != 0)
 				continue;
-			const size_t logicalPerPackage = numProcessors / numPackages;
+			const size_t logicalPerPackage = cpuTopology.numProcessors / numPackages;
 			const size_t minCoresPerPackage = DivideRoundUp(logicalPerPackage, maxLogicalPerCore);
 			for(size_t coresPerPackage = maxCoresPerPackage; coresPerPackage >= minCoresPerPackage; coresPerPackage--)
 			{
@@ -290,10 +263,14 @@ static Status InitCpuTopology()
 				const size_t logicalPerCore = logicalPerPackage / coresPerPackage;
 				if(logicalPerCore <= maxLogicalPerCore)
 				{
-					ENSURE(numProcessors == numPackages*coresPerPackage*logicalPerCore);
+					ENSURE(cpuTopology.numProcessors == numPackages*coresPerPackage*logicalPerCore);
 					cpuTopology.logicalPerCore = logicalPerCore;
 					cpuTopology.coresPerPackage = coresPerPackage;
 					cpuTopology.numPackages = numPackages;
+
+					// generate fake but legitimate APIC IDs
+					for(size_t processor = 0; processor < cpuTopology.numProcessors; processor++)
+						cpuTopology.apicIds[processor] = cpuTopology.sortedApicIds[processor] = processor;
 					return INFO::OK;
 				}
 			}
@@ -304,6 +281,7 @@ static Status InitCpuTopology()
 
 	return INFO::OK;
 }
+
 
 size_t cpu_topology_NumPackages()
 {
@@ -323,47 +301,66 @@ size_t cpu_topology_LogicalPerCore()
 	return cpuTopology.logicalPerCore;
 }
 
-size_t cpu_topology_LogicalFromApicId(size_t apicId)
+
+static size_t IndexFromApicId(const ApicId* apicIds, size_t apicId)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
-	return cpuTopology.logical(apicId);
+
+	const ApicId* end = apicIds + cpuTopology.numProcessors;
+	const ApicId* pos = std::find(apicIds, end, apicId);
+	if(pos == end)
+	{
+		DEBUG_WARN_ERR(ERR::LOGIC);
+		return 0;
+	}
+
+	const size_t index = pos - apicIds;
+	return index;
+}
+
+
+size_t cpu_topology_ProcessorFromApicId(size_t apicId)
+{
+	return IndexFromApicId(cpuTopology.apicIds, apicId);
+}
+
+size_t cpu_topology_LogicalFromApicId(size_t apicId)
+{
+	const size_t contiguousId = IndexFromApicId(cpuTopology.sortedApicIds, apicId);
+	return cpuTopology.logical(contiguousId);
 }
 
 size_t cpu_topology_CoreFromApicId(size_t apicId)
 {
-	ModuleInit(&cpuInitState, InitCpuTopology);
-	return cpuTopology.core(apicId);
+	const size_t contiguousId = IndexFromApicId(cpuTopology.sortedApicIds, apicId);
+	return cpuTopology.core(contiguousId);
 }
 
 size_t cpu_topology_PackageFromApicId(size_t apicId)
 {
-	ModuleInit(&cpuInitState, InitCpuTopology);
-	return cpuTopology.package(apicId);
+	const size_t contiguousId = IndexFromApicId(cpuTopology.sortedApicIds, apicId);
+	return cpuTopology.package(contiguousId);
 }
+
 
 size_t cpu_topology_ApicId(size_t idxLogical, size_t idxCore, size_t idxPackage)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 
-	// NB: APIC IDs aren't guaranteed to be contiguous;
-	// quad-core E5630 CPUs report 4-bit core IDs 0, 1, 6, 7.
-	// we therefore compute an index into the sorted ApicIds array.
-
-	size_t idx = 0;
+	size_t contiguousId = 0;
 	ENSURE(idxPackage < cpuTopology.numPackages);
-	idx += idxPackage;
+	contiguousId += idxPackage;
 
-	idx *= cpuTopology.coresPerPackage;
+	contiguousId *= cpuTopology.coresPerPackage;
 	ENSURE(idxCore < cpuTopology.coresPerPackage);
-	idx += idxCore;
+	contiguousId += idxCore;
 
-	idx *= cpuTopology.logicalPerCore;
+	contiguousId *= cpuTopology.logicalPerCore;
 	ENSURE(idxLogical < cpuTopology.logicalPerCore);
-	idx += idxLogical;
+	contiguousId += idxLogical;
 
-	ENSURE(idx < os_cpu_NumProcessors());
-	const size_t apicId = ApicIds()[idx];
-	return apicId;
+	ENSURE(contiguousId < cpuTopology.numProcessors);
+	return cpuTopology.sortedApicIds[contiguousId];
 }
 
 
@@ -418,9 +415,9 @@ private:
 		{
 		}
 
-		bool Matches(u8 id) const
+		bool Matches(u8 cacheId) const
 		{
-			return m_cacheId == id;
+			return m_cacheId == cacheId;
 		}
 
 		void Add(size_t processor)
@@ -452,7 +449,7 @@ private:
 	std::vector<SharedCache> m_caches;
 };
 
-static void DetermineCachesProcessorMask(const u8* apicIds, uintptr_t* cachesProcessorMask, size_t& numCaches)
+static void DetermineCachesProcessorMask(const ApicId* apicIds, uintptr_t* cachesProcessorMask, size_t& numCaches)
 {
 	CacheRelations cacheRelations;
 	if(apicIds)
@@ -461,7 +458,7 @@ static void DetermineCachesProcessorMask(const u8* apicIds, uintptr_t* cachesPro
 		const u8 cacheIdMask = u8((0xFF << numBits) & 0xFF);
 		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 		{
-			const u8 apicId = apicIds[processor];
+			const ApicId apicId = apicIds[processor];
 			const u8 cacheId = u8(apicId & cacheIdMask);
 			cacheRelations.Add(cacheId, processor);
 		}
@@ -513,8 +510,8 @@ static ModuleInitState cacheInitState;
 
 static Status InitCacheTopology()
 {
-	const u8* apicIds = ApicIds();
-	DetermineCachesProcessorMask(apicIds, cacheTopology.cachesProcessorMask, cacheTopology.numCaches);
+	ModuleInit(&cpuInitState, InitCpuTopology);
+	DetermineCachesProcessorMask(cpuTopology.apicIds, cacheTopology.cachesProcessorMask, cacheTopology.numCaches);
 	DetermineProcessorsCache(cacheTopology.cachesProcessorMask, cacheTopology.numCaches, cacheTopology.processorsCache, os_cpu_NumProcessors());
 	return INFO::OK;
 }

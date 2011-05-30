@@ -282,7 +282,10 @@ template<class CompletedHook, class IssueHook>
 static inline Status Store(const OsPath& pathname, const void* data, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
 	File file;
-	WARN_RETURN_STATUS_IF_ERR(file.Open(pathname, O_WRONLY));
+	int oflag = O_WRONLY;
+	if(p.queueDepth != 1)
+		oflag |= O_DIRECT;
+	WARN_RETURN_STATUS_IF_ERR(file.Open(pathname, oflag));
 	io::Operation op(file, (void*)data, size);
 
 #if OS_WIN
@@ -318,7 +321,10 @@ template<class CompletedHook, class IssueHook>
 static inline Status Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {
 	File file;
-	RETURN_STATUS_IF_ERR(file.Open(pathname, O_RDONLY));
+	int oflag = O_RDONLY;
+	if(p.queueDepth != 1)
+		oflag |= O_DIRECT;
+	RETURN_STATUS_IF_ERR(file.Open(pathname, oflag));
 	io::Operation op(file, buf, size);
 	return io::Run(op, p, completedHook, issueHook);
 }
