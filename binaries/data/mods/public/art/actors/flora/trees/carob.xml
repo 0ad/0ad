@@ -1,8 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="trunk-mesh-a">
       <mesh>gaia/tree_carob_a.pmd</mesh>
@@ -41,11 +39,21 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant name="trunk-texture">
       <texture>gaia/trunk_deciduous_b.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1" name="Falling Leaves">
+      <props>
+        <prop actor="particle/falling_leaf_green_a.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="No Falling Leaves">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>
