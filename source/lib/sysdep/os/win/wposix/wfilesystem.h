@@ -54,15 +54,6 @@ typedef unsigned int mode_t;	// defined by MinGW but not VC
 
 
 //
-// <fcntl.h>
-
-// transfer directly to/from user's buffer.
-// treated as a request to enable aio (see filesystem.h).
-// value does not conflict with any current Win32 _O_* flags.
-#define O_DIRECT 0x10000000
-
-
-//
 // <unistd.h>
 //
 

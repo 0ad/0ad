@@ -61,6 +61,12 @@ extern int wclosedir(WDIR*);
 // fcntl.h
 //
 
+// transfer directly to/from user's buffer.
+// treated as a request to enable aio.
+#ifndef O_DIRECT	// i.e. Windows or OS X
+#define O_DIRECT 0x10000000	// (value does not conflict with any current Win32 _O_* flags.)
+#endif
+
 // Win32 _wsopen_s does not open files in a manner compatible with waio.
 // if its aio_read/aio_write are to be used, waio_open must (also) be called.
 // calling both is possible but wasteful and unsafe, since it prevents
