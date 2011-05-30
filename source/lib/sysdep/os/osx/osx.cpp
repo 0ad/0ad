@@ -98,5 +98,3 @@ OsPath sys_ExecutablePathname()
 	
 	return name;
 }
-
-}	// namespace gfx
