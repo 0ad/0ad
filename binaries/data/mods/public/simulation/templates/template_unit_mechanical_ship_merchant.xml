@@ -2,10 +2,10 @@
 <Entity parent="template_unit_mechanical_ship">
   <Identity>
     <GenericName>Merchantman</GenericName>
-    <Tooltip>Gather profitable oceanic treasures.</Tooltip>
+    <Tooltip>Gather profitable aquatic treasures.</Tooltip>
   </Identity>
   <Cost>
-    <BuildTime>40</BuildTime>
+    <BuildTime>30</BuildTime>
     <Resources>
       <metal>100</metal>
     </Resources>
