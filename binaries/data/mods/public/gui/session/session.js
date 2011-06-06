@@ -245,6 +245,7 @@ function updateGroups()
 		else
 			button.hidden = false;
 		button.onpress = (function(i) { return function() { performGroup("select", i); } })(i);
+		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); } })(i);
 	}
 	var numButtons = i;
 	var rowLength = 1;
