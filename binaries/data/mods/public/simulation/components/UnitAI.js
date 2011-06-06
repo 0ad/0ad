@@ -619,6 +619,8 @@ var UnitFsmSpec = {
 
 					// TODO: if .prepare is short, players can cheat by cycling attack/stop/attack
 					// to beat the .repeat time; should enforce a minimum time
+
+					this.FaceTowardsTarget(this.order.data.target);
 				},
 
 				"leave": function() {
@@ -632,6 +634,7 @@ var UnitFsmSpec = {
 						// Check we can still reach the target
 						if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
 						{
+							this.FaceTowardsTarget(this.order.data.target);
 							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 							cmpAttack.PerformAttack(this.attackType, this.order.data.target);
 							return;
@@ -1811,6 +1814,29 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
 };
+
+UnitAI.prototype.FaceTowardsTarget = function(target)
+{
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+			return;
+	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
+			return;
+	var pos = cmpPosition.GetPosition();
+	var targetpos = cmpTargetPosition.GetPosition();
+	var angle = Math.atan2(targetpos.x - pos.x, targetpos.z - pos.z);
+	var rot = cmpPosition.GetRotation();
+	var delta = (rot.y - angle + Math.PI) % (2 * Math.PI) - Math.PI;
+	if (Math.abs(delta) > 0.2)
+	{
+		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+		if (cmpUnitMotion)
+		{
+			cmpPosition.TurnTo(angle);
+		}
+	}
+}
 
 UnitAI.prototype.GetBestAttack = function()
 {
