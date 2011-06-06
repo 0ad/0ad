@@ -7,10 +7,11 @@
     <History>The Marian Legionnaire.</History>
 	<Tooltip>The famed legion of the Late Republic.</Tooltip>
     <Icon>units/rome_super_legion_marian.png</Icon>
+	<SelectionGroupName>units/rome_legionnaire_marian</SelectionGroupName>
   </Identity>
   <Promotion>
     <Entity>units/rome_legionnaire_imperial</Entity>
-    <RequiredXp>200</RequiredXp>
+    <RequiredXp>150</RequiredXp>
   </Promotion>
   <VisualActor>
     <Actor>units/romans/super_unit_3.xml</Actor>
