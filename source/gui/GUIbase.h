@@ -89,6 +89,7 @@ enum EGUIMessageType
 	GUIM_MOUSE_WHEEL_DOWN,
 	GUIM_SETTINGS_UPDATED,	// SGUIMessage.m_Value = name of setting
 	GUIM_PRESSED,
+	GUIM_DOUBLE_PRESSED,
 	GUIM_MOUSE_MOTION,
 	GUIM_LOAD,				// Called when an object is added to the GUI.
 	GUIM_GOT_FOCUS,

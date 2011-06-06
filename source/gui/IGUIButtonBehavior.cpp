@@ -70,7 +70,7 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 			// BUTTON WAS DOUBLE CLICKED
 			else
 			{
-				if (SendEvent(GUIM_MOUSE_DBLCLICK_LEFT, "doublepress") == IN_PASS)
+				if (SendEvent(GUIM_DOUBLE_PRESSED, "doublepress") == IN_PASS)
 					SendEvent(GUIM_PRESSED, "press");
 			}
 		}
