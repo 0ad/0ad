@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="anims/props">
+    <variant frequency="1" name="indibil-chainmail">
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="85"/>
@@ -19,17 +19,13 @@
         <animation file="infantry/general/death/inf_06.psa" name="death" speed="300"/>
         <animation file="infantry/general/death/inf_07.psa" name="death" speed="300"/>
       </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/iber_helmet_hero_03.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="indibil-chainmail">
-      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/iber_hero_indibil.dds</texture>
     </variant>
   </group>

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Helmet-Boeotian-Plume">
       <mesh>props/helmet/hele_helmet_u.pmd</mesh>
@@ -40,8 +38,10 @@
       <mesh>props/helmet/hele_helmet_s.pmd</mesh>
       <texture>props/helmet/hele_h1.dds</texture>
     </variant>
+    <variant frequency="2" name="Helmet-UnknownStyle-Crested">
+      <mesh>props/helmet/mace_helmet_h.dae</mesh>
+      <texture>props/helmet/mace-h.dds</texture>
+    </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

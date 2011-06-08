@@ -1,30 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base"/>
-  </group>
-
-  <group>
-    <variant frequency="3" name="plume">
-      <mesh>props/helmet/samn_helmet_a.pmd</mesh>
-    </variant>
     <variant frequency="2" name="plume_feathers_top">
-      <mesh>props/helmet/samn_helmet_b.pmd</mesh>
+      <mesh>props/helmet/samnite_b.dae</mesh>
+      <texture>props/helmet/samnite-b1.dds</texture>
     </variant>
-    <variant frequency="1" name="plume_feathers_all">
-      <mesh>props/helmet/samn_helmet_c.pmd</mesh>
-    </variant>
-  </group>
-
-  <group>
-    <variant>
-      <texture>props/helmet/samnite_02.dds</texture>
+    <variant frequency="1" name="plume_feathers_sides">
+      <mesh>props/helmet/samnite_c.dae</mesh>
+      <texture>props/helmet/samnite-c1.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
