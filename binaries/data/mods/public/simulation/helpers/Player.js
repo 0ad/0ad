@@ -191,27 +191,38 @@ function QueryPlayerIDInterface(id, iid)
 	return Engine.QueryInterface(playerEnt, iid);
 }
 
+/**
+ * Returns true if the entity 'target' is owned by an ally of
+ * the owner of 'entity'.
+ */
 function IsOwnedByAlly(entity, target)
 {
-  //figure out which player controls us
-  var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-  var owner = 0;
-  if (cmpOwnership)
-    owner = cmpOwnership.GetOwner();
+	// Figure out which player controls us
+	var owner = 0;
+	var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+	if (cmpOwnership)
+		owner = cmpOwnership.GetOwner();
 
-  var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-  var player = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
-  // Get our diplomacy array
-  var diplomacy = player.GetDiplomacy();
+	// Figure out which player controls the foundation being built
+	var targetOwner = 0;
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	if (cmpOwnershipTarget)
+		targetOwner = cmpOwnershipTarget.GetOwner();
 
-  //figure out which player controls the foundation being built
-  var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-  var targetOwner = 0;
-  if (cmpOwnershipTarget)
-    targetOwner = cmpOwnershipTarget.GetOwner();
+	// Players are always implicitly their own ally
+	if (owner == targetOwner)
+		return true;
 
-  //If we don't like the guy with the building, ignore their request to move
-  return owner==targetOwner || diplomacy[targetOwner - 1] > 0;
+	// Get our diplomacy array
+	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var player = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
+	var diplomacy = player.GetDiplomacy();
+
+	// Check for allied diplomacy status
+	if (diplomacy[targetOwner - 1] > 0)
+		return true;
+
+	return false;
 }
 
 Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
