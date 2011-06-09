@@ -671,7 +671,21 @@ function setup_main_exe ()
 			"/DELAYLOAD:ws2_32.dll",
 			
 			-- allow manual unload of delay-loaded DLLs
-			"/DELAY:UNLOAD"
+			"/DELAY:UNLOAD",
+
+			-- see manifest.cpp
+			-- (we need to use &quot; because Premake emits this string directly
+			-- into a double-quoted attribute value in the project XML files
+			-- with no automatic escaping)
+			"&quot;/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df'&quot;",
+		}
+
+		-- see manifest.cpp
+		package.config["Debug"].linkoptions = {
+			"&quot;/manifestdependency:type='win32' name='Microsoft.VC80.DebugCRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'&quot;",
+		}
+		package.config["Release"].linkoptions = {
+			"&quot;/manifestdependency:type='win32' name='Microsoft.VC80.CRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'&quot;",
 		}
 
 	elseif OS == "linux" then

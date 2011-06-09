@@ -55,4 +55,12 @@ entries (in addition to the VC90 CRT entries that will be added automatically).
 # endif
 #endif
 
+/*
+NOTE: vcbuild.exe (as used by the autobuilder) seems to ignore these linker
+comments, so we have to duplicate these commands into premake.lua too.
+Remember to keep them in sync with this file.
+(Duplicate entries appear to get omitted from the .manifest file so there
+should be no harmful effects.)
+*/
+
 #endif
