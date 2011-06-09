@@ -20,10 +20,10 @@
 #include "Terrain.h"
 
 #include "Buttons/ToolButton.h"
-#include "General/Datafile.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/Brushes.h"
 #include "ScenarioEditor/Tools/Common/MiscState.h"
+#include "AtlasScript/ScriptInterface.h"
 
 #include "GameInterface/Messages.h"
 
@@ -138,12 +138,15 @@ void TerrainSidebar::OnResizeMap(wxCommandEvent& WXUNUSED(evt))
 	wxArrayString sizeNames;
 	std::vector<size_t> sizeTiles;
 
-	AtObj sizes(Datafile::ReadList("mapsizes"));
-	for (AtIter s = sizes["size"]; s.defined(); ++s)
+	// Load the map sizes list
+	AtlasMessage::qGetMapSizes qrySizes;
+	qrySizes.Post();
+	AtObj sizes = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qrySizes.sizes);
+	for (AtIter s = sizes["Sizes"]["item"]; s.defined(); ++s)
 	{
 		long tiles = 0;
-		wxString(s["@tiles"]).ToLong(&tiles);
-		sizeNames.Add(wxString(s["@name"]));
+		wxString(s["Tiles"]).ToLong(&tiles);
+		sizeNames.Add(wxString(s["Name"]));
 		sizeTiles.push_back((size_t)tiles);
 	}
 

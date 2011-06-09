@@ -20,9 +20,11 @@
 #include "Object.h"
 
 #include "Buttons/ToolButton.h"
+#include "General/Datafile.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/ObjectSettings.h"
 #include "ScenarioEditor/Tools/Common/MiscState.h"
+#include "AtlasScript/ScriptInterface.h"
 #include "VariationControl.h"
 
 #include "GameInterface/Messages.h"
@@ -32,6 +34,7 @@
 enum
 {
 	ID_ObjectType = 1,
+	ID_PlayerSelect,
 	ID_SelectObject,
 	ID_ToggleViewer,
 	ID_ViewerWireframe,
@@ -55,7 +58,7 @@ static wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
 class ObjectBottomBar : public wxPanel
 {
 public:
-	ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& objectSettings, ObjectSidebarImpl* p);
+	ObjectBottomBar(wxWindow* parent, ScenarioEditor& scenarioEditor, Observable<ObjectSettings>& objectSettings, Observable<AtObj>& mapSettings, ObjectSidebarImpl* p);
 
 	void OnFirstDisplay();
 
@@ -75,6 +78,8 @@ private:
 	wxPanel* m_ViewerPanel;
 
 	ObjectSidebarImpl* p;
+
+	ScenarioEditor& m_ScenarioEditor;
 
 	DECLARE_EVENT_TABLE();
 };
@@ -117,7 +122,7 @@ ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarCo
 
 	m_MainSizer->Add(new wxButton(this, ID_ToggleViewer, _("Switch to Actor Viewer")), wxSizerFlags().Expand());
 
-	m_BottomBar = new ObjectBottomBar(bottomBarContainer, scenarioEditor.GetObjectSettings(), p);
+	m_BottomBar = new ObjectBottomBar(bottomBarContainer, scenarioEditor, scenarioEditor.GetObjectSettings(), scenarioEditor.GetMapSettings(), p);
 
 	p->m_ToolConn = scenarioEditor.GetToolManager().GetCurrentTool().RegisterObserver(0, &ObjectSidebar::OnToolChange, this);
 }
@@ -219,27 +224,58 @@ END_EVENT_TABLE();
 class PlayerComboBox : public wxComboBox
 {
 public:
-	PlayerComboBox(wxWindow* parent, wxArrayString& choices, Observable<ObjectSettings>& objectSettings)
-		: wxComboBox(parent, -1, choices[objectSettings.GetPlayerID()], wxDefaultPosition, wxDefaultSize, choices, wxCB_READONLY)
-		, m_ObjectSettings(objectSettings)
+	PlayerComboBox(wxWindow* parent, Observable<ObjectSettings>& objectSettings, Observable<AtObj>& mapSettings)
+		: wxComboBox(parent, ID_PlayerSelect, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY)
+		, m_ObjectSettings(objectSettings), m_MapSettings(mapSettings)
 	{
-		m_Conn = m_ObjectSettings.RegisterObserver(1, &PlayerComboBox::OnObjectSettingsChange, this);
+		m_ObjectConn = m_ObjectSettings.RegisterObserver(1, &PlayerComboBox::OnObjectSettingsChange, this);
+		m_MapConn = m_MapSettings.RegisterObserver(1, &PlayerComboBox::OnMapSettingsChange, this);
+	}
+
+	void SetPlayers(wxArrayString& names)
+	{
+		m_Players = names;
+		OnMapSettingsChange(m_MapSettings);
 	}
 
 private:
 
-	ObservableScopedConnection m_Conn;
+	ObservableScopedConnection m_ObjectConn;
 	Observable<ObjectSettings>& m_ObjectSettings;
+	ObservableScopedConnection m_MapConn;
+	Observable<AtObj>& m_MapSettings;
+	wxArrayString m_Players;
 
 	void OnObjectSettingsChange(const ObjectSettings& settings)
 	{
 		SetSelection((long)settings.GetPlayerID());
 	}
 
+	void OnMapSettingsChange(const AtObj& settings)
+	{
+		// Adjust displayed number of players
+		Clear();
+		size_t numPlayers = settings["PlayerData"]["item"].count();
+		for (size_t i = 0; i <= numPlayers; ++i)
+		{
+			Append(m_Players[i]);
+		}
+
+		if (m_ObjectSettings.GetPlayerID() > numPlayers)
+		{
+			// Invalid player
+			SetSelection((long)numPlayers);
+		}
+		else
+		{
+			SetSelection((long)m_ObjectSettings.GetPlayerID());
+		}
+	}
+
 	void OnSelect(wxCommandEvent& evt)
 	{
 		m_ObjectSettings.SetPlayerID(evt.GetInt());
-		m_ObjectSettings.NotifyObserversExcept(m_Conn);
+		m_ObjectSettings.NotifyObserversExcept(m_ObjectConn);
 	}
 
 	DECLARE_EVENT_TABLE();
@@ -250,8 +286,8 @@ END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
 
-ObjectBottomBar::ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& objectSettings, ObjectSidebarImpl* p)
-	: wxPanel(parent, wxID_ANY), p(p)
+ObjectBottomBar::ObjectBottomBar(wxWindow* parent, ScenarioEditor& scenarioEditor,  Observable<ObjectSettings>& objectSettings, Observable<AtObj>& mapSettings, ObjectSidebarImpl* p)
+	: wxPanel(parent, wxID_ANY), p(p), m_ScenarioEditor(scenarioEditor)
 {
 	m_ViewerWireframe = false;
 	m_ViewerMove = false;
@@ -276,12 +312,14 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& o
 
 	wxSizer* viewerAnimSizer = new wxStaticBoxSizer(wxVERTICAL, m_ViewerPanel, _("Animation"));
 
-	wxString animChoices[] = {
-		_T("idle"), _T("walk"), _T("run"), _T("melee"), _T("death"), _T("build"),
-		_T("gather_fruit"), _T("gather_grain"), _T("gather_meat"), _T("gather_tree"),
-		_T("gather_rock"), _T("gather_ore"), _T("gather_ruins"), _T("gather_treasure")
-	}; // TODO: this list should come from the actor
-	wxChoice* viewerAnimSelector = new wxChoice(m_ViewerPanel, ID_ViewerAnimation, wxDefaultPosition, wxDefaultSize, sizeof(animChoices)/sizeof(animChoices[0]), animChoices);
+	// TODO: this list should come from the actor
+	wxArrayString animChoices;
+	AtObj anims (Datafile::ReadList("animations"));
+	for (AtIter a = anims["item"]; a.defined(); ++a)
+	{
+		animChoices.Add(wxString(*a));
+	}
+	wxChoice* viewerAnimSelector = new wxChoice(m_ViewerPanel, ID_ViewerAnimation, wxDefaultPosition, wxDefaultSize, animChoices);
 	viewerAnimSelector->SetSelection(0);
 	viewerAnimSizer->Add(viewerAnimSelector, wxSizerFlags().Expand());
 
@@ -301,19 +339,8 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& o
 
 	wxSizer* playerVariationSizer = new wxBoxSizer(wxVERTICAL);
 
-	wxArrayString players;
-	// TODO: get proper player names
-	players.Add(_("Gaia"));
-	players.Add(_("Player 1"));
-	players.Add(_("Player 2"));
-	players.Add(_("Player 3"));
-	players.Add(_("Player 4"));
-	players.Add(_("Player 5"));
-	players.Add(_("Player 6"));
-	players.Add(_("Player 7"));
-	players.Add(_("Player 8"));
-	wxComboBox* playerSelect = new PlayerComboBox(this, players, objectSettings);
 	// TODO: make this a wxChoice instead
+	wxComboBox* playerSelect = new PlayerComboBox(this, objectSettings, mapSettings);
 	playerVariationSizer->Add(playerSelect);
 
 	wxWindow* variationSelect = new VariationControl(this, objectSettings);
@@ -329,6 +356,20 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& o
 
 void ObjectBottomBar::OnFirstDisplay()
 {
+	// We use messages here because the simulation is not init'd otherwise (causing a crash)
+
+	// Get player names
+	wxArrayString players;
+	AtlasMessage::qGetPlayerDefaults qryPlayers;
+	qryPlayers.Post();
+	AtObj playerData = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qryPlayers.defaults);
+	AtObj playerDefs = *playerData["PlayerData"];
+	for (AtIter p = playerDefs["item"]; p.defined(); ++p)
+	{
+		players.Add(wxString(p["Name"]));
+	}
+	wxDynamicCast(FindWindow(ID_PlayerSelect), PlayerComboBox)->SetPlayers(players);
+
 	// Initialise the game with the default settings
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"wireframe", m_ViewerWireframe));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"walk", m_ViewerMove));

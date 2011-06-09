@@ -19,12 +19,12 @@
 
 #include "wx/collpane.h"
 
-class MapSettingsControl;
+class PlayerSettingsControl;
 
-class MapSidebar : public Sidebar
+class PlayerSidebar : public Sidebar
 {
 public:
-	MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
+	PlayerSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
 	virtual void OnMapReload();
 
@@ -32,17 +32,11 @@ protected:
 	virtual void OnFirstDisplay();
 
 private:
-	MapSettingsControl* m_MapSettingsCtrl;
+	PlayerSettingsControl* m_PlayerSettingsCtrl;
 
 	void OnCollapse(wxCollapsiblePaneEvent& evt);
-	void OnSimPlay(wxCommandEvent& evt);
-	void OnSimPause(wxCommandEvent& evt);
-	void OnSimReset(wxCommandEvent& evt);
-	void OnRandomReseed(wxCommandEvent& evt);
-	void OnRandomGenerate(wxCommandEvent& evt);
-	void UpdateSimButtons();
 
-	int m_SimState;
+	bool m_Loaded;
 
 	DECLARE_EVENT_TABLE();
 };
