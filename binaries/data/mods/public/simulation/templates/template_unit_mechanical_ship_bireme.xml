@@ -5,21 +5,21 @@
     <Tooltip>Light Warship.</Tooltip>
   </Identity>
   <Cost>
-    <BuildTime>40</BuildTime>
+    <BuildTime>30</BuildTime>
     <Resources>
-      <wood>150</wood>
-      <metal>150</metal>
+      <wood>100</wood>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>600</Max>
+    <Max>300</Max>
   </Health>
   <UnitMotion>
     <WalkSpeed>12.0</WalkSpeed>
   </UnitMotion>
   <Armour>
     <Hack>15.0</Hack>
-    <Pierce>15.0</Pierce>
+    <Pierce>20.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
   <ResourceGatherer disable=""/>

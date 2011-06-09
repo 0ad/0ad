@@ -5,13 +5,13 @@
     <Tooltip>Gather profitable aquatic treasures.</Tooltip>
   </Identity>
   <Cost>
-    <BuildTime>30</BuildTime>
     <Resources>
+      <wood>0</wood>
       <metal>100</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>400</Max>
+    <Max>200</Max>
   </Health>
   <ResourceGatherer>
     <MaxDistance>12.0</MaxDistance>
@@ -27,8 +27,8 @@
   </UnitMotion>
   <Armour>
     <Hack>10.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>1.0</Crush>
+    <Pierce>15.0</Pierce>
+    <Crush>10.0</Crush>
   </Armour>
   <StatusBars>
     <BarWidth>6.0</BarWidth>

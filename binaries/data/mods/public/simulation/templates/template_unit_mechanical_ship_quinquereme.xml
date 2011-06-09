@@ -5,25 +5,25 @@
     <Tooltip>Heavy Warship.</Tooltip>
   </Identity>
   <Cost>
-    <BuildTime>60</BuildTime>
+    <BuildTime>50</BuildTime>
     <Resources>
-      <wood>300</wood>
-      <metal>250</metal>
+      <wood>250</wood>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>1000</Max>
+    <Max>500</Max>
   </Health>
   <Armour>
     <Hack>25.0</Hack>
-    <Pierce>25.0</Pierce>
+    <Pierce>30.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
   <UnitMotion>
     <WalkSpeed>14.0</WalkSpeed>
   </UnitMotion>
   <Vision>
-    <Range>160</Range>
+    <Range>140</Range>
   </Vision>
   <ResourceGatherer disable=""/>
   <Attack>
@@ -34,7 +34,7 @@
       <MaxRange>100.0</MaxRange>
       <MinRange>20.0</MinRange>
       <ProjectileSpeed>40.0</ProjectileSpeed>
-      <PrepareTime>4000</PrepareTime>
+      <PrepareTime>2000</PrepareTime>
       <RepeatTime>4000</RepeatTime>
     </Ranged>
   </Attack>
