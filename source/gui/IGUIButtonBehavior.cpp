@@ -62,16 +62,19 @@ void IGUIButtonBehavior::HandleMessage(SGUIMessage &Message)
 		if (m_Pressed)
 		{
 			m_Pressed = false;
-			// BUTTON WAS CLICKED
 			if (Message.type == GUIM_MOUSE_RELEASE_LEFT)
 			{
+				// Button was clicked
 				SendEvent(GUIM_PRESSED, "press");
 			}
-			// BUTTON WAS DOUBLE CLICKED
 			else
 			{
-				if (SendEvent(GUIM_DOUBLE_PRESSED, "doublepress") == IN_PASS)
-					SendEvent(GUIM_PRESSED, "press");
+				// Button was clicked a second time. We can't tell if the button
+				// expects to receive doublepress events or just a second press
+				// event, so send both of them (and assume the extra unwanted press
+				// is harmless on buttons that expect doublepress)
+				SendEvent(GUIM_PRESSED, "press");
+				SendEvent(GUIM_DOUBLE_PRESSED, "doublepress");
 			}
 		}
 	}	break;
