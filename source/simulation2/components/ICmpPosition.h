@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,6 +83,12 @@ public:
 	 * Returns the current vertical offset above the terrain/water surface.
 	 */
 	virtual entity_pos_t GetHeightOffset() = 0;
+
+	/**
+	 * Set the vertical position as a fixed, absolute value.
+	 * Will stay at this height until the next call to SetHeightFixed or SetHeightOffset.
+	 */
+	virtual void SetHeightFixed(entity_pos_t y) = 0;
 
 	/**
 	 * Returns whether the entity floats on water.

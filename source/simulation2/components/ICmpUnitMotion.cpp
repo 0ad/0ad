@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,12 +20,14 @@
 #include "ICmpUnitMotion.h"
 
 #include "simulation2/system/InterfaceScripted.h"
+#include "simulation2/scripting/ScriptComponent.h"
 
 BEGIN_INTERFACE_WRAPPER(UnitMotion)
 DEFINE_INTERFACE_METHOD_4("MoveToPointRange", bool, ICmpUnitMotion, MoveToPointRange, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("IsInTargetRange", bool, ICmpUnitMotion, IsInTargetRange, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("MoveToTargetRange", bool, ICmpUnitMotion, MoveToTargetRange, entity_id_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_3("MoveToFormationOffset", void, ICmpUnitMotion, MoveToFormationOffset, entity_id_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_2("FaceTowardsPoint", void, ICmpUnitMotion, FaceTowardsPoint, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("StopMoving", void, ICmpUnitMotion, StopMoving)
 DEFINE_INTERFACE_METHOD_1("SetSpeed", void, ICmpUnitMotion, SetSpeed, fixed)
 DEFINE_INTERFACE_METHOD_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
@@ -33,3 +35,67 @@ DEFINE_INTERFACE_METHOD_0("GetRunSpeed", fixed, ICmpUnitMotion, GetRunSpeed)
 DEFINE_INTERFACE_METHOD_1("SetUnitRadius", void, ICmpUnitMotion, SetUnitRadius, fixed)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpUnitMotion, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(UnitMotion)
+
+class CCmpUnitMotionScripted : public ICmpUnitMotion
+{
+public:
+	DEFAULT_SCRIPT_WRAPPER(UnitMotionScripted)
+
+	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+	{
+		return m_Script.Call<bool>("MoveToPointRange", x, z, minRange, maxRange);
+	}
+
+	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
+	{
+		return m_Script.Call<bool>("IsInTargetRange", target, minRange, maxRange);
+	}
+
+	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
+	{
+		return m_Script.Call<bool>("MoveToTargetRange", target, minRange, maxRange);
+	}
+
+	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z)
+	{
+		m_Script.CallVoid("MoveToFormationOffset", target, x, z);
+	}
+
+	virtual void FaceTowardsPoint(entity_pos_t x, entity_pos_t z)
+	{
+		m_Script.CallVoid("FaceTowardsPoint", x, z);
+	}
+
+	virtual void StopMoving()
+	{
+		m_Script.CallVoid("StopMoving");
+	}
+
+	virtual void SetSpeed(fixed speed)
+	{
+		m_Script.CallVoid("SetSpeed", speed);
+	}
+
+	virtual fixed GetWalkSpeed()
+	{
+		return m_Script.Call<fixed>("GetWalkSpeed");
+	}
+
+	virtual fixed GetRunSpeed()
+	{
+		return m_Script.Call<fixed>("GetRunSpeed");
+	}
+
+	virtual void SetUnitRadius(fixed radius)
+	{
+		m_Script.CallVoid("SetUnitRadius", radius);
+	}
+
+	virtual void SetDebugOverlay(bool enabled)
+	{
+		m_Script.CallVoid("SetDebugOverlay", enabled);
+	}
+
+};
+
+REGISTER_COMPONENT_SCRIPT_WRAPPER(UnitMotionScripted)

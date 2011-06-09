@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Aeroplane</SpecificName>
+    <History>This may be anachronistic.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/hellenes/siege_rock.xml</Actor> <!-- only using this because its flaming projectiles look nice -->
+  </VisualActor>
+  <Obstruction disable=""/>
+  <UnitMotion disable=""/>
+  <Position>
+    <TurnRate>1.57</TurnRate>
+  </Position>
+  <UnitMotionFlying>
+    <MaxSpeed>24.0</MaxSpeed>
+    <AccelRate>8.0</AccelRate>
+    <TurnRate>1.57</TurnRate>
+    <OvershootTime>2.0</OvershootTime>
+    <FlyingHeight>16.0</FlyingHeight>
+    <ClimbRate>3.0</ClimbRate>
+  </UnitMotionFlying>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>100.0</Pierce>
+      <Crush>25.0</Crush>
+      <MaxRange>48</MaxRange>
+      <MinRange>24</MinRange>
+      <ProjectileSpeed>50.0</ProjectileSpeed>
+      <PrepareTime>0</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+    </Ranged>
+  </Attack>
+</Entity>

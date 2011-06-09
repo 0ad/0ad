@@ -1829,9 +1829,7 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 	{
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		if (cmpUnitMotion)
-		{
-			cmpPosition.TurnTo(angle);
-		}
+			cmpUnitMotion.FaceTowardsPoint(pos.x, pos.z);
 	}
 }
 

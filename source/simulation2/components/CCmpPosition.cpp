@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,6 +68,7 @@ public:
 	bool m_InWorld;
 	entity_pos_t m_X, m_Z, m_LastX, m_LastZ; // these values contain undefined junk if !InWorld
 	entity_pos_t m_YOffset;
+	bool m_RelativeToGround; // whether m_YOffset is relative to terrain/water plane, or an absolute height
 
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
 	float m_InterpolatedRotY; // not serialized
@@ -80,6 +81,7 @@ public:
 				"<Anchor>upright</Anchor>"
 				"<Altitude>0.0</Altitude>"
 				"<Floating>false</Floating>"
+				"<TurnRate>6.0</TurnRate>"
 			"</a:example>"
 			"<element name='Anchor' a:help='Automatic rotation to follow the slope of terrain'>"
 				"<choice>"
@@ -93,6 +95,9 @@ public:
 			"</element>"
 			"<element name='Floating' a:help='Whether the entity floats on water'>"
 				"<data type='boolean'/>"
+			"</element>"
+			"<element name='TurnRate' a:help='Maximum graphical rotation speed around Y axis, in radians per second'>"
+				"<ref name='positiveDecimal'/>"
 			"</element>";
 	}
 
@@ -109,9 +114,10 @@ public:
 		m_InWorld = false;
 
 		m_YOffset = paramNode.GetChild("Altitude").ToFixed();
+		m_RelativeToGround = true;
 		m_Floating = paramNode.GetChild("Floating").ToBool();
 
-		m_RotYSpeed = 6.f; // TODO: should get from template
+		m_RotYSpeed = paramNode.GetChild("TurnRate").ToFixed().ToFloat();
 
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
 		m_InterpolatedRotY = 0;
@@ -137,6 +143,7 @@ public:
 		serialize.NumberFixed_Unbounded("rot y", m_RotY);
 		serialize.NumberFixed_Unbounded("rot z", m_RotZ);
 		serialize.NumberFixed_Unbounded("altitude", m_YOffset);
+		serialize.Bool("relative", m_RelativeToGround);
 
 		if (serialize.IsDebug())
 		{
@@ -168,6 +175,7 @@ public:
 		deserialize.NumberFixed_Unbounded("rot y", m_RotY);
 		deserialize.NumberFixed_Unbounded("rot z", m_RotZ);
 		deserialize.NumberFixed_Unbounded("altitude", m_YOffset);
+		deserialize.Bool("relative", m_RelativeToGround);
 		// TODO: should there be range checks on all these values?
 
 		m_InterpolatedRotY = m_RotY.ToFloat();
@@ -212,6 +220,7 @@ public:
 	virtual void SetHeightOffset(entity_pos_t dy)
 	{
 		m_YOffset = dy;
+		m_RelativeToGround = true;
 
 		AdvertisePositionChanges();
 	}
@@ -219,6 +228,12 @@ public:
 	virtual entity_pos_t GetHeightOffset()
 	{
 		return m_YOffset;
+	}
+
+	virtual void SetHeightFixed(entity_pos_t y)
+	{
+		m_YOffset = y;
+		m_RelativeToGround = false;
 	}
 
 	virtual bool IsFloating()
@@ -235,15 +250,18 @@ public:
 		}
 
 		entity_pos_t baseY;
-		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
-			baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
-
-		if (m_Floating)
+		if (m_RelativeToGround)
 		{
-			CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
-			if (!cmpWaterMan.null())
-				baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_X, m_Z));
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpTerrain.null())
+				baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
+
+			if (m_Floating)
+			{
+				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
+				if (!cmpWaterMan.null())
+					baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_X, m_Z));
+			}
 		}
 
 		return CFixedVector3D(m_X, baseY + m_YOffset, m_Z);
@@ -327,15 +345,18 @@ public:
 		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
 		float baseY = 0;
-		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
-			baseY = cmpTerrain->GetExactGroundLevel(x, z);
-
-		if (m_Floating || forceFloating)
+		if (m_RelativeToGround)
 		{
-			CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
-			if (!cmpWaterMan.null())
-				baseY = std::max(baseY, cmpWaterMan->GetExactWaterLevel(x, z));
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpTerrain.null())
+				baseY = cmpTerrain->GetExactGroundLevel(x, z);
+
+			if (m_Floating || forceFloating)
+			{
+				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
+				if (!cmpWaterMan.null())
+					baseY = std::max(baseY, cmpWaterMan->GetExactWaterLevel(x, z));
+			}
 		}
 
 		float y = baseY + m_YOffset.ToFloat();

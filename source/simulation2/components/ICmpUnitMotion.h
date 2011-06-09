@@ -68,6 +68,11 @@ public:
 	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z) = 0;
 
 	/**
+	 * Turn to look towards the given point.
+	 */
+	virtual void FaceTowardsPoint(entity_pos_t x, entity_pos_t z) = 0;
+
+	/**
 	 * Stop moving immediately.
 	 */
 	virtual void StopMoving() = 0;

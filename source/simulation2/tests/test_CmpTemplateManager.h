@@ -83,7 +83,7 @@ public:
 		const CParamNode* preview = tempMan->LoadTemplate(ent2, "preview|unit", -1);
 		TS_ASSERT(preview != NULL);
 		TS_ASSERT_WSTR_EQUALS(preview->ToXML(),
-				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
+				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating><TurnRate>6.0</TurnRate></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
 				L"<VisualActor><Actor>example</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 
@@ -97,7 +97,7 @@ public:
 					L"<DisableBlockMovement>false</DisableBlockMovement><DisableBlockPathfinding>false</DisableBlockPathfinding>"
 					L"<Unit radius=\"4\"></Unit>"
 				L"</Obstruction>"
-				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position>"
+				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating><TurnRate>6.0</TurnRate></Position>"
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
 				L"<VisualActor><Actor>example</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 

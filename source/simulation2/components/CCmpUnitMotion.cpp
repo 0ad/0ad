@@ -413,6 +413,8 @@ public:
 	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
 	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z);
 
+	virtual void FaceTowardsPoint(entity_pos_t x, entity_pos_t z);
+
 	virtual void StopMoving()
 	{
 		m_ExpectedPathTicket = 0;
@@ -522,7 +524,7 @@ private:
 	/**
 	 * Rotate to face towards the target point, given the current pos
 	 */
-	void FaceTowardsPoint(CFixedVector2D pos, entity_pos_t x, entity_pos_t z);
+	void FaceTowardsPointFromPos(CFixedVector2D pos, entity_pos_t x, entity_pos_t z);
 
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
@@ -901,7 +903,7 @@ void CCmpUnitMotion::Move(fixed dt)
 
 							StopMoving();
 
-							FaceTowardsPoint(pos, m_FinalGoal.x, m_FinalGoal.z);
+							FaceTowardsPointFromPos(pos, m_FinalGoal.x, m_FinalGoal.z);
 							// TODO: if the goal was a square building, we ought to point towards the
 							// nearest point on the square, not towards its center
 						}
@@ -1033,7 +1035,17 @@ bool CCmpUnitMotion::PathIsShort(const ICmpPathfinder::Path& path, CFixedVector2
 	return true;
 }
 
-void CCmpUnitMotion::FaceTowardsPoint(CFixedVector2D pos, entity_pos_t x, entity_pos_t z)
+void CCmpUnitMotion::FaceTowardsPoint(entity_pos_t x, entity_pos_t z)
+{
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	if (cmpPosition.null() || !cmpPosition->IsInWorld())
+		return;
+
+	CFixedVector2D pos = cmpPosition->GetPosition2D();
+	FaceTowardsPointFromPos(pos, x, z);
+}
+
+void CCmpUnitMotion::FaceTowardsPointFromPos(CFixedVector2D pos, entity_pos_t x, entity_pos_t z)
 {
 	CFixedVector2D target(x, z);
 	CFixedVector2D offset = target - pos;
@@ -1223,7 +1235,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 		else
 		{
 			// We're already in range - no need to move anywhere
-			FaceTowardsPoint(pos, x, z);
+			FaceTowardsPointFromPos(pos, x, z);
 			return false;
 		}
 
@@ -1334,7 +1346,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 		else if (maxRange < entity_pos_t::Zero() || distance < maxRange)
 		{
 			// We're already in range - no need to move anywhere
-			FaceTowardsPoint(pos, goal.x, goal.z);
+			FaceTowardsPointFromPos(pos, goal.x, goal.z);
 			return false;
 		}
 		else
@@ -1356,7 +1368,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 				if (circleDistance < maxRange)
 				{
 					// We're already in range - no need to move anywhere
-					FaceTowardsPoint(pos, goal.x, goal.z);
+					FaceTowardsPointFromPos(pos, goal.x, goal.z);
 					return false;
 				}
 

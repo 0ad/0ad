@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@ DEFINE_INTERFACE_METHOD_2("MoveTo", void, ICmpPosition, MoveTo, entity_pos_t, en
 DEFINE_INTERFACE_METHOD_2("JumpTo", void, ICmpPosition, JumpTo, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_1("SetHeightOffset", void, ICmpPosition, SetHeightOffset, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("GetHeightOffset", entity_pos_t, ICmpPosition, GetHeightOffset)
+DEFINE_INTERFACE_METHOD_1("SetHeightFixed", void, ICmpPosition, SetHeightFixed, entity_pos_t)
 DEFINE_INTERFACE_METHOD_0("IsFloating", bool, ICmpPosition, IsFloating)
 DEFINE_INTERFACE_METHOD_0("GetPosition", CFixedVector3D, ICmpPosition, GetPosition)
 DEFINE_INTERFACE_METHOD_0("GetPosition2D", CFixedVector2D, ICmpPosition, GetPosition2D)

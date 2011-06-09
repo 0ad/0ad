@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>22.2426</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="286.587" y="118.383" z="306.953"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Has some experimental fighter plane prototypes.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "Name": "Flight Demo",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>other/plane</Template>
+			<Player>1</Player>
+			<Position x="255.5323" z="432.06412"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>other/plane</Template>
+			<Player>1</Player>
+			<Position x="249.02817" z="376.23224"/>
+			<Orientation y="0.78148"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>other/plane</Template>
+			<Player>1</Player>
+			<Position x="260.11133" z="362.73414"/>
+			<Orientation y="0.78406"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="286.58732" z="473.2295"/>
+			<Orientation y="3.87739"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="329.10242" z="472.25461"/>
+			<Orientation y="3.87739"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="350.83188" z="451.07892"/>
+			<Orientation y="3.87739"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="371.75095" z="430.37195"/>
+			<Orientation y="3.87739"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="393.06287" z="411.16611"/>
+			<Orientation y="3.87739"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>actor|props/special/eyecandy/campfire.xml</Template>
+			<Position x="244.39686" z="372.50208"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>actor|props/special/eyecandy/campfire.xml</Template>
+			<Position x="253.33204" z="433.11728"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>actor|props/special/eyecandy/campfire.xml</Template>
+			<Position x="255.7816" z="359.73508"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>other/plane</Template>
+			<Player>2</Player>
+			<Position x="449.39594" z="562.37671"/>
+			<Orientation y="-2.58234"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>other/plane</Template>
+			<Player>2</Player>
+			<Position x="461.80188" z="556.27326"/>
+			<Orientation y="-2.58082"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
