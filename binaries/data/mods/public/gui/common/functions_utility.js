@@ -162,6 +162,45 @@ function initPlayerDefaults()
 
 // ====================================================================
 
+// Load map size data
+function initMapSizes()
+{
+	var filename = "simulation/data/map_sizes.json";
+	var sizes = {
+		names: [],
+		tiles: [],
+		default: 0
+	};
+	var rawData = readFile(filename);
+	if (!rawData)
+		error("Failed to read map sizes file: "+filename);
+	
+	try
+	{	// Catch nasty errors from JSON parsing
+		// TODO: Need more info from the parser on why it failed: line number, position, etc!
+		var data = JSON.parse(rawData);
+		if (!data || !data.Sizes)
+			error("Failed to parse map sizes in: "+filename+" (check for valid JSON data)");
+		
+		for (var i = 0; i < data.Sizes.length; ++i)
+		{
+			sizes.names.push(data.Sizes[i].LongName);
+			sizes.tiles.push(data.Sizes[i].Tiles);
+			
+			if (data.Sizes[i].Default)
+				sizes.default = i;
+		}
+	}
+	catch(err)
+	{
+		error(err.toString()+": parsing map sizes in "+filename);
+	}
+	
+	return sizes;
+}
+
+// ====================================================================
+
 // Convert integer color values to string (for use in GUI objects)
 function iColorToString(color)
 {

@@ -25,23 +25,20 @@
   </attachpoints>
 
   <animations>
-
-    <item>attack1     </item>
-    <item>attack2     </item>
-    <item>build       </item>
-    <item>corpse      </item>
-    <item>death       </item>
-    <item>gather_fruit</item>
-    <item>gather_grain</item>
-    <item>gather_wood </item>
-    <item>gather_stone</item>
-    <item>gather_metal</item>
-	<item>gather_ruins</item>
+    <item>idle			</item>
+	<item>walk			</item>
+	<item>run			</item>
+	<item>melee			</item>
+	<item>death			</item>
+	<item>build			</item>
+	<item>gather_fruit	</item>
+	<item>gather_grain	</item>
+	<item>gather_meat	</item>
+	<item>gather_tree	</item>
+	<item>gather_rock	</item>
+	<item>gather_ore	</item>
+	<item>gather_ruins	</item>
 	<item>gather_treasure</item>
-    <item>idle        </item>
-    <item>melee       </item>
-    <item>run         </item>
-    <item>walk        </item>
   </animations>
 
   <playercolours>
@@ -56,14 +53,4 @@
     <colour name="Player 8" rgb="64 64 64" buttontext="255 255 255"/>
   </playercolours>
   
-  <mapsizes>
-	<size name="Tiny" tiles="128"/>
-	<size name="Small" tiles="192"/>
-	<size name="Medium" tiles="256"/>
-	<size name="Normal" tiles="320"/>
-	<size name="Large" tiles="384"/>
-	<size name="Very Large" tiles="448"/>
-	<size name="Giant" tiles="512"/>
-  </mapsizes>
-
 </lists>

@@ -1,0 +1,41 @@
+{
+	"Sizes":
+	[
+		{
+			"Name": "Tiny",
+			"LongName": "Tiny (2 player)",
+			"Tiles": 128
+		},
+		{
+			"Name": "Small",
+			"LongName": "Small (3 player)",
+			"Tiles": 192
+		},
+		{
+			"Name": "Medium",
+			"LongName": "Medium (4 player)",
+			"Tiles": 256,
+			"Default": true
+		},
+		{
+			"Name": "Normal",
+			"LongName": "Normal (6 player)",
+			"Tiles": 320
+		},
+		{
+			"Name": "Large",
+			"LongName": "Large (8 player)",
+			"Tiles": 384
+		},
+		{
+			"Name": "Very Large",
+			"LongName": "Very Large",
+			"Tiles": 448
+		},
+		{
+			"Name": "Giant",
+			"LongName": "Giant",
+			"Tiles": 512
+		}
+	]
+}

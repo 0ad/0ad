@@ -1,10 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
-// TODO: Move these into common location (other scripts may need)
-const MAP_SIZES_TEXT = ["Tiny (2 player)", "Small (3 player)", "Medium (4 player)", "Normal (6 player)", "Large (8 player)", "Very Large", "Giant"];
-const MAP_SIZES_DATA = [128, 192, 256, 320, 384, 448, 512];
-const MAP_SIZES_DEFAULTIDX = 2;
-
+// TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 const VICTORY_TEXT = ["Conquest", "None"];
 const VICTORY_DATA = ["conquest", "endless"];
 const VICTORY_DEFAULTIDX = 0;
@@ -31,6 +27,8 @@ var g_DefaultPlayerData = [];
 var g_GameAttributes = {
 	settings: {}
 };
+
+var g_MapSizes = {};
 
 var g_AIs = [];
 
@@ -84,6 +82,8 @@ function initMain()
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
+	
+	g_MapSizes = initMapSizes();
 
 	// Init civs
 	initCivNameList();
@@ -138,13 +138,13 @@ function initMain()
 		victoryConditions.selected = VICTORY_DEFAULTIDX;
 		
 		var mapSize = getGUIObjectByName("mapSize");
-		mapSize.list = MAP_SIZES_TEXT;
-		mapSize.list_data = MAP_SIZES_DATA;
+		mapSize.list = g_MapSizes.names;
+		mapSize.list_data = g_MapSizes.tiles;
 		mapSize.onSelectionChange = function()
 		{	// Update attributes so other players can see change
 			if (this.selected != -1)
 			{
-				g_GameAttributes.settings.Size = MAP_SIZES_DATA[this.selected];
+				g_GameAttributes.settings.Size = g_MapSizes.tiles[this.selected];
 			}
 			
 			if (!g_IsInGuiUpdate)
@@ -768,7 +768,7 @@ function onGameAttributesChange()
 	var mapSizeText = getGUIObjectByName("mapSizeText");
 	var numPlayersBox = getGUIObjectByName("numPlayersBox");
 
-	var sizeIdx = (MAP_SIZES_DATA.indexOf(mapSettings.Size) != -1 ? MAP_SIZES_DATA.indexOf(mapSettings.Size) : MAP_SIZES_DEFAULTIDX);
+	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes.default);
 	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	
 	// Handle map type specific logic
@@ -796,7 +796,7 @@ function onGameAttributesChange()
 		}
 		else
 		{	// Client
-			mapSizeText.caption = "Map size: " + MAP_SIZES_TEXT[sizeIdx];
+			mapSizeText.caption = "Map size: " + g_MapSizes.names[sizeIdx];
 			revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
 			victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
 			lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? "Yes" : "No");
