@@ -266,7 +266,7 @@ AtObj MapSettings::UpdateSettingsObject()
 
 	m_MapSettings.setBool("RevealMap", wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->GetValue());
 
-	m_MapSettings.set("MapType", wxDynamicCast(FindWindow(ID_MapType), wxChoice)->GetStringSelection());
+	m_MapSettings.set("GameType", wxDynamicCast(FindWindow(ID_MapType), wxChoice)->GetStringSelection());
 
 	AtIter oldPlayer = m_MapSettings["PlayerData"]["item"];
 	AtObj players;
