@@ -229,6 +229,16 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 	
+	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+	if (cmpUnitAI)
+	{
+		ret.unitAI = {
+			// TODO: reading properties directly is kind of violating abstraction
+			"state": cmpUnitAI.fsmStateName,
+			"orders": cmpUnitAI.orderQueue,
+		};
+	}
+
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player);
 

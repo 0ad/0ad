@@ -270,7 +270,9 @@ function updateDebug(simState)
 		return;
 	}
 
-	var text = uneval(simState);
+	var conciseSimState = deepcopy(simState);
+	conciseSimState.players = "<<<omitted>>>";
+	var text = "simulation: " + uneval(conciseSimState);
 	
 	var selection = g_Selection.toList();
 	if (selection.length)
@@ -279,7 +281,10 @@ function updateDebug(simState)
 		if (entState)
 		{
 			var template = GetTemplateData(entState.template);
-			text += "\n\n" + uneval(entState) + "\n\n" + uneval(template);
+			text += "\n\nentity: {\n";
+			for (var k in entState)
+				text += "  "+k+":"+uneval(entState[k])+"\n";
+			text += "}\n\ntemplate: " + uneval(template);
 		}
 	}
 
