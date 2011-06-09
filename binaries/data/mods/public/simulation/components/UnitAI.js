@@ -1088,15 +1088,14 @@ var UnitFsmSpec = {
 			if (this.template.NaturalBehaviour == "skittish" ||
 			    this.template.NaturalBehaviour == "passive")
 			{
-				this.MoveToTargetRangeExplicit(msg.data.attacker, +this.template.FleeDistance, +this.template.FleeDistance);
-				this.Flee(msg.data.attacker);
+				this.Flee(msg.data.attacker, false);
 			}
 			else if (this.template.NaturalBehaviour == "violent" ||
 			         this.template.NaturalBehaviour == "aggressive" ||
 			         this.template.NaturalBehaviour == "defensive")
 			{
 				if (this.CanAttack(msg.data.attacker))
-					this.ReplaceOrder("Attack", { "target": msg.data.attacker });
+					this.Attack(msg.data.attacker, false);
 			}
 		},
 
@@ -1158,8 +1157,7 @@ var UnitFsmSpec = {
 				{
 					if (msg.data.added.length > 0)
 					{
-						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
-						this.Flee(msg.data.added[0]);
+						this.Flee(msg.data.added[0], false);
 						return;
 					}
 				}
@@ -1203,8 +1201,7 @@ var UnitFsmSpec = {
 				{
 					if (msg.data.added.length > 0)
 					{
-						this.MoveToTargetRangeExplicit(msg.data.added[0], +this.template.FleeDistance, +this.template.FleeDistance);
-						this.Flee(msg.data.added[0]);
+						this.Flee(msg.data.added[0], false);
 						return;
 					}
 				}
