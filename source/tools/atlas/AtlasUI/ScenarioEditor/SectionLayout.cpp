@@ -31,6 +31,7 @@
 #include "Sections/Cinematic/Cinematic.h"
 #include "Sections/Map/Map.h"
 #include "Sections/Object/Object.h"
+#include "Sections/Player/Player.h"
 #include "Sections/Terrain/Terrain.h"
 #include "Sections/Trigger/Trigger.h"
 
@@ -288,6 +289,7 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 		m_PageMappings.insert(std::make_pair(L###classname, (int)m_SidebarBook->GetPageCount()-1));
 	
 	ADD_SIDEBAR(MapSidebar,             _T("map.png"),         _("Map"));
+	ADD_SIDEBAR(PlayerSidebar,          _T("player.png"),      _("Player"));
 	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));

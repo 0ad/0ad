@@ -139,10 +139,30 @@ QUERYHANDLER(GetMapSettings)
 	msg->settings = g_Game->GetSimulation2()->GetMapSettingsString();
 }
 
-MESSAGEHANDLER(SetMapSettings)
+QUERYHANDLER(GetMapSizes)
 {
-	g_Game->GetSimulation2()->SetMapSettings(*msg->settings);
+	msg->sizes = g_Game->GetSimulation2()->GetMapSizes();
 }
+
+BEGIN_COMMAND(SetMapSettings)
+{
+	void Do()
+	{
+		Redo();
+	}
+
+	void Undo()
+	{
+		// TODO
+		debug_warn(L"Can't undo SetMapSettings");
+	}
+
+	void Redo()
+	{
+		g_Game->GetSimulation2()->SetMapSettings(*msg->settings);
+	}
+};
+END_COMMAND(SetMapSettings)
 
 QUERYHANDLER(GetRMSData)
 {

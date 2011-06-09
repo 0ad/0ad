@@ -592,8 +592,16 @@ std::vector<std::string> CSimulation2::GetCivData()
 
 std::string CSimulation2::GetPlayerDefaults()
 {
-	VfsPath path = VfsPath(L"simulation/data/player_defaults.json");
+	return ReadJSON(L"simulation/data/player_defaults.json");
+}
 
+std::string CSimulation2::GetMapSizes()
+{
+	return ReadJSON(L"simulation/data/map_sizes.json");
+}
+
+std::string CSimulation2::ReadJSON(VfsPath path)
+{
 	std::string data;
 
 	if (!VfsFileExists(path))

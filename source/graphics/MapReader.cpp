@@ -848,6 +848,9 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
 	XMBElementList entities = parent.GetChildNodes();
 
+	CSimulation2& sim = *m_MapReader.pSimulation2;
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim.GetSimContext(), SYSTEM_ENTITY);
+
 	while (entity_idx < entities.Count)
 	{
 		// all new state at this scope and below doesn't need to be
@@ -903,12 +906,15 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				debug_warn(L"Invalid map XML data");
 		}
 
-		CSimulation2& sim = *m_MapReader.pSimulation2;
 		entity_id_t ent = sim.AddEntity(TemplateName, EntityUid);
 		if (ent == INVALID_ENTITY)
-			LOGERROR(L"Failed to load entity template '%ls'", TemplateName.c_str());
-		else
 		{
+			LOGERROR(L"Failed to load entity template '%ls'", TemplateName.c_str());
+		}
+		else if (cmpPlayerManager->GetPlayerByID(PlayerID) != INVALID_ENTITY)
+		{	// Don't add entities with invalid player IDs
+			// TODO: Is a warning OK or should it just silently fail?
+
 			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 			if (!cmpPosition.null())
 			{

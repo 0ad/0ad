@@ -226,8 +226,18 @@ public:
 	 */
 	std::string GetPlayerDefaults();
 
+	/**
+	 * Get map sizes data
+	 *
+	 * @return string containing JSON format data
+	 */
+	std::string GetMapSizes();
+
 private:
 	CSimulation2Impl* m;
+
+	// Helper for reading JSON files
+	std::string ReadJSON(VfsPath path);
 
 	NONCOPYABLE(CSimulation2);
 };

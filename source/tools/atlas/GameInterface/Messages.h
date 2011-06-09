@@ -152,7 +152,12 @@ QUERY(GetMapSettings,
 		((std::string, settings))
 		);
 
-MESSAGE(SetMapSettings,
+QUERY(GetMapSizes,
+		,
+		((std::string, sizes))
+		);
+
+COMMAND(SetMapSettings, NOMERGE,
 		((std::string, settings))
 		);
 

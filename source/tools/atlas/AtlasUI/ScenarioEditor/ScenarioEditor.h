@@ -64,6 +64,7 @@ public:
 
 	ScriptInterface& GetScriptInterface() const { return m_ScriptInterface; }
 	Observable<ObjectSettings>& GetObjectSettings() { return m_ObjectSettings; }
+	Observable<AtObj>& GetMapSettings() { return m_MapSettings; }
 
 	ToolManager& GetToolManager() { return m_ToolManager; }
 
@@ -77,6 +78,7 @@ private:
 	SectionLayout m_SectionLayout;
 
 	Observable<ObjectSettings> m_ObjectSettings;
+	Observable<AtObj> m_MapSettings;
 
 	void SetOpenFilename(const wxString& filename);
 	wxString m_OpenFilename;

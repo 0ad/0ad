@@ -823,6 +823,7 @@ function setup_atlas_packages()
 		"ScenarioEditor/Sections/Environment",
 		"ScenarioEditor/Sections/Map",
 		"ScenarioEditor/Sections/Object",
+		"ScenarioEditor/Sections/Player",
 		"ScenarioEditor/Sections/Terrain",
 		"ScenarioEditor/Sections/Trigger",
 		"ScenarioEditor/Tools",
