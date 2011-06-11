@@ -248,7 +248,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			style="fancyTextHeadGold"
 			type="text"
 			ghost="true"
-			size="43% 24% 43%+282 24%+25"
+			size="43% 24% 43%+300 24%+25"
 		>
 			<action on="Load"><![CDATA[
 				this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
