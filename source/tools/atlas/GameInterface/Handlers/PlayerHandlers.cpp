@@ -35,4 +35,9 @@ QUERYHANDLER(GetPlayerDefaults)
 	msg->defaults = g_Game->GetSimulation2()->GetPlayerDefaults();
 }
 
+QUERYHANDLER(GetAIData)
+{
+	msg->data = g_Game->GetSimulation2()->GetAIData();
+}
+
 }

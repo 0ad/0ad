@@ -17,8 +17,13 @@
 
 #include "../Common/Sidebar.h"
 
+#include "GameInterface/Messages.h"
+
 #include "wx/collpane.h"
 
+using namespace AtlasMessage;
+
+class PlayerNotebookPage;
 class PlayerSettingsControl;
 
 class PlayerSidebar : public Sidebar
@@ -40,3 +45,50 @@ private:
 
 	DECLARE_EVENT_TABLE();
 };
+
+// Controls present on each player page
+struct PlayerPageControls
+{
+	PlayerNotebookPage* page;
+
+	wxTextCtrl* name;
+	wxChoice* civ;
+	wxButton* colour;
+	wxSpinCtrl* food;
+	wxSpinCtrl* wood;
+	wxSpinCtrl* stone;
+	wxSpinCtrl* metal;
+	wxSpinCtrl* pop;
+	wxChoice* team;
+	wxChoice* ai;
+};
+
+// Definitions for keeping AI data sorted
+class AIData
+{
+public:
+	AIData(const wxString& id, const wxString& name)
+		: m_ID(id), m_Name(name)
+	{
+	}
+	
+	wxString& GetID()
+	{
+		return m_ID;
+	}
+
+	wxString& GetName()
+	{
+		return m_Name;
+	}
+
+	static int CompareAIData(AIData* ai1, AIData* ai2)
+	{
+		return ai1->m_Name.Cmp(ai2->m_Name);
+	}
+
+private:
+	wxString m_ID;
+	wxString m_Name;
+};
+WX_DEFINE_SORTED_ARRAY(AIData*, ArrayOfAIData);

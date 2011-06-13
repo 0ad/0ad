@@ -448,15 +448,9 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 	wxChoice* sizeChoice = wxDynamicCast(FindWindow(ID_RandomSize), wxChoice);
 	wxString size;
 	size << (intptr_t)sizeChoice->GetClientData(sizeChoice->GetSelection());
-	AtObj sizeObj;
-	sizeObj.setString(size);
-	sizeObj.set("@number", L"");
-	settings.set("Size", sizeObj);
+	settings.setInt("Size", wxAtoi(size));
 
-	AtObj seedObj;
-	seedObj.setString(wxDynamicCast(FindWindow(ID_RandomSeed), wxTextCtrl)->GetValue());
-	seedObj.set("@number", L"");
-	settings.set("Seed", seedObj);
+	settings.setInt("Seed", wxAtoi(wxDynamicCast(FindWindow(ID_RandomSeed), wxTextCtrl)->GetValue()));
 
 	std::string json = AtlasObject::SaveToJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), settings);
 

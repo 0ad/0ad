@@ -25,6 +25,7 @@ Player.prototype.Init = function()
 	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including self)
 	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
 	this.phase = "village";
+	this.startCam = undefined;
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -224,6 +225,21 @@ Player.prototype.SetPhase = function(p)
 {
 	this.phase = p;
 };
+
+Player.prototype.GetStartingCamera = function()
+{
+	return this.startCam;
+}
+
+Player.prototype.SetStartingCamera = function(pos)
+{
+	this.startCam = pos;
+}
+
+Player.prototype.HasStartingCamera = function()
+{
+	return (this.startCam !== undefined);
+}
 
 /**
  * Keep track of population effects of all entities that

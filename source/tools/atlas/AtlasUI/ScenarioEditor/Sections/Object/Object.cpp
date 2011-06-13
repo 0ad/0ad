@@ -34,6 +34,7 @@
 enum
 {
 	ID_ObjectType = 1,
+	ID_ObjectFilter,
 	ID_PlayerSelect,
 	ID_SelectObject,
 	ID_ToggleViewer,
@@ -110,6 +111,12 @@ struct ObjectSidebarImpl
 ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
 : Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), p(new ObjectSidebarImpl())
 {
+	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+	sizer->Add(new wxStaticText(this, wxID_ANY, _("Filter")), wxSizerFlags().Align(wxALIGN_CENTER));
+	wxTextCtrl* objectFilter = new wxTextCtrl(this, ID_ObjectFilter);
+	sizer->Add(objectFilter, wxSizerFlags().Expand().Proportion(1));
+	m_MainSizer->Add(sizer, wxSizerFlags().Expand());
+
 	wxArrayString strings;
 	strings.Add(_("Entities"));
 	strings.Add(_("Actors (all)"));
@@ -158,20 +165,27 @@ void ObjectSidebar::OnFirstDisplay()
 	qry.Post();
 	p->m_Objects = *qry.objects;
 	// Display first group of objects
-	SetObjectFilter(0);
+	FilterObjects();
 }
 
-void ObjectSidebar::SetObjectFilter(int type)
+void ObjectSidebar::FilterObjects()
 {
+	int filterType = wxDynamicCast(FindWindow(ID_ObjectType), wxChoice)->GetSelection();
+	wxString filterName = wxDynamicCast(FindWindow(ID_ObjectFilter), wxTextCtrl)->GetValue();
+
 	p->m_ObjectListBox->Freeze();
 	p->m_ObjectListBox->Clear();
 	for (std::vector<AtlasMessage::sObjectsListItem>::iterator it = p->m_Objects.begin(); it != p->m_Objects.end(); ++it)
 	{
-		if (it->type == type)
+		if (it->type == filterType)
 		{
 			wxString id = it->id.c_str();
 			wxString name = it->name.c_str();
-			p->m_ObjectListBox->Append(name, new wxStringClientData(id));
+
+			if (name.Lower().Find(filterName.Lower()) != wxNOT_FOUND)
+			{
+				p->m_ObjectListBox->Append(name, new wxStringClientData(id));
+			}
 		}
 	}
 	p->m_ObjectListBox->Thaw();
@@ -185,10 +199,9 @@ void ObjectSidebar::ToggleViewer(wxCommandEvent& WXUNUSED(evt))
 		m_ScenarioEditor.GetToolManager().SetCurrentTool(_T("ActorViewerTool"), NULL);
 }
 
-void ObjectSidebar::OnSelectType(wxCommandEvent& evt)
+void ObjectSidebar::OnSelectType(wxCommandEvent& WXUNUSED(evt))
 {
-	// Switch between displayed lists of objects (e.g. entities vs actors)
-	SetObjectFilter(evt.GetSelection());
+	FilterObjects();
 }
 
 void ObjectSidebar::OnSelectObject(wxCommandEvent& evt)
@@ -213,8 +226,14 @@ void ObjectSidebar::OnSelectObject(wxCommandEvent& evt)
 	}
 }
 
+void ObjectSidebar::OnSelectFilter(wxCommandEvent& WXUNUSED(evt))
+{
+	FilterObjects();
+}
+
 BEGIN_EVENT_TABLE(ObjectSidebar, Sidebar)
 	EVT_CHOICE(ID_ObjectType, ObjectSidebar::OnSelectType)
+	EVT_TEXT(ID_ObjectFilter, ObjectSidebar::OnSelectFilter)
 	EVT_LISTBOX(ID_SelectObject, ObjectSidebar::OnSelectObject)
 	EVT_BUTTON(ID_ToggleViewer, ObjectSidebar::ToggleViewer)
 END_EVENT_TABLE();
@@ -256,7 +275,7 @@ private:
 		// Adjust displayed number of players
 		Clear();
 		size_t numPlayers = settings["PlayerData"]["item"].count();
-		for (size_t i = 0; i <= numPlayers; ++i)
+		for (size_t i = 0; i <= numPlayers && i < m_Players.Count(); ++i)
 		{
 			Append(m_Players[i]);
 		}

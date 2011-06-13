@@ -183,6 +183,11 @@ QUERY(GetPlayerDefaults,
 		((std::string, defaults))
 		);
 
+QUERY(GetAIData,
+		,
+		((std::string, data))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
 MESSAGE(RenderStyle,
@@ -361,6 +366,15 @@ MESSAGE(LookAt,
 		);
 
 MESSAGE(CameraReset, );
+
+QUERY(GetView,
+		,
+		((sCameraInfo, info))
+		);
+
+MESSAGE(SetView,
+		((sCameraInfo, info))
+		);
 
 //////////////////////////////////////////////////////////////////////////
 

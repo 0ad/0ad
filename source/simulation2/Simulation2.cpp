@@ -625,3 +625,16 @@ std::string CSimulation2::ReadJSON(VfsPath path)
 
 	return data;
 }
+
+std::string CSimulation2::GetAIData()
+{
+	ScriptInterface& scriptInterface = GetScriptInterface();
+	std::vector<CScriptValRooted> aiData = ICmpAIManager::GetAIs(scriptInterface);
+	
+	// Build single JSON string with array of AI data
+	CScriptValRooted ais;
+	if (!scriptInterface.Eval("({})", ais) || !scriptInterface.SetProperty(ais.get(), "AIData", aiData))
+		return std::string();
+	
+	return scriptInterface.StringifyJSON(ais.get());
+}

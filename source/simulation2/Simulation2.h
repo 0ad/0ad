@@ -233,6 +233,13 @@ public:
 	 */
 	std::string GetMapSizes();
 
+	/**
+	 * Get AI data
+	 *
+	 * @return string containing JSON format data
+	 */
+	std::string GetAIData();
+
 private:
 	CSimulation2Impl* m;
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -168,6 +168,19 @@ void AtObj::setBool(const char* key, bool value)
 {
 	AtNode* o = new AtNode(value ? L"true" : L"false");
 	o->children.insert(AtNode::child_pairtype("@boolean", AtNode::Ptr(new AtNode())));
+
+	if (!p)
+		p = new AtNode();
+
+	p = p->setChild(key, AtNode::Ptr(o));
+}
+
+void AtObj::setDouble(const char* key, double value)
+{
+	std::wstringstream str;
+	str << value;
+	AtNode* o = new AtNode(str.str().c_str());
+	o->children.insert(AtNode::child_pairtype("@number", AtNode::Ptr(new AtNode())));
 
 	if (!p)
 		p = new AtNode();

@@ -74,8 +74,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	pTrigMan = pTrigMan_;
 	pSimulation2 = pSimulation2_;
 	m_PlayerID = playerID_;
-
-	m_CameraStartupTarget = INVALID_ENTITY;
+	m_StartingCameraTarget = INVALID_ENTITY;
 
 	filename_xml = pathname.ChangeExtension(L".xml");
 
@@ -146,8 +145,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& 
 	pTrigMan = pTrigMan_;
 	pSimulation2 = pSimulation2_;
 	m_PlayerID = playerID_;
-
-	m_CameraStartupTarget = INVALID_ENTITY;
+	m_StartingCameraTarget = INVALID_ENTITY;
 
 	// delete all existing entities
 	if (pSimulation2)
@@ -284,13 +282,24 @@ int CMapReader::ApplyData()
 	if (pLightEnv)
 		*pLightEnv = m_LightEnv;
 
-	if (pGameView)
-	{
-		pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*pSimulation2, SYSTEM_ENTITY);
 
-		if (m_CameraStartupTarget != INVALID_ENTITY)
+	if (pGameView && !cmpPlayerManager.null())
+	{
+		// Default to global camera (with constraints)
+		pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
+		
+		CmpPtr<ICmpPlayer> cmpPlayer(*pSimulation2, cmpPlayerManager->GetPlayerByID(m_PlayerID));
+		if (!cmpPlayer.null() && cmpPlayer->HasStartingCamera())
 		{
-			CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_CameraStartupTarget);
+			// Use player starting camera
+			CFixedVector3D pos = cmpPlayer->GetStartingCamera();
+			pGameView->ResetCameraTarget(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
+		}
+		else if (m_StartingCameraTarget != INVALID_ENTITY)
+		{
+			// Point camera at entity
+			CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_StartingCameraTarget);
 			if (!cmpPosition.null())
 			{
 				CFixedVector3D pos = cmpPosition->GetPosition();
@@ -678,6 +687,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 
 void CXMLReader::ReadCamera(XMBElement parent)
 {
+	// defaults if we don't find player starting camera
 #define EL(x) int el_##x = xmb_file.GetElementID(#x)
 #define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
 	EL(declination);
@@ -849,7 +859,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 	XMBElementList entities = parent.GetChildNodes();
 
 	CSimulation2& sim = *m_MapReader.pSimulation2;
-	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim.GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
 
 	while (entity_idx < entities.Count)
 	{
@@ -907,14 +917,13 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		}
 
 		entity_id_t ent = sim.AddEntity(TemplateName, EntityUid);
-		if (ent == INVALID_ENTITY)
-		{
+		entity_id_t player = cmpPlayerManager->GetPlayerByID(PlayerID);
+		if (ent == INVALID_ENTITY || player == INVALID_ENTITY)
+		{	// Don't add entities with invalid player IDs
 			LOGERROR(L"Failed to load entity template '%ls'", TemplateName.c_str());
 		}
-		else if (cmpPlayerManager->GetPlayerByID(PlayerID) != INVALID_ENTITY)
-		{	// Don't add entities with invalid player IDs
-			// TODO: Is a warning OK or should it just silently fail?
-
+		else
+		{
 			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 			if (!cmpPosition.null())
 			{
@@ -927,13 +936,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			if (!cmpOwner.null())
 				cmpOwner->SetOwner(PlayerID);
 
-			if (boost::algorithm::ends_with(TemplateName, L"civil_centre"))
+			if (PlayerID == m_MapReader.m_PlayerID && (boost::algorithm::ends_with(TemplateName, L"civil_centre") || m_MapReader.m_StartingCameraTarget == INVALID_ENTITY))
 			{
-				// HACK: we special-case civil centre files to initialise the camera.
-				// This ought to be based on a more generic mechanism for indicating
-				// per-player camera start locations.
-				if (m_MapReader.m_CameraStartupTarget == INVALID_ENTITY && PlayerID == m_MapReader.m_PlayerID && !cmpPosition.null())
-					m_MapReader.m_CameraStartupTarget = ent;
+				// Focus on civil centre or first entity owned by player
+				m_MapReader.m_StartingCameraTarget = ent;
 			}
 		}
 
@@ -1201,6 +1207,9 @@ int CMapReader::ParseEntities()
 	if (!pSimulation2->GetScriptInterface().GetProperty(m_MapData.get(), "entities", entities))
 		LOGWARNING(L"CMapReader::ParseEntities() failed to get 'entities' property");
 
+	CSimulation2& sim = *pSimulation2;
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
+
 	size_t entity_idx = 0;
 	size_t num_entities = entities.size();
 	
@@ -1212,33 +1221,33 @@ int CMapReader::ParseEntities()
 		currEnt = entities[entity_idx];
 
 		entity_id_t ent = pSimulation2->AddEntity(currEnt.templateName, currEnt.entityID);
-		// Check that entity was added
-		if (ent == INVALID_ENTITY)
-		{
+		entity_id_t player = cmpPlayerManager->GetPlayerByID(currEnt.playerID);
+		if (ent == INVALID_ENTITY || player == INVALID_ENTITY)
+		{	// Don't add entities with invalid player IDs
 			LOGERROR(L"Failed to load entity template '%ls'", currEnt.templateName.c_str());
 		}
 		else
 		{
-			CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, ent);
+			CFixedVector3D Position;
+			Position.X = fixed::FromFloat(currEnt.positionX);
+			Position.Z = fixed::FromFloat(currEnt.positionZ);
+
+			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 			if (!cmpPosition.null())
 			{
-				cmpPosition->JumpTo(entity_pos_t::FromFloat(currEnt.positionX), entity_pos_t::FromFloat(currEnt.positionZ));
+				cmpPosition->JumpTo(Position.X, Position.Z);
 				cmpPosition->SetYRotation(entity_angle_t::FromFloat(currEnt.orientationY));
 				// TODO: other parts of the position
 			}
 
-			CmpPtr<ICmpOwnership> cmpOwner(*pSimulation2, ent);
+			CmpPtr<ICmpOwnership> cmpOwner(sim, ent);
 			if (!cmpOwner.null())
 				cmpOwner->SetOwner(currEnt.playerID);
 
-			if (boost::algorithm::ends_with(currEnt.templateName, L"civil_centre"))
+			if (currEnt.playerID == m_PlayerID && (boost::algorithm::ends_with(currEnt.templateName, L"civil_centre") || m_StartingCameraTarget == INVALID_ENTITY))
 			{
-				// HACK: we special-case civil centre files to initialise the camera.
-				// This ought to be based on a more generic mechanism for indicating
-				// per-player camera start locations.
-				if (m_CameraStartupTarget == INVALID_ENTITY && currEnt.playerID == m_PlayerID && !cmpPosition.null())
-					m_CameraStartupTarget = ent;
-
+				// Focus on civil centre or first entity owned by player
+				m_StartingCameraTarget = currEnt.entityID;
 			}
 		}
 
@@ -1327,7 +1336,7 @@ int CMapReader::ParseEnvironment()
 int CMapReader::ParseCamera()
 {
 	// parse camera settings from map data
-	// defaults if we don't find camera
+	// defaults if we don't find player starting camera
 	float declination = DEGTORAD(30.f), rotation = DEGTORAD(-45.f);
 	CVector3D translation = CVector3D(100, 150, -100);
 

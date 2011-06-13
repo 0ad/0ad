@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "ICmpPlayer.h"
 
+#include "maths/FixedVector3D.h"
 #include "simulation2/system/InterfaceScripted.h"
 #include "simulation2/scripting/ScriptComponent.h"
 
@@ -50,6 +51,16 @@ public:
 	virtual CColor GetColour()
 	{
 		return m_Script.Call<CColor>("GetColour");
+	}
+
+	virtual CFixedVector3D GetStartingCamera()
+	{
+		return m_Script.Call<CFixedVector3D>("GetStartingCamera");
+	}
+
+	virtual bool HasStartingCamera()
+	{
+		return m_Script.Call<bool>("HasStartingCamera");
 	}
 };
 

@@ -25,7 +25,7 @@ class ObjectSidebar : public Sidebar
 public:
 	ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 	~ObjectSidebar();
-	void SetObjectFilter(int type);
+	void FilterObjects();
 
 protected:
 	virtual void OnFirstDisplay();
@@ -35,6 +35,7 @@ private:
 
 	void ToggleViewer(wxCommandEvent& evt);
 	void OnSelectType(wxCommandEvent& evt);
+	void OnSelectFilter(wxCommandEvent& evt);
 	void OnSelectObject(wxCommandEvent& evt);
 
 	ObjectSidebarImpl* p;

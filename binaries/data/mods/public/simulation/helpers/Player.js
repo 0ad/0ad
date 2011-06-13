@@ -128,6 +128,11 @@ function LoadPlayerSettings(settings)
 			{	//Set default
 				player.SetDiplomacy(diplomacy);
 			}
+			
+			if (getSetting(pData, pDefs, "StartingCamera") !== undefined)
+			{
+				player.SetStartingCamera(getSetting(pData, pDefs, "StartingCamera"));
+			}
 		}
 		else
 		{	// Copy gaia data from defaults

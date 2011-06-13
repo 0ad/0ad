@@ -137,7 +137,8 @@ private:
 	VfsPath filename_xml;
 	bool only_xml;
 	u32 file_format_version;
-	entity_id_t m_CameraStartupTarget;
+	entity_id_t m_StartingCameraTarget;
+	CVector3D m_StartingCamera;
 
 	// UnpackTerrain generator state
 	size_t cur_terrain_tex;

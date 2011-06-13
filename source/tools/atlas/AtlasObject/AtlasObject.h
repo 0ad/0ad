@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -153,6 +153,7 @@ public:
 	void set(const char* key, const wchar_t* value);
 	void set(const char* key, AtObj& data);
 	void setBool(const char* key, bool value);
+	void setDouble(const char* key, double value);
 	void setInt(const char* key, int value);
 	void setString(const wchar_t* value);
 	void addOverlay(AtObj& data);

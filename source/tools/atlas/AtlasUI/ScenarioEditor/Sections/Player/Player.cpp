@@ -21,7 +21,6 @@
 
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasScript/ScriptInterface.h"
-#include "GameInterface/Messages.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 
 #include "wx/choicebk.h"
@@ -34,21 +33,12 @@ enum
 	ID_PlayerMetal,
 	ID_PlayerStone,
 	ID_PlayerPop,
-	ID_PlayerColour
-};
-
-// Controls present on each player page
-struct PlayerPageControls
-{
-	wxTextCtrl* name;
-	wxChoice* civ;
-	wxButton* colour;
-	wxSpinCtrl* food;
-	wxSpinCtrl* wood;
-	wxSpinCtrl* stone;
-	wxSpinCtrl* metal;
-	wxSpinCtrl* pop;
-	wxChoice* team;
+	ID_PlayerColour,
+	ID_PlayerHuman,
+	ID_PlayerAI,
+	ID_CameraSet,
+	ID_CameraView,
+	ID_CameraClear
 };
 
 // TODO: Some of these helper things should be moved out of this file
@@ -70,6 +60,8 @@ public:
 	PlayerNotebookPage(ScenarioEditor& scenarioEditor, wxWindow* parent, const wxString& name, size_t playerID)
 		: wxPanel(parent, wxID_ANY), m_ScenarioEditor(scenarioEditor), m_Name(name), m_PlayerID(playerID)
 	{
+
+		m_Controls.page = this;
 
 		Freeze();
 
@@ -93,6 +85,10 @@ public:
 		wxButton* colourButton = new wxButton(this, ID_PlayerColour);
 		gridSizer->Add(Tooltipped(colourButton, _("Set player colour")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 		m_Controls.colour = colourButton;
+		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Default AI")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+		wxChoice* aiChoice = new wxChoice(this, wxID_ANY);
+		gridSizer->Add(Tooltipped(aiChoice, _("Select default AI")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+		m_Controls.ai = aiChoice;
 
 		playerInfoSizer->Add(gridSizer, wxSizerFlags(1).Expand());
 		sizer->Add(playerInfoSizer, wxSizerFlags().Expand());
@@ -142,13 +138,26 @@ public:
 		diplomacySizer->Add(boxSizer, wxSizerFlags(1).Expand());
 
 		// TODO: possibly have advanced panel where each player's diplomacy can be set?
-
 		// Advanced panel
 		/*wxCollapsiblePane* advPane = new wxCollapsiblePane(this, wxID_ANY, _("Advanced"));
 		wxWindow* pane = advPane->GetPane();
 		diplomacySizer->Add(advPane, 0, wxGROW | wxALL, 2);*/
 
 		sizer->Add(diplomacySizer, wxSizerFlags().Expand());
+
+		/////////////////////////////////////////////////////////////////////////
+		// Camera
+		wxStaticBoxSizer* cameraSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Starting Camera"));
+		wxButton* cameraSet = new wxButton(this, ID_CameraSet, _("Set"));
+		cameraSizer->Add(Tooltipped(cameraSet, _("Set player camera to this view")), wxSizerFlags(1));
+		wxButton* cameraView = new wxButton(this, ID_CameraView, _("View"));
+		cameraView->Enable(false);
+		cameraSizer->Add(Tooltipped(cameraView, _("View the player camera")), wxSizerFlags(1));
+		wxButton* cameraClear = new wxButton(this, ID_CameraClear, _("Clear"));
+		cameraClear->Enable(false);
+		cameraSizer->Add(Tooltipped(cameraClear, _("Clear player camera")), wxSizerFlags(1));
+
+		sizer->Add(cameraSizer, wxSizerFlags().Expand());
 
 		Layout();
 		Thaw();
@@ -174,6 +183,26 @@ public:
 		return m_PlayerID;
 	}
 
+	bool IsCameraDefined()
+	{
+		return m_CameraDefined;
+	}
+
+	sCameraInfo GetCamera()
+	{
+		return m_Camera;
+	}
+
+	void SetCamera(sCameraInfo info, bool isDefined = true)
+	{
+		m_Camera = info;
+		m_CameraDefined = isDefined;
+
+		// Enable/disable controls
+		wxDynamicCast(FindWindow(ID_CameraView), wxButton)->Enable(isDefined);
+		wxDynamicCast(FindWindow(ID_CameraClear), wxButton)->Enable(isDefined);
+	}
+
 private:
 	void OnColour(wxCommandEvent& evt)
 	{
@@ -193,10 +222,35 @@ private:
 		}
 	}
 
-	ScenarioEditor& m_ScenarioEditor;
+	void OnCameraSet(wxCommandEvent& evt)
+	{
+		AtlasMessage::qGetView qryView;
+		qryView.Post();
+		SetCamera(qryView.info, true);
+
+		// Pass event on to next handler
+		evt.Skip();
+	}
+
+	void OnCameraView(wxCommandEvent& WXUNUSED(evt))
+	{
+		POST_MESSAGE(SetView, (m_Camera));
+	}
+
+	void OnCameraClear(wxCommandEvent& evt)
+	{
+		SetCamera(sCameraInfo(), false);
+
+		// Pass event on to next handler
+		evt.Skip();
+	}
+
+	sCameraInfo m_Camera;
+	bool m_CameraDefined;
 	wxString m_Name;
 	size_t m_PlayerID;
-
+	ScenarioEditor& m_ScenarioEditor;
+	
 	PlayerPageControls m_Controls;
 
 	DECLARE_EVENT_TABLE();
@@ -204,6 +258,9 @@ private:
 
 BEGIN_EVENT_TABLE(PlayerNotebookPage, wxPanel)
 	EVT_BUTTON(ID_PlayerColour, PlayerNotebookPage::OnColour)
+	EVT_BUTTON(ID_CameraSet, PlayerNotebookPage::OnCameraSet)
+	EVT_BUTTON(ID_CameraView, PlayerNotebookPage::OnCameraView)
+	EVT_BUTTON(ID_CameraClear, PlayerNotebookPage::OnCameraClear)
 END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
@@ -331,6 +388,8 @@ private:
 
 BEGIN_EVENT_TABLE(PlayerSettingsControl, wxPanel)
 	EVT_BUTTON(ID_PlayerColour, PlayerSettingsControl::OnEdit)
+	EVT_BUTTON(ID_CameraSet, PlayerSettingsControl::OnEdit)
+	EVT_BUTTON(ID_CameraClear, PlayerSettingsControl::OnEdit)
 	EVT_CHOICE(wxID_ANY, PlayerSettingsControl::OnEdit)
 	EVT_TEXT(wxID_ANY, PlayerSettingsControl::OnEdit)
 	EVT_SPINCTRL(ID_NumPlayers, PlayerSettingsControl::OnNumPlayersChanged)
@@ -382,6 +441,16 @@ void PlayerSettingsControl::CreateWidgets()
 		civCodes.Add(wxString(civ["Code"]));
 	}
 
+	// Load AI data
+	ArrayOfAIData ais(AIData::CompareAIData);
+	AtlasMessage::qGetAIData qryAI;
+	qryAI.Post();
+	AtObj aiData = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qryAI.data);
+	for (AtIter a = aiData["AIData"]["item"]; a.defined(); ++a)
+	{
+		ais.Add(new AIData(wxString(a["id"]), wxString(a["data"]["name"])));
+	}
+
 	// Create player pages
 	AtIter player = m_PlayerDefaults["item"];
 	++player;	// Skip gaia
@@ -395,6 +464,14 @@ void PlayerSettingsControl::CreateWidgets()
 		wxChoice* civChoice = controls.civ;
 		for (size_t j = 0; j < civNames.Count(); ++j)
 			civChoice->Append(civNames[j], new wxStringClientData(civCodes[j]));
+		civChoice->SetSelection(0);
+
+		// Populate ai choice box
+		wxChoice* aiChoice = controls.ai;
+		aiChoice->Append(_("<None>"), new wxStringClientData());
+		for (size_t j = 0; j < ais.Count(); ++j)
+			aiChoice->Append(ais[j]->GetName(), new wxStringClientData(ais[j]->GetID()));
+		aiChoice->SetSelection(0);
 	}
 
 	m_InGUIUpdate = false;
@@ -417,6 +494,10 @@ void PlayerSettingsControl::ReadFromEngine()
 	{
 		// Prevent error if there's no map settings to parse
 		m_MapSettings = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qry.settings);
+	}
+	else
+	{	// Use blank object, it will be created next
+		m_MapSettings = AtObj();
 	}
 
 	AtIter player = m_MapSettings["PlayerData"]["item"];
@@ -480,6 +561,31 @@ void PlayerSettingsControl::ReadFromEngine()
 		}
 		controls.colour->SetBackgroundColour(colour);
 
+		// player type
+		wxString aiID;
+		if (player["AI"].defined())
+			aiID = wxString(player["AI"]);
+		else
+			aiID = wxString(playerDefs["AI"]);
+
+		choice = controls.ai;
+		if (!aiID.empty())
+		{	// AI
+			for (size_t j = 0; j < choice->GetCount(); ++j)
+			{
+				wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(j));
+				if (str->GetData() == aiID)
+				{
+					choice->SetSelection(j);
+					break;
+				}
+			}
+		}
+		else
+		{	// Human
+			choice->SetSelection(0);
+		}
+
 		// resources
 		AtObj resObj = *player["Resources"];
 		if (resObj.defined() && resObj["food"].defined())
@@ -513,6 +619,20 @@ void PlayerSettingsControl::ReadFromEngine()
 			controls.team->SetSelection(wxAtoi(*player["Team"]));
 		else
 			controls.team->SetSelection(0);
+
+		// camera
+		if (player["StartingCamera"].defined())
+		{
+			AtObj cam = *player["StartingCamera"];
+			sCameraInfo info;
+			info.pX = wxAtof(*cam["x"]);
+			info.pY = wxAtof(*cam["y"]);
+			info.pZ = wxAtof(*cam["z"]);
+			
+			controls.page->SetCamera(info, true);
+		}
+		else
+			controls.page->SetCamera(sCameraInfo(), false);
 
 	}
 
@@ -556,6 +676,18 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 		clrObj.setInt("b", (int)colour.Blue());
 		player.set("Colour", clrObj);
 
+		// player type
+		choice = controls.ai;
+		if (choice->GetSelection() > 0)
+		{	// ai - get id
+			wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
+			player.set("AI", str->GetData());
+		}
+		else
+		{	// human
+			player.set("AI", _T(""));
+		}
+
 		// resources
 		AtObj resObj;
 		if (controls.food->GetValue() > 0)
@@ -579,6 +711,17 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 		{
 			// valid selection
 			player.setInt("Team", choice->GetSelection() - 1);
+		}
+
+		// camera
+		if (controls.page->IsCameraDefined())
+		{
+			sCameraInfo cam = controls.page->GetCamera();
+			AtObj camObj;
+			camObj.setDouble("x", cam.pX);
+			camObj.setDouble("y", cam.pY);
+			camObj.setDouble("z", cam.pZ);
+			player.set("StartingCamera", camObj);
 		}
 
 		players.add("item", player);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "simulation2/system/Interface.h"
 
 struct CColor;
+class CFixedVector3D;
 
 /**
  * Player data.
@@ -35,6 +36,9 @@ public:
 	virtual void SetColour(u8 r, u8 g, u8 b) = 0;
 
 	virtual CColor GetColour() = 0;
+	virtual CFixedVector3D GetStartingCamera() = 0;
+
+	virtual bool HasStartingCamera() = 0;
 
 	DECLARE_INTERFACE_TYPE(Player)
 };

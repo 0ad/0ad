@@ -219,5 +219,32 @@ MESSAGEHANDLER(LookAt)
 	camera.UpdateFrustum();
 }
 
+QUERYHANDLER(GetView)
+{
+	CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
+
+	sCameraInfo info;
+
+	info.pX = focus.X;
+	info.pY = focus.Y;
+	info.pZ = focus.Z;
+
+	// TODO: Rotation
+
+	msg->info = info;
+}
+
+MESSAGEHANDLER(SetView)
+{
+	if (g_Game->GetView()->GetCinema()->IsPlaying())
+		return;
+
+	CGameView* view = g_Game->GetView();
+	view->ResetCameraTarget(view->GetCamera()->GetFocus());
+
+	sCameraInfo cam = msg->info;
+
+	view->ResetCameraTarget(CVector3D(cam.pX, cam.pY, cam.pZ));
+}
 
 }
