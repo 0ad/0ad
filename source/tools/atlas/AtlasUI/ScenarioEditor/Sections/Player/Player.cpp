@@ -714,15 +714,15 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 		}
 
 		// camera
+		AtObj camObj;
 		if (controls.page->IsCameraDefined())
 		{
 			sCameraInfo cam = controls.page->GetCamera();
-			AtObj camObj;
 			camObj.setDouble("x", cam.pX);
 			camObj.setDouble("y", cam.pY);
 			camObj.setDouble("z", cam.pZ);
-			player.set("StartingCamera", camObj);
 		}
+		player.set("StartingCamera", camObj);
 
 		players.add("item", player);
 		if (oldPlayer.defined())
