@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Farmstead A">
       <mesh>structural/iber_farmstead.dae</mesh>
       <props>
         <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="root"/>
@@ -10,5 +10,14 @@
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
+    <variant frequency="1" name="Farmstead B">
+      <mesh>structural/iber_farmstead_b.dae</mesh>
+      <props>
+        <prop actor="props/structures/iberians/farmstead_b_hay.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

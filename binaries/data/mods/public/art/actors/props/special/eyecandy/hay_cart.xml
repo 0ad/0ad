@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="hay cart small">
+      <mesh>props/hay_cart.dae</mesh>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+    <variant frequency="1" name="hay cart large">
+      <mesh>props/hay_cart_large.dae</mesh>
+      <texture>structural/iber_struct.dds</texture>
+    </variant>
+  </group>
+</actor>
