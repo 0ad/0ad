@@ -53,9 +53,14 @@ public:
 		return m_Script.Call<CColor>("GetColour");
 	}
 
-	virtual CFixedVector3D GetStartingCamera()
+	virtual CFixedVector3D GetStartingCameraPos()
 	{
-		return m_Script.Call<CFixedVector3D>("GetStartingCamera");
+		return m_Script.Call<CFixedVector3D>("GetStartingCameraPos");
+	}
+
+	virtual CFixedVector3D GetStartingCameraRot()
+	{
+		return m_Script.Call<CFixedVector3D>("GetStartingCameraRot");
 	}
 
 	virtual bool HasStartingCamera()

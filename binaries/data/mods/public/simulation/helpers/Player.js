@@ -129,9 +129,10 @@ function LoadPlayerSettings(settings)
 				player.SetDiplomacy(diplomacy);
 			}
 			
-			if (getSetting(pData, pDefs, "StartingCamera") !== undefined)
+			var startCam = getSetting(pData, pDefs, "StartingCamera");
+			if (startCam !== undefined)
 			{
-				player.SetStartingCamera(getSetting(pData, pDefs, "StartingCamera"));
+				player.SetStartingCamera(startCam.Position, startCam.Rotation);
 			}
 		}
 		else

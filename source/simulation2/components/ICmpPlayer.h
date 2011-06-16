@@ -36,7 +36,8 @@ public:
 	virtual void SetColour(u8 r, u8 g, u8 b) = 0;
 
 	virtual CColor GetColour() = 0;
-	virtual CFixedVector3D GetStartingCamera() = 0;
+	virtual CFixedVector3D GetStartingCameraPos() = 0;
+	virtual CFixedVector3D GetStartingCameraRot() = 0;
 
 	virtual bool HasStartingCamera() = 0;
 

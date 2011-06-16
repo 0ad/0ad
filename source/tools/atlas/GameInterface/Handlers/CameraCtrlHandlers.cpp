@@ -21,6 +21,7 @@
 #include "../GameLoop.h"
 #include "../View.h"
 
+#include "maths/MathUtil.h"
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
 #include "ps/Game.h"
@@ -222,14 +223,19 @@ MESSAGEHANDLER(LookAt)
 QUERYHANDLER(GetView)
 {
 	CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
-
 	sCameraInfo info;
 
 	info.pX = focus.X;
 	info.pY = focus.Y;
 	info.pZ = focus.Z;
 
-	// TODO: Rotation
+	CQuaternion quatRot = g_Game->GetView()->GetCamera()->m_Orientation.GetRotation();
+	quatRot.Normalize();
+	CVector3D rotation = quatRot.ToEulerAngles();
+
+	info.rX = RADTODEG(rotation.X); 
+	info.rY = RADTODEG(rotation.Y);
+	info.rZ = RADTODEG(rotation.Z);
 
 	msg->info = info;
 }
@@ -245,6 +251,8 @@ MESSAGEHANDLER(SetView)
 	sCameraInfo cam = msg->info;
 
 	view->ResetCameraTarget(CVector3D(cam.pX, cam.pY, cam.pZ));
+
+	// TODO: Rotation
 }
 
 }

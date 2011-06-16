@@ -623,11 +623,15 @@ void PlayerSettingsControl::ReadFromEngine()
 		// camera
 		if (player["StartingCamera"].defined())
 		{
-			AtObj cam = *player["StartingCamera"];
 			sCameraInfo info;
-			info.pX = wxAtof(*cam["x"]);
-			info.pY = wxAtof(*cam["y"]);
-			info.pZ = wxAtof(*cam["z"]);
+			AtObj camPos = *player["StartingCamera"]["Position"];
+			info.pX = wxAtof(*camPos["x"]);
+			info.pY = wxAtof(*camPos["y"]);
+			info.pZ = wxAtof(*camPos["z"]);
+			AtObj camRot = *player["StartingCamera"]["Rotation"];
+			info.rX = wxAtof(*camRot["x"]);
+			info.rY = wxAtof(*camRot["y"]);
+			info.rZ = wxAtof(*camRot["z"]);
 			
 			controls.page->SetCamera(info, true);
 		}
@@ -718,9 +722,17 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 		if (controls.page->IsCameraDefined())
 		{
 			sCameraInfo cam = controls.page->GetCamera();
-			camObj.setDouble("x", cam.pX);
-			camObj.setDouble("y", cam.pY);
-			camObj.setDouble("z", cam.pZ);
+			AtObj camPos;
+			camPos.setDouble("x", cam.pX);
+			camPos.setDouble("y", cam.pY);
+			camPos.setDouble("z", cam.pZ);
+			camObj.set("Position", camPos);
+
+			AtObj camRot;
+			camRot.setDouble("x", cam.rX);
+			camRot.setDouble("y", cam.rY);
+			camRot.setDouble("z", cam.rZ);
+			camObj.set("Rotation", camRot);
 		}
 		player.set("StartingCamera", camObj);
 

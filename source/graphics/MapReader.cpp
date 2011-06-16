@@ -288,12 +288,13 @@ int CMapReader::ApplyData()
 	{
 		// Default to global camera (with constraints)
 		pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
-		
+	
+		// TODO: Starting rotation?
 		CmpPtr<ICmpPlayer> cmpPlayer(*pSimulation2, cmpPlayerManager->GetPlayerByID(m_PlayerID));
 		if (!cmpPlayer.null() && cmpPlayer->HasStartingCamera())
 		{
 			// Use player starting camera
-			CFixedVector3D pos = cmpPlayer->GetStartingCamera();
+			CFixedVector3D pos = cmpPlayer->GetStartingCameraPos();
 			pGameView->ResetCameraTarget(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
 		}
 		else if (m_StartingCameraTarget != INVALID_ENTITY)

@@ -226,14 +226,19 @@ Player.prototype.SetPhase = function(p)
 	this.phase = p;
 };
 
-Player.prototype.GetStartingCamera = function()
+Player.prototype.GetStartingCameraPos = function()
 {
-	return this.startCam;
+	return this.startCam.position;
 }
 
-Player.prototype.SetStartingCamera = function(pos)
+Player.prototype.GetStartingCameraRot = function()
 {
-	this.startCam = pos;
+	return this.startCam.rotation;
+}
+
+Player.prototype.SetStartingCamera = function(pos, rot)
+{
+	this.startCam = {"position": pos, "rotation": rot};
 }
 
 Player.prototype.HasStartingCamera = function()
