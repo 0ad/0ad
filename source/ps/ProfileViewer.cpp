@@ -533,6 +533,10 @@ void CProfileViewer::SaveToFile()
 			LOGERROR(L"Failed to open profile log file");
 			return;
 		}
+		else
+		{
+			LOGMESSAGERENDER(L"Profiler snapshot saved to '%ls'", OsString(path).c_str());
+		}
 	}
 
 	time_t t;
