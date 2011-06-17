@@ -459,6 +459,23 @@ public:
 		return (tag_t)id;
 	}
 
+	virtual std::vector<entity_id_t> ModifyRangeActiveQuery(tag_t tag,
+		entity_pos_t minRange, entity_pos_t maxRange)
+	{
+		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
+		if (it == m_Queries.end())
+		{
+			LOGERROR(L"CCmpRangeManager: ModifyRangeActiveQuery called with invalid tag %d", tag);
+			std::vector<entity_id_t> r;
+			return r;
+		}
+
+		Query& q = it->second;
+		q.minRange = minRange;
+		q.maxRange = maxRange;
+		return ResetActiveQuery(tag);
+	}
+
 	virtual void DestroyActiveQuery(tag_t tag)
 	{
 		if (m_Queries.find(tag) == m_Queries.end())

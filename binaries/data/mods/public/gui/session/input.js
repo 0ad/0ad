@@ -1145,6 +1145,20 @@ function performGroup(action, groupId)
 	}
 }
 
+// Performs the specified stance
+function performStance(entity, stanceName)
+{
+	if (entity)
+	{
+		var selection = g_Selection.toList();
+		Engine.PostNetworkCommand({
+			"type": "stance",
+			"entities": selection,
+			"name": stanceName
+		});
+	}
+}
+
 // Set the camera to follow the given unit
 function setCameraFollow(entity)
 {

@@ -235,11 +235,11 @@ function onSimulationUpdate()
 function updateGroups()
 {
 	var guiName = "Group";
+	g_Groups.update();
 	for (var i = 0; i < 10; i++)
 	{
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		var label = getGUIObjectByName("unit"+guiName+"Label["+i+"]").caption = i;
-		g_Groups.update();
 		if (g_Groups.groups[i].getTotalCount() == 0)
 			button.hidden = true;
 		else

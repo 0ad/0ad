@@ -6,8 +6,8 @@ UnitAI.prototype.Schema =
 	"<element name='DefaultStance'>" +
 		"<choice>" +
 			"<value>aggressive</value>" +
-			"<value>holdfire</value>" +
-			"<value>noncombat</value>" +
+			"<value>defensive</value>" +
+			"<value>passive</value>" +
 		"</choice>" +
 	"</element>" +
 	"<element name='FormationController'>" +
@@ -59,23 +59,46 @@ UnitAI.prototype.Schema =
 // TODO: even this limited version isn't implemented properly yet (e.g. it can't handle
 // dynamic stance changes).
 var g_Stances = {
+	"violent": {
+		targetVisibleEnemies: true,
+		targetAttackers: true,
+		respondFlee: false,
+		respondChase: true,
+		respondStandGround : false,
+		respondHoldGround : false,
+		respondChaseToHell : true,
+	},
 	"aggressive": {
 		targetVisibleEnemies: true,
 		targetAttackers: true,
 		respondFlee: false,
 		respondChase: true,
+		respondStandGround : false,
+		respondHoldGround : false,
 	},
-	"holdfire": {
-		targetVisibleEnemies: false,
+	"defensive": {
+		targetVisibleEnemies: true,
 		targetAttackers: true,
 		respondFlee: false,
-		respondChase: true,
+		respondChase: false,
+		respondStandGround : false,
+		respondHoldGround : true,
 	},
-	"noncombat": {
+	"passive": {
 		targetVisibleEnemies: false,
 		targetAttackers: true,
 		respondFlee: true,
 		respondChase: false,
+		respondStandGround : false,
+		respondHoldGround : false,
+	},
+	"stand": {
+		targetVisibleEnemies: true,
+		targetAttackers: true,
+		respondFlee: false,
+		respondChase: false,
+		respondStandGround : true,
+		respondHoldGround : false,
 	},
 };
 
@@ -112,6 +135,11 @@ var UnitFsmSpec = {
 
 	"EntityRenamed": function(msg) {
 		// ignore
+	},
+
+	"StanceChanged": function(msg) {
+		if (this.StanceSpecificQuery(this.stance,true))
+			return;
 	},
 
 	// Formation handlers:
@@ -154,6 +182,7 @@ var UnitFsmSpec = {
 			return;
 		}
 
+		this.SetHeldPosition(this.order.data.x, this.order.data.z);
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
 		this.SetNextState("INDIVIDUAL.WALKING");
 	},
@@ -217,8 +246,18 @@ var UnitFsmSpec = {
 		}
 		this.attackType = type;
 
+		if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+		{
+			// We are already at the target
+			// so try attacking it from here.
+			this.StopMoving();
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
+			else
+				this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
+		}
 		// Try to move within attack range
-		if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+		else if ((!this.GetStance().respondStandGround || this.order.data.force) && this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
 		{
 			// We've started walking to the given point
 			if (this.IsAnimal())
@@ -227,16 +266,7 @@ var UnitFsmSpec = {
 				this.SetNextState("INDIVIDUAL.COMBAT.APPROACHING");
 		}
 		else
-		{
-			// We are already at the target, or can't move at all,
-			// so try attacking it from here.
-			// TODO: need better handling of the can't-reach-target case
-			this.StopMoving();
-			if (this.IsAnimal())
-				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
-			else
-				this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
-		}
+			this.FinishOrder();
 	},
 
 	"Order.Gather": function(msg) {
@@ -252,7 +282,7 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			this.PushOrderFront("Attack", { "target": this.order.data.target });
+			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": false });
 			return;
 		}
 
@@ -484,16 +514,8 @@ var UnitFsmSpec = {
 				// If we entered the idle state we must have nothing better to do,
 				// so immediately check whether there's anybody nearby to attack.
 				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
-				if (this.losRangeQuery)
-				{
-					var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-					var ents = rangeMan.ResetActiveQuery(this.losRangeQuery);
-					if (this.GetStance().targetVisibleEnemies)
-					{
-						if (this.RespondToTargetedEntities(ents))
-							return true; // (abort the FSM transition since we may have already switched state)
-					}
-				}
+				if (this.StanceSpecificQuery(this.stance))
+					return true;
 
 				// Nobody to attack - stay in idle
 				return false;
@@ -551,6 +573,10 @@ var UnitFsmSpec = {
 				}
 			},
 
+			"StanceChanged": function(msg) {
+				if (this.StanceSpecificQuery(this.stance))
+					return;
+			},
 		},
 
 		"WALKING": {
@@ -600,10 +626,35 @@ var UnitFsmSpec = {
 			"APPROACHING": {
 				"enter": function () {
 					this.SelectAnimation("move");
+					this.StartTimer(1000, 1000);
+				},
+
+				"leave": function() {
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					if (!this.ChaseTargetedEntity(this.order.data.target, this.order.data.force))
+					{
+						this.StopMoving();
+						this.FinishOrder();
+
+						// we return to our position
+						if (this.GetStance().respondHoldGround)
+							this.WalkToHeldPosition();
+					}
 				},
 
 				"MoveCompleted": function() {
 					this.SetNextState("ATTACKING");
+				},
+
+				"Attacked": function(msg) {
+					// If we're attacked by a close enemy, we should try to defend ourself
+					if (this.GetStance().targetAttackers && msg.data.type == "Melee")
+					{
+						this.RespondToTargetedEntities([msg.data.attacker]);
+					}
 				},
 			},
 
@@ -640,18 +691,31 @@ var UnitFsmSpec = {
 							return;
 						}
 
-						// Can't reach it - try to chase after it
-						if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+						if (this.ChaseTargetedEntity(this.order.data.target))
 						{
-							this.SetNextState("COMBAT.CHASING");
-							return;
+							if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+							{
+								this.SetNextState("COMBAT.CHASING");
+								return;
+							}
 						}
+
 					}
 
 					// Can't reach it, or it doesn't exist any more - give up
-					this.FinishOrder();
+					if (this.FinishOrder())
+						return;
 
-					// TODO: see if we can switch to a new nearby enemy
+					// see if we can switch to a new nearby enemy
+					if (this.StanceSpecificQuery(this.stance, true))
+						return;
+
+					// we return to our position
+					if (this.GetStance().respondHoldGround)
+					{
+						if (this.WalkToHeldPosition())
+							return;
+					}
 				},
 
 				// TODO: respond to target deaths immediately, rather than waiting
@@ -661,8 +725,25 @@ var UnitFsmSpec = {
 			"CHASING": {
 				"enter": function () {
 					this.SelectAnimation("move");
+					this.StartTimer(1000, 1000);
 				},
-			
+
+				"leave": function() {
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					if (!this.ChaseTargetedEntity(this.order.data.target))
+					{
+						this.StopMoving();
+						this.FinishOrder();
+
+						// we return to our position
+						if (this.GetStance().respondHoldGround)
+							this.WalkToHeldPosition();
+					}
+				},
+
 				"MoveCompleted": function() {
 					this.SetNextState("ATTACKING");
 				},
@@ -1303,20 +1384,14 @@ UnitAI.prototype.OnDestroy = function()
 // This should be called whenever our ownership changes.
 UnitAI.prototype.SetupRangeQuery = function(owner)
 {
-	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
-	if (!cmpVision)
-		return;
-	
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	
+
 	if (this.losRangeQuery)
 		rangeMan.DestroyActiveQuery(this.losRangeQuery);
 
-	var range = cmpVision.GetRange();
-	
 	var players = [];
-	
+
 	if (owner != -1)
 	{
 		// If unit not just killed, get enemy players via diplomacy
@@ -1334,10 +1409,12 @@ UnitAI.prototype.SetupRangeQuery = function(owner)
 				players.push(i);
 		}
 	}
-	
-	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, 0, range, players, IID_DamageReceiver);
+
+	var range = this.StanceSpecificRange();
+
+	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, 0, range.max, players, IID_DamageReceiver);
 	rangeMan.EnableActiveQuery(this.losRangeQuery);
-};
+}
 
 //// FSM linkage functions ////
 
@@ -1833,6 +1910,40 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 	}
 }
 
+UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, type)
+{
+	var cmpRanged = Engine.QueryInterface(this.entity, IID_Attack);
+	var range = cmpRanged.GetRange(type);
+
+	var cmpPosition = Engine.QueryInterface(target, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return false;
+
+	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+	if (!cmpVision)
+		return false;
+	var halfvision = cmpVision.GetRange() / 2;
+
+	var pos = cmpPosition.GetPosition();
+	var dx = this.heldPosition.x - pos.x;
+	var dz = this.heldPosition.z - pos.z;
+	var dist = Math.sqrt(dx*dx + dz*dz);
+
+	return dist < halfvision + range.max;
+};
+
+UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
+{
+	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+	if (!cmpVision)
+		return false;
+	var range = cmpVision.GetRange();
+
+	var distance = DistanceBetweenEntities(this.entity,target);
+
+	return distance < range;
+}
+
 UnitAI.prototype.GetBestAttack = function()
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
@@ -1852,7 +1963,26 @@ UnitAI.prototype.AttackVisibleEntity = function(ents)
 	{
 		if (this.CanAttack(target))
 		{
-			this.PushOrderFront("Attack", { "target": target });
+			this.PushOrderFront("Attack", { "target": target, "force": false });
+			return true;
+		}
+	}
+	return false;
+};
+
+/**
+ * Try to find one of the given entities which can be attacked,
+ * within zone.
+ * Returns true if it found something to attack.
+ */
+UnitAI.prototype.AttackEntityInZone = function(ents)
+{
+	var type = this.GetBestAttack();
+	for each (var target in ents)
+	{
+		if (this.CanAttack(target) && this.CheckTargetDistanceFromHeldPosition(target, type))
+		{
+			this.PushOrderFront("Attack", { "target": target, "force": false });
 			return true;
 		}
 	}
@@ -1872,6 +2002,12 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 	if (this.GetStance().respondChase)
 		return this.AttackVisibleEntity(ents);
 
+	if (this.GetStance().respondStandGround)
+		return this.AttackVisibleEntity(ents);
+
+	if (this.GetStance().respondHoldGround)
+		return this.AttackEntityInZone(ents);
+
 	if (this.GetStance().respondFlee)
 	{
 		this.PushOrderFront("Flee", { "target": ents[0] });
@@ -1880,6 +2016,39 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 
 	return false;
 };
+
+/*
+ * Try to chase targeted entity given our current stance
+ */
+UnitAI.prototype.ChaseTargetedEntity = function(ent, force)
+{
+  if (this.GetStance().respondChase)
+  {
+    if (this.CheckTargetIsInVisionRange(ent))
+    {
+      return true;
+    }
+  }
+
+  if (this.GetStance().respondChaseToHell || force)
+  {
+    //if ( TODO : Check ent is not in Shroud of Darkness)
+    {
+      return true;
+    }
+  }
+
+  if (this.GetStance().respondHoldGround)
+  {
+    if (this.CheckTargetDistanceFromHeldPosition(ent, this.attackType))
+    {
+      return true;
+    }
+  }
+
+  return false;
+
+}
 
 //// External interface functions ////
 
@@ -2021,7 +2190,7 @@ UnitAI.prototype.Attack = function(target, queued)
 		return;
 	}
 
-	this.AddOrder("Attack", { "target": target }, queued);
+	this.AddOrder("Attack", { "target": target, "force": true }, queued);
 };
 
 UnitAI.prototype.Garrison = function(target, queued)
@@ -2106,11 +2275,88 @@ UnitAI.prototype.SetStance = function(stance)
 		this.stance = stance;
 	else
 		error("UnitAI: Setting to invalid stance '"+stance+"'");
+}
+
+UnitAI.prototype.SwitchToStance = function(stance)
+{
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return;
+	var pos = cmpPosition.GetPosition();
+	this.SetHeldPosition(pos.x, pos.z);
+
+	this.SetStance(stance);
+	if (stance == "stand" || stance == "defensive" || stance == "passive")
+		this.StopMoving();
+
+	UnitFsm.ProcessMessage(this, {"type": "StanceChanged", "stance": stance});
+}
+
+UnitAI.prototype.StanceSpecificQuery = function(stance, disable)
+{
+	if (!g_Stances[stance])
+	{
+		error("UnitAI: Setting to invalid stance '"+stance+"'");
+		return false;
+	}
+
+	if (!this.losRangeQuery)
+		return false;
+
+	var range = this.StanceSpecificRange();
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var ents = rangeMan.ModifyRangeActiveQuery(this.losRangeQuery, range.min, range.max);
+
+	if (disable && !this.IsAnimal())
+		rangeMan.DisableActiveQuery(this.losRangeQuery);
+
+	return this.RespondToTargetedEntities(ents);
+};
+
+UnitAI.prototype.StanceSpecificRange = function()
+{
+	var ret = { "min": 0, "max": 0 };
+	if (this.GetStance().respondStandGround)
+	{
+		var cmpRanged = Engine.QueryInterface(this.entity, IID_Attack);
+		if (!cmpRanged)
+			return ret;
+		var range = cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		ret.min = range.min;
+		ret.max = range.max;
+	}
+	else if (this.GetStance().respondChase)
+	{
+		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+		if (!cmpVision)
+			return ret;
+		var range = cmpVision.GetRange();
+		ret.max = range;
+	}
+	else if (this.GetStance().respondHoldGround)
+	{
+		var cmpRanged = Engine.QueryInterface(this.entity, IID_Attack);
+		if (!cmpRanged)
+			return ret;
+		var range = cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+		if (!cmpVision)
+			return ret;
+		var halfvision = cmpVision.GetRange() / 2;
+		ret.max = range.max + halfvision;
+	}
+	return ret;
 };
 
 UnitAI.prototype.GetStance = function()
 {
 	return g_Stances[this.stance];
+};
+
+UnitAI.prototype.GetStanceName = function()
+{
+	return this.stance;
 };
 
 //// Helper functions ////
@@ -2250,6 +2496,26 @@ UnitAI.prototype.SetMoveSpeed = function(speed)
 {
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpMotion.SetSpeed(speed);
+};
+
+UnitAI.prototype.SetHeldPosition = function(x, z)
+{
+	this.heldPosition = {"x": x, "z": z};
+};
+
+UnitAI.prototype.GetHeldPosition = function(pos)
+{
+	return this.heldPosition;
+};
+
+UnitAI.prototype.WalkToHeldPosition = function()
+{
+	if (this.heldPosition)
+	{
+		this.Walk(this.heldPosition.x, this.heldPosition.z, false);
+		return true;
+	}
+	return false;
 };
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);

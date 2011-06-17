@@ -298,6 +298,20 @@ GuiInterface.prototype.CanMoveEntsIntoFormation = function(player, data)
 	return CanMoveEntsIntoFormation(data.ents, data.formationName);
 };
 
+GuiInterface.prototype.StanceSelected = function(player, data)
+{
+	for each (var ent in data.ents)
+	{
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (cmpUnitAI)
+		{
+			if (cmpUnitAI.GetStanceName() == data.stance)
+				return true;
+		}
+	}
+	return false;
+};
+
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
@@ -553,6 +567,7 @@ var exposedFunctions = {
 	"GetNextNotification": 1,
 
 	"CanMoveEntsIntoFormation": 1,
+	"StanceSelected": 1,
 
 	"SetSelectionHighlight": 1,
 	"SetStatusBars": 1,

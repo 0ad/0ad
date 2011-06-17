@@ -102,6 +102,16 @@ public:
 		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface) = 0;
 
 	/**
+	 * Modify an active query's range parameters and execute a ResetActiveQuery.
+	 * @param tag identifier of query.
+	 * @param minRange non-negative minimum distance in metres (inclusive).
+	 * @param maxRange non-negative maximum distance in metres (inclusive); or -1.0 to ignore distance.
+	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
+	 */
+	virtual std::vector<entity_id_t> ModifyRangeActiveQuery(tag_t tag,
+		entity_pos_t minRange, entity_pos_t maxRange) = 0;
+
+	/**
 	 * Destroy a query and clean up resources. This must be called when an entity no longer needs its
 	 * query (e.g. when the entity is destroyed).
 	 * @param tag identifier of query.

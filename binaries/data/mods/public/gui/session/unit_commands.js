@@ -6,6 +6,7 @@ const FORMATION = "Formation";
 const TRAINING = "Training";
 const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
+const STANCE = "Stance";
 
 // Constants
 const COMMANDS_PANEL_WIDTH = 228;
@@ -13,7 +14,7 @@ const UNIT_PANEL_BASE = -52; // QUEUE: The offset above the main panel (will oft
 const UNIT_PANEL_HEIGHT = 44; // QUEUE: The height needed for a row of buttons
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Construction": 0, "Command": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Construction": 0, "Command": 0, "Stance": 0};
 
 // Unit panels are panels with row(s) of buttons
 var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Construction", "Research", "Stance", "Command"];
@@ -120,10 +121,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		if (numberOfItems > 16)
 				numberOfItems =  16;
 	}
-	if (guiName == "Formation")
+	else if (guiName == "Formation")
 	{
 		if (numberOfItems > 16)
 				numberOfItems =  16;
+	}	
+	else if (guiName == "Stance")
+	{
+		if (numberOfItems > 5)
+				numberOfItems =  5;
 	}
 	else if (guiName == "Queue")
 	{
@@ -153,7 +159,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		var item = items[i];
 		var entType = ((guiName == "Queue")? item.template : item);
 		var template;
-		if (guiName != "Formation" && guiName != "Command")
+		if (guiName != "Formation" && guiName != "Command" && guiName != "Stance")
 		{
 			template = GetTemplateData(entType);
 			if (!template)
@@ -190,6 +196,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 			break;
 
+		case STANCE:
 		case FORMATION:
 			var tooltip = toTitleCase(item);
 			break;
@@ -264,6 +271,19 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			{
 				icon.sprite = "formation";
 			}
+		}
+		else if (guiName == "Stance")
+		{
+			var stanceSelected = Engine.GuiInterfaceCall("StanceSelected", {
+				"ents": g_Selection.toList(),
+				"stance": item
+			});
+
+			icon.cell_id = i;
+			if (stanceSelected)
+				icon.sprite = "snIconSheetStanceButton";
+			else
+				icon.sprite = "snIconSheetStanceButtonDisabled";
 		}
 		else if (guiName == "Command")
 		{
@@ -367,6 +387,11 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (isUnit(entState) && !isAnimal(entState) && !entState.garrisonHolder && formations.length)
 			setupUnitPanel("Formation", usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
+
+		var stances = ["violent","aggressive","passive","defensive","stand"];
+		if (isUnit(entState) && !isAnimal(entState) && !entState.garrisonHolder && stances.length)
+			setupUnitPanel("Stance", usedPanels, entState, stances,
+				function (item) { performStance(entState.id, item); } );
 
 		if (entState.buildEntities && entState.buildEntities.length)
 		{

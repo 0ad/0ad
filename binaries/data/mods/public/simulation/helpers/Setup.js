@@ -14,7 +14,7 @@ function LoadMapSettings(settings)
 		for each (var ent in Engine.GetEntitiesWithInterface(IID_UnitAI))
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			cmpUnitAI.SetStance(settings.DefaultStance);
+			cmpUnitAI.SwitchToStance(settings.DefaultStance);
 		}
 	}
 

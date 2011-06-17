@@ -408,6 +408,26 @@
 	</object>
 
 	<!-- ================================  ================================ -->
+	<!-- Stance Selection (Temporary location) -->
+	<!-- ================================  ================================ -->
+	<object name="unitStancePanel"
+		sprite="bottomMiddle"
+		size="50 50 300 106"
+		type="text"
+	>
+		<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTipBottom"
+			 cell_id="4" tooltip="Stances"/>
+
+		<object size="56 12 100% 100%">
+			<repeat count="5">
+				<object name="unitStanceButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+					<object name="unitStanceIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+				</object>
+			</repeat>
+		</object>
+	</object>
+
+	<!-- ================================  ================================ -->
 	<!-- Idle Worker Button -->
 	<!-- ================================  ================================ -->
 	<object type="image"
@@ -636,17 +656,6 @@
 						</object>
 					</repeat>
 				</object>
-			</object>
-
-			<object name="unitStancePanel"
-				style="goldPanelFrilly"
-				size="0 100%-56 100% 100%"
-				type="text"
-			>
-				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTipBottom"
-					 cell_id="4" tooltip="Stances"/>
-
-				[stance commands]
 			</object>
 
 			<object name="unitResearchPanel"

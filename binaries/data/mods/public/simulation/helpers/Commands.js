@@ -261,6 +261,15 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "stance":
+		for each (var ent in cmd.entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+				cmpUnitAI.SwitchToStance(cmd.name);
+		}
+		break;
+
 	default:
 		error("Ignoring unrecognised command type '" + cmd.type + "'");
 	}
