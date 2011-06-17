@@ -1906,7 +1906,7 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 	{
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		if (cmpUnitMotion)
-			cmpUnitMotion.FaceTowardsPoint(pos.x, pos.z);
+			cmpUnitMotion.FaceTowardsPoint(targetpos.x, targetpos.z);
 	}
 }
 
