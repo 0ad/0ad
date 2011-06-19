@@ -593,7 +593,7 @@ void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags 
 		v1.m_Position.Y = 0;
 
 		// If this is the start of this tristrip, but we've already got a partial
-		// tristrip, and a couple of degenerate triangles to join the strips properly
+		// tristrip, add a couple of degenerate triangles to join the strips properly
 		if (k == 0 && !vertices.empty())
 		{
 			vertices.push_back(vertices.back());
