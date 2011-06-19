@@ -625,13 +625,13 @@ void PlayerSettingsControl::ReadFromEngine()
 		{
 			sCameraInfo info;
 			AtObj camPos = *player["StartingCamera"]["Position"];
-			info.pX = wxAtof(*camPos["x"]);
-			info.pY = wxAtof(*camPos["y"]);
-			info.pZ = wxAtof(*camPos["z"]);
+			info.pX = (float)(*camPos["x"]).getDouble();
+			info.pY = (float)(*camPos["y"]).getDouble();
+			info.pZ = (float)(*camPos["z"]).getDouble();
 			AtObj camRot = *player["StartingCamera"]["Rotation"];
-			info.rX = wxAtof(*camRot["x"]);
-			info.rY = wxAtof(*camRot["y"]);
-			info.rZ = wxAtof(*camRot["z"]);
+			info.rX = (float)(*camRot["x"]).getDouble();
+			info.rY = (float)(*camRot["y"]).getDouble();
+			info.rZ = (float)(*camRot["z"]).getDouble();
 			
 			controls.page->SetCamera(info, true);
 		}

@@ -136,6 +136,9 @@ public:
 	// Return the string value of this object
 	operator const wchar_t* () const;
 
+	// Return the floating point value of this object
+	double getDouble() const;
+
 	// Check whether the object contains anything (even if those things are empty)
 	bool defined() const { return (bool)p; }
 	

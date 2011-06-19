@@ -128,6 +128,18 @@ AtObj::operator const wchar_t* () const
 		return L"";
 }
 
+double AtObj::getDouble() const
+{
+	double val = 0;
+	if (p)
+	{
+		std::wstringstream s;
+		s << p->value;
+		s >> val;
+	}
+	return val;
+}
+
 void AtObj::add(const char* key, AtObj& data)
 {
 	if (!p)
