@@ -148,7 +148,6 @@ void MapSettingsControl::CreateWidgets()
 	gridSizer->Add(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes));
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Lock teams")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(new wxCheckBox(this, ID_MapTeams, wxEmptyString));
-	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Num players")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	sizer->Add(gridSizer);
 
 	sizer->AddSpacer(5);
