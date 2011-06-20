@@ -46,7 +46,18 @@ int dlclose(void* handle)
 
 char* dlerror()
 {
-	return 0;
+	// the obvious implementation involves sys_StatusDescription, but we
+	// don't want to return a pointer to a static array because that's not
+	// thread-safe. we therefore check GetLastError directly.
+	switch(GetLastError())
+	{
+	case ERROR_MOD_NOT_FOUND:
+		return "module not found";
+	case ERROR_PROC_NOT_FOUND:
+		return "symbol not found";
+	default:
+		return "unknown";
+	}
 }
 
 

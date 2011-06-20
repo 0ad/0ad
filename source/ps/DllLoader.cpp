@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 
-void* const HANDLE_UNAVAILABLE = (void*)-1;
+static void* const HANDLE_UNAVAILABLE = (void*)-1;
 
 // directory to search for libraries (optionally set by --libdir at build-time,
 // optionally overridden by -libdir at run-time in the test executable);
@@ -39,36 +39,74 @@ static CStr g_Libdir = "";
 
 // note: on Linux, lib is prepended to the SO file name
 #if OS_UNIX
-static const char* prefix = "lib";
+static CStr prefix = "lib";
 #else
-static const char* prefix = "";
+static CStr prefix = "";
 #endif
-// our SOs export binary-compatible interfaces across debug and release builds,
-// but for debugging/performance we prefer to use the same version as the app.
-// note: on Windows, the extension is replaced with .dll by dlopen.
+
+// we usually want to use the same debug/release build type as the
+// main executable (the library should also be efficient in release builds and
+// allow easy symbol access in debug builds). however, that version of the
+// library might be missing, so we check for both.
+// this works because the interface is binary-compatible.
 #ifndef NDEBUG
-static const char* primarySuffix = "_dbg.so";
-static const char* secondarySuffix = ".so";
+static CStr suffixes[] = { "_dbg", "" };	// (order matters)
 #else
-static const char* primarySuffix = ".so";
-static const char* secondarySuffix = "_dbg.so";
+static CStr suffixes[] = { "", "_dbg" };
 #endif
+
+// NB: our Windows dlopen() function changes the extension to .dll
+static CStr extensions[] = {
+	".so",
+#if OS_MACOSX
+	".dylib"	// supported by OS X dlopen
+#endif
+};
 
 // (This class is currently only used by 'Collada' and 'AtlasUI' which follow
 // the naming/location convention above - it'll need to be changed if we want
 // to support other DLLs.)
 
-static CStr GenerateFilename(const CStr& name, const CStr& suffix)
+static CStr GenerateFilename(const CStr& name, const CStr& suffix, const CStr& extension)
 {
 	CStr n;
 	if (!g_Libdir.empty())
 		n = g_Libdir + "/";
-	n += prefix + name + suffix;
+	n += prefix + name + suffix + extension;
 	return n;
 }
 
+
+
+// @param name base name of the library (excluding prefix/suffix/extension)
+// @param errors receives descriptions of any and all errors encountered
+// @return valid handle or 0
+static void* LoadAnyVariant(const CStr& name, std::stringstream& errors)
+{
+	for(size_t idxSuffix = 0; idxSuffix < ARRAY_SIZE(suffixes); idxSuffix++)
+	{
+		for(size_t idxExtension = 0; idxExtension < ARRAY_SIZE(extensions); idxExtension++)
+		{
+			CStr filename = GenerateFilename(name, suffixes[idxSuffix], extensions[idxExtension]);
+
+			// we don't really care when relocations take place, but one of
+			// {RTLD_NOW, RTLD_LAZY} must be specified. go with the former because
+			// it is safer and matches the Windows load behavior.
+			const int flags = RTLD_LOCAL|RTLD_NOW;
+			void* handle = dlopen(filename.c_str(), flags);
+			if(handle)
+				return handle;
+			else
+				errors << "dlopen(" << filename << ") failed: " << dlerror() << "; ";
+		}
+	}
+
+	return 0;	// none worked
+}
+
+
 DllLoader::DllLoader(const char* name)
-: m_Name(name), m_Handle(0)
+	: m_Name(name), m_Handle(0)
 {
 }
 
@@ -91,37 +129,13 @@ bool DllLoader::LoadDLL()
 	{
 		TIMER(L"LoadDLL");
 
-		// we don't really care when relocations take place, but one of
-		// {RTLD_NOW, RTLD_LAZY} must be passed. go with the former because
-		// it is safer and matches the Windows load behavior.
-		const int flags = RTLD_LOCAL|RTLD_NOW;
-
-		CStr filename = GenerateFilename(m_Name, primarySuffix);
-		m_Handle = dlopen(filename.c_str(), flags);
-
-		char* primaryError = NULL;
-
-		// open failed (mostly likely SO not found)
-		if (! m_Handle)
+		std::stringstream errors;
+		m_Handle = LoadAnyVariant(m_Name, errors);
+		if(!m_Handle)	// (only report errors if nothing worked)
 		{
-			primaryError = dlerror();
-			if (primaryError)
-				primaryError = strdup(primaryError); // don't get overwritten by next dlopen
-
-			// Try to open the other debug/release version
-			filename = GenerateFilename(m_Name, secondarySuffix);
-			m_Handle = dlopen(filename.c_str(), flags);
-		}
-
-		// open still failed; report the first error
-		if (! m_Handle)
-		{
-			if (primaryError)
-				LOGERROR(L"dlopen error: %hs", primaryError);
+			LOGERROR(L"DllLoader: %hs", errors.str().c_str());
 			m_Handle = HANDLE_UNAVAILABLE;
 		}
-
-		free(primaryError);
 	}
 
 	return (m_Handle != HANDLE_UNAVAILABLE);
@@ -129,7 +143,7 @@ bool DllLoader::LoadDLL()
 
 void DllLoader::Unload()
 {
-	if (! IsLoaded())
+	if(!IsLoaded())
 		return;
 
 	dlclose(m_Handle);
@@ -138,7 +152,7 @@ void DllLoader::Unload()
 
 void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 {
-	if (! IsLoaded())
+	if(!IsLoaded())
 	{
 		debug_warn(L"Loading symbol from invalid DLL");
 		*fptr = NULL;
@@ -146,8 +160,7 @@ void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 	}
 
 	*fptr = dlsym(m_Handle, name);
-
-	if (*fptr == NULL)
+	if(*fptr == NULL)
 		throw PSERROR_DllLoader_SymbolNotFound();
 }
 
