@@ -140,6 +140,18 @@ double AtObj::getDouble() const
 	return val;
 }
 
+int AtObj::getInt() const
+{
+	int val = 0;
+	if (p)
+	{
+		std::wstringstream s;
+		s << p->value;
+		s >> val;
+	}
+	return val;
+}
+
 void AtObj::add(const char* key, AtObj& data)
 {
 	if (!p)

@@ -139,6 +139,9 @@ public:
 	// Return the floating point value of this object
 	double getDouble() const;
 
+	// Return the integer value of this object
+	int getInt() const;
+
 	// Check whether the object contains anything (even if those things are empty)
 	bool defined() const { return (bool)p; }
 	

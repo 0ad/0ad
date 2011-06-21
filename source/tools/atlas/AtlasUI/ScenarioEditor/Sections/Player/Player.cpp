@@ -552,12 +552,12 @@ void PlayerSettingsControl::ReadFromEngine()
 		AtObj clrObj = *player["Colour"];
 		if (clrObj.defined())
 		{
-			colour = wxColor(wxAtoi(*clrObj["r"]), wxAtoi(*clrObj["g"]), wxAtoi(*clrObj["b"]));
+			colour = wxColor((*clrObj["r"]).getInt(), (*clrObj["g"]).getInt(), (*clrObj["b"]).getInt());
 		}
 		else
 		{
 			clrObj = *playerDefs["Colour"];
-			colour = wxColor(wxAtoi(*clrObj["r"]), wxAtoi(*clrObj["g"]), wxAtoi(*clrObj["b"]));
+			colour = wxColor((*clrObj["r"]).getInt(), (*clrObj["g"]).getInt(), (*clrObj["b"]).getInt());
 		}
 		controls.colour->SetBackgroundColour(colour);
 
@@ -616,7 +616,7 @@ void PlayerSettingsControl::ReadFromEngine()
 
 		// team
 		if (player["Team"].defined())
-			controls.team->SetSelection(wxAtoi(*player["Team"]));
+			controls.team->SetSelection((*player["Team"]).getInt());
 		else
 			controls.team->SetSelection(0);
 
@@ -624,6 +624,9 @@ void PlayerSettingsControl::ReadFromEngine()
 		if (player["StartingCamera"].defined())
 		{
 			sCameraInfo info;
+			// Don't use wxAtof because it depends on locales which
+			//	may cause problems with decimal points
+			//	see: http://www.wxwidgets.org/docs/faqgtk.htm#locale
 			AtObj camPos = *player["StartingCamera"]["Position"];
 			info.pX = (float)(*camPos["x"]).getDouble();
 			info.pY = (float)(*camPos["y"]).getDouble();
