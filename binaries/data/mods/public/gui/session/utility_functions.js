@@ -329,7 +329,7 @@ function getPopulationBonus(template)
 {
 	var popBonus = "";
 	if (template.cost.populationBonus)
-		popBonus = "[font=\"serif-bold-13\"]Population Bonus:[/font] " + template.cost.populationBonus;
+		popBonus = "\n[font=\"serif-bold-13\"]Population Bonus:[/font] " + template.cost.populationBonus;
 	return popBonus;
 }
 

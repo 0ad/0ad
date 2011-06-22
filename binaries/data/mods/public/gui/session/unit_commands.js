@@ -219,7 +219,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case CONSTRUCTION:
 			var tooltip = getEntityNameWithGenericType(template);
 			if (template.tooltip)
-				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + " " + getPopulationBonus(template) + "[/font]";
+				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + getPopulationBonus(template) + "[/font]";
 
 			tooltip += "\n" + getEntityCost(template);
 			break;
