@@ -97,6 +97,11 @@ protected:
 	virtual InReaction ManuallyHandleEvent(const SDL_Event_* ev);
 
 	/**
+	 * Handle hotkey events (called by ManuallyHandleEvent)
+	 */
+	virtual InReaction ManuallyHandleHotkeyEvent(const SDL_Event_* ev);
+
+	/**
 	 * @see IGUIObject#UpdateCachedSize()
 	 */
 	virtual void UpdateCachedSize();

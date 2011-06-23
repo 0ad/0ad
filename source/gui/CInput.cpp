@@ -34,6 +34,7 @@ CInput
 #include "ps/CLogger.h"
 #include "ps/Globals.h"
 
+#include <sstream>
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
@@ -70,49 +71,30 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 {
 	ENSURE(m_iBufferPos != -1);
 
-	// Since the GUI framework doesn't handle to set settings
-	//  in Unicode (CStrW), we'll simply retrieve the actual
-	//  pointer and edit that.
-	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
-
 	if (ev->ev.type == SDL_HOTKEYDOWN)
 	{
-		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
-		if (hotkey == "console.paste")
-		{
-			wchar_t* text = sys_clipboard_get();
-			if (text)
-			{
-				if (m_iBufferPos == (int)pCaption->length())
-					*pCaption += text;
-				else
-					*pCaption = pCaption->Left(m_iBufferPos) + text + 
-					pCaption->Right((long) pCaption->length()-m_iBufferPos);
-
-				UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
-
-				m_iBufferPos += (int)wcslen(text);
-
-				sys_clipboard_free(text);
-			}
-
-			return IN_HANDLED;
-		}
+		return(ManuallyHandleHotkeyEvent(ev));
 	}
 	else if (ev->ev.type == SDL_KEYDOWN)
 	{
+		// Since the GUI framework doesn't handle to set settings
+		//  in Unicode (CStrW), we'll simply retrieve the actual
+		//  pointer and edit that.
+		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
+
 		int szChar = ev->ev.key.keysym.sym;
 		wchar_t cooked = (wchar_t)ev->ev.key.keysym.unicode;
 
 		switch (szChar)
 		{
-			case '\t':
+			case SDLK_TAB: // '\t'
 				/* Auto Complete */
 				// TODO Gee: (2004-09-07) What to do with tab?
 				break;
 
-			case '\b':
-				m_WantedX=0.f;
+			case SDLK_BACKSPACE: // '\b'
+				m_WantedX=0.0f;
 
 				if (SelectingText())
 					DeleteCurSelection();
@@ -120,26 +102,29 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				{
 					m_iBufferPos_Tail = -1;
 
-					if (pCaption->empty() ||
-						m_iBufferPos == 0)
+					if (pCaption->empty() || m_iBufferPos == 0)
+					{
 						break;
-
-					if (m_iBufferPos == (int)pCaption->length())
-						*pCaption = pCaption->Left( (long) pCaption->length()-1);
+					}
 					else
-						*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
-									pCaption->Right( (long) pCaption->length()-m_iBufferPos );
+					{
+						if (m_iBufferPos == (int)pCaption->length())
+							*pCaption = pCaption->Left( (long) pCaption->length()-1);
+						else
+							*pCaption = pCaption->Left( m_iBufferPos-1 ) + 
+										pCaption->Right( (long) pCaption->length()-m_iBufferPos );
 
-					--m_iBufferPos;
+						--m_iBufferPos;
 					
-					UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
+						UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
+					}
 				}
 
 				UpdateAutoScroll();
 				break;
 
 			case SDLK_DELETE:
-				m_WantedX=0.f;
+				m_WantedX=0.0f;
 				// If selection:
 				if (SelectingText())
 				{
@@ -147,14 +132,17 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				}
 				else
 				{
-					if (pCaption->empty() ||
-						m_iBufferPos == (int)pCaption->length())
+					if (pCaption->empty() || m_iBufferPos == (int)pCaption->length())
+					{
 						break;
+					}
+					else
+					{
+						*pCaption = pCaption->Left( m_iBufferPos ) + 
+									pCaption->Right( (long) pCaption->length()-(m_iBufferPos+1) );
 
-					*pCaption = pCaption->Left( m_iBufferPos ) + 
-								pCaption->Right( (long) pCaption->length()-(m_iBufferPos+1) );
-
-					UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
+						UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
+					}
 				}
 
 				UpdateAutoScroll();
@@ -162,7 +150,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 			case SDLK_HOME:
 				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!shiftKeyPressed)
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -174,14 +162,14 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				}
 
 				m_iBufferPos = 0;
-				m_WantedX=0.f;
+				m_WantedX=0.0f;
 
 				UpdateAutoScroll();
 				break;
 
 			case SDLK_END:
 				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!shiftKeyPressed)
 				{
 					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
@@ -193,7 +181,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				}
 
 				m_iBufferPos = (long) pCaption->length();
-				m_WantedX=0.f;
+				m_WantedX=0.0f;
 
 				UpdateAutoScroll();
 				break;
@@ -221,25 +209,20 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 			**/
 			case SDLK_LEFT:
-				// reset m_WantedX, very important
 				m_WantedX=0.f;
 
-				if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT] ||
-					!SelectingText())
+				if (shiftKeyPressed || !SelectingText())
 				{
-					// If there's not a selection, we should create one now
-					if (!SelectingText() && !g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+					if (!shiftKeyPressed)
 					{
-						// Make sure a selection isn't created.
 						m_iBufferPos_Tail = -1;
 					}
 					else if (!SelectingText())
 					{
-						// Place tail at the current point:
 						m_iBufferPos_Tail = m_iBufferPos;
 					}
 
-					if (m_iBufferPos) 
+					if (m_iBufferPos > 0) 
 						--m_iBufferPos;
 				}
 				else
@@ -254,25 +237,20 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				break;
 
 			case SDLK_RIGHT:
-				m_WantedX=0.f;
+				m_WantedX=0.0f;
 
-				if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT] || 
-					!SelectingText())
+				if (shiftKeyPressed || !SelectingText())
 				{
-					// If there's not a selection, we should create one now
-					if (!SelectingText() && !g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+					if (!shiftKeyPressed)
 					{
-						// Make sure a selection isn't created.
 						m_iBufferPos_Tail = -1;
 					}
 					else if (!SelectingText())
 					{
-						// Place tail at the current point:
 						m_iBufferPos_Tail = m_iBufferPos;
 					}
 
-
-					if (m_iBufferPos != (int)pCaption->length())
+					if (m_iBufferPos < (int)pCaption->length())
 						++m_iBufferPos;
 				}
 				else
@@ -308,15 +286,12 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			**/
 			case SDLK_UP:
 			{
-				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!shiftKeyPressed)
 				{
-					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
 				}
 				else if (!SelectingText())
 				{
-					// Place tail at the current point:
 					m_iBufferPos_Tail = m_iBufferPos;
 				}
 
@@ -356,15 +331,12 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 			case SDLK_DOWN:
 			{
-				// If there's not a selection, we should create one now
-				if (!g_keys[SDLK_RSHIFT] && !g_keys[SDLK_LSHIFT])
+				if (!shiftKeyPressed)
 				{
-					// Make sure a selection isn't created.
 					m_iBufferPos_Tail = -1;
 				}
 				else if (!SelectingText())
 				{
-					// Place tail at the current point:
 					m_iBufferPos_Tail = m_iBufferPos;
 				}
 
@@ -428,7 +400,6 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				}
 			default: //Insert a character
 				{
-				// If there's a selection, delete if first.
 				if (cooked == 0)
 					return IN_PASS; // Important, because we didn't use any key
 
@@ -438,7 +409,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				if (max_length != 0 && (int)pCaption->length() >= max_length)
 					break;
 
-				m_WantedX=0.f;
+				m_WantedX=0.0f;
 
 				if (SelectingText())
 					DeleteCurSelection();
@@ -465,6 +436,251 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	return IN_PASS;
 }
 
+
+InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
+{
+	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
+
+	std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+	if (hotkey == "console.paste")
+	{
+		m_WantedX=0.0f;
+
+		wchar_t* text = sys_clipboard_get();
+		if (text)
+		{
+			if (m_iBufferPos == (int)pCaption->length())
+				*pCaption += text;
+			else
+				*pCaption = pCaption->Left(m_iBufferPos) + text + 
+				pCaption->Right((long) pCaption->length()-m_iBufferPos);
+
+			UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
+
+			m_iBufferPos += (int)wcslen(text);
+
+			sys_clipboard_free(text);
+		}
+
+		return IN_HANDLED;
+	}
+	else if (hotkey == "console.copy" || hotkey == "console.cut")
+	{
+		m_WantedX=0.0f;
+
+		if (SelectingText())
+		{
+			int virtualFrom;
+			int virtualTo;
+
+			if (m_iBufferPos_Tail >= m_iBufferPos)
+			{
+				virtualFrom = m_iBufferPos;
+				virtualTo = m_iBufferPos_Tail;
+			}
+			else
+			{
+				virtualFrom = m_iBufferPos_Tail;
+				virtualTo = m_iBufferPos;
+			}
+
+			CStrW text = (pCaption->Left(virtualTo)).Right(virtualTo - virtualFrom);
+
+			sys_clipboard_set(&text[0]);
+
+			if (hotkey == "console.cut")
+			{
+				DeleteCurSelection();
+			}
+		}
+
+		return IN_HANDLED;
+	}
+	else if (hotkey == "text.delete.word.left")
+	{
+		m_WantedX=0.0f;
+
+		if (SelectingText())
+		{
+			DeleteCurSelection();
+		}
+		if (!pCaption->empty() && !m_iBufferPos == 0)
+		{
+			m_iBufferPos_Tail = m_iBufferPos;
+			CStrW searchString = pCaption->Left( m_iBufferPos );
+
+			// If we are starting in whitespace, adjust position until we get a non whitespace
+			while (m_iBufferPos > 0)
+			{
+				if (!iswspace(searchString[m_iBufferPos - 1]))
+					break;
+
+				m_iBufferPos--;
+			}
+				
+			// If we end up on a puctuation char we just delete it (treat punct like a word)
+			if (iswpunct(searchString[m_iBufferPos - 1]))
+				m_iBufferPos--;
+			else
+			{
+				// Now we are on a non white space character, adjust position to char after next whitespace char is found
+				while (m_iBufferPos > 0)
+				{
+					if (iswspace(searchString[m_iBufferPos - 1]) || iswpunct(searchString[m_iBufferPos - 1]))
+						break;
+
+					m_iBufferPos--;
+				}
+			}
+
+			DeleteCurSelection();
+		}
+		return IN_HANDLED;
+	} 
+	else if (hotkey == "text.delete.word.right")
+	{
+		m_WantedX=0.0f;
+
+		if (SelectingText())
+		{
+			DeleteCurSelection();
+		}
+		if (!pCaption->empty() && m_iBufferPos < (int)pCaption->length())
+		{
+			// Delete the word to the right of the cursor
+			m_iBufferPos_Tail = m_iBufferPos;
+
+			// Delete chars to the right unit we hit whitespace
+			while (++m_iBufferPos < (int)pCaption->length())
+			{
+				if (iswspace((*pCaption)[m_iBufferPos]) || iswpunct((*pCaption)[m_iBufferPos]))
+					break;
+			}
+
+			// Eliminate any whitespace behind the word we just deleted
+			while (m_iBufferPos < (int)pCaption->length())
+			{
+				if (!iswspace((*pCaption)[m_iBufferPos]))
+					break;
+
+				m_iBufferPos++;
+			}
+			DeleteCurSelection();
+		}
+		return IN_HANDLED;			
+	}
+	else if (hotkey == "text.move.word.left")
+	{
+		m_WantedX=0.0f;
+				
+		if (shiftKeyPressed || !SelectingText())
+		{
+			if (!shiftKeyPressed)
+			{
+				m_iBufferPos_Tail = -1;
+			}
+			else if (!SelectingText())
+			{
+				m_iBufferPos_Tail = m_iBufferPos;
+			}
+
+			if (!pCaption->empty() && !m_iBufferPos == 0)
+			{
+				CStrW searchString = pCaption->Left( m_iBufferPos );
+
+				// If we are starting in whitespace, adjust position until we get a non whitespace
+				while (m_iBufferPos > 0)
+				{
+					if (!iswspace(searchString[m_iBufferPos - 1]))
+						break;
+
+					m_iBufferPos--;
+				}
+				
+				// If we end up on a puctuation char we just select it (treat punct like a word)
+				if (iswpunct(searchString[m_iBufferPos - 1]))
+					m_iBufferPos--;
+				else
+				{
+					// Now we are on a non white space character, adjust position to char after next whitespace char is found
+					while (m_iBufferPos > 0)
+					{
+						if (iswspace(searchString[m_iBufferPos - 1]) || iswpunct(searchString[m_iBufferPos - 1]))
+							break;
+
+						m_iBufferPos--;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (m_iBufferPos_Tail < m_iBufferPos)
+				m_iBufferPos = m_iBufferPos_Tail;
+
+			m_iBufferPos_Tail = -1;
+		}
+
+		UpdateAutoScroll();
+
+		return IN_HANDLED;
+	}
+	else if (hotkey == "text.move.word.right")
+	{
+		m_WantedX=0.0f;
+
+		if (shiftKeyPressed || !SelectingText())
+		{
+			if (!shiftKeyPressed)
+			{
+				m_iBufferPos_Tail = -1;
+			}
+			else if (!SelectingText())
+			{
+				m_iBufferPos_Tail = m_iBufferPos;
+			}
+
+			if (!pCaption->empty() && m_iBufferPos < (int)pCaption->length())
+			{
+				CStrW searchString = *pCaption;
+
+				// Select chars to the right until we hit whitespace
+				while (++m_iBufferPos < (int)pCaption->length())
+				{
+					if (iswspace((*pCaption)[m_iBufferPos]) || iswpunct((*pCaption)[m_iBufferPos]))
+						break;
+				}
+
+				// Also select any whitespace following the word we just selected
+				while (m_iBufferPos < (int)pCaption->length())
+				{
+					if (!iswspace((*pCaption)[m_iBufferPos]))
+						break;
+
+					m_iBufferPos++;
+				}
+			}
+		}
+		else
+		{
+			if (m_iBufferPos_Tail > m_iBufferPos)
+				m_iBufferPos = m_iBufferPos_Tail;
+
+			m_iBufferPos_Tail = -1;
+		}			
+
+		UpdateAutoScroll();
+
+		return IN_HANDLED;
+	}
+	else
+	{
+		return IN_PASS;
+	}
+}
+
+
 void CInput::HandleMessage(SGUIMessage &Message)
 {
 	// TODO Gee:
@@ -480,7 +696,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 		// Update scroll-bar
 		// TODO Gee: (2004-09-01) Is this really updated each time it should?
 		if (scrollbar && 
-		    (Message.value == CStr("size") || 
+			(Message.value == CStr("size") || 
 			 Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
 		{		
@@ -564,6 +780,101 @@ void CInput::HandleMessage(SGUIMessage &Message)
 		//  for the user though.
 
 		}break;
+
+	case GUIM_MOUSE_DBLCLICK_LEFT:
+		{
+			CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+			m_iBufferPos = m_iBufferPos_Tail = GetMouseHoveringTextPosition();
+
+			// See if we are clicking over whitespace
+			if (iswspace((*pCaption)[m_iBufferPos]))
+			{
+				// see if we are in a section of whitespace greater than one character
+				if ((m_iBufferPos + 1 < (int) pCaption->length() && iswspace((*pCaption)[m_iBufferPos + 1])) ||
+					(m_iBufferPos - 1 > 0 && iswspace((*pCaption)[m_iBufferPos - 1])))
+				{
+					//
+					// We are clicking in an area with more than one whitespace character
+					// so we select both the word to the left and then the word to the right
+					//
+					// [1] First the left
+					// skip the whitespace
+					while (m_iBufferPos > 0)
+					{
+						if (!iswspace((*pCaption)[m_iBufferPos - 1]))
+							break;
+
+						m_iBufferPos--;
+					}
+					// now go until we hit white space or punctuation
+					while (m_iBufferPos > 0)
+					{
+						if (iswspace((*pCaption)[m_iBufferPos - 1]))
+							break;
+
+						m_iBufferPos--;
+
+						if (iswpunct((*pCaption)[m_iBufferPos]))
+							break;
+					}
+
+					// [2] Then the right
+					// go right until we are not in whitespace
+					while (++m_iBufferPos_Tail < (int)pCaption->length())
+					{
+						if (!iswspace((*pCaption)[m_iBufferPos_Tail]))
+							break;
+					}
+					// now go to the right until we hit whitespace or punctuation
+					while (++m_iBufferPos_Tail < (int)pCaption->length())
+					{
+						if (iswspace((*pCaption)[m_iBufferPos_Tail]) || iswpunct((*pCaption)[m_iBufferPos_Tail]))
+							break;
+					}
+				}
+				else
+				{
+					// single whitespace so select word to the right
+					while (++m_iBufferPos_Tail < (int)pCaption->length())
+					{
+						if (!iswspace((*pCaption)[m_iBufferPos_Tail]))
+							break;
+					}
+
+					// Don't include the leading whitespace
+					m_iBufferPos = m_iBufferPos_Tail;
+
+					// now go to the right until we hit whitespace or punctuation
+					while (++m_iBufferPos_Tail < (int)pCaption->length())
+					{
+						if (iswspace((*pCaption)[m_iBufferPos_Tail]) || iswpunct((*pCaption)[m_iBufferPos_Tail]))
+							break;
+					}
+				}
+			}
+			else
+			{
+				// clicked on non-whitespace so select current word
+				// go until we hit white space or punctuation
+				while (m_iBufferPos > 0)
+				{
+					if (iswspace((*pCaption)[m_iBufferPos - 1]))
+						break;
+
+					m_iBufferPos--;
+
+					if (iswpunct((*pCaption)[m_iBufferPos]))
+						break;
+				}
+				// go to the right until we hit whitespace or punctuation
+				while (++m_iBufferPos_Tail < (int)pCaption->length())
+				{
+					if (iswspace((*pCaption)[m_iBufferPos_Tail]) || iswpunct((*pCaption)[m_iBufferPos_Tail]))
+						break;
+				}
+			}
+		}
+		break;
 
 	case GUIM_MOUSE_RELEASE_LEFT:
 		if (m_SelectingText)
@@ -921,7 +1232,7 @@ void CInput::Draw()
 					}
 
 					if (i < (int)it->m_ListOfX.size())
-                        x_pointer += (float)font.GetCharacterWidth((*pCaption)[it->m_ListStart + i]);
+						x_pointer += (float)font.GetCharacterWidth((*pCaption)[it->m_ListStart + i]);
 				}
 
 				if (done)
@@ -953,7 +1264,7 @@ void CInput::Draw()
 			{
 				if (multiline)
 				{
-                    if (buffered_y + buffer_zone > m_CachedActualSize.GetHeight())
+					if (buffered_y + buffer_zone > m_CachedActualSize.GetHeight())
 						break;
 				}
 
@@ -961,7 +1272,7 @@ void CInput::Draw()
 				
 				// Text must always be drawn in integer values. So we have to convert scroll
 				if (multiline)
-                    glTranslatef(0.f, -(float)(int)scroll, 0.f);
+					glTranslatef(0.f, -(float)(int)scroll, 0.f);
 				else
 					glTranslatef(-(float)(int)m_HorizontalScroll, 0.f, 0.f);
 
@@ -1169,7 +1480,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 		if (destroy_row_to_used == false)
 		{
-            destroy_row_to = m_CharacterPositions.end();
+			destroy_row_to = m_CharacterPositions.end();
 			check_point_row_start = -1;
 
 			destroy_row_from_used = true;
@@ -1180,7 +1491,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		from = destroy_row_from->m_ListStart;
 		
 		if (destroy_row_to != m_CharacterPositions.end())
-            to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
+			to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
 		else
 			to = (int)caption.length();
 
@@ -1428,7 +1739,7 @@ int CInput::GetMouseHoveringTextPosition()
 		return 0;
 
 	// Return position
-	int RetPosition;
+	int retPosition;
 
 	float buffer_zone;
 	bool multiline;
@@ -1493,20 +1804,19 @@ int CInput::GetMouseHoveringTextPosition()
 	}
 
 	//m_iBufferPos = m_CharacterPositions.get.m_ListStart;
-	RetPosition = current->m_ListStart;
+	retPosition = current->m_ListStart;
 	
 	// Okay, now loop through the glyphs to find the appropriate X position
 	float dummy;
-	RetPosition += GetXTextPosition(current, mouse.x, dummy);
+	retPosition += GetXTextPosition(current, mouse.x, dummy);
 
-	return RetPosition;
+	return retPosition;
 }
 
 // Does not process horizontal scrolling, 'x' must be modified before inputted.
 int CInput::GetXTextPosition(const std::list<SRow>::iterator &current, const float &x, float &wanted)
 {
-	int Ret=0;
-
+	int ret=0;
 	float previous=0.f;
 	int i=0;
 
@@ -1517,9 +1827,9 @@ int CInput::GetXTextPosition(const std::list<SRow>::iterator &current, const flo
 		if (*it >= x)
 		{
 			if (x - previous >= *it - x)
-				Ret += i+1;
+				ret += i+1;
 			else
-				Ret += i;
+				ret += i;
 
 			break;
 		}
@@ -1529,39 +1839,40 @@ int CInput::GetXTextPosition(const std::list<SRow>::iterator &current, const flo
 	//  character of that line.
 	if (i == (int)current->m_ListOfX.size())
 	{
-		Ret += i;
+		ret += i;
 		wanted = x;
 	}
 	else wanted = 0.f;
 
-	return Ret;
+	return ret;
 }
 
 void CInput::DeleteCurSelection()
 {
 	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 
-	int VirtualFrom, VirtualTo;
+	int virtualFrom;
+	int virtualTo;
 
 	if (m_iBufferPos_Tail >= m_iBufferPos)
 	{
-		VirtualFrom = m_iBufferPos;
-		VirtualTo = m_iBufferPos_Tail;
+		virtualFrom = m_iBufferPos;
+		virtualTo = m_iBufferPos_Tail;
 	}
 	else
 	{
-		VirtualFrom = m_iBufferPos_Tail;
-		VirtualTo = m_iBufferPos;
+		virtualFrom = m_iBufferPos_Tail;
+		virtualTo = m_iBufferPos;
 	}
 
-	*pCaption = pCaption->Left( VirtualFrom ) + 
-				pCaption->Right( (long) pCaption->length()-(VirtualTo) );
+	*pCaption = pCaption->Left( virtualFrom ) + 
+				pCaption->Right( (long) pCaption->length() - (virtualTo) );
 
-	UpdateText(VirtualFrom, VirtualTo, VirtualFrom);
+	UpdateText(virtualFrom, virtualTo, virtualFrom);
 
 	// Remove selection
 	m_iBufferPos_Tail = -1;
-	m_iBufferPos = VirtualFrom;
+	m_iBufferPos = virtualFrom;
 }
 
 bool CInput::SelectingText() const

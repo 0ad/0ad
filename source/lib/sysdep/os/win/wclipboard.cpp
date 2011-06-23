@@ -26,89 +26,98 @@
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
 
-// caller is responsible for freeing *hMem.
-static Status SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
+
+// caller is responsible for freeing hMem.
+static Status SetClipboardText(const wchar_t* text, HGLOBAL& hMem)
 {
 	const size_t numChars = wcslen(text);
-	*hMem = GlobalAlloc(GMEM_MOVEABLE, (numChars+1) * sizeof(wchar_t));
-	if(!*hMem)
+	hMem = GlobalAlloc(GMEM_MOVEABLE|GMEM_ZEROINIT, (numChars + 1) * sizeof(wchar_t));
+	if(!hMem)
 		WARN_RETURN(ERR::NO_MEM);
 
-	wchar_t* lockedText = (wchar_t*)GlobalLock(*hMem);
+	wchar_t* lockedText = (wchar_t*)GlobalLock(hMem);
 	if(!lockedText)
 		WARN_RETURN(ERR::NO_MEM);
 	wcscpy_s(lockedText, numChars+1, text);
-	GlobalUnlock(*hMem);
+	GlobalUnlock(hMem);
 
-	HANDLE hData = SetClipboardData(CF_UNICODETEXT, *hMem);
+	HANDLE hData = SetClipboardData(CF_UNICODETEXT, hMem);
 	if(!hData)	// failed
 		WARN_RETURN(ERR::FAIL);
 
 	return INFO::OK;
 }
 
-// "copy" text into the clipboard. replaces previous contents.
-Status sys_clipboard_set(const wchar_t* text)
+
+// @return INFO::OK iff text has been assigned a pointer (which the
+// caller must free via sys_clipboard_free) to the clipboard text.
+static Status GetClipboardText(wchar_t*& text)
 {
-	// note: MSDN claims that the window handle must not be 0;
-	// that does actually work on WinXP, but we'll play it safe.
-	if(!OpenClipboard(wutil_AppWindow()))
-		WARN_RETURN(ERR::FAIL);
-	EmptyClipboard();
+	// NB: Windows NT/2000+ auto convert CF_UNICODETEXT <-> CF_TEXT.
 
-	HGLOBAL hMem;
-	Status ret = SetClipboardText(text, &hMem);
+	if(!IsClipboardFormatAvailable(CF_UNICODETEXT))
+		return INFO::CANNOT_HANDLE;
 
-	CloseClipboard();
-
-	// note: MSDN's SetClipboardData documentation says hMem must not be
-	// freed until after CloseClipboard. however, GlobalFree still fails
-	// after the successful completion of both. we'll leave it in to avoid
-	// memory leaks, but ignore its return value.
-	(void)GlobalFree(hMem);
-
-	return ret;
-}
-
-
-static wchar_t* CopyClipboardContents()
-{
-	// Windows NT/2000+ auto convert UNICODETEXT <-> TEXT
 	HGLOBAL hMem = GetClipboardData(CF_UNICODETEXT);
 	if(!hMem)
-		return 0;
+		WARN_RETURN(ERR::FAIL);
 
 	const wchar_t* lockedText = (const wchar_t*)GlobalLock(hMem);
 	if(!lockedText)
-		return 0;
+		WARN_RETURN(ERR::NO_MEM);
 
-	const size_t numChars = GlobalSize(hMem)/sizeof(wchar_t) - 1;
-	wchar_t* text = new wchar_t[numChars+1];
-	wcscpy_s(text, numChars+1, lockedText);
+	const size_t size = GlobalSize(hMem);
+	text = (wchar_t*)malloc(size);
+	if(!text)
+		WARN_RETURN(ERR::NO_MEM);
+	wcscpy_s(text, size/sizeof(wchar_t), lockedText);
 
-	GlobalUnlock(hMem);
+	(void)GlobalUnlock(hMem);
 
-	return text;
+	return INFO::OK;
 }
 
-// allow "pasting" from clipboard. returns the current contents if they
-// can be represented as text, otherwise 0.
-// when it is no longer needed, the returned pointer must be freed via
-// sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
-wchar_t* sys_clipboard_get()
+
+// OpenClipboard parameter.
+// NB: using wutil_AppWindow() causes GlobalLock to fail.
+static const HWND hWndNewOwner = 0;	// MSDN: associate with "current task"
+
+Status sys_clipboard_set(const wchar_t* text)
 {
-	if(!OpenClipboard(wutil_AppWindow()))
-		return 0;
-	wchar_t* const ret = CopyClipboardContents();
-	CloseClipboard();
+	if(!OpenClipboard(hWndNewOwner))
+		WARN_RETURN(ERR::FAIL);
+
+	WARN_IF_FALSE(EmptyClipboard());
+
+	// NB: to enable copy/pasting something other than text, add
+	// message handlers for WM_RENDERFORMAT and WM_RENDERALLFORMATS.
+	HGLOBAL hMem;
+	Status ret = SetClipboardText(text, hMem);
+
+	WARN_IF_FALSE(CloseClipboard());	// must happen before GlobalFree
+
+	ENSURE(GlobalFree(hMem) == 0);	// (0 indicates success)
+
 	return ret;
 }
 
 
-// frees memory used by <copy>, which must have been returned by
-// sys_clipboard_get. see note above.
+wchar_t* sys_clipboard_get()
+{
+	if(!OpenClipboard(hWndNewOwner))
+		return 0;
+
+	wchar_t* text;
+	Status ret = GetClipboardText(text);
+
+	WARN_IF_FALSE(CloseClipboard());
+
+	return (ret == INFO::OK)? text : 0;
+}
+
+
 Status sys_clipboard_free(wchar_t* text)
 {
-	delete[] text;
+	free(text);
 	return INFO::OK;
 }

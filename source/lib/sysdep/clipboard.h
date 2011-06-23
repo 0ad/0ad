@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,15 +20,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef INCLUDED_SYSDEP_CLIPBOARD
+#define INCLUDED_SYSDEP_CLIPBOARD
+
 // "copy" text into the clipboard. replaces previous contents.
 extern Status sys_clipboard_set(const wchar_t* text);
 
-// allow "pasting" from clipboard. returns the current contents if they
-// can be represented as text, otherwise 0.
-// when it is no longer needed, the returned pointer must be freed via
-// sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
+// allow "pasting" from clipboard.
+// @return current clipboard text or 0 if not representable as text.
+// callers are responsible for passing this pointer to sys_clipboard_free.
 extern wchar_t* sys_clipboard_get();
 
-// frees memory used by <copy>, which must have been returned by
-// sys_clipboard_get. see note above.
+// free memory returned by sys_clipboard_get.
+// @param copy is ignored if 0.
 extern Status sys_clipboard_free(wchar_t* copy);
+
+#endif	// #ifndef INCLUDED_SYSDEP_CLIPBOARD
