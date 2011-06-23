@@ -14,8 +14,17 @@
         <prop actor="units/celts/boudicca_chariot_h2.xml" attachpoint="horseleft"/>
         <prop actor="units/celts/boudicca_r2.xml" attachpoint="rider"/>
         <prop actor="units/celts/super_unit_4_d.xml" attachpoint="driver"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_chariot_b.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

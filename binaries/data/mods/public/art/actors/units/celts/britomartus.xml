@@ -19,8 +19,17 @@
         <prop actor="props/units/weapons/spear_gold.xml" attachpoint="r_hand"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
         <prop actor="props/units/heads/celt_helmet_brito.xml" attachpoint="helmet"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>skeletal/celt_britomartus.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

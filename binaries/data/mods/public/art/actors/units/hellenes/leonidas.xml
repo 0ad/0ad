@@ -4,8 +4,12 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="120"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="12"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="220"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-		<animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
@@ -18,42 +22,17 @@
         <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
         <prop actor="props/units/shields/hele_round_leonidas.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_m_long.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>
       <texture>skeletal/hele_leonidas.dds</texture>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Idle">
-      <animations>
-        <animation file="biped/inf_hoplite_idle_a.psa" name="idle" speed="200"/>
-      </animations>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
       <props>
-        <prop actor="props/units/shields/hele_round_leonidas.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="Melee">
-      <animations>
-        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="melee" speed="220"/>
-      </animations>
-      <props>
-        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="Run">
-      <animations>
-        <animation file="biped/inf_hoplite_shield_run_a.psa" name="run" speed="12"/>
-      </animations>
-      <props>
-        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
-      </props>
-    </variant>
-    <variant name="walk">
-      <animations>
-        <animation file="biped/inf_hoplite_walk.psa" name="walk" speed="120"/>
-      </animations>
-      <props>
-        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
+        <prop attachpoint="root"/>
       </props>
     </variant>
   </group>

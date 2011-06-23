@@ -12,7 +12,7 @@
         <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="100"/>
-		<animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
@@ -25,8 +25,17 @@
         <prop actor="props/units/shields/celt_caradoc.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/celt_helmet_caradoc.xml" attachpoint="helmet"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>skeletal/celt_caradoc.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

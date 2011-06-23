@@ -26,6 +26,7 @@
         <prop actor="props/units/weapons/verutum.xml" attachpoint="l_hand"/>
         <prop actor="props/units/shields/iber_round_variato.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_iber_variato.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -33,6 +34,14 @@
     <variant frequency="1" name="Variato-pants-yes">
       <mesh>skeletal/m_pants_tunic.dae</mesh>
       <texture>skeletal/iber_hero_variato_pants.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

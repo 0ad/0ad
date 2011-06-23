@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -16,16 +14,15 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/iberians/hero_indibil_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-texture-1">
       <texture>skeletal/horse_iber_indibil.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-color-black">
       <colour>41 41 41</colour>
@@ -43,5 +40,12 @@
       <colour>255 255 255</colour>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>

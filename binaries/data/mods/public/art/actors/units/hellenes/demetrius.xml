@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="130"/>
         <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="Attack" speed="200"/>
-		<animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
@@ -22,11 +20,18 @@
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/hele_demetrius.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/hele_round_demetrius.xml" attachpoint="shield"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>skeletal/hele_demetrius.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
-
 </actor>

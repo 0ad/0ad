@@ -15,12 +15,21 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/celts/vercingetorix_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="horse-texture">
       <texture>skeletal/horse_celt_verc.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
