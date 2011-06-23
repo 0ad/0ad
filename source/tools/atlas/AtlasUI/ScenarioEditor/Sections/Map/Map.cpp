@@ -46,7 +46,8 @@ enum
 	ID_SimFast,
 	ID_SimSlow,
 	ID_SimPause,
-	ID_SimReset
+	ID_SimReset,
+	ID_OpenPlayerPanel
 };
 
 enum
@@ -122,6 +123,8 @@ void MapSettingsControl::CreateWidgets()
 {
 	wxSizer* sizer = GetSizer();
 
+	/////////////////////////////////////////////////////////////////////////
+	// Map settings
 	wxBoxSizer* nameSizer = new wxBoxSizer(wxHORIZONTAL);
 	nameSizer->Add(new wxStaticText(this, wxID_ANY, _("Name")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
 	nameSizer->Add(8, 0);
@@ -172,54 +175,70 @@ void MapSettingsControl::ReadFromEngine()
 		m_MapSettings = AtlasObject::LoadFromJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), *qry.settings);
 	}
 
-	m_MapSettingsKeywords.clear();
-	for (AtIter keyword = m_MapSettings["Keywords"]["item"]; keyword.defined(); ++keyword)
-		m_MapSettingsKeywords.insert(std::wstring(keyword));
-
+	// map name
 	wxDynamicCast(FindWindow(ID_MapName), wxTextCtrl)->ChangeValue(wxString(m_MapSettings["Name"]));
 
+	// map description
 	wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->ChangeValue(wxString(m_MapSettings["Description"]));
 
+	// reveal map
 	wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->SetValue(wxString(m_MapSettings["RevealMap"]) == L"true");
 
+	// game type / victory conditions
 	if (m_MapSettings["GameType"].defined())
 		wxDynamicCast(FindWindow(ID_MapType), wxChoice)->SetStringSelection(wxString(m_MapSettings["GameType"]));
 	else
 		wxDynamicCast(FindWindow(ID_MapType), wxChoice)->SetSelection(0);
 
+	// lock teams
 	wxDynamicCast(FindWindow(ID_MapTeams), wxCheckBox)->SetValue(wxString(m_MapSettings["LockTeams"]) == L"true");
 
-	wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"demo") != 0);
-	wxDynamicCast(FindWindow(ID_MapKW_Hidden), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"hidden") != 0);
+	// keywords
+	{
+		m_MapSettingsKeywords.clear();
+		for (AtIter keyword = m_MapSettings["Keywords"]["item"]; keyword.defined(); ++keyword)
+			m_MapSettingsKeywords.insert(std::wstring(keyword));
+
+		wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"demo") != 0);
+		wxDynamicCast(FindWindow(ID_MapKW_Hidden), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"hidden") != 0);
+	}
 }
 
 AtObj MapSettingsControl::UpdateSettingsObject()
 {
+	// map name
 	m_MapSettings.set("Name", wxDynamicCast(FindWindow(ID_MapName), wxTextCtrl)->GetValue());
 
+	// map description
 	m_MapSettings.set("Description", wxDynamicCast(FindWindow(ID_MapDescription), wxTextCtrl)->GetValue());
 
+	// reveal map
 	m_MapSettings.setBool("RevealMap", wxDynamicCast(FindWindow(ID_MapReveal), wxCheckBox)->GetValue());
 
+	// game type / victory conditions
 	m_MapSettings.set("GameType", wxDynamicCast(FindWindow(ID_MapType), wxChoice)->GetStringSelection());
 
-	if (wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->GetValue())
-		m_MapSettingsKeywords.insert(L"demo");
-	else
-		m_MapSettingsKeywords.erase(L"demo");
+	// keywords
+	{
+		if (wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->GetValue())
+			m_MapSettingsKeywords.insert(L"demo");
+		else
+			m_MapSettingsKeywords.erase(L"demo");
 
-	if (wxDynamicCast(FindWindow(ID_MapKW_Hidden), wxCheckBox)->GetValue())
-		m_MapSettingsKeywords.insert(L"hidden");
-	else
-		m_MapSettingsKeywords.erase(L"hidden");
+		if (wxDynamicCast(FindWindow(ID_MapKW_Hidden), wxCheckBox)->GetValue())
+			m_MapSettingsKeywords.insert(L"hidden");
+		else
+			m_MapSettingsKeywords.erase(L"hidden");
 
+		AtObj keywords;
+		keywords.set("@array", L"");
+		for (std::set<std::wstring>::iterator it = m_MapSettingsKeywords.begin(); it != m_MapSettingsKeywords.end(); ++it)
+			keywords.add("item", it->c_str());
+		m_MapSettings.set("Keywords", keywords);
+	}
+
+	// teams locked
 	m_MapSettings.setBool("LockTeams", wxDynamicCast(FindWindow(ID_MapTeams), wxCheckBox)->GetValue());
-
-	AtObj keywords;
-	keywords.set("@array", L"");
-	for (std::set<std::wstring>::iterator it = m_MapSettingsKeywords.begin(); it != m_MapSettingsKeywords.end(); ++it)
-		keywords.add("item", it->c_str());
-	m_MapSettings.set("Keywords", keywords);
 
 	return m_MapSettings;
 }
@@ -242,7 +261,11 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 	m_MapSettingsCtrl = new MapSettingsControl(this, m_ScenarioEditor);
 	m_MainSizer->Add(m_MapSettingsCtrl, wxSizerFlags().Expand());
 
+	m_MainSizer->Add(new wxButton(this, ID_OpenPlayerPanel, _T("Player settings")), wxSizerFlags().Expand().Border(wxTOP, 16));
+
 	{
+		/////////////////////////////////////////////////////////////////////////
+		// Random map settings
 		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Random map"));
 
 		sizer->Add(new wxChoice(this, ID_RandomScript), wxSizerFlags().Expand());
@@ -272,6 +295,8 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 	}
 
 	{
+		/////////////////////////////////////////////////////////////////////////
+		// Simulation buttons
 		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Simulation test"));
 		sizer->Add(new wxButton(this, ID_SimPlay, _("Play")), wxSizerFlags().Proportion(1));
 		sizer->Add(new wxButton(this, ID_SimFast, _("Fast")), wxSizerFlags().Proportion(1));
@@ -466,6 +491,11 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 	m_ScenarioEditor.NotifyOnMapReload();
 }
 
+void MapSidebar::OnOpenPlayerPanel(wxCommandEvent& WXUNUSED(evt))
+{
+	m_ScenarioEditor.SelectPage(_T("PlayerSidebar"));
+}
+
 BEGIN_EVENT_TABLE(MapSidebar, Sidebar)
 	EVT_COLLAPSIBLEPANE_CHANGED(wxID_ANY, MapSidebar::OnCollapse)
 	EVT_BUTTON(ID_SimPlay, MapSidebar::OnSimPlay)
@@ -475,4 +505,5 @@ BEGIN_EVENT_TABLE(MapSidebar, Sidebar)
 	EVT_BUTTON(ID_SimReset, MapSidebar::OnSimReset)
 	EVT_BUTTON(ID_RandomReseed, MapSidebar::OnRandomReseed)
 	EVT_BUTTON(ID_RandomGenerate, MapSidebar::OnRandomGenerate)
+	EVT_BUTTON(ID_OpenPlayerPanel, MapSidebar::OnOpenPlayerPanel)
 END_EVENT_TABLE();

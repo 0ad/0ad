@@ -230,10 +230,10 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	sunSizer->Add(m_LightingModelList = new VariableListBox(this, _("Light model"), g_EnvironmentSettings.lightingmodel), wxSizerFlags().Expand());
 
 	m_MainSizer->Add(new LightControl(this, wxSize(150, 150), g_EnvironmentSettings));
-	m_MainSizer->Add(m_SkyList = new VariableListBox(this, _("Sky set"), g_EnvironmentSettings.skyset));
-	m_MainSizer->Add(new VariableColourBox(this, _("Sun colour"), g_EnvironmentSettings.suncolour));
-	m_MainSizer->Add(new VariableColourBox(this, _("Terrain ambient colour"), g_EnvironmentSettings.terraincolour));
-	m_MainSizer->Add(new VariableColourBox(this, _("Object ambient colour"), g_EnvironmentSettings.unitcolour));
+	m_MainSizer->Add(m_SkyList = new VariableListBox(this, _("Sky set"), g_EnvironmentSettings.skyset), wxSizerFlags().Expand());
+	m_MainSizer->Add(new VariableColourBox(this, _("Sun colour"), g_EnvironmentSettings.suncolour), wxSizerFlags().Expand());
+	m_MainSizer->Add(new VariableColourBox(this, _("Terrain ambient colour"), g_EnvironmentSettings.terraincolour), wxSizerFlags().Expand());
+	m_MainSizer->Add(new VariableColourBox(this, _("Object ambient colour"), g_EnvironmentSettings.unitcolour), wxSizerFlags().Expand());
 
 	m_Conn = g_EnvironmentSettings.RegisterObserver(0, &SendToGame);
 }

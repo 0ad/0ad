@@ -68,6 +68,8 @@ public:
 
 	ToolManager& GetToolManager() { return m_ToolManager; }
 
+	void SelectPage(const wxString& classname) { m_SectionLayout.SelectPage(classname); }
+
 private:
 	ScriptInterface& m_ScriptInterface;
 

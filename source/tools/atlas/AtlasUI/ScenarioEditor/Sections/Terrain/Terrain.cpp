@@ -57,35 +57,43 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 	Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
 {
 	{
+		/////////////////////////////////////////////////////////////////////////
+		// Terrain elevation
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Elevation tools"));
 		wxSizer* gridSizer = new wxGridSizer(3);
 		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")), wxSizerFlags().Expand());
 		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")), wxSizerFlags().Expand());
 		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand());
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
+		/////////////////////////////////////////////////////////////////////////
+		// Terrain texture
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Texture tools"));
 		wxSizer* gridSizer = new wxGridSizer(3);
 		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")), wxSizerFlags().Expand());
 		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Replace"), _T("ReplaceTerrain")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand());
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
+		/////////////////////////////////////////////////////////////////////////
+		// Brush settings
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Brush"));
 		g_Brush_Elevation.CreateUI(this, sizer);
-		m_MainSizer->Add(sizer);
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
+		/////////////////////////////////////////////////////////////////////////
+		// Visualise
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Visualise"));
-		m_MainSizer->Add(sizer);
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
-		wxSizer* visSizer = new wxFlexGridSizer(2);
+		wxSizer* visSizer = new wxFlexGridSizer(2, 2, 5, 5);
 		sizer->Add(visSizer);
 
 		wxArrayString defaultChoices;
@@ -93,17 +101,19 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		m_PassabilityChoice = new wxChoice(this, ID_Passability, wxDefaultPosition, wxDefaultSize, defaultChoices);
 		m_PassabilityChoice->SetSelection(0);
 
-		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Passability")), wxSizerFlags().Right());
+		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Passability")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
 		visSizer->Add(m_PassabilityChoice);
 
-		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Priorities")), wxSizerFlags().Right());
+		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Priorities")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
 		visSizer->Add(new wxCheckBox(this, ID_ShowPriorities, _("")));
 	}
 
 	{
+		/////////////////////////////////////////////////////////////////////////
+		// Misc tools
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Misc tools"));
 		sizer->Add(new wxButton(this, ID_ResizeMap, _("Resize map")), wxSizerFlags().Expand());
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand());
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	m_BottomBar = new TerrainBottomBar(scenarioEditor, bottomBarContainer);

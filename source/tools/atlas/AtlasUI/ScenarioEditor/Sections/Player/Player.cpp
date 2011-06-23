@@ -91,7 +91,7 @@ public:
 		m_Controls.ai = aiChoice;
 
 		playerInfoSizer->Add(gridSizer, wxSizerFlags(1).Expand());
-		sizer->Add(playerInfoSizer, wxSizerFlags().Expand());
+		sizer->Add(playerInfoSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
 		/////////////////////////////////////////////////////////////////////////
 		// Resources
@@ -120,7 +120,7 @@ public:
 		m_Controls.pop = popCtrl;
 
 		resourceSizer->Add(gridSizer, wxSizerFlags(1).Expand());
-		sizer->Add(resourceSizer, wxSizerFlags().Expand());
+		sizer->Add(resourceSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
 		/////////////////////////////////////////////////////////////////////////
 		// Diplomacy
@@ -143,7 +143,7 @@ public:
 		wxWindow* pane = advPane->GetPane();
 		diplomacySizer->Add(advPane, 0, wxGROW | wxALL, 2);*/
 
-		sizer->Add(diplomacySizer, wxSizerFlags().Expand());
+		sizer->Add(diplomacySizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
 		/////////////////////////////////////////////////////////////////////////
 		// Camera
@@ -157,7 +157,7 @@ public:
 		cameraClear->Enable(false);
 		cameraSizer->Add(Tooltipped(cameraClear, _("Clear player camera")), wxSizerFlags(1));
 
-		sizer->Add(cameraSizer, wxSizerFlags().Expand());
+		sizer->Add(cameraSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
 		Layout();
 		Thaw();
@@ -616,7 +616,7 @@ void PlayerSettingsControl::ReadFromEngine()
 
 		// team
 		if (player["Team"].defined())
-			controls.team->SetSelection((*player["Team"]).getInt());
+			controls.team->SetSelection((*player["Team"]).getInt() + 1);
 		else
 			controls.team->SetSelection(0);
 

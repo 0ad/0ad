@@ -211,15 +211,17 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 	shapes.Add(_("Circle"));
 	shapes.Add(_("Square"));
 	// TODO (maybe): get rid of the extra static box, by not using wxRadioBox
-	sizer->Add(new BrushShapeCtrl(parent, shapes, *this));
+	sizer->Add(new BrushShapeCtrl(parent, shapes, *this), wxSizerFlags().Expand());
+
+	sizer->AddSpacer(5);
 
 	// TODO: These are yucky
-	wxSizer* spinnerSizer = new wxFlexGridSizer(2);
-	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Size")), wxSizerFlags().Right());
+	wxSizer* spinnerSizer = new wxFlexGridSizer(2, 2, 5, 5);
+	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Size")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
 	spinnerSizer->Add(new BrushSizeCtrl(parent, *this));
-	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Strength")), wxSizerFlags().Right());
+	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Strength")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
 	spinnerSizer->Add(new BrushStrengthCtrl(parent, *this));
-	sizer->Add(spinnerSizer);
+	sizer->Add(spinnerSizer, wxSizerFlags().Expand());
 }
 
 void Brush::MakeActive()
