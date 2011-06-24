@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Helmet-Illyrian-Crested">
       <mesh>props/helmet/hele_helmet_k.pmd</mesh>
@@ -16,8 +14,10 @@
       <mesh>props/helmet/hele_helmet_s.pmd</mesh>
       <texture>props/helmet/hele_h1.dds</texture>
     </variant>
+    <variant frequency="2" name="Helmet-Chalcidean-Crested">
+      <mesh>props/helmet/mace_helmet_o.dae</mesh>
+      <texture>props/helmet/mace-g.dds</texture>
+    </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
