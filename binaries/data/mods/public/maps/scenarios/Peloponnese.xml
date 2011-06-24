@@ -3,9 +3,9 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cirrus</SkySet>
+		<SkySet>cloudless</SkySet>
 		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
-		<SunElevation angle="0.877437"/>
+		<SunElevation angle="0.874369"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
@@ -14,17 +14,17 @@
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>22.2426</Height>
-				<Shininess>3.41797</Shininess>
+				<Shininess>2.92969</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.641602</Murkiness>
-				<Tint r="0.145098" g="0.607843" b="0.854902"/>
+				<Tint r="0.137255" g="0.603922" b="0.854902"/>
 				<ReflectionTint r="0.0901961" g="0.619608" b="0.901961"/>
 				<ReflectionTintStrength>0.398438</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="973.954" y="113.162" z="663.377"/>
+		<Position x="1545.52" y="406.391" z="-191.35"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -11487,7 +11487,7 @@
 		<Entity uid="1931">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="585.34217" z="1305.37256"/>
+			<Position x="587.38794" z="1325.03077"/>
 			<Orientation y="1.07438"/>
 		</Entity>
 		<Entity uid="1932">
@@ -32224,6 +32224,594 @@
 		<Entity uid="5957">
 			<Template>actor|geology/stone_medit_med.xml</Template>
 			<Position x="1125.18653" z="279.23172"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5958">
+			<Template>other/hellenic_epic_temple</Template>
+			<Player>0</Player>
+			<Position x="800.04712" z="1408.56373"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5959">
+			<Template>other/fence_long</Template>
+			<Player>0</Player>
+			<Position x="572.15894" z="910.4673"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5960">
+			<Template>other/celt_tavern</Template>
+			<Player>0</Player>
+			<Position x="234.62465" z="1590.18177"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5961">
+			<Template>other/unfinished_greek_temple</Template>
+			<Player>0</Player>
+			<Position x="580.36847" z="853.76215"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5962">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>4</Player>
+			<Position x="988.64136" z="1378.11536"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5963">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>4</Player>
+			<Position x="990.3324" z="1381.30494"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5964">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>4</Player>
+			<Position x="991.98609" z="1383.6698"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5965">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>4</Player>
+			<Position x="993.69245" z="1385.61622"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5966">
+			<Template>other/thebes_sacred_band_hoplitai</Template>
+			<Player>4</Player>
+			<Position x="995.10352" z="1387.99354"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5967">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="34.63772" z="967.73206"/>
+			<Orientation y="-3.05538"/>
+		</Entity>
+		<Entity uid="5968">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1127.46912" z="76.87388"/>
+			<Orientation y="0.70905"/>
+		</Entity>
+		<Entity uid="5969">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1659.05005" z="448.8165"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5970">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1733.51648" z="738.30921"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5971">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1710.44251" z="1169.53516"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5972">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1962.14979" z="904.5033"/>
+			<Orientation y="-1.14605"/>
+		</Entity>
+		<Entity uid="5973">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1240.51331" z="1742.07618"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5974">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1209.95887" z="1724.865"/>
+			<Orientation y="0.90273"/>
+		</Entity>
+		<Entity uid="5975">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1264.28382" z="1025.2605"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5976">
+			<Template>other/special_treasure_shipwreck</Template>
+			<Player>0</Player>
+			<Position x="1068.30018" z="595.33936"/>
+			<Orientation y="-2.54688"/>
+		</Entity>
+		<Entity uid="5977">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="369.43299" z="379.1829"/>
+			<Orientation y="0.24898"/>
+		</Entity>
+		<Entity uid="5978">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="686.78357" z="255.52295"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5979">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1121.11963" z="95.53708"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5980">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1119.13672" z="88.25556"/>
+			<Orientation y="0.5408"/>
+		</Entity>
+		<Entity uid="5981">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1125.688" z="89.05741"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5982">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1111.93042" z="55.48813"/>
+			<Orientation y="-1.91781"/>
+		</Entity>
+		<Entity uid="5983">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1716.20435" z="410.95765"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5984">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1801.90137" z="654.641"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5985">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1494.77173" z="755.66236"/>
+			<Orientation y="-2.6617"/>
+		</Entity>
+		<Entity uid="5986">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1898.10291" z="1202.20032"/>
+			<Orientation y="0.51737"/>
+		</Entity>
+		<Entity uid="5987">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1664.51893" z="1614.49061"/>
+			<Orientation y="-2.23362"/>
+		</Entity>
+		<Entity uid="5988">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1586.13221" z="1758.9408"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5989">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1562.82618" z="1799.28528"/>
+			<Orientation y="0.45788"/>
+		</Entity>
+		<Entity uid="5990">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1561.78028" z="1269.20228"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5991">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="1094.1985" z="1592.9817"/>
+			<Orientation y="-0.72094"/>
+		</Entity>
+		<Entity uid="5992">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="932.57874" z="1290.04761"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5993">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="57.99144" z="1301.7527"/>
+			<Orientation y="0.1124"/>
+		</Entity>
+		<Entity uid="5994">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="64.76142" z="1138.68616"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5995">
+			<Template>other/special_treasure_shipwreck_debris</Template>
+			<Player>0</Player>
+			<Position x="397.40006" z="1282.49134"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5996">
+			<Template>gaia/special_treasure_pegasus</Template>
+			<Player>0</Player>
+			<Position x="430.36414" z="1696.1847"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5997">
+			<Template>gaia/special_treasure_pegasus</Template>
+			<Player>0</Player>
+			<Position x="888.917" z="805.1985"/>
+			<Orientation y="0.61417"/>
+		</Entity>
+		<Entity uid="5998">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="599.66822" z="846.68824"/>
+			<Orientation y="-0.01627"/>
+		</Entity>
+		<Entity uid="5999">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="871.10285" z="381.35938"/>
+			<Orientation y="0.26212"/>
+		</Entity>
+		<Entity uid="6000">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="868.68116" z="557.93836"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6001">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="1455.36158" z="1141.65345"/>
+			<Orientation y="0.66288"/>
+		</Entity>
+		<Entity uid="6002">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="978.37281" z="1001.08887"/>
+			<Orientation y="-2.70965"/>
+		</Entity>
+		<Entity uid="6003">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="1014.32044" z="1443.4203"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6004">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="796.47895" z="1844.71656"/>
+			<Orientation y="-2.09484"/>
+		</Entity>
+		<Entity uid="6005">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="863.02906" z="1871.87269"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6006">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="409.43982" z="964.5492"/>
+			<Orientation y="-2.6658"/>
+		</Entity>
+		<Entity uid="6007">
+			<Template>gaia/special_treasure_food_crate</Template>
+			<Player>0</Player>
+			<Position x="1654.29651" z="867.37159"/>
+			<Orientation y="-2.605"/>
+		</Entity>
+		<Entity uid="6008">
+			<Template>gaia/special_treasure_food_crate</Template>
+			<Player>0</Player>
+			<Position x="1651.85706" z="867.24317"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6009">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1653.96705" z="870.44556"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6010">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1649.82642" z="870.21845"/>
+			<Orientation y="-1.58004"/>
+		</Entity>
+		<Entity uid="6011">
+			<Template>gaia/special_treasure_food_barrel</Template>
+			<Player>0</Player>
+			<Position x="1652.24097" z="871.59314"/>
+			<Orientation y="0.81505"/>
+		</Entity>
+		<Entity uid="6012">
+			<Template>gaia/special_treasure_food_barrel</Template>
+			<Player>0</Player>
+			<Position x="1787.00135" z="883.20252"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6013">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1865.46216" z="799.83826"/>
+			<Orientation y="0.63302"/>
+		</Entity>
+		<Entity uid="6014">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1996.17078" z="858.35645"/>
+			<Orientation y="-2.71334"/>
+		</Entity>
+		<Entity uid="6015">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1426.35901" z="1382.13941"/>
+			<Orientation y="-2.52315"/>
+		</Entity>
+		<Entity uid="6016">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1422.05811" z="1375.4015"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6017">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="1422.46595" z="1379.51331"/>
+			<Orientation y="0.86335"/>
+		</Entity>
+		<Entity uid="6018">
+			<Template>gaia/special_treasure_food_barrel</Template>
+			<Player>0</Player>
+			<Position x="1424.55115" z="1376.84607"/>
+			<Orientation y="0.31193"/>
+		</Entity>
+		<Entity uid="6019">
+			<Template>gaia/special_treasure_food_barrel</Template>
+			<Player>0</Player>
+			<Position x="1426.27369" z="1378.04773"/>
+			<Orientation y="-2.3904"/>
+		</Entity>
+		<Entity uid="6020">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="1422.9922" z="1385.39014"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6021">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="1299.98816" z="928.9181"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6022">
+			<Template>gaia/special_treasure_food_jars</Template>
+			<Player>0</Player>
+			<Position x="227.52271" z="1408.12781"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6023">
+			<Template>gaia/special_ruins</Template>
+			<Player>0</Player>
+			<Position x="1114.53357" z="1422.32813"/>
+			<Orientation y="-1.32145"/>
+		</Entity>
+		<Entity uid="6024">
+			<Template>gaia/special_ruins</Template>
+			<Player>0</Player>
+			<Position x="1119.13843" z="1430.75904"/>
+			<Orientation y="-1.45612"/>
+		</Entity>
+		<Entity uid="6025">
+			<Template>gaia/special_ruins</Template>
+			<Player>0</Player>
+			<Position x="559.78089" z="858.46528"/>
+			<Orientation y="-1.9639"/>
+		</Entity>
+		<Entity uid="6026">
+			<Template>gaia/special_ruins</Template>
+			<Player>0</Player>
+			<Position x="564.34522" z="850.52381"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6027">
+			<Template>other/column_doric</Template>
+			<Player>0</Player>
+			<Position x="573.19611" z="872.90021"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6028">
+			<Template>other/column_doric_fallen</Template>
+			<Player>0</Player>
+			<Position x="565.185" z="878.93561"/>
+			<Orientation y="-1.05871"/>
+		</Entity>
+		<Entity uid="6029">
+			<Template>other/column_doric_fallen_b</Template>
+			<Player>0</Player>
+			<Position x="562.8141" z="867.93818"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6030">
+			<Template>other/column_doric_fallen_b</Template>
+			<Player>0</Player>
+			<Position x="897.73664" z="522.48047"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6031">
+			<Template>other/column_doric_fallen_b</Template>
+			<Player>0</Player>
+			<Position x="903.73401" z="520.72742"/>
+			<Orientation y="0.0749"/>
+		</Entity>
+		<Entity uid="6032">
+			<Template>other/column_doric_fallen_b</Template>
+			<Player>0</Player>
+			<Position x="900.60553" z="524.42469"/>
+			<Orientation y="0.93859"/>
+		</Entity>
+		<Entity uid="6033">
+			<Template>other/column_doric_fallen</Template>
+			<Player>0</Player>
+			<Position x="900.57099" z="531.06611"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6034">
+			<Template>other/column_doric_fallen</Template>
+			<Player>0</Player>
+			<Position x="905.23951" z="1111.90467"/>
+			<Orientation y="-1.97484"/>
+		</Entity>
+		<Entity uid="6035">
+			<Template>other/column_doric</Template>
+			<Player>0</Player>
+			<Position x="911.84931" z="1104.62"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6036">
+			<Template>units/hele_super_infantry_polis</Template>
+			<Player>2</Player>
+			<Position x="799.17066" z="592.11945"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6037">
+			<Template>units/hele_super_infantry_polis</Template>
+			<Player>2</Player>
+			<Position x="800.90717" z="594.2074"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6038">
+			<Template>units/hele_super_infantry_polis</Template>
+			<Player>2</Player>
+			<Position x="802.78138" z="596.87574"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6039">
+			<Template>units/hele_super_infantry_polis</Template>
+			<Player>2</Player>
+			<Position x="804.4773" z="599.23829"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6040">
+			<Template>units/hele_super_infantry_polis</Template>
+			<Player>2</Player>
+			<Position x="806.54438" z="602.08765"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6041">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>1</Player>
+			<Position x="1399.11927" z="1129.70044"/>
+			<Orientation y="2.83117"/>
+		</Entity>
+		<Entity uid="6042">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>1</Player>
+			<Position x="1401.4607" z="1132.97278"/>
+			<Orientation y="2.94082"/>
+		</Entity>
+		<Entity uid="6043">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>1</Player>
+			<Position x="1404.75525" z="1137.02015"/>
+			<Orientation y="2.98252"/>
+		</Entity>
+		<Entity uid="6044">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>1</Player>
+			<Position x="1403.24952" z="1134.95813"/>
+			<Orientation y="3.12784"/>
+		</Entity>
+		<Entity uid="6045">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>1</Player>
+			<Position x="1397.29725" z="1127.24585"/>
+			<Orientation y="2.85708"/>
+		</Entity>
+		<Entity uid="6046">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>5</Player>
+			<Position x="990.73603" z="994.52741"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6047">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>5</Player>
+			<Position x="993.1222" z="997.4593"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6048">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>5</Player>
+			<Position x="994.77814" z="1000.31214"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6049">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>5</Player>
+			<Position x="996.45081" z="1003.2912"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6050">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>5</Player>
+			<Position x="998.07544" z="1006.1847"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6051">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>3</Player>
+			<Position x="408.62665" z="1002.93763"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6052">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>3</Player>
+			<Position x="410.66425" z="1004.93476"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6053">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>3</Player>
+			<Position x="412.21631" z="1007.67084"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6054">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>3</Player>
+			<Position x="414.61258" z="1011.3938"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6055">
+			<Template>units/hele_super_ranged_polis</Template>
+			<Player>3</Player>
+			<Position x="416.36374" z="1014.0069"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
