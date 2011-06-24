@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <float/>
+
+  <group>
+    <variant name="water wave">
+      <mesh>props/water_wave_a.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="wave_a">
+      <texture>props/water_wave_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="wave_b">
+      <texture>props/water_wave_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
