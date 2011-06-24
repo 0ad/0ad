@@ -22,8 +22,10 @@
 
 #include "ICmpObstruction.h"
 #include "ICmpObstructionManager.h"
+#include "ICmpOwnership.h"
 #include "ICmpPosition.h"
 #include "ICmpPathfinder.h"
+#include "ICmpRangeManager.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
@@ -1002,6 +1004,20 @@ bool CCmpUnitMotion::CheckTargetMovement(CFixedVector2D from, entity_pos_t minDe
 	// Fail unless we're close enough to the target to care about its movement
 	if (!PathIsShort(m_LongPath, from, CHECK_TARGET_MOVEMENT_AT_MAX_DIST))
 		return false;
+
+	// Fail if the target is no longer visible to this entity's owner
+	// (in which case we'll continue moving to its last known location,
+	// unless it comes back into view before we reach that location)
+	CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+	if (!cmpOwnership.null())
+	{
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpRangeManager.null())
+		{
+			if (cmpRangeManager->GetLosVisibility(m_TargetEntity, cmpOwnership->GetOwner()) == ICmpRangeManager::VIS_HIDDEN)
+				return false;
+		}
+	}
 
 	// The target moved and we need to update our current path;
 	// change the goal here and expect our caller to start the path request

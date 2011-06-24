@@ -5,9 +5,11 @@ UnitAI.prototype.Schema =
 	"<a:example/>" +
 	"<element name='DefaultStance'>" +
 		"<choice>" +
+			"<value>violent</value>" +
 			"<value>aggressive</value>" +
 			"<value>defensive</value>" +
 			"<value>passive</value>" +
+			"<value>stand</value>" +
 		"</choice>" +
 	"</element>" +
 	"<element name='FormationController'>" +
@@ -45,60 +47,64 @@ UnitAI.prototype.Schema =
 		"</interleave>" +
 	"</optional>";
 
-// Very basic stance support (currently just for test maps where we don't want
-// everyone killing each other immediately after loading, and for female citizens)
+// Unit stances.
 // There some targeting options:
 //   targetVisibleEnemies: anything in vision range is a viable target
 //   targetAttackers: anything that hurts us is a viable target
 // There are some response options, triggered when targets are detected:
 //   respondFlee: run away
 //   respondChase: start chasing after the enemy
-// TODO: maybe add respondStandGround, respondHoldGround (allow chasing a short distance then return),
-// targetAggressiveEnemies (don't worry about lone scouts, do worry around armies slaughtering
-// the guy standing next to you), etc.
-// TODO: even this limited version isn't implemented properly yet (e.g. it can't handle
-// dynamic stance changes).
+//   respondChaseBeyondVision: start chasing, and don't stop even if it's out
+//     of this unit's vision range (though still visible to the player)
+//   respondStandGround: attack enemy but don't move at all
+//   respondHoldGround: attack enemy but don't move far from current position
+// TODO: maybe add targetAggressiveEnemies (don't worry about lone scouts,
+// do worry around armies slaughtering the guy standing next to you), etc.
 var g_Stances = {
 	"violent": {
 		targetVisibleEnemies: true,
 		targetAttackers: true,
 		respondFlee: false,
 		respondChase: true,
-		respondStandGround : false,
-		respondHoldGround : false,
-		respondChaseToHell : true,
+		respondChaseBeyondVision: true,
+		respondStandGround: false,
+		respondHoldGround: false,
 	},
 	"aggressive": {
 		targetVisibleEnemies: true,
 		targetAttackers: true,
 		respondFlee: false,
 		respondChase: true,
-		respondStandGround : false,
-		respondHoldGround : false,
+		respondChaseBeyondVision: false,
+		respondStandGround: false,
+		respondHoldGround: false,
 	},
 	"defensive": {
 		targetVisibleEnemies: true,
 		targetAttackers: true,
 		respondFlee: false,
 		respondChase: false,
-		respondStandGround : false,
-		respondHoldGround : true,
+		respondChaseBeyondVision: false,
+		respondStandGround: false,
+		respondHoldGround: true,
 	},
 	"passive": {
 		targetVisibleEnemies: false,
 		targetAttackers: true,
 		respondFlee: true,
 		respondChase: false,
-		respondStandGround : false,
-		respondHoldGround : false,
+		respondChaseBeyondVision: false,
+		respondStandGround: false,
+		respondHoldGround: false,
 	},
 	"stand": {
 		targetVisibleEnemies: true,
 		targetAttackers: true,
 		respondFlee: false,
 		respondChase: false,
-		respondStandGround : true,
-		respondHoldGround : false,
+		respondChaseBeyondVision: false,
+		respondStandGround: true,
+		respondHoldGround: false,
 	},
 };
 
@@ -135,11 +141,6 @@ var UnitFsmSpec = {
 
 	"EntityRenamed": function(msg) {
 		// ignore
-	},
-
-	"StanceChanged": function(msg) {
-		if (this.StanceSpecificQuery(this.stance,true))
-			return;
 	},
 
 	// Formation handlers:
@@ -246,27 +247,39 @@ var UnitFsmSpec = {
 		}
 		this.attackType = type;
 
+		// If we are already at the target, try attacking it from here
 		if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
 		{
-			// We are already at the target
-			// so try attacking it from here.
 			this.StopMoving();
 			if (this.IsAnimal())
 				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
 			else
 				this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
+			return;
 		}
+
+		// If we can't reach the target, but are standing ground,
+		// then abandon this attack order
+		if (this.GetStance().respondStandGround && !this.order.data.force)
+		{
+			this.FinishOrder();
+			return;
+		}
+
 		// Try to move within attack range
-		else if ((!this.GetStance().respondStandGround || this.order.data.force) && this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+		if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
 		{
 			// We've started walking to the given point
 			if (this.IsAnimal())
 				this.SetNextState("ANIMAL.COMBAT.APPROACHING");
 			else
 				this.SetNextState("INDIVIDUAL.COMBAT.APPROACHING");
+			return;
 		}
-		else
-			this.FinishOrder();
+
+		// We can't reach the target, and can't move towards it,
+		// so abandon this attack order
+		this.FinishOrder();
 	},
 
 	"Order.Gather": function(msg) {
@@ -514,8 +527,8 @@ var UnitFsmSpec = {
 				// If we entered the idle state we must have nothing better to do,
 				// so immediately check whether there's anybody nearby to attack.
 				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
-				if (this.StanceSpecificQuery(this.stance))
-					return true;
+				if (this.FindNewTargets())
+					return true; // (abort the FSM transition since we may have already switched state)
 
 				// Nobody to attack - stay in idle
 				return false;
@@ -571,11 +584,6 @@ var UnitFsmSpec = {
 					// We are already at the target, or can't move at all
 					this.FinishOrder();
 				}
-			},
-
-			"StanceChanged": function(msg) {
-				if (this.StanceSpecificQuery(this.stance))
-					return;
 			},
 		},
 
@@ -634,12 +642,12 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (!this.ChaseTargetedEntity(this.order.data.target, this.order.data.force))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
 					{
 						this.StopMoving();
 						this.FinishOrder();
 
-						// we return to our position
+						// Return to our original position
 						if (this.GetStance().respondHoldGround)
 							this.WalkToHeldPosition();
 					}
@@ -691,7 +699,8 @@ var UnitFsmSpec = {
 							return;
 						}
 
-						if (this.ChaseTargetedEntity(this.order.data.target))
+						// Can't reach it - try to chase after it
+						if (this.ShouldChaseTargetedEntity(this.order.data.target, this.order.data.force))
 						{
 							if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
 							{
@@ -706,16 +715,13 @@ var UnitFsmSpec = {
 					if (this.FinishOrder())
 						return;
 
-					// see if we can switch to a new nearby enemy
-					if (this.StanceSpecificQuery(this.stance, true))
+					// See if we can switch to a new nearby enemy
+					if (this.FindNewTargets())
 						return;
 
-					// we return to our position
+					// Return to our original position
 					if (this.GetStance().respondHoldGround)
-					{
-						if (this.WalkToHeldPosition())
-							return;
-					}
+						this.WalkToHeldPosition();
 				},
 
 				// TODO: respond to target deaths immediately, rather than waiting
@@ -733,12 +739,12 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (!this.ChaseTargetedEntity(this.order.data.target))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
 					{
 						this.StopMoving();
 						this.FinishOrder();
 
-						// we return to our position
+						// Return to our original position
 						if (this.GetStance().respondHoldGround)
 							this.WalkToHeldPosition();
 					}
@@ -1365,7 +1371,7 @@ UnitAI.prototype.OnCreate = function()
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
-	this.SetupRangeQuery(msg.to);
+	this.SetupRangeQuery();
 };
 
 UnitAI.prototype.OnDestroy = function()
@@ -1382,8 +1388,11 @@ UnitAI.prototype.OnDestroy = function()
 // Set up a range query for all enemy units within LOS range
 // which can be attacked.
 // This should be called whenever our ownership changes.
-UnitAI.prototype.SetupRangeQuery = function(owner)
+UnitAI.prototype.SetupRangeQuery = function()
 {
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var owner = cmpOwnership.GetOwner();
+
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 
@@ -1410,11 +1419,11 @@ UnitAI.prototype.SetupRangeQuery = function(owner)
 		}
 	}
 
-	var range = this.StanceSpecificRange();
+	var range = this.GetQueryRange();
 
-	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, 0, range.max, players, IID_DamageReceiver);
+	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver);
 	rangeMan.EnableActiveQuery(this.losRangeQuery);
-}
+};
 
 //// FSM linkage functions ////
 
@@ -1861,12 +1870,18 @@ UnitAI.prototype.MoveToPointRange = function(x, z, rangeMin, rangeMax)
 
 UnitAI.prototype.MoveToTarget = function(target)
 {
+	if (!this.CheckTargetVisible(target))
+		return false;
+
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.MoveToTargetRange(target, 0, 0);
 };
 
 UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 {
+	if (!this.CheckTargetVisible(target))
+		return false;
+
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
 	var range = cmpRanged.GetRange(type);
 
@@ -1876,6 +1891,9 @@ UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 
 UnitAI.prototype.MoveToTargetRangeExplicit = function(target, min, max)
 {
+	if (!this.CheckTargetVisible(target))
+		return false;
+
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.MoveToTargetRange(target, min, max);
 };
@@ -1887,6 +1905,26 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
+};
+
+/**
+ * Returns true if the target entity is visible through the FoW/SoD.
+ */
+UnitAI.prototype.CheckTargetVisible = function(target)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return false;
+
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (!cmpRangeManager)
+		return false;
+
+	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner()) == "hidden")
+		return false;
+
+	// Either visible directly, or visible in fog
+	return true;
 };
 
 UnitAI.prototype.FaceTowardsTarget = function(target)
@@ -1942,7 +1980,7 @@ UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
 	var distance = DistanceBetweenEntities(this.entity,target);
 
 	return distance < range;
-}
+};
 
 UnitAI.prototype.GetBestAttack = function()
 {
@@ -1971,8 +2009,8 @@ UnitAI.prototype.AttackVisibleEntity = function(ents)
 };
 
 /**
- * Try to find one of the given entities which can be attacked,
- * within zone.
+ * Try to find one of the given entities which can be attacked
+ * and which is close to the hold position, and start attacking it.
  * Returns true if it found something to attack.
  */
 UnitAI.prototype.AttackEntityInZone = function(ents)
@@ -2017,38 +2055,45 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 	return false;
 };
 
-/*
- * Try to chase targeted entity given our current stance
+/**
+ * Returns true if we should stop following the target entity.
  */
-UnitAI.prototype.ChaseTargetedEntity = function(ent, force)
+UnitAI.prototype.ShouldAbandonChase = function(target, force)
 {
-  if (this.GetStance().respondChase)
-  {
-    if (this.CheckTargetIsInVisionRange(ent))
-    {
-      return true;
-    }
-  }
+	// Stop if we're in hold-ground mode and it's too far from the holding point
+	if (this.GetStance().respondHoldGround)
+	{
+		if (!this.CheckTargetDistanceFromHeldPosition(target, this.attackType))
+			return true;
+	}
 
-  if (this.GetStance().respondChaseToHell || force)
-  {
-    //if ( TODO : Check ent is not in Shroud of Darkness)
-    {
-      return true;
-    }
-  }
+	// Stop if it's left our vision range, unless we're especially persistent
+	if (!force && !this.GetStance().respondChaseBeyondVision)
+	{
+		if (!this.CheckTargetIsInVisionRange(target))
+			return true;
+	}
 
-  if (this.GetStance().respondHoldGround)
-  {
-    if (this.CheckTargetDistanceFromHeldPosition(ent, this.attackType))
-    {
-      return true;
-    }
-  }
+	// (Note that CCmpUnitMotion will detect if the target is lost in FoW,
+	// and will continue moving to its last seen position and then stop)
 
-  return false;
+	return false;
+};
 
-}
+/*
+ * Returns whether we should chase the targeted entity,
+ * given our current stance.
+ */
+UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
+{
+	if (this.GetStance().respondChase)
+		return true;
+
+	if (force)
+		return true;
+
+	return false;
+};
 
 //// External interface functions ////
 
@@ -2289,32 +2334,29 @@ UnitAI.prototype.SwitchToStance = function(stance)
 	if (stance == "stand" || stance == "defensive" || stance == "passive")
 		this.StopMoving();
 
-	UnitFsm.ProcessMessage(this, {"type": "StanceChanged", "stance": stance});
+	// Reset the range query, since the range depends on stance
+	this.SetupRangeQuery();
 }
 
-UnitAI.prototype.StanceSpecificQuery = function(stance, disable)
+/**
+ * Resets losRangeQuery, and if there are some targets in range that we can
+ * attack then we start attacking and this returns true; otherwise, returns false.
+ */
+UnitAI.prototype.FindNewTargets = function()
 {
-	if (!g_Stances[stance])
-	{
-		error("UnitAI: Setting to invalid stance '"+stance+"'");
-		return false;
-	}
-
 	if (!this.losRangeQuery)
 		return false;
 
-	var range = this.StanceSpecificRange();
-
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var ents = rangeMan.ModifyRangeActiveQuery(this.losRangeQuery, range.min, range.max);
+	var ents = rangeMan.ResetActiveQuery(this.losRangeQuery);
 
-	if (disable && !this.IsAnimal())
-		rangeMan.DisableActiveQuery(this.losRangeQuery);
+	if (!this.GetStance().targetVisibleEnemies)
+		return false;
 
 	return this.RespondToTargetedEntities(ents);
 };
 
-UnitAI.prototype.StanceSpecificRange = function()
+UnitAI.prototype.GetQueryRange = function()
 {
 	var ret = { "min": 0, "max": 0 };
 	if (this.GetStance().respondStandGround)

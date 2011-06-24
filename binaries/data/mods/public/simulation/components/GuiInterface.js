@@ -298,7 +298,7 @@ GuiInterface.prototype.CanMoveEntsIntoFormation = function(player, data)
 	return CanMoveEntsIntoFormation(data.ents, data.formationName);
 };
 
-GuiInterface.prototype.StanceSelected = function(player, data)
+GuiInterface.prototype.IsStanceSelected = function(player, data)
 {
 	for each (var ent in data.ents)
 	{
@@ -567,7 +567,7 @@ var exposedFunctions = {
 	"GetNextNotification": 1,
 
 	"CanMoveEntsIntoFormation": 1,
-	"StanceSelected": 1,
+	"IsStanceSelected": 1,
 
 	"SetSelectionHighlight": 1,
 	"SetStatusBars": 1,
