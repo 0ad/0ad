@@ -2,9 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="horse armor peytral ">
-      <mesh>props/horse_peytral_large.dae</mesh>
-      <texture>props/helmet/pers_h1.dds</texture>
+    <variant frequency="1" name="kart_banner_a">
+      <mesh>props/special/kart_banner_a.dae</mesh>
+      <texture>structural/kart_struct.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

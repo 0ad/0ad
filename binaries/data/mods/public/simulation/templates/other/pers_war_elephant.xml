@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super_cavalry">
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Pil Jangi Hendi</SpecificName>
+    <Icon>units/pers_war_elephant.png</Icon>
+    <History>Elephants were rare sights in Persian armies but they were used and their effect on the battlefield could not be ignored. As their tusks and feet physically attacked the enemy, archers and javelin throwers launched projectiles from atop the animals back. While huge, they could be just as much a threat to their own side and could be easily hamstrung. But their ability to stop a full-blown cavalry charge when in a line made up for any questions of effectiveness.</History>
+  </Identity>
+  <Cost>
+    <Population>3</Population>
+    <Resources>
+      <food>300</food>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>450</Max>
+  </Health>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>9.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>14.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Melee>
+      <Hack>25.0</Hack>
+      <Crush>30.0</Crush>
+    </Melee>
+    <Charge>
+      <Hack>75.0</Hack>
+      <Crush>90.0</Crush>
+    </Charge>
+  </Attack>
+  <VisualActor>
+    <Actor>units/persians/war_elephant.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Circle radius="2.8"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Vision>
+    <Range>120</Range>
+  </Vision>
+</Entity>

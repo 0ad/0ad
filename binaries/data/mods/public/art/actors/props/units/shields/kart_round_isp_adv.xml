@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/round_h_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/hele_round_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="kart-shield-o">
+      <texture>props/shield/kart_round_o.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-k">
+      <texture>props/shield/kart_round_k.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-l">
+      <texture>props/shield/kart_round_l.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-x">
+      <texture>props/shield/kart_round_x.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-o-2">
+      <texture>props/shield/kart_round_o_2.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

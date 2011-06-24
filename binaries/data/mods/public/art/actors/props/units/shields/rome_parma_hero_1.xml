@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/round_r_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/round_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Shield-Parma-H">
+      <texture>props/shield/rome_parma_h.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_super_cavalry_spearman">
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Bakhtris Asabari</SpecificName>
+    <Icon>units/pers_super_cavalry.png</Icon>
+    <History>Cataphracts were the crushing blow of the Persian cavalry. The development of the Persian cataphract is not well understood, as is the relationship between these men and future generations of cataphract cavalry. At best it seems the Persians adopted the catapharct from encounters with Iranian nomads like the Massagetes.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/persians/super_unit_2.xml</Actor>
+  </VisualActor>
+  <Cost>
+    <Resources>
+      <wood>80</wood>
+	  <metal>40</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Armour>
+    <Hack>15.0</Hack>
+    <Pierce>12.0</Pierce>
+    <Crush>8.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Melee>
+      <Hack>5.0</Hack>
+      <Pierce>15.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>20.0</Hack>
+      <Pierce>60.0</Pierce>
+      <Crush>10.0</Crush>
+    </Charge>
+  </Attack>
+</Entity>

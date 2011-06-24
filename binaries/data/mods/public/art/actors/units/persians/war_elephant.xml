@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mesh">
+      <animations>
+        <animation file="quadraped/elephant_idle_01.dae" name="Idle" speed="200"/>
+        <animation file="quadraped/elephant_idle_02.dae" name="Idle" speed="200"/>
+        <animation file="quadraped/elephant_walk_01.dae" name="walk" speed="200"/>
+        <animation file="quadraped/elephant_run_01.dae" name="run " speed="300"/>
+        <animation event="0.5" file="quadraped/elephant_attack_03.dae" name="melee" speed="200"/>
+        <animation event="0.5" file="quadraped/elephant_attack_02.dae" name="melee" speed="200"/>
+        <animation event="0.5" file="quadraped/elephant_attack_01.dae" name="melee" speed="200"/>
+        <animation file="quadraped/elephant_death_01.dae" name="death" speed="500"/>
+      </animations>
+      <mesh>skeletal/elephant_asian.dae</mesh>
+      <props>
+        <prop actor="units/persians/super_unit_3_mahout.xml" attachpoint="rider1"/>
+        <prop actor="units/persians/super_unit_3_raja.xml" attachpoint="rider2"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="elephant-hide-gray-1">
+      <texture>skeletal/pers_su2_ele_01.dds</texture>
+    </variant>
+    <variant frequency="1" name="elephant-hide-brown-1">
+      <texture>skeletal/pers_su2_ele_02.dds</texture>
+    </variant>
+    <variant frequency="1" name="elephant-hide-gray-2">
+      <texture>skeletal/pers_su2_ele_03.dds</texture>
+    </variant>
+    <variant frequency="1" name="elephant-hide-brown-2">
+      <texture>skeletal/pers_su2_ele_04.dds</texture>
+    </variant>
+    <variant frequency="1" name="elephant-hide-gray-3">
+      <texture>skeletal/pers_su2_ele_05.dds</texture>
+    </variant>
+    <variant frequency="1" name="elephant-hide-gray-4">
+      <texture>skeletal/pers_su2_ele_06.dds</texture>
+    </variant>
+    <variant frequency="1" name="elephant-hide-brown-4">
+      <texture>skeletal/pers_su2_ele_07.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

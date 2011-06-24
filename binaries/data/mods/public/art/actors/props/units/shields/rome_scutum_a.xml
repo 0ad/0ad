@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/scutum_r_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/rome_scutum_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="Texture-Tower-A">
+      <texture>props/shield/rome_tower_a.dds</texture>
+    </variant>
+    <variant name="Texture-Tower-B">
+      <texture>props/shield/rome_tower_b.dds</texture>
+    </variant>
+    <variant name="Texture-Tower-G">
+      <texture>props/shield/rome_tower_g.dds</texture>
+    </variant>
+    <variant name="Texture-Tower-I">
+      <texture>props/shield/rome_tower_i.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
