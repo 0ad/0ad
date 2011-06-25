@@ -283,6 +283,13 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
+		//If target is not visible anymore, give up
+		if (!this.CheckTargetVisible(this.order.data.target))
+		{
+			this.FinishOrder();
+			return;
+		}
+
 		// If the target is still alive, we need to kill it first
 		if (this.MustKillGatherTarget(this.order.data.target))
 		{
