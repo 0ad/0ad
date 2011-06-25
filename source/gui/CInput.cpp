@@ -443,13 +443,18 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
 
 	std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
-	if (hotkey == "console.paste")
+	if (hotkey == "paste")
 	{
 		m_WantedX=0.0f;
 
 		wchar_t* text = sys_clipboard_get();
 		if (text)
 		{
+			if (SelectingText())
+			{
+				DeleteCurSelection();
+			}
+
 			if (m_iBufferPos == (int)pCaption->length())
 				*pCaption += text;
 			else
@@ -465,7 +470,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 		return IN_HANDLED;
 	}
-	else if (hotkey == "console.copy" || hotkey == "console.cut")
+	else if (hotkey == "copy" || hotkey == "cut")
 	{
 		m_WantedX=0.0f;
 
@@ -489,7 +494,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 			sys_clipboard_set(&text[0]);
 
-			if (hotkey == "console.cut")
+			if (hotkey == "cut")
 			{
 				DeleteCurSelection();
 			}
@@ -497,7 +502,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 		return IN_HANDLED;
 	}
-	else if (hotkey == "text.delete.word.left")
+	else if (hotkey == "text.delete.left")
 	{
 		m_WantedX=0.0f;
 
@@ -538,7 +543,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		}
 		return IN_HANDLED;
 	} 
-	else if (hotkey == "text.delete.word.right")
+	else if (hotkey == "text.delete.right")
 	{
 		m_WantedX=0.0f;
 
@@ -570,7 +575,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		}
 		return IN_HANDLED;			
 	}
-	else if (hotkey == "text.move.word.left")
+	else if (hotkey == "text.move.left")
 	{
 		m_WantedX=0.0f;
 				
@@ -626,7 +631,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 		return IN_HANDLED;
 	}
-	else if (hotkey == "text.move.word.right")
+	else if (hotkey == "text.move.right")
 	{
 		m_WantedX=0.0f;
 

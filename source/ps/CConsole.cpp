@@ -698,12 +698,12 @@ InReaction conInputHandler(const SDL_Event_* ev)
 			g_Console->ToggleVisible();
 			return IN_HANDLED;
 		}
-		else if (g_Console->IsActive() && hotkey == "console.copy")
+		else if (g_Console->IsActive() && hotkey == "copy")
 		{
 			sys_clipboard_set(g_Console->GetBuffer());
 			return IN_HANDLED;
 		}
-		else if (g_Console->IsActive() && hotkey == "console.paste")
+		else if (g_Console->IsActive() && hotkey == "paste")
 		{
 			wchar_t* text = sys_clipboard_get();
 			if (text)
