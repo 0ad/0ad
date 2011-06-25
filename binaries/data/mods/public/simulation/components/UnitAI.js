@@ -295,7 +295,7 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": false });
+			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": true });
 			return;
 		}
 
