@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/aeroplane.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/aeroplane.dds</texture>
+    </variant>
+  </group>
+</actor>

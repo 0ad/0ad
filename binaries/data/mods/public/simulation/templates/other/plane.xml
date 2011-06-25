@@ -6,20 +6,23 @@
     <History>This may be anachronistic.</History>
   </Identity>
   <VisualActor>
-    <Actor>units/hellenes/siege_rock.xml</Actor> <!-- only using this because its flaming projectiles look nice -->
+    <Actor>units/global/plane.xml</Actor> <!-- only using this because its flaming projectiles look nice -->
   </VisualActor>
+    <Vision>
+    <Range>80</Range>
+  </Vision>
   <Obstruction disable=""/>
   <UnitMotion disable=""/>
   <Position>
-    <TurnRate>1.57</TurnRate>
+    <TurnRate>1.0</TurnRate>
   </Position>
   <UnitMotionFlying>
-    <MaxSpeed>24.0</MaxSpeed>
+    <MaxSpeed>30.0</MaxSpeed>
     <AccelRate>8.0</AccelRate>
-    <TurnRate>1.57</TurnRate>
+    <TurnRate>1.0</TurnRate>
     <OvershootTime>2.0</OvershootTime>
-    <FlyingHeight>16.0</FlyingHeight>
-    <ClimbRate>3.0</ClimbRate>
+    <FlyingHeight>30.0</FlyingHeight>
+    <ClimbRate>6.0</ClimbRate>
   </UnitMotionFlying>
   <Attack>
     <Ranged>

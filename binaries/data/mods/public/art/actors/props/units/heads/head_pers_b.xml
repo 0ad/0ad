@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Head Mesh">
+      <mesh>props/dude_head.pmd</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Persian Face a">
+      <texture>props/head/pers_face_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Persian Face b">
+      <texture>props/head/pers_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Persian Face i">
+      <texture>props/head/pers_face_i.dds</texture>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="canopy-mesh-a">
       <mesh>gaia/tree_carob_top_a.pmd</mesh>
@@ -23,19 +21,19 @@
       <mesh>gaia/tree_carob_top_f.pmd</mesh>
     </variant>
   </group>
-
   <group>
-    <variant frequency="1" name="leaf-texture-a">
+    <variant frequency="3" name="leaf-texture-a">
       <texture>gaia/tree_carob_a.dds</texture>
     </variant>
-    <variant frequency="1" name="leaf-texture-b">
+    <variant frequency="3" name="leaf-texture-b">
       <texture>gaia/tree_carob_b.dds</texture>
     </variant>
-    <variant frequency="1" name="leaf-texture-c">
+    <variant frequency="3" name="leaf-texture-c">
       <texture>gaia/tree_carob_c.dds</texture>
     </variant>
+    <variant frequency="1" name="leaf-texture-d">
+      <texture>gaia/tree_carob_d.dds</texture>
+    </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>

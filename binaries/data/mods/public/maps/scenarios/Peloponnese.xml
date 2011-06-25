@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
+		<SunColour r="0.816452" g="0.794853" b="0.708456"/>
 		<SunElevation angle="0.874369"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="1545.52" y="406.391" z="-191.35"/>
+		<Position x="864.308" y="150.268" z="130.094"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -525,8 +525,8 @@
 		<Entity uid="101">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="862.0694" z="501.27186"/>
-			<Orientation y="-2.37362"/>
+			<Position x="867.73755" z="506.43702"/>
+			<Orientation y="0.07825"/>
 		</Entity>
 		<Entity uid="102">
 			<Template>gaia/flora_tree_carob</Template>
@@ -10792,7 +10792,7 @@
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
 			<Position x="1222.34717" z="1308.24683"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.97352"/>
 		</Entity>
 		<Entity uid="1816">
 			<Template>gaia/flora_tree_carob</Template>
@@ -15833,7 +15833,7 @@
 		</Entity>
 		<Entity uid="2679">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
-			<Position x="861.30036" z="436.93097"/>
+			<Position x="866.10718" z="428.68085"/>
 			<Orientation y="-2.60366"/>
 		</Entity>
 		<Entity uid="2680">
@@ -17888,7 +17888,7 @@
 		</Entity>
 		<Entity uid="3090">
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
-			<Position x="1155.46973" z="1418.16334"/>
+			<Position x="1153.79371" z="1412.11963"/>
 			<Orientation y="1.17127"/>
 		</Entity>
 		<Entity uid="3091">
@@ -19448,22 +19448,22 @@
 		</Entity>
 		<Entity uid="3402">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="1083.65418" z="1396.86487"/>
+			<Position x="1083.65833" z="1397.0359"/>
 			<Orientation y="-2.05365"/>
 		</Entity>
 		<Entity uid="3403">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="1067.08509" z="1393.36866"/>
+			<Position x="1186.49561" z="1436.1753"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3404">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="1089.98853" z="1394.01893"/>
+			<Position x="1099.74354" z="1401.72718"/>
 			<Orientation y="0.35589"/>
 		</Entity>
 		<Entity uid="3405">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="1093.89625" z="1402.69678"/>
+			<Position x="1149.08692" z="1439.78846"/>
 			<Orientation y="1.6835"/>
 		</Entity>
 		<Entity uid="3406">
@@ -19488,7 +19488,7 @@
 		</Entity>
 		<Entity uid="3410">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="1077.82044" z="1408.52991"/>
+			<Position x="1074.20069" z="1397.6709"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3411">
@@ -19498,8 +19498,8 @@
 		</Entity>
 		<Entity uid="3412">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="1067.97681" z="1410.06434"/>
-			<Orientation y="-1.99079"/>
+			<Position x="1071.98682" z="1406.45667"/>
+			<Orientation y="0.3875"/>
 		</Entity>
 		<Entity uid="3413">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
@@ -32319,8 +32319,8 @@
 		<Entity uid="5973">
 			<Template>other/special_treasure_shipwreck</Template>
 			<Player>0</Player>
-			<Position x="1240.51331" z="1742.07618"/>
-			<Orientation y="2.35621"/>
+			<Position x="1315.60706" z="1778.92591"/>
+			<Orientation y="-1.99614"/>
 		</Entity>
 		<Entity uid="5974">
 			<Template>other/special_treasure_shipwreck</Template>
